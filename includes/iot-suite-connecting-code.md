@@ -1,21 +1,21 @@
-## <a name="specify-the-behavior-of-the-iot-device"></a>IoT 장치의 동작 지정
+## <a name="specify-the-behavior-of-the-iot-device"></a><span data-ttu-id="22420-101">IoT 장치의 동작 지정</span><span class="sxs-lookup"><span data-stu-id="22420-101">Specify the behavior of the IoT device</span></span>
 
-IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장치가 IoT Hub와 교환하는 메시지의 형식을 지정합니다.
+<span data-ttu-id="22420-102">IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장치가 IoT Hub와 교환하는 메시지의 형식을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-102">The IoT Hub serializer client library uses a model to specify the format of the messages the device exchanges with IoT Hub.</span></span>
 
-1. 다음 변수 선언을 `#include` 문 뒤에 추가합니다. 원격 모니터링 솔루션 대시보드에서 자리 표시자 값 [Device Id] 및 [Device Key]를 장치에 대해 기록한 값으로 바꿉니다. 솔루션 대시보드에서 IoT Hub 호스트 이름을 사용하여 [IoTHub Name]을 바꿉니다. 예를 들어 IoT Hub 호스트 이름이 **contoso.azure-devices.net**인 경우 [IoTHub Name]을 **contoso**로 바꿉니다.
+1. <span data-ttu-id="22420-103">다음 변수 선언을 `#include` 문 뒤에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-103">Add the following variable declarations after the `#include` statements.</span></span> <span data-ttu-id="22420-104">원격 모니터링 솔루션 대시보드에서 자리 표시자 값 [Device Id] 및 [Device Key]를 장치에 대해 기록한 값으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="22420-104">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="22420-105">솔루션 대시보드에서 IoT Hub 호스트 이름을 사용하여 [IoTHub Name]을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="22420-105">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="22420-106">예를 들어 IoT Hub 호스트 이름이 **contoso.azure-devices.net**인 경우 [IoTHub Name]을 **contoso**로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="22420-106">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
    
     ```c
     static const char* deviceId = "[Device Id]";
     static const char* connectionString = "HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]";
     ```
 
-1. 다음 코드를 추가하여 장치에서 IoT Hub와 통신하도록 지원하는 모델을 정의합니다. 이 모델은 장치에서 다음이 가능하도록 지정합니다.
+1. <span data-ttu-id="22420-107">다음 코드를 추가하여 장치에서 IoT Hub와 통신하도록 지원하는 모델을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-107">Add the following code to define the model that enables the device to communicate with IoT Hub.</span></span> <span data-ttu-id="22420-108">이 모델은 장치에서 다음이 가능하도록 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-108">This model specifies that the device:</span></span>
 
-   - 온도, 외부 온도, 습도 및 장치 ID를 원격 분석으로 보낼 수 있습니다.
-   - 장치에 대한 메타데이터를 IoT Hub에 보낼 수 있습니다. 장치는 시작 시 **DeviceInfo** 개체에서 기본 메타데이터를 보냅니다.
-   - reported 속성을 IoT Hub의 장치 쌍에 보낼 수 있습니다. 이러한 reported 속성은 구성, 장치 및 시스템 속성으로 그룹화됩니다.
-   - IoT Hub의 장치 쌍에서 설정된 desired 속성을 수신하고 작업을 수행할 수 있습니다.
-   - 솔루션 포털을 통해 호출된 **Reboot** 및 **InitiateFirmwareUpdate** 직접 메서드에 응답할 수 있습니다. 장치는 reported 속성을 사용하여 지원하는 직접 메서드에 대한 정보를 보냅니다.
+   - <span data-ttu-id="22420-109">온도, 외부 온도, 습도 및 장치 ID를 원격 분석으로 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="22420-109">Can send temperature, external temperature, humidity, and a device id as telemetry.</span></span>
+   - <span data-ttu-id="22420-110">장치에 대한 메타데이터를 IoT Hub에 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="22420-110">Can send metadata about the device to IoT Hub.</span></span> <span data-ttu-id="22420-111">장치는 시작 시 **DeviceInfo** 개체에서 기본 메타데이터를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="22420-111">The device sends basic metadata in a **DeviceInfo** object at startup.</span></span>
+   - <span data-ttu-id="22420-112">reported 속성을 IoT Hub의 장치 쌍에 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="22420-112">Can send reported properties, to the device twin in IoT Hub.</span></span> <span data-ttu-id="22420-113">이러한 reported 속성은 구성, 장치 및 시스템 속성으로 그룹화됩니다.</span><span class="sxs-lookup"><span data-stu-id="22420-113">These reported properties are grouped into configuration, device, and system properties.</span></span>
+   - <span data-ttu-id="22420-114">IoT Hub의 장치 쌍에서 설정된 desired 속성을 수신하고 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="22420-114">Can receive and act on desired properties set in the device twin in IoT Hub.</span></span>
+   - <span data-ttu-id="22420-115">솔루션 포털을 통해 호출된 **Reboot** 및 **InitiateFirmwareUpdate** 직접 메서드에 응답할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="22420-115">Can respond to the **Reboot** and **InitiateFirmwareUpdate** direct methods invoked through the solution portal.</span></span> <span data-ttu-id="22420-116">장치는 reported 속성을 사용하여 지원하는 직접 메서드에 대한 정보를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="22420-116">The device sends information about the direct methods it supports using reported properties.</span></span>
    
     ```c
     // Define the Model
@@ -85,10 +85,10 @@ IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장
     END_NAMESPACE(Contoso);
     ```
 
-## <a name="implement-the-behavior-of-the-device"></a>장치의 동작 구현
-이제 모델에 정의된 동작을 구현하는 코드를 추가합니다.
+## <a name="implement-the-behavior-of-the-device"></a><span data-ttu-id="22420-117">장치의 동작 구현</span><span class="sxs-lookup"><span data-stu-id="22420-117">Implement the behavior of the device</span></span>
+<span data-ttu-id="22420-118">이제 모델에 정의된 동작을 구현하는 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-118">Now add code that implements the behavior defined in the model.</span></span>
 
-1. 솔루션 대시보드에서 설정된 desired 속성을 처리하는 다음 함수를 추가합니다. 이러한 desired 속성은 모델에서 정의됩니다.
+1. <span data-ttu-id="22420-119">솔루션 대시보드에서 설정된 desired 속성을 처리하는 다음 함수를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-119">Add the following functions that handle the desired properties set in the solution dashboard.</span></span> <span data-ttu-id="22420-120">이러한 desired 속성은 모델에서 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="22420-120">These desired properties are defined in the model:</span></span>
 
     ```c
     void onDesiredTemperatureMeanValue(void* argument)
@@ -107,7 +107,7 @@ IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장
     }
     ```
 
-1. IoT Hub를 통해 호출된 직접 메서드를 처리하는 다음 함수를 추가합니다. 이러한 직접 메서드는 모델에서 정의됩니다.
+1. <span data-ttu-id="22420-121">IoT Hub를 통해 호출된 직접 메서드를 처리하는 다음 함수를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-121">Add the following functions that handle the direct methods invoked through the IoT hub.</span></span> <span data-ttu-id="22420-122">이러한 직접 메서드는 모델에서 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="22420-122">These direct methods are defined in the model:</span></span>
 
     ```c
     /* Handlers for direct methods */
@@ -130,7 +130,7 @@ IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장
     }
     ```
 
-1. 미리 구성된 솔루션으로 메시지를 보내는 다음 함수를 추가합니다.
+1. <span data-ttu-id="22420-123">미리 구성된 솔루션으로 메시지를 보내는 다음 함수를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-123">Add the following function that sends a message to the preconfigured solution:</span></span>
    
     ```c
     /* Send data to IoT Hub */
@@ -158,7 +158,7 @@ IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장
     }
     ```
 
-1. 장치가 미리 구성된 솔루션에 새 reported 속성 값을 전송했을 때 실행되는 다음 콜백 처리기를 추가합니다.
+1. <span data-ttu-id="22420-124">장치가 미리 구성된 솔루션에 새 reported 속성 값을 전송했을 때 실행되는 다음 콜백 처리기를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-124">Add the following callback handler that runs when the device has sent new reported property values to the preconfigured solution:</span></span>
 
     ```c
     /* Callback after sending reported properties */
@@ -169,16 +169,16 @@ IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장
     }
     ```
 
-1. 다음 함수를 추가하여 클라우드의 미리 구성된 솔루션에 장치를 연결하고 데이터를 교환합니다. 이 함수는 다음 단계를 수행합니다.
+1. <span data-ttu-id="22420-125">다음 함수를 추가하여 클라우드의 미리 구성된 솔루션에 장치를 연결하고 데이터를 교환합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-125">Add the following function to connect your device to the preconfigured solution in the cloud, and exchange data.</span></span> <span data-ttu-id="22420-126">이 함수는 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-126">This function performs the following steps:</span></span>
 
-    - 플랫폼을 초기화합니다.
-    - serialization 라이브러리와 함께 Contoso 네임스페이스를 등록합니다.
-    - 장치 연결 문자열을 사용하여 클라이언트를 초기화합니다.
-    - **자동 온도 조절기** 모델의 인스턴스를 만듭니다.
-    - reported 속성 값을 만들고 보냅니다.
-    - **DeviceInfo** 개체를 보냅니다.
-    - 1초마다 원격 분석을 보내는 루프를 만듭니다.
-    - 모든 리소스의 초기화를 취소합니다.
+    - <span data-ttu-id="22420-127">플랫폼을 초기화합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-127">Initializes the platform.</span></span>
+    - <span data-ttu-id="22420-128">serialization 라이브러리와 함께 Contoso 네임스페이스를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-128">Registers the Contoso namespace with the serialization library.</span></span>
+    - <span data-ttu-id="22420-129">장치 연결 문자열을 사용하여 클라이언트를 초기화합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-129">Initializes the client with the device connection string.</span></span>
+    - <span data-ttu-id="22420-130">**자동 온도 조절기** 모델의 인스턴스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="22420-130">Create an instance of the **Thermostat** model.</span></span>
+    - <span data-ttu-id="22420-131">reported 속성 값을 만들고 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="22420-131">Creates and sends reported property values.</span></span>
+    - <span data-ttu-id="22420-132">**DeviceInfo** 개체를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="22420-132">Sends a **DeviceInfo** object.</span></span>
+    - <span data-ttu-id="22420-133">1초마다 원격 분석을 보내는 루프를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="22420-133">Creates a loop to send telemetry every second.</span></span>
+    - <span data-ttu-id="22420-134">모든 리소스의 초기화를 취소합니다.</span><span class="sxs-lookup"><span data-stu-id="22420-134">Deinitializes all resources.</span></span>
 
       ```c
       void remote_monitoring_run(void)
@@ -296,7 +296,7 @@ IoT Hub serializer 클라이언트 라이브러리는 모델을 사용하여 장
       }
     ```
    
-    참고로, 미리 구성된 솔루션으로 전송되는 샘플 **원격 분석** 메시지는 다음과 같습니다.
+    <span data-ttu-id="22420-135">참고로, 미리 구성된 솔루션으로 전송되는 샘플 **원격 분석** 메시지는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="22420-135">For reference, here is a sample **Telemetry** message sent to the preconfigured solution:</span></span>
    
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}

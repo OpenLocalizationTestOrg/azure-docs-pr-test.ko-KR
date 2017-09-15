@@ -1,20 +1,20 @@
-Azure Data Factory는 개별적 또는 다른 작업과 연계하여 파이프라인에 추가할 수 있는 다음과 같은 변환 작업을 지원합니다.
+<span data-ttu-id="9705e-101">Azure Data Factory는 개별적 또는 다른 작업과 연계하여 파이프라인에 추가할 수 있는 다음과 같은 변환 작업을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="9705e-101">Azure Data Factory supports the following transformation activities that can be added to pipelines either individually or chained with another activity.</span></span>
 
-| 데이터 변환 작업 | 컴퓨팅 환경 |
+| <span data-ttu-id="9705e-102">데이터 변환 작업</span><span class="sxs-lookup"><span data-stu-id="9705e-102">Data transformation activity</span></span> | <span data-ttu-id="9705e-103">컴퓨팅 환경</span><span class="sxs-lookup"><span data-stu-id="9705e-103">Compute environment</span></span> |
 |:--- |:--- |
-| [Hive](../articles/data-factory/data-factory-hive-activity.md) |HDInsight [Hadoop] |
-| [Pig](../articles/data-factory/data-factory-pig-activity.md) |HDInsight [Hadoop] |
-| [MapReduce](../articles/data-factory/data-factory-map-reduce.md) |HDInsight [Hadoop] |
-| [Hadoop 스트리밍](../articles/data-factory/data-factory-hadoop-streaming-activity.md) |HDInsight [Hadoop] |
-| [Spark](../articles/data-factory/data-factory-spark.md) | HDInsight [Hadoop] |
-| [Machine Learning 작업: 배치 실행 및 업데이트 리소스](../articles/data-factory/data-factory-azure-ml-batch-execution-activity.md) |Azure VM |
-| [저장 프로시저](../articles/data-factory/data-factory-stored-proc-activity.md) |Azure SQL, Azure SQL 데이터 웨어하우스 또는 SQL Server |
-| [데이터 레이크 분석 U-SQL](../articles/data-factory/data-factory-usql-activity.md) |Azure 데이터 레이크 분석 |
-| [DotNet](../articles/data-factory/data-factory-use-custom-activities.md) |HDInsight [Hadoop] 또는 Azure Batch |
+| [<span data-ttu-id="9705e-104">Hive</span><span class="sxs-lookup"><span data-stu-id="9705e-104">Hive</span></span>](../articles/data-factory/data-factory-hive-activity.md) |<span data-ttu-id="9705e-105">HDInsight [Hadoop]</span><span class="sxs-lookup"><span data-stu-id="9705e-105">HDInsight [Hadoop]</span></span> |
+| [<span data-ttu-id="9705e-106">Pig</span><span class="sxs-lookup"><span data-stu-id="9705e-106">Pig</span></span>](../articles/data-factory/data-factory-pig-activity.md) |<span data-ttu-id="9705e-107">HDInsight [Hadoop]</span><span class="sxs-lookup"><span data-stu-id="9705e-107">HDInsight [Hadoop]</span></span> |
+| [<span data-ttu-id="9705e-108">MapReduce</span><span class="sxs-lookup"><span data-stu-id="9705e-108">MapReduce</span></span>](../articles/data-factory/data-factory-map-reduce.md) |<span data-ttu-id="9705e-109">HDInsight [Hadoop]</span><span class="sxs-lookup"><span data-stu-id="9705e-109">HDInsight [Hadoop]</span></span> |
+| [<span data-ttu-id="9705e-110">Hadoop 스트리밍</span><span class="sxs-lookup"><span data-stu-id="9705e-110">Hadoop Streaming</span></span>](../articles/data-factory/data-factory-hadoop-streaming-activity.md) |<span data-ttu-id="9705e-111">HDInsight [Hadoop]</span><span class="sxs-lookup"><span data-stu-id="9705e-111">HDInsight [Hadoop]</span></span> |
+| [<span data-ttu-id="9705e-112">Spark</span><span class="sxs-lookup"><span data-stu-id="9705e-112">Spark</span></span>](../articles/data-factory/data-factory-spark.md) | <span data-ttu-id="9705e-113">HDInsight [Hadoop]</span><span class="sxs-lookup"><span data-stu-id="9705e-113">HDInsight [Hadoop]</span></span> |
+| [<span data-ttu-id="9705e-114">Machine Learning 작업: 배치 실행 및 업데이트 리소스</span><span class="sxs-lookup"><span data-stu-id="9705e-114">Machine Learning activities: Batch Execution and Update Resource</span></span>](../articles/data-factory/data-factory-azure-ml-batch-execution-activity.md) |<span data-ttu-id="9705e-115">Azure VM</span><span class="sxs-lookup"><span data-stu-id="9705e-115">Azure VM</span></span> |
+| [<span data-ttu-id="9705e-116">저장 프로시저</span><span class="sxs-lookup"><span data-stu-id="9705e-116">Stored Procedure</span></span>](../articles/data-factory/data-factory-stored-proc-activity.md) |<span data-ttu-id="9705e-117">Azure SQL, Azure SQL 데이터 웨어하우스 또는 SQL Server</span><span class="sxs-lookup"><span data-stu-id="9705e-117">Azure SQL, Azure SQL Data Warehouse, or SQL Server</span></span> |
+| [<span data-ttu-id="9705e-118">데이터 레이크 분석 U-SQL</span><span class="sxs-lookup"><span data-stu-id="9705e-118">Data Lake Analytics U-SQL</span></span>](../articles/data-factory/data-factory-usql-activity.md) |<span data-ttu-id="9705e-119">Azure 데이터 레이크 분석</span><span class="sxs-lookup"><span data-stu-id="9705e-119">Azure Data Lake Analytics</span></span> |
+| [<span data-ttu-id="9705e-120">DotNet</span><span class="sxs-lookup"><span data-stu-id="9705e-120">DotNet</span></span>](../articles/data-factory/data-factory-use-custom-activities.md) |<span data-ttu-id="9705e-121">HDInsight [Hadoop] 또는 Azure Batch</span><span class="sxs-lookup"><span data-stu-id="9705e-121">HDInsight [Hadoop] or Azure Batch</span></span> |
 
 > [!NOTE]
-> MapReduce 작업을 사용하여 HDInsight Spark 클러스터에서 Spark 프로그램을 실행할 수 있습니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](../articles/data-factory/data-factory-spark.md) 을 참조하세요.
-> R이 설치된 HDInsight 클러스터에서 R 스크립트를 실행하는 사용자 지정 작업을 만들 수 있습니다. [Azure Data Factory를 사용하여 R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)을 참조하세요.
+> <span data-ttu-id="9705e-122">MapReduce 작업을 사용하여 HDInsight Spark 클러스터에서 Spark 프로그램을 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9705e-122">You can use MapReduce activity to run Spark programs on your HDInsight Spark cluster.</span></span> <span data-ttu-id="9705e-123">자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](../articles/data-factory/data-factory-spark.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9705e-123">See [Invoke Spark programs from Azure Data Factory](../articles/data-factory/data-factory-spark.md) for details.</span></span>
+> <span data-ttu-id="9705e-124">R이 설치된 HDInsight 클러스터에서 R 스크립트를 실행하는 사용자 지정 작업을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9705e-124">You can create a custom activity to run R scripts on your HDInsight cluster with R installed.</span></span> <span data-ttu-id="9705e-125">[Azure Data Factory를 사용하여 R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9705e-125">See [Run R Script using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample).</span></span>
 > 
 > 
 

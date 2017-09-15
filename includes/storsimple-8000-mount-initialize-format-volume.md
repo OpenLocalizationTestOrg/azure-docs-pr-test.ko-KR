@@ -1,23 +1,23 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="to-mount-initialize-and-format-a-volume"></a>볼륨을 탑재, 초기화 및 포맷하려면
-1. Microsoft iSCSI 초기자를 시작합니다.
-2. **iSCSI 초기자 속성** 창의 **검색** 탭에서 **포털 검색**을 클릭합니다.
-3. **대상 포털 검색** 대화 상자에서 iSCSI 사용 네트워크 인터페이스의 IP 주소를 입력하고 **확인**을 클릭합니다. 
-4. **iSCSI 초기자 속성** 창의 **대상** 탭에서 **검색된 대상**을 찾습니다. 장치 상태가 **비활성**으로 표시되어야 합니다.
-5. 대상 장치를 선택하고 **연결**을 클릭합니다. 장치가 연결되면 상태가 **연결됨**으로 변경됩니다. Microsoft iSCSI 개시 장치 사용에 대한 자세한 내용은 [Microsoft iSCSI 초기자 설치 및 구성][1]을 참조하세요.
-6. Windows 호스트에서 Windows 로고 키 + X를 누르고 **실행**을 클릭합니다. 
-7. **실행** 대화 상자에 **Diskmgmt.msc**를 입력합니다. **확인**을 클릭하면 **디스크 관리** 대화 상자가 나타납니다. 오른쪽 창에 호스트의 볼륨이 표시됩니다.
-8. **디스크 관리** 창에 탑재된 볼륨이 다음 그림과 같이 표시됩니다. 검색된 볼륨을 마우스 오른쪽 단추로 클릭(디스크 이름 클릭)한 다음 **온라인**을 클릭합니다.
+#### <a name="to-mount-initialize-and-format-a-volume"></a><span data-ttu-id="c3c37-101">볼륨을 탑재, 초기화 및 포맷하려면</span><span class="sxs-lookup"><span data-stu-id="c3c37-101">To mount, initialize, and format a volume</span></span>
+1. <span data-ttu-id="c3c37-102">Microsoft iSCSI 초기자를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-102">Start the Microsoft iSCSI initiator.</span></span>
+2. <span data-ttu-id="c3c37-103">**iSCSI 초기자 속성** 창의 **검색** 탭에서 **포털 검색**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-103">In the **iSCSI Initiator Properties** window, on the **Discovery** tab, click **Discover Portal**.</span></span>
+3. <span data-ttu-id="c3c37-104">**대상 포털 검색** 대화 상자에서 iSCSI 사용 네트워크 인터페이스의 IP 주소를 입력하고 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-104">In the **Discover Target Portal** dialog box, supply the IP address of your iSCSI-enabled network interface, and then click **OK**.</span></span> 
+4. <span data-ttu-id="c3c37-105">**iSCSI 초기자 속성** 창의 **대상** 탭에서 **검색된 대상**을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-105">In the **iSCSI Initiator Properties** window, on the **Targets** tab, locate the **Discovered targets**.</span></span> <span data-ttu-id="c3c37-106">장치 상태가 **비활성**으로 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-106">The device status should appear as **Inactive**.</span></span>
+5. <span data-ttu-id="c3c37-107">대상 장치를 선택하고 **연결**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-107">Select the target device and then click **Connect**.</span></span> <span data-ttu-id="c3c37-108">장치가 연결되면 상태가 **연결됨**으로 변경됩니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-108">After the device is connected, the status should change to **Connected**.</span></span> <span data-ttu-id="c3c37-109">Microsoft iSCSI 개시 장치 사용에 대한 자세한 내용은 [Microsoft iSCSI 초기자 설치 및 구성][1]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c3c37-109">(For more information about using the Microsoft iSCSI initiator, see [Installing and Configuring Microsoft iSCSI Initiator][1]).</span></span>
+6. <span data-ttu-id="c3c37-110">Windows 호스트에서 Windows 로고 키 + X를 누르고 **실행**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-110">On your Windows host, press the Windows Logo key + X, and then click **Run**.</span></span> 
+7. <span data-ttu-id="c3c37-111">**실행** 대화 상자에 **Diskmgmt.msc**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-111">In the **Run** dialog box, type **Diskmgmt.msc**.</span></span> <span data-ttu-id="c3c37-112">**확인**을 클릭하면 **디스크 관리** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-112">Click **OK**, and the **Disk Management** dialog box will appear.</span></span> <span data-ttu-id="c3c37-113">오른쪽 창에 호스트의 볼륨이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-113">The right pane will show the volumes on your host.</span></span>
+8. <span data-ttu-id="c3c37-114">**디스크 관리** 창에 탑재된 볼륨이 다음 그림과 같이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-114">In the **Disk Management** window, the mounted volumes will appear as shown in the following illustration.</span></span> <span data-ttu-id="c3c37-115">검색된 볼륨을 마우스 오른쪽 단추로 클릭(디스크 이름 클릭)한 다음 **온라인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-115">Right-click the discovered volume (click the disk name), and then click **Online**.</span></span>
    
      ![볼륨 포맷 초기화](./media/storsimple-8000-mount-initialize-format-volume/step7initializeformatvolume.png) 
-9. 볼륨을 다시 마우스 오른쪽 단추로 클릭(디스크 이름 클릭)한 다음 **초기화**를 클릭합니다.
-10. 단순 볼륨을 포맷하려면 다음 단계를 수행합니다.
+9. <span data-ttu-id="c3c37-117">볼륨을 다시 마우스 오른쪽 단추로 클릭(디스크 이름 클릭)한 다음 **초기화**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-117">Right-click the volume (click the disk name) again, and then click **Initialize**.</span></span>
+10. <span data-ttu-id="c3c37-118">단순 볼륨을 포맷하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-118">To format a simple volume, perform the following steps:</span></span>
     
-    1. 볼륨을 선택하고 마우스 오른쪽 단추로 클릭(오른쪽 영역 클릭)한 다음 **새 단순 볼륨**을 클릭합니다.
-    2. 새 단순 볼륨 마법사에서 볼륨 크기와 드라이브 문자를 지정하고 볼륨을 NTFS 파일 시스템으로 구성합니다.
-    3. 64KB 할당 단위 크기를 지정합니다. 이 할당 단위 크기는 StorSimple 솔루션에서 사용되는 중복 제거 알고리즘과 효율적으로 연동됩니다.
-    4. 빠른 포맷을 수행합니다.
+    1. <span data-ttu-id="c3c37-119">볼륨을 선택하고 마우스 오른쪽 단추로 클릭(오른쪽 영역 클릭)한 다음 **새 단순 볼륨**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-119">Select the volume, right-click it (click the right area), and click **New Simple Volume**.</span></span>
+    2. <span data-ttu-id="c3c37-120">새 단순 볼륨 마법사에서 볼륨 크기와 드라이브 문자를 지정하고 볼륨을 NTFS 파일 시스템으로 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-120">In the New Simple Volume wizard, specify the volume size and drive letter and configure the volume as an NTFS file system.</span></span>
+    3. <span data-ttu-id="c3c37-121">64KB 할당 단위 크기를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-121">Specify a 64 KB allocation unit size.</span></span> <span data-ttu-id="c3c37-122">이 할당 단위 크기는 StorSimple 솔루션에서 사용되는 중복 제거 알고리즘과 효율적으로 연동됩니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-122">This allocation unit size works well with the deduplication algorithms used in the StorSimple solution.</span></span>
+    4. <span data-ttu-id="c3c37-123">빠른 포맷을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="c3c37-123">Perform a quick format.</span></span>
 
 <!--Link references-->
 [1]: https://technet.microsoft.com/library/ee338480(WS.10).aspx

@@ -1,9 +1,9 @@
-* RDC(원격 데스크톱 연결)을 사용하여 프로세스 서버 가상 컴퓨터에 연결합니다.
-* 바탕 화면에서 사용할 수 있는 바로 가기를 클릭하여 cspsconfigool.exe를 시작할 수 있습니다. (프로세스 서버에 처음 로그인할 때 도구가 자동으로 시작됩니다.)
-  - 구성 서버의 정규화된 이름(FQDN) 또는 IP 주소
-  - 구성 서버가 수신 대기하는 포트. 값은 443이어야 합니다.
-  - 구성 서버에 연결할 연결 암호.
-  - 이 프로세스 서버에 대해 구성할 데이터 전송 포트. 사용자 환경에서 다른 포트 번호로 변경하지 않는다면 기본 값을 그대로 둡니다.
+* <span data-ttu-id="7ab06-101">RDC(원격 데스크톱 연결)을 사용하여 프로세스 서버 가상 컴퓨터에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="7ab06-101">Connect to the Process Server virtual machine using Remote Desktop Connection.</span></span>
+* <span data-ttu-id="7ab06-102">바탕 화면에서 사용할 수 있는 바로 가기를 클릭하여 cspsconfigool.exe를 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7ab06-102">You can launch the cspsconfigtool.exe by clicking on the shortcut available on the desktop.</span></span> <span data-ttu-id="7ab06-103">(프로세스 서버에 처음 로그인할 때 도구가 자동으로 시작됩니다.)</span><span class="sxs-lookup"><span data-stu-id="7ab06-103">(The tool will be automatically launched if this the first time you are logging into the process sever).</span></span>
+  - <span data-ttu-id="7ab06-104">구성 서버의 정규화된 이름(FQDN) 또는 IP 주소</span><span class="sxs-lookup"><span data-stu-id="7ab06-104">Configuration Server's fully qualified name (FQDN) or IP Address</span></span>
+  - <span data-ttu-id="7ab06-105">구성 서버가 수신 대기하는 포트.</span><span class="sxs-lookup"><span data-stu-id="7ab06-105">Port on which the Configuration server is listening on.</span></span> <span data-ttu-id="7ab06-106">값은 443이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7ab06-106">The value should be 443</span></span>
+  - <span data-ttu-id="7ab06-107">구성 서버에 연결할 연결 암호.</span><span class="sxs-lookup"><span data-stu-id="7ab06-107">Connection Passphrase to connect to the configuration server.</span></span>
+  - <span data-ttu-id="7ab06-108">이 프로세스 서버에 대해 구성할 데이터 전송 포트.</span><span class="sxs-lookup"><span data-stu-id="7ab06-108">Data Transfer port to be configured for this Process Server.</span></span> <span data-ttu-id="7ab06-109">사용자 환경에서 다른 포트 번호로 변경하지 않는다면 기본 값을 그대로 둡니다.</span><span class="sxs-lookup"><span data-stu-id="7ab06-109">Leave the default value as is unless you have changed it to a different port number in your environment.</span></span>
 
     ![프로세스 서버 등록](./media/site-recovery-vmware-register-process-server/register-ps.png)
-* 저장 단추를 클릭하여 구성을 저장하고 프로세스 서버를 등록합니다.
+* <span data-ttu-id="7ab06-111">저장 단추를 클릭하여 구성을 저장하고 프로세스 서버를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="7ab06-111">Click the save button to save the configuration and register the Process Server.</span></span>

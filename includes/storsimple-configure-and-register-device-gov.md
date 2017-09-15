@@ -1,55 +1,55 @@
 <!--author=SharS last changed: 02/22/16-->
 
-### <a name="to-configure-and-register-the-device"></a>장치를 구성 및 등록하려면
-1. StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다. 지침은 [장치 직렬 콘솔 연결에 PuTTY 사용](#use-putty-to-connect-to-the-device-serial-console) 을 참조하세요. **과정을 정확하게 따르지 않으면 콘솔에 액세스할 수 없습니다.**
-2. 열린 세션에서 Enter를 한 번 눌러 명령 프롬프트를 엽니다. 
-3. 장치에 설정하려는 언어를 선택하라는 메시지가 표시됩니다. 언어를 지정하고 Enter를 누릅니다. 
+### <a name="to-configure-and-register-the-device"></a><span data-ttu-id="c1d8d-101">장치를 구성 및 등록하려면</span><span class="sxs-lookup"><span data-stu-id="c1d8d-101">To configure and register the device</span></span>
+1. <span data-ttu-id="c1d8d-102">StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-102">Access the Windows PowerShell interface on your StorSimple device serial console.</span></span> <span data-ttu-id="c1d8d-103">지침은 [장치 직렬 콘솔 연결에 PuTTY 사용](#use-putty-to-connect-to-the-device-serial-console) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-103">See [Use PuTTY to connect to the device serial console](#use-putty-to-connect-to-the-device-serial-console) for instructions.</span></span> <span data-ttu-id="c1d8d-104">**과정을 정확하게 따르지 않으면 콘솔에 액세스할 수 없습니다.**</span><span class="sxs-lookup"><span data-stu-id="c1d8d-104">**Be sure to follow the procedure exactly or you will not be able to access the console.**</span></span>
+2. <span data-ttu-id="c1d8d-105">열린 세션에서 Enter를 한 번 눌러 명령 프롬프트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-105">In the session that opens up, press Enter one time to get a command prompt.</span></span> 
+3. <span data-ttu-id="c1d8d-106">장치에 설정하려는 언어를 선택하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-106">You will be prompted to choose the language that you would like to set for your device.</span></span> <span data-ttu-id="c1d8d-107">언어를 지정하고 Enter를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-107">Specify the language, and then press Enter.</span></span> 
    
     ![StorSimple 구성 및 등록 장치 1](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice1-gov-include.png)
-4. 표시되는 직렬 콘솔 메뉴에서 모든 권한으로 로그온할 수 있는 옵션 1을 선택합니다. 
+4. <span data-ttu-id="c1d8d-109">표시되는 직렬 콘솔 메뉴에서 모든 권한으로 로그온할 수 있는 옵션 1을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-109">In the serial console menu that is presented, choose option 1 to log on with full access.</span></span> 
    
     ![StorSimple 등록 장치 2](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice2-gov-include.png)
-5. 다음 단계를 수행하여 장치에 필요한 최소 네트워크 설정을 구성합니다.
+5. <span data-ttu-id="c1d8d-111">다음 단계를 수행하여 장치에 필요한 최소 네트워크 설정을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-111">Perform the following steps to configure the minimum required network settings for your device.</span></span>
    
    > [!IMPORTANT]
-   > 이러한 구성 단계는 장치의 활성 컨트롤러에서 수행해야 합니다. 직렬 콘솔 메뉴는 배너 메시지에 컨트롤러 상태를 나타냅니다. 활성 컨트롤러에 연결되지 않은 경우 연결을 끊은 다음 활성 컨트롤러에 연결합니다.
+   > <span data-ttu-id="c1d8d-112">이러한 구성 단계는 장치의 활성 컨트롤러에서 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-112">These configuration steps need to be performed on the active controller of the device.</span></span> <span data-ttu-id="c1d8d-113">직렬 콘솔 메뉴는 배너 메시지에 컨트롤러 상태를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-113">The serial console menu indicates the controller state in the banner message.</span></span> <span data-ttu-id="c1d8d-114">활성 컨트롤러에 연결되지 않은 경우 연결을 끊은 다음 활성 컨트롤러에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-114">If you are not connect to the active controller, disconnect and then connect to the active controller.</span></span>
    > 
    > 
    
-   1. 명령 프롬프트에 암호를 입력합니다. 기본 장치 암호는 **Password1**입니다.
-   2. 다음 명령을 입력합니다.
+   1. <span data-ttu-id="c1d8d-115">명령 프롬프트에 암호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-115">At the command prompt, type your password.</span></span> <span data-ttu-id="c1d8d-116">기본 장치 암호는 **Password1**입니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-116">The default device password is **Password1**.</span></span>
+   2. <span data-ttu-id="c1d8d-117">다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-117">Type the following command:</span></span>
       
         `Invoke-HcsSetupWizard`
-   3. 장치에 대한 네트워크 설정 구성을 도와주는 설치 마법사가 나타납니다. 다음 정보를 지정합니다. 
+   3. <span data-ttu-id="c1d8d-118">장치에 대한 네트워크 설정 구성을 도와주는 설치 마법사가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-118">A setup wizard will appear to help you configure the network settings for the device.</span></span> <span data-ttu-id="c1d8d-119">다음 정보를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-119">Supply the following information:</span></span> 
       
-      * 데이터 0 네트워크 인터페이스의 IP 주소
-      * 서브넷 마스크
-      * 게이트웨이
-      * 주 DNS 서버의 IP 주소
-      * 주 NTP 서버의 IP 주소
+      * <span data-ttu-id="c1d8d-120">데이터 0 네트워크 인터페이스의 IP 주소</span><span class="sxs-lookup"><span data-stu-id="c1d8d-120">IP address for DATA 0 network interface</span></span>
+      * <span data-ttu-id="c1d8d-121">서브넷 마스크</span><span class="sxs-lookup"><span data-stu-id="c1d8d-121">Subnet mask</span></span>
+      * <span data-ttu-id="c1d8d-122">게이트웨이</span><span class="sxs-lookup"><span data-stu-id="c1d8d-122">Gateway</span></span>
+      * <span data-ttu-id="c1d8d-123">주 DNS 서버의 IP 주소</span><span class="sxs-lookup"><span data-stu-id="c1d8d-123">IP address for Primary DNS server</span></span>
+      * <span data-ttu-id="c1d8d-124">주 NTP 서버의 IP 주소</span><span class="sxs-lookup"><span data-stu-id="c1d8d-124">IP address for Primary NTP server</span></span>
       
       > [!NOTE]
-      > 서브넷 마스크 및 DNS 설정을 적용하려면 몇 분간 대기해야 할 수 있습니다. 
+      > <span data-ttu-id="c1d8d-125">서브넷 마스크 및 DNS 설정을 적용하려면 몇 분간 대기해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-125">You may have to wait for a few minutes for the subnet mask and DNS settings to be applied.</span></span> 
       > 
       > 
-   4. 선택적으로 웹 프록시 서버를 구성합니다.
+   4. <span data-ttu-id="c1d8d-126">선택적으로 웹 프록시 서버를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-126">Optionally, configure your web proxy server.</span></span>
       
       > [!IMPORTANT]
-      > 웹 프록시 구성은 선택 사항이지만 웹 프록시를 사용하면 여기서만 구성할 수 있습니다. 자세한 내용은 [장치에 웹 프록시 구성](../articles/storsimple/storsimple-configure-web-proxy.md)으로 이동합니다. 
+      > <span data-ttu-id="c1d8d-127">웹 프록시 구성은 선택 사항이지만 웹 프록시를 사용하면 여기서만 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-127">Although web proxy configuration is optional, be aware that if you use a web proxy, you can only configure it here.</span></span> <span data-ttu-id="c1d8d-128">자세한 내용은 [장치에 웹 프록시 구성](../articles/storsimple/storsimple-configure-web-proxy.md)으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-128">For more information, go to [Configure web proxy for your device](../articles/storsimple/storsimple-configure-web-proxy.md).</span></span> 
       > 
       > 
-6. 설치 마법사를 끝내려면 Ctrl + C를 누릅니다.
-7. 다음과 같이 업데이트를 설치합니다.
+6. <span data-ttu-id="c1d8d-129">설치 마법사를 끝내려면 Ctrl + C를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-129">Press Ctrl + C to exit the setup wizard.</span></span>
+7. <span data-ttu-id="c1d8d-130">다음과 같이 업데이트를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-130">Install the updates as follows:</span></span>
    
-   1. 두 컨트롤러에 IP를 설정하려면 다음 cmdlet을 사용합니다.
+   1. <span data-ttu-id="c1d8d-131">두 컨트롤러에 IP를 설정하려면 다음 cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-131">Use the following cmdlet to set IPs on both the controllers:</span></span>
       
       `Set-HcsNetInterface -InterfaceAlias Data0 -Controller0IPv4Address <Controller0 IP> -Controller1IPv4Address <Controller1 IP>`
-   2. 명령 프롬프트에서 `Get-HcsUpdateAvailability`을 실행합니다. 업데이트를 사용할 수 있는지 알림을 표시해야 합니다.
-   3. `Start-HcsUpdate`을 실행합니다. 모든 노드에서 이 명령을 실행할 수 있습니다. 첫번째 컨트롤러에 업데이트가 적용되며, 컨트롤러는 장애 조치 이후 업데이트가 다른 컨트롤러에서 적용됩니다.
+   2. <span data-ttu-id="c1d8d-132">명령 프롬프트에서 `Get-HcsUpdateAvailability`을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-132">At the command prompt, run `Get-HcsUpdateAvailability`.</span></span> <span data-ttu-id="c1d8d-133">업데이트를 사용할 수 있는지 알림을 표시해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-133">You should be notified that updates are available.</span></span>
+   3. <span data-ttu-id="c1d8d-134">`Start-HcsUpdate`을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-134">Run `Start-HcsUpdate`.</span></span> <span data-ttu-id="c1d8d-135">모든 노드에서 이 명령을 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-135">You can run this command on any node.</span></span> <span data-ttu-id="c1d8d-136">첫번째 컨트롤러에 업데이트가 적용되며, 컨트롤러는 장애 조치 이후 업데이트가 다른 컨트롤러에서 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-136">Updates will be applied on the first controller, the controller will fail over, and then the updates will be applied on the other controller.</span></span>
       
-      `Get-HcsUpdateStatus`을 실행하여 업데이트의 진행률을 모니터링할 수 있습니다.    
+      <span data-ttu-id="c1d8d-137">`Get-HcsUpdateStatus`을 실행하여 업데이트의 진행률을 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-137">You can monitor the progress of the update by running `Get-HcsUpdateStatus`.</span></span>    
       
-      다음 샘플 출력에서는 진행 중인 업데이트를 보여줍니다.
+      <span data-ttu-id="c1d8d-138">다음 샘플 출력에서는 진행 중인 업데이트를 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-138">The following sample output shows the update in progress.</span></span>
       
       ````
       Controller0>Get-HcsUpdateStatus
@@ -60,7 +60,7 @@
       Controller1Events   : 
       ````
       
-      다음 샘플 출력은 업데이트가 완료되었음을 나타냅니다.
+      <span data-ttu-id="c1d8d-139">다음 샘플 출력은 업데이트가 완료되었음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-139">The following sample output indicates that the update is finished.</span></span>
       
       ````
       Controller1>Get-HcsUpdateStatus
@@ -73,68 +73,68 @@
       
       ````
       
-      Windows 업데이트를 포함하여 모든 업데이트를 적용하려면 최대 11시간이 걸릴 수 있습니다.
+      <span data-ttu-id="c1d8d-140">Windows 업데이트를 포함하여 모든 업데이트를 적용하려면 최대 11시간이 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-140">It may take up to 11 hours to apply all the updates, including the Windows Updates.</span></span>
 
-8. 모든 업데이트를 성공적으로 설치한 후, 다음 cmdlet을 실행하여 소프트웨어 업데이트가 올바르게 적용되었는지 확인합니다.
+8. <span data-ttu-id="c1d8d-141">모든 업데이트를 성공적으로 설치한 후, 다음 cmdlet을 실행하여 소프트웨어 업데이트가 올바르게 적용되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-141">After all the updates are successfully installed, run the following cmdlet to confirm that the software updates were applied correctly:</span></span>
    
      `Get-HcsSystem`
    
-    다음 버전이 표시되어야 합니다.
+    <span data-ttu-id="c1d8d-142">다음 버전이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-142">You should see the following versions:</span></span>
    
-   * HcsSoftwareVersion: 6.3.9600.17491
-   * CisAgentVersion: 1.0.9037.0
-   * MdsAgentVersion: 26.0.4696.1433
-9. 펌웨어 업데이트가 제대로 적용되었는지 확인하려면 다음 cmdlet을 실행합니다.
+   * <span data-ttu-id="c1d8d-143">HcsSoftwareVersion: 6.3.9600.17491</span><span class="sxs-lookup"><span data-stu-id="c1d8d-143">HcsSoftwareVersion: 6.3.9600.17491</span></span>
+   * <span data-ttu-id="c1d8d-144">CisAgentVersion: 1.0.9037.0</span><span class="sxs-lookup"><span data-stu-id="c1d8d-144">CisAgentVersion: 1.0.9037.0</span></span>
+   * <span data-ttu-id="c1d8d-145">MdsAgentVersion: 26.0.4696.1433</span><span class="sxs-lookup"><span data-stu-id="c1d8d-145">MdsAgentVersion: 26.0.4696.1433</span></span>
+9. <span data-ttu-id="c1d8d-146">펌웨어 업데이트가 제대로 적용되었는지 확인하려면 다음 cmdlet을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-146">Run the following cmdlet to confirm that the firmware update was applied correctly:</span></span>
    
-    `Start-HcsFirmwareCheck`.
+    <span data-ttu-id="c1d8d-147">`Start-HcsFirmwareCheck`.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-147">`Start-HcsFirmwareCheck`.</span></span>
    
-     펌웨어 상태는 **UpToDate**여야 합니다.
-10. 장치가 Microsoft Azure Government 포털을 가리키도록 다음 cmdlet을 실행합니다(기본적으로 공용 Azure 클래식 포털을 가리키기 때문임). 두 컨트롤러가 모두 다시 시작됩니다. 두 PuTTY 세션을 사용하여, 각 컨트롤러가 다시 시작되면 볼 수 있도록 두 컨트롤러에 동시에 연결하는 것이 좋습니다.
+     <span data-ttu-id="c1d8d-148">펌웨어 상태는 **UpToDate**여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-148">The firmware status should be **UpToDate**.</span></span>
+10. <span data-ttu-id="c1d8d-149">장치가 Microsoft Azure Government 포털을 가리키도록 다음 cmdlet을 실행합니다(기본적으로 공용 Azure 클래식 포털을 가리키기 때문임).</span><span class="sxs-lookup"><span data-stu-id="c1d8d-149">Run the following cmdlet to point the device to the Microsoft Azure Government portal (because it points to the public Azure classic portal by default).</span></span> <span data-ttu-id="c1d8d-150">두 컨트롤러가 모두 다시 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-150">This will restart both controllers.</span></span> <span data-ttu-id="c1d8d-151">두 PuTTY 세션을 사용하여, 각 컨트롤러가 다시 시작되면 볼 수 있도록 두 컨트롤러에 동시에 연결하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-151">We recommend that you use two PuTTY sessions to simultaneously connect to both controllers so that you can see when each controller is restarted.</span></span>
     
      `Set-CloudPlatform -AzureGovt_US`
     
-    확인 메시지가 표시됩니다. 기본값(**Y**)을 적용합니다.
-11. 설치를 다시 시작하려면 다음 cmdlet을 실행합니다.
+    <span data-ttu-id="c1d8d-152">확인 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-152">You will see a confirmation message.</span></span> <span data-ttu-id="c1d8d-153">기본값(**Y**)을 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-153">Accept the default (**Y**).</span></span>
+11. <span data-ttu-id="c1d8d-154">설치를 다시 시작하려면 다음 cmdlet을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-154">Run the following cmdlet to resume setup:</span></span>
     
      `Invoke-HcsSetupWizard`
     
      ![설치 마법사 다시 시작](./media/storsimple-configure-and-register-device-gov/HCS_ResumeSetup-gov-include.png)
     
-    설치를 다시 시작하는 경우 마법사는 업데이트 1 버전(버전 17469에 해당)이 됩니다. 
-12. 네트워크 설정을 적용합니다. 각 설정에 동의하면 유효성 검사 메시지가 나타납니다.
-13. 보안상의 이유로 첫 번째 세션이 끝난 후 장치 관리자 암호가 만료되고 지금 암호를 변경해야 합니다. 메시지가 표시되면 장치 관리자 암호를 제공합니다. 유효한 장치 관리자 암호는 8자에서 15자 사이여야 합니다. 암호는 소문자, 대문자, 숫자 및 특수 문자 중 세 유형을 포함해야 합니다.
+    <span data-ttu-id="c1d8d-156">설치를 다시 시작하는 경우 마법사는 업데이트 1 버전(버전 17469에 해당)이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-156">When you resume setup, the wizard will be the Update 1 version (which corresponds to version 17469).</span></span> 
+12. <span data-ttu-id="c1d8d-157">네트워크 설정을 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-157">Accept the network settings.</span></span> <span data-ttu-id="c1d8d-158">각 설정에 동의하면 유효성 검사 메시지가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-158">You will see a validation message after you accept each setting.</span></span>
+13. <span data-ttu-id="c1d8d-159">보안상의 이유로 첫 번째 세션이 끝난 후 장치 관리자 암호가 만료되고 지금 암호를 변경해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-159">For security reasons, the device administrator password expires after the first session, and you will need to change it now.</span></span> <span data-ttu-id="c1d8d-160">메시지가 표시되면 장치 관리자 암호를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-160">When prompted, provide a device administrator password.</span></span> <span data-ttu-id="c1d8d-161">유효한 장치 관리자 암호는 8자에서 15자 사이여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-161">A valid device administrator password must be between 8 and 15 characters.</span></span> <span data-ttu-id="c1d8d-162">암호는 소문자, 대문자, 숫자 및 특수 문자 중 세 유형을 포함해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-162">The password must contain three of the following: lowercase, uppercase, numeric, and special characters.</span></span>
     
     <br/>![StorSimple 등록 장치 5](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice5_gov-include.png)
-14. 설치 마법사의 마지막 단계에서는 StorSimple 관리자 서비스에 장치를 등록합니다. 이 경우 [2단계: 서비스 등록 키 가져오기](#step-2-get-the-service-registration-key)에서 얻은 서비스 등록 키가 필요합니다. 등록 키를 입력한 후 장치가 등록되려면 2~3분 정도 기다려야 할 수 있습니다.
+14. <span data-ttu-id="c1d8d-164">설치 마법사의 마지막 단계에서는 StorSimple 관리자 서비스에 장치를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-164">The final step in the setup wizard registers your device with the StorSimple Manager service.</span></span> <span data-ttu-id="c1d8d-165">이 경우 [2단계: 서비스 등록 키 가져오기](#step-2-get-the-service-registration-key)에서 얻은 서비스 등록 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-165">For this, you will need the service registration key that you obtained in [Step 2: Get the service registration key](#step-2-get-the-service-registration-key).</span></span> <span data-ttu-id="c1d8d-166">등록 키를 입력한 후 장치가 등록되려면 2~3분 정도 기다려야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-166">After you supply the registration key, you may need to wait for 2-3 minutes before the device is registered.</span></span>
     
     > [!NOTE]
-    > Ctrl + C를 눌러 언제든지 설치 마법사를 종료할 수 있습니다. 모든 네트워크 설정(Data 0, 서브넷 마스크 및 게이트웨이 IP 주소)를 입력한 경우, 항목이 유지됩니다.
+    > <span data-ttu-id="c1d8d-167">Ctrl + C를 눌러 언제든지 설치 마법사를 종료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-167">You can press Ctrl + C at any time to exit the setup wizard.</span></span> <span data-ttu-id="c1d8d-168">모든 네트워크 설정(Data 0, 서브넷 마스크 및 게이트웨이 IP 주소)를 입력한 경우, 항목이 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-168">If you have entered all the network settings (IP address for Data 0, Subnet mask, and Gateway), your entries will be retained.</span></span>
     > 
     > 
     
     ![StorSimple 등록 진행률](./media/storsimple-configure-and-register-device-gov/HCS_RegistrationProgress-gov-include.png)
-15. 장치를 등록한 후 서비스 데이터 암호화 키가 표시됩니다. 이 키를 복사하고 안전한 위치에 저장합니다. **이 키는 StorSimple 관리자 서비스로 추가 장치를 등록하기 위한 서비스 등록 키에 필요합니다.** 이 키에 대한 자세한 내용은 [StorSimple 보안](../articles/storsimple/storsimple-security.md) 을 참조하세요.
+15. <span data-ttu-id="c1d8d-170">장치를 등록한 후 서비스 데이터 암호화 키가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-170">After the device is registered, a Service Data Encryption key will appear.</span></span> <span data-ttu-id="c1d8d-171">이 키를 복사하고 안전한 위치에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-171">Copy this key and save it in a safe location.</span></span> <span data-ttu-id="c1d8d-172">**이 키는 StorSimple 관리자 서비스로 추가 장치를 등록하기 위한 서비스 등록 키에 필요합니다.**</span><span class="sxs-lookup"><span data-stu-id="c1d8d-172">**This key will be required with the service registration key to register additional devices with the StorSimple Manager service.**</span></span> <span data-ttu-id="c1d8d-173">이 키에 대한 자세한 내용은 [StorSimple 보안](../articles/storsimple/storsimple-security.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-173">Refer to [StorSimple security](../articles/storsimple/storsimple-security.md) for more information about this key.</span></span>
     
     ![StorSimple 등록 장치 7](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice7_gov-include.png)    
     
     > [!IMPORTANT]
-    > 직렬 콘솔 창에서 텍스트를 복사하려면 해당 텍스트를 선택하면 됩니다. 그런 다음 클립보드 또는 임의의 텍스트 편집기에 붙여넣을 수 있습니다. 
+    > <span data-ttu-id="c1d8d-175">직렬 콘솔 창에서 텍스트를 복사하려면 해당 텍스트를 선택하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-175">To copy the text from the serial console window, simply select the text.</span></span> <span data-ttu-id="c1d8d-176">그런 다음 클립보드 또는 임의의 텍스트 편집기에 붙여넣을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-176">You should then be able to paste it in the clipboard or any text editor.</span></span> 
     > 
-    > Ctrl + C를 사용하여 서비스 데이터 암호화 키를 복사하지 마세요. Ctrl + C를 사용하면 설치 마법사가 종료됩니다. 결과적으로, 장치 관리자 암호는 변경되지 않으며 장치는 기본 암호로 되돌아갑니다.
+    > <span data-ttu-id="c1d8d-177">Ctrl + C를 사용하여 서비스 데이터 암호화 키를 복사하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-177">DO NOT use Ctrl + C to copy the service data encryption key.</span></span> <span data-ttu-id="c1d8d-178">Ctrl + C를 사용하면 설치 마법사가 종료됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-178">Using Ctrl + C will cause you to exit the setup wizard.</span></span> <span data-ttu-id="c1d8d-179">결과적으로, 장치 관리자 암호는 변경되지 않으며 장치는 기본 암호로 되돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-179">As a result, the device administrator password will not be changed and the device will revert to the default password.</span></span>
     > 
     > 
-16. 직렬 콘솔을 종료합니다.
-17. Azure Government 포털로 돌아가서 다음 단계를 완료합니다.
+16. <span data-ttu-id="c1d8d-180">직렬 콘솔을 종료합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-180">Exit the serial console.</span></span>
+17. <span data-ttu-id="c1d8d-181">Azure Government 포털로 돌아가서 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-181">Return to the Azure Government Portal, and complete the following steps:</span></span>
     
-    1. StorSimple 관리자 서비스를 두 번 클릭하여 **퀵 스타트** 페이지에 액세스합니다.
-    2. **연결된 장치 보기**를 클릭합니다.
-    3. **장치** 페이지에서 상태를 조회하여 장치가 서비스에 성공적으로 연결되었는지 확인합니다. 장치 상태는 **온라인**이어야 합니다.
+    1. <span data-ttu-id="c1d8d-182">StorSimple 관리자 서비스를 두 번 클릭하여 **퀵 스타트** 페이지에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-182">Double-click your StorSimple Manager service to access the **Quick Start** page.</span></span>
+    2. <span data-ttu-id="c1d8d-183">**연결된 장치 보기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-183">Click **View connected devices**.</span></span>
+    3. <span data-ttu-id="c1d8d-184">**장치** 페이지에서 상태를 조회하여 장치가 서비스에 성공적으로 연결되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-184">On the **Devices** page, verify that the device has successfully connected to the service by looking up the status.</span></span> <span data-ttu-id="c1d8d-185">장치 상태는 **온라인**이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-185">The device status should be **Online**.</span></span>
        
         ![StorSimple 장치 페이지](./media/storsimple-configure-and-register-device-gov/HCS_DeviceOnline-gov-include.png) 
        
-        장치 상태가 **오프라인**이면 장치가 온라인 상태가 될 때까지 몇 분 정도 기다립니다. 
+        <span data-ttu-id="c1d8d-187">장치 상태가 **오프라인**이면 장치가 온라인 상태가 될 때까지 몇 분 정도 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-187">If the device status is **Offline**, wait for a couple of minutes for the device to come online.</span></span> 
        
-        몇분 후 장치가 여전히 오프라인 상태인 경우, [StorSimple 장치에 대한 네트워킹 요구 사항](../articles/storsimple/storsimple-system-requirements.md)에 설명된 대로 방화벽 네트워크가 구성되었는지 확인해야 합니다. 
+        <span data-ttu-id="c1d8d-188">몇분 후 장치가 여전히 오프라인 상태인 경우, [StorSimple 장치에 대한 네트워킹 요구 사항](../articles/storsimple/storsimple-system-requirements.md)에 설명된 대로 방화벽 네트워크가 구성되었는지 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-188">If the device is still offline after a few minutes, then you need to make sure that your firewall network was configured as described in [networking requirements for your StorSimple device](../articles/storsimple/storsimple-system-requirements.md).</span></span> 
        
-        9354 포트가 StorSimple Manager 서비스와 장치 간 통신용 서비스 버스에 의해 사용될 때 아웃바운드 통신을 위해 열리는지 확인합니다.
+        <span data-ttu-id="c1d8d-189">9354 포트가 StorSimple Manager 서비스와 장치 간 통신용 서비스 버스에 의해 사용될 때 아웃바운드 통신을 위해 열리는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c1d8d-189">Verify that port 9354 is open for outbound communication as this is used by the service bus for StorSimple Manager service-to-device communication.</span></span>
 

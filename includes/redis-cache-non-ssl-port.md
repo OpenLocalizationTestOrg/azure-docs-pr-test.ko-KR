@@ -1,4 +1,4 @@
-비 SSL 포트를 사용하도록 설정하려면 [Azure Portal](https://portal.azure.com)에서 캐시를 [찾고](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings) **고급 설정**을 클릭합니다. **고급 설정** 블레이드의 **SSL을 통해서만 액세스 허용**에 **아니요**를 클릭한 다음 **저장**을 클릭합니다.
+<span data-ttu-id="45a62-101">비 SSL 포트를 사용하도록 설정하려면 [Azure Portal](https://portal.azure.com)에서 캐시를 [찾고](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings) **고급 설정**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="45a62-101">To enable the non-SSL port, [browse](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings) to your cache in the [Azure portal](https://portal.azure.com) and click **Advanced settings**.</span></span> <span data-ttu-id="45a62-102">**고급 설정** 블레이드의 **SSL을 통해서만 액세스 허용**에 **아니요**를 클릭한 다음 **저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="45a62-102">Click **No** for **Allow access only via SSL** on the **Advanced settings** blade and then click **Save**.</span></span>
 
 ![Redis Cache 설정](media/redis-cache-non-ssl-port/redis-cache-non-ssl-port.png)
 

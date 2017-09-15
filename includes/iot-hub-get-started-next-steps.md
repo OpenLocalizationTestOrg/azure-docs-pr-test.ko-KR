@@ -1,9 +1,9 @@
-계속해서 Azure IoT Hub을 시작하고 다른 IoT 시나리오를 탐색하려면 다음을 참조하세요.
+<span data-ttu-id="66874-101">계속해서 Azure IoT Hub을 시작하고 다른 IoT 시나리오를 탐색하려면 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="66874-101">To continue to get started with Azure IoT Hub and to explore other IoT scenarios, see the following:</span></span>
 
-- [iothub-explorer를 사용하여 클라우드 장치 메시지 관리](../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md)
-- [Azure IoT Hub 메시지를 Azure 데이터 저장소에 저장](../articles/iot-hub/iot-hub-store-data-in-azure-table-storage.md)
-- [Power BI를 사용하여 IoT Hub의 실시간 센서 데이터 시각화](../articles/iot-hub/iot-hub-live-data-visualization-in-power-bi.md)
-- [Azure App Service의 Web Apps 기능을 사용하여 IoT Hub의 실시간 센서 데이터 시각화](../articles/iot-hub/iot-hub-live-data-visualization-in-web-apps.md)
-- [Azure Machine Learning에서 IoT Hub의 센서 데이터를 사용하여 일기 예보](../articles/iot-hub/iot-hub-weather-forecast-machine-learning.md)
-- [iothub-explorer를 사용하여 장치 관리](../articles/iot-hub/iot-hub-device-management-iothub-explorer.md)
-- [원격 모니터링 및 알림에 Logic Apps 사용](../articles/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md)
+- [<span data-ttu-id="66874-102">iothub-explorer를 사용하여 클라우드 장치 메시지 관리</span><span class="sxs-lookup"><span data-stu-id="66874-102">Manage cloud device messaging with iothub-explorer</span></span>](../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md)
+- [<span data-ttu-id="66874-103">Azure IoT Hub 메시지를 Azure 데이터 저장소에 저장</span><span class="sxs-lookup"><span data-stu-id="66874-103">Save your Azure IoT hub messages to Azure data storage</span></span>](../articles/iot-hub/iot-hub-store-data-in-azure-table-storage.md)
+- [<span data-ttu-id="66874-104">Power BI를 사용하여 IoT Hub의 실시간 센서 데이터 시각화</span><span class="sxs-lookup"><span data-stu-id="66874-104">Use Power BI to visualize real-time sensor data from your IoT hub</span></span>](../articles/iot-hub/iot-hub-live-data-visualization-in-power-bi.md)
+- [<span data-ttu-id="66874-105">Azure App Service의 Web Apps 기능을 사용하여 IoT Hub의 실시간 센서 데이터 시각화</span><span class="sxs-lookup"><span data-stu-id="66874-105">Use the Web Apps feature of Azure App Service to visualize real-time sensor data from your IoT hub</span></span>](../articles/iot-hub/iot-hub-live-data-visualization-in-web-apps.md)
+- [<span data-ttu-id="66874-106">Azure Machine Learning에서 IoT Hub의 센서 데이터를 사용하여 일기 예보</span><span class="sxs-lookup"><span data-stu-id="66874-106">Forecast weather by using the sensor data from your IoT hub in Azure Machine Learning</span></span>](../articles/iot-hub/iot-hub-weather-forecast-machine-learning.md)
+- [<span data-ttu-id="66874-107">iothub-explorer를 사용하여 장치 관리</span><span class="sxs-lookup"><span data-stu-id="66874-107">Manage devices with iothub-explorer</span></span>](../articles/iot-hub/iot-hub-device-management-iothub-explorer.md)
+- [<span data-ttu-id="66874-108">원격 모니터링 및 알림에 Logic Apps 사용</span><span class="sxs-lookup"><span data-stu-id="66874-108">Use Logic Apps for remote monitoring and notifications</span></span>](../articles/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md)

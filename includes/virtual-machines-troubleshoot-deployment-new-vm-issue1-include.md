@@ -1,5 +1,5 @@
-## <a name="issue-custom-image-provisioning-errors"></a>문제: 사용자 지정 이미지; 프로비전 오류
-프로비전 오류는 일반화된 VM 이미지를 특수화된 VM 이미지로 또는 그 반대로 업로드하거나 캡처하는 경우에 발생합니다. 전자의 경우는 프로비전 시간 초과 오류를, 후자는 프로비전 실패를 유발합니다. 오류 없이 사용자 지정 이미지를 배포하려면, 캡처 프로세스 중에 이미지 유형이 변경되지 않도록 해야 합니다.
+## <a name="issue-custom-image-provisioning-errors"></a><span data-ttu-id="f718a-101">문제: 사용자 지정 이미지; 프로비전 오류</span><span class="sxs-lookup"><span data-stu-id="f718a-101">Issue: Custom image; provisioning errors</span></span>
+<span data-ttu-id="f718a-102">프로비전 오류는 일반화된 VM 이미지를 특수화된 VM 이미지로 또는 그 반대로 업로드하거나 캡처하는 경우에 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="f718a-102">Provisioning errors arise if you upload or capture a generalized VM image as a specialized VM image or vice versa.</span></span> <span data-ttu-id="f718a-103">전자의 경우는 프로비전 시간 초과 오류를, 후자는 프로비전 실패를 유발합니다.</span><span class="sxs-lookup"><span data-stu-id="f718a-103">The former will cause a provisioning timeout error and the latter will cause a provisioning failure.</span></span> <span data-ttu-id="f718a-104">오류 없이 사용자 지정 이미지를 배포하려면, 캡처 프로세스 중에 이미지 유형이 변경되지 않도록 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f718a-104">To deploy your custom image without errors, you must ensure that the type of the image does not change during the capture process.</span></span>
 
-다음 테이블은 일반화 및 특수화된 이미지의 가능한 조합, 접하게 되는 오류 유형, 오류를 해결하기 위해 수행할 작업이 나열되어 있습니다.
+<span data-ttu-id="f718a-105">다음 테이블은 일반화 및 특수화된 이미지의 가능한 조합, 접하게 되는 오류 유형, 오류를 해결하기 위해 수행할 작업이 나열되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f718a-105">The following table lists the possible combinations of generalized and specialized images, the error type you will encounter and what you need to do to fix the errors.</span></span>
 

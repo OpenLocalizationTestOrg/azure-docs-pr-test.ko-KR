@@ -1,4 +1,4 @@
-활동 로그에는 리소스에서 수행된 모든 쓰기 작업(PUT, POST, DELETE)이 포함됩니다. 읽기 작업(GET)은 포함되지 않습니다. 감사 로그를 사용하여 문제를 해결할 때 오류를 찾거나 조직의 사용자가 리소스를 수정한 방법을 모니터링할 수 있습니다.
+<span data-ttu-id="6ee2b-101">활동 로그에는 리소스에서 수행된 모든 쓰기 작업(PUT, POST, DELETE)이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ee2b-101">The activity log contains all write operations (PUT, POST, DELETE) performed on your resources.</span></span> <span data-ttu-id="6ee2b-102">읽기 작업(GET)은 포함되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6ee2b-102">It does not include read operations (GET).</span></span> <span data-ttu-id="6ee2b-103">감사 로그를 사용하여 문제를 해결할 때 오류를 찾거나 조직의 사용자가 리소스를 수정한 방법을 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6ee2b-103">You can use the audit logs to find an error when troubleshooting or to monitor how a user in your organization modified a resource.</span></span>
 
-활동 로그는 90일 동안 유지됩니다. 시작 날짜가 90보다 더 오래되지 않은 경우 날짜 범위에 대해 쿼리할 수 있습니다.
+<span data-ttu-id="6ee2b-104">활동 로그는 90일 동안 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ee2b-104">Activity logs are retained for 90 days.</span></span> <span data-ttu-id="6ee2b-105">시작 날짜가 90보다 더 오래되지 않은 경우 날짜 범위에 대해 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6ee2b-105">You can query for any range of dates, as long as the starting date is not more than 90 days in the past.</span></span>
 

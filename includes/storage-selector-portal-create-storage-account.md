@@ -1,5 +1,5 @@
 > [!div class="op_single_selector"]
-> * [Azure 포털](../articles/storage/common/storage-create-storage-account.md)
+> * [<span data-ttu-id="d31a5-101">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="d31a5-101">Azure portal</span></span>](../articles/storage/common/storage-create-storage-account.md)
 > 
 > 
 

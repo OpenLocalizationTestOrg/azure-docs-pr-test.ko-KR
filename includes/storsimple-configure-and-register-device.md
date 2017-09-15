@@ -1,76 +1,76 @@
 <!--author=alkohli last changed: 12/01/15-->
 
 
-#### <a name="to-configure-and-register-the-device"></a>장치를 구성 및 등록하려면
-1. StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다. 지침은 [장치 직렬 콘솔 연결에 PuTTY 사용](#use-putty-to-connect-to-the-device-serial-console) 을 참조하세요. **과정을 정확하게 따르지 않으면 콘솔에 액세스할 수 없습니다.**
-2. 열린 세션에서 Enter를 한 번 눌러 명령 프롬프트를 엽니다. 
-3. 장치에 설정하려는 언어를 선택하라는 메시지가 표시됩니다. 언어를 지정하고 Enter를 누릅니다. 
+#### <a name="to-configure-and-register-the-device"></a><span data-ttu-id="8df4c-101">장치를 구성 및 등록하려면</span><span class="sxs-lookup"><span data-stu-id="8df4c-101">To configure and register the device</span></span>
+1. <span data-ttu-id="8df4c-102">StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-102">Access the Windows PowerShell interface on your StorSimple device serial console.</span></span> <span data-ttu-id="8df4c-103">지침은 [장치 직렬 콘솔 연결에 PuTTY 사용](#use-putty-to-connect-to-the-device-serial-console) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-103">See [Use PuTTY to connect to the device serial console](#use-putty-to-connect-to-the-device-serial-console) for instructions.</span></span> <span data-ttu-id="8df4c-104">**과정을 정확하게 따르지 않으면 콘솔에 액세스할 수 없습니다.**</span><span class="sxs-lookup"><span data-stu-id="8df4c-104">**Be sure to follow the procedure exactly or you will not be able to access the console.**</span></span>
+2. <span data-ttu-id="8df4c-105">열린 세션에서 Enter를 한 번 눌러 명령 프롬프트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-105">In the session that opens up, press Enter one time to get a command prompt.</span></span> 
+3. <span data-ttu-id="8df4c-106">장치에 설정하려는 언어를 선택하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-106">You will be prompted to choose the language that you would like to set for your device.</span></span> <span data-ttu-id="8df4c-107">언어를 지정하고 Enter를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-107">Specify the language, and then press Enter.</span></span> 
    
     ![StorSimple 구성 및 등록 장치 1](./media/storsimple-configure-and-register-device/HCS_RegisterYourDevice1-include.png)
-4. 표시되는 직렬 콘솔 메뉴에서 모든 권한으로 로그온할 수 있는 옵션 1을 선택합니다. 
+4. <span data-ttu-id="8df4c-109">표시되는 직렬 콘솔 메뉴에서 모든 권한으로 로그온할 수 있는 옵션 1을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-109">In the serial console menu that is presented, choose option 1 to log on with full access.</span></span> 
    
     ![StorSimple 등록 장치 2](./media/storsimple-configure-and-register-device/HCS_RegisterYourDevice2-include.png)
    
-     5~12단계를 완료하여 장치에 필요한 최소 네트워크 설정을 구성합니다. **이러한 구성 단계는 장치의 활성 컨트롤러에서 수행해야 합니다.** 직렬 콘솔 메뉴는 배너 메시지에 컨트롤러 상태를 나타냅니다. 활성 컨트롤러에 연결되지 않은 경우 연결을 끊고 활성 컨트롤러에 연결합니다.
-5. 명령 프롬프트에 암호를 입력합니다. 기본 장치 암호는 **Password1**입니다.
-6. 다음 명령을 입력합니다.
+     <span data-ttu-id="8df4c-111">5~12단계를 완료하여 장치에 필요한 최소 네트워크 설정을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-111">Complete steps 5-12 to configure the minimum required network settings for your device.</span></span> <span data-ttu-id="8df4c-112">**이러한 구성 단계는 장치의 활성 컨트롤러에서 수행해야 합니다.**</span><span class="sxs-lookup"><span data-stu-id="8df4c-112">**These configuration steps need to be performed on the active controller of the device.**</span></span> <span data-ttu-id="8df4c-113">직렬 콘솔 메뉴는 배너 메시지에 컨트롤러 상태를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-113">The serial console menu indicates the controller state in the banner message.</span></span> <span data-ttu-id="8df4c-114">활성 컨트롤러에 연결되지 않은 경우 연결을 끊고 활성 컨트롤러에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-114">If you are not connected to the active controller, disconnect and then connect to the active controller.</span></span>
+5. <span data-ttu-id="8df4c-115">명령 프롬프트에 암호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-115">At the command prompt, type your password.</span></span> <span data-ttu-id="8df4c-116">기본 장치 암호는 **Password1**입니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-116">The default device password is **Password1**.</span></span>
+6. <span data-ttu-id="8df4c-117">다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-117">Type the following command:</span></span>
    
      `Invoke-HcsSetupWizard` 
-7. 장치에 대한 네트워크 설정 구성을 도와주는 설치 마법사가 나타납니다. 다음 정보를 지정합니다. 
+7. <span data-ttu-id="8df4c-118">장치에 대한 네트워크 설정 구성을 도와주는 설치 마법사가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-118">A setup wizard will appear to help you configure the network settings for the device.</span></span> <span data-ttu-id="8df4c-119">다음 정보를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-119">Supply the the following information:</span></span> 
    
-   * 데이터 0 네트워크 인터페이스의 IP 주소
-   * 서브넷 마스크
-   * 게이트웨이
-   * 주 DNS 서버의 IP 주소
-   * 주 NTP 서버의 IP 주소
+   * <span data-ttu-id="8df4c-120">데이터 0 네트워크 인터페이스의 IP 주소</span><span class="sxs-lookup"><span data-stu-id="8df4c-120">IP address for the DATA 0 network interface</span></span>
+   * <span data-ttu-id="8df4c-121">서브넷 마스크</span><span class="sxs-lookup"><span data-stu-id="8df4c-121">Subnet mask</span></span>
+   * <span data-ttu-id="8df4c-122">게이트웨이</span><span class="sxs-lookup"><span data-stu-id="8df4c-122">Gateway</span></span>
+   * <span data-ttu-id="8df4c-123">주 DNS 서버의 IP 주소</span><span class="sxs-lookup"><span data-stu-id="8df4c-123">IP address for Primary DNS server</span></span>
+   * <span data-ttu-id="8df4c-124">주 NTP 서버의 IP 주소</span><span class="sxs-lookup"><span data-stu-id="8df4c-124">IP address for Primary NTP server</span></span>
      
      > [!NOTE]
-     > 서브넷 마스크 및 DNS 설정을 적용하려면 몇 분간 대기할 수 있습니다. "장치가 준비되지 않았습니다." 오류 메시지를 받게 되면 활성 컨트롤러의 데이터 0 네트워크 인터페이스에서 실제 네트워크 연결을 확인합니다.
+     > <span data-ttu-id="8df4c-125">서브넷 마스크 및 DNS 설정을 적용하려면 몇 분간 대기할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-125">You may have to wait for a few minutes for the subnet mask and the DNS settings to be applied.</span></span> <span data-ttu-id="8df4c-126">"장치가 준비되지 않았습니다."</span><span class="sxs-lookup"><span data-stu-id="8df4c-126">If you get a "The device is not ready."</span></span> <span data-ttu-id="8df4c-127">오류 메시지를 받게 되면 활성 컨트롤러의 데이터 0 네트워크 인터페이스에서 실제 네트워크 연결을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-127">error message, check the physical network connection on the DATA 0 network interface of your active controller.</span></span>
      > 
      > 
-8. (선택 사항) 웹 프록시 서버를 구성합니다. 웹 프록시 구성은 선택 사항이지만 **웹 프록시를 사용하면 여기서만 구성할 수 있습니다**. 자세한 내용은 [장치에 웹 프록시 구성](../articles/storsimple/storsimple-configure-web-proxy.md)으로 이동합니다. 이 단계에서 문제가 발생하면 [웹 프록시 구성 중 오류](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-during-the-optional-web-proxy-settings)에 대한 문제 해결 지침을 참조하세요.
+8. <span data-ttu-id="8df4c-128">(선택 사항) 웹 프록시 서버를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-128">(Optional) configure your web proxy server.</span></span> <span data-ttu-id="8df4c-129">웹 프록시 구성은 선택 사항이지만 **웹 프록시를 사용하면 여기서만 구성할 수 있습니다**.</span><span class="sxs-lookup"><span data-stu-id="8df4c-129">Although web proxy configuration is optional, **be aware that if you use a web proxy, you can only configure it here**.</span></span> <span data-ttu-id="8df4c-130">자세한 내용은 [장치에 웹 프록시 구성](../articles/storsimple/storsimple-configure-web-proxy.md)으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-130">For more information, go to [Configure web proxy for your device](../articles/storsimple/storsimple-configure-web-proxy.md).</span></span> <span data-ttu-id="8df4c-131">이 단계에서 문제가 발생하면 [웹 프록시 구성 중 오류](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-during-the-optional-web-proxy-settings)에 대한 문제 해결 지침을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-131">If you run into any issues during this step, refer to troubleshooting guidance for [Errors during web proxy configuration](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-during-the-optional-web-proxy-settings).</span></span>
 
      > [!NOTE]
-     > Ctrl + C를 눌러 언제든지 설치 마법사를 종료할 수 있습니다. 이 명령을 실행하기 전에 적용된 모든 설정은 유지됩니다.
+     > <span data-ttu-id="8df4c-132">Ctrl + C를 눌러 언제든지 설치 마법사를 종료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-132">You can press Ctrl + C at any time to exit the setup wizard.</span></span> <span data-ttu-id="8df4c-133">이 명령을 실행하기 전에 적용된 모든 설정은 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-133">Any settings that you applied before you issued this command will be retained.</span></span>
 
-1. 보안상의 이유로 첫 번째 세션이 끝난 후 장치 관리자 암호가 만료되고 후속 세션을 위해 암호를 변경해야 합니다. 메시지가 표시되면 장치 관리자 암호를 제공합니다. 유효한 장치 관리자 암호는 8자에서 15자 사이여야 합니다. 암호는 소문자, 대문자, 숫자 및 특수 문자의 조합이어야 합니다.
-2. StorSimple 스냅숏 관리자 암호도 여기서 설정합니다. StorSimple 스냅숏 관리자를 실행하는 Windows 호스트로 장치를 인증하는 경우 이 암호를 사용합니다. 메시지가 표시되면 14~15자의 암호를 입력합니다. 암호는 다음 중 세 가지의 조합이어야 함: 소문자, 대문자, 숫자 및 특수 문자. 
+1. <span data-ttu-id="8df4c-134">보안상의 이유로 첫 번째 세션이 끝난 후 장치 관리자 암호가 만료되고 후속 세션을 위해 암호를 변경해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-134">For security reasons, the device administrator password expires after the first session, and you will need to change it for subsequent sessions.</span></span> <span data-ttu-id="8df4c-135">메시지가 표시되면 장치 관리자 암호를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-135">When prompted, provide a device administrator password.</span></span> <span data-ttu-id="8df4c-136">유효한 장치 관리자 암호는 8자에서 15자 사이여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-136">A valid device administrator password must be between 8 and 15 characters.</span></span> <span data-ttu-id="8df4c-137">암호는 소문자, 대문자, 숫자 및 특수 문자의 조합이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-137">The password must contain a combination of lowercase characters, uppercase characters, numbers, and special characters.</span></span>
+2. <span data-ttu-id="8df4c-138">StorSimple 스냅숏 관리자 암호도 여기서 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-138">The StorSimple Snapshot Manager password is also set here.</span></span> <span data-ttu-id="8df4c-139">StorSimple 스냅숏 관리자를 실행하는 Windows 호스트로 장치를 인증하는 경우 이 암호를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-139">You use this password when you authenticate a device with your Windows host running StorSimple Snapshot Manager.</span></span> <span data-ttu-id="8df4c-140">메시지가 표시되면 14~15자의 암호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-140">When prompted, provide a 14 to 15 character password.</span></span> <span data-ttu-id="8df4c-141">암호는 다음 중 세 가지의 조합이어야 함: 소문자, 대문자, 숫자 및 특수 문자.</span><span class="sxs-lookup"><span data-stu-id="8df4c-141">The password must contain a combination of three of the following: lowercase, uppercase, numeric, and special characters.</span></span> 
    
    ![StorSimple 등록 장치 4](./media/storsimple-configure-and-register-device/HCS_RegisterYourDevice4-include.png)
    
-   StorSimple  관리자 서비스 인터페이스에서 StorSimple 스냅숏 관리자 암호를 재설정할 수 있습니다. 자세한 단계를 보려면 [StorSimple Manager 서비스를 사용하여 StorSimple 암호 변경](../articles/storsimple/storsimple-change-passwords.md)으로 이동하세요.
+   <span data-ttu-id="8df4c-143">StorSimple  관리자 서비스 인터페이스에서 StorSimple 스냅숏 관리자 암호를 재설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-143">You can reset the StorSimple Snapshot Manager password from the StorSimple Manager service interface.</span></span> <span data-ttu-id="8df4c-144">자세한 단계를 보려면 [StorSimple Manager 서비스를 사용하여 StorSimple 암호 변경](../articles/storsimple/storsimple-change-passwords.md)으로 이동하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-144">For detailed steps, go to [Change the StorSimple passwords using the StorSimple Manager serivce](../articles/storsimple/storsimple-change-passwords.md).</span></span>
    
-   이 단계에서 발생하는 문제를 해결하려면 [암호와 관련된 오류](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-related-to-device-administrator-and-storsimple-snapshot-manager-passwords)에 대한 문제 해결 지침을 참조하세요.
-3. 설치 마법사의 마지막 단계에서는 StorSimple 관리자 서비스에 장치를 등록합니다. 이 경우 2단계에서 얻은 서비스 등록 키가 필요합니다. 등록 키를 입력한 후 장치가 등록되려면 2~3분 정도 기다려야 할 수 있습니다.
+   <span data-ttu-id="8df4c-145">이 단계에서 발생하는 문제를 해결하려면 [암호와 관련된 오류](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-related-to-device-administrator-and-storsimple-snapshot-manager-passwords)에 대한 문제 해결 지침을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-145">To troubleshoot any issues during this step, refer to troubleshooting guidance for [Errors related to passwords](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-related-to-device-administrator-and-storsimple-snapshot-manager-passwords).</span></span>
+3. <span data-ttu-id="8df4c-146">설치 마법사의 마지막 단계에서는 StorSimple 관리자 서비스에 장치를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-146">The final step in the setup wizard registers your device with the StorSimple Manager service.</span></span> <span data-ttu-id="8df4c-147">이 경우 2단계에서 얻은 서비스 등록 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-147">For this, you will need the service registration key that you obtained in step 2.</span></span> <span data-ttu-id="8df4c-148">등록 키를 입력한 후 장치가 등록되려면 2~3분 정도 기다려야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-148">After you supply the registration key, you may need to wait for 2-3 minutes before the device is registered.</span></span>
    
-   가능한 모든 장치 등록 오류를 해결하려면 [장치 등록 중 오류](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-during-device-registration)를 참조하세요. 자세한 문제 해결을 위해 [단계별 문제 해결 예제](../articles/storsimple/storsimple-troubleshoot-deployment.md#step-by-step-storsimple-troubleshooting-example)를 참조할 수도 있습니다.
-4. 장치를 등록한 후 서비스 데이터 암호화 키가 표시됩니다. 이 키를 복사하고 안전한 위치에 저장합니다.
+   <span data-ttu-id="8df4c-149">가능한 모든 장치 등록 오류를 해결하려면 [장치 등록 중 오류](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-during-device-registration)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-149">To troubleshoot any possible device registration failures, refer to [Errors during device registration](../articles/storsimple/storsimple-troubleshoot-deployment.md#errors-during-device-registration).</span></span> <span data-ttu-id="8df4c-150">자세한 문제 해결을 위해 [단계별 문제 해결 예제](../articles/storsimple/storsimple-troubleshoot-deployment.md#step-by-step-storsimple-troubleshooting-example)를 참조할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-150">For detailed troubleshooting, you can also refer to [Step-by-step troubleshooting example](../articles/storsimple/storsimple-troubleshoot-deployment.md#step-by-step-storsimple-troubleshooting-example).</span></span>
+4. <span data-ttu-id="8df4c-151">장치를 등록한 후 서비스 데이터 암호화 키가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-151">After the device is registered, a Service Data Encryption key will appear.</span></span> <span data-ttu-id="8df4c-152">이 키를 복사하고 안전한 위치에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-152">Copy this key and save it in a safe location.</span></span>
    
    > [!WARNING]
-   > 이 키는 StorSimple 관리자 서비스로 추가 장치를 등록하기 위한 서비스 등록 키에 필요합니다. 이 키에 대한 자세한 내용은 [StorSimple 보안](../articles/storsimple/storsimple-security.md) 을 참조하세요.
+   > <span data-ttu-id="8df4c-153">이 키는 StorSimple 관리자 서비스로 추가 장치를 등록하기 위한 서비스 등록 키에 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-153">This key will be required with the service registration key to register additional devices with the StorSimple Manager service.</span></span> <span data-ttu-id="8df4c-154">이 키에 대한 자세한 내용은 [StorSimple 보안](../articles/storsimple/storsimple-security.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-154">Refer to [StorSimple security](../articles/storsimple/storsimple-security.md) for more information about this key.</span></span>
    > 
    > 
    
     ![StorSimple 등록 장치 6](./media/storsimple-configure-and-register-device/HCS_RegisterYourDevice6-include.png)
    
-    직렬 콘솔 창에서 텍스트를 복사하려면 해당 텍스트를 선택하면 됩니다. 그런 다음 클립보드 또는 임의의 텍스트 편집기에 붙여넣을 수 있습니다. Ctrl + C를 사용하여 서비스 데이터 암호화 키를 복사하지 마세요. Ctrl + C를 사용하면 설치 마법사가 종료됩니다. 결과적으로, 장치 관리자 암호 및 StorSimple 스냅숏 관리자 암호는 변경되지 않으며 장치는 기본 암호로 되돌아갑니다.
-5. 직렬 콘솔을 종료합니다.
-6. Azure 클래식 포털로 돌아가 다음 단계를 완료합니다.
+    <span data-ttu-id="8df4c-156">직렬 콘솔 창에서 텍스트를 복사하려면 해당 텍스트를 선택하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-156">To copy the text from the serial console window, simply select the text.</span></span> <span data-ttu-id="8df4c-157">그런 다음 클립보드 또는 임의의 텍스트 편집기에 붙여넣을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-157">You should then be able to paste it in the clipboard or any text editor.</span></span> <span data-ttu-id="8df4c-158">Ctrl + C를 사용하여 서비스 데이터 암호화 키를 복사하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-158">DO NOT use Ctrl + C to copy the service data encryption key.</span></span> <span data-ttu-id="8df4c-159">Ctrl + C를 사용하면 설치 마법사가 종료됩니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-159">Using Ctrl + C will cause you to exit the setup wizard.</span></span> <span data-ttu-id="8df4c-160">결과적으로, 장치 관리자 암호 및 StorSimple 스냅숏 관리자 암호는 변경되지 않으며 장치는 기본 암호로 되돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-160">As a result, the device administrator password and the StorSimple Snapshot Manager password will not be changed and the device will revert to the default passwords.</span></span>
+5. <span data-ttu-id="8df4c-161">직렬 콘솔을 종료합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-161">Exit the serial console.</span></span>
+6. <span data-ttu-id="8df4c-162">Azure 클래식 포털로 돌아가 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-162">Return to the Azure classic portal, and complete the following steps:</span></span>
    
-   1. StorSimple 관리자 서비스를 두 번 클릭하여 **퀵 스타트** 페이지에 액세스합니다.
-   2. **연결된 장치 보기**를 클릭합니다.
-   3. **장치** 페이지에서 상태를 조회하여 장치가 서비스에 성공적으로 연결되었는지 확인합니다. 장치 상태는 **온라인**이어야 합니다. 장치 상태가 **오프라인**이면 장치가 온라인 상태가 될 때까지 몇 분 정도 기다립니다.
+   1. <span data-ttu-id="8df4c-163">StorSimple 관리자 서비스를 두 번 클릭하여 **퀵 스타트** 페이지에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-163">Double-click your StorSimple Manager service to access the **Quick Start** page.</span></span>
+   2. <span data-ttu-id="8df4c-164">**연결된 장치 보기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-164">Click **View connected devices**.</span></span>
+   3. <span data-ttu-id="8df4c-165">**장치** 페이지에서 상태를 조회하여 장치가 서비스에 성공적으로 연결되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-165">On the **Devices** page, verify that the device has successfully connected to the service by looking up the status.</span></span> <span data-ttu-id="8df4c-166">장치 상태는 **온라인**이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-166">The device status should be **Online**.</span></span> <span data-ttu-id="8df4c-167">장치 상태가 **오프라인**이면 장치가 온라인 상태가 될 때까지 몇 분 정도 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-167">If the device status is **Offline**, wait for a couple of minutes for the device to come online.</span></span>
    
    ![StorSimple 장치 페이지](./media/storsimple-configure-and-register-device/HCS_DevicesPageM-include.png) 
    
    > [!IMPORTANT]
-   > 장치가 온라인 상태로 전환되면 이 단계의 시작 부분에서 분리한 네트워크 케이블을 연결합니다.
+   > <span data-ttu-id="8df4c-169">장치가 온라인 상태로 전환되면 이 단계의 시작 부분에서 분리한 네트워크 케이블을 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-169">After the device is online, plug in the network cables that you had unplugged in the beginning of this step.</span></span>
    > 
    > 
 
-장치가 성공적으로 등록되고 온라인 상태로 전환되지 않으면 `Test-HcsmConnection -Verbose` 를 실행하여 네트워크 연결이 정상인지 확인할 수 있습니다. 이 cmdlet의 자세한 사용법을 보려면 [Test-HcsmConnection에 대한 cmdlet 참조](https://technet.microsoft.com/library/dn715782.aspx)로 이동하세요.
+<span data-ttu-id="8df4c-170">장치가 성공적으로 등록되고 온라인 상태로 전환되지 않으면 `Test-HcsmConnection -Verbose` 를 실행하여 네트워크 연결이 정상인지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8df4c-170">After the device is successfully registered and doesn't come online, you can run the `Test-HcsmConnection -Verbose` to ensure that the network connectivity is healthy.</span></span> <span data-ttu-id="8df4c-171">이 cmdlet의 자세한 사용법을 보려면 [Test-HcsmConnection에 대한 cmdlet 참조](https://technet.microsoft.com/library/dn715782.aspx)로 이동하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-171">For the detailed usage of this cmdlet, go to [cmdlet reference for Test-HcsmConnection](https://technet.microsoft.com/library/dn715782.aspx).</span></span>
 
-![동영상 사용 가능](./media/storsimple-configure-and-register-device/Video_icon.png) **동영상 사용 가능**
+<span data-ttu-id="8df4c-172">![동영상 사용 가능](./media/storsimple-configure-and-register-device/Video_icon.png) **동영상 사용 가능**</span><span class="sxs-lookup"><span data-stu-id="8df4c-172">![Video available](./media/storsimple-configure-and-register-device/Video_icon.png) **Video available**</span></span>
 
-StorSimple용 Windows PowerShell을 통해 장치를 구성 및 등록하는 방법을 보여 주는 동영상을 시청하려면 [여기](https://azure.microsoft.com/documentation/videos/initialize-the-storsimple-appliance/)를 클릭하세요.
+<span data-ttu-id="8df4c-173">StorSimple용 Windows PowerShell을 통해 장치를 구성 및 등록하는 방법을 보여 주는 동영상을 시청하려면 [여기](https://azure.microsoft.com/documentation/videos/initialize-the-storsimple-appliance/)를 클릭하세요.</span><span class="sxs-lookup"><span data-stu-id="8df4c-173">To watch a video that demonstrates how to configure and register your device through Windows PowerShell for StorSimple, click [here](https://azure.microsoft.com/documentation/videos/initialize-the-storsimple-appliance/).</span></span>
 

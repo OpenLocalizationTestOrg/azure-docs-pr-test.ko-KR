@@ -1,19 +1,19 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="to-install-maintenance-mode-updates-via-windows-powershell-for-storsimple"></a>StorSimple용 Windows PowerShell을 통해 유지 관리 모드 업데이트를 설치하려면
-1. 장치 직렬 콘솔에 액세스한 다음(아직 액세스하지 않은 경우) 옵션 1, **모든 권한으로 로그인**을 선택합니다. 
-2. 암호를 입력합니다. 기본 암호는 **Password1**입니다.
-3. 명령 프롬프트에 다음을 입력합니다.
+#### <a name="to-install-maintenance-mode-updates-via-windows-powershell-for-storsimple"></a><span data-ttu-id="1ec4e-101">StorSimple용 Windows PowerShell을 통해 유지 관리 모드 업데이트를 설치하려면</span><span class="sxs-lookup"><span data-stu-id="1ec4e-101">To install Maintenance mode updates via Windows PowerShell for StorSimple</span></span>
+1. <span data-ttu-id="1ec4e-102">장치 직렬 콘솔에 액세스한 다음(아직 액세스하지 않은 경우) 옵션 1, **모든 권한으로 로그인**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-102">If you haven't done so already, access the device serial console and select option 1, **Log in with full access**.</span></span> 
+2. <span data-ttu-id="1ec4e-103">암호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-103">Type the password.</span></span> <span data-ttu-id="1ec4e-104">기본 암호는 **Password1**입니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-104">The default password is **Password1**.</span></span>
+3. <span data-ttu-id="1ec4e-105">명령 프롬프트에 다음을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-105">At the command prompt, type:</span></span>
    
      `Get-HcsUpdateAvailability` 
-4. 업데이트가 사용 가능한지 여부 및 업데이트 시 장치를 중단해야 하는지 여부에 대한 알림이 표시됩니다. 장치를 중단하는 업데이트를 적용하려면 장치를 유지 관리 모드로 설정해야 합니다. 지침은 [2단계: 유지 관리 모드 전환](../articles/storsimple/storsimple-update-device.md#step2) 을 참조하세요.
-5. 장치가 유지 관리 모드 상태일 때 명령 프롬프트에 다음을 입력합니다. `Start-HcsUpdate`
-6. 확인하라는 메시지가 표시됩니다. 업데이트를 확인하고 나면 현재 액세스 중인 컨트롤러에 업데이트가 설치됩니다. 업데이트가 설치되고 나면 컨트롤러가 다시 시작됩니다. 
-7. 업데이트 상태를 모니터링합니다. 형식:
+4. <span data-ttu-id="1ec4e-106">업데이트가 사용 가능한지 여부 및 업데이트 시 장치를 중단해야 하는지 여부에 대한 알림이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-106">You will be notified if updates are available and whether the updates are disruptive or non-disruptive.</span></span> <span data-ttu-id="1ec4e-107">장치를 중단하는 업데이트를 적용하려면 장치를 유지 관리 모드로 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-107">To apply disruptive updates, you need to put the device into Maintenance mode.</span></span> <span data-ttu-id="1ec4e-108">지침은 [2단계: 유지 관리 모드 전환](../articles/storsimple/storsimple-update-device.md#step2) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-108">See [Step 2: Enter Maintenance mode](../articles/storsimple/storsimple-update-device.md#step2) for instructions.</span></span>
+5. <span data-ttu-id="1ec4e-109">장치가 유지 관리 모드 상태일 때 명령 프롬프트에 다음을 입력합니다. `Start-HcsUpdate`</span><span class="sxs-lookup"><span data-stu-id="1ec4e-109">When your device is in Maintenance mode, at the command prompt, type: `Start-HcsUpdate`</span></span>
+6. <span data-ttu-id="1ec4e-110">확인하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-110">You will be prompted for confirmation.</span></span> <span data-ttu-id="1ec4e-111">업데이트를 확인하고 나면 현재 액세스 중인 컨트롤러에 업데이트가 설치됩니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-111">After you confirm the updates, they will be installed on the controller that you are currently accessing.</span></span> <span data-ttu-id="1ec4e-112">업데이트가 설치되고 나면 컨트롤러가 다시 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-112">After the updates are installed, the controller will restart.</span></span> 
+7. <span data-ttu-id="1ec4e-113">업데이트 상태를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-113">Monitor the status of updates.</span></span> <span data-ttu-id="1ec4e-114">형식:</span><span class="sxs-lookup"><span data-stu-id="1ec4e-114">Type:</span></span>
    
     `Get-HcsUpdateStatus`
    
-    `RunInProgress`가 `True`이면 업데이트가 아직 진행 중입니다. `RunInProgress`가 `False`이면 업데이트가 완료된 것입니다.  
-8. 업데이트가 현재 컨트롤러에 설치되고 다시 시작된 경우 다른 컨트롤러에 연결하여 1~6단계를 수행합니다.
-9. 두 컨트롤러를 모두 업데이트한 후 유지 관리 모드를 종료합니다. 지침은 [4단계: 유지 관리 모드 종료](../articles/storsimple/storsimple-update-device.md#step4) 를 참조하세요.
+    <span data-ttu-id="1ec4e-115">`RunInProgress`가 `True`이면 업데이트가 아직 진행 중입니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-115">If the `RunInProgress` is `True`, the update is still in progress.</span></span> <span data-ttu-id="1ec4e-116">`RunInProgress`가 `False`이면 업데이트가 완료된 것입니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-116">If `RunInProgress` is `False`, it indicates that the update has completed.</span></span>  
+8. <span data-ttu-id="1ec4e-117">업데이트가 현재 컨트롤러에 설치되고 다시 시작된 경우 다른 컨트롤러에 연결하여 1~6단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-117">When the update is installed on the current controller and it has restarted, connect to the other controller and perform steps 1 through 6.</span></span>
+9. <span data-ttu-id="1ec4e-118">두 컨트롤러를 모두 업데이트한 후 유지 관리 모드를 종료합니다.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-118">After both controllers are updated, exit Maintenance mode.</span></span> <span data-ttu-id="1ec4e-119">지침은 [4단계: 유지 관리 모드 종료](../articles/storsimple/storsimple-update-device.md#step4) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1ec4e-119">See [Step 4: Exit Maintenance mode](../articles/storsimple/storsimple-update-device.md#step4) for instructions.</span></span>
 

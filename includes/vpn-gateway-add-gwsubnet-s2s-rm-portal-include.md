@@ -1,9 +1,9 @@
-1. 포털에서 가상 네트워크 게이트웨이를 만들려는 가상 네트워크로 이동합니다.
-2. VNet 페이지의 **설정** 섹션에서 **서브넷**을 클릭하여 서브넷 페이지를 확장합니다.
-3. **서브넷** 페이지의 맨 위에서 **+게이트웨이 서브넷**을 클릭하여 **서브넷 추가** 페이지를 엽니다.
+1. <span data-ttu-id="3bf4e-101">포털에서 가상 네트워크 게이트웨이를 만들려는 가상 네트워크로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-101">In the portal, navigate to the virtual network for which you want to create a virtual network gateway.</span></span>
+2. <span data-ttu-id="3bf4e-102">VNet 페이지의 **설정** 섹션에서 **서브넷**을 클릭하여 서브넷 페이지를 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-102">In the **Settings** section of your VNet page, click **Subnets** to expand the Subnets page.</span></span>
+3. <span data-ttu-id="3bf4e-103">**서브넷** 페이지의 맨 위에서 **+게이트웨이 서브넷**을 클릭하여 **서브넷 추가** 페이지를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-103">On the **Subnets** page, click **+Gateway subnet** at the top to open the **Add subnet** page.</span></span>
 
-  ![게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "게이트웨이 서브넷 추가")
-4. 서브넷의 **이름**에 'GatewaySubnet' 값이 자동으로 채워집니다. Azure가 서브넷을 게이트웨이 서브넷으로 인식하기 위해 GatewaySubnet 값이 필요합니다. 자동으로 채워진 **주소 범위** 값을 구성 요구 사항과 일치하도록 조정합니다.
+  <span data-ttu-id="3bf4e-104">![게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "게이트웨이 서브넷 추가")</span><span class="sxs-lookup"><span data-stu-id="3bf4e-104">![Add the gateway subnet](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "Add the gateway subnet")</span></span>
+4. <span data-ttu-id="3bf4e-105">서브넷의 **이름**에 'GatewaySubnet' 값이 자동으로 채워집니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-105">The **Name** for your subnet is automatically filled in with the value 'GatewaySubnet'.</span></span> <span data-ttu-id="3bf4e-106">Azure가 서브넷을 게이트웨이 서브넷으로 인식하기 위해 GatewaySubnet 값이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-106">The GatewaySubnet value is required in order for Azure to recognize the subnet as the gateway subnet.</span></span> <span data-ttu-id="3bf4e-107">자동으로 채워진 **주소 범위** 값을 구성 요구 사항과 일치하도록 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-107">Adjust the auto-filled **Address range** values to match your configuration requirements.</span></span>
 
-  ![게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "게이트웨이 서브넷 추가")
-5. 서브넷을 만들려면 페이지 아래쪽에서 **확인**을 클릭합니다.
+  <span data-ttu-id="3bf4e-108">![게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "게이트웨이 서브넷 추가")</span><span class="sxs-lookup"><span data-stu-id="3bf4e-108">![Adding the gateway subnet](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "Adding the gateway subnet")</span></span>
+5. <span data-ttu-id="3bf4e-109">서브넷을 만들려면 페이지 아래쪽에서 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3bf4e-109">To create the subnet, click **OK** at the bottom of the page.</span></span>

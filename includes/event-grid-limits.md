@@ -1,4 +1,4 @@
-| 리소스 | 제한 |
+| <span data-ttu-id="3c810-101">리소스</span><span class="sxs-lookup"><span data-stu-id="3c810-101">Resource</span></span> | <span data-ttu-id="3c810-102">제한</span><span class="sxs-lookup"><span data-stu-id="3c810-102">Limit</span></span> |
 | --- | --- |
-| 지역당 이벤트 구독 |1000 |
-| 지역당 사용자 지정 토픽 |20 |
+| <span data-ttu-id="3c810-103">지역당 이벤트 구독</span><span class="sxs-lookup"><span data-stu-id="3c810-103">Event Subscriptions per region</span></span> |<span data-ttu-id="3c810-104">1000</span><span class="sxs-lookup"><span data-stu-id="3c810-104">1000</span></span> |
+| <span data-ttu-id="3c810-105">지역당 사용자 지정 토픽</span><span class="sxs-lookup"><span data-stu-id="3c810-105">Custom Topics per region</span></span> |<span data-ttu-id="3c810-106">20</span><span class="sxs-lookup"><span data-stu-id="3c810-106">20</span></span> |

@@ -1,12 +1,12 @@
-Azure Backup 서비스에는 Backup 자격 증명 모음과 Recovery Services 자격 증명 모음의 두 가지 자격 증명 모음 유형이 있습니다. Backup 자격 증명 모음을 먼저 제공했습니다. 그런 다음 Recovery Services 자격 증명 모음에서 확장된 Resource Manager 배포가 지원됩니다. Microsoft에서는 클래식 배포가 특별히 필요한 경우가 아니면 Resource Manager 배포를 사용하도록 권장합니다.
+<span data-ttu-id="7f2e4-101">Azure Backup 서비스에는 Backup 자격 증명 모음과 Recovery Services 자격 증명 모음의 두 가지 자격 증명 모음 유형이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f2e4-101">The Azure Backup service has two types of vaults - the Backup vault and the Recovery Services vault.</span></span> <span data-ttu-id="7f2e4-102">Backup 자격 증명 모음을 먼저 제공했습니다.</span><span class="sxs-lookup"><span data-stu-id="7f2e4-102">The Backup vault came first.</span></span> <span data-ttu-id="7f2e4-103">그런 다음 Recovery Services 자격 증명 모음에서 확장된 Resource Manager 배포가 지원됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f2e4-103">Then the Recovery Services vault came along to support the expanded Resource Manager deployments.</span></span> <span data-ttu-id="7f2e4-104">Microsoft에서는 클래식 배포가 특별히 필요한 경우가 아니면 Resource Manager 배포를 사용하도록 권장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f2e4-104">Microsoft recommends using Resource Manager deployments unless you specifically require a Classic deployment.</span></span>
 
-| **배포웹사이트를** | **포털** | **자격 증명 모음** |
+| <span data-ttu-id="7f2e4-105">**배포웹사이트를**</span><span class="sxs-lookup"><span data-stu-id="7f2e4-105">**Deployment**</span></span> | <span data-ttu-id="7f2e4-106">**포털**</span><span class="sxs-lookup"><span data-stu-id="7f2e4-106">**Portal**</span></span> | <span data-ttu-id="7f2e4-107">**자격 증명 모음**</span><span class="sxs-lookup"><span data-stu-id="7f2e4-107">**Vault**</span></span> |
 | --- | --- | --- |
-| 클래식 |[클래식](https://manage.windowsazure.com) |백업 |
-| 리소스 관리자 |[Azure](https://portal.azure.com) |복구 서비스 |
+| <span data-ttu-id="7f2e4-108">클래식</span><span class="sxs-lookup"><span data-stu-id="7f2e4-108">Classic</span></span> |[<span data-ttu-id="7f2e4-109">클래식</span><span class="sxs-lookup"><span data-stu-id="7f2e4-109">Classic</span></span>](https://manage.windowsazure.com) |<span data-ttu-id="7f2e4-110">백업</span><span class="sxs-lookup"><span data-stu-id="7f2e4-110">Backup</span></span> |
+| <span data-ttu-id="7f2e4-111">리소스 관리자</span><span class="sxs-lookup"><span data-stu-id="7f2e4-111">Resource Manager</span></span> |[<span data-ttu-id="7f2e4-112">Azure</span><span class="sxs-lookup"><span data-stu-id="7f2e4-112">Azure</span></span>](https://portal.azure.com) |<span data-ttu-id="7f2e4-113">복구 서비스</span><span class="sxs-lookup"><span data-stu-id="7f2e4-113">Recovery Services</span></span> |
 
 > [!NOTE]
-> 백업 자격 증명 모음을 사용하여 Resource Manager에서 배포한 솔루션을 보호할 수는 없습니다. 그러나 복구 서비스 자격 증명 모음을 사용하면 클래식 방식으로 배포한 서버와 VM을 보호할 수는 있습니다.  
+> <span data-ttu-id="7f2e4-114">백업 자격 증명 모음을 사용하여 Resource Manager에서 배포한 솔루션을 보호할 수는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="7f2e4-114">Backup vaults cannot protect Resource Manager-deployed solutions.</span></span> <span data-ttu-id="7f2e4-115">그러나 복구 서비스 자격 증명 모음을 사용하면 클래식 방식으로 배포한 서버와 VM을 보호할 수는 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f2e4-115">However, you can use a Recovery Services vault to protect classically-deployed servers and VMs.</span></span>  
 > 
 > 
 

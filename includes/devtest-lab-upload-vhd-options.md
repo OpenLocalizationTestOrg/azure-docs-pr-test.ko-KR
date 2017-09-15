@@ -1,6 +1,6 @@
-## <a name="prerequisites"></a>필수 조건 
-이 자습서를 완료하려면 사용자 지정 이미지를 만들려는 랩과 연결된 저장소 계정에 업로드된 VHD 파일이 있어야 합니다. VHD 파일을 업로드하려면 다음 링크 중 하나를 선택합니다.
+## <a name="prerequisites"></a><span data-ttu-id="ac8bf-101">필수 조건</span><span class="sxs-lookup"><span data-stu-id="ac8bf-101">Prerequisites</span></span> 
+<span data-ttu-id="ac8bf-102">이 자습서를 완료하려면 사용자 지정 이미지를 만들려는 랩과 연결된 저장소 계정에 업로드된 VHD 파일이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ac8bf-102">To complete this tutorial, you must have a VHD file uploaded to the storage account associated with the lab in which you are creating the custom image.</span></span> <span data-ttu-id="ac8bf-103">VHD 파일을 업로드하려면 다음 링크 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ac8bf-103">Select any of the following links to upload a VHD file:</span></span>
 
-- [AzCopy 명령줄 유틸리티를 사용하여 업로드](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
-- [Microsoft Azure Storage Explorer를 사용하여 업로드](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
-- [PowerShell 콘솔을 사용하여 업로드](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)
+- [<span data-ttu-id="ac8bf-104">AzCopy 명령줄 유틸리티를 사용하여 업로드</span><span class="sxs-lookup"><span data-stu-id="ac8bf-104">Upload using the AzCopy command-line utility</span></span>](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
+- [<span data-ttu-id="ac8bf-105">Microsoft Azure Storage Explorer를 사용하여 업로드</span><span class="sxs-lookup"><span data-stu-id="ac8bf-105">Upload using the Microsoft Azure Storage Explorer</span></span>](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
+- [<span data-ttu-id="ac8bf-106">PowerShell 콘솔을 사용하여 업로드</span><span class="sxs-lookup"><span data-stu-id="ac8bf-106">Upload using the PowerShell console</span></span>](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)

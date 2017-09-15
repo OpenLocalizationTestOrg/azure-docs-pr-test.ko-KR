@@ -1,16 +1,16 @@
-키 트랜잭션(지역당 자격 증명 모음당 10초 내에 허용되는 최대 트랜잭션<sup>1</sup>)
+<span data-ttu-id="6d5cf-101">키 트랜잭션(지역당 자격 증명 모음당 10초 내에 허용되는 최대 트랜잭션<sup>1</sup>)</span><span class="sxs-lookup"><span data-stu-id="6d5cf-101">Key transactions (Max transactions allowed in 10 seconds, per vault per region<sup>1</sup>):</span></span>
 
-|키 유형|HSM 키<br>만들기 키|HSM 키<br>모든 다른 트랜잭션|소프트웨어 키<br>만들기 키|소프트웨어 키<br>모든 다른 트랜잭션|
+|<span data-ttu-id="6d5cf-102">키 유형</span><span class="sxs-lookup"><span data-stu-id="6d5cf-102">Key type</span></span>|<span data-ttu-id="6d5cf-103">HSM 키</span><span class="sxs-lookup"><span data-stu-id="6d5cf-103">HSM-Key</span></span><br><span data-ttu-id="6d5cf-104">만들기 키</span><span class="sxs-lookup"><span data-stu-id="6d5cf-104">CREATE Key</span></span>|<span data-ttu-id="6d5cf-105">HSM 키</span><span class="sxs-lookup"><span data-stu-id="6d5cf-105">HSM-key</span></span><br><span data-ttu-id="6d5cf-106">모든 다른 트랜잭션</span><span class="sxs-lookup"><span data-stu-id="6d5cf-106">All other transactions</span></span>|<span data-ttu-id="6d5cf-107">소프트웨어 키</span><span class="sxs-lookup"><span data-stu-id="6d5cf-107">Software-key</span></span><br><span data-ttu-id="6d5cf-108">만들기 키</span><span class="sxs-lookup"><span data-stu-id="6d5cf-108">CREATE Key</span></span>|<span data-ttu-id="6d5cf-109">소프트웨어 키</span><span class="sxs-lookup"><span data-stu-id="6d5cf-109">Software-key</span></span><br><span data-ttu-id="6d5cf-110">모든 다른 트랜잭션</span><span class="sxs-lookup"><span data-stu-id="6d5cf-110">All other transactions</span></span>|
 |:---|---:|---:|---:|---:|
-|RSA 2048비트|5|1000|10|2000|
-|RSA 3072비트|5|250|10|500|
-|RSA 4096비트|5|125|10|250|
+|<span data-ttu-id="6d5cf-111">RSA 2048비트</span><span class="sxs-lookup"><span data-stu-id="6d5cf-111">RSA 2048-bit</span></span>|<span data-ttu-id="6d5cf-112">5</span><span class="sxs-lookup"><span data-stu-id="6d5cf-112">5</span></span>|<span data-ttu-id="6d5cf-113">1000</span><span class="sxs-lookup"><span data-stu-id="6d5cf-113">1000</span></span>|<span data-ttu-id="6d5cf-114">10</span><span class="sxs-lookup"><span data-stu-id="6d5cf-114">10</span></span>|<span data-ttu-id="6d5cf-115">2000</span><span class="sxs-lookup"><span data-stu-id="6d5cf-115">2000</span></span>|
+|<span data-ttu-id="6d5cf-116">RSA 3072비트</span><span class="sxs-lookup"><span data-stu-id="6d5cf-116">RSA 3072-bit</span></span>|<span data-ttu-id="6d5cf-117">5</span><span class="sxs-lookup"><span data-stu-id="6d5cf-117">5</span></span>|<span data-ttu-id="6d5cf-118">250</span><span class="sxs-lookup"><span data-stu-id="6d5cf-118">250</span></span>|<span data-ttu-id="6d5cf-119">10</span><span class="sxs-lookup"><span data-stu-id="6d5cf-119">10</span></span>|<span data-ttu-id="6d5cf-120">500</span><span class="sxs-lookup"><span data-stu-id="6d5cf-120">500</span></span>|
+|<span data-ttu-id="6d5cf-121">RSA 4096비트</span><span class="sxs-lookup"><span data-stu-id="6d5cf-121">RSA 4096-bit</span></span>|<span data-ttu-id="6d5cf-122">5</span><span class="sxs-lookup"><span data-stu-id="6d5cf-122">5</span></span>|<span data-ttu-id="6d5cf-123">125</span><span class="sxs-lookup"><span data-stu-id="6d5cf-123">125</span></span>|<span data-ttu-id="6d5cf-124">10</span><span class="sxs-lookup"><span data-stu-id="6d5cf-124">10</span></span>|<span data-ttu-id="6d5cf-125">250</span><span class="sxs-lookup"><span data-stu-id="6d5cf-125">250</span></span>|
 |
 
-암호, 관리되는 저장소 계정 키 및 자격 증명 모음 트랜잭션:
-| 트랜잭션 유형 | 지역당 자격 증명 모음당 10초 내에 허용되는 최대 트랜잭션<sup>1</sup> |
+<span data-ttu-id="6d5cf-126">암호, 관리되는 저장소 계정 키 및 자격 증명 모음 트랜잭션:</span><span class="sxs-lookup"><span data-stu-id="6d5cf-126">Secrets, Managed Storage Account Keys, and vault transactions:</span></span>
+| <span data-ttu-id="6d5cf-127">트랜잭션 유형</span><span class="sxs-lookup"><span data-stu-id="6d5cf-127">Transactions Type</span></span> | <span data-ttu-id="6d5cf-128">지역당 자격 증명 모음당 10초 내에 허용되는 최대 트랜잭션<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="6d5cf-128">Max transactions allowed in 10 seconds, per vault per region<sup>1</sup></span></span> |
 | --- | --- |
-| 모든 트랜잭션 |2000 |
+| <span data-ttu-id="6d5cf-129">모든 트랜잭션</span><span class="sxs-lookup"><span data-stu-id="6d5cf-129">All transactions</span></span> |<span data-ttu-id="6d5cf-130">2000</span><span class="sxs-lookup"><span data-stu-id="6d5cf-130">2000</span></span> |
 |
 
-<sup>1</sup> 모든 트랜잭션 유형에 대한 구독 전체 제한이 있습니다. 즉, Key Vault 제한 수의 5배. 예를 들어 HSM- 구독당 다른 트랜잭션은 구독당 10초 내에 5000개 트랜잭션으로 제한됩니다.
+<span data-ttu-id="6d5cf-131"><sup>1</sup> 모든 트랜잭션 유형에 대한 구독 전체 제한이 있습니다. 즉, Key Vault 제한 수의 5배.</span><span class="sxs-lookup"><span data-stu-id="6d5cf-131"><sup>1</sup> There is a subscription-wide limit for all transaction types, that is 5x per key vault limit.</span></span> <span data-ttu-id="6d5cf-132">예를 들어 HSM- 구독당 다른 트랜잭션은 구독당 10초 내에 5000개 트랜잭션으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="6d5cf-132">For example, HSM- other transactions per subscription are limited to 5000 transactions in 10 seconds per subscription.</span></span>

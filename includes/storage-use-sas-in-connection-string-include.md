@@ -1,6 +1,6 @@
-저장소 계정에서 리소스에 대한 액세스를 허용하는 공유 액세스 서명(SAS) URL을 보유하는 경우 연결 문자열에 SAS를 사용할 수 있습니다. SAS가 요청을 인증하는 데 필요한 정보를 포함하므로 SAS로 시작되는 연결 문자열은 프로토콜, 서비스 끝점 및 필요한 자격 증명을 제공하여 리소스에 액세스합니다.
+<span data-ttu-id="f0366-101">저장소 계정에서 리소스에 대한 액세스를 허용하는 공유 액세스 서명(SAS) URL을 보유하는 경우 연결 문자열에 SAS를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-101">If you possess a shared access signature (SAS) URL that grants you access to resources in a storage account, you can use the SAS in a connection string.</span></span> <span data-ttu-id="f0366-102">SAS가 요청을 인증하는 데 필요한 정보를 포함하므로 SAS로 시작되는 연결 문자열은 프로토콜, 서비스 끝점 및 필요한 자격 증명을 제공하여 리소스에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-102">Because the SAS contains the information required to authenticate the request, a connection string with a SAS provides the protocol, the service endpoint, and the necessary credentials to access the resource.</span></span>
 
-공유 액세스 서명을 포함하는 연결 문자열을 만들려면 다음과 같은 형식의 문자열을 지정합니다.
+<span data-ttu-id="f0366-103">공유 액세스 서명을 포함하는 연결 문자열을 만들려면 다음과 같은 형식의 문자열을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-103">To create a connection string that includes a shared access signature, specify the string in the following format:</span></span>
 
 ```
 BlobEndpoint=myBlobEndpoint;
@@ -10,32 +10,32 @@ FileEndpoint=myFileEndpoint;
 SharedAccessSignature=sasToken
 ```
 
-각 서비스 끝점은 선택 사항이지만 연결 문자열에는 최소한 하나 이상이 포함되어야 합니다.
+<span data-ttu-id="f0366-104">각 서비스 끝점은 선택 사항이지만 연결 문자열에는 최소한 하나 이상이 포함되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-104">Each service endpoint is optional, although the connection string must contain at least one.</span></span>
 
 > [!NOTE]
-> SAS와 함께 HTTPS를 사용하는 것이 가장 좋습니다.
+> <span data-ttu-id="f0366-105">SAS와 함께 HTTPS를 사용하는 것이 가장 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-105">Using HTTPS with a SAS is recommended as a best practice.</span></span>
 >
-> 구성 파일에서 연결 문자열의 SAS를 지정하는 경우 URL의 특수 문자 인코딩이 필요할 수 있습니다.
+> <span data-ttu-id="f0366-106">구성 파일에서 연결 문자열의 SAS를 지정하는 경우 URL의 특수 문자 인코딩이 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-106">If you are specifying a SAS in a connection string in a configuration file, you may need to encode special characters in the URL.</span></span>
 >
 >
 
-### <a name="service-sas-example"></a>서비스 SAS 예
-다음은 Blob 저장소에 대한 서비스 SAS를 포함하는 연결 문자열의 예제입니다.
+### <a name="service-sas-example"></a><span data-ttu-id="f0366-107">서비스 SAS 예</span><span class="sxs-lookup"><span data-stu-id="f0366-107">Service SAS example</span></span>
+<span data-ttu-id="f0366-108">다음은 Blob 저장소에 대한 서비스 SAS를 포함하는 연결 문자열의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-108">Here's an example of a connection string that includes a service SAS for Blob storage:</span></span>
 
 ```
 BlobEndpoint=https://storagesample.blob.core.windows.net;
 SharedAccessSignature=sv=2015-04-05&sr=b&si=tutorial-policy-635959936145100803&sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
 ```
 
-그리고 다음은 특수 문자의 인코딩을 사용하는 동일한 연결 문자열의 예제입니다.
+<span data-ttu-id="f0366-109">그리고 다음은 특수 문자의 인코딩을 사용하는 동일한 연결 문자열의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-109">And here's an example of the same connection string with encoding of special characters:</span></span>
 
 ```
 BlobEndpoint=https://storagesample.blob.core.windows.net;
 SharedAccessSignature=sv=2015-04-05&amp;sr=b&amp;si=tutorial-policy-635959936145100803&amp;sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
 ```
 
-### <a name="account-sas-example"></a>계정 SAS 예
-다음은 Blob 및 파일 저장소에 대한 계정 SAS를 포함하는 연결 문자열의 예제입니다. 두 서비스에 대한 끝점이 지정됩니다.
+### <a name="account-sas-example"></a><span data-ttu-id="f0366-110">계정 SAS 예</span><span class="sxs-lookup"><span data-stu-id="f0366-110">Account SAS example</span></span>
+<span data-ttu-id="f0366-111">다음은 Blob 및 파일 저장소에 대한 계정 SAS를 포함하는 연결 문자열의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-111">Here's an example of a connection string that includes an account SAS for Blob and File storage.</span></span> <span data-ttu-id="f0366-112">두 서비스에 대한 끝점이 지정됩니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-112">Note that endpoints for both services are specified:</span></span>
 
 ```
 BlobEndpoint=https://storagesample.blob.core.windows.net;
@@ -43,7 +43,7 @@ FileEndpoint=https://storagesample.file.core.windows.net;
 SharedAccessSignature=sv=2015-07-08&sig=iCvQmdZngZNW%2F4vw43j6%2BVz6fndHF5LI639QJba4r8o%3D&spr=https&st=2016-04-12T03%3A24%3A31Z&se=2016-04-13T03%3A29%3A31Z&srt=s&ss=bf&sp=rwl
 ```
 
-그리고 다음은 URL 인코딩을 사용하는 동일한 연결 문자열의 예제입니다.
+<span data-ttu-id="f0366-113">그리고 다음은 URL 인코딩을 사용하는 동일한 연결 문자열의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="f0366-113">And here's an example of the same connection string with URL encoding:</span></span>
 
 ```
 BlobEndpoint=https://storagesample.blob.core.windows.net;

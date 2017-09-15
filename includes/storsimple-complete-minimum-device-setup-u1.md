@@ -1,30 +1,30 @@
 <!--author=alkohli last changed: 9/17/15-->
 
-#### <a name="to-complete-the-minimum-storsimple-device-setup"></a>최소 StorSimple 장치 설치를 완료하려면
-1. 장치를 선택하고 **퀵 스타트**를 클릭합니다. **장치 설치 완료** 를 클릭하여 장치 구성 마법사를 시작합니다.
-2. 장치 구성 마법사의 **기본 설정** 대화 상자에서 다음을 수행합니다.
+#### <a name="to-complete-the-minimum-storsimple-device-setup"></a><span data-ttu-id="a988b-101">최소 StorSimple 장치 설치를 완료하려면</span><span class="sxs-lookup"><span data-stu-id="a988b-101">To complete the minimum StorSimple device setup</span></span>
+1. <span data-ttu-id="a988b-102">장치를 선택하고 **퀵 스타트**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-102">Select the device and click **Quick Start**.</span></span> <span data-ttu-id="a988b-103">**장치 설치 완료** 를 클릭하여 장치 구성 마법사를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-103">Click **Complete device setup** to start the Configure device wizard.</span></span>
+2. <span data-ttu-id="a988b-104">장치 구성 마법사의 **기본 설정** 대화 상자에서 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-104">In the Configure device wizard **Basic Settings** dialog box, do the following:</span></span>
    
-   1. 장치의 **이름** 을 제공합니다. 기본 장치 이름은 장치 모델 및 일련 번호와 같은 정보를 반영합니다. 최대 64자의 친숙한 이름을 할당하여 장치를 관리할 수 있습니다.
-   2. 장치가 배포되는 지리적 위치에 기반한 **표준 시간대** 를 설정합니다. 장치는 모든 예약된 작업에 대해 이 표준 시간대를 사용합니다.
-   3. **DNS 설정** 아래에서 **보조 DNS 서버**의 주소를 제공합니다. IPv6를 사용하는 경우 Windows PowerShell 인터페이스에서 제공하는 IPv6 접두사에 따라 필드가 채워집니다. 
-      보조 DNS 서버를 구성하지 않은 경우 장치 구성을 저장할 수 없습니다.
-   4. iSCSI 사용 인터페이스에서 iSCSI에 하나 이상의 네트워크를 사용하도록 설정합니다. 하나 이상의 네트워크 인터페이스는 클라우드를 사용할 수 있도록 설정하며 하나의 인터페이스는 iSCSI를 사용할 수 있도록 설정해야 합니다. 데이터 0은 클라우드를 사용할 수 있도록 자동으로 설정됩니다.
+   1. <span data-ttu-id="a988b-105">장치의 **이름** 을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-105">Supply a **friendly name** for your device.</span></span> <span data-ttu-id="a988b-106">기본 장치 이름은 장치 모델 및 일련 번호와 같은 정보를 반영합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-106">The default device name reflects information such as the device model and serial number.</span></span> <span data-ttu-id="a988b-107">최대 64자의 친숙한 이름을 할당하여 장치를 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-107">You can assign a friendly name of up to 64 characters to manage your device.</span></span>
+   2. <span data-ttu-id="a988b-108">장치가 배포되는 지리적 위치에 기반한 **표준 시간대** 를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-108">Set the **time zone** based on the geographic location in which the device is being deployed.</span></span> <span data-ttu-id="a988b-109">장치는 모든 예약된 작업에 대해 이 표준 시간대를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-109">Your device will use this time zone for all scheduled operations.</span></span>
+   3. <span data-ttu-id="a988b-110">**DNS 설정** 아래에서 **보조 DNS 서버**의 주소를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-110">Under **DNS Settings**, provide an address for your **Secondary DNS Server**.</span></span> <span data-ttu-id="a988b-111">IPv6를 사용하는 경우 Windows PowerShell 인터페이스에서 제공하는 IPv6 접두사에 따라 필드가 채워집니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-111">If you are using IPv6, the field will be populated based on the IPv6 prefix provided in the Windows PowerShell interface.</span></span> 
+      <span data-ttu-id="a988b-112">보조 DNS 서버를 구성하지 않은 경우 장치 구성을 저장할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-112">If the secondary DNS server is not configured, you will not be allowed to save your device configuration.</span></span>
+   4. <span data-ttu-id="a988b-113">iSCSI 사용 인터페이스에서 iSCSI에 하나 이상의 네트워크를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-113">Under iSCSI enabled interfaces, enable at least one network for iSCSI.</span></span> <span data-ttu-id="a988b-114">하나 이상의 네트워크 인터페이스는 클라우드를 사용할 수 있도록 설정하며 하나의 인터페이스는 iSCSI를 사용할 수 있도록 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-114">At least one network interface needs to be cloud-enabled and one interface needs to be iSCSI-enabled.</span></span> <span data-ttu-id="a988b-115">데이터 0은 클라우드를 사용할 수 있도록 자동으로 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-115">DATA 0 is automatically cloud-enabled.</span></span>
       
       ![StorSimple 최소 장치 설치 기본 설정](./media/storsimple-complete-minimum-device-setup-u1/HCS_MinDeviceSetupBasicSettings1-include.png)
-3. 화살표 아이콘을 클릭합니다. ![StorSimple 화살표 아이콘](./media/storsimple-complete-minimum-device-setup/HCS_ArrowIcon-include.png)
-4. **네트워크 인터페이스** 대화 상자에서 컨트롤러 0과 컨트롤러 1에 대한 고정 IP 주소를 제공합니다. **컨트롤러 고정 IP 주소는 장치 IP 주소를 통해 접근할 수 있는 서브넷 내의 사용 가능한 IP여야 합니다.** 데이터 0 인터페이스가 IPv4에 대해 구성된 경우 고정 IP 주소는 IPv4 형식으로 제공해야 합니다. IPv6 구성에 대한 접두사를 제공하는 경우 고정 IP 주소는 이러한 필드에 자동으로 채워집니다.
+3. <span data-ttu-id="a988b-117">화살표 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-117">Click the arrow icon.</span></span> ![StorSimple 화살표 아이콘](./media/storsimple-complete-minimum-device-setup/HCS_ArrowIcon-include.png)
+4. <span data-ttu-id="a988b-119">**네트워크 인터페이스** 대화 상자에서 컨트롤러 0과 컨트롤러 1에 대한 고정 IP 주소를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-119">In the **Network Interfaces** dialog box, provide the fixed IP addresses for Controller 0 and Controller 1.</span></span> <span data-ttu-id="a988b-120">**컨트롤러 고정 IP 주소는 장치 IP 주소를 통해 접근할 수 있는 서브넷 내의 사용 가능한 IP여야 합니다.**</span><span class="sxs-lookup"><span data-stu-id="a988b-120">**The controller fixed IP addresses need to be free IPs within the subnet accessible by the device IP address.**</span></span> <span data-ttu-id="a988b-121">데이터 0 인터페이스가 IPv4에 대해 구성된 경우 고정 IP 주소는 IPv4 형식으로 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-121">If the DATA 0 interface was configured for IPv4, the fixed IP addresses need to be provided in the IPv4 format.</span></span> <span data-ttu-id="a988b-122">IPv6 구성에 대한 접두사를 제공하는 경우 고정 IP 주소는 이러한 필드에 자동으로 채워집니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-122">If you provided a prefix for IPv6 configuration, the fixed IP addresses will be populated automatically in these fields.</span></span>
 
     ![StorSimple 최소 장치 설치 네트워크 인터페이스](./media/storsimple-complete-minimum-device-setup-u1/HCS_MinDeviceSetupNetworkInterfaces2-include.png)
 
-    컨트롤러에 대한 고정 IP 주소는 장치에 대한 업데이트 서비스를 위해 사용되므로, 고정 IP는 라우팅할 수 있어야 하며 인터넷에 연결할 수 있어야 합니다. [Test-HcsmConnection][Test] cmdlet을 사용하여 고정된 컨트롤러 IP가 라우팅할 수 있는지 확인할 수 있습니다. 다음 예제는 고정된 컨트롤러 IP가 인터넷으로 라우팅되고 Microsoft 업데이트 서버에 액세스할 수 있음을 보여줍니다. 
+    <span data-ttu-id="a988b-124">컨트롤러에 대한 고정 IP 주소는 장치에 대한 업데이트 서비스를 위해 사용되므로, 고정 IP는 라우팅할 수 있어야 하며 인터넷에 연결할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-124">The fixed IP addresses for the controller are used for servicing the updates to the device, and therefore the fixed IPs must be routable and able to connect to the Internet.</span></span> <span data-ttu-id="a988b-125">[Test-HcsmConnection][Test] cmdlet을 사용하여 고정된 컨트롤러 IP가 라우팅할 수 있는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-125">You can check that your fixed controller IPs are routable by using the [Test-HcsmConnection][Test] cmdlet.</span></span> <span data-ttu-id="a988b-126">다음 예제는 고정된 컨트롤러 IP가 인터넷으로 라우팅되고 Microsoft 업데이트 서버에 액세스할 수 있음을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-126">The following example shows fixed controller IPs are routed to the Internet and can access the Microsoft Update servers.</span></span> 
 
      ![라우팅 가능한 IP를 표시하는 Test-HcsmConnection](./media/storsimple-complete-minimum-device-setup-u1/Test-HcsmConnectionOutputRegisteredDevice.png)
 
-1. 확인 아이콘 ![StorSimple 확인 아이콘](./media/storsimple-complete-minimum-device-setup/HCS_CheckIcon-include.png)를 클릭합니다.
-   장치 **퀵 스타트** 페이지로 돌아갑니다.
+1. <span data-ttu-id="a988b-128">확인 아이콘 ![StorSimple 확인 아이콘](./media/storsimple-complete-minimum-device-setup/HCS_CheckIcon-include.png)를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-128">Click the check icon ![StorSimple check icon](./media/storsimple-complete-minimum-device-setup/HCS_CheckIcon-include.png).</span></span>
+   <span data-ttu-id="a988b-129">장치 **퀵 스타트** 페이지로 돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-129">You will return to the device **Quick Start** page.</span></span>
    
    > [!NOTE]
-   > **구성** 페이지로 돌아갑니다.
+   > <span data-ttu-id="a988b-130">**구성** 페이지로 돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="a988b-130">You can modify all the other device settings at any time by accessing the **Configure** page.</span></span>
    > 
    > 
 

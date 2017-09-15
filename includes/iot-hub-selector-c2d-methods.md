@@ -1,23 +1,23 @@
 > [!div class="op_single_selector"]
-> * [Node.JS](../articles/iot-hub/iot-hub-node-node-direct-methods.md)
-> * [C#/Node.js](../articles/iot-hub/iot-hub-csharp-node-direct-methods.md)
-> * [C#](../articles/iot-hub/iot-hub-csharp-csharp-direct-methods.md)
-> * [Java](../articles/iot-hub/iot-hub-java-java-direct-methods.md)
+> * [<span data-ttu-id="cdb40-101">Node.JS</span><span class="sxs-lookup"><span data-stu-id="cdb40-101">Node.js</span></span>](../articles/iot-hub/iot-hub-node-node-direct-methods.md)
+> * [<span data-ttu-id="cdb40-102">C#/Node.js</span><span class="sxs-lookup"><span data-stu-id="cdb40-102">C#/Node.js</span></span>](../articles/iot-hub/iot-hub-csharp-node-direct-methods.md)
+> * [<span data-ttu-id="cdb40-103">C#</span><span class="sxs-lookup"><span data-stu-id="cdb40-103">C#</span></span>](../articles/iot-hub/iot-hub-csharp-csharp-direct-methods.md)
+> * [<span data-ttu-id="cdb40-104">Java</span><span class="sxs-lookup"><span data-stu-id="cdb40-104">Java</span></span>](../articles/iot-hub/iot-hub-java-java-direct-methods.md)
 
-Azure IoT Hub는 수백만의 장치와 솔루션 백 엔드 간에서 안정적이고 안전한 양방향 통신이 가능하도록 완전히 관리되는 서비스입니다. 이전 자습서([IoT Hub 시작] 및 [IoT Hub를 사용하여 클라우드-장치 메시지 보내기])는 IoT Hub의 기본적인 장치-클라우드 및 클라우드-장치 메시징 기능을 보여줍니다. IoT Hub는 클라우드의 장치에 비지속성 메서드를 호출할 수 있는 기능을 제공합니다. 직접 메서드는 장치와의 request-reply 상호 작용을 나타내며, 사용자가 호출의 상태를 알 수 있도록 즉시(사용자가 지정한 제한 시간이 지난 후에) 성공하거나 실패한다는 점에서 HTTP 호출과 유사합니다. [장치에 직접 메서드 호출][lnk-devguide-methods]은 직접 메서드를 보다 자세히 설명하며, 클라우드-장치 메시지 또는 원하는 속성 보다는 직접 메서드를 사용할 시기에 대한 지침을 제공합니다.
+<span data-ttu-id="cdb40-105">Azure IoT Hub는 수백만의 장치와 솔루션 백 엔드 간에서 안정적이고 안전한 양방향 통신이 가능하도록 완전히 관리되는 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-105">Azure IoT Hub is a fully managed service that enables reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="cdb40-106">이전 자습서([IoT Hub 시작] 및 [IoT Hub를 사용하여 클라우드-장치 메시지 보내기])는 IoT Hub의 기본적인 장치-클라우드 및 클라우드-장치 메시징 기능을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-106">Previous tutorials ([Get started with IoT Hub] and [Send Cloud-to-Device messages with IoT Hub]) illustrate the basic device-to-cloud and cloud-to-device messaging functionality of IoT Hub.</span></span> <span data-ttu-id="cdb40-107">IoT Hub는 클라우드의 장치에 비지속성 메서드를 호출할 수 있는 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-107">IoT Hub also gives you the ability to invoke non-durable methods on devices from the cloud.</span></span> <span data-ttu-id="cdb40-108">직접 메서드는 장치와의 request-reply 상호 작용을 나타내며, 사용자가 호출의 상태를 알 수 있도록 즉시(사용자가 지정한 제한 시간이 지난 후에) 성공하거나 실패한다는 점에서 HTTP 호출과 유사합니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-108">Direct methods represent a request-reply interaction with a device similar to an HTTP call in that they succeed or fail immediately (after a user-specified timeout) to let the user know the status of the call.</span></span> <span data-ttu-id="cdb40-109">[장치에 직접 메서드 호출][lnk-devguide-methods]은 직접 메서드를 보다 자세히 설명하며, 클라우드-장치 메시지 또는 원하는 속성 보다는 직접 메서드를 사용할 시기에 대한 지침을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-109">[Invoke a direct method on a device][lnk-devguide-methods] describes direct methods in more detail and offers guidance about when to use direct methods rather than cloud-to-device messages or desired properties.</span></span>
 
-이 자습서에서는 다음을 수행하는 방법에 대해 설명합니다.
+<span data-ttu-id="cdb40-110">이 자습서에서는 다음을 수행하는 방법에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-110">This tutorial shows you how to:</span></span>
 
-* Azure Portal을 사용하여 IoT Hub를 만들고 IoT Hub에 장치 ID를 만듭니다.
-* 클라우드에서 호출할 수 있는 직접 메서드가 포함된 시뮬레이션된 장치 앱을 만듭니다.
-* IoT Hub를 통해 시뮬레이션된 장치 앱에 직접 메서드를 호출하는 콘솔 앱을 만듭니다.
+* <span data-ttu-id="cdb40-111">Azure Portal을 사용하여 IoT Hub를 만들고 IoT Hub에 장치 ID를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-111">Use the Azure portal to create an IoT hub and create a device identity in your IoT hub.</span></span>
+* <span data-ttu-id="cdb40-112">클라우드에서 호출할 수 있는 직접 메서드가 포함된 시뮬레이션된 장치 앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-112">Create a simulated device app that has a direct method which can be called by the cloud.</span></span>
+* <span data-ttu-id="cdb40-113">IoT Hub를 통해 시뮬레이션된 장치 앱에 직접 메서드를 호출하는 콘솔 앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-113">Create a console app that calls a direct method in the simulated device app through your IoT hub.</span></span>
 
 > [!NOTE]
-> 현재 직접 메서드는 MQTT 프로토콜을 사용하여 IoT Hub에 연결하는 장치에서만 지원됩니다. 기존 장치 앱이 MQTT를 사용하도록 변환하는 방법에 관한 설명은 [MQTT 지원][lnk-devguide-mqtt] 문서를 참조하세요.
+> <span data-ttu-id="cdb40-114">현재 직접 메서드는 MQTT 프로토콜을 사용하여 IoT Hub에 연결하는 장치에서만 지원됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdb40-114">At this time, direct methods are only supported on devices that connect to IoT Hub using the MQTT protocol.</span></span> <span data-ttu-id="cdb40-115">기존 장치 앱이 MQTT를 사용하도록 변환하는 방법에 관한 설명은 [MQTT 지원][lnk-devguide-mqtt] 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cdb40-115">Please refer to the [MQTT support][lnk-devguide-mqtt] article for instructions on how to convert existing device app to use MQTT.</span></span>
 
 
 [lnk-devguide-methods]: ../articles/iot-hub/iot-hub-devguide-direct-methods.md
 [lnk-devguide-mqtt]: ../articles/iot-hub/iot-hub-mqtt-support.md
 
-[IoT Hub를 사용하여 클라우드-장치 메시지 보내기]: ../articles/iot-hub/iot-hub-csharp-csharp-c2d.md
-[IoT Hub 시작]: ../articles/iot-hub/iot-hub-node-node-getstarted.md
+<span data-ttu-id="cdb40-116">[IoT Hub를 사용하여 클라우드-장치 메시지 보내기]: ../articles/iot-hub/iot-hub-csharp-csharp-c2d.md</span><span class="sxs-lookup"><span data-stu-id="cdb40-116">[Send Cloud-to-Device messages with IoT Hub]: ../articles/iot-hub/iot-hub-csharp-csharp-c2d.md</span></span>
+<span data-ttu-id="cdb40-117">[IoT Hub 시작]: ../articles/iot-hub/iot-hub-node-node-getstarted.md</span><span class="sxs-lookup"><span data-stu-id="cdb40-117">[Get started with IoT Hub]: ../articles/iot-hub/iot-hub-node-node-getstarted.md</span></span>

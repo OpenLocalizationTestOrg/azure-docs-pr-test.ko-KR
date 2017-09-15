@@ -1,19 +1,19 @@
-| **리소스** | **기본 제한** | **최대 제한** |
+| <span data-ttu-id="987e1-101">**리소스**</span><span class="sxs-lookup"><span data-stu-id="987e1-101">**Resource**</span></span> | <span data-ttu-id="987e1-102">**기본 제한**</span><span class="sxs-lookup"><span data-stu-id="987e1-102">**Default Limit**</span></span> | <span data-ttu-id="987e1-103">**최대 제한**</span><span class="sxs-lookup"><span data-stu-id="987e1-103">**Maximum Limit**</span></span> |
 | --- | --- | --- |
-| 구독당 지역별 Batch 계정 | 3 |50 |
-| 배치 계정당 전용 코어 수(Batch 서비스 모드)<sup>1</sup> | 20 | 해당 없음<sup>2</sup> |
-| 배치 계정당 낮은 우선 순위의 코어 수(Batch 서비스 모드)<sup>3</sup> | 50 | 해당 없음<sup>4</sup> |
-| 배치 계정당 활성 작업 및 작업 일정<sup>5</sup> | 20 | 5000<sup>6</sup> |
-| Batch 계정당 풀 | 20 | 2500 |
+| <span data-ttu-id="987e1-104">구독당 지역별 Batch 계정</span><span class="sxs-lookup"><span data-stu-id="987e1-104">Batch accounts per region per subscription</span></span> | <span data-ttu-id="987e1-105">3</span><span class="sxs-lookup"><span data-stu-id="987e1-105">3</span></span> |<span data-ttu-id="987e1-106">50</span><span class="sxs-lookup"><span data-stu-id="987e1-106">50</span></span> |
+| <span data-ttu-id="987e1-107">배치 계정당 전용 코어 수(Batch 서비스 모드)<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="987e1-107">Dedicated cores per Batch account (Batch service mode)<sup>1</sup></span></span> | <span data-ttu-id="987e1-108">20</span><span class="sxs-lookup"><span data-stu-id="987e1-108">20</span></span> | <span data-ttu-id="987e1-109">해당 없음<sup>2</sup></span><span class="sxs-lookup"><span data-stu-id="987e1-109">N/A<sup>2</sup></span></span> |
+| <span data-ttu-id="987e1-110">배치 계정당 낮은 우선 순위의 코어 수(Batch 서비스 모드)<sup>3</sup></span><span class="sxs-lookup"><span data-stu-id="987e1-110">Low-priority cores per Batch account (Batch service mode)<sup>3</sup></span></span> | <span data-ttu-id="987e1-111">50</span><span class="sxs-lookup"><span data-stu-id="987e1-111">50</span></span> | <span data-ttu-id="987e1-112">해당 없음<sup>4</sup></span><span class="sxs-lookup"><span data-stu-id="987e1-112">N/A<sup>4</sup></span></span> |
+| <span data-ttu-id="987e1-113">배치 계정당 활성 작업 및 작업 일정<sup>5</sup></span><span class="sxs-lookup"><span data-stu-id="987e1-113">Active jobs and job schedules<sup>5</sup> per Batch account</span></span> | <span data-ttu-id="987e1-114">20</span><span class="sxs-lookup"><span data-stu-id="987e1-114">20</span></span> | <span data-ttu-id="987e1-115">5000<sup>6</sup></span><span class="sxs-lookup"><span data-stu-id="987e1-115">5000<sup>6</sup></span></span> |
+| <span data-ttu-id="987e1-116">Batch 계정당 풀</span><span class="sxs-lookup"><span data-stu-id="987e1-116">Pools per Batch account</span></span> | <span data-ttu-id="987e1-117">20</span><span class="sxs-lookup"><span data-stu-id="987e1-117">20</span></span> | <span data-ttu-id="987e1-118">2500</span><span class="sxs-lookup"><span data-stu-id="987e1-118">2500</span></span> |
 
-<sup>1</sup> 표시된 전용 코어 할당량은 풀 할당 모드가 **Batch 서비스**로 설정된 계정에만 적용됩니다. 모드가 **사용자 구독**으로 설정된 계정의 경우 코어 할당량은 구독의 지역 수준 VM 코어 할당량 또는 VM 패밀리당 코어 할당량을 기반으로 합니다.
+<span data-ttu-id="987e1-119"><sup>1</sup> 표시된 전용 코어 할당량은 풀 할당 모드가 **Batch 서비스**로 설정된 계정에만 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-119"><sup>1</sup> Dedicated core quotas shown are only for accounts with pool allocation mode set to **Batch service**.</span></span> <span data-ttu-id="987e1-120">모드가 **사용자 구독**으로 설정된 계정의 경우 코어 할당량은 구독의 지역 수준 VM 코어 할당량 또는 VM 패밀리당 코어 할당량을 기반으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-120">For accounts with the mode set to **user subscription**, core quotas are based on the VM cores quota at a regional level or per VM family in your subscription.</span></span>
 
-<sup>2</sup> 배치 계정당 전용 코어 수는 늘릴 수 있지만, 최대 수는 지정되지 않습니다. 증가 옵션은 고객 지원에 문의하세요.
+<span data-ttu-id="987e1-121"><sup>2</sup> 배치 계정당 전용 코어 수는 늘릴 수 있지만, 최대 수는 지정되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-121"><sup>2</sup> The number of dedicated cores per Batch account can be increased, but the maximum number is unspecified.</span></span> <span data-ttu-id="987e1-122">증가 옵션은 고객 지원에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="987e1-122">Contact Azure support to discuss increase options.</span></span>
 
-<sup>3</sup> 표시된 낮은 우선 순위의 코어 할당량은 풀 할당 모드가 **Batch 서비스**로 설정된 계정에만 적용됩니다. 풀 할당 모드가 **사용자 구독**으로 설정된 계정에 대해서는 낮은 우선 순위의 코어를 사용할 수 없습니다.
+<span data-ttu-id="987e1-123"><sup>3</sup> 표시된 낮은 우선 순위의 코어 할당량은 풀 할당 모드가 **Batch 서비스**로 설정된 계정에만 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-123"><sup>3</sup> Low-priority core quotas shown are only for accounts with pool allocation mode set to **Batch service**.</span></span> <span data-ttu-id="987e1-124">풀 할당 모드가 **사용자 구독**으로 설정된 계정에 대해서는 낮은 우선 순위의 코어를 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-124">Low-priority cores are not available for accounts with pool allocation mode set to **user subscription**.</span></span>
 
-<sup>4</sup> 배치 계정당 낮은 우선 순위 코어 수는 늘릴 수 있지만, 최대 수는 지정되지 않습니다. 증가 옵션은 고객 지원에 문의하세요.
+<span data-ttu-id="987e1-125"><sup>4</sup> 배치 계정당 낮은 우선 순위 코어 수는 늘릴 수 있지만, 최대 수는 지정되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-125"><sup>4</sup> The number of low-priority cores per Batch account can be increased, but the maximum number is unspecified.</span></span> <span data-ttu-id="987e1-126">증가 옵션은 고객 지원에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="987e1-126">Contact Azure support to discuss increase options.</span></span>
 
-<sup>5</sup> 완료된 작업 및 작업 일정은 제한되지 않습니다.
+<span data-ttu-id="987e1-127"><sup>5</sup> 완료된 작업 및 작업 일정은 제한되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-127"><sup>5</sup> Completed jobs and job schedules are not limited.</span></span>
 
-<sup>6</sup> 이 제한을 초과하여 늘리려면 Azure 고객 지원에 문의합니다.
+<span data-ttu-id="987e1-128"><sup>6</sup> 이 제한을 초과하여 늘리려면 Azure 고객 지원에 문의합니다.</span><span class="sxs-lookup"><span data-stu-id="987e1-128"><sup>6</sup> Contact Azure support if you want to request an increase beyond this limit.</span></span>

@@ -1,18 +1,18 @@
-### <a name="prerequisites"></a>필수 조건
-* [Salesforce](https://salesforce.com) 계정  
+### <a name="prerequisites"></a><span data-ttu-id="52848-101">필수 조건</span><span class="sxs-lookup"><span data-stu-id="52848-101">Prerequisites</span></span>
+* <span data-ttu-id="52848-102">[Salesforce](https://salesforce.com) 계정</span><span class="sxs-lookup"><span data-stu-id="52848-102">A [Salesforce](https://salesforce.com) account</span></span>  
 
-논리 앱에서 Salesforce 계정을 사용하려면 먼저 Salesforce 계정에 연결하도록 논리 앱에 권한을 부여해야 합니다. 다행히 Azure 포털의 논리 앱 내에서 이를 쉽게 수행할 수 있습니다.  
+<span data-ttu-id="52848-103">논리 앱에서 Salesforce 계정을 사용하려면 먼저 Salesforce 계정에 연결하도록 논리 앱에 권한을 부여해야 합니다. 다행히 Azure 포털의 논리 앱 내에서 이를 쉽게 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52848-103">Before you can use your Salesforce account in a logic app, you must authorize the logic app to connect to your Salesforce account.Fortunately, you can do this easily from within your logic app on the Azure Portal.</span></span>  
 
-Salesforce 계정에 연결하도록 논리 앱에 권한을 부여하는 단계는 다음과 같습니다.  
+<span data-ttu-id="52848-104">Salesforce 계정에 연결하도록 논리 앱에 권한을 부여하는 단계는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="52848-104">Here are the steps to authorize your logic app to connect to your Salesforce account:</span></span>  
 
-1. 논리 앱 디자이너에서 Salesforce에 대한 연결을 만들려면 드롭다운 목록에서 **Microsoft 관리 API 표시**를 선택한 다음 검색 상자에 *Salesforce*를 입력합니다. 사용할 트리거 또는 동작을 선택합니다.  
-   ![Salesforce 연결 이미지 1](./media/connectors-create-api-salesforce/salesforce-1.png)  
-2. 이전에 Salesforce에 대한 연결을 만들지 않은 경우 Salesforce 자격 증명을 제공하라는 메시지가 표시됩니다. 이러한 자격 증명을 사용하여 Salesforce 계정의 데이터에 연결하도록 논리 앱에 권한을 부여하고 해당 데이터에 액세스할 수 있습니다.  
+1. <span data-ttu-id="52848-105">논리 앱 디자이너에서 Salesforce에 대한 연결을 만들려면 드롭다운 목록에서 **Microsoft 관리 API 표시**를 선택한 다음 검색 상자에 *Salesforce*를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="52848-105">To create a connection to Salesforce, in the logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *Salesforce* in the search box.</span></span> <span data-ttu-id="52848-106">사용할 트리거 또는 동작을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52848-106">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="52848-107">![Salesforce 연결 이미지 1](./media/connectors-create-api-salesforce/salesforce-1.png)</span><span class="sxs-lookup"><span data-stu-id="52848-107">![Salesforce connection image 1](./media/connectors-create-api-salesforce/salesforce-1.png)</span></span>  
+2. <span data-ttu-id="52848-108">이전에 Salesforce에 대한 연결을 만들지 않은 경우 Salesforce 자격 증명을 제공하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="52848-108">If you haven't created any connections to Salesforce before, you'll get prompted to provide your Salesforce credentials.</span></span> <span data-ttu-id="52848-109">이러한 자격 증명을 사용하여 Salesforce 계정의 데이터에 연결하도록 논리 앱에 권한을 부여하고 해당 데이터에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52848-109">These credentials will be used to authorize your logic app to connect to, and access your Salesforce account's data:</span></span>  
    ![Salesforce 연결 이미지 2](./media/connectors-create-api-salesforce/salesforce-2.png)  
-3. Salesforce 사용자 이름 및 암호를 제공하여 논리 앱에 권한을 부여합니다.  
+3. <span data-ttu-id="52848-111">Salesforce 사용자 이름 및 암호를 제공하여 논리 앱에 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="52848-111">Provide your Salesforce user name and password to authorize your logic app:</span></span>  
    ![Salesforce 연결 이미지 3](./media/connectors-create-api-salesforce/salesforce-3.png)  
-4. Salesforce에 대한 연결이 허용됩니다.  
+4. <span data-ttu-id="52848-113">Salesforce에 대한 연결이 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="52848-113">Allow us to connect to Salesforce:</span></span>  
    ![Salesforce 연결 이미지 4](./media/connectors-create-api-salesforce/salesforce-4.png)  
-5. 연결이 만들어졌으므로 이제 논리 앱의 다른 단계를 진행할 수 있습니다.  
+5. <span data-ttu-id="52848-115">연결이 만들어졌으므로 이제 논리 앱의 다른 단계를 진행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52848-115">Notice the connection has been created and you are now free to proceed with the other steps in your logic app:</span></span>  
    ![Salesforce 연결 이미지 5](./media/connectors-create-api-salesforce/salesforce-5.png)  
 

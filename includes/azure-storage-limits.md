@@ -1,44 +1,44 @@
-| 리소스 | 기본 제한 |
+| <span data-ttu-id="5aa97-101">리소스</span><span class="sxs-lookup"><span data-stu-id="5aa97-101">Resource</span></span> | <span data-ttu-id="5aa97-102">기본 제한</span><span class="sxs-lookup"><span data-stu-id="5aa97-102">Default Limit</span></span> |
 | --- | --- |
-| 구독당 저장소 계정 수 |200<sup>1</sup> |
-| 최대 저장소 계정 용량 |500TB<sup>2</sup> |
-| 저장소 계정당 Blob 컨테이너, Blob, 파일 공유, 테이블, 큐, 엔터티 또는 메시지의 최대 수 |제한 없음 |
-| 단일 Blob 컨테이너, 테이블 또는 큐의 최대 크기 |최대 저장소 계정 용량과 동일 |
-| 블록 Blob 또는 추가 Blob의 최대 블록 수 |50,000 |
-| 블록 blob의 최대 블록 크기 |100 MB |
-| 최대 블록 blob 크기 |50,000x100MB(약 4.75TB) |
-| 추가 Blob의 최대 블록 크기 |4MB |
-| 최대 추가 Blob 크기 |50,000 X 4MB(약 195GB) |
-| 최대 페이지 blob 크기 |8TB |
-| 최대 테이블 엔터티 크기 |1MB |
-| 테이블 엔터티의 최대 속성 수 |252 |
-| 큐의 최대 메시지 크기 |64KB |
-| 파일 공유의 최대 크기 |5TB |
-| 파일 공유의 최대 파일 크기 |1TB |
-| 파일 공유 내 파일의 최대 수 |파일 공유의 총 용량 제한 5TB만 적용됨 |
-| 공유당 최대 IOPS |1000 |
-| 파일 공유 내 파일의 최대 수 |파일 공유의 총 용량 제한 5TB만 적용됨 |
-| 컨테이너, 파일 공유, 테이블 또는 큐당 저장된 액세스 정책의 최대 수 |5 |
-| 저장소 계정당 최대 요청 속도 |Blob: 모든 유효한 크기의 Blob에 대해 초<sup>2</sup>당 20,000개 요청(계정의 송/수신 제한으로만 제한됨) <br />파일: 파일 공유당 1000 IOPS(8KB의 크기) <br />큐: 20,000 초당 메시지 수(1KB 메시지 크기로 가정)<br />테이블: 20,000 초당 트랜잭션 수(1KB 엔터티 크기로 가정) |
-| 단일 Blob의 목표 처리량 |초당 최대 60MB 또는 초당 최대 500개 요청 |
-| 단일 큐의 목표 처리량(1KB 메시지) |초당 최대 2,000개의 메시지 |
-| 단일 테이블 파티션의 목표 처리량(1KB 엔터티) |초당 최대 2,000개 엔터티 |
-| 단일 파일 공유의 목표 처리량  |초당 최대 60MB |
-| 저장소 계정당 최대 수신<sup>3</sup> 속도(미국 지역) |GRS/ZRS<sup>4</sup>를 사용하는 경우 10Gbps, LRS<sup>2</sup>를 사용하는 경우 20Gbps |
-| 저장소 계정당 최대 송신<sup>3</sup> 속도(미국 지역) |RA-GRS/GRS/ZRS<sup>4</sup>를 사용하는 경우 20Gbps, LRS<sup>2</sup>를 사용하는 경우 30Gbps |
-| 저장소 계정당 최대 수신<sup>3</sup> 속도(미국 이외 지역) |GRS/ZRS<sup>4</sup>를 사용하는 경우 5Gbps, LRS<sup>2</sup>를 사용하는 경우 10Gbps |
-| 저장소 계정당 최대 송신<sup>3</sup> 속도(미국 이외 지역) |RA-GRS/GRS/ZRS<sup>4</sup>를 사용하는 경우 10Gbps, LRS<sup>2</sup>를 사용하는 경우 15Gbps |
+| <span data-ttu-id="5aa97-103">구독당 저장소 계정 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-103">Number of storage accounts per subscription</span></span> |<span data-ttu-id="5aa97-104">200<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="5aa97-104">200<sup>1</sup></span></span> |
+| <span data-ttu-id="5aa97-105">최대 저장소 계정 용량</span><span class="sxs-lookup"><span data-stu-id="5aa97-105">Max storage account capacity</span></span> |<span data-ttu-id="5aa97-106">500TB<sup>2</sup></span><span class="sxs-lookup"><span data-stu-id="5aa97-106">500 TB<sup>2</sup></span></span> |
+| <span data-ttu-id="5aa97-107">저장소 계정당 Blob 컨테이너, Blob, 파일 공유, 테이블, 큐, 엔터티 또는 메시지의 최대 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-107">Max number of blob containers, blobs, file shares, tables, queues, entities, or messages per storage account</span></span> |<span data-ttu-id="5aa97-108">제한 없음</span><span class="sxs-lookup"><span data-stu-id="5aa97-108">No limit</span></span> |
+| <span data-ttu-id="5aa97-109">단일 Blob 컨테이너, 테이블 또는 큐의 최대 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-109">Max size of a single blob container, table, or queue</span></span> |<span data-ttu-id="5aa97-110">최대 저장소 계정 용량과 동일</span><span class="sxs-lookup"><span data-stu-id="5aa97-110">Same as max storage account capacity</span></span> |
+| <span data-ttu-id="5aa97-111">블록 Blob 또는 추가 Blob의 최대 블록 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-111">Max number of blocks in a block blob or append blob</span></span> |<span data-ttu-id="5aa97-112">50,000</span><span class="sxs-lookup"><span data-stu-id="5aa97-112">50,000</span></span> |
+| <span data-ttu-id="5aa97-113">블록 blob의 최대 블록 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-113">Max size of a block in a block blob</span></span> |<span data-ttu-id="5aa97-114">100 MB</span><span class="sxs-lookup"><span data-stu-id="5aa97-114">100 MB</span></span> |
+| <span data-ttu-id="5aa97-115">최대 블록 blob 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-115">Max size of a block blob</span></span> |<span data-ttu-id="5aa97-116">50,000x100MB(약 4.75TB)</span><span class="sxs-lookup"><span data-stu-id="5aa97-116">50,000 X 100 MB (approx. 4.75 TB)</span></span> |
+| <span data-ttu-id="5aa97-117">추가 Blob의 최대 블록 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-117">Max size of a block in an append blob</span></span> |<span data-ttu-id="5aa97-118">4MB</span><span class="sxs-lookup"><span data-stu-id="5aa97-118">4 MB</span></span> |
+| <span data-ttu-id="5aa97-119">최대 추가 Blob 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-119">Max size of an append blob</span></span> |<span data-ttu-id="5aa97-120">50,000 X 4MB(약 195GB)</span><span class="sxs-lookup"><span data-stu-id="5aa97-120">50,000 X 4 MB (approx. 195 GB)</span></span> |
+| <span data-ttu-id="5aa97-121">최대 페이지 blob 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-121">Max size of a page blob</span></span> |<span data-ttu-id="5aa97-122">8TB</span><span class="sxs-lookup"><span data-stu-id="5aa97-122">8 TB</span></span> |
+| <span data-ttu-id="5aa97-123">최대 테이블 엔터티 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-123">Max size of a table entity</span></span> |<span data-ttu-id="5aa97-124">1MB</span><span class="sxs-lookup"><span data-stu-id="5aa97-124">1 MB</span></span> |
+| <span data-ttu-id="5aa97-125">테이블 엔터티의 최대 속성 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-125">Max number of properties in a table entity</span></span> |<span data-ttu-id="5aa97-126">252</span><span class="sxs-lookup"><span data-stu-id="5aa97-126">252</span></span> |
+| <span data-ttu-id="5aa97-127">큐의 최대 메시지 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-127">Max size of a message in a queue</span></span> |<span data-ttu-id="5aa97-128">64KB</span><span class="sxs-lookup"><span data-stu-id="5aa97-128">64 KB</span></span> |
+| <span data-ttu-id="5aa97-129">파일 공유의 최대 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-129">Max size of a file share</span></span> |<span data-ttu-id="5aa97-130">5TB</span><span class="sxs-lookup"><span data-stu-id="5aa97-130">5 TB</span></span> |
+| <span data-ttu-id="5aa97-131">파일 공유의 최대 파일 크기</span><span class="sxs-lookup"><span data-stu-id="5aa97-131">Max size of a file in a file share</span></span> |<span data-ttu-id="5aa97-132">1TB</span><span class="sxs-lookup"><span data-stu-id="5aa97-132">1 TB</span></span> |
+| <span data-ttu-id="5aa97-133">파일 공유 내 파일의 최대 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-133">Max number of files in a file share</span></span> |<span data-ttu-id="5aa97-134">파일 공유의 총 용량 제한 5TB만 적용됨</span><span class="sxs-lookup"><span data-stu-id="5aa97-134">Only limit is the 5 TB total capacity of the file share</span></span> |
+| <span data-ttu-id="5aa97-135">공유당 최대 IOPS</span><span class="sxs-lookup"><span data-stu-id="5aa97-135">Max IOPS per share</span></span> |<span data-ttu-id="5aa97-136">1000</span><span class="sxs-lookup"><span data-stu-id="5aa97-136">1000</span></span> |
+| <span data-ttu-id="5aa97-137">파일 공유 내 파일의 최대 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-137">Max number of files in a file share</span></span> |<span data-ttu-id="5aa97-138">파일 공유의 총 용량 제한 5TB만 적용됨</span><span class="sxs-lookup"><span data-stu-id="5aa97-138">Only limit is the 5 TB total capacity of the file share</span></span> |
+| <span data-ttu-id="5aa97-139">컨테이너, 파일 공유, 테이블 또는 큐당 저장된 액세스 정책의 최대 수</span><span class="sxs-lookup"><span data-stu-id="5aa97-139">Max number of stored access policies per container, file share, table, or queue</span></span> |<span data-ttu-id="5aa97-140">5</span><span class="sxs-lookup"><span data-stu-id="5aa97-140">5</span></span> |
+| <span data-ttu-id="5aa97-141">저장소 계정당 최대 요청 속도</span><span class="sxs-lookup"><span data-stu-id="5aa97-141">Maximum Request Rate per storage account</span></span> |<span data-ttu-id="5aa97-142">Blob: 모든 유효한 크기의 Blob에 대해 초<sup>2</sup>당 20,000개 요청(계정의 송/수신 제한으로만 제한됨)</span><span class="sxs-lookup"><span data-stu-id="5aa97-142">Blobs: 20,000 requests per second<sup>2</sup> for blobs of any valid size (capped only by the account's ingress/egress limits)</span></span> <br /><span data-ttu-id="5aa97-143">파일: 파일 공유당 1000 IOPS(8KB의 크기)</span><span class="sxs-lookup"><span data-stu-id="5aa97-143">Files: 1000 IOPS (8 KB in size) per file share</span></span> <br /><span data-ttu-id="5aa97-144">큐: 20,000 초당 메시지 수(1KB 메시지 크기로 가정)</span><span class="sxs-lookup"><span data-stu-id="5aa97-144">Queues: 20,000 messages per second (assuming 1 KB message size)</span></span><br /><span data-ttu-id="5aa97-145">테이블: 20,000 초당 트랜잭션 수(1KB 엔터티 크기로 가정)</span><span class="sxs-lookup"><span data-stu-id="5aa97-145">Tables: 20,000 transactions per second (assuming 1 KB entity size)</span></span> |
+| <span data-ttu-id="5aa97-146">단일 Blob의 목표 처리량</span><span class="sxs-lookup"><span data-stu-id="5aa97-146">Target throughput for single blob</span></span> |<span data-ttu-id="5aa97-147">초당 최대 60MB 또는 초당 최대 500개 요청</span><span class="sxs-lookup"><span data-stu-id="5aa97-147">Up to 60 MB per second, or up to 500 requests per second</span></span> |
+| <span data-ttu-id="5aa97-148">단일 큐의 목표 처리량(1KB 메시지)</span><span class="sxs-lookup"><span data-stu-id="5aa97-148">Target throughput for single queue (1 KB messages)</span></span> |<span data-ttu-id="5aa97-149">초당 최대 2,000개의 메시지</span><span class="sxs-lookup"><span data-stu-id="5aa97-149">Up to 2000 messages per second</span></span> |
+| <span data-ttu-id="5aa97-150">단일 테이블 파티션의 목표 처리량(1KB 엔터티)</span><span class="sxs-lookup"><span data-stu-id="5aa97-150">Target throughput for single table partition (1 KB entities)</span></span> |<span data-ttu-id="5aa97-151">초당 최대 2,000개 엔터티</span><span class="sxs-lookup"><span data-stu-id="5aa97-151">Up to 2000 entities per second</span></span> |
+| <span data-ttu-id="5aa97-152">단일 파일 공유의 목표 처리량 </span><span class="sxs-lookup"><span data-stu-id="5aa97-152">Target throughput for single file share</span></span> |<span data-ttu-id="5aa97-153">초당 최대 60MB</span><span class="sxs-lookup"><span data-stu-id="5aa97-153">Up to 60 MB per second</span></span> |
+| <span data-ttu-id="5aa97-154">저장소 계정당 최대 수신<sup>3</sup> 속도(미국 지역)</span><span class="sxs-lookup"><span data-stu-id="5aa97-154">Max ingress<sup>3</sup> per storage account (US Regions)</span></span> |<span data-ttu-id="5aa97-155">GRS/ZRS<sup>4</sup>를 사용하는 경우 10Gbps, LRS<sup>2</sup>를 사용하는 경우 20Gbps</span><span class="sxs-lookup"><span data-stu-id="5aa97-155">10 Gbps if GRS/ZRS<sup>4</sup> enabled, 20 Gbps for LRS<sup>2</sup></span></span> |
+| <span data-ttu-id="5aa97-156">저장소 계정당 최대 송신<sup>3</sup> 속도(미국 지역)</span><span class="sxs-lookup"><span data-stu-id="5aa97-156">Max egress<sup>3</sup> per storage account (US Regions)</span></span> |<span data-ttu-id="5aa97-157">RA-GRS/GRS/ZRS<sup>4</sup>를 사용하는 경우 20Gbps, LRS<sup>2</sup>를 사용하는 경우 30Gbps</span><span class="sxs-lookup"><span data-stu-id="5aa97-157">20 Gbps if RA-GRS/GRS/ZRS<sup>4</sup> enabled, 30 Gbps for LRS<sup>2</sup></span></span> |
+| <span data-ttu-id="5aa97-158">저장소 계정당 최대 수신<sup>3</sup> 속도(미국 이외 지역)</span><span class="sxs-lookup"><span data-stu-id="5aa97-158">Max ingress<sup>3</sup> per storage account (Non-US regions)</span></span> |<span data-ttu-id="5aa97-159">GRS/ZRS<sup>4</sup>를 사용하는 경우 5Gbps, LRS<sup>2</sup>를 사용하는 경우 10Gbps</span><span class="sxs-lookup"><span data-stu-id="5aa97-159">5 Gbps if GRS/ZRS<sup>4</sup> enabled, 10 Gbps for LRS<sup>2</sup></span></span> |
+| <span data-ttu-id="5aa97-160">저장소 계정당 최대 송신<sup>3</sup> 속도(미국 이외 지역)</span><span class="sxs-lookup"><span data-stu-id="5aa97-160">Max egress<sup>3</sup> per storage account (Non-US regions)</span></span> |<span data-ttu-id="5aa97-161">RA-GRS/GRS/ZRS<sup>4</sup>를 사용하는 경우 10Gbps, LRS<sup>2</sup>를 사용하는 경우 15Gbps</span><span class="sxs-lookup"><span data-stu-id="5aa97-161">10 Gbps if RA-GRS/GRS/ZRS<sup>4</sup> enabled, 15 Gbps for LRS<sup>2</sup></span></span> |
 
-<sup>1</sup>표준 및 프리미엄 저장소 계정이 모두 포함됩니다. 저장소 계정이 200개 이상 필요한 경우 [Azure 지원](https://azure.microsoft.com/support/faq/)에 요청합니다. Azure Storage 팀이 비즈니스 사례를 검토하고 저장소 계정을 250개까지 승인할 수 있습니다. 
+<span data-ttu-id="5aa97-162"><sup>1</sup>표준 및 프리미엄 저장소 계정이 모두 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-162"><sup>1</sup>This includes both Standard and Premium storage accounts.</span></span> <span data-ttu-id="5aa97-163">저장소 계정이 200개 이상 필요한 경우 [Azure 지원](https://azure.microsoft.com/support/faq/)에 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-163">If you require more than 200 storage accounts, make a request through [Azure Support](https://azure.microsoft.com/support/faq/).</span></span> <span data-ttu-id="5aa97-164">Azure Storage 팀이 비즈니스 사례를 검토하고 저장소 계정을 250개까지 승인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-164">The Azure Storage team will review your business case and may approve up to 250 storage accounts.</span></span> 
 
-<sup>2</sup> 용량, 수신/송신 및 요청 속도에 공시된 제한을 초과하여 표준 저장소 계정을 확장하려면 [Azure 지원](https://azure.microsoft.com/support/faq/)에 요청합니다. Azure Storage 팀에서 해당 요청을 검토하여 상황별로 더 높은 제한을 승인할 수 있습니다.
+<span data-ttu-id="5aa97-165"><sup>2</sup> 용량, 수신/송신 및 요청 속도에 공시된 제한을 초과하여 표준 저장소 계정을 확장하려면 [Azure 지원](https://azure.microsoft.com/support/faq/)에 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-165"><sup>2</sup> To get your standard storage accounts to grow past the advertised limits in capacity, ingress/egress and request rate, please make a request through [Azure Support](https://azure.microsoft.com/support/faq/).</span></span> <span data-ttu-id="5aa97-166">Azure Storage 팀에서 해당 요청을 검토하여 상황별로 더 높은 제한을 승인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-166">The Azure Storage team will review the request and may approve higher limits on a case by case basis.</span></span>
 
-<sup>3</sup> *수신*은 저장소 계정으로 전송되는 모든 데이터(요청)를 나타냅니다. *송신* 은 저장소 계정에서 수신되는 모든 데이터(응답)를 가리킵니다.  
+<span data-ttu-id="5aa97-167"><sup>3</sup> *수신*은 저장소 계정으로 전송되는 모든 데이터(요청)를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-167"><sup>3</sup>*Ingress* refers to all data (requests) being sent to a storage account.</span></span> <span data-ttu-id="5aa97-168">*송신* 은 저장소 계정에서 수신되는 모든 데이터(응답)를 가리킵니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-168">*Egress* refers to all data (responses) being received from a storage account.</span></span>  
 
-<sup>4</sup> Azure Storage 복제 옵션에는 다음이 포함됩니다.
-* **RA-GRS**: 읽기 액세스 지역 중복 저장소. RA-GRS를 사용하는 경우 보조 위치에 대한 송신 대상은 기본 위치에 대한 송신 대상과 동일합니다.
-* **GRS**: 지역 중복 저장소. 
-* **ZRS**: 영역 중복 저장소. 블록 Blob에 대해서만 사용 가능합니다. 
-* **LRS**: 로컬 중복 저장소 
+<span data-ttu-id="5aa97-169"><sup>4</sup> Azure Storage 복제 옵션에는 다음이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-169"><sup>4</sup>Azure Storage replication options include:</span></span>
+* <span data-ttu-id="5aa97-170">**RA-GRS**: 읽기 액세스 지역 중복 저장소.</span><span class="sxs-lookup"><span data-stu-id="5aa97-170">**RA-GRS**: Read-access geo-redundant storage.</span></span> <span data-ttu-id="5aa97-171">RA-GRS를 사용하는 경우 보조 위치에 대한 송신 대상은 기본 위치에 대한 송신 대상과 동일합니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-171">If RA-GRS is enabled, egress targets for the secondary location are identical to those for the primary location.</span></span>
+* <span data-ttu-id="5aa97-172">**GRS**: 지역 중복 저장소.</span><span class="sxs-lookup"><span data-stu-id="5aa97-172">**GRS**:  Geo-redundant storage.</span></span> 
+* <span data-ttu-id="5aa97-173">**ZRS**: 영역 중복 저장소.</span><span class="sxs-lookup"><span data-stu-id="5aa97-173">**ZRS**: Zone-redundant storage.</span></span> <span data-ttu-id="5aa97-174">블록 Blob에 대해서만 사용 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="5aa97-174">Available only for block blobs.</span></span> 
+* <span data-ttu-id="5aa97-175">**LRS**: 로컬 중복 저장소</span><span class="sxs-lookup"><span data-stu-id="5aa97-175">**LRS**: Locally redundant storage.</span></span> 
 
 

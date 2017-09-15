@@ -1,9 +1,9 @@
 
-#### <a name="to-configure-remote-management-on-the-device"></a>장치에서 원격 관리를 구성하려면
-1. 가상 장치에서 **장치 > 구성**으로 이동합니다.
-2. **원격 관리** 섹션으로 스크롤합니다.
-3. **원격 관리 사용**을 **예**로 설정합니다.
-4. 이제 HTTP를 사용하여 연결하도록 선택할 수 있습니다. 기본값은 HTTPS를 통해 연결합니다. HTTP를 통한 연결은 신뢰할 수 있는 네트워크에서만 허용됩니다.
-5. **원격 관리 인증서 다운로드** 를 클릭하여 원격 관리 인증서를 다운로드합니다. 이 파일을 저장하는 위치를 지정합니다. 그런 다음 이 인증서는 가상 장치에 연결 하는데 사용할 클라이언트 또는 호스트 컴퓨터에 설치해야 합니다.
-6. 페이지 맨 아래에서 **저장** 을 클릭합니다.
+#### <a name="to-configure-remote-management-on-the-device"></a><span data-ttu-id="4c34f-101">장치에서 원격 관리를 구성하려면</span><span class="sxs-lookup"><span data-stu-id="4c34f-101">To configure remote management on the device</span></span>
+1. <span data-ttu-id="4c34f-102">가상 장치에서 **장치 > 구성**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-102">On your virtual device, go to **Devices > Configure**.</span></span>
+2. <span data-ttu-id="4c34f-103">**원격 관리** 섹션으로 스크롤합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-103">Scroll down to the **Remote Management** section.</span></span>
+3. <span data-ttu-id="4c34f-104">**원격 관리 사용**을 **예**로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-104">Set **Enable Remote Management** to **Yes**.</span></span>
+4. <span data-ttu-id="4c34f-105">이제 HTTP를 사용하여 연결하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-105">You can now choose to connect using HTTP.</span></span> <span data-ttu-id="4c34f-106">기본값은 HTTPS를 통해 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-106">The default is to connect over HTTPS.</span></span> <span data-ttu-id="4c34f-107">HTTP를 통한 연결은 신뢰할 수 있는 네트워크에서만 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-107">Connecting over HTTP is acceptable only on trusted networks.</span></span>
+5. <span data-ttu-id="4c34f-108">**원격 관리 인증서 다운로드** 를 클릭하여 원격 관리 인증서를 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-108">Click **Download Remote Management Certificate** to download a remote management certificate.</span></span> <span data-ttu-id="4c34f-109">이 파일을 저장하는 위치를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-109">You will specify a location in which to save this file.</span></span> <span data-ttu-id="4c34f-110">그런 다음 이 인증서는 가상 장치에 연결 하는데 사용할 클라이언트 또는 호스트 컴퓨터에 설치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-110">This certificate then needs to be installed on the client or host machine that you will use to connect to the virtual device.</span></span>
+6. <span data-ttu-id="4c34f-111">페이지 맨 아래에서 **저장** 을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4c34f-111">Click **Save** at the bottom of the page.</span></span>
 

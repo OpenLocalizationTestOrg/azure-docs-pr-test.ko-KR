@@ -1,13 +1,13 @@
-서브넷 또는 VM 네트워크 인터페이스에서 네트워크 필터를 만들어, Azure에서 VM(가상 컴퓨터)에 대한 포트를 열거나 끝점을 만듭니다. 인바운드 및 아웃바운드 트래픽을 모두 제어하는 이러한 필터를 트래픽을 수신하는 리소스에 연결된 네트워크 보안 그룹에 배치합니다.
+<span data-ttu-id="f7e02-101">서브넷 또는 VM 네트워크 인터페이스에서 네트워크 필터를 만들어, Azure에서 VM(가상 컴퓨터)에 대한 포트를 열거나 끝점을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-101">You open a port, or create an endpoint, to a virtual machine (VM) in Azure by creating a network filter on a subnet or VM network interface.</span></span> <span data-ttu-id="f7e02-102">인바운드 및 아웃바운드 트래픽을 모두 제어하는 이러한 필터를 트래픽을 수신하는 리소스에 연결된 네트워크 보안 그룹에 배치합니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-102">You place these filters, which control both inbound and outbound traffic, on a Network Security Group attached to the resource that receives the traffic.</span></span>
 
-포트 80에서 웹 트래픽의 일반적인 예제를 사용해 보겠습니다. 표준 TCP 포트 80에 대한 웹 요청을 처리하도록 구성된 VM이 있는 경우(적절한 서비스를 시작하고 VM에서 OS 방화벽 규칙을 열어야 함) 다음을 수행합니다.
+<span data-ttu-id="f7e02-103">포트 80에서 웹 트래픽의 일반적인 예제를 사용해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-103">Let's use a common example of web traffic on port 80.</span></span> <span data-ttu-id="f7e02-104">표준 TCP 포트 80에 대한 웹 요청을 처리하도록 구성된 VM이 있는 경우(적절한 서비스를 시작하고 VM에서 OS 방화벽 규칙을 열어야 함) 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-104">Once you have a VM that is configured to serve web requests on the standard TCP port 80 (remember to start the appropriate services and open any OS firewall rules on the VM as well), you:</span></span>
 
-1. 네트워크 보안 그룹을 만듭니다.
-2. 다음을 사용하여 트래픽을 허용하는 인바운드 규칙을 만듭니다.
-   * 대상 포트 범위 "80"
-   * 원본 포트 범위 "*"(모든 원본 포트 가능).
-   * 우선 순위 값 65,500 이하(기본 범용 거부 인바운드 규칙보다 우선 순위 높음)
-3. 네트워크 보안 그룹을 VM 네트워크 인터페이스 또는 서브넷에 연결합니다.
+1. <span data-ttu-id="f7e02-105">네트워크 보안 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-105">Create a Network Security Group.</span></span>
+2. <span data-ttu-id="f7e02-106">다음을 사용하여 트래픽을 허용하는 인바운드 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-106">Create an inbound rule allowing traffic with:</span></span>
+   * <span data-ttu-id="f7e02-107">대상 포트 범위 "80"</span><span class="sxs-lookup"><span data-stu-id="f7e02-107">the destination port range of "80"</span></span>
+   * <span data-ttu-id="f7e02-108">원본 포트 범위 "*"(모든 원본 포트 가능).</span><span class="sxs-lookup"><span data-stu-id="f7e02-108">the source port range of "*" (allowing any source port)</span></span>
+   * <span data-ttu-id="f7e02-109">우선 순위 값 65,500 이하(기본 범용 거부 인바운드 규칙보다 우선 순위 높음)</span><span class="sxs-lookup"><span data-stu-id="f7e02-109">a priority value of less 65,500 (to be higher in priority than the default catch-all deny inbound rule)</span></span>
+3. <span data-ttu-id="f7e02-110">네트워크 보안 그룹을 VM 네트워크 인터페이스 또는 서브넷에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-110">Associate the Network Security Group with the VM network interface or subnet.</span></span>
 
-네트워크 보안 그룹 및 규칙을 사용하여 환경을 보호하는 복잡한 네트워크 구성을 만들 수 있습니다. 이 예제에서는 HTTP 트래픽 또는 원격 관리를 허용하는 하나 이상의 규칙을 사용합니다. 자세한 내용은 다음 ['자세한 내용'](#more-information-on-network-security-groups) 섹션 또는 [네트워크 보안 그룹이란?](../articles/virtual-network/virtual-networks-nsg.md)을 참조하세요.
+<span data-ttu-id="f7e02-111">네트워크 보안 그룹 및 규칙을 사용하여 환경을 보호하는 복잡한 네트워크 구성을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-111">You can create complex network configurations to secure your environment using Network Security Groups and rules.</span></span> <span data-ttu-id="f7e02-112">이 예제에서는 HTTP 트래픽 또는 원격 관리를 허용하는 하나 이상의 규칙을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f7e02-112">Our example uses only one or two rules that allow HTTP traffic or remote management.</span></span> <span data-ttu-id="f7e02-113">자세한 내용은 다음 ['자세한 내용'](#more-information-on-network-security-groups) 섹션 또는 [네트워크 보안 그룹이란?](../articles/virtual-network/virtual-networks-nsg.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f7e02-113">For more information, see the following ['More Information'](#more-information-on-network-security-groups) section or [What is a Network Security Group?](../articles/virtual-network/virtual-networks-nsg.md)</span></span>
 

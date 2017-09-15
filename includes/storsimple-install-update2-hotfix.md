@@ -1,40 +1,40 @@
 <!--author=alkohli last changed: 03/17/16-->
 
-#### <a name="to-download-hotfixes"></a>핫픽스를 다운로드하려면
-Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운로드하려면 다음 단계를 수행합니다.
+#### <a name="to-download-hotfixes"></a><span data-ttu-id="42acc-101">핫픽스를 다운로드하려면</span><span class="sxs-lookup"><span data-stu-id="42acc-101">To download hotfixes</span></span>
+<span data-ttu-id="42acc-102">Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운로드하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-102">Perform the following steps to download the software update from the Microsoft Update Catalog.</span></span>
 
-1. Internet Explorer를 시작하고 [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)으로 이동합니다.
-2. 이 컴퓨터에서 Microsoft 업데이트 카탈로그를 처음 사용하는 경우 Microsoft 업데이트 카탈로그 추가 기능을 설치하라는 메시지가 나타나면 **설치** 를 클릭합니다.
-    ![카탈로그 설치](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
-3. Microsoft 업데이트 카탈로그의 검색 상자에 다운로드하려는 핫픽스의 KB(기술 자료) 번호(예: **3121901**)를 입력하고 **Search**을 클릭합니다.
+1. <span data-ttu-id="42acc-103">Internet Explorer를 시작하고 [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-103">Start Internet Explorer and navigate to [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).</span></span>
+2. <span data-ttu-id="42acc-104">이 컴퓨터에서 Microsoft 업데이트 카탈로그를 처음 사용하는 경우 Microsoft 업데이트 카탈로그 추가 기능을 설치하라는 메시지가 나타나면 **설치** 를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-104">If this is your first time using the Microsoft Update Catalog on this computer, click **Install** when prompted to install the Microsoft Update Catalog add-on.</span></span>
+    <span data-ttu-id="42acc-105">![카탈로그 설치](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)</span><span class="sxs-lookup"><span data-stu-id="42acc-105">![Install catalog](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)</span></span>
+3. <span data-ttu-id="42acc-106">Microsoft 업데이트 카탈로그의 검색 상자에 다운로드하려는 핫픽스의 KB(기술 자료) 번호(예: **3121901**)를 입력하고 **Search**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-106">In the search box of the Microsoft Update Catalog, enter the Knowledge Base (KB) number of the hotfix you want to download, for example **3121901**, and then click **Search**.</span></span>
    
-    핫픽스 목록이 나타납니다(예: **StorSimple 8000 시리즈용 누적 소프트웨어 번들 업데이트 2.0**).
+    <span data-ttu-id="42acc-107">핫픽스 목록이 나타납니다(예: **StorSimple 8000 시리즈용 누적 소프트웨어 번들 업데이트 2.0**).</span><span class="sxs-lookup"><span data-stu-id="42acc-107">The hotfix listing appears, for example, **Cumulative Software Bundle Update 2.0 for StorSimple 8000 Series**.</span></span>
    
     ![카탈로그 검색](./media/storsimple-install-update2-hotfix/HCS_SearchCatalog1-include.png)
-4. **추가**를 클릭합니다. 업데이트는 장바구니에 추가됩니다.
-5. 위의 표에 나열된 추가적인 핫픽스(**3121900**, **3080728**, **3090322** 및 **3121899**)를 검색하고, 각각 바구니에 추가합니다.
-6. **바구니 보기**를 클릭합니다.
-7. **다운로드**를 클릭합니다. 다운로드를 표시할 로컬 위치를 지정하거나 **검색** 합니다. 업데이트를 지정된 위치에 다운로드하고 업데이트와 같은 이름의 하위 폴더에 배치합니다. 장치에서 연결할 수 있는 네트워크 공유에 폴더도 복사할 수 있습니다.
+4. <span data-ttu-id="42acc-109">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-109">Click **Add**.</span></span> <span data-ttu-id="42acc-110">업데이트는 장바구니에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-110">The update is added to the basket.</span></span>
+5. <span data-ttu-id="42acc-111">위의 표에 나열된 추가적인 핫픽스(**3121900**, **3080728**, **3090322** 및 **3121899**)를 검색하고, 각각 바구니에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-111">Search for any additional hotfixes listed in the table above (**3121900**, **3080728**, **3090322**, and **3121899**), and add each the basket.</span></span>
+6. <span data-ttu-id="42acc-112">**바구니 보기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-112">Click **View Basket**.</span></span>
+7. <span data-ttu-id="42acc-113">**다운로드**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-113">Click **Download**.</span></span> <span data-ttu-id="42acc-114">다운로드를 표시할 로컬 위치를 지정하거나 **검색** 합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-114">Specify or **Browse** to a local location where you want the downloads to appear.</span></span> <span data-ttu-id="42acc-115">업데이트를 지정된 위치에 다운로드하고 업데이트와 같은 이름의 하위 폴더에 배치합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-115">The updates are downloaded to the specified location and placed in a subfolder with the same name as the update.</span></span> <span data-ttu-id="42acc-116">장치에서 연결할 수 있는 네트워크 공유에 폴더도 복사할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-116">The folder can also be copied to a network share that is reachable from the device.</span></span>
 
 > [!NOTE]
-> 피어 컨트롤러의 잠재적 오류 메시지를 검색하려면 컨트롤러 둘 다에서 핫픽스에 액세스할 수 있어야 합니다.
+> <span data-ttu-id="42acc-117">피어 컨트롤러의 잠재적 오류 메시지를 검색하려면 컨트롤러 둘 다에서 핫픽스에 액세스할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-117">The hotfixes must be accessible from both controllers to detect any potential error messages from the peer controller.</span></span>
 > 
 > 
 
-#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>일반 모드 핫픽스를 설치 및 확인하려면
-일반 모드 핫픽스를 설치 및 확인하려면 다음 단계를 수행합니다. 이미 Azure 포털을 사용하여 설치한 경우 [유지 관리 모드 핫픽스 설치 및 확인](#to-install-and-verify-maintenance-mode-hotfixes)으로 건너뜁니다.
+#### <a name="to-install-and-verify-regular-mode-hotfixes"></a><span data-ttu-id="42acc-118">일반 모드 핫픽스를 설치 및 확인하려면</span><span class="sxs-lookup"><span data-stu-id="42acc-118">To install and verify regular mode hotfixes</span></span>
+<span data-ttu-id="42acc-119">일반 모드 핫픽스를 설치 및 확인하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-119">Perform the following steps to install and verify regular-mode hotfixes.</span></span> <span data-ttu-id="42acc-120">이미 Azure 포털을 사용하여 설치한 경우 [유지 관리 모드 핫픽스 설치 및 확인](#to-install-and-verify-maintenance-mode-hotfixes)으로 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-120">If you already installed them using the Azure Portal, skip ahead to [install and verify maintenance mode hotfixes](#to-install-and-verify-maintenance-mode-hotfixes).</span></span>
 
-1. 핫픽스를 설치하려면 StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다. [PuTTy를 사용하여 직렬 콘솔에 연결](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console)에서 자세한 지침을 따르세요. 명령 프롬프트에서 **Enter**키를 누릅니다.
-2. **옵션 1** 을 선택하여 모든 권한으로 장치에 로그온합니다.
-3. 핫픽스를 설치하려면 명령 프롬프트에 다음을 입력합니다.
+1. <span data-ttu-id="42acc-121">핫픽스를 설치하려면 StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-121">To install the hotfixes, access the Windows PowerShell interface on your StorSimple device serial console.</span></span> <span data-ttu-id="42acc-122">[PuTTy를 사용하여 직렬 콘솔에 연결](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console)에서 자세한 지침을 따르세요.</span><span class="sxs-lookup"><span data-stu-id="42acc-122">Follow the detailed instructions in [Use PuTTy to connect to the serial console](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span></span> <span data-ttu-id="42acc-123">명령 프롬프트에서 **Enter**키를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-123">At the command prompt, press **Enter**.</span></span>
+2. <span data-ttu-id="42acc-124">**옵션 1** 을 선택하여 모든 권한으로 장치에 로그온합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-124">Select **Option 1** to log on to the device with full access.</span></span>
+3. <span data-ttu-id="42acc-125">핫픽스를 설치하려면 명령 프롬프트에 다음을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-125">To install the hotfix, at the command prompt, type:</span></span>
    
     `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    위 명령에서 공유 경로에 DNS 대신 IP를 사용합니다. 자격 증명 매개 변수는 인증된 공유에 액세스하는 경우에만 사용됩니다.
+    <span data-ttu-id="42acc-126">위 명령에서 공유 경로에 DNS 대신 IP를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-126">Use IP rather than DNS in share path in the above command.</span></span> <span data-ttu-id="42acc-127">자격 증명 매개 변수는 인증된 공유에 액세스하는 경우에만 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-127">The credential parameter is used only if you are accessing an authenticated share.</span></span>
    
-    자격 증명 매개 변수를 사용하여 공유에 액세스하는 것이 좋습니다. 일반적으로 "모든 사용자"에게 개방된 공유도 인증되지 않은 사용자에게는 개방되지 않습니다.
+    <span data-ttu-id="42acc-128">자격 증명 매개 변수를 사용하여 공유에 액세스하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-128">We recommend that you use the credential parameter to access shares.</span></span> <span data-ttu-id="42acc-129">일반적으로 "모든 사용자"에게 개방된 공유도 인증되지 않은 사용자에게는 개방되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-129">Even shares that are open to “everyone” are typically not open to unauthenticated users.</span></span>
    
-    샘플 출력은 다음과 같습니다.
+    <span data-ttu-id="42acc-130">샘플 출력은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-130">A sample output is shown below.</span></span>
    
     ```
     Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -47,10 +47,10 @@ Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운
     be disrupted. Are you sure you want to continue?
     [Y] Yes [N] No [?] Help (default is "Y"): Y
     ```
-4. 핫픽스 설치를 확인하라는 메시지가 표시되면 **Y** 를 입력합니다.
-5. `Get-HcsUpdateStatus` cmdlet을 사용하여 업데이트를 모니터링합니다.
+4. <span data-ttu-id="42acc-131">핫픽스 설치를 확인하라는 메시지가 표시되면 **Y** 를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-131">Type **Y** when prompted to confirm the hotfix installation.</span></span>
+5. <span data-ttu-id="42acc-132">`Get-HcsUpdateStatus` cmdlet을 사용하여 업데이트를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-132">Monitor the update by using the `Get-HcsUpdateStatus` cmdlet.</span></span>
    
-    다음 샘플 출력에서는 진행 중인 업데이트를 보여줍니다. 업데이트가 진행 중이면 `RunInprogress`가 `True`입니다.
+    <span data-ttu-id="42acc-133">다음 샘플 출력에서는 진행 중인 업데이트를 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-133">The following sample output shows the update in progress.</span></span> <span data-ttu-id="42acc-134">업데이트가 진행 중이면 `RunInprogress`가 `True`입니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-134">The `RunInprogress` will be `True` when the update is in progress.</span></span>
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -61,7 +61,7 @@ Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운
     Controller1Events   :
     ```
    
-     다음 샘플 출력은 업데이트가 완료되었음을 나타냅니다. 업데이트가 완료되면 `RunInProgress`가 `False`입니다.
+     <span data-ttu-id="42acc-135">다음 샘플 출력은 업데이트가 완료되었음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-135">The following sample output indicates that the update is finished.</span></span> <span data-ttu-id="42acc-136">업데이트가 완료되면 `RunInProgress`가 `False`입니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-136">The `RunInProgress` will be `False` when the update has completed.</span></span>
    
     ```
     Controller1>Get-HcsUpdateStatus
@@ -74,38 +74,38 @@ Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운
     ```
    
    > [!NOTE]
-   > 업데이트가 진행 중일 때 cmdlet에서 `False`를 보고하는 경우도 있습니다. 핫픽스가 완료되었는지 확인하려면 몇 분 동안 기다린 후 이 명령을 다시 실행하고 `RunInProgress`가 `False`인지 확인합니다. 맞으면 핫픽스가 완료된 것입니다.
+   > <span data-ttu-id="42acc-137">업데이트가 진행 중일 때 cmdlet에서 `False`를 보고하는 경우도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-137">Occasionally, the cmdlet reports `False` when the update is still in progress.</span></span> <span data-ttu-id="42acc-138">핫픽스가 완료되었는지 확인하려면 몇 분 동안 기다린 후 이 명령을 다시 실행하고 `RunInProgress`가 `False`인지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-138">To ensure that the hotfix is complete, wait for a few minutes, rerun this command and verify that the `RunInProgress` is `False`.</span></span> <span data-ttu-id="42acc-139">맞으면 핫픽스가 완료된 것입니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-139">If it is, then the hotfix has completed.</span></span>
 
-6. 소프트웨어 업데이트가 완료되면 3-5단계를 반복하여 SaaS 에이전트 및 MDS 에이전트를 설치 및 모니터링합니다. `all-cismdsagentupdatebundle_f98e62f4d56c79e2a6644d027af7a2393a93827a.exe` 이전에 `all-hcsmdssoftwareupdate_0b438ddf0d5b686aada2378b754fac8c7f2160e9.exe`가 설치되었는지 확인합니다.
-7. 시스템 소프트웨어 버전을 확인합니다. 형식:
+6. <span data-ttu-id="42acc-140">소프트웨어 업데이트가 완료되면 3-5단계를 반복하여 SaaS 에이전트 및 MDS 에이전트를 설치 및 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-140">After the software update is complete, repeat steps 3-5 to install and monitor the SaaS agent and MDS agent .</span></span> <span data-ttu-id="42acc-141">`all-cismdsagentupdatebundle_f98e62f4d56c79e2a6644d027af7a2393a93827a.exe` 이전에 `all-hcsmdssoftwareupdate_0b438ddf0d5b686aada2378b754fac8c7f2160e9.exe`가 설치되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-141">Ensure that `all-hcsmdssoftwareupdate_0b438ddf0d5b686aada2378b754fac8c7f2160e9.exe` is installed before `all-cismdsagentupdatebundle_f98e62f4d56c79e2a6644d027af7a2393a93827a.exe`.</span></span>
+7. <span data-ttu-id="42acc-142">시스템 소프트웨어 버전을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-142">Verify the system software versions.</span></span> <span data-ttu-id="42acc-143">형식:</span><span class="sxs-lookup"><span data-stu-id="42acc-143">Type:</span></span>
    
     `Get-HcsSystem`
    
-    다음 버전이 표시되어야 합니다.
+    <span data-ttu-id="42acc-144">다음 버전이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-144">You should see the following versions:</span></span>
    
-   * HcsSoftwareVersion: 6.3.9600.17673
-   * CisAgentVersion: 1.0.9150.0
-   * MdsAgentVersion: 30.0.4698.13
+   * <span data-ttu-id="42acc-145">HcsSoftwareVersion: 6.3.9600.17673</span><span class="sxs-lookup"><span data-stu-id="42acc-145">HcsSoftwareVersion: 6.3.9600.17673</span></span>
+   * <span data-ttu-id="42acc-146">CisAgentVersion: 1.0.9150.0</span><span class="sxs-lookup"><span data-stu-id="42acc-146">CisAgentVersion: 1.0.9150.0</span></span>
+   * <span data-ttu-id="42acc-147">MdsAgentVersion: 30.0.4698.13</span><span class="sxs-lookup"><span data-stu-id="42acc-147">MdsAgentVersion: 30.0.4698.13</span></span>
      
-     업데이트를 적용한 후 버전 번호가 변경되지 않으면 핫픽스를 적용하지 못한 것입니다. 이 경우 추가 지원을 받으려면 [Microsoft 지원](../articles/storsimple/storsimple-contact-microsoft-support.md) 에 문의하세요.
-8. 나머지 일반 모드 핫픽스를 설치하려면 3-5단계를 반복합니다.
+     <span data-ttu-id="42acc-148">업데이트를 적용한 후 버전 번호가 변경되지 않으면 핫픽스를 적용하지 못한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-148">If the version numbers do not change after applying the update, it indicates that the hotfix has failed to apply.</span></span> <span data-ttu-id="42acc-149">이 경우 추가 지원을 받으려면 [Microsoft 지원](../articles/storsimple/storsimple-contact-microsoft-support.md) 에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="42acc-149">Should you see this, please contact [Microsoft Support](../articles/storsimple/storsimple-contact-microsoft-support.md) for further assistance.</span></span>
+8. <span data-ttu-id="42acc-150">나머지 일반 모드 핫픽스를 설치하려면 3-5단계를 반복합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-150">Repeat steps 3-5 to install the remaining regular-mode hotfixes.</span></span>
    
-   * LSI 드라이버 - KB3121900
-   * Storport 업데이트 - KB3080728
-   * Spaceport 업데이트 - KB3090322
+   * <span data-ttu-id="42acc-151">LSI 드라이버 - KB3121900</span><span class="sxs-lookup"><span data-stu-id="42acc-151">The LSI driver - KB3121900</span></span>
+   * <span data-ttu-id="42acc-152">Storport 업데이트 - KB3080728</span><span class="sxs-lookup"><span data-stu-id="42acc-152">The Storport update - KB3080728</span></span>
+   * <span data-ttu-id="42acc-153">Spaceport 업데이트 - KB3090322</span><span class="sxs-lookup"><span data-stu-id="42acc-153">The Spaceport update - KB3090322</span></span>
 
-#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>유지 관리 모드 핫픽스를 설치 및 확인하려면
-KB3121899를 사용하여 디스크 펌웨어 업데이트를 설치합니다. 작업 중단 업데이트이며 완료하는 데 약 30분이 소요됩니다. 장치 직렬 콘솔에 연결하여 계획된 유지 관리 기간에 설치하도록 선택할 수 있습니다.
+#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a><span data-ttu-id="42acc-154">유지 관리 모드 핫픽스를 설치 및 확인하려면</span><span class="sxs-lookup"><span data-stu-id="42acc-154">To install and verify maintenance mode hotfixes</span></span>
+<span data-ttu-id="42acc-155">KB3121899를 사용하여 디스크 펌웨어 업데이트를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-155">Use KB3121899 to install disk firmware updates.</span></span> <span data-ttu-id="42acc-156">작업 중단 업데이트이며 완료하는 데 약 30분이 소요됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-156">These are disruptive updates and take around 30 minutes to complete.</span></span> <span data-ttu-id="42acc-157">장치 직렬 콘솔에 연결하여 계획된 유지 관리 기간에 설치하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-157">You can choose to install these in a planned maintenance window by connecting to the device serial console.</span></span>
 
-디스크 펌웨어가 이미 최신 상태인 경우 이러한 업데이트를 설치할 필요가 없습니다. 장치 일련 번호 콘솔에서 `Get-HcsUpdateAvailability` cmdlet을 실행하여 업데이트가 사용 가능한지 여부와 업데이트가 중단(유지 관리 모드) 또는 비중단(일반 모드)인지에 대해 확인합니다.
+<span data-ttu-id="42acc-158">디스크 펌웨어가 이미 최신 상태인 경우 이러한 업데이트를 설치할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-158">Note that if your disk firmware is already up-to-date, you won't need to install these updates.</span></span> <span data-ttu-id="42acc-159">장치 일련 번호 콘솔에서 `Get-HcsUpdateAvailability` cmdlet을 실행하여 업데이트가 사용 가능한지 여부와 업데이트가 중단(유지 관리 모드) 또는 비중단(일반 모드)인지에 대해 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-159">Run the `Get-HcsUpdateAvailability` cmdlet from the device serial console to check if updates are available and whether the updates are disruptive (maintenance mode) or non-disruptive (regular mode) updates.</span></span>
 
-디스크 펌웨어 업데이트를 설치하려면 아래 지침을 따릅니다.
+<span data-ttu-id="42acc-160">디스크 펌웨어 업데이트를 설치하려면 아래 지침을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-160">To install the disk firmware updates, follow the instructions below.</span></span>
 
-1. 장치를 유지 관리 모드로 설정합니다. 유지 관리 모드에서 장치에 연결할 때는 Windows PowerShell 원격을 사용해서는 안 됩니다. 장치 직렬 콘솔을 통해 연결된 경우에는 장치 컨트롤러에서 이 cmdlet을 실행해야 합니다. 형식:
+1. <span data-ttu-id="42acc-161">장치를 유지 관리 모드로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-161">Place the device in the Maintenance mode.</span></span> <span data-ttu-id="42acc-162">유지 관리 모드에서 장치에 연결할 때는 Windows PowerShell 원격을 사용해서는 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-162">Note that you should not use Windows PowerShell remoting when connecting to a device in Maintenance mode.</span></span> <span data-ttu-id="42acc-163">장치 직렬 콘솔을 통해 연결된 경우에는 장치 컨트롤러에서 이 cmdlet을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-163">Instead run this cmdlet on the device controller when connected through the device serial console.</span></span> <span data-ttu-id="42acc-164">형식:</span><span class="sxs-lookup"><span data-stu-id="42acc-164">Type:</span></span>
    
     `Enter-HcsMaintenanceMode`
    
-    샘플 출력은 다음과 같습니다.
+    <span data-ttu-id="42acc-165">샘플 출력은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-165">A sample output is shown below.</span></span>
    
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
@@ -128,12 +128,12 @@ KB3121899를 사용하여 디스크 펌웨어 업데이트를 설치합니다. �
         [4] Change language
         Please enter your choice>
    
-    두 컨트롤러 모두 유지 관리 모드로 다시 시작합니다.
-2. 디스크 펌웨어 업데이트를 설치하려면 다음을 입력합니다.
+    <span data-ttu-id="42acc-166">두 컨트롤러 모두 유지 관리 모드로 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-166">Both the controllers then restart into Maintenance mode.</span></span>
+2. <span data-ttu-id="42acc-167">디스크 펌웨어 업데이트를 설치하려면 다음을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-167">To install the disk firmware update, type:</span></span>
    
     `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    샘플 출력은 다음과 같습니다.
+    <span data-ttu-id="42acc-168">샘플 출력은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-168">A sample output is shown below.</span></span>
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\DiskFirmwarePackage.exe -Credential contoso\john
         Enter Password:
@@ -142,16 +142,16 @@ KB3121899를 사용하여 디스크 펌웨어 업데이트를 설치합니다. �
         This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
         [Y] Yes [N] No (Default is "Y"): Y
         WARNING: Installation is currently in progress. This operation can take several minutes to complete.
-3. `Get-HcsUpdateStatus` 명령을 사용하여 설치 진행률을 모니터링합니다. `RunInProgress`가 `False`로 변경되면 업데이트가 완료됩니다.
-4. 설치가 완료된 후에 유지 관리 모드 핫픽스가 설치된 컨트롤러가 다시 시작됩니다. 모든 권한이 있는 옵션 1로 로그인하고 디스크 펌웨어 버전을 확인합니다. 형식:
+3. <span data-ttu-id="42acc-169">`Get-HcsUpdateStatus` 명령을 사용하여 설치 진행률을 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-169">Monitor the install progress using `Get-HcsUpdateStatus` command.</span></span> <span data-ttu-id="42acc-170">`RunInProgress`가 `False`로 변경되면 업데이트가 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-170">The update is complete when the `RunInProgress` changes to `False`.</span></span>
+4. <span data-ttu-id="42acc-171">설치가 완료된 후에 유지 관리 모드 핫픽스가 설치된 컨트롤러가 다시 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-171">After the installation is complete, the controller on which the maintenance mode hotfix was installed restarts.</span></span> <span data-ttu-id="42acc-172">모든 권한이 있는 옵션 1로 로그인하고 디스크 펌웨어 버전을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-172">Log in as option 1 with full access and verify the disk firmware version.</span></span> <span data-ttu-id="42acc-173">형식:</span><span class="sxs-lookup"><span data-stu-id="42acc-173">Type:</span></span>
    
    `Get-HcsFirmwareVersion`
    
-   예상된 디스크 펌웨어 버전은 다음과 같습니다.
+   <span data-ttu-id="42acc-174">예상된 디스크 펌웨어 버전은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-174">The expected disk firmware versions are:</span></span>
    
    `XMGG, XGEG, KZ50, F6C2, VR08`
    
-   샘플 출력은 다음과 같습니다.
+   <span data-ttu-id="42acc-175">샘플 출력은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-175">A sample output is shown below.</span></span>
    
        -----------------------MAINTENANCE MODE------------------------
        Microsoft Azure StorSimple Appliance Model 8100
@@ -205,8 +205,8 @@ KB3121899를 사용하여 디스크 펌웨어 업데이트를 설치합니다. �
          SEAGATE:ST4000NM0023:XMGG
          SEAGATE:ST4000NM0023:XMGG
    
-    두 번째 컨트롤러에서 `Get-HcsFirmwareVersion` 명령을 실행하여 해당 소프트웨어 버전이 업데이트되었는지 확인합니다. 그런 다음 유지 관리 모드를 끝낼 수 있습니다. 이렇게 하려면 각 장치 컨트롤러에 대해 다음 명령을 입력합니다.
+    <span data-ttu-id="42acc-176">두 번째 컨트롤러에서 `Get-HcsFirmwareVersion` 명령을 실행하여 해당 소프트웨어 버전이 업데이트되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-176">Run the `Get-HcsFirmwareVersion` command on the second controller to verify that the software version has been updated.</span></span> <span data-ttu-id="42acc-177">그런 다음 유지 관리 모드를 끝낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-177">You can then exit the maintenance mode.</span></span> <span data-ttu-id="42acc-178">이렇게 하려면 각 장치 컨트롤러에 대해 다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-178">To do so, type the following command for each device controller:</span></span>
    
    `Exit-HcsMaintenanceMode`
-5. 유지 관리 모드를 종료하면 컨트롤러가 다시 시작됩니다. 디스크 펌웨어 업데이트가 성공적으로 적용되고 장치가 유지 관리 모드를 종료한 후 Azure 클래식 포털로 돌아갑니다. 유지 관리 모드 업데이트가 설치되었는지 24시간 동안 포털에 표시되지 않을 수도 있습니다.
+5. <span data-ttu-id="42acc-179">유지 관리 모드를 종료하면 컨트롤러가 다시 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-179">The controllers restart when you exit Maintenance mode.</span></span> <span data-ttu-id="42acc-180">디스크 펌웨어 업데이트가 성공적으로 적용되고 장치가 유지 관리 모드를 종료한 후 Azure 클래식 포털로 돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-180">After the disk firmware updates are successfully applied and the device has exited maintenance mode, return to the Azure classic portal.</span></span> <span data-ttu-id="42acc-181">유지 관리 모드 업데이트가 설치되었는지 24시간 동안 포털에 표시되지 않을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="42acc-181">Note that the portal might not show that you installed the Maintenance mode updates for 24 hours.</span></span>
 

@@ -1,15 +1,15 @@
 > [!div class="op_single_selector"]
-> * [유니버설 Windows](../articles/mobile-engagement/mobile-engagement-windows-store-dotnet-get-started.md)
-> * [Windows Phone Silverlight](../articles/mobile-engagement/mobile-engagement-windows-phone-get-started.md)
-> * [iOS | Obj C](../articles/mobile-engagement/mobile-engagement-ios-get-started.md)
-> * [iOS | Swift](../articles/mobile-engagement/mobile-engagement-ios-swift-get-started.md)
-> * [Android](../articles/mobile-engagement/mobile-engagement-android-get-started.md)
-> * [Cordova](../articles/mobile-engagement/mobile-engagement-cordova-get-started.md)
-> * [Xamarin.iOS](../articles/mobile-engagement/mobile-engagement-xamarin-ios-get-started.md)
-> * [Xamarin.Android](../articles/mobile-engagement/mobile-engagement-xamarin-android-get-started.md)
-> * [Unity | iOS](../articles/mobile-engagement/mobile-engagement-unity-ios-get-started.md)
-> * [Unity | Android](../articles/mobile-engagement/mobile-engagement-unity-android-get-started.md)
-> * [웹](../articles/mobile-engagement/mobile-engagement-web-app-get-started.md)
+> * [<span data-ttu-id="17752-101">유니버설 Windows</span><span class="sxs-lookup"><span data-stu-id="17752-101">Universal Windows</span></span>](../articles/mobile-engagement/mobile-engagement-windows-store-dotnet-get-started.md)
+> * [<span data-ttu-id="17752-102">Windows Phone Silverlight</span><span class="sxs-lookup"><span data-stu-id="17752-102">Windows Phone Silverlight</span></span>](../articles/mobile-engagement/mobile-engagement-windows-phone-get-started.md)
+> * [<span data-ttu-id="17752-103">iOS | Obj C</span><span class="sxs-lookup"><span data-stu-id="17752-103">iOS | Obj C</span></span>](../articles/mobile-engagement/mobile-engagement-ios-get-started.md)
+> * [<span data-ttu-id="17752-104">iOS | Swift</span><span class="sxs-lookup"><span data-stu-id="17752-104">iOS | Swift</span></span>](../articles/mobile-engagement/mobile-engagement-ios-swift-get-started.md)
+> * [<span data-ttu-id="17752-105">Android</span><span class="sxs-lookup"><span data-stu-id="17752-105">Android</span></span>](../articles/mobile-engagement/mobile-engagement-android-get-started.md)
+> * [<span data-ttu-id="17752-106">Cordova</span><span class="sxs-lookup"><span data-stu-id="17752-106">Cordova</span></span>](../articles/mobile-engagement/mobile-engagement-cordova-get-started.md)
+> * [<span data-ttu-id="17752-107">Xamarin.iOS</span><span class="sxs-lookup"><span data-stu-id="17752-107">Xamarin.iOS</span></span>](../articles/mobile-engagement/mobile-engagement-xamarin-ios-get-started.md)
+> * [<span data-ttu-id="17752-108">Xamarin.Android</span><span class="sxs-lookup"><span data-stu-id="17752-108">Xamarin.Android</span></span>](../articles/mobile-engagement/mobile-engagement-xamarin-android-get-started.md)
+> * [<span data-ttu-id="17752-109">Unity | iOS</span><span class="sxs-lookup"><span data-stu-id="17752-109">Unity | iOS</span></span>](../articles/mobile-engagement/mobile-engagement-unity-ios-get-started.md)
+> * [<span data-ttu-id="17752-110">Unity | Android</span><span class="sxs-lookup"><span data-stu-id="17752-110">Unity | Android</span></span>](../articles/mobile-engagement/mobile-engagement-unity-android-get-started.md)
+> * [<span data-ttu-id="17752-111">웹</span><span class="sxs-lookup"><span data-stu-id="17752-111">Web</span></span>](../articles/mobile-engagement/mobile-engagement-web-app-get-started.md)
 > 
 > 
 

@@ -1,26 +1,26 @@
-UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <데이터 전송에 사용할 IP 주소] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
+<span data-ttu-id="1895a-101">UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <데이터 전송에 사용할 IP 주소] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]</span><span class="sxs-lookup"><span data-stu-id="1895a-101">UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]</span></span>
 
-매개 변수:
+<span data-ttu-id="1895a-102">매개 변수:</span><span class="sxs-lookup"><span data-stu-id="1895a-102">Parameters:</span></span>
 
-* /ServerMode: 필수. 구성 및 프로세스 서버를 모두 설치할지 또는 프로세스 서버만 설치할지 여부를 지정합니다. 입력 값: CS, PS.
-* InstallLocation: 필수. 구성 요소가 설치되어 있는 폴더입니다.
-* /MySQLCredsFilePath. 필수. MySQL 서버 자격 증명이 저장되어 있는 파일 경로입니다. 파일은 다음 형식이어야 합니다.
-* [MySQLCredentials]
-* MySQLRootPassword = "<Password>"
-* MySQLUserPassword = "<Password>"
-* /VaultCredsFilePath. 필수. 자격 증명 모음 자격 증명 파일의 위치입니다.
-* /EnvType. 필수. 설치 유형입니다. 값: VMware, NonVMware
-* /PSIP 및 /CSIP. 필수. 프로세스 서버와 구성 서버의 IP 주소입니다.
-* /PassphraseFilePath. 필수. 암호 파일의 위치입니다.
-* /ByPassProxy. 선택 사항입니다. 구성 서버가 프록시 없이 Azure에 연결되도록 지정합니다.
-* /ProxySettingsFilePath. 선택 사항입니다. 프록시 설정(인증이 필요한 기본 프록시 또는 사용자 지정 프록시)입니다. 파일은 다음 형식이어야 합니다.
-* [ProxySettings]
-* ProxyAuthentication = "Yes/No"
-* Proxy IP = "IP Address>"
-* ProxyPort = "<Port>"
-* ProxyUserName="<User Name>"
-* ProxyPassword="<Password>"
-* DataTransferSecurePort. 선택 사항입니다. 복제 데이터용 포트 번호입니다.
-* SkipSpaceCheck. 선택 사항입니다. 캐시에 대한 공간 확인을 건너뜁니다.
-* AcceptThirdpartyEULA. 필수. 타사 EULA를 수락합니다.
-* ShowThirdpartyEULA. 필수. 타사 EULA를 표시합니다. 입력으로 제공되는 경우 다른 모든 매개 변수가 무시됩니다.
+* <span data-ttu-id="1895a-103">/ServerMode: 필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-103">/ServerMode: Mandatory.</span></span> <span data-ttu-id="1895a-104">구성 및 프로세스 서버를 모두 설치할지 또는 프로세스 서버만 설치할지 여부를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-104">Specifies whether both the configuration and process servers should be installed, or the process server only.</span></span> <span data-ttu-id="1895a-105">입력 값: CS, PS.</span><span class="sxs-lookup"><span data-stu-id="1895a-105">Input values: CS, PS.</span></span>
+* <span data-ttu-id="1895a-106">InstallLocation: 필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-106">InstallLocation: Mandatory.</span></span> <span data-ttu-id="1895a-107">구성 요소가 설치되어 있는 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-107">The folder in which the components are installed.</span></span>
+* <span data-ttu-id="1895a-108">/MySQLCredsFilePath.</span><span class="sxs-lookup"><span data-stu-id="1895a-108">/MySQLCredsFilePath.</span></span> <span data-ttu-id="1895a-109">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-109">Mandatory.</span></span> <span data-ttu-id="1895a-110">MySQL 서버 자격 증명이 저장되어 있는 파일 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-110">The file path in which the MySQL server credentials are stored.</span></span> <span data-ttu-id="1895a-111">파일은 다음 형식이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-111">The file should be in this format:</span></span>
+* <span data-ttu-id="1895a-112">[MySQLCredentials]</span><span class="sxs-lookup"><span data-stu-id="1895a-112">[MySQLCredentials]</span></span>
+* <span data-ttu-id="1895a-113">MySQLRootPassword = "<Password>"</span><span class="sxs-lookup"><span data-stu-id="1895a-113">MySQLRootPassword = "<Password>"</span></span>
+* <span data-ttu-id="1895a-114">MySQLUserPassword = "<Password>"</span><span class="sxs-lookup"><span data-stu-id="1895a-114">MySQLUserPassword = "<Password>"</span></span>
+* <span data-ttu-id="1895a-115">/VaultCredsFilePath.</span><span class="sxs-lookup"><span data-stu-id="1895a-115">/VaultCredsFilePath.</span></span> <span data-ttu-id="1895a-116">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-116">Mandatory.</span></span> <span data-ttu-id="1895a-117">자격 증명 모음 자격 증명 파일의 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-117">The location of the vault credentials file</span></span>
+* <span data-ttu-id="1895a-118">/EnvType.</span><span class="sxs-lookup"><span data-stu-id="1895a-118">/EnvType.</span></span> <span data-ttu-id="1895a-119">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-119">Mandatory.</span></span> <span data-ttu-id="1895a-120">설치 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-120">The type of installation.</span></span> <span data-ttu-id="1895a-121">값: VMware, NonVMware</span><span class="sxs-lookup"><span data-stu-id="1895a-121">Values: VMware, NonVMware</span></span>
+* <span data-ttu-id="1895a-122">/PSIP 및 /CSIP.</span><span class="sxs-lookup"><span data-stu-id="1895a-122">/PSIP and /CSIP.</span></span> <span data-ttu-id="1895a-123">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-123">Mandatory.</span></span> <span data-ttu-id="1895a-124">프로세스 서버와 구성 서버의 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-124">The IP address of the process server and configuration server.</span></span>
+* <span data-ttu-id="1895a-125">/PassphraseFilePath.</span><span class="sxs-lookup"><span data-stu-id="1895a-125">/PassphraseFilePath.</span></span> <span data-ttu-id="1895a-126">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-126">Mandatory.</span></span> <span data-ttu-id="1895a-127">암호 파일의 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-127">The location of the passphrase file.</span></span>
+* <span data-ttu-id="1895a-128">/ByPassProxy.</span><span class="sxs-lookup"><span data-stu-id="1895a-128">/BypassProxy.</span></span> <span data-ttu-id="1895a-129">선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-129">Optional.</span></span> <span data-ttu-id="1895a-130">구성 서버가 프록시 없이 Azure에 연결되도록 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-130">Specifies that the configuration server connects to Azure without a proxy.</span></span>
+* <span data-ttu-id="1895a-131">/ProxySettingsFilePath.</span><span class="sxs-lookup"><span data-stu-id="1895a-131">/ProxySettingsFilePath.</span></span> <span data-ttu-id="1895a-132">선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-132">Optional.</span></span> <span data-ttu-id="1895a-133">프록시 설정(인증이 필요한 기본 프록시 또는 사용자 지정 프록시)입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-133">Proxy settings (The default proxy requires authentication, or a custom proxy).</span></span> <span data-ttu-id="1895a-134">파일은 다음 형식이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-134">The file should be in this format:</span></span>
+* <span data-ttu-id="1895a-135">[ProxySettings]</span><span class="sxs-lookup"><span data-stu-id="1895a-135">[ProxySettings]</span></span>
+* <span data-ttu-id="1895a-136">ProxyAuthentication = "Yes/No"</span><span class="sxs-lookup"><span data-stu-id="1895a-136">ProxyAuthentication = "Yes/No"</span></span>
+* <span data-ttu-id="1895a-137">Proxy IP = "IP Address>"</span><span class="sxs-lookup"><span data-stu-id="1895a-137">Proxy IP = "IP Address>"</span></span>
+* <span data-ttu-id="1895a-138">ProxyPort = "<Port>"</span><span class="sxs-lookup"><span data-stu-id="1895a-138">ProxyPort = "<Port>"</span></span>
+* <span data-ttu-id="1895a-139">ProxyUserName="<User Name>"</span><span class="sxs-lookup"><span data-stu-id="1895a-139">ProxyUserName="<User Name>"</span></span>
+* <span data-ttu-id="1895a-140">ProxyPassword="<Password>"</span><span class="sxs-lookup"><span data-stu-id="1895a-140">ProxyPassword="<Password>"</span></span>
+* <span data-ttu-id="1895a-141">DataTransferSecurePort.</span><span class="sxs-lookup"><span data-stu-id="1895a-141">DataTransferSecurePort.</span></span> <span data-ttu-id="1895a-142">선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-142">Optional.</span></span> <span data-ttu-id="1895a-143">복제 데이터용 포트 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-143">The port number for replication data.</span></span>
+* <span data-ttu-id="1895a-144">SkipSpaceCheck.</span><span class="sxs-lookup"><span data-stu-id="1895a-144">SkipSpaceCheck.</span></span> <span data-ttu-id="1895a-145">선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-145">Optional.</span></span> <span data-ttu-id="1895a-146">캐시에 대한 공간 확인을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-146">Skip space checking for cache.</span></span>
+* <span data-ttu-id="1895a-147">AcceptThirdpartyEULA.</span><span class="sxs-lookup"><span data-stu-id="1895a-147">AcceptThirdpartyEULA.</span></span> <span data-ttu-id="1895a-148">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-148">Mandatory.</span></span> <span data-ttu-id="1895a-149">타사 EULA를 수락합니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-149">Accepts the third-party EULA.</span></span>
+* <span data-ttu-id="1895a-150">ShowThirdpartyEULA.</span><span class="sxs-lookup"><span data-stu-id="1895a-150">ShowThirdpartyEULA.</span></span> <span data-ttu-id="1895a-151">필수.</span><span class="sxs-lookup"><span data-stu-id="1895a-151">Mandatory.</span></span> <span data-ttu-id="1895a-152">타사 EULA를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-152">Displays third-party EULA.</span></span> <span data-ttu-id="1895a-153">입력으로 제공되는 경우 다른 모든 매개 변수가 무시됩니다.</span><span class="sxs-lookup"><span data-stu-id="1895a-153">If provided as input, all other parameters are ignored.</span></span>

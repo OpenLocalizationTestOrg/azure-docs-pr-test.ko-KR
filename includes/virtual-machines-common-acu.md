@@ -2,39 +2,39 @@
 
 
 
-Azure Compute 단위(ACU)의 개념을 만들어 Azure SKU를 통한 계산(CPU) 성능 비교 방법을 제공합니다. 어떤 SKU가 성능 요구 사항을 충족할 가능성이 높은지 쉽게 식별하도록 합니다.  ACU는 현재 100인 작은(Standard_A1) VM에서 표준화되고 다른 SKU는 모두 SKU가 표준 벤치 마크를 얼마나 빨리 실행할 수 있는지를 나타냅니다. 
+<span data-ttu-id="0095e-101">Azure Compute 단위(ACU)의 개념을 만들어 Azure SKU를 통한 계산(CPU) 성능 비교 방법을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-101">We have created the concept of the Azure Compute Unit (ACU) to provide a way of comparing compute (CPU) performance across Azure SKUs.</span></span> <span data-ttu-id="0095e-102">어떤 SKU가 성능 요구 사항을 충족할 가능성이 높은지 쉽게 식별하도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-102">This will help you easily identify which SKU is most likely to satisfy your performance needs.</span></span>  <span data-ttu-id="0095e-103">ACU는 현재 100인 작은(Standard_A1) VM에서 표준화되고 다른 SKU는 모두 SKU가 표준 벤치 마크를 얼마나 빨리 실행할 수 있는지를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-103">ACU is currently standardized on a Small (Standard_A1) VM being 100 and all other SKUs then represent approximately how much faster that SKU can run a standard benchmark.</span></span> 
 
 > [!IMPORTANT]
-> ACU는 단지 지침일 뿐입니다.  워크로드에 대한 결과가 달라질 수 있습니다. 
+> <span data-ttu-id="0095e-104">ACU는 단지 지침일 뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-104">The ACU is only a guideline.</span></span>  <span data-ttu-id="0095e-105">워크로드에 대한 결과가 달라질 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-105">The results for your workload may vary.</span></span> 
 > 
 > 
 
 <br>
 
-| SKU 제품군 | ACU \ vCPU |
+| <span data-ttu-id="0095e-106">SKU 제품군</span><span class="sxs-lookup"><span data-stu-id="0095e-106">SKU Family</span></span> | <span data-ttu-id="0095e-107">ACU \ vCPU</span><span class="sxs-lookup"><span data-stu-id="0095e-107">ACU \ vCPU</span></span> |
 | --- | --- |
-| [A0](../articles/virtual-machines/windows/sizes-general.md) |50 |
-| [A1-A4](../articles/virtual-machines/windows/sizes-general.md) |100 |
-| [A5-A7](../articles/virtual-machines/windows/sizes-general.md) |100 |
-| [A1_v2-A8_v2](../articles/virtual-machines/windows/sizes-general.md) |100 |
-| [A2m_v2-A8m_v2](../articles/virtual-machines/windows/sizes-general.md) |100 |
-| [A8-A11](../articles/virtual-machines/windows/sizes-hpc.md) |225* |
-| [D1-D14](../articles/virtual-machines/windows/sizes-general.md) |160 |
-| [D1_v2-D15_v2](../articles/virtual-machines/windows/sizes-general.md) |210 - 250* |
-| [DS1-DS14](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |160 |
-| [DS1_v2-DS15_v2](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |210-250* |
-| [D_v3](../articles/virtual-machines/virtual-machines-windows-sizes-general.md) |160-190* ** |
-| [Ds_v3](../articles/virtual-machines/virtual-machines-windows-sizes-general.md) |160-190* ** |
-| [E_v3](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |160-190* ** |
-| [Es_v3](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |160-190* ** |
-| [F1-F16](../articles/virtual-machines/windows/sizes-compute.md) |210-250* |
-| [F1s-F16s](../articles/virtual-machines/windows/sizes-compute.md) |210-250* |
-| [G1-G5](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |180 - 240* |
-| [GS1-GS5](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |180 - 240* |
-| [H](../articles/virtual-machines/windows/sizes-hpc.md) |290 - 300* |
-| [L4s-L32s](../articles/virtual-machines/windows/sizes-storage.md) |180 - 240* |
-| [M](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) | 160-180** |
+| [<span data-ttu-id="0095e-108">A0</span><span class="sxs-lookup"><span data-stu-id="0095e-108">A0</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-109">50</span><span class="sxs-lookup"><span data-stu-id="0095e-109">50</span></span> |
+| [<span data-ttu-id="0095e-110">A1-A4</span><span class="sxs-lookup"><span data-stu-id="0095e-110">A1-A4</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-111">100</span><span class="sxs-lookup"><span data-stu-id="0095e-111">100</span></span> |
+| [<span data-ttu-id="0095e-112">A5-A7</span><span class="sxs-lookup"><span data-stu-id="0095e-112">A5-A7</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-113">100</span><span class="sxs-lookup"><span data-stu-id="0095e-113">100</span></span> |
+| [<span data-ttu-id="0095e-114">A1_v2-A8_v2</span><span class="sxs-lookup"><span data-stu-id="0095e-114">A1_v2-A8_v2</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-115">100</span><span class="sxs-lookup"><span data-stu-id="0095e-115">100</span></span> |
+| [<span data-ttu-id="0095e-116">A2m_v2-A8m_v2</span><span class="sxs-lookup"><span data-stu-id="0095e-116">A2m_v2-A8m_v2</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-117">100</span><span class="sxs-lookup"><span data-stu-id="0095e-117">100</span></span> |
+| [<span data-ttu-id="0095e-118">A8-A11</span><span class="sxs-lookup"><span data-stu-id="0095e-118">A8-A11</span></span>](../articles/virtual-machines/windows/sizes-hpc.md) |<span data-ttu-id="0095e-119">225*</span><span class="sxs-lookup"><span data-stu-id="0095e-119">225*</span></span> |
+| [<span data-ttu-id="0095e-120">D1-D14</span><span class="sxs-lookup"><span data-stu-id="0095e-120">D1-D14</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-121">160</span><span class="sxs-lookup"><span data-stu-id="0095e-121">160</span></span> |
+| [<span data-ttu-id="0095e-122">D1_v2-D15_v2</span><span class="sxs-lookup"><span data-stu-id="0095e-122">D1_v2-D15_v2</span></span>](../articles/virtual-machines/windows/sizes-general.md) |<span data-ttu-id="0095e-123">210 - 250*</span><span class="sxs-lookup"><span data-stu-id="0095e-123">210 - 250*</span></span> |
+| [<span data-ttu-id="0095e-124">DS1-DS14</span><span class="sxs-lookup"><span data-stu-id="0095e-124">DS1-DS14</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |<span data-ttu-id="0095e-125">160</span><span class="sxs-lookup"><span data-stu-id="0095e-125">160</span></span> |
+| [<span data-ttu-id="0095e-126">DS1_v2-DS15_v2</span><span class="sxs-lookup"><span data-stu-id="0095e-126">DS1_v2-DS15_v2</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |<span data-ttu-id="0095e-127">210-250*</span><span class="sxs-lookup"><span data-stu-id="0095e-127">210-250*</span></span> |
+| [<span data-ttu-id="0095e-128">D_v3</span><span class="sxs-lookup"><span data-stu-id="0095e-128">D_v3</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-general.md) |<span data-ttu-id="0095e-129">160-190* **</span><span class="sxs-lookup"><span data-stu-id="0095e-129">160-190* **</span></span> |
+| [<span data-ttu-id="0095e-130">Ds_v3</span><span class="sxs-lookup"><span data-stu-id="0095e-130">Ds_v3</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-general.md) |<span data-ttu-id="0095e-131">160-190* **</span><span class="sxs-lookup"><span data-stu-id="0095e-131">160-190* **</span></span> |
+| [<span data-ttu-id="0095e-132">E_v3</span><span class="sxs-lookup"><span data-stu-id="0095e-132">E_v3</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |<span data-ttu-id="0095e-133">160-190* **</span><span class="sxs-lookup"><span data-stu-id="0095e-133">160-190* **</span></span> |
+| [<span data-ttu-id="0095e-134">Es_v3</span><span class="sxs-lookup"><span data-stu-id="0095e-134">Es_v3</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |<span data-ttu-id="0095e-135">160-190* **</span><span class="sxs-lookup"><span data-stu-id="0095e-135">160-190* **</span></span> |
+| [<span data-ttu-id="0095e-136">F1-F16</span><span class="sxs-lookup"><span data-stu-id="0095e-136">F1-F16</span></span>](../articles/virtual-machines/windows/sizes-compute.md) |<span data-ttu-id="0095e-137">210-250*</span><span class="sxs-lookup"><span data-stu-id="0095e-137">210-250*</span></span> |
+| [<span data-ttu-id="0095e-138">F1s-F16s</span><span class="sxs-lookup"><span data-stu-id="0095e-138">F1s-F16s</span></span>](../articles/virtual-machines/windows/sizes-compute.md) |<span data-ttu-id="0095e-139">210-250*</span><span class="sxs-lookup"><span data-stu-id="0095e-139">210-250*</span></span> |
+| [<span data-ttu-id="0095e-140">G1-G5</span><span class="sxs-lookup"><span data-stu-id="0095e-140">G1-G5</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |<span data-ttu-id="0095e-141">180 - 240*</span><span class="sxs-lookup"><span data-stu-id="0095e-141">180 - 240*</span></span> |
+| [<span data-ttu-id="0095e-142">GS1-GS5</span><span class="sxs-lookup"><span data-stu-id="0095e-142">GS1-GS5</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |<span data-ttu-id="0095e-143">180 - 240*</span><span class="sxs-lookup"><span data-stu-id="0095e-143">180 - 240*</span></span> |
+| [<span data-ttu-id="0095e-144">H</span><span class="sxs-lookup"><span data-stu-id="0095e-144">H</span></span>](../articles/virtual-machines/windows/sizes-hpc.md) |<span data-ttu-id="0095e-145">290 - 300*</span><span class="sxs-lookup"><span data-stu-id="0095e-145">290 - 300*</span></span> |
+| [<span data-ttu-id="0095e-146">L4s-L32s</span><span class="sxs-lookup"><span data-stu-id="0095e-146">L4s-L32s</span></span>](../articles/virtual-machines/windows/sizes-storage.md) |<span data-ttu-id="0095e-147">180 - 240*</span><span class="sxs-lookup"><span data-stu-id="0095e-147">180 - 240*</span></span> |
+| [<span data-ttu-id="0095e-148">M</span><span class="sxs-lookup"><span data-stu-id="0095e-148">M</span></span>](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) | <span data-ttu-id="0095e-149">160-180**</span><span class="sxs-lookup"><span data-stu-id="0095e-149">160-180**</span></span> |
 
-*로 표시된 ACU는 Intel® 터보 기술을 사용하여 CPU 주파수를 증가시키고 성능 향상을 제공합니다.  상승량은 VM 크기, 워크로드 및 동일한 호스트에서 실행 중인 다른 작업에 따라 달라질 수 있습니다.
+<span data-ttu-id="0095e-150">*로 표시된 ACU는 Intel® 터보 기술을 사용하여 CPU 주파수를 증가시키고 성능 향상을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-150">ACUs marked with a * use Intel® Turbo technology to increase CPU frequency and provide a performance boost.</span></span>  <span data-ttu-id="0095e-151">상승량은 VM 크기, 워크로드 및 동일한 호스트에서 실행 중인 다른 작업에 따라 달라질 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0095e-151">The amount of the boost can vary based on the VM size, workload, and other workloads running on the same host.</span></span>
 
-**하이퍼 스레드 
+<span data-ttu-id="0095e-152">**하이퍼 스레드</span><span class="sxs-lookup"><span data-stu-id="0095e-152">**Hyper-threaded.</span></span> 

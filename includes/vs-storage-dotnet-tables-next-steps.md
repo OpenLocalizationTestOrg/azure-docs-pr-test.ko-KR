@@ -1,9 +1,9 @@
-이제 Azure 테이블 저장소의 기본 사항을 배웠으므로 다음 링크를 따라 좀 더 복잡한 저장소 작업에 대해 알아보세요.
+<span data-ttu-id="cb422-101">이제 Azure 테이블 저장소의 기본 사항을 배웠으므로 다음 링크를 따라 좀 더 복잡한 저장소 작업에 대해 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="cb422-101">Now that you've learned the basics of Azure Table storage, follow these links to learn about more complex storage tasks.</span></span>
 
-* 사용 가능한 API에 대한 자세한 내용은 [.NET용 Azure 저장소 클라이언트 라이브러리](http://go.microsoft.com/fwlink/?LinkID=390731) 의 테이블 서비스 참조 설명서를 참조하세요.
-* [Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
-* Azure에 데이터를 저장하기 위한 추가 옵션에 대한 자세한 내용은 추가 기능 가이드를 참조하세요.
-  * Azure 저장소 Blob을 사용하려면 [.NET을 사용하여 Azure Blob 저장소 시작](../articles/storage/blobs/storage-dotnet-how-to-use-blobs.md)을 참조하세요.
-  * Azure 저장소 큐를 사용하려면 [.NET을 사용하여 Azure 큐 저장소 시작](../articles/storage/queues/storage-dotnet-how-to-use-queues.md)을 참조하세요.
-  * 관계형 데이터를 저장하려면 [.NET(C#)을 사용하여 SQL 데이터베이스에 연결](../articles/sql-database/sql-database-develop-dotnet-simple.md)을 참조하세요.
+* <span data-ttu-id="cb422-102">사용 가능한 API에 대한 자세한 내용은 [.NET용 Azure 저장소 클라이언트 라이브러리](http://go.microsoft.com/fwlink/?LinkID=390731) 의 테이블 서비스 참조 설명서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb422-102">View the Table Service reference documentation in the [Azure Storage Client Library for .NET](http://go.microsoft.com/fwlink/?LinkID=390731) reference for complete details about available APIs.</span></span>
+* <span data-ttu-id="cb422-103">[Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)</span><span class="sxs-lookup"><span data-stu-id="cb422-103">To learn how to simplify the code you write to work with Azure Storage, check out [What is the Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)</span></span>
+* <span data-ttu-id="cb422-104">Azure에 데이터를 저장하기 위한 추가 옵션에 대한 자세한 내용은 추가 기능 가이드를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb422-104">View more feature guides to learn about additional options for storing data in Azure.</span></span>
+  * <span data-ttu-id="cb422-105">Azure 저장소 Blob을 사용하려면 [.NET을 사용하여 Azure Blob 저장소 시작](../articles/storage/blobs/storage-dotnet-how-to-use-blobs.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb422-105">To work with Azure Storage Blobs, see [Get Started with Azure Blob storage using .NET](../articles/storage/blobs/storage-dotnet-how-to-use-blobs.md).</span></span>
+  * <span data-ttu-id="cb422-106">Azure 저장소 큐를 사용하려면 [.NET을 사용하여 Azure 큐 저장소 시작](../articles/storage/queues/storage-dotnet-how-to-use-queues.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb422-106">To work with Azure Storage Queues, [Get started with Azure Queue storage using .NET](../articles/storage/queues/storage-dotnet-how-to-use-queues.md).</span></span>
+  * <span data-ttu-id="cb422-107">관계형 데이터를 저장하려면 [.NET(C#)을 사용하여 SQL 데이터베이스에 연결](../articles/sql-database/sql-database-develop-dotnet-simple.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb422-107">To store relational data, see [Connect to SQL Database by using .NET (C#)](../articles/sql-database/sql-database-develop-dotnet-simple.md).</span></span>
 

@@ -1,13 +1,13 @@
 > [!IMPORTANT]
-> 프로젝트에 사용되는 SCP.Net 버전은 HDInsight 클러스터에 있는 Storm 버전과 일치해야 합니다. 다음 표를 사용하여 사용해야 할 버전을 확인합니다.
+> <span data-ttu-id="6d45d-101">프로젝트에 사용되는 SCP.Net 버전은 HDInsight 클러스터에 있는 Storm 버전과 일치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6d45d-101">The SCP.Net version used in your project must match the Storm version present on your HDInsight cluster.</span></span> <span data-ttu-id="6d45d-102">다음 표를 사용하여 사용해야 할 버전을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="6d45d-102">Use the following table to determine which version you should use:</span></span>
 > 
-> | HDInsight 버전 | Apache Storm 버전 | SCP.NET 버전 | 기본 모노 버전 |
+> | <span data-ttu-id="6d45d-103">HDInsight 버전</span><span class="sxs-lookup"><span data-stu-id="6d45d-103">HDInsight version</span></span> | <span data-ttu-id="6d45d-104">Apache Storm 버전</span><span class="sxs-lookup"><span data-stu-id="6d45d-104">Apache Storm version</span></span> | <span data-ttu-id="6d45d-105">SCP.NET 버전</span><span class="sxs-lookup"><span data-stu-id="6d45d-105">SCP.NET version</span></span> | <span data-ttu-id="6d45d-106">기본 모노 버전</span><span class="sxs-lookup"><span data-stu-id="6d45d-106">Default Mono version</span></span> |
 > |:---:|:---:|:---:|:---:|
-> | 3.3 |0.10.0.x |0.10.0.x (Windows 기반 클러스터만) | 해당 없음 |
-> | 3.4 |0.10.0.x |0.10.0.x | 3.2.8 |
-> | 3.5 |1.0.2.x |1.0.0.x | 4.2.1 |
-> | 3.6 |1.1.0.# | 1.0.0.x | 4.2.8 |
+> | <span data-ttu-id="6d45d-107">3.3</span><span class="sxs-lookup"><span data-stu-id="6d45d-107">3.3</span></span> |<span data-ttu-id="6d45d-108">0.10.0.x</span><span class="sxs-lookup"><span data-stu-id="6d45d-108">0.10.0.x</span></span> |<span data-ttu-id="6d45d-109">0.10.0.x (Windows 기반 클러스터만)</span><span class="sxs-lookup"><span data-stu-id="6d45d-109">0.10.0.x (Windows-based clusters only)</span></span> | <span data-ttu-id="6d45d-110">해당 없음</span><span class="sxs-lookup"><span data-stu-id="6d45d-110">NA</span></span> |
+> | <span data-ttu-id="6d45d-111">3.4</span><span class="sxs-lookup"><span data-stu-id="6d45d-111">3.4</span></span> |<span data-ttu-id="6d45d-112">0.10.0.x</span><span class="sxs-lookup"><span data-stu-id="6d45d-112">0.10.0.x</span></span> |<span data-ttu-id="6d45d-113">0.10.0.x</span><span class="sxs-lookup"><span data-stu-id="6d45d-113">0.10.0.x</span></span> | <span data-ttu-id="6d45d-114">3.2.8</span><span class="sxs-lookup"><span data-stu-id="6d45d-114">3.2.8</span></span> |
+> | <span data-ttu-id="6d45d-115">3.5</span><span class="sxs-lookup"><span data-stu-id="6d45d-115">3.5</span></span> |<span data-ttu-id="6d45d-116">1.0.2.x</span><span class="sxs-lookup"><span data-stu-id="6d45d-116">1.0.2.x</span></span> |<span data-ttu-id="6d45d-117">1.0.0.x</span><span class="sxs-lookup"><span data-stu-id="6d45d-117">1.0.0.x</span></span> | <span data-ttu-id="6d45d-118">4.2.1</span><span class="sxs-lookup"><span data-stu-id="6d45d-118">4.2.1</span></span> |
+> | <span data-ttu-id="6d45d-119">3.6</span><span class="sxs-lookup"><span data-stu-id="6d45d-119">3.6</span></span> |<span data-ttu-id="6d45d-120">1.1.0.#</span><span class="sxs-lookup"><span data-stu-id="6d45d-120">1.1.0.#</span></span> | <span data-ttu-id="6d45d-121">1.0.0.x</span><span class="sxs-lookup"><span data-stu-id="6d45d-121">1.0.0.x</span></span> | <span data-ttu-id="6d45d-122">4.2.8</span><span class="sxs-lookup"><span data-stu-id="6d45d-122">4.2.8</span></span> |
 > 
-> HDInsight와 함께 제공되는 구성 요소에 대한 자세한 내용은 [HDInsight 구성 요소 버전](../articles/hdinsight/hdinsight-component-versioning.md)을 참조하세요.
+> <span data-ttu-id="6d45d-123">HDInsight와 함께 제공되는 구성 요소에 대한 자세한 내용은 [HDInsight 구성 요소 버전](../articles/hdinsight/hdinsight-component-versioning.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6d45d-123">For more information on components provided with HDInsight, see [HDInsight component versions](../articles/hdinsight/hdinsight-component-versioning.md).</span></span>
 
 

@@ -1,6 +1,6 @@
-| 항목 | 설명 | 링크 |
+| <span data-ttu-id="21b50-101">항목</span><span class="sxs-lookup"><span data-stu-id="21b50-101">Item</span></span> | <span data-ttu-id="21b50-102">설명</span><span class="sxs-lookup"><span data-stu-id="21b50-102">Description</span></span> | <span data-ttu-id="21b50-103">링크</span><span class="sxs-lookup"><span data-stu-id="21b50-103">Link</span></span> |
 | --- | --- | --- |
-| 런타임 |스크립트 호스트, 트리거 및 바인딩, 언어 지원 |[문제 보관](https://github.com/Azure/azure-webjobs-sdk-script/issues) |
-| 템플릿 |생성 템플에 대한 코드 문제 |[문제 보관](https://github.com/Azure/azure-webjobs-sdk-templates/issues) |
-| 포털 |사용자 인터페이스 또는 환경 문제 |[문제 보관](https://github.com/ProjectKudu/AzureFunctionsPortal/issues) |
+| <span data-ttu-id="21b50-104">런타임</span><span class="sxs-lookup"><span data-stu-id="21b50-104">Runtime</span></span> |<span data-ttu-id="21b50-105">스크립트 호스트, 트리거 및 바인딩, 언어 지원</span><span class="sxs-lookup"><span data-stu-id="21b50-105">Script Host, Triggers & Bindings, Language Support</span></span> |[<span data-ttu-id="21b50-106">문제 보관</span><span class="sxs-lookup"><span data-stu-id="21b50-106">File an Issue</span></span>](https://github.com/Azure/azure-webjobs-sdk-script/issues) |
+| <span data-ttu-id="21b50-107">템플릿</span><span class="sxs-lookup"><span data-stu-id="21b50-107">Templates</span></span> |<span data-ttu-id="21b50-108">생성 템플에 대한 코드 문제</span><span class="sxs-lookup"><span data-stu-id="21b50-108">Code Issues with Creation Template</span></span> |[<span data-ttu-id="21b50-109">문제 보관</span><span class="sxs-lookup"><span data-stu-id="21b50-109">File an Issue</span></span>](https://github.com/Azure/azure-webjobs-sdk-templates/issues) |
+| <span data-ttu-id="21b50-110">포털</span><span class="sxs-lookup"><span data-stu-id="21b50-110">Portal</span></span> |<span data-ttu-id="21b50-111">사용자 인터페이스 또는 환경 문제</span><span class="sxs-lookup"><span data-stu-id="21b50-111">User Interface or Experience Issue</span></span> |[<span data-ttu-id="21b50-112">문제 보관</span><span class="sxs-lookup"><span data-stu-id="21b50-112">File an Issue</span></span>](https://github.com/ProjectKudu/AzureFunctionsPortal/issues) |
 
