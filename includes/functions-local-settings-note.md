@@ -1,0 +1,2 @@
+>[!Note]
+> <span data-ttu-id="b0c82-101">로컬로 개발하는 경우 Azure Storage 계정을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="b0c82-101">We recommend that you use an Azure Storage account when developing locally.</span></span> <span data-ttu-id="b0c82-102">Azure Functions 도구에서 Azure Storage 에뮬레이터를 사용하도록 지원하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b0c82-102">Use of the Azure Storage Emulator is not supported by Azure Functions tools.</span></span>
