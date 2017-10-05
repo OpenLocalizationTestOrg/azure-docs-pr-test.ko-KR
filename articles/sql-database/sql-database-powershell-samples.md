@@ -1,0 +1,51 @@
+---
+title: "SQL Database에 대한 Azure PowerShell 스크립트 예제 | Microsoft Docs"
+description: "Azure SQL Database 서버, 탄력적 풀, 데이터베이스 및 방화벽을 만들고 관리하는 데 유용한 Azure PowerShell 스크립트 예제입니다."
+services: sql-database
+documentationcenter: sql-database
+author: CarlRabeler
+manager: jhubbard
+editor: tysonn
+tags: azure-service-management
+ms.assetid: 
+ms.service: sql-database
+ms.custom: overview-samples
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: sql-database
+ms.workload: database
+ms.date: 06/23/2017
+ms.author: janeng
+ms.openlocfilehash: 5a5f77b9adafe32e8559d0b3396febca4b191de3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/18/2017
+---
+# <a name="azure-powershell-samples-for-azure-sql-database"></a><span data-ttu-id="b4b10-103">Azure SQL Database에 대한 Azure PowerShell 샘플</span><span class="sxs-lookup"><span data-stu-id="b4b10-103">Azure PowerShell samples for Azure SQL Database</span></span>
+
+<span data-ttu-id="b4b10-104">다음 표에는 Azure SQL Database의 Azure PowerShell 샘플 스크립트에 대한 링크가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-104">The following table includes links to sample Azure PowerShell scripts for Azure SQL Database.</span></span>
+
+| |  |
+|---|---|
+|<span data-ttu-id="b4b10-105">**단일 데이터베이스 및 탄력적 풀 만들기**</span><span class="sxs-lookup"><span data-stu-id="b4b10-105">**Create a single database and an elastic pool**</span></span>||
+| [<span data-ttu-id="b4b10-106">단일 데이터베이스 만들기 및 방화벽 규칙 구성</span><span class="sxs-lookup"><span data-stu-id="b4b10-106">Create a single database and configure a firewall rule</span></span>](scripts/sql-database-create-and-configure-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-107">이 PowerShell 스크립트는 단일 Azure SQL Database를 만들고 서버 수준 방화벽 규칙을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-107">This PowerShell script creates a single Azure SQL database and configures a server-level firewall rule.</span></span> |
+| [<span data-ttu-id="b4b10-108">탄력적 풀 만들기 및 풀된 데이터베이스 이동</span><span class="sxs-lookup"><span data-stu-id="b4b10-108">Create elastic pools and move pooled databases</span></span>](scripts/sql-database-move-database-between-pools-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-109">이 PowerShell 스크립트는 Azure SQL Database 탄력적 풀을 만들고 풀된 데이터베이스를 이동한 후 성능 수준을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-109">This PowerShell script creates Azure SQL Database elastic pools, and moves pooled databases, and changes performance levels.</span></span>|
+|<span data-ttu-id="b4b10-110">**지역에서 복제 및 장애 조치(failover) 구성**</span><span class="sxs-lookup"><span data-stu-id="b4b10-110">**Configure geo-replication and failover**</span></span>||
+| [<span data-ttu-id="b4b10-111">활성 지역 복제를 사용하여 단일 데이터베이스 구성 및 장애 조치(failover)</span><span class="sxs-lookup"><span data-stu-id="b4b10-111">Configure and failover a single database using active geo-replication</span></span>](scripts/sql-database-setup-geodr-and-failover-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| <span data-ttu-id="b4b10-112">이 PowerShell 스크립트는 단일 Azure SQL Database에 대해 활성 지역 복제를 구성하고 보조 복제본으로 장애 조치(failover)합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-112">This PowerShell script configures active geo-replication for a single Azure SQL database and fails it over to the secondary replica.</span></span> |
+| [<span data-ttu-id="b4b10-113">활성 지역 복제를 사용하여 풀된 데이터베이스 구성 및 장애 조치(failover)</span><span class="sxs-lookup"><span data-stu-id="b4b10-113">Configure and failover a pooled database using active geo-replication</span></span>](scripts/sql-database-setup-geodr-and-failover-pool-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| <span data-ttu-id="b4b10-114">이 PowerShell 스크립트는 SQL 탄력적 풀의 단일 Azure SQL Database에 대해 활성 지역 복제를 구성하고 보조 복제본으로 장애 조치(failover)합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-114">This PowerShell script configures active geo-replication for an Azure SQL database in a SQL elastic pool, and fails it over to the secondary replica.</span></span> |
+| [<span data-ttu-id="b4b10-115">단일 데이터베이스에 대한 장애 조치(failover) 그룹 구성 및 장애 조치(failover)(미리 보기)</span><span class="sxs-lookup"><span data-stu-id="b4b10-115">Configure and failover a failover group for a single database (preview)</span></span>](scripts/sql-database-setup-geodr-failover-database-failover-group-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-116">이 PowerShell 스크립트는 Azure SQL Database 서버 인스턴스의 장애 조치(failover) 그룹을 구성하고, 장애 조치(failover) 그룹에 데이터베이스를 추가하고, 보조 서버로 장애 조치(failover)합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-116">This PowerShell script configures a failover group for an Azure SQL Database server instance, adds a database to the failover group, and fails it over to the secondary server</span></span> |
+|<span data-ttu-id="b4b10-117">**단일 데이터베이스 및 탄력적 풀 크기 조정**</span><span class="sxs-lookup"><span data-stu-id="b4b10-117">**Scale a single databases and an elastic pool**</span></span>||
+| [<span data-ttu-id="b4b10-118">단일 데이터베이스 크기 조정</span><span class="sxs-lookup"><span data-stu-id="b4b10-118">Scale a single database</span></span>](scripts/sql-database-monitor-and-scale-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-119">이 PowerShell 스크립트는 Azure SQL Database의 성능 메트릭을 모니터링하고, 더 높은 성능 수준으로 확장하고, 성능 메트릭 중 하나에 경고 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-119">This PowerShell script monitors the performance metrics of an Azure SQL database, scales it to a higher performance level and creates an alert rule on one of the performance metrics.</span></span> |
+| [<span data-ttu-id="b4b10-120">탄력적 풀 크기 조정</span><span class="sxs-lookup"><span data-stu-id="b4b10-120">Scale an elastic pool</span></span>](scripts/sql-database-monitor-and-scale-pool-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-121">이 PowerShell 스크립트는 Azure SQL Database 탄력적 풀의 성능 메트릭을 모니터링하고, 더 높은 성능 수준으로 확장하고, 성능 메트릭 중 하나에 경고 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-121">This PowerShell script monitors the performance metrics of an Azure SQL Database elastic pool, scales it to a higher performance level, and creates an alert rule on one of the performance metrics.</span></span>  |
+| <span data-ttu-id="b4b10-122">**감사 및 위협 감지**</span><span class="sxs-lookup"><span data-stu-id="b4b10-122">**Auditing and threat detection**</span></span> |
+| [<span data-ttu-id="b4b10-123">감사 및 위협 감지 구성</span><span class="sxs-lookup"><span data-stu-id="b4b10-123">Configure auditing and threat-detection</span></span>](scripts/sql-database-auditing-and-threat-detection-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| <span data-ttu-id="b4b10-124">이 PowerShell 스크립트는 Azure SQL Database에 대한 감사 및 위협 감지 정책을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-124">This PowerShell script configures auditing and threat detection policies for an Azure SQL database.</span></span> |
+| <span data-ttu-id="b4b10-125">**데이터베이스 복원, 복사 및 가져오기**</span><span class="sxs-lookup"><span data-stu-id="b4b10-125">**Restore, copy, and import a database**</span></span>||
+| [<span data-ttu-id="b4b10-126">데이터베이스 복원</span><span class="sxs-lookup"><span data-stu-id="b4b10-126">Restore a database</span></span>](scripts/sql-database-restore-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| <span data-ttu-id="b4b10-127">이 PowerShell 스크립트는 지역 중복 백업에서 Azure SQL Database를 복원하고 삭제된 Azure SQL Database를 최신 백업으로 복원합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-127">This PowerShell script restores an Azure SQL database from a geo-redundant backup and restores a deleted Azure SQL database to the latest backup.</span></span> |
+| [<span data-ttu-id="b4b10-128">새 서버에 데이터베이스 복사</span><span class="sxs-lookup"><span data-stu-id="b4b10-128">Copy a database to new server</span></span>](scripts/sql-database-copy-database-to-new-server-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| <span data-ttu-id="b4b10-129">이 PowerShell 스크립트는 새 Azure SQL Server에 기존 Azure SQL Database의 복사본을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-129">This PowerShell script creates a copy of an existing Azure SQL database in a new Azure SQL server.</span></span> |
+| [<span data-ttu-id="b4b10-130">bacpac 파일에서 데이터베이스 가져오기</span><span class="sxs-lookup"><span data-stu-id="b4b10-130">Import a database from a bacpac file</span></span>](scripts/sql-database-import-from-bacpac-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| <span data-ttu-id="b4b10-131">이 PowerShell 스크립트는 bacpac 파일에서 Azure SQL Server로 데이터베이스를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-131">This PowerShell script imports a database to an Azure SQL server from a bacpac file.</span></span> |
+| <span data-ttu-id="b4b10-132">**데이터베이스 간 데이터 동기화**</span><span class="sxs-lookup"><span data-stu-id="b4b10-132">**Sync data between databases**</span></span>||
+| [<span data-ttu-id="b4b10-133">SQL Database 간 데이터 동기화</span><span class="sxs-lookup"><span data-stu-id="b4b10-133">Sync data between SQL databases</span></span>](scripts/sql-database-sync-data-between-sql-databases.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-134">이 PowerShell 스크립트는 여러 Azure SQL Database 간에 동기화를 수행하도록 데이터 동기화를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-134">This PowerShell script configures Data Sync to sync between multiple Azure SQL databases.</span></span> |
+| [<span data-ttu-id="b4b10-135">SQL Database 및 SQL Server 온-프레미스 간의 데이터 동기화</span><span class="sxs-lookup"><span data-stu-id="b4b10-135">Sync data between SQL Database and SQL Server on-premises</span></span>](scripts/sql-database-sync-data-between-azure-onprem.md?toc=%2fpowershell%2fmodule%2ftoc.json) | <span data-ttu-id="b4b10-136">이 PowerShell 스크립트는 Azure SQL Database와 SQL Server 온-프레미스 데이터베이스 간에 동기화를 수행하도록 데이터 동기화를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="b4b10-136">This PowerShell script configures Data Sync to sync between an Azure SQL database and a SQL Server on-premises database.</span></span> |
+|||
+|||

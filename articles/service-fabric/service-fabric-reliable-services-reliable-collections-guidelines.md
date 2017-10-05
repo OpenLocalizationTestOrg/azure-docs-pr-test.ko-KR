@@ -1,0 +1,62 @@
+---
+title: "Azure Service Fabric에서 신뢰할 수 있는 컬렉션에 대한 지침 및 권장 사항 | Microsoft Docs"
+description: "Service Fabric의 신뢰할 수 있는 컬렉션을 사용하기 위한 지침 및 권장 사항"
+services: service-fabric
+documentationcenter: .net
+author: mcoskun
+manager: timlt
+editor: masnider,rajak
+ms.assetid: 62857523-604b-434e-bd1c-2141ea4b00d1
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: required
+ms.date: 5/3/2017
+ms.author: mcoskun
+ms.openlocfilehash: 053a7bca76362035e428fc11806b3e4f83d00946
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="guidelines-and-recommendations-for-reliable-collections-in-azure-service-fabric"></a><span data-ttu-id="550d6-103">Azure Service Fabric에서 신뢰할 수 있는 컬렉션에 대한 지침 및 권장 사항</span><span class="sxs-lookup"><span data-stu-id="550d6-103">Guidelines and recommendations for Reliable Collections in Azure Service Fabric</span></span>
+<span data-ttu-id="550d6-104">이 섹션에서는 신뢰할 수 있는 상태 관리자 및 신뢰할 수 있는 컬렉션을 사용하기 위한 지침을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-104">This section provides guidelines for using Reliable State Manager and Reliable Collections.</span></span> <span data-ttu-id="550d6-105">목표는 사용자에게 일반적인 문제가 발생하지 않도록 방지하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-105">The goal is to help users avoid common pitfalls.</span></span>
+
+<span data-ttu-id="550d6-106">지침은 *~하세요*, *~을(를) 고려하세요*, *~을(를) 피하세요* 및 *~하지 마세요.* 용어가 맨 끝에 추가된 간단한 권장 사항으로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-106">The guidelines are organized as simple recommendations prefixed with the terms *Do*, *Consider*, *Avoid* and *Do not*.</span></span>
+
+* <span data-ttu-id="550d6-107">읽기 작업에 의해 반환되는 사용자 지정 형식의 개체(예: `TryPeekAsync` 또는 `TryGetValueAsync`)는 수정하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="550d6-107">Do not modify an object of custom type returned by read operations (for example, `TryPeekAsync` or `TryGetValueAsync`).</span></span> <span data-ttu-id="550d6-108">신뢰할 수 있는 컬렉션은 동시 컬렉션처럼 개체에 대한 복사본이 아닌 참조를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-108">Reliable Collections, just like Concurrent Collections, return a reference to the objects and not a copy.</span></span>
+* <span data-ttu-id="550d6-109">수정하기 전에 사용자 지정 형식의 반환된 개체에 대한 전체 복사를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-109">Do deep copy the returned object of a custom type before modifying it.</span></span> <span data-ttu-id="550d6-110">구조체 및 기본 제공 형식은 pass-by-value이므로 전체 복사를 수행할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-110">Since structs and built-in types are pass-by-value, you do not need to do a deep copy on them.</span></span>
+* <span data-ttu-id="550d6-111">시간제한에 `TimeSpan.MaxValue` 를 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="550d6-111">Do not use `TimeSpan.MaxValue` for time-outs.</span></span> <span data-ttu-id="550d6-112">시간 제한은 교착 상태를 감지하는 데 사용되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-112">Time-outs should be used to detect deadlocks.</span></span>
+* <span data-ttu-id="550d6-113">트랜잭션을 커밋, 중단 또는 삭제한 후에는 사용하지 마십시오.</span><span class="sxs-lookup"><span data-stu-id="550d6-113">Do not use a transaction after it has been committed, aborted, or disposed.</span></span>
+* <span data-ttu-id="550d6-114">열거형이 만들어진 트랜잭션 범위 외부에서는 해당 열거형을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="550d6-114">Do not use an enumeration outside of the transaction scope it was created in.</span></span>
+* <span data-ttu-id="550d6-115">다른 트랜잭션의 `using` 문 내에 트랜잭션을 만들지 마세요. 교착 상태가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-115">Do not create a transaction within another transaction’s `using` statement because it can cause deadlocks.</span></span>
+* <span data-ttu-id="550d6-116">`IComparable<TKey>` 구현이 올바른지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="550d6-116">Do ensure that your `IComparable<TKey>` implementation is correct.</span></span> <span data-ttu-id="550d6-117">시스템은 검사점 및 행 병합을 위해 `IComparable<TKey>`에 대한 종속성을 보유합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-117">The system takes dependency on `IComparable<TKey>` for merging checkpoints and rows.</span></span>
+* <span data-ttu-id="550d6-118">특정 유형의 교착 상태를 방지하기 위해 항목을 업데이트하려는 경우에는 항목을 읽을 때 업데이트 잠금을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="550d6-118">Do use Update lock when reading an item with an intention to update it to prevent a certain class of deadlocks.</span></span>
+* <span data-ttu-id="550d6-119">항목(예: 신뢰할 수 있는 사전에 대한 TKey + TValue)을 80KB 미만으로 유지하는 것이 좋으며, 작을수록 더 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-119">Consider keeping your items (for example, TKey + TValue for Reliable Dictionary) below 80 KBytes: smaller the better.</span></span> <span data-ttu-id="550d6-120">이렇게 하면 디스크 및 네트워크 IO 요구 사항뿐만 아니라 큰 개체 힙 사용량도 줄어듭니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-120">This reduces the amount of Large Object Heap usage as well as disk and network IO requirements.</span></span> <span data-ttu-id="550d6-121">주로 값의 작은 부분만 업데이트할 때 중복 데이터 복제도 줄어듭니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-121">Often, it reduces replicating duplicate data when only one small part of the value is being updated.</span></span> <span data-ttu-id="550d6-122">신뢰할 수 있는 사전에서 이를 달성하는 일반적인 방법은 행을 여러 행으로 나누는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-122">Common way to achieve this in Reliable Dictionary, is to break your rows in to multiple rows.</span></span>
+* <span data-ttu-id="550d6-123">재해 복구를 위해 백업 및 복원 기능을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-123">Consider using backup and restore functionality to have disaster recovery.</span></span>
+* <span data-ttu-id="550d6-124">격리 수준이 다르기 때문에 동일한 트랜잭션 내에서 단일 엔터티 작업 및 다중 엔터티 작업을 혼합하지 마세요(예: `GetCountAsync`, `CreateEnumerableAsync`).</span><span class="sxs-lookup"><span data-stu-id="550d6-124">Avoid mixing single entity operations and multi-entity operations (e.g `GetCountAsync`, `CreateEnumerableAsync`) in the same transaction due to the different isolation levels.</span></span>
+* <span data-ttu-id="550d6-125">InvalidOperationException을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-125">Do handle InvalidOperationException.</span></span> <span data-ttu-id="550d6-126">여러 가지 이유로 시스템에서 사용자 트랜잭션이 중단될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-126">User transactions can be aborted by the system for variety of reasons.</span></span> <span data-ttu-id="550d6-127">예를 들어 신뢰할 수 있는 상태 관리자가 해당 역할을 기본 역할에서 다른 역할로 변경하거나 장기 실행 트랜잭션이 트랜잭션 로그 잘림을 차단하는 경우가 여기에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-127">For example, when the Reliable State Manager is changing its role out of Primary or when a long-running transaction is blocking truncation of the transactional log.</span></span> <span data-ttu-id="550d6-128">이러한 경우 트랜잭션이 이미 종료되었다는 InvalidOperationException이 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-128">In such cases, user may receive InvalidOperationException indicating that their transaction has already been terminated.</span></span> <span data-ttu-id="550d6-129">트랜잭션의 종료를 사용자가 요청하지 않다고 가정할 경우 이 예외를 처리하는 가장 좋은 방법은 트랜잭션을 삭제하고, 취소 토큰이 신호로 제공되었는지(또는 복제본의 역할이 변경) 확인하고, 그러한 경우에는 새 트랜잭션을 만든 후 다시 시도하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-129">Assuming, the termination of the transaction was not requested by the user, best way to handle this exception is to dispose the transaction, check if the cancellation token has been signaled (or the role of the replica has been changed), and if not create a new transaction and retry.</span></span>  
+
+<span data-ttu-id="550d6-130">이때</span><span class="sxs-lookup"><span data-stu-id="550d6-130">Here are some things to keep in mind:</span></span>
+
+* <span data-ttu-id="550d6-131">모든 신뢰할 수 있는 컬렉션 API의 기본 제한 시간은 4초입니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-131">The default time-out is four seconds for all the Reliable Collection APIs.</span></span> <span data-ttu-id="550d6-132">대부분의 사용자는 기본 제한 시간을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-132">Most users should use the default time-out.</span></span>
+* <span data-ttu-id="550d6-133">기본 취소 토큰은 신뢰할 수 있는 모든 컬렉션 API의 `CancellationToken.None` 입니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-133">The default cancellation token is `CancellationToken.None` in all Reliable Collections APIs.</span></span>
+* <span data-ttu-id="550d6-134">신뢰할 수 있는 사전의 키 형식 매개 변수(*TKey*)는 `GetHashCode()` 및 `Equals()`을 정확히 구현해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-134">The key type parameter (*TKey*) for a Reliable Dictionary must correctly implement `GetHashCode()` and `Equals()`.</span></span> <span data-ttu-id="550d6-135">키는 변경하지 않아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-135">Keys must be immutable.</span></span>
+* <span data-ttu-id="550d6-136">신뢰할 수 있는 컬렉션의 높은 가용성을 달성하려면 각 서비스에 하나 이상의 대상 및 최소 복제본 세트 크기 3이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-136">To achieve high availability for the Reliable Collections, each service should have at least a target and minimum replica set size of 3.</span></span>
+* <span data-ttu-id="550d6-137">보조에서 읽기 작업은 쿼럼 커밋되지 않는 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-137">Read operations on the secondary may read versions that are not quorum committed.</span></span>
+  <span data-ttu-id="550d6-138">즉, 단일 보조에서 읽은 데이터 버전은 거짓 처리될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-138">This means that a version of data that is read from a single secondary might be false progressed.</span></span>
+  <span data-ttu-id="550d6-139">주에서 읽은 내용은 항상 안정적이며 거짓 처리될 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="550d6-139">Reads from Primary are always stable: can never be false progressed.</span></span>
+
+### <a name="next-steps"></a><span data-ttu-id="550d6-140">다음 단계</span><span class="sxs-lookup"><span data-stu-id="550d6-140">Next steps</span></span>
+* [<span data-ttu-id="550d6-141">신뢰할 수 있는 컬렉션 작업</span><span class="sxs-lookup"><span data-stu-id="550d6-141">Working with Reliable Collections</span></span>](service-fabric-work-with-reliable-collections.md)
+* [<span data-ttu-id="550d6-142">트랜잭션 및 잠금</span><span class="sxs-lookup"><span data-stu-id="550d6-142">Transactions and Locks</span></span>](service-fabric-reliable-services-reliable-collections-transactions-locks.md)
+* [<span data-ttu-id="550d6-143">신뢰할 수 있는 상태 관리자 및 컬렉션 내부</span><span class="sxs-lookup"><span data-stu-id="550d6-143">Reliable State Manager and Collection Internals</span></span>](service-fabric-reliable-services-reliable-collections-internals.md)
+* <span data-ttu-id="550d6-144">데이터 관리</span><span class="sxs-lookup"><span data-stu-id="550d6-144">Managing Data</span></span>
+  * [<span data-ttu-id="550d6-145">백업 및 복원</span><span class="sxs-lookup"><span data-stu-id="550d6-145">Backup and Restore</span></span>](service-fabric-reliable-services-backup-restore.md)
+  * [<span data-ttu-id="550d6-146">Notifications</span><span class="sxs-lookup"><span data-stu-id="550d6-146">Notifications</span></span>](service-fabric-reliable-services-notifications.md)
+  * [<span data-ttu-id="550d6-147">Serialization 및 업그레이드</span><span class="sxs-lookup"><span data-stu-id="550d6-147">Serialization and Upgrade</span></span>](service-fabric-application-upgrade-data-serialization.md)
+  * [<span data-ttu-id="550d6-148">신뢰할 수 있는 상태 관리자 구성</span><span class="sxs-lookup"><span data-stu-id="550d6-148">Reliable State Manager configuration</span></span>](service-fabric-reliable-services-configuration.md)
+* <span data-ttu-id="550d6-149">기타</span><span class="sxs-lookup"><span data-stu-id="550d6-149">Others</span></span>
+  * [<span data-ttu-id="550d6-150">Reliable Services 빠른 시작</span><span class="sxs-lookup"><span data-stu-id="550d6-150">Reliable Services quick start</span></span>](service-fabric-reliable-services-quick-start.md)
+  * [<span data-ttu-id="550d6-151">신뢰할 수 있는 컬렉션에 대한 개발자 참조</span><span class="sxs-lookup"><span data-stu-id="550d6-151">Developer reference for Reliable Collections</span></span>](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)

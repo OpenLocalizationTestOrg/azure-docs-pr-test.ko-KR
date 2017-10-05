@@ -1,0 +1,29 @@
+---
+title: "<span data-ttu-id=\"71c5d-101\">Azure의 Linux VM 에이전트 및 확장 | Microsoft Docs</span><span class=\"sxs-lookup\"><span data-stu-id=\"71c5d-101\">Linux VM agent and extensions in Azure | Microsoft Docs</span></span>"
+description: "<span data-ttu-id=\"71c5d-102\">에이전트 및 확장에 대한 개요와 Linux VM에서 클래식 배포 모델을 사용하여 에이전트를 설치하는 방법을 제공합니다.</span><span class=\"sxs-lookup\"><span data-stu-id=\"71c5d-102\">Gives an overview of the agent and extensions, and how to install the agent, using the classic deployment model on a Linux VM.</span></span>"
+services: virtual-machines-linux
+documentationcenter: 
+author: squillace
+manager: timlt
+editor: 
+tags: azure-service-management
+ms.assetid: b41e3b21-9132-4d8d-804d-34920b2d0942
+ms.service: virtual-machines-linux
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure-services
+ms.date: 03/02/2017
+ms.author: rasquill
+ms.custom: H1Hack27Feb2017
+ms.openlocfilehash: 06b802c408ea5d1b2b40d05321e1a0014e99ca8b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="about-the-virtual-machine-agent-and-extensions-for-linux"></a><span data-ttu-id="71c5d-103">Linux용 가상 컴퓨터 에이전트 및 확장 정보</span><span class="sxs-lookup"><span data-stu-id="71c5d-103">About the virtual machine agent and extensions for Linux</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="71c5d-104">Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71c5d-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="71c5d-105">이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="71c5d-105">This article covers using the Classic deployment model.</span></span> <span data-ttu-id="71c5d-106">새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="71c5d-106">Microsoft recommends that most new deployments use the Resource Manager model.</span></span> <span data-ttu-id="71c5d-107">Resource Manager를 사용하는 VM 에이전트 및 확장에 대한 정보는 [여기](../extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="71c5d-107">For information about VM agents and extensions using Resource Manager, see [here](../extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+
+[!INCLUDE [virtual-machines-common-classic-agents-and-extensions](../../../../includes/virtual-machines-common-classic-agents-and-extensions.md)]

@@ -1,0 +1,51 @@
+---
+title: "Linux Azure 진단을 사용하여 로그 수집 | Microsoft Docs"
+description: "이 문서는 Azure에서 실행 중인 Service Fabric Linux 클러스터에서 로그를 수집하도록 Azure 진단을 설정하는 방법을 설명합니다."
+services: service-fabric
+documentationcenter: .net
+author: mani-ramaswamy
+manager: timlt
+editor: 
+ms.assetid: a160d469-8b7d-4560-82dd-8500db34a44a
+ms.service: service-fabric
+ms.devlang: dotNet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 6/28/2017
+ms.author: subramar
+ms.openlocfilehash: 3e41caaeb38c55d1c6c3bfdce2f81c86b4aff4d0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="collect-logs-by-using-azure-diagnostics"></a><span data-ttu-id="dd5e0-103">Azure 진단을 사용하여 로그 수집</span><span class="sxs-lookup"><span data-stu-id="dd5e0-103">Collect logs by using Azure Diagnostics</span></span>
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="dd5e0-104">Windows</span><span class="sxs-lookup"><span data-stu-id="dd5e0-104">Windows</span></span>](service-fabric-diagnostics-how-to-setup-wad.md)
+> * [<span data-ttu-id="dd5e0-105">Linux</span><span class="sxs-lookup"><span data-stu-id="dd5e0-105">Linux</span></span>](service-fabric-diagnostics-how-to-setup-lad.md)
+> 
+> 
+
+<span data-ttu-id="dd5e0-106">Azure 서비스 패브릭 클러스터를 실행할 때 모든 노드의 로그를 중앙 위치에 수집하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-106">When you're running an Azure Service Fabric cluster, it's a good idea to collect the logs from all the nodes in a central location.</span></span> <span data-ttu-id="dd5e0-107">중앙 위치에 로그를 두면 문제가 서비스에 있든, 응용 프로그램에 있든, 클러스터 자체에 있든 상관없이 손쉽게 분석하고 해결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-107">Having the logs in a central location makes it easy to analyze and troubleshoot issues, whether they are in your services, your application, or the cluster itself.</span></span> <span data-ttu-id="dd5e0-108">로그를 업로드 및 수집하는 방법 중 하나는 로그를 Azure Storage, Azure Application Insights 또는 Azure 이벤트 허브에 업로드하는 Azure 진단 확장을 사용하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-108">One way to upload and collect logs is to use the Azure Diagnostics extension, which uploads logs to Azure Storage, Azure Application Insights or Azure Event Hubs.</span></span> <span data-ttu-id="dd5e0-109">또한 저장소 또는 이벤트 허브의 이벤트를 읽고 [Log Analytics](../log-analytics/log-analytics-service-fabric.md) 또는 다른 로그 구문 분석 솔루션과 같은 제품에 배치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-109">You can also read the events from storage or Event Hubs and place them in a product such as [Log Analytics](../log-analytics/log-analytics-service-fabric.md) or another log-parsing solution.</span></span> <span data-ttu-id="dd5e0-110">[Azure Application Insights](https://azure.microsoft.com/services/application-insights/)에는 포괄적인 로그 검색 및 분석 서비스가 기본 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-110">[Azure Application Insights](https://azure.microsoft.com/services/application-insights/) comes with a comprehensive log search and analytics service built-in.</span></span>
+
+## <a name="log-sources-that-you-might-want-to-collect"></a><span data-ttu-id="dd5e0-111">수집하려는 로그 원본</span><span class="sxs-lookup"><span data-stu-id="dd5e0-111">Log sources that you might want to collect</span></span>
+* <span data-ttu-id="dd5e0-112">**Service Fabric 로그:** [LTTng](http://lttng.org)를 통해 플랫폼에서 내보내고 저장소 계정에 업로드됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-112">**Service Fabric logs**: Emitted from the platform via [LTTng](http://lttng.org) and uploaded to your storage account.</span></span> <span data-ttu-id="dd5e0-113">로그는 플랫폼에서 내보내는 작업 이벤트 또는 런타임 이벤트일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-113">Logs can be operational events or runtime events that the platform emits.</span></span> <span data-ttu-id="dd5e0-114">이러한 로그는 클러스터 매니페스트에서 지정하는 위치에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-114">These logs are stored in the location that the cluster manifest specifies.</span></span> <span data-ttu-id="dd5e0-115">(저장소 계정 세부 정보를 가져오려면 **AzureTableWinFabETWQueryable** 태그를 찾아서 **StoreConnectionString**을 검색합니다.)</span><span class="sxs-lookup"><span data-stu-id="dd5e0-115">(To get the storage account details, search for the tag **AzureTableWinFabETWQueryable** and look for **StoreConnectionString**.)</span></span>
+* <span data-ttu-id="dd5e0-116">**응용 프로그램 이벤트:** 서비스 코드에서 내보낸 이벤트입니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-116">**Application events**: Emitted from your service's code.</span></span> <span data-ttu-id="dd5e0-117">텍스트 기반 로그 파일을 작성하는 모든 로깅 솔루션을 사용할 수 있습니다(예: LTTng).</span><span class="sxs-lookup"><span data-stu-id="dd5e0-117">You can use any logging solution that writes text-based log files--for example, LTTng.</span></span> <span data-ttu-id="dd5e0-118">자세한 내용은 응용 프로그램 추적에 대한 LTTng 설명서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-118">For more information, see the LTTng documentation on tracing your application.</span></span>  
+
+## <a name="deploy-the-diagnostics-extension"></a><span data-ttu-id="dd5e0-119">진단 확장 배포</span><span class="sxs-lookup"><span data-stu-id="dd5e0-119">Deploy the Diagnostics extension</span></span>
+<span data-ttu-id="dd5e0-120">로그를 수집하는 첫 단계는 서비스 패브릭 클러스터의 각 VM에 진단 확장을 배포하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-120">The first step in collecting logs is to deploy the Diagnostics extension on each of the VMs in the Service Fabric cluster.</span></span> <span data-ttu-id="dd5e0-121">진단 확장은 각 VM에서 로그를 수집하여 사용자가 지정하는 저장소 계정에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-121">The Diagnostics extension collects logs on each VM and uploads them to the storage account that you specify.</span></span> <span data-ttu-id="dd5e0-122">단계는 Azure Portal 또는 Azure Resource Manager 사용 여부에 따라 달라집니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-122">The steps vary based on whether you use the Azure portal or Azure Resource Manager.</span></span>
+
+<span data-ttu-id="dd5e0-123">클러스터 만들기의 일환으로 클러스터 내의 VM에 진단 확장을 배포하려면 **진단**을 **켜기**로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-123">To deploy the Diagnostics extension to the VMs in the cluster as part of cluster creation, set **Diagnostics** to **On**.</span></span> <span data-ttu-id="dd5e0-124">클러스터를 만든 후에는 포털을 사용하여 이 설정을 변경할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-124">After you create the cluster, you can't change this setting by using the portal.</span></span>
+
+<span data-ttu-id="dd5e0-125">그런 다음 파일을 수집하여 저장소 계정에 배치하도록 LAD(Linux Azure 진단)를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-125">Then, configure Linux Azure Diagnostics (LAD) to collect the files and place them into your storage account.</span></span> <span data-ttu-id="dd5e0-126">이 과정은 [LAD를 사용하여 Linux VM 모니터링 및 진단](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 문서의 시나리오 3("고유한 로그 파일 업로드")에 설명되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-126">This process is explained as scenario 3 ("Upload your own log files") in the article [Using LAD to monitor and diagnose Linux VMs](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).</span></span> <span data-ttu-id="dd5e0-127">이 과정을 따라 하면 추적에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-127">Following this process gets you access to the traces.</span></span> <span data-ttu-id="dd5e0-128">추적을 원하는 시각화 도우미에 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-128">You can upload the traces to a visualizer of your choice.</span></span>
+
+<span data-ttu-id="dd5e0-129">Azure Resource Manager를 사용하여 진단 확장을 배포할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-129">You can also deploy the Diagnostics extension by using Azure Resource Manager.</span></span> <span data-ttu-id="dd5e0-130">Windows 및 Linux의 프로세스는 유사하며 Windows 클러스터는 [Azure 진단을 사용하여 로그를 수집하는 방법](service-fabric-diagnostics-how-to-setup-wad.md)에 설명되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-130">The process is similar for Windows and Linux and is documented for Windows clusters in [How to collect logs with Azure Diagnostics](service-fabric-diagnostics-how-to-setup-wad.md).</span></span>
+
+<span data-ttu-id="dd5e0-131">또한 [Linux와 함께 사용하는 Operations Management Suite Log Analytics](https://blogs.technet.microsoft.com/hybridcloud/2016/01/28/operations-management-suite-log-analytics-with-linux/)에 설명된 대로 Operations Management Suite를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-131">You can also use Operations Management Suite, as described in [Operations Management Suite Log Analytics with Linux](https://blogs.technet.microsoft.com/hybridcloud/2016/01/28/operations-management-suite-log-analytics-with-linux/).</span></span>
+
+<span data-ttu-id="dd5e0-132">이 구성을 완료하면 LAD 에이전트는 지정된 로그 파일을 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-132">After you finish this configuration, the LAD agent monitors the specified log files.</span></span> <span data-ttu-id="dd5e0-133">새 줄이 파일에 추가될 때마다 이 에이전트는 사용자가 지정한 저장소로 전송되는 syslog 항목을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-133">Whenever a new line is appended to the file, it creates a syslog entry that is sent to the storage that you specified.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="dd5e0-134">다음 단계</span><span class="sxs-lookup"><span data-stu-id="dd5e0-134">Next steps</span></span>
+<span data-ttu-id="dd5e0-135">문제를 해결하는 동안 살펴봐야 하는 이벤트에 대해 자세히 알아보려면 [LTTng 설명서](http://lttng.org/docs) 및 [LAD 사용](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dd5e0-135">To understand in more detail what events you should examine while troubleshooting issues, see [LTTng documentation](http://lttng.org/docs) and [Using LAD](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).</span></span>
+

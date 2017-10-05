@@ -1,0 +1,60 @@
+---
+title: "Azure 클라우드 서비스에 대한 일정한 가상 IP 주소를 유지하는 방법 | Microsoft Docs"
+description: "Azure 클라우드 서비스의 가상 IP 주소(VIP)가 변경되지 않도록 하는 방법에 대해 알아봅니다."
+services: visual-studio-online
+documentationcenter: na
+author: kraigb
+manager: ghogen
+editor: 
+ms.assetid: 4a58e2c6-7a79-4051-8a2c-99182ff8b881
+ms.service: multiple
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: multiple
+ms.date: 03/21/2017
+ms.author: kraigb
+ms.openlocfilehash: a76bcba5ab4ca8e1a4899e4aa28f734c09af2aa9
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/29/2017
+---
+# <a name="retain-a-constant-virtual-ip-address-for-an-azure-cloud-service"></a><span data-ttu-id="01bd4-103">Azure 클라우드 서비스의 가상 IP 주소를 일정하게 유지</span><span class="sxs-lookup"><span data-stu-id="01bd4-103">Retain a constant virtual IP address for an Azure cloud service</span></span>
+<span data-ttu-id="01bd4-104">Azure에서 호스팅되는 클라우드 서비스를 업데이트하는 경우 서비스의 가상 IP 주소(VIP)가 변경되지 않는지 확인해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-104">When you update a cloud service that's hosted in Azure, you might need to ensure that the virtual IP address (VIP) of the service doesn't change.</span></span> <span data-ttu-id="01bd4-105">많은 도메인 관리 서비스에서 도메인 이름을 등록하는 데 도메인 이름 시스템(DNS)을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-105">Many domain management services use the Domain Name System (DNS) for registering domain names.</span></span> <span data-ttu-id="01bd4-106">DNS는 VIP가 동일하게 유지되는 경우에만 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-106">DNS works only if the VIP remains the same.</span></span> <span data-ttu-id="01bd4-107">Azure 도구에서 **게시 마법사** 를 사용하여 클라우드 서비스를 업데이트할 때 VIP가 변경되지 않는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-107">You can use the **Publish Wizard** in Azure Tools to ensure that the VIP of your cloud service doesn’t change when you update it.</span></span> <span data-ttu-id="01bd4-108">클라우드 서비스에 대한 DNS 도메인 관리를 사용하는 방법에 대한 자세한 내용은 [Azure 클라우드 서비스에 대한 사용자 지정 도메인 이름 구성](cloud-services/cloud-services-custom-domain-name.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="01bd4-108">For more information about how to use DNS domain management for cloud services, see [Configuring a custom domain name for an Azure cloud service](cloud-services/cloud-services-custom-domain-name.md).</span></span>
+
+## <a name="publish-a-cloud-service-without-changing-its-vip"></a><span data-ttu-id="01bd4-109">VIP를 변경하지 않고 클라우드 서비스 게시</span><span class="sxs-lookup"><span data-stu-id="01bd4-109">Publish a cloud service without changing its VIP</span></span>
+<span data-ttu-id="01bd4-110">클라우드 서비스의 VIP는 프로덕션 환경과 같은 특정 환경에서 Azure에 처음 배포할 때 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-110">The VIP of a cloud service is allocated when you first deploy it to Azure in a particular environment, such as the production environment.</span></span> <span data-ttu-id="01bd4-111">VIP는 배포를 명시적으로 삭제하거나 배포 업데이트 프로세스에 의해 암시적으로 삭제된 경우에만 변경됩니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-111">The VIP changes only if you delete the deployment explicitly or the deployment is implicitly deleted by the deployment update process.</span></span> <span data-ttu-id="01bd4-112">VIP를 유지하려면 배포를 삭제해서는 안되며 Visual Studio에서 배포를 자동으로 삭제하지 않는지 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-112">To retain the VIP, you must not delete your deployment, and you must make sure that Visual Studio doesn’t delete your deployment automatically.</span></span> 
+
+<span data-ttu-id="01bd4-113">여러 배포 옵션을 지원하는 **게시 마법사**에서 배포 설정을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-113">You can specify deployment settings in the **Publish Wizard**, which supports several deployment options.</span></span> <span data-ttu-id="01bd4-114">새로 배포 또는 업데이트 배포를 증분 또는 동시에 진행하도록 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-114">You can specify a fresh deployment or an update deployment, which can be incremental or simultaneous.</span></span> <span data-ttu-id="01bd4-115">두 종류의 업데이트 배포 모두 VIP를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-115">Both kinds of update deployment retain the VIP.</span></span> <span data-ttu-id="01bd4-116">이러한 다양한 유형의 배포에 대한 정의는 [Azure 응용 프로그램 게시 마법사](vs-azure-tools-publish-azure-application-wizard.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="01bd4-116">For definitions of these different types of deployment, see [Publish Azure Application Wizard](vs-azure-tools-publish-azure-application-wizard.md).</span></span> <span data-ttu-id="01bd4-117">또한 오류가 발생하는 경우 클라우드 서비스의 이전 배포를 삭제할지 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-117">In addition, you can control whether the previous deployment of a cloud service is deleted if an error occurs.</span></span> <span data-ttu-id="01bd4-118">해당 옵션을 바르게 설정하지 않은 경우 VIP가 예기치 않게 변경될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-118">If you don't set that option correctly, the VIP might change unexpectedly.</span></span>
+
+## <a name="update-a-cloud-service-without-changing-its-vip"></a><span data-ttu-id="01bd4-119">VIP를 변경하지 않고 클라우드 서비스 업데이트</span><span class="sxs-lookup"><span data-stu-id="01bd4-119">Update a cloud service without changing its VIP</span></span>
+1. <span data-ttu-id="01bd4-120">Visual Studio에서 Azure 클라우드 서비스 프로젝트를 만들거나 엽니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-120">Create or open an Azure cloud service project in Visual Studio.</span></span> 
+
+2. <span data-ttu-id="01bd4-121">**솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-121">In **Solution Explorer**, right-click the project.</span></span> <span data-ttu-id="01bd4-122">바로 가기 메뉴에서 **게시**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-122">On the shortcut menu, select **Publish**.</span></span>
+
+    ![게시 메뉴](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/solution-explorer-publish-menu.png)
+
+3. <span data-ttu-id="01bd4-124">**Azure 응용 프로그램 게시** 대화 상자에서 배포할 구독을 선택하고 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-124">In the **Publish Azure Application** dialog box, select the Azure subscription to which you want to deploy.</span></span> <span data-ttu-id="01bd4-125">필요한 경우 로그인하고 **다음**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-125">Sign in if necessary, and select **Next**.</span></span>
+
+    ![Azure 응용 프로그램 게시 로그인 페이지](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-signin.png)
+
+4. <span data-ttu-id="01bd4-127">**일반 설정** 탭에서 배포 중인 클라우드 서비스 이름을 확인하고 **환경**, **빌드 구성** 및 **서비스 구성**이 모두 올바른지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-127">On the **Common Settings** tab, verify that the name of the cloud service to which you’re deploying, the **Environment**, the **Build configuration**, and the **Service configuration** are all correct.</span></span>
+
+    ![Azure 응용 프로그램 게시 일반 설정 탭](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-common-settings.png)
+
+5. <span data-ttu-id="01bd4-129">**고급 설정** 탭에서 **배포 레이블** 및 **저장소 계정**이 올바른지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-129">On the **Advanced Settings** tab, verify that the **Deployment label** and the **Storage account** are correct.</span></span> <span data-ttu-id="01bd4-130">**실패 시 배포 삭제** 확인란의 선택을 취소했는지 확인하고, **배포 업데이트** 확인란을 선택했는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-130">Verify that the **Delete deployment on failure** check box is cleared, and verify that the **Deployment update** check box is selected.</span></span> <span data-ttu-id="01bd4-131">**실패 시 배포 삭제** 확인란을 선택 취소하면 배포 중에 오류가 발생할 경우 VIP가 손실되지 않았는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-131">By clearing the **Delete deployment on failure** check box, you ensure that your VIP isn't lost if an error occurs during deployment.</span></span> <span data-ttu-id="01bd4-132">**배포 업데이트** 확인란을 선택하면 응용 프로그램을 다시 게시할 때 배포가 삭제되지 않고 VIP가 손실되지 않았는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-132">By selecting the **Deployment update** check box, you ensure that your deployment isn't deleted and your VIP isn't lost when you republish your application.</span></span> 
+
+    ![Azure 응용 프로그램 게시 고급 설정 탭](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-advanced-settings.png)
+
+6. <span data-ttu-id="01bd4-134">역할을 업데이트하는 방법을 자세히 지정하려면 **배포 업데이트** 옆의 **설정**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-134">To further specify how you want the roles to be updated, select **Settings** next to **Deployment update**.</span></span> <span data-ttu-id="01bd4-135">**증분 업데이트** 또는 **동시 업데이트**를 선택한 다음 **확인**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-135">Select either **Incremental update** or **Simultaneous update**, and select **OK**.</span></span> <span data-ttu-id="01bd4-136">**증분 업데이트**를 선택하면 응용 프로그램의 각 인스턴스를 하나씩 차례로 업데이트하므로 해당 응용 프로그램을 항상 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-136">Choose **Incremental update** to update each instance of your application, one after another, so that the application is always available.</span></span> <span data-ttu-id="01bd4-137">**동시 업데이트**를 선택하면 응용 프로그램의 모든 인스턴스를 동시에 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-137">Choose **Simultaneous update** to update all instances of your application at the same time.</span></span> <span data-ttu-id="01bd4-138">동시 업데이트는 신속하게 진행되지만 업데이트 과정 중에 서비스를 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-138">Simultaneous updating is faster, but your service might not be available during the update process.</span></span> <span data-ttu-id="01bd4-139">작업을 마쳤으면 **다음**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-139">When you are finished, select **Next**.</span></span>
+
+    ![Azure 응용 프로그램 게시 배포 설정 페이지](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-deployment-update-settings.png)
+
+7. <span data-ttu-id="01bd4-141">**Azure 응용 프로그램 게시** 대화 상자에서 **요약** 페이지가 표시될 때까지 **다음**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-141">In the **Publish Azure Application** dialog box, select **Next** until the **Summary** page is displayed.</span></span> <span data-ttu-id="01bd4-142">설정을 확인한 다음 **게시**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="01bd4-142">Verify your settings, and then select **Publish**.</span></span>
+   
+    ![Azure 응용 프로그램 게시 요약 페이지](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-summary.png)
+
+## <a name="next-steps"></a><span data-ttu-id="01bd4-144">다음 단계</span><span class="sxs-lookup"><span data-stu-id="01bd4-144">Next steps</span></span>
+- [<span data-ttu-id="01bd4-145">Visual Studio Azure 응용 프로그램 게시 마법사 사용</span><span class="sxs-lookup"><span data-stu-id="01bd4-145">Using the Visual Studio Publish Azure Application Wizard</span></span>](vs-azure-tools-publish-azure-application-wizard.md)
+
