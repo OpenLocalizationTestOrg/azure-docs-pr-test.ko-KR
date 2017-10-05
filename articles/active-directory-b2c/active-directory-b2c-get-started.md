@@ -14,13 +14,15 @@ ms.topic: article
 ms.devlang: na
 ms.date: 06/07/2017
 ms.author: swkrish
-ms.openlocfilehash: 8a1d4935397f59e5813afc6f04559e471187a779
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1a7eb94e3c74aa0dc187a6d203ba0cf885b97c4d
+ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 09/28/2017
 ---
 # <a name="create-an-azure-active-directory-b2c-tenant-in-the-azure-portal"></a>Azure Portal에서 Azure Active Directory B2C 테넌트 만들기
+
+Sipi가 편집 합니다.
 
 이 Quickstart를 통해 몇 분 이내에 Microsoft Azure AD(Azure Active Directory) B2C 테넌트를 만들 수 있습니다. 완료되면 B2C 응용 프로그램 등록에 사용할 B2C 테넌트를 갖습니다.
 
