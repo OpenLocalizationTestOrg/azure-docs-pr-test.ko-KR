@@ -1,0 +1,45 @@
+---
+title: "Azure Cosmos DB에 대한 Azure CLI 샘플 | Microsoft Docs"
+description: "Azure CLI 샘플 - Azure Cosmos DB 계정, 데이터베이스, 컨테이너, 하위 지역 및 방화벽을 만들고 관리합니다."
+services: cosmos-db
+author: mimig1
+manager: jhubbard
+editor: 
+tags: azure-service-management
+ms.assetid: 
+ms.service: cosmos-db
+ms.custom: mvc
+ms.devlang: azurecli
+ms.topic: sample
+ms.tgt_pltfrm: na
+ms.workload: database
+ms.date: 06/07/2017
+ms.author: mimig
+ms.openlocfilehash: 709d2ccce0f4b9827a8076f683c7e0f74cbdd4ea
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/03/2017
+---
+# <a name="azure-cli-samples-for-azure-cosmos-db"></a><span data-ttu-id="6ffd1-103">Azure Cosmos DB에 대한 Azure CLI 샘플</span><span class="sxs-lookup"><span data-stu-id="6ffd1-103">Azure CLI samples for Azure Cosmos DB</span></span>
+
+<span data-ttu-id="6ffd1-104">다음 표는 Azure Cosmos DB의 Azure CLI 샘플 스크립트에 대한 링크를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-104">The following table includes links to sample Azure CLI scripts for Azure Cosmos DB.</span></span> <span data-ttu-id="6ffd1-105">모든 Azure Cosmos DB CLI 명령에 대한 참조 페이지는 [Azure CLI 2.0 참조](https://docs.microsoft.com/cli/azure/cosmosdb)에서 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-105">Reference pages for all Azure Cosmos DB CLI commands are available in the [Azure CLI 2.0 Reference](https://docs.microsoft.com/cli/azure/cosmosdb).</span></span>
+
+| |  |
+|---|---|
+|<span data-ttu-id="6ffd1-106">**Azure Cosmos DB 계정, 데이터베이스 및 컨테이너 만들기**</span><span class="sxs-lookup"><span data-stu-id="6ffd1-106">**Create Azure Cosmos DB account, database, and containers**</span></span>||
+|[<span data-ttu-id="6ffd1-107">DocumentDB API, Graph 또는 Table API 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="6ffd1-107">Create a DocumentDB API, Graph, or Table API account</span></span>](scripts/create-database-account-collections-cli.md?toc=%2fcli%2fazure%2ftoc.json)| <span data-ttu-id="6ffd1-108">DocumentDB, 그래프 또는 테이블 API와 함께 사용하기 위해 단일 Azure Cosmos DB API 계정, 데이터베이스 및 컨테이너를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-108">Creates a single Azure Cosmos DB API account, database, and container for use with the DocumentDB, Graph, or Table APIs.</span></span> |
+| [<span data-ttu-id="6ffd1-109">MongoDB API 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="6ffd1-109">Create a MongoDB API account</span></span>](scripts/create-mongodb-database-account-cli.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="6ffd1-110">단일 Azure Cosmos DB MongoDB API 계정, 데이터베이스 및 컬렉션을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-110">Creates a single Azure Cosmos DB MongoDB API account, database, and collection.</span></span> |
+|<span data-ttu-id="6ffd1-111">**Azure Cosmos DB 확장**</span><span class="sxs-lookup"><span data-stu-id="6ffd1-111">**Scale Azure Cosmos DB**</span></span>||
+| [<span data-ttu-id="6ffd1-112">컨테이너 처리량 확장</span><span class="sxs-lookup"><span data-stu-id="6ffd1-112">Scale container throughput</span></span>](scripts/scale-collection-throughput-cli.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="6ffd1-113">컨테이너의 프로비전된 처리량을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-113">Changes the provisioned througput on a container.</span></span>|
+|[<span data-ttu-id="6ffd1-114">Azure Cosmos DB 데이터베이스 계정을 여러 하위 지역에서 복제 및 장애 조치 우선 순위 구성</span><span class="sxs-lookup"><span data-stu-id="6ffd1-114">Replicate Azure Cosmos DB database account in multiple regions and configure failover priorities</span></span>](scripts/scale-multiregion-cli.md?toc=%2fcli%2fazure%2ftoc.json)|<span data-ttu-id="6ffd1-115">지정된 장애 조치 우선 순위를 사용해서 계정 데이터를 여러 하위 지역으로 전체적으로 복제합니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-115">Globally replicates account data into multiple regions with a specified failover priority.</span></span>|
+|<span data-ttu-id="6ffd1-116">**Azure Cosmos DB 보안 유지**</span><span class="sxs-lookup"><span data-stu-id="6ffd1-116">**Secure Azure Cosmos DB**</span></span>||
+| [<span data-ttu-id="6ffd1-117">계정 키 가져오기</span><span class="sxs-lookup"><span data-stu-id="6ffd1-117">Get account keys</span></span>](scripts/secure-get-account-key-cli.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="6ffd1-118">계정에 대한 기본 및 보조 마스터 쓰기 키와 기본 및 보조 읽기 전용 키를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-118">Gets the primary and secondary master write keys and primary and secondary read-only keys for the account.</span></span>|
+| [<span data-ttu-id="6ffd1-119">MongoDB 연결 문자열 가져오기</span><span class="sxs-lookup"><span data-stu-id="6ffd1-119">Get MongoDB connection string</span></span>](scripts/secure-mongo-connection-string-cli.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="6ffd1-120">MongoDB 앱을 Azure Cosmos DB 계정에 연결하기 위한 연결 문자열을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-120">Gets the connection string to connect your MongoDB app to your Azure Cosmos DB account.</span></span>|
+|[<span data-ttu-id="6ffd1-121">계정 키 재생성</span><span class="sxs-lookup"><span data-stu-id="6ffd1-121">Regenerate account keys</span></span>](scripts/secure-regenerate-key-cli.md?toc=%2fcli%2fazure%2ftoc.json)|<span data-ttu-id="6ffd1-122">계정에 대한 마스터 또는 읽기 전용 키를 재생성합니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-122">Regenerates the master or read-only key for the account.</span></span>|
+|[<span data-ttu-id="6ffd1-123">방화벽 만들기</span><span class="sxs-lookup"><span data-stu-id="6ffd1-123">Create a firewall</span></span>](scripts/create-firewall-cli.md?toc=%2fcli%2fazure%2ftoc.json)| <span data-ttu-id="6ffd1-124">승인된 컴퓨터 및/또는 클라우드 서비스 집합에서 계정에 대한 액세스를 제한하기 위한 인바운드 IP 액세스 제어 정책을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-124">Creates an inbound IP access control policy to limit access to the account from an approved set of machines and/or cloud services.</span></span>|
+|<span data-ttu-id="6ffd1-125">**고가용성, 재해 복구, 백업 및 복원**</span><span class="sxs-lookup"><span data-stu-id="6ffd1-125">**High availability, disaster recovery, backup and restore**</span></span>||
+|[<span data-ttu-id="6ffd1-126">장애 조치 정책 구성</span><span class="sxs-lookup"><span data-stu-id="6ffd1-126">Configure failover policy</span></span>](scripts/ha-failover-policy-cli.md?toc=%2fcli%2fazure%2ftoc.json)|<span data-ttu-id="6ffd1-127">계정이 복제되는 각 하위 지역의 장애 조치 우선 순위를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-127">Sets the failover priority of each region in which the account is replicated.</span></span>|
+|<span data-ttu-id="6ffd1-128">**Azure Cosmos DB를 리소스에 연결**</span><span class="sxs-lookup"><span data-stu-id="6ffd1-128">**Connect Azure Cosmos DB to resources**</span></span>||
+|[<span data-ttu-id="6ffd1-129">웹앱을 Azure Cosmos DB에 연결</span><span class="sxs-lookup"><span data-stu-id="6ffd1-129">Connect a web app to Azure Cosmos DB</span></span>](https://docs.microsoft.com/azure/app-service-web/scripts/app-service-cli-app-service-documentdb?toc=%2fcli%2fazure%2ftoc.json)|<span data-ttu-id="6ffd1-130">Azure Cosmos DB 데이터베이스 및 Azure Web App을 만들고 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="6ffd1-130">Create and connect an Azure Cosmos DB database and an Azure web app.</span></span>|
+|||
