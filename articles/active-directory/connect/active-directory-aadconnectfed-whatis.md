@@ -1,0 +1,53 @@
+---
+title: "Azure AD Connect 및 페더레이션 | Microsoft Docs"
+description: "이 페이지는 Azure AD Connect를 사용하는 AD FS 작업에 관한 모든 설명서의 중심 위치입니다."
+services: active-directory
+documentationcenter: 
+author: anandyadavmsft
+manager: femila
+editor: 
+ms.assetid: f9107cf5-0131-499a-9edf-616bf3afef4d
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/17/2017
+ms.author: anandy
+ms.openlocfilehash: 6822320c92d106d28607289a90f2f08a51e04070
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/03/2017
+---
+# <a name="azure-ad-connect-and-federation"></a><span data-ttu-id="87e09-103">Azure AD Connect 및 페더레이션</span><span class="sxs-lookup"><span data-stu-id="87e09-103">Azure AD Connect and federation</span></span>
+<span data-ttu-id="87e09-104">Azure AD(Azure Active Directory) Connect를 통해 온-프레미스 AD FS(Active Directory Federation Services) 및 Azure AD와 페더레이션을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-104">Azure Active Directory (Azure AD) Connect lets you configure federation with on-premises Active Directory Federation Services (AD FS) and Azure AD.</span></span> <span data-ttu-id="87e09-105">페더레이션 로그인에서, 사용자가 자신의 온-프레미스 암호로 Azure AD 기반 서비스에 로그인 하고 자신의 암호를 다시 입력하지 않고도 회사 네트워크에 로그인하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-105">With federation sign-in, you can enable users to sign in to Azure AD-based services with their on-premises passwords--and, while on the corporate network, without having to enter their passwords again.</span></span> <span data-ttu-id="87e09-106">AD FS와 페더레이션 옵션을 사용하여 AD FS의 새 설치를 배포하거나 Windows Server 2012 R2 팜에 기존 설치를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-106">By using the federation option with AD FS, you can deploy a new installation of AD FS, or you can specify an existing installation in a Windows Server 2012 R2 farm.</span></span>
+
+<span data-ttu-id="87e09-107">이 항목은 Azure AD Connect의 페더레이션 관련 기능에 대한 정보를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-107">This topic is the home for information on federation-related functionalities for Azure AD Connect.</span></span> <span data-ttu-id="87e09-108">관련된 다른 모든 항목에 대한 링크를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-108">It lists links to all related topics.</span></span> <span data-ttu-id="87e09-109">Azure AD Connect에 대한 링크는 [Azure Active Directory와 온-프레미스 ID 통합](active-directory-aadconnect.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="87e09-109">For links to Azure AD Connect, see [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>
+
+## <a name="azure-ad-connect-federation-topics"></a><span data-ttu-id="87e09-110">Azure AD Connect: 페더레이션 항목</span><span class="sxs-lookup"><span data-stu-id="87e09-110">Azure AD Connect: federation topics</span></span>
+| <span data-ttu-id="87e09-111">항목</span><span class="sxs-lookup"><span data-stu-id="87e09-111">Topic</span></span> | <span data-ttu-id="87e09-112">포함된 내용 및 적용 시기</span><span class="sxs-lookup"><span data-stu-id="87e09-112">What it covers and when to read it</span></span> |
+|:--- |:--- |
+| <span data-ttu-id="87e09-113">**Azure AD Connect 사용자 로그인 옵션**</span><span class="sxs-lookup"><span data-stu-id="87e09-113">**Azure AD Connect user sign-in options**</span></span> | |
+| [<span data-ttu-id="87e09-114">사용자 로그인 옵션 이해</span><span class="sxs-lookup"><span data-stu-id="87e09-114">Understand user sign-in options</span></span>](active-directory-aadconnect-user-signin.md) |<span data-ttu-id="87e09-115">다양한 사용자 로그인 옵션 및 Azure 로그인 사용자 환경에 미치는 영향에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-115">Learn about various user sign-in options and how they affect the Azure sign-in user experience.</span></span> |
+| <span data-ttu-id="87e09-116">**Azure AD Connect를 사용하여 AD FS 설치**</span><span class="sxs-lookup"><span data-stu-id="87e09-116">**Install AD FS by using Azure AD Connect**</span></span> | |
+| [<span data-ttu-id="87e09-117">필수 구성 요소</span><span class="sxs-lookup"><span data-stu-id="87e09-117">Prerequisites</span></span>](active-directory-aadconnect-get-started-custom.md#ad-fs-configuration-pre-requisites) |<span data-ttu-id="87e09-118">Azure AD Connect를 통한 성공적인 AD FS 설치의 필수 구성 요소를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="87e09-118">See the prerequisites for a successful AD FS installation via Azure AD Connect.</span></span> |
+| [<span data-ttu-id="87e09-119">AD FS 팜 구성</span><span class="sxs-lookup"><span data-stu-id="87e09-119">Configure an AD FS farm</span></span>](active-directory-aadconnect-get-started-custom.md#configuring-federation-with-ad-fs) |<span data-ttu-id="87e09-120">Azure AD Connect를 사용하여 새 AD FS 팜을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-120">Install a new AD FS farm by using Azure AD Connect.</span></span> |
+| [<span data-ttu-id="87e09-121">대체 로그인 ID를 사용하여 Azure AD와 페더레이션</span><span class="sxs-lookup"><span data-stu-id="87e09-121">Federate with Azure AD using alternate login ID </span></span>](active-directory-aadconnect-federation-management.md#alternateid) | <span data-ttu-id="87e09-122">대체 로그인 ID를 사용하여 페더레이션 구성</span><span class="sxs-lookup"><span data-stu-id="87e09-122">Configure federation using alternate login ID</span></span>  |
+| <span data-ttu-id="87e09-123">**AD FS 구성 수정**</span><span class="sxs-lookup"><span data-stu-id="87e09-123">**Modify the AD FS configuration**</span></span> | |
+| [<span data-ttu-id="87e09-124">트러스트 복구</span><span class="sxs-lookup"><span data-stu-id="87e09-124">Repair the trust</span></span>](active-directory-aadconnect-federation-management.md#repairthetrust) |<span data-ttu-id="87e09-125">온-프레미스 AD FS와 Office 365/Azure 사이의 현재 트러스트를 복구합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-125">Repair the current trust between on-premises AD FS and Office 365/Azure.</span></span> |
+| [<span data-ttu-id="87e09-126">새 AD FS 서버 추가</span><span class="sxs-lookup"><span data-stu-id="87e09-126">Add a new AD FS server</span></span>](active-directory-aadconnect-federation-management.md#addadfsserver) |<span data-ttu-id="87e09-127">초기 설치 후 추가적인 AD FS 서버를 통한 AD FS 팜을 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-127">Expand an AD FS farm with an additional AD FS server after initial installation.</span></span> |
+| [<span data-ttu-id="87e09-128">새 AD FS WAP 서버 추가</span><span class="sxs-lookup"><span data-stu-id="87e09-128">Add a new AD FS WAP server</span></span>](active-directory-aadconnect-federation-management.md#addwapserver) |<span data-ttu-id="87e09-129">초기 설치 후 추가적인 WAP(웹 응용 프로그램 프록시) 서버를 통한 AD FS 팜을 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-129">Expand an AD FS farm with an additional Web Application Proxy (WAP) server after initial installation.</span></span> |
+| [<span data-ttu-id="87e09-130">새 페더레이션된 도메인 추가</span><span class="sxs-lookup"><span data-stu-id="87e09-130">Add a new federated domain</span></span>](active-directory-aadconnect-federation-management.md#addfeddomain) |<span data-ttu-id="87e09-131">Azure AD를 통해 페더레이션될 또 다른 도메인을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-131">Add another domain to be federated with Azure AD.</span></span> |
+| [<span data-ttu-id="87e09-132">SSL 인증서 업데이트</span><span class="sxs-lookup"><span data-stu-id="87e09-132">Update the SSL certificate</span></span>](active-directory-aadconnectfed-ssl-update.md)| <span data-ttu-id="87e09-133">AD FS 팜에 대한 SSL 인증서를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-133">Update the SSL certificate for an AD FS farm.</span></span> |
+| <span data-ttu-id="87e09-134">**기타 페더레이션 구성**</span><span class="sxs-lookup"><span data-stu-id="87e09-134">**Other federation configuration**</span></span> | |
+| [<span data-ttu-id="87e09-135">Azure AD의 여러 인스턴스를 AD FS의 단일 인스턴스로 페더레이션</span><span class="sxs-lookup"><span data-stu-id="87e09-135">Federate multiple instances of Azure AD with single instance of AD FS</span></span>](active-directory-aadconnectfed-single-adfs-multitenant-federation.md) | <span data-ttu-id="87e09-136">단일 AD FS 팜을 사용하여 여러 Azure AD 페더레이션</span><span class="sxs-lookup"><span data-stu-id="87e09-136">Federate multiple Azure AD with single AD FS farm</span></span>| 
+| [<span data-ttu-id="87e09-137">사용자 지정 회사 로고/일러스트레이션 추가</span><span class="sxs-lookup"><span data-stu-id="87e09-137">Add a custom company logo/illustration</span></span>](active-directory-aadconnect-federation-management.md#customlogo) |<span data-ttu-id="87e09-138">AD FS 로그인 페이지에 표시되는 사용자 지정 로고를 지정하여 로그인 환경을 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-138">Modify the sign-in experience by specifying the custom logo that is shown on the AD FS sign-in page.</span></span> |
+| [<span data-ttu-id="87e09-139">로그인 설명 추가</span><span class="sxs-lookup"><span data-stu-id="87e09-139">Add a sign-in description</span></span>](active-directory-aadconnect-federation-management.md#addsignindescription) |<span data-ttu-id="87e09-140">AD FS 로그인 페이지의 로그인 설명을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-140">Change the sign-in description on the AD FS sign-in page.</span></span> |
+| [<span data-ttu-id="87e09-141">AD FS 클레임 규칙 수정</span><span class="sxs-lookup"><span data-stu-id="87e09-141">Modify AD FS claim rules</span></span>](active-directory-aadconnect-federation-management.md#modclaims) |<span data-ttu-id="87e09-142">Azure AD Connect 동기화 구성에 해당하는 AD FS의 클레임 규칙을 수정 또는 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="87e09-142">Modify or add claim rules in AD FS that correspond to Azure AD Connect sync configuration.</span></span> |
+
+
+## <a name="additional-resources"></a><span data-ttu-id="87e09-143">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="87e09-143">Additional resources</span></span>
+* [<span data-ttu-id="87e09-144">단일 AD FS를 사용하여 2개의 Azure AD 페더레이션</span><span class="sxs-lookup"><span data-stu-id="87e09-144">Federating two Azure AD with single AD FS</span></span>](active-directory-aadconnectfed-single-adfs-multitenant-federation.md)
+* [<span data-ttu-id="87e09-145">Azure에서 AD FS 배포</span><span class="sxs-lookup"><span data-stu-id="87e09-145">AD FS deployment in Azure</span></span>](active-directory-aadconnect-azure-adfs.md)
+* [<span data-ttu-id="87e09-146">Azure Traffic Manager를 사용하여 Azure에서 고가용성 교차 지리적 AD FS 배포</span><span class="sxs-lookup"><span data-stu-id="87e09-146">High-availability cross-geographic AD FS deployment in Azure with Azure Traffic Manager</span></span>](../active-directory-adfs-in-azure-with-azure-traffic-manager.md)

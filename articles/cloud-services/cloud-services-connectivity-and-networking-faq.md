@@ -1,0 +1,60 @@
+---
+title: "Microsoft Azure Cloud Services FAQ에 대한 연결 및 네트워킹 문제 | Microsoft Docs"
+description: "이 문서는 Microsoft Azure Cloud Services의 연결 및 네트워킹에 대한 질문과 대답을 나열합니다."
+services: cloud-services
+documentationcenter: 
+author: genlin
+manager: cshepard
+editor: 
+tags: top-support-issue
+ms.assetid: 84985660-2cfd-483a-8378-50eef6a0151d
+ms.service: cloud-services
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 7/10/2017
+ms.author: genli
+ms.openlocfilehash: 55d5b692930e273af29c3de9d2b96b6d012b3415
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/03/2017
+---
+# <a name="connectivity-and-networking-issues-for-azure-cloud-services-frequently-asked-questions-faqs"></a><span data-ttu-id="dd5bf-103">Azure Cloud Services의 연결 및 네트워킹 문제: FAQ(질문과 대답)</span><span class="sxs-lookup"><span data-stu-id="dd5bf-103">Connectivity and networking issues for Azure Cloud Services: Frequently asked questions (FAQs)</span></span>
+
+<span data-ttu-id="dd5bf-104">이 문서는 [Microsoft Azure Cloud Services](https://azure.microsoft.com/services/cloud-services)의 연결 및 네트워킹에 대한 질문과 대답을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-104">This article includes frequently asked questions about connectivity and networking issues for [Microsoft Azure Cloud Services](https://azure.microsoft.com/services/cloud-services).</span></span> <span data-ttu-id="dd5bf-105">크기 정보는 [클라우드 서비스 VM 크기 페이지](cloud-services-sizes-specs.md) 를 참조할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-105">You can also consult the [Cloud Services VM Size page](cloud-services-sizes-specs.md) for size information.</span></span>
+
+[!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
+
+## <a name="i-cant-reserve-an-ip-in-a-multi-vip-cloud-service"></a><span data-ttu-id="dd5bf-106">여러 VIP 클라우드 서비스에서 IP를 예약할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-106">I can't reserve an IP in a multi-VIP cloud service</span></span>
+<span data-ttu-id="dd5bf-107">우선, IP를 예약하려고 하는 가상 컴퓨터 인스턴스가 켜져 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-107">First, make sure that the virtual machine instance that you're trying to reserve the IP for is turned on.</span></span> <span data-ttu-id="dd5bf-108">다음으로 스테이징 및 프로덕션 배포 모두에 대해 예약된 IP를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-108">Second, make sure that you're using Reserved IPs for both the staging and production deployments.</span></span> <span data-ttu-id="dd5bf-109">**않습니다** .</span><span class="sxs-lookup"><span data-stu-id="dd5bf-109">**Do not** change the settings while the deployment is upgrading.</span></span>
+
+## <a name="how-do-i-remote-desktop-when-i-have-an-nsg"></a><span data-ttu-id="dd5bf-110">NSG가 있을 때 원격 데스크톱을 어떻게 수행하나요?</span><span class="sxs-lookup"><span data-stu-id="dd5bf-110">How do I remote desktop when I have an NSG?</span></span>
+<span data-ttu-id="dd5bf-111">포트 **3389** 및 **20000**에서 트래픽을 허용하는 규칙을 NSG에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-111">Add rules to the NSG that allow traffic on ports **3389** and **20000**.</span></span>  <span data-ttu-id="dd5bf-112">원격 데스크톱은 포트 **3389**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-112">Remote Desktop uses port **3389**.</span></span>  <span data-ttu-id="dd5bf-113">클라우드 서비스 인스턴스에서 부하가 분산되므로 연결할 인스턴스를 직접 제어할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-113">Cloud Service instances are load balanced, so you can't directly control which instance to connect to.</span></span>  <span data-ttu-id="dd5bf-114">*RemoteForwarder* 및 *RemoteAccess* 에이전트가 RDP 트래픽을 관리하고 클라이언트에서 RDP 쿠키를 전송하고 연결할 개별 인스턴스를 지정할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-114">The *RemoteForwarder* and *RemoteAccess* agents manage RDP traffic and allow the client to send an RDP cookie and specify an individual instance to connect to.</span></span>  <span data-ttu-id="dd5bf-115">*RemoteForwarder* 및 *RemoteAccess* 에이전트를 사용하려면 포트 **20000**이 열려 있어야 합니다. 이 포트는 NSG가 있으면 차단될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-115">The *RemoteForwarder* and *RemoteAccess* agents require that port **20000** be opened, which may be blocked if you have an NSG.</span></span>
+
+## <a name="can-i-ping-a-cloud-service"></a><span data-ttu-id="dd5bf-116">클라우드 서비스를 ping할 수 있나요?</span><span class="sxs-lookup"><span data-stu-id="dd5bf-116">Can I ping a cloud service?</span></span>
+
+<span data-ttu-id="dd5bf-117">아니요. 일반적인 "ping"/ICMP 프로토콜을 사용하면 안됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-117">No, not by using the normal "ping"/ICMP protocol.</span></span> <span data-ttu-id="dd5bf-118">Azure Load Balancer를 통해 ICMP 프로토콜을 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-118">The ICMP protocol is not permitted through the Azure load balancer.</span></span>
+
+<span data-ttu-id="dd5bf-119">연결을 테스트하려면 포트 ping을 수행하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-119">To test connectivity, we recommend that you do a port ping.</span></span> <span data-ttu-id="dd5bf-120">Ping.exe가 ICMP를 사용하는 반면 PSPing, Nmap, 텔넷 등 기타 도구를 사용하면 특정 TCP 포트에 대한 연결을 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-120">While Ping.exe uses ICMP, other tools, such as PSPing, Nmap, and telnet allow you to test connectivity to a specific TCP port.</span></span>
+
+<span data-ttu-id="dd5bf-121">자세한 내용은 [ICMP 대신 포트 ping을 사용하여 Azure VM 연결 테스트](https://blogs.msdn.microsoft.com/mast/2014/06/22/use-port-pings-instead-of-icmp-to-test-azure-vm-connectivity/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-121">For more information, see [Use port pings instead of ICMP to test Azure VM connectivity](https://blogs.msdn.microsoft.com/mast/2014/06/22/use-port-pings-instead-of-icmp-to-test-azure-vm-connectivity/).</span></span>
+
+## <a name="how-do-i-prevent-receiving-thousands-of-hits-from-unknown-ip-addresses-that-indicate-some-sort-of-malicious-attack-to-the-cloud-service"></a><span data-ttu-id="dd5bf-122">알 수 없는 IP 주소로부터 클라우드 서비스에 대한 악의적 공격을 의미하는 수 천 번의 적중을 수신하지 않도록 방지하려면 어떻게 할까요?</span><span class="sxs-lookup"><span data-stu-id="dd5bf-122">How do I prevent receiving thousands of hits from unknown IP addresses that indicate some sort of malicious attack to the cloud service?</span></span>
+<span data-ttu-id="dd5bf-123">Azure는 DDoS(distributed denial-of-service) 공격에 대해 플랫폼 서비스를 보호하기 위해 다중 계층 네트워크 보안을 구현합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-123">Azure implements a multilayer network security to protect its platform services against distributed denial-of-service (DDoS) attacks.</span></span> <span data-ttu-id="dd5bf-124">Azure DDoS 방어 시스템은 Azure의 연속 모니터링 프로세스의 일부이며 침투 테스트를 통해 지속적으로 개선됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-124">The Azure DDoS defense system is part of Azure’s continuous monitoring process, which is continually improved through penetration-testing.</span></span> <span data-ttu-id="dd5bf-125">이 DDoS 방어 시스템은 외부에서의 공격뿐만 아니라 다른 Azure 테넌트에서의 공격에 대응하도록 설계되었습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-125">This DDoS defense system is designed to withstand not only attacks from the outside but also from other Azure tenants.</span></span> <span data-ttu-id="dd5bf-126">자세한 내용은 [Microsoft Azure 네트워크 보안](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-126">For more detail, see [Microsoft Azure Network Security](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf).</span></span>
+
+<span data-ttu-id="dd5bf-127">또한 일부 특정 IP 주소를 차단하는 시작 작업을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-127">You can also create a startup task to selectively block some specific IP addresses.</span></span> <span data-ttu-id="dd5bf-128">자세한 내용은 [특정 IP 주소 차단](cloud-services-startup-tasks-common.md#block-a-specific-ip-address)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-128">For more information, see [Block a specific IP address](cloud-services-startup-tasks-common.md#block-a-specific-ip-address).</span></span>
+
+## <a name="when-i-try-to-rdp-to-my-cloud-service-instance-i-get-the-message-the-user-account-has-expired"></a><span data-ttu-id="dd5bf-129">클라우드 서비스 인스턴스에 RDP하려는 경우 "사용자 계정이 만료되었습니다."라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-129">When I try to RDP to my cloud service instance, I get the message, "The user account has expired."</span></span>
+<span data-ttu-id="dd5bf-130">RDP 설정에 구성된 만료 날짜를 바이패스하면 "이 사용자 계정이 만료되었습니다."라는 오류 메시지가 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-130">You may get the error message "This user account has expired" when you bypass the expiration date that is configured in your RDP settings.</span></span> <span data-ttu-id="dd5bf-131">다음과 같은 단계를 수행하여 포털에서 만료 날짜를 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-131">You can change the expiration date from the portal by following these steps:</span></span>
+1. <span data-ttu-id="dd5bf-132">Azure 관리 콘솔( https://manage.windowsazure.com )에 로그인하여 클라우드 서비스를 찾아 **구성** 탭을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-132">Log in to the Azure Management Console (https://manage.windowsazure.com), navigate to your cloud service, and select the **Configure** tab.</span></span>
+2. <span data-ttu-id="dd5bf-133">**원격**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-133">Select **Remote**.</span></span>
+3. <span data-ttu-id="dd5bf-134">"만료" 날짜를 변경하고 구성을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-134">Change the "Expires On" date, and then save the configuration.</span></span>
+
+<span data-ttu-id="dd5bf-135">이제 컴퓨터에 RDP할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-135">You now should be able to RDP to your machine.</span></span>
+
+## <a name="why-is-loadbalancer-not-balancing-traffic-equally"></a><span data-ttu-id="dd5bf-136">LoadBalancer가 트래픽을 동일하게 분산하지 않는 이유는 무엇인가요?</span><span class="sxs-lookup"><span data-stu-id="dd5bf-136">Why is LoadBalancer not balancing traffic equally?</span></span>
+<span data-ttu-id="dd5bf-137">내부 부하 분산 장치 작동 방법에 대한 정보는 [Azure Load Balancer 새 배포 모드](https://azure.microsoft.com/blog/azure-load-balancer-new-distribution-mode/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-137">For information about how internal load balancer works, see [Azure Load Balancer new distribution mode](https://azure.microsoft.com/blog/azure-load-balancer-new-distribution-mode/).</span></span>
+
+<span data-ttu-id="dd5bf-138">사용되는 배포 알고리즘은 트래픽을 사용 가능한 서버에 매핑하는 5개 튜플(소스 IP, 소스 포트, 대상 IP, 대상 포트, 프로토콜 종류) 해시입니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-138">The distribution algorithm used is a 5-tuple (source IP, source port, destination IP, destination port, protocol type) hash to map traffic to available servers.</span></span> <span data-ttu-id="dd5bf-139">전송 세션 내에서만 연결이 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-139">It provides stickiness only within a transport session.</span></span> <span data-ttu-id="dd5bf-140">동일한 TCP 또는 UDP 세션의 패킷은 부하 분산 끝점 뒤의 동일한 DIP(데이터 센터 IP) 인스턴스로 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-140">Packets in the same TCP or UDP session will be directed to the same datacenter IP (DIP) instance behind the load balanced endpoint.</span></span> <span data-ttu-id="dd5bf-141">클라이언트가 연결을 닫았다가 다시 열거나 동일한 원본 IP에서 새 세션을 시작하는 경우 원본 포트가 변경되어 트래픽이 다른 DIP 끝점으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="dd5bf-141">When the client closes and re-opens the connection or starts a new session from the same source IP, the source port changes and causes the traffic to go to a different DIP endpoint.</span></span>

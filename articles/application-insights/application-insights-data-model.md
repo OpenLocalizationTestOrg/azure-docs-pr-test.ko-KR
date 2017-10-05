@@ -1,0 +1,58 @@
+---
+title: "Azure Application Insights 원격 분석 데이터 모델 | Microsoft Docs"
+description: "Application Insights 데이터 모델 개요"
+services: application-insights
+documentationcenter: .net
+author: SergeyKanzhelev
+manager: carmonm
+ms.service: application-insights
+ms.workload: TBD
+ms.tgt_pltfrm: ibiza
+ms.devlang: multiple
+ms.topic: article
+ms.date: 04/25/2017
+ms.author: bwren
+ms.openlocfilehash: 6bcd30497622b01d4cd50bf7bbefebd4f00816b7
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/18/2017
+---
+# <a name="application-insights-telemetry-data-model"></a><span data-ttu-id="1f61d-103">Application Insights 원격 분석 데이터 모델</span><span class="sxs-lookup"><span data-stu-id="1f61d-103">Application Insights telemetry data model</span></span>
+
+<span data-ttu-id="1f61d-104">[Azure Application Insights](app-insights-overview.md)는 응용 프로그램의 성능과 사용을 분석할 수 있도록 웹 응용 프로그램에서 Azure Portal로 원격 분석을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-104">[Azure Application Insights](app-insights-overview.md) sends telemetry from your web application to the Azure portal, so that you can analyze the performance and usage of your application.</span></span> <span data-ttu-id="1f61d-105">원격 분석 모델은 플랫폼 및 언어 독립적인 모니터링을 만들 수 있도록 표준화되었습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-105">The telemetry model is standardized so that it is possible to create platform and language-independent monitoring.</span></span> 
+
+<span data-ttu-id="1f61d-106">Application Insights에서 수집한 데이터를 통해 다음과 같은 일반적인 응용 프로그램 실행 패턴을 모델링합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-106">Data collected by Application Insights models this typical application execution pattern:</span></span>
+
+![Application Insights 응용 프로그램 모델](./media/application-insights-data-model/application-insights-data-model.png)
+
+<span data-ttu-id="1f61d-108">다음 유형의 원격 분석을 사용하여 앱 실행을 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-108">The following types of telemetry are used to monitor the execution of your app.</span></span> <span data-ttu-id="1f61d-109">일반적으로 Application Insights SDK에서 웹 응용 프로그램 프레임워크로부터 자동으로 수집하는 세 가지 유형은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-109">The following three types are typically automatically collected by the Application Insights SDK from the web application framework:</span></span>
+
+* <span data-ttu-id="1f61d-110">[**요청**](application-insights-data-model-request-telemetry.md) - 앱에서 받은 요청을 기록하기 위해 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-110">[**Request**](application-insights-data-model-request-telemetry.md) - Generated to log a request received by your app.</span></span> <span data-ttu-id="1f61d-111">예를 들어 Application Insights 웹 SDK는 웹앱에서 받은 각 HTTP 요청에 대한 요청 원격 분석 항목을 자동으로 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-111">For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives.</span></span> 
+
+    <span data-ttu-id="1f61d-112">**작업**은 요청을 처리하는 실행 스레드입니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-112">An **Operation** is the threads of execution that processes a request.</span></span> <span data-ttu-id="1f61d-113">또한 [코드를 작성](app-insights-api-custom-events-metrics.md#trackrequest)하여 정기적으로 데이터를 처리하는 웹 작업 또는 함수의 "절전 모드 해제"와 같은 다른 유형의 작업을 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-113">You can also [write code](app-insights-api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data.</span></span>  <span data-ttu-id="1f61d-114">각 작업에는 ID가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-114">Each operation has an ID.</span></span> <span data-ttu-id="1f61d-115">이 ID를 사용하여 앱에서 요청을 처리하는 동안 생성된 모든 원격 분석을 그룹화(application-insights-correlation.md)할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-115">This ID that can be used to [group]((application-insights-correlation.md) all telemetry generated while your app is processing the request.</span></span> <span data-ttu-id="1f61d-116">각 작업은 성공하거나 실패하며 일정 기간 동안 지속됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-116">Each operation either succeeds or fails, and has a duration of time.</span></span>
+* <span data-ttu-id="1f61d-117">[**예외**](application-insights-data-model-exception-telemetry.md) - 일반적으로 작업이 실패하게 하는 예외를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-117">[**Exception**](application-insights-data-model-exception-telemetry.md) - Typically represents an exception that causes an operation to fail.</span></span>
+* <span data-ttu-id="1f61d-118">[**종속성**](application-insights-data-model-dependency-telemetry.md) - REST API 또는 SQL과 같은 외부 서비스나 저장소에 대한 앱의 호출을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-118">[**Dependency**](application-insights-data-model-dependency-telemetry.md) - Represents a call from your app to an external service or storage such as a REST API or SQL.</span></span> <span data-ttu-id="1f61d-119">ASP.NET에서 SQL에 대한 종속성 호출은 `System.Data`으로 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-119">In ASP.NET, dependency calls to SQL are defined by `System.Data`.</span></span> <span data-ttu-id="1f61d-120">HTTP 끝점에 대한 호출은 `System.Net`으로 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-120">Calls to HTTP endpoints are defined by `System.Net`.</span></span> 
+
+<span data-ttu-id="1f61d-121">Application Insights는 사용자 지정 원격 분석을 위한 데이터 형식으로 다음 세 가지 형식을 추가로 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-121">Application Insights provides three additional data types for custom telemetry:</span></span>
+
+* <span data-ttu-id="1f61d-122">[추적](application-insights-data-model-trace-telemetry.md) - `Log4Net` 또는 `System.Diagnostics`와 같이 친숙한 계측 프레임워크를 사용하는 진단 로깅을 구현하는 데 직접 사용되거나 어댑터를 통해 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-122">[Trace](application-insights-data-model-trace-telemetry.md) - used either directly, or through an adapter to implement diagnostics logging using an instrumentation framework that is familiar to you, such as `Log4Net` or `System.Diagnostics`.</span></span>
+* <span data-ttu-id="1f61d-123">[이벤트](application-insights-data-model-event-telemetry.md) - 일반적으로 사용 패턴을 분석하기 위해 서비스와 사용자 간의 상호 작용을 캡처하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-123">[Event](application-insights-data-model-event-telemetry.md) - typically used to capture user interaction with your service, to analyze usage patterns.</span></span>
+* <span data-ttu-id="1f61d-124">[메트릭](application-insights-data-model-metric-telemetry.md) - 정기적인 스칼라 측정을 보고하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-124">[Metric](application-insights-data-model-metric-telemetry.md) - used to report periodic scalar measurements.</span></span>
+
+<span data-ttu-id="1f61d-125">모든 원격 분석 항목은 응용 프로그램 버전 또는 사용자 세션 ID와 같은 [컨텍스트 정보](application-insights-data-model-context.md)를 정의할 수 있습니다. 컨텍스트는 특정 시나리오를 차단 해제하는 강력한 형식의 필드 집합입니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-125">Every telemetry item can define the [context information](application-insights-data-model-context.md) like application version or user session id. Context is a set of strongly typed fields that unblocks certain scenarios.</span></span> <span data-ttu-id="1f61d-126">응용 프로그램 버전이 올바르게 초기화된 경우 Application Insights는 재배포와 상호 관련된 응용 프로그램 동작에서 새 패턴을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-126">When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.</span></span> <span data-ttu-id="1f61d-127">세션 ID를 사용하여 가동 중단 또는 문제가 사용자에게 미치는 영향을 계산할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-127">Session id can be used to calculate the outage or an issue impact on users.</span></span> <span data-ttu-id="1f61d-128">실패한 특정 종속성, 오류 추적 또는 중요한 예외에 대한 세션 ID 값의 고유 개수를 계산하면 영향을 쉽게 이해할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-128">Calculating distinct count of session id values for certain failed dependency, error trace or critical exception gives a good understanding of an impact.</span></span>
+
+<span data-ttu-id="1f61d-129">Application Insights 원격 분석 모델은 원격 분석과 해당 분석에 속하는 작업 간의 [상관 관계를 지정](application-insights-correlation.md)하는 방법을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-129">Application Insights telemetry model defines a way to [correlate](application-insights-correlation.md) telemetry to the operation of which it’s a part.</span></span> <span data-ttu-id="1f61d-130">예를 들어 요청은 SQL Database 호출을 수행하고 기록된 진단 정보를 작성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-130">For example, a request can make a SQL Database calls and recorded diagnostics info.</span></span> <span data-ttu-id="1f61d-131">요청 원격 분석과 다시 연결할 해당 원격 분석 항목에 대한 상관 관계 컨텍스트를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-131">You can set the correlation context for those telemetry items that tie it back to the request telemetry.</span></span>
+
+## <a name="schema-improvements"></a><span data-ttu-id="1f61d-132">향상된 스키마</span><span class="sxs-lookup"><span data-stu-id="1f61d-132">Schema improvements</span></span>
+
+<span data-ttu-id="1f61d-133">Application Insights 데이터 모델은 응용 프로그램 원격 분석을 모델링하는 단순하고 기본적이면서도 강력한 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-133">Application Insights data model is a simple and basic yet powerful way to model your application telemetry.</span></span> <span data-ttu-id="1f61d-134">처음에는 기본 시나리오를 지원할 수 있게 단순하고 간단한 모델을 구현한 후 고급 사용을 위해 스키마를 확장할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-134">We strive to keep the model simple and slim to support essential scenarios and allow to extend the schema for advanced use.</span></span>
+
+<span data-ttu-id="1f61d-135">데이터 모델 또는 스키마 문제와 제안 사항을 보고하려면 GitHub [ApplicationInsights-Home](https://github.com/Microsoft/ApplicationInsights-Home/labels/schema) 리포지토리를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-135">To report data model or schema problems and suggestions use GitHub [ApplicationInsights-Home](https://github.com/Microsoft/ApplicationInsights-Home/labels/schema) repository.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="1f61d-136">다음 단계</span><span class="sxs-lookup"><span data-stu-id="1f61d-136">Next steps</span></span>
+
+- <span data-ttu-id="1f61d-137">[사용자 지정 원격 분석을 작성합니다](app-insights-api-custom-events-metrics.md).</span><span class="sxs-lookup"><span data-stu-id="1f61d-137">[Write custom telemetry](app-insights-api-custom-events-metrics.md)</span></span>
+- <span data-ttu-id="1f61d-138">[원격 분석을 확장 및 필터링](app-insights-api-filtering-sampling.md)하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-138">Learn how to [extend and filter telemetry](app-insights-api-filtering-sampling.md).</span></span>
+- <span data-ttu-id="1f61d-139">[샘플링](app-insights-sampling.md)을 사용하여 데이터 모델을 기준으로 하는 원격 분석의 양을 최소화합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-139">Use [sampling](app-insights-sampling.md) to minimize amount of telemetry based on data model.</span></span>
+- <span data-ttu-id="1f61d-140">Application Insights에서 지원되는 [플랫폼](app-insights-platforms.md)을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="1f61d-140">Check out [platforms](app-insights-platforms.md) supported by Application Insights.</span></span>

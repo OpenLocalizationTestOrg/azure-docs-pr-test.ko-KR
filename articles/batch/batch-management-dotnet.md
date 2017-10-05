@@ -1,0 +1,205 @@
+---
+title: ".NET용 클라이언트 라이브러리를 사용하여 일괄 처리 계정 리소스 관리 - Azure | Microsoft Docs"
+description: "배치 관리 .NET 라이브러리로 Azure 배치 계정 리소스를 만들고, 삭제하며, 수정합니다."
+services: batch
+documentationcenter: .net
+author: tamram
+manager: timlt
+editor: 
+tags: azure-resource-manager
+ms.assetid: 16279b23-60ff-4b16-b308-5de000e4c028
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/24/2017
+ms.author: tamram
+ms.custom: H1Hack27Feb2017
+ms.openlocfilehash: eafde9258222a2ab09ade2e366f9cc595a303dec
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="manage-batch-accounts-and-quotas-with-the-batch-management-client-library-for-net"></a><span data-ttu-id="8ac08-103">.NET용 Batch 관리 클라이언트 라이브러리를 사용하여 Batch 계정 및 할당량 관리</span><span class="sxs-lookup"><span data-stu-id="8ac08-103">Manage Batch accounts and quotas with the Batch Management client library for .NET</span></span>
+
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="8ac08-104">Azure Portal</span><span class="sxs-lookup"><span data-stu-id="8ac08-104">Azure portal</span></span>](batch-account-create-portal.md)
+> * [<span data-ttu-id="8ac08-105">배치 관리 .NET</span><span class="sxs-lookup"><span data-stu-id="8ac08-105">Batch Management .NET</span></span>](batch-management-dotnet.md)
+> 
+> 
+
+<span data-ttu-id="8ac08-106">[배치 관리 .NET][api_mgmt_net] 라이브러리를 사용하여 배치 계정 만들기, 삭제, 키 관리 및 할당량 검색을 자동화하므로 Azure 배치 응용 프로그램에서 유지 관리 오버헤드를 낮출 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-106">You can lower maintenance overhead in your Azure Batch applications by using the [Batch Management .NET][api_mgmt_net] library to automate Batch account creation, deletion, key management, and quota discovery.</span></span>
+
+* <span data-ttu-id="8ac08-107">**배치 계정을 만들고 삭제** 합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-107">**Create and delete Batch accounts** within any region.</span></span> <span data-ttu-id="8ac08-108">예를 들어 ISV(독립 소프트웨어 공급업체)가 대금 청구를 위해 각각 별도의 배치 계정에 할당되는 클라이언트용 서비스를 제공하는 경우 고객 포털에 계정 만들기 및 삭제 기능을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-108">If, as an independent software vendor (ISV) for example, you provide a service for your clients in which each is assigned a separate Batch account for billing purposes, you can add account creation and deletion capabilities to your customer portal.</span></span>
+* <span data-ttu-id="8ac08-109">**계정 키를 검색하고 다시 생성** 합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-109">**Retrieve and regenerate account keys** programmatically for any of your Batch accounts.</span></span> <span data-ttu-id="8ac08-110">이렇게 하면 주기적인 롤오버 또는 계정 키 만료를 적용하는 보안 정책을 준수할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-110">This can help you comply with security policies that enforce periodic rollover or expiry of account keys.</span></span> <span data-ttu-id="8ac08-111">다양한 Azure 영역에 여러 배치 계정이 있는 경우 롤오버 프로세스를 자동화하면 솔루션의 효율성이 높아집니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-111">When you have several Batch accounts in various Azure regions, automation of this rollover process increases your solution's efficiency.</span></span>
+* <span data-ttu-id="8ac08-112">**계정 할당량을 확인** 하고 어떤 배치 계정에 어떤 제한이 있는지를 확인하는 데 시행 착오 추측을 배제합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-112">**Check account quotas** and take the trial-and-error guesswork out of determining which Batch accounts have what limits.</span></span> <span data-ttu-id="8ac08-113">작업을 시작하기 전에 계정 할당량을 확인하거나 풀을 만들거나 계산 노드를 추가함으로써 이러한 계산 리소스가 만들어지는 위치 또는 시기를 능동적으로 조정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-113">By checking your account quotas before starting jobs, creating pools, or adding compute nodes, you can proactively adjust where or when these compute resources are created.</span></span> <span data-ttu-id="8ac08-114">해당 계정에 추가 리소스를 할당하기 전에 할당량 증가가 필요한 계정을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-114">You can determine which accounts require quota increases before allocating additional resources in those accounts.</span></span>
+* <span data-ttu-id="8ac08-115">배치 관리 .NET, [Azure Active Directory][aad_about] 및 [Azure Resource Manager][resman_overview]를 동일한 응용 프로그램에서 함께 사용하고 **다른 Azure 서비스의 기능을 결합**하여 모든 기능을 갖춘 관리 환경을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-115">**Combine features of other Azure services** for a full-featured management experience--by using Batch Management .NET, [Azure Active Directory][aad_about], and the [Azure Resource Manager][resman_overview] together in the same application.</span></span> <span data-ttu-id="8ac08-116">이러한 기능과 해당 API를 사용하여 원활한 인증 환경, 리소스 그룹을 만들고 삭제하는 기능 및 종단 간 관리 솔루션에 대해 위에 설명된 기능을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-116">By using these features and their APIs, you can provide a frictionless authentication experience, the ability to create and delete resource groups, and the capabilities that are described above for an end-to-end management solution.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="8ac08-117">이 문서에서 배치 계정, 키 및 할당량을 프로그래밍 방식으로 관리하는 방법에 대해 주로 설명하는 동안 [Azure Portal][azure_portal]을 사용하여 이러한 다양한 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-117">While this article focuses on the programmatic management of your Batch accounts, keys, and quotas, you can perform many of these activities by using the [Azure portal][azure_portal].</span></span> <span data-ttu-id="8ac08-118">자세한 내용은 [Azure Portal에서 Azure 배치 계정 만들기](batch-account-create-portal.md) 및 [Azure 배치 서비스에 대한 할당량 및 제한](batch-quota-limit.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-118">For more information, see [Create an Azure Batch account using the Azure portal](batch-account-create-portal.md) and [Quotas and limits for the Azure Batch service](batch-quota-limit.md).</span></span>
+> 
+> 
+
+## <a name="create-and-delete-batch-accounts"></a><span data-ttu-id="8ac08-119">배치 계정을 만들고 삭제</span><span class="sxs-lookup"><span data-stu-id="8ac08-119">Create and delete Batch accounts</span></span>
+<span data-ttu-id="8ac08-120">위에서 설명한 대로 배치 관리 API의 주요 기능은 Azure 지역에서 배치 계정을 만들고 삭제하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-120">As mentioned, one of the primary features of the Batch Management API is to create and delete Batch accounts in an Azure region.</span></span> <span data-ttu-id="8ac08-121">이렇게 하려면 [BatchManagementClient.Account.CreateAsync][net_create] 및 [DeleteAsync][net_delete] 또는 해당 동기 항목을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-121">To do so, use [BatchManagementClient.Account.CreateAsync][net_create] and [DeleteAsync][net_delete], or their synchronous counterparts.</span></span>
+
+<span data-ttu-id="8ac08-122">다음 코드 조각은 계정을 만들고 배치 서비스에서 새로 만든 계정을 가져온 후 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-122">The following code snippet creates an account, obtains the newly created account from the Batch service, and then deletes it.</span></span> <span data-ttu-id="8ac08-123">이 코드 조각과 이 문서의 다른 코드 조각에서 `batchManagementClient`는 완전히 초기화된 [BatchManagementClient][net_mgmt_client] 인스턴스입니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-123">In this snippet and the others in this article, `batchManagementClient` is a fully initialized instance of [BatchManagementClient][net_mgmt_client].</span></span>
+
+```csharp
+// Create a new Batch account
+await batchManagementClient.Account.CreateAsync("MyResourceGroup",
+    "mynewaccount",
+    new BatchAccountCreateParameters() { Location = "West US" });
+
+// Get the new account from the Batch service
+AccountResource account = await batchManagementClient.Account.GetAsync(
+    "MyResourceGroup",
+    "mynewaccount");
+
+// Delete the account
+await batchManagementClient.Account.DeleteAsync("MyResourceGroup", account.Name);
+```
+
+> [!NOTE]
+> <span data-ttu-id="8ac08-124">배치 관리 .NET 라이브러리 및 해당 BatchManagementClient 클래스를 사용하는 응용 프로그램에는 관리할 배치 계정을 소유하고 있는 구독에 대한 **서비스 관리자** 또는 **공동 관리자** 액세스 권한이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-124">Applications that use the Batch Management .NET library and its BatchManagementClient class require **service administrator** or **coadministrator** access to the subscription that owns the Batch account to be managed.</span></span> <span data-ttu-id="8ac08-125">자세한 내용은 [Azure Active Directory](#azure-active-directory) 섹션과 [AccountManagement][acct_mgmt_sample] 코드 샘플을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-125">For more information, see the [Azure Active Directory](#azure-active-directory) section and the [AccountManagement][acct_mgmt_sample] code sample.</span></span>
+> 
+> 
+
+## <a name="retrieve-and-regenerate-account-keys"></a><span data-ttu-id="8ac08-126">계정 키를 검색하고 다시 생성</span><span class="sxs-lookup"><span data-stu-id="8ac08-126">Retrieve and regenerate account keys</span></span>
+<span data-ttu-id="8ac08-127">[ListKeysAsync][net_list_keys]를 사용하여 구독 내 배치 계정에서 기본 및 보조 계정 키를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-127">Obtain primary and secondary account keys from any Batch account within your subscription by using [ListKeysAsync][net_list_keys].</span></span> <span data-ttu-id="8ac08-128">[RegenerateKeyAsync][net_regenerate_keys]를 사용하여 해당 키를 다시 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-128">You can regenerate those keys by using [RegenerateKeyAsync][net_regenerate_keys].</span></span>
+
+```csharp
+// Get and print the primary and secondary keys
+BatchAccountListKeyResult accountKeys =
+    await batchManagementClient.Account.ListKeysAsync(
+        "MyResourceGroup",
+        "mybatchaccount");
+Console.WriteLine("Primary key:   {0}", accountKeys.Primary);
+Console.WriteLine("Secondary key: {0}", accountKeys.Secondary);
+
+// Regenerate the primary key
+BatchAccountRegenerateKeyResponse newKeys =
+    await batchManagementClient.Account.RegenerateKeyAsync(
+        "MyResourceGroup",
+        "mybatchaccount",
+        new BatchAccountRegenerateKeyParameters() {
+            KeyName = AccountKeyType.Primary
+            });
+```
+
+> [!TIP]
+> <span data-ttu-id="8ac08-129">관리 응용 프로그램에 대한 간소화된 연결 워크플로를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-129">You can create a streamlined connection workflow for your management applications.</span></span> <span data-ttu-id="8ac08-130">먼저 [ListKeysAsync][net_list_keys]를 사용하여 관리하려는 배치 계정에 대한 계정 키를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-130">First, obtain an account key for the Batch account you wish to manage with [ListKeysAsync][net_list_keys].</span></span> <span data-ttu-id="8ac08-131">그런 다음 [BatchClient][net_batch_client]를 초기화할 때 사용되는 배치 .NET 라이브러리의 [BatchSharedKeyCredentials][net_sharedkeycred] 클래스를 초기화할 때 이 키를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-131">Then, use this key when initializing the Batch .NET library's [BatchSharedKeyCredentials][net_sharedkeycred] class, which is used when initializing [BatchClient][net_batch_client].</span></span>
+> 
+> 
+
+## <a name="check-azure-subscription-and-batch-account-quotas"></a><span data-ttu-id="8ac08-132">Azure 구독 및 배치 계정 할당량 확인</span><span class="sxs-lookup"><span data-stu-id="8ac08-132">Check Azure subscription and Batch account quotas</span></span>
+<span data-ttu-id="8ac08-133">Azure 구독 및 배치와 같은 개별 Azure 서비스는 모두 포함되는 특정 엔터티 수를 제한하는 기본 할당량이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-133">Azure subscriptions and the individual Azure services like Batch all have default quotas that limit the number of certain entities within them.</span></span> <span data-ttu-id="8ac08-134">Azure 구독에 대한 기본 할당량의 경우 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-134">For the default quotas for Azure subscriptions, see [Azure subscription and service limits, quotas, and constraints](../azure-subscription-service-limits.md).</span></span> <span data-ttu-id="8ac08-135">배치 서비스의 기본 할당량의 경우 [Azure 배치 서비스에 대한 할당량 및 제한](batch-quota-limit.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-135">For the default quotas of the Batch service, see [Quotas and limits for the Azure Batch service](batch-quota-limit.md).</span></span> <span data-ttu-id="8ac08-136">배치 관리 .NET 라이브러리를 사용하여 응용 프로그램에서 이러한 할당량을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-136">By using the Batch Management .NET library, you can check these quotas in your applications.</span></span> <span data-ttu-id="8ac08-137">계정 또는 풀과 같은 계산 리소스 및 계산 노드를 추가하기 전에 할당 결정을 내릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-137">This enables you to make allocation decisions before you add accounts or compute resources like pools and compute nodes.</span></span>
+
+### <a name="check-an-azure-subscription-for-batch-account-quotas"></a><span data-ttu-id="8ac08-138">Azure 구독에서 배치 계정 할당량 확인</span><span class="sxs-lookup"><span data-stu-id="8ac08-138">Check an Azure subscription for Batch account quotas</span></span>
+<span data-ttu-id="8ac08-139">지역에 배치 계정을 만들기 전에 Azure 구독에서 해당 지역에 계정을 추가할 수 있는지 여부를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-139">Before creating a Batch account in a region, you can check your Azure subscription to see whether you are able to add an account in that region.</span></span>
+
+<span data-ttu-id="8ac08-140">아래 코드 조각에서 먼저 [BatchManagementClient.Account.ListAsync][net_mgmt_listaccounts]를 사용하여 구독 내에서 모든 배치 계정의 컬렉션을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-140">In the code snippet below, we first use [BatchManagementClient.Account.ListAsync][net_mgmt_listaccounts] to get a collection of all Batch accounts that are within a subscription.</span></span> <span data-ttu-id="8ac08-141">이 컬렉션을 가져온 후 대상 영역의 계정 수를 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-141">Once we've obtained this collection, we determine how many accounts are in the target region.</span></span> <span data-ttu-id="8ac08-142">그런 다음 [BatchManagementClient.Subscriptions][net_mgmt_subscriptions]를 사용하여 배치 계정 할당량을 가져오고 해당 지역에서 얼마나 많은 계정(있는 경우)을 만들 수 있는지 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-142">Then we use [BatchManagementClient.Subscriptions][net_mgmt_subscriptions] to obtain the Batch account quota and determine how many accounts (if any) can be created in that region.</span></span>
+
+```csharp
+// Get a collection of all Batch accounts within the subscription
+BatchAccountListResponse listResponse =
+        await batchManagementClient.Account.ListAsync(new AccountListParameters());
+IList<AccountResource> accounts = listResponse.Accounts;
+Console.WriteLine("Total number of Batch accounts under subscription id {0}:  {1}",
+    creds.SubscriptionId,
+    accounts.Count);
+
+// Get a count of all accounts within the target region
+string region = "westus";
+int accountsInRegion = accounts.Count(o => o.Location == region);
+
+// Get the account quota for the specified region
+SubscriptionQuotasGetResponse quotaResponse = await batchManagementClient.Subscriptions.GetSubscriptionQuotasAsync(region);
+Console.WriteLine("Account quota for {0} region: {1}", region, quotaResponse.AccountQuota);
+
+// Determine how many accounts can be created in the target region
+Console.WriteLine("Accounts in {0}: {1}", region, accountsInRegion);
+Console.WriteLine("You can create {0} accounts in the {1} region.", quotaResponse.AccountQuota - accountsInRegion, region);
+```
+
+<span data-ttu-id="8ac08-143">위의 코드 조각에서 `creds`는 [TokenCloudCredentials][azure_tokencreds]의 인스턴스입니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-143">In the snippet above, `creds` is an instance of [TokenCloudCredentials][azure_tokencreds].</span></span> <span data-ttu-id="8ac08-144">이 개체를 만드는 예제를 보려면 GitHub에서 [AccountManagement][acct_mgmt_sample] 코드 샘플을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-144">To see an example of creating this object, see the [AccountManagement][acct_mgmt_sample] code sample on GitHub.</span></span>
+
+### <a name="check-a-batch-account-for-compute-resource-quotas"></a><span data-ttu-id="8ac08-145">배치 계정에서 계산 리소스 할당량 확인</span><span class="sxs-lookup"><span data-stu-id="8ac08-145">Check a Batch account for compute resource quotas</span></span>
+<span data-ttu-id="8ac08-146">배치 솔루션에서 계산 리소스를 늘리기 전에 할당할 리소스가 해당 계정의 할당량을 초과하지 않는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-146">Before increasing compute resources in your Batch solution, you can check to ensure the resources you want to allocate won't exceed the account's quotas.</span></span> <span data-ttu-id="8ac08-147">아래 코드 조각에서는 `mybatchaccount`라는 배치 계정에 대한 할당량 정보를 간단히 출력합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-147">In the code snippet below, we print the quota information for the Batch account named `mybatchaccount`.</span></span> <span data-ttu-id="8ac08-148">하지만 응용 프로그램에서 이러한 정보를 사용하여 만들려는 추가 리소스를 계정에서 처리할 수 있는지 여부를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-148">In your own application, you could use such information to determine whether the account can handle the additional resources to be created.</span></span>
+
+```csharp
+// First obtain the Batch account
+BatchAccountGetResponse getResponse =
+    await batchManagementClient.Account.GetAsync("MyResourceGroup", "mybatchaccount");
+AccountResource account = getResponse.Resource;
+
+// Now print the compute resource quotas for the account
+Console.WriteLine("Core quota: {0}", account.Properties.CoreQuota);
+Console.WriteLine("Pool quota: {0}", account.Properties.PoolQuota);
+Console.WriteLine("Active job and job schedule quota: {0}", account.Properties.ActiveJobAndJobScheduleQuota);
+```
+
+> [!IMPORTANT]
+> <span data-ttu-id="8ac08-149">Azure 구독 및 서비스에 기본 할당량이 있기는 하지만 [Azure Portal][azure_portal]에서 요청을 실행하여 이러한 여러 제한을 늘릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-149">While there are default quotas for Azure subscriptions and services, many of these limits can be raised by issuing a request in the [Azure portal][azure_portal].</span></span> <span data-ttu-id="8ac08-150">예를 들어 배치 계정 할당량을 늘리는 방법에 대한 지침은 [Azure 배치 서비스에 대한 할당량 및 제한](batch-quota-limit.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-150">For example, see [Quotas and limits for the Azure Batch service](batch-quota-limit.md) for instructions on increasing your Batch account quotas.</span></span>
+> 
+> 
+
+## <a name="use-azure-ad-with-batch-management-net"></a><span data-ttu-id="8ac08-151">Batch Management .NET을 통한 Azure AD 사용</span><span class="sxs-lookup"><span data-stu-id="8ac08-151">Use Azure AD with Batch Management .NET</span></span>
+
+<span data-ttu-id="8ac08-152">Batch Management .NET 라이브러리는 Azure 리소스 공급자 클라이언트이며 [Azure Resource Manager][resman_overview]와 함께 프로그래밍 방식으로 계정 리소스를 관리하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-152">The Batch Management .NET library is an Azure resource provider client, and is used together with [Azure Resource Manager][resman_overview] to manage account resources programmatically.</span></span> <span data-ttu-id="8ac08-153">Azure AD는 Batch Management .NET 라이브러리를 비롯한 Azure 리소스 공급자 클라이언트 및 [Azure Resource Manager][resman_overview]를 통해 만들어지는 요청을 인증하는 데 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-153">Azure AD is required to authenticate requests made through any Azure resource provider client, including the Batch Management .NET library, and through [Azure Resource Manager][resman_overview].</span></span> <span data-ttu-id="8ac08-154">Batch Management .NET을 통한 Azure AD 사용에 대한 자세한 내용은 [Azure Active Directory를 사용한 Batch 솔루션 인증](batch-aad-auth.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-154">For information about using Azure AD with the Batch Management .NET library, see [Use Azure Active Directory to authenticate Batch solutions](batch-aad-auth.md).</span></span> 
+
+## <a name="sample-project-on-github"></a><span data-ttu-id="8ac08-155">GitHub에서 샘플 프로젝트</span><span class="sxs-lookup"><span data-stu-id="8ac08-155">Sample project on GitHub</span></span>
+
+<span data-ttu-id="8ac08-156">실제로 사용 중인 배치 관리 .NET을 확인하려면 GitHub의 [AccountManagment][acct_mgmt_sample] 샘플 프로젝트를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ac08-156">To see Batch Management .NET in action, check out the [AccountManagment][acct_mgmt_sample] sample project on GitHub.</span></span> <span data-ttu-id="8ac08-157">AccountManagment 샘플 응용 프로그램은 다음 작업을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-157">The AccountManagment sample application demonstrates the following operations:</span></span>
+
+1. <span data-ttu-id="8ac08-158">[ADAL][aad_adal]을 사용하여 Azure AD에서 보안 토큰을 획득합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-158">Acquire a security token from Azure AD by using [ADAL][aad_adal].</span></span> <span data-ttu-id="8ac08-159">사용자가 아직 로그인하지 않은 경우 Azure 자격 증명을 요구하는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-159">If the user is not already signed in, they are prompted for their Azure credentials.</span></span>
+2. <span data-ttu-id="8ac08-160">Azure AD에서 획득한 보안 토큰을 사용하여 [SubscriptionClient][resman_subclient]를 만들고 Azure에서 해당 계정과 연결된 구독 목록을 쿼리합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-160">With the security token obtained from Azure AD, create a [SubscriptionClient][resman_subclient] to query Azure for a list of subscriptions associated with the account.</span></span> <span data-ttu-id="8ac08-161">목록에 둘 이상의 구독이 포함되어 있는 경우 사용자가 구독을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-161">The user can select a subscription from the list if it contains more than one subscription.</span></span>
+3. <span data-ttu-id="8ac08-162">선택한 구독에 연결된 자격 증명을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-162">Get credentials associated with the selected subscription.</span></span>
+4. <span data-ttu-id="8ac08-163">자격 증명을 사용하여 [ResourceManagementClient][resman_client] 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-163">Create a [ResourceManagementClient][resman_client] object by using the credentials.</span></span>
+5. <span data-ttu-id="8ac08-164">[ResourceManagementClient][resman_client] 개체를 사용하여 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-164">Use a [ResourceManagementClient][resman_client] object to create a resource group.</span></span>
+6. <span data-ttu-id="8ac08-165">[BatchManagementClient][net_mgmt_client] 개체를 사용하여 여러 가지 배치 계정 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-165">Use a [BatchManagementClient][net_mgmt_client] object to perform several Batch account operations:</span></span>
+   * <span data-ttu-id="8ac08-166">새 리소스 그룹에 배치 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-166">Create a Batch account in the new resource group.</span></span>
+   * <span data-ttu-id="8ac08-167">배치 서비스에서 새로 만든 계정을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-167">Get the newly created account from the Batch service.</span></span>
+   * <span data-ttu-id="8ac08-168">새 계정에 대한 계정 키를 인쇄합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-168">Print the account keys for the new account.</span></span>
+   * <span data-ttu-id="8ac08-169">계정에 대한 새 기본 키를 다시 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-169">Regenerate a new primary key for the account.</span></span>
+   * <span data-ttu-id="8ac08-170">계정에 대한 할당량 정보를 인쇄합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-170">Print the quota information for the account.</span></span>
+   * <span data-ttu-id="8ac08-171">구독에 대한 할당량 정보를 인쇄합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-171">Print the quota information for the subscription.</span></span>
+   * <span data-ttu-id="8ac08-172">구독 내에서 모든 계정을 인쇄합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-172">Print all accounts within the subscription.</span></span>
+   * <span data-ttu-id="8ac08-173">새로 만든 계정을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-173">Delete newly created account.</span></span>
+7. <span data-ttu-id="8ac08-174">해당 리소스 그룹을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-174">Delete the resource group.</span></span>
+
+<span data-ttu-id="8ac08-175">새로 만든 배치 계정 및 리소스 그룹을 삭제하기 전에 [Azure Portal][azure_portal]에서 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-175">Before deleting the newly created Batch account and resource group, you can view them in the [Azure portal][azure_portal]:</span></span>
+
+<span data-ttu-id="8ac08-176">샘플 응용 프로그램을 실행하려면 먼저 Azure Portal의 Azure AD 테넌트에 응용 프로그램을 등록하고 Azure Resource Manager API에 권한을 부여해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-176">To run the sample application successfully, you must first register it with your Azure AD tenant in the Azure portal and grant permissions to the Azure Resource Manager API.</span></span> <span data-ttu-id="8ac08-177">[Active Directory를 사용하여 Batch Management 솔루션 인증](batch-aad-auth-management.md)에 제공된 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="8ac08-177">Follow the steps provided in [Authenticate Batch Management solutions with Active Directory](batch-aad-auth-management.md).</span></span>
+
+
+<span data-ttu-id="8ac08-178">[aad_about]: ../active-directory/active-directory-whatis.md "Azure Active Directory란?"</span><span class="sxs-lookup"><span data-stu-id="8ac08-178">[aad_about]: ../active-directory/active-directory-whatis.md "What is Azure Active Directory?"</span></span>
+[aad_adal]: ../active-directory/active-directory-authentication-libraries.md
+<span data-ttu-id="8ac08-179">[aad_auth_scenarios]: ../active-directory/active-directory-authentication-scenarios.md "Azure AD의 인증 시나리오"</span><span class="sxs-lookup"><span data-stu-id="8ac08-179">[aad_auth_scenarios]: ../active-directory/active-directory-authentication-scenarios.md "Authentication Scenarios for Azure AD"</span></span>
+<span data-ttu-id="8ac08-180">[aad_integrate]: ../active-directory/active-directory-integrating-applications.md "Azure Active Directory와 응용 프로그램 통합"</span><span class="sxs-lookup"><span data-stu-id="8ac08-180">[aad_integrate]: ../active-directory/active-directory-integrating-applications.md "Integrating Applications with Azure Active Directory"</span></span>
+[acct_mgmt_sample]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/AccountManagement
+[api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
+[api_mgmt_net]: https://msdn.microsoft.com/library/azure/mt463120.aspx
+[azure_portal]: http://portal.azure.com
+[azure_storage]: https://azure.microsoft.com/services/storage/
+[azure_tokencreds]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.tokencloudcredentials.aspx
+[batch_explorer_project]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
+[net_batch_client]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient.aspx
+[net_list_keys]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.accountoperationsextensions.listkeysasync.aspx
+[net_create]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.accountoperationsextensions.createasync.aspx
+[net_delete]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.accountoperationsextensions.deleteasync.aspx
+[net_regenerate_keys]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.accountoperationsextensions.regeneratekeyasync.aspx
+[net_sharedkeycred]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.auth.batchsharedkeycredentials.aspx
+[net_mgmt_client]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.batchmanagementclient.aspx
+[net_mgmt_subscriptions]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.batchmanagementclient.subscriptions.aspx
+[net_mgmt_listaccounts]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.batch.iaccountoperations.listasync.aspx
+[resman_api]: https://msdn.microsoft.com/library/azure/mt418626.aspx
+[resman_client]: https://msdn.microsoft.com/library/azure/microsoft.azure.management.resources.resourcemanagementclient.aspx
+[resman_subclient]: https://msdn.microsoft.com/library/azure/microsoft.azure.subscriptions.subscriptionclient.aspx
+[resman_overview]: ../azure-resource-manager/resource-group-overview.md
+
+[1]: ./media/batch-management-dotnet/portal-01.png
+[2]: ./media/batch-management-dotnet/portal-02.png
+[3]: ./media/batch-management-dotnet/portal-03.png

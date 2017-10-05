@@ -1,0 +1,432 @@
+---
+title: "Media Services REST API를 사용하여 자산 배달 정책 구성 | Microsoft 문서"
+description: "이 항목에서는 미디어 서비스 REST API를 사용하여 여러 자산 배달 정책을 구성하는 방법을 보여 줍니다."
+services: media-services
+documentationcenter: 
+author: Juliako
+manager: cfowler
+editor: 
+ms.assetid: 5cb9d32a-e68b-4585-aa82-58dded0691d0
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/10/2017
+ms.author: juliako
+ms.openlocfilehash: 7ffbde11b943961dd3a3b5edebd0cfd52429e845
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/29/2017
+---
+# <a name="configuring-asset-delivery-policies"></a><span data-ttu-id="e6ebc-103">자산 배달 정책 구성</span><span class="sxs-lookup"><span data-stu-id="e6ebc-103">Configuring asset delivery policies</span></span>
+[!INCLUDE [media-services-selector-asset-delivery-policy](../../includes/media-services-selector-asset-delivery-policy.md)]
+
+<span data-ttu-id="e6ebc-104">동적으로 암호화된 자산을 배달하려는 경우 미디어 서비스 콘텐츠 배달 워크플로의 단계 중 하나는 자산에 대한 배달 정책을 구성하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-104">If you plan to deliver dynamically encrypted assets, one of the steps in the Media Services content delivery workflow is configuring delivery policies for assets.</span></span> <span data-ttu-id="e6ebc-105">자산 배달 정책은 어떤 스트리밍 프로토콜(예: MPEG DASH, HLS, 부드러운 스트리밍 또는 모두)로 사용자의 자산을 동적으로 패키지할 지와 같은 사용자가 원하는 자산 배달 방법과 사용자의 자산을 동적으로 암호화할 지 여부 및 방법(봉투 또는 일반 암호화)를 미디어 서비스에 알려줍니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-105">The asset delivery policy tells Media Services how you want for your asset to be delivered: into which streaming protocol should your asset be dynamically packaged (for example, MPEG DASH, HLS, Smooth Streaming, or all), whether or not you want to dynamically encrypt your asset and how (envelope or common encryption).</span></span>
+
+<span data-ttu-id="e6ebc-106">이 항목에서는 자산 배달 정책을 만들고 구성하는 이유와 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-106">This topic discusses why and how to create and configure asset delivery policies.</span></span>
+
+>[!NOTE]
+><span data-ttu-id="e6ebc-107">AMS 계정이 만들어질 때 **기본** 스트리밍 끝점은 **중지됨** 상태에서 계정에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-107">When your AMS account is created a **default** streaming endpoint is added to your account in the **Stopped** state.</span></span> <span data-ttu-id="e6ebc-108">콘텐츠 스트리밍을 시작하고 동적 패키징 및 동적 암호화를 활용하려면 콘텐츠를 스트리밍하려는 스트리밍 끝점은 **실행** 상태에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-108">To start streaming your content and take advantage of dynamic packaging and dynamic encryption, the streaming endpoint from which you want to stream content has to be in the **Running** state.</span></span> 
+>
+><span data-ttu-id="e6ebc-109">또한 동적 패키징 및 동적 암호화를 사용하려면 자산이 적응 비트 전송률 MP4 또는 적응 비트 전송률 부드러운 스트리밍 파일 집합을 포함해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-109">Also, to be able to use dynamic packaging and dynamic encryption your asset must contain a set of adaptive bitrate MP4s or adaptive bitrate Smooth Streaming files.</span></span>
+
+<span data-ttu-id="e6ebc-110">동일한 자산에 다른 정책을 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-110">You could apply different policies to the same asset.</span></span> <span data-ttu-id="e6ebc-111">예를 들어, 부드러운 스트리밍에 PlayReady 암호화, MPEG DASH 및 HLS에 AES 봉투(envelope) 암호화를 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-111">For example, you could apply PlayReady encryption to Smooth Streaming and AES Envelope encryption to MPEG DASH and HLS.</span></span> <span data-ttu-id="e6ebc-112">배달 정책에 정의되지 않은 모든 프로토콜(예: HLS만 프로토콜로 지정하는 단일 정책)은 스트리밍에서 차단됩니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-112">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as the protocol) will be blocked from streaming.</span></span> <span data-ttu-id="e6ebc-113">정의한 자산 배달 정책이 없는 경우는 예외입니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-113">The exception to this is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="e6ebc-114">이렇게 하면 모든 프로토콜이 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-114">Then, all protocols will be allowed in the clear.</span></span>
+
+<span data-ttu-id="e6ebc-115">저장소에서 암호화된 자산을 배달하려는 경우 자산의 배달 정책을 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-115">If you want to deliver a storage encrypted asset, you must configure the asset’s delivery policy.</span></span> <span data-ttu-id="e6ebc-116">자산을 스트리밍하기 전에 스트리밍 서버가 저장소 암호화를 제거하고 지정된 배달 정책을 사용하여 콘텐츠를 스트리밍합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-116">Before your asset can be streamed, the streaming server removes the storage encryption and streams your content using the specified delivery policy.</span></span> <span data-ttu-id="e6ebc-117">예를 들어 표준 AES 봉투 암호화 키로 암호화된 자산을 배달하려면 정책 유형을 **DynamicEnvelopeEncryption**으로 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-117">For example, to deliver your asset encrypted with Advanced Encryption Standard (AES) envelope encryption key, set the policy type to **DynamicEnvelopeEncryption**.</span></span> <span data-ttu-id="e6ebc-118">저장소 암호화를 제거하고 암호화되지 않은 자산을 스트리밍하려면 정책 유형을 **NoDynamicEncryption**으로 설정하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-118">To remove storage encryption and stream the asset in the clear, set the policy type to **NoDynamicEncryption**.</span></span> <span data-ttu-id="e6ebc-119">이러한 정책 유형을 구성 하는 방법을 보여주는 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-119">Examples that show how to configure these policy types follow.</span></span>
+
+<span data-ttu-id="e6ebc-120">사용자가 자산 배달 정책을 구성하는 방법에 따라 다음 스트리밍 프로토콜을 동적으로 패키지하고, 동적으로 암호화하고 스트림할 수 있습니다(부드러운 스트리밍, HLS 및 MPEG DASH 스트림).</span><span class="sxs-lookup"><span data-stu-id="e6ebc-120">Depending on how you configure the asset delivery policy you would be able to dynamically package, dynamically encrypt, and stream the following streaming protocols: Smooth Streaming, HLS, MPEG DASH streams.</span></span>
+
+<span data-ttu-id="e6ebc-121">다음 목록에서는 부드러운 스트리밍, HLS, DASH 등의 프로토콜을 스트리밍할 때 사용하는 형식을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-121">The following list shows the formats that you use to stream Smooth, HLS, DASH.</span></span>
+
+<span data-ttu-id="e6ebc-122">부드러운 스트리밍:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-122">Smooth Streaming:</span></span>
+
+<span data-ttu-id="e6ebc-123">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest</span><span class="sxs-lookup"><span data-stu-id="e6ebc-123">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest</span></span>
+
+<span data-ttu-id="e6ebc-124">HLS:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-124">HLS:</span></span>
+
+<span data-ttu-id="e6ebc-125">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)</span><span class="sxs-lookup"><span data-stu-id="e6ebc-125">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)</span></span>
+
+<span data-ttu-id="e6ebc-126">MPEG DASH</span><span class="sxs-lookup"><span data-stu-id="e6ebc-126">MPEG DASH</span></span>
+
+<span data-ttu-id="e6ebc-127">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)</span><span class="sxs-lookup"><span data-stu-id="e6ebc-127">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)</span></span>
+
+
+<span data-ttu-id="e6ebc-128">자산을 게시하고 스트리밍 URL을 작성하는 방법은 [스트리밍 URL 작성](media-services-deliver-streaming-content.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-128">For instructions on how to publish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
+
+## <a name="considerations"></a><span data-ttu-id="e6ebc-129">고려 사항</span><span class="sxs-lookup"><span data-stu-id="e6ebc-129">Considerations</span></span>
+* <span data-ttu-id="e6ebc-130">자산에 대한 주문형(스트리밍) 로케이터가 있는 동안 해당 자산과 연결된 AssetDeliveryPolicy를 삭제할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-130">You cannot delete an AssetDeliveryPolicy associated with an asset while an OnDemand (streaming) locator exists for that asset.</span></span> <span data-ttu-id="e6ebc-131">정책을 삭제하기 전에 자산에서 정책을 제거하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-131">The recommendation is to remove the policy from the asset before deleting the policy.</span></span>
+* <span data-ttu-id="e6ebc-132">자산 배달 정책이 설정되지 않은 경우 암호화된 저장소 자산에 스트리밍 로케이터를 만들 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-132">A streaming locator cannot be created on a storage encrypted asset when no asset delivery policy is set.</span></span>  <span data-ttu-id="e6ebc-133">자산이 암호화된 저장소가 아닌 경우 시스템에서 로케이터를 만들고 자산 배달 정책 없이 일반 텍스트인 자산을 스트리밍할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-133">If the Asset isn’t storage encrypted, the system will let you create a locator and stream the asset in the clear without an asset delivery policy.</span></span>
+* <span data-ttu-id="e6ebc-134">단일 자산과 여러 자산 배달 정책을 연결하여 사용할 수 있지만 지정된 AssetDeliveryProtocol을 처리하는 방법은 하나만 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-134">You can have multiple asset delivery policies associated with a single asset but you can only specify one way to handle a given AssetDeliveryProtocol.</span></span>  <span data-ttu-id="e6ebc-135">즉, AssetDeliveryProtocol.SmoothStreaming 프로토콜을 지정하는 두 가지 배달 정책을 연결하려는 경우 클라이언트가 부드러운 스트리밍을 요청할 때 시스템이 어떤 정책을 적용할지 모르기 때문에 오류가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-135">Meaning if you try to link two delivery policies that specify the AssetDeliveryProtocol.SmoothStreaming protocol that will result in an error because the system does not know which one you want it to apply when a client makes a Smooth Streaming request.</span></span>
+* <span data-ttu-id="e6ebc-136">기존 스트리밍 로케이터를 사용하는 자산이 있는 경우 해당 자산에 새 정책을 연결, 자산에서 기존 정책의 연결 해제 또는 자산과 연결된 배달 정책을 업데이트할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-136">If you have an asset with an existing streaming locator, you cannot link a new policy to the asset, unlink an existing policy from the asset, or update a delivery policy associated with the asset.</span></span>  <span data-ttu-id="e6ebc-137">먼저 스트리밍 로케이터를 제거하고, 정책을 조정한 다음, 스트리밍 로케이터를 다시 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-137">You first have to remove the streaming locator, adjust the policies, and then re-create the streaming locator.</span></span>  <span data-ttu-id="e6ebc-138">스트리밍 로케이터를 다시 만들 때 동일한 locatorId를 사용할 수 있지만 원본 또는 다운스트림 CDN이 콘텐츠를 캐시할 수 있으므로 클라이언트에 문제가 발생하지 않는지 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-138">You can use the same locatorId when you recreate the streaming locator but you should ensure that won’t cause issues for clients since content can be cached by the origin or a downstream CDN.</span></span>
+
+>[!NOTE]
+
+><span data-ttu-id="e6ebc-139">미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-139">When accessing entities in Media Services, you must set specific header fields and values in your HTTP requests.</span></span> <span data-ttu-id="e6ebc-140">자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-140">For more information, see [Setup for Media Services REST API Development](media-services-rest-how-to-use.md).</span></span>
+
+## <a name="connect-to-media-services"></a><span data-ttu-id="e6ebc-141">미디어 서비스에 연결</span><span class="sxs-lookup"><span data-stu-id="e6ebc-141">Connect to Media Services</span></span>
+
+<span data-ttu-id="e6ebc-142">AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-142">For information on how to connect to the AMS API, see [Access the Azure Media Services API with Azure AD authentication](media-services-use-aad-auth-to-access-ams-api.md).</span></span> 
+
+>[!NOTE]
+><span data-ttu-id="e6ebc-143">https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-143">After successfully connecting to https://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="e6ebc-144">사용자는 새 URI에 대한 후속 호출을 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-144">You must make subsequent calls to the new URI.</span></span>
+
+## <a name="clear-asset-delivery-policy"></a><span data-ttu-id="e6ebc-145">자산 배달 정책 지우기</span><span class="sxs-lookup"><span data-stu-id="e6ebc-145">Clear asset delivery policy</span></span>
+### <span data-ttu-id="e6ebc-146"><a id="create_asset_delivery_policy"></a>자산 배달 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="e6ebc-146"><a id="create_asset_delivery_policy"></a>Create asset delivery policy</span></span>
+<span data-ttu-id="e6ebc-147">다음 HTTP 요청은 동적 암호화를 적용하지 않고 MPEG DASH, HLS 및 부드러운 스트리밍 프로토콜 중 하나에서 스트림을 배달하도록 지정하는 자산 배달 정책을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-147">The following HTTP request creates an asset delivery policy that specifies to not apply dynamic encryption and to deliver the stream in any of the following protocols:  MPEG DASH, HLS, and Smooth Streaming protocols.</span></span> 
+
+<span data-ttu-id="e6ebc-148">AssetDeliveryPolicy을 만들 때 사용자가 지정하는 값에 대한 자세한 정보는 [AssetDeliveryPolicy를 정의할 때 사용되는 형식](#types) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-148">For information on what values you can specify when creating an AssetDeliveryPolicy, see the [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+
+<span data-ttu-id="e6ebc-149">요청:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-149">Request:</span></span>
+
+    POST https://media.windows.net/api/AssetDeliveryPolicies HTTP/1.1
+    Content-Type: application/json
+    DataServiceVersion: 1.0;NetFx
+    MaxDataServiceVersion: 3.0;NetFx
+    Accept: application/json
+    Accept-Charset: UTF-8
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amsaccount1&urn%3aSubscriptionId=zbbef702-e769-2233-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1423397827&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=Szo6lbJAvL3dyecAeVmyAnzv3mGzfUNClR5shk9Ivbk%3d
+    x-ms-version: 2.11
+    x-ms-client-request-id: 4651882c-d7ad-4d5e-86ab-f07f47dcb41e
+    Host: media.windows.net
+
+    {"Name":"Clear Policy",
+    "AssetDeliveryProtocol":7,
+    "AssetDeliveryPolicyType":2,
+    "AssetDeliveryConfiguration":null}
+
+<span data-ttu-id="e6ebc-150">응답:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-150">Response:</span></span>
+
+    HTTP/1.1 201 Created
+    Cache-Control: no-cache
+    Content-Length: 363
+    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+    Location: https://media.windows.net/api/AssetDeliveryPolicies('nb%3Aadpid%3AUUID%3A92b0f6ba-3c9f-49b6-a5fa-2a8703b04ecd')
+    Server: Microsoft-IIS/8.5
+    x-ms-client-request-id: 4651882c-d7ad-4d5e-86ab-f07f47dcb41e
+    request-id: 6aedbf93-4bc2-4586-8845-fd45590136af
+    x-ms-request-id: 6aedbf93-4bc2-4586-8845-fd45590136af
+    X-Content-Type-Options: nosniff
+    DataServiceVersion: 3.0;
+    X-Powered-By: ASP.NET
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    Date: Sun, 08 Feb 2015 06:21:27 GMT
+
+    {"odata.metadata":"https://media.windows.net/api/$metadata#AssetDeliveryPolicies/@Element",
+    "Id":"nb:adpid:UUID:92b0f6ba-3c9f-49b6-a5fa-2a8703b04ecd",
+    "Name":"Clear Policy",
+    "AssetDeliveryProtocol":7,
+    "AssetDeliveryPolicyType":2,
+    "AssetDeliveryConfiguration":null,
+    "Created":"2015-02-08T06:21:27.6908329Z",
+    "LastModified":"2015-02-08T06:21:27.6908329Z"}
+
+### <span data-ttu-id="e6ebc-151"><a id="link_asset_with_asset_delivery_policy"></a>자산을 자산 배달 정책과 연결</span><span class="sxs-lookup"><span data-stu-id="e6ebc-151"><a id="link_asset_with_asset_delivery_policy"></a>Link asset with asset delivery policy</span></span>
+<span data-ttu-id="e6ebc-152">다음 HTTP 요청은 지정된 자산을 자산 배달 정책에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-152">The following HTTP request links the specified asset to the asset delivery policy to.</span></span>
+
+<span data-ttu-id="e6ebc-153">요청:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-153">Request:</span></span>
+
+    POST https://media.windows.net/api/Assets('nb%3Acid%3AUUID%3A86933344-9539-4d0c-be7d-f842458693e0')/$links/DeliveryPolicies HTTP/1.1
+    DataServiceVersion: 1.0;NetFx
+    MaxDataServiceVersion: 3.0;NetFx
+    Accept: application/json
+    Accept-Charset: UTF-8
+    Content-Type: application/json
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amsaccount1&urn%3aSubscriptionId=zbbef702-e769-3344-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1423397827&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=Szo6lbJAvL3dyecAeVmyAnzv3mGzfUNClR5shk9Ivbk%3d
+    x-ms-version: 2.11
+    x-ms-client-request-id: 56d2763f-6e72-419d-ba3c-685f6db97e81
+    Host: media.windows.net
+
+    {"uri":"https://media.windows.net/api/AssetDeliveryPolicies('nb%3Aadpid%3AUUID%3A92b0f6ba-3c9f-49b6-a5fa-2a8703b04ecd')"}
+
+<span data-ttu-id="e6ebc-154">응답:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-154">Response:</span></span>
+
+    HTTP/1.1 204 No Content
+
+
+## <a name="dynamicenvelopeencryption-asset-delivery-policy"></a><span data-ttu-id="e6ebc-155">DynamicEnvelopeEncryption 자산 배달 정책</span><span class="sxs-lookup"><span data-stu-id="e6ebc-155">DynamicEnvelopeEncryption asset delivery policy</span></span>
+### <a name="create-content-key-of-the-envelopeencryption-type-and-link-it-to-the-asset"></a><span data-ttu-id="e6ebc-156">EnvelopeEncryption 형식의 콘텐츠 키를 만들고 자산에 연결</span><span class="sxs-lookup"><span data-stu-id="e6ebc-156">Create content key of the EnvelopeEncryption type and link it to the asset</span></span>
+<span data-ttu-id="e6ebc-157">DynamicEnvelopeEncryption 배달 정책을 지정할 때 EnvelopeEncryption 형식의 콘텐츠 키에 자산을 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-157">When specifying DynamicEnvelopeEncryption delivery policy, you need to make sure to link your asset to a content key of the EnvelopeEncryption type.</span></span> <span data-ttu-id="e6ebc-158">자세한 내용은 [콘텐츠 키 만들기](media-services-rest-create-contentkey.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-158">For more information, see: [Creating a content key](media-services-rest-create-contentkey.md)).</span></span>
+
+### <span data-ttu-id="e6ebc-159"><a id="get_delivery_url"></a>배달 URL 가져오기</span><span class="sxs-lookup"><span data-stu-id="e6ebc-159"><a id="get_delivery_url"></a>Get delivery URL</span></span>
+<span data-ttu-id="e6ebc-160">이전 단계에서 만든 콘텐츠 키의 지정된 배달 방법에 대한 배달 URL을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-160">Get the delivery URL for the specified delivery method of the content key created in the previous step.</span></span> <span data-ttu-id="e6ebc-161">클라이언트는 보호된 콘텐츠를 재생하기 위해 AES 키 또는 PlayReady 라이선스를 요청하여 반환된 URL을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-161">A client uses the returned URL to request an AES key or a PlayReady license in order to playback the protected content.</span></span>
+
+<span data-ttu-id="e6ebc-162">HTTP 요청의 본문을 가져오려면 URL의 유형을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-162">Specify the type of the URL to get in the body of the HTTP request.</span></span> <span data-ttu-id="e6ebc-163">PlayReady 사용하여 콘텐츠를 보호하는 경우 keyDeliveryType에 1을 사용({"keyDeliveryType":1})하여 미디어 서비스 PlayReady 라이선스 취득 URL을 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-163">If you are protecting your content with PlayReady, request a Media Services PlayReady license acquisition URL, using 1 for the keyDeliveryType: {"keyDeliveryType":1}.</span></span> <span data-ttu-id="e6ebc-164">봉투 암호화를 사용하여 콘텐츠를 보호하는 경우 keyDeliveryType에 대해 2를 지정({"keyDeliveryType":2})하여 키 획득 URL 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-164">If you are protecting your content with the envelope encryption, request a key acquisition URL by specifying 2 for keyDeliveryType: {"keyDeliveryType":2}.</span></span>
+
+<span data-ttu-id="e6ebc-165">요청:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-165">Request:</span></span>
+
+    POST https://media.windows.net/api/ContentKeys('nb:kid:UUID:dc88f996-2859-4cf7-a279-c52a9d6b2f04')/GetKeyDeliveryUrl HTTP/1.1
+    Content-Type: application/json
+    MaxDataServiceVersion: 3.0;NetFx
+    Accept: application/json
+    Accept-Charset: UTF-8
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amsaccount1&urn%3aSubscriptionId=zbbef702-2233-477b-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1423452029&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=IEXV06e3drSIN5naFRBdhJZCbfEqQbFZsGSIGmawhEo%3d
+    x-ms-version: 2.11
+    x-ms-client-request-id: 569d4b7c-a446-4edc-b77c-9fb686083dd8
+    Host: media.windows.net
+    Content-Length: 21
+
+    {"keyDeliveryType":2}
+
+<span data-ttu-id="e6ebc-166">응답:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-166">Response:</span></span>
+
+    HTTP/1.1 200 OK
+    Cache-Control: no-cache
+    Content-Length: 198
+    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+    Server: Microsoft-IIS/8.5
+    x-ms-client-request-id: 569d4b7c-a446-4edc-b77c-9fb686083dd8
+    request-id: d26f65d2-fe65-4136-8fcf-31545be68377
+    x-ms-request-id: d26f65d2-fe65-4136-8fcf-31545be68377
+    X-Content-Type-Options: nosniff
+    DataServiceVersion: 3.0;
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    Date: Sun, 08 Feb 2015 21:42:30 GMT
+
+    {"odata.metadata":"media.windows.net/api/$metadata#Edm.String","value":"https://amsaccount1.keydelivery.mediaservices.windows.net/?KID=dc88f996-2859-4cf7-a279-c52a9d6b2f04"}
+
+
+### <a name="create-asset-delivery-policy"></a><span data-ttu-id="e6ebc-167">자산 배달 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="e6ebc-167">Create asset delivery policy</span></span>
+<span data-ttu-id="e6ebc-168">다음 HTTP 요청은 **HLS** 프로토콜에 동적 봉투 암호화(**DynamicEnvelopeEncryption**)를 적용하도록 구성된 **AssetDeliveryPolicy**를 만듭니다. 이 예제에서는 다른 프로토콜이 스트리밍에서 차단됩니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-168">The following HTTP request creates the **AssetDeliveryPolicy** that is configured to apply dynamic envelope encryption (**DynamicEnvelopeEncryption**) to the **HLS** protocol (in this example, other protocols will be blocked from streaming).</span></span> 
+
+<span data-ttu-id="e6ebc-169">AssetDeliveryPolicy을 만들 때 사용자가 지정하는 값에 대한 자세한 정보는 [AssetDeliveryPolicy를 정의할 때 사용되는 형식](#types) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-169">For information on what values you can specify when creating an AssetDeliveryPolicy, see the [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+
+<span data-ttu-id="e6ebc-170">요청:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-170">Request:</span></span>
+
+    POST https://media.windows.net/api/AssetDeliveryPolicies HTTP/1.1
+    Content-Type: application/json
+    DataServiceVersion: 1.0;NetFx
+    MaxDataServiceVersion: 3.0;NetFx
+    Accept: application/json
+    Accept-Charset: UTF-8
+    User-Agent: Microsoft ADO.NET Data Services
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amsaccount1&urn%3aSubscriptionId=zbbef702-2233-477b-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1423480651&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=T2FG3tIV0e2ETzxQ6RDWxWAsAzuy3ez2ruXPhrBe62Y%3d
+    x-ms-version: 2.11
+    x-ms-client-request-id: fff319f6-71dd-4f6c-af27-b675c0066fa7
+    Host: media.windows.net
+
+    {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":4,"AssetDeliveryPolicyType":3,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\\/\"}]"}
+
+
+<span data-ttu-id="e6ebc-171">응답:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-171">Response:</span></span>
+
+    HTTP/1.1 201 Created
+    Cache-Control: no-cache
+    Content-Length: 460
+    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+    Location: media.windows.net/api/AssetDeliveryPolicies('nb%3Aadpid%3AUUID%3Aec9b994e-672c-4a5b-8490-a464eeb7964b')
+    Server: Microsoft-IIS/8.5
+    x-ms-client-request-id: fff319f6-71dd-4f6c-af27-b675c0066fa7
+    request-id: c2a1ac0e-9644-474f-b38f-b9541c3a7c5f
+    x-ms-request-id: c2a1ac0e-9644-474f-b38f-b9541c3a7c5f
+    X-Content-Type-Options: nosniff
+    DataServiceVersion: 3.0;
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    Date: Mon, 09 Feb 2015 05:24:38 GMT
+
+    {"odata.metadata":"media.windows.net/api/$metadata#AssetDeliveryPolicies/@Element","Id":"nb:adpid:UUID:ec9b994e-672c-4a5b-8490-a464eeb7964b","Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":4,"AssetDeliveryPolicyType":3,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\\/\"}]","Created":"2015-02-09T05:24:38.9167436Z","LastModified":"2015-02-09T05:24:38.9167436Z"}
+
+
+### <a name="link-asset-with-asset-delivery-policy"></a><span data-ttu-id="e6ebc-172">자산을 자산 배달 정책과 연결</span><span class="sxs-lookup"><span data-stu-id="e6ebc-172">Link asset with asset delivery policy</span></span>
+<span data-ttu-id="e6ebc-173">[자산을 자산 배달 정책과 연결](#link_asset_with_asset_delivery_policy)</span><span class="sxs-lookup"><span data-stu-id="e6ebc-173">See [Link asset with asset delivery policy](#link_asset_with_asset_delivery_policy)</span></span>
+
+## <a name="dynamiccommonencryption-asset-delivery-policy"></a><span data-ttu-id="e6ebc-174">DynamicCommonEncryption 자산 배달 정책</span><span class="sxs-lookup"><span data-stu-id="e6ebc-174">DynamicCommonEncryption asset delivery policy</span></span>
+### <a name="create-content-key-of-the-commonencryption-type-and-link-it-to-the-asset"></a><span data-ttu-id="e6ebc-175">CommonEncryption 형식의 콘텐츠 키를 만들고 자산에 연결</span><span class="sxs-lookup"><span data-stu-id="e6ebc-175">Create content key of the CommonEncryption type and link it to the asset</span></span>
+<span data-ttu-id="e6ebc-176">DynamicCommonEncryption 배달 정책을 지정할 때 CommonEncryption 형식의 콘텐츠 키에 자산을 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-176">When specifying DynamicCommonEncryption delivery policy, you need to make sure to link your asset to a content key of the CommonEncryption type.</span></span> <span data-ttu-id="e6ebc-177">자세한 내용은 [콘텐츠 키 만들기](media-services-rest-create-contentkey.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-177">For more information, see: [Creating a content key](media-services-rest-create-contentkey.md)).</span></span>
+
+### <a name="get-delivery-url"></a><span data-ttu-id="e6ebc-178">배달 URL 가져오기</span><span class="sxs-lookup"><span data-stu-id="e6ebc-178">Get Delivery URL</span></span>
+<span data-ttu-id="e6ebc-179">이전 단계에서 만든 콘텐츠 키의 PlayReady 배달 방법에 대한 배달 URL을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-179">Get the delivery URL for the PlayReady delivery method of the content key created in the previous step.</span></span> <span data-ttu-id="e6ebc-180">클라이언트는 보호된 콘텐츠를 재생하기 위해 PlayReady 라이선스를 요청하여 반환된 URL을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-180">A client uses the returned URL to request a PlayReady license in order to playback the protected content.</span></span> <span data-ttu-id="e6ebc-181">자세한 내용은 [배달 URL 가져오기](#get_delivery_url)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-181">For more information, see [Get Delivery URL](#get_delivery_url).</span></span>
+
+### <a name="create-asset-delivery-policy"></a><span data-ttu-id="e6ebc-182">자산 배달 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="e6ebc-182">Create asset delivery policy</span></span>
+<span data-ttu-id="e6ebc-183">다음 HTTP 요청은 **부드러운 스트리밍** 프로토콜에 동적 일반 암호화(**DynamicCommonEncryption**)를 적용하도록 구성된 **AssetDeliveryPolicy**를 만듭니다. 이 예제에서는 다른 프로토콜이 스트리밍에서 차단됩니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-183">The following HTTP request creates the **AssetDeliveryPolicy** that is configured to apply dynamic common encryption (**DynamicCommonEncryption**) to the **Smooth Streaming** protocol (in this example, other protocols will be blocked from streaming).</span></span> 
+
+<span data-ttu-id="e6ebc-184">AssetDeliveryPolicy을 만들 때 사용자가 지정하는 값에 대한 자세한 정보는 [AssetDeliveryPolicy를 정의할 때 사용되는 형식](#types) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-184">For information on what values you can specify when creating an AssetDeliveryPolicy, see the [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+
+<span data-ttu-id="e6ebc-185">요청:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-185">Request:</span></span>
+
+    POST https://media.windows.net/api/AssetDeliveryPolicies HTTP/1.1
+    Content-Type: application/json
+    DataServiceVersion: 1.0;NetFx
+    MaxDataServiceVersion: 3.0;NetFx
+    Accept: application/json
+    Accept-Charset: UTF-8
+    User-Agent: Microsoft ADO.NET Data Services
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amsaccount1&urn%3aSubscriptionId=zbbef702-2233-477b-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1423480651&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=T2FG3tIV0e2ETzxQ6RDWxWAsAzuy3ez2ruXPhrBe62Y%3d
+    x-ms-version: 2.11
+    x-ms-client-request-id: fff319f6-71dd-4f6c-af27-b675c0066fa7
+    Host: media.windows.net
+
+    {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":1,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\/PlayReady\/"}]"}
+
+
+<span data-ttu-id="e6ebc-186">Widevine DRM을 사용하여 콘텐츠를 보호하려는 경우 값 7인 WidevineLicenseAcquisitionUrl을 사용하도록 AssetDeliveryConfiguration 값을 업데이트하고 라이선스 배달 서비스의 URL을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-186">If you want to protect your content using Widevine DRM, update the AssetDeliveryConfiguration values to use WidevineLicenseAcquisitionUrl (which has the value of 7) and specify the URL of a license delivery service.</span></span> <span data-ttu-id="e6ebc-187">AMS 파트너([Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/))를 사용하여 Widevine 라이선스를 배달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-187">You can use the following AMS partners to help you deliver Widevine licenses: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span></span>
+
+<span data-ttu-id="e6ebc-188">예:</span><span class="sxs-lookup"><span data-stu-id="e6ebc-188">For example:</span></span> 
+
+    {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":2,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":7,\"Value\":\"https:\\/\\/example.net\/WidevineLicenseAcquisition\/"}]"}
+
+> [!NOTE]
+> <span data-ttu-id="e6ebc-189">Widevine을 사용하여 암호화하는 경우 DASH를 통해서만 배달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-189">When encrypting with Widevine, you would only be able to deliver using DASH.</span></span> <span data-ttu-id="e6ebc-190">자산 배달 프로토콜에서 DASH(2)를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-190">Make sure to specify DASH (2) in the asset delivery protocol.</span></span>
+> 
+> 
+
+### <a name="link-asset-with-asset-delivery-policy"></a><span data-ttu-id="e6ebc-191">자산을 자산 배달 정책과 연결</span><span class="sxs-lookup"><span data-stu-id="e6ebc-191">Link asset with asset delivery policy</span></span>
+<span data-ttu-id="e6ebc-192">[자산을 자산 배달 정책과 연결](#link_asset_with_asset_delivery_policy)</span><span class="sxs-lookup"><span data-stu-id="e6ebc-192">See [Link asset with asset delivery policy](#link_asset_with_asset_delivery_policy)</span></span>
+
+## <span data-ttu-id="e6ebc-193"><a id="types"></a>AssetDeliveryPolicy를 정의할 때 사용되는 형식</span><span class="sxs-lookup"><span data-stu-id="e6ebc-193"><a id="types"></a>Types used when defining AssetDeliveryPolicy</span></span>
+
+### <a name="assetdeliveryprotocol"></a><span data-ttu-id="e6ebc-194">AssetDeliveryProtocol</span><span class="sxs-lookup"><span data-stu-id="e6ebc-194">AssetDeliveryProtocol</span></span>
+
+<span data-ttu-id="e6ebc-195">다음 열거형은 자산 배달 프로토콜에 대해 설정할 수 있는 값을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-195">The following enum describes values you can set for the asset delivery protocol.</span></span>
+
+    [Flags]
+    public enum AssetDeliveryProtocol
+    {
+        /// <summary>
+        /// No protocols.
+        /// </summary>
+        None = 0x0,
+
+        /// <summary>
+        /// Smooth streaming protocol.
+        /// </summary>
+        SmoothStreaming = 0x1,
+
+        /// <summary>
+        /// MPEG Dynamic Adaptive Streaming over HTTP (DASH)
+        /// </summary>
+        Dash = 0x2,
+
+        /// <summary>
+        /// Apple HTTP Live Streaming protocol.
+        /// </summary>
+        HLS = 0x4,
+
+        ProgressiveDownload = 0x10, 
+ 
+        /// <summary>
+        /// Include all protocols.
+        /// </summary>
+        All = 0xFFFF
+    }
+
+### <a name="assetdeliverypolicytype"></a><span data-ttu-id="e6ebc-196">AssetDeliveryPolicyType</span><span class="sxs-lookup"><span data-stu-id="e6ebc-196">AssetDeliveryPolicyType</span></span>
+
+<span data-ttu-id="e6ebc-197">다음 열거형은 자산 배달 정책 유형에 대해 설정할 수 있는 값을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-197">The following enum describes values you can set for the asset delivery policy type.</span></span>  
+
+    public enum AssetDeliveryPolicyType
+    {
+        /// <summary>
+        /// Delivery Policy Type not set.  An invalid value.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// The Asset should not be delivered via this AssetDeliveryProtocol. 
+        /// </summary>
+        Blocked, 
+
+        /// <summary>
+        /// Do not apply dynamic encryption to the asset.
+        /// </summary>
+        /// 
+        NoDynamicEncryption,  
+
+        /// <summary>
+        /// Apply Dynamic Envelope encryption.
+        /// </summary>
+        DynamicEnvelopeEncryption,
+
+        /// <summary>
+        /// Apply Dynamic Common encryption.
+        /// </summary>
+        DynamicCommonEncryption
+        }
+
+### <a name="contentkeydeliverytype"></a><span data-ttu-id="e6ebc-198">ContentKeyDeliveryType</span><span class="sxs-lookup"><span data-stu-id="e6ebc-198">ContentKeyDeliveryType</span></span>
+
+<span data-ttu-id="e6ebc-199">다음 열거형은 클라이언트로의 콘텐츠 키 배달 방법을 구성하는 데 사용할 수 있는 값을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-199">The following enum describes values you can use to configure the delivery method of the content key to the client.</span></span>
+    
+    public enum ContentKeyDeliveryType
+    {
+        /// <summary>
+        /// None.
+        ///
+        </summary>
+        None = 0,
+
+        /// <summary>
+        /// Use PlayReady License acquistion protocol
+        ///
+        </summary>
+        PlayReadyLicense = 1,
+
+        /// <summary>
+        /// Use MPEG Baseline HTTP key protocol.
+        ///
+        </summary>
+        BaselineHttp = 2,
+
+        /// <summary>
+        /// Use Widevine License acquistion protocol
+        ///
+        </summary>
+        Widevine = 3
+
+    }
+
+
+### <a name="assetdeliverypolicyconfigurationkey"></a><span data-ttu-id="e6ebc-200">AssetDeliveryPolicyConfigurationKey</span><span class="sxs-lookup"><span data-stu-id="e6ebc-200">AssetDeliveryPolicyConfigurationKey</span></span>
+
+<span data-ttu-id="e6ebc-201">다음 열거형은 자산 배달 정책에 대한 특정 구성을 가져오는 데 사용되는 키를 구성하기 위해 설정할 수 있는 값을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e6ebc-201">The following enum describes values you can set to configure keys used to get specific configuration for an asset delivery policy.</span></span>
+
+    public enum AssetDeliveryPolicyConfigurationKey
+    {
+        /// <summary>
+        /// No policies.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Exact Envelope key URL.
+        /// </summary>
+        EnvelopeKeyAcquisitionUrl,
+
+        /// <summary>
+        /// Base key url that will have KID=<Guid> appended for Envelope.
+        /// </summary>
+        EnvelopeBaseKeyAcquisitionUrl,
+
+        /// <summary>
+        /// The initialization vector to use for envelope encryption in Base64 format.
+        /// </summary>
+        EnvelopeEncryptionIVAsBase64,
+
+        /// <summary>
+        /// The PlayReady License Acquisition Url to use for common encryption.
+        /// </summary>
+        PlayReadyLicenseAcquisitionUrl,
+
+        /// <summary>
+        /// The PlayReady Custom Attributes to add to the PlayReady Content Header
+        /// </summary>
+        PlayReadyCustomAttributes,
+
+        /// <summary>
+        /// The initialization vector to use for envelope encryption.
+        /// </summary>
+        EnvelopeEncryptionIV,
+
+        /// <summary>
+        /// Widevine DRM acquisition url
+        /// </summary>
+        WidevineLicenseAcquisitionUrl
+    }
+
+## <a name="media-services-learning-paths"></a><span data-ttu-id="e6ebc-202">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="e6ebc-202">Media Services learning paths</span></span>
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+
+## <a name="provide-feedback"></a><span data-ttu-id="e6ebc-203">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="e6ebc-203">Provide feedback</span></span>
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+

@@ -1,0 +1,77 @@
+---
+title: "Azure Data Catalog 소개 | Microsoft Docs"
+description: "이 문서는 해당 기능 및 다룰 문제를 포함하여 Microsoft Azure Data Catalog의 개요를 제공합니다. 데이터 카탈로그를 통해 모든 사용자가 데이터 원본을 등록, 검색, 파악 및 사용할 수 있습니다."
+services: data-catalog
+documentationcenter: 
+author: steelanddata
+manager: NA
+editor: 
+tags: 
+ms.assetid: cc733907-17ec-4153-9f0c-5b3754b2db19
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 08/15/2017
+ms.author: maroche
+ms.openlocfilehash: a28a7679831201fcf3a9d1c15497ff706c2752a1
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/18/2017
+---
+# <a name="what-is-azure-data-catalog"></a><span data-ttu-id="efc1e-104">Azure 데이터 카탈로그란?</span><span class="sxs-lookup"><span data-stu-id="efc1e-104">What is Azure Data Catalog?</span></span>
+<span data-ttu-id="efc1e-105">Azure Data Catalog는 사용자가 필요한 데이터 원본을 검색하고 찾은 데이터 원본을 파악할 수 있는 완전히 관리되는 클라우드 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-105">Azure Data Catalog is a fully managed cloud service whose users can discover the data sources they need and understand the data sources they find.</span></span> <span data-ttu-id="efc1e-106">이와 동시에, 데이터 카탈로그를 통해 조직은 기존 투자에서 더 많은 가치를 창출할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-106">At the same time, Data Catalog helps organizations get more value from their existing investments.</span></span> 
+
+<span data-ttu-id="efc1e-107">데이터 카탈로그를 통해 모든 사용자(분석가, 데이터 과학자 또는 개발자)는 데이터 원본을 검색, 파악 및 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-107">With Data Catalog, any user (analyst, data scientist, or developer) can discover, understand, and consume data sources.</span></span> <span data-ttu-id="efc1e-108">데이터 카탈로그에는 메타데이터 및 주석의 크라우드소싱 모델이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-108">Data Catalog includes a crowdsourcing model of metadata and annotations.</span></span> <span data-ttu-id="efc1e-109">조직의 모든 사용자가 자신의 지식을 기부하고 데이터의 커뮤니티 및 문화권을 만들 수 있는 단일 중앙 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-109">It is a single, central place for all of an organization's users to contribute their knowledge and build a community and culture of data.</span></span>
+
+## <a name="discovery-challenges-for-data-consumers"></a><span data-ttu-id="efc1e-110">데이터 소비자에 대한 검색 과제</span><span class="sxs-lookup"><span data-stu-id="efc1e-110">Discovery challenges for data consumers</span></span>
+<span data-ttu-id="efc1e-111">일반적으로 엔터프라이즈 데이터 원본을 검색하는 일은 기초 지식에 기반한 유기적인 프로세스였습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-111">Traditionally, discovering enterprise data sources has been an organic process based on tribal knowledge.</span></span> <span data-ttu-id="efc1e-112">자사의 정보 자산에서 최고의 가치를 얻고자 하는 회사의 경우 이 방법은 수많은 과제를 안겨 줍니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-112">For companies that want to get the most value from their information assets, this approach presents numerous challenges:</span></span>
+
+* <span data-ttu-id="efc1e-113">사용자는 다른 프로세스의 일부로 데이터 원본에 연결되지 않는 한 데이터 원본이 존재한다는 사실을 모를 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-113">Users might not be aware that a data source exists unless they come into contact with it as part of another process.</span></span> <span data-ttu-id="efc1e-114">데이터 원본이 등록되는 중앙 위치가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-114">There is no central location where data sources are registered.</span></span>
+* <span data-ttu-id="efc1e-115">사용자가 데이터 원본의 위치를 모른다면 클라이언트 응용 프로그램을 사용하여 데이터에 연결할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-115">Unless users know the location of a data source, they cannot connect to the data by using a client application.</span></span> <span data-ttu-id="efc1e-116">데이터 사용 환경에서는 사용자가 연결 문자열이나 경로를 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-116">Data-consumption experiences require users to know the connection string or path.</span></span>
+* <span data-ttu-id="efc1e-117">사용자가 데이터 원본 설명서의 위치를 모른다면 데이터의 의도된 용도를 이해할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-117">Unless users know the location of a data source's documentation, they cannot understand the intended uses of the data.</span></span> <span data-ttu-id="efc1e-118">데이터 원본과 설명서는 다양한 위치에 있으며 다양한 환경을 통해 사용될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-118">Data sources and documentation might live in a variety of places and be consumed through a variety of experiences.</span></span>
+* <span data-ttu-id="efc1e-119">사용자는 정보 자산에 대한 질문이 있으면 해당 데이터를 담당하는 전문가나 팀을 찾아 오프라인으로 참가하도록 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-119">If users have questions about an information asset, they must locate the expert or team that's responsible for the data and engage them offline.</span></span> <span data-ttu-id="efc1e-120">이 때 용도에 대한 전문가의 관점을 가진 데이터와 데이터 간의 명시적 연결은 없습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-120">There is no explicit connection between data and those with expert perspectives on its use.</span></span>
+* <span data-ttu-id="efc1e-121">사용자가 데이터 원본에 대한 액세스 권한을 요청하는 프로세스를 이해하지 않는 한, 데이터 원본 및 해당 설명서를 검색해도 필요한 데이터에 액세스할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-121">Unless users understand the process for requesting access to the data source, discovering the data source and its documentation still does not help them access the data.</span></span>
+
+## <a name="discovery-challenges-for-data-producers"></a><span data-ttu-id="efc1e-122">데이터 생산자에 대한 검색 과제</span><span class="sxs-lookup"><span data-stu-id="efc1e-122">Discovery challenges for data producers</span></span>
+<span data-ttu-id="efc1e-123">데이터 소비자가 이전에 언급한 과제에 직면하고 있지만, 정보 자산의 생성 및 유지 관리를 책임지는 사용자는 자신만의 과제에 직면하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-123">Although data consumers face the previously mentioned challenges, users who are responsible for producing and maintaining information assets face challenges of their own:</span></span>
+
+* <span data-ttu-id="efc1e-124">데이터 원본에 설명이 포함된 메타데이터로 주석을 추가하는 것은 종종 시간 낭비입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-124">Annotating data sources with descriptive metadata is often a lost effort.</span></span> <span data-ttu-id="efc1e-125">클라이언트 응용 프로그램은 일반적으로 데이터 원본에 저장된 설명을 무시합니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-125">Client applications typically ignore descriptions that are stored in the data source.</span></span>
+* <span data-ttu-id="efc1e-126">데이터 원본에 대한 설명서를 만드는 것은 종종 시간 낭비입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-126">Creating documentation for data sources is often a lost effort.</span></span> <span data-ttu-id="efc1e-127">설명서를 데이터 원본과 동기화시키는 것은 지속적인 책임이며, 설명서는 대개 오래된 것으로 간주되기 때문에 사용자가 이를 신뢰하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-127">Keeping documentation in sync with data sources is an ongoing responsibility, and users might lack trust in documentation that's perceived as being out of date.</span></span>
+* <span data-ttu-id="efc1e-128">데이터 원본에 대한 설명서 생성 및 유지 관리는 복잡하고 시간 소모적입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-128">Creating and maintaining documentation for data sources is complex and time-consuming.</span></span> <span data-ttu-id="efc1e-129">이 설명서를 데이터 원본을 사용하는 모든 이가 사용할 수 있도록 만드는 것은 이보다 더 복잡하고 시간 소모적입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-129">Making that documentation readily available to everyone who uses the data source can be even more so.</span></span>
+* <span data-ttu-id="efc1e-130">데이터 원본에 대한 액세스를 제한하고 데이터 소비자에게 액세스를 요청하는 방법을 알고 있는지 확인하는 것이 지속적인 문제입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-130">Restricting access to data sources and ensuring that data consumers know how to request access is an ongoing challenge.</span></span>
+
+<span data-ttu-id="efc1e-131">이 모든 과제가 합쳐지면 엔터프라이즈 데이터의 사용과 이해를 독려 및 홍보하고자 하는 회사에게 큰 장애물이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-131">When such challenges are combined, they present a significant barrier for companies who want to encourage and promote the use and understanding of enterprise data.</span></span>
+
+## <a name="azure-data-catalog-can-help"></a><span data-ttu-id="efc1e-132">Azure Data Catalog는 다음 과제에 도움이 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-132">Azure Data Catalog can help</span></span>
+<span data-ttu-id="efc1e-133">데이터 카탈로그는 이러한 문제를 해결하고 기업이 기존 정보 자산으로부터 최고의 가치를 얻어낼 수 있도록 설계되었습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-133">Data Catalog is designed to address these problems and to help enterprises get the most value from their existing information assets.</span></span> <span data-ttu-id="efc1e-134">데이터 카탈로그는 데이터를 관리하는 사용자가 데이터 원본을 쉽게 검색하고 이해할 수 있게 해줍니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-134">Data Catalog makes data sources easily discoverable and understandable by the users who manage the data.</span></span>
+
+<span data-ttu-id="efc1e-135">데이터 카탈로그는 데이터 원본을 등록할 수 있는 클라우드 기반 서비스를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-135">Data Catalog provides a cloud-based service into which a data source can be registered.</span></span> <span data-ttu-id="efc1e-136">데이터는 기존 위치에 그대로 있지만 메타데이터의 복사본과 데이터 원본 위치에 대한 참조가 데이터 카탈로그에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-136">The data remains in its existing location, but a copy of its metadata is added to Data Catalog, along with a reference to the data-source location.</span></span> <span data-ttu-id="efc1e-137">메타데이터는 또한 인덱싱되므로 각 데이터 원본의 검색을 통해 쉽게 찾을 수 있으며 검색한 사용자가 이해할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-137">The metadata is also indexed to make each data source easily discoverable via search and understandable to the users who discover it.</span></span>
+
+<span data-ttu-id="efc1e-138">데이터 원본이 등록되면 등록한 사용자나 엔터프라이즈 내 다른 사용자에 의해 메타데이터를 보강할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-138">After a data source has been registered, its metadata can then be enriched, either by the user who registered it or by other users in the enterprise.</span></span> <span data-ttu-id="efc1e-139">모든 사용자는 설명, 태그 또는 설명서와 데이터 원본 액세스 요청과 같은 기타 메타데이터를 제공하여 데이터 원본에 주석을 달 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-139">Any user can annotate a data source by providing descriptions, tags, or other metadata, such as documentation and processes for requesting data source access.</span></span> <span data-ttu-id="efc1e-140">이 설명이 포함된 메타데이터는 데이터 원본으로부터 등록된 구조적 메타데이터(예: 열 이름과 데이터 형식)를 보완합니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-140">This descriptive metadata supplements the structural metadata (such as column names and data types) that's registered from the data source.</span></span>
+
+<span data-ttu-id="efc1e-141">데이터 원본과 데이터 원본의 용도를 찾고 이해하는 것이 원본을 등록하는 주요 목적입니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-141">Discovering and understanding data sources and their use is the primary purpose of registering the sources.</span></span> <span data-ttu-id="efc1e-142">엔터프라이즈 사용자에게는 비즈니스 인텔리전스, 응용 프로그램 개발, 데이터 과학 또는 적절한 데이터를 필요로 하는 기타 모든 작업에 대해 데이터가 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-142">Enterprise users might need data for business intelligence, application development, data science, or any other task where the right data is required.</span></span> <span data-ttu-id="efc1e-143">데이터 카탈로그 검색 환경을 사용하여 요구에 맞는 데이터를 신속하게 찾고 데이터를 파악하여 용도의 적합성을 평가하고 원하는 도구에서 데이터 원본을 열어 데이터를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-143">They can use the Data Catalog discovery experience to quickly find data that matches their needs, understand the data to evaluate its fitness for the purpose, and consume the data by opening the data source in their tool of choice.</span></span> 
+
+<span data-ttu-id="efc1e-144">이와 동시에, 사용자는 이미 등록된 데이터 원본에 태그를 지정하고 관련 문서를 작성하며 주석을 추가하여 카탈로그에 기여할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-144">At the same time, users can contribute to the catalog by tagging, documenting, and annotating data sources that have already been registered.</span></span> <span data-ttu-id="efc1e-145">또한 새 데이터 원본을 등록하여 카탈로그 사용자 커뮤니티에서 검색, 이해, 사용할 수 있도록 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-145">They can also register new data sources, which can then be discovered, understood, and consumed by the community of catalog users.</span></span>
+
+![데이터 카탈로그 기능](./media/data-catalog-what-is-data-catalog/data-catalog-capabilities.png)
+
+## <a name="learn-more-about-data-catalog"></a><span data-ttu-id="efc1e-147">데이터 카탈로그에 대한 자세한 정보</span><span class="sxs-lookup"><span data-stu-id="efc1e-147">Learn more about Data Catalog</span></span>
+<span data-ttu-id="efc1e-148">데이터 카탈로그의 기능에 대한 자세한 내용은 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efc1e-148">To learn more about the capabilities of Data Catalog, see:</span></span>
+
+* [<span data-ttu-id="efc1e-149">데이터 원본을 등록하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-149">How to register data sources</span></span>](data-catalog-how-to-register.md)
+* [<span data-ttu-id="efc1e-150">데이터 원본을 검색하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-150">How to discover data sources</span></span>](data-catalog-how-to-discover.md)
+* [<span data-ttu-id="efc1e-151">데이터 원본에 주석을 추가하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-151">How to annotate data sources</span></span>](data-catalog-how-to-annotate.md)
+* [<span data-ttu-id="efc1e-152">데이터 원본을 문서화하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-152">How to document data sources</span></span>](data-catalog-how-to-documentation.md)
+* [<span data-ttu-id="efc1e-153">데이터 원본에 연결하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-153">How to connect to data sources</span></span>](data-catalog-how-to-connect.md)
+* [<span data-ttu-id="efc1e-154">빅 데이터로 작업하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-154">How to work with big data</span></span>](data-catalog-how-to-big-data.md)
+* [<span data-ttu-id="efc1e-155">데이터 자산을 관리하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-155">How to manage data assets</span></span>](data-catalog-how-to-manage.md)
+* [<span data-ttu-id="efc1e-156">비즈니스 용어집을 설정하는 방법</span><span class="sxs-lookup"><span data-stu-id="efc1e-156">How to set up the Business Glossary</span></span>](data-catalog-how-to-business-glossary.md)
+* [<span data-ttu-id="efc1e-157">질문과 대답</span><span class="sxs-lookup"><span data-stu-id="efc1e-157">Frequently asked questions</span></span>](data-catalog-frequently-asked-questions.md)
+
+## <a name="next-steps"></a><span data-ttu-id="efc1e-158">다음 단계</span><span class="sxs-lookup"><span data-stu-id="efc1e-158">Next steps</span></span>
+<span data-ttu-id="efc1e-159">데이터 카탈로그를 시작하려면 다음으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="efc1e-159">To get started with Data Catalog, go to:</span></span>
+* [<span data-ttu-id="efc1e-160">Microsoft Azure Data Catalog</span><span class="sxs-lookup"><span data-stu-id="efc1e-160">Microsoft Azure Data Catalog</span></span>](https://www.azuredatacatalog.com)
+* [<span data-ttu-id="efc1e-161">Azure 데이터 카탈로그 시작</span><span class="sxs-lookup"><span data-stu-id="efc1e-161">Get started with Azure Data Catalog</span></span>](data-catalog-get-started.md)

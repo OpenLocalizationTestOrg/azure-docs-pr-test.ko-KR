@@ -1,0 +1,296 @@
+---
+title: "개발자 분석용 Visual Studio 확장에 대한 릴리스 정보"
+description: "개발자 분석용 Visual Studio Tools의 최신 업데이트."
+services: application-insights
+documentationcenter: 
+author: acearun
+manager: carmonm
+ms.assetid: 2001db30-efc5-417a-a413-93c1b218975f
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 03/20/2017
+ms.author: bwren
+ms.openlocfilehash: 2e6987d30b56407559f54c02817ee94eff8df46b
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/18/2017
+---
+# <a name="release-notes-for-developer-analytics-tools"></a><span data-ttu-id="9834b-103">개발자 분석 도구에 대한 릴리스 정보</span><span class="sxs-lookup"><span data-stu-id="9834b-103">Release Notes for Developer Analytics Tools</span></span>
+
+## <a name="version-718-visual-studio-2015"></a><span data-ttu-id="9834b-104">버전 7.18(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-104">Version 7.18 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-105">새로 디자인된 알림 메시지.</span><span class="sxs-lookup"><span data-stu-id="9834b-105">Redesigned toast notifications.</span></span>
+* <span data-ttu-id="9834b-106">Application Insights Search의 이벤트 세부 정보 보기에 "Not" 필터 추가.</span><span class="sxs-lookup"><span data-stu-id="9834b-106">"Not" filters in the Detail view for events in Application Insights Search.</span></span>
+* <span data-ttu-id="9834b-107">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-107">Bug fixes</span></span>
+
+## <a name="version-86-visual-studio-2017-rtw-and-rc4-and-version-717-visual-studio-2015"></a><span data-ttu-id="9834b-108">버전 8.6(Visual Studio 2017 RTW 및 RC4) 및 버전 7.17(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-108">Version 8.6 (Visual Studio 2017 RTW and RC4) and Version 7.17 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-109">개발자가 Visual Studio에서 앱을 게시하는 시기를 표시하는 주석을 이제는 Azure Portal의 메트릭 탐색기 데이터에도 사용할 수 있음</span><span class="sxs-lookup"><span data-stu-id="9834b-109">Annotations marking when you publish your app from Visual Studio are now made to your data in the Metrics Explorer in the Azure Portal</span></span>
+* <span data-ttu-id="9834b-110">코드 파일의 스크롤 막대에 마커가 추가되었으며, Application Insights의 빨간색 및 노란색 CodeLens 경고에 해당</span><span class="sxs-lookup"><span data-stu-id="9834b-110">Markers are now added to scrollbars in code files, corresponding to red and yellow CodeLens warnings from Application Insights</span></span>
+* <span data-ttu-id="9834b-111">구성 창의 가격 책정 정보 업데이트</span><span class="sxs-lookup"><span data-stu-id="9834b-111">Updated pricing information in the Configuration window</span></span>
+* <span data-ttu-id="9834b-112">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-112">Bug fixes</span></span>
+
+[<span data-ttu-id="9834b-113">자세한 내용은 여기 참조</span><span class="sxs-lookup"><span data-stu-id="9834b-113">See the detailed notes here</span></span>](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#devanalytics)
+
+## <a name="version-716-visual-studio-2015"></a><span data-ttu-id="9834b-114">버전 7.16(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-114">Version 7.16 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-115">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-115">Bug fixes</span></span>
+
+## <a name="version-85-visual-studio-2017-rc3-and-version-715-visual-studio-2015"></a><span data-ttu-id="9834b-116">버전 8.5(Visual Studio 2017 RC3) 및 버전 7.15(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-116">Version 8.5 (Visual Studio 2017 RC3) and Version 7.15 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-117">이제 CodeLens는 Application Insights 리소스로 데이터를 전송하는 디버그 및 실시간 원격 분석 데이터를 프로젝트에 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-117">CodeLens now shows both debug and live telemetry data in projects that send data to an Application Insights resource</span></span>
+* <span data-ttu-id="9834b-118">이제 Application Insights 가격 책정 정보가 구성 창에 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-118">Application Insights pricing information is now shown in the Configuration window</span></span>
+* <span data-ttu-id="9834b-119">이제 요청 및 예외에 대한 CodeLens는 Visual Basic으로 작성된 ASP.NET 프로젝트를 지원</span><span class="sxs-lookup"><span data-stu-id="9834b-119">CodeLens for requests and exceptions now supports ASP.NET projects written in Visual Basic</span></span>
+* <span data-ttu-id="9834b-120">이제 Application Insights Search는 샘플링된 이벤트의 샘플링되지 않은 이벤트 수를 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-120">Application Insights Search now shows un-sampled event counts for events that have been sampled</span></span>
+* <span data-ttu-id="9834b-121">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-121">Bug fixes</span></span>
+
+## <a name="version-714-visual-studio-2015"></a><span data-ttu-id="9834b-122">버전 7.14(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-122">Version 7.14 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-123">가용성(웹 테스트) 및 페이지 보기 이벤트에 대한 검색 지원</span><span class="sxs-lookup"><span data-stu-id="9834b-123">Search support for availability (web test) and page view events</span></span>
+* <span data-ttu-id="9834b-124">가용성(웹 테스트) 및 페이지 보기 이벤트에 대한 추세 지원</span><span class="sxs-lookup"><span data-stu-id="9834b-124">Trends support for availability (web test) and page view events</span></span>
+* <span data-ttu-id="9834b-125">SDK 적응 샘플링에 대한 진단 도구 및 이벤트 세부 정보 레이블</span><span class="sxs-lookup"><span data-stu-id="9834b-125">Diagnostic Tools and event details label for SDK Adaptive Sampling</span></span>
+* <span data-ttu-id="9834b-126">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-126">Bug fixes</span></span>
+
+## <a name="version-712-visual-studio-2015"></a><span data-ttu-id="9834b-127">버전 7.12(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-127">Version 7.12 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-128">새로운 게시 알림 형식</span><span class="sxs-lookup"><span data-stu-id="9834b-128">New publish notification format</span></span>
+* <span data-ttu-id="9834b-129">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-129">Bug fixes</span></span>
+
+## <a name="version-84-visual-studio-2017-rc2-and-version-711-visual-studio-2015"></a><span data-ttu-id="9834b-130">버전 8.4(Visual Studio 2017 RC2) 및 버전 7.11(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-130">Version 8.4 (Visual Studio 2017 RC2) and Version 7.11 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-131">CodeLens가 Application Insights SDK를 사용하는 프로젝트의 로컬 디버그 세션에 대한 요청을 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-131">CodeLens shows requests for local debug sessions for projects with the Application Insights SDK</span></span>
+* <span data-ttu-id="9834b-132">사용자 영향을 확인할 수 있도록 CodeLens가 개발자를 Application Analytics로 직접 이동 가능</span><span class="sxs-lookup"><span data-stu-id="9834b-132">CodeLens can take you directly to Application Analytics to see user impact</span></span>
+* <span data-ttu-id="9834b-133">페이지 보기를 수집하는 JavaScript 삽입</span><span class="sxs-lookup"><span data-stu-id="9834b-133">Insert JavaScript to collect page views</span></span>
+* <span data-ttu-id="9834b-134">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-134">Bug fixes</span></span>
+
+## <a name="version-710-visual-studio-2015"></a><span data-ttu-id="9834b-135">버전 7.10(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-135">Version 7.10 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-136">Application Insights 구성 창을 새롭게 디자인</span><span class="sxs-lookup"><span data-stu-id="9834b-136">New design for the Application Insights Configuration window</span></span>
+* <span data-ttu-id="9834b-137">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-137">Bug fixes</span></span>
+
+## <a name="version-79-visual-studio-2015"></a><span data-ttu-id="9834b-138">버전 7.9(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-138">Version 7.9 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-139">CodeLens가 Application Insights SDK를 사용하는 프로젝트의 로컬 디버그 세션 중에 발생한 예외를 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-139">CodeLens shows exceptions that have occurred during local debug sessions for projects with the Application Insights SDK</span></span>
+* <span data-ttu-id="9834b-140">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-140">Bug fixes</span></span>
+
+## <a name="version-83-visual-studio-2017-rc-and-version-78-visual-studio-2015"></a><span data-ttu-id="9834b-141">버전 8.3(Visual Studio 2017 RC) 및 버전 7.8(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-141">Version 8.3 (Visual Studio 2017 RC) and Version 7.8 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-142">구성 창에서 Application Insights를 추가할 수 있는 새로운 환경</span><span class="sxs-lookup"><span data-stu-id="9834b-142">New experience for adding Application Insights in the Configuration window</span></span>
+* <span data-ttu-id="9834b-143">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-143">Bug fixes</span></span>
+
+## <a name="version-77-visual-studio-2015"></a><span data-ttu-id="9834b-144">버전 7.7(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-144">Version 7.7 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-145">사용자 지정 ASP.NET 라우팅을 사용하여 원격 분석 이벤트에서 메서드로 보다 정확하게 매핑</span><span class="sxs-lookup"><span data-stu-id="9834b-145">More accurate mappings from telemetry events to methods using custom ASP.NET routing</span></span>
+* <span data-ttu-id="9834b-146">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-146">Bug fixes</span></span>
+
+## <a name="version-76-visual-studio-2015"></a><span data-ttu-id="9834b-147">버전 7.6(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-147">Version 7.6 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-148">검색 도구의 이벤트에 대한 새 추적 작업 탭의 작업과 관련된 이벤트 분석</span><span class="sxs-lookup"><span data-stu-id="9834b-148">Analyze events involved in an operation from the new Track Operation tab on events in the Search tool</span></span>
+* <span data-ttu-id="9834b-149">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-149">Bug fixes</span></span>
+
+## <a name="version-75-visual-studio-2015"></a><span data-ttu-id="9834b-150">버전 7.5(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-150">Version 7.5 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-151">진단 도구의 요청에 대한 프로덕션 원격 분석 정보 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-151">Production telemetry information for requests in Diagnostic Tools</span></span>
+* <span data-ttu-id="9834b-152">검색 도구의 관련 항목에서 작업 항목 생성</span><span class="sxs-lookup"><span data-stu-id="9834b-152">Work Item creation from Related Items in the Search tool</span></span>
+* <span data-ttu-id="9834b-153">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-153">Bug fixes</span></span>
+
+## <a name="version-74-visual-studio-2015"></a><span data-ttu-id="9834b-154">버전 7.4(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-154">Version 7.4 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-155">이제 추세에서 필터 창의 크기 조정 가능</span><span class="sxs-lookup"><span data-stu-id="9834b-155">The filter pane in Trends is now resizable</span></span>
+* <span data-ttu-id="9834b-156">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-156">Bug fixes</span></span>
+
+## <a name="version-73-visual-studio-2015"></a><span data-ttu-id="9834b-157">버전 7.3(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-157">Version 7.3 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-158">CodeLens에서 요청</span><span class="sxs-lookup"><span data-stu-id="9834b-158">Requests in CodeLens</span></span>
+* <span data-ttu-id="9834b-159">구성 창</span><span class="sxs-lookup"><span data-stu-id="9834b-159">Configuration window</span></span>
+* <span data-ttu-id="9834b-160">HockeyApp SDK를 v4.2.2로 업데이트</span><span class="sxs-lookup"><span data-stu-id="9834b-160">HockeyApp SDK updated to v4.2.2</span></span>
+* <span data-ttu-id="9834b-161">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-161">Bug fixes</span></span>
+
+## <a name="version-72-visual-studio-2015"></a><span data-ttu-id="9834b-162">버전 7.2(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-162">Version 7.2 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-163">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-163">Bug fixes</span></span>
+
+## <a name="version-71-visual-studio-2015"></a><span data-ttu-id="9834b-164">버전 7.1(Visual Studio 2015)</span><span class="sxs-lookup"><span data-stu-id="9834b-164">Version 7.1 (Visual Studio 2015)</span></span>
+
+* <span data-ttu-id="9834b-165">Application Insights Trends의 원격 분석 준비 상태 표시기</span><span class="sxs-lookup"><span data-stu-id="9834b-165">Telemetry Readiness indicator in Application Insights Trends</span></span>
+* <span data-ttu-id="9834b-166">버그 수정</span><span class="sxs-lookup"><span data-stu-id="9834b-166">Bug fixes</span></span>
+
+## <a name="version-70"></a><span data-ttu-id="9834b-167">버전 7.0</span><span class="sxs-lookup"><span data-stu-id="9834b-167">Version 7.0</span></span>
+### <a name="azure-application-insights-trends"></a><span data-ttu-id="9834b-168">Azure Application Insights 추세</span><span class="sxs-lookup"><span data-stu-id="9834b-168">Azure Application Insights Trends</span></span>
+<span data-ttu-id="9834b-169">Azure Application Insights는 시간이 지남에 따라 앱의 작동 방식을 분석하는 데 도움을 주는 Visual Studio의 새로운 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-169">Azure Application Insights is a new tool in Visual Studio that you can use to help you analyze how your app operates over time.</span></span> <span data-ttu-id="9834b-170">시작하려면 **Application Insights** 도구 모음 단추 또는 Application Insights 검색 창에서 **원격 분석 추세 탐색**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-170">To get started, on the **Application Insights** toolbar button or in the Application Insights Search window, choose **Explore Telemetry Trends**.</span></span> <span data-ttu-id="9834b-171">또는 **보기** 메뉴에서 **다른 창**을 클릭한 다음 **Application Insights 추세**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-171">Or, on the **View** menu, click **Other Windows**, and then click **Application Insights Trends**.</span></span> <span data-ttu-id="9834b-172">시작하려면 일반적인 5개의 쿼리 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-172">Choose one of five common queries to get started.</span></span> <span data-ttu-id="9834b-173">원격 분석 유형, 시간 범위 및 기타 속성에 따라 서로 다른 데이터 집합을 분석할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-173">You can analyze different data sets based on telemetry types, time ranges, and other properties.</span></span> <span data-ttu-id="9834b-174">데이터에서 잘못된 부분을 찾으려면 **유형 보기** 드롭다운 목록에서 비정상 옵션 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-174">To find anomalies in your data, choose one of the anomaly options in the **View Type** drop-down list.</span></span> <span data-ttu-id="9834b-175">창의 아래쪽에서 필터링 옵션을 사용하면 쉽게 원격 분석의 특정 하위 집합을 쉽게 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-175">The filtering options at the bottom of the window make it easy to hone in on specific subsets of your telemetry.</span></span>
+
+![Application Insights Trends](./media/app-insights-release-notes-vsix/Trends.png)
+
+### <a name="exceptions-in-codelens"></a><span data-ttu-id="9834b-177">CodeLens의 예외</span><span class="sxs-lookup"><span data-stu-id="9834b-177">Exceptions in CodeLens</span></span>
+<span data-ttu-id="9834b-178">예외 원격 분석은 이제 CodeLens에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-178">Exception telemetry is now displayed in CodeLens.</span></span> <span data-ttu-id="9834b-179">프로젝트를 Application Insights 서비스에 연결한 경우 지난 24시간 동안 프로덕션의 각 메서드에서 발생한 예외 수가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-179">If you've connected your project to the Application Insights service, you'll see the number of exceptions that have occurred in each method in production in the past 24 hours.</span></span> <span data-ttu-id="9834b-180">CodeLens에서 검색 또는 추세로 이동하여 예외를 자세히 조사할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-180">From CodeLens, you can jump to Search or Trends to investigate the exceptions in more detail.</span></span>
+
+![CodeLens의 예외](./media/app-insights-release-notes-vsix/ExceptionsCodeLens.png)
+
+### <a name="aspnet-core-support"></a><span data-ttu-id="9834b-182">ASP.NET Core 지원</span><span class="sxs-lookup"><span data-stu-id="9834b-182">ASP.NET Core support</span></span>
+<span data-ttu-id="9834b-183">Application Insights는 이제 Visual Studio에서 ASP.NET Core RC2 프로젝트를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-183">Application Insights now supports ASP.NET Core RC2 projects in Visual Studio.</span></span> <span data-ttu-id="9834b-184">다음 스크린 샷처럼 **새 프로젝트** 대화 상자에서 새 ASP.NET Core RC2 프로젝트에 Application Insights를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-184">You can add Application Insights to new ASP.NET Core RC2 projects from the **New Project** dialog, as in the following screenshot.</span></span> <span data-ttu-id="9834b-185">또는 기존 프로젝트에 추가하고 솔루션 탐색기에서 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **Application Insights 원격 분석 추가**를 클릭할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-185">Or, you can add it to an existing project, right-click the project in Solution Explorer, and then click **Add Application Insights Telemetry**.</span></span>
+
+![ASP.NET Core 지원](./media/app-insights-release-notes-vsix/NetCoreSupport.png)
+
+<span data-ttu-id="9834b-187">ASP.NET 5 RC1과 ASP.NET Core RC2 프로젝트는 진단 도구 창에서 새 지원이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-187">ASP.NET 5 RC1 and ASP.NET Core RC2 projects also have new support in the Diagnostic Tools window.</span></span> <span data-ttu-id="9834b-188">PC에서 로컬로 디버깅하는 동안 ASP.NET 앱에서 요청 및 예외 등의 Application Insights 이벤트를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-188">You'll see Application Insights events like requests and exceptions from your ASP.NET app while you debug locally on your PC.</span></span> <span data-ttu-id="9834b-189">각 이벤트에서 **검색**을 클릭하면 자세한 정보를 살펴볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-189">From each event, click **Search** to drill down for more information.</span></span>
+
+![진단 도구 지원](./media/app-insights-release-notes-vsix/DiagnosticTools.png)
+
+### <a name="hockeyapp-for-universal-windows-apps"></a><span data-ttu-id="9834b-191">유니버설 Windows 앱용 HockeyApp</span><span class="sxs-lookup"><span data-stu-id="9834b-191">HockeyApp for Universal Windows apps</span></span>
+<span data-ttu-id="9834b-192">베타 분포 및 사용자 의견 외에도 HockeyApp에서은 유니버설 Windows 앱에 기호화된 충돌 보고를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-192">In addition to beta distribution and user feedback, HockeyApp provides symbolicated crash reporting for your Universal Windows apps.</span></span> <span data-ttu-id="9834b-193">HockeyApp SDK를 쉽게 추가할 수 있게 되었습니다. 유니버설 Windows 프로젝트를 마우스 오른쪽 단추로 클릭하고 **Hockey 앱 - 충돌 분석 사용**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-193">We've made it even easier to add the HockeyApp SDK: right-click on your Universal Windows project, and then click **Hockey App - Enable Crash Analytics**.</span></span> <span data-ttu-id="9834b-194">그러면 SDK를 설치하고, 충돌 컬렉션을 설정하며 HockeyApp 서비스에 앱을 업로드하지 않고 클라우드에서 HockeyApp 리소스를 모두 프로비전합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-194">This installs the SDK, sets up crash collection, and provisions a HockeyApp resource in the cloud, all without uploading your app to the HockeyApp service.</span></span>
+
+<span data-ttu-id="9834b-195">다른 새 기능:</span><span class="sxs-lookup"><span data-stu-id="9834b-195">Other new features:</span></span>
+
+* <span data-ttu-id="9834b-196">Application Insights 검색 환경을 더 빠르고 직관적으로 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-196">We've made the Application Insights Search experience faster and more intuitive.</span></span> <span data-ttu-id="9834b-197">이제 시간 범위와 세부 정보 필터를 선택하면 자동으로 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-197">Now, time ranges and detail filters are automatically applied as you select them.</span></span>
+* <span data-ttu-id="9834b-198">또한 Application Insights 검색에 요청 원격 분석에서 바로 코드로 이동할 수 있는 옵션이 생겼습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-198">Also in Application Insights Search, now there's an option to jump to the code directly from the request telemetry.</span></span>
+* <span data-ttu-id="9834b-199">HockeyApp 로그인 환경도 개선했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-199">We've made improvements to the HockeyApp sign-in experience.</span></span>
+* <span data-ttu-id="9834b-200">진단 도구에 예외에 대한 프로덕션 원격 분석 정보가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-200">In Diagnostic Tools, production telemetry information for exceptions is displayed.</span></span>
+
+## <a name="version-52"></a><span data-ttu-id="9834b-201">버전 5.2</span><span class="sxs-lookup"><span data-stu-id="9834b-201">Version 5.2</span></span>
+<span data-ttu-id="9834b-202">Visual Studio에 HockeyApp 시나리오가 도입되었음을 알려 드립니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-202">We are happy to announce the introduction of HockeyApp scenarios in Visual Studio.</span></span> <span data-ttu-id="9834b-203">첫 번째 통합은 Visual Studio 내에서 유니버설 Windows 앱과 Windows Forms 앱의 베타 배포판 내에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-203">The first integration is in beta distribution of Universal Windows apps and Windows Forms apps from within Visual Studio.</span></span>
+
+<span data-ttu-id="9834b-204">베타 배포판을 통해 이전 버전의 앱을 HockeyApp에 업로드하여 선택한 일부 그룹의 고객 또는 테스터에게 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-204">With beta distribution, you upload early versions of your apps to HockeyApp for distribution to a selected subset of customers or testers.</span></span> <span data-ttu-id="9834b-205">베타 배포판은 HockeyApp 크래시 수집 및 사용자 의견 기능과 함께 광범위한 릴리스에 앞서 앱에 대한 소중한 정보를 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-205">Beta distribution, combined with HockeyApp crash collection and user feedback features, can provide you with valuable information about your app before you make a broad release.</span></span> <span data-ttu-id="9834b-206">낮은 앱 평가, 부정적인 피드백 등 향후 문제를 회피하거나 최소화할 수 있도록 앱과 관련된 문제를 해결하기 위해 이 정보를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-206">You can use this information to address issues with your app so that you can avoid or minimize future problems, such as low app ratings, negative feedback, and so on.</span></span>
+
+<span data-ttu-id="9834b-207">Visual Studio 내에서 베타 배포판의 빌드를 업로드하는 것이 얼마나 간단한지 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="9834b-207">Check out how simple it is to upload builds for beta distribution from within Visual Studio.</span></span>
+
+### <a name="universal-windows-apps"></a><span data-ttu-id="9834b-208">범용 Windows 앱</span><span class="sxs-lookup"><span data-stu-id="9834b-208">Universal Windows apps</span></span>
+<span data-ttu-id="9834b-209">이제 유니버셜 Windows 앱 프로젝트 노드의 상황에 맞는 메뉴에 HockeyApp으로 빌드를 업로드하는 옵션이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-209">The context menu for a Universal Windows app project node now includes an option to upload your build to HockeyApp.</span></span>
+
+![유니버설 Windows 앱의 프로젝트 상황에 맞는 메뉴](./media/app-insights-release-notes-vsix/UniversalContextMenu.png)
+
+<span data-ttu-id="9834b-211">항목을 선택하면 HockeyApp 업로드 대화 상자가 열립니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-211">Choose the item and the HockeyApp upload dialog box opens.</span></span> <span data-ttu-id="9834b-212">빌드를 업로드하려면 HockeyApp 계정이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-212">You will need a HockeyApp account to upload your build.</span></span> <span data-ttu-id="9834b-213">신규 사용자인 경우 걱정하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="9834b-213">If you are a new user, don't worry.</span></span> <span data-ttu-id="9834b-214">계정을 만드는 과정은 간단합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-214">Creating an account is a simple process.</span></span>
+
+<span data-ttu-id="9834b-215">연결되면 대화 상자에 업로드 양식이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-215">When you are connected, you will see the upload form in the dialog.</span></span>
+
+![유니버설 Windows 앱의 업로드 대화 상자](./media/app-insights-release-notes-vsix/UniversalUploadDialog.png)
+
+<span data-ttu-id="9834b-217">업로드할 콘텐츠(.appxbundle 또는 .appx 파일)를 선택한 다음 마법사에서 릴리스 옵션을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-217">Select the content to upload (an .appxbundle or .appx file), and then choose release options in the wizard.</span></span> <span data-ttu-id="9834b-218">선택적으로 다음 페이지에서 릴리스 정보를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-218">Optionally, you can add release notes on the next page.</span></span> <span data-ttu-id="9834b-219">**마침**을 선택하면 업로드가 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-219">Choose **Finish** to begin the upload.</span></span>
+
+<span data-ttu-id="9834b-220">업로드가 완료되면 확인 및 HockeyApp 포털의 앱 링크가 포함된 HockeyApp 알림이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-220">When the upload is complete, a HockeyApp notification with confirmation and a link to the app in the HockeyApp portal appears.</span></span>
+
+![업로드 완료 알림](./media/app-insights-release-notes-vsix/UploadComplete.png)
+
+<span data-ttu-id="9834b-222">끝났습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-222">That’s it!</span></span> <span data-ttu-id="9834b-223">방금 몇 번의 클릭만으로 베타 배포판에 대한 빌드를 업로드했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-223">You've just uploaded a build for beta distribution with just a few clicks.</span></span>
+
+<span data-ttu-id="9834b-224">HockeyApp 포털에서 다양한 방법으로 응용 프로그램을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-224">You can manage your application in numerous ways in the HockeyApp portal.</span></span> <span data-ttu-id="9834b-225">여기에는 사용자 초대, 충돌 보고서 및 피드백 보기, 세부 정보 변경 등이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-225">This includes inviting users, viewing crash reports and feedback, changing details, and so on.</span></span>
+
+![HockeyApp 포털](./media/app-insights-release-notes-vsix/HockeyAppPortal.png)
+
+<span data-ttu-id="9834b-227">앱 관리에 대한 자세한 내용은 [HockeyApp 기술 자료](http://support.hockeyapp.net/kb/app-management-2) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9834b-227">See the [HockeyApp Knowledge Base](http://support.hockeyapp.net/kb/app-management-2) for more details about app management.</span></span>
+
+### <a name="windows-forms-apps"></a><span data-ttu-id="9834b-228">Windows Forms 앱</span><span class="sxs-lookup"><span data-stu-id="9834b-228">Windows Forms apps</span></span>
+<span data-ttu-id="9834b-229">Windows Form 프로젝트 노드의 상황에 맞는 메뉴에는 이제 HockeyApp으로 빌드를 업로드하는 옵션이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-229">The context menu for a Windows Form project node now includes an option to upload your build to HockeyApp.</span></span>
+
+![Windows Forms 앱의 프로젝트 상황에 맞는 메뉴](./media/app-insights-release-notes-vsix/WinFormContextMenu.png)
+
+<span data-ttu-id="9834b-231">이는 유니버셜 Windows 앱의 대화 상자와 유사한 HockeyApp 업로드 대화 상자를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-231">This opens the HockeyApp upload dialog, which is similar to the one in a Universal Windows app.</span></span>
+
+![Windows Forms 앱의 업로드 대화 상자](./media/app-insights-release-notes-vsix/WinFormsUploadDialog.png)
+
+<span data-ttu-id="9834b-233">이 마법사의 새 필드에서 앱의 버전을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-233">Note a new field in this wizard, for specifying the version of the app.</span></span> <span data-ttu-id="9834b-234">유니버셜 Windows 앱에 대 한 정보는 매니페스트로부터 채워집니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-234">For Universal Windows apps, the information is populated from the manifest.</span></span> <span data-ttu-id="9834b-235">그러나 Windows Forms 앱은 이 기능과 동일하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-235">Windows Forms apps, unfortunately, don’t have an equivalent to this feature.</span></span> <span data-ttu-id="9834b-236">수동으로 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-236">You will need to specify them manually.</span></span>
+
+<span data-ttu-id="9834b-237">나머지 흐름은 유니버설 Windows 앱과 유사합니다. 빌드 및 릴리스 옵션을 선택하고, 릴리스 정보를 추가하고, 업로드하고, HockeyApp 포털에서 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-237">The rest of the flow is similar to Universal Windows apps: choose build and release options, add release notes, upload, and manage in the HockeyApp portal.</span></span>
+
+<span data-ttu-id="9834b-238">그만큼 간단합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-238">It’s as simple as that.</span></span> <span data-ttu-id="9834b-239">사용해 보시고 의견을 알려 주시기 바랍니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-239">Give it a try and let us know what you think.</span></span>
+
+## <a name="version-43"></a><span data-ttu-id="9834b-240">버전 4.3</span><span class="sxs-lookup"><span data-stu-id="9834b-240">Version 4.3</span></span>
+### <a name="search-telemetry-from-local-debug-sessions"></a><span data-ttu-id="9834b-241">로컬 디버그 세션에서 원격 분석 검색</span><span class="sxs-lookup"><span data-stu-id="9834b-241">Search telemetry from local debug sessions</span></span>
+<span data-ttu-id="9834b-242">이 릴리스에서는 이제 Visual Studio 디버그 세션에서 생성되는 Application Insights 원격 분석을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-242">With this release, you can now search for Application Insights telemetry generated in the Visual Studio debug session.</span></span> <span data-ttu-id="9834b-243">이전에 Application Insights에 앱을 등록한 경우에만 검색을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-243">Before, you could use search only if you registered your app with Application Insights.</span></span> <span data-ttu-id="9834b-244">이제 앱이 로컬 원격 분석을 검색하도록 하기 위해 Application Insights SDK만 설치하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-244">Now, your app only needs to have the Application Insights SDK installed to search for local telemetry.</span></span>
+
+<span data-ttu-id="9834b-245">Application Insights SDK를 사용하는 ASP.NET 응용 프로그램이 있는 경우 다음 단계를 따라 검색을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-245">If you have an ASP.NET application with the Application Insights SDK, do the following steps to use Search.</span></span>
+
+1. <span data-ttu-id="9834b-246">응용 프로그램을 디버그합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-246">Debug your application.</span></span>
+2. <span data-ttu-id="9834b-247">다음 방법 중 하나를 통해 Application Insights 검색을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-247">Open Application Insights Search in one of these ways:</span></span>
+   * <span data-ttu-id="9834b-248">**보기** 메뉴에서 **다른 창**을 클릭한 다음 **Application Insights 검색**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-248">On the **View** menu, click **Other Windows**, and then click **Application Insights Search**.</span></span>
+   * <span data-ttu-id="9834b-249">**Application Insights** 도구 모음 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-249">Click the **Application Insights** toolbar button.</span></span>
+   * <span data-ttu-id="9834b-250">솔루션 탐색기에서 **ApplicationInsights.config**를 확장한 다음 **디버그 세션 원격 분석 검색**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-250">In Solution Explorer, expand **ApplicationInsights.config**, and then click **Search debug session telemetry**.</span></span>
+3. <span data-ttu-id="9834b-251">Application Insights에 등록하지 않은 경우 디버그 세션 원격 분석 모드에서 검색 창이 열립니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-251">If you haven't signed up with Application Insights, the Search window will open in debug session telemetry mode.</span></span>
+4. <span data-ttu-id="9834b-252">**검색** 아이콘을 클릭하여 로컬 원격 분석을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-252">Click the **Search** icon to see your local telemetry.</span></span>
+
+![업로드 완료](./media/app-insights-release-notes-vsix/LocalSearch.png)
+
+## <a name="version-42"></a><span data-ttu-id="9834b-254">버전 4.2</span><span class="sxs-lookup"><span data-stu-id="9834b-254">Version 4.2</span></span>
+<span data-ttu-id="9834b-255">이 릴리스에서는 이벤트의 컨텍스트에서 데이터 검색을 더 쉽게 할 수 있는 기능, 더 많은 데이터 이벤트에서 코드로 이동할 수 있는 기능, 그리고 간편하게 로깅 데이터를 Application Insights에 보내는 환경을 추가했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-255">In this release, we added features to make searching for data easier in the context of events, with the ability to jump to code from more data events, and an effortless experience to send your logging data to Application Insights.</span></span> <span data-ttu-id="9834b-256">이 확장은 매월 업데이트 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-256">This extension is updated monthly.</span></span> <span data-ttu-id="9834b-257">의견이나 기능 요청이 있는 경우 aidevtools@microsoft.com으로 보내세요.</span><span class="sxs-lookup"><span data-stu-id="9834b-257">If you have feedback or feature requests, send it to aidevtools@microsoft.com.</span></span>
+
+### <a name="no-click-logging-experience"></a><span data-ttu-id="9834b-258">무클릭 로깅 환경</span><span class="sxs-lookup"><span data-stu-id="9834b-258">No-click logging experience</span></span>
+<span data-ttu-id="9834b-259">Log4net, NLog, System.Diagnostics.Tracing을 이미 사용 중인 경우, 모든 추적을 Application Insights로 이동할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-259">If you're already using NLog, log4net, or System.Diagnostics.Tracing, you don't have to worry about moving all of your traces to Application Insights.</span></span> <span data-ttu-id="9834b-260">이 릴리스에서는 Application Insights 로깅 어댑터를 일반 구성 환경과 통합했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-260">In this release, we've integrated the Application Insights logging adapters with the normal configuration experience.</span></span>
+<span data-ttu-id="9834b-261">이미 이러한 로깅 프레임워크 중 하나를 구성한 경우 이를 가져오는 방법에 대해 설명된 다음 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9834b-261">If you already have one of these logging frameworks configured, the following section describes how to get it.</span></span>
+<span data-ttu-id="9834b-262">**Application Insights를 이미 추가한 경우:**</span><span class="sxs-lookup"><span data-stu-id="9834b-262">**If you've already added Application Insights:**</span></span>
+
+1. <span data-ttu-id="9834b-263">프로젝트 노드를 마우스 오른쪽 단추로 클릭하고 **Application Insights**를 클릭한 다음, **Application Insights 구성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-263">Right-click the project node, and then click **Application Insights**, and then click **Configure Application Insights**.</span></span> <span data-ttu-id="9834b-264">구성 창에서 올바른 어댑터를 추가하기 위해 옵션을 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-264">Make sure that you see the option to add the correct adapter in the configuration window.</span></span>
+2. <span data-ttu-id="9834b-265">또는 솔루션을 빌드할 때 화면 오른쪽 위에 표시되는 팝업을 참고하고 **구성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-265">Alternatively, when you build the solution, note the pop-up window that appears on the top right of your screen and click **Configure**.</span></span>
+
+![로깅 알림](./media/app-insights-release-notes-vsix/LoggingToast.png)
+
+<span data-ttu-id="9834b-267">로깅 어댑터를 설치한 경우 응용 프로그램을 실행하고 다음과 같이 진단 도구 탭에서 데이터가 표시되는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-267">When you have the Logging adapter installed, run your application and make sure you see the data in the diagnostic tools tab, like this:</span></span>
+
+![추적](./media/app-insights-release-notes-vsix/Traces.png)
+
+### <a name="jump-to-or-find-the-code-where-the-telemetry-event-property-is-emitted"></a><span data-ttu-id="9834b-269">원격 분석 이벤트 속성을 내보내는 코드로 이동 또는 찾기</span><span class="sxs-lookup"><span data-stu-id="9834b-269">Jump to or find the code where the telemetry event property is emitted</span></span>
+<span data-ttu-id="9834b-270">새 릴리스에서는 사용자가 이벤트 세부 정보의 값을 클릭하면 현재 열려 있는 솔루션에서 일치하는 문자열을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-270">With the new release user can click on any value in the event detail and this will search for a matching string in the current open solution.</span></span> <span data-ttu-id="9834b-271">아래와 같이 Visual Studio "결과 찾기" 목록에 결과가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-271">Results will show up in Visual Studio "Find Results" list as shown below:</span></span>
+
+![일치 항목 찾기](./media/app-insights-release-notes-vsix/FindMatch.png)
+
+### <a name="new-search-window-for-when-you-are-not-signed-in"></a><span data-ttu-id="9834b-273">로그인하지 않은 경우 새로운 검색 창</span><span class="sxs-lookup"><span data-stu-id="9834b-273">New Search window for when you are not signed in</span></span>
+<span data-ttu-id="9834b-274">앱이 프로덕션에 있을 때 데이터를 검색할 수 있도록 도와주는 Application Insights 검색 창의 모양을 개선했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-274">We've improved the look of the Application Insights Search window to help you search your data while your app is in production.</span></span>
+
+![검색 창](./media/app-insights-release-notes-vsix/SearchWindow.png)
+
+### <a name="see-all-telemetry-events-associated-with-the-event"></a><span data-ttu-id="9834b-276">이벤트와 연결된 모든 원격 분석 이벤트를 볼 수 있음</span><span class="sxs-lookup"><span data-stu-id="9834b-276">See all telemetry events associated with the event</span></span>
+<span data-ttu-id="9834b-277">사용자가 보고 있는 원격 분석 이벤트와 관련된 모든 데이터에 대해 미리 정의된 쿼리와 함께 새 탭을 이벤트 세부 정보 탭 옆에 추가했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-277">We've added a new tab, with predefined queries for all data related to the telemetry event the user is viewing, next to the tab for event details.</span></span> <span data-ttu-id="9834b-278">예를 들어 요청에는 **작업 ID**라는 필드가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-278">For example, a request has a field called **Operation ID**.</span></span> <span data-ttu-id="9834b-279">이 요청에 연결된 모든 이벤트에는 **작업 ID**에 대해 동일한 값이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-279">Every event associated to this request has the same value for **Operation ID**.</span></span> <span data-ttu-id="9834b-280">작업에서 요청을 처리하는 동안 예외가 발생한 경우 예외에는 요청을 쉽게 찾을 수 있도록 동일한 작업 ID가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-280">If an exception occurs while the operation is processing the request, the exception is given the same operation ID as the request to make it easier to find.</span></span> <span data-ttu-id="9834b-281">요청을 확인하는 동안, **이 작업에 대한 모든 원격 분석**을 클릭하면 새 검색 결과를 표시하는 새 탭이 열립니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-281">If you're looking at a request, click **All telemetry for this operation** to open a new tab that displays the new search results.</span></span>
+
+![관련 항목](./media/app-insights-release-notes-vsix/RelatedItems.png)
+
+### <a name="forward-and-back-history-in-search"></a><span data-ttu-id="9834b-283">검색 기록 앞으로 및 뒤로 이동</span><span class="sxs-lookup"><span data-stu-id="9834b-283">Forward and Back history in Search</span></span>
+<span data-ttu-id="9834b-284">이제 검색 결과를 앞뒤로 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-284">Now you can go back and forth between search results.</span></span>
+
+![뒤로 이동](./media/app-insights-release-notes-vsix/GoBAck.png)
+
+## <a name="version-41"></a><span data-ttu-id="9834b-286">버전 4.1</span><span class="sxs-lookup"><span data-stu-id="9834b-286">Version 4.1</span></span>
+<span data-ttu-id="9834b-287">이 릴리스에는 새로운 기능과 업데이트가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-287">This release comes with a number of new features and updates.</span></span> <span data-ttu-id="9834b-288">이 릴리스를 설치하려면 업데이트 1을 설치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-288">You need to have Update 1 installed to install this release.</span></span>
+
+### <a name="jump-from-an-exception-to-method-in-source-code"></a><span data-ttu-id="9834b-289">예외에서 소스 코드의 메서드로 이동</span><span class="sxs-lookup"><span data-stu-id="9834b-289">Jump from an exception to method in source code</span></span>
+<span data-ttu-id="9834b-290">이제 Application Insights 검색 창의 프로덕션 앱에서 예외가 보이면 예외가 발생하는 코드의 메서드로 바로 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-290">Now, if you view exceptions from your production app in the Application Insights Search window, you can jump to the method in your code where the exception is occurring.</span></span> <span data-ttu-id="9834b-291">올바른 프로젝트를 로드만 하면 Application Insights가 나머지를 알아서 수행합니다!</span><span class="sxs-lookup"><span data-stu-id="9834b-291">You only need to have the correct project loaded and Application Insights takes care of the rest!</span></span> <span data-ttu-id="9834b-292">(Application Insights 검색 창에 대한 자세한 내용은 다음 섹션의 버전 4.0에 대한 릴리스 정보를 참조하세요.)</span><span class="sxs-lookup"><span data-stu-id="9834b-292">(To learn more about the Application Insights Search window, see the release notes for Version 4.0 in the following sections.)</span></span>
+
+<span data-ttu-id="9834b-293">작동 원리</span><span class="sxs-lookup"><span data-stu-id="9834b-293">How does it work?</span></span> <span data-ttu-id="9834b-294">솔루션이 열리지 않는 경우에도 Applications Insights 검색을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-294">You can use Applications Insights Search even when a solution isn't open.</span></span> <span data-ttu-id="9834b-295">스택 추적 영역에 정보 메시지를 표시되고 스택 추적의 많은 항목을 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-295">The stack trace area displays an information message, and many of the items in the stack trace are unavailable.</span></span>
+
+<span data-ttu-id="9834b-296">파일 정보를 사용할 수 있는 경우 일부 항목은 연결할 수 있지만 솔루션 정보 항목이 여전히 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-296">If file information is available, some items might be links, but the solution information item will still be visible.</span></span>
+
+<span data-ttu-id="9834b-297">하이퍼링크를 클릭하면 코드에서 선택한 방법의 위치로 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-297">If you click the hyperlink, you'll jump to the location of the selected method in your code.</span></span> <span data-ttu-id="9834b-298">버전 번호가 다를 수 있으며, 코드의 올바른 버전으로 이동하는 기능은 이후 릴리스에서 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-298">There might be a difference in the version number, but the feature, to jump to the correct version of the code, will come in later releases.</span></span>
+
+![예외 세부 정보 클릭](./media/app-insights-release-notes-vsix/jumptocode.png)
+
+### <a name="new-entry-points-to-the-search-experience-in-solution-explorer"></a><span data-ttu-id="9834b-300">솔루션 탐색기의 검색 환경에 대한 새 진입점</span><span class="sxs-lookup"><span data-stu-id="9834b-300">New entry points to the Search experience in Solution Explorer</span></span>
+<span data-ttu-id="9834b-301">이제 검색 솔루션 탐색기를 통해 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-301">Now you can access Search through Solution Explorer.</span></span>
+
+![솔루션 탐색기에서 검색](./media/app-insights-release-notes-vsix/searchentry.png)
+
+### <a name="displays-a-notification-when-publish-is-completed"></a><span data-ttu-id="9834b-303">게시가 완료될 때 완료 표시</span><span class="sxs-lookup"><span data-stu-id="9834b-303">Displays a notification when publish is completed</span></span>
+<span data-ttu-id="9834b-304">프로젝트를 온라인에 게시하면 팝업 대화 상자가 표시되므로 프로덕션에서 Application Insights 데이터를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-304">A pop-up dialog box appears when the project is published online, so that you can view your Application Insights data in production.</span></span>
+
+![게시 완료 알림](./media/app-insights-release-notes-vsix/publishtoast.png)
+
+## <a name="version-40"></a><span data-ttu-id="9834b-306">버전 4.0</span><span class="sxs-lookup"><span data-stu-id="9834b-306">Version 4.0</span></span>
+### <a name="search-application-insights-data-from-within-visual-studio"></a><span data-ttu-id="9834b-307">Visual Studio 내에서 Application Insights 데이터 검색</span><span class="sxs-lookup"><span data-stu-id="9834b-307">Search Application Insights data from within Visual Studio</span></span>
+<span data-ttu-id="9834b-308">Application Insights 포털의 검색 기능처럼, 이제 Visual Studio에서 이벤트 형식, 속성 값 및 텍스트를 필터링하고 검색한 다음 개별 이벤트를 검사할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-308">Like the search function in the Application Insights portal, now in Visual Studio you can filter and search on event types, property values, and text, and then inspect individual events.</span></span>
+
+![검색 창](./media/app-insights-release-notes-vsix/search.png)
+
+### <a name="see-data-coming-from-your-local-computer-in-diagnostic-tools"></a><span data-ttu-id="9834b-310">진단 도구에서 로컬 컴퓨터로부터 들어오는 데이터 참조</span><span class="sxs-lookup"><span data-stu-id="9834b-310">See data coming from your local computer in Diagnostic Tools</span></span>
+<span data-ttu-id="9834b-311">Visual Studio 진단 도구 페이지에서 다른 디버깅 데이터 외에도 원격 분석을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-311">You can view your telemetry, in addition to other debugging data, on the Visual Studio Diagnostic Tools page.</span></span> <span data-ttu-id="9834b-312">ASP.NET 4.5만 지원됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-312">Only ASP.NET 4.5 is supported.</span></span>
+
+![진단 도구 페이지](./media/app-insights-release-notes-vsix/diagtools.png)
+
+### <a name="add-the-sdk-to-your-project-without-signing-in-to-azure"></a><span data-ttu-id="9834b-314">Azure에 로그인하지 않고도 프로젝트에 SDK 추가</span><span class="sxs-lookup"><span data-stu-id="9834b-314">Add the SDK to your project without signing in to Azure</span></span>
+<span data-ttu-id="9834b-315">**새 프로젝트 대화 상자** 또는 프로젝트 상황에 맞는 메뉴에서 Application Insights 패키지를 프로젝트에 추가하기 위해 더 이상 Azure에 로그인할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-315">You no longer have to sign in to Azure to add Application Insights packages to your project, either through the **New Project** dialog or from the project context menu.</span></span> <span data-ttu-id="9834b-316">로그인하면 이전과 마찬가지로 SDK가 설치되고 포털에 원격 분석을 보내도록 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-316">If you do sign in, the SDK will be installed and configured to send telemetry to the portal as before.</span></span> <span data-ttu-id="9834b-317">로그인하지 않으면 SDK가 프로젝트에 추가되고 진단 허브에 대한 원격 분석을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-317">If you don’t sign in, the SDK will be added to your project and it will generate telemetry for the diagnostic hub.</span></span> <span data-ttu-id="9834b-318">원하는 경우 나중에 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-318">You can configure it later if you want.</span></span>
+
+![새 프로젝트 대화 상자](./media/app-insights-release-notes-vsix/newproject.png)
+
+### <a name="device-support"></a><span data-ttu-id="9834b-320">장치 지원</span><span class="sxs-lookup"><span data-stu-id="9834b-320">Device support</span></span>
+<span data-ttu-id="9834b-321">*Connect();* 2015에서 장치에 대한 모바일 개발자 환경인 HockeyApp를 [발표](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/) 했습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-321">At *Connect();* 2015, we [announced](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/) that our mobile developer experience for devices is HockeyApp.</span></span> <span data-ttu-id="9834b-322">HockeyApp을 사용하면 테스터에 베타 빌드를 배포하고 앱에서 모든 충돌을 수집하고 분석하며 고객으로부터 직접 의견을 수집할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-322">HockeyApp helps you distribute beta builds to your testers, collect and analyze all crashes from your app, and collect feedback directly from your customers.</span></span>
+<span data-ttu-id="9834b-323">HockeyApp은 iOS, Android, Windows 또는 Xamarin, Cordova, Unity와 같은 플랫폼 간 솔루션 등 빌드를 위해 선택한 플랫폼에 관계 없이 모든 플랫폼 상의 앱을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-323">HockeyApp supports your app on whichever platform you choose to build it, whether that be iOS, Android, or Windows, or a cross-platform solution like Xamarin, Cordova, or Unity.</span></span>
+
+<span data-ttu-id="9834b-324">향후 Application Insights 확장 릴리스에서는 HockeyApp과 Visual Studio 간에 보다 통합된 환경을 도입할 예정입니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-324">In future releases of the Application Insights extension, we’ll introduce a more integrated experience between HockeyApp and Visual Studio.</span></span> <span data-ttu-id="9834b-325">지금은 NuGet 참조를 추가하기만 하면 HockeyApp을 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9834b-325">For now, you can start with HockeyApp by simply adding the NuGet reference.</span></span> <span data-ttu-id="9834b-326">자세한 내용은 [문서](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9834b-326">See the [documentation](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone) for more information.</span></span>

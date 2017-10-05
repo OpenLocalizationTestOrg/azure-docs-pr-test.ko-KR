@@ -1,0 +1,350 @@
+---
+title: "Virtual Network에서 Application Gateway와 함께 Azure API Management를 사용하는 방법 | Microsoft Docs"
+description: "내부 Virtual Network에서 프론트 엔드로 Application Gateway(WAF)와 함께 Azure API Management를 설정하고 구성하는 방법 알아보기"
+services: api-management
+documentationcenter: 
+author: solankisamir
+manager: kjoshi
+editor: antonba
+ms.assetid: a8c982b2-bca5-4312-9367-4a0bbc1082b1
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/16/2017
+ms.author: sasolank
+ms.openlocfilehash: 8131ded6b74e9c544bf70b1a4659ed07e5def04d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/29/2017
+---
+# <a name="integrate-api-management-in-an-internal-vnet-with-application-gateway"></a><span data-ttu-id="f9b98-103">내부 VNET에서 Application Gateway와 API Management 통합</span><span class="sxs-lookup"><span data-stu-id="f9b98-103">Integrate API Management in an internal VNET with Application Gateway</span></span> 
+
+##<span data-ttu-id="f9b98-104"><a name="overview"> </a> 개요</span><span class="sxs-lookup"><span data-stu-id="f9b98-104"><a name="overview"> </a> Overview</span></span>
+ 
+<span data-ttu-id="f9b98-105">Virtual Network 내에서만 액세스할 수 있도록 내부 모드의 Virtual Network에서 API Management 서비스를 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-105">The API Management service can be configured in a Virtual Network in internal mode which makes it accessible only from within the Virtual Network.</span></span> <span data-ttu-id="f9b98-106">Azure Application Gateway는 계층 7 부하 분산 장치를 제공하는 PAAS 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-106">Azure Application Gateway is a PAAS Service which provides a Layer-7 load balancer.</span></span> <span data-ttu-id="f9b98-107">역방향 프록시 서비스 역할을 하고 제품에 WAF(웹 응용 프로그램 방화벽)를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-107">It acts as a reverse-proxy service and provides among its offering a Web Application Firewall (WAF).</span></span>
+
+<span data-ttu-id="f9b98-108">내부 VNET에서 프로비전된 API Management와 Application Gateway 프런트 엔드를 결합하면 다음 시나리오가 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-108">Combining API Management provisioned in an internal VNET with the Application Gateway frontend enables the following scenarios:</span></span>
+
+* <span data-ttu-id="f9b98-109">내부 소비자 및 외부 소비자의 소비에 대해 동일한 API Management 리소스를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-109">Use the same API Management resource for consumption by both internal consumers and external consumers.</span></span>
+* <span data-ttu-id="f9b98-110">단일 API Management 리소스를 사용하며 외부 소비자가 사용할 수 있는 API Management에서 정의된 API의 하위 집합을 갖습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-110">Use a single API Management resource and have a subset of APIs defined in API Management available for external consumers.</span></span>
+* <span data-ttu-id="f9b98-111">공용 인터넷에서 API Management에 대한 액세스를 켜기 및 끄기로 전환하는 턴키 방법을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-111">Provide a turn-key way to switch access to API Management from the public Internet on and off.</span></span> 
+
+##<span data-ttu-id="f9b98-112"><a name="scenario"> </a> 시나리오</span><span class="sxs-lookup"><span data-stu-id="f9b98-112"><a name="scenario"> </a> Scenario</span></span>
+<span data-ttu-id="f9b98-113">이 문서에서는 내부 및 외부 소비자가 단일 API Management 서비스를 사용하여 온-프레미스 및 클라우드 API에서 단일 프런트 엔드 역할을 하도록 만드는 방법을 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-113">This article will cover how to use a single API Management service for both internal and external consumers and make it act as a single frontend for both on-prem and cloud APIs.</span></span> <span data-ttu-id="f9b98-114">Application Gateway에서 사용 가능한 PathBasedRouting 기능을 사용하여 외부 소비에 대해 API(예제에서 녹색으로 강조 표시됨)의 하위 집합만을 노출하는 방법을 확인할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-114">You will also see how to expose only a subset of your APIs (in the example they are highlighted in green) for External Consumption using the PathBasedRouting functionality available in Application Gateway.</span></span>
+
+<span data-ttu-id="f9b98-115">첫 번째 설정 예제에서 모든 API는 Virtual Network 내에서만 관리됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-115">In the first setup example all your APIs are managed only from within your Virtual Network.</span></span> <span data-ttu-id="f9b98-116">내부 소비자(주황색으로 강조 표시됨)는 모든 내부 및 외부 API에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-116">Internal consumers (highlighted in orange) can access all your internal and external APIs.</span></span> <span data-ttu-id="f9b98-117">트래픽은 ExpressRoute 회로를 통해 고성능을 제공하는 인터넷으로 가지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-117">Traffic never goes out to Internet a high performance is delivered via Express Route circuits.</span></span>
+
+![url 경로](./media/api-management-howto-integrate-internal-vnet-appgateway/api-management-howto-integrate-internal-vnet-appgateway.png)
+
+## <span data-ttu-id="f9b98-119"><a name="before-you-begin"> </a> 시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="f9b98-119"><a name="before-you-begin"> </a> Before you begin</span></span>
+
+1. <span data-ttu-id="f9b98-120">웹 플랫폼 설치 관리자를 사용하는 Azure PowerShell cmdlet의 최신 버전을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-120">Install the latest version of the Azure PowerShell cmdlets by using the Web Platform Installer.</span></span> <span data-ttu-id="f9b98-121">**다운로드 페이지** 의 [Windows PowerShell](https://azure.microsoft.com/downloads/)섹션에서 최신 버전을 다운로드하여 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-121">You can download and install the latest version from the **Windows PowerShell** section of the [Downloads page](https://azure.microsoft.com/downloads/).</span></span>
+2. <span data-ttu-id="f9b98-122">Virtual Network를 만들고 API Management 및 Application Gateway에 대한 별도 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-122">Create a Virtual Network and create separate subnets for API Management and Application Gateway.</span></span> 
+3. <span data-ttu-id="f9b98-123">Virtual Network에 대한 사용자 지정 DNS 서버를 만들려면 배포를 시작하기 전에 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-123">If you intend to create a custom DNS server for the Virtual Network, do so before starting the deployment.</span></span> <span data-ttu-id="f9b98-124">Virtual Network의 새 서브넷에서 만든 가상 컴퓨터가 모든 Azure 서비스 끝점을 확인하고 액세스할 수 있도록 하여 작동을 이중으로 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-124">Double check it works by ensuring a virtual machine created in a new subnet in the Virtual Network can resolve and access all Azure service endpoints.</span></span>
+
+## <a name="what-is-required-to-create-an-integration-between-api-management-and-application-gateway"></a><span data-ttu-id="f9b98-125">API Management 및 Application Gateway 간에 통합을 만드는 데 무엇이 필요한가요?</span><span class="sxs-lookup"><span data-stu-id="f9b98-125">What is required to create an integration between API Management and Application Gateway?</span></span>
+
+* <span data-ttu-id="f9b98-126">**백 엔드 서버 풀:** API Management 서비스의 내부 가상 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-126">**Back-end server pool:** This is the internal virtual IP address of the API Management service.</span></span>
+* <span data-ttu-id="f9b98-127">**백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-127">**Back-end server pool settings:** Every pool has settings like port, protocol, and cookie-based affinity.</span></span> <span data-ttu-id="f9b98-128">이러한 설정은 풀 내의 모든 서버에 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-128">These settings are applied to all servers within the pool.</span></span>
+* <span data-ttu-id="f9b98-129">**프런트 엔드 포트:** Application Gateway에 열려 있는 공용 포트입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-129">**Front-end port:** This is the public port that is opened on the application gateway.</span></span> <span data-ttu-id="f9b98-130">이 포트에 도달한 트래픽은 백 엔드 서버 중의 하나로 리디렉션됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-130">Traffic hitting it gets redirected to one of the back-end servers.</span></span>
+* <span data-ttu-id="f9b98-131">**수신기:** 수신기에는 프런트 엔드 포트, 프로토콜(Http 또는 Https, 이 값은 대/소문자 구분) 및 SSL 인증서 이름(SSL 오프로드를 구성하는 경우)이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-131">**Listener:** The listener has a front-end port, a protocol (Http or Https, these values are case-sensitive), and the SSL certificate name (if configuring SSL offload).</span></span>
+* <span data-ttu-id="f9b98-132">**규칙:** 규칙은 수신기를 백 엔드 서버 풀에 바인딩합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-132">**Rule:** The rule binds a listener to a back-end server pool.</span></span>
+* <span data-ttu-id="f9b98-133">**사용자 정의 상태 프로브:** 기본적으로 Application Gateway는 IP 주소 기반 프로브를 사용하여 BackendAddressPool의 어떤 서버가 활성 상태인지 파악합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-133">**Custom Health Probe:** Application Gateway, by default, uses IP address based probes to figure out which servers in the BackendAddressPool are active.</span></span> <span data-ttu-id="f9b98-134">API Management 서비스는 올바른 호스트 헤더가 있는 요청에만 응답하므로 기본 프로브는 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-134">The API Management service only responds to requests which have the correct host header, hence the default probes fail.</span></span> <span data-ttu-id="f9b98-135">서비스가 활성 상태이고 요청을 전달해야 한다는 것을 Application Gateway가 결정할 수 있도록 사용자 지정 상태 프로브를 정의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-135">A custom health probe needs to be defined to help application gateway determine that the service is alive and it should forward requests.</span></span>
+* <span data-ttu-id="f9b98-136">**사용자 지정 도메인 인증서:** 인터넷에서 API Management에 액세스하려면 Application Gateway 프런트 엔드 DNS 이름에 대한 해당 호스트 이름의 CNAME을 매핑해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-136">**Custom domain certificate:** To access API Management from the internet you need to create a CNAME mapping of its hostname to the Application Gateway front-end DNS name.</span></span> <span data-ttu-id="f9b98-137">이렇게 하면 API Management에 전달되는 Application Gateway에 전송되는 호스트 이름 헤더 및 인증서를 APIM에서 유효한 것으로 인식할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-137">This ensures that the hostname header and certificate sent to Application Gateway that is forwarded to API Management is one APIM can recognize as valid.</span></span>
+
+## <span data-ttu-id="f9b98-138"><a name="overview-steps"> </a> API Management 및 Application Gateway 통합에 필요한 단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-138"><a name="overview-steps"> </a> Steps required for integrating API Management and Application Gateway</span></span> 
+
+1. <span data-ttu-id="f9b98-139">리소스 관리자에 대한 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-139">Create a resource group for Resource Manager.</span></span>
+2. <span data-ttu-id="f9b98-140">Application Gateway에 대한 Virtual Network, 서브넷 및 공용 IP를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-140">Create a Virtual Network, subnet, and public IP for the Application Gateway.</span></span> <span data-ttu-id="f9b98-141">API Management에 대한 다른 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-141">Create another subnet for API Management.</span></span>
+3. <span data-ttu-id="f9b98-142">위에서 만든 VNET 서브넷 내에서 API Management 서비스를 만들고 내부 모드로 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-142">Create an API Management service inside the VNET subnet created above and ensure you use the Internal mode.</span></span>
+4. <span data-ttu-id="f9b98-143">API Management 서비스에서 사용자 지정 도메인 이름을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-143">Setup the custom domain name in the API Management service.</span></span>
+5. <span data-ttu-id="f9b98-144">Application Gateway 구성 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-144">Create an Application Gateway configuration object.</span></span>
+6. <span data-ttu-id="f9b98-145">Application Gateway 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-145">Create an Application Gateway resource.</span></span>
+7. <span data-ttu-id="f9b98-146">CNAME을 Application Gateway 리소스의 공용 DNS 이름에서 API Management 프록시 호스트 이름으로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-146">Create a CNAME from the public DNS name of the Application Gateway to the API Management proxy hostname.</span></span>
+
+## <a name="create-a-resource-group-for-resource-manager"></a><span data-ttu-id="f9b98-147">리소스 관리자에 대한 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="f9b98-147">Create a resource group for Resource Manager</span></span>
+
+<span data-ttu-id="f9b98-148">Azure PowerShell의 최신 버전을 사용하고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-148">Make sure that you are using the latest version of Azure PowerShell.</span></span> <span data-ttu-id="f9b98-149">자세한 내용은 [Resource Manager에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f9b98-149">More info is available at [Using Windows PowerShell with Resource Manager](../powershell-azure-resource-manager.md).</span></span>
+
+### <a name="step-1"></a><span data-ttu-id="f9b98-150">1단계:</span><span class="sxs-lookup"><span data-stu-id="f9b98-150">Step 1</span></span>
+
+<span data-ttu-id="f9b98-151">Azure에 로그인</span><span class="sxs-lookup"><span data-stu-id="f9b98-151">Log in to Azure</span></span>
+
+```powershell
+Login-AzureRmAccount
+```
+
+<span data-ttu-id="f9b98-152">자격 증명을 사용하여 인증합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-152">Authenticate with your credentials.</span></span><BR>
+
+### <a name="step-2"></a><span data-ttu-id="f9b98-153">2단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-153">Step 2</span></span>
+
+<span data-ttu-id="f9b98-154">계정에 대한 구독을 확인하고 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-154">Check the subscriptions for the account and select it.</span></span>
+
+```powershell
+Get-AzureRmSubscription -Subscriptionid "GUID of subscription" | Select-AzureRmSubscription
+```
+
+### <a name="step-3"></a><span data-ttu-id="f9b98-155">3단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-155">Step 3</span></span>
+
+<span data-ttu-id="f9b98-156">리소스 그룹을 만듭니다. 기존 리소스 그룹을 사용하는 경우에는 이 단계를 건너뛰세요.</span><span class="sxs-lookup"><span data-stu-id="f9b98-156">Create a resource group (skip this step if you're using an existing resource group).</span></span>
+
+```powershell
+New-AzureRmResourceGroup -Name "apim-appGw-RG" -Location "West US"
+```
+<span data-ttu-id="f9b98-157">Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-157">Azure Resource Manager requires that all resource groups specify a location.</span></span> <span data-ttu-id="f9b98-158">이 위치는 해당 리소스 그룹에서 리소스의 기본 위치로 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-158">This is used as the default location for resources in that resource group.</span></span> <span data-ttu-id="f9b98-159">응용 프로그램 게이트웨이를 만들기 위한 모든 명령이 동일한 리소스 그룹을 사용하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-159">Make sure that all commands to create an application gateway use the same resource group.</span></span>
+
+## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a><span data-ttu-id="f9b98-160">Application Gateway에 대한 Virtual Network 및 서브넷 만들기</span><span class="sxs-lookup"><span data-stu-id="f9b98-160">Create a Virtual Network and a subnet for the application gateway</span></span>
+
+<span data-ttu-id="f9b98-161">다음 예제에서는 Resource Manager를 사용하여 Virtual Network를 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-161">The following example shows how to create a Virtual Network using the resource manager.</span></span>
+
+### <a name="step-1"></a><span data-ttu-id="f9b98-162">1단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-162">Step 1</span></span>
+
+<span data-ttu-id="f9b98-163">주소 범위 10.0.0.0/24를 Virtual Network를 만드는 동안 Application Gateway에 사용할 서브넷 변수에 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-163">Assign the address range 10.0.0.0/24 to the subnet variable to be used for Application Gateway while creating a Virtual Network.</span></span>
+
+```powershell
+$appgatewaysubnet = New-AzureRmVirtualNetworkSubnetConfig -Name "apim01" -AddressPrefix "10.0.0.0/24"
+```
+
+### <a name="step-2"></a><span data-ttu-id="f9b98-164">2단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-164">Step 2</span></span>
+
+<span data-ttu-id="f9b98-165">Virtual Network를 만드는 동안 주소 범위 10.0.1.0/24를 API Management에 사용할 서브넷 변수에 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-165">Assign the address range 10.0.1.0/24 to the subnet variable to be used for API Management while creating a Virtual Network.</span></span>
+
+```powershell
+$apimsubnet = New-AzureRmVirtualNetworkSubnetConfig -Name "apim02" -AddressPrefix "10.0.1.0/24"
+```
+
+### <a name="step-3"></a><span data-ttu-id="f9b98-166">3단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-166">Step 3</span></span>
+
+<span data-ttu-id="f9b98-167">접두사 10.0.0.0/16과 서브넷 10.0.0.0/24 및 10.0.1.0/24를 사용하여 미국 서부 지역에 리소스 그룹 **apim-appGw-RG**에서 **appgwvnet**이라는 Virtual Network를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-167">Create a Virtual Network named **appgwvnet** in resource group **apim-appGw-RG** for the West US region using the prefix 10.0.0.0/16 with subnets 10.0.0.0/24 and 10.0.1.0/24.</span></span>
+
+```powershell
+$vnet = New-AzureRmVirtualNetwork -Name "appgwvnet" -ResourceGroupName "apim-appGw-RG" -Location "West US" -AddressPrefix "10.0.0.0/16" -Subnet $appgatewaysubnet,$apimsubnet
+```
+
+### <a name="step-4"></a><span data-ttu-id="f9b98-168">4단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-168">Step 4</span></span>
+
+<span data-ttu-id="f9b98-169">다음 단계에 대한 서브넷 변수 할당</span><span class="sxs-lookup"><span data-stu-id="f9b98-169">Assign a subnet variable for the next steps</span></span>
+
+```powershell
+$appgatewaysubnetdata=$vnet.Subnets[0]
+$apimsubnetdata=$vnet.Subnets[1]
+```
+## <a name="create-an-api-management-service-inside-a-vnet-configured-in-internal-mode"></a><span data-ttu-id="f9b98-170">내부 모드로 구성된 VNET 내에서 API Management 서비스 만들기</span><span class="sxs-lookup"><span data-stu-id="f9b98-170">Create an API Management service inside a VNET configured in internal mode</span></span>
+
+<span data-ttu-id="f9b98-171">다음 예제에서는 VNET에서 내부 액세스 전용으로 구성된 API Management 서비스를 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-171">The following example shows how to create an API Management service in a VNET configured for internal access only.</span></span>
+
+### <a name="step-1"></a><span data-ttu-id="f9b98-172">1단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-172">Step 1</span></span>
+<span data-ttu-id="f9b98-173">위에서 만든 $apimsubnetdata 서브넷을 사용하여 API Management Virtual Network 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-173">Create an API Management Virtual Network object using the subnet $apimsubnetdata created above.</span></span>
+
+```powershell
+$apimVirtualNetwork = New-AzureRmApiManagementVirtualNetwork -Location "West US" -SubnetResourceId $apimsubnetdata.Id
+```
+### <a name="step-2"></a><span data-ttu-id="f9b98-174">2단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-174">Step 2</span></span>
+<span data-ttu-id="f9b98-175">Virtual Network 내부에 API Management 서비스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-175">Create an API Management service inside the Virtual Network.</span></span>
+
+```powershell
+$apimService = New-AzureRmApiManagement -ResourceGroupName "apim-appGw-RG" -Location "West US" -Name "ContosoApi" -Organization "Contoso" -AdminEmail "admin@contoso.com" -VirtualNetwork $apimVirtualNetwork -VpnType "Internal" -Sku "Developer"
+```
+<span data-ttu-id="f9b98-176">위의 명령이 성공한 후에 액세스하려면 [내부 VNET API Management 서비스에 액세스하는 데 필요한 DNS 구성](api-management-using-with-internal-vnet.md#apim-dns-configuration)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f9b98-176">After the above command succeeds refer to [DNS Configuration required to access internal VNET API Management service](api-management-using-with-internal-vnet.md#apim-dns-configuration) to access it.</span></span>
+
+## <a name="set-up-a-custom-domain-name-in-api-management"></a><span data-ttu-id="f9b98-177">API Management에서 사용자 지정 도메인 이름 설정</span><span class="sxs-lookup"><span data-stu-id="f9b98-177">Set-up a custom domain name in API Management</span></span>
+
+### <a name="step-1"></a><span data-ttu-id="f9b98-178">1단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-178">Step 1</span></span>
+<span data-ttu-id="f9b98-179">도메인에 개인 키로 인증서를 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-179">Upload the certificate with private key for the domain.</span></span> <span data-ttu-id="f9b98-180">이 예에서는 `*.contoso.net`입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-180">For this example it will be `*.contoso.net`.</span></span> 
+
+```powershell
+$certUploadResult = Import-AzureRmApiManagementHostnameCertificate -ResourceGroupName "apim-appGw-RG" -Name "ContosoApi" -HostnameType "Proxy" -PfxPath <full path to .pfx file> -PfxPassword <password for certificate file> -PassThru
+```
+
+### <a name="step-2"></a><span data-ttu-id="f9b98-181">2단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-181">Step 2</span></span>
+<span data-ttu-id="f9b98-182">인증서가 업로드되면 예제 인증서가 도메인 `*.contoso.net`에 대한 권한을 제공하는 대로 호스트 이름 `api.contoso.net`을 사용하여 프록시에 대한 호스트 이름 구성 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-182">Once the certificate is uploaded, create a hostname configuration object for the proxy with a hostname of `api.contoso.net`, as the example certificate provides authority for the  `*.contoso.net` domain.</span></span> 
+
+```powershell
+$proxyHostnameConfig = New-AzureRmApiManagementHostnameConfiguration -CertificateThumbprint $certUploadResult.Thumbprint -Hostname "api.contoso.net"
+$result = Set-AzureRmApiManagementHostnames -Name "ContosoApi" -ResourceGroupName "apim-appGw-RG" -ProxyHostnameConfiguration $proxyHostnameConfig
+```
+
+## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a><span data-ttu-id="f9b98-183">프런트 엔드 구성에 대한 공용 IP 주소 만들기</span><span class="sxs-lookup"><span data-stu-id="f9b98-183">Create a public IP address for the front-end configuration</span></span>
+
+<span data-ttu-id="f9b98-184">미국 서부 지역에 리소스 그룹 **apim-appGw-RG**에서 공용 IP 리소스 **publicIP01**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-184">Create a public IP resource **publicIP01** in resource group **apim-appGw-RG** for the West US region.</span></span>
+
+```powershell
+$publicip = New-AzureRmPublicIpAddress -ResourceGroupName "apim-appGw-RG" -name "publicIP01" -location "West US" -AllocationMethod Dynamic
+```
+
+<span data-ttu-id="f9b98-185">서비스를 시작할 때 응용 프로그램 게이트웨이에 IP 주소가 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-185">An IP address is assigned to the application gateway when the service starts.</span></span>
+
+## <a name="create-application-gateway-configuration"></a><span data-ttu-id="f9b98-186">응용 프로그램 게이트웨이 구성 만들기</span><span class="sxs-lookup"><span data-stu-id="f9b98-186">Create application gateway configuration</span></span>
+
+<span data-ttu-id="f9b98-187">응용 프로그램 게이트웨이를 만들기 전에 모든 구성 항목을 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-187">All configuration items must be set up before creating the application gateway.</span></span> <span data-ttu-id="f9b98-188">다음 단계 응용 프로그램 게이트웨이 리소스에 필요한 구성 항목을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-188">The following steps create the configuration items that are needed for an application gateway resource.</span></span>
+
+### <a name="step-1"></a><span data-ttu-id="f9b98-189">1단계:</span><span class="sxs-lookup"><span data-stu-id="f9b98-189">Step 1</span></span>
+
+<span data-ttu-id="f9b98-190">**gatewayIP01**이라는 응용 프로그램 게이트웨이 IP 구성을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-190">Create an application gateway IP configuration named **gatewayIP01**.</span></span> <span data-ttu-id="f9b98-191">Application Gateway는 시작되면 구성된 서브넷에서 IP 주소를 선택하고 백 엔드 IP 풀의 IP 주소로 네트워크 트래픽을 라우팅합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-191">When Application Gateway starts, it picks up an IP address from the subnet configured and route network traffic to the IP addresses in the back-end IP pool.</span></span> <span data-ttu-id="f9b98-192">인스턴스마다 하나의 IP 주소를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-192">Keep in mind that each instance takes one IP address.</span></span>
+
+```powershell
+$gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name "gatewayIP01" -Subnet $appgatewaysubnetdata
+```
+
+### <a name="step-2"></a><span data-ttu-id="f9b98-193">2단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-193">Step 2</span></span>
+
+<span data-ttu-id="f9b98-194">공용 IP 끝점에 대한 프런트 엔드 IP 포트를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-194">Configure the front-end IP port for the public IP endpoint.</span></span> <span data-ttu-id="f9b98-195">이 포트는 최종 사용자가 연결하는 포트입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-195">This port is the port that end users connect to.</span></span>
+
+```powershell
+$fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "port01"  -Port 443
+```
+### <a name="step-3"></a><span data-ttu-id="f9b98-196">3단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-196">Step 3</span></span>
+
+<span data-ttu-id="f9b98-197">공용 IP 끝점으로 프런트 엔드 IP를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-197">Configure the front-end IP with public IP endpoint.</span></span>
+
+```powershell
+$fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -PublicIPAddress $publicip
+```
+
+### <a name="step-4"></a><span data-ttu-id="f9b98-198">4단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-198">Step 4</span></span>
+
+<span data-ttu-id="f9b98-199">Application Gateway의 인증서가 전달되는 트래픽을 암호화하고 해독하는 데 사용되도록 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-199">Configure the certificate for the Application Gateway, used to decrypt and re-encrypt the traffic passing through.</span></span>
+
+```powershell
+$cert = New-AzureRmApplicationGatewaySslCertificate -Name "cert01" -CertificateFile <full path to .pfx file> -Password <password for certificate file>
+```
+
+### <a name="step-5"></a><span data-ttu-id="f9b98-200">5단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-200">Step 5</span></span>
+
+<span data-ttu-id="f9b98-201">Application Gateway에 대한 HTTP 수신기를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-201">Create the HTTP listener for the Application Gateway.</span></span> <span data-ttu-id="f9b98-202">여기에 프런트 엔드 IP 구성, 포트 및 SSL 인증서를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-202">Assign the front-end IP configuration, port, and ssl certificate to it.</span></span>
+
+```powershell
+$listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protocol "Https" -FrontendIPConfiguration $fipconfig01 -FrontendPort $fp01 -SslCertificate $cert
+```
+
+### <a name="step-6"></a><span data-ttu-id="f9b98-203">6단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-203">Step 6</span></span>
+
+<span data-ttu-id="f9b98-204">API Management 서비스 `ContosoApi` 프록시 도메인 끝점에 사용자 지정 프로브를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-204">Create a custom probe to the API Management service `ContosoApi` proxy domain endpoint.</span></span> <span data-ttu-id="f9b98-205">경로 `/status-0123456789abcdef`는 모든 API Management 서비스에서 호스트되는 기본 상태 끝점입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-205">The path `/status-0123456789abcdef` is a default health endpoint hosted on all the API Management services.</span></span> <span data-ttu-id="f9b98-206">`api.contoso.net`을 사용자 지정 프로브 호스트 이름으로 지정하여 SSL 인증서로 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-206">Set `api.contoso.net` as a custom probe hostname to secure it with SSL certificate.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f9b98-207">호스트 이름 `contosoapi.azure-api.net`은 서비스 `contosoapi`가 공용 Azure에서 생성될 때 구성된 기본 프록시 호스트 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-207">The hostname `contosoapi.azure-api.net` is the default proxy hostname configured when a service named `contosoapi` is created in public Azure.</span></span> 
+> 
+
+```powershell
+$apimprobe = New-AzureRmApplicationGatewayProbeConfig -Name "apimproxyprobe" -Protocol "Https" -HostName "api.contoso.net" -Path "/status-0123456789abcdef" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
+```
+
+### <a name="step-7"></a><span data-ttu-id="f9b98-208">7단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-208">Step 7</span></span>
+
+<span data-ttu-id="f9b98-209">SSL이 활성화된 백 엔드 풀 리소스에 사용할 인증서를 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-209">Upload the certificate to be used on the SSL-enabled backend pool resources.</span></span> <span data-ttu-id="f9b98-210">위의 4단계에서 제공하는 동일한 인증서입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-210">This is the same certificate which you provided in Step 4 above.</span></span>
+
+```powershell
+$authcert = New-AzureRmApplicationGatewayAuthenticationCertificate -Name "whitelistcert1" -CertificateFile <full path to .cer file>
+```
+
+### <a name="step-8"></a><span data-ttu-id="f9b98-211">8단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-211">Step 8</span></span>
+
+<span data-ttu-id="f9b98-212">Application Gateway에 HTTP 백 엔드 설정을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-212">Configure HTTP backend settings for the Application Gateway.</span></span> <span data-ttu-id="f9b98-213">해당 설정이 취소된 후에 백 엔드 요청에 대한 제한 시간을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-213">This includes setting a time-out limit for backend request after which they are cancelled.</span></span> <span data-ttu-id="f9b98-214">이 값은 프로브 시간 초과와 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-214">This value is different from the probe time-out.</span></span>
+
+```powershell
+$apimPoolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name "apimPoolSetting" -Port 443 -Protocol "Https" -CookieBasedAffinity "Disabled" -Probe $apimprobe -AuthenticationCertificates $authcert -RequestTimeout 180
+```
+
+### <a name="step-9"></a><span data-ttu-id="f9b98-215">9단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-215">Step 9</span></span>
+
+<span data-ttu-id="f9b98-216">위에서 만든 API Management 서비스의 내부 가상 IP 주소로 **apimbackend**라는 백 엔드 IP 주소 풀을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-216">Configure a back-end IP address pool named **apimbackend**  with the internal virtual IP address of the API Management service created above.</span></span>
+
+```powershell
+$apimProxyBackendPool = New-AzureRmApplicationGatewayBackendAddressPool -Name "apimbackend" -BackendIPAddresses $apimService.StaticIPs[0]
+```
+
+### <a name="step-10"></a><span data-ttu-id="f9b98-217">10단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-217">Step 10</span></span>
+
+<span data-ttu-id="f9b98-218">더미(존재하지 않는) 백 엔드에 대한 설정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-218">Create settings for a dummy (non-existent) backend.</span></span> <span data-ttu-id="f9b98-219">Application Gateway를 통한 API Management에서 노출하고 싶지 않은 API 경로에 대한 요청이 이 백 엔드에 도달하여 404를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-219">Requests to API paths that we do not want to expose from API Management via Application Gateway will hit this backend and return 404.</span></span>
+
+<span data-ttu-id="f9b98-220">더미 백 엔드에 대한 HTTP 설정을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-220">Configure HTTP settings for the dummy backend.</span></span>
+
+```powershell
+$dummyBackendSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name "dummySetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled
+```
+
+<span data-ttu-id="f9b98-221">FQDN 주소 **dummybackend.com**을 가리키는 더미 백 엔드 **dummyBackendPool**을 구성합니다. 이 FQDN 주소는 가상 네트워크에 존재하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-221">Configure a dummy backend **dummyBackendPool**, which points to a FQDN address **dummybackend.com**. This FQDN address does not exist in the virtual network.</span></span>
+
+```powershell
+$dummyBackendPool = New-AzureRmApplicationGatewayBackendAddressPool -Name "dummyBackendPool" -BackendFqdns "dummybackend.com"
+```
+
+<span data-ttu-id="f9b98-222">Application Gateway가 기본적으로 사용하고 Virtual Network에서 존재하지 않는 백 엔드 **dummybackend.com**을 가리키는 규칙 설정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-222">Create a rule setting that the Application Gateway will use by default which points to the non-existent backend **dummybackend.com** in the Virtual Network.</span></span>
+
+```powershell
+$dummyPathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "nonexistentapis" -Paths "/*" -BackendAddressPool $dummyBackendPool -BackendHttpSettings $dummyBackendSetting
+```
+
+### <a name="step-11"></a><span data-ttu-id="f9b98-223">11단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-223">Step 11</span></span>
+
+<span data-ttu-id="f9b98-224">백 엔드 풀에 대한 URL 규칙 경로를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-224">Configure URL rule paths for the back-end pools.</span></span> <span data-ttu-id="f9b98-225">이를 통해 공개적으로 노출되는 API Management에서 일부 API만을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-225">This enables selecting only some of the APIs from API Management for being exposed to the public.</span></span> <span data-ttu-id="f9b98-226">예를 들어 `Echo API` (/echo/), `Calculator API` (/calc/) 등이 있으면 인터넷에서 `Echo API`에만 액세스할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-226">For example, if there are `Echo API` (/echo/), `Calculator API` (/calc/) etc. make only `Echo API` accessible from Internet).</span></span> 
+
+<span data-ttu-id="f9b98-227">다음 예제에서는 백 엔드 "apimProxyBackendPool"에 트래픽을 라우팅하는 "/echo/" 경로에 대한 간단한 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-227">The following example creates a simple rule for the "/echo/" path routing traffic to the back-end "apimProxyBackendPool".</span></span>
+
+```powershell
+$echoapiRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "externalapis" -Paths "/echo/*" -BackendAddressPool $apimProxyBackendPool -BackendHttpSettings $apimPoolSetting
+```
+
+<span data-ttu-id="f9b98-228">경로가 API Management에서 사용하려는 경로 규칙과 일치하지 않으면 규칙 경로 맵 구성이 **dummyBackendPool**이라는 기본 백 엔드 주소 풀도 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-228">If the path doesn't match the path rules we want to enable from API Management, the rule path map configuration also configures a default back-end address pool named **dummyBackendPool**.</span></span> <span data-ttu-id="f9b98-229">예를 들어 http://api.contoso.net/calc/*는 일치하지 않는 트래픽의 기본 풀로 정의되어 있으므로 **dummyBackendPool**로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-229">For example, http://api.contoso.net/calc/* goes to **dummyBackendPool** as it is defined as the default pool for un-matched traffic.</span></span>
+
+```powershell
+$urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -PathRules $echoapiRule, $dummyPathRule -DefaultBackendAddressPool $dummyBackendPool -DefaultBackendHttpSettings $dummyBackendSetting
+```
+
+<span data-ttu-id="f9b98-230">위의 단계를 수행하면 Application Gateway를 통한 경로 "/echo"에 대한 요청만이 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-230">The above step ensures that only requests for the path "/echo" are allowed through the Application Gateway.</span></span> <span data-ttu-id="f9b98-231">API Management에서 구성된 다른 API에 대한 요청은 인터넷에서 액세스될 때 Application Gateway에서 404 오류를 throw합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-231">Requests to other APIs configured in API Management will throw 404 errors from Application Gateway when accessed from the Internet.</span></span> 
+
+### <a name="step-12"></a><span data-ttu-id="f9b98-232">12단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-232">Step 12</span></span>
+
+<span data-ttu-id="f9b98-233">URL 경로 기반 라우팅을 사용하도록 Application Gateway의 규칙 설정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-233">Create a rule setting for the Application Gateway to use URL path-based routing.</span></span>
+
+```powershell
+$rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule1" -RuleType PathBasedRouting -HttpListener $listener -UrlPathMap $urlPathMap
+```
+
+### <a name="step-13"></a><span data-ttu-id="f9b98-234">13단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-234">Step 13</span></span>
+
+<span data-ttu-id="f9b98-235">Application Gateway의 크기 및 인스턴스 수를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-235">Configure the number of instances and size for the Application Gateway.</span></span> <span data-ttu-id="f9b98-236">여기에서 [WAF SKU](../application-gateway/application-gateway-webapplicationfirewall-overview.md)를 사용하여 API Management 리소스의 보안을 강화합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-236">Here we are using the [WAF SKU](../application-gateway/application-gateway-webapplicationfirewall-overview.md) for increased security of the API Management resource.</span></span>
+
+```powershell
+$sku = New-AzureRmApplicationGatewaySku -Name "WAF_Medium" -Tier "WAF" -Capacity 2
+```
+
+### <a name="step-14"></a><span data-ttu-id="f9b98-237">14단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-237">Step 14</span></span>
+
+<span data-ttu-id="f9b98-238">WAF를 "방지" 모드로 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-238">Configure WAF to be in "Prevention" mode.</span></span>
+```powershell
+$config = New-AzureRmApplicationGatewayWebApplicationFirewallConfiguration -Enabled $true -FirewallMode "Prevention"
+```
+
+## <a name="create-application-gateway"></a><span data-ttu-id="f9b98-239">응용 프로그램 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="f9b98-239">Create Application Gateway</span></span>
+
+<span data-ttu-id="f9b98-240">이전 단계의 모든 구성 개체를 사용하여 Application Gateway를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-240">Create an Application Gateway with all the configuration objects from the preceding steps.</span></span>
+
+```powershell
+$appgw = New-AzureRmApplicationGateway -Name $applicationGatewayName -ResourceGroupName $resourceGroupName  -Location $location -BackendAddressPools $apimProxyBackendPool, $dummyBackendPool -BackendHttpSettingsCollection $apimPoolSetting, $dummyBackendSetting  -FrontendIpConfigurations $fipconfig01 -GatewayIpConfigurations $gipconfig -FrontendPorts $fp01 -HttpListeners $listener -UrlPathMaps $urlPathMap -RequestRoutingRules $rule01 -Sku $sku -WebApplicationFirewallConfig $config -SslCertificates $cert -AuthenticationCertificates $authcert -Probes $apimprobe
+```
+
+## <a name="cname-the-api-management-proxy-hostname-to-the-public-dns-name-of-the-application-gateway-resource"></a><span data-ttu-id="f9b98-241">API Management 프록시 호스트 이름을 Application Gateway 리소스의 공용 DNS 이름으로 CNAME합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-241">CNAME the API Management proxy hostname to the public DNS name of the Application Gateway resource</span></span>
+
+<span data-ttu-id="f9b98-242">게이트웨이가 생성되면 다음 단계는 통신에 대한 프런트 엔드를 구성하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-242">Once the gateway is created, the next step is to configure the front end for communication.</span></span> <span data-ttu-id="f9b98-243">공용 IP를 사용할 때 Application Gateway는 쉽게 사용할 수 없는 동적으로 할당된 DNS 이름이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-243">When using a public IP, Application Gateway requires a dynamically assigned DNS name, which may not be easy to use.</span></span> 
+
+<span data-ttu-id="f9b98-244">Application Gateway의 DNS 이름은 APIM 프록시 호스트 이름(예: 위의 예제에서 `api.contoso.net`)을 이 DNS 이름으로 가리키는 CNAME 레코드를 만드는 데 사용되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-244">The Application Gateway's DNS name should be used to create a CNAME record which points the APIM proxy host name (e.g. `api.contoso.net` in the examples above) to this DNS name.</span></span> <span data-ttu-id="f9b98-245">프런트 엔드 IP CNAME 레코드를 구성하려면 PublicIPAddress 요소를 사용하여 Application Gateway 및 관련 IP/DNS 이름에 대한 세부 정보를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-245">To configure the frontend IP CNAME record, retrieve the details of the Application Gateway and its associated IP/DNS name using the PublicIPAddress element.</span></span> <span data-ttu-id="f9b98-246">A 레코드를 사용할 경우 게이트웨이를 다시 시작할 때 VIP가 변경될 수 있으므로 권장되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-246">The use of A-records is not recommended since the VIP may change on restart of gateway.</span></span>
+
+```powershell
+Get-AzureRmPublicIpAddress -ResourceGroupName "apim-appGw-RG" -Name "publicIP01"
+```
+
+##<span data-ttu-id="f9b98-247"><a name="summary"> </a> 요약</span><span class="sxs-lookup"><span data-stu-id="f9b98-247"><a name="summary"> </a> Summary</span></span>
+<span data-ttu-id="f9b98-248">VNET에서 구성된 Azure API Management는 온-프레미스 또는 클라우드에서 호스트되었는지 여부에 상관 없이 구성된 모든 API에 대한 단일 게이트웨이 인터페이스를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-248">Azure API Management configured in a VNET provides a single gateway interface for all configured APIs, whether they are hosted on-prem or in the cloud.</span></span> <span data-ttu-id="f9b98-249">Application Gateway와 API Management의 통합을 통해 특정 API를 인터넷에 액세스할 수 있도록 선택적으로 유연성을 향상시키고 API Management 인스턴스에 대한 프런트 엔드로 웹 응용 프로그램 방화벽을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="f9b98-249">Integrating Application Gateway with API Management provides the flexibility of selectively enabling particular APIs to be accessible on the Internet, as well as providing a Web Application Firewall as a frontend to your API Management instance.</span></span>
+
+##<span data-ttu-id="f9b98-250"><a name="next-steps"> </a> 다음 단계</span><span class="sxs-lookup"><span data-stu-id="f9b98-250"><a name="next-steps"> </a> Next steps</span></span>
+* <span data-ttu-id="f9b98-251">Azure Application Gateway에 대한 자세한 정보</span><span class="sxs-lookup"><span data-stu-id="f9b98-251">Learn more about Azure Application Gateway</span></span>
+  * [<span data-ttu-id="f9b98-252">응용 프로그램 게이트웨이 개요</span><span class="sxs-lookup"><span data-stu-id="f9b98-252">Application Gateway Overview</span></span>](../application-gateway/application-gateway-introduction.md)
+  * [<span data-ttu-id="f9b98-253">Application Gateway 웹 응용 프로그램 방화벽</span><span class="sxs-lookup"><span data-stu-id="f9b98-253">Application Gateway Web Application Firewall</span></span>](../application-gateway/application-gateway-webapplicationfirewall-overview.md)
+  * [<span data-ttu-id="f9b98-254">경로 기반 라우팅을 사용하는 Application Gateway</span><span class="sxs-lookup"><span data-stu-id="f9b98-254">Application Gateway using Path-based Routing</span></span>](../application-gateway/application-gateway-create-url-route-arm-ps.md)
+* <span data-ttu-id="f9b98-255">API Management 및 VNET에 대한 자세한 정보</span><span class="sxs-lookup"><span data-stu-id="f9b98-255">Learn more about API Management and VNETs</span></span>
+  * [<span data-ttu-id="f9b98-256">VNET 내에서만 사용할 수 있는 API Management 사용</span><span class="sxs-lookup"><span data-stu-id="f9b98-256">Using API Management available only within the VNET</span></span>](api-management-using-with-internal-vnet.md)
+  * [<span data-ttu-id="f9b98-257">VNET에서 API Management 사용</span><span class="sxs-lookup"><span data-stu-id="f9b98-257">Using API Management in VNET</span></span>](api-management-using-with-vnet.md)

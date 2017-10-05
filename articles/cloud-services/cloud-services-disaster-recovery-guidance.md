@@ -1,0 +1,62 @@
+---
+title: "Azure 클라우드 서비스에 영향을 주는 Azure 서비스 중단 발생 시 수행할 작업 | Microsoft Docs"
+description: "Azure 클라우드 서비스에 영향을 주는 Azure 서비스 중단 발생 시 수행할 작업에 대해 알아봅니다."
+services: cloud-services
+documentationcenter: 
+author: mmccrory
+manager: timlt
+editor: 
+ms.assetid: e52634ab-003d-4f1e-85fa-794f6cd12ce4
+ms.service: cloud-services
+ms.workload: cloud-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 04/04/2017
+ms.author: mmccrory
+ms.openlocfilehash: db6a980b85ea5ef8cbbba4ba5a36f9d033739df1
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/29/2017
+---
+# <a name="what-to-do-in-the-event-of-an-azure-service-disruption-that-impacts-azure-cloud-services"></a><span data-ttu-id="de892-103">Azure 클라우드 서비스에 영향을 주는 Azure 서비스 중단 발생 시 수행할 작업</span><span class="sxs-lookup"><span data-stu-id="de892-103">What to do in the event of an Azure service disruption that impacts Azure Cloud Services</span></span>
+<span data-ttu-id="de892-104">Microsoft에서는 서비스가 필요할 때 서비스를 항상 사용할 수 있도록 하기 위해 많은 노력을 기울입니다.</span><span class="sxs-lookup"><span data-stu-id="de892-104">At Microsoft, we work hard to make sure that our services are always available to you when you need them.</span></span> <span data-ttu-id="de892-105">다만 경우에 따라 계획되지 않은 서비스 중단이 발생하여 강제적으로 제어 영향을 벗어날 때가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-105">Forces beyond our control sometimes impact us in ways that cause unplanned service disruptions.</span></span>
+
+<span data-ttu-id="de892-106">Microsoft는 작동 시간 및 연결에 대한 약정으로 해당 서비스에 대한 서비스 수준 약정(SLA)을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-106">Microsoft provides a Service Level Agreement (SLA) for its services as a commitment for uptime and connectivity.</span></span> <span data-ttu-id="de892-107">개별 Azure 서비스에 대한 SLA는 [Azure 서비스 수준 계약](https://azure.microsoft.com/support/legal/sla/)에서 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-107">The SLA for individual Azure services can be found at [Azure Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).</span></span>
+
+<span data-ttu-id="de892-108">Azure에는 항상 사용 가능한 응용 프로그램을 지원하는 많은 기본 제공 플랫폼 기능이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-108">Azure already has many built-in platform features that support highly available applications.</span></span> <span data-ttu-id="de892-109">이러한 서비스에 대한 자세한 내용은 [Azure 응용 프로그램에 대한 재해 복구 및 고가용성](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="de892-109">For more about these services, read [Disaster recovery and high availability for Azure applications](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).</span></span>
+
+<span data-ttu-id="de892-110">이 문서에서는 주요 자연 재해 또는 광범위한 서비스 중단으로 인해 전체 지역에 중단이 발생할 때의 실제 재해 복구 시나리오를 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="de892-110">This article covers a true disaster recovery scenario, when a whole region experiences an outage due to major natural disaster or widespread service interruption.</span></span> <span data-ttu-id="de892-111">이러한 경우는 드물게 발생하지만 전체 지역의 중단이 발생될 가능성에 대해 준비해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-111">These are rare occurrences, but you must prepare for the possibility that there is an outage of an entire region.</span></span> <span data-ttu-id="de892-112">전체 지역에 서비스 중단이 발생하는 경우 데이터의 로컬 중복 복사본을 일시적으로 사용할 수 없게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="de892-112">If an entire region experiences a service disruption, the locally redundant copies of your data would temporarily be unavailable.</span></span> <span data-ttu-id="de892-113">지역에서 복제를 사용하는 경우 Azure 저장소 Blob 및 테이블의 추가 사본 3개는 다른 지역에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="de892-113">If you have enabled geo-replication, three additional copies of your Azure Storage blobs and tables are stored in a different region.</span></span> <span data-ttu-id="de892-114">전체 지역 가동 중단 또는 주 지역을 복구할 수 없는 재해의 경우 Azure는 지역 복제된 지역에 모든 DNS 항목을 다시 매핑합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-114">In the event of a complete regional outage or a disaster in which the primary region is not recoverable, Azure remaps all of the DNS entries to the geo-replicated region.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="de892-115">이 프로세스는 사용자가 제어할 수 없으며 데이터 센터 전체 서비스 중단에 대해서만 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-115">Be aware that you do not have any control over this process, and it will only occur for datacenter-wide service disruptions.</span></span> <span data-ttu-id="de892-116">이 때문에 가장 높은 수준의 가용성을 달성하기 위해 다른 응용 프로그램별 백업 전략에 의존해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-116">Because of this, you must also rely on other application-specific backup strategies to achieve the highest level of availability.</span></span> <span data-ttu-id="de892-117">자세한 내용은 [Microsoft Azure에서 빌드된 응용 프로그램에 대한 재해 복구 및 고가용성](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="de892-117">For more information, see [Disaster recovery and high availability for applications built on Microsoft Azure](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).</span></span> <span data-ttu-id="de892-118">자체 장애 조치(failover)에 영향을 줄 수 있으려면 다른 지역에 데이터의 읽기 전용 복사본을 만드는 [RA-GRS(읽기 액세스 지역 중복 저장소)](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="de892-118">If you would like to be able to affect your own failover, you might want to consider the use of [read-access geo-redundant storage (RA-GRS)](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage), which creates a read-only copy of your data in another region.</span></span>
+>
+>
+
+
+## <a name="option-1-use-a-backup-deployment-through-azure-traffic-manager"></a><span data-ttu-id="de892-119">옵션 1: Azure Traffic Manager를 통해 백업 배포 사용</span><span class="sxs-lookup"><span data-stu-id="de892-119">Option 1: Use a backup deployment through Azure Traffic Manager</span></span>
+<span data-ttu-id="de892-120">가장 강력한 재해 복구 솔루션은 여러 다른 하위 지역에 응용 프로그램의 여러 배포를 유지한 다음 [Azure Traffic Manager](../traffic-manager/traffic-manager-overview.md)를 사용하여 배포 간에 트래픽을 전송하는 작업과 관련됩니다.</span><span class="sxs-lookup"><span data-stu-id="de892-120">The most robust disaster recovery solution involves maintaining multiple deployments of your application in different regions, then using [Azure Traffic Manager](../traffic-manager/traffic-manager-overview.md) to direct traffic between them.</span></span> <span data-ttu-id="de892-121">Azure Traffic Manager는 여러 [라우팅 방법](../traffic-manager/traffic-manager-routing-methods.md)을 제공하므로 기본/백업 모델을 사용하여 배포를 관리할지 또는 두 모델 간에 트래픽을 분할할지를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-121">Azure Traffic Manager provides multiple [routing methods](../traffic-manager/traffic-manager-routing-methods.md), so you can choose whether to manage your deployments using a primary/backup model or to split traffic between them.</span></span>
+
+![Azure 트래픽 관리자를 사용하여 지역 간에 Azure 클라우드 서비스 분산](./media/cloud-services-disaster-recovery-guidance/using-azure-traffic-manager.png)
+
+<span data-ttu-id="de892-123">하위 지역의 손실에 가장 빠르게 대처하기 위해서는 Traffic Manager의 [끝점 모니터링](../traffic-manager/traffic-manager-monitoring.md)을 구성하는 것이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-123">For the fastest response to the loss of a region, it is important that you configure Traffic Manager's [endpoint monitoring](../traffic-manager/traffic-manager-monitoring.md).</span></span>
+
+## <a name="option-2-deploy-your-application-to-a-new-region"></a><span data-ttu-id="de892-124">옵션 2: 새 하위 지역에 응용 프로그램 배포</span><span class="sxs-lookup"><span data-stu-id="de892-124">Option 2: Deploy your application to a new region</span></span>
+<span data-ttu-id="de892-125">이전 옵션에 설명된 대로 여러 활성 배포를 유지 관리하면 추가적인 비용이 지속적으로 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-125">Maintaining multiple active deployments as described in the previous option incurs additional ongoing costs.</span></span> <span data-ttu-id="de892-126">RTO(복구 시간 목표)가 충분히 유연하고 원래 코드 또는 컴파일된 클라우드 서비스 패키지가 있는 경우에는 다른 하위 지역에 응용 프로그램의 새 인스턴스를 만든 후 새 배포를 가리키도록 DNS 레코드를 업데이트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-126">If your recovery time objective (RTO) is flexible enough and you have the original code or compiled Cloud Services package, you can create a new instance of your application in another region and update your DNS records to point to the new deployment.</span></span>
+
+<span data-ttu-id="de892-127">클라우드 서비스 응용 프로그램을 만들고 배포하는 방법에 대한 자세한 내용은 [클라우드 서비스를 만들고 배포하는 방법](cloud-services-how-to-create-deploy-portal.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="de892-127">For more detail about how to create and deploy a cloud service application, see [How to create and deploy a cloud service](cloud-services-how-to-create-deploy-portal.md).</span></span>
+
+<span data-ttu-id="de892-128">응용 프로그램 데이터 원본에 따라 응용 프로그램 데이터 원본에 대한 복구 절차를 확인해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-128">Depending on your application data sources, you may need to check the recovery procedures for your application data source.</span></span>
+
+* <span data-ttu-id="de892-129">Azure 저장소 데이터 원본의 대해서는 [Azure 저장소 복제](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage) 를 참조하여 응용 프로그램에 대해 선택한 복제 모델에 따라 사용할 수 있는 옵션을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-129">For Azure Storage data sources, see [Azure Storage replication](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage) to check on the options that are available based on the chose replication model for your application.</span></span>
+* <span data-ttu-id="de892-130">SQL 데이터베이스 원본에 대해서는 [개요: SQL 데이터베이스를 사용한 클라우드 비즈니스 연속성 및 데이터베이스 재해 복구](../sql-database/sql-database-business-continuity.md) 를 참조하여 응용 프로그램에 대해 선택한 복제 모델에 따라 사용할 수 있는 옵션을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="de892-130">For SQL Database sources, read [Overview: Cloud business continuity and database disaster recovery with SQL Database](../sql-database/sql-database-business-continuity.md) to check on the options that are available based on the chosen replication model for your application.</span></span>
+
+
+## <a name="option-3-wait-for-recovery"></a><span data-ttu-id="de892-131">옵션 3: 복구 대기</span><span class="sxs-lookup"><span data-stu-id="de892-131">Option 3: Wait for recovery</span></span>
+<span data-ttu-id="de892-132">이 경우 사용자의 조치는 필요하지 않지만 해당 하위 지역이 복원될 때까지 서비스를 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-132">In this case, no action on your part is required, but your service will be unavailable until the region is restored.</span></span> <span data-ttu-id="de892-133">서비스의 현재 상태를 [Azure 서비스 상태 대시보드](https://azure.microsoft.com/status/)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="de892-133">You can see the current service status on the [Azure Service Health Dashboard](https://azure.microsoft.com/status/).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="de892-134">다음 단계</span><span class="sxs-lookup"><span data-stu-id="de892-134">Next steps</span></span>
+<span data-ttu-id="de892-135">재해 복구 및 고가용성 전략을 구현하는 방법에 관해 자세히 알아보려면 [Azure 응용 프로그램에 대한 재해 복구 및 고가용성](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="de892-135">To learn more about how to implement a disaster recovery and high availability strategy, see [Disaster recovery and high availability for Azure applications](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).</span></span>
+
+<span data-ttu-id="de892-136">클라우드 플랫폼의 기능에 대한 자세한 기술적 이해를 높이려면 [Azure 복원력 기술 지침](../resiliency/resiliency-technical-guidance.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="de892-136">To develop a detailed technical understanding of a cloud platform’s capabilities, see [Azure resiliency technical guidance](../resiliency/resiliency-technical-guidance.md).</span></span>

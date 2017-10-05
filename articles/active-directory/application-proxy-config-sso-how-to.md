@@ -1,0 +1,49 @@
+---
+title: "응용 프로그램 프록시 응용 프로그램에 대해 Single Sign-On을 구성하는 방법 | Microsoft Docs"
+description: "응용 프로그램 프록시 응용 프로그램에 대해 Single Sign-On을 신속하게 구성하는 방법"
+services: active-directory
+documentationcenter: 
+author: ajamess
+manager: femila
+ms.assetid: 
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/11/2017
+ms.author: asteen
+ms.openlocfilehash: ccab427857b1439f37f3d9f193e35a4fc2237014
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/03/2017
+---
+# <a name="how-to-configure-single-sign-on-to-an-application-proxy-application"></a><span data-ttu-id="adf70-103">응용 프로그램 프록시 응용 프로그램에 대해 Single Sign-On을 구성하는 방법</span><span class="sxs-lookup"><span data-stu-id="adf70-103">How to configure single sign-on to an Application Proxy application</span></span>
+
+<span data-ttu-id="adf70-104">SSO(Single Sign-On)를 사용하면 사용자가 여러 번 인증하지 않고도 응용 프로그램에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-104">Single sign-on (SSO) allows your users to access an application without authenticating multiple times.</span></span> <span data-ttu-id="adf70-105">Azure Active Directory에 대해 클라우드에서 단일 인증을 허용하고 서비스 또는 커넥터가 사용자를 가장하여 응용 프로그램에서 추가 인증 질문을 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-105">It allows the single authentication to occur in the cloud, against Azure Active Directory, and allows the service or Connector to impersonate the user to complete any additional authentication challenges from the application.</span></span>
+
+## <a name="how-to-configure-single-sign-on"></a><span data-ttu-id="adf70-106">Single Sign-On을 구성하는 방법</span><span class="sxs-lookup"><span data-stu-id="adf70-106">How to configure single-sign on</span></span>
+<span data-ttu-id="adf70-107">SSO를 구성하려면 먼저 응용 프로그램이 Azure Active Directory를 통해 사전 인증할 수 있도록 구성되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-107">To configure SSO, first make sure that your application is configured for Pre-Authentication through Azure Active Directory.</span></span> <span data-ttu-id="adf70-108">확인하려면 **Azure Active Directory** -&gt; **엔터프라이즈 응용 프로그램** -&gt; **모든 응용 프로그램** -&gt; 해당 응용 프로그램 **-&gt; 응용 프로그램 프록시**로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-108">To do this, go to **Azure Active Directory** -&gt; **Enterprise Applications** -&gt; **All Applications** -&gt; Your application **-&gt; Application Proxy**.</span></span> <span data-ttu-id="adf70-109">이 페이지에서 "사전 인증" 필드가 표시되고 "Azure Active Directory"로 설정되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-109">On this page, you see the “Pre Authentication” field, and make sure that is set to “Azure Active Directory.</span></span> 
+
+<span data-ttu-id="adf70-110">사전 인증 방법에 대한 자세한 내용은 [앱 게시 설명서](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)의 4단계를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="adf70-110">For more information on the Pre-Authentication methods, see step four of the [app publishing document](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span></span>
+
+   ![Azure Portal의 사전 인증 방법](./media/application-proxy-config-sso-how-to/app-proxy.png)
+
+## <a name="configuring-single-sign-on-modes-for-application-proxy-applications"></a><span data-ttu-id="adf70-112">응용 프로그램 프록시 응용 프로그램에 대한 Single Sign-On 모드 구성</span><span class="sxs-lookup"><span data-stu-id="adf70-112">Configuring single sign-on modes for Application Proxy Applications</span></span>
+<span data-ttu-id="adf70-113">그런 다음 특정 유형의 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-113">Next we configure the specific type of single sign-on.</span></span> <span data-ttu-id="adf70-114">로그온 방법은 백 엔드 응용 프로그램에서 사용하는 인증 유형에 따라 분류됩니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-114">The sign-on methods are classified based on what type of authentication the backend application uses.</span></span> <span data-ttu-id="adf70-115">앱 프록시 응용 프로그램은 세 가지 유형의 로그온을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-115">App Proxy applications supports three types of sign-on:</span></span>
+
+-   <span data-ttu-id="adf70-116">**암호 기반 로그온**: 암호 기반 로그온은 사용자 이름과 암호 필드를 사용하여 로그온하는 모든 응용 프로그램에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-116">**Password-based Sign-On**: Password-based sign-on can be used for any application that uses username and password fields to sign-on.</span></span> <span data-ttu-id="adf70-117">구성 단계는 [암호-SSO 구성 설명서](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-whats-new-azure-portal#bring-your-own-password-sso-applications)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="adf70-117">Configuration steps can be found in our [password-SSO configuration documentation](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-whats-new-azure-portal#bring-your-own-password-sso-applications).</span></span>
+
+-   <span data-ttu-id="adf70-118">**Windows 통합 인증**: IWA(Windows 통합 인증)를 사용하는 응용 프로그램의 경우 KDC(Kerberos 제한 위임)를 통해 Single Sign-On을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-118">**Integrated Windows Authentication**: For applications using Integrated Windows Authentication (IWA), single sign-on is enabled through Kerberos Constrained Delegation (KCD).</span></span> <span data-ttu-id="adf70-119">그러면 Active Directory에서 응용 프로그램 프록시 커넥터에게 권한이 부여되어 사용자를 가장하고 대신 토큰을 주고받을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-119">This gives Application Proxy Connectors permission in Active Directory to impersonate users, and to send and receive tokens on their behalf.</span></span> <span data-ttu-id="adf70-120">KCD 구성에 대한 자세한 내용은 [Single Sign-on과 KCD 설명서](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="adf70-120">Details on configuring KCD can be found in the [Single Sign-On with KCD documentation](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd).</span></span>
+
+-   <span data-ttu-id="adf70-121">**헤더 기반 로그온**: 헤더 기반 로그온은 파트너 관계를 통해 활성화되며 몇 가지 추가 구성이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-121">**Header-based Sign-On**: Header-based sign on is enabled through a partnership and does require some additional configuration.</span></span> <span data-ttu-id="adf70-122">인증에 헤더를 사용하는 응용 프로그램에 대해 Single Sign-On을 구성하기 위한 파트너 관계 및 단계별 지침은 [Azure AD용 PingAccess 설명서](https://docs.microsoft.com/azure/active-directory/application-proxy-ping-access)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="adf70-122">For details on the partnership and step-by-step instructions for configuring single sign-on to an application that uses headers for authentication, see the [PingAccess for Azure AD documentation](https://docs.microsoft.com/azure/active-directory/application-proxy-ping-access).</span></span>
+
+<span data-ttu-id="adf70-123">이러한 각 옵션은 "엔터프라이즈 응용 프로그램"에서 응용 프로그램으로 이동하여 왼쪽 메뉴에서 **Single Sign-On** 페이지를 열면 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-123">Each of these options can be found by going to your application in “Enterprise Applications”, and opening the **Single Sign-On** page on the left menu.</span></span> <span data-ttu-id="adf70-124">응용 프로그램이 이전 포털에서 작성된 경우 이러한 옵션이 모두 표시되지 않을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-124">note that if your application was created in the old portal, you may not see all these options.</span></span>
+
+<span data-ttu-id="adf70-125">이 페이지에는 추가 로그온 옵션인 연결된 로그온이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-125">On this page, you also see one additional Sign-On option: Linked Sign-On.</span></span> <span data-ttu-id="adf70-126">응용 프로그램 프록시에서도 지원됩니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-126">This is also supported by Application Proxy.</span></span> <span data-ttu-id="adf70-127">그러나 이 옵션은 응용 프로그램에 Single Sign-On을 추가하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-127">However, note that this option does not add single sign-on to the application.</span></span> <span data-ttu-id="adf70-128">즉, 응용 프로그램에 이미 Active Directory Federation Services와 같은 다른 서비스를 사용하여 Single Sign-On이 구현되어 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-128">That said the application may already have single sign-on implemented using another service such as Active Directory Federation Services.</span></span> 
+
+<span data-ttu-id="adf70-129">이 옵션을 사용하면 관리자가 응용 프로그램에 액세스할 때 사용자에게 제일 먼저 표시되는 응용 프로그램에 대한 링크를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-129">This option allows an admin to create a link to an application that users first land on when accessing the application.</span></span> <span data-ttu-id="adf70-130">예를 들어 Active Directory Federation Services 2.0을 사용하여 사용자를 인증하도록 구성된 응용 프로그램이 있는 경우, 관리자가 "연결된 로그온" 옵션을 사용하여 액세스 패널에 이에 대한 링크를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="adf70-130">For example, if there is an application that is configured to authenticate users using Active Directory Federation Services 2.0, an administrator can use the “Linked Sign-On” option to create a link to it on the access panel.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="adf70-131">다음 단계</span><span class="sxs-lookup"><span data-stu-id="adf70-131">Next steps</span></span>
+[<span data-ttu-id="adf70-132">응용 프로그램 프록시를 사용하여 앱에 Single Sign-On 제공</span><span class="sxs-lookup"><span data-stu-id="adf70-132">Provide single sign-on to your apps with Application Proxy</span></span>](active-directory-application-proxy-sso-using-kcd.md)

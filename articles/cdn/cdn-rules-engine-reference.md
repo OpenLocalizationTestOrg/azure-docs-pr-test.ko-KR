@@ -1,0 +1,82 @@
+---
+title: "Azure CDN 규칙 엔진 참조 | Microsoft Docs"
+description: "Azure CDN 규칙 엔진 일치 조건 및 기능에 대한 참조 설명서"
+services: cdn
+documentationcenter: 
+author: Lichard
+manager: akucer
+editor: 
+ms.assetid: 669ef140-a6dd-4b62-9b9d-3f375a14215e
+ms.service: cdn
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/23/2017
+ms.author: rli
+ms.openlocfilehash: c10145661a8c575381493c9aaa901c3ef92c2e81
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="azure-cdn-rules-engine"></a><span data-ttu-id="3850d-103">Azure CDN 규칙 엔진</span><span class="sxs-lookup"><span data-stu-id="3850d-103">Azure CDN rules engine</span></span>
+<span data-ttu-id="3850d-104">이 항목에서는 Azure CDN(콘텐츠 배달 네트워크) [규칙 엔진](cdn-rules-engine.md)에 대해 제공되는 일치 조건 및 기능에 대해 자세히 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-104">This topic lists detailed descriptions of the available match conditions and features for Azure Content Delivery Network (CDN) [Rules Engine](cdn-rules-engine.md).</span></span>
+
+<span data-ttu-id="3850d-105">HTTP 규칙 엔진은 특정 유형의 요청이 CDN에서 처리되는 방식을 최종적으로 결정하는 역할을 합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-105">The HTTP Rules Engine is designed to be the final authority on how specific types of requests are processed by the CDN.</span></span>
+
+<span data-ttu-id="3850d-106">**일반적인 사용**:</span><span class="sxs-lookup"><span data-stu-id="3850d-106">**Common uses**:</span></span>
+
+- <span data-ttu-id="3850d-107">사용자 지정 캐시 정책을 재정의하거나 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-107">Override or define a custom cache policy.</span></span>
+- <span data-ttu-id="3850d-108">중요한 콘텐츠에 대한 요청에 대해 보안을 유지하거나 거부합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-108">Secure or deny requests for sensitive content.</span></span>
+- <span data-ttu-id="3850d-109">요청을 리디렉션합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-109">Redirect requests.</span></span>
+- <span data-ttu-id="3850d-110">사용자 지정 로그 데이터를 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-110">Store custom log data.</span></span>
+
+## <a name="terminology"></a><span data-ttu-id="3850d-111">용어</span><span class="sxs-lookup"><span data-stu-id="3850d-111">Terminology</span></span>
+<span data-ttu-id="3850d-112">규칙은 [ **조건식**](cdn-rules-engine-reference-conditional-expressions.md), [ **일치**](cdn-rules-engine-reference-match-conditions.md), 및 [ **기능**](cdn-rules-engine-reference-features.md)을 사용하여 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-112">A rule is defined through the use of [**conditional expressions**](cdn-rules-engine-reference-conditional-expressions.md), [**matches**](cdn-rules-engine-reference-match-conditions.md), and [**features**](cdn-rules-engine-reference-features.md).</span></span> <span data-ttu-id="3850d-113">이러한 요소는 다음 그림에 강조 표시되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-113">These elements are highlighted in the following illustration.</span></span>
+
+ ![CDN 일치 조건](./media/cdn-rules-engine-reference/cdn-rules-engine-terminology.png)
+
+## <a name="syntax"></a><span data-ttu-id="3850d-115">구문</span><span class="sxs-lookup"><span data-stu-id="3850d-115">Syntax</span></span>
+
+<span data-ttu-id="3850d-116">특수 문자가 처리되는 방식은 일치 조건 또는 기능이 텍스트 값을 처리하는 방식에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-116">The manner in which special characters will be treated varies according to how a match condition or feature handles text values.</span></span> <span data-ttu-id="3850d-117">일치 조건 또는 기능은 다음 방법 중 하나로 텍스트를 해석할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-117">A match condition or feature may interpret text in one of the following ways:</span></span>
+
+1. [<span data-ttu-id="3850d-118">**리터럴 값**</span><span class="sxs-lookup"><span data-stu-id="3850d-118">**Literal Values**</span></span>](#literal-values) 
+2. [<span data-ttu-id="3850d-119">**와일드카드 값**</span><span class="sxs-lookup"><span data-stu-id="3850d-119">**Wildcard Values**</span></span>](#wildcard-values)
+3. [<span data-ttu-id="3850d-120">**정규식**</span><span class="sxs-lookup"><span data-stu-id="3850d-120">**Regular Expressions**</span></span>](#regular-expressions)
+
+### <a name="literal-values"></a><span data-ttu-id="3850d-121">리터럴 값</span><span class="sxs-lookup"><span data-stu-id="3850d-121">Literal Values</span></span>
+<span data-ttu-id="3850d-122">리터럴 값으로 해석되는 텍스트는 % 기호를 제외한 모든 특수 문자를 일치되어야 하는 값의 일부로 취급합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-122">Text that is interpreted as a literal value will treat all special characters, with the exception of the % symbol, as a part of the value that must be matched.</span></span> <span data-ttu-id="3850d-123">즉, `\'*'\`로 설정된 리터럴 일치 조건은 정확한 값(예: `\'*'\`)을 찾은 경우에만 충족됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-123">In other words, a literal match condition set to `\'*'\` will only be satisfied when that exact value (i.e., `\'*'\`) is found.</span></span>
+ 
+<span data-ttu-id="3850d-124">백분율 기호는 URL 인코딩을 나타내는 데 사용됩니다(예: `%20`).</span><span class="sxs-lookup"><span data-stu-id="3850d-124">A percentage symbol is used to indicate URL encoding (e.g., `%20`).</span></span>
+
+### <a name="wildcard-values"></a><span data-ttu-id="3850d-125">와일드카드 값</span><span class="sxs-lookup"><span data-stu-id="3850d-125">Wildcard Values</span></span>
+<span data-ttu-id="3850d-126">와일드카드 값으로 해석되는 텍스트는 특수 문자에 추가적인 의미를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-126">Text that is interpreted as a wildcard value will assign additional meaning to special characters.</span></span> <span data-ttu-id="3850d-127">다음 표에서는 다음 문자 집합이 해석되는 방식을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-127">The following table describes how the following set of characters will be interpreted.</span></span>
+
+<span data-ttu-id="3850d-128">문자</span><span class="sxs-lookup"><span data-stu-id="3850d-128">Character</span></span> | <span data-ttu-id="3850d-129">설명</span><span class="sxs-lookup"><span data-stu-id="3850d-129">Description</span></span>
+----------|------------
+\ | <span data-ttu-id="3850d-130">백슬래시는 이 테이블에 지정된 문자를 이스케이프하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-130">A backslash is used to escape any of the characters specified in this table.</span></span> <span data-ttu-id="3850d-131">백슬래시는 이스케이프해야 하는 특수 문자 바로 앞에 지정되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-131">A backslash must be specified directly before the special character that should be escaped.</span></span><br/><span data-ttu-id="3850d-132">예를 들어 다음 구문은 별표를 이스케이프합니다.`\*`</span><span class="sxs-lookup"><span data-stu-id="3850d-132">For example, the following syntax escapes an asterisk: `\*`</span></span>
+% | <span data-ttu-id="3850d-133">백분율 기호는 URL 인코딩을 나타내는 데 사용됩니다(예: `%20`).</span><span class="sxs-lookup"><span data-stu-id="3850d-133">A percentage symbol is used to indicate URL encoding (e.g., `%20`).</span></span>
+* | <span data-ttu-id="3850d-134">별표는 하나 이상의 문자를 나타내는 와일드카드입니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-134">An asterisk is a wildcard that represents one or more characters.</span></span>
+<span data-ttu-id="3850d-135">공백</span><span class="sxs-lookup"><span data-stu-id="3850d-135">Space</span></span> | <span data-ttu-id="3850d-136">공백 문자는 지정된 값 또는 패턴에 의해 일치 조건이 충족될 수 있음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-136">A space character indicates that a match condition may be satisfied by either of the specified values or patterns.</span></span>
+<span data-ttu-id="3850d-137">'value'</span><span class="sxs-lookup"><span data-stu-id="3850d-137">'value'</span></span> | <span data-ttu-id="3850d-138">작은따옴표는 특별한 의미가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-138">A single quote does not have special meaning.</span></span> <span data-ttu-id="3850d-139">그러나 값을 리터럴 값으로 취급해야 함을 나타내기 위해 작은따옴표 쌍을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-139">However, a set of single quotes is used to indicate that a value should be treated as a literal value.</span></span> <span data-ttu-id="3850d-140">다음과 같은 방법으로 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-140">It can be used in the following ways:</span></span><br><br/><span data-ttu-id="3850d-141">- 지정된 값이 비교 값의 일부와 일치할 때마다 일치 조건이 충족될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-141">- It allows a match condition to be satisfied whenever the specified value matches any portion of the comparison value.</span></span>  <span data-ttu-id="3850d-142">예를 들어 `'ma'`는 다음 문자열 중 하나와 일치합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-142">For example, `'ma'` would match any of the following strings:</span></span> <br/><br/><span data-ttu-id="3850d-143">/business/**ma**rathon/asset.htm</span><span class="sxs-lookup"><span data-stu-id="3850d-143">/business/**ma**rathon/asset.htm</span></span><br/><span data-ttu-id="3850d-144">**ma**p.gif</span><span class="sxs-lookup"><span data-stu-id="3850d-144">**ma**p.gif</span></span><br/><span data-ttu-id="3850d-145">/business/template.**ma**p</span><span class="sxs-lookup"><span data-stu-id="3850d-145">/business/template.**ma**p</span></span><br /><br /><span data-ttu-id="3850d-146">- 특수 문자를 리터럴 문자로 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-146">- It allows a special character to be specified as a literal character.</span></span> <span data-ttu-id="3850d-147">예를 들어 공백 문자를 작은따옴표 쌍으로 묶어 리터럴 공백 문자를 지정할 수 있습니다(즉, `' '` 또는 `'sample value'`).</span><span class="sxs-lookup"><span data-stu-id="3850d-147">For example, you may specify a literal space character by enclosing a space character within a set of single quotes (i.e., `' '` or `'sample value'`).</span></span><br/><span data-ttu-id="3850d-148">- 빈 값을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-148">- It allows a blank value to be specified.</span></span> <span data-ttu-id="3850d-149">작은따옴표 쌍(예: '')을 지정하여 빈 값을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-149">Specify a blank value by specifying a set of single quotes (i.e., '').</span></span><br /><br/><span data-ttu-id="3850d-150">**중요:**</span><span class="sxs-lookup"><span data-stu-id="3850d-150">**Important:**</span></span><br/><span data-ttu-id="3850d-151">- 지정된 값이 와일드카드를 포함하지 않으면 자동으로 리터럴 값으로 간주됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-151">- If the specified value does not contain a wildcard, then it will automatically be considered a literal value.</span></span> <span data-ttu-id="3850d-152">즉, 작은따옴표 쌍으로 지정할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-152">This means that it is not necessary to specify a set of single quotes.</span></span><br/><span data-ttu-id="3850d-153">- 백슬래시가 이 표의 다른 문자를 이스케이프하지 않으면 작은따옴표로 묶어서 지정할 때 무시됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-153">- If a backslash does not escape another character in this table, then it will be ignored when specified within a set of single quotes.</span></span><br/><span data-ttu-id="3850d-154">- 특수 문자를 리터럴 문자로 지정하는 또 다른 방법은 백슬래시를 사용하여 이스케이프하는 것입니다(즉, `\`).</span><span class="sxs-lookup"><span data-stu-id="3850d-154">- Another way to specify a special character as a literal character is to escape it using a backslash (i.e., `\`).</span></span>
+
+### <a name="regular-expressions"></a><span data-ttu-id="3850d-155">정규식</span><span class="sxs-lookup"><span data-stu-id="3850d-155">Regular Expressions</span></span>
+
+<span data-ttu-id="3850d-156">정규식은 텍스트 값 내에서 검색될 패턴을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-156">Regular expressions define a pattern that will be searched for within a text value.</span></span> <span data-ttu-id="3850d-157">정규식 표기법은 다양한 기호에 대한 특정 의미를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-157">Regular expression notation defines specific meanings to a variety of symbols.</span></span> <span data-ttu-id="3850d-158">다음 표에서는 특수 문자가 정규식을 지원하는 일치 조건 및 기능에 의해 처리되는 방식을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-158">The following table indicates how special characters are treated by match conditions and features that support regular expressions.</span></span>
+
+<span data-ttu-id="3850d-159">특수 문자</span><span class="sxs-lookup"><span data-stu-id="3850d-159">Special Character</span></span> | <span data-ttu-id="3850d-160">설명</span><span class="sxs-lookup"><span data-stu-id="3850d-160">Description</span></span>
+------------------|------------
+\ | <span data-ttu-id="3850d-161">백슬래시는 다음에 나오는 문자를 이스케이프합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-161">A backslash escapes the character the follows it.</span></span> <span data-ttu-id="3850d-162">그러면 해당 문자가 정규식 의미를 갖지 않고 리터럴 값으로 처리됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-162">This causes that character to be treated as a literal value instead of taking on its regular expression meaning.</span></span> <span data-ttu-id="3850d-163">예를 들어 다음 구문은 별표를 이스케이프합니다.`\*`</span><span class="sxs-lookup"><span data-stu-id="3850d-163">For example, the following syntax escapes an asterisk: `\*`</span></span>
+% | <span data-ttu-id="3850d-164">백분율 기호의 의미는 사용법에 따라 달라집니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-164">The meaning of a percentage symbol depends on its usage.</span></span><br/><br/> <span data-ttu-id="3850d-165">`%{HTTPVariable}`: 이 구문은 HTTP 변수를 식별합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-165">`%{HTTPVariable}`: This syntax identifies an HTTP variable.</span></span><br/><span data-ttu-id="3850d-166">`%{HTTPVariable%Pattern}`: 이 구문은 백분율 기호를 사용하여 HTTP 변수를 식별하고 구분 기호로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-166">`%{HTTPVariable%Pattern}`: This syntax uses a percentage symbol to identify an HTTP variable and as a delimiter.</span></span><br /><span data-ttu-id="3850d-167">`\%`: 백분율 기호를 이스케이프하면 리터럴 값으로 사용되거나 URL 인코딩을 나타낼 수 있습니다(예: `\%20`).</span><span class="sxs-lookup"><span data-stu-id="3850d-167">`\%`: Escaping a percentage symbol allows it to be used as a literal value or to indicate URL encoding (e.g., `\%20`).</span></span>
+* | <span data-ttu-id="3850d-168">별표를 사용하면 앞에 오는 문자의 일치 여부가 0번 이상 확인될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-168">An asterisk allows the preceding character to be matched zero or more times.</span></span> 
+<span data-ttu-id="3850d-169">공백</span><span class="sxs-lookup"><span data-stu-id="3850d-169">Space</span></span> | <span data-ttu-id="3850d-170">공백 문자는 일반적으로 리터럴 문자로 취급됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-170">A space character is typically treated as a literal character.</span></span> 
+<span data-ttu-id="3850d-171">'value'</span><span class="sxs-lookup"><span data-stu-id="3850d-171">'value'</span></span> | <span data-ttu-id="3850d-172">작은따옴표는 리터럴 문자로 처리됩니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-172">Single quotes are treated as literal characters.</span></span> <span data-ttu-id="3850d-173">작은따옴표 쌍은 특별한 의미가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="3850d-173">A set of single quotes does not have special meaning.</span></span>
+
+
+## <a name="next-steps"></a><span data-ttu-id="3850d-174">다음 단계</span><span class="sxs-lookup"><span data-stu-id="3850d-174">Next steps</span></span>
+* [<span data-ttu-id="3850d-175">규칙 엔진 일치 조건</span><span class="sxs-lookup"><span data-stu-id="3850d-175">Rules Engine Match Conditions</span></span>](cdn-rules-engine-reference-match-conditions.md)
+* [<span data-ttu-id="3850d-176">규칙 엔진 조건식</span><span class="sxs-lookup"><span data-stu-id="3850d-176">Rules Engine Conditional Expressions</span></span>](cdn-rules-engine-reference-conditional-expressions.md)
+* [<span data-ttu-id="3850d-177">규칙 엔진 기능</span><span class="sxs-lookup"><span data-stu-id="3850d-177">Rules Engine Features</span></span>](cdn-rules-engine-reference-features.md)
+* [<span data-ttu-id="3850d-178">규칙 엔진을 사용하여 기본 HTTP 동작 재정의</span><span class="sxs-lookup"><span data-stu-id="3850d-178">Overriding default HTTP behavior using the rules engine</span></span>](cdn-rules-engine.md)
+* [<span data-ttu-id="3850d-179">Azure CDN 개요</span><span class="sxs-lookup"><span data-stu-id="3850d-179">Azure CDN Overview</span></span>](cdn-overview.md)
