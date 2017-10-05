@@ -1,0 +1,45 @@
+---
+title: "Azure Active Directory에서 기존의 모든 그룹 보기 | Microsoft Docs"
+description: "Azure Active Directory에서 그룹을 보거나 검색하는 방법"
+services: active-directory
+documentationcenter: 
+author: curtand
+manager: femila
+editor: 
+ms.assetid: 72686ee9-9f91-4fcc-86da-b990a1b6d4f2
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/04/2017
+ms.author: curtand
+ms.custom: H1Hack27Feb2017
+ms.openlocfilehash: 1cc8b9194433840df9ce16baf1a0ec2c3dd08ad9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="view-or-search-for-your-user-groups-in-azure-active-directory"></a><span data-ttu-id="7d428-103">Azure Active Directory에서 사용자 그룹을 보거나 검색</span><span class="sxs-lookup"><span data-stu-id="7d428-103">View or search for your user groups in Azure Active Directory</span></span>
+<span data-ttu-id="7d428-104">이 문서는 Azure AD(Azure Active Directory)에서 모든 그룹을 보는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-104">This article explains how to view all groups in Azure Active Directory (Azure AD).</span></span> <span data-ttu-id="7d428-105">Azure AD의 사용자 관리 기능 중 하나는 여러 사용자에게 라이선스 또는 사용 권한을 한 번에 할당하는 관리 작업을 수행하는 데 그룹을 사용할 수 있다는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-105">One of the features of Azure AD user management is that you can use groups to perform management tasks such as assigning licenses or permissions to a number of users at once.</span></span>
+
+## <a name="how-do-i-see-all-the-groups"></a><span data-ttu-id="7d428-106">모든 그룹을 보려면 어떻게 해야 합니까?</span><span class="sxs-lookup"><span data-stu-id="7d428-106">How do I see all the groups?</span></span>
+1. <span data-ttu-id="7d428-107">디렉터리에 대한 전역 관리자인 계정으로 [Azure 포털](https://portal.azure.com) 에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-107">Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.</span></span>
+2. <span data-ttu-id="7d428-108">**더 많은 서비스**를 선택하고 텍스트 상자에 **사용자 및 그룹**을 입력한 다음 **Enter**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-108">Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.</span></span>
+
+   ![사용자 및 그룹 열기](./media/active-directory-groups-view-azure-portal/search-user-management.png)
+3. <span data-ttu-id="7d428-110">**사용자 및 그룹** 블레이드에서 **모든 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-110">On the **Users and groups** blade, select **All groups**.</span></span>
+
+   ![그룹 블레이드 열기](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
+4. <span data-ttu-id="7d428-112">**사용자 및 그룹 - 모든 그룹** 블레이드에서 표시 열을 추가 또는 제거하고 그룹을 검색할 목록을 필터링하거나 변경할 충분한 사용 권한이 있는 그룹을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-112">On the **Users and groups - All groups** blade, you can add or remove display columns, filter the list to search for a group, or make changes to groups that you have sufficient permissions to change.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="7d428-113">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7d428-113">Next steps</span></span>
+<span data-ttu-id="7d428-114">이러한 문서는 Azure Active Directory에 대한 추가 정보를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="7d428-114">These articles provide additional information on Azure Active Directory.</span></span>
+
+* [<span data-ttu-id="7d428-115">기존 그룹 보기</span><span class="sxs-lookup"><span data-stu-id="7d428-115">See existing groups</span></span>](active-directory-groups-view-azure-portal.md)
+* [<span data-ttu-id="7d428-116">새 그룹을 만들고 멤버 추가</span><span class="sxs-lookup"><span data-stu-id="7d428-116">Create a new group and adding members</span></span>](active-directory-groups-create-azure-portal.md)
+* [<span data-ttu-id="7d428-117">그룹의 설정 관리</span><span class="sxs-lookup"><span data-stu-id="7d428-117">Manage settings of a group</span></span>](active-directory-groups-settings-azure-portal.md)
+* [<span data-ttu-id="7d428-118">그룹의 멤버 관리</span><span class="sxs-lookup"><span data-stu-id="7d428-118">Manage members of a group</span></span>](active-directory-groups-members-azure-portal.md)
+* [<span data-ttu-id="7d428-119">그룹의 멤버 자격 관리</span><span class="sxs-lookup"><span data-stu-id="7d428-119">Manage memberships of a group</span></span>](active-directory-groups-membership-azure-portal.md)
+* [<span data-ttu-id="7d428-120">그룹의 사용자에 대한 동적 규칙 관리</span><span class="sxs-lookup"><span data-stu-id="7d428-120">Manage dynamic rules for users in a group</span></span>](active-directory-groups-dynamic-membership-azure-portal.md)
