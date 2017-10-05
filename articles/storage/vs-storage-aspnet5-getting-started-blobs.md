@@ -1,0 +1,154 @@
+---
+title: "Blob Storage 및 Visual Studio 연결된 서비스 시작(ASP.NET Core) | Microsoft Docs"
+description: "Visual Studio 연결된 서비스를 사용하여 저장소 계정을 만든 후 Visual Studio ASP.NET Core 프로젝트에서 Azure Blob Storage 사용을 시작하는 방법입니다."
+services: storage
+documentationcenter: 
+author: TomArcher
+manager: douge
+editor: 
+ms.assetid: 094b596a-c92c-40c4-a0f5-86407ae79672
+ms.service: storage
+ms.workload: web
+ms.tgt_pltfrm: vs-getting-started
+ms.devlang: na
+ms.topic: article
+ms.date: 12/02/2016
+ms.author: tarcher
+ms.openlocfilehash: e725015c8be7ecfa908f0ae75986b73f218fa3ae
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="get-started-with-azure-blob-storage-and-visual-studio-connected-services-aspnet-core"></a><span data-ttu-id="ea03c-103">Azure Blob Storage 및 Visual Studio 연결된 서비스 시작(ASP.NET Core)</span><span class="sxs-lookup"><span data-stu-id="ea03c-103">Get started with Azure Blob storage and Visual Studio connected services (ASP.NET Core)</span></span>
+[!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
+
+## <a name="overview"></a><span data-ttu-id="ea03c-104">개요</span><span class="sxs-lookup"><span data-stu-id="ea03c-104">Overview</span></span>
+<span data-ttu-id="ea03c-105">이 문서에서는 Visual Studio의 연결된 서비스 추가 대화 상자를 사용하여 Azure Storage 계정을 ASP.NET Core 프로젝트에서 생성하거나 참조한 후 Azure Blob Storage를 Visual Studio에서 사용하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-105">This article describes how to get started using Azure Blob storage in Visual Studio after you have created or referenced an Azure storage account in an ASP.NET Core project by using the Visual Studio Add Connected Services dialog.</span></span>
+
+<span data-ttu-id="ea03c-106">Azure Blob 저장소는 HTTP 또는 HTTPS를 통해 전 세계 어디에서나 액세스할 수 있는 다량의 구조화되지 않은 데이터를 저장하기 위한 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-106">Azure Blob storage is a service for storing large amounts of unstructured data that can be accessed from anywhere in the world via HTTP or HTTPS.</span></span> <span data-ttu-id="ea03c-107">단일 Blob은 임의의 크기일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-107">A single blob can be any size.</span></span> <span data-ttu-id="ea03c-108">Blob은 이미지, 오디오 및 비디오 파일, 원시 데이터, 문서 파일 등일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-108">Blobs can be things like images, audio and video files, raw data, and document files.</span></span> <span data-ttu-id="ea03c-109">이 문서에서는 ASP.NET Core 프로젝트에서 Visual Studio **연결된 서비스 추가** 대화 상자를 사용하여 Azure Storage 계정을 만든 후 Blob Storage를 시작하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-109">This article describes how to get started with blob storage after you create an Azure storage account by using the Visual Studio **Add Connected Services** dialog in an ASP.NET Core project.</span></span>
+
+<span data-ttu-id="ea03c-110">파일이 폴더에 저장되듯이 저장소 Blob은 컨테이너에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-110">Just as files live in folders, storage blobs live in containers.</span></span> <span data-ttu-id="ea03c-111">저장소를 만든 후 해당 저장소에 하나 이상의 컨테이너를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-111">After you have created a storage, you create one or more containers in the storage.</span></span> <span data-ttu-id="ea03c-112">예를 들어 "Scrapbook"이라는 저장소를 만든 다음 저장소에 사진을 저장할 "images"라는 컨테이너를 만들고 오디오 파일을 저장할 "audio"라는 컨테이너를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-112">For example, in a storage called "Scrapbook," you can create containers in the storage called "images" to store pictures and another called "audio" to store audio files.</span></span> <span data-ttu-id="ea03c-113">컨테이너를 만든 후 컨테이너에 개별 Blob 파일을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-113">After you create the containers, you can upload individual blob files to them.</span></span> <span data-ttu-id="ea03c-114">Blob을 프로그래밍 방식으로 조작하는 방법에 대한 자세한 내용은 [.NET을 사용하여 Azure Blob 저장소 시작](storage-dotnet-how-to-use-blobs.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ea03c-114">See [Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md) for more information on programmatically manipulating blobs.</span></span>
+
+## <a name="access-blob-containers-in-code"></a><span data-ttu-id="ea03c-115">코드에서 Blob 컨테이너에 액세스하기</span><span class="sxs-lookup"><span data-stu-id="ea03c-115">Access blob containers in code</span></span>
+<span data-ttu-id="ea03c-116">ASP.NET Core 프로젝트에서 Blob에 프로그래밍 방식으로 액세스하려면 다음 항목(아직 없는 경우)을 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-116">To programmatically access blobs in ASP.NET Core projects, you need to add the following items, if they're not already present.</span></span>
+
+1. <span data-ttu-id="ea03c-117">프로그래밍 방식으로 Azure 저장소에 액세스하려는 C# 파일의 맨 위에 다음과 같은 코드 네임스페이스 선언을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-117">Add the following code namespace declarations to the top of any C# file in which you want to programmatically access Azure storage.</span></span>
+   
+        using Microsoft.Extensions.Configuration;
+        using Microsoft.WindowsAzure.Storage;
+        using Microsoft.WindowsAzure.Storage.Blob;
+        using System.Threading.Tasks;
+        using LogLevel = Microsoft.Extensions.Logging.LogLevel;
+2. <span data-ttu-id="ea03c-118">저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-118">Get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="ea03c-119">Azure 서비스 구성에서 저장소 연결 문자열 및 저장소 계정 정보를 가져오려면 다음 코드를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-119">Use the following code to get your storage connection string and storage account information from the Azure service configuration.</span></span>
+   
+         CloudStorageAccount storageAccount = new CloudStorageAccount(
+            new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(
+            "<storage-account-name>",
+            "<access-key>"), true);
+   
+    <span data-ttu-id="ea03c-120">**참고:** 다음 섹션의 코드 앞에서 위의 코드를 모두 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-120">**NOTE:** Use all of the above code in front of the code in the following sections.</span></span>
+3. <span data-ttu-id="ea03c-121">**CloudBlobClient** 개체를 사용하여 저장소 계정의 기존 컨테이너에 **CloudBlobContainer** 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-121">Use a **CloudBlobClient** object to get a **CloudBlobContainer** reference to an existing container in your storage account.</span></span>
+   
+        // Create a blob client.
+        CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+   
+        // Get a reference to a container named "mycontainer."
+        CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
+
+## <a name="create-a-container-in-code"></a><span data-ttu-id="ea03c-122">코드에서 컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="ea03c-122">Create a container in code</span></span>
+<span data-ttu-id="ea03c-123">**CloudBlobClient** 를 사용하여 저장소 계정에 컨테이너를 만들 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-123">You can also use the **CloudBlobClient** to create a container in your storage account.</span></span> <span data-ttu-id="ea03c-124">다음 코드와 같이 **CreateIfNotExistsAsync** 호출을 추가하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-124">All you need to do is to add a call to **CreateIfNotExistsAsync** as in the following code:</span></span>
+
+    // Create a blob client.
+    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+    // Get a reference to a container named "my-new-container."
+    CloudBlobContainer container = blobClient.GetContainerReference("my-new-container");
+
+    // If "mycontainer" doesn't exist, create it.
+    await container.CreateIfNotExistsAsync();
+
+
+<span data-ttu-id="ea03c-125">**참고:** ASP.NET Core에서 Azure Storage에 대한 호출을 수행하는 API는 비동기적입니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-125">**NOTE:** The APIs that perform calls to Azure storage in ASP.NET Core are asynchronous.</span></span> <span data-ttu-id="ea03c-126">자세한 내용은 [Async 및 Await를 사용한 비동기 프로그래밍](http://msdn.microsoft.com/library/hh191443.aspx) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ea03c-126">See [Asynchronous programming with Async and Await](http://msdn.microsoft.com/library/hh191443.aspx) for more information.</span></span> <span data-ttu-id="ea03c-127">아래 코드에서는 비동기 프로그래밍 메서드를 사용한다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-127">The code below assumes async programming methods are being used.</span></span>
+
+<span data-ttu-id="ea03c-128">컨테이너 내의 파일을 모든 사용자가 사용할 수 있도록 하려면 다음 코드를 사용하여 컨테이너를 공용으로 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-128">To make the files within the container available to everyone, you can set the container to be public by using the following code.</span></span>
+
+    await container.SetPermissionsAsync(new BlobContainerPermissions
+    {
+        PublicAccess = BlobContainerPublicAccessType.Blob
+    });
+
+## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="ea03c-129">컨테이너에 Blob 업로드</span><span class="sxs-lookup"><span data-stu-id="ea03c-129">Upload a blob into a container</span></span>
+<span data-ttu-id="ea03c-130">컨테이너에 Blob 파일을 업로드하려면 컨테이너 참조를 가져온 후 이 참조를 사용하여 Blob 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-130">To upload a blob file into a container, get a container reference and use it to get a blob reference.</span></span> <span data-ttu-id="ea03c-131">Blob 참조가 있는 경우 **UploadFromStreamAsync** 메서드를 호출하여 데이터 스트림을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-131">After you have a blob reference, you can upload any stream of data to it by calling the **UploadFromStreamAsync** method.</span></span> <span data-ttu-id="ea03c-132">이 작업은 Blob이 없는 경우 새로 만들고, Blob이 이미 있는 경우 덮어씁니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-132">This operation creates the blob if it's not already there, or overwrites it if it does exist.</span></span> <span data-ttu-id="ea03c-133">다음 예제에서는 컨테이너에 Blob을 업로드하는 방법을 보여 주며, 컨테이너가 이미 만들어져 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-133">The following example shows how to upload a blob into a container and assumes that the container was already created.</span></span>
+
+    // Get a reference to a blob named "myblob".
+    CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
+
+    // Create or overwrite the "myblob" blob with the contents of a local file
+    // named "myfile".
+    using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
+    {
+        await blockBlob.UploadFromStreamAsync(fileStream);
+    }
+
+## <a name="list-the-blobs-in-a-container"></a><span data-ttu-id="ea03c-134">컨테이너의 Blob 나열</span><span class="sxs-lookup"><span data-stu-id="ea03c-134">List the blobs in a container</span></span>
+<span data-ttu-id="ea03c-135">컨테이너의 Blob을 나열하려면 먼저 컨테이너 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-135">To list the blobs in a container, first get a container reference.</span></span> <span data-ttu-id="ea03c-136">컨테이너의 **ListBlobsSegmentedAsync** 메서드를 호출하여 컨테이너 내의 Blob 및/또는 디렉터리를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-136">You can then call the container's **ListBlobsSegmentedAsync** method to retrieve the blobs and/or directories within it.</span></span> <span data-ttu-id="ea03c-137">반환된 **IListBlobItem**에 대한 풍부한 속성 및 메서드 집합에 액세스하려면 **CloudBlockBlob**, **CloudPageBlob** 또는 **CloudBlobDirectory** 개체로 캐스트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-137">To access the rich set of properties and methods for a returned **IListBlobItem**, you must cast it to a **CloudBlockBlob**, **CloudPageBlob**, or **CloudBlobDirectory** object.</span></span> <span data-ttu-id="ea03c-138">Blob 유형을 알 수 없는 경우 유형 검사를 사용하여 캐스트할 유형을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-138">If you don't know the blob type, you can use a type check to determine which to cast it to.</span></span> <span data-ttu-id="ea03c-139">다음 코드에서는 컨테이너에 있는 각 항목의 URI를 검색하고 출력하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-139">The following code demonstrates how to retrieve and output the URI of each item in a container.</span></span>
+
+    BlobContinuationToken token = null;
+    do
+    {
+        BlobResultSegment resultSegment = await container.ListBlobsSegmentedAsync(token);
+        token = resultSegment.ContinuationToken;
+
+        foreach (IListBlobItem item in resultSegment.Results)
+        {
+            if (item.GetType() == typeof(CloudBlockBlob))
+            {
+                CloudBlockBlob blob = (CloudBlockBlob)item;
+                Console.WriteLine("Block blob of length {0}: {1}", blob.Properties.Length, blob.Uri);
+            }
+
+            else if (item.GetType() == typeof(CloudPageBlob))
+            {
+                CloudPageBlob pageBlob = (CloudPageBlob)item;
+
+                Console.WriteLine("Page blob of length {0}: {1}", pageBlob.Properties.Length, pageBlob.Uri);
+            }
+
+            else if (item.GetType() == typeof(CloudBlobDirectory))
+            {
+                CloudBlobDirectory directory = (CloudBlobDirectory)item;
+
+                Console.WriteLine("Directory: {0}", directory.Uri);
+            }
+        }
+    } while (token != null);
+
+<span data-ttu-id="ea03c-140">Blob 컨테이너의 콘텐츠를 나열하는 다른 방법이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-140">There are others ways to list the contents of a blob container.</span></span> <span data-ttu-id="ea03c-141">자세한 내용은 [.NET을 사용하여 Azure Blob 저장소 시작](storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ea03c-141">See [Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container) for more information.</span></span>
+
+## <a name="download-a-blob"></a><span data-ttu-id="ea03c-142">Blob 다운로드</span><span class="sxs-lookup"><span data-stu-id="ea03c-142">Download a blob</span></span>
+<span data-ttu-id="ea03c-143">Blob을 다운로드하려면 먼저 Blob에 대한 참조를 가져온 다음 **DownloadToStreamAsync** 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-143">To download a blob, first get a reference to the blob, and then call the **DownloadToStreamAsync** method.</span></span> <span data-ttu-id="ea03c-144">다음 예제에서는 **DownloadToStreamAsync** 메서드를 사용하여 Blob 콘텐츠를 스트림 개체로 전송합니다. 그러면 이 개체를 로컬 파일에 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-144">The following example uses the **DownloadToStreamAsync** method to transfer the blob contents to a stream object that you can then save as a local file.</span></span>
+
+    // Get a reference to a blob named "photo1.jpg".
+    CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
+
+    // Save the blob contents to a file named "myfile".
+    using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
+    {
+        await blockBlob.DownloadToStreamAsync(fileStream);
+    }
+
+<span data-ttu-id="ea03c-145">Blob을 파일로 저장하는 다른 방법이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-145">There are other ways to save blobs as files.</span></span> <span data-ttu-id="ea03c-146">자세한 내용은 [.NET을 사용하여 Azure Blob 저장소 시작](storage-dotnet-how-to-use-blobs.md#download-blobs) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ea03c-146">See [Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md#download-blobs) for more information.</span></span>
+
+## <a name="delete-a-blob"></a><span data-ttu-id="ea03c-147">Blob 삭제</span><span class="sxs-lookup"><span data-stu-id="ea03c-147">Delete a blob</span></span>
+<span data-ttu-id="ea03c-148">Blob을 삭제하려면 먼저 Blob에 대한 참조를 가져온 다음 **DeleteAsync** 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="ea03c-148">To delete a blob, first get a reference to the blob, and then call the **DeleteAsync** method on it.</span></span>
+
+    // Get a reference to a blob named "myblob.txt".
+    CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
+
+    // Delete the blob.
+    await blockBlob.DeleteAsync();
+
+## <a name="next-steps"></a><span data-ttu-id="ea03c-149">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ea03c-149">Next steps</span></span>
+[!INCLUDE [vs-storage-dotnet-blobs-next-steps](../../includes/vs-storage-dotnet-blobs-next-steps.md)]
+

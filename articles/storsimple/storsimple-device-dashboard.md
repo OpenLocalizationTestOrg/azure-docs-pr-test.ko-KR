@@ -1,0 +1,86 @@
+---
+title: "StorSimple 관리자 장치 대시보드 사용 | Microsoft Docs"
+description: "StorSimple 관리자 서비스 장치 대시보드 및 이를 사용하여 저장소 메트릭 및 연결된 초기자를 보고 일련 번호 및 IQN을 찾는 방법을 설명합니다."
+services: storsimple
+documentationcenter: NA
+author: alkohli
+manager: timlt
+editor: 
+ms.assetid: 6c213969-a385-461f-b698-78ef5b8a79cc
+ms.service: storsimple
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: TBD
+ms.date: 02/27/2017
+ms.author: alkohli
+ms.custom: H1Hack27Feb2017
+ms.openlocfilehash: 0d8035b9608ca3bac3d4822c7c755b81c96d481e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="use-the-device-dashboard-in-storsimple-manager-service"></a><span data-ttu-id="12e4d-103">StorSimple Manager 서비스에서 장치 대시보드 사용</span><span class="sxs-lookup"><span data-stu-id="12e4d-103">Use the device dashboard in StorSimple Manager service</span></span>  
+
+## <a name="overview"></a><span data-ttu-id="12e4d-104">개요</span><span class="sxs-lookup"><span data-stu-id="12e4d-104">Overview</span></span>
+<span data-ttu-id="12e4d-105">StorSimple 관리자 장치 대시보드는 Microsoft Azure StorSimple 솔루션에 포함된 모든 장치에 대한 정보를 제공하는 서비스 대시보드에 대한 특정 StorSimple 장치에 대한 정보 개요를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-105">The StorSimple Manager device dashboard gives you an overview of information for a specific  StorSimple device, in contrast to the service dashboard, which gives you information about all of the devices included in your Microsoft Azure StorSimple solution.</span></span>
+
+![장치 대시보드 페이지](./media/storsimple-device-dashboard/StorSimple_DeviceDashbaord1M.png)
+
+<span data-ttu-id="12e4d-107">대시보드에는 다음 정보가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-107">The dashboard contains the following information:</span></span>
+
+* <span data-ttu-id="12e4d-108">**차트 영역** – 대시보드 상단 차트 영역에서 관련 저장소 메트릭을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-108">**Chart area** – You can see the relevant storage metrics in the chart area at the top of the dashboard.</span></span> <span data-ttu-id="12e4d-109">이 차트에서 총 기본 저장소(장치에 대한 호스트가 기록한 데이터의 양)와 일정 기간 동안 장치가 사용한 총 클라우드 저장소에 대한 메트릭을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-109">In this chart, you can view metrics for the total primary storage (the amount of data written by hosts to your device) and the total cloud storage consumed by your device over a period of time.</span></span>
+  
+     <span data-ttu-id="12e4d-110">이 컨텍스트에서 *기본 저장소*는 호스트가 기록한 데이터의 총 크기를 참조하고 볼륨 유형으로 세분화될 수 있습니다. *계층화된 기본 저장소*는 로컬에 저장된 데이터 및 클라우드에 계층화된 데이터를 모두 포함합니다. *로컬로 고정된 기본 저장소*는 로컬로 저장된 데이터만을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-110">In this context, *primary storage* refers to the total amount of data written by the host, and can be broken down by volume type: *primary tiered storage* includes both locally stored data and data tiered to the cloud; *primary locally pinned storage* includes just data stored locally.</span></span> <span data-ttu-id="12e4d-111">반면에 *클라우드 저장소*는 클라우드에 계층화된 총 데이터를 측정합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-111">*Cloud storage*, on the other hand, is a measurement of the total amount of data stored in the cloud.</span></span> <span data-ttu-id="12e4d-112">여기에는 계층화된 데이터 및 백업이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-112">This includes tiered data and backups.</span></span> <span data-ttu-id="12e4d-113">클라우드에 저장된 데이터는 중복 제거되고 압축되는 반면 기본 저장소는 데이터가 중복 제거되고 압축되기 전에 사용된 저장소의 양을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-113">Note that data stored in the cloud is deduplicated and compressed, whereas primary storage indicates the amount of storage used before the data is deduplicated and compressed.</span></span> <span data-ttu-id="12e4d-114">(압축 비율을 파악하도록 이러한 두 값을 비교할 수 있습니다.) 기본 및 클라우드 저장소의 경우 표시되는 양은 사용자가 구성하는 추적 빈도에 따라 달라집니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-114">(You can compare these two numbers to get an idea of the compression rate.) For both primary and cloud storage, the amounts shown will be based on the tracking frequency you configure.</span></span> <span data-ttu-id="12e4d-115">예를 들어, 1주일 빈도를 선택하면 이전 주의 각 날짜에 대한 데이터가 차트에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-115">For example, if you choose a one week frequency, then the chart will show data for each day in the previous week.</span></span>
+  
+     <span data-ttu-id="12e4d-116">차트는 다음과 같이 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-116">You can configure the chart as follows:</span></span>
+  
+  * <span data-ttu-id="12e4d-117">시간이 지남에 따라 사용되는 클라우드 저장소의 크기를 보려면 **CLOUD STORAGE USED(사용된 클라우드 저장소)** 옵션을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-117">To see the amount of cloud storage consumed over time, select the **CLOUD STORAGE USED** option.</span></span> <span data-ttu-id="12e4d-118">호스트가 작성한 총 저장소를 보려면 **계층화되고 사용된 기본 저장소** 및 **로컬로 고정된 사용된 기본 저장소** 옵션을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-118">To see the total storage that has been written by the host, select the **PRIMARY TIERED STORAGE USED** and **PRIMARY LOCALLY PINNED STORAGE USED** options.</span></span> <span data-ttu-id="12e4d-119">그림에서는 두 옵션이 모두 선택됩니다. 따라서 차트는 클라우드 및 기본 저장소에 대한 저장소 크기를 모두 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-119">In the illustration, both options are selected; therefore, the chart shows storage amounts for both cloud and primary storage.</span></span> <span data-ttu-id="12e4d-120">업데이트 2를 설치하기 전에 사용된 기본 저장소는 **계층화되고 사용된 기본 저장소** 선에서 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-120">Note that any primary storage used prior to installing Update 2 is represented by the **PRIMARY TIERED STORAGE USED** line.</span></span>
+  * <span data-ttu-id="12e4d-121">1주, 1개월, 3개월 또는 1년 단위를 지정하려면 차트 오른쪽 상단의 드롭다운 메뉴를 사용하세요.</span><span class="sxs-lookup"><span data-stu-id="12e4d-121">Use the drop-down menu in the top-right corner of the chart to specify a 1-week, 1-month, 3-month, or 1-year time period.</span></span> <span data-ttu-id="12e4d-122">최상위 차트는 하루에 한번만 갱신되므로 전날의 합계를 반영합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-122">Note that the top-level chart is refreshed only one time per day, and therefore will reflect the previous day's totals.</span></span>
+    
+    <span data-ttu-id="12e4d-123">자세한 내용은 [StorSimple Manager 서비스를 사용하여 StorSimple 장치 모니터링](storsimple-monitor-device.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12e4d-123">For more information, see [Use the StorSimple Manager service to monitor your StorSimple device](storsimple-monitor-device.md).</span></span>
+* <span data-ttu-id="12e4d-124">**사용 개요** – **사용량 개요** 영역에서 사용된 기본 저장소의 크기, 프로비전된 저장소의 크기 및 장치에 대한 최대 저장소 용량을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-124">**Usage overview** – In the **usage overview** area, you can see the amount of primary storage used, the amount of provisioned storage, and the maximum storage capacity for your device.</span></span> <span data-ttu-id="12e4d-125">이러한 사용량 수치와 사용할 수 있는 저장소의 최대 크기를 비교하여 추가 저장소가 필요한지 한 눈에 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-125">By comparing these usage numbers to the maximum amount of storage that is available, you can see at a glance if you need to obtain additional storage.</span></span> <span data-ttu-id="12e4d-126">이 개요는 15분 마다 업데이트되며 업데이트 빈도의 차이로 인해 매일 업데이트되는 위의 차트 영역에 표시된 수치와 다를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-126">Note that this overview is updated every 15 minutes and, because of the difference in update frequency, may show different numbers than those shown in the chart area above, which is updated daily.</span></span> <span data-ttu-id="12e4d-127">자세한 내용은 [StorSimple Manager 서비스를 사용하여 StorSimple 장치 모니터링](storsimple-monitor-device.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12e4d-127">For more information, see [Use the StorSimple Manager service to monitor your StorSimple device](storsimple-monitor-device.md).</span></span>
+* <span data-ttu-id="12e4d-128">**경고** – **경고** 영역은 장치에 대한 경고의 개요를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-128">**Alerts** – The **alerts** area contains an overview of the alerts for your device.</span></span> <span data-ttu-id="12e4d-129">경고는 심각도별로 그룹화되며 숫자는 각 심각도 수준에 따른 경고의 수입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-129">Alerts are grouped by severity, and a count is provided of the number of alerts at each severity level.</span></span> <span data-ttu-id="12e4d-130">경고 심각도를 클릭하면 범위가 지정된 경고 탭이 열려 이 장치에서 해당 심각도 수준의 경고만 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-130">Clicking the alert severity opens a scoped view of the alerts tab to show you only the alerts of that severity level for this device.</span></span>
+* <span data-ttu-id="12e4d-131">**작업** – **작업** 영역은 최근 작업 활동의 결과를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-131">**Jobs** – The **jobs** area shows you the outcome of recent job activity.</span></span> <span data-ttu-id="12e4d-132">이를 통해 시스템이 예상대로 작동함을 알 수 있습니다. 또는 수정 작업을 취할 필요가 있는지 알 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-132">This can assure you that the system is operating as expected, or it can let you know that you need to take corrective action.</span></span> <span data-ttu-id="12e4d-133">최근에 완료된 작업에 대한 자세한 내용은 **최근 24시간 동안 성공한 작업**을 클릭하세요.</span><span class="sxs-lookup"><span data-stu-id="12e4d-133">To see more information about recently completed jobs, click **Jobs succeeded in the last 24 hours**.</span></span>
+* <span data-ttu-id="12e4d-134">대시보드 오른쪽의 **간략 상태** 영역에서는 장치 모델, 일련 번호, 상태, 설명 및 볼륨과 같은 유용한 정보를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-134">The **quick glance** area on the right of the dashboard provides useful information such as device model, serial number, status, description, and number of volumes.</span></span>
+
+<span data-ttu-id="12e4d-135">장치 대시보드에서 장애 조치를 구성하고 연결된 초기자를 볼 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-135">You can also configure failover and view connected initiators from the device dashboard.</span></span>
+
+<span data-ttu-id="12e4d-136">이 페이지에서 수행할 수 있는 일반적인 작업은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-136">The common tasks that can be performed on this page are:</span></span>
+
+* <span data-ttu-id="12e4d-137">연결된 초기자 보기</span><span class="sxs-lookup"><span data-stu-id="12e4d-137">View connected initiators</span></span>
+* <span data-ttu-id="12e4d-138">장치 일련 번호 찾기</span><span class="sxs-lookup"><span data-stu-id="12e4d-138">Find the device serial number</span></span>
+* <span data-ttu-id="12e4d-139">장치 대상 IQN 찾기</span><span class="sxs-lookup"><span data-stu-id="12e4d-139">Find the device target IQN</span></span>
+
+## <a name="view-connected-initiators"></a><span data-ttu-id="12e4d-140">연결된 시작자 보기</span><span class="sxs-lookup"><span data-stu-id="12e4d-140">View connected initiators</span></span>
+<span data-ttu-id="12e4d-141">장치 대시보드의 **간략 보기** 영역에 있는 **연결된 초기자 보기** 링크를 클릭하여 장치에 연결된 iSCSI 초기자를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-141">You can view the iSCSI initiators that are connected to your device by clicking the **View connected initiators** link provided in the **quick glance** area of your device dashboard.</span></span> <span data-ttu-id="12e4d-142">이 페이지에서는 장치에 성공적으로 연결된 초기자 목록을 표 형식으로 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-142">This page provides a tabular listing of the initiators that have successfully connected to your device.</span></span> <span data-ttu-id="12e4d-143">각 초기자에 대해 다음을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-143">For each initiator, you can see:</span></span>
+
+* <span data-ttu-id="12e4d-144">연결된 초기자의 IQN(정규화된 iSCSI 이름)입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-144">The iSCSI Qualified Name (IQN) of the connected initiator.</span></span>
+* <span data-ttu-id="12e4d-145">이 연결된 초기자를 허용하는 ACR(액세스 제어 레코드)의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-145">The name of the access control record (ACR) that allows this connected initiator.</span></span>
+* <span data-ttu-id="12e4d-146">연결된 초기자의 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-146">The IP address of the connected initiator.</span></span>
+* <span data-ttu-id="12e4d-147">초기자가 저장소 장치에 연결된 네트워크 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-147">The network interfaces that the initiator is connected to on your storage device.</span></span> <span data-ttu-id="12e4d-148">이러한 범위는 DATA 0에서 DATA 5입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-148">These can range from DATA 0 to DATA 5.</span></span>
+* <span data-ttu-id="12e4d-149">연결된 초기자가 현재 ACR 구성에 따라 액세스하도록 허용된 모든 볼륨입니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-149">All the volumes that the connected initiator is allowed to access according to the current ACR configuration.</span></span>
+
+<span data-ttu-id="12e4d-150">이 목록에서 예상치 못한 초기자가 보이는 경우 또는 예상한 초기자가 보이지 않는 경우, ACR 구성을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-150">If you see unexpected initiators in this list or do not see the expected ones, review your ACR configuration.</span></span> <span data-ttu-id="12e4d-151">최대 512개의 초기자를 장치에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-151">A maximum of 512 initiators can connect to your device.</span></span>
+
+## <a name="find-the-device-serial-number"></a><span data-ttu-id="12e4d-152">장치 일련 번호 찾기</span><span class="sxs-lookup"><span data-stu-id="12e4d-152">Find the device serial number</span></span>
+<span data-ttu-id="12e4d-153">장치에서 Microsoft MPIO(다중 경로 I/O)를 구성할 때 장치 일련 번호가 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-153">You may need the device serial number when you configure Microsoft Multipath I/O (MPIO) on the device.</span></span> <span data-ttu-id="12e4d-154">장치 일련 번호를 찾으려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-154">Perform the following steps to find the device serial number.</span></span>
+
+#### <a name="to-find-the-device-serial-number"></a><span data-ttu-id="12e4d-155">장치 일련 번호 찾는 방법</span><span class="sxs-lookup"><span data-stu-id="12e4d-155">To find the device serial number</span></span>
+1. <span data-ttu-id="12e4d-156">**장치** > **대시보드**로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-156">Navigate to **Devices** > **Dashboard**.</span></span>
+2. <span data-ttu-id="12e4d-157">대시보드의 오른쪽 창에서 **간략 상태** 영역을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-157">In the right pane of the dashboard, locate the **quick glance** area.</span></span>
+3. <span data-ttu-id="12e4d-158">아래로 스크롤하여 일련 번호를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-158">Scroll down and locate the serial number.</span></span>
+
+## <a name="find-the-device-target-iqn"></a><span data-ttu-id="12e4d-159">장치 대상 IQN 찾기</span><span class="sxs-lookup"><span data-stu-id="12e4d-159">Find the device target IQN</span></span>
+<span data-ttu-id="12e4d-160">StorSimple 장치에는 CHAP(Challenge Handshake 인증 프로토콜)를 구성할 때 장치 대상 IQN이 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-160">You may need the device target IQN when you configure the Challenge Handshake Authentication Protocol (CHAP) on your StorSimple device.</span></span> <span data-ttu-id="12e4d-161">장치 대상 IQN을 찾으려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-161">Perform the following steps to find the device target IQN.</span></span>
+
+### <a name="to-find-the-device-target-iqn"></a><span data-ttu-id="12e4d-162">장치 대상 IQN 찾는 방법</span><span class="sxs-lookup"><span data-stu-id="12e4d-162">To find the device target IQN</span></span>
+1. <span data-ttu-id="12e4d-163">**장치** > **대시보드**로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-163">Navigate to **Devices** > **Dashboard**.</span></span>
+2. <span data-ttu-id="12e4d-164">대시보드의 오른쪽 창에서 **간략 상태** 영역을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-164">In the right pane of the dashboard, locate the **quick glance** area.</span></span>
+3. <span data-ttu-id="12e4d-165">아래로 스크롤하여 대상 IQN을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-165">Scroll down and locate the target IQN.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="12e4d-166">다음 단계</span><span class="sxs-lookup"><span data-stu-id="12e4d-166">Next steps</span></span>
+* <span data-ttu-id="12e4d-167">[StorSimple Manager 서비스 대시보드](storsimple-service-dashboard.md)에 대해 자세히 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-167">Learn more about the [StorSimple Manager service dashboard](storsimple-service-dashboard.md).</span></span>
+* <span data-ttu-id="12e4d-168">[StorSimple Manager 서비스를 사용하여 StorSimple 장치를 관리](storsimple-manager-service-administration.md)하는 방법을 자세히 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="12e4d-168">Learn more about [using the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).</span></span>
+

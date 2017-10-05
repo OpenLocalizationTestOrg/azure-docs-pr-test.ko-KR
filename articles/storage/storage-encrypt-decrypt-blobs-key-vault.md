@@ -1,0 +1,239 @@
+---
+title: "자습서: Azure Key Vault를 사용하여 Azure Storage에서 Blob 암호화 및 해독 | Microsoft Docs"
+description: "Azure Key Vault를 사용하여 Microsoft Azure Storage에 대한 클라이언트 쪽 암호화를 사용하여 Blob을 암호화하고 해독하는 방법입니다."
+services: storage
+documentationcenter: 
+author: adhurwit
+manager: jasonsav
+editor: tysonn
+ms.assetid: 027e8631-c1bf-48c1-9d9b-f6843e88b583
+ms.service: storage
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: required
+ms.date: 01/23/2017
+ms.author: adhurwit
+ms.openlocfilehash: 0c33742a0212e670072a947a2d2ab8304c77b973
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="tutorial-encrypt-and-decrypt-blobs-in-microsoft-azure-storage-using-azure-key-vault"></a><span data-ttu-id="92dd0-103">자습서: Microsoft Azure 저장소에서 Azure 키 자격 증명 모음을 사용하여 Blob 암호화 및 해독</span><span class="sxs-lookup"><span data-stu-id="92dd0-103">Tutorial: Encrypt and decrypt blobs in Microsoft Azure Storage using Azure Key Vault</span></span>
+## <a name="introduction"></a><span data-ttu-id="92dd0-104">소개</span><span class="sxs-lookup"><span data-stu-id="92dd0-104">Introduction</span></span>
+<span data-ttu-id="92dd0-105">이 자습서에서는 Azure 키 자격 증명 모음과 함께 클라이언트 쪽 저장소 암호화를 사용하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-105">This tutorial covers how to make use of client-side storage encryption with Azure Key Vault.</span></span> <span data-ttu-id="92dd0-106">이러한 기술을 사용하여 콘솔 응용 프로그램에서 Blob를 암호화하고 해독하는 방법을 단계별로 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-106">It walks you through how to encrypt and decrypt a blob in a console application using these technologies.</span></span>
+
+<span data-ttu-id="92dd0-107">**예상 완료 시간:** 20분</span><span class="sxs-lookup"><span data-stu-id="92dd0-107">**Estimated time to complete:** 20 minutes</span></span>
+
+<span data-ttu-id="92dd0-108">Azure Key Vault에 대한 개요는 [Azure Key Vault란?](../key-vault/key-vault-whatis.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92dd0-108">For overview information about Azure Key Vault, see [What is Azure Key Vault?](../key-vault/key-vault-whatis.md).</span></span>
+
+<span data-ttu-id="92dd0-109">Azure Storage에 대한 클라이언트 쪽 암호화의 개요 정보는 [Microsoft Azure Storage에 대한 클라이언트 쪽 암호화 및 Azure Key Vault](storage-client-side-encryption.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92dd0-109">For overview information about client-side encryption for Azure Storage, see [Client-Side Encryption and Azure Key Vault for Microsoft Azure Storage](storage-client-side-encryption.md).</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="92dd0-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="92dd0-110">Prerequisites</span></span>
+<span data-ttu-id="92dd0-111">이 자습서를 완료하려면 다음이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-111">To complete this tutorial, you must have the following:</span></span>
+
+* <span data-ttu-id="92dd0-112">Azure 저장소 계정</span><span class="sxs-lookup"><span data-stu-id="92dd0-112">An Azure Storage account</span></span>
+* <span data-ttu-id="92dd0-113">Visual Studio 2013 이상</span><span class="sxs-lookup"><span data-stu-id="92dd0-113">Visual Studio 2013 or later</span></span>
+* <span data-ttu-id="92dd0-114">Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="92dd0-114">Azure PowerShell</span></span>
+
+## <a name="overview-of-client-side-encryption"></a><span data-ttu-id="92dd0-115">클라이언트 쪽 암호화 개요</span><span class="sxs-lookup"><span data-stu-id="92dd0-115">Overview of client-side encryption</span></span>
+<span data-ttu-id="92dd0-116">Azure Storage에 대한 클라이언트 쪽 암호화의 개요는 [Microsoft Storage에 대한 클라이언트 쪽 암호화 및 Azure Key Vault](storage-client-side-encryption.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92dd0-116">For an overview of client-side encryption for Azure Storage, see [Client-Side Encryption and Azure Key Vault for Microsoft Azure Storage](storage-client-side-encryption.md)</span></span>
+
+<span data-ttu-id="92dd0-117">클라이언트 쪽 암호화의 작동 원리에 대한 간단한 설명은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-117">Here is a brief description of how client side encryption works:</span></span>
+
+1. <span data-ttu-id="92dd0-118">Azure 저장소 클라이언트 SDK는 1회용 대칭 키인 콘텐츠 암호화 키(CEK)를 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-118">The Azure Storage client SDK generates a content encryption key (CEK), which is a one-time-use symmetric key.</span></span>
+2. <span data-ttu-id="92dd0-119">고객 데이터는 이 CEK를 사용하여 암호화됩니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-119">Customer data is encrypted using this CEK.</span></span>
+3. <span data-ttu-id="92dd0-120">그런 다음 키 암호화 KEK를 사용하여 CEK를 래핑(암호화)합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-120">The CEK is then wrapped (encrypted) using the key encryption key (KEK).</span></span> <span data-ttu-id="92dd0-121">KEK는 키 식별자로 식별되고 비대칭 키 쌍 또는 대칭 키일 수 있으며 로컬로 관리되거나 Azure 키 자격 증명 모음에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-121">The KEK is identified by a key identifier and can be an asymmetric key pair or a symmetric key and can be managed locally or stored in Azure Key Vault.</span></span> <span data-ttu-id="92dd0-122">저장소 클라이언트 자체는 KEK에 액세스할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-122">The Storage client itself never has access to the KEK.</span></span> <span data-ttu-id="92dd0-123">단지 키 자격 증명 모음에서 제공되는 키 래핑 알고리즘을 호출할 뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-123">It just invokes the key wrapping algorithm that is provided by Key Vault.</span></span> <span data-ttu-id="92dd0-124">고객은 원하는 경우 키 래핑/래핑 해제를 위해 사용자 지정 공급자를 사용하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-124">Customers can choose to use custom providers for key wrapping/unwrapping if they want.</span></span>
+4. <span data-ttu-id="92dd0-125">그런 다음 암호화된 데이터를 Azure 저장소 서비스에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-125">The encrypted data is then uploaded to the Azure Storage service.</span></span>
+
+## <a name="set-up-your-azure-key-vault"></a><span data-ttu-id="92dd0-126">Azure 키 자격 증명 모음 설정</span><span class="sxs-lookup"><span data-stu-id="92dd0-126">Set up your Azure Key Vault</span></span>
+<span data-ttu-id="92dd0-127">이 자습서를 계속하려면 자습서 [Azure Key Vault 시작](../key-vault/key-vault-get-started.md)에 요약된 다음 단계를 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-127">In order to proceed with this tutorial, you need to do the following steps, which are outlined in the tutorial  [Get started with Azure Key Vault](../key-vault/key-vault-get-started.md):</span></span>
+
+* <span data-ttu-id="92dd0-128">키 자격 증명 모음을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-128">Create a key vault.</span></span>
+* <span data-ttu-id="92dd0-129">키 또는 암호를 키 자격 증명 모음에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-129">Add a key or secret to the key vault.</span></span>
+* <span data-ttu-id="92dd0-130">Azure Active Directory에 응용 프로그램을 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-130">Register an application with Azure Active Directory.</span></span>
+* <span data-ttu-id="92dd0-131">키 또는 암호를 사용하여 응용 프로그램에 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-131">Authorize the application to use the key or secret.</span></span>
+
+<span data-ttu-id="92dd0-132">Azure Active directory를 사용하여 응용 프로그램을 등록하는 경우 생성된 ClientID 및 ClientSecret를 메모합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-132">Make note of the ClientID and ClientSecret that were generated when registering an application with Azure Active Directory.</span></span>
+
+<span data-ttu-id="92dd0-133">키 자격 증명 모음에 두 키를 모두 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-133">Create both keys in the key vault.</span></span> <span data-ttu-id="92dd0-134">자습서의 나머지 부분에서는 이름 ContosoKeyVault 및 TestRSAKey1을 사용했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-134">We assume for the rest of the tutorial that you have used the following names: ContosoKeyVault and TestRSAKey1.</span></span>
+
+## <a name="create-a-console-application-with-packages-and-appsettings"></a><span data-ttu-id="92dd0-135">패키지 및 AppSettings를 사용하여 콘솔 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="92dd0-135">Create a console application with packages and AppSettings</span></span>
+<span data-ttu-id="92dd0-136">Visual Studio에서 새 콘솔 응용 프로그램을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-136">In Visual Studio, create a new console application.</span></span>
+
+<span data-ttu-id="92dd0-137">패키지 관리자 콘솔에서 필요한 Nuget 패키지를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-137">Add necessary nuget packages in the Package Manager Console.</span></span>
+
+```
+Install-Package WindowsAzure.Storage
+
+// This is the latest stable release for ADAL.
+Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.16.204221202
+
+Install-Package Microsoft.Azure.KeyVault
+Install-Package Microsoft.Azure.KeyVault.Extensions
+```
+
+<span data-ttu-id="92dd0-138">AppSettings를 App.Config에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-138">Add AppSettings to the App.Config.</span></span>
+
+```xml
+<appSettings>
+    <add key="accountName" value="myaccount"/>
+    <add key="accountKey" value="theaccountkey"/>
+    <add key="clientId" value="theclientid"/>
+    <add key="clientSecret" value="theclientsecret"/>
+    <add key="container" value="stuff"/>
+</appSettings>
+```
+
+<span data-ttu-id="92dd0-139">다음 `using` 문을 추가하고 System.Configuration에 대한 참조를 프로젝트에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-139">Add the following `using` statements and make sure to add a reference to System.Configuration to the project.</span></span>
+
+```csharp
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using System.Configuration;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.Azure.KeyVault;
+using System.Threading;        
+using System.IO;
+```
+
+## <a name="add-a-method-to-get-a-token-to-your-console-application"></a><span data-ttu-id="92dd0-140">콘솔 응용 프로그램에 토큰을 가져오는 메서드 추가</span><span class="sxs-lookup"><span data-stu-id="92dd0-140">Add a method to get a token to your console application</span></span>
+<span data-ttu-id="92dd0-141">다음 메서드는 사용자 키 자격 증명 모음에 대한 액세스를 인증해야 하는 키 자격 증명 모음 클래스에 의해 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-141">The following method is used by Key Vault classes that need to authenticate for access to your key vault.</span></span>
+
+```csharp
+private async static Task<string> GetToken(string authority, string resource, string scope)
+{
+    var authContext = new AuthenticationContext(authority);
+    ClientCredential clientCred = new ClientCredential(
+        ConfigurationManager.AppSettings["clientId"],
+        ConfigurationManager.AppSettings["clientSecret"]);
+    AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
+
+    if (result == null)
+        throw new InvalidOperationException("Failed to obtain the JWT token");
+
+    return result.AccessToken;
+}
+```
+
+## <a name="access-storage-and-key-vault-in-your-program"></a><span data-ttu-id="92dd0-142">사용자의 프로그램에서 저장소 및 키 자격 증명 모음 액세스</span><span class="sxs-lookup"><span data-stu-id="92dd0-142">Access Storage and Key Vault in your program</span></span>
+<span data-ttu-id="92dd0-143">Main 함수에 다음 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-143">In the Main function, add the following code.</span></span>
+
+```csharp
+// This is standard code to interact with Blob storage.
+StorageCredentials creds = new StorageCredentials(
+    ConfigurationManager.AppSettings["accountName"],
+       ConfigurationManager.AppSettings["accountKey"]);
+CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
+CloudBlobClient client = account.CreateCloudBlobClient();
+CloudBlobContainer contain = client.GetContainerReference(ConfigurationManager.AppSettings["container"]);
+contain.CreateIfNotExists();
+
+// The Resolver object is used to interact with Key Vault for Azure Storage.
+// This is where the GetToken method from above is used.
+KeyVaultKeyResolver cloudResolver = new KeyVaultKeyResolver(GetToken);
+```
+
+> [!NOTE]
+> <span data-ttu-id="92dd0-144">키 자격 증명 모음 개체 모델</span><span class="sxs-lookup"><span data-stu-id="92dd0-144">Key Vault Object Models</span></span>
+> 
+> <span data-ttu-id="92dd0-145">실제로 키 자격 증명 모음 개체 모델 두 가지에 유의해야 합니다. 하나는 REST API(KeyVault 네임스페이스)를 기반으로 하며 다른 하나는 클라이언트 쪽 암호화에 대한 확장입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-145">It is important to understand that there are actually two Key Vault object models to be aware of: one is based on the REST API (KeyVault namespace) and the other is an extension for client-side encryption.</span></span>
+> 
+> <span data-ttu-id="92dd0-146">키 자격 증명 모음 클라이언트는 REST API와 상호작용하며 JSON 웹 키 및 키 자격 증명 모음에 포함된 두 종류의 항목에 대한 암호를 인식합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-146">The Key Vault Client interacts with the REST API and understands JSON Web Keys and secrets for the two kinds of things that are contained in Key Vault.</span></span>
+> 
+> <span data-ttu-id="92dd0-147">키 자격 증명 모음 확장은 Azure 저장소에 대한 클라이언트 쪽 암호화를 위해 명시적으로 생성된 것으로 보이는 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-147">The Key Vault Extensions are classes that seem specifically created for client-side encryption in Azure Storage.</span></span> <span data-ttu-id="92dd0-148">이는 키(IKey) 및 키 확인 프로그램의 개념에 기초한 클래스를 포함하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-148">They contain an interface for keys (IKey) and classes based on the concept of a Key Resolver.</span></span> <span data-ttu-id="92dd0-149">IKey의 두 구현 RSAKey 및 SymmetricKey를 알아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-149">There are two implementations of IKey that you need to know: RSAKey and SymmetricKey.</span></span> <span data-ttu-id="92dd0-150">현재 이들은 우연히 키 자격 증명 모음에 포함된 항목과 일치하지만, 이 시점에서는 독립된 클래스입니다(따라서 키 및 키 자격 증명 모음 클라이언트가 검색한 암호는 IKey를 구현하지 않음).</span><span class="sxs-lookup"><span data-stu-id="92dd0-150">Now they happen to coincide with the things that are contained in a Key Vault, but at this point they are independent classes (so the Key and Secret retrieved by the Key Vault Client do not implement IKey).</span></span>
+> 
+> 
+
+## <a name="encrypt-blob-and-upload"></a><span data-ttu-id="92dd0-151">Blob 암호화 및 업로드</span><span class="sxs-lookup"><span data-stu-id="92dd0-151">Encrypt blob and upload</span></span>
+<span data-ttu-id="92dd0-152">Blob을 암호화하고 Azure 저장소 계정에 업로드하는 다음과 같은 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-152">Add the following code to encrypt a blob and upload it to your Azure storage account.</span></span> <span data-ttu-id="92dd0-153">사용되는 **ResolveKeyAsync** 메서드는 IKey를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-153">The **ResolveKeyAsync** method that is used returns an IKey.</span></span>
+
+```csharp
+// Retrieve the key that you created previously.
+// The IKey that is returned here is an RsaKey.
+// Remember that we used the names contosokeyvault and testrsakey1.
+var rsa = cloudResolver.ResolveKeyAsync("https://contosokeyvault.vault.azure.net/keys/TestRSAKey1", CancellationToken.None).GetAwaiter().GetResult();
+
+// Now you simply use the RSA key to encrypt by setting it in the BlobEncryptionPolicy.
+BlobEncryptionPolicy policy = new BlobEncryptionPolicy(rsa, null);
+BlobRequestOptions options = new BlobRequestOptions() { EncryptionPolicy = policy };
+
+// Reference a block blob.
+CloudBlockBlob blob = contain.GetBlockBlobReference("MyFile.txt");
+
+// Upload using the UploadFromStream method.
+using (var stream = System.IO.File.OpenRead(@"C:\data\MyFile.txt"))
+    blob.UploadFromStream(stream, stream.Length, null, options, null);
+```
+
+<span data-ttu-id="92dd0-154">다음은 키 자격 증명에 저장된 키와 함께 클라이언트 쪽 암호화를 사용하여 암호화한 Blob에 대한 현재 [Azure 클래식 포털](https://manage.windowsazure.com)의 스크린샷입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-154">Following is a screenshot from the [Azure Classic Portal](https://manage.windowsazure.com) for a blob that has been encrypted by using client-side encryption with a key stored in Key Vault.</span></span> <span data-ttu-id="92dd0-155">**KeyId** 속성은 키 KEK 역할을 하는 키 자격 증명 모음의 키에 대한 URI입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-155">The **KeyId** property is the URI for the key in Key Vault that acts as the KEK.</span></span> <span data-ttu-id="92dd0-156">**EncryptedKey** 속성은 CEK의 암호화된 버전을 포함하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-156">The **EncryptedKey** property contains the encrypted version of the CEK.</span></span>
+
+![암호화 메타 데이터를 포함하고 있는 Blob 메타데이터를 보여 주는 스크린샷](./media/storage-encrypt-decrypt-blobs-key-vault/blobmetadata.png)
+
+> [!NOTE]
+> <span data-ttu-id="92dd0-158">BlobEncryptionPolicy 생성자를 살펴보면 키 및/또는 해결 프로그램을 사용할 수 있다는 것을 알 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-158">If you look at the BlobEncryptionPolicy constructor, you will see that it can accept a key and/or a resolver.</span></span> <span data-ttu-id="92dd0-159">현재 해결 프로그램은 기본 키를 지원하지 않기 때문에 암호화에 사용할 수 없다는 데 유의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-159">Be aware that right now you cannot use a resolver for encryption because it does not currently support a default key.</span></span>
+> 
+> 
+
+## <a name="decrypt-blob-and-download"></a><span data-ttu-id="92dd0-160">Blob 암호 해독 및 다운로드</span><span class="sxs-lookup"><span data-stu-id="92dd0-160">Decrypt blob and download</span></span>
+<span data-ttu-id="92dd0-161">암호 해독은 실제로 확인 프로그램 클래스가 합리적인 경우입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-161">Decryption is really when using the Resolver classes make sense.</span></span> <span data-ttu-id="92dd0-162">암호화에 사용되는 키의 ID는 해당 메타 데이터의 Blob과 연결되므로 키를 검색하고 키와 Blob 사이의 연결을 기억할 이유가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-162">The ID of the key used for encryption is associated with the blob in its metadata, so there is no reason for you to retrieve the key and remember the association between key and blob.</span></span> <span data-ttu-id="92dd0-163">다만 키가 키 자격 증명 모음에 남아 있는지 확인하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-163">You just have to make sure that the key remains in Key Vault.</span></span>   
+
+<span data-ttu-id="92dd0-164">RSA 키의 개인 키는 키 자격 증명 모음에 남아 있으므로 해독을 실행하려면 CEK를 포함하고 있는 Blob 메타데이터의 암호화 키를 해독하기 위해 키 자격 증명 모음에 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-164">The private key of an RSA Key remains in Key Vault, so for decryption to occur, the Encrypted Key from the blob metadata that contains the CEK is sent to Key Vault for decryption.</span></span>
+
+<span data-ttu-id="92dd0-165">방금 업로드한 Blob을 암호 해독하려면 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-165">Add the following to decrypt the blob that you just uploaded.</span></span>
+
+```csharp
+// In this case, we will not pass a key and only pass the resolver because
+// this policy will only be used for downloading / decrypting.
+BlobEncryptionPolicy policy = new BlobEncryptionPolicy(null, cloudResolver);
+BlobRequestOptions options = new BlobRequestOptions() { EncryptionPolicy = policy };
+
+using (var np = File.Open(@"C:\data\MyFileDecrypted.txt", FileMode.Create))
+    blob.DownloadToStream(np, null, options, null);
+```
+
+> [!NOTE]
+> <span data-ttu-id="92dd0-166">키 관리를 더 쉽게 해 주는 다른 종류의 두 확인 프로그램 AggregateKeyResolver 및 CachingKeyResolver가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-166">There are a couple of other kinds of resolvers to make key management easier, including: AggregateKeyResolver and CachingKeyResolver.</span></span>
+> 
+> 
+
+## <a name="use-key-vault-secrets"></a><span data-ttu-id="92dd0-167">키 자격 증명 모음 암호 사용</span><span class="sxs-lookup"><span data-stu-id="92dd0-167">Use Key Vault secrets</span></span>
+<span data-ttu-id="92dd0-168">암호는 기본적으로 대칭 키이므로 SymmetricKey 클래스를 통해 암호를 클라이언트 쪽 암호화와 함께 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-168">The way to use a secret with client-side encryption is via the SymmetricKey class because a secret is essentially a symmetric key.</span></span> <span data-ttu-id="92dd0-169">하지만 위에서 지적했듯이 키 자격 증명 모음의 암호는 SymmetricKey에 정확하게 매핑되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-169">But, as noted above, a secret in Key Vault does not map exactly to a SymmetricKey.</span></span> <span data-ttu-id="92dd0-170">여기서 이해해야 할 몇 가지 사항이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-170">There are a few things to understand:</span></span>
+
+* <span data-ttu-id="92dd0-171">SymmetricKey 키의 키는 고정 길이 128, 192, 256, 384 또는 512비트여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-171">The key in a SymmetricKey has to be a fixed length: 128, 192, 256, 384, or 512 bits.</span></span>
+* <span data-ttu-id="92dd0-172">SymmetricKey의 키는 Base64 인코딩이 되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-172">The key in a SymmetricKey should be Base64 encoded.</span></span>
+* <span data-ttu-id="92dd0-173">SymmetricKey로 사용할 키 자격 증명 모음 암호는 키 자격 증명 모음에 "응용 프로그램/옥텟 스트림" 콘텐츠 형식을 가지고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-173">A Key Vault secret that will be used as a SymmetricKey needs to have a Content Type of "application/octet-stream" in Key Vault.</span></span>
+
+<span data-ttu-id="92dd0-174">다음은 SymmetricKey로 사용할 수 있는 키 자격 증명 모음의 암호를 만드는 Powershell의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-174">Here is an example in PowerShell of creating a secret in Key Vault that can be used as a SymmetricKey.</span></span>
+<span data-ttu-id="92dd0-175">$key는 하드 코드된 값이며 데모 전용입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-175">Please note that the hard coded value, $key, is for demonstration purpose only.</span></span> <span data-ttu-id="92dd0-176">사용자 고유의 코드에서 이 키를 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-176">In your own code you'll want to generate this key.</span></span>
+
+```csharp
+// Here we are making a 128-bit key so we have 16 characters.
+//     The characters are in the ASCII range of UTF8 so they are
+//    each 1 byte. 16 x 8 = 128.
+$key = "qwertyuiopasdfgh"
+$b = [System.Text.Encoding]::UTF8.GetBytes($key)
+$enc = [System.Convert]::ToBase64String($b)
+$secretvalue = ConvertTo-SecureString $enc -AsPlainText -Force
+
+// Substitute the VaultName and Name in this command.
+$secret = Set-AzureKeyVaultSecret -VaultName 'ContoseKeyVault' -Name 'TestSecret2' -SecretValue $secretvalue -ContentType "application/octet-stream"
+```
+
+<span data-ttu-id="92dd0-177">사용자의 콘솔 응용 프로그램에서는 전과 동일한 호출을 사용하여 이 암호를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-177">In your console application, you can use the same call as before to retrieve this secret as a SymmetricKey.</span></span>
+
+```csharp
+SymmetricKey sec = (SymmetricKey) cloudResolver.ResolveKeyAsync(
+    "https://contosokeyvault.vault.azure.net/secrets/TestSecret2/",
+    CancellationToken.None).GetAwaiter().GetResult();
+```
+<span data-ttu-id="92dd0-178">이것으로 끝입니다.</span><span class="sxs-lookup"><span data-stu-id="92dd0-178">That's it.</span></span> <span data-ttu-id="92dd0-179">마음껏 즐기세요!</span><span class="sxs-lookup"><span data-stu-id="92dd0-179">Enjoy!</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="92dd0-180">다음 단계</span><span class="sxs-lookup"><span data-stu-id="92dd0-180">Next steps</span></span>
+<span data-ttu-id="92dd0-181">C#에서 Microsoft Azure Storage 사용에 대한 자세한 내용은 [.NET용 Microsoft Azure Storage Client Library](https://msdn.microsoft.com/library/azure/dn261237.aspx)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92dd0-181">For more information about using Microsoft Azure Storage with C#, see [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx).</span></span>
+
+<span data-ttu-id="92dd0-182">Blob REST API에 대한 자세한 내용은 [Blob 서비스 REST API](https://msdn.microsoft.com/library/azure/dd135733.aspx)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92dd0-182">For more information about the Blob REST API, see [Blob Service REST API](https://msdn.microsoft.com/library/azure/dd135733.aspx).</span></span>
+
+<span data-ttu-id="92dd0-183">Microsoft Azure Storage에 관한 최신 정보를 보려면 [Microsoft Azure Storage Team Blog](http://blogs.msdn.com/b/windowsazurestorage/)로 이동하세요.</span><span class="sxs-lookup"><span data-stu-id="92dd0-183">For the latest information on Microsoft Azure Storage, go to the [Microsoft Azure Storage Team Blog](http://blogs.msdn.com/b/windowsazurestorage/).</span></span>

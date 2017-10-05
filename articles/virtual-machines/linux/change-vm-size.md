@@ -1,0 +1,63 @@
+---
+title: "Azure CLI 2.0을 사용하여 Linux VM의 크기를 조정하는 방법 | Microsoft Docs"
+description: "VM 크기를 변경하여 Linux 가상 컴퓨터의 규모를 확장하거나 축소하는 방법"
+services: virtual-machines-linux
+documentationcenter: na
+author: mikewasson
+manager: timlt
+editor: 
+tags: 
+ms.assetid: e163f878-b919-45c5-9f5a-75a64f3b14a0
+ms.service: virtual-machines-linux
+ms.devlang: azurecli
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 02/10/2017
+ms.author: mwasson
+ms.custom: H1Hack27Feb2017
+ms.openlocfilehash: 23fc9f7f34732079682857d4ee685fe811751698
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="resize-a-linux-virtual-machine-using-cli-20"></a><span data-ttu-id="b21e9-103">CLI 2.0을 사용하여 Linux 가상 컴퓨터 크기 조정</span><span class="sxs-lookup"><span data-stu-id="b21e9-103">Resize a Linux virtual machine using CLI 2.0</span></span>
+
+<span data-ttu-id="b21e9-104">VM(가상 컴퓨터)을 프로비전한 후 [VM 크기][vm-sizes]를 변경하여 VM의 크기를 확장 또는 축소할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-104">After you provision a virtual machine (VM), you can scale the VM up or down by changing the [VM size][vm-sizes].</span></span> <span data-ttu-id="b21e9-105">경우에 따라 먼저 VM의 할당을 취소해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-105">In some cases, you must deallocate the VM first.</span></span> <span data-ttu-id="b21e9-106">VM을 호스트하는 하드웨어 클러스터에서 원하는 크기를 사용할 수 없는 경우 VM 할당을 취소해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-106">You need to deallocate the VM if the desired size is not available on the hardware cluster that is hosting the VM.</span></span> <span data-ttu-id="b21e9-107">이 문서에서는 Azure CLI 2.0에서 Linux VM 크기를 조정하는 방법을 자세히 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-107">This article details how to resize a Linux VM with the Azure CLI 2.0.</span></span> <span data-ttu-id="b21e9-108">[Azure CLI 1.0](change-vm-size-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)에서 이러한 단계를 수행할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-108">You can also perform these steps with the [Azure CLI 1.0](change-vm-size-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+
+## <a name="resize-a-vm"></a><span data-ttu-id="b21e9-109">VM 크기 조정</span><span class="sxs-lookup"><span data-stu-id="b21e9-109">Resize a VM</span></span>
+<span data-ttu-id="b21e9-110">VM의 크기를 조정하려면 최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치하고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-110">To resize a VM, you need the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) installed and logged in to an Azure account using [az login](/cli/azure/#login).</span></span>
+
+1. <span data-ttu-id="b21e9-111">VM이 [az vm list-vm-resize-options](/cli/azure/vm#list-vm-resize-options)로 호스트된 하드웨어 클러스터에서 사용 가능한 VM 크기의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-111">View the list of available VM sizes on the hardware cluster where the VM is hosted with [az vm list-vm-resize-options](/cli/azure/vm#list-vm-resize-options).</span></span> <span data-ttu-id="b21e9-112">다음 예제에서는 리소스 그룹 `myResourceGroup` 지역의 VM `myVM`에 대한 VM 크기를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-112">The following example lists VM sizes for the VM named `myVM` in the resource group `myResourceGroup` region:</span></span>
+   
+    ```azurecli
+    az vm list-vm-resize-options --resource-group myResourceGroup --name myVM --output table
+    ```
+
+2. <span data-ttu-id="b21e9-113">원하는 VM 크기가 나열되는 경우 [az vm resize](/cli/azure/vm#resize)로 VM의 크기를 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-113">If the desired VM size is listed, resize the VM with [az vm resize](/cli/azure/vm#resize).</span></span> <span data-ttu-id="b21e9-114">다음 예제에서는 VM `myVM`을 `Standard_DS3_v2` 크기로 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-114">The following example resizes the VM named `myVM` to the `Standard_DS3_v2` size:</span></span>
+   
+    ```azurecli
+    az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
+    ```
+   
+    <span data-ttu-id="b21e9-115">이 과정에서 VM이 다시 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-115">The VM restarts during this process.</span></span> <span data-ttu-id="b21e9-116">다시 시작한 후 기존의 OS 및 데이터 디스크는 다시 매핑됩니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-116">After the restart, your existing OS and data disks are remapped.</span></span> <span data-ttu-id="b21e9-117">임시 디스크에 있는 모든 내용이 손실됩니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-117">Anything on the temporary disk is lost.</span></span>
+
+3. <span data-ttu-id="b21e9-118">원하는 VM 크기가 목록에 없는 경우 먼저 [az vm deallocate](/cli/azure/vm#deallocate)로 VM 할당을 취소해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-118">If the desired VM size is not listed, you need to first deallocate the VM with [az vm deallocate](/cli/azure/vm#deallocate).</span></span> <span data-ttu-id="b21e9-119">이 프로세스를 통해 VM은 해당 지역에서 지원하는 사용 가능한 크기로 조정된 다음 시작될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-119">This process allows the VM to then be resized to any size available that the region supports and then started.</span></span> <span data-ttu-id="b21e9-120">다음 단계에서는 할당을 취소하고 크기를 조정한 다음 리소스 그룹 `myResourceGroup`에서 VM `myVM`을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-120">The following steps deallocate, resize, and then start the VM named `myVM` in the resource group named `myResourceGroup`:</span></span>
+   
+    ```azurecli
+    az vm deallocate --resource-group myResourceGroup --name myVM
+    az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
+    az vm start --resource-group myResourceGroup --name myVM
+    ```
+   
+   > [!WARNING]
+   > <span data-ttu-id="b21e9-121">VM의 할당이 취소되면 VM에 할당된 모든 동적 IP 주소도 해제됩니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-121">Deallocating the VM also releases any dynamic IP addresses assigned to the VM.</span></span> <span data-ttu-id="b21e9-122">OS 및 데이터 디스크는 영향을 받지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-122">The OS and data disks are not affected.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="b21e9-123">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b21e9-123">Next steps</span></span>
+<span data-ttu-id="b21e9-124">확장성을 높이기 위해서는 여러 VM 인스턴스를 실행하고 규모를 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="b21e9-124">For additional scalability, run multiple VM instances and scale out.</span></span> <span data-ttu-id="b21e9-125">자세한 내용은 [가상 컴퓨터 확장 집합에서 Linux 컴퓨터 자동 확장][scale-set]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b21e9-125">For more information, see [Automatically scale Linux machines in a Virtual Machine Scale Set][scale-set].</span></span> 
+
+<!-- links -->
+[boot-diagnostics]: https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/
+[scale-set]: ../../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md 
+[vm-sizes]:sizes.md

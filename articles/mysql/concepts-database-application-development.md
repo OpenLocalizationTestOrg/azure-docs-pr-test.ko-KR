@@ -1,0 +1,50 @@
+---
+title: "MySQL용 Azure 데이터베이스에 대한 데이터베이스 응용 프로그램 개발 개요 | Microsoft Docs"
+description: "개발자가 MySQL용 Azure 데이터베이스에 연결하기 위한 응용 프로그램 코드를 작성할 때 따라야 하는 디자인 고려 사항을 소개합니다."
+services: mysql
+author: v-chenyh
+ms.author: v-chenyh
+manager: jhubbard
+editor: jasonwhowell
+ms.service: mysql-database
+ms.topic: article
+ms.date: 05/10/2017
+ms.openlocfilehash: 350dd775e172120d806d1193877a34d94f4d3f6a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="application-development-overview-for-azure-database-for-mysql"></a><span data-ttu-id="d0fd0-103">MySQL용 Azure 데이터베이스에 대한 응용 프로그램 개발 개요</span><span class="sxs-lookup"><span data-stu-id="d0fd0-103">Application development overview for Azure Database for MySQL</span></span> 
+<span data-ttu-id="d0fd0-104">이 문서에서는 개발자가 MySQL용 Azure 데이터베이스에 연결하기 위한 응용 프로그램 코드를 작성할 때 따라야 하는 디자인 고려 사항을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-104">This article discusses design considerations that a developer should follow when writing application code to connect to Azure Database for MySQL</span></span> 
+
+> [!TIP]
+> <span data-ttu-id="d0fd0-105">서버를 만들고, 서버 기반 방화벽을 만들고, 서버 속성을 보고, 데이터베이스를 만들고, 워크벤치 및 mysql.exe를 사용하여 연결 및 쿼리하는 방법을 보여 주는 자습서를 보려면 [첫 번째 Azure MySQL Database 디자인](tutorial-design-database-using-portal.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-105">For a tutorial showing you how to create a server, create a server-based firewall, view server properties, create database, connect and query using workbench and mysql.exe, see [Design your first Azure MySQL database](tutorial-design-database-using-portal.md)</span></span>
+
+## <a name="language-and-platform"></a><span data-ttu-id="d0fd0-106">언어 및 플랫폼</span><span class="sxs-lookup"><span data-stu-id="d0fd0-106">Language and platform</span></span>
+<span data-ttu-id="d0fd0-107">다양한 프로그래밍 언어 및 플랫폼에 대한 코드 샘플을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-107">There are code samples available for various programming languages and platforms.</span></span> <span data-ttu-id="d0fd0-108">[MySQL용 Azure 데이터베이스에 연결하는 데 사용되는 연결 라이브러리](concepts-connection-libraries.md)에서 코드 샘플에 대한 링크를 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-108">You can find links to the code samples at: [Connectivity libraries used to connect to Azure Database for MySQL](concepts-connection-libraries.md)</span></span>
+
+## <a name="tools"></a><span data-ttu-id="d0fd0-109">도구</span><span class="sxs-lookup"><span data-stu-id="d0fd0-109">Tools</span></span>
+<span data-ttu-id="d0fd0-110">MySQL용 Azure 데이터베이스는 워크벤치와 같은 MySQL 공통 관리 도구 또는 mysql.exe, [phpMyAdmin](https://www.phpmyadmin.net/), [Navicat](https://www.navicat.com/products/navicat-for-mysql) 등과 같은 MySQL 유틸리티와 호환되는 MySQL 커뮤니티 버전을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-110">Azure Database for MySQL uses the MySQL community version, compatible with MySQL common management tools such as Workbench or MySQL utilities such as mysql.exe, [phpMyAdmin](https://www.phpmyadmin.net/), [Navicat](https://www.navicat.com/products/navicat-for-mysql), and others.</span></span> <span data-ttu-id="d0fd0-111">또한 Azure Portal, Azure CLI, REST API를 사용하여 데이터베이스 서비스와 상호 작용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-111">You can also use the Azure portal, Azure CLI, and REST APIs to interact with the database service.</span></span>
+
+## <a name="resource-limitations"></a><span data-ttu-id="d0fd0-112">리소스 제한</span><span class="sxs-lookup"><span data-stu-id="d0fd0-112">Resource limitations</span></span>
+<span data-ttu-id="d0fd0-113">Azure MySQL Database는 다음 두 가지 메커니즘을 사용하여 서버에서 사용할 수 있는 리소스를 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-113">Azure MySQL Database manages the resources available to a server using two different mechanisms:</span></span> 
+- <span data-ttu-id="d0fd0-114">리소스 관리</span><span class="sxs-lookup"><span data-stu-id="d0fd0-114">Resources Governance</span></span> 
+- <span data-ttu-id="d0fd0-115">제한 적용</span><span class="sxs-lookup"><span data-stu-id="d0fd0-115">Enforcement of Limits.</span></span>
+
+## <a name="security"></a><span data-ttu-id="d0fd0-116">보안</span><span class="sxs-lookup"><span data-stu-id="d0fd0-116">Security</span></span>
+<span data-ttu-id="d0fd0-117">Azure MySQL Database는 액세스를 제한하고, 데이터를 보호하고, 사용자 및 역할을 구성하고, MySQL Database에 대한 활동을 모니터링하기 위한 리소스를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-117">Azure MySQL Database provides resources for limiting access, protecting data, configuring users and role, and monitoring activities on a MySQL Database.</span></span>
+
+## <a name="authentication"></a><span data-ttu-id="d0fd0-118">인증</span><span class="sxs-lookup"><span data-stu-id="d0fd0-118">Authentication</span></span>
+<span data-ttu-id="d0fd0-119">Azure MySQL Database는 사용자 및 로그인의 서버 인증을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-119">Azure MySQL Database supports server authentication of users and logins.</span></span>
+
+## <a name="resiliency"></a><span data-ttu-id="d0fd0-120">복원력</span><span class="sxs-lookup"><span data-stu-id="d0fd0-120">Resiliency</span></span>
+<span data-ttu-id="d0fd0-121">MySQL Database에 연결하는 동안 일시적인 오류가 발생하면, 코드는 호출을 다시 시도해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-121">When a transient error occurs while connecting to MySQL Database, your code should retry the call.</span></span> <span data-ttu-id="d0fd0-122">여러 클라이언트가 재시도를 동시에 수행하여 SQL Database가 채워지지 않도록 재시도 논리에 백오프 논리를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-122">We recommend the retry logic use back off logic, so that it does not overwhelm the SQL Database with multiple clients retrying simultaneously.</span></span>
+
+- <span data-ttu-id="d0fd0-123">코드 샘플: 재시도 논리를 설명하는 코드 샘플을 보려면 [MySQL용 Azure 데이터베이스에 연결하는 데 사용되는 연결 라이브러리](concepts-connection-libraries.md)에서 선택한 언어에 대한 샘플을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-123">Code samples: For code samples that illustrate retry logic, see samples for the language of your choice at: [Connectivity libraries used to connect to Azure Database for MySQL](concepts-connection-libraries.md)</span></span>
+
+## <a name="managing-connections"></a><span data-ttu-id="d0fd0-124">연결 관리</span><span class="sxs-lookup"><span data-stu-id="d0fd0-124">Managing Connections</span></span>
+<span data-ttu-id="d0fd0-125">데이터베이스 연결은 제한된 리소스이므로 성능을 향상시키려면 MySQL Database에 액세스할 때 적절한 연결을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-125">Database connections are a limited resource, so we recommend sensible use of connections when accessing your MySQL Database to achieve better performance.</span></span>
+- <span data-ttu-id="d0fd0-126">연결 풀링 또는 영구 연결을 사용하여 데이터베이스에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-126">Access the database by using connection pooling or persistent connections.</span></span>
+- <span data-ttu-id="d0fd0-127">수명이 짧은 연결을 사용하여 데이터베이스에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-127">Access the database by using short connection life span.</span></span> 
+- <span data-ttu-id="d0fd0-128">연결 시도 시 응용 프로그램의 재시도 논리를 사용하여 허용되는 최대 횟수에 도달한 동시 연결로 인한 실패를 잡아냅니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-128">Use retry logic in your application at the point of the connection attempt, to catch failures due to concurrent connections have reached the maximum allowed.</span></span> <span data-ttu-id="d0fd0-129">재시도 논리에는 짧은 지연 시간을 설정한 후, 추가 연결 시도가 있기 전에 임의 시간 동안 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="d0fd0-129">In the retry logic, set a short delay, and then wait for a random time before the additional connection attempts.</span></span>
