@@ -1,6 +1,6 @@
 ---
-title: "Event Hubs를 사용하여 실행 부하 과다 경로에서 Azure 진단 데이터 스트리밍 | Microsoft 문서"
-description: "일반적인 시나리오에 대한 지침을 포함하여 이벤트 허브로 Azure 진단을 완벽하게 구성."
+title: "이벤트 허브를 사용 하 여 hello 실행 부하 과다 경로에 Azure 진단 데이터 aaaStreaming | Microsoft Docs"
+description: "이벤트 허브와 Azure 진단 구성 tooend, 일반적인 시나리오에 대 한 지침을 포함 하 여 종료 합니다."
 services: event-hubs
 documentationcenter: na
 author: rboucher
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: robb
-ms.openlocfilehash: 1c05bd6dc4c4d394aa043b9995de9c184e4f14c6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a2528ddd0688d1c23a8631e769ca016dd79e4159
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="streaming-azure-diagnostics-data-in-the-hot-path-by-using-event-hubs"></a>이벤트 허브를 사용하여 실행 부하 과다 경로에서 Azure 진단 데이터 스트리밍
-Azure 진단에서는 클라우드 서비스 VM(가상 컴퓨터)에서 메트릭 및 로그를 수집하고 결과를 Azure 저장소로 전송하는 유연한 방법을 제공합니다. 2016년 3월(SDK 2.9)부터 [Azure 이벤트 허브](https://azure.microsoft.com/services/event-hubs/)를 사용하여 데이터 원본을 사용자 지정하고 몇 초 만에 실행 부하 과다 경로 데이터를 전송할 수 있는 진단을 보낼 수 있습니다.
+# <a name="streaming-azure-diagnostics-data-in-hello-hot-path-by-using-event-hubs"></a>이벤트 허브를 사용 하 여 hello 실행 부하 과다 경로에 Azure 진단 데이터를 스트리밍
+Azure 진단 유연한 방법이 toocollect 메트릭을 제공 하 고에서 기록 클라우드 서비스 Vm (가상 컴퓨터) 및 결과 tooAzure 저장소를 전송 합니다. Hello 2016 년 3 월 (SDK 2.9) 시간 내에 부터는 진단 toocustom 데이터 소스를 보내고 수 (초)를 사용 하 여 실행 부하 과다 경로 데이터를 전송 [Azure 이벤트 허브](https://azure.microsoft.com/services/event-hubs/)합니다.
 
 지원되는 데이터 유형은 다음과 같습니다.
 
@@ -31,25 +31,25 @@ Azure 진단에서는 클라우드 서비스 VM(가상 컴퓨터)에서 메트�
 * 응용 프로그램 로그
 * Azure 진단 인프라 로그
 
-이 문서에서는 이벤트 허브에 Azure 진단을 구성하는 방법을 완벽하게 보여 줍니다. 다음과 같은 일반적인 시나리오에 대한 지침도 제공됩니다.
+이 문서에서 이벤트 허브를 사용 하 여 Azure 진단 tooconfigure tooend를 종료 하는 방법을 보여 줍니다. 다음 일반적인 시나리오는 hello에 대 한 지침이 제공도 됩니다.
 
-* 이벤트 허브에 전송된 로그 및 메트릭을 사용자 지정하는 방법
-* 각 환경에서 구성을 변경하는 방법
-* 이벤트 허브 스트림 데이터를 보는 방법
-* 연결 문제를 해결하는 방법  
+* Toocustomize hello 기록 하는 방법 및 tooEvent 허브 전송 하는 메트릭
+* 어떻게 각 환경에 toochange 구성
+* Tooview 이벤트 허브에 데이터를 스트림 하는 방법
+* Tootroubleshoot 연결 hello 하는 방법  
 
 ## <a name="prerequisites"></a>필수 조건
-Azure 진단에서 데이터를 수신하는 이벤트 허브는 Azure SDK 2.9 및 해당 Visual Studio용 Azure 도구에서 시작하는 Cloud Services, VM, 가상 컴퓨터 확장 집합 및 Service Fabric에서 지원됩니다.
+Azure 진단에서 이벤트 허브 receieving 데이터는 클라우드 서비스, Vm, 가상 컴퓨터 크기 집합 및 Azure SDK 2.9 hello 및 Azure Tools for Visual Studio에 해당 하는 hello 부터는 서비스 패브릭에서 지원 됩니다.
 
 * Azure 진단 확장 1.6(기본적으로[Azure SDK for .NET 2.9 이상](https://azure.microsoft.com/downloads/) 대상)
 * [Visual Studio 2013 이상](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
-* *.wadcfgx* 파일과 다음 방법 중 하나를 사용하는 응용 프로그램에서 Azure 진단의 기존 구성은 다음과 같습니다.
+* 사용 하 여 응용 프로그램에서 Azure 진단의 기존 구성은 *.wadcfgx* 파일과 hello 메서드를 다음 중 하나:
   * Visual Studio: [Azure 클라우드 서비스 및 가상 컴퓨터에서 진단 구성](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
   * Windows PowerShell: [PowerShell을 사용하여 Azure 클라우드 서비스에서 진단 사용](../cloud-services/cloud-services-diagnostics-powershell.md)
-* 항목별로 프로비전되는 Event Hubs 네임스페이스([Event Hubs 시작](../event-hubs/event-hubs-csharp-ephcs-getstarted.md) 참조)
+* 이벤트 허브 네임 스페이스 hello 아티클 단위의 프로 비전 [이벤트 허브 시작](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
-## <a name="connect-azure-diagnostics-to-event-hubs-sink"></a>이벤트 허브 싱크에 Azure 진단 연결
-기본적으로 Azure 진단은 항상 Azure Storage 계정에 로그 및 메트릭을 전송합니다. 응용 프로그램은 *.wadcfgx* 파일의 **PublicConfig** / **WadCfg** 요소에 새로운 **Sinks** 섹션을 추가하여 이벤트 허브에 데이터를 전송할 수도 있습니다. Visual Studio에서 *.wadcfgx* 파일은 **클라우드 서비스 프로젝트** > **역할** > **(RoleName)** > **diagnostics.wadcfgx** 파일이라는 경로에 저장됩니다.
+## <a name="connect-azure-diagnostics-tooevent-hubs-sink"></a>Azure 진단 tooEvent 허브 싱크를 연결 합니다.
+기본적으로 Azure 진단 로그 및 메트릭 tooan Azure 저장소 계정에 항상 보냅니다. 추가 하 여 데이터 tooEvent 허브 응용 프로그램에 보낼 수도 있습니다 **싱크** hello 섹션 **PublicConfig** / **WadCfg** hello 요소의*.wadcfgx* 파일입니다. Visual Studio에서 hello *.wadcfgx* 파일 경로 따라 hello에 저장 됩니다: **클라우드 서비스 프로젝트** > **역할** > **드 ( RoleName)** > **diagnostics.wadcfgx** 파일입니다.
 
 ```xml
 <SinksConfig>
@@ -72,18 +72,18 @@ Azure 진단에서 데이터를 수신하는 이벤트 허브는 Azure SDK 2.9 �
 }
 ```
 
-이 예제에서 이벤트 허브 URL은 이벤트 허브의 정규화된 네임스페이스(Event Hubs 네임스페이스 + “/” + 이벤트 허브 이름)로 설정됩니다.  
+이 예제에서는 URL이 toohello를 완벽 하 게 설정 하는 hello 이벤트 허브 정규화 된 네임 스페이스 hello 이벤트 허브의: 이벤트 허브 네임 스페이스 + "/" + 이벤트 허브 이름입니다.  
 
-이벤트 허브 URL은 이벤트 허브 대시보드의 [Azure Portal](http://go.microsoft.com/fwlink/?LinkID=213885)에 표시됩니다.  
+URL hello에 표시 되는 hello 이벤트 허브 [Azure 포털](http://go.microsoft.com/fwlink/?LinkID=213885) hello 이벤트 허브 대시보드에서.  
 
-**싱크** 이름의 경우 같은 값이 구성 파일 전체에서 일관되게 사용되고 있다면 유효한 문자열로 설정할 수 있습니다.
+hello **싱크** 이름을 설정할 수 있습니다 tooany 유효한 문자열 hello 동일한 값이 사용 일관 되 게 hello 구성 파일 전체으로 합니다.
 
 > [!NOTE]
-> 이 섹션에서 구성된 *applicationInsights* 와 같은 추가 싱크가 있을 수 있습니다. 각 싱크가 **PrivateConfig** 섹션에서도 선언되어 있는 경우 Azure 진단을 통해 하나 이상의 싱크를 정의할 수 있습니다.  
+> 이 섹션에서 구성된 *applicationInsights* 와 같은 추가 싱크가 있을 수 있습니다. Azure 진단을 허용 또는 toobe hello에 각 싱크를 선언 하는 경우 정의 된 싱크 자세히 **PrivateConfig** 섹션.  
 >
 >
 
-또한, 이벤트 허브 싱크도 **.wadcfgx** 구성 파일의 *PrivateConfig* 섹션에서 선언되고 정의되어야 합니다.
+hello 이벤트 허브 싱크도 여야 선언 하며 hello에 정의 된 **PrivateConfig** hello 섹션 *.wadcfgx* 구성 파일입니다.
 
 ```XML
 <PrivateConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
@@ -104,19 +104,19 @@ Azure 진단에서 데이터를 수신하는 이벤트 허브는 Azure SDK 2.9 �
 }
 ```
 
-`SharedAccessKeyName` 값은 **Event Hubs** 네임스페이스에 정의된 SAS(공유 액세스 서명) 키 및 정책과 일치해야 합니다. [Azure Portal](https://manage.windowsazure.com)에서 Event Hubs 대시보드로 이동하여 **구성** 탭을 클릭하고 *보내기* 권한이 있는 명명된 정책(예: "SendRule")을 설정합니다. 또한 **StorageAccount**도 **PrivateConfig**에서 선언되어 있습니다. 값이 작동 중인 경우 변경할 필요가 없습니다. 이 예제에서는 값을 비워 둡니다. 이는 다운스트림 자산이 값을 설정한다는 의미입니다. 예를 들어 *ServiceConfiguration.Cloud.cscfg* 환경 구성 파일은 환경에 적절한 이름 및 키를 설정합니다.  
+hello `SharedAccessKeyName` 공유 액세스 서명 (SAS) 키와 hello에 정의 된 정책 값과 일치 해야 **이벤트 허브** 네임 스페이스입니다. Hello에서 이벤트 허브 대시보드 toohello 찾아보기 [Azure 포털](https://manage.windowsazure.com), hello 클릭 **구성** 탭 하 고 있는 명명 된 정책 (예: "SendRule")를 설정 *보낼* 사용 권한입니다. hello **StorageAccount** 에 선언 됩니다 **PrivateConfig**합니다. 없어도 여기 toochange 값 작동 합니다. 이 예제에서는 상태로 두면 hello 값 비어 있는 다운스트림 자산 hello 값을 설정 하는 기호입니다. 예를 들어 hello *ServiceConfiguration.Cloud.cscfg* 환경 구성 파일 hello 환경에 적합 한 이름 및 키로 설정 합니다.  
 
 > [!WARNING]
-> 이벤트 허브 SAS 키는 *.wadcfgx* 파일에 일반 텍스트로 저장되어 있습니다. 이 키는 때로 소스 코드 제어에서 발견되거나 빌드 서버에서 자산으로 사용할 수 있는 경우가 있으므로 적절하게 보호해야 합니다. 악의적인 사용자가 SAS 키를 이벤트 허브에 작성하기만 하고 수신하거나 관리하지 않을 수 있으므로 여기서 *보내기 전용* 권한으로 사용하는 것이 좋습니다.
+> hello 이벤트 허브 SAS 키가 hello에 일반 텍스트로 저장 *.wadcfgx* 파일입니다. 종종이 키 toosource 코드 제어에서 체크 또는 적절 하 게 보호 해야 하므로 빌드 서버에 자산으로 사용할 수 있습니다. 사용 하 여 여기에 SAS 키를 사용 하는 것이 좋습니다 *보내기만* 권한을 악의적인 사용자 또는 수 있도록 toohello 이벤트 허브를 작성 하지만 하지 tooit 수신 관리 합니다.
 >
 >
 
-## <a name="configure-azure-diagnostics-to-send-logs-and-metrics-to-event-hubs"></a>Azure 진단을 구성하여 이벤트 허브에 로그 및 메트릭 전송
-이전에 설명한 대로 모든 기본 및 사용자 지정 진단 데이터(예: 메트릭 및 로그)는 구성된 간격으로 Azure Storage로 자동 전송됩니다. 이벤트 허브 및 추가 싱크를 사용하여 이벤트 허브로 전송될 계층 구조에서 루트 또는 리프 노드를 지정할 수 있습니다. 여기에는 ETW 이벤트, 성능 카운터, Windows 이벤트 로그 및 응용 프로그램 로그가 포함되어 있습니다.   
+## <a name="configure-azure-diagnostics-toosend-logs-and-metrics-tooevent-hubs"></a>Azure 진단 toosend 로그 및 메트릭 tooEvent 허브 구성
+이전에 설명한 대로, 모든 기본 및 사용자 지정 진단 데이터 즉, 메트릭 및 로그를 자동으로 전송 됩니다 tooAzure 저장소 hello 구성 된 간격으로 합니다. 이벤트 허브와 추가 싱크 hello 계층 toobe 전송 toohello 이벤트 허브의에서 모든 루트 또는 리프 노드를 지정할 수 있습니다. 여기에는 ETW 이벤트, 성능 카운터, Windows 이벤트 로그 및 응용 프로그램 로그가 포함되어 있습니다.   
 
-얼마나 많은 데이터 요소를 실제로 이벤트 허브로 전송해야 하는지 고려하는 것이 중요합니다. 일반적으로 개발자는 신속하게 사용하고 해석해야 하는 대기 시간이 짧은 실행 부하 과다 경로 데이터를 전송합니다. 예는 경고를 모니터링하고 규칙을 자동 크기 조정하는 시스템입니다. 개발자는 대체 분석 또는 검색 저장소(예: Azure 스트림 분석, ElasticSearch, 사용자 지정 모니터링 시스템 또는 즐겨찾는 타사 모니터링 시스템)를 구성할 수도 있습니다.
+데이터 요소 실제로 해야 tooconsider tooEvent 허브 전송 유용 합니다. 일반적으로 개발자는 신속하게 사용하고 해석해야 하는 대기 시간이 짧은 실행 부하 과다 경로 데이터를 전송합니다. 예는 경고를 모니터링하고 규칙을 자동 크기 조정하는 시스템입니다. 개발자는 대체 분석 또는 검색 저장소(예: Azure 스트림 분석, ElasticSearch, 사용자 지정 모니터링 시스템 또는 즐겨찾는 타사 모니터링 시스템)를 구성할 수도 있습니다.
 
-다음은 몇 가지 구성 예입니다.
+hello 다음은 몇 가지 예제 구성입니다.
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M" sinks="HotPath">
@@ -146,7 +146,7 @@ Azure 진단에서 데이터를 수신하는 이벤트 허브는 Azure SDK 2.9 �
 }
 ```
 
-위의 예제에서는 싱크가 계층 구조에서 부모 **PerformanceCounters** 노드에 적용됩니다. 즉 모든 자식 **PerformanceCounters**를 Event Hubs로 보냅니다.  
+위 예제는 hello, hello 싱크는 적용 된 toohello 부모 **PerformanceCounters** 즉, 모든 자식 hello 계층의 노드에 **PerformanceCounters** tooEvent 허브 전송 됩니다.  
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M">
@@ -188,9 +188,9 @@ Azure 진단에서 데이터를 수신하는 이벤트 허브는 Azure SDK 2.9 �
 }
 ```
 
-이전 예제에서 싱크는 단 세 개의 카운터(**대기 중인 요청**, **거부된 요청** 및 **% 프로세서 시간**)에만 적용되었습니다.  
+Hello 이전 예에서 hello 싱크는 적용 된 tooonly 카운터가 세 개: **Requests Queued**, **요청이 거부**, 및 **% 프로세서 시간**합니다.  
 
-다음 예제에서는 개발자가 전송될 데이터 양을 이 서비스의 상태에 사용되는 중요 메트릭으로 제한하는 방법을 보여 줍니다.  
+hello 다음 예제 방법을 개발자 보낸된 데이터 toobe hello 중요 한 메트릭이이 서비스의이 상태에 사용 되는 양을 hello를 제한할 수 있습니다.  
 
 ```XML
 <Logs scheduledTransferPeriod="PT1M" sinks="HotPath" scheduledTransferLogLevelFilter="Error" />
@@ -203,32 +203,32 @@ Azure 진단에서 데이터를 수신하는 이벤트 허브는 Azure SDK 2.9 �
 }
 ```
 
-이 예제에서 싱크는 로그에 적용되며 오류 수준 추적으로만 필터링됩니다.
+이 예제에서는 hello 싱크 적용된 toologs 이며 필터링 된 유일한 tooerror 수준 추적 합니다.
 
 ## <a name="deploy-and-update-a-cloud-services-application-and-diagnostics-config"></a>클라우드 서비스 응용 프로그램과 진단 구성 배포 및 업데이트
-Visual Studio에서는 응용 프로그램 및 이벤트 허브 싱크 구성을 배포하는 가장 쉬운 방법을 제공합니다. 파일을 보고 편집하려면 Visual Studio에서 *.wadcfgx* 파일을 열고 편집하고 저장합니다. 경로는 **클라우드 서비스 프로젝트** > **역할** > **(RoleName)** > **diagnostics.wadcfgx**입니다.  
+Visual Studio hello 쉬운 경로 toodeploy hello 응용 프로그램 및 이벤트 허브 싱크 구성 합니다. tooview 및 편집 hello 파일을 열고 hello *.wadcfgx* Visual Studio에서 파일, 편집 및 저장 합니다. hello 경로가 **클라우드 서비스 프로젝트** > **역할** > **(RoleName)** > **diagnostics.wadcfgx**.  
 
-이 시점에서 Visual Studio의 모든 배포 및 배포 업데이트 작업, Visual Studio Team System 및 MSBuild에 기반하고 **/t:publish** 대상을 사용하는 모든 명령 또는 스크립트에는 패키징 프로세스에 있는 *.wadcfgx* 가 포함됩니다. 또한 배포 및 업데이트는 VM에서 적절한 Azure 진단 에이전트 확장을 사용하여 파일을 Azure에 배포합니다.
+이 시점에서 모든 배포 및 배포는 Visual Studio, Visual Studio Team System 및 모든 명령 또는 스크립트 hello를 사용 하 여 MSBuild를 기반으로 작업 업데이트 **/t: 게시** 대상 포함 hello *.wadcfgx*  hello 패키징 프로세스에서 합니다. 또한, 배포 및 업데이트 hello 파일 tooAzure Vm에서 적절 한 Azure 진단 에이전트가 확장 hello를 사용 하 여 배포 합니다.
 
-응용 프로그램 및 Azure 진단 구성을 배포한 후에 이벤트 허브의 대시보드에서 즉시 작업을 확인하게 됩니다. 이것은 사용자가 선택한 분석 도구 또는 수신기 클라이언트에서 실행 부하 과다 경로 데이터를 볼 준비가 되었다는 것을 나타냅니다.  
+Hello 응용 프로그램 및 Azure 진단 구성, 배포 hello 대시보드에서 hello 이벤트 허브의 활동을에서 즉시 나타납니다. 이 사용자가 선택한 hello 수신기 클라이언트 또는 분석 도구에서 tooviewing hello 실행 부하 과다 경로 데이터에 대해 준비 toomove 하 나타냅니다.  
 
-다음 그림에서 이벤트 허브 대시보드는 오후 11시 이후에 시작하는 이벤트 허브에 진단 데이터를 정상적으로 보내는 작업을 보여 줍니다. 이 때 응용 프로그램이 업데이트된 *.wadcfgx* 파일과 함께 배포되고 싱크가 올바르게 구성됩니다.
+다음 그림 hello, hello 이벤트 허브 대시보드에 정상 보내는 진단 데이터 toohello 이벤트 허브 시작 오후 11 시 완료 된 후 표시 됩니다. 이 경우에 hello 응용 프로그램이 배포 되었는지와 업데이트 된 *.wadcfgx* 파일을 찾아 hello 싱크가 제대로 구성 합니다.
 
 ![][0]  
 
 > [!NOTE]
-> Azure 진단 구성 파일(.wadcfgx)을 업데이트할 경우 Visual Studio 게시 또는 Windows PowerShell 스크립트를 사용하여 구성 뿐만 아니라 전체 응용 프로그램에 대한 업데이트를 푸시하는 것이 좋습니다.  
+> 업데이트 toohello Azure 진단 구성 파일 (.wadcfgx)을 수행 하면 hello 구성 뿐만 아니라 hello 업데이트 toohello 전체 응용 프로그램 Visual Studio 게시 또는 Windows PowerShell 스크립트를 사용 하 여 푸시 것이 좋습니다.  
 >
 >
 
 ## <a name="view-hot-path-data"></a>실행 부하 과다 경로 데이터 보기
-이전에 설명한 대로 이벤트 허브 데이터를 수신하고 처리하는 많은 사용 사례가 있습니다.
+이전에 설명한 대로는 이벤트 허브 데이터를 처리 하는 수신 대기 tooand 많은 사례가 있습니다.
 
-한 가지 간단한 접근 방법은 이벤트 허브를 수신하고 출력 스트림을 인쇄하기 위한 작은 테스트 콘솔 응용 프로그램을 만드는 것입니다. [Event Hubs 시작](../event-hubs/event-hubs-csharp-ephcs-getstarted.md) 문서에서 자세히 설명하는 다음 코드를 콘솔 응용 프로그램에 배치할 수 있습니다.  
+한 가지 간단한 방법은 toocreate 작은 테스트 콘솔 응용 프로그램 toolisten toohello 이벤트 허브 및 인쇄 hello 출력 스트림에 합니다. 코드에서 더 자세하게에서 설명 된 다음 hello를 배치할 수 [이벤트 허브 시작](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)), 콘솔 응용 프로그램에서입니다.  
 
-콘솔 응용 프로그램에는 [이벤트 프로세서 호스트 NuGet 패키지](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/)가 포함되어 있어야 합니다.  
+콘솔 응용 프로그램 hello hello에 포함 해야 [이벤트 프로세서 호스트 NuGet 패키지](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/)합니다.  
 
-**기본** 함수에서 꺾쇠 괄호로 묶인 값을 리소스에 사용할 값으로 바꾸십시오.   
+꺾쇠 괄호의 hello tooreplace hello 값 기억 **Main** 리소스에 대 한 값으로 함수입니다.   
 
 ```csharp
 //Console application code for EventHub test client
@@ -303,7 +303,7 @@ namespace EventHubListener
             options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
             eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>(options).Wait();
 
-            Console.WriteLine("Receiving. Press enter key to stop worker.");
+            Console.WriteLine("Receiving. Press enter key toostop worker.");
             Console.ReadLine();
             eventProcessorHost.UnregisterEventProcessorAsync().Wait();
         }
@@ -312,15 +312,15 @@ namespace EventHubListener
 ```
 
 ## <a name="troubleshoot-event-hubs-sinks"></a>이벤트 허브 싱크 문제 해결
-* 이벤트 허브가 들어오거나 나가는 이벤트 활동을 예상대로 표시하지 않습니다.
+* 이벤트 허브 hello 들어오거나 나가는 이벤트 작업이 예상 대로 표시 되지 않습니다.
 
-    이벤트 허브가 성공적으로 프로비저닝되었는지 확인합니다. **.wadcfgx** 의 *PrivateConfig* 섹션에 있는 모든 연결 정보는 포털에서 보이는 리소스의 값과 일치해야 합니다. 포털에 정의된 SAS 정책(예에서는 "SendRule")이 있고 *보내기* 권한이 부여되도록 해야 합니다.  
-* 업데이트 이후에 이벤트 허브는 들어오거나 나가는 이벤트 작업을 더 이상 표시하지 않습니다.
+    이벤트 허브가 성공적으로 프로비저닝되었는지 확인합니다. 모든 연결 정보 hello에 **PrivateConfig** 섹션 *.wadcfgx* hello 포털에서와 같이 리소스의 hello 값과 일치 해야 합니다. SAS 정책 정의 (hello 예제에서 "SendRule")에 해당 하며 hello 포털 갖도록 *보낼* 권한이 부여 됩니다.  
+* 업데이트 후 더 이상 hello 이벤트 허브 들어오거나 나가는 이벤트 활동을 보여 줍니다.
 
-    우선 이벤트 허브 및 구성 정보가 이전에 설명한 대로 정확한지를 확인합니다. 때로는 배포 업데이트에서 **PrivateConfig** 가 다시 설정됩니다. 권장되는 해결 방법은 프로젝트에서 *.wadcfgx* 에 모든 변경 사항을 적용한 다음 전체 응용 프로그램 업데이트를 푸시하는 것입니다. 불가능한 경우 진단 업데이트가 SAS 키를 포함하여 전체 **PrivateConfig** 를 푸시하도록 해야 합니다.  
-* 제안된 방법을 시도했지만 이벤트 허브가 여전히 작동하지 않습니다.
+    먼저, hello 이벤트 허브 및 구성 정보가 이전에 설명한 대로 정확한 지 확인 합니다. 경우에 따라 hello **PrivateConfig** 배포 업데이트에서 다시 설정 됩니다. 수정 프로그램은 모든 너무 변경 내용 toomake hello 권장*.wadcfgx* 프로젝트 hello와 완전 한 응용 프로그램 업데이트를 푸시하고 합니다. 없는 경우 해당 hello 진단 업데이트 푸시 전체 있는지 확인 **PrivateConfig** hello SAS 키를 포함 하는 합니다.  
+* Hello 제안 했으나 hello 이벤트 허브 여전히 작동 하지 않습니다.
 
-    Azure 진단 자체에 대한 로그 및 오류가 포함된 Azure 저장소 테이블( **WADDiagnosticInfrastructureLogsTable**)을 살펴봅니다. 한 가지 옵션은 [Azure 저장소 탐색기](http://www.storageexplorer.com) 등의 도구를 사용하여 이 저장소 계정에 연결하고 이 테이블을 본 후 지난 24시간 동안의 타임스탬프에 대한 쿼리를 추가하는 것입니다. 이 도구를 사용하여 .csv 파일을 내보내고 Microsoft Excel과 같은 응용 프로그램에서 열 수 있습니다. Excel를 통해 어떤 오류가 보고되는지 확인하는 **EventHubs**와 같은 전화 카드 문자열을 쉽게 검색할 수 있습니다.  
+    Azure 진단 프로그램 자체에 대 한 로그 및 오류를 포함 하는 hello Azure 저장소 테이블에서 찾아보십시오: **WADDiagnosticInfrastructureLogsTable**합니다. 한 가지 옵션은 toouse와 같은 도구 [Azure 저장소 탐색기](http://www.storageexplorer.com) tooconnect toothis 저장소 계정에이 테이블을 한에 쿼리를 추가 타임 스탬프에 대 한 hello 지난 24 시간 동안 합니다. Hello 도구 tooexport.csv 파일을 사용할 수 있으며 Microsoft Excel과 같은 응용 프로그램에서 엽니다. Excel을 사용 하면 전화 카드 문자열에 대 한 쉬운 toosearch 같은 **EventHubs**, toosee 어떤 오류가 보고 됩니다.  
 
 ## <a name="next-steps"></a>다음 단계
 • [Event Hubs에 대해 자세히 알아보기](https://azure.microsoft.com/services/event-hubs/)
@@ -379,7 +379,7 @@ namespace EventHubListener
 </DiagnosticsConfiguration>
 ```
 
-이 예제에 대한 보조 *ServiceConfiguration.Cloud.cscfg* 는 다음과 같습니다.
+hello 상호 보완적인 *ServiceConfiguration.Cloud.cscfg* 이 예제에서는 다음과 같은 hello에 대 한 합니다.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -505,7 +505,7 @@ namespace EventHubListener
 ```
 
 ## <a name="next-steps"></a>다음 단계
-Event Hubs에 대한 자세한 내용은 다음 링크를 참조하세요.
+Hello 다음 링크를 방문 하 여 이벤트 허브에 대 한 자세히 알아볼 수 있습니다.
 
 * [이벤트 허브 개요](../event-hubs/event-hubs-what-is-event-hubs.md)
 * [이벤트 허브 만들기](../event-hubs/event-hubs-create.md)

@@ -1,6 +1,6 @@
 ---
-title: "OMS(Operations Management Suite) 관리 솔루션의 보기 | Microsoft Docs"
-description: "OMS(Operations Management Suite)의 관리 솔루션은 대개 데이터를 시각화하기 위한 하나 이상의 보기를 포함합니다.  이 문서에서는 뷰 디자이너에서 만들어진 보기를 내보내고 관리 솔루션에 포함하는 방법을 설명합니다. "
+title: "Operations Management Suite (OMS) 관리 솔루션에 aaaViews | Microsoft Docs"
+description: "Operations Management Suite (OMS)에서 관리 솔루션에는 하나 이상의 보기 toovisualize 데이터 일반적으로 포함 됩니다.  이 문서 방법을 tooexport 뷰를 만들 hello 뷰 디자이너에서 설명 하 고 관리 솔루션에 포함 합니다. "
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: bwren
-ms.openlocfilehash: 533b5564a805e0b41f2b1a4ad92e12b133220952
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 303861465014a27289f831332b3d95925c0ae66d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="views-in-operations-management-suite-oms-management-solutions-preview"></a>OMS(Operations Management Suite) 관리 솔루션의 보기(Preview)
 > [!NOTE]
-> 현재 Preview로 제공되는 OMS의 사용자 지정 솔루션 만들기에 대한 예비 설명서입니다. 아래 설명된 스키마는 변경될 수 있습니다.    
+> 현재 Preview로 제공되는 OMS의 사용자 지정 솔루션 만들기에 대한 예비 설명서입니다. 아래에 설명 된 모든 스키마 주체 toochange입니다.    
 >
 >
 
-[OMS(Operations Management Suite)의 관리 솔루션](operations-management-suite-solutions.md)은 대개 데이터를 시각화하기 위한 하나 이상의 보기를 포함합니다.  이 문서에서는 [뷰 디자이너](../log-analytics/log-analytics-view-designer.md)에서 만들어진 보기를 내보내고 관리 솔루션에 포함하는 방법을 설명합니다.  
+[Operations Management Suite (OMS)에서 관리 솔루션](operations-management-suite-solutions.md) 는 일반적으로 하나 이상의 보기 toovisualize 데이터를 포함 합니다.  이 문서에서 설명 하는 방법을 tooexport 뷰를 만들 hello 여 [뷰 디자이너](../log-analytics/log-analytics-view-designer.md) 관리 솔루션에 포함 합니다.  
 
 > [!NOTE]
-> 이 문서의 샘플에는 관리 솔루션에 필요하거나 공통적이며 [OMS(Operations Management Suite)의 관리 솔루션 만들기](operations-management-suite-solutions-creating.md)에서 설명한 매개 변수와 변수가 사용됩니다.
+> hello 샘플이이 문서에서 사용 하 여 매개 변수 및 필수 또는 일반적인 toomanagement 솔루션 중 하나에 설명 된 있는 변수 [Operations Management Suite (OMS)에서 관리 솔루션 만들기](operations-management-suite-solutions-creating.md)
 >
 >
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서에서는 [관리 솔루션을 만드는](operations-management-suite-solutions-creating.md) 방법과 솔루션 파일의 구조를 잘 알고 있다고 가정합니다.
+이 문서에서는 하 이미 방법을 잘 알고 너무 가정[관리 솔루션을 만들어](operations-management-suite-solutions-creating.md) 및 솔루션 파일의 hello 구조입니다.
 
 ## <a name="overview"></a>개요
-관리 솔루션에 보기를 포함하려면 [솔루션 파일](operations-management-suite-solutions-creating.md)에서 이에 대한 **리소스**를 만듭니다.  보기의 세부 구성을 설명하는 JSON은 일반적으로 복잡하며 일반적인 솔루션 작성자가 수동으로 만들 수 있는 것이 아닙니다.  가장 일반적인 방법은 [뷰 디자이너](../log-analytics/log-analytics-view-designer.md)를 사용하여 보기를 만들고, 내보내고 나서, 세부 구성을 솔루션에 추가하는 것입니다.
+만들 tooinclude 관리 솔루션에는 보기는 **리소스** hello에 대 한 [솔루션 파일](operations-management-suite-solutions-creating.md)합니다.  hello hello 보기의 세부 구성을 나타내는 JSON은 일반적으로 복잡 하지만 및 문제가 되지 일반적인 솔루션 작성자 수 toocreate 수동으로 수 있다고 합니다.  hello 가장 일반적인 방법은 hello를 사용 하 여 toocreate hello 뷰 [뷰 디자이너](../log-analytics/log-analytics-view-designer.md), 내보내고 해당 자세한 구성 toohello 솔루션을 추가 합니다.
 
-보기를 솔루션에 추가하는 기본 단계는 다음과 같습니다.  각 단계는 아래 섹션에서 자세히 설명합니다.
+hello 기본 단계 tooadd 보기 tooa 솔루션은 다음과 같습니다.  각 단계는 아래 hello 섹션에서 더 자세히 설명 되어 있습니다.
 
-1. 보기를 파일로 내보냅니다.
-2. 솔루션에서 보기 리소스를 만듭니다.
-3. 보기 세부 정보를 추가합니다.
+1. Hello 보기 tooa 파일을 내보냅니다.
+2. Hello 솔루션의 hello 보기 리소스를 만듭니다.
+3. Hello 세부 정보 보기를 추가 합니다.
 
-## <a name="export-the-view-to-a-file"></a>보기를 파일로 내보내기
-[Log Analytics 뷰 디자이너](../log-analytics/log-analytics-view-designer.md)의 지침에 따라 보기를 파일로 내보냅니다.  내보낸 파일의 형식은 [솔루션 파일과 같은 요소](operations-management-suite-solutions-solution-file.md)가 포함된 JSON 형식이 됩니다.  
+## <a name="export-hello-view-tooa-file"></a>Hello 보기 tooa 파일 내보내기
+Hello 지침에 따라 [로그 분석 뷰 디자이너](../log-analytics/log-analytics-view-designer.md) tooexport 뷰 tooa 파일입니다.  hello 내보낸된 파일은 될 JSON 형식으로 hello 동일 [hello 솔루션 파일로 요소](operations-management-suite-solutions-solution-file.md)합니다.  
 
-보기 파일의 **resources** 요소에는 OMS 작업 영역을 나타내는 **Microsoft.OperationalInsights/workspaces** 형식의 리소스가 포함됩니다.  이 요소에는 보기를 나타내고 세부 구성이 들어 있는 **views** 형식의 하위 요소가 포함됩니다.  이 요소의 세부 정보를 복사하여 솔루션에 붙여넣습니다.
+hello **리소스** hello 보기 파일의 요소는 유형의 사용 하 여 리소스를 갖게 됩니다 **Microsoft.OperationalInsights/workspaces** 나타내는 hello OMS 작업 영역을 합니다.  이 요소에는의 형식과 subelement 포함 될 **뷰** 하는 자세한 구성을 포함 하 hello 보기를 나타냅니다.  이 요소의 hello 세부 정보 복사한 다음 솔루션에 복사 합니다.
 
-## <a name="create-the-view-resource-in-the-solution"></a>솔루션에서 보기 리소스 만들기
-솔루션 파일의 **resources** 요소에 다음 보기 리소스를 추가합니다.  이 작업에는 아래 설명된, 추가해야 하는 변수가 사용됩니다.  **Dashboard** 및 **OverviewTile** 속성은 내보낸 보기 파일의 해당 속성으로 덮어쓸 자리 표시자입니다.
+## <a name="create-hello-view-resource-in-hello-solution"></a>Hello 솔루션에서 hello 보기 리소스 만들기
+다음 보기 리소스 toohello hello 추가 **리소스** 솔루션 파일의 요소입니다.  이 작업에는 아래 설명된, 추가해야 하는 변수가 사용됩니다.  해당 hello 참고 **대시보드** 및 **OverviewTile** 속성 하는 자리 표시자 hello hello 내보낸된 보기 파일에서 해당 속성을 덮어씁니다.
 
     {
         "apiVersion": "[variables('LogAnalyticsApiVersion')]",
@@ -73,28 +73,28 @@ ms.lasthandoff: 07/11/2017
         }
     }
 
-솔루션 파일의 variables 요소에 다음 변수를 추가하고 해당 값을 솔루션의 값으로 바꿉니다.
+Hello 솔루션 파일의 변수 toohello 변수 요소 다음에 오는 hello를 추가 하 고 솔루션에 대 한 hello 값 toothose 바꿉니다.
 
     "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "Your name."
-    "ViewDescription": "Optional description of the view."
-    "ViewName": "Provide a name for the view here."
+    "ViewDescription": "Optional description of hello view."
+    "ViewName": "Provide a name for hello view here."
 
 
-이제 내보낸 보기 파일의 전체 보기 리소스를 복사할 수 있지만, 해당 리소스가 솔루션에서 작동하려면 다음과 같이 변경해야 합니다.  
+참고 내보낸된 보기 파일 에서만 hello 전체 보기 리소스를 복사할 수 toowork 솔루션에서 toomake hello에 대 한 변경 내용을 수행 해야 합니다.  
 
-* 보기 리소스의 **type**을 **views**에서 **Microsoft.OperationalInsights/workspaces**로 변경해야 합니다.
-* 작업 영역 이름을 포함하도록 보기 리소스의 **name** 속성을 변경해야 합니다.
-* 솔루션에 작업 영역 리소스가 정의되어 있지 않으므로 작업 영역의 종속성을 제거해야 합니다.
-* **DisplayName** 속성을 보기에 추가해야 합니다.  **Id**, **Name** 및 **DisplayName**이 모두 일치해야 합니다.
-* 필요한 매개 변수 집합과 일치하도록 매개 변수 이름을 변경해야 합니다.
-* 변수는 솔루션에서 정의되고 적절한 속성에서 사용되어야 합니다.
+* hello **형식** hello 보기에 대 한 리소스에서 변경 toobe이 필요한 **뷰** 너무**Microsoft.OperationalInsights/workspaces**합니다.
+* hello **이름** hello 보기 리소스에 대 한 속성 변경 toobe tooinclude hello 작업 영역 이름이 필요 합니다.
+* hello 작업 영역에 대 한 hello 종속성 toobe hello 작업 공간 리소스 hello 솔루션에 정의 되어 있지 이후 제거 해야 합니다.
+* **DisplayName** 속성 요구 toobe toohello 보기를 추가 합니다.  hello **Id**, **이름**, 및 **DisplayName** 모두 일치 해야 합니다.
+* 매개 변수 이름을 변경 해야 toomatch hello 매개 변수 집합이 필요 합니다.
+* 변수는 hello 솔루션에 정의 하 고 hello 적절 한 속성에 사용 해야 합니다.
 
-## <a name="add-the-view-details"></a>보기 세부 정보 추가
-내보낸 보기 파일의 보기 리소스에는 보기의 세부 구성이 들어 있는 **properties** 요소의 두 가지 요소 **Dashboard** 및 **OverviewTile**이 포함됩니다.  이 두 가지 요소와 해당 내용을 솔루션 파일에 있는 보기 리소스의 **properties** 요소에 복사합니다.
+## <a name="add-hello-view-details"></a>Hello 뷰 세부 정보 추가
+hello 보기 리소스 hello에 내보낸 파일은 hello에 두 개의 요소를 포함 하는 보기 **속성** 라는 요소 **대시보드** 및 **OverviewTile** hello를 포함 하는 hello 보기의 자세한 구성 합니다.  이 두 요소 및 해당 내용을 hello에 복사한 **속성** 솔루션 파일에 hello 보기 리소스의 요소입니다.
 
-## <a name="example"></a>예
-예를 들어 다음 샘플에서는 보기가 있는 단순 솔루션 파일을 보여 줍니다.  공간 문제로 **Dashboard** 및 **OverviewTile** 내용에는 줄임표(...)가 표시됩니다.
+## <a name="example"></a>예제
+예를 들어 다음 예제는 hello는 보기를 통해 간단한 솔루션 파일을 보여 줍니다.  줄임표 (...) hello에 대 한 표시 **대시보드** 및 **OverviewTile** 공간 원인에 대 한 콘텐츠입니다.
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",

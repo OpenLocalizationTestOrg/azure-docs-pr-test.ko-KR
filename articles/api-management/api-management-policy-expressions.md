@@ -1,5 +1,5 @@
 ---
-title: "Azure API Management 정책 식 | Microsoft Docs"
+title: "API 관리 정책 식 aaaAzure | Microsoft Docs"
 description: "Azure API Management에서 정책 식에 대해 자세히 알아봅니다."
 services: api-management
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: d96dde8c74141d000c1f7c5fd9ef624ff5e46953
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79da0d6ca3963307ec811a33aaac3d63a7abd97d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-policy-expressions"></a>API Management 정책 식
-정책 식 구문은 C# 6.0입니다. 각 식에서 암시적으로 제공된 [컨텍스트](api-management-policy-expressions.md#ContextVariables) 변수와 .NET Framework 형식의 허용된 [하위 집합](api-management-policy-expressions.md#CLRTypes)에 액세스합니다.  
+정책 식 구문은 C# 6.0입니다. 각 식에 암시적으로 제공 되는 액세스 toohello [컨텍스트](api-management-policy-expressions.md#ContextVariables) 변수와 허용 된 [하위 집합](api-management-policy-expressions.md#CLRTypes) .NET Framework 형식.  
   
 > [!NOTE]
->  정책 식에 대한 자세한 내용은 [정책 식](https://azure.microsoft.com/documentation/videos/policy-expressions-in-azure-api-management/) 비디오를 참조하세요.  
+>  정책 식에 대 한 자세한 내용은 참조 hello [정책 식을](https://azure.microsoft.com/documentation/videos/policy-expressions-in-azure-api-management/) 비디오.  
 >   
->  정책 식을 사용한 정책 구성에 대한 데모는 [클라우드 표지 에피소드 177: Vlad Vinogradsky와 함께 하는 추가 API Management 기능](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)(영문)을 참조하세요. 이 비디오에는 다음 정책 식 데모가 포함됩니다.  
+>  정책 식을 사용한 정책 구성에 대한 데모는 [클라우드 표지 에피소드 177: Vlad Vinogradsky와 함께 하는 추가 API Management 기능](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)(영문)을 참조하세요. 이 비디오는 hello 정책 식 데모 다음을 포함 합니다.  
 >   
->  -   10:30 - [쿼리 문자열 매개 변수 설정](api-management-transformation-policies.md#SetQueryStringParameter) 및 [HTTP 헤더 설정](api-management-transformation-policies.md#SetHTTPheader) 정책을 사용하여 백 엔드 서비스에 컨텍스트 정보를 제공하기 위해 API 수준에서 정책을 적용하는 방법을 보여 줍니다. 12분 10초 재생 시점에는 개발자 포털에서 작업을 호출하는 데모가 있으며, 여기서 작동 중인 정책을 볼 수 있습니다.  
-> -   13:50 - [JWT 유효성 검사](api-management-access-restriction-policies.md#ValidateJWT) 정책을 사용하여 토큰 클레임 기반 작업에 대해 미리 권한을 부여하는 방법을 보여 줍니다. 15분으로 빨리 감기하여 정책 편집기에 구성된 정책을 본 다음 18분 50초로 빨리 감기하여 필수 권한 부여 토큰 포함 및 제외 모두의 경우로 개발자 포털에서 작업 호출의 데모를 볼 수 있습니다.  
-> -   21:00 - [API 검사기](https://azure.microsoft.com/documentation/articles/api-management-howto-api-inspector/) 추적을 사용하여 정책이 어떻게 평가되고 평가 결과가 어떻게 되는지 보는 방법을 보여 줍니다.  
-> -   25:25 - [캐시에서 가져오기](api-management-caching-policies.md#GetFromCache) 및 [캐시에 저장](api-management-caching-policies.md#StoreToCache) 정책과 함께 정책 식을 사용하여 지원 서비스의 `Cache-Control` 지시문에 지정된 대로 백 엔드 서비스의 응답 캐싱과 일치하는 API Management 응답 캐싱 기간을 구성하는 방법을 보여 줍니다.  
-> -   34:30 - [흐름 제어](api-management-advanced-policies.md#choose) 및 [본문 설정](api-management-transformation-policies.md#SetBody) 정책을 사용하여 백 엔드 서비스에서 받은 응답의 데이터 요소를 제거하여 콘텐츠 필터링을 수행하는 방법을 보여 줍니다. 31분 50초 재생 시점에서 시작하는 [Dark Sky Forecast API](https://developer.forecast.io/)(영문) 개요를 확인하세요.  
-> -   이 비디오에 사용된 정책 문을 다운로드하려면 [api-management-samples/policies](https://github.com/Azure/api-management-samples/tree/master/policies) github 리포지토리를 참조하세요.  
+>  -   10:30-hello API에서 tooapply 정책을 hello를 사용 하 여 toosupply 컨텍스트 정보 toohello 백 엔드 서비스를 평준화 하는 방법을 참조 [쿼리 문자열 매개 변수를 설정](api-management-transformation-policies.md#SetQueryStringParameter) 및 [설정 HTTP 헤더](api-management-transformation-policies.md#SetHTTPheader) 정책입니다. 12시 10분에는 데모 작업에서 이러한 정책을 볼 수 있는 hello 개발자 포털에서 작업을 호출 합니다.  
+> -   13:50-참조 방법을 toouse hello [JWT의 유효성을 검사](api-management-access-restriction-policies.md#ValidateJWT) 정책 toopre-토큰 클레임을 기반으로 하는 액세스 toooperations 권한을 부여 합니다. Hello 정책 편집기에 구성 된 toosee hello 정책이 too15:00를 빨리 감기 및 too18:50 모두와 사용 하지 않는 hello hello 개발자 포털에서 호출 하는 작업의 데모에 대 한 권한 부여 토큰을 필요로 하는 다음 합니다.  
+> -   21:00-참조 방법을 toouse는 [API 검사기](https://azure.microsoft.com/documentation/articles/api-management-howto-api-inspector/) toosee 방법 정책 평가 되 고 hello hello 평가의 결과 추적 합니다.  
+> -   25:25-참조 방법을 사용 하 여 정책 식을 toouse hello [캐시에서 가져오기](api-management-caching-policies.md#GetFromCache) 및 [저장소 toocache](api-management-caching-policies.md#StoreToCache) 정책 tooconfigure API 관리 응답 캐싱 일치 하는 항목의 hello 응답 캐시 hello는 기간 hello에 지정 된 대로 백 엔드 서비스 백업 서비스의 `Cache-Control` 지시문입니다.  
+> -   34:30-tooperform 콘텐츠 hello 응답에서 데이터 요소를 제거 하 여 필터링 hello를 사용 하 여 hello 백 엔드 서비스에서 수신 하는 방법을 참조 [제어 흐름](api-management-advanced-policies.md#choose) 및 [본문 설정](api-management-transformation-policies.md#SetBody) 정책입니다. 개요 31:50 toosee부터 시작 [어두운 Sky 예측 API hello](https://developer.forecast.io/) 이 데모에 사용 합니다.  
+> -   이 비디오에서는 사용 되는 toodownload hello 정책 문을 참조 hello [api-관리-샘플/정책](https://github.com/Azure/api-management-samples/tree/master/policies) github 리포지토리 합니다.  
   
   
 ##  <a name="Syntax"></a> 구문  
@@ -68,13 +68,13 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="PolicyExpressionsUsage"></a> 사용 방법  
- 정책 참조에서 다르게 지정하지 않는 한, 식은 어떤 API Management [정책](api-management-policies.md)에서든 특성 값 또는 텍스트 값으로 사용될 수 있습니다.  
+ 식을 특성 값 또는 hello API 관리의 모든 텍스트 값으로 사용할 수 있습니다 [정책](api-management-policies.md)hello 정책 참조에서 지정 하지 않는 한 합니다.  
   
 > [!IMPORTANT]
->  정책 식을 사용하는 경우 정책을 정의할 때 정책 식에 대해 제한된 검증만 이루어집니다. 식은 게이트웨이에 의해 인바운드 또는 아웃바운드 파이프라인에서 런타임으로 실행되므로 정책 식에서 생성한 런타임 예외로 인해 API 호출에서 런타임 오류가 발생합니다.  
+>  Note 정책 식을 사용 하는 경우 한지 제한적된 으로만 확인 hello 정책 식 hello 정책 정의 되었을 경우. Hello 식이 hello 게이트웨이에서 hello 인바운드 또는 아웃 바운드 파이프라인 실행 시 실행 되는, 이후 hello 정책 식에서 생성 된 모든 런타임 예외 hello API 호출에서 런타임 오류가 발생 합니다.  
   
 ##  <a name="CLRTypes"></a> 정책 식에 허용된 .NET Framework 형식  
- 다음 표에서는 .NET Framework 형식과 정책 식에 허용된 멤버를 보여 줍니다.  
+ hello 다음 표에 hello.NET Framework 형식 및 멤버 정책 식에 사용할 수 있습니다.  
   
 |CLR 형식|지원되는 방식|  
 |--------------|-----------------------|  
@@ -168,7 +168,7 @@ ms.lasthandoff: 07/11/2017
 |System.Xml.XmlNodeType|모두|  
   
 ##  <a name="ContextVariables"></a> 컨텍스트 변수  
- `context`라는 변수는 모든 정책 [식](api-management-policy-expressions.md#Syntax)에서 암시적으로 사용할 수 있습니다. 해당 멤버는 `\request`와 관련된 정보를 제공합니다. 모든 `context` 멤버는 읽기 전용입니다.  
+ `context`라는 변수는 모든 정책 [식](api-management-policy-expressions.md#Syntax)에서 암시적으로 사용할 수 있습니다. 해당 멤버 제공 정보 관련 toohello `\request`합니다. 모든 hello `context` 멤버는 읽기 전용입니다.  
   
 |컨텍스트 변수|허용된 메서드, 속성 및 매개 변수 값|  
 |----------------------|-------------------------------------------------------|  
@@ -179,26 +179,26 @@ ms.lasthandoff: 07/11/2017
 |context.Operation|Id: string<br /><br /> Method: string<br /><br /> Name: string<br /><br /> UrlTemplate: string|  
 |context.Product|Apis: IEnumerable<IApi\><br /><br /> ApprovalRequired: bool<br /><br /> Groups: IEnumerable<IGroup\><br /><br /> Id: string<br /><br /> Name: string<br /><br /> State: enum ProductState {NotPublished, Published}<br /><br /> SubscriptionLimit: int?<br /><br /> SubscriptionRequired: bool|  
 |context.Request|Body: IMessageBody<br /><br /> Certificate: System.Security.Cryptography.X509Certificates.X509Certificate2<br /><br /> Headers: IReadOnlyDictionary<string, string[]><br /><br /> IpAddress: string<br /><br /> MatchedParameters: IReadOnlyDictionary<string, string><br /><br /> Method: string<br /><br /> OriginalUrl:IUrl<br /><br /> Url: IUrl|  
-|string context.Request.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> 쉼표로 구분된 요청 헤더 값 또는 `defaultValue`(헤더가 없는 경우)를 반환합니다.|  
+|string context.Request.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> 반환 쉼표로 구분 된 요청 헤더 값 또는 `defaultValue` hello 헤더가 없는 경우.|  
 |context.Response|Body: IMessageBody<br /><br /> Headers: IReadOnlyDictionary<string, string[]><br /><br /> StatusCode: int<br /><br /> StatusReason: string|  
-|string context.Response.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> 쉼표로 구분된 응답 헤더 값 또는 `defaultValue`(헤더가 없는 경우)를 반환합니다.|  
+|string context.Response.Headers.GetValueOrDefault(headerName: string, defaultValue: string)|headerName: string<br /><br /> defaultValue: string<br /><br /> 쉼표로 구분 된 응답 헤더 값을 반환 하거나 `defaultValue` hello 헤더가 없는 경우.|  
 |context.Subscription|CreatedTime: DateTime<br /><br /> EndDate: DateTime?<br /><br /> Id: string<br /><br /> Key: string<br /><br /> Name: string<br /><br /> PrimaryKey: string<br /><br /> SecondaryKey: string<br /><br /> StartDate: DateTime?|  
 |context.User|Email: string<br /><br /> FirstName: string<br /><br /> Groups: IEnumerable<IGroup\><br /><br /> Id: string<br /><br /> Identities: IEnumerable<IUserIdentity\><br /><br /> LastName: string<br /><br /> Note: string<br /><br /> RegistrationDate: DateTime|  
 |IApi|Id: string<br /><br /> Name: string<br /><br /> Path: string<br /><br /> Protocols: IEnumerable<string\><br /><br /> ServiceUrl: IUrl<br /><br /> SubscriptionKeyParameterNames: ISubscriptionKeyParameterNames|  
 |IGroup|Id: string<br /><br /> Name: string|  
-|IMessageBody|As<T\>(preserveContent: bool = false): Where T: string, JObject, JToken, JArray, XNode, XElement, XDocument<br /><br /> 지정된 형식 `T`에서 요청 또는 응답 메시지 본문을 읽는 데 `context.Request.Body.As<T>` 또는 `context.Response.Body.As<T>` 메서드가 사용됩니다. 기본적으로 이 메서드는 원래 메시지 본문 스트림을 사용하고 반환된 후에는 사용할 수 없게 렌더링합니다. 이 메서드가 본문 스트림의 복사본에 대해 작동하도록 하여 이러한 문제를 피하려면 `preserveContent` 매개 변수를 `true`로 설정합니다. 예제를 보려면 [여기](api-management-transformation-policies.md#SetBody)로 이동하세요.|  
+|IMessageBody|As<T\>(preserveContent: bool = false): Where T: string, JObject, JToken, JArray, XNode, XElement, XDocument<br /><br /> hello `context.Request.Body.As<T>` 및 `context.Response.Body.As<T>` 메서드는 요청 및 응답 메시지 본문 지정된 된 형식에 사용 되는 tooread `T`합니다. 기본적으로 hello 메서드 사용 하 여 hello 원래 메시지 본문 스트림과 reneders 후 사용할 수 없는 반환 합니다. hello 메서드 함으로써에서 작동 하는 집합 hello hello 본문 스트림의 복사본 tooavoid `preserveContent` 매개 변수가 너무`true`합니다. 이동 [여기](api-management-transformation-policies.md#SetBody) toosee 예입니다.|  
 |IUrl|Host: string<br /><br /> Path: string<br /><br /> Port: int<br /><br /> Query: IReadOnlyDictionary<string, string[]><br /><br /> QueryString: string<br /><br /> Scheme: string|  
 |IUserIdentity|Id: string<br /><br /> Provider: string|  
 |ISubscriptionKeyParameterNames|Header: string<br /><br /> Query: string|  
-|string IUrl.Query.GetValueOrDefault(queryParameterName: string, defaultValue: string)|queryParameterName: string<br /><br /> defaultValue: string<br /><br /> 쉼표로 구분된 쿼리 매개 변수 값 또는 `defaultValue`(매개 변수가 없는 경우)를 반환합니다.|  
-|T context.Variables.GetValueOrDefault<T\>(variableName: string, defaultValue: T)|variableName: string<br /><br /> defaultValue: T<br /><br /> `T` 형식으로 캐스팅되는 변수 값 또는 `defaultValue`(변수가 없는 경우)를 반환합니다.<br /><br /> 이 메서드는 지정된 형식이 반환된 변수의 실제 형식과 일치하지 않는 경우 예외를 발생시킵니다.|  
-|BasicAuthCredentials AsBasic(input: this string)|input: string<br /><br /> 입력 매개 변수에 유효한 HTTP 기본 인증 권한 부여 요청 헤더 값이 포함된 경우 메서드는 `BasicAuthCredentials` 형식의 개체를 반환하고 그렇지 않은 경우 null을 반환합니다.|  
-|bool TryParseBasic(input: this string, result: out BasicAuthCredentials)|input: string<br /><br /> result: out BasicAuthCredentials<br /><br /> 입력 매개 변수에 유효한 HTTP 기본 인증 권한 부여 요청 헤더 값이 포함된 경우 메서드는 `true`를 반환하고 결과 매개 변수는 `BasicAuthCredentials` 형식의 값을 포함합니다. 그렇지 않은 경우 메서드는 `false`를 반환합니다.|  
+|string IUrl.Query.GetValueOrDefault(queryParameterName: string, defaultValue: string)|queryParameterName: string<br /><br /> defaultValue: string<br /><br /> 반환 쉼표로 구분 된 쿼리 매개 변수 값 또는 `defaultValue` hello 매개 변수가 없는 경우.|  
+|T context.Variables.GetValueOrDefault<T\>(variableName: string, defaultValue: T)|variableName: string<br /><br /> defaultValue: T<br /><br /> 변수 값 캐스트 tootype 반환 `T` 또는 `defaultValue` hello 변수가 없는 경우.<br /><br /> 이 메서드는 hello 지정 된 형식 일치 하지 않는 경우 hello 실제 유형의 변수를 반환 하는 hello 예외가 throw 됩니다.|  
+|BasicAuthCredentials AsBasic(input: this string)|input: string<br /><br /> Hello 메서드 반환 형식의 개체에 hello 입력된 매개 변수에 유효한 HTTP 기본 인증 권한 부여 요청 헤더 값이 있으면 `BasicAuthCredentials`; 그렇지 않으면 hello 메서드가 null을 반환 합니다.|  
+|bool TryParseBasic(input: this string, result: out BasicAuthCredentials)|input: string<br /><br /> result: out BasicAuthCredentials<br /><br /> Hello 메서드가 반환 하는 경우 hello 입력된 매개 변수에 유효한 HTTP 기본 인증 권한 부여 요청 헤더 값이 포함, `true` 형식의 값을 포함 하는 hello 결과 매개 변수에 `BasicAuthCredentials`; 그렇지 않으면 hello 메서드 반환 `false`합니다.|  
 |BasicAuthCredentials|Password: string<br /><br /> UserId: string|  
-|Jwt AsJwt(input: this string)|input: string<br /><br /> 입력 매개 변수에 유효한 JWT 토큰 값이 포함된 경우 메서드는 `Jwt` 형식의 개체를 반환하고 그렇지 않은 경우 `null`을 반환합니다.|  
-|bool TryParseJwt(input: this string, result: out Jwt)|input: string<br /><br /> result: out Jwt<br /><br /> 입력 매개 변수에 유효한 JWT 토큰 값이 포함된 경우 메서드는 `true`를 반환하고 결과 매개 변수는 `Jwt` 형식의 값을 포함합니다. 그렇지 않은 경우 메서드는 `false`를 반환합니다.|  
+|Jwt AsJwt(input: this string)|input: string<br /><br /> Hello 메서드 반환 형식의 개체에 hello 입력된 매개 변수에 유효한 JWT 토큰 값이 있으면 `Jwt`; 그렇지 않으면 hello 메서드 반환 `null`합니다.|  
+|bool TryParseJwt(input: this string, result: out Jwt)|input: string<br /><br /> result: out Jwt<br /><br /> Hello 메서드가 반환 하는 경우 hello 입력된 매개 변수에 유효한 JWT 토큰 값이 포함, `true` 형식의 값을 포함 하는 hello 결과 매개 변수에 `Jwt`; 그렇지 않으면 hello 메서드 반환 `false`합니다.|  
 |Jwt|Algorithm: string<br /><br /> Audience: IEnumerable<string\><br /><br /> Claims: IReadOnlyDictionary<string, string[]><br /><br /> ExpirationTime: DateTime?<br /><br /> Id: string<br /><br /> Issuer: string<br /><br /> NotBefore: DateTime?<br /><br /> Subject: string<br /><br /> Type: string|  
-|string Jwt.Claims.GetValueOrDefault(claimName: string, defaultValue: string)|claimName: string<br /><br /> defaultValue: string<br /><br /> 쉼표로 구분된 클레임 값 또는 `defaultValue`(헤더가 없는 경우)를 반환합니다.|
+|string Jwt.Claims.GetValueOrDefault(claimName: string, defaultValue: string)|claimName: string<br /><br /> defaultValue: string<br /><br /> 쉼표로 구분 된 클레임 값 반환 또는 `defaultValue` hello 헤더가 없는 경우.|
 
 ## <a name="next-steps"></a>다음 단계
 정책으로 작업하는 방법에 대한 자세한 내용은 [API Management의 정책](api-management-howto-policies.md)을 참조하세요.  

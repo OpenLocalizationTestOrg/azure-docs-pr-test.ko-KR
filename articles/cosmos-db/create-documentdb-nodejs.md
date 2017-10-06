@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: Node.js 및 DocumentDB API에서 앱 작성 | Microsoft Docs"
-description: "Azure Cosmos DB DocumentDB API에 연결 및 쿼리하는 데 사용할 수 있는 Node.js 코드 샘플을 제시합니다."
+title: "Azure Cosmos DB: Node.js 사용 하 여 앱을 빌드하고 DocumentDB API hello | Microsoft Docs"
+description: "Tooconnect tooand 쿼리를 사용 하는 Node.js 코드 샘플 hello Azure Cosmos DB DocumentDB API를 표시."
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,21 +15,21 @@ ms.devlang: nodejs
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 26e3548bf6aacbc60c4c46a5cc88749ca14cec01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 287d860c7d6f788f05a397b238ef0f841c3c30ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-documentdb-api-app-with-nodejs-and-the-azure-portal"></a>Azure Cosmos DB: Node.js 및 Azure Portal에서 DocumentDB API 앱 작성
+# <a name="azure-cosmos-db-build-a-documentdb-api-app-with-nodejs-and-hello-azure-portal"></a>Azure Cosmos DB: Node.js와 함께 DocumentDB API 앱을 빌드하고 hello Azure 포털
 
-Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. Azure Cosmos DB의 핵심인 전역 배포 및 수평적 크기 조정 기능의 이점을 활용하여 문서, 키/값 및 그래프 데이터베이스를 빠르게 만들고 쿼리할 수 있습니다. 
+Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. 신속 하 게 만들기 및 문서, 키/값 및 hello 글로벌 배포 및 수평 확장이 기능 Cosmos DB Azure의 hello 핵심에에서 활용 중 일부는 그래프 데이터베이스를 쿼리할 수 있습니다. 
 
-이 빠른 시작에서는 Azure Portal을 사용하여 Azure Cosmos DB 계정, 문서 데이터베이스 및 컬렉션을 만드는 방법을 보여 줍니다. 그런 다음, [DocumentDB Node.js API](documentdb-sdk-node.md)에서 작성한 콘솔 앱을 빌드 및 실행합니다.
+이 빠른 시작 toocreate Azure Cosmos DB 계정, 문서 데이터베이스 및 컬렉션 사용 하 여 Azure 포털을 hello 방법을 보여 줍니다. 그런 다음 작성 하 고 hello를 기반으로 하 여 콘솔 응용 프로그램을 실행할 [DocumentDB Node.js API](documentdb-sdk-node.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-* 이 샘플을 실행하기 전에 다음 필수 조건이 있어야 합니다.
+* 이 예제를 실행 하려면 먼저 다음 필수 구성 요소는 hello가 있어야 합니다.
     * [Node.js](https://nodejs.org/en/) 버전 v0.10.29 이상
     * [Git](http://git-scm.com/)
 
@@ -43,23 +43,23 @@ Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터�
 
 [!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
-## <a name="clone-the-sample-application"></a>샘플 응용 프로그램 복제
+## <a name="clone-hello-sample-application"></a>Hello 샘플 응용 프로그램 복제
 
-이제 github에서 DocumentDB API 앱을 복제하고 연결 문자열을 설정한 후 실행해 보도록 하겠습니다. 프로그래밍 방식으로 데이터를 사용하여 얼마나 쉽게 작업할 수 있는지 알게 될 것입니다. 
+이제 github에서 복제는 DocumentDB API 앱 hello 연결 문자열을 설정 하 고 실행 하겠습니다. 얼마나 쉬운지 데이터로 toowork 프로그래밍 방식으로 하는 것이 표시 됩니다. 
 
-1. git bash와 같은 git 터미널 창을 열고 `CD`를 수행하여 작업 디렉터리로 이동합니다.  
+1. 예: git bash git 터미널 윈도우를 열고 및 `CD` tooa 작업 디렉터리입니다.  
 
-2. 다음 명령을 실행하여 샘플 리포지토리를 복제합니다. 
+2. 다음 명령은 tooclone hello 샘플 리포지토리 hello를 실행 합니다. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-documentdb-nodejs-getting-started.git
     ```
 
-## <a name="review-the-code"></a>코드 검토
+## <a name="review-hello-code"></a>Hello 코드 검토
 
-앱에서 어떤 일이 일어나는지 빠르게 검토해 보겠습니다. `app.js` 파일을 열어 보면 이들 코드 줄에서 Azure Cosmos DB 리소스를 만드는 것을 알 수 있습니다. 
+Hello 앱에서 일어나는 빠르게 검토를 만들어 보겠습니다. 열기 hello `app.js` 다음 코드이 줄을 만든다고 hello Azure Cosmos DB 리소스 파일을 찾습니다. 
 
-* `documentClient`가 초기화됩니다.
+* hello `documentClient` 초기화 됩니다.
 
     ```nodejs
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
@@ -113,43 +113,43 @@ Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터�
 
 ## <a name="update-your-connection-string"></a>연결 문자열 업데이트
 
-이제 Azure Portal로 다시 이동하여 연결 문자열 정보를 가져와서 앱에 복사합니다.
+이제 돌아가서 toohello Azure 포털 tooget 연결 문자열 정보를 hello 앱에 복사 합니다.
 
-1. [Azure Portal](http://portal.azure.com/)의 Azure Cosmos DB 계정에서 왼쪽 탐색 영역의 **키**를 클릭한 다음 **읽기-쓰기 키**를 클릭합니다. 다음 단계에서 화면 오른쪽의 복사 단추를 사용하여 URI 및 기본 키를 `config.js` 파일에 복사하게 됩니다.
+1. Hello에 [Azure 포털](http://portal.azure.com/), 프로그램 Azure Cosmos DB에에서 account, 왼쪽 탐색 hello 클릭 **키**, 클릭 하 고 **읽기-쓰기 키**합니다. Hello에 hello 화면 toocopy hello URI의 오른쪽 hello와 기본 키에서 hello 복사 단추를 사용 한다고 `config.js` hello 다음 단계에는 파일입니다.
 
-    ![Azure Portal에서 선택 키 보기 및 복사, 키 블레이드](./media/create-documentdb-dotnet/keys.png)
+    ![표시 및 hello Azure 포털에에서 액세스 키, 키 블레이드에서 복사](./media/create-documentdb-dotnet/keys.png)
 
-2. `config.js` 파일을 엽니다. 
+2. 열린 hello `config.js` 파일입니다. 
 
-3. 포털에서 URI 값을 복사(복사 단추 사용)한 후 이 값을 `config.js`의 끝점 키 값으로 만듭니다. 
+3. Hello 포털 (hello 복사 단추 사용)에서 URI 값을 복사 하 고 쉽게에 hello 끝점 키의 값을 hello `config.js`합니다. 
 
     `config.endpoint = "https://FILLME.documents.azure.com"`
 
-4. 그 다음, 포털에서 사용자의 기본 키 값을 복사한 후 `config.js`의 `config.primaryKey` 값으로 만듭니다. 이제 Azure Cosmos DB와 통신하는 데 필요한 모든 정보로 앱이 업데이트되었습니다. 
+4. 그런 다음 hello 포털에서 기본 키 값을 복사 하 고 쉽게 hello 값 hello `config.primaryKey` 에서 `config.js`합니다. 이제 앱을 업데이트 한 toocommunicate Azure Cosmos DB와 함께 필요한 모든 hello 정보 인 합니다. 
 
     `config.primaryKey "FILLME"`
     
-## <a name="run-the-app"></a>앱 실행
-1. 터미널에서 `npm install`를 실행하여 필요한 npm 모듈을 설치합니다.
+## <a name="run-hello-app"></a>Hello 앱 실행
+1. 실행 `npm install` 터미널 tooinstall에 필수 npm 모듈
 
-2. 터미널에서 `node app.js`을 실행하여 노드 응용 프로그램을 시작합니다.
+2. 실행 `node app.js` 터미널 toostart에 응용 프로그램 노드.
 
-이제 데이터 탐색기로 돌아가서 이 새 데이터를 쿼리 및 수정하고 작업에 사용할 수 있습니다. 
+이제 다시 tooData 탐색기 및 쿼리를 참조, 수정 돌아가서이 새 데이터를 사용 합니다. 
 
-## <a name="review-slas-in-the-azure-portal"></a>Azure Portal에서 SLA 검토
+## <a name="review-slas-in-hello-azure-portal"></a>Sla hello Azure 포털에서에서 검토 하 고
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>리소스 정리
 
-이 앱을 계속 사용하지 않으려면 Azure Portal에서 다음 단계에 따라 이 빠른 시작에서 만든 리소스를 모두 삭제합니다.
+것 toocontinue toouse이 응용이 프로그램을 만들이 빠른 시작 하 여 hello Azure 포털에서에서 단계를 수행 하는 hello로 리소스를 모두 삭제:
 
-1. Azure Portal의 왼쪽 메뉴에서 **리소스 그룹**을 클릭한 다음 만든 리소스의 이름을 클릭합니다. 
-2. 리소스 그룹 페이지에서 **삭제**를 클릭하고 텍스트 상자에서 삭제할 리소스의 이름을 입력한 다음 **삭제**를 클릭합니다.
+1. Hello Azure 포털에서에서 왼쪽 메뉴 hello에서에서 클릭 **리소스 그룹** 만든 hello 리소스의 hello 이름을 클릭 하 고 있습니다. 
+2. 리소스 그룹 페이지에서 클릭 **삭제**hello 텍스트 상자에 hello 리소스 toodelete의 hello 이름을 입력 한 다음 클릭 **삭제**합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 빠른 시작에서, Azure Cosmos DB 계정을 만들고, 데이터 탐색기를 사용하여 컬렉션을 만들고, 앱을 실행하는 방법을 알아보았습니다. 이제 사용자의 Cosmos DB 계정에 추가 데이터를 가져올 수 있습니다. 
+이 빠른 시작에서 Azure Cosmos DB 계정 toocreate hello 데이터 탐색기를 사용 하 여 컬렉션을 만들 하 고 응용 프로그램을 실행 하는 방법 배웠습니다. 이제 tooyour Cosmos DB 계정 추가 데이터를 가져올 수 있습니다. 
 
 > [!div class="nextstepaction"]
 > [Azure Cosmos DB로 데이터 가져오기](import-data.md)

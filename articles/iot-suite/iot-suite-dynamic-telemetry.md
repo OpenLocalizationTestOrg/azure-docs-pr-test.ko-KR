@@ -1,6 +1,6 @@
 ---
-title: "동적 원격 분석 사용 | Microsoft Docs"
-description: "이 자습서를 따라 Azure IoT Suite 원격 모니터링 사전 구성 솔루션으로 동적 원격 분석을 사용하는 방법을 익히세요."
+title: "aaaUse 동적 원격 분석 | Microsoft Docs"
+description: "이 자습서 toolearn 따라 hello Azure IoT Suite 원격 모니터링 toouse 동적 원격 분석 미리 솔루션을 구성 하는 방법입니다."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a>원격 모니터링 사전 구성 솔루션으로 동적 원격 분석 사용
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a>동적 원격 분석을 사용 하 여 원격 미리 구성 된 솔루션을 모니터링 하는 hello로
 
-동적 원격 분석을 사용하면 원격 모니터링 사전 구성 솔루션에 전송된 모든 원격 분석을 시각화할 수 있습니다. 미리 구성된 솔루션으로 배포하는 시뮬레이션 장치는 온도와 습도 원격 분석 정보를 전송합니다. 이 정보는 대시보드에서 시각화할 수 있습니다. 기존 시뮬레이션 장치를 사용자 지정하거나 새로운 시뮬레이션 장치를 만들거나 물리적 장치를 사전 구성된 솔루션에 연결할 경우, 외부 온도, RPM, 풍속 등의 다른 원격 분석 값을 전송할 수 있습니다. 대시보드에서 이런 추가 원격 분석을 시각화할 수 있습니다.
+동적 원격 분석 하면 toovisualize 모든 원격 분석 전송 toohello를 원격 모니터링 미리 구성 된 솔루션을 수 있습니다. 미리 구성 하는 hello 솔루션으로 배포 하는 hello 시뮬레이션 된 장치는 hello 대시보드에서 시각화할 수 있는 온도 및 습도 원격 분석을 전송 합니다. 기존 시뮬레이션 된 장치를 사용자 지정 하면 새 시뮬레이션 된 장치를 만들거나 물리적 장치 toohello 미리 구성 된 솔루션 hello 외부 온도, RPM을 또는 windspeed 같은 다른 원격 분석 값을 보낼 수 있습니다. 그런 다음 hello 대시보드에서 추가 원격 분석을 시각화할 수 있습니다.
 
-이 자습서는 간단한 Node.js 시뮬레이션 장치를 사용하므로 쉽게 수정하여 동적 원격 분석으로 실험할 수 있습니다.
+이 자습서에서는 tooexperiment 된 동적 원격 분석을 쉽게 수정할 수 있는 간단한 Node.js 시뮬레이션 된 장치를 사용 합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 해야 합니다.
 
 * 활성 Azure 구독. 계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 무료 평가판][lnk_free_trial]을 참조하세요.
 * [Node.js][lnk-node] 버전 0.12.x 이상.
@@ -40,10 +40,10 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
 
 ## <a name="add-a-telemetry-type"></a>원격 분석 형식 추가
 
-다음 단계는 Node.js 시뮬레이션 장치가 생성한 원격 분석을 새로운 값 집합으로 바꾸는 것입니다.
+hello 다음 단계는 새 값 집합을 사용 하 여 hello Node.js 시뮬레이션 된 장치에 의해 생성 된 tooreplace hello 원격 분석입니다.
 
-1. 명령 프롬프트 또는 쉘에 **Ctrl+C** 를 입력하여 Node.js 시뮬레이션 장치를 중단합니다.
-2. remote_monitoring.js 파일에 기존 온도, 습도, 외부 온도 원격 분석의 기본 데이터 값이 표시됩니다. 다음과 같이 **rpm** 의 새 기본 데이터 값을 추가합니다.
+1. 입력 하 여 중지 hello Node.js 시뮬레이션 된 장치 **Ctrl + C** 명령 프롬프트 또는 셸 합니다.
+2. Hello remote_monitoring.js 파일에 hello 기존 온도, 습도, 및 외부 온도 원격 분석에 대 한 hello 기본 데이터 값을 볼 수 있습니다. 다음과 같이 **rpm** 의 새 기본 데이터 값을 추가합니다.
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
     var rpm = 200;
     ```
 
-3. Node.js 시뮬레이션 장치는 remote_monitoring.js 파일의 **generateRandomIncrement** 함수를 사용하여 기본 데이터 값에 무작위 증분을 추가합니다. 기존 불규칙화 뒤에 코드 한 줄을 추가하여 **rpm** 값을 불규칙화합니다.
+3. hello를 사용 하는 hello Node.js 시뮬레이션 된 장치가 **generateRandomIncrement** 함수 hello remote_monitoring.js 파일 tooadd 임의 증가 toohello에에서 기본 데이터 값입니다. Hello 불규칙화 **rpm** hello 기존 불규칙화 후 다음과 같은 코드 줄을 추가 하 여 값:
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
     rpm += generateRandomIncrement();
     ```
 
-4. 장치가 IoT Hub에 전송하는 JSON 페이로드에 새 rpm 값을 추가합니다.
+4. Hello 새 rpm 값 toohello JSON 페이로드 hello 장치 보냅니다 tooIoT 허브를 추가 합니다.
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
     });
     ```
 
-5. 다음 명령을 사용하여 Node.js 시뮬레이션 장치를 실행합니다.
+5. 다음 명령을 hello를 사용 하 여 hello Node.js 시뮬레이션 된 장치를 실행 합니다.
 
     `node remote_monitoring.js`
 
-6. 대시보드 차트에 표시되는 새 RPM 원격 분석 형식을 관찰합니다.
+6. Hello 새 RPM 원격 분석 유형 hello 대시보드에 hello 차트에 표시 하는 준수 하십시오.
 
-![대시보드에 RPM 추가][image3]
+![RPM toohello 대시보드를 추가 합니다.][image3]
 
 > [!NOTE]
-> 변경을 즉시 확인하려면 대시보드의 **장치** 페이지에서 Node.js 장치를 비활성화한 다음 활성화해야 할 수 있습니다.
+> Toodisable 필요 하 고 hello Node.js 장치 hello에 사용 하도록 설정 될 수 있습니다 **장치** hello 대시보드 toosee hello 변경에서 즉시 페이지.
 
-## <a name="customize-the-dashboard-display"></a>대시보드 디스플레이 사용자 지정
+## <a name="customize-hello-dashboard-display"></a>Hello 대시보드 표시를 사용자 지정
 
-**Device-Info** 메시지에는 장치가 IoT Hub에 전송 가능한 원격 분석 관련 메타데이터가 포함될 수 있습니다. 이 메타데이터는 장치가 전송하는 원격 분석 형식을 지정할 수 있습니다. **명령** 정의 다음에 **원격 분석** 정의가 포함되도록 remote_monitoring.js 파일에서 **deviceMetaData** 값을 수정합니다. 다음 코드 조각에 **명령** 정의가 나와 있습니다. **명령** 정의 다음에는 `,`를 추가해야 합니다.
+hello **장치 정보** 메시지 메타 데이터를 포함할 수 있습니다 hello 원격 분석에 대 한 hello 장치 tooIoT 허브를 보낼 수 있습니다. 이 메타 데이터는 hello 원격 분석 유형을 전송 하는 hello 장치를 지정할 수 있습니다. Hello 수정 **deviceMetaData** hello remote_monitoring.js 파일 tooinclude에 값을 **원격 분석** hello 다음 정의 **명령을** 정의 합니다. hello 만드는 코드는 hello **명령을** 정의 (있는지 tooadd 수는 `,` hello 후 **명령을** 정의):
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
 ```
 
 > [!NOTE]
-> 원격 모니터링 솔루션은 대/소문자 구분을 하지 않는 일치를 사용하여 메타데이터 정의와 원격 분석 스트림의 데이터를 비교합니다.
+> hello 원격 모니터링 솔루션 hello 원격 분석 스트림의 데이터를 대/소문자 구분 일치 toocompare hello 메타 데이터 정의 사용합니다.
 
 
-위의 코드 조각에 나와 있는 것처럼 **Telemetry** 정의를 추가해도 대시보드의 동작은 변경되지 않습니다. 그러나 대시보드가 표시되는 방식을 사용자 지정하기 위해 메타데이터에 **DisplayName** 특성을 포함할 수도 있습니다. 다음 코드 조각과 같이 **Telemetry** 메타데이터 정의를 업데이트합니다.
+추가 **원격 분석** 처럼 hello 위의 코드 조각 hello 대시보드 hello 방식은 변경 되지 않습니다. 그러나 hello 메타 데이터도 포함 될 수 있습니다는 **DisplayName** hello 대시보드에 toocustomize hello 표시 특성입니다. 업데이트 hello **원격 분석** hello 다음 코드 조각에에서 표시 된 대로 메타 데이터 정의:
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
 ]
 ```
 
-다음 스크린샷은 이러한 변경이 대시보드의 차트 범례를 어떻게 수정하는지 보여줍니다.
+hello 다음 스크린샷은이 변경 hello 대시보드에서 hello 차트 범례를 수정 하는 방법:
 
-![차트 범례 사용자 지정][image4]
+![Hello 차트 범례를 사용자 지정][image4]
 
 > [!NOTE]
-> 변경을 즉시 확인하려면 대시보드의 **장치** 페이지에서 Node.js 장치를 비활성화한 다음 활성화해야 할 수 있습니다.
+> Toodisable 필요 하 고 hello Node.js 장치 hello에 사용 하도록 설정 될 수 있습니다 **장치** hello 대시보드 toosee hello 변경에서 즉시 페이지.
 
-## <a name="filter-the-telemetry-types"></a>원격 분석 형식 필터링
+## <a name="filter-hello-telemetry-types"></a>Hello 원격 분석 유형을 필터링합니다
 
-기본적으로 대시보드 차트는 원격 분석 스트림의 모든 데이터 계열을 표시합니다. **Device-Info** 메타데이터를 사용하여 차트에서 특정 원격 분석 형식이 표시되지 않게 할 수 있습니다. 
+기본적으로 hello 대시보드에서 hello 차트 hello 원격 분석 스트림의 모든 데이터 계열을 나타냅니다. Hello를 사용할 수 있습니다 **장치 정보** 메타 데이터 toosuppress hello hello 차트에서 특정 원격 분석 유형 표시 합니다. 
 
-차트가 온도와 습도 원격 분석만 표시하게 하려면 다음과 같이 **장치 정보** **원격 분석** 메타데이터에서 **ExternalTemperature**를 생략합니다.
+toomake hello 차트만 온도 및 습도 원격 분석 표시, 생략 **ExternalTemperature** hello에서 **장치 정보** **원격 분석** 다음과 같은 메타 데이터:
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에�
 ]
 ```
 
-이제 차트에서 **Outdoor Temperature** 가 표시되지 않습니다.
+hello **옥외 온도** hello 차트에 더 이상 표시 합니다.
 
-![대시보드에서 원격 분석 필터링][image5]
+![Hello 대시보드에서 필터 hello 원격 분석][image5]
 
-이와 같이 변경하면 차트 표시만 변경됩니다. **ExternalTemperature** 데이터 값은 계속 저장되어 있으며 백 엔드 처리에 사용할 수 있습니다.
+이 변경 내용을 hello 차트 표시를만 영향을 줍니다. hello **ExternalTemperature** 데이터 값도 저장 되 고 모든 백 엔드 처리에 사용할 수 있도록 합니다.
 
 > [!NOTE]
-> 변경을 즉시 확인하려면 대시보드의 **장치** 페이지에서 Node.js 장치를 비활성화한 다음 활성화해야 할 수 있습니다.
+> Toodisable 필요 하 고 hello Node.js 장치 hello에 사용 하도록 설정 될 수 있습니다 **장치** hello 대시보드 toosee hello 변경에서 즉시 페이지.
 
 ## <a name="handle-errors"></a>오류 처리
 
-데이터 스트림을 차트에 표시하려면 **장치 정보** 메타데이터의 **유형**이 원격 분석 값의 데이터 형식과 일치해야 합니다. 예를 들어, 메타데이터에는 습도 데이터의 **유형**이 **int**로 지정되어 있는데 원격 분석 스트림에서는 **double**이 확인되면 습도 원격 분석은 차트에 표시되지 않습니다. 그러나 **습도** 값은 계속 저장되어 있으며 백 엔드 처리에 사용할 수 있습니다.
+Hello 차트에 데이터 스트림 toodisplay에 대 한 해당 **형식** hello에 **장치 정보** 메타 데이터에는 hello 원격 분석 값의 hello 데이터 형식과 일치 해야 합니다. 예를 들어 hello 메타 데이터 지정 해당 hello **형식** 데이터는 습도 **int** 및 **double** hello 습도 원격 분석에는 다음 hello 원격 분석 스트림에 있는 hello 차트에 표시 되지 않습니다. 그러나 hello **습도** 값은 여전히 저장 하 고 모든 백 엔드 처리에 사용할 수 있도록 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-지금까지 동적 원격 분석을 사용하는 방법을 살펴보았으므로 이제 미리 구성된 솔루션이 장치 정보를 활용하는 방법을 설명하는 [미리 구성된 원격 모니터링 솔루션의 장치 정보 메타데이터][lnk-devinfo]를 자세히 확인하세요.
+이제 살펴보았으므로 어떻게 toouse 동적 원격 분석 학습할 수 있는 장치 정보를 사용 하 여 hello 미리 솔루션을 구성 하는 방법에 대 한 자세한: [솔루션을 미리 구성 된 장치 정보 메타 데이터에서 원격 모니터링 hello] [ lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

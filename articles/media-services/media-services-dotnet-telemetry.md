@@ -1,6 +1,6 @@
 ---
-title: ".NET을 사용하여 Azure Media Services 원격 분석 구성 | Microsoft Docs"
-description: "이 문서는 .NET SDK를 사용하여 Azure Media Services 원격 분석을 사용하는 방법을 보여 줍니다."
+title: ".NET과 함께 Azure 미디어 서비스 원격 분석 aaaConfiguring | Microsoft Docs"
+description: "이 문서 toouse.NET SDK를 사용 하 여 Azure 미디어 서비스 원격 분석을 hello 하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 1d857f3d062d8d1b15c64fa4b8c3e27ad6c2247e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4019fa7d080ca3f8a8709bd1e666f7062b883954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-net"></a>.NET을 사용하여 Azure Media Services 원격 분석 구성
 
-이 항목은 .NET SDK를 사용하여 Azure Media Services(AMS) 원격 분석을 구성할 때 수행할 수 있는 일반적인 단계를 설명합니다. 
+이 항목에서는.NET SDK를 사용 하 여 hello Azure 미디어 서비스 (AMS) 원격 분석을 구성할 때 사용할 수 있는 일반적인 단계를 설명 합니다. 
 
 >[!NOTE]
->AMS 원격 분석이 무엇인지, 어떻게 사용하는지에 대한 자세한 설명을 보려면 [개요](media-services-telemetry-overview.md) 항목을 참조하세요.
+>방식에 대 한 hello 기능에 대해 상세히 AMS 원격 분석 및 tooconsume, hello 참조 [개요](media-services-telemetry-overview.md) 항목입니다.
 
-다음 방법 중 하나를 사용하여 원격 분석 데이터를 사용할 수 있습니다.
+Hello 같은 방법으로 다음 중 하나에 대 한 원격 분석 데이터를 사용할 수 있습니다.
 
-- Azure 테이블 저장소에서 직접 데이터를 읽습니다(예: 저장소 SDK 사용). 원격 분석 저장소 테이블에 대한 설명을 보려면 **이** 항목의 [원격 분석 정보 사용](https://msdn.microsoft.com/library/mt742089.aspx) 을 참조하세요.
+- Azure 테이블 저장소 (예: hello 저장소 SDK 사용)에서 직접 데이터를 읽습니다. 원격 분석 저장소 테이블의 hello 설명 hello 참조 **원격 분석 정보를 사용해** 에 [이](https://msdn.microsoft.com/library/mt742089.aspx) 항목입니다.
 
 또는
 
-- 저장소 데이터를 읽기 위한 미디어 서비스 .NET SDK의 지원을 사용합니다. 이 항목에서는 지정된 AMS 계정에 대해 원격 분석을 사용하도록 설정하고 Azure 미디어 서비스 .NET SDK를 사용하여 메트릭을 쿼리하는 방법을 보여 줍니다.  
+- 저장소 데이터를 읽기 위한 hello 미디어 서비스.NET SDK에서에서 사용 하 여 hello 지원 합니다. 이 항목에서는 방법을 사용 하 여 tooquery hello 메트릭을 hello Azure 미디어 서비스.NET SDK 및 hello에 대 한 원격 분석 tooenable AMS 계정을 지정 하는 방법을 보여 줍니다.  
 
 ## <a name="configuring-telemetry-for-a-media-services-account"></a>미디어 서비스 계정에 대해 원격 분석 구성
 
-원격 분석을 사용하도록 설정하려면 다음 단계가 필요합니다.
+hello 다음 단계는 필요한 tooenable 원격 분석.
 
-- 미디어 서비스 계정에 연결된 저장소 계정의 자격 증명을 가져옵니다. 
-- **EndPointType**이 **AzureTable**로 설정되고 endPointAddress가 저장소 테이블을 가리키는 알림 끝점을 만듭니다.
+- Hello hello 저장소 계정 연결 toohello 미디어 서비스 계정 자격 증명을 가져옵니다. 
+- 알림 끝점을 만들 **이 나와** 도**AzureTable** 및 endPointAddress 가리키는 toohello 저장소 테이블입니다.
 
         INotificationEndPoint notificationEndPoint = 
                       _context.NotificationEndPoints.Create("monitoring", 
                       NotificationEndPointType.AzureTable,
                       "https://" + _mediaServicesStorageAccountName + ".table.core.windows.net/");
 
-- 모니터링할 서비스에 대한 모니터링 구성 설정을 만듭니다. 한 개 이하의 모니터링 구성 설정이 허용됩니다. 
+- Hello 서비스에 대 한 모니터링 구성 설정 만들기 toomonitor 원하는 합니다. 한 개 이하의 모니터링 구성 설정이 허용됩니다. 
   
         IMonitoringConfiguration monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
             new List<ComponentMonitoringSetting>()
@@ -62,15 +62,15 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-1. 개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
+1. 개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
 
-2. 다음 요소를 app.config 파일에 정의된 **appSettings**에 추가합니다.
+2. 요소 다음에 오는 너무 hello 추가**appSettings** app.config 파일에 정의 된:
 
     <add key="StorageAccountName" value="storage_name" />
  
 ## <a name="example"></a>예제  
     
-다음 예제에서는 지정된 AMS 계정에 대해 원격 분석을 사용하도록 설정하고 Azure 미디어 서비스 .NET SDK를 사용하여 메트릭을 쿼리하는 방법을 보여 줍니다.  
+다음 예제는 hello에 hello에 대 한 원격 분석 tooenable AMS 계정을 지정 하는 방법 및 tooquery hello 메트릭을 사용 하 여 Azure 미디어 서비스.NET SDK hello 하는 방법을 보여 줍니다.  
 
     using System;
     using System.Collections.Generic;
@@ -192,7 +192,7 @@ ms.lasthandoff: 08/29/2017
 
             var channelMetrics = telemetry.GetChannelHeartbeats(timerangeStart, timerangeEnd);
 
-            // Print the channel metrics.
+            // Print hello channel metrics.
             Console.WriteLine("Channel metrics:");
 
             foreach (var channelHeartbeat in channelMetrics.OrderBy(x => x.ObservedTime))

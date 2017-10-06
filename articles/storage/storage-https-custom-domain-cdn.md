@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN을 사용하여 HTTPS를 통한 사용자 지정 도메인으로 Blob 액세스"
-description: "Azure CDN을 Blob Storage와 통합하여 HTTPS를 통한 사용자 지정 도메인으로 Blob에 액세스하는 하는 방법에 알아봅니다."
+title: "HTTPS 통해 사용자 지정 도메인을 사용 하 여 aaaUsing hello Azure CDN tooaccess blob"
+description: "HTTPS를 통해 사용자 지정 도메인이 있는 blob를 blob 저장소 tooaccess toointegrate hello Azure CDN 방법을 알아봅니다"
 services: storage
 documentationcenter: 
 author: michaelhauss
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: mihauss
-ms.openlocfilehash: 1439198250346ae9484eae448489e8a5de4734b7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 678e24a7dde5cb2f8feea177bb47c92f61035e66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-cdn-to-access-blobs-with-custom-domains-over-https"></a>Azure CDN을 사용하여 HTTPS를 통한 사용자 지정 도메인으로 Blob 액세스
+# <a name="using-hello-azure-cdn-tooaccess-blobs-with-custom-domains-over-https"></a>HTTPS를 통해 사용자 지정 도메인에서 hello Azure CDN tooaccess blob 사용
 
 이제 Azure CDN(콘텐츠 배달 네트워크)은 사용자 지정 도메인 이름에 대한 HTTPS를 지원합니다.
-이 기능을 활용하여 HTTPS를 통한 사용자 지정 도메인을 사용하여 저장소 Blob에 액세스할 수 있습니다. 이렇게 하려면 먼저 Blob 끝점에서 Azure CDN을 사용하도록 설정하고 CDN을 사용자 지정 도메인 이름으로 매핑해야 합니다. 이러한 단계를 수행하면 사용자 지정 도메인에 대해 HTTPS를 사용하도록 설정하는 것은 한 번 클릭, 완전한 인증서 관리를 통해 간소화되며 이 모든 것을 일반 CDN 가격 책정에 비용을 추가할 필요 없이 수행할 수 있습니다.
+사용자 지정 도메인을 사용 하 여 HTTPS를 통해이 기능 tooaccess 저장소 blob을 활용할 수 있습니다. toodo blob 끝점 및 지도 hello CDN tooa 사용자 지정 도메인 이름의 Azure CDN tooenable 먼저 필요 합니다, 합니다. 이러한 단계를 수행 하면 되 면 한 번의 클릭 사용, 전체 인증서 관리를 통해와 없는 추가 비용 toonormal CDN 가격이 포함 된 모두 간소화은 사용자 지정 도메인에 대 한 HTTPS를 사용 합니다.
 
-이는 전송 중일 때 개인 정보 및 민감한 웹 응용 프로그램 데이터의 데이터 무결성을 보호하므로 중요한 기능입니다. SSL 프로토콜을 사용하여 HTTPS를 통해 트래픽을 제공하면 인터넷 간에 전송되는 데이터를 암호화할 수 있습니다. HTTPS는 신뢰할 수 있는 인증을 제공하며 공격으로부터 웹 응용 프로그램을 보호합니다.
+이 기능은 tooprotect hello 개인 및 전송 중에 중요 한 웹 응용 프로그램 데이터의 데이터 무결성 지원 수 있기 때문에 중요 한 있습니다. HTTPS 통해 SSL 프로토콜 tooserve 트래픽을 hello를 사용 하 여 데이터가 암호화 되도록 하는 hello을 통해 전송 될 때 인터넷 합니다. HTTPS는 신뢰할 수 있는 인증을 제공하며 공격으로부터 웹 응용 프로그램을 보호합니다.
 
 > [!NOTE]
-> 사용자 지정 도메인 이름에 대한 SSL 지원뿐 아니라 Azure CDN은 전 세계 고대역폭 콘텐츠를 제공하는 응용 프로그램의 규모를 확장하는 데 도움이 됩니다.
-> 자세한 내용은 [Azure CDN 개요](../cdn/cdn-overview.md)를 확인하세요.
+> 또한 hello world 응용 프로그램 toodeliver 고대역폭 콘텐츠 60px hello Azure CDN 사용자 지정 도메인 이름에 대 한 SSL 지원 tooproviding 수 있습니다.
+> toolearn을 체크 아웃 [hello Azure CDN 개요](../cdn/cdn-overview.md)합니다.
 >
 >
 
 ## <a name="quick-start"></a>빠른 시작
 
-다음은 사용자 지정 Blob Storage 끝점에 대한 HTTPS를 사용하도록 설정하는 데 필요한 단계입니다.
+Hello 단계 필요한 tooenable HTTPS에 대 한 사용자 지정 blob 저장소 끝점은 다음과 같습니다.
 
 1.  [Azure Storage 계정과 Azure CDN을 통합합니다](../cdn/cdn-create-a-storage-account-with-cdn.md).
-    이 문서에서는 아직 수행하지 않은 경우 Azure Portal에서 저장소 계정을 만드는 과정을 안내합니다.
-2.  [Azure CDN 콘텐츠를 사용자 지정 도메인에 매핑합니다](../cdn/cdn-map-content-to-custom-domain.md).
+    이 문서에서는 하지 않았으면 지금 이미 경우 hello Azure 포털에서에서 저장소 계정을 만드는 과정을 안내 합니다.
+2.  [맵 Azure CDN 콘텐츠 tooa 사용자 지정 도메인](../cdn/cdn-map-content-to-custom-domain.md)합니다.
 3.  [Azure CDN 사용자 지정 도메인에서 HTTPS를 사용하도록 설정합니다](../cdn/cdn-custom-ssl.md).
 
 ## <a name="shared-access-signatures"></a>공유 액세스 서명
 
-익명 읽기 액세스를 허용하지 않도록 Blob Storage 끝점을 구성한 경우 [SAS(공유 액세스 서명)](storage-dotnet-shared-access-signature-part-1.md) 토큰을 사용자 지정 도메인에 사용자가 만든 각 요청에 제공해야 합니다. 기본적으로 Blob Storage 끝점은 익명 읽기 액세스를 허용하지 않습니다. 공유 액세스 서명에 관한 자세한 내용은 [컨테이너 및 Blob에 대한 익명 읽기 권한 관리](storage-manage-access-to-resources.md)를 참조하세요.
+Blob 저장소 끝점은 구성 된 toodisallow 익명 읽기 액세스를 tooprovide 해야 합니다는 [공유 액세스 서명 (SAS)](storage-dotnet-shared-access-signature-part-1.md) tooyour 사용자 지정 도메인 확인 토큰을 각 요청에 있습니다. 기본적으로 Blob Storage 끝점은 익명 읽기 액세스를 허용하지 않습니다. 공유 액세스 서명에 관한 자세한 내용은 [컨테이너 및 Blob에 대한 익명 읽기 권한 관리](storage-manage-access-to-resources.md)를 참조하세요.
 
-Azure CDN은 SAS 토큰에 추가된 제한 사항을 준수하지 않습니다. 예를 들어 모든 SAS 토큰은 만료 시간이 있습니다. 즉, 콘텐츠가 CDN 에지 노드에서 제거될 때까지는 만료된 SAS로 콘텐츠에 여전히 액세스할 수 있습니다. 캐시 응답 헤더를 설정하여 데이터를 CDN에 얼마나 오래 캐시할 것인지 제어할 수 있습니다. 지침에 관해서는 [Azure CDN에서 Azure Storage Blob 만료 관리](../cdn/cdn-manage-expiration-of-blob-content.md)를 참조하세요.
+Azure CDN 어떠한 제한 추가 toohello SAS 토큰을 반영 하지 않습니다. 예를 들어 모든 SAS 토큰은 만료 시간이 있습니다. 이 즉, 콘텐츠 hello CDN 지 노드에에서 해당 콘텐츠는 제거 될 때까지 만료 된 SAS로 액세스할 수 있습니다. Hello 캐시 응답 헤더를 설정 하 여 hello CDN에서 데이터가 캐시 되는 시간을 제어할 수 있습니다. 지침에 관해서는 [Azure CDN에서 Azure Storage Blob 만료 관리](../cdn/cdn-manage-expiration-of-blob-content.md)를 참조하세요.
 
-동일한 Blob 끝점에 대한 여러 개의 SAS URL을 만드는 경우 Azure CDN에 대해 쿼리 문자열 캐싱을 설정하는 것이 좋습니다. 이는 각 URL이 고유한 엔터티로 처리되었는지 확인하기 위함입니다. 자세한 내용은 [쿼리 문자열을 사용하여 Azure CDN 캐싱 동작 제어](../cdn/cdn-query-string.md)를 참조하세요.
+Hello에 대 한 SAS Url을 여러 개 만들면 같은 blob 끝점 권장 Azure CDN에 대 한 쿼리 문자열 캐싱을 설정 합니다. 이 tooensure 각 URL은 고유 엔터티로 처리 하는 합니다. 자세한 내용은 [쿼리 문자열을 사용하여 Azure CDN 캐싱 동작 제어](../cdn/cdn-query-string.md)를 참조하세요.
 
-## <a name="http-to-https-redirection"></a>HTTP에서 HTTPS로 리디렉션
+## <a name="http-toohttps-redirection"></a>HTTP tooHTTPS 리디렉션
 
-HTTP 트래픽을 HTTPS로 리디렉션하도록 선택할 수 있습니다. 그러려면 Verizon에서 제공하는 Azure CDN 프리미엄을 사용해야 합니다. 다음 규칙을 사용하여 [Azure CDN 규칙 엔진을 사용하여 HTTP 동작을 재정의](../cdn/cdn-rules-engine.md)해야 합니다.
+Tooredirect HTTP 트래픽을 tooHTTPS 선택할 수 있습니다. Verizon에서 Azure CDN 프리미엄 제품인 hello 사용을 해야 합니다. 너무 필요한[Azure CDN 규칙 엔진을 사용 하 여 재정의 HTTP 동작](../cdn/cdn-rules-engine.md) 는 다음과 같은 규칙이 있습니다.
 
 ![](./media/storage-https-custom-domain-cdn/redirect-to-https.png)
 
-“Cdn-endpoint-name”은 CDN 끝점에 대해 구성한 이름을 참조합니다. 드롭다운에서 이 값을 선택할 수 있습니다. “Origin-path”는 정적 콘텐츠가 있는 원본 저장소 계정 내 경로를 참조합니다.
-단일 컨테이너의 모든 정적 콘텐츠를 호스팅하는 경우 “origin-path”를 해당 컨테이너의 이름으로 바꿉니다.
+"Cdn 끝점 이름이" CDN 끝점에 대해 구성한 toohello 이름을 참조 합니다. Hello 드롭다운에서이 값을 선택할 수 있습니다. 정적 콘텐츠 있는 원본 저장소 계정 내에서 hello 경로 "원래 경로"를 참조 합니다.
+단일 컨테이너의 모든 정적 콘텐츠를 호스팅하는 경우 해당 컨테이너의 hello 이름으로 "원래 경로"를 대체 합니다.
 
-규칙에 자세히 알아보려면 [Azure CDN 규칙 엔진 기능](../cdn/cdn-rules-engine-reference-features.md)을 참조하세요.
+규칙에 자세히 알아보려면, hello를 참조 하십시오 [Azure CDN 규칙 엔진 기능](../cdn/cdn-rules-engine-reference-features.md)합니다.
 
 ## <a name="pricing-and-billing"></a>가격 책정 및 대금 청구
 
-Azure CDN을 통해 Blob에 액세스할 때 에지 노드와 원본(Blob Storage) 사이의 트래픽에 대해 [Blob Storage 가격](https://azure.microsoft.com/pricing/details/storage/blobs/)을, 에지 노드에서 액세스하는 데이터에 대해 [CDN 가격](https://azure.microsoft.com/pricing/details/cdn/)을 지불합니다.
+Azure CDN을 통해 blob를 액세스할 때 비용을 지불 [Blob 저장소 가격](https://azure.microsoft.com/pricing/details/storage/blobs/) hello 가장자리 노드와 hello 원점 (Blob storage) 간의 트래픽에 대 한 및 [CDN 가격](https://azure.microsoft.com/pricing/details/cdn/) hello 가장자리 노드 모두에서 액세스 되는 데이터에 대 한 합니다.
 
-예를 들어, Azure CDN을 사용하여 액세스되는 저장소 계정이 미국 서부에 있습니다. 영국에서 CDN을 통해 해당 저장소 계정에 있는 Blob 중 하나에 액세스하려고 시도하는 경우 Azure는 먼저 해당 Blob에 대한 영국 가장 가까이에 있는 에지 노드를 확인합니다. 발견한 경우 Blob의 해당 복사본에 액세스하고, CDN에서 액세스하였으므로 CDN 가격 책정을 사용하게 됩니다. 찾을 수 없는 경우, Azure는 Blob을 에지 노드에 복사합니다. 이는 Blob Storage 가격 책정에 지정된 대로 송신 및 트랜잭션 비용이 발생됩니다. 그런 다음, CDN 결제로 이어지는 에지 노드의 파일에 액세스합니다.
+예를 들어, Azure CDN을 사용하여 액세스되는 저장소 계정이 미국 서부에 있습니다. Hello 영국에에서 다른 사람이 열려고 tooaccess hello 중 hello CDN 통해 해당 저장소 계정에서 blob, Azure는 먼저 해당 blob에 대 한 hello 영국에 가장 가까운 hello 가장자리 노드를 확인 합니다. 하는 경우 발견 hello blob의 해당 복사본에 액세스 하 고 CDN 가격 없으므로 사용할 hello CDN에 액세스 하는 합니다. 찾을 수 없는 경우, Azure는 송신 됩니다 hello blob toohello 가장자리 노드를 복사 및 트랜잭션 요금에 지정 된 hello로 Blob 저장소 가격 한 다음 있는 CDN 청구 됩니다 hello 가장자리 노드에 hello 파일에 액세스 합니다.
 
-[CDN 가격 책정 페이지](https://azure.microsoft.com/pricing/details/cdn/)에서 살펴볼 때 사용자 지정 도메인 이름을 위한 HTTPS 지원은 Verizon 제품(표준 및 프리미엄)의 Azure CDN에만 사용할 수 있다는 점에 유의하세요.
+Hello 확인할 때 [가격 책정 페이지 CDN](https://azure.microsoft.com/pricing/details/cdn/), 사용자 지정 도메인 이름에 대 한 HTTPS 지원 참고는 Verizon 제품 (Standard 및 Premium)에서 Azure CDN에 사용할 수만 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 

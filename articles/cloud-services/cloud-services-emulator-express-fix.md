@@ -1,6 +1,6 @@
 ---
-title: "Visual Studio에서 클라우드 서비스 응용 프로그램을 디버그하도록 Emulator Express 설정 | Microsoft Docs"
-description: "Visual Studio에서 C++ 재배포 가능 버전을 설치하여 Emulator Express를 사용하도록 설정하는 방법 설명"
+title: "aaaSetup emulator express는 Visual Studio에서 클라우드 서비스 응용 프로그램을 toodebug | Microsoft Docs"
+description: "Tooinstall Visual Studio에서 Emulator Express는 c + + 재배포 가능 tooenable hello 하는 방법을 설명 합니다."
 services: cloud-services
 documentationcenter: 
 author: cawa
@@ -14,31 +14,31 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/02/2016
 ms.author: cawa
-ms.openlocfilehash: 05d672dcb1335c617bb8d8cae43947bcd5e9ab3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fb506f0b1384f2e52310799eb5ae2a102d777bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-emulator-express-to-debug-cloud-services-application-in-vs-2017"></a>VS 2017에서 Emulator Express를 사용하여 클라우드 서비스 응용 프로그램 디버그
-이 문서에서는 VS 2017에서 Emulator Express를 사용하여 클라우드 서비스 응용 프로그램을 디버그하는 방법을 설명합니다.
+# <a name="use-emulator-express-toodebug-cloud-services-application-in-vs-2017"></a>Emulator Express toodebug 클라우드 서비스 응용 프로그램을 사용 하 여 VS 2017에
+이 문서에서는 설명 어떻게 toouse Emulator Express toodebug 클라우드 서비스에서에서 응용 프로그램 VS 2017 합니다.
 
 ## <a name="background-context"></a>배경 상황
-Emulator Express는 Visual Studio에서 클라우드 서비스 웹 및 작업자 역할을 디버그하는 데 기본적으로 사용됩니다. 이 설정은 클라우드 서비스 프로젝트 속성 페이지에 지정됩니다.
+Emulator Express는 Visual Studio에서 클라우드 서비스 웹 및 작업자 역할을 디버그하는 데 기본적으로 사용됩니다. 이 설정은 hello 클라우드 서비스 프로젝트 속성 페이지에 지정 됩니다.
 
 ![프로젝트 속성 열기][0]
 
 ![Emulator Express는 기본으로 선택되어 있습니다.][1]
 
-[Visual c + + 재배포 가능 패키지] [ Visual C++ Redistributable] express 에뮬레이터에서 Visual Studio는 필수입니다. 현재 Azure 워크로드에는 이 버전이 설치되지 않습니다. F5를 제스처에서 클라우드 서비스 응용 프로그램을 디버그할 때 Visual Studio는이 구성 요소를 설치하고 디버그를 계속할지 묻는 메시지를 표시합니다.
+hello [Visual c + + 재배포 가능 패키지] [ Visual C++ Redistributable] express 에뮬레이터에서 Visual Studio는 필수입니다. 현재 hello Azure 워크 로드로 설치 되지 않았습니다. F5 시 제스처 toodebug 클라우드 서비스 응용 프로그램, Visual Studio는 tooinstall이 구성이 요소 확인 및 디버깅을 진행 합니다.
 
 ![C++ 재배포 가능 패키지 설치 프롬프트][2]
 
-C++ 재배포 가능 패키지를 설치하려면 예를 클릭합니다.
+예 tooinstall c + + 재배포 가능 패키지를 클릭 합니다.
 
 ![C++ 재배포 가능 패키지 설치][3]
 
-F5 키를 다시 눌러 디버깅 세션을 시작합니다.
+Toolaunch 디버깅 세션 다시 F5 키를 누릅니다.
 
 ![디버그 시작][4]
 
@@ -49,19 +49,19 @@ F5 키를 다시 눌러 디버깅 세션을 시작합니다.
 > 
 
 ## <a name="manual-workaround"></a>수동 해결
-설치할 수도 있습니다는 [Visual c + + 재배포 가능 패키지] [ Visual C++ Redistributable] 수동으로 방법 Visual Studio에 설치 되어 시스템 때 동일한 효과 적용 하 고 있습니다.
+Hello를 설치할 수도 있습니다 [Visual c + + 재배포 가능 패키지] [ Visual C++ Redistributable] 수동으로 방법 Visual Studio에 설치 되어 시스템 때 동일한 효과 적용 하 고 있습니다.
 
 [vcredist_x86.exe][vcredist_x86.exe]
 
 [vcredist_x64.exe][vcredist_x64.exe]
 
 ## <a name="next-steps"></a>다음 단계
-Azure 계산 에뮬레이터를 사용 하 여 Visual Studio에서 클라우드 서비스 응용 프로그램을 디버깅 하는 방법에 대 한 자세한 정보: [실행 하 고 로컬 컴퓨터에서 클라우드 서비스 디버깅 Emulator Express를 사용 하 여][Using Emulator Express to run and debug a cloud service on a local machine]
+에 대 한 자세한 toodebug Azure 계산 에뮬레이터를 사용 하 여 Visual Studio에서 클라우드 서비스 응용 프로그램: [toorun Emulator Express를 사용 하 고 로컬 컴퓨터에서 클라우드 서비스 디버그][Using Emulator Express toorun and debug a cloud service on a local machine]
 
 [Visual C++ Redistributable]:https://www.microsoft.com/en-us/download/details.aspx?id=30679
 [vcredist_x86.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
 [vcredist_x64.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
-[Using Emulator Express to run and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
+[Using Emulator Express toorun and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
 
 [0]: ./media/cloud-services-emulator-express-fix/vs-05.png
 [1]: ./media/cloud-services-emulator-express-fix/vs-06.png

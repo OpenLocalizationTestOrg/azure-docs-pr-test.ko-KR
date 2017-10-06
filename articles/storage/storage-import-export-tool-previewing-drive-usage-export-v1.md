@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 내보내기 작업에 대한 드라이브 사용량 미리 보기 - v1 | Microsoft Docs"
-description: "Azure Import/Export 서비스에서 내보내기 작업을 위해 선택한 Blob의 목록을 미리 보는 방법을 알아봅니다."
+title: "Azure 가져오기/내보내기 내보내기 작업-v 1의 드라이브 사용 aaaPreviewing | Microsoft Docs"
+description: "어떻게 blob toopreview hello 목록 선택한 hello Azure 가져오기/내보내기 서비스에서 내보내기 작업에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 7bf74247090f91e17f81a9bc98ebfa78334c8c10
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 88495f921371458c0451da6878fd7cc9a45d20cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="previewing-drive-usage-for-an-export-job"></a>내보내기 작업에 대한 드라이브 사용량 미리 보기
-내보내기 작업을 만들기 전에 내보낼 Blob 집합을 선택해야 합니다. Microsoft Azure Import/Export 서비스를 사용하면 Blob 경로 또는 Blob 접두사 목록을 사용하여 선택한 Blob을 나타낼 수 있습니다.  
+내보내기 작업을 만들기 전에 내보낼 blob toobe 집합이 toochoose를 해야 합니다. Microsoft Azure 가져오기/내보내기 서비스 hello 있습니다 toouse blob 경로 목록을 또는 blob 접두사 toorepresent hello blob를 선택 했습니다.  
   
-그런 다음 보내야 하는 드라이브 수를 결정해야 합니다. Import/Export 도구는 사용하고자 하는 드라이브의 크기에 따라 선택한 Blob에 대한 드라이브 사용량을 미리 볼 수 있는 `PreviewExport` 명령을 제공합니다.
+다음으로, 해야 toodetermine 드라이브 수 toosend 필요 합니다. 가져오기/내보내기 도구 hello 제공 hello `PreviewExport` hello 드라이브의 hello 크기에 따라 보아야 toouse를 선택 하면는 hello blob에 대 한 명령 toopreview 드라이브 사용 합니다.
 
 ## <a name="command-line-parameters"></a>명령줄 매개 변수
 
-Import/Export 도구의 `PreviewExport` 명령을 사용할 때 다음 매개 변수를 사용할 수 있습니다.
+Hello hello를 사용 하는 경우 매개 변수 뒤에 사용할 수 있습니다 `PreviewExport` 의 가져오기/내보내기 도구 hello 명령입니다.
 
 |명령줄 매개 변수|설명|  
 |--------------------------|-----------------|  
-|**/logdir:**<LogDirectory\>|선택 사항입니다. 로그 디렉터리입니다. 이 디렉터리에 자세한 로그 파일이 기록됩니다. 로그 디렉터리를 지정하지 않는 경우 현재 디렉터리가 로그 디렉터리로 사용됩니다.|  
-|**/sn:**<StorageAccountName\>|필수입니다. 내보내기 작업에 대한 저장소 계정의 이름입니다.|  
-|**/sk:**<StorageAccountKey\>|컨테이너 SAS가 지정되지 않은 경우에만 필요합니다. 내보내기 작업에 대한 저장소 계정의 계정 키입니다.|  
-|**/csas:**<ContainerSas\>|저장소 계정 키가 지정되지 않은 경우에만 필요합니다. 내보내기 작업에서 내보낼 Blob을 나열하기 위한 컨테이너 SAS입니다.|  
-|**/ExportBlobListFile:**<ExportBlobListFile\>|필수입니다. 내보낼 Blob에 대한 Blob 경로 또는 Blob 경로 접두사 목록을 포함하고 있는 XML 파일의 경로입니다. Import/Export 서비스 REST API의 [작업 배치](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 작업에서 `BlobListBlobPath` 요소에 사용되는 파일 형식입니다.|  
-|**/DriveSize:**<DriveSize\>|필수입니다. 내보내기 작업에 사용할 드라이브의 크기는 *예를 들어* 500GB, 1.5TB입니다.|  
+|**/logdir:**<LogDirectory\>|선택 사항입니다. hello 로그 디렉터리입니다. 자세한 로그 파일 디렉터리 toothis 작성 됩니다. 없는 로그 디렉터리를 지정 하는 경우 현재 디렉터리 hello hello 로그 디렉터리로 사용 됩니다.|  
+|**/sn:**<StorageAccountName\>|필수입니다. hello hello 저장소 계정의 이름으로 hello에 대 한 내보내기 작업 합니다.|  
+|**/sk:**<StorageAccountKey\>|컨테이너 SAS가 지정되지 않은 경우에만 필요합니다. hello에 대 한 hello 저장소 계정에 대 한 hello 계정 키 내보내기 작업 합니다.|  
+|**/csas:**<ContainerSas\>|저장소 계정 키가 지정되지 않은 경우에만 필요합니다. hello blob toobe 목록에 대 한 hello 컨테이너 SAS hello 내보내기 작업에서 내보냅니다.|  
+|**/ExportBlobListFile:**<ExportBlobListFile\>|필수입니다. 경로 toohello XML blob 경로 목록을 포함 파일 접두사 또는 blob 경로 hello blob toobe 내보낸에 대 한 합니다. hello에 사용 되는 hello 파일 형식 `BlobListBlobPath` hello 요소 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) hello 가져오기/내보내기 서비스 REST API의 작동 합니다.|  
+|**/DriveSize:**<DriveSize\>|필수입니다. 내보내기 작업에 대 한 드라이브 toouse의 크기를 hello *예:*, 500GB, 1.5 t B.|  
 
 ## <a name="command-line-example"></a>명령줄 예제
 
-다음 예제에서는 `PreviewExport` 명령을 보여 줍니다.  
+hello 다음 예제에서는 hello `PreviewExport` 명령:  
   
 ```  
 WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /ExportBlobListFile:C:\WAImportExport\mybloblist.xml /DriveSize:500GB    
 ```  
   
-내보내기 Blob 목록 파일에는 다음과 같이 Blob 이름과 Blob 접두사가 포함될 수 있습니다.  
+hello blob 목록 내보내기 파일 수 blob 이름이 포함 및 blob 접두사를 다음과 같이:  
   
 ```xml 
 <?xml version="1.0" encoding="utf-8"?>  
@@ -57,9 +57,9 @@ WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTr
 </BlobList>  
 ```
 
-Azure Import/Export 도구는 내보낼 모든 Blob을 나열하고 필요한 오버헤드를 고려하여 지정된 크기의 드라이브에 패키지하는 방법을 계산한 다음 Blob 및 드라이브 사용 정보를 보유하는 데 필요한 드라이브 수를 추정합니다.  
+hello Azure 가져오기/내보내기 도구는 내보낼 모든 blob toobe를 나열 하 고 어떻게 toopack hello의 드라이브에 지정 된 크기, 필요한 오버 헤드를 고려 hello 드라이브 수를 예측 합니다 임의 toohold hello blob 및 드라이브 사용을 계산 합니다. 정보입니다.  
   
-다음은 정보 로그가 생략된 출력의 예입니다.  
+다음은 정보 로그가 생략 된 hello 출력의 예가입니다.  
   
 ```  
 Number of unique blob paths/prefixes:   3  

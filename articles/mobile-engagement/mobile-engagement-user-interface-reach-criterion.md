@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 사용자 인터페이스 - 도달률 기준"
-description: "Azure Mobile Engagement를 사용하여 대상 지정 기준을 사용하여 선택한 사용자 하위 집합에 푸시 캠페인을 보내는 방법을 알아봅니다."
+title: "Mobile Engagement 사용자 인터페이스-aaaAzure 조건에 도달"
+description: "Toouse 대상 조건 toosend 푸시 캠페인 tooa Azure Mobile Engagement를 사용 하 여 사용자의 하위 집합을 선택 하는 방법에 대해 알아봅니다"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 803b44721d0ab1ac7b5a8074e18857fc57adb724
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d956add1b7edc1d49451596019c5a4dec098d724
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-targeting-criteria-to-send-push-campaigns-to-a-select-subset-of-your-users"></a>대상 지정 기준을 사용하여 선택한 사용자 하위 집합에 푸시 캠페인을 보내는 방법
-"새 기준" 단추를 사용하여 특정 기준에 따라 대상을 지정하는 방식은 Azure Mobile Engagement에서 가장 유용한 개념 중 하나입니다. 이 방법을 사용하면 모든 대상을 스팸으로 처리하는 대신 고객이 반응을 보이도록 할 관련성이 높은 푸시 알림을 보낼 수 있습니다. 표준 기준에 따라 대상을 제한하고 푸시를 시뮬레이트하여 알림을 수신할 사용자 수를 결정할 수 있습니다.
+# <a name="how-toouse-targeting-criteria-toosend-push-campaigns-tooa-select-subset-of-your-users"></a>Toouse 대상 조건 toosend 푸시 캠페인 tooa 사용자의 하위 집합을 선택 하는 방법
+Hello "새 기준" 단추와 특정 기준으로 대상 그룹을 대상으로 hello 가장 강력한 개념에 대해 Azure Mobile Engagement는 사용 하면 보내는 관련 대 한 푸시 알림 hello 고객 tooinstead 스팸 모든 사용자의 응답 하는 중 하나입니다. 표준 기준에 따라 대상 그룹을 제한 하 고 푸시 toodetermine 시뮬레이션 얼마나 많은 사람들이 hello 알림을 받게 됩니다.
 
 **참고 항목:**
 
 * [UI 설명서 - 도달률 - 새 푸시 캠페인][Link 27]
 
 ## <a name="audience-criteria-can-include"></a>대상 기준에는 다음 항목이 포함될 수 있습니다.
-* * * Technicals: * * 대상 분석 및 모니터링 섹션에서 볼 수 있는 동일한 기술 정보를 기반으로 합니다. **참고 항목** [UI 설명서 - 분석][Link 15],  [UI 설명서 - 모니터][Link 16]
-* **위치:** 지역 펜싱과 함께 "실시간 위치 보고"를 사용하는 응용 프로그램은 지리적 위치를 기준으로 사용하여 GPS 위치에서 대상 그룹을 지정할 수 있습니다. "지연 영역 위치 보고" 호출을 사용하여 휴대폰 위치에서 대상 그룹을 지정할 수도 있습니다(SDK에서 "실시간으로 위치 보고" 및 "지연 영역 위치 보고"를 활성화해야 함). **참고 항목:** [SDK 설명서 - iOS - 통합][Link 5], [SDK 설명서 - Android - 통합][Link 5]
-* **도달률 피드백:** 알림, 설문 조사 및 데이터 푸시의 도달률 피드백을 통해 이전 도달률 알림의 피드백에 따라 대상을 지정할 수 있습니다. 이렇게 하면 두세 개의 도달률 캠페인 후 처음보다 더 효율적으로 대상을 지정할 수 있습니다. 또한 이미 특정 이전 캠페인을 받은 사용자에게 캠페인이 전송되지 않도록 설정하여 이미 유사한 콘텐츠가 포함된 알림을 받은 사용자를 필터링하는 데 사용할 수 있습니다. 여전히 활성 상태인 특정 캠페인에 포함된 사용자가 새 푸시를 받지 않도록 제외할 수도 있습니다. **참고 항목:** [UI 설명서 - 도달률 - 푸시 콘텐츠][Link 29]
+* * * Technicals: * *에 따라 hello 대상 같은 기술 정보 hello 분석 및 모니터링 섹션에서 볼 수 있습니다. **참고 항목** [UI 설명서 - 분석][Link 15],  [UI 설명서 - 모니터][Link 16]
+* **위치:** "실시간 위치 보고"을 사용 하 여 지 오 펜싱을 사용 하는 응용 프로그램 기준 tootarget hello GPS 위치에서에서 대상 그룹으로 지리적 위치를 사용할 수 있습니다. "지연 영역 위치 보고" 호출 또한 사용된 tootarget hello 휴대 전화 위치에서 대상 그룹을 수 ("실시간 위치 보고" 및 "지연 된 영역 위치 보고" 해야 활성화 hello SDK에서에서). **참고 항목:** [SDK 설명서 - iOS - 통합][Link 5], [SDK 설명서 - Android - 통합][Link 5]
+* **도달률 피드백:** 알림, 설문 조사 및 데이터 푸시의 도달률 피드백을 통해 이전 도달률 알림의 피드백에 따라 대상을 지정할 수 있습니다. 이렇게 하면 toobetter 대상 두세 도달 보다 캠페인 청중 처음으로 hello 수 있습니다. 사용할 수도 있습니다 toofilter 캠페인 tooNOT를 설정 하 여 유사 콘텐츠 관련 된 알림을 이미 받은 사용자가 특정 이전 캠페인을 이미 받은 toousers를 보낼 수 있습니다. 여전히 활성 상태인 특정 캠페인에 포함된 사용자가 새 푸시를 받지 않도록 제외할 수도 있습니다. **참고 항목:** [UI 설명서 - 도달률 - 푸시 콘텐츠][Link 29]
 * **설치 추적:** 사용자가 앱을 설치한 위치를 기준으로 정보를 추적할 수 있습니다. **참고 항목:** [UI 설명서 - 설정][Link 20]
-* **사용자 프로필:** 표준 사용자 정보와 직접 만든 사용자 지정 앱 정보를 기준으로 대상을 지정할 수 있습니다. 이러한 대상에는 현재 로그인되어 있는 사용자와 특정 질문(단순히 이전 캠페인에 응답한 방식만이 아니라 앱 자체에서 설정하여 응답하도록 요청한 질문)에 대답한 사용자가 포함됩니다. 앱에 대해 정의한 모든 앱 정보가 이 목록에 표시됩니다.
+* **사용자 프로필:** 표준 사용자 정보에 따라 대상 수 하 고 사용자가 만든 hello 사용자 지정 앱 정보를 기준으로 대상 수 있습니다. 사용자가 현재 로그인에 고 tooset 방금 어떻게가 응답 tooprevious 캠페인 대신 자체 hello 응용 프로그램에서 요청 했습니다 특정 질문에 답변 한 사용자가 포함 됩니다. 앱에 대해 정의한 모든 앱 정보가 이 목록에 표시됩니다.
 * 세그먼트: 여러 기준을 포함하는 특정 사용자 동작을 기준으로 작성한 세그먼트에 따라 대상을 지정할 수도 있습니다. 앱에 대해 정의한 모든 세그먼트가 이 목록에 표시됩니다. **참고 항목:** [UI 설명서 - 세그먼트][Link 18]
-* **앱 정보:** "설정"에서 사용자 지정 앱 정보 태그를 만들어 사용자 동작을 추적할 수 있습니다. **참고 항목:** [UI 설명서 - 설정][Link 20]
+* **응용 프로그램 정보:** "설정" tootrack 사용자 동작에서 사용자 지정 응용 프로그램 정보 태그를 만들 수 있습니다. **참고 항목:** [UI 설명서 - 설정][Link 20]
 
 ## <a name="example"></a>예제:
-앱 내 구매 작업을 수행한 사용자에게만 알림을 푸시하려는 경우 다음을 수행합니다.
+Toopush 원하는 알림만 toohello 하위 집합에서-app를 수행한 사용자의 동작을 구입 합니다.
 
-1. 응용 프로그램 설정 페이지로 이동하여 "앱 정보" 메뉴를 선택하고 "새 앱 정보"를 선택합니다.
+1. 응용 프로그램 설정 페이지 tooyour hello "앱 정보" 메뉴를 선택한 "새 응용 프로그램 정보"를 선택 합니다.
 2. "inAppPurchase"라는 새 부울 앱을 등록합니다.
-3. 사용자가 앱 내 구매를 정상적으로 수행하면 응용 프로그램에서 sendAppInfo("inAppPurchase", ...) 함수를 사용하여 이 앱 정보를 "true"로 설정하도록 지정합니다.
-4. 응용 프로그램에서 이 작업을 수행하지 않으려는 경우 장치 API를 사용하여 백 엔드에서 해당 작업을 수행할 수 있습니다.
-5. 그런 후에는 대상을 "inAppPurchase"가 "true"로 설정된 사용자로 제한하는 기준을 사용하여 알림을 만들면 됩니다.
+3. Hello 사용자 앱에서 바로 구매를 성공적으로 수행 하는 경우이 응용 프로그램 정보를 설정 하는 응용 프로그램을 "true" 너무 확인 (hello sendAppInfo ("inAppPurchase",...)를 사용 하 여 함수)
+4. 않으려면 toodo이 응용 프로그램에서 hello 장치 API를 사용 하 여 백 엔드에서 수행할 수 있습니다)
+5. 그런 다음 프로그램 알림 "inAppPurchase" 필요 청중 toousers 프로그램 제한 조건으로 설정 "true" 너무 toocreate만 필요)
 
 > [!NOTE]
-> 앱 정보 태그 이외의 기준에 따라 대상을 지정하려는 경우에는 푸시를 보내기 전에 Azure Mobile Engagement에서 사용자 장치의 정보를 수집해야 하므로 푸시가 지연될 수 있습니다. 배지 업데이트 등의 복합 푸시 구성 옵션을 사용하는 경우에도 푸시가 지연될 수 있습니다. Azure Mobile Engagement에서 가장 빠르게 푸시를 보내려는 경우 푸시 API에서 "일회성" 캠페인을 사용합니다. 두 번째로 빠른 방법은 도달률 API나 UI에서 도달률 캠페인에 대해 앱 정보 태그만 푸시 기준으로 사용하는 것입니다. 앱 정보 태그는 서버 쪽에 저장되기 때문입니다. 푸시 캠페인에 대해 다른 대상 지정 기준을 사용하는 푸시 방법이 가장 유동적이기는 하지만 속도는 가장 느립니다. Azure Mobile Engagement는 캠페인을 보내려면 장치를 쿼리해야 하기 때문입니다.
+> 응용 프로그램 정보 태그 이외의 기준에 따라 대상 컴퓨터가 있어야 사용자의 장치에서 Azure Mobile Engagement toogather 정보 hello 푸시 전송 되 고 지연 않을 수 있습니다. 배지 업데이트 등의 복합 푸시 구성 옵션을 사용하는 경우에도 푸시가 지연될 수 있습니다. Hello 푸시 API에서에서 "단일 쇼트" 캠페인을 사용 하는 hello 절대 가장 빠른 푸시 방법 Azure Mobile Engagement 에서입니다. Reach 캠페인 (에서 나 hello Reach API hello UI)에 대 한 푸시 기준으로 앱 정보 태그만 사용 하는 것이 응용 프로그램 정보 태그 hello 서버 쪽에서 저장 되므로 hello 다음 가장 빠른 방법입니다. 푸시 캠페인에 대 한 다른 대상 기준을 사용 하는 hello 가장 유연한 이자 가장 느린 푸시 방법은 Azure Mobile Engagement 순서 toosend hello 캠페인의 tooquery hello 장치에 있기 때문입니다.
 
 ![도달률 기준1][29] 
 

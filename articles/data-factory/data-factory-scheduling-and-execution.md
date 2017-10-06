@@ -1,5 +1,5 @@
 ---
-title: "Data Factory에서 예약 및 실행 | Microsoft Docs"
+title: "aaaScheduling 및 데이터 팩터리를 사용 하 여 실행 | Microsoft Docs"
 description: "Azure Data Factory 응용 프로그램 모델의 예약 및 실행에 대한 내용을 알아봅니다."
 services: data-factory
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: e6fd92cde91ae5f171c855c07fa8974a19703b41
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6114dd4896f5537c789c3b632fb90e501b694285
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-factory-scheduling-and-execution"></a>Data Factory 예약 및 실행
-이 문서에서는 Azure Data Factory 응용 프로그램 모델의 예약 및 실행에 대한 내용을 설명합니다. 이 문서는 사용자가 작업, 파이프라인, 연결된 서비스 및 데이터 집합과 같은 Data Factory 응용 프로그램 모델 개념을 이해하고 있다고 가정합니다. Azure Data Factory의 기본 개념은 다음 문서를 참조하세요.
+이 문서는 hello Azure Data Factory 응용 프로그램 모델의 hello 예약 및 실행 측면을 설명합니다. 이 문서는 사용자가 작업, 파이프라인, 연결된 서비스 및 데이터 집합과 같은 Data Factory 응용 프로그램 모델 개념을 이해하고 있다고 가정합니다. Azure Data Factory의 기본 개념에 대 한 참조 문서 다음 hello:
 
-* [데이터 팩터리 소개](data-factory-introduction.md)
+* [소개 tooData 팩터리](data-factory-introduction.md)
 * [파이프라인](data-factory-create-pipelines.md)
 * [데이터 집합](data-factory-create-datasets.md) 
 
 ## <a name="start-and-end-times-of-pipeline"></a>파이프라인의 시작 및 종료 시간
-파이프라인은 **시작** 시간과 **종료** 시간 사이에서만 활성화됩니다. 시작 시간 이전 또는 종료 시간 이후에 실행되지 않습니다. 파이프라인이 일시 중지되면 시작 및 종료 시간에 관계없이 실행되지 않습니다. 실행될 파이프라인의 경우 일시 중지되지 않아야 합니다. 파이프라인 정의에서 이러한 설정(start, end, paused)을 찾습니다. 
+파이프라인은 **시작** 시간과 **종료** 시간 사이에서만 활성화됩니다. Hello 시작 시간 이전 또는 hello 종료 시간 이후에 실행 되지 않습니다. Hello 파이프라인이 일시 중지, 시작 및 종료 시간에 관계 없이 실행 되지 않습니다. 파이프라인 toorun에 대 한 것 해야 일시 중지할 수 있습니다. Hello 파이프라인 정의에서 이러한 설정을 (시작, 종료, 일시 중지)을 찾을: 
 
 ```json
 "start": "2017-04-01T08:00:00Z",
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/03/2017
 
 
 ## <a name="specify-schedule-for-an-activity"></a>활동 일정 지정
-실행되는 파이프라인이 아닙니다. 파이프라인의 전체 컨텍스트에서 실행되는 것은 파이프라인의 활동입니다. 활동 JSON의 **scheduler** 섹션을 사용하여 활동에 대한 되풀이 일정을 지정할 수 있습니다. 예를 들어 활동을 다음과 같이 시간별로 실행하도록 예약할 수 있습니다.  
+Hello 파이프라인 실행 되는 없습니다. Hello에 실행 되는 hello 파이프라인의 hello 작업은 hello 파이프라인의 전체적인 맥락 합니다. Hello를 사용 하 여 활동에 대 한 되풀이 일정을 지정할 수 있습니다 **스케줄러** 활동 JSON의 섹션입니다. 예를 들어 예약할 수 있습니다 활동 toorun 매시간 다음과 같습니다.  
 
 ```json
 "scheduler": {
@@ -49,18 +49,18 @@ ms.lasthandoff: 08/03/2017
 },
 ```
 
-다음 다이어그램과 같이 활동 일정을 지정하면 파이프라인 시작 및 종료 시간에 일련의 연속 창이 생성됩니다. 연속 창은 일련의 고정된 크기의 겹치지 않는 연속적인 시간 간격입니다. 활동에 대한 이러한 논리적 연속 창을 **활동 기간**이라고 합니다.
+Hello 다음 다이어그램에에서 나와 있는 것 처럼 활동에 대 한 일정 계열을 사용 하 여 연속 창의 hello 지정 파이프라인 시작 시간 및 종료. 연속 창은 일련의 고정된 크기의 겹치지 않는 연속적인 시간 간격입니다. 활동에 대한 이러한 논리적 연속 창을 **활동 기간**이라고 합니다.
 
 ![활동 스케줄러 예제](media/data-factory-scheduling-and-execution/scheduler-example.png)
 
-활동에 대한 **scheduler** 속성은 선택 사항입니다. 이 속성을 지정하면 활동에 대한 출력 데이터 집합 정의에 지정하는 빈도와 일치해야 합니다. 현재 출력 데이터 집합은 일정을 작동하는 것입니다. 따라서 활동에서 출력을 생성하지 않더라도 출력 데이터 집합을 만들어야 합니다. 
+hello **스케줄러** 활동에 대 한 속성은 선택 사항입니다. 이 속성을 지정 하면 경우 hello 활동에 대 한 출력 데이터 집합의 hello 정의에서 지정 하는 hello 흐름을 일치 해야 합니다. 현재 출력 데이터 집합은 어떤 드라이브 hello 일정입니다. 따라서 만들어야 출력 데이터 집합의 관계를 hello 활동 출력을 생성 하지 않는 경우에 합니다. 
 
 ## <a name="specify-schedule-for-a-dataset"></a>데이터 집합 일정 지정
-Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집합**을 받고, 하나 이상의 출력 데이터 집합을 생성할 수 있습니다. 활동의 경우 데이터 집합 정의의 **availability** 섹션을 사용하여 입력 데이터를 사용할 수 있거나 출력 데이터를 생성하는 빈도를 지정할 수 있습니다. 
+Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집합**을 받고, 하나 이상의 출력 데이터 집합을 생성할 수 있습니다. 활동에 대 한 입력된 데이터를 사용할 수 있는 hello에 hello 흐름을 지정할 수 있습니다 또는 hello를 사용 하 여 hello 출력 데이터 생성 **가용성** hello 데이터 집합 정의에 섹션입니다. 
 
-**availability** 섹션의 **frequency**는 시간 단위를 지정합니다. frequency에 허용되는 값은 Minute, Hour, Day, Week 및 Month입니다. availability 섹션의 **interval** 속성은 frequency에 대한 승수를 지정합니다. 예를 들어 출력 데이터 집합에 대해 frequency가 Day로 설정되고 interval이 1로 설정되면 출력 데이터를 매일 생성합니다. frequency를 Minute로 지정하는 경우 interval을 15 이상으로 설정하는 것이 좋습니다. 
+**빈도** hello에 **가용성** 섹션 hello 시간 단위를 지정 합니다. hello 빈도 대 한 값은 허용: 분, 시간, 일, 주 및 월. hello **간격** hello 가용성 섹션에서 속성 빈도의 승수를 지정 합니다. 예를 들어: hello 출력 데이터가 매일 생성 hello 주기 tooDay 설정 하는 경우 출력 데이터 집합에 대 한 too1 간격을 설정 합니다. 분으로 hello 빈도 지정 하는 경우에 15 보다 작은 간격 toono hello 설정 하는 것이 좋습니다. 
 
-다음 예제에서 입력 데이터는 매시간 사용할 수 있으며 출력 데이터는 매시간(`"frequency": "Hour", "interval": 1`) 생성됩니다. 
+다음 예제는 hello에서 hello 입력된 데이터를 사용할 수 매시간 hello 출력 데이터가 매시간 생성 됩니다 (`"frequency": "Hour", "interval": 1`). 
 
 **입력 데이터 집합:** 
 
@@ -85,7 +85,7 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 ```
 
 
-**출력 데이터 집합:**
+**출력 데이터 집합**
 
 ```json
 {
@@ -114,9 +114,9 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 }
 ```
 
-현재 **출력 데이터 집합은 일정을 작동하고 있습니다**. 즉 출력 데이터 집합에 대해 지정된 일정은 런타임에 활동을 실행하는 데 사용됩니다. 따라서 활동에서 출력을 생성하지 않더라도 출력 데이터 집합을 만들어야 합니다. 활동이 입력을 가져오지 않으면 입력 데이터 집합 만들기를 건너뛸 수 있습니다. 
+현재 **출력 데이터 집합 드라이브 hello 일정**합니다. 즉, hello 출력 데이터 집합에 대해 지정 된 hello 일정은 런타임에 작업에서 사용 되는 toorun 합니다. 따라서 만들어야 출력 데이터 집합의 관계를 hello 활동 출력을 생성 하지 않는 경우에 합니다. Hello 활동의 입력을 사용 하지 않습니다, hello 입력된 데이터 집합 만들기를 건너뛸 수 있습니다. 
 
-다음 파이프라인 정의에서 **scheduler** 속성은 활동에 대한 일정을 지정하는 데 사용됩니다. 이 속성은 선택 사항입니다. 현재 활동에 대한 일정은 출력 데이터 집합에 지정된 일정과 일치해야 합니다.
+다음 예제 hello 파이프라인 정의 hello **스케줄러** 속성은 hello 활동에 대 한 사용 되는 toospecify 일정입니다. 이 속성은 선택 사항입니다. 현재 hello 활동에 대 한 hello 일정 hello 일정 hello 출력 데이터 집합에 대해 지정 된 일치 해야 합니다.
  
 ```json
 {
@@ -161,36 +161,36 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 }
 ```
 
-이 예제에서는 활동은 파이프라인의 시작과 끝 시간 사이에서 매시간 실행됩니다. 출력 데이터는 3시간 기간(오전 8-9시, 오전 9-10시, 오전 10-11시) 동안 매시간 생성됩니다. 
+이 예제에서는 hello 활동을 1 시간 마다 실행 hello 사이의 시작 시간 및 종료 hello 파이프라인. hello 출력 데이터는 3 개의 시간 창 (8-9 오전, 오전 9 시에서 오전 10, 및 10-11 오전)에 대 한 매시간 생성 됩니다. 
 
-활동 실행에서 사용하거나 생성한 데이터의 각 단위를 **데이터 조각**이라고 합니다. 다음 다이어그램에서는 입력 데이터 집합과 출력 데이터 집합이 하나씩 포함된 활동의 예를 보여 줍니다. 
+활동 실행에서 사용하거나 생성한 데이터의 각 단위를 **데이터 조각**이라고 합니다. 다이어그램을 다음 hello 하나의 입력 데이터 집합과 하나의 출력 데이터 집합 작업의 예를 보여 줍니다. 
 
 ![가용성 스케줄러](./media/data-factory-scheduling-and-execution/availability-scheduler.png)
 
-위 다이어그램에서는 입력 및 출력 데이터 집합에 대한 매시간 데이터 조각을 보여 줍니다. 다이어그램은 처리할 준비가 된 입력 조각 3개를 보여 줍니다. 오전 10-11시 작업이 진행 중이며 오전 10-11시 출력 조각이 생성되고 있습니다. 
+hello 다이어그램 hello에 대 한 데이터 조각이 입력 및 출력 데이터 집합 1 시간 마다 hello를 보여줍니다. hello 다이어그램에는 처리를 위해 준비 하는 세 가지 입력된 조각을 보여 줍니다. hello 10-11 오전 활동 hello 10-11 오전 출력 조각을 생성 하는 진행 중입니다. 
 
-[SliceStart](data-factory-functions-variables.md#data-factory-system-variables) 및 [SliceEnd](data-factory-functions-variables.md#data-factory-system-variables) 변수를 사용하여 데이터 집합 JSON에서 현재 조각과 관련된 시간 간격에 액세스할 수 있습니다. 마찬가지로 WindowStart 및 WindowEnd를 사용하여 활동 기간과 관련된 시간 간격에 액세스할 수 있습니다. 활동 일정은 해당 활동의 출력 데이터 집합 일정과 일치해야 합니다. 따라서 SliceStart 및 SliceEnd 값은 각각 WindowStart 및 WindowEnd 값과 동일합니다. 이러한 변수에 대한 자세한 내용은 [Data Factory 함수 및 시스템 변수](data-factory-functions-variables.md#data-factory-system-variables) 문서를 참조하세요.  
+변수를 사용 하 여 hello 데이터 집합 JSON의에서 현재 조각 hello와 관련 된 hello 시간 간격에 액세스할 수 있습니다: [SliceStart](data-factory-functions-variables.md#data-factory-system-variables) 및 [SliceEnd](data-factory-functions-variables.md#data-factory-system-variables)합니다. 마찬가지로, WindowStart hello 및 WindowEnd를 사용 하 여 연결 된 활동 hello 시간 간격을 액세스할 수 있습니다. 활동의 hello 일정 hello 활동에 대 한 hello 출력 데이터 집합의 일정을 hello 일치 해야 합니다. 따라서 SliceStart hello 및 SliceEnd 값은 hello 동일 WindowStart WindowEnd 값으로 각각. 이러한 변수에 대한 자세한 내용은 [Data Factory 함수 및 시스템 변수](data-factory-functions-variables.md#data-factory-system-variables) 문서를 참조하세요.  
 
-이러한 변수를 작업 JSON에서 다양한 용도로 사용할 수 있습니다. 예를 들어 시계열 데이터(예: 오전 8시에서 오전 9시)를 나타내는 입력 및 출력 데이터 집합에서 데이터를 선택하는 데 사용할 수 있습니다. 또한 이 예제에서는 **WindowStart** 및 **WindowEnd**를 사용하여 활동 실행에 대한 관련 데이터를 선택하고 적절한 **folderPath**의 Blob에 이 데이터를 복사합니다. **folderPath** 는 매시간 별도의 폴더를 포함하도록 매개 변수화됩니다.  
+이러한 변수를 작업 JSON에서 다양한 용도로 사용할 수 있습니다. 예를 들어 데이터 사용할 수 있습니다 이러한 tooselect 시계열 데이터를 나타내는 입력 및 출력 데이터 집합에서 (예: 8 AM too9 AM). 또한이 예제에서는 **WindowStart** 및 **WindowEnd** tooselect 관련 데이터를 활동에 대해 실행 하 고 적절 한 hello로 tooa blob 복사 **folderPath**합니다. hello **folderPath** 매시간에 대 한 매개 변수가 있는 toohave 별도 폴더입니다.  
 
-앞의 예에서 입력 및 출력 데이터 집합에 대해 지정된 일정은 동일합니다(매시간). 활동에 대한 입력 데이터 집합을 다른 빈도(예: 15분마다)에서 사용할 수 있는 경우 출력 데이터 집합이 활동 일정을 작동하는 것이므로 이 출력 데이터 집합을 생성하는 활동은 한 시간에 한 번씩 계속 실행됩니다. 자세한 내용은 [다양한 빈도로 데이터 집합 모델링](#model-datasets-with-different-frequencies)을 참조하세요.
+앞 예제는 hello, 입력 및 출력 데이터 집합에 대해 지정 된 hello 일정이 동일 (매시간) hello 됩니다. Hello hello 활동에 대 한 입력된 데이터 집합을 사용할 수 경우 다른 빈도로 예: 15 분 마다 hello 출력 데이터 집합은 어떤 드라이브 hello 활동 일정으로이 출력 데이터 집합을 생성 하는 hello 활동이 계속 한 시간에 한 번 실행 됩니다. 자세한 내용은 [다양한 빈도로 데이터 집합 모델링](#model-datasets-with-different-frequencies)을 참조하세요.
 
 ## <a name="dataset-availability-and-policies"></a>데이터 집합 가용성 및 정책
-데이터 집합 정의의 availability 섹션에서 frequency 및 interval 속성의 사용을 살펴보았습니다. 활동의 예약 및 실행에 영향을 주는 몇 가지 다른 속성이 있습니다. 
+데이터 집합 정의의 hello 가용성 섹션의 빈도 및 간격이 속성의 hello 사용에 알아보았습니다. hello 예약 및 실행 작업에 영향을 주는 다른 몇 가지 속성이 있습니다. 
 
 ### <a name="dataset-availability"></a>데이터 집합 가용성 
-다음 표에서는 **availability** 섹션에서 사용할 수 있는 속성을 설명합니다.
+hello 다음 표에서 설명 hello에 사용할 수 있는 속성 **가용성** 섹션:
 
 | 속성 | 설명 | 필수 | 기본값 |
 | --- | --- | --- | --- |
-| frequency |데이터 집합 조각 생성을 위한 시간 단위를 지정합니다.<br/><br/><b>지원되는 빈도</b>: 분, 시, 일, 주, 월 |예 |해당 없음 |
-| interval |빈도 승수를 지정합니다.<br/><br/>"빈도 x 간격"은 조각을 생성하는 빈도를 결정합니다.<br/><br/>데이터 집합을 시간 단위로 조각화해야 하는 경우 <b>frequency</b>를 <b>Hour</b>로, <b>interval</b>을 <b>1</b>로 설정합니다.<br/><br/><b>참고:</b> 빈도를 Minute(분)으로 지정하면 15 이상으로 간격을 설정하는 것이 좋습니다. |예 |해당 없음 |
-| style |간격의 시작/끝에 조각을 생성해야 하는지를 지정합니다.<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Frequency를 Month로 설정하고 style을 EndOfInterval로 설정하는 경우 조각을 월의 마지막 날에 생성합니다. style을 StartOfInterval로 설정하는 경우 조각을 달의 첫 번째 날에 생성합니다.<br/><br/>frequency를 Day로 설정하고 style을 EndOfInterval로 설정하는 경우 조각을 일의 마지막 시간에 생성합니다.<br/><br/>Frequency를 Hour로 설정하고 style을 EndOfInterval로 설정하는 경우 조각을 시간의 끝에 생성합니다. 예를 들어 오후 1~2시 기간에 대한 조각은 오후 2시에 생성됩니다. |아니요 |EndOfInterval |
-| anchorDateTime |스케줄러에서 사용하는 시간에 절대 위치를 정의하여 데이터 집합 조각 경계를 계산합니다. <br/><br/><b>참고:</b> AnchorDateTime에 빈도보다 더 세분화된 날짜 부분이 있는 경우 더 세분화된 부분을 무시합니다. <br/><br/>예를 들어 <b>간격</b>이 <b>매시간</b>(frequency: Hour 및 interval: 1)이고 <b>AnchorDateTime</b>에서 <b>분 및 초</b>를 포함하는 경우 AnchorDateTime의 <b>분 및 초</b> 부분은 무시됩니다. |아니요 |01/01/0001 |
-| offset |모든 데이터 집합 조각의 시작과 끝이 이동에 의한 Timespan입니다. <br/><br/><b>참고:</b> anchorDateTime 및 offset이 모두 지정되면 결과적으로 이동이 결합됩니다. |아니요 |해당 없음 |
+| frequency |데이터 집합 조각 프로덕션에 대 한 hello 시간 단위를 지정합니다.<br/><br/><b>지원되는 빈도</b>: 분, 시, 일, 주, 월 |예 |해당 없음 |
+| interval |빈도 승수를 지정합니다.<br/><br/>"X 주파수 간격" 결정 얼마나 자주 hello 조각이 생성 됩니다.<br/><br/>설정 하는 경우는 시간 단위로 분할 되는 데이터 집합 toobe hello 필요, <b>주파수</b> 너무<b>시간</b>, 및 <b>간격</b> 너무<b>1</b>합니다.<br/><br/><b>참고</b>: 1 분으로 주파수를 지정 하면 15 보다 작은 간격 toono hello 설정 하는 것이 좋습니다 |예 |해당 없음 |
+| style |Hello 간격의 시작/끝 hello에 hello 분할 영역을 생성 해야 하는지 여부를 지정 합니다.<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Frequency를 tooMonth를 설정 하는 경우 스타일 tooEndOfInterval 설정 되어 있으면 hello 달의 마지막 날에 hello 조각이 생성 됩니다. Hello 스타일 tooStartOfInterval을 설정 하는 경우에 월의 첫째 날으로 hello에 hello 조각이 생성 됩니다.<br/><br/>Frequency를 tooDay를 설정 하는 경우 스타일 tooEndOfInterval 설정 되어 있으면 hello 조각이 hello 지난 1 시간 동안 hello 하루 중에 생성 됩니다.<br/><br/>Frequency를 tooHour를 설정 하는 경우 스타일 tooEndOfInterval 설정 되어 있으면 hello 조각이 hello 시간 hello 끝에 생성 됩니다. 예를 들어, 오후 1 ~ 2 시 기간에 조각의 hello 조각이 오후 2 시 생성 됩니다. |아니요 |EndOfInterval |
+| anchorDateTime |스케줄러 toocompute 데이터 집합 분할 영역 경계에 의해 사용 된 시간에 hello 절대 위치를 정의 합니다. <br/><br/><b>참고</b>: hello AnchorDateTime에 hello 빈도 보다 더 세부적인 날짜 부분이 경우 hello 더 세분화 된 부분은 무시 됩니다. <br/><br/>예를 들어 경우 hello, <b>간격</b> 은 <b>매시간</b> (빈도: 시간 및 간격: 1) 및 hello <b>AnchorDateTime</b> 포함 <b>, 분, 초</b>, 다음 hello <b>, 분, 초</b> hello AnchorDateTime의 일부는 무시 됩니다. |아니요 |01/01/0001 |
+| offset |어떤 hello에서 모든 데이터 집합 분할 영역의 시작과 끝을 향해 이동 하는 Timespan입니다. <br/><br/><b>참고</b>: hello 결과 결합 된 hello shift anchorDateTime 및 offset을 모두를 지정 합니다. |아니요 |해당 없음 |
 
 ### <a name="offset-example"></a>offset example
-기본적으로 매일(`"frequency": "Day", "interval": 1`) 조각은 UTC 시간으로 오전 12시(자정)에서 시작합니다. 대신, 시작 시간을 UTC 시간으로 오전 6시로 설정하려면 다음 코드 조각과 같이 오프셋을 설정합니다. 
+기본적으로 매일(`"frequency": "Day", "interval": 1`) 조각은 UTC 시간으로 오전 12시(자정)에서 시작합니다. 대신 hello 시작 시간 toobe 오전 6 시 UTC 시간을 하려는 경우 hello hello 다음 코드 조각에에서 나와 있는 것 처럼 오프셋을 설정 합니다. 
 
 ```json
 "availability":
@@ -201,7 +201,7 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 }
 ```
 ### <a name="anchordatetime-example"></a>anchorDateTime 예제
-다음 예제에서는 데이터 집합이 23시간마다 생성됩니다. 첫 번째 조각은 `2017-04-19T08:00:00`(UTC 시간)으로 설정된 anchorDateTime 지정 시간에 시작됩니다.
+다음 예제는 hello, hello dataset 23 시간 마다 한 번 생성 됩니다. hello 첫 번째 조각의 시작 시 hello anchorDateTime 너무 설정으로 지정 된 hello`2017-04-19T08:00:00` (UTC 시간).
 
 ```json
 "availability":    
@@ -213,7 +213,7 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 ```
 
 ### <a name="offsetstyle-example"></a>offset/style 예제
-다음 데이터 집합은 월별 데이터 집합으로, 매월 3일, 오전 8시(`3.08:00:00`)에 생성됩니다.
+hello 다음 데이터 집합은 월별 데이터 집합 및 오전 8시 매월 세 번째 점입니다 (`3.08:00:00`):
 
 ```json
 "availability": {
@@ -225,14 +225,14 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 ```
 
 ### <a name="dataset-policy"></a>데이터 집합 정책
-데이터 집합에는 조각 실행으로 생성된 데이터를 사용하기 전에 유효성 검사하는 방법을 지정하는 유효성 검사 정책이 정의되어 있을 수 있습니다. 이러한 경우 조각의 실행이 완료된 후 출력 조각 상태는 **Validation**의 하위 상태를 포함한 **Waiting**으로 변경됩니다. 조각의 유효성이 검사되었으면 조각 상태는 **Ready**로 변경됩니다. 데이터 조각이 생성되었으나 유효성 검사를 통과하지 못하면 이 조각에 따라 다운스트림 조각에 대한 작업 실행은 처리되지 않습니다. [파이프라인 모니터링 및 관리](data-factory-monitor-manage-pipelines.md) 에서는 Data Factory에 있는 데이터 조각의 다양한 상태에 대해 다룹니다.
+데이터 집합 방법을 조각 실행에서 생성 된 hello 데이터 유효성을 검사할 수 소비에 대 한 준비가 될 때까지 지정 하는 유효성 검사 정책 정의 가질 수 있습니다. 이러한 경우 hello 조각 실행을 마친 후 hello 출력 조각 상태가 변경 되 너무**대기** 의 하위 상태와 **유효성 검사**합니다. Hello 조각 상태 쪽 변경 hello 분할 영역 확인 되 면**준비**합니다. 데이터 조각 생성 되었으면 hello 유효성 검사를 통과 하지 못한 경우,이 조각의에 의존 하는 다운스트림 분할 영역에 대 한 활동 실행 처리 되지 않습니다. [모니터링 하 고 파이프라인 관리](data-factory-monitor-manage-pipelines.md) 표지 hello Data Factory에 데이터 조각이의 다양 한 상태입니다.
 
-데이터 집합 정의의 **정책** 섹션에서 데이터 집합 조각이 충족해야 하는 기준 또는 조건을 정의합니다. 다음 표에서는 **policy** 섹션에서 사용할 수 있는 속성을 설명합니다.
+hello **정책** 데이터 집합 정의 섹션 hello 조건 정의 또는 데이터 집합 분할 영역 hello hello 조건을 충족 해야 합니다. hello 다음 표에서 설명 hello에 사용할 수 있는 속성 **정책** 섹션:
 
-| 정책 이름 | 설명 | 에 적용 | 필수 | 기본값 |
+| 정책 이름 | 설명 | 너무 적용| 필수 | 기본값 |
 | --- | --- | --- | --- | --- |
-| minimumSizeMB | **Azure Blob** 에서 데이터가 최소 크기 요구 사항(메가바이트)을 충족하는지 확인합니다. |Azure Blob |아니요 |해당 없음 |
-| minimumRows | **Azure SQL Database** 또는 **Azure 테이블**에서 데이터가 최소 행 수를 포함하는지 확인합니다. |<ul><li>Azure SQL 데이터베이스</li><li>Azure 테이블</li></ul> |아니요 |해당 없음 |
+| minimumSizeMB | Hello 데이터에 유효성을 검사 한 **Azure blob** 충족 hello 최소 크기 요구 사항 (메가바이트)입니다. |Azure Blob |아니요 |해당 없음 |
+| minimumRows | Hello 데이터에 유효성을 검사 한 **Azure SQL 데이터베이스** 또는 **Azure 테이블** hello 최소 행 수를 포함 합니다. |<ul><li>Azure SQL Database</li><li>Azure 테이블</li></ul> |아니요 |해당 없음 |
 
 #### <a name="examples"></a>예
 **minimumSizeMB:**
@@ -263,73 +263,73 @@ Data Factory 파이프라인의 활동은 0개 이상의 입력 **데이터 집�
 이러한 속성과 예제에 대한 자세한 내용은 [데이터 집합 만들기](data-factory-create-datasets.md) 문서를 참조하세요. 
 
 ## <a name="activity-policies"></a>활동 정책
-정책은 특히 테이블의 조각을 처리할 때 활동의 런타임 동작에 영향을 줍니다. 다음 테이블에서는 자세한 내용을 제공합니다.
+정책은은 hello 테이블 조각이 처리 시에 특히는 활동의 런타임 동작을 hello는 영향을 줍니다. 다음 표에서 hello hello 세부 정보를 제공 합니다.
 
 | 속성 | 허용된 값 | 기본값 | 설명 |
 | --- | --- | --- | --- |
-| 동시성 |정수  <br/><br/>최대값: 10 |1 |작업의 동시 실행 수입니다.<br/><br/>다른 조각에 발생할 수 있는 병렬 작업 실행 횟수를 결정합니다. 예를 들어 활동이 사용 가능한 많은 데이터 집합을 거쳐야 하는 경우 동시성 값을 높이면 데이터 처리가 빨라집니다. |
-| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |처리 중인 데이터 조각의 순서를 결정합니다.<br/><br/>예를 들어 2개의 조각이 있으며(각각 오후 4시 및 오후 5시에 발생) 둘 다 실행 보류 상태입니다. executionPriorityOrder를 설정하여 NewestFirst가 되도록 하면 오후 5시에 조각이 먼저 처리됩니다. 마찬가지로 executionPriorityORder를 OldestFIrst로 설정하면 오후 4시의 조각이 처리됩니다. |
-| retry |정수 <br/><br/>최대값이 10이 될 수 있음 |0 |조각에 대한 데이터 처리 전에 다시 시도 횟수가 실패로 표시됩니다. 데이터 조각에 대한 활동 실행은 지정된 재시도 횟수까지 다시 시도됩니다. 재시도는 실패 후 가능한 한 빨리 수행합니다. |
-| 시간 제한 |TimeSpan |00:00:00 |활동에 대한 시간 제한입니다. 예: 00:10:00(시간 제한 10분을 의미함)<br/><br/>값이 지정되지 않거나 0인 경우 시간 제한은 무한입니다.<br/><br/>조각의 데이터 처리 시간이 시간 제한 값을 초과하면 취소되고 시스템이 처리를 다시 시도합니다. 다시 시도 횟수는 다시 시도 속성에 따라 달라집니다. 시간 제한이 발생할 때 상태는 TimedOut으로 설정됩니다. |
-| delay |TimeSpan |00:00:00 |조각의 데이터 처리 작업이 시작되기 전에 지연을 지정합니다.<br/><br/>데이터 조각에 대한 활동의 실행은 지연이 예상된 실행 시간을 지난 후에 시작됩니다.<br/><br/>예: 00:10:00(10분의 지연을 의미함) |
-| longRetry |정수 <br/><br/>최대값: 10 |1 |조각 실행이 실패하기 전까지의 긴 재시도 횟수입니다.<br/><br/>longRetry 시도는 longRetryInterval에 따라 간격이 조정됩니다. 따라서 재시도 간의 시간을 지정해야 하는 경우 longRetry를 사용합니다. Retry 및 longRetry를 둘 다 지정하면 각 longRetry 시도에는 Retry 시도가 포함되고 최대 시도 횟수는 Retry * longRetry가 됩니다.<br/><br/>예를 들어 활동 정책에 다음 설정이 있는 경우:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>실행할 조각이 하나뿐이며(Waiting 상태) 작업 실행이 매번 실패한다고 가정합니다. 우선 3번 연속 실행 시도를 합니다. 시도한 후 각 조각 상태는 다시 시도입니다. 처음 3번 시도 후에 조각 상태는 LongRetry입니다.<br/><br/>한 시간(즉, longRetryInteval의 값) 후에 3번 연속 실행이 다시 시도됩니다. 그 후에 조각 상태가 실패이면 다시 시도는 더 이상 시도하지 않습니다. 즉, 전체적으로 6번의 시도가 일어납니다.<br/><br/>모든 실행에 성공하면 조각 상태는 준비 상태가 되며 더 이상 다시 시도하지 않습니다.<br/><br/>longRetry는 종속 데이터가 명확하지 않은 시간에 도착하거나 데이터 처리가 발생하는 전체적인 환경을 신뢰할 수 없는 상황에서 사용될 수 있습니다. 이러한 경우 하나씩 다시 시도를 수행해도 도움이 되지 않을 수 있으며 특정 시간 간격 후에 시도할 경우 출력이 나타납니다.<br/><br/>주의: longRetry 또는 longRetryInterval에 높은 값을 설정하지 마세요. 일반적으로 더 높은 값을 지정하면 다른 시스템 문제가 발생합니다. |
-| longRetryInterval |TimeSpan |00:00:00 |긴 다시 시도 간의 지연 |
+| 동시성 |정수  <br/><br/>최대값: 10 |1 |Hello 활동의 동시 실행 수입니다.<br/><br/>Hello 여러 조각에서 발생할 수 있는 병렬 활동 실행 횟수를 결정 합니다. 예를 들어 활동을 통해 toogo 해야 하는 경우 다양 한 사용 가능한 데이터에 더 큰 동시성 가치가 속도가 향상 hello 데이터 처리 됩니다. |
+| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Hello 데이터 조각이 처리 중인의 순서를 결정 합니다.<br/><br/>예를 들어 2개의 조각이 있으며(각각 오후 4시 및 오후 5시에 발생) 둘 다 실행 보류 상태입니다. Hello executionPriorityOrder toobe NewestFirst로 설정 하면 오후 5 시의 hello 조각이 먼저 처리 됩니다. 마찬가지로 executionPriorityORder toobe hello OldestFIrst로 설정 하면 오후 4 시의 hello 조각이 처리 됩니다. |
+| retry |정수 <br/><br/>최대값이 10이 될 수 있음 |0 |Hello 조각에 대 한 hello 데이터 처리 전 까지의 재시도 횟수 Failure로 표시 됩니다. 지정 된 toohello를 데이터 조각에 대 한 활동 실행을 다시 시도 다시 시도 횟수입니다. hello 재시도 hello 실패 후 가능한 한 빨리 수행 됩니다. |
+| 시간 제한 |TimeSpan |00:00:00 |Hello 활동에 대 한 제한 시간입니다. 예: 00:10:00(시간 제한 10분을 의미함)<br/><br/>값을 지정 하지 않거나 0으로 하는 경우에 hello 시간 초과 제한이 없습니다.<br/><br/>분할 영역에 데이터 처리 시간이 hello hello 제한 시간 값을 초과 하는 경우 취소 되 및 hello 시스템 tooretry hello 처리를 시도 합니다. 재시도 횟수 hello hello retry 속성에 따라 달라 집니다. 시간 제한이 발생 hello 상태 tooTimedOut 설정 됩니다. |
+| delay |TimeSpan |00:00:00 |데이터 처리 hello 조각 시작 하기 전에 hello 지연 시간을 지정 합니다.<br/><br/>데이터 조각에 대 한 활동의 hello 실행 hello 지연 되는 hello 예상 실행 시간 후에 시작 됩니다.<br/><br/>예: 00:10:00(10분의 지연을 의미함) |
+| longRetry |정수 <br/><br/>최대값: 10 |1 |hello 긴 다시 시도 횟수 후 hello 조각 실행이 실패 합니다.<br/><br/>longRetry 시도는 longRetryInterval에 따라 간격이 조정됩니다. 따라서 다시 시도 사이의 시간 toospecify 해야 할 경우 longRetry를 사용 합니다. Retry와 longRetry를 둘 다 지정 된 경우 다시 시도 횟수를 포함 하는 각 longRetry 시도 및 hello 최대 시도 횟수가 다시 시도 * longRetry 합니다.<br/><br/>예를 들어, hello 활동 정책의 설정에에서 따라 hello 사항이 있는 경우:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>하나의 분할 영역 tooexecute 가정 (상태 대기 중) hello 활동 실행 될 때마다가 실패 하 고 있습니다. 우선 3번 연속 실행 시도를 합니다. 각 시도 후 조각 상태 hello 재시도 것입니다. 통해 처음 3 시도 되 면 hello 조각 상태 LongRetry가 됩니다.<br/><br/>한 시간(즉, longRetryInteval의 값) 후에 3번 연속 실행이 다시 시도됩니다. 그 후 hello 조각 상태가 Failed가 고 더 이상 다시 시도 합니다. 즉, 전체적으로 6번의 시도가 일어납니다.<br/><br/>실행에 성공 hello 조각 상태는 준비와 더 이상 다시 시도 합니다.<br/><br/>longRetry 명확 하지 않은 시간에 도착 하면 종속 데이터 또는 hello 전체 환경 연결이 잘 끊어지는 어떤 데이터 처리가 수행 아래 있는 경우 사용할 수 있습니다. 이러한 경우에 한 번에 하나씩 재시도 수행 하 도움이 되지 않을 수 및 출력을 원하는 hello에 결과 시간 간격 후 이렇게 합니다.<br/><br/>주의: longRetry 또는 longRetryInterval에 높은 값을 설정하지 마세요. 일반적으로 더 높은 값을 지정하면 다른 시스템 문제가 발생합니다. |
+| longRetryInterval |TimeSpan |00:00:00 |긴 시도 간의 지연을 hello |
 
 자세한 내용은 [파이프라인](data-factory-create-pipelines.md) 문서를 참조하세요. 
 
 ## <a name="parallel-processing-of-data-slices"></a>데이터 조각의 병렬 처리
-파이프라인에 대해 과거의 시작 날짜를 설정할 수 있습니다. 이렇게 하면 Data Factory에서 과거의 모든 데이터 조각을 자동으로 계산(뒤 채우기)하고 처리를 시작합니다. 예를 들어 시작 날짜가 2017년 4월 1일이고 현재 날짜가 2017년 4월 10일인 파이프라인을 만드는 경우가 있습니다. 출력 데이터 집합의 빈도가 매일이면 시작 날짜가 과거이므로 Data Factory에서 2017년 4월 1일에서 2017년 4월 9일까지의 모든 조각을 즉시 처리하기 시작합니다. availability 섹션의 style 속성 값은 기본적으로 EndOfInterval이므로 2017년 4월 10일의 조각은 아직 처리되지 않습니다. executionPriorityOrder의 기본값이 OldestFirst이므로 가장 오래된 조각이 먼저 처리됩니다. style 속성에 대한 내용은 [데이터 집합 가용성](#dataset-availability) 섹션을 참조하세요. executionPriorityOrder 섹션에 대한 내용은 [활동 정책](#activity-policies) 섹션을 참조하세요. 
+지난 hello에 hello 파이프라인에 대 한 hello 시작 날짜를 설정할 수 있습니다. 이렇게 하면 데이터 팩터리 자동으로 이전 hello에서 모든 데이터 조각 (뒤로 채우기)을 계산 하 고 처리를 시작 합니다. 예를 들어: 경우 시작 날짜가 2017-04-01 파이프라인을 생성 하 고 hello 현재 날짜는 2017-04-10입니다. Hello의 hello 흐름 출력 데이터 집합은 매일, 다음 2017-04-01에서 모든 hello 분할 영역을 처리 하는 데이터 팩터리 하기 시작 하는 경우 too2017-04-09 즉시 시작 날짜를 hello 이므로 지난 hello에 합니다. hello 조각이 2017-04-10에서 처리 되지 않습니다 아직 hello 가용성 섹션의 스타일 속성의 hello 값은 EndOfInterval 때문에 기본적으로 합니다. hello 가장 오래 된 조각을 처리 하는 먼저 OldestFirst가 executionPriorityOrder 값 hello 기본값으로 합니다. Hello 스타일 속성에 대 한 참조 [dataset 가용성](#dataset-availability) 섹션. Hello executionPriorityOrder 섹션에 대 한 참조 hello [활동 정책](#activity-policies) 섹션. 
 
-활동 JSON의 **policy** 섹션에서 **concurrency** 속성을 설정하여 뒷면 채우기된 데이터 조각을 병렬로 처리하도록 구성할 수 있습니다. 이 속성은 여러 조각에 발생할 수 있는 병렬 활동 실행 수를 결정합니다. concurrency 속성의 기본값은 1입니다. 따라서 기본적으로 조각이 한 번에 하나씩 처리됩니다. 최대값은 10입니다. 파이프라인이 사용 가능한 많은 데이터 집합을 거쳐야 하는 경우 concurrency 값을 높이면 데이터 처리가 더 빨라집니다. 
+다시 채워진 데이터 조각을 toobe hello 설정 하 여 동시에 처리를 구성할 수 있습니다 **동시성** hello에 대 한 속성 **정책** hello 활동 JSON의 섹션입니다. 이 속성은 여러 조각에서 발생할 수 있는 병렬 활동 실행 hello 수를 결정 합니다. hello hello 동시성 속성 기본값은 1입니다. 따라서 기본적으로 조각이 한 번에 하나씩 처리됩니다. hello 최 댓 값은 10입니다. 파이프라인에서 큰 사용 가능한 데이터에 더 큰 동시성 값 집합을 통해 toogo를 필요로 하는 경우 데이터 처리 hello 빨라집니다. 
 
 ## <a name="rerun-a-failed-data-slice"></a>실패한 데이터 조각 다시 실행
-데이터 조각을 처리하는 동안 오류가 발생하면 Azure Portal 블레이드 또는 모니터 및 관리 앱을 사용하여 조각 처리가 실패한 이유를 확인할 수 있습니다. 자세한 내용은 [Azure 포털 블레이드를 사용하여 파이프라인 모니터링 및 관리](data-factory-monitor-manage-pipelines.md) 또는 [앱 모니터링 및 관리](data-factory-monitor-manage-app.md)를 참조하세요.
+데이터 조각을 처리 하는 동안 오류가 발생 하는 경우 Azure 포털 블레이드 또는 모니터 및 앱 관리를 사용 하 여 조각 hello 처리 실패 한 이유를 찾을 수 있습니다. 자세한 내용은 [Azure 포털 블레이드를 사용하여 파이프라인 모니터링 및 관리](data-factory-monitor-manage-pipelines.md) 또는 [앱 모니터링 및 관리](data-factory-monitor-manage-app.md)를 참조하세요.
 
-두 활동을 보여주는 다음 예제를 살펴보세요. 활동 1 및 활동 2가 있습니다. 활동 1은 데이터 집합 1 조각을 사용하고 데이터 집합 2 조각을 생성합니다. 활동 2에서는 입력으로 데이터 집합 2 조각을 사용하여 최종 데이터 집합의 조각을 생성합니다.
+다음 예에서는 두 개의 활동을 보여 주는 hello를 것이 좋습니다. 활동 1 및 활동 2가 있습니다. Activity1은 Dataset1의 조각을 사용 하 고 Dataset2 Activity2 tooproduce hello 최종 데이터 집합의 조각 한 입력으로 사용 되는 조각을 생성 합니다.
 
 ![실패한 조각](./media/data-factory-scheduling-and-execution/failed-slice.png)
 
-다이어그램은 최근 3개 조각 중 데이터 집합 2에 대한 오전 9-10시 조각을 생성하는 데 오류가 있음을 보여줍니다. Data Factory는 시계열 데이터 집합에 대한 종속성을 자동으로 추적합니다. 따라서 오전 9-10시 다운스트림 조각에 대한 작업 실행은 시작하지 않습니다.
+hello 다이어그램을 보여 줍니다 세 최근 분할 영역 외부로 오류가 생성 hello 오전 9 10에 대 한 슬라이스 Dataset2 했습니다. 데이터 팩터리 hello 시간 시계열 데이터 집합에 대 한 종속성을 자동으로 추적합니다. 결과적으로, hello 활동 hello 오전 9 10 다운스트림 조각에 대 한 실행 시작 되지 않습니다.
 
-Data Factory 모니터링 및 관리 도구를 사용하면 실패한 조각에 대한 진단 로그를 자세히 보고 문제에 대한 근본 원인을 쉽게 파악하여 해결할 수 있습니다. 문제를 해결했으면 작업 실행을 쉽게 시작하여 실패한 조각을 생성할 수 있습니다. 데이터 조각의 상태 전환을 다시 실행하고 이해하는 방법에 대한 자세한 내용은 [Azure Portal 블레이드를 사용하여 파이프라인 모니터링 및 관리](data-factory-monitor-manage-pipelines.md) 또는 [앱 모니터링 및 관리 앱](data-factory-monitor-manage-app.md)을 참조하세요.
+데이터 팩터리 모니터링 및 관리 도구를 사용 하면 toodrill hello 진단 로그 hello 실패 한 조각 tooeasily 찾기 hello 루트 hello 문제에 대 한 발생 하 고 해결 합니다. Hello 문제를 해결 한 후에 tooproduce hello 실패 한 조각을 실행 하는 hello 활동을 쉽게 시작할 수 있습니다. 방법에 대 한 자세한 내용은 toorerun 참조, 데이터 조각에 대 한 상태 전환 이해 하 고 [모니터링 및 관리 Azure 포털 블레이드를 사용 하 여 파이프라인](data-factory-monitor-manage-pipelines.md) 또는 [모니터링 및 관리 앱](data-factory-monitor-manage-app.md)합니다.
 
-**Dataset2**에 대한 오전 9-10시 조각을 다시 실행한 후 Data Factory는 최종 데이터 집합에서 오전 9-10시 종속 조각에 대한 실행을 시작합니다.
+오전 9 10에 대 한 조각화 hello를 다시 실행 한 후 **Dataset2**, Data Factory hello hello 최종 데이터 집합에서 hello 오전 9 10 종속 조각에 대 한 실행을 시작 합니다.
 
 ![실패한 조각 다시 실행](./media/data-factory-scheduling-and-execution/rerun-failed-slice.png)
 
 ## <a name="multiple-activities-in-a-pipeline"></a>파이프라인의 여러 활동
-그렇지만 하나의 파이프라인에 여러 개의 활동이 있을 수 있습니다. 파이프라인에 여러 활동이 있고 활동의 출력이 다른 활동의 입력이 아닌 경우, 해당 활동에 대한 입력 데이터 조각이 준비되면 활동을 병렬로 실행할 수 있습니다.
+그렇지만 하나의 파이프라인에 여러 개의 활동이 있을 수 있습니다. 파이프라인의 여러 활동을 있고 hello 활동 출력은 다른 활동의 입력 하지 hello 활동에 대 한 입력된 데이터 조각이 준비가 되었는지 여부 hello 활동 병렬로 실행할 수 있습니다.
 
-한 활동의 출력 데이터 집합을 다른 활동의 입력 데이터 집합으로 설정하여 두 활동을 연결하면 해당 활동을 차례로 실행할 수 있습니다. 활동은 동일한 파이프라인 또는 다른 파이프라인에 있을 수 있습니다. 두 번째 활동은 첫 번째 활동이 완료된 경우에만 실행됩니다.
+Hello 입력 데이터 집합의 hello 다른 활동으로 한 활동의 hello 출력 데이터 집합을 설정 하 여 두 개의 활동 (활동 다음에 다른 실행)을 연결할 수 있습니다. hello에 hello 활동 수 있는 동일한 파이프라인 또는 다른 파이프라인. 두 번째 활동 hello hello 먼저 하나 성공적으로 완료 하는 경우에 실행 합니다.
 
-예를 들어 파이프라인에 다음 두 활동이 있는 경우를 살펴보겠습니다.
+예를 들어 파이프라인의 두 활동에 있는 경우 다음 hello:
 
 1. 외부 입력 데이터 집합 D1이 필요하고 출력 데이터 집합 D2를 생성하는 활동 A1
 2. 데이터 집합 D2로부터의 입력이 필요하고 출력 데이터 집합 D3을 생성하는 활동 A2
 
-이 시나리오에서는 활동 A1과 A2가 동일한 파이프라인에 있습니다. 활동 A1은 외부 데이터를 사용할 수 있고 예약된 가용성 빈도에 도달할 때 실행됩니다. 활동 A2는 D2에서 예약된 조각을 사용할 수 있고 예약된 가용성 빈도에 도달할 때 실행됩니다. 데이터 집합 D2의 조각 중 하나에 오류가 있으면 해당 조각을 사용할 수 있을 때까지 A2가 실행되지 않습니다.
+이 시나리오, A1 및 A2 활동에는 hello에 동일한 파이프라인입니다. hello 활동 A1 hello 외부 데이터를 사용할 수를 예약 된 hello 가용성 주파수에 도달할 때 실행 됩니다. hello 활동 A2 실행 hello d 2에서 예약 된 조각을 사용할 수 있으며 hello 사용 가능한 일정된 빈도 도달 하면 됩니다. 데이터 집합 d 2의에서 hello 조각 중 하나에 오류가 발생 하는, 사용 가능 해질 때까지 A2 해당 조각에 대 한 실행 되지 않습니다.
 
-동일한 파이프라인에서 두 활동을 사용하는 다이어그램 뷰는 다음 다이어그램과 같습니다.
+동일한 파이프라인 hello 다음 다이어그램은 같습니다. 두 활동 hello에 다이어그램 보기 hello:
 
-![동일한 파이프라인에서 활동 연결](./media/data-factory-scheduling-and-execution/chaining-one-pipeline.png)
+![동일한 파이프라인 활동 hello에 연결](./media/data-factory-scheduling-and-execution/chaining-one-pipeline.png)
 
-앞에서 설명한 대로 활동은 다른 파이프라인에 있을 수 있습니다. 이러한 시나리오의 다이어그램은 다음과 같습니다.
+앞서 언급 했 듯이 hello 활동 다른 파이프라인에 사용할 수 있습니다. 이 시나리오에서는 hello 다이어그램 보기 다이어그램을 다음 hello와 같습니다.
 
 ![두 개의 파이프라인에서 활동 연결](./media/data-factory-scheduling-and-execution/chaining-two-pipelines.png)
 
-예제는 부록의 [순차적으로 복사](#copy-sequentially) 섹션을 참조하세요.
+Hello 참조 [순차적으로 복사](#copy-sequentially) 예제를 보려면 hello 부록에서 섹션.
 
 ## <a name="model-datasets-with-different-frequencies"></a>다양한 빈도로 데이터 집합 모델링
-샘플에서 입력 및 출력 데이터 집합과 작업 일정 창에 대한 빈도는 동일합니다. 일부 시나리오에서는 하나 이상의 입력 빈도와 다른 빈도로 출력을 생성하는 기능이 필요합니다. Data Factory가 이러한 시나리오의 모델링을 지원합니다.
+Hello 샘플에서 창에 대 한 입력 및 출력 데이터 집합 및 hello 활동 일정 hello 주파수 같은 hello 되었습니다. 일부 시나리오에는 하나 이상의 입력의 hello 빈도 아닌 다른 빈도로 hello 기능 tooproduce 출력을 해야합니다. Data Factory가 이러한 시나리오의 모델링을 지원합니다.
 
 ### <a name="sample-1-produce-a-daily-output-report-for-input-data-that-is-available-every-hour"></a>샘플 1: 매시간 제공되는 입력 데이터에 대해 일별 출력 보고서 생성
-Azure Blob 저장소에서 매시간 사용 가능한 센서로부터 입력 측정값 데이터가 있는 시나리오를 살펴보겠습니다. [Data Factory hive 작업](data-factory-hive-activity.md)을 사용하여 평균, 최대값, 최소값 등 특정일의 통계가 포함된 일별 집계 보고서를 생성하려고 합니다.
+Azure Blob 저장소에서 매시간 사용 가능한 센서로부터 입력 측정값 데이터가 있는 시나리오를 살펴보겠습니다. Hello 날에 대 한 tooproduce 평균, 최대값 및 최소값 등의 통계를 매일 집계 보고서를 원하는 [Data Factory hive 작업](data-factory-hive-activity.md)합니다.
 
 다음은 Data Factory로 이 시나리오를 모델링하는 방법입니다.
 
 **입력 데이터 집합**
 
-매시간 입력 파일이 지정된 날에 대한 폴더에서 삭제됩니다. 입력에 대한 Availability가 **Hour** 로 설정됩니다(frequency: Hour, interval: 1).
+매시간 hello는 일을 지정 하는 hello에 대 한 hello 폴더에 파일을 삭제할 입력입니다. 입력에 대한 Availability가 **Hour** 로 설정됩니다(frequency: Hour, interval: 1).
 
 ```json
 {
@@ -358,7 +358,7 @@ Azure Blob 저장소에서 매시간 사용 가능한 센서로부터 입력 측
 ```
 **출력 데이터 집합**
 
-하나의 출력 파일이 그 날에 대한 폴더에서 매일 생성됩니다. 출력의 Availability는 **Day** 로 설정됩니다(frequency: Day 및 interval: 1).
+하나의 출력 파일은 매일 hello 날의 폴더에 만들어집니다. 출력의 Availability는 **Day** 로 설정됩니다(frequency: Day 및 interval: 1).
 
 ```json
 {
@@ -387,7 +387,7 @@ Azure Blob 저장소에서 매시간 사용 가능한 센서로부터 입력 측
 
 **작업: 파이프라인에서 hive 작업**
 
-hive 스크립트는 적절한 *DateTime* 정보를 매개 변수로 받아 **WindowStart** 변수를 다음 코드 조각에 표시된 대로 사용합니다. hive 스크립트는 이 변수를 사용하여 그 날의 정확한 폴더에서 데이터를 로드하고 집계를 실행하여 출력을 생성합니다.
+hello 하이브 스크립트에 적절 한 hello 받는 *DateTime* hello를 사용 하는 매개 변수로 정보 **WindowStart** hello 다음 코드 조각에에서 나와 있는 것 처럼 변수입니다. hello 하이브 스크립트 hello 날에 대 한 hello 올바른 폴더에서이 변수 tooload hello 데이터를 사용 하 고 hello 집계 toogenerate hello 출력을 실행 합니다.
 
 ```json
 {  
@@ -436,22 +436,22 @@ hive 스크립트는 적절한 *DateTime* 정보를 매개 변수로 받아 **Wi
 }
 ```
 
-다음 다이어그램은 데이터 종속성 관점에서 시나리오를 보여 줍니다.
+hello 다음 그림에 데이터 종속성 관점에서 hello 시나리오입니다.
 
 ![데이터 종속성](./media/data-factory-scheduling-and-execution/data-dependency.png)
 
-매일 출력 조각은 입력 데이터 집합에서 24시간 조각에 따라 달라집니다. Data Factory는 동일한 기간에 속하는 입력 데이터 조각을 생성할 출력 조각으로 파악하여 이러한 종속성을 자동으로 계산합니다. 24개의 입력 조각 모두를 사용할 수 없는 경우 Data Factory는 입력 조각이 준비될 때까지 기다렸다가 일별 작업 실행을 시작합니다.
+hello 출력 분할 영역을 매일 24 시간 조각에서 입력된 데이터 집합에 따라 달라 집니다. 이러한 종속성을 파악 하 여 자동으로 hello hello에 속하는 입력된 데이터 조각을 데이터 팩터리 계산 동일한 시간으로 생성 된 출력 조각 toobe hello 기간입니다. Hello 24 입력된 분할 영역 중 하나를 사용할 수 없는 경우 데이터 팩터리의 hello 입력된 조각 toobe hello 일별 작업 실행을 시작 하기 전에 준비를 기다립니다.
 
 ### <a name="sample-2-specify-dependency-with-expressions-and-data-factory-functions"></a>샘플 2: 식 및 데이터 Data Factory 함수로 종속성 지정
-다른 시나리오를 살펴보겠습니다. 두 개의 입력 데이터 집합을 처리하는 hive 작업이 있다고 가정합니다. 그 중 하나는 매일 새 데이터가 제공되지만 다른 하나는 매주 새 데이터를 가져옵니다. 두 입력에 조인을 수행하여 매일 출력을 생성하고 싶습니다.
+다른 시나리오를 살펴보겠습니다. 두 개의 입력 데이터 집합을 처리하는 hive 작업이 있다고 가정합니다. 그 중 하나는 매일 새 데이터가 제공되지만 다른 하나는 매주 새 데이터를 가져옵니다. 매일은 출력을 생성 하 고 hello 두 개의 입력 간에 조인을 toodo 한다고 가정 합니다.
 
-Data Factory가 출력 데이터 조각의 기간에 맞추어 처리할 적절한 입력 조각을 자동으로 확인하는 단순한 접근법은 작동하지 않습니다.
+데이터 팩터리 자동으로 알아 hello 오른쪽 입력 hello 간단한 방법은 데이터 조각이 시간이 기간 작동 하지 않는다 toohello 출력을 정렬 하 여 tooprocess을 분리 합니다.
 
-모든 작업 실행에 대해 지정해야 하며 Data Factory에서 매주 입력 데이터 집합에 대해 마지막 주의 데이터 조각을 사용해야 합니다. 다음 코드 조각에 나와 있는 것처럼 Azure Data Factory 함수를 사용하여 이 동작을 구현할 수 있습니다.
+실행 하는 모든 활동에 대 한 데이터 팩터리 hello 사용 하도록 지난 주 데이터 조각을 hello 매주 입력된 데이터 집합에 대 한을 지정 해야 합니다. 이 동작은 hello 조각 tooimplement 뒤에 표시 된 대로 Azure 데이터 팩터리 함수를 사용 합니다.
 
 **입력1: Azure Blob**
 
-첫 번째 입력은 매일 업데이트된 Azure Blob입니다.
+hello는 hello Azure blob 업데이트 되 고 매일 첫 번째 입력이 있습니다.
 
 ```json
 {
@@ -481,7 +481,7 @@ Data Factory가 출력 데이터 조각의 기간에 맞추어 처리할 적절�
 
 **입력2: Azure Blob**
 
-입력2는 매주 업데이트된 Azure Blob입니다.
+Input2는 hello 매주 업데이트 되 고 Azure blob입니다.
 
 ```json
 {
@@ -511,7 +511,7 @@ Data Factory가 출력 데이터 조각의 기간에 맞추어 처리할 적절�
 
 **출력: Azure Blob**
 
-하나의 출력 파일이 그 날에 대한 폴더에서 매일 생성됩니다. 출력의 Availability는 **day** 로 설정됩니다(frequency: Day, interval: 1).
+하나의 출력 파일은 hello 날에 대 한 hello 폴더에 매일을 만들어집니다. 출력의 가용성을 너무 설정**일** (빈도: 일, 간격: 1).
 
 ```json
 {
@@ -540,7 +540,7 @@ Data Factory가 출력 데이터 조각의 기간에 맞추어 처리할 적절�
 
 **작업: 파이프라인에서 hive 작업**
 
-hive 작업에서는 2개의 입력을 받아 매일 출력 조각을 생성합니다. 다음과 같이 매주 입력에 대한 이전 주의 입력 조각에 따라 매일 출력 조각을 지정할 수 있습니다.
+hello은 두 개의 입력 하 고 출력 조각을 매일 생성 하는 hello hive 작업 합니다. 에 매일의 출력 조각 toodepend hello 주간 입력에 대 한 지난 주의 입력된 조각은 다음과 같이 지정할 수 있습니다.
 
 ```json
 {  
@@ -599,7 +599,7 @@ Data Factory에서 지원하는 함수 및 시스템 변수 목록은 [Data Fact
 ## <a name="appendix"></a>부록
 
 ### <a name="example-copy-sequentially"></a>예제: 순차적으로 복사
-순차/순서가 지정된 방식으로 하나씩 여러 복사 작업을 실행하는 것이 가능합니다. 예를 들어 파이프라인에 두 개의 복사 활동, 즉 다음과 같은 입력 데이터 및 출력 데이터 집합을 포함하는 CopyActivity1과 CopyActivity2가 있을 수 있습니다.   
+것은 가능한 toorun 여러 복사 작업 차례로 정렬/순차적 방식으로 합니다. 예를 들어 두 개의 복사본 입력 다음 hello로 (CopyActivity1 및 CopyActivity2) 파이프라인의 활동 데이터 출력 데이터 집합을 할 수 있습니다.   
 
 CopyActivity1
 
@@ -609,9 +609,9 @@ CopyActivity2
 
 입력: Dataset2.  출력: Dataset3.
 
-CopyActivity2는 CopyActivity1을 성공적으로 실행하고 Dataset2를 사용할 수 있는 경우에만 실행됩니다.
+CopyActivity2 hello CopyActivity1을 성공적으로 실행 하 고 Dataset2 ´ ï ´ 경우에 실행 됩니다.
 
-샘플 파이프라인 JSON은 다음과 같습니다.
+Hello 샘플 파이프라인 JSON 다음과 같습니다.
 
 ```json
 {
@@ -650,7 +650,7 @@ CopyActivity2는 CopyActivity1을 성공적으로 실행하고 Dataset2를 사�
                     "interval": 1
                 },
                 "name": "CopyFromBlob1ToBlob2",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             },
             {
                 "type": "Copy",
@@ -682,7 +682,7 @@ CopyActivity2는 CopyActivity1을 성공적으로 실행하고 Dataset2를 사�
                     "interval": 1
                 },
                 "name": "CopyFromBlob2ToBlob3",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             }
         ],
         "start": "2016-08-25T01:00:00Z",
@@ -692,9 +692,9 @@ CopyActivity2는 CopyActivity1을 성공적으로 실행하고 Dataset2를 사�
 }
 ```
 
-예제에서는 첫 번째 복사 활동의 출력 데이터 집합(Dataset2)이 두 번째 활동의 입력으로 지정되어 있습니다. 따라서 첫 번째 활동의 출력 데이터 집합이 준비되어야 두 번째 활동이 실행됩니다.  
+확인 hello 예 hello 출력 데이터 집합의 첫 번째 복사 작업 (Dataset2) hello hello 두 번째 활동에 대 한 입력으로 지정 됩니다. 따라서 두 번째 활동 hello hello 첫 번째 활동에서 hello 출력 데이터 집합은 준비 하는 경우에 실행 합니다.  
 
-예제에서 CopyActivity2에 다른 입력(예: Dataset3)을 지정할 수 있지만 CopyActivity2에 대한 입력으로 Dataset2를 지정해야 CopyActivity1을 끝낼 때까지 작업이 실행되지 않습니다. 예:
+hello 예제 CopyActivity2 수 Dataset3, 등의 다른 입력 있지만 않아 hello 활동 CopyActivity1 완료 될 때까지 실행 되지 않습니다는 입력된 tooCopyActivity2로 Dataset2를 지정 합니다. 예:
 
 CopyActivity1
 
@@ -741,7 +741,7 @@ CopyActivity2
                     "interval": 1
                 },
                 "name": "CopyFromBlobToBlob",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             },
             {
                 "type": "Copy",
@@ -776,7 +776,7 @@ CopyActivity2
                     "interval": 1
                 },
                 "name": "CopyFromBlob3ToBlob4",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             }
         ],
         "start": "2017-04-25T01:00:00Z",
@@ -786,7 +786,7 @@ CopyActivity2
 }
 ```
 
-예제에서는 두 번째 복사 활동에 대해 입력 데이터 집합 두 개가 지정되어 있습니다. 여러 입력을 지정하는 경우 첫 번째 입력 데이터 집합만 데이터를 복사하는 데 사용되고 다른 데이터 집합은 종속성으로 사용됩니다. CopyActivity2는 다음 조건을 충족한 후에만 시작합니다.
+Hello 예에서는 두 입력된 데이터 집합 hello 두 번째 복사 작업에 지정 된 것을 확인 합니다. 여러 입력을 지정 하는 경우에만 hello 첫 번째 입력된 데이터 집합은 데이터를 복사 하는 데 사용 되는 있지만 다른 데이터 집합 종속성으로 사용 됩니다. CopyActivity2 hello 다음 조건이 충족 되 후에 시작 합니다.
 
-* CopyActivity1이 성공적으로 완료되고 Dataset2가 사용 가능합니다. 이 데이터 집합은 Dataset4에 데이터를 복사할 때 사용되지 않습니다. CopyActivity2에 대한 일정 종속성으로만 작동합니다.   
-* Dataset3을 사용할 수 있습니다. 이 데이터 집합은 대상에 복사되는 데이터를 나타냅니다. 
+* CopyActivity1이 성공적으로 완료되고 Dataset2가 사용 가능합니다. 데이터 tooDataset4를 복사 하는 경우에이 데이터 집합 사용 되지 않습니다. CopyActivity2에 대한 일정 종속성으로만 작동합니다.   
+* Dataset3을 사용할 수 있습니다. 이 데이터 집합 대상인 복사한 toohello hello 데이터를 나타냅니다. 

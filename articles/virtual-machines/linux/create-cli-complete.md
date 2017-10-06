@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 2.0에서 Linux 환경 만들기 | Microsoft Docs"
-description: "Azure CLI 2.0을 사용하여 저장소, Linux VM, 가상 네트워크 및 서브넷, 부하 분산 장치, NIC, 공용 IP, 네트워크 보안 그룹을 모두 처음부터 새로 만듭니다."
+title: "aaaCreate Azure CLI 2.0 hello로 Linux 환경 | Microsoft Docs"
+description: "Hello Azure CLI 2.0을 사용 하 여 접지 hello 모두에서 저장소, Linux VM, 가상 네트워크 및 서브넷, 부하 분산 장치, NIC를, 공용 IP 및 네트워크 보안 그룹을 만듭니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/06/2017
 ms.author: iainfou
-ms.openlocfilehash: e5c4785428b2150e951923e98079e00808a82d87
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7287ea178e76001b84dade628ead04a59dc27f40
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-virtual-machine-with-the-azure-cli"></a>Azure CLI를 사용하여 완전한 Linux 가상 컴퓨터 만들기
-Azure에서 가상 컴퓨터(VM)를 신속하게 만들려면 기본 값을 사용하여 모든 필요한 지원 리소스를 생성하는 단일 Azure CLI 명령을 사용할 수 있습니다. 가상 네트워크, 공용 IP 주소 및 네트워크 보안 그룹 규칙 등의 리소스는 자동으로 생성됩니다. 프로덕션 환경에서의 더 높은 제어를 위해 미리 이 리소스를 만들어 VM을 여기에 추가할 수 있습니다. 이 문서에서는 VM을 만들고 지원 리소스를 하나씩 만드는 방법을 안내합니다. 
+# <a name="create-a-complete-linux-virtual-machine-with-hello-azure-cli"></a>Hello Azure CLI가 있는 완벽 한 Linux 가상 컴퓨터 만들기
+모든 필수 리소스를 지 원하는 기본 값 toocreate를 사용 하는 단일 Azure CLI 명령을 사용할 수 있습니다, tooquickly Azure에서 가상 컴퓨터 (VM)를 만듭니다. 가상 네트워크, 공용 IP 주소 및 네트워크 보안 그룹 규칙 등의 리소스는 자동으로 생성됩니다. 프로덕션 환경에서 사용자 환경의 자세한 컨트롤에 대 한 사용, 이러한 리소스 보다 앞선 시간을 만들고 Vm toothem 추가 될 수 있습니다. 이 문서 어떻게 toocreate VM 및 각 hello 하나씩 지원 리소스에 설명 합니다.
 
-최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치했고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인했는지 확인합니다.
+Hello 최신 설치 되어 있는지 확인 [Azure CLI 2.0](/cli/azure/install-az-cli2) 에 있는 계정입니다. 기록 된 tooan Azure 및 [az 로그인](/cli/azure/#login)합니다.
 
-다음 예제에서 매개 변수 이름을 고유한 값으로 바꿉니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myVnet*, *myVM*이 포함됩니다.
+Hello 다음 예제에서는 고유한 값으로 매개 변수 이름 예를 대체 합니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myVnet*, *myVM*이 포함됩니다.
 
 ## <a name="create-resource-group"></a>리소스 그룹 만들기
-Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 리소스 그룹은 가상 컴퓨터와 지원하는 가상 네트워크 리소스에 앞서 만들어져야 합니다. [az group create](/cli/azure/group#create)을 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *eastus* 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
+Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 리소스 그룹은 가상 컴퓨터와 지원하는 가상 네트워크 리소스에 앞서 만들어져야 합니다. Hello 리소스 그룹을 만들 [az 그룹 만들기](/cli/azure/group#create)합니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroup* hello에 *eastus* 위치:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-기본적으로 Azure CLI 명령의 출력은 JSON(JavaScript Object Notation)으로 제공됩니다. 기본 출력을 목록이나 테이블로 변경하려면 [az configure --output](/cli/azure/#configure)을 사용합니다. 출력 형식을 1번 변경하기 위해 명령에 `--output`을 추가할 수도 있습니다. 다음 예제에서는 `az group create` 명령에서의 JSON 출력을 표시합니다.
+기본적으로 Azure CLI 명령을 hello 출력은 JSON (JavaScript Object Notation). 예를 들어 사용 toochange hello 기본 출력 tooa 목록 또는 테이블을 [az 구성-출력](/cli/azure/#configure)합니다. 추가할 수도 있습니다 `--output` tooany 명령을 한 번에 대 한 출력 형식으로 변경 합니다. hello 다음 예제에서는 hello JSON 출력을에서 보여 줍니다 hello `az group create` 명령:
 
 ```json                       
 {
@@ -50,7 +50,7 @@ az group create --name myResourceGroup --location eastus
 ```
 
 ## <a name="create-a-virtual-network-and-subnet"></a>가상 네트워크 및 서브넷 만들기
-다음에는 Azure에서 실행되는 가상 네트워크와, VM을 만들 수 있는 서브넷을 만듭니다. [az network vnet create](/cli/azure/network/vnet#create)를 사용하여 이름이 *myVnet*이고 주소 접두사가 *192.168.0.0/16*인 가상 네트워크를 만듭니다. 주소 접두사로 *192.168.1.0/24*를 사용하는 *mySubnet*이라는 서브넷도 추가합니다.
+그런 다음 Azure에서 가상 네트워크를 만드는 경우 및 toowhich의 서브넷을 Vm을 만들 수 있습니다. 사용 하 여 [az 네트워크 vnet 만들기](/cli/azure/network/vnet#create) toocreate 이라는 가상 네트워크 *myVnet* hello로 *192.168.0.0/16* 주소 접두사입니다. 이라는 서브넷을 추가할 수도 *mySubnet* hello 주소 접두사와 *192.168.1.0/24*:
 
 ```azurecli
 az network vnet create \
@@ -61,7 +61,7 @@ az network vnet create \
     --subnet-prefix 192.168.1.0/24
 ```
 
-출력에는 가상 네트워크 내에 논리적으로 만들어진 서브넷이 표시됩니다.
+hello 출력 hello 서브넷을 hello 가상 네트워크 내에 만들어진 논리적으로 보여 줍니다.
 
 ```json
 {
@@ -102,7 +102,7 @@ az network vnet create \
 
 
 ## <a name="create-a-public-ip-address"></a>공용 IP 주소 만들기
-이제 [az network public-ip create](/cli/azure/network/public-ip#create)를 사용하여 공용 IP 주소를 만듭니다. 이 공용 IP 주소를 사용하면 인터넷에서 VM에 연결할 수 있습니다. 기본 주소가 동적이므로 `--domain-name-label` 옵션으로 명명된 DNS 항목도 만듭니다. 다음 예제는 *mypublicdns*라는 DNS 이름으로 *myPublicIP*라는 공용 IP를 만듭니다. DNS 이름은 고유해야 하므로 자체 DNS 이름을 입력합니다.
+이제 [az network public-ip create](/cli/azure/network/public-ip#create)를 사용하여 공용 IP 주소를 만듭니다. 이 공용 IP 주소가 있습니다 tooconnect tooyour를 Vm hello 인터넷에서에서 수 있습니다. Hello로 명명 된 DNS 항목 hello 기본 주소는 동적도 생성 `--domain-name-label` 옵션입니다. hello 다음 예제에서는 명명 된 공용 IP *myPublicIP* 의 hello DNS 이름을 가진 *mypublicdns*합니다. Hello DNS 이름은 고유 해야 하기 때문에 고유한 DNS 이름을 제공 합니다.
 
 ```azurecli
 az network public-ip create \
@@ -141,7 +141,7 @@ az network public-ip create \
 
 
 ## <a name="create-a-network-security-group"></a>네트워크 보안 그룹 만들기
-VM 내/외부 네트워크 트래픽의 흐름을 제어하기 위해 네트워크 보안 그룹을 만듭니다. 네트워크 보안 그룹은 NIC 또는 서브넷에 적용될 수 있습니다. 다음 예제에서는 [az network nsg create](/cli/azure/network/nsg#create)를 사용하여 *myNetworkSecurityGroup*이라는 네트워크 보안 그룹을 만듭니다.
+toocontrol hello 트래픽 흐름을 Vm에 내부 및 외부 네트워크 보안 그룹을 만듭니다. 네트워크 보안 그룹에 적용 된 tooa NIC 또는 서브넷 수 있습니다. hello 다음 예제에서는 [az 네트워크 nsg 만들기](/cli/azure/network/nsg#create) 네트워크 보안 그룹 이라는 toocreate *myNetworkSecurityGroup*:
 
 ```azurecli
 az network nsg create \
@@ -149,7 +149,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-특정 트래픽을 허용하거나 거부하는 규칙을 정의합니다. [az network nsg rule create](/cli/azure/network/nsg/rule#create)를 사용하여 포트 22에서 모든 인바운드 연결을 허용하는 네트워크 보안 그룹의 인바운드 규칙을 만듭니다. 다음 예제에서는 *myNetworkSecurityGroupRuleSSH*이라는 규칙을 만듭니다.
+Hello 특정 트래픽을 허용 하거나 거부 하는 규칙을 정의 합니다. tooallow 22 (toosupport SSH) 포트에서 인바운드 연결 네트워크 보안 그룹을 hello에 대 한 인바운드 규칙을 만듭니다 [az 네트워크 nsg 규칙 만들기](/cli/azure/network/nsg/rule#create)합니다. hello 다음 규칙을 만드는 예제는 명명 된 *myNetworkSecurityGroupRuleSSH*:
 
 ```azurecli
 az network nsg rule create \
@@ -162,7 +162,7 @@ az network nsg rule create \
     --access allow
 ```
 
-포트 80에서 인바운드 연결을 허용하기 위해(웹 트래픽 지원) 다른 네트워크 보안 그룹 규칙을 추가합니다. 다음 예제에서는 *myNetworkSecurityGroupRuleHTTP*라는 규칙을 만듭니다.
+tooallow 다른 네트워크 보안 그룹 규칙을 추가 하는 포트 80 (toosupport 웹 트래픽)에 대 한 인바운드 연결 합니다. hello 다음 규칙을 만드는 예제는 명명 된 *myNetworkSecurityGroupRuleHTTP*:
 
 ```azurecli
 az network nsg rule create \
@@ -175,7 +175,7 @@ az network nsg rule create \
     --access allow
 ```
 
-[az network nsg show](/cli/azure/network/nsg#show)를 사용하여 네트워크 보안 그룹 및 규칙을 검사합니다.
+Hello 네트워크 보안 그룹 및 규칙을 검사 하 여 [az 네트워크 nsg 쇼](/cli/azure/network/nsg#show):
 
 ```azurecli
 az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGroup
@@ -236,7 +236,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+      "description": "Allow outbound traffic from all VMs tooall VMs in VNET",
       "destinationAddressPrefix": "VirtualNetwork",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -252,7 +252,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to Internet",
+      "description": "Allow outbound traffic from all VMs tooInternet",
       "destinationAddressPrefix": "Internet",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -332,7 +332,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
 ```
 
 ## <a name="create-a-virtual-nic"></a>가상 NIC 만들기
-가상 네트워크 인터페이스 카드(NIC)는 사용할 때 규칙을 적용할 수 있으므로 프로그래밍 방식으로 사용할 수 있습니다. 2개 이상 있을 수도 있습니다. 다음 [az network nic create](/cli/azure/network/nic#create) 명령에서 이름이 *myNic*인 NIC를 만들어 네트워크 보안 그룹과 연결합니다. 공용 IP 주소 *myPublicIP*도 가상 NIC에 연결됩니다.
+가상 네트워크 인터페이스 카드 (Nic)은 tootheir 사용 규칙을 적용할 수 있으므로 프로그래밍 방식으로 사용할 수 있습니다. 2개 이상 있을 수도 있습니다. Hello 다음과에서 [az 네트워크 nic 만들](/cli/azure/network/nic#create) 명령, 명명 된 NIC를 만들고 *myNic* hello 네트워크 보안 그룹에 연결 합니다. 공용 IP 주소를 hello *myPublicIP* hello 가상 NIC.과 관련 되어
 
 ```azurecli
 az network nic create \
@@ -436,15 +436,15 @@ az network nic create \
 
 
 ## <a name="create-an-availability-set"></a>가용성 집합 만들기
-가용성 집합은 장애 도메인 및 업데이트 도메인에 걸쳐 VM을 분산하는 데 유용합니다. 당장은 하나의 VM만 만든다 하더라도 향후 확장하기 쉽게 가용성 집합을 사용하는 것이 가장 좋습니다. 
+가용성 집합은 장애 도메인 및 업데이트 도메인에 걸쳐 VM을 분산하는 데 유용합니다. 모범 사례 toouse 가용성 집합 toomake는만 하나의 VM 지금 바로 만들 경우에 해당 hello 향후에 더 쉽게 tooexpand 합니다. 
 
-장애 도메인은 공통의 전원 및 네트워크 스위치를 공유하는 가상 컴퓨터 그룹을 정의합니다. 기본적으로 가용성 집합 안에 구성된 가상 컴퓨터는 최대 3개의 장애 도메인에 분산되어 있습니다. 이러한 장애 도메인 중 하나에서 발생한 하드웨어 문제가 앱을 실행 중인 모든 VM에 영향을 미치지 않습니다.
+장애 도메인은 공통의 전원 및 네트워크 스위치를 공유하는 가상 컴퓨터 그룹을 정의합니다. 기본적으로 가용성 집합 내에서 구성 된 가상 컴퓨터를 hello toothree 오류 도메인을 걸쳐 분리 되어 있습니다. 이러한 장애 도메인 중 하나에서 발생한 하드웨어 문제가 앱을 실행 중인 모든 VM에 영향을 미치지 않습니다.
 
-업데이트 도메인은 동시에 다시 부팅할 수 있는 가상 컴퓨터 그룹과 기본 물리적 하드웨어를 나타냅니다. 계획된 유지 보수 중에 업데이트 도메인의 재부팅 순서는 순차적으로 진행되지 않을 수 있으며, 한 번에 하나의 업데이트 도메인만 재부팅됩니다.
+업데이트 도메인 hello에서 다시 부팅 해야 하는 기본 실제 하드웨어와 가상 컴퓨터 그룹을 나타내는 동시 합니다. 계획 된 유지 관리 하는 동안 업데이트 도메인 재부팅 됩니다 hello 순서 순차적, 않을 수 있지만 한 번에 하나의 업데이트 도메인을 다시 부팅 합니다.
 
-Azure는 가용성 집합에 VM을 배치할 때 VM을 전체 장애 및 업데이트 도메인에 자동으로 분산합니다. 자세한 내용은 [VM의 가용성 관리](manage-availability.md)를 참조하세요.
+Azure 자동으로 Vm hello 장애 도메인과 업데이트 도메인에 걸쳐 때 배포 가용성 집합에 배치 합니다. 자세한 내용은 참조 [Vm의 가용성을 hello 관리](manage-availability.md)합니다.
 
-[az vm availability-set create](/cli/azure/vm/availability-set#create)를 사용하여 VM에 대한 가용성 집합을 만듭니다. 다음 예제는 *myAvailabilitySet*이라는 가용성 집합을 만듭니다.
+[az vm availability-set create](/cli/azure/vm/availability-set#create)를 사용하여 VM에 대한 가용성 집합을 만듭니다. hello 다음 예제에서는 가용성 명명 된 집합 *myAvailabilitySet*:
 
 ```azurecli
 az vm availability-set create \
@@ -452,7 +452,7 @@ az vm availability-set create \
     --name myAvailabilitySet
 ```
 
-출력에서 장애 도메인과 업데이트 도메인을 알립니다.
+출력 메모 오류 도메인 hello 하 고 도메인을 업데이트 합니다.
 
 ```json
 {
@@ -476,12 +476,12 @@ az vm availability-set create \
 ```
 
 
-## <a name="create-the-linux-vms"></a>Linux VM 만들기
-인터넷에서 액세스 가능한 VM을 지원하기 위해 네트워크 리소스를 만들었습니다. 이제 VM을 만들어 SSH 키로 보호합니다. 이 예에서는 가장 최근의 LTS를 기반으로 Ubuntu VM을 만들겠습니다. [Azure VM 이미지 찾기](cli-ps-findimage.md)에서 설명한 대로 [az vm image list](/cli/azure/vm/image#list)를 통해 추가적인 이미지를 찾을 수 있습니다.
+## <a name="create-hello-linux-vms"></a>Hello Linux Vm 만들기
+Hello 네트워크 리소스 toosupport를 인터넷에서 액세스할 수 있는 Vm 만들었습니다. 이제 VM을 만들어 SSH 키로 보호합니다. 이 예에서 여기 toocreate Ubuntu VM hello에 따라 가장 최근의 LTS 합니다. [Azure VM 이미지 찾기](cli-ps-findimage.md)에서 설명한 대로 [az vm image list](/cli/azure/vm/image#list)를 통해 추가적인 이미지를 찾을 수 있습니다.
 
-인증에 사용할 SSH 키도 지정합니다. SSH 공개 키 쌍이 없는 경우 [만들거나 ](mac-create-ssh-keys.md) `--generate-ssh-keys` 매개 변수를 사용하여 만들 수 있습니다. 키 쌍이 있으면 이 매개 변수는 `~/.ssh`의 기존 키를 사용합니다.
+또한 인증을 위해 SSH 키 toouse를 지정합니다. SSH 공개 키 쌍이 없는 경우 다음을 할 수 있습니다 [만들](mac-create-ssh-keys.md) hello를 사용 하 여 또는 `--generate-ssh-keys` 매개 변수 toocreate ç 있습니다. 키 쌍이 있으면 이 매개 변수는 `~/.ssh`의 기존 키를 사용합니다.
 
-[az vm create](/cli/azure/vm#create) 명령으로 모든 리소스 및 정보를 결합하여 VM을 만듭니다. 다음 예제에서는 *myVM*이라는 VM을 만듭니다.
+모든 리소스와 정보를 hello 함께 전환 하 여 hello VM 만들기 [az vm 만들기](/cli/azure/vm#create) 명령입니다. hello 다음 예제에서는 V *myVM*:
 
 ```azurecli
 az vm create \
@@ -495,7 +495,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-공용 IP 주소를 만들 때 제공한 DNS 항목이 있는 VM에 대한 SSH. 이 `fqdn`은 VM을 만들 때 출력에 표시됩니다.
+Hello 공용 IP 주소를 만들 때 제공한 DNS 항목 hello로 SSH tooyour VM입니다. 이 `fqdn` VM을 만드는 것 만큼 hello 출력에 표시 됩니다.
 
 ```json
 {
@@ -517,11 +517,11 @@ ssh azureuser@mypublicdns.eastus.cloudapp.azure.com
 출력:
 
 ```bash
-The authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
+hello authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
 ECDSA key fingerprint is SHA256:SylINP80Um6XRTvWiFaNz+H+1jcrKB1IiNgCDDJRj6A.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) toohello list of known hosts.
+Welcome tooUbuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -534,39 +534,39 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 0 updates are security updates.
 
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
+hello programs included with hello Ubuntu system are free software;
+hello exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+Ubuntu comes with ABSOLUTELY NO WARRANTY, toohello extent permitted by
 applicable law.
 
-To run a command as administrator (user "root"), use "sudo <command>".
+toorun a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
 azureuser@myVM:~$
 ```
 
-NGINX를 설치하고 VM에 대한 트래픽 흐름을 확인할 수 있습니다. 다음과 같이 NGINX를 설치합니다.
+NGINX를 설치 하 고 hello 트래픽 흐름 toohello VM을 확인할 수 있습니다. 다음과 같이 NGINX를 설치합니다.
 
 ```bash
 sudo apt-get install -y nginx
 ```
 
-작동 중인 기본 NGINX 사이트를 확인하려면 웹 브라우저를 열고 FQDN을 입력합니다.
+toosee hello 기본 NGINX 사이트 작업에서 웹 브라우저를 열고에 FQDN을 입력 합니다.
 
 ![VM의 기본 NGINX 사이트](media/create-cli-complete/nginx.png)
 
 ## <a name="export-as-a-template"></a>템플릿으로 내보내기
-동일한 매개 변수를 사용하여 추가 개발 환경을 만들려고 하거나 일치하는 프로덕션 환경을 만들려면 어떻게 해야 할까요? Resource Manager는 사용자 환경에 대한 모든 매개 변수를 정의하는 JSON 템플릿을 사용합니다. 이 JSON 템플릿을 참조하여 전체 환경을 빌드합니다. [JSON 템플릿을 수동으로 빌드](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)하거나 기존 환경을 내보내 JSON 템플릿을 만들 수 있습니다. 다음과 같이 [az group export](/cli/azure/group#export)를 사용하여 리소스 그룹을 내보냅니다.
+이제 toocreate hello로 추가 개발 환경을 원하는 경우 동일한 매개 변수 또는 일치 하는 프로덕션 환경? 리소스 관리자는 사용자 환경에 대 한 모든 hello 매개 변수를 정의 하는 JSON 템플릿을 사용 합니다. 이 JSON 템플릿을 참조하여 전체 환경을 빌드합니다. 할 수 있습니다 [JSON 서식 파일을 수동으로 빌드할](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 또는 기존 환경 toocreate hello JSON 템플릿을 내보냅니다. 사용 하 여 [az 그룹 내보내기](/cli/azure/group#export) tooexport 리소스 그룹 다음과 같습니다.
 
 ```azurecli
 az group export --name myResourceGroup > myResourceGroup.json
 ```
 
-이 명령을 실행하면 `myResourceGroup.json` 파일이 현재 작업 디렉터리에 만들어집니다. 이 템플릿에서 환경을 만들면 모든 리소스 이름을 입력하라는 메시지가 표시됩니다. `az group export` 명령에 `--include-parameter-default-value` 매개 변수를 추가하여 템플릿 파일에 이러한 이름을 입력할 수 있습니다. JSON 템플릿을 편집하여 리소스 이름을 지정하거나 리소스 이름을 지정하는 [parameters.json 파일을 만듭니다](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) .
+이 명령은 만듭니다 hello `myResourceGroup.json` 현재 작업 디렉터리에 파일입니다. 이 템플릿에서 환경을 만들 때 모든 hello 리소스 이름을 하 라는 메시지가 표시 됩니다. Hello를 추가 하 여 템플릿 파일에 이러한 이름을 채울 수 있습니다 `--include-parameter-default-value` 매개 변수 toohello `az group export` 명령입니다. JSON 템플릿 toospecify hello 리소스 이름의 편집 또는 [parameters.json 파일을 만들](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) hello 리소스 이름을 지정 하는 합니다.
 
-템플릿에서 환경을 만들려면 다음과 같이 [az group deployment create](/cli/azure/group/deployment#create)를 사용합니다.
+서식 파일을 사용 하 여 환경 toocreate [az 그룹 배포 만들기](/cli/azure/group/deployment#create) 다음과 같습니다:
 
 ```azurecli
 az group deployment create \
@@ -574,7 +574,7 @@ az group deployment create \
     --template-file myResourceGroup.json
 ```
 
-[템플릿에서 배포하는 방법에 대해 자세히 읽어볼 수 있습니다](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 환경을 점진적으로 업데이트하고, 매개 변수 파일을 사용하고, 단일 저장소 위치에서 템플릿에 액세스하는 방법을 알아봅니다.
+Tooread 경우가 [방법에 대 한 자세한 템플릿에서 toodeploy](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다. Tooincrementally 업데이트 환경 hello 매개 변수 파일을 사용 하 고 단일 저장소 위치에서 서식 파일에 액세스 하는 방법에 대해 알아봅니다.
 
 ## <a name="next-steps"></a>다음 단계
-이제 여러 네트워킹 구성 요소 및 VM을 사용할 준비가 되셨습니다. 이 샘플 환경에 사용하여 여기에 소개된 핵심 구성 요소로 응용 프로그램을 빌드할 수 있습니다.
+이제 준비 toobegin 여러 네트워킹 구성 요소 및 Vm을 사용 합니다. 여기 도입 hello 핵심 구성 요소를 사용 하 여이 샘플 환경 toobuild 응용 프로그램에 사용할 수 있습니다.

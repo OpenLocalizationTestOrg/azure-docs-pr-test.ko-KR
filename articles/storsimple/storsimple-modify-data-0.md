@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 장치에서 DATA 0 설정 수정 | Microsoft Docs"
-description: "StorSimple용 Windows PowerShell을 사용하여 StorSimple 장치에서 DATA 0 네트워크 인터페이스를 다시 구성하는 방법을 알아봅니다."
+title: "DATA 0 aaaModify hello StorSimple 장치에서 설정을 | Microsoft Docs"
+description: "자세한 내용은 StorSimple tooreconfigure에 대 한 Windows PowerShell toouse StorSimple 장치에서 DATA 0 네트워크 인터페이스를 hello 하는 방법입니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 3a47ff1eed220cede820e8698c3384300e94688d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: caec51c3344d953299253301c2a0d7577d553c6e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="modify-the-data-0-network-interface-settings-on-your-storsimple-device"></a>StorSimple 장치에서 DATA 0 네트워크 인터페이스 설정 수정
+# <a name="modify-hello-data-0-network-interface-settings-on-your-storsimple-device"></a>StorSimple 장치에서 hello DATA 0 네트워크 인터페이스 설정을 수정 합니다.
 ## <a name="overview"></a>개요
-Microsoft Azure StorSimple 장치에 DATA 0에서 DATA 5까지 6개의 네트워크 인터페이스가 있습니다. DATA 0 인터페이스는 항상 Windows PowerShell 인터페이스 또는 직렬 콘솔을 통해 구성되며 자동으로 클라우드가 활성화됩니다. Azure 클래식 포털을 통해 DATA 0 네트워크 인터페이스를 구성할 수 없습니다. 
+Microsoft Azure StorSimple 장치에는 DATA 0에서에서 6 개의 네트워크 인터페이스 tooDATA 5입니다. hello DATA 0 인터페이스는 항상 hello Windows PowerShell 인터페이스 또는 hello 직렬 콘솔을 통해 구성 및 자동으로 클라우드 사용 됩니다. Note hello Azure 클래식 포털을 통해 DATA 0 네트워크 인터페이스를 구성할 수 없습니다. 
 
-StorSimple 장치의 초기 배포 중 설치 마법사를 통해 DATA 0 인터페이스가 처음 구성됩니다. 장치가 운영 모드에 있을 때 DATA 0를 다시 구성해야할 수 있습니다. 이 자습서에서는 StorSimple용 Windows PowerShell을 통해 DATA 0 네트워크 설정을 수정하는 두 가지 방법을 제공합니다.
+hello DATA 0 인터페이스는 처음 hello StorSimple 장치의 초기 배포 시 hello 설치 마법사를 통해 구성 됩니다. 데이터 0 tooreconfigure hello 장치가 작동 모드에 있을 때 할 수 있습니다 설정 합니다. 이 자습서는 StorSimple 용 Windows PowerShell을 통해 모두 toomodify DATA 0 네트워크 설정을 두 개의 메서드를 제공합니다.
 
 이 자습서를 읽은 후에 다음을 수행할 수 있습니다.
 
-* 설정 마법사를 통해 DATA 0 네트워크 설정 수정
-* `Set-HcsNetInterface` cmdlet을 통해 DATA 0 네트워크 설정 수정
+* 수정 DATA 0 네트워크 hello 설치 마법사를 통해 설정
+* DATA 0 네트워크 설정을 hello 통해 수정 `Set-HcsNetInterface` cmdlet
 
 ## <a name="modify-data-0-network-settings-through-setup-wizard"></a>설정 마법사를 통해 DATA 0 네트워크 설정 수정
-StorSimple 장치의 Windows PowerShell 인터페이스에 연결하고 설치 마법사 세션을 실행하여 DATA 0 네트워크 설정을 다시 구성할 수 있습니다. DATA 0 설정을 수정하려면 다음 단계를 수행합니다.
+StorSimple 장치의 toohello Windows PowerShell 인터페이스를 연결 하 고 설치 마법사 세션을 시작 하 여 DATA 0 네트워크 설정을 재구성할 수 있습니다. 다음 단계 toomodify DATA 0 hello 수행 설정:
 
-#### <a name="to-modify-data-0-network-settings-through-setup-wizard"></a>설정 마법사를 통해 DATA 0 네트워크 설정을 수정하려면
-1. 직렬 콘솔 메뉴에서 옵션 1, **모든 권한으로 로그인**을 선택합니다. 메시지가 표시되면 **장치 관리자 암호**를 제공합니다. 기본 암호는 `Password1`입니다.
-2. 명령 프롬프트에 다음을 입력합니다.
+#### <a name="toomodify-data-0-network-settings-through-setup-wizard"></a>설치 마법사를 통해 toomodify DATA 0 네트워크 설정
+1. Hello 직렬 콘솔 메뉴에서 옵션 1, 선택 **전체 권한으로 로그인**합니다. 메시지가 표시 되 면 hello 제공 **장치 관리자 암호**합니다. hello 기본 암호는 `Password1`합니다.
+2. Hello 명령 프롬프트에서 다음을 입력 합니다.
    
     `Invoke-HcsSetupWizard`
-3. 장치의 DATA 0 인터페이스 구성을 도와주는 설치 마법사가 나타납니다. IP 주소, 게이트웨이 및 네트워크 마스크에 대한 새 값을 제공합니다.
+3. 설치 마법사가 나타납니다 DATA 0 hello 구성 toohelp 장치의 인터페이스입니다. Hello IP 주소, 게이트웨이 및 네트워크 마스크에 대 한 새 값을 제공 합니다.
 
 > [!NOTE]
-> Azure 클래식 포털에서 StorSimple 장치 **구성** 페이지를 통해 고정된 컨트롤러 IP를 다시 구성해야 합니다. 자세한 내용은 [네트워크 인터페이스 수정](storsimple-modify-device-config.md#modify-network-interfaces)을 참조하세요.
+> 고정 컨트롤러 Ip toobe hello를 통해 다시 구성 해야 합니다는 hello **구성** hello Azure 클래식 포털에서에서 StorSimple 장치 hello의 페이지입니다. 자세한 내용은 이동 너무[네트워크 인터페이스 수정](storsimple-modify-device-config.md#modify-network-interfaces)합니다.
 > 
 > 
 
 ## <a name="modify-data-0-network-settings-through-set-hcsnetinterface-cmdlet"></a>Set-HcsNetInterface cmdlet을 통해 DATA 0 네트워크 설정 수정
-다른 방법은 `Set-HcsNetInterface` cmdlet을 사용하여 DATA 0 네트워크 인터페이스를 다시 구성하는 방법입니다. StorSimple 장치의 Windows PowerShell 인터페이스에서 cmdlet이 실행됩니다. 이 절차를 사용하면 컨트롤러가 고정된 IP를 여기서 구성할 수도 있습니다. DATA 0 설정을 수정하려면 다음 단계를 수행합니다. 
+대체 방식으로 tooreconfigure DATA 0 네트워크 인터페이스는 hello hello 사용을 통해 `Set-HcsNetInterface` cmdlet. hello cmdlet은 StorSimple 장치의 hello Windows PowerShell 인터페이스에서 실행 됩니다. 이 절차를 사용 하 여 hello 컨트롤러 고정 Ip 여기 구성할 수도 있습니다. 다음 단계 toomodify hello DATA 0 hello 수행 설정: 
 
-#### <a name="to-modify-data-0-network-settings-through-the-set-hcsnetinterface-cmdlet"></a>Set-HcsNetInterface cmdlet을 통해 DATA 0 네트워크 설정을 수정하려면
-1. 직렬 콘솔 메뉴에서 옵션 1, **모든 권한으로 로그인**을 선택합니다. 메시지가 표시되면 장치 관리자 암호를 제공합니다. 기본 암호는 `Password1`입니다.
-2. 명령 프롬프트에 다음을 입력합니다.
+#### <a name="toomodify-data-0-network-settings-through-hello-set-hcsnetinterface-cmdlet"></a>hello Set-hcsnetinterface cmdlet 통해 toomodify DATA 0 네트워크 설정
+1. Hello 직렬 콘솔 메뉴에서 옵션 1, 선택 **전체 권한으로 로그인**합니다. 메시지가 표시 되 면 hello 장치 관리자 암호를 제공 합니다. hello 기본 암호는 `Password1`합니다.
+2. Hello 명령 프롬프트에서 다음을 입력 합니다.
    
     `Set-HCSNetInterface -InterfaceAlias Data0 -IPv4Address <> -IPv4Netmask <> -IPv4Gateway <> -Controller0IPv4Address <> -Controller1IPv4Address <> -IsiScsiEnabled 1 -IsCloudEnabled 1`
    
-    각괄호에 DATA 0에 대해 다음 값을 입력합니다.
+    각 진 hello 대괄호로 hello DATA 0에 대 한 다음 값을 입력 합니다.
    
    * IPv4 주소
    * IPv4 게이트웨이
@@ -63,9 +63,9 @@ StorSimple 장치의 Windows PowerShell 인터페이스에 연결하고 설치 �
    * 컨트롤러 0에 대한 고정 IPv4 주소
    * 컨트롤러 1에 대한 고정 IPv4 주소
      
-     이 cmdlet을 사용하는 방법에 대한 자세한 내용은 [StorSimple용 Windows PowerShell cmdlet 참조](https://technet.microsoft.com/library/dn688161.aspx)로 이동합니다.
+     이 cmdlet의 hello 사용에 자세한 내용은 이동 너무[용 Windows PowerShell StorSimple cmdlet 참조](https://technet.microsoft.com/library/dn688161.aspx)합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* DATA 0 이외의 네트워크 인터페이스를 구성하려면 [Azure 클래식 포털에서 페이지 구성](storsimple-modify-device-config.md)을 사용할 수 있습니다. 
-* 네트워크 인터페이스를 구성할 때 문제가 발생하는 경우 [배포 문제 해결](storsimple-troubleshoot-deployment.md)을 참조하세요.
+* 데이터 0 이외의 tooconfigure 네트워크 인터페이스, hello를 사용할 수 있습니다 [hello Azure 클래식 포털의에서 구성 페이지](storsimple-modify-device-config.md)합니다. 
+* 네트워크 인터페이스를 구성할 때 문제가 발생 하면 너무 참조[배포 문제를 해결](storsimple-troubleshoot-deployment.md)합니다.
 

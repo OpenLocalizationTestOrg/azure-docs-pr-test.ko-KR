@@ -1,6 +1,6 @@
 ---
-title: "Azure 앱 서비스에서 Node.js 웹 앱을 디버그하는 방법"
-description: "Azure 앱 서비스에서 Node.js 웹 앱을 디버그하는 방법에 대해 알아봅니다."
+title: "aaaHow toodebug Azure 앱 서비스에 Node.js 웹 응용 프로그램"
+description: "어떻게 toodebug는 Node.js 웹 Azure 앱 서비스의 앱에 알아봅니다."
 tags: azure-portal
 services: app-service\web
 documentationcenter: nodejs
@@ -15,123 +15,123 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 5e302a4c58a171d40e43a22c34c724e868019ec8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 888ec5c3f92cfc3aeea4ea86005b9b6a0d1306ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-debug-a-nodejs-web-app-in-azure-app-service"></a>Azure 앱 서비스에서 Node.js 웹 앱을 디버그하는 방법
-Azure는 [Azure 웹 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) 웹 앱에 호스트되는 Node.js 응용 프로그램을 디버그하는 데 도움이 되는 기본 제공 진단 로그를 제공합니다. 이 문서에서는 stdout 및 stderr의 로깅을 사용하고, 브라우저에서 오류 정보를 표시하고, 로그 파일을 다운로드하여 보는 방법에 대해 알아봅니다.
+# <a name="how-toodebug-a-nodejs-web-app-in-azure-app-service"></a>어떻게 toodebug는 Node.js 웹 응용 프로그램을 Azure 앱 서비스
+Azure에서 호스팅되는 Node.js 응용 프로그램 디버깅에 기본 제공 진단 tooassist 제공 [Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) 웹 앱입니다. 이 문서에서는 살펴보겠습니다 어떻게 stdout 및 stderr, hello 브라우저에 오류 정보를 표시 및 어떻게 toodownload 뷰와 로그 파일의 tooenable 로깅을 합니다.
 
-Azure에서 호스트되는 Node.js 응용 프로그램에 대한 진단은 [IISNode]에서 제공합니다. 이 문서에서 진단 정보 수집에 대한 가장 일반적인 설정을 논의하긴 하지만 IISNode 작업을 모두 다루지는 않습니다. IISNode 작업에 대한 자세한 내용은 GitHub의 [IISNode 추가 정보] (영문)를 참조하십시오.
+Azure에서 호스트되는 Node.js 응용 프로그램에 대한 진단은 [IISNode]에서 제공합니다. 진단 정보 수집에 대 한 가장 일반적인 설정을 hello 설명, 수 있으며 IISNode 작업에 대 한 전체 참조는 제공 수 않습니다. IISNode 사용한 작업에 대 한 자세한 내용은 참조 hello [IISNode Readme] GitHub에서 합니다.
 
 <a id="enablelogging"></a>
 
 ## <a name="enable-logging"></a>로깅 사용
 기본적으로, 앱 서비스 웹 앱은 배포에 대한 진단 정보만 캡처합니다(예: Git를 사용하여 웹 앱을 배포하는 경우). 이 정보는 **package.json**에 참조된 모듈을 설치하거나 사용자 지정 배포 스크립트를 사용하는 경우에 실패가 발생하는 등 배포하는 동안 문제가 발생할 때 유용합니다.
 
-stdout 및 stderr 스트림에 대한 로깅을 사용하려면 Node.js 응용 프로그램의 루트에서 **IISNode.yml** 파일을 만들고 다음을 추가해야 합니다.
+tooenable hello stdout 및 stderr 스트림의 로깅, 만들어야는 **IISNode.yml** Node.js 응용 프로그램의 hello 루트에 있는 파일 및 hello 다음 추가:
 
     loggingEnabled: true
 
-그러면 Node.js 응용 프로그램에서 stderr 및 stdout에 대한 로깅이 사용됩니다.
+이 Node.js 응용 프로그램에서 stdout 및 stderr의 hello 로깅을 사용합니다.
 
-**IISNode.yml** 파일을 사용하여 실패가 발생할 때 브라우저로 친숙한 오류를 반환할지 아니면 개발자 오류를 반환할지 여부도 제어할 수 있습니다. 개발자 오류를 사용하려면 **IISNode.yml** 파일에 다음 줄을 추가하십시오.
+hello **IISNode.yml** 친숙 한 오류 또는 개발자 오류가 반환될지 toohello 브라우저 오류가 발생 하는지 여부를 파일에 사용 되는 toocontrol 될 수도 있습니다. tooenable 개발자 오류 추가 줄 toohello 다음 hello **IISNode.yml** 파일:
 
     devErrorsEnabled: true
 
-이 옵션을 사용하도록 설정하면 IISNode가 친숙한 오류(예: "내부 서버 오류가 발생했습니다.") 대신 stderr에 전송된 정보의 마지막 64K를 반환합니다.
+이 옵션을 사용 하도록 설정, IISNode hello 마지막 64k "내부 서버 오류가 발생 했습니다."와 같은 친숙 한 오류 대신 toostderr 전달 되는 정보를 반환 합니다.
 
 > [!NOTE]
-> devErrorsEnabled가 개발 중 문제를 진단하는 데 유용하긴 하지만 프로덕션 환경에서 이 옵션을 사용하도록 설정하면 개발 오류가 최종 사용자에게 전달될 수 있습니다.
+> Tooend 사용자가 전송 되는 개발 오류 개발 하는 동안 문제를 진단할 때 devErrorsEnabled 기능은 유용 하지만 프로덕션 환경에서 사용 될 수 있습니다.
 > 
 > 
 
-**IISNode.yml** 파일이 응용 프로그램에 아직 없는 경우, 업데이트된 응용 프로그램을 게시한 후 웹 앱을 다시 시작해야 합니다. 이전에 게시했던 기존 **IISNode.yml** 파일에서 설정만 변경하는 경우에는 다시 시작하지 않아도 됩니다.
+경우 hello **IISNode.yml** 파일 응용 프로그램 내에서 이미 존재 하지 않으면, 업데이트 하는 hello 응용 프로그램을 게시 한 후 웹 앱을 다시 시작 해야 합니다. 이전에 게시했던 기존 **IISNode.yml** 파일에서 설정만 변경하는 경우에는 다시 시작하지 않아도 됩니다.
 
 > [!NOTE]
-> Azure 명령줄 도구 또는 Azure PowerShell Cmdlet을 사용하여 웹 앱을 만든 경우 기본 **IISNode.yml** 파일이 자동으로 만들어집니다.
+> 웹 앱 hello Azure 명령줄 도구 또는 Azure PowerShell Cmdlet, 기본값을 사용 하 여 만들어진 경우 **IISNode.yml** 파일이 자동으로 만들어집니다.
 > 
 > 
 
-웹앱을 다시 시작하려면 [Azure 포털](https://portal.azure.com)에서 웹앱을 선택한 다음 **다시 시작** 단추를 클릭합니다.
+toorestart hello 웹 응용 프로그램에서 hello의 웹 앱 선택 hello [Azure 포털](https://portal.azure.com), 클릭 하 고 **다시 시작** 단추:
 
 ![다시 시작 단추][restart-button]
 
-Azure 명령줄 도구가 개발 환경에 설치되어 있는 경우 다음 명령을 사용하여 웹 앱을 다시 시작할 수 있습니다.
+Hello Azure Command-Line Tools 개발 환경에서 설치 된 경우에 hello 명령 toorestart hello 웹 앱에 다음을 사용할 수 있습니다.
 
     azure site restart [sitename]
 
 > [!NOTE]
-> loggingEnabled 및 devErrorsEnabled가 진단 정보를 캡처하기 위해 가장 일반적으로 사용되는 IISNode.yml 구성 옵션이긴 하지만 IISNode.yml을 사용하여 호스팅 환경을 위한 다양한 옵션을 구성할 수 있습니다. 전체 구성 옵션 목록에 대해서는 [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml)(영문) 파일을 참조하세요.
+> LoggingEnabled 및 devErrorsEnabled 진단 정보 캡처를 위한 가장 일반적으로 사용 하는 hello IISNode.yml 구성 옵션을 사용 하는 다양 한 호스팅 환경에 대 한 옵션 tooconfigure IISNode.yml 수 있습니다. Hello 구성 옵션의 전체 목록을 보려면 hello [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml) 파일입니다.
 > 
 > 
 
 <a id="viewlogs"></a>
 
 ## <a name="accessing-logs"></a>로그 액세스
-진단 로그에는 세 가지 방법 즉, FTP(파일 전송 프로토콜) 사용이나 Zip 보관 파일 다운로드를 통해 또는 로그(또는 비상 로그)의 업데이트된 라이브 스트림으로 액세스할 수 있습니다. 로그 파일의 Zip 보관 파일을 다운로드하거나 라이브 스트림을 보려면 Azure 명령줄 도구가 있어야 합니다. 다음 명령을 사용하여 명령줄 도구를 설치할 수 있습니다.
+진단 로그는 세 가지 방법으로;에서 액세스할 수 있습니다. Hello FTP 파일 전송 프로토콜 ()를 다운로드 하는 Zip 보관 파일을 사용 하 여 또는 라이브 업데이트 hello 로그 (비상)의 스트림입니다. Hello 로그 파일의 hello Zip 보관 파일을 다운로드 하거나 hello 라이브 스트림 보기 hello Azure Command-Line Tools 필요 합니다. 이러한 hello 다음 명령을 사용 하 여 설치할 수 있습니다.
 
     npm install azure-cli -g
 
-설치한 도구에는 'azure' 명령을 사용하여 액세스할 수 있습니다. 먼저 Azure 구독을 사용하도록 명령줄 도구를 구성해야 합니다. 이 작업을 수행하는 방법에 대한 자세한 내용은 **Azure 명령줄 도구 사용 방법** (영문) 문서의 [게시 설정을 다운로드하여 가져오는 방법](../xplat-cli-connect.md) 섹션을 참조하십시오.
+설치 되 면 hello 'azure' 명령을 사용 하 여 hello 도구를 액세스할 수 있습니다. 명령줄 도구를 hello 해야 구성된 toouse Azure 구독. 어떻게 tooaccomplish이 작업에 대 한 내용은 hello 참조 **toodownload 및 가져오기 게시 설정에 어떻게** hello의 섹션 [어떻게 tooUse hello Azure Command-Line Tools](../xplat-cli-connect.md) 문서.
 
 ### <a name="ftp"></a>FTP
-FTP를 통해 진단 정보에 액세스하려면 [Azure 포털](https://portal.azure.com)을 방문하고, 웹앱을 선택한 후 **대시보드**를 선택합니다. **빠른 연결** 섹션에서 **FTP 진단 로그** 및 **FTPS 진단 로그** 링크는 FTP 프로토콜을 사용하여 로그에 액세스할 수 있는 방법을 제공합니다.
+FTP 통해 tooaccess hello 진단 정보 방문 hello [Azure 포털](https://portal.azure.com), 웹 앱을 선택한 다음 선택 hello **대시보드**합니다. Hello에 **빠른 링크** 섹션 hello **FTP 진단 로그** 및 **FTPS 진단 로그** hello FTP 프로토콜을 사용 하 여 액세스 toohello 로그 링크를 제공 합니다.
 
 > [!NOTE]
-> FTP 또는 배포의 사용자 이름 및 암호를 아직 구성하지 않은 경우 **배포 자격 증명 설정**을 선택하여 **빠른 시작** 관리 페이지에서 사용자 이름 및 암호를 구성할 수 있습니다.
+> 하지 이전에 구성한 경우 사용자 이름 및 암호 FTP 나 개발을 위한, 그렇게 할 수 있습니다 hello에서 **퀵 스타트** 관리 페이지를 선택 하 여 **배포 자격 증명 설정**합니다.
 > 
 > 
 
-대시보드에 반환된 FTP URL은 다음 하위 디렉터리를 포함하는 **LogFiles** 디렉터리에 대한 것입니다.
+hello hello 대시보드에서 반환 된 FTP URL은 hello에 대 한 **LogFiles** hello 다음 하위 디렉터리를 포함 하는 디렉터리:
 
-* [배포 방법](web-sites-deploy.md) - Git와 같은 배포 방법을 사용하는 경우 동일한 이름의 디렉터리가 만들어지고 배포와 관련된 정보가 포함됩니다.
+* [배포 방법](web-sites-deploy.md) -이름이 같은 생성 되 고 정보를 포함 하는 hello의 디렉터리 관련 toodeployments Git와 같은 배포 방법을 사용 하는 경우.
 * nodejs - 응용 프로그램의 모든 인스턴스에서 캡처된 stdout 및 stderr 정보(loggingEnabled가 True인 경우)
 
 ### <a name="zip-archive"></a>Zip 보관 파일
-진단 로그의 Zip 보관 파일을 다운로드하려면 Azure 명령줄 도구에서 다음 명령을 사용하십시오.
+toodownload hello Azure 명령줄 도구에서 다음 명령을 사용 하 여 hello hello 진단 로그의 Zip 보관:
 
     azure site log download [sitename]
 
-현재 디렉터리에 **diagnostics.zip** 이 다운로드됩니다. 이 보관 파일은 다음 디렉터리 구조를 포함합니다.
+다운로드 됩니다는 **diagnostics.zip** hello 현재 디렉터리에 있습니다. 이 보관 디렉터리 구조를 다음 hello를 포함 되어 있습니다.
 
 * deployments - 응용 프로그램의 배포에 대한 정보 로그
 * LogFiles
   
-  * [배포 방법](web-sites-deploy.md) - Git와 같은 배포 방법을 사용하는 경우 동일한 이름의 디렉터리가 만들어지고 배포와 관련된 정보가 포함됩니다.
+  * [배포 방법](web-sites-deploy.md) -이름이 같은 생성 되 고 정보를 포함 하는 hello의 디렉터리 관련 toodeployments Git와 같은 배포 방법을 사용 하는 경우.
   * nodejs - 응용 프로그램의 모든 인스턴스에서 캡처된 stdout 및 stderr 정보(loggingEnabled가 True인 경우)
 
 ### <a name="live-stream-tail"></a>라이브 스트림(비상 로그)
-진단 로그 정보의 라이브 스트림을 보려면 Azure 명령줄 도구에서 다음 명령을 사용하십시오.
+진단 로그 정보를 hello Azure 명령줄 도구에서 다음 명령을 사용 하 여 hello 라이브 스트림 tooview:
 
     azure site log tail [sitename]
 
-서버에서 발생하는 업데이트된 로그 이벤트의 스트림이 반환됩니다. 이 스트림은 배포 정보와 stdout 및 stderr 정보를 반환합니다(loggingEnabled가 True인 경우).
+서버 hello에 나타나는 순서 대로 업데이트 되는 이벤트 로그의 스트림을 반환 합니다. 이 스트림은 배포 정보와 stdout 및 stderr 정보를 반환합니다(loggingEnabled가 True인 경우).
 
 <a id="nextsteps"></a>
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 Azure에 대한 진단 정보를 사용하고 액세스하는 방법을 알아보았습니다. 이 정보는 응용 프로그램에서 발생하는 문제를 이해하는 데 유용하며, 사용 중인 모듈의 문제를 나타내거나 앱 서비스 웹 앱에 사용된 Node.js 버전이 배포 환경에 사용된 버전과 다르다는 점을 나타낼 수 있습니다.
+이 방법에 대해 배웠습니다 문서 Azure에 대 한 진단 정보 tooenable 및 액세스 합니다. 이 정보에 유용 하지만 사용 하는 모듈 또는 해당 hello 버전 앱 서비스 웹 앱에서 사용 하는 Node.js의 tooa 문제가 원인일 응용 프로그램에 발생 하는 이해 문제 차이가 있는 hello 배포에 사용 된 것 보다 환경입니다.
 
 Azure에서 모듈 작업에 대한 자세한 내용은 [Azure 응용 프로그램에 Node.js 모듈 사용](../nodejs-use-node-modules-azure-apps.md)을 참조하십시오.
 
 Node.js 버전의 응용 프로그램 지정에 대한 자세한 내용은 [Azure 응용 프로그램에서 Node.js 버전 지정]을 참조하십시오.
 
-자세한 내용은 [Node.js 개발자 센터](/develop/nodejs/)도 참조하세요.
+자세한 내용은 참고 항목 hello [Node.js 개발자 센터](/develop/nodejs/)합니다.
 
 ## <a name="whats-changed"></a>변경된 내용
-* 웹 사이트에서 앱 서비스로의 변경에 대한 지침은 [Azure 앱 서비스와 이 서비스가 기존 Azure 서비스에 미치는 영향](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 웹 사이트 tooApp 서비스에서에서 변경 사항 참조 가이드 toohello: [기존 Azure 서비스에 대 한 해당 영향 및 Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 > [!NOTE]
-> Azure 계정을 등록하기 전에 Azure App Service를 시작하려면 [App Service 체험](https://azure.microsoft.com/try/app-service/)으로 이동합니다. App Service에서 단기 스타터 웹앱을 즉시 만들 수 있습니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
+> Tooget Azure 계정에 등록 하기 전에 Azure 앱 서비스를 시작 하려는 경우 너무 이동[앱 서비스 시도](https://azure.microsoft.com/try/app-service/)앱 서비스의 수명이 짧은 스타터 웹 응용 프로그램 즉시 만들 수 있는, 합니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
 > 
 > 
 
 [IISNode]: https://github.com/tjanczuk/iisnode
-[IISNode 추가 정보]: https://github.com/tjanczuk/iisnode#readme
-[How to Use The Azure Command-Line Interface]:../cli-install-nodejs.md
+[IISNode Readme]: https://github.com/tjanczuk/iisnode#readme
+[How tooUse hello Azure Command-Line Interface]:../cli-install-nodejs.md
 [Using Node.js Modules with Azure Applications]: ../nodejs-use-node-modules-azure-apps.md
 [Azure 응용 프로그램에서 Node.js 버전 지정]: ../nodejs-specify-node-version-azure-apps.md
 

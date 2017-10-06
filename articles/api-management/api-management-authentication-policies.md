@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management 인증 정책 | Microsoft Docs"
-description: "Azure API Management에 사용할 수 있는 인증 정책에 대해 알아봅니다."
+title: "API 관리 인증 정책 aaaAzure | Microsoft Docs"
+description: "Azure API 관리에 사용할 수 있는 hello 인증 정책에 알아봅니다."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 63ef20a56ab7721f9ecc7025d05963cc4b0c27a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce93cced66cb67520e97c7c15f3685bffb08e1f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-authentication-policies"></a>API Management 인증 정책
-이 토픽에서는 다음 API Management 정책에 대한 참조를 제공합니다. 정책의 추가 및 구성에 대한 자세한 내용은 [API 관리 정책](http://go.microsoft.com/fwlink/?LinkID=398186)을 참조하세요.  
+이 항목에서는 다음 API 관리 정책 hello에 대 한 대 한 참조를 제공 합니다. 정책의 추가 및 구성에 대한 자세한 내용은 [API 관리 정책](http://go.microsoft.com/fwlink/?LinkID=398186)을 참조하세요.  
   
 ##  <a name="AuthenticationPolicies"></a> 인증 정책  
   
@@ -30,9 +30,9 @@ ms.lasthandoff: 07/11/2017
 -   [클라이언트 인증서 사용 인증](api-management-authentication-policies.md#ClientCertificate) - 클라이언트 인증서를 사용하여 백 엔드 서비스를 인증합니다.  
   
 ##  <a name="Basic"></a> 기본 사용 인증  
- `authentication-basic` 정책을 사용하여 기본 인증을 사용하는 백 엔드 서비스를 인증합니다. 이 정책은 HTTP 권한 부여 헤더를 정책에서 제공한 자격 증명에 해당하는 값으로 효과적으로 설정합니다.  
+ 사용 하 여 hello `authentication-basic` 기본 인증을 사용 하 여 백 엔드 서비스와 정책 tooauthenticate 합니다. 이 정책은 효과적으로 hello HTTP 권한 부여 헤더 toohello hello 정책에 제공 된 값 해당 toohello 자격을 설정 합니다.  
   
-### <a name="policy-statement"></a>정책 명령문  
+### <a name="policy-statement"></a>정책 문  
   
 ```xml  
 <authentication-basic username="username" password="password" />  
@@ -54,20 +54,20 @@ ms.lasthandoff: 07/11/2017
   
 |이름|설명|필수|기본값|  
 |----------|-----------------|--------------|-------------|  
-|username|기본 자격 증명의 사용자 이름을 지정합니다.|예|해당 없음|  
-|password|기본 자격 증명의 비밀번호를 지정합니다.|예|해당 없음|  
+|username|Hello 기본 자격 증명의 hello 사용자 이름을 지정합니다.|예|해당 없음|  
+|암호|Hello 기본 자격 증명의 hello 암호를 지정합니다.|예|해당 없음|  
   
-### <a name="usage"></a>사용 현황  
- 이 정책은 다음과 같은 정책 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)에서 사용할 수 있습니다.  
+### <a name="usage"></a>사용  
+ 이 정책은 hello 정책 뒤에 사용할 수 있습니다 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)합니다.  
   
--   **정책 섹션:** 인바운드  
+-   **정책 섹션:** inbound  
   
 -   **정책 범위:** API  
   
 ##  <a name="ClientCertificate"></a> 클라이언트 인증서 사용 인증  
- `authentication-certificate` 정책을 사용하여 클라이언트 인증서를 사용하는 백 엔드 서비스를 인증합니다. 먼저 인증서를 [API Management에 설치](http://go.microsoft.com/fwlink/?LinkID=511599)하고 지문으로 식별해야 합니다.  
+ 사용 하 여 hello `authentication-certificate` 클라이언트 인증서를 사용 하 여 백 엔드 서비스와 정책 tooauthenticate 합니다. hello 인증서 필요 toobe [API 관리에 설치](http://go.microsoft.com/fwlink/?LinkID=511599) 첫 번째 지 문으로 식별 됩니다.  
   
-### <a name="policy-statement"></a>정책 명령문  
+### <a name="policy-statement"></a>정책 문  
   
 ```xml  
 <authentication-certificate thumbprint="thumbprint" />  
@@ -89,12 +89,12 @@ ms.lasthandoff: 07/11/2017
   
 |이름|설명|필수|기본값|  
 |----------|-----------------|--------------|-------------|  
-|thumbprint|클라이언트 인증서에 대한 지문입니다.|예|해당 없음|  
+|thumbprint|hello 클라이언트 인증서에 대 한 hello 지문입니다.|예|해당 없음|  
   
-### <a name="usage"></a>사용 현황  
- 이 정책은 다음과 같은 정책 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)에서 사용할 수 있습니다.  
+### <a name="usage"></a>사용  
+ 이 정책은 hello 정책 뒤에 사용할 수 있습니다 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)합니다.  
   
--   **정책 섹션:** 인바운드  
+-   **정책 섹션:** inbound  
   
 -   **정책 범위:** API  
   

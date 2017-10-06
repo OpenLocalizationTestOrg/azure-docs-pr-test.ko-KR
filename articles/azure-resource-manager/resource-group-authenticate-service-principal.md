@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용하여 Azure 앱에 대한 ID 만들기 | Microsoft Docs"
-description: "Azure PowerShell을 사용하여 Azure Active Directory 응용 프로그램 및 서비스 주체를 만들고 역할 기반 액세스 제어를 통해 리소스에 대한 액세스를 부여하는 방법을 설명합니다. 암호 또는 인증서를 사용하여 응용 프로그램을 인증하는 방법을 보여 줍니다."
+title: "PowerShell과 함께 Azure 응용 프로그램에 대 한 aaaCreate id | Microsoft Docs"
+description: "Azure PowerShell toocreate toouse Azure Active Directory 응용 프로그램 및 서비스 사용자 및 역할 기반 액세스를 통해 tooresources 액세스용 부여 제어 하는 방법에 대해 설명 합니다. 표시 방법을 tooauthenticate 응용 프로그램 암호 또는 인증서를 사용 합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 55e83b0742652abbb42100a11a468bc13a7a8aed
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c534360799b590054a051e4426e5e27dccb559b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-powershell-to-create-a-service-principal-to-access-resources"></a>Azure PowerShell을 사용하여 리소스에 액세스하는 서비스 주체 만들기
+# <a name="use-azure-powershell-toocreate-a-service-principal-tooaccess-resources"></a>Azure PowerShell toocreate 서비스 보안 주체 tooaccess 리소스 사용
 
-리소스에 액세스해야 하는 앱 또는 스크립트가 있는 경우 앱에 대한 ID를 설정하고 자체 자격 증명으로 앱을 인증할 수 있습니다. 이 ID를 서비스 주체라고 합니다. 이 접근 방법을 사용하면 다음을 수행할 수 있습니다.
+응용 프로그램 또는 스크립트를 tooaccess 리소스가 필요한 경우 hello 앱에 대 한 id를 설정할 수 있으며 자체 자격 증명으로 hello 앱을 인증 합니다. 이 ID를 서비스 주체라고 합니다. 이 접근 방법을 사용하면 다음을 수행할 수 있습니다.
 
-* 자체 사용 권한과 다른 앱 ID에 대한 사용 권한을 할당합니다. 일반적으로 이러한 권한은 정확히 앱 실행에 필요한 것으로 제한됩니다.
+* 권한을 자신만 사용 권한을 것과 다른 toohello 응용 프로그램 id를 할당 합니다. 일반적으로 이러한 권한은 제한 된 tooexactly 어떤 hello 앱 toodo 필요 합니다.
 * 무인 스크립트를 실행할 때 인증을 위해 인증서를 사용합니다.
 
-이 토픽에서는 [Azure PowerShell](/powershell/azure/overview) 을 사용하여 응용 프로그램을 자체 자격 증명 및 ID로 실행하는 데 필요한 모든 항목을 설정하는 방법을 보여 줍니다.
+이 항목에서는 toouse [Azure PowerShell](/powershell/azure/overview) tooset 자체 자격 증명 및 id에서 응용 프로그램 toorun 프로그램에 필요한 모든 항목을 합니다.
 
 ## <a name="required-permissions"></a>필요한 사용 권한
-이 항목을 완료하려면 Azure Active Directory와 Azure 구독에 대한 충분한 권한이 있어야 합니다. 특히, Azure Active Directory에서 앱을 만들고 역할에 서비스 주체를 할당할 수 있어야 합니다. 
+toocomplete이이 항목에서는 Azure Active Directory와 Azure 구독에서 충분 한 권한이 있어야 합니다. 특히 수 toocreate hello Azure Active Directory에에서는 앱이 될 하 고 hello 서비스 보안 주체 tooa 역할을 할당 해야 합니다. 
 
-계정에 적절한 사용 권한이 있는지를 확인하는 가장 쉬운 방법은 포털을 통하는 것입니다. [필요한 사용 권한 확인](resource-group-create-service-principal-portal.md#required-permissions)을 참조하세요.
+hello 가장 쉬운 방법은 toocheck hello 포털을 통해이 계정을 적절 한 사용 권한이 있는지 여부. [필요한 사용 권한 확인](resource-group-create-service-principal-portal.md#required-permissions)을 참조하세요.
 
-이제 다음을 사용하여 인증을 받기 위한 섹션을 계속 진행합니다.
+이제 tooa 섹션에 인증 하기 위해 계속 수행 합니다.
 
 * [암호](#create-service-principal-with-password)
 * [자체 서명된 인증서](#create-service-principal-with-self-signed-certificate)
@@ -42,17 +42,17 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="powershell-commands"></a>PowerShell 명령
 
-서비스 주체를 설정하려면 다음 항목을 사용합니다.
+사용 서비스 사용자를 tooset, 합니다.
 
 | 명령 | 설명 |
 | ------- | ----------- | 
 | [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) | Azure Active Directory 서비스 주체 만들기 |
-| [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) | 지정된 범위에서 지정된 보안 주체에 지정된 RBAC 역할을 할당합니다. |
+| [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) | 할당 hello RBAC 역할 toohello 지정한 보안 주체가 지정 된, hello에 범위를 지정 합니다. |
 
 
 ## <a name="create-service-principal-with-password"></a>암호를 사용하여 서비스 주체 만들기
 
-구독에 대해 참여자 역할을 가진 서비스 주체를 만들려면 다음 항목을 사용합니다. 
+toocreate 구독에 대 한 hello 참가자 역할 인 서비스 사용자를 사용 합니다. 
 
 ```powershell
 Login-AzureRmAccount
@@ -61,18 +61,18 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-이 예제는 새 서비스 주체가 Azure Active Directory 전체에 전파될 시간을 허용하기 위해 20분간 대기합니다. 스크립트가 대기하는 시간이 충분히 길지 않으면 "PrincipalNotFound: 보안 주체 {id}이(가) 디렉터리에 없습니다."라는 오류 메시지가 표시됩니다.
+hello 예제는 전체 Azure Active Directory에서 hello 제공 하는 서비스 새 주 toopropagate 약간의 시간이 tooallow 20 초 동안 대기합니다. 스크립트는 충분 한 시간 동안 대기 하지 않고 표시 한다는 오류: "PrincipalNotFound: 보안 주체 {id} hello 디렉터리에 존재 하지 않습니다."
 
-다음 스크립트를 통해 기본 구독 이외의 범위를 지정하고 오류가 발생하는 경우 역할 할당을 다시 시도할 수 있습니다.
+hello 다음 스크립트 toospecify hello 기본 구독 이외의 범위 있으며 오류가 발생할 경우 재시도 hello 역할 할당:
 
 ```powershell
 Param (
 
- # Use to set scope to resource group. If no value is provided, scope is set to subscription.
+ # Use tooset scope tooresource group. If no value is provided, scope is set toosubscription.
  [Parameter(Mandatory=$false)]
  [String] $ResourceGroup,
 
- # Use to set subscription. If no value is provided, default subscription is used. 
+ # Use tooset subscription. If no value is provided, default subscription is used. 
  [Parameter(Mandatory=$false)]
  [String] $SubscriptionId,
 
@@ -105,7 +105,7 @@ Param (
  }
 
  
- # Create Service Principal for the AD app
+ # Create Service Principal for hello AD app
  $ServicePrincipal = New-AzureRMADServicePrincipal -DisplayName $ApplicationDisplayName -Password $Password
  Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
 
@@ -113,7 +113,7 @@ Param (
  $Retries = 0;
  While ($NewRole -eq $null -and $Retries -le 6)
  {
-    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    # Sleep here for a few seconds tooallow hello service principal application toobecome active (should only take a couple of seconds normally)
     Sleep 15
     New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
     $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
@@ -121,24 +121,24 @@ Param (
  }
 ```
 
-스크립트에 대해 다음 사항을 알아두세요.
+Hello 스크립트에 대 한 몇 가지 항목 toonote:
 
-* ID에기본 구독에 대한 액세스 권한을 부여하기 위해 ResourceGroup 또는 SubscriptionId 매개 변수를 제공할 필요는 없습니다.
-* 역할 할당의 범위를 리소스 그룹으로 제한하려는 경우에만 ResourceGroup 매개 변수를 지정합니다.
-*  이 예제에서는 참가자 역할에 서비스 주체를 추가합니다. 다른 역할에 대해서는 [RBAC: 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 참조하세요.
-* 이 스크립트는 새 서비스 주체가 Azure Active Directory 전체에 전파될 시간을 허용하기 위해 15분간 대기합니다. 스크립트가 대기하는 시간이 충분히 길지 않으면 "PrincipalNotFound: 보안 주체 {id}이(가) 디렉터리에 없습니다."라는 오류 메시지가 표시됩니다.
-* 서비스 주체에게 더 많은 구독 또는 리소스 그룹에 대한 액세스 권한을 부여해야 할 경우 다른 범위를 지정해서 `New-AzureRMRoleAssignment` cmdlet을 다시 실행합니다.
+* toogrant hello identity 액세스 toohello 기본 구독 않아도 tooprovide ResourceGroup 또는 SubscriptionId 매개 변수입니다.
+* Toolimit hello 범위 hello 역할 할당 tooa 리소스 그룹의 경우에 hello ResourceGroup 매개 변수를 지정 합니다.
+*  이 예제에서는 hello 서비스 보안 주체 toohello 참가자 역할을 추가합니다. 다른 역할에 대해서는 [RBAC: 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 참조하세요.
+* hello 스크립트는 전체 Azure Active Directory에서 hello 제공 하는 서비스 새 주 toopropagate 약간의 시간이 tooallow 15 초 동안 대기합니다. 스크립트는 충분 한 시간 동안 대기 하지 않고 표시 한다는 오류: "PrincipalNotFound: 보안 주체 {id} hello 디렉터리에 존재 하지 않습니다."
+* Toogrant hello 서비스 보안 주체 액세스 toomore 구독 또는 리소스 그룹을 해야 하는 경우 실행 hello `New-AzureRMRoleAssignment` 다양 한 범위를 사용 하 여 다시 cmdlet.
 
 
 ### <a name="provide-credentials-through-powershell"></a>PowerShell을 통해 자격 증명 제공
-이제 응용 프로그램으로 로그인하여 작업을 수행해야 합니다. 사용자 이름으로 응용 프로그램에 대해 만든 `ApplicationId`를 사용합니다. 암호의 경우 계정을 만들 때 지정한 암호를 사용합니다. 
+이제, hello 응용 프로그램 tooperform 작업으로 toolog에 필요 합니다. Hello 사용자 이름에 대 한 hello를 사용 하 여 `ApplicationId` hello 응용 프로그램에 대해 만든 합니다. Hello 암호에 대 한 hello hello 계정을 만들 때 지정 하나를 사용 합니다. 
 
 ```powershell   
 $creds = Get-Credential
 Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId {tenant-id}
 ```
 
-테넌트 ID는 대/소문자를 구분하지 않으므로 스크립트에 직접 포함할 수 있습니다. 테넌트 ID를 검색해야 할 경우 다음을 사용합니다.
+테 넌 트 ID hello/소문자를 구분 하지 않으므로 스크립트에서 직접 포함할 수 있습니다. Tooretrieve hello 테 넌 트 ID, 필요한 경우 사용 합니다.
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
@@ -146,7 +146,7 @@ Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId {tenant-id}
 
 ## <a name="create-service-principal-with-self-signed-certificate"></a>자체 서명된 인증서를 사용하여 서비스 주체 만들기
 
-구독에 대해 자체 서명된 인증서 및 참여자 역할을 가진 서비스 주체를 만들려면 다음 항목을 사용합니다. 
+toocreate 자체 서명 된 인증서와 구독에 대 한 hello 참가자 역할 서비스 사용자를 사용 합니다. 
 
 ```powershell
 Login-AzureRmAccount
@@ -158,18 +158,18 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-이 예제는 새 서비스 주체가 Azure Active Directory 전체에 전파될 시간을 허용하기 위해 20분간 대기합니다. 스크립트가 대기하는 시간이 충분히 길지 않으면 "PrincipalNotFound: 보안 주체 {id}이(가) 디렉터리에 없습니다."라는 오류 메시지가 표시됩니다.
+hello 예제는 전체 Azure Active Directory에서 hello 제공 하는 서비스 새 주 toopropagate 약간의 시간이 tooallow 20 초 동안 대기합니다. 스크립트는 충분 한 시간 동안 대기 하지 않고 표시 한다는 오류: "PrincipalNotFound: 보안 주체 {id} hello 디렉터리에 존재 하지 않습니다."
 
-다음 스크립트를 통해 기본 구독 이외의 범위를 지정하고 오류가 발생하는 경우 역할 할당을 다시 시도할 수 있습니다. Windows 10 또는 Windows Server 2016에서 Azure PowerShell 2.0이 있어야 합니다.
+hello 다음 스크립트 toospecify hello 기본 구독 이외의 범위 있으며 오류가 발생할 경우 재시도 hello 역할 할당 합니다. Windows 10 또는 Windows Server 2016에서 Azure PowerShell 2.0이 있어야 합니다.
 
 ```powershell
 Param (
 
- # Use to set scope to resource group. If no value is provided, scope is set to subscription.
+ # Use tooset scope tooresource group. If no value is provided, scope is set toosubscription.
  [Parameter(Mandatory=$false)]
  [String] $ResourceGroup,
 
- # Use to set subscription. If no value is provided, default subscription is used. 
+ # Use tooset subscription. If no value is provided, default subscription is used. 
  [Parameter(Mandatory=$false)]
  [String] $SubscriptionId,
 
@@ -208,7 +208,7 @@ Param (
  $Retries = 0;
  While ($NewRole -eq $null -and $Retries -le 6)
  {
-    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    # Sleep here for a few seconds tooallow hello service principal application toobecome active (should only take a couple of seconds normally)
     Sleep 15
     New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
     $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
@@ -216,22 +216,22 @@ Param (
  }
 ```
 
-스크립트에 대해 다음 사항을 알아두세요.
+Hello 스크립트에 대 한 몇 가지 항목 toonote:
 
-* ID에기본 구독에 대한 액세스 권한을 부여하기 위해 ResourceGroup 또는 SubscriptionId 매개 변수를 제공할 필요는 없습니다.
-* 역할 할당의 범위를 리소스 그룹으로 제한하려는 경우에만 ResourceGroup 매개 변수를 지정합니다.
-* 이 예제에서는 참가자 역할에 서비스 주체를 추가합니다. 다른 역할에 대해서는 [RBAC: 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 참조하세요.
-* 이 스크립트는 새 서비스 주체가 Azure Active Directory 전체에 전파될 시간을 허용하기 위해 15분간 대기합니다. 스크립트가 대기하는 시간이 충분히 길지 않으면 "PrincipalNotFound: 보안 주체 {id}이(가) 디렉터리에 없습니다."라는 오류 메시지가 표시됩니다.
-* 서비스 주체에게 더 많은 구독 또는 리소스 그룹에 대한 액세스 권한을 부여해야 할 경우 다른 범위를 지정해서 `New-AzureRMRoleAssignment` cmdlet을 다시 실행합니다.
+* toogrant hello identity 액세스 toohello 기본 구독 않아도 tooprovide ResourceGroup 또는 SubscriptionId 매개 변수입니다.
+* Toolimit hello 범위 hello 역할 할당 tooa 리소스 그룹의 경우에 hello ResourceGroup 매개 변수를 지정 합니다.
+* 이 예제에서는 hello 서비스 보안 주체 toohello 참가자 역할을 추가합니다. 다른 역할에 대해서는 [RBAC: 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 참조하세요.
+* hello 스크립트는 전체 Azure Active Directory에서 hello 제공 하는 서비스 새 주 toopropagate 약간의 시간이 tooallow 15 초 동안 대기합니다. 스크립트는 충분 한 시간 동안 대기 하지 않고 표시 한다는 오류: "PrincipalNotFound: 보안 주체 {id} hello 디렉터리에 존재 하지 않습니다."
+* Toogrant hello 서비스 보안 주체 액세스 toomore 구독 또는 리소스 그룹을 해야 하는 경우 실행 hello `New-AzureRMRoleAssignment` 다양 한 범위를 사용 하 여 다시 cmdlet.
 
-**Windows 10 또는 Windows Server 2016 Technical Preview**사용자가 아니라면 Microsoft Script Center에서 [Self-signed certificate generator](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) 를 다운로드해야 합니다. 해당 내용을 추출하고 필요한 cmdlet을 가져옵니다.
+경우 있습니다 **Windows 10 또는 Windows Server 2016 Technical Preview 없는**, toodownload hello 해야 [자체 서명 된 인증서 생성기](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) Microsoft 스크립트 센터에서. 콘텐츠를 추출 하 고 필요한 hello cmdlet을 가져옵니다.
 
 ```powershell  
 # Only run if you could not use New-SelfSignedCertificate
 Import-Module -Name c:\ExtractedModule\New-SelfSignedCertificateEx.ps1
 ```
   
-스크립트에서 다음 두 줄을 바꾸어 인증서를 생성합니다.
+Hello 스크립트에서 다음 두 줄 toogenerate hello 인증서 hello를 대체 합니다.
   
 ```powershell
 New-SelfSignedCertificateEx  -StoreLocation CurrentUser -StoreName My -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
@@ -239,7 +239,7 @@ $cert = Get-ChildItem -path Cert:\CurrentUser\my | where {$PSitem.Subject -eq 'C
 ```
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>자동화된 PowerShell 스크립트를 통해 인증서 제공
-서비스 주체로 로그인할 때마다 AD 앱에 디렉터리의 테넌트 ID를 제공해야 합니다. 테넌트는 Azure Active Directory의 인스턴스입니다. 구독이 하나만 있는 경우 다음을 사용할 수 있습니다.
+서비스 사용자로 로그인 할 때마다 AD 앱에 대 한 hello 디렉터리의 tooprovide hello 테 넌 트 id가 필요 합니다. 테넌트는 Azure Active Directory의 인스턴스입니다. 구독이 하나만 있는 경우 다음을 사용할 수 있습니다.
 
 ```powershell
 Param (
@@ -258,20 +258,20 @@ Param (
  Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantId
 ```
 
-응용 프로그램 ID 및 테넌트 ID는 대/소문자를 구분하지 않으므로 스크립트에 직접 포함할 수 있습니다. 테넌트 ID를 검색해야 할 경우 다음을 사용합니다.
+ID 및 테 넌 트 ID hello 응용 프로그램/소문자를 구분 하지 않으므로 스크립트에서 직접 포함할 수 있습니다. Tooretrieve hello 테 넌 트 ID, 필요한 경우 사용 합니다.
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 ```
 
-응용 프로그램 ID를 검색해야 할 경우 다음을 사용합니다.
+Tooretrieve hello 응용 프로그램 ID, 필요한 경우 사용 합니다.
 
 ```powershell
 (Get-AzureRmADApplication -DisplayNameStartWith {display-name}).ApplicationId
 ```
 
 ## <a name="create-service-principal-with-certificate-from-certificate-authority"></a>인증 기관의 인증서를 사용하여 서비스 주체 만들기
-인증 기관에서 발급한 인증서를 사용해서 서비스 주체를 만들려면 다음 스크립트를 사용합니다.
+인증 기관 toocreate 서비스 사용자를 사용 하 여 hello 다음 스크립트에서 발급 한 인증서 toouse:
 
 ```powershell
 Param (
@@ -311,7 +311,7 @@ Param (
  $Retries = 0;
  While ($NewRole -eq $null -and $Retries -le 6)
  {
-    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    # Sleep here for a few seconds tooallow hello service principal application toobecome active (should only take a couple of seconds normally)
     Sleep 15
     New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId | Write-Verbose -ErrorAction SilentlyContinue
     $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
@@ -321,15 +321,15 @@ Param (
  $NewRole
 ```
 
-스크립트에 대해 다음 사항을 알아두세요.
+Hello 스크립트에 대 한 몇 가지 항목 toonote:
 
-* 해당 구독으로 액세스 범위가 지정됩니다.
-* 이 예제에서는 참가자 역할에 서비스 주체를 추가합니다. 다른 역할에 대해서는 [RBAC: 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 참조하세요.
-* 이 스크립트는 새 서비스 주체가 Azure Active Directory 전체에 전파될 시간을 허용하기 위해 15분간 대기합니다. 스크립트가 대기하는 시간이 충분히 길지 않으면 "PrincipalNotFound: 보안 주체 {id}이(가) 디렉터리에 없습니다."라는 오류 메시지가 표시됩니다.
-* 서비스 주체에게 더 많은 구독 또는 리소스 그룹에 대한 액세스 권한을 부여해야 할 경우 다른 범위를 지정해서 `New-AzureRMRoleAssignment` cmdlet을 다시 실행합니다.
+* 액세스 범위 지정 된 toohello 구독입니다.
+* 이 예제에서는 hello 서비스 보안 주체 toohello 참가자 역할을 추가합니다. 다른 역할에 대해서는 [RBAC: 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 참조하세요.
+* hello 스크립트는 전체 Azure Active Directory에서 hello 제공 하는 서비스 새 주 toopropagate 약간의 시간이 tooallow 15 초 동안 대기합니다. 스크립트는 충분 한 시간 동안 대기 하지 않고 표시 한다는 오류: "PrincipalNotFound: 보안 주체 {id} hello 디렉터리에 존재 하지 않습니다."
+* Toogrant hello 서비스 보안 주체 액세스 toomore 구독 또는 리소스 그룹을 해야 하는 경우 실행 hello `New-AzureRMRoleAssignment` 다양 한 범위를 사용 하 여 다시 cmdlet.
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>자동화된 PowerShell 스크립트를 통해 인증서 제공
-서비스 주체로 로그인할 때마다 AD 앱에 디렉터리의 테넌트 ID를 제공해야 합니다. 테넌트는 Azure Active Directory의 인스턴스입니다.
+서비스 사용자로 로그인 할 때마다 AD 앱에 대 한 hello 디렉터리의 tooprovide hello 테 넌 트 id가 필요 합니다. 테넌트는 Azure Active Directory의 인스턴스입니다.
 
 ```powershell
 Param (
@@ -354,13 +354,13 @@ Param (
  Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantId
 ```
 
-응용 프로그램 ID 및 테넌트 ID는 대/소문자를 구분하지 않으므로 스크립트에 직접 포함할 수 있습니다. 테넌트 ID를 검색해야 할 경우 다음을 사용합니다.
+ID 및 테 넌 트 ID hello 응용 프로그램/소문자를 구분 하지 않으므로 스크립트에서 직접 포함할 수 있습니다. Tooretrieve hello 테 넌 트 ID, 필요한 경우 사용 합니다.
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 ```
 
-응용 프로그램 ID를 검색해야 할 경우 다음을 사용합니다.
+Tooretrieve hello 응용 프로그램 ID, 필요한 경우 사용 합니다.
 
 ```powershell
 (Get-AzureRmADApplication -DisplayNameStartWith {display-name}).ApplicationId
@@ -368,57 +368,57 @@ Param (
 
 ## <a name="change-credentials"></a>자격 증명 변경
 
-보안 위협 또는 자격 증명 만료 때문에 AD 앱에 대한 자격 증명을 변경하려면 [Remove-AzureRmADAppCredential](/powershell/resourcemanager/azurerm.resources/v3.3.0/remove-azurermadappcredential) 및 [New-AzureRmADAppCredential](/powershell/module/azurerm.resources/new-azurermadappcredential) cmdlet을 사용합니다.
+hello를 사용 하는 보안 또는 자격 증명 만료 때문에 AD 응용 프로그램에 대 한 toochange hello 자격 [제거 AzureRmADAppCredential](/powershell/resourcemanager/azurerm.resources/v3.3.0/remove-azurermadappcredential) 및 [새로 AzureRmADAppCredential](/powershell/module/azurerm.resources/new-azurermadappcredential) cmdlet.
 
-응용 프로그램에 대한 자격 증명을 모두 제거하려면 다음을 사용합니다.
+tooremove 응용 프로그램에 대 한 모든 hello 자격 증명을 사용 합니다.
 
 ```powershell
 Remove-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -All
 ```
 
-암호를 추가하려면 다음을 사용합니다.
+tooadd 암호를 사용 합니다.
 
 ```powershell
 New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -Password p@ssword!
 ```
 
-인증서 값을 추가하려면 이 항목에 설명된 대로 자체 서명된 인증서를 만듭니다. 그 후 다음을 사용합니다.
+이 항목에 표시 된 대로 tooadd 인증서 값 자체 서명 된 인증서를 만듭니다. 그 후 다음을 사용합니다.
 
 ```powershell
 New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
 ```
 
-## <a name="save-access-token-to-simplify-log-in"></a>액세스 토큰을 저장하여 로그인 단순화
-로그인해야 할 때마다 서비스 주체 자격 증명을 제공하는 것을 피하기 위해 액세스 토큰을 저장할 수 있습니다.
+## <a name="save-access-token-toosimplify-log-in"></a>액세스 토큰 toosimplify 로그인 저장
+tooavoid 제공 hello 서비스 사용자 자격 증명에 toolog 해야 할 때마다 hello 액세스 토큰을 저장할 수 있습니다.
 
-이후 세션에서 현재 액세스 토큰을 사용하기 위해 프로필을 저장합니다.
+이후 세션에서 toouse hello 현재 액세스 토큰이 hello 프로필을 저장 합니다.
    
 ```powershell
 Save-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 ```
    
-프로필을 열고 해당 내용을 검사합니다. 액세스 토큰을 포함하는지 확인합니다. 수동으로 다시 로그인하는 대신 프로필을 로드하면 됩니다.
+Hello 프로필 열고 해당 내용을 확인 합니다. 액세스 토큰을 포함하는지 확인합니다. 수동으로 다시 로그인을 대신 단순히 hello 프로필을 로드 합니다.
    
 ```powershell
 Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 ```
 
 > [!NOTE]
-> 토큰이 유효한 한 저장된 프로필을 사용해야만 작동하므로 액세스 토큰이 만료됩니다.
+> 저장된 된 프로필을 사용 하 여만 작동에 대 한 hello 토큰은 유효 하므로 hello 액세스 토큰 만료 됩니다.
 >  
 
-또는 PowerShell에서 REST 작업을 호출하여 로그인할 수 있습니다. 인증 응답에서 다른 작업에 사용할 액세스 토큰을 검색할 수 있습니다. REST 작업을 호출하여 액세스 토큰을 검색하는 예제는 [액세스 토큰 생성하기](resource-manager-rest-api.md#generating-an-access-token)를 참조하세요.
+또는에서 PowerShell toolog에서 REST 작업을 호출할 수 있습니다. Hello 인증 응답에서 다른 작업과 함께 사용 하기 위해 hello 액세스 토큰을 검색할 수 있습니다. REST 작업을 호출 하 여 hello 액세스 토큰을 검색 하는 예제를 보려면 [액세스 토큰 생성](resource-manager-rest-api.md#generating-an-access-token)합니다.
 
 ## <a name="debug"></a>디버그
 
-서비스 주체를 만들 때 다음과 같은 오류가 발생할 수 있습니다.
+서비스 사용자를 만들 때 다음 오류 hello를 발생할 수 있습니다.
 
-* **"Authentication_Unauthorized"** 또는 **"컨텍스트에서 구독을 찾을 수 없습니다."** - 계정에 Azure Active Directory에서 앱을 등록하는 데 [필요한 권한](#required-permissions)이 없으면 이 오류가 발생합니다. 일반적으로 Azure Active Directory의 관리 사용자만 앱을 등록할 수 있고 사용자 계정은 관리자가 아니면 이 오류가 표시됩니다. 관리자 역할에 사용자를 할당하거나 사용자가 앱을 등록할 수 있게 설정하도록 관리자에게 요청합니다.
+* **"Authentication_Unauthorized"** 또는 **"hello 컨텍스트에서 구독이 찾을 수 있습니다."** -이 오류가 나타나는 hello 사용자 계정에 없을 때 [필요한 권한](#required-permissions) hello Azure Active Directory tooregister 응용 프로그램에 있습니다. 일반적으로 Azure Active Directory의 관리 사용자만 앱을 등록할 수 있고 사용자 계정은 관리자가 아니면 이 오류가 표시됩니다. 관리자 tooeither tooenable 사용자 tooregister 응용 프로그램이 나 있습니다 tooan 관리자 역할 할당을 요청 합니다.
 
-* 계정에 **"'/subscriptions/{guid}' 범위에 대해 'Microsoft.Authorization/roleAssignments/write' 작업을 수행할 수 있는 권한이 없습니다."** - 계정에 ID에 역할을 할당할 수 있는 충분한 권한이 없을 때 이 오류가 표시됩니다. 구독 관리자에게 사용자 액세스 관리자 역할에 사용자를 추가할 것을 요청합니다.
+* 계정 **"동작이 되어 있지 않습니다 권한 부여 tooperform 'Microsoft.Authorization/roleAssignments/write' 범위 ' / 구독 / {guid}'에 대해."**  -계정에 없을 때 충분 한 사용 권한을 tooassign 역할 tooan id를이 오류를 참조 하십시오. 구독 관리자 tooadd 요청 tooUser 액세스 관리자에 게 역할입니다.
 
 ## <a name="sample-applications"></a>샘플 응용 프로그램
-다른 플랫폼을 통해 응용 프로그램으로 로그인하는 방법에 대한 자세한 내용은 다음을 참조하세요.
+서로 다른 플랫폼을 통해 응용 프로그램 hello로 로그인 하는 방법에 대 한 정보를 보려면
 
 * [.NET](/dotnet/azure/dotnet-sdk-azure-authenticate?view=azure-dotnet)
 * [Java](/java/azure/java-sdk-azure-authenticate)
@@ -427,8 +427,8 @@ Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 * [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
 
 ## <a name="next-steps"></a>다음 단계
-* 리소스 관리를 위해 Azure에 응용 프로그램을 통합하는 자세한 단계를 보려면 [Azure Resource Manager API를 사용한 권한 부여 개발자 가이드](resource-manager-api-authentication.md)를 참조하세요.
+* 리소스 관리를 위해 Azure에 응용 프로그램을 통합 하는 기능에 대 한 자세한 내용은 참조 하십시오. [hello Azure 리소스 관리자 API가 있는 개발자 가이드 tooauthorization](resource-manager-api-authentication.md)합니다.
 * 응용 프로그램 및 서비스 주체에 대한 자세한 내용은 [응용 프로그램 개체 및 서비스 주체 개체](../active-directory/active-directory-application-objects.md)를 참조하세요. 
 * Azure Active Directory 인증에 대한 자세한 내용은 [Azure AD의 인증 시나리오](../active-directory/active-directory-authentication-scenarios.md)를 참조하세요.
-* 권한이 부여되거나 사용자에 대해 거부될 수 있는 작업 목록은 [Azure Resource Manager 리소스 공급자 작업](../active-directory/role-based-access-control-resource-provider-operations.md)을 참조하세요.
+* 목록이 부여 하거나 거부 toousers 수 있는 작업에 대 한 참조 [Azure 리소스 관리자 리소스 공급자 작업](../active-directory/role-based-access-control-resource-provider-operations.md)합니다.
 

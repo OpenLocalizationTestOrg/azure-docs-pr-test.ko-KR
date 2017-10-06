@@ -1,6 +1,6 @@
 ---
-title: "일반적으로 발생되는 FabricClient 예외 | Microsoft Docs"
-description: "응용 프로그램 및 클러스터 관리 작업을 수행하는 동안 FabricClient API에 의해 발생될 수 있는 일반적인 예외 및 오류를 설명합니다."
+title: "발생 한 aaaCommon FabricClient 예외 | Microsoft Docs"
+description: "Hello 일반적인 예외와 응용 프로그램 및 클러스터 관리 작업을 수행 하는 동안 hello FabricClient Api에 의해 throw 될 수 있는 오류를 설명 합니다."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/01/2017
 ms.author: ryanwi
-ms.openlocfilehash: f8a4d7573f0d256b562056ba52939ff5e66de15c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55bb556b25150524ebc28756eb1bd3e91dc37853
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="common-exceptions-and-errors-when-working-with-the-fabricclient-apis"></a>FabricClient API로 작업하는 경우 일반적인 예외 및 오류
-[FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) API를 사용하여 클러스터 및 응용 프로그램 관리자가 Service Fabric 응용 프로그램, 서비스 또는 클러스터에서 관리 작업을 수행할 수 있습니다. 예를 들어 응용 프로그램 배포, 업그레이드 및 제거, 클러스터 상태 확인 또는 서비스를 테스트합니다. 응용 프로그램 개발자 및 클러스터 관리자는 FabricClient API를 사용하여 서비스 패브릭 클러스터 및 응용 프로그램을 관리하기 위한 도구를 개발할 수 있습니다.
+# <a name="common-exceptions-and-errors-when-working-with-hello-fabricclient-apis"></a>일반적인 예외 및 오류 hello FabricClient Api로 작업 하는 경우
+hello [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) Api 클러스터 및 응용 프로그램 관리자 tooperform 관리 작업을 서비스 패브릭 응용 프로그램, 서비스 또는 클러스터를 사용 합니다. 예를 들어 응용 프로그램 배포, 업그레이드 및 제거, hello 상태는 클러스터를 확인 하거나 서비스를 테스트 합니다. 응용 프로그램 개발자와 클러스터 관리자 hello 서비스 패브릭 클러스터 및 응용 프로그램을 관리 하기 위한 hello FabricClient Api toodevelop 도구를 사용할 수 있습니다.
 
-FabricClient를 사용하여 수행할 수 있는 다양한 유형의 작업이 있습니다.  각 메서드는 잘못된 입력으로 인한 오류, 런타임 오류 또는 일시적인 인프라 문제에 대한 예외를 발생시킬 수 있습니다.  특정 메서드에 의해 발생되는 예외를 확인하려면 API 참조 설명서를 참조하세요. 그러나 여러 많은 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) API에 의해 발생되는 몇몇 예외가 있습니다. 다음 테이블에는 FabricClient API에서 공통적으로 적용되는 예외가 나열되어 있습니다.
+FabricClient를 사용하여 수행할 수 있는 다양한 유형의 작업이 있습니다.  각 메서드에 tooincorrect 입력, 런타임 오류 또는 일시적인 인프라 문제 않아서 발생 한 오류에 대 한 예외를 throw 할 수 있습니다.  특정 메서드는 예외를 throw 하는 hello API 참조 설명서 toofind를 참조 하십시오. 그러나 여러 많은 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) API에 의해 발생되는 몇몇 예외가 있습니다. hello 다음 표는 hello FabricClient Api 간에 공통 hello 예외입니다.
 
 | 예외 | 발생 시점 |
 | --- |:--- |
-| [System.Fabric.FabricObjectClosedException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricobjectclosedexception#System_Fabric_FabricObjectClosedException) |[FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) 개체가 닫힌 상태입니다. 사용 중인 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) 개체를 삭제하고 새 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) 개체를 인스턴스화합니다. |
-| [System.TimeoutException](https://docs.microsoft.com/dotnet/core/api/system.timeoutexception#System_TimeoutException) |작업 시간이 초과되었습니다. 작업이 완료되는 데 MaxOperationTimeout보다 많이 걸리는 경우 [OperationTimedOut](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode#System_Fabric_FabricErrorCode)이 반환됩니다. |
-| [System.UnauthorizedAccessException](https://docs.microsoft.com/dotnet/core/api/system.unauthorizedaccessexception#System_UnauthorizedAccessException) |작업에 대한 액세스 검사에 실패했습니다. E_ACCESSDENIED가 반환됩니다. |
-| [System.Fabric.FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException) |작업을 수행하는 동안 런타임 오류가 발생했습니다. FabricClient 메서드 중 하나가 잠재적으로 [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException)을 발생시킬 수 있으며 [ErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException_ErrorCode) 속성이 예외의 정확한 원인을 나타냅니다. [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode#System_Fabric_FabricErrorCode) 열거형에 정의된 오류 코드입니다. |
-| [System.Fabric.FabricTransientException](https://docs.microsoft.com/dotnet/api/system.fabric.fabrictransientexception#System_Fabric_FabricTransientException) |일종의 일시적인 오류 조건으로 인해 작업이 실패했습니다. 예를 들어 복제본의 쿼럼에 일시적으로 연결할 수 없기 때문에 작업이 실패할 수 있습니다. 일시적인 예외는 다시 시도할 수 있는 실패한 작업에 해당합니다. |
+| [System.Fabric.FabricObjectClosedException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricobjectclosedexception#System_Fabric_FabricObjectClosedException) |hello [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) 개체가 닫혔습니다. Hello 삭제 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) 사용 중이 고 새 개체 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient#System_Fabric_FabricClient) 개체입니다. |
+| [System.TimeoutException](https://docs.microsoft.com/dotnet/core/api/system.timeoutexception#System_TimeoutException) |hello 작업이 시간 초과 되었습니다. [Operationtimedout과](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode#System_Fabric_FabricErrorCode) 제한은 MaxOperationTimeout toocomplete 보다 많은 hello 작업을 수행 하는 경우 반환 됩니다. |
+| [System.UnauthorizedAccessException](https://docs.microsoft.com/dotnet/core/api/system.unauthorizedaccessexception#System_UnauthorizedAccessException) |hello 작업에 대 한 hello 액세스 검사 하지 못했습니다. E_ACCESSDENIED가 반환됩니다. |
+| [System.Fabric.FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException) |Hello 작업을 수행 하는 동안 런타임 오류가 발생 했습니다. Throw 잠재적으로 hello FabricClient 메서드 중 아무 메서드나 [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException), hello [ErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException_ErrorCode) 속성 hello 예외의 hello 정확한 원인을 나타냅니다. 오류 코드는 hello에 정의 된 [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode#System_Fabric_FabricErrorCode) 열거 합니다. |
+| [System.Fabric.FabricTransientException](https://docs.microsoft.com/dotnet/api/system.fabric.fabrictransientexception#System_Fabric_FabricTransientException) |어떤 종류의 tooa 일시적인 오류 조건이 인해 hello 작업이 실패 했습니다. 예를 들어 복제본의 쿼럼에 일시적으로 연결할 수 없기 때문에 작업이 실패할 수 있습니다. 일시적인 예외 해당 toofailed 작업을 다시 시도할 수 있습니다. |
 
 일부 일반 [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode#System_Fabric_FabricErrorCode) 오류는 [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception#System_Fabric_FabricException)으로 반환될 수 있습니다.
 
 | 오류 | 조건 |
 | --- |:--- |
-| CommunicationError |통신 오류로 인해 작업이 실패했습니다. 작업을 다시 시도하세요. |
-| InvalidCredentialType |자격 증명 유형이 올바르지 않습니다. |
-| InvalidX509FindType |X509FindType이 올바르지 않습니다. |
-| InvalidX509StoreLocation |X509 저장소 위치가 올바르지 않습니다. |
-| InvalidX509StoreName |X509 저장소 이름이 올바르지 않습니다. |
-| InvalidX509Thumbprint |X509 인증서 지문 문자열이 올바르지 않습니다. |
-| InvalidProtectionLevel |보호 수준이 올바르지 않습니다. |
-| InvalidX509Store |X509 인증서 저장소를 열 수 없습니다. |
-| InvalidSubjectName |주체 이름이 올바르지 않습니다. |
-| InvalidAllowedCommonNameList |일반 이름 목록 문자열의 형식이 올바르지 않습니다. 쉼표로 구분된 목록이어야 합니다. |
+| CommunicationError |통신 오류로 인해 hello 작업 toofail hello 작업을 다시 시도 합니다. |
+| InvalidCredentialType |hello 자격 증명 유형이 잘못 되었습니다. |
+| InvalidX509FindType |hello X509FindType 올바르지 않습니다. |
+| InvalidX509StoreLocation |hello X509 저장소 위치가 올바르지 않습니다. |
+| InvalidX509StoreName |hello X509 저장소 이름이 올바르지 않습니다. |
+| InvalidX509Thumbprint |hello X509 인증서 지문 문자열이 올바르지 않습니다. |
+| InvalidProtectionLevel |hello 보호 수준이 잘못 되었습니다. |
+| InvalidX509Store |hello X509 인증서 저장소를 열 수 없습니다. |
+| InvalidSubjectName |hello 주체 이름이 잘못 되었습니다. |
+| InvalidAllowedCommonNameList |일반 이름 목록 문자열 hello 형식이 올바르지 않습니다. 쉼표로 구분된 목록이어야 합니다. |
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 일반적인 Linux 가상 컴퓨터 오류 코드 | Microsoft Docs"
-description: "Azure에서 Linux 가상 컴퓨터를 프로비전 및 관리할 때 발생하는 일반적인 오류 코드 중 일부를 이해합니다."
+title: "Azure에서 Linux 가상 컴퓨터 오류 aaaCommon 코드 | Microsoft Docs"
+description: "프로 비전 하 고 Azure에서 Linux 가상 컴퓨터를 관리할 때 발생 hello 일반적인 오류 코드 중 일부를 이해합니다"
 services: virtual-machines-linux
 documentationcenter: 
 author: xujing-ms
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 5/22/2017
 ms.author: xujing
-ms.openlocfilehash: 97a7c011b72ea733b8bd22203fb7ed6eb97c6e38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f704b67eb2a811de2b26efddece87ffe28eef450
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-common-error-messages-when-you-manage-linux-virtual-machines-in-azure"></a>Azure에서 Linux 가상 컴퓨터를 관리할 때 발생하는 일반적인 오류 메시지 이해
 
-이 문서에서는 Azure에서 Linux VM(가상 컴퓨터)을 만들거나 관리할 때 발생할 수 있는 가장 일반적인 오류 코드 및 메시지 중 일부를 설명합니다.
+이 문서는 hello 가장 일반적인 오류 코드 및 만들거나 Azure에서 Linux 가상 컴퓨터 (Vm)를 관리할 때 발생할 수 있는 메시지의 일부를 설명 합니다.
 
 [!INCLUDE [virtual-machines-common-error-messages](../../../includes/virtual-machines-common-error-messages.md)]

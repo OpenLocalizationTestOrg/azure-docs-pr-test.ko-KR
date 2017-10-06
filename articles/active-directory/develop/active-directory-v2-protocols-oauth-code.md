@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 OAuth 인증 코드 흐름 | Microsoft Docs"
-description: "OAuth 2.0 인증 프로토콜의 Azure AD의 구현을 사용하여 웹 응용 프로그램을 빌드합니다."
+title: "OAuth 권한 부여 코드 흐름 aaaAzure AD v2.0 | Microsoft Docs"
+description: "웹 응용 프로그램 빌드 hello OAuth 2.0 인증 프로토콜의 Azure AD의 구현을 사용 합니다."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,29 +15,29 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: b64413e9cc916837dc779b92117f90293c4f1d87
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dee58f2f5c627fef35cae279349728c3c7bf9421
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # v2.0 프로토콜 - OAuth 2.0 인증 코드 흐름
-OAuth 2.0 인증 코드 권한은 장치에 설치된 앱에서 사용하여 Web API와 같은 보호된 리소스에 대한 액세스 권한을 얻을 수 있습니다.  앱 모델 v2.0의 OAuth 2.0 구현을 사용하여, 로그인 및 모바일 및 API 액세스를 데스크톱 앱에 추가할 수 있습니다.  이 가이드는 언어 독립적이며 공개 소스 라이브러리 중 하나를 사용하지 않고 HTTP 메시지를 수신하는 방법을 설명합니다.
+hello OAuth 2.0 인증 코드 부여는 장치 toogain tooprotected 같은 리소스에 액세스 웹 Api에 설치 된 앱에서 사용할 수 있습니다.  OAuth 2.0의 hello 앱 모델 v 2.0 구현을 사용 하 여, 로그인 및 API 액세스 tooyour 모바일 및 데스크톱 앱을 추가할 수 있습니다.  이 가이드는 언어 독립적 이며 하 고 설명 방법을 toosend 우리의 오픈 소스 라이브러리를 사용 하지 않고 HTTP 메시지를 수신 하 고 있습니다.
 
 > [!NOTE]
-> 일부 Azure Active Directory 시나리오 및 기능만 v2.0 끝점에서 지원합니다.  v2.0 끝점을 사용해야 하는지 확인하려면 [v2.0 제한 사항](active-directory-v2-limitations.md)을 참조하세요.
+> 모든 Azure Active Directory 시나리오 및 기능 hello v2.0 끝점에서 사용할 수 있습니다.  에 대해 알아보세요 hello v2.0 끝점을 사용 해야 하는 경우 toodetermine [v2.0 제한](active-directory-v2-limitations.md)합니다.
 > 
 > 
 
-OAuth 2.0 인증 코드 흐름은 [OAuth 2.0 사양의 섹션 4.1](http://tools.ietf.org/html/rfc6749)에서 설명합니다.  [웹앱](active-directory-v2-flows.md#web-apps) 및 [기본적으로 설치된 앱](active-directory-v2-flows.md#mobile-and-native-apps)을 포함하여 대부분의 앱 형식에서 인증 및 권한 부여를 수행하는 데 사용됩니다.  v2.0 끝점을 사용하여 보안된 리소스에 액세스하는 데 사용할 수 있는 access_token을 앱이 안전하게 획득할 수 있도록 합니다.  
+OAuth 2.0 인증 코드 흐름 hello에에서 설명 하는 [섹션 4.1 hello OAuth 2.0 사양의](http://tools.ietf.org/html/rfc6749)합니다.  사용 되는 tooperform 인증 및 권한 부여 포함 하는 응용 프로그램 형식을 hello 대부분 [웹 앱](active-directory-v2-flows.md#web-apps) 및 [고유 하 게 설치 된 앱](active-directory-v2-flows.md#mobile-and-native-apps)합니다.  Toosecurely 획득 access_tokens hello v2.0 끝점을 사용 하 여 보안이 유지 되는 리소스를 사용 하는 tooaccess 될 수 있는 앱 수 있습니다.  
 
 ## 프로토콜 다이어그램
-높은 수준에서 네이티브/모바일 응용 프로그램에 대한 전체 인증 흐름은 다음과 같습니다.
+상위 수준에서 네이티브/모바일 응용 프로그램에 대 한 hello 전체 인증 흐름은 약간 다음과 같습니다.
 
 ![OAuth 인증 코드 흐름](../../media/active-directory-v2-flows/convergence_scenarios_native.png)
 
 ## 인증 코드 요청
-인증 코드 흐름은 클라이언트가 사용자를 `/authorize` 끝점으로 보내는 것으로 시작됩니다.  이 요청에서 클라이언트는 사용자로부터 얻어야 하는 사용 권한을 나타냅니다.
+hello 클라이언트 hello 사용자 toohello 전달로 시작 하는 hello 권한 부여 코드 흐름 `/authorize` 끝점입니다.  이 요청에서 hello 클라이언트 hello 사용자 로부터 tooacquire 필요한 hello 권한을 나타냅니다.
 
 ```
 // Line breaks for legibility only
@@ -52,27 +52,27 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> 이 요청을 실행하려면 아래 링크를 클릭하세요. 로그인하면 브라우저가 주소 표시줄에서 `code`과 함께 `https://localhost/myapp/`으로 리디렉션됩니다.
+> 이 요청 hello tooexecute 아래에 링크를 클릭 하세요. 로그인 한 후 브라우저 리디렉션되어야 너무`https://localhost/myapp/` 와 `code` hello 주소 표시줄에 있습니다.
 > <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
 > 
 > 
 
 | 매개 변수 |  | 설명 |
 | --- | --- | --- |
-| tenant |필수 |요청의 경로에 있는 `{tenant}` 값을 사용하여 응용 프로그램에 로그인할 수 있는 사용자를 제어할 수 있습니다.  허용되는 값은 `common`, `organizations`, `consumers` 및 테넌트 ID입니다.  자세한 내용은 [프로토콜 기본](active-directory-v2-protocols.md#endpoints)을 참조하세요. |
-| client_id |필수 |등록 포털([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList))에서 앱에 할당한 응용 프로그램 ID입니다. |
-| response_type |필수 |인증 코드 흐름에 대한 `code`를 포함해야 합니다. |
-| redirect_uri |권장 |앱이 인증 응답을 보내고 받을 수 있는 앱의 redirect_uri입니다.  URL로 인코드되어야 한다는 점을 제외하고 포털에서 등록한 redirect_uri 중 하나와 정확히 일치해야 합니다.  네이티브 및 모바일 앱의 경우 `https://login.microsoftonline.com/common/oauth2/nativeclient`의 기본값을 사용해야 합니다. |
-| scope |필수 |사용자가 동의하게 할 공백으로 구분된 [범위](active-directory-v2-scopes.md) 목록입니다. |
-| response_mode |권장 |결과 토큰을 앱에 다시 보내는 데 사용해야 하는 방법을 지정합니다.  `query` 또는 `form_post`일 수 있습니다. |
-| state |권장 |토큰 응답에도 반환되는 요청에 포함된 값입니다.  원하는 모든 콘텐츠의 문자열일 수 있습니다.  일반적으로 [교차 사이트 요청 위조 공격을 방지](http://tools.ietf.org/html/rfc6749#section-10.12)하기 위해 임의로 생성된 고유 값이 사용됩니다.  상태는 인증 요청이 발생하기 전 앱의 사용자 상태에 대한 정보(예: 사용한 페이지 또는 보기)를 인코드하는 데에도 사용됩니다. |
-| prompt |선택 사항 |필요한 사용자 상호 작용 유형을 나타냅니다.  이 경우 유효한 값은 'login', 'none', 'consent'뿐입니다.  `prompt=login` 은 Single-Sign On을 무효화면서, 사용자가 요청에 자신의 자격 증명을 입력하도록 합니다.  `prompt=none` 은 그 반대로 사용자에게 어떠한 대화형 프롬프트도 표시되지 않도록 합니다.  Single-Sign On을 통해 요청이 자동으로 완료될 수 없는 경우에 v2.0 끝점은 오류를 반환합니다.  `prompt=consent` 는 사용자가 로그인한 후에 OAuth 동의 대화 상자를 트리거하여 앱에 권한을 부여할 것을 사용자에게 요청합니다. |
-| login_hint |선택 사항 |사용자 이름을 미리 알고 있는 경우 사용자를 위해 로그인 페이지의 사용자 이름/이메일 주소 필드를 미리 채우는 데 사용될 수 있습니다.  `preferred_username` 클레임을 사용하여 이전 로그인 작업에서 사용자 이름이 이미 추출된 경우 앱이 재인증 과정에서 이 매개 변수를 종종 사용합니다. |
-| domain_hint |선택 사항 |`consumers` 또는 `organizations` 중 하나일 수 있습니다.  포함된 경우, v2.0 로그인 페이지를 거친 사용자가 좀 더 효율적인 사용자 경험을 가질 수 있도록 전자 메일 기반 검색 프로세스를 건너뜁니다.  앱이 이전 로그인 작업에서 `tid` 를 추출하여 재인증 과정에서 이 매개 변수를 종종 사용합니다.  `tid` 클레임 값이 `9188040d-6c67-4c5b-b112-36a304b66dad`인 경우 `domain_hint=consumers`를 사용해야 합니다.  그렇지 않으면 `domain_hint=organizations`를 사용합니다. |
+| tenant |필수 |hello `{tenant}` hello 요청의 hello 경로 값 hello 응용 프로그램에 로그인 할 수 있는 사용된 toocontrol 하나일 수 있습니다.  hello 가능한 값은 `common`, `organizations`, `consumers`, 및 식별자를 테 넌 트입니다.  자세한 내용은 [프로토콜 기본](active-directory-v2-protocols.md#endpoints)을 참조하세요. |
+| client_id |필수 |응용 프로그램 Id는 hello 등록 포털 hello ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 응용 프로그램을 할당 합니다. |
+| response_type |필수 |포함 해야 `code` hello 권한 부여 코드 흐름에 대 한 합니다. |
+| redirect_uri |권장 |인증 응답 전송 끌어다 응용 프로그램에서 받은 수 있는 응용 프로그램의 hello redirect_uri입니다.  또한 url로 인코딩되어 있어야 점을 제외 하 고 hello 포털에 등록 된 hello redirect_uris 중 하나에 정확히 일치 해야 합니다.  네이티브 및 모바일 앱의 hello 기본값을 사용 해야 `https://login.microsoftonline.com/common/oauth2/nativeclient`합니다. |
+| scope |필수 |공백으로 구분 된 목록이 [범위](active-directory-v2-scopes.md) 를 hello 사용자 tooconsent 되도록 합니다. |
+| response_mode |권장 |사용 되는 toosend hello 결과 토큰 백 tooyour 앱 되어야 하는 hello 방법을 지정 합니다.  `query` 또는 `form_post`일 수 있습니다. |
+| state |권장 |Hello 토큰 응답에 반환 되는 hello 요청에 포함 하는 값입니다.  원하는 모든 콘텐츠의 문자열일 수 있습니다.  일반적으로 [교차 사이트 요청 위조 공격을 방지](http://tools.ietf.org/html/rfc6749#section-10.12)하기 위해 임의로 생성된 고유 값이 사용됩니다.  hello 상태 hello 페이지 보기에 있는 것과 같은 hello 인증 요청이 발생 하기 전에 hello 앱에서 hello 사용자의 상태에 대 한 정보를 사용 하는 tooencode 이기도 합니다. |
+| prompt |선택 사항 |Hello 필요한 사용자 상호 작용 유형을 나타냅니다.  이 이번에 유효한 값은 '로그인' 'none', 전용 hello 및 '승인'.  `prompt=login`force를 사용자 tooenter hello 됩니다에 단일 로그인 부정 해당 요청에 자격 증명입니다.  `prompt=none`반대 hello이 방법을 사용 하면 해당 hello 사용자 모든 대화형 프롬프트도 표시 되지 않았습니다.  Single sign-on을 통해 hello 요청을 자동으로 완료할 수 없으면, hello v2.0 끝점 오류가 반환 됩니다.  `prompt=consent`대화 상자에서는 hello 사용자가 로그인 한 후 hello 사용자 toogrant 권한 toohello 앱 타고 트리거 hello OAuth 합니다. |
+| login_hint |선택 사항 |수의 hello 사용된 toopre 채우기 hello 사용자 이름/전자 메일 주소 필드 서명할 수 hello 사용자에 대 한 페이지에 자신의 사용자 이름을 미리 알고 있는 경우.  종종 앱 hello username 이전 로그인에서 추출 된 이미 있으면 다시 인증 하는 동안이 매개 변수를 사용 합니다 hello를 사용 하 여 `preferred_username` 클레임입니다. |
+| domain_hint |선택 사항 |`consumers` 또는 `organizations` 중 하나일 수 있습니다.  Hello 전자 메일 기반 검색 프로세스는 건너뜁니다 포함 하는 경우 해당 사용자가을 통해 hello v 2.0 로그인 페이지를 앞에 tooa 약간 더 사용자 경험을 간소화 합니다.  종종 앱 다시 인증 하는 동안 hello를 추출 하 여에이 매개 변수를 사용 합니다 `tid` 에서 이전 로그인 합니다.  경우 hello `tid` 값은 클레임 `9188040d-6c67-4c5b-b112-36a304b66dad`를 사용 해야 `domain_hint=consumers`합니다.  그렇지 않으면 `domain_hint=organizations`를 사용합니다. |
 
-이 시점에서 사용자에게 자격 증명을 입력하고 인증을 완료하라는 메시지가 표시됩니다.  v2.0 끝점은 사용자가 `scope` 쿼리 매개 변수에 표시된 사용 권한에 동의했는지도 확인합니다.  사용자가 이러한 사용 권한 중 하나에 동의하지 않은 경우 필요한 사용 권한에 동의하라는 메시지가 표시됩니다.  [사용 권한, 동의 및 다중 테넌트 앱의 세부 정보는 여기에 제공되어 있습니다](active-directory-v2-scopes.md).
+Hello 사용자 됩니다이 시점에서 자격 증명 및 전체 hello 인증 tooenter 라는 메시지가 표시 됩니다.  hello v2.0 끝점도 방법을 사용 하면 해당 hello 사용자가 동의 hello에 표시 된 toohello 사용 권한만 `scope` 쿼리 매개 변수입니다.  Hello 사용자가 이러한 사용 권한 중 tooany 동의한 하지 것 묻습니다 hello 사용자 tooconsent toohello 필요한 사용 권한.  [사용 권한, 동의 및 다중 테넌트 앱의 세부 정보는 여기에 제공되어 있습니다](active-directory-v2-scopes.md).
 
-사용자가 인증하고 동의하면 v2.0 끝점이 `response_mode` 매개 변수에 지정된 방법을 사용하여 표시된 `redirect_uri`에서 해당 앱에 응답을 반환합니다.
+Hello v2.0 끝점에 표시 된 hello 응답 tooyour 응용 프로그램을 반환 합니다 hello 사용자를 인증 하 고 동의 허용 하면 `redirect_uri`, hello에 지정 된 hello 메서드를 사용 하 여 `response_mode` 매개 변수입니다.
 
 #### 성공적인 응답
 `response_mode=query` 를 사용한 성공적인 응답은 다음과 같습니다.
@@ -85,11 +85,11 @@ code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...
 
 | 매개 변수를 포함해야 합니다. | 설명 |
 | --- | --- |
-| 코드 |앱이 요청한 authorization_code입니다. 앱은 인증 코드를 사용하여 대상 리소스에 대한 액세스 토큰을 요청할 수 있습니다.  authorization_code는 수명이 매우 짧으며, 일반적으로 약 10분 후에 만료됩니다. |
-| state |요청에 state 매개 변수가 포함되어 있으면 동일한 값이 응답에도 나타나야 합니다. 앱은 요청 및 응답의 상태 값이 동일한지 확인해야 합니다. |
+| 코드 |응용 프로그램 요청 hello authorization_code를 hello 합니다. hello 앱 hello 대상 리소스에 대 한 hello 권한 부여 코드 toorequest 액세스 토큰을 사용할 수 있습니다.  authorization_code는 수명이 매우 짧으며, 일반적으로 약 10분 후에 만료됩니다. |
+| state |State 매개 변수는 hello 응답에 동일한 값이 표시 되어야 하는 hello hello 요청에 포함 됩니다. hello 앱 hello 요청 및 응답의 hello 상태 값이 동일한 지 확인 해야 합니다. |
 
 #### 오류 응답
-앱이 적절하게 처리할 수 있도록 `redirect_uri` 에 오류 응답을 보낼 수도 있습니다.
+오류 응답도 전송 될 수 있습니다 toohello `redirect_uri` hello 앱 적절 하 게 처리할 수 있도록 합니다.
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/nativeclient?
@@ -97,26 +97,26 @@ error=access_denied
 &error_description=the+user+canceled+the+authentication
 ```
 
-| 매개 변수를 포함해야 합니다. | 설명 |
+| 매개 변수 | 설명 |
 | --- | --- |
-| error |발생하는 오류 유형을 분류하는 데 사용할 수 있고 오류에 대응하는 데 사용할 수 있는 오류 코드 문자열입니다. |
-| error_description |개발자가 인증 오류의 근본 원인을 식별하도록 도울 수 있는 특정 오류 메시지입니다. |
+| error |오류 코드 문자열 사용된 tooclassify 유형의 오류가 발생 하는 수 있으며 사용 되는 tooreact tooerrors 수입니다. |
+| error_description |인증 오류 hello 근본 원인을 파악 하는 개발자 데 도움이 되는 특정 오류 메시지입니다. |
 
 #### 권한 부여 끝점 오류에 대한 오류 코드
-다음 테이블은 오류 응답의 `error` 매개 변수에 반환될 수 있는 여러 오류 코드를 설명합니다.
+hello 다음 표에서 hello hello에 반환 될 수 있는 다양 한 오류 코드 `error` hello 오류 응답의 매개 변수입니다.
 
 | 오류 코드 | 설명 | 클라이언트 작업 |
 | --- | --- | --- |
-| invalid_request |프로토콜 오류(예: 필수 매개 변수 누락). |요청을 수정하여 다시 제출하십시오. 일반적으로 초기 설정 중에 발견되는 개발 오류입니다. |
-| unauthorized_client |클라이언트 응용 프로그램이 인증 코드를 요청할 수 없습니다. |이 오류는 일반적으로 클라이언트 응용 프로그램이 Azure AD에 등록되지 않았거나 사용자의 Azure AD 테넌트에 추가되지 않은 경우 발생합니다. 응용 프로그램이 사용자에게 응용 프로그램을 설치하고 Azure AD에 추가하기 위한 지침이 포함된 메시지를 표시할 수 있습니다. |
-| access_denied |리소스 소유자가 동의 거부 |클라이언트 응용 프로그램이 사용자의 동의를 받지 않으면 계속 진행할 수 없다고 알릴 수 있습니다. |
-| unsupported_response_type |권한 부여 서버가 요청에 해당 응답 형식을 지원하지 않습니다. |요청을 수정하여 다시 제출하십시오. 일반적으로 초기 설정 중에 발견되는 개발 오류입니다. |
-| server_error |서버에 예기치 않은 오류가 발생했습니다. |요청을 다시 시도하십시오. 이러한 오류는 일시적인 상태 때문에 발생할 수 있습니다. 클라이언트 응용 프로그램이 일시적 오류 때문에 응답이 지연되었음을 사용자에게 설명할 수 있습니다. |
-| temporarily_unavailable |서버가 일시적으로 사용량이 많아 요청을 처리할 수 없습니다. |요청을 다시 시도하십시오. 클라이언트 응용 프로그램이 일시적 상태 때문에 응답이 지연되었음을 사용자에게 설명할 수 있습니다. |
-| invalid_resource |대상 리소스가 존재하지 않거나 Azure AD에서 해당 리소스를 찾을 수 없거나 올바르게 구성되지 않았기 때문에 잘못되었습니다. |리소스가 존재하는 경우 테넌트에 구성되지 않았음을 나타냅니다. 응용 프로그램이 사용자에게 응용 프로그램을 설치하고 Azure AD에 추가하기 위한 지침이 포함된 메시지를 표시할 수 있습니다. |
+| invalid_request |프로토콜 오류(예: 필수 매개 변수 누락). |수정 하 고 hello 요청을 다시 제출 하십시오. 일반적으로 초기 설정 중에 발견되는 개발 오류입니다. |
+| unauthorized_client |hello 클라이언트 응용 프로그램 없으면 toorequest 인증 코드를 허용 합니다. |이 문제는 일반적으로 hello 클라이언트 응용 프로그램이 Azure AD에 등록 되어 있지 않거나 toohello 사용자의 Azure AD 테 넌 트에 추가 되지 않습니다 때 발생 합니다. hello 응용 프로그램 hello 응용 프로그램을 설치 하 고 AD tooAzure 추가 대 한 명령으로 hello 사용자를 요구할 수 있습니다. |
+| access_denied |리소스 소유자가 동의 거부 |hello 클라이언트 응용 프로그램 hello 사용자가 동의 하지 않는 한 진행할 수 hello 사용자에 게 알릴 수 있습니다. |
+| unsupported_response_type |hello 권한 부여 서버 hello 요청에 hello 응답 유형을 지원 하지 않습니다. |수정 하 고 hello 요청을 다시 제출 하십시오. 일반적으로 초기 설정 중에 발견되는 개발 오류입니다. |
+| server_error |hello 서버 오류가 발생 했습니다. |Hello 요청을 다시 시도 합니다. 이러한 오류는 일시적인 상태 때문에 발생할 수 있습니다. 클라이언트 응용 프로그램 hello toohello 사용자를 확인할 수 있습니다 해당 응답은 일시적 오류로 인해 지연 합니다. |
+| temporarily_unavailable |hello 서버 사용량이 많음 toohandle hello 요청 일시적으로입니다. |Hello 요청을 다시 시도 합니다. 클라이언트 응용 프로그램 hello toohello 사용자를 확인할 수 있습니다 해당 응답은 일시적 상태로 인해 지연 합니다. |
+| invalid_resource |hello 대상 리소스가 존재 하지 않는, Azure AD를 찾을 수 없거나 올바르게 구성 되지 않아 유효 하지 않습니다. |이 hello 리소스 있을 경우 구성 되지 않았습니다 hello 테 넌 트에 나타냅니다. hello 응용 프로그램 hello 응용 프로그램을 설치 하 고 AD tooAzure 추가 대 한 명령으로 hello 사용자를 요구할 수 있습니다. |
 
 ## 액세스 토큰 요청
-authorization_code를 획득하고 사용자가 사용 권한을 부여했으므로 이제 `POST` 요청을 `/token` 끝점으로 보내 `code`를 원하는 리소스에 대한 `access_token`으로 교환할 수 있습니다.
+Hello를 교환할 수 있습니다는 authorization_code 획득 했습니다 하 고 hello 사용자 권한이 부여 된 `code` 에 대 한 프로그램 `access_token` toohello 전송 하 여 리소스를 원하는 `POST` toohello 요청 `/token` 끝점:
 
 ```
 // Line breaks for legibility only
@@ -134,19 +134,19 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> Postman에서 이 요청을 실행해 보세요. (`code`를 바꾸는 것을 잊지 마세요) [![Postman에서 실행](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
+> Postman에서 이 요청을 실행해 보세요. (Tooreplace hello를 잊지 마십시오 `code`) [ ![우체부에서 실행](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
 > 
 > 
 
 | 매개 변수 |  | 설명 |
 | --- | --- | --- |
-| tenant |필수 |요청의 경로에 있는 `{tenant}` 값을 사용하여 응용 프로그램에 로그인할 수 있는 사용자를 제어할 수 있습니다.  허용되는 값은 `common`, `organizations`, `consumers` 및 테넌트 ID입니다.  자세한 내용은 [프로토콜 기본](active-directory-v2-protocols.md#endpoints)을 참조하세요. |
-| client_id |필수 |등록 포털([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList))에서 앱에 할당한 응용 프로그램 ID입니다. |
-| grant_type |필수 |인증 코드 흐름에 대한 `authorization_code` 여야 합니다. |
-| scope |필수 |공백으로 구분된 범위 목록입니다.  이 레그에서 요청된 범위가 첫 번째 레그에서 요청된 범위와 동일하거나 하위 집합이어야 합니다.  이 요청에 지정된 범위가 여러 리소스 서버에 걸쳐 있는 경우 v2.0 끝점은 첫 번째 범위에 지정된 리소스에 대한 토큰을 반환합니다.  범위에 대한 자세한 설명은 [사용 권한, 동의 및 범위](active-directory-v2-scopes.md)를 참조하세요. |
-| 코드 |필수 |흐름의 첫 번째 레그에서 얻은 authorization_code입니다. |
-| redirect_uri |필수 |authorization_code를 획득하는 데 사용된 값과 동일한 redirect_uri 값입니다. |
-| client_secret |웹앱에 필요 |앱에 대한 앱 등록 포털에서 만든 응용 프로그램 암호입니다.  장치에 client_secret을 안정적으로 저장할 수 없으므로 네이티브 앱에서는 사용하면 안 됩니다.  서버 쪽에서 client_secret을 안전하게 저장할 수 있는 웹앱과 Web API에 필요합니다. |
+| tenant |필수 |hello `{tenant}` hello 요청의 hello 경로 값 hello 응용 프로그램에 로그인 할 수 있는 사용된 toocontrol 하나일 수 있습니다.  hello 가능한 값은 `common`, `organizations`, `consumers`, 및 식별자를 테 넌 트입니다.  자세한 내용은 [프로토콜 기본](active-directory-v2-protocols.md#endpoints)을 참조하세요. |
+| client_id |필수 |응용 프로그램 Id는 hello 등록 포털 hello ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 응용 프로그램을 할당 합니다. |
+| grant_type |필수 |해야 `authorization_code` hello 권한 부여 코드 흐름에 대 한 합니다. |
+| scope |필수 |공백으로 구분된 범위 목록입니다.  hello 범위가이 레그에 해당 하는 tooor hello 범위의 하위 집합 요청 hello 첫 번째 레그에 요청 했습니다.  이 요청에 지정 된 hello 범위에 걸쳐 여러 리소스 서버를 hello v2.0 끝점 hello 첫 번째 범위에 지정 된 hello 리소스에 대 한 토큰을 반환 합니다.  에 대 한 범위는 보다 자세한 설명은 참조 너무[권한과 승인 범위](active-directory-v2-scopes.md)합니다. |
+| 코드 |필수 |hello hello 흐름의 첫 번째 레그에서 복사한 hello authorization_code 합니다. |
+| redirect_uri |필수 |사용 되는 tooacquire hello authorization_code 했던 동일한 redirect_uri 값을 hello 합니다. |
+| client_secret |웹앱에 필요 |앱에 대 한 hello 응용 프로그램 등록 포털에서 만든 hello 응용 프로그램 암호입니다.  장치에 client_secret을 안정적으로 저장할 수 없으므로 네이티브 앱에서는 사용하면 안 됩니다.  웹 앱 및 웹 Api hello 서버 쪽에서 hello 기능 toostore hello client_secret를 안전 하 게 포함 하는 필수입니다. |
 
 #### 성공적인 응답
 성공적인 토큰 응답은 다음과 같습니다.
@@ -163,12 +163,12 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 | 매개 변수 | 설명 |
 | --- | --- |
-| access_token |요청된 액세스 토큰입니다. 앱은 이 토큰을 사용하여 Web API와 같은 보안 리소스를 인증할 수 있습니다. |
-| token_type |토큰 유형 값을 나타냅니다. Azure AD는 전달자 유형만 지원합니다. |
-| expires_in |액세스 토큰이 유효한 기간(초)입니다. |
-| scope |access_token이 유효한 범위입니다. |
-| refresh_token |OAuth 2.0 새로 고침 토큰입니다. 앱은 현재 액세스 토큰이 만료된 후 이 토큰을 사용하여 추가 액세스 토큰을 획득할 수 있습니다.  refresh_token은 수명이 길며, 오랜 시간 동안 리소스에 대한 액세스를 유지하는 데 사용할 수 있습니다.  자세한 내용은 [v2.0 토큰 참조](active-directory-v2-tokens.md)를 참조하세요. |
-| id_token |서명되지 않은 JWT(JSON 웹 토큰)입니다. 앱은 이 토큰의 세그먼트를 base64Url로 디코드하여 로그인한 사용자에 대한 정보를 요청할 수 있습니다. 앱은 값을 캐시하고 표시할 수 있지만 권한 부여 또는 보안 경계에 대해 의존해서는 안 됩니다.  id_token에 대한 자세한 내용은 [v2.0 끝점 토큰 참조](active-directory-v2-tokens.md)를 참조하세요. |
+| access_token |hello 요청 된 액세스 토큰입니다. hello 앱이 토큰 tooauthenticate toohello web API와 같은 리소스에 보안을 사용할 수 있습니다. |
+| token_type |Hello 토큰 형식 값을 나타냅니다. hello만 된 Azure AD가 지 원하는 형식이 전달자 |
+| expires_in |시간 hello 액세스 토큰 (초)에서 유효 합니다. |
+| scope |access_token hello hello 범위에 대 한 유효 합니다. |
+| refresh_token |OAuth 2.0 새로 고침 토큰입니다. hello 앱 צ ְ ײ이 토큰 hello 현재 액세스 토큰이 만료 된 후 추가 액세스 토큰을 획득 합니다.  Refresh_tokens는 수명이 긴 되며 오랜 시간에 사용 되는 tooretain 액세스 tooresources를 사용할 수 있습니다.  자세한 정보를 얻기 위해 toohello 참조 [v2.0 토큰 참조](active-directory-v2-tokens.md)합니다. |
+| id_token |서명되지 않은 JWT(JSON 웹 토큰)입니다. hello 앱 수 base64Url hello 사용자 로그인에 대 한이 토큰 toorequest 정보의 hello 세그먼트를 디코드합니다. hello 앱 hello 값을 캐시를 업데이트 하 고를 표시할 수 있지만 것에 의존 하지 않아야 하 보안 경계 또는 권한 부여 합니다.  Id_tokens에 대 한 자세한 내용은 참조 hello [v2.0 끝점 토큰 참조](active-directory-v2-tokens.md)합니다. |
 
 #### 오류 응답
 오류 응답은 다음과 같습니다.
@@ -176,7 +176,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 {
   "error": "invalid_scope",
-  "error_description": "AADSTS70011: The provided value for the input parameter 'scope' is not valid. The scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
+  "error_description": "AADSTS70011: hello provided value for hello input parameter 'scope' is not valid. hello scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
   "error_codes": [
     70011
   ],
@@ -188,30 +188,30 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 | 매개 변수 | 설명 |
 | --- | --- |
-| error |발생하는 오류 유형을 분류하는 데 사용할 수 있고 오류에 대응하는 데 사용할 수 있는 오류 코드 문자열입니다. |
-| error_description |개발자가 인증 오류의 근본 원인을 식별하도록 도울 수 있는 특정 오류 메시지입니다. |
+| error |오류 코드 문자열 사용된 tooclassify 유형의 오류가 발생 하는 수 있으며 사용 되는 tooreact tooerrors 수입니다. |
+| error_description |인증 오류 hello 근본 원인을 파악 하는 개발자 데 도움이 되는 특정 오류 메시지입니다. |
 | error_codes |진단에 도움이 될 수 있는 STS 특정 오류 코드의 목록입니다. |
-| timestamp |오류가 발생한 시간입니다. |
-| trace_id |진단에 도움이 될 수 있는 요청에 대한 고유 식별자입니다. |
-| correlation_id |여러 구성 요소에서 진단에 도움이 될 수 있는 요청에 대한 고유 식별자입니다. |
+| timestamp |hello hello 오류가 발생 한 시간입니다. |
+| trace_id |진단에 도움이 될 수 있는 hello 요청에 대 한 고유 식별자입니다. |
+| correlation_id |구성 요소에서 진단에 도움이 될 수 있는 hello 요청에 대 한 고유 식별자입니다. |
 
 #### 토큰 끝점 오류에 대한 오류 코드
 | 오류 코드 | 설명 | 클라이언트 작업 |
 | --- | --- | --- |
-| invalid_request |프로토콜 오류(예: 필수 매개 변수 누락). |요청을 수정하여 다시 제출 |
-| invalid_grant |권한 부여 코드가 잘못되었거나 만료되었습니다. |`/authorize` 끝점에 새 요청을 시도합니다. |
-| unauthorized_client |인증된 클라이언트가 이 권한 부여 유형을 사용할 권한이 없습니다. |이 오류는 일반적으로 클라이언트 응용 프로그램이 Azure AD에 등록되지 않았거나 사용자의 Azure AD 테넌트에 추가되지 않은 경우 발생합니다. 응용 프로그램이 사용자에게 응용 프로그램을 설치하고 Azure AD에 추가하기 위한 지침이 포함된 메시지를 표시할 수 있습니다. |
-| invalid_client |클라이언트 인증에 실패했습니다. |클라이언트 자격 증명이 잘못되었습니다. 해결하려면 응용 프로그램 관리자가 자격 증명을 업데이트합니다. |
-| unsupported_grant_type |권한 부여 서버가 해당 권한 부여 유형을 지원하지 않습니다. |요청에서 권한 부여 유형을 변경하십시오. 이 유형의 오류는 개발 중에만 발생하며 초기 테스트 중에 검색됩니다. |
-| invalid_resource |대상 리소스가 존재하지 않거나 Azure AD에서 해당 리소스를 찾을 수 없거나 올바르게 구성되지 않았기 때문에 잘못되었습니다. |리소스가 존재하는 경우 테넌트에 구성되지 않았음을 나타냅니다. 응용 프로그램이 사용자에게 응용 프로그램을 설치하고 Azure AD에 추가하기 위한 지침이 포함된 메시지를 표시할 수 있습니다. |
-| interaction_required |요청을 위해 사용자 상호 작용이 필요합니다. 예를 들어 추가 인증 단계가 필요합니다. |동일한 리소스를 사용하여 요청을 다시 시도하십시오. |
-| temporarily_unavailable |서버가 일시적으로 사용량이 많아 요청을 처리할 수 없습니다. |요청을 다시 시도하십시오. 클라이언트 응용 프로그램이 일시적 상태 때문에 응답이 지연되었음을 사용자에게 설명할 수 있습니다. |
+| invalid_request |프로토콜 오류(예: 필수 매개 변수 누락). |수정 하 고 hello 요청을 다시 제출 하십시오. |
+| invalid_grant |hello 권한 부여 코드가 잘못 되었거나 만료 되었습니다. |새 요청 toohello 시도 `/authorize` 끝점 |
+| unauthorized_client |hello 인증 된 클라이언트에 권한이 없습니다 toouse이 권한이 부여 허용 형식입니다. |이 문제는 일반적으로 hello 클라이언트 응용 프로그램이 Azure AD에 등록 되어 있지 않거나 toohello 사용자의 Azure AD 테 넌 트에 추가 되지 않습니다 때 발생 합니다. hello 응용 프로그램 hello 응용 프로그램을 설치 하 고 AD tooAzure 추가 대 한 명령으로 hello 사용자를 요구할 수 있습니다. |
+| invalid_client |클라이언트 인증에 실패했습니다. |hello 클라이언트 자격 증명이 올바르지 않습니다. toofix, 응용 프로그램 관리자에 게 hello 자격 증명을 업데이트합니다. |
+| unsupported_grant_type |hello 권한 부여 서버 hello 권한 부여 허용 유형을 지원 하지 않습니다. |변경 hello 형식 hello 요청에 권한을 부여 합니다. 이 유형의 오류는 개발 중에만 발생하며 초기 테스트 중에 검색됩니다. |
+| invalid_resource |hello 대상 리소스가 존재 하지 않는, Azure AD를 찾을 수 없거나 올바르게 구성 되지 않아 유효 하지 않습니다. |이 hello 리소스 있을 경우 구성 되지 않았습니다 hello 테 넌 트에 나타냅니다. hello 응용 프로그램 hello 응용 프로그램을 설치 하 고 AD tooAzure 추가 대 한 명령으로 hello 사용자를 요구할 수 있습니다. |
+| interaction_required |hello 요청 사용자 상호 작용이 필요합니다. 예를 들어 추가 인증 단계가 필요합니다. |Hello로 hello 요청을 다시 시도 같은 리소스입니다. |
+| temporarily_unavailable |hello 서버 사용량이 많음 toohandle hello 요청 일시적으로입니다. |Hello 요청을 다시 시도 합니다. 클라이언트 응용 프로그램 hello toohello 사용자를 확인할 수 있습니다 해당 응답은 일시적 상태로 인해 지연 합니다. |
 
-## 액세스 토큰 사용
-`access_token`을 성공적으로 획득했으므로 이제 `Authorization` 헤더에 포함하여 Web API에 대한 요청에 토큰을 사용할 수 있습니다.
+## Hello 액세스 토큰을 사용 하 여
+성공적으로 인식 한 했으므로 `access_token`, hello에 포함 하 여 hello 토큰 요청 tooWeb Api에서에서 사용할 수 있습니다 `Authorization` 헤더:
 
 > [!TIP]
-> Postman에서 이 요청을 실행하세요. (먼저 `Authorization` 헤더를 바꾸세요) [![Postman에서 실행](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
+> Postman에서 이 요청을 실행하세요. (Hello 대체 `Authorization` 헤더 첫 번째) [ ![우체부에서 실행](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
 > 
 > 
 
@@ -221,8 +221,8 @@ Host: https://graph.microsoft.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 ```
 
-## 액세스 토큰 새로 고침
-access_token은 수명이 짧으며, 만료되면 새로 고쳐야 리소스에 계속 액세스할 수 있습니다.  이렇게 하려면 다른 `POST` 요청을 `/token` 끝점에 제출해야 하며, 이번에는 `code` 대신 `refresh_token`을 제공해야 합니다.
+## Hello 액세스 토큰 새로 고침
+Access_tokens 짧은 활성 이며 리소스에 액세스 하는 toocontinue를 만료 된 후 새로 고쳐야 합니다.  다른 전송 하 여 그렇게 할 수 `POST` toohello 요청 `/token` 끝점 hello를 제공 하는이 시간 `refresh_token` hello 대신 `code`:
 
 ```
 // Line breaks for legibility only
@@ -240,19 +240,19 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> Postman에서 이 요청을 실행해 보세요. (`refresh_token`를 바꾸는 것을 잊지 마세요) [![Postman에서 실행](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
+> Postman에서 이 요청을 실행해 보세요. (Tooreplace hello를 잊지 마십시오 `refresh_token`) [ ![우체부에서 실행](./media/active-directory-v2-protocols-oauth-code/runInPostman.png)](https://app.getpostman.com/run-collection/8f5715ec514865a07e6a)
 > 
 > 
 
 | 매개 변수 |  | 설명 |
 | --- | --- | --- |
-| tenant |필수 |요청의 경로에 있는 `{tenant}` 값을 사용하여 응용 프로그램에 로그인할 수 있는 사용자를 제어할 수 있습니다.  허용되는 값은 `common`, `organizations`, `consumers` 및 테넌트 ID입니다.  자세한 내용은 [프로토콜 기본](active-directory-v2-protocols.md#endpoints)을 참조하세요. |
-| client_id |필수 |등록 포털([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList))에서 앱에 할당한 응용 프로그램 ID입니다. |
-| grant_type |필수 |이 인증 코드 흐름 범례에 대한 `refresh_token` 이어야 합니다. |
-| scope |필수 |공백으로 구분된 범위 목록입니다.  이 레그에서 요청된 범위가 원래 authorization_code 요청 레그에서 요청된 범위와 동일하거나 하위 집합이어야 합니다.  이 요청에 지정된 범위가 여러 리소스 서버에 걸쳐 있는 경우 v2.0 끝점은 첫 번째 범위에 지정된 리소스에 대한 토큰을 반환합니다.  범위에 대한 자세한 설명은 [사용 권한, 동의 및 범위](active-directory-v2-scopes.md)를 참조하세요. |
-| refresh_token |필수 |흐름의 두 번째 레그에서 얻은 refresh_token입니다. |
-| redirect_uri |필수 |authorization_code를 획득하는 데 사용된 값과 동일한 redirect_uri 값입니다. |
-| client_secret |웹앱에 필요 |앱에 대한 앱 등록 포털에서 만든 응용 프로그램 암호입니다.  장치에 client_secret을 안정적으로 저장할 수 없으므로 네이티브 앱에서는 사용하면 안 됩니다.  서버 쪽에서 client_secret을 안전하게 저장할 수 있는 웹앱과 Web API에 필요합니다. |
+| tenant |필수 |hello `{tenant}` hello 요청의 hello 경로 값 hello 응용 프로그램에 로그인 할 수 있는 사용된 toocontrol 하나일 수 있습니다.  hello 가능한 값은 `common`, `organizations`, `consumers`, 및 식별자를 테 넌 트입니다.  자세한 내용은 [프로토콜 기본](active-directory-v2-protocols.md#endpoints)을 참조하세요. |
+| client_id |필수 |응용 프로그램 Id는 hello 등록 포털 hello ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 응용 프로그램을 할당 합니다. |
+| grant_type |필수 |해야 `refresh_token` hello 권한 부여 코드 흐름의이 레그에 대 한 합니다. |
+| scope |필수 |공백으로 구분된 범위 목록입니다.  hello 범위가이 레그에 해당 하는 tooor hello 범위의 하위 집합 요청 hello 원래 authorization_code 요청 레그에서 요청 했습니다.  이 요청에 지정 된 hello 범위에 걸쳐 여러 리소스 서버를 hello v2.0 끝점 hello 첫 번째 범위에 지정 된 hello 리소스에 대 한 토큰을 반환 합니다.  에 대 한 범위는 보다 자세한 설명은 참조 너무[권한과 승인 범위](active-directory-v2-scopes.md)합니다. |
+| refresh_token |필수 |hello hello 흐름의 두 번째 레그에서 복사한 hello refresh_token입니다. |
+| redirect_uri |필수 |사용 되는 tooacquire hello authorization_code 했던 동일한 redirect_uri 값을 hello 합니다. |
+| client_secret |웹앱에 필요 |앱에 대 한 hello 응용 프로그램 등록 포털에서 만든 hello 응용 프로그램 암호입니다.  장치에 client_secret을 안정적으로 저장할 수 없으므로 네이티브 앱에서는 사용하면 안 됩니다.  웹 앱 및 웹 Api hello 서버 쪽에서 hello 기능 toostore hello client_secret를 안전 하 게 포함 하는 필수입니다. |
 
 #### 성공적인 응답
 성공적인 토큰 응답은 다음과 같습니다.
@@ -269,18 +269,18 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 | 매개 변수 | 설명 |
 | --- | --- |
-| access_token |요청된 액세스 토큰입니다. 앱은 이 토큰을 사용하여 Web API와 같은 보안 리소스를 인증할 수 있습니다. |
-| token_type |토큰 유형 값을 나타냅니다. Azure AD는 전달자 유형만 지원합니다. |
-| expires_in |액세스 토큰이 유효한 기간(초)입니다. |
-| scope |access_token이 유효한 범위입니다. |
-| refresh_token |새 OAuth 2.0 새로 고침 토큰입니다. 이전 새로 고침 토큰을 새로 얻은 새로 고침 토큰으로 대체하여 새로 고침 토큰을 최대한 오랫동안 유효한 상태로 유지해야 합니다. |
-| id_token |서명되지 않은 JWT(JSON 웹 토큰)입니다. 앱은 이 토큰의 세그먼트를 base64Url로 디코드하여 로그인한 사용자에 대한 정보를 요청할 수 있습니다. 앱은 값을 캐시하고 표시할 수 있지만 권한 부여 또는 보안 경계에 대해 의존해서는 안 됩니다.  id_token에 대한 자세한 내용은 [v2.0 끝점 토큰 참조](active-directory-v2-tokens.md)를 참조하세요. |
+| access_token |hello 요청 된 액세스 토큰입니다. hello 앱이 토큰 tooauthenticate toohello web API와 같은 리소스에 보안을 사용할 수 있습니다. |
+| token_type |Hello 토큰 형식 값을 나타냅니다. hello만 된 Azure AD가 지 원하는 형식이 전달자 |
+| expires_in |시간 hello 액세스 토큰 (초)에서 유효 합니다. |
+| scope |access_token hello hello 범위에 대 한 유효 합니다. |
+| refresh_token |새 OAuth 2.0 새로 고침 토큰입니다. 이전 새로 고침 hello를 교체 해야이 새로 얻은 새로 고침 토큰 tooensure와 토큰 새로 고침 토큰이 유효한 상태를 유지 가능한 한 오랫동안 합니다. |
+| id_token |서명되지 않은 JWT(JSON 웹 토큰)입니다. hello 앱 수 base64Url hello 사용자 로그인에 대 한이 토큰 toorequest 정보의 hello 세그먼트를 디코드합니다. hello 앱 hello 값을 캐시를 업데이트 하 고를 표시할 수 있지만 것에 의존 하지 않아야 하 보안 경계 또는 권한 부여 합니다.  Id_tokens에 대 한 자세한 내용은 참조 hello [v2.0 끝점 토큰 참조](active-directory-v2-tokens.md)합니다. |
 
 #### 오류 응답
 ```
 {
   "error": "invalid_scope",
-  "error_description": "AADSTS70011: The provided value for the input parameter 'scope' is not valid. The scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
+  "error_description": "AADSTS70011: hello provided value for hello input parameter 'scope' is not valid. hello scope https://foo.microsoft.com/mail.read is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
   "error_codes": [
     70011
   ],
@@ -292,12 +292,12 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 | 매개 변수 | 설명 |
 | --- | --- |
-| error |발생하는 오류 유형을 분류하는 데 사용할 수 있고 오류에 대응하는 데 사용할 수 있는 오류 코드 문자열입니다. |
-| error_description |개발자가 인증 오류의 근본 원인을 식별하도록 도울 수 있는 특정 오류 메시지입니다. |
+| error |오류 코드 문자열 사용된 tooclassify 유형의 오류가 발생 하는 수 있으며 사용 되는 tooreact tooerrors 수입니다. |
+| error_description |인증 오류 hello 근본 원인을 파악 하는 개발자 데 도움이 되는 특정 오류 메시지입니다. |
 | error_codes |진단에 도움이 될 수 있는 STS 특정 오류 코드의 목록입니다. |
-| timestamp |오류가 발생한 시간입니다. |
-| trace_id |진단에 도움이 될 수 있는 요청에 대한 고유 식별자입니다. |
-| correlation_id |여러 구성 요소에서 진단에 도움이 될 수 있는 요청에 대한 고유 식별자입니다. |
+| timestamp |hello hello 오류가 발생 한 시간입니다. |
+| trace_id |진단에 도움이 될 수 있는 hello 요청에 대 한 고유 식별자입니다. |
+| correlation_id |구성 요소에서 진단에 도움이 될 수 있는 hello 요청에 대 한 고유 식별자입니다. |
 
-오류 코드 및 권장되는 클라이언트 작업에 대한 설명은 [토큰 끝점 오류에 대한 오류 코드](#error-codes-for-token-endpoint-errors)를 참조합니다.
+에 대 한 설명은 hello 오류 코드 및 hello 권장 되는 클라이언트 작업을 참조 하세요 [토큰 끝점 오류에 대 한 오류 코드](#error-codes-for-token-endpoint-errors)합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory Domain Services: 관리되는 도메인에 RHEL VM 가입 | Microsoft Docs"
-description: "Red Hat Enterprise Linux 가상 컴퓨터를 Azure AD 도메인 서비스에 가입"
+title: "Azure Active Directory 도메인 서비스: RHEL VM tooa 관리 되는 도메인에 가입 | Microsoft Docs"
+description: "Red Hat Enterprise Linux 가상 컴퓨터를 가입 tooAzure AD 도메인 서비스"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,131 +14,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 69f1850bfed90392e9a4695e2443ffaa6bfc746d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41ca2aaf2eefbf9c403d2b834d61a1aa0943d950
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="join-a-red-hat-enterprise-linux-7-virtual-machine-to-a-managed-domain"></a>Red Hat Enterprise Linux 7 가상 컴퓨터를 관리되는 도메인에 가입
-이 문서에서는 Red Hat Enterprise Linux(RHEL) 7 가상 컴퓨터를 Azure AD 도메인 서비스 관리되는 도메인에 가입하는 방법을 보여 줍니다.
+# <a name="join-a-red-hat-enterprise-linux-7-virtual-machine-tooa-managed-domain"></a>Red Hat Enterprise Linux 7 가상 컴퓨터 tooa 관리 되는 도메인에 가입
+이 문서에서는 toojoin Red Hat Enterprise Linux (RHEL) 7 가상 컴퓨터 tooan Azure AD 도메인 서비스 도메인을 관리 하는 방법을 보여 줍니다.
 
 ## <a name="provision-a-red-hat-enterprise-linux-virtual-machine"></a>Red Hat Enterprise Linux 가상 컴퓨터 프로비전
-Azure 포털을 사용하여 RHEL 7 가상 컴퓨터를 프로비전하려면 다음 단계를 수행합니다.
+Hello 단계 tooprovision RHEL 7 가상 컴퓨터 hello Azure 포털을 사용 하 여 다음을 수행 합니다.
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
 
     ![Azure 포털 대시보드](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-dashboard.png)
-2. 왼쪽 창에서 **새로 만들기**를 클릭하고 아래 스크린샷에 표시된 대로 검색 표시줄에 **Red Hat**을 입력합니다. 검색 결과에 Red Hat Enterprise Linux에 대한 항목이 나타납니다. **Red Hat Enterprise Linux 7.2**를 클릭합니다.
+2. 클릭 **새로** hello 왼쪽 창에서 데이터 및 형식에 **Red Hat** hello 스크린 샷 다음 그림과 같이 hello 검색 표시줄에 있습니다. Red Hat Enterprise Linux에 대 한 항목 hello 검색 결과에 표시 합니다. **Red Hat Enterprise Linux 7.2**를 클릭합니다.
 
     ![결과에서 RHEL 선택](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-find-rhel-image.png)
-3. **모든 항목** 창의 검색 결과에 Red Hat Enterprise Linux 7.2 이미지가 나열됩니다. 가상 컴퓨터 이미지에 대한 자세한 내용을 보려면 **Red Hat Enterprise Linux 7.2** 를 클릭합니다.
+3. hello에 hello 검색 결과 **모든** 창 hello Red Hat Enterprise Linux 7.2 이미지를 나열 해야 합니다. 클릭 **Red Hat Enterprise Linux 7.2** tooview hello 가상 컴퓨터 이미지에 대 한 자세한 정보.
 
     ![결과에서 RHEL 선택](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-select-rhel-image.png)
-4. **Red Hat Enterprise Linux 7.2** 창에 가상 컴퓨터 이미지에 대한 자세한 내용이 표시됩니다. **배포 모델 선택** 드롭다운에서 **클래식**을 선택합니다. 그런 다음 **만들기** 단추를 클릭합니다.
+4. Hello에 **Red Hat Enterprise Linux 7.2** 창의 hello 가상 컴퓨터 이미지에 대 한 자세한 정보 표시 되어야 합니다. Hello에 **배포 모델 선택** 드롭다운에서 선택 **클래식**합니다. Hello 클릭 **만들기** 단추입니다.
 
     ![이미지 세부 정보 보기](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-clicked.png)
-5. **가상 컴퓨터 만들기** 마법사의 **기본** 페이지에서 새 가상 컴퓨터의 **호스트 이름**을 입력합니다. 또한 **사용자 이름** 필드에 로컬 관리자 사용자 이름을 지정하고 **암호**를 입력합니다. 로컬 관리자 사용자를 인증하는 데 SSH 키를 사용하도록 선택할 수도 있습니다. 가상 컴퓨터에 대한 **가격 책정 계층** 도 선택합니다.
+5. Hello에 **기본 사항** hello의 페이지 **가상 컴퓨터를 만들** 마법사, 입력 hello **호스트 이름** hello 새 가상 컴퓨터에 대 한 합니다. Hello에 로컬 관리자 사용자 이름을 지정 **사용자 이름** 필드와 **암호**합니다. 또한 된 SSH 키 tooauthenticate hello 로컬 관리자 사용자 toouse를 선택할 수 있습니다. ± ֳ ֵ는 **가격 책정 계층** hello 가상 컴퓨터에 대 한 합니다.
 
     ![VM 만들기 - 기본 페이지](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-basic-details.png)
-6. **가상 컴퓨터 만들기** 마법사의 **크기** 페이지에서 가상 컴퓨터의 크기를 선택합니다.
+6. Hello에 **크기** hello 페이지 **가상 컴퓨터를 만들** hello 가상 컴퓨터에 대 한 마법사, 선택 hello 크기입니다.
 
     ![VM 만들기 - 크기 선택](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-select-vm-size.png)
 
-7. **가상 컴퓨터 만들기** 마법사의 **설정** 페이지에서 가상 컴퓨터의 저장소 계정을 선택합니다. **가상 네트워크**를 클릭하여 Linux VM을 배포할 가상 네트워크를 선택합니다. **가상 네트워크** 블레이드에서 Azure AD 도메인 서비스를 사용할 수 있는 가상 네트워크를 선택합니다. 이 예제에서는 'MyPreviewVNet' 가상 네트워크를 선택했습니다.
+7. Hello에 **설정** hello 페이지 **가상 컴퓨터를 만들** hello 가상 컴퓨터에 대 한 마법사, 선택 hello 저장소 계정입니다. 클릭 **가상 네트워크** tooselect hello 가상 네트워크 toowhich hello Linux VM을 배포 해야 합니다. Hello에 **가상 네트워크** 블레이드, 선택 hello 가상 네트워크를 Azure AD 도메인 서비스를 사용할 수 있습니다. 이 예제에서는 hello 'MyPreviewVNet' 가상 네트워크를 선택 했습니다.
 
     ![VM 만들기 - 가상 네트워크 선택](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-select-vnet.png)
-8. **가상 컴퓨터 만들기** 마법사의 **요약**에서 검토하고 **확인** 단추를 클릭합니다.
+8. Hello에 **요약** hello 페이지 **가상 컴퓨터를 만들** 마법사 검토 하 고 클릭 hello **확인** 단추입니다.
 
     ![VM 만들기 - 가상 네트워크 선택됨](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-vnet-selected.png)
-9. RHEL 7.2 이미지에 따라 새 가상 컴퓨터의 배포가 시작됩니다.
+9. Hello RHEL 7.2 이미지에 따라 hello 새 가상 컴퓨터의 배포를 시작 해야 합니다.
 
     ![VM 만들기 - 배포 시작됨](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-deployment-started.png)
-10. 몇 분 후 가상 컴퓨터가 성공적으로 배포되고 사용할 준비가 됩니다.
+10. 몇 분 후 hello 가상 컴퓨터에 성공적으로 배포 되 고 사용 하기 위해 준비 해야 합니다.
 
     ![VM 만들기 - 배포됨](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-deployed.png)
 
-## <a name="connect-remotely-to-the-newly-provisioned-linux-virtual-machine"></a>새로 프로비전된 Linux 가상 컴퓨터에 원격으로 연결
-RHEL 7.2 가상 컴퓨터가 Azure에서 프로비전되었습니다. 다음 작업은 가상 컴퓨터에 원격으로 연결하는 것입니다.
+## <a name="connect-remotely-toohello-newly-provisioned-linux-virtual-machine"></a>Toohello 새로 프로 비전 된 Linux 가상 컴퓨터를 원격으로 연결
+Azure의 hello RHEL 7.2 가상 컴퓨터가 프로비저닝된 합니다. hello 다음 태스크는 원격으로 tooconnect toohello 가상 컴퓨터.
 
-**RHEL 7.2 가상 컴퓨터에 연결** [Linux를 실행하는 가상 컴퓨터에 로그온하는 방법](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 문서의 지침을 따르세요.
+**RHEL 7.2 toohello 가상 컴퓨터 연결** hello hello 문서의 지침에 따라 [어떻게 toolog Linux를 실행 하는 tooa 가상 컴퓨터에서](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 
-나머지 단계에서는 PuTTY SSH 클라이언트를 사용하여 RHEL 가상 컴퓨터에 연결하는 것으로 가정합니다. 자세한 내용은 [PuTTY 다운로드 페이지](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)를 참조하세요.
+hello 나머지 hello 단계 hello PuTTY SSH 클라이언트 tooconnect toohello RHEL 가상 컴퓨터를 사용 하 여 가정 합니다. 자세한 내용은 참조 hello [PuTTY 다운로드 페이지](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)합니다.
 
-1. PuTTY 프로그램을 엽니다.
-2. 새로 만든 RHEL 가상 컴퓨터에 대한 **호스트 이름** 을 입력합니다. 이 예제에서 가상 컴퓨터의 호스트 이름은 'contoso-rhel.cloudapp.net'입니다. VM의 호스트 이름을 정확히 알지 못하는 경우 Azure 포털에서 VM 대시보드를 참조하세요.
+1. 열기 hello PuTTY 프로그램.
+2. Hello 입력 **호스트 이름** RHEL 가상 컴퓨터를 새로 만든 hello에 대 한 합니다. 이 예제에서는 가상 컴퓨터는 hello 호스트 이름이 'contoso rhel.cloudapp.net'. VM의 호스트 이름을 hello 잘 모를 경우 hello Azure 포털에서 toohello VM 대시보드를 참조 하십시오.
 
     ![PuTTY 연결](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-connect.png)
-3. 가상 컴퓨터를 만들 때 지정한 로컬 관리자 자격 증명을 사용하여 가상 컴퓨터에 로그온합니다. 이 예제에서는 로컬 관리자 계정 "mahesh"를 사용했습니다.
+3. Hello 가상 컴퓨터를 만들 때 지정한 hello 로컬 관리자 자격 증명을 사용 하 여 toohello 가상 컴퓨터에 로그온 합니다. 이 예제에서는 "mahesh" hello 로컬 관리자 계정을 사용 했습니다.
 
     ![PuTTY 로그인](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-login.png)
 
-## <a name="install-required-packages-on-the-linux-virtual-machine"></a>Linux 가상 컴퓨터에 필요한 패키지 설치
-가상 컴퓨터에 연결된 후 다음 작업은 도메인 가입에 필요한 패키지를 가상 컴퓨터에 설치하는 것입니다. 다음 단계를 수행합니다.
+## <a name="install-required-packages-on-hello-linux-virtual-machine"></a>Hello Linux 가상 컴퓨터에 필요한 패키지를 설치 합니다.
+연결 toohello 가상 컴퓨터를 한 후 hello 다음 작업 hello 가상 컴퓨터에 도메인 가입에 대 한 필요한 tooinstall 패키지입니다. Hello 다음 단계를 수행 합니다.
 
-1. **realmd 설치:** 도메인 가입에 realmd 패키지가 사용됩니다. PuTTY 터미널에서 다음 명령을 입력합니다.
+1. **Realmd 설치:** hello realmd 패키지 도메인 가입에 사용 됩니다. PuTTY 터미널에 hello 다음 명령을 입력 합니다.
 
     sudo yum install realmd
 
     ![realmd 설치](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-install-realmd.png)
 
-    몇 분 후 realmd 패키지가 가상 컴퓨터에 설치됩니다.
+    몇 분 후 hello realmd 패키지 hello 가상 컴퓨터에 설치 해야 합니다.
 
     ![realmd 설치됨](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-realmd-installed.png)
-2. **sssd 설치:** 도메인 가입 작업을 수행하는 데 realmd 패키지는 sssd에 종속됩니다. PuTTY 터미널에서 다음 명령을 입력합니다.
+2. **Sssd 설치:** hello realmd 패키지 sssd tooperform 도메인 가입 작업에 따라 달라 집니다. PuTTY 터미널에 hello 다음 명령을 입력 합니다.
 
     sudo yum install sssd
 
     ![sssd 설치](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-install-sssd.png)
 
-    몇 분 후 sssd 패키지가 가상 컴퓨터에 설치됩니다.
+    몇 분 후 hello sssd 패키지 hello 가상 컴퓨터에 설치 해야 합니다.
 
     ![realmd 설치됨](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-sssd-installed.png)
-3. **kerberos 설치:** PuTTY 터미널에서 다음 명령을 입력합니다.
+3. **Kerberos 설치:** PuTTY 터미널에 hello 다음 명령을 입력 합니다.
 
     sudo yum install krb5-workstation krb5-libs
 
     ![kerberos 설치](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-install-kerberos.png)
 
-    몇 분 후 realmd 패키지가 가상 컴퓨터에 설치됩니다.
+    몇 분 후 hello realmd 패키지 hello 가상 컴퓨터에 설치 해야 합니다.
 
     ![Kerberos 설치됨](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-kerberos-installed.png)
 
-## <a name="join-the-linux-virtual-machine-to-the-managed-domain"></a>Linux 가상 컴퓨터를 관리되는 도메인에 가입
-이제 필요한 패키지를 Linux 가상 컴퓨터에 설치했고 다음 작업은 가상 컴퓨터를 관리되는 도메인에 가입하는 것입니다.
+## <a name="join-hello-linux-virtual-machine-toohello-managed-domain"></a>Hello Linux 가상 컴퓨터 toohello 관리 되는 도메인에 가입
+이제 필요한 hello 패키지 hello Linux 가상 컴퓨터에 설치 되 면 다음 태스크에서는 hello입니다 toojoin hello 가상 컴퓨터 toohello 관리 되는 도메인.
 
-1. AAD 도메인 서비스 관리되는 도메인을 검색합니다. PuTTY 터미널에서 다음 명령을 입력합니다.
+1. Hello AAD 도메인 서비스에 대 한 관리 되는 도메인을 검색 합니다. PuTTY 터미널에 hello 다음 명령을 입력 합니다.
 
     sudo realm discover CONTOSO100.COM
 
     ![realm discover](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-realmd-discover.png)
 
-    **realm discover** 로 관리되는 도메인을 찾을 수 없는 경우 가상 컴퓨터에서 도메인에 연결할 수 있는지 확인합니다(ping 시도). 또한 관리되는 도메인을 사용할 수 있는 동일한 가상 네트워크에 가상 컴퓨터를 확실히 배포했는지도 확인합니다.
-2. kerberos를 초기화합니다. PuTTY 터미널에서 다음 명령을 입력합니다. 'AAD DC 관리자' 그룹에 속한 사용자를 지정해야 합니다. 이러한 사용자만 관리되는 도메인에 컴퓨터를 가입할 수 있습니다.
+    경우 **영역 검색** 없습니다 toofind 관리 되는 도메인에는 해당 hello 도메인 hello 가상 컴퓨터 (try ping)에서 연결할 수 있는지 확인 합니다. 또한 해당 hello 가상 컴퓨터가 배포 된 toohello 되었습니다 실제로 확인 동일한 가상 네트워크는 hello 관리 되는 도메인을 사용할 수 있습니다.
+2. kerberos를 초기화합니다. PuTTY 터미널 hello 다음 명령을 입력 합니다. Toohello AAD ' DC Administrators' 그룹에 속한 사용자가을 지정 했는지 확인 합니다. 이러한 사용자만 컴퓨터 toohello 관리 되는 도메인에 가입할 수 있습니다.
 
     kinit bob@CONTOSO100.COM
 
     ![kinit ](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-kinit.png)
 
-    도메인 이름을 대문자로 지정해야 하며 그렇지 않으면 kinit가 실패합니다.
-3. 컴퓨터를 도메인에 가입합니다. PuTTY 터미널에서 다음 명령을 입력합니다. 이전 단계에서 지정한 동일한 사용자('kinit')를 지정합니다.
+    Hello 도메인 이름을 대문자로 지정, 다른 kinit 실패를 확인 합니다.
+3. Hello 컴퓨터 toohello 도메인에 가입 합니다. PuTTY 터미널 hello 다음 명령을 입력 합니다. Hello 지정 hello 단계 ('kinit') 앞에 지정 된 동일한 사용자입니다.
 
     sudo realm join --verbose CONTOSO100.COM -U 'bob@CONTOSO100.COM'
 
     ![Realm join](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-realmd-join.png)
 
-컴퓨터가 관리되는 도메인에 성공적으로 가입되면 메시지("Successfully enrolled machine in realm")가 표시됩니다.
+메시지 ("영역에 성공적으로 등록 된 컴퓨터")을 얻어야 hello 컴퓨터의 관리 되는 도메인에 가입된 했습니다 toohello 경우.
 
 ## <a name="verify-domain-join"></a>도메인 가입 확인
-컴퓨터가 관리되는 도메인에 성공적으로 가입되었는지 여부를 신속하게 확인할 수 있습니다. SSH 및 도메인 사용자 계정을 사용하여 새로 도메인에 가입된 RHEL VM에 연결한 후 사용자 계정이 올바르게 확인되었는지 확인합니다.
+신속 하 게 관리 되는 도메인에 가입된 했습니다 toohello hello 컴퓨터 지 여부를 확인할 수 있습니다. Toohello 연결 새로 도메인 hello 사용자 계정을 올바르게 해결 되 면 SSH 및 도메인 사용자 계정 및 다음 검사 toosee를 사용 하 여 RHEL VM을 가입 합니다.
 
-1. PuTTY 터미널에서 다음 명령을 입력하고 SSH를 사용하여 새로 도메인에 가입된 RHEL 가상 컴퓨터에 연결합니다. 관리되는 도메인에 속하는 도메인 계정을 사용합니다(예: 여기서는 ‘bob@CONTOSO100.COM’).
+1. 프로그램 PuTTY 터미널, 형식 hello 명령 tooconnect toohello 새로 다음 도메인 SSH를 사용 하 여 RHEL 가상 컴퓨터를 가입 합니다. Toohello 관리 되는 도메인에 속해 있는 도메인 계정을 사용 하 여 (예를 들어 'bob@CONTOSO100.COM' 여기서.)
 
     ssh -l bob@CONTOSO100.COM contoso-rhel.cloudapp.net
-2. PuTTY 터미널에서 다음 명령을 입력하여 홈 디렉터리가 올바르게 초기화되었는지 확인합니다.
+2. PuTTY 터미널 hello 명령 toosee hello 홈 디렉터리 올바르게 초기화 된 경우 다음을 입력 합니다.
 
     pwd
-3. PuTTY 터미널에서 다음 명령을 입력하여 그룹 멤버 자격이 올바르게 확인되었는지 확인합니다.
+3. PuTTY 터미널 hello 명령 toosee hello 그룹 멤버 자격을 올바르게 해결 되는 경우 다음을 입력 합니다.
 
     id
 
@@ -147,11 +147,11 @@ RHEL 7.2 가상 컴퓨터가 Azure에서 프로비전되었습니다. 다음 작
 ![도메인 가입 확인](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-verify-domain-join.png)
 
 ## <a name="troubleshooting-domain-join"></a>도메인 가입 문제 해결
-[도메인 가입 문제 해결](active-directory-ds-admin-guide-join-windows-vm.md#troubleshooting-domain-join) 문서를 참조하세요.
+Toohello 참조 [문제 해결 도메인 가입](active-directory-ds-admin-guide-join-windows-vm.md#troubleshooting-domain-join) 문서.
 
 ## <a name="related-content"></a>관련 콘텐츠
-* [Azure AD 도메인 서비스 - 시작 가이드](active-directory-ds-getting-started.md)
-* [Windows Server 가상 컴퓨터를 Azure AD 도메인 서비스 관리되는 도메인에 가입](active-directory-ds-admin-guide-join-windows-vm.md)
-* [Linux를 실행하는 가상 컴퓨터에 로그온하는 방법](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Azure AD Domain Services - 시작 가이드](active-directory-ds-getting-started.md)
+* [Windows Server 가상 컴퓨터 tooan Azure AD 도메인 서비스는 관리 되는 도메인에 가입](active-directory-ds-admin-guide-join-windows-vm.md)
+* [어떻게 Linux를 실행 하는 tooa 가상 컴퓨터에서 toolog](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 * [Kerberos 설치](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 * [Red Hat Enterprise Linux 7 - Windows 통합 가이드](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide/index.html)

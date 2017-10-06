@@ -1,6 +1,6 @@
 ---
-title: "Azure REST API를 사용하여 Hadoop 클러스터 만들기 - Azure | Microsoft Docs"
-description: "Azure REST API에 Azure Resource Manager 템플릿을 제출하여 HDInsight 클러스터를 만드는 방법을 알아봅니다."
+title: "Azure-Azure REST API를 사용 하 여 aaaCreate Hadoop 클러스터 | Microsoft Docs"
+description: "Azure 리소스 관리자 템플릿 toohello Azure REST API를 제출 하 여 toocreate HDInsight 클러스터 하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/10/2017
 ms.author: larryfr
-ms.openlocfilehash: a36a41c231472ceeeb46d02ddb65549b1c79728a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 87b585e5084eccdc3d7c57483deabb4ad6e32597
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-hadoop-clusters-using-the-azure-rest-api"></a>Azure REST API를 사용하여 Hadoop 클러스터 만들기
+# <a name="create-hadoop-clusters-using-hello-azure-rest-api"></a>Hello Azure REST API를 사용 하 여 Hadoop 클러스터 만들기
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-Azure Resource Manager 템플릿 및 Azure REST API를 사용하여 HDInsight 클러스터를 만드는 방법을 알아봅니다.
+HDInsight toocreate Azure 리소스 관리자 템플릿을 사용 하 여 클러스터 하 고 Azure REST API hello 하는 방법에 대해 알아봅니다.
 
-Azure REST API를 사용하면 HDInsight 클러스터 등과 같은 새 리소스 생성을 포함하여 Azure 플랫폼에서 호스트되는 관리 작업을 수행할 수 있습니다.
+Azure REST API hello hello hello HDInsight 클러스터와 같은 새 리소스 만들기를 포함 하 여 Azure 플랫폼에서에서 호스팅되는 서비스 대 tooperform 관리 작업을 허용 합니다.
 
 > [!IMPORTANT]
-> Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 > [!NOTE]
-> 이 문서의 단계는 [curl(https://curl.haxx.se/)](https://curl.haxx.se/) 유틸리티를 사용하여 Azure REST API와 통신합니다.
+> 이 문서 사용 하 여 hello에서 단계를 hello [curl (https://curl.haxx.se/)](https://curl.haxx.se/) hello Azure REST API로 유틸리티 toocommunicate 합니다.
 
 ## <a name="create-a-template"></a>템플릿 만들기
 
-Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 리소스를 설명하는 JSON 문서입니다(예: HDInsight). 이 템플릿 기반 접근 방식을 사용하면 하나의 템플릿에서 HDInsight에 필요한 리소스를 정의할 수 있습니다.
+Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 리소스를 설명하는 JSON 문서입니다(예: HDInsight). 이 템플릿 기반 접근 방식을 통해 toodefine hello 리소스를 템플릿과에 HDInsight에 대 한 필요한 있습니다.
 
-다음 JSON 문서는 [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password)의 템플릿과 매개 변수 파일의 병합기로, 암호를 사용하여 SSH 사용자 계정을 보호하는 Linux 기반 클러스터를 만듭니다.
+hello 다음 JSON 문서는 hello는 병합에서 템플릿 및 매개 변수 파일 [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password), Linux 기반 만듦 SSH 사용자 계정에는 암호 toosecure hello를 사용 하 여 클러스터 합니다.
 
    ```json
    {
@@ -56,50 +56,50 @@ Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 �
                        "storm",
                        "spark"],
                        "metadata": {
-                           "description": "The type of the HDInsight cluster to create."
+                           "description": "hello type of hello HDInsight cluster toocreate."
                        }
                    },
                    "clusterName": {
                        "type": "string",
                        "metadata": {
-                           "description": "The name of the HDInsight cluster to create."
+                           "description": "hello name of hello HDInsight cluster toocreate."
                        }
                    },
                    "clusterLoginUserName": {
                        "type": "string",
                        "metadata": {
-                           "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+                           "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
                        }
                    },
                    "clusterLoginPassword": {
                        "type": "securestring",
                        "metadata": {
-                           "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                           "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
                        }
                    },
                    "sshUserName": {
                        "type": "string",
                        "metadata": {
-                           "description": "These credentials can be used to remotely access the cluster."
+                           "description": "These credentials can be used tooremotely access hello cluster."
                        }
                    },
                    "sshPassword": {
                        "type": "securestring",
                        "metadata": {
-                           "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                           "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
                        }
                    },
                    "clusterStorageAccountName": {
                        "type": "string",
                        "metadata": {
-                           "description": "The name of the storage account to be created and be used as the cluster's storage."
+                           "description": "hello name of hello storage account toobe created and be used as hello cluster's storage."
                        }
                    },
                    "clusterWorkerNodeCount": {
                        "type": "int",
                        "defaultValue": 4,
                        "metadata": {
-                           "description": "The number of nodes in the HDInsight cluster."
+                           "description": "hello number of nodes in hello HDInsight cluster."
                        }
                    }
                },
@@ -215,52 +215,52 @@ Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 �
    }
    ```
 
-이 예는 이 문서의 단계에서 사용됩니다. **매개 변수** 섹션에 있는 예제 *값*을 클러스터에 대한 값으로 바꿉니다.
+이 예제는 hello이이 문서의 단계에 사용 됩니다. Hello 예제 대체 *값* hello에 **매개 변수** 클러스터에 대 한 hello 값이 포함 된 섹션입니다.
 
 > [!IMPORTANT]
-> 이 템플릿에서는 HDInsight 클러스터에 대해 작업자 노드의 기본 개수(4)를 사용합니다. 32개 이상의 작업자 노드를 계획하는 경우 최소한 코어 8개와 14GB RAM을 가진 헤드 노드 크기를 선택해야 합니다.
+> hello 템플릿에서 HDInsight 클러스터에 대 한 hello 기본 수의 작업자 노드 (4)을 사용합니다. 32개 이상의 작업자 노드를 계획하는 경우 최소한 코어 8개와 14GB RAM을 가진 헤드 노드 크기를 선택해야 합니다.
 >
 > 노드 크기 및 관련된 비용에 대한 자세한 내용은 [HDInsight 가격 책정](https://azure.microsoft.com/pricing/details/hdinsight/)을 참조하세요.
 
-## <a name="log-in-to-your-azure-subscription"></a>Azure 구독에 로그인합니다.
+## <a name="log-in-tooyour-azure-subscription"></a>Azure 구독 tooyour에 로그인
 
-[Azure CLI 2.0 시작](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)의 단계에 따라 `az login` 명령을 사용하여 구독에 연결합니다.
+설명 하는 hello 단계에 따라 [Azure CLI 2.0 시작](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) hello를 사용 하 여 tooyour 구독을 연결 하 고 `az login` 명령입니다.
 
 ## <a name="create-a-service-principal"></a>서비스 주체 만들기
 
 > [!NOTE]
-> 이러한 단계는 [Azure CLI를 사용하여 리소스에 액세스하기 위한 서비스 주체 만들기](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) 문서의 *암호를 사용하여 서비스 주체 만들기* 섹션의 요약된 버전입니다. 이러한 단계에서는 Azure REST API에 인증하는 데 사용되는 서비스 주체를 만듭니다.
+> 이러한 단계는 hello의 요약된 버전에 *암호로 서비스 보안 주체를 만들* hello 섹션 [서비스 주체를 사용 하 여 Azure CLI toocreate tooaccess 리소스](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) 문서. 다음이 단계를 사용 하는 tooauthenticate toohello Azure REST API 서비스 사용자를 만듭니다.
 
-1. 명령줄에서 다음 명령을 사용하여 Azure 구독을 나열합니다.
+1. 명령줄을 사용 하 여 hello 명령 toolist 다음 Azure 구독.
 
    ```bash
    az account list --query '[].{Subscription_ID:id,Tenant_ID:tenantId,Name:name}'  --output table
    ```
 
-    목록에서 사용하려는 구독을 선택하고 **Subscription_ID** 및 __Tenant_ID__ 열을 확인합니다. 이 값을 저장합니다.
+    Hello 목록 선택 hello 구독 toouse 원하고 hello 참고 **Subscription_ID** 및 __Tenant_ID__ 열입니다. 이 값을 저장합니다.
 
-2. 다음 명령을 사용하여 Azure Active Directory에서 응용 프로그램을 만듭니다.
+2. Hello 다음 명령 toocreate Azure Active Directory에서 응용 프로그램을 사용 합니다.
 
    ```bash
    az ad app create --display-name "exampleapp" --homepage "https://www.contoso.org" --identifier-uris "https://www.contoso.org/example" --password <Your password> --query 'appId'
    ```
 
-    `--display-name`, `--homepage` 및 `--identifier-uris`에 대한 값을 고유한 값으로 대체합니다. 새 Active Directory 항목에 대한 암호를 제공합니다.
+    Hello에 대 한 hello 값 바꾸기 `--display-name`, `--homepage`, 및 `--identifier-uris` 고유한 값으로. 새 Active Directory 항목 hello에 대 한 암호를 제공 합니다.
 
    > [!NOTE]
-   > `--home-page` 및 `--identifier-uris` 값은 인터넷에서 호스트되는 실제 웹 페이지를 참조할 필요가 없습니다. 이 값은 고유한 URI여야 합니다.
+   > hello `--home-page` 및 `--identifier-uris` 값 tooreference hello에서 호스트 되는 실제 웹 페이지에 필요 하지 않습니다 인터넷 합니다. 이 값은 고유한 URI여야 합니다.
 
-   이 명령에서 반환되는 값은 새 응용 프로그램에 대한 __App ID__입니다. 이 값을 저장합니다.
+   hello 값이이 명령에서 반환은 hello __앱 ID__ hello 새 응용 프로그램에 대 한 합니다. 이 값을 저장합니다.
 
-3. 다음 명령을 수행하여 **App ID**를 사용해 서비스 주체를 만듭니다.
+3. 사용 하 여 hello 다음 명령은 toocreate hello를 사용 하 여 서비스 사용자 **앱 ID**합니다.
 
    ```bash
    az ad sp create --id <App ID> --query 'objectId'
    ```
 
-     이 명령에서 반환되는 값은 __개체 ID__입니다. 이 값을 저장합니다.
+     hello 값이이 명령에서 반환은 hello __개체 ID__합니다. 이 값을 저장합니다.
 
-4. **개체 ID** 값을 사용하여 **소유자** 역할을 서비스 주체에 할당합니다. 또한 이전에 받은 **구독 ID**를 사용합니다.
+4. Hello 할당 **소유자** hello를 사용 하 여 역할 toohello 서비스 사용자 **개체 ID** 값입니다. 사용 하 여 hello **구독 ID** 이전에 얻은 합니다.
 
    ```bash
    az role assignment create --assignee <Object ID> --role Owner --scope /subscriptions/<Subscription ID>/
@@ -268,7 +268,7 @@ Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 �
 
 ## <a name="get-an-authentication-token"></a>인증 토큰 가져오기
 
-다음 명령을 사용하여 인증 토큰을 검색합니다.
+다음 명령 tooretrieve 인증 토큰 hello를 사용 합니다.
 
 ```bash
 curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
@@ -280,11 +280,11 @@ curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
 --data-urlencode "resource=https://management.azure.com/"
 ```
 
-`$TENANTID`, `$APPID` 및 `$PASSWORD`를 얻거나 이전에 사용한 값으로 설정합니다.
+설정 `$TENANTID`, `$APPID`, 및 `$PASSWORD` toohello 값을 가져오거나 이전에 사용 합니다.
 
-이 요청에 성공하면 200 시리즈 응답을 받게 되며 응답 본문에 JSON 문서가 포함되어 있습니다.
+이 요청에 성공한 경우 200 계열 응답을 수신 하 고 JSON 문서를 포함 하는 hello 응답 본문입니다.
 
-이 요청에서 반환되는 JSON 문서는 **access_token**이라는 요소를 포함합니다. **access_token**의 값은 REST API에 대한 인증 요청에 사용됩니다.
+hello이 요청에서 반환 된 JSON 문서 라는 요소가 포함 **access_token**합니다. 값을 hello **access_token** 가 사용 되는 tooauthentication 요청 toohello REST API입니다.
 
 ```json
 {
@@ -298,12 +298,12 @@ curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-다음을 사용하여 리소스 그룹을 만듭니다.
+리소스 그룹 toocreate 다음 hello를 사용 합니다.
 
-* `$SUBSCRIPTIONID`를 서비스 주체를 만들 때 받은 구독 ID로 설정합니다.
-* `$ACCESSTOKEN`을 이전 단계에서 받은 액세스 토큰으로 설정합니다.
-* `DATACENTERLOCATION`을 리소스 그룹과 리소스를 만들려는 데이터 센터로 바꿉니다. 예를 들어 "미국 중남부"입니다.
-* `$RESOURCEGROUPNAME`을 이 그룹에 사용하려는 이름으로 설정합니다.
+* 설정 `$SUBSCRIPTIONID` hello 서비스 사용자를 만드는 동안 받은 toohello 구독 ID입니다.
+* 설정 `$ACCESSTOKEN` hello 이전 단계에서 받은 toohello 액세스 토큰입니다.
+* 대체 `DATACENTERLOCATION` hello 데이터 센터와 toocreate hello 리소스 그룹 및 리소스에 원하는 합니다. 예를 들어 "미국 중남부"입니다.
+* 설정 `$RESOURCEGROUPNAME` 이 그룹에 대 한 toouse toohello 이름:
 
 ```bash
 curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME?api-version=2015-01-01" \
@@ -314,34 +314,34 @@ curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resour
 }'
 ```
 
-이 요청에 성공하면 200 시리즈 응답을 받게 되며 응답 본문에 그룹 정보가 담긴 JSON 문서가 포함되어 있습니다. `"provisioningState"` 요소는 `"Succeeded"`라는 값을 포함합니다.
+이 요청에 성공한 경우 200 계열 응답을 수신 하 고 hello 응답 본문 hello 그룹에 대 한 정보를 포함 하는 JSON 문서를 포함 합니다. hello `"provisioningState"` 요소 값이 포함 `"Succeeded"`합니다.
 
 ## <a name="create-a-deployment"></a>배포 만들기
 
-다음 명령을 사용하여 리소스 그룹에 템플릿을 배포합니다.
+명령 toodeploy hello 템플릿 toohello 리소스 그룹을 다음 hello를 사용 합니다.
 
-* `$DEPLOYMENTNAME`을 이 배포에 사용하려는 이름으로 설정합니다.
+* 설정 `$DEPLOYMENTNAME` 이 배포에 대 한 toouse toohello 이름입니다.
 
 ```bash
 curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
 -H "Authorization: Bearer $ACCESSTOKEN" \
 -H "Content-Type: application/json" \
--d "{set your body string to the template and parameters}"
+-d "{set your body string toohello template and parameters}"
 ```
 
 > [!NOTE]
-> 템플릿을 파일에 저장한 경우 `-d "{ template and parameters}"` 대신 다음 명령을 사용할 수 있습니다.
+> Hello 템플릿 tooa 파일을 저장 하는 경우 다음 명령을 대신 hello를 사용할 수 있습니다 `-d "{ template and parameters}"`:
 >
 > `--data-binary "@/path/to/file.json"`
 
-이 요청에 성공하면 200 시리즈 응답을 받게 되며 응답 본문에 배포 작업 정보가 담긴 JSON 문서가 포함되어 있습니다.
+이 요청에 성공한 경우 200 계열 응답을 수신 하 고 hello 응답 본문 hello 배포 작업에 대 한 정보를 포함 하는 JSON 문서를 포함 합니다.
 
 > [!IMPORTANT]
-> 배포가 제출되었지만 완료된 것은 아닙니다. 배포가 완료되려면 보통 몇 분(보통 15분 전후)이 소요됩니다.
+> hello 배포 제출 되 있지만 완료 되지 않았습니다. 몇 분 정도 일반적으로 약 15, 배포 toocomplete hello에 대 한 걸릴 수 있습니다.
 
-## <a name="check-the-status-of-a-deployment"></a>배포 상태 확인
+## <a name="check-hello-status-of-a-deployment"></a>배포의 hello 상태 확인
 
-배포 상태를 확인하려면 다음 명령을 사용합니다.
+다음 명령을 사용 하 여 hello hello 배포의 toocheck hello 상태:
 
 ```bash
 curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
@@ -349,7 +349,7 @@ curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resour
 -H "Content-Type: application/json"
 ```
 
-이 명령은 배포 작업 관련 정보가 담긴 JSON 문서를 반환합니다. `"provisioningState"` 요소는 배포의 상태를 포함합니다. 이 요소가 `"Succeeded"` 값을 포함하면 배포가 성공적으로 완료됩니다.
+이 명령은 hello 배포 작업에 대 한 정보를 포함 하는 JSON 문서를 반환 합니다. hello `"provisioningState"` 요소 hello 배포의 hello 상태를 포함 합니다. 이 요소 값이 포함 되어 있으면 `"Succeeded"`, hello 배포가 성공적으로 완료 합니다.
 
 ## <a name="troubleshoot"></a>문제 해결
 
@@ -357,7 +357,7 @@ HDInsight 클러스터를 만드는 동안 문제가 발생할 경우 [액세스
 
 ## <a name="next-steps"></a>다음 단계
 
-HDInsight 클러스터를 성공적으로 만들었으므로 다음을 사용하여 클러스터 작업을 수행하는 방법을 알아봅니다.
+HDInsight 클러스터를 성공적으로 만든 toolearn 방법을 따르는 hello를 사용 하 여 클러스터와 toowork 합니다.
 
 ### <a name="hadoop-clusters"></a>Hadoop 클러스터
 

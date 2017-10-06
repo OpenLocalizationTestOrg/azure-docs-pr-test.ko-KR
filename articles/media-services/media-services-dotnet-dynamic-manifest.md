@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 서비스 .NET SDK로 필터 생성"
-description: "이 항목에서는 클라이언트가 스트림의 특정 섹션을 스트리밍하는 데 사용할 수 있는 필터를 생성하는 방법을 설명합니다. 이 선택적 스트리밍은 미디어 서비스가 동적 매니페스트를 생성하여 이루어집니다."
+title: "Azure 미디어 서비스.NET SDK를 사용 하 여 aaaCreating 필터"
+description: "이 항목에서는 클라이언트 toostream 스트림의 특정 섹션 사용할 수 있도록 toocreate 필터링 하는 방법을 설명 합니다. 미디어 서비스 스트리밍이 선택적 tooachieve를 동적 매니페스트를 만듭니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako;cenkdin
-ms.openlocfilehash: 6c43473b86c14679ace558de478bd95f41d476da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 16d9497d48ab1d3f841dd97efb0f66016a2435c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-filters-with-azure-media-services-net-sdk"></a>Azure 미디어 서비스 .NET SDK로 필터 생성
 > [!div class="op_single_selector"]
@@ -27,24 +27,24 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-미디어 서비스 2.11 버전부터 자산에 대한 필터를 정의할 수 있습니다. 이 필터는 고객이 전체 비디오를 재생하는 대신 비디오의 한 섹션만 재생하거나 자산과 연결된 모든 변환 대신 고객의 장치가 처리할 수 있는 오디오 및 비디오 변환의 하위 집합만 지정하는 등을 선택할 수 있도록 하는 서버 측 규칙입니다. 지정한 필터에 따라 비디오를 스트림하는 고객의 요청에 따라 생성된 **동적 매니페스트**를 통해 자산의 필터링이 이루어집니다.
+2.11 버전부터 미디어 서비스를 사용 하면 자산에 대 한 toodefine 필터. 이러한 필터는 고객에 게 toochoose toodo 등으로 나눌 수 있는 서버 쪽 규칙: 재생 (재생 하지 않고 hello 전체 비디오), 비디오의 섹션만 고객의 장치 (처리할 수 있도록 하는 오디오 및 비디오 변환의 하위 집합을 지정 하거나 모든 hello 변환 하는 대신 연결 된 hello 자산에). 이 자산의 필터링을 통해 얻습니다 **동적 매니페스트**비디오 고객의 요청 toostream 시 생성 되는 지정 된 필터를 기반 합니다.
 
-필터 및 동적 매니페스트에 대한 더 자세한 내용은 [동적 매니페스트 개요](media-services-dynamic-manifest-overview.md)를 참조하십시오.
+자세한 내용을 보려면 관련된 toofilters 및 동적 매니페스트 참조 [동적 매니페스트 개요](media-services-dynamic-manifest-overview.md)합니다.
 
-이 항목에서는 미디어 서비스 .NET SDK를 사용하여 필더를 생성하고, 업데이트하며, 삭제하는 방법을 보여줍니다. 
+이 항목에서는 toouse 미디어 서비스.NET SDK toocreate이, 업데이트 하 고 필터를 삭제 하는 방법을 보여 줍니다. 
 
-필터를 업데이트하는 경우, 규칙을 새로 고치는 스트리밍 끝점에 최대 2분이 소요될 수 있습니다. 콘텐츠가 이 필터로 처리된 경우(및 프록시와 CDN 캐시에서 캐시된 경우) 이 필터를 업데이트하면 플레이어 오류가 발생할 수 있습니다. 필터 업데이트 후에는 캐시를 지우는 것이 바람직합니다. 이 옵션을 사용할 수 없는 경우에 서로 다른 필터를 사용 하는 것이 좋습니다. 
+필터를 업데이트 하는 경우 스트리밍 끝점 toorefresh hello 규칙에 대 일 분까지 걸릴 수 있으므로 note 합니다. Hello 콘텐츠가이 필터를 사용 하 여 제공 된 (그리고 캐시 프록시 및 CDN에 캐시 된) 하는 경우 플레이어에서 오류가 발생할 수 있습니다이 필터를 업데이트 합니다. 되기 tooclear hello 캐시 hello 필터를 업데이트 한 후 것이 좋습니다. 이 옵션을 사용할 수 없는 경우에 서로 다른 필터를 사용 하는 것이 좋습니다. 
 
-## <a name="types-used-to-create-filters"></a>필터 생성에 사용되는 형식
-필터를 생성할 때는 다음 형식이 사용됩니다. 
+## <a name="types-used-toocreate-filters"></a>Toocreate 필터를 사용 하는 형식
+hello 다음 유형은 사용할 필터를 만들 때. 
 
-* **IStreamingFilter**.  이 형식은 다음 REST API [Filter](https://docs.microsoft.com/rest/api/media/operations/filter)
-* **IStreamingAssetFilter**. 이 형식은 다음 REST API [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
-* **PresentationTimeRange**. 이 형식은 다음 REST API [PresentationTimeRange](https://docs.microsoft.com/rest/api/media/operations/presentationtimerange)
-* **FilterTrackSelectStatement** 및 **IFilterTrackPropertyCondition**. 이 형식은 다음 REST API [FilterTrackSelect 및 FilterTrackPropertyCondition](https://docs.microsoft.com/rest/api/media/operations/filtertrackselect)
+* **IStreamingFilter**.  이 형식은 다음 REST API hello 기반 [필터](https://docs.microsoft.com/rest/api/media/operations/filter)
+* **IStreamingAssetFilter**. 이 형식은 다음 REST API hello 기반 [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
+* **PresentationTimeRange**. 이 형식은 다음 REST API hello 기반 [PresentationTimeRange](https://docs.microsoft.com/rest/api/media/operations/presentationtimerange)
+* **FilterTrackSelectStatement** 및 **IFilterTrackPropertyCondition**. 이러한 형식은 다음 REST Api hello 기반 [FilterTrackSelect 및 FilterTrackPropertyCondition](https://docs.microsoft.com/rest/api/media/operations/filtertrackselect)
 
 ## <a name="createupdatereaddelete-global-filters"></a>전역 필터 생성/업데이트/읽기/삭제
-다음 코드에서는 .NET을 사용하여 자산 필더를 생성, 업데이트, 읽기 및 삭제하는 방법을 보여줍니다.
+hello 다음 코드에서는 toouse.NET toocreate를 업데이트, 읽기 및 자산 필터 삭제 방법
 
     string filterName = "GlobalFilter_" + Guid.NewGuid().ToString();
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="createupdatereaddelete-asset-filters"></a>자산 필터 생성/업데이트/읽기/삭제
-다음 코드에서는 .NET을 사용하여 자산 필더를 생성, 업데이트, 읽기 및 삭제하는 방법을 보여줍니다.
+hello 다음 코드에서는 toouse.NET toocreate를 업데이트, 읽기 및 자산 필터 삭제 방법
 
     string assetName = "AssetFilter_" + Guid.NewGuid().ToString();
     var asset = _context.Assets.Create(assetName, AssetCreationOptions.None);
@@ -104,9 +104,9 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="build-streaming-urls-that-use-filters"></a>필터를 사용하는 스트리밍 URL 작성
-자산을 게시하고 제공하는 방법에 대한 자세한 내용은 [고객에 콘텐츠 배달 개요](media-services-deliver-content-overview.md)를 참조하십시오.
+Toopublish 및 배달 자산을 확인 하려면 어떻게 해야에 대 한 내용은 [콘텐츠 배달 tooCustomers 개요](media-services-deliver-content-overview.md)합니다.
 
-다음 예제에서는 스트리밍 URL에 필터를 추가하는 방법을 보여줍니다.
+hello 다음 예제에서는 tooadd tooyour 스트리밍 Url을 필터링 하는 방법
 
 **MPEG DASH** 
 

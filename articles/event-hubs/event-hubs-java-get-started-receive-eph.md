@@ -1,5 +1,5 @@
 ---
-title: "Java를 사용하여 Azure Event Hubs에서 이벤트 수신 | Microsoft Docs"
+title: "Java를 사용 하 여 Azure 이벤트 허브에서 aaaReceive 이벤트 | Microsoft Docs"
 description: "Java를 사용하여 Event Hubs에서 수신 시작"
 services: event-hubs
 documentationcenter: 
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 3c1b455e6298367dc50f0943b58f6cf1e7f1c5fd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 05414a22e6616296752c678bb0af887d6f070c12
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="receive-events-from-azure-event-hubs-using-java"></a>Java를 사용하여 Azure Event Hubs에서 이벤트 수신
 
 
 ## <a name="introduction"></a>소개
-Event Hubs는 연결된 장치와 응용 프로그램에서 생성되는 엄청난 양의 데이터를 처리 및 분석할 수 있도록 초당 수백만 개의 이벤트를 수용할 수 있는 확장성이 뛰어난 수집 시스템입니다. 이벤트 허브로 수집된 데이터는 실시간 분석 공급자나 저장소 클러스터를 사용하여 변환하고 저장할 수 있습니다.
+이벤트 허브는 수백만 개의 초당 응용 프로그램 tooprocess 활성화 이벤트를 수집 하 고 연결 된 장치 및 응용 프로그램에서 생성 되는 데이터의 양이 hello를 분석할 수 있는 확장성이 높은 수집 시스템. 이벤트 허브로 수집된 데이터는 실시간 분석 공급자나 저장소 클러스터를 사용하여 변환하고 저장할 수 있습니다.
 
-자세한 내용은 [이벤트 허브 개요][Event Hubs overview]를 참조하세요.
+자세한 내용은 참조 hello [이벤트 허브 개요][Event Hubs overview]합니다.
 
-이 자습서에서는 Java로 작성된 콘솔 응용 프로그램을 사용하여 이벤트 허브로 이벤트를 수신하는 방법을 보여 줍니다.
+이 자습서에서는 어떻게 Java로 작성 된 콘솔 응용 프로그램을 사용 하 여 이벤트 허브로 tooreceive 이벤트입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음 필수 구성 요소가 필요합니다.
+Toocomplete 순서에서에서이 자습서에서는 필요한 다음 필수 구성 요소는 hello:
 
 * Java 개발 환경. 이 자습서에서는 [Eclipse](https://www.eclipse.org/)를 사용한다고 가정합니다.
 * 활성 Azure 계정. <br/>계정이 없는 경우 몇 분 만에 무료 계정을 만들 수 있습니다. 자세한 내용은 <a href="http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F" target="_blank">Azure 무료 체험</a>을 참조하세요.
 
 ## <a name="receive-messages-with-eventprocessorhost-in-java"></a>Java에서 EventProcessorHost를 사용하여 메시지 수신
 
-**EventProcessorHost**는 영구적 검사점을 관리하여 Event Hubs의 이벤트 수신을 간소화하고 이러한 Event Hubs에서 병렬 수신하는 Java 클래스입니다. EventProcessorHost를 사용하면 다른 노드에 호스트된 경우라도 여러 수신기 간에 이벤트를 분할할 수 있습니다. 이 예제에서는 단일 수신기에 대해 EventProcessorHost를 사용하는 방법을 보여 줍니다.
+**EventProcessorHost**는 영구적 검사점을 관리하여 Event Hubs의 이벤트 수신을 간소화하고 이러한 Event Hubs에서 병렬 수신하는 Java 클래스입니다. EventProcessorHost를 사용하면 다른 노드에 호스트된 경우라도 여러 수신기 간에 이벤트를 분할할 수 있습니다. 이 예에서는 어떻게 toouse EventProcessorHost 단일 수신자에 대 한 합니다.
 
 ### <a name="create-a-storage-account"></a>저장소 계정 만들기
-EventProcessorHost를 사용하려면 [Azure Storage 계정][Azure Storage account]이 있어야 합니다.
+EventProcessorHost toouse 있어야는 [Azure 저장소 계정][Azure Storage account]:
 
-1. [Azure Portal][Azure portal]에 로그온하고 화면 왼쪽에서 **+새로 만들기**를 클릭합니다.
-2. **저장소**를 클릭한 다음 **저장소 계정**을 클릭합니다. **저장소 계정 만들기** 블레이드에서 저장소 계정의 이름을 입력합니다. 필드의 나머지 부분을 입력하고 원하는 지역을 선택한 다음 **만들기**를 클릭합니다.
+1. Toohello 로그온 [Azure 포털][Azure portal]를 클릭 하 고 **+ 새로 만들기** hello hello 화면 왼쪽에 있습니다.
+2. **저장소**를 클릭한 다음 **저장소 계정**을 클릭합니다. Hello에 **저장소 계정 만들기** 블레이드에서 hello 저장소 계정에 대 한 이름 입력 합니다. 완료 hello 나머지 hello 필드에서 원하는 지역을 선택한 다음 클릭 **만들기**합니다.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage2.png)
 
-3. 새로 만든 저장소 계정을 클릭한 후 **액세스 키 관리**를 클릭합니다.
+3. Hello 새로 만든 저장소 계정을 클릭 한 다음 클릭 **액세스 키 관리**:
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage3.png)
 
-    이 자습서에서 나중에 사용할 기본 액세스 키를 임시 위치로 복사합니다.
+    Hello 기본 액세스 키 tooa 임시 위치,이 자습서의 뒷부분에 나오는 toouse를 복사 합니다.
 
-### <a name="create-a-java-project-using-the-eventprocessor-host"></a>EventProcessor 호스트를 사용하여 Java 프로젝트 만들기
-Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리포지토리][Maven Package]의 Maven 프로젝트에 사용할 수 있으며 Maven 프로젝트 파일 내의 다음 종속성 선언을 사용하여 참조할 수 있습니다.    
+### <a name="create-a-java-project-using-hello-eventprocessor-host"></a>Hello EventProcessor 호스트를 사용 하 여 Java 프로젝트 만들기
+hello 이벤트 허브에 대 한 Java 클라이언트 라이브러리는 hello에서 Maven 프로젝트에서 사용할 수 있는 [Maven 중앙 리포지토리에][Maven Package], 내부 종속성 선언 뒤 hello를 사용 하 여 참조할 수 있습니다 프로그램 Maven 프로젝트 파일:    
 
 ```xml
 <dependency>
@@ -76,9 +76,9 @@ Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리�
 </dependency>
 ```
 
-다양한 유형의 빌드 환경을 위해, [Maven 중앙 리포지토리][Maven Package] 또는 [GitHub의 릴리스 배포 지점](https://github.com/Azure/azure-event-hubs/releases)에서 최근에 릴리스된 JAR 파일을 명시적으로 가져올 수 있습니다.  
+빌드 환경, 다양 한 유형의 얻을 수 있습니다 명시적으로 릴리스된 최신 hello JAR 파일에서 hello [Maven 중앙 리포지토리에] [ Maven Package] 또는 [릴리스 배포 지점에 hello GitHub](https://github.com/Azure/azure-event-hubs/releases)합니다.  
 
-1. 다음 샘플에서는 먼저 즐겨 찾는 Java 개발 환경에서 콘솔/셸 응용 프로그램에 대한 새 Maven 프로젝트를 만듭니다. 클래스는 `ErrorNotificationHandler`라고 합니다.     
+1. 다음 예제는 hello에 대 한 먼저 즐겨 찾는 Java 개발 환경에서 콘솔/셸 응용 프로그램에 대 한 새 Maven 프로젝트를 만듭니다. hello 라고 `ErrorNotificationHandler`합니다.     
    
     ```java
     import java.util.function.Consumer;
@@ -93,7 +93,7 @@ Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리�
         }
     }
     ```
-2. 다음 코드를 사용하여 `EventProcessor`(이)라는 클래스를 새로 만듭니다.
+2. 사용 하 여 hello 다음 toocreate 라는 새 클래스가 코드 `EventProcessor`합니다.
    
     ```java
     import com.microsoft.azure.eventhubs.EventData;
@@ -146,7 +146,7 @@ Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리�
         }
     }
     ```
-3. 다음 코드를 사용하여 `EventProcessorSample`이라는 클래스를 하나 이상 만듭니다.
+3. 라는 하나의 더 많은 클래스를 만들어 `EventProcessorSample`를 사용 하 여 다음 코드 hello 합니다.
    
     ```java
     import com.microsoft.azure.eventprocessorhost.*;
@@ -192,7 +192,7 @@ Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리�
                 }
             }
    
-            System.out.println("Press enter to stop");
+            System.out.println("Press enter toostop");
             try
             {
                 System.in.read();
@@ -211,7 +211,7 @@ Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리�
         }
     }
     ```
-4. 다음 필드를 이벤트 허브 및 저장소 계정을 만들 때 사용한 값으로 바꿉니다.
+4. Hello 이벤트 허브 및 저장소 계정을 만들 때 사용한 hello 값이 포함 된 필드를 다음 hello를 대체 합니다.
    
     ```java
     final String namespaceName = "----ServiceBusNamespaceName-----";
@@ -225,12 +225,12 @@ Event Hubs에 대한 Java 클라이언트 라이브러리는 [Maven 중앙 리�
     ```
 
 > [!NOTE]
-> 이 자습서에서는 EventProcessorHost의 단일 인스턴스를 사용합니다. 처리량을 늘리려면 EventProcessorHost의 여러 인스턴스를 개별 컴퓨터에서 실행하는 것이 좋습니다.  그러면 중복성도 함께 제공됩니다. 이러한 경우 다양한 인스턴스가 자동으로 서로 조정하여 수신된 이벤트의 부하를 분산합니다. 여러 수신기가 각각 이벤트를 *모두* 처리하도록 하려면 **ConsumerGroup** 개념을 사용해야 합니다. 서로 다른 컴퓨터에서 이벤트를 수신하는 경우 EventProcessorHost 인스턴스의 이름을 해당 인스턴스가 배포된 컴퓨터 또는 역할을 기준으로 지정하면 유용할 수 있습니다.
+> 이 자습서에서는 EventProcessorHost의 단일 인스턴스를 사용합니다. tooincrease 처리량 것은 실행 하는 좋습니다 EventProcessorHost의 여러 인스턴스 가급적 별도 컴퓨터에 있습니다.  그러면 중복성도 함께 제공됩니다. 이러한 경우 hello 다양 한 인스턴스는 자동으로 서로 순서 tooload 균형 hello 조정 이벤트를 받았습니다. 여러 개의 수신기 tooeach 프로세스를 원하는 경우 *모든* 이벤트 hello hello를 사용 해야 **ConsumerGroup** 개념입니다. 서로 다른 컴퓨터에서 이벤트를 받을 때의 배포 된 hello 컴퓨터 (또는 역할)에 따라 EventProcessorHost 인스턴스에 대 한 유용한 toospecify 이름을 수 있습니다.
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
-Event Hubs에 대한 자세한 내용은 다음 링크를 참조하세요.
+Hello 다음 링크를 방문 하 여 이벤트 허브에 대 한 자세히 알아볼 수 있습니다.
 
 * [이벤트 허브 개요](event-hubs-what-is-event-hubs.md)
 * [이벤트 허브 만들기](event-hubs-create.md)

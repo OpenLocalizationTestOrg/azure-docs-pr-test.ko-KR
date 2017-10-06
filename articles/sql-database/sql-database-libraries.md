@@ -1,6 +1,6 @@
 ---
-title: "SQL Database용 연결 라이브러리 | Microsoft Docs"
-description: "다양한 클라이언트 프로그래밍 언어에서 SQL Server 및 SQL Database에 연결할 수 있도록 하는 모듈 다운로드를 위한 링크를 제공합니다. 모듈은 커뮤니티 또는 Microsoft에서 출시합니다."
+title: "SQL 데이터베이스에 대 한 aaaConnection 라이브러리 | Microsoft Docs"
+description: "연결 tooSQL 서버 및 다양 한 클라이언트 프로그래밍 언어의에서 SQL 데이터베이스를 사용 하도록 설정 하는 모듈의 다운로드에 대 한 링크를 제공 합니다. hello 커뮤니티를 통해 또는 Microsoft hello 모듈 해제 됩니다."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: genemi
-ms.openlocfilehash: 082abf57b139b9f7d44774dce3a80e20b97f0e3b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ea77670276ad3304c7531f7ffd8f7dffd31af46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connectivity-libraries-and-frameworks-for-microsoft-sql-server"></a>Microsoft SQL Server의 연결 라이브러리 및 프레임워크
 
-[시작 자습서](http://aka.ms/sqldev)를 확인하여 C#, Java, Node.js, PHP 및 Python 등의 프로그래밍 언어를 빠르게 시작하고 Linux 또는 Windows에서 SQL Server나 macOS에서 Docker를 사용하여 앱을 빌드합니다.
+체크 아웃 우리의 [시작 자습서](http://aka.ms/sqldev) tooquickly C#, Java, Node.js, PHP 및 Python 등의 언어와 프로그래밍 시작 하 고 macOS에서 Linux 또는 Windows 또는 Docker에서 SQL Server를 사용 하 여 응용 프로그램을 구축 합니다.
 
-아래 표에서는 클라이언트 응용 프로그램이 다양한 언어로 사용하여 온-프레미스나 클라우드, Linux, Windows나 Docker 및 Azure SQL Database와 Azure SQL Data Warehouse에서 실행 중인 Microsoft SQL Server를 연결하고 사용할 수 있는 연결 라이브러리 또는 *드라이버*를 나열합니다. 
+hello 아래 표에 연결 라이브러리 또는 *드라이버* 언어 tooconnect tooand 사용 온-프레미스를 실행 중인 Microsoft SQL Server 또는 Linux, Windows 또는 Docker에서 hello 클라우드에 다양 한 클라이언트 응용 프로그램에서 사용할 수 있습니다 및 또한 tooAzure SQL 데이터베이스 및 Azure SQL 데이터 웨어하우스 합니다. 
 
 | 언어 | 플랫폼 | 추가 리소스 | 다운로드 | 시작 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -37,7 +37,7 @@ ms.lasthandoff: 08/03/2017
 | Ruby | Windows, Linux, macOS | [SQL Server용 Ruby 드라이버](http://msdn.microsoft.com/library/mt691981.aspx) | [설치](https://msdn.microsoft.com/library/mt711041.aspx) | [시작](https://www.microsoft.com/en-us/sql-server/developer-get-started/ruby/ubuntu)
 | C++ | Windows, Linux, macOS | [SQL Server용 Microsoft ODBC 드라이버](https://msdn.microsoft.com/en-us/library/mt654048(v=sql.1).aspx) | [다운로드](https://msdn.microsoft.com/en-us/library/mt654048(v=sql.1).aspx) |  
 
-아래 표에서는 클라이언트 응용 프로그램이 다양한 언어로 사용하여 온-프레미스나 클라우드, Linux, Windows나 Docker 및 Azure SQL Database와 Azure SQL Data Warehouse에서 실행 중인 Microsoft SQL Server를 사용할 수 있는 ORM(Object Relational Mapping) 프레임워크 및 웹 프레임워크의 일부 예제를 나열합니다. 
+hello 아래 표에 Linux, Windows 또는 Docker 및 또한 tooAzure SQL 데이터베이스에서 hello 클라우드에서 개체 관계형 매핑 ORM () 프레임 워크 및 클라이언트 응용 프로그램은 온-프레미스를 실행 중인 Microsoft SQL Server 또는 사용할 수 있는 웹 프레임 워크의 몇 가지 예 및 Azure SQL 데이터 웨어하우스 
 
 | 언어 | 플랫폼 | ORM |
 | :-- | :-- | :-- |
@@ -50,9 +50,9 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="related-links"></a>관련 링크
 - 클라이언트 응용 프로그램에서 연결하기 위한 [SQL Server 드라이버](http://msdn.microsoft.com/library/mt654049.aspx)
-- [.NET(C#)을 사용하여 SQL 데이터베이스에 연결](sql-database-connect-query-dotnet.md)
-- [PHP를 사용하여 SQL 데이터베이스에 연결](sql-database-connect-query-php.md)
-- [Node.js를 사용하여 SQL 데이터베이스에 연결](sql-database-connect-query-nodejs.md)
-- [Java를 사용하여 SQL 데이터베이스에 연결](sql-database-connect-query-java.md)
-- [Python을 사용하여 SQL 데이터베이스에 연결](sql-database-connect-query-python.md)
-- [Ruby를 사용하여 SQL 데이터베이스에 연결](sql-database-connect-query-ruby.md)
+- [.NET (C#)를 사용 하 여 tooSQL 데이터베이스 연결](sql-database-connect-query-dotnet.md)
+- [PHP를 사용 하 여 tooSQL 데이터베이스 연결](sql-database-connect-query-php.md)
+- [Node.js를 사용 하 여 tooSQL 데이터베이스 연결](sql-database-connect-query-nodejs.md)
+- [Java를 사용 하 여 tooSQL 데이터베이스 연결](sql-database-connect-query-java.md)
+- [Python을 사용 하 여 tooSQL 데이터베이스 연결](sql-database-connect-query-python.md)
+- [Ruby를 사용 하 여 tooSQL 데이터베이스 연결](sql-database-connect-query-ruby.md)

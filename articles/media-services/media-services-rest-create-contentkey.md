@@ -1,6 +1,6 @@
 ---
-title: "REST를 사용하여 콘텐츠 키 만들기 | Microsoft Docs"
-description: "자산에 대한 보안 액세스를 제공하는 콘텐츠 키를 만드는 방법에 대해 알아봅니다."
+title: "REST로 내용 키 aaaCreate | Microsoft Docs"
+description: "보안을 제공 하는 콘텐츠 키를 toocreate tooAssets를 액세스 하는 방법에 대해 알아봅니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: ece09277d26fafb7c0eebf62730031c4dc01bfe0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb3b74bdb72c43ab5b375c0376b6704f4a93bb8b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-content-keys-with-rest"></a>REST를 사용하여 콘텐츠 키 만들기
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-미디어 서비스를 사용하면 암호화된 자산을 새로 만들어서 제공할 수 있습니다. **ContentKey**는 **자산**에 대한 보안 액세스를 제공합니다. 
+미디어 서비스 toocreate 새 있으며 암호화 된 자산을 배달 합니다. A **ContentKey** 보안 액세스 tooyour 제공 **자산**s입니다. 
 
-새 자산을 만들 때(예: [파일 업로드](media-services-rest-upload-files.md) 전) **StorageEncrypted**, **CommonEncryptionProtected** 또는 **EnvelopeEncryptionProtected** 암호화 옵션을 지정할 수 있습니다. 
+새 자산을 만드는 경우 (예를 들어 하기 전에 [파일 업로드](media-services-rest-upload-files.md)), hello 다음 암호화 옵션을 지정할 수 있습니다: **StorageEncrypted**, **CommonEncryptionProtected**, 또는 **EnvelopeEncryptionProtected**합니다. 
 
-클라이언트에 자산을 제공할 때 **DynamicEnvelopeEncryption** 또는 **DynamicCommonEncryption** 암호화 중 하나를 사용하여 [자산이 동적으로 암호화되도록 구성](media-services-rest-configure-asset-delivery-policy.md)할 수 있습니다.
+Tooyour 클라이언트를 자산을 배달 하는 경우 다음을 할 수 있습니다 [자산 toobe 동적으로 암호화에 대 한 구성](media-services-rest-configure-asset-delivery-policy.md) hello 다음 두 가지 암호화 중 하 나와: **DynamicEnvelopeEncryption** 또는  **DynamicCommonEncryption**합니다.
 
-암호화된 자산은 **ContentKey**와 연관되어야 합니다. 이 문서에서는 콘텐츠 키를 만드는 방법을 설명합니다.
+암호화 된 자산에 연결 된 toobe가 **ContentKey**s입니다. 이 문서에서는 설명 방법을 toocreate 콘텐츠 키입니다.
 
-다음은 암호화하려는 자산과 연결할 콘텐츠 키를 생성하기 위한 일반적인 단계입니다. 
+hello 다음은 연결할 자산 암호화 toobe 원하는 콘텐츠 키를 생성 하기 위한 일반적인 단계입니다. 
 
 1. 16바이트 AES 키(일반 및 봉투 암호화의 경우) 또는 32 바이트 AES 키(저장소 암호화의 경우)를 임의로 생성합니다. 
    
-    이는 자산에 대한 콘텐츠 키로 암호화하는 동안 해당 자산과 연결된 모든 파일이 동일한 콘텐츠 키를 사용해야 한다는 뜻입니다. 
-2. [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) 및 [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) 메서드를 호출하여 콘텐츠 키를 암호화하는 데 사용해야 하는 올바른 X.509 인증서를 가져옵니다.
-3. X.509 인증서의 공개 키로 콘텐츠 키를 암호화합니다. 
+    즉, 연결 된 모든 파일이 자산에 대 한 콘텐츠 키 hello 됩니다 해당 자산에는 필요한 toouse hello 동일한 콘텐츠 키에 암호 해독 과정입니다. 
+2. Hello 호출 [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) 및 [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) 메서드 tooget hello tooencrypt 사용된 해야 하는 올바른 X.509 인증서 콘텐츠 키입니다.
+3. Hello hello X.509 인증서의 공개 키로 콘텐츠 키를 암호화 합니다. 
    
-   Media Services.NET SDK는 암호화 시 OAEP가 포함된 RSA를 사용합니다.  [EncryptSymmetricKeyData 함수](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)에서 예를 확인할 수 있습니다.
-4. 키 식별자 및 콘텐츠 키를 사용하여 계산된 체크섬 값(PlayReady AES 키 체크섬 알고리즘에 기반)을 만듭니다. 자세한 내용은 [여기](http://www.microsoft.com/playready/documents/)에 있는 PlayReady 헤더 개체 문서의 "PlayReady AES 키 체크섬 알고리즘" 섹션을 참조하세요.
+   미디어 서비스.NET SDK hello 암호화를 수행할 때 OAEP와 RSA를 사용 합니다.  Hello에 예제를 볼 수 [EncryptSymmetricKeyData 함수](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)합니다.
+4. 체크섬 값 (PlayReady AES 키 체크섬 알고리즘 hello에 기반) hello 키 식별자 및 콘텐츠 키를 사용 하 여 계산을 만듭니다. 자세한 내용은 참조 hello hello PlayReady 헤더 개체에 대 한 문서의 "PlayReady AES 키 체크섬 알고리즘" 섹션에 있는 [여기](http://www.microsoft.com/playready/documents/)합니다.
    
-   다음은 키 식별자와 암호화되지 않은 콘텐츠 키의 GUID 부분을 사용하여 체크섬을 계산하는 .NET 예제입니다.
+   hello 다음은 hello 키 식별자의 GUID 부분 hello를 사용 하 여 hello 체크섬을 계산 하는.NET 예제 및 hello 콘텐츠 키의 선택을 취소 합니다.
 
          public static string CalculateChecksum(byte[] contentKey, Guid keyId)
          {
@@ -65,24 +65,24 @@ ms.lasthandoff: 08/29/2017
             Array.Copy(array, array2, 8);
             return Convert.ToBase64String(array2);
          }
-5. 이전 단계에서 받은**EncryptedContentKey**(base64 인코딩된 문자열로 변환), **ProtectionKeyId**, **ProtectionKeyType**, **ContentKeyType** 및 **Checksum** 값을 사용하여 콘텐츠 키를 만듭니다.
-6. $links 작업을 통해 **ContentKey** 엔터티와 **Asset** 엔터티를 연결합니다.
+5. Hello로 hello 콘텐츠 키를 만들 **EncryptedContentKey** (toobase64 인코딩된 문자열로 변환) **ProtectionKeyId**, **ProtectionKeyType**,  **ContentKeyType**, 및 **체크섬** 이전 단계에서 받은 값입니다.
+6. 연결 hello **ContentKey** 엔터티와 사용자 **자산** hello $links 작업을 통해 엔터티.
 
-이 토픽은 AES 키 생성, 키 암호화 및 체크섬을 계산하는 방법을 표시하지 않습니다. 
+Note이 항목 toogenerate는 AES 키 hello 키를 암호화 하 고 hello 체크섬을 계산 하는 방법을 표시 되지 않습니다. 
 
 >[!NOTE]
 
 >미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 
-## <a name="connect-to-media-services"></a>미디어 서비스에 연결
+## <a name="connect-toomedia-services"></a>TooMedia 서비스 연결
 
-AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. 
+AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. 
 
 >[!NOTE]
->https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
+>Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
 
-## <a name="retrieve-the-protectionkeyid"></a>ProtectionKeyId 검색
-다음 예제에서는 콘텐츠 키를 암호화할 때 사용해야 하는 인증서의 ProtectionKeyId(인증서 지문)를 검색하는 방법을 보여 줍니다. 컴퓨터에 적절한 인증서가 이미 있는지 확인하려면 이 단계를 수행합니다.
+## <a name="retrieve-hello-protectionkeyid"></a>Hello ProtectionKeyId를 검색 합니다.
+다음 예제는 hello tooretrieve ProtectionKeyId를 콘텐츠 키를 암호화할 때 사용 해야 하는 hello 인증서에 대 한 인증서 지문을 hello 하는 방법을 보여 줍니다. 이 단계 toomake hello 적절 한 인증서는 컴퓨터에가 이미 선택 되어 있는지를 수행 합니다.
 
 요청:
 
@@ -113,8 +113,8 @@ AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-## <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>ProtectionKeyId에 대한 Protectionkey 검색
-다음 예제에서는 이전 단계에서 받은 ProtectionKeyId를 사용하여 X.509 인증서를 검색하는 방법을 보여 줍니다.
+## <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>ProtectionKeyId hello에 대 한 hello ProtectionKey 검색
+hello 다음 예제에서는 hello ProtectionKeyId를 사용 하 여 tooretrieve hello X.509 인증서의 수령 방법 hello 이전 단계에서
 
 요청:
 
@@ -149,17 +149,17 @@ AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-## <a name="create-the-contentkey"></a>ContentKey 만들기
-X.509 인증서를 검색한 다음 이 인증서의 공개 키를 사용하여 콘텐츠 키를 암호화한 후 **ContentKey** 엔터티를 만들고 해당 속성 값을 적절하게 설정합니다.
+## <a name="create-hello-contentkey"></a>Hello ContentKey 만들기
+Hello X.509 인증서를 검색 하 여 콘텐츠 키의 공개 키 tooencrypt 사용 후 만들는 **ContentKey** 엔터티 및 해당 속성 값에 적절 하 게 설정 합니다.
 
-콘텐츠 키를 만들 때 설정해야 하는 값 중 하나가 이 유형입니다. 다음 값 중 하나를 선택합니다.
+콘텐츠 키가 hello 형식이 hello 만들 때 설정 해야 하는 hello 값 중 하나. Hello 다음 값 중 하나를 선택 합니다.
 
     public enum ContentKeyType
     {
         /// <summary>
         /// Specifies a content key for common encryption.
         /// </summary>
-        /// <remarks>This is the default value.</remarks>
+        /// <remarks>This is hello default value.</remarks>
         CommonEncryption = 0,
 
         /// <summary>
@@ -179,7 +179,7 @@ X.509 인증서를 검색한 다음 이 인증서의 공개 키를 사용하여 
     }
 
 
-다음 예제에서는 저장소 암호화("1")에 대해 설정된 **ContentKeyType**과 "0"으로 설정된 **ProtectionKeyType**으로 **ContentKey**를 만들어서 보호 키 Id가 X.509 인증서 지문임을 나타내는 방법을 보여 줍니다.  
+hello 방법을 예제와 다음 toocreate는 **ContentKey** 와 **ContentKeyType** 저장소 암호화 ("1") 및 hello에 대 한 설정 **ProtectionKeyType** 설정 "0" 너무 보호 키 Id hello tooindicate hello X.509 인증서 지문입니다.  
 
 요청
 
@@ -229,8 +229,8 @@ X.509 인증서를 검색한 다음 이 인증서의 공개 키를 사용하여 
     "ProtectionKeyType":0,
     "Checksum":"calculated checksum"}
 
-## <a name="associate-the-contentkey-with-an-asset"></a>자산으로 ContentKey 연결
-ContentKey를 만든 후 다음 예제와 같이 $links 작업을 사용하여 이를 자산에 연결합니다.
+## <a name="associate-hello-contentkey-with-an-asset"></a>자산에 ContentKey hello 연관
+Hello ContentKey를 만든 후에 연결할 hello $links 연산을 사용 하 여 자산 hello 다음 예제와 같이:
 
 요청:
 

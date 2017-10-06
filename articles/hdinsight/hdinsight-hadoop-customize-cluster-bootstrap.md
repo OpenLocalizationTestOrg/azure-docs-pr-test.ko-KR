@@ -1,6 +1,6 @@
 ---
-title: "부트스트랩을 사용하여 HDInsight 클러스터 사용자 지정 - Azure | Microsoft Docs"
-description: "부트스트랩을 사용하여 HDInsight 클러스터를 사용자 지정하는 방법을 알아봅니다."
+title: "부트스트랩-Azure를 사용 하 여 HDInsight 클러스터 aaaCustomize | Microsoft Docs"
+description: "Toocustomize HDInsight 클러스터 부트스트랩을 사용 하 여 하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,15 +16,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: c7a6fafa90eac66774d564c82c926c662baf784c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0029680fd1aa0e9e6aa9cdf667256c31b7ddc565
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customize-hdinsight-clusters-using-bootstrap"></a>부트스트랩을 사용하여 HDInsight 클러스터 사용자 지정
 
-경우에 따라 다음과 같이 구성 파일을 구성해야 할 수 있습니다.
+포함 하는 tooconfigure hello 구성 파일을 원하는 경우에 따라:
 
 * clusterIdentity.xml
 * core-site.xml
@@ -42,7 +42,7 @@ ms.lasthandoff: 07/11/2017
 * webhcat-site.xml
 * yarn-site.xml
 
-Bootstrap을 사용하는 방법은 3가지가 있습니다.
+부트스트랩는 세 가지 메서드 toouse 있습니다.
 
 * Azure PowerShell 사용
 * .NET SDK 사용
@@ -50,12 +50,12 @@ Bootstrap을 사용하는 방법은 3가지가 있습니다.
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-만든 시간 동안 HDInsight 클러스터에 추가 구성 요소 설치에 대한 내용은 다음을 참조하세요.
+Hello 만든 시간 동안 HDInsight 클러스터에 추가 구성 요소 설치에 대 한 내용은 다음을 참조 합니다.
 
 * [스크립트 작업을 사용하여 HDInsight 클러스터 사용자 지정(Linux)](hdinsight-hadoop-customize-cluster-linux.md)
 
 ## <a name="use-azure-powershell"></a>Azure PowerShell 사용
-다음 PowerShell 코드는 Hive 구성을 사용자 지정합니다.
+다음 PowerShell 코드 hello 하이브 구성 사용자 지정 합니다.
 
     # hive-site.xml configuration
     $hiveConfigValues = @{ "hive.metastore.client.socket.timeout"="90" }
@@ -80,19 +80,19 @@ Bootstrap을 사용하는 방법은 3가지가 있습니다.
 
 완전히 작동하는 PowerShell 스크립트는 [부록 A](#hdinsight-hadoop-customize-cluster-bootstrap.md/appx-a:-powershell-sample)에서 찾을 수 있습니다.
 
-**변경을 확인하려면:**
+**tooverify hello 변경 사항:**
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
-2. 왼쪽 메뉴에서 **HDInsight 클러스터**를 클릭합니다. 표시되지 않으면 먼저 **추가 서비스**를 클릭합니다.
-3. PowerShell 스크립트를 사용하여 방금 만든 클러스터를 클릭합니다.
-4. 블레이드 맨 위에서 **대시보드** 를 클릭하여 Ambari UI를 엽니다.
-5. 왼쪽 메뉴에서 **Hive** 를 클릭합니다.
+1. Toohello 로그온 [Azure 포털](https://portal.azure.com)합니다.
+2. Hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**합니다. 표시되지 않으면 먼저 **추가 서비스**를 클릭합니다.
+3. Hello PowerShell 스크립트를 사용 하 여 방금 만든 hello 클러스터를 클릭 합니다.
+4. 클릭 **대시보드** hello 블레이드 tooopen의 hello 위에서 hello Ambari UI입니다.
+5. 클릭 **하이브** hello 왼쪽된 메뉴에서 합니다.
 6. **요약**에서 **HiveServer2**를 클릭합니다.
-7. **Configs** 탭을 클릭합니다.
-8. 왼쪽 메뉴에서 **Hive** 를 클릭합니다.
-9. **고급** 탭을 클릭합니다.
+7. Hello 클릭 **Configs** 탭 합니다.
+8. 클릭 **하이브** hello 왼쪽된 메뉴에서 합니다.
+9. Hello 클릭 **고급** 탭 합니다.
 10. 아래로 스크롤한 다음 **고급 hive 사이트**를 확장합니다.
-11. 섹션에서 **hive.metastore.client.socket.timeout** 을 찾습니다.
+11. 검색할 **hive.metastore.client.socket.timeout** hello 섹션에 있습니다.
 
 다른 구성 파일을 사용자 지정하는 추가 샘플:
 
@@ -111,7 +111,7 @@ Bootstrap을 사용하는 방법은 3가지가 있습니다.
 자세한 내용은 Azim Uddin의 [HDInsight 클러스터 만들기 사용자 지정](http://blogs.msdn.com/b/bigdatasupport/archive/2014/04/15/customizing-hdinsight-cluster-provisioning-via-powershell-and-net-sdk.aspx)블로그를 참조하세요.
 
 ## <a name="use-net-sdk"></a>.NET SDK 사용
-[.NET SDK를 사용하여 HDInsight에서 Linux 기반 클러스터 만들기](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)를 참조하세요.
+참조 [사용 하 여 HDInsight 클러스터 만들기 Linux 기반 hello.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)합니다.
 
 ## <a name="use-resource-manager-template"></a>Resource Manager 템플릿 사용
 Resource Manager 템플릿에서 부트스트랩을 사용할 수 있습니다.
@@ -129,7 +129,7 @@ Resource Manager 템플릿에서 부트스트랩을 사용할 수 있습니다.
 ![HDInsight Hadoop 사용자 지정 클러스터 부트스트랩 Azure Resource Manager 템플릿](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
 ## <a name="see-also"></a>참고 항목
-* [HDInsight의 Hadoop 클러스터 만들기][hdinsight-provision-cluster]에서는 다른 사용자 지정 옵션을 사용하여 HDInsight 클러스터를 만드는 방법에 대한 지침을 제공합니다.
+* [HDInsight에서 Hadoop 클러스터를 만들어] [ hdinsight-provision-cluster] 다른 사용자 지정 옵션을 사용 하 여 toocreate HDInsight 클러스터 하는 방법에 대해 설명 합니다.
 * [HDInsight용 스크립트 작업 스크립트 개발][hdinsight-write-script]
 * [HDInsight 클러스터에서 Spark 설치 및 사용][hdinsight-install-spark]
 * [HDInsight 클러스터에서 R 설치 및 사용][hdinsight-install-r]
@@ -181,10 +181,10 @@ Resource Manager 템플릿에서 부트스트랩을 사용할 수 있습니다.
     $ErrorActionPreference = "Stop"
 
     ####################################
-    # Connect to Azure
+    # Connect tooAzure
     ####################################
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
@@ -198,7 +198,7 @@ Resource Manager 템플릿에서 부트스트랩을 사용할 수 있습니다.
         -Name  $resourceGroupName `
         -Location $location
 
-    Write-Host "Creating the default storage account and default blob container ..."  -ForegroundColor Green
+    Write-Host "Creating hello default storage account and default blob container ..."  -ForegroundColor Green
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
@@ -213,7 +213,7 @@ Resource Manager 템플릿에서 부트스트랩을 사용할 수 있습니다.
                                     -StorageAccountKey $defaultStorageAccountKey
     New-AzureStorageContainer `
         -Name $defaultBlobContainerName `
-        -Context $defaultStorageContext #use the cluster name as the container name
+        -Context $defaultStorageContext #use hello cluster name as hello container name
 
     ####################################
     # Create a configuration object
@@ -249,7 +249,7 @@ Resource Manager 템플릿에서 부트스트랩을 사용할 수 있습니다.
         -Config $config
 
     ####################################
-    # Verify the cluster
+    # Verify hello cluster
     ####################################
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
 

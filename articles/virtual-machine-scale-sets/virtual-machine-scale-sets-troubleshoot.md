@@ -1,6 +1,6 @@
 ---
-title: "가상 컴퓨터 확장 집합을 이용하여 자동 크기 조정 문제 해결 | Microsoft Docs"
-description: "가상 컴퓨터 규모 집합을 사용하여 자동 크기 조정 문제 해결 일반적으로 발생하는 문제와 해결 방법에 대해 이해합니다."
+title: "가상 컴퓨터 크기 집합으로 aaaTroubleshoot 자동 크기 조정 | Microsoft Docs"
+description: "가상 컴퓨터 규모 집합을 사용하여 자동 크기 조정 문제 해결 발생 하는 일반적인 문제 이해 및 방법을 tooresolve 해당 합니다."
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -15,69 +15,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/28/2016
 ms.author: guybo
-ms.openlocfilehash: bd45a0fb99a77851aa7b91d23bd4b830b6f5cc7b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c9a70992348d87fb43646421a90a027bf400a17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-autoscale-with-virtual-machine-scale-sets"></a>가상 컴퓨터 규모 집합을 사용하여 자동 크기 조정 문제 해결
-**문제** – VM Scale Sets을 사용하여 Azure Resource Manager에 자동 크기 조정 인프라를 만들었습니다. 예를 들어 https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale과 같은 템플릿을 배포했습니다. 크기 조정 규칙을 정의했으며 VM에 적용되는 부하의 양에 관계없이 크기가 자동으로 조정되지 않는 점을 제외하고 원활하게 작동합니다.
+**문제** – 만든 자동 크기 조정 하는 인프라에서 Azure 리소스 관리자 VM 크기 집합을 사용 하 여-예를 들어 다음과 같은 서식 파일을 배포 하 여: https://github.com/Azure/azure-quickstart-templates/tree/master/201- vmss-bottle-자동 크기 조정-정의 된 크기 조정 규칙이 있으며 제외 하 고 자동 크기 조정 불가능 hello Vm에 두면 부하의 양을에 관계 없이, 잘 작동 합니다.
 
 ## <a name="troubleshooting-steps"></a>문제 해결 단계
-다음은 몇 가지 고려해야 할 사항입니다.
+일부 작업 tooconsider 다음과 같습니다.
 
-* 각 VM에 얼마나 많은 코어가 있고 각 코어를 로드하고 있나요?
-  위의 Azure 빠른 시작 템플릿 예제에는 단일 코어를 로드하는 do_work.php 스크립트가 있습니다. Standard_A1 또는 D1과 같은 단일 코어 VM 크기보다 큰 VM을 사용하는 경우 이 부하를 여러 번 실행해야 합니다. [Azure에서 Windows 가상 컴퓨터 크기](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* VM 규모 집합에 얼마나 많은 VM이 있고 각각에서 작업을 수행하고 있나요?
+* 코어 개수 각 VM에는, 하 고 각 코어를 로드 하 시겠습니까? hello 예제 Azure 빠른 시작 템플릿 위의 단일 코어를 로드 하는 do_work.php 스크립트를 있습니다. Standard_A1 또는 D1 하면 필요한 toorun이이 부하 여러 번 같은 단일 코어 VM 크기 보다 큰 VM을 사용 하는 합니다. [Azure에서 Windows 가상 컴퓨터 크기](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* Hello VM 크기 집합 Vm 수는 작업을 하는 각?
   
-    크기 조정 이벤트는 자동 크기 조정 규칙에서 내부 정의된 시간 동안 규모 집합에 있는 **모든** VM에 대해서 평균 CPU가 임계값을 초과했을 경우에만 수행됩니다.
+    이벤트에 확장만 때 수행 됩니다 hello 평균 CPU 간에 **모든** hello Vm 크기 집합의 임계값을 초과 hello, 내부 hello 시간별 hello 자동 크기 조정 규칙에 정의 되어 있습니다.
 * 누락된 크기 조정 이벤트가 있나요?
   
-    Azure 포털에서 크기 조정 이벤트에 대한 감사 로그를 확인합니다. 누락된 규모 확장 및 축소가 있을 수 있습니다. "크기 조정"으로 필터링할 수 있습니다.
+    Hello 감사 hello 크기 조정 이벤트에 대 한 Azure 포털에서에서 로그를 확인 합니다. 누락된 규모 확장 및 축소가 있을 수 있습니다. "크기 조정"으로 필터링할 수 있습니다.
   
     ![감사 로그][audit]
 * 규모 축소 및 확장 임계값 차이가 충분한가요?
   
-    평균 CPU가 5분 이상 50%보다 클 때 규모를 확장하고 50%보다 작을 때 규모를 축소하도록 설정했다고 가정합니다. 이 경우 CPU 사용량이 임계값에 가까워질 때 크기 조정 작업이 지속적으로 집합의 크기를 늘리고 줄이기를 반복하면서 “플래핑” 문제가 발생됩니다. 이 때문에 자동 크기 조정 서비스는 크기를 조정하지 않는 것으로 나타날 수 있는 “플래핑”을 방지하려고 합니다. 그러므로 크기 조정 사이에 일부 간격을 허용하도록 규모 확장 및 축소 임계값의 차이가 충분한지 확인합니다.
+    평균 CPU 50% 미만인 경우에 평균 CPU 보다 큰 경우 50 %5 분 동안 아웃 규칙 tooscale 및 tooscale를 설정 했다고 가정해 보겠습니다. 이렇게 하면 "날개"를 퍼 덕 문제가 CPU 사용량이 닫기 toothis 임계값 hello 지속적으로 확대 및 축소 하는 크기 조정 작업을 하는 경우 hello 집합의 크기입니다. 이 인해 hello 자동 크기 조정 서비스에서 tooprevent "플 래핑", 크기 조정이 아니라으로 나타날 수 있는 합니다. 따라서 확장 및 확장에서 임계값 통계가 다르면 tooallow 여유 공간 크기 조정을 사이 확인 합니다.
 * 사용자 고유의 JSON 템플릿을 작성했나요?
   
-    실수하기 쉬우므로 작업에 증명된 위와 같은 템플릿으로 시작하고 조금씩 증분합니다. 
+    쉽게 toomake 실수는, 따라서 toowork, 입증 된 기준이 하나 hello와 같은 템플릿을 사용 하 여 시작 및 작은 변화를 확인 합니다. 
 * 수동으로 규모를 축소 또는 확장할 수 있나요?
   
-    VM 수를 수동으로 변경하려면 다른 "용량" 설정을 사용하여 VM 규모 집합 리소스를 다시 배포합니다. https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing 예제 템플릿에서 이를 수행합니다. 확장 집합에서 사용하는 크기와 동일한 컴퓨터 크기를 사용하도록 템플릿을 편집해야 할 수 있습니다. 성공적으로 VM 수를 수동으로 변경할 수 있으면 자동 크기 조정에 문제의 원인이 있는 것입니다.
-* Microsoft.Compute/virtualMachineScaleSet 및 [Azure 리소스 탐색기](https://resources.azure.com/)
+    수동으로 재배포 hello는 다른 "용량" toochange hello 번호를 설정 하는 vm을 사용 하 여 리소스 VM 크기 집합을 보십시오. 이 여기에 하는 예제 서식 파일 toodo: https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing – tooedit hello 템플릿 toomake hello 갖도록 할 수 크기에 크기 집합에서 사용 하는 컴퓨터 동일 합니다. 성공적으로 hello Vm 수를 수동으로 변경할 수 있습니다, 것을 알 수 hello 문제는 격리 된 tooautoscale 합니다.
+* 프로그램 Microsoft.Compute/virtualMachineScaleSet 확인 Microsoft.Insights의 및 리소스 hello [Azure 리소스 탐색기](https://resources.azure.com/)
   
-    이는 Azure Resource Manager 리소스의 상태를 보여 주는 필수적인 문제 해결 도구입니다. 구독을 클릭하고 문제를 해결하려는 리소스 그룹을 살펴봅니다. 계산 리소스 공급자 아래에서, 만든 VM 규모 집합을 살펴보고 배포 상태를 보여 주는 인스턴스 보기를 확인합니다. 또한 VM 규모 집합에서 VM 인스턴스 보기를 확인합니다. 그런 다음 Microsoft.Insights 리소스 공급자로 이동하여 자동 크기 조정 규칙이 올바른지 확인합니다.
-* 진단 확장이 작동 중이고 성능 데이터를 내보내고 있나요?
+    이 필수적인는 Azure 리소스 관리자 리소스의 상태를 hello 보여 주는 도구 문제 해결 합니다. 구독에 대해 클릭 하 고 해결 하는 리소스 그룹 hello에 확인 합니다. Hello 계산 리소스 공급자에서 만든 VM 크기 집합 hello를 확인 하 고 hello 표시 되는 인스턴스 보기를 확인 hello 배포의 상태입니다. 또한 Vm의 VM 크기 집합 hello hello 인스턴스 보기를 확인 합니다. 그런 다음 hello Microsoft.Insights 리소스 공급자를 이동 하 고 hello 자동 크기 조정 규칙 제대로 표시를 확인 합니다.
+* Hello 진단 확장 작업 및 성능 데이터를 표시 하 고 있습니까?
   
-    **업데이트:** 더 이상 진단 확장을 설치하지 않아도 되는 호스트 기반 메트릭 파이프라인을 사용하도록 Azure 자동 크기 조정 기능이 향상되었습니다. 즉, 새 파이프라인을 사용하여 자동 크기 조정 응용 프로그램을 만들 경우 다음 단락의 내용은 더 이상 적용되지 않습니다. 호스트 파이프라인을 사용하도록 변환된 Azure 템플릿의 예제는 https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale입니다. 
+    **업데이트:** Azure 자동 크기 조정 된 향상 된 toouse 호스트 기반 메트릭 파이프라인 설치 진단 확장 toobe 더 이상 필요 합니다. 즉, hello 다음 몇 단락 hello 새 파이프라인을 사용 하 여 자동 크기 조정 응용 프로그램을 만들 경우 더 이상 적용 합니다. 변환 된 toouse hello 호스트 파이프라인 된 있는 Azure 서식 파일의 예는: https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale 합니다. 
   
-    자동 크기 조정을 위한 호스트 기반 메트릭을 사용하는 것이 좋은 이유는 다음과 같습니다.
+    자동 크기 조정에 대 한 호스트 기반 메트릭을 사용 하는 이유를 수행 하는 hello에 대 한는 것이 좋습니다.
   
-  * 진단 확장을 설치하지 않아도 되기 때문에 이동하는 부분이 더 적습니다.
-  * 템플릿이 간단합니다. 기존 확장 집합 템플릿에 insights 자동 크기 조정 규칙만 추가됩니다.
+  * 없는 진단 확장으로 작동 되는 적은 부분이 toobe 설치 해야 합니다.
+  * 템플릿이 간단합니다. Insights 자동 크기 조정 규칙 tooan 기존 크기 집합 템플릿에 추가 됩니다.
   * 새 VM에 대한 더 신뢰할 수 있는 보고 및 빠른 시작이 가능합니다.
     
-    진단 확장을 계속 사용하려는 유일한 이유는 메모리 진단 보고/크기 조정이 필요한 경우입니다. 호스트 기반 메트릭은 메모리를 보고하지 않습니다.
+    hello만 이유 tookeep 진단 확장을 사용 하는 것 메모리 진단 보고/크기 조정 해야 하는 경우입니다. 호스트 기반 메트릭은 메모리를 보고하지 않습니다.
     
-    이 점을 고려하여 자동 크기 조정을 위한 진단 확장을 여전히 사용하는 경우 이 문서의 나머지 부분만을 수행합니다.
+    이 점을 염두에서에 자동 크기 조정에 대 한 진단 확장을 여전히 사용 되는 경우이 문서의 나머지 부분 hello를 따라만 합니다.
     
-    Azure Resource Manager에서 자동 크기 조정은 진단 확장이라는 VM 확장을 통해 작동할 수 있지만 필수는 아닙니다. 이 방법은 템플릿에서 정의한 저장소 계정으로 성능 데이터를 내보냅니다. 그런 다음 Azure Monitor 서비스에 의해 이 데이터가 집계됩니다.
+    Azure 리소스 관리자의 자동 크기 조정 작업 수 (하지만 더 이상) hello 진단 확장을 호출 하는 VM 확장을 사용 하 여 합니다. 성능 데이터 tooa 저장소 계정을 hello 서식 파일에서 정의 내보냅니다. 이 데이터는 hello Azure 모니터 서비스에서 다음 집계 됩니다.
     
-    Insights 서비스가 VM에서 데이터를 읽을 수 없는 경우 사용자에게 메일을 보낸다고 가정합니다. 예를 들어 VM이 다운된 경우 Azure 계정을 만들 때 지정한 메일을 확인합니다.
+    Toosend 예상한 hello Insights 서비스는 hello Vm에서에서 데이터를 읽을 수 없습니다, 하는 경우 (hello Azure 계정을 만들 때 지정한 하나 hello) 사용자의 전자 메일 확인 수 있는 전자 메일-예를 들어 hello Vm 다운 된 경우.
     
-    직접 이동하여 데이터를 살펴볼 수도 있습니다. 클라우드 탐색기를 사용하여 Azure 저장소 계정을 찾습니다. 예를 들어 [Visual Studio 클라우드 탐색기](https://visualstudiogallery.msdn.microsoft.com/aaef6e67-4d99-40bc-aacf-662237db85a2)를 사용하여 로그인하고 사용 중인 Azure 구독과 배포 템플릿의 진단 확장 정의에서 참조된 진단 저장소 계정을 선택합니다.
+    이동 하 고 hello 데이터를 직접 확인할 수도 있습니다. Hello 클라우드 탐색기를 사용 하 여 Azure 저장소 계정 확인 합니다. 예를 들어 hello를 사용 하 여 [Visual Studio 클라우드 탐색기](https://visualstudiogallery.msdn.microsoft.com/aaef6e67-4d99-40bc-aacf-662237db85a2), 로그인 및 hello를 사용 하는 Azure 구독을 선택 하 고 hello 진단 저장소 계정 이름을 참조할 hello 배포에 진단 확장 정의 서식 파일...
     
     ![Cloud Explorer][explorer]
     
-    각 VM의 데이터가 저장되는 여러 테이블이 표시됩니다. 예를 들어 Linux 및 CPU 메트릭에서 가장 최근 행을 살펴봅니다. Visual Studio 클라우드 탐색기는 쿼리 언어를 지원하므로 “Timestamp gt datetime’2016-02-02T21:20:00Z’”와 같은 쿼리를 실행하여 가장 최근의 이벤트를 가져옵니다(가정 시간은 UTC 기준). 확인한 데이터가 설정한 크기 조정 규칙과 일치하나요? 아래 예제에서는 컴퓨터 20에 대한 CPU가 지난 5분 동안 100%로 증가하기 시작했습니다.
+    여기에 hello 각 VM에서 저장 되는 데이터 테이블의 여러를 표시 됩니다. Linux 및 예를 들어 CPU 메트릭 hello 걸립니다, hello 가장 최신 행 확인 합니다. hello Visual Studio 클라우드 탐색기와 같은 쿼리를 실행할 수 있도록 하는 쿼리 언어 지원 "타임 스탬프 gt datetime'2016-02-02T21:20:00Z'" toomake hello 가장 최근 이벤트 (utc에서 시간은 라고 가정)를 얻었는지 확인 합니다. 가 있는 toohello 해당에 표시 하는 hello 데이터를 설정 하는 규칙 확장? Hello 아래 예제에서는 hello CPU 20 컴퓨터에 대 한 최근 5 분 동안 hello에 따라 too100% 증가 시작...
     
     ![저장소 테이블][tables]
     
-    데이터가 없는 경우 VM에서 실행 중인 진단 확장에 문제가 있음을 의미합니다. 데이터가 있는 경우에는 크기 조정 규칙 또는 Insights 서비스에 문제가 있음을 의미합니다. [Azure 상태](https://azure.microsoft.com/status/)를 확인합니다.
+    Hello 데이터 없으면 hello 문제 hello 진단 확장 hello Vm에서에서 실행 되는 의미 합니다. Hello 데이터 중지 되지 않은 경우, 크기 조정 규칙을 사용 하거나 hello Insights 서비스와 어느 문제가 의미 합니다. [Azure 상태](https://azure.microsoft.com/status/)를 확인합니다.
     
-    이러한 단계를 수행한 후 여전히 자동 크기 조정 문제가 발생하는 경우 [MSDN](https://social.msdn.microsoft.com/forums/azure/home?category=windowsazureplatform%2Cazuremarketplace%2Cwindowsazureplatformctp)의 포럼 또는 [스택 오버플로](http://stackoverflow.com/questions/tagged/azure)를 확인하거나 지원을 요청할 수 있습니다. 템플릿 및 성능 데이터 보기를 공유하도록 준비합니다.
+    자동 크기 조정 문제가 발생 하는 경우 이러한 단계를 방문한 후 hello 포럼을 시도할 수 있습니다 [MSDN](https://social.msdn.microsoft.com/forums/azure/home?category=windowsazureplatform%2Cazuremarketplace%2Cwindowsazureplatformctp), 또는 [스택 오버플로](http://stackoverflow.com/questions/tagged/azure), 또는 지원 통화를 로그 합니다. 준비 tooshare hello 템플릿과 hello 성능 데이터의 뷰 수입니다.
 
 [audit]: ./media/virtual-machine-scale-sets-troubleshoot/image3.png
 [explorer]: ./media/virtual-machine-scale-sets-troubleshoot/image1.png

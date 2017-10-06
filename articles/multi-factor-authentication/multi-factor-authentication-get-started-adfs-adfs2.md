@@ -1,6 +1,6 @@
 ---
-title: "AD FS 2.0을 포함하는 Azure MFA 서버 사용 | Microsoft Docs"
-description: "Azure MFA 및 AD FS 2.0 시작 방법을 설명하는 Azure Multi-Factor Authentication 페이지입니다."
+title: "Azure MFA 서버 AD fs 2.0 aaaUse | Microsoft Docs"
+description: "Tooget Azure MFA 및 AD FS 2.0 시작 하는 방법을 설명 하는 hello Azure Multi-factor authentication 페이지입니다."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,104 +15,104 @@ ms.date: 06/14/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: H1Hack27Feb2017, it-pro
-ms.openlocfilehash: a05219398aefa158321ae63934743dd43841e33f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15011a94ca69dc6e51aa3edf74f5db6cd44d697a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-azure-multi-factor-authentication-server-to-work-with-ad-fs-20"></a>AD FS 2.0과 작동하도록 Azure Multi-Factor Authentication 서버 구성
-이 문서는 Azure Active Directory와 페더레이션되는 조직에 대해 온-프레미스 또는 클라우드에서 리소스의 보안을 유지하려고 작성되었습니다. 중요한 끝점에 대해 2단계 확인을 트리거할 수 있도록 Azure Multi-factor Authentication 서버를 사용하고 AD FS를 사용하도록 구성하여 리소스를 보호합니다.
+# <a name="configure-azure-multi-factor-authentication-server-toowork-with-ad-fs-20"></a>Azure Multi-factor Authentication 서버 toowork AD fs 2.0 구성
+이 문서는 hello 클라우드 또는 Azure Active Directory와 페더레이션 하는 온-프레미스 toosecure 리소스는 조직에 있습니다. Hello Azure Multi-factor Authentication 서버를 사용 하 고 구성 하 여 toowork AD FS와 우선 순위가 높은 끝점에 대해 2 단계 인증 트리거될 수 있도록 리소스를 보호 합니다.
 
-이 문서에서는 AD FS 2.0과 함께 Azure Multi-Factor Authentication 서버를 사용하는 방법을 소개합니다. AD FS에 대한 자세한 내용은 [Windows Server 2012 R2 AD FS와 Azure Multi-factor Authentication 서버를 사용하여 클라우드 및 온-프레미스 리소스 보안 유지](multi-factor-authentication-get-started-adfs-w2k12.md)를 참조하세요.
+이 설명서에서는 Azure Multi-factor Authentication 서버 hello를 사용 하 여 AD fs 2.0에 설명 합니다. AD FS에 대한 자세한 내용은 [Windows Server 2012 R2 AD FS와 Azure Multi-factor Authentication 서버를 사용하여 클라우드 및 온-프레미스 리소스 보안 유지](multi-factor-authentication-get-started-adfs-w2k12.md)를 참조하세요.
 
 ## <a name="secure-ad-fs-20-with-a-proxy"></a>프록시로 AD FS 2.0 보안 유지
-프록시로 AD FS 2.0 보안을 유지하려면 AD FS 프록시 서버에 Azure Multi-Factor Authentication 서버를 설치합니다.
+AD FS 2.0 프록시 toosecure hello AD FS 프록시 서버에 hello Azure Multi-factor Authentication 서버를 설치 합니다.
 
 ### <a name="configure-iis-authentication"></a>IIS 인증 구성
-1. Azure Multi-Factor Authentication 서버에서 왼쪽 메뉴에 있는 **IIS 인증** 아이콘을 클릭합니다.
-2. **양식 기반** 탭을 클릭합니다.
+1. Azure Multi-factor Authentication 서버 hello 클릭 hello **IIS 인증** hello 왼쪽된 메뉴에서 아이콘입니다.
+2. Hello 클릭 **양식 기반** 탭 합니다.
 3. **추가**를 클릭합니다.
 
    <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/setup1.png)</center>
 
-4. 사용자 이름, 암호 및 도메인 변수를 자동으로 검색하려면 양식 기반 웹 사이트 자동 구성 대화 상자 내에서 로그인 URL(예: https://sso.contoso.com/adfs/ls)을 입력하고 **확인**을 클릭합니다.
-5. 모든 사용자를 서버로 가져왔거나 가져올 예정이고 2단계 확인을 적용하는 경우 **Azure Multi-Factor Authentication 사용자 일치 필요** 확인란을 선택합니다. 많은 수의 사용자를 서버에 아직 가져오지 않았거나 2단계 확인에서 제외할 예정이면 이 확인란을 선택 취소합니다.
-6. 페이지 변수를 자동으로 검색할 수 없는 경우 **수동으로 지정...**을 클릭합니다. 양식 기반 웹 사이트 자동 구성 대화 상자의 단추.
-7. 양식 기반 웹 사이트 추가 대화 상자에서 URL 제출 필드에 AD FS 로그인 페이지의 URL(예: https://sso.contoso.com/adfs/ls)을 입력하고 응용 프로그램 이름을 입력합니다(선택 사항). 응용 프로그램 이름이 Azure Multi-Factor Authentication 보고서에 나타나며 SMS 또는 모바일 앱 인증 메시지 내에 표시될 수 있습니다.
-8. 요청 형식을 **POST 또는 GET**으로 설정합니다.
-9. Username 변수(ctl00$ContentPlaceHolder1$UsernameTextBox) 및 Password 변수(ctl00$ContentPlaceHolder1$PasswordTextBox)를 입력합니다. 양식 기반 로그인 페이지에 도메인 텍스트 상자가 표시되면 Domain 변수도 입력합니다. 로그인 페이지에서 입력 상자의 이름을 찾으려면 웹 브라우저에서 로그인 페이지로 이동하고 해당 페이지를 마우스 오른쪽 단추로 클릭하여 **소스 보기**를 선택합니다.
-10. 모든 사용자를 서버로 가져왔거나 가져올 예정이고 2단계 확인을 적용하는 경우 **Azure Multi-Factor Authentication 사용자 일치 필요** 확인란을 선택합니다. 많은 수의 사용자를 서버에 아직 가져오지 않았거나 2단계 확인에서 제외할 예정이면 이 확인란을 선택 취소합니다.
+4. toodetect 사용자 이름, 암호 및 도메인 변수에서 자동으로 hello 양식 기반 웹 사이트 대화 상자 내에서 (예: https://sso.contoso.com/adfs/ls) hello 로그인 URL을 입력 하 고 클릭 **확인**합니다.
+5. Hello 확인 **Azure Multi-factor Authentication 사용자 일치** 하면 모든 사용자가 낮거나 서버 hello 및 주체 tootwo 단계 확인으로 가져올 수 있습니다. 많은 수의 사용자가을 아직 가져오지 서버 hello에 2 단계 인증에서 제외 될 경우, hello 상자를 선택 합니다.
+6. Hello 페이지 변수를 자동으로 검색할 수 없는 경우 클릭 하 여 hello **수동으로 지정...** hello 양식 기반 웹 사이트 대화 상자에서 단추입니다.
+7. Hello 양식 기반 웹 사이트 대화 상자에서 hello URL toohello AD FS 로그인 페이지 (예: https://sso.contoso.com/adfs/ls) hello 제출 URL 필드에 입력 하 고 응용 프로그램 이름 (옵션)을 입력 합니다. hello 응용 프로그램 이름은 Azure Multi-factor Authentication 보고서에 표시 되며 SMS 또는 모바일 앱 인증 메시지 내에서 표시 될 수 있습니다.
+8. Hello 요청 형식이 너무 설정**POST 또는 GET**합니다.
+9. Hello 사용자 이름 변수 (ctl00$ ContentPlaceHolder1$ UsernameTextBox) 및 암호 변수 (ctl00$ ContentPlaceHolder1$ PasswordTextBox)를 입력 합니다. 양식 기반 로그인 페이지에 도메인 텍스트 상자가 나타나면 hello 도메인 변수도 입력 합니다. hello 페이지 및 선택 hello 로그인 페이지에서 웹 브라우저에서 로그인 페이지를 이동 toohello hello 입력된 상자 toofind hello 이름을 마우스 오른쪽 단추로 클릭 **소스 보기**합니다.
+10. Hello 확인 **Azure Multi-factor Authentication 사용자 일치** 하면 모든 사용자가 낮거나 서버 hello 및 주체 tootwo 단계 확인으로 가져올 수 있습니다. 많은 수의 사용자가을 아직 가져오지 서버 hello에 2 단계 인증에서 제외 될 경우, hello 상자를 선택 합니다.
     <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/manual.png)</center>
-11. **고급...**을 클릭하여 고급 설정을 확인합니다. 구성할 수 있는 설정은 다음과 같습니다.
+11. **고급...**을 클릭하여 tooreview 고급 설정 합니다. 구성할 수 있는 설정은 다음과 같습니다.
 
     - 사용자 지정 거부 페이지 파일 선택
-    - 쿠키를 사용하는 웹 사이트로 성공한 인증 캐시
-    - 기본 자격 증명을 인증하는 방법 선택
+    - 캐시 성공한 인증 toohello 웹 사이트를 쿠키를 사용 하 여
+    - Tooauthenticate 기본 자격 증명을 hello 하는 방법을 선택 합니다.
 
-12. AD FS 프록시 서버는 도메인에 연결될 가능성이 낮으므로 LDAP를 사용하여 사용자 가져오기 및 사전 인증을 위해 도메인 컨트롤러에 연결할 수 있습니다. 고급 양식 기반 웹 사이트 대화 상자에서 **기본 인증** 탭을 클릭하고 사전 인증 인증 유형에 대해 **LDAP 바인딩**을 선택합니다.
-13. 작업을 완료하면 **확인**을 클릭하여 양식 기반 웹 사이트 추가 대화 상자로 돌아갑니다.
-14. **확인**을 클릭하여 대화 상자를 닫습니다.
-15. URL 및 페이지 변수가 검색되거나 입력되면 양식 기반 패널에 웹 사이트 데이터가 표시됩니다.
-16. **네이티브 모듈** 탭을 클릭하고 서버, AD FS 프록시가 실행 중인 웹 사이트(예: "기본 웹 사이트") 또는 원하는 수준에서 IIS 플러그 인을 사용하도록 설정하기 위한 AD FS 프록시 응용 프로그램(예: "adfs" 아래의 "ls")을 선택합니다.
-17. 화면 위쪽에서 **IIS 인증 사용** 상자를 클릭합니다.
+12. Hello AD FS 프록시 서버는 가능성이 아니므로 toobe toohello 도메인에 가입, 사용자 가져오기 및 사전 인증에 대 한 LDAP tooconnect tooyour 도메인 컨트롤러를 사용할 수 있습니다. Hello 고급 양식 기반 웹 사이트 대화 상자에서 클릭 hello **기본 인증** 탭을 선택한 **LDAP 바인딩** hello 미리 인증 인증 유형에 대 한 합니다.
+13. 완료 되 면 **확인** tooreturn toohello 양식 기반 웹 사이트 대화 상자.
+14. 클릭 **확인** tooclose hello 대화 상자.
+15. URL을 한 번 hello 및 페이지 변수가 검색 또는 입력, hello 웹 사이트 데이터가 양식 기반 패널 hello에 표시 합니다.
+16. Hello 클릭 **네이티브 모듈** 탭 하 고 hello 서버 hello AD FS 프록시에서 (같은 "Default Web Site")를 실행 하는 hello 웹 사이트를 선택 또는 AD FS 프록시 응용 프로그램 (예: "ls"에서 "adfs") tooenable hello IIS hello에 플러그 인을 환영 원하는 수준입니다.
+17. Hello 클릭 **사용 하도록 설정 하는 IIS 인증** hello hello 화면 위쪽에 상자입니다.
 
-이제 IIS 인증이 사용되도록 설정되었습니다.
+이제 hello IIS 인증 사용 하도록 설정 합니다.
 
 ### <a name="configure-directory-integration"></a>디렉터리 통합 구성
-IIS 인증을 활성화했지만 LDAP를 통해 AD(Active Directory)에 대한 사전 인증을 수행하려면 도메인 컨트롤러에 대한 LDAP 연결을 구성해야 합니다.
+IIS 인증을 사용 하도록 설정 되지만 tooperform hello 사전 인증 tooyour AD (Active Directory)를 구성 해야 하는 LDAP 통해 hello LDAP 연결 toohello 도메인 컨트롤러.
 
-1. **디렉터리 통합** 아이콘을 클릭합니다.
-2. 설정 탭에서 **특정 LDAP 구성 사용** 라디오 단추를 선택합니다.
+1. Hello 클릭 **디렉터리 통합** 아이콘입니다.
+2. Hello 설정 탭 선택 hello **특정 LDAP 구성 사용** 라디오 단추입니다.
 
    <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/ldap1.png)</center>
 
 3. **편집**을 클릭합니다.
-4. LDAP 구성 편집 대화 상자에서 AD 도메인 컨트롤러에 연결하는 데 필요한 정보를 필드에 입력합니다. 필드의 설명은 Azure Multi-Factor Authentication 서버 도움말 파일에도 포함되어 있습니다.
-5. **테스트** 단추를 클릭하여 LDAP 연결을 테스트합니다.
+4. Hello LDAP 구성 편집 대화 상자에서 hello 정보 필요한 tooconnect toohello AD 도메인 컨트롤러와 hello 필드를 채웁니다. Hello 필드 hello Azure Multi-factor Authentication 서버 도움말 파일에 포함 됩니다.
+5. Hello를 클릭 하 여 hello LDAP 연결 테스트 **테스트** 단추입니다.
 
    <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/ldap2.png)</center>
 
-6. LDAP 연결 테스트가 성공한 경우 **확인**을 클릭합니다.
+6. Hello LDAP 연결 테스트가 성공 하면 클릭 **확인**합니다.
 
 ### <a name="configure-company-settings"></a>회사 설정 구성
-1. 다음으로 **회사 설정** 아이콘을 클릭하고 **사용자 이름 확인** 탭을 선택합니다.
-2. **사용자 이름 일치에 LDAP 고유 식별자 특성 사용** 라디오 단추를 선택합니다.
-3. 사용자가 "domain\username" 형식으로 사용자 이름을 입력하는 경우 서버는 LDAP 쿼리를 만들 때 사용자 이름에서 도메인을 제거할 수 있어야 합니다. 이 작업은 레지스트리 설정을 통해 수행할 수 있습니다.
-4. 64비트 서버에서 레지스트리 편집기를 열고 HKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Positive Networks/PhoneFactor로 이동합니다. 32비트 서버에서는 경로에 "Wow6432Node"를 지정합니다. "UsernameCxz_stripPrefixDomain"이라는 DWORD 레지스트리 키를 만들고 값을 1로 설정합니다. 이제 Azure Multi-Factor Authentication을 통해 AD FS 프록시 보안이 유지됩니다.
+1. 다음으로 hello 클릭 **회사 설정** 아이콘과 선택 hello **사용자 이름 확인** 탭 합니다.
+2. 선택 hello **LDAP 고유 식별자 특성 사용 사용자 이름 일치에** 라디오 단추입니다.
+3. "Domain\username" 형식으로 사용자 이름을 입력 하는 사용자가 hello LDAP 쿼리를 만들 때 서버 hello toobe 수 toostrip hello 도메인 hello username 해제 해야 합니다. 이 작업은 레지스트리 설정을 통해 수행할 수 있습니다.
+4. Hello 레지스트리 편집기를 열고 tooHKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Positive 이동 네트워크/64 비트 서버에서 PhoneFactor 합니다. 32 비트 서버에 있는 경우 hello 경로에서 "Wow6432Node" hello를 사용 합니다. 만들 DWORD 레지스트리 키 "usernamecxz_stripprefixdomain" 고 hello 값 too1를 설정 합니다. 이제 azure Multi-factor Authentication이 hello AD FS 프록시를 보호 합니다.
 
-Active Directory에서 서버로 사용자를 가져왔는지 확인합니다. 해당 위치에서 웹 사이트에 로그인할 때 2단계 확인이 필요하지 않도록 내부 IP 주소를 허용 목록에 추가하려면 [신뢰할 수 있는 IP 섹션](#trusted-ips)을 참조하세요.
+사용자가 가져온 것 Active Directory에서 서버 hello에 확인 합니다. Hello 참조 [신뢰할 수 있는 Ip 섹션](#trusted-ips) 경우 원하는 toowhitelist 내부 IP 주소를 해당 위치에서 toohello 웹 사이트에 로그인 할 때 2 단계 인증 필요 하지 않습니다.
 
 <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/reg.png)</center>
 
 ## <a name="ad-fs-20-direct-without-a-proxy"></a>프록시 없이 AD FS 2.0 직접
-AD FS 프록시를 사용하지 않는 경우 AD FS의 보안을 유지할 수 있습니다. AD FS 서버에 Azure Multi-Factor Authentication 서버를 설치하고 다음 단계에 따라 서버를 구성합니다.
+Hello AD FS 프록시를 사용 하지 않으면 AD FS를 보호할 수 있습니다. Azure Multi-factor Authentication 서버 hello hello AD FS 서버에 설치 하 고 단계를 수행 하는 hello 당 서버 hello를 구성 합니다.
 
-1. Azure Multi-Factor Authentication 서버의 왼쪽 메뉴에서 **IIS 인증** 아이콘을 클릭합니다.
-2. **HTTP** 탭을 클릭합니다.
+1. Azure Multi-factor Authentication 서버 hello 내 hello 클릭 **IIS 인증** hello 왼쪽된 메뉴에서 아이콘입니다.
+2. Hello 클릭 **HTTP** 탭 합니다.
 3. **추가**를 클릭합니다.
-4. 기준 URL 추가 대화 상자에서 기준 URL 필드에 HTTP 인증이 수행되는 AD FS 웹 사이트의 URL(예: https://sso.domain.com/adfs/ls/auth/integrated)을 입력합니다. 그런 다음 응용 프로그램 이름을 입력합니다(선택 사항). 응용 프로그램 이름이 Azure Multi-Factor Authentication 보고서에 나타나며 SMS 또는 모바일 앱 인증 메시지 내에 표시될 수 있습니다.
-5. 원하는 경우 유휴 시간 제한 및 최대 세션 시간을 조정합니다.
-6. 모든 사용자를 서버로 가져왔거나 가져올 예정이고 2단계 확인을 적용하는 경우 **Azure Multi-Factor Authentication 사용자 일치 필요** 확인란을 선택합니다. 많은 수의 사용자를 서버에 아직 가져오지 않았거나 2단계 확인에서 제외할 예정이면 이 확인란을 선택 취소합니다.
-7. 원하는 경우 쿠키 캐시 상자를 선택합니다.
+4. Hello 기준 URL 추가 대화 상자에서 AD FS 웹 사이트 (예: https://sso.domain.com/adfs/ls/auth/integrated) hello 기본 URL 필드에 HTTP 인증을 수행 하는 위치 hello에 대 한 hello URL을 입력 합니다. 그런 다음 응용 프로그램 이름을 입력합니다(선택 사항). hello 응용 프로그램 이름은 Azure Multi-factor Authentication 보고서에 표시 되며 SMS 또는 모바일 앱 인증 메시지 내에서 표시 될 수 있습니다.
+5. 필요한 경우 조정 hello 유휴 시간 제한 및 최대 세션 횟수입니다.
+6. Hello 확인 **Azure Multi-factor Authentication 사용자 일치** 하면 모든 사용자가 낮거나 서버 hello 및 주체 tootwo 단계 확인으로 가져올 수 있습니다. 많은 수의 사용자가을 아직 가져오지 서버 hello에 2 단계 인증에서 제외 될 경우, hello 상자를 선택 합니다.
+7. 원하는 경우 쿠키 캐시 상자 hello를 확인 합니다.
 
    <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/noproxy.png)</center>
 
 8. **확인**을 클릭합니다.
-9. **네이티브 모듈** 탭을 클릭하고 서버, 웹 사이트(예: "기본 웹 사이트") 또는 AD FS 응용 프로그램(예: "adfs"의 "ls")을 선택하여 원하는 수준에서 IIS 플러그 인을 사용하도록 설정합니다.
-10. 화면 위쪽에서 **IIS 인증 사용** 상자를 클릭합니다.
+9. Hello 클릭 **네이티브 모듈** 탭 및 선택 hello 서버, hello 웹 사이트 (같은 "Default Web Site"), 또는 hello AD FS 응용 프로그램 (예: "ls"에서 "adfs") tooenable hello IIS 플러그 인 hello에 필요한 수준입니다.
+10. Hello 클릭 **사용 하도록 설정 하는 IIS 인증** hello hello 화면 위쪽에 상자입니다.
 
 이제 Azure Multi-Factor Authentication을 통해 AD FS 보안이 유지됩니다.
 
-Active Directory에서 서버로 사용자를 가져왔는지 확인합니다. 해당 위치에서 웹 사이트에 로그인할 때 2단계 확인이 필요하지 않도록 내부 IP 주소를 허용 목록에 추가하려면 [신뢰할 수 있는 IP] 섹션을 참조하세요.
+사용자가 가져온 것 Active Directory에서 서버 hello에 확인 합니다. 참조 hello toowhitelist 내부 IP 원하는 경우 신뢰할 수 있는 Ip 섹션 주소를 해당 위치에서 toohello 웹 사이트에 로그인 할 때 2 단계 인증 필요 하지 않습니다.
 
 ## <a name="trusted-ips"></a>신뢰할 수 있는 IP
-신뢰할 수 있는 IP를 사용하면 특정 IP 주소 또는 서브넷에서 시작된 웹 사이트 요청에 대한 Azure Multi-Factor Authentication을 바이패스할 수 있습니다. 예를 들어 사용자가 사무실에서 로그인할 경우 2단계 인증에서 제외하려고 합니다. 이를 위해 사무실 서브넷을 신뢰할 수 있는 IP 항목으로 지정할 수 있습니다.
+신뢰할 수 있는 Ip를 사용 하면 특정 IP 주소나 서브넷에서 생성 되는 웹 사이트 요청에 대 한 Azure Multi-factor Authentication 사용자가 toobypass 합니다. 예를 들어 hello 사무실에서 로그인 할 때에 2 단계 인증에서 tooexempt 사용자 들이 필요할 수 있습니다. 이 경우 신뢰할 수 있는 Ip 항목으로 hello office 서브넷을 지정 합니다.
 
-### <a name="to-configure-trusted-ips"></a>신뢰할 수 있는 IP를 구성하려면
-1. IIS 인증 섹션에서 **신뢰할 수 있는 IP** 탭을 클릭합니다.
-2. **추가...**를 클릭합니다. 단추를 선택합니다.
-3. 신뢰할 수 있는 IP 추가 대화 상자가 나타나면 **단일 IP**, **IP 범위** 또는 **서브넷** 라디오 단추를 선택합니다.
-4. IP 주소, IP 주소 범위 또는 허용 목록에 추가할 서브넷을 입력합니다. 서브넷을 입력하는 경우 해당 네트워크 마스크를 선택하고 **확인** 단추를 클릭합니다. 이제 신뢰할 수 있는 IP가 추가되었습니다.
+### <a name="tooconfigure-trusted-ips"></a>tooconfigure 신뢰할 수 있는 Ip
+1. Hello IIS 인증 섹션에서에서 클릭 hello **신뢰할 수 있는 Ip** 탭 합니다.
+2. Hello 클릭 **추가 중...** 단추를 선택합니다.
+3. Hello 신뢰할 수 있는 Ip 추가 대화 상자가 나타나면 hello 중 하나를 선택 **단일 IP**, **IP 범위**, 또는 **서브넷** 라디오 단추입니다.
+4. Hello IP 주소, IP 주소 범위, 또는 허용 목록 이어야 하는 서브넷을 입력 합니다. 선택에 적절 한 네트워크 마스크 하 고 hello hello 서브넷을 입력 하는 경우 **확인** 단추입니다. hello IP이 추가 되어 신뢰할 수 있습니다.
 
 <center>![설정](./media/multi-factor-authentication-get-started-adfs-adfs2/trusted.png)</center>

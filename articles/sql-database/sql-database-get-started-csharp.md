@@ -1,6 +1,6 @@
 ---
 title: "C#: Azure SQL Database 시작 | Microsoft Docs"
-description: "SQL 및 C# 앱 개발을 위해 SQL 데이터베이스를 시도하고 .NET용 SQL 데이터베이스 라이브러리를 사용하여 C#으로 Azure SQL 데이터베이스를 만듭니다."
+description: "SQL 및 C# 앱 개발을 위한 SQL 데이터베이스로 시도 하 고 C# for.net hello SQL 데이터베이스 라이브러리를 사용 하 여 Azure SQL 데이터베이스를 만듭니다."
 keywords: "sql 시도, sql c#"
 services: sql-database
 documentationcenter: 
@@ -16,53 +16,53 @@ ms.tgt_pltfrm: csharp
 ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
-ms.openlocfilehash: c8a2703da1ee3687f8d134e768dd8d31dc4f316b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e880ebabd53546bea37a13186b0f1a13db35b684
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-c-to-create-a-sql-database-with-the-sql-database-library-for-net"></a>C#을 사용하여 .NET용 SQL Database 라이브러리로 SQL 데이터베이스 만들기
+# <a name="use-c-toocreate-a-sql-database-with-hello-sql-database-library-for-net"></a>C# toocreate SQL 데이터베이스를 사용 하 여.NET에 대 한 SQL 데이터베이스 라이브러리 hello로
 
-C#을 사용하여 [.NET용 Microsoft Azure SQL 관리 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)로 Azure SQL Database를 만드는 방법에 대해 알아봅니다. 이 문서에서는 SQL 및 C#으로 단일 데이터베이스를 만드는 방법을 설명합니다. 탄력적 풀을 만들려면 [탄력적 풀 만들기](sql-database-elastic-pool-manage-csharp.md)를 참조하세요.
+Hello로 toouse C# toocreate Azure SQL 데이터베이스 하는 방법에 대해 알아봅니다 [.NET 용 Microsoft Azure SQL 관리 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)합니다. 이 문서에서는 toocreate 단일 데이터베이스 방법 SQL 및 C#으로 설명 합니다. 탄력적 풀 toocreate, 참조 [탄력적 풀을 만들](sql-database-elastic-pool-manage-csharp.md)합니다.
 
-.NET용 Azure SQL Database 관리 라이브러리는 [Resource Manager 기반 SQL Database REST API](https://docs.microsoft.com/rest/api/sql/)를 래핑하는 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 기반 API를 제공합니다.
-
-> [!NOTE]
-> SQL Database의 여러 새로운 기능은 [Azure Resource Manager 배포 모델](../azure-resource-manager/resource-group-overview.md)을 사용할 때 지원되므로 최신 **.NET용 SQL Database 관리 라이브러리([문서](https://docs.microsoft.com/dotnet/api/overview/azure/sql?view=azure-dotnet) | [NuGet 패키지](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql))**를 사용해야 합니다. 이전 [클래식 배포 모델 기반 라이브러리](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)가 이전 버전과만 호환되므로 최신 Resource Manager 기반 라이브러리를 사용하는 것이 좋습니다.
-> 
-> 
-
-이 문서의 단계를 완료하려면 다음이 필요합니다.
-
-* Azure 구독. Azure 구독이 필요할 경우 이 페이지 위쪽에서 **무료 계정** 을 클릭하고 되돌아와 이 문서를 완료합니다.
-* 있습니다. Visual Studio의 무료 버전은 [Visual Studio 다운로드](https://www.visualstudio.com/downloads/download-visual-studio-vs) 페이지를 참조하세요.
+.NET 용 Azure SQL 데이터베이스 관리 라이브러리 hello 제공는 [Azure 리소스 관리자](../azure-resource-manager/resource-group-overview.md)-hello를 래핑하는 API 기반 [SQL 데이터베이스 REST API 리소스 관리자 기반](https://docs.microsoft.com/rest/api/sql/)합니다.
 
 > [!NOTE]
-> 이 문서에서는 비어 있는 새 SQL Database를 만듭니다. 다음 샘플에서 *CreateOrUpdateDatabase(...)* 메서드를 수정하여 데이터베이스를 복사하고 데이터베이스의 크기를 조정하며 풀에서 데이터베이스를 만듭니다.  
+> SQL 데이터베이스의 여러 가지 새로운 기능이 hello를 사용 하는 경우에 지원 됩니다 [Azure 리소스 관리자 배포 모델](../azure-resource-manager/resource-group-overview.md)이므로 항상 사용 해야 hello 최신 **.NET 용 Azure SQL 데이터베이스 관리 라이브러리 ([docs](https://docs.microsoft.com/dotnet/api/overview/azure/sql?view=azure-dotnet) | [NuGet 패키지](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql))**합니다. 이전 hello [클래식 배포 모델 기반 라이브러리](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql) 하므로 hello 최신 리소스 관리자 기반 라이브러리를 사용 하는 것이 좋습니다 이전 버전과 호환성 으로만 지원 됩니다.
+> 
 > 
 
-## <a name="create-a-console-app-and-install-the-required-libraries"></a>콘솔 앱 만들기 및 필요한 라이브러리 설치
+이 문서의 toocomplete hello 단계 hello 다음이 필요합니다.
+
+* Azure 구독. Azure 구독을 단순히 필요 하면 클릭 **무료 계정을** 이 hello 위쪽에 페이지를 선택한 후에 다시 시도 toofinish이이 문서입니다.
+* 있습니다. Visual Studio의 무료 복사본을 hello 참조 [Visual Studio 다운로드](https://www.visualstudio.com/downloads/download-visual-studio-vs) 페이지.
+
+> [!NOTE]
+> 이 문서에서는 비어 있는 새 SQL Database를 만듭니다. Hello 수정 *CreateOrUpdateDatabase(...)*  메서드 예제 toocopy 데이터베이스 다음 hello, 데이터베이스의 크기를 조정, 등 풀에 데이터베이스를 만듭니다.  
+> 
+
+## <a name="create-a-console-app-and-install-hello-required-libraries"></a>콘솔 응용 프로그램을 만들고 필요한 hello 라이브러리 설치
 1. Visual Studio를 시작합니다.
 2. **파일** > **새로 만들기** > **프로젝트**를 클릭합니다.
 3. C# **콘솔 응용 프로그램** 을 만들고 이름을 *SqlDbConsoleApp*
 
-C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.nuget.org/Consume/Package-Manager-Console)을 사용하여 필요한 관리 라이브러리를 로드합니다.
+C#, 부하 hello와 SQL 데이터베이스 toocreate 필요한 관리 라이브러리 (hello를 사용 하 여 [패키지 관리자 콘솔](http://docs.nuget.org/Consume/Package-Manager-Console)):
 
 1. **도구** > **NuGet 패키지 관리자** > **패키지 관리자 콘솔**을 클릭합니다.
-2. `Install-Package Microsoft.Azure.Management.Sql -Pre`을 입력하여 최신 [Microsoft Azure SQL 관리 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)를 설치합니다.
-3. `Install-Package Microsoft.Azure.Management.ResourceManager -Pre` 을 입력하여 [Microsoft Azure Resource Manager 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)를 설치합니다.
-4. `Install-Package Microsoft.Azure.Common.Authentication -Pre` 을 입력하여 [Microsoft Azure 공용 인증 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)를 설치합니다. 
+2. 형식 `Install-Package Microsoft.Azure.Management.Sql -Pre` tooinstall hello 최신 [Microsoft Azure SQL 관리 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)합니다.
+3. 형식 `Install-Package Microsoft.Azure.Management.ResourceManager -Pre` tooinstall hello [Microsoft Azure 리소스 관리자 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)합니다.
+4. 형식 `Install-Package Microsoft.Azure.Common.Authentication -Pre` tooinstall hello [Microsoft Azure 공용 인증 라이브러리](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)합니다. 
 
 > [!NOTE]
-> 이 문서의 예제는 각 API요청의 동기 양식을 사용하며 REST가 완료되어 기본 서비스를 호출할 때까지 차단합니다. 비동기 메서드를 사용할 수 있습니다.
+> hello이 문서의 예제에서는 동기 양식을 사용 각 API 요청 및 블록의 기본 서비스가 hello에 hello REST 호출 완료 될 때까지 합니다. 비동기 메서드를 사용할 수 있습니다.
 > 
 > 
 
 ## <a name="create-a-sql-database-server-firewall-rule-and-sql-database---c-example"></a>SQL Database 서버, 방화벽 규칙 및 SQL Database 만들기 - C# 예제
-다음 샘플은 리소스 그룹, 서버, 방화벽 규칙 및 SQL 데이터베이스를 만듭니다. `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 변수를 가져오려면 [리소스에 액세스하는 서비스 주체 만들기](#create-a-service-principal-to-access-resources)를 참조하세요.
+다음 예제는 hello 리소스 그룹, 서버, 방화벽 규칙 및 SQL 데이터베이스를 만듭니다. 참조, [서비스 보안 주체 tooaccess 리소스 만들기](#create-a-service-principal-to-access-resources) tooget hello `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 변수입니다.
 
-**Program.cs** 콘텐츠를 다음으로 바꾸고 `{variables}`를 앱 값(`{}`을 포함하지 않음)으로 업데이트합니다.
+Hello 내용 바꾸기 **Program.cs** hello 다음 업데이트 hello와 `{variables}` 응용 프로그램 값을 가진 (hello를 넣지 마십시오 `{}`).
 
     using Microsoft.Azure;
     using Microsoft.Azure.Management.ResourceManager;
@@ -83,7 +83,7 @@ C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.n
         static string _applicationId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}";
         static string _applicationSecret = "{your-password}";
 
-        // Create management clients for the Azure resources your app needs to work with.
+        // Create management clients for hello Azure resources your app needs toowork with.
         // This app works with Resource Groups, and Azure SQL Database.
         static ResourceManagementClient _resourceMgmtClient;
         static SqlManagementClient _sqlMgmtClient;
@@ -137,7 +137,7 @@ C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.n
             Console.WriteLine("Database: " + dbr.Id);
 
 
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Press any key toocontinue...");
             Console.ReadKey();
         }
 
@@ -178,7 +178,7 @@ C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.n
 
         static Database CreateOrUpdateDatabase(SqlManagementClient sqlMgmtClient, string resourceGroupName, string serverName, string databaseName, string databaseEdition, string databasePerfLevel)
         {
-            // Retrieve the server that will host this database
+            // Retrieve hello server that will host this database
             Server currentServer = sqlMgmtClient.Servers.Get(resourceGroupName, serverName);
 
             // Create a database: configure create or update parameters and properties explicitly
@@ -209,19 +209,19 @@ C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.n
 
 
 
-## <a name="create-a-service-principal-to-access-resources"></a>리소스에 액세스하는 서비스 주체 만들기
-다음 PowerShell 스크립트는 AD(Active Directory) 응용 프로그램 및 C# 앱을 인증해야 하는 서비스 주체를 만듭니다. 스크립트는 이전 C# 샘플에 필요한 값을 출력합니다. 자세한 내용은 [Azure PowerShell을 사용하여 리소스에 액세스하는 서비스 주체 만들기](../azure-resource-manager/resource-group-authenticate-service-principal.md)를 참조하세요.
+## <a name="create-a-service-principal-tooaccess-resources"></a>서비스 보안 주체 tooaccess 리소스 만들기
+hello 다음 PowerShell 스크립트를 만듭니다 hello Active Directory (AD) 응용 프로그램 및 서비스 hello 필요한 tooauthenticate C# 앱 주입니다. hello 스크립트에서는 필요한 앞에 C# hello에 대 한 예제 값을 출력 합니다. 자세한 내용은 참조 [Azure PowerShell을 사용 하 여 서비스 사용자 toocreate tooaccess 리소스](../azure-resource-manager/resource-group-authenticate-service-principal.md)합니다.
 
-    # Sign in to Azure.
+    # Sign in tooAzure.
     Add-AzureRmAccount
 
-    # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
+    # If you have multiple subscriptions, uncomment and set toohello subscription you want toowork with.
     #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     #Set-AzureRmContext -SubscriptionId $subscriptionId
 
     # Provide these values for your new AAD app.
-    # $appName is the display name for your app, must be unique in your directory.
-    # $uri does not need to be a real uri.
+    # $appName is hello display name for your app, must be unique in your directory.
+    # $uri does not need toobe a real uri.
     # $secret is a password you create.
 
     $appName = "{app-name}"
@@ -231,19 +231,19 @@ C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.n
     # Create a AAD app
     $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
 
-    # Create a Service Principal for the app
+    # Create a Service Principal for hello app
     $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
 
-    # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
+    # tooavoid a PrincipalNotFound error, I pause here for 15 seconds.
     Start-Sleep -s 15
 
-    # If you still get a PrincipalNotFound error, then rerun the following until successful. 
+    # If you still get a PrincipalNotFound error, then rerun hello following until successful. 
     $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 
 
-    # Output the values we need for our C# application to successfully authenticate
+    # Output hello values we need for our C# application toosuccessfully authenticate
 
-    Write-Output "Copy these values into the C# sample app"
+    Write-Output "Copy these values into hello C# sample app"
 
     Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
     Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
@@ -253,9 +253,9 @@ C#으로 SQL Database를 만들려면 [패키지 관리자 콘솔](http://docs.n
 
 
 ## <a name="next-steps"></a>다음 단계
-이제 C#으로 SQL 데이터베이스를 시도하고 데이터베이스를 설정했으므로 다음 문서에 대한 준비가 되었습니다.
+SQL 데이터베이스를 시도 하 고 C#을 사용 하 여 데이터베이스를 설정 했으므로, 다음 문서는 hello에 대 한 수행할 수 있습니다.
 
-* [SQL Server Management Studio를 사용하여 SQL 데이터베이스에 연결하고 샘플 T-SQL 쿼리를 수행합니다.](sql-database-connect-query-ssms.md)
+* [SQL Server Management Studio로 tooSQL 데이터베이스를 연결 하 고 샘플 T-SQL 쿼리를 수행 합니다.](sql-database-connect-query-ssms.md)
 
 ## <a name="additional-resources"></a>추가 리소스
 * [SQL 데이터베이스](https://azure.microsoft.com/documentation/services/sql-database/)

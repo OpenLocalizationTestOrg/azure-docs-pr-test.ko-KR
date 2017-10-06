@@ -1,5 +1,5 @@
 ---
-title: "다른 VNet에 Azure Virtual Network 연결: PowerShell | Microsoft Docs"
+title: "Azure 가상 네트워크 tooanother VNet 연결: PowerShell | Microsoft Docs"
 description: "이 문서에서는 Azure 리소스 관리자 및 PowerShell을 사용하여 가상 네트워크를 함께 연결하는 과정을 안내합니다."
 services: vpn-gateway
 documentationcenter: na
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: cherylmc
-ms.openlocfilehash: 8c42c0046ccaa98c572134042fbbb7e883ef93c3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2da30c76867cc3f71d040e63e0dd15d153e15c10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-vnet-to-vnet-vpn-gateway-connection-using-powershell"></a>PowerShell을 사용하여 VNet-VNet VPN Gateway 연결 구성
 
-이 문서에서는 가상 네트워크 간에 VPN Gateway 연결을 만드는 방법을 보여 줍니다. 가상 네트워크는 같은 또는 다른 구독의 같은 지역에 있을 수도 있고 다른 지역에 있을 수도 있습니다. 다른 구독의 VNet을 연결할 때 구독은 동일한 Active Directory 테넌트와 연결될 필요가 없습니다. 
+이 문서에서는 어떻게 toocreate 가상 네트워크 간의 VPN 게이트웨이 연결 합니다. hello 가상 네트워크 수 같거나 다른 지역 hello와에서 동일 hello 또는 서로 다른 구독 합니다. Hello 구독이 다른 구독에서 연결 Vnet toobe hello와 관련 된 필요 하지 않는 경우 동일한 Active Directory 테 넌 트. 
 
-이 문서의 단계는 Resource Manager 배포 모델에 적용되며 PowerShell을 사용합니다. 다른 배포 도구 또는 배포 모델을 사용하는 경우 다음 목록에서 별도의 옵션을 선택하여 이 구성을 만들 수도 있습니다.
+이 문서의 단계 hello toohello 리소스 관리자 배포 모델을 적용 하 고 PowerShell을 사용 합니다. 또한 서로 다른 배포 도구 또는 배포 모델을 사용 하 여 hello 다음 목록에서에서 다른 옵션을 선택 하 여이 구성을 만들 수 있습니다.
 
 > [!div class="op_single_selector"]
-> * [Azure Portal](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
+> * [Azure 포털](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 > * [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
 > * [Azure CLI](vpn-gateway-howto-vnet-vnet-cli.md)
 > * [Azure Portal(클래식)](vpn-gateway-howto-vnet-vnet-portal-classic.md)
@@ -37,45 +37,45 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-가상 네트워크를 다른 가상 네트워크에 연결(VNet-VNet)하는 것은 VNet을 온-프레미스 사이트 위치에 연결하는 것과 유사합니다. 두 연결 유형 모두 VPN 게이트웨이를 사용하여 IPsec/IKE를 통한 보안 터널을 제공합니다. VNet이 동일한 지역에 있는 경우 VNet 피어링을 사용하여 연결하려고 할 수 있습니다. VNet 피어링은 VPN Gateway를 사용하지 않습니다. 자세한 내용은 [VNet 피어링](../virtual-network/virtual-network-peering-overview.md)을 참조하세요.
+가상 네트워크 tooanother 가상 네트워크 (VNet 대 VNet) 연결 하는 유사한 tooconnecting VNet tooan 온-프레미스 사이트 위치입니다. 두 연결 유형에서는 VPN 게이트웨이 tooprovide IPsec/IKE를 사용 하 여 보안 터널을 사용 합니다. Vnet hello에 있는 경우 동일한 지역 VNet 피어 링을 사용 하 여 연결 tooconsider 할 수 있습니다. VNet 피어링은 VPN Gateway를 사용하지 않습니다. 자세한 내용은 [VNet 피어링](../virtual-network/virtual-network-peering-overview.md)을 참조하세요.
 
-VNet-VNet 통신을 다중 사이트 구성과 결합할 수 있습니다. 이렇게 하면 다음 다이어그램에 표시된 것처럼 프레미스 간 연결을 가상 네트워크 간 연결과 결합하는 네트워크 토폴로지를 설정할 수 있습니다.
+VNet-VNet 통신을 다중 사이트 구성과 결합할 수 있습니다. 이렇게 하면 hello 다음 다이어그램에에서 나와 있는 것 처럼 가상 네트워크 간 연결 되 면 크로스-프레미스 연결을 결합 하는 네트워크 토폴로지를 설정할 수 있습니다.
 
 ![연결 정보](./media/vpn-gateway-vnet-vnet-rm-ps/aboutconnections.png)
 
 ### <a name="why-connect-virtual-networks"></a>가상 네트워크에 연결하는 이유
 
-다음과 같은 이유로 가상 네트워크에 연결할 수 있습니다.
+다음 이유로 hello에 대 한 tooconnect 가상 네트워크를 사용할 수 있습니다.
 
 * **지역 간 지리적 중복 및 지리적 상태**
 
   * 인터넷 연결 끝점으로 이동하지 않고도 보안 연결을 통해 지역에서 복제 또는 동기화를 직접 설정할 수 있습니다.
-  * Azure Traffic Manager 및 부하 분산 장치를 사용하여 여러 Azure 지역 간의 지리적 중복을 통해 워크로드의 가용성을 높게 설정할 수 있습니다. 이러한 작업의 한 가지 주요 예는 여러 Azure 지역에 분산된 가용성 그룹을 사용하여 SQL AlwaysOn을 설정하는 것입니다.
+  * Azure Traffic Manager 및 부하 분산 장치를 사용하여 여러 Azure 지역 간의 지리적 중복을 통해 워크로드의 가용성을 높게 설정할 수 있습니다. 한 가지 중요 한 예는 SQL Always On 가용성 그룹이 여러 Azure 지역에 분산을 tooset 합니다.
 * **분리 또는 관리 경계를 가진 지역별 다중 계층 응용 프로그램**
 
-  * 같은 지역 내에서 분리 또는 관리 요구 사항 때문에 여러 가상 네트워크가 함께 연결된 다중 계층 응용 프로그램을 설정할 수 있습니다.
+  * 내 동일한 hello 영역을 설정할 수 있습니다 다층 계층 응용 프로그램 기한 tooisolation 또는 관리 요구를 함께 연결 하는 여러 가상 네트워크가 됩니다.
 
-VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 간 FAQ](#faq)를 참조하세요.
+VNet 대 VNet 연결에 대 한 자세한 내용은 참조 hello [VNet 대 VNet FAQ](#faq) hello이이 문서의 뒷부분에 있습니다.
 
 ## <a name="which-set-of-steps-should-i-use"></a>어느 단계 집합을 사용해야 합니까?
 
-이 문서에서는 서로 다른 두 집합의 단계를 볼 수 있습니다. 일련의 단계는 [동일한 구독에 상주하는 VNet](#samesub)이고 다른 단계는 [다른 구독에 상주하는 VNet](#difsub)입니다. 둘 사이의 주요 차이점은 동일한 PowerShell 세션 내에서 모든 가상 네트워크 및 게이트웨이 리소스를 생성하고 구성할 수 있는지 여부입니다.
+이 문서에서는 서로 다른 두 집합의 단계를 볼 수 있습니다. 일련의 절차에 대 한 [Vnet에 상주 하는 동일한 구독 hello](#samesub), 용이고 다른 하나는 [서로 다른 구독에 있는 Vnet](#difsub)합니다. hello hello 집합 간의 주요 차이점은 만들어 hello 내의 모든 가상 네트워크 및 게이트웨이 리소스를 구성 하는 여부 같은 PowerShell 세션입니다.
 
-이 문서의 단계는 각 섹션의 시작 부분에 선언된 변수를 사용합니다. 기존 VNet을 이미 사용하는 경우 변수를 수정하여 고유한 환경에 설정을 적용합니다. 가상 네트워크의 이름 확인을 원하는 경우 [이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)을 참조하세요.
+hello 단계가이 문서에서 사용 하 여 각 섹션의 hello 시작 부분에 선언 된 변수입니다. 이미 사용 하는 기존 Vnet을 하는 경우에 사용자 환경에 hello 변수 tooreflect hello 설정을 수정 합니다. 가상 네트워크의 이름 확인을 원하는 경우 [이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)을 참조하세요.
 
-## <a name="samesub"></a>같은 구독에 있는 VNet을 연결하는 방법
+## <a name="samesub"></a>어떻게 tooconnect Vnet에에서 있는 hello 동일한 구독
 
 ![v2v 다이어그램](./media/vpn-gateway-vnet-vnet-rm-ps/v2vrmps.png)
 
 ### <a name="before-you-begin"></a>시작하기 전에
 
-시작하기 전에 최신 버전의 Azure Resource Manager PowerShell(최소 4.0 이상) cmdlet을 설치해야 합니다. PowerShell cmdlet 설치에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview)을 참조하세요.
+시작 하기 전에, tooinstall hello 최신 버전의 hello Azure 리소스 관리자 PowerShell cmdlet, 적어도 4.0 이상 필요 합니다. Hello PowerShell cmdlet을 설치 하는 방법에 대 한 자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
 
 ### <a name="Step1"></a>1단계 - IP 주소 범위 계획
 
-다음 단계에서는 두 개의 가상 네트워크와 해당 게이트웨이 서브넷 및 구성을 만듭니다. 그런 다음 두 VNet 간의 VPN 연결을 만듭니다. 네트워크 구성에 대한 IP 주소 범위를 계획하는 것이 중요합니다. 따라서 VNet 범위 또는 로컬 네트워크 범위가 겹치지 않는지 확인해야 합니다. 이 예에서는 DNS 서버를 포함하지 않습니다. 가상 네트워크의 이름 확인을 원하는 경우 [이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)을 참조하세요.
+다음 단계는 hello, 두 가상 네트워크와 해당 게이트웨이 서브넷 및 구성을 만듭니다. Hello 간의 VPN 연결이 두 Vnet 다음 만듭니다. 네트워크 구성에 대 한 중요 한 tooplan hello IP 주소 범위는 따라서 VNet 범위 또는 로컬 네트워크 범위가 겹치지 않는지 확인해야 합니다. 이 예에서는 DNS 서버를 포함하지 않습니다. 가상 네트워크의 이름 확인을 원하는 경우 [이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)을 참조하세요.
 
-예제에서 다음 값을 사용합니다.
+다음 hello 예제에는 값에는 hello를 사용 합니다.
 
 **TestVNet1에 대한 값:**
 
@@ -111,7 +111,7 @@ VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 
 
 ### <a name="Step2"></a>2단계 - TestVNet1 만들기 및 구성
 
-1. 변수 선언. 이 예제에서는 이 연습에 대한 값을 사용하여 변수를 선언합니다. 대부분의 경우에 값을 고유한 값으로 바꿔야 합니다. 그러나 이 구성 유형에 익숙해지기 위해 단계를 차례로 실행하는 경우 이 변수를 사용할 수 있습니다. 필요한 경우 변수를 수정한 다음 복사하여 PowerShell 콘솔에 붙여 넣습니다.
+1. 변수 선언. 이 예제에서는이 연습에 대 한 hello 값을 사용 하는 hello 변수를 선언 합니다. 대부분의 경우에서 자신의 hello 값 바꿔야 합니다. 그러나 이러한 유형의 구성에 잘 알고 hello 단계 toobecome를 통해 실행 하는 경우에 이러한 변수를 사용할 수 있습니다. 필요한 경우 hello 변수를 수정 복사 및 PowerShell 콘솔에 붙여 넣습니다.
 
   ```powershell
   $Sub1 = "Replace_With_Your_Subcription_Name"
@@ -133,19 +133,19 @@ VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 
   $Connection15 = "VNet1toVNet5"
   ```
 
-2. 계정에 연결합니다. 연결에 도움이 되도록 다음 예제를 사용합니다.
+2. Tooyour 계정을 연결 하세요. 다음 예제에서는 toohelp 연결한 hello를 사용 합니다.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  계정에 대한 구독을 확인합니다.
+  Hello 계정에 대 한 hello 구독을 확인 합니다.
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-  사용할 구독을 지정합니다.
+  Toouse hello 구독을 지정 합니다.
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionName $Sub1
@@ -155,9 +155,9 @@ VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 
   ```powershell
   New-AzureRmResourceGroup -Name $RG1 -Location $Location1
   ```
-4. TestVNet1에 대한 서브넷 구성 만들기. 이 예제에서는 TestVNet1이라는 가상 네트워크와 GatewaySubnet, FrontEnd 및 Backend라는 세 개의 서브넷을 만듭니다. 값을 대체할 때 언제나 게이트웨이 서브넷 이름을 GatewaySubnet라고 명시적으로 지정해야 합니다. 다른 이름을 지정하는 경우 게이트웨이 만들기가 실패합니다.
+4. Hello TestVNet1에 대 한 서브넷 구성을 만듭니다. 이 예제에서는 TestVNet1이라는 가상 네트워크와 GatewaySubnet, FrontEnd 및 Backend라는 세 개의 서브넷을 만듭니다. 값을 대체할 때 언제나 게이트웨이 서브넷 이름을 GatewaySubnet라고 명시적으로 지정해야 합니다. 다른 이름을 지정하는 경우 게이트웨이 만들기가 실패합니다.
 
-  다음 예제에서는 앞에서 설정한 변수를 사용합니다. 이 예제에서 게이트웨이 서브넷은 /27을 사용합니다. 게이트웨이 서브넷을 /29만큼 작게 만들 수 있지만 적어도 /28 또는 /27을 선택하여 더 많은 주소를 포함하는 큰 서브넷을 만드는 것이 좋습니다. 이렇게 하면 나중에 필요할 수도 있는 추가 구성에 맞게 충분히 주소를 사용할 수 있습니다.
+  hello 다음 예제에서는 이전에 설정 하는 hello 변수. 이 예제에서는 hello 게이트웨이 서브넷에 / 27을 사용 중입니다. 가능한 toocreate/29 수신자로 게이트웨이 서브넷 이지만, 적어도/28 또는/27 선택 하 여 더 많은 주소를 포함 하는 큰 서브넷을 만들어야 하는 것이 좋습니다. 이렇게 하면 충분 한 주소 tooaccommodate 가능한 추가 되는 구성에 만한 hello 이후 있습니다.
 
   ```powershell
   $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
@@ -170,13 +170,13 @@ VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 
   New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 `
   -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
   ```
-6. VNet용으로 만들 게이트웨이에 할당할 공용 IP 주소를 요청합니다. AllocationMethod가 동적인지 확인합니다. 사용할 IP 주소를 지정할 수는 없습니다. IP 주소는 게이트웨이에 동적으로 할당됩니다. 
+6. 공용 IP 주소 toobe 할당 된 toohello 게이트웨이 만들려는 VNet에 대 한 요청 합니다. 해당 hello AllocationMethod 동적 점에 유의 하십시오. 원하는 toouse hello IP 주소를 지정할 수 없습니다. 그는 동적으로 할당 된 tooyour 게이트웨이입니다. 
 
   ```powershell
   $gwpip1 = New-AzureRmPublicIpAddress -Name $GWIPName1 -ResourceGroupName $RG1 `
   -Location $Location1 -AllocationMethod Dynamic
   ```
-7. 게이트웨이 구성 만들기. 게이트웨이 구성은 사용할 공용 IP 주소 및 서브넷을 정의합니다. 예제를 사용하여 게이트웨이 구성을 만듭니다.
+7. Hello 게이트웨이 구성을 만듭니다. hello 게이트웨이 구성 hello 서브넷과 공용 IP 주소 toouse hello 정의합니다. Hello 예제 toocreate 게이트웨이 구성을 사용 합니다.
 
   ```powershell
   $vnet1 = Get-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1
@@ -184,7 +184,7 @@ VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 
   $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 `
   -Subnet $subnet1 -PublicIpAddress $gwpip1
   ```
-8. TestVNet1에 대한 게이트웨이 만들기. 이 단계에서는 TestVNet1용 가상 네트워크 게이트웨이를 만듭니다. VNet-VNet 구성에는 RouteBased VpnType이 필요합니다. 종종 선택한 게이트웨이 SKU에 따라 게이트웨이를 만드는 데 45분 이상 걸릴 수 있습니다.
+8. TestVNet1에 대 한 hello 게이트웨이 만듭니다. 이 단계에서는 TestVNet1 프로그램에 대 한 hello 가상 네트워크 게이트웨이 만듭니다. VNet-VNet 구성에는 RouteBased VpnType이 필요합니다. 게이트웨이 만들기 45 분에 따라 이상 hello 선택한 게이트웨이 SKU 종종 걸릴 수 있습니다.
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 `
@@ -194,9 +194,9 @@ VNet 간 연결에 대한 자세한 내용은 이 문서의 끝에 있는 [VNet 
 
 ### <a name="step-3---create-and-configure-testvnet4"></a>3단계 - TestVNet4 만들기 및 구성
 
-TestVNet1 구성이 끝나면 TestVNet4를 만듭니다. 아래 단계에 따라 필요한 경우 값을 사용자의 고유한 값으로 바꾸십시오. 이 단계는 같은 구독에 있기 때문에 같은 PowerShell 세션 내에서 수행할 수 있습니다.
+TestVNet1 구성이 끝나면 TestVNet4를 만듭니다. 아래 레이블과 필요할 때 hello 값 대체 hello 단계를 수행 합니다. 이 단계를 수행할 수 hello 내에서 동일한 PowerShell 세션에 있기 때문에 hello 동일 구독 합니다.
 
-1. 변수 선언. 값을 구성에 사용할 값으로 바꾸어야 합니다.
+1. 변수 선언. 수 있는지 tooreplace 것 hello 사용 하 여 hello 값 구성에 대 한 toouse 되도록 합니다.
 
   ```powershell
   $RG4 = "TestRG4"
@@ -220,7 +220,7 @@ TestVNet1 구성이 끝나면 TestVNet4를 만듭니다. 아래 단계에 따라
   ```powershell
   New-AzureRmResourceGroup -Name $RG4 -Location $Location4
   ```
-3. TestVNet4에 대한 서브넷 구성 만들기.
+3. Hello TestVNet4에 대 한 서브넷 구성을 만듭니다.
 
   ```powershell
   $fesub4 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName4 -AddressPrefix $FESubPrefix4
@@ -239,14 +239,14 @@ TestVNet1 구성이 끝나면 TestVNet4를 만듭니다. 아래 단계에 따라
   $gwpip4 = New-AzureRmPublicIpAddress -Name $GWIPName4 -ResourceGroupName $RG4 `
   -Location $Location4 -AllocationMethod Dynamic
   ```
-6. 게이트웨이 구성 만들기.
+6. Hello 게이트웨이 구성을 만듭니다.
 
   ```powershell
   $vnet4 = Get-AzureRmVirtualNetwork -Name $VnetName4 -ResourceGroupName $RG4
   $subnet4 = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet4
   $gwipconf4 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName4 -Subnet $subnet4 -PublicIpAddress $gwpip4
   ```
-7. TestVNet4 게이트웨이 만들기 종종 선택한 게이트웨이 SKU에 따라 게이트웨이를 만드는 데 45분 이상 걸릴 수 있습니다.
+7. Hello TestVNet4 게이트웨이 만듭니다. 게이트웨이 만들기 45 분에 따라 이상 hello 선택한 게이트웨이 SKU 종종 걸릴 수 있습니다.
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName4 -ResourceGroupName $RG4 `
@@ -254,43 +254,43 @@ TestVNet1 구성이 끝나면 TestVNet4를 만듭니다. 아래 단계에 따라
   -VpnType RouteBased -GatewaySku VpnGw1
   ```
 
-### <a name="step-4---create-the-connections"></a>4단계 - 연결 만들기
+### <a name="step-4---create-hello-connections"></a>4 단계-hello 연결 만들기
 
-1. 두 개의 가상 네트워크 게이트웨이 모두 가져오기. 이 예제에서와 같이 두 게이트웨이가 동일한 구독에 있으면 동일한 PowerShell 세션에서 이 단계를 완료할 수 있습니다.
+1. 두 개의 가상 네트워크 게이트웨이 모두 가져오기. Hello 게이트웨이 둘 다 hello에 하는 경우 동일한 구독 hello에이 단계를 완료 하려면 hello 예제에 있는 것 처럼 동일한 PowerShell 세션입니다.
 
   ```powershell
   $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
   $vnet4gw = Get-AzureRmVirtualNetworkGateway -Name $GWName4 -ResourceGroupName $RG4
   ```
-2. TestVNet1 대 TestVNet4 연결을 만듭니다. 이 단계에서는 TestVNet1에서 TestVNet4까지 연결을 만듭니다. 예제에서 참조된 공유 키를 볼 수 있습니다. 공유 키에 대해 고유한 값을 사용할 수 있습니다. 중요한 점은 두 연결에서 모두 공유 키가 일치해야 한다는 것입니다. 연결 만들기는 완료하는 데 꽤 오래 걸릴 수 있습니다.
+2. Hello TestVNet1 tooTestVNet4 연결을 만듭니다. 이 단계에서 TestVNet1 tooTestVNet4 hello 연결을 만듭니다. Hello 예제에서 참조 하는 공유 키를 볼 수 있습니다. Hello 공유 키에 대 한 사용자 지정 값을 사용할 수 있습니다. 두 연결에 대 한 중요 한 점은 그 hello 공유 키 hello 일치 해야 합니다. 연결 만들기 toocomplete 잠시를 걸릴 수 있습니다.
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection14 -ResourceGroupName $RG1 `
   -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet4gw -Location $Location1 `
   -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
-3. TestVNet4 대 TestVNet1 연결을 만듭니다. 이 단계는 TestVNet4에서 TestVNet1까지 연결을 만드는 점을 제외하면 위의 비슷합니다. 공유된 키가 일치하는지 확인합니다. 몇 분 후 연결이 설정됩니다.
+3. Hello TestVNet4 tooTestVNet1 연결을 만듭니다. 이 단계에서 TestVNet4 tooTestVNet1 hello 연결을 만드는 점을 제외 하 고 위에 나온 비슷한 toohello 것입니다. Hello 공유 키와 일치 하는지 확인 합니다. 몇 분 후 hello 연결이 설정 됩니다.
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection41 -ResourceGroupName $RG4 `
   -VirtualNetworkGateway1 $vnet4gw -VirtualNetworkGateway2 $vnet1gw -Location $Location4 `
   -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
-4. 연결을 확인합니다. [연결을 확인하는 방법](#verify)섹션을 참조하세요.
+4. 연결을 확인합니다. Hello 섹션을 참조 [어떻게 tooverify 연결](#verify)합니다.
 
-## <a name="difsub"></a>다른 구독에 있는 VNet을 연결하는 방법
+## <a name="difsub"></a>어떻게 tooconnect Vnet에에서 있는 서로 다른 구독
 
 ![v2v 다이어그램](./media/vpn-gateway-vnet-vnet-rm-ps/v2vdiffsub.png)
 
-이 시나리오에서는 TestVNet1 및 TestVNet5를 연결합니다. TestVNet1 및 TestVNet5는 다른 구독에 상주합니다. 구독은 동일한 Active Directory 테넌트와 연결될 필요가 없습니다. 이러한 단계와 이전 집합의 차이점은 일부 구성 단계가 두 번째 구독 환경에서 별도의 PowerShell 세션으로 수행되어야 한다는 것입니다. 특히 두 구독이 다른 조직에 속한 경우입니다.
+이 시나리오에서는 TestVNet1 및 TestVNet5를 연결합니다. TestVNet1 및 TestVNet5는 다른 구독에 상주합니다. hello 구독 hello와 관련 된 toobe 불필요 동일한 Active Directory 테 넌 트입니다. 이러한 단계 및 hello 이전 집합의 hello 차이점 hello 두 번째 구독의 hello 컨텍스트에서 별도 PowerShell 세션에서 수행 하는 toobe hello 구성 단계 중 일부에 필요 하다는 것입니다. 특히 때 hello 두 구독 속해 toodifferent 조직 합니다.
 
 ### <a name="step-5---create-and-configure-testvnet1"></a>5단계 - TestVNet1 만들기 및 구성
 
-TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹션에서 [1단계](#Step1) 및 [2단계](#Step2)를 완료해야 합니다. 이 구성의 경우 이전 섹션에서 TestVNet4를 만들 필요가 없지만 만든다고 해도 이 단계와 충돌하지 않습니다. 1단계와 2단계가 완료되면 6단계를 계속하여 TestVNet5를 만듭니다. 
+완료 해야 [1 단계](#Step1) 및 [2 단계](#Step2) 이전 hello에서 toocreate 섹션 TestVNet1를 구성 하 고 TestVNet1에 대 한 VPN 게이트웨이 hello 합니다. 이 구성에 대 한 하지 않으므로 필요한 toocreate TestVNet4 hello 이전 섹션에서 다음이 단계와 충돌을 만들지 않는 경우 하지 않지만. 6 단계 toocreate TestVNet5 단계 1 및 2 단계를 완료 한 후 계속 합니다. 
 
-### <a name="step-6---verify-the-ip-address-ranges"></a>6단계 - IP 주소 범위 확인
+### <a name="step-6---verify-hello-ip-address-ranges"></a>6 단계-hello IP 주소 범위를 확인 합니다.
 
-새 가상 네트워크 TestVNet5의 IP 주소 공간이 VNet 범위 또는 로컬 네트워크 게이트웨이 범위와 겹치지 않는지 확인해야 합니다. 이 예제에서 가상 네트워크는 서로 다른 조직에 속할 수 있습니다. 이 연습에서는 TestVNet5에 대해 다음 값을 사용할 수 있습니다.
+것이 중요 한 toomake hello 새 가상 네트워크를 TestVNet5의 hello IP 주소 공간 VNet 범위 또는 로컬 네트워크 게이트웨이 범위와 겹치지 않습니다. 이 예제에서는 가상 네트워크 hello toodifferent 조직 속할 수 있습니다. 이 연습에서는 다음 TestVNet5 hello에 대 한 값에는 hello를 사용할 수 있습니다.
 
 **TestVNet5에 대한 값:**
 
@@ -309,9 +309,9 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
 
 ### <a name="step-7---create-and-configure-testvnet5"></a>7단계 - TestVNet5 만들기 및 구성
 
-이 단계는 새 구독의 상황에서 수행해야 합니다. 이 부분은 구독을 소유한 다른 조직의 관리자가 수행할 수 있습니다.
+이 단계는 새 구독 hello의 hello 컨텍스트에서 수행 되어야 합니다. Hello 구독을 소유 하는 다른 조직의 관리자에 게가이 부분을 수행할 수 있습니다.
 
-1. 변수 선언. 값을 구성에 사용할 값으로 바꾸어야 합니다.
+1. 변수 선언. 수 있는지 tooreplace 것 hello 사용 하 여 hello 값 구성에 대 한 toouse 되도록 합니다.
 
   ```powershell
   $Sub5 = "Replace_With_the_New_Subcription_Name"
@@ -331,19 +331,19 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   $GWIPconfName5 = "gwipconf5"
   $Connection51 = "VNet5toVNet1"
   ```
-2. 구독 5에 연결. PowerShell 콘솔을 열고 계정에 연결합니다. 연결에 도움이 되도록 다음 샘플을 사용합니다.
+2. Toosubscription 5를 연결 합니다. PowerShell 콘솔을 열고 tooyour 계정을 연결 합니다. 다음 샘플 toohelp 연결한 hello를 사용 합니다.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  계정에 대한 구독을 확인합니다.
+  Hello 계정에 대 한 hello 구독을 확인 합니다.
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-  사용할 구독을 지정합니다.
+  Toouse hello 구독을 지정 합니다.
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionName $Sub5
@@ -353,7 +353,7 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   ```powershell
   New-AzureRmResourceGroup -Name $RG5 -Location $Location5
   ```
-4. TestVNet5에 대한 서브넷 구성을 만듭니다.
+4. Hello TestVNet5에 대 한 서브넷 구성을 만듭니다.
 
   ```powershell
   $fesub5 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName5 -AddressPrefix $FESubPrefix5
@@ -372,38 +372,38 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   $gwpip5 = New-AzureRmPublicIpAddress -Name $GWIPName5 -ResourceGroupName $RG5 `
   -Location $Location5 -AllocationMethod Dynamic
   ```
-7. 게이트웨이 구성 만들기.
+7. Hello 게이트웨이 구성을 만듭니다.
 
   ```powershell
   $vnet5 = Get-AzureRmVirtualNetwork -Name $VnetName5 -ResourceGroupName $RG5
   $subnet5  = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet5
   $gwipconf5 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName5 -Subnet $subnet5 -PublicIpAddress $gwpip5
   ```
-8. TestVNet5 게이트웨이 만들기.
+8. Hello TestVNet5 게이트웨이 만듭니다.
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName5 -ResourceGroupName $RG5 -Location $Location5 `
   -IpConfigurations $gwipconf5 -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1
   ```
 
-### <a name="step-8---create-the-connections"></a>8단계 - 연결 만들기
+### <a name="step-8---create-hello-connections"></a>8 단계-hello 연결 만들기
 
-이 예제에서는 게이트웨이가 다른 구독에 있기 때문에 이 단계를 [구독 1] 및 [구독 5]로 표시된 두 개의 PowerShell 세션으로 분할했습니다.
+이 예제에서는 hello 게이트웨이 hello 서로 다른 구독에 있기 때문에 म 했습니다 분할할이 단계 두 [구독 1]로 표시 된 PowerShell 세션 및 [구독 5].
 
-1. **[구독 1]** 구독 1에 대한 가상 네트워크 게이트웨이 가져오기. 다음 예제를 실행하기 전에 로그인하고 구독 1에 연결합니다.
+1. **[1 구독]**  Hello 구독 1에 대 한 가상 네트워크 게이트웨이 가져오기. 로그인 하 고 hello 다음 예제를 실행 하기 전에 tooSubscription 1을 연결 합니다.
 
   ```powershell
   $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
   ```
 
-  다음 요소의 출력을 복사하고 전자 메일 또는 다른 방법을 통해 구독 5의 관리자에게 보냅니다.
+  Hello 요소 다음의 hello 출력 복사한 구독 5 이러한 toohello 관리자 전자 메일 또는 다른 방법을 통해 보냅니다.
 
   ```powershell
   $vnet1gw.Name
   $vnet1gw.Id
   ```
 
-  이 두 요소는 다음 예제 출력과 유사한 값을 갖게 됩니다.
+  이 두 요소 값 비슷한 toohello 예제 출력 다음에 적용 됩니다.
 
   ```
   PS D:\> $vnet1gw.Name
@@ -411,20 +411,20 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   PS D:\> $vnet1gw.Id
   /subscriptions/b636ca99-6f88-4df4-a7c3-2f8dc4545509/resourceGroupsTestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW
   ```
-2. **[구독 5]** 구독 5에 대한 가상 네트워크 게이트웨이 가져오기. 다음 예제를 실행하기 전에 로그인하고 구독 5에 연결합니다.
+2. **[구독 5]**  Hello 5 구독에 대 한 가상 네트워크 게이트웨이 가져오기. 로그인 하 고 hello 다음 예제를 실행 하기 전에 5 tooSubscription 연결:
 
   ```powershell
   $vnet5gw = Get-AzureRmVirtualNetworkGateway -Name $GWName5 -ResourceGroupName $RG5
   ```
 
-  다음 요소의 출력을 복사하고 전자 메일 또는 다른 방법을 통해 구독 1의 관리자에게 보냅니다.
+  Hello 요소 다음의 hello 출력 복사한 구독 1 이러한 toohello 관리자 전자 메일 또는 다른 방법을 통해 보냅니다.
 
   ```powershell
   $vnet5gw.Name
   $vnet5gw.Id
   ```
 
-  이 두 요소는 다음 예제 출력과 유사한 값을 갖게 됩니다.
+  이 두 요소 값 비슷한 toohello 예제 출력 다음에 적용 됩니다.
 
   ```
   PS C:\> $vnet5gw.Name
@@ -432,9 +432,9 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   PS C:\> $vnet5gw.Id
   /subscriptions/66c8e4f1-ecd6-47ed-9de7-7e530de23994/resourceGroups/TestRG5/providers/Microsoft.Network/virtualNetworkGateways/VNet5GW
   ```
-3. **[구독 1]** TestVNet1에서 TestVNet5에 연결 만들기. 이 단계에서는 TestVNet1에서 TestVNet5까지 연결을 만듭니다. 여기서 차이점은 $vnet5gw가 다른 구독에 있기 때문에 직접 가져올 수 없다는 것입니다. 위의 단계에서 구독 1에서 전달한 값을 사용하여 새 PowerShell 개체를 만들어야 합니다. 아래 예제를 사용하세요. 이름, ID 및 공유 키를 사용자의 고유한 값으로 바꿉니다. 중요한 점은 두 연결에서 모두 공유 키가 일치해야 한다는 것입니다. 연결 만들기는 완료하는 데 꽤 오래 걸릴 수 있습니다.
+3. **[1 구독]**  Hello TestVNet1 tooTestVNet5 연결을 만듭니다. 이 단계에서 TestVNet1 tooTestVNet5 hello 연결을 만듭니다. hello 차이점은 다른 구독에 있기 때문에 해당 $vnet5gw 직접 가져올 수 없습니다. 위의 hello 단계에서 구독 1에서 통신 하는 hello 값으로 toocreate 새 PowerShell 개체가 필요 합니다. 다음 예제에서는 hello를 사용 합니다. Hello 이름, Id 및 공유 키를 원하는 값으로 대체 합니다. 두 연결에 대 한 중요 한 점은 그 hello 공유 키 hello 일치 해야 합니다. 연결 만들기 toocomplete 잠시를 걸릴 수 있습니다.
 
-  다음 예제를 실행하기 전에 구독 1에 연결합니다.
+  다음 예제는 hello를 실행 하기 전에 tooSubscription 1을 연결 합니다.
 
   ```powershell
   $vnet5gw = New-Object Microsoft.Azure.Commands.Network.Models.PSVirtualNetworkGateway
@@ -443,9 +443,9 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   $Connection15 = "VNet1toVNet5"
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet5gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
-4. **[구독 5]** TestVNet5에서 TestVNet1에 연결 만들기. 이 단계는 TestVNet5에서 TestVNet1까지 연결을 만드는 점을 제외하면 위의 비슷합니다. 구독 1에서 가져온 값을 기반으로 PowerShell 개체를 만드는 동일한 과정이 여기에도 적용됩니다. 이 단계에서는 공유된 키가 일치해야 합니다.
+4. **[구독 5]**  Hello TestVNet5 tooTestVNet1 연결을 만듭니다. 이 단계에서 TestVNet5 tooTestVNet1 hello 연결을 만드는 점을 제외 하 고 위에 나온 비슷한 toohello 것입니다. 구독 1에서 얻은 hello 값을 기반으로 하는 PowerShell 개체를 만드는 동일한 과정도 적용 됩니다 여기 번호입니다. 이 단계에서는 공유 hello 키와 일치 해야 합니다.
 
-  다음 예제를 실행하기 전에 구독 5에 연결합니다.
+  다음 예제는 hello를 실행 하기 전에 tooSubscription 5를 연결 합니다.
 
   ```powershell
   $vnet1gw = New-Object Microsoft.Azure.Commands.Network.Models.PSVirtualNetworkGateway
@@ -454,7 +454,7 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection51 -ResourceGroupName $RG5 -VirtualNetworkGateway1 $vnet5gw -VirtualNetworkGateway2 $vnet1gw -Location $Location5 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
 
-## <a name="verify"></a>연결을 확인하는 방법
+## <a name="verify"></a>어떻게 tooverify 연결
 
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
@@ -466,5 +466,5 @@ TestVNet1 및 TestVNet1의 VPN Gateway를 만들고 구성하려면 이전 섹�
 
 ## <a name="next-steps"></a>다음 단계
 
-* 연결이 완료되면 가상 네트워크에 가상 컴퓨터를 추가할 수 있습니다. 자세한 내용은 [Virtual Machines 설명서](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)를 참조하세요.
-* BGP에 대한 내용은 [BGP 개요](vpn-gateway-bgp-overview.md) 및 [BGP를 구성하는 방법](vpn-gateway-bgp-resource-manager-ps.md)을 참조하세요.
+* 연결이 완료 되 면 가상 컴퓨터 tooyour 가상 네트워크를 추가할 수 있습니다. Hello 참조 [가상 컴퓨터 설명서](https://docs.microsoft.com/azure/#pivot=services&panel=Compute) 자세한 정보에 대 한 합니다.
+* BGP에 대 한 정보를 참조 hello [BGP 개요](vpn-gateway-bgp-overview.md) 및 [어떻게 tooconfigure BGP](vpn-gateway-bgp-resource-manager-ps.md)합니다.

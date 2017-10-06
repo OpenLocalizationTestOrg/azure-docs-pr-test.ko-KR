@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights 원격 분석 데이터 모델 - 요청 원격 분석 | Microsoft Docs"
+title: "응용 프로그램 Insights 원격 분석 데이터 모델-aaaAzure 요청 원격 분석 | Microsoft Docs"
 description: "요청 원격 분석을 위한 Azure Application Insights 데이터 모델"
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 8e782e45b706cadec66e7404dd9abc2e01dea917
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6042975a35f5e672e5adb5390feecc63d0b284b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="request-telemetry-application-insights-data-model"></a>요청 원격 분석: Application Insights 데이터 모델
 
-[Application Insights](app-insights-overview.md)에서 요청 원격 분석 항목은 응용 프로그램에 대한 외부 요청으로 트리거되는 실행의 논리적 순서를 나타냅니다. 모든 요청 실행은 모든 실행 매개 변수를 포함하는 고유한 `ID` 및 `url`로 식별됩니다. 논리적 `name`으로 요청을 그룹화하고 이 요청의 `source`를 정의할 수 있습니다. 코드 실행으로 `success` 또는 `fail`이 발생할 수 있으며 특정 `duration` 동안 지속됩니다. success(성공) 및 failure(실패) 실행은 모두 `resultCode`별로 그룹화할 수 있습니다. 봉투 (envelope) 수준에 정의된 요청 원격 분석의 시작 시간입니다.
+요청 원격 분석 항목 (에서 [Application Insights](app-insights-overview.md)) 외부 요청 tooyour 응용 프로그램에 의해 트리거되는 실행의 논리적 시퀀스를 hello 나타냅니다. 모든 요청을 실행 고유으로 식별 되 `ID` 및 `url` 모든 hello 실행 매개 변수를 포함 합니다. 요청을 논리적으로 그룹화 수 `name` hello를 정의 하 고 `source` 이 요청 합니다. 코드 실행으로 `success` 또는 `fail`이 발생할 수 있으며 특정 `duration` 동안 지속됩니다. success(성공) 및 failure(실패) 실행은 모두 `resultCode`별로 그룹화할 수 있습니다. Hello 봉투 수준에 정의 된 hello 요청 원격 분석에 대 한 시간을 시작 합니다.
 
-요청 원격 분석은 사용자 지정 `properties` 및 `measurements`를 사용하여 표준 확장성 모델을 지원합니다.
+원격 분석을 사용자 지정을 사용 하 여 hello 표준 확장성 모델 지원 요청 `properties` 및 `measurements`합니다.
 
 ## <a name="name"></a>이름
 
-요청의 이름은 요청을 처리하기 위해 진행된 코드 경로를 나타냅니다. 더 나은 요청 그룹화를 허용하는 낮은 카디널리티 값입니다. HTTP 요청의 경우 HTTP 메서드 및 실제 `id` 값이 없는 `GET /values/{id}`와 같은 URL 경로 템플릿을 나타냅니다.
+Hello 요청의 이름 코드 경로 tooprocess hello 요청을 나타냅니다. 낮은 카디널리티 값 tooallow 더 잘 요청을 그룹화 합니다. HTTP 메서드 및 URL 경로 템플릿을 나타내는 hello HTTP의 요청에 대 한 `GET /values/{id}` hello 실제 없이 `id` 값입니다.
 
-Application Insights 웹 SDK는 요청 이름을 대/소문자를 바꾸지 않고 “있는 그대로” 전송합니다. UI의 그룹화는 대/소문자를 구분하므로 `GET /Home/Index`와 `GET /home/INDEX`는 동일한 컨트롤러 및 작업 실행을 발생하더라도 다른 것으로 계산됩니다. 그 이유는 URL이 일반적으로 [대/소문자를 구분](http://www.w3.org/TR/WD-html40-970708/htmlweb.html)하기 때문입니다. 대문자로 입력한 URL에 대해 `404`가 항상 발생하는지 확인하고 싶을 수 있습니다. [블로그 게시물](http://apmtips.com/blog/2015/02/23/request-name-and-url/)에서 ASP.Net 웹 SDK의 요청 이름 컬렉션에 대한 자세한 내용을 확인할 수 있습니다.
+응용 프로그램 Insights 웹 SDK에 대 한 예정 tooletter 사례와 요청 이름을 "있는 그대로"을 보냅니다. UI에 대 한 그룹화는 대/소문자 구분 하므로 `GET /Home/Index` 에서 개별적으로 계산 됩니다 `GET /home/INDEX` 종종 초래할 있습니다 hello 동일한 경우에 컨트롤러 및 작업 실행 합니다. hello 이유는 url 일반적은 [대/소문자 구분](http://www.w3.org/TR/WD-html40-970708/htmlweb.html)합니다. 모든 toosee 경우가 `404` 대문자로 입력 된 hello url에 대해 발생 합니다. 더 많은 온 요청 이름 컬렉션에서 ASP.Net 웹 SDK hello에 읽을 수 [블로그 게시물](http://apmtips.com/blog/2015/02/23/request-name-and-url/)합니다.
 
 최대 길이: 1024자
 
@@ -46,13 +46,13 @@ Application Insights 웹 SDK는 요청 이름을 대/소문자를 바꾸지 않�
 
 ## <a name="source"></a>원본
 
-요청의 원본입니다. 호출자의 계측 키 또는 호출자의 IP 주소를 예로 들 수 있습니다. 자세한 내용은 [상관 관계](application-insights-correlation.md) 페이지를 참조하세요.
+Hello 요청의 소스입니다. 예제는 hello 호출자의 계측 키 hello 또는 hello 호출자의 hello ip 주소입니다. 자세한 내용은 [상관 관계](application-insights-correlation.md) 페이지를 참조하세요.
 
 최대 길이: 1024자
 
 ## <a name="duration"></a>기간
 
-요청 기간은 `DD.HH:MM:SS.MMMMMM` 형식으로 나타냅니다. `1000`일보다 작은 양수여야 합니다. 요청 원격 분석은 처음과 끝이 있는 작업을 나타내므로 이 필드는 필수입니다.
+요청 기간은 `DD.HH:MM:SS.MMMMMM` 형식으로 나타냅니다. `1000`일보다 작은 양수여야 합니다. 이 필드는 요청 원격 분석 hello 처음과 hello와 hello 작업을 나타내는 대로 필요 합니다.
 
 ## <a name="response-code"></a>응답 코드
 
@@ -62,13 +62,13 @@ Application Insights 웹 SDK는 요청 이름을 대/소문자를 바꾸지 않�
 
 ## <a name="success"></a>성공
 
-성공 또는 실패한 호출을 나타냅니다. 이 필드는 필수입니다. 명시적으로 `false`로 설정되지 않은 경우 - 요청이 성공으로 간주됩니다. 작업이 예외에 의해 중단되었거나 오류 결과 코드를 반환한 경우 이 값을 `false`로 설정합니다.
+성공 또는 실패한 호출을 나타냅니다. 이 필드는 필수입니다. 설정 되지 않은 경우 명시적으로 너무`false` -요청 toobe 성공한 것으로 간주 합니다. 이 값을 너무 설정`false` 작업 예외에 의해 중단 되었거나 오류 결과 코드를 반환 합니다.
 
-웹 응용 프로그램의 경우 응답 코드가 `400`보다 작거나 `401`과 같은 경우 Application Insights는 요청을 실패한 것으로 정의합니다. 그러나 기본 매핑이 응용 프로그램의 의미 체계와 일치하지 않는 경우가 있습니다. 응답 코드 `404`는 정규 흐름의 일부일 수 있는 "기록 없음"을 나타낼 수 있습니다. 또한 끊어진 연결을 나타낼 수도 있습니다. 끊어진 연결의 경우 좀 더 고급 논리를 구현할 수도 있습니다. 끊어진 연결이 동일한 사이트에 있는 경우에만 URL 참조를 분석하여 실패로 표시할 수 있습니다. 또는 회사의 모바일 응용 프로그램에서 액세스할 때 실패로 표시합니다. 마찬가지로 `301` 및 `302`는 리디렉션을 지원하지 않는 클라이언트에서 액세스될 때 실패를 나타냅니다.
+Hello 웹 응용 프로그램에 대 한 Application Insights 요청을 정의할 때 hello 응답 코드는 작은 hello 실패로 `400` 너무 크거나`401`합니다. 그러나 다음과 같은 경우 기본 매핑을 hello hello 응용 프로그램의 의미 체계와 일치 하지 않습니다. 응답 코드 `404`는 정규 흐름의 일부일 수 있는 "기록 없음"을 나타낼 수 있습니다. 또한 끊어진 연결을 나타낼 수도 있습니다. 중단 된 링크 hello에 대 한 더 많은 고급 논리를 구현할 수도 있습니다. 이러한 링크 hello 동일한 url 참조 페이지를 분석 하 여 사이트에 있는 경우에 실패로 끊어진된 링크를 표시할 수 있습니다. 못하거나 hello 회사의 모바일 응용 프로그램에서 액세스할 때 실패로 표시 합니다. 마찬가지로 `301` 및 `302` 리디렉션을 지원 하지 않는 hello 클라이언트에서 액세스할 때 오류를 나타냅니다.
 
-부분적으로 수락된 콘텐츠 `206`은 전체 요청의 실패를 나타낼 수 있습니다. 예를 들어 Application Insights 끝점은 원격 분석 항목의 일괄 처리를 단일 요청으로 받습니다. 일괄 처리의 일부 항목이 성공적으로 처리되지 않으면 `206`을 반환합니다. `206` 비율이 늘어나면 조사해야 하는 문제가 발생했음을 나타냅니다. 성공이 별도 응답 코드 측면에서는 더 나쁠 수 있는 `207` 다중 상태에도 유사한 논리가 적용됩니다.
+부분적으로 수락된 콘텐츠 `206`은 전체 요청의 실패를 나타낼 수 있습니다. 예를 들어 Application Insights 끝점은 원격 분석 항목의 일괄 처리를 단일 요청으로 받습니다. 반환 `206` hello 일괄 처리의 일부 항목에 성공적으로 처리 되지 않은 경우. 증가 속도 `206` toobe 조사 해야 하는 문제를 나타냅니다. 도 비슷한 논리가 적용 너무`207` hello 성공 수 있는 여러 상태에는 별도 응답 코드의 최저 hello 합니다.
 
-[블로그 게시물](http://apmtips.com/blog/2016/12/03/request-success-and-response-code/)에서 요청 결과 코드 및 상태 코드에 대한 자세한 내용을 확인할 수 있습니다.
+더 많은 온 요청 결과 읽을 수에서 코드 및 상태 코드 hello [블로그 게시물](http://apmtips.com/blog/2016/12/03/request-success-and-response-code/)합니다.
 
 ## <a name="custom-properties"></a>사용자 지정 속성
 
@@ -82,5 +82,5 @@ Application Insights 웹 SDK는 요청 이름을 대/소문자를 바꾸지 않�
 
 - [사용자 지정 요청 원격 분석을 작성합니다](app-insights-api-custom-events-metrics.md#trackrequest).
 - Application Insights 형식 및 데이터 모델에 대한 자세한 내용은 [데이터 모델](application-insights-data-model.md)을 참조하세요.
-- 자세한 방법 Application Insights를 사용하여 [ASP.NET Core 응용 프로그램을 구성](app-insights-asp-net.md)하는 방법을 알아봅니다.
+- 너무 방법에 대해 알아봅니다[ASP.NET Core 구성](app-insights-asp-net.md) Application Insights로 응용 프로그램입니다.
 - Application Insights에서 지원되는 [플랫폼](app-insights-platforms.md)을 확인합니다.

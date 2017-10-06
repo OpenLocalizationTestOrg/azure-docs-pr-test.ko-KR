@@ -1,6 +1,6 @@
 ---
-title: "Azure Machine Learning 클래식 웹 서비스의 재학습 문제 해결 | Microsoft Docs"
-description: "Azure Machine Learning 웹 서비스에 대한 모델을 재학습하는 경우에 발생하는 일반적인 문제를 파악하고 바로 잡습니다."
+title: "웹 서비스는 Azure 컴퓨터 학습 클래식 재교육 aaaTroubleshoot | Microsoft Docs"
+description: "식별 하 고는 Azure 기계 학습 웹 서비스에 대 한 hello 모델 재교육는 일반적인 문제 이름을으로 해결 합니다."
 services: machine-learning
 documentationcenter: 
 author: VDonGlover
@@ -14,95 +14,93 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: fc36499ebff88c86635228ff899c85e9166aabed
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b6a78eaba161877106dccdc23437b5e454fca7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-the-retraining-of-an-azure-machine-learning-classic-web-service"></a>Azure Machine Learning 기존 웹 서비스의 재학습 문제 해결
+# <a name="troubleshooting-hello-retraining-of-an-azure-machine-learning-classic-web-service"></a>Hello 재교육 Azure 컴퓨터 학습 클래식 웹 서비스의 문제 해결
 ## <a name="retraining-overview"></a>재학습 개요
-예측 실험을 점수 매기기 웹 서비스로 배포하는 경우 정적 모델입니다. 새 데이터를 사용할 수 있는 경우 또는 API 소비자가 자체적인 데이터를 가진 경우 모델을 재학습해야 합니다. 
+예측 실험을 점수 매기기 웹 서비스로 배포하는 경우 정적 모델입니다. 새 데이터를 사용할 수 있게 됨 또는 hello API의 hello 소비자가 데이터에 다시 학습 되도록 toobe hello 모델에 필요 합니다. 
 
-기존 웹 서비스 재학습 프로세스의 자세한 연습은 [프로그래밍 방식으로 Machine Learning 모델 다시 학습](machine-learning-retrain-models-programmatically.md)을 참조하세요.
+Hello 재교육 클래식 웹 서비스의 프로세스는 전체 연습은 참조 [보존 하기 위해 컴퓨터 학습 모델 프로그래밍 방식으로](machine-learning-retrain-models-programmatically.md)합니다.
 
 ## <a name="retraining-process"></a>재학습 프로세스
-웹 서비스를 다시 학습해야 할 경우, 몇 가지 추가 요소를 추가해야 합니다.
+Tooretrain hello 웹 서비스를 해야 하는 경우 일부 추가 항목을 추가 해야 합니다.
 
-* 학습 실험에서 배포된 웹 서비스입니다. 실험에는 **모델 학습** 모듈의 출력에 연결된 **웹 서비스 출력** 모듈이 있어야 합니다.  
+* Hello 학습 실험에서에서 배포 된 웹 서비스입니다. hello 실험 있어야는 **웹 서비스 출력** 모듈이 연결의 hello toohello 출력 **모델 학습** 모듈입니다.  
   
-    ![모델 학습에 웹 서비스 출력을 연결합니다.][image1]
-* 점수 매기기 웹 서비스에 추가된 새 끝점입니다.  프로그래밍 방식으로 항목 또는 Azure 클래식 포털을 통해 Machine Learning 재학습 모델에서 참조한 샘플 코드를 사용하여 프로그래밍 방식으로 끝점을 추가할 수 있습니다.
+    ![Hello 웹 서비스 출력 toohello 학습 모델을 연결 합니다.][image1]
+* 새 끝점 tooyour 웹 서비스 점수 매기기를 추가 합니다.  Hello 끝점을 프로그래밍 방식으로 추가할 수 있습니다 hello에서 참조 하는 hello 샘플 코드를 사용 하 여 다시 학습 기계 학습 모델 프로그래밍 방식으로 항목 또는 hello Azure 클래식 포털을 통해.
 
-그런 다음 학습 웹 서비스 API 도움말 페이지에서 샘플 C# 코드를 사용하여 모델을 재학습할 수 있습니다. 결과를 평가했고 만족한다면 추가한 새 끝점을 사용하여 학습된 모델 점수 매기기 웹 서비스를 업데이트합니다.
+다음 샘플 C# 코드 hello hello 학습 웹 서비스의 API 도움말 페이지 tooretrain 모델에서 사용할 수 있습니다. Hello 결과 평가 하 여 만족 되 면, 웹 서비스 사용자가 추가한 hello 새 끝점을 사용 하 여 점수 매기기 hello 학습 된 모델을 업데이트 합니다.
 
-모든 준비가 된 경우 모델을 재학습하기 위해 취해야 할 주요 단계는 다음과 같습니다.
+모든 hello 작업으로 tooretrain hello 모델을 수행 해야 하는 hello 주요 단계는 다음과 같습니다.
 
-1. 학습 웹 서비스 호출: RRS(요청 응답 서비스)가 아닌 BES(일괄 처리 실행 서비스)를 호출합니다. API 도움말 페이지에 나오는 샘플 C# 코드를 사용하여 호출할 수 있습니다. 
-2. *BaseLocation*, *RelativeLocation* 및 *SasBlobToken*에 대한 값 찾기: 학습 웹 서비스에 대한 호출에서 이러한 값을 출력에 반환합니다. 
-   ![재학습 샘플의 출력 및 BaseLocation, RelativeLocation 및 SasBlobToken 값을 표시합니다.][image6]
-3. 새 학습된 모델을 사용하여 점수 매기기 웹 서비스에서 추가된 끝점 업데이트하기: 프로그래밍 방식으로 기계 학습 모델 재학습에서 제공된 샘플 코드를 사용하여 학습 웹 서비스에서 새로 학습된 모델로 점수 매기기 모델에 추가한 새 끝점을 업데이트합니다.
+1. Hello 학습 웹 서비스 호출: 요청 응답 서비스 (RR) 하지 hello, hello 호출은 toohello 일괄 처리 실행 서비스 (BES)입니다. Hello API 도움말 페이지 toomake hello 호출 hello 샘플 C# 코드를 사용할 수 있습니다. 
+2. Hello에 대 한 hello 값을 찾을 *BaseLocation*, *RelativeLocation*, 및 *SasBlobToken*: hello 출력에 프로그램 호출 toohello 교육 웹에서에서 이러한 값이 반환 서비스입니다. 
+   ![샘플 및 hello BaseLocation, RelativeLocation, 및 SasBlobToken 값 재교육 hello의 hello 출력을 표시 합니다.][image6]
+3. 학습 된 모델에서 새 웹 서비스 hello와 점수 매기기 hello 끝점 업데이트 hello 추가: hello 보존 하기 위해 기계 학습에서에서 모델을 프로그래밍 방식으로 hello 새 끝점 업데이트 제공 hello 샘플 코드를 사용 하 여 추가한 toohello 새로 hello 사용 하 여 모델 점수 매기기 hello 학습 웹 서비스에서에서 학습 된 모델입니다.
 
 ## <a name="common-obstacles"></a>일반적인 장애물
-### <a name="check-to-see-if-you-have-the-correct-patch-url"></a>PATCH URL이 정확한지 확인합니다.
-사용 중인 PATCH URL은 점수 매기기 웹 서비스에 추가한 새 점수 매기기 끝점과 연결된 것이어야 합니다. PATCH URL을 얻는 데는 여러 가지 방법이 있습니다.
+### <a name="check-toosee-if-you-have-hello-correct-patch-url"></a>올바른 URL 패치 hello 있으면 toosee 확인
+hello 패치 URL을 사용 하는 hello hello에 연결 되어 있어야 합니다. 새 점수 매기기 끝점용 추가한 toohello 웹 서비스를 평가 합니다. 다양 한 방법으로 tooobtain hello 패치 URL에는
 
 **옵션 1: 프로그래밍 방식으로**
 
-올바른 PATCH URL을 가지려면:
+tooget hello 패치 URL을 수정 합니다.
 
-1. [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) 샘플 코드를 실행합니다.
-2. AddEndpoint의 출력에서 *HelpLocation* 값을 찾아 URL을 복사합니다.
+1. Hello 실행 [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) 샘플 코드입니다.
+2. Hello AddEndpoint의 출력에서 찾을 hello *HelpLocation* 값 및 hello URL을 복사 합니다.
    
-   ![addEndpoint 샘플의 출력에 있는 HelpLocation.][image2]
-3. 브라우저에 URL을 붙여넣어 웹 서비스에 대한 도움말 링크를 제공하는 페이지로 이동합니다.
-4. **리소스 업데이트** 링크를 클릭하여 패치 도움말 페이지를 엽니다.
+   ![HelpLocation hello addEndpoint 샘플의 hello 출력에서 합니다.][image2]
+3. Hello URL을 hello 웹 서비스에 대 한 도움말 링크를 제공 하는 브라우저 toonavigate tooa 페이지에 붙여 넣습니다.
+4. Hello 클릭 **업데이트 리소스** 링크 tooopen hello 패치 도움말 페이지.
 
-**옵션 2: Azure 클래식 포털 사용**
+**옵션 2: hello Azure 클래식 포털 사용**
 
-1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
-2. 기계 학습 탭을 엽니다. 
-   ![Machine Leaning 탭.][image4]
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+2. 열기 hello 기계 학습 탭 합니다. ![Machine Leaning 탭.][image4]
 3. 작업 영역 이름을 클릭한 후 **웹 서비스**를 클릭합니다.
-4. 현재 작업 중인 점수 매기기 웹 서비스를 클릭합니다. (웹 서비스의 기본 이름을 수정하지 않은 경우 결국 [Scoring Exp.]이 됩니다.)
+4. 웹 서비스를 사용 하는 점수 매기기 hello를 클릭 합니다. (Hello 웹 서비스의 hello 기본 이름을 수정 하지 않은 경우 끝납니다 [점수 매기기 Exp].의 합니다.)
 5. **끝점 추가**를 클릭합니다.
-6. 끝점이 추가된 후 끝점 이름을 클릭합니다. 그런 후에 패치하려는 도움말 페이지를 열려면 **리소스 업데이트**를 클릭합니다.
+6. Hello 끝점 추가 되 면 hello 끝점 이름을 클릭 합니다. 클릭 **업데이트 리소스** tooopen hello 도움말 페이지를 패치 합니다.
 
 > [!NOTE]
-> 예측 웹 서비스 대신 학습 웹 서비스에 끝점을 추가한 경우 **업데이트 리소스** 링크를 클릭하면 다음과 같은 오류가 발생합니다. 죄송합니다. 이 기능은 지원되지 않거나 이 컨텍스트에서 사용할 수 없습니다. 이 웹 서비스에 업데이트할 수 있는 리소스가 없습니다. 불편을 끼쳐 드려 죄송합니다. 이 워크플로를 개선하도록 작업 중입니다.
+> Hello hello를 클릭할 때 다음 오류가 표시는 hello 예측 웹 서비스 대신 hello 끝점 toohello 학습 웹 서비스를 추가한 경우 **업데이트 리소스** 링크: 죄송 합니다. 하지만이 기능은 지원 되지 않는 또는 이 컨텍스트에서 사용할 수 있습니다. 이 웹 서비스에 업데이트할 수 있는 리소스가 없습니다. 이 워크플로 개선으로 작업 하 hello 불편을 했습니다.
 > 
 > 
 
 ![새 끝점 대시보드.][image3]
 
-PATCH 도움말 페이지에는 사용해야 하는 PATCH URL이 들어 있으며 호출하는 데 사용할 수 있는 샘플 코드가 제공됩니다.
+hello를 사용 해야 하는 패치 URL을 포함 하 고 예제 코드를 사용할 수 있습니다를 제공 하는 hello 패치 도움말 페이지 toocall 것입니다.
 
 ![패치 URL.][image5]
 
-### <a name="check-to-see-that-you-are-updating-the-correct-scoring-endpoint"></a>올바른 점수 매기기 끝점을 업데이트하고 있는지 확인합니다.
-* 학습 웹 서비스를 패치하지 마십시오. 패치 작업은 점수 매기기 웹 서비스에서 수행해야 합니다.
-* 기본 끝점을 웹 서비스에서 패치하지 마십시오. 패치 작업은 추가한 새 점수 매기기 웹 서비스 끝점에서 수행해야 합니다.
+### <a name="check-toosee-that-you-are-updating-hello-correct-scoring-endpoint"></a>Toosee hello 올바른 점수 매기기 끝점을 업데이트 하 고 있는지 확인 합니다.
+* Hello 학습 웹 서비스를 패치 하지 않습니다: 웹 서비스를 평가 하는 hello에서 hello 패치 작업을 수행 해야 합니다.
+* 웹 서비스에 대 한 hello 기본 끝점을 패치 하지 않습니다: hello 패치 작업 hello 새로운 사용자가 추가한 웹 서비스 끝점 점수 매기기에서 수행 해야 합니다.
 
-Azure 클래식 포털을 방문하여 끝점이 어떤 웹 서비스에 있는지 확인할 수 있습니다. 
+웹 서비스 hello 끝점으로 설정 되어 방문 hello Azure 클래식 포털을 확인할 수 있습니다. 
 
 > [!NOTE]
-> 끝점을 학습 웹 서비스가 아닌 예측 웹 서비스에 추가해야 합니다. 학습 및 예측 웹 서비스를 모두 올바르게 배포한 경우 나열된 두 개의 별도 웹 서비스가 표시됩니다. 예측 웹 서비스는 "[예측 exp.]"로 끝나야 합니다.
+> Hello 끝점 toohello 예측 웹 서비스, 하지 hello 학습 웹 서비스를 추가 하는 확인 해야 합니다. 학습 및 예측 웹 서비스를 모두 올바르게 배포한 경우 나열된 두 개의 별도 웹 서비스가 표시됩니다. hello 예측 웹 서비스 "[예측 내선 번호]"로 끝나야 합니다.
 > 
 > 
 
-1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
-2. 기계 학습 탭을 엽니다. 
-   ![Machine Learning 작업 영역 UI.][image4]
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+2. 열기 hello 기계 학습 탭 합니다. ![Machine Learning 작업 영역 UI.][image4]
 3. 작업 영역을 선택합니다.
 4. **웹 서비스**를 클릭합니다.
 5. 예측 웹 서비스를 선택합니다.
-6. 웹 서비스에 새 끝점이 추가되었는지 확인합니다.
+6. 새 끝점 추가 toohello 웹 서비스 되는지 확인 합니다.
 
-### <a name="check-the-workspace-that-your-web-service-is-in-to-ensure-it-is-in-the-correct-region"></a>웹 서비스가 있는 작업 영역을 확인하여 올바른 영역에 있는지 확인합니다.
-1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
-2. 메뉴에서 기계 학습을 선택합니다.
+### <a name="check-hello-workspace-that-your-web-service-is-in-tooensure-it-is-in-hello-correct-region"></a>웹 서비스에 tooensure은 hello 올바른 영역에 있는 hello 작업 영역 확인
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+2. 기계 학습 hello 메뉴에서 선택 합니다.
    ![Machine Learning 하위 지역 UI.][image4]
-3. 작업 영역의 위치를 확인합니다.
+3. 작업 영역의 hello 위치를 확인 합니다.
 
 <!-- Image Links -->
 

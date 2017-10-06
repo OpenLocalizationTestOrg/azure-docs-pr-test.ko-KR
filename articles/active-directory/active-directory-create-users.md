@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory에 새 사용자 추가 | Microsoft Docs"
-description: "Azure Active Directory에서 새 사용자를 추가하거나 사용자 정보를 변경하는 방법을 설명합니다."
+title: "aaaAdd 새 사용자 tooAzure Active Directory | Microsoft Docs"
+description: "에 대해 설명 방법을 tooadd 새 사용자 또는 Azure Active Directory에서 사용자 정보를 변경 합니다."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -17,67 +17,67 @@ ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: ff4b742e772a6062885313e9bb49e55907fe125a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 72f67ad41022fd19fd94c8e1301943b0db1e57bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-new-users-or-users-with-microsoft-accounts-to-azure-active-directory"></a>Azure Active Directory에 새 사용자 또는 Microsoft 계정이 있는 사용자 추가
-사용자를 추가하여 디렉터리를 채웁니다. 이 문서에서는 조직 내에서 새 사용자를 추가하는 방법 및 Microsoft 계정이 있는 사용자를 추가하는 방법을 설명합니다. Azure Active Directory의 다른 디렉터리의 사용자 추가 또는 파트너 회사의 사용자 추가에 대한 자세한 내용은 [Azure Active Directory의 다른 디렉터리 또는 파트너 회사의 사용자 추가](active-directory-create-users-external.md)를 참조하세요. 기본적으로 추가된 사용자에게는 관리자 권한이 없지만 언제든 역할을 할당할 수 있습니다.
+# <a name="add-new-users-or-users-with-microsoft-accounts-tooazure-active-directory"></a>새 사용자 또는 Microsoft 계정 tooAzure Active Directory와 사용자 추가
+사용자가 toopopulate 디렉터리를 추가 합니다. 이 문서에서는 설명 방법을 tooadd 조직 내에서 새 사용자와 방법을 tooadd 사용자에 게 Microsoft 계정을 있습니다. Azure Active Directory의 다른 디렉터리의 사용자 추가 또는 파트너 회사의 사용자 추가에 대한 자세한 내용은 [Azure Active Directory의 다른 디렉터리 또는 파트너 회사의 사용자 추가](active-directory-create-users-external.md)를 참조하세요. 기본적으로 추가 된 사용자가 관리자 권한이 필요는 없지만 언제 든 지 역할 toothem를 할당할 수 있습니다.
 
 > [!IMPORTANT]
-> 이 문서에서 참조되는 Azure 클래식 포털을 사용하는 대신 Azure Portal에서 [Azure AD 관리 센터](https://aad.portal.azure.com)를 사용하여 Azure AD를 관리하는 것이 좋습니다. Azure AD 관리 센터에서 사용자를 추가하는 방법은 [Azure Active Directory에 새 사용자 추가](active-directory-users-create-azure-portal.md)를 참조하세요.
+> Hello를 사용 하 여 Azure AD를 관리 하는 것이 좋습니다 [Azure AD 관리 센터](https://aad.portal.azure.com) hello에서 사용 하는 대신 Azure 포털 hello Azure 클래식 포털이이 문서에서 설명 합니다. Tooadd hello Azure AD 관리 센터에서 사용자 참조에 대 한 [추가 Active Directory에 새 사용자 tooAzure](active-directory-users-create-azure-portal.md)합니다.
 
 ## <a name="add-a-user"></a>사용자 추가
-1. 디렉터리에 대한 전역 관리자인 계정으로 [Azure 클래식 포털](https://manage.windowsazure.com) 에 로그인합니다.
-2. **Active Directory**를 선택한 다음 조직 디렉터리의 이름을 선택합니다.
-3. **사용자** 탭을 선택한 다음 명령 모음에서 **사용자 추가**를 선택합니다.
-4. **이 사용자에 대해 알리기** 페이지의 **사용자 형식**에서 다음 중 하나를 선택합니다.
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com) hello 디렉터리에 대 한 전역 관리자 인 계정을 사용 합니다.
+2. 선택 **Active Directory**, 조직 디렉터리의 hello 이름을 선택 합니다.
+3. 선택 hello **사용자** 탭을 선택한 다음 hello 명령 모음에서 선택 **사용자 추가**합니다.
+4. Hello에 **이 사용자에 대해 알리기** 페이지의 **유형의 사용자**을 하나 선택:
 
    * **조직의 새 사용자** – 디렉터리에 새 사용자 계정을 추가합니다.
-   * **기존 Microsoft 계정이 있는 사용자** – 디렉터리에 기존 사용자 Microsoft 고객 계정(예: Outlook 계정)을 추가합니다.
+   * **기존 Microsoft 계정 사용자** – 기존 Microsoft 소비자 계정 tooyour 디렉터리 (예: Outlook 계정)를 추가 합니다.
 5. **사용자 유형**에 따라 사용자 이름(새 사용자) 또는 전자 메일 주소(Microsoft 계정이 있는 사용자)를 입력합니다.
-6. 사용자 **프로필** 페이지에 **역할** 목록의 이름과 성, 별명 및 사용자 역할을 입력합니다. 사용자 및 관리자 역할에 대한 자세한 내용은 [Azure AD에서 관리자 역할 할당](active-directory-assign-admin-roles.md)을 참조하세요. 사용자에 대해 **Multi-Factor Authentication 사용** 여부를 지정합니다.
-7. **임시 암호 가져오기** 페이지에서 **만들기**를 선택합니다.
+6. Hello 사용자에 **프로필** 페이지에서 첫 번째 및 마지막 이름, 사용자에 게 친숙 한 이름 및 hello에서 사용자 역할을 제공 합니다. **역할** 목록입니다. 사용자 및 관리자 역할에 대한 자세한 내용은 [Azure AD에서 관리자 역할 할당](active-directory-assign-admin-roles.md)을 참조하세요. 지정 여부 너무**다단계 인증 사용** hello 사용자에 대 한 합니다.
+7. Hello에 **임시 암호 가져오기** 페이지에서 **만들기**합니다.
 
 > [!IMPORTANT]
-> 조직에서 둘 이상의 도메인을 사용하는 경우 사용자 계정을 추가할 때 다음과 같은 문제를 알고 있어야 합니다.
+> 조직에서 둘 이상의 도메인을 사용 하는 경우 사용자 계정을 추가할 때 문제를 다음 hello 알아야:
 >
-> * 도메인 간에 동일한 UPN(사용자 계정 이름)을 가진 사용자 계정을 추가하려면 예를 들어 **먼저** geoffgrisso@contoso.onmicrosoft.com을 추가한 **다음** geoffgrisso@contoso.com을 추가합니다.
-> * geoffgrisso@contoso.onmicrosoft.com을 추가하기 전에 geoffgrisso@contoso.com을 추가하지 **마세요**. 이 작업은 중요하며 실행을 취소하기가 복잡할 수 있습니다.
+> * tooadd 사용자 계정과 도메인 간에 동일한 사용자 계정 이름 (UPN) hello **첫 번째** 추가, 예를 들어 geoffgrisso@contoso.onmicrosoft.com, **이어서** geoffgrisso@contoso.com합니다.
+> * geoffgrisso@contoso.onmicrosoft.com을 추가하기 전에 geoffgrisso@contoso.com을 추가하지 **마세요**. 이 순서는 중요, 하며 번거로운 tooundo 될 수 있습니다.
 >
 >
 
 ## <a name="change-user-information"></a>사용자 정보 변경
-개체 ID를 제외하고 모든 사용자 특성을 변경할 수 있습니다.
+Hello 개체 ID 제외 하 고 모든 사용자 특성을 변경할 수 있습니다.
 
 1. 디렉터리를 엽니다.
-2. **사용자** 탭을 선택하고 변경하려는 사용자의 표시 이름을 선택합니다.
+2. 선택 hello **사용자** 탭 및의 표시 이름을 선택한 후 hello hello toochange 하려는 사용자입니다.
 3. 변경을 완료하고 **저장**을 클릭합니다.
 
-변경하려는 사용자가 온-프레미스 Active Directory 서비스와 동기화된 경우 이 절차를 사용하여 사용자 정보를 변경할 수 없습니다. 사용자를 변경하려면 온-프레미스 Active Directory 관리 도구를 사용합니다.
+변경 하는 hello 사용자는 온-프레미스 Active Directory 서비스와 동기화 되 면이 절차를 사용 하 여 hello 사용자 정보를 변경할 수 없습니다. toochange hello 사용자 하려면 온-프레미스 Active Directory 관리 도구를 사용 합니다.
 
 ## <a name="guest-user-management-and-limitations"></a>게스트 사용자 관리 및 제한 사항
-게스트 계정은 SharePoint 문서, 응용 프로그램 또는 기타 Azure 리소스에 액세스할 수 있도록 내 디렉터리에 초대된 다른 디렉터리의 사용자를 말합니다. 디렉터리의 게스트 계정은 기본 UserType 특성이 "게스트"로 설정됩니다. 일반 사용자(즉, 내 디렉터리의 멤버)는 UserType 특성이 "멤버"입니다.
+게스트 계정은 초대한 tooyour 디렉터리 tooaccess SharePoint 문서, 응용 프로그램, 또는 다른 Azure 리소스로 이었던 다른 디렉터리의 사용자입니다. 디렉터리에 게스트 계정에는 기본 UserType 특성 설정 너무 "Guest." 일반 사용자 (특히, 디렉터리의 구성원) 특성이 hello UserType "멤버"입니다.
 
-게스트는 디렉터리에서 제한된 권한 집합을 갖습니다. 이러한 권한은 디렉터리의 다른 사용자에 대한 정보를 검색하는 게스트의 기능을 제한합니다. 그러나 게스트 사용자가 작업하는 리소스와 관련된 사용자 및 그룹과 계속 상호 작용할 수 있습니다. 게스트 사용자는 다음 작업을 수행할 수 있습니다.
+게스트는 hello 디렉터리에 제한 된 권한 집합이 있어야 합니다. 이러한 권한은 hello 디렉터리에 다른 사용자에 대 한 게스트 toodiscover 정보에 대 한 hello 기능을 제한합니다. 그러나 게스트 사용자에 게 hello 사용자 및 그룹에서 작업 하는 hello 리소스와 관련 된 상호 작용 여전히 있습니다. 게스트 사용자는 다음 작업을 수행할 수 있습니다.
 
-* 할당된 Azure 구독과 관련된 다른 사용자 및 그룹 보기
-* 속한 그룹의 멤버 보기
-* 사용자의 전체 메일 주소를 알고 있는 경우 디렉터리의 다른 사용자 조회
-* 조회하는 사용자의 제한된 특성 보기 - 표시 이름, 메일 주소, UPN(사용자 계정 이름) 및 축소한 사진으로 제한됨
-* 디렉터리의 확인된 도메인 목록 가져오기
-* 디렉터리의 멤버와 동일한 액세스 권한을 부여하며 응용 프로그램에 동의
+* 다른 사용자와 그룹을 할당 하는 Azure 구독 toowhich와 관련 된 참조
+* 소속 그룹 toowhich의 hello 멤버를 참조 하십시오.
+* Hello 사용자의 hello 전체 전자 메일 주소를 알고 있으면 hello 디렉터리에 다른 사용자가을 조회합니다
+* 제한 된 집합의 특성을-제한 toodisplay 이름, 전자 메일 주소, 사용자 계정 이름 (UPN) 및 미리 보기 사진 찾아볼 hello 사용자의를 참조 하십시오.
+* Hello 디렉터리의 확인 된 도메인 목록 가져오기
+* 권한을 부여 하는 동의 tooapplications hello 멤버 디렉터리에 있는 동일한 액세스
 
 ## <a name="set-guest-user-access-policies"></a>게스트 사용자 액세스 정책 설정
-디렉터리의 **구성** 탭에는 게스트 사용자의 액세스를 제어하는 옵션이 포함되어 있습니다. 이러한 옵션은 디렉터리 전역 관리자에 의해 Azure 클래식 포털에서만 변경될 수 있습니다. 현재는 PowerShell 또는 API 메서드가 없습니다.
+hello **구성** 디렉터리의 탭에는 게스트 사용자에 대 한 옵션 toocontrol 액세스 합니다. 이러한 옵션은 디렉터리 전역 관리자에 의해 Azure 클래식 포털에서만 변경될 수 있습니다. 현재는 PowerShell 또는 API 메서드가 없습니다.
 
-Azure 클래식 포털에서 **구성** 탭을 열려면 **Active Directory**를 선택한 다음 디렉터리의 이름을 선택합니다.
+tooopen hello **구성** hello에 탭 Azure 클래식 포털에서 선택 **Active Directory**, hello 디렉터리의 hello 이름을 선택 합니다.
 
 ![Azure Active Directory의 구성 탭][1]
 
-그러면 게스트 사용자의 액세스를 제어하는 옵션을 편집할 수 있습니다.
+다음 게스트 사용자에 대 한 hello 옵션 toocontrol 액세스를 편집할 수 있습니다.
 
 ![게스트 사용자에 대한 액세스 제어 옵션][2]
 

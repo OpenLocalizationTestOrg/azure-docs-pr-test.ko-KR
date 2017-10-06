@@ -1,6 +1,6 @@
 ---
-title: "Azure Backup Server를 사용하여 Azure 클래식 포털에 워크로드 백업 | Microsoft Docs"
-description: "Azure 백업 서버를 사용하여 워크로드를 백업하도록 환경을 적절히 준비합니다."
+title: "작업 부하 tooAzure 클래식 포털을 aaaUse Azure 백업 서버 tooback | Microsoft Docs"
+description: "사용자 환경에서 제대로 tooback Azure 백업 서버를 사용 하 여 워크 로드를 준비 하 고 있는지 확인"
 services: backup
 documentationcenter: 
 author: pvrk
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: masaran;trinadhk;pullabhk;markgal
-ms.openlocfilehash: ffef289e154986e4b08a072d3a95f77818fb9c35
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7b574824c448096e0c0ba74a872ab8f2a434f6a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="preparing-to-back-up-workloads-using-azure-backup-server"></a>Azure 백업 서버를 사용하여 워크로드 백업 준비
+# <a name="preparing-tooback-up-workloads-using-azure-backup-server"></a>Azure 백업 서버를 사용 하 여 워크 로드를 tooback 준비
 > [!div class="op_single_selector"]
 > * [Azure 백업 서버](backup-azure-microsoft-azure-backup.md)
 > * [SCDPM](backup-azure-dpm-introduction.md)
@@ -30,40 +30,40 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-이 문서는 Azure 백업 서버를 사용하여 워크로드를 백업하기 위한 환경을 준비하는 방법에 대해 설명합니다. Azure 백업 서버로 Hyper-V VM, Microsoft SQL Server, SharePoint Server, 단일 콘솔의 Microsoft Exchange 및 Windows 클라이언트와 같은 응용 프로그램 워크로드를 보호할 수 있습니다.
+이 문서는 Azure 백업 서버를 사용 하 여 워크 로드를 사용자 환경 tooback 준비에 대 한 합니다. Azure 백업 서버로 Hyper-V VM, Microsoft SQL Server, SharePoint Server, 단일 콘솔의 Microsoft Exchange 및 Windows 클라이언트와 같은 응용 프로그램 워크로드를 보호할 수 있습니다.
 
 > [!WARNING]
-> Azure 백업 서버는 워크로드 백업을 위해 DPM(Data Protection Manager) 기능을 상속합니다. 이러한 기능 중 몇 가지에 대한 DPM 설명서의 포인터가 있습니다. 그러나 Azure 백업 서버는 테이프에 대한 보호 기능을 제공하거나 System Center와 통합하지 않습니다.
+> Azure 백업 서버 작업을 백업에 대 한 hello 기능 Data Protection Manager (DPM)를 상속합니다. 이러한 기능 중 일부에 대 한 tooDPM 설명서 포인터를 찾을 수 있습니다. 그러나 Azure 백업 서버는 테이프에 대한 보호 기능을 제공하거나 System Center와 통합하지 않습니다.
 >
 >
 
 ## <a name="1-windows-server-machine"></a>1. Windows Server 컴퓨터
 ![1단계](./media/backup-azure-microsoft-azure-backup/step1.png)
 
-Azure 백업 서버를 작동하고 실행하는 첫 번째 단계는 Windows Server 컴퓨터를 사용하는 것입니다.
+Azure 백업 서버 hello 시작 및 실행 hello 첫 번째 단계는 toohave Windows Server 컴퓨터.
 
 | 위치 | 최소 요구 사항 | 추가 지침 |
 | --- | --- | --- |
-| Azure |Azure IaaS 가상 컴퓨터<br><br>A2 표준: 2개 코어, 3.5GB RAM |Windows Server 2012 R2 데이터 센터의 간단한 갤러리 이미지로 시작할 수 있습니다. [Azure 백업 서버(DPM)를 사용하여 IaaS 워크로드를 보호하는 데는](https://technet.microsoft.com/library/jj852163.aspx) 미묘한 많은 차이가 있습니다. 컴퓨터를 배포하기 전에 이 문서를 완전히 읽어야 합니다. |
-| 온-프레미스 |Hyper-V VM,<br> VMWare VM,<br> 또는 물리적 호스트<br><br>2개 코어 및 4GB RAM |Windows Server 중복 제거를 사용하여 DPM 저장소를 중복 제거할 수 있습니다. [DPM 및 중복 제거](https://technet.microsoft.com/library/dn891438.aspx) 가 Hyper-V VM에 배포될 때 함께 작동하는 방법에 대해 자세히 알아보세요. |
+| Azure |Azure IaaS 가상 컴퓨터<br><br>A2 표준: 2개 코어, 3.5GB RAM |Windows Server 2012 R2 데이터 센터의 간단한 갤러리 이미지로 시작할 수 있습니다. [Azure 백업 서버(DPM)를 사용하여 IaaS 워크로드를 보호하는 데는](https://technet.microsoft.com/library/jj852163.aspx) 미묘한 많은 차이가 있습니다. 읽어 hello 문서 완전히 hello 컴퓨터를 배포 하기 전에 확인 합니다. |
+| 온-프레미스 |Hyper-V VM,<br> VMWare VM,<br> 또는 물리적 호스트<br><br>2개 코어 및 4GB RAM |Windows Server 중복 제거를 사용 하 여 hello DPM 저장소 중복 제거 수 있습니다. [DPM 및 중복 제거](https://technet.microsoft.com/library/dn891438.aspx) 가 Hyper-V VM에 배포될 때 함께 작동하는 방법에 대해 자세히 알아보세요. |
 
 > [!NOTE]
-> Windows Server 2012 R2 데이터 센터가 있는 컴퓨터에 Azure 백업 서버를 설치하는 것이 좋습니다. Windows 운영 체제의 최신 버전을 사용하면 많은 필수 조건이 자동으로 해결됩니다.
+> Windows Server 2012 R2 데이터 센터가 있는 컴퓨터에 Azure 백업 서버를 설치하는 것이 좋습니다. Hello 필수 소프트웨어의 많은 hello hello Windows 운영 체제의 최신 버전으로 자동으로 다룹니다.
 >
 >
 
-Azure Backup Server를 도메인에 조인하려는 경우 Azure Backup Server 소프트웨어를 설치하기 전에 물리적 서버 또는 가상 컴퓨터를 도메인에 조인하는 것이 좋습니다. 배포 후 Azure Backup Server를 새 도메인으로 이동하도록 *지원하지 않습니다*.
+Azure 백업 서버 tooa 도메인 toojoin 하려는 경우 hello Azure 백업 서버 소프트웨어를 설치 하기 전에 hello 물리적 서버 또는 가상 컴퓨터 toohello 도메인을 조인 하는 것이 좋습니다. 배포 후 Azure 백업 서버 tooa 새 도메인 이동이 *지원 되지 않습니다*합니다.
 
 ## <a name="2-backup-vault"></a>2. 백업 자격 증명 모음
 ![2단계](./media/backup-azure-microsoft-azure-backup/step2.png)
 
-백업 데이터를 Azure에 전송하거나 로컬로 유지하는 경우 Azure Backup Server를 자격 증명 모음에 등록해야 합니다. 새로운 Azure Backup 사용자이며 Azure Backup Server를 사용하려는 경우 이 문서의 Azure Portal 버전 - [Azure Backup Server를 사용하여 작업 백업 준비](backup-azure-microsoft-azure-backup.md)를 참조하세요.
+백업 데이터 tooAzure 보내거나 로컬로 유지 여부를 Azure 백업 서버 hello 자격 증명 모음 등록된 tooa 이어야 합니다. 새로운 Azure Backup 사용자 toouse Azure 백업 서버를 사용할 경우 참조 hello Azure이 문서의-포털 버전 [tooback Azure 백업 서버를 사용 하 여 워크 로드를 준비](backup-azure-microsoft-azure-backup.md)합니다.
 
 > [!IMPORTANT]
-> 2017년 3월부터는 백업 자격 증명 모음을 만드는 데 더 이상 클래식 포털을 사용할 수 없습니다.
-> 이제 Backup 자격 증명 모음을 Recovery Services 자격 증명 모음으로 업그레이드할 수 있습니다. 자세한 내용은 [Recovery Services 자격 증명 모음으로 Backup 자격 증명 모음 업그레이드](backup-azure-upgrade-backup-to-recovery-services.md) 문서를 참조하세요. Backup 자격 증명 모음을 Recovery Services 자격 증명 모음으로 업그레이드하는 것이 좋습니다.<br/> 2017년 10월 15일 이후부터는 PowerShell을 사용하여 Backup 자격 증명 모음을 만들 수 없습니다. **2017년 11월 1일까지**:
->- 남아 있는 모든 Backup 자격 증명 모음이 Recovery Services 자격 증명 모음으로 자동 업그레이드됩니다.
->- 클래식 포털에서는 백업 데이터에 액세스할 수 없습니다. 대신 Azure Portal을 사용하여 Recovery Services 자격 증명 모음에서 백업 데이터에 액세스할 수 있습니다.
+> 2017 년 3 월 부터는 hello 클래식 포털 toocreate 백업 자격 증명 모음은 더 이상 사용할 수 없습니다.
+> 이제 사용자 백업 자격 증명 모음 tooRecovery 서비스 자격 증명 모음을 업그레이드할 수 있습니다. 자세한 내용은 hello 문서 참조 [복구 서비스 자격 증명 모음에 백업 자격 증명 모음 tooa 업그레이드](backup-azure-upgrade-backup-to-recovery-services.md)합니다. Microsoft는 것이 권장 tooupgrade 백업 tooRecovery 서비스 자격 증명 모음 자격 증명 모음입니다.<br/> 2017 년 10 월 15 후 PowerShell toocreate 백업 자격 증명 모음을 사용할 수 없습니다. **2017년 11월 1일까지**:
+>- 모든 나머지 백업 자격 증명 모음을 자동으로 업그레이드 된 tooRecovery 서비스 자격 증명 모음 됩니다.
+>- 하면 hello 클래식 포털에서 수 tooaccess 백업 데이터 수 없습니다. 대신, 복구 서비스 자격 증명 모음에 hello Azure 포털 tooaccess 백업 데이터를 사용 합니다.
 >
 
 
@@ -71,98 +71,98 @@ Azure Backup Server를 도메인에 조인하려는 경우 Azure Backup Server �
 ## <a name="3-software-package"></a>3. 소프트웨어 패키지
 ![3단계](./media/backup-azure-microsoft-azure-backup/step3.png)
 
-### <a name="downloading-the-software-package"></a>소프트웨어 패키지 다운로드
-자격 증명 모음과 비슷하게 백업 자격 증명의 **빠른 시작 페이지** 에서 응용 프로그램 워크로드에 Microsoft Azure 백업 서버를 다운로드할 수 있습니다.
+### <a name="downloading-hello-software-package"></a>Hello 소프트웨어 패키지를 다운로드합니다.
+비슷한 toovault 자격 증명을 다운로드할 수 있습니다 Microsoft Azure 백업을 hello에서 응용 프로그램 작업에 대 한 **빠른 시작 페이지** hello 백업 자격 증명 모음의 합니다.
 
-1. **응용 프로그램 워크로드에 대해서(디스크에서 디스크로 클라우드로)**를 클릭합니다. 그러면 소프트웨어 패키지를 다운로드할 수 있는 다운로드 센터 페이지로 이동하게 됩니다.
+1. 클릭 **에 대 한 응용 프로그램 작업 (디스크 tooDisk tooCloud)**합니다. 그러면 이동 toohello 다운로드 센터 페이지에서 hello 소프트웨어 패키지를 다운로드할 수 있습니다.
 
     ![Microsoft Azure 백업 시작 화면](./media/backup-azure-microsoft-azure-backup/dpm-venus1.png)
 2. **다운로드**를 클릭합니다.
 
     ![다운로드 센터 1](./media/backup-azure-microsoft-azure-backup/downloadcenter1.png)
-3. 모든 파일을 선택하고 **다음**을 클릭합니다. Microsoft Azure 백업 다운로드 페이지에서 들어오는 모든 파일을 다운로드하고 모든 파일을 동일한 폴더에 배치합니다.
+3. 모든 hello 파일을 선택 하 고 클릭 **다음**합니다. 다운로드 파일 hello Microsoft Azure 백업 다운로드 페이지에서 들어오는 hello 모든 및 위치에 있는 파일을 hello 모든 hello 동일한 폴더입니다.
    ![다운로드 센터 1](./media/backup-azure-microsoft-azure-backup/downloadcenter.png)
 
-    모든 파일의 다운로드 크기가 >3G이기 때문에 10Mbps 다운로드 링크에서 다운로드를 완료하는 데 최대 60분이 걸릴 수 있습니다.
+    이므로 hello 모든 hello 파일의 다운로드 크기 함께 > 3g, too60까지 걸릴 수 있으므로 10Mbps 다운로드 링크에서 hello에 대 한 분 toocomplete을 다운로드 합니다.
 
-### <a name="extracting-the-software-package"></a>소프트웨어 패키지 추출
-모든 파일을 다운로드한 후에 **MicrosoftAzureBackupInstaller.exe**를 클릭합니다. 사용자가 지정한 위치에 설치 파일을 추출하는 **Microsoft Azure 백업 설정 마법사** 가 시작됩니다. 마법사를 계속 진행하고 **추출** 단추를 클릭하여 추출 프로세스를 시작합니다.
+### <a name="extracting-hello-software-package"></a>Hello 소프트웨어 패키지를 추출합니다.
+모든 hello 파일을 다운로드 한 후 클릭 **MicrosoftAzureBackupInstaller.exe**합니다. Hello을 시작 합니다. **Microsoft Azure 백업 설정 마법사** tooextract hello 설치 프로그램 파일을 사용자가 지정한 tooa 위치입니다. Hello 마법사를 계속 하 고 hello에서 클릭 **추출** toobegin hello 추출 프로세스 단추입니다.
 
 > [!WARNING]
-> 설치 파일을 추출하려면 4GB 이상의 사용 가능한 공간이 필요합니다.
+> 4GB 이상의 여유 공간이 필요한 tooextract hello 설치 파일입니다.
 >
 >
 
 ![Microsoft Azure 백업 설정 마법사](./media/backup-azure-microsoft-azure-backup/extract/03.png)
 
-추출 프로세스가 완료되면 새로 추출한 *setup.exe* 를 시작할 상자를 선택하여 Microsoft Azure 백업 서버 설치를 시작하고 **마침** 단추를 클릭합니다.
+한 번 hello 추출 프로세스 완료를 확인 hello 상자 toolaunch hello 새로 추출한 *setup.exe* toobegin Microsoft Azure 백업 서버를 설치 하 고 hello에서 클릭 **마침** 단추 합니다.
 
-### <a name="installing-the-software-package"></a>소프트웨어 패키지 설치
-1. **Microsoft Azure 백업** 을 클릭하여 설치 마법사를 시작합니다.
+### <a name="installing-hello-software-package"></a>Hello 소프트웨어 패키지 설치
+1. 클릭 **Microsoft Azure 백업** toolaunch hello 설정 마법사입니다.
 
     ![Microsoft Azure 백업 설정 마법사](./media/backup-azure-microsoft-azure-backup/launch-screen2.png)
-2. 시작 화면에서 **다음** 단추를 클릭합니다. 그러면 *필수 구성 요소 확인* 섹션으로 이동합니다. 이 화면에서 **확인** 단추를 클릭하여 Azure 백업 서버에 대한 하드웨어 및 소프트웨어 필수 구성 요소가 충족되었는지 확인합니다. 모든 필수 조건이 성공적으로 충족되면 컴퓨터가 요구 사항을 만족한다는 것을 나타내는 메시지가 표시됩니다. **다음** 단추를 클릭합니다.
+2. Hello 시작 화면에 hello 클릭 **다음** 단추입니다. 이렇게 하면 toohello *Prerequisite Checks* 섹션. 이 화면에서 hello 클릭 **확인** Azure 백업 서버에 대 한 hello 하드웨어 및 소프트웨어 필수 조건이 갖추어 졌 toodetermine 단추입니다. 모든 필수 구성 요소는 hello 조건이 충족 되 성공적으로 해당 hello 컴퓨터 hello 요구 사항을 충족 하는지 나타내는 메시지가 표시 됩니다. Hello 클릭 **다음** 단추입니다.
 
     ![Azure 백업 서버 - 시작 및 필수 조건 확인](./media/backup-azure-microsoft-azure-backup/prereq/prereq-screen2.png)
-3. Microsoft Azure 백업 서버에는 SQL Server Standard가 필요하며 Azure 백업 서버 설치 패키지는 필요한 적절한 SQL Server 이진 파일과 함께 제공됩니다. 새 Azure Backup Server 설치를 시작할 때 **이 설치 프로그램으로 새 SQL Server 인스턴스 설치** 옵션을 선택하고 **확인 후 설치** 단추를 클릭해야 합니다. 필수 구성 요소가 성공적으로 설치되면 **다음**을 클릭합니다.
+3. Microsoft Azure 백업 서버에 SQL Server Standard 필요 하 고 hello Azure 백업 서버 설치 패키지 필요한 hello 적절 한 SQL Server 바이너리 번들로 묶은 제공 합니다. 새 Azure 백업 서버 설치를 시작할 때 hello 옵션을 선택 해야 **이 설치를 새 SQL Server 인스턴스 설치** hello 클릭 **확인 후 설치** 단추입니다. Hello 필수 구성 요소가 성공적으로 설치 되 면 클릭 **다음**합니다.
 
     ![Azure 백업 서버 - SQL 확인](./media/backup-azure-microsoft-azure-backup/sql/01.png)
 
-    컴퓨터를 다시 시작하라는 권장 사항과 함께 실패가 발생한 경우 작업을 수행하고 **다시 확인**을 클릭합니다.
+    권장 사항 toorestart hello 컴퓨터와 함께 실패 한 경우 작업을 수행 하 고 클릭 **다시 확인**합니다.
 
    > [!NOTE]
-   > Azure 백업 서버는 원격 SQL Server 인스턴스에서 작동하지 않습니다. Azure 백업 서버에서 사용되는 인스턴스는 로컬이어야 합니다.
+   > Azure 백업 서버는 원격 SQL Server 인스턴스에서 작동하지 않습니다. Azure 백업 서버에서 사용 하 고 hello 인스턴스 toobe 로컬 필요 합니다.
    >
    >
 
-4. Microsoft Azure 백업 서버 파일을 설치할 위치를 입력하고 **다음**을 클릭합니다.
+4. Microsoft Azure 백업 서버 파일의 hello 설치에 대 한 위치를 입력 하 고 클릭 **다음**합니다.
 
     ![Microsoft Azure 백업 PreReq2](./media/backup-azure-microsoft-azure-backup/space-screen.png)
 
-    스크래치 위치는 Azure에 백업에 대한 요구 사항입니다. 스크래치 위치가 클라우드로 백업할 계획된 데이터의 5%인지 확인하세요. 디스크 보호를 위해 별도 디스크가 설치를 완료하면 구성되어야 합니다. 저장소 풀에 관련된 자세한 내용은 [저장소 풀 및 디스크 저장소 구성](https://technet.microsoft.com/library/hh758075.aspx)을 참조하세요.
+    hello 스크래치 위치는 tooAzure 백업에 대 한 요구 사항입니다. Hello 스크래치 위치는 hello 데이터의 5% 이상이 toobe toohello 클라우드 백업 계획을 확인 합니다. 디스크 보호에 대 한 별도 디스크 toobe hello 설치가 완료 된 후 구성 해야 합니다. 저장소 풀에 관련된 자세한 내용은 [저장소 풀 및 디스크 저장소 구성](https://technet.microsoft.com/library/hh758075.aspx)을 참조하세요.
 5. 제한된 로컬 사용자 계정에 강력한 암호를 제공하고 **다음**을 클릭합니다.
 
     ![Microsoft Azure 백업 PreReq2](./media/backup-azure-microsoft-azure-backup/security-screen.png)
-6. *Microsoft 업데이트* 를 사용할지 선택하여 업데이트를 확인하고 **다음**을 클릭합니다.
+6. Toouse 것인지 선택 *Microsoft Update* 업데이트 및 클릭 toocheck **다음**합니다.
 
    > [!NOTE]
-   > Windows 업데이트에 Microsoft 업데이트를 리디렉션하는 것이 좋으며 이는 Windows 및 Microsoft Azure 백업 서버와 같은 다른 제품에 대한 보안 및 중요 업데이트를 제공합니다.
+   > Windows Update에서는 Windows 및 Microsoft Azure 백업 서버과 같은 다른 제품에 대 한 보안 및 중요 업데이트는 업데이트를 tooMicrosoft 리디렉션됩니다 발생 하는 것이 좋습니다.
    >
    >
 
     ![Microsoft Azure 백업 PreReq2](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
-7. *설정 요약* 을 검토하고 **설치**를 클릭합니다.
+7. 검토 hello *설정 요약* 클릭 **설치**합니다.
 
     ![Microsoft Azure 백업 PreReq2](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
-8. 설치는 단계적으로 발생합니다. 첫 번째 단계에서 Microsoft Azure 복구 서비스 에이전트가 서버에 설치됩니다. 또한 마법사가 인터넷 연결을 확인합니다. 인터넷 연결을 사용할 수 있으면 설치를 계속 진행할 수 있고 그렇지 않으면 프록시 세부 정보를 제공하여 인터넷에 연결해야 합니다.
+8. hello 설치 단계에서 발생합니다. 첫 번째 단계 hello hello에서에서 Microsoft Azure 복구 서비스 에이전트는 hello 서버에 설치 됩니다. hello 마법사는 또한 인터넷 연결을 확인합니다. 인터넷 연결을 사용할 수 있는 경우 설치를 계속 진행할 수 없으면 tooprovide 프록시 세부 정보 tooconnect toohello 인터넷 필요.
 
-    다음 단계는 Microsoft Azure 복구 서비스 에이전트를 구성하는 것입니다. 구성의 일부로 백업 자격 증명 모음에 컴퓨터를 등록하려면 자격 증명 모음을 제공해야 합니다. 또한 Azure 및 프레미스 간에 전송된 데이터를 암호화/암호 해독할 암호를 제공하게 됩니다. 자동으로 암호를 생성하거나 최소 16자인 고유의 암호를 제공할 수 있습니다. 에이전트가 구성될 때까지 마법사를 계속 진행합니다.
+    hello 다음 단계는 tooconfigure hello Microsoft Azure 복구 서비스 에이전트입니다. Hello 구성의 일부로 tooprovide 백업 자격 증명 hello 자격 증명 모음 자격 증명 tooregister hello 컴퓨터 toohello 모음을 해야 합니다. 또한 Azure와 고객의 프레미스 간에 전송 되는 암호 tooencrypt/암호 해독 hello 데이터를 제공 합니다. 자동으로 암호를 생성하거나 최소 16자인 고유의 암호를 제공할 수 있습니다. Hello 에이전트 구성 될 때까지 hello 마법사를 계속 합니다.
 
     ![Azure 백업 서버 PreReq2](./media/backup-azure-microsoft-azure-backup/mars/04.png)
-9. Microsoft Azure 백업 서버 등록이 완료되면 전체 설치 마법사는 SQL Server 및 Azure 백업 서버 구성 요소의 설치 및 구성으로 진행됩니다. SQL Server 구성 요소 설치가 완료되면 Azure 백업 서버 구성 요소가 설치됩니다.
+9. Hello Microsoft Azure 백업 서버를 등록 성공적으로 완료 되 면 hello 전반적인 설치 마법사 진행 toohello 설치 하 고 SQL Server 및 hello Azure 백업 서버 구성 요소 구성 됩니다. Hello SQL Server 구성 요소 설치가 완료 되 면 hello Azure 백업 서버 구성 요소가 설치 됩니다.
 
-    ![Azure 백업 서버](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)
+    ![Azure Backup 서버](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)
 
-설치 단계가 완료되면 제품의 바탕 화면 아이콘도 만들어집니다. 제품을 시작하려면 아이콘을 두 번 클릭합니다.
+Hello 설치 단계 완료 되 면 hello 제품의 바탕 화면 아이콘 만들어집니다도 합니다. Hello 아이콘 toolaunch hello 제품을 두 번 클릭 합니다.
 
 ### <a name="add-backup-storage"></a>백업 저장소 추가
-첫 번째 백업 복사본은 Azure 백업 서버 컴퓨터에 연결된 저장소에 보관됩니다. 디스크 추가에 대한 자세한 내용은 [저장소 풀 및 디스크 저장소 구성](https://technet.microsoft.com/library/hh758075.aspx)을 참조하세요.
+hello 첫 번째 백업 복사본은 연결 된 저장소 toohello Azure 백업 서버 컴퓨터에 유지 됩니다. 디스크 추가에 대한 자세한 내용은 [저장소 풀 및 디스크 저장소 구성](https://technet.microsoft.com/library/hh758075.aspx)을 참조하세요.
 
 > [!NOTE]
-> 데이터를 Azure에 전송하려는 경우에도 백업 저장소를 추가해야 합니다. Azure 백업 서버의 현재 아키텍처에서 Azure 백업 자격 증명 모음은 데이터의 *두 번째* 복사본을 보유하고 로컬 저장소에서는 첫 번째(및 필수) 백업 복사본을 보유합니다.  
+> Toosend 데이터 tooAzure를 계획 하는 경우에 tooadd 백업 저장소가 필요 합니다. Azure 백업 서버의 현재 아키텍처 hello hello Azure 백업 자격 증명 모음 보유 hello *두 번째* hello 로컬 저장소 hello 첫 번째 (및 필수) 백업 복사본을 보유 하는 동안 hello 데이터의 복사본입니다.  
 >
 >
 
 ## <a name="4-network-connectivity"></a>4. 네트워크 연결
 ![4단계](./media/backup-azure-microsoft-azure-backup/step4.png)
 
-Azure 백업 서버가 Azure 백업 서비스에 연결되어야 제품이 제대로 작동합니다. 컴퓨터가 Azure에 연결되어 있는지 여부를 확인하려면 Azure 백업 서버 PowerShell 콘솔의 ```Get-DPMCloudConnection``` commandlet을 사용합니다. commandlet의 출력이 TRUE인 경우 연결되어 있고 그렇지 않으면 연결되지 않은 것입니다.
+Azure 백업 서버 제품 toowork hello에 대 한 연결 toohello Azure 백업 서비스를 성공적으로 필요합니다. toovalidate hello 컴퓨터 hello 연결 tooAzure에 있는지 여부를 사용 하 여 hello ```Get-DPMCloudConnection``` hello Azure 백업 서버 PowerShell 콘솔에서 commandlet 합니다. 경우 hello hello commandlet의 출력이 TRUE로 연결, 다른 연결이 없습니다.
 
-이와 동시에 Azure 구독은 정상 상태여야 합니다. 구독 상태를 확인하고 관리하려면 [구독 포털](https://account.windowsazure.com/Subscriptions)에 로그인합니다.
+Hello에 동시 hello Azure 구독 toobe 정상 상태에 있어야합니다. 구독 및 toomanage hello 상태 toofind 것 toohello 로그인 [구독 포털](https://account.windowsazure.com/Subscriptions)합니다.
 
-Azure 연결 및 Azure 구독 상태를 알고 있다면 아래 표를 사용하여 제공된 백업/복원 기능에 미치는 영향을 알아볼 수 있습니다.
+Hello Azure 구독 및 hello Azure 연결의 hello 상태를 확인 했으면 hello 영향 아웃 toofind 아래 hello 표 제공 하는 hello 백업/복원 기능에 사용할 수 있습니다.
 
-| 연결 상태 | Azure 구독 | Azure에 백업 | 디스크에 백업 | Azure에서 복구 | 디스크에서 복구 |
+| 연결 상태 | Azure 구독 | 백업 tooAzure | 백업 toodisk | Azure에서 복구 | 디스크에서 복구 |
 | --- | --- | --- | --- | --- | --- |
 | 연결됨 |Active |허용됨 |허용됨 |허용됨 |허용됨 |
 | 연결됨 |만료됨 |중지됨 |중지됨 |허용됨 |허용됨 |
@@ -172,7 +172,7 @@ Azure 연결 및 Azure 구독 상태를 알고 있다면 아래 표를 사용하
 | 손실된 연결 > 15일 |프로비전 해제됨 |중지됨 |중지됨 |중지되고 Azure 복구 지점 삭제됨 |중지됨 |
 
 ### <a name="recovering-from-loss-of-connectivity"></a>연결 끊김 복구
-Azure에 대한 액세스를 차단하고 있는 방화벽 또는 프록시가 있는 경우 방화벽/프록시 프로필에서 다음 도메인 주소를 허용 목록에 추가해야 합니다.
+방화벽 또는 프록시 액세스 tooAzure를 방해 하는 경우 도메인 주소 hello 방화벽/프록시 프로필에 따라 toowhitelist hello가 필요 합니다.
 
 * www.msftncsi.com
 * \*.Microsoft.com
@@ -180,22 +180,22 @@ Azure에 대한 액세스를 차단하고 있는 방화벽 또는 프록시가 �
 * \*.microsoftonline.com
 * \*.windows.net
 
-Azure 백업 서버 컴퓨터에 Azure에 대한 연결이 복원되면 수행할 수 있는 작업은 Azure 구독 상태에 따라 결정됩니다. 컴퓨터가 "연결된" 경우 허용되는 작업에 대한 세부 정보가 위의 표에 나와 있습니다.
+연결 tooAzure에 대 한 복원된 toohello Azure 백업 서버 컴퓨터를 수행한 후에 수행할 수 있는 hello 작업 hello Azure 구독 상태에 의해 결정 됩니다. 위의 hello 테이블 hello 컴퓨터 "연결"을 허용 하는 hello 작업에 대 한 세부 정보를 포함 합니다.
 
 ### <a name="handling-subscription-states"></a>구독 상태 처리
-Azure 구독을 *만료됨* 또는 *프로비전 해제됨* 상태에서 *활성* 상태로 전환할 수 있습니다. 그러나 이 작업은 *활성*상태가 아닌 동안 제품 동작에 일부 영향을 미칩니다.
+Azure 구독에서 가능한 tootake는는 *만료 됨* 또는 *Deprovisioned* 상태 toohello *활성* 상태입니다. 그러나이 일부 영향에 hello 제품 동작 hello 상태가 아닌 동안 *활성*:
 
-* *프로비전 해제됨* 구독은 프로비전 해제 기간 동안 기능이 손실됩니다. *활성*으로 전환될 때 제품의 백업/복원 기능을 다시 사용할 수 있습니다. 또한 로컬 디스크의 백업 데이터가 충분한 보존 기간으로 유지되었다면 검색이 가능합니다. 그러나 Azure의 백업 데이터는 구독이 *프로비전 해제됨* 상태로 전환되면 회복할 수 없는 상태로 손실됩니다.
-* *만료됨* 구독은 다시 *활성* 상태로 되기 전까지 기능을 상실합니다. 구독이 *만료됨* 상태인 기간에 예약된 모든 백업은 실행되지 않습니다.
+* A *Deprovisioned* 구독 프로 비전이 해제 되는 기간에 hello에 대 한 기능을 손실 합니다. 선반에 *활성*, 백업/복원의 hello 제품 기능 다시 되 합니다. 또한 hello hello 로컬 디스크에 백업 데이터는 충분히 긴 보존 기간으로 유지 한 경우으로 검색할 수 있습니다. 그러나 Azure의 hello 백업 데이터는 hello hello 시작 되 면 영구적으로 손실 *Deprovisioned* 상태입니다.
+* *만료됨* 구독은 다시 *활성* 상태로 되기 전까지 기능을 상실합니다. Hello 구독 하는 모든 백업은 hello 기간 중 예약 된 *만료 됨* 실행 되지 것입니다.
 
 ## <a name="troubleshooting"></a>문제 해결
-설치(또는 백업 또는 복원) 단계에서 Microsoft Azure Backup Server가 오류로 실패하는 경우에 대한 자세한 내용은 [오류 코드 문서](https://support.microsoft.com/kb/3041338)를 참조합니다.
-[Azure 백업 관련 FAQ](backup-azure-backup-faq.md)
+Microsoft Azure 백업 서버 hello 설치 단계 (또는 백업 또는 복원) 하는 동안 오류와 함께 실패 하는 경우 참조 toothis [오류 코드 문서](https://support.microsoft.com/kb/3041338) 자세한 정보에 대 한 합니다.
+너무 참조할 수도 있습니다[Azure 백업 관련 Faq](backup-azure-backup-faq.md)
 
 ## <a name="next-steps"></a>다음 단계
-[DPM을 위한 환경 준비](https://technet.microsoft.com/library/hh758176.aspx) 에 대한 자세한 내용은 Microsoft TechNet 사이트에서 확인할 수 있습니다. 또한 여기에는 Azure 백업 서버를 배포 및 사용하는 데 지원되는 구성에 대한 정보도 포함되어 있습니다.
+에 대 한 자세한 정보를 얻을 수 [DPM을 위한 환경 준비](https://technet.microsoft.com/library/hh758176.aspx) hello Microsoft TechNet 사이트에서. 또한 여기에는 Azure 백업 서버를 배포 및 사용하는 데 지원되는 구성에 대한 정보도 포함되어 있습니다.
 
-Microsoft Azure 백업 서버를 사용하여 워크로드 보호를 더 깊이 이해하려면 다음 문서를 사용할 수 있습니다.
+이러한 문서 toogain Microsoft Azure 백업 서버를 사용 하는 작업 보호에 대 한 깊은 이해가 사용할 수 있습니다.
 
 * [SQL Server 백업](backup-azure-backup-sql.md)
 * [SharePoint 서버 백업](backup-azure-backup-sharepoint.md)

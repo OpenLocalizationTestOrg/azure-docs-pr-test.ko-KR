@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub(Java)를 사용한 클라우드-장치 메시지 | Microsoft Docs"
-description: "Java용 Azure IoT SDK를 사용하여 Azure IoT Hub에서 장치로 클라우드-장치 메시지를 보내는 방법입니다. 클라우드-장치 메시지를 받는 시뮬레이트된 장치 앱을 수정하고 클라우드-장치 메시지를 보내는 백 엔드 앱을 수정합니다."
+title: "Azure IoT Hub (Java)와 aaaCloud-장치 메시지 | Microsoft Docs"
+description: "어떻게 toosend 클라우드-장치 메시지 tooa 장치 hello Azure IoT Sdk를 사용 하 여 Java 용 Azure IoT 허브에서 설정 합니다. 시뮬레이션 된 장치 앱 tooreceive 클라우드-장치 메시지를 수정 하 고 백 엔드 응용 프로그램 toosend hello 클라우드-장치 메시지를 수정 합니다."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: dobett
-ms.openlocfilehash: f5e3ac46f4d144b12e2ab7fcfb456665ff6cc68f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8721f18428c849ed9a04aa2e45c65605c3e38101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-cloud-to-device-messages-with-iot-hub-java"></a>IoT Hub(Java)를 사용하여 클라우드-장치 메시지 보내기
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
-Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정적이고 안전한 양방향 통신이 가능하도록 지원하는 완전히 관리되는 서비스입니다. [IoT Hub 시작하기] 자습서에서는 IoT Hub를 만들고 그 안에 장치 ID를 프로비전하고 장치-클라우드 메시지를 보내는 시뮬레이션된 장치 앱을 코딩하는 방법을 보여 줍니다.
+Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정적이고 안전한 양방향 통신이 가능하도록 지원하는 완전히 관리되는 서비스입니다. hello [IoT 허브 시작] toocreate IoT hub, 장치 id를 프로 비전 하 고 장치-클라우드 메시지를 보내는 시뮬레이션 된 장치 앱을 코딩 하는 방법을 보여 주는 자습서입니다.
 
-이 자습서는 [IoT Hub 시작하기]를 토대로 작성되었습니다. 이 항목에서는 다음 방법을 설명합니다.
+이 자습서는 [IoT 허브 시작]를 토대로 작성되었습니다. 이 항목에서는 다음 방법을 설명합니다.
 
-* 솔루션 백 엔드에서 IoT Hub를 통해 클라우드-장치 메시지를 단일 장치로 보냅니다.
+* 솔루션 백 엔드에서 IoT 허브를 통해 tooa 단일 장치를 클라우드-장치 메시지를 보냅니다.
 * 장치에서 클라우드-장치 메시지를 받습니다.
-* 솔루션 백 엔드에서, IoT Hub에서 장치로 보낸 메시지에 대한 배달 확인(*피드백*)을 요청합니다.
+* 솔루션 백 엔드에서 배달 확인 요청 (*피드백*) IoT 허브에서 메시지 보내는 tooa 장치에 대 한 합니다.
 
-클라우드-장치 메시지에 자세한 내용은 [IoT Hub 개발자 가이드][IoT Hub developer guide - C2D]에서 찾아볼 수 있습니다.
+Hello에서 클라우드-장치 메시지에서 자세한 정보를 찾을 수 있습니다 [IoT 허브 개발자 가이드][IoT Hub developer guide - C2D]합니다.
 
-이 자습서의 끝 부분에서는 다음 두 개의 Java 콘솔 앱을 실행합니다.
+이 자습서의 hello 끝에 두 개의 Java 콘솔 응용 프로그램 실행합니다.
 
-* **simulated-device**는 [IoT Hub 시작하기]에서 만든 앱의 수정된 버전으로서 IoT Hub에 연결하고 클라우드-장치 메시지를 수신합니다.
-* **send-c2d-messages**는 IoT Hub를 통해 시뮬레이션된 장치 앱에 클라우드-장치 메시지를 보낸 다음 배달 승인을 수신합니다.
+* **시뮬레이션 된 장치**, 수정 된 버전에서 만든 hello 앱의 [IoT 허브 시작], tooyour IoT 허브를 연결 하 고 클라우드-장치 메시지를 수신 합니다.
+* **메시지를 보내며-c2d**는 IoT 허브를 통해 클라우드-장치 메시지 toohello 시뮬레이션 된 장치 앱을 보내고 해당 배달 승인을 받습니다.
 
 > [!NOTE]
-> IoT Hub는 많은 장치 플랫폼 및 언어(C, Java 및 Javascript 포함)를 위해 비록 Azure IoT 장치 SDK이지만 SDK를 지원합니다. 이 자습서의 코드 및 일반적으로 Azure IoT Hub에 장치를 연결하는 방법에 대한 단계별 지침은 [Azure IoT 개발자 센터]를 참조하세요.
+> IoT Hub는 많은 장치 플랫폼 및 언어(C, Java 및 Javascript 포함)를 위해 비록 Azure IoT 장치 SDK이지만 SDK를 지원합니다. 에 대 한 단계별 지침은 tooconnect 장치 toothis 자습서의 코드 및 일반적으로 tooAzure IoT Hub를 확인 하려면 어떻게 hello [Azure IoT 개발자 센터]합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요:
 
-* [IoT Hub 시작](iot-hub-java-java-getstarted.md) 또는 [IoT Hub 장치-클라우드 메시지 처리](iot-hub-java-java-process-d2c.md) 자습서의 전체 작업 버전.
-* 최신 [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* 전체 작업 버전의 hello [IoT 허브 시작](iot-hub-java-java-getstarted.md) 또는 [프로세스 IoT Hub 장치-클라우드 메시지](iot-hub-java-java-process-d2c.md) 자습서입니다.
+* 최신 hello [Java SE 개발 키트 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 3](https://maven.apache.org/install.html)
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 안에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.
 
-## <a name="receive-messages-in-the-simulated-device-app"></a>시뮬레이션된 장치 앱에서 메시지 수신
+## <a name="receive-messages-in-hello-simulated-device-app"></a>Hello 시뮬레이션 된 장치 응용 프로그램에서 메시지를 수신 합니다.
 
-이 섹션에서는 [IoT Hub 시작하기]에서 만든 시뮬레이션된 장치 앱을 수정하여 IoT Hub로부터 클라우드-장치 메시지를 수신합니다.
+Hello 시뮬레이션 된 장치 응용 프로그램에서 만든이 섹션에서 수정 [IoT 허브 시작] hello IoT hub에서 클라우드-장치 메시지 tooreceive 합니다.
 
-1. 텍스트 편집기를 사용하여 simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+1. 텍스트 편집기를 사용 하 여 hello simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-2. **App** 클래스 안에 중첩 클래스로 다음과 같은 **MessageCallback** 클래스를 추가합니다. 장치가 IoT Hub에서 메시지를 받을 때 **execute** 메서드가 호출됩니다. 이 예제에서 장치는 항상 IoT Hub에 메시지를 완료했음을 알립니다.
+2. Hello 다음 추가 **MessageCallback** hello 안에 중첩 된 클래스와 **앱** 클래스입니다. hello **실행** hello 장치 IoT 허브에서 메시지를 받을 때 메서드가 호출 됩니다. 이 예제에서는 hello 장치 항상에 게 알리는 hello IoT hub hello 메시지 완료 되었음을:
 
     ```java
     private static class AppMessageCallback implements MessageCallback {
@@ -66,7 +66,7 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
       }
     }
     ```
-3. 다음과 같이 클라이언트를 열기 전에 **main** 메서드를 수정하여 **AppMessageCallback** 인스턴스를 만들고 **setMessageCallback** 메서드를 호출합니다.
+3. Hello 수정 **주** 메서드 toocreate는 **AppMessageCallback** 인스턴스와 호출 hello **setMessageCallback** 메서드를 다음과 같이 hello 클라이언트 열리기 전에:
 
     ```java
     client = new DeviceClient(connString, protocol);
@@ -77,9 +77,9 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
     ```
 
     > [!NOTE]
-    > 전송으로 MQTT 또는 AMQP 대신 HTTP을 사용하는 경우 **DeviceClient** 인스턴스는 IoT Hub의 메시지를 자주(25분 미만 간격으로) 확인합니다. MQTT, AMQP 및 HTTP 지원과 IoT Hub 제한 간의 차이점에 대한 자세한 내용은 [IoT Hub 개발자 가이드][IoT Hub developer guide - C2D]를 참조하세요.
+    > MQTT 또는 AMQP 대신 hello 전송으로 HTTP를 사용 하는 경우 hello **DeviceClient** 인스턴스 IoT 허브에 자주 사용 (모든 25 분 내)에서 메시지를 확인 합니다. Hello 차이 MQTT, AMQP 및 HTTP 지원 및 IoT Hub 제한에 대 한 자세한 내용은 참조 hello [IoT 허브 개발자 가이드][IoT Hub developer guide - C2D]합니다.
 
-4. Maven을 사용하여 **simulated-device** 앱을 빌드하려면 simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+4. toobuild hello **시뮬레이션 된 장치** Maven에서 사용 하 여 앱 hello 다음 hello 시뮬레이션 된 장치 폴더에서 hello 명령 프롬프트에서 명령을 실행 합니다.
 
     ```cmd/sh
     mvn clean package -DskipTests
@@ -87,17 +87,17 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
 
 ## <a name="send-a-cloud-to-device-message"></a>클라우드-장치 메시지 보내기
 
-이 섹션에서는 클라우드-장치 메시지를 시뮬레이트된 장치 앱으로 보내는 Java 콘솔 응용 프로그램을 만듭니다. [IoT Hub 시작하기] 자습서에서 추가한 장치의 장치 ID가 필요합니다. [Azure Portal]에서 찾을 수 있는 IoT Hub에 대한 연결 문자열도 필요합니다.
+이 섹션에서는 클라우드-장치 메시지 toohello 시뮬레이션 된 장치 응용 프로그램에서 전송 하 여 Java 콘솔 응용 프로그램을 만들 수 있습니다. Hello에 추가 하는 hello 장치의 장치 ID hello 필요 [IoT 허브 시작] 자습서입니다. 또한 hello에서 찾을 수 있는 허브에 대 한 연결 문자열 IoT Hub를 hello 필요 [Azure 포털]합니다.
 
-1. 명령 프롬프트에서 다음 명령을 사용하여 **send-c2d-messages**라는 Maven 프로젝트를 만듭니다. 이 명령은 긴 단일 명령입니다.
+1. 라는 Maven 프로젝트 만들기 **c2d 보냄** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 이 명령은 긴 단일 명령입니다.
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=send-c2d-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. 명령 프롬프트에서 새 send-c2d-messages 폴더로 이동합니다.
+2. 명령 프롬프트 toohello 새 메시지를 보내며-c2d 폴더를 이동 합니다.
 
-3. 텍스트 편집기를 사용하여 send-c2d-messages 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 의존성을 추가하면 IoT Hub 서비스와 통신하기 위해 응용 프로그램에서 **iothub-java-service-client** 패키지를 사용할 수 있습니다.
+3. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 메시지를 보내며-c2d 폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. Toouse hello hello 종속성을 추가 하면 **java 서비스 클라이언트 iothub** IoT 허브 서비스와 응용 프로그램 toocommunicate 프로그램에서 패키지:
 
     ```xml
     <dependency>
@@ -108,13 +108,13 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-service-search]을 사용하여 **iot-service-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 서비스 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-service-search]합니다.
 
-4. pom.xml 파일을 저장하고 닫습니다.
+4. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-5. 텍스트 편집기를 사용하여 send-c2d-messages\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+5. 텍스트 편집기를 사용 하 여 hello send-c2d-messages\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-6. 파일에 다음 **import** 문을 추가합니다.
+6. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.*;
@@ -122,7 +122,7 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
     import java.net.URISyntaxException;
     ```
 
-7. **App** 클래스에 다음 클래스 수준 변수를 추가하고 **{yourhubconnectionstring}** 및 **{yourdeviceid}**를 앞에서 기록해둔 값으로 바꿉니다.
+7. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스를 대체 **{yourhubconnectionstring}** 및 **{yourdeviceid}** hello로 값에 명시 된 이전 버전:
 
     ```java
     private static final String connectionString = "{yourhubconnectionstring}";
@@ -130,7 +130,7 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
     private static final IotHubServiceClientProtocol protocol = IotHubServiceClientProtocol.AMQPS;
     ```
 
-8. **main** 메서드를 다음 코드로 바꿉니다. 이 코드는 IoT hub에 연결하고 장치에 메시지를 보낸 다음 장치가 메시지를 수신하고 처리했다는 승인을 기다립니다.
+8. Hello 대체 **주** 메서드 코드 다음 hello로 합니다. 이 코드 tooyour IoT 허브를 연결 하 고 보내는 메시지 tooyour 장치를 해당 hello 장치 수신 및 처리 된 hello 메시지를 승인 후 대기.
    
     ```java
     public static void main(String[] args) throws IOException,
@@ -144,11 +144,11 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
           .getFeedbackReceiver();
         if (feedbackReceiver != null) feedbackReceiver.open();
    
-        Message messageToSend = new Message("Cloud to device message.");
+        Message messageToSend = new Message("Cloud toodevice message.");
         messageToSend.setDeliveryAcknowledgement(DeliveryAcknowledgement.Full);
    
         serviceClient.send(deviceId, messageToSend);
-        System.out.println("Message sent to device");
+        System.out.println("Message sent toodevice");
    
         FeedbackBatch feedbackBatch = feedbackReceiver.receive(10000);
         if (feedbackBatch != null) {
@@ -163,55 +163,55 @@ Azure IoT Hub는 수백만 개의 장치와 솔루션 백 엔드 간에 안정�
     ```
 
     > [!NOTE]
-    > 간단히 하기 위해 이 자습서에서는 재시도 정책을 구현하지 않습니다. 프로덕션 코드에서는 MSDN 문서 [일시적인 오류 처리]에서 제시한 대로 재시도 정책(예: 지수 백오프)을 구현해야 합니다.
+    > 간단히 하기 위해 이 자습서에서는 재시도 정책을 구현하지 않습니다. 프로덕션 코드에 다시 시도 정책 (예: 지 수 형식의 백오프) hello MSDN 문서에 설명 된 대로 구현 해야 [일시적인 오류 처리]합니다.
 
 
-9. Maven을 사용하여 **simulated-device** 앱을 빌드하려면 simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+9. toobuild hello **시뮬레이션 된 장치** Maven에서 사용 하 여 앱 hello 다음 hello 시뮬레이션 된 장치 폴더에서 hello 명령 프롬프트에서 명령을 실행 합니다.
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="run-the-applications"></a>응용 프로그램 실행
+## <a name="run-hello-applications"></a>Hello 응용 프로그램 실행
 
-이제 응용 프로그램을 실행할 준비가 되었습니다.
+준비 toorun hello 응용 프로그램입니다.
 
-1. simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub에 원격 분석 데이터 전송을 시작하고 사용자의 허브에서 보낸 클라우드-장치 메시지를 수신 대기합니다.
+1. Hello 시뮬레이션 된 장치 폴더에서 명령 프롬프트에서 다음 원격 분석 tooyour IoT 허브 및 허브에서 보낸 클라우드-장치 메시지에 대 한 toolisten 보내는 명령 toobegin hello를 실행 합니다.
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
 
-    ![시뮬레이션된 장치 앱 실행][img-simulated-device]
+    ![Hello 시뮬레이션 된 장치 앱 실행][img-simulated-device]
 
-2. 명령 프롬프트의 send-c2d-messages 폴더에서 다음 명령을 실행하여 클라우드-장치 메시지를 보내고 피드백 승인을 대기합니다.
+2. 클라우드-장치 메시지와 대기 피드백 승인에 대 한 hello 메시지를 보내며-c2d 폴더에 명령 프롬프트에서 다음 명령 toosend hello를 실행 합니다.
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![명령을 실행하여 클라우드-장치 메시지 보내기][img-send-command]
+    ![Hello 명령 toosend hello 클라우드-장치 메시지를 실행 합니다.][img-send-command]
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서 클라우드-장치 메시지를 보내고 받는 방법을 알아보았습니다. 
+이 자습서에서는 방법에 대해 배웠습니다 toosend 및 클라우드-장치 메시지를 수신 합니다. 
 
-IoT Hub를 사용하는 전체 종단 간 솔루션의 예를 보려면 [Azure IoT Suite]를 참조하세요.
+IoT 허브를 사용 하는 완벽 한 종단 간 솔루션의 toosee 예 참조 [Azure IoT Suite]합니다.
 
-IoT Hub를 사용하여 솔루션을 개발하는 방법에 대한 자세한 내용은 [IoT Hub 개발자 가이드]를 참조하세요.
+IoT 허브를 사용 하 여 솔루션 개발에 대 한 더 toolearn 참조 hello [IoT 허브 개발자 가이드]합니다.
 
 <!-- Images -->
 [img-simulated-device]: media/iot-hub-java-java-c2d/receivec2d.png
 [img-send-command]:  media/iot-hub-java-java-c2d/sendc2d.png
 <!-- Links -->
 
-[IoT Hub 시작하기]: iot-hub-java-java-getstarted.md
+[IoT 허브 시작]: iot-hub-java-java-getstarted.md
 [IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
-[IoT Hub 개발자 가이드]: iot-hub-devguide.md
+[IoT 허브 개발자 가이드]: iot-hub-devguide.md
 [Azure IoT 개발자 센터]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-java
 [일시적인 오류 처리]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-[Azure Portal]: https://portal.azure.com
+[Azure 포털]: https://portal.azure.com
 [Azure IoT Suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
 [lnk-maven-service-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22

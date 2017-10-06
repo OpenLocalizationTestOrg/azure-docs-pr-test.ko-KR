@@ -1,6 +1,6 @@
 ---
-title: "Azure를 사용하여 항공 예측 유지 관리 - Cortana 인텔리전스 솔루션 아키텍처 | Microsoft Docs"
-description: "항공, 유틸리티, 운송에서 예측 유지 관리를 위한 Microsoft Cortana Intelligence 솔루션 템플릿의 아키텍처 다이어그램."
+title: "항공 azure-아키텍처 Cortana 인텔리전스 솔루션에 대 한 유지 관리 aaaPredictive | Microsoft Docs"
+description: "항공, 유틸리티, 운송 예측 유지 관리에 대 한 Microsoft Cortana Intelligence 솔루션 템플릿을 hello의 아키텍처 다이어그램"
 services: cortana-analytics
 documentationcenter: 
 author: garyericson
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: garye
-ms.openlocfilehash: 3c7b8238ee1d28deca9845462808252636f0d68f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 642abedbe2751ec4720d5d64f92354a3dd2821e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="architecture-of-the-cortana-intelligence-solution-template-for-predictive-maintenance-in-aerospace-and-other-businesses"></a>항공 우주 및 다른 비즈니스에서 예측 유지 관리를 위한 Cortana Intelligence 솔루션 템플릿의 아키텍처
-아래 다이어그램은 [예측 유지 관리를 위한 Cortana Intelligence 솔루션 템플릿 아키텍처](https://gallery.cortanaanalytics.com/SolutionTemplate/Predictive-Maintenance-for-Aerospace-1)의 아키텍처 개요를 제공합니다.
+# <a name="architecture-of-hello-cortana-intelligence-solution-template-for-predictive-maintenance-in-aerospace-and-other-businesses"></a>항공 우주 및 기타 회사의 예측 유지 관리에 대 한 hello Cortana Intelligence 솔루션 템플릿을의 아키텍처
+hello의 한 아키텍처 개요를 제공 하는 hello 다이어그램 아래 [예측 유지 관리를 위한 Cortana Intelligence 솔루션 템플릿을](https://gallery.cortanaanalytics.com/SolutionTemplate/Predictive-Maintenance-for-Aerospace-1)합니다.
 
-여기에서 다이어그램의 전체 크기 버전을 다운로드할 수 있습니다: [아키텍처 다이어그램: 예측 유지 관리를 위한 솔루션 템플릿](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-maintenance-prediction.png).
+여기에 hello 다이어그램의 전체 크기 버전을 다운로드할 수 있습니다: [아키텍처 다이어그램: 예측 유지 관리를 위한 솔루션 템플릿을](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-maintenance-prediction.png)합니다.
 
 ![예측 유지 관리를 위한 Microsoft Cortana Intelligence 솔루션 템플릿 아키텍처 다이어그램][image]
 

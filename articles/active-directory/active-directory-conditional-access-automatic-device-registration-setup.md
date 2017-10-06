@@ -1,6 +1,6 @@
 ---
-title: "Windows 도메인 가입 장치의 Azure Active Directory 자동 등록을 구성하는 방법 | Microsoft Docs"
-description: "Azure Active Directory에서 Windows 도메인 가입 장치를 자동으로 등록하도록 설정합니다."
+title: "Windows Azure Active directory 도메인에 가입 된 장치 aaaHow tooconfigure 자동 등록 | Microsoft Docs"
+description: "설정 하면 도메인에 가입 된 Windows 장치 tooregister 자동으로 Azure Active Directory와 합니다."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,70 +15,70 @@ ms.topic: article
 ms.date: 06/16/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: dccd7df6a5f85df4179c7ea7cfc476cfb57f48c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6a1aab753f5456ed06ba7979ab05f70f29b4ddee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>Windows 도메인 가입 장치의 Azure Active Directory 자동 등록을 구성하는 방법
+# <a name="how-tooconfigure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>어떻게 tooconfigure 자동 등록의 Windows 도메인에 가입 된 장치의 Azure Active Directory와
 
-[Azure Active Directory 장치 기반 조건부 액세스](active-directory-conditional-access-azure-portal.md)를 사용하려면 컴퓨터를 Azure AD(Azure Active Directory)에 등록해야 합니다. [Azure Active Directory PowerShell 모듈](/powershell/azure/install-msonlinev1?view=azureadps-2.0)에서 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) cmdlet을 사용하여 조직에 등록된 장치 목록을 가져올 수 있습니다. 
+toouse [Azure Active Directory 장치 기반 조건부 액세스](active-directory-conditional-access-azure-portal.md), Azure Active Directory (Azure AD)에 컴퓨터를 등록 해야 합니다. Hello를 사용 하 여 조직에서 등록 된 장치 목록을 가져올 수 있습니다 [Get MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) cmdlet hello에 [Azure Active Directory PowerShell 모듈](/powershell/azure/install-msonlinev1?view=azureadps-2.0)합니다. 
 
-이 문서는 조직에서 Azure AD를 사용하여 Windows 도메인 가입 장치의 자동 등록을 구성하는 단계를 제공합니다.
+이 문서에서는 조직에서 Azure AD와 Windows 도메인에 가입 된 장치의 hello 자동 등록을 구성 하기 위한 hello 단계를 제공 합니다.
 
 
 조건부 액세스에 대한 자세한 내용은
 
 - [Azure Active Directory 장치 기반 조건부 액세스](active-directory-conditional-access-azure-portal.md)를 참조하세요. 
-- 작업 공간의 Windows 10 장치 및 Azure AD에 등록할 때 얻게 되는 향상된 경험에 대한 자세한 내용은 [엔터프라이즈를 위한 Windows 10: 작업에 장치를 사용하는 방법](active-directory-azureadjoin-windows10-devices-overview.md)을 참조하세요.
-- CSP에 포함된 Windows 10 Enterprise E3의 경우 [CSP의 Windows 10 Enterprise E3 개요](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview)를 참조하세요.
+- Hello 작업 공간 및 Azure AD에 등록할 때 향상 된 hello 환경에서 Windows 10 장치 참조 [hello 엔터프라이즈용 Windows 10: 업무에 장치 사용](active-directory-azureadjoin-windows10-devices-overview.md)합니다.
+- CSP의 Windows 10 Enterprise E3 참조 hello [CSP 개요에서 Windows 10 Enterprise E3](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview)합니다.
 
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-환경에서 Windows 도메인에 가입된 장치의 자동 등록을 구성하기 전에 지원되는 시나리오와 제약 조건을 숙지해야 합니다.  
+사용자 환경에서 Windows 도메인에 가입 된 장치의 hello 자동 등록을 구성을 시작 하기 전에 알아야 할 hello 지원 시나리오 및 hello 제약 조건에 있습니다.  
 
-설명의 가독성을 높이기 위해 이 토픽에서는 다음 용어를 사용합니다. 
+hello 설명의 tooimprove hello 가독성을이 항목에서는 다음 용어 hello 사용: 
 
-- **Windows 현재 장치** - 이 용어는 Windows 10 또는 Windows Server 2016을 실행하는 도메인에 가입 된 장치를 말합니다.
-- **Windows 하위 수준 장치** - 이 용어는 Windows 10과 Windows Server 2016 중 어떤 것도 실행하지 않는 **지원되는** 도메인에 가입된 Windows 장치를 말합니다.  
+- **Windows 현재 장치** -이 용어는 Windows 10 또는 Windows Server 2016을 실행 하는 toodomain에 가입 된 장치.
+- **Windows 하위 수준 장치** -이 용어는 tooall **지원** 실행 중인 Windows 10 및 아닌 Windows Server 2016 도메인에 가입 된 Windows 장치입니다.  
 
 
 ### <a name="windows-current-devices"></a>Windows 현재 장치
 
-- Windows 데스크톱 운영 체제를 실행하는 장치의 경우 Windows 10주년 업데이트(버전 1607) 이상을 사용할 것을 권장합니다. 
-- Windows 현재 장치의 등록은 암호 해시 동기화 구성처럼 페더레이션되지 않은 환경에서 **지원됩니다**.  
+- Hello Windows 데스크톱 운영 체제를 실행 하는 장치에 대 한 Windows 10 Anniversary 업데이트 (버전 1607)를 사용 하 여 권장 이상. 
+- 현재 Windows 장치 등록 hello **은** 암호 해시 동기화 구성과 같은 페더레이션 되지 않은 환경에서 지원 합니다.  
 
 
 ### <a name="windows-down-level-devices"></a>Windows 하위 수준 장치
 
-- 다음은 지원되는 Windows 하위 수준 장치입니다.
+- 다음 하위 수준 장치 Windows hello 지원 됩니다.
     - Windows 8.1
     - Windows 7
     - Windows Server 2012 R2
     - Windows Server 2012
     - Windows Server 2008 R2
-- Windows 하위 수준 장치 등록은 원활한 Single Sign-On([Azure Active Directory 원활한 Single Sign-On](https://aka.ms/hybrid/sso))을 통해 페더레이션되지 않은 환경에서 **지원됩니다**.
-- 로밍 프로필을 사용하는 장치에 대해서는 Windows 하위 수준 장치 등록이 지원되지 **않습니다**. 프로필 또는 설정 로밍을 사용하는 경우 Windows 10을 사용하세요.
+- 하위 수준 Windows 장치 등록 hello **은** 원활한 Single Sign On을 통해 페더레이션 되지 않은 환경에서 지원 [Azure Active Directory 원활한 Single Sign-on](https://aka.ms/hybrid/sso)합니다.
+- 하위 수준 Windows 장치 등록 hello **않습니다** 로밍 프로필을 사용 하 여 장치에 대 한 지원 합니다. 프로필 또는 설정 로밍을 사용하는 경우 Windows 10을 사용하세요.
 
 
 
 ## <a name="prerequisites"></a>필수 조건
 
-조직에서 도메인에 가입된 장치의 자동 등록을 사용하려면 최신 버전의 Azure AD 연결을 실행해야 합니다.
+Azure AD의 최신 버전이 실행 되 고 있는지 toomake 필요 hello 자동 등록 조직의 도메인에 가입 된 장치의 사용을 시작 하기 전에 연결 합니다.
 
 Azure AD Connect:
 
-- 온-프레미스 AD(Active Directory)의 컴퓨터 계정과 Azure AD의 장치 개체 간 연결을 유지합니다. 
+- 온-프레미스 AD (Active Directory) 및 Azure AD에서 hello 장치 개체에 hello 컴퓨터 계정 간의 hello 연결을 유지합니다. 
 - 비즈니스용 Windows Hello 같은 기타 장치 관련 기능을 지원합니다.
 
 
 
 ## <a name="configuration-steps"></a>구성 단계
 
-이 토픽에는 모든 일반 구성 시나리오에 필요한 단계가 포함되어 있습니다.  
-다음 테이블을 사용하여 본인의 시나리오에 필요한 단계의 개요를 알아보세요.  
+이 항목에는 모든 일반적인 구성 시나리오에 대 한 hello 필요한 단계 포함 되어 있습니다.  
+다음 테이블 tooget 시나리오에 필요한 hello 단계의 개요 hello를 사용 합니다.  
 
 
 
@@ -94,20 +94,20 @@ Azure AD Connect:
 
 ## <a name="step-1-configure-service-connection-point"></a>1단계: 서비스 연결 지점 구성
 
-SCP(서비스 연결 지점) 개체는 등록 중에 장치가 Azure AD 테넌트 정보를 검색하는 데 사용됩니다. 온-프레미스 AD(Active Directory)에서, 도메인에 가입된 장치의 자동 등록을 위한 SCP 개체는 컴퓨터 포리스트의 구성 명명 컨텍스트 파티션에 있어야 합니다. 포리스트당 하나의 구성 명명 컨텍스트가 있습니다. 다중 포리스트 Active Directory 구성에서는 도메인에 가입된 컴퓨터를 포함하고 있는 모든 포리스트에 서비스 연결점이 있어야 합니다.
+hello 서비스 연결 지점 (SCP) 개체는 hello 등록 toodiscover Azure AD 테 넌 트 정보 중 장치에서 사용 됩니다. 온-프레미스 Active Directory에서 AD (), hello 자동 등록의 도메인에 가입 된 장치에 대 한 hello SCP 개체 hello 컴퓨터 포리스트와의 hello 구성 명명 컨텍스트 부분에 있어야 합니다. 포리스트당 하나의 구성 명명 컨텍스트가 있습니다. 다중 포리스트 Active Directory 구성에서 서비스 연결 지점 hello 도메인에 가입 된 컴퓨터를 포함 하는 모든 포리스트에서 존재 해야 합니다.
 
-[**Get-ADRootDSE**](https://technet.microsoft.com/library/ee617246.aspx) cmdlet을 사용하여 포리스트의 구성 명명 컨텍스트를 검색할 수 있습니다.  
+Hello를 사용할 수 있습니다 [ **Get ADRootDSE** ](https://technet.microsoft.com/library/ee617246.aspx) cmdlet tooretrieve hello 구성 명명 컨텍스트 포리스트 합니다.  
 
-Active Directory 도메인 이름이 *fabrikam.com*인 포리스트의 경우 구성 명명 컨텍스트는 다음과 같습니다.
+Hello Active Directory 도메인 이름의 포리스트에 대 한 *fabrikam.com*, hello 구성 명명 컨텍스트가:
 
 `CN=Configuration,DC=fabrikam,DC=com`
 
-포리스트에서 도메인에 가입된 장치의 자동 등록을 위한 SCP 개체는 다음 위치에 있습니다.  
+포리스트, 도메인에 가입 된 장치의 hello 자동 등록에 대 한 SCP hello 개체에 위치한:  
 
 `CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,[Your Configuration Naming Context]`
 
-Azure AD Connect를 배포한 방법에 따라 SCP 개체가 이미 구성되었을 수도 있습니다.
-다음 Windows PowerShell 스크립트를 사용하여 개체의 존재를 확인하고 검색 값을 검색할 수 있습니다. 
+Azure AD Connect, 배포 방법에 따라 hello SCP 개체 이미 구성 되어 있습니다.
+Hello 개체의 hello 존재 여부를 확인 하 고 Windows PowerShell 스크립트 뒤 hello를 사용 하 여 hello 검색 값을 검색할 수 있습니다.: 
 
     $scp = New-Object System.DirectoryServices.DirectoryEntry;
 
@@ -115,19 +115,19 @@ Azure AD Connect를 배포한 방법에 따라 SCP 개체가 이미 구성되었
 
     $scp.Keywords;
 
-**$scp.Keywords** 출력은 Azure AD 테넌트 정보를 보여줍니다. 예:
+hello **$scp 합니다. 키워드** 출력 예를 들어 hello Azure AD 테 넌 트 정보를 보여 줍니다.
 
     azureADName:microsoft.com
     azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
 
-서비스 연결 지점이 없는 경우 Azure AD Connect 서버에서 `Initialize-ADSyncDomainJoinedComputerSync` cmdlet을 실행하여 서비스 연결 지점을 만들 수 있습니다. 이 cmdlet을 실행하려면 엔터프라이즈 관리자 자격 증명이 필요합니다.  
-cmdlet:
+Hello 서비스 연결 지점 존재 하지 않는 경우 hello를 실행 하 여 만들 수 있습니다 `Initialize-ADSyncDomainJoinedComputerSync` Azure AD Connect 서버의 cmdlet. 엔터프라이즈 관리자 자격 증명이 필요한 toorun이이 cmdlet이 있습니다.  
+hello cmdlet:
 
-- Azure AD Connect가 연결된 Active Directory 포리스트에 서비스 연결 지점을 만듭니다. 
-- `AdConnectorAccount` 매개 변수를 지정해야 합니다. Azure AD Connect에서 Active Directory 커넥터 계정으로 구성되는 계정입니다. 
+- Hello Active Directory 포리스트에서 Azure AD Connect에 연결 된 hello 서비스 연결 지점을 만듭니다. 
+- Toospecify hello 해야 `AdConnectorAccount` 매개 변수입니다. Azure ad에서 커넥터 계정에 연결 하는 Active Directory로 구성 된 hello 계정입니다. 
 
 
-다음 스크립트는 cmdlet 사용에 대한 예를 보여줍니다. 이 스크립트에서 `$aadAdminCred = Get-Credential`에는 사용자 이름을 입력해야 합니다. UPN(사용자 계정 이름) 형식(`user@example.com`)에 사용자 이름을 입력해야 합니다. 
+hello 다음 스크립트 예를 보여 줍니다 hello cmdlet을 사용 합니다. 이 스크립트에서는 `$aadAdminCred = Get-Credential` tootype 사용자 이름이 필요 합니다. Hello 사용자 계정 이름 (UPN) 형식에서 tooprovide hello 사용자 이름이 필요 (`user@example.com`). 
 
 
     Import-Module -Name "C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1";
@@ -136,14 +136,14 @@ cmdlet:
 
     Initialize-ADSyncDomainJoinedComputerSync –AdConnectorAccount [connector account name] -AzureADCredentials $aadAdminCred;
 
-`Initialize-ADSyncDomainJoinedComputerSync` cmdlet:
+hello `Initialize-ADSyncDomainJoinedComputerSync` cmdlet:
 
-- Active Directory PowerShell 모듈을 사용합니다. 이 모듈은 도메인 컨트롤러에서 실행되는 Active Directory Web Services를 사용합니다. Active Directory Web Services는 Windows Server 2008 R2 이상을 실행하는 도메인 컨트롤러에서 지원됩니다.
-- **MSOnline PowerShell 모듈 버전 1.1.166.0**에서만 지원됩니다. 이 모듈을 다운로드하려면 이 [링크](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)를 사용합니다.   
+- 도메인 컨트롤러에서 실행 되는 Active Directory 웹 서비스에 의존 하는 hello Active Directory PowerShell 모듈을 사용 합니다. Active Directory Web Services는 Windows Server 2008 R2 이상을 실행하는 도메인 컨트롤러에서 지원됩니다.
+- Hello을 통해서만 **MSOnline PowerShell 모듈 버전 1.1.166.0**합니다. toodownload이이 단원에서는이 사용 하 여 [링크](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)합니다.   
 
-Windows Server 2008 이전 버전을 실행하는 도메인 컨트롤러의 경우 아래 스크립트를 사용하여 서비스 연결 지점을 만들 수 있습니다.
+Windows Server 2008 또는 이전 버전을 실행 하는 도메인 컨트롤러에 대 한 toocreate hello 서비스 연결 지점 아래 hello 스크립트를 사용 합니다.
 
-다중 포리스트 구성에서는 다음 스크립트를 사용하여 컴퓨터가 있는 각 포리스트에 서비스 연결 지점을 만들어야 합니다.
+다중 포리스트 구성에서 다음 스크립트 toocreate hello 서비스 연결 지점 컴퓨터 있는 각 포리스트에 hello를 사용 해야 합니다.
  
     $verifiedDomain = "contoso.com"    # Replace this with any of your verified domain names in Azure AD
     $tenantID = "72f988bf-86f1-41af-91ab-2d7cd011db47"    # Replace this with you tenant ID
@@ -164,42 +164,42 @@ Windows Server 2008 이전 버전을 실행하는 도메인 컨트롤러의 경�
 
 ## <a name="step-2-setup-issuance-of-claims"></a>2단계: 클레임 발급 설정
 
-페더레이션된 Azure AD 구성에서는 장치가 AD FS(Active Directory Federation Services) 또는 타사 온-프레미스 페더레이션 서비스를 사용하여 Azure AD를 인증합니다. 장치는 인증을 통해 Azure DRS(Azure Active Directory Device Registration Service)에 등록하는 액세스 토큰을 가져옵니다.
+페더레이션된 azure에서 AD 구성 장치 Active Directory Federation Services (AD FS)에 의존 하거나 타사 온-프레미스 페더레이션 서비스 tooauthenticate tooAzure AD 합니다. 장치 tooget hello Azure Active Directory Device Registration Service (Azure DRS)를 사용 하는 액세스 토큰 tooregister를 인증합니다.
 
-Windows 현재 장치는 Windows 통합 인증을 사용하여 온-프레미스 페더레이션 서비스에서 호스트하는 활성 WS-Trust 끝점(1.3 또는 2005 버전)에 인증합니다.
+Windows 현재 장치 Windows 통합 인증 tooan 활성 WS-트러스트 (버전 1.3 또는 2005)에서 호스팅된 끝점 hello 온-프레미스 페더레이션 서비스를 사용 하 여 인증 합니다.
 
 > [!NOTE]
-> AD FS를 사용하는 경우 **adfs/services/trust/13/windowstransport** 또는 **adfs/services/trust/2005/windowstransport**를 사용하도록 설정해야 합니다. 또한 웹 인증 프록시를 사용하는 경우 이 끝점이 프록시를 통해 게시되어야 합니다. **서비스 > 끝점**에서 AD FS 관리 콘솔을 통해 어떤 끝점이 사용하도록 설정되었는지 확인할 수 있습니다.
+> AD FS를 사용하는 경우 **adfs/services/trust/13/windowstransport** 또는 **adfs/services/trust/2005/windowstransport**를 사용하도록 설정해야 합니다. Hello 웹 인증 프록시를 사용 하는 경우 또한 hello 프록시를 통해이 끝점이 게시 되었는지 확인 합니다. 어떤 끝점이 모두에서 hello AD FS 관리 콘솔을 통해 사용 하도록 설정 되어 볼 수 있습니다 **서비스 > 끝점**합니다.
 >
->온-프레미스 페더레이션 서비스로 사용되는 AD FS가 없으면 공급업체의 지침에 따라 없다면 WS-Trust 1.3 또는 2005 버전이 지원되는지 확인하고 메타데이터 교환 파일(MEX)을 통해 게시되는지 확인합니다.
+>AD FS 온-프레미스 페더레이션 서비스로 없다면 Ws-trust 1.3 또는 2005 끝점 및 hello 메타 데이터 교환 파일 (MEX)을 통해 게시 된 이러한을 지원 하는지 프로그램 공급 업체 toomake의 hello 지침을 따릅니다.
 
-Azure DRS가 수신한 토큰에 다음 클레임이 있어야 장치 등록이 완료됩니다. Azure DRS는 이 정보 중 일부를 사용하여 Azure AD에 장치 개체를 만듭니다. 장치 개체는 Azure AD Connect가 새로 만들어진 장치 개체를 컴퓨터 계정 온-프레미스와 연결하는 데 사용됩니다.
+hello 다음 클레임에에서 있는 장치 등록 toocomplete에 대 한 Azure DRS에서 수신 하는 hello 토큰. Azure DRS는 다음 hello 컴퓨터 계정 온-프레미스와 Azure AD Connect tooassociate 새로 만든 hello 장치 개체에 사용 되는이 정보 중 일부와 Azure AD의 장치 개체를 만듭니다.
 
 * `http://schemas.microsoft.com/ws/2012/01/accounttype`
 * `http://schemas.microsoft.com/identity/claims/onpremobjectguid`
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`
 
-확인된 도메인 이름이 두 개 이상인 경우 컴퓨터에 대한 다음 클레임을 제공해야 합니다.
+확인 된 도메인 이름이 둘 이상 있는 경우 컴퓨터에 대 한 클레임을 따라 tooprovide hello가 필요 합니다.
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`
 
-ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 컴퓨터에 대한 해당 클레임 하나를 제공해야 합니다.
+이미 ImmutableID 클레임 (예: 대체 로그인 ID)를 발급 하는 컴퓨터에 대 한 한 해당 클레임 tooprovide 필요 합니다.
 
 * `http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID`
 
-다음 섹션에서는 다음 항목에 대한 정보를 찾습니다.
+다음 섹션 hello,에서는 대 한 정보를 살펴봅니다.
  
-- 각 클레임에 필요한 값
+- 각 클레임에 포함 해야 hello 값
 - AD FS에서 정의의 형식
 
-정의는 값의 존재 여부 또는 값을 만들어야 하는지 여부를 확인하는 데 도움이 됩니다.
+hello 정의 사용 하면 tooverify hello 값이 있는지 또는 toocreate 해야 하는 경우 해당 합니다.
 
 > [!NOTE]
-> 온-프레미스 페더레이션 서버에 사용되는 AD FS가 없는 경우 공급업체의 지침에 따라 이러한 클레임을 발급하는 적절한 구성을 만듭니다.
+> 온-프레미스 페더레이션 서버에 대 한 AD FS를 사용 하지 않는 경우 이러한 클레임이 해당 공급 업체의 지침 toocreate hello 적절 한 구성 tooissue 따릅니다.
 
 ### <a name="issue-account-type-claim"></a>계정 유형 클레임 발급
 
-**`http://schemas.microsoft.com/ws/2012/01/accounttype`** - 이 클레임은 도메인에 가입된 컴퓨터로 장치를 식별하는 **DJ** 값을 포함해야 합니다. AD FS에서 다음과 같은 형식의 발급 변환 규칙을 추가할 수 있습니다.
+**`http://schemas.microsoft.com/ws/2012/01/accounttype`**-이 클레임의 값이 있어야 합니다. **DJ**, hello 장치는 도메인에 가입 된 컴퓨터를 식별 합니다. AD FS에서 다음과 같은 형식의 발급 변환 규칙을 추가할 수 있습니다.
 
     @RuleName = "Issue account type for domain-joined computers"
     c:[
@@ -212,9 +212,9 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
         Value = "DJ"
     );
 
-### <a name="issue-objectguid-of-the-computer-account-on-premises"></a>컴퓨터 계정 온-프레미스의 objectGUID 발급
+### <a name="issue-objectguid-of-hello-computer-account-on-premises"></a>문제 objectGUID hello 컴퓨터 계정 온-프레미스의
 
-**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`** - 이 클레임은 온-프레미스 컴퓨터 계정의 **objectGUID** 값을 포함해야 합니다. AD FS에서 다음과 같은 형식의 발급 변환 규칙을 추가할 수 있습니다.
+**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`**-이 클레임 hello 있어야 **objectGUID** hello 값 온-프레미스 컴퓨터 계정입니다. AD FS에서 다음과 같은 형식의 발급 변환 규칙을 추가할 수 있습니다.
 
     @RuleName = "Issue object GUID for domain-joined computers"
     c1:[
@@ -234,9 +234,9 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
         param = c2.Value
     );
  
-### <a name="issue-objectsid-of-the-computer-account-on-premises"></a>컴퓨터 계정 온-프레미스의 objectSID 발급
+### <a name="issue-objectsid-of-hello-computer-account-on-premises"></a>문제 objectSID hello 컴퓨터 계정 온-프레미스의
 
-**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`** - 이 클레임은 온-프레미스 컴퓨터 계정의 **objectSid** 값을 포함해야 합니다. AD FS에서 다음과 같은 형식의 발급 변환 규칙을 추가할 수 있습니다.
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`**-이 클레임 hello hello 있어야 **objectSid** hello 값 온-프레미스 컴퓨터 계정입니다. AD FS에서 다음과 같은 형식의 발급 변환 규칙을 추가할 수 있습니다.
 
     @RuleName = "Issue objectSID for domain-joined computers"
     c1:[
@@ -253,9 +253,9 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
 
 ### <a name="issue-issuerid-for-computer-when-multiple-verified-domain-names-in-azure-ad"></a>Azure AD에 확인된 도메인 이름이 여러 개 있는 경우 컴퓨터에 대한 issuerID 발급
 
-**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`** - 이 클레임의 식별자는 토큰을 발급하는 온-프레미스 페더레이션 서비스(AD FS 또는 타사)와 연결하는 확인된 도메인 이름의 URI(Uniform Resource Identifier)를 포함해야 합니다. AD FS에서 위와 같은 발급 변환 규칙을 추가한 후 아래와 같은 발급 변환 규칙을 그 순서대로 추가할 수 있습니다. 사용자에 대한 규칙을 명시적으로 발급하는 규칙 하나가 필요합니다. 아래 규칙에서 사용자 및 컴퓨터 인증을 식별하는 첫 번째 규칙이 추가됩니다.
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`**-이 클레임 식별자 URI (Uniform Resource) hello 중 아무 메서드나 확인할 도메인 이름을 hello로 연결 하는 온-프레미스 페더레이션 서비스 (AD FS 또는 타사) hello 토큰을 발급 하는 hello를 포함 해야 합니다. AD FS에서 hello는 스토리 아래 후 특정 순서 hello는 스토리 위의 한다는 점에서 처럼 보이지만 발급 변환 규칙을 추가할 수 있습니다. 사용자가 필요한 하나의 규칙 tooexplicitly 문제 hello 규칙을 note 하십시오. 아래의 hello 규칙에서 식별 되는 사용자 컴퓨터 인증에 대 한 첫 번째 규칙 추가 됩니다.
 
-    @RuleName = "Issue account type with the value User when its not a computer"
+    @RuleName = "Issue account type with hello value User when its not a computer"
     NOT EXISTS(
     [
         Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
@@ -267,7 +267,7 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
         Value = "User"
     );
     
-    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    @RuleName = "Capture UPN when AccountType is User and issue hello IssuerID"
     c1:[
         Type == "http://schemas.xmlsoap.org/claims/UPN"
     ]
@@ -297,15 +297,15 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
     );
 
 
-위의 클레임에서
+위의 hello 클레임에
 
-- `$<domain>`은 AD FS 서비스 URL
-- `<verified-domain-name>`은 Azure AD에서 확인된 도메인 이름 중 하나로 교체해야 하는 자리 표시자
+- `$<domain>`hello AD FS 서비스 URL
+- `<verified-domain-name>`Azure AD에서 확인 된 도메인 이름 중 하나를 통해 tooreplace 필요한 자리 표시자
 
 
 
-확인된 도메인 이름에 대한 자세한 내용은 [Azure Active Directory에 사용자 지정 도메인 이름 추가](active-directory-add-domain.md)를 참조하세요.  
-확인된 회사 도메인 목록을 보려면 the [Get-MsolDomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0) cmdlet을 사용합니다. 
+확인 된 도메인 이름에 대 한 자세한 내용은 참조 하십시오. [추가 사용자 지정 도메인 이름을 tooAzure Active Directory](active-directory-add-domain.md)합니다.  
+확인 된 회사 도메인 목록을 tooget hello를 사용할 수 있습니다 [Get-msoldomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0) cmdlet. 
 
 ![Get-MsolDomain](./media/active-directory-conditional-access-automatic-device-registration-setup/01.png)
 
@@ -331,9 +331,9 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
         param = c2.Value
     );
 
-### <a name="helper-script-to-create-the-ad-fs-issuance-transform-rules"></a>AD FS 발급 변환 규칙을 만드는 도우미 스크립트
+### <a name="helper-script-toocreate-hello-ad-fs-issuance-transform-rules"></a>도우미 스크립트 toocreate hello AD FS 발급 변환 규칙
 
-다음 스크립트는 위에서 설명한 발급 변환 규칙을 만드는 데 도움이 됩니다.
+hello 다음 스크립트를 사용 하면 hello 작성 hello 발급 변환 규칙 위에서 설명한 합니다.
 
     $multipleVerifiedDomainNames = $false
     $immutableIDAlreadyIssuedforUsers = $false
@@ -383,7 +383,7 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
 
     $rule4 = ''
     if ($multipleVerifiedDomainNames -eq $true) {
-    $rule4 = '@RuleName = "Issue account type with the value User when it is not a computer"
+    $rule4 = '@RuleName = "Issue account type with hello value User when it is not a computer"
     NOT EXISTS(
     [
         Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
@@ -395,7 +395,7 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
         Value = "User"
     );
     
-    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    @RuleName = "Capture UPN when AccountType is User and issue hello IssuerID"
     c1:[
         Type == "http://schemas.xmlsoap.org/claims/UPN"
     ]
@@ -456,129 +456,129 @@ ImmutableID 클레임(예: 대체 로그인 ID)을 이미 발급 중인 경우 �
 
 ### <a name="remarks"></a>설명 
 
-- 이 스크립트는 기존 규칙에 규칙을 추가합니다. 이 스크립트를 두 번 실행하면 규칙 집합이 두 번 추가되므로 두 번 실행하지 마세요. 스크립트를 다시 실행하기 전에 이러한 클레임에 해당하는 규칙이 없는지 확인(해당 조건에서)하세요.
+- 이 스크립트는 hello 규칙 toohello 기존 규칙을 추가합니다. Hello 스크립트를 실행 하지 마십시오 두 번 hello 규칙의 설정 때문에 두 번 추가 합니다. Hello 스크립트를 다시 실행 하기 전에 이러한 클레임 (조건 하에서 hello 해당)에 대 한 해당 규칙이 존재 하는지 확인 합니다.
 
-- Azure AD 포털에서 또는 Get MsolDomains cmdlet을 통해 보여드린 것처럼 확인된 도메인 이름이 여러 개 있는 경우 스크립트에서 **$multipleVerifiedDomainNames** 값을 **$true**로 설정합니다. 또한 Azure AD Connect 또는 다른 방법을 통해 만들어졌을 수 있는 기존 issuerid 클레임을 제거해야 합니다. 다음은 이 규칙에 대한 예입니다.
+- 여러 확인 된 도메인 이름 (같이 hello Azure AD 포털 또는 hello MsolDomains Get cmdlet을 통해)의 hello 값을 설정할 수 있으면 **$multipleVerifiedDomainNames** 너무 hello 스크립트**$true**합니다. 또한 Azure AD Connect 또는 다른 방법을 통해 만들어졌을 수 있는 기존 issuerid 클레임을 제거해야 합니다. 다음은 이 규칙에 대한 예입니다.
 
 
         c:[Type == "http://schemas.xmlsoap.org/claims/UPN"]
         => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)",  "http://${domain}/adfs/services/trust/")); 
 
-- 사용자 계정에 대한 **ImmutableID** 클레임을 이미 발급한 경우 스크립트에서 **$immutableIDAlreadyIssuedforUsers** 값을 **$true**로 설정합니다.
+- 이미 실행 한 경우에 **ImmutableID** 사용자 계정에 대 한 클레임 값으로 설정 hello의 **$immutableIDAlreadyIssuedforUsers** 너무 hello 스크립트**$true**합니다.
 
 ## <a name="step-3-enable-windows-down-level-devices"></a>3단계: Windows 하위 수준 장치 설정
 
 도메인에 가입된 장치 중 일부가 Windows 하위 수준 장치인 경우 다음을 수행해야 합니다.
 
-- 사용자가 장치를 등록할 수 있도록 Azure AD에 정책을 설정합니다.
+- 사용자가 tooregister 장치에서 Azure AD tooenable 정책을 설정 합니다.
  
-- 장치 등록에 **IWA(통합 Windows 인증)**를 지원하는 클레임을 발급하도록 온-프레미스 페더레이션 서비스를 구성합니다.
+- 온-프레미스 페더레이션 서비스 tooissue 클레임 toosupport 구성 **통합 IWA (Windows 인증)** 장치 등록에 대 한 합니다.
  
-- 장치를 인증할 때 인증서 프롬프트가 나타나지 않도록 로컬 인트라넷 영역에 Azure AD 장치 인증 끝점을 추가합니다.
+- Hello Azure AD 장치 인증 끝점 toohello 로컬 인트라넷 영역 tooavoid 인증서 hello 장치를 인증할 때 메시지 표시를 추가 합니다.
 
-### <a name="set-policy-in-azure-ad-to-enable-users-to-register-devices"></a>사용자가 장치를 등록할 수 있도록 Azure AD에 정책 설정
+### <a name="set-policy-in-azure-ad-tooenable-users-tooregister-devices"></a>사용자 tooregister 장치에서 Azure AD tooenable 정책을 설정합니다
 
-Windows 하위 수준 장치를 등록하려면 사용자가 Azure AD에서 장치를 등록할 수 있도록 허용하는 설정을 선택해야 합니다. Azure Portal의 다음 위치에서 이러한 값을 확인할 수 있습니다.
+tooregister Windows 하위 수준 장치를 Azure AD에서 tooallow 사용자 tooregister 장치를 설정 하는 hello 설정 되어 있는지 toomake를 해야 합니다. Hello Azure 포털에서에서이 설정을 찾을 수 있습니다.
 
 `Azure Active Directory > Users and groups > Device settings`
     
-**사용자가 장치를 Azure AD에 등록할 수 있습니다.** 정책이 **모두**로 설정되어야 합니다.
+hello 다음 정책을 설정 해야 너무**모든**: **Azure ad 사용자가 장치를 등록할 수 있습니다**
 
 ![장치 등록](./media/active-directory-conditional-access-automatic-device-registration-setup/23.png)
 
 
 ### <a name="configure-on-premises-federation-service"></a>온-프레미스 페더레이션 서비스 구성 
 
-온-프레미스 페더레이션 서비스는 아래와 같이 인코딩된 값으로 resouce_params 매개 변수를 보유한 Azure AD 신뢰 당사자에 대한 인증 요청을 받으면 **authenticationmehod** 및 **wiaormultiauthn** 클레임 발급을 지원해야 합니다.
+온-프레미스 페더레이션 서비스에서 발급 hello를 지원 해야 **authenticationmehod** 및 **wiaormultiauthn** 클레임 인증을 받을 때 요청 보유 toohello Azure AD 신뢰 당사자는 resouce_params 매개 변수 표시 된 대로 인코딩된 값 아래:
 
     eyJQcm9wZXJ0aWVzIjpbeyJLZXkiOiJhY3IiLCJWYWx1ZSI6IndpYW9ybXVsdGlhdXRobiJ9XX0
 
     which decoded is {"Properties":[{"Key":"acr","Value":"wiaormultiauthn"}]}
 
-이러한 요청이 오면 온-프레미스 페더레이션 서비스는 통합 Windows 인증을 사용하여 사용자를 인증해야 하며 인증이 완료되는 즉시 다음 두 클레임을 발급해야 합니다.
+이러한 요청 되 면 hello 온-프레미스 페더레이션 서비스에서 Windows 통합 인증을 사용 하 여 hello 사용자를 인증 해야 하 고 요청이 성공 하면 다음 두 개의 클레임 hello를 실행 해야 하기:
 
     http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/windows
     http://schemas.microsoft.com/claims/wiaormultiauthn
 
-AD FS에서 인증 메서드를 통과하는 발급 변환 규칙을 추가해야 합니다.  
+AD FS에서 발급 변환 규칙을 통해 전달 hello 해당 인증 방법을 추가 해야 합니다.  
 
-**이 규칙을 추가하려면:**
+**tooadd이이 규칙:**
 
-1. AD FS 관리 콘솔에서 `AD FS > Trust Relationships > Relying Party Trusts`로 이동합니다.
-2. 마우스 오른쪽 단추로 Microsoft Office 365 ID 플랫폼 신뢰 당사자 트러스트 개체를 클릭하고 **클레임 규칙 편집**을 선택합니다.
-3. **발급 변환 규칙** 탭에서 **규칙 추가**를 선택합니다.
-4. **클레임 규칙** 템플릿 목록에서 **사용자 지정 규칙을 사용하여 클레임 보내기**를 선택합니다.
+1. Hello AD FS 관리 콘솔에서 이동 너무`AD FS > Trust Relationships > Relying Party Trusts`합니다.
+2. Hello Microsoft Office 365 Id 플랫폼 신뢰 당사자 트러스트 개체를 마우스 오른쪽 단추로 클릭 한 다음 선택 **클레임 규칙 편집**합니다.
+3. Hello에 **발급 변환 규칙** 탭에서 **규칙 추가**합니다.
+4. Hello에 **클레임 규칙** 템플릿 목록 **사용자 지정 규칙을 사용 하 여 클레임 보내기**합니다.
 5. **다음**을 선택합니다.
-6. **클레임 규칙 이름** 상자에 **인증 방법 클레임 규칙**을 입력합니다.
-7. **클레임 규칙** 상자에 다음 규칙을 입력합니다.
+6. Hello에 **클레임 규칙 이름** 상자에서 입력 **인증 방법 클레임 규칙**합니다.
+7. Hello에 **클레임 규칙** 상자, 규칙을 따르는 형식 hello:
 
     `c:[Type == "http://schemas.microsoft.com/claims/authnmethodsreferences"] => issue(claim = c);`
 
-8. 페더레이션 서버에서 **\<RPObjectName\>**을 Azure AD 신뢰 당사자 트러스트 개체의 신뢰 당사자 개체 이름으로 바꾼 후 아래의 PowerShell 명령을 입력합니다. 일반적으로 이 개체의 이름은 **Microsoft Office 365 ID 플랫폼**입니다.
+8. 페더레이션 서버에서 아래의 PowerShell 명령 hello 대체 한 다음 입력 ** \<RPObjectName\> ** 하면 Azure AD 신뢰 당사자 트러스트 개체에 대 한 hello 신뢰 당사자 개체 이름을 포함 합니다. 일반적으로 이 개체의 이름은 **Microsoft Office 365 ID 플랫폼**입니다.
    
     `Set-AdfsRelyingPartyTrust -TargetName <RPObjectName> -AllowedAuthenticationClassReferences wiaormultiauthn`
 
-### <a name="add-the-azure-ad-device-authentication-end-point-to-the-local-intranet-zones"></a>로컬 인트라넷 영역에 Azure AD 장치 인증 끝점 추가
+### <a name="add-hello-azure-ad-device-authentication-end-point-toohello-local-intranet-zones"></a>Hello Azure AD 장치 인증 끝점 toohello 로컬 인트라넷 영역 추가
 
-등록 장치의 사용자가 Azure AD에 인증할 때 인증서 프롬프트를 표시하지 않으려는 경우 Internet Explorer의 로컬 인트라넷 영역에 다음 URL을 추가하도록 도메인에 가입된 장치에 정책을 푸시하면 됩니다.
+tooavoid 인증서 레지스터 장치의 사용자가 Internet Explorer에서 URL toohello 로컬 인트라넷 영역에 따라 정책 tooyour 도메인에 가입 된 장치 tooadd hello 푸시할 수 있는 AD tooAzure 인증할 때 다음 메시지가 나타납니다.
 
 `https://device.login.microsoftonline.com`
 
 ## <a name="step-4-control-deployment-and-rollout"></a>4단계: 배포 및 롤아웃 제어
 
-필요한 단계를 완료하면 도메인에 가입된 장치는 Azure AD에 자동으로 등록할 준비가 완료됩니다. Windows 10 1주년 업데이트 및 Windows Server 2016을 실행하는 모든 도메인에 가입된 장치는 장치를 다시 시작하거나 사용자가 로그인할 때 자동으로 Azure AD에 등록됩니다. 새 장치는 도메인 가입 작업이 완료된 후 장치를 다시 시작할 때 Azure AD에 등록됩니다.
+Hello 필요한 단계를 완료 한 도메인에 가입 된 장치를 Azure AD와 준비 tooautomatically 레지스터 됩니다. Windows 10 1주년 업데이트 및 Windows Server 2016을 실행하는 모든 도메인에 가입된 장치는 장치를 다시 시작하거나 사용자가 로그인할 때 자동으로 Azure AD에 등록됩니다. 새 장치 hello 장치 다시 시작할 때 hello 도메인 가입 작업이 완료 된 후 Azure AD에 등록 합니다.
 
-이전에 Azure AD에 작업 공간 연결된 장치(예: Intune)는 "*도메인 가입, AAD 등록*"으로 전환됩니다. 그러나 도메인 및 사용자 활동의 정상 흐름으로 인해 이 프로세스가 모든 장치에서 완료되려면 다소 시간이 걸립니다.
+그러나 된 장치에 (예를 들어 Intune에 대 한) 이전에 작업 공간 가입 tooAzure AD 전환 너무"*도메인에 가입 된, 등록 된 AAD*"toohello 보통 인해 모든 장치에서이 프로세스 toocomplete에 대 한 시간이 걸립니다; 도메인 및 사용자 활동의 흐름입니다.
 
 ### <a name="remarks"></a>설명
 
-- 그룹 정책 개체를 사용하면 Windows 10 및 Windows Server 2016 도메인 가입 컴퓨터의 자동 등록 롤아웃을 제어할 수 있습니다.
+- Windows 10 및 Windows Server 2016 도메인에 가입 된 컴퓨터의 자동 등록의 그룹 정책 개체 toocontrol hello 출시를 사용할 수 있습니다.
 
-- Windows 10 2015년 11월 업데이트는 롤아웃 그룹 정책 개체가 설정된 **경우에만** Azure AD에 자동으로 등록됩니다.
+- Windows 10 2015 년 11 월 업데이트 자동으로 레지스터 Azure AD와 **만** hello 롤아웃 그룹 정책 개체를 설정 하는 경우.
 
-- Windows 하위 수준 컴퓨터의 자동 등록을 롤아웃하려면 선택한 컴퓨터에 [Windows Installer 패키지](#windows-installer-packages-for-non-windows-10-computers)를 배포하면 됩니다.
+- 배포할 수 있습니다 Windows 하위 수준 컴퓨터의 toorollout hello의 자동 등록을 한 [Windows Installer 패키지](#windows-installer-packages-for-non-windows-10-computers) 선택한 toocomputers 합니다.
 
-- Windows 8.1 도메인 가입 장치에 그룹 정책 개체를 푸시하면 등록이 시도됩니다. 그러나 [Windows Installer 패키지](#windows-installer-packages-for-non-windows-10-computers)를 사용하여 모든 Windows 하위 수준 장치를 등록하는 것이 좋습니다. 
+- Hello 그룹 정책 개체 tooWindows 8.1 도메인 가입 장치를 푸시 등록 하려고 시도 합니다. 그러나 것이 좋습니다 hello를 사용 하는 [Windows Installer 패키지](#windows-installer-packages-for-non-windows-10-computers) tooregister 모든 Windows 하위 수준 장치입니다. 
 
 ### <a name="create-a-group-policy-object"></a>그룹 정책 개체 만들기 
 
-Windows 현재 컴퓨터의 자동 등록 롤아웃을 제어하려면 그룹 정책을 등록하려는 컴퓨터에 **도메인 가입 컴퓨터를 장치로 등록** 그룹 정책 개체를 배포해야 합니다. 예를 들어 조직 구성 단위 또는 보안 그룹에 정책을 배포할 수 있습니다.
+Windows 현재 컴퓨터의 자동 등록의 toocontrol hello 롤아웃, hello를 배포 해야 **장치로 도메인에 가입 된 컴퓨터를 등록할** tooregister 원하는 그룹 정책 개체 toohello 장치입니다. 예를 들어 hello 정책 tooan 조직 구성 단위 또는 tooa 보안 그룹을 배포할 수 있습니다.
 
-**정책을 설정하려면:**
+**tooset hello 정책:**
 
-1. **서버 관리자**를 열고 `Tools > Group Policy Management`로 이동합니다.
-2. Windows 현재 컴퓨터의 자동 등록을 활성화하려는 도메인에 해당하는 도메인 노드로 이동합니다.
+1. 열기 **서버 관리자**, 한 다음 너무 이동`Tools > Group Policy Management`합니다.
+2. Toohello 도메인 Windows 현재 컴퓨터의 tooactivate 자동 등록 하려는 해당 하는 toohello 도메인 노드로 이동 하십시오.
 3. **그룹 정책 개체**를 마우스 오른쪽 단추로 클릭하고 **새로 만들기**를 선택합니다.
-4. 그룹 정책 개체의 이름을 입력합니다. 예: *Azure AD에 자동 등록*. **확인**을 선택합니다.
+4. 그룹 정책 개체의 이름을 입력합니다. 예를 들어 *AD 자동 등록 tooAzure*합니다. **확인**을 선택합니다.
 5. 마우스 오른쪽 단추로 새 그룹 정책 개체를 클릭한 다음 **편집**을 선택합니다.
-6. **컴퓨터 구성** > **정책** > **관리 템플릿** > **Windows 구성 요소** > **장치 등록**으로 이동합니다. 마우스 오른쪽 단추로 **도메인 가입 컴퓨터를 장치로 등록**을 클릭한 다음 **편집**을 선택합니다.
+6. 너무 이동**컴퓨터 구성** > **정책** > **관리 템플릿** > **Windows 구성 요소** > **장치 등록**합니다. 마우스 오른쪽 단추로 **도메인 가입 컴퓨터를 장치로 등록**을 클릭한 다음 **편집**을 선택합니다.
    
    > [!NOTE]
-   > 이 그룹 정책 템플릿 이름은 이전 버전의 그룹 정책 관리 콘솔에서 변경되었습니다. 이전 버전의 콘솔을 사용하는 경우 `Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`으로 이동합니다. 
+   > 이전 버전의 hello 그룹 정책 관리 콘솔에서이 그룹 정책 템플릿 이름이 변경 되었습니다. 이전 버전의 hello 콘솔을 사용 하는 경우 너무 이동`Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`합니다. 
 
 7. **사용**, **적용**을 차례로 선택합니다.
 8. **확인**을 선택합니다.
-9. 그룹 정책 개체를 선택한 위치에 연결합니다. 예를 들어 특정 조직 구성 단위에 연결할 수 있습니다. 또한 Azure AD에 자동으로 등록되는 컴퓨터의 특정 보안 그룹에 연결할 수도 있습니다. 조직의 모든 Windows 10 및 Windows Server 2016 도메인 가입 컴퓨터에 대해 이 정책을 사용하도록 설정하려면 그룹 정책 개체를 해당 도메인에 연결합니다.
+9. 링크 hello 그룹 정책 개체 tooa 위치를 선택 합니다. 예를 들어 특정 조직 단위의 tooa 것 것을 연결할 수 있습니다. 또한 연결할 수 있습니다이 자동으로 Azure AD에 등록 하는 컴퓨터의 tooa 특정 보안 그룹. tooset 도메인에 가입 된 Windows 10 및 Windows Server 2016의에서 모든 컴퓨터 조직 링크 hello 그룹 정책 개체 toohello 도메인에 대해이 정책을 합니다.
 
 ### <a name="windows-installer-packages-for-non-windows-10-computers"></a>비 Windows 10 컴퓨터용 Windows Installer 패키지
 
-페더레이션된 환경에서 도메인에 가입된 Windows 하위 수준 컴퓨터를 등록하려면 [비-Windows 10 컴퓨터의 Microsoft 작업 공간 연결](https://www.microsoft.com/en-us/download/details.aspx?id=53554) 페이지의 다운로드 센터에서 Windows Installer 패키지(.msi)를 다운로드하여 설치하면 됩니다.
+tooregister 도메인에 가입 된 Windows 하위 수준 컴퓨터 연결된 된 환경에서 다운로드 하 고 수 hello에이 Windows Installer 패키지 (.msi) 다운로드 센터에서 설치 [비-Windows10컴퓨터에대한Microsoft작업공간연결](https://www.microsoft.com/en-us/download/details.aspx?id=53554) 페이지.
 
-System Center Configuration Manager 같은 소프트웨어 배포 시스템을 사용하여 패키지를 배포할 수 있습니다. 이 패키지는 *quiet* 매개 변수를 사용하여 표준 자동 설치 옵션을 지원합니다. System Center Configuration Manager Current Branch는 완료된 등록을 추적하는 기능과 같은 이전 버전의 이점이 추가로 제공됩니다. 자세한 내용은 [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager)를 참조하세요.
+System Center Configuration Manager 같은 소프트웨어 배포 시스템을 사용 하 여 hello 패키지를 배포할 수 있습니다. hello 패키지 hello 표준 자동 설치 옵션이 지원 hello로 *quiet* 매개 변수입니다. System Center Configuration Manager 현재 분기는 hello 기능 완료 tootrack 등록과 같은 이전 버전의 추가 혜택을 제공합니다. 자세한 내용은 [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager)를 참조하세요.
 
-설치 관리자에서는 사용자 컨텍스트에서 실행되도록 예약된 작업을 시스템에 만듭니다. 사용자가 Windows에 로그인할 때 이 작업이 트리거됩니다. 이 작업은 통합 Windows 인증을 사용하여 인증한 후 사용자 자격 증명을 사용하여 장치를 Azure AD에 자동으로 등록합니다. 예약된 작업을 보려면 장치에서 **Microsoft** > **작업 공간 연결**, 작업 스케줄러 라이브러리로 이동합니다.
+hello installer hello 사용자의 컨텍스트에서 실행 하는 hello 시스템에서 예약 된 작업을 만듭니다. hello 작업 hello 사용자 tooWindows에 로그인 할 때 트리거됩니다. hello 작업은 자동으로 Windows 통합 인증을 사용 하 여 인증 한 후 hello 사용자 자격 증명으로 Azure AD와 hello 장치를 등록 합니다. hello 장치에 toosee hello 예약 된 작업, 너무 이동**Microsoft** > **작업 공간 연결**, toohello 작업 스케줄러 라이브러리를 이동 합니다.
 
 ## <a name="step-5-verify-registered-devices"></a>5단계: 등록된 장치 확인
 
-[Azure Active Directory PowerShell 모듈](/powershell/azure/install-msonlinev1?view=azureadps-2.0)에서 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) cmdlet을 사용하여 조직에 등록된 장치를 확인할 수 있습니다.
+Hello를 사용 하 여 조직에서 성공적으로 등록 된 장치를 확인할 수 있습니다 [Get MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) cmdlet hello에 [Azure Active Directory PowerShell 모듈](/powershell/azure/install-msonlinev1?view=azureadps-2.0)합니다.
 
-이 cmdlet의 출력은 Azure AD에 등록된 장치를 보여줍니다. 모든 장치를 가져오려면 **-All** 매개 변수를 사용한 다음 **deviceTrustType** 속성을 사용하여 장치를 필터링합니다. 도메인에 가입된 장치는 **도메인 가입** 값을 갖습니다.
+이 cmdlet의 출력 hello Azure AD에 등록 된 장치를 보여 줍니다. tooget hello를 사용 하는 모든 장치 **-모든** 매개 변수 및 필터 hello를 통해 **deviceTrustType** 속성입니다. 도메인에 가입된 장치는 **도메인 가입** 값을 갖습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
 * [자동 장치 등록 FAQ](active-directory-device-registration-faq.md)
-* [Windows 10 및 Windows Server 2016에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows.md)
-* [Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결 - 비-Windows 10](active-directory-device-registration-troubleshoot-windows-legacy.md)
+* [가입 된 컴퓨터 tooAzure AD – Windows 10 및 Windows Server 2016 도메인의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows.md)
+* [가입 된 컴퓨터 tooAzure AD – 비-Windows 10 도메인의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows-legacy.md)
 * [Azure Active Directory 조건부 액세스](active-directory-conditional-access-azure-portal.md)
 
 

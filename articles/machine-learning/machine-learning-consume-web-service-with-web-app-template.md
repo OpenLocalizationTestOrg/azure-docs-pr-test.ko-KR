@@ -1,6 +1,6 @@
 ---
-title: "웹앱 템플릿에서 Machine Learning 웹 서비스 사용 | Microsoft Docs"
-description: "Azure Marketplace에서 웹 앱을 사용하여 Azure 기계 학습의 예측 웹 서비스를 사용합니다."
+title: "웹 응용 프로그램 템플릿 사용 하 여 기계 학습 웹 서비스 aaaConsume | Microsoft Docs"
+description: "Azure 마켓플레이스 tooconsume Azure 기계 학습에서 예측 웹 서비스에서에서 웹 응용 프로그램 템플릿을 사용 합니다."
 keywords: "웹 서비스, 운영, REST API, 기계 학습"
 services: machine-learning
 documentationcenter: 
@@ -15,48 +15,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;raymondl
-ms.openlocfilehash: 95aa1fa23d83ec0dcd00870179167e803bafbd16
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1199377bead470807d58ca7f7a667175cbb88450
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="consume-an-azure-machine-learning-web-service-with-a-web-app-template"></a>웹 앱 템플릿을 사용한 Azure 기계 학습 웹 서비스 사용
 
-예측 모델을 개발하고 기계 학습 스튜디오를 사용하거나 R 또는 Python을 사용하여 Azure 웹으로 배포하면 REST API를 사용하여 운영할 수 있게 된 모델에 액세스할 수 있습니다.
+한 번 개발 모델에 예측 하 고 기계 학습 스튜디오를 사용 하 여 Azure 웹 서비스로 배포 또는 Python 또는 R 등의 도구를 사용 하는 REST API를 사용 하 여 hello 가능한 모델 액세스할 수 있습니다.
 
-REST API를 사용하고 웹 서비스에 액세스하는 방법은 많습니다. 예를 들어, 웹 서비스를 배포할 때 생성된 샘플 코드를 사용하여 C#, R 또는 Python에서 응용 프로그램을 작성할 수 있습니다([Machine Learning 웹 서비스 포털](https://services.azureml.net/quickstart) 또는 Machine Learning 스튜디오의 웹 서비스 대시보드에서 사용 가능). 또는 동시에 생성된 샘플 Microsoft Excel 통합 문서를 사용할 수 있습니다.
+Tooconsume hello REST API 및 액세스 hello 웹 서비스는 다양 한 방법으로 합니다. 예를 들어 C#에서 R을 응용 프로그램을 작성 또는 hello를 사용 하 여 Python 샘플 hello 웹 서비스를 배포할 때 자동으로 생성 된 코드 (hello에서 사용할 수 있는 [컴퓨터 학습 웹 서비스 포털](https://services.azureml.net/quickstart) 또는에서 hello 웹 서비스 대시보드 기계 학습 스튜디오)입니다. Hello 샘플 Microsoft Excel 통합 문서를 hello로 생성을 사용할 수 있습니다 동시 합니다.
 
-그러나 웹 서비스를 액세스하는 가장 빠르고 쉬운 방법은 [Azure 웹 앱 마켓플레이스](https://azure.microsoft.com/marketplace/web-applications/all/)에서 사용 가능한 웹 앱 템플릿을 통한 것입니다.
+웹 서비스는 hello에서 사용할 수 있는 hello 웹 응용 프로그램 템플릿을 통해 쉽고 빠르게 tooaccess hello 하지만 [Azure 웹 앱 마켓플레이스](https://azure.microsoft.com/marketplace/web-applications/all/)합니다.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="the-azure-machine-learning-web-app-templates"></a>Azure 기계 학습 웹 앱 템플릿
-Azure Marketplace에서 사용할 수 있는 웹 앱 템플릿은 웹 서비스의 입력 데이터 및 예상 결과를 알고 있는 사용자 지정 웹 앱을 구축할 수 있습니다. 따라서 웹 앱이 웹 서비스 및 데이터에 액세스하도록 하기만 하면 나머지 작업은 템플릿이 수행합니다.
+## <a name="hello-azure-machine-learning-web-app-templates"></a>hello Azure 컴퓨터 학습 웹 응용 프로그램 템플릿
+hello 웹 응용 프로그램 템플릿 hello Azure Marketplace에서에서 사용할 수 있는 웹 서비스의 입력된 데이터 및 예상된 결과 알고 있는 사용자 지정 웹 응용 프로그램을 빌드할 수 있습니다. 하기만 하면 toodo는 hello 웹 응용 프로그램 액세스 tooyour 웹 서비스 및 데이터를 제공할 및 hello 템플릿 rest hello지 않습니다.
 
 두 가지 템플릿을 사용할 수 있습니다.
 
 * [Azure ML 요청-응답 서비스 웹 앱 템플릿](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/)
 * [Azure ML 일괄 처리 실행 서비스 웹 앱 템플릿](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)
 
-각 템플릿은 웹 서비스용 API URI 및 키를 사용하여 샘플 ASP.NET 응용 프로그램을 만들고 Azure에 웹 사이트에 배포합니다. 요청-응답 서비스(RRS) 템플릿은 단일 결과를 가져오기 위해 데이터의 단일 행을 웹 서비스에 보낼 수 있도록 웹 앱을 만듭니다. 일괄 처리 실행 서비스(BES) 템플릿은 여러 결과를 가져오기 위해 많은 데이터의 행을 보낼 수 있도록 웹 앱을 만듭니다.
+각 템플릿은 웹 서비스에 대 한 hello API URI 및 키를 사용 하 여 샘플 ASP.NET 응용 프로그램을 만들고 웹 사이트 tooAzure로 배포 합니다. hello 요청 응답 서비스 (RR) 템플릿은 toosend 데이터 toohello 웹 서비스 tooget 단일 결과의 단일 행을 허용 하는 웹 응용 프로그램을 만듭니다. hello 일괄 처리 실행 서비스 (BES) 템플릿은 만듭니다 toosend 수 있는 웹 응용 프로그램 데이터 tooget 무수히 많은 행 여러 결과입니다.
 
-이러한 템플릿을 사용하기 위해 코딩 작업이 필요하지 않습니다. API 키 및 URI를 제공하면 템플릿이 응용 프로그램을 빌드합니다.
+코딩이 필요 toouse 이러한 서식 파일은 합니다. Hello API 키와 URI를 입력 하 고 hello 템플릿 hello 응용 프로그램을 빌드합니다.
 
-웹 서비스에 대한 API 키 및 요청 URI를 가져오려면:
+tooget hello API 키와 웹 서비스에 대 한 요청 URI:
 
-1. [웹 서비스 포털](https://services.azureml.net/quickstart)에서 새 웹 서비스의 경우 위쪽의 **웹 서비스**를 클릭합니다. 또는 기존 웹 서비스의 경우 **기존 웹 서비스**를 클릭합니다.
-2. 액세스하려는 웹 서비스를 클릭합니다.
-3. 기존 웹 서비스의 경우 액세스하려는 끝점을 클릭합니다.
-4. 위쪽의 **소비자**를 클릭합니다.
-5. **기본** 또는 **보조 키**를 복사하고 저장합니다.
-6. RRS(요청-응답 서비스) 템플릿을 만드는 경우 **요청-응답** URI를 복사하고 저장합니다. BES(일괄 처리 실행 서비스) 템플릿을 만드는 경우 **일괄 처리 요청** URI를 복사하고 저장합니다.
+1. Hello에 [웹 서비스 포털](https://services.azureml.net/quickstart), 새 웹 서비스에 대 한 클릭 **웹 서비스** hello 위쪽에 있습니다. 또는 기존 웹 서비스의 경우 **기존 웹 서비스**를 클릭합니다.
+2. Tooaccess 사용할 hello 웹 서비스를 클릭 합니다.
+3. 기본 웹 서비스에 대 한 tooaccess hello 끝점을 클릭 합니다.
+4. 클릭 **사용** hello 위쪽에 있습니다.
+5. 복사 hello **기본** 또는 **보조 키** 하 고 저장 합니다.
+6. 요청 응답 서비스 (RR) 템플릿을 만드는 경우 복사 hello **요청-응답** URI 하 고 저장 합니다. 일괄 처리 실행 서비스 (BES) 템플릿을 만드는 경우 복사 hello **일괄 처리 요청** URI 하 고 저장 합니다.
 
 
-## <a name="how-to-use-the-request-response-service-rrs-template"></a>요청-응답 서비스(RRS) 템플릿을 사용하는 방법
-다음 다이어그램에 표시된 것처럼 이 단계를 따라 RRS 웹앱 템플릿을 사용합니다.
+## <a name="how-toouse-hello-request-response-service-rrs-template"></a>어떻게 toouse hello 서식 파일 요청 응답 서비스 (RR)
+Hello 다음 다이어그램에에서 표시 된 대로 이러한 단계 toouse hello RR 웹 응용 프로그램 템플릿을 따릅니다.
 
-![RRS 웹 템플릿을 사용하는 프로세스][image1]
+![프로세스 toouse RR 웹 서식 파일][image1]
 
 
 <!--    ![API Key][image3] -->
@@ -67,61 +67,61 @@ Azure Marketplace에서 사용할 수 있는 웹 앱 템플릿은 웹 서비스�
    
     ![Request URI][image4] -->
 
-1. [Azure Portal](https://portal.azure.com), **로그인**으로 이동하여 **새로 만들기**를 클릭하고 **Azure ML 요청-응답 서비스 웹앱**을 검색하고 선택한 다음 **만들기**를 클릭합니다. 
+1. Toohello 이동 [Azure 포털](https://portal.azure.com), **로그인**, 클릭 **새로**검색 하 고 선택 **Azure ML 요청 응답 서비스 웹 앱**, 클릭 **만들**합니다. 
    
-   * 웹 앱에 고유한 이름을 지정합니다. 웹앱의 URL이 이름 뒤에 됩니다 `.azurewebsites.net.` 예: `http://carprediction.azurewebsites.net.`
-   * Azure 구독과 웹 서비스가 실행되는 서비스를 선택합니다.
+   * 웹 앱에 고유한 이름을 지정합니다. hello 웹 응용 프로그램의 hello URL이이 이름 뒤 됩니다 `.azurewebsites.net.` 예를 들어`http://carprediction.azurewebsites.net.`
+   * 웹 서비스가 실행 되 고 있는 hello Azure 구독 및 서비스를 선택 합니다.
    * **만들기**를 클릭합니다.
      
      ![웹앱 만들기][image5]
 
-4. Azure가 웹앱 배포를 완료하면 Azure의 웹앱 설정 페이지의 **URL**을 클릭하거나 웹 브라우저에 URL을 입력합니다. 위치(예:`http://carprediction.azurewebsites.net.`
-5. 웹앱을 처음 실행할 때 **API 게시 URL** 및 **API 키**를 요청합니다.
-   이전에 저장한 값을 입력합니다(**요청 URI** 및 **API 키** 각각).
+4. Azure hello 웹 응용 프로그램 배포 완료 되 면 클릭 hello **URL** hello azure에서 웹 응용 프로그램 설정 페이지 또는 웹 브라우저에서 hello URL을 입력 합니다. 예를 들어 `http://carprediction.azurewebsites.net.`
+5. 웹 앱 첫 번째 실행 것을 요청 hello에 대 한 경우 hello **API 게시 URL** 및 **API 키**합니다.
+   이전에 저장 하는 hello 값을 입력 (**요청 URI** 및 **API 키**각각).
      
      **제출**을 클릭합니다.
      
      ![Post URI 및 API 키 입력][image6]
 
-6. 웹앱은 현재 웹 서비스 설정과 함께 **웹앱 구성** 페이지를 표시합니다. 여기서 웹 앱에서 사용되는 설정을 변경할 수 있습니다.
+6. 웹 응용 프로그램 표시 hello 해당 **웹 응용 프로그램 구성** hello 현재 웹 서비스 설정으로 페이지입니다. 여기 toohello 설정을 hello 웹 응용 프로그램에서 사용 하는 변경 내용을 만들 수 있습니다.
    
    > [!NOTE]
-   > 여기서 설정을 변경하면 이 웹 앱에 대한 설정만 변경됩니다. 웹 서비스의 기본 설정을 변경되지 않습니다. 예를 들어, 여기에서 **설명**을 변경하면 기계 학습 스튜디오의 웹 서비스 대시보드에 표시되는 설명은 변경되지 않습니다.
+   > 여기에서 hello 설정을 변경에이 웹 응용 프로그램에만 변경 됩니다. 웹 서비스의 기본 설정을 hello 바뀌지 않습니다. 예를 들어, hello를 변경 하는 경우 **설명** 여기 기계 학습 스튜디오에서 hello 웹 서비스 대시보드에 표시 되는 hello 설명 변경 하지는 않습니다.
    > 
    > 
    
-    완료되면 **변경 내용 저장**을 클릭한 다음 **홈페이지로 이동**을 클릭합니다.
+    완료 되 면 클릭 **ब ा ळ**, 클릭 하 고 **tooHome 페이지 이동**합니다.
 
-7. 홈 페이지에서 웹 서비스에 전송하는 값을 입력할 수 있습니다. 완료되면 **전송**을 클릭하고 결과가 반환됩니다.
+7. Hello에서 홈 페이지를 입력할 수 있는 값은 toosend tooyour 웹 서비스. 클릭 **전송** 때 완료 되 고 hello 결과가 반환 됩니다.
 
-**구성** 페이지로 반환하려는 경우, 웹앱의 `setting.aspx` 페이지로 이동합니다. 예를 들어, `http://carprediction.azurewebsites.net/setting.aspx.` API 키를 다시 입력하라는 메시지가 표시됩니다. 이 키는 해당 페이지에 액세스하고 설정을 업데이트하는 데 필요합니다.
+Tooreturn toohello 하려는 경우 **구성** 페이지에서 이동 toohello `setting.aspx` hello 웹 응용 프로그램의 페이지입니다. 예를 들어: `http://carprediction.azurewebsites.net/setting.aspx.` 다시 증명된 tooenter hello API 키가 될-tooaccess 페이지 hello 및 hello 설정을 업데이트 해야 합니다.
 
-웹앱처럼 Azure 포털에서 웹앱을 중지하거나, 다시 시작하거나, 삭제할 수 있습니다. 실행되는 동안, 홈 웹 주소로 이동하여 새 값을 입력할 수 있습니다.
+중지, 다시 시작 하거나 hello 다른 웹 앱 처럼 Azure 포털의에서 웹 앱 hello를 삭제할 수 있습니다. 실행 중인 상태로 toohello 홈 웹 주소 찾아 새 값을 입력 합니다.
 
-## <a name="how-to-use-the-batch-execution-service-bes-template"></a>일괄 처리 실행 서비스(BES) 템플릿을 사용하는 방법
-만든 웹 앱을 통해 여러 데이터 행을 제출하고 여러 결과를 수신하는 것을 제외하고, RRS 템플릿과 동일한 방식으로 BES 웹 앱 템플릿을 사용할 수 있습니다.
+## <a name="how-toouse-hello-batch-execution-service-bes-template"></a>Toouse 일괄 처리 실행 서비스 (BES) 템플릿 hello 하는 방법
+Hello BES를 사용할 수 있습니다 hello hello RR 템플릿으로 방식으로 제외 하 고 동일한 만들어진 해당 hello 웹 앱에에서 웹 응용 프로그램 템플릿을 사용 하면 toosubmit 여러 데이터 행을 여러 결과 수신 하 고 있습니다.
 
-일괄 처리 실행 웹 서비스에 대한 입력 값은 Azure 저장소 또는 로컬 파일에서 가져올 수 있으며 결과는 Azure 저장소 컨테이너에 저장됩니다.
-따라서 웹 앱에 의해 반환된 결과를 저장할 Azure 저장소 컨테이너가 필요하고 입력된 데이터를 준비시켜야 합니다.
+일괄 처리 실행 웹 서비스에 대 한 입력된 값 hello; 로컬 파일 또는 Azure 저장소에서 가져올 수 있습니다. hello 결과 Azure 저장소 컨테이너에 저장 됩니다.
+따라서 살펴볼 필요한 Azure 저장소 컨테이너 toohold hello hello 웹 응용 프로그램에서 반환 된 결과 및 해야 tooget 입력된 데이터 준비 합니다.
 
-![BES 웹 템플릿을 사용하는 프로세스][image2]
+![Toouse BES 처리 웹 서식 파일][image2]
 
-1. RRS 템플릿에 대한 것과 동일한 절차를 [Azure ML 일괄 처리 실행 서비스 웹앱 템플릿](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)으로 이동하여 Azure Marketplace의 BES 템플릿을 열고 **웹앱 만들기**를 클릭을 제외하고 수행하여 BES 웹앱을 만듭니다.
+1. 다음과 같은 hello 프로시저 toocreate hello BES 웹 앱 go 제외 하 고 hello RR 서식 파일의 경우와 너무[Azure ML 일괄 처리 실행 서비스 웹 응용 프로그램 템플릿](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/) tooopen Azure 마켓플레이스에서 BES 템플릿을 hello 및 클릭 **웹 앱 만들기** .
 
-2. 결과를 저장하려는 위치를 지정하려면 웹 앱 홈페이지에 대상 컨테이너 정보를 입력합니다. 또한 웹 앱이 로컬 파일 또는 Azure 저장소 컨테이너에 있는 입력 값을 가져올 수 있는 위치를 지정합니다.
-   **Submit**를 클릭합니다.
+2. hello 결과 저장 하 고, 원하는 toospecify hello 웹 응용 프로그램 홈 페이지에 hello 대상 컨테이너 정보를 입력 합니다. 또한 웹 응용 프로그램 hello hello 입력된 값을 로컬 파일 또는 Azure 저장소 컨테이너에는 어디서 얻을 수를 지정 합니다.
+   **제출**을 클릭합니다.
    
     ![저장소 정보][image7]
 
-웹 앱은 작업 상태와 함께 페이지를 표시합니다.
-작업이 완료되면 Azure Blob 저장소에서 결과의 위치를 알게 됩니다. 또한 결과를 로컬 파일에 다운로드할 옵션이 있습니다.
+hello 웹 응용 프로그램의 작업 상태 페이지에 표시 됩니다.
+Hello 작업이 완료 되 면 Azure blob 저장소에 hello 결과의 hello 위치를 제공 합니다. Hello hello 결과 tooa 로컬 파일을 다운로드할 수가 있습니다.
 
 ## <a name="for-more-information"></a>Blob에 대한 자세한 내용은
-다음에 대한 자세한 정보
+에 대 한 자세한 toolearn 중...
 
 * 기계 학습 스튜디오로 기계 학습 실험 만들기는 [Azure 기계 학습 스튜디오에서 첫 번째 실험 만들기](machine-learning-create-experiment.md)
-* 웹 서비스로서 기계 학습 실험을 배포하는 방법은 [Azure 기계 학습 웹 서비스 배포](machine-learning-publish-a-machine-learning-web-service.md)
-* 웹 서비스에 액세스하는 다른 방법은 [Azure Machine Learning 웹 서비스](machine-learning-consume-web-services.md)를 참조하세요.
+* 기계 학습 웹 서비스 실험 toodeploy 참조 [Azure 기계 학습 웹 서비스 배포](machine-learning-publish-a-machine-learning-web-service.md)
+* 다른 방법으로 tooaccess 웹 서비스 참조 [어떻게 tooconsume Azure 컴퓨터 학습 웹 서비스](machine-learning-consume-web-services.md)
 
 [image1]: media/machine-learning-consume-web-service-with-web-app-template/rrs-web-template-flow.png
 [image2]: media/machine-learning-consume-web-service-with-web-app-template/bes-web-template-flow.png

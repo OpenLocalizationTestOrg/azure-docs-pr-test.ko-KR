@@ -1,6 +1,6 @@
 ---
-title: "Azure 클래식 포털의 알려진 네트워크 | Microsoft Docs"
-description: "알려진 네트워크를 구성하여 조직 소유의 IP 주소가 여러 지역에서의 로그인 및 의심스러운 활동을 포함하는 IP 주소의 로그인 보고서에 포함되지 않도록 할 수 있습니다."
+title: "hello Azure 클래식 포털에서에서 aaaKnown 네트워크 | Microsoft Docs"
+description: "알려진된 네트워크를 구성 하 여 여러 지역에서의 로그인 및 의심 스러운 활동 보고서와 함께 IP 주소에서의 로그인 hello에 포함 된 조직에서 소유 하는 IP 주소를 방지할 수 있습니다."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: e4d51d1d2f09fca34d749879e21d49f785eac35c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec636cdda172cd3baeb1e606dd8d6e1949fbc63b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-networks"></a>알려진 네트워크
 
@@ -29,38 +29,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 
-Azure Active Directory의 액세스 및 사용 보고서를 사용하여 조직 디렉터리의 무결성 및 보안을 볼 수 있습니다 이 정보를 사용하면 디렉터리 관리자는 가능한 보안 위험이 발생할 수 있는 위치를 보다 잘 결정하여 이러한 위험을 적절하게 완화할 수 있습니다.
+Azure Active Directory의 액세스 및 조직 디렉터리의 hello 무결성 및 보안에 대 한 사용 현황 보고서 toogain 가시성을 사용할 수 있습니다. 이 정보를 사용 하면 디렉터리 관리자 수 보다 잘 결정 있는 가능한 보안 위험이 발생할 수 있습니다 적절 하 게 될 수 toomitigate 이러한 위험.
 
-“*여러 지역에서의 로그인*” 및 “*의심스러운 활동을 포함하는 IP 주소의 로그인*” 보고서에 조직이 실제로 소유하는 IP 주소가 잘못 플래깅될 수 있습니다. 
+Hello 시킨 "*여러 지역에서의 로그인*"및"*의심 스러운 활동을 포함 IP 주소에서 로그인*" 보고서가 실제로 소유 하는 IP 주소가 올바르게 플래그 프로그램 조직입니다. 
 
 예를 들어 다음과 같은 경우에 이러한 문제가 발생할 수 있습니다. 
 
-* Boston 사무실의 사용자가 San Francisco의 데이터 센터에 원격으로 로그인하여 "여러 지역에서의 로그인" 보고서 트리거 
-* 조직의 사용자가 잘못된 암호로 여러 번 로그온을 시도하여 “의심스러운 활동을 포함하는 IP 주소의 로그인” 보고서 트리거 
+* 보스턴 사무실의 사용자가 샌프란시스코 트리거 hello "로그인 여러 지역에서" 보고서에서에서 원격으로 tooyour 데이터 센터에 로그인 
+* 조직의 사용자가 toosign에서 여러 번 잘못 된 암호로 트리거 hello "로그인 의심 스러운 활동 IP 주소에서" 보고서 
 
-이러한 문제로 인해 잘못된 보안 보고서가 생성되지 않도록 하려면 조직의 공용 IP 주소 목록에 알려진 IP 주소 범위를 추가해야 합니다.    
+tooprevent 생성 잘못 된 보안을 통해 이러한 경우를 보고, 알려진된 IP 주소 범위 toohello 목록이 조직의 공용 IP 주소를 추가 해야 합니다.    
 
-### <a name="to-add-your-organizations-public-ip-address-ranges-perform-the-following-steps"></a>조직의 공용 IP 주소 범위를 추가하려면 다음 단계를 수행합니다.
+### <a name="tooadd-your-organizations-public-ip-address-ranges-perform-hello-following-steps"></a>조직의 공용 IP 주소 범위를 tooadd hello 다음 단계를 수행 하십시오.
 
-1. [Azure 관리 포털](https://manage.windowsazure.com)에 로그온합니다.
+1. 로그온 toohello [Azure 관리 포털](https://manage.windowsazure.com)합니다.
 
-2. 왼쪽 창에서 **Active Directory**를 클릭합니다. 
+2. Hello 왼쪽된 창에서 클릭 **Active Directory**합니다. 
 
     ![알려진 네트워크](./media/active-directory-known-networks/known-netwoks-01.png)
 
-3. **디렉터리** 탭에서 해당 디렉터리를 선택합니다.
+3. Hello에 **디렉터리** 탭에서 디렉터리를 선택 합니다.
 
-4. 위쪽 메뉴에서 **구성**을 클릭합니다. 
+4. Hello 메뉴에서 hello 위에 표시를 클릭 **구성**합니다. 
 
     ![알려진 네트워크](./media/active-directory-known-networks/known-netwoks-02.png)
 
-5. 구성 탭에서 **조직의 공용 IP 주소 범위**로 이동합니다. 
+5. Hello 구성 탭에서 이동 너무**조직의 공용 IP 주소 범위** 
 
     ![알려진 네트워크](./media/active-directory-known-networks/known-netwoks-03.png)
 
 6. **알려진 IP 주소 범위 추가**를 클릭합니다.
 
-7. 나타나는 대화 상자에서 주소 범위를 추가하고 완료되면 확인 단추를 클릭합니다. 
+7. 주소 범위, 표시 되는 hello 대화 상자에서 추가 하 고 완료 되 면 hello 확인 단추를 클릭 합니다. 
 
     ![알려진 네트워크](./media/active-directory-known-networks/known-netwoks-04.png)
 

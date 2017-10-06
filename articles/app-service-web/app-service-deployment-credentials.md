@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service 배포 자격 증명 | Microsoft Docs"
-description: "Azure App Service 배포 자격 증명 사용 방법을 알아봅니다."
+title: "응용 프로그램 서비스에 대 한 배포 자격 증명 aaaAzure | Microsoft Docs"
+description: "Toouse Azure 앱 서비스 배포 자격 증명을 hello 하는 방법에 대해 알아봅니다."
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -13,45 +13,45 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: 86a2cd8ae9f97c606a378452e44eec8941700531
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d6f9f5cc1b62a17c42643266f4c9490f827c63f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-deployment-credentials-for-azure-app-service"></a>Azure App Service의 배포 자격 증명 구성
-[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)는 [로컬 Git 배포](app-service-deploy-local-git.md) 및 [FTP/S 배포](app-service-deploy-ftp.md)를 위해 두 가지 유형의 자격 증명을 지원합니다. 이들은 Azure Active Directory 자격 증명과 동일하지 않습니다.
+[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)는 [로컬 Git 배포](app-service-deploy-local-git.md) 및 [FTP/S 배포](app-service-deploy-ftp.md)를 위해 두 가지 유형의 자격 증명을 지원합니다. 이러한 동일한 Azure Active Directory 자격 증명으로 hello 되지 됩니다.
 
-* **사용자 수준 자격 증명** - 전체 Azure 계정에 대한 자격 증명 집합입니다. 모든 구독에서 Azure 계정에 액세스할 수 있는 권한이 있는 모든 앱의 App Service에 배포하는 데 사용할 수 있습니다. 이는 **App Services** > **&lt;app_name>** > **배포 자격 증명**에서 구성하는 기본 자격 증명 집합이며, 포털 GUI에서 볼 수 있는 기본 집합이기도 입니다(예: **개요** 및 **속성**의 [리소스 블레이드](../azure-resource-manager/resource-group-portal.md#manage-resources)).
+* **사용자 수준 자격 증명**: 하나의 hello 전체 Azure 계정에 대 한 자격 증명 집합이 있습니다. 모든 응용 프로그램에서 Azure 계정 hello 하는 모든 구독에 권한 tooaccess에 사용 되는 toodeploy tooApp 서비스 수 있습니다. 다음에 구성 하는 hello 기본 자격 증명 집합은 **응용 프로그램 서비스** > **&lt;app_name >** > **배포 자격 증명**. Hello 포털 GUI에에서 표시 되는 기본 집합 또한 hello는 이것 (hello 같은 **개요** 및 **속성** 응용 프로그램의 [리소스 블레이드](../azure-resource-manager/resource-group-portal.md#manage-resources)).
 
     > [!NOTE]
-    > RBAC(역할 기반 액세스 제어) 또는 공동 관리자 권한을 통해 Azure 리소스에 대한 액세스 권한을 위임하는 경우 앱에 대한 액세스 권한을 받은 각 Azure 사용자는 액세스 권한이 취소될 때까지 개인 사용자 수준 자격 증명을 사용할 수 있습니다. 이러한 배포 자격 증명은 다른 Azure 사용자와 공유하지 말아야 합니다.
+    > 역할 기반 액세스 제어 (RBAC) 또는 공동 관리자 사용 권한을 통해 tooAzure 리소스에 액세스를 위임할 때는 액세스 tooan 응용 프로그램을 수신 하는 각 Azure 사용자 액세스가 취소 될 때까지 자신의 개인 사용자 수준 자격 증명을 사용할 수 있습니다. 이러한 배포 자격 증명은 다른 Azure 사용자와 공유하지 말아야 합니다.
     >
     >
 
-* **앱 수준 자격 증명** - 각 앱마다 하나씩의 자격 증명 집합입니다. 해당 앱에만 배포하는 데 사용할 수 있습니다. 각 앱의 자격 증명은 앱을 만들 때 자동으로 만들어지며 앱의 게시 프로필에 있습니다. 자격 증명을 수동으로 구성할 수는 없지만 언제든지 앱에 대해 다시 설정할 수 있습니다.
+* **앱 수준 자격 증명** - 각 앱마다 하나씩의 자격 증명 집합입니다. 사용 되는 toodeploy toothat 앱의 배경에 가능 합니다. 각 응용 프로그램 응용 프로그램 작성 시 자동으로 생성 되 고 hello 앱에에 대 한 자격 증명 hello 게시 프로필. Hello 자격 증명을 수동으로 구성할 수 없습니다 되지만 다시 설정할 수 있습니다 이러한 응용 프로그램에 대 한 언제 든 지 합니다.
 
     > [!NOTE]
-    > RBAC(역할 기반 액세스 제어)를 통해 이러한 자격 증명에 대한 액세스를 제공하려면 웹앱의 참가자 또는 더 높은 권한을 부여해야 합니다. 독자는 게시할 수 없으므로 해당 자격 증명에 액세스할 수 없습니다.
+    > Toothese 자격 증명을 통해 RBAC 역할 기반 액세스 제어 ()를 다른 사람이 액세스 순서 toogive, toomake 해야 해당 참가자 hello 웹 응용 프로그램에서 높은 또는 합니다. 판독기는 toopublish, 허용 되지 않으며 따라서 해당 자격 증명에 액세스할 수 없습니다.
     >
     >
 
 ## <a name="userscope"></a>사용자 수준 자격 증명 설정 및 다시 설정
 
-모든 앱의 [리소스 블레이드](../azure-resource-manager/resource-group-portal.md#manage-resources)에서 사용자 수준 자격 증명을 구성할 수 있습니다. 이러한 자격 증명을 구성하는 앱에 관계 없이 Azure 계정의 모든 앱과 모든 구독에 적용됩니다. 
+모든 앱의 [리소스 블레이드](../azure-resource-manager/resource-group-portal.md#manage-resources)에서 사용자 수준 자격 증명을 구성할 수 있습니다. 이와 상관 없이 어떤 앱에서 이러한 자격 증명을 구성, tooall 앱을 적용 하 고 Azure의 모든 구독에 대 한 계정. 
 
-사용자 수준 자격 증명을 구성하려면
+tooconfigure 사용자 수준 자격 증명:
 
-1. [Azure Portal](https://portal.azure.com)에서 App Service> **&lt;any_app>** > **배포 자격 증명**을 차례로 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com), 앱 서비스 >  **&lt;any_app >** > **배포 자격 증명**합니다.
 
     > [!NOTE]
-    > 포털에서 배포 자격 증명 블레이드에 액세스하려면 앱이 하나 이상 있어야 합니다. 그러나 [Azure CLI](app-service-web-app-azure-resource-manager-xplat-cli.md)를 사용하면 기존 앱 없이 사용자 수준 자격 증명을 구성할 수 있습니다.
+    > Hello 포털에서 자격 증명 블레이드를 배포 하는 hello에 액세스 하려면 먼저 앱 하나 이상 있어야 합니다. 그러나 hello로 [Azure CLI](app-service-web-app-azure-resource-manager-xplat-cli.md), 기존 응용 프로그램 없이 사용자 수준 자격 증명을 구성할 수 있습니다.
 
-2. 사용자 이름과 암호를 구성한 다음 **저장**을 클릭합니다.
+2. Hello 사용자 이름 및 암호를 구성 하 고 클릭 **저장**합니다.
 
     ![](./media/app-service-deployment-credentials/deployment_credentials_configure.png)
 
-배포 자격 증명을 설정하면 앱의 **개요**에서 *Git* 배포 사용자 이름을 찾을 수 있습니다.
+배포 자격 증명을 설정한 후 hello를 찾을 수 있습니다 *Git* 응용 프로그램에 배포 사용자 이름이 **개요**,
 
 ![](./media/app-service-deployment-credentials/deployment_credentials_overview.png)
 
@@ -60,36 +60,36 @@ ms.lasthandoff: 07/11/2017
 ![](./media/app-service-deployment-credentials/deployment_credentials_properties.png)
 
 > [!NOTE]
-> Azure에서는 사용자 수준 배포 암호가 표시되지 않습니다. 암호를 잊어버리면 암호를 검색할 수 없습니다. 그러나 이 섹션의 단계를 수행하면 자격 증명을 다시 설정할 수 있습니다.
+> Azure에서는 사용자 수준 배포 암호가 표시되지 않습니다. Hello 암호를 잊은 경우에 검색할 수 없습니다. 그러나 hello이이 섹션의에서 단계를 수행 하 여 자격 증명을 다시 설정할 수 있습니다.
 >
 >  
 
 ## <a name="appscope"></a>앱 수준 자격 증명 정보 가져오기 및 다시 설정
-App Service의 각 앱에 대한 앱 수준 자격 증명은 XML 게시 프로필에 저장되어 있습니다.
+앱 수준 자격 증명 hello에 저장 됩니다, 앱 서비스에서 각 앱에 대 한 게시 프로필 XML입니다.
 
-앱 수준 자격 증명을 가져오려면
+tooget hello 앱 수준 자격 증명:
 
-1. [Azure Portal](https://portal.azure.com)에서 App Service> **&lt;any_app>** > **개요**를 차례로 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com), 앱 서비스 >  **&lt;any_app >** > **개요**합니다.
 
 2. **...추가** > **게시 프로필 가져오기**를 차례로 클릭하고 .PublishSettings 파일 다운로드를 시작합니다.
 
     ![](./media/app-service-deployment-credentials/publish_profile_get.png)
 
-3. .PublishSettings 파일을 열고 `publishMethod="FTP"` 속성의 `<publishProfile>` 태그를 찾습니다. 그런 다음 `userName` 및 `password` 속성을 가져옵니다.
-이러한 속성이 앱 수준 자격 증명입니다.
+3. 열기 번호입니다. PublishSettings 파일을 hello `<publishProfile>` hello 특성을 가진 태그가 `publishMethod="FTP"`합니다. 그런 다음 `userName` 및 `password` 속성을 가져옵니다.
+이들은 hello 앱 수준 자격 증명입니다.
 
     ![](./media/app-service-deployment-credentials/publish_profile_editor.png)
 
-    사용자 수준 자격 증명과 마찬가지로 FTP 배포 사용자 이름은 `<app_name>\<username>` 형식이며, Git 배포 사용자 이름은 선행하는 `<app_name>\`이 없이 `<username>`일뿐 입니다.
+    유사한 toohello 사용자 수준 자격 증명 hello FTP 배포 사용자 이름이 hello 형식의 `<app_name>\<username>`는 hello Git 배포 사용자 이름 및 `<username>` hello 이전 없이 `<app_name>\`합니다.
 
-앱 수준 자격 증명을 다시 설정하려면
+tooreset hello 앱 수준 자격 증명:
 
-1. [Azure Portal](https://portal.azure.com)에서 App Service> **&lt;any_app>** > **개요**를 차례로 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com), 앱 서비스 >  **&lt;any_app >** > **개요**합니다.
 
-2. **...추가** > **게시 프로필 다시 설정**을 차례로 클릭합니다. **예**를 클릭하여 다시 설정을 확인합니다.
+2. **...추가** > **게시 프로필 다시 설정**을 차례로 클릭합니다. 클릭 **예** tooconfirm hello를 다시 설정 합니다.
 
-    다시 설정 작업은 앞에서 다운로드한 .PublishSettings 파일을 무효화합니다.
+    hello reset 작업 이전에 다운로드 한 모든 무효화 합니다. PublishSettings 파일입니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이러한 자격 증명을 사용하여 [로컬 Git](app-service-deploy-local-git.md)에서 또는 [FTP/S](app-service-deploy-ftp.md)를 통해 앱을 배포하는 방법을 알아봅니다.
+방법을 알아보려면 toouse 이러한 자격 증명 toodeploy에서 응용 프로그램 [로컬 Git](app-service-deploy-local-git.md) 또는 사용 하 여 [FTP/S](app-service-deploy-ftp.md)합니다.

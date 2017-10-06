@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI를 사용하여 Linux VM에 디스크 추가 | Microsoft Docs"
-description: "Azure CLI 1.0과 2.0을 사용하여 Linux VM에 영구 디스크를 추가하는 방법 알아보기"
+title: "사용 하 여 디스크 tooLinux VM aaaAdd hello Azure CLI | Microsoft Docs"
+description: "Tooadd hello Azure CLI 1.0 및 2.0 영구 디스크 tooyour Linux VM에 알아봅니다."
 keywords: "Linux 가상 컴퓨터, 리소스 디스크 추가"
 services: virtual-machines-linux
 documentationcenter: 
@@ -17,26 +17,26 @@ ms.devlang: azurecli
 ms.date: 02/02/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 185dd276cd79cb7053605d651e8ecdc7fd1e7636
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0dc5236be62d96b70dd47a7f621f626a037e22aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-disk-to-a-linux-vm"></a>Linux VM에 디스크 추가
-이 문서에는 유지 관리 또는 크기 조정으로 인해 VM이 다시 프로비전되더라도 데이터를 유지할 수 있도록 VM에 영구 디스크를 연결하는 방법을 보여 줍니다. 
+# <a name="add-a-disk-tooa-linux-vm"></a>디스크 tooa Linux VM 추가
+이 문서에서는 어떻게 tooattach는 영구 디스크 tooyour VM-데이터를 유지할 수 있도록 VM 기한 toomaintenance 또는 크기 조정 다시 프로 비전 되는 경우에 보여 줍니다. 
 
 ## <a name="quick-commands"></a>빠른 명령
-다음 예제에서는 리소스 그룹 `myResourceGroup`의 VM `myVM`에 `50`GB 디스크를 연결합니다.
+다음 예에서는 연결 hello는 `50`GB 디스크 toohello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
-관리되는 디스크를 사용하려면:
+관리 되는 toouse 디스크:
 
 ```azurecli
 az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
   --new --size-gb 50
 ```
 
-관리되지 않는 디스크를 사용하려면:
+관리 되지 않는 toouse 디스크:
 
 ```azurecli
 az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM \
@@ -45,12 +45,12 @@ az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM
 
 ## <a name="attach-a-managed-disk"></a>관리되는 디스크 연결
 
-관리되는 디스크를 사용하면 Azure Storage 계정에 대한 걱정 없이 VM 및 해당 디스크에 집중할 수 있습니다. 관리되는 디스크를 신속하게 만들고 동일한 Azure 리소스 그룹을 사용하는 VM에 연결하거나 원하는 수의 디스크를 만들고 연결할 수 있습니다.
+관리 되는 디스크를 사용 하 여 사용 하면 toofocus Vm 및 디스크에서 Azure 저장소 계정에 대 한 걱정 없이 합니다. 신속 하 게 만들어 하는 관리 되는 디스크 연결 같은 Azure 리소스 그룹 hello 사용 하 여 tooa VM 또는 개수에 관계 없이 디스크를 만들고 다음 첨부할 수 있습니다.
 
 
-### <a name="attach-a-new-disk-to-a-vm"></a>VM에 새 디스크 연결
+### <a name="attach-a-new-disk-tooa-vm"></a>새 디스크 tooa VM 연결
 
-VM에 새 디스크가 필요한 경우 `az vm disk attach` 명령을 사용할 수 있습니다.
+VM에 새 디스크만 하면 hello를 사용할 수 있습니다 `az vm disk attach` 명령입니다.
 
 ```azurecli
 az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
@@ -59,15 +59,15 @@ az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
 
 ### <a name="attach-an-existing-disk"></a>기존 디스크 연결 
 
-대부분의 경우에서 이미 생성된 디스크를 연결합니다. 먼저 디스크 ID를 찾은 다음 `az vm disk attach` 명령에 전달합니다. 다음 예제는 `az disk create -g myResourceGroup -n myDataDisk --size-gb 50`으로 만든 디스크를 사용합니다.
+대부분의 경우에서 이미 생성된 디스크를 연결합니다. 먼저 hello 디스크 id를 찾아 그런 다음 해당 toohello `az vm disk attach` 명령입니다. hello 다음 예제에서는 디스크를 사용 하는 사용 하 여 만든 `az disk create -g myResourceGroup -n myDataDisk --size-gb 50`합니다.
 
 ```azurecli
-# find the disk id
+# find hello disk id
 diskId=$(az disk show -g myResourceGroup -n myDataDisk --query 'id' -o tsv)
 az vm disk attach -g myResourceGroup --vm-name myVM --disk $diskId
 ```
 
-출력은 다음과 같이 보입니다(모든 명령에 `-o table` 옵션을 사용하여 출력을 서식 지정할 수 있음).
+hello 다음과 같은 출력 hello 다음 (hello를 사용할 수 있습니다 `-o table` tooany 명령 tooformat hello 출력에 옵션):
 
 ```json
 {
@@ -97,20 +97,20 @@ az vm disk attach -g myResourceGroup --vm-name myVM --disk $diskId
 
 ## <a name="attach-an-unmanaged-disk"></a>관리되지 않는 디스크 연결
 
-VM과 동일한 저장소 계정에 디스크를 만들어도 상관없는 경우 새 디스크 연결은 신속합니다. `azure vm disk attach-new`를 입력하여 VM에 대한 새 GB 디스크를 만들어 연결합니다. 저장소 계정을 명시적으로 식별하지 않는 경우 만드는 모든 디스크가 OS 디스크가 있는 동일한 저장소 계정에 배치됩니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 VM `myVM`에 `50`GB 디스크를 연결합니다.
+새 디스크 연결를 신속 하 게 hello에서 디스크를 만드는 해도 경우 VM와 동일한 저장소 계정입니다. 형식 `azure vm disk attach-new` toocreate 및 VM에 대 한 새 GB 디스크를 연결 합니다. 저장소 계정을 명시적으로 식별 하지 않는 경우 작성 하는 모든 디스크에에서 배치 됩니다 hello 동일한 운영 체제 디스크에 상주 하는 저장소 계정입니다. 다음 예에서는 연결 hello는 `50`GB 디스크 toohello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
 ```azurecli
 az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM \
   --new --size-gb 50
 ```
 
-## <a name="connect-to-the-linux-vm-to-mount-the-new-disk"></a>Linux VM에 연결하여 새 디스크 탑재
+## <a name="connect-toohello-linux-vm-toomount-hello-new-disk"></a>Toohello Linux VM toomount hello에 대 한 새 디스크를 연결 합니다.
 > [!NOTE]
-> 이 항목에서는 사용자 이름 및 암호를 사용하여 VM에 연결합니다. 공용 및 개인 키 쌍을 사용하여 VM과 통신하려면 [Azure에서 Linux와 함께 SSH를 사용하는 방법](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요. 
+> 이 항목 연결 tooa VM 사용자 이름 및 암호를 사용 하 여 합니다. VM와 공용 및 개인 키 쌍 toocommunicate toouse 참조 [어떻게 tooUse와 Azure에서 Linux에 SSH](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다. 
 > 
 > 
 
-Linux VM에서 사용할 수 있도록 새 디스크를 파티션, 포맷 및 탑재하기 위해 Azure VM에 SSH해야 합니다. **ssh**를 사용하여 연결하는 데 익숙하지 않을 경우 명령은 `ssh <username>@<FQDNofAzureVM> -p <the ssh port>`의 형식으로 다음과 유사하게 표시됩니다.
+TooSSH 필요 하면 Azure VM toopartition에 서식을 지정 하 고 Linux VM에서 사용할 수 있도록 새 디스크를 탑재 합니다. 사용 하 여 연결에 대해 잘 알고 모르겠으면 **ssh**, hello 명령에서는 hello 양식 `ssh <username>@<FQDNofAzureVM> -p <hello ssh port>`, 다음과 같은 hello 및:
 
 ```bash
 ssh ops@mypublicdns.westus.cloudapp.azure.com -p 22
@@ -119,12 +119,12 @@ ssh ops@mypublicdns.westus.cloudapp.azure.com -p 22
 출력
 
 ```bash
-The authenticity of host 'mypublicdns.westus.cloudapp.azure.com (191.239.51.1)' can't be established.
+hello authenticity of host 'mypublicdns.westus.cloudapp.azure.com (191.239.51.1)' can't be established.
 ECDSA key fingerprint is bx:xx:xx:xx:xx:xx:xx:xx:xx:x:x:x:x:x:x:xx.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'mypublicdns.westus.cloudapp.azure.com,191.239.51.1' (ECDSA) to the list of known hosts.
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added 'mypublicdns.westus.cloudapp.azure.com,191.239.51.1' (ECDSA) toohello list of known hosts.
 ops@mypublicdns.westus.cloudapp.azure.com's password:
-Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.16.0-37-generic x86_64)
+Welcome tooUbuntu 14.04.2 LTS (GNU/Linux 3.16.0-37-generic x86_64)
 
 * Documentation:  https://help.ubuntu.com/
 
@@ -142,17 +142,17 @@ Get cloud support with Ubuntu Advantage Cloud Guest:
 0 packages can be updated.
 0 updates are security updates.
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
+hello programs included with hello Ubuntu system are free software;
+hello exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+Ubuntu comes with ABSOLUTELY NO WARRANTY, toohello extent permitted by
 applicable law.
 
 ops@myVM:~$
 ```
 
-VM에 연결했으므로 디스크를 연결할 준비가 되었습니다.  먼저 `dmesg | grep SCSI`를 사용하여 디스크를 찾습니다(새 디스크를 찾는 데 사용하는 방법은 다를 수 있습니다). 이 경우, 다음과 유사하게 표시됩니다.
+연결 된 했으므로 이제 tooyour VM 수 tooattach 디스크.  Hello를 찾으려면 먼저 디스크에 사용 하 여 `dmesg | grep SCSI` (hello 메서드 사용 toodiscover 새 디스크에 따라 달라질 수 있습니다). 이 경우, 다음과 유사하게 표시됩니다.
 
 ```bash
 dmesg | grep SCSI
@@ -168,7 +168,7 @@ dmesg | grep SCSI
 [ 1828.162306] sd 5:0:0:0: [sdc] Attached SCSI disk
 ```
 
-이 항목의 경우에서 `sdc` 디스크는 우리가 원하는 디스크입니다. 이제 `sudo fdisk /dev/sdc`로 디스크를 파티션하고 사용자의 경우에서 디스크는 `sdc`이며, 파티션 1에 기본 디스크를 작성하고 다른 기본값을 적용하는 것으로 가정합니다.
+이 항목의 경우 hello hello 및 `sdc` 디스크는 hello 하나 주시기 바랍니다. 지금 파티션에 hello 디스크 `sudo fdisk /dev/sdc` 프로그램 사례 hello에 디스크를 가정할- `sdc`, 주 디스크 파티션 1에 수행 하 고 동의 hello 다른 기본값입니다.
 
 ```bash
 sudo fdisk /dev/sdc
@@ -179,8 +179,8 @@ sudo fdisk /dev/sdc
 ```bash
 Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
 Building a new DOS disklabel with disk identifier 0x2a59b123.
-Changes will remain in memory only, until you decide to write them.
-After that, of course, the previous content won't be recoverable.
+Changes will remain in memory only, until you decide toowrite them.
+After that, of course, hello previous content won't be recoverable.
 
 Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
 
@@ -196,7 +196,7 @@ Last sector, +sectors or +size{K,M,G} (2048-10485759, default 10485759):
 Using default value 10485759
 ```
 
-프롬프트에서 `p`를 입력하여 파티션을 만듭니다.
+입력 하 여 hello 파티션을 만들 `p` hello 프롬프트에서:
 
 ```bash
 Command (m for help): p
@@ -212,13 +212,13 @@ Disk identifier: 0x2a59b123
 /dev/sdc1            2048    10485759     5241856   83  Linux
 
 Command (m for help): w
-The partition table has been altered!
+hello partition table has been altered!
 
-Calling ioctl() to re-read partition table.
+Calling ioctl() toore-read partition table.
 Syncing disks.
 ```
 
-**mkfs** 명령을 사용하고, 파일 시스템 형식 및 장치 이름을 지정하여 파티션에 파일 시스템을 작성합니다. 이 항목에서 위의 `ext4` 및 `/dev/sdc1`을 사용합니다.
+Hello를 사용 하 여 파일 시스템 toohello 파티션을 작성 및 **mkfs** 명령, 파일 시스템 형식 및 hello 장치 이름을 지정 합니다. 이 항목에서 위의 `ext4` 및 `/dev/sdc1`을 사용합니다.
 
 ```bash
 sudo mkfs -t ext4 /dev/sdc1
@@ -235,7 +235,7 @@ Block size=4096 (log=2)
 Fragment size=4096 (log=2)
 Stride=0 blocks, Stripe width=0 blocks
 327680 inodes, 1310464 blocks
-65523 blocks (5.00%) reserved for the super user
+65523 blocks (5.00%) reserved for hello super user
 First data block=0
 Maximum filesystem blocks=1342177280
 40 block groups
@@ -249,19 +249,19 @@ Creating journal (32768 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
 
-이제 `mkdir`을 사용하여 파일 시스템을 탑재할 디렉터리를 만듭니다.
+이제 디렉터리 toomount hello 시스템 사용 하는 파일을 만들 것 `mkdir`:
 
 ```bash
 sudo mkdir /datadrive
 ```
 
-`mount`을 사용하여 디렉터리를 탑재합니다.
+Hello 디렉터리를 사용 하 여 탑재 `mount`:
 
 ```bash
 sudo mount /dev/sdc1 /datadrive
 ```
 
-이제 데이터 디스크는 `/datadrive`로 사용할 준비가 되었습니다.
+hello 데이터 디스크가 현재으로 준비 toouse `/datadrive`합니다.
 
 ```bash
 ls
@@ -274,13 +274,13 @@ bin   datadrive  etc   initrd.img  lib64       media  opt   root  sbin  sys  usr
 boot  dev        home  lib         lost+found  mnt    proc  run   srv   tmp  var
 ```
 
-다시 부팅 후 드라이브가 자동으로 다시 탑재되도록 하려면 /etc/fstab 파일에 추가해야 합니다. 또한 /etc/fstab에 UUID(Universally Unique IDentifier)를 사용하여 장치 이름(예: `/dev/sdc1`) 대신 드라이브를 가리키는 것이 좋습니다. 부팅하는 동안 OS에서 디스크 오류를 검색하는 경우 UUID를 사용하여 지정된 위치에 탑재되어 있는 잘못된 디스크를 회피합니다. 그런 다음 남아 있는 데이터 디스크를 동일한 장치 ID에 할당합니다. 새 드라이브의 UUID를 찾으려면 **blkid** 유틸리티를 사용합니다.
+tooensure hello 드라이브 toohello /etc/fstab 파일을 추가 하는 다시 부팅 해야 자동으로 다시 탑재 됩니다. 또한 좋습니다 hello UUID (전체적으로 Unique IDentifier)는 /etc/fstab toorefer toohello 정당한 hello 장치 16 진수 드라이브 (예: `/dev/sdc1`). Hello OS가 부팅 하는 동안 디스크 오류를 발견 하는 경우 hello UUID를 사용 하 여 hello 잘못 된 디스크를 위치를 받아야 하는 탑재 된 tooa 되 고 발생 하지 않습니다. 그런 다음 남아 있는 데이터 디스크를 동일한 장치 ID에 할당합니다. toofind hello 새 드라이브의 UUID hello, hello를 사용 하 여 **blkid** 유틸리티:
 
 ```bash
 sudo -i blkid
 ```
 
-다음과 유사하게 출력됩니다.
+hello 출력은 toohello 다음과 유사 합니다.
 
 ```bash
 /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
@@ -289,38 +289,38 @@ sudo -i blkid
 ```
 
 > [!NOTE]
-> **/etc/fstab** 파일을 부적절하게 편집하면 부팅할 수 없는 시스템이 발생할 수 있습니다. 확실하지 않은 경우 배포 설명서에서 이 파일을 제대로 편집하는 방법에 대한 자세한 내용을 확인하세요. 또한 편집하기 전에 /etc/fstab 파일의 백업을 만드는 것이 좋습니다.
+> Hello를 잘못 편집 **/등/fstab** 파일 경우 시스템 될 수 있습니다. 를 알 수 없는 경우 tooproperly이이 파일을 편집 하는 방법에 대 한 내용은 toohello 분포의 문서를 참조 하십시오. 또한 편집 하기 전에 hello /etc/fstab 파일의 백업을 만들어졌는지 것이 좋습니다.
 > 
 > 
 
-다음으로, 텍스트 편집기에서 **/etc/fstab** 파일을 엽니다.
+Hello을 열고 **/등/fstab** 파일 텍스트 편집기에서:
 
 ```bash
 sudo vi /etc/fstab
 ```
 
-이 예제에서는 이전 단계에서 만든 새 **/dev/sdc1** 장치의 UUID 값과 탑재 지점 **/datadrive**를 사용합니다. **/etc/fstab** 파일의 끝에 다음 줄을 추가합니다.
+이 예제에서 사용 하 여 hello UUID 값 hello에 대 한 새 **/개발/sdc1** hello 탑재 지점 및 hello 이전 단계에서 만든 장치 **/datadrive**합니다. 줄 toohello의 끝 다음 hello hello 추가 **/등/fstab** 파일:
 
 ```bash
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail   1   2
 ```
 
 > [!NOTE]
-> 나중에 fstab을 편집하지 않고 데이터 디스크를 제거하면 VM이 부팅되지 않을 수 있습니다. 대부분의 배포는 `nofail` 및/또는 `nobootwait` fstab 옵션을 제공합니다. 이러한 옵션을 사용하면 디스크가 부팅 시 탑재되지 않더라도 시스템을 부팅할 수 있습니다. 이러한 매개 변수에 대한 자세한 내용은 배포 설명서를 참조하세요.
+> 나중에 fstab 편집 하지 않고도 데이터 디스크를 제거 하는 hello VM toofail tooboot을 발생할 수 있습니다. 대부분의 배포판 제공 하거나 hello `nofail` 및/또는 `nobootwait` fstab 옵션입니다. 이 옵션을 부팅 시 toomount hello 디스크에 오류가 발생 하는 경우에 시스템 tooboot을 사용 합니다. 이러한 매개 변수에 대한 자세한 내용은 배포 설명서를 참조하세요.
 > 
-> **nofail** 옵션은 파일 시스템이 손상되었거나 디스크가 부팅 시 존재하지 않더라도 VM이 시작되도록 합니다. 이 옵션이 없으면 [FSTAB 오류로 인해 Linux에 SSH를 사용할 수 없음](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/)(영문)에 설명되어 있는 동작이 발생할 수 있습니다.
+> hello **nofail** 옵션을 선택 하면 해당 hello hello 파일 시스템 손상 되었거나 hello 디스크 부팅 시 존재 하지 않는 경우에 VM을 시작 합니다. 이 옵션이 없으면 발생할 수에 설명 된 대로 동작 [없습니다 SSH tooLinux VM tooFSTAB 오류 기한](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/)
 
 ### <a name="trimunmap-support-for-linux-in-azure"></a>Azure에서 Linux에 대한 TRIM/UNMAP 지원
-일부 Linux 커널은 디스크에서 사용되지 않은 블록을 버릴 수 있도록 TRIM/UNMAP 작업을 지원합니다. 이것은 Azure에 삭제된 페이지가 더 이상 유효하지 않으며 폐기될 수 있음을 알리는 데 표준 저장소에서 주로 유용합니다. 큰 파일을 만들고 삭제하는 경우 이렇게 하면 비용을 절감할 수 있습니다.
+일부 Linux 커널을 지원 TRIM/매핑 해제 작업 toodiscard hello 디스크에 사용 하지 않는 블록입니다. 표준 저장소 tooinform 페이지를 삭제 하는 Azure는 더 이상 올바르지와 무시할 수에 주로 유용 합니다. 큰 파일을 만들고 삭제하는 경우 이렇게 하면 비용을 절감할 수 있습니다.
 
-Linux VM에서 TRIM 지원을 사용하는 두 가지 방법이 있습니다. 평소와 같이 권장되는 방법에 대해 배포에 확인하세요.
+두 가지 방법으로 Linux VM에서 tooenable TRIM을 지원 합니다. 일반적으로 권장 접근법 hello에 대 한 배포를 참조 하십시오.
 
-* `/etc/fstab`에 `discard` 탑재 옵션을 사용합니다. 예:
+* 사용 하 여 hello `discard` 옵션에 탑재 `/etc/fstab`, 예:
 
     ```bash
     UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
     ```
-* 일부 경우 `discard` 옵션에는 성능이 저하 될 수 있습니다. 또는 `fstrim` 명령을 명령줄에서 수동으로 실행하거나, 또는 정기적으로 실행하기 위해 crontab에 추가할 수 있습니다.
+* 일부 경우 hello에 `discard` 옵션에는 성능 문제가 있을 수 있습니다. Hello 또는 실행할 수 있습니다 `fstrim` hello 명령줄에서 수동으로 명령을 선택 하거나 추가 tooyour crontab toorun 정기적으로:
   
     **Ubuntu**
   
@@ -340,7 +340,7 @@ Linux VM에서 TRIM 지원을 사용하는 두 가지 방법이 있습니다. �
 [!INCLUDE [virtual-machines-linux-lunzero](../../../includes/virtual-machines-linux-lunzero.md)]
 
 ## <a name="next-steps"></a>다음 단계
-* 해당 정보를 [fstab](http://en.wikipedia.org/wiki/Fstab) 파일에 쓰지 않았는데 다시 부팅하면 새 디스크를 VM에 사용할 수 없게 됩니다.
-* Linux VM을 올바르게 구성했는지 확인하려면 [Linux 컴퓨터 성능 최적화](optimization.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 권장 사항을 검토합니다.
+* 기억 새 디스크에 없는 것 사용할 수 있는 toohello VM 해당 정보 tooyour를 작성 하지 않는 경우 다시 부팅 [fstab](http://en.wikipedia.org/wiki/Fstab) 파일입니다.
+* Linux VM은 tooensure 올바르게 구성 검토 hello [Linux 컴퓨터 성능 최적화](optimization.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 권장 사항입니다.
 * 디스크를 추가하여 저장소 용량을 확장하고 추가 성능이 필요할 경우 [RAID를 구성](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 

@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL용 Azure 데이터베이스에 대한 연결 라이브러리 | Microsoft Docs"
-description: "이 문서에서는 개발자가 PostgreSQL용 Azure 데이터베이스에 연결하고 쿼리하도록 응용 프로그램을 코딩할 때 사용할 수 있는 여러 개의 라이브러리 및 드라이버에 대해 설명합니다."
+description: "이 문서에서는 여러 라이브러리 및 응용 프로그램 tooconnect 및 Azure 데이터베이스 쿼리 PostgreSQL에 대 한 코드를 작성할 때 개발자가 사용할 수 있는 드라이버를 설명 합니다."
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -9,17 +9,17 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/15/2017
-ms.openlocfilehash: 1f99ef7fefb1ff9d35f564a1f0ad77c8dd64659e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f7234499d8abe37f8de9008e3158765b1fb0bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-postgresql"></a>PostgreSQL용 Azure 데이터베이스에 대한 연결 라이브러리
-이 항목에서는 개발자가 PostgreSQL용 Azure 데이터베이스에 연결하고 쿼리하도록 응용 프로그램을 프로그래밍하는 데 사용하기 위한 여러 개의 라이브러리 및 드라이버를 나열합니다.
+이 항목에서는 라이브러리 및 프로그래밍 PostgreSQL에 대 한 응용 프로그램 tooconnect 및 쿼리 Azure 데이터베이스에 대 한 개발자가 사용 하기 위해 드라이버를 나열 합니다.
 
 ## <a name="client-interfaces"></a>클라이언트 인터페이스
-PostgreSQL 서버에 연결하기 위한 대부분의 언어 클라이언트 라이브러리는 외부 프로젝트이며 독립적으로 배포됩니다. 이러한 라이브러리는 Windows, Linux 및 Mac 플랫폼에서 지원됩니다. 일부 인기 있는 클라이언트 드라이버는 다음과 같습니다.
+라이브러리 tooconnect tooPostgreSQL 서버에 대 한 대부분의 언어 클라이언트는 외부 프로젝트와 독립적으로 배포 됩니다. 이러한 라이브러리는 Windows, Linux 및 Mac 플랫폼에서 지원됩니다. Hello 인기 있는 클라이언트 드라이버 중 일부와 같습니다.
 
 | **언어** | **클라이언트 인터페이스** | **추가 정보** | **다운로드** |
 |--------------|----------------------------------------------------------------|-------------------------------------|--------------------------------------------------------------------|
@@ -35,6 +35,6 @@ PostgreSQL 서버에 연결하기 위한 대부분의 언어 클라이언트 라
 | C++ | [libpqxx](http://pqxx.org/) | 새 스타일 C++ 인터페이스 | [다운로드](http://pqxx.org/download/software/) |
 
 ## <a name="next-steps"></a>다음 단계
-선택한 언어를 사용하여 PostgreSQL용 Azure 데이터베이스에 연결하고 쿼리하는 방법에 대한 빠른 시작을 읽어 보십시오.
+이러한 빠른 시작 방법에 읽기 Azure 선택한 언어를 사용 하 여 PostgreSQL 데이터베이스 tooconnect 및 쿼리:
 
 [Python](./connect-python.md) | [Node.JS](./connect-nodejs.md) | [.NET(C#)](./connect-csharp.md)

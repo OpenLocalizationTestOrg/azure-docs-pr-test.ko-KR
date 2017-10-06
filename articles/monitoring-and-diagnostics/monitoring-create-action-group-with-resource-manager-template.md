@@ -1,6 +1,6 @@
 ---
-title: "리소스 관리자 템플릿을 사용하여 작업 그룹 만들기 | Microsoft Docs"
-description: "Azure 리소스 관리자 템플릿을 사용하여 작업 그룹을 만드는 방법을 알아봅니다."
+title: "리소스 관리자 템플릿으로 aaaCreate 동작 그룹 | Microsoft Docs"
+description: "Azure 리소스 관리자 템플릿을 사용 하 여 toocreate 동작을 그룹화 하는 방법에 대해 알아봅니다."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 76bf353cac13f1c2169380f8dd3c1e163d4f3f41
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9902b33cad99bd99b3deda0cf6f4ff12278c89c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-action-group-with-a-resource-manager-template"></a>리소스 관리자 템플릿을 사용하여 작업 그룹 만들기
-이 문서에서는 [Azure 리소스 관리자 템플릿](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates)을 사용하여 작업 그룹을 구성하는 방법을 설명합니다. 템플릿을 사용하면 특정 유형의 경고에서 다시 사용할 수 있는 작업 그룹을 자동으로 설정할 수 있습니다. 이러한 작업 그룹은 경고가 트리거될 때 올바른 당사자가 모두 알림을 받을 수 있도록 합니다.
+이 문서에서는 어떻게 toouse는 [Azure 리소스 관리자 템플릿](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) tooconfigure 동작 그룹입니다. 템플릿을 사용하면 특정 유형의 경고에서 다시 사용할 수 있는 작업 그룹을 자동으로 설정할 수 있습니다. 이러한 동작 그룹 모든 hello 올바른 경고가 트리거될 때 당사자에 게 알림을 확인 합니다.
 
-기본 단계는 다음과 같습니다.
+hello 기본 단계입니다.
 
-1. 작업 그룹을 만드는 방법을 설명하는 JSON 파일로 템플릿을 만듭니다.
+1. 템플릿을 toocreate 동작 그룹을 hello 하는 방법을 설명 하는 JSON 파일을 만듭니다.
 
-2. [배포 방법](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)을 사용하여 템플릿을 배포합니다.
+2. Hello 템플릿을 사용 하 여 배포 [는 배포 방법을](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)합니다.
 
-첫째, 작업 정의가 템플릿에 하드 코드된 작업 그룹에 대한 리소스 관리자 템플릿을 만드는 방법을 설명합니다. 둘째, 템플릿을 배포할 때 입력된 매개 변수로 웹후크 구성 정보를 사용하는 템플릿을 만드는 방법을 설명합니다.
+첫째, 설명 hello 작업 정의 hello 서식 파일에 하드 코드 하는 위치는 작업에 대 한 리소스 관리자 템플릿을 toocreate을 그룹화 하는 방법을 합니다. 둘째, 어떻게 toocreate로 hello webhook 구성 정보를 사용 하는 템플릿을 입력 매개 변수 hello 서식 파일을 배포할 때 설명 합니다.
 
 ## <a name="resource-manager-templates-for-an-action-group"></a>작업 그룹에 대한 리소스 관리자 템플릿
 
-리소스 관리자 템플릿을 사용하여 작업 그룹을 만들려면 `Microsoft.Insights/actionGroups` 종류의 리소스를 만듭니다. 그런 다음 모든 관련된 속성을 입력합니다. 다음은 작업 그룹을 만드는 두 가지 예제 템플릿입니다.
+hello 형식의 리소스를 만들 리소스 관리자 템플릿을 사용 하 여 작업 그룹에는 toocreate `Microsoft.Insights/actionGroups`합니다. 그런 다음 모든 관련된 속성을 입력합니다. 다음은 작업 그룹을 만드는 두 가지 예제 템플릿입니다.
 
 ```json
 {
@@ -43,13 +43,13 @@ ms.lasthandoff: 08/29/2017
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within the Resource Group) for the Action group."
+        "description": "Unique name (within hello Resource Group) for hello Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for the Action group."
+        "description": "Short name (maximum 12 characters) for hello Action group."
       }
     }
   },
@@ -114,13 +114,13 @@ ms.lasthandoff: 08/29/2017
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within the Resource Group) for the Action group."
+        "description": "Unique name (within hello Resource Group) for hello Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for the Action group."
+        "description": "Short name (maximum 12 characters) for hello Action group."
       }
     },
     "webhookReceiverName": {
@@ -171,4 +171,4 @@ ms.lasthandoff: 08/29/2017
 ## <a name="next-steps"></a>다음 단계
 * [작업 그룹](monitoring-action-groups.md)에 대해 자세히 알아보세요.
 * [경고](monitoring-overview-alerts.md)에 대해 자세히 알아보세요.
-* [리소스 관리자 템플릿을 사용하여 경고](monitoring-create-activity-log-alerts-with-resource-manager-template.md)를 추가하는 방법을 알아보세요.
+* 자세한 내용은 방법 tooadd [리소스 관리자 템플릿을 사용 하 여 경고](monitoring-create-activity-log-alerts-with-resource-manager-template.md)합니다.

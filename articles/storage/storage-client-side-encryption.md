@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure Storage용 .NET을 사용하는 클라이언트 쪽 암호화 | Microsoft Docs"
-description: ".NET용 Azure 저장소 클라이언트 라이브러리는 Azure 저장소 응용 프로그램의 보안을 최대화하기 위해 클라이언트 쪽 암호화 및 Azure 키 자격 증명 모음과의 통합을 지원합니다."
+title: "Microsoft Azure 저장소에 대 한.net aaaClient 쪽 암호화 | Microsoft Docs"
+description: ".NET 용 Azure 저장소 클라이언트 라이브러리 hello Azure 저장소 응용 프로그램에 대 한 보안을 최대화 하기 위해 클라이언트 쪽 암호화 및 Azure 키 자격 증명 모음 통합을 지원합니다."
 services: storage
 documentationcenter: .net
 author: robinsh
@@ -14,172 +14,172 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 5413e86ac3c83947566b2686392612bd33c4483f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e99551925069d5e05bc283039b252cffe8df5383
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="client-side-encryption-and-azure-key-vault-for-microsoft-azure-storage"></a>Microsoft Azure 저장소용 클라이언트 쪽 암호화 및 Azure 키 자격 증명 모음
 [!INCLUDE [storage-selector-client-side-encryption-include](../../includes/storage-selector-client-side-encryption-include.md)]
 
 ## <a name="overview"></a>개요
-[.NET용 Azure 저장소 클라이언트 라이브러리 Nuget 패키지](https://www.nuget.org/packages/WindowsAzure.Storage) 는 Azure 저장소에 업로드하기 전에 클라이언트 응용 프로그램 내부에서 데이터를 암호화하고 클라이언트로 다운로드하는 동안 데이터 암호를 해독하는 기능을 지원합니다. 라이브러리 또한 저장소 계정 키 관리를 위해 Azure [키 자격 증명 모음](https://azure.microsoft.com/services/key-vault/) 과의 통합을 지원합니다.
+hello [.NET Nuget 패키지용 Azure 저장소 클라이언트 라이브러리](https://www.nuget.org/packages/WindowsAzure.Storage) tooAzure 저장소에 업로드 하 고 toohello 클라이언트를 다운로드 하는 동안 데이터를 해독 하기 전에 클라이언트 응용 프로그램 내에서 데이터를 암호화를 지원 합니다. hello 라이브러리와의 통합에서는 [Azure 키 자격 증명 모음](https://azure.microsoft.com/services/key-vault/) 저장소 계정 키 관리에 대 한 합니다.
 
-클라이언트 쪽 암호화와 Azure 키 자격 증명을 사용하여 Blob을 암호화하는 프로세스를 안내하는 단계별 자습서는 [Azure 키 자격 증명 모음을 사용하여 Microsoft Azure 저장소에서 Blob 암호화 및 해독](storage-encrypt-decrypt-blobs-key-vault.md)을 참조하세요.
+클라이언트 쪽 암호화 및 Azure 키 자격 증명 모음을 사용 하 여 blob 암호화 hello 과정을 안내 하는 단계별 자습서를 참조 하십시오. [Azure 키 자격 증명 모음을 사용 하 여 Microsoft Azure 저장소에서 암호화 및 암호 해독 blob](storage-encrypt-decrypt-blobs-key-vault.md)합니다.
 
 Java를 사용하는 클라이언트 쪽 암호화는 [Microsoft Azure 저장소용 Java를 사용하는 클라이언트 쪽 암호화](storage-client-side-encryption-java.md)를 참조하세요.
 
-## <a name="encryption-and-decryption-via-the-envelope-technique"></a>봉투(Envelope) 기술을 통해 암호화 및 암호 해독
-암호화 및 암호 해독 프로세스는봉투(Envelope) 기법을 따릅니다.
+## <a name="encryption-and-decryption-via-hello-envelope-technique"></a>암호화 및 암호 해독 hello 봉투 (envelope) 기술을 통해
+암호화 및 암호 해독의 hello 프로세스 hello 봉투 (envelope) 기법을 따릅니다.
 
-### <a name="encryption-via-the-envelope-technique"></a>봉투(Envelope) 기술을 통해 암호화
-암호화는 봉투(Envelope) 기술을 통해 다음과 같은 방식으로 작동합니다.
+### <a name="encryption-via-hello-envelope-technique"></a>Hello 봉투 (envelope) 기술을 통해 암호화
+Hello 봉투 (envelope) 기술을 통해 암호화 hello 방식으로 다음에서 작동 합니다.
 
-1. Azure 저장소 클라이언트 라이브러리는 1회용 대칭 키인 콘텐츠 암호화 키(CEK)를 생성합니다.
+1. hello Azure 저장소 클라이언트 라이브러리는 콘텐츠 암호화 키 (CEK)는 한 번 사용 대칭 키를 생성 합니다.
 2. 사용자 데이터는 이 CEK를 사용하여 암호화됩니다.
-3. 그런 다음 키 암호화 KEK를 사용하여 CEK를 래핑(암호화)합니다. KEK는 키 식별자로 식별되고 비대칭 키 쌍 또는 대칭 키일 수 있으며 로컬로 관리되거나 Azure 키 자격 증명 모음에 저장됩니다.
+3. hello CEK 다음 래핑된 hello 키 암호화 키 KEK ()를 사용 하 여 (암호화) 합니다. hello KEK 키 식별자로 식별 되 및 수 비대칭 키 쌍 또는 대칭 키 및 수 수 로컬로 관리 하거나 Azure 키 자격 증명 모음에 저장 합니다.
    
-    저장소 클라이언트 라이브러리 자체는 KEK에 액세스할 수 없습니다. 라이브러리는 자격 증명 모음에서 제공되는 키 래핑 알고리즘을 호출합니다. 사용자는 원하는 경우 키 래핑/래핑 해제를 위해 사용자 지정 공급자를 사용하도록 선택할 수 있습니다.
+    자체 hello 저장소 클라이언트 라이브러리에 대 한 액세스 tooKEK에 없습니다. hello 라이브러리 주요 자격 증명 모음에서 제공 하는 hello 키 래핑 알고리즘을 호출 합니다. 사용자에 대 한 키 래핑/원하는 경우 사용자 지정 공급자 toouse를 선택할 수 있습니다.
 
-4. 그런 다음 암호화된 데이터를 Azure 저장소 서비스에 업로드합니다. 일부 추가 암호화 메타데이터와 함께 래핑된 키에 메타 데이터로(Blob) 저장 되거나 암호화 된 데이터 (메시지 큐 및 테이블 엔터티)와 보관 합니다.
+4. hello 암호화 된 데이터는 다음 toohello Azure 저장소 서비스에 업로드 합니다. 몇 가지 추가 암호화 메타 데이터와 함께 hello 래핑된 키 (blob)에 메타 데이터로 저장 또는 보간 hello 암호화 된 데이터 (메시지 큐 및 테이블 엔터티)를 사용 합니다.
 
-### <a name="decryption-via-the-envelope-technique"></a>봉투(Envelope) 기술을 통해 암호해독
-암호해독은 봉투(Envelope) 기술을 통해 다음과 같은 방식으로 작동합니다.
+### <a name="decryption-via-hello-envelope-technique"></a>Hello 봉투 (envelope) 기술을 통해 암호 해독
+Hello 봉투 (envelope) 기술을 통해 암호 해독 hello 방식으로 다음에서 작동 합니다.
 
-1. 클라이언트 라이브러리는 사용자가 키 암호화 키를  로컬로 또는 Azure 키 자격증명모음으로 관리한다고 가정합니다. 사용자는 암호화에 사용된 특정 키를 알 필요가 없습니다. 대신 키를 서로 다른 키 식별자를 확인 하는 키 확인자 수를 설정하고 사용 합니다.
-2. 클라이언트 라이브러리는 서비스에 저장된 모든 암호화 자료와 함께 암호화된 데이터를 다운로드 합니다.
-3. 래핑된 콘텐츠 암호화 키 (CEK)는 키 암호화 키를(KEK) 사용하여 래핑해제(암호 해독)합니다. 여기서 다시, 클라이언트 라이브러리는 KEK에 대한 액세스권한이 없습니다. 단순히 사용자 지정 또는 래핑 해제 알고리즘 키 자격 증명 모음 공급자를 호출합니다.
-4. 그리고 콘텐츠 암호화 키 (CEK)는  암호화 된 사용자 데이터의 암호를 해독 하는데 사용 됩니다.
+1. hello 클라이언트 라이브러리는 hello 사용자 관리 하는 hello 키 암호화 키 (KEK) 로컬로 또는 Azure 키 자격 증명 모음에 있다고 가정 합니다. hello 사용자 암호화에 사용 된 tooknow hello 특정 키가 필요 하지 않습니다. 대신, 서로 다른 키 식별자 tookeys 확인 되는 키 확인자 수를 설정 하 고 사용 합니다.
+2. hello 클라이언트 라이브러리는 hello 서비스에 저장 된 모든 암호화 자료 함께 hello 암호화 된 데이터를 다운로드 합니다.
+3. 키 암호화 키 (KEK) hello 래핑되지 않은 (암호 해독 된)를 사용 하 여 hello 래핑된 콘텐츠 암호화 키 (CEK)가 있습니다. 여기서 다시 hello 클라이언트 라이브러리 않아도 액세스 tooKEK 됩니다. 사용자 지정 hello 또는 키 자격 증명 모음 공급자의 래핑 해제 알고리즘을 호출 하기만 합니다.
+4. hello 암호화 키 (CEK)는 다음 콘텐츠 toodecrypt hello 암호화 된 사용자 데이터를 사용 합니다.
 
 ## <a name="encryption-mechanism"></a>암호화 메커니즘
-저장소 클라이언트 라이브러리는 사용자 데이터를 암호화하기 위해 [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) 를 사용합니다. 특히, AES를 이용한 [CBC(암호화 블록 체인)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) 모드입니다. 각 서비스는 하는 일이 각각 다르므로 여기서 이것들을 살펴볼 것입니다.
+hello 저장소 클라이언트 라이브러리를 사용 하 여 [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) 주문 tooencrypt 사용자 데이터에서입니다. 특히, AES를 이용한 [CBC(암호화 블록 체인)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) 모드입니다. 각 서비스는 하는 일이 각각 다르므로 여기서 이것들을 살펴볼 것입니다.
 
 ### <a name="blobs"></a>Blob
-클라이언트 라이브러리는 현재 전체 blob 암호화만 지원합니다. 특히 사용자가 **UploadFrom*** 메서드 또는 **OpenWrite** 메서드를 사용할 때 암호화가 지원됩니다. 다운로드는 전체 및 범위 다운로드가 모두 지원됩니다.
+hello 클라이언트 라이브러리는 현재 전체 blob만 암호화를 지원합니다. 사용자가 hello를 사용할 때 암호화가 지원 특히 **UploadFrom*** 메서드나 hello **OpenWrite** 메서드. 다운로드는 전체 및 범위 다운로드가 모두 지원됩니다.
 
-암호화 하는 동안 클라이언트 라이브러리는 임의 IV (Initialization Vector) 32 바이트의 임의의 콘텐츠 암호화 키 (CEK)와 함께 16 바이트를 생성 하고 이 정보를 사용 여 blob 데이터의 봉투 (envelope) 암호화를 수행 합니다. 래핑된 CEK 및 일부 추가 암호화 메타 데이터 서비스에서 암호화 된 blob과 함께 메타 데이터를 blob으로 저장합니다.
+암호화 하는 동안 hello 클라이언트 라이브러리는 임의의 IV (Initialization Vector) 32 바이트는 임의의 콘텐츠 암호화 키 (CEK)와 함께 16 바이트의 생성 되며이 정보를 사용 하 여 hello blob 데이터의 봉투 (envelope) 암호화를 수행 합니다. hello CEK 되 고 몇 가지 추가 암호화 메타 데이터 함께 hello hello 서비스에 암호화 된 blob 메타 데이터를 blob으로 저장 됩니다.
 
 > [!WARNING]
-> blob에 대해 고유 메타데이터를 편집하거나 업로드 할 경우, 메타데이타가 유지되는지 확인하세요. 이 메타데이터 없이 새 메타데이터를 업로드하는 경우 래핑된 CEK, IV 및 기타 메타데이터가 손실되고 Blob 콘텐츠를 절대로 다시 검색할 수 없습니다.
+> 편집 하거나 hello blob에 대 한 사용자 고유의 메타 데이터를 업로드 하는 경우 tooensure이 메타이 데이터는 유지 해야 합니다. 이 메타 데이터 없이 새 메타 데이터를 업로드 하는 경우 hello 래핑된 CEK, IV 및 기타 메타 데이터 손실 되 고 hello blob 콘텐츠를 절대로 다시 검색할 수 없는 합니다.
 > 
 > 
 
-암호화 Blob를 다운로드하는 작업은 **DownloadTo***/**BlobReadStream** 편리한 메서드를 사용하여 전체 Blob의 콘텐츠를 검색하는 작업을 포함합니다. 래핑된 CEK는 IV (blob 메타 데이터로 저장된 경우)와 함께 암호해독되고 사용되어 지며 해독된 데이터가 사용자에게 돌아갑니다.
+Hello를 사용 하 여 hello 전체 blob의 hello 콘텐츠를 검색에서는 암호화 된 blob 다운로드 **DownloadTo***/**BlobReadStream** 편의 메서드를 합니다. 래핑된 CEK 래핑이 해제 하 고 hello IV와 함께 사용 하는 hello (으로 저장 blob 메타 데이터가 예제의) tooreturn hello 암호 해독 데이터 toohello 사용자.
 
-암호화된 BLOB 내에서 임의의 범위를 다운로드할 경우(**DownloadRange*** 메서드) 요청된 범위를 성공적으로 암호를 해독하는 데 사용되는 소량의 추가 데이터를 얻기 위해 사용자가 제공하는 범위가 조정됩니다.
+임의의 범위를 다운로드 (**DownloadRange*** 메서드) hello에서 암호화 된 blob의 순서 tooget 사용자가 적은 양의 toosuccessfully 사용된 될 수 있는 추가 데이터의 암호를 해독 hello 제공 hello 범위를 조정 하려면 요청 된 범위입니다.
 
 이 스키마를 사용하여 모든 blob 유형(블록 blob, 페이지 blob 및 추가 blob)을 암호화/암호 해독할 수 있습니다.
 
 ### <a name="queues"></a>큐
-큐 메시지의 모든 형식이 될 수, 있으므로 클라이언트 라이브러리는 IV (Initialization Vector) 및 암호화 된 콘텐츠 암호화 키 (CEK) 메시지 텍스트에 포함 된 사용자 지정 형식을 정의 합니다.
+큐 메시지의 모든 형식이 될 수, 있으므로 hello 클라이언트 라이브러리 hello 메시지 텍스트에 IV (Initialization Vector) hello 및 hello 암호화 된 콘텐츠 암호화 키 (CEK) 포함 된 사용자 지정 형식을 정의 합니다.
 
-암호화 하는 동안 클라이언트 라이브러리는 32 바이트의 임의 CEK 함께 16 바이트의 임의 IV를 생성하고 이 정보를 사용하여 큐 메시지 텍스트의 봉투 (envelope) 암호화를 수행 합니다. 래핑된 CEK 및 일부 추가 암호화 메타 데이터를 암호화 된 큐 메시지에 추가합니다. (아래 참조)이 수정 된 메시지는 서비스에 저장 됩니다.
+암호화 하는 동안 hello 클라이언트 라이브러리는 32 바이트의 임의 CEK 함께 16 바이트의 임의 IV를 생성 하 고이 정보를 사용 하 여 hello 큐 메시지 텍스트의 봉투 (envelope) 암호화를 수행 합니다. hello CEK 되 고 몇 가지 추가 암호화 메타 데이터 toohello 암호화 된 큐 메시지 추가 됩니다. (아래 참조)이 수정 된 메시지는 hello 서비스에 저장 됩니다.
 
     <MessageText>{"EncryptedMessageContents":"6kOu8Rq1C3+M1QO4alKLmWthWXSmHV3mEfxBAgP9QGTU++MKn2uPq3t2UjF1DO6w","EncryptionData":{…}}</MessageText>
 
-암호를 해독 하는 동안, 래핑된 키는 큐 메시지에서 추출되고 래핑이 해제됩니다. IV 또한 큐메시지에서 추출되고 큐 메시지 데이터를 암호해독하기 위해 래핑해제된 키와 함께 사용 됩니다. 참고로 암호화 메타데이터는 작아야하므로(500바이트 이하),큐 메시지는 64KB의 제한이 있어야만 영향을 관리 할 수 있습니다.
+암호 해독 하는 동안 hello 래핑된 키 hello 큐 메시지에서 추출 되며 래핑이 해제 합니다. 또한 hello IV hello 큐 메시지에서 추출 된 이며 래핑이 해제 hello 키 toodecrypt hello 큐 메시지 데이터와 함께 사용 합니다. Hello 암호화 메타 데이터를 작으면 (500 바이트의 경우) 아래 큐 메시지에 대 한 hello 64KB 제한에 대해 계산지 않습니다 것, hello 영향을 관리할 수 있어야 하므로 note 합니다.
 
 ### <a name="tables"></a>테이블
-클라이언트 라이브러리는 작업 삽입 및 삭제의 엔터티 속성 암호화를 지원합니다.
+삽입을 위한 엔터티 속성의 클라이언트 라이브러리 지원 암호화 hello 및 교체 작업 합니다.
 
 > [!NOTE]
-> 병합은 현재 지원 되지 않습니다. 속성의 하위 집합은 이전에 다른 키를 사용하여 암호화됐을 가능성이 있기 때문에 단순히 새로운 속성을 병합하는 것과 메타데이터를 업데이트 하는 것은 데이터 손실을 불러 올 수 있습니다. 서비스에서 기존 엔터티를 읽을 수 있는 추가 서비스 호출을 수행 하거나 속성 당 새 키를 사용하는 것 모두에 성능상의 이유로 적합하지 않습니다.
+> 병합은 현재 지원 되지 않습니다. 속성 하위 집합 암호화 된 다른 키를 사용 하 여 이전에, 이후 hello 새 속성을 병합 하 고 hello 메타 데이터를 업데이트 하기만 하면 데이터가 손실 됩니다. Hello 서비스에서 tooread hello 기존 엔터티를 호출 추가 서비스를 만드는 또는 속성 당 새 키를 사용 하는 적합 하지 않은 성능상의 이유로 필요 하거나 병합 합니다.
 > 
 > 
 
 테이블 데이터 암호화는 다음과 같이 작동합니다.  
 
-1. 사용자는 암호화할 속성을 지정합니다.
-2. 클라이언트 라이브러리는 모든 엔터티에 대해 16바이트의 임의 IV(Initialization Vector)와 함께 32바이트의 임의 CEK(콘텐츠 암호화 키)를 생성하고 속성당 새 IV를 파생하여 암호화해야 하는 개별적인 속성에 대해 봉투(envelope) 암호화를 수행합니다. 암호화된 속성은 이진 데이터로 저장됩니다.
-3. 래핑된 CEK 및 일부 추가 암호화 메타 데이터는 다음  추가 예약 된 두 가지 속성으로 저장 됩니다. 첫 번째 예약 된 속성 (_ClientEncryptionMetadata1)은 IV, 버전, 래핑된 키의 정보를 담고 있는 문자열 속성입니다. 또 다른 예약된 속성(_ClientEncryptionMetadata2)은 암호화된 속성에 대한 정보를 담고 있는 이진 속성입니다. 이 두 번째 속성(_ClientEncryptionMetadata2)의 정보는 자체적으로 암호화됩니다.
-4. 이 추가적인 예약 속성이 암호화에 필요하기 때문에 사용자들은 252가지 사용자 지정 속성 대신 250가지를 갖게 됩니다. 엔터티의 총 크기는 1MB 미만이어야 합니다.
+1. 사용자가 hello 속성 toobe 암호화를 지정 합니다.
+2. hello 클라이언트 라이브러리는 임의의 IV (Initialization Vector)의 모든 엔터티에 대 한 32 바이트 (CEK) 임의의 콘텐츠 암호화 키와 함께 16 바이트를 생성 하 고 hello 개별 속성 toobe 당 새 IV를 파생 하 여 암호화에서 봉투 (envelope) 암호화를 수행 합니다. 속성입니다. 암호화 된 hello 속성 이진 데이터로 저장 됩니다.
+3. hello CEK 되 고 그런 다음 몇 가지 추가 암호화 메타 데이터는 두 개의 추가 예약 된 속성으로 저장 합니다. hello 첫 번째 예약 된 속성 (_ClientEncryptionMetadata1)은 4, 버전 및 래핑된 키에 대 한 hello 정보를 포함 하는 문자열 속성입니다. hello 두 번째 예약 된 속성 (_ClientEncryptionMetadata2)은 암호화 된 hello 속성에 대 한 hello 정보를 보유 하는 이진 속성. 이 두 번째 속성 (_ClientEncryptionMetadata2)의 hello 정보 암호화 됩니다.
+4. Toothese 추가 예약 된 속성 암호화에 필요, 인해 이제가 있습니다 252 대신 사용자 지정 속성을 250만. hello hello 엔터티의 전체 크기는 1MB 미만 이어야 합니다.
 
-문자열 속성만 암호화 할 수 있다는 것을 참고하세요. 다른 유형의 속성이 암호화 된 경우, 문자열로 변환합니다. 암호화된 문자열은 서비스에 이진 속성으로 저장되고 암호 해독 후에는 다시 문자열로 변환됩니다.
+문자열 속성만 암호화 할 수 있다는 것을 참고하세요. 다른 유형의 속성 암호화 toobe 인 경우 변환 된 toostrings 되어야 합니다. 이진 속성으로 암호화 하는 hello 문자열 hello 서비스에 저장 됩니다 및 암호 해독 한 후 뒤로 toostrings 변환 됩니다.
 
-테이블의 경우, 암호화 정책 외에도 사용자가 암호화할 속성을 지정해야 합니다. 이것은 특성(TableEntity에서 파생 되는 POCO 엔터티)을 지정[EncryptProperty]하거나 암호화 해결 프로그램 요청 옵션에서 수행할 수 있습니다.  암호화 해결 프로그램은 파티션 키, 행 키, 그리고 속성 이름 및 암호화 여부 속성을 나타내는  Bool방식을 반환하는 대표자입니다. 암호화 하는 동안 클라이언트 라이브러리는 네트워크에 쓰는 동안 속성을 암호화 해야 하는지 여부를 결정하는데 이 정보를 사용합니다. 대리자 속성은 암호화 하는 방법 논리의 가능성도 제공 합니다. (예를 들어 X의 경우, A 속성을 암호화하고 그렇지 않은 경우 A와 B 속성을 암호화) 읽기 또는 엔터티를 쿼리 하는 동안은 이정보가 필요없다는 것을 참고하세요.
+테이블의 경우 또한 toohello 암호화 정책 사용자 지정 해야 hello 속성 toobe 암호화 합니다. 이것은 특성(TableEntity에서 파생 되는 POCO 엔터티)을 지정[EncryptProperty]하거나 암호화 해결 프로그램 요청 옵션에서 수행할 수 있습니다.  암호화 해결 프로그램은 파티션 키, 행 키, 그리고 속성 이름 및 암호화 여부 속성을 나타내는  Bool방식을 반환하는 대표자입니다. 암호화 하는 동안 toohello 통신에 쓰는 동안 속성을 암호화 해야 하는지 여부를 hello 클라이언트 라이브러리 정보 toodecide이를 사용 합니다. 또한 hello 대리자 hello 가능성은 속성이 암호화 주위 논리를 제공 합니다. (예를 들어 X의 경우, A 속성을 암호화하고 그렇지 않은 경우 A와 B 속성을 암호화) 한다는 확인은 필요 하지 않은 tooprovide 읽기 또는 엔터티를 쿼리 하는 동안이 정보입니다.
 
 ### <a name="batch-operations"></a>배치 작업
-일괄 처리 작업에서, 같은 kek가 배치 작업 안의 모든 행간에 사용되는데, 클라이언트 라이브러리는 배치 작업당 오직 하나의 옵션개체(하나의 정책/kek 때문에 )만 허용하기 때문입니다. 그러나 클라이언트 라이브러리는 배치 안에 새로운 임의 IV와 행 당 임의 CEK를 내부적으로 만듭니다. 사용자가 암호화 해결 프로그램에 이동작을 정의하여 배치의 모든 작업에 대해 암호화 할 다른 속성들을 선택할 수 있습니다.
+일괄 처리 작업에서 hello 동일한 KEK 여러 사용 될 해당 일괄 처리 작업의 모든 hello 행 hello 클라이언트 라이브러리는 하나의 옵션 개체 (및 따라서 하나의 정책/KEK)에 허용 하기 때문에 일괄 처리 작업 단위입니다. 그러나 hello 클라이언트 라이브러리는 hello 일괄 처리에서 새로운 임의 IV 및 행당 임의 CEK를 생성 내부적으로 합니다. 사용자가 선택할 수도 tooencrypt 모든 작업에 대해 서로 다른 속성 hello 일괄 처리의 hello 암호화 해결 프로그램에서이 동작을 정의 하 여 합니다.
 
 ### <a name="queries"></a>쿼리
-쿼리 작업을 수행 하려면 결과 집합에 있는 모든 키를 확인할 수 있는 키 확인자를 지정 해야 합니다. 공급자에는 쿼리 결과에 포함 된 엔터티를 확인할 수 없으면, 클라이언트 라이브러리는 오류를 throw 합니다. 서버 쪽 프로젝션을 수행하는 모든 쿼리에 대해 클라이언트 라이브러리는 선택한 열에 기본적으로 특별한 암호 메타데이터 속성(_ClientEncryptionMetadata1 및 _ClientEncryptionMetadata2)을 추가합니다.
+tooperform 쿼리 작업 수 tooresolve 있는 키 해결 프로그램을 지정 해야 모든 hello hello 결과 집합의 키입니다. Hello 쿼리 결과에 포함 된 엔터티 해결된 tooa 공급자 일 수 없습니다, hello 클라이언트 라이브러리는 오류를 throw 합니다. 서버 쪽 프로젝션을 수행 하는 모든 쿼리에 대 한 hello 클라이언트 라이브러리는 기본 선택 toohello 열으로 hello 특수 한 암호화 메타 데이터 속성 (_ClientEncryptionMetadata1 및 _ClientEncryptionMetadata2)을 추가 합니다.
 
 ## <a name="azure-key-vault"></a>Azure 키 자격 증명 모음
 Azure 키 자격 증명 모음은 클라우드 응용 프로그램 및 서비스에서 사용되는 암호화 키 및 비밀을 보호하는데 도움이 됩니다. Azure 키 자격 증명 모음을 사용하여, 사용자는 키와 비밀(예: 인증 키, 저장소 계정 키, 데이터 암호화 키, PFX 파일 및 암호)을 암호화하여 하드웨어 보안 모듈(HSM)로 보호된 키를 사용합니다. 자세한 내용은 [Azure 주요 자격 증명 모음이란?](../key-vault/key-vault-whatis.md)을 참조하세요.
 
-저장소 클라이언트 라이브러리는 Azure 내에서 키를 관리 하기 위한 공통 프레임 워크를 제공 하기 위해 키 자격 증명 모음 핵심 라이브러리를 사용 합니다. 사용자는 또한 키 자격 증명 모음 확장 라이브러리를 사용하여 추가적인 이점을 제공을 받습니다. 이 확장 라이브러리는 간단하고 원활한 대칭/RSA 로컬 및 집계와 캐싱같은 클라우드 키 공급자 관련 유용한 기능을 제공합니다. .
+hello 저장소 클라이언트 라이브러리는 키를 관리 하기 위한 Azure 전체에서 순서 tooprovide 공통 프레임 워크에에서 hello 주요 자격 증명 모음 핵심 라이브러리를 사용 합니다. 사용자가 가져올 hello 주요 자격 증명 모음 확장 라이브러리를 사용 하 여 hello 장점이 있습니다. hello 확장 프로그램 라이브러리 캐싱 및 집계와 뿐만 아니라 간단 하 고 원활한 대칭/RSA 로컬 및 클라우드 키 공급자의 유용한 기능을 제공합니다.
 
 ### <a name="interface-and-dependencies"></a>인터페이스 및 종속성
 세 가지 키 자격증명 모음 패키지가 있습니다.
 
-* Microsoft.Azure.KeyVault.Core는 IKey 및 IKeyResolver 포함합니다. 어떤 부속품도 없는 작은 패키지입니다. .NET용 저장소 클라이언트 라이브러리는 이를 종속성으로 정의합니다.
-* Microsoft.Azure.키 자격증명 모음은 키 자격 증명 모음 REST 클라이언트를 포함합니다.
-* Microsoft.Azure.KeyVault.Extensions 은 암호화 알고리즘 및 RSAKey와  SymmetricKey의 구현이 포함 된 확장 프로그램 코드를 포함합니다. 코어 및 KeyVault 네임 스페이스에 의존하고 (여러 키 공급자를 사용하여 사용자가 원하는) 경우 집계 해결 프로그램 및 캐싱 키 해결 프로그램을 정의 하는 기능을 제공 합니다. 비록 저장소 클라이언트 라이브러리가 이 패키지에 직접적으로 의존하지 않지만, 사용자가 그들의 키를 저장하거나 로컬과 클라우드 암호화 공급자를 소비하는 키 자격증명 모음 확장을 사용에 Azure 키 자격증명 모음을 사용하고 싶을 때는 이 패키지가 필요합니다.
+* Microsoft.Azure.KeyVault.Core는 IKey hello 및 IKeyResolver 포함 되어 있습니다. 어떤 부속품도 없는 작은 패키지입니다. .NET 용 저장소 클라이언트 라이브러리 hello 종속성으로 정의 합니다.
+* Microsoft.Azure.KeyVault은 hello 키 자격 증명 모음 REST 클라이언트를 포함합니다.
+* Microsoft.Azure.KeyVault.Extensions 은 암호화 알고리즘 및 RSAKey와  SymmetricKey의 구현이 포함 된 확장 프로그램 코드를 포함합니다. Hello 코어 및 KeyVault 네임 스페이스에 따라 달라 집니다 하 고 집계 해결 프로그램 (사용자가 여러 키 공급자 toouse를 원하는) 하는 경우 및 캐싱 키 확인자 toodefine 기능을 제공 합니다. Hello 저장소 클라이언트 라이브러리에 종속 되지 않지만 직접이 패키지에 사용자가 원하는 toouse Azure 키 자격 증명 모음 toostore가 키 또는 toouse hello 주요 자격 증명 모음 확장 tooconsume hello 로컬 및 클라우드 암호화 공급자 경우,이 패키지를 해야 합니다.
 
-키 자격증명모음은 고급 가치 마스터키로 고안되었으며 키 자격증명 모음당 스로틀 한계는 이것을 염두에 두고 만들어졌습니다. 키 자격 증명 모음을 사용하여 클라이언트측 암호화를 수행할 때 모델을 선호 로컬로 대칭 마스터 키 암호 키 자격 증명 모음에로 저장  하 고 캐시를 사용 하는 것입니다. 다음 작업을 수행합니다.
+키 자격증명모음은 고급 가치 마스터키로 고안되었으며 키 자격증명 모음당 스로틀 한계는 이것을 염두에 두고 만들어졌습니다. 주요 자격 증명 모음을 사용 하 여 클라이언트 쪽 암호화를 수행할 때는 hello 기본 모델 toouse 대칭 마스터 키는 암호로 키 자격 증명 모음에 저장 하 고 로컬로 캐시은입니다. 사용자가 수행 해야 hello 다음:
 
-1. 암호를 오프라인으로 만들고 키 자격 증명 모음에 업로드 합니다.
-2. 비밀의 기본 식별자를 현재 버전의 암호화에 대한 암호를 풀기 위해 매개변수로 사용하고 이 정보를 로컬로 캐시합니다. CachingKeyResolver를 사용합니다. 사용자는 자체 캐싱 논리가 구현되지 않는 것을 예상합니다.
-3. 암호화 정책을 생성하는 동안 캐싱 확인자를 입력으로 사용합니다.
+1. 암호를 오프 라인으로 만들고 tooKey 자격 증명 모음을 업로드 합니다.
+2. Hello 암호의 기본 식별자를 사용 하 여 매개 변수 tooresolve hello 현재 버전의 hello 암호를 암호화 하 고이 정보를 로컬로 캐시 합니다. CachingKeyResolver; 캐싱에 사용 사용자는 예상된 되지 tooimplement 자체 캐싱 논리입니다.
+3. 입력으로 hello 암호화 정책을 만드는 동안 hello 캐싱 확인자를 사용 합니다.
 
-키 자격 증명 모음 사용법에 대한 자세한 내용은 [암호화 코드 샘플](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples)에서 찾을 있습니다.
+주요 자격 증명 모음 사용과 관련 된 자세한 내용은 hello에 있습니다 [암호화 코드 샘플](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples)합니다.
 
 ## <a name="best-practices"></a>모범 사례
-암호화 지원은 .NET용 저장소 클라이언트 라이브러리에만 사용할 수 있습니다. Windows Phone 및 Windows 런타임은 현재 암호화를 지원하지 않습니다.
+.NET 용 저장소 클라이언트 라이브러리 hello에만 암호화 지원이 제공 됩니다. Windows Phone 및 Windows 런타임은 현재 암호화를 지원하지 않습니다.
 
 > [!IMPORTANT]
 > 클라이언트 쪽 암호화를 사용할 때는 이러한 중요점을 유의하세요.
 > 
-> * 암호화된 blob에서 읽거나 여기에 쓸 때는 전체 blob 업로드 명령 및 범위/전체 blob 다운로드 명령을 사용하세요. 블록 배치, 블록 목록 배치, 페이지 쓰기, 페이지 지우기 또는 블록 추가와 같은 프로토콜 작업을 사용하여 암호화된 blob에 쓰지 않도록 합니다. 그렇지 않으면 암호화된 blob이 손상되어 읽지 못하게 될 수 있습니다.
-> * 테이블의 경우에는 유사한 제약 조건이 있습니다. 암호화 메타데이터를 업데이트하지 않고 암호화된 속성을 업데이트하지 않도록 주의해야 합니다.
-> * 암호화된 blob에서 메타데이터를 설정하는 경우 메타데이터의 설정은 가산적이 아니므로 암호 해독에 필요한 암호화 관련 메타데이터를 덮어쓸 수도 있습니다. 이것은 스냅숏에 대해서 마찬가지입니다. 암호화된 blob의 스냅숏을 생성하는 동안 메타데이터를 지정하지 않도록 하세요. 메타데이터가 설정되어야 하는 경우 먼저 **FetchAttributes** 메서드를 호출하여 현재 암호화 메타데이터를 가져오고, 메타데이터가 설정되는 동안에는 동시 쓰기를 피합니다.
-> * 암호화된 데이터에만 작동해야 하는 사용자의 기본 요청 옵션에는 **RequireEncryption** 속성을 사용하도록 설정합니다. 자세한 내용은 다음을 참조하세요.
+> * 읽기 또는 쓰기 tooan 암호화 경우 blob, 전체 blob 업로드 명령을 사용 하 여 및 범위/전체 blob 다운로드 명령입니다. 블록 배치, 블록 목록 배치, 페이지 쓰기, 일반 페이지 또는 블록 추가; 등의 프로토콜 작업을 사용 하 여 tooan 암호화 된 blob에 쓰기 방지 그렇지 않으면 hello 암호화 blob를 손상 하 고 읽을 수 없도록 수 있습니다.
+> * 테이블의 경우에는 유사한 제약 조건이 있습니다. Hello 암호화 메타 데이터를 업데이트 하지 않고 toonot 신중 하 게 암호화 하는 업데이트 속성 이어야 합니다.
+> * Hello 암호화 된 blob에서 메타 데이터를 설정 하는 경우 hello 암호화 관련에 필요한 메타 데이터 암호 해독, 가산적가 메타 데이터를 덮어쓸 수 있습니다. 이것은 스냅숏에 대해서 마찬가지입니다. 암호화된 blob의 스냅숏을 생성하는 동안 메타데이터를 지정하지 않도록 하세요. 메타 데이터와 설정 해야 하는 경우 수 있는지 toocall hello **FetchAttributes** 메서드 첫 번째 tooget hello 현재 암호화 메타 데이터 및 메타 데이터 설정 되어 있는 동안 동시 쓰기를 방지 합니다.
+> * Hello를 사용 하도록 설정 **RequireEncryption** hello 기본 요청 옵션에만 작동 해야 하는 사용자가을 속성 데이터를 암호화 합니다. 자세한 내용은 다음을 참조하세요.
 > 
 > 
 
 ## <a name="client-api--interface"></a>클라이언트 API / 인터페이스
-EncryptionPolicy 개체를 만드는 동안 사용자만 키를 공급 (IKey 구현), 확인자만 키를 공급 (IKeyResolver 구현) 또는 둘 모두 키를 공급. IKey 래핑/래핑 해제에 대한 논리를 제공하고 키 식별자를 사용하여 식별 되는 기본 키 유형입니다. IKeyResolver 키는 암호 해독 프로세스에서 키를 해독하기 위해 사용됩니다. 키 식별자가 제공하는 IKey를 반환하는 ResolveKey 메서드를 정의 합니다. 이것은 사용자에게 여러 위치에서 관리되는 여러 키 중 하나를 선택할 수 있게 합니다.
+EncryptionPolicy 개체를 만드는 동안 사용자만 키를 공급 (IKey 구현), 확인자만 키를 공급 (IKeyResolver 구현) 또는 둘 모두 키를 공급. IKey 형식이 hello 기본 키에 대 한 래핑/hello 논리를 제공 하 고 키 식별자를 사용 하 여 식별 되는. IKeyResolver는 hello 암호 해독 프로세스 동안 사용 되는 tooresolve 키입니다. 키 식별자가 제공하는 IKey를 반환하는 ResolveKey 메서드를 정의 합니다. 여러 위치에서 관리 되는 여러 키 간의 사용자 hello 기능 toochoose를 제공 합니다.
 
-* 암호화는 키가 항상 사용되고, 키가 없으면 오류가 발생합니다.
+* 암호화, hello 키가 항상 사용 하 고 키 hello 없을 경우 오류가 발생 합니다.
 * 암호를 해독하려면
-  * 키 확인자는 키를 가져오기 위해 지정된 경우 호출됩니다. 확인자를 지정 하 고 키 식별자에 대한 매핑이 없는 경우, 오류가 전달됩니다.
-  * 확인자는 지정하지 않고 키는 지정한 경우 해당 식별자가 필요한 키 식별자와 일치하는 경우 키가 사용됩니다. 식별자가 일치하지 않으면 오류가 throw됩니다.
+  * hello 키 확인자 tooget hello 키를 지정 하는 경우 호출 됩니다. 가 지정 hello 확인자 hello 키 식별자에 대 한 매핑이 없는 경우 오류가 throw 됩니다.
+  * 해결 프로그램 지정 하지 않으면 표시 되지만 키가 지정 하는 경우 해당 식별자에는 필요한 hello 키 식별자와 일치 하는 경우 hello 키는 사용 됩니다. Hello 식별자와 일치 하지 않는 경우 오류가 throw 됩니다.
 
-[암호화 샘플](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) 은 주요 자격 증명 모음 통합과 함께 BLOB, 큐 및 테이블에 대한 보다 자세한 종단 간 시나리오를 보여 줍니다.
+hello [암호화 샘플](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) 주요 자격 증명 모음 통합 blob, 큐 및 테이블에 대 한 보다 자세한 종단 간 시나리오를 함께 보여 줍니다.
 
 ### <a name="requireencryption-mode"></a>RequireEncryption 모드
-사용자는 모든 업로드 및 다운로드를 암호화해야 할 경우 작업 모드를 선택적으로 사용하도록 설정할 수 있습니다. 이 모드에서는 클라이언트에서 암호화 정책 없이 데이터를 업로드하거나 서비스에서 암호화되지 않은 데이터를 다운로드하려고 하면 실패합니다. 요청 옵션 개체의 **RequireEncryption** 속성이 이 동작을 제어합니다. 응용 프로그램이 Azure 저장소에 저장된 모든 개체를 암호화하는 경우 서비스 클라이언트 개체에 대한 기본 요청 옵션에서 **RequireEncryption** 속성을 설정할 수 있습니다. 예를 들어 모든 BLOB 작업에 대한 암호화가 해당 클라이언트 개체를 통해 수행되도록 하려면 **CloudBlobClient.DefaultRequestOptions.RequireEncryption**을 **true**로 설정합니다.
+사용자는 모든 업로드 및 다운로드를 암호화해야 할 경우 작업 모드를 선택적으로 사용하도록 설정할 수 있습니다. 이 모드에서는 hello 서비스에서 암호화 되지 않은 한 암호화 정책 또는 다운로드 데이터 없이 시도 tooupload 데이터는 클라이언트 hello에 실패 합니다. hello **RequireEncryption** hello 요청 옵션 개체의 속성을이 동작을 제어 합니다. 응용 프로그램은 Azure 저장소에 저장 된 모든 개체를 암호화 하는 경우 hello를 설정할 수 있습니다 **RequireEncryption** hello 서비스 클라이언트 개체에 대 한 hello 기본 요청 옵션에는 속성입니다. 예를 들어 설정 **CloudBlobClient.DefaultRequestOptions.RequireEncryption** 너무**true** toorequire 암호화 모든 blob 작업에 대해 해당 클라이언트 개체를 통해 수행 합니다.
 
 ### <a name="blob-service-encryption"></a>Blob 서비스 암호화
-**BlobEncryptionPolicy** 개체를 만들고 요청 옵션에서 설정합니다(**DefaultRequestOptions**를 사용하여 API 기준으로 또는 클라이언트 수준에서). 다른 모든 요소에서 처리 되는 클라이언트 라이브러리는 내부적으로 처리됩니다.
+만들기는 **BlobEncryptionPolicy** hello 요청 옵션에 설정 및 개체 (또는 API를 사용 하 여 클라이언트 수준에서 **DefaultRequestOptions**). 다른 모든 항목에서 처리 되는 클라이언트 라이브러리 hello 내부적으로 합니다.
 
 ```csharp
-// Create the IKey used for encryption.
+// Create hello IKey used for encryption.
  RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
- // Create the encryption policy to be used for upload and download.
+ // Create hello encryption policy toobe used for upload and download.
  BlobEncryptionPolicy policy = new BlobEncryptionPolicy(key, null);
 
- // Set the encryption policy on the request options.
+ // Set hello encryption policy on hello request options.
  BlobRequestOptions options = new BlobRequestOptions() { EncryptionPolicy = policy };
 
- // Upload the encrypted contents to the blob.
+ // Upload hello encrypted contents toohello blob.
  blob.UploadFromStream(stream, size, null, options, null);
 
- // Download and decrypt the encrypted contents from the blob.
+ // Download and decrypt hello encrypted contents from hello blob.
  MemoryStream outputStream = new MemoryStream();
  blob.DownloadToStream(outputStream, null, options, null);
 ```
 
 ### <a name="queue-service-encryption"></a>큐 서비스 암호화
-**QueueEncryptionPolicy** 개체를 만들고 요청 옵션에서 설정합니다(**DefaultRequestOptions**를 사용하여 API 기준으로 또는 클라이언트 수준에서). 다른 모든 요소에서 처리 되는 클라이언트 라이브러리는 내부적으로 처리됩니다.
+만들기는 **QueueEncryptionPolicy** hello 요청 옵션에 설정 및 개체 (또는 API를 사용 하 여 클라이언트 수준에서 **DefaultRequestOptions**). 다른 모든 항목에서 처리 되는 클라이언트 라이브러리 hello 내부적으로 합니다.
 
 ```csharp
-// Create the IKey used for encryption.
+// Create hello IKey used for encryption.
  RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
- // Create the encryption policy to be used for upload and download.
+ // Create hello encryption policy toobe used for upload and download.
  QueueEncryptionPolicy policy = new QueueEncryptionPolicy(key, null);
 
  // Add message
@@ -191,15 +191,15 @@ EncryptionPolicy 개체를 만드는 동안 사용자만 키를 공급 (IKey 구
 ```
 
 ### <a name="table-service-encryption"></a>테이블 서비스 암호화
-암호화 정책을 생성하고 요청 옵션에 설정하는 것 외에도 사용자는 **TableRequestOptions**에서 **EncryptionResolver**를 지정하거나 엔터티에 대해 [EncryptProperty] 특성을 설정해야 합니다.
+또한 암호화 정책 toocreating 및 요청 옵션에 설정 지정는 **EncryptionResolver** 에 **TableRequestOptions**, 또는에 hello [EncryptProperty] 특성 집합 hello 엔터티입니다.
 
-#### <a name="using-the-resolver"></a>확인자를 사용하여
+#### <a name="using-hello-resolver"></a>Hello 확인자를 사용 하 여
 
 ```csharp
-// Create the IKey used for encryption.
+// Create hello IKey used for encryption.
  RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
- // Create the encryption policy to be used for upload and download.
+ // Create hello encryption policy toobe used for upload and download.
  TableEncryptionPolicy policy = new TableEncryptionPolicy(key, null);
 
  TableRequestOptions options = new TableRequestOptions()
@@ -219,7 +219,7 @@ EncryptionPolicy 개체를 만드는 동안 사용자만 키를 공급 (IKey 구
  currentTable.Execute(TableOperation.Insert(ent), options, null);
 
  // Retrieve Entity
- // No need to specify an encryption resolver for retrieve
+ // No need toospecify an encryption resolver for retrieve
  TableRequestOptions retrieveOptions = new TableRequestOptions()
  {
     EncryptionPolicy = policy
@@ -230,7 +230,7 @@ EncryptionPolicy 개체를 만드는 동안 사용자만 키를 공급 (IKey 구
 ```
 
 #### <a name="using-attributes"></a>특성을 사용하여
-앞서 설명한 것처럼 엔터티가 TableEntity를 구현하는 경우 **EncryptionResolver**를 지정하는 대신 [EncryptProperty] 특성으로 속성을 데코레이트할 수 있습니다.
+Hello 엔터티 TableEntity 구현 하는 경우, 위에서 설명한 대로 다음 hello 속성 수 특성으로 데코레이팅 할 hello [EncryptProperty] hello를 지정 하는 대신 **EncryptionResolver**합니다.
 
 ```csharp
 [EncryptProperty]
@@ -238,10 +238,10 @@ EncryptionPolicy 개체를 만드는 동안 사용자만 키를 공급 (IKey 구
 ```
 
 ## <a name="encryption-and-performance"></a>암호화 및 성능
-저장소 데이터를 암호화하면 추가 성능 오버헤드가 발생합니다. 콘텐츠 키 및 IV를 생성해야 하고, 콘텐츠 자체를 암호화해야 하고, 추가 메타데이터의 형식을 지정한 후 업로드해야 합니다. 이 오버헤드는 암호화되는 데이터의 양에 따라 달라집니다. 고객은 항상 개발 중에 응용 프로그램 성능을 테스트하는 것이 좋습니다.
+저장소 데이터를 암호화하면 추가 성능 오버헤드가 발생합니다. hello 콘텐츠 키와 IV를 생성 해야, hello 콘텐츠 자체 암호화, 및 추가 메타 데이터를 포맷 하 고 업로드 해야 합니다. 이 오버 헤드는 암호화 되는 데이터의 hello 양에 따라 달라 집니다. 고객은 항상 개발 중에 응용 프로그램 성능을 테스트하는 것이 좋습니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [자습서: Microsoft Azure 저장소에서 Azure 키 자격 증명 모음을 사용하여 Blob 암호화 및 해독](storage-encrypt-decrypt-blobs-key-vault.md)
-* [Azure Storage Client Library for .NET NuGet package](https://www.nuget.org/packages/WindowsAzure.Storage)
-* Azure Key Vault NuGet [코어](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/), [클라이언트](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/), [확장](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/) 패키지 다운로드  
-* [Azure 주요 자격 증명 모음 설명서](../key-vault/key-vault-whatis.md)
+* Hello 다운로드 [.NET NuGet 패키지용 Azure 저장소 클라이언트 라이브러리](https://www.nuget.org/packages/WindowsAzure.Storage)
+* Azure 키 자격 증명 모음 NuGet hello 다운로드 [코어](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/), [클라이언트](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/), 및 [확장](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/) 패키지  
+* Hello 방문 [Azure 키 자격 증명 모음 설명서](../key-vault/key-vault-whatis.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 할당량 및 제한 이해 | Microsoft 문서"
-description: "개발자 가이드 - IoT Hub에 적용할 할당량 및 예상되는 제한 동작을 설명합니다."
+title: "aaaUnderstand Azure IoT Hub 할당량 및 제한 | Microsoft Docs"
+description: "개발자 가이드-설명은 tooIoT 허브 및 hello 적용 되는 hello 할당량 제한 동작이 필요 합니다."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
-ms.openlocfilehash: dfe06ee6b8fadfe6d34397661c974181f870239e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 023fa29bfbfb1de35708d6d121a1c56b50adfed9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reference---iot-hub-quotas-and-throttling"></a>참조 - IoT Hub 할당량 및 제한
 
 ## <a name="quotas-and-throttling"></a>할당량 및 제한
 각 Azure 구독은 IoT Hub 최대 10개와 무료 허브 최대 1개를 가질 수 있습니다.
 
-각 IoT Hub는 특정 SKU에서 특정한 단위 수로 프로비전됩니다. 자세한 내용은 [Azure IoT Hub 가격 책정][lnk-pricing]을 참조하세요. SKU와 단위 수는 보낼 수 있는 메시지의 최대 일일 할당량을 결정합니다.
+각 IoT Hub는 특정 SKU에서 특정한 단위 수로 프로비전됩니다. 자세한 내용은 [Azure IoT Hub 가격 책정][lnk-pricing]을 참조하세요. hello SKU 및 단위 수가 결정 보낼 수 있는 메시지의 최대 일일 할당량 hello 합니다.
 
-또한 SKU는 IoT Hub가 모든 작업에 강제로 적용하는 조정 제한을 결정합니다.
+또한 hello SKU 조절 제한 IoT 허브에서 모든 작업을 적용 하는 hello를 결정 합니다.
 
 ## <a name="operation-throttles"></a>작업 제한
-작업 제한은 분 범위에 적용하고 남용을 방지하고자 하는 속도 제한입니다. IoT Hub는 가능한 경우 오류를 반환 하지 않으려 하지만 제한이 너무 오랫동안 위반된 경우 예외를 반환하기 시작합니다.
+작업 스로틀은 hello 분 범위에 적용 되 고 있는 비율 제한이 tooavoid 남용을 위한 것입니다. IoT Hub tooavoid 가능 하면 항상 오류를 반환 하지만 hello 스로틀 너무 오랫동안 위반 되 면 예외를 반환 시작.
 
-다음 표에서는 적용된 제한을 보여 줍니다. 값은 개별 허브라고 합니다.
+다음 테이블에서는 hello hello 스로틀을 적용 합니다. 값은 tooan 개별 허브를 참조합니다.
 
 | 제한 | 무료 및 S1 허브 | S2 허브 | S3 허브 | 
 | -------- | ------- | ------- | ------- |
@@ -48,14 +48,14 @@ ms.lasthandoff: 08/29/2017
 | 작업 연산 <br/> (만들기, 업데이트, 나열, 삭제) | 1.67/초/단위(100/분/단위) | 1.67/초/단위(100/분/단위) | 83.33/초/단위(5000/분/단위) |
 | 장치 단위 작업 연산 처리량 | 10/초 | 최대 10/초 또는 1/초/단위 | 50/초/단위 |
 
-*장치 연결* 제한은 IoT Hub에서 새 장치 연결을 설정할 수 있는 속도를 제어합니다. *장치 연결* 제한은 동시에 연결되는 장치의 최대 수를 제어하지 않습니다. 이 제한은 IoT Hub에 대해 프로비전되는 단위의 수에 따라 달라집니다.
+Hello 중요 tooclarify는 *장치 연결* 스로틀을 새 장치 연결을 설정할 수 있는 IoT hub hello 속도 제어 합니다. hello *장치 연결* 스로틀 hello 최대 수의 동시에 연결 된 장치를 관리 하지 않습니다. hello 스로틀 hello hello IoT 허브에 대 한 프로 비전 되는 단위 수에 따라 달라 집니다.
 
-예를 들어 S1 단위 하나를 구매하는 경우 초당 연결 제한은 100개입니다. 따라서 100,000 개의 장치를 연결하려면 최소 1,000초(약 16분)가 걸립니다. 그러나 ID 레지스트리에 등록한 수만큼의 장치를 동시에 연결할 수 있습니다.
+예를 들어 S1 단위 하나를 구매하는 경우 초당 연결 제한은 100개입니다. 따라서 tooconnect 100, 000 장치 1000 초 (약 16 분) 이상 필요 합니다. 그러나 ID 레지스트리에 등록한 수만큼의 장치를 동시에 연결할 수 있습니다.
 
-IoT Hub 제한 동작에 대한 자세한 설명을 보려면 블로그 게시물 [IoT Hub 제한][lnk-throttle-blog]을 참조하세요.
+자세한 내용은 IoT 허브에 대 한 hello 블로그 게시물을 참조 조정 동작을 [IoT Hub를 제한 하 고][lnk-throttle-blog]합니다.
 
 > [!NOTE]
-> 지정된 시간에 IoT Hub에 프로비전된 단위 수를 늘려 할당량이나 조정 제한을 증가시킬 수 있습니다.
+> 지정된 된 시간에는 가능한 tooincrease 할당량 제한 hello IoT 허브에서 프로 비전 된 단위 수를 늘려 스로틀 또는 합니다.
 > 
 > [!IMPORTANT]
 > ID 레지스트리 작업은 장치 관리 및 프로비전 시나리오에서 런타임에 사용하기 위한 것입니다. 많은 수의 장치 ID 읽기 또는 업데이트는 [가져오기 및 내보내기 작업][lnk-importexport]을 통해 지원됩니다.
@@ -69,7 +69,7 @@ IoT Hub에는 다른 작업 제한도 적용됩니다.
 | 작업 | 제한 |
 | --------- | ----- |
 | 파일 업로드 URI | 10000 SAS URI는 한 번에 저장소 계정에 대해 나올 수 있습니다. <br/> 10 SAS URI/장치는 한 번에 나올 수 있습니다. |
-| 작업 | 작업 기록은 30일까지 유지됩니다. <br/> 최대 동시 작업은 1개(무료 및 S1의 경우, 5(S2의 경우), 10(S3의 경우)입니다. |
+| 작업 | 작업 기록의 too30 일 수를 보관합니다 <br/> 최대 동시 작업은 1개(무료 및 S1의 경우, 5(S2의 경우), 10(S3의 경우)입니다. |
 | 추가 끝점 | 유료 SKU 허브에는 10개, 무료 SKU 허브에는 하나의 추가 끝점이 있을 수 있습니다. |
 | 메시지 라우팅 규칙 | 유료 SKU 허브에는 100개, 무료 SKU 허브에는 5개의 라우팅 규칙이 있을 수 있습니다. |
 | 장치-클라우드 메시징 | 최대 메시지 크기 256KB |
@@ -77,14 +77,14 @@ IoT Hub에는 다른 작업 제한도 적용됩니다.
 | 클라우드-장치 메시징 | 배달 보류 중인 최대 메시지 수는 50개 |
 
 > [!NOTE]
-> 현재 단일 IoT hub에 연결할 수는 장치의 최대 수는 500,000개입니다. 이 제한을 높이려면 [Microsoft 지원](https://azure.microsoft.com/support/options/)에 문의하세요.
+> 현재, 최대 수를 hello tooa 단일 IoT 허브는 500, 000의 장치에 연결할 수 있습니다. 이 제한을 tooincrease을 원하는 경우 문의 [Microsoft 지원](https://azure.microsoft.com/support/options/)합니다.
 
 ## <a name="latency"></a>대기 시간
-IoT Hub는 모든 작업에 낮은 대기 시간을 제공하기 위해 노력합니다. 그러나 네트워크 상태 및 예측할 수 없는 기타 요인으로 인해 최대 대기 시간을 보장할 수 없습니다. 솔루션을 설계할 때 다음을 수행해야 합니다.
+IoT Hub 모든 작업에 대 한 짧은 대기 시간 tooprovide 노력 합니다. 그러나 toonetwork 조건 및 예측할 수 없는 기타 요인 때문 최대 대기 시간을 보장할 수 없습니다 것입니다. 솔루션을 설계할 때 다음을 수행해야 합니다.
 
-* IoT Hub 작업의 최대 대기 시간을 가정하지 마세요.
-* 장치에 가장 가까운 Azure 지역에서 IoT Hub를 프로비전합니다.
-* Azure IoT Edge를 사용하여 장치 또는 장치에 가까운 게이트웨이에서 대기 시간에 민감한 작업을 수행하는 것이 좋습니다.
+* IoT Hub 작업의 hello 최대 대기 시간에 대 한 가정 하 하지 마십시오.
+* IoT 허브 hello Azure 지역 가장 가까운 tooyour 장치를 프로 비전 합니다.
+* Hello 장치 또는 게이트웨이 닫기 toohello 장치에서 Azure IoT 가장자리 tooperform 대기 시간에 민감한 작업을 사용 하는 것이 좋습니다.
 
 여러 IoT Hub 단위는 앞에서 설명한 대로 제한에 영향을 주지만 추가 대기 시간을 주거나 보장하지 않습니다.
 작업 대기 시간에 예기치 않은 증가가 발생한 경우 [Microsoft 지원](https://azure.microsoft.com/support/options/)에 문의하세요.

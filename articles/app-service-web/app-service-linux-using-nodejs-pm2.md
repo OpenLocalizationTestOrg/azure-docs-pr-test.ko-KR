@@ -1,5 +1,5 @@
 ---
-title: "Linux의 Azure Web App에서 Node.js용 PM2 구성 사용 | Microsoft Docs"
+title: "Linux에서 Azure 웹 앱에서 Node.js 용 aaaUsing 오후 2 구성 | Microsoft Docs"
 description: "Linux의 Azure Web App에서 Node.js용 PM2 구성 사용"
 keywords: "azure app service, 웹앱, nodejs, pm2, linux, oss"
 services: app-service
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 5002400a673e2c5cc4290bab488b839fb2282966
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 923783ffe656e01c43318899d1a656b553ebb5f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-pm2-configuration-for-nodejs-in-azure-web-app-on-linux"></a>Linux의 Azure Web App에서 Node.js용 PM2 구성 사용
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-Linux의 Azure Web App용 Node.js에 대해 응용 프로그램 스택을 설정한 경우 다음 이미지와 같이 Node.js 시작 파일을 설정하는 옵션이 제공됩니다.
+Linux에서 Azure 웹 앱에 대 한 응용 프로그램 스택 tooNode.js hello로 설정 하면 메시지가 hello 옵션 tooset Node.js 시작 파일 hello 다음 이미지에에서 나와 있는 것 처럼 나타납니다.
 
 ![Node.js 시작 파일 설정][1]
 
-이 옵션을 사용하여 다음 작업 중 하나를 수행할 수 있습니다.
+이 작업을 수행 하는 hello의 하나 옵션 toodo를 사용할 수 있습니다.
 
-* Node.js 앱용 시작 스크립트 지정(예: /bin/server.js)
-* Node.js 앱에 사용할 PM2 구성 파일 지정(예: /foo/process.json)
+* Node.js 앱에 대 한 시작 스크립트 hello 지정 (예: /bin/server.js).
+* Node.js 앱에 대 한 hello 오후 2 구성 파일 toouse 지정 (예: /foo/process.json).
   
   > [!NOTE]
-  > 특정 파일이 수정될 때 Node.js 프로세스를 자동으로 다시 시작하려면 PM2 구성을 사용합니다. 그러지 않으면 응용 프로그램은 변경 알림의 받을 때(예: 응용 프로그램 코드가 변경될 때) 다시 시작되지 않습니다.
+  > 특정 파일이 수정 되 면 자동으로 Node.js 프로세스 toorestart 하려면 hello 오후 2 구성을 사용 합니다. 그러지 않으면 응용 프로그램은 변경 알림의 받을 때(예: 응용 프로그램 코드가 변경될 때) 다시 시작되지 않습니다.
   > 
   > 
 
-전체 옵션은 [프로세스 파일 설명서](http://pm2.keymetrics.io/docs/usage/application-declaration/)에서 확인할 수 있으며, 다음에 나오는 내용은 process.json 파일로 사용할 수 있는 샘플입니다.
+Node.js hello를 확인할 수 있습니다 [파일 문서](http://pm2.keymetrics.io/docs/usage/application-declaration/) 옵션 hello 모든 되지만 process.json 파일로 사용의 예:
 
         {
           "name"        : "worker",
@@ -56,12 +56,12 @@ Linux의 Azure Web App용 Node.js에 대해 응용 프로그램 스택을 설정
           }
         }
 
-이 구성에서 유의할 사항:
+이 구성에서 중요 한 사항이 toonote가 됩니다.
 
-* "Script" 속성은 응용 프로그램의 시작 스크립트를 지정합니다.
-* "instances" 속성은 시작할 노드 프로세스의 인스턴스 수를 지정합니다. 여러 코어가 있는 더 큰 VM에서 응용 프로그램을 실행하는 경우 여기에서 더 높은 값을 설정하여 리소스를 최대화하는 것이 좋습니다.
-* "watch" 배열은 변경 시 노드 프로세스를 다시 시작하려는 모든 파일을 지정합니다.
-* "watch_options"의 경우 응용 프로그램 콘텐츠가 탑재되는 방식 때문에 "usePolling"을 true로 지정해야 합니다.
+* hello "스크립트" 속성 응용 프로그램의 시작 스크립트를 지정합니다.
+* hello "인스턴스" 속성 hello 노드 프로세스 toolaunch의 인스턴스 수를 지정합니다. 것이 좋습니다 toomaximize 여러 개의 코어가 있는 대규모 Vm에서 응용 프로그램을 실행 하는 경우 여기에 값을 높게 설정 하 여 리소스입니다.
+* 변경 될 때 원하는 toorestart hello 노드 프로세스에 대 한 모든 파일을 지정 하는 배열 "감시" hello 합니다.
+* "Watch_options" hello, 현재 해야 "usePolling" toospecify true로 응용 프로그램 콘텐츠 탑재 된 hello 방식 때문입니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [Linux에서 Azure Web App이란?](app-service-linux-intro.md)

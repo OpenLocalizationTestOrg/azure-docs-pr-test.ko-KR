@@ -1,5 +1,5 @@
 ---
-title: "작업 로그를 사용하여 BizTalk 서비스 문제 해결 | Microsoft Docs"
+title: "작업 로그를 사용 하 여 aaaTroubleshoot BizTalk 서비스 | Microsoft Docs"
 description: "작업 로그를 사용하여 BizTalk 서비스의 문제를 해결합니다. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: c0c83361f94ffd9c30d7fcc551ff4b85ad7d6fa5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 102779ed6e29784f190c28e4102a7d9670614914
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="biztalk-services-troubleshoot-using-operation-logs"></a>BizTalk 서비스: 작업 로그를 사용한 문제 해결
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-## <a name="what-are-the-operation-logs"></a>작업 로그의 정의
-작업 로그는 Azure 클래식 포털에서 사용할 수 있는 관리 서비스 기능으로서 BizTalk 서비스를 포함한 Azure 서비스에서 수행된 작업의 기록 로그를 볼 수 있습니다. 이렇게 하면 BizTalk 서비스 구독에서 180일 이전의 관리 작업과 관련된 기록 데이터를 볼 수 있습니다.
+## <a name="what-are-hello-operation-logs"></a>Hello 작업 로그는 무엇입니까
+작업 로그에는 hello tooview BizTalk 서비스를 포함 한, Azure 서비스에 대 한 작업 기록 로그 수 있는 Azure 클래식 포털에서에서 사용할 수 있는 관리 서비스 기능입니다. 이렇게 하면 기록 데이터 tooview 관련 180 일 이전에 출시 BizTalk 서비스 구독에 대해 toomanagement 작업 합니다.
 
 > [!NOTE]
-> 이 기능은 서비스가 시작되었을 경우, 백업되었을 경우 등과 같은 BizTalk 서비스의 관리 작업에 대한 로그만 캡처합니다. 이러한 작업은 Azure 클래식 포털에서 수행되었는지 또는 [BizTalk 서비스 REST API](http://msdn.microsoft.com/library/azure/dn232347.aspx)를 사용하여 수행되었는지 여부에 관계없이 추적됩니다. 관리 서비스를 사용하여 추적된 작업의 전체 목록을 보려면 [Azure 관리 서비스를 사용하여 추적된 작업](#bizops)를 사용하여 수행되었는지 여부에 관계없이 추적됩니다.<br/><br/>
-> BizTalk 서비스 런타임과 관련된 작업(예: 브리지에서 처리하는 메시지 등)에 대한 로그는 캡처하지 않습니다. 이러한 로그를 보려면 BizTalk 서비스 포털에서 추적 뷰를 사용합니다. 자세한 내용은 [메시지 추적](http://msdn.microsoft.com/library/azure/hh949805.aspx)을 참조하세요.
+> 이 기능은 등, 최대 백업 hello 서비스 시작 되었을 때와 같은 BizTalk 서비스에서 관리 작업에 대 한 로그를 캡처합니다만. Hello Azure 클래식 포털에서에서 또는 hello를 사용 하 여 수행 여부에 관계 없이 이러한 작업은 추적 [BizTalk 서비스 REST Api](http://msdn.microsoft.com/library/azure/dn232347.aspx)합니다. 관리 서비스를 사용하여 추적된 작업의 전체 목록을 보려면 [Azure 관리 서비스를 사용하여 추적된 작업](#bizops)를 사용하여 수행되었는지 여부에 관계없이 추적됩니다.<br/><br/>
+> 활동 관련된 tooBizTalk 서비스 런타임 (예: 메시지 브리지에 의해 처리 됩니다.)에 대 한 hello 로그 캡처하지 않습니다. tooview 이러한 로그를 사용 하 여 hello hello BizTalk 서비스 포털에서 뷰를 추적 합니다. 자세한 내용은 [메시지 추적](http://msdn.microsoft.com/library/azure/hh949805.aspx)을 참조하세요.
 > 
 > 
 
 ## <a name="view-biztalk-services-operation-logs"></a>BizTalk 서비스 작업 로그 보기
-1. Azure 클래식 포털에서 **관리 서비스**를 선택한 다음 **작업 로그** 탭을 선택합니다.
-2. 구독, 날짜 범위, 서비스 종류(예: BizTalk 서비스), 서비스 이름 또는 상태(작업 상태, 예: 성공, 실패)와 같은 다양한 매개 변수를 기준으로 로그를 필터링할 수 있습니다.
-3. 확인 표시를 선택하여 필터링된 목록을 봅니다. 다음 그림은 testbiztalkservice와 관련된 작업을 보여 줍니다. ![작업 로그 보기][ViewLogs] 
-4. 특정 작업에 대한 자세한 내용을 보려면 아래쪽의 작업 표시줄에서 **세부 정보** 를 클릭합니다.
+1. Hello Azure 클래식 포털에서에서 선택 **관리 서비스**를 선택한 후 hello **작업 로그** 탭 합니다.
+2. 구독, 날짜 범위, 서비스 유형 (예: BizTalk 서비스), 서비스 이름 또는 (Succeeded, Failed) hello 작업의 상태와 같은 다른 매개 변수를 기준으로 하는 hello 로그를 필터링 할 수 있습니다.
+3. 선택 hello 확인 표시 tooview hello 필터링 된 목록입니다. hello 다음 그림에 나와 활동 관련된 tootestbiztalkservice: ![작업 로그를 보려면][ViewLogs] 
+4. 특정 작업에 대해 자세히 tooview hello 행을 선택 하 고 클릭 **세부 정보** hello 맨 아래에 hello 작업 표시줄에서 합니다.
 
 ## <a name="bizops"></a>Azure 관리 서비스를 사용하여 추적된 작업
-다음 표에서는 Azure 관리 서비스를 사용하여 추적된 작업의 목록을 보여 줍니다.
+hello 다음 표에 나타난 hello Azure 관리 서비스를 사용 하 여 추적 되는 hello 작업.
 
 | 작업 이름 | 작업 |
 | --- | --- |
-| CreateBizTalkService |새 BizTalk 서비스를 만드는 작업 |
-| DeleteBizTalkService |BizTalk 서비스를 삭제하는 작업 |
-| RestartBizTalkService |BizTalk 서비스를 다시 시작하는 작업 |
-| StartBizTalkService |BizTalk 서비스를 시작하는 작업 |
-| StopBizTalkService |BizTalk 서비스를 중지하는 작업 |
-| DisableBizTalkService |BizTalk 서비스를 사용하지 않도록 설정하는 작업 |
-| EnableBizTalkService |BizTalk 서비스를 사용하도록 설정하는 작업 |
-| BackupBizTalkService |BizTalk 서비스를 백업하는 작업 |
-| RestoreBizTalkService |BizTalk 서비스를 지정된 백업에서 복원하는 작업 |
-| SuspendBizTalkService |BizTalk 서비스를 일시 중단하는 작업 |
-| ResumeBizTalkService |BizTalk 서비스를 다시 시작하는 작업 |
-| ScaleBizTalkService |BizTalk 서비스의 규모를 확장하거나 축소하는 작업 |
-| ConfigUpdateBizTalkService |BizTalk 서비스의 구성을 업데이트하는 작업 |
-| ServiceUpdateBizTalkService |BizTalk 서비스를 다른 버전으로 업그레이드하거나 다운그레이드하는 작업 |
-| PurgeBackupBizTalkService |보존 기간이 지난 BizTalk 서비스의 백업을 삭제하는 작업 |
+| CreateBizTalkService |작업 toocreate 새 BizTalk 서비스 |
+| DeleteBizTalkService |작업 toodelete BizTalk 서비스 |
+| RestartBizTalkService |작업 toorestart BizTalk 서비스 |
+| StartBizTalkService |작업 toostart BizTalk 서비스 |
+| StopBizTalkService |작업 toostop BizTalk 서비스 |
+| DisableBizTalkService |작업 toodisable BizTalk 서비스 |
+| EnableBizTalkService |작업 tooenable BizTalk 서비스 |
+| BackupBizTalkService |BizTalk 서비스를 tooback 작업 |
+| RestoreBizTalkService |작업 toorestore 지정 된 백업에서 BizTalk 서비스 |
+| SuspendBizTalkService |작업 toosuspend BizTalk 서비스 |
+| ResumeBizTalkService |작업 tooresume BizTalk 서비스 |
+| ScaleBizTalkService |BizTalk service 위나 아래로 이동 작업 tooscale |
+| ConfigUpdateBizTalkService |BizTalk 서비스의 작업 tooupdate hello 구성 |
+| ServiceUpdateBizTalkService |작업 tooupgrade 하거나 BizTalk 서비스 tooa 다른 버전 다운 그레이드 |
+| PurgeBackupBizTalkService |Hello 보존 기간이 hello BizTalk 서비스의 작업 toopurge 백업 |
 
 ## <a name="see-also"></a>참고 항목
 * [BizTalk 서비스 백업](http://go.microsoft.com/fwlink/p/?LinkID=325584)
@@ -69,7 +69,7 @@ ms.lasthandoff: 07/11/2017
 * [BizTalk 서비스: 대시보드, 모니터 및 크기 조정 탭](http://go.microsoft.com/fwlink/p/?LinkID=302281)
 * [BizTalk 서비스: 제한](http://go.microsoft.com/fwlink/p/?LinkID=302282)
 * [BizTalk 서비스: 발급자 이름 및 발급자 키](http://go.microsoft.com/fwlink/p/?LinkID=303941)
-* [Azure BizTalk 서비스 SDK로 시작하는 방법](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [Azure BizTalk 서비스 SDK를 hello 어떻게 사용 하 여 시작 합니까](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [ViewLogs]: ./media/biztalk-troubleshoot-using-ops-logs/Operation-Logs.png
 

@@ -1,6 +1,6 @@
 ---
-title: "Stream Analytics 창 함수 소개 | Microsoft Docs"
-description: "Stream Analytics의 세 가지 창 함수(연속, 도약, 슬라이딩)에 대해 알아봅니다."
+title: "aaaIntroduction tooStream 분석 Window 함수 | Microsoft Docs"
+description: "스트림 분석 (텀블 링, 도약, 슬라이딩) hello 세 창 함수에 알아봅니다."
 keywords: "연속 창, 슬라이딩 윈도우, 도약 창"
 documentationcenter: 
 services: stream-analytics
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 09915ad747153210f655b152355c551046066a88
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7fc36eb9afb2b28e2791d925d26923145eb38074
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-stream-analytics-window-functions"></a>Stream Analytics 창 함수 소개
-많은 실시간 스트리밍 시나리오에서 임시 창에 포함된 데이터에 작업을 수행하는 데 필요합니다. 창 함수의 네이티브 지원은 개발자가 복잡한 스트림 처리 작업을 작성할 때 생산성을 향상시키는 Azure Stream Analytics의 주요 함수입니다. Stream Analytics을 사용하면 개발자가 [**연속**](https://msdn.microsoft.com/library/dn835055.aspx), [**도약**](https://msdn.microsoft.com/library/dn835041.aspx) 및 [**슬라이딩**](https://msdn.microsoft.com/library/dn835051.aspx) 창을 사용하여 스트리밍 데이터에 대한 임시 작업을 수행할 수 있습니다. 모든 [창](https://msdn.microsoft.com/library/dn835019.aspx) 작업 결과가 창의 **끝** 에 출력됩니다. 창의 출력은 사용된 집계 함수를 기반으로 하는 단일 이벤트입니다. 이벤트에는 창 끝의 타임스탬프가 있고 모든 창 함수는 고정된 길이로 정의됩니다. 마지막으로 모든 창 함수는 반드시 [**GROUP BY**](https://msdn.microsoft.com/library/dn835023.aspx) 절에서 사용되어야 합니다.
+# <a name="introduction-toostream-analytics-window-functions"></a>소개 tooStream 분석 Window 함수
+여러 실시간 스트리밍 시나리오에서에서 임시 windows에 포함 된 hello 데이터에만 필요한 tooperform 작업입니다. 창 작업 기능에 대 한 기본 지원에 Azure 스트림 분석 작업을 처리 하는 복잡 한 스트림 제작에 대 한 개발자 생산성에 hello 니 들을 이동 하는 주요 기능입니다. 스트림 분석을 사용 하 개발자 toouse [ **텀블 링**](https://msdn.microsoft.com/library/dn835055.aspx), [ **도약** ](https://msdn.microsoft.com/library/dn835041.aspx) 및 [ **슬라이딩** ](https://msdn.microsoft.com/library/dn835051.aspx) 스트리밍 데이터에서 windows tooperform 임시 작업 합니다. 주목할 하는 모든 [창](https://msdn.microsoft.com/library/dn835019.aspx) hello에 대 한 결과 출력 하는 작업 **끝** hello 창. hello 창의 hello 출력을 사용 하는 hello 집계 함수에 기반 하 여 단일 이벤트 됩니다. hello 이벤트 hello 창의 hello 끝의 타임 스탬프 hello 있고 길이가 고정된 된 모든 창 함수를 정의 합니다. 중요 한 toonote에 모든 창 함수를 사용 해야 하는 마지막으로 [ **GROUP BY** ](https://msdn.microsoft.com/library/dn835023.aspx) 절.
 
 ![Stream Analytics 창 함수 개념](media/stream-analytics-window-functions/stream-analytics-window-functions-conceptual.png)
 
 ## <a name="tumbling-window"></a>연속 창
-연속 창 함수는 다른 시간 세그먼트에 데이터 스트림을 분할하는 데 사용되고 아래 예와 같이 그에 대한 기능을 수행합니다. 연속 창의 핵심적인 차이는 반복되지만 겹치지 않고 이벤트가 둘 이상의 연속 창에 속할 수 없다는 점입니다.
+텀블 링 창 함수 사용 되는 toosegment 서로 다른 시간 세그먼트에 데이터 스트림이 되며 hello 감시할 같이,에 대 한 기능을 수행 합니다. 연속 창의 요소가 한 hello 핵심적인 차이점은은 반복 있음을, 겹치지 않고 및 이벤트에는 하나의 연속 창 보다 toomore 속할 수 없습니다.
 
 ![Stream Analytics 창 함수 연속 소개](media/stream-analytics-window-functions/stream-analytics-window-functions-tumbling-intro.png)
 
 ## <a name="hopping-window"></a>도약 창
-도약 창 함수는 고정된 기간만큼 시간을 앞으로 건너 뜁니다. 겹칠 수 있는 연속 창으로 생각하기 쉬우므로 이벤트는 둘 이상의 도약 창 결과 집합에 속할 수 있습니다. 연속 창과 동일한 도약 창을 만들려면 도약 크기를 창 크기와 동일하도록 지정하면 됩니다. 
+도약 창 함수는 고정된 기간만큼 시간을 앞으로 건너 뜁니다. 이벤트는 도약 창 결과 집합이 두 개 보다 toomore 속할 수 있으므로 겹칠 수 있는 연속 창으로 쉽게 toothink 그중에서 수도 있습니다. 도약 창 toomake 동일 하나는 지정 하면 연속 창으로 hello hello 도약 크기 toobe hello hello 창 크기와 동일 합니다. 
 
 ![Stream Analytics 창 함수 도약 소개](media/stream-analytics-window-functions/stream-analytics-window-functions-hopping-intro.png)
 
 ## <a name="sliding-window"></a>슬라이딩 윈도우
-연속 또는 도약 창과 달리 슬라이딩 윈도우 함수는 이벤트가 발생할 때 출력 **만** 생성합니다. 모든 창에는 하나 이상의 이벤트가 있고 창은 지속적으로 €(엡실론)만큼 앞으로 이동합니다. 도약 창과 마찬가지로 이벤트는 둘 이상의 슬라이딩 윈도우에 속할 수 있습니다.
+연속 또는 도약 창과 달리 슬라이딩 윈도우 함수는 이벤트가 발생할 때 출력 **만** 생성합니다. 모든 창 하나 이상의 이벤트에 있고 hello 창은 € (엡실론) 하 여 앞으로 지속적으로 이동 합니다. 도약 창과 마찬가지로 이벤트에는 하나의 슬라이딩 윈도우 보다 toomore를 속할 수 있습니다.
 
 ![Stream Analytics 창 함수 슬라이딩 소개](media/stream-analytics-window-functions/stream-analytics-window-functions-sliding-intro.png)
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 08/29/2017
 추가 지원이 필요할 경우 [Azure Stream Analytics 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>다음 단계
-* [Azure Stream Analytics 소개](stream-analytics-introduction.md)
+* [스트림 분석 소개 tooAzure](stream-analytics-introduction.md)
 * [Azure Stream Analytics 사용 시작](stream-analytics-real-time-fraud-detection.md)
 * [Azure  Stream Analytics 작업 규모 지정](stream-analytics-scale-jobs.md)
 * [Azure  Stream Analytics 쿼리 언어 참조](https://msdn.microsoft.com/library/azure/dn834998.aspx)

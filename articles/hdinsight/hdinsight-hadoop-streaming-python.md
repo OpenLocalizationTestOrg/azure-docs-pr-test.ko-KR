@@ -1,6 +1,6 @@
 ---
-title: "HDInsight에서 Python MapReduce 작업 개발 - Azure | Microsoft Docs"
-description: "MapReduce 작업을 스트리밍하는 데 Python을 사용하는 방법 알아보기 Hadoop은 Java 이외의 언어로 작성하기 위해 MapReduce용 스트리밍 API를 제공합니다."
+title: "HDInsight-Azure와 aaaDevelop Python 스트리밍 MapReduce 작업 | Microsoft Docs"
+description: "자세한 내용은 방법 스트리밍 MapReduce 작업에서 Python toouse 합니다. Hadoop은 Java 이외의 언어로 작성하기 위해 MapReduce용 스트리밍 API를 제공합니다."
 services: hdinsight
 keyword: mapreduce python,python map reduce,python mapreduce
 documentationcenter: 
@@ -17,56 +17,56 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: b86605c49291a99f49c4b2841d46324cfd0db56d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a6ae3ba650b665ecc5839a4ddf5282f8ccfb6bd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-python-streaming-mapreduce-programs-for-hdinsight"></a>HDInsight용 Python 스트리밍 MapReduce 프로그램 개발
 
-MapReduce 작업을 스트리밍하는 데 Python을 사용하는 방법 알아보기 Hadoop은 MapReduce용 스트리밍 API를 제공합니다. 이 API를 사용하여 Java 이외의 언어로 map 및 reduce 함수를 작성할 수 있습니다. 이 문서의 단계는 맵을 구현하고 Python의 구성 요소를 줄입니다.
+자세한 방법을 스트리밍 MapReduce 작업에서 Python toouse 합니다. Hadoop은 MapReduce Java 이외의 언어에서 함수를 줄이려면 없고 toowrite 지도 사용할 수에 대 한 스트리밍 API를 제공 합니다. hello이 문서의 단계 hello 맵 구현 및 Python에서 구성 요소를 줄입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
 * HDInsight 클러스터의 Linux 기반 Hadoop
 
   > [!IMPORTANT]
-  > 이 문서의 단계에는 Linux를 사용하는 HDInsight 클러스터가 필요합니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+  > 이 문서의 단계 hello Linux를 사용 하는 HDInsight 클러스터를 필요 합니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 * 텍스트 편집기
 
   > [!IMPORTANT]
-  > 텍스트 편집기에서 줄 끝으로 LF를 사용해야 합니다. CRLF의 줄 끝을 사용하는 경우 Linux 기반 HDInsight 클러스터에서 MapReduce 작업을 실행할 때 오류가 발생할 수 있습니다.
+  > hello 텍스트 편집기는 hello 줄 끝으로 LF를 사용 해야 합니다. CRLF의 줄 끝을 사용 하 여 Linux 기반 HDInsight 클러스터에서 hello MapReduce 작업을 실행할 때 오류가 발생 합니다.
 
-* `ssh` 및 `scp` 명령 또는 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-3.8.0)
+* hello `ssh` 및 `scp` 명령, 또는 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-3.8.0)
 
 ## <a name="word-count"></a>단어 개수
 
-이 예제는 매퍼와 리듀서를 사용하여 python에서 구현된 기본 단어 수입니다. mapper는 문장을 개별 단어로 끊고 reducer는 출력하기 위해 단어와 개수를 집계합니다.
+이 예제는 매퍼와 리듀서를 사용하여 python에서 구현된 기본 단어 수입니다. hello 매퍼를 개별 단어로 문장을 분리 하며 hello 리 듀 서 hello 단어를 집계 하 고 tooproduce hello 출력을 계산 합니다.
 
-다음 순서도는 map 및 reduce 단계가 어떻게 진행되는지 보여 줍니다.
+hello 순서도 다음 단계를 줄이려면와 hello 맵 중 수행 되 보여 줍니다.
 
-![mapreduce 프로세스의 그림](./media/hdinsight-hadoop-streaming-python/HDI.WordCountDiagram.png)
+![hello mapreduce 프로세스의 그림](./media/hdinsight-hadoop-streaming-python/HDI.WordCountDiagram.png)
 
 ## <a name="streaming-mapreduce"></a>MapReduce 스트리밍
 
-Hadoop을 사용하면 작업에서 사용되는 map 및 reduce 논리를 포함하는 파일을 지정할 수 있습니다. map 및 reduce 논리에 대한 특정 요구 사항은 다음과 같습니다.
+Hadoop toospecify를 파일 hello 맵을 포함 하는 작업에 의해 사용 되는 논리를 줄일 수 있습니다. hello hello에 대 한 특정 요구 사항 매핑 및 논리를 감소 됩니다.
 
-* **입력**: map 및 reduce 구성 요소는 STDIN에서 입력 데이터를 읽어야 합니다.
-* **출력**: map 및 reduce 구성 요소는 STDOUT에 출력 데이터를 작성해야 합니다.
-* **데이터 형식**: 소비되고 생성되는 데이터는 탭 문자로 구분하는 키/값 쌍이어야 합니다
+* **입력**: 줄이고 지도 hello 구성 요소 STDIN에서 입력된 데이터를 읽어야 합니다.
+* **출력**: 줄이고 지도 hello 구성 요소에 출력 데이터 tooSTDOUT 작성 해야 합니다.
+* **데이터 형식**: hello 데이터를 사용 하 고 생성 되는 탭 문자로 구분 되는 키/값 쌍 이어야 합니다.
 
-Python은 STDIN에서 읽을 수 있는 `sys` 모듈 및 STDOUT에 출력하는 `print`를 사용하여 이러한 요구 사항을 쉽게 처리할 수 있습니다. 나머지 작업은 키와 값 사이에 탭(`\t`) 문자를 사용하여 데이터 서식을 지정하기만 하면 됩니다.
+Python hello를 사용 하 여 이러한 요구 사항을 쉽게 처리할 수 `sys` STDIN 및 사용 하 여 모듈 tooread `print` tooprint tooSTDOUT 합니다. hello 나머지 작업은 단순히 서식 탭을 사용 하 여 hello 데이터 (`\t`) hello 키와 값 사이의 문자입니다.
 
-## <a name="create-the-mapper-and-reducer"></a>mapper 및 reducer 만들기
+## <a name="create-hello-mapper-and-reducer"></a>Hello 매퍼 및 리 듀 서 만들기
 
-1. `mapper.py`라는 파일을 만들고 다음 코드를 그 내용으로 사용합니다.
+1. 라는 파일을 만들어 `mapper.py` 사용 하 여 hello hello 내용으로 코드를 다음 및:
 
    ```python
    #!/usr/bin/env python
 
-   # Use the sys module
+   # Use hello sys module
    import sys
 
    # 'file' in this case is STDIN
@@ -76,20 +76,20 @@ Python은 STDIN에서 읽을 수 있는 `sys` 모듈 및 STDOUT에 출력하는 
            yield line.split()
 
    def main(separator='\t'):
-       # Read the data using read_input
+       # Read hello data using read_input
        data = read_input(sys.stdin)
        # Process each word returned from read_input
        for words in data:
            # Process each word
            for word in words:
-               # Write to STDOUT
+               # Write tooSTDOUT
                print '%s%s%d' % (word, separator, 1)
 
    if __name__ == "__main__":
        main()
    ```
 
-2. **reducer.py**라는 파일을 만들고 다음 코드를 그 내용으로 사용합니다.
+2. 라는 파일을 만들어 **reducer.py** 사용 하 여 hello hello 내용으로 코드를 다음 및:
 
    ```python
    #!/usr/bin/env python
@@ -103,22 +103,22 @@ Python은 STDIN에서 읽을 수 있는 `sys` 모듈 및 STDOUT에 출력하는 
    def read_mapper_output(file, separator='\t'):
        # Go through each line
        for line in file:
-           # Strip out the separator character
+           # Strip out hello separator character
            yield line.rstrip().split(separator, 1)
 
    def main(separator='\t'):
-       # Read the data using read_mapper_output
+       # Read hello data using read_mapper_output
        data = read_mapper_output(sys.stdin, separator=separator)
        # Group words and counts into 'group'
        #   Since MapReduce is a distributed process, each word
        #   may have multiple counts. 'group' will have all counts
-       #   which can be retrieved using the word as the key.
+       #   which can be retrieved using hello word as hello key.
        for current_word, group in groupby(data, itemgetter(0)):
            try:
-               # For each word, pull the count(s) for the word
+               # For each word, pull hello count(s) for hello word
                #   from 'group' and create a total count
                total_count = sum(int(count) for current_word, count in group)
-               # Write to stdout
+               # Write toostdout
                print "%s%s%d" % (current_word, separator, total_count)
            except ValueError:
                # Count was not a number, so do nothing
@@ -130,30 +130,30 @@ Python은 STDIN에서 읽을 수 있는 `sys` 모듈 및 STDOUT에 출력하는 
 
 ## <a name="run-using-powershell"></a>PowerShell을 사용하여 실행
 
-파일이 올바른 줄 끝을 가지고 있는지 확인하려면 다음 PowerShell 스크립트를 사용합니다.
+tooensure 파일 hello 오른쪽 줄 끝에 있는 PowerShell 스크립트 뒤 사용 하 여 hello:
 
-[!code-powershell[기본](../../powershell_scripts/hdinsight/streaming-python/streaming-python.ps1?range=138-140)]
+[!code-powershell[main](../../powershell_scripts/hdinsight/streaming-python/streaming-python.ps1?range=138-140)]
 
-다음 PowerShell 스크립트를 사용하여 파일을 업로드하고 작업을 실행하고 출력을 확인합니다.
+다음 PowerShell 스크립트 tooupload hello 파일이 hello를 사용 하 여, hello 작업을 실행 및 hello 출력을 보려면:
 
-[!code-powershell[기본](../../powershell_scripts/hdinsight/streaming-python/streaming-python.ps1?range=5-134)]
+[!code-powershell[main](../../powershell_scripts/hdinsight/streaming-python/streaming-python.ps1?range=5-134)]
 
 ## <a name="run-from-an-ssh-session"></a>SSH 세션에서 실행
 
-1. 개발 환경의 `mapper.py` 및 `reducer.py` 파일과 동일한 디렉터리에서 다음 명령을 사용합니다.
+1. 개발 환경에서의 hello 동일으로 디렉터리 `mapper.py` 및 `reducer.py` 파일을 hello 다음 명령을 사용 합니다.
 
     ```bash
     scp mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:
     ```
 
-    `username`은 클러스터의 SSH 사용자 이름으로, `clustername`은 클러스터 이름으로 바꿉니다.
+    대체 `username` 클러스터에 대 한 SSH 사용자 이름이 hello 및 `clustername` 클러스터의 hello 이름의 합니다.
 
-    이 명령은 로컬 시스템에서 헤드 노드로 파일을 복사합니다.
+    이 명령은 hello 로컬 시스템 toohello 헤드 노드에서 hello 파일을 복사합니다.
 
     > [!NOTE]
-    > SSH 계정을 보호하는 암호를 사용한 경우 암호를 묻는 메시지가 나타납니다. SSH 키를 사용한 경우 `-i` 매개 변수 및 개인 키에 대한 경로를 사용해야 합니다. 예: `scp -i /path/to/private/key mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:`
+    > SSH 계정 암호 toosecure을 사용해 hello 암호에 대 한 메시지가 표시 됩니다. SSH 키를 사용한 경우 toouse hello `-i` 매개 변수 및 hello 경로 toohello 개인 키입니다. 예: `scp -i /path/to/private/key mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:`.
 
-2. SSH를 사용하여 클러스터에 연결합니다.
+2. SSH를 사용 하 여 toohello 클러스터를 연결 합니다.
 
     ```bash
     ssh username@clustername-ssh.azurehdinsight.net`
@@ -161,49 +161,49 @@ Python은 STDIN에서 읽을 수 있는 `sys` 모듈 및 STDOUT에 출력하는 
 
     자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-3. mapper.py 및 reducer.py가 올바른 줄 끝을 가지고 있는지 확인하려면 다음 명령을 사용합니다.
+3. tooensure hello mapper.py 및 reducer.py 줄 끝을 hello 다음 명령을 사용 하 여 hello를 가집니다.
 
     ```bash
     perl -pi -e 's/\r\n/\n/g' mapper.py
     perl -pi -e 's/\r\n/\n/g' reducer.py
     ```
 
-4. 다음 명령을 사용하여 MapReduce 작업을 시작합니다.
+4. 명령 toostart hello MapReduce 작업을 수행 하는 hello를 사용 합니다.
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input /example/data/gutenberg/davinci.txt -output /example/wordcountout
     ```
 
-    다음은 명령어의 일부입니다.
+    이 명령은 hello 부분 뒤에 있습니다.
 
-   * **hadoop-streaming.jar**: 스트리밍 MapReduce 작업을 수행할 때 사용합니다. 제공하는 외부 MapReduce 코드로 Hadoop에 접속합니다.
+   * **hadoop-streaming.jar**: 스트리밍 MapReduce 작업을 수행할 때 사용합니다. Hello 제공 하는 외부 MapReduce 코드로 Hadoop를 인터페이스입니다.
 
-   * **-files**: MapReduce 작업에 지정된 파일을 추가합니다.
+   * **-파일**: 지정 된 hello 추가 파일 toohello MapReduce 작업 합니다.
 
-   * **-mapper**: Hadoop mapper로 사용될 파일을 지정합니다.
+   * **-매퍼**: 지시 Hadoop 매퍼 hello toouse의 파일입니다.
 
-   * **-reducer**: Hadoop reducer로 사용할 파일을 지정합니다.
+   * **-리 듀 서**: 지시 Hadoop 리 듀 서 hello toouse의 파일입니다.
 
-   * **-input**: 단어 수를 계산할 입력 파일을 지정합니다.
+   * **-입력**:에서 단어 수를 계산 해야 하는 hello 입력된 파일입니다.
 
-   * **-output**: 출력 내용을 작성할 디렉터리를 지정합니다.
+   * **-출력**: 출력 hello hello 디렉터리에 기록 됩니다.
 
-    MapReduce 작업이 작동하면 프로세스는 백분율로 표시됩니다.
+    Hello MapReduce 작업을 개발할 때, hello 프로세스 백분율로 표시 됩니다.
 
         15/02/05 19:01:04 INFO mapreduce.Job:  map 0% reduce 0%    15/02/05 19:01:16 INFO mapreduce.Job:  map 100% reduce 0%    15/02/05 19:01:27 INFO mapreduce.Job:  map 100% reduce 100%
 
 
-5. 출력을 보려면 다음 명령을 사용합니다.
+5. 다음 명령을 사용 하 여 hello tooview hello 출력:
 
     ```bash
     hdfs dfs -text /example/wordcountout/part-00000
     ```
 
-    이 명령은 단어 목록과 해당 단어가 나타난 횟수를 표시합니다.
+    이 명령은 발생 한 단어와 hello 단어에 몇 번의 목록이 표시 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-HDInsight에서 스트리밍 MapRedcue 작업을 사용하는 방법을 배웠으므로 이제 아래 링크를 사용하여 Azure HDInsight에서 작업하는 다른 방법을 살펴봅니다.
+이제 MapRedcue 스트리밍 toouse HDInsight와 작업 하는 방법을 설명 했습니다 hello 링크 tooexplore 다음 다른 방법으로 toowork와 함께 사용 하 Azure HDInsight 합니다.
 
 * [HDInsight에서 Hive 사용](hdinsight-use-hive.md)
 * [HDInsight에서 Pig 사용](hdinsight-use-pig.md)

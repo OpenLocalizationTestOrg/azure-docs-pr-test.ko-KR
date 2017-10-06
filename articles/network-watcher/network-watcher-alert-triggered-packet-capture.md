@@ -1,6 +1,6 @@
 ---
-title: "패킷 캡처를 사용하여 경고 및 Azure Functions로 자동 관리 네트워크 모니터링 수행 | Microsoft Docs"
-description: "이 문서에서는 Azure Network Watcher에서 경고로 트리거된 패킷 캡처를 만드는 방법을 설명합니다."
+title: "aaaUse 패킷 캡처 toodo 자동 관리 경고 및 Azure 함수를 사용 하 여 모니터링 네트워크 | Microsoft Docs"
+description: "이 문서에서 설명 하는 경고 toocreate Azure 네트워크 감시자가 있는 패킷 캡처를 실행 하는 방법"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,100 +14,100 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: b813172fc1fc1cc683f463f05370c95bfec10f8d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4722a831f3a9d5537c0e6f53daba4dfc35d0cf24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-packet-capture-for-proactive-network-monitoring-with-alerts-and-azure-functions"></a>경고 및 Azure Functions를 통한 사전 네트워크 모니터링을 위해 패킷 캡처 사용
 
-Network Watcher 패킷 캡처는 가상 컴퓨터 간에 트래픽을 추적하는 캡처 세션을 만듭니다. 캡처 파일은 모니터링할 트래픽만 추적하도록 정의된 필터를 포함할 수 있습니다. 이 데이터는 저장소 BLOB이나 게스트 컴퓨터에 로컬로 저장됩니다.
+네트워크 감시자 패킷 캡처 가상 컴퓨터 내부 및 외부로 tootrack 트래픽 캡처 세션을 만듭니다. hello 캡처 파일에 있을 수 정의 된 필터 tootrack 트래픽 toomonitor 한다는 것을 hello만 합니다. 이 데이터는 다음 저장소 blob에 아니면 hello 게스트 컴퓨터에 로컬로 저장 됩니다.
 
-이 기능은 Azure Functions와 같은 다른 자동화 시나리오에서 원격으로 시작할 수 있습니다. 패킷 캡처는 정의된 네트워크 예외에 따라 사전 캡처를 실행하는 기능을 제공합니다. 또한 네트워크 침입에 대한 정보를 가져오는 네트워크 통계를 수집하는 것을 포함하여 클라이언트 서버 간 통신을 디버깅할 수 있습니다.
+이 기능은 Azure Functions와 같은 다른 자동화 시나리오에서 원격으로 시작할 수 있습니다. 패킷 캡처 제공 기능 toorun 사전 캡처에 따라 hello 네트워크 변칙을 정의 합니다. 또한 네트워크 침입에 대한 정보를 가져오는 네트워크 통계를 수집하는 것을 포함하여 클라이언트 서버 간 통신을 디버깅할 수 있습니다.
 
-Azure에 배포된 리소스는 연중 무휴(24/7) 실행됩니다. 사용자 또는 직원은 연중 무휴 실행되는 모든 리소스의 상태를 적극적으로 모니터링할 수 없습니다. 예를 들어 오전 2시에 문제가 발생하면 어떻게 할까요?
+Azure에 배포된 리소스는 연중 무휴(24/7) 실행됩니다. 모든 리소스 24/7의 hello 상태를, 직원 능동적으로 모니터링할 수 없습니다. 예를 들어 오전 2시에 문제가 발생하면 어떻게 할까요?
 
-Azure 에코시스템 내에서 Network Watcher, Alerting 및 Functions를 사용하면 데이터와 도구에 미리 응답함으로써 네트워크 문제를 해결할 수 있습니다.
+네트워크 감시자를 사용 하 여 경고 및 hello Azure 에코 시스템 내에서 함수 사전으로 응답할 수 있습니다 hello 데이터 및 도구 toosolve 문제 네트워크에 있습니다.
 
 ![시나리오][scenario]
 
 ## <a name="prerequisites"></a>필수 조건
 
-* 최신 버전의 [Azure PowerShell](/powershell/azure/install-azurerm-ps)
+* 최신 버전의 hello [Azure PowerShell](/powershell/azure/install-azurerm-ps)합니다.
 * Network Watcher의 기존 인스턴스. [Network Watcher 인스턴스](network-watcher-create.md)가 아직 없는 경우에는 새로 만듭니다.
-* [Windows 확장](../virtual-machines/windows/extensions-nwa.md) 또는 [Linux 가상 컴퓨터 확장](../virtual-machines/linux/extensions-nwa.md)이 있고 Network Watcher와 동일한 지역에 기존 가상 컴퓨터가 있음
+* Hello에 기존 가상 컴퓨터 네트워크 감시자 hello와 동일한 지역 [Windows 확장](../virtual-machines/windows/extensions-nwa.md) 또는 [Linux 가상 컴퓨터 확장](../virtual-machines/linux/extensions-nwa.md)합니다.
 
 ## <a name="scenario"></a>시나리오
 
-이 예제에서는 VM이 평소보다 더 많은 TCP 세그먼트를 보내고 있으며 이를 경고하려고 합니다. 여기서는 TCP 세그먼트가 예로 사용되지만 경고 조건을 사용할 수 있습니다.
+이 예제에서는 VM은, 평소 보다 더 많은 TCP 세그먼트 보내고 경고를 발생 시킬 toobe 원하는 합니다. 여기서는 TCP 세그먼트가 예로 사용되지만 경고 조건을 사용할 수 있습니다.
 
-경고를 보낸 경우, 통신이 증가한 이유를 알기 위해 패킷 수준 데이터를 수신하려고 할 것입니다. 그런 후에는 가상 컴퓨터를 일반 통신으로 반환하는 단계를 수행할 수 있습니다.
+경고가 표시 될 때 원하는 tooreceive 패킷 수준 데이터 toounderstand 이유 통신 증가 했습니다. 그런 다음 tooreturn hello 가상 컴퓨터 tooregular 통신 단계를 수행할 수 있습니다.
 
 이 시나리오에서는 Network Watcher의 기존 인스턴스가 있고 유효한 가상 컴퓨터를 포함하는 리소스 그룹이 있다고 가정합니다.
 
-다음 목록은 수행되는 워크플로 개요입니다.
+다음 목록 hello은 일어나는 hello 워크플로에 대 한 개요입니다.
 
 1. 경고는 VM에서 트리거됩니다.
-1. 경고는 웹후크를 통해 Azure Function을 호출합니다.
-1. Azure Function은 경고를 처리하고 Network Watcher 패킷 캡처 세션을 시작합니다.
-1. 패킷 캡처는 VM에서 실행되고 트래픽을 수집합니다.
-1. 이 패킷 캡처 파일은 검토 및 진단을 위해 저장소 계정에 업로드됩니다.
+1. hello 경고는 webhook 통해 Azure 함수를 호출합니다.
+1. 사용자가 Azure 함수 hello 경고를 처리 하 고 네트워크 감시자 패킷 캡처 세션을 시작 합니다.
+1. hello 패킷 캡처 hello VM에서 실행 되 고 트래픽을 수집 합니다.
+1. hello 패킷 캡처 파일을 업로드 tooa 저장소 계정을 검토 하 고 진단 합니다.
 
-이 프로세스를 자동화하려면, 인시던트가 발생할 때 VM에서 트리거할 경고를 만들고 연결합니다. 또한 Network Watcher를 호출하기 위한 함수를 만듭니다.
+tooautomate이이 프로세스를 생성 하 고 hello 사고가 발생 하는 경우 경고 우리의 VM tootrigger에 연결 합니다. 또한 함수 toocall을 네트워크 감시자를 만듭니다.
 
-이 시나리오는 다음을 수행합니다.
+이 시나리오는 다음 hello지 않습니다.
 
 * 패킷 캡처를 시작하는 Azure 함수를 만듭니다.
-* 가상 컴퓨터에 대한 경고 규칙을 만들고 Azure Function을 호출할 경고 규칙을 구성합니다.
+* 가상 컴퓨터에서 경고 규칙을 만들고 hello 경고 규칙 toocall hello Azure 함수를 구성 합니다.
 
 ## <a name="create-an-azure-function"></a>Azure Function 만들기
 
-첫 번째 단계는 경고를 처리할 Azure Function을 만들고 패킷 캡처를 만드는 것입니다.
+hello 첫 번째 단계 toocreate Azure 함수 tooprocess hello 경고 이며 패킷 캡처를 만듭니다.
 
-1. [Azure Portal](https://portal.azure.com)에서 **새로 만들기** > **계산** > **함수 앱**을 차례로 선택합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com)선택, **새로** > **계산** > **함수 앱**합니다.
 
     ![함수 앱 만들기][1-1]
 
-2. **함수 앱** 블레이드에서 다음 값을 입력하고 **확인**을 선택하여 앱을 만듭니다.
+2. Hello에 **함수 앱** 블레이드에서 hello 다음 값을 입력 한 다음 선택 **확인** toocreate hello 앱:
 
     |**설정** | **값** | **세부 정보** |
     |---|---|---|
-    |**앱 이름**|PacketCaptureExample|함수 앱의 이름입니다.|
-    |**구독**|[구독]함수 앱을 만들 구독입니다.||
-    |**리소스 그룹**|PacketCaptureRG|함수 앱을 포함할 리소스 그룹입니다.|
-    |**호스팅 계획**|소비 계획| 함수 앱이 사용하는 계획 유형입니다. 옵션은 소비 계획 또는 Azure App Service 계획입니다. |
-    |**위치**:|미국 중부| 함수 앱을 만들 지역입니다.|
-    |**저장소 계정**|{autogenerated}| 범용 저장소용으로 Azure Functions에 필요한 저장소 계정입니다.|
+    |**앱 이름**|PacketCaptureExample|hello 함수 앱의 hello 이름입니다.|
+    |**구독**|[구독] hello toocreate hello 함수 앱에 대 한 구독.||
+    |**리소스 그룹**|PacketCaptureRG|hello 리소스 그룹 toocontain hello 함수는 응용 프로그램.|
+    |**호스팅 계획**|소비 계획| hello 유형의 함수 앱 사용을 계획 합니다. 옵션은 소비 계획 또는 Azure App Service 계획입니다. |
+    |**위치**:|미국 중부| 어떤 toocreate hello 함수 앱의 hello 영역입니다.|
+    |**저장소 계정**|{autogenerated}| 범용 저장소에 필요한 Azure 함수 hello 저장소 계정입니다.|
 
-3. **PacketCaptureExample** 함수 앱 블레이드에서 **함수** > **사용자 지정 함수** >**+**를 선택합니다.
+3. Hello에 **PacketCaptureExample 기능 앱** 블레이드를 **함수** > **사용자 정의 함수**  >  **+**.
 
-4. **HttpTrigger-Powershell**을 선택하고 나머지 정보를 입력합니다. 마지막으로 함수를 만들려면 **만들기**를 선택합니다.
+4. 선택 **HttpTrigger Powershell**, hello 남은 정보를 입력 합니다. 마지막으로, toocreate hello 함수를 선택 **만들기**합니다.
 
     |**설정** | **값** | **세부 정보** |
     |---|---|---|
     |**시나리오**|실험적|시나리오 유형|
-    |**함수 이름 지정**|AlertPacketCapturePowerShell|함수의 이름|
-    |**권한 부여 수준**|함수|함수에 대한 권한 부여 수준|
+    |**함수 이름 지정**|AlertPacketCapturePowerShell|Hello 함수의 이름|
+    |**권한 부여 수준**|함수|Hello 함수에 대 한 권한 수준|
 
 ![함수 예제][functions1]
 
 > [!NOTE]
-> PowerShell 템플릿은 실험적이며 완전한 지원을 제공하지 않습니다.
+> hello PowerShell 템플릿 실험적이 며 완벽 하 게 지원이 없습니다.
 
-이 예제에는 사용자 지정이 필요하며 다음 단계에서 설명합니다.
+사용자 지정 단계를 수행 하는 hello 설명 및이 예제에 대 한 필요 합니다.
 
 ### <a name="add-modules"></a>모듈 추가
 
-Network Watcher PowerShell cmdlet을 사용하려면 최신 PowerShell 모듈을 함수 앱에 업로드합니다.
+네트워크 감시자 PowerShell cmdlet toouse hello 최신 PowerShell 모듈 toohello 함수 앱을 업로드 합니다.
 
-1. 최신 Azure PowerShell 모듈이 설치된 로컬 컴퓨터에서 다음 PowerShell 명령을 실행합니다.
+1. 설치 된 hello 최신 Azure PowerShell 모듈을 통해 로컬 컴퓨터, hello 다음 PowerShell 명령을 실행 합니다.
 
     ```powershell
     (Get-Module AzureRM.Network).Path
     ```
 
-    이 예제에서는 Azure PowerShell 모듈의 로컬 경로가 제공됩니다. 이러한 폴더는 이후 단계에서 사용됩니다. 이 시나리오에서 사용되는 모듈은 다음과 같습니다.
+    이 예제에서는 Azure PowerShell 모듈의 로컬 경로 hello 합니다. 이러한 폴더는 이후 단계에서 사용됩니다. 이 시나리오에 사용 되는 hello 모듈은:
 
     * AzureRM.Network
 
@@ -117,11 +117,11 @@ Network Watcher PowerShell cmdlet을 사용하려면 최신 PowerShell 모듈을
 
     ![PowerShell 폴더][functions5]
 
-1. **함수 앱 설정** > **App Service 편집기로 이동**을 선택합니다.
+1. 선택 **앱 설정을 함수** > **tooApp 서비스 편집기 이동**합니다.
 
     ![함수 앱 설정][functions2]
 
-1. **AlertPacketCapturePowershell** 폴더를 마우스 오른쪽 단추로 클릭하고 **azuremodules**라는 폴더를 만듭니다. 
+1. 마우스 오른쪽 단추로 클릭 hello **AlertPacketCapturePowershell** 폴더를 다음 라는 폴더를 만듭니다 **azuremodules**합니다. 
 
 4. 필요한 각 모듈에 대한 하위 폴더를 만듭니다.
 
@@ -133,28 +133,28 @@ Network Watcher PowerShell cmdlet을 사용하려면 최신 PowerShell 모듈을
 
     * AzureRM.Resources
 
-1. **AzureRM.Network** 하위 폴더를 마우스 오른쪽 단추로 클릭하고 **파일 업로드**를 선택합니다. 
+1. 마우스 오른쪽 단추로 클릭 hello **AzureRM.Network** 하위 폴더를 선택한 후 **파일 업로드**합니다. 
 
-6. Azure 모듈로 이동합니다. 로컬 **AzureRM.Network** 폴더에서 폴더의 모든 파일을 선택합니다. 그런 다음 **확인**을 선택합니다. 
+6. Azure tooyour 이동 모듈입니다. Hello 로컬에서 **AzureRM.Network** 폴더 hello 폴더에 모든 hello 파일을 선택 합니다. 그런 다음 **확인**을 선택합니다. 
 
 7. **AzureRM.Profile** 및 **AzureRM.Resources**에 대해 이러한 단계를 반복합니다.
 
     ![파일 업로드][functions6]
 
-1. 완료되면 로컬 컴퓨터의 각 폴더에 PowerShell 모듈 파일이 있어야 합니다.
+1. 완료 한 후, 각 폴더에는 로컬 컴퓨터에서 PowerShell 모듈 파일 hello 있어야 합니다.
 
     ![PowerShell 파일][functions7]
 
 ### <a name="authentication"></a>인증
 
-PowerShell cmdlet을 사용하려면 인증해야 합니다. 함수 앱에서 인증을 구성합니다. 인증을 구성하려면 환경 변수를 구성하고 암호화된 키 파일을 함수 앱에 업로드합니다.
+인증 해야 toouse hello PowerShell cmdlet을 사용 합니다. Hello 함수 응용 프로그램에서 인증을 구성 합니다. tooconfigure 인증 환경 변수를 구성 하 고 암호화 된 키 파일 toohello 함수 앱을 업로드 해야 합니다.
 
 > [!NOTE]
-> 이 시나리오에서는 Azure Functions를 사용하여 인증을 구현하는 방법에 대한 하나의 예제를 제공합니다. 이 작업은 다른 방법으로도 수행할 수 있습니다.
+> 이 시나리오는 방법의 한 예를 제공 합니다. Azure 함수로 tooimplement 인증 합니다. 있는 경우 다른 방법으로 toodo이
 
 #### <a name="encrypted-credentials"></a>암호화된 자격 증명
 
-다음 PowerShell 스크립트는 **PassEncryptKey.key**라는 키 파일을 만듭니다. 또한 제공된 암호의 암호화된 버전을 제공합니다. 이 암호는 인증에 사용되는 Azure Active Directory 응용 프로그램에 대해 정의된 것과 동일한 암호입니다.
+PowerShell 스크립트 뒤 hello 라는 키 파일을 만들어 **PassEncryptKey.key**합니다. 또한 제공 되는 hello 암호의 암호화 된 버전을 제공 합니다. 이 암호는 hello 인증에 사용 되는 hello Azure Active Directory 응용 프로그램에 대해 정의 된 동일한 암호입니다.
 
 ```powershell
 #Variables
@@ -173,13 +173,13 @@ $Encryptedpassword = $secPw | ConvertFrom-SecureString -Key $AESKey
 $Encryptedpassword
 ```
 
-함수 앱의 App Service 편집기에서 **AlertPacketCapturePowerShell** 아래에 **keys**라는 폴더를 만듭니다. 그런 다음 이전 PowerShell 샘플에서 만든 **PassEncryptKey.key** 파일을 업로드합니다.
+Hello 함수 응용 프로그램의 응용 프로그램 서비스 편집기 hello 라는 폴더를 만들어 **키** 아래 **AlertPacketCapturePowerShell**합니다. 그런 다음 hello 업로드 **PassEncryptKey.key** hello 이전 PowerShell 샘플에서 만든 파일입니다.
 
 ![함수 키][functions8]
 
 ### <a name="retrieve-values-for-environment-variables"></a>환경 변수의 값 검색
 
-최종 요구 사항은 인증에 대한 값에 액세스하는 데 필요한 환경 변수를 설정하는 것입니다. 다음은 만들어지는 환경 변수의 목록입니다.
+hello 최종 요구 사항은 tooset hello 환경 변수를 인증에 대 한 필요한 tooaccess hello 값입니다. hello 다음은 만들어진 hello 환경 변수.
 
 * AzureClientID
 
@@ -190,9 +190,9 @@ $Encryptedpassword
 
 #### <a name="azureclientid"></a>AzureClientID
 
-클라이언트 ID는 Azure Active Directory에 있는 응용 프로그램의 응용 프로그램 ID입니다.
+hello 클라이언트 ID는 hello Azure Active Directory에서 응용 프로그램의 응용 프로그램 ID입니다.
 
-1. 사용할 응용 프로그램이 아직 없으면 다음 예제를 실행하여 응용 프로그램을 만듭니다.
+1. 응용 프로그램 toouse 없는 경우 다음 예제에서는 toocreate hello 응용 프로그램을 실행 합니다.
 
     ```powershell
     $app = New-AzureRmADApplication -DisplayName "ExampleAutomationAccount_MF" -HomePage "https://exampleapp.com" -IdentifierUris "https://exampleapp1.com/ExampleFunctionsAccount" -Password "<same password as defined earlier>"
@@ -202,19 +202,19 @@ $Encryptedpassword
     ```
 
    > [!NOTE]
-   > 응용 프로그램을 만들 때 사용되는 암호는 이전에 키 파일을 저장할 때 만든 암호와 동일해야 합니다.
+   > hello 있어야 hello 응용 프로그램을 만들 때 사용 하는 hello 암호 hello 키 파일을 저장할 때 앞에서 만든 동일한 암호입니다.
 
-1. Azure Portal에서 **구독**을 선택합니다. 사용할 구독을 선택하고 **액세스 제어(IAM)**를 선택합니다.
+1. Hello Azure 포털에서에서 선택 **구독**합니다. Hello 구독 toouse를 선택한 다음 선택 **액세스 제어 (IAM)**합니다.
 
     ![함수 IAM][functions9]
 
-1. 사용할 계정을 선택하고 **속성**을 클릭합니다. 응용 프로그램 ID를 복사합니다.
+1. Hello 계정 toouse를 선택한 다음 선택 **속성**합니다. 복사 hello 응용 프로그램 id입니다.
 
     ![함수 응용 프로그램 ID][functions10]
 
 #### <a name="azuretenant"></a>AzureTenant
 
-다음 PowerShell 샘플을 실행하여 테넌트 ID를 얻습니다.
+Hello 다음 PowerShell 예제를 실행 하 여 hello 테 넌 트 ID를 가져옵니다.
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "<subscriptionName>").TenantId
@@ -222,7 +222,7 @@ $Encryptedpassword
 
 #### <a name="azurecredpassword"></a>AzureCredPassword
 
-AzureCredPassword 환경 변수의 값은 다음 PowerShell 샘플을 실행하여 얻는 값입니다. 이 예제는 이전의 **암호화된 자격 증명** 섹션에 표시된 것과 동일합니다. 필요한 값은 `$Encryptedpassword` 변수의 출력입니다.  이 암호는 PowerShell 스크립트를 사용하여 암호화한 서비스 주체 암호입니다.
+hello hello AzureCredPassword 환경 변수 값은 다음 PowerShell 샘플 hello 실행에서 얻을 수 있는 hello 값입니다. 이 예제는 hello 앞에 표시 된 것 동일한 hello는 **자격 증명을 암호화** 섹션. 필요한 값 hello hello의 hello 출력이 `$Encryptedpassword` 변수입니다.  이것이 hello PowerShell 스크립트를 사용 하 여 암호화 hello 서비스 사용자 암호입니다.
 
 ```powershell
 #Variables
@@ -241,30 +241,30 @@ $Encryptedpassword = $secPw | ConvertFrom-SecureString -Key $AESKey
 $Encryptedpassword
 ```
 
-### <a name="store-the-environment-variables"></a>환경 변수 저장
+### <a name="store-hello-environment-variables"></a>Hello 환경 변수를 저장 합니다.
 
-1. 함수 앱으로 돌아갑니다. 그런 후 **함수 앱 설정** > **앱 설정 구성**을 선택합니다.
+1. Toohello 함수 응용 프로그램을 이동 합니다. 그런 후 **함수 앱 설정** > **앱 설정 구성**을 선택합니다.
 
     ![앱 설정 구성][functions11]
 
-1. 환경 변수와 해당 값을 앱 설정에 추가하고 **저장**을 선택합니다.
+1. Hello 환경 변수 및 해당 값 toohello 응용 프로그램 설정을 추가 하 고 다음 선택 **저장**합니다.
 
     ![앱 설정][functions12]
 
-### <a name="add-powershell-to-the-function"></a>함수에 PowerShell 추가
+### <a name="add-powershell-toohello-function"></a>PowerShell toohello 함수 추가
 
-이제 Azure Function 내에서 Network Watcher를 호출할 차례입니다. 요구 사항에 따라 이 함수의 구현이 달라질 수 있습니다. 하지만 코드의 일반적인 흐름은 다음과 같습니다.
+Hello Azure 함수 내에서 네트워크 감시자를 호출 하는 시간 toomake 있습니다. 이 함수의 구현은 hello는 hello 요구 사항에 따라 달라질 수 있습니다. 그러나 hello 코드의 hello 일반적인 흐름은 다음과 같습니다.
 
 1. 입력 매개 변수를 처리합니다.
-2. 기존 패킷 캡처를 쿼리하여 한도를 확인하고 이름 충돌을 해결합니다.
+2. 쿼리 기존 패킷을 tooverify 제한 캡처하고 이름 충돌을 해결 합니다.
 3. 적절한 매개 변수를 사용하여 패킷 캡처를 만듭니다.
 4. 완료될 때까지 패킷 캡처를 주기적으로 폴링합니다.
-5. 사용자에게 패킷 캡처 세션이 완료되었음을 알립니다.
+5. Hello 패킷 캡처 세션이 완료 될 hello 사용자에 게 알립니다.
 
-다음 예제는 함수에서 사용할 수 있는 PowerShell 코드입니다. **subscriptionId**, **resourceGroupName** 및 **storageAccountName**에 대해 바꿔야 하는 값이 있습니다.
+hello 다음 예제는 hello 함수에서 사용할 수 있는 PowerShell 코드. 에 대 한 대체 toobe 해야 하는 값이 없는 **subscriptionId**, **resourceGroupName**, 및 **storageAccountName**합니다.
 
 ```powershell
-            #Import Azure PowerShell modules required to make calls to Network Watcher
+            #Import Azure PowerShell modules required toomake calls tooNetwork Watcher
             Import-Module "D:\home\site\wwwroot\AlertPacketCapturePowerShell\azuremodules\AzureRM.Profile\AzureRM.Profile.psd1" -Global
             Import-Module "D:\home\site\wwwroot\AlertPacketCapturePowerShell\azuremodules\AzureRM.Network\AzureRM.Network.psd1" -Global
             Import-Module "D:\home\site\wwwroot\AlertPacketCapturePowerShell\azuremodules\AzureRM.Resources\AzureRM.Resources.psd1" -Global
@@ -272,7 +272,7 @@ $Encryptedpassword
             #Process alert request body
             $requestBody = Get-Content $req -Raw | ConvertFrom-Json
 
-            #Storage account ID to save captures in
+            #Storage account ID toosave captures in
             $storageaccountid = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}"
 
             #Packet capture vars
@@ -292,7 +292,7 @@ $Encryptedpassword
             Add-AzureRMAccount -ServicePrincipal -Tenant $tenant -Credential $credential #-WarningAction SilentlyContinue | out-null
 
 
-            #Get the VM that fired the alert
+            #Get hello VM that fired hello alert
             if($requestBody.context.resourceType -eq "Microsoft.Compute/virtualMachines")
             {
                 Write-Output ("Subscription ID: {0}" -f $requestBody.context.subscriptionId)
@@ -300,20 +300,20 @@ $Encryptedpassword
                 Write-Output ("Resource Name:  {0}" -f $requestBody.context.resourceName)
                 Write-Output ("Resource Type:  {0}" -f $requestBody.context.resourceType)
 
-                #Get the Network Watcher in the VM's region
+                #Get hello Network Watcher in hello VM's region
                 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq $requestBody.context.resourceRegion}
                 $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $nw.ResourceGroupName
 
                 #Get existing packetCaptures
                 $packetCaptures = Get-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher
 
-                #Remove existing packet capture created by the function (if it exists)
+                #Remove existing packet capture created by hello function (if it exists)
                 $packetCaptures | %{if($_.Name -eq $packetCaptureName)
                 { 
                     Remove-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher -PacketCaptureName $packetCaptureName
                 }}
 
-                #Initiate packet capture on the VM that fired the alert
+                #Initiate packet capture on hello VM that fired hello alert
                 if ((Get-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher).Count -lt $packetCaptureLimit){
                     echo "Initiating Packet Capture"
                     New-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher -TargetVirtualMachineId $requestBody.context.resourceId -PacketCaptureName $packetCaptureName -StorageAccountId $storageaccountid -TimeLimitInSeconds $packetCaptureDuration
@@ -321,56 +321,56 @@ $Encryptedpassword
                 }
             } 
  ``` 
-#### <a name="retrieve-the-function-url"></a>함수 URL 검색 
-1. 함수를 만들었으면 함수와 연결된 URL을 호출하는 경고를 구성합니다. 이 값을 가져오려면 함수 앱에서 함수 URL을 복사합니다.
+#### <a name="retrieve-hello-function-url"></a>Hello 함수 URL을 검색 합니다. 
+1. 함수를 만든 후 hello 함수와 관련 된 경고 toocall hello URL을 구성 합니다. tooget이이 값을 함수 앱에서 hello 함수 URL 복사 합니다.
 
-    ![함수 URL 찾기][functions13]
+    ![Hello 함수 URL 찾기][functions13]
 
-2. 함수 앱의 함수 URL을 복사합니다.
+2. 함수에서 사용 하는 앱에 대 한 hello 함수 URL을 복사 합니다.
 
-    ![함수 URL 복사][2]
+    ![Hello 함수 URL 복사][2]
 
-웹후크 POST 요청의 페이로드에 사용자 지정 속성이 필요한 경우 [Azure 메트릭 경고에 대한 웹후크 구성](../monitoring-and-diagnostics/insights-webhooks-alerts.md)을 참조하세요.
+Hello webhook POST 요청의 hello 페이로드에 사용자 지정 속성을 필요한 경우 너무 참조[Azure 메트릭 경고에는 webhook 구성](../monitoring-and-diagnostics/insights-webhooks-alerts.md)합니다.
 
 ## <a name="configure-an-alert-on-a-vm"></a>VM에서 경고 구성
 
-특정 메트릭이 여기에 할당된 임계값을 초과할 경우 개인에게 알리도록 경고를 구성할 수 있습니다. 이 예에서 경고는 전송된 TCP 세그먼트에 대해 이루어지지만 많은 다른 메트릭에 대해 경고를 트리거할 수 있습니다. 이 예에서는 함수를 호출하는 웹후크를 호출하도록 경고를 구성했습니다.
+특정 메트릭을 할당 되는 임계값을 초과할 때 경고가 구성 된 toonotify 개인 될 수 있습니다 tooit 합니다. 이 예제에서는 hello 경고는 hello에 전송 된 TCP 세그먼트 있지만 다른 많은 메트릭에 대 한 hello 경고를 트리거할 수 있습니다. 이 예제에서는 경고에는 구성 된 toocall webhook toocall hello 함수는.
 
-### <a name="create-the-alert-rule"></a>경고 규칙 만들기
+### <a name="create-hello-alert-rule"></a>Hello 경고 규칙 만들기
 
-기존 가상 컴퓨터로 이동하고 경고 규칙을 추가합니다. 경고 구성에 대한 보다 자세한 설명서는 [Azure 서비스에 대한 Azure Monitor에서 경고 만들기 - Azure Portal](../monitoring-and-diagnostics/insights-alerts-portal.md)에서 확인할 수 있습니다. **경고 규칙** 블레이드에 다음 값을 입력하고 **확인**을 선택합니다.
+Tooan 기존 가상 컴퓨터를 이동 하 고 경고 규칙을 추가 합니다. 경고 구성에 대한 보다 자세한 설명서는 [Azure 서비스에 대한 Azure Monitor에서 경고 만들기 - Azure Portal](../monitoring-and-diagnostics/insights-alerts-portal.md)에서 확인할 수 있습니다. 다음 hello에 대 한 값에는 hello 입력 **경고 규칙** 블레이드에서 다음을 선택 하 고 **확인**합니다.
 
   |**설정** | **값** | **세부 정보** |
   |---|---|---|
-  |**Name**|TCP_Segments_Sent_Exceeded|경고 규칙의 이름입니다.|
-  |**설명**|전송된 TCP 세그먼트가 임계값을 초과함|경고 규칙에 대한 설명입니다.||
-  |**메트릭**|전송된 TCP 세그먼트| 경고를 트리거하는 데 사용할 메트릭입니다. |
-  |**Condition**|다음보다 큼| 메트릭을 평가할 때 사용할 조건입니다.|
-  |**임계값**|100| 경고를 트리거하는 메트릭의 값입니다. 이 값은 사용자 환경에 적합한 값으로 설정해야 합니다.|
-  |**기간**|지난 5분 이상| 메트릭에서 임계값을 검색할 기간을 결정합니다.|
-  |**웹후크**|[함수 앱에서 웹후크 URL]| 이전 단계에서 만든 함수 앱의 웹후크 URL입니다.|
+  |**Name**|TCP_Segments_Sent_Exceeded|Hello 경고 규칙의 이름입니다.|
+  |**설명**|전송된 TCP 세그먼트가 임계값을 초과함|hello 경고 규칙에 대 한 hello 설명입니다.||
+  |**메트릭**|전송된 TCP 세그먼트| hello 메트릭 toouse tootrigger hello 경고입니다. |
+  |**Condition**|다음보다 큼| hello 조건 toouse hello 메트릭을 평가 하는 경우입니다.|
+  |**임계값**|100| hello 경고를 트리거하는 hello 메트릭의 hello 값입니다. 이 값은 사용자 환경에 대 한 유효한 값 tooa 설정 되어야 합니다.|
+  |**기간**|지난 5 분 동안 hello를 통해| Hello 임계값 메트릭 hello에 대 한 어떤 toolook hello 기간을 결정합니다.|
+  |**웹후크**|[함수 앱에서 웹후크 URL]| hello 이전 단계에서 만든 hello 함수 응용 프로그램에서 hello webhook URL입니다.|
 
 > [!NOTE]
-> 기본적으로 TCP 세그먼트 메트릭은 사용되지 않도록 설정됩니다. [모니터링 및 진단 사용](../monitoring-and-diagnostics/insights-how-to-use-diagnostics.md)을 방문하여 추가 메트릭을 설정하는 방법에 대해 자세히 알아보세요.
+> hello TCP 세그먼트 메트릭은 기본적으로 사용 되지 않습니다. 에 대 한 자세한 방법에 대 한 방문 하 여 추가 메트릭을 tooenable [모니터링을 활성화 및 진단](../monitoring-and-diagnostics/insights-how-to-use-diagnostics.md)합니다.
 
-## <a name="review-the-results"></a>결과 검토
+## <a name="review-hello-results"></a>Hello 결과 검토
 
-경고 트리거에 대한 기준에 도달하면 패킷 캡처가 만들어집니다. Network Watcher로 이동한 다음 **패킷 캡처**를 선택합니다. 이 페이지에서 패킷 캡처 파일 링크를 선택하여 패킷 캡처를 다운로드할 수 있습니다.
+Hello 조건을 hello 경고 트리거에 대 한 패킷 캡처가 만들어집니다. TooNetwork 감시자에서 이동한 다음 선택 **패킷 캡처**합니다. 이 페이지에서는 hello 패킷 캡처 파일 링크 toodownload hello 패킷 캡처를 선택할 수 있습니다.
 
 ![패킷 캡처 보기][functions14]
 
-캡처 파일이 로컬에 저장된 경우 가상 컴퓨터에 로그인하여 캡처 파일을 검색합니다.
+Hello 캡처 파일을 로컬에 저장 하는 경우 toohello 가상 컴퓨터에 로그인 하 여 검색할 수 있습니다.
 
 Azure Storage 계정에서 파일을 다운로드하는 방법에 대한 지침은 [.NET을 사용하여 Azure Blob Storage 시작](../storage/blobs/storage-dotnet-how-to-use-blobs.md)을 참조하세요. 사용할 수 있는 다른 도구는 [저장소 탐색기](http://storageexplorer.com/)입니다.
 
-캡처를 다운로드했으면 **.cap** 파일을 읽을 수 있는 도구를 사용하여 볼 수 있습니다. 다음은 이러한 두 도구에 대한 링크입니다.
+캡처를 다운로드했으면 **.cap** 파일을 읽을 수 있는 도구를 사용하여 볼 수 있습니다. 다음은 이러한 도구의 tootwo 링크:
 
 - [Microsoft Message Analyzer](https://technet.microsoft.com/library/jj649776.aspx)
 - [WireShark](https://www.wireshark.org/)
 
 ## <a name="next-steps"></a>다음 단계
 
-[Wireshark로 패킷 캡처 분석](network-watcher-deep-packet-inspection.md)에서 패킷 캡처를 보는 방법을 자세히 알아보세요.
+어떻게 tooview 패킷 캡처합니다 방문에 알아봅니다 [wireshark 패킷 캡처 분석](network-watcher-deep-packet-inspection.md)합니다.
 
 
 [1]: ./media/network-watcher-alert-triggered-packet-capture/figure1.png

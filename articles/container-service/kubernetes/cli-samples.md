@@ -1,5 +1,5 @@
 ---
-title: "Azure Container Service 스크립트 샘플 | Microsoft Docs"
+title: "컨테이너 서비스 스크립트 샘플 aaaAzure | Microsoft Docs"
 description: "Azure Container Service 스크립트 샘플"
 services: container-service
 documentationcenter: 
@@ -17,15 +17,15 @@ ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: b56c45fc711cc2831adde80617b14a82601b49e7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8c655a1c2a13c5636211ba8333c0e7a338b1e79a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cli-samples-for-azure-container-service"></a>Azure Container Service에 대한 Azure CLI 샘플
 
-다음 테이블은 Azure CLI를 사용하여 빌드된 bash 셸에 대한 링크를 포함합니다.
+hello 다음 표는 hello Azure CLI를 사용 하 여 빌드된 링크 toobash 스크립트.
 
 | | |
 |---|---|

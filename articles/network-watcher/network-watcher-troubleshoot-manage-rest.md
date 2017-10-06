@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher를 사용하여 Virtual Network 게이트웨이 및 연결 문제 해결 - REST | Microsoft Docs"
-description: "REST를 사용하여 Azure Network Watcher에서 Virtual Network 게이트웨이 및 연결 문제를 해결하는 방법을 설명합니다."
+title: "aaaTroubleshoot 가상 네트워크 게이트웨이 및 연결 사용 Azure 네트워크 감시자-REST | Microsoft Docs"
+description: "이 페이지에서는 REST을 tootroubleshoot 가상 네트워크 게이트웨이 및 Azure 네트워크 감시자를 사용 하 여 연결 하는 방법을 설명합니다"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: gwallace
-ms.openlocfilehash: bc61be74d85a309c158716460b918baaf4fa94dc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cc89b46643fdbfefe53727b45d6b7d06914b58a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-virtual-network-gateway-and-connections-using-azure-network-watcher"></a>Azure Network Watcher를 사용하여 Virtual Network 게이트웨이 및 연결 문제 해결
 
@@ -29,24 +29,24 @@ ms.lasthandoff: 08/29/2017
 > - [CLI 2.0](network-watcher-troubleshoot-manage-cli.md)
 > - [REST API](network-watcher-troubleshoot-manage-rest.md)
 
-Network Watcher는 Azure에서 네트워크 리소스를 이해하는 데 관련된 다양한 기능을 제공합니다. 이러한 기능 중 하나는 리소스 문제 해결입니다. 리소스 문제 해결은 포털, PowerShell, CLI 또는 REST API를 통해 호출할 수 있습니다. Network Watcher가 호출되면 Virtual Network 게이트웨이 또는 연결의 상태를 검사하거나 해당 결과를 반환합니다.
+네트워크 감시자 toounderstanding Azure의 네트워크 리소스 관련해 서 다양 한 기능을 제공 합니다. 이러한 기능 중 하나는 리소스 문제 해결입니다. 리소스 문제를 해결 하는 hello 포털, PowerShell, CLI 또는 REST API를 통해 호출할 수 있습니다. 호출 되 면 네트워크 감시자 가상 네트워크 게이트웨이 또는 연결의 hello 상태를 검사 하 고 해당 결과 반환 합니다.
 
-이 문서에서는 리소스 문제 해결을 위해 현재 사용할 수 있는 여러 관리 태스크를 설명합니다.
+이 문서는 현재 리소스 문제 해결을 위해 사용할 수 있는 hello 다른 관리 작업을 안내 합니다.
 
 - [**Virtual Network 게이트웨이 문제 해결**](#troubleshoot-a-virtual-network-gateway)
 - [**연결 문제 해결**](#troubleshoot-connections)
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
+ARMclient는 PowerShell을 사용 하 여 사용 되는 toocall hello REST API입니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
 
-이 시나리오에서는 사용자가 Network Watcher를 만드는 [Network Watcher 만들기](network-watcher-create.md)의 단계를 이미 수행했다고 가정합니다.
+이 시나리오에서는 hello 단계에 따라 이미 가정 [네트워크 감시자를 만들](network-watcher-create.md) toocreate 네트워크 감시자 합니다.
 
 지원되는 게이트웨이 유형 목록을 보려면 [지원되는 게이트웨이 유형](network-watcher-troubleshoot-overview.md#supported-gateway-types)을 방문하세요.
 
 ## <a name="overview"></a>개요
 
-Network Watcher 문제 해결은 Virtual Network 게이트웨이 및 연결에 발생한 문제를 해결하는 기능을 제공합니다. 리소스 문제 해결을 요청하는 경우 로그를 쿼리하고 검사합니다. 검사가 완료되면 결과가 반환됩니다. 문제 해결 API 요청은 장기 실행 요청이며 결과를 반환하는 데 몇 분이 걸릴 수 있습니다. 로그는 저장소 계정의 컨테이너에 저장됩니다.
+Hello 기능을 제공 네트워크 감시자 문제 해결 가상 네트워크 게이트웨이 및 연결 때 발생 하는 문제를 해결 합니다. 요청을 만들 때 toohello 리소스 문제 해결, 로그 쿼리 고 검사 합니다. 검사 완료 되 면 hello 결과가 반환 됩니다. hello 해결 API 요청은 오래 실행 중인 요청 여러 분 tooreturn 결과 소요 될 수 있습니다. 로그는 저장소 계정의 컨테이너에 저장됩니다.
 
 ## <a name="log-in-with-armclient"></a>ARMClient에 로그인
 
@@ -57,9 +57,9 @@ armclient login
 ## <a name="troubleshoot-a-virtual-network-gateway"></a>Virtual Network 게이트웨이 문제 해결
 
 
-### <a name="post-the-troubleshoot-request"></a>문제 해결 요청 게시
+### <a name="post-hello-troubleshoot-request"></a>POST hello 요청 문제 해결
 
-다음 예제는 Virtual Network 게이트웨이의 상태를 쿼리합니다.
+다음 예제에서는 가상 네트워크 게이트웨이의 hello 상태를 쿼리 하는 번호입니다.
 
 ```powershell
 
@@ -84,12 +84,12 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${NWresourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/troubleshoot?api-version=2016-03-30 "
 ```
 
-이 작업은 장시간 실행되므로 작업 쿼리를 위한 URI와 결과에 대한 URI가 다음 응답에 표시된 것처럼 응답 헤더에 반환됩니다.
+하므로이 작업은 오래 hello 작업을 쿼리 하기 위한 URI hello 실행 되 고 hello 응답 다음 그림과 같이 hello 결과 대 한 URI hello hello 응답 헤더에 반환 됩니다.
 
 **중요한 값**
 
-* **Azure-AsyncOperation** - 이 속성에는 동기화 문제 해결 작업을 쿼리할 URI가 포함됩니다.
-* **위치** - 이 속성에는 작업이 완료될 때 결과가 있는 URI를 포함합니다.
+* **Azure AsyncOperation** -이 속성에 포함 hello URI tooquery hello 비동기 작업 문제 해결
+* **위치** -hello hello 결과가 있는 경우 hello 작업이 완료 되는 URI가 포함 되어이 속성
 
 ```
 HTTP/1.1 202 Accepted
@@ -109,15 +109,15 @@ Date: Thu, 12 Jan 2017 18:32:01 GMT
 null
 ```
 
-### <a name="query-the-async-operation-for-completion"></a>동기화 작업의 완료 쿼리
+### <a name="query-hello-async-operation-for-completion"></a>쿼리 완료에 대 한 hello 비동기 작업
 
-다음 예제에서 볼 수 있듯이 작업 URI를 사용하여 작업 진행 상태를 쿼리합니다.
+Hello 다음 예제와 같이 hello 작업의 진행 상황 hello에 대 한 작업 URI tooquery hello를 사용 합니다.
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operations/8a1167b7-6768-4ac1-85dc-703c9c9b9247?api-version=2016-03-30"
 ```
 
-작업이 진행 중인 동안에는 다음 예제에서 볼 수 있듯이 응답에 **진행 중**이 표시됩니다.
+Hello 작업이 진행 중에서 상태인 동안 hello 응답 표시 **InProgress** hello 다음 예제와 같이:
 
 ```json
 {
@@ -125,7 +125,7 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
 }
 ```
 
-작업이 완료되면 상태가 **성공**으로 변경됩니다.
+Hello 작업 완료 hello 상태가 변경 될 경우 너무**Succeeded**합니다.
 
 ```json
 {
@@ -133,15 +133,15 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
 }
 ```
 
-### <a name="retrieve-the-results"></a>결과 검색
+### <a name="retrieve-hello-results"></a>Hello 결과 검색 합니다.
 
-반환된 상태가 **성공**이면 operationResult URI에서 GET 메서드를 호출하여 결과를 검색합니다.
+Hello 상태 반환 되 면 **Succeeded**, hello 결과 hello operationResult URI tooretrieve에서 GET 메서드를 호출 합니다.
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/8a1167b7-6768-4ac1-85dc-703c9c9b9247?api-version=2016-03-30"
 ```
 
-다음 응답은 게이트웨이 문제 해결 결과를 쿼리할 때 반환된 일반적인 성능 저하 응답의 예입니다. 응답에서 속성이 의미하는 바를 확실히 알려면 [결과 이해](#understanding-the-results)를 참조하세요.
+hello 다음 응답은 게이트웨이 문제 해결의 hello 결과 쿼리할 때 반환 일반적으로 성능이 저하 된 응답의 예입니다. 참조 [hello 결과 이해](#understanding-the-results) tooget hello 응답 평균에서 어떤 hello 속성에 대 한 설명입니다.
 
 ```json
 {
@@ -152,15 +152,15 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
     {
       "id": "PlatformInActive",
       "summary": "We are sorry, your VPN gateway is in standby mode",
-      "detail": "During this time the gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This is a transient state while the Azure platform is being updated.",
+      "detail": "During this time hello gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This is a transient state while hello Azure platform is being updated.",
       "recommendedActions": [
         {
-          "actionText": "If the condition persists, please try resetting your Azure VPN gateway",
+          "actionText": "If hello condition persists, please try resetting your Azure VPN gateway",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
-          "actionUriText": "resetting the VPN Gateway"
+          "actionUriText": "resetting hello VPN Gateway"
         },
         {
-          "actionText": "If your VPN gateway isn't up and running by the expected resolution time, contact support",
+          "actionText": "If your VPN gateway isn't up and running by hello expected resolution time, contact support",
           "actionUri": "http://azure.microsoft.com/support",
           "actionUriText": "contact support"
         }
@@ -172,7 +172,7 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
       "detail": "There aren't any known Azure platform problems affecting this VPN Connection",
       "recommendedActions": [
         {
-          "actionText": "If you are still experience problems with the VPN gateway, please try resetting the VPN gateway.",
+          "actionText": "If you are still experience problems with hello VPN gateway, please try resetting hello VPN gateway.",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
           "actionUriText": "resetting VPN gateway"
         },
@@ -190,7 +190,7 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
 
 ## <a name="troubleshoot-connections"></a>연결 문제 해결
 
-다음 예제는 연결의 상태를 쿼리합니다.
+다음 예제는 연결의 hello 상태를 쿼리 하는 번호입니다.
 
 ```powershell
 
@@ -213,14 +213,14 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 ```
 
 > [!NOTE]
-> 문제 해결 작업을 연결 및 해당 게이트웨이에서 병렬로 실행할 수 없습니다. 이전 리소스에서 실행하기 전에 작업을 완료해야 합니다.
+> hello 작업 문제 해결에 대 한 연결 및 해당 게이트웨이 병렬로 실행할 수 없습니다. hello 작업 이전 toorunning 완료 되어야 하며 hello 이전 리소스에 해당 합니다.
 
-장시간 실행되는 트랜잭션이므로 응답 헤더에서, 작업 쿼리를 위한 URI와 결과에 대한 URI가 다음 응답에 표시된 것처럼 반환됩니다.
+이 hello 응답 헤더에 장기 실행 트랜잭션이 hello 작업과 hello 결과 대 한 URI hello를 쿼리 하기 위한 URI hello hello 응답 뒤에 표시 된 대로 반환 됩니다.
 
 **중요한 값**
 
-* **Azure-AsyncOperation** - 이 속성에는 동기화 문제 해결 작업을 쿼리할 URI가 포함됩니다.
-* **위치** - 이 속성에는 작업이 완료될 때 결과가 있는 URI를 포함합니다.
+* **Azure AsyncOperation** -이 속성에 포함 hello URI tooquery hello 비동기 작업 문제 해결
+* **위치** -hello hello 결과가 있는 경우 hello 작업이 완료 되는 URI가 포함 되어이 속성
 
 ```
 HTTP/1.1 202 Accepted
@@ -240,15 +240,15 @@ Date: Thu, 12 Jan 2017 18:32:01 GMT
 null
 ```
 
-### <a name="query-the-async-operation-for-completion"></a>동기화 작업의 완료 쿼리
+### <a name="query-hello-async-operation-for-completion"></a>쿼리 완료에 대 한 hello 비동기 작업
 
-다음 예제에서 볼 수 있듯이 작업 URI를 사용하여 작업 진행 상태를 쿼리합니다.
+Hello 다음 예제와 같이 hello 작업의 진행 상황 hello에 대 한 작업 URI tooquery hello를 사용 합니다.
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operations/843b1c31-4717-4fdd-b7a6-4c786ca9c501?api-version=2016-03-30"
 ```
 
-작업이 진행 중인 동안에는 다음 예제에서 볼 수 있듯이 응답에 **진행 중**이 표시됩니다.
+Hello 작업이 진행 중에서 상태인 동안 hello 응답 표시 **InProgress** hello 다음 예제와 같이:
 
 ```json
 {
@@ -256,7 +256,7 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
 }
 ```
 
-작업이 완료되면 상태가 **성공**으로 변경됩니다.
+Hello 작업이 완료 되 면 hello 상태 변경 너무**Succeeded**합니다.
 
 ```json
 {
@@ -264,17 +264,17 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
 }
 ```
 
-다음 응답은 연결 문제 해결 결과를 쿼리할 때 반환된 일반적인 응답의 예입니다.
+hello 다음 응답은 일반적으로 hello 결과 쿼리는 연결 문제를 해결 하는 경우 반환 된 응답의 예입니다.
 
-### <a name="retrieve-the-results"></a>결과 검색
+### <a name="retrieve-hello-results"></a>Hello 결과 검색 합니다.
 
-반환된 상태가 **성공**이면 operationResult URI에서 GET 메서드를 호출하여 결과를 검색합니다.
+Hello 상태 반환 되 면 **Succeeded**, hello 결과 hello operationResult URI tooretrieve에서 GET 메서드를 호출 합니다.
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/843b1c31-4717-4fdd-b7a6-4c786ca9c501?api-version=2016-03-30"
 ```
 
-다음 응답은 연결 문제 해결 결과를 쿼리할 때 반환된 일반적인 응답의 예입니다.
+hello 다음 응답은 일반적으로 hello 결과 쿼리는 연결 문제를 해결 하는 경우 반환 된 응답의 예입니다.
 
 ```json
 {
@@ -285,16 +285,16 @@ armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-000
     {
       "id": "PlatformInActive",
       "summary": "We are sorry, your VPN gateway is in standby mode",
-      "detail": "During this time the gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This 
-is a transient state while the Azure platform is being updated.",
+      "detail": "During this time hello gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This 
+is a transient state while hello Azure platform is being updated.",
       "recommendedActions": [
         {
-          "actionText": "If the condition persists, please try resetting your Azure VPN gateway",
+          "actionText": "If hello condition persists, please try resetting your Azure VPN gateway",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
-          "actionUriText": "resetting the VPN gateway"
+          "actionUriText": "resetting hello VPN gateway"
         },
         {
-          "actionText": "If your VPN Connection isn't up and running by the expected resolution time, contact support",
+          "actionText": "If your VPN Connection isn't up and running by hello expected resolution time, contact support",
           "actionUri": "http://azure.microsoft.com/support",
           "actionUriText": "contact support"
         }
@@ -306,7 +306,7 @@ is a transient state while the Azure platform is being updated.",
       "detail": "There aren't any known Azure platform problems affecting this VPN Connection",
       "recommendedActions": [
         {
-          "actionText": "If you are still experience problems with the VPN gateway, please try resetting the VPN gateway.",
+          "actionText": "If you are still experience problems with hello VPN gateway, please try resetting hello VPN gateway.",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
           "actionUriText": "resetting VPN gateway"
         },
@@ -321,12 +321,12 @@ is a transient state while the Azure platform is being updated.",
 }
 ```
 
-## <a name="understanding-the-results"></a>결과 이해
+## <a name="understanding-hello-results"></a>Hello 결과 이해
 
-작업 텍스트에서는 문제를 해결하는 방법에 대한 일반적인 지침을 제공합니다. 문제에 대한 조치를 취할 수 있는 경우 링크는 추가 설명서와 함께 제공됩니다. 추가 지침이 없는 경우에 응답은 지원 사례를 열 URL을 제공합니다.  응답의 속성 및 포함된 항목에 대한 자세한 내용은 [Network Watcher 문제 해결 개요](network-watcher-troubleshoot-overview.md)를 방문하세요.
+hello 동작 텍스트 tooresolve 문제 hello 하는 방법에 대 한 일반적인 지침을 제공 합니다. Hello 문제에 대 한 작업을 수행할 수, 링크를 추가 하는 지침과 함께 제공 됩니다. Hello 경우에서 hello 응답을 자세한 지침은 없으며가 있는 hello url tooopen 지원 사례를 제공 합니다.  Hello 응답 및 포함 된 항목의 hello 속성에 대 한 자세한 내용은 방문 [네트워크 감시자 문제 해결 개요](network-watcher-troubleshoot-overview.md)
 
-Azure Storage 계정에서 파일을 다운로드하는 방법에 대한 지침은 [.NET을 사용하여 Azure Blob Storage 시작](../storage/blobs/storage-dotnet-how-to-use-blobs.md)을 참조하세요. 사용할 수 있는 다른 도구는 저장소 탐색기입니다. 저장소 탐색기에 대한 자세한 내용은 여기에 있는 [저장소 탐색기](http://storageexplorer.com/) 링크에서 찾을 수 있습니다.
+Azure 저장소 계정에서 파일을 다운로드 하는 방법은 참조 너무[.NET을 사용 하 여 Azure Blob 저장소 시작](../storage/blobs/storage-dotnet-how-to-use-blobs.md)합니다. 사용할 수 있는 다른 도구는 저장소 탐색기입니다. 저장소 탐색기에 대 한 자세한 내용은 여기에 있습니다 링크 hello: [저장소 탐색기](http://storageexplorer.com/)
 
 ## <a name="next-steps"></a>다음 단계
 
-VPN 연결을 중지하도록 설정이 변경된 경우 [네트워크 보안 그룹 관리](../virtual-network/virtual-network-manage-nsg-arm-portal.md)를 참조하여 문제가 될 수 있는 네트워크 보안 그룹 및 보안 규칙을 추적합니다.
+해당 중지 VPN 연결 설정이 변경 되었으며, 참조 [네트워크 보안 그룹 관리](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack 아래로 hello 네트워크 보안 그룹 및 보안 규칙을 문제가 될 수 있습니다.

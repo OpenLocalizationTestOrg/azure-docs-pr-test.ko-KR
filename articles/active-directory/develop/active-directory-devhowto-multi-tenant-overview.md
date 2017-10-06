@@ -1,5 +1,5 @@
 ---
-title: "모든 Azure AD 사용자에게 로그인할 수 있는 앱 작성 방법 | Microsoft Docs"
+title: "모든 Azure AD 사용자를 로그인 할 수 있는 앱 aaaHow toobuild | Microsoft Docs"
 description: "모든 Azure Active Directory 테넌트로부터 사용자를 로그인할 수 있게 하는 응용 프로그램(또는 다중 테넌트 응용 프로그램으로 알려짐)을 빌드하기 위한 단계별 지침."
 services: active-directory
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.workload: identity
 ms.date: 04/26/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: f1c79fa7e3b0e160487b5941741f6a6c677c6b81
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 123ea8125fa3c308ce0f124cc58e85ec28d476d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-sign-in-any-azure-active-directory-ad-user-using-the-multi-tenant-application-pattern"></a>다중 테넌트 응용 프로그램 패턴을 사용하여 모든 Azure Active Directory (AD) 사용자를 로그인하는 방법
-소프트웨어를 서비스 응용 프로그램으로 많은 조직에 제공하는 경우, 어떠한 Azure AD 테넌트에서나 로그인을 허용하도록 응용 프로그램을 구성할 수 있습니다.  Azure AD에서는 이를 두고 다중 테넌트 응용 프로그램을 만드는 것이라고 합니다.  모든 Azure AD 테넌트의 사용자는 응용 프로그램에 계정을 사용하기로 동의한 후 응용 프로그램에 로그인할 수 있습니다.  
+# <a name="how-toosign-in-any-azure-active-directory-ad-user-using-hello-multi-tenant-application-pattern"></a>어떻게 사용 하 여 모든 Azure AD (Active Directory) 사용자의 toosign hello 다중 테 넌 트 응용 프로그램 패턴
+소프트웨어 서비스 응용 프로그램 toomany로 조직을 제공 하면 응용 프로그램 tooaccept에서에서 로그인 한 Azure AD 테 넌 트를 구성할 수 있습니다.  Azure AD에서는 이를 두고 다중 테넌트 응용 프로그램을 만드는 것이라고 합니다.  모든 Azure AD 테 넌 트의 사용자가 후 tooyour 응용 프로그램에 수 toosign 됩니다 toouse 자신의 계정으로 응용 프로그램을 승인 합니다.  
 
-기존 응용 프로그램에 자체 계정 시스템이 있거나 다른 클라우드 공급자에서 비롯된 다른 종류의 로그인을 지원하는 경우 테넌트의 Azure AD 로그인을 간단하게 추가할 수 있습니다. 앱을 등록하고 OAuth2, OpenID Connect 또는 SAML을 통해 로그인 코드를 추가하고 응용 프로그램에 "Microsoft를 사용하여 로그인" 단추를 배치합니다. 다음과 같은 단추를 클릭하여 응용 프로그램을 브랜딩하는 방법에 대해 자세히 알아보세요.
+기존 응용 프로그램에 자체 계정 시스템이 있거나 다른 클라우드 공급자에서 비롯된 다른 종류의 로그인을 지원하는 경우 테넌트의 Azure AD 로그인을 간단하게 추가할 수 있습니다. 앱을 등록하고 OAuth2, OpenID Connect 또는 SAML을 통해 로그인 코드를 추가하고 응용 프로그램에 "Microsoft를 사용하여 로그인" 단추를 배치합니다. 다음 응용 프로그램 브랜딩에 관한 자세한 단추 toolearn hello를 클릭 합니다.
 
 [![Sign in button][AAD-Sign-In]][AAD-App-Branding]
 
-이 문서에서는 사용자가 Azure AD에 대한 단일 테넌트 응용 프로그램을 빌드하는 것에 이미 익숙하다고 가정합니다.  잘 알지 못할 경우 [개발자 가이드 홈페이지][AAD-Dev-Guide]로 돌아가 빠른 시작 중 하나를 시도합니다!
+이 문서에서는 사용자가 Azure AD에 대한 단일 테넌트 응용 프로그램을 빌드하는 것에 이미 익숙하다고 가정합니다.  H e a d toohello 수 없다면 백업 [개발자 가이드 홈 페이지] [ AAD-Dev-Guide] 우리의 빠른 시작 중 하나를 시도 하 고!
 
-다음과 같은 간단한 4 단게를 통해 응용 프로그램을 Azure AD 다중 테넌트 앱으로 변환할 수 있습니다.
+응용 프로그램을 Azure AD 다중 테 넌 트 앱에는 네 가지 간단한 단계만 거치면 tooconvert:
 
-1. 응용 프로그램 등록을 다중 테넌트로 업데이트합니다.
-2. /common 끝점에 요청을 보내도록 코드를 업데이트합니다. 
-3. 여러 발급자 값을 처리하는 코드를 업데이트합니다.
+1. 응용 프로그램 등록 toobe 다중 테 넌 트를 업데이트 합니다.
+2. 프로그램 코드 toosend 요청 toohello 함께 사용할 수 업데이트 끝점 
+3. 코드 toohandle 여러 발급자 값 업데이트
 4. 사용자 및 관리자 동의를 이해하고 적절한 코드 변경을 합니다.
 
-각 단계를 자세히 살펴보겠습니다. 또한 [이 다중 테넌트 샘플 목록][AAD-Samples-MT]으로 바로 건너뛸 수 있습니다.
+각 단계를 자세히 살펴보겠습니다. 너무 바로 이동할 수도 있습니다[이 다중 테 넌 트 예제이 목록은][AAD-Samples-MT]합니다.
 
-## <a name="update-registration-to-be-multi-tenant"></a>등록을 다중 테넌트로 업데이트합니다.
-기본적으로 Azure AD에서 웹앱/API 등록은 단일 테넌트입니다.  [Azure Portal][AZURE-portal]에 있는 응용 프로그램 등록의 속성 페이지에서 "다중 테넌트" 스위치를 찾아 "예"로 설정함으로써 등록을 다중 테넌트로 만들 수 있습니다.
+## <a name="update-registration-toobe-multi-tenant"></a>등록 toobe 다중 테 넌 트를 업데이트 합니다.
+기본적으로 Azure AD에서 웹앱/API 등록은 단일 테넌트입니다.  Hello "다중 테 넌 트" 스위치 hello에 응용 프로그램 등록의 hello 속성 페이지에 검색 하 여 다중 테 넌 트 등록을 만들 수 [Azure 포털] [ AZURE-portal] 너무 "Yes" 설정 합니다.
 
-응용 프로그램을 다중 테넌트로 만들기 위해서는 먼저 응용 프로그램의 앱 ID URI이 전역적으로 고유하게 되는 것을 Azure AD에서 필요로 합니다. 앱 ID URI는 프로토콜 메시지에서 응용 프로그램을 식별하는 방법 중 하나입니다.  단일 테넌트 응용 프로그램의 경우 앱 ID URI이 해당 테넌트 내에서 고유한 것으로 충분합니다.  다중 테넌트 응용 프로그램의 경우, 앱 ID URI이 전역적으로 고유해야 Azure AD가 모든 테넌트에서 응용 프로그램을 찾을 수 있습니다.  앱 ID URI이 Azure AD 테넌트의 확인된 도메인과 일치하는 호스트 이름을 갖게 함으로써 전역 고유성이 적용됩니다.  예를 들어, 테넌트의 이름이 contoso.onmicrosoft.com이라면 유효한 앱 ID URI은 `https://contoso.onmicrosoft.com/myapp`이 될 것입니다.  테넌트가 확인된 도메인 `contoso.com`를 가진 경우, 유효한 앱 ID URI은 또한 `https://contoso.com/myapp`이 됩니다.  앱 ID URI이 이 패턴을 따르지 않는다면 응용 프로그램을 다중 테넌트로 설정하는 것은 실패합니다.
+또한 참고, 다중 테 넌 트 응용 프로그램 설정 하기 전에 Azure AD에서는 hello hello 응용 프로그램 toobe 전역적으로 고유의 앱 ID URI입니다. 앱 ID URI hello hello 방법으로 응용 프로그램은 프로토콜 메시지에 멤버 중 하나입니다.  단일 테 넌 트 응용 프로그램은 해당 테 넌 트 내에서 고유 hello 앱 ID URI toobe 충분 합니다.  다중 테 넌 트 응용 프로그램에 대 한 전역적으로 고유 해야 Azure AD는 모든 테 넌 트 간에 hello 응용 프로그램을 찾을 수 있도록 합니다.  Hello 앱 ID URI toohave hello Azure AD 테 넌 트의 확인 된 도메인을 일치 하는 호스트 이름을 요구 하 여 전역 고유성이 적용 됩니다.  예를 들어 테 넌 트의 hello 이름에서 경우 contoso.onmicrosoft.com 유효한 앱 ID URI 것 `https://contoso.onmicrosoft.com/myapp`합니다.  테넌트가 확인된 도메인 `contoso.com`를 가진 경우, 유효한 앱 ID URI은 또한 `https://contoso.com/myapp`이 됩니다.  다중 테 넌 트로 응용 프로그램을 설정 하면 hello 앱 ID URI는이 패턴을 따르지 않는 경우 실패 합니다.
 
-기본 클라이언트 등록은 기본적으로 다중 테넌트입니다.  기본 클라이언트 응용 프로그램 등록을 다중 테넌트로 만들기 위해 아무 조치도 취할 필요가 없습니다.
+기본 클라이언트 등록은 기본적으로 다중 테넌트입니다.  모든 작업 toomake 네이티브 클라이언트 응용 프로그램 등록 다중 테 넌 트 tootake을 필요 하지 않습니다.
 
-## <a name="update-your-code-to-send-requests-to-common"></a>/common에 요청을 보내도록 코드를 업데이트합니다.
-단일 테넌트 응용 프로그램에서 로그인 요청은 테넌트의 로그인 끝점에 전송됩니다. 예를 들어 contoso.onmicrosoft.com의 끝점은 다음과 같습니다.
+## <a name="update-your-code-toosend-requests-toocommon"></a>프로그램 코드 toosend 요청 너무/공통 업데이트
+단일 테 넌 트 응용 프로그램에서 로그인 요청 toohello 테 넌 트의 로그인 끝점으로 전송 됩니다. 예를 들어 contoso.onmicrosoft.com에 대 한 hello 끝점이 합니다.
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-테넌트의 끝점에 보내진 요청은 그 테넌트에 있는 사용자 (또는 게스트)를 그 테넌트의 응용 프로그램으로 로그인하게 할 수 있습니다.  다중 테넌트 응용 프로그램을 사용할 경우, 응용 프로그램은 사용자가 어떤 테넌트에서 오는지 미리 알지 못하므로 요청을 테넌트 끝점에 보낼 수 없습니다.  대신, 요청은 모든 Azure AD 테넌트 간에 멀티플렉싱하는 끝점에 전송됩니다.
+요청 전송 tooa 테 넌 트의 끝점에서 해당 테 넌 트에 해당 테 넌 트 tooapplications 사용자 (또는 게스트)에 서명할 수 있습니다.  다중 테 넌 트 응용 프로그램을 hello 응용 프로그램 인식 하지 들겠지만 tooa 테 넌 트의 끝점을 보낼 수 없습니다, 어떤 테 넌 트 hello 사용자가 요청 합니다.  대신 요청에는 모든 Azure AD 테 넌 트 간에 멀티플렉싱 tooan 끝점을 전송 됩니다.
 
     https://login.microsoftonline.com/common
 
-Azure AD는 /common 끝점에서 요청을 받을 때, 사용자를 로그인하고 그 결과 사용자가 어떤 테넌트에서 오는지 검색합니다.  /common 끝점은 Azure AD에서 지원하는 OpenID Connect, OAuth 2.0, SAML 2.0 및 WS-Federation과 같은 모든 인증 프로토콜에서 작동합니다.
+Azure AD hello에 대 한 요청을 받을 때 공용 끝점 hello 사용자가 로그인 하 고 테 넌 트 hello 사용자를 검색 하는 경우에 나타나는 결과에서 / 합니다.  hello 모든 Azure AD에서 지 원하는 hello 인증 프로토콜 함께 작동 하는 일반 끝점이 /: OpenID Connect, OAuth 2.0, SAML 2.0 및 WS-페더레이션 합니다.
 
-그 경우 응용 프로그램에 대한 로그인 응답에는 사용자를 나타내는 토큰이 들어 있습니다.  응용 프로그램은 토큰에 든 발급자 값을 보고 사용자가 어떤 테넌트에서 오는지 알게 됩니다.  응답이 /Common 끝점에서 반환될 때, 토큰에 든 발급자 값이 사용자의 테넌트에 해당합니다.  /common 끝점은 테넌트도 아니고 발급자도 아니며, 단지 멀티플렉서이라는 것을 인식하는 것이 중요합니다.  /Common을 사용할 때, 응용 프로그램에서 토큰의 유효성을 검사하는 논리는 이 점을 고려하도록 업데이트되어야 합니다. 
+hello 로그인 응답 toohello 그런 다음 응용 프로그램 hello 사용자를 나타내는 토큰을 포함 합니다.  hello 토큰에서 발급자 값 hello에서 어떤 테 넌 트 hello 사용자가을 응용 프로그램에 지시 합니다.  Hello에서 응답이 반환/경우 일반 끝점이 hello 토큰에서 발급자 값 hello toohello 사용자의 테 넌 트에 해당 됩니다.  중요 한 toonote hello/일반 끝점이 테 넌 트가 아닙니다 아니며 발급자에 방금 멀티플렉서 합니다.  함께 사용할 수를 사용할 때 응용 프로그램 toovalidate 토큰에 hello 논리 필요 업데이트 toobe tootake이을 고려 합니다. 
 
-앞서 언급한 대로, 다중 테넌트 응용 프로그램은 Azure AD 응용 프로그램 브랜딩 지침에 따라 사용자에 대한 일관된 로그인 환경도 제공해야 합니다. 다음과 같은 단추를 클릭하여 응용 프로그램을 브랜딩하는 방법에 대해 자세히 알아보세요.
+앞에서 언급 한, 다중 테 넌 트 응용 프로그램 사용자에 대 한 일관 된 로그인 환경을 제공 해야,으로 다음 hello 브랜딩 지침 Azure AD 응용 프로그램입니다. 다음 응용 프로그램 브랜딩에 관한 자세한 단추 toolearn hello를 클릭 합니다.
 
 [![Sign in button][AAD-Sign-In]][AAD-App-Branding]
 
-/공통된 끝점과 코드 구현 사용에 대해 자세히 알아보겠습니다.
+Hello 함께 사용할 수의 hello 사용에 살펴보겠습니다 끝점과 자세히 코드 구현 합니다.
 
-## <a name="update-your-code-to-handle-multiple-issuer-values"></a>여러 발급자 값을 처리하는 코드를 업데이트합니다.
+## <a name="update-your-code-toohandle-multiple-issuer-values"></a>코드 toohandle 여러 발급자 값 업데이트
 웹 응용 프로그램 및 웹 API는 Azure AD에서 토큰을 받아 유효성을 검사합니다.  
 
 > [!NOTE]
-> 네이티브 클라이언트 응용 프로그램은 Azure AD에 토큰을 요청하고 수신하는 동안에 API로 보내 유효성 검사를 합니다.  네이티브 응용 프로그램은 토큰의 유효성을 검사하지 않으며 그것을 불투명한 것으로 처리해야 합니다.
+> 따라서 toosend 것을 요청 하 고 Azure AD에서 토큰을 수신 하는 네이티브 클라이언트 응용 프로그램, 하는 유효성 검사 tooAPIs 합니다.  네이티브 응용 프로그램은 토큰의 유효성을 검사하지 않으며 그것을 불투명한 것으로 처리해야 합니다.
 > 
 > 
 
@@ -77,106 +77,106 @@ Azure AD는 /common 끝점에서 요청을 받을 때, 사용자를 로그인하
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-그리고 그것을 사용하여 다음과 같은 메타데이터 URL(이 경우에는 OpenID Connect)을 생성합니다.
+고 tooconstruct 같은 (이 경우, OpenID Connect)에서 메타 데이터 URL을 사용 합니다.
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com/.well-known/openid-configuration
 
-이는 토큰의 유효성을 검사하는 데 사용할 두 가지 중요한 정보인 테넌트 서명 키와 발급자 값을 다운로드하기 위해서입니다.  각 Azure AD 테넌트에는 양식의 고유한 발급자 값이 있습니다.
+두 toodownload 중요 한 정보가 사용 되는 toovalidate 토큰 있는: hello 테 넌 트의 서명 키 및 발급자 값입니다.  각 Azure AD 테 넌 트는 hello 폼의 고유한 발급자 값:
 
     https://sts.windows.net/31537af4-6d77-4bb9-a681-d2394888ea26/
 
-여기서 GUID 값은 테넌트의 테넌트 ID 이름 바꾸기 안전 버전입니다.  `contoso.onmicrosoft.com`에 대한 이전의 메타데이터 링크를 클릭하면 문서에서 이 발급자 값을 볼 수 있습니다.
+여기서 hello GUID 값이 hello 테 넌 트의 테 넌 트 id hello hello 이름 바꾸기 스레드로부터 안전한 버전입니다.  Hello 앞에 대 한 메타 데이터 링크를 클릭할 경우 `contoso.onmicrosoft.com`, hello 문서에서 발급자 값이 볼 수 있습니다.
 
-단일 테넌트 응용 프로그램이 토큰의 유효성을 검사하는 경우 메타데이터 문서에서 서명 키에 대해 토큰의 서명을 확인합니다. 이렇게 하면 토큰의 발급자 값이 메타데이터 문서에서 찾은 값과 일치하는지 확인할 수 있습니다.
+단일 테 넌 트 응용 프로그램 토큰의 유효성을 검사, 서명 hello 메타 데이터 문서에서 키 hello에 대 한 hello 토큰의 hello 서명을 확인 합니다. 이렇게 하면 해당 toomake 있는지 hello 발급자 값 hello 토큰 일치 hello 하나 hello 메타 데이터 문서에서 찾을 수 있습니다.
 
-/common 끝점은 테넌트에 해당하지 않고 발급자가 아니기 때문에, /common에 대해 메타데이터의 발급자 값을 검토할 때 실제값 대신에 템플릿 기반 URL이 있습니다.
+Hello 이후/공통 끝점 tooa 테 넌 트와 일치 하지 않으면 같고, 실제 값 대신 템플릿 기반 URL에 일반적인/hello 발급자 값에 대 한 hello 메타 데이터를 검사 하는 경우 발급자에 없습니다.
 
     https://sts.windows.net/{tenantid}/
 
-따라서 다중 테넌트 응용 프로그램은 메타데이터의 발급자 값을 토큰의 `issuer` 값과 맞춰보는 것만으로는 토큰의 유효성을 검사할 수 없습니다.  다중 테넌트 응용 프로그램은 발급자 값의 테넌트 ID 부분을 기반으로 어떤 발급자 값이 유효하고 어떤 값이 아닌지 판단할 논리를 필요로 합니다.  
+따라서 다중 테 넌 트 응용 프로그램 수 없는 토큰 유효성을 검사 hello로 hello 메타 데이터에 hello 발급자 값과 비교 하 여 `issuer` hello 토큰에는 값입니다.  다중 테 넌 트 응용 프로그램 논리 toodecide 어떤 발급자 값이 유효한 및를 하지에 필요한 ID 부분의 hello 발급자 값 hello 테 넌 트에 따라 합니다.  
 
-예를 들어, 다중 테넌트 응용 프로그램이 해당 서비스에 등록한 특정 테넌트로부터의 로그인 만을 허용한다면, 테넌트가 구독자 목록에 들어 있는지 확인하기 위해 발급자 값 또는 토큰의 `tid` 클레임 값을 확인해야 합니다.  다중 테넌트 응용 프로그램이 개인 만을 다루고 테넌트 기반으로 어떠한 액세스 결정도 하지 않는다면, 발급자 값 전체를 무시할 수 있습니다.
+예를 들어, 다중 테 넌 트 응용 프로그램의 서비스에 대 한 등록 특정 테 넌 트 로부터 로그인만 허용, 다음 해야 확인 고 hello 발급자 값 또는 hello `tid` 클레임 값의 목록에 해당 테 넌 트 인지 토큰 toomake hello에 구독자입니다.  다중 테 넌 트 응용 프로그램만 개인 다루는 및 테 넌 트에 따라 모든 액세스 결정을 확인 하지 않습니다, 다음 무시 해도 hello 발급자 값 모두 합니다.
 
-다중 테넌트 샘플에서, 이 문서의 끝에 나오는 [관련 콘텐츠](#related-content) 섹션에서 로그인하는 데 Azure AD 테넌트를 사용하도록 설정하기 위해 발급자 유효성 검사를 사용하지 않도록 설정합니다.
+Hello에 다중 테 넌 트 예제 hello에에서 [관련 콘텐츠](#related-content) 이 문서에서 발급자 유효성 검사의 hello 끝 섹션은 사용할 수 없는 tooenable에 모든 Azure AD 테 넌 트 toosign 합니다.
 
-이제 다중 테넌트 응용 프로그램에 로그인하는 사용자를 위한 사용자 환경을 살펴보겠습니다.
+이제 toomulti 테 넌 트 응용 프로그램에 로그인 하는 사용자에 대 한 hello 사용자 환경에 살펴보겠습니다.
 
 ## <a name="understanding-user-and-admin-consent"></a>사용자 및 관리자 동의 이해하기
-사용자가 Azure AD에서 응용 프로그램에 로그인하려면 응용 프로그램이 사용자의 테넌트에 나타나야 합니다.  이를 통해 조직은 사용자가 테넌트로부터 응용 프로그램에 로그인할 때 고유한 정책을 적용하는 것과 같은 작업을 수행할 수 있습니다.  단일 테넌트 응용 프로그램의 경우 이 등록은 간단합니다. [Azure Portal][AZURE-portal]에서 응용 프로그램을 등록할 때 이루어집니다.
+Azure AD에서 tooan 응용 프로그램에서 사용자 toosign, hello 사용자의 테 넌 트의 hello 응용 프로그램을 나타내야 합니다.  이렇게 하면 hello 조직 toodo 등 자신의 테 넌 트의 사용자 toohello 응용 프로그램에 로그인 할 때 고유 정책을 적용 합니다.  단일 테 넌 트 응용 프로그램의 경우이 등록은 간단 합니다. hello에 hello 응용 프로그램을 등록할 때 발생 하는 하나 hello에 그 [Azure 포털][AZURE-portal]합니다.
 
-다중 테넌트 응용 프로그램의 경우, 응용 프로그램에 대한 초기 등록은 개발자가 사용한 Azure AD 테넌트에 있습니다.  다른 테넌트에서 사용자가 처음으로 응용 프로그램에 로그인할 때, Azure AD는 응용 프로그램에서 요청하는 사용 권한에 동의하는지 묻습니다.  동의한다면 *서비스 주체*라는 응용 프로그램의 표현이 사용자 테넌트에 생성되고 로그인은 계속 진행할 수 있습니다. 위임이 또한 사용자의 동의를 응용 프로그램에 기록하는 디렉토리에 만들어집니다. 응용 프로그램의 Application 및 ServicePrincipal 개체와 서로 간의 관계에 대한 자세한 내용은 [응용 프로그램 개체 및 서비스 주체 개체][AAD-App-SP-Objects]를 참조하세요.
+다중 테 넌 트 응용 프로그램에 대 한 hello 응용 프로그램에 대 한 초기 등록 hello hello 개발자가 사용 되는 hello Azure AD 테 넌 트에 거주 하 고 있습니다.  다른 테 넌 트의 사용자가 처음으로 hello에 대 한 toohello 응용 로그인 하도록 Azure AD에 hello 응용 프로그램에서 요청한 tooconsent toohello 권한과 요청 합니다.  동의 될 경우 hello 응용 프로그램에 대 한 표현을 호출는 *서비스 사용자* 에서 만든, 사용자의 테 넌 트 hello 및 로그인 계속할 수 있습니다. 한 위임은 hello 사용자의 동의 toohello 응용 프로그램을 기록 하는 hello 디렉터리에 만들어집니다. 참조 [응용 프로그램 개체 및 서비스 주체 개체] [ AAD-App-SP-Objects] hello 응용 프로그램의 응용 프로그램과 ServicePrincipal 개체와 다른 tooeach 관계에 대 한 자세한 내용은 합니다.
 
-![단일 계층 앱에 동의][Consent-Single-Tier] 
+![동의 toosingle 계층 응용 프로그램][Consent-Single-Tier] 
 
-이 동의 환경이 응용 프로그램에서 요청한 사용 권한에 따른 영향을 받습니다.  Azure AD에서는 응용 프로그램 전용과 위임이란 두 유형의 사용 권한을 지원합니다.
+이 승인 환경이 hello 응용 프로그램에서 요청한 hello 권한과에 의해 결정 됩니다.  Azure AD에서는 응용 프로그램 전용과 위임이란 두 유형의 사용 권한을 지원합니다.
 
-* 위임된 권한은 응용 프로그램에 사용자가 할 수 있는 작업의 하위 집합에 대해 로그인한 사용자 역할을 할 기능을 부여합니다,  예를 들어 응용 프로그램에 위임된 권한을 부여하여 로그인한 사용자의 일정을 읽게 할 수 있습니다.
-* 응용 프로그램 전용 권한은 응용 프로그램의 id에 직접 부여됩니다.  예를 들어 누가 응용 프로그램에 로그인했는지에 상관없이 응용 프로그램에 응용 프로그램 전용 권한을 부여하여 테넌트의 사용자 목록을 읽게 할 수 있습니다.
+* 위임 된 권한 hello 작업 hello 사용자의 하위 집합에 대 한 로그인된 한 사용자 수와 마찬가지로 응용 프로그램 hello 기능 tooact를 부여 합니다.  예를 들어 사용자의 일정에는 응용 프로그램 hello 위임 된 권한 tooread hello를 부여할 수 있습니다.
+* Hello 응용 프로그램의 toohello id는 응용 프로그램 전용 사용 권한 직접 부여 됩니다.  예를 들어 toohello 응용 프로그램에 서명한에 관계 없이 테 넌 트의 사용자는 응용 프로그램 hello 응용 프로그램 전용 권한 tooread hello 목록을 부여할 수 있습니다.
 
-일부 사용 권한은 일반 사용자가 동의할 수 있는 반면 또 다른 사용 권한은 테넌트 관리자의 동의가 필요합니다. 
+일부 사용 권한이 다른 테 넌 트 관리자 동의 해야 하는 동안 승인된 tooby 일반 사용자를 수 있습니다. 
 
 ### <a name="admin-consent"></a>관리자 동의
-응용 프로그램 전용 권한은 테넌트 관리자의 동의를 항상 필요로 합니다.  응용 프로그램이 응용 프로그램 전용 사용 권한을 요청하고 사용자가 응용 프로그램에 로그인을 시도하는 경우 사용자가 동의할 수 없음을 알리는 오류 메시지가 나타납니다.
+응용 프로그램 전용 권한은 테넌트 관리자의 동의를 항상 필요로 합니다.  응용 프로그램에 응용 프로그램 전용 권한을 요청 하는 경우 사용자가 toohello 응용 프로그램에서 toosign hello 사용자 수 tooconsent가 아니면 없다는 오류 메시지가 표시 됩니다.
 
-위임된 특정 권한은 또한 테넌트 관리자의 동의를 필요로 합니다.  예를 들어, 로그인한 사용자로 Azure AD에 쓰기 저장 기능은 테넌트 관리자의 동의가 필요합니다.  응용 프로그램 전용 권한과 같이, 일반 사용자가 관리자 동의가 필요한 위임된 권한을 요청하는 응용 프로그램에 로그인하려는 경우 응용 프로그램에 오류가 발생합니다.  사용 권한이 관리자 동의를 필요로 하는지 여부는 리소스를 게시한 개발자에 의해 결정되며 리스스에 대한 설명서에서 찾아볼 수 있습니다.  Azure AD Graph API 및 Microsoft Graph API에 대해 사용할 수 있는 권한을 설명하는 항목에 대한 링크는 이 문서의 [관련 콘텐츠](#related-content) 섹션에 있습니다.
+위임된 특정 권한은 또한 테넌트 관리자의 동의를 필요로 합니다.  예를 들어 hello 기능 toowrite 백 tooAzure AD hello 사용자 로그인으로 테 넌 트 관리자의 동의가 필요 합니다.  응용 프로그램 전용 사용 권한과 마찬가지로 일반 사용자가이 toosign tooan 응용 프로그램에 관리자의 승인이 필요한 위임 된 권한을 요청 하는 응용 프로그램 오류가 발생 합니다.  사용 권한 필요 여부 관리 동의가 hello 리소스를 게시 하는 hello 개발자가 결정 되며, hello 리소스에 대 한 hello 설명서에서 찾을 수 있습니다.  Tootopics hello에 대 한 hello Azure AD Graph API 및 Microsoft Graph API는 hello 사용할 수 있는 권한을 설명 하는 링크 [관련 콘텐츠](#related-content) 이 문서의 섹션.
 
-응용 프로그램이 관리자 동의가 필요한 권한을 사용할 경우, 관리자가 작업을 시작할 수 있도록 단추나 링크와 같은 제스처가 있어야 합니다.  응용 프로그램에서 이 작업에 대해 보내는 요청은 일반적인 OAuth2/OpenID Connect 권한 부여 요청이지만, 또한 `prompt=admin_consent` 쿼리 문자열 매개 변수도 포함합니다.  일단 관리자가 동의했고 서비스 주체가 고객 테넌트에 만들어졌다면 차후의 로그인 요청은 `prompt=admin_consent` 매개 변수를 필요로 하지 않습니다. 관리자가 요청된 권한이 허용된다고 결정했다면 테넌트의 다른 사용자들에게 그 시점 이후로 동의하라는 메시지가 표시되지 않습니다.
+응용 프로그램에 관리 동의가 필요한 사용 권한에 사용, 예: 단추 또는 링크 admin 님 안녕하세요 hello 작업을 시작할 수 있는 제스처 toohave를 해야 합니다.  응용 프로그램에서이 작업은 일반적인 OAuth2/OpenID Connect 권한 부여 요청을 하지만 hello 포함 된 hello 요청 `prompt=admin_consent` 쿼리 문자열 매개 변수입니다.  Admin 님 안녕하세요가 동의 하 고 hello 서비스 사용자는 hello 고객의 테 넌 트에서 만든을 후속 로그인 요청 불필요 hello `prompt=admin_consent` 매개 변수입니다. 관리자에 게 hello 요청한 사용 권한은 허용 하기로 결정 했습니다, 이후 해당 위치 다음부터 동의 hello 테 넌 트의 사용자를 입력 합니다.
 
-관리 동의가 필요하지 않은 사용 권한을 요청하는 응용 프로그램에서 `prompt=admin_consent` 매개 변수를 사용할 수도 있습니다. 응용 프로그램에 테넌트 관리자가 한 번 "등록"한 환경이 필요하고 다른 사용자에게 해당 지점에서 동의를 확인하는 메시지가 표시되지 않는 경우에 수행됩니다.
+hello `prompt=admin_consent` 매개 변수 관리 동의가 필요 하지 않은 사용 권한을 요청 하는 응용 프로그램에서 사용할 수도 있습니다. 이 작업은 수행 hello 응용 프로그램 경험을 해야 하는 경우 여기서 테 넌 트 admin 님 안녕하세요 "등록"에 해당 지점에서 동의 시간과 다른 사용자가 입력 하나입니다.
 
-응용 프로그램에 관리 동의가 필요한 경우 관리자가 로그인해도 `prompt=admin_consent` 매개 변수가 전송되지 않습니다. 관리자는 **자신의 사용자 계정에 대해서만** 응용 프로그램에 동의할 수 있습니다.  일반 사용자는 여전히 응용 프로그램에 로그인하여 동의할 수 없습니다.  다른 사용자들에게 액세스를 허용하기 전에 응용 프로그램을 탐색하는 기능을 테넌트 관리자에게 주고자 할 때 유용합니다.
+하는 경우 응용 프로그램 관리 동의가 필요 하 고 관리자에 있지만 hello 서명 `prompt=admin_consent` 매개 변수는 전송 되지 않습니다, admin 님 안녕하세요 toohello 응용 프로그램 타고 성공적으로 **해당 사용자 계정에 대해서만**합니다.  일반 사용자 여전히 됩니다에 수 toosign 및 동의 toohello 응용 프로그램.  Toogive hello 테 넌 트 관리자 hello 기능 tooexplore 다른 사용자가 액세스를 허용 하기 전에 응용 프로그램을 지정할 경우에 유용 합니다.
 
-테넌트 관리자는 일반 사용자가 응용 프로그램에 동의하는 기능을 사용하지 않도록 설정할 수 있습니다.  이 기능을 사용하지 않도록 설정한다면, 테넌트에 응용 프로그램을 설정할 때 항상 관리자 동의가 필요합니다.  일반 사용자 동의를 사용하지 않도록 설정한 응용 프로그램을 테스트하려면 [Azure Portal][AZURE-portal]의 Azure AD 테넌트 구성 섹션에서 구성 스위치를 찾을 수 있습니다.
+테 넌 트 관리자는 일반 사용자 tooconsent tooapplications에 대 한 hello 기능을 해제할 수 있습니다.  이 기능을 비활성화 한 경우 관리 동의가 항상 hello 응용 프로그램 toobe hello 테 넌 트의 설정에 대 한 필요 합니다.  Tootest 일반 사용자가 동의 하면 응용 프로그램에 사용 하지 않도록 설정 하려는 경우에서 찾을 수 있습니다 hello 구성 스위치 hello Azure AD 테 넌 트 구성 섹션의 hello [Azure 포털][AZURE-portal]합니다.
 
 > [!NOTE]
-> 일부 응용 프로그램은 처음에는 일반 사용자가 동의할 수 있고 나중에는 응용 프로그램이 관리자를 참여시키고 관리자 동의가 필요한 권한을 요청할 수 있는 환경을 원합니다.  현재 Azure AD에서 단일 응용 프로그램 등록을 이렇게 할 방법은 없습니다.  앞으로 제공될 Azure AD v2 끝점은 응용 프로그램이 등록 시가 아니라 런타임 시 사용 권한을 요청할 수 있으며, 이를 통해 이 시나리오를 사용하도록 설정할 수 있습니다.  자세한 내용은 [Azure AD 앱 모델 v2 개발자 가이드][AAD-V2-Dev-Guide]를 참조하세요.
+> 일부 응용 프로그램 원하는 경험 여기에서 일반 사용자 수 tooconsent을 처음에 하 고 이후 hello 응용 프로그램 관리자에 게 요청 하는 사용 권한과 관리 동의가 필요 사용 될 수 있습니다.  에 없는 경우 없는 방식으로 toodo이와 단일 응용 프로그램을 등록 하는 Azure AD 오늘  예정 된 Azure AD hello v2 끝점 사용 하면 응용 프로그램 런타임 시 toorequest 사용 권한을 대신이 시나리오를 가능 하 게 등록 시.  자세한 내용은 참조 hello [Azure AD 응용 프로그램 모델 v2 개발자 가이드][AAD-V2-Dev-Guide]합니다.
 > 
 > 
 
 ### <a name="consent-and-multi-tier-applications"></a>동의 및 다중 계층 응용 프로그램
-응용 프로그램은 여러 계층을 가질 수 있으며, 각 계층은 Azure AD에서 자체 등록에 의해 표현될 수 있습니다.  예를 들어, 웹 API를 호출하는 네이티브 응용 프로그램 또는 웹 API를 호출하는 웹 응용 프로그램.  두 경우 모두, 클라이언트(네이티브 앱 또는 웹앱)는 리소스(웹 API)를 호출하는 권한을 요청합니다.  클라이언트가 고객의 테넌트로 성공적으로 동의되려면 사용 권한을 요청한 모든 리소스가 고객의 테넌트에 이미 있어야 합니다.  이 조건이 충족되지 않으면, Azure AD는 리소스가 먼저 추가되어야 한다는 오류를 반환합니다.
+응용 프로그램은 여러 계층을 가질 수 있으며, 각 계층은 Azure AD에서 자체 등록에 의해 표현될 수 있습니다.  예를 들어, 웹 API를 호출하는 네이티브 응용 프로그램 또는 웹 API를 호출하는 웹 응용 프로그램.  두이 경우 모두 hello 클라이언트 (예: 네이티브 응용 프로그램 또는 웹 응용 프로그램) 권한 toocall hello 리소스 (web API)를 요청합니다.  Hello 클라이언트 toobe 고객의 테 넌 트에 성공적으로 승인에 대 한 사용 권한을 요청 하는 모든 리소스 toowhich hello 고객의 테 넌 트에 이미 있어야 합니다.  이 조건이 충족 되지 않으면 Azure AD 리소스 hello 하는 오류를 가장 먼저 추가 해야 반환 됩니다.
 
 **단일 테넌트의 여러 계층**
 
-논리 응용 프로그램이 예를 들어 별도의 클라이언트와 리소스와 같은 두 개 이상의 응용 프로그램 등록으로 구성되어 있다면 이것이 문제일 수 있습니다.  우선 리소스를 고객 테넌트에 가져가려면 어떻게 해야 합니까?  Azure AD에서는 클라이언트와 리소스를 한 번에 승인하여 이 문제를 해결합니다. 동의 페이지에서 클라이언트와 리소스 모두에서 요청한 전체 사용 권한을 사용자에게 표시합니다.  이 동작을 사용하려면 리소스의 응용 프로그램 등록은 클라이언트의 앱 ID를 응용 프로그램 매니페스트에 `knownClientApplications`로 포함해야 합니다.  예:
+논리 응용 프로그램이 예를 들어 별도의 클라이언트와 리소스와 같은 두 개 이상의 응용 프로그램 등록으로 구성되어 있다면 이것이 문제일 수 있습니다.  어떻게 할까요 hello 리소스 hello 고객 테 넌 트에 첫 번째?  한 번에 승인할 리소스 toobe 및 azure AD 클라이언트를 사용 하 여이 사례를 다룹니다. hello hello hello 클라이언트와 hello 동의 페이지에서 리소스에서 요청한 hello 권한과의 총 합계 표시 됩니다.  tooenable이이 동작을 hello 리소스의 응용 프로그램 등록으로 hello 클라이언트 앱 ID를 포함 해야 합니다는 `knownClientApplications` 의 응용 프로그램 매니페스트에 합니다.  예:
 
     knownClientApplications": ["94da0930-763f-45c7-8d26-04d5938baab2"]
 
-이 속성은 [응용 프로그램의 매니페스트][AAD-App-Manifest] 리소스를 통해 업데이트될 수 있습니다. 이 문서의 뒷부분에 나오는 [관련 콘텐츠](#related-content) 섹션에 있는 웹 API 샘플을 호출하는 다중 계층 네이티브 클라이언트에서 보여 줄 수 있습니다. 다음 다이어그램은 단일 테넌트에 등록된 다중 계층 앱에 대한 동의 개요를 제공합니다.
+Hello 리소스를 통해이 속성을 업데이트할 수 [응용 프로그램 매니페스트에서][AAD-App-Manifest]합니다. 다중 계층 네이티브 클라이언트 hello에 웹 API 샘플 호출에서이 확인할 [관련 콘텐츠](#related-content) hello이이 문서의 뒷부분에 나오는 섹션. hello 다음 다이어그램에서는 간략하게 동의 단일 테 넌 트에 등록 하는 다중 계층 응용 프로그램에 대 한:
 
-![알려진 다중 계층 클라이언트 앱에 동의][Consent-Multi-Tier-Known-Client] 
+![동의 toomulti 계층 알려진된 클라이언트 응용 프로그램][Consent-Multi-Tier-Known-Client] 
 
 **다중 테넌트의 여러 계층**
 
-응용 프로그램의 다른 계층이 다른 테넌트에 등록되어 있다면 유사한 사례가 발생합니다.  예를 들어 Office 365 Exchange Online API를 호출하는 네이티브 클라이언트 응용 프로그램을 구축하는 경우를 생각해 보겠습니다.  네이티브 응용 프로그램을 개발하고, 그 후 네이티브 응용 프로그램이 고객 테넌트에서 실행되도록 하려면, Exchange Online 서비스 주체가 있어야 합니다.  이 경우에 개발자 및 고객이 자신의 테넌트에 서비스 주체가 생성되도록 하려면 Exchange Online를 구매해야 합니다.  
+비슷한 경우 hello 다양 한 계층 응용 프로그램의 다른 테 넌 트에 등록 된 경우 발생 합니다.  예를 들어 hello Office 365 Exchange Online API를 호출 하는 네이티브 클라이언트 응용 프로그램을 구축 hello 대/소문자를 것이 좋습니다.  toodevelop hello 네이티브 응용 프로그램에서는, 및 이후 고객의 테 넌 트의 네이티브 응용 프로그램 toorun hello에 대 한 서비스 사용자를 Exchange Online hello 있어야 합니다.  이 경우 hello 개발자와 고객 구입 해야 Exchange Online에 대 한 테 넌 트에서 만든 hello 서비스 보안 주체 toobe 합니다.  
 
-Microsoft 이외의 조직에서 빌드한 API의 경우, API 개발자는 고객이 자신의 테넌트에 대한 응용 프로그램에 동의하는 방법을 제공해야 합니다. 타사 개발자에게 권장되는 디자인은 등록을 구현하는 웹 클라이언트로도 사용할 수 있도록 API를 빌드하는 것입니다.
+Microsoft 이외의 조직으로 작성 된 API의 hello 대/소문자를 hello API의 hello 개발자가 자신의 고객의 테 넌 트에 고객 tooconsent hello 응용 프로그램에 대 한 tooprovide 방식으로 제공 되어야 합니다. hello 등록 웹 클라이언트 tooimplement으로도 사용할 수 있도록 hello 3rd 파티 개발자 toobuild hello API에 대 한 디자인은 하는 것이 좋습니다.
 
-1. 이전 섹션에 따라 API에서 다중 테넌트 응용 프로그램 등록/코드 요구 사항을 구현하도록 합니다.
-2. API의 범위/역할을 노출하는 것 외에도 등록에 "로그인 및 읽기 사용자 프로필" Azure AD 사용 권한을 포함해야 합니다(기본적으로 제공됨).
-3. 앞에서 설명한 [관리 동의](#admin-consent) 지침에 따라 웹 클라이언트에서 로그인/등록 페이지를 구현합니다. 
-4. 사용자가 응용 프로그램에 동의한 경우 서비스 주체 및 동의 위임 링크가 해당 테넌트에 생성되며 네이티브 응용 프로그램이 API의 토큰을 가져올 수 있습니다.
+1. Hello에 따라 이전 섹션에서는 tooensure hello API 구현 hello 다중 테 넌 트 응용 프로그램 등록/코드 요구 사항
+2. 또한 역할/tooexposing hello API의 범위 확인 hello 등록 hello에 포함 됩니다. "에 로그인 및 사용자 프로필 읽기" Azure AD 권한 (기본적으로 제공 됨)
+3. 로그인-에/등록 페이지 hello 웹 클라이언트에서 다음 hello 구현 [관리 동의가](#admin-consent) 이전에 설명한 지침 
+4. Hello 사용자가 toohello 응용 프로그램을 승인 되 면 hello 서비스 보안 주체와 동의 위임 링크에 테 넌 트 만들어지며 hello 네이티브 응용 프로그램 API hello에 대 한 토큰을 가져올 수 있습니다.
 
-다음 다이어그램은 다른 테넌트에 등록된 다중 계층 앱에 대한 동의 개요를 제공합니다.
+다이어그램을 다음 hello 다른 테 넌 트에 등록 하는 다중 계층 응용 프로그램에 대 한 동의 대 한 개요를 제공 합니다.
 
-![다중 계층 다자 앱에 동의][Consent-Multi-Tier-Multi-Party] 
+![동의 toomulti 계층 다자간 응용 프로그램][Consent-Multi-Tier-Multi-Party] 
 
 ### <a name="revoking-consent"></a>동의 취소
-사용자와 관리자는 언제든지 응용 프로그램에 대한 동의를 해지할 수 있습니다.
+사용자와 관리자가 언제 든 지 동의 tooyour 응용 프로그램을 취소할 수 있습니다.
 
-* 사용자는 자신의 [액세스 패널 응용 프로그램][AAD-Access-Panel] 목록에서 개별 응용 프로그램을 제거하여 해당 응용 프로그램에 대한 액세스 권한을 취소합니다.
-* 관리자는 [Azure Portal][AZURE-portal]의 Azure AD 관리 섹션을 사용하여 Azure Ad에서 응용 프로그램을 제거하여 해당 응용 프로그램에 대한 액세스 권한을 취소합니다.
+* 사용자가 revoke 액세스 tooindividual 응용 프로그램에서 제거 하 여 자신의 [액세스 패널 응용 프로그램] [ AAD-Access-Panel] 목록입니다.
+* 관리자의 hello hello Azure AD 관리 섹션을 사용 하 여 Azure AD에서 제거 하 여 액세스 tooapplications 해지 [Azure 포털][AZURE-portal]합니다.
 
-관리자가 테넌트의 모든 사용자에 대해 응용 프로그램에 동의하는 경우 사용자는 개별적으로 액세스를 해지할 수 없습니다.  관리자만이 액세스를 해지할 수 있으며 전체 응용 프로그램에 대해서만 해지할 수 있습니다.
+관리자가 테 넌 트의 모든 사용자에 대 한 tooan 응용 프로그램을 승인 하는 경우 사용자가 액세스를 개별적으로 취소할 수 없습니다.  관리자에 게 액세스를 취소할 수 있습니다 및 hello 전체 응용 프로그램에 대해서만 합니다.
 
 ### <a name="consent-and-protocol-support"></a>동의 및 프로토콜 지원
-동의는 OAuth, OpenID Connect, WS-federation 및 SAML 프로토콜을 통해 Azure AD에서 지원됩니다.  SAML 및 WS-federation 프로토콜은 `prompt=admin_consent` 매개 변수를 지원하지 않으므로, 관리자 동의는 OAuth 및 OpenID Connect 통해서만 가능합니다.
+동의 hello OAuth, OpenID Connect를 통해 Azure AD에서 지원, Ws-federation 및 SAML 프로토콜입니다.  hello Ws-federation 및 SAML 프로토콜 지원 하지 않는 hello `prompt=admin_consent` 관리 동의가 OAuth 및 OpenID Connect를 통해 가능만 이므로 매개 변수입니다.
 
 ## <a name="multi-tenant-applications-and-caching-access-tokens"></a>다중 테넌트 응용 프로그램및 액세스 토큰 캐시
-다중 테넌트 응용 프로그램은 또한 Azure AD로 보호되는 API를 호출하는 액세스 토큰을 가져올 수도 있습니다.  다중 테넌트 응용 프로그램과 함께 ADAL(Active Directory 인증 라이브러리)을 사용할 경우 일반적인 오류는 먼저 /common을 사용하여 사용자에 대한 토큰을 요청하고, 응답을 받은 후, 또 다시 /common을 사용하여 같은 사용자에 대한 후속 토큰을 요청하는 것입니다.  Azure AD에서 온 응답은 /common이 아닌 테넌트에서 오기 때문에, ADAL은 토큰을 테넌트로부터 온 것인양 캐시합니다. 사용자에 대한 액세스 토큰을 가져오기 위한 /common에 대한 후속 호출은 캐시 항목이 누락되어, 사용자에게 다시 로그인하라는 메시지가 표시됩니다.  캐시 누락을 방지하려면 이미 로그인한 사용자에 대한 후속 호출이 테넌트의 끝점에 대해 있었는지 확인합니다.
+다중 테 넌 트 응용 프로그램 액세스 토큰 toocall Azure AD로 보호 되는 Api를 가져올 수 있습니다.  다중 테 넌 트 응용 프로그램을 Active Directory 인증 라이브러리 (ADAL) hello를 사용 하는 경우 발생 하는 일반적인 오류 tooinitially 함께 사용할 수를 사용 하 여 사용자에 대 한 토큰 요청, 응답을 받는 설정한 다음도 함께 사용할 수를 사용 하 여 같은 사용자에 대 한 후속 토큰을 요청 합니다.  이후 Azure AD에서 hello 응답 하지는 테 넌 트에서 / 공통, ADAL hello 테 넌 트의 것으로 hello 토큰을 캐시 합니다. 후속 hello/공통 너무 tooget hello 사용자 누락 hello 캐시 항목 및 hello 사용자에 대 한 액세스 토큰에서 증명된 toosign를 다시 호출 합니다.  tooavoid 누락 하는 hello 캐시는 이미 로그인된 한 사용자에 대 한 확인 되었는지 후속 호출은 toohello 테 넌 트의 끝점을 이루어집니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 모든 Azure Active Directory 테넌트에서 사용자를 로그인할 수 있는 응용 프로그램을 구축하는 방법을 알아보았습니다. 앱 및 Azure Active Directory 간에 Single Sign-On을 사용하도록 설정하면 Office 365와 같은 Microsoft 리소스에 의해 노출되는 API에 액세스하도록 응용 프로그램을 업데이트할 수도 있습니다. 따라서 사용하는 응용 프로그램에 사용자에 맞는 컨텍스트 정보(예: 프로필 사진 또는 다음 일정 약속)를 표시하는 것과 같은 개인 설정된 환경을 제공할 수 있습니다. Azure Active Directory 및 Exchange, SharePoint, OneDrive, OneNote, Planner, Excel 등과 같은 Office 365 서비스에 대한 API 호출 방법을 자세히 알아보려면 [Microsoft Graph API][MSFT-Graph-overview]를 방문하세요.
+이 문서에서는 방법에 대해 배웠습니다 toobuild 모든 Azure Active Directory 테 넌 트에서 사용자를 로그인 할 수 있는 응용 프로그램입니다. 앱과 Azure Active Directory 간에 Single Sign-on 사용 하도록 설정한 후 사용자 응용 프로그램 tooaccess Office 365와 같은 Microsoft 리소스에 의해 노출 된 Api를 업데이트할 수 있습니다. 따라서를 제공할 수 있습니다는 개인화 된 환경을 응용 프로그램의 예를 들어 toohello 사용자에 게 자신의 프로필 사진 또는 다음 일정 약속의 컨텍스트 정보를 표시 합니다. API 만들기에 대해 자세히 toolearn tooAzure Active Directory를 호출 하 고 Exchange, SharePoint, OneDrive, OneNote, Planner, Excel 등, Office 365 서비스 방문: [Microsoft Graph API][MSFT-Graph-overview]합니다.
 
 
 ## <a name="related-content"></a>관련 콘텐츠
@@ -185,11 +185,11 @@ Microsoft 이외의 조직에서 빌드한 API의 경우, API 개발자는 고�
 * [Azure AD 개발자 가이드][AAD-Dev-Guide]
 * [응용 프로그램 개체 및 서비스 주체 개체][AAD-App-SP-Objects]
 * [Azure Active Directory와 응용 프로그램 통합][AAD-Integrating-Apps]
-* [동의 프레임워크 개요][AAD-Consent-Overview]
+* [Hello 동의 프레임 워크 개요][AAD-Consent-Overview]
 * [Microsoft Graph API 권한 범위][MSFT-Graph-permision-scopes](영문)
 * [Azure AD Graph API 권한 범위][AAD-Graph-Perm-Scopes]
 
-다음 설명 섹션을 사용하여 피드백을 제공하고 콘텐츠를 구체화하고 모양을 갖출 수 있습니다.
+다음 설명 섹션 tooprovide 피드백 hello를 사용 하 고 구체화 하 고 콘텐츠를 셰이핑 하는 데 도움이 하십시오.
 
 <!--Reference style links IN USE -->
 [AAD-Access-Panel]:  https://myapps.microsoft.com

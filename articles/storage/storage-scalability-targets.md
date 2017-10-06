@@ -1,6 +1,6 @@
 ---
-title: "Azure Storage 확장성 및 성능 목표 | Microsoft Docs"
-description: "표준 및 프리미엄 저장소 계정에 대한 용량, 요청 속도 및 인바운드 및 아웃 바운드 대역폭을 포함한 Azure 저장소의 확장성 및 성능 목표를 알아보세요. Azure 저장소 서비스 각각의 파티션에 대한 성능 목표를 이해해 보세요."
+title: "aaaAzure 저장소 확장성 및 성능 목표 | Microsoft Docs"
+description: "Azure 저장소의 경우 용량, 요청 속도 및 두 표준 및 프리미엄 저장소 계정에 대 한 인바운드 및 아웃 바운드 대역폭을 포함 하 여 hello 확장성 및 성능 목표에 알아봅니다. Hello Azure 저장소 서비스의 각 파티션에 대 한 성능 목표를 이해 합니다."
 services: storage
 documentationcenter: na
 author: robinsh
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 07/12/2017
 ms.author: robinsh
-ms.openlocfilehash: ed90e5d63e4c93f9c5054b02d2b4457b44caf6eb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 98de116a01b64f3418808a5f626b6c70d8d432e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-scalability-and-performance-targets"></a>Azure 저장소 확장성 및 성능 목표
 ## <a name="overview"></a>개요
-이 항목에서는 Microsoft Azure 저장소에 대한 확장성 및 성능을 설명합니다. 기타 Azure 제한 사항에 대한 요약은 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)을 참조하세요.
+이 항목에서는 Microsoft Azure 저장소에 대 한 hello 확장성 및 성능 항목을 설명 합니다. 기타 Azure 제한 사항에 대한 요약은 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)을 참조하세요.
 
 > [!NOTE]
-> 모든 저장소 계정은 새로운 플랫 네트워크 토폴로지에서 실행되고 작성된 시기에 관계 없이 아래에 설명된 확장성 및 성능 목표를 지원합니다. Azure 저장소 플랫 네트워크 아키텍처 및 확장성에 대한 자세한 내용은 [Microsoft Azure 저장소: 일관성과 가용성이 뛰어난 클라우드 저장소 서비스](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)를 참조하세요.
+> 모든 저장소 계정은 새로운 플랫 네트워크 토폴로지에서 hello에서 실행 되며 작성 된 시간에 관계 없이 아래에 설명 된 hello 확장성 및 성능 목표가 지원. 자세한 내용은 hello Azure 저장소 플랫 네트워크 아키텍처 및 확장성 참조 [Microsoft Azure 저장소: A 항상 사용 가능한 클라우드 저장소 서비스 강력한 일관성](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)합니다.
 > 
 > [!IMPORTANT]
-> 여기에 나열된 확장성 및 성능 목표는 최첨단 목표이지만 달성할 수 있습니다. 모든 경우, 계정 사용량에 따라 달성된 요청 속도 및 대역폭은 저장된 개채의 크기 및 응용 프로그램이 수행한 작업 형태에 따릅니다. 해당 성능이 요구 사항을 충족시키는지 여부를 확인 하려면 서비스를 반드시 테스트해야 합니다. 가능하면 트래픽 속도가 갑자기 증가하지 않고 파티션 간의 트래픽이 적절하게 분산되도록 보장합니다.
+> 여기에 나열 된 hello 확장성 및 성능 목표는 고성능 저장소의 목표 이지만 충분히 충족 가능 합니다. 어떤 경우 든, 저장 된 개체의 hello 크기에 따라 달라 집니다 속도 대역폭을 저장소 계정으로 이용할 hello 요청 hello 액세스 패턴 사용량에 및 유형의 응용 프로그램에서 수행 하는 작업 부하를 hello 합니다. 성능 요구 사항을 충족 하는지 여부를 있는지 tootest 서비스 toodetermine를 수 있습니다. 가능 하면 트래픽의 hello 속도가 갑자기 증가 하지 않도록 하 고 파티션 간에 트래픽을 적절 하 게 분산 인지 확인 합니다.
 > 
-> 응용 프로그램이 파티션의 작업 처리 가능한 제한에 도달하면 Azure 저장소는 오류 코드 503 (서버 작업 중) 또는 오류 코드 500 (작업 시간 초과) 응답을 반송하기 시작합니다. 이런 경우 응용 프로그램은 재시도를 위한 지수 백오프 정책을 사용해야 합니다. 지수 백오프는 파티션에 대한 부하를 감소시키고 해당 파티션에 트래픽의 급증을 완화할 수 있습니다.
+> 응용 프로그램 워크 로드에 대 한 파티션을 처리할 수 있는 것 hello 제한에 도달 하면 Azure 저장소는 tooreturn 오류 코드 503 (서버 작업 중)를 시작 하거나 오류 코드: 500 (작업 시간 초과) 응답 합니다. 이 경우 hello 응용 프로그램 재시도 대 한 지 수 백오프 정책을 사용 해야 합니다. hello 지 수 백오프 hello 부하를 hello 파티션 toodecrease 및 스파이크 아웃 tooease 트래픽 toothat 파티션을 사용할 수 있습니다.
 > 
 > 
 
-응용 프로그램의 요구가 단일 저장소 계정의 확장성 목표를 초과하는 경우 여러 저장소 계정을 사용하도록 응용 프로그램을 빌드하고 데이터를 이러한 저장소 계정에 분할합니다. 볼륨 가격에 대한 자세한 내용은 [Azure 저장소 가격 책정](https://azure.microsoft.com/pricing/details/storage/) 을 참조하세요.
+Hello 필요한 응용 프로그램의 단일 저장소 계정의 확장성 목표 hello를 초과 하는 경우 응용 프로그램 toouse 여러 저장소 계정 구축 수 있으며 해당 저장소 계정에 데이터 개체를 분할할 수 있습니다. 볼륨 가격에 대한 자세한 내용은 [Azure 저장소 가격 책정](https://azure.microsoft.com/pricing/details/storage/) 을 참조하세요.
 
 ## <a name="scalability-targets-for-blobs-queues-tables-and-files"></a>Blob, 큐, 테이블 및 파일에 대한 확장성 목표
 [!INCLUDE [azure-storage-limits](../../includes/azure-storage-limits.md)]
 
-<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
+<!-- conceptual info about disk limits -- applies toounmanaged and managed -->
 ## <a name="scalability-targets-for-virtual-machine-disks"></a>가상 컴퓨터 디스크에 대한 확장성 목표
 [!INCLUDE [azure-storage-limits-vm-disks](../../includes/azure-storage-limits-vm-disks.md)]
 
@@ -58,20 +58,20 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [azure-storage-limits-azure-resource-manager](../../includes/azure-storage-limits-azure-resource-manager.md)]
 
 ## <a name="partitions-in-azure-storage"></a>Azure 저장소의 파티션
-Azure 저장소(blob, 메시지, 엔터티 및 파일)에 저장 된 데이터를 보유한 모든 개체는 파티션에 속하며 파티션 키로 식별됩니다. 파티션은 Azure 저장소 부하가 어떻게 서버의 blob, 메시지, 엔터티 및 파일을 해당 개체의 트래픽 요구를 충족하도록 분산할지 결정합니다. 파티션 키는 고유하며 blob, 메시지 또는 엔터티를 찾는 데 사용됩니다.
+Azure 저장소 (blob, 메시지, 엔터티 및 파일)에 저장 된 데이터를 보유 하는 모든 개체 tooa 파티션에 속하며 파티션 키로 식별 됩니다. hello 파티션 방법을 Azure 저장소 부하를 분산 blob, 메시지, 엔터티 및 파일 서버 toomeet hello 트래픽 요구 사항을 이러한 개체의 결정 합니다. hello 파티션 키는 고유 하며 blob, 메시지 또는 엔터티 toolocate 사용된 됩니다.
 
-위의 테이블에 표시된 [표준 저장소 계정의 확장성 목표](#standard-storage-accounts) 는 각 서비스에 대한 단일 파티션의 성능 목표를 나열합니다.
+hello 테이블에서 위의 [표준 저장소 계정의 확장성 목표](#standard-storage-accounts) 목록 hello 각 서비스용 단일 파티션의 성능 목표입니다.
 
-파티션은 각 저장소 서비스의 부하 분산 및 확장성에 다음과 같은 방식으로 영향을 줍니다:
+파티션 부하 분산 및 확장성에 영향을 각 방법으로 다음 hello에 hello 저장소 서비스에 대해:
 
-* **Blob**: blob의 파티션 키는 계정 이름 + 컨테이너 이름 + blob 이름입니다. 이는 blob의 로드에 필요한 경우 각 blob에 자체 파티션을 둘 수 있음을 의미합니다. 액세스를 확장하기 위해 blob을 여러 서버에 분산시킬 수 있지만 단일 blob은 단일 서버에 의해서만 처리될 수 있습니다. Blob 컨테이너에서 blob를 논리적으로 그룹화하는 반면 해당 그룹화에는 파티션이 적용되지 않습니다.
-* **파일**: 파일에 대한 파티션 키는 계정 이름 + 파일 공유 이름입니다. 즉, 파일 공유의 모든 파일도 단일 파티션에 포함됩니다.
-* **메시지**: 메시지의 파티션 키는 계정 이름 + 큐 이름이므로 큐에 있는 모든 메시지를 단일 파티션으로 그룹화하고 단일 서버를 통해 제공합니다. 서로 다른 큐는 부하를 분산하는 다른 서버에 의해 처리될 수 있지만 하나의 저장소 계정은 다수의 큐를 가질 수 있습니다.
-* **엔터티**: 엔터티의 파티션 키는 계정 이름 + 테이블 이름 + 파티션 키이며, 여기서 파티션 키는 사용자 정의가 필요한 **PartitionKey** 속성의 값입니다. 동일한 파티션 키 값을 가진 모든 엔터티는 같은 파티션으로 그룹화 되며 같은 파티션 서버에 의해 처리됩니다. 이는 응용 프로그램 디자인에서 이해해야 할 중요한 사항입니다. 응용 프로그램은 엔터티를 단일 파티션으로 그룹화하는 데이터 액세스 이점과 여러 파티션에서 엔터티를 분산시키는 경우의 확장성 이점을 조정해야 합니다.  
+* **Blob**: blob에 대 한 hello 파티션 키는 계정 이름 + 컨테이너 이름 + blob 이름입니다. 이 요구 하는 hello blob에 로드 하는 경우 각 blob 자체 분할에 있을 수 있음을 의미 합니다. Blob 액세스 toothem 아웃 순서 tooscale의 여러 서버에서 배포할 수 있습니다 하지만 단일 blob 단일 서버에 의해 제공 될 수 있습니다. Blob 컨테이너에서 blob를 논리적으로 그룹화하는 반면 해당 그룹화에는 파티션이 적용되지 않습니다.
+* **파일**: hello 파티션 키 파일 이름 + 파일 이름을 공유 하는 계정입니다. 즉, 파일 공유의 모든 파일도 단일 파티션에 포함됩니다.
+* **메시지**: 메시지에 대 한 hello 파티션 키 이므로 hello 계정 이름 + 큐 이름, 큐에 있는 모든 메시지를 단일 파티션으로 그룹화 되 고 단일 서버에 의해 제공 됩니다. 많은 큐 저장소 계정이 있을 수 있지만 toobalance hello에 대 한 로드 하는 다른 서버에서 다른 큐를 처리할 수 있습니다.
+* **엔터티**: hello 파티션 키는 엔터티에 대 한 계정 이름 + 테이블 이름 + 파티션 키를 hello 파티션 키의 필요한 hello hello 값이 사용자 정의 **PartitionKey** hello 엔터티에 대 한 속성. 서버를 분할 하는 동일한 분할 및에서 제공 hello 동일 hello로 그룹화 되 고 동일한 파티션 키 값 hello로 모든 엔터티. 응용 프로그램을 디자인 하는 중요 한 지점 toounderstand입니다. 응용 프로그램 엔터티를 엔터티를 단일 파티션으로 그룹화의 hello 데이터 액세스 기능을 사용 하 여 여러 파티션을 분산의 hello 확장성 이점을 균형을 조정 해야 합니다.  
 
-테이블의 엔터티 그룹을 단일 파티션으로 그룹화하는 경우 가장 큰 장점은 하나의 파티션이 단일 서버에 존재하므로 동일한 파티션의 엔터티에서 원자성 배치 작업을 수행할 수 있다는 점입니다. 따라서 엔터티 그룹에 대해 배치 작업을 수행하려는 경우 동일한 파티션 키를 가진 엔터티를 그룹화하는 것이 좋습니다. 
+주요 이점은 toogrouping 단일 파티션으로 테이블의에서 엔터티 집합이 hello 동일 분할 단일 서버에는 파티션이 있기 때문에 엔터티 간에 가능한 tooperform 원자성 일괄 처리 작업이 된다는 점입니다. 엔터티 그룹에 일괄 처리 작업 tooperform을 원할 경우 것이 좋습니다 hello로 그룹화 동일한 파티션 키입니다. 
 
-반면, 동일한 테이블에 있지만 파티션 키가 서로 다른 엔터티는 서로 다른 서버에 부하를 분산시켜 확장성을 높일 수 있습니다.
+다른 손 hello, hello 테이블 동일 하지만 서로 다른 파티션 키에에서 있는 엔터티는 확장성이 뛰어난 가능한 toohave 있어서 서로 다른 서버에서 부하 분산 될 수 있습니다.
 
 테이블 분할 전략 디자인에 대한 자세한 권장 사항은 [여기](https://msdn.microsoft.com/library/azure/hh508997.aspx)에서 확인할 수 있습니다.
 

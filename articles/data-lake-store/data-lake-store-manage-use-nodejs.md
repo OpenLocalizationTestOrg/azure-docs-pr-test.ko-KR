@@ -1,6 +1,6 @@
 ---
-title: "Node.js용 Azure SDK를 사용하여 Azure Data Lake Store 시작 | Microsoft 문서"
-description: "Node.js를 사용하여 Data Lake Store 계정 및 파일 시스템을 사용하는 방법에 대해 알아봅니다."
+title: "Node.js 용 Azure SDK를 사용 하 여 Azure 데이터 레이크 저장소 aaaGet 시작 | Microsoft Docs"
+description: "데이터 레이크 저장소 계정 및 hello toouse Node.js toowork 파일 시스템 방법에 대해 알아봅니다."
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/06/2017
 ms.author: nitinme
-ms.openlocfilehash: 8c7a2e6ca061bbfa077592efb73d592906c3d070
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce36a2e0de4e091a4e85ed784a3381415ef6f9e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-azure-sdk-for-nodejs"></a>Node.js용 Azure SDK를 사용하여 Azure Data Lake Store 시작
 > [!div class="op_single_selector"]
@@ -34,31 +34,31 @@ ms.lasthandoff: 07/11/2017
 > 
 
 > [!NOTE]
-> 대량의 데이터(큰 파일, 많은 수의 파일 또는 둘 다)를 업로드 및 다운로드하는 경우 [Python SDK](data-lake-store-get-started-python.md), [.NET SDK](data-lake-store-get-started-net-sdk.md), [Azure CLI 2.0](data-lake-store-get-started-cli-2.0.md) 또는 [Azure PowerShell](data-lake-store-get-started-powershell.md)을 사용하는 것이 좋습니다. 이러한 옵션은 여러 스레드를 사용하여 데이터 이동을 병렬화할 때 더 나은 성능을 제공합니다.
+> 업로드 하 고 많은 양의 데이터 (대형 파일, 많은 수의 파일, 또는 둘 다)을 다운로드에 대 한 hello를 사용 하는 권장 [Python SDK](data-lake-store-get-started-python.md), hello [.NET SDK](data-lake-store-get-started-net-sdk.md), [Azure CLI 2.0](data-lake-store-get-started-cli-2.0.md), 또는 [Azure PowerShell](data-lake-store-get-started-powershell.md)합니다. 이러한 옵션은 더 나은 성능을 여러 스레드 tooparallelize hello 데이터 이동의 사용 합니다.
 > 
 > 
 
-Node.js용 Azure SDK를 사용하여 Azure Data Lake Store 계정을 만들고 기본 작업(예: 폴더 만들기, 데이터 파일 업로드 및 다운로드, 계정 삭제 등)을 수행하는 방법에 대해 알아봅니다. Data Lake Store에 대한 자세한 내용은 [Data Lake Store 개요](data-lake-store-overview.md)를 참조하세요. 현재는 SDK에서 다음을 지원합니다.
+어떻게 toouse hello Azure SDK Node.js toocreate에 대 한 Azure 데이터 레이크 저장소 계정에 알아봅니다 폴더를 만들어 업로드 및 다운로드 데이터 파일 등의 기본 작업을 수행 하 고 계정, 등을 삭제 합니다. Data Lake Store에 대한 자세한 내용은 [Data Lake Store 개요](data-lake-store-overview.md)를 참조하세요. 현재 hello SDK 지원
 
 * **Node.js 버전: 0.10.0 이상**
 * **계정에 대한 REST API 버전: 2015-10-01-preview**
 * **FileSystem용 REST API 버전: 2015-10-01-preview**
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서를 시작하기 전에 다음이 있어야 합니다.
+이 문서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **Azure 구독**. [Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
-* **Azure Active Directory 응용 프로그램을 만듭니다**. Azure AD 응용 프로그램을 사용하여 Azure AD로 Data Lake Store 응용 프로그램을 인증합니다. Azure AD로 인증하는 여러 접근 방법에는 **최종 사용자 인증** 또는 **서비스 간 인증**이 있습니다. 지침 및 인증 방법에 대한 자세한 내용은 [최종 사용자 인증](data-lake-store-end-user-authenticate-using-active-directory.md) 또는 [서비스 간 인증](data-lake-store-authenticate-using-active-directory.md)을 참조하세요.
+* **Azure Active Directory 응용 프로그램을 만듭니다**. Azure AD와 hello Azure AD 응용 프로그램 tooauthenticate hello Data Lake 저장소 응용 프로그램을 사용 합니다. 없는 Azure AD와 다양 한 접근 방법 tooauthenticate 않는 **최종 사용자 인증** 또는 **서비스 간 인증**합니다. 지침 및 방법에 대 한 자세한 내용은 tooauthenticate, 참조 [최종 사용자 인증](data-lake-store-end-user-authenticate-using-active-directory.md) 또는 [서비스 간 인증](data-lake-store-authenticate-using-active-directory.md)합니다.
 
-## <a name="how-to-install"></a>설치 방법
+## <a name="how-tooinstall"></a>어떻게 tooInstall
 ```bash
 npm install azure-arm-datalake-store
 ```
 
 ## <a name="authenticate-using-azure-active-directory"></a>Azure Active Directory를 사용하여 인증
-아래 코드 조각은 Azure AD를 사용하여 Data Lake Store에서 인증하는 별도의 두 가지 방법을 보여 줍니다. Data Lake Store 인증에 사용하는 다양한 방법에 대한 자세한 내용은 [Azure Active Directory를 사용하여 Data Lake Store로 인증](data-lake-store-authenticate-using-active-directory.md)을 참조하세요.
+아래 hello 조각은 Azure AD를 사용 하 여 데이터 레이크 저장소를 사용 하 여 인증 하는 두 개의 별도 방법을 보여 줍니다. 데이터 레이크 저장소와 인증에 대 한 다양 한 메서드 toouse에 대 한 자세한 내용은 참조 하십시오. [Azure Active Directory를 사용 하 여 데이터 레이크 저장소로 인증](data-lake-store-authenticate-using-active-directory.md)합니다.
 
-아래 코드 조각에서도 Azure AD 도메인 이름, Azure AD 앱의 클라이언트 ID 등의 입력이 필요합니다. 이러한 모든 세부 정보는 사용자가 만들어야 하는 Azure AD 응용 프로그램에서 가져올 수 있습니다. 자세한 내용은 위 링크에도 포함되어 있습니다.
+아래 hello 조각 유사 하 게 Azure AD 도메인 이름, 클라이언트 ID 등 Azure AD 앱에 대 한 입력 해야합니다. 이러한 모든 세부이 정보 hello 세부 사항으로 위의 링크에도 포함 되어 Azure AD 만든 응용 프로그램에서 수행 해야 하는, 검색할 수 있습니다.
 
  ```javascript
  var msrestAzure = require('ms-rest-azure');
@@ -68,7 +68,7 @@ npm install azure-arm-datalake-store
  var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
  ```
 
-## <a name="create-the-data-lake-store-clients"></a>Data Lake Store 클라이언트 만들기
+## <a name="create-hello-data-lake-store-clients"></a>Hello 데이터 레이크 저장소 클라이언트를 만듭니다.
 ```javascript
 var adlsManagement = require("azure-arm-datalake-store");
 var acccountClient = new adlsManagement.DataLakeStoreAccountClient(credentials, "your-subscription-id");
@@ -82,7 +82,7 @@ var resourceGroupName = 'testrg';
 var accountName = 'testadlsacct';
 var location = 'eastus2';
 
-// account object to create
+// account object toocreate
 var accountToCreate = {
   tags: {
     testtag1: 'testvalue1',
@@ -95,14 +95,14 @@ var accountToCreate = {
 client.account.create(resourceGroupName, accountName, accountToCreate, function (err, result, request, response) {
   if (err) {
     console.log(err);
-    /*err has reference to the actual request and response, so you can see what was sent and received on the wire.
-      The structure of err looks like this:
+    /*err has reference toohello actual request and response, so you can see what was sent and received on hello wire.
+      hello structure of err looks like this:
       err: {
         code: 'Error Code',
         message: 'Error Message',
-        body: 'The response body if any',
-        request: reference to a stripped version of http request
-        response: reference to a stripped version of the response
+        body: 'hello response body if any',
+        request: reference tooa stripped version of http request
+        response: reference tooa stripped version of hello response
       }
     */
   } else {

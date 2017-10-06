@@ -1,6 +1,6 @@
 ---
-title: "Azure 청구 엔터프라이즈 API | Microsoft Docs"
-description: "Azure 기업 고객이 사용량 데이터를 프로그래밍 방식으로 끌어올 수 있게 하는 보고 API에 대해 알아봅니다."
+title: "엔터프라이즈 Api 청구 aaaAzure | Microsoft Docs"
+description: "Hello Enterprise Azure 고객 toopull 소비 데이터에 프로그래밍 방식으로 사용할 수 있는 보고 Api에 알아봅니다."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: e3a5f9bcd6b54a51c29df649f1ae8ac185b153a1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 017cecc57ad6bdeb402b5d9d57fc95df9b033a42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-reporting-apis-for-enterprise-customers"></a>기업 고객을 위한 보고 API 개요
-Azure 기업 고객은 보고 API를 통해 사용량 및 청구 데이터를 기본 데이터 분석 도구로 프로그래밍 방식으로 끌어올 수 있습니다. 
+hello 보고 Api를 사용 Enterprise Azure 고객 tooprogrammatically 끌어오기 사용량과 청구 데이터를 기본 설정된 된 데이터 분석 도구. 
 
-## <a name="enabling-data-access-to-the-api"></a>API에 대한 데이터 액세스 사용
-* **API 키 생성/검색** - 엔터프라이즈 포털에 로그인하고, 도움말 - Reporting API 아래의 자습서를 따릅니다. 이 도움말 문서의 첫 번째 섹션에서는 지정된 등록에 대한 API 키를 생성하거나 검색하는 방법에 대해 설명합니다.
-* **API에서 키 전달** - API 키는 인증 및 권한 부여를 호출할 때마다 전달되어야 합니다. HTTP 헤더에 있어야 하는 속성은 다음과 같습니다.
+## <a name="enabling-data-access-toohello-api"></a>데이터 액세스 toohello API를 사용 하도록 설정
+* **생성 또는 hello API 키를 검색할** 도움말에서 toohello 엔터프라이즈 포털 및 따라 hello 자습서에서는 로그-보고 Api입니다. 이 도움말 문서에서 첫 번째 섹션 hello toogenerate 또는 검색 hello API 키 hello에 대 한 등록을 지정 하는 방법을 설명 합니다.
+* **Hello API에에서 키가 전달** -hello API 키 toobe 인증 및 권한 부여에 대 한 각 호출에 대해 전달 해야 합니다. hello 다음 속성은 toobe toohello HTTP 헤더
 
 |요청 헤더 키 | 값|
 |-|-|
-|권한 부여| **bearer {API_KEY}** 형식의 값을 지정합니다. <br/> 예: bearer eyr....09|
+|권한 부여| Hello 값이 형식으로 지정: **전달자 {API_KEY}** <br/> 예: bearer eyr....09|
 
 ## <a name="consumption-apis"></a>사용량 API
-Swagger 끝점은 [AutoRest](https://github.com/Azure/AutoRest) 또는 [Swagger CodeGen](http://swagger.io/swagger-codegen/)을 사용하여 손쉬운 API 검사와 클라이언트 SDK 생성 기능을 사용할 수 있게 하는 아래에서 설명하는 API에 대해 [여기](https://consumption.azure.com/swagger/ui/index)에서 제공됩니다. 2014년 5월 1일부터 시작하는 데이터는 이 API를 통해 사용할 수 있습니다. 
+Swagger 끝점을 사용할 수 [여기](https://consumption.azure.com/swagger/ui/index) hello에 대 한 Api 이하로 해야 hello API 및 hello 기능 toogenerate 클라이언트 Sdk 사용 쉽게 검사 사용 하 여 설명 [AutoRest](https://github.com/Azure/AutoRest) 또는 [ Swagger CodeGen](http://swagger.io/swagger-codegen/)합니다. 2014년 5월 1일부터 시작하는 데이터는 이 API를 통해 사용할 수 있습니다. 
 
-* **잔액 및 요약** - [잔액 및 요약 API](billing-enterprise-api-balance-summary.md)는 잔액, 신규 구매, Azure Marketplace 서비스 요금, 조정 및 초과 요금에 대한 월별 정보 요약을 제공합니다.
+* **잔액 및 요약** -hello [균형 및 요약 API](billing-enterprise-api-balance-summary.md) 월별 요약 잔액, 새 구매, Azure 마켓플레이스 서비스 요금이, 조정 및 초과 요금에 대 한 정보를 제공 합니다.
 
-* **사용량 세부 정보** - [사용량 세부 정보 API](billing-enterprise-api-usage-detail.md)는 등록에 따른 사용량과 예상 요금 의 일별 분석 결과를 제공합니다. 이 결과에는 인스턴스, 측정기 및 부서에 대한 정보도 포함 됩니다. API는 청구 기간 또는 지정된 시작 날짜와 종료 날짜를 기준으로 쿼리할 수 있습니다. 
+* **사용 정보** -hello [사용 현황 세부 API](billing-enterprise-api-usage-detail.md) 소비 된 수량 및 등록 하 여 예상된 요금 일별로 구분을 제공 합니다. hello 결과는 인스턴스, 측정 단위 및 부서에 대 한 정보 포함 됩니다. 지정 된 시작 및 종료 날짜 또는 청구 기간에 의해 hello API를 쿼리할 수 있습니다. 
 
-* **Marketplace 저장소 요금** - [Marketplace 저장소 요금 API](billing-enterprise-api-marketplace-storecharge.md)는 지정된 청구 기간 또는 시작 날짜 및 종료 날짜(1회 요금은 포함되지 않음)에 대한 일별 사용량 기반 Marketplace 요금 분석 결과를 반환합니다.
+* **마켓플레이스 저장소 충전** -hello [마켓플레이스 저장소 충전 API](billing-enterprise-api-marketplace-storecharge.md) hello 지정한 시작 및 종료 날짜 (한 번 요금 포함 되지 않습니다.) 또는 대금 청구 기간에 대 한 일별 hello 마켓플레이스 사용량 기반 요금 분석 결과 반환 .
 
-* **가격표** - [가격표 API](billing-enterprise-api-pricesheet.md)는 지정된 등록 및 청구 기간에 대한 각 측정기에 적용할 수 있는 가격을 제공합니다. 
+* **가격표** -hello [가격 시트 API](billing-enterprise-api-pricesheet.md) hello 등록 및 대금 청구 기간에 대 한 각 수준에 대 한 hello 적용 가능한 속도 제공 합니다. 
 
 ## <a name="helper-apis"></a>도우미 API
- **청구 기간 나열** - [청구 기간 API](billing-enterprise-api-billing-periods.md)는 지정된 등록에 대한 사용량 데이터를 역방향 시간 순서로 표시한 청구 기간 목록을 반환합니다. 각 기간에는 4개의 데이터 집합(잔액 요약, 사용량 세부 정보, Marketplace 요금 및 가격표)에 대한 API 경로를 가리키는 속성이 포함되어 있습니다.
+ **대금 청구 기간 목록** -hello [청구 기간 API](billing-enterprise-api-billing-periods.md) 기간 hello 역시간순에서 등록 지정한에 대 한 사용 데이터를 가진 청구의 목록을 반환 합니다. 각 기간에는 4 개의 집합이 데이터 요금-BalanceSummary, UsageDetails, 마켓플레이스 요금 및 가격표를 hello에 대 한 toohello API 경로 가리키는 속성을 포함 합니다.
 
 
 ## <a name="api-response-codes"></a>API 응답 코드  

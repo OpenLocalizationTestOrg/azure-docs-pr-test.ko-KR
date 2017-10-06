@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용하여 Azure 미디어 서비스 계정 관리"
-description: "PowerShell cmdlet를 사용하여 Azure 미디어 서비스 계정을 관리하는 방법에 대해 알아봅니다."
+title: "aaaManage PowerShell 사용한 Azure 미디어 서비스 계정"
+description: "PowerShell cmdlet과 toomanage Azure 미디어 서비스 계정 하는 방법에 대해 알아봅니다."
 author: Juliako
 manager: erikre
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: juliako
-ms.openlocfilehash: 3d999d9e27844bc0164cc3572522b9ec022118a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e8f97bb2393343e45fabf9c437b4fc09f2525dc2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-media-services-accounts-with-powershell"></a>PowerShell을 사용하여 Azure 미디어 서비스 계정 관리
 > [!div class="op_single_selector"]
@@ -27,12 +27,12 @@ ms.lasthandoff: 07/11/2017
 > * [REST (영문)](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
-> Azure 미디어 서비스 계정을 만들려면 Azure 계정이 있어야 합니다. 계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다. 자세한 내용은 <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Azure 무료 평가판</a>을 참조하세요.
+> toobe 수 toocreate Azure 미디어 서비스 계정, Azure 계정이 있어야 합니다. 계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다. 자세한 내용은 <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Azure 무료 평가판</a>을 참조하세요.
 > 
 > 
 
 ## <a name="overview"></a>개요
-이 문서는 Azure Resource Manager 프레임워크의 AMS(Azure 미디어 서비스)에 대한 Azure PowerShell cmdlet을 나열합니다. Cmdlet는 **Microsoft.Azure.Commands.Media** 네임스페이스에 존재합니다.
+이 문서 hello Azure 리소스 관리자 framework에서 hello Azure PowerShell cmdlet에 대 한 Azure 미디어 서비스 AMS ()를 나열합니다. hello에 hello cmdlet 존재 **Microsoft.Azure.Commands.Media** 네임 스페이스입니다.
 
 ## <a name="versions"></a>버전
 **ApiVersion**: "2015-10-01"
@@ -52,7 +52,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -64,7 +64,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | Name |
 | --- | --- |
@@ -76,7 +76,7 @@ ms.lasthandoff: 07/11/2017
 
 **-Location &lt;String&gt;**
 
-미디어 서비스의 리소스 위치를 지정합니다.
+Hello 미디어 서비스의 hello 리소스 위치를 지정합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -88,10 +88,10 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccountId &lt;String&gt;**
 
-미디어 서비스와 연결된 기본 저장소 계정을 지정합니다.
+Hello 미디어 서비스와 연결 된 기본 저장소 계정을 지정 합니다.
 
-* (리소스 관리자 API로 만든) 새 저장소 계정 만 지원함.
-* 저장소 계정이 존재하며 미디어 서비스와 동일한 위치에 있어야 합니다.
+* 새 저장소 계정 (hello 리소스 관리자 API를 사용 하 여 만든)만 지원 합니다.
+* hello 저장소 계정이 있어야 하며가 hello hello 미디어 서비스와 동일한 위치입니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -104,10 +104,10 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccounts &lt;PSStorageAccount\[\]&gt;**
 
-미디어 서비스와 연결된 저장소 계정을 지정합니다.
+Hello 미디어 서비스와 연결 된 저장소 계정을 지정 합니다.
 
-* (리소스 관리자 API로 만든) 새 저장소 계정 만 지원함.
-* 저장소 계정이 존재하며 미디어 서비스와 동일한 위치에 있어야 합니다.
+* 새 저장소 계정 (hello 리소스 관리자 API를 사용 하 여 만든)만 지원 합니다.
+* hello 저장소 계정이 있어야 하며가 hello hello 미디어 서비스와 동일한 위치입니다.
 * 단 하나의 저장소 계정 만을 기본으로 지정할 수 있습니다.
 
 | Aliases | 없음 |
@@ -121,7 +121,7 @@ ms.lasthandoff: 07/11/2017
 
 **-Tags &lt;Hashtable&gt;**
 
-미디어 서비스와 연결된 태그의 해시 테이블을 지정합니다.
+Hello 미디어 서비스와 관련 된 hello 태그의 해시 테이블을 지정 합니다.
 
 * 예: @{"tag1"="value1";" tag2 "=: value2"을 (를)
 
@@ -135,13 +135,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toohello cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="set-azurermmediaservice"></a>Set-AzureRmMediaService
 미디어 서비스를 만듭니다.
@@ -152,7 +152,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -164,7 +164,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | Name |
 | --- | --- |
@@ -176,10 +176,10 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccounts &lt;PSStorageAccount\[\]&gt;**
 
-미디어 서비스와 연결된 저장소 계정을 지정합니다.
+Hello 미디어 서비스와 연결 된 저장소 계정을 지정 합니다.
 
-* (리소스 관리자 API로 만든) 새 저장소 계정 만 지원함.
-* 저장소 계정이 존재하며 미디어 서비스와 동일한 위치에 있어야 합니다.
+* 새 저장소 계정 (hello 리소스 관리자 API를 사용 하 여 만든)만 지원 합니다.
+* hello 저장소 계정이 있어야 하며가 hello hello 미디어 서비스와 동일한 위치입니다.
 * 단 하나의 저장소 계정 만을 기본으로 지정할 수 있습니다.
 
 | Aliases | 없음 |
@@ -193,9 +193,9 @@ ms.lasthandoff: 07/11/2017
 
 **-Tags &lt;Hashtable&gt;**
 
-이 미디어 서비스와 연결된 태그의 해시 테이블을 지정합니다.
+이 미디어 서비스와 관련 된 hello 태그의 해시 테이블을 지정 합니다.
 
-* 미디어 서비스와 연결된 태그가 고객이 지정한 값으로 대체됩니다.
+* hello 미디어 서비스와 관련 된 hello 태그 hello 고객이 지정 된 값으로 대체 됩니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -207,13 +207,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toohello cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="remove-azurermmediaservice"></a>Remove-AzureRmMediaService
 미디어 서비스를 제거합니다.
@@ -224,7 +224,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -236,7 +236,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -248,13 +248,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toohello cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="get-azurermmediaservice"></a>Get-AzureRmMediaService
 지정된 이름으로 리소스 그룹 또는 미디어 서비스에 있는 모든 미디어 서비스를 가져옵니다.
@@ -271,7 +271,7 @@ ParameterSet: AccountNameParameterSet
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -285,7 +285,7 @@ Accept Wildcard Characters?   false
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -298,13 +298,13 @@ Accept Wildcard Characters?   false
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toohello cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="get-azurermmediaservicekeys"></a>Get-AzureRmMediaServiceKeys
 미디어 서비스의 키를 가져옵니다.
@@ -315,7 +315,7 @@ Accept Wildcard Characters?   false
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -327,7 +327,7 @@ Accept Wildcard Characters?   false
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -339,13 +339,13 @@ Accept Wildcard Characters?   false
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toohello cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="set-azurermmediaservicekey"></a>Set-AzureRmMediaServiceKey
 미디어 서비스의 기본 또는 보조 키를 다시 생성합니다.
@@ -356,7 +356,7 @@ Accept Wildcard Characters?   false
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -368,7 +368,7 @@ Accept Wildcard Characters?   false
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -380,7 +380,7 @@ Accept Wildcard Characters?   false
 
 **-KeyType &lt;KeyType&gt;**
 
-미디어 서비스의 키 유형을 지정합니다.
+Hello hello 미디어 서비스 키 유형을 지정합니다.
 
 * 기본 또는 보조
 
@@ -394,16 +394,16 @@ Accept Wildcard Characters?   false
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toothe cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="sync-azurermmediaservicestoragekeys"></a>Sync-AzureRmMediaServiceStorageKeys
-미디어 서비스와 연결된 저장소 계정에 대한 저장소 계정 키를 동기화합니다.
+Hello 미디어 서비스와 연결 된 저장소 계정에 대 한 저장소 계정 키를 동기화 합니다.
 
 ### <a name="syntax"></a>구문
     Sync-AzureRmMediaServiceStorageKeys [-ResourceGroupName] <string> [-MediaServiceAccountName] <string>    [-StorageAccountId] <string>  [<CommonParameters>]
@@ -411,7 +411,7 @@ Accept Wildcard Characters?   false
 ### <a name="parameters"></a>매개 변수
 **-ResourceGroupName &lt;String&gt;**
 
-이 미디어 서비스가 속하는 리소스 그룹의 이름을 지정합니다.
+이 미디어 서비스 속한 hello 리소스 그룹 toowhich hello 이름을 지정 합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -423,7 +423,7 @@ Accept Wildcard Characters?   false
 
 **-AccountName &lt;String&gt;**
 
-미디어 서비스의 이름을 지정합니다.
+Hello hello 미디어 서비스 이름을 지정합니다.
 
 | Aliases | 없음 |
 | --- | --- |
@@ -435,7 +435,7 @@ Accept Wildcard Characters?   false
 
 **-StorageAccountId &lt;String&gt;**
 
-미디어 서비스와 연결된 저장소 계정을 지정합니다.
+Hello 미디어 서비스와 관련 된 hello 저장소 계정을 지정 합니다.
 
 | Aliases | Id |
 | --- | --- |
@@ -447,13 +447,13 @@ Accept Wildcard Characters?   false
 
 **&lt;CommandParameters&gt;**
 
-이 cmdlet 일반 매개 변수를 지원합니다. -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction 및 -WarningVariable.
+이 cmdlet은 공통 매개 변수 hello:-디버그,-ErrorAction,-ErrorVariable,-InformationAction,-InformationVariable,-OutVariable,-OutBuffer,-PipelineVariable,-Verbose,-WarningAction 및-warningvariable을 지원 합니다.
 
 ### <a name="inputs"></a>입력
-입력 형식은 cmdlet으로 파이프할 수 있는 개체의 형식입니다.
+hello 입력된 형식은 toohello cmdlet에 파이프할 수 있음을 hello hello 유형의 개체입니다.
 
-### <a name="outputs"></a>출력
-출력 형식은 cmdlet이 내보내는 개체의 형식입니다.
+### <a name="outputs"></a>outputs
+hello 출력 유형은 cmdlet hello hello 개체 유형의 hello를 내보냅니다.
 
 ## <a name="next-step"></a>다음 단계
 미디어 서비스 학습 경로를 확인하세요.

@@ -1,6 +1,6 @@
 ---
-title: "Linux에서 Azure Web App에 대한 사용자 지정 Docker 이미지를 사용하는 방법 | Microsoft Docs"
-description: "Linux에서 Azure Web App에 대한 사용자 지정 Docker 이미지를 사용하는 방법"
+title: "Linux에서 Azure 웹 앱에 대 한 사용자 지정 Docker 이미지 aaaHow toouse | Microsoft Docs"
+description: "어떻게 Linux에서 Azure 웹 앱에 대 한 사용자 지정 Docker toouse 이미지입니다."
 keywords: "azure app service, 웹앱, linux, docker, 컨테이너"
 services: app-service
 documentationcenter: 
@@ -15,54 +15,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 1458217a31c4781b28877c030a665f5b22819e13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8853095d0e1067cfea4297bbd23b622fe4a0d4db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-a-custom-docker-image-for-azure-web-app-on-linux"></a>Linux에서 Azure Web App에 대한 사용자 지정 Docker 이미지 사용 #
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-App Service는 PHP 7.0 및 Node.js 4.5와 같은 특정 버전에 대한 지원을 통해 Linux에 미리 정의된 응용 프로그램 스택을 제공합니다. Linux의 App Service는 Docker 컨테이너를 사용하여 이러한 미리 작성된 응용 프로그램 스택을 호스트합니다. 또한 사용자 지정 Docker 이미지를 사용하여 Azure에 아직 정의되지 않은 응용 프로그램 스택에 웹앱을 배포할 수도 있습니다. 사용자 지정 Docker 이미지는 공용 또는 개인 Docker 리포지토리에 호스트할 수 있습니다.
+App Service는 PHP 7.0 및 Node.js 4.5와 같은 특정 버전에 대한 지원을 통해 Linux에 미리 정의된 응용 프로그램 스택을 제공합니다. Linux에서 응용 프로그램 서비스 Docker 컨테이너를 사용 하 여 toohost 이러한 미리 작성 된 응용 프로그램 스택 합니다. 또한 사용자 지정 Docker 이미지 toodeploy Azure에 이미 정의 되어 있지는 웹 응용 프로그램 tooan 응용 프로그램 스택을 사용할 수 있습니다. 사용자 지정 Docker 이미지는 공용 또는 개인 Docker 리포지토리에 호스트할 수 있습니다.
 
 
 ## <a name="how-to-set-a-custom-docker-image-for-a-web-app"></a>방법: 웹앱에 대한 사용자 지정 Docker 이미지 설정
-신규 및 기존 웹앱에 대해 사용자 지정 Docker 이미지를 설정할 수 있습니다. [Azure Portal](https://portal.azure.com/#create/Microsoft.AppSvcLinux)에서 Linux의 웹앱을 만들 경우 **컨테이너 구성**을 클릭하여 사용자 지정 Docker 이미지를 설정합니다.
+새 모두에 대 한 사용자 지정 Docker 이미지 hello 및 기존 웹 앱을 설정할 수 있습니다. Hello에 Linux에서 웹 응용 프로그램을 만드는 하는 경우 [Azure 포털](https://portal.azure.com/#create/Microsoft.AppSvcLinux), 클릭 **구성 컨테이너** tooset Docker 이미지를 사용자 지정:
 
 ![Linux의 새 웹앱에 대한 사용자 지정 Docker 이미지][1]
 
 
 ## <a name="how-to-use-a-custom-docker-image-from-docker-hub"></a>방법: Docker 허브에서 사용자 지정 Docker 이미지 사용 ##
-Docker 허브에서 사용자 지정 Docker 이미지를 사용하려면
+사용자 지정 Docker 이미지를 Docker 허브에서 toouse:
 
-1. [Azure Portal](https://portal.azure.com)에서 Linux의 웹앱을 찾은 후 **설정**에서 **Docker 컨테이너**를 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com)에서 다음 linux에서 웹 앱을 찾을 **설정** 클릭 **Docker 컨테이너**합니다.
 
-2.  **Docker 허브**를 **이미지 소스**로 선택하고 **공용** 또는 **개인**을 클릭하고 **이미지 및 선택적 태그 이름**(예: `node:4.5`)을 입력합니다. **시작 명령**은 자동으로 Docker 이미지 파일에 정의된 내용을 기준으로 하지만 명령을 직접 설정할 수도 있습니다.  
+2.  선택 **Docker 허브** hello로 **이미지 원본**를 클릭 한 다음 **공용** 또는 **개인** 및 형식 hello **이미지 및 선택적 태그 이름을**와 같은 `node:4.5`합니다. hello **시작 명령** 는 설정에 따라 자동으로 hello Docker 이미지 파일에 정의 된 되지만 직접 명령을 설정할 수 있습니다.  
 
     ![Docker 허브 공용 리포지토리 이미지 구성][2]
 
-    이미지가 개인 리포지토리에 있는 것이면 개인 Docker 허브 리포지토리에 대해 Docker 허브 자격 증명(**로그인 사용자 이름** 및 **암호**)도 입력해야 합니다.
+    Tooenter hello Docker 허브 자격 증명으로도 필요한 개인 저장소에서 이미지 이면 (**로그인 사용자 이름과** 및 **암호**) hello 개인 Docker 허브 저장소에 대 한 합니다.
 
     ![Docker 허브 개인 리포지토리 이미지 구성][3]
 
-3. 컨테이너를 구성한 후 **저장**을 클릭합니다.
+3. 클릭 하 여 hello 컨테이너를 구성 하 고 나면 **저장**합니다.
 
-## <a name="how-to-use-a-docker-image-from-a-private-image-registry"></a>개인 이미지 레지스트리의 Docker 이미지를 사용하는 방법 ##
-개인 이미지 레지스트리의 사용자 지정 Docker 이미지를 사용하려면
+## <a name="how-toouse-a-docker-image-from-a-private-image-registry"></a>개인 이미지 레지스트리에서 toouse는 Docker 이미지 하는 방법 ##
+toouse 개인 이미지 레지스트리에서 Docker 이미지를 사용자 지정:
 
-1. [Azure Portal](https://portal.azure.com)에서 Linux의 웹앱을 찾은 후 **설정**에서 **Docker 컨테이너**를 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com)에서 다음 linux에서 웹 앱을 찾을 **설정** 클릭 **Docker 컨테이너**합니다.
 
-2.  **이미지 소스**로 **개인 레지스트리**를 클릭합니다. 개인 레지스트리에 대한 **이미지 및 선택적 태그 이름**, **서버 URL**을 입력하고 자격 증명(**로그인 사용자 이름** 및 **암호**)를 함께 입력합니다. **Save**를 클릭합니다.
+2.  클릭 **개인 레지스트리** hello로 **이미지 원본**합니다. Hello 입력 **이미지와 선택적 태그 이름을**, **서버 URL** hello 자격 증명과 함께 hello 개인 레지스트리 (**로그인 사용자 이름** 및 **암호** ). **Save**를 클릭합니다.
 
     ![개인 레지스트리에서 Docker 이미지 구성][4]
 
 
-## <a name="how-to-set-the-port-used-by-your-docker-image"></a>방법: Docker 이미지에 사용되는 포트 설정 ##
+## <a name="how-to-set-hello-port-used-by-your-docker-image"></a>방법: Docker 이미지에서 사용 하는 hello 포트 설정 ##
 
-웹앱에 대한 사용자 지정 Docker 이미지를 사용하는 경우 생성된 컨테이너에 추가된 `WEBSITES_PORT` 환경 변수를 Dockerfile에서 사용할 수 있습니다. 다음의 Ruby 응용 프로그램용 docker 파일 예제를 살펴보세요.
+웹 앱에 대 한 사용자 지정 Docker 이미지를 사용 하는 경우에 hello을 사용할 수 있습니다 `WEBSITES_PORT` 생성 toohello 컨테이너 추가 Dockerfile의 환경 변수입니다. 다음 예제는 Ruby 응용 프로그램에 대 한 docker 파일의 hello를 고려 합니다.
 
     FROM ruby:2.2.0
     RUN mkdir /app
@@ -71,49 +71,49 @@ Docker 허브에서 사용자 지정 Docker 이미지를 사용하려면
     RUN bundle install
     CMD bundle exec puma config.ru -p WEBSITES_PORT -e production
 
-명령의 마지막 줄에서 런타임에 WEBSITES_PORT 환경 변수가 전달된다는 것을 알 수 있습니다. 명령은 대/소문자를 구분해야 합니다.
+Hello 명령의 마지막 줄에서 런타임 시 hello WEBSITES_PORT이 환경 변수에 전달 되 볼 수 있습니다. 명령은 대/소문자를 구분해야 합니다.
 
-이전에 플랫폼은 `PORT` 앱 설정을 사용했으며 이 앱 설정 사용을 사용되지 않도록 하고 `WEBSITES_PORT`를 단독으로 사용하도록 이동할 예정입니다.
+이전에 hello를 사용 하 여 플랫폼 `PORT` 응용 프로그램 설정, म 계획 toodeprecate hello 사용 하 여가이 앱을 설정 하 고 있으며 toousing 이동 `WEBSITES_PORT` 단독으로 합니다.
 
-다른 사용자가 작성한 기존 Docker 이미지를 사용하면 응용 프로그램에 대해 포트 80 이외의 포트를 지정해야 할 수도 있습니다. 포트를 구성하려면 아래와 같이 값과 함께 `WEBSITES_PORT`라는 응용 프로그램 설정을 추가합니다.
+다른 사용자에 의해 작성 된 기존 Docker 이미지를 사용 하는 경우에 hello 응용 프로그램에 대 한 toospecify 포트 80 이외의 포트를 할 수 있습니다. tooconfigure hello 포트, 명명 된 설정 하는 응용 프로그램 추가 `WEBSITES_PORT` 아래와 같이 hello 값을 사용 합니다.
 
 ![사용자 지정 Docker 이미지에 대한 PORT 앱 설정 구성][6]
 
-## <a name="how-to-set-the-startup-time-for-your-docker-image"></a>방법: Docker 이미지의 시작 시간 설정 ##
+## <a name="how-to-set-hello-startup-time-for-your-docker-image"></a>방법: hello 시작 시간을 Docker 이미지를 설정 합니다. ##
 
-기본적으로 컨테이너가 230초 전에 시작되지 않으면 플랫폼이 컨테이너를 다시 시작합니다. 사용자 지정 Docker 이미지가 230초 이후에 시작하는 경우 `WEBSITES_CONTAINER_START_TIME_LIMIT` 앱 설정을 사용할 수 있습니다. 이 설정에 대한 값은 초 단위이고 다시 시작하기 전에 실행 중인 컨테이너 플랫폼을 유지할 수 있습니다. 기본값은 230초이고 허용되는 최대 값은 600초입니다.
+기본적으로 컨테이너 230 초 전에 시작 되지 않으면 hello 플랫폼 다시 시작 됩니다 컨테이너. 사용자 지정 Docker 이미지 230 초 이상에서 시작 되 면 hello를 사용할 수 있습니다 `WEBSITES_CONTAINER_START_TIME_LIMIT` 설정, 앱이이 설정에 대 한 hello 값은 초 단위, 다시 시작 하기 전에 실행 중인 컨테이너 hello 플랫폼 유지를 허용 합니다. hello 기본값이 230 초 및 hello 최대 허용 값은 600 초입니다.
 
-## <a name="how-to-unmount-the-platform-provided-storage"></a>방법: 플랫폼 제공 저장소 탑재 해제 ##
+## <a name="how-to-unmount-hello-platform-provided-storage"></a>방법: hello 플랫폼 제공 된 저장소를 탑재 해제 ##
 
-플랫폼은 영구 저장소 공유를 `\home\` 디렉터리에 기본적으로 탑재합니다. 컨테이너 이미지에 영구 공유가 필요하지 않은 경우 `WEBSITES_ENABLE_APP_SERVICE_STORAGE` 앱 설정을 `false`로 설정하여 해당 저장소의 탑재를 비활성화할 수 있습니다. SCM 사이트에서 해당 저장소에 액세스할 수 있으며 모든 Docker 로그(설정된 경우)를 플랫폼에 의해 생성된 로그 파일에 기록합니다.
+Hello 플랫폼에서 영구 저장소 공유 toohello 기본적으로 탑재 `\home\` 디렉터리입니다. 컨테이너 이미지를 영구 공유가 필요 없는 경우 hello 설정 하 여 해당 저장소를 탑재 비활성화할 수 있습니다 `WEBSITES_ENABLE_APP_SERVICE_STORAGE` 앱 설정 너무`false`합니다. 계속 액세스 toothat 저장소 hello scm 사이트에서 및가 toohello hello 플랫폼에서 생성 한 로그 파일 (설정 된 경우) 모든 Docker 로그 기록 됩니다.
 
-## <a name="how-to-switch-back-to-using-a-built-in-image"></a>방법: 기본 제공 이미지 사용 방식으로 다시 전환 ##
+## <a name="how-to-switch-back-toousing-a-built-in-image"></a>방법: 기본 제공 이미지 toousing 다시 전환 ##
 
-사용자 지정 이미지를 사용하는 방식에서 기본 제공 이미지를 사용하는 방식으로 전환하려면
+사용자 지정 이미지 toousing 기본 제공 이미지를 사용 하 여 tooswitch:
 
-1. [Azure Portal](https://portal.azure.com)에서 Linux의 웹앱을 찾은 후 **설정**에서 **App Service**를 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com)에서 다음 linux에서 웹 앱을 찾을 **설정** 클릭 **앱 서비스**합니다.
 
-2. 기본 제공 이미지에 사용한 **런타임 스택**을 선택하고 **저장**을 클릭합니다. 
+2. 선택 하면 **런타임 스택을** toouse hello 기본 제공 이미지에 대 한 클릭 **저장**합니다. 
 
 ![기본 제공 Docker 이미지 구성][5]
 
 
 ## <a name="troubleshooting"></a>문제 해결 ##
 
-응용 프로그램이 사용자 지정 Docker 이미지로 시작하지 못할 경우 LogFiles 디렉터리에서 Docker 로그를 확인합니다. SCM 사이트 또는 FTP를 통해 이 디렉터리에 액세스할 수 있습니다.
-컨테이너에서 `stdout` 및 `stderr`을 로그하려면 **진단 로그** 아래에서 **Docker 컨테이너 로깅**을 활성화해야 합니다.
+응용 프로그램에 사용자 지정 Docker 이미지와 toostart 실패 하면 hello Docker hello 로그 파일 디렉터리에 로그를 확인 합니다. SCM 사이트 또는 FTP를 통해 이 디렉터리에 액세스할 수 있습니다.
+toolog hello `stdout` 및 `stderr` tooenable 사용자 컨테이너에서 필요한 **Docker 컨테이너 로깅** 아래 **진단 로그**합니다.
 
 ![로깅 사용][8]
 
-![Kudu를 사용하여 Docker 로그 보기][7]
+![Kudu tooview Docker 로그를 사용 하 여][7]
 
-**고급 도구**의 **개발 도구** 메뉴에서 SCM 사이트에 액세스할 수 있습니다.
+hello SCM 사이트에 액세스할 수 있습니다 **고급 도구** hello에 **개발 도구** 메뉴.
 
 ## <a name="next-steps"></a>다음 단계 ##
 
-Linux에서 웹앱을 시작하려면 다음 링크를 따르세요.   
+Hello Linux에서 웹 앱과 함께 시작 하는 링크 tooget 뒤를 따릅니다.   
 
-* [Linux의 Azure Web App 소개](./app-service-linux-intro.md)
+* [소개 tooAzure Linux에서 웹 응용 프로그램](./app-service-linux-intro.md)
 * [Linux의 Azure Web App에서 Node.js용 PM2 구성 사용](./app-service-linux-using-nodejs-pm2.md)
 * [Linux의 Azure App Service Web App에 대한 FAQ](app-service-linux-faq.md)
 

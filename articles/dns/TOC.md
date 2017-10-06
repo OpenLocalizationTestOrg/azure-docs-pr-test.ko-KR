@@ -13,7 +13,7 @@
 ### [Azure CLI 1.0](dns-getstarted-cli-nodejs.md)
 ### [Azure CLI 2.0](dns-getstarted-cli.md)
 
-## [Azure DNS에 도메인 위임](dns-delegate-domain-azure-dns.md)
+## [사용자 도메인 tooAzure DNS 위임](dns-delegate-domain-azure-dns.md)
 ## [웹앱에 대한 사용자 지정 DNS 레코드 만들기](dns-web-sites-custom-domain.md)
 
 # 방법
@@ -38,7 +38,7 @@
 ## [DNS 영역 파일 가져오기 및 내보내기](dns-import-export.md)
 ## [다른 Azure 서비스와 통합](dns-for-azure-services.md)
 ## [DNS 영역 및 레코드 보호](dns-protect-zones-recordsets.md)
-## [.NET SDK를 사용하여 DNS 작업 자동화](dns-sdk.md)
+## [Hello.NET SDK를 사용 하 여 DNS 작업 자동화](dns-sdk.md)
 
 ## [Azure 리소스에 대한 사용자 지정 도메인](dns-custom-domain.md)
 ## 문제 해결

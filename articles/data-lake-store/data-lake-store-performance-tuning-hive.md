@@ -1,5 +1,5 @@
 ---
-title: "Azure Data Lake Store Hive 성능 조정 지침 | Microsoft Docs"
+title: "데이터 레이크 저장소 하이브 성능 튜닝 지침 aaaAzure | Microsoft Docs"
 description: "Azure Data Lake Store Hive 성능 조정 지침"
 services: data-lake-store
 documentationcenter: 
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
-ms.openlocfilehash: e10bf8f7cbae2b81d22823ff74fe652c6bcb2da3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e44daeb6ad3b64e893c709df63b56444a330729f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-tuning-guidance-for-hive-on-hdinsight-and-azure-data-lake-store"></a>HDInsight의 Hive 및 Azure Data Lake Store에 대한 성능 조정 지침
 
-서로 다른 여러 사용 사례 간에 적절한 성능을 제공하도록 기본 설정이 지정되었습니다.  I/O 집약적인 쿼리에 대해 ADLS로 더 나은 성능을 얻도록 Hive를 조정할 수 있습니다.  
+hello 기본 설정은 통해 여러 다른 사용 사례 tooprovide 좋은 성능을 설정 않았습니다.  I/O 집약적인 쿼리 하이브 튜닝된 tooget ADLS 성능이 향상 될 수 있습니다.  
 
 ## <a name="prerequisites"></a>필수 조건
 
 * **Azure 구독**. [Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
-* **Azure 데이터 레이크 저장소 계정**. 만드는 방법에 대한 지침은 [Azure 데이터 레이크 저장소 시작](data-lake-store-get-started-portal.md)
-* **Azure HDInsight 클러스터** 입니다. [Data Lake Store가 있는 HDInsight 클러스터 만들기](data-lake-store-hdinsight-hadoop-use-portal.md)를 참조하세요. 클러스터에 대한 원격 데스크톱을 사용하도록 설정해야 합니다.
-* **HDInsight에서 Hive 실행**.  HDInsight에서 Hive 작업 실행에 대해 자세히 알아 보려면 [HDInsight에서 Hive 사용] (https://docs.microsoft.com/ko-kr/azure/hdinsight/hdinsight-use-hive)을 참조하세요.
+* **Azure 데이터 레이크 저장소 계정**. 방법에 대 한 지침은 toocreate 하나, 참조 [Azure 데이터 레이크 저장소 시작](data-lake-store-get-started-portal.md)
+* **Azure HDInsight 클러스터** 액세스 tooa 데이터 레이크 저장소 계정 사용 합니다. [Data Lake Store가 있는 HDInsight 클러스터 만들기](data-lake-store-hdinsight-hadoop-use-portal.md)를 참조하세요. Hello 클러스터에 대 한 원격 데스크톱을 사용 해야 합니다.
+* **HDInsight에서 Hive 실행**.  [사용 하 여 HDInsight의 Hive] toolearn, HDInsight의 Hive 작업을 실행 하는 방법에 대 한 참조 (https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-use-hive)
 * **ADLS에서 성능 조정 지침**.  일반적인 성능 개념은 [Data Lake Store 성능 조정 지침](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-performance-tuning-guidance)을 참조하세요.
 
 ## <a name="parameters"></a>매개 변수
 
-ADLS 성능 향상을 위해 조정할 가장 중요한 설정은 다음과 같습니다.
+ADLS 성능 향상된을 위해 가장 중요 한 설정을 tootune hello 다음과 같습니다.
 
-* **hive.tez.container.size** – 각 태스크에 사용된 메모리 양
+* **hive.tez.container.size** – 각 작업에 의해 사용 되는 메모리 양을 hello
 
 * **tez.grouping.min-size** – 각 매퍼의 최소 크기
 
@@ -44,27 +44,27 @@ ADLS 성능 향상을 위해 조정할 가장 중요한 설정은 다음과 같�
 
 * **hive.exec.reducer.bytes.per.reducer** – 각 리듀서의 크기
 
-**hive.tez.container.size** - 컨테이너 크기에 따라 각 태스크에 사용 가능한 메모리 양이 결정됩니다.  Hive에서 동시성을 제어하기 위한 기본 입력입니다.  
+**hive.tez.container.size** -hello 컨테이너 크기에 따라 결정 메모리의 크기를 각 작업에 대해 사용할 수 있습니다.  이 hello 하이브에 hello 동시성 제어에 대 한 주 입력 합니다.  
 
-**tez.grouping.min-size** – 이 매개 변수를 통해 각 매퍼의 최소 크기를 설정할 수 있습니다.  Tez에서 선택한 매퍼 수가 이 매개 변수 값보다 작은 경우 Tez에서 여기서 설정된 값을 사용합니다.  
+**tez.grouping.min 크기** –이 매개 변수는 hello tooset 각 맵 편집기의 최소 크기입니다.  Hello 수가 매퍼 Tez 선택 하는 hello이 매개이 변수 값 보다 작은 경우 Tez 여기서 설정한 hello 값을 사용 합니다.  
 
-**tez.grouping.max-size** – 매개 변수를 통해 각 매퍼의 최대 크기를 설정할 수 있습니다.  Tez에서 선택한 매퍼 수가 이 매개 변수 값보다 큰 경우 Tez에서 여기에 설정된 값을 사용합니다.  
+**tez.grouping.max 크기** – tooset hello 각 맵 편집기의 최대 크기 hello 매개 변수를 사용 합니다.  Hello 수가 매퍼 Tez 선택 하는 hello이 매개이 변수 값 보다 큰 경우 Tez 여기서 설정한 hello 값을 사용 합니다.  
 
-**hive.exec.reducer.bytes.per.reducer** – 이 매개 변수는 각 리듀서의 크기를 설정합니다.  기본적으로 각 리듀서는 256MB입니다.  
+**hive.exec.reducer.bytes.per.reducer** –이 매개 변수는 각 리 듀 서의 hello 크기를 설정 합니다.  기본적으로 각 리듀서는 256MB입니다.  
 
-## <a name="guidance"></a>인도
+## <a name="guidance"></a>지침
 
-**hive.exec.reducer.bytes.per.reducer 설정** – 데이터가 압축되지 않은 경우 기본 값이 제대로 작동합니다.  압축된 데이터의 경우 리듀서의 크기를 줄여야 합니다.  
+**Hive.exec.reducer.bytes.per.reducer 설정** – hello 기본값 hello 데이터를 압축 된 경우 잘 작동 합니다.  압축 된 데이터에 대 한 hello 리 듀 서의 hello 크기를 줄여야 합니다.  
 
-**Set hive.tez.container.size** – 각 노드에서 메모리는 yarn.nodemanager.resource.memory-mb에 의해 지정되고 기본적으로 HDI 클러스터에서 제대로 설정해야 합니다.  YARN에서 적절한 메모리 설정에 대한 추가 정보는 이 [게시물](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-hive-out-of-memory-error-oom)을 참조하세요.
+**Set hive.tez.container.size** – 각 노드에서 메모리는 yarn.nodemanager.resource.memory-mb에 의해 지정되고 기본적으로 HDI 클러스터에서 제대로 설정해야 합니다.  이 YARN에 hello 적합 한 메모리를 설정에 대 한 자세한 내용은 참조 [게시](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-hive-out-of-memory-error-oom)합니다.
 
-I/O 집약적인 워크로드의 경우 Tez 컨테이너 크기를 줄여 더 많은 병렬 처리의 이점을 얻을 수 있습니다. 이렇게 하면 사용자에게 더 많은 컨테이너가 제공되어 동시성이 증가합니다.  하지만 일부 Hive 쿼리에는 상당한 양의 메모리가 필요합니다(예: MapJoin).  태스크에 충분한 메모리가 없는 경우 런타임 중에 메모리 부족 예외가 발생합니다.  메모리 부족 예외가 발생하면 메모리를 늘려야 합니다.   
+I/O가 많은 작업용 hello Tez 컨테이너 크기 감소 하 여 많은 병렬 처리에서 이점을 얻을 수 있습니다. Hello 사용자 동시성을 향상 시키는 컨테이너가 더 이상 제공 합니다.  하지만 일부 Hive 쿼리에는 상당한 양의 메모리가 필요합니다(예: MapJoin).  Hello 작업에 충분 한 메모리가 없는 경우에 메모리 부족 예외가 런타임 동안 발생 합니다.  메모리 부족 예외가 표시 되 면 hello 메모리를 증가 해야 합니다.   
 
-병렬 처리에서 실행 중인 동시 태스크 수는 총 YARN 메모리의 제약을 받습니다.  YARN 컨테이너 수에 따라 실행할 수 있는 동시 태스크 수가 결정됩니다.  노드당 YARN 메모리를 찾으려면 Ambari로 이동할 수 있습니다.  YARN으로 이동한 후 Configs 탭을 확인합니다.  이 창에 YARN 메모리가 표시됩니다.  
+hello 동시 실행 되는 작업 또는 수가 병렬 처리는 hello 총 YARN 메모리에 의해 제한 됩니다.  동시 작업 수를 실행할 수 hello YARN 컨테이너 수가 결정 됩니다.  노드당 hello YARN 메모리 toofind tooAmbari 이동할 수 있습니다.  TooYARN를 탐색 하 고 hello Configs 탭을 표시 합니다.  hello YARN 메모리가이 창에 표시 됩니다.  
 
         Total YARN memory = nodes * YARN memory per node
         # of YARN containers = Total YARN memory / Tez container size
-ADLS를 사용하여 성능을 개선하기 위한 핵심은 가능한 동시성을 늘리는 것입니다.  Tez가 생성할 태스크 수를 자동으로 계산하므로 설정할 필요가 없습니다.   
+ADLS를 사용 하 여 hello 키 tooimproving 성능을 최대한 많은 tooincrease hello 동시성입니다.  Tez hello 되므로 tooset 하지 않고도 만들어야 하는 작업 수를 자동으로 계산 것입니다.   
 
 ## <a name="example-calculation"></a>계산 예
 
@@ -77,13 +77,13 @@ ADLS를 사용하여 성능을 개선하기 위한 핵심은 가능한 동시성
 ## <a name="limitations"></a>제한 사항
 **ADLS 제한** 
 
-ADLS에서 제공하는 대역폭 한계에 도달한 경우 태스크 오류가 표시됩니다. 이것은 태스크 로그에서 제한 오류를 확인하여 파악할 수 있습니다.  Tez 컨테이너 크기를 늘려 병렬 처리를 줄일 수 있습니다.  작업에 대한 동시성이 더 필요한 경우 문의하세요.   
+Hello 적중 UIf toosee 작업 실패를 시작, ADLS 하 여 제공 된 대역폭의 제한 합니다. 이것은 태스크 로그에서 제한 오류를 확인하여 파악할 수 있습니다.  Tez 컨테이너 크기를 늘려 hello 병렬 처리를 줄일 수 있습니다.  작업에 대한 동시성이 더 필요한 경우 문의하세요.   
 
-제한 여부를 확인하려면 클라이언트 쪽에서 디버그 로깅을 사용하도록 설정해야 합니다. 그 방법은 다음과 같습니다.
+toocheck 조절 됩니다 가져오는 경우, 클라이언트 쪽 hello에 대 한 로깅을 tooenable hello 디버그를 해야 합니다. 그 방법은 다음과 같습니다.
 
-1. Hive 구성의 log4j 속성에 다음 속성을 배치합니다. Ambari 보기의 log4j.logger.com.microsoft.azure.datalake.store=DEBUG에서 이 작업을 수행할 수 있습니다. 구성을 적용하려면 노드/서비스를 다시 시작합니다.
+1. 하이브 config에서 hello log4j 속성에 속성을 다음 hello를 넣습니다. Ambari 보기에서이 작업을 수행할 수 있습니다: log4j.logger.com.microsoft.azure.datalake.store=DEBUG 모든 hello 노드/서비스를 다시 시작 hello 구성 tootake 효과입니다.
 
-2. 제한이 적용되면 hive 로그 파일에 HTTP 429 오류 코드가 표시됩니다. hive 로그 파일은 /tmp/&lt;user&gt;/hive.log에 있습니다.
+2. 스로틀 가져오기는, hello 하이브 로그 파일의 hello HTTP 429 오류 코드를 표시 됩니다. hello 하이브 로그 파일을 /tmp/&lt;사용자&gt;/hive.log
 
 ## <a name="further-information-on-hive-tuning"></a>Hive 조정에 대한 추가 정보
 

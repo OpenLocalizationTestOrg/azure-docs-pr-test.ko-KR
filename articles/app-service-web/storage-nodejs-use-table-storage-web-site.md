@@ -1,6 +1,6 @@
 ---
-title: "Azure 테이블 서비스를 사용하는 Node.js 웹앱"
-description: "이 자습서는 Azure 테이블 서비스를 사용하여 Azure 앱 서비스 웹앱에서 호스트되는 Node.js 응용프로그램의 데이터를 저장하는 방법을 설명합니다."
+title: "hello Azure 테이블 서비스를 사용 하 여 aaaNode.js 웹 앱"
+description: "이 자습서는 toouse hello Azure 테이블 Azure 앱 서비스 웹 앱에서 호스팅되는 Node.js 응용 프로그램에서 toostore 데이터를 서비스 하는 방법을 배웁니다."
 tags: azure-portal
 services: app-service\web, storage
 documentationcenter: nodejs
@@ -15,82 +15,82 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 3252914934c1084a165fa39ee983d3039e04d567
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f6e08335b4c7f62f7b3994287edd586860cb7135
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="nodejs-web-app-using-the-azure-table-service"></a>Azure 테이블 서비스를 사용하는 Node.js 웹앱
+# <a name="nodejs-web-app-using-hello-azure-table-service"></a>Hello Azure 테이블 서비스를 사용 하 여 Node.js 웹 응용 프로그램
 ## <a name="overview"></a>개요
-이 자습서에서는 Azure Data Management에서 제공하는 Table service를 사용하여 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 웹앱에서 호스트되는 [node] 응용 프로그램에서 데이터를 저장하고 액세스하는 방법을 보여 줍니다. 이 자습서에서는 이전에 node 및 [Git]를 사용한 경험이 있다고 가정합니다.
+이 자습서에서는 테이블 서비스 toouse toostore 및 액세스 데이터를 Azure 데이터 관리에서 제공 하는 방법을 [노드] 응용 프로그램에서 호스트 [Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) 웹 앱입니다. 이 자습서에서는 이전에 node 및 [Git]를 사용한 경험이 있다고 가정합니다.
 
 다음 내용을 배웁니다.
 
-* npm(node 패키지 관리자)을 사용하여 node 모듈을 설치하는 방법
-* Azure 테이블 서비스에 대한 작업 방법
-* Azure CLI를 사용하여 웹앱을 만드는 방법
+* Toouse npm (노드 패키지 관리자) tooinstall 노드 모듈 hello 하는 방법
+* 방법으로 toowork hello Azure 테이블 서비스
+* 어떻게 toouse 웹 앱 Azure CLI toocreate를 hello 합니다.
 
-이 자습서를 따라 작업을 만들고, 검색하고, 완료할 수 있는 간단한 웹 기반 "할 일 모음" 응용프로그램을 구축합니다. 작업은 테이블 서비스에 저장됩니다.
+이 자습서를 따라 작업을 만들고, 검색하고, 완료할 수 있는 간단한 웹 기반 "할 일 모음" 응용프로그램을 구축합니다. hello 작업 hello 테이블 서비스에에서 저장 됩니다.
 
-다음은 완성된 응용프로그램입니다.
+다음은 완료 하는 hello 응용 프로그램이입니다.
 
 ![빈 tasklist가 표시된 웹 페이지][node-table-finished]
 
 > [!NOTE]
-> Azure 계정을 등록하기 전에 Azure App Service를 시작하려면 [App Service 체험](https://azure.microsoft.com/try/app-service/)으로 이동합니다. App Service에서 단기 스타터 웹앱을 즉시 만들 수 있습니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
+> Tooget Azure 계정에 등록 하기 전에 Azure 앱 서비스를 시작 하려는 경우 너무 이동[앱 서비스 시도](https://azure.microsoft.com/try/app-service/)앱 서비스의 수명이 짧은 스타터 웹 응용 프로그램 즉시 만들 수 있는, 합니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
 > 
 > 
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서의 지침을 따르기 전에 다음이 설치되어 있는지 확인합니다.
+이 문서의 지침 hello를 수행 하기 전에 hello 다음이 설치 되어 있는지 확인 합니다.
 
-* [node] 버전 0.10.24 이상
+* [노드] 버전 0.10.24 이상
 * [Git]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="create-a-storage-account"></a>저장소 계정 만들기
-Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하기 위해 이 계정을 사용합니다.
+Azure 저장소 계정 만들기 hello 앱이 계정 toostore hello 할 일 항목을 사용 합니다.
 
-1. [Azure 포털](https://portal.azure.com/)에 로그인합니다.
-2. 포털의 왼쪽 아래에서 **새로 만들기** 아이콘을 클릭한 다음 **데이터 + 저장소** > **저장소**를 클릭합니다. 저장소 계정에 고유한 이름을 지정하고 이를 위한 새 [리소스 그룹](../azure-resource-manager/resource-group-overview.md)을 만듭니다.
+1. Hello에 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+2. Hello 클릭 **새로** hello 포털의 왼쪽 hello 아래쪽에 아이콘을 클릭 한 다음 **데이터 + 저장소** > **저장소**합니다. Hello 저장소 계정에 고유한 이름을 지정 하 고 새 [리소스 그룹](../azure-resource-manager/resource-group-overview.md) 것에 대 한 합니다.
    
       ![새 단추](./media/storage-nodejs-use-table-storage-web-site/configure-storage.png)
    
-    저장소 계정이 만들어지면 **알림** 단추가 녹색 **성공**으로 깜박이고 저장소 계정의 블레이드가 열려 새로 만든 리소스 그룹에 속한 것을 보여줍니다.
-3. 저장소 계정의 블레이드에서 **설정** > **키**를 클릭합니다. 기본 액세스 키를 클립보드에 복사합니다.
+    Hello 저장소 계정이 생성 되 면 hello **알림** 단추가 녹색 깜박입니다 **성공** 블레이드 hello 저장소 계정을 열릴 및 tooshow 속하는지 toohello 새 리소스 그룹 만들어집니다.
+3. Hello 저장소 계정의 블레이드에서 클릭 **설정** > **키**합니다. Hello 기본 액세스 키 toohello 클립보드에 복사 합니다.
    
     ![액세스 키][portal-storage-access-keys]
 
 ## <a name="install-modules-and-generate-scaffolding"></a>모듈 설치 및 스캐폴딩 생성
-이 섹션에서는 새로운 Node 응용 프로그램을 만들고 npm을 사용하여 모듈 패키지를 추가합니다. 이 응용 프로그램의 경우 [Express] 및 [Azure] 모듈을 사용합니다. Express 모듈은 node에 모델 보기 컨트롤러 프레임워크를 제공하지만 Azure 모듈은 테이블 서비스에 대한 연결을 제공합니다.
+이 섹션에서는 새 노드 응용 프로그램을 만들고 npm tooadd 모듈 패키지를 사용 합니다. 이 응용 프로그램에 대 한 hello 사용할 [Express] 및 [Azure] 모듈입니다. 노드에 대 한 모델 뷰 컨트롤러 프레임 워크를 제공 하는 hello Express 모듈, Azure 모듈 hello 하는 동안 연결 toohello 테이블 서비스를 제공 합니다.
 
 ### <a name="install-express-and-generate-scaffolding"></a>express 설치 및 스캐폴딩 생성
-1. 명령줄에서 **tasklist** 라는 새 디렉터리를 만들고 해당 디렉터리로 전환합니다.  
-2. 다음 명령을 입력하여 Express 모듈을 설치합니다.
+1. Hello 명령줄에서 라는 새 디렉터리를 만들고 **tasklist \ / s** 및 스위치 toothat 디렉터리입니다.  
+2. 다음 명령은 tooinstall hello Express 모듈 hello를 입력 합니다.
    
         npm install express-generator@4.2.0 -g
    
-    운영 체제에 따라 명령 앞에 'sudo'를 배치해야 할 수 있습니다.
+    Hello 운영 체제에 따라 tooput 'sudo' hello 명령 전에 할 수 있습니다.
    
         sudo npm install express-generator@4.2.0 -g
    
-    출력은 다음 예제와 유사합니다.
+    hello 출력이 다음 예제와 비슷한 toohello 나타납니다.
    
         express-generator@4.2.0 /usr/local/lib/node_modules/express-generator
         ├── mkdirp@0.3.5
         └── commander@1.3.2 (keypress@0.1.0)
    
    > [!NOTE]
-   > '-g' 매개 변수는 모듈을 전역적으로 설치합니다. 이와 같이 **express** 를 사용하여 추가 경로 정보를 입력하지 않고도 웹앱 스캐폴딩을 생성할 수 있습니다.
+   > hello '-g' 매개 변수 hello 모듈을 전역으로 설치 합니다. 사용할 수 이런 방식으로 **express** 추가 경로 정보에 tootype 필요 없이 toogenerate 웹 응용 프로그램 스 캐 폴딩 합니다.
    > 
    > 
-3. 응용프로그램에 대한 스캐폴딩을 만들려면 **express** 명령을 입력하세요.
+3. toocreate hello 스 캐 폴딩 hello 응용 프로그램에 대 한 입력 hello **express** 명령:
    
         express
    
-    이 명령의 출력은 다음 예제와 유사합니다.
+    hello이이 명령의 출력에는 다음 예제와 비슷한 toohello 나타납니다.
    
            create : .
            create : ./package.json
@@ -113,19 +113,19 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
            install dependencies:
              $ cd . && npm install
    
-           run the app:
+           run hello app:
              $ DEBUG=my-application ./bin/www
    
-    이제 **tasklist** 디렉터리에 몇 개의 새 디렉터리 및 파일이 있습니다.
+    이제 몇 가지 새 디렉터리 및 파일 hello에 있는 **tasklist \ / s** 디렉터리입니다.
 
 ### <a name="install-additional-modules"></a>추가 모듈 설치
-**express**로 만든 파일 중 하나는 **package.json**입니다. 이 파일에는 모듈 종속성 목록이 포함됩니다. 나중에 이 응용프로그램을 앱 서비스 웹앱에 배포하는 경우 이 파일을 사용하여 Azure에 설치해야 할 모듈을 결정합니다.
+Hello 중 파일을 **express** 만듭니다는 **package.json**합니다. 이 파일에는 모듈 종속성 목록이 포함됩니다. 나중 hello 응용 프로그램 tooApp 서비스 웹 앱을 배포할 때이 파일 모듈 toobe Azure에 설치 해야 확인 합니다.
 
-명령줄에서 다음 명령을 입력하여 **package.json** 파일에 설명된 모듈을 설치합니다. 'sudo'를 사용해야 할 수 있습니다.
+Hello 명령줄에서 다음 명령 tooinstall hello 모듈 hello에 설명 된 hello 입력 **package.json** 파일입니다. Toouse 'sudo' 할 수 있습니다.
 
     npm install
 
-이 명령의 출력은 다음 예제와 유사합니다.
+hello이이 명령의 출력에는 다음 예제와 비슷한 toohello 나타납니다.
 
     debug@0.7.4 node_modules\debug
 
@@ -136,13 +136,13 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
     [...]
 
 
-이제 다음 명령을 입력하여 [azure], [node-uuid], [nconf] 및 [async] 모듈을 설치합니다.
+다음으로, 다음 명령은 tooinstall hello hello 입력 [azure], [노드 uuid], [nconf] 및 [비동기] 모듈:
 
     npm install azure-storage node-uuid async nconf --save
 
-**--save** 플래그는 이러한 모듈에 대한 항목을 **package.json** 파일에 추가합니다.
+hello **-저장** 이러한 모듈 toohello에 대 한 항목을 추가 하는 플래그 **package.json** 파일입니다.
 
-이 명령의 출력은 다음 예제와 유사합니다.
+hello이이 명령의 출력에는 다음 예제와 비슷한 toohello 나타납니다.
 
     async@0.9.0 node_modules\async
 
@@ -156,11 +156,11 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
     [...]
 
 
-## <a name="create-the-application"></a>응용 프로그램 만들기
-이제 응용프로그램을 빌드할 준비가 되었습니다.
+## <a name="create-hello-application"></a>Hello 응용 프로그램 만들기
+이제 여러분 준비 toobuild hello 응용 프로그램입니다.
 
 ### <a name="create-a-model"></a>모델 만들기
-*모델* 은 응용프로그램에서 데이터를 나타내는 개체입니다. 응용프로그램의 경우 모델만 할 일 목록에서 항목을 나타내는 작업 개체입니다. 작업에는 다음 필드가 포함됩니다.
+A *모델* 는 hello 응용 프로그램에서 데이터를 나타내는 개체입니다. Hello 응용 프로그램 hello만 모델을 hello 할 일 목록에서 항목을 나타내는 작업 개체입니다. 작업에는 필드 다음 hello를 적용 됩니다.
 
 * PartitionKey
 * RowKey
@@ -168,16 +168,16 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
 * 범주(문자열)
 * 완료됨(부울)
 
-**PartitionKey** 및 **RowKey**는 테이블 키로 Table Service에서 사용됩니다. 자세한 내용은 [테이블 서비스 데이터 모델 이해](https://msdn.microsoft.com/library/azure/dd179338.aspx)를 참조하세요.
+**PartitionKey** 및 **RowKey** hello 테이블 서비스에 의해 테이블 키로 사용 됩니다. 자세한 내용은 참조 [이해 hello 테이블 서비스 데이터 모델](https://msdn.microsoft.com/library/azure/dd179338.aspx)합니다.
 
-1. **tasklist** 디렉터리에서 **models**라는 새로운 디렉터리를 만듭니다.
-2. **models** 디렉터리에서 **task.js**라는 새 파일을 만듭니다. 이 파일에는 응용 프로그램에서 만든 작업 모델이 포함됩니다.
-3. **task.js** 파일의 시작 부분에 필수 라이브러리를 참조하는 다음 코드를 추가합니다.
+1. Hello에 **tasklist \ / s** 디렉터리 라는 새 디렉터리를 만들고 **모델**합니다.
+2. Hello에 **모델** 디렉터리 라는 새 파일을 만들어 **task.js**합니다. 이 파일은 응용 프로그램에서 만든 hello 작업에 대 한 hello 모델을 포함 합니다.
+3. Hello hello 시작 시 **task.js** 파일에서 다음 코드는 데 필요한 tooreference 라이브러리 hello 추가:
    
         var azure = require('azure-storage');
           var uuid = require('node-uuid');
         var entityGen = azure.TableUtilities.entityGenerator;
-4. Task 개체를 정의하고 내보내는 다음 코드를 추가합니다. 이 개체가 테이블에 연결하는 작업을 수행합니다.
+4. Hello 다음 toodefine 코드 내보내고 hello (Task) 개체를 추가 합니다. 이 개체는 toohello 테이블을 연결 하는 일을 담당 합니다.
    
           module.exports = Task;
    
@@ -191,7 +191,7 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
             }
           });
         };
-5. 다음 코드를 추가하여 Task 개체에서 추가 메서드를 정의합니다. 이 메서드가 테이블에 저장된 데이터에 대한 조작을 허용합니다.
+5. Hello 테이블에 저장 된 데이터와의 상호 작용을 수 있는 hello에 나오는 코드 toodefine 추가 방법에 따라 hello Task 개체를 추가 합니다.
    
         Task.prototype = {
           find: function(query, callback) {
@@ -207,7 +207,7 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
    
           addItem: function(item, callback) {
             self = this;
-            // use entityGenerator to set types
+            // use entityGenerator tooset types
             // NOTE: RowKey must be a string type, even though
             // it contains a GUID in this example.
             var itemDescriptor = {
@@ -241,13 +241,13 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
             });
           }
         }
-6. **task.js** 파일을 저장하고 닫습니다.
+6. 저장 후 닫기 hello **task.js** 파일입니다.
 
 ### <a name="create-a-controller"></a>컨트롤러 만들기
-*컨트롤러* 는 HTTP 요청을 처리하고 HTML 응답을 렌더링합니다.
+A *컨트롤러* HTTP 요청을 처리 하 고 hello HTML 응답을 렌더링 합니다.
 
-1. **tasklist/routes** 디렉터리에서 **tasklist.js**라는 새 파일을 만들고 텍스트 편집기에서 엽니다.
-2. 아래 코드를 **tasklist.js**에 추가합니다. 이 코드는 **tasklist.js**에 사용되는 azure 및 async 모듈을 로드합니다. 또한 **TaskList** 함수를 정의합니다. 이 함수에 앞서 정의한 **Task** 개체의 인스턴스가 전달됩니다.
+1. Hello에 **tasklist \ / s/경로** 디렉터리 라는 새 파일을 만들어 **tasklist.js** 텍스트 편집기에서 엽니다.
+2. 추가 코드를 너무 다음 hello**tasklist.js**합니다. 사용 되는 hello azure와 비동기 모듈 로드 **tasklist.js**합니다. Hello 정의 **TaskList \ / s** hello의 인스턴스를 전달 되는 함수 **작업** 앞에서 정의한 개체:
    
         var azure = require('azure-storage');
         var async = require('async');
@@ -258,7 +258,7 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         function TaskList(task) {
           this.task = task;
         }
-4. 다음 메소드를 **TaskList**에 추가합니다.
+4. Hello 너무 메서드를 다음 추가**TaskList \ / s**:
    
         TaskList.prototype = {
           showTasks: function(req, res) {
@@ -303,8 +303,8 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         }
 
 ### <a name="modify-appjs"></a>app.js 수정
-1. **tasklist** 디렉터리에서 **app.js** 파일을 엽니다. 이 파일은 앞에서 **express** 명령을 실행하여 만들었습니다.
-2. 파일의 앞부분에 다음을 추가하여 azure 모듈을 로드하고 테이블 이름인 파티션 키를 설정하고 이 예제에서 사용한 저장소 자격 증명을 설정합니다.
+1. Hello에서 **tasklist \ / s** 디렉터리, 열기 hello **app.js** 파일입니다. 이 파일 hello를 실행 하 여 앞서 만든 **express** 명령입니다.
+2. Hello 파일 시작 부분의 hello, hello tooload hello azure 모듈, 집합 hello 테이블 이름, 파티션 키 및 집합 hello 저장소 자격 증명이이 예제에서 사용 하는 다음을 추가 합니다.
    
         var azure = require('azure-storage');
         var nconf = require('nconf');
@@ -316,15 +316,15 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         var accountKey = nconf.get("STORAGE_KEY");
    
    > [!NOTE]
-   > nconf는 환경 변수 또는 나중에 만들 **config.json** 파일에서 구성 값을 로드합니다.
+   > nconf hello 구성 값을 로드 하는 환경 변수 또는 hello에서 **config.json** 파일을 나중에 만들어집니다.
    > 
    > 
-3. app.js 파일에서 다음 줄이 보일 때까지 아래로 스크롤합니다.
+3. 표시 toowhere 아래로 스크롤하여 hello app.js 파일에 다음 줄 hello:
    
         app.use('/', routes);
         app.use('/users', users);
    
-    위의 줄을 아래의 코드로 바꿉니다. 이 코드는 저장소 계정에 대한 연결을 사용하여 <strong>Task</strong>의 인스턴스를 초기화합니다. 이 인스턴스는 <strong>TaskList</strong>로 전달되어 테이블 서비스와의 통신에 사용됩니다.
+    아래 표시 된 hello 코드 줄 위에 hello를 바꿉니다. 인스턴스를 초기화 합니다이 <strong>작업</strong> 연결 tooyour 스토리지 계정으로 합니다. 이 toohello 전달 되어 <strong>TaskList \ / s</strong>를 사용 하 여 toocommunicate 테이블 서비스 hello로:
    
         var TaskList = require('./routes/tasklist');
         var Task = require('./models/task');
@@ -334,11 +334,11 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         app.get('/', taskList.showTasks.bind(taskList));
         app.post('/addtask', taskList.addTask.bind(taskList));
         app.post('/completetask', taskList.completeTask.bind(taskList));
-4. **app.js** 파일을 저장합니다.
+4. Hello 저장 **app.js** 파일입니다.
 
-### <a name="modify-the-index-view"></a>인덱스 보기 수정
-1. **tasklist/views/index.jade** 파일을 텍스트 편집기에서 엽니다.
-2. 파일의 전체 내용을 다음 코드로 바꿉니다. 이렇게 하면 기존 작업을 표시하는 보기와 새 작업을 추가하고 기존 작업을 완료로 표시하는 양식이 정의됩니다.
+### <a name="modify-hello-index-view"></a>Hello 인덱스 뷰를 수정 합니다.
+1. 열기 hello **tasklist/views/index.jade** 파일 텍스트 편집기에서.
+2. Hello 파일의 전체 내용을 hello 코드 다음 hello로 대체 합니다. 이렇게 하면 기존 작업을 표시하는 보기와 새 작업을 추가하고 기존 작업을 완료로 표시하는 양식이 정의됩니다.
    
         extends layout
    
@@ -378,12 +378,12 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
             button.btn(type="submit") Add item
 3. **index.jade** 파일을 저장하고 닫습니다.
 
-### <a name="modify-the-global-layout"></a>전역 레이아웃 수정
-**views** 디렉터리의 **layout.jade** 파일은 다른 **.jade** 파일에 대한 전역 템플릿입니다. 이 단계에서는 멋진 모습의 웹앱을 쉽게 디자인할 수 있게 해주는 도구 키트인 [Twitter Bootstrap](https://github.com/twbs/bootstrap)을 사용하도록 이 파일을 수정합니다.
+### <a name="modify-hello-global-layout"></a>Hello 글로벌 레이아웃 수정
+hello **layout.jade** hello에 대 한 파일 **뷰** 디렉터리는 다른 전역 서식 **.jade** 파일입니다. 이 단계에서 수정 toouse [Twitter 부트스트랩](https://github.com/twbs/bootstrap), 하는 쉽게 toodesign 좋은 찾고 웹 응용 프로그램에 있도록 하는 도구 키트입니다.
 
-[Twitter Bootstrap](http://getbootstrap.com/)용 파일을 다운로드하여 추출합니다. Bootstrap **css** 폴더의 **bootstrap.min.css** 파일을 응용 프로그램의 **public/stylesheets** 디렉터리에 복사합니다.
+다운로드 하 고 hello 파일에 대 한 추출 [Twitter 부트스트랩](http://getbootstrap.com/)합니다. 복사 hello **bootstrap.min.css** hello 부트스트랩에서에서 파일 **css** hello 폴더 **공개/스타일 시트** 응용 프로그램의 디렉터리입니다.
 
-**views** 폴더에서 **layout.jade**를 열고 전체 내용을 다음으로 바꿉니다.
+Hello에서 **뷰** 폴더를 엽니다 **layout.jade** hello 전체 내용을 hello 다음과 같이 바꿉니다.
 
     doctype html
     html
@@ -398,7 +398,7 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         block content
 
 ### <a name="create-a-config-file"></a>구성 파일 만들기
-앱을 로컬로 실행하기 위해 Azure 저장소 자격 증명을 구성 파일에 배치합니다. 다음 JSON으로 **config.json* *이라는 이름의 파일을 만듭니다.
+toorun hello 로컬로 앱을 Azure 저장소 자격 증명 구성 파일에 포함 합니다. 라는 파일을 만들어 **config.json* * 다음 JSON hello로:
 
     {
         "STORAGE_NAME": "<storage account name>",
@@ -407,7 +407,7 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         "TABLE_NAME": "tasks"
     }
 
-**저장소 계정 이름**을 앞서 만든 저장소 계정 이름으로 바꾸고 **저장소 액세스 키**를 저장소 계정의 기본 선택키로 바꿉니다. 예:
+대체 **저장소 계정 이름** hello 저장소의 hello 이름의 계정이 이전에 만든 및 바꾸기 **저장소 액세스 키** 저장소 계정에 대 한 hello 기본 액세스 키를 가진 합니다. 예:
 
     {
         "STORAGE_NAME": "nodejsappstorage",
@@ -416,77 +416,77 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         "TABLE_NAME": "tasks"
     }
 
-다음과 같이 이 파일을 *tasklist* 디렉터리보다 **한 디렉터리 높은 단계** 에 저장합니다.
+이 파일을 저장 *한 디렉터리 수준 높은* hello 보다 **tasklist \ / s** 다음과 같이 디렉터리:
 
     parent/
       |-- config.json
       |-- tasklist/
 
-공용이 될 수 있는 원본 제어기에 구성 파일을 확인하지 않도록 하기 위해서입니다. Azure에 앱을 배포할 때 구성 파일 대신 환경 변수를 사용합니다.
+hello이 원인은 tooavoid 소스 제어에 hello 구성 파일을 확인 하는 중입니다. 여기서 공개 될 수 있습니다. Hello 앱 tooAzure를 배포에서는 구성 파일 대신 환경 변수 사용 합니다.
 
-## <a name="run-the-application-locally"></a>로컬에서 응용 프로그램 실행
-로컬 컴퓨터에서 응용 프로그램을 테스트하려면 다음 단계를 수행하세요.
+## <a name="run-hello-application-locally"></a>Hello 응용 프로그램을 로컬로 실행
+로컬 컴퓨터의 tootest hello 응용 hello 다음 단계를 수행 합니다.
 
-1. 명령줄에서 **tasklist** 디렉터리로 변경합니다.
-2. 다음 명령을 사용하여 응용 프로그램을 로컬에서 시작합니다.
+1. Hello 명령줄에서 디렉터리 toohello 변경 **tasklist \ / s** 디렉터리입니다.
+2. 다음 명령은 toolaunch hello 응용 프로그램을 로컬 hello를 사용 합니다.
    
         npm start
-3. 웹 브라우저를 열고 http://127.0.0.1:3000 으로 이동합니다.
+3. 웹 브라우저를 열고 toohttp://127.0.0.1:3000 이동 합니다.
    
-    다음 예제와 유사한 웹 페이지가 나타납니다.
+    다음 예에서는 웹 페이지와 유사한 toohello가 나타납니다.
    
     ![빈 tasklist가 표시된 웹 페이지][node-table-finished]
-4. 새 할 일 항목을 만들려면 이름 및 범주를 입력하고 **항목 추가**를 클릭합니다. 
-5. 작업을 완료로 표시하려면 **완료**에 표시하고 **작업 업데이트**를 클릭합니다.
+4. toocreate 할 일 항목을 새 이름 및 범주를 입력 하 고 클릭 **항목 추가**합니다. 
+5. toomark 완료 검사 방법으로 작업 **완료** 클릭 **작업 업데이트**합니다.
    
-    ![작업 목록의 새 항목 이미지][node-table-list-items]
+    ![작업의 hello 목록에서 한 hello 새 항목의 이미지][node-table-list-items]
 
-응용프로그램이 로컬로 실행함에도 불구하고 Azure 테이블 서비스에 해당 데이터를 저장합니다.
+Hello 응용 프로그램을 로컬에서 실행 하는 경우에 것에서 데이터를 저장 hello hello Azure 테이블 서비스에에서 있습니다.
 
-## <a name="deploy-your-application-to-azure"></a>Azure에 응용 프로그램 배포
-이 섹션의 단계는 Azure 명령줄 도구를 사용하여 앱 서비스에서 새 웹앱을 만든 다음 Git을 사용하여 응용프로그램을 배포합니다. 이러한 단계를 수행하려면 Azure 구독이 있어야 합니다.
+## <a name="deploy-your-application-tooazure"></a>응용 프로그램 tooAzure 배포
+이 섹션의 단계 hello hello Azure 명령줄 도구 toocreate 새 웹 앱을 사용 하 여 앱 서비스에서 한 다음 사용할 Git toodeploy 응용 프로그램. tooperform 이러한 단계는 Azure 구독이 있어야 합니다.
 
 > [!NOTE]
-> 이러한 단계는 [Azure 포털](https://portal.azure.com/)을 사용하여 수행할 수도 있습니다. [Azure 앱 서비스에서 Node.js 웹앱 빌드 및 배포]를 참조하세요.
+> Hello를 사용 하 여 다음이 단계를 수행할 수도 있습니다 [Azure 포털](https://portal.azure.com/)합니다. [Azure 앱 서비스에서 Node.js 웹앱 빌드 및 배포]를 참조하세요.
 > 
-> 처음으로 만든 웹앱인 경우 Azure 포털을 사용하여 이 응용프로그램을 배포해야 합니다.
+> 만든 hello 첫 번째 웹 앱의 경우이 응용 프로그램 hello Azure 포털 toodeploy 사용 해야 합니다.
 > 
 > 
 
-시작하려면 명령줄에서 다음 명령을 입력하여 [Azure CLI] 를 설치합니다.
+시작 tooget 설치 hello [Azure CLI] hello hello 명령줄에서 다음 명령을 입력 하 여:
 
     npm install azure-cli -g
 
 ### <a name="import-publishing-settings"></a>게시 설정 가져오기
 이 단계에서는 구독에 대한 정보를 포함하는 파일을 다운로드합니다.
 
-1. 다음 명령을 입력합니다.
+1. Hello 다음 명령을 입력 합니다.
    
         azure login
    
-    이 명령은 브라우저를 시작하고 다운로드 페이지로 이동합니다. 메시지가 나타나면 Azure 구독과 관련된 계정으로 로그인합니다.
+    이 명령은 브라우저를 시작 하 고 toohello 다운로드 페이지를 탐색 합니다. 메시지가 표시 되 면 Azure 구독에 연결 된 hello 계정으로 로그인 합니다.
    
-    <!-- ![The download page][download-publishing-settings] -->
+    <!-- ![hello download page][download-publishing-settings] -->
    
-    파일 다운로드가 자동으로 시작됩니다. 그렇지 않은 경우 페이지 처음 부분에서 링크를 클릭하여 수동으로 파일을 다운로드할 수 있습니다. 파일을 저장하고 파일 경로를 기록해 둡니다.
-2. 다음 명령을 입력하여 설정을 가져옵니다.
+    hello 파일 다운로드가 자동으로 시작 그렇지 않으면 hello 파일 시작 부분의 hello 페이지 toomanually 다운로드 hello hello 링크를 클릭 합니다. Hello 파일 및 참고 hello 파일 경로 저장 합니다.
+2. Hello 명령 tooimport hello 설정을 다음을 입력 합니다.
    
         azure account import <path-to-file>
    
-    이전 단계에서 다운로드한 게시 설정 파일의 경로와 파일 이름을 지정합니다.
-3. 설정을 가져온 후에는 게시 설정 파일을 삭제합니다. 이 파일은 더 이상 필요하지 않으며 Azure 구독과 관련된 중요한 정보가 포함됩니다.
+    Hello 이전 단계에서 다운로드 한 설정 파일을 게시 하는 hello hello 경로 파일 이름을 지정 합니다.
+3. Hello 설정의 가져온 후 삭제 hello 게시 설정 파일입니다. 이 파일은 더 이상 필요하지 않으며 Azure 구독과 관련된 중요한 정보가 포함됩니다.
 
 ### <a name="create-an-app-service-web-app"></a>앱 서비스 웹앱 만들기
-1. 명령줄에서 **tasklist** 디렉터리로 변경합니다.
-2. 다음 명령을 사용하여 새 웹앱을 만듭니다.
+1. Hello 명령줄에서 디렉터리 toohello 변경 **tasklist \ / s** 디렉터리입니다.
+2. Hello 명령 toocreate 새 웹 앱에 다음을 사용 합니다.
    
         azure site create --git
    
-    웹앱 이름 및 위치를 묻는 메시지가 나타납니다. 고유한 이름을 제공하고 Azure 저장소 계정과 동일한 지리적 위치를 선택합니다.
+    Hello 웹 응용 프로그램 이름 및 위치를 묻는 메시지가 나타납니다. 고유 이름 및 선택 hello Azure 저장소 계정과 동일한 지리적 위치를 제공 합니다.
    
-    `--git` 매개 변수는 Azure에 이 웹앱에 대한 Git 리포지토리를 만듭니다. 현재 디렉터리에 존재하는 항목이 없는 경우 Git 리포지토리를 초기화하고 'azure'라는 [Git 원격] 을 추가하여 Azure에 응용프로그램을 게시하는 데 사용합니다. 마지막으로 Azure에서 노드 응용프로그램을 호스트하는 데 사용하는 설정이 포함된 **web.config** 파일을 만듭니다. `--git` 매개 변수를 생략하지만 해당 디렉터리가 Git 리포지토리를 포함하는 경우에도 이 명령은 여전히 'azure' 원격을 만듭니다.
+    hello `--git` 매개 변수 Azure에서이 웹 앱에 대 한 Git 리포지토리를 만듭니다. None 있고에 추가 하는 hello 현재 디렉터리의 Git 리포지토리 초기화는 [Git 원격] 'azure' 명명 된, 즉 사용 되는 toopublish hello 응용 프로그램 tooAzure 합니다. 마지막으로 만듭니다는 **web.config** toohost Azure 노드에 응용 프로그램에서 사용 하는 설정을 포함 하는 파일입니다. Hello를 생략 하면 `--git` 매개 변수는 있지만 hello 디렉터리에 Git 리포지토리, hello 명령은 여전히 'azure' hello 원격을 만듭니다.
    
-    이 명령이 완료되면 다음과 유사한 출력이 표시됩니다. **Website created at** 으로 시작하는 줄에 웹앱의 URL이 있습니다.
+    이 명령이 완료 되 면 유사한 toohello 다음 출력이 표시 됩니다. 참고로 시작 하는 hello 줄 **웹 사이트에서 만든** hello 웹 앱에 대 한 hello URL을 포함 합니다.
    
         info:   Executing command site create
         help:   Need a site name
@@ -502,33 +502,33 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
         info:   site create command OK
    
    > [!NOTE]
-   > 구독에 대한 앱 서비스 웹앱을 처음 만드는 경우 Azure 포털을 사용하여 웹앱을 만들라고 안내됩니다. 자세한 내용은 [Azure 앱 서비스에서 Node.js 웹앱 빌드 및 배포]를 참조하세요.
+   > 구독에 대 한 hello 첫 번째 앱 서비스 웹 앱 이면 지시 toouse hello Azure 포털 toocreate hello 웹 앱 됩니다. 자세한 내용은 [Azure 앱 서비스에서 Node.js 웹앱 빌드 및 배포]를 참조하세요.
    > 
    > 
 
 ### <a name="set-environment-variables"></a>환경 변수 설정
-이 단계에서는 Azure에서 웹앱 구성에 환경 변수를 추가합니다.
-명령줄에서 다음을 입력합니다.
+이 단계에서는 Azure에서 환경 변수 tooyour 웹 응용 프로그램 구성을 추가 합니다.
+Hello 명령줄에서 hello 다음을 입력 합니다.
 
     azure site appsetting add
         STORAGE_NAME=<storage account name>;STORAGE_KEY=<storage access key>;PARTITION_KEY=mytasks;TABLE_NAME=tasks
 
 
-**<storage account name>**을 앞서 만든 저장소 계정 이름으로 바꾸고 **<storage access key>**를 저장소 계정의 기본 선택키로 바꿉니다. (이전에 만든 config.json 파일과 동일한 값을 사용합니다.)
+대체  **<storage account name>**  hello 저장소의 hello 이름의 계정이 이전에 만든 및 바꾸기  **<storage access key>**  저장소 계정에 대 한 hello 기본 액세스 키를 가진 합니다. (이전에 만든 hello config.json 파일로 hello 값을 사용 합니다.)
 
-또는 [Azure 포털](https://portal.azure.com/)에서 환경 변수를 설정할 수 있습니다.
+또는 hello에서 환경 변수를 설정할 수 [Azure 포털](https://portal.azure.com/):
 
-1. **찾아보기** > **Web Apps** > 사용자의 웹앱 이름을 클릭하여 웹앱 블레이드를 엽니다.
+1. 클릭 하 여 hello 웹 앱 블레이드를 열고 **찾아보기** > **웹 앱** > 웹 응용 프로그램 이름입니다.
 2. 웹앱 블레이드에서 **모든 설정** > **응용 프로그램 설정**을 클릭합니다.
    
      <!-- ![Top Menu](./media/storage-nodejs-use-table-storage-web-site/PollsCommonWebSiteTopMenu.png) -->
-3. **앱 설정** 섹션으로 스크롤하여 키/값 쌍을 추가합니다.
+3. Toohello 아래로 스크롤하여 **앱 설정** 섹션 및 hello 키/값 쌍을 추가 합니다.
    
      ![앱 설정](./media/storage-nodejs-use-table-storage-web-site/storage-tasks-appsettings.png)
 4. **저장**을 클릭합니다.
 
-### <a name="publish-the-application"></a>응용 프로그램 게시
-앱을 게시하려면 코드 파일을 Git으로 커밋한 다음 azure/master로 푸시합니다.
+### <a name="publish-hello-application"></a>Hello 응용 프로그램 게시
+toopublish hello 앱 hello 코드 파일 tooGit 커밋하고 tooazure/마스터를 푸시합니다.
 
 1. 배포 자격 증명을 설정합니다.
    
@@ -537,31 +537,31 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
    
         git add .
         git commit -m "adding files"
-3. 앱 서비스 웹앱으로 커밋을 푸시합니다.
+3. 밀어넣기 hello 커밋 toohello 앱 서비스 웹 앱:
    
         git push azure master
    
-    대상 분기로 **master** 를 사용합니다. 배포가 끝나면 다음 예제와 유사한 문이 표시됩니다.
+    사용 하 여 **마스터** hello 대상 분기도 합니다. Hello 배포의 hello 끝 다음 예제에서는 문을 비슷한 toohello를 확인할 수 있습니다.
    
-        To https://username@tabletasklist.azurewebsites.net/TableTasklist.git
+        toohttps://username@tabletasklist.azurewebsites.net/TableTasklist.git
           * [new branch]      master -> master
-4. 푸시 작업이 완료되면 `azure create site` 명령에서 이전에 반환한 웹앱 URL로 이동하여 응용프로그램을 확인합니다.
+4. Hello 푸시 작업이 완료 되 면 hello 이전에 반환한 toohello 웹 앱 URL을 찾아보기 `azure create site` tooview 응용 프로그램 명령입니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 문서의 단계에서는 Table Service를 사용하여 정보를 저장하는 방법에 대해 설명하지만 [MongoDB](https://mlab.com/azure/)도 사용할 수 있습니다. 
+이 문서의 단계 hello hello 테이블 서비스 toostore 정보를 사용 하 여 데이터를 설명 하지만 사용할 수도 있습니다 [MongoDB](https://mlab.com/azure/)합니다. 
 
 ## <a name="additional-resources"></a>추가 리소스
 [Azure CLI]
 
 ## <a name="whats-changed"></a>변경된 내용
-* 웹 사이트에서 앱 서비스로의 변경에 대한 지침은 [Azure 앱 서비스와 이 서비스가 기존 Azure 서비스에 미치는 영향](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 웹 사이트 tooApp 서비스에서에서 변경 사항 참조 가이드 toohello: [기존 Azure 서비스에 대 한 해당 영향 및 Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- URLs -->
 
 [Azure 앱 서비스에서 Node.js 웹앱 빌드 및 배포]: app-service-web-get-started-nodejs.md
 [Azure Developer Center]: /develop/nodejs/
 
-[node]: http://nodejs.org
+[노드]: http://nodejs.org
 [Git]: http://git-scm.com
 [Express]: http://expressjs.com
 [for free]: http://windowsazure.com
@@ -570,13 +570,13 @@ Azure 저장소 계정을 만듭니다. 앱에서는 할 일 항목을 저장하
 [Azure CLI]:../cli-install-nodejs.md
 
 [azure]: https://github.com/Azure/azure-sdk-for-node
-[node-uuid]: https://www.npmjs.com/package/node-uuid
+[노드 uuid]: https://www.npmjs.com/package/node-uuid
 [nconf]: https://www.npmjs.com/package/nconf
-[async]: https://www.npmjs.com/package/async
+[비동기]: https://www.npmjs.com/package/async
 
 [Azure Portal]: https://portal.azure.com
 
-[Create and deploy a Node.js application to an Azure Web Site]: app-service-web-get-started-nodejs.md
+[Create and deploy a Node.js application tooan Azure Web Site]: app-service-web-get-started-nodejs.md
 
 <!-- Image References -->
 

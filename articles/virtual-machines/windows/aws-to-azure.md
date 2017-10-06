@@ -1,6 +1,6 @@
 ---
-title: "Windows AWS VM을 Azure로 이동 | Microsoft Docs"
-description: "Azure PowerShell을 사용하여 AWS(Amazon Web Services) EC2 Windows 인스턴스를 Azure Virtual Machines로 이동합니다."
+title: Windows AWS Vm tooAzure aaaMove | Microsoft Docs
+description: "웹 서비스 AWS (Amazon) EC2 Windows 인스턴스 tooAzure Azure PowerShell을 사용 하 여 가상 컴퓨터를 이동 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,56 +15,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: cynthn
-ms.openlocfilehash: 7d2b498d3f84c4fd6cccf97c6d7781f293f5b395
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f912c28d3ffe585162c3add715a1318ac3cd4643
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-a-windows-vm-from-amazon-web-services-aws-to-azure-using-powershell"></a>PowerShell을 사용하여 AWS(Amazon Web Services)에서 Azure로 Windows VM 이동
+# <a name="move-a-windows-vm-from-amazon-web-services-aws-tooazure-using-powershell"></a>PowerShell을 사용 하 여 웹 서비스 AWS (Amazon) tooAzure에서 Windows VM 이동
 
-워크로드를 호스팅하기 위해 Azure 가상 컴퓨터를 평가하는 경우 기존 AWS(Amazon Web Services) EC2 Windows VM 인스턴스를 내보낸 다음 VHD(가상 하드 디스크)를 Azure로 업로드할 수 있습니다. VHD를 업로드하면 VHD에서 Azure로 새 VM을 만들 수 있습니다. 
+프로그램 워크 로드를 호스트에 대 한 Azure 가상 컴퓨터를 평가 하는 경우 기존 웹 서비스 AWS (Amazon) EC2 Windows VM 인스턴스를 내보내려면 다음 hello 가상 하드 디스크 (VHD) tooAzure 업로드할 수 있습니다. 한 번 hello VHD 업로드, 만들 수 있습니다는 새 VM Azure의 hello VHD에서. 
 
-이 항목에서는 단일 VM을 AWS에서 Azure로 이동하는 방법에 대해 설명합니다. VM을 AWS에서 Azure로 대규모로 이동하려면 [Azure Site Recovery를 사용하여 AWS(Amazon Web Services)의 가상 컴퓨터를 Azure로 마이그레이션](../../site-recovery/site-recovery-migrate-aws-to-azure.md)을 참조하세요.
+이 항목에서 AWS tooAzure 단일 VM 이동에 대해 설명 합니다. 최대 규모로 AWS tooAzure toomove Vm 참조 [서비스 AWS (Amazon Web) tooAzure Azure 사이트 복구에서 가상 컴퓨터를 마이그레이션할](../../site-recovery/site-recovery-migrate-aws-to-azure.md)합니다.
 
-## <a name="prepare-the-vm"></a>VM 준비 
+## <a name="prepare-hello-vm"></a>Hello VM 준비 
  
-일반화된 VHD 및 특수한 VHD 모두를 Azure에 업로드할 수 있습니다. 각 유형은 AWS에서 내보내기 전에 VM을 준비해야 합니다. 
+일반화 된 만들고 특수화할 Vhd tooAzure 업로드할 수 있습니다. 각 유형에 AWS에서 내보내기 전에 hello VM을 준비 해야 합니다. 
 
-- **일반화된 VHD** - 일반화된 VHD에는 Sysprep을 사용하여 제거된 모든 개인 계정 정보가 포함되어 있습니다. 새 VM을 만드는 이미지로 VHD를 사용하려는 경우 다음을 수행해야 합니다. 
+- **일반화된 VHD** - 일반화된 VHD에는 Sysprep을 사용하여 제거된 모든 개인 계정 정보가 포함되어 있습니다. Toouse hello VHD 이미지 toocreate로 가져오려는 경우에서 새 Vm을 수행 해야 합니다. 
  
     * [Windows VM을 준비합니다](prepare-for-upload-vhd-image.md).  
-    * Sysprep을 사용하여 가상 컴퓨터를 일반화합니다.  
+    * Sysprep를 사용 하 여 hello 가상 컴퓨터를 일반화 합니다.  
 
  
-- **특수한 VHD** - 특수한 VHD는 사용자 계정, 응용 프로그램 및 원본 VM의 다른 상태 데이터를 유지 관리합니다. 새 VM을 만드는데 VHD를 그대로 사용하려는 경우 다음 단계가 완료되었는지 확인합니다.  
-    * [Azure에 업로드할 Windows VHD를 준비합니다](prepare-for-upload-vhd-image.md). Sysprep을 사용하여 VM을 일반화하지 **마십시오**. 
-    * 모든 게스트 가상화 도구 및 VM에 설치된 에이전트를 제거합니다(예: VMware 도구). 
-    * VM이 DHCP를 통해 해당 IP 주소 및 DNS 설정을 가져오도록 구성되었는지 확인합니다. 이렇게 하면 서버를 시작할 때 VNet 내의 IP 주소를 가져옵니다.  
+- **VHD를 특수화할** -특수 VHD hello 사용자 계정, 응용 프로그램 및 원래 VM에서 다른 상태 데이터를 유지 관리 합니다. Toouse를 가져오려는 경우 VHD로 hello-toocreate 새 VM은 hello 다음 단계를 완료 합니다.  
+    * [Windows VHD tooupload tooAzure 준비](prepare-for-upload-vhd-image.md)합니다. **없는** 일반화 Sysprep를 사용 하 여 VM hello 합니다. 
+    * 모든 게스트 가상화 도구와 hello (즉, VMware 도구)를 VM에 설치 된 에이전트를 제거 합니다. 
+    * Hello VM 확인 해당 IP 주소 및 DNS 설정이 DHCP 통해 구성 된 toopull 됩니다. 이렇게 하면 해당 hello 서버를 시작할 때 hello VNet 내에서 IP 주소를 가져옵니다.  
 
 
-## <a name="export-and-download-the-vhd"></a>VHD 내보내기 및 다운로드 
+## <a name="export-and-download-hello-vhd"></a>내보내기 및 hello VHD를 다운로드 합니다. 
 
-EC2 인스턴스를 Amazon S3 버킷의 VHD로 내보냅니다. Amazon 설명서의 [VM 가져오기/내보내기를 사용하여 인스턴스를 VM으로 내보내기](http://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html)(영문) 항목에서 설명하는 단계를 수행하고, [create-instance-export-task](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-instance-export-task.html) 명령을 실행하여 EC2 인스턴스를 VHD 파일로 내보냅니다. 
+Hello EC2 인스턴스 tooa Amazon S3 버킷에서 VHD를 내보냅니다. Hello Amazon 설명서 항목에 설명 된 hello 단계에 따라 [인스턴스도는 VM 사용 하 여 VM 가져오기/내보내기 내보내기](http://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html) 및 실행된 hello [-인스턴스-내보내기-작업 만들기](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-instance-export-task.html) 명령 tooexport hello EC2 인스턴스 tooa VHD 파일입니다. 
 
-내보낸 VHD 파일은 지정한 Amazon S3 버킷에 저장됩니다. VHD를 내보내기 위한 기본 구문은 다음과 같으며, 여기서 <brackets>의 자리 표시자 텍스트를 사용자의 정보로 바꿉니다.
+hello 내보낸된 VHD 파일에에서 저장 됩니다 hello Amazon S3 버킷을 지정 합니다. hello 기본 구문 미만인 내보내는 hello VHD에 대 한 바꾸면 hello 자리 표시자 텍스트에 <brackets> 정보를 사용 합니다.
 
 ```
 aws ec2 create-instance-export-task --instance-id <instanceID> --target-environment Microsoft \
   --export-to-s3-task DiskImageFormat=VHD,ContainerFormat=ova,S3Bucket=<bucket>,S3Prefix=<prefix>
 ```
 
-VHD를 내보냈으면 [S3 버킷에서 개체를 다운로드하려면 어떻게 해야 합니까?(영문)](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/download-objects.html)의 지침에 따라 S3 버킷에서 VHD 파일을 다운로드합니다. 
+Hello VHD를 내보낸 후 hello 지침에 따라 [다운로드 하는 방법 개체 S3 버킷을에서?](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/download-objects.html) hello S3 버킷을에서 toodownload hello VHD 파일입니다. 
 
 > [!IMPORTANT]
-> AWS에서는 VHD 다운로드에 대한 데이터 전송 요금을 청구합니다. 자세한 내용은 [Amazon S3 요금](https://aws.amazon.com/s3/pricing/)을 참조하세요.
+> AWS는 hello VHD를 다운로드 하기 위한 데이터 전송 요금이 청구 합니다. 자세한 내용은 [Amazon S3 요금](https://aws.amazon.com/s3/pricing/)을 참조하세요.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-이제 VHD를 Azure에 업로드하고 새 VM을 만들 수 있습니다. 
+이제 hello VHD tooAzure 업로드 하 고 새 VM을 만들 수 있습니다. 
 
-- 내보내기 전에 **일반화**하도록 원본에서 Sysprep을 실행한 경우 [일반화된 VHD 업로드 및 이 디스크를 사용하여 Azure에서 새 VM 만들기](upload-generalized-managed.md)를 참조하세요.
-- 내보내기 전에 Sysprep을 실행하지 않은 경우 VHD는 **특수한 디스크**로 간주됩니다. [Azure에 특수한 VHD 업로드 및 새 VM 만들기](create-vm-specialized.md)를 참조하세요.
+- 너무 소스에서 Sysprep을 실행 한 경우**일반화** 참조 내보내기 전에 [일반화 된 VHD를 업로드 하 고 Azure에서 새 Vm toocreate 사용](upload-generalized-managed.md)
+- 내보내기 전에 Sysprep를 실행 하지 않은 경우 hello VHD 것으로 간주 됩니다 **특수**, 참조 [특수 VHD tooAzure 업로드 하 고 새 VM 만들기](create-vm-specialized.md)
 
  

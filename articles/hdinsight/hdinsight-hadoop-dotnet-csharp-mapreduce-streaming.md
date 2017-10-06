@@ -1,6 +1,6 @@
 ---
-title: "HDInsight - Azure의 Hadoop에서 MapReduce와 함께 C# 사용 | Microsoft Docs"
-description: "Azure HDInsight에서 Hadoop과 함께 C#을 사용하여 MapReduce 솔루션을 만드는 방법에 대해 알아보세요."
+title: "C#에서 Azure HDInsight에서 Hadoop MapReduce로 aaaUse | Microsoft Docs"
+description: "자세한 내용은 방법 Azure HDInsight에서 Hadoop으로 toouse C# toocreate MapReduce 솔루션입니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,52 +16,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: adb454e56378a800c671614735aec78b6851aeb2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dd8b684e74155bc1a37d4ab8d6f9033276ef5aa3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-c-with-mapreduce-streaming-on-hadoop-in-hdinsight"></a>HDInsight의 Hadoop에서 MapReduce와 함께 C# 사용
 
-HDInsight에서 C#을 사용하여 MapReduce 솔루션을 만드는 방법에 대해 알아보세요.
+자세한 내용은 방법 toouse C# toocreate HDInsight에서 MapReduce 솔루션입니다.
 
 > [!IMPORTANT]
-> Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [HDInsight 구성 요소 버전 관리](hdinsight-component-versioning.md)를 참조하세요.
+> Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [HDInsight 구성 요소 버전 관리](hdinsight-component-versioning.md)를 참조하세요.
 
-Hadoop 스트리밍은 스크립트 또는 실행 파일을 사용하여 MapReduce 작업을 실행할 수 있는 유틸리티입니다. 이 예제에서는 단어 수 세기 솔루션을 위해 .NET을 사용하여 매퍼와 리듀서를 구현합니다.
+Hadoop 스트리밍는 스크립트 또는 실행 파일을 사용 하 여 toorun MapReduce 작업을 허용 하는 유틸리티입니다. 이 예제에서는.NET은 사용 되는 tooimplement hello 매퍼 및 리 듀 서 단어 개수 솔루션에 대 한 합니다.
 
 ## <a name="net-on-hdinsight"></a>HDInsight에서.NET
 
-__Linux 기반 HDInsight__ 클러스터는 [Mono(https://mono-project.com)](https://mono-project.com)를 사용하여 .NET 응용 프로그램을 실행합니다. Mono 버전 4.2.1은 HDInsight 버전 3.5에 포함되어 있습니다. HDInsight와 함께 제공되는 Mono 버전에 대한 자세한 내용은 [HDInsight 구성 요소 버전](hdinsight-component-versioning.md)을 참조하세요. 특정 버전의 Mono를 사용하려면 [Mono 설치 또는 업데이트](hdinsight-hadoop-install-mono.md) 문서를 참조하세요.
+__Linux 기반 HDInsight__ 사용 하 여 클러스터 [모노 (https://mono-project.com)](https://mono-project.com) toorun.NET 응용 프로그램입니다. Mono 버전 4.2.1은 HDInsight 버전 3.5에 포함되어 있습니다. HDInsight에 포함 된 모노 길이의 hello에 대 한 자세한 내용은 참조 하십시오. [HDInsight 구성 요소 버전](hdinsight-component-versioning.md)합니다. toouse 모노의 특정 버전 참조 hello [설치 또는 업데이트 모노](hdinsight-hadoop-install-mono.md) 문서.
 
 .NET 프레임워크 버전과 Mono의 호환성에 대한 자세한 내용은 [Mono 호환성](http://www.mono-project.com/docs/about-mono/compatibility/)을 참조하세요.
 
 ## <a name="how-hadoop-streaming-works"></a>Hadoop 스트리밍 작동 방식
 
-이 문서의 스트리밍에 사용된 기본 프로세스는 다음과 같습니다.
+이 문서에 스트리밍에 사용 되는 hello 기본 프로세스는 다음과 같습니다.
 
-1. Hadoop이 STDIN의 매퍼(이 예제의 경우 mapper.exe)로 데이터를 전달합니다.
-2. 매퍼가 데이터를 처리하고 탭으로 구분된 키/값 쌍을 STDOUT으로 내보냅니다.
-3. Hadoop에서 이 출력을 읽습니다. 그런 다음 STDIN의 리듀서(이 예제의 경우 reducer.exe)로 전달됩니다.
-4. 리듀서는 탭으로 구분된 키/값 쌍을 읽고 데이터를 처리한 다음 STDOUT에서 탭으로 구분된 키/값 쌍의 결과를 내보냅니다.
-5. Hadoop에서 이 출력을 읽습니다. 그런 다음 출력 디렉터리에 기록됩니다.
+1. Hadoop에서 STDIN 데이터 toohello 매퍼 (이 예제의 mapper.exe)를 전달합니다.
+2. hello 매퍼 hello 데이터를 처리 하 고 탭으로 구분 된 키/값 쌍 tooSTDOUT를 내보냅니다.
+3. hello 출력 hadoop를 읽고 STDIN의 toohello 리 듀 서 (이 예제의 reducer.exe)를 전달 합니다.
+4. hello 리 듀 서 hello 탭으로 구분 된 키/값 쌍을 읽습니다 하 고 hello 데이터를 처리 하 고 STDOUT에 탭으로 구분 된 키/값 쌍으로 hello 결과 내보냅니다.
+5. hello 출력 hadoop 읽고 toohello 출력 디렉터리를 씁니다.
 
 스트리밍에 대한 자세한 내용은 [Hadoop 스트리밍(https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html)](https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html)을 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-* .NET Framework 4.5를 대상으로 하는 C# 코드 작성 및 빌드에 대해 잘 알고 있어야 합니다. 이 문서의 단계는 Visual Studio 2017을 사용합니다.
+* .NET Framework 4.5를 대상으로 하는 C# 코드 작성 및 빌드에 대해 잘 알고 있어야 합니다. 이 문서 사용 하 여 Visual Studio 2017의에서 hello 단계.
 
-* 클러스터로 .exe 파일을 업로드하는 방법. 이 문서의 단계는 Data Lake Tools for Visual Studio를 사용하여 클러스터의 기본 저장소로 파일을 업로드합니다.
+* 방식으로 tooupload.exe 파일을 toohello 클러스터 합니다. hello 단계가이 문서에 사용 하 여 hello 데이터 레이크 도구 hello 클러스터에 대 한 Visual Studio tooupload hello 파일 tooprimary 저장소에 대 한 합니다.
 
 * Azure PowerShell 또는 SSH 클라이언트
 
 * HDInsight 클러스터의 Hadoop. 클러스터를 만드는 방법에 대한 자세한 내용은 [HDInsight 클러스터 만들기](hdinsight-provision-clusters.md)를 참조하세요.
 
-## <a name="create-the-mapper"></a>매퍼 만들기
+## <a name="create-hello-mapper"></a>Hello 매퍼 만들기
 
-Visual Studio에서 __mapper__라는 새 __콘솔 응용 프로그램__을 만듭니다. 응용 프로그램에 대해 다음 코드를 사용합니다.
+Visual Studio에서 __mapper__라는 새 __콘솔 응용 프로그램__을 만듭니다. Hello 응용 프로그램에 대 한 코드 다음 hello를 사용 합니다.
 
 ```csharp
 using System;
@@ -74,14 +74,14 @@ namespace mapper
         static void Main(string[] args)
         {
             string line;
-            //Hadoop passes data to the mapper on STDIN
+            //Hadoop passes data toohello mapper on STDIN
             while((line = Console.ReadLine()) != null)
             {
                 // We only want words, so strip out punctuation, numbers, etc.
                 var onlyText = Regex.Replace(line, @"\.|;|:|,|[0-9]|'", "");
                 // Split at whitespace.
                 var words = Regex.Matches(onlyText, @"[\w]+");
-                // Loop over the words
+                // Loop over hello words
                 foreach(var word in words)
                 {
                     //Emit tab-delimited key/value pairs.
@@ -94,11 +94,11 @@ namespace mapper
 }
 ```
 
-응용 프로그램을 생성한 다음 빌드하여 프로젝트 디렉터리에 `/bin/Debug/mapper.exe` 파일을 만듭니다.
+Hello 응용 프로그램을 만든 후 빌드합니다 tooproduce hello `/bin/Debug/mapper.exe` hello 프로젝트 디렉터리의 파일입니다.
 
-## <a name="create-the-reducer"></a>리듀서 만들기
+## <a name="create-hello-reducer"></a>Hello 리 듀 서 만들기
 
-Visual Studio에서 __reducer__라는 새 __콘솔 응용 프로그램__을 만듭니다. 응용 프로그램에 대해 다음 코드를 사용합니다.
+Visual Studio에서 __reducer__라는 새 __콘솔 응용 프로그램__을 만듭니다. Hello 응용 프로그램에 대 한 코드 다음 hello를 사용 합니다.
 
 ```csharp
 using System;
@@ -119,19 +119,19 @@ namespace reducer
             {
                 // Data from Hadoop is tab-delimited key/value pairs
                 var sArr = line.Split('\t');
-                // Get the word
+                // Get hello word
                 string word = sArr[0];
-                // Get the count
+                // Get hello count
                 int count = Convert.ToInt32(sArr[1]);
 
-                //Do we already have a count for the word?
+                //Do we already have a count for hello word?
                 if(words.ContainsKey(word))
                 {
-                    //If so, increment the count
+                    //If so, increment hello count
                     words[word] += count;
                 } else
                 {
-                    //Add the key to the collection
+                    //Add hello key toohello collection
                     words.Add(word, count);
                 }
             }
@@ -147,9 +147,9 @@ namespace reducer
 }
 ```
 
-응용 프로그램을 생성한 다음 빌드하여 프로젝트 디렉터리에 `/bin/Debug/reducer.exe` 파일을 만듭니다.
+Hello 응용 프로그램을 만든 후 빌드합니다 tooproduce hello `/bin/Debug/reducer.exe` hello 프로젝트 디렉터리의 파일입니다.
 
-## <a name="upload-to-storage"></a>저장소에 업로드
+## <a name="upload-toostorage"></a>Toostorage 업로드
 
 1. Visual Studio에서 **서버 탐색기**를 엽니다.
 
@@ -157,29 +157,29 @@ namespace reducer
 
 3. 메시지가 표시되면 Azure 구독 자격 증명을 입력한 다음 **로그인**을 클릭합니다.
 
-4. 이 응용 프로그램을 배포하려는 HDInsight 클러스터를 확장합니다. 텍스트가 포함된 항목__(기본 저장소 계정)__이 목록에 표시됩니다.
+4. Hello HDInsight 클러스터를 toodeploy이 응용이 프로그램을 확장 합니다. Hello 텍스트 있는 항목이 __(기본 저장소 계정)__ 나열 됩니다.
 
-    ![클러스터에 대한 저장소 계정을 보여주는 서버 탐색기](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/storage.png)
+    ![Hello 클러스터에 대 한 hello 저장소 계정을 보여 주는 서버 탐색기](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/storage.png)
 
-    * 이 항목을 확장할 수 있는 경우 클러스터의 기본 저장소로 __Azure Storage 계정__을 사용하고 있음을 의미합니다. 클러스터의 기본 저장소에서 파일을 보려면 항목을 확장한 다음 __(기본 컨테이너)__를 두 번 클릭합니다.
+    * 사용 중인 경우이 항목에서 확장할 수는 __Azure 저장소 계정__ hello 클러스터에 대 한 기본 저장소로 합니다. hello 클러스터에 대 한 hello 기본 저장소에 tooview hello 파일 hello 항목을 확장 하 고 hello 두 번 클릭 __(기본 컨테이너)__합니다.
 
-    * 이 항목을 확장할 수 없는 경우 클러스터의 기본 저장소로 __Azure Data Lake Store__를 사용하고 있음을 의미합니다. 클러스터의 기본 저장소에 있는 파일을 보려면 항목을 확장한 다음 __(기본 저장소 계정)__을 두 번 클릭합니다.
+    * 사용 하는이 항목을 확장할 수 없으면, __Azure 데이터 레이크 저장소__ hello 클러스터에 대 한 기본 저장소 hello로 합니다. hello 클러스터에 대 한 hello 기본 저장소에 tooview hello 파일 hello를 두 번 클릭 __(기본 저장소 계정)__ 항목입니다.
 
-5. .exe 파일을 업로드하려면 다음 방법 중 하나를 사용합니다.
+5. tooupload hello.exe 파일을 사용 하 여 hello 메서드를 다음 중 하나:
 
-    * __Azure Storage 계정__을 사용하는 경우 업로드 아이콘을 클릭한 다음 **bin\debug** 폴더로 이동하여 **mapper** 프로젝트를 검색합니다. 마지막으로 **mapper.exe** 파일을 선택한 다음 **확인**을 클릭합니다.
+    * 사용 하는 경우는 __Azure 저장소 계정__hello 업로드 아이콘을 클릭 한 다음 toohello 찾아보기, **bin\debug** hello에 대 한 폴더 **매퍼** 프로젝트. 마지막으로 hello 선택 **mapper.exe** 파일을 클릭 하 여 **확인**합니다.
 
         ![업로드 아이콘](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/upload.png)
     
-    * __Azure Data Lake Store__를 사용하는 경우 마우스 오른쪽 버튼으로 파일 목록의 빈 영역을 클릭한 다음 __업로드__를 클릭합니다. 마지막으로 **mapper.exe** 파일을 선택한 다음 **열기**를 클릭합니다.
+    * 사용 하는 경우 __Azure 데이터 레이크 저장소__를 hello 파일 목록에서 빈 영역을 마우스 오른쪽 단추로 클릭 한 다음 선택 __업로드__합니다. 마지막으로 hello 선택 **mapper.exe** 파일을 클릭 하 여 **열려**합니다.
 
-    __mapper.exe__ 업로드가 완료되면 __reducer.exe__ 파일의 업로드 프로세스를 반복합니다.
+    한 번 hello __mapper.exe__ 업로드가 완료 되 면 hello에 대 한 반복 hello 업로드 프로세스 __reducer.exe__ 파일입니다.
 
 ## <a name="run-a-job-using-an-ssh-session"></a>작업 실행: SSH 세션 사용
 
-1. SSH를 사용하여 HDInsight 클러스터에 연결합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
+1. SSH tooconnect toohello HDInsight 클러스터를 사용 합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-2. 다음 명령을 사용하여 MapReduce 작업을 시작합니다.
+2. Hello 명령 toostart hello MapReduce 작업을 다음 중 하나를 사용 합니다.
 
     * 기본 저장소로 __Data Lake Store__를 사용하는 경우
 
@@ -193,22 +193,22 @@ namespace reducer
         yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files wasb:///mapper.exe,wasb:///reducer.exe -mapper mapper.exe -reducer reducer.exe -input /example/data/gutenberg/davinci.txt -output /example/wordcountout
         ```
 
-    다음 목록은 각 매개 변수가 하는 기능에 대한 설명입니다.
+    hello 목록 다음 각 매개 변수에 용도 설명 합니다.
 
-    * `hadoop-streaming.jar`: 스트리밍 MapReduce 기능이 포함된 jar 파일
-    * `-files`: 이 작업에 `mapper.exe` 및 `reducer.exe` 파일을 추가합니다.  각 파일 앞의 `adl:///` 및 `wasb:///`는 클러스터의 기본 저장소의 루트에 대한 경로입니다.
-    * `-mapper`: mapper를 구현하는 파일을 지정합니다.
-    * `-reducer`: reducer를 구현하는 파일을 지정합니다.
-    * `-input`: 입력 데이터
-    * `-output`: 출력 디렉터리
+    * `hadoop-streaming.jar`: hello 스트리밍 MapReduce 기능을 포함 하는 hello jar 파일입니다.
+    * `-files`: Hello 추가 `mapper.exe` 및 `reducer.exe` 파일 toothis 작업 합니다. hello `adl:///` 또는 `wasb:///` 각 파일은 hello 클러스터에 대 한 기본 저장소의 hello 경로 toohello 루트 전에 합니다.
+    * `-mapper`: Hello 맵 편집기를 구현 하는 파일을 지정 합니다.
+    * `-reducer`: Hello 리 듀 서를 구현 하는 파일을 지정 합니다.
+    * `-input`: hello 입력 데이터를 필터링 합니다.
+    * `-output`: hello 출력 디렉터리입니다.
 
-3. MapReduce 작업이 완료되면 다음을 사용하여 결과를 확인합니다.
+3. Hello MapReduce 작업 완료 되 면 다음 tooview hello 결과 hello를 사용 합니다.
 
     ```bash
     hdfs dfs -text /example/wordcountout/part-00000
     ```
 
-    다음 텍스트는 이 명령에서 반환된 데이터의 예입니다.
+    hello 다음 텍스트는이 명령에서 반환 된 hello 데이터의 예입니다.
 
         you     1128
         young   38
@@ -222,11 +222,11 @@ namespace reducer
 
 ## <a name="run-a-job-using-powershell"></a>작업 실행: PowerShell 사용
 
-다음 PowerShell 스크립트를 사용하여 MapReduce 작업을 실행하고 결과를 다운로드합니다.
+PowerShell 스크립트 toorun MapReduce 작업을 수행 하는 hello를 사용 하 고 hello 결과 다운로드 합니다.
 
-[!code-powershell[기본](../../powershell_scripts/hdinsight/use-csharp-mapreduce/use-csharp-mapreduce.ps1?range=5-87)]
+[!code-powershell[main](../../powershell_scripts/hdinsight/use-csharp-mapreduce/use-csharp-mapreduce.ps1?range=5-87)]
 
-이 스크립트는 클러스터 로그인 계정 이름과 암호와 HDInsight 클러스터 이름을 묻습니다. 작업이 완료되면 출력이 스크립트가 실행된 디렉터리의 `output.txt` 파일로 다운로드됩니다. 다음 텍스트는 `output.txt` 파일의 데이터 예제입니다.
+이 스크립트를 hello 클러스터 로그인 계정 이름 및 hello HDInsight 클러스터 이름 함께 암호를 묻습니다. Hello 출력은 다운로드 한 toohello hello 작업이 완료 되 면 `output.txt` hello 디렉터리 hello 스크립트에는 파일에서 실행 됩니다. hello 다음 텍스트는 hello에 hello 데이터의 예로 `output.txt` 파일:
 
     you     1128
     young   38

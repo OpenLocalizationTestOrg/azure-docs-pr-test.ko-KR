@@ -1,6 +1,6 @@
 ---
-title: "Windows에서 AzCopy 사용하여 Azure Storage로 데이터 복사 또는 이동 | Microsoft Docs"
-description: "Windows에서 AzCopy 유틸리티를 사용하여 Blob, 테이블 및 파일 콘텐츠에서 데이터를 이동하거나 복사합니다. 로컬 파일에서 Azure 저장소로 데이터를 복사하거나, 저장소 계정 내에서 데이터를 복사하거나, 저장소 계정 간에 데이터를 복사합니다. 데이터를 Azure 저장소로 손쉽게 마이그레이션할 수 있습니다."
+title: "aaaCopy 또는 이동 데이터 tooAzure Windows에서 AzCopy 사용 하 여 저장소 | Microsoft Docs"
+description: "blob, 테이블 및 파일 내용에서 Windows 유틸리티 toomove 또는 복사 데이터 tooor hello AzCopy를 사용 합니다. 로컬 파일의 데이터 tooAzure 저장소를 복사 하 하거나 내에서 또는 저장소 계정 간에 데이터를 복사 합니다. 사용자 데이터 tooAzure 저장소를 쉽게 마이그레이션하십시오."
 services: storage
 documentationcenter: 
 author: seguler
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/14/2017
 ms.author: seguler
-ms.openlocfilehash: 045778822022752295bb634bdf734daaf36ab938
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a77db84c3a3e06f0ad4e87d02b14a5c62ed8d9ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transfer-data-with-the-azcopy-on-windows"></a>Windows에서 AzCopy를 사용하여 데이터 전송
-AzCopy는 간단한 명령과 최적의 성능으로 데이터를 Microsoft Azure Blob, File 및 Table Storage에(로부터) 복사하도록 디자인된 명령줄 유틸리티입니다. 저장소 계정 내에서나 저장소 계정 사이에서 개체 간에 데이터 복사할 수 있습니다.
+# <a name="transfer-data-with-hello-azcopy-on-windows"></a>Windows hello AzCopy 사용 하 여 데이터를 전송 합니다.
+AzCopy는 간단한 명령을 사용 하 여 최적의 성능으로 Microsoft Azure Blob, 파일 및 테이블 저장소에서 데이터 tooand 복사 하기 위한 명령줄 유틸리티입니다. 저장소 계정 내에서 또는 저장소 계정 간에 개체 tooanother 하나에서 데이터를 복사할 수 있습니다.
 
 두 가지 버전의 AzCopy를 다운로드할 수 있습니다. Windows에서 AzCopy는 .NET Framework를 기반으로 하며 Windows 스타일 명령줄 옵션을 제공합니다. [Linux에서 AzCopy](storage-use-azcopy-linux.md)는 POSIX 스타일 명령줄 옵션을 제공하는 Linux 플랫폼을 대상으로 하는 .NET Core Framework를 기반으로 합니다. 이 문서에서는 Windows에서 AzCopy를 설명합니다.
 
 ## <a name="download-and-install-azcopy"></a>AzCopy 다운로드 및 설치
 ### <a name="azcopy-on-windows"></a>Windows에서 AzCopy
-[최신 버전의 Windows에서 AzCopy](http://aka.ms/downloadazcopy)를 다운로드합니다.
+Hello 다운로드 [최신 버전의 Windows에서 AzCopy](http://aka.ms/downloadazcopy)합니다.
 
 #### <a name="installation-on-windows"></a>Windows에서 설치
-설치 관리자를 사용하여 Windows에 AzCopy를 설치한 후에는 명령 창을 열고 컴퓨터의 AzCopy 설치 디렉터리로 이동합니다. 이 디렉터리에 `AzCopy.exe` 실행 파일이 있습니다. 원할 경우 시스템 경로에 AzCopy 설치 위치를 추가할 수 있습니다. 기본적으로 AzCopy는 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 또는 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`에 설치됩니다.
+명령 창을 열고 여기서 hello 컴퓨터-에 toohello AzCopy 설치 디렉터리를 이동 hello 설치 관리자를 사용 하 여 Windows에서 AzCopy를 설치한 후 `AzCopy.exe` 실행 있는 합니다. 원하는 경우 hello AzCopy 설치 위치 tooyour 시스템 경로 추가할 수 있습니다. 기본적으로 AzCopy가 설치 되어 너무`%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 또는 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`합니다.
 
 ## <a name="writing-your-first-azcopy-command"></a>첫 번째 AzCopy 명령 작성
-AzCopy 명령의 기본 구문은 다음과 같습니다.
+hello 기본는 AzCopy 명령 구문은 다음과 같습니다.
 
 ```azcopy
 AzCopy /Source:<source> /Dest:<destination> [Options]
 ```
 
-다음 예제는 Microsoft Azure Blob, 파일 및 테이블에(로부터) 데이터를 복사하는 여러 시나리오를 보여줍니다. 각 샘플에 사용된 매개 변수에 대 한 자세한 정보는 [AzCopy 매개 변수](#azcopy-parameters) 섹션을 참고하세요.
+다음 예제는 hello 다양 한 Microsoft Azure Blob, 파일 및 테이블에서 데이터 tooand 복사 하기 위한 시나리오를 보여 줍니다. Toohello 참조 [AzCopy 매개 변수](#azcopy-parameters) 섹션에 대 한 자세한 설명은 각 샘플에 사용 된 hello 매개 변수입니다.
 
 ## <a name="blob-download"></a>Blob: 다운로드
 ### <a name="download-single-blob"></a>단일 blob 다운로드
@@ -48,7 +48,7 @@ AzCopy /Source:<source> /Dest:<destination> [Options]
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:key /Pattern:"abc.txt"
 ```
 
-`C:\myfolder` 폴더가 없으면 AzCopy는 파일 시스템에서 이 폴더를 만든 후 새 폴더에 `abc.txt `를 다운로드합니다.
+되는 경우 hello 폴더 `C:\myfolder` 존재 하지 않는 AzCopy는 만들고 다운로드 `abc.txt ` hello 새 폴더에 있습니다.
 
 ### <a name="download-single-blob-from-secondary-region"></a>보조 지역에서 단일 Blob 다운로드
 
@@ -64,7 +64,7 @@ AzCopy /Source:https://myaccount-secondary.blob.core.windows.net/mynewcontainer 
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:key /S
 ```
 
-다음 Blob이 지정된 컨테이너에 있는 경우를 생각해 보겠습니다.  
+Hello 다음 가정 hello 지정 된 컨테이너에 있는 blob:  
 
     abc.txt
     abc1.txt
@@ -72,7 +72,7 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfo
     vd1\a.txt
     vd1\abcd.txt
 
-다운로드 작업 후에 `C:\myfolder` 디렉터리에는 다음 파일이 포함됩니다.
+Hello 다운로드 작업 후 디렉터리 hello `C:\myfolder` hello 다음 파일이 포함 됩니다.
 
     C:\myfolder\abc.txt
     C:\myfolder\abc1.txt
@@ -88,7 +88,7 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfo
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:key /Pattern:a /S
 ```
 
-다음 Blob이 지정된 컨테이너에 있는 경우를 생각해 보겠습니다. 접두사 `a` 로 시작하는 모든 Blob이 다운로드됩니다.
+Hello 다음 가정 hello 지정 된 컨테이너에 blob이 있어야 합니다. Hello 접두사로 시작 하는 모든 blob `a` 다운로드 됩니다.
 
     abc.txt
     abc1.txt
@@ -97,27 +97,27 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfo
     vd1\a.txt
     vd1\abcd.txt
 
-다운로드 작업 후에 `C:\myfolder` 폴더에는 다음 파일이 포함됩니다.
+Hello 다운로드 작업 후 폴더 hello `C:\myfolder` hello 다음 파일이 포함 됩니다.
 
     C:\myfolder\abc.txt
     C:\myfolder\abc1.txt
     C:\myfolder\abc2.txt
 
-접두사는 Blob 이름의 처음 부분을 구성하는 가상 디렉터리에 적용됩니다. 위에 표시된 예에서는 가상 디렉터리가 지정된 접두사와 일치하지 않으므로 다운로드가 진행되지 않습니다. 또한 옵션 `\S` 이(가) 지정되지 않으면 AzCopy는 어떤 Blob도 다운로드하지 않습니다.
+hello 접두사 toohello 가상 디렉터리를 hello hello blob 이름의 첫 번째 부분을 구성을 적용 합니다. Hello 위 예 hello 가상 디렉터리와 일치 하지 않을 hello 지정 된 접두사 하므로 다운로드 되지 않습니다. 또한 경우 hello 옵션 `\S` 를 지정 하지 않으면 AzCopy는 blob를 다운로드 하지 것입니다.
 
-### <a name="set-the-last-modified-time-of-exported-files-to-be-same-as-the-source-blobs"></a>내보낸 파일의 마지막으로 수정한 시간을 소스 Blob과 동일하게 설정
+### <a name="set-hello-last-modified-time-of-exported-files-toobe-same-as-hello-source-blobs"></a>내보낸된 파일 toobe의 마지막 수정 시간 hello 설정 원본 blob hello와 동일
 
 ```azcopy
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:key /MT
 ```
 
-또한 마지막으로 수정한 시간에 따라 다운로드 작업에서 Blob을 제외할 수도 있습니다. 예를 들어 마지막으로 수정된 시간이 대상 파일과 동일하거나 더 최신인 Blob을 제외하려는 경우 `/XN` 옵션을 추가합니다.
+Blob의 마지막 수정 시간을 기반으로 하는 hello 다운로드 작업에서 제외할 수 있습니다. 예를 들어 tooexclude blob 인 마지막으로 수정한 시간은 hello 같거나 hello 대상 파일 보다 최신 하려는 경우 추가 hello `/XN` 옵션:
 
 ```azcopy
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:key /MT /XN
 ```
 
-또는 마지막으로 수정된 시간이 대상 파일과 동일하거나 더 이전인 Blob을 제외하려는 경우 `/XO` 옵션을 추가합니다.
+또는 tooexclude blob 인 마지막으로 수정한 시간은 동일 하거나 hello 대상 파일 보다 오래 된 hello 하려는 경우 추가 hello `/XO` 옵션:
 
 ```azcopy
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:key /MT /XO
@@ -130,15 +130,15 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfo
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Pattern:"abc.txt"
 ```
 
-지정된 대상 컨테이너가 존재하지 않을 경우 AzCopy는 컨테이너를 만든 후 여기에 파일을 업로드합니다.
+Hello 지정 된 대상 컨테이너가 없는 경우 AzCopy는 만들고 hello 파일을 업로드 합니다.
 
-### <a name="upload-single-file-to-virtual-directory"></a>가상 디렉터리에 단일 파일 업로드
+### <a name="upload-single-file-toovirtual-directory"></a>Toovirtual 디렉터리 단일 파일 업로드
 
 ```azcopy
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer/vd /DestKey:key /Pattern:abc.txt
 ```
 
-지정한 가상 디렉터리가 없으면 AzCopy는 해당 이름에 가상 디렉터리를 포함하여 파일을 업로드합니다(*예*: 위 예의 `vd/abc.txt`).
+AzCopy hello 파일 tooinclude hello 가상 디렉터리 이름에 업로드 합니다 hello 지정 가상 디렉터리가 존재 하지 않습니다 (*예:*, `vd/abc.txt` 위의 hello 예제에서).
 
 ### <a name="upload-all-files"></a>모든 파일 업로드
 
@@ -146,7 +146,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /S
 ```
 
-`/S` 옵션을 지정하면 지정된 디렉터리의 내용이 Blob 저장소에 재귀적으로 업로드됩니다. 즉, 모든 하위 폴더 및 해당 파일도 업로드됩니다. 예를 들어 다음 파일이 `C:\myfolder` 폴더에 있는 경우를 생각해 보겠습니다.
+옵션을 지정 하면 `/S` hello의 업로드 hello 내용이 디렉터리 tooBlob 저장소 재귀적으로는 모든 하위 폴더 및 파일은 업로드도 의미를 지정 합니다. 예를 들어, 다음 hello 가정 파일이 폴더에 있는 `C:\myfolder`:
 
     C:\myfolder\abc.txt
     C:\myfolder\abc1.txt
@@ -154,7 +154,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     C:\myfolder\subfolder\a.txt
     C:\myfolder\subfolder\abcd.txt
 
-업로드 작업 후에 컨테이너에는 다음 파일이 포함됩니다.
+Hello 업로드 작업 후 hello 컨테이너 hello 다음 파일이 포함 됩니다.
 
     abc.txt
     abc1.txt
@@ -162,7 +162,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     subfolder\a.txt
     subfolder\abcd.txt
 
-`/S`옵션을 지정하지 않으면, AzCopy는 재귀적으로 업로드되지 않습니다. 업로드 작업 후에 컨테이너에는 다음 파일이 포함됩니다.
+`/S`옵션을 지정하지 않으면, AzCopy는 재귀적으로 업로드되지 않습니다. Hello 업로드 작업 후 hello 컨테이너 hello 다음 파일이 포함 됩니다.
 
     abc.txt
     abc1.txt
@@ -174,7 +174,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Pattern:a* /S
 ```
 
-다음 파일이 `C:\myfolder`폴더에 있는 경우를 생각해 보겠습니다.
+가정 hello 다음 폴더에 파일이 있는 `C:\myfolder`:
 
     C:\myfolder\abc.txt
     C:\myfolder\abc1.txt
@@ -183,7 +183,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     C:\myfolder\subfolder\a.txt
     C:\myfolder\subfolder\abcd.txt
 
-업로드 작업 후에 컨테이너에는 다음 파일이 포함됩니다.
+Hello 업로드 작업 후 hello 컨테이너 hello 다음 파일이 포함 됩니다.
 
     abc.txt
     abc1.txt
@@ -197,14 +197,14 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     C:\myfolder\abc1.txt
     C:\myfolder\abc2.txt
 
-### <a name="specify-the-mime-content-type-of-a-destination-blob"></a>대상 Blob의 MIME 콘텐츠 형식을 지정합니다.
-기본적으로 AzCopy에서는 대상 Blob의 콘텐츠 형식을 `application/octet-stream`으로 설정합니다. 버전 3.1.0부터는 `/SetContentType:[content-type]`옵션을 통해 콘텐츠 형식을 명시적으로 지정할 수 있습니다. 이 구문은 업로드 작업에서 모든 Blob의 콘텐츠 형식을 설정합니다.
+### <a name="specify-hello-mime-content-type-of-a-destination-blob"></a>대상 blob의 hello MIME 콘텐츠 형식을 지정 합니다.
+기본적으로 AzCopy 설정 하는 대상 blob의 콘텐츠 형식을 hello 너무`application/octet-stream`합니다. 버전 3.1.0 부터는 지정 하면 hello 옵션을 통해 콘텐츠 형식 hello `/SetContentType:[content-type]`합니다. 이 구문은 업로드 작업에서 모든 blob에 대 한 콘텐츠 형식 hello를 설정합니다.
 
 ```azcopy
 AzCopy /Source:C:\myfolder\ /Dest:https://myaccount.blob.core.windows.net/myContainer/ /DestKey:key /Pattern:ab /SetContentType:video/mp4
 ```
 
-값 없이 `/SetContentType` 을 지정하면 AzCopy에서 각 Blob 또는 파일의 콘텐츠 형식을 파일 확장명에 따라 설정합니다.
+지정 하는 경우 `/SetContentType` 값 없이 다음 AzCopy 각 blob 또는 설정 tooits 파일 확장명에 따라 파일의 콘텐츠 형식입니다.
 
 ```azcopy
 AzCopy /Source:C:\myfolder\ /Dest:https://myaccount.blob.core.windows.net/myContainer/ /DestKey:key /Pattern:ab /SetContentType
@@ -227,7 +227,7 @@ AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /Dest:ht
 
 저장소 계정 간 Blob을 복사할 때는 [서버 쪽 복사](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) 작업이 수행됩니다.
 
-### <a name="copy-single-blob-from-secondary-region-to-primary-region"></a>보조 지역에서 주 지역으로 단일 Blob 복사
+### <a name="copy-single-blob-from-secondary-region-tooprimary-region"></a>보조 지역 tooprimary 영역에서 단일 blob을 복사 합니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount1-secondary.blob.core.windows.net/mynewcontainer1 /Dest:https://myaccount2.blob.core.windows.net/mynewcontainer2 /SourceKey:key1 /DestKey:key2 /Pattern:abc.txt
@@ -241,22 +241,22 @@ AzCopy /Source:https://myaccount1-secondary.blob.core.windows.net/mynewcontainer
     AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /Dest:https://destaccount.blob.core.windows.net/mycontainer2 /SourceKey:key1 /DestKey:key2 /Pattern:abc.txt /Snapshot
 ```
 
-복사 작업 후에 대상 컨테이너에는 Blob 및 해당 스냅숏이 포함됩니다. 위 예에서 Blob에 두 개의 스냅숏이 있다면 컨테이너에는 다음 Blob과 스냅숏이 포함될 것입니다.
+Hello 복사 작업 후 hello 대상 컨테이너는 hello blob와 스냅숏이 포함 됩니다. 위의 hello 예에서 hello blob의 스냅숏 두 개를 가정할 때 hello 컨테이너에는 hello 다음 blob 및 스냅숏을:
 
     abc.txt
     abc (2013-02-25 080757).txt
     abc (2014-02-21 150331).txt
 
 ### <a name="synchronously-copy-blobs-across-storage-accounts"></a>저장소 계정 간 Blob 비동기 복사
-기본적으로 AzCopy는 두 저장소 끝점 간에 데이터를 비동기적으로 복사합니다. 따라서 복사 작업은 Blob이 복사되는 속도와 관련하여 SLA가 없는 여분의 대역폭 용량을 사용하여 백그라운드로 실행되며, AzCopy는 복사가 완료되거나 실패할 때까지 복사 상태를 정기적으로 확인합니다.
+기본적으로 AzCopy는 두 저장소 끝점 간에 데이터를 비동기적으로 복사합니다. 따라서 hello 복사 작업에 SLA를 제공 하지 스패어 대역폭 용량을 사용 하는 hello 백그라운드에서 실행 됩니다 속도 기준으로 blob을 복사할 및 AzCopy는 hello 복사 완료 또는 실패 될 때까지 정기적으로 hello 복사 상태를 확인 합니다.
 
-`/SyncCopy` 옵션을 사용하면 복사 작업이 일관된 속도를 유지할 수 있습니다. AzCopy는 지정된 소스에서 로컬 메모리로 복사할 Blob을 다운로드한 후 대상 Blob 저장소에 업로드하여 동기 복사를 수행합니다.
+hello `/SyncCopy` 옵션을 사용 하면 hello 복사 작업이 일관 된 속도 받게 됩니다. Hello blob를 다운로드 하 여 hello 동기 복사를 수행 하는 AzCopy hello에서 toocopy 소스 toolocal 메모리 및 다음 toohello Blob 저장소 대상을 업로드를 지정 합니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount1.blob.core.windows.net/myContainer/ /Dest:https://myaccount2.blob.core.windows.net/myContainer/ /SourceKey:key1 /DestKey:key2 /Pattern:ab /SyncCopy
 ```
 
-`/SyncCopy` 은(는) 비동기 복사와 비교하여 추가적인 송신 비용이 발생할 수 있으므로 송신 비용을 방지하려면 원본 저장소 계정과 동일한 지역에 있는 Azure VM에서 이 옵션을 사용하는 것이 좋습니다.
+`/SyncCopy`권장 접근법 추가 송신 비용 비교 tooasynchronous 복사본 hello를 생성할 수 있습니다 toouse hello에 있는 Azure VM에서이 옵션은 원본 저장소 계정 tooavoid 송신 비용와 동일한 영역입니다.
 
 ## <a name="file-download"></a>파일: 다운로드
 ### <a name="download-single-file"></a>단일 파일 다운로드
@@ -265,7 +265,7 @@ AzCopy /Source:https://myaccount1.blob.core.windows.net/myContainer/ /Dest:https
 AzCopy /Source:https://myaccount.file.core.windows.net/myfileshare/myfolder1/ /Dest:C:\myfolder /SourceKey:key /Pattern:abc.txt
 ```
 
-지정된 소스가 Azure 파일 공유이면 단일 파일을 다운로드할 정확한 파일 이름(*예:* `abc.txt`)을 지정하거나 `/S` 옵션을 지정하여 공유의 모든 파일을 재귀 방식으로 다운로드해야 합니다. 파일 패턴과 `/S` 옵션을 함께 지정하려고 하면 오류가 발생합니다.
+Hello 지정 소스는 Azure 파일 공유는 hello 정확한 파일 이름을 지정 하는 경우 (*예:* `abc.txt`) toodownload 단일 파일 옵션을 지정 하거나 `/S` toodownload 모든 hello 공유의 파일 재귀적으로 합니다. 파일 패턴 및 옵션 toospecify 시도 `/S` 오류가 함께 발생 합니다.
 
 ### <a name="download-all-files"></a>모든 파일 다운로드
 
@@ -304,31 +304,31 @@ AzCopy /Source:https://myaccount1.file.core.windows.net/myfileshare1/ /Dest:http
 ```
 파일 공유에 파일을 복사할 때는 [서버 쪽 복사](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) 작업이 수행됩니다.
 
-### <a name="copy-from-file-share-to-blob"></a>파일 공유에서 Blob으로 복사
+### <a name="copy-from-file-share-tooblob"></a>파일 공유 tooblob에서 복사
 
 ```azcopy
 AzCopy /Source:https://myaccount1.file.core.windows.net/myfileshare/ /Dest:https://myaccount2.blob.core.windows.net/mycontainer/ /SourceKey:key1 /DestKey:key2 /S
 ```
-파일 공유에서 Blob으로 파일을 복사할 때는 [서버 쪽 복사](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) 작업이 수행됩니다.
+파일 공유 tooblob에서 파일을 복사 하는 경우는 [서버 쪽 복사](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) 작업이 수행 됩니다.
 
 
-### <a name="copy-from-blob-to-file-share"></a>Blob에서 파일 공유로 복사
+### <a name="copy-from-blob-toofile-share"></a>Blob toofile 공유에서 복사
 
 ```azcopy
 AzCopy /Source:https://myaccount1.blob.core.windows.net/mycontainer/ /Dest:https://myaccount2.file.core.windows.net/myfileshare/ /SourceKey:key1 /DestKey:key2 /S
 ```
-Blob에서 파일 공유로 파일을 복사할 때는 [서버 쪽 복사](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) 작업이 수행됩니다.
+Blob toofile 공유에서 파일을 복사는 [서버 쪽 복사](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) 작업이 수행 됩니다.
 
 ### <a name="synchronously-copy-files"></a>동기적으로 파일 복사
-`/SyncCopy` 옵션을 지정하여 파일 저장소 간에, 파일 저장소에서 Blob 저장소로, Blob 저장소에서 파일 저장소로 동기적으로 데이터를 복사할 수 있습니다. AzCopy는 로컬 메모리에 원본 데이터를 다운로드한 후 대상에 다시 업로드하여 이 작업을 수행합니다. 표준 송신 비용이 적용됩니다.
+Hello를 지정할 수 있습니다 `/SyncCopy` 옵션 파일 저장소 tooBlob 저장소에서에서 파일 저장소 tooFile 저장소에서에서 데이터를 toocopy 및 Blob 저장소 tooFile 저장소에서에서 동기적으로 AzCopy hello 원본 toolocal 메모리 데이터를 다운로드 하 여이 작업을 수행 하는 업로드 다시 toodestination 합니다. 표준 송신 비용이 적용됩니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount1.file.core.windows.net/myfileshare1/ /Dest:https://myaccount2.file.core.windows.net/myfileshare2/ /SourceKey:key1 /DestKey:key2 /S /SyncCopy
 ```
 
-파일 저장소에서 Blob 저장소로 복사할 경우 기본 Blob 형식은 블록 Blob입니다. `/BlobType:page` 옵션을 지정하면 사용자가 대상 Blob 유형을 변경할 수 있습니다.
+파일 저장소 tooBlob 저장소에 복사할 경우 hello 기본 blob 종류는 블록 blob, 사용자 옵션을 지정할 수 `/BlobType:page` toochange hello 대상 blob 유형입니다.
 
-`/SyncCopy`는 비동기 복사와 비교하여 추가적인 송신 비용이 발생할 수 있으므로 송신 비용을 방지하려면 원본 저장소 계정과 동일한 지역에 있는 Azure VM에서 이 옵션을 사용하는 것이 좋습니다.
+`/SyncCopy` 추가 송신 비용 비교 tooasynchronous 복사본을 생성할 수 있습니다, hello 권장 되는 방법은이 옵션의 hello hello에 있는 Azure VM toouse 원본 저장소 계정 tooavoid 송신 비용와 동일한 영역입니다.
 
 ## <a name="table-export"></a>테이블: 내보내기
 ### <a name="export-table"></a>테이블 내보내기
@@ -337,11 +337,11 @@ AzCopy /Source:https://myaccount1.file.core.windows.net/myfileshare1/ /Dest:http
 AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:C:\myfolder\ /SourceKey:key
 ```
 
-AzCopy는 지정된 대상 폴더에 매니페스트 파일을 씁니다. 매니페스트 파일은 필요한 데이터 파일을 찾고 데이터 유효성 검사를 수행하는 가져오기 프로세스에서 사용됩니다. 매니페스트 파일에는 기본적으로 다음의 명명 규칙이 사용됩니다.
+AzCopy는 매니페스트 파일 toohello 지정 된 대상 폴더를 씁니다. hello 매니페스트 파일 hello 가져오기 프로세스 toolocate hello 필요한 데이터 파일에 사용 되 고 데이터 유효성 검사를 수행 합니다. 기본적으로 명명 규칙을 따르는 hello hello 매니페스트 파일을 사용 합니다.
 
     <account name>_<table name>_<timestamp>.manifest
 
-매니페스트 파일 이름을 설정하는 `/Manifest:<manifest file name>` 옵션을 지정할 수도 있습니다.
+사용자 hello 옵션을 지정할 수도 `/Manifest:<manifest file name>` tooset hello 매니페스트 파일 이름입니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:C:\myfolder\ /SourceKey:key /Manifest:abc.manifest
@@ -353,25 +353,25 @@ AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:C:\myfold
 AzCopy /Source:https://myaccount.table.core.windows.net/mytable/ /Dest:C:\myfolder /SourceKey:key /S /SplitSize:100
 ```
 
-AzCopy는 분할 데이터 파일 이름에서 *볼륨 인덱스* 를 사용해 여러 파일을 구분합니다. 볼륨 인덱스는 *파티션 키 범위 인덱스*와 *분할 파일 인덱스*의 두 부분으로 구성됩니다. 두 인덱스는 모두 0부터 시작됩니다.
+AzCopy를 사용 하 여는 *거래량* hello 데이터 분할에 파일 toodistinguish 여러 파일에 이름을 지정 합니다. hello 볼륨 인덱스는 두 부분으로 구성 됩니다. 한 *파티션 키 범위 인덱스* 및 *분할 파일 인덱스*합니다. 두 인덱스는 모두 0부터 시작됩니다.
 
-사용자가 `/PKRS`옵션을 지정하지 않으면 파티션 키 범위 인덱스는 0이 됩니다.
+사용자 옵션을 지정 하지 않는 경우 hello 파티션 키 범위 인덱스 0이 됩니다 `/PKRS`합니다.
 
-예를 들어 사용자가 `/SplitSize`옵션을 지정한 후 AzCopy에서 데이터 파일 두 개를 생성한다고 가정해 보겠습니다. 이 경우 결과 데이터 파일 이름은 다음과 같습니다.
+예를 들어, AzCopy hello 사용자 옵션을 지정 합니다. 두 개의 데이터 파일을 생성 `/SplitSize`합니다. 데이터 파일 이름으로 인해 발생 하는 hello 수 있습니다.
 
     myaccount_mytable_20140903T051850.8128447Z_0_0_C3040FE8.json
     myaccount_mytable_20140903T051850.8128447Z_0_1_0AB9AC20.json
 
-`/SplitSize` 옵션에 사용할 수 있는 최소값은 32MB입니다. 지정된 대상이 Blob 저장소인 경우 AzCopy는 데이터 파일이 Blob 크기 제한(200GB)에 도달하면 사용자가 `/SplitSize` 옵션을 지정했는지 여부에 관계없이 데이터 파일을 분할합니다.
+해당 hello 가능한 최소값 옵션에 대 한 참고 `/SplitSize` 은 32MB입니다. AzCopy hello 데이터 파일의 크기에 도달 hello blob의 크기 제한 (200GB) 한 번 분할 되 면 여부 옵션에 관계 없이 hello 대상 Blob 저장소가 지정 `/SplitSize` hello 사용자가 지정 되었습니다.
 
-### <a name="export-table-to-json-or-csv-data-file-format"></a>JSON 또는 CSV 데이터 파일 형식으로 테이블 내보내기
-기본적으로 AzCopy는 JSON 데이터 파일로 테이블을 내보냅니다. `/PayloadFormat:JSON|CSV` 옵션을 지정하여 JSON 또는 CSV 형태로 테이블을 내보낼 수 있습니다.
+### <a name="export-table-toojson-or-csv-data-file-format"></a>테이블 tooJSON 또는 CSV 데이터 파일 형식으로 내보내기
+기본적으로 AzCopy 테이블 tooJSON 데이터 파일을 내보냅니다. Hello 옵션을 지정할 수 `/PayloadFormat:JSON|CSV` tooexport hello 테이블 JSON 또는 CSV입니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:C:\myfolder\ /SourceKey:key /PayloadFormat:CSV
 ```
 
-CSV 페이로드 형식을 지정하는 경우 AzCopy는 각 데이터 파일에 대해 파일 확장명 `.schema.csv` 을(를) 가진 스키마 파일도 생성합니다.
+AzCopy는 파일 확장명을 가진 스키마 파일을 생성도 hello CSV 페이로드 형식을 지정할 때는 `.schema.csv` 각 데이터 파일에 대 한 합니다.
 
 ### <a name="export-table-entities-concurrently"></a>동시에 테이블 엔터티 내보내기
 
@@ -379,23 +379,23 @@ CSV 페이로드 형식을 지정하는 경우 AzCopy는 각 데이터 파일에
 AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:C:\myfolder\ /SourceKey:key /PKRS:"aa#bb"
 ```
 
-사용자가 `/PKRS`옵션을 지정하면 AzCopy는 엔터티를 내보내는 동시 작업을 시작합니다. 각 작업에서는 파티션 키 범위 하나를 내보냅니다.
+Hello 사용자 옵션을 지정 하는 경우 AzCopy는 동시 작업 tooexport 엔터티를 시작 `/PKRS`합니다. 각 작업에서는 파티션 키 범위 하나를 내보냅니다.
 
-`/NC`옵션도 동시 작업 수를 제어합니다. AzCopy는 `/NC`가 지정되지 않은 경우에도 테이블 엔터티를 복사할 때 `/NC`의 기본값으로 코어 프로세서의 수를 사용합니다. 사용자가 `/PKRS`옵션을 지정하는 경우 AzCopy는 두 값, 즉 파티션 키 범위와 암시적 또는 명시적으로 지정된 동시 작업의 수 중 더 작은 쪽을 사용하여 시작할 동시 작업의 수를 결정합니다. 자세한 내용을 확인하려면 명령줄에 `AzCopy /?:NC` 를 입력하세요.
+동시 작업 수 hello 옵션으로 제어도 됩니다 `/NC`합니다. AzCopy hello 코어 프로세서 수를 사용 하 여 hello 기본값인으로 `/NC` 테이블 엔터티를 복사할 때 경우에 `/NC` 지정 되지 않았습니다. Hello 사용자 옵션을 지정 하는 경우 `/PKRS`, AzCopy hello 동시 작업 toostart hello 두 값-대 동시 작업을 암시적 또는 명시적으로 지정 된 키 범위 파티션-toodetermine hello 수 중 더 작은 숫자를 사용 합니다. 자세한 내용은 입력 `AzCopy /?:NC` hello 명령줄에서.
 
-### <a name="export-table-to-blob"></a>Blob에 테이블 내보내기
+### <a name="export-table-tooblob"></a>테이블 tooblob 내보내기
 
 ```azcopy
 AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:https://myaccount.blob.core.windows.net/mycontainer/ /SourceKey:key1 /Destkey:key2
 ```
 
-AzCopy는 다음 명명 규칙을 사용하여 Blob 컨테이너에 JSON 데이터 파일을 생성합니다.
+AzCopy는 명명 규칙 인 hello blob 컨테이너에 JSON 데이터 파일을 생성 합니다.
 
     <account name>_<table name>_<timestamp>_<volume index>_<CRC>.json
 
-생성된 JSON 데이터 파일은 최소 메타데이터의 페이로드 형식을 따릅니다. 이 페이로드 형식에 대한 자세한 내용은 [테이블 서비스 작업을 위한 페이로드 형식](http://msdn.microsoft.com/library/azure/dn535600.aspx)을 참조하세요.
+생성 된 hello JSON 데이터 파일에는 최소 메타 데이터에 대 한 hello 페이로드 형식을 따릅니다. 이 페이로드 형식에 대한 자세한 내용은 [테이블 서비스 작업을 위한 페이로드 형식](http://msdn.microsoft.com/library/azure/dn535600.aspx)을 참조하세요.
 
-테이블을 Blob로 내보낼 때 AzCopy는 테이블 엔터티를 로컬 임시 데이터 파일로 먼저 다운로드한 다음 Blob에 업로드합니다. 이러한 임시 데이터 파일은 기본 경로인 “<code>%LocalAppData%\Microsoft\Azure\AzCopy</code>”로 저널 파일 폴더에 저장됩니다. 또한 /Z:[journal-file-folder] 옵션을 지정하여 저널 파일 폴더 위치와 임시 데이터 파일 위치를 변경할 수 있습니다. 임시 데이터 파일의 크기는 테이블 엔터티의 크기와 /SplitSize 옵션으로 지정한 크기에 의해 결정되며, 로컬 디스크의 임시 데이터 파일은 Blob에 업로드된 후 즉시 삭제됩니다. 임시 데이터 파일이 삭제되기 전에 저장하려면 로컬 디스크 공간이 충분한지 확인하세요.
+에 불과하며 테이블 tooblobs을 내보낼 때 AzCopy는 hello 테이블 엔터티 toolocal 임시 데이터 파일을 다운로드 한 다음 해당 엔터티 toohello blob을 업로드 합니다. 이러한 임시 데이터 파일 hello 기본 경로와 hello 저널 파일 폴더에 저장 됩니다 "<code>%LocalAppData%\Microsoft\Azure\AzCopy</code>", 옵션을 지정할 수/z: [저널 파일 폴더] toochange 저널 파일 폴더 위치를 hello 따라서 hello 임시 데이터 파일 위치를 변경 합니다. hello 임시 데이터 파일의 크기 hello 임시 데이터 파일을 로컬 디스크에 삭제 됩니다 즉시 경과 했는데도 문제가 있다면 있지만 테이블 항목의 크기 및 hello 옵션 /SplitSize를 사용 하 여 지정한 hello 크기에 따라 결정 됩니다 toohello blob을 업로드 하세요 확인 충분 한 로컬 디스크 공간 toostore 이러한 임시 데이터 파일 삭제 됩니다.
 
 ## <a name="table-import"></a>테이블: 가져오기
 ### <a name="import-table"></a>테이블 가져오기
@@ -404,31 +404,31 @@ AzCopy는 다음 명명 규칙을 사용하여 Blob 컨테이너에 JSON 데이�
 AzCopy /Source:C:\myfolder\ /Dest:https://myaccount.table.core.windows.net/mytable1/ /DestKey:key /Manifest:"myaccount_mytable_20140103T112020.manifest" /EntityOperation:InsertOrReplace
 ```
 
-`/EntityOperation` 옵션은 테이블에 엔터티를 삽입하는 방법을 나타냅니다. 가능한 값은 다음과 같습니다.
+옵션 hello `/EntityOperation` 에 tooinsert 엔터티 테이블 hello 하는 방법을 나타냅니다. 가능한 값은 다음과 같습니다.
 
-* `InsertOrSkip`: 기존 엔터티를 건너뛰거나 테이블에 엔터티가 없으면 새 엔터티를 삽입합니다.
-* `InsertOrMerge`: 기존 엔터티를 병합하거나 테이블에 엔터티가 없으면 새 엔터티를 삽입합니다.
-* `InsertOrReplace`: 기존 엔터티를 바꾸거나 테이블에 엔터티가 없으면 새 엔터티를 삽입합니다.
+* `InsertOrSkip`: 기존 엔터티를 생략 하거나 hello 테이블에 존재 하지 않는 경우 새 엔터티를 삽입 합니다.
+* `InsertOrMerge`: 기존 엔터티를 병합 하거나 hello 테이블에 존재 하지 않는 경우 새 엔터티를 삽입 합니다.
+* `InsertOrReplace`: 기존 엔터티를 바꾸거나 hello 테이블에 존재 하지 않는 경우 새 엔터티를 삽입 합니다.
 
-가져오기 시나리오에서는 `/PKRS` 옵션을 지정할 수 없습니다. 동시 작업을 시작하려면 `/PKRS` 옵션을 지정해야 하는 내보내기 시나리오와는 달리 테이블을 가져올 때는 AzCopy가 기본적으로 동시 작업을 시작합니다. 시작되는 동시 작업의 기본 수는 코어 프로세서의 수와 같습니다. 그러나 `/NC` 옵션을 사용하여 다른 동시 작업 수를 지정할 수 있습니다. 자세한 내용을 확인하려면 명령줄에 `AzCopy /?:NC` 를 입력하세요.
+옵션을 지정할 수 없습니다 `/PKRS` hello 가져오기 시나리오에서입니다. 옵션을 지정 해야 hello 내보내기 시나리오와 달리 `/PKRS` toostart 동시 작업 AzCopy은 기본적으로 시작 동시 작업 테이블을 가져오면 됩니다. 시작 하는 동시 작업 hello 기본 수는 코어 프로세서; 같은 toohello 수 그러나 다른 수의 동시 옵션과 함께 지정할 수 있습니다 `/NC`합니다. 자세한 내용은 입력 `AzCopy /?:NC` hello 명령줄에서.
 
-AzCopy는 CSV가 아닌 JSON 가져오기만 지원합니다. AzCopy는 사용자가 만든 JSON 및 매니페스트 파일에서 테이블 가져오기를 지원하지 않습니다. 이러한 파일 모두는 AzCopy 테이블 내보내기에서 가져와야 합니다. 오류를 방지하려면 내보낸 JSON 또는 매니페스트 파일을 수정하지 마십시오.
+AzCopy는 CSV가 아닌 JSON 가져오기만 지원합니다. AzCopy는 사용자가 만든 JSON 및 매니페스트 파일에서 테이블 가져오기를 지원하지 않습니다. 이러한 파일 모두는 AzCopy 테이블 내보내기에서 가져와야 합니다. tooavoid 오류를 수정 하지 마십시오 hello JSON 또는 매니페스트 파일을 내보냅니다.
 
-### <a name="import-entities-to-table-using-blobs"></a>Blob을 사용하여 테이블에 엔터티 가져오기
-Blob 컨테이너에는 Azure 테이블과 해당 매니페스트 파일을 나타내는 JSON 파일을 포함하는 것으로 가정합니다.
+### <a name="import-entities-tootable-using-blobs"></a>Blob을 사용 하 여 tootable 가져오기 엔터티
+Blob 컨테이너 hello 다음 포함 되어 있다고 가정: Azure 테이블 및 해당 하는 매니페스트 파일을 나타내는 JSON 파일입니다.
 
     myaccount_mytable_20140103T112020.manifest
     myaccount_mytable_20140103T112020_0_0_0AF395F1DC42E952.json
 
-해당 Blob 컨테이너에 매니페스트 파일을 사용하여 엔터티를 테이블로 가져오려면 다음 명령을 실행할 수 있습니다.
+Hello 명령 tooimport 엔터티를 해당 blob 컨테이너에서 hello 매니페스트 파일을 사용 하 여 테이블에 다음을 실행할 수 있습니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:https://myaccount.table.core.windows.net/mytable /SourceKey:key1 /DestKey:key2 /Manifest:"myaccount_mytable_20140103T112020.manifest" /EntityOperation:"InsertOrReplace"
 ```
 
 ## <a name="other-azcopy-features"></a>기타 AzCopy 기능
-### <a name="only-copy-data-that-doesnt-exist-in-the-destination"></a>대상에 없는 데이터만 복사
-`/XO` 및 `/XN` 매개 변수를 통해 이전 또는 최신 소스 리소스를 각각 복사 작업에서 제외할 수 있습니다. 대상에 없는 소스 리소스만 복사하려는 경우 AzCopy 명령에 두 매개 변수를 지정할 수 있습니다.
+### <a name="only-copy-data-that-doesnt-exist-in-hello-destination"></a>Hello 대상에 존재 하지 않는 데이터를 복사만
+hello `/XO` 및 `/XN` 매개 변수를 각각 복사 되 고 tooexclude 이전 또는 최신 소스 리소스를 사용 합니다. Hello 대상에 존재 하지 않는 toocopy 소스 리소스만 하려는 경우에 hello AzCopy 명령에에서 매개 변수가 모두를 지정할 수 있습니다.
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /XO /XN
 
@@ -436,17 +436,17 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:https:/
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:http://myaccount.blob.core.windows.net/mycontainer1 /SourceKey:<sourcekey> /DestKey:<destkey> /S /XO /XN
 
-원본 또는 대상이 테이블인 경우에는 지원되지 않습니다.
+이 기능이 지원 되지 hello 원본 또는 대상 테이블인 경우 note 합니다.
 
-### <a name="use-a-response-file-to-specify-command-line-parameters"></a>지시 파일을 사용하여 명령줄 매개 변수 지정
+### <a name="use-a-response-file-toospecify-command-line-parameters"></a>지시 파일 toospecify 명령줄 매개 변수를 사용 하 여
 
 ```azcopy
 AzCopy /@:"C:\responsefiles\copyoperation.txt"
 ```
 
-지시 파일에 AzCopy 명령줄 매개 변수를 포함할 수 있습니다. AzCopy는 파일의 매개 변수가 마치 명령줄에 지정된 것처럼 처리하고 파일 내용을 직접적으로 대체합니다.
+지시 파일에 AzCopy 명령줄 매개 변수를 포함할 수 있습니다. AzCopy 프로세스 hello 명령줄에서 hello 파일의 hello 콘텐츠로 직접 대체를 수행 합니다. 지정 된 것 처럼 경우 hello 파일의 매개 변수를 hello 합니다.
 
-다음 줄을 포함하는 `copyoperation.txt`라는 지시 파일이 있고 한 줄 또는 여러 줄에 각 AzCopy 매개 변수를
+라는 지시 파일을 가정 `copyoperation.txt`, hello 다음 줄을 포함 하 합니다. 한 줄 또는 여러 줄에 각 AzCopy 매개 변수를
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /Y
 
@@ -458,7 +458,7 @@ AzCopy /@:"C:\responsefiles\copyoperation.txt"
     /S
     /Y
 
-`/sourcekey` 매개 변수에 대해 여기에 표시된 것처럼 매개 변수를 두 줄로 분할하면 AzCopy는 실패합니다.
+AzCopy 못합니다 두 줄에서 hello 매개 변수를 분할 하면 다음과 같이 hello에 대 한 `/sourcekey` 매개 변수:
 
     http://myaccount.blob.core.windows.net/mycontainer
      C:\myfolder
@@ -467,12 +467,12 @@ AzCopy /@:"C:\responsefiles\copyoperation.txt"
     /S
     /Y
 
-### <a name="use-multiple-response-files-to-specify-command-line-parameters"></a>여러 지시 파일을 사용하여 명령줄 매개 변수 지정
+### <a name="use-multiple-response-files-toospecify-command-line-parameters"></a>여러 개의 응답 파일 toospecify 명령줄 매개 변수를 사용 하 여
 소스 컨테이너를 지정하는 `source.txt` 라는 지시 파일이 있고,
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer
 
-파일 시스템의 대상 폴더를 지정하는 `dest.txt` 라는 지시 파일이 있고,
+및 명명 된 지시 파일 `dest.txt` hello 파일 시스템의 대상 폴더를 지정 하는:
 
     /Dest:C:\myfolder
 
@@ -480,13 +480,13 @@ AzCopy에 대한 옵션을 지정하는 `options.txt` 라는 지시 파일이 �
 
     /S /Y
 
-모두 `C:\responsefiles`디렉터리에 있는 이러한 지시 파일을 사용하여 AzCopy를 호출하려면 다음 명령을 사용합니다.
+디렉터리에 있는 중 일부는 이러한 응답 파일에 AzCopy를 toocall, `C:\responsefiles`,이 명령을 사용 합니다.
 
 ```azcopy
 AzCopy /@:"C:\responsefiles\source.txt" /@:"C:\responsefiles\dest.txt" /SourceKey:<sourcekey> /@:"C:\responsefiles\options.txt"   
 ```
 
-AzCopy는 명령줄에 개별 매개 변수를 모두 포함할 때처럼 이 명령을 처리합니다.
+AzCopy는 hello 명령줄에 hello 개별 매개 변수를 포함 하는 경우와 마찬가지로이 명령은 처리 합니다.
 
 ```azcopy
 AzCopy /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /Y
@@ -498,40 +498,40 @@ AzCopy /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfol
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer1 /Dest:https://myaccount.blob.core.windows.net/mycontainer2 /SourceSAS:SAS1 /DestSAS:SAS2 /Pattern:abc.txt
 ```
 
-또한 컨테이너 URI에서 SAS를 지정할 수도 있습니다.
+또한 hello 컨테이너 URI에는 SAS를 지정할 수 있습니다.
 
 ```azcopy
 AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer1/?SourceSASToken /Dest:C:\myfolder /S
 ```
 
 ### <a name="journal-file-folder"></a>저널 파일 폴더
-AzCopy로 명령을 실행할 때마다 AzCopy는 기본 폴더에 저널 파일이 있는지 또는 이 옵션을 통해 지정한 폴더에 있는지 확인합니다. 저널 파일이 이 두 위치에 없으면 AzCopy는 이 작업을 새 작업으로 취급하고 새 저널 파일을 생성합니다.
+저널 파일 hello 기본 폴더에 있는지 여부 또는이 옵션을 통해 지정 하는 폴더에 존재 하는지 여부 명령 tooAzCopy 실행 될 때마다 확인 합니다. Hello 저널 파일이 어느 위치에 없는 경우 AzCopy 새으로 hello 작업을 처리 하 고 새 저널 파일을 생성 합니다.
 
-저널 파일이 존재하면 AzCopy는 입력한 명령줄이 저널 파일의 명령줄과 일치하는지 확인합니다. 두 명령줄이 일치하면 AzCopy는 불완전한 작업을 다시 시작합니다. 일치하지 않으면 저런 파일을 덮어써서 새 작업을 시작할지 또는 현재 작업을 취소할지 묻는 메시지가 표시됩니다.
+Hello 저널 파일이 AzCopy는 hello 명령줄 입력을 hello 명령줄 hello 저널 파일에서 일치 하는지 여부를 확인 합니다. Hello 두 명령줄 일치 AzCopy hello 불완전 한 작업을 다시 시작 합니다. 일치 하지 않으면 증명된 tooeither 덮어쓰기 hello 저널 파일 toostart 새 작업 또는 toocancel hello 현재 작업이 됩니다.
 
-저널 파일에 대해 기본 위치를 사용하는 경우
+하려는 경우 hello 저널 파일에 대 한 toouse hello 기본 위치:
 
 ```azcopy
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Z
 ```
 
-`/Z` 옵션을 생략하거나 위에 표시된 것처럼 폴더 경로 없이 `/Z`를 지정하면 AzCopy는 기본 위치인 `%SystemDrive%\Users\%username%\AppData\Local\Microsoft\Azure\AzCopy`에 저널 파일을 만듭니다. 저널 파일이 이미 있으면 AzCopy는 저널 파일을 기반으로 작업을 다시 시작합니다.
+옵션을 생략 하면 `/Z`, 옵션을 지정 하거나 `/Z` hello 폴더 경로 하지 않고 위에 표시 된 대로 AzCopy hello 저널 파일을에서 만듭니다 hello 기본 위치, 즉 `%SystemDrive%\Users\%username%\AppData\Local\Microsoft\Azure\AzCopy`합니다. Hello 저널 파일이 이미 있으면, AzCopy 다시 hello 저널 파일을 기반으로 하는 hello 작업을 시작 합니다.
 
-저널 파일의 사용자 지정 위치를 지정하려는 경우
+하려는 경우 toospecify hello 저널 파일에 대 한 사용자 지정 위치:
 
 ```azcopy
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Z:C:\journalfolder\
 ```
 
-이 예에서는 저널 파일이 없는 경우 파일을 만듭니다. 저널 파일이 있으면 AzCopy는 저널 파일을 기반으로 작업을 다시 시작합니다.
+이 예제에서는 아직 없는 경우 hello 저널 파일을 만듭니다. 파일이 AzCopy 다시 hello 작업 hello 저널 파일에 따라 시작 됩니다.
 
-AzCopy 작업을 다시 시작하려는 경우
+Tooresume AzCopy 작업 하려면:
 
 ```azcopy
 AzCopy /Z:C:\journalfolder\
 ```
 
-이 예에서는 완료하지 못했을 수 있는 마지막 작업을 다시 시작합니다.
+이 예제에서는 toocomplete 못했을 수 있습니다는 hello 마지막 작업을 다시 시작 합니다.
 
 ### <a name="generate-a-log-file"></a>로그 파일 생성
 
@@ -539,7 +539,7 @@ AzCopy /Z:C:\journalfolder\
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /V
 ```
 
-세부 정보 표시 로그에 대한 파일 경로를 제공하지 않고 `/V` 옵션을 지정하면 AzCopy는 기본 위치인 `%SystemDrive%\Users\%username%\AppData\Local\Microsoft\Azure\AzCopy`에 로그 파일을 만듭니다.
+옵션을 지정 하는 경우 `/V` 파일 경로 toohello 자세한 로그를 제공 하지 않고 다음 AzCopy hello 로그 파일을에서 만듭니다 hello 기본 위치, 즉 `%SystemDrive%\Users\%username%\AppData\Local\Microsoft\Azure\AzCopy`합니다.
 
 그렇지 않으면 사용자 지정 위치에 로그 파일을 만들 수 있습니다.
 
@@ -547,13 +547,13 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /V:C:\myfolder\azcopy1.log
 ```
 
-`/V:test/azcopy1.log`와 같이 `/V` 옵션 다음에 상대 경로를 지정하면 하위 폴더 `test` 내의 현재 작업 디렉터리에 세부 정보 표시 로그가 만들어집니다.
+옵션 다음 상대 경로 지정 하는 경우 `/V`와 같은 `/V:test/azcopy1.log`, hello 자세한 로그 hello 라는 하위 폴더 내에서 현재 작업 디렉터리에 만들어집니다. `test`합니다.
 
-### <a name="specify-the-number-of-concurrent-operations-to-start"></a>시작할 동시 작업 수 지정
-`/NC` 옵션은 동시 복사 작업의 수를 지정합니다. AzCopy는 데이터 전송 처리량을 높이기 위해 기본적으로 특정 수의 동시 작업을 시작합니다. 테이블 작업의 경우 동시 작업 수는 가지고 있는 프로세서의 수와 같습니다. Blob 및 파일 작업의 경우 동시 작업 수는 가지고 있는 프로세서 수의 8배입니다. 저대역폭 네트워크에서 AzCopy를 실행하는 경우에는 리소스 경쟁으로 인한 실패를 방지하기 위해 /NC를 더 낮게 지정할 수 있습니다.
+### <a name="specify-hello-number-of-concurrent-operations-toostart"></a>Hello toostart 동시 작업 수를 지정 합니다.
+옵션 `/NC` hello 동시 복사 작업 수를 지정 합니다. 기본적으로 AzCopy 특정 수의 동시 작업 tooincrease hello 데이터 전송 처리량을 시작 합니다. 테이블 작업 hello 동시 작업 수 있는 프로세서의 같은 toohello 수가입니다. Blob 및 파일 작업, hello 동시 작업 수는 8 번 hello 수가 있는 프로세서의과 같습니다. 낮은 대역폭 네트워크를 통해 AzCopy를 실행 하는 경우 더 낮은 /NC tooavoid 실패 했습니다. 리소스 경쟁 숫자를 지정할 수 있습니다.
 
 ### <a name="run-azcopy-against-azure-storage-emulator"></a>Azure 저장소 에뮬레이터에 대해 AzCopy 실행
-Blob 및 테이블용 [Azure 저장소 에뮬레이터](storage-use-emulator.md) 에 대해 AzCopy를 실행할 수
+Hello에 대 한 AzCopy를 실행할 수 있습니다 [Azure 저장소 에뮬레이터](storage-use-emulator.md) Blob에 대 한:
 
 ```azcopy
 AzCopy /Source:https://127.0.0.1:10000/myaccount/mycontainer/ /Dest:C:\myfolder /SourceKey:key /SourceType:Blob /S
@@ -566,88 +566,88 @@ AzCopy /Source:https://127.0.0.1:10002/myaccount/mytable/ /Dest:C:\myfolder /Sou
 ```
 
 ## <a name="azcopy-parameters"></a>AzCopy 매개 변수
-AzCopy의 매개 변수는 아래에 설명되어 있습니다. 명령줄에서 다음 명령 중 하나를 입력하여 AzCopy 사용을 위한 도움말을 확인할 수도 있습니다.
+AzCopy의 매개 변수는 아래에 설명되어 있습니다. 또한 hello 명령에 대 한 도움말 AzCopy를 사용 하 여 hello 명령줄에서 다음 중 하나를 입력할 수 있습니다.
 
 * AzCopy에 대한 자세한 명령줄 도움말: `AzCopy /?`
 * AzCopy 매개 변수와 관련된 자세한 도움말: `AzCopy /?:SourceKey`
 * 명령줄 예제: `AzCopy /?:Samples`
 
 ### <a name="sourcesource"></a>/Source:"source"
-복사할 소스 데이터를 지정합니다. 소스는 파일 시스템 디렉터리, Blob 컨테이너, Blob 가상 디렉터리, 저장소 파일 공유, 저장소 파일 디렉터리 또는 Azure 테이블일 수 있습니다.
+어떤 toocopy의 hello 원본 데이터를 지정합니다. 파일 시스템 디렉터리, blob 컨테이너, blob의 가상 디렉터리, 저장소 파일 공유, 저장소 파일 디렉터리 또는 Azure 테이블 hello 원본은 수 있습니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="destdestination"></a>/Dest:"destination"
-복사할 대상을 지정합니다. 대상은 파일 시스템 디렉터리, Blob 컨테이너, Blob 가상 디렉터리, 저장소 파일 공유, 저장소 파일 디렉터리 또는 Azure 테이블일 수 있습니다.
+Hello 대상 toocopy를 지정합니다. hello 대상은 파일 시스템 디렉터리, blob 컨테이너, blob의 가상 디렉터리, 저장소 파일 공유, 저장소 파일 디렉터리 또는 Azure 테이블 일 수 있습니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="patternfile-pattern"></a>/Pattern:"file-pattern"
-복사할 파일을 나타내는 파일 패턴을 지정합니다. 선택적 /Pattern 매개 변수의 동작은 소스 데이터의 위치 및 재귀 모드 옵션 유무에 따라 결정됩니다. 재귀 모드는 /S 옵션을 통해 지정됩니다.
+어떤 파일 toocopy 나타내는 파일 패턴을 지정 합니다. hello 동작 hello /Pattern 매개 변수는 hello 원본 데이터의 hello 위치 및 hello 재귀 모드 옵션의 hello 존재에 의해 결정 됩니다. 재귀 모드는 /S 옵션을 통해 지정됩니다.
 
-지정된 소스가 파일 시스템의 디렉터리이면 표준 와일드카드를 사용할 수 있으며 제공되는 파일 패턴과 일치하는 파일을 디렉터리 내에서 검색합니다. /S 옵션을 지정하면 AzCopy는 디렉터리 아래의 모든 하위 폴더에서 지정된 패턴과 일치하는 모든 파일을 찾습니다.
+Hello 지정 된 소스 디렉터리 이면 hello 파일 시스템에 표준 와일드 카드는 실제로 고 hello 파일 패턴 일치 hello 디렉터리 내의 파일을 제공 합니다. 다음 AzCopy /S를 지정 된 옵션에는 hello 디렉터리 아래의 하위 폴더에 있는 모든 파일에 대해 지정 된 패턴 hello와 일치 합니다.
 
-지정된 소스가 Blob 컨테이너 또는 가상 디렉터리인 경우 와일드카드가 지정되지 않습니다. /S 옵션을 지정하면 AzCopy는 지정된 파일 패턴을 Blob 접두사로 해석합니다. /S 옵션을 지정하지 않으면 AzCopy는 파일 패턴과 정확히 일치하는 Blob 이름을 찾습니다.
+Hello 지정한 소스는 blob 컨테이너 또는 가상 디렉터리 이면 와일드 카드 적용 되지 않습니다. 경우 옵션 /S가 지정 된 다음 AzCopy blob 접두사도 hello 지정 된 파일 패턴을 해석 합니다. 옵션 /S를 지정 하지 않으면 다음 AzCopy 정확한 blob 이름에 대 한 hello 파일 패턴 일치 합니다.
 
-지정된 소스가 Azure 파일 공유이면 단일 파일을 복사할 정확한 파일 이름(예: abc.txt)을 지정하거나 /S 옵션을 지정하여 공유의 모든 파일을 재귀 방식으로 복사해야 합니다. 파일 패턴과 /S 옵션을 모두 지정하려고 하면 오류가 발생합니다.
+Hello 지정 소스는 경우 Azure 파일 공유 (예: abc.txt) hello 정확한 파일 이름을 지정 하는 경우 단일 파일을 toocopy hello 공유 재귀적으로 옵션 /S toocopy 모든 파일을 지정 합니다. Toospecify는 파일 패턴 및 옵션 /S 함께 됩니다는 오류가 발생 합니다.
 
-AzCopy는 /Source가 blob 컨테이너 또는 blob 가상 디렉터리일 때 대/소문자를 구분해서 검색하고 다른 모든 경우에서 대/소문자를 구분하지 않습니다.
+AzCopy는 hello /Source는 blob 컨테이너 또는 blob 가상 디렉터리 이며 모든 페이지에서 일치 하는 대/소문자 구분에 사용 하 여 다른 경우 hello 때 대/소문자 구분 일치를 사용 합니다.
 
-파일 패턴을 지정하지 않을 때 사용되는 기본 파일 패턴은 파일 시스템 위치의 경우 *에 대해 잘 알고 있다는 것을 가정합니다.* 이고 Azure 저장소 위치의 경우에는 빈 접두사입니다. 여러 파일 패턴을 지정할 수는 없습니다.
+hello 파일 패턴이 없습니다. 지정 된 경우 사용할 기본 파일 패턴은 *합니다.* 이고 Azure 저장소 위치의 경우에는 빈 접두사입니다. 여러 파일 패턴을 지정할 수는 없습니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="destkeystorage-key"></a>/DestKey:"storage-key"
-대상 리소스에 대한 저장소 계정 키를 지정합니다.
+Hello 대상 리소스에 대 한 hello 저장소 계정 키를 지정합니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="destsassas-token"></a>/DestSAS:"sas-token"
-대상에 대해 읽기 및 쓰기 권한이 있는 SAS(공유 액세스 서명)를 지정합니다(해당되는 경우). SAS가 특수한 명령줄 문자를 포함할 수 있으므로 큰따옴표로 묶습니다.
+(있는 경우)는 공유 액세스 서명 (SAS) hello 대상에 대 한 읽기 및 쓰기 권한을 지정 합니다. 명령줄 특수 문자가 포함 될 수 있습니다 hello를 SAS 큰따옴표로 묶습니다.
 
-대상 리소스가 Blob 컨테이너, 파일 공유 또는 테이블이면 이 옵션을 지정하고 SAS 토큰을 지정하거나 이 옵션 없이 대상 Blob 컨테이너, 파일 공유 또는 테이블 URI의 일부로 SAS를 지정할 수 있습니다.
+Blob 컨테이너, 파일 공유 또는 테이블 hello 대상 리소스가 있으면이 옵션 뒤에 hello SAS 토큰을 지정 하거나 하거나 hello 대상 blob 컨테이너, 파일 공유 또는이 옵션 없이 테이블의 URI의 일환으로 hello SAS를 지정할 수 있습니다.
 
-소스와 대상이 모두 Blob이면 대상 Blob은 소스 Blob과 같은 저장소 계정 내에 있어야 합니다.
+Hello 원본 및 대상은 모두 blob 경우 hello 대상 blob 내에 있어야 hello 동일 hello 원본 blob와 저장소 계정입니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="sourcekeystorage-key"></a>/SourceKey:"storage-key"
-소스 리소스에 대한 저장소 계정 키를 지정합니다.
+Hello 원본 리소스에 대 한 hello 저장소 계정 키를 지정합니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="sourcesassas-token"></a>/SourceSAS:"sas-token"
-소스에 대해 읽기 및 목록 권한이 있는 공유 액세스 서명을 지정합니다(해당되는 경우). SAS가 특수한 명령줄 문자를 포함할 수 있으므로 큰따옴표로 묶습니다.
+해당 하는 경우 공유 액세스 서명을 hello 원본에 대 한 읽기 및 목록 사용 권한을 지정 합니다. 명령줄 특수 문자가 포함 될 수 있습니다 hello를 SAS 큰따옴표로 묶습니다.
 
-소스 리소스가 Blob 컨테이너인 경우 키와 SAS를 모두 지정하지 않으면 익명 액세스를 통해 Blob 컨테이너를 읽습니다.
+Hello 원본 리소스는 blob 컨테이너는 키와 SAS를 모두 제공 하는 경우 익명 액세스를 통해 hello blob 컨테이너를 읽을 수 됩니다.
 
-소스가 파일 공유 또는 테이블이면 키나 SAS를 지정해야 합니다.
+Hello 소스 파일 공유 인 경우 테이블, 키 또는 SAS를 제공 해야 합니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="s"></a>/S
-복사 작업의 재귀 모드를 지정합니다. 재귀 모드에서 AzCopy는 하위 폴더의 Blob 또는 파일을 비롯하여 지정된 파일 패턴과 일치하는 모든 Blob 또는 파일을 복사합니다.
+복사 작업의 재귀 모드를 지정합니다. 재귀 모드로 AzCopy 모든 blob 또는 하위 폴더에 포함 하 여 hello 지정 된 파일 패턴과 일치 하는 파일을 복사 합니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="blobtypeblock--page--append"></a>/BlobType:"block" | "page" | "append"
-대상 Blob이 블록 Blob인지, 페이지 Blob인지 아니면 추가 Blob인지를 지정합니다. 이 옵션은 Blob을 업로드하는 경우에만 적용됩니다. 그렇지 않은 경우 오류가 생성합니다. 대상이 Blob인데 이 옵션을 지정하지 않으면 기본적으로 AzCopy는 블록 Blob를 만듭니다.
+Hello 대상 blob는 블록 blob, 페이지 blob의 경우 또는 추가 blob 인지를 지정 합니다. 이 옵션은 Blob을 업로드하는 경우에만 적용됩니다. 그렇지 않은 경우 오류가 생성합니다. 기본적으로이 옵션은 지정 하지 hello 대상 blob 인 경우 AzCopy 블록 blob를 만듭니다.
 
 **적용 대상:** Blob
 
 ### <a name="checkmd5"></a>/CheckMD5
-다운로드한 데이터의 MD5 해시를 계산하고 Blob 또는 파일의 Content-MD5 속성에 저장된 MD5 해시가 계산된 해시와 일치하는지 확인합니다. 기본적으로 이 MD5 검사는 해제되어 있으므로 데이터를 다운로드할 때 MD5 검사를 수행하도록 이 옵션을 지정해야 합니다.
+다운로드 한 데이터에 대 한 MD5 해시를 계산 하 고 hello blob에 저장 된 MD5 해시 hello 또는 파일의 content-md5 속성 hello 계산 된 해시와 일치 여부를 확인 합니다. hello MD5 검사 꺼져 기본적으로 데이터를 다운로드할 때이 옵션 tooperform hello MD5 검사를 지정 해야 합니다.
 
-Azure 저장소는 Blob 또는 파일에 대해 저장된 MD5 해시가 최신 버전임을 보장하지 않습니다. Blob 또는 파일이 수정될 때마다 MD5를 업데이트하는 것은 클라이언트의 책임입니다.
+Azure 저장소 않습니다 보장 하는 해당 hello hello blob에 대해 저장 된 MD5 해시 또는 파일이 최신 상태입니다. 클라이언트의 책임 tooupdate hello MD5 hello blob 또는 파일 수정 될 때마다
 
-AzCopy는 Azure Blob 또는 파일을 서비스로 업로드하기 전에 항상 해당 Content-MD5 속성을 설정합니다.  
+항상 AzCopy는 Azure blob 또는 파일에 대 한 content-md5 속성 hello toohello 서비스 업로드 한 후 설정 합니다.  
 
 **적용 대상:** Blob, 파일
 
 ### <a name="snapshot"></a>/Snapshot
-스냅숏을 전송할지 여부를 나타냅니다. 이 옵션은 소스가 Blob일 때만 유효합니다.
+표시 여부를 tootransfer 스냅숏을 합니다. 이 옵션은 hello 원본 blob 인 경우에 유효 합니다.
 
-전송된 Blob 스냅숏의 이름을 blob-name (snapshot-time).extension 형식으로 바꿉니다.
+hello 전송된 blob 스냅숏 이름이이 형식의:.extension blob 이름 (스냅숏 시간)
 
 기본적으로 스냅숏은 복사되지 않습니다.
 
@@ -656,7 +656,7 @@ AzCopy는 Azure Blob 또는 파일을 서비스로 업로드하기 전에 항상
 ### <a name="vverbose-log-file"></a>/V:[verbose-log-file]
 세부 정보 표시 상태 메시지를 로그 파일로 출력합니다.
 
-기본적으로 세부 정보 로그 파일은 `%LocalAppData%\Microsoft\Azure\AzCopy`에서 AzCopyVerbose.log라는 이름이 지정됩니다. 이 옵션에 기존 파일 위치를 지정하면 세부 정보 표시 로그가 해당 파일에 추가됩니다.  
+기본적으로 hello 자세한 로그 파일에서 AzCopyVerbose.log 이름은 `%LocalAppData%\Microsoft\Azure\AzCopy`합니다. 이 옵션에 대 한 기존 파일 위치를 지정 하면 hello 자세한 로그 추가 toothat 파일이 생성 됩니다.  
 
 **적용 대상:** Blob, 파일, 테이블
 
@@ -665,24 +665,24 @@ AzCopy는 Azure Blob 또는 파일을 서비스로 업로드하기 전에 항상
 
 AzCopy는 작업이 중단된 경우 항상 다시 시작을 지원합니다.
 
-이 옵션을 지정하지 않거나 폴더 경로 없이 지정하면 AzCopy는 기본 위치인 %LocalAppData%\Microsoft\Azure\AzCopy에 저널 파일을 만듭니다.
+이 옵션을 지정 하지 않으면 또는 폴더 경로 없이 지정 된 경우 다음 AzCopy hello 저널 파일에에서 만들어집니다 hello 기본 위치는 %LocalAppData%\Microsoft\Azure\AzCopy입니다.
 
-AzCopy로 명령을 실행할 때마다 AzCopy는 기본 폴더에 저널 파일이 있는지 또는 이 옵션을 통해 지정한 폴더에 있는지 확인합니다. 저널 파일이 이 두 위치에 없으면 AzCopy는 이 작업을 새 작업으로 취급하고 새 저널 파일을 생성합니다.
+저널 파일 hello 기본 폴더에 있는지 여부 또는이 옵션을 통해 지정 하는 폴더에 존재 하는지 여부 명령 tooAzCopy 실행 될 때마다 확인 합니다. Hello 저널 파일이 어느 위치에 없는 경우 AzCopy 새으로 hello 작업을 처리 하 고 새 저널 파일을 생성 합니다.
 
-저널 파일이 존재하면 AzCopy는 입력한 명령줄이 저널 파일의 명령줄과 일치하는지 확인합니다. 두 명령줄이 일치하면 AzCopy는 불완전한 작업을 다시 시작합니다. 일치하지 않으면 저런 파일을 덮어써서 새 작업을 시작할지 또는 현재 작업을 취소할지 묻는 메시지가 표시됩니다.
+Hello 저널 파일이 AzCopy는 hello 명령줄 입력을 hello 명령줄 hello 저널 파일에서 일치 하는지 여부를 확인 합니다. Hello 두 명령줄 일치 AzCopy hello 불완전 한 작업을 다시 시작 합니다. 일치 하지 않으면 증명된 tooeither 덮어쓰기 hello 저널 파일 toostart 새 작업 또는 toocancel hello 현재 작업이 됩니다.
 
-작업이 성공적으로 완료되면 저널 파일이 삭제됩니다.
+hello 작업이 성공적으로 완료 되 면 hello 저널 파일은 삭제 됩니다.
 
 이전 버전의 AzCopy에서 만들어진 저널 파일에서 작업을 다시 시작하는 것은 지원되지 않습니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="parameter-file"></a>/@:"parameter-file"
-매개 변수를 포함하는 파일을 지정합니다. AzCopy는 파일의 매개 변수가 명령줄에 지정된 것처럼 처리합니다.
+매개 변수를 포함하는 파일을 지정합니다. AzCopy 프로세스 경우 hello 명령줄에 지정 된 것 처럼 hello 파일의 매개 변수를 hello 합니다.
 
 지시 파일에서 단일 줄에 여러 매개 변수를 지정하거나 한 줄에 매개 변수를 하나씩 지정할 수 있습니다. 하나의 매개 변수가 여러 줄에 걸쳐 있을 수 없습니다.
 
-지시 파일은 # 기호로 시작하는 명령줄을 포함할 수 있습니다.
+지시 파일 hello # 기호로 시작 하는 주석 줄을 포함할 수 있습니다.
 
 여러 지시 파일을 지정할 수 있습니다. 그렇지만 AzCopy는 중첩된지시 파일을 지원하지 않습니다.
 
@@ -696,36 +696,36 @@ AzCopy로 명령을 실행할 때마다 AzCopy는 기본 폴더에 저널 파일
 ### <a name="l"></a>/L
 열거 작업만 지정하고 데이터는 복사되지 않습니다.
 
-AzCopy는 이 옵션의 사용을 이 옵션 /L 없이 명령줄을 실행하기 위한 시뮬레이션으로 해석하고 복사할 개체의 수를 계산하므로, 사용자는 /V 옵션을 동시에 지정하여 자세한 로그에 복사할 개체를 확인할 수 있습니다.
+AzCopy hello를 사용 하 여 변환 합니다.이 옵션을 수동으로 구성 하지 않으면 hello 명령줄을 실행 중인에 대 한 시뮬레이션의 /L 옵션 및 복사할 개체의 수를 계산, 옵션을 지정할 수 /V hello에서 동일한 시간 toocheck hello 자세한 로그에 복사할 개체입니다.
 
-이 옵션의 동작은 소스 데이터의 위치와 재귀 모드 옵션 /S 및 파일 패턴 옵션 /Pattern의 유무에 따라 결정됩니다.
+이 옵션의 동작은 hello hello 원본 데이터의 hello 위치와 hello 재귀 모드 옵션 /S 및 파일 패턴 옵션 /Pattern의 hello 존재 하 여도 결정 됩니다.
 
 AzCopy는 이 옵션을 사용하는 경우 이 원본 위치에 대한 목록 및 읽기 권한이 필요합니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="mt"></a>/MT
-다운로드한 파일의 마지막으로 수정한 시간을 소스 Blob 또는 파일과 동일하게 설정합니다.
+Toobe hello 원본 blob 또는 파일의 동일 hello hello 다운로드 된 파일의 마지막 수정 시간을 설정 합니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="xn"></a>/XN
-최신 소스 리소스를 제외합니다. 원본이 마지막으로 수정된 시간이 대상과 동일하거나 더 최신인 경우 리소스가 복사되지 않습니다.
+최신 소스 리소스를 제외합니다. 이면 hello hello 소스의 마지막 수정된 시간 hello 같거나 대상 보다 최신 hello 리소스 복사 되지 않습니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="xo"></a>/XO
-오래된 소스 리소스를 제외합니다. 원본이 마지막으로 수정된 시간이 대상과 동일하거나 더 오래된 경우 리소스가 복사되지 않습니다.
+오래된 소스 리소스를 제외합니다. hello 리소스 hello hello 소스의 마지막 수정된 시간은 hello 같거나 대상 보다 오래 된 경우 복사 되지 않습니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="a"></a>/A
-Archive 특성 집합이 있는 파일만 업로드합니다.
+Hello 보관 특성이 설정 되어 있는 파일만 업로드 합니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="iarashcnetoi"></a>/IA:[RASHCNETOI]
-지정된 특성 집합 중 하나라도 있는 파일만 업로드합니다.
+업로드만 포함 된 파일의 hello 특성 집합을 지정 합니다.
 
 사용 가능한 특성에는 다음이 포함됩니다.
 
@@ -743,7 +743,7 @@ Archive 특성 집합이 있는 파일만 업로드합니다.
 **적용 대상:** Blob, 파일
 
 ### <a name="xarashcnetoi"></a>/XA:[RASHCNETOI]
-지정된 특성 집합 중 하나라도 있는 파일을 제외합니다.
+지정 된 hello 포함 된 파일 제외 특성이 설정 합니다.
 
 사용 가능한 특성에는 다음이 포함됩니다.
 
@@ -761,37 +761,37 @@ Archive 특성 집합이 있는 파일만 업로드합니다.
 **적용 대상:** Blob, 파일
 
 ### <a name="delimiterdelimiter"></a>/Delimiter:"delimiter"
-Blob 이름에서 가상 디렉터리를 구분하는 데 사용되는 구분 기호를 나타냅니다.
+Blob 이름에 toodelimit 가상 디렉터리를 사용 하는 hello 구분 기호 문자를 나타냅니다.
 
-기본적으로 AzCopy는 구분 문자로 /를 사용합니다. 그렇지만 AzCopy는 아무 일반 문자(예: @, # 또는 %)를 구분 문자로 사용할 수 있게 지원합니다. 명령줄에 이러한 특수 문자 중 하나를 포함해야 하는 경우 파일 이름을 큰따옴표로 묶으세요.
+기본적으로 사용 하 여 AzCopy / hello 구분 기호 문자로 합니다. 그렇지만 AzCopy는 아무 일반 문자(예: @, # 또는 %)를 구분 문자로 사용할 수 있게 지원합니다. Hello 명령줄에서 이러한 특수 문자 중 하나는 tooinclude 해야 할 경우 hello 파일 이름을 큰따옴표로 묶습니다.
 
 이 옵션은 Blob을 다운로드하는 데만 적용됩니다.
 
 **적용 대상:** Blob
 
 ### <a name="ncnumber-of-concurrent-operations"></a>/NC:"number-of-concurrent-operations"
-동시 작업의 수를 지정합니다.
+Hello 동시 작업 수를 지정합니다.
 
-AzCopy는 데이터 전송 처리량을 높이기 위해 기본적으로 특정 수의 동시 작업을 시작합니다. 저대역폭 환경에서는 많은 수의 동시 작업으로 네트워크 연결에 과부하가 걸려 작업이 완전히 실행되지 못할 수 있습니다. 사용 가능한 실제 네트워크 대역폭에 따라 동시 작업을 조절하세요.
+기본적으로 AzCopy 특정 수의 동시 작업 tooincrease hello 데이터 전송 처리량을 시작합니다. 에 불과하며 많은 수의 대역폭이 낮은 환경에서 동시 작업 수 hello 네트워크 연결에 과부하가 hello 작업이 완전히 완료를 방지 합니다. 사용 가능한 실제 네트워크 대역폭에 따라 동시 작업을 조절하세요.
 
-동시 작업의 상한은 512개입니다.
+동시 작업에 대 한 hello 상한값은 512입니다.
 
 **적용 대상:** Blob, 파일, 테이블
 
 ### <a name="sourcetypeblob--table"></a>/SourceType:"Blob" | "Table"
-`source` 리소스를 저장소 에뮬레이터에서 실행되는 로컬 개발 환경에서 사용할 수 있는 Blob로 지정합니다.
+해당 hello 지정 `source` 리소스는 blob hello 저장소 에뮬레이터에서 실행 되는 hello 로컬 개발 환경에서 사용할 수 있습니다.
 
 **적용 대상:** Blob, 테이블
 
 ### <a name="desttypeblob--table"></a>/DestType:"Blob" | "Table"
-`destination` 리소스를 저장소 에뮬레이터에서 실행되는 로컬 개발 환경에서 사용할 수 있는 Blob로 지정합니다.
+해당 hello 지정 `destination` 리소스는 blob hello 저장소 에뮬레이터에서 실행 되는 hello 로컬 개발 환경에서 사용할 수 있습니다.
 
 **적용 대상:** Blob, 테이블
 
 ### <a name="pkrskey1key2key3"></a>/PKRS:"key1#key2#key3#..."
-테이블 데이터를 병렬로 내보낼 수 있도록 파티션 키 범위를 분할합니다. 그러면 내보내기 작업의 속도가 빨라집니다.
+분할 hello 파티션 키 범위 tooenable hello 내보내기 작업의 hello 속도 향상 시키는 동시에 테이블 데이터 내보내기.
 
-이 옵션을 지정하지 않으면 AzCopy는 단일 스레드를 사용하여 테이블 엔터티를 내보냅니다. 예를 들어 사용자가 /PKRS:"aa#bb"를 지정하면 AzCopy는 3개 동시 작업을 시작합니다.
+이 옵션을 지정 하지 않으면 AzCopy 단일 스레드 tooexport 테이블 엔터티를 사용 합니다. 예를 들어 hello 사용자 지정 /PKRS: "aa #bb" 다음 AzCopy 3 개의 동시 작업을 시작 합니다.
 
 각 작업에서는 아래에 나와 있는 것처럼 3개 파티션 키 범위 중 하나를 내보냅니다.
 
@@ -804,52 +804,52 @@ AzCopy는 데이터 전송 처리량을 높이기 위해 기본적으로 특정 
 **적용 대상:** 테이블
 
 ### <a name="splitsizefile-size"></a>/SplitSize:"file-size"
-내보내는 파일의 분할 크기를 지정합니다(MB 단위). 허용되는 최소 값은 32입니다.
+내보낸된 파일 크기 (MB) 분할 hello, 허용 된 hello 최소 값은 32를 지정 합니다.
 
-이 옵션을 지정하지 않으면 AzCopy는 단일 파일로 테이블 데이터를 내보냅니다.
+이 옵션을 지정 하지 않으면 AzCopy는 테이블 데이터 toosingle 파일을 내보냅니다.
 
-테이블 데이터를 Blob로 내보내는데 내보낸 파일 크기가 Blob 크기에 대한 제한인 200GB에 도달하면 AzCopy는 이 옵션을 지정하지 않은 경우에도 내보낸 파일을 분할합니다.
+Hello 테이블 데이터 내보낸된 tooa blob이 고 hello 내보낸된 파일 크기 제한에 도달 하면 hello 200GB blob 크기에 대 한 다음 AzCopy는 분할 hello 내보낸된 파일이이 옵션이 지정 되지 않은 경우에 합니다.
 
 **적용 대상:** 테이블
 
 ### <a name="entityoperationinsertorskip--insertormerge--insertorreplace"></a>/EntityOperation:"InsertOrSkip" | "InsertOrMerge" | "InsertOrReplace"
-테이블 데이터 가져오기 동작을 지정합니다.
+Hello 테이블 데이터 가져오기 동작을 지정합니다.
 
-* InsertOrSkip - 기존 엔터티를 건너뛰거나 테이블에 엔터티가 없으면 새 엔터티를 삽입합니다.
-* InsertOrMerge - 기존 엔터티를 병합하거나 테이블에 엔터티가 없으면 새 엔터티를 삽입합니다.
-* InsertOrReplace - 기존 엔터티를 바꾸거나 테이블에 엔터티가 없으면 새 엔터티를 삽입합니다.
+* InsertOrSkip-기존 엔터티를 생략 하거나 hello 테이블에 존재 하지 않는 경우 새 엔터티를 삽입 합니다.
+* InsertOrMerge-기존 엔터티를 병합 하거나 hello 테이블에 존재 하지 않는 경우 새 엔터티를 삽입 합니다.
+* InsertOrReplace-기존 엔터티를 바꾸거나 hello 테이블에 존재 하지 않는 경우 새 엔터티를 삽입 합니다.
 
 **적용 대상:** 테이블
 
 ### <a name="manifestmanifest-file"></a>/Manifest:"manifest-file"
-테이블 내보내기 및 가져오기 작업을 위한 매니페스트 파일을 지정합니다.
+Hello 테이블 내보내기 및 가져오기 작업에 대 한 hello 매니페스트 파일을 지정 합니다.
 
-내보내기 작업 중에는 이 옵션이 선택 사항이므로 이 옵션을 지정하지 않으면 AzCopy는 미리 정의된 이름의 매니페스트 파일을 생성합니다.
+Hello 내보내기 작업 중에이 옵션은 선택 사항, AzCopy는이 옵션을 지정 하지 않으면 미리 정의 된 이름으로 매니페스트 파일을 생성 합니다.
 
-이 옵션은 데이터 파일 찾기를 위한 가져오기 작업 중에 필요합니다.
+이 옵션은 hello 데이터 파일을 찾기 위한 hello 가져오기 작업 동안 필요 합니다.
 
 **적용 대상:** 테이블
 
 ### <a name="synccopy"></a>/SyncCopy
-두 Azure 저장소 끝점 간에 Blob 또는 파일을 동기적으로 복사할지 여부를 나타냅니다.
+나타냅니다 toosynchronously blob 또는 Azure 저장소는 두 개의 끝점 사이 파일 복사 여부.
 
-기본적으로 AzCopy에서는 서버 쪽 비동기 복사를 사용합니다. Blob 또는 파일을 로컬 메모리에 다운로드한 다음 Azure 저장소에 업로드하는 동기 복사를 수행하려면 이 옵션을 지정합니다.
+기본적으로 AzCopy에서는 서버 쪽 비동기 복사를 사용합니다. 이 옵션 tooperform 동기 지정 blob 다운로드 또는 toolocal 메모리 파일 및 다음 저장소 tooAzure 업로드를 복사 합니다.
 
-Blob 저장소 내에서, 파일 저장소 내에서 또는 Blob 저장소에서 파일 저장소로 혹은 그 반대로 파일을 복사할 때 이 옵션을 사용할 수 있습니다.
+파일 저장소 또는 Blob 저장소 tooFile 저장소 만들거나 기본 Blob 저장소 내의 파일을 복사할 때이 옵션을 사용할 수 있습니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="setcontenttypecontent-type"></a>/SetContentType:"content-type"
-대상 Blob 또는 파일의 MIME 콘텐츠 형식을 지정합니다.
+대상 blob 또는 파일에 대 한 hello MIME 콘텐츠 형식을 지정합니다.
 
-기본적으로 AzCopy에서는 Blob 또는 파일의 콘텐츠 형식을 application/octet-stream으로 설정합니다. 이 옵션에 대해 값을 명시적으로 지정하면 모든 Blob 또는 파일의 콘텐츠 형식을 설정할 수 있습니다.
+Blob에 대해 콘텐츠 형식 hello 또는 기본적으로 tooapplication/옥텟 스트림 파일 하는 AzCopy 설정 합니다. 이 옵션에 대 한 값을 명시적으로 지정 하 여 모든 blob 또는 파일에 대 한 hello 콘텐츠 형식을 설정할 수 있습니다.
 
-값 없이 이 옵션을 지정하면 AzCopy에서 각 Blob 또는 파일의 콘텐츠 형식을 파일 확장명에 따라 설정합니다.
+값이 없는이 옵션을 지정 하면 각 blob 또는 파일의 콘텐츠 형식 tooits 파일 확장명에 따라 AzCopy 설정 합니다.
 
 **적용 대상:** Blob, 파일
 
 ### <a name="payloadformatjson--csv"></a>/PayloadFormat:"JSON" | "CSV"
-테이블의 내보낸 데이터 파일의 형식을 지정합니다.
+Hello 테이블 내보낸된 데이터 파일의 hello 형식을 지정합니다.
 
 이 옵션을 지정하지 않으면 기본적으로 AzCopy는 JSON 형식으로 테이블 데이터 파일을 내보냅니다.
 
@@ -857,15 +857,15 @@ Blob 저장소 내에서, 파일 저장소 내에서 또는 Blob 저장소에서
 
 ## <a name="known-issues-and-best-practices"></a>알려진 문제 및 모범 사례
 ### <a name="limit-concurrent-writes-while-copying-data"></a>데이터를 복사하는 동안 동시 쓰기 제한
-AzCopy를 사용하여 Blob 또는 파일을 복사할 때는 복사하는 동안 다른 응용 프로그램이 데이터를 수정할 수 있다는 사실을 유의해야 합니다. 가능한 경우 복사 중인 데이터가 복사 작업 중에 수정되지 않도록 합니다. 예를 들어 Azure 가상 컴퓨터와 연결된 VHD를 복사할 때는 다른 응용 프로그램이 현재 VHD에 쓰고 있지 않은지 확인합니다. 이렇게 하려면 복사할 리소스를 임대하는 것이 좋습니다. 또는 먼저 VHD의 스냅샷을 만든 후 스냅샷을 복사할 수 있습니다.
+Blob 또는 AzCopy 사용 하 여 파일을 복사할 때는 다른 응용 프로그램 수정 하 있습니다 hello 데이터 복사 하려는 동안 염두에서에 둬야 합니다. 가능 하면 hello 복사 작업 중 hello 데이터를 복사 하는 수정 되지 않은 있는지 확인 합니다. 예를 들어 Azure 가상 컴퓨터와 연결 된 VHD를 복사 하는 경우 다른 응용 프로그램이 toohello VHD을 작성 하는 현재 선택 되어 있는지 확인 합니다. 복사 hello 리소스 toobe 임대는 좋은 방법 toodo입니다. 또는 먼저 hello VHD의 스냅샷을 만들 수 있으며 hello 스냅숏 복사 합니다.
 
-다른 응용 프로그램이 복사 중인 Blob 또는 파일에 쓰지 못하게 할 수 없으면 작업이 완료될 때까지 복사된 리소스가 소스 리소스와 더 이상 완전히 동일하지 않을 수 있습니다.
+다른 응용 프로그램에서 복사 하는 것 다음 hello 타이머 hello 작업이 완료 된 것을 기억 하는 동안 tooblobs 또는 파일 쓰기를 방지할 수, 하는 경우 hello 복사 된 리소스에 실패 했습니다 hello 원본 리소스와 함께 전체 패리티 합니다.
 
 ### <a name="run-one-azcopy-instance-on-one-machine"></a>한 컴퓨터에서 AzCopy 인스턴스 하나를 실행합니다.
-AzCopy는 데이터 전송 속도를 높이기 위해 컴퓨터 리소스를 최대한 활용할 수 있도록 설계되었습니다. 따라서 컴퓨터 한 대에서 AzCopy 인스턴스를 하나만 실행하는 것이 좋으며 더 많은 동시 작업을 수행해야 하는 경우에는 `/NC` 옵션을 지정해야 합니다. 자세한 내용을 확인하려면 명령줄에 `AzCopy /?:NC` 를 입력하세요.
+AzCopy는 컴퓨터 리소스 tooaccelerate hello 데이터 전송의 디자인 된 toomaximize hello 사용률, 한 컴퓨터에서 하나만 AzCopy 인스턴스를 실행 하 고 hello 옵션 지정 좋습니다 `/NC` 더 많은 동시 작업을 필요 합니다. 자세한 내용은 입력 `AzCopy /?:NC` hello 명령줄에서.
 
 ### <a name="enable-fips-compliant-md5-algorithms-for-azcopy-when-you-use-fips-compliant-algorithms-for-encryption-hashing-and-signing"></a>"암호화, 해시 및 서명에 FIPS 호환 알고리즘을 사용"할 경우 AzCopy에 대해 FIPS 규격 MD5 알고리즘을 사용하도록 설정합니다.
-기본적으로 AzCopy는 개체를 복사할 때 .NET MD5 구현을 사용하여 MD5를 계산하지만 보안 요구 때문에 FIPS 규격 MD5 설정을 사용하도록 설정하는 데 AzCopy가 필요합니다.
+기본적으로 AzCopy는 개체를 복사 하는 경우.NET MD5 구현 toocalculate hello MD5 사용 하 여 있지만 AzCopy tooenable FIPS 규격 MD5 설정 해야 하는 몇 가지 보안 요구 사항이 있습니다.
 
 `AzureStorageUseV1MD5` 속성을 사용하여 app.config 파일(`AzCopy.exe.config`)을 만들고 AzCopy.exe를 통해 일단 사용을 보류할 수 있습니다.
 
@@ -876,20 +876,20 @@ AzCopy는 데이터 전송 속도를 높이기 위해 컴퓨터 리소스를 최
       </appSettings>
     </configuration>
 
-속성 "AzureStorageUseV1MD5" • True - 기본값 AzCopy는 .NET MD5 구현을 사용합니다.
+True-"AzureStorageUseV1MD5" • 속성에 대 한 hello 기본 값, AzCopy.NET MD5 구현을 사용 합니다.
 • False - AzCopy는 FIPS 규격 MD5 알고리즘을 사용합니다.
 
 FIPS 규격 알고리즘은 Windows 컴퓨터에는 기본적으로 사용되지 않도록 설정되어 있으며 실행 창에 secpol.msc를 입력하고 보안 설정-> 로컬 정책-> 보안 옵션->시스템 암호화: 암호화, 해시, 서명에 FIPS 규격 알고리즘 사용에서 이 스위치를 선택할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-Azure 저장소 및 AzCopy에 대한 자세한 내용은 다음 리소스를 참조하세요.
+Azure 저장소 및 AzCopy에 대 한 자세한 내용은 다음 리소스 toohello를 참조 하십시오.
 
 ### <a name="azure-storage-documentation"></a>Azure 저장소 설명서
-* [Azure 저장소 소개](storage-introduction.md)
-* [.NET에서 Blob 저장소를 사용하는 방법](storage-dotnet-how-to-use-blobs.md)
-* [.NET에서 파일 저장소를 사용하는 방법](storage-dotnet-how-to-use-files.md)
-* [.NET에서 테이블 저장소를 사용하는 방법](storage-dotnet-how-to-use-tables.md)
-* [저장소 계정을 만들거나, 관리하거나, 삭제하는 방법](storage-create-storage-account.md)
+* [소개 tooAzure 저장소](storage-introduction.md)
+* [어떻게 toouse.NET에서 Blob 저장소](storage-dotnet-how-to-use-blobs.md)
+* [어떻게 toouse.NET에서 파일 저장소](storage-dotnet-how-to-use-files.md)
+* [어떻게 toouse.NET에서 테이블 저장소](storage-dotnet-how-to-use-tables.md)
+* [Toocreate, 관리 또는 저장소 계정을 삭제 방법](storage-create-storage-account.md)
 * [Linux에서 AzCopy를 사용하여 데이터 전송](storage-use-azcopy-linux.md)
 
 ### <a name="azure-storage-blog-posts"></a>Azure 저장소 블로그 게시물:

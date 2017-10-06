@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell을 사용하여 RBAC(역할 기반 액세스 제어) 관리 | Microsoft Docs"
-description: "Azure PowerShell에서 역할을 나열하고, 역할을 할당하고, 역할 할당을 제거하는 등 RBAC를 관리하는 방법입니다."
+title: "역할 기반 액세스 제어 (RBAC) Azure PowerShell을 사용한 aaaManage | Microsoft Docs"
+description: "어떻게 toomanage RBAC 역할, 역할, 할당 및 역할 할당 삭제를 포함 하 여 Azure PowerShell을 사용 합니다."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,11 +14,11 @@ ms.workload: identity
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: d7b11df21650b5cb27f9c3dd8306f8d12664185e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fa44991113e75b345177867b0bede38de4373e04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-role-based-access-control-with-azure-powershell"></a>Azure PowerShell을 사용하여 역할 기반 액세스 제어 관리
 > [!div class="op_single_selector"]
@@ -26,16 +26,16 @@ ms.lasthandoff: 08/29/2017
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
 
-Azure 포털의 RBAC(역할 기반 액세스 제어) 및 Azure 리소스 관리 API를 사용하여 세밀한 수준에서 구독에 대한 액세스를 관리할 수 있습니다. 이 기능을 통해 특정 범위에서 Active Directory 사용자, 그룹 또는 서비스 사용자에게 일부 역할을 할당하여 액세스 권한을 부여할 수 있습니다.
+Hello Azure 포털 및 Azure 리소스 관리 API toomanage 액세스 tooyour 구독 세분화 된 수준에서 역할 기반 액세스 제어 (RBAC)를 사용할 수 있습니다. 이 기능을 특정 범위에서 일부 역할 toothem 할당 하 여 Active Directory 사용자, 그룹 또는 서비스 사용자에 대 한 액세스를 부여할 수 있습니다.
 
-PowerShell을 사용하여 RBAC를 관리하려면 다음 항목이 필요합니다.
+PowerShell toomanage RBAC를 사용 하려면 먼저 다음 필수 구성 요소는 hello:
 
-* Azure PowerShell 버전 0.8.8 이상. 최신 버전을 설치하고 Azure 구독에 연결하려면 [Azure PowerShell 설치 및 구성하는 방법](/powershell/azure/overview)을 참조하세요.
-* Azure Resource Manager cmdlet. PowerShell에서 [Azure Resource Manager cmdlet](/powershell/azure/overview) 을 설치합니다.
+* Azure PowerShell 버전 0.8.8 이상. Azure 구독으로 참조 tooinstall hello에 대 한 최신 정보 및 연결 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
+* Azure Resource Manager cmdlet. Hello 설치 [Azure 리소스 관리자 cmdlet](/powershell/azure/overview) PowerShell에서 합니다.
 
 ## <a name="list-roles"></a>역할 나열
 ### <a name="list-all-available-roles"></a>사용 가능한 모든 역할 나열
-할당할 수 있는 RBAC 역할을 나열하고 액세스 권한을 부여하는 작업을 검사하려면 `Get-AzureRmRoleDefinition`을 사용합니다.
+toolist RBAC 역할 할당 및 tooinspect hello 작업 toowhich 액세스를 부여 하는 데 사용할 수 있는 사용 `Get-AzureRmRoleDefinition`합니다.
 
 ```
 Get-AzureRmRoleDefinition | FT Name, Description
@@ -44,7 +44,7 @@ Get-AzureRmRoleDefinition | FT Name, Description
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition1.png)
 
 ### <a name="list-actions-of-a-role"></a>역할의 작업 나열
-특정 역할을 작업을 나열하려면 `Get-AzureRmRoleDefinition <role name>`을 사용합니다.
+사용 하 여 특정 역할에 대 한 toolist hello 작업 `Get-AzureRmRoleDefinition <role name>`합니다.
 
 ```
 Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
@@ -55,10 +55,10 @@ Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
 ![RBAC PowerShell - 특정 역할에 대한 Get-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition2.png)
 
 ## <a name="see-who-has-access"></a>액세스 권한이 있는 사용자 확인
-RBAC 액세스 할당을 나열하려면 `Get-AzureRmRoleAssignment`를 사용합니다.
+toolist RBAC 액세스 할당을 사용 하 여 `Get-AzureRmRoleAssignment`합니다.
 
 ### <a name="list-role-assignments-at-a-specific-scope"></a>특정 범위의 역할 할당 나열
-지정된 구독, 리소스 그룹 또는 리소스에 대한 모든 액세스 할당을 확인할 수 있습니다. 예를 들어 리소스 그룹에 대한 모든 활성 할당을 확인하려면 `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`을 사용합니다.
+지정 된 구독, 리소스 그룹 또는 리소스에 대 한 모든 hello 액세스 할당을 볼 수 있습니다. 예를 들어 toosee hello 사용 하 여 리소스 그룹에 대 한 모든 hello 활성 할당 `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`합니다.
 
 ```
 Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL DisplayName, RoleDefinitionName, Scope
@@ -66,8 +66,8 @@ Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL Di
 
 ![RBAC PowerShell - 리소스 그룹에 대한 Get-AzureRmRoleAssignment - 스크린샷](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment1.png)
 
-### <a name="list-roles-assigned-to-a-user"></a>사용자에게 할당된 역할 나열
-지정된 사용자에게 할당된 역할 및 사용자가 속한 그룹에 할당된 역할을 모두 나열하려면 `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`를 사용합니다.
+### <a name="list-roles-assigned-tooa-user"></a>할당 된 tooa 사용자 역할 나열
+toolist tooa 할당 되는 모든 hello 역할이 지정 하 고 사용자 hello toowhich hello 사용자가 속한 toohello 그룹에 할당 된 사용 `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`합니다.
 
 ```
 Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com | FL DisplayName, RoleDefinitionName, Scope
@@ -78,68 +78,68 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ![RBAC PowerShell - 사용자에 대한 Get-AzureRmRoleAssignment - 스크린샷](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment2.png)
 
 ### <a name="list-classic-service-administrator-and-coadmin-role-assignments"></a>클래식 서비스 관리자 및 공동 관리자 역할 할당 나열
-클래식 구독 관리자 및 공동 관리자에 대한 액세스 할당을 나열하려면 다음을 사용합니다.
+클래식 구독 관리자에 게 및 coadministrators에 대 한 toolist 액세스 할당을 사용 합니다.
 
     Get-AzureRmRoleAssignment -IncludeClassicAdministrators
 
 ## <a name="grant-access"></a>액세스 권한 부여
 ### <a name="search-for-object-ids"></a>개체 ID 검색
-역할을 할당하려면 개체(사용자, 그룹 또는 응용 프로그램)와 범위 둘 다를 식별해야 합니다.
+tooidentify 해야 역할 tooassign hello 개체 (사용자, 그룹 또는 응용 프로그램)와 hello 범위입니다.
 
-구독 ID를 모르는 경우 Azure 포털의 **구독** 블레이드에서 확인할 수 있습니다. 구독 ID를 쿼리하는 방법을 알아보려면 MSDN에서 [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) 을 참조하세요.
+Hello 구독 ID를 모르는 경우 hello에서 찾을 수 있습니다 **구독** 블레이드 hello Azure 포털에 있습니다. tooquery hello 구독 ID에 대 한 참조 toolearn [Get-azuresubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) msdn 합니다.
 
-Azure AD 그룹에 대한 개체 ID를 가져오려면 다음을 사용합니다.
+Azure AD 그룹에 대 한 tooget hello 개체 ID를 사용 합니다.
 
     Get-AzureRmADGroup -SearchString <group name in quotes>
 
-Azure AD 서비스 사용자 또는 응용 프로그램에 대한 개체 ID를 찾으려면 다음을 사용합니다.
+tooget hello 개체 ID를 Azure AD 서비스 사용자 또는 응용 프로그램을 사용 합니다.
 
     Get-AzureRmADServicePrincipal -SearchString <service name in quotes>
 
-### <a name="assign-a-role-to-an-application-at-the-subscription-scope"></a>구독 범위에서 응용 프로그램에 역할 할당
-구독 범위에서 응용 프로그램에 액세스 권한을 부여하려면 다음을 사용합니다.
+### <a name="assign-a-role-tooan-application-at-hello-subscription-scope"></a>Hello 구독 범위에서 역할 tooan 응용 프로그램 할당
+toogrant 액세스 tooan 응용 프로그램이 hello 구독 범위에서 사용 하 여:
 
     New-AzureRmRoleAssignment -ObjectId <application id> -RoleDefinitionName <role name> -Scope <subscription id>
 
 ![RBAC PowerShell - New-AzureRmRoleAssignment - 스크린샷](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment2.png)
 
-### <a name="assign-a-role-to-a-user-at-the-resource-group-scope"></a>리소스 그룹 범위에서 사용자에 역할 할당
-리소스 그룹 범위에서 사용자에 액세스 권한을 부여하려면 다음을 사용합니다.
+### <a name="assign-a-role-tooa-user-at-hello-resource-group-scope"></a>Hello 리소스 그룹 범위에서 역할 tooa 사용자 지정
+toogrant 액세스 tooa hello 리소스 그룹 범위에서 사용 하 여 사용자:
 
     New-AzureRmRoleAssignment -SignInName <email of user> -RoleDefinitionName <role name in quotes> -ResourceGroupName <resource group name>
 
 ![RBAC PowerShell - New-AzureRmRoleAssignment - 스크린샷](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment3.png)
 
-### <a name="assign-a-role-to-a-group-at-the-resource-scope"></a>리소스 범위에서 그룹에 역할 할당
-리소스 범위에서 그룹에 액세스 권한을 부여하려면 다음을 사용합니다.
+### <a name="assign-a-role-tooa-group-at-hello-resource-scope"></a>Hello 리소스 범위에서 역할 tooa 그룹 할당
+hello 리소스 범위에서 사용 하 여 toogrant 액세스 tooa 그룹:
 
     New-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name in quotes> -ResourceName <resource name> -ResourceType <resource type> -ParentResource <parent resource> -ResourceGroupName <resource group name>
 
 ![RBAC PowerShell - New-AzureRmRoleAssignment - 스크린샷](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment4.png)
 
 ## <a name="remove-access"></a>액세스 권한 제거
-사용자, 그룹 및 응용 프로그램의 액세스 권한을 제거하려면 다음을 사용합니다.:
+사용자, 그룹 및 응용 프로그램을 사용 하기 위해 tooremove 액세스:
 
     Remove-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name> -Scope <scope such as subscription id>
 
 ![RBAC PowerShell - Remove-AzureRmRoleAssignment - 스크린샷](./media/role-based-access-control-manage-access-powershell/3-remove-azure-rm-role-assignment.png)
 
 ## <a name="create-a-custom-role"></a>사용자 지정 역할 만들기
-사용자 지정 역할을 만들려면 ```New-AzureRmRoleDefinition``` 명령을 사용합니다. 역할을 구조화하는 방법에는 PSRoleDefinitionObject를 사용하거나 JSON 템플릿을 사용하는 두 가지 방법이 있습니다. 
+사용자 지정 역할 toocreate hello를 사용 하 여 ```New-AzureRmRoleDefinition``` 명령입니다. PSRoleDefinitionObject 또는 JSON 템플릿을 사용 하 여 hello 역할을 구성 하는 방법은 두 가지가 있습니다. 
 
 ## <a name="get-actions-for-a-resource-provider"></a>리소스 공급자에 대한 작업 가져오기
-처음부터 사용자 지정 역할을 만드는 경우 리소스 공급자에서 가능한 모든 작업을 알고 있어야 합니다.
-```Get-AzureRMProviderOperation``` 명령을 사용하여 이 정보를 가져옵니다.
-예를 들어, 가상 컴퓨터에 사용 가능한 모든 작업을 확인하려는 경우 다음 명령을 사용합니다.
+처음부터 사용자 정의 역할을 만드는 경우에 중요 한 tooknow 모든 hello hello 리소스 공급자에서 가능한 모든 작업.
+사용 하 여 hello ```Get-AzureRMProviderOperation``` 명령 tooget이이 정보입니다.
+예를 들어 toocheck 하려는 경우 가상 컴퓨터에 대 한 모든 hello 사용 가능한 작업에이 명령을 사용 합니다.
 
 ```
 Get-AzureRMProviderOperation "Microsoft.Compute/virtualMachines/*" | FT OperationName, Operation , Description -AutoSize
 ```
 
 ### <a name="create-role-with-psroledefinitionobject"></a>PSRoleDefinitionObject를 사용하여 역할 만들기
-PowerShell을 사용하여 사용자 지정 역할을 만들 때는 처음부터 시작하거나 [기본 제공 역할](role-based-access-built-in-roles.md) 중 하나를 출발점으로 사용할 수 있습니다. 이 섹션의 예제에서는 기본 제공 역할로 시작한 다음 추가 권한으로 사용자 지정합니다. 속성을 편집하여 원하는 *Actions*, *notActions* 또는 *scopes*를 추가한 다음 변경 내용을 새 역할로 저장합니다.
+PowerShell toocreate 사용자 지정 역할을 사용 하는 경우에 처음부터 다시 시작 하거나 hello 중 하나를 사용할 수 있습니다 [기본 제공 역할](role-based-access-built-in-roles.md) 시작 지점으로 합니다. 기본 제공 역할으로 시작 하 고 많은 권한을 가진 사용자 지정 하는이 섹션의 hello 예제입니다. Hello 특성 tooadd hello 편집 *동작*, *notActions*, 또는 *범위* 하 고 새 역할로 hello 변경 내용을 저장 합니다.
 
-다음 예제에서는 *Virtual Machine Contributor* 역할로 시작한 후 이 역할을 사용하여 *Virtual Machine Operator*라는 사용자 지정 역할을 만듭니다. 새 역할은 *Microsoft.Compute*, *Microsoft.Storage* 및 *Microsoft.Network* 리소스 공급자의 모든 읽기 작업에 대한 액세스 권한을 부여하고 가상 컴퓨터를 시작, 다시 시작 및 모니터링할 수 있는 권한을 부여합니다. 두 구독 모두에서 사용자 지정 역할을 사용할 수 있습니다.
+hello 다음 예제에서는 시작 hello로 *가상 컴퓨터 참가자* 역할 및 사용 하 여 사용자 지정 역할 해당 toocreate 호출 *가상 컴퓨터 연산자*합니다. 새 역할 hello 액세스 tooall 읽기 작업의 부여 *Microsoft.Compute*, *Microsoft.Storage*, 및 *Microsoft.Network* 리소스 공급자 및 부여 액세스 toostart, 다시 시작 하 고 가상 컴퓨터를 모니터링 합니다. 사용자 지정 역할 hello 두 구독에 사용할 수 있습니다.
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Contributor"
@@ -165,14 +165,14 @@ New-AzureRmRoleDefinition -Role $role
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
 ### <a name="create-role-with-json-template"></a>JSON 템플릿을 사용하여 역할 만들기
-JSON 템플릿을 사용자 지정 역할의 원본 정의로 사용할 수 있습니다. 다음 예제에서는 저장소 및 계산 리소스에 대한 읽기 액세스, 지원 액세스를 허용하고 해당 역할을 두 개의 구독에 추가하는 사용자 지정 역할을 만듭니다. 다음 예제가 포함된 새 파일 `C:\CustomRoles\customrole1.json`을 만듭니다. 초기 역할 생성 시 새 ID가 자동 생성되므로 Id를 `null`로 설정해야 합니다. 
+JSON 템플릿은 hello 사용자 지정 역할에 대 한 hello 원본 정의로 사용할 수 있습니다. hello 다음 예제에서는 toostorage 읽기 액세스를 허용 하 고 계산 리소스, toosupport, 액세스 및 해당 역할을 추가 하는 사용자 지정 역할 tootwo 구독 합니다. 새 파일을 만들 `C:\CustomRoles\customrole1.json` 다음 예제는 hello로 합니다. hello Id를 설정 해야 너무`null` 새 ID로 초기 역할 만들기에 자동으로 생성 됩니다. 
 
 ```
 {
   "Name": "Custom Role 1",
   "Id": null,
   "IsCustom": true,
-  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Description": "Allows for read access tooAzure storage and compute resources and access toosupport",
   "Actions": [
     "Microsoft.Compute/*/read",
     "Microsoft.Storage/*/read",
@@ -186,18 +186,18 @@ JSON 템플릿을 사용자 지정 역할의 원본 정의로 사용할 수 있�
   ]
 }
 ```
-구독에 역할을 추가하려면 다음 PowerShell 명령을 실행합니다.
+tooadd hello 역할 toohello 구독을 hello 다음 PowerShell 명령을 실행 합니다.
 ```
 New-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
 ```
 
 ## <a name="modify-a-custom-role"></a>사용자 지정 역할 수정
-사용자 지정 역할을 만들 때와 유사하게 PSRoleDefinitionObject 또는 JSON 템플릿을 사용하여 기존 사용자 지정 역할을 수정할 수 있습니다.
+비슷한 toocreating 사용자 지정 역할을 PSRoleDefinitionObject hello 또는 JSON 템플릿을 사용 하 여 기존 사용자 지정 역할을 수정할 수 있습니다.
 
 ### <a name="modify-role-with-psroledefinitionobject"></a>PSRoleDefinitionObject를 사용하여 역할 수정
-사용자 지정 역할을 수정하려면 먼저 `Get-AzureRmRoleDefinition` 명령을 사용하여 역할 정의를 검색합니다. 그런 다음 역할 정의를 원하는 대로 변경합니다. 마지막으로 `Set-AzureRmRoleDefinition` 명령을 사용하여 수정한 역할 정의를 저장합니다.
+먼저, 사용 하 여 hello toomodify 사용자 지정 역할 `Get-AzureRmRoleDefinition` 명령 tooretrieve hello 역할 정의 합니다. 둘째, 변경 필요한 hello toohello 역할 정의 합니다. 마지막으로 hello를 사용 하 여 `Set-AzureRmRoleDefinition` 명령 toosave hello 역할 정의 수정 합니다.
 
-다음 예제에서는 *Virtual Machine Operator* 사용자 지정 역할에 `Microsoft.Insights/diagnosticSettings/*` 작업을 추가합니다.
+hello 다음 예제에서는 추가 hello `Microsoft.Insights/diagnosticSettings/*` 작업 toohello *가상 컴퓨터 연산자* 사용자 지정 역할입니다.
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Operator"
@@ -207,7 +207,7 @@ Set-AzureRmRoleDefinition -Role $role
 
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-1.png)
 
-다음 예제에서는 *Virtual Machine Operator* 사용자 지정 역할의 할당 가능한 범위에 Azure 구독을 추가합니다.
+hello 다음 예제에서는 추가의 hello는 Azure 구독 toohello 할당 가능한 범위 *가상 컴퓨터 연산자* 사용자 지정 역할입니다.
 
 ```
 Get-AzureRmSubscription - SubscriptionName Production3
@@ -220,14 +220,14 @@ Set-AzureRmRoleDefinition -Role $role
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
 
 ### <a name="modify-role-with-json-template"></a>JSON 템플릿을 사용하여 역할 수정
-이전 JSON 템플릿을 통해 기존 사용자 지정 역할을 손쉽게 수정하여 작업을 추가 또는 제거할 수 있습니다. 다음 예에 표시된 것처럼 JSON 템플릿을 업데이트하고 네트워킹에 대한 읽기 작업을 추가합니다. 템플릿에 나열된 정의는 기존 정의에 점증적으로 적용되지 않습니다. 즉, 템플릿에 지정한 것과 똑같이 역할이 표시됩니다. 또한 Id 필드를 역할의 ID로 업데이트해야 합니다. 이 값을 잘 모르는 경우 `Get-AzureRmRoleDefinition` cmdlet을 사용하여 이 정보를 가져올 수 있습니다.
+Hello 이전 JSON 템플릿을 사용 하는 기존 사용자 지정 역할 tooadd 수정 또는 제거 작업을 쉽게 있습니다. Hello JSON 템플릿을 업데이트 하 고 hello 다음 예제와 같이 hello 네트워킹에 대 한 읽기 작업을 추가 합니다. hello 서식 파일에 나열 하는 hello 정의 누적 적용 된 tooan 기존 정의 의미 hello 서식 파일에서 지정한 대로 정확 하 게 해당 hello 역할이 표시 되지 않습니다. Hello 역할의 hello ID 인 tooupdate hello Id 필드를 해야합니다. Hello 모를 경우이 값은 무엇을 사용할 수 있습니다 `Get-AzureRmRoleDefinition` cmdlet tooget이이 정보입니다.
 
 ```
 {
   "Name": "Custom Role 1",
   "Id": "acce7ded-2559-449d-bcd5-e9604e50bad1",
   "IsCustom": true,
-  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Description": "Allows for read access tooAzure storage and compute resources and access toosupport",
   "Actions": [
     "Microsoft.Compute/*/read",
     "Microsoft.Storage/*/read",
@@ -243,15 +243,15 @@ Set-AzureRmRoleDefinition -Role $role
 }
 ```
 
-기존 역할을 업데이트하려면 다음 PowerShell 명령을 실행합니다.
+tooupdate hello 기존 역할을 hello 다음 PowerShell 명령을 실행 합니다.
 ```
 Set-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
 ```
 
 ## <a name="delete-a-custom-role"></a>사용자 지정 역할 삭제
-사용자 지정 역할을 삭제하려면 `Remove-AzureRmRoleDefinition` 명령을 사용합니다.
+사용자 지정 역할 toodelete hello를 사용 하 여 `Remove-AzureRmRoleDefinition` 명령입니다.
 
-다음 예제에서는 *Virtual Machine Operator* 사용자 지정 역할을 제거합니다.
+hello 다음 예제에서는 제거 hello *가상 컴퓨터 연산자* 사용자 지정 역할입니다.
 
 ```
 Get-AzureRmRoleDefinition "Virtual Machine Operator"
@@ -262,9 +262,9 @@ Get-AzureRmRoleDefinition "Virtual Machine Operator" | Remove-AzureRmRoleDefinit
 ![RBAC PowerShell - Remove-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/4-remove-azurermroledefinition.png)
 
 ## <a name="list-custom-roles"></a>사용자 지정 역할 나열
-범위에서 할당할 수 있는 역할을 나열하려면 `Get-AzureRmRoleDefinition` 명령을 사용합니다.
+toolist hello 역할 할당에 범위를 사용할 수 있는 hello를 사용 하 여 `Get-AzureRmRoleDefinition` 명령입니다.
 
-다음 예제에서는 선택한 구독에 할당할 수 있는 모든 역할을 나열합니다.
+다음 예에서는 hello hello 선택한 구독에 할당에 사용할 수 있는 모든 역할을 나열 합니다.
 
 ```
 Get-AzureRmRoleDefinition | FT Name, IsCustom
@@ -272,7 +272,7 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition-1.png)
 
-다음 예제에서는 *Virtual Machine Operator* 사용자 지정 역할을 *Production4* 구독에서 사용할 수 없습니다. 이 구독이 해당 역할의 **AssignableScopes**에 없기 때문입니다.
+다음 예제는 hello에서 hello *가상 컴퓨터 연산자* 사용자 지정 역할 hello에서는 사용할 수 없습니다. *Production4* 구독 hello에서 해당 구독에  **AssignableScopes** hello 역할의 합니다.
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 스크린샷](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition2.png)
 

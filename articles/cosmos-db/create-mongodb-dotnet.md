@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: .NET 및 MongoDB API에서 웹앱 빌드 | Microsoft Docs"
-description: "Azure Cosmos DB MongoDB API에 연결 및 쿼리하는 데 사용할 수 있는 .NET 코드 샘플을 제시합니다."
+title: "Azure Cosmos DB:.net 웹 앱을 빌드하고 MongoDB API hello | Microsoft Docs"
+description: "Tooconnect tooand 쿼리를 사용 하면.NET 코드 예제는 hello Azure Cosmos DB MongoDB API를 표시."
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,21 +15,21 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 2d30bec75d701b1fd55355d1e139350b6d828c9a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c85cc47f772a19aaa7181611b75a8acaedbc4c42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-mongodb-api-web-app-with-net-and-the-azure-portal"></a>Azure Cosmos DB: .NET 및 Azure Portal에서 MongoDB API 웹앱 빌드
+# <a name="azure-cosmos-db-build-a-mongodb-api-web-app-with-net-and-hello-azure-portal"></a>Azure Cosmos DB:.net MongoDB API 웹 앱을 빌드하고 hello Azure 포털
 
-Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. Azure Cosmos DB의 핵심인 전역 배포 및 수평적 크기 조정 기능의 이점을 활용하여 문서, 키/값 및 그래프 데이터베이스를 빠르게 만들고 쿼리할 수 있습니다. 
+Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. 신속 하 게 만들기 및 문서, 키/값 및 hello 글로벌 배포 및 수평 확장이 기능 Cosmos DB Azure의 hello 핵심에에서 활용 중 일부는 그래프 데이터베이스를 쿼리할 수 있습니다. 
 
-이 빠른 시작에서는 Azure Portal을 사용하여 Azure Cosmos DB 계정, 문서 데이터베이스 및 컬렉션을 만드는 방법을 보여 줍니다. 그런 다음, [MongoDB .NET 드라이버](https://docs.mongodb.com/ecosystem/drivers/csharp/)에서 작성한 작업 목록 웹앱을 빌드 및 배포합니다. 
+이 빠른 시작 toocreate Azure Cosmos DB 계정, 문서 데이터베이스 및 컬렉션 사용 하 여 Azure 포털을 hello 방법을 보여 줍니다. 그런 다음 빌드하고 hello에 작성 하는 작업 목록 웹 앱을 배포할 [MongoDB.NET 드라이버](https://docs.mongodb.com/ecosystem/drivers/csharp/)합니다. 
 
 ## <a name="prerequisites"></a>필수 조건
 
-Visual Studio 2017이 아직 설치되지 않은 경우 **체험판** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)을 다운로드하고 사용할 수 있습니다. Visual Studio를 설정하는 동안 **Azure 개발**을 사용할 수 있는지 확인합니다.
+설치 된 Visual Studio 2017 없는 경우 다운로드 하 고 hello를 사용 하 여 수 **무료** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)합니다. 사용할 수 있는지 확인 **Azure 개발** hello Visual Studio 설정 중입니다.
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 <a id="create-account"></a>
@@ -37,25 +37,25 @@ Visual Studio 2017이 아직 설치되지 않은 경우 **체험판** [Visual St
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount-mongodb.md)]
 
-## <a name="clone-the-sample-application"></a>샘플 응용 프로그램 복제
+## <a name="clone-hello-sample-application"></a>Hello 샘플 응용 프로그램 복제
 
-이제 GitHub에서 MongoDB API 앱을 복제하고 연결 문자열을 설정한 다음 실행해 보겠습니다. 프로그래밍 방식으로 데이터를 사용하여 얼마나 쉽게 작업할 수 있는지 알게 될 것입니다. 
+이제 github에서 복제는 MongoDB API 앱 hello 연결 문자열을 설정 하 고 실행 하겠습니다. 얼마나 쉬운지 데이터로 toowork 프로그래밍 방식으로 표시 됩니다. 
 
-1. git bash와 같은 git 터미널 창을 열고 `cd`를 수행하여 작업 디렉터리로 이동합니다.  
+1. 예: git bash git 터미널 윈도우를 열고 및 `cd` tooa 작업 디렉터리입니다.  
 
-2. 다음 명령을 실행하여 샘플 리포지토리를 복제합니다. 
+2. 다음 명령은 tooclone hello 샘플 리포지토리 hello를 실행 합니다. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-mongodb-dotnet-getting-started.git
     ```
 
-3. 그런 다음 Visual Studio에서 솔루션을 엽니다. 
+3. 그런 다음 Visual Studio에서 hello 솔루션 파일을 엽니다. 
 
-## <a name="review-the-code"></a>코드 검토
+## <a name="review-hello-code"></a>Hello 코드 검토
 
-앱에서 어떤 상황이 발생하고 있는지 빠르게 살펴보겠습니다. **DAL** 디렉터리에서 **Dal.cs** 파일을 열어 보면 이들 코드 줄이 Azure Cosmos DB 리소스를 만드는 것을 알 수 있습니다. 
+Hello 앱에서 일어나는 빠르게 검토를 만들어 보겠습니다. 열기 hello **Dal.cs** hello 파일 **DAL** directory를 다음 코드이 줄을 만든다고 hello Azure Cosmos DB 리소스를 찾을 수 있습니다. 
 
-* Mongo 클라이언트를 초기화합니다.
+* Hello Mongo 클라이언트를 초기화 합니다.
 
     ```cs
         MongoClientSettings settings = new MongoClientSettings();
@@ -75,7 +75,7 @@ Visual Studio 2017이 아직 설치되지 않은 경우 **체험판** [Visual St
         MongoClient client = new MongoClient(settings);
     ```
 
-* 데이터베이스 및 컬렉션을 검색합니다.
+* Hello 데이터베이스 및 hello 컬렉션을 검색 합니다.
 
     ```cs
     private string dbName = "Tasks";
@@ -93,47 +93,47 @@ Visual Studio 2017이 아직 설치되지 않은 경우 **체험판** [Visual St
 
 ## <a name="update-your-connection-string"></a>연결 문자열 업데이트
 
-이제 Azure Portal로 다시 이동하여 연결 문자열 정보를 가져와서 앱에 복사합니다.
+이제 돌아가서 toohello Azure 포털 tooget 연결 문자열 정보를 hello 앱에 복사 합니다.
 
-1. [Azure Portal](http://portal.azure.com/)의 Azure Cosmos DB 계정에서 왼쪽 탐색 영역의 **연결 문자열**을 클릭한 다음 **읽기-쓰기 키**를 클릭합니다. 다음 단계에서 화면의 오른쪽에 있는 복사 단추를 사용하여 사용자, 암호 및 호스트를 Dal.cs 파일에 복사합니다.
+1. Hello에 [Azure 포털](http://portal.azure.com/), 프로그램 Azure Cosmos DB에에서 account, 왼쪽 탐색 hello 클릭 **연결 문자열**, 클릭 하 고 **읽기-쓰기 키**합니다. Hello 다음 단계에서 hello Dal.cs 파일로 hello hello 화면 toocopy hello 사용자 이름 오른쪽에 hello 복사 단추, 암호 및 호스트를 사용 합니다.
 
-2. **DAL** 디렉터리에서 **Dal.cs** 파일을 엽니다. 
+2. 열기 hello **Dal.cs** hello에 대 한 파일 **DAL** 디렉터리입니다. 
 
-3. 포털에서 복사 단추를 사용하여 **사용자 이름** 값을 복사하고 **Dal.cs** 파일의 **사용자 이름** 값으로 만듭니다. 
+3. 복사 프로그램 **사용자 이름** hello 포털 (hello 복사 단추 사용)에서 값을 하 게 hello 값 hello **사용자 이름** 에 프로그램 **Dal.cs** 파일입니다. 
 
-4. 그 다음, 포털에서 사용자의 **호스트** 값을 복사하고 **Dal.cs** 파일의 **호스트** 값으로 만듭니다. 
+4. 다음 복사 프로그램 **호스트** hello 포털에서 값을 하 게 hello 값 hello **호스트** 에 프로그램 **Dal.cs** 파일입니다. 
 
-5. 마지막으로, 포털에서 사용자의 **암호** 값을 복사하고 **Dal.cs** 파일의 **암호** 값으로 만듭니다. 
+5. 마지막 복사 프로그램 **암호** hello 포털에서 값을 하 게 hello 값 hello **암호** 에 프로그램 **Dal.cs** 파일입니다. 
 
-이제 Azure Cosmos DB와 통신하는 데 필요한 모든 정보로 앱이 업데이트되었습니다. 
+이제 앱을 업데이트 한 toocommunicate Azure Cosmos DB와 함께 필요한 모든 hello 정보 인 합니다. 
     
-## <a name="run-the-web-app"></a>웹앱 실행
+## <a name="run-hello-web-app"></a>Hello 웹 앱 실행
 
-1. Visual Studio의 **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **NuGet 패키지 관리**를 클릭합니다. 
+1. Visual Studio에서 마우스 오른쪽 단추로 클릭 hello 프로젝트에 대해 **솔루션 탐색기** 클릭 하 고 **NuGet 패키지 관리**합니다. 
 
-2. NuGet **찾아보기** 상자에 *MongoDB.Driver*를 입력합니다.
+2. Hello NuGet에서에서 **찾아보기** 상자에서 입력 *MongoDB.Driver*합니다.
 
-3. 결과에서 **MongoDB.Driver** 라이브러리를 설치합니다. 그러면 MongoDB.Driver 패키지 뿐만 아니라 모든 종속성도 설치됩니다.
+3. Hello 결과 통해 설치 hello **MongoDB.Driver** 라이브러리입니다. Hello MongoDB.Driver 패키지 뿐만 아니라 모든 종속성을 설치합니다.
 
-4. CTRL+F5를 눌러 응용 프로그램을 실행합니다. 앱이 브라우저에 표시됩니다. 
+4. CTRL + f 5를 클릭 toorun hello 응용 프로그램입니다. 앱이 브라우저에 표시됩니다. 
 
-5. 브라우저에서 **만들기**를 클릭하고 작업 목록 앱에서 몇 가지 새 작업을 만듭니다.
+5. 클릭 **만들기** 에 브라우저 hello 하 고 작업 목록 앱에서 몇 가지 새 작업을 만듭니다.
 
-## <a name="review-slas-in-the-azure-portal"></a>Azure Portal에서 SLA 검토
+## <a name="review-slas-in-hello-azure-portal"></a>Sla hello Azure 포털에서에서 검토 하 고
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>리소스 정리
 
-이 앱을 계속 사용하지 않으려면 Azure Portal에서 다음 단계에 따라 이 빠른 시작에서 만든 리소스를 모두 삭제합니다.
+것 toocontinue toouse이 응용이 프로그램을 만들이 빠른 시작 하 여 hello Azure 포털에서에서 단계를 수행 하는 hello로 리소스를 모두 삭제:
 
-1. Azure Portal의 왼쪽 메뉴에서 **리소스 그룹**을 클릭한 다음 만든 리소스의 이름을 클릭합니다. 
-2. 리소스 그룹 페이지에서 **삭제**를 클릭하고 텍스트 상자에서 삭제할 리소스의 이름을 입력한 다음 **삭제**를 클릭합니다.
+1. Hello Azure 포털에서에서 왼쪽 메뉴 hello에서에서 클릭 **리소스 그룹** 만든 hello 리소스의 hello 이름을 클릭 하 고 있습니다. 
+2. 리소스 그룹 페이지에서 클릭 **삭제**hello 텍스트 상자에 hello 리소스 toodelete의 hello 이름을 입력 한 다음 클릭 **삭제**합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 빠른 시작에서 Azure Cosmos DB 계정을 만들고, MongoDB의 API를 사용하여 웹앱을 실행하는 방법을 알아보았습니다. 이제 사용자의 Cosmos DB 계정에 추가 데이터를 가져올 수 있습니다. 
+이 퀵 스타트의 어떻게 toocreate Azure Cosmos DB 계정 및 사용 하 여 웹 응용 프로그램 실행 hello API MongoDB에 대 한 배웠습니다. 이제 tooyour Cosmos DB 계정 추가 데이터를 가져올 수 있습니다. 
 
 > [!div class="nextstepaction"]
-> [MongoDB API용 Azure Cosmos DB로 데이터 가져오기](mongodb-migrate.md)
+> [Hello MongoDB API에 대 한 Azure Cosmos DB로 데이터 가져오기](mongodb-migrate.md)
 

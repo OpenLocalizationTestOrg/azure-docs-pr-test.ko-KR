@@ -1,6 +1,6 @@
 ---
-title: "내 WebJob 프로젝트(Visual Studio Azure 저장소 연결 서비스)의 변경 내용 | Microsoft Docs"
-description: "Visual Studio 연결 서비스를 사용하여 저장소 계정에 연결한 후 Azure WebJob 프로젝트의 변경 내용에 대해 설명합니다."
+title: "aaaWhat 발생 toomy WebJob 프로젝트 (Visual Studio Azure 저장소 서비스를 연결 하는 데 사용)? | Microsoft Docs"
+description: "연결 된 서비스를 Visual Studio를 사용 하 여 tooa 저장소 계정을 연결 후 Azure WebJob 프로젝트의 내용에 대해 설명"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 3b28ddeadc87937941d60b16fae817e59a220b22
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7735f49b1e7ec8dda30d1262d7ce65454604b610
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-webjob-project-visual-studio-azure-storage-connected-service"></a>내 WebJob 프로젝트(Visual Studio Azure 저장소 연결 서비스)의 변경 내용
+# <a name="what-happened-toomy-webjob-project-visual-studio-azure-storage-connected-service"></a>어떤 발생 했습니다 toomy WebJob 프로젝트 (Visual Studio Azure 저장소 서비스를 연결 하는 데 사용)?
 ## <a name="references-added"></a>참조 추가됨
-Azure Storage NuGet 패키지가 Visual Studio 프로젝트에 추가 또는 업데이트되었습니다.  
-이 패키지는 다음.NET 참조를 추가합니다.
+hello Azure 저장소 NuGet 패키지에는 Visual Studio 프로젝트에서 업데이트 tooor를 추가 되었습니다.  
+이 패키지는 hello 다음.NET 참조를 추가 합니다.
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Azure Storage NuGet 패키지가 Visual Studio 프로젝트에 추가 또는 업
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>추가된 Azure 저장소에 대한 연결 문자열
-프로젝트의 App.config 파일에서 **AzureWebJobsStorage** 및 **AzureWebJobsDashboard** 항목이 선택한 저장소 계정의 연결 문자열과 키로 업데이트되었습니다.
+Hello 프로젝트의 App.config 파일에서 hello **AzureWebJobsStorage** 및 **AzureWebJobsDashboard** hello 선택한 저장소 계정 연결 문자열 및 키와 함께 항목이 업데이트 되었습니다.
 
 자세한 내용은 [Azure WebJob 설명서 리소스](http://go.microsoft.com/fwlink/?linkid=390226)를 참조하세요.
 

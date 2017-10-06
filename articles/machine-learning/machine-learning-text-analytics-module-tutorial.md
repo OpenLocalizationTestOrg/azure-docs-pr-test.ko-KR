@@ -1,6 +1,6 @@
 ---
-title: "Azure Machine Learning 스튜디오에서 텍스트 분석 모델 만들기 | Microsoft Docs"
-description: "텍스트 전처리, N-Gram 또는 특성 해시를 위한 모듈을 사용하여 Azure 기계 학습 스튜디오에서 텍스트 분석 모델을 만드는 방법"
+title: "Azure 기계 학습 스튜디오에서 aaaCreate 텍스트 분석 모델 | Microsoft Docs"
+description: "텍스트 전처리, N 그램 또는 기능 해시 모듈을 사용 하 여 Azure 기계 학습 스튜디오에서 toocreate 텍스트 분석을 모델링 하는 방법"
 services: machine-learning
 documentationcenter: 
 author: rastala
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: roastala
-ms.openlocfilehash: 342e81e2497d292ca730bea59e03182d316ffec3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e3799f37ba54bb2ec8815ecf5ed34e145ffb20e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-text-analytics-models-in-azure-machine-learning-studio"></a>Azure 기계 학습 스튜디오에서 텍스트 분석 모델 만들기
-Azure 기계 학습을 사용하여 텍스트 분석 모델을 빌드하고 작동할 수 있습니다. 예를 들어 이러한 모델은 문서 분류 또는 정서 분석 문제를 해결하는 데 유용할 수 있습니다.
+Azure 기계 학습 toobuild를 사용할 수 있으며 텍스트 분석 모델을 운용 있습니다. 예를 들어 이러한 모델은 문서 분류 또는 정서 분석 문제를 해결하는 데 유용할 수 있습니다.
 
 텍스트 분석 실험에서는 일반적으로 다음을 수행합니다.
 
 1. 텍스트 데이터 집합 정리 및 전처리
 2. 전처리된 텍스트에서 숫자 특성 벡터 추출
 3. 분류 또는 회귀 모델 학습
-4. 모델 점수 매기기 및 유효성 검사
-5. 모델을 프로덕션에 배포
+4. 점수와 hello 모델 유효성 검사
+5. Hello 모델 tooproduction 배포
 
-이 자습서에서는 Amazon 도서 리뷰 데이터 집합을 사용하여 정서 분석을 진행하면서 이러한 단계를 배우게 됩니다(연구 논문 “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification”(저자: John Blitzer, Mark Dredze 및 Fernando Pereira), Association of Computational Linguistics(ACL), 2007) 참조). 이 데이터 집합은 리뷰 점수(1-2 또는 4-5) 및 자유 형식 텍스트로 구성됩니다. 그 목표는 리뷰 점수: 낮음(1-2) 또는 높음(4-5)를 예측하는 것입니다.
+이 자습서에서는 Amazon 도서 리뷰 데이터 집합을 사용하여 정서 분석을 진행하면서 이러한 단계를 배우게 됩니다(연구 논문 “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification”(저자: John Blitzer, Mark Dredze 및 Fernando Pereira), Association of Computational Linguistics(ACL), 2007) 참조). 이 데이터 집합은 리뷰 점수(1-2 또는 4-5) 및 자유 형식 텍스트로 구성됩니다. hello ´ ֲ toopredict hello 검토 점수: 낮은 (1-2) 또는 high (4-5).
 
 Cortana Intelligence Gallery에서 이 자습서에 나오는 실험을 찾을 수 있습니다.
 
@@ -40,49 +40,49 @@ Cortana Intelligence Gallery에서 이 자습서에 나오는 실험을 찾을 �
 [도서 리뷰 예측 - 예측 실험](https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-Predictive-Experiment-1)
 
 ## <a name="step-1-clean-and-preprocess-text-dataset"></a>1단계: 텍스트 데이터 집합 정리 및 전처리
-리뷰 점수를 범주별 하위 및 상위 버킷으로 나누어 문제를 2클래스 분류로 형식화함으로써 실험을 시작합니다. [메타데이터 편집](https://msdn.microsoft.com/library/azure/dn905986.aspx) 및 [범주 값 그룹화](https://msdn.microsoft.com/library/azure/dn906014.aspx) 모듈을 사용합니다.
+2 클래스 분류로의 범주는 낮은 임계값과 높은 버킷 tooformulate hello 문제가 hello 검토 점수를 분할 하 여 hello 실험을 시작 합니다. [메타데이터 편집](https://msdn.microsoft.com/library/azure/dn905986.aspx) 및 [범주 값 그룹화](https://msdn.microsoft.com/library/azure/dn906014.aspx) 모듈을 사용합니다.
 
 ![레이블 만들기](./media/machine-learning-text-analytics-module-tutorial/create-label.png)
 
-그런 다음 [텍스트 전처리](https://msdn.microsoft.com/library/azure/mt762915.aspx) 모듈을 사용하여 텍스트를 정리합니다. 이렇게 정리를 수행하면 데이터 집합의 노이즈가 감소하고, 가장 중요 한 기능을 찾는 데 도움이 되며, 최종 모델의 정확도가 높아집니다. 중지 단어("the" 또는 "a"와 같은 일반 단어)와 숫자, 특수 문자, 중복된 문자, 전자 메일 주소 및 URL을 제거합니다. 또한 전처리된 텍스트에서 텍스트를 소문자로 변환하고, 단어를 분류하고, 문장 경계를 검색한 후 "|||" 기호로 표시합니다.
+그런 다음 사용 하 여 hello 텍스트 정리 우리 [전처리 텍스트](https://msdn.microsoft.com/library/azure/mt762915.aspx) 모듈입니다. 정리 하는 hello hello 데이터 집합의 hello 노이즈, 개선 하 고 hello 가장 중요 한 기능을 찾는 데 도움이 hello hello 최종 모델의 정확도 합니다. 중지 단어("the" 또는 "a"와 같은 일반 단어)와 숫자, 특수 문자, 중복된 문자, 전자 메일 주소 및 URL을 제거합니다. 또한 hello 텍스트 toolowercase 변환, hello 단어 lemmatize 하 고 다음으로 표시 된 문장 경계 검색 "| | |" 전처리 된 텍스트의 기호입니다.
 
 ![텍스트 전처리](./media/machine-learning-text-analytics-module-tutorial/preprocess-text.png)
 
-중지 단어의 사용자 지정 목록을 사용하려면 어떻게 해야 할까요? 선택적 입력으로 전달할 수 있습니다. 사용자 지정 C# 구문 정규식을 사용하여 부분 문자열을 바꾸고 음성 부분별로 단어(명사, 동사 또는 형용사)를 제거할 수도 있습니다.
+경우에 어떻게 toouse 중지 단어의 사용자 지정 목록 시겠습니까? 선택적 입력으로 전달할 수 있습니다. 또한 사용자 지정 C# 구문 정규식 tooreplace 부분 문자열을 사용 하 고 음성 부분에서 단어를 제거할 수 있습니다: 명사, 동사 나 형용사.
 
-전처리가 완료된 후에는 데이터를 학습 데이터 및 테스트 집합으로 분할합니다.
+완료 되 면 hello 전처리 hello 데이터 기차를 분할 및 테스트 집합 했습니다.
 
 ## <a name="step-2-extract-numeric-feature-vectors-from-pre-processed-text"></a>2단계: 전처리된 텍스트에서 숫자 특성 벡터 추출
-텍스트 데이터에 대한 모델을 작성하려면 일반적으로 자유 형식 텍스트를 숫자 특성 벡터로 변환해야 합니다. 이 예제에서는 [텍스트에서 N-Gram 특성 추출](https://msdn.microsoft.com/library/azure/mt762916.aspx) 모듈을 사용하여 텍스트 데이터를 이러한 형식으로 변환합니다. 이 모듈은 공백으로 구분된 단어 열을 가져온 후 데이터 집합에 나타나는 단어 사전 또는 단어 N-Gram을 계산합니다. 그런 다음 각 단어 또는 N-Gram이 이러한 레코드에 나오는 횟수를 계산하고 그 개수에서 특성 벡터를 만듭니다. 이 자습서에서는 N-Gram 크기를 2로 설정했으므로 특성 벡터에는 단일 단어와 연속된 두 단어의 조합이 포함됩니다.
+텍스트 데이터에 대 한 모델 toobuild 일반적으로 필요를 숫자 기능 벡터로 tooconvert 자유 형식 텍스트입니다. 이 예에서는 사용 [추출 N 그램 텍스트 기능](https://msdn.microsoft.com/library/azure/mt762916.aspx) 모듈 tootransform hello 텍스트 데이터 toosuch 형식입니다. 이 모듈은 공백으로 구분된 단어 열을 가져온 후 데이터 집합에 나타나는 단어 사전 또는 단어 N-Gram을 계산합니다. 그런 다음 각 단어 또는 N-Gram이 이러한 레코드에 나오는 횟수를 계산하고 그 개수에서 특성 벡터를 만듭니다. 이 자습서에서는 우리의 기능 벡터는 단일 단어 및 두 개의 후속 단어 조합을 하므로 N 그램 크기 too2를 설정 합니다.
 
 ![N-Gram 추출](./media/machine-learning-text-analytics-module-tutorial/extract-ngrams.png)
 
-N-Gram 개수에 TF*IDF(용어 빈도와 문서 빈도 반비례) 가중치를 적용합니다. 이 접근 방법은 단일 레코드에는 자주 나타나지만 전체 데이터 집합에서는 드물게 발생하는 단어의 가중치를 추가합니다. 다른 옵션으로는 이진, TF 및 그래프 가중이 포함됩니다.
+TF 적용할 * tooN 그램 가중치 IDF (용어 빈도 역 문서 빈도)를 계산 합니다. 이 방법을 사용 하는 단일 레코드에 자주 나타나지만 있지만 hello 전체 데이터 집합에서 드물게의 가중치를 추가 합니다. 다른 옵션으로는 이진, TF 및 그래프 가중이 포함됩니다.
 
-이러한 텍스트 특성은 종종 차원이 매우 높습니다. 예를 들어 모음에 100,000개의 고유 단어가 있는 경우 특성 공간은 100,000개 차원을 가지고, N-Gram이 사용되는 경우 더 큰 공간을 갖습니다. N-Gram 특성 추출 모듈은 차원을 줄일 수 있는 옵션 집합을 제공합니다. 짧거나 긴 단어 또는 너무 드물거나 너무 자주 나오는 단어를 제외하도록 선택하여 유의한 예측 값을 얻을 수 있습니다. 이 자습서에서는 5개보다 적은 레코드 또는 레코드의 80% 이상에서 나타나는 N-Gram을 제외합니다.
+이러한 텍스트 특성은 종종 차원이 매우 높습니다. 예를 들어 모음에 100,000개의 고유 단어가 있는 경우 특성 공간은 100,000개 차원을 가지고, N-Gram이 사용되는 경우 더 큰 공간을 갖습니다. hello N 그램 기능 추출 모듈 옵션 tooreduce hello 차원 집합을 제공합니다. Tooexclude 단어는 짧은 또는 또는 일반적이 지 않은 너무 길거나 너무 자주 toohave 중요 한 예측 값을 선택할 수 있습니다. 이 자습서에서는 5개보다 적은 레코드 또는 레코드의 80% 이상에서 나타나는 N-Gram을 제외합니다.
 
-또한 특성 선택을 사용하여 예측 대상과 가장 상호 연관성이 높은 특성만 선택할 수 있습니다. 카이제곱 특성 선택을 사용하여 1000개의 특성을 선택합니다. N-Gram 추출 모듈의 올바른 출력을 클릭하여 선택한 단어의 어휘 또는 N-Gram을 확인할 수 있습니다.
+또한 예측 대상을 사용 하 여 기능 선택 tooselect 가장 hello 있는 기능만 상관 관계를 사용할 수 있습니다. 카이 제곱 기능 선택 tooselect 1000 기능 사용합니다. 추출 N 그램 모듈의 hello 오른쪽 출력을 클릭 하 여 선택한 단어 또는 N 그램의 hello 어휘를 볼 수 있습니다.
 
-N-Gram 특성 추출을 사용하는 대신, 특성 해시 모듈을 사용할 수 있습니다. 그러나 [특성 해시](https://msdn.microsoft.com/library/azure/dn906018.aspx) 는 기본 제공 특성 선택 기능이나 TF* IDF 가중 기능이 없습니다.
+N 그램 기능 추출에 다른 접근 방식은 toousing으로 기능 해시 모듈을 사용할 수 있습니다. 그러나 [특성 해시](https://msdn.microsoft.com/library/azure/dn906018.aspx) 는 기본 제공 특성 선택 기능이나 TF* IDF 가중 기능이 없습니다.
 
 ## <a name="step-3-train-classification-or-regression-model"></a>3단계: 분류 또는 회귀 모델 학습
-이제 텍스트가 숫자 특성 열로 변환되었습니다. 데이터 집합에는 여전히 이전 단계의 문자열 열이 포함되어 있으므로 데이터 집합의 열 선택을 사용하여 제외시킵니다.
+이제 hello 텍스트 변형 된 toonumeric 기능 열 되었습니다. 데이터 집합 tooexclude에서 열 선택를 사용 하도록 여전히 이전 단계에서 문자열 열이 포함 hello 데이터 집합에 있습니다.
 
-[2클래스 로지스틱 회귀](https://msdn.microsoft.com/library/azure/dn905994.aspx) 를 사용하여 목표: 높음 또는 낮음 리뷰 점수를 예측합니다. 현재 텍스트 분석 문제가 일반 분류 문제로 변환되었습니다. Azure 기계 학습에서 사용할 수 있는 도구를 사용하여 모델을 개선할 수 있습니다. 예를 들어 다양한 분류자로 실험하여 얼마나 정확한 결과를 제공하는지 확인하거나, 하이퍼 매개 변수 조정을 사용하여 정확도를 향상시킬 수 있습니다.
+사용 하 여이 [2 클래스 로지스틱 회귀](https://msdn.microsoft.com/library/azure/dn905994.aspx) toopredict 목표: 높거나 낮은 검토 점수입니다. 이 시점에서 hello 텍스트 분석 문제 일반 분류 문제의 경우에 변환 된 합니다. Azure 기계 학습 tooimprove hello 모델에서 사용할 수 있는 hello 도구를 사용할 수 있습니다. 예를 들어 다른 분류자 toofind에 게 제공 하거나 hyperparameter 튜닝 tooimprove hello 정확도 사용 하 여 이러한 정확도 결과 테스트할 수 있습니다.
 
 ![학습 및 점수 매기기](./media/machine-learning-text-analytics-module-tutorial/scoring-text.png)
 
-## <a name="step-4-score-and-validate-the-model"></a>4단계: 모델 점수 매기기 및 유효성 검사
-학습된 모델의 유효성은 어떻게 검사하나요? 테스트 데이터 집합을 기준으로 점수를 매기고 정확도를 평가합니다. 그러나 모델은 학습 데이터 집합에서 N-Gram의 어휘와 해당 가중치를 학습했습니다. 따라서 어휘를 새로 만드는 대신 테스트 데이터에서 특성을 추출할 때 해당 용어와 가중치를 사용해야 합니다. 따라서 N-Gram 특성 추출 모듈을 실험의 점수 매기기 분기에 추가하고, 학습 분기의 출력 어휘를 연결하고, 어휘 모드를 읽기 전용으로 설정합니다. 또한 최소값을 1개 인스턴스로, 최대값을 100%로 설정하여 빈도별 N-Gram 필터링을 사용하지 않도록 설정한 후 특성 선택을 해제합니다.
+## <a name="step-4-score-and-validate-hello-model"></a>4 단계: 점수와 hello 모델 유효성 검사
+Hello 학습 된 모델 유효성을 검사 하는 방법을? Hello 테스트 데이터 집합에 대해 점수 하 고 hello 정확도 평가 합니다. 그러나 hello 모델 N 그램 및 hello 학습 데이터 집합에서 해당 가중치의 hello 어휘를 배웠습니다. 따라서 새로 toocreating hello 어휘 해도 상관 없다면 테스트 데이터에서 기능으로 추출 하는 경우 해당 용어와 이러한 가중치 사용 해야 했습니다. 따라서에서는 추가 N 그램 기능 추출 모듈 toohello hello 실험 분기 점수 매기기, 교육 분기에서 hello 출력 어휘를 연결 및 tooread 전용 hello 어휘 모드를 설정 합니다. 또한 hello N 그램의 진동수에 의해 hello 최소 too1 인스턴스 설정 및 필터링 최대 too100 %를 사용 하지 않도록 설정 하 고 hello 기능 선택이 해제 합니다.
 
-테스트 데이터의 텍스트 열이 숫자 특성 열로 변환된 후에는 학습 분기에서와 마찬가지로 이전 단계의 문자열 열을 제외합니다. 그런 다음 모델 점수 매기기 모듈을 사용하여 예측을 하고, 모델 평가 모듈을 사용하여 정확도를 평가합니다.
+Hello 된 데이터는 테스트에서 텍스트 열 변환 된 후 toonumeric 기능 열을 hello 문자열 학습 분기에서와 같이 이전 단계에서 열을 제외 합니다. 그런 다음 모델 점수 매기기 모듈 toomake 예측 및 평가 모델 모듈 tooevaluate hello 정확도 사용합니다.
 
-## <a name="step-5-deploy-the-model-to-production"></a>5단계: 모델을 프로덕션에 배포
-모델을 프로덕션에 배포할 준비가 거의 되었습니다. 모델을 웹 서비스로 배포하면 자유 형식 텍스트 문자열을 입력으로 받은 후 예측 "높음" 또는 "낮음"을 반환합니다. 학습한 N-Gram 어휘를 사용하여 텍스트를 특성으로 변환하고, 학습된 회귀 모델을 사용하여 해당 특성에서 예측을 수행합니다. 
+## <a name="step-5-deploy-hello-model-tooproduction"></a>5 단계: hello 모델 tooproduction 배포
+hello 모델은 배포 된 것 같군요 toobe tooproduction입니다. 모델을 웹 서비스로 배포하면 자유 형식 텍스트 문자열을 입력으로 받은 후 예측 "높음" 또는 "낮음"을 반환합니다. 배운 hello N 그램 어휘 tootransform hello 텍스트 toofeatures을 사용 하 고 로지스틱 회귀 모델 toomake 해당 기능에서 예측을 학습 합니다. 
 
-예측 실험을 설정하려면 먼저, N-Gram 어휘를 데이터 집합으로 저장하고 실험의 학습 분기에서 학습된 로지스틱 회귀 모델을 저장합니다. 그런 다음 “다른 이름으로 저장”을 사용하여 실험을 저장한 후 예측 실험에 대한 실험 그래프를 만듭니다. 실험에서 데이터 분할 모듈 및 학습 분기를 제거합니다. 그런 후 앞서 저장한 N-Gram 어휘와 모델을 N-Gram 특성 추출 및 모델 점수 매기기 모듈에 각각 연결합니다. 또한 모델 평가 모듈을 제거합니다.
+hello 예측 실험을 tooset를 먼저 저장 hello N 그램 어휘, 데이터 집합으로 및 hello hello 실험 hello 교육 분기에서 로지스틱 회귀 모델을 학습 합니다. 그런 다음 "다른 이름으로 저장" toocreate를 사용 하 여 hello 실험 예측 실험에 대 한 실험 그래프를 저장 합니다. Hello 실험에서 hello 분할 데이터 모듈과 hello 교육 분기 제거합니다. 다음 연결 hello 이전에 저장 된 N 그램 어휘 및 모델 tooExtract N 그램 기능 및 모델 점수 매기기 모듈 각각. 또한 hello 모델 평가 모듈을 제거 합니다.
 
-전처리 텍스트 모듈 앞에 데이터 집합의 열 선택 모듈을 삽입하여 레이블 열을 제거하고, 점수 매기기 모듈에서 "데이터 집합에 점수 열 추가" 옵션을 선택 취소합니다. 이렇게 하면 웹 서비스는 예측하려고 하는 레이블을 요청하지 않고, 응답에 입력 특성을 에코하지 않습니다.
+전처리 텍스트 모듈 tooremove hello 레이블 열을 하기 전에 데이터 집합 모듈에서 열 선택 삽입 하 고 점수 모듈에서 "추가 점수 열 toodataset" 옵션 선택을 취소 합니다. 이런 방식으로 hello 웹 서비스는 hello 레이블 toopredict를 시도 하 고 hello 입력된 기능에 대 한 응답에서을 표시 하지 않습니다를 요청 하지 않습니다.
 
 ![예측 실험](./media/machine-learning-text-analytics-module-tutorial/predictive-text.png)
 

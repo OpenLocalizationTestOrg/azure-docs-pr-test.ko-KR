@@ -1,6 +1,6 @@
 ---
-title: "Linux용 사용자 이름 선택 | Microsoft Docs"
-description: "Azure에서 Linux 가상 컴퓨터의 사용자 이름을 선택하는 방법에 대해 알아봅니다."
+title: "aaaSelecting Linux에 대 한 사용자 이름 | Microsoft Docs"
+description: "Azure에서 Linux 가상 컴퓨터에 대 한 tooselect 사용자 이름을 지정 방법에 대해 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 1874d72e5f88816036667932371ff28704d186c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c65e2ac46f40bb8c9d74cccbaf248a070c0fa6cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="selecting-user-names-for-linux-on-azure"></a>Azure에서 Linux용 사용자 이름 선택
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Azure에서 Linux 가상 컴퓨터를 프로비전할 때는 나중에 VM 로그인에 사용할 수 있는 루트가 아닌 사용자의 이름을 지정해야 합니다. 새 사용자의 이름을 선택할 수 있습니다. 또는 Azure 클래식 포털을 통해 프로비전하는 경우 기본 이름인 "azureuser"를 사용할 수 있습니다. 
+Azure에서 Linux 가상 컴퓨터를 프로 비전 할 때 toolog hello VM에 나중에 사용할 수 있는 루트가 아닌 사용자의 hello 이름을 지정 해야 합니다. Hello 새 사용자의 hello 이름을 선택할 수 있습니다 또는 경우 Azure 클래식 포털 hello를 통한 프로비저닝 그대로 hello 기본 이름 "azureuser"입니다.
 
-대부분의 경우 이러한 사용자는 기본 이미지에 존재하지 않으며 프로비전 프로세스 중에 생성됩니다. 사용자가 이미 기본 VM 이미지에 존재하는 경우 Azure Linux 에이전트가 VM을 만들 때 사용자가 지정한 정보를 토대로 해당 사용자에 대한 암호 및/또는 SSH 키를 구성합니다.
+대부분의 경우에서이 사용자 hello 기본 이미지에 존재 하지 않습니다 및 hello를 프로 비전 프로세스 중 생성 됩니다. Hello 사용자에 있으면 기본 VM 이미지 hello 다음 hello Azure Linux 에이전트 단순히 hello 암호 및/또는 hello VM을 만들 때 지정한 hello 정보에 따라 해당 사용자에 대 한 SSH 키를 구성 합니다.
 
-**그러나**Linux에서는 사용해서는 안 되는 일련의 사용자 이름을 정의합니다. UID가 0-99인 사용자로 정의된 기존 시스템 사용자를 사용하여 Linux VM을 프로비전하려고 하면 프로비전 프로세스가 **실패** 합니다. 전형적인 예로는 UID가 0인 `root` 사용자가 있습니다.
+**그러나**Linux에서는 사용해서는 안 되는 일련의 사용자 이름을 정의합니다. 프로세스는 프로 비전 하는 hello **실패** tooprovision UID 0에서 99 있는 사용자로 정의 된 기존 시스템 사용자를 사용 하 여 Linux VM을 시도 합니다. 일반적인 예로 hello `root` UID 0에는 사용자입니다.
 
 * 참고 항목: [Linux 표준 기반 - 사용자 ID 범위](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
-다음은 Azure에서 Linux 가상 컴퓨터를 프로비전할 때 사용하지 말아야 할 Ubuntu 및 CentOS에 대한 일반적인 기본 제공 시스템 사용자 목록입니다. 이 목록은 예로 든 것일 뿐입니다. 선택한 사용자 이름이 기존 시스템 사용자와 충돌하지 않는지 확인하기 위해 배포에 대한 설명서를 참조하세요.
+hello 다음은 일반적인 기본 제공 시스템에 대 한 사용자 CentOS 및을 사용 하면 안 Azure에서 Linux 가상 컴퓨터를 프로 비전 할 때 Ubuntu 목록입니다. 이 목록은 예 시일 뿐에 toohello 설명서를 참조 배포 tooensure 해당 hello 사용자 이름을 기존 시스템 사용자와 충돌 하지 않는지를 선택 합니다.
 
 ## <a name="centos"></a>CentOS
 * abrt

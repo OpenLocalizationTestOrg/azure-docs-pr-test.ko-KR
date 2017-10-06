@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement용 Android SDK 통합"
-description: "Android 앱에서 Azure Mobile Engagement SDK를 통합하는 방법에 대해 설명합니다"
+title: "Azure Mobile Engagement에 대 한 SDK 통합 aaaAndroid"
+description: "설명 방법을 Android 앱에서 Azure Mobile Engagement SDK toointegrate"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 35935e911f1f17989beb71978396c6d1b7d601d6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0c63bfaf673abbda7ea498390f8282c43e2fb8df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="android-sdk-integration-for-azure-mobile-engagement"></a>Azure Mobile Engagement용 Android SDK 통합
 > [!div class="op_single_selector"]
@@ -29,7 +29,7 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-이 문서는 Azure Mobile Engagement Android SDK에 사용 가능한 모든 통합 및 구성 옵션에 대해 설명합니다.
+이 문서에서는 일부 hello 통합 및 구성 옵션을 사용할 Azure Mobile Engagement Android SDK에 대 한 설명입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
@@ -43,27 +43,27 @@ ms.lasthandoff: 08/03/2017
 3. [고급 구성 옵션](mobile-engagement-android-advanced-configuration.md)
 
 ### <a name="notifications"></a>알림:
-[Android 앱에서 도달률(알림)을 통합하는 방법](mobile-engagement-android-integrate-engagement-reach.md)
+[어떻게 Android 앱에서 toointegrate Reach (알림)](mobile-engagement-android-integrate-engagement-reach.md)
 
-1. Google Cloud Messaging (GCM): [GCM과 Mobile Engagement를 통합하는 방법](mobile-engagement-android-gcm-integrate.md)
-2. Amazon Device Messaging (ADM): [ADM과 Mobile Engagement를 통합하는 방법](mobile-engagement-android-adm-integrate.md)
+1. Google 클라우드 메시징 (GCM): [어떻게 tooIntegrate Mobile Engagement와 GCM](mobile-engagement-android-gcm-integrate.md)
+2. Amazon 장치 메시징 (ADM): [어떻게 tooIntegrate Mobile Engagement와 ADM](mobile-engagement-android-adm-integrate.md)
 
 ### <a name="tag-plan-implementation"></a>태그 계획 구현:
-[Android 앱에서 고급 Mobile Engagement API 태깅을 사용하는 방법](mobile-engagement-android-use-engagement-api.md)
+[어떻게 toouse hello 고급 Mobile Engagement Android 앱의 API를 태그 지정](mobile-engagement-android-use-engagement-api.md)
 
 ## <a name="release-notes"></a>릴리스 정보
 
 ### <a name="431-07172017"></a>4.3.1 (07/17/2017)
-* `EngagementApplication` 클래스에서도 `EngagementAgentUtils.isInDedicatedEngagementProcess`를 호출할 때 드물게 발생할 수 있는 충돌을 해결합니다.
+* 호출할 때 거의 발생할 수 있는 충돌을 해결 `EngagementAgentUtils.isInDedicatedEngagementProcess`, hello에서 사용 되는 `EngagementApplication` 클래스입니다.
 
 ### <a name="430-06272017"></a>4.3.0 (06/27/2017)
-* Android 8 지원(이전 버전의 SDK는 Android 8에서 작동하지 않음)
+* Android 8 지원 (이전 버전의 hello SDK는 Android 8에서 작동 하지 것입니다).
 * 지원 라이브러리에 대한 종속성이 더 이상 없습니다.
 * `EngagementFragmentActivity` 클래스를 제거합니다.
-* Android 8의 [백그라운드 실행 제한](https://developer.android.com/preview/features/background.html)으로 인해 사용자가 장치를 조작할 때까지 백그라운드의 로그가 지연될 수 있습니다. 장치가 절전 모드인 경우 이로 인해 푸시 캠페인 **배달됨** 및 **시스템 알림 표시됨** 통계가 지연될 수 있습니다(알림은 계속 표시되며, 문제없이 실시간으로 울리고 진동함).
-* [백그라운드 위치 제한](https://developer.android.com/preview/features/background-location-limits.html)으로 인해 Android 8에서는 백그라운드의 실시간 위치가 자주 업데이트되지 않습니다.
+* 기한 너무[배경 실행 제한](https://developer.android.com/preview/features/background.html) Android 8에서 백그라운드로 로그 지연 될 수 있습니다 hello 사용자 hello 장치 상호 작용할 때까지, 푸시 캠페인에 영향을 미치게 됩니다이 **Delivered** 및 **시스템 알림 표시** 통계 hello 장치 중지 된 경우 지연 되 고 (hello 알림이 표시 됩니다, 링 되며 문제 없이 실시간으로 진동).
+* 기한 너무[배경 위치 제한](https://developer.android.com/preview/features/background-location-limits.html), Android 8 hello 실시간으로 위치 백그라운드에서 자주 업데이트 되지 것입니다.
 
-모든 버전에 대한 내용은 [전체 릴리스 정보](mobile-engagement-android-release-notes.md)를 참조하세요.
+모든 버전에 대 한 참조 hello [릴리스 정보 완료](mobile-engagement-android-release-notes.md)합니다.
 
 ## <a name="upgrade-procedures"></a>업그레이드 절차
 이전 버전의 SDK를 응용 프로그램에 이미 통합한 경우에는 [업그레이드 절차](mobile-engagement-android-upgrade-procedure.md)를 참조하세요.

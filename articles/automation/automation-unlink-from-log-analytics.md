@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics에서 Azure Automation 계정 연결 해제 | Microsoft Docs"
-description: "이 문서에서는 OMS 작업 영역에서 Azure Automation 계정 연결을 해제하는 방법을 대략적으로 설명합니다."
+title: "Azure 자동화 계정 로그 분석에서 aaaUnlink | Microsoft Docs"
+description: "이 문서는 어떻게 toounlink Azure 자동화는 OMS 작업 영역에서을 계정에 대 한 개요를 제공 합니다."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: how-to-article
 ms.date: 02/07/2017
 ms.author: magoedte
-ms.openlocfilehash: 56b09c2cfc14813b5efcb364c580787fec1bf639
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ec0745673f6a872538d33023a7a1d2bb1d18ec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-unlink-your-automation-account-from-a-log-analytics-workspace"></a>Log Analytics에서 Automation 계정 연결을 해제하는 방법
+# <a name="how-toounlink-your-automation-account-from-a-log-analytics-workspace"></a>어떻게 toounlink 자동화는 로그 분석 작업 영역에서을 계정합니다
 
-Azure Automation은 Log Analytics와 통합되어 모든 Automation 계정의 runbook 작업에 대한 사전 모니터링을 지원할 뿐만 아니라, Log Analytics에 의존하는 다음 솔루션을 가져올 때도 필요합니다.
+Azure 자동화 로그 분석 toonot만 지원 사전 모니터링 runbook 작업의 자동화 계정의 모든와 통합 되어 뿐만 아니라 필요한 hello 다음 로그 분석에 의존 하는 솔루션을 가져올 때:
 
 * [업데이트 관리](../operations-management-suite/oms-solution-update-management.md)
 * [변경 내용 추적](../log-analytics/log-analytics-change-tracking.md)
 * [작업이 없는 동안 VM 시작/중지](automation-solution-vm-management.md)
  
-Automation 계정을 Log Analytics에 더 이상 통합하지 않기로 결정할 경우 Azure Portal에서 직접 계정 연결을 해제할 수 있습니다.  계속하기 전에 앞에서 언급한 솔루션을 제거해야 합니다. 그러지 않으면이 프로세스가 계속 진행되지 않습니다.  가져온 특정 솔루션에 대한 항목을 검토하여 제거에 필요한 단계를 이해하세요.  
+중단 toointegrate 자동화 계정 로그 분석을 결정 한 경우 hello Azure 포털에서 직접 계정 연결을 끊을 수 없습니다.  계속 진행 하기 전에 앞에서 언급 한 tooremove hello 솔루션을 만들어야 합니다, 그리고 그렇지 않으면 진행에서이 프로세스를 시작 하지 것입니다.  필요한 toounderstand hello 단계 가져온 hello 특정 솔루션에 대 한 검토 hello 항목 tooremove 것입니다.  
 
-이러한 솔루션을 제거한 후에 다음 단계에 따라 Automation 계정 연결을 해제할 수 있습니다.
+이러한 솔루션을 제거한 후에 다음 단계 toounlink hello 자동화 계정으로 수행할 수 있습니다.
 
 ## <a name="unlink-workspace"></a>작업 영역 연결 해제
 
-1. Azure Portal에서 Automation 계정을 열고 Automation 계정 블레이드의 계정 블레이드에서 **작업 영역 연결 해제**를 선택합니다.<br><br> ![작업 영역 연결 해제 옵션](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
-2. 작업 영역 연결 해제 블레이드에서 **작업 영역 연결 해제**를 클릭합니다.<br><br> ![작업 영역 연결 해제 블레이드](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png).<br><br>  계속할지 묻는 메시지가 나타납니다.<br><br>
-3. Azure Automation이 Log Analytics에서 계정 연결을 끊으려고 하는 동안 메뉴의 **알림**에서 진행 상태를 추적할 수 있습니다.
+1. Hello Azure 포털에서에서 자동화 계정을 열고 hello 자동화 계정 블레이드에서 hello 계정 블레이드 선택 **작업 공간 연결을 해제**합니다.<br><br> ![작업 영역 연결 해제 옵션](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
+2. Hello 연결 끊기 작업 영역 블레이드 클릭 **worksapce 연결 끊기**합니다.<br><br> ![작업 영역 연결 해제 블레이드](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png).<br><br>  원하는 tooproceed 확인 메시지가 나타납니다.<br><br>
+3. Azure 자동화는 toounlink hello 계정 로그 분석 작업 영역을 가져오려고 하는 동안에 아래 hello 진행률을 추적할 수 **알림** hello 메뉴에서 합니다.
 
-업데이트 관리 솔루션을 사용한 경우 솔루션을 제거한 후 더 이상 필요하지 않은 다음 항목을 제거할 수도 있습니다.
+Hello 업데이트 관리 솔루션을 사용 하는 경우 필요에 따라 좋습니다 tooremove hello 다음 hello 솔루션을 제거한 후 더 이상 필요 없는 항목입니다.
 
-* 업데이트 일정.  각 일정에는 사용자가 만든 업데이트 배포와 일치하는 이름이 지정됩니다.
+* 업데이트 일정.  각각 만든 hello 업데이트 배포를 일치 하는 이름을 갖습니다)
 
-* 솔루션에 대해 생성된 Hybrid Worker 그룹.  각 그룹에는 machine1.contoso.com_9ceb8108-26 c 9-4051-b6b3-227600d715c8과 비슷하게 이름이 지정됩니다.
+* 하이브리드 작업자 그룹 hello 솔루션에 대 한 생성 합니다.  각각 지정 됩니다. 마찬가지로 너무 machine1.contoso.com_9ceb8108-26 c 9-4051-b6b3-227600d715c8).
 
-작업이 없는 동안 VM 시작/중지를 사용한 경우 솔루션을 제거한 후 더 이상 필요하지 않은 다음 항목을 제거할 수도 있습니다.
+업무 시간 이후 솔루션 중 hello 시작/중지 Vm에 사용한, 필요에 따라 경우 tooremove hello 다음 hello 솔루션을 제거한 후 더 이상 필요 없는 항목입니다.
 
 * VM runbook 시작 및 중지 일정 
 * VM runbook 시작 및 중지
@@ -52,4 +52,4 @@ Automation 계정을 Log Analytics에 더 이상 통합하지 않기로 결정�
 
 ## <a name="next-steps"></a>다음 단계
 
-OMS Log Analytics와 통합되도록 Automation 계정을 다시 구성하려면 [Automation에서 Log Analytics로 작업 상태 및 작업 스트림 전달(OMS)](automation-manage-send-joblogs-log-analytics.md)을 참조하세요. 
+tooreconfigure OMS 로그 분석을 하 여 자동화 계정 toointegrate 참조 [자동화 tooLog 분석 (OMS)에서 작업 상태 및 작업 스트림 전달](automation-manage-send-joblogs-log-analytics.md)합니다. 

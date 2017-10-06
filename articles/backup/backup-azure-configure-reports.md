@@ -1,5 +1,5 @@
 ---
-title: "Azure Backup에 대한 보고서 구성"
+title: "Azure 백업에 대 한 aaaConfigure 보고서"
 description: "이 문서에서는 Recovery Services 자격 증명 모음을 사용하여 Azure Backup에 대한 Power BI 보고서를 구성하는 방법을 설명합니다."
 services: backup
 documentationcenter: 
@@ -15,73 +15,73 @@ ms.workload: storage-backup-recovery
 ms.date: 07/24/2017
 ms.author: pajosh
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4629665e6fbe26c26eb45af7509de338367c4e18
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 503a240b36ea999e0fea434b6a50d26ddf7677bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-azure-backup-reports"></a>Azure Backup 보고서 구성
-이 문서에서는 Recovery Services 자격 증명 모음을 사용하여 Azure Backup에 대한 보고서를 구성하고 Power BI를 사용하여 이러한 보고서에 액세스하는 단계를 설명합니다. 이러한 단계를 수행한 후 Power BI로 직접 이동하여 모든 보고서를 확인하고, 보고서를 사용자 지정 및 생성할 수 있습니다. 
+이 문서 발언 단계 tooconfigure 보고서에 대 한 복구 서비스 자격 증명 모음 및 tooaccess를 사용 하 여 Azure 백업에 대 한 Power BI를 사용 하 여 이러한 보고서. 다음이 단계를 수행한 후 있습니다 수 직접 tooPower BI tooview 모든 hello 보고서를 이동, 사용자 지정 보고서를 만듭니다. 
 
 ## <a name="supported-scenarios"></a>지원되는 시나리오
-1. Azure Backup 보고서는 Azure Recovery Services 에이전트를 사용한 클라우드로 파일/폴더 백업 및 Azure 가상 컴퓨터 백업에 대해 지원됩니다.
+1. Azure 백업 보고서는 Azure 가상 컴퓨터 백업 및 파일/폴더 백업 toocloud Azure 복구 서비스 에이전트를 사용 하 여에 대 한 지원 됩니다.
 2. Azure SQL, DPM 및 Azure Backup Server에 대한 보고서는 현재 지원되지 않습니다.
-3. 각 자격 증명 모음에 대해 동일한 저장소 계정이 구성된 경우 여러 자격 증명 모음과 구독의 보고서를 볼 수 있습니다. 선택한 저장소 계정이 Recovery Services 자격 증명 모음과 동일한 지역에 있어야 합니다.
-4. Power BI에서 보고서에 대해 예약된 새로 고침 빈도는 24시간입니다. Power BI에서 보고서의 임시 새로 고침을 수행할 수도 있으며, 이 경우 고객 저장소 계정의 최신 데이터가 보고서 렌더링에 사용됩니다. 
+3. 볼 수 있습니다 보고서 및 구독, 자격 증명 모음에서 동일한 저장소 계정이 각 hello 자격 증명 모음에 대해 구성 된 경우. 선택한 저장소 계정 hello에 있어야 합니다. 동일한 지역 복구 서비스 자격 증명 모음입니다.
+4. hello 보고서에 대 한 예정 된 새로 고침 빈도 hello에는 Power BI에서 24 시간입니다. Power bi에서 보고서를 렌더링 하기 위한 고객 저장소 계정에서 최신 데이터를 사례을 사용 하는 hello 보고서의 임시 새로 고침을 수행할 수도 있습니다. 
 
 ## <a name="prerequisites"></a>필수 조건
-1. [Azure 저장소 계정](../storage/common/storage-create-storage-account.md#create-a-storage-account)을 만들어 보고서에 대해 구성합니다. 이 저장소 계정은 보고서 관련 데이터를 저장하는 데 사용됩니다.
-2. [Power BI 계정을 만들어](https://powerbi.microsoft.com/landing/signin/) Power BI 포털에서 보고서를 확인, 사용자 지정 및 생성합니다.
-3. 아직 등록되지 않은 경우 리소스 공급자 **Microsoft.insights**를 저장소 계정 구독 및 Recovery Services 자격 증명 모음 구독에 등록하여 보고 데이터가 저장소 계정으로 흐르도록 합니다. 동일한 작업을 수행하려면 Azure Portal > 구독 > 리소스 공급자로 이동한 다음 이 공급자를 선택해서 등록해야 합니다. 
+1. 만들기는 [Azure 저장소 계정](../storage/common/storage-create-storage-account.md#create-a-storage-account) tooconfigure에 대해 보고 합니다. 이 저장소 계정은 보고서 관련 데이터를 저장하는 데 사용됩니다.
+2. [Power BI 계정을 만듭니다](https://powerbi.microsoft.com/landing/signin/) tooview, 사용자 지정 하 고 Power BI 포털을 사용 하 여 보고서를 만듭니다.
+3. Hello 리소스 공급자 등록이 **Microsoft.insights** 등록 되어 있지 이미 저장소 계정의 hello 구독 및 복구 서비스의 hello 구독과 자격 증명 모음에 tooenable tooflow toohello 데이터를 보고 합니다. 저장소 계정입니다. 동일한 toodo hello, tooAzure 포털 야 합니다. > 구독 > 리소스 공급자와 공급자 tooregister이에 대 한 확인 것입니다. 
 
 ## <a name="configure-storage-account-for-reports"></a>보고서에 대한 저장소 계정 구성
-Azure Portal을 사용하여 Recovery Services 자격 증명 모음에 대한 저장소 계정을 구성하려면 다음 단계를 따르세요. 이는 일회성 구성이며 저장소 계정이 구성되면 Power BI로 직접 이동하여 콘텐츠 팩을 확인하고 보고서를 활용할 수 있습니다.
-1. 이미 Recovery Services 자격 증명 모음이 열려 있으면 다음 단계로 진행합니다. 복구 서비스 자격 증명 모음이 열려 있지 않지만 Azure 포털에 있는 경우 허브 메뉴에서 **찾아보기**를 클릭합니다.
+Azure 포털을 사용 하 여 복구 서비스 자격 증명 모음에 대 한 단계 tooconfigure hello 저장소 계정을 다음 hello를 사용 합니다. 이것은 일회성 구성 하 고 저장소 계정이 구성 되 면 보고서 tooview 콘텐츠 팩 및 활용 하 여 직접 tooPower BI 이동할 수 있습니다.
+1. 복구 서비스 자격 증명 모음 열고 이미 있는 경우 toonext 단계를 진행 합니다. 복구 서비스 자격 증명 모음 열기를 갖지 않는 hello hello 허브 메뉴에서 Azure 포털에 있지만 클릭 **찾아보기**합니다.
 
-   * 리소스 목록에서 **복구 서비스**를 입력합니다.
-   * 입력을 시작하면 입력한 내용을 바탕으로 목록이 필터링됩니다. **복구 서비스 자격 증명 모음**이 표시되면 클릭합니다.
+   * Hello 리소스 목록에 입력 **복구 서비스**합니다.
+   * 입력을 시작할 때 hello 사용자 입력에 따라 필터를 나열 합니다. **복구 서비스 자격 증명 모음**이 표시되면 클릭합니다.
 
       ![복구 서비스 자격 증명 모음 만들기 1단계](./media/backup-azure-vms-encryption/browse-to-rs-vaults.png) <br/>
 
-     복구 서비스 자격 증명 모음의 목록이 표시됩니다. 복구 서비스 자격 증명 모음의 목록에서 자격 증명 모음을 선택합니다.
+     복구 서비스 자격 증명 모음 hello 목록이 표시 됩니다. 복구 서비스 자격 증명 모음 hello 목록에서 자격 증명 모음을 선택 합니다.
 
-     선택한 자격 증명 모음 대시보드가 열립니다.
-2. 자격 증명 모음 아래에 나타나는 항목 목록에서 모니터링 및 보고서 섹션 아래의 **백업 보고서**를 클릭하여 보고서에 대한 저장소 계정을 구성합니다.
+     hello 선택한 자격 증명 모음 대시보드를 엽니다.
+2. Hello 목록에서 항목의 자격 증명 모음 아래에 나타나는 클릭 **백업 보고서** 모니터링 및 보고서 섹션 tooconfigure hello 저장소 계정에서 보고서에 대 한 합니다.
 
       ![백업 보고서 메뉴 항목 선택 2단계](./media/backup-azure-configure-reports/backup-reports-settings.PNG)
-3. 백업 보고서 블레이드에서 **구성** 단추를 클릭합니다. 고객 저장소 계정에 데이터를 푸시하는 데 사용되는 Azure Application Insights 블레이드가 열립니다.
+3. Hello 백업 보고서 블레이드에서 클릭 **구성** 단추입니다. Toocustomer 저장소 계정의 데이터를 밀어 넣는 데 사용 되는 hello Azure Application Insights 블레이드가 열립니다.
 
       ![저장소 계정 구성 3단계](./media/backup-azure-configure-reports/configure-storage-account.PNG)
-4. 상태 토글 단추를 **켜기**로 설정하고 **저장소 계정에 보관** 확인란을 선택하여 보고 데이터가 저장소 계정으로 흐르기 시작하도록 합니다.
+4. 너무 hello 상태 토글 단추가 설정**에** 선택 **보관 저장소 계정 tooa** 확인란을 선택 하 여 데이터 흐름 toohello 저장소 계정에 시작할 수를 보고 합니다.
 
       ![진단 사용 4단계](./media/backup-azure-configure-reports/set-status-on.png)
-5. 저장소 계정 선택을 클릭하고 목록에서 보고 데이터를 저장하는 데 사용할 저장소 계정을 선택한 다음 **확인**을 클릭합니다.
+5. 저장소 계정 선택 및 보고 데이터와 클릭을 저장 하는 것에 대 한 hello 목록에서 선택 hello 저장소 계정을 클릭 **확인**합니다.
 
       ![저장소 계정 선택 5단계](./media/backup-azure-configure-reports/select-storage-account.png)
-6. **AzureBackupReport** 확인란을 선택하고 슬라이더를 이동하여 이 보고 데이터의 보존 기간을 선택합니다. 저장소 계정의 보고 데이터는 이 슬라이더를 사용하여 선택한 기간 동안 유지됩니다.
+6. 선택 **AzureBackupReport** 확인란을 선택 하 고도 hello 슬라이더 tooselect 보존 기간이에 대 한 이동 데이터를 보고 합니다. Hello 저장소 계정의 데이터를에서 보고이 슬라이더를 사용 하 여 선택 하는 hello 기간 동안 보관 됩니다.
 
       ![저장소 계정 선택 6단계](./media/backup-azure-configure-reports/save-configuration.png)
-7. 모든 변경 내용을 검토하고 위 그림에 표시된, 맨 위의 **저장** 단추를 클릭합니다. 이 작업을 수행하면 모든 변경 내용이 저장되며, 이제 보고 데이터를 저장하는 데 사용할 저장소 계정이 구성되었습니다.
+7. 모든 hello 변경 내용을 검토 하 고 클릭 **저장** 위의 hello 그림에 나와 있는 것 처럼 위쪽에 단추입니다. 이 작업을 수행하면 모든 변경 내용이 저장되며, 이제 보고 데이터를 저장하는 데 사용할 저장소 계정이 구성되었습니다.
 
 > [!NOTE]
-> 저장소 계정을 저장하여 보고서를 구성한 후에는 초기 데이터 푸시가 완료될 때까지 **24시간 동안 대기**해야 합니다. 이 시간 이후에만 Power BI에서 Azure Backup 콘텐츠 팩을 가져와야 합니다. 자세한 내용은 [FAQ 섹션](#frequently-asked-questions)을 참조하세요. 
+> 저장소 계정을 저장 하 여 보고서를 구성 하 고 나면 해야 **24 시간 동안 대기** 푸시 toocomplete 초기 데이터에 대 한 합니다. 이 시간 이후에만 Power BI에서 Azure Backup 콘텐츠 팩을 가져와야 합니다. 자세한 내용은 [FAQ 섹션](#frequently-asked-questions)을 참조하세요. 
 >
 >
 
 ## <a name="view-reports-in-power-bi"></a>Power BI에서 보고서 보기 
-Recovery Services 자격 증명 모음을 사용하여 보고서에 대한 저장소 계정을 구성한 후 보고 데이터가 흐름을 시작하기까지 약 24시간 정도 걸립니다. 저장소 계정을 설정하고 24시간 후에 Power BI에서 보고서를 보려면 다음 단계를 따르세요.
-1. Power BI에 [로그인](https://powerbi.microsoft.com/landing/signin/)합니다.
-2. **데이터 가져오기**를 클릭한 다음 콘텐츠 팩 라이브러리의 **서비스**에서 가져오기를 클릭합니다. [콘텐츠 팩에 액세스하려면 Power BI 설명서](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-packs-services/)에 있는 단계를 따르세요.
+복구 서비스 자격 증명 모음을 사용 하 여 보고서에 대 한 저장소 계정을 구성 하는 후에 약 24 시간 정도의 흐름에 데이터 toostart 보고용 걸립니다. 저장소 계정 설정의 24 시간 후 사용 하 여 hello 다음 Power BI의 보고서 tooview 단계:
+1. [로그인](https://powerbi.microsoft.com/landing/signin/) tooPower BI 합니다.
+2. **데이터 가져오기**를 클릭한 다음 콘텐츠 팩 라이브러리의 **서비스**에서 가져오기를 클릭합니다. 언급 한 단계를 사용 하 여 [설명서 tooaccess Power BI 콘텐츠 팩](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-packs-services/)합니다.
 
      ![콘텐츠 팩 가져오기](./media/backup-azure-configure-reports/content-pack-import.png)
 3. 검색 창에서 **Azure Backup**을 입력하고 **지금 가져오기**를 클릭합니다.
 
       ![콘텐츠 팩 가져오기](./media/backup-azure-configure-reports/content-pack-get.png)
-4. 위의 5단계에서 구성한 저장소 계정 이름을 입력하고 **다음** 단추를 클릭합니다.
+4. 위의 5 단계에서 구성 된 hello 저장소 계정 이름을 입력 하 고 클릭 **다음** 단추입니다.
 
     ![저장소 계정 이름 입력](./media/backup-azure-configure-reports/content-pack-storage-account-name.png)    
-5. 이 저장소 계정에 대한 저장소 계정 키를 입력합니다. Azure Portal에서 저장소 계정으로 이동하면 [저장소 액세스 키를 확인하고 복사](../storage/common/storage-create-storage-account.md#manage-your-storage-account)할 수 있습니다. 
+5. 이 저장소 계정에 대 한 hello 저장소 계정 키를 입력 합니다. 있습니다 수 [표시 및 저장소 액세스 키를 복사](../storage/common/storage-create-storage-account.md#manage-your-storage-account) Azure 포털에서 저장소 계정의 tooyour 이동 하 여 합니다. 
 
      ![저장소 계정 입력](./media/backup-azure-configure-reports/content-pack-storage-account-key.png) <br/>
      
@@ -89,58 +89,58 @@ Recovery Services 자격 증명 모음을 사용하여 보고서에 대한 저�
 
     ![콘텐츠 팩 가져오기](./media/backup-azure-configure-reports/content-pack-importing-data.png) <br/>
     
-    일정 시간 후에 가져오기가 완료되면 **성공** 알림이 표시됩니다. 저장소 계정에 많은 데이터가 있는 경우 콘텐츠 팩을 가져오는 데 시간이 좀 더 걸릴 수도 있습니다.
+    가져올 일정 시간이 지난 후 **성공** hello 가져오기가 완료 된 후에 알림입니다. Hello 저장소 계정에는 데이터의 많은 있는 경우 거의 긴 tooimport hello 콘텐츠 팩을 걸릴 수 있습니다.
     
     ![콘텐츠 팩 가져오기 성공](./media/backup-azure-configure-reports/content-pack-import-success.png) <br/>
     
-7. 데이터를 성공적으로 가져왔으면 **Azure Backup** 콘텐츠 팩이 탐색 창의 **앱**에 표시됩니다. 이제 목록에 Azure Backup 대시보드, 보고서 및 데이터 집합이 나타나고 새로 가져온 보고서에는 노란색 별이 표시됩니다. 
+7. 데이터를 성공적으로 가져온 후 **Azure 백업** 콘텐츠 팩을 볼 수 있으면 **앱** hello 탐색 창에서. hello 목록 새로 가져온된 보고서 나타내는 노란색 별이 있는 Azure 백업 대시보드, 보고서 및 데이터 집합을 이제 표시 됩니다. 
 
      ![Azure Backup 콘텐츠 팩](./media/backup-azure-configure-reports/content-pack-azure-backup.png) <br/>
      
 8. 대시보드에서 **Azure Backup**을 클릭합니다. 일련의 고정 키 보고서가 표시됩니다.
 
       ![Azure Backup 대시보드](./media/backup-azure-configure-reports/azure-backup-dashboard.png) <br/>
-9. 전체 보고서 집합을 보려면 대시보드에서 아무 보고서나 클릭합니다.
+9. tooview hello 전체 보고서를 집합 hello 대시보드에서 임의의 보고서를 클릭 합니다.
 
       ![Azure Backup 작업 상태](./media/backup-azure-configure-reports/azure-backup-job-health.png) <br/>
-10. 보고서의 각 탭을 클릭하여 해당 영역의 보고서를 확인합니다.
+10. 해당 영역의 hello 보고서 tooview 보고서의 각 탭을 클릭 합니다.
 
       ![Azure Backup 보고서 탭](./media/backup-azure-configure-reports/reports-tab-view.png)
 
 
 ## <a name="frequently-asked-questions"></a>질문과 대답
-1. **보고 데이터가 저장소 계정으로 흐름기 시작했는지 확인하려면 어떻게 하나요?**
+1. **보고 데이터 흐름 toostorage 계정에 시작 된 경우 확인 방법**
     
-    구성된 저장소 계정으로 이동한 다음 컨테이너를 선택할 수 있습니다. 컨테이너에 insights-logs-azurebackupreport에 대한 항목이 있으면 보고 데이터가 흐르기 시작한 것입니다.
+    Toohello 저장소를 이동할 수 있습니다 계정 구성 및 선택 컨테이너입니다. Hello 컨테이너 insights-로그-azurebackupreport에 대 한 항목이 있으면, 보고 데이터가 시작 되었음을 흐름 나타냅니다.
 
-2. **Power BI에서 Azure Backup 콘텐츠 팩 및 저장소 계정으로 데이터 푸시가 수행되는 빈도는 어느 정도인가요?**
+2. **데이터 푸시 toostorage 계정 및 Azure 백업에서 Power BI 콘텐츠 팩의 hello 주파수 이란?**
 
-   0일 사용자의 경우 저장소 계정에 데이터를 푸시하는 데 약 24시간 정도 걸립니다. 이 초기 푸시가 완료된 후에는 아래 그림에 표시된 빈도로 데이터가 새로 고쳐집니다. 
-      * **작업, 경고, 백업 항목, 자격 증명 모음, 보호된 서버 및 정책**과 관련된 데이터는 기록 시 고객 저장소 계정에 푸시됩니다.
-      * **저장소**와 관련된 데이터는 24시간마다 고객 저장소 계정에 푸시됩니다.
+   Day 0 사용자에 대 한 약 24 시간 동안 toopush 데이터 toostorage 계정을 걸립니다. 이 초기 푸시 compelete 되 면 아래 hello 그림에 표시 된 빈도 따라 hello로 데이터가 새로 고쳐집니다. 
+      * 데이터가 너무 관련**작업, 경고, 백업 항목, 자격 증명 모음, 보호 된 서버 및 정책** 으로 toocustomer 저장소 계정 및 기록 되는 경우 푸시됩니다.
+      * 데이터가 너무 관련**저장소** 24 시간 마다 toocustomer 저장소 계정 푸시됩니다.
    
     ![Azure Backup 보고서 데이터 푸시 빈도](./media/backup-azure-configure-reports/reports-data-refresh-cycle.png)
 
-  Power BI에는 [하루에 한 번 예약된 새로 고침](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/#what-can-be-refreshed)이 있습니다. Power BI에서 콘텐츠 팩에 대한 데이터를 수동으로 새로 고칠 수 있습니다.
+  Power BI에는 [하루에 한 번 예약된 새로 고침](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/#what-can-be-refreshed)이 있습니다. Power BI에서 콘텐츠 팩 hello에 대 한 hello 데이터 수동 새로 고침을 수행할 수 있습니다.
 
-3. **보고서를 유지할 수 있는 기간은 어느 정도인가요?** 
+3. **Hello 보고서를 유지할 수는 기간** 
 
-   저장소 계정을 구성하는 동안 저장소 계정의 보고 데이터 보존 기간을 선택할 수 있습니다(위의 보고서에 대한 저장소 계정 구성 섹션에서 6단계 사용). 뿐만 아니라 [Excel에서 보고서를 분석](https://powerbi.microsoft.com/documentation/powerbi-service-analyze-in-excel/)하고 요구에 따라 더 오랜 보존 기간 동안 저장할 수 있습니다. 
+   저장소 계정, 구성 하는 동안 hello 저장소 계정 (위의 보고서 섹션에 대 한 구성 저장소 계정에서 6 단계를 사용)에서 보고 데이터의 보존 기간을 선택할 수 있습니다. 뿐만 아니라 [Excel에서 보고서를 분석](https://powerbi.microsoft.com/documentation/powerbi-service-analyze-in-excel/)하고 요구에 따라 더 오랜 보존 기간 동안 저장할 수 있습니다. 
 
-4. **저장소 계정을 구성하면 보고서에서 내 데이터를 모두 볼 수 있나요?**
+4. **Hello 저장소 계정을 구성한 후 보고서의 내 모든 데이터를 볼 수 있습니까?**
 
-   **"저장소 계정을 구성"**한 후 생성된 모든 데이터는 저장소 계정에 푸시되며 보고서에서 확인할 수 있습니다. 그러나 **진행 중인 작업은 보고를 위해 푸시되지 않습니다**. 작업이 완료되거나 실패하면 보고서에 전송됩니다.
+   모든 이후 생성 된 데이터를 hello **"저장소 계정 구성"** toohello 저장소 계정 밀어넣습니다 및 보고서에서 사용할 수 있습니다. 그러나 **진행 중인 작업은 보고를 위해 푸시되지 않습니다**. Hello 작업 완료 또는 실패를 일단 tooreports를 전송 됩니다.
 
-5. **보고서를 보는 데 사용할 저장소 계정을 이미 구성한 경우 다른 저장소 계정을 사용하도록 구성을 변경할 수 있나요?** 
+5. **이미 hello 저장소 계정 tooview 보고서를 구성 하려면 경우 변경 hello 구성 toouse 다른 저장소 계정** 
 
-   예, 다른 저장소 계정을 가리키도록 구성을 변경할 수 있습니다. Azure Backup 콘텐츠 팩에 연결하는 동안 새로 구성된 저장소 계정을 사용해야 합니다. 또한 다른 저장소 계정이 구성된 후 새 데이터는 이 저장소 계정으로 흐릅니다. 하지만 구성을 변경하기 전의 오래된 데이터는 계속해서 이전 저장소 계정에 유지됩니다.
+   예, hello 구성 toopoint tooa 다른 저장소 계정을 변경할 수 있습니다. TooAzure 백업에 대 한 콘텐츠 팩을 연결 하는 동안 hello 새로 구성 된 저장소 계정을 사용 해야 합니다. 또한 다른 저장소 계정이 구성된 후 새 데이터는 이 저장소 계정으로 흐릅니다. 하지만 hello 구성 변경) (이전 오래 된 데이터는 여전히 hello 이전 저장소 계정에 유지 됩니다.
 
 6. **여러 자격 증명 모음 및 구독의 보고서를 볼 수 있나요?** 
 
-   예, 다양한 자격 증명 모음에 동일한 저장소 계정을 구성하여 자격 증명 모음 간 보고서를 볼 수 있습니다. 여러 구독의 자격 증명 모음에 대해 동일한 저장소 계정을 구성할 수도 있습니다. 그런 다음 Power BI에서 Azure Backup 콘텐츠 팩에 연결하는 동안 이 저장소 계정을 사용하여 보고서를 볼 수 있습니다. 그러나 선택한 저장소 계정이 Recovery Services 자격 증명 모음과 동일한 지역에 있어야 합니다.
+   예, hello를 구성할 수 있습니다 동일한 저장소 계정에서 다양 한 tooview 크로스-자격 증명 모음 보고서 자격 증명 모음입니다. 구성할 수는 또한 구독에서 동일한 저장소 계정 자격 증명 모음에 대 한 hello 합니다. 다음 백업 tooAzure tooview hello Power BI 보고서의 콘텐츠 팩을 연결 하는 동안이 저장소 계정을 사용할 수 있습니다. 하지만 Hello에 hello 저장소 계정을 선택 해야 동일한 지역 복구 서비스 자격 증명 모음입니다.
    
 ## <a name="next-steps"></a>다음 단계
-이제 저장소 계정을 구성하고 Azure Backup 콘텐츠 팩을 가져왔으므로 다음 단계는 이러한 보고서를 사용자 지정하고 보고 데이터 모델을 사용하여 보고서를 만드는 것입니다. 자세한 내용은 다음 문서를 참조하세요.
+이제 hello 저장소 계정 및 Azure 백업 콘텐츠 팩을 가져온된, hello 다음 단계를 사용 하도록 구성한입니다 toocustomize 이러한 보고서 및 데이터 모델 toocreate 보고서를 보고 사용 합니다. Hello 문서에 대 한 자세한 내용은 다음을 참조 하십시오.
 
 * [Azure Backup 보고 데이터 모델 사용](backup-azure-reports-data-model.md)
 * [Power BI에서 보고서 필터링](https://powerbi.microsoft.com/documentation/powerbi-service-about-filters-and-highlighting-in-reports/)

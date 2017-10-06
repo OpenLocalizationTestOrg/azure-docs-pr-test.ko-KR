@@ -16,22 +16,22 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 936134bddad19964f809a17f200ebbeed5aa853c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9cecaaac429165346f7082f1965dc8a21063fe7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="licensing-requirements-for-azure-ad-self-service-password-reset"></a>Azure AD 셀프 서비스 암호 재설정의 라이선스 요구 사항
 
-Azure AD 암호 재설정의 기능을 작동하려면 **조직에서 할당된 하나 이상의 라이선스가 있어야 합니다**. 암호 재설정 환경에서 사용자별 라이선스를 적용하지 않습니다. Microsoft 라이선스 규약을 준수하려면 프리미엄 기능을 사용하는 모든 사용자에게 라이선스를 할당해야 합니다.
+Azure AD 암호 재설정 toofunction 되려면에서 있습니다 **조직에서 할당 된 하나 이상의 라이선스가 있어야**합니다. 에서는 사용자 단위 hello 암호 재설정 환경에서 라이선스를 적용 하지 않습니다. Microsoft 라이선스 계약 toomaintain 규정 준수, 프리미엄 기능을 사용 하는 tooassign 라이선스 tooany 사용자가 필요 합니다.
 
 * **클라우드 사용자만 해당** - Office 365(O365) 유료 SKU 또는 Azure AD Basic
 * **클라우드** 및/또는 **온-프레미스 사용자** - Azure AD Premium P1 또는 P2, EMS(Enterprise Mobility + Security) 또는 SPE(Secure Productive Enterprise)
 
 ## <a name="licenses-required-for-password-writeback"></a>비밀번호 쓰기 저장에 필요한 라이선스
 
-비밀번호 쓰기 저장을 사용하려면 다음 라이선스 중 하나를 테넌트에 할당해야 합니다.
+toouse 암호 쓰기 저장을 있어야 hello 테 넌 트에 할당 된 라이선스를 다음 중 하나입니다.
 
 * Azure AD Premium P1
 * Azure AD Premium P2
@@ -41,9 +41,9 @@ Azure AD 암호 재설정의 기능을 작동하려면 **조직에서 할당된 
 * Secure Productive Enterprise E5
 
 > [!NOTE]
-> 독립 실행형 Office 365 라이선스 계획은 **비밀번호 쓰기 저장을 지원하지 않습니다**. 따라서 이 기능을 작동시키기 위해 이전 계획 중 하나가 필요합니다.
+> 독립 실행형 Office 365 라이선스 계획 **암호 쓰기 저장을 지원 하지 않는** hello 앞에이 기능 toowork에 대 한 계획 중 하나 필요로 하 고 있습니다.
 
-다음 페이지에서는 라이선스 비용을 포함한 추가 정보를 찾을 수 있습니다.
+다음 페이지 hello에서 비용을 포함 하는 추가 라이선스 정보를 확인할 수 있습니다.
 
 * [Azure Active Directory 가격 책정 사이트](https://azure.microsoft.com/pricing/details/active-directory/)
 * [Enterprise Mobility + Security](https://www.microsoft.com/cloud-platform/enterprise-mobility-security)
@@ -51,20 +51,20 @@ Azure AD 암호 재설정의 기능을 작동하려면 **조직에서 할당된 
 
 ## <a name="enable-group-or-user-based-licensing"></a>그룹 또는 사용자 기반 라이선스 사용
 
-이제 Azure AD는 관리자가 사용자 그룹에 대량으로 라이선스를 할당하지 않고 한 번에 하나씩 할당하는 그룹 기반 라이선스를 지원합니다. [라이선스 할당, 확인 및 문제 해결](active-directory-licensing-group-assignment-azure-portal.md#step-1-assign-the-required-licenses)
+Azure AD는 이제 그룹 기반의 라이선스 수 있도록 관리자 tooassign 라이선스 대량 tooa 사용자 그룹에 보다는 한 번에 하나씩 할당을 지원 합니다. [라이선스 할당, 확인 및 문제 해결](active-directory-licensing-group-assignment-azure-portal.md#step-1-assign-the-required-licenses)
 
-일부 Microsoft 서비스는 모든 위치에서 사용할 수 없습니다. 사용자에게 라이선스를 할당하려면 먼저 관리자가 해당 사용자에 대해 “사용 위치” 속성을 지정해야 합니다. 라이선스의 할당은 Azure Portal의 [사용자 > 프로필 > 설정]에서 수행할 수 있습니다. **그룹 라이선스 할당을 사용할 때 사용 위치가 지정되지 않은 사용자는 디렉터리의 위치를 상속합니다.**
+일부 Microsoft 서비스는 모든 위치에서 사용할 수 없습니다. Tooa 사용자 라이선스를 할당할 수 있습니다, 전에 관리자에 게 hello 사용자에 hello "사용 위치" 속성을 지정 해야 합니다. 사용자 라이선스 할당을 수행할 수 있습니다 > 프로필 > hello Azure 포털의에서 설정 섹션입니다. **그룹 라이선스 할당을 사용할 경우 사용 위치를 지정 하지 않고 모든 사용자는 hello 디렉터리의 hello 위치를 상속 합니다.**
 
 ## <a name="next-steps"></a>다음 단계
 
-다음 링크는 Azure AD를 사용한 암호 재설정에 대한 추가 정보를 제공합니다.
+링크를 따라 hello Azure AD를 사용 하 여 다시 설정 하는 암호에 대 한 추가 정보를 제공 합니다.
 
 * [**빠른 시작**](active-directory-passwords-getting-started.md) - Azure AD 셀프 서비스 암호 관리를 사용하여 운영 시작 
-* [**데이터**](active-directory-passwords-data.md) - 암호 관리에 필요한 데이터 및 사용 방식을 이해
-* [**롤아웃**](active-directory-passwords-best-practices.md) - 여기서 제공하는 지침을 사용하여 배포 계획을 세우고 사용자에게 SSPR 배포
-* [**사용자 지정**](active-directory-passwords-customize.md) - 회사 SSPR 경험의 모양과 느낌을 사용자 지정.
+* [**데이터** ](active-directory-passwords-data.md) -hello 필요한 데이터를 이해 하 고 암호 관리에 대 한 사용 방법
+* [**롤아웃** ](active-directory-passwords-best-practices.md) -계획 및 배포 ´ ֿ ´ hello 지침을 사용 하 여 SSPR tooyour 사용자
+* [**사용자 지정** ](active-directory-passwords-customize.md) -hello SSPR 귀사에 대 한 경험의 hello 모양과 느낌을 사용자 지정 합니다.
 * [**보고**](active-directory-passwords-reporting.md) - 사용자가 SSPR 기능에 액세스하는 조건, 시간 및 위치 탐색
-* [**기술 심층 분석**](active-directory-passwords-how-it-works.md) - 작동 방식을 이해하기 위해 심층 분석
-* [**질문과 대답**](active-directory-passwords-faq.md) - 어떤 방식으로? 그 이유는 무엇을? 어디서? 누가? 언제? - 많은 분들이 항상 묻는 질문에 대한 답변입니다.
-* [**문제 해결**](active-directory-passwords-troubleshoot.md) - SSPR의 일반적인 문제 해결 방법 알아보기
+* [**기술 심층 분석** ](active-directory-passwords-how-it-works.md) -이동 hello 커튼 toounderstand 뒤 작동 방법
+* [**질문과 대답**](active-directory-passwords-faq.md) - 어떤 방식으로? 그 이유는 무엇을? 어디서? 누가? 언제? -Tooask 항상 필요한 tooquestions 답변
+* [**문제를 해결** ](active-directory-passwords-troubleshoot.md) -SSPR으로 보면 tooresolve 공통을 발급 하는 방법에 대해 알아봅니다
 

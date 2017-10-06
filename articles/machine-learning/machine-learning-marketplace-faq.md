@@ -1,6 +1,6 @@
 ---
-title: "(사용되지 않음) FAQ: Azure Marketplace에서 Machine Learning 앱 게시 및 사용 | Microsoft Docs"
-description: "(사용되지 않음) Azure Marketplace에서 Machine Learning 앱 게시에 관한 FAQ"
+title: "aaa(deprecated) FAQ-게시 하 고 기계 학습 응용 프로그램을 사용 하 여 Azure 마켓플레이스에서 | Microsoft Docs"
+description: "(사용 되지 않음) Hello Azure Marketplace에서에서 기계 학습 응용 프로그램을 게시 하는 방법에 대 한 질문과 대답"
 services: machine-learning
 documentationcenter: 
 author: bharaths
@@ -16,66 +16,66 @@ ms.date: 01/06/2017
 ms.author: bharaths
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: a4631dfeb2f817b3a3c612a8f6af48398e4f2ab9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: b3ae45dfff211fe9baccaf54faaf360a8309c780
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deprecated-publishing-and-using-machine-learning-apps-in-the-azure-marketplace-faq"></a>(사용되지 않음) Azure Marketplace에서 Machine Learning 앱 게시 및 사용: FAQ
+# <a name="deprecated-publishing-and-using-machine-learning-apps-in-hello-azure-marketplace-faq"></a>(사용 되지 않음) 게시 하 고 기계 학습 응용 프로그램을 사용 하 여 hello Azure Marketplace의에서: FAQ
 
 > [!NOTE]
 > DataMarket 및 Data Services는 종료되며 기존 구독은 2017년 3월 31일부터 종료 및 취소됩니다. 결과적으로,이 문서는 사용되지 않습니다. 
 > 
-> 대안으로, 데이터 과학 커뮤니티를 위하여 [Cortana Intelligence 갤러리](https://gallery.cortanaintelligence.com/)에 Machine Learning 실험을 게시할 수 있습니다. 자세한 내용은 [Cortana Intelligence 갤러리에서 리소스 공유 및 검색](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish)을 참조하십시오.
+> 기계 학습 실험 toohello를 게시할 수 있습니다 [Cortana 인텔리전스 갤러리](https://gallery.cortanaintelligence.com/) hello hello 데이터 과학 커뮤니티의 혜택을 받을 수 있습니다. 자세한 내용은 참조 [공유 hello Cortana Intelligence 갤러리 리소스를 검색 하 고](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish)합니다.
 
 
 ## <a name="questions-about-consuming-from-marketplace"></a>마켓플레이스에서의 사용 관련 질문
-**1. 웹 서비스에 입력한 후에 다음과 같은 오류 메시지가 표시되는 이유는 무엇인가요?**
+**1. 왜 hello 웹 서비스에 대 한 입력을 입력 해도 다음과 같은 오류 메시지가 hello:**
 
-**요청으로 인해 백 엔드 시간 초과 또는 백 엔드 오류가 발생했습니다. 해당 팀에서 이 문제를 조사하고 있습니다. 불편을 드려 죄송합니다. (500)**
+**hello 요청 시간 초과 백 엔드 또는 백 엔드 오류가 발생 했습니다. hello 팀 hello 문제를 조사 합니다. 하는 hello 불편을 드려 죄송 합니다. (500)**
 
-입력 매개 변수가 특정 웹 서비스에 필요한 형식을 준수하지 않은 것일 수 있습니다. 이 웹 서비스의 입력 매개 변수에 대한 올바른 형식 및 제한을 찾으려면 해당 설명서 링크를 참조하세요.
+사용자 입력된 매개 변수가 toohello hello 특정 웹 서비스에 대 한 필요한 형식을 따르지 않을 합니다. 입력된 매개 변수 및이 웹 서비스의 hello 제한 사항에 대 한 toohello 해당 설명서 링크 toofind hello 올바른 형식을 참조 하십시오.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-**2. “이 데이터 집합 탐색” 페이지에 표시된 웹 서비스의 API 링크를 복사하여 다른 브라우저 창에 붙여 넣는 경우 결과에 액세스하는 데 사용해야 하는 자격 증명은 무엇이며, 결과를 보는 방법은 무엇인가요?**
+**2. "이 데이터이 집합 탐색" 페이지 hello 및 tooaccess hello 결과 사용 하 고 어떻게 해야 하는 자격 증명 다른 브라우저 창에 붙여에 나타나는 hello 웹 서비스에 대 한 API hello 링크를 복사 하는 경우 해당 확인할 수 있나요?**
 
-마켓플레이스 계정을 사용자 이름으로 사용하고 기본 계정 키를 암호로 사용해야 합니다. 기본 계정 키는 **이 데이터 집합 탐색** 페이지의 웹 서비스 설명에서 찾을 수 있습니다(**표시** 단추 클릭). 사용 중인 브라우저에 따라 결과가 브라우저에 표시되거나 다운로드할 수 있습니다.
+마켓플레이스 계정 hello 암호와 hello 사용자 이름 및 hello 기본 계정 키로 사용 해야 합니다. hello에 hello 기본 계정 키를 찾을 수 **이 데이터 집합 탐색** hello hello 웹 서비스 설명 페이지 (hello 클릭 **표시** 단추). hello 결과 hello 브라우저에 표시 될 수 있습니다 또는 너무 사용할 수 사용 중인 브라우저에 따라 다운로드 합니다.
 
-**3. 웹 서비스의 “이 데이터 집합 탐색" 페이지에 입력한 후에 다음과 같은 오류 메시지가 표시되는 이유는 무엇인가요?** 
+**3. 왜 hello 입력 hello 웹 서비스에 대 한 hello "이 데이터이 집합 탐색" 페이지에서 입력 해도 다음과 같은 오류 메시지가 hello:** 
 
 **요청을 처리하는 동안 예기치 않은 오류가 발생했습니다. 나중에 다시 시도하세요.**
 
-마켓플레이스 **이 데이터 집합 탐색** 페이지에서 웹 서비스를 사용할 때 웹 서비스의 하나 이상의 입력 매개 변수가 길이 제한을 초과했을 수 있습니다. HTTP POST 메서드를 사용하여 좀 더 길게 입력하여 서비스를 호출할 수 있습니다. 예제를 보려면 [기계 학습에서 R을 사용하고 마켓플레이스에 게시되는 샘플 솔루션](machine-learning-r-csharp-web-service-examples.md)을 참조하세요.
+웹 서비스의 하나 이상의 입력된 매개 변수 초과 했을 수 hello 길이 제한 hello 마켓플레이스에서 hello 웹 서비스를 이용할 때 **이 데이터 집합 탐색** 페이지. HTTP POST 메서드를 사용 하 여 더 이상 입력된 길이와 hello 서비스를 호출할 수 있습니다. 예제를 보려면 [예제 기계 학습 및 게시 된 tooMarketplace에서 R을 사용 하 여 솔루션](machine-learning-r-csharp-web-service-examples.md)합니다.
 
-**4. Azure 클래식 포털의 스토어에서 "API 탐색기" 탭에 아무 내용도 표시되지 않는 이유는 무엇인가요?** 
+**4. 이유 보이지 않는 hello Azure 클래식 포털에에서 hello "API 탐색기" 탭 int hello 저장소에에서 아무 것도?** 
 
-이것은 Azure 클래식 포털 마켓플레이스의 알려진 문제입니다. 이 문제 해결을 위한 작업이 진행되고 있습니다. 
+Azure 클래식 포털 Marketplace hello로 알려진된 문제입니다. hello 팀이이 문제 tooresolve 노력가 있습니다. 
 
 ## <a name="questions-about-publishing-from-azure-machine-learning-on-marketplace"></a>마켓플레이스에 있는 Azure 기계 학습에서의 게시에 대한 질문
 **1. 내 웹 서비스에 대해 내 로고 또는 이미지 트랜잭션 수가 새로 고쳐지지 않는 이유는 무엇인가요?** 
 
-로고 및 이미지는 게시 포털에 캐싱되며 포털에서 새 로고 또는 이미지가 업데이트되기까지 최대 10일이 걸릴 수 있습니다.
+Hello 게시 포털에 로고와 이미지는 캐시 되 고 새 로고 hello 나 hello 포털에서 이미지 tooupdate too10 일이 걸릴 수도 있습니다.
 
-**2. 마켓플레이스에서 내 웹 서비스의 "세부 정보" 탭에 오류 메시지가 표시되는 이유는 무엇인가요?**
+**2. 오류 메시지를 표시 하는 시장에 내 웹 서비스의 hello "정보" 탭을 이유는 무엇입니까?**
 
-서비스 세부 정보를 확인하기 위해 Azure 기계 학습에 연결할 때 알려진 마켓플레이스 문제가 있습니다. 이 문제 해결을 위한 작업이 진행되고 있습니다.
+서비스 세부 정보에 대 한 기계 학습 tooAzure 연결할 때 알려진된 마켓플레이스 문제가 있습니다. hello 팀이이 문제 tooresolve 노력가 있습니다.
 
-**3. Azure 기계 학습 웹 서비스의 R 샘플 코드가 마켓플레이스에서의 웹 서비스 사용에 대해 작동하지 않는 이유는 무엇인가요?**
+**3. 이유 hello hello Azure 기계 학습 웹 서비스에서 R 샘플 코드가 작동 하지 않습니다 시장에서 소비 hello 웹 서비스에 대 한?**
 
-Azure 기계 학습 웹 서비스에 직접 연결하는 경우와 마켓플레이스를 통해 이러한 웹 서비스에 연결하는 경우의 인증 시스템이 서로 다릅니다. 마켓플레이스의 서비스는 OData 서비스이며 GET 또는 POST 메서드를 사용하여 호출할 수 있습니다. 
+hello 마켓플레이스를 통해 tooconnecting toothese 웹 서비스에 비해 tooAzure 기계 학습 웹 서비스를 직접 연결 hello 인증 시스템 서로 다릅니다. Marketplace에서 hello 서비스는 OData 서비스 및 GET 또는 POST 메서드를 호출할 수 있습니다. 
 
-**4. 내 웹 서비스 제품의 지원 링크가 일부 내 제품에 대해 올바르게 업데이트되지 않는 이유는 무엇인가요?**
+**4. 내 제품 중 일부에 대해 제대로 업데이트 하지 않는 제공 hello 지원 링크 내 웹 서비스의 이유는?**
 
-지원 링크는 제품당 전역이 아니라 게시자당 전역입니다. 
+hello 지원 링크 당 게시자, 제품 단위가 아니라 전체 적용 됩니다. 
 
 **5. 마켓플레이스에서 일괄 처리 입력 모드를 통해 웹 서비스를 게시하는 방법은 무엇인가요?**
 
-현재 마켓플레이스 웹 서비스에서는 일괄 처리 입력 모드가 지원되지 않습니다.
+hello 일괄 처리 입력된 모드 현재 Marketplace 웹 서비스에서 지원 되지 않습니다.
 
-**6. 데이터 게시자가 되는 것에 대한 질문이 있거나 게시 중에 문제가 있는 경우 도움을 얻기 위해 문의해야 하는 사람은 누구인가요?**
+**6. 가 문의 해야 합니까 tooget 도움말 데이터 게시자가 관련 질문이 있는 경우 또는 게시 하는 동안 문제가 있습니까?**
 
-자세한 내용은 <mailto:datamarketbd@microsoft.com>에서 Azure Marketplace 팀에 문의하세요.
+hello Azure 마켓플레이스 팀에 문의 하거나 < mailto:datamarketbd@microsoft.com > 자세한 정보에 대 한 합니다.
 

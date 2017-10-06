@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 T-SQL 및 Python을 사용하여 SQL Data Warehouse 데이터 과학 연습 | Microsoft Docs"
-description: "예측 분석을 수행하기 위해 SQL Data Warehouse의 사용을 안내하는 예제입니다."
+title: "T-SQL 및 Python을 사용 하 여 Azure에서 aaaSQL 데이터 웨어하우스 데이터 과학 연습 | Microsoft Docs"
+description: "Hello 안내는 예제 SQL 데이터 웨어하우스 toodo 예측 분석을 사용 합니다."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev
-ms.openlocfilehash: 66eccbc038c704ba046ce1d24659dff067008102
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca9e8db0b68459236e2859935b8240c671418e08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-data-science-walkthroughs-using-t-sql-and-python-on-azure"></a>Azure에서 T-SQL 및 Python을 사용하여 SQL Data Warehouse 데이터 과학 연습
 
-이러한 연습은 예측 분석을 수행하는 데 SQL Data Warehouse를 사용합니다. Team Data Science Process에 설명된 단계를 따릅니다. Team Data Science Process의 개요는 [데이터 과학 프로세스](data-science-process-overview.md)를 참조하세요. SQL Data Warehouse에 대한 소개는 [Azure SQL Data Warehouse란?](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)을 참조하세요.
+이 연습에서는 SQL 데이터 웨어하우스 toodo 예측 분석을 사용합니다. Hello 팀 데이터 과학 프로세스에에서 설명 된 hello 단계를 따릅니다. Hello 팀 데이터 과학 프로세스의 개요를 참조 하십시오. [데이터 과학 프로세스](data-science-process-overview.md)합니다. 데이터 웨어하우스는 소개 tooSQL 참조 [Azure SQL 데이터 웨어하우스 란?](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
 
-Team Data Science Process를 실행하는 추가 데이터 과학 연습은 사용하는 **플랫폼**에 따라 그룹화됩니다. 
+Hello 팀 데이터 과학 프로세스를 실행 하는 추가 데이터 과학 연습 hello 별로 그룹화 되어 **플랫폼** 사용 하는 합니다. 
 
 [!INCLUDE [tdsp-walkthroughs-by-platform](../../includes/tdsp-walkthroughs-by-platform.md)]
 
 
 ## <a name="predict-taxi-tips-using-t-sql-and-ipython-notebooks-with-sql-data-warehouse"></a>SQL Data Warehouse와 함께 T-SQL 및 IPython 노트북을 사용하여 택시 팁 예측
 
-[SQL Data Warehouse 사용](machine-learning-data-science-process-sqldw-walkthrough.md) 연습에서는 공개적으로 사용 가능한 NYC Taxi Trip 및 요금 데이터 집합에 대한 SQL DW(SQL Data Warehouse)를 사용하여 기계 학습 분류 및 회귀 모델을 구축하고 배포하는 방법을 보여 줍니다.
+hello [사용 하 여 SQL 데이터 웨어하우스 연습](machine-learning-data-science-process-sqldw-walkthrough.md) 방법을 보여주는 toobuild 및 배포 컴퓨터 학습 분류 하 고 공개적으로 사용할 수 있는 NYC에 대 한 SQL 데이터 웨어하우스 (SQL DW)를 사용 하 여 회귀 모델 택시 여행 및 요금 데이터 집합입니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-Team Data Science Process를 구성하는 주요 구성의 논의는 [Team Data Science Process 개요](data-science-process-overview.md)를 참조하세요.
+Hello 팀 데이터 과학 프로세스를 구성 하는 hello 주요 구성 요소의 논의 알려면 [팀 데이터 과학 프로세스 개요](data-science-process-overview.md)합니다.
 
-데이터 과학 프로젝트를 구성하는 데 사용할 수 있는 Team Data Science Process 수명 주기의 논의는 [Team Data Science Process 수명 주기](data-science-process-lifecycle.md)를 참조하세요. 수명 주기는 일반적으로 프로젝트가 실행될 때 시작부터 끝까지 따라야 하는 단계를 간략하게 설명합니다. 
+데이터 과학 프로젝트, 참조에 대 한 설명은 한 toostructure를 사용할 수 있는 hello 팀 데이터 과학 프로세스 수명 주기 [팀 데이터 과학 프로세스 수명 주기](data-science-process-lifecycle.md)합니다. hello 수명 주기에서 다음에 나오는 프로젝트 일반적으로 실행 될 때 시작 toofinish hello 단계를 간략하게 설명 합니다. 

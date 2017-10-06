@@ -1,6 +1,6 @@
 ---
-title: "구독 이동 후에 주요 자격 증명 모음 테넌트 ID 변경 | Microsoft Docs"
-description: "다른 테넌트에 구독을 이동한 후에 주요 자격 증명 모음에 대한 테넌트 ID를 전환하는 방법을 알아봅니다."
+title: "구독 이동 후 aaaChange hello 주요 자격 증명 모음 테 넌 트 ID | Microsoft Docs"
+description: "키 자격 증명 모음 구독 된 후에 대 한 tooswitch hello 테 넌 트 ID tooa 다른 테 넌 트를 이동 하는 방법에 대해 알아봅니다"
 services: key-vault
 documentationcenter: 
 author: amitbapat
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: ambapat
-ms.openlocfilehash: 2f007dd4f877b48003cddcefa5f4321049853361
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4d0607208c61c57959439d2d0bd8feade4141fee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="change-a-key-vault-tenant-id-after-a-subscription-move"></a>구독 이동 후에 주요 자격 증명 모음 테넌트 ID 변경
-### <a name="q-my-subscription-was-moved-from-tenant-a-to-tenant-b-how-do-i-change-the-tenant-id-for-my-existing-key-vault-and-set-correct-acls-for-principals-in-tenant-b"></a>Q: 내 구독이 테넌트 A에서 테넌트 B로 이동했습니다. 내 기존 주요 자격 증명 모음에 대한 테넌트 ID를 변경하고 테넌트 B에서 주체에 대한 올바른 ACL을 설정하려면 어떻게 해야 하나요?
-구독에 새 주요 자격 증명 모음을 만들 때 해당 구독에 대한 기본 Azure Active Directory 테넌트 ID에 자동으로 연결됩니다. 모든 액세스 정책 항목은 이 테넌트 ID에 연결됩니다. Azure 구독을 테넌트 A에서 테넌트 B로 이동할 때 기존 주요 자격 증명 모음에는 테넌트 B의 주체(사용자 및 응용 프로그램)가 액세스할 수 없게 됩니다. 이 문제를 해결하려면 다음을 수행합니다.
+### <a name="q-my-subscription-was-moved-from-tenant-a-tootenant-b-how-do-i-change-hello-tenant-id-for-my-existing-key-vault-and-set-correct-acls-for-principals-in-tenant-b"></a>Q: 내 구독에서 테 넌 트 A tootenant B. 옮겨졌습니다. 어떻게 내 기존 키 자격 증명 모음에 대 한 hello 테 넌 트 ID를 변경 하 고 테 넌 트 B의에서 보안 주체에 대 한 올바른 Acl 설정?
+구독에 새 키 자격 증명 모음을 만들 때 자동으로 동률된 toohello 해당 구독에 대 한 기본 Azure Active Directory 테 넌 트 ID 됩니다. 모든 액세스 정책 항목 제한은 toothis 테 넌 트 ID도 있습니다. Azure 구독을 이동 하면 테 넌 트에서 tootenant B에서 기존 키 자격 증명 모음에 액세스할 수 없는 hello 보안 주체 (사용자 및 응용 프로그램)에서 테 넌 트 B. toofix이이 문제를 해야 합니다.
 
-* 이 구독에 있는 모든 기존 주요 자격 증명 모음과 연결된 테넌트 ID를 테넌트 B로 변경합니다.
+* 연결 된 모든 기존 키 자격 증명 모음에서이 구독 tootenant B. hello 테 넌 트 ID를 변경 합니다.
 * 모든 기존 액세스 정책 항목을 제거합니다.
 * 테넌트 B와 연결된 새 액세스 정책 항목을 추가합니다.
 
-예를 들어 이 구독에서 주요 자격 증명 모음 'myvault'가 테넌트 A에서 테넌트 B로 이동된 경우 이 주요 자격 증명 모음에 대한 테넌트 ID를 변경하고 오래된 액세스 정책을 제거하는 방법은 다음과 같습니다.
+예를 들어 있으면 주요 자격 증명 모음 'myvault' 테 넌 트 A tootenant B 여기의에서 이동 된 구독에서 어떻게 toochange hello이 주요 자격 증명 모음에 대 한 테 넌 트 ID와 이전 액세스 정책을 제거 합니다.
 
 <pre>
 $Select-AzureRmSubscription -SubscriptionId YourSubscriptionID
@@ -39,10 +39,10 @@ $vault.Properties.AccessPolicies = @()
 Set-AzureRmResource -ResourceId $vaultResourceId -Properties $vault.Properties
 </pre>
 
-이동 전에 이 자격 증명 모음이 테넌트 A였기 때문에 **(Get-AzureRmContext).Tenant.TenantId**가 테넌트 B인 반면 **$vault.Properties.TenantId**의 원래 값이 테넌트 A입니다.
+테 넌 트 A hello 이동 하기 전에이 자격 증명이 모음 이어서 hello의 원래 값 **$vault 합니다. Properties.TenantId** 는 테 넌 트 A while **(Get AzureRmContext). Tenant.TenantId** B. 테 넌 트은
 
-이제 자격 증명 모음이 올바른 테넌트 ID와 연결되고 오래된 액세스 정책 항목이 삭제되므로 새 액세스 정책 항목을 [Set-AzureRmKeyVaultAccessPolicy](https://msdn.microsoft.com/library/mt603625.aspx)로 설정합니다.
+이제 hello 올바른 테 넌 트 ID와 연결 된 자격 증명 모음 및 오래 된 액세스 정책 항목 삭제 되므로 설정 새로운 액세스 정책 항목을 [Set-azurermkeyvaultaccesspolicy](https://msdn.microsoft.com/library/mt603625.aspx)합니다.
 
 ## <a name="next-steps"></a>다음 단계
-Azure Key Vault에 대한 질문이 있으면 [Azure Key Vault 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault)으로 이동하세요.
+Azure 키 자격 증명 모음에 대 한 질문이 있으면 방문 hello [Azure 키 자격 증명 모음 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault)합니다.
 

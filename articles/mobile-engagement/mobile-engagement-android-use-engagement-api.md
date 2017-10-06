@@ -1,6 +1,6 @@
 ---
-title: "Android에서 Engagement API를 사용하는 방법"
-description: "최신 Android SDK - Android에서 Engagement API를 사용하는 방법"
+title: "aaaHow tooUse hello Android에서 Engagement API"
+description: "최신 Android SDK-tooUse Android에서 Engagement API hello 하는 방법"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: d353cd2fe47c54a0282cc5bb1b22b4a56e0cd82c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0b2d484616c0c7874e77c5283d94c3063949ed2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-engagement-api-on-android"></a>Android에서 Engagement API를 사용하는 방법
-이 문서는 [Android Mobile Engagement SDK에 대한 고급 보고 옵션](mobile-engagement-android-advanced-reporting.md)문서의 추가 자료입니다. Engagement API를 사용하여 응용 프로그램 통계를 보고하는 방법을 자세히 설명합니다.
+# <a name="how-toouse-hello-engagement-api-on-android"></a>TooUse는 Android에서 Engagement API hello 하는 방법
+이 문서는 추가 기능 toohello 문서 [Android Mobile Engagement SDK에 대 한 고급 보고 옵션](mobile-engagement-android-advanced-reporting.md)합니다. 어떻게 toouse hello Engagement API tooreport 응용 프로그램 통계에 대 한 깊이 세부 정보에 제공 합니다.
 
-Engagement에서 응용 프로그램의 세션, 활동, 충돌 및 기술 정보만 보고하길 원하는 경우 가장 간단한 방법은 모든 `Activity` 하위 클래스가 해당 `EngagementActivity` 클래스에서 상속하도록 설정하는 것입니다.
+응용 프로그램의 세션, 활동, 충돌 및 기술 정보 Engagement tooreport 하려면, 다음 hello 가장 간단한 방법은 임을 toomake 모든 염두에 둬야 프로그램 `Activity` hello 해당 하위 클래스 상속 `EngagementActivity` 클래스입니다.
 
-응용 프로그램 관련 이벤트, 오류, 작업을 보고하는 등 추가 작업을 수행하려는 경우 또는 `EngagementActivity` 클래스에서 구현되는 것과는 다른 방식으로 응용 프로그램 활동을 보고해야 하는 경우에는 Engagement API를 사용해야 합니다.
+예를 들어 tooreport 응용 프로그램에 대 한 특정 이벤트, 오류 및 작업, 필요한 경우 더 많은 toodo 하려는 경우 또는 tooreport 응용 프로그램의 활동에에서 있으면 다른 방식으로 hello hello에 구현 하는 보다 `EngagementActivity` toouse hello 필요 클래스 API 계약입니다.
 
-Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클래스의 인스턴스는 `EngagementAgent.getInstance(Context)` 정적 메서드를 호출하여 검색할 수 있습니다(반환되는 `EngagementAgent` 개체는 단일 항목임).
+hello Engagement API에서 제공 hello `EngagementAgent` 클래스입니다. Hello를 호출 하 여이 클래스의 인스턴스를 검색할 수 있습니다 `EngagementAgent.getInstance(Context)` 정적 메서드 (해당 hello 참고 `EngagementAgent` 반환 된 개체는 단일).
 
 ## <a name="engagement-concepts"></a>Engagement 개념
-다음 요소는 Android 플랫폼과 관련된 일반적인 [Mobile Engagement 개념](mobile-engagement-concepts.md)을 구체화합니다.
+hello 다음과 같은 부분이 구체화 hello 일반적인 [Mobile Engagement 개념](mobile-engagement-concepts.md), hello Android 플랫폼에 대 한 합니다.
 
 ### <a name="session-and-activity"></a>`Session` 및 `Activity`
-두 *작업* 간에 몇 초 넘게 유휴 상태로 있는 경우 *작업*의 시퀀스가 두 개의 *세션*으로 분할됩니다. 이러한 몇 초를 "세션 제한 시간"이라고 합니다.
+Hello 사용자 유휴 두 개 이상의 몇 초 유지 *활동*, 그의 시퀀스의 다음 *활동* 분할 되며 두 개의 고유한 *세션*합니다. 이러한 몇 초 hello "세션 시간 제한" 이라고 합니다.
 
-*작업*은 일반적으로 단일 응용 프로그램 화면과 연결됩니다. 즉, *작업*은 화면을 표시하면 시작되며 화면을 닫으면 중지됩니다. `EngagementActivity` 클래스를 사용하여 Engagement SDK를 통합하는 경우 이러한 방식이 사용됩니다.
+*활동* toosay hello 된 hello 응용 프로그램의 한 화면은 주로 *활동* hello 화면에 표시 되 고 hello 화면을 닫으면이 중지 될 때 시작:이 hello 경우 hello Engagement SDK가 통합 hello를 사용 하 여 `EngagementActivity` 클래스입니다.
 
-하지만 Engagement API를 사용하여 *활동* 을 수동으로 제어할 수도 있습니다. 이렇게 하면 지정된 화면을 여러 하위 부분으로 분할하여 해당 화면의 사용에 대해 더 많은 세부 정보(예: 이 화면 내에서 대화 상자를 사용하는 빈도와 기간)를 확인할 수 있습니다.
+하지만 *활동* hello Engagement API를 사용 하 여 수동으로 제어할 수도 있습니다. 이렇게 하면 toosplit 각된 화면에 대 한 자세한 내용은 hello 사용 현황 (예: tooknown 얼마나 자주 및이 화면 안에 대화 상자 사용 되는 시간)이 화면의 여러 하위 부분 tooget 있습니다.
 
 ## <a name="reporting-activities"></a>활동 보고
 > [!IMPORTANT]
-> Android에서 Engagement를 통합하는 방법 문서에 설명된 `EngagementActivity` 클래스와 변형을 사용하는 경우 이 섹션에 설명된 것과 같은 활동을 보고할 필요가 없습니다.
+> Hello를 사용 하는 경우이 섹션에 설명 된 tooreport 활동과 같은 활동 필요 하지 않습니다 `EngagementActivity` 클래스 및 변형 방법을 hello에 설명 된 대로 Android 문서에 Engagement tooIntegrate 합니다.
 > 
 > 
 
 ### <a name="user-starts-a-new-activity"></a>사용자가 새 활동을 시작함
             EngagementAgent.getInstance(this).startActivity(this, "MyUserActivity", null);
-            // Passing the current activity is required for Reach to display in-app notifications, passing null will postpone such announcements and polls.
+            // Passing hello current activity is required for Reach toodisplay in-app notifications, passing null will postpone such announcements and polls.
 
-사용자 활동이 변경될 때마다 `startActivity()` 을(를) 호출해야 합니다. 이 함수를 처음 호출하면 새 사용자 세션이 시작됩니다.
+Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 합니다. 첫 번째 호출 toothis 함수 hello 새 사용자 세션을 시작 합니다.
 
-이 함수는 각 활동 `onResume` 콜백에서 호출하는 것이 가장 좋습니다.
+각 작업에 대해이 함수는 가장 좋은 곳 toocall hello `onResume` 콜백 합니다.
 
 ### <a name="user-ends-his-current-activity"></a>사용자가 현재 활동을 종료함
             EngagementAgent.getInstance(this).endActivity();
 
-사용자가 마지막 활동을 완료하면 `endActivity()`을(를) 한 번 이상 호출해야 합니다. 이 작업은 Engagement SDK에 사용자가 현재 유휴 상태이며, 세션 제한 시간이 만료되면 사용자 세션을 종료해야 한다는 것을 알립니다. 세션 제한 시간이 만료되기 전에 `startActivity()`을(를) 호출하는 경우 세션이 다시 시작됩니다.
+Toocall 필요한 `endActivity()` hello 사용자 자신의 마지막 활동을 완료 하는 때 한 번 이상. 이 hello Engagement SDK hello 사용자가 현재 유휴 및 hello 사용자 세션에 필요 하며 toobe 닫힌 hello 세션 시간 제한 한 번 만료 됩니다를 통해 알립니다 (호출 하는 경우 `startActivity()` hello 세션이 재개 되 단순히 hello 세션 제한 시간 만료 되기 전에).
 
-이 함수는 각 활동 `onPause` 콜백에서 호출하는 것이 가장 좋습니다.
+각 작업에 대해이 함수는 가장 좋은 곳 toocall hello `onPause` 콜백 합니다.
 
 ## <a name="reporting-events"></a>이벤트 보고
 ### <a name="session-events"></a>세션 이벤트
-세션 이벤트는 일반적으로 사용자가 세션 중에 수행하는 동작을 보고하는 데 사용됩니다.
+세션 이벤트는 세션 동안 사용자가 수행 하는 일반적으로 사용 되는 tooreport hello 작업입니다.
 
 **추가 데이터가 없는 예제:**
 
@@ -89,11 +89,11 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
             }
 
 ### <a name="standalone-events"></a>독립 실행형 이벤트
-세션 이벤트와 반대로 독립 실행형 이벤트는 세션의 컨텍스트 외부에서 발생할 수 있습니다.
+반대 toosession 이벤트 독립 실행형 이벤트 세션의 hello 컨텍스트 외부에서 발생할 수 있습니다.
 
-**예:**
+**예제:**
 
-브로드캐스트 수신기가 트리거될 때 발생하는 이벤트를 보고하려고 한다고 가정합니다.
+브로드캐스트 수신기 트리거될 때 발생 하는 tooreport 이벤트를 원하는 있다고 가정 합니다.
 
             /** Triggered by Intent.ACTION_BATTERY_LOW */
             public BatteryLowReceiver extends BroadcastReceiver {
@@ -107,16 +107,16 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
 
 ## <a name="reporting-errors"></a>오류 보고
 ### <a name="session-errors"></a>세션 오류
-세션 오류는 일반적으로 세션 중에 사용자에게 영향을 주는 오류를 보고하는 데 사용됩니다.
+세션 오류는 일반적으로 사용 되는 tooreport hello 오류 hello 사용자 세션 동안 영향입니다.
 
 **예제:**
 
-            /** The user has entered invalid data in a form */
+            /** hello user has entered invalid data in a form */
             public MyActivity extends EngagementActivity {
               [...]
               public void onMyFormSubmitted(MyForm form) {
                 [...]
-                /* The user has entered an invalid email address */
+                /* hello user has entered an invalid email address */
                 getEngagementAgent().sendSessionError("sign_up_email", null);
                 [...]
               }
@@ -124,11 +124,11 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
             }
 
 ### <a name="standalone-errors"></a>독립 실행형 오류
-세션 오류와 달리 독립 실행형 오류는 세션의 컨텍스트 외부에서 발생할 수 있습니다.
+반대 toosession 오류 세션의 hello 컨텍스트 외부에서 독립 실행형 오류가 발생할 수 있습니다.
 
-**예:**
+**예제:**
 
-다음 예제에서는 응용 프로그램 프로세스가 실행되는 동안 휴대폰의 메모리가 부족할 때마다 오류를 보고하는 방법을 보여 줍니다.
+hello 다음 예제에서는 tooreport 오류가 hello 메모리 부족 hello 전화 응용 프로그램 프로세스 동안 될 때마다 실행 하는 방법을
 
             public MyApplication extends EngagementApplication {
 
@@ -139,13 +139,13 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
             }
 
 ## <a name="reporting-jobs"></a>작업 보고
-### <a name="example"></a>예
-로그인 프로세스의 기간을 보고하는 경우를 가정해 보겠습니다.
+### <a name="example"></a>예제
+로그인 프로세스의 기간을 tooreport hello 일정 있다고 가정 합니다.
 
             [...]
             public void signIn(Context context, ...) {
 
-              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
+              /* We need an Android context toocall hello Engagement API, if you are extending Activity, Service, you can pass "this" */
               EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
               /* Report sign in job has started */
@@ -159,28 +159,28 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
             [...]
 
 ### <a name="report-errors-during-a-job"></a>작업 중 오류 보고
-오류는 현재 사용자 세션이 아닌 실행 중인 작업에 관련될 수 있습니다.
+오류 되지 않고 작업을 실행 하는 관련된 tooa 수 toohello 현재 사용자 세션 관련 됩니다.
 
-**예:**
+**예제:**
 
-프로세스에 로그인하는 동안 오류를 보고하려고 한다고 가정합니다.
+Tooreport 한다고 가정 하면 수행 하는 동안 로그인 프로세스:
 
 [...] public void signIn(Context context, ...) {
 
-              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
+              /* We need an Android context toocall hello Engagement API, if you are extending Activity, Service, you can pass "this" */
               EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
               /* Report sign in job has been started */
               engagementAgent.startJob("sign_in", null);
 
-              /* Try to sign in */
+              /* Try toosign in */
               while(true)
                 try {
                   trySignin();
                   break;
                 }
                 catch(Exception e) {
-                  /* Report the error to Engagement */
+                  /* Report hello error tooEngagement */
                   engagementAgent.sendJobError("sign_in_error", "sign_in", null);
 
                   /* Retry after a moment */
@@ -193,13 +193,13 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
             [...]
 
 ### <a name="reporting-events-during-a-job"></a>작업 중 이벤트 보고
-이벤트는 현재 사용자 세션이 아닌 실행 중인 작업에 관련될 수 있습니다.
+이벤트 되지 않고 작업을 실행 하는 관련된 tooa 수 toohello 현재 사용자 세션 관련 됩니다.
 
-**예:**
+**예제:**
 
-소셜 네트워크가 있으며 작업을 사용하여 사용자가 서버에 연결되어 있는 총 시간을 보고한다고 가정해 보겠습니다. 사용자가 다른 응용 프로그램을 사용하거나 휴대폰이 절전 모드에 있는 경우에도 사용자가 백그라운드에서 연결을 유지할 수 있으므로, 세션이 존재하지 않습니다.
+소셜 네트워크는 한 작업 tooreport hello 총 시간 사용는 hello 하는 동안 사용자가 연결 된 toohello 서버 한다고 가정 합니다. hello 사용자 연결을 유지할 수 백그라운드에서 hello 전화는 절전 모드 또는 다른 응용 프로그램을 사용 하는 경우에 이므로 세션이 없습니다.
 
-사용자는 친구로부터 메시지를 받을 수 있습니다. 이것이 작업 이벤트입니다.
+hello 사용자 친구에서 메시지를 받을 수, 작업 이벤트입니다.
 
             [...]
             public void signin(Context context, ...) {
@@ -219,12 +219,12 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
             [...]
 
 ## <a name="extra-parameters"></a>extras 매개 변수
-이벤트, 오류, 활동 또는 작업에 임의 데이터를 연결할 수 있습니다.
+임의의 데이터에 연결 된 tooevents, 오류, 활동 및 작업 가능 합니다.
 
 이 데이터는 구조화될 수 있으며, Android의 번들 클래스를 사용합니다. 이 클래스는 실제로 Android Intent의 추가 매개 변수처럼 작동합니다. 번들은 배열이나 다른 번들 인스턴스를 포함할 수 있습니다.
 
 > [!IMPORTANT]
-> 패키지 가능한 또는 직렬화 가능한 매개 변수를 넣는 경우 해당 `toString()` 메서드가 사람이 읽을 수 있는 문자열을 반환하도록 구현됩니다. `bundle.putSerializable("key",value);`
+> Parcelable 또는 순차 가능 매개 변수 모드로 전환할 경우 해야 자신의 `toString()` 메서드는 구현 된 tooreturn 사람이 읽을 수는 문자열입니다. `bundle.putSerializable("key",value);`
 > 
 > [!WARNING]
 > 추가 매개 변수의 스파스 배열은 지원되지 않습니다. 즉, 배열로 직렬화되지 않습니다. 추가 매개 변수에서 배열을 사용하기 전에 표준 배열로 변환해야 합니다.
@@ -239,28 +239,28 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
 
 ### <a name="limits"></a>제한
 #### <a name="keys"></a>구성
-`Bundle` 의 각 키는 다음 정규식과 일치해야 합니다.
+각 키 hello에 `Bundle` hello 다음 정규식 일치 해야 합니다.
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 즉, 키는 하나 이상의 문자로 시작해야 하며 그 뒤에 문자, 숫자 또는 밑줄(\_)이 붙어야 합니다.
 
 #### <a name="size"></a>크기
-추가 매개 변수는 호출당 **1024** 자(Engagement 서비스를 통해 JSON에서 한 번 인코딩됨)로 제한됩니다.
+추가 항목은 너무 제한**1024** (한 번 인코딩된 json에서 hello Engagement 서비스에 의해) 호출당 문자입니다.
 
-위의 예제에서 서버로 전송된 JSON의 길이는 58자입니다.
+Hello 앞의 예제 JSON 전송 toohello 서버 hello 58 자입니다.
 
             {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
 ## <a name="reporting-application-information"></a>응용 프로그램 정보 보고
-`sendAppInfo()` 함수를 사용하면 추적 정보 또는 기타 응용 프로그램 관련 정보를 수동으로 보고할 수 있습니다.
+Hello를 사용 하 여 정보 (또는 다른 응용 프로그램 관련 정보가) 추적을 수동으로 보고할 수 있습니다 `sendAppInfo()` 함수입니다.
 
-이러한 정보는 증분 방식으로 보낼 수 있습니다. 그러면 특정 장치에 대해 지정한 키의 최신 값만 보관됩니다.
+이러한 정보를 점진적으로 보낼 수 있는 참고: 지정된 된 장치에 대 한 지정된 된 키에 대 한 최신 값 hello만 유지 됩니다.
 
-이벤트 추가 매개 변수와 마찬가지로, 번들 클래스는 응용 프로그램 정보를 추상화는 데 사용됩니다. 배열 또는 하위 번들은 단순 문자열로 처리됩니다(JSON 직렬화를 사용하여).
+이벤트, 기타 hello 번들 클래스는 응용 프로그램 정보를 사용 하는 tooabstract 마찬가지로 배열 또는 하위 묶습니다 (JSON 직렬화를 사용 하 여) 플랫 문자열으로 처리 됩니다.
 
 ### <a name="example"></a>예제
-사용자 성별 및 생년월일을 보내는 코드 샘플은 다음과 같습니다.
+코드 샘플 toosend 사용자 성별 및 생년월일 다음과 같습니다.
 
             Bundle appInfo = new Bundle();
             appInfo.putString("status", "premium");
@@ -269,15 +269,15 @@ Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클
 
 ### <a name="limits"></a>제한
 #### <a name="keys"></a>구성
-`Bundle` 의 각 키는 다음 정규식과 일치해야 합니다.
+각 키 hello에 `Bundle` hello 다음 정규식 일치 해야 합니다.
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 즉, 키는 하나 이상의 문자로 시작해야 하며 그 뒤에 문자, 숫자 또는 밑줄(\_)이 붙어야 합니다.
 
 #### <a name="size"></a>크기
-응용 프로그램 정보는 호출당 **1024** 자(Engagement 서비스를 통해 JSON에서 한 번 인코딩됨)로 제한됩니다.
+응용 프로그램 정보는 너무 제한적**1024** (한 번 인코딩된 json에서 hello Engagement 서비스에 의해) 호출당 문자입니다.
 
-위의 예제에서 서버로 전송된 JSON의 길이는 44자입니다.
+Hello 앞의 예제 JSON 전송 toohello 서버 hello 44 자입니다.
 
             {"expiration":"2016-12-07","status":"premium"}

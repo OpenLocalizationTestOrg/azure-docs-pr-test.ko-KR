@@ -1,6 +1,6 @@
 ---
-title: "Azure 데이터 팩터리에서 MapReduce 프로그램 호출"
-description: "Azure HDInsight 클러스터에서 Azure 데이터 팩터리의 MapReduce 프로그램을 실행하여 데이터를 처리하는 방법을 알아봅니다."
+title: "Azure 데이터 팩터리에서 MapReduce 프로그램 aaaInvoke"
+description: "Azure data factory에서 Azure HDInsight에서 MapReduce 프로그램을 실행 하 여 tooprocess 데이터 클러스터링 하는 방법에 대해 알아봅니다."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: 55fc2196cb4ba50eced4a463914ae188217d0fed
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 448ef93a10bd97e7ecd4be4f04f88f8a05decc1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="invoke-mapreduce-programs-from-data-factory"></a>데이터 팩터리에서 MapReduce 프로그램 호출
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,30 +33,30 @@ ms.lasthandoff: 08/18/2017
 > * [Data Lake Analytics U-SQL 작업](data-factory-usql-activity.md)
 > * [.NET 사용자 지정 작업](data-factory-use-custom-activities.md)
 
-Data Factory [파이프라인](data-factory-create-pipelines.md)의 HDInsight MapReduce 작업은 [사용자 고유](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 또는 [주문형](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux 기반 HDInsight 클러스터에서 MapReduce 프로그램을 실행합니다. 이 문서는 데이터 변환 및 지원되는 변환 활동의 일반적인 개요를 표시하는 [데이터 변환 활동](data-factory-data-transformation-activities.md) 문서에서 작성합니다.
+Data Factory에 HDInsight MapReduce 작업 hello [파이프라인](data-factory-create-pipelines.md) 에서 MapReduce 프로그램을 실행 합니다. [직접](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 또는 [주문형으로](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux 기반 HDInsight 클러스터 합니다. Hello를 기반으로 한이 문서 [데이터 변환 작업](data-factory-data-transformation-activities.md) 데이터 변환 및 지원 hello 변환 작업에 대 한 일반적인 개요를 제공 하는 문서입니다.
 
 > [!NOTE] 
-> Azure Data Factory를 처음 접하는 경우 [Azure Data Factory 소개](data-factory-introduction.md)를 읽고 이 문서를 읽기 전에 [첫 번째 데이터 파이프라인 빌드](data-factory-build-your-first-pipeline.md) 자습서를 수행하세요.  
+> 새 tooAzure 데이터 팩터리 인 경우 읽어 [소개 tooAzure Data Factory](data-factory-introduction.md) 자습서 hello 수행 하 고: [첫 번째 데이터 파이프라인을 빌드](data-factory-build-your-first-pipeline.md) 이 문서를 읽기 전에 합니다.  
 
 ## <a name="introduction"></a>소개
-Azure 데이터 팩터리의 파이프라인은 연결된 저장소 서비스의 데이터를 연결된 계산 서비스를 사용하여 처리합니다. 파이프라인에는 일련의 작업이 포함되며 각 작업에서는 특정 처리 작업을 수행합니다. 이 문서에서는 HDInsight MapReduce 작업을 사용하는 방법을 설명합니다.
+Azure 데이터 팩터리의 파이프라인은 연결된 저장소 서비스의 데이터를 연결된 계산 서비스를 사용하여 처리합니다. 파이프라인에는 일련의 작업이 포함되며 각 작업에서는 특정 처리 작업을 수행합니다. 이 문서에서는 hello HDInsight MapReduce 작업을 사용 하 여 설명 합니다.
 
 HDInsight Pig 및 Hive를 사용하여 파이프라인에서 Windows/Linux 기반 HDInsight 클러스터에 대해 Pig/Hive 스크립트를 실행하는 방법에 대한 자세한 내용은 [Pig](data-factory-pig-activity.md) 및 [Hive](data-factory-hive-activity.md) 문서를 참조하세요. 
 
 ## <a name="json-for-hdinsight-mapreduce-activity"></a>HDInsight MapReduce 작업에 대한 JSON
-HDInsight 작업에 대한 JSON 정의에서 다음을 수행합니다: 
+지 원하는 HDInsight 활동 hello에 대 한 JSON 정의 hello: 
 
-1. **activity**의 **type**을 **HDInsight**로 설정합니다.
-2. **className** 속성에 대한 클래스 이름을 지정합니다.
-3. **jarFilePath** 속성의 JAR 파일 경로(파일 이름 포함)를 지정합니다.
-4. **jarLinkedService** 속성의 JAR 파일이 포함된 Azure Blob 저장소를 참조하는 연결된 서비스를 지정합니다.   
-5. **arguments** 섹션에 MapReduce 프로그램의 모든 인수를 지정합니다. 런타임에 MapReduce 프레임워크의 몇 개 인수(예: mapreduce.job.tags)가 추가로 표시됩니다. MapReduce 인수와 사용자 인수를 구분하려면 다음 예제와 같이 옵션과 값을 둘 다 인수로 사용하는 것이 좋습니다(-s, --input, --output 등은 바로 뒤에 해당 값이 있는 옵션임).
+1. 집합 hello **형식** 의 hello **활동** 너무**HDInsight**합니다.
+2. Hello에 대 한 hello 클래스 이름을 지정 **className** 속성입니다.
+3. 에 대 한 hello 파일 이름을 포함 하는 hello 경로 toohello JAR 파일을 지정 **jarfilepath가** 속성입니다.
+4. Toohello에 대 한 hello JAR 파일이 포함 된 Azure Blob 저장소를 참조 하는 연결 된 hello 서비스 지정 **jarLinkedService** 속성입니다.   
+5. Hello에 hello MapReduce 프로그램에 대 한 인수를 지정한 **인수** 섹션. 런타임 시 몇 가지 추가 인수 표시 (예: mapreduce.job.tags) hello MapReduce 프레임 워크에서. toodifferentiate hello MapReduce 인수, 인수 hello 다음 예제와 같이 인수로 옵션과 값을 사용 하십시오 (-s-입력,-등에서 출력은 바로 뒤에 해당 값으로 옵션).
 
     ```JSON   
     {
         "name": "MahoutMapReduceSamplePipeline",
         "properties": {
-            "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix to determine the similarity between 2 items",
+            "description": "Sample Pipeline tooRun a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix toodetermine hello similarity between 2 items",
             "activities": [
                 {
                     "type": "HDInsightMapReduce",
@@ -97,7 +97,7 @@ HDInsight 작업에 대한 JSON 정의에서 다음을 수행합니다:
                         "interval": 1
                     },
                     "name": "MahoutActivity",
-                    "description": "Custom Map Reduce to generate Mahout result",
+                    "description": "Custom Map Reduce toogenerate Mahout result",
                     "linkedServiceName": "HDInsightLinkedService"
                 }
             ],
@@ -106,16 +106,16 @@ HDInsight 작업에 대한 JSON 정의에서 다음을 수행합니다:
         }
     }
     ```
-HDInsight MapReduce 작업을 사용하여 HDInsight 클러스터에서 모든 MapReduce jar 파일을 실행할 수 있습니다. 다음 파이프라인의 샘플 JSON 정의에서 HDInsight 작업은 Mahout JAR 파일을 실행하도록 구성되어 있습니다.
+HDInsight 클러스터에 있는 모든 MapReduce jar 파일 hello HDInsight MapReduce 작업 toorun를 사용할 수 있습니다. Hello hello HDInsight 활동은 파이프라인의 다음 샘플 JSON 정의 toorun Mahout JAR 파일을 구성 합니다.
 
 ## <a name="sample-on-github"></a>GitHub의 샘플
-HDInsight MapReduce 작업을 사용하는 샘플은 [GitHub의 데이터 팩터리 샘플](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample)에서 다운로드할 수 있습니다.  
+Hello HDInsight MapReduce 작업을 사용 하기 위한 샘플을 다운로드할 수에서: [GitHub에서 데이터 팩터리 샘플](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample)합니다.  
 
-## <a name="running-the-word-count-program"></a>Word Count 프로그램 실행
-이 예제의 파이프라인에서는 Azure HDInsight 클러스터에서 Word Count Map/Reduce 프로그램을 실행합니다.   
+## <a name="running-hello-word-count-program"></a>Hello 단어 개수 프로그램 실행
+이 예제에서 파이프라인 hello Azure HDInsight 클러스터에서 hello 단어 개수 Map/Reduce 프로그램을 실행합니다.   
 
 ### <a name="linked-services"></a>연결된 서비스
-우선 Azure HDInsight 클러스터에서 사용되는 Azure 저장소를 Azure 데이터 팩터리에 연결하도록 연결된 서비스를 생성합니다. 다음 코드를 복사하여 붙여넣을 경우 **계정 이름**과 **계정 키**를 Azure Storage의 이름과 키로 바꾸는 것을 잊지 마세요. 
+먼저, 연결 된 서비스 toolink hello hello Azure HDInsight 클러스터 toohello Azure 데이터 팩터리에서 사용 되는 Azure 저장소를 만듭니다. 경우 하면 복사/붙여넣기 코드 다음 hello tooreplace 잊지 마십시오 **계정 이름** 및 **계정 키** hello 이름 및 Azure 저장소의 키입니다. 
 
 #### <a name="azure-storage-linked-service"></a>Azure 저장소 연결된 서비스
 
@@ -132,7 +132,7 @@ HDInsight MapReduce 작업을 사용하는 샘플은 [GitHub의 데이터 팩터
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Azure HDInsight 연결된 서비스
-다음으로, Azure HDInsight 클러스터를 Azure 데이터 팩터리에 연결하도록 연결된 서비스를 만듭니다. 다음 코드를 복사하여 붙여넣는 경우, **HDInsight 클러스터 이름** 을 사용자의 HDInsight 클러스터 이름으로 바꾸고 사용자 이름과 암호 값을 변경합니다.   
+다음으로 연결 된 서비스 toolink Azure HDInsight 클러스터 toohello Azure 데이터 팩터리를 만듭니다. 하면 복사/붙여넣기 코드 다음 hello 하는 경우 대체 **HDInsight 클러스터 이름을** HDInsight 클러스터와 사용자 이름 및 암호 값 변경의 hello 이름으로 합니다.   
 
 ```JSON
 {
@@ -151,7 +151,7 @@ HDInsight MapReduce 작업을 사용하는 샘플은 [GitHub의 데이터 팩터
 
 ### <a name="datasets"></a>데이터 집합
 #### <a name="output-dataset"></a>출력 데이터 집합
-이 예제의 파이프라인은 input을 포함하지 않습니다. HDInsight MapReduce 작업에 대한 출력 데이터 집합을 지정합니다. 이 데이터 집합은 파이프라인 일정을 진행하는데 필요한 더미 데이터 집합입니다.  
+이 예제에서 hello 파이프라인 어떤 입력도 수행 하지 않습니다. HDInsight MapReduce 작업 hello에 대 한 출력 데이터 집합을 지정합니다. 이 데이터 집합은 방금 더미 필요한 toodrive hello 파이프라인 일정입니다.  
 
 ```JSON
 {
@@ -176,23 +176,23 @@ HDInsight MapReduce 작업을 사용하는 샘플은 [GitHub의 데이터 팩터
 ```
 
 ### <a name="pipeline"></a>파이프라인
-이 예제의 파이프라인은 HDInsightMapReduce 형식의 작업을 하나만 포함합니다. JSON의 중요한 속성에 대한 예를 들면 다음과 같습니다. 
+이 예에서 hello 파이프라인에 유형의 활동이 하나만: HDInsightMapReduce 합니다. Hello hello JSON에서에서 중요 한 속성은 다음과 같습니다. 
 
 | 속성 | 참고 사항 |
 |:--- |:--- |
-| type |type은 **HDInsightMapReduce**로 설정되어야 합니다. |
-| className |클래스 이름은 **wordcount** |
-| jarFilePath  |클래스를 포함하는 jar 파일의 경로입니다. 다음 코드를 복사하여 붙여넣는 경우 클러스터의 이름을 변경해야 합니다. |
-| jarLinkedService |jar 파일을 포함하는 Azure 저장소 연결된 서비스입니다. 이 연결된 서비스는 HDInsight 클러스터와 연결되는 저장소를 지칭합니다. |
-| arguments |Wordcount 프로그램에서는 input과 output의 두 가지 인수를 사용합니다. input 파일은 davinci.txt 파일입니다. |
-| frequency/interval |이러한 속성의 값은 출력 데이터 집합과 일치합니다. |
-| linkedServiceName |이전에 만든 HDInsight 연결된 서비스를 말합니다. |
+| type |hello 형식이 너무 설정 되어 있어야**HDInsightMapReduce**합니다. |
+| className |Hello 클래스의 이름은: **단어 수** |
+| jarFilePath  |Hello 클래스를 포함 경로 toohello jar 파일입니다. 경우 하면 복사/붙여넣기 코드 다음 hello hello 클러스터의 toochange hello 이름을 잊지 마십시오. |
+| jarLinkedService |Hello jar 파일이 포함 된 azure 저장소 연결 된 서비스입니다. 이 연결 된 서비스는 hello HDInsight 클러스터와 연결 된 toohello 저장소를 참조 합니다. |
+| arguments |hello wordcount 프로그램에는 두 개의 인수, 입력 및 출력 확보합니다. hello 입력된 파일은 hello davinci.txt 파일입니다. |
+| frequency/interval |이러한 속성에 대 한 hello 값 hello 출력 데이터 집합을 일치합니다. |
+| linkedServiceName |이전에 만든 했습니다 toohello HDInsight 연결 된 서비스를 참조 합니다. |
 
 ```JSON
 {
     "name": "MRSamplePipeline",
     "properties": {
-        "description": "Sample Pipeline to Run the Word Count Program",
+        "description": "Sample Pipeline tooRun hello Word Count Program",
         "activities": [
             {
                 "type": "HDInsightMapReduce",
@@ -230,7 +230,7 @@ HDInsight MapReduce 작업을 사용하는 샘플은 [GitHub의 데이터 팩터
 ```
 
 ## <a name="run-spark-programs"></a>Spark 프로그램 실행
-MapReduce 작업을 사용하여 HDInsight Spark 클러스터에서 Spark 프로그램을 실행할 수 있습니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](data-factory-spark.md) 을 참조하세요.  
+MapReduce 작업 toorun Spark 프로그램 HDInsight Spark 클러스터에서 사용할 수 있습니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](data-factory-spark.md) 을 참조하세요.  
 
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456

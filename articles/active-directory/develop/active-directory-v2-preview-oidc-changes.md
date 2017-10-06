@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 끝점으로 바꾸기 | Microsoft Docs"
-description: "앱 모델 v2.0 공개 미리보기 프로토콜에 적용될 변경 사항에 대한 설명"
+title: "Azure AD toohello v2.0 끝점 aaaChanges | Microsoft Docs"
+description: "Toohello 앱 모델 v2.0 공개 미리 보기 프로토콜 수행 된 변경 내용에 대 한 설명"
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ae73833a68db14804dc40eaf07ff7d3effaa9052
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7b28a481e12d5dbbc4a10110193bdbd754f4929
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="important-updates-to-the-v20-authentication-protocols"></a>v2.0 인증 프로토콜에 대한 중요 업데이트
-개발자들은 주목하세요! 앞으로 2주 동안 v2.0 인증 프로토콜에 대해 몇 가지 업데이트를 수행할 예정이며, 이는 미리보기 기간 동안 작성한 앱에 대해 상당한 변화를 가져올 수 있습니다.  
+# <a name="important-updates-toohello-v20-authentication-protocols"></a>중요 한 업데이트 toohello v 2.0 인증 프로토콜
+개발자들은 주목하세요! Hello를 통해 다음 2 주, 수행할 예정 몇 가지 업데이트 tooour v 2.0 인증 프로토콜 집합 의미할 수 있습니다. 주요 우리의 미리 보기 기간 중 작성 한 모든 앱에 대 한 변경 내용입니다.  
 
 ## <a name="who-does-this-affect"></a>어떤 것이 영향을 받습니까?
-v2.0 수렴형 인증 끝점을 사용하여 작성된 모든 앱.
+인증 끝점 수렴 되었습니다 toouse hello v2.0 기록 된 모든 앱
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 ```
 
-v2.0 끝점에 대한 자세한 내용은 [여기](active-directory-appmodel-v2-overview.md)에서 확인할 수 있습니다.
+Hello v2.0 끝점에 대 한 자세한 내용은 있습니다 [여기](active-directory-appmodel-v2-overview.md)합니다.
 
-v2.0 프로토콜에 대해 직접 코딩하여 v2.0 끝점을 사용하거나 OpenID Connect 또는 OAuth 웹 미들웨어를 사용하거나 인증을 수행하기 위해 다른 타사 라이브러리를 사용하여 앱을 작성한 경우, 프로젝트를 테스트하고 필요하면 변경할 준비를 해야 합니다.
+우리의 OAuth 또는 OpenID Connect 웹 middlewares 중 하나를 사용 하 여 직접 toohello v 2.0 프로토콜을 코딩 하 여 hello v2.0 끝점을 사용 하는 응용 프로그램 작성 한 또는 다른 3rd 파티 라이브러리 tooperform 인증을 사용 해야 하는 경우 프로젝트 및 확인 tootest 준비 필요한 경우 변경 합니다.
 
 ## <a name="who-doesnt-this-affect"></a>어떤 것이 영향을 받지 않습니까?
-프로덕션 Azure AD 인증 끝점에 대해 작성된 모든 앱.
+Hello 프로덕션 Azure AD 인증 끝점에 대해 기록 된 모든 앱
 
 ```
 https://login.microsoftonline.com/common/oauth2/authorize
@@ -44,11 +44,11 @@ https://login.microsoftonline.com/common/oauth2/authorize
 
 이 프로토콜은 확정되었으며 어떠한 변경도 발생하지 않습니다.
 
-또한 앱이 ADAL 라이브러리 **만** 를 사용하여 인증을 수행하는 경우 어떤 것도 변경할 필요가 없습니다.  ADAL은 앱을 변경하지 못하도록 차단합니다.  
+또한 경우 앱 **만** 우리의 ADAL 라이브러리 tooperform 인증을 사용 하 여 toochange 아무 것도 없습니다.  ADAL은 hello 변경 된 내용에서 앱을 차폐 했습니다.  
 
-## <a name="what-are-the-changes"></a>변경 사항은 무엇입니까?
-### <a name="removing-the-x5t-value-from-jwt-headers"></a>JWT 헤더에서 x5t 값 제거
-v2.0 끝점은 JWT 토큰을 광범위하게 사용하며, 토큰과 관련된 메타데이터와 헤더 매개 변수 섹션을 포함합니다.  현재 JWT 중 하나의 헤더를 디코딩하는 경우, 다음을 확인할 수 있습니다.
+## <a name="what-are-hello-changes"></a>Hello 변경이 합니까?
+### <a name="removing-hello-x5t-value-from-jwt-headers"></a>JWT 헤더에서 hello x5t 값 제거
+hello v2.0 끝점이 사용 JWT 토큰을 광범위 하 게 hello 토큰에 대 한 관련 메타 데이터가 있는 헤더 매개 변수 섹션을 포함 하는 합니다.  현재이 Jwt 중 하나의 hello 헤더를 디코딩할 다음과 같이 찾습니다.
 
 ```
 { 
@@ -59,23 +59,23 @@ v2.0 끝점은 JWT 토큰을 광범위하게 사용하며, 토큰과 관련된 �
 }
 ```
 
-OpenID Connect 메타데이터 끝점에서 검색된 토큰의 서명 유효성을 검사하는 데 사용해야 하는 공개 키를 "x5t" 및 "kid"의 두 속성이 식별하는 위치.
+Hello OpenID Connect 메타 데이터 끝점에서 검색 된 대로 hello "x5t" 및 "kid" 속성이 모두 hello 공개 키를 식별 하는 위치를 사용 하는 toovalidate hello 토큰의 서명에 이어야 합니다.
 
-여기서 변경하려는 내용은 "x5t" 속성을 제거하는 것입니다.  토큰 유효성을 검사하기 위해 동일한 메커니즘을 계속 사용할 수 있지만, OpenID Connect 프로토콜에 지정된 대로 올바른 공개 키를 검색하기 위해 "kid" 속성에만 의존해야 합니다. 
+여기 진행 중인 hello 변경은 tooremove "x5t" hello 속성입니다.  동일한 메커니즘 toovalidate 토큰에 있지만 사용 해야 hello "kid" 속성 tooretrieve hello 올바른 공개 키, OpenID Connect 프로토콜에 지정 된 hello로 toouse hello를 계속할 수 있습니다. 
 
 > [!IMPORTANT]
-> **작업: 앱이 x5t 값의 존재에 종속되지 않도록 하세요.**
+> **작업: 앱 hello hello x5t 값이 있는지 여부에 종속 되지 않습니다.**
 > 
 > 
 
 ### <a name="removing-profileinfo"></a>profile_info 제거
-이전에는 v2.0 끝점이 `profile_info`라고 하는 토큰 응답에 있는 base64 인코딩 JSON 개체를 반환해왔습니다.  요청을 다음에 전송하여 v2.0 끝점으로부터 액세스 토큰을 요청하는 경우
+이전에 hello v2.0 끝점에 되었습니다 반환 base64 인코딩된 JSON 개체로 호출 하는 토큰 응답에 `profile_info`합니다.  요청을 전송 하 여 hello v2.0 끝점에서 액세스 토큰을 요청:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
 
-응답은 다음과 같은 JSON 개체처럼 보입니다.
+hello 응답은 JSON 개체를 수행 하는 hello와 같습니다.
 
 ```
 { 
@@ -88,9 +88,9 @@ https://login.microsoftonline.com/common/oauth2/v2.0/token
 }
 ```
 
-`profile_info` 값에는 표시 이름, 이름, 성, 전자 메일 주소, 식별자 및 등 앱에 서명한 사용자에 관한 정보가 있습니다.  `profile_info` 은(는) 주로 토큰 캐싱과 표시 용도로 사용되었습니다.
+hello `profile_info` hello 사용자 hello 앱의 표시 이름, 이름, 성, 전자 메일 주소, 식별자 및 등을 로그인에 대 한 정보가 포함 된 값입니다.  기본적으로, hello `profile_info` 토큰 캐싱에 사용 된 및 표시 합니다.
 
-이제 `profile_info` 값이 제거되지만, 개발자에게 이 정보를 다소 다른 위치에서 제공합니다.  `profile_info` 대신, v2.0 끝점이 각 토큰 응답에서 `id_token`을(를) 반환하게 됩니다.
+이제 hello 제거 `profile_info` 값-하지만 걱정 하지 마십시오 약간 다른 위치에이 정보 toodevelopers를 제공 하 고 계속 합니다.  대신 `profile_info`, hello v2.0 끝점은 이제 반환는 `id_token` 각 토큰 응답에:
 
 ```
 { 
@@ -103,17 +103,17 @@ https://login.microsoftonline.com/common/oauth2/v2.0/token
 }
 ```
 
-profile_info에서 수신한 동일한 정보를 검색하는 id_token을 디코딩하고 구문 분석할 수 있습니다.  id_token는 OpenID Connect에 지정된 대로 콘텐츠가 포함된 JSON 웹 토큰(JWT)입니다.  이를 수행하기 위한 코드는 매우 유사해야 합니다. 즉, 범위 내에서 JSON 개체를 액세스하기 위해 id_token 및 base64 디코딩의 중간 세그먼트(본문)를 추출하기만 하면 됩니다.
+디코딩하고 hello id_token를 구문 분석할 수 있습니다 tooretrieve hello profile_info에서 받은 동일한 정보입니다.  hello id_token JWT JSON 웹 토큰 (), OpenID Connect로 지정 된 내용으로입니다.  hello 이렇게 하는 것에 대 한 코드와 매우 유사 이며, 하기만 tooextract hello 중간 세그먼트 (hello 본문) hello id_token 및 base64 디코딩해야 내 tooaccess hello JSON 개체입니다.
 
-앞으로 2주 동안 `id_token` 또는 `profile_info`에 존재하는 사용자 정보를 검색하기 위해 앱을 코딩해야 합니다.  이러한 방식으로 변경할 때 앱은 중단 없이 `profile_info`에서 `id_token`(으)로의 전환을 원활하게 처리할 수 있습니다
+Hello를 통해 다음 2 주, 코드를 작성 해야 앱 tooretrieve hello 사용자 정보가 두 hello에서 `id_token` 또는 `profile_info`; 존재 하는 중입니다.  이런 방식으로 hello 변경 될 때 앱에서 hello 전환을 처리할 원활 하 게 수 `profile_info` 너무`id_token` 중단 없이 합니다.
 
 > [!IMPORTANT]
-> **작업: 앱이 `profile_info` 값의 존재에 종속되지 않도록 하세요.**
+> **작업: 응용 프로그램의 hello hello 존재 여부에 종속 되지 않는 있는지 확인 `profile_info` 값입니다.**
 > 
 > 
 
 ### <a name="removing-idtokenexpiresin"></a>Id_token_expires_in 제거
-`profile_info`와(과) 마찬가지로 응답에서 `id_token_expires_in` 매개 변수도 제거할 것입니다.  이전에는 권한 부여 응답 또는 토큰 응답의 인스턴스에 대해 v2.0 끝점이 각 id_token 응답과 함께 `id_token_expires_in`에 대한 값을
+비슷한 너무`profile_info`, hello 제거도 `id_token_expires_in` 응답에서 매개 변수입니다.  Hello v2.0 끝점 반환에 대 한 값 이전에 `id_token_expires_in` authorize 응답의 예를 들어 각 id_token 응답과 함께:
 
 ```
 https://myapp.com?id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...&id_token_expires_in=3599...
@@ -132,15 +132,15 @@ https://myapp.com?id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...&id_token_exp
 }
 ```
 
-`id_token_expires_in` 값은 id_token을 유효한 상태로 유지하는 시간(초)의 수를 나타냅니다.  이제 `id_token_expires_in` 값을 완전히 제거하겠습니다.  대신에 OpenID Connect 표준 `nbf` 및 `exp` 클레임을 사용하여 id_token의 유효성을 검사할 수도 있습니다.  이러한 클레임에 대한 자세한 내용은 [v2.0 토큰 참조](active-directory-v2-tokens.md) 를 참조하세요.
+hello `id_token_expires_in` 값은 hello 수가 hello id_token은에 대 한 유효한 상태로 유지 하는 시간 (초) 나타냅니다.  Hello 제거 이제 `id_token_expires_in` 완전히 값입니다.  대신, hello OpenID Connect 표준을 사용할 수 있습니다 `nbf` 및 `exp` 는 id_token의 tooexamine hello 유효성 클레임입니다.  Hello 참조 [v2.0 토큰 참조](active-directory-v2-tokens.md) 이러한 클레임에 대 한 자세한 내용은 합니다.
 
 > [!IMPORTANT]
-> **작업: 앱이 `id_token_expires_in` 값의 존재에 종속되지 않도록 하세요.**
+> **작업: 응용 프로그램의 hello hello 존재 여부에 종속 되지 않는 있는지 확인 `id_token_expires_in` 값입니다.**
 > 
 > 
 
-### <a name="changing-the-claims-returned-by-scopeopenid"></a>scope=openid에 의해 반환된 클레임 변경
-이 변경은 영향력이 가장 큽니다. 실제로 v2.0 끝점을 사용하는 거의 모든 앱에 영향을 줍니다.  많은 응용 프로그램은 다음과 같은 `openid` 범위를 사용하여 v2.0 끝점에 요청을 전송합니다.
+### <a name="changing-hello-claims-returned-by-scopeopenid"></a>범위에서 반환 된 hello 클레임 변경 openid =
+이 변경 됩니다. 가장 중요 한 – hello 실제로으로 hello v2.0 끝점을 사용 하는 거의 모든 앱에 영향을 줍니다.  Hello를 사용 하 여 많은 응용 프로그램이 송신 요청 toohello v2.0 끝점 `openid` 같은 범위:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -151,9 +151,9 @@ client_id=...
 &scope=openid offline_access https://outlook.office.com/mail.read
 ```
 
-현재 `openid` 범위에 대해 사용자가 동의한 경우, 앱은 결과 id_token의 사용자에 대해 다양한 정보를 수신합니다.  이러한 클레임에는 이름, 기본 설정된 사용자 이름, 전자 메일 주소, 개체 ID 등이 있습니다.
+Hello 사용자 hello에 대 한 동의 허용 하는 경우 현재 `openid` 범위 앱 다양 한 hello 사용자에 대 한 정보 id_token으로 인해 발생 하는 hello에 받습니다.  이러한 클레임에는 이름, 기본 설정된 사용자 이름, 전자 메일 주소, 개체 ID 등이 있습니다.
 
-이 업데이트에는 OpenID Connect 사양으로 보다 잘 확인하기 위해 `openid` 범위가 허용하는 앱의 액세스 정보를 변경할 것입니다.  `openid` 범위는 앱이 id_token의 `sub` 클레임에 있는 사용자를 로그인시키고 해당 사용자에 대한 앱별 식별자만 수신할 수 있게 합니다.  부여된 `openid` 범위만 있는 id_token의 클레임에는 개인 식별 정보가 없습니다.  예시 id_token 클레임은 다음과 같습니다.
+이 업데이트에서 변경 하 고 hello 정보는 hello `openid` 범위 hello 사양 OpenID Connect로 toobetter comform에 응용 프로그램 액세스를 제공 합니다.  hello `openid` 범위만을 통해 앱 toosign hello 사용자가 되며 hello 사용자에 대 한 응용 프로그램별 식별자 hello에 수신 `sub` hello id_token의 청구 합니다.  id_token의 클레임만 hello로 hello `openid` 부여 범위 개인 식별 정보 보내게 됩니다.  예시 id_token 클레임은 다음과 같습니다.
 
 ```
 { 
@@ -169,12 +169,12 @@ client_id=...
 }
 ```
 
-앱에 있는 사용자의 개인 식별 정보(PII)를 가져오려면 앱은 사용자로부터 추가 권한을 요청해야 합니다.  이를 수행할 수 있는 OpenID Connect 사양의 두 가지의 새로운 범위 즉, `email` 및 `profile` 범위에 대한 지원을 도입할 것입니다.
+Hello 사용자에 대 한 응용 프로그램에서 tooobtain 개인 식별이 가능한 정보 (PII)를 원하는 경우 응용 프로그램에 hello 사용자 로부터 toorequest 추가 권한이 필요 합니다.  도입 새 범위 두에 대 한 지원을 hello OpenID Connect 사양-에서 hello `email` 및 `profile` 수 있게 해 주는 toodo 하므로 범위 – 합니다.
 
-* `email` 범위는 매우 간단합니다. 앱이 id_token의 `email` 클레임을 통해 사용자의 기본 전자 메일 주소에 액세스할 수 있도록 해줍니다.  `email` 클레임이 id_tokens에 항상 존재하지는 않을 것입니다. 사용자의 프로필에 사용할 수 있는 경우에만 포함됩니다.
-* `profile` 범위는 앱이 사용자 이름, 기본 설정된 사용자 이름, 개체 ID 등 사용자에 관한 모든 기타 기본 정보에 액세스할 수 있도록 해줍니다.
+* hello `email` 범위는 매우 단순 – hello 통해 응용 프로그램 액세스 toohello 사용자 기본 전자 메일 주소를 허용 `email` hello id_token에 클레임입니다.  해당 hello 참고 `email` 클레임 항상 누락 될 id_tokens에-만 포함 됩니다 hello 사용자의 프로필에 사용할 수 있는 경우.
+* hello `profile` ID, 개체 범위는 응용 프로그램 액세스 tooall hello 사용자-해당 이름, 기본 사용자 이름에 대 한 다른 기본 정보를 제공 합니다.
 
-이렇게 하면 최소한의 공개로 앱을 코딩할 수 있으며, 작업 수행에 필요한 정보를 사용자에게 요청할 수 있습니다.  현재 앱이 수신하고 있는 전체 사용자 정보 전체를 계속 가져오려는 경우, 권한 부여 요청에 세 가지 범위 모두를 포함시켜야 합니다.
+이렇게 하면 toocode 최소 공개 방식-앱의 정보는 앱에 필요한 toodo 작업 집합에만 hello에 대 한 hello 사용자를 요청할 수 있습니다.  Hello 전체 집합이 현재 응용 프로그램을 수신 하는 사용자 정보를 가져오는 toocontinue를 원하는 경우에 권한 부여 요청에서 모든 세 가지 범위를 포함 해야:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -185,55 +185,55 @@ client_id=...
 &scope=openid profile email offline_access https://outlook.office.com/mail.read
 ```
 
-앱은 즉시 `email` 및 `profile` 범위 전송을 시작할 수 있으며, v2.0 끝점은 이러한 두 범위를 수락하고 필요에 따라 사용자로부터 권한 요청을 시작합니다.  그러나 `openid` 범위에 대한 해석 변경은 몇 주 동안 적용되지 않을 것입니다.
+Hello 보내는 응용 프로그램을 시작할 수 `email` 및 `profile` 범위를 즉시 인과 hello v2.0 끝점은 이러한 두 범위를 수락 하 고 필요에 따라 사용자 로부터 권한 요청을 시작 합니다.  Hello hello의 hello 해석에 변경 하는 반면 `openid` 범위 내용이 적용 되지 것입니다 몇 주 동안 발생 합니다.
 
 > [!IMPORTANT]
-> **작업: 앱이 사용자에 대한 정보를 요구하는 경우 `profile` 및 `email` 범위를 추가하세요.**  ADAL은 기본적으로 요청에 이러한 권한을 모두 포함하게 됩니다. 
+> **작업: hello 추가 `profile` 및 `email` 앱 hello 사용자에 대 한 정보를 요구 하는 경우의 범위가 지정 합니다.**  ADAL은 기본적으로 요청에 이러한 권한을 모두 포함하게 됩니다. 
 > 
 > 
 
-### <a name="removing-the-issuer-trailing-slash"></a>발급자 후행 슬래시 제거
-이전에는 v2.0 끝점의 토큰에 표시되는 발급자 값이 양식을 사용했습니다.
+### <a name="removing-hello-issuer-trailing-slash"></a>Hello 발급자 후행 슬래시를 제거 합니다.
+이전에 hello 발급자 값 hello v2.0 끝점에서 토큰에 표시 되는 데 걸린 hello 양식
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0/
 ```
 
-이 양식에서 GUID는 토큰을 발급한 Azure AD 테넌트의 tenantId입니다.  이러한 변경 사항과 함께 발급자 값은
+여기서 hello guid hello 토큰을 발급 한 hello Azure AD 테 넌 트의 tenantId hello 되었습니다.  이러한 변경 내용으로 hello 발급자 값은
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0 
 ```
 
-두 토큰과 OpenID Connect Discovery 문서에 나와 있습니다.
+hello OpenID Connect 검색 문서 및 두 토큰에 있습니다.
 
 > [!IMPORTANT]
-> **작업: 앱이 발급자 유효성 검사 중 후행 슬래시가 있는 발급자 값과 없는 발급자 값 모두 수락하는지 확인하세요.**
+> **작업: 앱 발급자 유효성 검사 중 hello 발급자 값 모두와 사용 하지 않는 끝에 슬래시를 수락 하 고 있는지 확인 합니다.**
 > 
 > 
 
 ## <a name="why-change"></a>변경한 이유는 무엇입니까?
-이러한 변경 사항을 도입하는 주된 목적은 OpenID Connect 표준 사양을 준수하기 위한 것입니다.  OpenID Connect를 준수함으로써 Microsoft ID 서비스와 업계에서 다른 ID 서비스를 통합하는 과정에서 차이가 최소화되기 바랍니다.  개발자가 Microsoft의 차이점을 수용하기 위해 라이브러리를 변경하지 않고도 자신의 좋아하는 오픈 소스 인증 라이브러리를 사용할 수 있도록 하려 합니다.
+이러한 변경 내용을 도입 하는 데 기본 동기 hello toobe hello OpenID Connect 표준 사양 준수입니다.  OpenID Connect 규격 됨으로써 toominimize 다른 id 서비스 hello 업계의 Microsoft id 서비스와 통합 차이점 하시기 바랍니다.  원하는 tooenable 개발자 toouse 해당 즐겨 찾는 오픈 소스 인증 라이브러리 tooalter hello 라이브러리 tooaccommodate Microsoft 차이 필요 없이 합니다.
 
 ## <a name="what-can-you-do"></a>어떻게 해야 합니까?
-현재 위에서 설명한 모든 변경을 시작할 수 있습니다.  다음은 즉시 수행해야 합니다.
+현재로 서 모든 위에서 설명한 hello 변경 하기 시작할 수 있습니다.  다음은 즉시 수행해야 합니다.
 
-1. **`x5t` 헤더 매개 변수의 모든 종속성을 제거합니다.**
-2. **토큰 응답에서 `profile_info`에서 `id_token`으로의 전환을 적절하게 처리합니다.**
-3. **`id_token_expires_in` 응답 매개 변수의 모든 종속성을 제거합니다.**
-4. **앱에 기본 사용자 정보가 필요한 경우, `profile` 및 `email` 범위를 앱에 추가합니다.**
+1. **Hello에서 모든 종속성을 제거 `x5t` header 매개 변수입니다.**
+2. **hello 전환을 정상적으로 처리할 `profile_info` 너무`id_token` 토큰 응답에 있습니다.**
+3. **Hello에서 모든 종속성을 제거 `id_token_expires_in` 응답 매개 변수입니다.**
+4. **Hello 추가 `profile` 및 `email` 범위 tooyour 앱 응용 프로그램에 기본 사용자 정보가 필요한 경우.**
 5. **토큰에 후행 슬래시가 있는 발급자 값과 없는 발급자 값을 모두 수락합니다.**
 
-[v2.0 프로토콜 설명서](active-directory-v2-protocols.md) 에는 이미 이러한 변경 내용을 반영 되어 있기 때문에, 코드를 업데이트하는 데 참조로 사용할 수 있습니다.
+우리의 [v2.0 프로토콜 설명서](active-directory-v2-protocols.md) 는 이미 사용 되었으므로 업데이트 tooreflect 이러한 변경 내용을 코드를 업데이트 하는 데 대 한 참조로 사용할 수 있습니다.
 
-변경의 범위에 대해 추가 질문이 있으면 Twitter @AzureAD로 문의하세요.
+Hello hello 변경 범위에 추가 질문이 있으면 언제 라도 무료 tooreach 아웃에서 Twitter에서 toous @AzureAD합니다.
 
 ## <a name="how-often-will-protocol-changes-occur"></a>프로토콜은 얼마나 자주 변경합니까?
-이후 인증 프로토콜의 주요 변경을 예상하지 않습니다.  이러한 유형의 업데이트 과정을 너무 자주 거치지 않도록 의도적으로 이러한 변경 사항들을 하나의 릴리스로 묶습니다.  물론, 수렴형 v2.0 인증 서비스를 활용하도록 기능을 계속해서 추가할 것이지만, 이러한 변경 사항을 추가할 뿐 기존 코드를 변경하지 않습니다.
+추가 주요 toohello 인증 프로토콜을 변경 하지 않는 것으로 예상 합니다.  의도적으로이 유형의 업데이트 프로세스를 통해 toogo 언제 든 지 곧 않아도 되도록 한 릴리스에 이러한 변경 내용을 번들로 म 합니다.  Tooadd 기능 toohello 계속 것 물론, v2.0 인증 서비스를 이용할 수 있는 수렴 형 않지만 해당 변경 내용을 누적 및 기존 코드를 중단 하지 포함 되어야 합니다.
 
-마지막으로, 이번 미리보기 기간 동안 작업을 시도해주신데 대해 감사 말씀을 드립니다.  지금까지 최초 도입자의 통찰력과 경험은 매우 소중했으며, 계속 의견 및 아이디어를 공유해주시기를 바랍니다.
+마지막으로, toosay 주셔서 hello 미리 보기 기간 동안 작업을 시도해 하겠습니다.  hello insights 및 우리의 조기 채택자의 경험 되지 않은 귀중 한 지금까지 하 고 계속 해 서 tooshare 의견과 아이디어 하시기 바랍니다.
 
 즐거운 코딩 작업이 되길 바랍니다!
 
-Microsoft ID 부서
+Microsoft Identity 나누기 hello
 

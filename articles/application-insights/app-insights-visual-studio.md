@@ -1,5 +1,5 @@
 ---
-title: "Visual Studio에서 Azure Application Insights로 응용 프로그램 디버그 | Microsoft Docs"
+title: "Visual Studio에서 Azure Application Insights를 사용한 응용 프로그램 aaaDebug | Microsoft Docs"
 description: "디버깅 및 프로덕션 중에 웹앱 성능 분석 및 진단입니다."
 services: application-insights
 documentationcenter: .net
@@ -13,63 +13,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/7/2017
 ms.author: bwren
-ms.openlocfilehash: e0ac2bf01992520cdbea22a232dc42d678d77c7f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 20491fbe4505bf719039e5d1c220b1afec01db25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debug-your-applications-with-azure-application-insights-in-visual-studio"></a>Visual Studio에서 Azure Application Insights로 응용 프로그램 디버그
 Visual Studio(2015 이상)에서 [Azure Application Insights](app-insights-overview.md)의 원격 분석을 사용하여 디버깅 및 프로덕션의 성능을 분석하고 ASP.NET 웹앱의 문제를 진단할 수 있습니다.
 
-Visual Studio 2017 이상을 사용하여 ASP.NET 웹앱을 만든 경우 이미 Application Insights SDK가 설치되어 있습니다. 그렇지 않은 경우 아직 수행하지 않았다면 [앱에 Application Insights를 추가합니다](app-insights-asp-net.md).
+Visual Studio 2017을 사용 하 여 ASP.NET 웹 앱 만들거나 나중 hello Application Insights SDK 이미 있습니다. 아직 그렇게 하지 않은 경우 그렇지 [Application Insights tooyour 앱 추가](app-insights-asp-net.md)합니다.
 
-앱이 라이브 프로덕션 상태인 경우 모니터링하려면 일반적으로 [Azure Portal](https://portal.azure.com)에서 Application Insights 원격 분석을 봅니다. 여기서 경고를 설정하고 강력한 모니터링 도구를 적용할 수 있습니다. 그러나 디버깅하려면 Visual Studio에서 원격 분석 데이터를 검색하고 분석할 수 있습니다. Visual Studio를 사용하여 개발 컴퓨터에서 프로덕션 사이트 및 디버깅 실행의 원격 분석을 분석할 수 있습니다. 후자의 경우 Azure Portal에 원격 분석을 보내도록 SDK를 아직 구성하지 않더라도 디버깅 실행을 분석할 수 있습니다. 
+toomonitor 앱 라이브 프로덕션 환경에서 되었을 때 일반적으로 hello Application Insights 원격 분석에서에서 보면 hello [Azure 포털](https://portal.azure.com), 경고를 설정 하 고 수 있는 강력한 모니터링 도구의 적용 합니다. 하지만 디버깅을 위해 또한을 검색 하 고 Visual Studio에서 원격 분석 hello를 분석 합니다. 프로덕션 사이트에서 한 개발 컴퓨터에서 실행 됨 디버깅에서 Visual Studio tooanalyze 원격 분석을 사용할 수 있습니다. 후자의 경우 hello에에서 hello SDK toosend 원격 분석 toohello Azure 포털을 아직 구성 하지 않은 경우에 디버깅 실행을 분석할 수 있습니다. 
 
 ## <a name="run"></a> 프로젝트 디버깅
-F5 키를 사용하여 로컬 디버그 모드로 웹앱을 실행합니다. 다른 페이지를 열어서 일부 원격 분석을 생성합니다.
+F5 키를 사용하여 로컬 디버그 모드로 웹앱을 실행합니다. 일부 원격 분석 toogenerate 서로 다른 페이지를 엽니다.
 
-Visual Studio에서 프로젝트의 Application Insights 모듈에 의해 기록된 이벤트의 수가 표시됩니다.
+Visual Studio 프로젝트에 Application Insights 모듈 hello에 의해 기록 된 hello 이벤트의 개수를 볼 수 있습니다.
 
-![Visual Studio에서 Application Insights 단추는 디버깅하는 동안 표시됩니다.](./media/app-insights-visual-studio/appinsights-09eventcount.png)
+![Visual Studio에서 디버깅 하는 동안 hello Application Insights 단추 표시 됩니다.](./media/app-insights-visual-studio/appinsights-09eventcount.png)
 
-원격 분석을 검색하려면 이 단추를 클릭합니다. 
+이 단추 toosearch 원격 분석을 클릭 합니다. 
 
 ## <a name="application-insights-search"></a>Application Insights 검색
-Application Insights 검색 창에서는 기록된 이벤트가 표시됩니다. (Azure에 로그인한 경우 Application Insights를 설정할 때 Azure Portal에서 동일한 이벤트를 검색할 수 있습니다.)
+hello Application Insights 검색 창에 기록 된 이벤트를 표시 합니다. (로그인 하면 tooAzure Application Insights를 설정 하는 경우 검색할 수 있습니다 hello Azure 포털의에서 동일한 이벤트 hello.)
 
-![프로젝트를 마우스 오른쪽 단추로 클릭하고 Application Insights 및 검색을 선택합니다.](./media/app-insights-visual-studio/34.png)
+![Hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 Application Insights 선택 검색](./media/app-insights-visual-studio/34.png)
 
 > [!NOTE] 
-> 필터를 선택하거나 선택을 취소한 후에 텍스트 검색 필드의 끝에 있는 검색 단추를 클릭합니다.
+> 를 선택 하거나 필터를 선택 취소 한 후에 hello 텍스트 검색 필드의 hello 끝 hello 검색 단추를 클릭 합니다.
 >
 
-자유 텍스트 검색은 이벤트의 필드에서 작동합니다. 예를 들어 페이지의 URL의 일부 또는 클라이언트 시티와 같은 속성의 값 또는 추적 로그에서 특정 단어를 검색합니다.
+hello 자유 텍스트 검색 hello 이벤트의 모든 필드에서 작동합니다. 예를 들어; 페이지의 hello URL의 일부 검색 또는 클라이언트 city;와 같은 속성 값을 환영 합니다. 또는 추적 로그에 특정 단어입니다.
 
-이벤트를 클릭하여 자세한 속성을 확인합니다.
+모든 이벤트 toosee의 자세한 속성을 클릭 합니다.
 
-웹앱에 대한 요청의 경우 코드를 클릭할 수 있습니다.
+요청 tooyour 웹 앱에 대 한 toohello 코드를 통해 클릭 수 있습니다.
 
-![요청 세부 정보 아래에서 코드를 클릭합니다.](./media/app-insights-visual-studio/31.png)
+![요청 세부 사항에서 toohello 코드를 통해 클릭](./media/app-insights-visual-studio/31.png)
 
-또한 관련된 항목 탭을 열어 실패한 요청 또는 예외를 진단할 수 있습니다.
+관련된 항목을 열 수도 있습니다 toohelp 실패 한 요청 또는 예외를 진단 합니다.
 
-![요청 세부 정보에서 관련된 항목까지 아래로 스크롤합니다.](./media/app-insights-visual-studio/41.png)
+![요청 세부 사항에서 toorelated 항목 아래로 스크롤하십시오.](./media/app-insights-visual-studio/41.png)
 
 ## <a name="view-exceptions-and-failed-requests"></a>예외 및 실패한 요청 보기
-검색 창에서 예외 보고서가 표시됩니다. (일부 ASP.NET 응용 프로그램의 이전 유형에서는 [예외 모니터링을 설정](app-insights-asp-net-exceptions.md)하여 프레임워크에 의해 처리되는 예외를 볼 수 있습니다.)
+Hello 검색 창에 예외 보고서 표시 합니다. (ASP.NET 응용 프로그램의 일부 이전 형식에서는 있는 너무[예외 모니터링 설정](app-insights-asp-net-exceptions.md) hello 프레임 워크에 의해 처리 되는 예외를 toosee.)
 
-예외를 클릭하여 스택 추적을 가져옵니다. 앱의 코드가 Visual Studio에서 열린 경우 스택 추적에서 코드의 관련된 줄까지 클릭할 수 있습니다.
+예외 tooget 스택 추적을 클릭 합니다. Hello 코드 hello 앱의 Visual Studio에서 열려 있으면 hello 스택 추적 toohello 관련 코드 줄에서 hello 통해 클릭 수 있습니다.
 
 ![예외 스택 추적](./media/app-insights-visual-studio/17.png)
 
-## <a name="view-request-and-exception-summaries-in-the-code"></a>코드의 요청 및 예외 요약 보기
-각 처리기 메서드 위의 코드 렌즈 줄에서는 지난 24시간 동안 Application Insights에 의해 기록된 요청 및 예외 수를 표시합니다.
+## <a name="view-request-and-exception-summaries-in-hello-code"></a>Hello 코드에서 요청 및 예외 요약 확인
+코드 렌즈 윗줄 각 처리기 메서드 hello hello 요청 및 지난 24 시간 동안 hello에 Application Insights에 의해 기록 된 예외 수를 볼 수 있습니다.
 
 ![예외 스택 추적](./media/app-insights-visual-studio/21.png)
 
 > [!NOTE] 
-> [Application Insights 포털에 원격 분석을 전송하도록 앱을 구성](app-insights-asp-net.md)한 경우 코드 렌즈에서는 Application Insights 데이터를 표시합니다.
+> 코드 렌즈 데이터를 보여 줍니다 Application Insights만 있으면 [응용 프로그램 원격 분석 toosend toohello Application Insights 포털 구성](app-insights-asp-net.md)합니다.
 >
 
 [코드 렌즈의 Application Insights에 대한 자세한 정보](app-insights-visual-studio-codelens.md)
@@ -77,30 +77,30 @@ Application Insights 검색 창에서는 기록된 이벤트가 표시됩니다.
 ## <a name="trends"></a>추세
 추세는 시간이 지남에 따라 앱의 동작 방식을 시각화하는 도구입니다. 
 
-Application Insights 도구 모음 단추 또는 Application Insights 검색 창에서 **원격 분석 추세 탐색** 을 선택합니다. 시작하려면 일반적인 5개의 쿼리 중 하나를 선택합니다. 원격 분석 유형, 시간 범위 및 기타 속성에 따라 서로 다른 데이터 집합을 분석할 수 있습니다. 
+선택 **원격 분석 추세 탐색** hello Application Insights 도구 모음 단추 또는 Application Insights 검색 창에서. 시작 하는 일반적인 쿼리 tooget 5 개 중 하나를 선택 합니다. 원격 분석 유형, 시간 범위 및 기타 속성에 따라 서로 다른 데이터 집합을 분석할 수 있습니다. 
 
-데이터에서 잘못된 부분을 찾으려면 "유형 보기" 드롭다운에서 비정상 옵션 중 하나를 선택합니다. 창의 아래쪽에서 필터링 옵션을 사용하면 쉽게 원격 분석의 특정 하위 집합을 쉽게 찾을 수 있습니다.
+데이터에 잘못 된 부분 toofind hello "보기 유형" 드롭다운 아래 hello 비정상 옵션 중 하나를 선택 합니다. hello 필터링 옵션 hello hello 창 맨 아래에 원격 분석의 특정 하위 집합에서에서 쉽게 toohone 지정.
 
 ![추세](./media/app-insights-visual-studio/51.png)
 
 [추세 자세히 알아보기](app-insights-visual-studio-trends.md).
 
 ## <a name="local-monitoring"></a>로컬 모니터링
-(Visual Studio 2015 업데이트 2에서) Application Insights 포털에 원격 분석을 보내도록 SDK를 구성하지 않은 경우(따라서 ApplicationInsights.config에 계측 키가 없음) 최신 디버깅 세션의 원격 분석이 진단 창에 표시됩니다. 
+(Visual Studio 2015 업데이트 2)에서 Hello SDK toosend 원격 분석 toohello Application Insights 포털 (있도록 ApplicationInsights.config의 계측 키가) 구성 하지 않은 경우 hello 진단 창 최신 디버깅 세션에서 원격 분석을 표시 합니다. 
 
-이전 버전의 앱을 이미 게시한 경우에 바람직합니다. 게시된 앱의 Application Insights 포털에서 원격 분석과 디버깅 세션의 원격 분석을 혼합하려 하지 않습니다.
+이전 버전의 앱을 이미 게시한 경우에 바람직합니다. 디버깅 세션 toobe 프로그램에서 원격 분석 hello 혼합 해 서 사용 hello에 대 한 hello 원격 분석 hello 게시 된 앱에서 Application Insights 포털 되기를 원하지 않습니다.
 
-포털에 원격 분석을 보내기 전에 디버깅하려는 [사용자 지정 원격 분석](app-insights-api-custom-events-metrics.md) 이 있는 경우에도 유용합니다.
+경우에 유용도 몇 가지 [사용자 지정 원격 분석](app-insights-api-custom-events-metrics.md) toohello 포털 원격 분석 보내기 전에 toodebug 되도록 합니다.
 
-* *우선 Application Insights를 완전히 구성하여 포털에 원격 분석을 전송했습니다. 하지만 이제 Visual Studio에서만 원격 분석을 확인하려 합니다.*
+* *처음에 완전히 toosend 원격 분석 toohello 포털 Application Insights를 구성 합니다. 하지만 Visual Studio에서만 toosee hello 원격 분석을 이제 좋을 것입니다.*
   
-  * 검색 창 설정에서 앱이 포털에 원격 분석을 전송하는 경우 로컬 진단을 검색하는 옵션이 있습니다.
-  * 포털에 전송되는 원격 분석을 중지하려면 ApplicationInsights.config에서 `<instrumentationkey>...` 줄을 주석으로 처리합니다. 원격 분석을 포털에 다시 보낼 준비가 되면 주석 처리를 제거합니다.
+  * Hello 검색 창 설정, 즉 옵션 toosearch 로컬 진단 응용 프로그램 원격 분석 toohello 포털 보낸 경우에 있습니다.
+  * 포털 toohello hello 줄 주석 송신할 toostop 원격 분석 `<instrumentationkey>...` ApplicationInsights.config에서 합니다. 준비 toosend 원격 분석 toohello 포털을 다시 했으면 주석 처리를 제거 합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 |  |  |
 | --- | --- |
 | **[더 많은 데이터 추가](app-insights-asp-net-more.md)**<br/>사용량, 가용성, 종속성, 예외를 모니터링합니다. 로깅 프레임 워크의 추적을 통합합니다. 사용자 지정 원격 분석을 작성합니다. |![Visual studio](./media/app-insights-visual-studio/64.png) |
-| **[Application Insights 포털 사용](app-insights-dashboards.md)**<br/>대시보드, 강력한 분석 및 진단 도구, 경고, 응용 프로그램의 라이브 종속성 맵 및 내보낸 원격 분석 데이터를 봅니다. |![Visual studio](./media/app-insights-visual-studio/62.png) |
+| **[Hello Application Insights 포털 작업](app-insights-dashboards.md)**<br/>대시보드, 강력한 분석 및 진단 도구, 경고, 응용 프로그램의 라이브 종속성 맵 및 내보낸 원격 분석 데이터를 봅니다. |![Visual studio](./media/app-insights-visual-studio/62.png) |
 

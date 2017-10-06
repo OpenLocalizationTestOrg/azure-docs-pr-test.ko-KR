@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Ubuntu Linux VHD 만들기 및 업로드"
-description: "Ubuntu Linux 운영 체제가 포함된 Azure VHD(가상 하드 디스크)를 만들고 업로드하는 방법에 대해 알아봅니다."
+title: "aaaCreate 및 Ubuntu Linux VHD를 사용 하 여 Azure에 업로드"
+description: "Toocreate 알아보고 업로드는 Azure 가상 하드 디스크 (VHD)는 Ubuntu Linux 운영 체제를 포함 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,46 +15,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 4496b34ff88ca1e08cc74788ae09d787d4399eaf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cc546a487f769b32432a7e80ddcd0f6af44e201f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="prepare-an-ubuntu-virtual-machine-for-azure"></a>Azure용 Ubuntu 가상 컴퓨터 준비
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="official-ubuntu-cloud-images"></a>공식 Ubuntu 클라우드 이미지
-이제 Ubuntu는 [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/)에서 다운로드할 수 있도록 공식 Azure VHD를 게시합니다. Azure에 대해 특수한 사용자 고유의 Ubuntu 이미지를 빌드해야 하는 경우 아래 수동 절차 대신 이러한 알려진 작업 VHD를 시작하고 필요에 따라 사용자 지정하는 것이 좋습니다. 최신 이미지 릴리스는 항상 다음 위치에서 제공됩니다.
+이제 Ubuntu는 [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/)에서 다운로드할 수 있도록 공식 Azure VHD를 게시합니다. 그 아래 hello 수동 절차를 사용 하지 않고 toobuild 특수 Ubuntu 이미지 Azure에 필요한 경우 이러한 알려진와 권장된 toostart Vhd 작업 이며 필요에 따라 사용자 지정 합니다. 항상 hello 다음 위치에서 hello 최신 이미지 버전을 찾을 수 있습니다.
 
 * Ubuntu 12.04/Precise: [ubuntu-12.04-server-cloudimg-amd64-disk1.vhd.zip](https://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.vhd.zip)
 * Ubuntu 14.04/Trusty: [ubuntu-14.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/trusty/release/ubuntu-14.04-server-cloudimg-amd64-disk1.vhd.zip)
 * Ubuntu 16.04/Xenial: [ubuntu-16.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.vhd.zip)
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서에서는 가상 하드 디스크에 Ubuntu Linux 운영 체제를 이미 설치했다고 가정합니다. .vhd 파일을 만드는 여러 도구가 있습니다(예: Hyper-V와 같은 가상화 솔루션). 자세한 내용은 [Hyper-V 역할 설치 및 가상 시스템 구성](http://technet.microsoft.com/library/hh846766.aspx)을 참조하십시오.
+이 문서는 Ubuntu Linux 운영 체제 tooa 가상 하드 디스크로 이미 설치한 가정 합니다. 여러 도구 toocreate.vhd 파일을 예를 들어 Hyper-v와 같은 가상화 솔루션 존재합니다. 자세한 내용은 [hello Hyper-v 역할을 설치 하 고 가상 컴퓨터 구성](http://technet.microsoft.com/library/hh846766.aspx)합니다.
 
 **Ubuntu 설치 참고 사항**
 
 * Azure용 Linux를 준비하는 방법에 대한 추가 팁은 [일반 Linux 설치 참고 사항](create-upload-generic.md#general-linux-installation-notes) 을 참조하세요.
-* VHDX 형식은 Azure에서 지원되지 않습니다. **고정된 VHD**만 지원됩니다.  Hyper-V 관리자 또는 convert-vhd cmdlet을 사용하여 디스크를 VHD 형식으로 변환할 수 있습니다.
-* Linux 시스템 설치 시에는 LVM(설치 기본값인 경우가 많음)이 아닌 표준 파티션을 사용하는 것이 좋습니다. 이렇게 하면 특히 문제 해결을 위해 OS 디스크를 다른 VM에 연결해야 하는 경우 복제된 VM과 LVM 이름이 충돌하지 않도록 방지합니다. 원하는 경우에는 데이터 디스크에서 [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 또는 [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 사용할 수 있습니다.
-* OS 디스크에 스왑 파티션을 구성하지 마세요. 임시 리소스 디스크에서 스왑 파일을 만들도록 Linux 에이전트를 구성할 수 있습니다.  여기에 대한 자세한 내용은 아래 단계에서 확인할 수 있습니다.
-* 모든 VHD 크기는 1MB의 배수여야 합니다.
+* hello VHDX 형식은 지원 되지 않습니다 Azure에서만 **고정 VHD**합니다.  Hyper-v 관리자를 사용 하 여 hello 디스크 tooVHD 형식을 변환 하거나 convert vhd cmdlet hello 수 있습니다.
+* Hello Linux 시스템을 설치할 때 LVM (종종 대부분의 설치에 대 한 hello 기본값) 보다는 표준 파티션을 사용 하는 것이 좋습니다. OS 필요 없는 연결 toobe tooanother VM에 대 한 디스크 문제 해결 하는 경우에 특히 복제 된 Vm과 LVM 이름 충돌을 피해 야 할이. 원하는 경우에는 데이터 디스크에서 [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 또는 [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 사용할 수 있습니다.
+* 스왑 파티션을 hello OS 디스크에 구성 하지 마십시오. hello Linux 에이전트 구성된 toocreate hello 일시적인 리소스 디스크의 스왑 파일 일 수 있습니다.  이 대 한 자세한 내용은 아래 hello 단계에서 찾을 수 있습니다.
+* 모든 hello Vhd 크기를 1MB의 배수인가 있어야 합니다.
 
 ## <a name="manual-steps"></a>수동 단계
 > [!NOTE]
-> Azure에 대해 고유한 사용자 지정 Ubuntu 이미지를 만들기 전에 [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/)에서 미리 빌드되고 테스트된 이미지를 사용하는 것을 고려하세요.
+> Toocreate 시도 하기 전에 Azure에서 사용자 고유의 사용자 지정 Ubuntu 이미지를 고려 하십시오 hello를 사용 하 여 미리 처음 빌드되고 테스트에서 이미지 [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/) 대신 합니다.
 > 
 > 
 
-1. Hyper-V 관리자의 가운데 창에서 가상 컴퓨터를 선택합니다.
+1. Hyper-v 관리자의 가운데 창 hello hello 가상 컴퓨터를 선택 합니다.
 
-2. **연결** 을 클릭하여 가상 컴퓨터 창을 엽니다.
+2. 클릭 **연결** hello 가상 컴퓨터에 대 한 tooopen hello 창.
 
-3. Ubuntu의 Azure 리포지토리를 사용하도록 이미지의 현재 리포지토리를 바꿉니다. 단계는 Ubuntu 버전에 따라 약간씩 다릅니다.
+3. Hello 현재 저장소에서 Azure hello 이미지 toouse Ubuntu 리포지토리를 대체 합니다. hello 단계 hello Ubuntu 버전에 따라 약간 달라 집니다.
    
-    `/etc/apt/sources.list`를 편집하기 전에 백업을 만드는 것이 좋습니다.
+    편집 하기 전에 `/etc/apt/sources.list`, 것이 권장 toomake 백업:
    
         # sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 08/18/2017
         # sudo sed -i 's/[a-z][a-z].archive.ubuntu.com/azure.archive.ubuntu.com/g' /etc/apt/sources.list
         # sudo apt-get update
 
-4. 이제 Ubuntu Azure 이미지는 *하드웨어 지원* (HWE) 커널을 따릅니다. 다음 명령을 실행하여 운영 체제를 최신 커널로 업데이트합니다.
+4. hello Ubuntu Azure 이미지는 이제 다음과 같습니다. hello *하드웨어 사용* 커널 (HWE). Hello 다음 명령을 실행 하 여 hello 운영 체제 toohello 최신 커널을 업데이트 합니다.
 
     Ubuntu 12.04:
    
@@ -106,32 +106,32 @@ ms.lasthandoff: 08/18/2017
     - [https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack](https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack)
 
 
-5. Azure용 커널 매개 변수를 추가로 포함하려면 Grub의 커널 부팅 줄을 수정합니다. 이 작업을 수행하려면 `/etc/default/grub`을 텍스트 편집기에서 열고 `GRUB_CMDLINE_LINUX_DEFAULT` 변수를 찾거나 필요한 경우 추가하여 다음 매개 변수가 포함되도록 편집합니다.
+5. Azure 용 hello 커널 부팅 줄 Grub tooinclude 추가 커널 매개 변수를 수정 합니다. 이 열려 toodo `/etc/default/grub` 텍스트 편집기에서 호출 하는 hello 변수를 찾을 `GRUB_CMDLINE_LINUX_DEFAULT` (또는 필요에 따라 추가) 하 고 매개 변수 뒤 tooinclude hello 편집:
    
         GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=300"
 
-    이 파일을 저장하고 닫은 다음 `sudo update-grub`을 실행합니다. 이렇게 하면 모든 콘솔 메시지가 첫 번째 직렬 포트로 전송되므로 Azure 기술 지원에서 문제를 디버깅하는 데 도움이 될 수 있습니다.
+    이 파일을 저장하고 닫은 다음 `sudo update-grub`을 실행합니다. 이렇게 하면 모든 콘솔 메시지 toohello 첫 번째 직렬 포트를 Azure 기술 지원 문제 디버깅에 도움이 될 수 있습니다.
 
-6. SSH 서버가 설치되어 부팅 시 시작되도록 구성되어 있는지 확인합니다.  보통 SSH 서버는 기본적으로 이와 같이 구성되어 있습니다.
+6. 해당 hello SSH 서버를 설치 및 부팅 시 toostart을 구성을 확인 합니다.  일반적으로 hello 기본값입니다.
 
-7. Azure Linux 에이전트를 설치합니다.
+7. Hello Azure Linux 에이전트를 설치 합니다.
    
         # sudo apt-get update
         # sudo apt-get install walinuxagent
 
     >[!Note]
-    `walinuxagent` 패키지는 `NetworkManager` 및 `NetworkManager-gnome` 패키지가 설치되어 있는 경우 이러한 패키지를 제거할 수 있습니다.
+    hello `walinuxagent` 패키지 hello 제거 될 수 있습니다 `NetworkManager` 및 `NetworkManager-gnome` 패키지 설치 되어 있는 경우.
 
-8. 다음 명령을 실행하여 가상 컴퓨터의 프로비전을 해제하고 Azure에서 프로비전할 준비를 합니다.
+8. Hello 명령을 toodeprovision hello 가상 컴퓨터를 다음을 실행 하 고 Azure에서 프로 비전 하기 위한 준비:
    
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
 
-9. Hyper-V 관리자에서 **작업 -> 종료**를 클릭합니다. 이제 Linux VHD를 Azure에 업로드할 수 있습니다.
+9. Hyper-V 관리자에서 **작업 -> 종료**를 클릭합니다. Linux VHD 준비 toobe 업로드 tooAzure 이제입니다.
 
 ## <a name="next-steps"></a>다음 단계
-이제 Ubuntu Linux 가상 하드 디스크를 사용하여 Azure에서 새 가상 컴퓨터를 만들 준비가 되었습니다. .vhd 파일을 Azure에 처음으로 업로드하는 경우 [Linux 운영 체제를 포함하는 가상 하드 디스크 만들기 및 업로드](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)에서 2단계 및 3단계를 참조하세요.
+사용자는 이제 준비 toouse Azure의 Ubuntu Linux 가상 하드 디스크 toocreate 새 가상 컴퓨터. 인 경우 hello hello.vhd 파일 tooAzure를 업로드 하는 처음 2와 3 단계 참조 [만들기 및 업로드 hello Linux 운영 체제를 포함 하는 가상 하드 디스크](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)합니다.
 
 ## <a name="references"></a>참조
 Ubuntu 하드웨어 지원(HWE) 커널

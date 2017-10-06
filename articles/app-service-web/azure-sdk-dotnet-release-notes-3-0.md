@@ -1,5 +1,5 @@
 ---
-title: "Azure SDK for .NET 3.0 릴리스 정보 | Microsoft 문서"
+title: "aaaAzure SDK for.NET 3.0 릴리스 정보 | Microsoft Docs"
 description: "Azure SDK for .NET 3.0 릴리스 정보"
 services: app-service\web
 documentationcenter: .net
@@ -13,39 +13,39 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 03/07/2017
 ms.author: juliako
-ms.openlocfilehash: eea4e569ac2d0192ed7872d2fcb9bed03614832b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8970b4c9b64de40dc29a33d69006a00ae5e38a50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sdk-for-net-30-release-notes"></a>Azure SDK for .NET 3.0 릴리스 정보
 
-이 항목에는 Azure SDK for .NET 버전 3.0에 대한 릴리스 정보가 포함되어 있습니다.
+이 항목에 대 한.NET hello Azure SDK의 버전 3.0에 대 한 릴리스 정보를 포함합니다.
 
 ##<a name="azure-sdk-for-net-30-release-summary"></a>Azure SDK for .NET 3.0 릴리스 요약
 
 릴리스 날짜: 03/07/2017
  
-Azure SDK 3.0의 새로운 변경 내용은 이번 릴리스에 도입되지 않았습니다. 기존 클라우드 서비스 프로젝트에서 이 SDK를 활용하는 데 필요한 업그레이드 프로세스도 없습니다. 업그레이드 프로세스를 요구하지 않고 Azure SDK 3.0의 사용을 허용하려면 Azure SDK 3.0은 Azure SDK 2.9와 같은 디렉터리에 설치합니다. 대부분의 구성 요소는 2.9에서 주 버전을 변경하지 않았지만 대신 빌드 번호로 업데이트했습니다.
+이 릴리스의 Azure SDK 3.0 없음 주요 변경 내용 toohello 도입 되었습니다. 기존 클라우드 서비스 프로젝트와 함께이 SDK 필요한 업그레이드 프로세스 tooleverage 하지도 않습니다. Azure SDK 3.0 업그레이드 프로세스를 요구 하지 않고 Azure SDK 3.0 hello tooallow 사용 설치 toohello 같은 Azure SDK 2.9 디렉터리입니다. 대부분의 hello 구성 요소 hello 주 버전 2.9에서 변경 되지 않은 하지만 대신 방금 hello 빌드 번호를 업데이트 합니다.
 
 ## <a name="visual-studio-2017-rtw"></a>Visual Studio 2017 RTW
 
-- Visual Studio 2017에서는 이 Azure SDK for .NET 릴리스가 Azure 워크로드에 구축되었습니다. Azure 개발을 수행하는 데 필요한 모든 도구는 앞으로 Visual Studio 2017에 포함될 예정입니다. Visual Studio 2015의 경우 해당 SDK는 계속 WebPI를 통해 사용할 수 있습니다. 이제 Visual Studio 2017이 릴리스되었으므로 Visual Studio 2013용 Azure SDK for .NET 릴리스는 중단되었습니다.
+- Visual Studio 2017이이 릴리스의 hello Azure SDK for.NET toohello Azure 작업 부하에에서 만들어집니다. Toodo Azure 개발 해야 하는 모든 hello 도구에는 앞으로 Visual Studio 2017의 일부가 됩니다. Visual Studio 2015 용 SDK hello WebPI를 통해 사용할 수 있습니다. 이제 Visual Studio 2017이 릴리스되었으므로 Visual Studio 2013용 Azure SDK for .NET 릴리스는 중단되었습니다.
 
 ### <a name="azure-diagnostics"></a>Azure 진단
 
-- 이 동작은 키가 클라우드 서비스 진단 저장소 연결 문자열에 대한 토큰으로 교체되어 부분 연결 문자열만 저장하는 방식으로 변경되었습니다. 이제 실제 저장소 키가 액세스를 제어할 수 있도록 사용자 프로필 폴더에 저장됩니다. Visual Studio는 로컬 디버깅 및 게시 프로세스에 대한 사용자 프로필 폴더에서 저장소 키를 읽습니다. 
-- 위에 설명된 변경에 대한 응답으로, Visual Studio Online 팀은 사용자가 연속 통합 및 배포에서 Azure에 게시할 때 진단 확장을 설정하기 위한 저장소 키를 지정할 수 있도록 Azure 클라우드 서비스 배포 작업 템플릿을 개선했습니다.
-- 작업 환경 간 구성 문제를 해결하는 데 도움을 주기 위해 Azure 진단(WAD)에 대한 보안 연결 문자열 및 토큰화를 저장할 수 있게 했습니다.
+- 변경 된 hello 동작 tooonly 클라우드 서비스 진단 저장소 연결 문자열에 대 한 토큰으로 대체 하는 hello 키가 있는 부분 연결 문자열을 저장 합니다. 이제 hello 실제 저장소 키가 액세스 권한을 제어할 수 있도록 hello 사용자 프로필 폴더에 저장 됩니다. Visual Studio는 로컬 디버깅 및 게시 프로세스에 대 한 사용자 프로필 폴더에서 hello 저장소 키를 읽습니다. 
+- 위에서 설명한 응답 toohello 변경에서 Visual Studio Online 팀 향상 된 hello Azure 클라우드 서비스 배포 작업 템플릿을 있으므로 사용자가 tooAzure 연속 통합에 게시할 때 진단 확장을 설정 하기 위한 hello 저장소 키를 지정할 수 있습니다. 및 배포 합니다.
+- 만들었고 가능한 toostore 보안 연결 문자열 및 토큰화에 대 한 WAD (Azure 진단), toohelp environements에서 구성 사용 하 여 문제를 해결 합니다.
  
 ### <a name="windows-server-2016-virtual-machines"></a>Windows Server 2016 가상 컴퓨터
 
-- 이제 Visual Studio에서는 OS 제품군 5(Windows Server 2016) 가상 컴퓨터에 클라우드 서비스를 배포하도록 지원합니다. 기존 클라우드 서비스의 경우, 새 OS 제품군을 대상으로 설정을 변경할 수 있습니다. 새 클라우드 서비스를 만들 때 .NET 4.6 이상을 사용하여 서비스를 만들려면 선택하는 경우 기본적으로 서비스는 OS 제품군 5를 사용하게 됩니다.  자세한 내용은 [게스트 OS 제품군 지원 테이블](../cloud-services/cloud-services-guestos-update-matrix.md)을 참조하세요.
+- 이제 visual Studio 배포 클라우드 서비스 tooOS 제품군 5 (Windows Server 2016) 가상 컴퓨터를 지원합니다. 기존 클라우드 서비스에 대 한 설정을 tootarget를 변경할 수 있습니다 hello 새 OS 제품군입니다. 새 클라우드 서비스를.net 4.6 이상이 사용 하 여 toocreate hello 서비스를 선택 하는 경우 만들 때 hello 서비스 toouse OS 제품군 5 기본값이 지정 됩니다.  자세한 내용은 hello를 검토할 수 있습니다 [게스트 OS 제품군 지원 테이블](../cloud-services/cloud-services-guestos-update-matrix.md)합니다.
 
 ### <a name="known-issues"></a>알려진 문제
 
-- Azure .NET SDK 3.0에는 Visual Studio 2015와의 병렬 구성에서 Visual Studio 2017을 제거할 경우 문제가 소개되었습니다.  Visual Studio 2015용 Azure SDK가 설치되어 있는 경우 Visual Studio 2017을 제거하면 Microsoft Azure Storage 에뮬레이터 및 Microsoft Azure 계산 에뮬레이터가 제거됩니다.  이로 인해 Visual Studio 2015에서 새 클라우드 서비스 프로젝트를 만들고 디버그할 때 오류가 발생합니다. 이 문제를 수정하려면 웹 플랫폼 설치 관리자에서 Azure SDK를 다시 설치합니다.  이 문제는 Visual Studio 2017 업데이트에서 해결된 예정입니다.  을 참조하세요.
+- Azure .NET SDK 3.0에는 Visual Studio 2015와의 병렬 구성에서 Visual Studio 2017을 제거할 경우 문제가 소개되었습니다.  Hello Azure SDK가 Visual Studio 2015 용 설치 되어 있는 경우 Microsoft Azure 저장소 에뮬레이터 hello 및 Microsoft Azure 계산 에뮬레이터를 제거할 Visual Studio 2017을 제거 하는 경우.  이로 인해 Visual Studio 2015에서 새 클라우드 서비스 프로젝트를 만들고 디버그할 때 오류가 발생합니다. 주문 toofix이이 문제에 hello 웹 플랫폼 설치 관리자에서에서 Azure SDK hello를 다시 설치 하십시오.  hello 문제가 해결 될 것에 이후 Visual Studio 2017 업데이트 합니다.  에서도 확인할 수 있습니다.
 
  
 ### <a name="azure-in-role-cache"></a>Azure In-Role Cache 

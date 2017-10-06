@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Database 방화벽 규칙 | Microsoft Docs"
-description: "서버 수준 및 데이터베이스 수준 방화벽 규칙으로 SQL 데이터베이스 방화벽을 구성하여 액세스를 관리하는 방법에 대해 알아봅니다."
+title: "aaaAzure SQL 데이터베이스 방화벽 규칙 | Microsoft Docs"
+description: "Tooconfigure SQL 데이터베이스 서버 수준 및 데이터베이스 수준 방화벽 규칙 toomanage 액세스할 수 있는 방화벽에 알아봅니다."
 keywords: "데이터베이스 방화벽"
 services: sql-database
 documentationcenter: 
@@ -17,109 +17,109 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 04/10/2017
 ms.author: rickbyh
-ms.openlocfilehash: 583c91376418d20d34db17d57d3fa14a1e71cd3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a8cdf629d0d0e55421a5e9f9b894a21371be568
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-server-level-and-database-level-firewall-rules"></a>Azure SQL Database 서버 수준 및 데이터베이스 수준 방화벽 규칙 
 
-Microsoft Azure SQL 데이터베이스는 Azure 및 기타 인터넷 기반 응용 프로그램의 관계형 데이터베이스 서비스를 제공합니다. 데이터를 보호하기 위해 방화벽은 권한이 있는 컴퓨터를 지정할 때까지 데이터베이스 서버에 대한 모든 액세스를 금지합니다. 방화벽은 각 요청이 시작된 IP 주소의 데이터베이스에 대한 액세스를 허용합니다.
+Microsoft Azure SQL Database는 Azure 및 기타 인터넷 기반 응용 프로그램의 관계형 데이터베이스 서비스를 제공합니다. toohelp 데이터 보호, 방화벽 권한이 있는 컴퓨터를 지정할 때까지 모든 액세스 tooyour 데이터베이스 서버를 차단 합니다. hello 방화벽 액세스 toodatabases hello 시작 IP 주소를 각 요청에 따라 권한을 부여 합니다.
 
 ## <a name="overview"></a>개요
 
-먼저, Azure SQL 서버에 대한 모든 Transact-SQL 액세스는 방화벽에 의해 차단됩니다. Azure SQL Server를 사용하려면 Azure SQL Server에 액세스를 가능하게 하는 하나 이상의 서버 수준 방화벽 규칙을 지정해야 합니다. 방화벽 규칙을 사용하여 인터넷이 허용하는 IP 주소 범위 및 Azure 응용 프로그램 Azure SQL 서버의 연결 시도 가능 여부를 지정할 수 있습니다.
+처음에 모든 TRANSACT-SQL tooyour Azure의 SQL server 액세스 hello 방화벽으로 차단 됩니다. Azure SQL server를 사용 하 여 toobegin tooyour Azure SQL server 액세스를 사용할 수 있는 하나 이상의 서버 수준 방화벽 규칙을 지정 해야 합니다. 방화벽 규칙 toospecify hello를 사용 하 여 인터넷 허용 hello에서 어떤 IP 주소 범위 및 Azure 응용 프로그램 tooconnect tooyour Azure SQL server를 시작할 수 있는지 여부.
 
-선택적으로 Azure SQL Server에 있는 데이터베이스 중 하나에 대해서만 액세스 권한을 부여하려면 필수 데이터베이스에 대해 데이터베이스 수준 규칙을 만들어야 합니다. 서버 수준 방화벽 규칙에 지정된 IP 주소 범위 밖의 데이터베이스 방화벽 규칙의 IP 주소 범위를 지정한 경우, 클라이언트의 IP 주소가 데이터베이스 수준 규칙에 지정된 범위에 속하는지 확인합니다.
+hello Azure SQL server 데이터베이스 중 하나 tooselectively grant 액세스 toojust, hello 필요한 데이터베이스에 대 한 데이터베이스 수준 규칙을 만들어야 합니다. IP 주소 hello 서버 수준 방화벽 규칙에 지정 된 범위 및 hello 클라이언트의 IP 주소 hello hello 데이터베이스 수준 규칙에 지정 된 hello 범위에 속하는지 확인 hello 벗어납니다 hello 데이터베이스 방화벽 규칙에 대 한 IP 주소 범위를 지정 합니다.
 
-인터넷과 Azure로부터의 연결 시도는 다음 다이어그램과 같이 Azure SQL Server 또는 SQL Database에 연결하기 전에 먼저 방화벽을 통과해야 합니다.
+연결 시도 hello 인터넷 및 Azure 통과 해야 hello 방화벽을 통해 Azure SQL server 또는 SQL 데이터베이스에 영향을 미칠 수 전에 hello 다음 다이어그램에에서 나와 있는 것 처럼:
 
    ![방화벽 구성을 설명하는 다이어그램입니다.][1]
 
-* **서버 수준 방화벽 규칙:** 이 규칙은 모든 Azure SQL 서버, 즉, 동일한 논리 서버 내의 모든 데이터베이스에 클라이언트가 액세스할 수 있도록 합니다. 이 규칙은 **master** 데이터베이스에 저장됩니다. 포털 또는 Transact-SQL 문을 사용하여 서버 수준 방화벽 규칙을 구성할 수 있습니다. Azure Portal 또는 PowerShell을 사용하여 서버 수준 방화벽 규칙을 만들려면 구독 소유자 또는 구독 참가자여야 합니다. Transact-SQL을 사용하여 서버 수준 방화벽 규칙을 만들려면 서버 수준 주체 로그인 또는 Azure Active Directory 관리자로 SQL Database 인스턴스에 연결해야 합니다. 다시 말하면 Azure 수준 권한을 가진 사용자가 먼저 서버 수준 방화벽 규칙을 만들어야 합니다.
-* **데이터베이스 수준 방화벽 규칙:** 이 규칙은 동일한 논리 서버 내의 특정(보안) 데이터베이스에 클라이언트가 액세스할 수 있도록 합니다. 각 데이터베이스(**master** 데이터베이스 포함)에 대해 이러한 규칙을 만들 수 있으며 규칙은 개별 데이터베이스에 저장됩니다. 데이터베이스 수준 방화벽 규칙은 Transact-SQL 문을 사용하는 경우에 한해 첫 번째 서버 수준 방화벽을 구성한 후에 구성할 수 있습니다. 서버 수준 방화벽 규칙 내 지정된 범위 밖의 데이터베이스 수준 방화벽 규칙의 IP 주소 범위를 지정한 경우, 데이터베이스 수준 범위 내에 IP 주소를 가진 클라이언트만이 데이터베이스에 액세스할 수 있습니다. 데이터베이스에 대해 최대 128개의 데이터베이스 수준 방화벽 규칙을 가질 수 있습니다. master 및 사용자 데이터베이스에 대한 데이터베이스 수준 방화벽 규칙은 Transact-SQL을 통해서만 만들고 관리할 수 있습니다. 데이터베이스 수준의 방화벽 규칙 구성에 대한 자세한 내용은 이 문서 뒷부분에 나오는 예제와 [sp_set_database_firewall_rule(Azure SQL Database)](https://msdn.microsoft.com/library/dn270010.aspx)을 참조하세요.
+* **서버 수준 방화벽 규칙:** 이러한 규칙을 통해 클라이언트 tooaccess 전체 Azure SQL server, 즉, 모든 hello 데이터베이스 내에서 hello 동일한 논리 서버입니다. 이러한 규칙은 hello **마스터** 데이터베이스입니다. Hello 포털을 사용 하 여 또는 TRANSACT-SQL 문을 사용 하 여 서버 수준 방화벽 규칙을 구성할 수 있습니다. toocreate 서버 수준 방화벽 규칙 hello Azure 포털 또는 PowerShell을 사용 하 여 hello 구독 소유자 또는 구독 참가자 여야 합니다. TRANSACT-SQL을 사용 하 여 서버 수준 방화벽 규칙 toocreate hello 서버 수준 보안 주체 로그인 또는 hello Azure Active Directory 관리자 (즉, 서버 수준 방화벽 규칙을 먼저 만들어야 함을 toohello SQL 데이터베이스 인스턴스 연결 해야 합니다. 사용자가 Azure 수준 권한).
+* **데이터베이스 수준 방화벽 규칙:** 이러한 규칙을 통해 클라이언트 tooaccess 특정 (보안) 데이터베이스 hello 내에서 동일한 논리 서버입니다. 각 데이터베이스에 대 한 이러한 규칙을 만들 수 있습니다 (hello를 포함 하 여 **마스터** database0) hello 개별 데이터베이스에 저장 됩니다. 데이터베이스 수준 방화벽 규칙 TRANSACT-SQL 문을 사용 하 여 구성할 수 있습니다 및 구성한 후에 첫 번째 서버 수준 방화벽 hello 합니다. Hello 서버 수준 방화벽 규칙에 지정 된 외부 hello 범위는 hello 데이터베이스 수준 방화벽 규칙의 IP 주소 범위를 지정 하는 경우 hello 데이터베이스 수준 범위의 IP 주소를가지고 있는 클라이언트에만 hello 데이터베이스에 액세스할 수 있습니다. 데이터베이스에 대해 최대 128개의 데이터베이스 수준 방화벽 규칙을 가질 수 있습니다. master 및 사용자 데이터베이스에 대한 데이터베이스 수준 방화벽 규칙은 Transact-SQL을 통해서만 만들고 관리할 수 있습니다. 데이터베이스 수준 방화벽 규칙 구성에 대 한 자세한 내용은 뒷부분에서는이 문서와 참조 hello 예제를 참조 하십시오. [sp_set_database_firewall_rule (Azure SQL 데이터베이스)](https://msdn.microsoft.com/library/dn270010.aspx)합니다.
 
-**권장 사항:** Microsoft는 보안을 강화하고 데이터베이스의 휴대성이 높아질수록 데이터베이스 수준 방화벽을 사용하도록 권장합니다. 관리자의 경우 서버 수준 방화벽 규칙을 사용하면 동일한 액세스를 요구하는 데이터베이스가 많을 때 각 데이터베이스를 개별적으로 구성할 필요가 없습니다.
+**권장 사항:** 데이터베이스 수준 방화벽 규칙을 사용 하는 것이 좋습니다 때마다 가능한 tooenhance 보안과 toomake 데이터베이스 이식성이 향상 됩니다. 관리자에 대 한 서버 수준 방화벽 규칙을 사용 하 여 및 hello가 많은 데이터베이스가 있는 경우 같은 액세스 요구 사항을 않게 toospend 시간 각 데이터베이스를 개별적으로 구성 합니다.
 
 > [!Note]
-> 비즈니스 연속성의 맥락에서 휴대용 데이터베이스에 대한 자세한 내용은 [재해 복구를 위한 인증 요구 사항](sql-database-geo-replication-security-config.md)을 참조하세요.
+> 비즈니스 연속성의 hello 컨텍스트에서 이식 가능한 데이터베이스에 대 한 정보를 참조 하십시오. [재해 복구를 위한 인증 요구 사항](sql-database-geo-replication-security-config.md)합니다.
 >
 
-### <a name="connecting-from-the-internet"></a>인터넷에서 연결하기
+### <a name="connecting-from-hello-internet"></a>Hello 인터넷에서 연결
 
-컴퓨터가 인터넷의 데이터베이스에 연결을 시도할 때, 방화벽은 먼저 연결을 요청하는 데이터베이스를 위해 데이터베이스 수준 방화벽 규칙에 반하는 요청의 본래 IP 주소를 확인합니다.
+Hello 인터넷에서에서 tooconnect tooyour 데이터베이스 서버를 시도 하는 컴퓨터 hello 방화벽 시작 IP 주소를 hello 연결을 요청 하는 hello 데이터베이스에 대 한 hello 데이터베이스 수준 방화벽 규칙에 대해 hello 요청의 hello를 먼저 확인 합니다.
 
-* 요청 IP 주소가 데이터베이스 수준 방화벽 규칙의 지정된 범위 안에 있을 경우, 규칙을 포함한 SQL Database 서버 연결이 허용됩니다.
-* 요청된 IP 주소가 데이터베이스 수준 방화벽 규칙의 지정된 범위 안에 없을 경우, 서버 수준 방화벽 규칙을 확인합니다. 요청된 IP 주소가 서버 수준 방화벽 규칙의 지정된 범위 안에 있을 경우, 연결이 허용됩니다. 서버 수준 방화벽 규칙은 Azure SQL Server에 있는 모든 SQL Database에 적용됩니다.  
-* 요청 IP 주소가 데이터베이스 수준 또는 서버 수준 방화벽 규칙의 지정된 범위 안에 없을 경우, 연결 요청이 실패합니다.
+* Hello 요청의 hello IP 주소 내 hello 데이터베이스 수준 방화벽 규칙에 지정 된 hello 범위 중 하나에 있으면 hello 연결 toohello hello 규칙을 포함 하는 SQL 데이터베이스 권한이 부여 됩니다.
+* Hello 요청의 hello IP 주소 hello 데이터베이스 수준 방화벽 규칙에 지정 된 hello 범위 중 하나에 없으면 hello 서버 수준 방화벽 규칙이 확인 됩니다. Hello 요청의 hello IP 주소 중 한 hello 서버 수준 방화벽 규칙에 지정 된 hello 범위 내에 있으면 hello 연결이 승인 됩니다. 서버 수준 방화벽 규칙은 tooall SQL 데이터베이스 hello Azure SQL server에 적용 됩니다.  
+* 내에 없으면 hello 요청의 hello IP 주소 hello 데이터베이스 수준 중 하나에 지정 된 hello 범위 또는 서버 수준 방화벽 규칙의 경우, hello 연결 요청이 실패 합니다.
 
 > [!NOTE]
-> 로컬 컴퓨터에서 Azure SQL Database로 액세스하려면, 네트워크의 방화벽과 로컬 컴퓨터가 TCP 포트 1433으로 나가는 통신을 허용하는지 확인합니다.
+> 로컬 컴퓨터에서 Azure SQL 데이터베이스 tooaccess 확인 hello 방화벽 네트워크와 로컬 컴퓨터에서 TCP 포트 1433에서 나가는 통신을 허용 합니다.
 > 
 
 ### <a name="connecting-from-azure"></a>Azure에서 연결
-Azure에서 응용 프로그램을 Azure SQL Server에 연결할 수 있게 하려면 Azure 연결을 사용하도록 설정해야 합니다. Azure의 응용 프로그램이 데이터베이스 서버로 연결을 시도할 때, 방화벽은 Azure 연결이 허용되는지 확인합니다. 0.0.0.0으로 된 시작 및 끝 주소가 포함된 방화벽 설정은 연결이 허용됨을 나타냅니다. 연결 시도가 허용되지 않는 경우, 요청은 Azure SQL Database 서버로 도달되지 않습니다.
+Azure tooconnect tooyour Azure SQL server, Azure 연결이에서 tooallow 응용 프로그램을 사용 하도록 설정 합니다. Azure에서 응용 프로그램 tooconnect tooyour 데이터베이스 서버와 시도 hello 방화벽 Azure 연결이 허용 되는지 확인 합니다. 방화벽 설정에서 시작 주소와 끝 주소와 같으면 too0.0.0.0 허용 되는 이러한 연결을 나타냅니다. Hello 연결 시도가 허용 되지 않는 경우 hello 요청 hello Azure SQL 데이터베이스 서버에 도달 하지 않습니다.
 
 > [!IMPORTANT]
-> 이 옵션은 다른 고객 구독에서의 연결을 포함하여 Azure에서의 모든 연결을 허용하도록 방화벽을 구성합니다. 이 옵션을 선택할 때 로그인 및 사용자 권한이 부여된 사용자만으로 액세스를 제한하는지 확인합니다.
+> 이 옵션 hello 방화벽 tooallow 다른 고객의 hello 구독에서 Azure 포함 하 여 연결에서 모든 연결을 구성합니다. 권한 있는 사용자 때이 옵션을 선택 하면 있는지 확인 하 여 로그인 하 고 사용자 권한을 tooonly 액세스를 제한 합니다.
 > 
 
 ## <a name="creating-and-managing-firewall-rules"></a>방화벽 규칙 만들기 및 관리
-첫 번째 서버 수준 방화벽 설정은 [Azure Portal](https://portal.azure.com/)을 사용하거나 [Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx), [Azure CLI](/cli/azure/sql/server/firewall-rule#create) 또는 [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx)를 사용하여 프로그래밍 방식으로 만들 수 있습니다. 후속 서버 수준 방화벽 규칙은 이러한 방법과 Transact-SQL을 사용하여 만들고 관리 할 수 있습니다. 
+hello를 사용 하 여 hello 첫 번째 서버 수준 방화벽 설정을 만들 수 있습니다 [Azure 포털](https://portal.azure.com/) 프로그래밍 방식으로 사용 하 여 [Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx), [Azure CLI](/cli/azure/sql/server/firewall-rule#create), 또는 hello [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx)합니다. 후속 서버 수준 방화벽 규칙은 이러한 방법과 Transact-SQL을 사용하여 만들고 관리 할 수 있습니다. 
 
 > [!IMPORTANT]
 > 데이터베이스 수준 방화벽 규칙은 Transact-SQL을 사용해야만 만들고 관리할 수 있습니다. 
 >
 
-성능 향상을 위해 서버 수준 방화벽 규칙이 데이터베이스 수준에서 일시적으로 캐시됩니다. 캐시를 새로 고치려면 [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)를 참조하세요. 
+tooimprove 성능, 서버 수준 방화벽 규칙 hello 데이터베이스 수준에서 일시적으로 캐시 됩니다. toorefresh hello 캐시 참조 [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)합니다. 
 
 > [!TIP]
-> [SQL Database 감사](sql-database-auditing.md)를 사용하여 서버 수준 및 데이터베이스 수준의 방화벽 변경 내용을 감사할 수 있습니다.
+> 사용할 수 있습니다 [SQL 데이터베이스 감사](sql-database-auditing.md) tooaudit 서버 수준과 데이터베이스 수준의 방화벽 변경 내용이 있습니다.
 >
 
-### <a name="azure-portal"></a>Azure 포털
+### <a name="azure-portal"></a>Azure portal
 
-Azure Portal에서 서버 수준 방화벽 규칙을 설정하려면 Azure SQL Database의 개요 페이지 또는 Azure Database 논리 서버의 개요 페이지로 이동합니다.
+tooset hello Azure 포털에서에서 서버 수준 방화벽 규칙을 이동할 수 있습니다 하거나 toohello 개요 페이지 Azure SQL 데이터베이스 또는 hello 개요 페이지에 대 한 Azure 데이터베이스 논리 서버에 대 한 합니다.
 
 > [!TIP]
-> 자습서는 [Azure Portal을 사용하여 DB 만들기](sql-database-get-started-portal.md)를 참조하세요.
+> 자습서를 참조 하십시오. [만들기는 DB를 사용 하 여 Azure 포털을 hello](sql-database-get-started-portal.md)합니다.
 >
 
 **데이터베이스 개요 페이지에서**
 
-1. 데이터베이스 개요 페이지에서 서버 수준 방화벽 규칙을 설정하려면 아래 이미지와 같이 도구 모음에서 **서버 방화벽 설정**을 클릭합니다. SQL Database 서버에 대한 **방화벽 설정** 페이지가 열립니다.
+1. hello 데이터베이스 개요 페이지에서 서버 수준 방화벽 규칙 tooset 클릭 **서버 방화벽 설정** hello 다음 이미지와 같이 hello 도구 모음에서: hello **방화벽 설정** SQL hello에 대 한 페이지 데이터베이스 서버를 엽니다.
 
       ![서버 방화벽 규칙](./media/sql-database-get-started-portal/server-firewall-rule.png) 
 
-2. 도구 모음에서 **클라이언트 IP 추가**를 클릭하여 현재 사용 중인 컴퓨터의 IP 주소를 추가한 다음 **저장**을 클릭합니다. 현재 IP 주소에 대한 서버 수준 방화벽 규칙이 생성됩니다.
+2. 클릭 **클라이언트 IP 추가** hello 컴퓨터의 hello 도구 모음 tooadd hello IP 주소에 현재 사용 하 고이 클릭 한 다음 **저장**합니다. 현재 IP 주소에 대한 서버 수준 방화벽 규칙이 생성됩니다.
 
       ![set server firewall rule](./media/sql-database-get-started-portal/server-firewall-rule-set.png) 
 
 **서버 개요 페이지에서**
 
-서버에 대한 개요 페이지가 열리고 이 페이지에 정규화된 서버 이름(예: **mynewserver20170403.database.windows.net**)이 표시되며 추가 구성을 위한 옵션도 제공됩니다.
+hello 완벽 하 게 hello 보여 주는 서버 열리면 프로그램에 대 한 개요 페이지에 정규화 된 서버 이름 (예: **mynewserver20170403.database.windows.net**) 하 고 더 이상의 구성에 대 한 옵션을 제공 합니다.
 
-1. 서버 개요 페이지에서 서버 수준 규칙을 설정하려면 다음 이미지와 같이 왼쪽 메뉴에서 설정 아래 **방화벽**을 클릭합니다. 
+1. 서버 개요 페이지에서 서버 수준 규칙 tooset 클릭 **방화벽** hello hello 다음 이미지에에서 표시 된 대로 설정에서 왼쪽 메뉴에서: 
 
      ![논리 서버 개요](./media/sql-database-migrate-your-sql-server-database/logical-server-overview.png)
 
-2. 도구 모음에서 **클라이언트 IP 추가**를 클릭하여 현재 사용 중인 컴퓨터의 IP 주소를 추가한 다음 **저장**을 클릭합니다. 현재 IP 주소에 대한 서버 수준 방화벽 규칙이 생성됩니다.
+2. 클릭 **클라이언트 IP 추가** hello 컴퓨터의 hello 도구 모음 tooadd hello IP 주소에 현재 사용 하 고이 클릭 한 다음 **저장**합니다. 현재 IP 주소에 대한 서버 수준 방화벽 규칙이 생성됩니다.
 
      ![set server firewall rule](./media/sql-database-migrate-your-sql-server-database/server-firewall-rule-set.png)
 
 ### <a name="transact-sql"></a>Transact-SQL
 | 카탈로그 뷰 또는 저장된 프로시저 | 수준 | 설명 |
 | --- | --- | --- |
-| [sys.firewall_rules](https://msdn.microsoft.com/library/dn269980.aspx) |서버 |현재 서버 수준 방화벽 규칙 표시 |
+| [sys.firewall_rules](https://msdn.microsoft.com/library/dn269980.aspx) |서버 |Hello 현재 서버 수준 방화벽 규칙을 표시합니다. |
 | [sp_set_firewall_rule](https://msdn.microsoft.com/library/dn270017.aspx) |서버 |서버 수준 방화벽 규칙 생성 및 업데이트 |
 | [sp_delete_firewall_rule](https://msdn.microsoft.com/library/dn270024.aspx) |서버 |서버 수준 방화벽 규칙 제거 |
-| [sys.database_firewall_rules](https://msdn.microsoft.com/library/dn269982.aspx) |데이터베이스 |현재 데이터베이스 수준 방화벽 규칙 표시 |
-| [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) |데이터베이스 |데이터베이스 수준 방화벽 규칙 생성 및 업데이트 |
+| [sys.database_firewall_rules](https://msdn.microsoft.com/library/dn269982.aspx) |데이터베이스 |Hello 현재 데이터베이스 수준 방화벽 규칙을 표시합니다. |
+| [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) |데이터베이스 |만들거나 hello 데이터베이스 수준 방화벽 규칙을 업데이트 합니다. |
 | [sp_delete_database_firewall_rule](https://msdn.microsoft.com/library/dn270030.aspx) |데이터베이스 |데이터베이스 수준 방화벽 규칙 제거 |
 
 
-다음 예제에서는 기존 규칙을 검토하고 Contoso 서버에서 일정 범위의 IP 주소를 사용하도록 설정하고 방화벽 규칙을 삭제합니다.
+hello 다음 예제에서는 hello 기존 규칙을 검토, Contoso, hello 서버의 IP 주소를 사용 하도록 설정 및 방화벽 규칙을 삭제 합니다.
    
 ```sql
 SELECT * FROM sys.firewall_rules ORDER BY name;
@@ -132,7 +132,7 @@ EXECUTE sp_set_firewall_rule @name = N'ContosoFirewallRule',
    @start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.10'
 ```
 
-서버 수준 방화벽 규칙을 삭제 하려면 sp_delete_firewall_rule 저장 프로시저를 실행 합니다. 다음 예제에서는 ContosoFirewallRule이라는 규칙을 삭제합니다.
+서버 수준 방화벽 규칙을 toodelete hello sp_delete_firewall_rule 저장 프로시저를 실행 합니다. hello 다음 예에서는 삭제 contosofirewallrule hello 규칙:
    
 ```sql
 EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
@@ -141,13 +141,13 @@ EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
 ### <a name="azure-powershell"></a>Azure PowerShell
 | Cmdlet | 수준 | 설명 |
 | --- | --- | --- |
-| [AzureSqlDatabaseServerFirewallRule가져오기](https://msdn.microsoft.com/library/azure/dn546731.aspx) |서버 |현재 서버 수준 방화벽 규칙 반환 |
+| [AzureSqlDatabaseServerFirewallRule가져오기](https://msdn.microsoft.com/library/azure/dn546731.aspx) |서버 |Hello 현재 서버 수준 방화벽 규칙을 반환합니다. |
 | [신규 AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546724.aspx) |서버 |새 서버 수준 방화벽 규칙 만들기 |
-| [AzureSqlDatabaseServerFirewallRule집합](https://msdn.microsoft.com/library/azure/dn546739.aspx) |서버 |기존 서버 수준 방화벽 규칙 속성 업데이트 |
+| [AzureSqlDatabaseServerFirewallRule집합](https://msdn.microsoft.com/library/azure/dn546739.aspx) |서버 |기존 서버 수준 방화벽 규칙의 hello 속성 업데이트 |
 | [AzureSqlDatabaseServerFirewallRule삭제](https://msdn.microsoft.com/library/azure/dn546727.aspx) |서버 |서버 수준 방화벽 규칙 제거 |
 
 
-다음 예제에서는 PowerShell을 사용하여 서버 수준 방화벽 규칙을 설정합니다.
+다음 예제는 hello PowerShell을 사용 하는 서버 수준 방화벽 규칙을 설정 합니다.
 
 ```powershell
 New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
@@ -156,19 +156,19 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
 ```
 
 > [!TIP]
-> 빠른 시작의 컨텍스트에서 PowerShell 예제를 보려면 [DB 만들기 - PowerShell](sql-database-get-started-powershell.md) 및 [PowerShell을 사용하여 단일 데이터베이스 만들기 및 방화벽 규칙 구성](scripts/sql-database-create-and-configure-database-powershell.md)을 참조하세요.
+> 빠른 시작의 hello 컨텍스트에서 PowerShell 예제를 보려면 [DB 만들기-PowerShell](sql-database-get-started-powershell.md) 및 [단일 데이터베이스를 만들고 PowerShell을 사용 하는 방화벽 규칙 구성](scripts/sql-database-create-and-configure-database-powershell.md)
 >
 
 ### <a name="azure-cli"></a>Azure CLI
 | Cmdlet | 수준 | 설명 |
 | --- | --- | --- |
-| [az sql server firewall create](/cli/azure/sql/server/firewall-rule#create) | 입력한 IP 주소 범위의 서버에서 모든 SQL Database에 액세스할 수 있도록 방화벽 규칙을 만듭니다.|
+| [az sql server firewall create](/cli/azure/sql/server/firewall-rule#create) | Hello 입력 한 IP 주소 범위에서 hello 서버의 방화벽 규칙 tooallow 액세스 tooall SQL 데이터베이스를 만듭니다.|
 | [az sql server firewall delete](/cli/azure/sql/server/firewall-rule#delete)| 방화벽 규칙을 삭제합니다.|
-| [az sql server firewall list](/cli/azure/sql/server/firewall-rule#list)| 방화벽 규칙을 나열합니다.|
-| [az sql server firewall rule show](/cli/azure/sql/server/firewall-rule#show)| 방화벽 규칙의 세부 정보를 표시합니다.|
+| [az sql server firewall list](/cli/azure/sql/server/firewall-rule#list)| Hello 방화벽 규칙을 나열합니다.|
+| [az sql server firewall rule show](/cli/azure/sql/server/firewall-rule#show)| 방화벽 규칙의 hello 세부 정보를 표시 합니다.|
 | [ax sql server firewall rule update](/cli/azure/sql/server/firewall-rule#update)| 방화벽 규칙을 업데이트합니다.
 
-다음 예제에서는 Azure CLI를 사용하여 서버 수준 방화벽 규칙을 설정합니다. 
+다음 예제는 hello hello Azure CLI를 사용 하 여 서버 수준 방화벽 규칙을 설정 합니다. 
 
 ```azurecli-interactive
 az sql server firewall-rule create --resource-group myResourceGroup --server $servername \
@@ -176,53 +176,53 @@ az sql server firewall-rule create --resource-group myResourceGroup --server $se
 ```
 
 > [!TIP]
-> 빠른 시작의 컨텍스트에서 Azure CLI 예제를 보려면 [DDB 만들기 - Azure CLI](sql-database-get-started-cli.md) 및 [Azure CLI를 사용하여 단일 데이터베이스 만들기 및 방화벽 규칙 구성](scripts/sql-database-create-and-configure-database-cli.md)을 참조하세요.
+> 빠른 시작의 hello 컨텍스트에서 Azure CLI 예제를 보려면 [DDB 만들기-Azure CLI](sql-database-get-started-cli.md) 및 [단일 데이터베이스를 만들고 hello Azure CLI를 사용 하는 방화벽 규칙 구성](scripts/sql-database-create-and-configure-database-cli.md)
 >
 
 ### <a name="rest-api"></a>REST API
 | API | 수준 | 설명 |
 | --- | --- | --- |
-| [방화벽 규칙 나열](https://msdn.microsoft.com/library/azure/dn505715.aspx) |서버 |현재 서버 수준 방화벽 규칙 표시 |
+| [방화벽 규칙 나열](https://msdn.microsoft.com/library/azure/dn505715.aspx) |서버 |Hello 현재 서버 수준 방화벽 규칙을 표시합니다. |
 | [방화벽 규칙 만들기](https://msdn.microsoft.com/library/azure/dn505712.aspx) |서버 |서버 수준 방화벽 규칙 생성 및 업데이트 |
-| [방화벽 규칙 설정](https://msdn.microsoft.com/library/azure/dn505707.aspx) |서버 |기존 서버 수준 방화벽 규칙 속성 업데이트 |
+| [방화벽 규칙 설정](https://msdn.microsoft.com/library/azure/dn505707.aspx) |서버 |기존 서버 수준 방화벽 규칙의 hello 속성 업데이트 |
 | [방화벽 규칙 삭제](https://msdn.microsoft.com/library/azure/dn505706.aspx) |서버 |서버 수준 방화벽 규칙 제거 |
 
 ## <a name="server-level-firewall-rule-versus-a-database-level-firewall-rule"></a>서버 수준 방화벽 규칙 및 데이터베이스 수준 방화벽 규칙
 Q. 한 데이터베이스의 사용자가 다른 데이터베이스에서 완전히 분리되어야 하나요?   
-  그렇다면 데이터베이스 수준 방화벽 규칙을 사용하여 액세스 권한을 부여하세요. 이렇게 하면 서버 수준 방화벽 규칙을 사용할 수 없게 되며, 방화벽을 통과해서 모든 데이터베이스에 액세스하도록 허용되므로 방어 수준이 약해집니다.   
+  그렇다면 데이터베이스 수준 방화벽 규칙을 사용하여 액세스 권한을 부여하세요. 이렇게 하면 데이터베이스 tooall 여 방어의 hello 깊이 줄여 hello 방화벽을 통해 액세스를 허용 하는 서버 수준 방화벽 규칙을 사용 하 여 없습니다.   
  
-Q. 해당 IP 주소의 사용자가 모든 데이터베이스에 액세스할 수 있어야 하나요?   
-  서버 수준 방화벽 규칙을 사용하여 방화벽 규칙을 구성해야 하는 횟수를 줄이세요.   
+Q. Hello IP 주소에서 사용자가 필요에 액세스 하려면 tooall 데이터베이스?   
+  사용 하 여 서버 수준 방화벽 규칙 tooreduce hello 횟수 방화벽 규칙을 구성 해야 합니다.   
 
-Q. 방화벽 규칙을 구성하는 개인이나 팀이 Azure Portal, PowerShell 또는 REST API를 통해서만 액세스하나요?   
+Q. Hello 개인 이나 팀만 hello 방화벽 규칙 구성 액세스 권한이 통해 hello Azure 포털, PowerShell 또는 REST API hello?   
   서버 수준 방화벽 규칙을 사용해야 합니다. 데이터베이스 수준 방화벽 규칙은 Transact-SQL을 사용해야만 구성할 수 있습니다.  
 
-Q. 방화벽 규칙을 구성하는 개인이나 팀이 데이터베이스 수준에서 높은 수준의 권한을 가질 수 없도록 금지되나요?   
-  서버 수준 방화벽 규칙을 사용하세요. TRANSACT-SQL을 사용하여 데이터베이스 수준 방화벽 규칙을 구성하려면 적어도 데이터베이스 수준에서 `CONTROL DATABASE` 권한이 있어야 합니다.  
+Q. hello 개인 이나 팀 hello 방화벽 규칙 구성 금지 hello 데이터베이스 수준에서 수 있는 높은 수준의 권한을 가진에서?   
+  서버 수준 방화벽 규칙을 사용하세요. TRANSACT-SQL을 사용 하 여 데이터베이스 수준 방화벽 규칙을 구성 하려면 최소한 `CONTROL DATABASE` hello 데이터베이스 수준에서 권한이 있습니다.  
 
-Q. 방화벽 규칙을 구성하거나 감사하는 개인이나 팀이 많은(100개 정도) 데이터베이스에 대한 방화벽 규칙을 중앙에서 관히하고 있나요?   
-  이 선택은 사용자의 필요 및 환경에 따라 달라집니다. 서버 수준 방화벽 규칙이 구성하기 더 쉬울 수 있지만 스크립팅은 데이터베이스 수준에서 규칙을 구성할 수 있습니다. 또한 서버 수준 방화벽 규칙을 사용하더라도 데이터베이스에 대해 `CONTROL` 권한이 있는 사용자가 데이터베이스 수준 방화벽 규칙을 만들었는지 확인하기 위해서는 데이터베이스 방화벽 규칙을 감사해야 할 수 있습니다.   
+Q. 대부분에 대 한 방화벽 규칙을 중앙에서 관리는 hello 개인 이나 팀 구성 또는 hello 방화벽 규칙, 감사 (아마도 단위: 100) 데이터베이스의?   
+  이 선택은 사용자의 필요 및 환경에 따라 달라집니다. 서버 수준 방화벽 규칙 보다 쉽게 tooconfigure 있지만 스크립팅 hello 데이터베이스 수준에서 규칙을 구성할 수 있습니다. 경우 tooaudit hello 데이터베이스 방화벽 규칙을 toosee 서버 수준 방화벽 규칙을 사용 하는 경우에 할 수 있습니다 및 있는 사용자 `CONTROL` hello 데이터베이스에 대 한 권한이 데이터베이스 수준 방화벽 규칙을 만들었습니다.   
 
 Q. 서버 수준 및 데이터베이스 수준 방화벽 규칙을 함께 사용할 수 있나요?   
   예. 관리자와 같은 일부 사용자는 서버 수준 방화벽 규칙이 필요할 수 있습니다. 데이터베이스 응용 프로그램 사용자와 같은 경우는 데이터베이스 수준 방화벽 규칙이 필요할 수 있습니다.   
 
-## <a name="troubleshooting-the-database-firewall"></a>데이터베이스 방화벽 문제 해결
-Microsoft Azure SQL 데이터베이스 서비스로의 연결이 예상대로 작동되지 않는 경우 다음 사항을 고려하세요.
+## <a name="troubleshooting-hello-database-firewall"></a>Hello 데이터베이스 방화벽 문제 해결
+Hello 포인트 액세스 toohello Microsoft Azure SQL 데이터베이스 서비스에는 예상 대로 작동 하지 않는 경우 다음을 고려 합니다.
 
-* **로컬 방화벽 구성:** 사용자의 컴퓨터가 Azure SQL 데이터베이스에 액세스할 수 있게 되기 전에, 사용자의 컴퓨터에 TCP 포트 1433에 대한 방화벽 예외를 만드는 것이 필요할 수 있습니다. Azure 클라우드 경계 내에서 연결하는 경우 포트를 추가로 열어야 할 수도 있습니다. 자세한 내용은 [ADO.NET 4.5 및 SQL Database에 대한 1433 이외 포트](sql-database-develop-direct-route-ports-adonet-v12.md)의 **SQL Database: 내부 및 외부**를 참조하세요.
-* **NAT(Network Address Translation):** NAT로 인해 Azure SQL 데이터베이스로 연결할 때 컴퓨터에서 사용하는 IP 주소는 컴퓨터 IP 구성 설정에서 나타나는 IP 주소와 다를 수도 있습니다. Azure에 연결할 때 컴퓨터에서 사용하는 IP 주소를 보려면 포털에 로그인하고 데이터베이스를 호스트하는 서버의 **구성** 탭을 탐색합니다. **허용된 IP 주소** 섹션에 **현재 클라이언트 IP 주소**가 표시됩니다. **허용된 IP 주소**에 **추가**를 클릭하여 이 컴퓨터가 서버에 액세스할 수 있도록 합니다.
-* **허용 목록의 변경사항이 아직 적용되지 않았습니다.** Azure SQL 데이터베이스 방화벽 구성에 변경 내용이 적용되려면 최대 5분 정도 걸릴 수 있습니다.
-* **로그인이 올바르지 않거나 암호가 올바르지 않습니다.** 로그인에 Azure SQL Database 서버에 대한 권한이 없거나 사용한 암호가 틀렸을 경우 Azure SQL Database 서버에 대한 연결이 거부됩니다. 방화벽 설정은 클라이언트에게 서버에 연결을 시도할 수 있는 기회를 제공합니다. 각 클라이언트는 꼭 필요한 보안 자격 증명을 제공해야 합니다. 로그인 준비에 대한 자세한 내용은 Azure SQL Database에서 데이터베이스, 로그인, 사용자 관리를 참조하세요. 
-* **동적 IP 주소:** 동적 IP 주소를 통해 인터넷에 연결되어 있고 방화벽을 통과하는 데 문제가 있는 경우 다음 해결 방법 중 하나를 시도할 수 있습니다.
+* **로컬 방화벽 구성:** TCP 포트 1433에 대 한 컴퓨터에 방화벽 예외를 toocreate 컴퓨터에서 Azure SQL 데이터베이스에 액세스 하기 전에 할 수 있습니다. Hello Azure 클라우드 경계 내에서 연결 작업을 수행 하려면 tooopen 추가 포트를 할 수 있습니다. 자세한 내용은 참조 hello **SQL 데이터베이스: 내부 및 외부** 의 섹션 [ADO.NET 4.5 및 SQL 데이터베이스에 대 한 1433 이외의 포트](sql-database-develop-direct-route-ports-adonet-v12.md)합니다.
+* **네트워크 주소 변환 (NAT):** 기한 tooNAT, hello IP 주소에서 사용자 컴퓨터 tooconnect tooAzure SQL 데이터베이스 컴퓨터의 IP 구성 설정에 표시 된 hello IP 주소와 다를 수 있습니다. 컴퓨터가 tooview hello IP 주소 toohello 포털에 로그인 하 고 toohello 이동 tooconnect tooAzure를 사용 하 여 **구성** hello 서버 데이터베이스를 호스팅하는 탭 합니다. Hello에서 **허용 IP 주소** 섹션 hello **현재 클라이언트 IP 주소** 표시 됩니다. 클릭 **추가** toohello **허용 IP 주소** tooallow이 컴퓨터 tooaccess hello 서버입니다.
+* **변경 내용을 toohello 허용 목록이 아직 적용 되지 않음:** 하는 데 5 분 지연 toohello Azure SQL 데이터베이스 방화벽 구성 tootake 효과 변경 하는 만큼 있을 수 있습니다.
+* **hello 로그인 권한이 없거나 잘못 된 암호를 사용한:** hello Azure SQL 데이터베이스 서버에 대 한 사용 권한이 로그인 하지 않거나 사용 되는 hello 암호가 올바르지 않습니다, toohello Azure SQL 데이터베이스 서버에 연결할 hello 거부 되었습니다. Tooyour 서버;에 연결 하는 기회 tooattempt 클라이언트 제공 방화벽 설정 각 클라이언트 hello 필요한 보안 자격 증명을 제공 해야 합니다. 로그인 준비에 대한 자세한 내용은 Azure SQL Database에서 데이터베이스, 로그인, 사용자 관리를 참조하세요. 
+* **동적 IP 주소:** 동적 IP 주소로 사용 하는 인터넷 연결이 있는 hello 방화벽을 통과 하는 데 문제가 있는 경우 hello 솔루션을 다음 중 하나를 시도할 수 있습니다.
   
-  * 인터넷 서비스 공급자(ISP)는 Azure SQL Database 서버에 연결될 클라이언트에 할당된 IP 주소 범위를 요청하고, 방화벽 규칙에 따라 IP 주소 범위를 추가합니다.
-  * 클라이언트 컴퓨터 대신 고정 IP 주소를 얻고, 방화벽 규칙에 따라 IP 주소 범위를 추가합니다.
+  * 인터넷 서비스 공급자 (ISP) hello IP 주소 범위에 대 한 할당 tooyour 클라이언트 컴퓨터 액세스 hello Azure SQL 데이터베이스 서버를 게 문의 하 고 방화벽 규칙으로 hello IP 주소 범위를 추가 합니다.
+  * 고정 IP 주소를 대신 클라이언트 컴퓨터에 대 한 가져오고 방화벽 규칙으로 hello IP 주소를 추가 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
 - 데이터베이스 및 서버 수준 방화벽 규칙 만들기에 대한 빠른 시작은 [Azure SQL Database 만들기](sql-database-get-started-portal.md)를 참조하세요.
-- 오픈 소스 또는 타사 응용 프로그램에서 Azure SQL 데이터베이스에 연결하는 방법에 대한 도움말은 [SQL 데이터베이스에 대한 클라이언트 빠른 시작 코드 샘플](https://msdn.microsoft.com/library/azure/ee336282.aspx)을 참조하세요.
-- 열어야 할 수 있는 추가 포트에 대한 자세한 내용은 [ADO.NET 4.5와 SQL Database에 대한 1433 이외 포트](sql-database-develop-direct-route-ports-adonet-v12.md)의 **SQL Database: 내부 및 외부** 섹션을 참조하세요.
+- 오픈 소스 또는 타사 응용 프로그램에서 연결 tooan Azure SQL 데이터베이스에서 도움말을 참조 하십시오. [클라이언트 빠른 시작 코드 샘플 데이터베이스 tooSQL](https://msdn.microsoft.com/library/azure/ee336282.aspx)합니다.
+- 추가 포트를 tooopen 할 수 있습니다, 참조 hello **SQL 데이터베이스: 내부 및 외부** 의 섹션 [ADO.NET 4.5 및 SQL 데이터베이스에 대 한 1433 이외의 포트](sql-database-develop-direct-route-ports-adonet-v12.md)
 - Azure SQL Database 보안 개요는 [데이터베이스 보안 설정](sql-database-security-overview.md)을 참조하세요.
 
 <!--Image references-->

@@ -1,12 +1,12 @@
 ---
-title: "Azure IoT에 Raspberry Pi(C) 연결 - 단원 3: 템플릿 배포 | Microsoft Docs"
-description: "Azure 함수 앱은 Azure IoT Hub 이벤트를 수신 대기하고, 들어오는 메시지를 처리하고, 이를 Azure Table Storage에 씁니다."
+title: "Connect Raspberry Pi (C) tooAzure IoT-3 단원: 템플릿 배포 | Microsoft Docs"
+description: "hello Azure 함수 앱 tooAzure IoT 허브 이벤트를 수신 하 고, 들어오는 메시지를 처리, tooAzure 테이블 저장소에 기록 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "클라우드에 데이터 저장, 클라우드에 저장된 데이터, IoT 클라우드 서비스"
+keywords: "hello 클라우드, 클라우드의 저장 된 데이터에에서 데이터를 저장할 iot 클라우드 서비스"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-c-get-started
 ms.assetid: 4bcfb071-b3ae-48cc-8ea5-7e7434732287
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b8bab31489f2e912b51212cb58cb598a9db9b59d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11aaad4935681d8b3d338779eec1b19d77cb11e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-function-app-and-azure-storage-account"></a>Azure 함수 앱 및 Azure Storage 계정 만들기
-[Azure Functions](../../articles/azure-functions/functions-overview.md)는 클라우드에서 *함수*(작은 코드)를 손쉽게 실행하기 위한 솔루션입니다. Azure 함수 앱은 Azure에서 함수 실행을 호스트합니다.
+[Azure 기능](../../articles/azure-functions/functions-overview.md) 쉽게 실행 하기 위한 솔루션은 *함수* (코드의 작은 조각) hello 클라우드에서 합니다. Azure 함수 응용 프로그램 호스트 hello Azure에서 함수를 실행 합니다.
 
 ## <a name="what-will-you-do"></a>수행할 내용
-Azure Resource Manager 템플릿을 사용하여 Azure 함수 앱 및 Azure Storage 계정을 만듭니다. Azure 함수 앱은 Azure IoT Hub 이벤트를 수신 대기하고, 들어오는 메시지를 처리하고, 이를 Azure Table Storage에 씁니다. 문제가 있으면 [문제 해결 페이지](iot-hub-raspberry-pi-kit-c-troubleshooting.md)에서 솔루션을 검색하세요.
+Azure 리소스 관리자 템플릿 toocreate를 사용 하 여 Azure 저장소 계정 및 Azure 함수 응용 프로그램. hello Azure 함수 앱 tooAzure IoT 허브 이벤트를 수신 하 고, 들어오는 메시지를 처리, tooAzure 테이블 저장소에 기록 합니다. 문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지](iot-hub-raspberry-pi-kit-c-troubleshooting.md)합니다.
 
 ## <a name="what-will-you-learn"></a>학습할 내용
 이 문서에서는 다음에 대해 알아봅니다.
-* [Azure Resource Manager](../../articles/azure-resource-manager/resource-group-overview.md)를 사용하여 Azure 리소스를 배포하는 방법.
-* Azure 함수 앱을 사용하여 IoT hub 메시지를 처리하고 이를 Azure Table Storage의 테이블에 쓰는 방법.
+* 어떻게 toouse [Azure 리소스 관리자](../../articles/azure-resource-manager/resource-group-overview.md) toodeploy Azure 리소스입니다.
+* Toouse Azure 응용 프로그램 tooprocess IoT 허브 메시지 작동 방법과 Azure 테이블 저장소에서 tooa 테이블 작성.
 
 ## <a name="what-do-you-need"></a>필요한 내용
 * 다음을 완료해야 합니다.
 - [Raspberry Pi 3 시작](iot-hub-raspberry-pi-kit-c-get-started.md)
 - [Azure IoT Hub 만들기](iot-hub-raspberry-pi-kit-c-get-started.md)
 
-## <a name="open-the-sample-app"></a>샘플 앱 열기
-다음 명령을 실행하여 Visual Studio Code에서 샘플 프로젝트를 엽니다.
+## <a name="open-hello-sample-app"></a>열기 hello 샘플 응용 프로그램
+Visual Studio Code에서 hello 다음 명령을 실행 하 여 hello 샘플 프로젝트를 엽니다.
 
 ```bash
 cd Lesson3
@@ -49,30 +49,30 @@ code .
 
 ![Repo 구조](media/iot-hub-raspberry-pi-lessons/lesson3/repo_structure_c.png)
 
-* `app` 하위 폴더에서 `main.c` 파일은 키 소스 파일입니다. 이 소스 파일에는 메시지를 IoT hub로 20번 보내서 각 메시지에 대한 LED를 깜빡이는 코드가 포함되어 있습니다.
-* `arm-template.json` 파일은 Azure 함수 앱 및 Azure Storage 계정을 포함하는 Azure Resource Manager 템플릿입니다.
-* `arm-template-param.json` 파일은 Azure Resource Manager 템플릿에서 사용되는 구성 파일입니다.
-* `ReceiveDeviceMessages` 하위 폴더에는 Azure 함수에 대한 Node.js 코드가 포함되어 있습니다.
+* hello `main.c` hello에 대 한 파일 `app` 하위 폴더는 hello 키 원본 파일입니다. 이 소스 파일 hello 코드 toosend 20 배 tooyour IoT 허브 및 깜박임 hello LED 각 메시지에 대 한 보내는 메시지를 포함 합니다.
+* hello `arm-template.json` 파일은 Azure 저장소 계정 및 Azure 함수 응용 프로그램을 포함 하는 hello Azure 리소스 관리자 템플릿.
+* hello `arm-template-param.json` 파일은 hello 구성 파일에서 hello Azure 리소스 관리자 템플릿을 사용 합니다.
+* hello `ReceiveDeviceMessages` 하위 폴더는 hello Azure 함수에 대 한 hello Node.js 코드를 포함 합니다.
 
 ## <a name="configure-azure-resource-manager-templates-and-create-resources-in-azure"></a>Azure Resource Manager 템플릿 구성 및 Azure에서 리소스 만들기
-Visual Studio Code에서 `arm-template-param.json` 파일을 업데이트합니다.
+업데이트 hello `arm-template-param.json` Visual Studio 코드 파일.
 
 ![Azure Resource Manager 템플릿 매개 변수](media/iot-hub-raspberry-pi-lessons/lesson3/arm_para_c.png)
 
 * **[your IoT Hub name]**을 [IoT Hub를 만들고 Raspberry Pi 3을 등록](iot-hub-raspberry-pi-kit-c-lesson2-prepare-azure-iot-hub.md)할 때 지정한 **{my hub name}**으로 바꿉니다.
-* **[새 리소스에 대한 문자열 접두사]**를 원하는 접두사로 대체합니다. 접두사는 리소스 이름이 전역적으로 고유하여 충돌을 피할 수 있게 합니다. 접두사에 대시 또는 숫자 이니셜을 사용하지 마십시오.
+* **[새 리소스에 대한 문자열 접두사]**를 원하는 접두사로 대체합니다. hello 접두사 hello 해당 리소스 이름은 전역적으로 고유 tooavoid 충돌을 확인 합니다. 대시 또는 hello 접두사의 초기 수는 사용 하지 마십시오.
 
-`arm-template-param.json` 파일을 업데이트한 후 다음 명령을 실행하여 Azure에 리소스를 배포합니다.
+Hello를 업데이트 한 후 `arm-template-param.json` 파일, hello 다음 명령을 실행 하 여 hello 리소스 tooAzure 배포:
 
 ```bash
 az group deployment create --template-file arm-template.json --parameters @arm-template-param.json -g iot-sample
 ```
 
-이러한 리소스를 만드는 데 약 5분이 걸립니다. 리소스 만들기가 진행되는 동안, 다음 문서로 이동할 수 있습니다.
+이러한 리소스 약 5 분 toocreate 걸립니다. Hello 리소스 만들기 진행 중에서 상태인 동안에 다음 toohello 아티클에서 이동할 수 있습니다.
 
 ## <a name="summary"></a>요약
-IoT Hub 메시지를 처리하는 Azure 함수 앱과 이러한 메시지를 저장하는 Azure Storage 계정을 만들었습니다. 이제 샘플을 배포 및 실행하고 장치-클라우드 메시지를 Pi에 보낼 수 있습니다.
+Azure 함수 앱 tooprocess IoT 허브 메시지 생성 및 Azure 저장소 계정 toostore 이러한 메시지입니다. 이제 배포 하 고 원주율 hello 샘플 toosend 장치-클라우드 메시지를 실행할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-[샘플 응용 프로그램을 실행하여 장치-클라우드 메시지 보내기](iot-hub-raspberry-pi-kit-c-lesson3-run-azure-blink.md)
+[샘플 응용 프로그램 toosend 장치-클라우드 메시지 실행](iot-hub-raspberry-pi-kit-c-lesson3-run-azure-blink.md)
 

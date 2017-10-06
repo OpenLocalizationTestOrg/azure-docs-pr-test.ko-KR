@@ -17,14 +17,14 @@
 ### [엔터프라이즈 푸시 아키텍처 지침](notification-hubs-enterprise-push-notification-architecture.md)
 
 ## 개발
-### [GCM을 사용하여 Android에 푸시 알림 보내기](notification-hubs-android-push-notification-google-gcm-get-started.md)
+### [GCM을 사용 하 여 푸시 알림 tooAndroid 보내기](notification-hubs-android-push-notification-google-gcm-get-started.md)
 ### [Bing 공간 데이터를 사용하여 지역 구분 알림 푸시](notification-hubs-push-bing-spartial-data-geofencing-notification.md)
-### 특정 사용자에게 푸시
+### 푸시 toospecific 사용자
 #### [Android](notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md)
 #### [iOS](notification-hubs-aspnet-backend-ios-apple-apns-notification.md)
 #### [Windows](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md)
 
-#### [ASP.NET을 사용하여 현재 사용자 등록](notification-hubs-ios-aspnet-register-user-from-backend-to-push-notification.md)
+#### [ASP.NET을 사용 하 여 hello 현재 사용자를 등록 합니다.](notification-hubs-ios-aspnet-register-user-from-backend-to-push-notification.md)
 ### [플랫폼 간 알림 보내기](notification-hubs-aspnet-cross-platform-notification.md)
 ### 서버 SDK 작업
 #### [.NET](https://msdn.microsoft.com/library/mt414893.aspx)

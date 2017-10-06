@@ -1,6 +1,6 @@
 ---
-title: "Azure AD에서 지원하는 다른 토큰 및 클레임 유형에 대해 알아보기 | Microsoft Docs"
-description: "AAD(Azure Active Directory)에서 발급하는 SAML 2.0 및 JWT(JSON 웹 토큰)를 이해하고 평가하기 위한 가이드입니다."
+title: "hello 다른 토큰 및 클레임 유형 Azure AD에서 지 원하는 대해서 aaaLearn | Microsoft Docs"
+description: "이해 및 평가 hello SAML 2.0 및에서 Azure Active Directory (AAD)를 발급 하는 JSON 웹 토큰 (JWT) 토큰의 클레임을 hello에 대 한 가이드"
 documentationcenter: na
 author: dstrockis
 services: active-directory
@@ -15,28 +15,28 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: c211c59b00d445a62ebe3ae9334101c983e05c57
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c512894476613e94d86a994c32a8459d6cf00fbd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-token-reference"></a>Azure AD 토큰 참조
-Azure AD(Azure Active Directory)는 각 인증 흐름의 처리 과정에서 여러 유형의 보안 토큰을 내보냅니다. 이 문서에서는 각 토큰 유형의 형식, 보안 특성 및 내용을 설명합니다.
+Azure Active Directory (Azure AD) 여러 유형의 각 인증 흐름의 hello 처리의 보안 토큰을 내보냅니다. 이 문서에서는 hello 형식, 보안 특성 및 각 유형의 토큰의 내용을 설명 합니다.
 
 ## <a name="types-of-tokens"></a>토큰 형식
-Azure AD는 access_tokens 및 refresh_tokens 둘 다를 활용하는 [OAuth 2.0 인증 프로토콜](active-directory-protocols-oauth-code.md)을 지원합니다.  또한 세 번째 토큰 유형인 id_token을 도입하는 [OpenID Connect](active-directory-protocols-openid-connect-code.md)를 통해 인증 및 로그인을 지원합니다.  이러한 토큰은 각각 "전달자 토큰"으로 표시됩니다.
+Azure AD에서는 hello 지원 [OAuth 2.0 권한 부여 프로토콜](active-directory-protocols-oauth-code.md)를 사용 하는 access_tokens와 refresh_tokens 합니다.  또한 인증 및 로그인을 통해 지원 [OpenID Connect](active-directory-protocols-openid-connect-code.md), 세 번째 유형의 토큰을 hello id_token 도입 합니다.  이러한 토큰은 각각 "전달자 토큰"으로 표시됩니다.
 
-전달자 토큰은 보호된 리소스에 대한 "전달자" 액세스 권한을 부여하는 간단한 보안 토큰입니다. 이런 의미에서, "전달자"는 토큰을 제공할 수 있는 당사자입니다. 전달자 토큰을 수신하기 위해 Azure AD 인증이 필요한 경우에 의도하지 않은 당사자가 가로채기를 방지하기 위해 토큰 보안 설정 단계를 수행해야 합니다. 전달자 토큰에는 권한이 없는 제삼자의 사용을 방지하기 위한 기본 제공 메커니즘이 없으므로 전송 계층 보안(HTTPS)과 같은 보안 채널에서 전달자 토큰을 전송해야 합니다. 전달자 토큰이 일반 텍스트 상태로 전송되는 경우 메시지 가로채기 공격을 사용해서 토큰을 획득하고 보호된 리소스에 무단으로 액세스할 수 있습니다. 나중에 사용하기 위해 전달자 토큰을 저장하거나 캐싱할 때도 동일한 보안 원칙이 적용됩니다. 항상 앱이 안전한 방식으로 전달자 토큰을 전송하고 저장하도록 합니다. 전달자 토큰의 보안 고려 사항을 자세히 알아보려면 [RFC 6750 Section 5](http://tools.ietf.org/html/rfc6750)를 참조하세요.
+전달자 토큰은 보호 된 리소스를 부여 "전달자" 액세스 tooa hello 하는 경량 보안 토큰입니다. 이 전반에 "bearer" hello hello 토큰을 제공할 수 있는 당사자입니다. Azure ad는 인증에 필요 하지만 tooreceive 전달자 토큰을 요청, 단계를 수행 해야 toosecure hello 토큰, tooprevent 인터 셉 션 의도 하지 않은 당사자가 있습니다. 전달자 토큰을 사용 하 여 기본 제공 메커니즘 tooprevent 권한이 없는 당사자 없으므로 전송 계층 보안 (HTTPS)와 같은 보안 채널에서 전송 해야 합니다. 전달자 토큰 지우기 hello에 전송 되기 매뉴얼에 hello 중간 공격의 사용된 tooacquire hello 토큰 수 있으며이 무단된 액세스 tooa 보호 된 리소스를 얻을 수 있습니다. hello 저장 하거나 나중에 사용 하기 위해 전달자 토큰을 캐시 하는 경우 동일한 보안 원칙이 적용 됩니다. 항상 앱이 안전한 방식으로 전달자 토큰을 전송하고 저장하도록 합니다. 전달자 토큰의 보안 고려 사항을 자세히 알아보려면 [RFC 6750 Section 5](http://tools.ietf.org/html/rfc6750)를 참조하세요.
 
-Azure AD에서 발급된 토큰은 대부분 JSON 웹 토큰, 즉 JWT로 구현됩니다.  JWT는 두 요소 간에 정보를 전송하는 URL로부터 안전한 간단한 수단입니다.  JWT에 포함된 정보를 "클레임" 또는 토큰의 전달자 및 주체에 대한 정보 어설션이라고 합니다.  JWT의 클레임은 전송을 위해 인코드 및 직렬화된 JSON 개체입니다.  Azure AD에서 발급된 JWT가 서명되었지만 암호화되지 않았으므로 디버깅을 위해 JWT의 내용을 쉽게 검사할 수 있습니다.  [jwt.calebb.net](http://jwt.calebb.net)등 이러한 작업에 사용할 수 있는 여러 도구가 있습니다. JWT에 대한 자세한 내용은 [JWT 사양](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)을 참조하세요.
+다양 한 Azure AD에서 발급 한 hello 토큰 JSON 웹 토큰 또는 Jwt로 구현 됩니다.  JWT는 두 요소 간에 정보를 전송하는 URL로부터 안전한 간단한 수단입니다.  Jwt에 포함 된 hello 정보 hello 전달자 및 hello 토큰의 주체에 대 한 한 정보 어설션 또는 "클레임"으로 알려져 있습니다.  Jwt의 hello 클레임은 JSON 개체 인코딩되고 전송을 위해 serialize 합니다.  Azure AD에서 발급 하는 hello Jwt는 서명 되었지만 암호화 되지, 이후 디버깅을 위해 JWT의 hello 내용의 쉽게 검사할 수 있습니다.  [jwt.calebb.net](http://jwt.calebb.net)등 이러한 작업에 사용할 수 있는 여러 도구가 있습니다. Jwt에 대 한 자세한 내용은 toohello를 참조할 수 있습니다 [JWT 사양의](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)합니다.
 
 ## <a name="idtokens"></a>Id_tokens
-id_token은 [OpenID Connect](active-directory-protocols-openid-connect-code.md)를 사용하여 인증을 수행할 때 앱이 받는 로그인 보안 토큰의 한 형태입니다.  [JWT](#types-of-tokens)로 표시되며 사용자를 앱에 로그인하는 데 사용할 수 있는 클레임을 포함합니다.  id_token의 클레임을 적절하게 사용할 수 있습니다. 일반적으로 계정 정보를 표시하거나 앱에서 액세스 제어 결정을 내리는 데 사용됩니다.
+id_token은 [OpenID Connect](active-directory-protocols-openid-connect-code.md)를 사용하여 인증을 수행할 때 앱이 받는 로그인 보안 토큰의 한 형태입니다.  으로 표현 됩니다 [Jwt](#types-of-tokens), 응용 프로그램에 hello 사용자를 로그인에 사용할 수 있는 클레임을 포함 합니다.  계정 정보를 표시 하거나 응용 프로그램의 액세스 제어 결정에 사용 되는 일반적으로 나타나며로 id_token에 hello 클레임을 사용할 수 있습니다.
 
-지금은 Id_token이 서명되었지만 암호화되지 않았습니다.  앱이 id_token을 받으면 [서명의 유효성을 검사](#validating-tokens)하여 토큰의 신뢰성을 입증하고 토큰에 있는 몇 개 클레임의 유효성을 검사하여 유효성을 입증해야 합니다.  앱에서 유효성을 검사하는 클레임은 시나리오 요구 사항에 따라 다르지만 앱이 모든 시나리오에서 수행해야 하는 몇 가지 [일반적인 클레임 유효성 검사](#validating-tokens) 가 있습니다.
+지금은 Id_token이 서명되었지만 암호화되지 않았습니다.  앱 프로그램 id_token를 받으면 다음 조건을 충족 해야 [hello 서명 유효성 검사](#validating-tokens) tooprove 토큰의 신뢰성을 hello 및 값이 유효한 토큰 tooprove hello에에서 몇 가지 클레임 유효성을 검사 합니다.  hello 응용 프로그램에서 유효성을 검사 하는 클레임 시나리오 요구 사항에 따라 다르지만 일부 [일반 클레임 유효성 검사](#validating-tokens) 앱 모든 시나리오에서 수행 해야 하는 합니다.
 
-샘플 id_token 뿐만 아니라 id_tokens 클레임에 대한 자세한 내용은 다음 섹션을 참조합니다.  id_token의 클레임은 특정 순서로 반환되지 않습니다.  또한 언제든지 id_token에 새 클레임이 도입될 수 있으므로 새 클레임이 도입될 때 앱이 손상되지 않아야 합니다.  다음 목록에는 이 문서가 작성될 때 앱이 안정적으로 해석할 수 있는 클레임이 포함되어 있습니다.  필요한 경우 [OpenID Connect 사양](http://openid.net/specs/openid-connect-core-1_0.html)에서 자세한 내용을 확인할 수 있습니다.
+Hello 샘플 id_token: id_tokens 클레임에 다음 정보에 대 한 단원을 참조 하십시오.  Hello 클레임 id_tokens에서 특정 순서로 반환 되지 않습니다는 참고 사항  또한 언제든지 id_token에 새 클레임이 도입될 수 있으므로 새 클레임이 도입될 때 앱이 손상되지 않아야 합니다.  hello 다음 목록에 포함 되어 앱이이 작성 hello 시점에 안정적으로 해석할 수 있는 hello 클레임입니다.  하는 경우 필요에 따라 더 많은 세부 정보에서에서 확인할 수 있습니다 hello [OpenID Connect 사양](http://openid.net/specs/openid-connect-core-1_0.html)합니다.
 
 #### <a name="sample-idtoken"></a>샘플 id_token
 ```
@@ -44,7 +44,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 ```
 
 > [!TIP]
-> 연습을 위해 샘플 id_token에 있는 클레임을 [calebb.net](http://jwt.calebb.net)에 붙여넣어 검사하세요.
+> 연습에 붙여 넣어 하 여 hello 샘플 id_token의 hello 클레임을 검사를 시도 [calebb.net](http://jwt.calebb.net)합니다.
 > 
 > 
 
@@ -52,59 +52,59 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 > [!div class="mx-codeBreakAll"]
 | JWT 클레임 | Name | 설명 |
 | --- | --- | --- |
-| `appid` |응용 프로그램 UI |토큰을 사용하여 리소스에 액세스하는 응용 프로그램을 식별합니다. 응용 프로그램은 자체적으로 작동할 수도 있고 사용자를 대신하여 작동할 수도 있습니다. 응용 프로그램 ID는 일반적으로 응용 프로그램 개체를 나타내지만 Azure AD의 서비스 사용자 개체를 나타낼 수도 있습니다. <br><br> **JWT 값 예제**: <br> `"appid":"15CB020F-3984-482A-864D-1D92265E8268"` |
-| `aud` |대상 |토큰의 의도한 수신자입니다. 토큰을 받는 응용 프로그램에서는 대상 값이 올바른지 확인하여 대상이 다른 모든 토큰을 거부해야 합니다. <br><br> **SAML 값 예제**: <br> `<AudienceRestriction>`<br>`<Audience>`<br>`https://contoso.com`<br>`</Audience>`<br>`</AudienceRestriction>` <br><br> **JWT 값 예제**: <br> `"aud":"https://contoso.com"` |
-| `appidacr` |응용 프로그램 인증 컨텍스트 클래스 참조 |클라이언트가 인증된 방법을 나타냅니다. 공용 클라이언트의 경우 값이 0입니다. 클라이언트 ID 및 클라이언트 암호가 사용되면 값이 1입니다. <br><br> **JWT 값 예제**: <br> `"appidacr": "0"` |
-| `acr` |인증 컨텍스트 클래스 참조 |응용 프로그램 인증 컨텍스트 클래스 참조 클레임의 클라이언트와는 반대로 주체가 인증된 방법을 나타냅니다. 값 "0"은 최종 사용자 인증이 ISO/IEC 29115 요구 사항을 충족하지 못했다는 뜻입니다. <br><br> **JWT 값 예제**: <br> `"acr": "0"` |
-| 인증 인스턴트 |인증이 발생한 날짜 및 시간을 기록합니다. <br><br> **SAML 값 예제**: <br> `<AuthnStatement AuthnInstant="2011-12-29T05:35:22.000Z">` | |
-| `amr` |인증 방법 |토큰의 주체가 인증된 방법을 식별합니다. <br><br> **SAML 값 예제**: <br> `<AuthnContextClassRef>`<br>`http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password`<br>`</AuthnContextClassRef>` <br><br> **JWT 값 예제**: `“amr”: ["pwd"]` |
-| `given_name` |이름 |Azure AD 사용자 개체에 설정된 대로 사용자의 이름 또는 "지정된 이름"을 제공합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname”>`<br>`<AttributeValue>Frank<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"given_name": "Frank"` |
-| `groups` |그룹 |주체의 그룹 멤버 자격을 나타내는 개체 ID를 제공합니다. 이러한 값은 고유하며(개체 ID 참조) 리소스 액세스 시 강제로 인증하게 하는 경우처럼 액세스 관리에 안전하게 사용할 수 있습니다. 그룹 클레임에 포함된 그룹은 응용 프로그램 매니페스트의 "groupMembershipClaims" 속성을 통해 응용 프로그램별로 구성됩니다. Null 값은 모든 그룹을 제외하고, "SecurityGroup" 값은 Active Directory 보안 그룹 멤버 자격만 포함하고, "All" 값은 보안 그룹과 Office 365 메일 그룹을 모두 포함합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/groups">`<br>`<AttributeValue>07dd8a60-bf6d-4e17-8844-230b77145381</AttributeValue>` <br><br> **JWT 값 예제**: <br> `“groups”: ["0e129f5b-6b0a-4944-982d-f776045632af", … ]` |
-| `idp` |ID 공급자 |토큰의 주체를 인증한 ID 공급자를 기록합니다. 이 값은 사용자 계정이 발급자가 아닌 다른 테넌트에 있는 경우를 제외하고 발급자 클레임의 값과 동일합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=” http://schemas.microsoft.com/identity/claims/identityprovider”>`<br>`<AttributeValue>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"idp":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”` |
-| `iat` |IssuedAt |토큰이 발급된 시간을 저장합니다. 토큰 만료 전 시간을 측정하는 데 주로 사용됩니다. <br><br> **SAML 값 예제**: <br> `<Assertion ID="_d5ec7a9b-8d8f-4b44-8c94-9812612142be" IssueInstant="2014-01-06T20:20:23.085Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">` <br><br> **JWT 값 예제**: <br> `"iat": 1390234181` |
-| `iss` |발급자 |토큰을 생성하고 반환하는 STS(보안 토큰 서비스)를 식별합니다. Azure AD가 반환하는 토큰에서 발급자는 sts.windows.net입니다. 발급자 클레임 값의 GUID는 Azure AD 디렉터리의 테넌트 ID입니다. 테넌트 ID는 디렉터리의 변경 불가능하고 안정적인 식별자입니다. <br><br> **SAML 값 예제**: <br> `<Issuer>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/</Issuer>` <br><br> **JWT 값 예제**: <br>  `"iss":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”` |
-| `family_name` |성 |Azure AD 사용자 개체에 정의된 사용자의 성을 제공합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=” http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname”>`<br>`<AttributeValue>Miller<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"family_name": "Miller"` |
-| `unique_name` |이름 |토큰의 주체를 식별하는, 사람이 인식할 수 있는 값을 제공합니다. 이 값은 테넌트 내에서 반드시 고유한 것은 아니며 표시 용도로만 사용하도록 디자인되었습니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name”>`<br>`<AttributeValue>frankm@contoso.com<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"unique_name": "frankm@contoso.com"` |
-| `oid` |개체 ID |Azure AD 개체의 고유 식별자를 포함합니다. 이 값은 변경할 수 없으며 재할당 또는 재사용할 수 없습니다. Azure AD에 대한 쿼리의 개체를 식별할 개체 ID를 사용하세요. <br><br> **SAML 값 예제**: <br> `<Attribute Name="http://schemas.microsoft.com/identity/claims/objectidentifier">`<br>`<AttributeValue>528b2ac2-aa9c-45e1-88d4-959b53bc7dd0<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"oid":"528b2ac2-aa9c-45e1-88d4-959b53bc7dd0"` |
-| `roles` |역할 |주체가 그룹 멤버 자격을 통해 직간접적으로 부여받은 모든 응용 프로그램 역할을 나타내며 역할 기반 액세스 제어를 적용하는 데 사용됩니다. 응용 프로그램 역할은 응용 프로그램 매니페스트의 `appRoles` 속성을 통해 응용 프로그램별로 정의됩니다. 각 응용 프로그램 역할의 `value` 속성은 역할 클레임에 표시되는 값입니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/role">`<br>`<AttributeValue>Admin</AttributeValue>` <br><br> **JWT 값 예제**: <br> `“roles”: ["Admin", … ]` |
-| `scp` |범위 |클라이언트 응용 프로그램에 부여된 권한을 가장함을 나타냅니다. 기본 권한은 `user_impersonation`입니다. 보안 리소스의 소유자는 Azure AD에서 추가 값을 등록할 수 있습니다. <br><br> **JWT 값 예제**: <br> `"scp": "user_impersonation"` |
-| `sub` |제목 |응용 프로그램 사용자 등 토큰에서 정보를 어설션하는 보안 주체를 나타냅니다. 이 값은 변경할 수 없으며 재할당 또는 재사용할 수 없습니다. 따라서 이 값을 사용하면 안전하게 인증 검사를 수행할 수 있습니다. Azure AD에서 발급하는 토큰에는 항상 주체가 있기 때문에 이 값을 일반 용도의 인증 시스템에 사용하는 것이 좋습니다. <br> `SubjectConfirmation` 클레임이 아닙니다. SubjectConfirmation은 토큰의 주체를 확인하는 방법을 설명합니다. `Bearer` 주체가 소유한 토큰을 통해 주체를 확인한다는 뜻입니다. <br><br> **SAML 값 예제**: <br> `<Subject>`<br>`<NameID>S40rgb3XjhFTv6EQTETkEzcgVmToHKRkZUIsJlmLdVc</NameID>`<br>`<SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer" />`<br>`</Subject>` <br><br> **JWT 값 예제**: <br> `"sub":"92d0312b-26b9-4887-a338-7b00fb3c5eab"` |
-| `tid` |테넌트 ID |토큰을 발급한 디렉터리 테넌트를 식별하는 변경할 수 없고 다시 사용할 수 없는 식별자입니다. 이 값을 사용하여 다중 테넌트 응용 프로그램의 테넌트별 디렉터리 리소스에 액세스할 수 있습니다. 예를 들어 이 값을 사용하여 Graph API 호출의 테넌트를 식별할 수 있습니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=”http://schemas.microsoft.com/identity/claims/tenantid”>`<br>`<AttributeValue>cbb1a5ac-f33b-45fa-9bf5-f37db0fed422<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"tid":"cbb1a5ac-f33b-45fa-9bf5-f37db0fed422"` |
-| `nbf`, `exp` |토큰 수명 |토큰이 유효한 시간 간격을 정의합니다. 토큰의 유효성을 검사하는 서비스에서는 현재 날짜가 토큰 수명 내에 있는지 확인하고 수명 내에 없으면 토큰을 거부합니다. Azure AD와 서비스 간의 시계 시간 차이("시간차")를 고려하여 서비스에서 토큰 수명 범위를 벗어나 최대 5분까지 여유 시간을 허용 할 수 있습니다. <br><br> **SAML 값 예제**: <br> `<Conditions`<br>`NotBefore="2013-03-18T21:32:51.261Z"`<br>`NotOnOrAfter="2013-03-18T22:32:51.261Z"`<br>`>` <br><br> **JWT 값 예제**: <br> `"nbf":1363289634, "exp":1363293234` |
-| `upn` |사용자 계정 이름 |사용자 계정의 사용자 이름을 저장합니다.<br><br> **JWT 값 예제**: <br> `"upn": frankm@contoso.com` |
-| `ver` |버전 |토큰의 버전 번호를 저장합니다. <br><br> **JWT 값 예제**: <br> `"ver": "1.0"` |
+| `appid` |응용 프로그램 UI |Hello 토큰 tooaccess 리소스를 사용 하는 hello 응용 프로그램을 식별 합니다. hello 응용 프로그램은 자체적으로 또는 사용자를 대신 하 여 작동할 수 있습니다. hello 응용 프로그램 ID를 일반적으로 응용 프로그램 개체를 나타내지만 Azure AD에서 서비스 사용자 개체를 나타낼 수도 있습니다. <br><br> **JWT 값 예제**: <br> `"appid":"15CB020F-3984-482A-864D-1D92265E8268"` |
+| `aud` |대상 |hello는 hello 토큰의 올바른 받는 것입니다. hello 토큰을 수신 하는 hello 응용 프로그램 hello 대상 그룹 값이 올바른지와 다른 대상 그룹을 위한 토큰을 거부 있는지 확인 해야 합니다. <br><br> **SAML 값 예제**: <br> `<AudienceRestriction>`<br>`<Audience>`<br>`https://contoso.com`<br>`</Audience>`<br>`</AudienceRestriction>` <br><br> **JWT 값 예제**: <br> `"aud":"https://contoso.com"` |
+| `appidacr` |응용 프로그램 인증 컨텍스트 클래스 참조 |Hello 클라이언트 인증 된 방법을 나타냅니다. 공용 클라이언트 hello 값은 0입니다. 클라이언트 ID 및 클라이언트 암호를 사용 하는 경우 hello 값은 1입니다. <br><br> **JWT 값 예제**: <br> `"appidacr": "0"` |
+| `acr` |인증 컨텍스트 클래스 참조 |Hello 응용 프로그램 인증 컨텍스트 클래스 참조 클레임에 대 한 것과 반대로 toohello 클라이언트로으로 hello 주체가 인증 된는 방법을 나타냅니다. 값이 "0" hello 최종 사용자 인증이 ISO/IEC 29115의 hello 요구 사항을 충족 하지 않는 것을 나타냅니다. <br><br> **JWT 값 예제**: <br> `"acr": "0"` |
+| 인증 인스턴트 |레코드에는 날짜 및 인증 발생 했을 때 hello 합니다. <br><br> **SAML 값 예제**: <br> `<AuthnStatement AuthnInstant="2011-12-29T05:35:22.000Z">` | |
+| `amr` |인증 방법 |Hello 토큰의 주체 hello 인증 된 방법을 식별 합니다. <br><br> **SAML 값 예제**: <br> `<AuthnContextClassRef>`<br>`http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password`<br>`</AuthnContextClassRef>` <br><br> **JWT 값 예제**: `“amr”: ["pwd"]` |
+| `given_name` |이름 |Hello Azure AD 사용자 개체에 설정 된 대로 먼저 또는 "지정 된" hello 사용자의 이름 hello를 제공합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname”>`<br>`<AttributeValue>Frank<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"given_name": "Frank"` |
+| `groups` |그룹 |Hello 주체의 그룹 멤버 자격을 나타내는 개체 Id를 제공 합니다. 이러한 값이 고유 (개체 ID 참조) 되어 권한 부여 tooaccess 리소스를 적용 하는 등의 액세스를 관리 하기 위한 안전 하 게 사용할 수 있습니다. hello 그룹 클레임에 포함 된 hello 그룹 hello 응용 프로그램 매니페스트의 "groupMembershipClaims" 속성 hello 통해 응용 프로그램 단위 별로 구성 됩니다. Null 값은 모든 그룹을 제외하고, "SecurityGroup" 값은 Active Directory 보안 그룹 멤버 자격만 포함하고, "All" 값은 보안 그룹과 Office 365 메일 그룹을 모두 포함합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/groups">`<br>`<AttributeValue>07dd8a60-bf6d-4e17-8844-230b77145381</AttributeValue>` <br><br> **JWT 값 예제**: <br> `“groups”: ["0e129f5b-6b0a-4944-982d-f776045632af", … ]` |
+| `idp` |ID 공급자 |Hello 토큰의 hello 주체를 인증 하는 레코드 hello id 공급자입니다. 이 값은 동일한 toohello hello hello 사용자 계정을 hello 발급자는 다른 테 넌 트에 있지 않으면 발급자 클레임 값입니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=” http://schemas.microsoft.com/identity/claims/identityprovider”>`<br>`<AttributeValue>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"idp":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”` |
+| `iat` |IssuedAt |Hello는 hello 토큰 발급 된 시간을 저장 합니다. 것이 사용 되는 toomeasure 토큰 새로 고침입니다. <br><br> **SAML 값 예제**: <br> `<Assertion ID="_d5ec7a9b-8d8f-4b44-8c94-9812612142be" IssueInstant="2014-01-06T20:20:23.085Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">` <br><br> **JWT 값 예제**: <br> `"iat": 1390234181` |
+| `iss` |발급자 |Hello 보안 토큰 서비스 (STS)를 생성 하 고 hello 토큰을 반환 하는 식별 합니다. Azure AD에서 반환 하는 hello 토큰, hello 발급자는 sts.windows.net입니다. hello GUID hello 발급자 클레임 값에는 hello Azure AD 디렉터리의 hello 테 넌 트 ID입니다. hello 테 넌 트 ID는 hello 디렉터리의 사용 되는 신뢰할 수 있는 변경할 수 없는 식별자입니다. <br><br> **SAML 값 예제**: <br> `<Issuer>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/</Issuer>` <br><br> **JWT 값 예제**: <br>  `"iss":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”` |
+| `family_name` |성 |Hello Azure AD 사용자 개체에 정의 된 hello 마지막 이름, 성 또는 hello 사용자의 성을 제공 합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=” http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname”>`<br>`<AttributeValue>Miller<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"family_name": "Miller"` |
+| `unique_name` |이름 |Hello 토큰의 hello 주체를 식별 하는 사람이 읽을 수 있는 값을 제공 합니다. 이 값은 정확 하지 toobe 테 넌 트 내에서 고유 않으며 설계 된 toobe 표시 용도로 사용 됩니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name”>`<br>`<AttributeValue>frankm@contoso.com<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"unique_name": "frankm@contoso.com"` |
+| `oid` |개체 ID |Azure AD 개체의 고유 식별자를 포함합니다. 이 값은 변경할 수 없으며 재할당 또는 재사용할 수 없습니다. 쿼리 tooAzure AD에서에서 hello 개체 ID tooidentify 개체를 사용 합니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name="http://schemas.microsoft.com/identity/claims/objectidentifier">`<br>`<AttributeValue>528b2ac2-aa9c-45e1-88d4-959b53bc7dd0<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"oid":"528b2ac2-aa9c-45e1-88d4-959b53bc7dd0"` |
+| `roles` |역할 |액세스 제어를 받는 hello 하는 모든 응용 프로그램 역할 그룹 멤버 자격을 통해 직접 / 간접적으로 부여 된 및 역할 기반 사용된 tooenforce 수를 나타냅니다. Hello 통해 응용 프로그램 별로 응용 프로그램 역할을 정의 `appRoles` hello 응용 프로그램 매니페스트의 속성입니다. hello `value` 각 응용 프로그램 역할의 속성은 hello 역할 클레임에 표시 되는 hello 값입니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/role">`<br>`<AttributeValue>Admin</AttributeValue>` <br><br> **JWT 값 예제**: <br> `“roles”: ["Admin", … ]` |
+| `scp` |범위 |Hello 가장 권한이 부여 된 toohello 클라이언트 응용 프로그램을 나타냅니다. hello 기본 권한은 `user_impersonation`합니다. 리소스를 보호 하는 hello hello 소유자는 Azure AD에 추가 값을 등록할 수 있습니다. <br><br> **JWT 값 예제**: <br> `"scp": "user_impersonation"` |
+| `sub` |제목 |Hello 보안 주체는 hello에 대 한 토큰 어설션 응용 프로그램의 hello 사용자 등의 정보를 식별 합니다. 이 값은 변경할 수 없습니다 및 할당할 수 없습니다 또는 계속 사용 하므로 것이 권한 부여 확인을 사용 하는 tooperform 안전 하 게 합니다. Hello 주체는 항상에 있기 때문에 hello hello Azure AD에서 발급 토큰, 범용 권한 부여 시스템에서이 값을 사용 하는 것이 좋습니다. <br> `SubjectConfirmation` 클레임이 아닙니다. Hello 토큰의 주체 hello 확인 하는 방법을 설명 합니다. `Bearer`hello 제목 hello 토큰 소유 여부를 통해 확인 나타냅니다. <br><br> **SAML 값 예제**: <br> `<Subject>`<br>`<NameID>S40rgb3XjhFTv6EQTETkEzcgVmToHKRkZUIsJlmLdVc</NameID>`<br>`<SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer" />`<br>`</Subject>` <br><br> **JWT 값 예제**: <br> `"sub":"92d0312b-26b9-4887-a338-7b00fb3c5eab"` |
+| `tid` |테넌트 ID |Hello 토큰을 발급 한 hello 디렉터리 테 넌 트를 식별 하는 변경할 수 없는, 비-다시 사용할 수 있는 식별자입니다. 다중 테 넌 트 응용 프로그램에서이 값 tooaccess 테 넌 트 별 디렉터리 리소스를 사용할 수 있습니다. 예를 들어 호출 toohello Graph API에서에서이 값 tooidentify hello 테 넌 트를 사용할 수 있습니다. <br><br> **SAML 값 예제**: <br> `<Attribute Name=”http://schemas.microsoft.com/identity/claims/tenantid”>`<br>`<AttributeValue>cbb1a5ac-f33b-45fa-9bf5-f37db0fed422<AttributeValue>` <br><br> **JWT 값 예제**: <br> `"tid":"cbb1a5ac-f33b-45fa-9bf5-f37db0fed422"` |
+| `nbf`, `exp` |토큰 수명 |Hello 유효한 시간 간격을 토큰을 정의 합니다. hello 토큰의 유효성을 검사 하는 hello 서비스는 hello hello 토큰 수명, 다른 hello 토큰을 거부 해야 내인지 현재 날짜를 확인 해야 합니다. hello 서비스 수에 대 한 hello 토큰 수명 범위 tooaccount toofive 분까지 시계 시간 ("시간 불일치")에서 모든 차이점에 대 한를 Azure AD 간의 및 hello 서비스입니다. <br><br> **SAML 값 예제**: <br> `<Conditions`<br>`NotBefore="2013-03-18T21:32:51.261Z"`<br>`NotOnOrAfter="2013-03-18T22:32:51.261Z"`<br>`>` <br><br> **JWT 값 예제**: <br> `"nbf":1363289634, "exp":1363293234` |
+| `upn` |사용자 계정 이름 |저장소 hello hello 사용자 계정이의 사용자 이름입니다.<br><br> **JWT 값 예제**: <br> `"upn": frankm@contoso.com` |
+| `ver` |버전 |Hello 토큰의 hello 버전 번호를 저장합니다. <br><br> **JWT 값 예제**: <br> `"ver": "1.0"` |
 
 ## <a name="access-tokens"></a>액세스 토큰
-인증 성공 시 Azure AD는 보호된 리소스에 액세스하는 데 사용할 수 있는 액세스 토큰을 반환합니다. 액세스 토큰은 base 64 인코딩 JWT(JSON Web Token)이며 디코더를 통해 실행하여 해당 콘텐츠를 검사할 수 있습니다.
+인증 성공 시 Azure AD 액세스 토큰을 사용 하는 tooaccess 보호 된 리소스 수를 반환 합니다. hello 액세스 토큰이 base 64 인코딩 JSON 웹 토큰 (JWT) 및 디코더를 통해 실행 하 여 해당 내용을 검사할 수 있습니다.
 
-앱이 액세스 토큰만 *사용하여* API에 액세스하는 경우, 액세스 토큰은 앱이 HTTP 요청의 리소스에 전달할 수 있는 문자열에 불과하므로 완전히 불투명한 것으로 간주할 수 있으며 이와 같이 간주해야 합니다.
+하는 경우 앱에만 *사용 하 여* 액세스 토큰 tooget 액세스 tooAPIs, 있습니다 수 (및 해야) 액세스 토큰으로 처리 완전히 불투명-는 앱에서 HTTP 요청 tooresources를 전달할 수 있는 정당한 문자열입니다.
 
-액세스 토큰을 요청하는 경우 Azure AD는 사용할 수 있도록 액세스 토큰에 대한 일부 메타데이터도 반환합니다.  이 정보에는 액세스 토큰의 만료 시간 및 유효한 범위가 포함됩니다.  따라서 앱이 액세스 토큰 자체를 구문 분석하지 않아도 액세스 토큰의 지능형 캐싱을 수행할 수 있습니다.
+액세스 토큰을 요청 하는 경우 Azure AD 응용 프로그램의 사용에 대 한 hello 액세스 토큰에 대 한 몇 가지 메타 데이터도 반환 합니다.  이 정보에는 hello 액세스 토큰 및을 유효한 hello 범위 hello 만료 시간이 포함 됩니다.  그러면 앱 tooperform tooparse 자체 hello 액세스 토큰을 열 필요 없이 액세스 토큰의 캐싱과 지능형 있습니다.
 
-앱이 HTTP 요청에서 액세스 토큰을 필요로 하는 Azure AD로 보호된 API이면 수신하는 토큰의 유효성을 검사하고 조사해야 합니다. 리소스를 액세스하는 데 토큰을 사용하기 전에 앱에서 액세스 토큰의 유효성 검사를 수행해야 합니다. 유효성 검사에 대한 자세한 내용은 [토큰 유효성 검사](#validating-tokens)를 참조하세요.  
-.NET에서 이 작업을 수행하는 방법에 대한 자세한 내용은 [Azure AD에서 전달자 토큰을 사용하여 Web API 보호](active-directory-devquickstarts-webapi-dotnet.md)를 참조하세요.
+HTTP 요청에서 액세스 토큰을 필요로 하는 Azure AD로 보호 되는 API 앱을 사용 하는 경우 다음 수행 해야 유효성 검사 및 표시 하는 hello 토큰의 검사 합니다. 앱은 tooaccess 리소스를 사용 하기 전에 hello 액세스 토큰의 유효성 검사를 수행 해야 합니다. 유효성 검사에 대한 자세한 내용은 [토큰 유효성 검사](#validating-tokens)를 참조하세요.  
+Toodo.net이 참조에 대 한 내용은 [Azure AD에서 전달자 토큰을 사용 하 여 Web API 보호](active-directory-devquickstarts-webapi-dotnet.md)합니다.
 
 ## <a name="refresh-tokens"></a>새로 고침 토큰
 
-새로 고침 토큰은 앱이 OAuth 2.0 흐름에서 새 액세스 토큰을 획득하는 데 사용할 수 있는 보안 토큰입니다.  새로 고침 토큰을 통해 앱은 사용자 조작을 요구하지 않고 사용자 대신 리소스에 장기적으로 액세스할 수 있습니다.
+새로 고침 토큰은 응용 프로그램에서 사용할 수 있는 보안 토큰 tooacquire 새로운 액세스는 OAuth 2.0 흐름 토큰입니다.  사용자를 대신 하 여 응용 프로그램 tooachieve 장기 액세스 tooresources를 hello 사용자 상호 작용 없이 있습니다.
 
-새로 고침 토큰은 다중 리소스입니다.  즉, 한 리소스에 대한 토큰 요청 중에 받은 새로 고침 토큰을 완전히 다른 리소스에 대한 액세스 토큰으로 교환할 수 있습니다. 이를 수행하려면 요청의 `resource` 매개 변수를 대상 리소스로 설정합니다.
+새로 고침 토큰은 다중 리소스입니다.  새로 고침 토큰 액세스 토큰 tooa 완전히 다른 리소스에 대 한 하나의 자원만 회수할 수에 대 한 토큰 요청 중에 받은 toosay입니다. toodo이, 집합 hello `resource` hello 요청 toohello에서 매개 변수 대상 리소스를 지정 합니다.
 
-새로 고침 토큰은 앱에 완전히 불투명합니다. 또한 새로 고침 토큰은 수명이 길지만 일정 기간 지속될 것으로 예상하도록 앱을 작성해서는 안 됩니다.  다양한 이유로 언제든지 새로 고침 토큰이 무효화될 수 있기 때문입니다.  앱에서 새로 고침 토큰이 유효한지 확인하는 유일한 방법은 Azure AD 토큰 끝점에 대한 토큰 요청을 수행하여 교환하는 것입니다.
+새로 고침 토큰은 완전히 불투명 tooyour 앱. 수명이 긴 하지만 앱 새로 고침 토큰은 특정 기간에 대 한 지속 됩니다 tooexpect 작성 합니다.  다양한 이유로 언제든지 새로 고침 토큰이 무효화될 수 있기 때문입니다.  새로 고침 토큰이 유효한 경우 응용 프로그램 tooknow 프로그램에 대 한 방법은 tooattempt tooredeem만 hello 토큰 요청 tooAzure AD 토큰 끝점 함으로써 것입니다.
 
-새로 고침 토큰을 새 액세스 토큰으로 교환할 때 앱에 토큰 응답에 새로운 새로 고침 토큰을 받게 됩니다.  새로 발급된 새로 고침 토큰을 저장하고 요청에 사용한 토큰을 대체해야 합니다.  이렇게 하면 새로 고침 토큰이 최대한 오랫동안 유효한 상태로 유지됩니다.
+새 액세스 토큰에 대 한 새로 고침 토큰을 교환할 때 hello 토큰 응답에 새 새로 고침 토큰을 받습니다.  Hello hello 요청에 사용 되는 대체 새로 발급 하는 hello 새로 고침 토큰을 저장 해야 합니다.  이렇게 하면 새로 고침 토큰이 최대한 오랫동안 유효한 상태로 유지됩니다.
 
 ## <a name="validating-tokens"></a>토큰 유효성 검사
 
-id_token 또는 access_token의 유효성을 검사하려면 앱이 토큰의 서명과 클레임의 유효성을 모두 검사해야 합니다. 액세스 토큰의 유효성을 검사하려면 앱에서 발급자, 대상 그룹 및 서명 토큰의 유효성을 검사해야 합니다. OpenID 검색 문서에 있는 값에 대해 유효성 검사를 수행해야 합니다. 예를 들어 테넌트 독립적인 문서 버전은 [https://login.microsoftonline.com/common/.well-known/openid-configuration](https://login.microsoftonline.com/common/.well-known/openid-configuration)에 있습니다. Azure AD 미들웨어에는 액세스 토큰의 유효성을 검사하는 기본 제공 기능이 있으며 [샘플](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-code-samples)을 탐색하여 원하는 언어로 기능을 찾을 수 있습니다. JWT 토큰의 유효성 검사를 명시적으로 수행하는 방법은 [수동 JWT 유효성 검사 샘플](https://github.com/Azure-Samples/active-directory-dotnet-webapi-manual-jwt-validation)을 참조하세요.  
+순서 toovalidate id_token 또는 access_token 응용 프로그램 서명 및 hello 클레임을 모두 hello 토큰의 유효성을 검사 해야 합니다. 순서 toovalidate 액세스 토큰이 앱 hello 여러 hello 조건 및 토큰을 서명 하는 hello 확인 해야 합니다. 이러한 toobe hello OpenID 검색 문서에서 hello 값에 대해 유효성을 검사 해야 합니다. 예를 들어 hello 테 넌 트 독립적 버전의 hello 문서에 위치한 [https://login.microsoftonline.com/common/.well-known/openid-configuration](https://login.microsoftonline.com/common/.well-known/openid-configuration)합니다. Azure AD 미들웨어 액세스 토큰의 유효성 검사에 대 한 기본 제공 기능을가지고 있으며 탐색할 수 있습니다이 [샘플](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-code-samples) toofind 하나 hello 언어를 선택 합니다. Tooexplicitly JWT 토큰을 확인 하는 방법에 대 한 자세한 내용은 hello를 참조 하십시오 [수동 JWT 유효성 검사 샘플](https://github.com/Azure-Samples/active-directory-dotnet-webapi-manual-jwt-validation)합니다.  
 
-토큰 유효성 검사를 쉽게 처리하는 방법을 보여 주는 라이브러리 및 코드 샘플이 제공됩니다. 아래 정보는 단순히 기본 프로세스를 이해하려는 사용자를 위한 것입니다.  JWT 유효성 검사에 사용할 수 있는 여러 타사 오픈 소스 라이브러리도 있습니다. 거의 모든 플랫폼 및 언어에 대해 옵션이 하나 이상 있습니다. Azure AD 인증 라이브러리 및 코드 샘플에 대한 자세한 내용은 [Azure AD 인증 라이브러리](active-directory-authentication-libraries.md)를 참조하세요.
+라이브러리 및 tooeasily 토큰 유효성 검사 기능을 처리 하는 방법을 보여 주는 코드 예제가 제공 아래 정보는 hello 단순히 ´ ë ç toounderstand hello 프로세스 내부에 원하는 사용자에 게 합니다.  JWT 유효성 검사에 사용할 수 있는 여러 타사 오픈 소스 라이브러리도 있습니다. 거의 모든 플랫폼 및 언어에 대해 옵션이 하나 이상 있습니다. Azure AD 인증 라이브러리 및 코드 샘플에 대한 자세한 내용은 [Azure AD 인증 라이브러리](active-directory-authentication-libraries.md)를 참조하세요.
 
-#### <a name="validating-the-signature"></a>서명 유효성 검사
+#### <a name="validating-hello-signature"></a>Hello 서명의 유효성을 검사
 
-JWT에는 `.` 문자로 구분된 세 개의 세그먼트가 포함되어 있습니다.  첫 번째 세그먼트는 **헤더**, 두 번째 세그먼트는 **본문**, 세 번째 세그먼트는 **서명**이라고 합니다.  서명 세그먼트는 앱이 신뢰할 수 있도록 토큰의 신뢰성이 유효한지 검사하는 데 사용할 수 있습니다.
+Hello로 구분 되는 세 개의 세그먼트를 포함 하는 JWT `.` 문자입니다.  hello 첫 번째 세그먼트 hello 라고 **헤더**, hello로 두 번째 hello **본문**, 및 hello로 세 번째 hello **서명**합니다.  앱에서 신뢰할 수 있도록 hello 서명 세그먼트 hello 토큰의 사용된 toovalidate hello 신뢰성을 수 있습니다.
 
-Azure AD에서 발급된 토큰은 RSA 256 등의 업계 표준 비대칭 암호화 알고리즘을 사용하여 서명됩니다. JWT의 헤더에는 토큰 서명에 사용된 키 및 암호화 방법에 대한 정보가 들어 있습니다.
+Azure AD에서 발급된 토큰은 RSA 256 등의 업계 표준 비대칭 암호화 알고리즘을 사용하여 서명됩니다. hello JWT의 hello 헤더 hello 키에 대 한 정보를 포함 하 고 toosign hello 토큰을 사용 하는 암호화 방법.
 
 ```
 {
@@ -114,11 +114,11 @@ Azure AD에서 발급된 토큰은 RSA 256 등의 업계 표준 비대칭 암호
 }
 ```
 
-`alg` 클레임은 토큰 서명에 사용된 알고리즘을 나타내고 `x5t` 클레임은 토큰 서명에 사용된 특정 공개 키를 나타냅니다.
+hello `alg` hello 하는 동안 사용 되는 toosign hello 토큰 했던 hello 알고리즘 나타냅니다 `x5t` 클레임 hello 특정 공개 키를 사용 하는 toosign hello 토큰을 나타냅니다.
 
-특정 시점에 Azure AD는 공개-개인 키 쌍의 특정 집합 중 하나를 사용하여 id_token에 서명할 수 있습니다. Azure AD는 주기적으로 가능한 키 집합을 순환하므로 이러한 키 변경을 자동으로 처리하도록 앱을 작성해야 합니다.  Azure AD에서 사용된 공개 키에 대한 업데이트를 확인하는 적절한 빈도는 24시간마다입니다.
+특정 시점에 Azure AD는 공개-개인 키 쌍의 특정 집합 중 하나를 사용하여 id_token에 서명할 수 있습니다. Azure AD 앱에 이러한 키를 자동으로 변경 toohandle 작성 해야 하므로 hello 가능한 키 집합을 정기적으로 회전 합니다.  Azure AD에서 사용 되는 업데이트 toohello 공개 키에 대 한 적절 한 주파수 toocheck 매 24 시간입니다.
 
-다음 위치에 있는 OpenID Connect 메타데이터 문서를 사용하여 서명 유효성 검사에 필요한 서명 키 데이터를 얻을 수 있습니다.
+Hello OpenID Connect 메타 데이터 문서에 있는 사용 하 여 필요한 toovalidate hello 서명 키 데이터를 서명 하는 hello를 얻을 수 있습니다.
 
 ```
 https://login.microsoftonline.com/common/.well-known/openid-configuration
@@ -129,27 +129,27 @@ https://login.microsoftonline.com/common/.well-known/openid-configuration
 > 
 > 
 
-이 메타데이터 문서는 OpenID Connect 인증을 수행하는 데 필요한 다양한 끝점의 위치 등 여러 유용한 정보를 포함하는 JSON 개체입니다.  
+이 메타 데이터 문서는 몇 가지 유용한 hello OpenID Connect 인증을 수행 하는 데 필요한 다양 한 끝점의 hello 위치와 같은 정보를 포함 하는 JSON 개체입니다.  
 
-토큰 서명에 사용되는 공개 키 집합의 위치를 제공하는 `jwks_uri`도 포함합니다.  `jwks_uri` 에 있는 JSON 문서는 해당 특정 시점에 사용 중인 공개 키 정보를 모두 포함합니다.  앱은 JWT 헤더에 `kid` 클레임을 사용하여 토큰 서명에 사용된 공개 키를 이 문서에서 선택할 수 있습니다.  그런 다음 올바른 공개 키와 표시된 알고리즘을 사용하여 서명 유효성 검사를 수행할 수 있습니다.
+또한 포함 한 `jwks_uri`, toosign 토큰에 사용 되는 공개 키의 hello 설정 hello 위치를 제공 하는 합니다.  hello에 있는 hello JSON 문서 `jwks_uri` 모든 해당 특정 시점에 사용 중인 hello 공개 키 정보를 포함 합니다.  앱 hello צ ְ ײ `kid` hello JWT 헤더 tooselect이이 문서에는 공개 키를 사용 하는 toosign 되었습니다에서 특정 토큰 클레임입니다.  Hello 올바른 공개 키와 hello 표시 된 알고리즘을 사용 하 여 서명 유효성 검사를 수행한 다음 수 있습니다.
 
-서명 유효성 검사는 이 문서의 범위를 벗어납니다. 필요한 경우 이 작업에 도움이 되는 다양한 오픈 소스 라이브러리가 있습니다.
+서명 유효성 검사를 수행 합니다.이 문서의 외부 hello 범위-는 필요한 경우 이렇게 하는 데 사용할 수 있는 여러 오픈 소스 라이브러리입니다.
 
-#### <a name="validating-the-claims"></a>클레임 유효성 검사
+#### <a name="validating-hello-claims"></a>Hello 클레임 유효성 검사
 
-앱이 토큰(사용자 로그인 시 id_token 또는 HTTP 요청의 전달자 토큰으로 사용될 경우 액세스 토큰)을 받으면 토큰의 클레임에 대해서도 몇 가지 검사를 수행해야 합니다.  포함하지만 다음과 같이 제한되지 않습니다.
+앱 (사용자 로그인 시 id_token 또는 hello HTTP 요청에서 전달자 토큰으로 액세스 토큰) 토큰을 수신 하는 경우 hello 토큰에서 클레임 hello에 대 한 몇 가지 검사를 수행 해야 것입니다.  포함하지만 다음과 같이 제한되지 않습니다.
 
-* **대상** 클레임 - id_token이 앱에 제공하려고 의도했던 것이 맞는지 확인합니다.
-* **이전이 아님** 및 **만료 시간** 클레임 - id_token이 만료되지 않았는지 확인합니다.
-* **발급자** 클레임 - Azure AD에서 실제로 앱에 토큰을 발급했는지 확인합니다.
-* **Nonce** - 토큰 재생 공격을 완화합니다.
+* hello **Audience** 클레임-토큰 hello tooverify가 의도 한 toobe tooyour 응용 프로그램을 제공 합니다.
+* hello **날짜부터** 및 **만료 시간** 클레임-토큰 hello tooverify 만료 되지 않았습니다.
+* hello **발급자** 클레임-Azure AD에서 토큰 hello tooverify tooyour 앱을 실제로 발급 되었습니다.
+* hello **Nonce** -toomitigate 토큰 재생 공격입니다.
 * 공유할 수 있습니다.
 
-앱이 ID 토큰에 대해 수행해야 하는 클레임 유효성 검사의 전체 목록은 [OpenID Connect 사양](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation)을 참조하세요. 이러한 클레임의 예상 값에 대한 자세한 내용은 위의 [id 토큰 섹션](#id-tokens)에 포함되어 있습니다.
+ID 토큰에 대 한 응용 프로그램을 수행 해야 하는 클레임 유효성 검사 목록은 전체 참조 toohello [OpenID Connect 사양](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation)합니다. 이러한 클레임에 대 한 hello 예상 값의 세부 정보는 hello 앞에 포함 된 [id_token 섹션](#id-tokens) 섹션.
 
 ## <a name="sample-tokens"></a>샘플 토큰
 
-이 섹션에서는 Azure AD가 반환하는 SAML 및 JWT 토큰 샘플을 보여 줍니다. 이러한 샘플을 통해 컨텍스트 내에서 클레임을 볼 수 있습니다.
+이 섹션에서는 Azure AD가 반환하는 SAML 및 JWT 토큰 샘플을 보여 줍니다. 이러한 샘플 컨텍스트에서 hello 클레임을 볼 수 있습니다.
 
 ### <a name="saml-token"></a>SAML 토큰
 
@@ -257,7 +257,7 @@ https://login.microsoftonline.com/common/.well-known/openid-configuration
 
 ### <a name="jwt-token---user-impersonation"></a>JWT 토큰 - 사용자 가장
 다음은 권한 부여 코드 부여 흐름에 사용되는 일반적인 JWT(JSON 웹 토큰) 샘플입니다.
-클레임 외에도 토큰에는 클라이언트가 인증된 방법을 나타내는 인증 컨텍스트 클래스 참조 **ver** 및 **appidacr**에 버전 번호가 포함됩니다. 공용 클라이언트의 경우 값이 0입니다. 클라이언트 ID 또는 클라이언트 암호가 사용되면 값이 1입니다.
+또한 tooclaims hello 토큰의 버전 번호가 포함 됩니다. **ver** 및 **appidacr**, hello 인증 컨텍스트 클래스 참조 hello 클라이언트 인증 된 방법을 나타냅니다. 공용 클라이언트 hello 값은 0입니다. 클라이언트 ID 및 클라이언트 암호 사용 된 경우 hello 값은 1입니다.
 
     {
      typ: "JWT",
@@ -301,5 +301,5 @@ https://login.microsoftonline.com/common/.well-known/openid-configuration
     }.
 
 ## <a name="related-content"></a>관련 콘텐츠
-* Azure AD Graph API 통해 토큰 수명 정책을 관리하는 방법에 대한 자세한 내용은 Azure AD 그래프 [정책 작업](https://msdn.microsoft.com/library/azure/ad/graph/api/policy-operations) 및 [정책 엔터티](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#policy-entity)를 참조하세요.
+* Hello Azure AD 그래프를 참조 하십시오. [정책 작업](https://msdn.microsoft.com/library/azure/ad/graph/api/policy-operations) 및 hello [정책 엔터티에](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#policy-entity), toolearn hello Azure AD Graph API 통해 토큰 수명 정책을 관리 하는 방법에 대 한 자세한 합니다.
 * 자세한 내용과 예제를 포함하여, PowerShell cmdlet를 통한 정책 관리 방법에 대한 샘플은 [Azure AD에서 구성 가능한 토큰 수명](../active-directory-configurable-token-lifetimes.md)을 참조하십시오. 

@@ -1,6 +1,6 @@
 ---
-title: "System for Cross-Domain Identity Management를 사용하여 사용자 및 그룹을 Azure Active Directory에서 응용 프로그램으로 자동 프로비전 | Microsoft Docs"
-description: "Azure Active Directory는 SCIM 프로토콜 사양에 정의된 인터페이스를 가진 웹 서비스가 향하는 응용 프로그램 또는 ID 저장소에 사용자 및 그룹을 자동으로 프로비전할 수 있습니다."
+title: "도메인 간 Id 관리를 위한 시스템 aaaUsing 자동으로 프로 비전 tooapplications Azure Active Directory에서에서 사용자 및 그룹 | Microsoft Docs"
+description: "Azure Active Directory 사용자 및 그룹 tooany 응용 프로그램 또는 id 저장소는 프런트 웹 서비스에 의해 hello SCIM 프로토콜 사양에에서 정의 된 hello 인터페이스와 자동으로 구축할 수 있습니다."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -16,81 +16,81 @@ ms.date: 07/28/2017
 ms.author: asmalser
 ms.reviewer: asmalser
 ms.custom: aaddev;it-pro;oldportal
-ms.openlocfilehash: 91978cee88d55c99bcb63c63cdaf01581ae84668
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 43045c97e68d0d22db598dcb5ec23481c4e97718
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-system-for-cross-domain-identity-management-to-automatically-provision-users-and-groups-from-azure-active-directory-to-applications"></a>도메인 간 ID 관리용 시스템을 사용하여 사용자 및 그룹을 Azure Active Directory에서 응용 프로그램으로 자동 프로비전
+# <a name="using-system-for-cross-domain-identity-management-tooautomatically-provision-users-and-groups-from-azure-active-directory-tooapplications"></a>도메인 간 Id 관리 tooautomatically 사용자 프로 비전 및 Azure Active Directory tooapplications에서 그룹에 대 한 시스템을 사용 하 여
 
 ## <a name="overview"></a>개요
-Azure AD(Active Directory)는 [SCIM(System for Cross-Domain Identity Management) 2.0 프로토콜 사양](https://tools.ietf.org/html/draft-ietf-scim-api-19)에 정의된 인터페이스를 가진 웹 서비스가 향하는 응용 프로그램 또는 ID 저장소에 사용자 및 그룹을 자동으로 프로비전할 수 있습니다. Azure Active Directory는 웹 서비스에 할당된 사용자 및 그룹을 만들고 수정하고 삭제하는 요청을 보낼 수 있습니다. 그러면 웹 서비스에서 이러한 요청을 대상 ID 저장소의 작업으로 변환할 수 있습니다. 
+Azure Active Directory (Azure AD)에 사용자와 그룹 tooany 응용 프로그램 또는 id 저장소는 프런트 웹 서비스에 의해 hello에 정의 된 hello 인터페이스와 자동으로 구축할 수 [시스템 도메인 간 Identity Management (SCIM) 2.0 프로토콜 사양](https://tools.ietf.org/html/draft-ietf-scim-api-19)합니다. Azure Active Directory toocreate 요청을 보낼 수 있습니다, 그리고 수정 또는 할당 된 사용자 및 그룹 toohello 웹 서비스를 삭제 합니다. 그런 다음 hello 웹 서비스 hello 대상 id 저장소에 대 한 작업으로 이러한 요청을 변환할 수 있습니다. 
 
 > [!IMPORTANT]
-> 이 문서에서 참조되는 Azure 클래식 포털을 사용하는 대신 Azure Portal에서 [Azure AD 관리 센터](https://aad.portal.azure.com)를 사용하여 Azure AD를 관리하는 것이 좋습니다. 
+> Hello를 사용 하 여 Azure AD를 관리 하는 것이 좋습니다 [Azure AD 관리 센터](https://aad.portal.azure.com) hello에서 사용 하는 대신 Azure 포털 hello Azure 클래식 포털이이 문서에서 설명 합니다. 
 
 
 
 ![][0]
-*그림 1: 웹 서비스를 통해 Azure Active Directory에서 ID 저장소에 프로비전*
+*그림 1: 웹 서비스를 통해 Azure Active Directory tooan id 저장소에서 프로 비전*
 
-이 기능은 Azure AD에서 “고유한 앱 가져오기” 기능과 함께 사용하여 제공하거나 SCIM 웹 서비스가 앞서는 응용 프로그램에 대해 Single Sign-On 및 자동 사용자 프로비저닝을 사용할 수 있습니다.
+Azure AD tooenable single sign on 및 자동 사용자 프로 비전을 제공 하거나 SCIM 웹 서비스에 의해 프런트 되는 응용 프로그램에 hello "앱을 직접 bring" 기능을 함께에서이 기능을 사용할 수 있습니다.
 
 Azure Active Directory에서 SCIM을 사용하는 방법에 대한 두 가지 사용 사례가 있습니다.
 
-* **SCIM을 지원하는 응용 프로그램에 사용자 및 그룹 프로비전** SCIM 2.0을 지원하며 인증에 OAuth 전달자 토큰을 사용하는 응용 프로그램은 별도의 구성 없이 Azure AD에서 바로 작동합니다.
-* **다른 API 기반 프로비전을 지원하는 응용 프로그램에 대한 프로비전 솔루션 빌드** 비 SCIM 응용 프로그램의 경우 Azure AD SCIM 끝점과 응용 프로그램이 사용자 프로비저닝에 대해 지원하는 API 간에 변환하는 SCIM 끝점을 만들 수 있습니다. SCIM 끝점 개발을 지원하기 위해 SCIM 끝점을 제공하고 SCIM 메시지를 변환하는 방법을 보여주는 코드 샘플과 함께 CLI(공용 언어 인프라) 라이브러리가 제공됩니다.  
+* **지 원하는 SCIM tooapplications 사용자 및 그룹을 프로 비전** SCIM 2.0을 지원 하 고 구성 없이 Azure AD와 작동 하는 인증에 대 한 OAuth 전달자 토큰을 사용 하는 응용 프로그램입니다.
+* **다른 API 기반 프로 비전을 지원 되는 응용 프로그램에 대 한 프로 비전 솔루션을 빌드합니다** SCIM 아닌 응용 프로그램에 대 한 모든 API hello 응용 프로그램에서는 hello Azure AD SCIM 끝점 사이의 SCIM 끝점 tootranslate를 만들 수 있습니다 사용자 프로 비전 합니다. toohelp SCIM 끝점을 개발, toodo SCIM 끝점을 제공 하 고 SCIM 메시지를 변환 하는 방법을 보여 주는 코드 예제와 함께 공용 언어 인프라 (CLI) 라이브러리를 제공 합니다.  
 
-## <a name="provisioning-users-and-groups-to-applications-that-support-scim"></a>SCIM을 지원하는 응용 프로그램에 사용자 및 그룹 프로비전
-Azure AD는 [SCIM(System for Cross-domain Identity Management) 2](https://tools.ietf.org/html/draft-ietf-scim-api-19) 웹 서비스를 구현하고 인증에 대한 OAuth 전달자 토큰을 수락하는 응용 프로그램에 자동으로 할당된 사용자 및 그룹을 프로비전하도록 구성할 수 있습니다. SCIM 2.0 사양 내에서 응용 프로그램은 다음의 요구 사항을 충족해야 합니다.
+## <a name="provisioning-users-and-groups-tooapplications-that-support-scim"></a>사용자 및 그룹 tooapplications SCIM 지 프로 비전
+Azure AD 구성된 tooautomatically 프로 비전 할당 된 사용자 및 그룹 tooapplications 구현 하는 수는 [도메인 간 Id 관리 2 (SCIM)에 대 한 시스템](https://tools.ietf.org/html/draft-ietf-scim-api-19) 웹 서비스 및 인증에 대 한 OAuth 전달자 토큰을 수락 . Hello SCIM 2.0 사양 내에서 응용 프로그램에는 이러한 요구 사항을 충족 해야 합니다.
 
-* SCIM 프로토콜의 섹션 3.3에 따라 사용자 및/또는 그룹 만들기를 지원합니다.  
-* SCIM 프로토콜의 섹션 3.5.2에 따라 패치를 사용하여 사용자 및/또는 그룹 수정을 지원합니다.  
-* SCIM 프로토콜의 섹션 3.4.1에 따라 알려진 리소스 검색을 지원합니다.  
-* SCIM 프로토콜의 섹션 3.4.2에 따라 사용자 및/또는 그룹 쿼리를 지원합니다.  기본적으로 사용자는 externalId에서 쿼리되고 그룹은 displayName에서 쿼리됩니다.  
-* SCIM 프로토콜의 섹션 3.4.2에 따라 ID 및 관리자에 의한 사용자 쿼리를 지원합니다.  
-* SCIM 프로토콜의 섹션 3.4.2에 따라 ID 및 멤버에 의한 그룹 쿼리를 지원합니다.  
-* SCIM 프로토콜의 섹션 2.1에 따라 권한 부여에 대한 OAuth 전달자 토큰을 수락합니다.
+* 사용자 및/또는 hello SCIM 프로토콜 섹션 3.3에 따라 그룹 만들기를 지원 합니다.  
+* 사용자 및/또는 패치 요청 hello SCIM 프로토콜의 3.5.2 섹션에 따라 그룹 수정을 지원 합니다.  
+* 3.4.1 hello SCIM 프로토콜의 섹션에 따라 알려진된 리소스 검색을 지원 합니다.  
+* 사용자 및/또는 그룹의 hello SCIM 프로토콜 3.4.2 섹션에 따라 쿼리를 지원 합니다.  기본적으로 사용자는 externalId에서 쿼리되고 그룹은 displayName에서 쿼리됩니다.  
+* 3.4.2 hello SCIM 프로토콜의 섹션에 따라 관리자가 사용자 ID로 쿼리를 지원 합니다.  
+* 그룹 및 섹션 3.4.2 hello SCIM 프로토콜에 따라 멤버 ID 별로 쿼리를 지원 합니다.  
+* Hello SCIM 프로토콜의 섹션 2.1에 따라 권한 부여에 대 한 OAuth 전달자 토큰을 허용합니다.
 
 응용 프로그램 공급자 또는 응용 프로그램 공급자의 설명서를 통해 이러한 요구 사항과의 호환성을 확인합니다.
 
 ### <a name="getting-started"></a>시작
-Azure AD 응용 프로그램 갤러리에 있는 "비-갤러리 응용 프로그램" 기능을 사용하여 이 문서에서 설명한 SCIM 프로필을 지원하는 응용 프로그램을 Azure Active Directory에 연결할 수 있습니다. 연결되면 Azure AD는 할당된 사용자 및 그룹에 응용 프로그램의 SCIM 끝점을 쿼리하고 할당 정보에 따라 사용자 및 그룹을 만들거나 수정하는 동기화 프로세스를 20분마다 실행합니다.
+이 문서에 설명 된 hello SCIM 프로필을 지 원하는 응용 프로그램에 연결 된 tooAzure Active Directory 수 hello Azure AD 응용 프로그램 갤러리에서 hello "갤러리 아닌 응용 프로그램" 기능을 사용 합니다. 연결 된, Azure AD에서 실행 되 면 동기화 프로세스에 대 한 hello 응용 프로그램의 SCIM 끝점을 쿼리하여 여기서 20 분 마다 사용자 및 그룹을 할당 하 고 만들거나 toohello 할당 세부 정보에 따라 수정 합니다.
 
-**SCIM을 지원하는 응용 프로그램을 연결하려면:**
+**tooconnect SCIM를 지 원하는 응용 프로그램:**
 
-1. [Azure Portal](https://portal.azure.com)에 로그인합니다. 
-2. **Azure Active Directory > Enterprise 응용 프로그램을 찾아서 **새 응용 프로그램 > 모두 > 비-갤러리 응용 프로그램**을 선택합니다.
-3. 응용 프로그램의 이름을 입력하고 **추가** 아이콘을 클릭하여 앱 개체를 만듭니다.
+1. 역시 로그인[Azure 포털 hello](https://portal.azure.com)합니다. 
+2. 너무 찾아보기 * * Azure Active Directory > 엔터프라이즈 응용 프로그램 및 선택 **새 응용 프로그램 > 모든 > 비 갤러리 응용 프로그램**합니다.
+3. 응용 프로그램에 대 한 이름을 입력 하 고 클릭 **추가** 아이콘 toocreate 응용 프로그램 개체입니다.
     
   ![][1]
   *그림 2: Azure AD 응용 프로그램 갤러리*
     
-4. 결과 화면에서 왼쪽 열의 **프로비전** 탭을 선택합니다.
-5. **프로비전 모드** 메뉴에서 **자동**을 선택합니다.
+4. Hello 결과 화면에서 선택 hello **프로 비전** hello 왼쪽된 열에는 탭 합니다.
+5. Hello에 **프로 비전 모드** 메뉴 선택 **자동**합니다.
     
   ![][2]
-  *그림 3: Azure Portal에서 프로비전 구성*
+  *그림 3: hello Azure 포털에서에서 프로 비전 구성*
     
-6. **테넌트 URL** 필드에 응용 프로그램의 SCIM 끝점 URL을 입력합니다. 예: https://api.contoso.com/scim/v2/
-7. SCIM 끝점에 Azure AD가 아닌 다른 발급자의 OAuth 전달자 토큰이 필요한 경우 필요한 OAuth 전달자 토큰을 **비밀 토큰** 필드(선택 사항)에 복사합니다. 이 필드를 비워 두면 Azure AD에 각 요청에 따라 Azure AD에서 발급한 OAuth 전달자 토큰이 포함됩니다. ID 공급자로 Azure AD를 사용하는 앱은 Azure AD에서 발급한 토큰의 유효성을 검사할 수 있습니다.
-8. **연결 테스트** 단추를 클릭하여 Azure Active Directory에서 SCIM 끝점에 연결을 시도합니다. 시도가 실패하면 오류 정보가 표시됩니다.  
-9. 응용 프로그램에 연결 시도가 성공하면 **저장**을 클릭하여 관리자 자격 증명을 저장합니다.
-10. **매핑** 섹션에는 선택 가능한 특성 매핑 집합이 두 개 있는데, 하나는 사용자 개체용이고 다른 하나는 그룹 개체용입니다. 각 특성 매핑을 선택하여 Azure Active Directory에서 앱으로 동기화되는 특성을 검토합니다. **일치** 속성으로 선택한 특성은 업데이트 작업 시 앱의 사용자와 그룹을 일치시키는 데 사용됩니다. 저장 단추를 선택하여 변경 내용을 커밋합니다.
+6. Hello에 **테 넌 트 URL** 필드 hello 응용 프로그램의 SCIM 끝점의 hello URL을 입력 합니다. 예: https://api.contoso.com/scim/v2/
+7. Hello SCIM 끝점 Azure AD 이외의 발급자 로부터 OAuth 전달자 토큰에 필요한 경우 복사 hello 선택적 hello에 OAuth 전달자 토큰을 필요한 **암호 토큰** 필드입니다. 이 필드를 비워 두면 Azure AD에 각 요청에 따라 Azure AD에서 발급한 OAuth 전달자 토큰이 포함됩니다. ID 공급자로 Azure AD를 사용하는 앱은 Azure AD에서 발급한 토큰의 유효성을 검사할 수 있습니다.
+8. Hello 클릭 **연결 테스트** 단추 toohave Azure Active Directory 시도 tooconnect toohello SCIM 끝점입니다. Hello 시도가 실패 한 경우 오류 정보가 표시 됩니다.  
+9. Hello 시도 tooconnect toohello 응용 프로그램 성공 하는 경우 클릭 **저장** toosave hello에 대 한 관리자 자격 증명입니다.
+10. Hello에 **매핑** 섹션에서 두 개의 선택할 수 있는 특성 매핑 집합이: 사용자 개체 및 그룹 개체에 대 한 하나 있습니다. Azure Active Directory tooyour 응용 프로그램에서 동기화 되는 각 하나의 tooreview hello 특성을 선택 합니다. 특성으로 선택 된 hello **일치** 속성은 업데이트 작업에 대 한 응용 프로그램에서 사용 되는 toomatch hello 사용자 및 그룹입니다. 변경 내용을 저장 단추 toocommit hello를 선택 합니다.
 
     >[!NOTE]
-    >필요에 따라 "그룹" 매핑을 사용하지 않도록 설정하여 그룹 개체의 동기화를 비활성화할 수 있습니다. 
+    >필요에 따라 hello "groups" 매핑을 해제 하 여 그룹 개체의 동기화를 비활성화할 수 있습니다. 
 
-11. **설정** 아래의 **범위** 필드는 동기화되는 사용자 및 그룹을 정의합니다. "할당된 사용자 및 그룹만 동기화"(권장)를 선택하면 **사용자 및 그룹** 탭에서 할당된 사용자 및 그룹만 동기화됩니다.
-12. 구성이 완료되면 **프로비전 상태**를 **켜기**로 변경합니다.
-13. **저장**을 클릭하여 Azure AD 프로비전 서비스를 시작합니다. 
-14. 할당된 사용자 및 그룹만 동기화하는 경우(권장) **사용자 및 그룹** 탭을 선택하고 동기화하려는 사용자 및/또는 그룹을 할당합니다.
+11. 아래 **설정**, hello **범위** 사용자 및 그룹 동기화 되는 또는 필드를 정의 합니다. Hello에 할당 사용자 및 그룹에만 동기화 합니다 "동기화만 할당 된 사용자 및 그룹" (권장)을 선택 하면 **사용자 및 그룹** 탭 합니다.
+12. 구성을 완료 되 면 변경 hello **프로 비전 상태** 너무**에**합니다.
+13. 클릭 **저장** toostart hello Azure AD에 프로 비전 서비스입니다. 
+14. 사용자 및 그룹 (권장) 할당만 동기화 하는 경우 수 있는지 tooselect hello **사용자 및 그룹** 탭 하 고 hello 사용자 및/또는 toosync 원하는 그룹을 할당 합니다.
 
-초기 동기화가 시작되면 **감사 로그** 탭을 사용하여 진행 상황을 모니터링할 수 있습니다. 이 탭에는 앱의 프로비전 서비스에서 수행하는 모든 작업이 표시됩니다. Azure AD 프로비저닝 로그를 읽는 방법에 대한 자세한 내용은 [자동 사용자 계정 프로비저닝에 대한 보고](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)를 참조하세요.
+Hello 초기 동기화가 시작 되 면 hello를 사용할 수 있습니다 **감사 로그** 응용 프로그램에서 서비스를 프로 비전 하는 hello 수행한 모든 작업을 보여 주는 toomonitor 진행 상황을 탭 합니다. Hello Azure AD에 프로 비전 tooread 기록 하는 방법에 대 한 자세한 내용은 참조 하십시오. [자동 사용자 계정 프로 비전에 대 한 보고](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)합니다.
 
 >[!NOTE]
->초기 동기화는 서비스가 실행되는 동안 약 20분마다 발생하는 차후 동기화보다 더 많은 시간이 걸립니다. 
+>hello 초기 동기화는 hello 서비스가 실행 되 고으로 약 20 분 마다 발생 하는 후속 동기화 보다 더 긴 tooperform 합니다. 
 
 
 ## <a name="building-your-own-provisioning-solution-for-any-application"></a>응용 프로그램에 대한 고유한 프로비전 솔루션 구축
@@ -98,82 +98,82 @@ Azure Active Directory와 상호 작용하는 SCIM 웹 서비스를 만들어서
 
 방법은 다음과 같습니다.
 
-1. Azure AD는 [Microsoft.SystemForCrossDomainIdentityManagement](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)로 명명된 공용 언어 인프라 라이브러리를 제공합니다. 시스템 통합 업체 및 개발자는 이 라이브러리를 사용하여 응용 프로그램 ID 저장소에 Azure AD를 연결할 수 있는 SCIM 기반 웹 서비스 끝점을 만들고 배포할 수 있습니다.
-2. 매핑은 웹 서비스에서 구현되어 스키마에 응용 프로그램에서 필요한 사용자 스키마 및 프로토콜에 표준화된 사용자 스키마를 매핑합니다.
-3. 끝점 URL은 응용 프로그램 갤러리에서 사용자 지정 응용 프로그램의 일부로 Azure AD에 등록됩니다.
-4. 사용자 및 그룹은 Azure AD에서 이 응용 프로그램에 할당됩니다. 할당 시 큐에 저장하여 대상 응용 프로그램에 동기화됩니다. 큐를 처리하는 동기화 프로세스는 20분마다 실행됩니다.
+1. Azure AD는 [Microsoft.SystemForCrossDomainIdentityManagement](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)로 명명된 공용 언어 인프라 라이브러리를 제공합니다. 시스템 통합 업체 및 개발자가이 라이브러리 toocreate를 사용할 수 있으며 Azure AD tooany 응용 프로그램의 id 저장소에 연결할 수 SCIM 기반 웹 서비스 끝점을 배포 됩니다.
+2. 매핑은 hello 웹 서비스 toomap hello 표준화 된 사용자 스키마 toohello 사용자 스키마와 hello 응용 프로그램에 필요한 프로토콜에서 구현 됩니다.
+3. hello 끝점 URL은 hello 응용 프로그램 갤러리에서 사용자 지정 응용 프로그램의 일부분으로 Azure AD에 등록 됩니다.
+4. 사용자 및 그룹에는 Azure AD에서 응용 프로그램 toothis 할당 됩니다. 할당, 시 큐 동기화 toobe toohello 대상 응용 프로그램에 저장 됩니다. hello 큐를 처리 하는 hello 동기화 프로세스에는 20 분 마다 실행 됩니다.
 
 ### <a name="code-samples"></a>코드 샘플
-이 과정을 보다 쉽게 하려면 [코드 샘플](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master) 의 집합이 SCIM 웹 서비스 끝점을 만들고 자동 프로비전을 보여주도록 제공됩니다. 한 가지 샘플은 사용자 및 그룹을 나타내는 쉼표로 구분된 값의 행이 있는 파일을 유지 관리하는 공급자입니다.  다른 샘플은 Amazon 웹 서비스 ID 및 액세스 관리 서비스에서 작동하는 공급자입니다.  
+toomake이 프로세스는 더 쉽게 집합이 [코드 샘플](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master) 제공 하는 SCIM 웹 서비스 끝점을 만드는 / 자동 프로 비전을 보여 줍니다. 한 가지 샘플은 사용자 및 그룹을 나타내는 쉼표로 구분된 값의 행이 있는 파일을 유지 관리하는 공급자입니다.  다른 hello hello Amazon 웹 서비스 Id 및 액세스 관리 서비스에 작동 하는 공급자입니다.  
 
 **필수 구성 요소**
 
 * Visual Studio 2013 이상
 * [Azure SDK for .NET](https://azure.microsoft.com/downloads/)
-* ASP.NET framework 4.5를 SCIM 끝점으로 사용하도록 지원하는 Windows 컴퓨터입니다. 이 컴퓨터는 클라우드에서 액세스할 수 있어야 합니다.
+* Windows 컴퓨터를 지 원하는 hello ASP.NET 4.5 toobe SCIM 끝점 hello로 사용 합니다. 이 컴퓨터는 hello 클라우드에서 액세스할 수 있어야 합니다.
 * [Azure AD Premium의 평가판 또는 사용이 허가된 버전의 Azure 구독](https://azure.microsoft.com/services/active-directory/)
-* Amazon AWS 샘플에는 [Visual Studio용 AWS Toolkit](http://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/tkv_setup.html)의 라이브러리가 필요합니다. 자세한 내용은 샘플에 포함된 README 파일을 참조하세요.
+* hello AWS Amazon 샘플을 사용 하려면 hello에서 라이브러리 [Visual Studio 용 도구 키트에 AWS](http://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/tkv_setup.html)합니다. 자세한 내용은 hello 추가 정보를 참조 하십시오. hello 샘플에 포함 된 파일입니다.
 
 ### <a name="getting-started"></a>시작하기
-Azure AD에서 프로비전 요청을 수락할 수 있는 SCIM 끝점을 구현하는 가장 쉬운 방법은 쉼표로 구분된 값(CSV) 파일에 프로비전된 사용자를 출력하는 코드 샘플을 빌드하고 배포하는 것입니다.
+Azure AD에서 프로 비전을 허용할 수 있는 SCIM 끝점 요청 hello 가장 쉬운 방법은 tooimplement toobuild 이며 hello 프로 비전 된 사용자 tooa 쉼표로 구분 된 값 (CSV) 파일을 출력 하는 hello 코드 샘플을 배포 합니다.
 
-**샘플 SCIM 끝점을 만들려면:**
+**toocreate 샘플 SCIM 끝점:**
 
-1. [https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master)
-2. 패키지의 압축을 풀고 C:\AzureAD-BYOA-Provisioning-Samples와 같은 위치에서 Windows 컴퓨터에 넣습니다.
-3. 이 폴더에 Visual Studio에 있는 FileProvisioningAgent 솔루션을 시작합니다.
-4. **도구 > 라이브러리 패키지 관리자 > 패키지 관리자 콘솔**을 선택하고, FileProvisioningAgent 프로젝트에 대해 다음 명령을 실행하여 솔루션 참조를 확인합니다.
+1. hello 코드 예제 패키지를 다운로드 [https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master)
+2. Hello 패키지의 압축을 푸는 C:\AzureAD-BYOA-Provisioning-Samples\와 같은 위치에서 Windows 컴퓨터에 배치 합니다.
+3. 이 폴더에 Visual Studio에서 hello FileProvisioningAgent 솔루션을 시작 합니다.
+4. 선택 **도구 > 라이브러리 패키지 관리자 > 패키지 관리자 콘솔**, hello 다음 hello FileProvisioningAgent 프로젝트 tooresolve hello 솔루션 참조에 대 한 명령을 실행 합니다.
   ```` 
    Install-Package Microsoft.SystemForCrossDomainIdentityManagement
    Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
    Install-Package Microsoft.Owin.Diagnostics
    Install-Package Microsoft.Owin.Host.SystemWeb
   ````
-5. FileProvisioningAgent 프로젝트를 빌드합니다.
-6. 관리자 권한으로 Windows에서 명령 프롬프트 응용 프로그램을 시작하고 **cd** 명령을 사용하여 디렉터리를 **\AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug** 폴더로 변경합니다.
-7. 다음 명령을 실행하고, <ip-address>를 Windows 컴퓨터의 IP 주소 또는 도메인 이름으로 바꿉니다.
+5. Hello FileProvisioningAgent 프로젝트를 빌드하십시오.
+6. Hello 명령 프롬프트에서에서 응용 프로그램 Windows (Administrator)로 시작 하 고 hello를 사용 하 여 **cd** 명령 toochange hello 디렉터리 tooyour **\AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug** 폴더입니다.
+7. Hello < ip 주소 > hello Windows 컴퓨터의 hello IP 주소 또는 도메인 이름으로 바뀔, 다음 명령을 실행 합니다.
   ````   
    FileAgnt.exe http://<ip-address>:9000 TargetFile.csv
   ````
-8. Windows의 **Windows 설정 > 네트워크 및 인터넷 설정**에서 **Windows 방화벽 > 고급 설정**을 선택하고 포트 9000에 인바운드 액세스를 허용하는 **인바운드 규칙**을 만듭니다.
-9. Windows 컴퓨터가 라우터 뒤에 있는 경우 라우터는 인터넷에 노출되는 포트 9000과 Windows 컴퓨터에 있는 포트 9000 사이의 네트워크 액세스 변환을 수행하도록 구성되어야 합니다. Azure AD의 경우 클라우드에서 이 끝점에 액세스할 수 있으려면 이것이 필요합니다.
+8. 창의에 **Windows 설정 > 네트워크 및 인터넷 설정을**선택, hello **Windows 방화벽 > 고급 설정**, 만들고는 **인바운드 규칙** 입니다 인바운드 액세스 tooport 9000을 허용합니다.
+9. Hello Windows 컴퓨터가 라우터 뒤에 있는 경우 라우터 요구 구성 toobe tooperform 네트워크 액세스 변환 해당 포트 9000 간의 노출된 toohello 있는 hello 인터넷 및 포트 9000 hello Windows 컴퓨터에 있습니다. 이 Azure AD toobe 수 tooaccess 필요 hello 클라우드에서이 끝점입니다.
 
-**Azure AD에서 샘플 SCIM 끝점을 등록하려면:**
+**hello 샘플 SCIM 끝점 Azure AD에서 tooregister 하 고:**
 
-1. [Azure Portal](https://portal.azure.com)에 로그인합니다. 
-2. **Azure Active Directory > Enterprise 응용 프로그램을 찾아서 **새 응용 프로그램 > 모두 > 비-갤러리 응용 프로그램**을 선택합니다.
-3. 응용 프로그램의 이름을 입력하고 **추가** 아이콘을 클릭하여 앱 개체를 만듭니다. 만든 응용 프로그램 개체는 SCIM 끝점뿐 아니라 Single Sign-On을 프로비전하고 구현하려는 대상 앱을 나타내는 데 사용됩니다.
-4. 결과 화면에서 왼쪽 열의 **프로비전** 탭을 선택합니다.
-5. **프로비전 모드** 메뉴에서 **자동**을 선택합니다.
+1. 역시 로그인[Azure 포털 hello](https://portal.azure.com)합니다. 
+2. 너무 찾아보기 * * Azure Active Directory > 엔터프라이즈 응용 프로그램 및 선택 **새 응용 프로그램 > 모든 > 비 갤러리 응용 프로그램**합니다.
+3. 응용 프로그램에 대 한 이름을 입력 하 고 클릭 **추가** 아이콘 toocreate 응용 프로그램 개체입니다. hello application 개체 생성은 의도 한 toorepresent hello 대상 앱 single sign-on, 및 뿐 아니라 hello SCIM 끝점 구현 tooand 프로비저닝 것입니다.
+4. Hello 결과 화면에서 선택 hello **프로 비전** hello 왼쪽된 열에는 탭 합니다.
+5. Hello에 **프로 비전 모드** 메뉴 선택 **자동**합니다.
     
   ![][2]
-  *그림 4: Azure Portal에서 프로비전 구성*
+  *그림 4: hello Azure 포털에서에서 프로 비전 구성*
     
-6. **테넌트 URL** 필드에 인터넷에 노출된 URL 및 SCIM 끝점의 포트를 입력합니다. <ip-address>가 인터넷 노출된 IP 주소인 경우 http://testmachine.contoso.com:9000 또는 http://<ip-address>:9000/과 같습니다.  
-7. SCIM 끝점에 Azure AD가 아닌 다른 발급자의 OAuth 전달자 토큰이 필요한 경우 필요한 OAuth 전달자 토큰을 **비밀 토큰** 필드(선택 사항)에 복사합니다. 이 필드를 비워 두면 Azure AD에 각 요청에 따라 Azure AD에서 발급한 OAuth 전달자 토큰이 포함됩니다. ID 공급자로 Azure AD를 사용하는 앱은 Azure AD에서 발급한 토큰의 유효성을 검사할 수 있습니다.
-8. **연결 테스트** 단추를 클릭하여 Azure Active Directory에서 SCIM 끝점에 연결을 시도합니다. 시도가 실패하면 오류 정보가 표시됩니다.  
-9. 응용 프로그램에 연결 시도가 성공하면 **저장**을 클릭하여 관리자 자격 증명을 저장합니다.
-10. **매핑** 섹션에는 선택 가능한 특성 매핑 집합이 두 개 있는데, 하나는 사용자 개체용이고 다른 하나는 그룹 개체용입니다. 각 특성 매핑을 선택하여 Azure Active Directory에서 앱으로 동기화되는 특성을 검토합니다. **일치** 속성으로 선택한 특성은 업데이트 작업 시 앱의 사용자와 그룹을 일치시키는 데 사용됩니다. 저장 단추를 선택하여 변경 내용을 커밋합니다.
-11. **설정** 아래의 **범위** 필드는 동기화되는 사용자 및 그룹을 정의합니다. "할당된 사용자 및 그룹만 동기화"(권장)를 선택하면 **사용자 및 그룹** 탭에서 할당된 사용자 및 그룹만 동기화됩니다.
-12. 구성이 완료되면 **프로비전 상태**를 **켜기**로 변경합니다.
-13. **저장**을 클릭하여 Azure AD 프로비전 서비스를 시작합니다. 
-14. 할당된 사용자 및 그룹만 동기화하는 경우(권장) **사용자 및 그룹** 탭을 선택하고 동기화하려는 사용자 및/또는 그룹을 할당합니다.
+6. Hello에 **테 넌 트 URL** 필드 hello 인터넷에 노출 된 URL과 SCIM 끝점의 포트를 입력 합니다. 것 것 처럼 http://testmachine.contoso.com:9000 나 < ip 주소 > 인터넷을 hello는 http://<ip-address>:9000/ 노출 IP 주소입니다.  
+7. Hello SCIM 끝점 Azure AD 이외의 발급자 로부터 OAuth 전달자 토큰에 필요한 경우 복사 hello 선택적 hello에 OAuth 전달자 토큰을 필요한 **암호 토큰** 필드입니다. 이 필드를 비워 두면 Azure AD에 각 요청에 따라 Azure AD에서 발급한 OAuth 전달자 토큰이 포함됩니다. ID 공급자로 Azure AD를 사용하는 앱은 Azure AD에서 발급한 토큰의 유효성을 검사할 수 있습니다.
+8. Hello 클릭 **연결 테스트** 단추 toohave Azure Active Directory 시도 tooconnect toohello SCIM 끝점입니다. Hello 시도가 실패 한 경우 오류 정보가 표시 됩니다.  
+9. Hello 시도 tooconnect toohello 응용 프로그램 성공 하는 경우 클릭 **저장** toosave hello에 대 한 관리자 자격 증명입니다.
+10. Hello에 **매핑** 섹션에서 두 개의 선택할 수 있는 특성 매핑 집합이: 사용자 개체 및 그룹 개체에 대 한 하나 있습니다. Azure Active Directory tooyour 응용 프로그램에서 동기화 되는 각 하나의 tooreview hello 특성을 선택 합니다. 특성으로 선택 된 hello **일치** 속성은 업데이트 작업에 대 한 응용 프로그램에서 사용 되는 toomatch hello 사용자 및 그룹입니다. 변경 내용을 저장 단추 toocommit hello를 선택 합니다.
+11. 아래 **설정**, hello **범위** 사용자 및 그룹 동기화 되는 또는 필드를 정의 합니다. Hello에 할당 사용자 및 그룹에만 동기화 합니다 "동기화만 할당 된 사용자 및 그룹" (권장)을 선택 하면 **사용자 및 그룹** 탭 합니다.
+12. 구성을 완료 되 면 변경 hello **프로 비전 상태** 너무**에**합니다.
+13. 클릭 **저장** toostart hello Azure AD에 프로 비전 서비스입니다. 
+14. 사용자 및 그룹 (권장) 할당만 동기화 하는 경우 수 있는지 tooselect hello **사용자 및 그룹** 탭 하 고 hello 사용자 및/또는 toosync 원하는 그룹을 할당 합니다.
 
-초기 동기화가 시작되면 **감사 로그** 탭을 사용하여 진행 상황을 모니터링할 수 있습니다. 이 탭에는 앱의 프로비전 서비스에서 수행하는 모든 작업이 표시됩니다. Azure AD 프로비저닝 로그를 읽는 방법에 대한 자세한 내용은 [자동 사용자 계정 프로비저닝에 대한 보고](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)를 참조하세요.
+Hello 초기 동기화가 시작 되 면 hello를 사용할 수 있습니다 **감사 로그** 응용 프로그램에서 서비스를 프로 비전 하는 hello 수행한 모든 작업을 보여 주는 toomonitor 진행 상황을 탭 합니다. Hello Azure AD에 프로 비전 tooread 기록 하는 방법에 대 한 자세한 내용은 참조 하십시오. [자동 사용자 계정 프로 비전에 대 한 보고](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)합니다.
 
-이 샘플을 확인하는 마지막 단계는 Windows 컴퓨터에서 \AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug 폴더에 TargetFile.csv 파일을 여는 것입니다. 프로비전 프로세스가 실행되면 이 파일은 할당되고 프로비전된 모든 사용자 및 그룹의 세부 사항을 표시합니다.
+hello 최종 단계는 hello 샘플을 확인 하는 tooopen hello hello \AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug 폴더에 Windows 컴퓨터 TargetFile.csv 파일입니다. Hello를 프로 비전 프로세스를 실행 한 후이 파일에 할당 하 고 사용자 및 그룹을 프로 비전 하는 모든 hello 세부적인 표시 합니다.
 
 ### <a name="development-libraries"></a>개발 라이브러리
-SCIM 사양을 준수하는 웹 서비스를 개발하려면 먼저 개발 프로세스를 가속화하기 위해 Microsoft에서 제공하는 다음 라이브러리를 숙지합니다. 
+toodevelop toohello SCIM 사양을 준수 하는 웹 서비스 먼저 숙지 hello toohelp microsoft hello 개발 프로세스를 가속화할 제공 라이브러리를 따라. 
 
-1. CLI(공용 언어 인프라) 라이브러리는 C#과 같은 해당 인프라에 따라 언어와 함께 사용하기 위해 제공됩니다. 이러한 라이브러리 중 하나인 [Microsoft.SystemForCrossDomainIdentityManagement.Service](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)는 다음 일러스트레이션에 표시된 것처럼 Microsoft.SystemForCrossDomainIdentityManagement.IProvider 인터페이스를 선언합니다. 이 라이브러리를 사용하는 개발자는 일반적으로 공급자로 참조되는 클래스를 사용하여 해당 인터페이스를 구현합니다. 이 라이브러리를 사용하면 개발자는 SCIM 사양을 준수하는 웹 서비스를 배포할 수 있습니다. 웹 서비스는 인터넷 정보 서비스 또는 실행 가능한 모든 공용 언어 인프라 어셈블리 내에 호스트할 수 있습니다. 요청은 공급자의 메서드에 대한 호출로 변환되며, 개발자에 의해 일부 ID 저장소에서 작동하도록 프로그래밍됩니다.
+1. CLI(공용 언어 인프라) 라이브러리는 C#과 같은 해당 인프라에 따라 언어와 함께 사용하기 위해 제공됩니다. 이러한 라이브러리 중 하나 [Microsoft.SystemForCrossDomainIdentityManagement.Service](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/), 인터페이스 선언, Microsoft.SystemForCrossDomainIdentityManagement.IProvider, hello 다음 그림에에서 표시 된: A hello 라이브러리를 사용 하는 개발자, 일반적으로 공급자 참조 될 수 있는 클래스와 해당 인터페이스를 구현 합니다. hello 라이브러리 hello 개발자 toodeploy toohello SCIM 사양을 준수 하는 웹 서비스를 사용 합니다. hello 웹 서비스는 인터넷 정보 서비스 또는 실행 가능한 모든 공용 언어 인프라 어셈블리 내에서 하거나 호스트할 수 있습니다. 요청에 일부 id 저장소 hello 개발자 toooperate 하 여 프로그래밍할 수는 호출 toohello 공급자 메서드로 변환 됩니다.
   
   ![][3]
   
-2. [기본 경로 처리기](http://expressjs.com/guide/routing.html)는 node.js 웹 서비스에 수행된(SCIM 사양에 정의된 대로) 호출을 나타내는 node.js 요청 개체를 구문 분석하는 데 사용할 수 있습니다.   
+2. [Express 경로 처리기](http://expressjs.com/guide/routing.html) 호출 (에 정의 된 대로 hello SCIM 사양), tooa node.js 웹 서비스를 나타내는 node.js 요청 개체를 구문 분석에 사용할 수 있습니다.   
 
 ### <a name="building-a-custom-scim-endpoint"></a>사용자 지정 SCIM 끝점 빌드
-CLI 라이브러리를 사용하는 개발자는 실행 가능한 공용 언어 인프라 어셈블리 또는 인터넷 정보 서비스 내에서 해당 서비스를 호스트할 수 있습니다. 다음은 http://localhost:9000 주소에 있는 실행 가능한 어셈블리 내에서 서비스를 호스트하기 위한 샘플 코드입니다. 
+Hello CLI 라이브러리를 사용 하 여 해당 라이브러리를 사용 하는 개발자는 모든 실행 가능한 공용 언어 인프라 어셈블리 내에서 또는 인터넷 정보 서비스 내 서비스를 호스팅할 수 있습니다. Hello 주소 http://localhost:9000에서 있는 실행 가능한 어셈블리 내에서 서비스를 호스트에 대 한 샘플 코드는 다음과 같습니다. 
 
     private static void Main(string[] arguments)
     {
@@ -244,7 +244,7 @@ CLI 라이브러리를 사용하는 개발자는 실행 가능한 공용 언어 
     }
     }
 
-이 서비스는 다음 루트 인증 기관 중 하나에 속한 HTTP 주소 및 서버 인증 인증서를 가지고 있어야 합니다. 
+이 서비스는 hello의 루트 인증 기관 hello 다음 중 하나는 HTTP 주소 및 서버 인증 인증서가 있어야 합니다. 
 
 * CNNIC
 * Comodo
@@ -256,13 +256,13 @@ CLI 라이브러리를 사용하는 개발자는 실행 가능한 공용 언어 
 * Verisign
 * WoSign
 
-서버 인증 인증서는 네트워크 셸 유틸리티를 사용하여 다음과 같이 Windows 호스트의 포트에 바인딩될 수 있습니다. 
+서버 인증 인증서에 바인딩된 tooa 호스트의 포트에는 Windows hello 네트워크 셸 유틸리티를 사용 하 여 될 수 있습니다. 
 
     netsh http add sslcert ipport=0.0.0.0:443 certhash=0000000000003ed9cd0c315bbb6dc1c08da5e6 appid={00112233-4455-6677-8899-AABBCCDDEEFF}  
 
-여기서 appid 인수에 제공된 값은 임의의 GUID(Globally Unique Identifier)인 반면 certhash 인수에 제공된 값은 인증서의 지문입니다.  
+여기서 hello hello certhash 인수에 제공 된 기간은 hello 인증서의 지문 안녕하세요 hello 값 hello appid 인수에 제공 되는 임의의 전역 고유 식별자입니다.  
 
-인터넷 정보 서비스 내에서 서비스를 호스트하려면 개발자는 어셈블리의 기본 네임스페이스에 있는 Startup이라는 클래스를 사용하여 CLA 코드 라이브러리 어셈블리를 빌드합니다.  이러한 클래스의 샘플은 다음과 같습니다. 
+인터넷 정보 서비스 내에서 toohost hello 서비스를 개발자 시작 hello 어셈블리의 hello 기본 네임 스페이스에 이름이 지정 된 클래스와 함께 CLA 코드 라이브러리 어셈블리를 빌드하는 것입니다.  이러한 클래스의 샘플은 다음과 같습니다. 
 
     public class Startup
     {
@@ -293,11 +293,11 @@ CLI 라이브러리를 사용하는 개발자는 실행 가능한 공용 언어 
     }
 
 ### <a name="handling-endpoint-authentication"></a>끝점 인증 처리
-Azure Active Directory에서 요청은 OAuth 2.0 전달자 토큰을 포함합니다.   요청을 받는 모든 서비스는 예상된 Azure Active Directory 테넌트 대신 Azure Active Directory의 Graph 웹 서비스에 액세스하는 데 대해 발급자를 Azure Active Directory로 인증해야 합니다.  토큰에서 발급자는 "iss":"https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/"와 같은 iss 클레임으로 식별됩니다.  이 예제에서 상대 주소 세그먼트인 cbb1a5ac-f33b-45fa-9bf5-f37db0fed422가 토큰이 발급된 대신 Azure Active Directory 테넌트의 고유한 발급자인 반면 클레임 값의 기본 주소인 https://sts.windows.net은 Azure Active Directory를 발급자로 식별합니다.  토큰이 Azure Active Directory Graph 웹 서비스에 액세스하기 위해 발급되었다면 해당 서비스의 식별자인 00000002-0000-0000-c000-000000000000는 토큰의 aud 클레임의 값에 있어야 합니다.  
+Azure Active Directory에서 요청은 OAuth 2.0 전달자 토큰을 포함합니다.   모든 서비스 수신 hello 요청 hello 발급자 액세스 toohello Azure Active Directory Graph 웹 서비스에 대 한 예상 hello Azure Active Directory 테 넌을 대신 하 여 Azure Active Directory 것으로 인증 해야 합니다.  Hello 토큰에서 발급자 hello "iss"와 같은 경우 iss 클레임으로 식별 됩니다: "https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/"입니다.  이 예제에서는 hello 클레임 값의 기본 주소 hello https://sts.windows.net, 발급자 hello 대로 Azure Active Directory를 식별, 동안 hello cbb1a5ac-f33b-45fa-9bf5-f37db0fed422, 상대 주소 세그먼트의 고유 식별자 hello Azure Active 토큰이 발급 된 어떤 hello를 대신 하 여 디렉터리 테 넌 트.  Hello Azure Active Directory Graph 웹 서비스, 해당 서비스의 다음 hello 식별자에 액세스 하기 위한 hello 토큰이 발급 된 경우 00000002-0000-0000-c000-000000000000, 될 hello 토큰의 aud hello 값에서 무시 해야 합니다.  
 
-SCIM 서비스 구축을 위해 Microsoft에서 제공하는 CLA 라이브러리를 사용하는 개발자는 Microsoft.Owin.Security.ActiveDirectory 패키지로 다음 단계를 수행하여 Azure Active Directory에서 요청을 인증할 수 있습니다. 
+SCIM 서비스를 빌드하기 위한 Microsoft에서 제공 하는 hello CLA 라이브러리를 사용 하는 개발자 Microsoft.Owin.Security.ActiveDirectory 패키지용 hello를 사용 하 여 다음이 단계를 수행 하 여 Azure Active Directory의 요청을 인증할 수 있습니다. 
 
-1. 공급자에서 서비스가 시작할 때 마다 호출되는 메서드를 반환함으로써 Microsoft.SystemForCrossDomainIdentityManagement.IProvider.StartupBehavior 속성을 구현합니다. 
+1. 공급자에서 hello 서비스가 시작 될 때마다 호출 메서드 toobe를 반환 하 여 hello Microsoft.SystemForCrossDomainIdentityManagement.IProvider.StartupBehavior 속성을 구현 합니다. 
 
   ````
     public override Action\<Owin.IAppBuilder, System.Web.Http.HttpConfiguration.HttpConfiguration\> StartupBehavior
@@ -315,7 +315,7 @@ SCIM 서비스 구축을 위해 Microsoft에서 제공하는 CLA 라이브러리
     }
   ````
 
-2. 해당 메서드에 다음 코드를 추가하여 지정된 테넌트 대신 인증된 서비스의 끝점 중 하나가 Azure AD Graph 웹 서비스에 액세스하는 데 대해 Azure Active Directory에서 발급한 토큰을 갖도록 요청합니다. 
+2. 다음 코드 toothat 메서드 toohave hello bearing 액세스 toohello Azure AD 그래프 웹 서비스에 대 한 지정 된 테 넌을 대신 하 여 Azure Active Directory에서 발급 한 토큰으로 인증 하는 hello 서비스 끝점의 모든 요청 tooany를 추가 합니다. 
 
   ````
     private void OnServiceStartup(
@@ -340,7 +340,7 @@ SCIM 서비스 구축을 위해 Microsoft에서 제공하는 CLA 라이브러리
       WindowsAzureActiveDirectoryBearerAuthenticationOptions authenticationOptions =
         new WindowsAzureActiveDirectoryBearerAuthenticationOptions()    {
         TokenValidationParameters = tokenValidationParameters,
-        Tenant = "03F9FCBC-EA7B-46C2-8466-F81917F3C15E" // Substitute the appropriate tenant’s 
+        Tenant = "03F9FCBC-EA7B-46C2-8466-F81917F3C15E" // Substitute hello appropriate tenant’s 
                                                       // identifier for this one.  
       };
 
@@ -350,11 +350,11 @@ SCIM 서비스 구축을 위해 Microsoft에서 제공하는 CLA 라이브러리
 
 
 ## <a name="user-and-group-schema"></a>사용자 및 그룹 스키마
-Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프로비전할 수 있습니다.  이러한 형식의 리소스는 사용자 및 그룹입니다.  
+Azure Active Directory는 두 가지 유형의 리소스 tooSCIM 웹 서비스를 구성할 수 있습니다.  이러한 형식의 리소스는 사용자 및 그룹입니다.  
 
-사용자 리소스는 http://tools.ietf.org/html/draft-ietf-scim-core-schema 프로토콜 사양에 포함된 스키마 식별자 urn: ietf:params:scim:schemas:extension:enterprise:2.0:User로 식별됩니다.  urn: ietf:params:scim:schemas:extension:enterprise:2.0:User 리소스의 특성에 Azure Active Directory에서 사용자의 특성을 기본 매핑한 작업은 아래 테이블 1에서 제공됩니다.  
+사용자 리소스는이 프로토콜 사양에 포함 된 urn: ietf:params:scim:schemas:extension:enterprise:2.0:User hello 스키마 식별자로 식별 됩니다: http://tools.ietf.org/html/draft-ietf-scim-core-schema 합니다.  아래 표에 1, urn: ietf:params:scim:schemas:extension:enterprise:2.0:User 리소스의 Azure Active Directory toohello 특성에 있는 사용자의 hello 특성의 hello 기본 매핑을 제공 됩니다.  
 
-그룹 리소스는 스키마 식별자 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group으로 식별됩니다.  아래 표 2에서는 Azure Active Directory의 그룹 특성과 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group resources 리소스 특성 간의 기본 매핑을 보여 줍니다.  
+리소스 그룹 hello 스키마 식별자로 식별 됩니다 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group 합니다.  테이블 2, 아래 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group 리소스의 Azure Active Directory toohello 특성에 있는 그룹의 hello 특성의 hello 기본 매핑 보여 줍니다.  
 
 ### <a name="table-1-default-user-attribute-mapping"></a>테이블 1: 기본 사용자 특성 매핑
 | Azure Active Directory 사용자 | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User |
@@ -388,17 +388,17 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
 | proxyAddresses |emails[type eq "other"].Value |
 
 ## <a name="user-provisioning-and-de-provisioning"></a>사용자 프로비저닝 및 프로비전 해제
-다음 일러스트레이션은 다른 ID 저장소에 사용자의 수명 주기를 관리하도록 Azure Active Directory가 SCIM 서비스를 보낸다는 메시지를 보여줍니다. 또한 다이어그램은 이러한 서비스 구축을 위해 Microsoft에서 제공하는 CLI 라이브러리를 사용하여 구현된 SCIM 서비스가 이러한 요청을 어떻게 공급자의 메서드에 호출로 번역하는지를 보여줍니다.  
+다음 그림에서는 hello 메시지를 Azure Active Directory 다른 id 저장소에 사용자의 tooa SCIM 서비스 toomanage hello 주기를 전송 하는 번호입니다. hello 다이어그램에는 어떻게는 SCIM hello CLI 라이브러리를 사용 하 여 구현 Microsoft에서 제공한 서비스 만들기에 대 한 공급자의 toohello 메서드를 호출에 해당 요청을 변환 하는 같은 서비스를 보여 줍니다.  
 
 ![][4]
 *그림 5: 사용자 프로비저닝 및 시퀀스 프로비전 해제*
 
-1. Azure Active Directory는 externalId 특성 값이 Azure AD의 사용자 mailNickname 특성 값과 일치하는 사용자를 서비스에 쿼리합니다. 쿼리는 이 예제처럼 HTTP(Hypertext Transfer Protocol) 요청으로 표현되며, 여기서 jyoung은 Azure Active Directory에서 사용자의 mailNickname 샘플입니다. 
+1. Azure Active Directory 쿼리 externalId 특성 값이 사용자의 hello mailNickname 특성 값을 일치 하는 Azure AD에서 사용자에 대 한 서비스를 hello 합니다. hello 쿼리 jyoung은 Azure Active Directory에서 사용자의 mailNickname의 샘플에는이 예제에서는 같은 하이퍼텍스트 전송 프로토콜 (HTTP) 요청으로 표현 됩니다. 
   ````
     GET https://.../scim/Users?filter=externalId eq jyoung HTTP/1.1
     Authorization: Bearer ...
   ````
-  서비스가 SCIM 서비스 구현에 대해 Microsoft에서 제공하는 공용 언어 인프라 라이브러리를 사용하여 작성되면 요청이 서비스 공급자의 쿼리 메서드 호출로 번역됩니다.  해당 메서드의 서명은 다음과 같습니다. 
+  Hello 서비스가 SCIM 서비스 구현에 대 한 Microsoft에서 제공 하는 hello 공용 언어 인프라 라이브러리를 사용 하 여 작성 된 경우에 hello 요청 호출 toohello hello 서비스 공급자의 쿼리 방법으로 변환 됩니다.  해당 메서드의 hello 서명을 다음과 같습니다. 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.Resource is defined in 
@@ -410,7 +410,7 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
       Microsoft.SystemForCrossDomainIdentityManagement.IQueryParameters parameters, 
       string correlationIdentifier);
   ````
-  Microsoft.SystemForCrossDomainIdentityManagement.IQueryParameters 인터페이스의 정의는 다음과 같습니다. 
+  Hello Microsoft.SystemForCrossDomainIdentityManagement.IQueryParameters 인터페이스의 hello 정의 다음과 같습니다. 
   ````
     public interface IQueryParameters: 
       Microsoft.SystemForCrossDomainIdentityManagement.IRetrievalParameters
@@ -446,14 +446,14 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
         Equals
     }
   ````
-  externalId 특성의 값이 지정된 사용자에 대한 다음 쿼리 샘플에서 쿼리 메서드에 전달된 인수의 값은 다음과 같습니다. 
+  다음 샘플 hello externalId 특성에 대 한 지정된 된 값으로 사용자에 대 한 쿼리의 hello, toohello 쿼리 메서드에 전달 하는 hello 인수 값은: 
   * parameters.AlternateFilters.Count: 1
   * parameters.AlternateFilters.ElementAt(0).AttributePath: "externalId"
   * parameters.AlternateFilters.ElementAt(0).ComparisonOperator: ComparisonOperator.Equals
   * parameters.AlternateFilter.ElementAt(0).ComparisonValue: "jyoung"
   * correlationIdentifier: System.Net.Http.HttpRequestMessage.GetOwinEnvironment["owin.RequestId"] 
 
-2. externalId 특성 값이 사용자의 mailNickname 특성 값과 일치하는 사용자를 웹 서비스에 쿼리할 때 응답으로 사용자가 반환되지 않는 경우 Azure Active Directory는 서비스가 Azure Active Directory의 사용자에 해당하는 사용자를 프로비전하도록 요청합니다.  다음은 그러한 요청의 예제입니다. 
+2. Hello 응답 tooa 쿼리 toohello 웹 서비스 사용자는 사용자의 hello mailNickname 특성 값과 일치 하는 externalId 특성 값에 대 한 모든 사용자가 반환 하지 않는 경우 그런 다음 Azure Active Directory 요청 사용자 해당 hello 서비스 제공 해당 toohello 하나 Azure Active Directory에 있습니다.  다음은 그러한 요청의 예제입니다. 
   ````
     POST https://.../scim/Users HTTP/1.1
     Authorization: Bearer ...
@@ -484,7 +484,7 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
       "department":null,
       "manager":null}
   ````
-  SCIM 서비스 구현에 대해 Microsoft에서 제공하는 공용 언어 인프라 라이브러리는 요청이 서비스 공급자의 만들기 메서드에 호출을 요청하도록 번역됩니다.  만들기 메서드에는 다음 서명이 있습니다. 
+  SCIM 서비스 구현에 대 한 Microsoft에서 제공 하는 hello 공용 언어 인프라 라이브러리는 호출 toohello hello 서비스 공급자의 Create 메서드를 해당 요청을 변환 합니다.  Create 메서드 hello이이 서명을 있습니다. 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.Resource is defined in 
@@ -494,14 +494,14 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
       Microsoft.SystemForCrossDomainIdentityManagement.Resource resource, 
       string correlationIdentifier);
   ````
-  사용자를 프로비전하는 요청에서 리소스 인수의 값은 Microsoft.SystemForCrossDomainIdentityManagement의 인스턴스입니다. Microsoft.SystemForCrossDomainIdentityManagement.Schemas 라이브러리에 정의된 Core2EnterpriseUser 클래스입니다.  사용자를 프로비전하는 요청이 성공하는 경우 메서드의 구현은 Microsoft.SystemForCrossDomainIdentityManagement의 인스턴스를 반환할 것으로 예상됩니다. 새로 프로비전된 사용자의 고유 식별자에 설정된 식별자 속성의 값을 가진 Core2EnterpriseUser 클래스입니다.  
+  요청 tooprovision 사용자에서에서 hello 리소스에 대 한 인수의 값이 hello는 hello Microsoft.SystemForCrossDomainIdentityManagement의 인스턴스입니다. Hello Microsoft.SystemForCrossDomainIdentityManagement.Schemas 라이브러리에 정의 된 Core2EnterpriseUser 클래스입니다.  Hello 요청 tooprovision hello 사용자에 성공 하면 다음 hello hello 메서드는 예상된 tooreturn hello Microsoft.SystemForCrossDomainIdentityManagement의 인스턴스. Hello 식별자 속성의 값이 hello Core2EnterpriseUser 클래스 toohello hello 새로 프로 비전 된 사용자의 고유 식별자를 설정합니다.  
 
-3. SCIM에 의해 제어되는 ID 저장소에 있는 것으로 알려진 사용자를 업데이트하기 위해 Azure Active Directory는 다음과 같은 요청으로 서비스에서 해당 사용자의 현재 상태를 요청합니다. 
+3. tooupdate tooexist id 저장소에 알려진 사용자는 SCIM hello 서비스에서와 같은 요청 hello 해당 사용자의 현재 상태를 요청 하 여 Azure Active Directory 계속 진행 하 여 프런트: 
   ````
     GET ~/scim/Users/54D382A4-2050-4C03-94D1-E769F1D15682 HTTP/1.1
     Authorization: Bearer ...
   ````
-  SCIM 서비스 구현에 대해 Microsoft에서 제공하는 공용 언어 인프라 라이브러리를 사용하여 작성된 서비스에서 요청은 서비스 공급자의 검색 메서드에 호출하도록 번역됩니다.  해당 검색 메서드의 서명은 다음과 같습니다. 
+  SCIM 서비스 구현에 대 한 Microsoft에서 제공 하는 hello 공용 언어 인프라 라이브러리를 사용 하 여 작성 하는 서비스에 hello 요청 호출 toohello hello 서비스 공급자의 검색 방법으로 변환 됩니다.  Hello 서명의 hello 검색 메서드는 다음과 같습니다. 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.Resource and 
@@ -529,19 +529,19 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
           { get; set; }
     }
   ````
-  사용자의 현재 상태를 검색하는 요청 예제에서 매개 변수 인수 값으로 제공되는 개체의 속성 값은 다음과 같습니다. 
+  사용자의 요청 tooretrieve hello 현재 상태 hello 예에서 hello hello 매개 변수 인수 값으로 제공 하는 hello 개체의 hello 속성 hello 값은 다음과 같습니다. 
   
   * 식별자: "54D382A4-2050-4C03-94D1-E769F1D15682"
   * SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 
-4. 참조 특성을 업데이트해야 하는 경우 Azure Active Directory는 서비스를 쿼리하여 서비스에 의해 제어되는 ID 저장소에 있는 참조 특성의 현재 값이 Azure Active Directory의 해당 특성 값과 이미 일치하는지를 확인합니다. 사용자의 경우 현재 값이 이 방식으로 쿼리된 유일한 특성은 관리자 특성입니다. 특정 사용자 개체의 관리자 특성 값에 현재 특정 값이 있는지 여부를 결정하는 요청의 예는 다음과 같습니다. 
+4. 참조 특성 toobe 업데이트 후 Azure Active Directory 쿼리 hello 서비스 toodetermine 여부 hello hello id 저장소의 hello 참조 특성의 현재 값 프런트 하 여 hello 서비스 이미 검색 hello 특성 값 Azure Active directory 의미 합니다. 사용자에 대 한 hello만는 hello의 현재 값이 방식으로 쿼리 됩니다 hello 관리자 특성이입니다. 특정 사용자 개체의 hello 관리자 특성에는 현재 특정 값이 있는지 여부를 요청 toodetermine의 예는 다음과 같습니다. 
   ````
     GET ~/scim/Users?filter=id eq 54D382A4-2050-4C03-94D1-E769F1D15682 and manager eq 2819c223-7f76-453a-919d-413861904646&attributes=id HTTP/1.1
     Authorization: Bearer ...
   ````
-  특성 쿼리 매개 변수인 ID의 값은 필터 쿼리 매개 변수의 값으로 제공되는 식을 만족하는 사용자 개체가 있다는 것을 의미하고 서비스는 해당 리소스 ID 특성의 값을 포함하는 urn:ietf:params:scim:schemas:core:2.0:User or urn:ietf:params:scim:schemas:extension:enterprise:2.0:User 리소스를 사용하여 응답할 것으로 예상됩니다.  **id** 특성 값은 요청자에게 알려집니다. 이 값은 필터 쿼리 매개 변수의 값에 포함되며, 이 값을 묻는 목적은 실제로 이러한 개체의 존재 여부를 확인하는 필터 식을 만족하는 리소스의 최소 표현을 요청하기 위함입니다.   
+  값 hello hello 특성 쿼리 매개 변수의 id hello hello 필터 쿼리 매개 변수 값으로 제공 하는 hello 식을 만족 하는 사용자 개체가 있는 경우 다음 hello 서비스는 urn: ietf:params:scim:schemas와 예상된 toorespond을 나타냅니다. 코어: 2.0:User 또는 urn: ietf:params:scim:schemas:extension:enterprise:2.0:User 리소스, 해당 리소스의 id 특성의 hello 값만 포함 합니다.  값의 hello hello **id** 특성 toohello 요청자 알려져 있습니다. 쿼리 매개 변수를 필터 하는 hello; hello 값에 포함 되어 hello에 대 한 질문의 목적은 toorequest 존재 여부 등 모든 개체를 확인 하는 hello 필터 식을 만족 하는 리소스에 대 한 최소 표현을 실제로입니다.   
 
-  서비스가 SCIM 서비스 구현에 대해 Microsoft에서 제공하는 공용 언어 인프라 라이브러리를 사용하여 작성되면 요청이 서비스 공급자의 쿼리 메서드 호출로 번역됩니다. 매개 변수 인수의 값으로 제공되는 개체의 속성 값은 다음과 같습니다. 
+  Hello 서비스가 SCIM 서비스 구현에 대 한 Microsoft에서 제공 하는 hello 공용 언어 인프라 라이브러리를 사용 하 여 작성 된 경우에 hello 요청 호출 toohello hello 서비스 공급자의 쿼리 방법으로 변환 됩니다. hello 매개 변수 인수 hello 값으로 제공 하는 hello 개체의 hello 속성 hello 값은 다음과 같습니다. 
   
   * parameters.AlternateFilters.Count: 2
   * parameters.AlternateFilters.ElementAt(x).AttributePath: "id"
@@ -553,9 +553,9 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
   * parameters.RequestedAttributePaths.ElementAt(0): "id"
   * parameters.SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 
-  여기에서 필터 쿼리 매개 변수 식의 순서에 따라 인덱스 x의 값은 0이고 인덱스 y의 값은 1일 수 있습니다. 또는 x 값이 1이고 y 값이 0일 수 있습니다.   
+  여기에서 hello 인덱스 x의 hello 값 0 일 수 있습니다 및 hello hello 인덱스 y 값 수 1, 또는 x의 hello 값은 1 일 수 있으며 y의 hello 값 hello 필터에 대 한 쿼리 매개 변수는 hello 식의 hello 순서에 따라 0이 될 수 있습니다.   
 
-5. 다음은 Azure Active Directory에서 SCIM 서비스로 사용자를 업데이트하는 요청의 예입니다. 
+5. Azure Active Directory tooan SCIM 서비스 tooupdate 사용자를에서 요청의 예는 다음과 같습니다. 
   ````
     PATCH ~/scim/Users/54D382A4-2050-4C03-94D1-E769F1D15682 HTTP/1.1
     Authorization: Bearer ...
@@ -575,7 +575,7 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
                 "$ref":"http://.../scim/Users/2819c223-7f76-453a-919d-413861904646",
                 "value":"2819c223-7f76-453a-919d-413861904646"}]}]}
   ````
-  SCIM 서비스 구현에 대한 Microsoft 공용 언어 인프라 라이브러리는 요청이 서비스 공급자의 업데이트 메서드에 호출을 요청하도록 번역됩니다. Update 메서드의 서명은 다음과 같습니다. 
+  SCIM 서비스를 구현 하기 위한 hello Microsoft 공용 언어 인프라 라이브러리는 hello 요청 호출 toohello hello 서비스 공급자의 Update 메서드를 변환 합니다. Hello 서명의 hello 큐브의 Update 메서드에 다음과 같습니다. 
   ````
     // System.Threading.Tasks.Tasks and 
     // System.Collections.Generic.IReadOnlyCollection<T>
@@ -656,7 +656,7 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
       { get; set; }
     }
   ````
-    사용자를 업데이트하는 요청의 예에서 패치 인수의 값으로 제공되는 개체는 다음과 같은 속성 값이 적용됩니다. 
+    요청 tooupdate 사용자 hello 예제를 hello hello 패치 인수 값으로 제공 하는 hello 개체에는 이러한 속성 값에 있습니다. 
   
   * ResourceIdentifier.Identifier: "54D382A4-2050-4C03-94D1-E769F1D15682"
   * ResourceIdentifier.SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
@@ -667,12 +667,12 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
   * (PatchRequest as PatchRequest2).Operations.ElementAt(0).Value.ElementAt(0).Reference: http://.../scim/Users/2819c223-7f76-453a-919d-413861904646
   * (PatchRequest as PatchRequest2).Operations.ElementAt(0).Value.ElementAt(0).Value: 2819c223-7f76-453a-919d-413861904646
 
-6. SCIM 서비스에 의해 제어되는 ID 저장소에서 사용자의 프로비전을 해제하기 위해 Azure AD에서 다음과 같은 요청을 보냅니다. 
+6. SCIM service에 의해 프로 비전 toode id 저장소에서 사용자 프런트, Azure AD와 같은 요청을 보냅니다. 
   ````
     DELETE ~/scim/Users/54D382A4-2050-4C03-94D1-E769F1D15682 HTTP/1.1
     Authorization: Bearer ...
   ````
-  서비스가 SCIM 서비스 구현에 대해 Microsoft에서 제공하는 공용 언어 인프라 라이브러리를 사용하여 작성되면 요청이 서비스 공급자의 삭제 메서드 호출로 번역됩니다.   해당 메서드에는 다음 서명이 있습니다. 
+  Hello 서비스가 SCIM 서비스 구현에 대 한 Microsoft에서 제공 하는 hello 공용 언어 인프라 라이브러리를 사용 하 여 작성 된 경우에 hello 요청 호출 toohello hello 서비스 공급자의 Delete 메서드로 변환 됩니다.   해당 메서드에는 다음 서명이 있습니다. 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.IResourceIdentifier, 
@@ -682,29 +682,29 @@ Azure Active Directory는 두 형식의 리소스를 SCIM 웹 서비스에 프�
         resourceIdentifier, 
       string correlationIdentifier);
   ````
-  사용자의 프로비전을 해제하는 요청의 예에서 resourceIdentifier 인수의 값으로 제공되는 개체는 다음과 같은 속성 값이 적용됩니다. 
+  hello hello resourceIdentifier 인수 값으로 제공 하는 hello 개체의 사용자 요청 toode-프로 비전이의 hello 예에 이러한 속성 값: 
   
   * ResourceIdentifier.Identifier: "54D382A4-2050-4C03-94D1-E769F1D15682"
   * ResourceIdentifier.SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 
 ## <a name="group-provisioning-and-de-provisioning"></a>그룹 프로비전 및 프로비전 해제
-다음 일러스트레이션은 다른 ID 저장소에 그룹의 수명 주기를 관리하도록 Azure AD가 SCIM 서비스를 보낸다는 메시지를 보여줍니다.  이러한 메시지는 세 가지 부분에서 사용자에 관련된 메시지가 다릅니다. 
+hello 다음 그림에서는 hello 메시지 Azure AcD에 다른 id 저장소 그룹의 tooa SCIM 서비스 toomanage hello 주기를 보냅니다.  이러한 메시지 toousers 세 가지 방법으로 관련 된 hello 메시지에서 다릅니다. 
 
-* 그룹 리소스의 스키마는 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group으로 식별됩니다.  
-* 그룹을 검색하는 요청은 멤버 특성이 요청에 대한 응답에서 제공된 리소스로부터 제외된다고 규정합니다.  
-* 참조 특성에 특정 값이 있는지를 확인하는 요청은 멤버 특성에 대한 요청입니다.  
+* 그룹 리소스의 hello 스키마 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group으로 식별 됩니다.  
+* Tooretrieve 그룹 해당 hello 멤버 특성을 규정 하는 요청은 toobe 응답 toohello 요청에 제공 된 모든 리소스에서 제외 합니다.  
+* 요청 toodetermine hello 멤버 특성에 대 한 요청이 포함 됩니다는 참조 특성의 값을 특정 값에 있는지 여부.  
 
 ![][5]
 *그림 6: 그룹 프로비전 및 시퀀스 프로비전 해제*
 
 ## <a name="related-articles"></a>관련 문서
 * [Azure Active Directory의 응용 프로그램 관리를 위한 문서 인덱스](active-directory-apps-index.md)
-* [SaaS 앱에 자동화된 사용자 프로비전/프로비전 해제](active-directory-saas-app-provisioning.md)
+* [사용자 프로 비전/프로 비전 해제 tooSaaS 응용 프로그램 자동화](active-directory-saas-app-provisioning.md)
 * [사용자 프로비저닝에 대한 특성 매핑 사용자 지정](active-directory-saas-customizing-attribute-mappings.md)
 * [특성 매핑에 대한 식 작성](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 * [사용자 프로 비전에 대 한 필터 범위 지정](active-directory-saas-scoping-filters.md)
 * [계정 프로비전 알림](active-directory-saas-account-provisioning-notifications.md)
-* [SaaS App을 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱](active-directory-saas-tutorial-list.md)
 
 <!--Image references-->
 [0]: ./media/active-directory-scim-provisioning/scim-figure-1.PNG

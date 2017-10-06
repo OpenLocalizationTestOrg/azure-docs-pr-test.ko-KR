@@ -1,6 +1,6 @@
 ---
-title: "REST를 사용한 주문형 콘텐츠 제공 시작 | Microsoft Docs"
-description: "이 자습서에서는 REST API를 사용한 Azure 미디어 서비스로 주문형 콘텐츠 배달 응용 프로그램을 구현하는 단계를 안내합니다."
+title: "REST를 사용 하 여 필요에 따라 콘텐츠를 배달 aaaGet 시작 | Microsoft Docs"
+description: "이 자습서는 Azure 미디어 서비스 REST API를 사용 하 여 온 요청 콘텐츠 배달 응용 프로그램을 구현할의 hello 단계를 안내 합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: f304f7671465862123f64c8b0f9af95a7c828cc2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f270ed59e9ae9745e8403ec6e19d5c3533fc82b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-delivering-content-on-demand-using-rest"></a>REST를 사용한 주문형 콘텐츠 제공 시작
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-이 자습서에서는 AMS(Azure 미디어 서비스) REST API를 사용하여 주문형 비디오(VoD) 콘텐츠 제공 응용 프로그램을 구현하는 단계를 안내합니다.
+이 퀵 스타트의 hello Azure 미디어 서비스 (AMS) REST Api를 사용 하 여 주문형 비디오 (VoD) 콘텐츠 배달 응용 프로그램 구현 단계를 안내 합니다.
 
-기본적인 미디어 서비스 워크플로와 미디어 서비스 개발에 필요한 가장 일반적인 프로그래밍 개체 및 작업을 소개합니다. 자습서를 마치면 업로드하고 인코딩하고 다운로드한 샘플 미디어 파일을 스트리밍하거나 점진적으로 다운로드할 수 있습니다.
+hello 자습서에서는 기본 미디어 서비스 워크플로 hello hello 가장 일반적인 프로그래밍 개체 및 미디어 서비스 개발에 필요한 작업을 소개 합니다. Hello 자습서를 완료 한 hello 시점에서 있습니다 수 toostream 되거나 될 점진적으로 업로드, 인코딩, 다운로드 한 샘플 미디어 파일을 다운로드 합니다.
 
-다음 이미지에서는 Media Services OData 모델에 대해 VoD 응용 프로그램을 개발할 때 가장 일반적으로 사용되는 개체 중 일부를 보여 줍니다.
+hello 다음 이미지에서는 가장 일반적으로 사용 하는 hello 개체 중 일부를 hello 미디어 서비스 OData 모델에 대 한 VoD 응용 프로그램을 개발 하는 경우
 
-전체 크기로 보려면 이미지를 클릭합니다.  
+전체 크기로 hello 이미지 tooview를 클릭 합니다.  
 
 <a href="./media/media-services-rest-get-started/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-rest-get-started/media-services-overview-object-model-small.png"></a> 
 
 ## <a name="prerequisites"></a>필수 조건
-미디어 서비스 REST API를 사용하여 개발을 시작하려면 다음 필수 조건이 필요합니다.
+hello 다음과 같은 조건이 필요한 toostart 미디어 서비스 REST Api를 사용 하 여 개발 합니다.
 
 * Azure 계정. 자세한 내용은 [Azure 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
-* Media Services 계정. Media Services 계정을 만들려면 [Media Services 계정을 만드는 방법](media-services-portal-create-account.md)을 참조하세요.
-* 미디어 서비스 REST API를 사용하여 개발하는 방법을 이해합니다. 자세한 내용은 [Media Services REST API 개요](media-services-rest-how-to-use.md)를 참조하세요
+* Media Services 계정. 미디어 서비스 계정 toocreate 참조 [어떻게 tooCreate Media Services 계정을](media-services-portal-create-account.md)합니다.
+* 방법 이해 toodevelop 미디어 서비스 REST api입니다. 자세한 내용은 [Media Services REST API 개요](media-services-rest-how-to-use.md)를 참조하세요
 * HTTP 요청 및 응답을 보낼 수 있도록 선택한 응용 프로그램입니다. 이 자습서에서는 [Fiddler](http://www.telerik.com/download/fiddler)를 사용합니다.
 
-다음 작업은 본 퀵 스타트에 표시됩니다.
+작업을 수행 하는 hello이 퀵이 스타트의에 표시 됩니다.
 
-1. 스트리밍 끝점을 시작합니다(Azure Portal 사용).
-2. REST API를 통해 미디어 서비스 계정에 연결합니다.
+1. 스트리밍 끝점 (hello Azure 포털을 사용 하 여)을 시작 합니다.
+2. REST API와 toohello 미디어 서비스 계정을 연결 하세요.
 3. REST API를 통해 새 자산을 만들고 비디오를 업로드합니다.
-4. REST API를 통해 원본 파일을 적응 비트 전송률 MP4 파일 집합으로 인코딩합니다.
-5. REST API를 통해 자산을 게시하고 스트리밍 기능 및 URL 점진적 다운로드를 사용합니다.
+4. Hello 소스 파일을 적응 비트 전송률 MP4 파일 REST api 집합을 인코딩하십시오.
+5. Hello 자산 및 스트리밍 get 및 REST API와 점진적 다운로드 Url을 게시 합니다.
 6. 콘텐츠를 재생합니다.
 
 >[!NOTE]
->다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
+>다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
 
 이 항목에 사용된 AMS REST 엔터티에 대한 자세한 내용은 [Azure Media Services REST API 참조](/rest/api/media/services/azure-media-services-rest-api-reference)를 참조하세요. 참고 항목: [Azure Media Services 개념](media-services-concepts.md)
 
 >[!NOTE]
 >미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 
-## <a name="start-streaming-endpoints-using-the-azure-portal"></a>Azure Portal을 사용하여 스트리밍 끝점 시작
+## <a name="start-streaming-endpoints-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 끝점을 스트리밍 시작
 
-Azure Media Services 작업 시 가장 일반적인 시나리오 중 하나는 적응 비트 전송률 스트리밍을 통해 비디오를 제공하는 것입니다. Media Services는 적응 비트 전송률 MP4 인코딩 콘텐츠를 Media Services에서 적시에 지원되는 각 스트리밍 형식(MPEG DASH, HLS, 부드러운 스트리밍)의 사전 패키징된 버전을 저장하지 않고도 이런 스트리밍 형식으로 배달할 수 있게 하는 동적 패키징을 제공합니다.
-
->[!NOTE]
->AMS 계정이 만들어질 때 **기본** 스트리밍 끝점은 **중지됨** 상태에서 계정에 추가됩니다. 콘텐츠 스트리밍을 시작하고 동적 패키징 및 동적 암호화를 활용하려면 콘텐츠를 스트리밍하려는 스트리밍 끝점은 **실행** 상태에 있어야 합니다.
-
-스트리밍 끝점을 시작하려면 다음을 수행합니다.
-
-1. [Azure Portal](https://portal.azure.com/)에 로그인합니다.
-2. 설정 창에서 스트리밍 끝점을 클릭합니다.
-3. 기본 스트리밍 끝점을 클릭합니다.
-
-    기본 스트리밍 끝점 세부 정보 창이 나타납니다.
-
-4. 시작 아이콘을 클릭합니다.
-5. 저장 단추를 클릭하여 변경 내용을 저장합니다.
-
-## <a id="connect"></a>REST API를 통해 미디어 서비스 계정에 연결합니다.
-
-AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. 
+Azure 미디어 서비스를 통해 적응 비트 전송률 스트리밍 비디오를 제공 하는 hello 가장 일반적인 시나리오 중 하나 작업할 때는입니다. 미디어 서비스는 적응 비트 전송률 사전 패키지 toostore 필요 없이 (MPEG DASH, HLS, 부드러운 스트리밍) 미디어 서비스에서 적시에서 지 원하는 형식 스트리밍을에 인코딩된 MP4 콘텐츠 toodeliver 수 있는 동적 패키징 제공 각각의 형식 스트리밍을 버전입니다.
 
 >[!NOTE]
->https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
+>AMS 계정이 만들어질 때 한 **기본** 스트리밍 끝점에 hello tooyour 계정 추가 됩니다 **Stopped** 상태입니다. 동적 패키징 및 동적 암호화 하면 콘텐츠 및 take 장점이 스트리밍 toostart hello toostream 콘텐츠 hello toobe에 들어 있는 스트리밍 끝점 **실행** 상태입니다.
 
-예를 들어 연결을 시도한 후 다음 항목을 받은 경우.
+toostart hello 스트리밍 끝점을 다음 hello 수행 합니다.
+
+1. Hello에 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+2. Hello 설정 창에서 스트리밍 끝점을 클릭 합니다.
+3. Hello 기본 스트리밍 끝점을 클릭 합니다.
+
+    hello 스트리밍 끝점 세부 정보 기본 창이 나타납니다.
+
+4. Hello 시작 아이콘을 클릭 합니다.
+5. 변경 내용을 저장 단추 toosave hello를 클릭 합니다.
+
+## <a id="connect"></a>REST API를 사용 하 여 toohello 미디어 서비스 계정 연결
+
+AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. 
+
+>[!NOTE]
+>Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
+
+예를 들어 tooconnect을 시도한 후 hello 다음을 가져왔습니다.
 
     HTTP/1.1 301 Moved Permanently
     Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
 
-https://wamsbayclus001rest-hs.cloudapp.net/api/에 후속 API 호출을 게시해야 합니다.
+후속 API 호출 toohttps://wamsbayclus001rest-hs.cloudapp.net/api/ 프로그램을 게시 해야 합니다.
 
 ## <a id="upload"></a>REST API를 통해 새 자산을 만들고 비디오를 업로드합니다.
 
-미디어 서비스에서 자산에 디지털 파일을 업로드합니다. **자산** 엔터티에는 비디오, 오디오, 이미지, 미리 보기 컬렉션, 텍스트 트랙 및 선택 자막 파일(및 이러한 파일에 대한 메타데이터)이 포함될 수 있습니다.  자산에 파일이 업로드되면 이후 처리 및 스트리밍을 위해 콘텐츠가 클라우드에 안전하게 저장됩니다.
+미디어 서비스에서 자산에 디지털 파일을 업로드합니다. hello **자산** 엔터티 비디오, 오디오, 이미지, 미리 보기 컬렉션, 텍스트 트랙 및 닫힌된 캡션 파일 (및 이러한 파일에 대 한 hello 메타 데이터)를 포함할 수 있습니다  Hello 파일 hello 자산으로 업로드 되 면 콘텐츠 추가 처리 및 스트리밍에 대 한 hello 클라우드에 안전 하 게 저장 됩니다.
 
-자산을 만들 때 제공해야 하는 값 중 하나는 자산 생성 옵션입니다. **옵션** 속성은 자산으로 만들 수 있는 암호화 옵션을 설명하는 열거 값입니다. 유효한 값은 이 목록의 값의 조합이 아니라 아래 목록에 있는 값 중 하나입니다.
+자산을 만들 때 있는지 tooprovide hello 값 중 하나에 자산 만들기 옵션입니다. hello **옵션** 속성은 자산을 만들 수 있는 hello 암호화 옵션에 설명 하는 열거형 값입니다. 유효한 값이이 목록에서 값의 조합이 아니라 아래 hello 목록의 hello 값 중 하나입니다.
 
 * **없음** = **0** - 암호화가 사용되지 않습니다. 이 옵션을 사용하면 콘텐츠가 전송 중인 상태이거나 저장소에 저장된 상태일 때 보호되지 않습니다.
-    MP4를 배달하려는 경우 이 옵션을 사용하세요.
-* **StorageEncrypted** = **1** - 암호화 되어 있지 않은 콘텐츠를 AES-256 비트 암호화를 사용하여 로컬에서 암호화한 다음 암호화되어 저장되는 Azure Storage에 업로드합니다. 저장소 암호화로 보호된 자산은 자동으로 암호 해제되어 인코딩되기 전에 암호화된 파일 시스템에 배치됩니다. 그리고 필요에 따라 새 출력 자산으로 다시 업로드되기 전에 다시 암호화됩니다. 저장소 암호화를 사용하는 기본적인 사례는 디스크에 저장된 상태일 때 강력한 암호화로 고품질의 입력 미디어 파일을 보호하려는 경우입니다.
+    Toodeliver MP4 점진적 다운로드를 사용 하 여 하려는 경우이 옵션을 사용 합니다.
+* **StorageEncrypted** = **1** -AES 256 비트 암호화를 사용 하 여 로컬로 되어 있지 않은 콘텐츠를 암호화 하 고 암호화 된 상태로 저장 된 저장소 tooAzure 업로드 합니다. 자동으로 저장소 암호화로 보호 되는 자산 암호화 되지 않은 하 고 암호화 된 파일 시스템 이전 tooencoding 및 새 출력 자산으로 다시 다시 암호화 필요에 따라 이전 toouploading에 배치 됩니다. toosecure 디스크에 저장 된 상태의 강력한 암호화를 사용 하 여 고품질 입력된 미디어 파일을 사용할 때 저장소 암호화에 대 한 기본 사용 사례 hello 표시 합니다.
 * **CommonEncryptionProtected** = **2** - 이미 암호화되어 일반적인 암호화 또는 PlayReady DRM(예: PlayReady DRM으로 보호되는 부드러운 스트리밍)으로 보호된 콘텐츠를 업로드하는 경우 이 옵션을 사용합니다.
-* **EnvelopeEncryptionProtected** = **4** - AES로 암호화된 HLS를 업로드하는 경우 이 옵션을 사용합니다. 파일을 Transform Manager로 인코딩 및 암호화해야 합니다.
+* **EnvelopeEncryptionProtected** = **4** - AES로 암호화된 HLS를 업로드하는 경우 이 옵션을 사용합니다. hello 파일 인코딩 및 Transform Manager를 통해 암호화 해야 합니다.
 
 ### <a name="create-an-asset"></a>자산 만들기
-자산은 여러 유형이나 비디오, 오디오, 이미지, 미리 보기 컬렉션, 텍스트 트랙 및 선택된 캡션 파일을 포함한 미디어 서비스의 개체 집합에 대한 컨테이너입니다. REST API에서 자산을 만들려면 미디어 서비스에 POST 요청을 보내고 자산에 대한 속성 정보를 요청 본문에 배치해야 합니다.
+자산은 여러 유형이나 비디오, 오디오, 이미지, 미리 보기 컬렉션, 텍스트 트랙 및 선택된 캡션 파일을 포함한 미디어 서비스의 개체 집합에 대한 컨테이너입니다. REST API를 자산 만들기 POST를 전송 해야 하는 hello에서 tooMedia 서비스를 요청 하 고 hello 요청 본문에 자산에 대 한 속성 정보를 배치 합니다.
 
-다음 예제에서는 자산을 만드는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toocreate 자산입니다.
 
 **HTTP 요청**
 
@@ -126,7 +126,7 @@ https://wamsbayclus001rest-hs.cloudapp.net/api/에 후속 API 호출을 게시�
 
 **HTTP 응답**
 
-성공하면 다음이 반환됩니다.
+성공 하면 hello 다음 반환 됩니다.
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -157,9 +157,9 @@ https://wamsbayclus001rest-hs.cloudapp.net/api/에 후속 API 호출을 게시�
     }
 
 ### <a name="create-an-assetfile"></a>AssetFile 만들기
-[AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) 엔터티는 blob 컨테이너에 저장된 비디오 또는 오디오 파일을 나타냅니다. 자산 파일은 항상 자산에 연결되며 자산에는 하나 이상의 AssetFile이 포함될 수 있습니다. 자산 파일 개체가 blob 컨테이너의 디지털 파일과 연결되지 않은 경우 미디어 서비스 인코더 작업을 하지 못합니다.
+hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) 엔터티는 blob 컨테이너에 저장 하는 비디오 또는 오디오 파일을 나타냅니다. 자산 파일은 항상 자산에 연결되며 자산에는 하나 이상의 AssetFile이 포함될 수 있습니다. hello 미디어 서비스 인코더 작업에는 자산 파일 개체가 blob 컨테이너의 디지털 파일과 연관 되지 않은 경우 실패 합니다.
 
-Blob 컨테이너에 디지털 미디어 파일을 업로드 한 후 **MERGE** HTTP 요청을 사용하여 미디어 파일에 대한 정보로 AssetFile을 업데이트합니다(이 항목의 뒷부분 참조).
+Hello를 사용 하는 blob 컨테이너에 디지털 미디어 파일을 업로드 한 후 **병합** HTTP 요청 tooupdate hello AssetFile (같이 hello 항목의 뒷부분에 나오는) 하 여 미디어 파일에 대 한 정보입니다.
 
 **HTTP 요청**
 
@@ -218,10 +218,10 @@ Blob 컨테이너에 디지털 미디어 파일을 업로드 한 후 **MERGE** H
     }
 
 
-### <a name="creating-the-accesspolicy-with-write-permission"></a>쓰기 권한으로 AccessPolicy 만들기
-blob 저장소에 모든 파일을 업로드하기 전에 자산에 쓰기 위한 액세스 정책 권한을 설정합니다. 이렇게 하려면 AccessPolicies 엔터티 집합에 HTTP 요청을 게시합니다. 작성 시 DurationInMinutes 값을 정의하지 않으면 응답에서 500 내부 서버 오류 메시지가 다시 나타납니다. AccessPolicies에 대한 자세한 내용은 [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy)를 참조하세요.
+### <a name="creating-hello-accesspolicy-with-write-permission"></a>쓰기 권한으로 hello AccessPolicy 만들기
+Blob 저장소에 파일을 업로드 하기 전에 hello 액세스 tooan asset을 작성 하기 위한 정책 권한을 설정 합니다. HTTP 요청 toohello AccessPolicies 엔터티를 게시 하는 toodo 설정 합니다. 작성 시 DurationInMinutes 값을 정의하지 않으면 응답에서 500 내부 서버 오류 메시지가 다시 나타납니다. AccessPolicies에 대한 자세한 내용은 [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy)를 참조하세요.
 
-다음 예제에서는 AccessPolicy를 만드는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toocreate AccessPolicy:
 
 **HTTP 요청**
 
@@ -240,7 +240,7 @@ blob 저장소에 모든 파일을 업로드하기 전에 자산에 쓰기 위�
 
 **HTTP 응답**
 
-성공하면 다음 응답이 반환됩니다.
+성공 하면 다음 응답 hello 반환 됩니다.
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -266,23 +266,23 @@ blob 저장소에 모든 파일을 업로드하기 전에 자산에 쓰기 위�
        "Permissions":2
     }
 
-### <a name="get-the-upload-url"></a>업로드 URL 가져오기
+### <a name="get-hello-upload-url"></a>Hello 업로드 URL 가져오기
 
-실제 업로드 URL을 받으려면 SAS 로케이터를 만듭니다. 로케이터는 자산에 있는 파일에 액세스하려는 클라이언트에 대한 시작 시간과 연결 끝점의 형식을 정의합니다. 다양한 클라이언트 요청 및 요구 사항을 처리하기 위해 지정된 AccessPolicy 및 자산 쌍에 대해 여러 로케이터 엔터티를 만들 수 있습니다. 이러한 각 로케이터는 AccessPolicy의 StartTime 값과 DurationInMinutes 값을 사용하여 URL이 사용될 수는 시간의 길이를 결정합니다. 자세한 내용은 [로케이터](https://docs.microsoft.com/rest/api/media/operations/locator)를 참조하세요.
+tooreceive 실제 업로드 URL hello, SAS 로케이터를 만듭니다. 로케이터는 tooaccess는 자산의 파일에에서는 클라이언트에 대 한 hello 시작 시간과 연결 끝점 유형을 정의 합니다. 요청 및 요구 사항이 지정된 된 AccessPolicy-자산 쌍 toohandle 다른 클라이언트에 대 한 여러 개의 Locator 엔터티를 만들 수 있습니다. 이러한 각 로케이터 사용 하 여 hello StartTime 값과 DurationInMinutes 값 hello hello AccessPolicy toodetermine hello 기간 URL이 사용 될 수 있습니다. 자세한 내용은 [로케이터](https://docs.microsoft.com/rest/api/media/operations/locator)를 참조하세요.
 
-SAS URL의 형식은 다음과 같습니다.
+SAS URL 형식에 따라 hello에 있습니다.
 
     {https://myaccount.blob.core.windows.net}/{asset name}/{video file name}?{SAS signature}
 
 다음과 같은 몇 가지 고려 사항이 적용됩니다.
 
 * 지정된 자산과 연관된 고유 로케이터는 한 번에 5개 이상 가질 수 없습니다. 자세한 내용은 로케이터를 참조하세요.
-* 파일을 즉시 업로드해야 하는 경우 StartTime 값을 현재 시간에서 5분 전으로 설정해야 합니다. 클라이언트 컴퓨터와 미디어 서비스 사이에 시간차가 있을 수 있기 때문입니다. 또한 StartTime 값은 다음 DateTime 형식이어야 합니다. YYYY-MM-DDTHH:mm:ssZ(예: "2014-05-23T17:53:50Z").    
-* 로케이터를 만든 후 사용할 수 있을 때까지 30-40초의 지연이 있을 수 있습니다. 이 문제는 SAS URL 및 원본 로케이터 모두에 적용됩니다.
+* 필요한 경우 tooupload 파일 즉시, StartTime 값 toofive 분 hello 현재 시간 전에 설정 해야 합니다. 클라이언트 컴퓨터와 미디어 서비스 사이에 시간차가 있을 수 있기 때문입니다. 또한 StartTime 값 날짜/시간 형식에 따라 hello에 이어야 합니다: YYYY-m M-DDTHH:mm:ssZ (예를 들어 "2014-05-23T17:53:50Z").    
+* 30 ~ 40 초 있을 수 있습니다 지연 로케이터를 만들면 toowhen 사용 하기 위해 사용할 수 있습니다. 이 문제는 tooboth SAS URL 및 Origin Locator를 적용합니다.
 
 SAS 로케이터에 대한 자세한 내용은 [이 블로그](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)를 참조하세요.
 
-다음 예제에서는 요청 본문의 형식 속성에서 정의한 대로(SAS 로케이터의 경우 "1" 그리고 주문형 원본 로케이터의 경우 "2") SAS URL 로케이터를 만드는 방법을 보여 줍니다. 반환된 **경로** 속성은 파일 업로드 시 반드시 사용해야 하는 URL을 포함합니다.
+다음 예제는 hello toocreate 정의한 대로 SAS URL Locator를 (SAS 로케이터에 대 한 "1") 및 "2"에 대 한 주문형 origin locator hello 요청 본문의 Type 속성 hello 하는 방법을 보여 줍니다. hello **경로** 반환 된 속성을 사용 해야 tooupload 파일 hello URL이 포함 됩니다.
 
 **HTTP 요청**
 
@@ -307,7 +307,7 @@ SAS 로케이터에 대한 자세한 내용은 [이 블로그](http://southworks
 
 **HTTP 응답**
 
-성공하면 다음 응답이 반환됩니다.
+성공 하면 다음 응답 hello 반환 됩니다.
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -338,17 +338,17 @@ SAS 로케이터에 대한 자세한 내용은 [이 블로그](http://southworks
     }
 
 ### <a name="upload-a-file-into-a-blob-storage-container"></a>Blob 저장소 컨테이너에 파일 업로드
-AccessPolicy와 로케이터를 설정했으면 실제 파일은 Azure Storage REST API를 사용하여 Azure Blob Storage 컨테이너에 업로드됩니다. 블록 blob으로 파일을 업로드해야 합니다. 페이지 blob은 Azure Media Services에서 지원되지 않습니다.  
+Hello AccessPolicy와 Locator 집합 있으면 hello 실제 파일이 hello Azure 저장소 REST Api를 사용 하 여 업로드 된 tooan Azure blob 저장소 컨테이너. 블록 blob으로 hello 파일을 업로드 해야 합니다. 페이지 blob은 Azure Media Services에서 지원되지 않습니다.  
 
 > [!NOTE]
-> 이전 섹션에서 받은 로케이터 **경로** 값에 업로드하려는 파일에 대한 파일 이름을 추가해야 합니다. 예: https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? 을 참조하세요. . 을 참조하세요.
+> Hello 파일 이름을 추가 해야 tooupload toohello 로케이터 hello 파일에 대 한 원하는 **경로** hello 이전 섹션에서 받은 값입니다. 예: https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? 을 참조하세요. . 을 참조하세요.
 >
 >
 
 Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST API](https://docs.microsoft.com/rest/api/storageservices/Blob-Service-REST-API)를 참조하세요.
 
-### <a name="update-the-assetfile"></a>AssetFile 업데이트
-이제 파일을 업로드했으므로 FileAsset 크기(및 기타) 정보를 업데이트합니다. 예:
+### <a name="update-hello-assetfile"></a>Hello AssetFile 업데이트
+파일을 업로드 한 했으므로 hello FileAsset 크기 (및 다른) 정보를 업데이트 합니다. 예:
 
     MERGE https://wamsbayclus001rest-hs.cloudapp.net/api/Files('nb%3Acid%3AUUID%3Af13a0137-0a62-9d4c-b3b9-ca944b5142c5') HTTP/1.1
     Content-Type: application/json
@@ -371,12 +371,12 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 **HTTP 응답**
 
-성공하면 다음이 반환됩니다.
+성공 하면 hello 다음 반환 됩니다.
 
     HTTP/1.1 204 No Content
     ...
 
-## <a name="delete-the-locator-and-accesspolicy"></a>로케이터와 AccessPolicy 삭제
+## <a name="delete-hello-locator-and-accesspolicy"></a>Hello Locator와 AccessPolicy 삭제
 **HTTP 요청**
 
     DELETE https://wamsbayclus001rest-hs.cloudapp.net/api/Locators('nb%3Alid%3AUUID%3Aaf57bdd8-6751-4e84-b403-f3c140444b54') HTTP/1.1
@@ -391,7 +391,7 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 **HTTP 응답**
 
-성공하면 다음이 반환됩니다.
+성공 하면 hello 다음 반환 됩니다.
 
     HTTP/1.1 204 No Content
     ...
@@ -409,23 +409,23 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 **HTTP 응답**
 
-성공하면 다음이 반환됩니다.
+성공 하면 hello 다음 반환 됩니다.
 
     HTTP/1.1 204 No Content
     ...
 
-## <a id="encode"></a>원본 파일을 적응 비트 전송률 MP4 파일 집합으로 인코딩
+## <a id="encode"></a>Hello 소스 파일을 적응 비트 전송률 MP4 파일 집합으로 인코딩
 
-미디어 서비스에 자산을 삽입하고 나면 미디어를 클라이언트에 배달하기 전에 인코딩, 트랜스믹싱, 워터마크 지정 등을 수행할 수 있습니다. 이러한 활동은 높은 성능과 가용성을 보장하기 위해 여러 백그라운드 역할 인스턴스에 대해 예약 및 실행합니다. 이러한 활동을 작업이라고 하며 각 작업은 자산 파일에서 실제 작업을 수행하는 원자성 작업으로 구성됩니다(자세한 내용은 [작업](/rest/api/media/services/job), [태스크](/rest/api/media/services/task) 설명 참조).
+미디어 서비스에서 미디어에 자산을 인코딩할 수를 수집, 워터 마크를 삽입할 transmuxed 및 등 후 전에 제공 된다는 tooclients 합니다. 이러한 활동은 예약 되 고 여러 백그라운드 역할 인스턴스 tooensure 고성능 및 가용성에 대해 실행 합니다. 이러한 활동에는 작업 이라고 하며 각 작업 hello 자산 파일에서 실제 작업 hello 수행 하는 원자성 작업으로 구성 됩니다 (자세한 내용은 참조 [작업](/rest/api/media/services/job), [작업](/rest/api/media/services/task) 설명).
 
-앞에서 언급한 대로, Azure 미디어 서비스 작업 시 가장 일반적인 시나리오 중 하나는 적응 비트 전송률 스트리밍을 클라이언트에 제공하는 것입니다. Media Services는 적응 비트 전송률 MP4 파일을 HLS(HTTP 라이브 스트리밍), 부드러운 스트리밍, MPEG DASH 형식 중 하나로 동적 패키징합니다.
+위에 언급 한 때 작업 hello 가장 일반적인 시나리오의 Azure 미디어 서비스 하나에 제공 하는 적응 비트 전송률 스트리밍 tooyour 클라이언트입니다. 미디어 서비스 hello 다음 형식 중 하나로 적응 비트 전송률 MP4 파일 집합이 동적으로 패키징할 수: HLS HTTP 라이브 스트리밍 (), 부드러운 스트리밍, MPEG DASH 합니다.
 
-다음 섹션에서는 하나의 인코딩 작업을 포함하는 작업을 만드는 방법을 보여 줍니다. 이 작업은 **미디어 인코더 표준**을 사용하여 메자닌 파일을 적응 비트 전송률 MP4 집합으로 트랜스코딩하도록 지정합니다. 이 섹션에서는 작업 진행 상황을 모니터링하는 방법도 보여 줍니다. 작업이 완료되면 자산에 대한 액세스하는 데 필요한 로케이터를 만들 수 있습니다.
+다음 단원을 hello 인코딩을 포함 하는 작업 작업 하는 toocreate 방법을 보여 줍니다. hello 작업 지정 tootranscode hello 중 2 층 파일을 사용 하 여 적응 비트 전송률 mp4 집합으로 **미디어 인코더 표준**합니다. hello 섹션에는 toomonitor 작업 처리 진행률 hello 하는 방법을 보여 줍니다. Hello 작업이 완료 되 면 수 toocreate 로케이터는 필요한 tooget tooyour 자산에 액세스 하는 것입니다.
 
 ### <a name="get-a-media-processor"></a>미디어 프로세서 가져오기
-미디어 서비스에서 미디어 프로세서는 인코딩, 형식 변환, 콘텐츠, 암호화 또는 암호 해독 미디어와 같은 특정 처리 작업을 처리 하는 구성 요소입니다. 이 자습서에 표시된 인코딩 작업에서는 미디어 인코더 표준을 사용할 것입니다.
+미디어 서비스에서 미디어 프로세서는 인코딩, 형식 변환, 콘텐츠, 암호화 또는 암호 해독 미디어와 같은 특정 처리 작업을 처리 하는 구성 요소입니다. 이 자습서의 예제 작업 인코딩 hello에 대 한 미디어 인코더 표준 toouse hello를 하겠습니다.
 
-다음 코드는 인코더의 id를 요청합니다.
+다음 코드 요청 hello 인코더의 id 번호입니다.
 
 **HTTP 요청**
 
@@ -469,9 +469,9 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
     }
 
 ### <a name="create-a-job"></a>작업 만들기
-각 작업을 수행하려는 처리 유형에 따라 하나 이상의 작업을 가질 수 있습니다. REST API를 통해 두 방법 중 하나로 작업 및 관련된 작업을 만들 수 있습니다. 작업은 작업 엔터티에 대한 작업 탐색 속성 또는 OData 배치를 통해 인라인으로 정의될 수 있습니다. Media Services SDK는 일괄 처리를 사용합니다. 하지만 이 항목에 있는 코드 예제 가독성의 경우 작업은 인라인으로 정의됩니다. 일괄 처리에 대한 정보는 [Open Data Protocol(OData) 일괄 처리](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)를 참조하세요.
+각 작업 하나를 사용할 수 또는 더 많은 작업 하는 처리가 hello 유형에 따라 tooaccomplish. Hello REST API를 통해 만들면 작업 및 관련된 작업에서 두 가지 방법 중 하나: 작업 hello Job 엔터티 작업 탐색 속성 또는 OData 일괄 처리를 통해 인라인으로 정의 될 수 있습니다. 미디어 서비스 SDK hello 일괄 처리를 사용합니다. 그러나이 항목의 코드 예제 hello hello 가독성을 위해 작업은 인라인으로 정의 됩니다. 일괄 처리에 대한 정보는 [Open Data Protocol(OData) 일괄 처리](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)를 참조하세요.
 
-다음 예제에서는 특정 해상도와 품질로 비디오를 인코딩하기 위해 하나의 작업 집합으로 작업을 만들어 게시하는 방법을 보여 줍니다. 다음 설명서 섹션은 미디어 인코더 표준 프로세서에서 지원하는 모든 [작업 사전 설정](http://msdn.microsoft.com/library/mt269960) 목록을 포함합니다.  
+다음 예제는 hello 있습니다 설정 방법을 보여 줍니다 toocreate 및 post 작업 인 작업 tooencode 비디오 특정 해상도 및 품질에 있습니다. hello 설명서 섹션 뒤의 모든 hello hello 목록을 포함 [작업 사전 설정](http://msdn.microsoft.com/library/mt269960) 미디어 인코더 표준 hello 프로세서에서 지원 합니다.  
 
 **HTTP 요청**
 
@@ -507,7 +507,7 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 **HTTP 응답**
 
-성공하면 다음 응답이 반환됩니다.
+성공 하면 다음 응답 hello 반환 됩니다.
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -567,35 +567,35 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
     }
 
 
-모든 작업 요청에는 몇 가지 중요한 사항이 있습니다.
+모든 작업 요청에 몇 가지 중요 한 사항이 toonote가 있습니다.
 
-* TaskBody 속성은 리터럴 XML을 사용하여 작업에서 사용되는 입력이나 출력 수를 정의해야 합니다. 작업 항목은 해당 XML에 대한 XML 스키마 정의를 포함합니다.
-* TaskBody 정의에서 <inputAsset> 및 <outputAsset>에 대한 각각의 내부 값은 JobInputAsset(value) 또는 JobOutputAsset(value)으로 설정되어야 합니다.
+* TaskBody 속성, 입력 또는 출력 자산 hello 작업에서 사용 되는 리터럴 XML toodefine hello 번호를 사용 해야 합니다. hello 작업 항목 XML hello에 대 한 hello XML 스키마 정의 포함합니다.
+* TaskBody 정의 hello에 대 한 각 내부 값 <inputAsset> 및 <outputAsset> JobInputAsset(value) 또는 JobOutputAsset(value)로 설정 되어야 합니다.
 * 작업 출력 자산은 여러 개일 수 있습니다. 작업에서 하나의 JobOutputAsset(x)을 작업 출력으로 한 번만 사용할 수 있습니다.
 * JobInputAsset 또는 JobOutputAsset을 작업의 입력 자산으로 지정할 수 있습니다.
 * 작업은 주기를 형성해서는 안됩니다.
-* JobInputAsset 또는 JobOutputAsset에 전달하는 값 매개변수는 자산에 대한 인덱스 값을 나타냅니다. 실제 자산은 작업 엔터티 정의에 있는 InputMediaAssets 및 OutputMediaAssets 탐색 속성에 정의됩니다.
+* hello value 매개 변수 tooJobInputAsset 또는 JobOutputAsset을 전달 하는 자산에 대 한 hello 인덱스 값을 나타냅니다. hello 실제 자산에에서 정의 된 hello Job 엔터티 정의에서 hello InputMediaAssets 및 OutputMediaAssets 탐색 속성입니다.
 
 > [!NOTE]
-> 미디어 서비스는 OData v 3를 기반으로 하기 때문에 InputMediaAssets 및 OutputMediaAssets 탐색 속성 컬렉션에 있는 개별 자산은 "__metadata : uri" 이름 값 쌍으로 참조됩니다.
+> 미디어 서비스는 OData v 3에서 빌드되므로 hello 개별 자산은 InputMediaAssets 및 OutputMediaAssets 탐색 속성 컬렉션을 통해 참조 되는 "__metadata: uri" 이름-값 쌍입니다.
 >
 >
 
-* InputMediaAsset은 미디어 서비스에서 만든 하나 이상의 자산에 매핑됩니다. OutputMediaAsset은 시스템에 의해 생성됩니다. 기존 자산을 참조하지 않습니다.
-* OutputMediaAsset은 assetName 특성을 사용하여 명명할 수 있습니다. 이 특성이 없을 경우 OutputMediaAsset의 이름은 <outputAsset> 요소의 내부 텍스트 값이 작업 이름 값 또는 작업 Id 값(이름 속성이 정의되어 있지 않은 경우)의 접미사를 갖는 어떤 것이든 가능합니다. 예를 들어, assetName에 대한 값을 "Sample"로 설정하는 경우 OutputMediaAsset 이름 속성은 "Sample"로 설정됩니다. 하지만 assetName에 대한 값은 설정하지 않았지만 작업 이름을 "NewJob"으로 설정한 경우 OutputMediaAsset 이름은 "JobOutputAsset(값)_NewJob"이 됩니다.
+* InputMediaAssets는 tooone 또는 미디어 서비스에서 만든 자세한 자산에 매핑합니다. Outputmediaasset은 hello 시스템에 의해 생성 됩니다. 기존 자산을 참조하지 않습니다.
+* Outputmediaasset은 hello assetName 특성을 사용 하 여 이름을 지정할 수 있습니다. 이 특성이 없으면 경우 OutputMediaAsset hello의 hello 이름을 hello의 hello 내부 텍스트 값은 <outputAsset> 요소는 hello 작업 이름 값 또는 hello 작업 Id 값 (hello 경우 hello 이름 속성이 정의 되지 않습니다)의 접미사를 사용 합니다. 예를 들어 assetName에 대 한 값을 설정 하는 경우 너무 "Sample" 다음 hello OutputMediaAsset 이름 속성은 설정 너무 "Sample"입니다. 그러나 assetName에 대 한 값을 설정 하지 않은 했지만 hello 작업 이름을 설정할가 너무 "NewJob" 다음 hello OutputMediaAsset 이름은 것 "JobOutputAsset (값) _NewJob"입니다.
 
-    다음 예제에서는 assetName 특성을 설정하는 방법을 보여 줍니다.
+    다음 예제는 hello tooset assetName 특성을 hello 하는 방법을 보여 줍니다.
 
         "<?xml version=\"1.0\" encoding=\"utf-8\"?><taskBody><inputAsset>JobInputAsset(0)</inputAsset><outputAsset assetName=\"CustomOutputAssetName\">JobOutputAsset(0)</outputAsset></taskBody>"
-* 작업 체인을 사용하려면,
+* tooenable 작업 체인:
 
   * 작업에 작업이 2개 이상 있어야 합니다.
-  * 작업에서 입력이 다른 작업의 출력인 작업이 하나 이상 있어야 합니다.
+  * 해당 입력이 출력 hello 작업에서 다른 작업의 작업을 하나 이상 있어야 합니다.
 
-자세한 내용은 [미디어 서비스 REST API를 사용하여 인코딩 작업 만들기](media-services-rest-encode-asset.md)를 참조하세요.
+자세한 내용은 참조 하십시오 [hello 미디어 서비스 REST API를 사용 하 여 인코딩 작업 만들기](media-services-rest-encode-asset.md)합니다.
 
 ### <a name="monitor-processing-progress"></a>처리 진행 상태 모니터링
-다음 예제와 같이 State 속성을 사용하여 작업 상태를 검색할 수 있습니다.
+다음 예제는 hello와 같이 hello State 속성을 사용 하 여 hello 작업 상태를 검색할 수 있습니다.
 
 **HTTP 요청**
 
@@ -612,7 +612,7 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 **HTTP 응답**
 
-성공하면 다음 응답이 반환됩니다.
+성공 하면 다음 응답 hello 반환 됩니다.
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -630,9 +630,9 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 
 ### <a name="cancel-a-job"></a>작업 취소
-미디어 서비스를 사용하면 CancelJob 함수를 통해 실행 중인 작업을 취소할 수 있습니다. 이 호출은 작업 상태가 취소됨, 취소 중, 오류 또는 완료일 때 작업을 취소하려고 하면 400 오류 코드를 반환합니다.
+미디어 서비스 toocancel hello CancelJob 함수를 통해 실행 중인 작업을 허용 합니다. 이 호출은 toocancel 상태로 취소 될 때 작업, 취소, 오류를 시도 하는 경우 400 오류 코드를 반환 하거나 완료 합니다.
 
-다음 예제에서는 CancelJob을 호출하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toocall CancelJob 합니다.
 
 **HTTP 요청**
 
@@ -649,12 +649,12 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 성공하는 경우 메시지 본문 없이 204 응답 코드가 반환됩니다.
 
 > [!NOTE]
-> 작업 id(일반적으로 nb:jid:UUID: somevalue)가 CancelJob에 매개변수로 전달되는 경우 작업 id를 URL 인코딩해야 합니다.
+> URL로 인코드할 hello 작업 id를 해야 합니다 (일반적으로 nb:jid:UUID: somevalue) 매개 변수 tooCancelJob로 전달할 때.
 >
 >
 
-### <a name="get-the-output-asset"></a>출력 자산 가져오기
-다음 코드에서는 출력 자산 id를 요청하는 방법을 보여 줍니다.
+### <a name="get-hello-output-asset"></a>Hello 출력 자산을 가져옵니다.
+hello 다음 코드를 보여 줍니다 방법을 toorequest hello 출력 자산 id입니다.
 
 **HTTP 요청**
 
@@ -703,42 +703,42 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 
 
-## <a id="publish_get_urls"></a>REST API를 통해 자산을 게시하고 스트리밍 기능 및 URL 점진적 다운로드를 사용
+## <a id="publish_get_urls"></a>Hello 자산 및 스트리밍 get 및 REST API와 점진적 다운로드 Url을 게시
 
-자산을 스트리밍하거나 다운로드하려면 먼저 로케이터를 만들어 자산을 "게시"해야 합니다. 로케이터는 자산에 포함된 파일에 대한 액세스를 제공합니다. 미디어 서비스는 두 가지 유형의 로케이터를 지원합니다.하나는 OnDemandOrigin 로케이터로서 미디어를 스트리밍하는 데 사용되고(예: MPEG DASH, HLS 또는 부드러운 스트리밍) 다른 하나는 SAS(공유 액세스 서명) 로케이터로서 미디어 파일을 다운로드하는 데 사용됩니다. SAS 로케이터에 대한 자세한 내용은 [이 블로그](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)를 참조하세요.
+toostream 또는 다운로드 자산 먼저 필요한 너무 "" 하 여 게시 한 로케이터를 만들어 합니다. 로케이터는 hello 자산에 포함 된 액세스 toofiles를 제공 합니다. 미디어 서비스는 두 가지 로케이터 유형을 지원: OnDemandOrigin 로케이터를 사용 하는 toostream 미디어 (예를 들어, MPEG DASH, HLS 또는 부드러운 스트리밍) 및 SAS (액세스 서명) locator toodownload 미디어 파일을 사용 합니다. SAS 로케이터에 대한 자세한 내용은 [이 블로그](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)를 참조하세요.
 
-로케이터를 만든 후에 파일을 스트리밍하거나 다운로드하는 데 사용되는 URL을 작성할 수 있습니다.
+Hello 로케이터를 만든 후에 사용 되는 toostream 또는 파일을 다운로드 하는 hello Url을 작성할 수 있습니다.
 
 >[!NOTE]
->AMS 계정이 만들어질 때 **기본** 스트리밍 끝점은 **중지됨** 상태에서 계정에 추가됩니다. 콘텐츠 스트리밍을 시작하고 동적 패키징 및 동적 암호화를 활용하려면 콘텐츠를 스트리밍하려는 스트리밍 끝점은 **실행** 상태에 있어야 합니다.
+>AMS 계정이 만들어질 때 한 **기본** 스트리밍 끝점에 hello tooyour 계정 추가 됩니다 **Stopped** 상태입니다. 동적 패키징 및 동적 암호화 하면 콘텐츠 및 take 장점이 스트리밍 toostart hello toostream 콘텐츠 hello toobe에 들어 있는 스트리밍 끝점 **실행** 상태입니다.
 
-부드러운 스트리밍에 대한 스트리밍 URL의 형식은 다음과 같습니다.
+부드러운 스트리밍에 대 한 스트리밍 URL 형식에 따라 hello에 있습니다.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-HLS에 대한 스트리밍 URL의 형식은 다음과 같습니다.
+HLS에 대 한 스트리밍 URL 형식에 따라 hello에 있습니다.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-MPEG DASH에 대한 스트리밍 URL의 형식은 다음과 같습니다.
+MPEG DASH에 대 한 스트리밍 URL 형식에 따라 hello에 있습니다.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
 
-파일을 다운로드하는 데 사용되는 SAS URL의 형식은 다음과 같습니다.
+사용 되는 SAS URL toodownload 파일 형식에 따라 hello에 있습니다.
 
     {blob container name}/{asset name}/{file name}/{SAS signature}
 
-이 섹션에서는 자산을 "게시"하기 위해 다음 작업을 수행하는 방법을 보여 줍니다.  
+이 섹션에서는 어떻게 tooperform hello 다음 필요한 너무 "게시 작업" 자산 보여 줍니다.  
 
-* 읽기 권한이 포함된 AccessPolicy 만들기
+* 읽기 권한으로 hello AccessPolicy 만들기
 * 콘텐츠를 다운로드할 SAS URL 만들기
 * 콘텐츠 스트리밍을 위한 원본 URL 만들기
 
-### <a name="creating-the-accesspolicy-with-read-permission"></a>읽기 권한이 포함된 AccessPolicy 만들기
-미디어 콘텐츠를 다운로드하거나 스트리밍하기 전에 먼저 읽기 권한이 포함된 AccessPolicy를 정의하고 클라이언트에 대해 사용하도록 설정하려는 배달 메커니즘 유형을 지정하는 적절한 로케이터 엔터티를 만듭니다. 사용할 수 있는 속성에 대한 자세한 내용은 [AccessPolicy 엔터티 속성](https://docs.microsoft.com/rest/api/media/operations/accesspolicy#accesspolicy_properties)을 참조하세요.
+### <a name="creating-hello-accesspolicy-with-read-permission"></a>읽기 권한으로 hello AccessPolicy 만들기
+읽기 권한이 있으면 AccessPolicy를 다운로드 하거나 미디어 콘텐츠 스트리밍 하기 전에 먼저 정의 하 고 hello 형식을 지정 하는 hello 적합 한 Locator 엔터티를 만들 제공 메커니즘의 원하는 tooenable 클라이언트에 대 한 합니다. 사용할 수 있는 hello 속성에 대 한 자세한 내용은 참조 하십시오. [AccessPolicy 엔터티 속성](https://docs.microsoft.com/rest/api/media/operations/accesspolicy#accesspolicy_properties)합니다.
 
-다음 예제에서는 지정된 자산에 대한 읽기 권한의 AccessPolicy를 지정하는 방법을 보여 줍니다.
+다음 예제는 hello toospecify 한 지정된 된 자산에 대 한 읽기 권한의 AccessPolicy를 hello 하는 방법을 보여 줍니다.
 
     POST https://wamsbayclus001rest-hs.net/API/AccessPolicies HTTP/1.1
     Content-Type: application/json
@@ -753,15 +753,15 @@ MPEG DASH에 대한 스트리밍 URL의 형식은 다음과 같습니다.
 
     {"Name": "DownloadPolicy", "DurationInMinutes" : "300", "Permissions" : 1}
 
-성공하면 사용자가 만든 AccessPolicy 엔터티를 설명하는 201 성공 코드가 반환됩니다. 이제 AccessPolicy Id를 로케이터 엔터티를 만들기 위해 배달하려는 파일이 포함된 자산(예: 출력 자산)의 자산 ID와 함께 사용합니다.
+성공 하면 만든 hello AccessPolicy 엔터티를 설명 하는 201 성공 코드가 반환 됩니다. 그런 다음 hello (예: 출력 자산) toodeliver toocreate hello Locator 엔터티를 원하는 hello 파일을 포함 하는 hello 자산의 자산 Id와 함께 AccessPolicy Id hello를 사용 합니다.
 
 > [!NOTE]
-> 이 기본 워크플로는 자산을 통합할 때 파일을 업로드하는 것과 같습니다(이 항목의 앞부분에서 설명함). 또한 파일을 업로드하는 것과 마찬가지로 사용자(또는 클라이언트)가 파일에 즉시 액세스해야 하는 경우 StartTime 값을 현재 시간에서 5분 전으로 설정해야 합니다. 이 동작은 클라이언트와 미디어 서비스 사이에 시간차가 있을 수 있기 때문에 필요합니다. StartTime 값은 YYYY-MM-DDTHH:mm:ssZ(예: 2014-05-23T17:53:50Z) 형식의 DateTime이어야 합니다.
+> 이 기본 워크플로 (이 항목의 앞부분에서 설명한)으로 자산 수집 시 파일을 업로드 동일 hello 됩니다. 또한 파일 업로드와 마찬가지로, 사용자 (또는 클라이언트) 필요 tooaccess 파일 즉시, StartTime 값 toofive 분 hello 현재 시간 전에 설정 합니다. 이 동작은 클록 hello 클라이언트 및 미디어 서비스 간에 일정 있을 수 있기 때문에 필요 합니다. 날짜/시간 형식에 따라 hello hello StartTime 값 이어야 합니다: YYYY-m M-DDTHH:mm:ssZ (예를 들어 "2014-05-23T17:53:50Z").
 >
 >
 
 ### <a name="creating-a-sas-url-for-downloading-content"></a>콘텐츠를 다운로드할 SAS URL 만들기
-다음 코드는 이전에 만들어서 업로드한 미디어 파일을 다운로드하는 데 사용할 수 있는 URL을 가져오는 방법을 보여 줍니다. AccessPolicy는 읽기 권한을 설정하고 로케이터 경로는 SAS 다운로드 URL을 참조합니다.
+코드 다음 hello tooget 사용된 toodownload 미디어 파일 일 수 있는 URL 생성 및 방법을 이전에 업로드를 보여 줍니다. AccessPolicy hello에 대 한 읽기 권한 집합 및 hello 로케이터 경로 tooa SAS 다운로드 URL을 참조 합니다.
 
     POST https://wamsbayclus001rest-hs.net/API/Locators HTTP/1.1
     Content-Type: application/json
@@ -776,7 +776,7 @@ MPEG DASH에 대한 스트리밍 URL의 형식은 다음과 같습니다.
 
     {"AccessPolicyId": "nb:pid:UUID:38c71dd0-44c5-4c5f-8418-08bb6fbf7bf8", "AssetId" : "nb:cid:UUID:71d2dd33-efdf-ec43-8ea1-136a110bd42c", "StartTime" : "2014-05-17T16:45:53", "Type":1}
 
-성공하면 다음 응답이 반환됩니다.
+성공 하면 다음 응답 hello 반환 됩니다.
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -819,24 +819,24 @@ MPEG DASH에 대한 스트리밍 URL의 형식은 다음과 같습니다.
     }
 
 
-반환된 **경로** 속성은 SAS URL을 포함합니다.
+반환 된 hello **경로** 속성 hello SAS URL을 포함 합니다.
 
 > [!NOTE]
-> 저장소가 암호화된 콘텐츠를 다운로드하는 경우 렌더링하기 전에 수동으로 암호를 해독하거나 처리 작업에서 저장소 암호 해독 미디어 프로세서를 사용하여 암호화되지 않은 상태로 처리된 파일을 OutputAsset으로 출력한 다음 해당 자산에서 다운로드해야 있습니다. 처리에 대한 자세한 내용은 미디어 서비스 REST API를 사용하여 인코딩 작업 만들기를 참조하세요. 또한 SAS URL 로케이터를 만들고 나면 업데이트할 수 없습니다. 예를 들어, 업데이트된 StartTime 값으로 동일한 로케이터를 다시 사용할 수 없습니다. SAS URL을 만드는 방식 때문입니다. 로케이터가 만료된 후 다운로드할 자산에 액세스하려면 새 StartTime으로 새 로케이터를 만들어야 합니다.
+> 저장소 암호화 된 콘텐츠를 다운로드 하는 경우 수동으로 렌더링 하기 전에 암호를 해독 하거나 hello 저장소 암호 해독 미디어 프로세서에서 처리 작업 toooutput hello 지우기 tooan OutputAsset의에서 파일을 처리 하 고 해당 자산에서 다운로드 한 다음 사용 합니다. 처리에 대 한 자세한 내용은 hello 미디어 서비스 REST API를 사용 하 여 인코딩 작업 만들기를 참조 하세요. 또한 SAS URL 로케이터를 만들고 나면 업데이트할 수 없습니다. 예를 들어 재사용할 수 없습니다는 업데이트 된 StartTime 값과 동일한 로케이터 hello 합니다. SAS Url을 만든 hello 방식 때문입니다. 원할 경우 tooaccess 자산 다운로드에 대 한 로케이터는 만료 된 후 다음 만들어야 새 StartTime로 새 레코드.
 >
 >
 
 ### <a name="download-files"></a>파일 다운로드
-AccessPolicy와 로케이터를 설정했으면 Azure 저장소 REST API를 사용하여 파일을 다운로드할 수 있습니다.  
+Hello AccessPolicy와 Locator 집합 있으면 hello Azure 저장소 REST Api를 사용 하 여 파일을 다운로드할 수 있습니다.  
 
 > [!NOTE]
-> 다운로드하려는 파일의 파일 이름을 이전 섹션에서 받은 로케이터 **경로** 값에 추가해야 합니다. 예: https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? 을 참조하세요. . 을 참조하세요.
+> Hello 파일 이름을 추가 해야 toodownload toohello 로케이터 hello 파일에 대 한 원하는 **경로** hello 이전 섹션에서 받은 값입니다. 예: https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? 을 참조하세요. . 을 참조하세요.
 >
 >
 
 Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST API](https://docs.microsoft.com/rest/api/storageservices/Blob-Service-REST-API)를 참조하세요.
 
-이전에 수행한 인코딩 작업(적응 MP4 집합으로 인코딩)의 결과로 점진적으로 다운로드할 수 있는 여러 MP4 파일이 있습니다. 예:    
+Hello 작업 이전에 수행한 인코딩 (적응 MP4 세트로 인코딩), 결과로 점진적으로 다운로드할 수 있는 여러 MP4 파일로 해야 합니다. 예:    
 
     https://storagetestaccount001.blob.core.windows.net/asset-38058602-a4b8-4b33-b9f0-6880dc1490ea/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4?sv=2012-02-12&sr=c&si=166d5154-b801-410b-a226-ee2f8eac1929&sig=P2iNZJAvAWpp%2Bj9yV6TQjoz5DIIaj7ve8ARynmEM6Xk%3D&se=2015-02-14T01:13:05Z
 
@@ -856,7 +856,7 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
 
 ### <a name="creating-a-streaming-url-for-streaming-content"></a>콘텐츠 스트리밍을 위한 스트리밍 URL 만들기
-다음 코드에서는 스트리밍 URL 로케이터를 만드는 방법을 보여 줍니다.
+코드에서 보여 주는 방법을 다음 hello toocreate 스트리밍 URL Locator:
 
     POST https://wamsbayclus001rest-hs/API/Locators HTTP/1.1
     Content-Type: application/json
@@ -871,7 +871,7 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
 
     {"AccessPolicyId": "nb:pid:UUID:38c71dd0-44c5-4c5f-8418-08bb6fbf7bf8", "AssetId" : "nb:cid:UUID:eb5540a2-116e-4d36-b084-7e9958f7f3c3", "StartTime" : "2014-05-17T16:45:53",, "Type":2}
 
-성공하면 다음 응답이 반환됩니다.
+성공 하면 다음 응답 hello 반환 됩니다.
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -913,23 +913,23 @@ Azure 저장소 Blob 작업에 대한 자세한 내용은 [Blob 서비스 REST A
        }
     }
 
-스트리밍 미디어 플레이어에서 부드러운 스트리밍 원본 URL을 스트리밍하려면 "/매니페스트" 다음에 부드러운 스트리밍 매니페스트 파일의 이름이 포함된 경로 속성을 추가해야 합니다.
+스트리밍 미디어 플레이어에서 부드러운 스트리밍 원본 URL toostream 부드러운 스트리밍 매니페스트 파일을 다음 "/manifest" hello의 hello 이름의 hello 경로 속성을 추가 해야 합니다.
 
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest
 
-HLS를 스트리밍하려면 "/매니페스트" 뒤에 추가(format=m3u8-aapl)해야 합니다.
+HLS toostream 추가 (형식 = m3u8 aapl) hello 후 "/manifest"입니다.
 
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest(format=m3u8-aapl)
 
-MPEG DASH를 스트리밍하려면 "/매니페스트" 뒤에 추가(format=mpd-time-csf)해야 합니다.
+MPEG DASH toostream 추가 (형식 = mpd-시간-csf) hello 후 "/manifest"입니다.
 
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest(format=mpd-time-csf)
 
 
 ## <a id="play"></a>콘텐츠 재생
-비디오를 스트리밍하려면 [Azure 미디어 서비스 플레이어](http://amsplayer.azurewebsites.net/azuremediaplayer.html)를 사용합니다.
+비디오, 있습니다 사용할 toostream [Azure 미디어 서비스 플레이어](http://amsplayer.azurewebsites.net/azuremediaplayer.html)합니다.
 
-점진적 다운로드를 테스트하려면 IE, Chrome, Safari 등의 브라우저에 URL을 붙여 넣습니다.
+tootest 점진적 다운로드 전용는 URL (예를 들어, IE, Chrome, Safari) 브라우저에 붙여 넣습니다.
 
 ## <a name="next-steps-media-services-learning-paths"></a>다음 단계: 미디어 서비스 학습 경로
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

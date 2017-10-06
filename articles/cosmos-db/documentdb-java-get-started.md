@@ -1,6 +1,6 @@
 ---
 title: "NoSQL 자습서:Azure Cosmos DB Java SDK용 DocumentDB API | Microsoft Docs"
-description: "Azure Cosmos DB용 DocumentDB API를 사용하여 온라인 데이터베이스 및 Java 콘솔 응용 프로그램을 만드는 NoSQL 자습서입니다. Azure DocumentDB는 JSON에 대한 NoSQL 데이터베이스입니다."
+description: "NoSQL 하는 자습서는 Azure Cosmos DB에 대 한 hello DocumentDB API를 사용 하 여 콘솔 응용 프로그램 Java와 온라인 데이터베이스를 만듭니다. Azure DocumentDB는 JSON에 대한 NoSQL 데이터베이스입니다."
 keywords: "NoSQL 자습서, 온라인 데이터베이스, Java 콘솔 응용 프로그램"
 services: cosmos-db
 documentationcenter: Java
@@ -15,11 +15,11 @@ ms.devlang: java
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: arramac
-ms.openlocfilehash: 5c4bcda308f001572e1c34e991616fc209250a02
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1a298a15ab911d140b9df30ad52cfe0fa07c55b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="nosql-tutorial-build-a-documentdb-api-java-console-application"></a>NoSQL 자습서: DocumentDB API Java 콘솔 응용 프로그램 빌드
 > [!div class="op_single_selector"]
@@ -32,45 +32,45 @@ ms.lasthandoff: 08/29/2017
 >  
 > 
 
-Azure Cosmos DB Java SDK용 DocumentDB API에 대한 NoSQL 자습서를 시작합니다. 이 자습서를 따라 하면 Azure Cosmos DB 리소스를 만들고 쿼리하는 콘솔 응용 프로그램이 생깁니다.
+Azure Cosmos DB Java SDK에 대 한 hello DocumentDB API에 대 한 toohello NoSQL 자습서를 시작! 이 자습서를 따라 하면 Azure Cosmos DB 리소스를 만들고 쿼리하는 콘솔 응용 프로그램이 생깁니다.
 
 다음 항목에 대해서 다룹니다.
 
-* Azure Cosmos DB 계정 만들기 및 연결
+* 만들기 및 tooan Azure Cosmos DB 계정 연결
 * Visual Studio 솔루션 구성
 * 온라인 데이터베이스 만들기
 * 컬렉션 만들기
 * JSON 문서 만들기
-* 컬렉션 쿼리
+* Hello 컬렉션 쿼리
 * JSON 문서 만들기
-* 컬렉션 쿼리
+* Hello 컬렉션 쿼리
 * 문서 바꾸기
 * 문서 삭제
-* 데이터베이스 삭제
+* Hello 데이터베이스 삭제
 
 이제 시작하겠습니다.
 
 ## <a name="prerequisites"></a>필수 조건
-다음 항목이 있는지 확인합니다.
+Hello 다음 항목이 있는지 확인 합니다.
 
-* 활성 Azure 계정. 계정이 없는 경우 [무료 계정](https://azure.microsoft.com/free/)에 등록할 수 있습니다. 또는 이 자습서에 [Azure Cosmos DB 에뮬레이터](local-emulator.md)를 사용할 수 있습니다.
+* 활성 Azure 계정. 계정이 없는 경우 [무료 계정](https://azure.microsoft.com/free/)에 등록할 수 있습니다. Hello 또는 사용할 수 있습니다 [Azure Cosmos DB 에뮬레이터](local-emulator.md) 이 자습서에 대 한 합니다.
 * [Git](https://git-scm.com/downloads)
 * [JDK(Java Development Kit) 7 이상](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Maven](http://maven.apache.org/download.cgi)
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>1단계: Azure Cosmos DB 계정 만들기
-Azure Cosmos DB 계정을 만들어 보겠습니다. 사용하려는 계정이 이미 있는 경우 [GitHub 프로젝트 복제](#GitClone)로 건너뛸 수 있습니다. Azure Cosmos DB 에뮬레이터를 사용할 경우 [Azure Cosmos DB 에뮬레이터](local-emulator.md)의 단계에 따라 에뮬레이터를 설정하고 [GitHub 프로젝트 복제](#GitClone)로 건너뜁니다.
+Azure Cosmos DB 계정을 만들어 보겠습니다. Toouse 원하는 계정을 이미 있는 경우 건너뛰어도 너무[복제 hello GitHub 프로젝트](#GitClone)합니다. Hello Azure Cosmos DB 에뮬레이터를 사용 하는 경우 hello 단계에 따라 [Azure Cosmos DB 에뮬레이터](local-emulator.md) tooset hello 에뮬레이터 및 너무 건너 뛸[복제 hello GitHub 프로젝트](#GitClone)합니다.
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
-## <a id="GitClone"></a>2단계: GitHub 프로젝트 복제
-[Azure Cosmos DB 및 Java 시작](https://github.com/Azure-Samples/documentdb-java-getting-started)의 경우 GitHub 리포지토리를 복제하여 시작할 수 있습니다. 예를 들어 로컬 디렉터리에서 다음을 실행하여 샘플 프로젝트를 로컬로 검색합니다.
+## <a id="GitClone"></a>2 단계: 복제 hello GitHub 프로젝트
+에 대 한 hello GitHub 리포지토리를 복제 하 여 시작할 수 있습니다 [Azure Cosmos DB 및 Java 시작](https://github.com/Azure-Samples/documentdb-java-getting-started)합니다. 예를 들어 로컬 디렉터리에서 hello 다음 tooretrieve hello 샘플 프로젝트를 로컬로 실행 합니다.
 
     git clone git@github.com:Azure-Samples/azure-cosmos-db-documentdb-java-getting-started.git
 
     cd azure-cosmos-db-documentdb-java-getting-started
 
-디렉터리에는 프로젝트의 `pom.xml` 및 `Program.java`을 비롯한 Java 소스 코드를 포함하는 `src` 폴더를 포함합니다. 여기서는 Azure Cosmos DB를 사용하여 문서 만들기 및 컬렉션 내에서 데이터 쿼리와 같은 단순한 작업을 수행하는 방법을 보여 줍니다. `pom.xml`은 [Maven의 DocumentDB Java SDK](https://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb)에 대한 종속성을 포함합니다.
+hello 디렉터리에는 `pom.xml` hello 프로젝트에 대 한 및 `src` 포함 하 여 Java 소스 코드에 포함 된 폴더 `Program.java` 는 문서 만들기 및 쿼리 내에서 데이터와 같은 Azure Cosmos DB와 함께 간단한 작업을 어떻게 수행는 컬렉션입니다. hello `pom.xml` hello에 대 한 종속성을 포함 [Maven에서 DocumentDB Java SDK](https://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb)합니다.
 
     <dependency>
         <groupId>com.microsoft.azure</groupId>
@@ -78,10 +78,10 @@ Azure Cosmos DB 계정을 만들어 보겠습니다. 사용하려는 계정이 �
         <version>LATEST</version>
     </dependency>
 
-## <a id="Connect"></a>3단계: Azure Cosmos DB 계정에 연결
-다음으로 [Azure Portal](https://portal.azure.com)로 다시 이동하여 끝점과 기본 마스터 키를 검색합니다. Azure Cosmos DB 끝점과 기본 키는 응용 프로그램에서 연결할 위치를 식별하고 Azure Cosmos DB에서 응용 프로그램의 연결을 신뢰하는 데 필요합니다.
+## <a id="Connect"></a>3 단계: tooan Cosmos DB Azure 계정을 연결 하세요.
+Toohello 돌아가 다음으로, [Azure 포털](https://portal.azure.com) tooretrieve 끝점 및 기본 마스터 키입니다. hello Azure Cosmos DB 끝점 및 기본 키가 응용 프로그램 toounderstand에 필요한 위치 tooconnect 되며, Azure Cosmos DB tootrust에 대 한 응용 프로그램의 연결 합니다.
 
-Azure Portal에서 Azure Cosmos DB 계정으로 이동한 다음 **키**를 클릭합니다. 포털에서 URI를 복사하고 Program.java 파일의 `https://FILLME.documents.azure.com`에 붙여 넣습니다. 그런 다음 포털에서 기본 키를 복사하고 `FILLME`에 붙여 넣습니다.
+에 Azure 포털 hello, tooyour Azure Cosmos DB 계정을 탐색 한 다음 클릭 **키**합니다. Hello 포털에서 hello URI를 복사 하 고 붙여 넣습니다 `https://FILLME.documents.azure.com` hello Program.java 파일에 있습니다. 그러면 복사본 hello 포털에서 기본 키를 hello에 붙여 넣습니다 `FILLME`합니다.
 
     this.client = new DocumentClient(
         "https://FILLME.documents.azure.com",
@@ -89,10 +89,10 @@ Azure Portal에서 Azure Cosmos DB 계정으로 이동한 다음 **키**를 클�
         , new ConnectionPolicy(),
         ConsistencyLevel.Session);
 
-![Java 콘솔 응용 프로그램을 만들기 위해 NoSQL 자습서에서 사용하는 Azure Portal의 스크린샷입니다. 액티브 허브, Azure Cosmos DB 계정 블레이드의 키 단추 및 키 블레이드의 URI, 기본 키 및 보조 키 값이 강조 표시된 Azure Cosmos DB 계정을 보여 줌][keys]
+![Azure 포털 hello NoSQL 자습서 toocreate Java 콘솔 응용 프로그램에서 사용 하는 hello 스크린 샷 계정에 강조 표시 하는 hello 활성 허브 hello 키 단추가 hello Azure Cosmos DB 계정 블레이드에서 강조 표시 및 hello URI, 기본 키 및 보조 키 값에 강조 표시 된 hello 키 블레이드에서 Azure Cosmos DB를 보여 줍니다.][keys]
 
 ## <a name="step-4-create-a-database"></a>4단계: 데이터베이스 만들기
-**DocumentClient** 클래스의 [createDatabase](/java/api/com.microsoft.azure.documentdb._document_client.createdatabase) 메서드를 사용하여 Azure Cosmos DB [데이터베이스](documentdb-resources.md#databases)를 만들 수 있습니다. 데이터베이스는 여러 컬렉션으로 분할된 JSON 문서 저장소의 논리적 컨테이너입니다.
+Azure Cosmos DB [데이터베이스](documentdb-resources.md#databases) hello를 사용 하 여 만들 수 [createDatabase](/java/api/com.microsoft.azure.documentdb._document_client.createdatabase) hello 방식의 **DocumentClient** 클래스입니다. 데이터베이스는 컬렉션에 분할 된 JSON 문서 저장소의 hello 논리적 컨테이너입니다.
 
     Database database = new Database();
     database.setId("familydb");
@@ -104,7 +104,7 @@ Azure Portal에서 Azure Cosmos DB 계정으로 이동한 다음 **키**를 클�
 > 
 > 
 
-**DocumentClient** 클래스의 [createCollection](/java/api/com.microsoft.azure.documentdb._document_client.createcollection) 메서드를 사용하여 [컬렉션](documentdb-resources.md#collections)을 만들 수 있습니다. 컬렉션은 JSON 문서 및 관련 JavaScript 응용 프로그램 논리의 컨테이너입니다.
+A [컬렉션](documentdb-resources.md#collections) hello를 사용 하 여 만들 수 [createCollection](/java/api/com.microsoft.azure.documentdb._document_client.createcollection) hello 방식의 **DocumentClient** 클래스입니다. 컬렉션은 JSON 문서 및 관련 JavaScript 응용 프로그램 논리의 컨테이너입니다.
 
 
     DocumentCollection collectionInfo = new DocumentCollection();
@@ -118,7 +118,7 @@ Azure Portal에서 Azure Cosmos DB 계정으로 이동한 다음 **키**를 클�
     this.client.createCollection("/dbs/familydb", collectionInfo, requestOptions);
 
 ## <a id="CreateDoc"></a>6단계: JSON 문서 만들기
-**DocumentClient** 클래스의 [createDocument](/java/api/com.microsoft.azure.documentdb._document_client.createdocument) 메서드를 사용하여 [문서](documentdb-resources.md#documents)를 만들 수 있습니다. 문서는 사용자 정의(임의) JSON 콘텐츠입니다. 이제 하나 이상의 문서를 삽입할 수 있습니다. 데이터베이스에 저장하려는 데이터가 이미 있는 경우 Azure Cosmos DB의 [데이터 마이그레이션 도구](import-data.md)를 사용하여 데이터를 데이터베이스로 가져올 수 있습니다.
+A [문서](documentdb-resources.md#documents) hello를 사용 하 여 만들 수 [createDocument](/java/api/com.microsoft.azure.documentdb._document_client.createdocument) hello 방식의 **DocumentClient** 클래스입니다. 문서는 사용자 정의(임의) JSON 콘텐츠입니다. 이제 하나 이상의 문서를 삽입할 수 있습니다. 원하는 toostore 데이터베이스의 데이터를 이미 있는 경우 Azure Cosmos DB를 사용할 수 있습니다 [데이터 마이그레이션 도구](import-data.md) tooimport hello 데이터를 데이터베이스에 있습니다.
 
     // Insert your Java objects as documents 
     Family andersenFamily = new Family();
@@ -138,10 +138,10 @@ Azure Portal에서 Azure Cosmos DB 계정으로 이동한 다음 **키**를 클�
 
     this.client.createDocument("/dbs/familydb/colls/familycoll", family, new RequestOptions(), true);
 
-![NoSQL에서 Java 콘솔 응용 프로그램을 만들기 위해 사용한 계정, 데이터베이스, 컬렉션 및 문서 간의 계층 관계를 보여 주는 다이어그램](./media/documentdb-get-started/nosql-tutorial-account-database.png)
+![Hello 계정과 hello 온라인 데이터베이스, hello 컬렉션 hello NoSQL 자습서 toocreate Java 콘솔 응용 프로그램에서 사용 하는 hello 문서 간의 hello 계층 관계를 보여 주는 다이어그램](./media/documentdb-get-started/nosql-tutorial-account-database.png)
 
 ## <a id="Query"></a>7단계: Azure Cosmos DB 리소스 쿼리
-Azure Cosmos DB는 각 컬렉션에 저장된 JSON 문서에 대해 [다양한 쿼리](documentdb-sql-query.md)를 지원합니다.  다음 샘플 코드에서는 [queryDocuments](/java/api/com.microsoft.azure.documentdb._document_client.querydocuments) 메서드와 함께 SQL 구문을 사용하여 Azure Cosmos DB의 문서를 쿼리하는 방법을 보여 줍니다.
+Azure Cosmos DB는 각 컬렉션에 저장된 JSON 문서에 대해 [다양한 쿼리](documentdb-sql-query.md)를 지원합니다.  다음 샘플 코드 hello tooquery Azure Cosmos DB에서 설명 하는 방법을 SQL 구문을 사용 하 여 hello로 [queryDocuments](/java/api/com.microsoft.azure.documentdb._document_client.querydocuments) 메서드.
 
     FeedResponse<Document> queryResults = this.client.queryDocuments(
         "/dbs/familydb/colls/familycoll",
@@ -154,7 +154,7 @@ Azure Cosmos DB는 각 컬렉션에 저장된 JSON 문서에 대해 [다양한 �
     }
 
 ## <a id="ReplaceDocument"></a>8단계: JSON 문서 바꾸기
-Azure Cosmos DB는 [replaceDocument](/java/api/com.microsoft.azure.documentdb._document_client.replacedocument) 메서드를 사용하여 JSON 문서를 업데이트하도록 지원합니다.
+Azure Cosmos DB 지원 hello를 사용 하 여 업데이트 JSON 문서 [replaceDocument](/java/api/com.microsoft.azure.documentdb._document_client.replacedocument) 메서드.
 
     // Update a property
     andersenFamily.Children[0].Grade = 6;
@@ -165,21 +165,21 @@ Azure Cosmos DB는 [replaceDocument](/java/api/com.microsoft.azure.documentdb._d
         null);
 
 ## <a id="DeleteDocument"></a>9단계: JSON 문서 삭제
-마찬가지로, Azure Cosmos DB는 [deleteDocument](/java/api/com.microsoft.azure.documentdb._document_client.deletedocument) 메서드를 사용하여 JSON 문서를 삭제하도록 지원합니다.  
+마찬가지로, Azure Cosmos DB 지원 hello를 사용 하 여 JSON 문서를 삭제 하는 중 [deleteDocument](/java/api/com.microsoft.azure.documentdb._document_client.deletedocument) 메서드.  
 
     this.client.delete("/dbs/familydb/colls/familycoll/docs/Andersen.1", null);
 
-## <a id="DeleteDatabase"></a>10단계: 데이터베이스 삭제
-만든 데이터베이스를 삭제하면 데이터베이스와 모든 하위 리소스(컬렉션, 문서 등)가 제거됩니다.
+## <a id="DeleteDatabase"></a>10 단계: hello 데이터베이스를 삭제 합니다.
+삭제 만든 hello 데이터베이스 hello 데이터베이스와 모든 자식 리소스 (컬렉션, 문서 등)를 제거합니다.
 
     this.client.deleteDatabase("/dbs/familydb", null);
 
 ## <a id="Run"></a>11단계: Java 콘솔 응용 프로그램 모두 함께 실행
-콘솔에서 응용 프로그램을 실행하려면 프로젝트 폴더로 이동하고 Maven을 사용하여 컴파일합니다.
+hello 콘솔에서 toorun hello 응용 프로그램 toohello 프로젝트 폴더와 컴파일 Maven을 사용 하 여 이동 합니다.
     
     mvn package
 
-`mvn package`를 실행하면 Maven에서 최신 Azure Cosmos DB 라이브러리를 다운로드하고 `GetStarted-0.0.1-SNAPSHOT.jar`을 생성합니다. 그 후에 다음을 실행하여 앱을 실행합니다.
+실행 `mvn package` Maven에서 hello 최신 Azure Cosmos DB 라이브러리를 다운로드 하 고 생성 `GetStarted-0.0.1-SNAPSHOT.jar`합니다. 그런 다음 실행 하 여 hello 앱을 실행 합니다.
 
     mvn exec:java -D exec.mainClass=GetStarted.Program
 
@@ -187,8 +187,8 @@ Azure Cosmos DB는 [replaceDocument](/java/api/com.microsoft.azure.documentdb._d
 
 ## <a name="next-steps"></a>다음 단계
 * Java 웹앱 자습서가 필요한가요? [Azure Cosmos DB를 사용하여 Java로 웹 응용 프로그램 빌드](documentdb-java-application.md)를 참조하세요.
-* [Azure Cosmos DB 계정 모니터링](monitor-accounts.md) 방법에 대해 알아보세요.
-* [쿼리 실습](https://www.documentdb.com/sql/demo)의 샘플 데이터 집합에 대해 쿼리를 실행합니다.
-* [Azure Cosmos DB 설명서](https://azure.microsoft.com/documentation/services/documentdb/) 페이지의 개발 섹션에서 프로그래밍 모델에 대해 자세히 알아봅니다.
+* 너무 방법에 대해 알아봅니다[Azure Cosmos DB 계정을 모니터링](monitor-accounts.md)합니다.
+* Hello에 우리의 샘플 데이터 집합에 대해 쿼리 실행 [Query Playground](https://www.documentdb.com/sql/demo)합니다.
+* Hello hello의 개발 섹션에서에서 hello 프로그래밍 모델에 대 한 자세한 [Azure Cosmos DB 설명서 페이지](https://azure.microsoft.com/documentation/services/documentdb/)합니다.
 
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png

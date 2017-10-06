@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub(.NET/노드)를 사용하여 작업 예약 | Microsoft 문서"
-description: "여러 장치에서 직접 메서드를 호출하여 Azure IoT Hub 작업을 예약하는 방법입니다. Node.js용 Azure IoT 장치 SDK를 사용하여 시뮬레이션된 장치 앱을 구현하고 .NET용 Azure IoT 서비스 SDK를 사용하여 작업을 실행하는 서비스 앱을 구현합니다."
+title: "Azure IoT Hub (.NET/노드)와 aaaSchedule 작업 | Microsoft Docs"
+description: "어떻게 tooschedule Azure IoT Hub 여러 장치에서 직접 메서드 tooinvoke를 작업입니다. Node.js tooimplement hello 시뮬레이션 된 장치 앱과 hello.NET tooimplement 서비스 응용 프로그램 toorun hello 작업에 대 한 Azure IoT 서비스 SDK에 대 한 hello Azure IoT 장치 SDK를 사용 합니다."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: juanpere
-ms.openlocfilehash: a8f4f34aa99c4a9966957cac213ec9170de80a46
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f6148b67129dde4580bfe9ccceafd6400fbc5976
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schedule-and-broadcast-jobs-netnodejs"></a>작업 예약 및 브로드캐스트(.NET/Node.js)
 
 [!INCLUDE [iot-hub-selector-schedule-jobs](../../includes/iot-hub-selector-schedule-jobs.md)]
 
-Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작업을 예약하고 추적합니다. 작업을 사용하여 다음을 수행합니다.
+수백만 개의 장치로 업데이트 하는 Azure IoT Hub tooschedule 및 추적 작업을 사용 합니다. 작업을 사용하여 다음을 수행합니다.
 
 * desired 속성 업데이트
 * tags 업데이트
 * 직접 메서드 호출
 
-작업(job)은 이러한 작업(action) 중 하나를 래핑하고 장치 쌍 쿼리로 정의된 장치 집합에 대한 실행을 추적합니다. 예를 들어 백 엔드 앱은 작업(job)을 사용하여 10,000대 장치에 대해 장치를 재부팅하는 직접 메서드를 호출할 수 있습니다. 장치 쌍 쿼리로 장치 집합을 지정하고 향후 실행될 작업(job)을 예약합니다. 작업(job)은 해당하는 각 장치에서 재부팅 직접 메서드를 수신 및 실행할 때 진행 상태를 추적합니다.
+작업이 다음이 작업 중 하나를 래핑하고 트랙 hello 장치로 이중 쿼리에 의해 정의 된 일련의 장치에 대 한 실행. 예를 들어 백 엔드 응용 프로그램 hello 장치를 다시 부팅 하는 장치 10, 000에서 작업 tooinvoke 직접 메서드를 사용할 수 있습니다. 장치로 이중 쿼리로 hello 일련의 장치를 지정 하 고 hello 작업 toorun 이후 시간에 예약 합니다. 각 hello 장치로 작업 추적 진행 상황 hello 수신 하 고 hello 재부팅 직접 메서드를 실행 합니다.
 
-이러한 각 기능에 대한 자세한 내용은 다음을 참조하세요.
+이러한 기능의 각각에 대해 자세히 toolearn 참조:
 
-* 장치 쌍 및 속성: [장치 쌍 시작][lnk-get-started-twin] 및 [자습서: 장치 쌍 속성을 사용하는 방법][lnk-twin-props]
+* 장치로 이중 및 속성: [장치 트윈스 시작] [ lnk-get-started-twin] 및 [자습서: 어떻게 toouse 장치로 이중 속성][lnk-twin-props]
 * 직접 메서드: [IoT Hub 개발자 가이드 - 직접 메서드][lnk-dev-methods] 및 [자습서: 직접 메서드 사용][lnk-c2d-methods]
 
 이 자습서에서는 다음을 수행하는 방법에 대해 설명합니다.
 
-* 백 엔드 앱에 의해 호출될 수 있는 **lockDoor**라는 직접 메서드를 구현하는 장치 앱을 만듭니다. 또한 이 장치 앱은 백 엔드 앱에서 원하는 속성 변경 내용을 수신합니다.
-* 여러 장치에 대해 **lockDoor** 직접 메서드를 호출하는 작업을 만드는 백 엔드 앱을 만듭니다. 다른 작업이 여러 장치로 원하는 속성 업데이트를 보냅니다.
+* 라는 직접 메서드를 구현 하는 장치 앱 만들기 **lockDoor** hello 백 엔드 응용 프로그램에서 호출할 수 있습니다. hello 장치 앱 hello 백 엔드 응용 프로그램에서 원하는 속성 변경 내용을 수신합니다.
+* 백 엔드 앱을 만드는 작업 toocall hello 만들기 **lockDoor** 여러 장치에서 직접적인 방법입니다. 다른 작업이 toomultiple 장치를 업데이트 하는 원하는 속성을 보냅니다.
 
-이 자습서의 끝 부분에는 다음과 같은 Node.js 콘솔 장치 앱과 .NET(C#) 콘솔 백 엔드 앱이 있습니다.
+이 자습서의 hello 끝에 콘솔 장치 Node.js 응용 프로그램 및.NET (C#) 콘솔 백 엔드 응용 프로그램
 
-**simDevice.js**: IoT Hub에 연결되고, **lockDoor** 직접 메서드를 구현하고, 원하는 속성 변경 내용을 처리합니다.
+**simDevice.js** tooyour IoT 허브를 연결 하는, 구현 hello **lockDoor** 메서드와 핸들 필요한 속성 변경 내용을 전송 합니다.
 
-**ScheduleJob**: 작업을 사용하여 **lockDoor** 직접 메서드를 호출하고 여러 장치에서 장치 쌍의 원하는 속성을 업데이트합니다.
+**ScheduleJob** 작업 toocall hello를 사용 하 여 **lockDoor** 원하는 여러 장치에서 속성을 직접 메서드와 업데이트 hello 장치로 이중 합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요:
 
 * Visual Studio 2015 또는 Visual Studio 2017.
-* Node.js 버전 0.12.x 이상. Windows 또는 Linux에서 이 자습서를 위해 Node.js를 설치하는 방법은 [개발 환경 준비][lnk-dev-setup] 문서에 설명되어 있습니다.
+* Node.js 버전 0.12.x 이상. hello 문서 [개발 환경을 준비] [ lnk-dev-setup] 설명 방법을 Windows 또는 Linux에서이 자습서에 대 한 tooinstall Node.js 합니다.
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 내에 [계정][lnk-free-trial]을 만들 수 있습니다.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
@@ -60,30 +60,30 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
 
 ## <a name="schedule-jobs-for-calling-a-direct-method-and-sending-device-twin-updates"></a>직접 메서드를 호출하고 장치 쌍의 업데이트를 전송하기 위한 작업 예약
 
-이 섹션에서는 작업을 사용하여 **lockDoor** 직접 메서드를 호출하고 원하는 속성 업데이트를 여러 장치에 전송하는 .NET 콘솔 앱(C# 사용)을 만듭니다.
+.NET 콘솔 응용 프로그램 (사용 하 여 C#) 작업 toocall hello를 사용 하는이 섹션에서는 만들 **lockDoor** 직접적인 방법 및 toomultiple 장치를 업데이트 하는 원하는 속성을 송신 합니다.
 
-1. Visual Studio에서 **콘솔 응용 프로그램** 프로젝트 템플릿을 사용하여 Visual C# Windows 클래식 데스크톱 프로젝트를 최신 솔루션에 추가합니다. 프로젝트 이름을 **ScheduleJob**으로 지정합니다.
+1. Visual Studio에서 Visual C# Windows 클래식 데스크톱 프로젝트 toohello 현재 솔루션 hello를 사용 하 여 추가 **콘솔 응용 프로그램** 서식 파일 프로젝트. 이름 hello 프로젝트 **ScheduleJob**합니다.
 
     ![새 Visual C# Windows 클래식 데스크톱 프로젝트][img-createapp]
 
-1. 솔루션 탐색기에서 **ScheduleJob** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **NuGet 패키지 관리**를 클릭합니다.
-1. **NuGet 패키지 관리자** 창에서 **찾아보기**를 선택하고 **microsoft.azure.devices**를 검색한 다음 **설치**를 선택하여 **Microsoft.Azure.Devices** 패키지를 설치하고 사용 약관에 동의합니다. 이 단계에서는 [Azure IoT 서비스 SDK][lnk-nuget-service-sdk] NuGet 패키지 및 종속 항목에 참조를 다운로드, 설치 및 추가합니다.
+1. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **ScheduleJob** 프로젝트를 마우스 클릭 **NuGet 패키지 관리...** .
+1. Hello에 **NuGet 패키지 관리자** 창에서 **찾아보기**, 검색할 **microsoft.azure.devices**선택, **설치** tooinstall hello **Microsoft.Azure.Devices** 패키지 및 hello 사용 약관에 동의 합니다. 이 단계를 다운로드, 설치 하 고 참조 toohello 추가 [Azure IoT 서비스 SDK] [ lnk-nuget-service-sdk] NuGet 패키지 및 해당 종속성.
 
     ![NuGet 패키지 관리자 창][img-servicenuget]
-1. **Program.cs** 파일 위에 다음 `using` 문을 추가합니다.
+1. Hello 다음 추가 `using` hello 위쪽 hello에 문을 **Program.cs** 파일:
     
     ```csharp
     using Microsoft.Azure.Devices;
     using Microsoft.Azure.Devices.Shared;
     ```
 
-1. 다음 `using` 문이 기본 문에 아직 없으면 추가합니다.
+1. Hello 다음 추가 `using` 문을 hello 기본 문에서 아직 없는 경우.
 
     ```csharp
     using System.Threading.Tasks;
     ```
 
-1. **Program** 클래스에 다음 필드를 추가합니다. 자리 표시자를 이전 섹션에서 만든 허브의 IoT Hub 연결 문자열로 대체합니다.
+1. 다음 필드 toohello hello 추가 **프로그램** 클래스입니다. Hello hello 이전 섹션에서 만든 hello 허브에 대 한 IoT 허브 연결 문자열 hello 자리 표시자를 바꿉니다.
 
     ```csharp
     static string connString = "{iot hub connection string}";
@@ -91,7 +91,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     static JobClient jobClient;
     ```
 
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
 
     ```csharp
     public static async Task MonitorJob(string jobId)
@@ -106,7 +106,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
 
     ```csharp
     public static async Task StartMethodJob(string jobId)
@@ -123,7 +123,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
 
     ```csharp
     public static async Task StartTwinUpdateJob(string jobId)
@@ -143,7 +143,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. 마지막으로 **Main** 메서드에 다음 줄을 추가합니다.
+1. 마지막으로 다음 줄 toohello hello 추가 **Main** 메서드:
 
     ```csharp
     jobClient = JobClient.CreateFromConnectionString(connString);
@@ -152,38 +152,38 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
 
     StartMethodJob(methodJobId);
     MonitorJob(methodJobId).Wait();
-    Console.WriteLine("Press ENTER to run the next job.");
+    Console.WriteLine("Press ENTER toorun hello next job.");
     Console.ReadLine();
 
     string twinUpdateJobId = Guid.NewGuid().ToString();
 
     StartTwinUpdateJob(twinUpdateJobId);
     MonitorJob(twinUpdateJobId).Wait();
-    Console.WriteLine("Press ENTER to exit.");
+    Console.WriteLine("Press ENTER tooexit.");
     Console.ReadLine();
     ```
 
-1. 솔루션 탐색기에서 **시작 프로젝트 설정...**을 열고 **ScheduleJob** 프로젝트의 **작업**이 **시작**인지 확인합니다. 솔루션을 빌드하십시오.
+1. Hello 솔루션 탐색기를 열고 hello **설정 시작 프로젝트...**  hello 있는지를 확인 하 고 **동작** 에 대 한 **ScheduleJob** 프로젝트는 **시작**합니다. Hello 솔루션을 빌드하십시오.
 
 ## <a name="create-a-simulated-device-app"></a>시뮬레이션된 장치 앱 만들기
 
-이 섹션에서는 클라우드에서 호출한 직접 메서드에 응답하는 Node.js 콘솔 앱을 만듭니다. 이 메서드는 시뮬레이션된 장치 재부팅을 트리거하고, reported 속성을 사용하여 장치 및 해당 장치가 마지막으로 재부팅한 시간을 확인하는 장치 쌍 쿼리를 사용하도록 설정합니다.
+이 섹션에서는 tooa 직접 메서드 호출에서 시뮬레이션 된 장치를 다시 부팅을 트리거하는 hello 클라우드가 응답 하 여 Node.js 콘솔 응용 프로그램을 만들고 사용 하 여 hello 속성 tooenable 장치로 이중 쿼리 tooidentify 장치 및 마지막 재부팅 될 보고 합니다.
 
-1. **simDevice**라는 빈 폴더를 새로 만듭니다.  **simDevice** 폴더의 명령 프롬프트에서 다음 명령을 사용하여 package.json 파일을 만듭니다.  모든 기본값을 수락합니다.
+1. **simDevice**라는 빈 폴더를 새로 만듭니다.  Hello에 **simDevice** 폴더를 다음 명령 프롬프트에서 명령을 hello를 사용 하 여 package.json 파일을 만듭니다.  모든 hello 기본값을 적용 합니다.
 
     ```cmd/sh
     npm init
     ```
 
-1. **simDevice** 폴더의 명령 프롬프트에서 다음 명령을 실행하여 **azure-iot-device** 및 **azure-iot-device-mqtt** 패키지를 설치합니다.
+1. Hello에 명령 프롬프트에 **simDevice** hello 명령 tooinstall hello 다음를 실행 하는 폴더 **azure iot 장치** 및 **azure iot-장치 mqtt** 패키지:
 
     ```cmd/sh
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. 텍스트 편집기를 사용하여 **simDevice** 폴더에 새 **simDevice.js** 파일을 만듭니다.
+1. 텍스트 편집기를 사용 하 여 만드는 새 **simDevice.js** hello에 대 한 파일 **simDevice** 폴더입니다.
 
-1. **simDevice.js** 파일 앞에 다음 'require' 문을 추가합니다.
+1. Hello 다음 '필요' hello hello 시작 부분에 설명 추가 **simDevice.js** 파일:
 
     ```nodejs
     'use strict';
@@ -192,24 +192,24 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
 
-1. **connectionString** 변수를 추가하고 이 변수를 사용하여 **클라이언트** 인스턴스를 만듭니다. 자리 표시자를 사용 중인 설치에 대한 값으로 바꿉니다.
+1. 추가 **connectionString** 변수 toocreate를 사용 하는 **클라이언트** 인스턴스. 있는지 tooreplace hello 자리 표시자 값 적절 한 tooyour 설치 프로그램을 확인 하십시오.
 
     ```nodejs
     var connectionString = 'HostName={youriothostname};DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. 다음 함수를 추가하여 **lockDoor** 메서드를 처리합니다.
+1. 다음 함수 toohandle hello hello 추가 **lockDoor** 메서드.
 
     ```nodejs
     var onLockDoor = function(request, response) {
    
-        // Respond the cloud app for the direct method
+        // Respond hello cloud app for hello direct method
         response.send(200, function(err) {
             if (!err) {
                 console.error('An error occured when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.');
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.');
             }
         });
    
@@ -217,47 +217,47 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     };
     ```
 
-1. 다음 코드를 추가하여 **lockDoor** 메서드에 대한 처리기를 등록합니다.
+1. Hello hello에 대 한 코드 tooregister hello 처리기를 다음 추가 **lockDoor** 메서드.
 
     ```nodejs
     client.open(function(err) {
         if (err) {
-            console.error('Could not connect to IotHub client.');
+            console.error('Could not connect tooIotHub client.');
         }  else {
-            console.log('Client connected to IoT Hub.  Waiting for lockDoor direct method.');
+            console.log('Client connected tooIoT Hub.  Waiting for lockDoor direct method.');
             client.onDeviceMethod('lockDoor', onLockDoor);
         }
     });
     ```
 
-1. **simDevice.js** 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello **simDevice.js** 파일입니다.
 
 > [!NOTE]
-> 간단히 하기 위해 이 자습서에서는 다시 시도 정책을 구현하지 않습니다. 프로덕션 코드에서는 MSDN 문서 [일시적인 오류 처리][lnk-transient-faults]에서 제시한 대로 다시 시도 정책(예: 지수 백오프)을 구현해야 합니다.
+> 단순 tookeep 항목을이 자습서는 어떠한 재시도 정책도 구현 하지 않습니다. 프로덕션 코드에서는 hello MSDN 문서에 설명 된 대로 다시 시도 정책 (예: 지 수 백오프)를 구현 해야 [일시적인 오류 처리][lnk-transient-faults]합니다.
 
-## <a name="run-the-apps"></a>앱 실행
+## <a name="run-hello-apps"></a>Hello 앱 실행
 
-이제 앱을 실행할 준비가 되었습니다.
+준비 toorun hello 앱입니다.
 
-1. **simDevice** 폴더의 명령 프롬프트에서 다음 명령을 실행하여 다시 시작 직접 메서드에 대한 수신 대기를 시작합니다.
+1. Hello에 대 한 hello 명령 프롬프트 **simDevice** 폴더를 다음 명령 toobegin hello 재부팅 직접적인 방법에 대 한 수신 대기 하는 hello를 실행 합니다.
 
     ```cmd/sh
     node simDevice.js
     ```
 
-1. **ScheduleJob** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **디버그**, **새 인스턴스 시작**을 차례로 선택하여 **ScheduleJob** C# 콘솔 앱을 실행합니다.
+1. 실행된 hello C# 콘솔 응용 프로그램 **ScheduleJob** hello를 마우스 오른쪽 단추로 클릭 하 여 **ScheduleJob** 프로젝트를 선택 하면 다음 **디버그** 및 **새 인스턴스 시작**.
 
-1. 장치 및 백 엔드 앱 모두에서 출력이 표시됩니다.
+1. Hello 출력 장치와 백 엔드 응용 프로그램에서 표시 됩니다.
 
-    ![작업을 예약하는 앱 실행][img-schedulejobs]
+    ![Hello 앱 tooschedule 작업 실행][img-schedulejobs]
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 장치에 대한 직접 메서드를 예약하고 장치 쌍의 속성을 업데이트하는 데 작업을 사용했습니다.
+이 자습서에서는 작업 tooschedule 직접적인 방법 tooa 장치 및 hello hello 장치로 이중의 속성을 업데이트를 사용 합니다.
 
-IoT Hub 및 장치 관리 패턴(예: 원격 무선 펌웨어 업데이트)을 계속 시작하려면 [자습서: 펌웨어 업데이트를 수행하는 방법][lnk-fwupdate]을 참조하세요
+읽을 hello 공기 펌웨어 업데이트를 통해 원격으로 등 IoT Hub 및 장치 관리 패턴 시작 toocontinue [자습서: 펌웨어 업데이트 하는 toodo 어떻게][lnk-fwupdate]합니다.
 
-계속해서 IoT Hub를 시작하려면 [IoT Edge 시작][lnk-iot-edge]을 참조하세요.
+IoT Hub와 시작 toocontinue 참조 [IoT 가장자리 시작][lnk-iot-edge]합니다.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-schedule-jobs/servicesdknuget.png

@@ -1,5 +1,5 @@
 ---
-title: "Azure Media Services를 사용하여 인코딩의 속도 및 동시성 관리 | Microsoft Docs"
+title: "aaa 관리 속도 및 동시성은 Azure 미디어 서비스로 인코딩 | Microsoft Docs"
 description: "이 문서에서는 Azure Media Services를 사용하여 인코딩 작업/태스크의 속도 및 동시성을 관리하는 방법에 대해 간략하게 설명합니다."
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/10/2017
 ms.author: juliako
-ms.openlocfilehash: 0463904fd9bf1138587d0d214e572ddd38cc2184
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: da52a6278a3d3b084dbf5a594db37df8447bb944
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 #  <a name="manage-speed-and-concurrency-of-your-encoding"></a>인코딩 속도 및 동시성 관리
 
@@ -26,11 +26,11 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>개요
 
-Media Services에서 **예약 단위 유형**은 미디어 처리 태스크를 처리하는 속도를 결정합니다. **S1**, **S2**, **S3** 예약 단위 유형 중에서 선택할 수 있습니다. 예를 들어 **S2** 예약 단위 유형을 사용하는 경우 **S1** 유형에 비해 동일한 인코딩 작업이 더 빠르게 실행됩니다. [인코딩 단위 크기 조정](media-services-scale-media-processing-overview.md) 항목에서는 여러 인코딩 속도를 선택할 때 적절한 속도를 결정할 수 있도록 하는 테이블을 보여 줍니다.
+미디어 서비스에서는 **예약 단위 형식** 처리 되는 작업을 처리 하 여 미디어는 hello 속도 결정 합니다. Hello 다음 중에서 선택할 수 예약 단위 형식: **S1**, **S2**, 또는 **S3**합니다. Hello를 사용할 때 동일한 인코딩 작업이 더 빠르게 실행 하는 hello 예를 들어 **S2** toohello 비교 하는 예약된 단위 형식 **S1** 유형입니다. hello [인코딩 단위 배율](media-services-scale-media-processing-overview.md) 항목에서는 다양 한 인코딩 속도 선택할 때 결정을 내릴 수 있도록 테이블을 보여 줍니다.
 
-예약 단위 유형을 지정하는 것 외에도 계정에 **예약 단위**를 프로비전하도록 지정할 수 있습니다. 프로비전되는 예약 단위의 수에 따라 특정 계정에서 동시에 처리할 수 있는 미디어 작업의 수가 결정됩니다. 예를 들어 계정에 5개의 예약 단위가 있는 경우 처리할 작업이 있다면 5개의 미디어 작업이 동시에 실행됩니다. 나머지 작업은 큐에 대기하다가 실행 중인 작업이 완료되면 순차적으로 처리를 위해 선택됩니다. 계정에 프로비전된 예약 단위가 없는 경우에는 작업이 순차적으로 선택됩니다. 이 경우 한 작업 완료와 다음 작업 시작 사이의 대기 시간은 시스템의 리소스 가용성에 따라 다릅니다.
+또한 toospecifying hello 예약 단위 형식, tooprovision를 사용 하 여 계정을 지정할 수 있습니다 **예약 단위**합니다. 제공된 된 예약된 단위 수가 hello hello 지정된 된 계정에서 동시에 처리할 수 있는 미디어 작업 수를 결정 합니다. 예를 들어 5 개의 미디어 작업이 동시에 실행 될 다음 사용자 계정에 5 명의 예약된 단위 같이 많은 경우 작업 toobe 처리 합니다. hello 남은 작업이 hello 큐에서 대기 하 고 실행 중인 작업이 완료 되는 경우 순차적으로 처리 하도록 선택 됩니다. 계정에 프로비전된 예약 단위가 없는 경우에는 작업이 순차적으로 선택됩니다. 이 경우 hello 한 작업 완료 사이의 시간 기다렸다가 hello 다음 시작에 따라 달라 집니다 리소스의 hello 가용성 hello 시스템.
 
-인코딩 단위의 크기를 조정하는 방법을 보여 주는 자세한 정보 및 예제는 [이](media-services-scale-media-processing-overview.md) 항목을 참조하세요.
+자세한 내용 및 예제에 대 한 tooscale 인코딩 단위 참조 하는 방법을 보여 주는 [이](media-services-scale-media-processing-overview.md) 항목입니다.
 
 ## <a name="next-step"></a>다음 단계
 
