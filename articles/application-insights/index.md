@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "확장 가능한 응용 프로그램 성능 관리인 Application Insights를 사용하여 웹앱 및 서비스의 문제를 감지, 심사 및 진단하는 방법에 대해 알아봅니다."
+title: "응용 프로그램 Insights 설명서 자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "Toouse Application Insights 확장 가능한 응용 프로그램 성능 관리 toodetect, 심사 하 고 웹 응용 프로그램 및 서비스의 문제를 진단 하는 방법에 대해 알아봅니다."
 services: application-insights
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 1f3fc2431bacd6852c6babc7ebbb07c6a3b74145
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 341ac74463dc44ea477c9f0f7bcf83fed6189f0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-documentation"></a>Application Insights 설명서
 
-웹 개발자를 위한 확장 가능한 응용 프로그램 성능 관리 서비스인 Application Insights을 사용하는 방법에 대해 알아봅니다. 자습서, API 참조 및 기타 설명서에서는 웹앱 및 서비스의 문제를 감지, 심사 및 진단하는 방법을 보여 줍니다.
+어떻게 toouse Application Insights 확장 가능한 응용 프로그램 성능 관리 서비스에 대 한 웹 개발자에 알아봅니다. 자습서, API 참조, 및 기타 문서 알려주는 toodetect, 심사, 하 고 웹 응용 프로그램 및 서비스의 문제를 진단 하는 방법입니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

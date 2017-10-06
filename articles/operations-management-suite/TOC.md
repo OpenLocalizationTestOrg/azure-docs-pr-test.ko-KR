@@ -24,7 +24,7 @@
 
 ## 보안
 ### [리소스 모니터링](oms-security-monitoring-resources.md)
-### [보안 경고에 대응](oms-security-responding-alerts.md)
+### [Toosecurity 경고에 응답](oms-security-responding-alerts.md)
 ### [기준 평가](oms-security-baseline.md)
 ### [맬웨어 평가](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [시스템 업데이트 평가](../log-analytics/log-analytics-system-update.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)

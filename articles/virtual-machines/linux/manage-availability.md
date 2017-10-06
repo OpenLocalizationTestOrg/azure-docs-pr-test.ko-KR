@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Linux VM의 가용성 관리 | Microsoft Docs"
-description: "Azure에서 여러 가상 컴퓨터를 사용하여 Linux 응용 프로그램의 고가용성을 유지하는 방법에 대해 알아봅니다."
+title: "Azure에서 Linux Vm의 aaaManage hello 가용성 | Microsoft Docs"
+description: "자세한 내용은 방법 toouse 여러 가상 컴퓨터 tooensure 고가용성을 위해 Azure에서 Linux 응용 프로그램"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -16,22 +16,22 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f153a740e4814e2573e53b9c051d24c30ff9088f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 523d45a6c65b6b3255d82c96defb8e7302f14fc6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-the-availability-of-linux-virtual-machines"></a><span data-ttu-id="904a7-103">Linux 가상 컴퓨터의 가용성 관리</span><span class="sxs-lookup"><span data-stu-id="904a7-103">Manage the availability of Linux virtual machines</span></span>
+# <a name="manage-hello-availability-of-linux-virtual-machines"></a><span data-ttu-id="2b5ac-103">Linux 가상 컴퓨터의 hello 가용성 관리</span><span class="sxs-lookup"><span data-stu-id="2b5ac-103">Manage hello availability of Linux virtual machines</span></span>
 
-<span data-ttu-id="904a7-104">Azure에서 여러 가상 컴퓨터를 설정하고 관리하여 Linux 응용 프로그램의 고가용성을 유지하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="904a7-104">Learn ways to set up and manage multiple virtual machines to ensure high availability for your Linux application in Azure.</span></span> <span data-ttu-id="904a7-105">[Windows 가상 컴퓨터의 가용성을 관리](../windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="904a7-105">You can also [manage the availability of Windows virtual machines](../windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+<span data-ttu-id="2b5ac-104">같은 방법으로 tooset를 알아보고 Azure에서 Linux 응용 프로그램에 대 한 여러 가상 컴퓨터 tooensure 높은 가용성을 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b5ac-104">Learn ways tooset up and manage multiple virtual machines tooensure high availability for your Linux application in Azure.</span></span> <span data-ttu-id="2b5ac-105">수도 있습니다 [Windows 가상 컴퓨터의 가용성을 hello 관리](../windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="2b5ac-105">You can also [manage hello availability of Windows virtual machines](../windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-<span data-ttu-id="904a7-106">Resource Manager 배포 모델에서 CLI를 사용하여 가용성 집합을 만들기 위한 지침은 [azure availset: 가용성 집합을 관리하는 명령](../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="904a7-106">For instructions on creating an availability set using CLI in the Resource Manager deployment model, see [azure availset: commands to manage your availability sets](../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets).</span></span>
+<span data-ttu-id="2b5ac-106">가용성 집합 CLI를 사용 하 여 hello 리소스 관리자 배포 모델에서을 만드는 방법에 지침은 [azure availset: 명령을 toomanage 가능 여부를 설정](../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets)합니다.</span><span class="sxs-lookup"><span data-stu-id="2b5ac-106">For instructions on creating an availability set using CLI in hello Resource Manager deployment model, see [azure availset: commands toomanage your availability sets](../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets).</span></span>
 
 [!INCLUDE [virtual-machines-common-manage-availability](../../../includes/virtual-machines-common-manage-availability.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="904a7-107">다음 단계</span><span class="sxs-lookup"><span data-stu-id="904a7-107">Next steps</span></span>
-<span data-ttu-id="904a7-108">가상 컴퓨터 부하 분산에 대한 자세한 내용은 [가상 컴퓨터 부하 분산](../virtual-machines-linux-load-balance.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="904a7-108">To learn more about load balancing your virtual machines, see [Load Balancing virtual machines](../virtual-machines-linux-load-balance.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2b5ac-107">다음 단계</span><span class="sxs-lookup"><span data-stu-id="2b5ac-107">Next steps</span></span>
+<span data-ttu-id="2b5ac-108">부하 분산 가상 컴퓨터에 대해 자세히 toolearn 참조 [가상 컴퓨터 부하 분산](../virtual-machines-linux-load-balance.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="2b5ac-108">toolearn more about load balancing your virtual machines, see [Load Balancing virtual machines](../virtual-machines-linux-load-balance.md).</span></span>
 

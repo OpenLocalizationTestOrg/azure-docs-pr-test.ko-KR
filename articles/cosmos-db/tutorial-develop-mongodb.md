@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB MongoDB API를 사용하여 웹앱 빌드 | Microsoft Docs"
-description: "MongoDB API를 사용하여 온라인 데이터베이스 웹앱을 만드는 Azure Cosmos DB 자습서입니다."
+title: "MongoDB toobuild 웹 응용 프로그램에 대 한 API aaaUse Azure Cosmos DB | Microsoft Docs"
+description: "MongoDB에 대 한 hello API를 사용 하는 온라인 데이터베이스 웹 앱을 만드는 Azure Cosmos DB 자습서입니다."
 keywords: "MongoDB 예제"
 services: cosmos-db
 author: AndrewHoh
@@ -16,51 +16,51 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: anhoh
 ms.custom: mvc
-ms.openlocfilehash: ff277c7f88359cd977424f2e0958c69e2547a2af
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6dfa7fef49fc53ea2fcfcfbad3b3fcf97ac18e94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-connect-to-a-mongodb-app-using-net"></a><span data-ttu-id="692f5-104">Azure Cosmos DB: .NET을 사용하여 MongoDB 앱에 연결</span><span class="sxs-lookup"><span data-stu-id="692f5-104">Azure Cosmos DB: Connect to a MongoDB app using .NET</span></span>
+# <a name="azure-cosmos-db-connect-tooa-mongodb-app-using-net"></a><span data-ttu-id="65205-104">Azure Cosmos DB:.NET을 사용 하 여 tooa MongoDB 앱 연결</span><span class="sxs-lookup"><span data-stu-id="65205-104">Azure Cosmos DB: Connect tooa MongoDB app using .NET</span></span>
 
-<span data-ttu-id="692f5-105">Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-105">Azure Cosmos DB is Microsoft’s globally distributed multi-model database service.</span></span> <span data-ttu-id="692f5-106">Azure Cosmos DB의 핵심인 전역 배포 및 수평적 크기 조정 기능의 이점을 활용하여 문서, 키/값 및 그래프 데이터베이스를 빠르게 만들고 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-106">You can quickly create and query document, key/value, and graph databases, all of which benefit from the global distribution and horizontal scale capabilities at the core of Azure Cosmos DB.</span></span> 
+<span data-ttu-id="65205-105">Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="65205-105">Azure Cosmos DB is Microsoft’s globally distributed multi-model database service.</span></span> <span data-ttu-id="65205-106">신속 하 게 만들기 및 문서, 키/값 및 hello 글로벌 배포 및 수평 확장이 기능 Cosmos DB Azure의 hello 핵심에에서 활용 중 일부는 그래프 데이터베이스를 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="65205-106">You can quickly create and query document, key/value, and graph databases, all of which benefit from hello global distribution and horizontal scale capabilities at hello core of Azure Cosmos DB.</span></span> 
 
-<span data-ttu-id="692f5-107">이 자습서에서는 Azure Portal을 사용하여 Azure Cosmos DB 계정을 만드는 방법과 [MongoDB API](mongodb-introduction.md)를 사용하여 데이터를 저장할 데이터베이스와 컬렉션을 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-107">This tutorial demonstrates how to create an Azure Cosmos DB account using the Azure portal, and how to create a database and collection to store data using the [MongoDB API](mongodb-introduction.md).</span></span> 
+<span data-ttu-id="65205-107">이 자습서에서는 방법을 사용 하 여 Azure Cosmos DB 계정을 toocreate hello Azure 포털 및 toocreate 데이터베이스 및 사용 하 여 컬렉션 toostore 데이터의 hello 설명 [MongoDB API](mongodb-introduction.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-107">This tutorial demonstrates how toocreate an Azure Cosmos DB account using hello Azure portal, and how toocreate a database and collection toostore data using hello [MongoDB API](mongodb-introduction.md).</span></span> 
 
-<span data-ttu-id="692f5-108">이 자습서에서 다루는 작업은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-108">This tutorial covers the following tasks:</span></span>
+<span data-ttu-id="65205-108">이 자습서에서는 hello 다음 작업 방법을 배웁니다.</span><span class="sxs-lookup"><span data-stu-id="65205-108">This tutorial covers hello following tasks:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="692f5-109">Azure Cosmos DB 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="692f5-109">Create an Azure Cosmos DB account</span></span> 
-> * <span data-ttu-id="692f5-110">연결 문자열 업데이트</span><span class="sxs-lookup"><span data-stu-id="692f5-110">Update your connection string</span></span>
-> * <span data-ttu-id="692f5-111">가상 컴퓨터에 MongoDB 앱 만들기</span><span class="sxs-lookup"><span data-stu-id="692f5-111">Create a MongoDB app on a virtual machine</span></span> 
+> * <span data-ttu-id="65205-109">Azure Cosmos DB 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="65205-109">Create an Azure Cosmos DB account</span></span> 
+> * <span data-ttu-id="65205-110">연결 문자열 업데이트</span><span class="sxs-lookup"><span data-stu-id="65205-110">Update your connection string</span></span>
+> * <span data-ttu-id="65205-111">가상 컴퓨터에 MongoDB 앱 만들기</span><span class="sxs-lookup"><span data-stu-id="65205-111">Create a MongoDB app on a virtual machine</span></span> 
 
 
-## <a name="create-a-database-account"></a><span data-ttu-id="692f5-112">데이터베이스 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="692f5-112">Create a database account</span></span>
+## <a name="create-a-database-account"></a><span data-ttu-id="65205-112">데이터베이스 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="65205-112">Create a database account</span></span>
 
-<span data-ttu-id="692f5-113">Azure Portal에서 Azure Cosmos DB 계정을 만들어 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-113">Let's start by creating an Azure Cosmos DB account in the Azure portal.</span></span>  
+<span data-ttu-id="65205-113">Hello Azure 포털에서에서 Azure Cosmos DB 계정을 만들어 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="65205-113">Let's start by creating an Azure Cosmos DB account in hello Azure portal.</span></span>  
 
 > [!TIP]
-> * <span data-ttu-id="692f5-114">Azure Cosmos DB 계정이 이미 있나요?</span><span class="sxs-lookup"><span data-stu-id="692f5-114">Already have an Azure Cosmos DB account?</span></span> <span data-ttu-id="692f5-115">그렇다면 [Visual Studio 솔루션 설치](#SetupVS)로 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-115">If so, skip ahead to [Set up your Visual Studio solution](#SetupVS)</span></span>
-> * <span data-ttu-id="692f5-116">Azure DocumentDB 계정이 있나요?</span><span class="sxs-lookup"><span data-stu-id="692f5-116">Did you have an Azure DocumentDB account?</span></span> <span data-ttu-id="692f5-117">그렇다면 이 계정은 이제 Azure Cosmos DB 계정이 되며, [Visual Studio 솔루션 설치](#SetupVS)를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-117">If so, your account is now an Azure Cosmos DB account and you can skip ahead to [Set up your Visual Studio solution](#SetupVS).</span></span>  
-> * <span data-ttu-id="692f5-118">Azure Cosmos DB 에뮬레이터를 사용하는 경우 [Azure Cosmos DB 에뮬레이터](local-emulator.md)의 단계에 따라 에뮬레이터를 설치하고 [Visual Studio 솔루션 설치](#SetupVS)로 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-118">If you are using the Azure Cosmos DB Emulator, please follow the steps at [Azure Cosmos DB Emulator](local-emulator.md) to setup the emulator and skip ahead to [Set up your Visual Studio Solution](#SetupVS).</span></span> 
+> * <span data-ttu-id="65205-114">Azure Cosmos DB 계정이 이미 있나요?</span><span class="sxs-lookup"><span data-stu-id="65205-114">Already have an Azure Cosmos DB account?</span></span> <span data-ttu-id="65205-115">이 경우 건너뛰고 너무[Visual Studio 솔루션 설정](#SetupVS)</span><span class="sxs-lookup"><span data-stu-id="65205-115">If so, skip ahead too[Set up your Visual Studio solution](#SetupVS)</span></span>
+> * <span data-ttu-id="65205-116">Azure DocumentDB 계정이 있나요?</span><span class="sxs-lookup"><span data-stu-id="65205-116">Did you have an Azure DocumentDB account?</span></span> <span data-ttu-id="65205-117">따라서 사용자 계정이 Azure Cosmos DB 계정인 이제 하 고 건너뛰어도 너무[Visual Studio 솔루션 설정](#SetupVS)합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-117">If so, your account is now an Azure Cosmos DB account and you can skip ahead too[Set up your Visual Studio solution](#SetupVS).</span></span>  
+> * <span data-ttu-id="65205-118">Hello Azure Cosmos DB 에뮬레이터를 사용 하는 경우 hello 단계에 따르십시오 [Azure Cosmos DB 에뮬레이터](local-emulator.md) toosetup 에뮬레이터 hello 및 너무 건너 뛸[Visual Studio 솔루션 설정](#SetupVS)합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-118">If you are using hello Azure Cosmos DB Emulator, please follow hello steps at [Azure Cosmos DB Emulator](local-emulator.md) toosetup hello emulator and skip ahead too[Set up your Visual Studio Solution](#SetupVS).</span></span> 
 >
 >
 
 [!INCLUDE [cosmos-db-create-dbaccount-mongodb](../../includes/cosmos-db-create-dbaccount-mongodb.md)]
 
-## <a name="update-your-connection-string"></a><span data-ttu-id="692f5-119">연결 문자열 업데이트</span><span class="sxs-lookup"><span data-stu-id="692f5-119">Update your connection string</span></span>
+## <a name="update-your-connection-string"></a><span data-ttu-id="65205-119">연결 문자열 업데이트</span><span class="sxs-lookup"><span data-stu-id="65205-119">Update your connection string</span></span>
 
-1. <span data-ttu-id="692f5-120">Azure Portal의 **Azure Cosmos DB** 페이지에서 MongoDB API 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-120">In the Azure portal, in the **Azure Cosmos DB** page, select the API for MongoDB account.</span></span> 
-2. <span data-ttu-id="692f5-121">계정 블레이드의 왼쪽 막대에서 **빠른 시작**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-121">In the left bar of the account blade, click **Quick start**.</span></span> 
-3. <span data-ttu-id="692f5-122">플랫폼(*.NET 드라이버*, *Node.js 드라이버*, *MongoDB 셸*, *Java 드라이버*, *Python 드라이버*)을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-122">Choose your platform (*.NET driver*, *Node.js driver*, *MongoDB Shell*, *Java driver*, *Python driver*).</span></span> <span data-ttu-id="692f5-123">드라이버나 도구가 목록에 없더라도 계속해서 더 많은 연결 코드 조각을 문서화하므로 걱정하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="692f5-123">If you don't see your driver or tool listed, don't worry, we continuously document more connection code snippets.</span></span> 
-4. <span data-ttu-id="692f5-124">코드 조각을 복사하여 MongoDB 앱에 붙여넣으면 계속 진행할 준비가 된 것입니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-124">Copy and paste the code snippet into your MongoDB app, and you are ready to go.</span></span>
+1. <span data-ttu-id="65205-120">Hello hello에서 Azure 포털에서에서 **Azure Cosmos DB** 페이지 MongoDB 계정에 대 한 hello API를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-120">In hello Azure portal, in hello **Azure Cosmos DB** page, select hello API for MongoDB account.</span></span> 
+2. <span data-ttu-id="65205-121">Hello 계정 블레이드의 hello 왼쪽된 모음에서 **퀵 스타트**합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-121">In hello left bar of hello account blade, click **Quick start**.</span></span> 
+3. <span data-ttu-id="65205-122">플랫폼(*.NET 드라이버*, *Node.js 드라이버*, *MongoDB 셸*, *Java 드라이버*, *Python 드라이버*)을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-122">Choose your platform (*.NET driver*, *Node.js driver*, *MongoDB Shell*, *Java driver*, *Python driver*).</span></span> <span data-ttu-id="65205-123">드라이버나 도구가 목록에 없더라도 계속해서 더 많은 연결 코드 조각을 문서화하므로 걱정하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="65205-123">If you don't see your driver or tool listed, don't worry, we continuously document more connection code snippets.</span></span> 
+4. <span data-ttu-id="65205-124">복사 및 hello 코드 조각 MongoDB 앱에 붙여넣기 toogo 준비 되 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="65205-124">Copy and paste hello code snippet into your MongoDB app, and you are ready toogo.</span></span>
 
-## <a name="set-up-your-mongodb-app"></a><span data-ttu-id="692f5-125">MongoDB 앱 설치</span><span class="sxs-lookup"><span data-stu-id="692f5-125">Set up your MongoDB app</span></span>
+## <a name="set-up-your-mongodb-app"></a><span data-ttu-id="65205-125">MongoDB 앱 설치</span><span class="sxs-lookup"><span data-stu-id="65205-125">Set up your MongoDB app</span></span>
 
-<span data-ttu-id="692f5-126">최소한의 수정으로 [가상 컴퓨터에서 실행되는 MongoDB에 연결되는 Azure에서 웹앱 만들기](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) 자습서를 사용하여 MongoDB API 계정에 연결되는 MongoDB 응용 프로그램을 빠르게 설치할 수 있습니다(로컬로 또는 Azure 웹앱에 게시됨).</span><span class="sxs-lookup"><span data-stu-id="692f5-126">You can use the [Create a web app in Azure that connects to MongoDB running on a virtual machine](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) tutorial, with minimal modification, to quickly setup a MongoDB application (either locally or published to an Azure web app) that connects to an API for MongoDB account.</span></span>  
+<span data-ttu-id="65205-126">Hello를 사용할 수 있습니다 [tooMongoDB 가상 컴퓨터에서 실행을 연결 하는 Azure에서 웹 앱을 만들](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) tooquickly 설치 MongoDB 응용 프로그램을 최소한의 수정 자습서 (중 하나를 로컬로 또는 게시 된 tooan Azure 웹 앱)를 MongoDB 계정에 대 한 tooan API를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-126">You can use hello [Create a web app in Azure that connects tooMongoDB running on a virtual machine](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) tutorial, with minimal modification, tooquickly setup a MongoDB application (either locally or published tooan Azure web app) that connects tooan API for MongoDB account.</span></span>  
 
-1. <span data-ttu-id="692f5-127">한 번 수정하여 자습서를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-127">Follow the tutorial, with one modification.</span></span>  <span data-ttu-id="692f5-128">Dal.cs 코드를 다음으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-128">Replace the Dal.cs code with this:</span></span>
+1. <span data-ttu-id="65205-127">하나의 수정 하지 않고도 hello 자습서를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-127">Follow hello tutorial, with one modification.</span></span>  <span data-ttu-id="65205-128">Hello Dal.cs 코드를 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="65205-128">Replace hello Dal.cs code with this:</span></span>
 
     ```csharp   
     using System;
@@ -80,7 +80,7 @@ ms.lasthandoff: 08/03/2017
             //private MongoServer mongoServer = null;
             private bool disposed = false;
    
-            // To do: update the connection string with the DNS name
+            // toodo: update hello connection string with hello DNS name
             // or IP address of your server. 
             //For example, "mongodb://testlinux.cloudapp.net
             private string connectionString = "mongodb://localhost:27017";
@@ -89,7 +89,7 @@ ms.lasthandoff: 08/03/2017
             private string password = "<your password>";
    
             // This sample uses a database named "Tasks" and a 
-            //collection named "TasksList".  The database and collection 
+            //collection named "TasksList".  hello database and collection 
             //will be automatically created if they don't already exist.
             private string dbName = "Tasks";
             private string collectionName = "TasksList";
@@ -99,7 +99,7 @@ ms.lasthandoff: 08/03/2017
             {
             }
    
-            // Gets all Task items from the MongoDB server.        
+            // Gets all Task items from hello MongoDB server.        
             public List<MyTask> GetAllTasks()
             {
                 try
@@ -113,7 +113,7 @@ ms.lasthandoff: 08/03/2017
                 }
             }
    
-            // Creates a Task and inserts it into the collection in MongoDB.
+            // Creates a Task and inserts it into hello collection in MongoDB.
             public void CreateTask(MyTask task)
             {
                 var collection = GetTasksCollectionForEdit();
@@ -195,7 +195,7 @@ ms.lasthandoff: 08/03/2017
     }
     ```
 
-2. <span data-ttu-id="692f5-129">Azure Portal의 [키] 페이지에서 계정 설정에 따라 Dal.cs 파일의 다음 변수를 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-129">Modify the following variables in the Dal.cs file per your account settings from the Keys page in the Azure portal:</span></span>
+2. <span data-ttu-id="65205-129">Hello 계정 설정에 따라 hello Dal.cs 파일에 있는 변수 hello Azure 포털의에서 hello 키 페이지에서 다음을 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-129">Modify hello following variables in hello Dal.cs file per your account settings from hello Keys page in hello Azure portal:</span></span>
 
     ```csharp   
     private string userName = "<your user name>";
@@ -203,26 +203,26 @@ ms.lasthandoff: 08/03/2017
     private string password = "<your password>";
     ```
 
-3. <span data-ttu-id="692f5-130">앱을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-130">Use the app!</span></span>
+3. <span data-ttu-id="65205-130">Hello 앱을 사용 하 여!</span><span class="sxs-lookup"><span data-stu-id="65205-130">Use hello app!</span></span>
 
-## <a name="clean-up-resources"></a><span data-ttu-id="692f5-131">리소스 정리</span><span class="sxs-lookup"><span data-stu-id="692f5-131">Clean up resources</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="65205-131">리소스 정리</span><span class="sxs-lookup"><span data-stu-id="65205-131">Clean up resources</span></span>
 
-<span data-ttu-id="692f5-132">이 응용 프로그램을 계속 사용하지 않으려면 Azure Portal에서 다음 단계에 따라 이 자습서에서 만든 리소스를 모두 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-132">If you're not going to continue to use this app, use the following steps to delete all resources created by this tutorial in the Azure portal.</span></span> 
+<span data-ttu-id="65205-132">것 toocontinue toouse이이 앱을 하는 경우 단계 toodelete hello Azure 포털에서에서이 자습서에서 만든 모든 리소스를 수행 하는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-132">If you're not going toocontinue toouse this app, use hello following steps toodelete all resources created by this tutorial in hello Azure portal.</span></span> 
 
-1. <span data-ttu-id="692f5-133">Azure Portal의 왼쪽 메뉴에서 **리소스 그룹**을 클릭한 다음 만든 리소스의 이름을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-133">From the left-hand menu in the Azure portal, click **Resource groups** and then click the name of the resource you created.</span></span> 
-2. <span data-ttu-id="692f5-134">리소스 그룹 페이지에서 **삭제**를 클릭하고 텍스트 상자에서 삭제할 리소스의 이름을 입력한 다음 **삭제**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-134">On your resource group page, click **Delete**, type the name of the resource to delete in the text box, and then click **Delete**.</span></span>
+1. <span data-ttu-id="65205-133">Hello Azure 포털에서에서 왼쪽 메뉴 hello에서에서 클릭 **리소스 그룹** 만든 hello 리소스의 hello 이름을 클릭 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="65205-133">From hello left-hand menu in hello Azure portal, click **Resource groups** and then click hello name of hello resource you created.</span></span> 
+2. <span data-ttu-id="65205-134">리소스 그룹 페이지에서 클릭 **삭제**hello 텍스트 상자에 hello 리소스 toodelete의 hello 이름을 입력 한 다음 클릭 **삭제**합니다.</span><span class="sxs-lookup"><span data-stu-id="65205-134">On your resource group page, click **Delete**, type hello name of hello resource toodelete in hello text box, and then click **Delete**.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="692f5-135">다음 단계</span><span class="sxs-lookup"><span data-stu-id="692f5-135">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="65205-135">다음 단계</span><span class="sxs-lookup"><span data-stu-id="65205-135">Next steps</span></span>
 
-<span data-ttu-id="692f5-136">이 자습서에서는 다음을 수행했습니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-136">In this tutorial, you've done the following:</span></span>
+<span data-ttu-id="65205-136">이 자습서에서는 hello 다음 작업을 수행 하면:</span><span class="sxs-lookup"><span data-stu-id="65205-136">In this tutorial, you've done hello following:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="692f5-137">Azure Cosmos DB 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="692f5-137">Create an Azure Cosmos DB account</span></span> 
-> * <span data-ttu-id="692f5-138">연결 문자열 업데이트</span><span class="sxs-lookup"><span data-stu-id="692f5-138">Update your connection string</span></span>
-> * <span data-ttu-id="692f5-139">가상 컴퓨터에 MongoDB 앱 만들기</span><span class="sxs-lookup"><span data-stu-id="692f5-139">Create a MongoDB app on a virtual machine</span></span>
+> * <span data-ttu-id="65205-137">Azure Cosmos DB 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="65205-137">Create an Azure Cosmos DB account</span></span> 
+> * <span data-ttu-id="65205-138">연결 문자열 업데이트</span><span class="sxs-lookup"><span data-stu-id="65205-138">Update your connection string</span></span>
+> * <span data-ttu-id="65205-139">가상 컴퓨터에 MongoDB 앱 만들기</span><span class="sxs-lookup"><span data-stu-id="65205-139">Create a MongoDB app on a virtual machine</span></span>
 
-<span data-ttu-id="692f5-140">다음 자습서로 진행하여 MongoDB 데이터를 Azure Cosmos DB로 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="692f5-140">You can proceed to the next tutorial and import your MongoDB data to Azure Cosmos DB.</span></span>  
+<span data-ttu-id="65205-140">Toohello 다음 자습서를 진행 한 MongoDB 데이터 tooAzure Cosmos DB를 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="65205-140">You can proceed toohello next tutorial and import your MongoDB data tooAzure Cosmos DB.</span></span>  
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="692f5-141">Azure Cosmos DB로 MongoDB 데이터 가져오기</span><span class="sxs-lookup"><span data-stu-id="692f5-141">Import MongoDB data into Azure Cosmos DB</span></span>](mongodb-migrate.md)
+> [<span data-ttu-id="65205-141">Azure Cosmos DB로 MongoDB 데이터 가져오기</span><span class="sxs-lookup"><span data-stu-id="65205-141">Import MongoDB data into Azure Cosmos DB</span></span>](mongodb-migrate.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 스크립트 샘플 - 웹앱에 사용자 지정 도메인 할당 | Microsoft Docs"
-description: "Azure PowerShell 스크립트 샘플 - 웹앱에 사용자 지정 도메인 할당"
+title: "PowerShell 스크립트 샘플-aaaAzure 할당할 사용자 지정 도메인 tooa 웹 응용 프로그램 | Microsoft Docs"
+description: "Azure PowerShell 스크립트 샘플-사용자 지정 도메인 tooa 웹 응용 프로그램 할당"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,44 +15,44 @@ ms.topic: sample
 ms.date: 03/20/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 6d25fe8098848fc69470c77e3200bee554c1f875
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 10224e800588019626ef25cbba4a926096779920
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-a-custom-domain-to-a-web-app"></a><span data-ttu-id="b97b1-103">웹앱에 사용자 지정 도메인 할당</span><span class="sxs-lookup"><span data-stu-id="b97b1-103">Assign a custom domain to a web app</span></span>
+# <a name="assign-a-custom-domain-tooa-web-app"></a><span data-ttu-id="ff6b5-103">사용자 지정 도메인 tooa 웹 응용 프로그램 할당</span><span class="sxs-lookup"><span data-stu-id="ff6b5-103">Assign a custom domain tooa web app</span></span>
 
-<span data-ttu-id="b97b1-104">이 샘플 스크립트는 관련된 리소스를 사용하여 App Service에서 웹앱을 만든 다음 여기에 `www.<yourdomain>`를 매핑합니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-104">This sample script creates a web app in App Service with its related resources, and then maps `www.<yourdomain>` to it.</span></span> 
+<span data-ttu-id="ff6b5-104">이 샘플 스크립트는 웹 앱 앱 서비스에서과 해당 관련된 리소스를 만들고 다음 매핑합니다 `www.<yourdomain>` tooit 합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-104">This sample script creates a web app in App Service with its related resources, and then maps `www.<yourdomain>` tooit.</span></span> 
 
-<span data-ttu-id="b97b1-105">필요한 경우 [Azure PowerShell 가이드](/powershell/azure/overview)에 있는 지침을 사용하여 Azure PowerShell을 설치한 다음, `Login-AzureRmAccount`를 실행하여 Azure에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-105">If needed, install the Azure PowerShell using the instruction found in the [Azure PowerShell guide](/powershell/azure/overview), and then run `Login-AzureRmAccount` to create a connection with Azure.</span></span> <span data-ttu-id="b97b1-106">또한 도메인 등록 기관의 DNS 구성 페이지에 액세스할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-106">Also, you need to have access to your domain registrar's DNS configuration page.</span></span>
+<span data-ttu-id="ff6b5-105">필요한 경우 설치 명령 hello를 사용 하 여 Azure PowerShell hello 있는 hello [Azure PowerShell 가이드](/powershell/azure/overview), 한 다음 실행 `Login-AzureRmAccount` toocreate Azure와의 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-105">If needed, install hello Azure PowerShell using hello instruction found in hello [Azure PowerShell guide](/powershell/azure/overview), and then run `Login-AzureRmAccount` toocreate a connection with Azure.</span></span> <span data-ttu-id="ff6b5-106">또한 toohave 액세스 tooyour 도메인 등록자의 DNS 구성 페이지가 있어야합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-106">Also, you need toohave access tooyour domain registrar's DNS configuration page.</span></span>
 
-## <a name="sample-script"></a><span data-ttu-id="b97b1-107">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="b97b1-107">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="ff6b5-107">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="ff6b5-107">Sample script</span></span>
 
-<span data-ttu-id="b97b1-108">[!code-powershell[main](../../../powershell_scripts/app-service/map-custom-domain/map-custom-domain.ps1?highlight=1 "웹앱에 사용자 지정 도메인 할당")]</span><span class="sxs-lookup"><span data-stu-id="b97b1-108">[!code-powershell[main](../../../powershell_scripts/app-service/map-custom-domain/map-custom-domain.ps1?highlight=1 "Assign a custom domain to a web app")]</span></span>
+[!code-powershell[main](../../../powershell_scripts/app-service/map-custom-domain/map-custom-domain.ps1?highlight=1 "Assign a custom domain tooa web app")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="b97b1-109">배포 정리</span><span class="sxs-lookup"><span data-stu-id="b97b1-109">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="ff6b5-108">배포 정리</span><span class="sxs-lookup"><span data-stu-id="ff6b5-108">Clean up deployment</span></span> 
 
-<span data-ttu-id="b97b1-110">스크립트 샘플을 실행한 후에는 다음 명령을 사용하여 리소스 그룹, 웹앱 및 모든 관련된 리소스를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-110">After the script sample has been run, the following command can be used to remove the resource group, web app, and all related resources.</span></span>
+<span data-ttu-id="ff6b5-109">Hello 스크립트 예제를 실행 한 후 다음 명령을 hello 사용된 tooremove hello 리소스 그룹, 웹 앱 및 관련 된 모든 리소스를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-109">After hello script sample has been run, hello following command can be used tooremove hello resource group, web app, and all related resources.</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="b97b1-111">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="b97b1-111">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="ff6b5-110">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="ff6b5-110">Script explanation</span></span>
 
-<span data-ttu-id="b97b1-112">이 스크립트는 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-112">This script uses the following commands.</span></span> <span data-ttu-id="b97b1-113">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-113">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="ff6b5-111">이 스크립트 명령 뒤 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-111">This script uses hello following commands.</span></span> <span data-ttu-id="ff6b5-112">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-112">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="b97b1-114">명령</span><span class="sxs-lookup"><span data-stu-id="b97b1-114">Command</span></span> | <span data-ttu-id="b97b1-115">참고 사항</span><span class="sxs-lookup"><span data-stu-id="b97b1-115">Notes</span></span> |
+| <span data-ttu-id="ff6b5-113">명령</span><span class="sxs-lookup"><span data-stu-id="ff6b5-113">Command</span></span> | <span data-ttu-id="ff6b5-114">참고 사항</span><span class="sxs-lookup"><span data-stu-id="ff6b5-114">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="b97b1-116">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="b97b1-116">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="b97b1-117">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-117">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="b97b1-118">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="b97b1-118">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="b97b1-119">App Service 계획을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-119">Creates an App Service plan.</span></span> |
-| [<span data-ttu-id="b97b1-120">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="b97b1-120">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="b97b1-121">웹앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-121">Creates a web app.</span></span> |
-| [<span data-ttu-id="b97b1-122">Set-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="b97b1-122">Set-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/set-azurermappserviceplan) | <span data-ttu-id="b97b1-123">App Service 계획을 수정하여 해당 가격 책정 계층을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-123">Modifies an App Service plan to change its pricing tier.</span></span> |
-| [<span data-ttu-id="b97b1-124">Set-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="b97b1-124">Set-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/set-azurermwebapp) | <span data-ttu-id="b97b1-125">웹앱의 구성을 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-125">Modifies a web app's configuration.</span></span> |
+| [<span data-ttu-id="ff6b5-115">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="ff6b5-115">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="ff6b5-116">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-116">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="ff6b5-117">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="ff6b5-117">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="ff6b5-118">App Service 계획을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-118">Creates an App Service plan.</span></span> |
+| [<span data-ttu-id="ff6b5-119">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="ff6b5-119">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="ff6b5-120">웹앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-120">Creates a web app.</span></span> |
+| [<span data-ttu-id="ff6b5-121">Set-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="ff6b5-121">Set-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/set-azurermappserviceplan) | <span data-ttu-id="ff6b5-122">앱 서비스 계획 toochange 해당 가격 책정 계층을 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-122">Modifies an App Service plan toochange its pricing tier.</span></span> |
+| [<span data-ttu-id="ff6b5-123">Set-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="ff6b5-123">Set-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/set-azurermwebapp) | <span data-ttu-id="ff6b5-124">웹앱의 구성을 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-124">Modifies a web app's configuration.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="b97b1-126">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b97b1-126">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ff6b5-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ff6b5-125">Next steps</span></span>
 
-<span data-ttu-id="b97b1-127">Azure PowerShell 모듈에 대한 자세한 내용은 [Azure PowerShell 설명서](/powershell/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b97b1-127">For more information on the Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+<span data-ttu-id="ff6b5-126">Hello Azure PowerShell 모듈에 대 한 자세한 내용은 참조 하십시오. [Azure PowerShell 설명서](/powershell/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-126">For more information on hello Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="b97b1-128">Azure App Service Web Apps에 대한 추가 Azure PowerShell 샘플은 [Azure PowerShell 샘플](../app-service-powershell-samples.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b97b1-128">Additional Azure Powershell samples for Azure App Service Web Apps can be found in the [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>
+<span data-ttu-id="ff6b5-127">Azure 앱 서비스 웹 앱에 대 한 추가 Azure Powershell 샘플 hello에서 확인할 수 있습니다 [Azure PowerShell 샘플](../app-service-powershell-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="ff6b5-127">Additional Azure Powershell samples for Azure App Service Web Apps can be found in hello [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>

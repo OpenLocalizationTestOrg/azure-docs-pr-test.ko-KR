@@ -1,6 +1,6 @@
 ---
-title: ".NET을 사용하여 온-프레미스 인코더로 라이브 스트리밍을 수행하는 방법 | Microsoft Docs"
-description: "이 항목에서는 .NET을 사용하여 온-프레미스 인코더로 라이브 인코딩을 수행하는 방법을 보여 줍니다."
+title: "aaaHow tooperform를 통해 라이브 스트리밍 온-프레미스.NET을 사용 하 여 인코더 | Microsoft Docs"
+description: "이 항목에서는 방법을 toouse.NET tooperform 라이브 온-프레미스 인코더로 인코딩 합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,60 +14,60 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: cenkdin;juliako
-ms.openlocfilehash: 3ef6065f5b9e05e0ea5716548699943a2c877bc4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 332582c9f925f8b9270929b3fa8140fce010bbf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-net"></a><span data-ttu-id="9d507-103">.NET을 사용하여 온-프레미스 인코더로 라이브 스트리밍을 수행하는 방법</span><span class="sxs-lookup"><span data-stu-id="9d507-103">How to perform live streaming with on-premises encoders using .NET</span></span>
+# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-net"></a><span data-ttu-id="f4a86-103">.NET을 사용 하 여 온-프레미스 인코더로 tooperform 라이브 스트리밍 방식</span><span class="sxs-lookup"><span data-stu-id="f4a86-103">How tooperform live streaming with on-premises encoders using .NET</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="9d507-104">포털</span><span class="sxs-lookup"><span data-stu-id="9d507-104">Portal</span></span>](media-services-portal-live-passthrough-get-started.md)
-> * [<span data-ttu-id="9d507-105">.NET</span><span class="sxs-lookup"><span data-stu-id="9d507-105">.NET</span></span>](media-services-dotnet-live-encode-with-onpremises-encoders.md)
-> * [<span data-ttu-id="9d507-106">REST (영문)</span><span class="sxs-lookup"><span data-stu-id="9d507-106">REST</span></span>](https://docs.microsoft.com/rest/api/media/operations/channel)
+> * [<span data-ttu-id="f4a86-104">포털</span><span class="sxs-lookup"><span data-stu-id="f4a86-104">Portal</span></span>](media-services-portal-live-passthrough-get-started.md)
+> * [<span data-ttu-id="f4a86-105">.NET</span><span class="sxs-lookup"><span data-stu-id="f4a86-105">.NET</span></span>](media-services-dotnet-live-encode-with-onpremises-encoders.md)
+> * [<span data-ttu-id="f4a86-106">REST (영문)</span><span class="sxs-lookup"><span data-stu-id="f4a86-106">REST</span></span>](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > 
 
-<span data-ttu-id="9d507-107">이 자습서에서는 Azure Media Services .NET SDK를 사용하여 통과 배달을 위해 구성된 **채널** 을 만드는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-107">This tutorial walks you through the steps of using the Azure Media Services .NET SDK to create a **Channel** that is configured for a pass-through delivery.</span></span> 
+<span data-ttu-id="f4a86-107">이 자습서에서는 Azure 미디어 서비스.NET SDK toocreate hello를 사용 하 여 hello 단계는 **채널** 하도록 구성 되어 있는 통과 배달 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-107">This tutorial walks you through hello steps of using hello Azure Media Services .NET SDK toocreate a **Channel** that is configured for a pass-through delivery.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="9d507-108">필수 조건</span><span class="sxs-lookup"><span data-stu-id="9d507-108">Prerequisites</span></span>
-<span data-ttu-id="9d507-109">자습서를 완료하는 데 필요한 조건은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-109">The following are required to complete the tutorial:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="f4a86-108">필수 조건</span><span class="sxs-lookup"><span data-stu-id="f4a86-108">Prerequisites</span></span>
+<span data-ttu-id="f4a86-109">hello 다음은 필요한 toocomplete hello 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-109">hello following are required toocomplete hello tutorial:</span></span>
 
-* <span data-ttu-id="9d507-110">Azure 계정.</span><span class="sxs-lookup"><span data-stu-id="9d507-110">An Azure account.</span></span>
-* <span data-ttu-id="9d507-111">미디어 서비스 계정.</span><span class="sxs-lookup"><span data-stu-id="9d507-111">A Media Services account.</span></span>    <span data-ttu-id="9d507-112">Media Services 계정을 만들려면 [Media Services 계정을 만드는 방법](media-services-portal-create-account.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9d507-112">To create a Media Services account, see [How to Create a Media Services Account](media-services-portal-create-account.md).</span></span>
-* <span data-ttu-id="9d507-113">개발 환경을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-113">Set up your dev environment.</span></span> <span data-ttu-id="9d507-114">자세한 내용은 [환경 설정](media-services-set-up-computer.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9d507-114">For more information, see [Set up your environment](media-services-set-up-computer.md).</span></span>
-* <span data-ttu-id="9d507-115">웹캠.</span><span class="sxs-lookup"><span data-stu-id="9d507-115">A webcam.</span></span> <span data-ttu-id="9d507-116">예를 들어, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm)</span><span class="sxs-lookup"><span data-stu-id="9d507-116">For example, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm).</span></span>
+* <span data-ttu-id="f4a86-110">Azure 계정.</span><span class="sxs-lookup"><span data-stu-id="f4a86-110">An Azure account.</span></span>
+* <span data-ttu-id="f4a86-111">Media Services 계정.</span><span class="sxs-lookup"><span data-stu-id="f4a86-111">A Media Services account.</span></span>    <span data-ttu-id="f4a86-112">미디어 서비스 계정 toocreate 참조 [어떻게 tooCreate Media Services 계정을](media-services-portal-create-account.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-112">toocreate a Media Services account, see [How tooCreate a Media Services Account](media-services-portal-create-account.md).</span></span>
+* <span data-ttu-id="f4a86-113">개발 환경을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-113">Set up your dev environment.</span></span> <span data-ttu-id="f4a86-114">자세한 내용은 [환경 설정](media-services-set-up-computer.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f4a86-114">For more information, see [Set up your environment](media-services-set-up-computer.md).</span></span>
+* <span data-ttu-id="f4a86-115">웹캠.</span><span class="sxs-lookup"><span data-stu-id="f4a86-115">A webcam.</span></span> <span data-ttu-id="f4a86-116">예를 들어, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm)</span><span class="sxs-lookup"><span data-stu-id="f4a86-116">For example, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm).</span></span>
 
-<span data-ttu-id="9d507-117">다음 문서를 검토하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-117">Recommended to review the following articles:</span></span>
+<span data-ttu-id="f4a86-117">다음 문서 권장된 tooreview hello:</span><span class="sxs-lookup"><span data-stu-id="f4a86-117">Recommended tooreview hello following articles:</span></span>
 
-* [<span data-ttu-id="9d507-118">Azure 미디어 서비스 RTMP 지원 및 라이브 인코더</span><span class="sxs-lookup"><span data-stu-id="9d507-118">Azure Media Services RTMP Support and Live Encoders</span></span>](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
-* [<span data-ttu-id="9d507-119">다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍</span><span class="sxs-lookup"><span data-stu-id="9d507-119">Live streaming with on-premises encoders that create multi-bitrate streams</span></span>](media-services-live-streaming-with-onprem-encoders.md)
+* [<span data-ttu-id="f4a86-118">Azure 미디어 서비스 RTMP 지원 및 라이브 인코더</span><span class="sxs-lookup"><span data-stu-id="f4a86-118">Azure Media Services RTMP Support and Live Encoders</span></span>](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
+* [<span data-ttu-id="f4a86-119">다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍</span><span class="sxs-lookup"><span data-stu-id="f4a86-119">Live streaming with on-premises encoders that create multi-bitrate streams</span></span>](media-services-live-streaming-with-onprem-encoders.md)
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="9d507-120">Visual Studio 프로젝트 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="9d507-120">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="f4a86-120">Visual Studio 프로젝트 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="f4a86-120">Create and configure a Visual Studio project</span></span>
 
-<span data-ttu-id="9d507-121">개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-121">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+<span data-ttu-id="f4a86-121">개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-121">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
 
-## <a name="example"></a><span data-ttu-id="9d507-122">예제</span><span class="sxs-lookup"><span data-stu-id="9d507-122">Example</span></span>
-<span data-ttu-id="9d507-123">다음 코드 예제는 다음 작업을 수행하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-123">The following code example demonstrates how to achieve the following tasks:</span></span>
+## <a name="example"></a><span data-ttu-id="f4a86-122">예제</span><span class="sxs-lookup"><span data-stu-id="f4a86-122">Example</span></span>
+<span data-ttu-id="f4a86-123">다음 코드 예제는 hello tooachieve hello 다음 작업 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-123">hello following code example demonstrates how tooachieve hello following tasks:</span></span>
 
-* <span data-ttu-id="9d507-124">미디어 서비스에 연결</span><span class="sxs-lookup"><span data-stu-id="9d507-124">Connect to Media Services</span></span>
-* <span data-ttu-id="9d507-125">채널 만들기</span><span class="sxs-lookup"><span data-stu-id="9d507-125">Create a channel</span></span>
-* <span data-ttu-id="9d507-126">채널 업데이트</span><span class="sxs-lookup"><span data-stu-id="9d507-126">Update the channel</span></span>
-* <span data-ttu-id="9d507-127">채널의 입력 끝점 가져오기.</span><span class="sxs-lookup"><span data-stu-id="9d507-127">Retrieve the channel’s input endpoint.</span></span> <span data-ttu-id="9d507-128">온-프레미스 라이브 인코더에 입력 끝점을 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-128">The input endpoint should be provided to the on-premises live encoder.</span></span> <span data-ttu-id="9d507-129">라이브 인코더가 카메라에서 채널의 입력(수집) 끝점으로 보내는 스트림까지 신호를 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-129">The live encoder converts signals from the camera to streams that are sent to the channel’s input (ingest) endpoint.</span></span>
-* <span data-ttu-id="9d507-130">채널의 미리 보기 끝점 가져오기</span><span class="sxs-lookup"><span data-stu-id="9d507-130">Retrieve the channel’s preview endpoint</span></span>
-* <span data-ttu-id="9d507-131">프로그램 만들기 및 시작</span><span class="sxs-lookup"><span data-stu-id="9d507-131">Create and start a program</span></span>
-* <span data-ttu-id="9d507-132">프로그램에 액세스하는 데 필요한 로케이터 만들기</span><span class="sxs-lookup"><span data-stu-id="9d507-132">Create a locator needed to access the program</span></span>
-* <span data-ttu-id="9d507-133">StreamingEndpoint 만들기 및 시작</span><span class="sxs-lookup"><span data-stu-id="9d507-133">Create and start a StreamingEndpoint</span></span>
-* <span data-ttu-id="9d507-134">스트리밍 끝점 업데이트</span><span class="sxs-lookup"><span data-stu-id="9d507-134">Update the streaming endpoint</span></span>
-* <span data-ttu-id="9d507-135">리소스 종료</span><span class="sxs-lookup"><span data-stu-id="9d507-135">Shut down resources</span></span>
+* <span data-ttu-id="f4a86-124">TooMedia 서비스 연결</span><span class="sxs-lookup"><span data-stu-id="f4a86-124">Connect tooMedia Services</span></span>
+* <span data-ttu-id="f4a86-125">채널 만들기</span><span class="sxs-lookup"><span data-stu-id="f4a86-125">Create a channel</span></span>
+* <span data-ttu-id="f4a86-126">Hello 채널 업데이트</span><span class="sxs-lookup"><span data-stu-id="f4a86-126">Update hello channel</span></span>
+* <span data-ttu-id="f4a86-127">Hello 채널의 입력된 끝점을 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-127">Retrieve hello channel’s input endpoint.</span></span> <span data-ttu-id="f4a86-128">입력된 끝점 hello toohello 온-프레미스 라이브 인코더를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-128">hello input endpoint should be provided toohello on-premises live encoder.</span></span> <span data-ttu-id="f4a86-129">hello toohello 채널의 입력을 보내는 hello 카메라 toostreams에서 변환 신호를 라이브 인코더 (수집) 끝점입니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-129">hello live encoder converts signals from hello camera toostreams that are sent toohello channel’s input (ingest) endpoint.</span></span>
+* <span data-ttu-id="f4a86-130">Hello 채널의 미리 보기 끝점 검색</span><span class="sxs-lookup"><span data-stu-id="f4a86-130">Retrieve hello channel’s preview endpoint</span></span>
+* <span data-ttu-id="f4a86-131">프로그램 만들기 및 시작</span><span class="sxs-lookup"><span data-stu-id="f4a86-131">Create and start a program</span></span>
+* <span data-ttu-id="f4a86-132">필요한 tooaccess hello 프로그램 로케이터 만들기</span><span class="sxs-lookup"><span data-stu-id="f4a86-132">Create a locator needed tooaccess hello program</span></span>
+* <span data-ttu-id="f4a86-133">StreamingEndpoint 만들기 및 시작</span><span class="sxs-lookup"><span data-stu-id="f4a86-133">Create and start a StreamingEndpoint</span></span>
+* <span data-ttu-id="f4a86-134">Hello 스트리밍 끝점 업데이트</span><span class="sxs-lookup"><span data-stu-id="f4a86-134">Update hello streaming endpoint</span></span>
+* <span data-ttu-id="f4a86-135">리소스 종료</span><span class="sxs-lookup"><span data-stu-id="f4a86-135">Shut down resources</span></span>
 
 >[!IMPORTANT]
-><span data-ttu-id="9d507-136">콘텐츠를 스트리밍하려는 스트리밍 끝점이 **실행** 상태에 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-136">Make sure the streaming endpoint from which you want to stream content is in the **Running** state.</span></span> 
+><span data-ttu-id="f4a86-136">스트리밍 끝점 toostream 콘텐츠 원하는 hello hello에 있는지 확인 **실행** 상태입니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-136">Make sure hello streaming endpoint from which you want toostream content is in hello **Running** state.</span></span> 
     
 >[!NOTE]
-><span data-ttu-id="9d507-137">다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-137">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="9d507-138">항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9d507-138">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="9d507-139">자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9d507-139">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+><span data-ttu-id="f4a86-137">다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-137">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="f4a86-138">Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한.</span><span class="sxs-lookup"><span data-stu-id="f4a86-138">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="f4a86-139">자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f4a86-139">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
-<span data-ttu-id="9d507-140">라이브 인코더 구성 방법에 대한 자세한 내용은 [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9d507-140">For information on how to configure a live encoder, see [Azure Media Services RTMP Support and Live Encoders](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/).</span></span>
+<span data-ttu-id="f4a86-140">방법에 대 한 라이브 인코더 tooconfigure 참조 [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)합니다.</span><span class="sxs-lookup"><span data-stu-id="f4a86-140">For information on how tooconfigure a live encoder, see [Azure Media Services RTMP Support and Live Encoders](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/).</span></span>
 
     using System;
     using System.Collections.Generic;
@@ -86,7 +86,7 @@ ms.lasthandoff: 08/29/2017
         private const string AssetlName = "asset001";
         private const string ProgramlName = "program001";
 
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -103,11 +103,11 @@ ms.lasthandoff: 08/29/2017
 
             IChannel channel = CreateAndStartChannel();
 
-            // Set the Live Encoder to point to the channel's input endpoint:
+            // Set hello Live Encoder toopoint toohello channel's input endpoint:
             string ingestUrl = channel.Input.Endpoints.FirstOrDefault().Url.ToString();
 
-            // Use the previewEndpoint to preview and verify
-            // that the input from the encoder is actually reaching the Channel.
+            // Use hello previewEndpoint toopreview and verify
+            // that hello input from hello encoder is actually reaching hello Channel.
             string previewEndpoint = channel.Preview.Endpoints.FirstOrDefault().Url.ToString();
 
             IProgram program = CreateAndStartProgram(channel);
@@ -120,7 +120,7 @@ ms.lasthandoff: 08/29/2017
 
         public static IChannel CreateAndStartChannel()
         {
-            //If you want to change the Smooth fragments to HLS segment ratio, you would set the ChannelCreationOptions’s Output property.
+            //If you want toochange hello Smooth fragments tooHLS segment ratio, you would set hello ChannelCreationOptions’s Output property.
 
             IChannel channel = _context.Channels.Create(
             new ChannelCreationOptions
@@ -130,7 +130,7 @@ ms.lasthandoff: 08/29/2017
             Preview = CreateChannelPreview()
             });
 
-            //Starting and stopping Channels can take some time to execute. To determine the state of operations after calling Start or Stop, query the IChannel.State .
+            //Starting and stopping Channels can take some time tooexecute. toodetermine hello state of operations after calling Start or Stop, query hello IChannel.State .
 
             channel.Start();
 
@@ -150,7 +150,7 @@ ms.lasthandoff: 08/29/2017
                     {
                     Name = "TestChannelInput001",
                     // Setting 0.0.0.0 for Address and 0 for SubnetPrefixLength
-                    // will allow access to IP addresses.
+                    // will allow access tooIP addresses.
                     Address = IPAddress.Parse("0.0.0.0"),
                     SubnetPrefixLength = 0
                     }
@@ -171,7 +171,7 @@ ms.lasthandoff: 08/29/2017
                     {
                     Name = "TestChannelPreview001",
                     // Setting 0.0.0.0 for Address and 0 for SubnetPrefixLength
-                    // will allow access to IP addresses.
+                    // will allow access tooIP addresses.
                     Address = IPAddress.Parse("0.0.0.0"),
                     SubnetPrefixLength = 0
                     }
@@ -213,7 +213,7 @@ ms.lasthandoff: 08/29/2017
         {
             IAsset asset = _context.Assets.Create(AssetlName, AssetCreationOptions.None);
 
-            // Create a Program on the Channel. You can have multiple Programs that overlap or are sequential;
+            // Create a Program on hello Channel. You can have multiple Programs that overlap or are sequential;
             // however each Program must have a unique name within your Media Services account.
             IProgram program = channel.Programs.Create(ProgramlName, TimeSpan.FromHours(3), asset.Id);
             program.Start();
@@ -379,11 +379,11 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-## <a name="next-step"></a><span data-ttu-id="9d507-141">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9d507-141">Next Step</span></span>
-<span data-ttu-id="9d507-142">미디어 서비스 학습 경로 검토</span><span class="sxs-lookup"><span data-stu-id="9d507-142">Review Media Services learning paths</span></span>
+## <a name="next-step"></a><span data-ttu-id="f4a86-141">다음 단계</span><span class="sxs-lookup"><span data-stu-id="f4a86-141">Next Step</span></span>
+<span data-ttu-id="f4a86-142">미디어 서비스 학습 경로 검토</span><span class="sxs-lookup"><span data-stu-id="f4a86-142">Review Media Services learning paths</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="9d507-143">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="9d507-143">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="f4a86-143">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="f4a86-143">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

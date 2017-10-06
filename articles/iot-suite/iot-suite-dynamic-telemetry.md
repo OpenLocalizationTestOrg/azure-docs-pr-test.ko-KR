@@ -1,6 +1,6 @@
 ---
-title: "동적 원격 분석 사용 | Microsoft Docs"
-description: "이 자습서를 따라 Azure IoT Suite 원격 모니터링 사전 구성 솔루션으로 동적 원격 분석을 사용하는 방법을 익히세요."
+title: "aaaUse 동적 원격 분석 | Microsoft Docs"
+description: "이 자습서 toolearn 따라 hello Azure IoT Suite 원격 모니터링 toouse 동적 원격 분석 미리 솔루션을 구성 하는 방법입니다."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a><span data-ttu-id="ebf2f-103">원격 모니터링 사전 구성 솔루션으로 동적 원격 분석 사용</span><span class="sxs-lookup"><span data-stu-id="ebf2f-103">Use dynamic telemetry with the remote monitoring preconfigured solution</span></span>
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a><span data-ttu-id="87197-103">동적 원격 분석을 사용 하 여 원격 미리 구성 된 솔루션을 모니터링 하는 hello로</span><span class="sxs-lookup"><span data-stu-id="87197-103">Use dynamic telemetry with hello remote monitoring preconfigured solution</span></span>
 
-<span data-ttu-id="ebf2f-104">동적 원격 분석을 사용하면 원격 모니터링 사전 구성 솔루션에 전송된 모든 원격 분석을 시각화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-104">Dynamic telemetry enables you to visualize any telemetry sent to the remote monitoring preconfigured solution.</span></span> <span data-ttu-id="ebf2f-105">미리 구성된 솔루션으로 배포하는 시뮬레이션 장치는 온도와 습도 원격 분석 정보를 전송합니다. 이 정보는 대시보드에서 시각화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-105">The simulated devices that deploy with the preconfigured solution send temperature and humidity telemetry, which you can visualize on the dashboard.</span></span> <span data-ttu-id="ebf2f-106">기존 시뮬레이션 장치를 사용자 지정하거나 새로운 시뮬레이션 장치를 만들거나 물리적 장치를 사전 구성된 솔루션에 연결할 경우, 외부 온도, RPM, 풍속 등의 다른 원격 분석 값을 전송할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-106">If you customize existing simulated devices, create new simulated devices, or connect physical devices to the preconfigured solution you can send other telemetry values such as the external temperature, RPM, or windspeed.</span></span> <span data-ttu-id="ebf2f-107">대시보드에서 이런 추가 원격 분석을 시각화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-107">You can then visualize this additional telemetry on the dashboard.</span></span>
+<span data-ttu-id="87197-104">동적 원격 분석 하면 toovisualize 모든 원격 분석 전송 toohello를 원격 모니터링 미리 구성 된 솔루션을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-104">Dynamic telemetry enables you toovisualize any telemetry sent toohello remote monitoring preconfigured solution.</span></span> <span data-ttu-id="87197-105">미리 구성 하는 hello 솔루션으로 배포 하는 hello 시뮬레이션 된 장치는 hello 대시보드에서 시각화할 수 있는 온도 및 습도 원격 분석을 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-105">hello simulated devices that deploy with hello preconfigured solution send temperature and humidity telemetry, which you can visualize on hello dashboard.</span></span> <span data-ttu-id="87197-106">기존 시뮬레이션 된 장치를 사용자 지정 하면 새 시뮬레이션 된 장치를 만들거나 물리적 장치 toohello 미리 구성 된 솔루션 hello 외부 온도, RPM을 또는 windspeed 같은 다른 원격 분석 값을 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-106">If you customize existing simulated devices, create new simulated devices, or connect physical devices toohello preconfigured solution you can send other telemetry values such as hello external temperature, RPM, or windspeed.</span></span> <span data-ttu-id="87197-107">그런 다음 hello 대시보드에서 추가 원격 분석을 시각화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-107">You can then visualize this additional telemetry on hello dashboard.</span></span>
 
-<span data-ttu-id="ebf2f-108">이 자습서는 간단한 Node.js 시뮬레이션 장치를 사용하므로 쉽게 수정하여 동적 원격 분석으로 실험할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-108">This tutorial uses a simple Node.js simulated device that you can easily modify to experiment with dynamic telemetry.</span></span>
+<span data-ttu-id="87197-108">이 자습서에서는 tooexperiment 된 동적 원격 분석을 쉽게 수정할 수 있는 간단한 Node.js 시뮬레이션 된 장치를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-108">This tutorial uses a simple Node.js simulated device that you can easily modify tooexperiment with dynamic telemetry.</span></span>
 
-<span data-ttu-id="ebf2f-109">이 자습서를 완료하려면 다음이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-109">To complete this tutorial, you’ll need:</span></span>
+<span data-ttu-id="87197-109">toocomplete이이 자습서에서는 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-109">toocomplete this tutorial, you’ll need:</span></span>
 
-* <span data-ttu-id="ebf2f-110">활성 Azure 구독.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-110">An active Azure subscription.</span></span> <span data-ttu-id="ebf2f-111">계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-111">If you don’t have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="ebf2f-112">자세한 내용은 [Azure 무료 평가판][lnk_free_trial]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-112">For details, see [Azure Free Trial][lnk_free_trial].</span></span>
-* <span data-ttu-id="ebf2f-113">[Node.js][lnk-node] 버전 0.12.x 이상.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-113">[Node.js][lnk-node] version 0.12.x or later.</span></span>
+* <span data-ttu-id="87197-110">활성 Azure 구독.</span><span class="sxs-lookup"><span data-stu-id="87197-110">An active Azure subscription.</span></span> <span data-ttu-id="87197-111">계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-111">If you don’t have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="87197-112">자세한 내용은 [Azure 무료 평가판][lnk_free_trial]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="87197-112">For details, see [Azure Free Trial][lnk_free_trial].</span></span>
+* <span data-ttu-id="87197-113">[Node.js][lnk-node] 버전 0.12.x 이상.</span><span class="sxs-lookup"><span data-stu-id="87197-113">[Node.js][lnk-node] version 0.12.x or later.</span></span>
 
-<span data-ttu-id="ebf2f-114">Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에서 이 자습서를 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-114">You can complete this tutorial on any operating system, such as Windows or Linux, where you can install Node.js.</span></span>
+<span data-ttu-id="87197-114">Windows나 Linux 등의 Node.js를 설치할 수 있는 모든 운영 체제에서 이 자습서를 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-114">You can complete this tutorial on any operating system, such as Windows or Linux, where you can install Node.js.</span></span>
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 [!INCLUDE [iot-suite-send-external-temperature](../../includes/iot-suite-send-external-temperature.md)]
 
-## <a name="add-a-telemetry-type"></a><span data-ttu-id="ebf2f-115">원격 분석 형식 추가</span><span class="sxs-lookup"><span data-stu-id="ebf2f-115">Add a telemetry type</span></span>
+## <a name="add-a-telemetry-type"></a><span data-ttu-id="87197-115">원격 분석 형식 추가</span><span class="sxs-lookup"><span data-stu-id="87197-115">Add a telemetry type</span></span>
 
-<span data-ttu-id="ebf2f-116">다음 단계는 Node.js 시뮬레이션 장치가 생성한 원격 분석을 새로운 값 집합으로 바꾸는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-116">The next step is to replace the telemetry generated by the Node.js simulated device with a new set of values:</span></span>
+<span data-ttu-id="87197-116">hello 다음 단계는 새 값 집합을 사용 하 여 hello Node.js 시뮬레이션 된 장치에 의해 생성 된 tooreplace hello 원격 분석입니다.</span><span class="sxs-lookup"><span data-stu-id="87197-116">hello next step is tooreplace hello telemetry generated by hello Node.js simulated device with a new set of values:</span></span>
 
-1. <span data-ttu-id="ebf2f-117">명령 프롬프트 또는 쉘에 **Ctrl+C** 를 입력하여 Node.js 시뮬레이션 장치를 중단합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-117">Stop the Node.js simulated device by typing **Ctrl+C** in your command prompt or shell.</span></span>
-2. <span data-ttu-id="ebf2f-118">remote_monitoring.js 파일에 기존 온도, 습도, 외부 온도 원격 분석의 기본 데이터 값이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-118">In the remote_monitoring.js file, you can see the base data values for the existing temperature, humidity, and external temperature telemetry.</span></span> <span data-ttu-id="ebf2f-119">다음과 같이 **rpm** 의 새 기본 데이터 값을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-119">Add a base data value for **rpm** as follows:</span></span>
+1. <span data-ttu-id="87197-117">입력 하 여 중지 hello Node.js 시뮬레이션 된 장치 **Ctrl + C** 명령 프롬프트 또는 셸 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-117">Stop hello Node.js simulated device by typing **Ctrl+C** in your command prompt or shell.</span></span>
+2. <span data-ttu-id="87197-118">Hello remote_monitoring.js 파일에 hello 기존 온도, 습도, 및 외부 온도 원격 분석에 대 한 hello 기본 데이터 값을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-118">In hello remote_monitoring.js file, you can see hello base data values for hello existing temperature, humidity, and external temperature telemetry.</span></span> <span data-ttu-id="87197-119">다음과 같이 **rpm** 의 새 기본 데이터 값을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-119">Add a base data value for **rpm** as follows:</span></span>
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ ms.lasthandoff: 08/29/2017
     var rpm = 200;
     ```
 
-3. <span data-ttu-id="ebf2f-120">Node.js 시뮬레이션 장치는 remote_monitoring.js 파일의 **generateRandomIncrement** 함수를 사용하여 기본 데이터 값에 무작위 증분을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-120">The Node.js simulated device uses the **generateRandomIncrement** function in the remote_monitoring.js file to add a random increment to the base data values.</span></span> <span data-ttu-id="ebf2f-121">기존 불규칙화 뒤에 코드 한 줄을 추가하여 **rpm** 값을 불규칙화합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-121">Randomize the **rpm** value by adding a line of code after the existing randomizations as follows:</span></span>
+3. <span data-ttu-id="87197-120">hello를 사용 하는 hello Node.js 시뮬레이션 된 장치가 **generateRandomIncrement** 함수 hello remote_monitoring.js 파일 tooadd 임의 증가 toohello에에서 기본 데이터 값입니다.</span><span class="sxs-lookup"><span data-stu-id="87197-120">hello Node.js simulated device uses hello **generateRandomIncrement** function in hello remote_monitoring.js file tooadd a random increment toohello base data values.</span></span> <span data-ttu-id="87197-121">Hello 불규칙화 **rpm** hello 기존 불규칙화 후 다음과 같은 코드 줄을 추가 하 여 값:</span><span class="sxs-lookup"><span data-stu-id="87197-121">Randomize hello **rpm** value by adding a line of code after hello existing randomizations as follows:</span></span>
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ ms.lasthandoff: 08/29/2017
     rpm += generateRandomIncrement();
     ```
 
-4. <span data-ttu-id="ebf2f-122">장치가 IoT Hub에 전송하는 JSON 페이로드에 새 rpm 값을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-122">Add the new rpm value to the JSON payload the device sends to IoT Hub:</span></span>
+4. <span data-ttu-id="87197-122">Hello 새 rpm 값 toohello JSON 페이로드 hello 장치 보냅니다 tooIoT 허브를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-122">Add hello new rpm value toohello JSON payload hello device sends tooIoT Hub:</span></span>
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-5. <span data-ttu-id="ebf2f-123">다음 명령을 사용하여 Node.js 시뮬레이션 장치를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-123">Run the Node.js simulated device using the following command:</span></span>
+5. <span data-ttu-id="87197-123">다음 명령을 hello를 사용 하 여 hello Node.js 시뮬레이션 된 장치를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-123">Run hello Node.js simulated device using hello following command:</span></span>
 
     `node remote_monitoring.js`
 
-6. <span data-ttu-id="ebf2f-124">대시보드 차트에 표시되는 새 RPM 원격 분석 형식을 관찰합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-124">Observe the new RPM telemetry type that displays on the chart in the dashboard:</span></span>
+6. <span data-ttu-id="87197-124">Hello 새 RPM 원격 분석 유형 hello 대시보드에 hello 차트에 표시 하는 준수 하십시오.</span><span class="sxs-lookup"><span data-stu-id="87197-124">Observe hello new RPM telemetry type that displays on hello chart in hello dashboard:</span></span>
 
-![대시보드에 RPM 추가][image3]
+![RPM toohello 대시보드를 추가 합니다.][image3]
 
 > [!NOTE]
-> <span data-ttu-id="ebf2f-126">변경을 즉시 확인하려면 대시보드의 **장치** 페이지에서 Node.js 장치를 비활성화한 다음 활성화해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-126">You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.</span></span>
+> <span data-ttu-id="87197-126">Toodisable 필요 하 고 hello Node.js 장치 hello에 사용 하도록 설정 될 수 있습니다 **장치** hello 대시보드 toosee hello 변경에서 즉시 페이지.</span><span class="sxs-lookup"><span data-stu-id="87197-126">You may need toodisable and then enable hello Node.js device on hello **Devices** page in hello dashboard toosee hello change immediately.</span></span>
 
-## <a name="customize-the-dashboard-display"></a><span data-ttu-id="ebf2f-127">대시보드 디스플레이 사용자 지정</span><span class="sxs-lookup"><span data-stu-id="ebf2f-127">Customize the dashboard display</span></span>
+## <a name="customize-hello-dashboard-display"></a><span data-ttu-id="87197-127">Hello 대시보드 표시를 사용자 지정</span><span class="sxs-lookup"><span data-stu-id="87197-127">Customize hello dashboard display</span></span>
 
-<span data-ttu-id="ebf2f-128">**Device-Info** 메시지에는 장치가 IoT Hub에 전송 가능한 원격 분석 관련 메타데이터가 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-128">The **Device-Info** message can include metadata about the telemetry the device can send to IoT Hub.</span></span> <span data-ttu-id="ebf2f-129">이 메타데이터는 장치가 전송하는 원격 분석 형식을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-129">This metadata can specify the telemetry types the device sends.</span></span> <span data-ttu-id="ebf2f-130">**명령** 정의 다음에 **원격 분석** 정의가 포함되도록 remote_monitoring.js 파일에서 **deviceMetaData** 값을 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-130">Modify the **deviceMetaData** value in the remote_monitoring.js file to include a **Telemetry** definition following the **Commands** definition.</span></span> <span data-ttu-id="ebf2f-131">다음 코드 조각에 **명령** 정의가 나와 있습니다. **명령** 정의 다음에는 `,`를 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-131">The following code snippet shows the **Commands** definition (be sure to add a `,` after the **Commands** definition):</span></span>
+<span data-ttu-id="87197-128">hello **장치 정보** 메시지 메타 데이터를 포함할 수 있습니다 hello 원격 분석에 대 한 hello 장치 tooIoT 허브를 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-128">hello **Device-Info** message can include metadata about hello telemetry hello device can send tooIoT Hub.</span></span> <span data-ttu-id="87197-129">이 메타 데이터는 hello 원격 분석 유형을 전송 하는 hello 장치를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-129">This metadata can specify hello telemetry types hello device sends.</span></span> <span data-ttu-id="87197-130">Hello 수정 **deviceMetaData** hello remote_monitoring.js 파일 tooinclude에 값을 **원격 분석** hello 다음 정의 **명령을** 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-130">Modify hello **deviceMetaData** value in hello remote_monitoring.js file tooinclude a **Telemetry** definition following hello **Commands** definition.</span></span> <span data-ttu-id="87197-131">hello 만드는 코드는 hello **명령을** 정의 (있는지 tooadd 수는 `,` hello 후 **명령을** 정의):</span><span class="sxs-lookup"><span data-stu-id="87197-131">hello following code snippet shows hello **Commands** definition (be sure tooadd a `,` after hello **Commands** definition):</span></span>
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ ms.lasthandoff: 08/29/2017
 ```
 
 > [!NOTE]
-> <span data-ttu-id="ebf2f-132">원격 모니터링 솔루션은 대/소문자 구분을 하지 않는 일치를 사용하여 메타데이터 정의와 원격 분석 스트림의 데이터를 비교합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-132">The remote monitoring solution uses a case-insensitive match to compare the metadata definition with data in the telemetry stream.</span></span>
+> <span data-ttu-id="87197-132">hello 원격 모니터링 솔루션 hello 원격 분석 스트림의 데이터를 대/소문자 구분 일치 toocompare hello 메타 데이터 정의 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-132">hello remote monitoring solution uses a case-insensitive match toocompare hello metadata definition with data in hello telemetry stream.</span></span>
 
 
-<span data-ttu-id="ebf2f-133">위의 코드 조각에 나와 있는 것처럼 **Telemetry** 정의를 추가해도 대시보드의 동작은 변경되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-133">Adding a **Telemetry** definition as shown in the preceding code snippet does not change the behavior of the dashboard.</span></span> <span data-ttu-id="ebf2f-134">그러나 대시보드가 표시되는 방식을 사용자 지정하기 위해 메타데이터에 **DisplayName** 특성을 포함할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-134">However, the metadata can also include a **DisplayName** attribute to customize the display in the dashboard.</span></span> <span data-ttu-id="ebf2f-135">다음 코드 조각과 같이 **Telemetry** 메타데이터 정의를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-135">Update the **Telemetry** metadata definition as shown in the following snippet:</span></span>
+<span data-ttu-id="87197-133">추가 **원격 분석** 처럼 hello 위의 코드 조각 hello 대시보드 hello 방식은 변경 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-133">Adding a **Telemetry** definition as shown in hello preceding code snippet does not change hello behavior of hello dashboard.</span></span> <span data-ttu-id="87197-134">그러나 hello 메타 데이터도 포함 될 수 있습니다는 **DisplayName** hello 대시보드에 toocustomize hello 표시 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="87197-134">However, hello metadata can also include a **DisplayName** attribute toocustomize hello display in hello dashboard.</span></span> <span data-ttu-id="87197-135">업데이트 hello **원격 분석** hello 다음 코드 조각에에서 표시 된 대로 메타 데이터 정의:</span><span class="sxs-lookup"><span data-stu-id="87197-135">Update hello **Telemetry** metadata definition as shown in hello following snippet:</span></span>
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ ms.lasthandoff: 08/29/2017
 ]
 ```
 
-<span data-ttu-id="ebf2f-136">다음 스크린샷은 이러한 변경이 대시보드의 차트 범례를 어떻게 수정하는지 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-136">The following screenshot shows how this change modifies the chart legend on the dashboard:</span></span>
+<span data-ttu-id="87197-136">hello 다음 스크린샷은이 변경 hello 대시보드에서 hello 차트 범례를 수정 하는 방법:</span><span class="sxs-lookup"><span data-stu-id="87197-136">hello following screenshot shows how this change modifies hello chart legend on hello dashboard:</span></span>
 
-![차트 범례 사용자 지정][image4]
+![Hello 차트 범례를 사용자 지정][image4]
 
 > [!NOTE]
-> <span data-ttu-id="ebf2f-138">변경을 즉시 확인하려면 대시보드의 **장치** 페이지에서 Node.js 장치를 비활성화한 다음 활성화해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-138">You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.</span></span>
+> <span data-ttu-id="87197-138">Toodisable 필요 하 고 hello Node.js 장치 hello에 사용 하도록 설정 될 수 있습니다 **장치** hello 대시보드 toosee hello 변경에서 즉시 페이지.</span><span class="sxs-lookup"><span data-stu-id="87197-138">You may need toodisable and then enable hello Node.js device on hello **Devices** page in hello dashboard toosee hello change immediately.</span></span>
 
-## <a name="filter-the-telemetry-types"></a><span data-ttu-id="ebf2f-139">원격 분석 형식 필터링</span><span class="sxs-lookup"><span data-stu-id="ebf2f-139">Filter the telemetry types</span></span>
+## <a name="filter-hello-telemetry-types"></a><span data-ttu-id="87197-139">Hello 원격 분석 유형을 필터링합니다</span><span class="sxs-lookup"><span data-stu-id="87197-139">Filter hello telemetry types</span></span>
 
-<span data-ttu-id="ebf2f-140">기본적으로 대시보드 차트는 원격 분석 스트림의 모든 데이터 계열을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-140">By default, the chart on the dashboard shows every data series in the telemetry stream.</span></span> <span data-ttu-id="ebf2f-141">**Device-Info** 메타데이터를 사용하여 차트에서 특정 원격 분석 형식이 표시되지 않게 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-141">You can use the **Device-Info** metadata to suppress the display of specific telemetry types on the chart.</span></span> 
+<span data-ttu-id="87197-140">기본적으로 hello 대시보드에서 hello 차트 hello 원격 분석 스트림의 모든 데이터 계열을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="87197-140">By default, hello chart on hello dashboard shows every data series in hello telemetry stream.</span></span> <span data-ttu-id="87197-141">Hello를 사용할 수 있습니다 **장치 정보** 메타 데이터 toosuppress hello hello 차트에서 특정 원격 분석 유형 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-141">You can use hello **Device-Info** metadata toosuppress hello display of specific telemetry types on hello chart.</span></span> 
 
-<span data-ttu-id="ebf2f-142">차트가 온도와 습도 원격 분석만 표시하게 하려면 다음과 같이 **장치 정보** **원격 분석** 메타데이터에서 **ExternalTemperature**를 생략합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-142">To make the chart show only Temperature and Humidity telemetry, omit **ExternalTemperature** from the **Device-Info** **Telemetry** metadata as follows:</span></span>
+<span data-ttu-id="87197-142">toomake hello 차트만 온도 및 습도 원격 분석 표시, 생략 **ExternalTemperature** hello에서 **장치 정보** **원격 분석** 다음과 같은 메타 데이터:</span><span class="sxs-lookup"><span data-stu-id="87197-142">toomake hello chart show only Temperature and Humidity telemetry, omit **ExternalTemperature** from hello **Device-Info** **Telemetry** metadata as follows:</span></span>
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ ms.lasthandoff: 08/29/2017
 ]
 ```
 
-<span data-ttu-id="ebf2f-143">이제 차트에서 **Outdoor Temperature** 가 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-143">The **Outdoor Temperature** no longer displays on the chart:</span></span>
+<span data-ttu-id="87197-143">hello **옥외 온도** hello 차트에 더 이상 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-143">hello **Outdoor Temperature** no longer displays on hello chart:</span></span>
 
-![대시보드에서 원격 분석 필터링][image5]
+![Hello 대시보드에서 필터 hello 원격 분석][image5]
 
-<span data-ttu-id="ebf2f-145">이와 같이 변경하면 차트 표시만 변경됩니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-145">This change only affects the chart display.</span></span> <span data-ttu-id="ebf2f-146">**ExternalTemperature** 데이터 값은 계속 저장되어 있으며 백 엔드 처리에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-146">The **ExternalTemperature** data values are still stored and made available for any backend processing.</span></span>
+<span data-ttu-id="87197-145">이 변경 내용을 hello 차트 표시를만 영향을 줍니다.</span><span class="sxs-lookup"><span data-stu-id="87197-145">This change only affects hello chart display.</span></span> <span data-ttu-id="87197-146">hello **ExternalTemperature** 데이터 값도 저장 되 고 모든 백 엔드 처리에 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-146">hello **ExternalTemperature** data values are still stored and made available for any backend processing.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ebf2f-147">변경을 즉시 확인하려면 대시보드의 **장치** 페이지에서 Node.js 장치를 비활성화한 다음 활성화해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-147">You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.</span></span>
+> <span data-ttu-id="87197-147">Toodisable 필요 하 고 hello Node.js 장치 hello에 사용 하도록 설정 될 수 있습니다 **장치** hello 대시보드 toosee hello 변경에서 즉시 페이지.</span><span class="sxs-lookup"><span data-stu-id="87197-147">You may need toodisable and then enable hello Node.js device on hello **Devices** page in hello dashboard toosee hello change immediately.</span></span>
 
-## <a name="handle-errors"></a><span data-ttu-id="ebf2f-148">오류 처리</span><span class="sxs-lookup"><span data-stu-id="ebf2f-148">Handle errors</span></span>
+## <a name="handle-errors"></a><span data-ttu-id="87197-148">오류 처리</span><span class="sxs-lookup"><span data-stu-id="87197-148">Handle errors</span></span>
 
-<span data-ttu-id="ebf2f-149">데이터 스트림을 차트에 표시하려면 **장치 정보** 메타데이터의 **유형**이 원격 분석 값의 데이터 형식과 일치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-149">For a data stream to display on the chart, its **Type** in the **Device-Info** metadata must match the data type of the telemetry values.</span></span> <span data-ttu-id="ebf2f-150">예를 들어, 메타데이터에는 습도 데이터의 **유형**이 **int**로 지정되어 있는데 원격 분석 스트림에서는 **double**이 확인되면 습도 원격 분석은 차트에 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-150">For example, if the metadata specifies that the **Type** of humidity data is **int** and a **double** is found in the telemetry stream then the humidity telemetry does not display on the chart.</span></span> <span data-ttu-id="ebf2f-151">그러나 **습도** 값은 계속 저장되어 있으며 백 엔드 처리에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-151">However, the **Humidity** values are still stored and made available for any back-end processing.</span></span>
+<span data-ttu-id="87197-149">Hello 차트에 데이터 스트림 toodisplay에 대 한 해당 **형식** hello에 **장치 정보** 메타 데이터에는 hello 원격 분석 값의 hello 데이터 형식과 일치 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-149">For a data stream toodisplay on hello chart, its **Type** in hello **Device-Info** metadata must match hello data type of hello telemetry values.</span></span> <span data-ttu-id="87197-150">예를 들어 hello 메타 데이터 지정 해당 hello **형식** 데이터는 습도 **int** 및 **double** hello 습도 원격 분석에는 다음 hello 원격 분석 스트림에 있는 hello 차트에 표시 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="87197-150">For example, if hello metadata specifies that hello **Type** of humidity data is **int** and a **double** is found in hello telemetry stream then hello humidity telemetry does not display on hello chart.</span></span> <span data-ttu-id="87197-151">그러나 hello **습도** 값은 여전히 저장 하 고 모든 백 엔드 처리에 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="87197-151">However, hello **Humidity** values are still stored and made available for any back-end processing.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="ebf2f-152">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ebf2f-152">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="87197-152">다음 단계</span><span class="sxs-lookup"><span data-stu-id="87197-152">Next steps</span></span>
 
-<span data-ttu-id="ebf2f-153">지금까지 동적 원격 분석을 사용하는 방법을 살펴보았으므로 이제 미리 구성된 솔루션이 장치 정보를 활용하는 방법을 설명하는 [미리 구성된 원격 모니터링 솔루션의 장치 정보 메타데이터][lnk-devinfo]를 자세히 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="ebf2f-153">Now that you've seen how to use dynamic telemetry, you can learn more about how the preconfigured solutions use device information: [Device information metadata in the remote monitoring preconfigured solution][lnk-devinfo].</span></span>
+<span data-ttu-id="87197-153">이제 살펴보았으므로 어떻게 toouse 동적 원격 분석 학습할 수 있는 장치 정보를 사용 하 여 hello 미리 솔루션을 구성 하는 방법에 대 한 자세한: [솔루션을 미리 구성 된 장치 정보 메타 데이터에서 원격 모니터링 hello] [ lnk-devinfo].</span><span class="sxs-lookup"><span data-stu-id="87197-153">Now that you've seen how toouse dynamic telemetry, you can learn more about how hello preconfigured solutions use device information: [Device information metadata in hello remote monitoring preconfigured solution][lnk-devinfo].</span></span>
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

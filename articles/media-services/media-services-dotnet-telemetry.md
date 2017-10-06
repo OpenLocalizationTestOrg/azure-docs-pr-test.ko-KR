@@ -1,6 +1,6 @@
 ---
-title: ".NET을 사용하여 Azure Media Services 원격 분석 구성 | Microsoft Docs"
-description: "이 문서는 .NET SDK를 사용하여 Azure Media Services 원격 분석을 사용하는 방법을 보여 줍니다."
+title: ".NET과 함께 Azure 미디어 서비스 원격 분석 aaaConfiguring | Microsoft Docs"
+description: "이 문서 toouse.NET SDK를 사용 하 여 Azure 미디어 서비스 원격 분석을 hello 하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 1d857f3d062d8d1b15c64fa4b8c3e27ad6c2247e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4019fa7d080ca3f8a8709bd1e666f7062b883954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-azure-media-services-telemetry-with-net"></a><span data-ttu-id="6dc90-103">.NET을 사용하여 Azure Media Services 원격 분석 구성</span><span class="sxs-lookup"><span data-stu-id="6dc90-103">Configuring Azure Media Services telemetry with .NET</span></span>
+# <a name="configuring-azure-media-services-telemetry-with-net"></a><span data-ttu-id="22479-103">.NET을 사용하여 Azure Media Services 원격 분석 구성</span><span class="sxs-lookup"><span data-stu-id="22479-103">Configuring Azure Media Services telemetry with .NET</span></span>
 
-<span data-ttu-id="6dc90-104">이 항목은 .NET SDK를 사용하여 Azure Media Services(AMS) 원격 분석을 구성할 때 수행할 수 있는 일반적인 단계를 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-104">This topic describes general steps that you might take when configuring the Azure Media Services (AMS) telemetry using .NET SDK.</span></span> 
+<span data-ttu-id="22479-104">이 항목에서는.NET SDK를 사용 하 여 hello Azure 미디어 서비스 (AMS) 원격 분석을 구성할 때 사용할 수 있는 일반적인 단계를 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="22479-104">This topic describes general steps that you might take when configuring hello Azure Media Services (AMS) telemetry using .NET SDK.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="6dc90-105">AMS 원격 분석이 무엇인지, 어떻게 사용하는지에 대한 자세한 설명을 보려면 [개요](media-services-telemetry-overview.md) 항목을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6dc90-105">For the detailed explanation of what is AMS telemetry and how to consume it, see the [overview](media-services-telemetry-overview.md) topic.</span></span>
+><span data-ttu-id="22479-105">방식에 대 한 hello 기능에 대해 상세히 AMS 원격 분석 및 tooconsume, hello 참조 [개요](media-services-telemetry-overview.md) 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="22479-105">For hello detailed explanation of what is AMS telemetry and how tooconsume it, see hello [overview](media-services-telemetry-overview.md) topic.</span></span>
 
-<span data-ttu-id="6dc90-106">다음 방법 중 하나를 사용하여 원격 분석 데이터를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-106">You can consume telemetry data in one of the following ways:</span></span>
+<span data-ttu-id="22479-106">Hello 같은 방법으로 다음 중 하나에 대 한 원격 분석 데이터를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="22479-106">You can consume telemetry data in one of hello following ways:</span></span>
 
-- <span data-ttu-id="6dc90-107">Azure 테이블 저장소에서 직접 데이터를 읽습니다(예: 저장소 SDK 사용).</span><span class="sxs-lookup"><span data-stu-id="6dc90-107">Read data directly from Azure Table Storage (e.g. using the Storage SDK).</span></span> <span data-ttu-id="6dc90-108">원격 분석 저장소 테이블에 대한 설명을 보려면 **이** 항목의 [원격 분석 정보 사용](https://msdn.microsoft.com/library/mt742089.aspx) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6dc90-108">For the description of telemetry storage tables, see the **Consuming telemetry information** in [this](https://msdn.microsoft.com/library/mt742089.aspx) topic.</span></span>
+- <span data-ttu-id="22479-107">Azure 테이블 저장소 (예: hello 저장소 SDK 사용)에서 직접 데이터를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="22479-107">Read data directly from Azure Table Storage (e.g. using hello Storage SDK).</span></span> <span data-ttu-id="22479-108">원격 분석 저장소 테이블의 hello 설명 hello 참조 **원격 분석 정보를 사용해** 에 [이](https://msdn.microsoft.com/library/mt742089.aspx) 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="22479-108">For hello description of telemetry storage tables, see hello **Consuming telemetry information** in [this](https://msdn.microsoft.com/library/mt742089.aspx) topic.</span></span>
 
-<span data-ttu-id="6dc90-109">또는</span><span class="sxs-lookup"><span data-stu-id="6dc90-109">Or</span></span>
+<span data-ttu-id="22479-109">또는</span><span class="sxs-lookup"><span data-stu-id="22479-109">Or</span></span>
 
-- <span data-ttu-id="6dc90-110">저장소 데이터를 읽기 위한 미디어 서비스 .NET SDK의 지원을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-110">Use the support in the Media Services .NET SDK for reading storage data.</span></span> <span data-ttu-id="6dc90-111">이 항목에서는 지정된 AMS 계정에 대해 원격 분석을 사용하도록 설정하고 Azure 미디어 서비스 .NET SDK를 사용하여 메트릭을 쿼리하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-111">This topic shows how to enable telemetry for the specified AMS account and how to query the metrics using the Azure Media Services .NET SDK.</span></span>  
+- <span data-ttu-id="22479-110">저장소 데이터를 읽기 위한 hello 미디어 서비스.NET SDK에서에서 사용 하 여 hello 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="22479-110">Use hello support in hello Media Services .NET SDK for reading storage data.</span></span> <span data-ttu-id="22479-111">이 항목에서는 방법을 사용 하 여 tooquery hello 메트릭을 hello Azure 미디어 서비스.NET SDK 및 hello에 대 한 원격 분석 tooenable AMS 계정을 지정 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="22479-111">This topic shows how tooenable telemetry for hello specified AMS account and how tooquery hello metrics using hello Azure Media Services .NET SDK.</span></span>  
 
-## <a name="configuring-telemetry-for-a-media-services-account"></a><span data-ttu-id="6dc90-112">미디어 서비스 계정에 대해 원격 분석 구성</span><span class="sxs-lookup"><span data-stu-id="6dc90-112">Configuring telemetry for a Media Services account</span></span>
+## <a name="configuring-telemetry-for-a-media-services-account"></a><span data-ttu-id="22479-112">미디어 서비스 계정에 대해 원격 분석 구성</span><span class="sxs-lookup"><span data-stu-id="22479-112">Configuring telemetry for a Media Services account</span></span>
 
-<span data-ttu-id="6dc90-113">원격 분석을 사용하도록 설정하려면 다음 단계가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-113">The following steps are needed to enable telemetry:</span></span>
+<span data-ttu-id="22479-113">hello 다음 단계는 필요한 tooenable 원격 분석.</span><span class="sxs-lookup"><span data-stu-id="22479-113">hello following steps are needed tooenable telemetry:</span></span>
 
-- <span data-ttu-id="6dc90-114">미디어 서비스 계정에 연결된 저장소 계정의 자격 증명을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-114">Get the credentials of the storage account attached to the Media Services account.</span></span> 
-- <span data-ttu-id="6dc90-115">**EndPointType**이 **AzureTable**로 설정되고 endPointAddress가 저장소 테이블을 가리키는 알림 끝점을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-115">Create a Notification Endpoint with **EndPointType** set to **AzureTable** and endPointAddress pointing to the storage table.</span></span>
+- <span data-ttu-id="22479-114">Hello hello 저장소 계정 연결 toohello 미디어 서비스 계정 자격 증명을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="22479-114">Get hello credentials of hello storage account attached toohello Media Services account.</span></span> 
+- <span data-ttu-id="22479-115">알림 끝점을 만들 **이 나와** 도**AzureTable** 및 endPointAddress 가리키는 toohello 저장소 테이블입니다.</span><span class="sxs-lookup"><span data-stu-id="22479-115">Create a Notification Endpoint with **EndPointType** set too**AzureTable** and endPointAddress pointing toohello storage table.</span></span>
 
         INotificationEndPoint notificationEndPoint = 
                       _context.NotificationEndPoints.Create("monitoring", 
                       NotificationEndPointType.AzureTable,
                       "https://" + _mediaServicesStorageAccountName + ".table.core.windows.net/");
 
-- <span data-ttu-id="6dc90-116">모니터링할 서비스에 대한 모니터링 구성 설정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-116">Create a monitoring configuration settings for the services you want to monitor.</span></span> <span data-ttu-id="6dc90-117">한 개 이하의 모니터링 구성 설정이 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-117">No more than one monitoring configuration settings is allowed.</span></span> 
+- <span data-ttu-id="22479-116">Hello 서비스에 대 한 모니터링 구성 설정 만들기 toomonitor 원하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="22479-116">Create a monitoring configuration settings for hello services you want toomonitor.</span></span> <span data-ttu-id="22479-117">한 개 이하의 모니터링 구성 설정이 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="22479-117">No more than one monitoring configuration settings is allowed.</span></span> 
   
         IMonitoringConfiguration monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
             new List<ComponentMonitoringSetting>()
@@ -56,21 +56,21 @@ ms.lasthandoff: 08/29/2017
                 new ComponentMonitoringSetting(MonitoringComponent.StreamingEndpoint, MonitoringLevel.Normal)
             });
 
-## <a name="consuming-telemetry-information"></a><span data-ttu-id="6dc90-118">이</span><span class="sxs-lookup"><span data-stu-id="6dc90-118">Consuming telemetry information</span></span>
+## <a name="consuming-telemetry-information"></a><span data-ttu-id="22479-118">이</span><span class="sxs-lookup"><span data-stu-id="22479-118">Consuming telemetry information</span></span>
 
-<span data-ttu-id="6dc90-119">원격 분석 정보 사용에 대한 자세한 내용은 [이](media-services-telemetry-overview.md) 항목을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6dc90-119">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
+<span data-ttu-id="22479-119">원격 분석 정보 사용에 대한 자세한 내용은 [이](media-services-telemetry-overview.md) 항목을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="22479-119">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="6dc90-120">Visual Studio 프로젝트 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="6dc90-120">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="22479-120">Visual Studio 프로젝트 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="22479-120">Create and configure a Visual Studio project</span></span>
 
-1. <span data-ttu-id="6dc90-121">개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-121">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+1. <span data-ttu-id="22479-121">개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="22479-121">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
 
-2. <span data-ttu-id="6dc90-122">다음 요소를 app.config 파일에 정의된 **appSettings**에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-122">Add the following element to **appSettings** defined in your app.config file:</span></span>
+2. <span data-ttu-id="22479-122">요소 다음에 오는 너무 hello 추가**appSettings** app.config 파일에 정의 된:</span><span class="sxs-lookup"><span data-stu-id="22479-122">Add hello following element too**appSettings** defined in your app.config file:</span></span>
 
     <add key="StorageAccountName" value="storage_name" />
  
-## <a name="example"></a><span data-ttu-id="6dc90-123">예제</span><span class="sxs-lookup"><span data-stu-id="6dc90-123">Example</span></span>  
+## <a name="example"></a><span data-ttu-id="22479-123">예제</span><span class="sxs-lookup"><span data-stu-id="22479-123">Example</span></span>  
     
-<span data-ttu-id="6dc90-124">다음 예제에서는 지정된 AMS 계정에 대해 원격 분석을 사용하도록 설정하고 Azure 미디어 서비스 .NET SDK를 사용하여 메트릭을 쿼리하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6dc90-124">The following example shows how to enable telemetry for the specified AMS account and how to query the metrics using the Azure Media Services .NET SDK.</span></span>  
+<span data-ttu-id="22479-124">다음 예제는 hello에 hello에 대 한 원격 분석 tooenable AMS 계정을 지정 하는 방법 및 tooquery hello 메트릭을 사용 하 여 Azure 미디어 서비스.NET SDK hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="22479-124">hello following example shows how tooenable telemetry for hello specified AMS account and how tooquery hello metrics using hello Azure Media Services .NET SDK.</span></span>  
 
     using System;
     using System.Collections.Generic;
@@ -192,7 +192,7 @@ ms.lasthandoff: 08/29/2017
 
             var channelMetrics = telemetry.GetChannelHeartbeats(timerangeStart, timerangeEnd);
 
-            // Print the channel metrics.
+            // Print hello channel metrics.
             Console.WriteLine("Channel metrics:");
 
             foreach (var channelHeartbeat in channelMetrics.OrderBy(x => x.ObservedTime))
@@ -210,10 +210,10 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="next-steps"></a><span data-ttu-id="6dc90-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6dc90-125">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="22479-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="22479-125">Next steps</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="6dc90-126">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="6dc90-126">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="22479-126">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="22479-126">Provide feedback</span></span>
 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]

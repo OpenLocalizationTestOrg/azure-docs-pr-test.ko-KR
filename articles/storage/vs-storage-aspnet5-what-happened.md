@@ -1,6 +1,6 @@
 ---
-title: "내 ASP.NET 5 프로젝트(Visual Studio 연결된 서비스)의 변경 내용 | Microsoft Docs"
-description: "Visual Studio 연결 서비스를 사용하여 Visual Studio ASP.NET 5 프로젝트에서 Azure 저장소 계정에 연결한 후 변경 내용에 대해 설명합니다."
+title: "aaaWhat 발생 toomy ASP.NET 5 프로젝트 (Visual Studio 연결 서비스) | Microsoft Docs"
+description: "연결 된 서비스를 Visual Studio를 사용 하 여 Visual Studio ASP.NET 5 프로젝트에서 tooan Azure 저장소 계정 연결 후 결과 설명 합니다."
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 4390993772eaf35516e48ad7adcdcec5f1df8d71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9323bc5317fa2ba0cd42aecd01982f8c2b23d20a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-aspnet-5-project-visual-studio-azure-storage-connected-services"></a><span data-ttu-id="7448a-103">내 ASP.NET 5 프로젝트(Visual Studio Azure 저장소 연결 서비스)의 변경 내용</span><span class="sxs-lookup"><span data-stu-id="7448a-103">What happened to my ASP.NET 5 project (Visual Studio Azure Storage connected services)?</span></span>
-## <a name="references-added"></a><span data-ttu-id="7448a-104">참조 추가됨</span><span class="sxs-lookup"><span data-stu-id="7448a-104">References added</span></span>
-<span data-ttu-id="7448a-105">Azure Storage NuGet 패키지가 Visual Studio 프로젝트에 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7448a-105">The Azure Storage NuGet package was added to your Visual Studio project.</span></span>  
-<span data-ttu-id="7448a-106">이 패키지는 다음.NET 참조를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7448a-106">This package adds the following .NET references:</span></span>
+# <a name="what-happened-toomy-aspnet-5-project-visual-studio-azure-storage-connected-services"></a><span data-ttu-id="68179-103">어떤 발생 했습니다 toomy ASP.NET 5 프로젝트 (Visual Studio Azure 저장소 연결 서비스)?</span><span class="sxs-lookup"><span data-stu-id="68179-103">What happened toomy ASP.NET 5 project (Visual Studio Azure Storage connected services)?</span></span>
+## <a name="references-added"></a><span data-ttu-id="68179-104">참조 추가됨</span><span class="sxs-lookup"><span data-stu-id="68179-104">References added</span></span>
+<span data-ttu-id="68179-105">hello Azure 저장소 NuGet 패키지 tooyour Visual Studio 프로젝트에 추가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="68179-105">hello Azure Storage NuGet package was added tooyour Visual Studio project.</span></span>  
+<span data-ttu-id="68179-106">이 패키지는 hello 다음.NET 참조를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="68179-106">This package adds hello following .NET references:</span></span>
 
-* <span data-ttu-id="7448a-107">**Microsoft.Data.Edm**</span><span class="sxs-lookup"><span data-stu-id="7448a-107">**Microsoft.Data.Edm**</span></span>
-* <span data-ttu-id="7448a-108">**Microsoft.Data.OData**</span><span class="sxs-lookup"><span data-stu-id="7448a-108">**Microsoft.Data.OData**</span></span>
-* <span data-ttu-id="7448a-109">**Microsoft.Data.Services.Client**</span><span class="sxs-lookup"><span data-stu-id="7448a-109">**Microsoft.Data.Services.Client**</span></span>
-* <span data-ttu-id="7448a-110">**Microsoft.WindowsAzure.Configuration**</span><span class="sxs-lookup"><span data-stu-id="7448a-110">**Microsoft.WindowsAzure.Configuration**</span></span>
-* <span data-ttu-id="7448a-111">**Microsoft.WindowsAzure.Storage**</span><span class="sxs-lookup"><span data-stu-id="7448a-111">**Microsoft.WindowsAzure.Storage**</span></span>
-* <span data-ttu-id="7448a-112">**Newtonsoft.Json**</span><span class="sxs-lookup"><span data-stu-id="7448a-112">**Newtonsoft.Json**</span></span>
-* <span data-ttu-id="7448a-113">**System.Data**</span><span class="sxs-lookup"><span data-stu-id="7448a-113">**System.Data**</span></span>
-* <span data-ttu-id="7448a-114">**System.Spatial**</span><span class="sxs-lookup"><span data-stu-id="7448a-114">**System.Spatial**</span></span>
+* <span data-ttu-id="68179-107">**Microsoft.Data.Edm**</span><span class="sxs-lookup"><span data-stu-id="68179-107">**Microsoft.Data.Edm**</span></span>
+* <span data-ttu-id="68179-108">**Microsoft.Data.OData**</span><span class="sxs-lookup"><span data-stu-id="68179-108">**Microsoft.Data.OData**</span></span>
+* <span data-ttu-id="68179-109">**Microsoft.Data.Services.Client**</span><span class="sxs-lookup"><span data-stu-id="68179-109">**Microsoft.Data.Services.Client**</span></span>
+* <span data-ttu-id="68179-110">**Microsoft.WindowsAzure.Configuration**</span><span class="sxs-lookup"><span data-stu-id="68179-110">**Microsoft.WindowsAzure.Configuration**</span></span>
+* <span data-ttu-id="68179-111">**Microsoft.WindowsAzure.Storage**</span><span class="sxs-lookup"><span data-stu-id="68179-111">**Microsoft.WindowsAzure.Storage**</span></span>
+* <span data-ttu-id="68179-112">**Newtonsoft.Json**</span><span class="sxs-lookup"><span data-stu-id="68179-112">**Newtonsoft.Json**</span></span>
+* <span data-ttu-id="68179-113">**System.Data**</span><span class="sxs-lookup"><span data-stu-id="68179-113">**System.Data**</span></span>
+* <span data-ttu-id="68179-114">**System.Spatial**</span><span class="sxs-lookup"><span data-stu-id="68179-114">**System.Spatial**</span></span>
 
-<span data-ttu-id="7448a-115">또한 NuGet 패키지 **Microsoft.Framework.Configuration.Json** 이 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7448a-115">Also, the NuGet package **Microsoft.Framework.Configuration.Json** was added.</span></span>
+<span data-ttu-id="68179-115">또한 hello NuGet 패키지 **Microsoft.Framework.Configuration.Json** 추가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="68179-115">Also, hello NuGet package **Microsoft.Framework.Configuration.Json** was added.</span></span>
 
-## <a name="connection-string-for-azure-storage-added"></a><span data-ttu-id="7448a-116">추가된 Azure 저장소에 대한 연결 문자열</span><span class="sxs-lookup"><span data-stu-id="7448a-116">Connection string for Azure Storage added</span></span>
-<span data-ttu-id="7448a-117">프로젝트의 config.json 파일에 선택한 저장소 계정의 연결 문자열과 키를 포함하는 요소가 생성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7448a-117">In the config.json file of your project, an element was created with the selected storage account's connection string and key.</span></span>
+## <a name="connection-string-for-azure-storage-added"></a><span data-ttu-id="68179-116">추가된 Azure 저장소에 대한 연결 문자열</span><span class="sxs-lookup"><span data-stu-id="68179-116">Connection string for Azure Storage added</span></span>
+<span data-ttu-id="68179-117">프로젝트의 hello config.json 파일에서 요소 hello 선택한 저장소 계정 연결 문자열 및 키도 만들어졌습니다.</span><span class="sxs-lookup"><span data-stu-id="68179-117">In hello config.json file of your project, an element was created with hello selected storage account's connection string and key.</span></span>
 
-<span data-ttu-id="7448a-118">자세한 내용은 [ASP.NET 5](http://www.asp.net/vnext)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7448a-118">For more information, see [ASP.NET 5](http://www.asp.net/vnext).</span></span>
+<span data-ttu-id="68179-118">자세한 내용은 [ASP.NET 5](http://www.asp.net/vnext)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="68179-118">For more information, see [ASP.NET 5](http://www.asp.net/vnext).</span></span>
 

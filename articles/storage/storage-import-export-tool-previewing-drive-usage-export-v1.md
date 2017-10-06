@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 내보내기 작업에 대한 드라이브 사용량 미리 보기 - v1 | Microsoft Docs"
-description: "Azure Import/Export 서비스에서 내보내기 작업을 위해 선택한 Blob의 목록을 미리 보는 방법을 알아봅니다."
+title: "Azure 가져오기/내보내기 내보내기 작업-v 1의 드라이브 사용 aaaPreviewing | Microsoft Docs"
+description: "어떻게 blob toopreview hello 목록 선택한 hello Azure 가져오기/내보내기 서비스에서 내보내기 작업에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 7bf74247090f91e17f81a9bc98ebfa78334c8c10
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 88495f921371458c0451da6878fd7cc9a45d20cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="previewing-drive-usage-for-an-export-job"></a><span data-ttu-id="41fdd-103">내보내기 작업에 대한 드라이브 사용량 미리 보기</span><span class="sxs-lookup"><span data-stu-id="41fdd-103">Previewing drive usage for an export job</span></span>
-<span data-ttu-id="41fdd-104">내보내기 작업을 만들기 전에 내보낼 Blob 집합을 선택해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-104">Before you create an export job, you need to choose a set of blobs to be exported.</span></span> <span data-ttu-id="41fdd-105">Microsoft Azure Import/Export 서비스를 사용하면 Blob 경로 또는 Blob 접두사 목록을 사용하여 선택한 Blob을 나타낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-105">The Microsoft Azure Import/Export service allows you to use a list of blob paths or blob prefixes to represent the blobs you've selected.</span></span>  
+# <a name="previewing-drive-usage-for-an-export-job"></a><span data-ttu-id="891f5-103">내보내기 작업에 대한 드라이브 사용량 미리 보기</span><span class="sxs-lookup"><span data-stu-id="891f5-103">Previewing drive usage for an export job</span></span>
+<span data-ttu-id="891f5-104">내보내기 작업을 만들기 전에 내보낼 blob toobe 집합이 toochoose를 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-104">Before you create an export job, you need toochoose a set of blobs toobe exported.</span></span> <span data-ttu-id="891f5-105">Microsoft Azure 가져오기/내보내기 서비스 hello 있습니다 toouse blob 경로 목록을 또는 blob 접두사 toorepresent hello blob를 선택 했습니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-105">hello Microsoft Azure Import/Export service allows you toouse a list of blob paths or blob prefixes toorepresent hello blobs you've selected.</span></span>  
   
-<span data-ttu-id="41fdd-106">그런 다음 보내야 하는 드라이브 수를 결정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-106">Next, you need to determine how many drives you need to send.</span></span> <span data-ttu-id="41fdd-107">Import/Export 도구는 사용하고자 하는 드라이브의 크기에 따라 선택한 Blob에 대한 드라이브 사용량을 미리 볼 수 있는 `PreviewExport` 명령을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-107">The Import/Export Tool provides the `PreviewExport` command to preview drive usage for the blobs you selected, based on the size of the drives you are going to use.</span></span>
+<span data-ttu-id="891f5-106">다음으로, 해야 toodetermine 드라이브 수 toosend 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-106">Next, you need toodetermine how many drives you need toosend.</span></span> <span data-ttu-id="891f5-107">가져오기/내보내기 도구 hello 제공 hello `PreviewExport` hello 드라이브의 hello 크기에 따라 보아야 toouse를 선택 하면는 hello blob에 대 한 명령 toopreview 드라이브 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-107">hello Import/Export Tool provides hello `PreviewExport` command toopreview drive usage for hello blobs you selected, based on hello size of hello drives you are going toouse.</span></span>
 
-## <a name="command-line-parameters"></a><span data-ttu-id="41fdd-108">명령줄 매개 변수</span><span class="sxs-lookup"><span data-stu-id="41fdd-108">Command-line parameters</span></span>
+## <a name="command-line-parameters"></a><span data-ttu-id="891f5-108">명령줄 매개 변수</span><span class="sxs-lookup"><span data-stu-id="891f5-108">Command-line parameters</span></span>
 
-<span data-ttu-id="41fdd-109">Import/Export 도구의 `PreviewExport` 명령을 사용할 때 다음 매개 변수를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-109">You can use the following parameters when using the `PreviewExport` command of the Import/Export Tool.</span></span>
+<span data-ttu-id="891f5-109">Hello hello를 사용 하는 경우 매개 변수 뒤에 사용할 수 있습니다 `PreviewExport` 의 가져오기/내보내기 도구 hello 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-109">You can use hello following parameters when using hello `PreviewExport` command of hello Import/Export Tool.</span></span>
 
-|<span data-ttu-id="41fdd-110">명령줄 매개 변수</span><span class="sxs-lookup"><span data-stu-id="41fdd-110">Command-line parameter</span></span>|<span data-ttu-id="41fdd-111">설명</span><span class="sxs-lookup"><span data-stu-id="41fdd-111">Description</span></span>|  
+|<span data-ttu-id="891f5-110">명령줄 매개 변수</span><span class="sxs-lookup"><span data-stu-id="891f5-110">Command-line parameter</span></span>|<span data-ttu-id="891f5-111">설명</span><span class="sxs-lookup"><span data-stu-id="891f5-111">Description</span></span>|  
 |--------------------------|-----------------|  
-|<span data-ttu-id="41fdd-112">**/logdir:**<LogDirectory\></span><span class="sxs-lookup"><span data-stu-id="41fdd-112">**/logdir:**<LogDirectory\></span></span>|<span data-ttu-id="41fdd-113">선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-113">Optional.</span></span> <span data-ttu-id="41fdd-114">로그 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-114">The log directory.</span></span> <span data-ttu-id="41fdd-115">이 디렉터리에 자세한 로그 파일이 기록됩니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-115">Verbose log files will be written to this directory.</span></span> <span data-ttu-id="41fdd-116">로그 디렉터리를 지정하지 않는 경우 현재 디렉터리가 로그 디렉터리로 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-116">If no log directory is specified, the current directory will be used as the log directory.</span></span>|  
-|<span data-ttu-id="41fdd-117">**/sn:**<StorageAccountName\></span><span class="sxs-lookup"><span data-stu-id="41fdd-117">**/sn:**<StorageAccountName\></span></span>|<span data-ttu-id="41fdd-118">필수입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-118">Required.</span></span> <span data-ttu-id="41fdd-119">내보내기 작업에 대한 저장소 계정의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-119">The name of the storage account for the export job.</span></span>|  
-|<span data-ttu-id="41fdd-120">**/sk:**<StorageAccountKey\></span><span class="sxs-lookup"><span data-stu-id="41fdd-120">**/sk:**<StorageAccountKey\></span></span>|<span data-ttu-id="41fdd-121">컨테이너 SAS가 지정되지 않은 경우에만 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-121">Required if and only if a container SAS is not specified.</span></span> <span data-ttu-id="41fdd-122">내보내기 작업에 대한 저장소 계정의 계정 키입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-122">The account key for the storage account for the export job.</span></span>|  
-|<span data-ttu-id="41fdd-123">**/csas:**<ContainerSas\></span><span class="sxs-lookup"><span data-stu-id="41fdd-123">**/csas:**<ContainerSas\></span></span>|<span data-ttu-id="41fdd-124">저장소 계정 키가 지정되지 않은 경우에만 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-124">Required if and only if a storage account key is not specified.</span></span> <span data-ttu-id="41fdd-125">내보내기 작업에서 내보낼 Blob을 나열하기 위한 컨테이너 SAS입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-125">The container SAS for listing the blobs to be exported in the export job.</span></span>|  
-|<span data-ttu-id="41fdd-126">**/ExportBlobListFile:**<ExportBlobListFile\></span><span class="sxs-lookup"><span data-stu-id="41fdd-126">**/ExportBlobListFile:**<ExportBlobListFile\></span></span>|<span data-ttu-id="41fdd-127">필수입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-127">Required.</span></span> <span data-ttu-id="41fdd-128">내보낼 Blob에 대한 Blob 경로 또는 Blob 경로 접두사 목록을 포함하고 있는 XML 파일의 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-128">Path to the XML file containing list of blob paths or blob path prefixes for the blobs to be exported.</span></span> <span data-ttu-id="41fdd-129">Import/Export 서비스 REST API의 [작업 배치](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 작업에서 `BlobListBlobPath` 요소에 사용되는 파일 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-129">The file format used in the `BlobListBlobPath` element in the [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) operation of the Import/Export service REST API.</span></span>|  
-|<span data-ttu-id="41fdd-130">**/DriveSize:**<DriveSize\></span><span class="sxs-lookup"><span data-stu-id="41fdd-130">**/DriveSize:**<DriveSize\></span></span>|<span data-ttu-id="41fdd-131">필수입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-131">Required.</span></span> <span data-ttu-id="41fdd-132">내보내기 작업에 사용할 드라이브의 크기는 *예를 들어* 500GB, 1.5TB입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-132">The size of drives to use for an export job, *e.g.*, 500GB, 1.5TB.</span></span>|  
+|<span data-ttu-id="891f5-112">**/logdir:**<LogDirectory\></span><span class="sxs-lookup"><span data-stu-id="891f5-112">**/logdir:**<LogDirectory\></span></span>|<span data-ttu-id="891f5-113">선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-113">Optional.</span></span> <span data-ttu-id="891f5-114">hello 로그 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-114">hello log directory.</span></span> <span data-ttu-id="891f5-115">자세한 로그 파일 디렉터리 toothis 작성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-115">Verbose log files will be written toothis directory.</span></span> <span data-ttu-id="891f5-116">없는 로그 디렉터리를 지정 하는 경우 현재 디렉터리 hello hello 로그 디렉터리로 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-116">If no log directory is specified, hello current directory will be used as hello log directory.</span></span>|  
+|<span data-ttu-id="891f5-117">**/sn:**<StorageAccountName\></span><span class="sxs-lookup"><span data-stu-id="891f5-117">**/sn:**<StorageAccountName\></span></span>|<span data-ttu-id="891f5-118">필수입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-118">Required.</span></span> <span data-ttu-id="891f5-119">hello hello 저장소 계정의 이름으로 hello에 대 한 내보내기 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-119">hello name of hello storage account for hello export job.</span></span>|  
+|<span data-ttu-id="891f5-120">**/sk:**<StorageAccountKey\></span><span class="sxs-lookup"><span data-stu-id="891f5-120">**/sk:**<StorageAccountKey\></span></span>|<span data-ttu-id="891f5-121">컨테이너 SAS가 지정되지 않은 경우에만 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-121">Required if and only if a container SAS is not specified.</span></span> <span data-ttu-id="891f5-122">hello에 대 한 hello 저장소 계정에 대 한 hello 계정 키 내보내기 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-122">hello account key for hello storage account for hello export job.</span></span>|  
+|<span data-ttu-id="891f5-123">**/csas:**<ContainerSas\></span><span class="sxs-lookup"><span data-stu-id="891f5-123">**/csas:**<ContainerSas\></span></span>|<span data-ttu-id="891f5-124">저장소 계정 키가 지정되지 않은 경우에만 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-124">Required if and only if a storage account key is not specified.</span></span> <span data-ttu-id="891f5-125">hello blob toobe 목록에 대 한 hello 컨테이너 SAS hello 내보내기 작업에서 내보냅니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-125">hello container SAS for listing hello blobs toobe exported in hello export job.</span></span>|  
+|<span data-ttu-id="891f5-126">**/ExportBlobListFile:**<ExportBlobListFile\></span><span class="sxs-lookup"><span data-stu-id="891f5-126">**/ExportBlobListFile:**<ExportBlobListFile\></span></span>|<span data-ttu-id="891f5-127">필수입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-127">Required.</span></span> <span data-ttu-id="891f5-128">경로 toohello XML blob 경로 목록을 포함 파일 접두사 또는 blob 경로 hello blob toobe 내보낸에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-128">Path toohello XML file containing list of blob paths or blob path prefixes for hello blobs toobe exported.</span></span> <span data-ttu-id="891f5-129">hello에 사용 되는 hello 파일 형식 `BlobListBlobPath` hello 요소 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) hello 가져오기/내보내기 서비스 REST API의 작동 합니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-129">hello file format used in hello `BlobListBlobPath` element in hello [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) operation of hello Import/Export service REST API.</span></span>|  
+|<span data-ttu-id="891f5-130">**/DriveSize:**<DriveSize\></span><span class="sxs-lookup"><span data-stu-id="891f5-130">**/DriveSize:**<DriveSize\></span></span>|<span data-ttu-id="891f5-131">필수입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-131">Required.</span></span> <span data-ttu-id="891f5-132">내보내기 작업에 대 한 드라이브 toouse의 크기를 hello *예:*, 500GB, 1.5 t B.</span><span class="sxs-lookup"><span data-stu-id="891f5-132">hello size of drives toouse for an export job, *e.g.*, 500GB, 1.5TB.</span></span>|  
 
-## <a name="command-line-example"></a><span data-ttu-id="41fdd-133">명령줄 예제</span><span class="sxs-lookup"><span data-stu-id="41fdd-133">Command-line example</span></span>
+## <a name="command-line-example"></a><span data-ttu-id="891f5-133">명령줄 예제</span><span class="sxs-lookup"><span data-stu-id="891f5-133">Command-line example</span></span>
 
-<span data-ttu-id="41fdd-134">다음 예제에서는 `PreviewExport` 명령을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-134">The following example demonstrates the `PreviewExport` command:</span></span>  
+<span data-ttu-id="891f5-134">hello 다음 예제에서는 hello `PreviewExport` 명령:</span><span class="sxs-lookup"><span data-stu-id="891f5-134">hello following example demonstrates hello `PreviewExport` command:</span></span>  
   
 ```  
 WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /ExportBlobListFile:C:\WAImportExport\mybloblist.xml /DriveSize:500GB    
 ```  
   
-<span data-ttu-id="41fdd-135">내보내기 Blob 목록 파일에는 다음과 같이 Blob 이름과 Blob 접두사가 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-135">The export blob list file may contain blob names and blob prefixes, as shown here:</span></span>  
+<span data-ttu-id="891f5-135">hello blob 목록 내보내기 파일 수 blob 이름이 포함 및 blob 접두사를 다음과 같이:</span><span class="sxs-lookup"><span data-stu-id="891f5-135">hello export blob list file may contain blob names and blob prefixes, as shown here:</span></span>  
   
 ```xml 
 <?xml version="1.0" encoding="utf-8"?>  
@@ -57,9 +57,9 @@ WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTr
 </BlobList>  
 ```
 
-<span data-ttu-id="41fdd-136">Azure Import/Export 도구는 내보낼 모든 Blob을 나열하고 필요한 오버헤드를 고려하여 지정된 크기의 드라이브에 패키지하는 방법을 계산한 다음 Blob 및 드라이브 사용 정보를 보유하는 데 필요한 드라이브 수를 추정합니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-136">The Azure Import/Export Tool lists all blobs to be exported and calculates how to pack them into drives of the specified size, taking into account any necessary overhead, then estimates the number of drives needed to hold the blobs and drive usage information.</span></span>  
+<span data-ttu-id="891f5-136">hello Azure 가져오기/내보내기 도구는 내보낼 모든 blob toobe를 나열 하 고 어떻게 toopack hello의 드라이브에 지정 된 크기, 필요한 오버 헤드를 고려 hello 드라이브 수를 예측 합니다 임의 toohold hello blob 및 드라이브 사용을 계산 합니다. 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-136">hello Azure Import/Export Tool lists all blobs toobe exported and calculates how toopack them into drives of hello specified size, taking into account any necessary overhead, then estimates hello number of drives needed toohold hello blobs and drive usage information.</span></span>  
   
-<span data-ttu-id="41fdd-137">다음은 정보 로그가 생략된 출력의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="41fdd-137">Here is an example of the output, with informational logs omitted:</span></span>  
+<span data-ttu-id="891f5-137">다음은 정보 로그가 생략 된 hello 출력의 예가입니다.</span><span class="sxs-lookup"><span data-stu-id="891f5-137">Here is an example of hello output, with informational logs omitted:</span></span>  
   
 ```  
 Number of unique blob paths/prefixes:   3  
@@ -75,6 +75,6 @@ Number of drives needed:        3
         Drive #3:       blobs = 2, occupied space = 131.28 GB    
 ```  
   
-## <a name="next-steps"></a><span data-ttu-id="41fdd-138">다음 단계</span><span class="sxs-lookup"><span data-stu-id="41fdd-138">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="891f5-138">다음 단계</span><span class="sxs-lookup"><span data-stu-id="891f5-138">Next steps</span></span>
 
-* [<span data-ttu-id="41fdd-139">Azure Import/Export 도구 참조</span><span class="sxs-lookup"><span data-stu-id="41fdd-139">Azure Import/Export Tool reference</span></span>](storage-import-export-tool-how-to-v1.md)
+* [<span data-ttu-id="891f5-139">Azure Import/Export 도구 참조</span><span class="sxs-lookup"><span data-stu-id="891f5-139">Azure Import/Export Tool reference</span></span>](storage-import-export-tool-how-to-v1.md)

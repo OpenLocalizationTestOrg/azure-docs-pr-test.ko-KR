@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export를 사용하여 속성 및 메타데이터 설정 - v1 | Microsoft Docs"
-description: "Azure Import/Export 도구를 실행하여 드라이브를 준비할 때 대상 BLOB에 설정할 속성과 메타데이터를 지정하는 방법을 알아봅니다. Import/Export 도구 v1을 나타냅니다."
+title: "aaaSetting 속성 및 메타 데이터 Azure 가져오기/내보내기-v 1을 사용 하 여 | Microsoft Docs"
+description: "Hello Azure 가져오기/내보내기 도구 tooprepare 드라이브를 실행할 때 toospecify 속성 및 메타 데이터 toobe hello 대상 blob에 대 한 설정 방법에 대해 알아봅니다. 이 toov1의 hello 가져오기/내보내기 도구를 가리킵니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 6455ce57572f9ec36d0ebae88c1ddd9f40f237bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 66e55c2076fbcda9b78302f17b5ff2cf96bb24e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setting-properties-and-metadata-during-the-import-process"></a><span data-ttu-id="ff2fc-104">가져오기 프로세스 중에 속성 및 메타데이터 설정</span><span class="sxs-lookup"><span data-stu-id="ff2fc-104">Setting properties and metadata during the import process</span></span>
-<span data-ttu-id="ff2fc-105">Microsoft Azure Import/Export 도구를 실행하여 드라이브를 준비할 때 대상 BLOB에 설정할 속성과 메타데이터를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-105">When you run the Microsoft Azure Import/Export Tool to prepare your drives, you can specify properties and metadata to be set on the destination blobs.</span></span> <span data-ttu-id="ff2fc-106">다음 단계를 수행하세요.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-106">Follow these steps:</span></span>  
+# <a name="setting-properties-and-metadata-during-hello-import-process"></a><span data-ttu-id="6d178-104">속성 설정 및 hello 중에 메타 데이터 가져오기 프로세스</span><span class="sxs-lookup"><span data-stu-id="6d178-104">Setting properties and metadata during hello import process</span></span>
+<span data-ttu-id="6d178-105">Microsoft Azure 가져오기/내보내기 도구 tooprepare hello 드라이브를 실행 하면 속성 및 메타 데이터 toobe hello 대상 blob에 대 한 설정에 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-105">When you run hello Microsoft Azure Import/Export Tool tooprepare your drives, you can specify properties and metadata toobe set on hello destination blobs.</span></span> <span data-ttu-id="6d178-106">다음 단계를 수행하세요.</span><span class="sxs-lookup"><span data-stu-id="6d178-106">Follow these steps:</span></span>  
   
-1.  <span data-ttu-id="ff2fc-107">Blob 속성을 설정하려면 속성 이름 및 값을 지정하는 텍스트 파일을 로컬 컴퓨터에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-107">To set blob properties, create a text file on your local computer that specifies property names and values.</span></span>  
+1.  <span data-ttu-id="6d178-107">tooset blob 속성, 속성 이름 및 값을 지정 하는 로컬 컴퓨터에 텍스트 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-107">tooset blob properties, create a text file on your local computer that specifies property names and values.</span></span>  
   
-2.  <span data-ttu-id="ff2fc-108">Blob 메타데이터를 설정하려면 메타데이터 이름 및 값을 지정하는 텍스트 파일을 로컬 컴퓨터에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-108">To set blob metadata, create a text file on your local computer that specifies metadata names and values.</span></span>  
+2.  <span data-ttu-id="6d178-108">tooset blob 메타 데이터, 메타 데이터 이름 및 값을 지정 하는 로컬 컴퓨터에 텍스트 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-108">tooset blob metadata, create a text file on your local computer that specifies metadata names and values.</span></span>  
   
-3.  <span data-ttu-id="ff2fc-109">이러한 파일 중 하나 또는 둘 모두의 전체 경로를 `PrepImport` 작업의 일부로 Azure Import/Export 도구에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-109">Pass the full path to one or both of these files to the Azure Import/Export Tool as part of the `PrepImport` operation.</span></span>  
+3.  <span data-ttu-id="6d178-109">Hello 전체 경로 tooone 중 또는 둘 다 이러한 파일 toohello Azure 가져오기/내보내기 도구 hello의 일부로 전달 `PrepImport` 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-109">Pass hello full path tooone or both of these files toohello Azure Import/Export Tool as part of hello `PrepImport` operation.</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="ff2fc-110">속성 또는 메타데이터 파일을 복사 세션의 일부로 지정하면 해당 복사 세션의 일부로 가져오는 모든 Blob에 대해 해당 속성 또는 메타데이터가 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-110">When you specify a properties or metadata file as part of a copy session, those properties or metadata are set for every blob that is imported as part of that copy session.</span></span> <span data-ttu-id="ff2fc-111">가져올 일부 Blob에 대해 다른 속성 또는 메타데이터 집합을 지정하려면 다른 속성이나 메타데이터 파일을 사용하여 별도의 복사 세션을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-111">If you want to specify a different set of properties or metadata for some of the blobs being imported, you'll need to create a separate copy session with different properties or metadata files.</span></span>  
+>  <span data-ttu-id="6d178-110">속성 또는 메타데이터 파일을 복사 세션의 일부로 지정하면 해당 복사 세션의 일부로 가져오는 모든 Blob에 대해 해당 속성 또는 메타데이터가 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-110">When you specify a properties or metadata file as part of a copy session, those properties or metadata are set for every blob that is imported as part of that copy session.</span></span> <span data-ttu-id="6d178-111">가져올 hello blob 중 일부에 대해 toospecify 다양 한 속성이 나 메타 데이터를 원하는 toocreate 별도 세션 다른 속성이 나 메타 데이터 파일을 복사 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-111">If you want toospecify a different set of properties or metadata for some of hello blobs being imported, you'll need toocreate a separate copy session with different properties or metadata files.</span></span>  
   
-## <a name="specify-blob-properties-in-a-text-file"></a><span data-ttu-id="ff2fc-112">텍스트 파일에서 Blob 속성 지정</span><span class="sxs-lookup"><span data-stu-id="ff2fc-112">Specify Blob Properties in a Text File</span></span>  
-<span data-ttu-id="ff2fc-113">Blob 속성을 지정하려면 로컬 텍스트 파일을 만들고 속성 이름을 요소로, 속성 값을 값으로 지정하는 XML을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-113">To specify blob properties, create a local text file, and include XML that specifies property names as elements, and property values as values.</span></span> <span data-ttu-id="ff2fc-114">다음은 몇 가지 속성 값을 지정하는 예입니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-114">Here's an example that specifies some property values:</span></span>  
+## <a name="specify-blob-properties-in-a-text-file"></a><span data-ttu-id="6d178-112">텍스트 파일에서 Blob 속성 지정</span><span class="sxs-lookup"><span data-stu-id="6d178-112">Specify Blob Properties in a Text File</span></span>  
+<span data-ttu-id="6d178-113">toospecify blob 속성 로컬 텍스트 파일을 만들고으로 요소 및 속성 값을 값으로 속성 이름을 지정 하는 XML을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-113">toospecify blob properties, create a local text file, and include XML that specifies property names as elements, and property values as values.</span></span> <span data-ttu-id="6d178-114">다음은 몇 가지 속성 값을 지정하는 예입니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-114">Here's an example that specifies some property values:</span></span>  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -44,10 +44,10 @@ ms.lasthandoff: 07/11/2017
 </Properties>  
 ```
   
-<span data-ttu-id="ff2fc-115">`C:\WAImportExport\ImportProperties.txt` 같은 로컬 위치에 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-115">Save the file to a local location like `C:\WAImportExport\ImportProperties.txt`.</span></span>  
+<span data-ttu-id="6d178-115">Hello 파일 tooa와 같은 로컬 위치에 저장 `C:\WAImportExport\ImportProperties.txt`합니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-115">Save hello file tooa local location like `C:\WAImportExport\ImportProperties.txt`.</span></span>  
   
-## <a name="specify-blob-metadata-in-a-text-file"></a><span data-ttu-id="ff2fc-116">텍스트 파일에서 Blob 메타데이터를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-116">Specify Blob Metadata in a Text File</span></span>  
-<span data-ttu-id="ff2fc-117">마찬가지로 Blob 메타데이터를 지정하려면 메타데이터 이름을 요소로, 메타데이터 값을 값으로 지정하는 로컬 텍스트 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-117">Similarly, to specify blob metadata, create a local text file that specifies metadata names as elements, and metadata values as values.</span></span> <span data-ttu-id="ff2fc-118">다음은 몇 가지 메타데이터 값을 지정하는 예입니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-118">Here's an example that specifies some metadata values:</span></span>  
+## <a name="specify-blob-metadata-in-a-text-file"></a><span data-ttu-id="6d178-116">텍스트 파일에서 Blob 메타데이터를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-116">Specify Blob Metadata in a Text File</span></span>  
+<span data-ttu-id="6d178-117">마찬가지로, toospecify blob 메타 데이터, 메타 데이터 이름으로 요소 및 메타 데이터 값을 값으로 지정 하는 로컬 텍스트 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-117">Similarly, toospecify blob metadata, create a local text file that specifies metadata names as elements, and metadata values as values.</span></span> <span data-ttu-id="6d178-118">다음은 몇 가지 메타데이터 값을 지정하는 예입니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-118">Here's an example that specifies some metadata values:</span></span>  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -58,15 +58,15 @@ ms.lasthandoff: 07/11/2017
 </Metadata>  
 ```
   
-<span data-ttu-id="ff2fc-119">`C:\WAImportExport\ImportMetadata.txt` 같은 로컬 위치에 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-119">Save the file to a local location like `C:\WAImportExport\ImportMetadata.txt`.</span></span>  
+<span data-ttu-id="6d178-119">Hello 파일 tooa와 같은 로컬 위치에 저장 `C:\WAImportExport\ImportMetadata.txt`합니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-119">Save hello file tooa local location like `C:\WAImportExport\ImportMetadata.txt`.</span></span>  
   
-## <a name="create-a-copy-session-including-the-properties-or-metadata-files"></a><span data-ttu-id="ff2fc-120">속성 또는 메타데이터 파일을 포함하는 복사 세션 만들기</span><span class="sxs-lookup"><span data-stu-id="ff2fc-120">Create a Copy Session Including the Properties or Metadata Files</span></span>  
-<span data-ttu-id="ff2fc-121">Azure Import/Export 도구를 실행하여 가져오기 작업을 준비할 때 `PropertyFile` 매개 변수를 사용하여 명령줄에서 속성 파일을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-121">When you run the Azure Import/Export Tool to prepare the import job, specify the properties file on the command line using the `PropertyFile` parameter.</span></span> <span data-ttu-id="ff2fc-122">`/MetadataFile` 매개 변수를 사용하여 명령줄에서 메타데이터 파일을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-122">Specify the metadata file on the command line using the `/MetadataFile` parameter.</span></span> <span data-ttu-id="ff2fc-123">다음은 두 파일을 지정하는 예입니다.</span><span class="sxs-lookup"><span data-stu-id="ff2fc-123">Here's an example that specifies both files:</span></span>  
+## <a name="create-a-copy-session-including-hello-properties-or-metadata-files"></a><span data-ttu-id="6d178-120">포함 하 여 복사 세션 hello 속성 또는 메타 데이터 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="6d178-120">Create a Copy Session Including hello Properties or Metadata Files</span></span>  
+<span data-ttu-id="6d178-121">Hello Azure 가져오기/내보내기 도구 tooprepare hello 가져오기 작업을 실행 하면 hello를 사용 하 여 hello 명령줄에서 hello 속성 파일을 지정 합니다. `PropertyFile` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-121">When you run hello Azure Import/Export Tool tooprepare hello import job, specify hello properties file on hello command line using hello `PropertyFile` parameter.</span></span> <span data-ttu-id="6d178-122">Hello를 사용 하 여 hello 명령줄에서 hello 메타 데이터 파일을 지정 `/MetadataFile` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-122">Specify hello metadata file on hello command line using hello `/MetadataFile` parameter.</span></span> <span data-ttu-id="6d178-123">다음은 두 파일을 지정하는 예입니다.</span><span class="sxs-lookup"><span data-stu-id="6d178-123">Here's an example that specifies both files:</span></span>  
   
 ```
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp\BlueRay.ISO /dstblob:favorite/BlueRay.ISO /MetadataFile:c:\WAImportExport\SampleMetadata.txt /PropertyFile:c:\WAImportExport\SampleProperties.txt  
 ```
   
-## <a name="next-steps"></a><span data-ttu-id="ff2fc-124">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ff2fc-124">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6d178-124">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6d178-124">Next steps</span></span>
 
-* [<span data-ttu-id="ff2fc-125">가져오기-내보내기 서비스 메타데이터 및 속성 파일 형식</span><span class="sxs-lookup"><span data-stu-id="ff2fc-125">Import/Export service metadata and properties file format</span></span>](storage-import-export-file-format-metadata-and-properties.md)
+* [<span data-ttu-id="6d178-125">가져오기-내보내기 서비스 메타데이터 및 속성 파일 형식</span><span class="sxs-lookup"><span data-stu-id="6d178-125">Import/Export service metadata and properties file format</span></span>](storage-import-export-file-format-metadata-and-properties.md)

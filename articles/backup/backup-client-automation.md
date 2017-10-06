@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용하여 Azure에 Windows Server 백업 | Microsoft Docs"
-description: "PowerShell을 사용하여 Azure 백업을 배포 및 관리하는 방법을 알아봅니다."
+title: Windows Server tooAzure aaaUse PowerShell tooback | Microsoft Docs
+description: "자세한 내용은 방법 toodeploy 및 PowerShell을 사용 하 여 Azure 백업 관리"
 services: backup
 documentationcenter: 
 author: saurabhsensharma
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: saurse;markgal;jimpark;nkolli;trinadhk
-ms.openlocfilehash: d3f165c749af0553c4918b33b0d24cc1e21af2a9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f13224f53abd6fbd132fee4347b0b99e8f5e2678
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-backup-to-azure-for-windows-serverwindows-client-using-powershell"></a><span data-ttu-id="6a318-103">PowerShell을 사용하여 Windows Server/Windows Client용 Azure 백업 배포 및 관리</span><span class="sxs-lookup"><span data-stu-id="6a318-103">Deploy and manage backup to Azure for Windows Server/Windows Client using PowerShell</span></span>
+# <a name="deploy-and-manage-backup-tooazure-for-windows-serverwindows-client-using-powershell"></a><span data-ttu-id="1cab6-103">배포 하 고 PowerShell을 사용 하 여 Windows Server/Windows 클라이언트에 대 한 백업 tooAzure 관리</span><span class="sxs-lookup"><span data-stu-id="1cab6-103">Deploy and manage backup tooAzure for Windows Server/Windows Client using PowerShell</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="6a318-104">ARM</span><span class="sxs-lookup"><span data-stu-id="6a318-104">ARM</span></span>](backup-client-automation.md)
-> * [<span data-ttu-id="6a318-105">클래식</span><span class="sxs-lookup"><span data-stu-id="6a318-105">Classic</span></span>](backup-client-automation-classic.md)
+> * [<span data-ttu-id="1cab6-104">ARM</span><span class="sxs-lookup"><span data-stu-id="1cab6-104">ARM</span></span>](backup-client-automation.md)
+> * [<span data-ttu-id="1cab6-105">클래식</span><span class="sxs-lookup"><span data-stu-id="1cab6-105">Classic</span></span>](backup-client-automation-classic.md)
 >
 >
 
-<span data-ttu-id="6a318-106">이 문서에서는 Windows Server 또는 Windows Client에서 Azure 백업을 설정하고 백업과 복원을 관리하기 위해 PowerShell을 사용하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-106">This article shows you how to use PowerShell for setting up Azure Backup on Windows Server or a Windows client, and managing backup and recovery.</span></span>
+<span data-ttu-id="1cab6-106">이 문서에서는 Windows Server 또는 Windows 클라이언트에서 Azure 백업 설정 및 백업 및 복구 관리 하기 위한 PowerShell toouse 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-106">This article shows you how toouse PowerShell for setting up Azure Backup on Windows Server or a Windows client, and managing backup and recovery.</span></span>
 
-## <a name="install-azure-powershell"></a><span data-ttu-id="6a318-107">Azure Powershell 설치</span><span class="sxs-lookup"><span data-stu-id="6a318-107">Install Azure PowerShell</span></span>
+## <a name="install-azure-powershell"></a><span data-ttu-id="1cab6-107">Azure Powershell 설치</span><span class="sxs-lookup"><span data-stu-id="1cab6-107">Install Azure PowerShell</span></span>
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-<span data-ttu-id="6a318-108">이 문서에서는 리소스 그룹에서 Recovery Services 자격 증명 모음을 사용할 수 있도록 하는 ARM(Azure Resource Manager) 및 MS Online Backup PowerShell cmdlet을 중점적으로 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-108">This article focuses on the Azure Resource Manager (ARM) and the MS Online Backup PowerShell cmdlets that enable you to use a Recovery Services vault in a resource group.</span></span>
+<span data-ttu-id="1cab6-108">이 문서는 Azure 리소스 관리자 (ARM) hello 및 hello toouse 리소스 그룹에 복구 서비스 자격 증명 모음을 사용할 수 있는 MS 온라인 백업 PowerShell cmdlet 중점적으로 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-108">This article focuses on hello Azure Resource Manager (ARM) and hello MS Online Backup PowerShell cmdlets that enable you toouse a Recovery Services vault in a resource group.</span></span>
 
-<span data-ttu-id="6a318-109">Azure PowerShell 1.0이 2015년 10월에 출시되었습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-109">In October 2015, Azure PowerShell 1.0 was released.</span></span> <span data-ttu-id="6a318-110">이 릴리스는 0.9.8 릴리스를 성공했으며 특히 cmdlet의 이름 지정 패턴에서 중요한 변경 내용이 이루어졌습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-110">This release succeeded the 0.9.8 release and brought about some significant changes, especially in the naming pattern of the cmdlets.</span></span> <span data-ttu-id="6a318-111">1.0 cmdlet는 명명 패턴{verb}-AzureRm{noun}을 따릅니다. 반면 0.9.8 이름은 **Rm**을 포함하지 않습니다.(예를 들어 New-AzureResourceGroup 대신 New-AzureRmResourceGroup)</span><span class="sxs-lookup"><span data-stu-id="6a318-111">1.0 cmdlets follow the naming pattern {verb}-AzureRm{noun}; whereas, the 0.9.8 names do not include **Rm** (for example, New-AzureRmResourceGroup instead of New-AzureResourceGroup).</span></span> <span data-ttu-id="6a318-112">반면 0.9.8 이름은 **Switch-AzureMode AzureResourceManager** 명령을 실행하여 리소스 관리자 모드를 사용하도록 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-112">When using Azure PowerShell 0.9.8, you must first enable the Resource Manager mode by running the **Switch-AzureMode AzureResourceManager** command.</span></span> <span data-ttu-id="6a318-113">이 명령은 1.0 이상에서는 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-113">This command is not necessary in 1.0 or later.</span></span>
+<span data-ttu-id="1cab6-109">Azure PowerShell 1.0이 2015년 10월에 출시되었습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-109">In October 2015, Azure PowerShell 1.0 was released.</span></span> <span data-ttu-id="1cab6-110">이 릴리스에서 hello 0.9.8 릴리스 성공 못하고 hello hello cmdlet의 이름 지정 패턴의 특히 몇 가지 주요 변경 사항에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-110">This release succeeded hello 0.9.8 release and brought about some significant changes, especially in hello naming pattern of hello cmdlets.</span></span> <span data-ttu-id="1cab6-111">1.0 cmdlet에 따라 hello 명명 패턴 {동사}-{명사}; AzureRm 반면 hello 0.9.8 이름 포함 되지 않습니다 **Rm** (예를 들어 새로 만들기-AzureRmResourceGroup 새로 AzureResourceGroup 대신).</span><span class="sxs-lookup"><span data-stu-id="1cab6-111">1.0 cmdlets follow hello naming pattern {verb}-AzureRm{noun}; whereas, hello 0.9.8 names do not include **Rm** (for example, New-AzureRmResourceGroup instead of New-AzureResourceGroup).</span></span> <span data-ttu-id="1cab6-112">Hello를 실행 하 여 hello Resource Manager 모드를 먼저 활성화 해야 Azure PowerShell 0.9.8을 사용할 경우 **Switch-azuremode AzureResourceManager** 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-112">When using Azure PowerShell 0.9.8, you must first enable hello Resource Manager mode by running hello **Switch-AzureMode AzureResourceManager** command.</span></span> <span data-ttu-id="1cab6-113">이 명령은 1.0 이상에서는 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-113">This command is not necessary in 1.0 or later.</span></span>
 
-<span data-ttu-id="6a318-114">1.0 이상 환경에서 0.9.8 환경을 위해 작성된 스크립트를 사용하려면 예기치 않은 영향을 방지하는 프로덕션에서 사용하기 전에 사전 프로덕션 환경에서 스크립트를 신중하게 업데이트하고 테스트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-114">If you want to use your scripts written for the 0.9.8 environment, in the 1.0 or later environment, you should carefully update and test the scripts in a pre-production environment before using them in production to avoid unexpected impact.</span></span>
+<span data-ttu-id="1cab6-114">Toouse hello 1.0 또는 이상 환경에서 hello 0.9.8 환경 용으로 작성 된 스크립트를 원하는 경우 신중 하 게 업데이트 하 고 테스트 해야 hello 스크립트 사전 프로덕션 환경에서 프로덕션 tooavoid에 사용 하기 전에 예기치 않은 영향입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-114">If you want toouse your scripts written for hello 0.9.8 environment, in hello 1.0 or later environment, you should carefully update and test hello scripts in a pre-production environment before using them in production tooavoid unexpected impact.</span></span>
 
-<span data-ttu-id="6a318-115">[최신 PowerShell 릴리스를 다운로드](https://github.com/Azure/azure-powershell/releases) 합니다(필요한 최소 버전: 1.0.0).</span><span class="sxs-lookup"><span data-stu-id="6a318-115">[Download the latest PowerShell release](https://github.com/Azure/azure-powershell/releases) (minimum version required is : 1.0.0)</span></span>
+<span data-ttu-id="1cab6-115">[Hello 최신 PowerShell 릴리스의 다운로드](https://github.com/Azure/azure-powershell/releases) (필요한 최소 버전은: 1.0.0)</span><span class="sxs-lookup"><span data-stu-id="1cab6-115">[Download hello latest PowerShell release](https://github.com/Azure/azure-powershell/releases) (minimum version required is : 1.0.0)</span></span>
 
 [!INCLUDE [arm-getting-setup-powershell](../../includes/arm-getting-setup-powershell.md)]
 
-## <a name="create-a-recovery-services-vault"></a><span data-ttu-id="6a318-116">복구 서비스 자격 증명 모음 만들기</span><span class="sxs-lookup"><span data-stu-id="6a318-116">Create a recovery services vault</span></span>
-<span data-ttu-id="6a318-117">다음 단계는 복구 서비스 자격 증명 모음을 만드는 과정을 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-117">The following steps lead you through creating a Recovery Services vault.</span></span> <span data-ttu-id="6a318-118">복구 서비스 자격 증명 모음은 백업 자격 증명 모음과 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-118">A Recovery Services vault is different than a Backup vault.</span></span>
+## <a name="create-a-recovery-services-vault"></a><span data-ttu-id="1cab6-116">복구 서비스 자격 증명 모음 만들기</span><span class="sxs-lookup"><span data-stu-id="1cab6-116">Create a recovery services vault</span></span>
+<span data-ttu-id="1cab6-117">단계를 수행 하는 hello 복구 서비스 자격 증명 모음을 만드는 과정을 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-117">hello following steps lead you through creating a Recovery Services vault.</span></span> <span data-ttu-id="1cab6-118">복구 서비스 자격 증명 모음은 백업 자격 증명 모음과 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-118">A Recovery Services vault is different than a Backup vault.</span></span>
 
-1. <span data-ttu-id="6a318-119">처음으로 Azure Backup을 사용하는 경우 **Register-AzureRMResourceProvider** cmdlet을 사용하여 구독에 Azure Recovery Service 공급자를 등록해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-119">If you are using Azure Backup for the first time, you must use the **Register-AzureRMResourceProvider** cmdlet to register the Azure Recovery Service provider with your subscription.</span></span>
+1. <span data-ttu-id="1cab6-119">을 사용 중인 Azure 백업 hello에 대 한 처음으로 hello를 사용 해야 **레지스터 AzureRMResourceProvider** cmdlet tooregister hello Azure 복구 서비스 공급자를 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-119">If you are using Azure Backup for hello first time, you must use hello **Register-AzureRMResourceProvider** cmdlet tooregister hello Azure Recovery Service provider with your subscription.</span></span>
 
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-2. <span data-ttu-id="6a318-120">복구 서비스 자격 증명 모음은 ARM 리소스이므로 리소스 그룹 내에 배치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-120">The Recovery Services vault is an ARM resource, so you need to place it within a Resource Group.</span></span> <span data-ttu-id="6a318-121">기존 리소스 그룹을 사용하거나 리소스 그룹을 새로 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-121">You can use an existing resource group, or create a new one.</span></span> <span data-ttu-id="6a318-122">새 리소스 그룹을 만들 때 리소스 그룹의 이름과 위치를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-122">When creating a new resource group, specify the name and location for the resource group.</span></span>  
+2. <span data-ttu-id="1cab6-120">hello 복구 서비스 자격 증명 모음이 ARM 리소스를 tooplace 있으므로 리소스 그룹 내에서.</span><span class="sxs-lookup"><span data-stu-id="1cab6-120">hello Recovery Services vault is an ARM resource, so you need tooplace it within a Resource Group.</span></span> <span data-ttu-id="1cab6-121">기존 리소스 그룹을 사용하거나 리소스 그룹을 새로 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-121">You can use an existing resource group, or create a new one.</span></span> <span data-ttu-id="1cab6-122">새 리소스 그룹을 만들 때 hello 이름과 hello 리소스 그룹에 대 한 위치를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-122">When creating a new resource group, specify hello name and location for hello resource group.</span></span>  
 
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "WestUS"
     ```
-3. <span data-ttu-id="6a318-123">**New-AzureRmRecoveryServicesVault** cmdlet을 사용하여 새 자격 증명 모음을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-123">Use the **New-AzureRmRecoveryServicesVault** cmdlet to create the new vault.</span></span> <span data-ttu-id="6a318-124">리소스 그룹에 사용된 동일한 위치를 자격 증명 모음에도 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-124">Be sure to specify the same location for the vault as was used for the resource group.</span></span>
+3. <span data-ttu-id="1cab6-123">사용 하 여 hello **새로 AzureRmRecoveryServicesVault** cmdlet toocreate hello 새 자격 증명 모음입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-123">Use hello **New-AzureRmRecoveryServicesVault** cmdlet toocreate hello new vault.</span></span> <span data-ttu-id="1cab6-124">Hello 리소스 그룹에 대해 사용한 것과 toospecify hello hello 자격 증명 모음에 대해 동일한 위치 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-124">Be sure toospecify hello same location for hello vault as was used for hello resource group.</span></span>
 
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "WestUS"
     ```
-4. <span data-ttu-id="6a318-125">[LRS(로컬 중복 저장소)](../storage/common/storage-redundancy.md#locally-redundant-storage) 또는 [GRS(지역 중복 저장소)](../storage/common/storage-redundancy.md#geo-redundant-storage) 중에 사용할 저장소 중복 유형을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-125">Specify the type of storage redundancy to use; you can use [Locally Redundant Storage (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) or [Geo Redundant Storage (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage).</span></span> <span data-ttu-id="6a318-126">다음 예제는 testVault에 대한 BackupStorageRedundancy 옵션이 GeoRedundant로 설정된 것을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-126">The following example shows the -BackupStorageRedundancy option for testVault is set to GeoRedundant.</span></span>
+4. <span data-ttu-id="1cab6-125">Hello 유형의 저장소 중복성 toouse;를 지정 합니다. 사용할 수 있습니다 [로컬 중복 저장소 (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) 또는 [지역 중복 저장소 (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage)합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-125">Specify hello type of storage redundancy toouse; you can use [Locally Redundant Storage (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) or [Geo Redundant Storage (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage).</span></span> <span data-ttu-id="1cab6-126">hello 다음 예제에서는 testVault에 대 한 hello-BackupStorageRedundancy 옵션 tooGeoRedundant 설정</span><span class="sxs-lookup"><span data-stu-id="1cab6-126">hello following example shows hello -BackupStorageRedundancy option for testVault is set tooGeoRedundant.</span></span>
 
    > [!TIP]
-   > <span data-ttu-id="6a318-127">많은 Azure 백업 cmdlet에는 복구 서비스 자격 증명 모음 개체가 입력으로 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-127">Many Azure Backup cmdlets require the Recovery Services vault object as an input.</span></span> <span data-ttu-id="6a318-128">이런 이유 때문에, 백업 복구 서비스 자격 증명 모음 개체를 변수에 저장하는 것이 편리합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-128">For this reason, it is convenient to store the Backup Recovery Services vault object in a variable.</span></span>
+   > <span data-ttu-id="1cab6-127">많은 Azure 백업 cmdlet을 입력으로 hello 복구 서비스 자격 증명 모음 개체를 필요로합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-127">Many Azure Backup cmdlets require hello Recovery Services vault object as an input.</span></span> <span data-ttu-id="1cab6-128">이러한 이유로 변수의 편리한 toostore hello 백업 복구 서비스 자격 증명 모음 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-128">For this reason, it is convenient toostore hello Backup Recovery Services vault object in a variable.</span></span>
    >
    >
 
@@ -72,10 +72,10 @@ ms.lasthandoff: 08/29/2017
     PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
     ```
 
-## <a name="view-the-vaults-in-a-subscription"></a><span data-ttu-id="6a318-129">구독의 자격 증명 모음 보기</span><span class="sxs-lookup"><span data-stu-id="6a318-129">View the vaults in a subscription</span></span>
-<span data-ttu-id="6a318-130">**Get-AzureRmRecoveryServicesVault** 를 사용하여 현재 구독의 모든 자격 증명 모음 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-130">Use **Get-AzureRmRecoveryServicesVault** to view the list of all vaults in the current subscription.</span></span> <span data-ttu-id="6a318-131">이 명령을 사용하여 새 자격 증명 모음이 만들어졌는지 확인하거나 구독에서 사용할 수 있는 자격 증명 모음을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-131">You can use this command to check that a new  vault was created, or to see what vaults are available in the subscription.</span></span>
+## <a name="view-hello-vaults-in-a-subscription"></a><span data-ttu-id="1cab6-129">구독에서 보기 hello 자격 증명 모음</span><span class="sxs-lookup"><span data-stu-id="1cab6-129">View hello vaults in a subscription</span></span>
+<span data-ttu-id="1cab6-130">사용 하 여 **Get AzureRmRecoveryServicesVault** tooview hello 목록이 hello 현재 구독에서 모든 자격 증명 모음입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-130">Use **Get-AzureRmRecoveryServicesVault** tooview hello list of all vaults in hello current subscription.</span></span> <span data-ttu-id="1cab6-131">새 자격 증명 모음 만들어진을이 명령 toocheck 또는 toosee 사용할 수 있는 자격 증명 모음 hello 구독에서 사용할 수 있는 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-131">You can use this command toocheck that a new  vault was created, or toosee what vaults are available in hello subscription.</span></span>
 
-<span data-ttu-id="6a318-132">**Get-AzureRmRecoveryServicesVault** 명령을 실행하면 구독의 모든 자격 증명 모음이 나열됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-132">Run the command, **Get-AzureRmRecoveryServicesVault**, and all vaults in the subscription are listed.</span></span>
+<span data-ttu-id="1cab6-132">Hello 명령을 실행 **Get AzureRmRecoveryServicesVault**, hello 구독에서 모든 자격 증명 모음에 나열 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-132">Run hello command, **Get-AzureRmRecoveryServicesVault**, and all vaults in hello subscription are listed.</span></span>
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault
@@ -89,10 +89,10 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 ```
 
 
-## <a name="installing-the-azure-backup-agent"></a><span data-ttu-id="6a318-133">Azure 백업 에이전트 설치</span><span class="sxs-lookup"><span data-stu-id="6a318-133">Installing the Azure Backup agent</span></span>
-<span data-ttu-id="6a318-134">Azure 백업 에이전트를 설치하기 전에 Windows Server에 설치 관리자를 다운로드해 두어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-134">Before you install the Azure Backup agent, you need to have the installer downloaded and present on the Windows Server.</span></span> <span data-ttu-id="6a318-135">최신 버전의 설치 관리자는 [Microsoft 다운로드 센터](http://aka.ms/azurebackup_agent) 또는 복구 서비스의 자격 증명 모음 대시보드 페이지에서 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-135">You can get the latest version of the installer from the [Microsoft Download Center](http://aka.ms/azurebackup_agent) or from the Recovery Services vault's Dashboard page.</span></span> <span data-ttu-id="6a318-136">쉽게 액세스할 수 있는 위치(예: *C:\Downloads\*)에 설치 관리자를 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-136">Save the installer to an easily accessible location like *C:\Downloads\*.</span></span>
+## <a name="installing-hello-azure-backup-agent"></a><span data-ttu-id="1cab6-133">Hello Azure 백업 에이전트를 설치</span><span class="sxs-lookup"><span data-stu-id="1cab6-133">Installing hello Azure Backup agent</span></span>
+<span data-ttu-id="1cab6-134">Hello Azure 백업 에이전트를 설치 하기 전에 다운로드 하 여 Windows 서버 hello에 toohave hello installer가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-134">Before you install hello Azure Backup agent, you need toohave hello installer downloaded and present on hello Windows Server.</span></span> <span data-ttu-id="1cab6-135">Hello에서 hello hello installer의 최신 버전을 얻을 수 있습니다 [Microsoft 다운로드 센터](http://aka.ms/azurebackup_agent) 또는 hello 복구 서비스 자격 증명 모음의 대시보드 페이지에서.</span><span class="sxs-lookup"><span data-stu-id="1cab6-135">You can get hello latest version of hello installer from hello [Microsoft Download Center](http://aka.ms/azurebackup_agent) or from hello Recovery Services vault's Dashboard page.</span></span> <span data-ttu-id="1cab6-136">Hello 설치 관리자와 같은 tooan 쉽게 액세스할 수 있는 위치를 저장 * C:\Downloads\*합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-136">Save hello installer tooan easily accessible location like *C:\Downloads\*.</span></span>
 
-<span data-ttu-id="6a318-137">또는 PowerShell을 사용하여 다운로더를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-137">Alternatively, use PowerShell to get the downloader:</span></span>
+<span data-ttu-id="1cab6-137">또는, PowerShell tooget hello 다운로더를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-137">Alternatively, use PowerShell tooget hello downloader:</span></span>
  
  ```
  $MarsAURL = 'Http://Aka.Ms/Azurebackup_Agent'
@@ -101,65 +101,65 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
  C:\Downloads\MARSAgentInstaller.EXE /q
  ```
 
-<span data-ttu-id="6a318-138">에이전트를 설치하려면 승격된 PowerShell 콘솔에서 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-138">To install the agent, run the following command in an elevated PowerShell console:</span></span>
+<span data-ttu-id="1cab6-138">다음 명령을 관리자 권한 PowerShell 콘솔 hello 실행 tooinstall hello 에이전트:</span><span class="sxs-lookup"><span data-stu-id="1cab6-138">tooinstall hello agent, run hello following command in an elevated PowerShell console:</span></span>
 
 ```
 PS C:\> MARSAgentInstaller.exe /q
 ```
 
-<span data-ttu-id="6a318-139">그러면 에이전트가 모두 기본 옵션으로 설치됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-139">This installs the agent with all the default options.</span></span> <span data-ttu-id="6a318-140">설치는 백그라운드에서 몇 분 정도 소요됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-140">The installation takes a few minutes in the background.</span></span> <span data-ttu-id="6a318-141">*/nu* 옵션을 지정하지 않으면 설치 마지막에 **Windows 업데이트** 창이 열리고 업데이트가 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-141">If you do not specify the */nu* option then the **Windows Update** window will open at the end of the installation to check for any updates.</span></span> <span data-ttu-id="6a318-142">설치되면 설치된 프로그램 목록에 에이전트가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-142">Once installed, the agent will show in the list of installed programs.</span></span>
+<span data-ttu-id="1cab6-139">이 모든 hello 기본 옵션으로 hello 에이전트를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-139">This installs hello agent with all hello default options.</span></span> <span data-ttu-id="1cab6-140">hello 설치 hello 백그라운드에서 몇 분이 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-140">hello installation takes a few minutes in hello background.</span></span> <span data-ttu-id="1cab6-141">Hello를 지정 하지 않으면 */nu* 옵션 다음 hello **Windows Update** 모든 업데이트에 대 한 hello 설치 toocheck hello 끝나기 전에 창이 열립니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-141">If you do not specify hello */nu* option then hello **Windows Update** window will open at hello end of hello installation toocheck for any updates.</span></span> <span data-ttu-id="1cab6-142">설치 되 면 hello 에이전트 hello 설치 된 프로그램 목록에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-142">Once installed, hello agent will show in hello list of installed programs.</span></span>
 
-<span data-ttu-id="6a318-143">설치된 프로그램 목록을 보려면 **제어판** > **프로그램** > **프로그램 및 기능**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-143">To see the list of installed programs, go to **Control Panel** > **Programs** > **Programs and Features**.</span></span>
+<span data-ttu-id="1cab6-143">설치 된 프로그램 toosee hello 목록이, 너무 이동**제어판** > **프로그램** > **프로그램 및 기능**합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-143">toosee hello list of installed programs, go too**Control Panel** > **Programs** > **Programs and Features**.</span></span>
 
 ![에이전트 설치됨](./media/backup-client-automation/installed-agent-listing.png)
 
-### <a name="installation-options"></a><span data-ttu-id="6a318-145">설치 옵션</span><span class="sxs-lookup"><span data-stu-id="6a318-145">Installation options</span></span>
-<span data-ttu-id="6a318-146">명령줄을 통해 사용 가능한 모든 옵션을 보려면 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-146">To see all the options available via the command-line, use the following command:</span></span>
+### <a name="installation-options"></a><span data-ttu-id="1cab6-145">설치 옵션</span><span class="sxs-lookup"><span data-stu-id="1cab6-145">Installation options</span></span>
+<span data-ttu-id="1cab6-146">통해 사용할 수 있는 옵션을 hello 모든 toosee 명령줄 hello, hello 다음 명령을 사용 하 여:</span><span class="sxs-lookup"><span data-stu-id="1cab6-146">toosee all hello options available via hello command-line, use hello following command:</span></span>
 
 ```
 PS C:\> MARSAgentInstaller.exe /?
 ```
 
-<span data-ttu-id="6a318-147">사용 가능한 옵션은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-147">The available options include:</span></span>
+<span data-ttu-id="1cab6-147">hello 사용할 수 있는 옵션은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-147">hello available options include:</span></span>
 
-| <span data-ttu-id="6a318-148">옵션</span><span class="sxs-lookup"><span data-stu-id="6a318-148">Option</span></span> | <span data-ttu-id="6a318-149">세부 정보</span><span class="sxs-lookup"><span data-stu-id="6a318-149">Details</span></span> | <span data-ttu-id="6a318-150">기본값</span><span class="sxs-lookup"><span data-stu-id="6a318-150">Default</span></span> |
+| <span data-ttu-id="1cab6-148">옵션</span><span class="sxs-lookup"><span data-stu-id="1cab6-148">Option</span></span> | <span data-ttu-id="1cab6-149">세부 정보</span><span class="sxs-lookup"><span data-stu-id="1cab6-149">Details</span></span> | <span data-ttu-id="1cab6-150">기본값</span><span class="sxs-lookup"><span data-stu-id="1cab6-150">Default</span></span> |
 | --- | --- | --- |
-| <span data-ttu-id="6a318-151">/q</span><span class="sxs-lookup"><span data-stu-id="6a318-151">/q</span></span> |<span data-ttu-id="6a318-152">자동 설치</span><span class="sxs-lookup"><span data-stu-id="6a318-152">Quiet installation</span></span> |- |
-| <span data-ttu-id="6a318-153">/p:"위치"</span><span class="sxs-lookup"><span data-stu-id="6a318-153">/p:"location"</span></span> |<span data-ttu-id="6a318-154">Azure 백업 에이전트의 설치 폴더에 대한 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-154">Path to the installation folder for the Azure Backup agent.</span></span> |<span data-ttu-id="6a318-155">C:\Program Files\Microsoft Azure Recovery Services Agent</span><span class="sxs-lookup"><span data-stu-id="6a318-155">C:\Program Files\Microsoft Azure Recovery Services Agent</span></span> |
-| <span data-ttu-id="6a318-156">/s:"위치"</span><span class="sxs-lookup"><span data-stu-id="6a318-156">/s:"location"</span></span> |<span data-ttu-id="6a318-157">Azure 백업 에이전트의 캐시 폴더에 대한 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-157">Path to the cache folder for the Azure Backup agent.</span></span> |<span data-ttu-id="6a318-158">C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch</span><span class="sxs-lookup"><span data-stu-id="6a318-158">C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch</span></span> |
-| <span data-ttu-id="6a318-159">/m</span><span class="sxs-lookup"><span data-stu-id="6a318-159">/m</span></span> |<span data-ttu-id="6a318-160">Microsoft 업데이트에 옵트인</span><span class="sxs-lookup"><span data-stu-id="6a318-160">Opt-in to Microsoft Update</span></span> |- |
-| <span data-ttu-id="6a318-161">/nu</span><span class="sxs-lookup"><span data-stu-id="6a318-161">/nu</span></span> |<span data-ttu-id="6a318-162">설치가 완료된 후 업데이트에 대한 검사 안 함</span><span class="sxs-lookup"><span data-stu-id="6a318-162">Do not Check for updates after installation is complete</span></span> |- |
-| <span data-ttu-id="6a318-163">/d</span><span class="sxs-lookup"><span data-stu-id="6a318-163">/d</span></span> |<span data-ttu-id="6a318-164">Microsoft Azure Recovery Services 에이전트를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-164">Uninstalls Microsoft Azure Recovery Services Agent</span></span> |- |
-| <span data-ttu-id="6a318-165">/ph</span><span class="sxs-lookup"><span data-stu-id="6a318-165">/ph</span></span> |<span data-ttu-id="6a318-166">프록시 호스트 주소</span><span class="sxs-lookup"><span data-stu-id="6a318-166">Proxy Host Address</span></span> |- |
-| <span data-ttu-id="6a318-167">/po</span><span class="sxs-lookup"><span data-stu-id="6a318-167">/po</span></span> |<span data-ttu-id="6a318-168">프록시 호스트 포트 번호</span><span class="sxs-lookup"><span data-stu-id="6a318-168">Proxy Host Port Number</span></span> |- |
-| <span data-ttu-id="6a318-169">/pu</span><span class="sxs-lookup"><span data-stu-id="6a318-169">/pu</span></span> |<span data-ttu-id="6a318-170">프록시 호스트 사용자 이름</span><span class="sxs-lookup"><span data-stu-id="6a318-170">Proxy Host UserName</span></span> |- |
-| <span data-ttu-id="6a318-171">/pw</span><span class="sxs-lookup"><span data-stu-id="6a318-171">/pw</span></span> |<span data-ttu-id="6a318-172">프록시 암호</span><span class="sxs-lookup"><span data-stu-id="6a318-172">Proxy Password</span></span> |- |
+| <span data-ttu-id="1cab6-151">/q</span><span class="sxs-lookup"><span data-stu-id="1cab6-151">/q</span></span> |<span data-ttu-id="1cab6-152">자동 설치</span><span class="sxs-lookup"><span data-stu-id="1cab6-152">Quiet installation</span></span> |- |
+| <span data-ttu-id="1cab6-153">/p:"위치"</span><span class="sxs-lookup"><span data-stu-id="1cab6-153">/p:"location"</span></span> |<span data-ttu-id="1cab6-154">Hello Azure 백업 에이전트에 대 한 toohello 설치 폴더 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-154">Path toohello installation folder for hello Azure Backup agent.</span></span> |<span data-ttu-id="1cab6-155">C:\Program Files\Microsoft Azure Recovery Services Agent</span><span class="sxs-lookup"><span data-stu-id="1cab6-155">C:\Program Files\Microsoft Azure Recovery Services Agent</span></span> |
+| <span data-ttu-id="1cab6-156">/s:"위치"</span><span class="sxs-lookup"><span data-stu-id="1cab6-156">/s:"location"</span></span> |<span data-ttu-id="1cab6-157">Hello Azure 백업 에이전트에 대 한 toohello 캐시 폴더 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-157">Path toohello cache folder for hello Azure Backup agent.</span></span> |<span data-ttu-id="1cab6-158">C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch</span><span class="sxs-lookup"><span data-stu-id="1cab6-158">C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch</span></span> |
+| <span data-ttu-id="1cab6-159">/m</span><span class="sxs-lookup"><span data-stu-id="1cab6-159">/m</span></span> |<span data-ttu-id="1cab6-160">옵트인 tooMicrosoft 업데이트</span><span class="sxs-lookup"><span data-stu-id="1cab6-160">Opt-in tooMicrosoft Update</span></span> |- |
+| <span data-ttu-id="1cab6-161">/nu</span><span class="sxs-lookup"><span data-stu-id="1cab6-161">/nu</span></span> |<span data-ttu-id="1cab6-162">설치가 완료된 후 업데이트에 대한 검사 안 함</span><span class="sxs-lookup"><span data-stu-id="1cab6-162">Do not Check for updates after installation is complete</span></span> |- |
+| <span data-ttu-id="1cab6-163">/d</span><span class="sxs-lookup"><span data-stu-id="1cab6-163">/d</span></span> |<span data-ttu-id="1cab6-164">Microsoft Azure Recovery Services 에이전트를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-164">Uninstalls Microsoft Azure Recovery Services Agent</span></span> |- |
+| <span data-ttu-id="1cab6-165">/ph</span><span class="sxs-lookup"><span data-stu-id="1cab6-165">/ph</span></span> |<span data-ttu-id="1cab6-166">프록시 호스트 주소</span><span class="sxs-lookup"><span data-stu-id="1cab6-166">Proxy Host Address</span></span> |- |
+| <span data-ttu-id="1cab6-167">/po</span><span class="sxs-lookup"><span data-stu-id="1cab6-167">/po</span></span> |<span data-ttu-id="1cab6-168">프록시 호스트 포트 번호</span><span class="sxs-lookup"><span data-stu-id="1cab6-168">Proxy Host Port Number</span></span> |- |
+| <span data-ttu-id="1cab6-169">/pu</span><span class="sxs-lookup"><span data-stu-id="1cab6-169">/pu</span></span> |<span data-ttu-id="1cab6-170">프록시 호스트 사용자 이름</span><span class="sxs-lookup"><span data-stu-id="1cab6-170">Proxy Host UserName</span></span> |- |
+| <span data-ttu-id="1cab6-171">/pw</span><span class="sxs-lookup"><span data-stu-id="1cab6-171">/pw</span></span> |<span data-ttu-id="1cab6-172">프록시 암호</span><span class="sxs-lookup"><span data-stu-id="1cab6-172">Proxy Password</span></span> |- |
 
-## <a name="registering-windows-server-or-windows-client-machine-to-a-recovery-services-vault"></a><span data-ttu-id="6a318-173">복구 서비스 자격 증명 모음에 Windows Server 또는 Windows 클라이언트 컴퓨터 등록</span><span class="sxs-lookup"><span data-stu-id="6a318-173">Registering Windows Server or Windows client machine to a Recovery Services Vault</span></span>
-<span data-ttu-id="6a318-174">복구 서비스 자격 증명 모음을 만든 후에, 최신 에이전트 및 보관 자격 증명을 다운로드하여 편리한 위치(예: C:\Downloads)에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-174">After you created the Recovery Services vault, download the latest agent and the vault credentials and store it in a convenient location like C:\Downloads.</span></span>
+## <a name="registering-windows-server-or-windows-client-machine-tooa-recovery-services-vault"></a><span data-ttu-id="1cab6-173">Windows Server 또는 Windows 클라이언트 컴퓨터 tooa 복구 서비스 자격 증명 모음 등록</span><span class="sxs-lookup"><span data-stu-id="1cab6-173">Registering Windows Server or Windows client machine tooa Recovery Services Vault</span></span>
+<span data-ttu-id="1cab6-174">Hello 복구 서비스 자격 증명 모음을 만든 후 hello 최신 에이전트 및 hello 자격 증명 모음 자격 증명을 다운로드 하 고 C:\Downloads 같은 편리한 위치에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-174">After you created hello Recovery Services vault, download hello latest agent and hello vault credentials and store it in a convenient location like C:\Downloads.</span></span>
 
 ```
 PS C:\> $credspath = "C:\downloads"
 PS C:\> $credsfilename = Get-AzureRmRecoveryServicesVaultSettingsFile -Backup -Vault $vault1 -Path  $credspath
 ```
 
-<span data-ttu-id="6a318-175">Windows Server 또는 Windows 클라이언트 컴퓨터에서, [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) cmdlet을 실행하여 컴퓨터를 자격 증명 모음에 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-175">On the Windows Server or Windows client machine, run the [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) cmdlet to register the machine with the vault.</span></span>
-<span data-ttu-id="6a318-176">이 cmdlet 및 백업에 사용되는 다른 cmdlet은 Mars AgentInstaller에서 설치 과정의 일환으로 추가한 MSONLINE 모듈에서 비롯됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-176">This, and other cmdlets used for backup, are from the MSONLINE module which the Mars AgentInstaller added as part of the installation process.</span></span> 
+<span data-ttu-id="1cab6-175">Hello Windows Server 또는 Windows 클라이언트 컴퓨터에서 실행 hello [Start-obregistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) hello 자격 증명 모음 cmdlet tooregister hello 컴퓨터.</span><span class="sxs-lookup"><span data-stu-id="1cab6-175">On hello Windows Server or Windows client machine, run hello [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) cmdlet tooregister hello machine with hello vault.</span></span>
+<span data-ttu-id="1cab6-176">이 및 백업에 사용 되는 다른 cmdlet은 hello MSONLINE 모듈에서 Mars AgentInstaller hello 설치 프로세스의 일부로 추가 하는 hello입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-176">This, and other cmdlets used for backup, are from hello MSONLINE module which hello Mars AgentInstaller added as part of hello installation process.</span></span> 
 
-<span data-ttu-id="6a318-177">에이전트 설치 관리자는 $Env:PSModulePath 변수를 업데이트하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-177">The Agent installer does not update the $Env:PSModulePath variable.</span></span> <span data-ttu-id="6a318-178">즉, 모듈 자동 로드에 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-178">This means module auto-load fails.</span></span> <span data-ttu-id="6a318-179">이 문제를 해결하려면 다음을 수행하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-179">To resolve this you can do the following:</span></span>
+<span data-ttu-id="1cab6-177">hello Agent installer $Env hello를 업데이트 하지 않습니다: PSModulePath 변수에 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-177">hello Agent installer does not update hello $Env:PSModulePath variable.</span></span> <span data-ttu-id="1cab6-178">즉, 모듈 자동 로드에 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-178">This means module auto-load fails.</span></span> <span data-ttu-id="1cab6-179">tooresolve 할 수 있는이 hello 다음:</span><span class="sxs-lookup"><span data-stu-id="1cab6-179">tooresolve this you can do hello following:</span></span>
 
 ```
 PS C:\>  $Env:psmodulepath += ';C:\Program Files\Microsoft Azure Recovery Services Agent\bin\Modules
 ```
 
-<span data-ttu-id="6a318-180">또는 다음과 같이 스크립트에 모듈을 수동으로 로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-180">Alternatively, you can manually load the module in your script as follows:</span></span>
+<span data-ttu-id="1cab6-180">또는 수동으로 로드할 수 있습니다 hello 모듈 스크립트에서 다음과 같이 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-180">Alternatively, you can manually load hello module in your script as follows:</span></span>
 
 ```
 PS C:\>  Import-Module  'C:\Program Files\Microsoft Azure Recovery Services Agent\bin\Modules\MSOnlineBackup'
 
 ```
 
-<span data-ttu-id="6a318-181">Online Backup cmdlet을 로드하면 자격 증명 모음을 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-181">Once you load the Online Backup cmdlets, you register the vault credentials:</span></span>
+<span data-ttu-id="1cab6-181">Hello 온라인 백업 cmdlet을 로드 하면 hello 자격 증명 모음 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-181">Once you load hello Online Backup cmdlets, you register hello vault credentials:</span></span>
 
 
 ```
@@ -173,16 +173,16 @@ Machine registration succeeded.
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="6a318-182">저장소 자격 증명 파일을 지정할 때 상대 경로를 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="6a318-182">Do not use relative paths to specify the vault credentials file.</span></span> <span data-ttu-id="6a318-183">cmdlet 입력 내용은 반드시 절대 경로를 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-183">You must provide an absolute path as an input to the cmdlet.</span></span>
+> <span data-ttu-id="1cab6-182">상대 경로 toospecify hello 자격 증명 모음 자격 증명 파일을 사용 하지 마십시오.</span><span class="sxs-lookup"><span data-stu-id="1cab6-182">Do not use relative paths toospecify hello vault credentials file.</span></span> <span data-ttu-id="1cab6-183">입력된 toohello cmdlet으로는 절대 경로 제공 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-183">You must provide an absolute path as an input toohello cmdlet.</span></span>
 >
 >
 
-## <a name="networking-settings"></a><span data-ttu-id="6a318-184">네트워킹 서비스</span><span class="sxs-lookup"><span data-stu-id="6a318-184">Networking settings</span></span>
-<span data-ttu-id="6a318-185">Windows 컴퓨터의 인터넷 연결이 프록시 서버를 통하는 경우, 프록시 설정도 에이전트에 제공될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-185">When the connectivity of the Windows machine to the internet is through a proxy server, the proxy settings can also be provided to the agent.</span></span> <span data-ttu-id="6a318-186">이 예제에서는 프록시 서버가 없으므로 프록시와 관련된 모든 정보를 명시적으로 지웁니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-186">In this example, there is no proxy server, so we are explicitly clearing any proxy-related information.</span></span>
+## <a name="networking-settings"></a><span data-ttu-id="1cab6-184">네트워킹 서비스</span><span class="sxs-lookup"><span data-stu-id="1cab6-184">Networking settings</span></span>
+<span data-ttu-id="1cab6-185">Hello의 hello 연결 Windows 컴퓨터 인터넷 프록시 서버를 통해은 toohello을 때 hello 프록시 설정은 제공할 수도 있습니다 toohello 에이전트입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-185">When hello connectivity of hello Windows machine toohello internet is through a proxy server, hello proxy settings can also be provided toohello agent.</span></span> <span data-ttu-id="1cab6-186">이 예제에서는 프록시 서버가 없으므로 프록시와 관련된 모든 정보를 명시적으로 지웁니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-186">In this example, there is no proxy server, so we are explicitly clearing any proxy-related information.</span></span>
 
-<span data-ttu-id="6a318-187">대역폭 사용 역시 주의 정해진 요일에 대해 ```work hour bandwidth``` 및 ```non-work hour bandwidth``` 옵션으로 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-187">Bandwidth usage can also be controlled with the options of ```work hour bandwidth``` and ```non-work hour bandwidth``` for a given set of days of the week.</span></span>
+<span data-ttu-id="1cab6-187">Hello 옵션의 대역폭 사용량을 제어할 수도 있습니다 ```work hour bandwidth``` 및 ```non-work hour bandwidth``` hello 주 중 일의 특정된 집합에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-187">Bandwidth usage can also be controlled with hello options of ```work hour bandwidth``` and ```non-work hour bandwidth``` for a given set of days of hello week.</span></span>
 
-<span data-ttu-id="6a318-188">프록시 및 대역폭 세부 정보 설정은 [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-188">Setting the proxy and bandwidth details is done using the [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) cmdlet:</span></span>
+<span data-ttu-id="1cab6-188">Hello 프록시 및 대역폭 세부 정보를 설정 이루어진다는 hello를 사용 하 여 [Set-obmachinesetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) cmdlet:</span><span class="sxs-lookup"><span data-stu-id="1cab6-188">Setting hello proxy and bandwidth details is done using hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) cmdlet:</span></span>
 
 ```
 PS C:\> Set-OBMachineSetting -NoProxy
@@ -192,8 +192,8 @@ PS C:\> Set-OBMachineSetting -NoThrottle
 Server properties updated successfully.
 ```
 
-## <a name="encryption-settings"></a><span data-ttu-id="6a318-189">암호화 설정</span><span class="sxs-lookup"><span data-stu-id="6a318-189">Encryption settings</span></span>
-<span data-ttu-id="6a318-190">Azure 백업에 전송되는 백업 데이터는 데이터의 기밀성을 보호하기 위해 암호화됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-190">The backup data sent to Azure Backup is encrypted to protect the confidentiality of the data.</span></span> <span data-ttu-id="6a318-191">암호화 암호는 복원 시 데이터를 해독하기 위한 “암호"입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-191">The encryption passphrase is the "password" to decrypt the data at the time of restore.</span></span>
+## <a name="encryption-settings"></a><span data-ttu-id="1cab6-189">암호화 설정</span><span class="sxs-lookup"><span data-stu-id="1cab6-189">Encryption settings</span></span>
+<span data-ttu-id="1cab6-190">hello 전송 되는 백업 데이터 tooAzure 백업 hello 데이터의 암호화 된 tooprotect hello 기밀입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-190">hello backup data sent tooAzure Backup is encrypted tooprotect hello confidentiality of hello data.</span></span> <span data-ttu-id="1cab6-191">hello 암호화의 암호는 복원의 hello 시 hello "password" toodecrypt hello 데이터입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-191">hello encryption passphrase is hello "password" toodecrypt hello data at hello time of restore.</span></span>
 
 ```
 PS C:\> ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force | Set-OBMachineSetting
@@ -204,51 +204,51 @@ Server properties updated successfully
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="6a318-192">암호 정보를 설정한 후에는 안전하게 보관합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-192">Keep the passphrase information safe and secure once it is set.</span></span> <span data-ttu-id="6a318-193">이 암호 없이는 Azure에서 데이터를 복원할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-193">You are not be able to restore data from Azure without this passphrase.</span></span>
+> <span data-ttu-id="1cab6-192">설정 되 면 hello 암호 정보를 안전 하 게 유지 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-192">Keep hello passphrase information safe and secure once it is set.</span></span> <span data-ttu-id="1cab6-193">이 암호 없이 Azure에서 수 toorestore 데이터를 수는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-193">You are not be able toorestore data from Azure without this passphrase.</span></span>
 >
 >
 
-## <a name="back-up-files-and-folders"></a><span data-ttu-id="6a318-194">파일 및 폴더 백업</span><span class="sxs-lookup"><span data-stu-id="6a318-194">Back up files and folders</span></span>
-<span data-ttu-id="6a318-195">Windows 서버 및 클라이언트에서 Azure 백업으로의 모든 백업은 정책에 따라 제어됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-195">All backups from Windows Servers and clients to Azure Backup are governed by a policy.</span></span> <span data-ttu-id="6a318-196">정책은 세 부분으로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-196">The policy comprises three parts:</span></span>
+## <a name="back-up-files-and-folders"></a><span data-ttu-id="1cab6-194">파일 및 폴더 백업</span><span class="sxs-lookup"><span data-stu-id="1cab6-194">Back up files and folders</span></span>
+<span data-ttu-id="1cab6-195">Windows 서버 및 클라이언트 tooAzure 백업에서에서 모든 백업 정책에 의해 제어 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-195">All backups from Windows Servers and clients tooAzure Backup are governed by a policy.</span></span> <span data-ttu-id="1cab6-196">hello 정책에는 세 부분으로 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-196">hello policy comprises three parts:</span></span>
 
-1. <span data-ttu-id="6a318-197">백업을 수행하고 서비스와 동기화해야 할 시기를 지정하는 **백업 일정** .</span><span class="sxs-lookup"><span data-stu-id="6a318-197">A **backup schedule** that specifies when backups need to be taken and synchronized with the service.</span></span>
-2. <span data-ttu-id="6a318-198">Azure에 복구 지점을 보존할 기간을 지정하는 **보존 일정** 입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-198">A **retention schedule** that specifies how long to retain the recovery points in Azure.</span></span>
-3. <span data-ttu-id="6a318-199">백업해야 할 항목을 지정하는 **파일 포함/제외 사양** .</span><span class="sxs-lookup"><span data-stu-id="6a318-199">A **file inclusion/exclusion specification** that dictates what should be backed up.</span></span>
+1. <span data-ttu-id="1cab6-197">A **백업 일정** 백업을 toobe 가져오고 hello 서비스와 동기화 해야 하는 경우를 지정 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-197">A **backup schedule** that specifies when backups need toobe taken and synchronized with hello service.</span></span>
+2. <span data-ttu-id="1cab6-198">A **보존 일정** Azure tooretain hello 복구 지점 기간을 지정 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-198">A **retention schedule** that specifies how long tooretain hello recovery points in Azure.</span></span>
+3. <span data-ttu-id="1cab6-199">백업해야 할 항목을 지정하는 **파일 포함/제외 사양** .</span><span class="sxs-lookup"><span data-stu-id="1cab6-199">A **file inclusion/exclusion specification** that dictates what should be backed up.</span></span>
 
-<span data-ttu-id="6a318-200">이 문서에서는 백업을 자동화하기 때문에 아무것도 구성되지 않은 것으로 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-200">In this document, since we're automating backup, we'll assume nothing has been configured.</span></span> <span data-ttu-id="6a318-201">먼저 [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) cmdlet을 사용하여 새로운 백업 정책을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-201">We begin by creating a new backup policy using the [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) cmdlet.</span></span>
+<span data-ttu-id="1cab6-200">이 문서에서는 백업을 자동화하기 때문에 아무것도 구성되지 않은 것으로 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-200">In this document, since we're automating backup, we'll assume nothing has been configured.</span></span> <span data-ttu-id="1cab6-201">사용 하 여 hello를 사용 하 여 새 백업 정책을 만드는 [New-obpolicy](https://technet.microsoft.com/library/hh770416.aspx) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-201">We begin by creating a new backup policy using hello [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) cmdlet.</span></span>
 
 ```
 PS C:\> $newpolicy = New-OBPolicy
 ```
 
-<span data-ttu-id="6a318-202">지금은 정책이 비어 있으며 포함하거나 제외시킬 항목, 백업 실행 시기 및 백업이 저장될 위치를 정의하려면 다른 cmdlet이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-202">At this time the policy is empty and other cmdlets are needed to define what items will be included or excluded, when backups will run, and where the backups will be stored.</span></span>
+<span data-ttu-id="1cab6-202">이 시간 hello에서 정책 비어 있고 다른 cmdlet은 필요한 toodefine 포함 되거나 제외 될 항목, 백업이 저장 될 때 백업을 실행 하 고 여기서 hello 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-202">At this time hello policy is empty and other cmdlets are needed toodefine what items will be included or excluded, when backups will run, and where hello backups will be stored.</span></span>
 
-### <a name="configuring-the-backup-schedule"></a><span data-ttu-id="6a318-203">백업 일정 구성</span><span class="sxs-lookup"><span data-stu-id="6a318-203">Configuring the backup schedule</span></span>
-<span data-ttu-id="6a318-204">정책의 3부분 중 첫 번째는 백업 일정으로, [New-OBSchedule](https://technet.microsoft.com/library/hh770401) cmdlet을 사용하여 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-204">The first of the 3 parts of a policy is the backup schedule, which is created using the [New-OBSchedule](https://technet.microsoft.com/library/hh770401) cmdlet.</span></span> <span data-ttu-id="6a318-205">백업 일정은 백업을 수행해야 할 시기를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-205">The backup schedule defines when backups need to be taken.</span></span> <span data-ttu-id="6a318-206">일정을 만들 때는 2개의 입력 매개 변수를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-206">When creating a schedule you need to specify 2 input parameters:</span></span>
+### <a name="configuring-hello-backup-schedule"></a><span data-ttu-id="1cab6-203">Hello 백업 일정 구성</span><span class="sxs-lookup"><span data-stu-id="1cab6-203">Configuring hello backup schedule</span></span>
+<span data-ttu-id="1cab6-204">먼저 hello hello 정책 3 부분이 hello를 사용 하 여 생성 된 백업 일정을 hello [새로 OBSchedule](https://technet.microsoft.com/library/hh770401) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-204">hello first of hello 3 parts of a policy is hello backup schedule, which is created using hello [New-OBSchedule](https://technet.microsoft.com/library/hh770401) cmdlet.</span></span> <span data-ttu-id="1cab6-205">백업 일정 hello 백업을 toobe 수행 해야 하는 경우를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-205">hello backup schedule defines when backups need toobe taken.</span></span> <span data-ttu-id="1cab6-206">일정을 만들 때 2 toospecify 입력된 매개 변수가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-206">When creating a schedule you need toospecify 2 input parameters:</span></span>
 
-* <span data-ttu-id="6a318-207">**요일** .</span><span class="sxs-lookup"><span data-stu-id="6a318-207">**Days of the week** that the backup should run.</span></span> <span data-ttu-id="6a318-208">백업을 하루만 실행하거나 해당 주의 모든 요일 또는 그 사이의 날짜를 조합하여 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-208">You can run the backup job on just one day, or every day of the week, or any combination in between.</span></span>
-* <span data-ttu-id="6a318-209">**시간** .</span><span class="sxs-lookup"><span data-stu-id="6a318-209">**Times of the day** when the backup should run.</span></span> <span data-ttu-id="6a318-210">백업이 트리거되는 시간을 최대 3개까지 서로 다르게 정의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-210">You can define up to 3 different times of the day when the backup will be triggered.</span></span>
+* <span data-ttu-id="1cab6-207">**Hello 주 중 일** 해당 hello 백업을 실행 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-207">**Days of hello week** that hello backup should run.</span></span> <span data-ttu-id="1cab6-208">Hello만 1 일에서 백업 작업 또는 hello 주 매일 또는 조합을 사이 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-208">You can run hello backup job on just one day, or every day of hello week, or any combination in between.</span></span>
+* <span data-ttu-id="1cab6-209">**Hello 하루 중 시간** hello 백업 실행 시기입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-209">**Times of hello day** when hello backup should run.</span></span> <span data-ttu-id="1cab6-210">Too3 시간 hello hello 백업 트리거될 수는 때를 정의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-210">You can define up too3 different times of hello day when hello backup will be triggered.</span></span>
 
-<span data-ttu-id="6a318-211">예를 들어, 토요일과 일요일마다 오후 4시에 실행되는 백업 정책을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-211">For instance, you could configure a backup policy that runs at 4PM every Saturday and Sunday.</span></span>
+<span data-ttu-id="1cab6-211">예를 들어, 토요일과 일요일마다 오후 4시에 실행되는 백업 정책을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-211">For instance, you could configure a backup policy that runs at 4PM every Saturday and Sunday.</span></span>
 
 ```
 PS C:\> $sched = New-OBSchedule -DaysofWeek Saturday, Sunday -TimesofDay 16:00
 ```
 
-<span data-ttu-id="6a318-212">백업 일정은 정책과 연결되어야 하며 이 작업은 [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) cmdlet을 사용하여 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-212">The backup schedule needs to be associated with a policy, and this can be achieved by using the [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) cmdlet.</span></span>
+<span data-ttu-id="1cab6-212">hello 백업 일정을 정책에 연결 된 toobe 되어야 하며 hello를 사용 하 여 이렇게 할 [Set-obschedule](https://technet.microsoft.com/library/hh770407) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-212">hello backup schedule needs toobe associated with a policy, and this can be achieved by using hello [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) cmdlet.</span></span>
 
 ```
 PS C:> Set-OBSchedule -Policy $newpolicy -Schedule $sched
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s) DsList : PolicyName : RetentionPolicy : State : New PolicyState : Valid
 ```
-### <a name="configuring-a-retention-policy"></a><span data-ttu-id="6a318-213">보존 정책 구성</span><span class="sxs-lookup"><span data-stu-id="6a318-213">Configuring a retention policy</span></span>
-<span data-ttu-id="6a318-214">보존 정책은 백업 작업에서 생성된 복구 지점이 유지되는 기간을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-214">The retention policy defines how long recovery points created from backup jobs are retained.</span></span> <span data-ttu-id="6a318-215">[New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) cmdlet을 사용하여 새 보존 정책을 만들 때 Azure 백업을 사용하여 백업 복구 지점을 유지해야 할 일수를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-215">When creating a new retention policy using the [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) cmdlet, you can specify the number of days that the backup recovery points need to be retained with Azure Backup.</span></span> <span data-ttu-id="6a318-216">다음 예제에서는 7일의 보존 정책을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-216">The example below sets a retention policy of 7 days.</span></span>
+### <a name="configuring-a-retention-policy"></a><span data-ttu-id="1cab6-213">보존 정책 구성</span><span class="sxs-lookup"><span data-stu-id="1cab6-213">Configuring a retention policy</span></span>
+<span data-ttu-id="1cab6-214">hello 보존 정책은 백업 작업에서 생성 된 지점을 유지 되는 시간 복구를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-214">hello retention policy defines how long recovery points created from backup jobs are retained.</span></span> <span data-ttu-id="1cab6-215">Hello를 사용 하 여 새 보존 정책을 만들 때 [새로 OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) cmdlet hello 일 수를 백업 복구 지점을 hello 필요 toobe를 Azure 백업 보존을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-215">When creating a new retention policy using hello [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) cmdlet, you can specify hello number of days that hello backup recovery points need toobe retained with Azure Backup.</span></span> <span data-ttu-id="1cab6-216">다음 예제에서는 hello 보존 정책을 7 일로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-216">hello example below sets a retention policy of 7 days.</span></span>
 
 ```
 PS C:\> $retentionpolicy = New-OBRetentionPolicy -RetentionDays 7
 ```
 
-<span data-ttu-id="6a318-217">보존 정책은 cmdlet [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405)를 사용하여 기본 정책과 연결되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-217">The retention policy must be associated with the main policy using the cmdlet [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):</span></span>
+<span data-ttu-id="1cab6-217">hello 보존 정책을 연결 해야 hello cmdlet을 사용 하는 hello 주 정책과 [집합 OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):</span><span class="sxs-lookup"><span data-stu-id="1cab6-217">hello retention policy must be associated with hello main policy using hello cmdlet [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):</span></span>
 
 ```
 PS C:\> Set-OBRetentionPolicy -Policy $newpolicy -RetentionPolicy $retentionpolicy
@@ -272,16 +272,16 @@ RetentionPolicy : Retention Days : 7
 State           : New
 PolicyState     : Valid
 ```
-### <a name="including-and-excluding-files-to-be-backed-up"></a><span data-ttu-id="6a318-218">백업할 파일 포함 및 제외</span><span class="sxs-lookup"><span data-stu-id="6a318-218">Including and excluding files to be backed up</span></span>
-<span data-ttu-id="6a318-219">```OBFileSpec``` 개체는 백업에 포함 및 제외시킬 파일을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-219">An ```OBFileSpec``` object defines the files to be included and excluded in a backup.</span></span> <span data-ttu-id="6a318-220">이 개체는 컴퓨터에서 보호된 파일 및 폴더를 자세히 살펴보는 규칙의 집합입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-220">This is a set of rules that scope out the protected files and folders on a machine.</span></span> <span data-ttu-id="6a318-221">필요에 따라 원하는 만큼 파일을 포함 또는 제외시키고 정책과 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-221">You can have as many file inclusion or exclusion rules as required, and associate them with a policy.</span></span> <span data-ttu-id="6a318-222">새 OBFileSpec 개체를 만드는 경우 다음 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-222">When creating a new OBFileSpec object, you can:</span></span>
+### <a name="including-and-excluding-files-toobe-backed-up"></a><span data-ttu-id="1cab6-218">포함 및 제외 toobe 파일 백업</span><span class="sxs-lookup"><span data-stu-id="1cab6-218">Including and excluding files toobe backed up</span></span>
+<span data-ttu-id="1cab6-219">```OBFileSpec``` hello 파일 toobe 포함 되거나 백업에서 제외 개체를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-219">An ```OBFileSpec``` object defines hello files toobe included and excluded in a backup.</span></span> <span data-ttu-id="1cab6-220">Hello 아웃 범위는 컴퓨터의 파일 및 폴더 보호 하는 규칙의 집합입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-220">This is a set of rules that scope out hello protected files and folders on a machine.</span></span> <span data-ttu-id="1cab6-221">필요에 따라 원하는 만큼 파일을 포함 또는 제외시키고 정책과 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-221">You can have as many file inclusion or exclusion rules as required, and associate them with a policy.</span></span> <span data-ttu-id="1cab6-222">새 OBFileSpec 개체를 만드는 경우 다음 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-222">When creating a new OBFileSpec object, you can:</span></span>
 
-* <span data-ttu-id="6a318-223">포함시킬 파일 및 폴더 지정</span><span class="sxs-lookup"><span data-stu-id="6a318-223">Specify the files and folders to be included</span></span>
-* <span data-ttu-id="6a318-224">제외시킬 파일 및 폴더 지정</span><span class="sxs-lookup"><span data-stu-id="6a318-224">Specify the files and folders to be excluded</span></span>
-* <span data-ttu-id="6a318-225">폴더의 데이터에 대한 재귀 백업을 지정하거나 지정된 폴더의 최상위 수준 파일만 백업해야 하는지 여부를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-225">Specify recursive backup of data in a folder (or) whether only the top-level files in the specified folder should be backed up.</span></span>
+* <span data-ttu-id="1cab6-223">포함 된 hello 파일 및 폴더 toobe 지정</span><span class="sxs-lookup"><span data-stu-id="1cab6-223">Specify hello files and folders toobe included</span></span>
+* <span data-ttu-id="1cab6-224">Hello 파일 및 폴더 toobe 제외를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-224">Specify hello files and folders toobe excluded</span></span>
+* <span data-ttu-id="1cab6-225">재귀 백업 데이터 폴더 (또는) hello 최상위에 있는 파일만 hello 지정 된 폴더를 백업 해야 하는지 여부를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-225">Specify recursive backup of data in a folder (or) whether only hello top-level files in hello specified folder should be backed up.</span></span>
 
-<span data-ttu-id="6a318-226">후자는 New-OBFileSpec 명령의 -NonRecursive 플래그를 사용하여 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-226">The latter is achieved by using the -NonRecursive flag in the New-OBFileSpec command.</span></span>
+<span data-ttu-id="1cab6-226">후자의 hello hello New-obfilespec 명령 hello-비재귀 플래그를 사용 하 여 이루어집니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-226">hello latter is achieved by using hello -NonRecursive flag in hello New-OBFileSpec command.</span></span>
 
-<span data-ttu-id="6a318-227">아래 예제에서는 C: 및 D: 볼륨을 백업하고 Windows 폴더 및 임시 폴더에 있는 운영 체제 바이너리를 제외시킵니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-227">In the example below, we'll back up volume C: and D: and exclude the OS binaries in the Windows folder and any temporary folders.</span></span> <span data-ttu-id="6a318-228">이를 수행하기 위해 [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) cmdlet을 사용하여 두 개의 파일 사양을 만드는데, 하나는 포함용이고 또 하나는 제외용입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-228">To do so we'll create two file specifications using the [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) cmdlet - one for inclusion and one for exclusion.</span></span> <span data-ttu-id="6a318-229">파일 사양을 만들고 나면 [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) cmdlet을 사용하여 정책과 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-229">Once the file specifications have been created, they're associated with the policy using the [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) cmdlet.</span></span>
+<span data-ttu-id="1cab6-227">Hello 아래의 예제에서는 c: 및 d: 볼륨을 백업 알아보고 hello OS 바이너리 hello Windows 폴더 및 임시 폴더에 제외 하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-227">In hello example below, we'll back up volume C: and D: and exclude hello OS binaries in hello Windows folder and any temporary folders.</span></span> <span data-ttu-id="1cab6-228">hello를 사용 하 여 두 파일 사양 만들겠습니다 하므로 toodo [New-obfilespec](https://technet.microsoft.com/library/hh770408) cmdlet-포함 및 제외 하나에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-228">toodo so we'll create two file specifications using hello [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) cmdlet - one for inclusion and one for exclusion.</span></span> <span data-ttu-id="1cab6-229">Hello를 사용 하 여 hello 정책과 연결 된 자신이 hello 파일 지정을 만든 후 [Add-obfilespec](https://technet.microsoft.com/library/hh770424) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-229">Once hello file specifications have been created, they're associated with hello policy using hello [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) cmdlet.</span></span>
 
 ```
 PS C:\> $inclusions = New-OBFileSpec -FileSpec @("C:\", "D:\")
@@ -372,19 +372,19 @@ State           : New
 PolicyState     : Valid
 ```
 
-### <a name="applying-the-policy"></a><span data-ttu-id="6a318-230">정책 적용</span><span class="sxs-lookup"><span data-stu-id="6a318-230">Applying the policy</span></span>
-<span data-ttu-id="6a318-231">이제 정책 개체가 완료되었으므로 연결된 백업 일정, 보존 정책 및 파일의 포함/제외 목록이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-231">Now the policy object is complete and has an associated backup schedule, retention policy, and an inclusion/exclusion list of files.</span></span> <span data-ttu-id="6a318-232">이제는 이 정책을 Azure 백업에 커밋하여 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-232">This policy can now be committed for Azure Backup to use.</span></span> <span data-ttu-id="6a318-233">새로 만든 정책을 적용하기 전에 [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) cmdlet을 사용하여 서버에 연결된 기존 백업 정책이 없도록 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-233">Before you apply the newly created policy ensure that there are no existing backup policies associated with the server by using the [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) cmdlet.</span></span> <span data-ttu-id="6a318-234">정책을 제거하면 확인 메시지가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-234">Removing the policy will prompt for confirmation.</span></span> <span data-ttu-id="6a318-235">확인 메시지를 건너뛰려면 ```-Confirm:$false``` 플래그를 cmdlet과 함께 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-235">To skip the confirmation use the ```-Confirm:$false``` flag with the cmdlet.</span></span>
+### <a name="applying-hello-policy"></a><span data-ttu-id="1cab6-230">Hello 정책 적용</span><span class="sxs-lookup"><span data-stu-id="1cab6-230">Applying hello policy</span></span>
+<span data-ttu-id="1cab6-231">이제 hello 정책 개체가 완료 되 고 연결된 된 백업 일정, 보존 정책 및은 파일 포함/제외 목록.</span><span class="sxs-lookup"><span data-stu-id="1cab6-231">Now hello policy object is complete and has an associated backup schedule, retention policy, and an inclusion/exclusion list of files.</span></span> <span data-ttu-id="1cab6-232">이 정책은 이제 toouse Azure 백업에 대 한 커밋할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-232">This policy can now be committed for Azure Backup toouse.</span></span> <span data-ttu-id="1cab6-233">새로 만든 hello를 적용 하기 전에 정책을 확인 hello를 사용 하 여 hello 서버와 관련 된 기존 백업 정책이 없으면 [제거 OBPolicy](https://technet.microsoft.com/library/hh770415) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-233">Before you apply hello newly created policy ensure that there are no existing backup policies associated with hello server by using hello [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) cmdlet.</span></span> <span data-ttu-id="1cab6-234">Hello 정책 제거 하는 확인 메시지를 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-234">Removing hello policy will prompt for confirmation.</span></span> <span data-ttu-id="1cab6-235">tooskip hello 확인 hello를 사용 하 여 ```-Confirm:$false``` hello cmdlet과 플래그입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-235">tooskip hello confirmation use hello ```-Confirm:$false``` flag with hello cmdlet.</span></span>
 
 ```
 PS C:> Get-OBPolicy | Remove-OBPolicy
-Microsoft Azure Backup Are you sure you want to remove this backup policy? This will delete all the backed up data. [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Are you sure you want tooremove this backup policy? This will delete all hello backed up data. [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
 ```
 
-<span data-ttu-id="6a318-236">정책 개체 커밋은 [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) cmdlet을 사용하여 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-236">Committing the policy object is done using the [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) cmdlet.</span></span> <span data-ttu-id="6a318-237">이 작업에서도 확인 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-237">This will also ask for confirmation.</span></span> <span data-ttu-id="6a318-238">확인 메시지를 건너뛰려면 ```-Confirm:$false``` 플래그를 cmdlet과 함께 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-238">To skip the confirmation use the ```-Confirm:$false``` flag with the cmdlet.</span></span>
+<span data-ttu-id="1cab6-236">커밋 hello 정책 개체 이루어집니다 hello를 사용 하 여 [Set-obpolicy](https://technet.microsoft.com/library/hh770421) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-236">Committing hello policy object is done using hello [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) cmdlet.</span></span> <span data-ttu-id="1cab6-237">이 작업에서도 확인 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-237">This will also ask for confirmation.</span></span> <span data-ttu-id="1cab6-238">tooskip hello 확인 hello를 사용 하 여 ```-Confirm:$false``` hello cmdlet과 플래그입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-238">tooskip hello confirmation use hello ```-Confirm:$false``` flag with hello cmdlet.</span></span>
 
 ```
 PS C:> Set-OBPolicy -Policy $newpolicy
-Microsoft Azure Backup Do you want to save this backup policy ? [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Do you want toosave this backup policy ? [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s)
 DsList : {DataSource
          DatasourceId:4508156004108672185
@@ -425,7 +425,7 @@ RetentionPolicy : Retention Days : 7
 State : Existing PolicyState : Valid
 ```
 
-<span data-ttu-id="6a318-239">[Get-OBPolicy](https://technet.microsoft.com/library/hh770406) cmdlet을 사용하여 기존 백업 정책에 대한 세부 정보를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-239">You can view the details of the existing backup policy using the [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) cmdlet.</span></span> <span data-ttu-id="6a318-240">백업 입정에는 [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) cmdlet, 보존 정책에는 [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) cmdlet을 사용하면 더욱 상세하게 정보를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-240">You can drill-down further using the [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) cmdlet for the backup schedule and the [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) cmdlet for the retention policies</span></span>
+<span data-ttu-id="1cab6-239">Hello hello를 사용 하 여 hello 기존 백업 정책 세부 정보를 볼 수 있습니다 [Get-obpolicy](https://technet.microsoft.com/library/hh770406) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-239">You can view hello details of hello existing backup policy using hello [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) cmdlet.</span></span> <span data-ttu-id="1cab6-240">있습니다 수 드릴 다운 hello를 사용 하 여 자세히 [Get OBSchedule](https://technet.microsoft.com/library/hh770423) hello 백업 일정 및 hello에 대 한 cmdlet [Get OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) hello 보존 정책에 대 한 cmdlet</span><span class="sxs-lookup"><span data-stu-id="1cab6-240">You can drill-down further using hello [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) cmdlet for hello backup schedule and hello [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) cmdlet for hello retention policies</span></span>
 
 ```
 PS C:> Get-OBPolicy | Get-OBSchedule
@@ -465,33 +465,33 @@ IsExclude : True
 IsRecursive : True
 ```
 
-### <a name="performing-an-ad-hoc-backup"></a><span data-ttu-id="6a318-241">임시 백업 수행</span><span class="sxs-lookup"><span data-stu-id="6a318-241">Performing an ad-hoc backup</span></span>
-<span data-ttu-id="6a318-242">백업 정책이 설정되면 일정에 따라 백업이 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-242">Once a backup policy has been set the backups will occur per the schedule.</span></span> <span data-ttu-id="6a318-243">또한 [Start-OBBackup](https://technet.microsoft.com/library/hh770426) cmdlet을 사용하여 임시 백업 트리거도 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-243">Triggering an ad-hoc backup is also possible using the [Start-OBBackup](https://technet.microsoft.com/library/hh770426) cmdlet:</span></span>
+### <a name="performing-an-ad-hoc-backup"></a><span data-ttu-id="1cab6-241">임시 백업 수행</span><span class="sxs-lookup"><span data-stu-id="1cab6-241">Performing an ad-hoc backup</span></span>
+<span data-ttu-id="1cab6-242">백업 정책을 설정 되 면 hello 백업을 hello 일정에 따라 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-242">Once a backup policy has been set hello backups will occur per hello schedule.</span></span> <span data-ttu-id="1cab6-243">임시 백업을 트리거하는 hello를 사용 하 여 가능한도 [시작 OBBackup](https://technet.microsoft.com/library/hh770426) cmdlet:</span><span class="sxs-lookup"><span data-stu-id="1cab6-243">Triggering an ad-hoc backup is also possible using hello [Start-OBBackup](https://technet.microsoft.com/library/hh770426) cmdlet:</span></span>
 
 ```
 PS C:> Get-OBPolicy | Start-OBBackup
 Initializing
 Taking snapshot of volumes...
 Preparing storage...
-Generating backup metadata information and preparing the metadata VHD...
-Data transfer is in progress. It might take longer since it is the first backup and all data needs to be transferred...
-Data transfer completed and all backed up data is in the cloud. Verifying data integrity...
+Generating backup metadata information and preparing hello metadata VHD...
+Data transfer is in progress. It might take longer since it is hello first backup and all data needs toobe transferred...
+Data transfer completed and all backed up data is in hello cloud. Verifying data integrity...
 Data transfer completed
 In progress...
 Job completed.
-The backup operation completed successfully.
+hello backup operation completed successfully.
 ```
 
-## <a name="restore-data-from-azure-backup"></a><span data-ttu-id="6a318-244">Azure 백업에서 데이터 복원</span><span class="sxs-lookup"><span data-stu-id="6a318-244">Restore data from Azure Backup</span></span>
-<span data-ttu-id="6a318-245">이 섹션에서는 Azure 백업에서 데이터 복구를 자동화하는 방법을 단계별로 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-245">This section will guide you through the steps for automating recovery of data from Azure Backup.</span></span> <span data-ttu-id="6a318-246">다음 단계를 수행하여 작업을 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-246">Doing so involves the following steps:</span></span>
+## <a name="restore-data-from-azure-backup"></a><span data-ttu-id="1cab6-244">Azure 백업에서 데이터 복원</span><span class="sxs-lookup"><span data-stu-id="1cab6-244">Restore data from Azure Backup</span></span>
+<span data-ttu-id="1cab6-245">이 섹션에서는 Azure 백업에서 데이터의 복구 자동화에 대 한 hello 단계를 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-245">This section will guide you through hello steps for automating recovery of data from Azure Backup.</span></span> <span data-ttu-id="1cab6-246">이렇게 하면 hello를 단계를 수행 하므로 구성 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-246">Doing so involves hello following steps:</span></span>
 
-1. <span data-ttu-id="6a318-247">원본 볼륨 선택</span><span class="sxs-lookup"><span data-stu-id="6a318-247">Pick the source volume</span></span>
-2. <span data-ttu-id="6a318-248">복원할 백업 시점 선택</span><span class="sxs-lookup"><span data-stu-id="6a318-248">Choose a backup point to restore</span></span>
-3. <span data-ttu-id="6a318-249">복원할 항목 선택</span><span class="sxs-lookup"><span data-stu-id="6a318-249">Choose an item to restore</span></span>
-4. <span data-ttu-id="6a318-250">복원 프로세스 트리거</span><span class="sxs-lookup"><span data-stu-id="6a318-250">Trigger the restore process</span></span>
+1. <span data-ttu-id="1cab6-247">Hello 원본 볼륨 선택</span><span class="sxs-lookup"><span data-stu-id="1cab6-247">Pick hello source volume</span></span>
+2. <span data-ttu-id="1cab6-248">백업 지점 toorestore 선택</span><span class="sxs-lookup"><span data-stu-id="1cab6-248">Choose a backup point toorestore</span></span>
+3. <span data-ttu-id="1cab6-249">항목 toorestore 선택</span><span class="sxs-lookup"><span data-stu-id="1cab6-249">Choose an item toorestore</span></span>
+4. <span data-ttu-id="1cab6-250">트리거 hello 복원 프로세스</span><span class="sxs-lookup"><span data-stu-id="1cab6-250">Trigger hello restore process</span></span>
 
-### <a name="picking-the-source-volume"></a><span data-ttu-id="6a318-251">원본 볼륨 선택</span><span class="sxs-lookup"><span data-stu-id="6a318-251">Picking the source volume</span></span>
-<span data-ttu-id="6a318-252">Azure 백업에서 항목을 복원하려면 먼저 항목의 원본을 식별해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-252">In order to restore an item from Azure Backup, you first need to identify the source of the item.</span></span> <span data-ttu-id="6a318-253">Windows 서버 또는 Windows 클라이언트의 컨텍스트에서 명령을 실행 중이므로 컴퓨터는 이미 식별된 상태입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-253">Since we're executing the commands in the context of a Windows Server or a Windows client, the machine is already identified.</span></span> <span data-ttu-id="6a318-254">원본을 식별하는 다음 단계는 해당 원본이 포함된 볼륨을 식별하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-254">The next step in identifying the source is to identify the volume containing it.</span></span> <span data-ttu-id="6a318-255">이 컴퓨터에서 백업 중인 볼륨 또는 원본 목록은 [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) cmdlet을 실행하여 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-255">A list of volumes or sources being backed up from this machine can be retrieved by executing the [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) cmdlet.</span></span> <span data-ttu-id="6a318-256">이 명령은 이 서버/클라이언트에서 백업한 모든 원본의 배열을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-256">This command returns an array of all the sources backed up from this server/client.</span></span>
+### <a name="picking-hello-source-volume"></a><span data-ttu-id="1cab6-251">Hello 원본 볼륨을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-251">Picking hello source volume</span></span>
+<span data-ttu-id="1cab6-252">순서 toorestore Azure 백업에서 항목에에서는 먼저 hello 항목의 tooidentify hello 원본이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-252">In order toorestore an item from Azure Backup, you first need tooidentify hello source of hello item.</span></span> <span data-ttu-id="1cab6-253">Windows Server 또는 Windows 클라이언트의 hello 컨텍스트에서 hello 명령을 실행 하는 것, 이후 hello 컴퓨터는 이미 식별 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-253">Since we're executing hello commands in hello context of a Windows Server or a Windows client, hello machine is already identified.</span></span> <span data-ttu-id="1cab6-254">hello 소스를 식별 hello 다음 단계에는 포함 하는 tooidentify hello 볼륨입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-254">hello next step in identifying hello source is tooidentify hello volume containing it.</span></span> <span data-ttu-id="1cab6-255">Hello를 실행 하 여 검색할 수 있습니다이 컴퓨터에서 백업 중인 볼륨 또는 원본 목록 [Get-obrecoverablesource](https://technet.microsoft.com/library/hh770410) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-255">A list of volumes or sources being backed up from this machine can be retrieved by executing hello [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) cmdlet.</span></span> <span data-ttu-id="1cab6-256">이 명령은이 서버/클라이언트에서 백업 하는 모든 hello 원본의 배열을 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-256">This command returns an array of all hello sources backed up from this server/client.</span></span>
 
 ```
 PS C:> $source = Get-OBRecoverableSource
@@ -505,8 +505,8 @@ RecoverySourceName : D:\
 ServerName : myserver.microsoft.com
 ```
 
-### <a name="choosing-a-backup-point-from-which-to-restore"></a><span data-ttu-id="6a318-257">복원할 백업 시점 선택</span><span class="sxs-lookup"><span data-stu-id="6a318-257">Choosing a backup point from which to restore</span></span>
-<span data-ttu-id="6a318-258">[Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet을 적절한 매개 변수와 함께 실행하여 백업 시점 목록을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-258">You retreive a list of backup points by executing the [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet with appropriate parameters.</span></span> <span data-ttu-id="6a318-259">이 예제에서는 원본 볼륨 *D:* 의 최신 백업 시점을 선택하고 이 시점을 사용하여 특정 파일을 복구합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-259">In our example, we’ll choose the latest backup point for the source volume *D:* and use it to recover a specific file.</span></span>
+### <a name="choosing-a-backup-point-from-which-toorestore"></a><span data-ttu-id="1cab6-257">어떤 toorestore에서 백업 지점 선택</span><span class="sxs-lookup"><span data-stu-id="1cab6-257">Choosing a backup point from which toorestore</span></span>
+<span data-ttu-id="1cab6-258">Hello를 실행 하 여 백업 지점 목록 검색 [Get-obrecoverableitem](https://technet.microsoft.com/library/hh770399.aspx) 적절 한 매개 변수를 사용 하 여 cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-258">You retreive a list of backup points by executing hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet with appropriate parameters.</span></span> <span data-ttu-id="1cab6-259">예에서 hello hello 원본 볼륨에 대 한 최신 백업 지점을 선택 합니다 *d:* toorecover 특정 파일을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-259">In our example, we’ll choose hello latest backup point for hello source volume *D:* and use it toorecover a specific file.</span></span>
 
 ```
 PS C:> $rps = Get-OBRecoverableItem -Source $source[1]
@@ -532,12 +532,12 @@ ServerName : myserver.microsoft.com
 ItemSize :
 ItemLastModifiedTime :
 ```
-<span data-ttu-id="6a318-260">개체 ```$rps``` 는 백업 시점의 배열입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-260">The object ```$rps``` is an array of backup points.</span></span> <span data-ttu-id="6a318-261">첫 번째 요소는 가장 최근 시점이고 n 번째 요소는 가장 오래된 시점입니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-261">The first element is the latest point and the Nth element is the oldest point.</span></span> <span data-ttu-id="6a318-262">최근 시점을 선택하려면 ```$rps[0]```을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-262">To choose the latest point, we will use ```$rps[0]```.</span></span>
+<span data-ttu-id="1cab6-260">hello 개체 ```$rps``` 배열 백업 지점입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-260">hello object ```$rps``` is an array of backup points.</span></span> <span data-ttu-id="1cab6-261">첫 번째 요소가 hello hello 최신 시점 고 hello n 번째 요소는 hello 가장 오래 된 지점입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-261">hello first element is hello latest point and hello Nth element is hello oldest point.</span></span> <span data-ttu-id="1cab6-262">toochoose hello 최신 지점을 사용 하 여 ```$rps[0]```합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-262">toochoose hello latest point, we will use ```$rps[0]```.</span></span>
 
-### <a name="choosing-an-item-to-restore"></a><span data-ttu-id="6a318-263">복원할 항목 선택</span><span class="sxs-lookup"><span data-stu-id="6a318-263">Choosing an item to restore</span></span>
-<span data-ttu-id="6a318-264">복원할 정확한 파일 또는 폴더를 식별하려면 [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet을 재귀적으로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-264">To identify the exact file or folder to restore, recursively use the [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet.</span></span> <span data-ttu-id="6a318-265">이런 방식으로 ```Get-OBRecoverableItem```만 사용하여 폴더 계층 구조를 탐색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-265">That way the folder hierarchy can be browsed solely using the ```Get-OBRecoverableItem```.</span></span>
+### <a name="choosing-an-item-toorestore"></a><span data-ttu-id="1cab6-263">항목 toorestore 선택</span><span class="sxs-lookup"><span data-stu-id="1cab6-263">Choosing an item toorestore</span></span>
+<span data-ttu-id="1cab6-264">재귀적으로 hello를 사용 하 여 tooidentify hello 정확한 파일 또는 폴더 toorestore [Get-obrecoverableitem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-264">tooidentify hello exact file or folder toorestore, recursively use hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) cmdlet.</span></span> <span data-ttu-id="1cab6-265">전적으로 hello를 사용 하 여 해당 방식으로 hello 폴더 계층 구조를 찾아볼 수 ```Get-OBRecoverableItem```합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-265">That way hello folder hierarchy can be browsed solely using hello ```Get-OBRecoverableItem```.</span></span>
 
-<span data-ttu-id="6a318-266">이 예제에서는 *finances.xls* 파일을 복원하려는 경우 개체 ```$filesFolders[1]```을 사용하여 해당 파일을 참조할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-266">In this example, if we want to restore the file *finances.xls* we can reference that using the object ```$filesFolders[1]```.</span></span>
+<span data-ttu-id="1cab6-266">이 예제에서는 toorestore hello 파일 원하는 *finances.xls* 사용 하는 것을 참조할 수 있습니다 hello 개체 ```$filesFolders[1]```합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-266">In this example, if we want toorestore hello file *finances.xls* we can reference that using hello object ```$filesFolders[1]```.</span></span>
 
 ```
 PS C:> $filesFolders = Get-OBRecoverableItem $rps[0]
@@ -578,20 +578,20 @@ ItemSize : 96256
 ItemLastModifiedTime : 21-Jun-14 6:43:02 AM
 ```
 
-<span data-ttu-id="6a318-267">```Get-OBRecoverableItem``` cmdlet을 사용하여 복원할 항목을 검색할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-267">You can also search for items to restore using the ```Get-OBRecoverableItem``` cmdlet.</span></span> <span data-ttu-id="6a318-268">이 예제에서 *finances.xls* 를 검색하려면 다음 명령을 실행하여 파일에 대한 핸들을 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-268">In our example, to search for *finances.xls* we could get a handle on the file by running this command:</span></span>
+<span data-ttu-id="1cab6-267">항목 toorestore hello를 사용 하 여 검색할 수 있습니다 ```Get-OBRecoverableItem``` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-267">You can also search for items toorestore using hello ```Get-OBRecoverableItem``` cmdlet.</span></span> <span data-ttu-id="1cab6-268">예제에 대 한 toosearch *finances.xls* 이 명령을 실행 하 여 hello 파일에 대 한 핸들 신속:</span><span class="sxs-lookup"><span data-stu-id="1cab6-268">In our example, toosearch for *finances.xls* we could get a handle on hello file by running this command:</span></span>
 
 ```
 PS C:\> $item = Get-OBRecoverableItem -RecoveryPoint $rps[0] -Location "D:\MyData" -SearchString "finance*"
 ```
 
-### <a name="triggering-the-restore-process"></a><span data-ttu-id="6a318-269">복원 프로세스 트리거</span><span class="sxs-lookup"><span data-stu-id="6a318-269">Triggering the restore process</span></span>
-<span data-ttu-id="6a318-270">복원 프로세스를 트리거하려면 먼저 복구 옵션을 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-270">To trigger the restore process, we first need to specify the recovery options.</span></span> <span data-ttu-id="6a318-271">이 작업은 [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) cmdlet을 사용하여 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-271">This can be done by using the [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) cmdlet.</span></span> <span data-ttu-id="6a318-272">이 예에서는 파일을 *C:\temp*로 복원한다고 가정해 보겠습니다. 또한 대상 폴더 *C:\temp*에 이미 존재하는 파일은 건너뛴다고 가정해 보겠습니다. 해당 복구 옵션을 만들려면 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-272">For this example, let's assume that we want to restore the files to *C:\temp*. Let's also assume that we want to skip files that already exist on the destination folder *C:\temp*. To create such a recovery option, use the following command:</span></span>
+### <a name="triggering-hello-restore-process"></a><span data-ttu-id="1cab6-269">트리거 hello 복원 프로세스</span><span class="sxs-lookup"><span data-stu-id="1cab6-269">Triggering hello restore process</span></span>
+<span data-ttu-id="1cab6-270">tootrigger hello 복원 프로세스를 먼저 필요 toospecify hello 복구 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-270">tootrigger hello restore process, we first need toospecify hello recovery options.</span></span> <span data-ttu-id="1cab6-271">Hello를 사용 하 여이 작업을 수행할 수 있습니다 [새로 OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) cmdlet.</span><span class="sxs-lookup"><span data-stu-id="1cab6-271">This can be done by using hello [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) cmdlet.</span></span> <span data-ttu-id="1cab6-272">이 예에서는 가정 한다고 toorestore hello 파일 너무*C:\temp*합니다. 또한 가정해 hello 대상 폴더에 이미 있는 tooskip 파일 한다고 *C:\temp*. toocreate 같은 복구 옵션을 사용 하 여 다음 명령을 hello:</span><span class="sxs-lookup"><span data-stu-id="1cab6-272">For this example, let's assume that we want toorestore hello files too*C:\temp*. Let's also assume that we want tooskip files that already exist on hello destination folder *C:\temp*. toocreate such a recovery option, use hello following command:</span></span>
 
 ```
 PS C:\> $recovery_option = New-OBRecoveryOption -DestinationPath "C:\temp" -OverwriteType Skip
 ```
 
-<span data-ttu-id="6a318-273">이제 ```Get-OBRecoverableItem``` cmdlet의 출력에서 선택한 ```$item```에 대해 [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) 명령을 사용하여 복원 프로세스를 트리거합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-273">Now trigger the restore process by using the [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) command on the selected ```$item``` from the output of the ```Get-OBRecoverableItem``` cmdlet:</span></span>
+<span data-ttu-id="1cab6-273">이제 hello를 사용 하 여 hello 복원 프로세스를 트리거할 [Start-obrecovery](https://technet.microsoft.com/library/hh770402.aspx) hello 선택한 명령을 ```$item``` hello의 hello 출력에서 ```Get-OBRecoverableItem``` cmdlet:</span><span class="sxs-lookup"><span data-stu-id="1cab6-273">Now trigger hello restore process by using hello [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) command on hello selected ```$item``` from hello output of hello ```Get-OBRecoverableItem``` cmdlet:</span></span>
 
 ```
 PS C:\> Start-OBRecovery -RecoverableItem $item -RecoveryOption $recover_option
@@ -600,29 +600,29 @@ Estimating size of backup items...
 Estimating size of backup items...
 Estimating size of backup items...
 Job completed.
-The recovery operation completed successfully.
+hello recovery operation completed successfully.
 ```
 
 
-## <a name="uninstalling-the-azure-backup-agent"></a><span data-ttu-id="6a318-274">Azure 백업 에이전트 제거</span><span class="sxs-lookup"><span data-stu-id="6a318-274">Uninstalling the Azure Backup agent</span></span>
-<span data-ttu-id="6a318-275">Azure 백업 에이전트 제거는 다음 명령을 사용하여 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-275">Uninstalling the Azure Backup agent can be done by using the following command:</span></span>
+## <a name="uninstalling-hello-azure-backup-agent"></a><span data-ttu-id="1cab6-274">Hello Azure 백업 에이전트를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-274">Uninstalling hello Azure Backup agent</span></span>
+<span data-ttu-id="1cab6-275">다음 명령을 hello를 사용 하 여 hello Azure 백업 에이전트 제거를 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-275">Uninstalling hello Azure Backup agent can be done by using hello following command:</span></span>
 
 ```
 PS C:\> .\MARSAgentInstaller.exe /d /q
 ```
 
-<span data-ttu-id="6a318-276">컴퓨터에서 에이전트 이진 파일을 제거하면 고려해야 할 몇 가지 결과가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-276">Uninstalling the agent binaries from the machine has some consequences to consider:</span></span>
+<span data-ttu-id="1cab6-276">Hello 컴퓨터에서 제거 하는 hello 에이전트 이진 파일에 일부 결과 tooconsider가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-276">Uninstalling hello agent binaries from hello machine has some consequences tooconsider:</span></span>
 
-* <span data-ttu-id="6a318-277">컴퓨터에서 파일 필터를 제거하고 변경 내용 추적이 중단됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-277">It removes the file-filter from the machine, and tracking of changes is stopped.</span></span>
-* <span data-ttu-id="6a318-278">모든 정책 정보가 컴퓨터에서 제거되지만 정책 정보는 서비스에 계속 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-278">All policy information is removed from the machine, but the policy information continues to be stored in the service.</span></span>
-* <span data-ttu-id="6a318-279">모든 백업 일정이 제거되고 더 이상 백업이 수행되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-279">All backup schedules are removed, and no further backups are taken.</span></span>
+* <span data-ttu-id="1cab6-277">Hello 컴퓨터에서 hello 파일 필터를 제거 하 고 변경 내용 추적 중지 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-277">It removes hello file-filter from hello machine, and tracking of changes is stopped.</span></span>
+* <span data-ttu-id="1cab6-278">Hello 컴퓨터에서 정책 정보를 모두 없어지지만 hello 정책 정보가 hello 서비스에 저장 된 toobe 계속 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-278">All policy information is removed from hello machine, but hello policy information continues toobe stored in hello service.</span></span>
+* <span data-ttu-id="1cab6-279">모든 백업 일정이 제거되고 더 이상 백업이 수행되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-279">All backup schedules are removed, and no further backups are taken.</span></span>
 
-<span data-ttu-id="6a318-280">하지만 Azure에 저장된 데이터는 그대로 유지되며 사용자가 설정한 보존 정책에 따라 보존됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-280">However, the data stored in Azure remains and is retained as per the retention policy setup by you.</span></span> <span data-ttu-id="6a318-281">이전 지점은 시간이 경과하면 자동으로 삭제됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-281">Older points are automatically aged out.</span></span>
+<span data-ttu-id="1cab6-280">그러나 hello 데이터는 Azure 유지에 저장 하 고 hello 보존 정책 설정에 따라 사용자가 유지 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-280">However, hello data stored in Azure remains and is retained as per hello retention policy setup by you.</span></span> <span data-ttu-id="1cab6-281">이전 지점은 시간이 경과하면 자동으로 삭제됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-281">Older points are automatically aged out.</span></span>
 
-## <a name="remote-management"></a><span data-ttu-id="6a318-282">원격 관리</span><span class="sxs-lookup"><span data-stu-id="6a318-282">Remote management</span></span>
-<span data-ttu-id="6a318-283">Azure 백업 에이전트, 정책, 데이터 원본과 관련된 모든 관리는 PowerShell을 통해 원격으로 수행될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-283">All the management around the Azure Backup agent, policies, and data sources can be done remotely through PowerShell.</span></span> <span data-ttu-id="6a318-284">원격으로 관리될 컴퓨터는 올바르게 준비되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-284">The machine that will be managed remotely needs to be prepared correctly.</span></span>
+## <a name="remote-management"></a><span data-ttu-id="1cab6-282">원격 관리</span><span class="sxs-lookup"><span data-stu-id="1cab6-282">Remote management</span></span>
+<span data-ttu-id="1cab6-283">Hello Azure 백업 에이전트, 정책 및 데이터 원본 주위의 모든 hello 관리는 PowerShell을 통해 원격으로 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-283">All hello management around hello Azure Backup agent, policies, and data sources can be done remotely through PowerShell.</span></span> <span data-ttu-id="1cab6-284">원격으로 관리 되는 hello 컴퓨터에 제대로 준비 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-284">hello machine that will be managed remotely needs toobe prepared correctly.</span></span>
 
-<span data-ttu-id="6a318-285">기본적으로 WinRM 서비스는 수동 시작으로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-285">By default, the WinRM service is configured for manual startup.</span></span> <span data-ttu-id="6a318-286">시작 유형은 반드시 *자동* 으로 설정되어야 하며 서비스가 시작되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-286">The startup type must be set to *Automatic* and the service should be started.</span></span> <span data-ttu-id="6a318-287">WinRM 서비스가 실행되는지 확인하도록 Status 속성의 값은 *Running*이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-287">To verify that the WinRM service is running, the value of the Status property should be *Running*.</span></span>
+<span data-ttu-id="1cab6-285">기본적으로 hello WinRM 서비스를 수동으로 시작 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-285">By default, hello WinRM service is configured for manual startup.</span></span> <span data-ttu-id="1cab6-286">hello 시작 유형을 너무 설정 해야*자동* hello service를 시작 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-286">hello startup type must be set too*Automatic* and hello service should be started.</span></span> <span data-ttu-id="1cab6-287">WinRM 서비스가 hello tooverify 실행 되 고, hello hello Status 속성 값 있어야 *실행*합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-287">tooverify that hello WinRM service is running, hello value of hello Status property should be *Running*.</span></span>
 
 ```
 PS C:\> Get-Service WinRM
@@ -632,18 +632,18 @@ Status   Name               DisplayName
 Running  winrm              Windows Remote Management (WS-Manag...
 ```
 
-<span data-ttu-id="6a318-288">PowerShell을 원격 작업용으로 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-288">PowerShell should be configured for remoting.</span></span>
+<span data-ttu-id="1cab6-288">PowerShell을 원격 작업용으로 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-288">PowerShell should be configured for remoting.</span></span>
 
 ```
 PS C:\> Enable-PSRemoting -force
-WinRM is already set up to receive requests on this computer.
+WinRM is already set up tooreceive requests on this computer.
 WinRM has been updated for remote management.
 WinRM firewall exception enabled.
 
 PS C:\> Set-ExecutionPolicy unrestricted -force
 ```
 
-<span data-ttu-id="6a318-289">이제 에이전트 설치부터 시작하여 컴퓨터를 원격으로 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-289">The machine can now be managed remotely - starting from the installation of the agent.</span></span> <span data-ttu-id="6a318-290">예를 들어, 다음 스크립트는 에이전트를 원격 컴퓨터로 복사하고 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="6a318-290">For example, the following script copies the agent to the remote machine and installs it.</span></span>
+<span data-ttu-id="1cab6-289">hello 컴퓨터 수 이제 원격으로 관리할 수-hello 설치 된 hello 에이전트를에서 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-289">hello machine can now be managed remotely - starting from hello installation of hello agent.</span></span> <span data-ttu-id="1cab6-290">예를 들어 다음 스크립트는 hello hello 에이전트 toohello 원격 컴퓨터를 복사 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="1cab6-290">For example, hello following script copies hello agent toohello remote machine and installs it.</span></span>
 
 ```
 PS C:\> $dloc = "\\REMOTESERVER01\c$\Windows\Temp"
@@ -655,8 +655,8 @@ PS C:\> $s = New-PSSession -ComputerName REMOTESERVER01
 PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePath $d $a -Wait } -ArgumentList $agent $args
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="6a318-291">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6a318-291">Next steps</span></span>
-<span data-ttu-id="6a318-292">Windows Server/Client용 Azure 백업에 대한 자세한 정보는 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6a318-292">For more information about Azure Backup for Windows Server/Client see</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1cab6-291">다음 단계</span><span class="sxs-lookup"><span data-stu-id="1cab6-291">Next steps</span></span>
+<span data-ttu-id="1cab6-292">Windows Server/Client용 Azure 백업에 대한 자세한 정보는 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1cab6-292">For more information about Azure Backup for Windows Server/Client see</span></span>
 
-* [<span data-ttu-id="6a318-293">Azure 백업 소개</span><span class="sxs-lookup"><span data-stu-id="6a318-293">Introduction to Azure Backup</span></span>](backup-introduction-to-azure-backup.md)
-* [<span data-ttu-id="6a318-294">Windows 서버 백업</span><span class="sxs-lookup"><span data-stu-id="6a318-294">Back up Windows Servers</span></span>](backup-configure-vault.md)
+* [<span data-ttu-id="1cab6-293">소개 tooAzure 백업</span><span class="sxs-lookup"><span data-stu-id="1cab6-293">Introduction tooAzure Backup</span></span>](backup-introduction-to-azure-backup.md)
+* [<span data-ttu-id="1cab6-294">Windows 서버 백업</span><span class="sxs-lookup"><span data-stu-id="1cab6-294">Back up Windows Servers</span></span>](backup-configure-vault.md)

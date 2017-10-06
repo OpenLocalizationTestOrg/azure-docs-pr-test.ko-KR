@@ -1,6 +1,6 @@
 ---
-title: "Azure REST API를 사용하여 Hadoop 클러스터 만들기 - Azure | Microsoft Docs"
-description: "Azure REST API에 Azure Resource Manager 템플릿을 제출하여 HDInsight 클러스터를 만드는 방법을 알아봅니다."
+title: "Azure-Azure REST API를 사용 하 여 aaaCreate Hadoop 클러스터 | Microsoft Docs"
+description: "Azure 리소스 관리자 템플릿 toohello Azure REST API를 제출 하 여 toocreate HDInsight 클러스터 하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/10/2017
 ms.author: larryfr
-ms.openlocfilehash: a36a41c231472ceeeb46d02ddb65549b1c79728a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 87b585e5084eccdc3d7c57483deabb4ad6e32597
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-hadoop-clusters-using-the-azure-rest-api"></a><span data-ttu-id="89c80-103">Azure REST API를 사용하여 Hadoop 클러스터 만들기</span><span class="sxs-lookup"><span data-stu-id="89c80-103">Create Hadoop clusters using the Azure REST API</span></span>
+# <a name="create-hadoop-clusters-using-hello-azure-rest-api"></a><span data-ttu-id="8c9b0-103">Hello Azure REST API를 사용 하 여 Hadoop 클러스터 만들기</span><span class="sxs-lookup"><span data-stu-id="8c9b0-103">Create Hadoop clusters using hello Azure REST API</span></span>
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-<span data-ttu-id="89c80-104">Azure Resource Manager 템플릿 및 Azure REST API를 사용하여 HDInsight 클러스터를 만드는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-104">Learn how to create an HDInsight cluster using an Azure Resource Manager template and the Azure REST API.</span></span>
+<span data-ttu-id="8c9b0-104">HDInsight toocreate Azure 리소스 관리자 템플릿을 사용 하 여 클러스터 하 고 Azure REST API hello 하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-104">Learn how toocreate an HDInsight cluster using an Azure Resource Manager template and hello Azure REST API.</span></span>
 
-<span data-ttu-id="89c80-105">Azure REST API를 사용하면 HDInsight 클러스터 등과 같은 새 리소스 생성을 포함하여 Azure 플랫폼에서 호스트되는 관리 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-105">The Azure REST API allows you to perform management operations on services hosted in the Azure platform, including the creation of new resources such as HDInsight clusters.</span></span>
+<span data-ttu-id="8c9b0-105">Azure REST API hello hello hello HDInsight 클러스터와 같은 새 리소스 만들기를 포함 하 여 Azure 플랫폼에서에서 호스팅되는 서비스 대 tooperform 관리 작업을 허용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-105">hello Azure REST API allows you tooperform management operations on services hosted in hello Azure platform, including hello creation of new resources such as HDInsight clusters.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="89c80-106">Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-106">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="89c80-107">자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89c80-107">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+> <span data-ttu-id="8c9b0-106">Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-106">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="8c9b0-107">자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-107">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="89c80-108">이 문서의 단계는 [curl(https://curl.haxx.se/)](https://curl.haxx.se/) 유틸리티를 사용하여 Azure REST API와 통신합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-108">The steps in this document use the [curl (https://curl.haxx.se/)](https://curl.haxx.se/) utility to communicate with the Azure REST API.</span></span>
+> <span data-ttu-id="8c9b0-108">이 문서 사용 하 여 hello에서 단계를 hello [curl (https://curl.haxx.se/)](https://curl.haxx.se/) hello Azure REST API로 유틸리티 toocommunicate 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-108">hello steps in this document use hello [curl (https://curl.haxx.se/)](https://curl.haxx.se/) utility toocommunicate with hello Azure REST API.</span></span>
 
-## <a name="create-a-template"></a><span data-ttu-id="89c80-109">템플릿 만들기</span><span class="sxs-lookup"><span data-stu-id="89c80-109">Create a template</span></span>
+## <a name="create-a-template"></a><span data-ttu-id="8c9b0-109">템플릿 만들기</span><span class="sxs-lookup"><span data-stu-id="8c9b0-109">Create a template</span></span>
 
-<span data-ttu-id="89c80-110">Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 리소스를 설명하는 JSON 문서입니다(예: HDInsight). 이 템플릿 기반 접근 방식을 사용하면 하나의 템플릿에서 HDInsight에 필요한 리소스를 정의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-110">Azure Resource Manager templates are JSON documents that describe a **resource group** and all resources in it (such as HDInsight.) This template-based approach allows you to define the resources that you need for HDInsight in one template.</span></span>
+<span data-ttu-id="8c9b0-110">Azure Resource Manager 템플릿은 **리소스 그룹**과 그 안의 모든 리소스를 설명하는 JSON 문서입니다(예: HDInsight). 이 템플릿 기반 접근 방식을 통해 toodefine hello 리소스를 템플릿과에 HDInsight에 대 한 필요한 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-110">Azure Resource Manager templates are JSON documents that describe a **resource group** and all resources in it (such as HDInsight.) This template-based approach allows you toodefine hello resources that you need for HDInsight in one template.</span></span>
 
-<span data-ttu-id="89c80-111">다음 JSON 문서는 [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password)의 템플릿과 매개 변수 파일의 병합기로, 암호를 사용하여 SSH 사용자 계정을 보호하는 Linux 기반 클러스터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-111">The following JSON document is a merger of the template and parameters files from [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password), which creates a Linux-based cluster using a password to secure the SSH user account.</span></span>
+<span data-ttu-id="8c9b0-111">hello 다음 JSON 문서는 hello는 병합에서 템플릿 및 매개 변수 파일 [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password), Linux 기반 만듦 SSH 사용자 계정에는 암호 toosecure hello를 사용 하 여 클러스터 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-111">hello following JSON document is a merger of hello template and parameters files from [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password), which creates a Linux-based cluster using a password toosecure hello SSH user account.</span></span>
 
    ```json
    {
@@ -56,50 +56,50 @@ ms.lasthandoff: 08/18/2017
                        "storm",
                        "spark"],
                        "metadata": {
-                           "description": "The type of the HDInsight cluster to create."
+                           "description": "hello type of hello HDInsight cluster toocreate."
                        }
                    },
                    "clusterName": {
                        "type": "string",
                        "metadata": {
-                           "description": "The name of the HDInsight cluster to create."
+                           "description": "hello name of hello HDInsight cluster toocreate."
                        }
                    },
                    "clusterLoginUserName": {
                        "type": "string",
                        "metadata": {
-                           "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+                           "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
                        }
                    },
                    "clusterLoginPassword": {
                        "type": "securestring",
                        "metadata": {
-                           "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                           "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
                        }
                    },
                    "sshUserName": {
                        "type": "string",
                        "metadata": {
-                           "description": "These credentials can be used to remotely access the cluster."
+                           "description": "These credentials can be used tooremotely access hello cluster."
                        }
                    },
                    "sshPassword": {
                        "type": "securestring",
                        "metadata": {
-                           "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                           "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
                        }
                    },
                    "clusterStorageAccountName": {
                        "type": "string",
                        "metadata": {
-                           "description": "The name of the storage account to be created and be used as the cluster's storage."
+                           "description": "hello name of hello storage account toobe created and be used as hello cluster's storage."
                        }
                    },
                    "clusterWorkerNodeCount": {
                        "type": "int",
                        "defaultValue": 4,
                        "metadata": {
-                           "description": "The number of nodes in the HDInsight cluster."
+                           "description": "hello number of nodes in hello HDInsight cluster."
                        }
                    }
                },
@@ -215,60 +215,60 @@ ms.lasthandoff: 08/18/2017
    }
    ```
 
-<span data-ttu-id="89c80-112">이 예는 이 문서의 단계에서 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-112">This example is used in the steps in this document.</span></span> <span data-ttu-id="89c80-113">**매개 변수** 섹션에 있는 예제 *값*을 클러스터에 대한 값으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-113">Replace the example *values* in the **Parameters** section with the values for your cluster.</span></span>
+<span data-ttu-id="8c9b0-112">이 예제는 hello이이 문서의 단계에 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-112">This example is used in hello steps in this document.</span></span> <span data-ttu-id="8c9b0-113">Hello 예제 대체 *값* hello에 **매개 변수** 클러스터에 대 한 hello 값이 포함 된 섹션입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-113">Replace hello example *values* in hello **Parameters** section with hello values for your cluster.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="89c80-114">이 템플릿에서는 HDInsight 클러스터에 대해 작업자 노드의 기본 개수(4)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-114">The template uses the default number of worker nodes (4) for an HDInsight cluster.</span></span> <span data-ttu-id="89c80-115">32개 이상의 작업자 노드를 계획하는 경우 최소한 코어 8개와 14GB RAM을 가진 헤드 노드 크기를 선택해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-115">If you plan on more than 32 worker nodes, then you must select a head node size with at least 8 cores and 14 GB ram.</span></span>
+> <span data-ttu-id="8c9b0-114">hello 템플릿에서 HDInsight 클러스터에 대 한 hello 기본 수의 작업자 노드 (4)을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-114">hello template uses hello default number of worker nodes (4) for an HDInsight cluster.</span></span> <span data-ttu-id="8c9b0-115">32개 이상의 작업자 노드를 계획하는 경우 최소한 코어 8개와 14GB RAM을 가진 헤드 노드 크기를 선택해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-115">If you plan on more than 32 worker nodes, then you must select a head node size with at least 8 cores and 14 GB ram.</span></span>
 >
-> <span data-ttu-id="89c80-116">노드 크기 및 관련된 비용에 대한 자세한 내용은 [HDInsight 가격 책정](https://azure.microsoft.com/pricing/details/hdinsight/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89c80-116">For more information on node sizes and associated costs, see [HDInsight pricing](https://azure.microsoft.com/pricing/details/hdinsight/).</span></span>
+> <span data-ttu-id="8c9b0-116">노드 크기 및 관련된 비용에 대한 자세한 내용은 [HDInsight 가격 책정](https://azure.microsoft.com/pricing/details/hdinsight/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-116">For more information on node sizes and associated costs, see [HDInsight pricing](https://azure.microsoft.com/pricing/details/hdinsight/).</span></span>
 
-## <a name="log-in-to-your-azure-subscription"></a><span data-ttu-id="89c80-117">Azure 구독에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-117">Log in to your Azure subscription</span></span>
+## <a name="log-in-tooyour-azure-subscription"></a><span data-ttu-id="8c9b0-117">Azure 구독 tooyour에 로그인</span><span class="sxs-lookup"><span data-stu-id="8c9b0-117">Log in tooyour Azure subscription</span></span>
 
-<span data-ttu-id="89c80-118">[Azure CLI 2.0 시작](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)의 단계에 따라 `az login` 명령을 사용하여 구독에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-118">Follow the steps documented in [Get started with Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) and connect to your subscription using the `az login` command.</span></span>
+<span data-ttu-id="8c9b0-118">설명 하는 hello 단계에 따라 [Azure CLI 2.0 시작](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) hello를 사용 하 여 tooyour 구독을 연결 하 고 `az login` 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-118">Follow hello steps documented in [Get started with Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) and connect tooyour subscription using hello `az login` command.</span></span>
 
-## <a name="create-a-service-principal"></a><span data-ttu-id="89c80-119">서비스 주체 만들기</span><span class="sxs-lookup"><span data-stu-id="89c80-119">Create a service principal</span></span>
+## <a name="create-a-service-principal"></a><span data-ttu-id="8c9b0-119">서비스 주체 만들기</span><span class="sxs-lookup"><span data-stu-id="8c9b0-119">Create a service principal</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="89c80-120">이러한 단계는 [Azure CLI를 사용하여 리소스에 액세스하기 위한 서비스 주체 만들기](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) 문서의 *암호를 사용하여 서비스 주체 만들기* 섹션의 요약된 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-120">These steps are an abridged version of the *Create service principal with password* section of the [Use Azure CLI to create a service principal to access resources](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) document.</span></span> <span data-ttu-id="89c80-121">이러한 단계에서는 Azure REST API에 인증하는 데 사용되는 서비스 주체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-121">These steps create a service principal that is used to authenticate to the Azure REST API.</span></span>
+> <span data-ttu-id="8c9b0-120">이러한 단계는 hello의 요약된 버전에 *암호로 서비스 보안 주체를 만들* hello 섹션 [서비스 주체를 사용 하 여 Azure CLI toocreate tooaccess 리소스](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) 문서.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-120">These steps are an abridged version of hello *Create service principal with password* section of hello [Use Azure CLI toocreate a service principal tooaccess resources](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) document.</span></span> <span data-ttu-id="8c9b0-121">다음이 단계를 사용 하는 tooauthenticate toohello Azure REST API 서비스 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-121">These steps create a service principal that is used tooauthenticate toohello Azure REST API.</span></span>
 
-1. <span data-ttu-id="89c80-122">명령줄에서 다음 명령을 사용하여 Azure 구독을 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-122">From a command line, use the following command to list your Azure subscriptions.</span></span>
+1. <span data-ttu-id="8c9b0-122">명령줄을 사용 하 여 hello 명령 toolist 다음 Azure 구독.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-122">From a command line, use hello following command toolist your Azure subscriptions.</span></span>
 
    ```bash
    az account list --query '[].{Subscription_ID:id,Tenant_ID:tenantId,Name:name}'  --output table
    ```
 
-    <span data-ttu-id="89c80-123">목록에서 사용하려는 구독을 선택하고 **Subscription_ID** 및 __Tenant_ID__ 열을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-123">In the list, select the subscription that you want to use and note the **Subscription_ID** and __Tenant_ID__ columns.</span></span> <span data-ttu-id="89c80-124">이 값을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-124">Save these values.</span></span>
+    <span data-ttu-id="8c9b0-123">Hello 목록 선택 hello 구독 toouse 원하고 hello 참고 **Subscription_ID** 및 __Tenant_ID__ 열입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-123">In hello list, select hello subscription that you want toouse and note hello **Subscription_ID** and __Tenant_ID__ columns.</span></span> <span data-ttu-id="8c9b0-124">이 값을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-124">Save these values.</span></span>
 
-2. <span data-ttu-id="89c80-125">다음 명령을 사용하여 Azure Active Directory에서 응용 프로그램을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-125">Use the following command to create an application in Azure Active Directory.</span></span>
+2. <span data-ttu-id="8c9b0-125">Hello 다음 명령 toocreate Azure Active Directory에서 응용 프로그램을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-125">Use hello following command toocreate an application in Azure Active Directory.</span></span>
 
    ```bash
    az ad app create --display-name "exampleapp" --homepage "https://www.contoso.org" --identifier-uris "https://www.contoso.org/example" --password <Your password> --query 'appId'
    ```
 
-    <span data-ttu-id="89c80-126">`--display-name`, `--homepage` 및 `--identifier-uris`에 대한 값을 고유한 값으로 대체합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-126">Replace the values for the `--display-name`, `--homepage`, and `--identifier-uris` with your own values.</span></span> <span data-ttu-id="89c80-127">새 Active Directory 항목에 대한 암호를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-127">Provide a password for the new Active Directory entry.</span></span>
+    <span data-ttu-id="8c9b0-126">Hello에 대 한 hello 값 바꾸기 `--display-name`, `--homepage`, 및 `--identifier-uris` 고유한 값으로.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-126">Replace hello values for hello `--display-name`, `--homepage`, and `--identifier-uris` with your own values.</span></span> <span data-ttu-id="8c9b0-127">새 Active Directory 항목 hello에 대 한 암호를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-127">Provide a password for hello new Active Directory entry.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="89c80-128">`--home-page` 및 `--identifier-uris` 값은 인터넷에서 호스트되는 실제 웹 페이지를 참조할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-128">The `--home-page` and `--identifier-uris` values don't need to reference an actual web page hosted on the internet.</span></span> <span data-ttu-id="89c80-129">이 값은 고유한 URI여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-129">They must be unique URIs.</span></span>
+   > <span data-ttu-id="8c9b0-128">hello `--home-page` 및 `--identifier-uris` 값 tooreference hello에서 호스트 되는 실제 웹 페이지에 필요 하지 않습니다 인터넷 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-128">hello `--home-page` and `--identifier-uris` values don't need tooreference an actual web page hosted on hello internet.</span></span> <span data-ttu-id="8c9b0-129">이 값은 고유한 URI여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-129">They must be unique URIs.</span></span>
 
-   <span data-ttu-id="89c80-130">이 명령에서 반환되는 값은 새 응용 프로그램에 대한 __App ID__입니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-130">The value returned from this command is the __App ID__ for the new application.</span></span> <span data-ttu-id="89c80-131">이 값을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-131">Save this value.</span></span>
+   <span data-ttu-id="8c9b0-130">hello 값이이 명령에서 반환은 hello __앱 ID__ hello 새 응용 프로그램에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-130">hello value returned from this command is hello __App ID__ for hello new application.</span></span> <span data-ttu-id="8c9b0-131">이 값을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-131">Save this value.</span></span>
 
-3. <span data-ttu-id="89c80-132">다음 명령을 수행하여 **App ID**를 사용해 서비스 주체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-132">Use the following command to create a service principal using the **App ID**.</span></span>
+3. <span data-ttu-id="8c9b0-132">사용 하 여 hello 다음 명령은 toocreate hello를 사용 하 여 서비스 사용자 **앱 ID**합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-132">Use hello following command toocreate a service principal using hello **App ID**.</span></span>
 
    ```bash
    az ad sp create --id <App ID> --query 'objectId'
    ```
 
-     <span data-ttu-id="89c80-133">이 명령에서 반환되는 값은 __개체 ID__입니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-133">The value returned from this command is the __Object ID__.</span></span> <span data-ttu-id="89c80-134">이 값을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-134">Save this value.</span></span>
+     <span data-ttu-id="8c9b0-133">hello 값이이 명령에서 반환은 hello __개체 ID__합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-133">hello value returned from this command is hello __Object ID__.</span></span> <span data-ttu-id="8c9b0-134">이 값을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-134">Save this value.</span></span>
 
-4. <span data-ttu-id="89c80-135">**개체 ID** 값을 사용하여 **소유자** 역할을 서비스 주체에 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-135">Assign the **Owner** role to the service principal using the **Object ID** value.</span></span> <span data-ttu-id="89c80-136">또한 이전에 받은 **구독 ID**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-136">Use the **subscription ID** you obtained earlier.</span></span>
+4. <span data-ttu-id="8c9b0-135">Hello 할당 **소유자** hello를 사용 하 여 역할 toohello 서비스 사용자 **개체 ID** 값입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-135">Assign hello **Owner** role toohello service principal using hello **Object ID** value.</span></span> <span data-ttu-id="8c9b0-136">사용 하 여 hello **구독 ID** 이전에 얻은 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-136">Use hello **subscription ID** you obtained earlier.</span></span>
 
    ```bash
    az role assignment create --assignee <Object ID> --role Owner --scope /subscriptions/<Subscription ID>/
    ```
 
-## <a name="get-an-authentication-token"></a><span data-ttu-id="89c80-137">인증 토큰 가져오기</span><span class="sxs-lookup"><span data-stu-id="89c80-137">Get an authentication token</span></span>
+## <a name="get-an-authentication-token"></a><span data-ttu-id="8c9b0-137">인증 토큰 가져오기</span><span class="sxs-lookup"><span data-stu-id="8c9b0-137">Get an authentication token</span></span>
 
-<span data-ttu-id="89c80-138">다음 명령을 사용하여 인증 토큰을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-138">Use the following command to retrieve an authentication token:</span></span>
+<span data-ttu-id="8c9b0-138">다음 명령 tooretrieve 인증 토큰 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-138">Use hello following command tooretrieve an authentication token:</span></span>
 
 ```bash
 curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
@@ -280,11 +280,11 @@ curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
 --data-urlencode "resource=https://management.azure.com/"
 ```
 
-<span data-ttu-id="89c80-139">`$TENANTID`, `$APPID` 및 `$PASSWORD`를 얻거나 이전에 사용한 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-139">Set `$TENANTID`, `$APPID`, and `$PASSWORD` to the values obtained or used previously.</span></span>
+<span data-ttu-id="8c9b0-139">설정 `$TENANTID`, `$APPID`, 및 `$PASSWORD` toohello 값을 가져오거나 이전에 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-139">Set `$TENANTID`, `$APPID`, and `$PASSWORD` toohello values obtained or used previously.</span></span>
 
-<span data-ttu-id="89c80-140">이 요청에 성공하면 200 시리즈 응답을 받게 되며 응답 본문에 JSON 문서가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-140">If this request is successful, you receive a 200 series response and the response body contains a JSON document.</span></span>
+<span data-ttu-id="8c9b0-140">이 요청에 성공한 경우 200 계열 응답을 수신 하 고 JSON 문서를 포함 하는 hello 응답 본문입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-140">If this request is successful, you receive a 200 series response and hello response body contains a JSON document.</span></span>
 
-<span data-ttu-id="89c80-141">이 요청에서 반환되는 JSON 문서는 **access_token**이라는 요소를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-141">The JSON document returned by this request contains an element named **access_token**.</span></span> <span data-ttu-id="89c80-142">**access_token**의 값은 REST API에 대한 인증 요청에 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-142">The value of **access_token** is used to authentication requests to the REST API.</span></span>
+<span data-ttu-id="8c9b0-141">hello이 요청에서 반환 된 JSON 문서 라는 요소가 포함 **access_token**합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-141">hello JSON document returned by this request contains an element named **access_token**.</span></span> <span data-ttu-id="8c9b0-142">값을 hello **access_token** 가 사용 되는 tooauthentication 요청 toohello REST API입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-142">hello value of **access_token** is used tooauthentication requests toohello REST API.</span></span>
 
 ```json
 {
@@ -296,14 +296,14 @@ curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
 }
 ```
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="89c80-143">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="89c80-143">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="8c9b0-143">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="8c9b0-143">Create a resource group</span></span>
 
-<span data-ttu-id="89c80-144">다음을 사용하여 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-144">Use the following to create a resource group.</span></span>
+<span data-ttu-id="8c9b0-144">리소스 그룹 toocreate 다음 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-144">Use hello following toocreate a resource group.</span></span>
 
-* <span data-ttu-id="89c80-145">`$SUBSCRIPTIONID`를 서비스 주체를 만들 때 받은 구독 ID로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-145">Set `$SUBSCRIPTIONID` to the subscription ID received while creating the service principal.</span></span>
-* <span data-ttu-id="89c80-146">`$ACCESSTOKEN`을 이전 단계에서 받은 액세스 토큰으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-146">Set `$ACCESSTOKEN` to the access token received in the previous step.</span></span>
-* <span data-ttu-id="89c80-147">`DATACENTERLOCATION`을 리소스 그룹과 리소스를 만들려는 데이터 센터로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-147">Replace `DATACENTERLOCATION` with the data center you wish to create the resource group, and resources, in.</span></span> <span data-ttu-id="89c80-148">예를 들어 "미국 중남부"입니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-148">For example, 'South Central US'.</span></span>
-* <span data-ttu-id="89c80-149">`$RESOURCEGROUPNAME`을 이 그룹에 사용하려는 이름으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-149">Set `$RESOURCEGROUPNAME` to the name you wish to use for this group:</span></span>
+* <span data-ttu-id="8c9b0-145">설정 `$SUBSCRIPTIONID` hello 서비스 사용자를 만드는 동안 받은 toohello 구독 ID입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-145">Set `$SUBSCRIPTIONID` toohello subscription ID received while creating hello service principal.</span></span>
+* <span data-ttu-id="8c9b0-146">설정 `$ACCESSTOKEN` hello 이전 단계에서 받은 toohello 액세스 토큰입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-146">Set `$ACCESSTOKEN` toohello access token received in hello previous step.</span></span>
+* <span data-ttu-id="8c9b0-147">대체 `DATACENTERLOCATION` hello 데이터 센터와 toocreate hello 리소스 그룹 및 리소스에 원하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-147">Replace `DATACENTERLOCATION` with hello data center you wish toocreate hello resource group, and resources, in.</span></span> <span data-ttu-id="8c9b0-148">예를 들어 "미국 중남부"입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-148">For example, 'South Central US'.</span></span>
+* <span data-ttu-id="8c9b0-149">설정 `$RESOURCEGROUPNAME` 이 그룹에 대 한 toouse toohello 이름:</span><span class="sxs-lookup"><span data-stu-id="8c9b0-149">Set `$RESOURCEGROUPNAME` toohello name you wish toouse for this group:</span></span>
 
 ```bash
 curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME?api-version=2015-01-01" \
@@ -314,34 +314,34 @@ curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resour
 }'
 ```
 
-<span data-ttu-id="89c80-150">이 요청에 성공하면 200 시리즈 응답을 받게 되며 응답 본문에 그룹 정보가 담긴 JSON 문서가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-150">If this request is successful, you receive a 200 series response and the response body contains a JSON document containing information about the group.</span></span> <span data-ttu-id="89c80-151">`"provisioningState"` 요소는 `"Succeeded"`라는 값을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-151">The `"provisioningState"` element contains a value of `"Succeeded"`.</span></span>
+<span data-ttu-id="8c9b0-150">이 요청에 성공한 경우 200 계열 응답을 수신 하 고 hello 응답 본문 hello 그룹에 대 한 정보를 포함 하는 JSON 문서를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-150">If this request is successful, you receive a 200 series response and hello response body contains a JSON document containing information about hello group.</span></span> <span data-ttu-id="8c9b0-151">hello `"provisioningState"` 요소 값이 포함 `"Succeeded"`합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-151">hello `"provisioningState"` element contains a value of `"Succeeded"`.</span></span>
 
-## <a name="create-a-deployment"></a><span data-ttu-id="89c80-152">배포 만들기</span><span class="sxs-lookup"><span data-stu-id="89c80-152">Create a deployment</span></span>
+## <a name="create-a-deployment"></a><span data-ttu-id="8c9b0-152">배포 만들기</span><span class="sxs-lookup"><span data-stu-id="8c9b0-152">Create a deployment</span></span>
 
-<span data-ttu-id="89c80-153">다음 명령을 사용하여 리소스 그룹에 템플릿을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-153">Use the following command to deploy the template to the resource group.</span></span>
+<span data-ttu-id="8c9b0-153">명령 toodeploy hello 템플릿 toohello 리소스 그룹을 다음 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-153">Use hello following command toodeploy hello template toohello resource group.</span></span>
 
-* <span data-ttu-id="89c80-154">`$DEPLOYMENTNAME`을 이 배포에 사용하려는 이름으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-154">Set `$DEPLOYMENTNAME` to the name you wish to use for this deployment.</span></span>
+* <span data-ttu-id="8c9b0-154">설정 `$DEPLOYMENTNAME` 이 배포에 대 한 toouse toohello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-154">Set `$DEPLOYMENTNAME` toohello name you wish toouse for this deployment.</span></span>
 
 ```bash
 curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
 -H "Authorization: Bearer $ACCESSTOKEN" \
 -H "Content-Type: application/json" \
--d "{set your body string to the template and parameters}"
+-d "{set your body string toohello template and parameters}"
 ```
 
 > [!NOTE]
-> <span data-ttu-id="89c80-155">템플릿을 파일에 저장한 경우 `-d "{ template and parameters}"` 대신 다음 명령을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-155">If you saved the template to a file, you can use the following command instead of `-d "{ template and parameters}"`:</span></span>
+> <span data-ttu-id="8c9b0-155">Hello 템플릿 tooa 파일을 저장 하는 경우 다음 명령을 대신 hello를 사용할 수 있습니다 `-d "{ template and parameters}"`:</span><span class="sxs-lookup"><span data-stu-id="8c9b0-155">If you saved hello template tooa file, you can use hello following command instead of `-d "{ template and parameters}"`:</span></span>
 >
 > `--data-binary "@/path/to/file.json"`
 
-<span data-ttu-id="89c80-156">이 요청에 성공하면 200 시리즈 응답을 받게 되며 응답 본문에 배포 작업 정보가 담긴 JSON 문서가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-156">If this request is successful, you receive a 200 series response and the response body contains a JSON document containing information about the deployment operation.</span></span>
+<span data-ttu-id="8c9b0-156">이 요청에 성공한 경우 200 계열 응답을 수신 하 고 hello 응답 본문 hello 배포 작업에 대 한 정보를 포함 하는 JSON 문서를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-156">If this request is successful, you receive a 200 series response and hello response body contains a JSON document containing information about hello deployment operation.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="89c80-157">배포가 제출되었지만 완료된 것은 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-157">The deployment has been submitted, but has not completed.</span></span> <span data-ttu-id="89c80-158">배포가 완료되려면 보통 몇 분(보통 15분 전후)이 소요됩니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-158">It can take several minutes, usually around 15, for the deployment to complete.</span></span>
+> <span data-ttu-id="8c9b0-157">hello 배포 제출 되 있지만 완료 되지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-157">hello deployment has been submitted, but has not completed.</span></span> <span data-ttu-id="8c9b0-158">몇 분 정도 일반적으로 약 15, 배포 toocomplete hello에 대 한 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-158">It can take several minutes, usually around 15, for hello deployment toocomplete.</span></span>
 
-## <a name="check-the-status-of-a-deployment"></a><span data-ttu-id="89c80-159">배포 상태 확인</span><span class="sxs-lookup"><span data-stu-id="89c80-159">Check the status of a deployment</span></span>
+## <a name="check-hello-status-of-a-deployment"></a><span data-ttu-id="8c9b0-159">배포의 hello 상태 확인</span><span class="sxs-lookup"><span data-stu-id="8c9b0-159">Check hello status of a deployment</span></span>
 
-<span data-ttu-id="89c80-160">배포 상태를 확인하려면 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-160">To check the status of the deployment, use the following command:</span></span>
+<span data-ttu-id="8c9b0-160">다음 명령을 사용 하 여 hello hello 배포의 toocheck hello 상태:</span><span class="sxs-lookup"><span data-stu-id="8c9b0-160">toocheck hello status of hello deployment, use hello following command:</span></span>
 
 ```bash
 curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
@@ -349,29 +349,29 @@ curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resour
 -H "Content-Type: application/json"
 ```
 
-<span data-ttu-id="89c80-161">이 명령은 배포 작업 관련 정보가 담긴 JSON 문서를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-161">This command returns a JSON document containing information about the deployment operation.</span></span> <span data-ttu-id="89c80-162">`"provisioningState"` 요소는 배포의 상태를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-162">The `"provisioningState"` element contains the status of the deployment.</span></span> <span data-ttu-id="89c80-163">이 요소가 `"Succeeded"` 값을 포함하면 배포가 성공적으로 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-163">If this element contains a value of `"Succeeded"`, then the deployment has completed successfully.</span></span>
+<span data-ttu-id="8c9b0-161">이 명령은 hello 배포 작업에 대 한 정보를 포함 하는 JSON 문서를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-161">This command returns a JSON document containing information about hello deployment operation.</span></span> <span data-ttu-id="8c9b0-162">hello `"provisioningState"` 요소 hello 배포의 hello 상태를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-162">hello `"provisioningState"` element contains hello status of hello deployment.</span></span> <span data-ttu-id="8c9b0-163">이 요소 값이 포함 되어 있으면 `"Succeeded"`, hello 배포가 성공적으로 완료 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-163">If this element contains a value of `"Succeeded"`, then hello deployment has completed successfully.</span></span>
 
-## <a name="troubleshoot"></a><span data-ttu-id="89c80-164">문제 해결</span><span class="sxs-lookup"><span data-stu-id="89c80-164">Troubleshoot</span></span>
+## <a name="troubleshoot"></a><span data-ttu-id="8c9b0-164">문제 해결</span><span class="sxs-lookup"><span data-stu-id="8c9b0-164">Troubleshoot</span></span>
 
-<span data-ttu-id="89c80-165">HDInsight 클러스터를 만드는 동안 문제가 발생할 경우 [액세스 제어 요구 사항](hdinsight-administer-use-portal-linux.md#create-clusters)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89c80-165">If you run into issues with creating HDInsight clusters, see [access control requirements](hdinsight-administer-use-portal-linux.md#create-clusters).</span></span>
+<span data-ttu-id="8c9b0-165">HDInsight 클러스터를 만드는 동안 문제가 발생할 경우 [액세스 제어 요구 사항](hdinsight-administer-use-portal-linux.md#create-clusters)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-165">If you run into issues with creating HDInsight clusters, see [access control requirements](hdinsight-administer-use-portal-linux.md#create-clusters).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="89c80-166">다음 단계</span><span class="sxs-lookup"><span data-stu-id="89c80-166">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8c9b0-166">다음 단계</span><span class="sxs-lookup"><span data-stu-id="8c9b0-166">Next steps</span></span>
 
-<span data-ttu-id="89c80-167">HDInsight 클러스터를 성공적으로 만들었으므로 다음을 사용하여 클러스터 작업을 수행하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="89c80-167">Now that you have successfully created an HDInsight cluster, use the following to learn how to work with your cluster.</span></span>
+<span data-ttu-id="8c9b0-167">HDInsight 클러스터를 성공적으로 만든 toolearn 방법을 따르는 hello를 사용 하 여 클러스터와 toowork 합니다.</span><span class="sxs-lookup"><span data-stu-id="8c9b0-167">Now that you have successfully created an HDInsight cluster, use hello following toolearn how toowork with your cluster.</span></span>
 
-### <a name="hadoop-clusters"></a><span data-ttu-id="89c80-168">Hadoop 클러스터</span><span class="sxs-lookup"><span data-stu-id="89c80-168">Hadoop clusters</span></span>
+### <a name="hadoop-clusters"></a><span data-ttu-id="8c9b0-168">Hadoop 클러스터</span><span class="sxs-lookup"><span data-stu-id="8c9b0-168">Hadoop clusters</span></span>
 
-* [<span data-ttu-id="89c80-169">HDInsight에서 Hive 사용</span><span class="sxs-lookup"><span data-stu-id="89c80-169">Use Hive with HDInsight</span></span>](hdinsight-use-hive.md)
-* [<span data-ttu-id="89c80-170">HDInsight에서 Pig 사용</span><span class="sxs-lookup"><span data-stu-id="89c80-170">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="89c80-171">HDInsight와 함께 MapReduce 사용</span><span class="sxs-lookup"><span data-stu-id="89c80-171">Use MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
+* [<span data-ttu-id="8c9b0-169">HDInsight에서 Hive 사용</span><span class="sxs-lookup"><span data-stu-id="8c9b0-169">Use Hive with HDInsight</span></span>](hdinsight-use-hive.md)
+* [<span data-ttu-id="8c9b0-170">HDInsight에서 Pig 사용</span><span class="sxs-lookup"><span data-stu-id="8c9b0-170">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="8c9b0-171">HDInsight와 함께 MapReduce 사용</span><span class="sxs-lookup"><span data-stu-id="8c9b0-171">Use MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
 
-### <a name="hbase-clusters"></a><span data-ttu-id="89c80-172">HBase 클러스터</span><span class="sxs-lookup"><span data-stu-id="89c80-172">HBase clusters</span></span>
+### <a name="hbase-clusters"></a><span data-ttu-id="8c9b0-172">HBase 클러스터</span><span class="sxs-lookup"><span data-stu-id="8c9b0-172">HBase clusters</span></span>
 
-* [<span data-ttu-id="89c80-173">HDInsight에서 HBase 시작</span><span class="sxs-lookup"><span data-stu-id="89c80-173">Get started with HBase on HDInsight</span></span>](hdinsight-hbase-tutorial-get-started-linux.md)
-* [<span data-ttu-id="89c80-174">HDInsight에서 HBase용 Java 응용 프로그램 개발</span><span class="sxs-lookup"><span data-stu-id="89c80-174">Develop Java applications for HBase on HDInsight</span></span>](hdinsight-hbase-build-java-maven-linux.md)
+* [<span data-ttu-id="8c9b0-173">HDInsight에서 HBase 시작</span><span class="sxs-lookup"><span data-stu-id="8c9b0-173">Get started with HBase on HDInsight</span></span>](hdinsight-hbase-tutorial-get-started-linux.md)
+* [<span data-ttu-id="8c9b0-174">HDInsight에서 HBase용 Java 응용 프로그램 개발</span><span class="sxs-lookup"><span data-stu-id="8c9b0-174">Develop Java applications for HBase on HDInsight</span></span>](hdinsight-hbase-build-java-maven-linux.md)
 
-### <a name="storm-clusters"></a><span data-ttu-id="89c80-175">Storm 클러스터</span><span class="sxs-lookup"><span data-stu-id="89c80-175">Storm clusters</span></span>
+### <a name="storm-clusters"></a><span data-ttu-id="8c9b0-175">Storm 클러스터</span><span class="sxs-lookup"><span data-stu-id="8c9b0-175">Storm clusters</span></span>
 
-* [<span data-ttu-id="89c80-176">HDInsight에서 Storm용 Java 토폴로지 개발</span><span class="sxs-lookup"><span data-stu-id="89c80-176">Develop Java topologies for Storm on HDInsight</span></span>](hdinsight-storm-develop-java-topology.md)
-* [<span data-ttu-id="89c80-177">HDInsight의 Storm에서 Python 구성 요소 사용</span><span class="sxs-lookup"><span data-stu-id="89c80-177">Use Python components in Storm on HDInsight</span></span>](hdinsight-storm-develop-python-topology.md)
-* [<span data-ttu-id="89c80-178">HDInsight에서 Storm을 사용하는 토폴로지 배포 및 모니터링</span><span class="sxs-lookup"><span data-stu-id="89c80-178">Deploy and monitor topologies with Storm on HDInsight</span></span>](hdinsight-storm-deploy-monitor-topology-linux.md)
+* [<span data-ttu-id="8c9b0-176">HDInsight에서 Storm용 Java 토폴로지 개발</span><span class="sxs-lookup"><span data-stu-id="8c9b0-176">Develop Java topologies for Storm on HDInsight</span></span>](hdinsight-storm-develop-java-topology.md)
+* [<span data-ttu-id="8c9b0-177">HDInsight의 Storm에서 Python 구성 요소 사용</span><span class="sxs-lookup"><span data-stu-id="8c9b0-177">Use Python components in Storm on HDInsight</span></span>](hdinsight-storm-develop-python-topology.md)
+* [<span data-ttu-id="8c9b0-178">HDInsight에서 Storm을 사용하는 토폴로지 배포 및 모니터링</span><span class="sxs-lookup"><span data-stu-id="8c9b0-178">Deploy and monitor topologies with Storm on HDInsight</span></span>](hdinsight-storm-deploy-monitor-topology-linux.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 가져오기 작업을 위해 하드 드라이브를 준비하는 샘플 워크플로 | Microsoft Docs"
-description: "Azure Import/Export 서비스에서 가져오기 작업을 위해 드라이브를 준비하는 전체 과정에 대한 연습을 참조하세요."
+title: "aaaSample 워크플로 tooprep 하드 드라이브 Azure 가져오기/내보내기에 대 한 가져오기 작업 | Microsoft Docs"
+description: "Hello hello Azure 가져오기/내보내기 서비스에서에서 가져오기 작업을 위해 드라이브를 준비 하는 동안 전체 프로세스에 대 한 연습을 참조 하십시오."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/07/2017
 ms.author: muralikk
-ms.openlocfilehash: 78d7ce3bbd3205fd995ba331af08d830097c8156
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 560220b7dc9f87416f1fec1ff30fa5cd65812ce5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a><span data-ttu-id="9f049-103">가져오기 작업을 위해 하드 드라이브를 준비하는 샘플 워크플로</span><span class="sxs-lookup"><span data-stu-id="9f049-103">Sample workflow to prepare hard drives for an import job</span></span>
+# <a name="sample-workflow-tooprepare-hard-drives-for-an-import-job"></a><span data-ttu-id="92802-103">샘플 워크플로 tooprepare 가져오기 작업을 위해 하드 드라이브</span><span class="sxs-lookup"><span data-stu-id="92802-103">Sample workflow tooprepare hard drives for an import job</span></span>
 
-<span data-ttu-id="9f049-104">이 문서에서는 가져오기 작업을 위해 드라이브를 준비하는 전체 과정을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-104">This article walks you through the complete process of preparing drives for an import job.</span></span>
+<span data-ttu-id="92802-104">이 문서는 가져오기 작업에 대 한 드라이브를 준비 하는 hello 전체 과정을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="92802-104">This article walks you through hello complete process of preparing drives for an import job.</span></span>
 
-## <a name="sample-data"></a><span data-ttu-id="9f049-105">샘플 데이터</span><span class="sxs-lookup"><span data-stu-id="9f049-105">Sample data</span></span>
+## <a name="sample-data"></a><span data-ttu-id="92802-105">샘플 데이터</span><span class="sxs-lookup"><span data-stu-id="92802-105">Sample data</span></span>
 
-<span data-ttu-id="9f049-106">이 예제에서는 `mystorageaccount`라는 Azure Storage 계정에 다음 데이터를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-106">This example imports the following data into an Azure storage account named `mystorageaccount`:</span></span>
+<span data-ttu-id="92802-106">이 예에서는 라는 Azure 저장소 계정에 같은 데이터가 hello 가져옵니다 `mystorageaccount`:</span><span class="sxs-lookup"><span data-stu-id="92802-106">This example imports hello following data into an Azure storage account named `mystorageaccount`:</span></span>
 
-|<span data-ttu-id="9f049-107">위치</span><span class="sxs-lookup"><span data-stu-id="9f049-107">Location</span></span>|<span data-ttu-id="9f049-108">설명</span><span class="sxs-lookup"><span data-stu-id="9f049-108">Description</span></span>|<span data-ttu-id="9f049-109">데이터 크기</span><span class="sxs-lookup"><span data-stu-id="9f049-109">Data size</span></span>|
+|<span data-ttu-id="92802-107">위치</span><span class="sxs-lookup"><span data-stu-id="92802-107">Location</span></span>|<span data-ttu-id="92802-108">설명</span><span class="sxs-lookup"><span data-stu-id="92802-108">Description</span></span>|<span data-ttu-id="92802-109">데이터 크기</span><span class="sxs-lookup"><span data-stu-id="92802-109">Data size</span></span>|
 |--------------|-----------------|-----|
-|<span data-ttu-id="9f049-110">H:\Video\\</span><span class="sxs-lookup"><span data-stu-id="9f049-110">H:\Video\\</span></span> |<span data-ttu-id="9f049-111">비디오 컬렉션</span><span class="sxs-lookup"><span data-stu-id="9f049-111">A collection of videos</span></span>|<span data-ttu-id="9f049-112">12TB</span><span class="sxs-lookup"><span data-stu-id="9f049-112">12 TB</span></span>|
-|<span data-ttu-id="9f049-113">H:\Photo\\</span><span class="sxs-lookup"><span data-stu-id="9f049-113">H:\Photo\\</span></span> |<span data-ttu-id="9f049-114">사진 컬렉션</span><span class="sxs-lookup"><span data-stu-id="9f049-114">A collection of photos</span></span>|<span data-ttu-id="9f049-115">30GB</span><span class="sxs-lookup"><span data-stu-id="9f049-115">30 GB</span></span>|
-|<span data-ttu-id="9f049-116">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="9f049-116">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="9f049-117">Blu-Ray™ 디스크 이미지</span><span class="sxs-lookup"><span data-stu-id="9f049-117">A Blu-Ray™ disk image</span></span>|<span data-ttu-id="9f049-118">25GB</span><span class="sxs-lookup"><span data-stu-id="9f049-118">25 GB</span></span>|
-|<span data-ttu-id="9f049-119">\\\bigshare\john\music\\</span><span class="sxs-lookup"><span data-stu-id="9f049-119">\\\bigshare\john\music\\</span></span>|<span data-ttu-id="9f049-120">네트워크 공유에서 음악 파일 컬렉션</span><span class="sxs-lookup"><span data-stu-id="9f049-120">A collection of music files on a network share</span></span>|<span data-ttu-id="9f049-121">10 GB</span><span class="sxs-lookup"><span data-stu-id="9f049-121">10 GB</span></span>|
+|<span data-ttu-id="92802-110">H:\Video\\</span><span class="sxs-lookup"><span data-stu-id="92802-110">H:\Video\\</span></span> |<span data-ttu-id="92802-111">비디오 컬렉션</span><span class="sxs-lookup"><span data-stu-id="92802-111">A collection of videos</span></span>|<span data-ttu-id="92802-112">12TB</span><span class="sxs-lookup"><span data-stu-id="92802-112">12 TB</span></span>|
+|<span data-ttu-id="92802-113">H:\Photo\\</span><span class="sxs-lookup"><span data-stu-id="92802-113">H:\Photo\\</span></span> |<span data-ttu-id="92802-114">사진 컬렉션</span><span class="sxs-lookup"><span data-stu-id="92802-114">A collection of photos</span></span>|<span data-ttu-id="92802-115">30GB</span><span class="sxs-lookup"><span data-stu-id="92802-115">30 GB</span></span>|
+|<span data-ttu-id="92802-116">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="92802-116">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="92802-117">Blu-Ray™ 디스크 이미지</span><span class="sxs-lookup"><span data-stu-id="92802-117">A Blu-Ray™ disk image</span></span>|<span data-ttu-id="92802-118">25GB</span><span class="sxs-lookup"><span data-stu-id="92802-118">25 GB</span></span>|
+|<span data-ttu-id="92802-119">\\\bigshare\john\music\\</span><span class="sxs-lookup"><span data-stu-id="92802-119">\\\bigshare\john\music\\</span></span>|<span data-ttu-id="92802-120">네트워크 공유에서 음악 파일 컬렉션</span><span class="sxs-lookup"><span data-stu-id="92802-120">A collection of music files on a network share</span></span>|<span data-ttu-id="92802-121">10 GB</span><span class="sxs-lookup"><span data-stu-id="92802-121">10 GB</span></span>|
 
-## <a name="storage-account-destinations"></a><span data-ttu-id="9f049-122">저장소 계정 대상</span><span class="sxs-lookup"><span data-stu-id="9f049-122">Storage account destinations</span></span>
+## <a name="storage-account-destinations"></a><span data-ttu-id="92802-122">저장소 계정 대상</span><span class="sxs-lookup"><span data-stu-id="92802-122">Storage account destinations</span></span>
 
-<span data-ttu-id="9f049-123">가져오기 작업은 저장소 계정의 다음 대상으로 데이터를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-123">The import job will import the data into the following destinations in the storage account:</span></span>
+<span data-ttu-id="92802-123">hello 가져오기 작업 hello 데이터 대상을 hello 저장소 계정에 따라 hello를 가져올 됩니다.</span><span class="sxs-lookup"><span data-stu-id="92802-123">hello import job will import hello data into hello following destinations in hello storage account:</span></span>
 
-|<span data-ttu-id="9f049-124">원본</span><span class="sxs-lookup"><span data-stu-id="9f049-124">Source</span></span>|<span data-ttu-id="9f049-125">대상 가상 디렉터리 또는 Blob</span><span class="sxs-lookup"><span data-stu-id="9f049-125">Destination virtual directory or blob</span></span>|
+|<span data-ttu-id="92802-124">원본</span><span class="sxs-lookup"><span data-stu-id="92802-124">Source</span></span>|<span data-ttu-id="92802-125">대상 가상 디렉터리 또는 Blob</span><span class="sxs-lookup"><span data-stu-id="92802-125">Destination virtual directory or blob</span></span>|
 |------------|-------------------------------------------|
-|<span data-ttu-id="9f049-126">H:\Video\\</span><span class="sxs-lookup"><span data-stu-id="9f049-126">H:\Video\\</span></span> |<span data-ttu-id="9f049-127">video/</span><span class="sxs-lookup"><span data-stu-id="9f049-127">video/</span></span>|
-|<span data-ttu-id="9f049-128">H:\Photo\\</span><span class="sxs-lookup"><span data-stu-id="9f049-128">H:\Photo\\</span></span> |<span data-ttu-id="9f049-129">photo/</span><span class="sxs-lookup"><span data-stu-id="9f049-129">photo/</span></span>|
-|<span data-ttu-id="9f049-130">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="9f049-130">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="9f049-131">favorite/FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="9f049-131">favorite/FavoriteMovies.ISO</span></span>|
-|<span data-ttu-id="9f049-132">\\\bigshare\john\music\\</span><span class="sxs-lookup"><span data-stu-id="9f049-132">\\\bigshare\john\music\\</span></span> |<span data-ttu-id="9f049-133">music</span><span class="sxs-lookup"><span data-stu-id="9f049-133">music</span></span>|
+|<span data-ttu-id="92802-126">H:\Video\\</span><span class="sxs-lookup"><span data-stu-id="92802-126">H:\Video\\</span></span> |<span data-ttu-id="92802-127">video/</span><span class="sxs-lookup"><span data-stu-id="92802-127">video/</span></span>|
+|<span data-ttu-id="92802-128">H:\Photo\\</span><span class="sxs-lookup"><span data-stu-id="92802-128">H:\Photo\\</span></span> |<span data-ttu-id="92802-129">photo/</span><span class="sxs-lookup"><span data-stu-id="92802-129">photo/</span></span>|
+|<span data-ttu-id="92802-130">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="92802-130">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="92802-131">favorite/FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="92802-131">favorite/FavoriteMovies.ISO</span></span>|
+|<span data-ttu-id="92802-132">\\\bigshare\john\music\\</span><span class="sxs-lookup"><span data-stu-id="92802-132">\\\bigshare\john\music\\</span></span> |<span data-ttu-id="92802-133">music</span><span class="sxs-lookup"><span data-stu-id="92802-133">music</span></span>|
 
-<span data-ttu-id="9f049-134">이 매핑을 사용하여 파일을 `H:\Video\Drama\GreatMovie.mov`Blob으로 가져오게 됩니다`https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.</span><span class="sxs-lookup"><span data-stu-id="9f049-134">With this mapping, the file `H:\Video\Drama\GreatMovie.mov` will be imported to the blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.</span></span>
+<span data-ttu-id="92802-134">이 매핑을 사용 하 여 파일을 hello `H:\Video\Drama\GreatMovie.mov` 가져온된 toohello blob 됩니다 `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`합니다.</span><span class="sxs-lookup"><span data-stu-id="92802-134">With this mapping, hello file `H:\Video\Drama\GreatMovie.mov` will be imported toohello blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.</span></span>
 
-## <a name="determine-hard-drive-requirements"></a><span data-ttu-id="9f049-135">하드 드라이브 요구 사항 확인</span><span class="sxs-lookup"><span data-stu-id="9f049-135">Determine hard drive requirements</span></span>
+## <a name="determine-hard-drive-requirements"></a><span data-ttu-id="92802-135">하드 드라이브 요구 사항 확인</span><span class="sxs-lookup"><span data-stu-id="92802-135">Determine hard drive requirements</span></span>
 
-<span data-ttu-id="9f049-136">다음으로 필요한 하드 드라이브 수를 확인하려면 데이터의 크기를 계산합니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-136">Next, to determine how many hard drives are needed, compute the size of the data:</span></span>
+<span data-ttu-id="92802-136">그런 다음, toodetermine 필요한 하드 드라이브 수를 계산 hello hello 데이터 크기:</span><span class="sxs-lookup"><span data-stu-id="92802-136">Next, toodetermine how many hard drives are needed, compute hello size of hello data:</span></span>
 
 `12TB + 30GB + 25GB + 10GB = 12TB + 65GB`
 
-<span data-ttu-id="9f049-137">이 예제에서는 두 개의 8TB 하드 드라이브면 충분합니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-137">For this example, two 8TB hard drives should be sufficient.</span></span> <span data-ttu-id="9f049-138">그러나 원본 디렉터리 `H:\Video`에 12TB의 데이터가 있고 단일 하드 드라이브의 용량이 8TB이기 때문에 **driveset.csv** 파일에서 다음과 같은 방식으로 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-138">However, since the source directory `H:\Video` has 12TB of data and your single hard drive's capacity is only 8TB, you will be able to specify this in the following way in the **driveset.csv** file:</span></span>
+<span data-ttu-id="92802-137">이 예제에서는 두 개의 8TB 하드 드라이브면 충분합니다.</span><span class="sxs-lookup"><span data-stu-id="92802-137">For this example, two 8TB hard drives should be sufficient.</span></span> <span data-ttu-id="92802-138">그러나 hello 소스 디렉터리 이후 `H:\Video` 12 t B의 데이터에 있고 단일 하드 드라이브의 용량이 8TB만 됩니다 수 toospecify에서이 방법 hello에 다음과 같은 hello **driveset.csv** 파일:</span><span class="sxs-lookup"><span data-stu-id="92802-138">However, since hello source directory `H:\Video` has 12TB of data and your single hard drive's capacity is only 8TB, you will be able toospecify this in hello following way in hello **driveset.csv** file:</span></span>
 
 ```
 DriveLetter,FormatOption,SilentOrPromptOnFormat,Encryption,ExistingBitLockerKey
 X,Format,SilentMode,Encrypt,
 Y,Format,SilentMode,Encrypt,
 ```
-<span data-ttu-id="9f049-139">이 도구는 최적화된 방식으로 두 하드 드라이브에 데이터를 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-139">The tool will distribute data across two hard drives in an optimized way.</span></span>
+<span data-ttu-id="92802-139">hello 도구에서는 최적화 된 방식에서 두 하드 드라이브에 걸쳐 데이터를 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="92802-139">hello tool will distribute data across two hard drives in an optimized way.</span></span>
 
-## <a name="attach-drives-and-configure-the-job"></a><span data-ttu-id="9f049-140">드라이브 연결 및 작업 구성</span><span class="sxs-lookup"><span data-stu-id="9f049-140">Attach drives and configure the job</span></span>
-<span data-ttu-id="9f049-141">두 디스크를 컴퓨터에 연결하고 볼륨을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-141">You will attach both disks to the machine and create volumes.</span></span> <span data-ttu-id="9f049-142">그러면 작성자 **dataset.csv** 파일은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-142">Then author **dataset.csv** file:</span></span>
+## <a name="attach-drives-and-configure-hello-job"></a><span data-ttu-id="92802-140">드라이브를 연결 하 고 hello 작업 구성</span><span class="sxs-lookup"><span data-stu-id="92802-140">Attach drives and configure hello job</span></span>
+<span data-ttu-id="92802-141">두 디스크 toohello 컴퓨터 연결 되며 볼륨을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="92802-141">You will attach both disks toohello machine and create volumes.</span></span> <span data-ttu-id="92802-142">그러면 작성자 **dataset.csv** 파일은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="92802-142">Then author **dataset.csv** file:</span></span>
 ```
 BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 H:\Video\,video/,BlockBlob,rename,None,H:\mydirectory\properties.xml
@@ -73,13 +73,13 @@ K:\Temp\FavoriteVideo.ISO,favorite/FavoriteVideo.ISO,BlockBlob,rename,None,H:\my
 \\myshare\john\music\,music/,BlockBlob,rename,None,H:\mydirectory\properties.xml
 ```
 
-<span data-ttu-id="9f049-143">또한 모든 파일에 다음 메타데이터를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-143">In addition, you can set the following metadata for all files:</span></span>
+<span data-ttu-id="92802-143">또한 모든 파일에 대 한 메타 데이터를 다음 hello를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92802-143">In addition, you can set hello following metadata for all files:</span></span>
 
-* <span data-ttu-id="9f049-144">**UploadMethod:** Windows Azure Import/Export 서비스</span><span class="sxs-lookup"><span data-stu-id="9f049-144">**UploadMethod:** Windows Azure Import/Export service</span></span>
-* <span data-ttu-id="9f049-145">**DataSetName:** SampleData</span><span class="sxs-lookup"><span data-stu-id="9f049-145">**DataSetName:** SampleData</span></span>
-* <span data-ttu-id="9f049-146">**CreationDate:** 2013/10/1</span><span class="sxs-lookup"><span data-stu-id="9f049-146">**CreationDate:** 10/1/2013</span></span>
+* <span data-ttu-id="92802-144">**UploadMethod:** Windows Azure Import/Export 서비스</span><span class="sxs-lookup"><span data-stu-id="92802-144">**UploadMethod:** Windows Azure Import/Export service</span></span>
+* <span data-ttu-id="92802-145">**DataSetName:** SampleData</span><span class="sxs-lookup"><span data-stu-id="92802-145">**DataSetName:** SampleData</span></span>
+* <span data-ttu-id="92802-146">**CreationDate:** 2013/10/1</span><span class="sxs-lookup"><span data-stu-id="92802-146">**CreationDate:** 10/1/2013</span></span>
 
-<span data-ttu-id="9f049-147">가져온 파일의 메타데이터를 설정하려면 다음과 같은 내용으로 텍스트 파일인 `c:\WAImportExport\SampleMetadata.txt`를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-147">To set metadata for the imported files, create a text file, `c:\WAImportExport\SampleMetadata.txt`, with the following content:</span></span>
+<span data-ttu-id="92802-147">hello 가져온 파일에 대 한 메타 데이터 tooset 텍스트 파일을 만듭니다. `c:\WAImportExport\SampleMetadata.txt`, 콘텐츠를 다음 hello로:</span><span class="sxs-lookup"><span data-stu-id="92802-147">tooset metadata for hello imported files, create a text file, `c:\WAImportExport\SampleMetadata.txt`, with hello following content:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -90,13 +90,13 @@ K:\Temp\FavoriteVideo.ISO,favorite/FavoriteVideo.ISO,BlockBlob,rename,None,H:\my
 </Metadata>
 ```
 
-<span data-ttu-id="9f049-148">`FavoriteMovie.ISO` Blob의 일부 속성을 설정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-148">You can also set some properties for the `FavoriteMovie.ISO` blob:</span></span>
+<span data-ttu-id="92802-148">Hello에 대 한 몇 가지 속성을 설정할 수도 있습니다 `FavoriteMovie.ISO` blob:</span><span class="sxs-lookup"><span data-stu-id="92802-148">You can also set some properties for hello `FavoriteMovie.ISO` blob:</span></span>
 
-* <span data-ttu-id="9f049-149">**Content-Type:** application/octet-stream</span><span class="sxs-lookup"><span data-stu-id="9f049-149">**Content-Type:** application/octet-stream</span></span>
-* <span data-ttu-id="9f049-150">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span><span class="sxs-lookup"><span data-stu-id="9f049-150">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span></span>
-* <span data-ttu-id="9f049-151">**Cache-Control:** no-cache</span><span class="sxs-lookup"><span data-stu-id="9f049-151">**Cache-Control:** no-cache</span></span>
+* <span data-ttu-id="92802-149">**Content-Type:** application/octet-stream</span><span class="sxs-lookup"><span data-stu-id="92802-149">**Content-Type:** application/octet-stream</span></span>
+* <span data-ttu-id="92802-150">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span><span class="sxs-lookup"><span data-stu-id="92802-150">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span></span>
+* <span data-ttu-id="92802-151">**Cache-Control:** no-cache</span><span class="sxs-lookup"><span data-stu-id="92802-151">**Cache-Control:** no-cache</span></span>
 
-<span data-ttu-id="9f049-152">이러한 속성을 설정하려면 텍스트 파일인 `c:\WAImportExport\SampleProperties.txt`을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-152">To set these properties, create a text file, `c:\WAImportExport\SampleProperties.txt`:</span></span>
+<span data-ttu-id="92802-152">tooset 이러한 속성을 텍스트 파일을 만듭니다. `c:\WAImportExport\SampleProperties.txt`:</span><span class="sxs-lookup"><span data-stu-id="92802-152">tooset these properties, create a text file, `c:\WAImportExport\SampleProperties.txt`:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -107,27 +107,27 @@ K:\Temp\FavoriteVideo.ISO,favorite/FavoriteVideo.ISO,BlockBlob,rename,None,H:\my
 </Properties>
 ```
 
-## <a name="run-the-azure-importexport-tool-waimportexportexe"></a><span data-ttu-id="9f049-153">Azure Import/Export 도구(WAImportExport.exe) 실행</span><span class="sxs-lookup"><span data-stu-id="9f049-153">Run the Azure Import/Export Tool (WAImportExport.exe)</span></span>
+## <a name="run-hello-azure-importexport-tool-waimportexportexe"></a><span data-ttu-id="92802-153">실행된 hello Azure 가져오기/내보내기 도구 (WAImportExport.exe)</span><span class="sxs-lookup"><span data-stu-id="92802-153">Run hello Azure Import/Export Tool (WAImportExport.exe)</span></span>
 
-<span data-ttu-id="9f049-154">이제 Azure Import/Export 도구를 실행하여 두 하드 드라이브를 준비할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-154">Now you are ready to run the Azure Import/Export Tool to prepare the two hard drives.</span></span>
+<span data-ttu-id="92802-154">이제 준비 toorun hello Azure 가져오기/내보내기 도구 tooprepare hello 하드 드라이브가 두 개 됩니다.</span><span class="sxs-lookup"><span data-stu-id="92802-154">Now you are ready toorun hello Azure Import/Export Tool tooprepare hello two hard drives.</span></span>
 
-<span data-ttu-id="9f049-155">**첫 번째 세션의 경우:**</span><span class="sxs-lookup"><span data-stu-id="9f049-155">**For the first session:**</span></span>
+<span data-ttu-id="92802-155">**첫 번째 세션 hello에 대 한:**</span><span class="sxs-lookup"><span data-stu-id="92802-155">**For hello first session:**</span></span>
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1  /sk:************* /InitialDriveSet:driveset-1.csv /DataSet:dataset-1.csv /logdir:F:\logs
 ```
 
-<span data-ttu-id="9f049-156">더 많은 데이터를 추가해야 하는 경우 Initialdataset과 동일한 형식의 다른 데이터 집합 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-156">If any more data needs to be added, create another dataset file (same format as Initialdataset).</span></span>
+<span data-ttu-id="92802-156">더 이상 데이터 추가 toobe를 필요한 경우 다른 데이터 집합 파일 (Initialdataset으로 동일한 형식)을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="92802-156">If any more data needs toobe added, create another dataset file (same format as Initialdataset).</span></span>
 
-<span data-ttu-id="9f049-157">**두 번째 세션의 경우:**</span><span class="sxs-lookup"><span data-stu-id="9f049-157">**For the second session:**</span></span>
+<span data-ttu-id="92802-157">**두 번째 세션 hello에 대 한:**</span><span class="sxs-lookup"><span data-stu-id="92802-157">**For hello second session:**</span></span>
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset-2.csv
 ```
 
-<span data-ttu-id="9f049-158">복사 세션을 완료하면 복사 컴퓨터에서 두 개의 드라이브 연결을 끊고 적절한 Azure 데이터 센터로 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-158">Once the copy sessions have completed, you can disconnect the two drives from the copy computer and ship them to the appropriate Azure data center.</span></span> <span data-ttu-id="9f049-159">Azure Portal에서 가져오기 작업을 만들 때 두 개의 저널 파일인 `<FirstDriveSerialNumber>.xml` 및 `<SecondDriveSerialNumber>.xml`을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="9f049-159">You'll upload the two journal files, `<FirstDriveSerialNumber>.xml` and `<SecondDriveSerialNumber>.xml`, when you create the import job in the Azure portal.</span></span>
+<span data-ttu-id="92802-158">Hello 복사 세션이 완료 되 면 hello 두 드라이브 hello 복사 컴퓨터에서 연결을 끊을 수 있으며 toohello 적절 한 Azure 데이터 센터로 배송할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92802-158">Once hello copy sessions have completed, you can disconnect hello two drives from hello copy computer and ship them toohello appropriate Azure data center.</span></span> <span data-ttu-id="92802-159">Hello 두 저널 파일을 업로드 합니다 `<FirstDriveSerialNumber>.xml` 및 `<SecondDriveSerialNumber>.xml`hello Azure 포털에서에서 hello 가져오기 작업을 만들 때, 합니다.</span><span class="sxs-lookup"><span data-stu-id="92802-159">You'll upload hello two journal files, `<FirstDriveSerialNumber>.xml` and `<SecondDriveSerialNumber>.xml`, when you create hello import job in hello Azure portal.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="9f049-160">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9f049-160">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="92802-160">다음 단계</span><span class="sxs-lookup"><span data-stu-id="92802-160">Next steps</span></span>
 
-* [<span data-ttu-id="9f049-161">가져오기 작업을 위한 하드 드라이브 준비</span><span class="sxs-lookup"><span data-stu-id="9f049-161">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import.md)
-* [<span data-ttu-id="9f049-162">자주 사용 되는 명령에 대한 빠른 참조</span><span class="sxs-lookup"><span data-stu-id="9f049-162">Quick reference for frequently used commands</span></span>](storage-import-export-tool-quick-reference.md)
+* [<span data-ttu-id="92802-161">가져오기 작업을 위한 하드 드라이브 준비</span><span class="sxs-lookup"><span data-stu-id="92802-161">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import.md)
+* [<span data-ttu-id="92802-162">자주 사용 되는 명령에 대한 빠른 참조</span><span class="sxs-lookup"><span data-stu-id="92802-162">Quick reference for frequently used commands</span></span>](storage-import-export-tool-quick-reference.md)

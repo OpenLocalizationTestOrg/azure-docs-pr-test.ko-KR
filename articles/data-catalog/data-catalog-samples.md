@@ -1,6 +1,6 @@
 ---
-title: "데이터 카탈로그 개발자 샘플 | Microsoft Docs"
-description: "이 문서에서는 데이터 카탈로그 REST API에 대해 사용 가능한 개발자 샘플의 개요를 제공합니다."
+title: "aaaData 카탈로그 개발자 샘플 | Microsoft Docs"
+description: "이 문서에서는 hello 데이터 카탈로그 REST API에 대 한 hello 사용할 수 있는 개발자 샘플의 개요를 제공 합니다."
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/05/2017
 ms.author: spelluru
-ms.openlocfilehash: 6ba88885805f1a206f01015f7eec5236da517403
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11d87d15ee500c1b08e9d507db25626e40c1b98d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="data-catalog-developer-samples"></a><span data-ttu-id="2a044-103">데이터 카탈로그 개발자 샘플</span><span class="sxs-lookup"><span data-stu-id="2a044-103">Data Catalog developer samples</span></span>
-<span data-ttu-id="2a044-104">데이터 카탈로그 REST API를 사용하여 데이터 카탈로그 앱 개발을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-104">Get started developing Data Catalog apps using the Data Catalog REST API.</span></span> <span data-ttu-id="2a044-105">데이터 카탈로그 REST API는 데이터 카탈로그 리소스에 대한 등록, 주석 달기 및 데이터 자산을 프로그래밍 방식으로 검색하기 위해 프로그래밍 방식으로 액세스를 제공하는 REST 기반 API입니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-105">The Data Catalog REST API is a REST-based API that provides programmatic access to Data Catalog resources to register, annotate, and search data assets programmatically.</span></span>
+# <a name="data-catalog-developer-samples"></a><span data-ttu-id="b5629-103">데이터 카탈로그 개발자 샘플</span><span class="sxs-lookup"><span data-stu-id="b5629-103">Data Catalog developer samples</span></span>
+<span data-ttu-id="b5629-104">Hello 데이터 카탈로그 REST API를 사용 하 여 데이터 카탈로그 응용 프로그램 개발을 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-104">Get started developing Data Catalog apps using hello Data Catalog REST API.</span></span> <span data-ttu-id="b5629-105">hello 데이터 카탈로그 REST API는 tooData 카탈로그 리소스 tooregister 프로그래밍 방식 액세스를 제공 하는 REST 기반 API, 주석 달기 및 데이터 자산을 프로그래밍 방식으로 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-105">hello Data Catalog REST API is a REST-based API that provides programmatic access tooData Catalog resources tooregister, annotate, and search data assets programmatically.</span></span>
 
-<span data-ttu-id="2a044-106">다음은 GitHub에 있는 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-106">Here are the samples we have on GitHub:</span></span>
+<span data-ttu-id="b5629-106">GitHub에 있는 hello 샘플 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-106">Here are hello samples we have on GitHub:</span></span>
 
-* [<span data-ttu-id="2a044-107">Azure 데이터 카탈로그 시작</span><span class="sxs-lookup"><span data-stu-id="2a044-107">Get started with Azure Data Catalog</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-get-started/)
+* [<span data-ttu-id="b5629-107">Azure 데이터 카탈로그 시작</span><span class="sxs-lookup"><span data-stu-id="b5629-107">Get started with Azure Data Catalog</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-get-started/)
   
-  <span data-ttu-id="2a044-108">데이터 카탈로그 REST API를 사용하여 데이터 자산을 등록, 검색 및 삭제하기 위해 Azure AD로 인증하는 방법을 보여 주는 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-108">A sample that shows you how to authenticate with Azure AD to Register, Search, and Delete a data asset using the Data Catalog REST API.</span></span>
-* [<span data-ttu-id="2a044-109">대량 등록 및 주석 추가</span><span class="sxs-lookup"><span data-stu-id="2a044-109">Bulk register and annotate</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-excel-register-data-assets/)
+  <span data-ttu-id="b5629-108">샘플 하는 Azure AD tooRegister와 tooauthenticate를 검색 하 고 방법을 보여줍니다 hello 데이터 카탈로그 REST API를 사용 하 여 데이터 자산을 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-108">A sample that shows you how tooauthenticate with Azure AD tooRegister, Search, and Delete a data asset using hello Data Catalog REST API.</span></span>
+* [<span data-ttu-id="b5629-109">대량 등록 및 주석 추가</span><span class="sxs-lookup"><span data-stu-id="b5629-109">Bulk register and annotate</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-excel-register-data-assets/)
   
-  <span data-ttu-id="2a044-110">데이터 카탈로그 REST API 및 Open XML을 사용하여 Excel 통합 문서에서 데이터 자산을 대량 등록하는 방법을 보여 주는 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-110">A sample that shows you how to bulk register data assets from an Excel workbook using Data Catalog REST API and Open XML.</span></span>
-* [<span data-ttu-id="2a044-111">가져오기/내보내기 도구</span><span class="sxs-lookup"><span data-stu-id="2a044-111">Import/Export tool</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-import-export/)
+  <span data-ttu-id="b5629-110">Toobulk 데이터 카탈로그 REST API 및 Open XML을 사용 하 여 Excel 통합 문서에서 데이터 자산을 등록 하는 방법을 보여 주는 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-110">A sample that shows you how toobulk register data assets from an Excel workbook using Data Catalog REST API and Open XML.</span></span>
+* [<span data-ttu-id="b5629-111">가져오기/내보내기 도구</span><span class="sxs-lookup"><span data-stu-id="b5629-111">Import/Export tool</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-import-export/)
   
-  <span data-ttu-id="2a044-112">Azure 데이터 카탈로그에서 자산을 가져오고 파일로 직렬화하는 데이터 카탈로그 REST API를 사용하는 방법을 보여 주는 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-112">A sample that shows how to use the Data Catalog REST API to fetch assets from the Azure Data Catalog and serialize them into a file.</span></span> <span data-ttu-id="2a044-113">또한 JSON으로 직렬화된 자산 집합을 가져오고 카탈로그에 게시하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-113">It also demonstrates how to take a set of assets serialized as JSON and push them into the catalog.</span></span> <span data-ttu-id="2a044-114">검색 쿼리를 사용하여 카탈로그의 하위 집합 내보내기를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-114">It supports exporting a subset of the catalog using a search query.</span></span>
+  <span data-ttu-id="b5629-112">toouse 데이터 카탈로그 REST API toofetch 자산에 hello Azure Data Catalog hello 하 고 파일에이 serialize 하는 방법을 보여 주는 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-112">A sample that shows how toouse hello Data Catalog REST API toofetch assets from hello Azure Data Catalog and serialize them into a file.</span></span> <span data-ttu-id="b5629-113">또한 tootake 자산 집합을 JSON으로 serialize 방법과 hello 카탈로그로 푸시 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-113">It also demonstrates how tootake a set of assets serialized as JSON and push them into hello catalog.</span></span> <span data-ttu-id="b5629-114">내보내기 검색 쿼리를 사용 하 여 hello 카탈로그의 하위 집합을 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-114">It supports exporting a subset of hello catalog using a search query.</span></span>
 
-* [<span data-ttu-id="2a044-115">대량 가져오기 용어</span><span class="sxs-lookup"><span data-stu-id="2a044-115">Bulk import glossary terms</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-bulk-import-glossary/)
+* [<span data-ttu-id="b5629-115">대량 가져오기 용어</span><span class="sxs-lookup"><span data-stu-id="b5629-115">Bulk import glossary terms</span></span>](https://azure.microsoft.com/resources/samples/data-catalog-bulk-import-glossary/)
 
-    <span data-ttu-id="2a044-116">이 샘플에서는 CSV 파일에서 ADC 용어집으로 용어를 가져오는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2a044-116">This sample shows you how to import glossary terms from CSV files to ADC glossary.</span></span>
+    <span data-ttu-id="b5629-116">이 샘플 CSV 파일 tooADC 용어집에서 tooimport 용어집 용어 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b5629-116">This sample shows you how tooimport glossary terms from CSV files tooADC glossary.</span></span>
 

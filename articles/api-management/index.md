@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "API Management를 사용하여 대규모로 안전하게 API를 게시하는 방법에 대해 알아봅니다. 설명서에서는 기존 백 엔드 서비스에 대한 최신 API 게이트웨이를 만드는 방법을 보여 줍니다."
+title: "API 관리 설명서-자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "자세한 방법을 toouse API 관리 toopublish Api 대규모로 안전 하 고 있습니다. 설명서 표시 방법을 기존 백 엔드 서비스에 대 한 최신 API 게이트웨이 toocreate 합니다."
 services: api-management
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 09eb558a4e4b32fa6e1094c55f321db8ce008d4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2bd5d7dc7c6df3ad01a704fdd28c9437d39a04b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-documentation"></a>API Management 설명서
 
-API Management를 사용하여 API를 대규모로 안전하게 외부, 파트너 및 직원 개발자에게 게시하는 방법에 대해 알아봅니다. 자습서, API 참조 및 기타 설명서에서는 어디서든지 호스팅되는 기존 백 엔드 서비스에 대한 최신 API 게이트웨이를 만들고 관리하는 방법을 보여 줍니다.
+자세한 방법을 toouse는 API 관리 toopublish Api tooexternal, 파트너 및 직원 개발자 대규모로 안전 하 고 있습니다. 자습서, API 참조, 및 기타 문서 방법을 보여 줍니다 toocreate 원하는 위치에 기존 백 엔드 서비스 호스트에 대 한 최신 API 게이트웨이 관리 하 고 있습니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

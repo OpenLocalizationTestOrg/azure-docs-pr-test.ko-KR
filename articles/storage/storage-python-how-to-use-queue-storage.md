@@ -1,6 +1,6 @@
 ---
-title: "Python에서 큐 저장소를 사용하는 방법 | Microsoft Docs"
-description: "Azure 큐 서비스를 사용하여 Python에서 큐를 작성 및 삭제하고 메시지를 삽입하고 가져오고 삭제하는 방법을 알아봅니다.\""
+title: "Python에서 큐 저장소 aaaHow toouse | Microsoft Docs"
+description: "방법 toouse hello Python toocreate에서 Azure 큐 서비스 및 큐를 삭제 하 고 삽입, 및 메시지 삭제에 대해 알아봅니다."
 services: storage
 documentationcenter: python
 author: robinsh
@@ -14,32 +14,32 @@ ms.devlang: python
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 1ad3ba6853edda93034b84996823262cb017c71a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce8d999d9fafaef0dab48442560d004c034c0804
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-python"></a><span data-ttu-id="bedda-103">Python에서 큐 저장소를 사용하는 방법</span><span class="sxs-lookup"><span data-stu-id="bedda-103">How to use Queue storage from Python</span></span>
+# <a name="how-toouse-queue-storage-from-python"></a><span data-ttu-id="d4a19-103">어떻게 toouse Python에서 큐 저장소</span><span class="sxs-lookup"><span data-stu-id="d4a19-103">How toouse Queue storage from Python</span></span>
 [!INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## <a name="overview"></a><span data-ttu-id="bedda-104">개요</span><span class="sxs-lookup"><span data-stu-id="bedda-104">Overview</span></span>
-<span data-ttu-id="bedda-105">이 가이드에서는 Azure 큐 저장소 서비스를 사용하여 일반 시나리오를 수행하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-105">This guide shows you how to perform common scenarios using the Azure Queue storage service.</span></span> <span data-ttu-id="bedda-106">샘플은 Python으로 작성되었으며 [Microsoft Azure Storage SDK for Python]을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-106">The samples are written in Python and use the [Microsoft Azure Storage SDK for Python].</span></span> <span data-ttu-id="bedda-107">여기서 다루는 시나리오에는 **큐 만들기 및 삭제**뿐만 아니라 큐 메시지 **삽입**, **보기**, **가져오기** 및 **삭제**가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-107">The scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating and deleting queues**.</span></span> <span data-ttu-id="bedda-108">큐에 대한 자세한 내용은 [다음 단계] 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="bedda-108">For more information on queues, refer to the [Next Steps] section.</span></span>
+## <a name="overview"></a><span data-ttu-id="d4a19-104">개요</span><span class="sxs-lookup"><span data-stu-id="d4a19-104">Overview</span></span>
+<span data-ttu-id="d4a19-105">이 가이드에서는 tooperform 일반적인 시나리오를 사용 하 여 Azure 큐 저장소 서비스를 hello 하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-105">This guide shows you how tooperform common scenarios using hello Azure Queue storage service.</span></span> <span data-ttu-id="d4a19-106">hello 샘플 Python에서 작성 되 고 hello를 사용 하 여 [Python에 대 한 Microsoft Azure 저장소 SDK]합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-106">hello samples are written in Python and use hello [Microsoft Azure Storage SDK for Python].</span></span> <span data-ttu-id="d4a19-107">hello 가이드에서 다루는 시나리오 포함 **삽입**, **관찰**, **가져오는**, 및 **삭제** 메시지를 큐와  **만들기 및 큐 삭제**합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-107">hello scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating and deleting queues**.</span></span> <span data-ttu-id="d4a19-108">큐에 대 한 자세한 내용은 toohello [다음 단계] 섹션을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="d4a19-108">For more information on queues, refer toohello [Next Steps] section.</span></span>
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="how-to-create-a-queue"></a><span data-ttu-id="bedda-109">큐를 만드는 방법</span><span class="sxs-lookup"><span data-stu-id="bedda-109">How To: Create a Queue</span></span>
-<span data-ttu-id="bedda-110">**QueueService** 개체를 사용하면 큐로 작업할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-110">The **QueueService** object lets you work with queues.</span></span> <span data-ttu-id="bedda-111">다음 코드는 **QueueService** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-111">The following code creates a **QueueService** object.</span></span> <span data-ttu-id="bedda-112">프로그래밍 방식으로 Azure 저장소에 액세스하려는 Python 파일의 맨 위쪽에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-112">Add the following near the top of any Python file in which you wish to programmatically access Azure Storage:</span></span>
+## <a name="how-to-create-a-queue"></a><span data-ttu-id="d4a19-109">큐를 만드는 방법</span><span class="sxs-lookup"><span data-stu-id="d4a19-109">How To: Create a Queue</span></span>
+<span data-ttu-id="d4a19-110">hello **QueueService** 개체 큐를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-110">hello **QueueService** object lets you work with queues.</span></span> <span data-ttu-id="d4a19-111">hello 다음 코드에서는 **QueueService** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-111">hello following code creates a **QueueService** object.</span></span> <span data-ttu-id="d4a19-112">Hello 다음 원하는 tooprogrammatically 액세스 Azure 저장소는 모든 Python 파일의 hello 맨 위 근처에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-112">Add hello following near hello top of any Python file in which you wish tooprogrammatically access Azure Storage:</span></span>
 
 ```python
 from azure.storage.queue import QueueService
 ```
 
-<span data-ttu-id="bedda-113">다음 코드는 저장소 계정 이름 및 계정 키를 사용하는 **QueueService** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-113">The following code creates a **QueueService** object using the storage account name and account key.</span></span> <span data-ttu-id="bedda-114">'myaccount' 및 'mykey'를 사용자의 계정 이름 및 키로 바꾸세요.</span><span class="sxs-lookup"><span data-stu-id="bedda-114">Replace 'myaccount' and 'mykey' with your account name and key.</span></span>
+<span data-ttu-id="d4a19-113">hello 다음 코드에서는 **QueueService** hello 저장소 계정 이름 및 계정 키를 사용 하 여 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-113">hello following code creates a **QueueService** object using hello storage account name and account key.</span></span> <span data-ttu-id="d4a19-114">'myaccount' 및 'mykey'를 사용자의 계정 이름 및 키로 바꾸세요.</span><span class="sxs-lookup"><span data-stu-id="d4a19-114">Replace 'myaccount' and 'mykey' with your account name and key.</span></span>
 
 ```python
 queue_service = QueueService(account_name='myaccount', account_key='mykey')
@@ -47,15 +47,15 @@ queue_service = QueueService(account_name='myaccount', account_key='mykey')
 queue_service.create_queue('taskqueue')
 ```
 
-## <a name="how-to-insert-a-message-into-a-queue"></a><span data-ttu-id="bedda-115">큐에 메시지를 삽입하는 방법</span><span class="sxs-lookup"><span data-stu-id="bedda-115">How To: Insert a Message into a Queue</span></span>
-<span data-ttu-id="bedda-116">큐에 메시지를 삽입하려면 **put\_message** 메서드를 사용하여 새 메시지를 만들고 큐에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-116">To insert a message into a queue, use the **put\_message** method to create a new message and add it to the queue.</span></span>
+## <a name="how-to-insert-a-message-into-a-queue"></a><span data-ttu-id="d4a19-115">큐에 메시지를 삽입하는 방법</span><span class="sxs-lookup"><span data-stu-id="d4a19-115">How To: Insert a Message into a Queue</span></span>
+<span data-ttu-id="d4a19-116">tooinsert 큐로 사용 하 여 hello 메시지 **배치\_메시지** 메서드를 새 메시지를 만들고 toohello 큐를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-116">tooinsert a message into a queue, use hello **put\_message** method to create a new message and add it toohello queue.</span></span>
 
 ```python
 queue_service.put_message('taskqueue', u'Hello World')
 ```
 
-## <a name="how-to-peek-at-the-next-message"></a><span data-ttu-id="bedda-117">다음 메시지를 보는 방법</span><span class="sxs-lookup"><span data-stu-id="bedda-117">How To: Peek at the Next Message</span></span>
-<span data-ttu-id="bedda-118">큐에서 메시지를 제거하지 않고도 **peek\_messages** 메서드를 호출하여 큐의 맨 앞에서 원하는 메시지를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-118">You can peek at the message in the front of a queue without removing it from the queue by calling the **peek\_messages** method.</span></span> <span data-ttu-id="bedda-119">기본적으로 **peek\_messages**는 단일 메시지를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-119">By default, **peek\_messages** peeks at a single message.</span></span>
+## <a name="how-to-peek-at-hello-next-message"></a><span data-ttu-id="d4a19-117">방법: hello 다음 메시지 피킹</span><span class="sxs-lookup"><span data-stu-id="d4a19-117">How To: Peek at hello Next Message</span></span>
+<span data-ttu-id="d4a19-118">Hello를 호출 하 여 hello 큐에서 제거 하지 않고 큐의 hello 앞에 hello 메시지를 피킹할 수 있습니다 **peek\_메시지** 메서드.</span><span class="sxs-lookup"><span data-stu-id="d4a19-118">You can peek at hello message in hello front of a queue without removing it from hello queue by calling hello **peek\_messages** method.</span></span> <span data-ttu-id="d4a19-119">기본적으로 **peek\_messages**는 단일 메시지를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-119">By default, **peek\_messages** peeks at a single message.</span></span>
 
 ```python
 messages = queue_service.peek_messages('taskqueue')
@@ -63,8 +63,8 @@ for message in messages:
     print(message.content)
 ```
 
-## <a name="how-to-dequeue-messages"></a><span data-ttu-id="bedda-120">방법: 큐에서 메시지 제거</span><span class="sxs-lookup"><span data-stu-id="bedda-120">How To: Dequeue Messages</span></span>
-<span data-ttu-id="bedda-121">다음 코드는 2단계를 거쳐 큐에서 메시지를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-121">Your code removes a message from a queue in two steps.</span></span> <span data-ttu-id="bedda-122">**get\_messages**를 호출하면 기본적으로 큐에서 다음 메시지를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-122">When you call **get\_messages**, you get the next message in a queue by default.</span></span> <span data-ttu-id="bedda-123">**get\_messages**에서 반환된 메시지는 이 큐의 메시지를 읽는 다른 코드에는 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-123">A message returned from **get\_messages** becomes invisible to any other code reading messages from this queue.</span></span> <span data-ttu-id="bedda-124">기본적으로, 이 메시지는 30초간 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-124">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="bedda-125">큐에서 메시지 제거를 완료하려면 **delete\_message**도 호출해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-125">To finish removing the message from the queue, you must also call **delete\_message**.</span></span> <span data-ttu-id="bedda-126">메시지를 제거하는 이 2단계 프로세스는 코드가 하드웨어 또는 소프트웨어 오류로 인해 메시지를 처리하지 못하는 경우 코드의 다른 인스턴스가 동일한 메시지를 가져와서 다시 시도할 수 있도록 보장합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-126">This two-step process of removing a message assures that when your code fails to process a message due to hardware or software failure, another instance of your code can get the same message and try again.</span></span> <span data-ttu-id="bedda-127">코드는 메시지가 처리된 직후에 **delete\_message**를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-127">Your code calls **delete\_message** right after the message has been processed.</span></span>
+## <a name="how-to-dequeue-messages"></a><span data-ttu-id="d4a19-120">방법: 큐에서 메시지 제거</span><span class="sxs-lookup"><span data-stu-id="d4a19-120">How To: Dequeue Messages</span></span>
+<span data-ttu-id="d4a19-121">다음 코드는 2단계를 거쳐 큐에서 메시지를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-121">Your code removes a message from a queue in two steps.</span></span> <span data-ttu-id="d4a19-122">호출 하는 경우 **가져오기\_메시지**, 기본적으로 큐에 있는 다음 메시지로 hello를 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-122">When you call **get\_messages**, you get hello next message in a queue by default.</span></span> <span data-ttu-id="d4a19-123">반환 된 메시지 **가져오기\_메시지** 보이지 않는 tooany이이 큐에서 메시지를 읽을 다른 코드 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-123">A message returned from **get\_messages** becomes invisible tooany other code reading messages from this queue.</span></span> <span data-ttu-id="d4a19-124">기본적으로, 이 메시지는 30초간 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-124">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="d4a19-125">toofinish 제거 hello 큐에서에서 메시지를 hello 호출 해야 **삭제\_메시지**합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-125">toofinish removing hello message from hello queue, you must also call **delete\_message**.</span></span> <span data-ttu-id="d4a19-126">메시지를 제거 하는이 두 단계 과정 통해 있는 코드에 tooprocess 하드웨어나 소프트웨어 장애 때문에 메시지가 실패 하면 코드의 다른 인스턴스 수 동일한 메시지가 다시 시도 하십시오 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-126">This two-step process of removing a message assures that when your code fails tooprocess a message due to hardware or software failure, another instance of your code can get the same message and try again.</span></span> <span data-ttu-id="d4a19-127">코드 호출 **삭제\_메시지** 직후 hello 메시지를 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-127">Your code calls **delete\_message** right after hello message has been processed.</span></span>
 
 ```python
 messages = queue_service.get_messages('taskqueue')
@@ -73,8 +73,8 @@ for message in messages:
     queue_service.delete_message('taskqueue', message.id, message.pop_receipt)
 ```
 
-<span data-ttu-id="bedda-128">큐에서 메시지 검색을 사용자 지정할 수 있는 방법으로는 두 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-128">There are two ways you can customize message retrieval from a queue.</span></span>
-<span data-ttu-id="bedda-129">먼저, 메시지의 배치(최대 32개)를 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-129">First, you can get a batch of messages (up to 32).</span></span> <span data-ttu-id="bedda-130">두 번째로, 표시하지 않는 제한 시간을 더 길거나 더 짧게 설정하여 코드에서 각 메시지를 완전히 처리하는 시간을 늘리거나 줄일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-130">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time to fully process each message.</span></span> <span data-ttu-id="bedda-131">다음 코드 예제는 **get\_messages** 메서드를 사용하여 한 번 호출에 16개의 메시지를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-131">The following code example uses the **get\_messages** method to get 16 messages in one call.</span></span> <span data-ttu-id="bedda-132">그런 다음에 for 루프를 사용하여 각 메시지를 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-132">Then it processes each message using a for loop.</span></span> <span data-ttu-id="bedda-133">또한 각 메시지에 대해 표시하지 않는 제한 시간을 5분으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-133">It also sets the invisibility timeout to five minutes for each message.</span></span>
+<span data-ttu-id="d4a19-128">큐에서 메시지 검색을 사용자 지정할 수 있는 방법으로는 두 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-128">There are two ways you can customize message retrieval from a queue.</span></span>
+<span data-ttu-id="d4a19-129">첫째, 일괄 처리 메시지 (위쪽 too32)을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-129">First, you can get a batch of messages (up too32).</span></span> <span data-ttu-id="d4a19-130">둘째, 하면 프로그램 코드를 더 길거나 더 짧은 표시 안 함 시간 제한이 설정할 수 있습니다 또는 적은 시간 toofully 각 메시지를 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-130">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time toofully process each message.</span></span> <span data-ttu-id="d4a19-131">hello 다음 코드 예제에서는 **가져오기\_메시지** 메서드 tooget 16 메시지 한 번 호출에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-131">hello following code example uses the **get\_messages** method tooget 16 messages in one call.</span></span> <span data-ttu-id="d4a19-132">그런 다음에 for 루프를 사용하여 각 메시지를 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-132">Then it processes each message using a for loop.</span></span> <span data-ttu-id="d4a19-133">또한 각 메시지에 대해 5 분 hello 표시 안 함 시간 제한을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-133">It also sets hello invisibility timeout to five minutes for each message.</span></span>
 
 ```python
 messages = queue_service.get_messages('taskqueue', num_messages=16, visibility_timeout=5*60)
@@ -83,8 +83,8 @@ for message in messages:
     queue_service.delete_message('taskqueue', message.id, message.pop_receipt)        
 ```
 
-## <a name="how-to-change-the-contents-of-a-queued-message"></a><span data-ttu-id="bedda-134">대기 중인 메시지의 콘텐츠 변경 방법</span><span class="sxs-lookup"><span data-stu-id="bedda-134">How To: Change the Contents of a Queued Message</span></span>
-<span data-ttu-id="bedda-135">큐에 있는 메시지의 콘텐츠를 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-135">You can change the contents of a message in-place in the queue.</span></span> <span data-ttu-id="bedda-136">메시지가 작업을 나타내는 경우 이 기능을 사용하여 작업의 상태를 업데이트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-136">If the message represents a work task, you could use this feature to update the status of the work task.</span></span> <span data-ttu-id="bedda-137">아래 코드에서는 **update\_message** 메서드를 사용하여 메시지를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-137">The code below uses the **update\_message** method to update a message.</span></span> <span data-ttu-id="bedda-138">표시 제한 시간은 0으로 설정되어 있습니다.이는 메시지가 즉시 표시되고 콘텐츠가 업데이트됨을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-138">The visibility timeout is set to 0, meaning the message appears immediately and the content is updated.</span></span>
+## <a name="how-to-change-hello-contents-of-a-queued-message"></a><span data-ttu-id="d4a19-134">방법: 대기 중인 메시지의 내용을 hello 변경</span><span class="sxs-lookup"><span data-stu-id="d4a19-134">How To: Change hello Contents of a Queued Message</span></span>
+<span data-ttu-id="d4a19-135">메시지 전체 hello 큐에서의 hello 내용을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-135">You can change hello contents of a message in-place in hello queue.</span></span> <span data-ttu-id="d4a19-136">메시지 작업 작업을 나타내는 경우에이 기능 tooupdate hello 작업 작업의 상태를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-136">If the message represents a work task, you could use this feature tooupdate the status of hello work task.</span></span> <span data-ttu-id="d4a19-137">아래 hello 코드 hello를 사용 하 여 **업데이트\_메시지** 메서드 tooupdate 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-137">hello code below uses hello **update\_message** method tooupdate a message.</span></span> <span data-ttu-id="d4a19-138">hello 표시 제한 시간은 too0, 즉 메시지가 즉시 표시 되 고 hello 내용을 업데이트할 때 설정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-138">hello visibility timeout is set too0, meaning the message appears immediately and hello content is updated.</span></span>
 
 ```python
 messages = queue_service.get_messages('taskqueue')
@@ -92,28 +92,28 @@ for message in messages:
     queue_service.update_message('taskqueue', message.id, message.pop_receipt, 0, u'Hello World Again')
 ```
 
-## <a name="how-to-get-the-queue-length"></a><span data-ttu-id="bedda-139">방법: 큐 길이 가져오기</span><span class="sxs-lookup"><span data-stu-id="bedda-139">How To: Get the Queue Length</span></span>
-<span data-ttu-id="bedda-140">큐에 있는 메시지의 추정된 개수를 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-140">You can get an estimate of the number of messages in a queue.</span></span> <span data-ttu-id="bedda-141">**get\_queue\_metadata** 메서드는 큐 서비스에 큐에 대한 메타데이터 및 **approximate_message_count**를 반환하도록 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-141">The **get\_queue\_metadata** method asks the queue service to return metadata about the queue, and the **approximate_message_count**.</span></span> <span data-ttu-id="bedda-142">큐 서비스가 요청에 응답한 후 메시지가 추가되거나 제거될 수 있으므로 이 결과는 근사치일 뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-142">The result is only approximate because messages can be added or removed after the queue service responds to your request.</span></span>
+## <a name="how-to-get-hello-queue-length"></a><span data-ttu-id="d4a19-139">방법: hello 큐 길이 가져오기</span><span class="sxs-lookup"><span data-stu-id="d4a19-139">How To: Get hello Queue Length</span></span>
+<span data-ttu-id="d4a19-140">큐에 있는 hello 메시지 수의 예측을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-140">You can get an estimate of hello number of messages in a queue.</span></span> <span data-ttu-id="d4a19-141">**가져오기\_큐\_메타 데이터** 메서드 묻고 hello 큐에 대 한 큐 서비스 tooreturn 메타 데이터를 hello hello **approximate_message_count**합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-141">The **get\_queue\_metadata** method asks hello queue service tooreturn metadata about hello queue, and hello **approximate_message_count**.</span></span> <span data-ttu-id="d4a19-142">메시지를 추가 또는 큐 서비스 tooyour 요청 응답 한 후 제거 될 수 있으므로 hello 결과 대략적인만입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-142">hello result is only approximate because messages can be added or removed after the queue service responds tooyour request.</span></span>
 
 ```python
 metadata = queue_service.get_queue_metadata('taskqueue')
 count = metadata.approximate_message_count
 ```
 
-## <a name="how-to-delete-a-queue"></a><span data-ttu-id="bedda-143">방법: 큐 삭제</span><span class="sxs-lookup"><span data-stu-id="bedda-143">How To: Delete a Queue</span></span>
-<span data-ttu-id="bedda-144">큐 및 해당 큐의 모든 메시지를 삭제하려면 **delete\_queue** 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="bedda-144">To delete a queue and all the messages contained in it, call the **delete\_queue** method.</span></span>
+## <a name="how-to-delete-a-queue"></a><span data-ttu-id="d4a19-143">방법: 큐 삭제</span><span class="sxs-lookup"><span data-stu-id="d4a19-143">How To: Delete a Queue</span></span>
+<span data-ttu-id="d4a19-144">toodelete는 큐와 모든 hello 메시지에 포함 된, 호출 된 **삭제\_큐** 메서드.</span><span class="sxs-lookup"><span data-stu-id="d4a19-144">toodelete a queue and all hello messages contained in it, call the **delete\_queue** method.</span></span>
 
 ```python
 queue_service.delete_queue('taskqueue')
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="bedda-145">다음 단계</span><span class="sxs-lookup"><span data-stu-id="bedda-145">Next Steps</span></span>
-<span data-ttu-id="bedda-146">이제 큐 저장소의 기본 사항을 배웠으므로 다음 링크를 따라 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="bedda-146">Now that you've learned the basics of Queue storage, follow these links to learn more.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d4a19-145">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d4a19-145">Next Steps</span></span>
+<span data-ttu-id="d4a19-146">큐 저장소의 hello 기본 사항 학습 한, 했으므로 이러한 링크 toolearn 자세한 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a19-146">Now that you've learned hello basics of Queue storage, follow these links toolearn more.</span></span>
 
-* [<span data-ttu-id="bedda-147">Python 개발자 센터</span><span class="sxs-lookup"><span data-stu-id="bedda-147">Python Developer Center</span></span>](/develop/python/)
-* [<span data-ttu-id="bedda-148">Azure 저장소 서비스 REST API</span><span class="sxs-lookup"><span data-stu-id="bedda-148">Azure Storage Services REST API</span></span>](http://msdn.microsoft.com/library/azure/dd179355)
-* <span data-ttu-id="bedda-149">[Azure 저장소 팀 블로그]</span><span class="sxs-lookup"><span data-stu-id="bedda-149">[Azure Storage Team Blog]</span></span>
-* <span data-ttu-id="bedda-150">[Microsoft Azure Storage SDK for Python]</span><span class="sxs-lookup"><span data-stu-id="bedda-150">[Microsoft Azure Storage SDK for Python]</span></span>
+* [<span data-ttu-id="d4a19-147">Python 개발자 센터</span><span class="sxs-lookup"><span data-stu-id="d4a19-147">Python Developer Center</span></span>](/develop/python/)
+* [<span data-ttu-id="d4a19-148">Azure 저장소 서비스 REST API</span><span class="sxs-lookup"><span data-stu-id="d4a19-148">Azure Storage Services REST API</span></span>](http://msdn.microsoft.com/library/azure/dd179355)
+* <span data-ttu-id="d4a19-149">[Azure 저장소 팀 블로그]</span><span class="sxs-lookup"><span data-stu-id="d4a19-149">[Azure Storage Team Blog]</span></span>
+* <span data-ttu-id="d4a19-150">[Python에 대 한 Microsoft Azure 저장소 SDK]</span><span class="sxs-lookup"><span data-stu-id="d4a19-150">[Microsoft Azure Storage SDK for Python]</span></span>
 
-<span data-ttu-id="bedda-151">[Azure 저장소 팀 블로그]: http://blogs.msdn.com/b/windowsazurestorage/</span><span class="sxs-lookup"><span data-stu-id="bedda-151">[Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/</span></span>
-<span data-ttu-id="bedda-152">[Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python</span><span class="sxs-lookup"><span data-stu-id="bedda-152">[Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python</span></span>
+[Azure 저장소 팀 블로그]: http://blogs.msdn.com/b/windowsazurestorage/
+[Python에 대 한 Microsoft Azure 저장소 SDK]: https://github.com/Azure/azure-storage-python

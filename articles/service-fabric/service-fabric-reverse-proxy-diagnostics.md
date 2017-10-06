@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 역방향 프록시 진단 | Microsoft Docs"
-description: "역방향 프로세스에서의 요청 처리 모니터링 및 진단 방법에 대해 알아봅니다."
+title: "서비스 패브릭 aaaAzure 역방향 프록시 진단 | Microsoft Docs"
+description: "자세한 방법을 toomonitor hello 역방향 프록시에 대 한 요청 처리를 진단 하 고 있습니다."
 services: service-fabric
 documentationcenter: .net
 author: kavyako
@@ -13,34 +13,34 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 08/08/2017
 ms.author: kavyako
-ms.openlocfilehash: 3bc631606afbc93d5bca94f4955fd2ef816fa9fd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9687b9688dc26ba619cbdfab1b1f49a3035345c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-diagnose-request-processing-at-the-reverse-proxy"></a><span data-ttu-id="4c846-103">역방향 프로세스에서의 요청 처리 모니터링 및 진단 </span><span class="sxs-lookup"><span data-stu-id="4c846-103">Monitor and diagnose request processing at the reverse proxy</span></span>
+# <a name="monitor-and-diagnose-request-processing-at-hello-reverse-proxy"></a><span data-ttu-id="6ced8-103">모니터링 및 진단 hello 역방향 프록시에 대 한 요청 처리</span><span class="sxs-lookup"><span data-stu-id="6ced8-103">Monitor and diagnose request processing at hello reverse proxy</span></span>
 
-<span data-ttu-id="4c846-104">Service Fabric 5.7 버전부터 역방향 프록시 이벤트를 컬렉션에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-104">Starting with the 5.7 release of Service Fabric, reverse proxy events are available for collection.</span></span> <span data-ttu-id="4c846-105">이벤트는 역방향 프록시에서의 요청 처리 실패와 관련한 오류 이벤트만을 담은 한 채널과, 성공한 요청과 실패한 요청 모두에 대한 항목을 모두 포함하는 상세 이벤트가 담긴 두 번째 채널 등, 두 채널로 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-105">The events are available in two channels, one with only error events related to request processing failure at the reverse proxy and second channel containing verbose events with entries for both successful and failed requests.</span></span>
+<span data-ttu-id="6ced8-104">서비스 패브릭의 hello 5.7 버전부터 역방향 프록시 이벤트는 컬렉션에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-104">Starting with hello 5.7 release of Service Fabric, reverse proxy events are available for collection.</span></span> <span data-ttu-id="6ced8-105">두 개의 채널에서 사용할 수 있는 hello 이벤트 hello 역방향 프록시 및 항목이 성공 및 실패 한 요청에 대 한 자세한 정보 표시 이벤트를 포함 하는 두 번째 채널에서 toorequest 처리 작업이 실패와 관련 된만 오류 이벤트를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-105">hello events are available in two channels, one with only error events related toorequest processing failure at hello reverse proxy and second channel containing verbose events with entries for both successful and failed requests.</span></span>
 
-<span data-ttu-id="4c846-106">로컬 및 Azure Service Fabric 클러스터에서 이러한 채널로부터의 이벤트 수집을 활성화하려면 [역방향 프록시 이벤트 수집](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4c846-106">Refer to [Collect reverse proxy events](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) to enable collecting events from these channels in local and Azure Service Fabric clusters.</span></span>
+<span data-ttu-id="6ced8-106">너무 참조[역방향 프록시 이벤트 수집](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) tooenable 로컬 및 Azure 서비스 패브릭 클러스터의 이러한 채널에서 이벤트를 수집 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-106">Refer too[Collect reverse proxy events](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) tooenable collecting events from these channels in local and Azure Service Fabric clusters.</span></span>
 
-## <a name="troubleshoot-using-diagnostics-logs"></a><span data-ttu-id="4c846-107">진단 로그를 사용한 문제 해결 </span><span class="sxs-lookup"><span data-stu-id="4c846-107">Troubleshoot using diagnostics logs</span></span>
-<span data-ttu-id="4c846-108">다음은 발생할 수 있는 일반적인 실패 로그를 해석하는 방법에 대한 몇 가지 예입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-108">Here are some examples on how to interpret the common failure logs that one can encounter:</span></span>
+## <a name="troubleshoot-using-diagnostics-logs"></a><span data-ttu-id="6ced8-107">진단 로그를 사용한 문제 해결 </span><span class="sxs-lookup"><span data-stu-id="6ced8-107">Troubleshoot using diagnostics logs</span></span>
+<span data-ttu-id="6ced8-108">다음은에 어떻게 toointerpret hello 일반적인 오류 로그는 하나 일어날 수 있는 몇 가지 예입니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-108">Here are some examples on how toointerpret hello common failure logs that one can encounter:</span></span>
 
-1. <span data-ttu-id="4c846-109">역방향 프록시에서 응답 상태 코드 504(시간 제한) 반환</span><span class="sxs-lookup"><span data-stu-id="4c846-109">Reverse proxy returns response status code 504 (Timeout).</span></span>
+1. <span data-ttu-id="6ced8-109">역방향 프록시에서 응답 상태 코드 504(시간 제한) 반환</span><span class="sxs-lookup"><span data-stu-id="6ced8-109">Reverse proxy returns response status code 504 (Timeout).</span></span>
 
-    <span data-ttu-id="4c846-110">서비스가 요청 시간 제한 안에 응답하지 못하는 것이 한 원인이 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-110">One reason could be due to the service failing to reply within the request timeout period.</span></span>
-<span data-ttu-id="4c846-111">아래의 첫 번째 이벤트는 역방향 프록시에서 수신한 요청의 상세 정보를 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-111">The first event below logs the details of the request received at the reverse proxy.</span></span> <span data-ttu-id="4c846-112">두 번째 이벤트는 서비스로 전달하는 도중 "internal error = ERROR_WINHTTP_TIMEOUT"으로 인해 요청이 실패했음을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-112">The second event indicates that the request failed while forwarding to service, due to "internal error = ERROR_WINHTTP_TIMEOUT"</span></span> 
+    <span data-ttu-id="6ced8-110">한 가지 이유는 hello 요청 제한 시간 내 toohello 서비스 실패 tooreply 원인일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-110">One reason could be due toohello service failing tooreply within hello request timeout period.</span></span>
+<span data-ttu-id="6ced8-111">아래의 첫 번째 이벤트 hello hello 역방향 프록시에서 수신 하는 hello 요청의 hello 세부 정보를 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-111">hello first event below logs hello details of hello request received at hello reverse proxy.</span></span> <span data-ttu-id="6ced8-112">hello 두 번째 이벤트 나타냅니다 해당 hello 요청이 실패 하는 동안 전달 tooservice 인해 너무 "내부 오류 ERROR_WINHTTP_TIMEOUT ="</span><span class="sxs-lookup"><span data-stu-id="6ced8-112">hello second event indicates that hello request failed while forwarding tooservice, due too"internal error = ERROR_WINHTTP_TIMEOUT"</span></span> 
 
-    <span data-ttu-id="4c846-113">페이로드는 다음을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-113">The payload includes:</span></span>
+    <span data-ttu-id="6ced8-113">hello 페이로드 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-113">hello payload includes:</span></span>
 
-    *  <span data-ttu-id="4c846-114">**traceId**: 이 GUID를 사용하여 단일 요청에 해당하는 모든 이벤트를 상관 지을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-114">**traceId**: This GUID can be used to correlate all the events corresponding to a single request.</span></span> <span data-ttu-id="4c846-115">아래 두 이벤트에서 traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**은 이들이 같은 요청에 속함을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-115">In the below two events, the traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**, implying they belong to the same request.</span></span>
-    *  <span data-ttu-id="4c846-116">**requestUrl**: 요청이 전송된 UR (역방향 프록시 URL)입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-116">**requestUrl**: The URL (Reverse proxy URL) to which the request was sent.</span></span>
-    *  <span data-ttu-id="4c846-117">**verb**: HTTP 동사입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-117">**verb**: HTTP verb.</span></span>
-    *  <span data-ttu-id="4c846-118">**remoteAddress**: 요청을 보내는 클라이언트의 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-118">**remoteAddress**: Address of client sending the request.</span></span>
-    *  <span data-ttu-id="4c846-119">**resolvedServiceUrl**: 수신 요청이 확인된 서비스 끝점 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-119">**resolvedServiceUrl**: Service endpoint URL to which the incoming request was resolved.</span></span> 
-    *  <span data-ttu-id="4c846-120">**errorDetails**: 실패에 대한 추가 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-120">**errorDetails**: Additional information about the failure.</span></span>
+    *  <span data-ttu-id="6ced8-114">**traceId**:이 GUID 수 toocorrelate tooa 단일 요청에 해당 하는 모든 hello 이벤트를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-114">**traceId**: This GUID can be used toocorrelate all hello events corresponding tooa single request.</span></span> <span data-ttu-id="6ced8-115">두 개의 이벤트 아래 hello에서 traceId hello = **2f87b722-e254-4ac2-a802-fd315c1a0271**, toohello 속해 암시 같은 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-115">In hello below two events, hello traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**, implying they belong toohello same request.</span></span>
+    *  <span data-ttu-id="6ced8-116">**requestUrl**: hello URL (역방향 프록시 URL) toowhich hello 요청을 보냈습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-116">**requestUrl**: hello URL (Reverse proxy URL) toowhich hello request was sent.</span></span>
+    *  <span data-ttu-id="6ced8-117">**verb**: HTTP 동사입니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-117">**verb**: HTTP verb.</span></span>
+    *  <span data-ttu-id="6ced8-118">**remoteAddress**: hello 요청을 보내는 클라이언트의 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-118">**remoteAddress**: Address of client sending hello request.</span></span>
+    *  <span data-ttu-id="6ced8-119">**resolvedServiceUrl**: 해결 된 서비스 끝점 URL toowhich hello 들어오는 요청입니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-119">**resolvedServiceUrl**: Service endpoint URL toowhich hello incoming request was resolved.</span></span> 
+    *  <span data-ttu-id="6ced8-120">**errorDetails**: hello 실패에 대 한 추가 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-120">**errorDetails**: Additional information about hello failure.</span></span>
 
     ```
     {
@@ -67,7 +67,7 @@ ms.lasthandoff: 08/18/2017
     {
       "Timestamp": "2017-07-20T16:00:01.3173605-07:00",
       ...
-      "Message": "2f87b722-e254-4ac2-a802-fd315c1a0271 Error while forwarding request to service: response status code = 504, description = Reverse proxy Timeout, phase = FinishSendRequest, internal error = ERROR_WINHTTP_TIMEOUT ",
+      "Message": "2f87b722-e254-4ac2-a802-fd315c1a0271 Error while forwarding request tooservice: response status code = 504, description = Reverse proxy Timeout, phase = FinishSendRequest, internal error = ERROR_WINHTTP_TIMEOUT ",
       ...
       "Payload": {
         "traceId": "2f87b722-e254-4ac2-a802-fd315c1a0271",
@@ -79,17 +79,17 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-2. <span data-ttu-id="4c846-121">역방향 프록시가 응답 상태 코드 404(없음)를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-121">Reverse proxy returns response status code 404 (Not Found).</span></span> 
+2. <span data-ttu-id="6ced8-121">역방향 프록시가 응답 상태 코드 404(없음)를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-121">Reverse proxy returns response status code 404 (Not Found).</span></span> 
     
-    <span data-ttu-id="4c846-122">다음은 역방향 프록시가 일치하는 서비스 끝점을 찾지 못해 404를 반환하는 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-122">Here is an example event where reverse proxy returns 404 since it failed to find the matching service endpoint.</span></span>
-    <span data-ttu-id="4c846-123">몇 가지 흥미로운 페이로드 항목은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-123">The payload  entries of interest here are:</span></span>
-    *  <span data-ttu-id="4c846-124">**processRequestPhase**: 요청을 처리하는 도중(***TryGetEndpoint***), 즉</span><span class="sxs-lookup"><span data-stu-id="4c846-124">**processRequestPhase**: Indicates the phase during request processing when the failure occurred, ***TryGetEndpoint*** i.e</span></span> <span data-ttu-id="4c846-125">전달할 서비스 끝점을 가져오려고 시도하는 중에 실패가 발생한 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-125">while trying to fetch the service endpoint to forward to.</span></span> 
-    *  <span data-ttu-id="4c846-126">**errorDetails**: 끝점 검색 조건을 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-126">**errorDetails**: Lists the endpoint search criteria.</span></span> <span data-ttu-id="4c846-127">여기서 listenerName specified = **FrontEndListener**이고 복제본 끝점목록은 이름 **OldListener**를 포함하는 수신기만 포함합니다. </span><span class="sxs-lookup"><span data-stu-id="4c846-127">Here you can see that the listenerName specified = **FrontEndListener** whereas the replica endpoint list only contains a listener with the name **OldListener**.</span></span>
+    <span data-ttu-id="6ced8-122">다음은 서비스 끝점 일치 toofind hello 못했으므로 역방향 프록시 404를 반환 하는 위치는 예에서는 이벤트입니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-122">Here is an example event where reverse proxy returns 404 since it failed toofind hello matching service endpoint.</span></span>
+    <span data-ttu-id="6ced8-123">몇 가지 흥미로운 hello 페이로드 항목은:</span><span class="sxs-lookup"><span data-stu-id="6ced8-123">hello payload  entries of interest here are:</span></span>
+    *  <span data-ttu-id="6ced8-124">**processRequestPhase**: hello 오류가 발생 했을 때 요청을 처리 하는 동안 hello 단계를 나타냅니다 ***TryGetEndpoint*** 즉,</span><span class="sxs-lookup"><span data-stu-id="6ced8-124">**processRequestPhase**: Indicates hello phase during request processing when hello failure occurred, ***TryGetEndpoint*** i.e</span></span> <span data-ttu-id="6ced8-125">동안 동안 toofetch hello 서비스 끝점 tooforward 하 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-125">while trying toofetch hello service endpoint tooforward to.</span></span> 
+    *  <span data-ttu-id="6ced8-126">**errorDetails**: hello 끝점 검색 조건을 나열 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-126">**errorDetails**: Lists hello endpoint search criteria.</span></span> <span data-ttu-id="6ced8-127">여기서 지정 하는 hello listenerName를 확인할 수 있습니다 = **FrontEndListener** hello 이름의 수신기 hello 복제본 끝점 목록에 포함 하는 반면 **OldListener**합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-127">Here you can see that hello listenerName specified = **FrontEndListener** whereas hello replica endpoint list only contains a listener with hello name **OldListener**.</span></span>
     
     ```
     {
       ...
-      "Message": "c1cca3b7-f85d-4fef-a162-88af23604343 Error while processing request, cannot forward to service: request url = https://localhost:19081/LocationApp/LocationFEService?ListenerName=FrontEndListener&zipcode=98052, verb = GET, remote (client) address = ::1, request processing start time = 16:43:02.686271 (3,448,220.353 MSec), error = FABRIC_E_ENDPOINT_NOT_FOUND, message = , phase = TryGetEndoint, SecureOnlyMode = false, gateway protocol = https, listenerName = FrontEndListener, replica endpoint = {\"Endpoints\":{\"\":\"Https:\/\/localhost:8491\/LocationApp\/\"}} ",
+      "Message": "c1cca3b7-f85d-4fef-a162-88af23604343 Error while processing request, cannot forward tooservice: request url = https://localhost:19081/LocationApp/LocationFEService?ListenerName=FrontEndListener&zipcode=98052, verb = GET, remote (client) address = ::1, request processing start time = 16:43:02.686271 (3,448,220.353 MSec), error = FABRIC_E_ENDPOINT_NOT_FOUND, message = , phase = TryGetEndoint, SecureOnlyMode = false, gateway protocol = https, listenerName = FrontEndListener, replica endpoint = {\"Endpoints\":{\"\":\"Https:\/\/localhost:8491\/LocationApp\/\"}} ",
       "ProcessId": 57696,
       "Level": "Warning",
       "EventName": "ReverseProxy",
@@ -102,21 +102,21 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-    <span data-ttu-id="4c846-128">역방향 프록시가 404 Not Found를 반환할 수 있는 다른 예로는 ApplicationGateway\Http configuration parameter **SecureOnlyMode**가 true로 설정되었고 역방향 프록시가 **HTTPS**에서 수신 대기하나 모든 복제본 끝점이 보호되지 않는 경우(HTTP에서 응답)입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-128">Another example where reverse proxy can return 404 Not Found is: ApplicationGateway\Http configuration parameter **SecureOnlyMode** is set to true with the reverse proxy listening on **HTTPS**, however all of the replica endpoints are unsecure (listening on HTTP).</span></span>
-    <span data-ttu-id="4c846-129">요청을 전달하기 위해 HTTPS에서 수신 대기하는 끝점을 찾을 수 없으므로 역방향 프록시가 404를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-129">Reverse proxy returns 404 since it cannot find an endpoint listening on HTTPS to forward the request.</span></span> <span data-ttu-id="4c846-130">이벤트 페이로드의 매개 변수를 분석하면 문제의 범위를 좁히는 데 도움이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-130">Analyzing the parameters in the event payload helps to narrow down the issue:</span></span>
+    <span data-ttu-id="6ced8-128">역방향 프록시 404를 반환할 수 있는 또 다른 예로 찾을 수 없습니다: ApplicationGateway\Http 구성 매개 변수 **SecureOnlyMode** tootrue에서 수신 대기 하는 hello 역방향 프록시를 사용 하 여 설정 **HTTPS**, 그러나 모든 hello 복제본 끝점은 (http 수신) 안전 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-128">Another example where reverse proxy can return 404 Not Found is: ApplicationGateway\Http configuration parameter **SecureOnlyMode** is set tootrue with hello reverse proxy listening on **HTTPS**, however all of hello replica endpoints are unsecure (listening on HTTP).</span></span>
+    <span data-ttu-id="6ced8-129">HTTPS tooforward hello 요청에서 수신 대기 끝점을 찾을 수 없기 때문에 프록시 반환 404를 반대로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-129">Reverse proxy returns 404 since it cannot find an endpoint listening on HTTPS tooforward hello request.</span></span> <span data-ttu-id="6ced8-130">Hello 이벤트 페이로드의 hello 매개 변수를 분석 toonarrow hello 문제를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-130">Analyzing hello parameters in hello event payload helps toonarrow down hello issue:</span></span>
     
     ```
         "errorDetails": "SecureOnlyMode = true, gateway protocol = https, listenerName = NewListener, replica endpoint = {\"Endpoints\":{\"OldListener\":\"Http:\/\/localhost:8491\/LocationApp\/\", \"NewListener\":\"Http:\/\/localhost:8492\/LocationApp\/\"}}"
     ```
 
-3. <span data-ttu-id="4c846-131">역방향 프록시 요청이 시간 제한 오류로 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-131">Request to the reverse proxy fails with a timeout error.</span></span> 
-    <span data-ttu-id="4c846-132">이벤트 로그에 수신된 요청 상세 정보와 이벤트가 포함됩니다(여기에 표시 안 됨).</span><span class="sxs-lookup"><span data-stu-id="4c846-132">The event logs contain an event with the received request details (not shown here).</span></span>
-    <span data-ttu-id="4c846-133">다음 이벤트에서는 서비스가 404 상태 코드로 응답했음을 표시하고 역방향 프록시가 재확인을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-133">The next event shows that the service responded with a 404 status code and reverse proxy initiates a re-resolve.</span></span> 
+3. <span data-ttu-id="6ced8-131">요청 toohello 역방향 프록시 제한 시간 오류로 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-131">Request toohello reverse proxy fails with a timeout error.</span></span> 
+    <span data-ttu-id="6ced8-132">hello 이벤트 로그 hello 받은 요청 세부 정보 (여기 표시 되지 않음)로 이벤트를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-132">hello event logs contain an event with hello received request details (not shown here).</span></span>
+    <span data-ttu-id="6ced8-133">hello 다음 이벤트는 hello 서비스 404 상태 코드로 응답 했 고 역방향 프록시를 다시 확인할 시작을 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-133">hello next event shows that hello service responded with a 404 status code and reverse proxy initiates a re-resolve.</span></span> 
 
     ```
     {
       ...
-      "Message": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e Request to service returned: status code = 404, status description = , Reresolving ",
+      "Message": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e Request tooservice returned: status code = 404, status description = , Reresolving ",
       "Payload": {
         "traceId": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e",
         "statusCode": 404,
@@ -132,11 +132,11 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-    <span data-ttu-id="4c846-134">모든 이벤트를 수집할 때 모든 확인 및 전달 시도를 나타내는 이벤트의 학습을 확인하게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-134">When collecting all the events, you see a train of events showing every resolve and forward attempt.</span></span>
-    <span data-ttu-id="4c846-135">이 시리즈의 마지막 이벤트에서는 성공한 확인 횟수와 함께, 시간 제한으로 요청 처리에 실패했음을 나타냅니다. </span><span class="sxs-lookup"><span data-stu-id="4c846-135">The last event in the series shows the request processing has failed with a timeout, along with the number of successful resolve attempts.</span></span>
+    <span data-ttu-id="6ced8-134">모든 hello 이벤트를 수집 하려는 모든를 해결 하 고 앞으로 시도 표시 하는 이벤트의 기차를 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-134">When collecting all hello events, you see a train of events showing every resolve and forward attempt.</span></span>
+    <span data-ttu-id="6ced8-135">hello 계열의 마지막 이벤트 hello hello 성공적으로 해결 시도 횟수와 함께 시간 초과로 hello 요청을 처리 하지 못한 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-135">hello last event in hello series shows hello request processing has failed with a timeout, along with hello number of successful resolve attempts.</span></span>
     
     > [!NOTE]
-    > <span data-ttu-id="4c846-136">기본적으로 상세 채널 이벤트 수집은 비활성 상태를 유지하고 필요할 때 문제 해결을 위해 활성화하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-136">It is recommended to keep the  verbose channel event collection disabled by default and enable it for troubleshooting on a need basis.</span></span>
+    > <span data-ttu-id="6ced8-136">기본적으로 사용 하지 않도록 설정 하는 tookeep hello verbose 채널 이벤트 컬렉션 것이 좋습니다 하 고 필요 무휴로 문제 해결을 위해 사용 하도록 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-136">It is recommended tookeep hello  verbose channel event collection disabled by default and enable it for troubleshooting on a need basis.</span></span>
 
     ```
     {
@@ -155,18 +155,18 @@ ms.lasthandoff: 08/18/2017
     }
     ```
     
-    <span data-ttu-id="4c846-137">위험/오류 이벤트에만 수집을 활성화할 경우 시간 제한 및 해결 시도 수에 대한 상세 정보가 있는 하나의 이벤트가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-137">If collection is enabled for critical/error events only, you see one event with details about the timeout and the number of resolve attempts.</span></span> 
+    <span data-ttu-id="6ced8-137">위험/오류 이벤트에만 수집을 활성화 하는 hello 제한 시간 및 해결 시도의 횟수 hello에 대 한 세부 정보를 사용 하 여 하나의 이벤트를 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-137">If collection is enabled for critical/error events only, you see one event with details about hello timeout and hello number of resolve attempts.</span></span> 
     
-    <span data-ttu-id="4c846-138">서비스가 사용자에게 404 상태 코드를 다시 보내야 하는 경우 "X-ServiceFabric" 헤더가 동반되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-138">If the service intends to send a 404 status code back to the user, it should be accompanied by an "X-ServiceFabric" header.</span></span> <span data-ttu-id="4c846-139">이를 수정하고 나면 역방향 프록시가 상태 코드를 클라이언트로 다시 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-139">After fixing this, you will see that reverse proxy forwards the status code back to the client.</span></span>  
+    <span data-ttu-id="6ced8-138">Hello 서비스 toosend 404 상태 코드 백 toohello 사용자가을 "X ServiceFabric" 헤더에 의해 함께 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-138">If hello service intends toosend a 404 status code back toohello user, it should be accompanied by an "X-ServiceFabric" header.</span></span> <span data-ttu-id="6ced8-139">이 해결 한 후 해당 역방향 프록시 전달 hello 상태 코드 백 toohello 클라이언트를 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-139">After fixing this, you will see that reverse proxy forwards hello status code back toohello client.</span></span>  
 
-4. <span data-ttu-id="4c846-140">클라이언트가 요청에서 분리된 경우.</span><span class="sxs-lookup"><span data-stu-id="4c846-140">Cases when the client has disconnected the request.</span></span>
+4. <span data-ttu-id="6ced8-140">Hello 클라이언트의 연결이 끊어진 경우 hello 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-140">Cases when hello client has disconnected hello request.</span></span>
 
-    <span data-ttu-id="4c846-141">아래 이벤트는 역방향 프록시가 클라이언트에 응답을 전달하지만 클라이언트가 분리된 경우 기록됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-141">The below event is recorded when reverse proxy is forwarding the response to client but the client disconnects:</span></span>
+    <span data-ttu-id="6ced8-141">hello 이벤트 아래에 역방향 프록시 hello 응답 tooclient 전달 하지만 hello 클라이언트가 연결을 끊을 때 기록 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-141">hello below event is recorded when reverse proxy is forwarding hello response tooclient but hello client disconnects:</span></span>
 
     ```
     {
       ...
-      "Message": "6e2571a3-14a8-4fc7-93bb-c202c23b50b8 Unable to send response to client: phase = SendResponseHeaders, error = -805306367, internal error = ERROR_SUCCESS ",
+      "Message": "6e2571a3-14a8-4fc7-93bb-c202c23b50b8 Unable toosend response tooclient: phase = SendResponseHeaders, error = -805306367, internal error = ERROR_SUCCESS ",
       "ProcessId": 57696,
       "Level": "Warning",
       ...
@@ -181,10 +181,10 @@ ms.lasthandoff: 08/18/2017
     ```
 
 > [!NOTE]
-> <span data-ttu-id="4c846-142">웹 소켓 요청 처리와 관련한 이벤트는 현재 기록되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-142">Events related to websocket request processing are not currently logged.</span></span> <span data-ttu-id="4c846-143">이것은 다음 릴리스에 추가될 것입니다.</span><span class="sxs-lookup"><span data-stu-id="4c846-143">This will be added in the next release.</span></span>
+> <span data-ttu-id="6ced8-142">현재 이벤트 관련된 toowebsocket 요청 처리 기록 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-142">Events related toowebsocket request processing are not currently logged.</span></span> <span data-ttu-id="6ced8-143">Hello 다음 릴리스에서 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-143">This will be added in hello next release.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="4c846-144">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4c846-144">Next steps</span></span>
-* <span data-ttu-id="4c846-145">Azure 클러스터에서의 로그 수집을 활성화하기 위해 [Windows Azure 진단을 사용한 이벤트 집계 및 수집](service-fabric-diagnostics-event-aggregation-wad.md) </span><span class="sxs-lookup"><span data-stu-id="4c846-145">[Event aggregation and collection using Windows Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) for enabling log collection in Azure clusters.</span></span>
-* <span data-ttu-id="4c846-146">Visual Studio에서 Service Fabric 이벤트를 보려면 [로컬 모니터링 및 진단](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4c846-146">To view Service Fabric events in Visual Studio, see [Monitor and diagnose locally](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).</span></span>
-* <span data-ttu-id="4c846-147">다른 서비스 인증서 유효성 검사 옵션을 사용하여 보안 역방향 프록시를 구성하려면 [Configure reverse proxy to connect to secure services](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services)(보안 서비스에 연결하도록 역방향 프록시 구성)에서 Azure Resource Manager 템플릿 샘플을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4c846-147">Refer to [Configure reverse proxy to connect to secure services](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) for Azure Resource Manager template samples to configure secure reverse proxy with the different service certificate validation options.</span></span>
-* <span data-ttu-id="4c846-148">자세한 내용은 [Service Fabric 역방향 프록시](service-fabric-reverseproxy.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4c846-148">Read [Service Fabric reverse proxy](service-fabric-reverseproxy.md) to learn more.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6ced8-144">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6ced8-144">Next steps</span></span>
+* <span data-ttu-id="6ced8-145">Azure 클러스터에서의 로그 수집을 활성화하기 위해 [Windows Azure 진단을 사용한 이벤트 집계 및 수집](service-fabric-diagnostics-event-aggregation-wad.md) </span><span class="sxs-lookup"><span data-stu-id="6ced8-145">[Event aggregation and collection using Windows Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) for enabling log collection in Azure clusters.</span></span>
+* <span data-ttu-id="6ced8-146">Visual Studio에서 서비스 패브릭 이벤트 tooview 참조 [모니터 하 고 로컬로 진단](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-146">tooview Service Fabric events in Visual Studio, see [Monitor and diagnose locally](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).</span></span>
+* <span data-ttu-id="6ced8-147">너무 참조[역방향 프록시 tooconnect toosecure 서비스 구성](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) Azure 리소스 관리자에 대 한 서식 파일을 tooconfigure 보안 역방향 프록시 hello 다양 한 서비스 인증서 유효성 검사 옵션으로 샘플링 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-147">Refer too[Configure reverse proxy tooconnect toosecure services](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) for Azure Resource Manager template samples tooconfigure secure reverse proxy with hello different service certificate validation options.</span></span>
+* <span data-ttu-id="6ced8-148">읽기 [서비스 패브릭 역방향 프록시](service-fabric-reverseproxy.md) toolearn 더 합니다.</span><span class="sxs-lookup"><span data-stu-id="6ced8-148">Read [Service Fabric reverse proxy](service-fabric-reverseproxy.md) toolearn more.</span></span>

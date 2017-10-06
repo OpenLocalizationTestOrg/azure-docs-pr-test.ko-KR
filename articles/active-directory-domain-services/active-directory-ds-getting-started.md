@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services: 시작 | Microsoft Docs"
-description: "Azure Portal을 사용하여 Azure Active Directory Domain Services 활성화(미리 보기)"
+description: "Azure Active Directory 도메인 서비스 hello Azure 포털 (미리 보기)를 사용 하 여 사용 하도록 설정"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,65 +14,65 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/28/2017
 ms.author: maheshu
-ms.openlocfilehash: 47507096a6245d4f1ba57a652ddf5167b3776ae9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 79cbb21c4a50194f5ad8ca1a4a8493ee4a260a9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a><span data-ttu-id="c1561-103">Azure Portal을 사용하여 Azure Active Directory Domain Services 활성화(미리 보기)</span><span class="sxs-lookup"><span data-stu-id="c1561-103">Enable Azure Active Directory Domain Services using the Azure portal (Preview)</span></span>
-<span data-ttu-id="c1561-104">이 문서에서는 Azure Portal을 사용하여 Azure AD DS(Azure Active Directory Domain Services)를 사용하도록 설정하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-104">This article shows how to enable Azure Active Directory Domain Services (Azure AD DS) using the Azure portal.</span></span>
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a><span data-ttu-id="dfca8-103">Azure Active Directory 도메인 서비스 hello Azure 포털 (미리 보기)를 사용 하 여 사용 하도록 설정</span><span class="sxs-lookup"><span data-stu-id="dfca8-103">Enable Azure Active Directory Domain Services using hello Azure portal (Preview)</span></span>
+<span data-ttu-id="dfca8-104">이 문서에서는 tooenable Azure Active Directory 도메인 서비스 (Azure AD DS)를 사용 하 여 Azure 포털을 hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-104">This article shows how tooenable Azure Active Directory Domain Services (Azure AD DS) using hello Azure portal.</span></span>
 
 
-<span data-ttu-id="c1561-105">**Azure AD Domain Services** 마법사를 시작하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-105">To launch the **Enable Azure AD Domain Services** wizard, complete the following steps:</span></span>
+<span data-ttu-id="dfca8-105">toolaunch hello **Azure AD 도메인을 사용 하도록 설정 서비스** 마법사, 완전 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-105">toolaunch hello **Enable Azure AD Domain Services** wizard, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="c1561-106">[Azure 포털](https://portal.azure.com)로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-106">Go to the [Azure portal](https://portal.azure.com).</span></span>
-2. <span data-ttu-id="c1561-107">왼쪽 창에서 **새로 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-107">In the left pane, click on **New**.</span></span>
-3. <span data-ttu-id="c1561-108">**새로 만들기** 블레이드의 검색 창에 **Domain Services**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-108">In the **New** blade, type **Domain Services** into the search bar.</span></span>
+1. <span data-ttu-id="dfca8-106">Toohello 이동 [Azure 포털](https://portal.azure.com)합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-106">Go toohello [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="dfca8-107">Hello 왼쪽된 창에서 클릭 **새로**합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-107">In hello left pane, click on **New**.</span></span>
+3. <span data-ttu-id="dfca8-108">Hello에 **새로** 블레이드, 형식 **도메인 서비스** hello 검색 표시줄에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-108">In hello **New** blade, type **Domain Services** into hello search bar.</span></span>
 
     ![Domain Services 검색](./media/getting-started/search-domain-services.png)
 
-4. <span data-ttu-id="c1561-110">검색 제안 목록에서 **Azure AD Domain Services**를 클릭하여 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-110">Click to select **Azure AD Domain Services** from the list of search suggestions.</span></span> <span data-ttu-id="c1561-111">**Azure AD Domain Services** 블레이드에서 **만들기** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-111">On the **Azure AD Domain Services** blade, click the **Create** button.</span></span>
+4. <span data-ttu-id="dfca8-110">Tooselect 클릭 **Azure AD 도메인 서비스** 검색 제안 hello 목록에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-110">Click tooselect **Azure AD Domain Services** from hello list of search suggestions.</span></span> <span data-ttu-id="dfca8-111">Hello에 **Azure AD 도메인 서비스** 블레이드에서 hello 클릭 **만들기** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-111">On hello **Azure AD Domain Services** blade, click hello **Create** button.</span></span>
 
     ![Domain Services 블레이드](./media/getting-started/domain-services-blade.png)
 
-5. <span data-ttu-id="c1561-113">**Azure AD Domain Services 사용** 마법사가 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-113">The **Enable Azure AD Domain Services** wizard is launched.</span></span>
+5. <span data-ttu-id="dfca8-113">hello **Azure AD 도메인을 사용 하도록 설정 서비스** 마법사가 시작 됩니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-113">hello **Enable Azure AD Domain Services** wizard is launched.</span></span>
 
 
-## <a name="task-1-configure-basic-settings"></a><span data-ttu-id="c1561-114">작업 1: 기본 설정 구성</span><span class="sxs-lookup"><span data-stu-id="c1561-114">Task 1: configure basic settings</span></span>
-<span data-ttu-id="c1561-115">마법사의 **기본 사항** 페이지에서 관리되는 도메인에 대한 DNS 도메인 이름을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-115">In the **Basics** page of the wizard, you can specify the DNS domain name for the managed domain.</span></span> <span data-ttu-id="c1561-116">관리되는 도메인이 배포되어야 하는 Azure 위치 및 리소스 그룹을 선택할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-116">You can also choose the resource group and Azure location to which the managed domain should be deployed.</span></span>
+## <a name="task-1-configure-basic-settings"></a><span data-ttu-id="dfca8-114">작업 1: 기본 설정 구성</span><span class="sxs-lookup"><span data-stu-id="dfca8-114">Task 1: configure basic settings</span></span>
+<span data-ttu-id="dfca8-115">Hello에 **기본 사항** 페이지 hello 마법사의 hello 관리 되는 도메인에 대 한 hello DNS 도메인 이름을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-115">In hello **Basics** page of hello wizard, you can specify hello DNS domain name for hello managed domain.</span></span> <span data-ttu-id="dfca8-116">Hello 리소스 그룹을 선택할 수도 있습니다 및 Azure 위치 toowhich hello에 대 한 관리 되는 도메인을 배포 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-116">You can also choose hello resource group and Azure location toowhich hello managed domain should be deployed.</span></span>
 
 ![기본 사항 구성](./media/getting-started/domain-services-blade-basics.png)
 
-1. <span data-ttu-id="c1561-118">관리되는 도메인에 대한 **DNS 도메인 이름**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-118">Choose the **DNS domain name** for your managed domain.</span></span>
+1. <span data-ttu-id="dfca8-118">Hello 선택 **DNS 도메인 이름을** 관리 되는 도메인에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-118">Choose hello **DNS domain name** for your managed domain.</span></span>
 
-   * <span data-ttu-id="c1561-119">디렉터리의 기본 도메인 이름(**.onmicrosoft.com** 접미사가 있음)이 기본적으로 지정되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-119">The default domain name of the directory (with a **.onmicrosoft.com** suffix) is specified by default.</span></span>
+   * <span data-ttu-id="dfca8-119">hello 디렉터리의 기본 도메인 이름을 hello (으로 **. onmicrosoft.com** 접미사)에 기본적으로 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-119">hello default domain name of hello directory (with a **.onmicrosoft.com** suffix) is specified by default.</span></span>
 
-   * <span data-ttu-id="c1561-120">사용자 지정 도메인 이름도 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-120">You can also type in a custom domain name.</span></span> <span data-ttu-id="c1561-121">이 예에서 사용자 지정 도메인 이름은 *contoso100.com*입니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-121">In this example, the custom domain name is *contoso100.com*.</span></span>
+   * <span data-ttu-id="dfca8-120">사용자 지정 도메인 이름도 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-120">You can also type in a custom domain name.</span></span> <span data-ttu-id="dfca8-121">이 예제에서는 hello 사용자 지정 도메인 이름이 *contoso100.com*합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-121">In this example, hello custom domain name is *contoso100.com*.</span></span>
 
      > [!WARNING]
-     > <span data-ttu-id="c1561-122">지정한 도메인 이름의 접두사(예: *contoso100.com* 도메인 이름의 *contoso100*)는 15자 이내의 문자를 포함해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-122">The prefix of your specified domain name (for example, *contoso100* in the *contoso100.com* domain name) must contain 15 or fewer characters.</span></span> <span data-ttu-id="c1561-123">15자보다 긴 접두사로 관리되는 도메인을 만들 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-123">You cannot create a managed domain with a prefix longer than 15 characters.</span></span>
+     > <span data-ttu-id="dfca8-122">지정 된 도메인 이름 hello 접두사 (예를 들어 *contoso100* hello에 *contoso100.com* 도메인 이름) 15 자 이하의 포함 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-122">hello prefix of your specified domain name (for example, *contoso100* in hello *contoso100.com* domain name) must contain 15 or fewer characters.</span></span> <span data-ttu-id="dfca8-123">15자보다 긴 접두사로 관리되는 도메인을 만들 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-123">You cannot create a managed domain with a prefix longer than 15 characters.</span></span>
      >
      >
 
-2. <span data-ttu-id="c1561-124">관리되는 도메인에서 선택한 DNS 도메인 이름은 가상 네트워크에 존재하지 않도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-124">Ensure that the DNS domain name you have chosen for the managed domain does not already exist in the virtual network.</span></span> <span data-ttu-id="c1561-125">특히,</span><span class="sxs-lookup"><span data-stu-id="c1561-125">Specifically, check whether:</span></span>
+2. <span data-ttu-id="dfca8-124">선택한 관리 되는 hello에 대 한 도메인 hello 가상 네트워크에 이미 존재 하지 않는 hello DNS 도메인 이름을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-124">Ensure that hello DNS domain name you have chosen for hello managed domain does not already exist in hello virtual network.</span></span> <span data-ttu-id="dfca8-125">특히,</span><span class="sxs-lookup"><span data-stu-id="dfca8-125">Specifically, check whether:</span></span>
 
-   * <span data-ttu-id="c1561-126">이미 가상 네트워크에 동일한 DNS 도메인 이름을 가진 도메인이 있는 경우</span><span class="sxs-lookup"><span data-stu-id="c1561-126">You already have a domain with the same DNS domain name on the virtual network.</span></span>
+   * <span data-ttu-id="dfca8-126">Hello 사용 하 여 도메인을 이미 있으면 hello 가상 네트워크에 동일한 DNS 도메인 이름이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-126">You already have a domain with hello same DNS domain name on hello virtual network.</span></span>
 
-   * <span data-ttu-id="c1561-127">관리되는 도메인을 사용하도록 설정할 가상 네트워크에 온-프레미스 네트워크와의 VPN 연결이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-127">The virtual network where you plan to enable the managed domain has a VPN connection with your on-premises network.</span></span> <span data-ttu-id="c1561-128">이 시나리오에서는 온-프레미스 네트워크에 동일한 DNS 도메인 이름을 가진 도메인이 없는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-128">In this scenario, ensure you don't have a domain with the same DNS domain name on your on-premises network.</span></span>
+   * <span data-ttu-id="dfca8-127">tooenable hello에 대 한 관리 되는 도메인을 계획 하는 hello 가상 네트워크와 온-프레미스 네트워크의 VPN 연결을 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-127">hello virtual network where you plan tooenable hello managed domain has a VPN connection with your on-premises network.</span></span> <span data-ttu-id="dfca8-128">Hello 사용 하 여 도메인 없는 확인이 시나리오에서는 온-프레미스 네트워크에 동일한 DNS 도메인 이름이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-128">In this scenario, ensure you don't have a domain with hello same DNS domain name on your on-premises network.</span></span>
 
-   * <span data-ttu-id="c1561-129">가상 네트워크에 해당 이름을 가진 기존 클라우드 서비스가 있는 경우</span><span class="sxs-lookup"><span data-stu-id="c1561-129">You have an existing cloud service with that name on the virtual network.</span></span>
+   * <span data-ttu-id="dfca8-129">Hello 가상 네트워크에 해당 이름 가진 기존 클라우드 서비스를가지고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-129">You have an existing cloud service with that name on hello virtual network.</span></span>
 
-3. <span data-ttu-id="c1561-130">**가상 네트워크의 형식**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-130">Choose the **type of virtual network**.</span></span> <span data-ttu-id="c1561-131">기본적으로는 **Resource Manager** 가상 네트워크 형식을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-131">By default, the **Resource Manager** virtual network type is selected.</span></span> <span data-ttu-id="c1561-132">새로 만든 관리되는 도메인 모두에 이 형식의 가상 네트워크를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-132">We recommend using this type of virtual network for all newly created managed domains.</span></span>
+3. <span data-ttu-id="dfca8-130">Hello 선택 **유형의 가상 네트워크**합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-130">Choose hello **type of virtual network**.</span></span> <span data-ttu-id="dfca8-131">기본적으로 hello **리소스 관리자** 가상 네트워크 유형을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-131">By default, hello **Resource Manager** virtual network type is selected.</span></span> <span data-ttu-id="dfca8-132">새로 만든 관리되는 도메인 모두에 이 형식의 가상 네트워크를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-132">We recommend using this type of virtual network for all newly created managed domains.</span></span>
 
-4. <span data-ttu-id="c1561-133">관리되는 도메인을 만들려는 Azure **구독**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-133">Select the Azure **Subscription** in which you would like to create the managed domain.</span></span>
+4. <span data-ttu-id="dfca8-133">선택 hello Azure **구독** 를 원하는 toocreate hello에 대 한 관리 되는 도메인입니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-133">Select hello Azure **Subscription** in which you would like toocreate hello managed domain.</span></span>
 
-5. <span data-ttu-id="c1561-134">관리되는 도메인이 속해야 하는 **리소스 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-134">Select the **Resource group** to which the managed domain should belong.</span></span> <span data-ttu-id="c1561-135">**새로 만들기** 또는 **기존 항목 사용** 옵션을 선택하여 리소스 그룹을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-135">You can choose either the **Create new** or **Use existing** options to select the resource group.</span></span>
+5. <span data-ttu-id="dfca8-134">선택 hello **리소스 그룹** toowhich hello에 대 한 관리 되는 도메인에 속해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-134">Select hello **Resource group** toowhich hello managed domain should belong.</span></span> <span data-ttu-id="dfca8-135">Hello 중 하나를 선택할 수 있습니다 **새로 만들기** 또는 **기존 항목 사용** 옵션 tooselect hello 리소스 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-135">You can choose either hello **Create new** or **Use existing** options tooselect hello resource group.</span></span>
 
-6. <span data-ttu-id="c1561-136">관리되는 도메인을 만들어야 하는 Azure **위치**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-136">Choose the Azure **Location** in which the managed domain should be created.</span></span> <span data-ttu-id="c1561-137">마법사의 **네트워크** 페이지에는 선택한 위치에 속하는 가상 네트워크만 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-137">On the **Network** page of the wizard, you see only virtual networks that belong to the location you have selected.</span></span>
+6. <span data-ttu-id="dfca8-136">Azure hello 선택 **위치** 는 hello 관리 되는 도메인 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-136">Choose hello Azure **Location** in which hello managed domain should be created.</span></span> <span data-ttu-id="dfca8-137">Hello에 **네트워크** 페이지 toohello 선택한 위치에 속하는 가상 네트워크의 hello 마법사를 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-137">On hello **Network** page of hello wizard, you see only virtual networks that belong toohello location you have selected.</span></span>
 
-7. <span data-ttu-id="c1561-138">완료되면 **확인**을 클릭하여 마법사의 **네트워크** 페이지로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="c1561-138">When you are done, click **OK** to move on to the **Network** page of the wizard.</span></span>
+7. <span data-ttu-id="dfca8-138">완료 되 면 클릭 **확인** toohello에 toomove **네트워크** hello 마법사의 페이지입니다.</span><span class="sxs-lookup"><span data-stu-id="dfca8-138">When you are done, click **OK** toomove on toohello **Network** page of hello wizard.</span></span>
 
 
-## <a name="next-step"></a><span data-ttu-id="c1561-139">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c1561-139">Next step</span></span>
-[<span data-ttu-id="c1561-140">작업 2: 네트워크 설정 구성</span><span class="sxs-lookup"><span data-stu-id="c1561-140">Task 2: configure network settings</span></span>](active-directory-ds-getting-started-network.md)
+## <a name="next-step"></a><span data-ttu-id="dfca8-139">다음 단계</span><span class="sxs-lookup"><span data-stu-id="dfca8-139">Next step</span></span>
+[<span data-ttu-id="dfca8-140">작업 2: 네트워크 설정 구성</span><span class="sxs-lookup"><span data-stu-id="dfca8-140">Task 2: configure network settings</span></span>](active-directory-ds-getting-started-network.md)

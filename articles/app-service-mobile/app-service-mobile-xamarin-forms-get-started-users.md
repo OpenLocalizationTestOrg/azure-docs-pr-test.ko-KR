@@ -1,6 +1,6 @@
 ---
-title: "Xamarin.Forms 앱에서 Mobile Apps에 대한 인증 시작 | Microsoft Docs"
-description: "Mobile Apps를 사용하여 AAD, Google, Facebook, Twitter, Microsoft 등의 다양한 ID 공급자를 통해 Xamarin Forms 앱 사용자를 인증하는 방법을 알아봅니다."
+title: "Xamarin Forms 앱에서 모바일 앱에 대 한 인증으로 시작 됨 aaaGet | Microsoft Docs"
+description: "자세한 내용은 방법 toouse 모바일 앱 tooauthenticate 사용자가 다양 한 AAD, Google, Facebook, Twitter 및 Microsoft를 포함 하 여 id 공급자를 통해 Xamarin Forms 응용 프로그램의 합니다."
 services: app-service\mobile
 documentationcenter: xamarin
 author: panarasi
@@ -14,60 +14,60 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: panarasi
-ms.openlocfilehash: 9e14e95793bcc81ad46783fd50ba223eec4ea360
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7f6716619f33d9cc4f866c41effba8f048dc49fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-authentication-to-your-xamarin-forms-app"></a><span data-ttu-id="e497e-103">Xamarin Forms 앱에 인증 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-103">Add authentication to your Xamarin Forms app</span></span>
+# <a name="add-authentication-tooyour-xamarin-forms-app"></a><span data-ttu-id="8e590-103">인증 tooyour Xamarin Forms 앱 추가</span><span class="sxs-lookup"><span data-stu-id="8e590-103">Add authentication tooyour Xamarin Forms app</span></span>
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-## <a name="overview"></a><span data-ttu-id="e497e-104">개요</span><span class="sxs-lookup"><span data-stu-id="e497e-104">Overview</span></span>
-<span data-ttu-id="e497e-105">이 항목에서는 클라이언트 응용 프로그램에서 앱 서비스 모바일 앱의 사용자를 인증하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-105">This topic shows you how to authenticate users of an App Service Mobile App from your client application.</span></span> <span data-ttu-id="e497e-106">이 자습서에서는 App Service가 지원하는 ID 공급자를 사용하여 Xamarin.Forms 빠른 시작 프로젝트에 인증을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-106">In this tutorial, you add authentication to the Xamarin Forms quickstart project using an identity provider that is supported by App Service.</span></span> <span data-ttu-id="e497e-107">모바일 앱에서 인증이 완료되고 권한이 부여되고 나면 사용자 ID 값이 표시되고 제한된 테이블 데이터에 액세스할 수 있게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-107">After being successfully authenticated and authorized by your Mobile App, the user ID value is displayed, and you will be able to access restricted table data.</span></span>
+## <a name="overview"></a><span data-ttu-id="8e590-104">개요</span><span class="sxs-lookup"><span data-stu-id="8e590-104">Overview</span></span>
+<span data-ttu-id="8e590-105">이 항목에서는 클라이언트 응용 프로그램에서 앱 서비스 모바일 앱의 tooauthenticate 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-105">This topic shows you how tooauthenticate users of an App Service Mobile App from your client application.</span></span> <span data-ttu-id="8e590-106">이 자습서에서는 hello Xamarin Forms 퀵 스타트 프로젝트 앱 서비스에서 지 원하는 id 공급자를 사용 하 여 인증을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-106">In this tutorial, you add authentication to hello Xamarin Forms quickstart project using an identity provider that is supported by App Service.</span></span> <span data-ttu-id="8e590-107">Hello 사용자 ID 값이 표시 되 고 인증 되 고 모바일 앱의 승인을, 후 하 고 제한 된 수 tooaccess 테이블 데이터 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-107">After being successfully authenticated and authorized by your Mobile App, hello user ID value is displayed, and you will be able tooaccess restricted table data.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="e497e-108">필수 조건</span><span class="sxs-lookup"><span data-stu-id="e497e-108">Prerequisites</span></span>
-<span data-ttu-id="e497e-109">이 자습서를 통한 최상의 결과를 얻기 위해 먼저 [Xamarin.Forms 앱 만들기][1] 자습서를 완료하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-109">For the best result with this tutorial, we recommend that you first complete the [Create a Xamarin Forms app][1] tutorial.</span></span> <span data-ttu-id="e497e-110">이 자습서를 완료하면 다중 플랫폼 TodoList 앱인 Xamarin.Forms 프로젝트가 생깁니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-110">After you complete this tutorial, you will have a Xamarin Forms project that is a multi-platform TodoList app.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8e590-108">필수 조건</span><span class="sxs-lookup"><span data-stu-id="8e590-108">Prerequisites</span></span>
+<span data-ttu-id="8e590-109">이 자습서와 함께 최상의 결과 hello hello를 먼저 완료 하는 권장 [Xamarin Forms 응용 프로그램 만들기] [ 1] 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-109">For hello best result with this tutorial, we recommend that you first complete hello [Create a Xamarin Forms app][1] tutorial.</span></span> <span data-ttu-id="8e590-110">이 자습서를 완료하면 다중 플랫폼 TodoList 앱인 Xamarin.Forms 프로젝트가 생깁니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-110">After you complete this tutorial, you will have a Xamarin Forms project that is a multi-platform TodoList app.</span></span>
 
-<span data-ttu-id="e497e-111">다운로드한 빠른 시작 서버 프로젝트를 사용하지 않는 경우 프로젝트에 인증 확장 패키지를 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-111">If you do not use the downloaded quick start server project, you must add the authentication extension package to your project.</span></span> <span data-ttu-id="e497e-112">서버 확장 패키지에 대한 자세한 내용은 [Azure Mobile Apps용 .NET 백 엔드 서버 SDK 사용][2]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e497e-112">For more information about server extension packages, see [Work with the .NET backend server SDK for Azure Mobile Apps][2].</span></span>
+<span data-ttu-id="8e590-111">사용 하지 않는 경우 hello 퀵 스타트 서버 프로젝트를 다운로드, hello 인증 확장 프로그램 패키지 tooyour 프로젝트를 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-111">If you do not use hello downloaded quick start server project, you must add hello authentication extension package tooyour project.</span></span> <span data-ttu-id="8e590-112">서버 확장 패키지에 대 한 자세한 내용은 참조 [Azure 모바일 앱에 대 한 hello.NET 백 엔드 서버 SDK에서 작동][2]합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-112">For more information about server extension packages, see [Work with hello .NET backend server SDK for Azure Mobile Apps][2].</span></span>
 
-## <a name="register-your-app-for-authentication-and-configure-app-services"></a><span data-ttu-id="e497e-113">인증을 위해 앱 등록 및 App Services 구성</span><span class="sxs-lookup"><span data-stu-id="e497e-113">Register your app for authentication and configure App Services</span></span>
+## <a name="register-your-app-for-authentication-and-configure-app-services"></a><span data-ttu-id="8e590-113">인증을 위해 앱 등록 및 App Services 구성</span><span class="sxs-lookup"><span data-stu-id="8e590-113">Register your app for authentication and configure App Services</span></span>
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <span data-ttu-id="e497e-114"><a name="redirecturl"></a>허용되는 외부 리디렉션 URL에 앱 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-114"><a name="redirecturl"></a>Add your app to the Allowed External Redirect URLs</span></span>
+## <span data-ttu-id="8e590-114"><a name="redirecturl"></a>응용 프로그램 toohello 허용 된 외부 리디렉션 Url을 사용 하 여 추가</span><span class="sxs-lookup"><span data-stu-id="8e590-114"><a name="redirecturl"></a>Add your app toohello Allowed External Redirect URLs</span></span>
 
-<span data-ttu-id="e497e-115">보안 인증을 위해서는 앱에 대한 새로운 URL 체계를 정의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-115">Secure authentication requires that you define a new URL scheme for your app.</span></span> <span data-ttu-id="e497e-116">이를 통해 인증 시스템은 인증 프로세스가 완료되면 앱으로 다시 리디렉션될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-116">This allows the authentication system to redirect back to your app once the authentication process is complete.</span></span> <span data-ttu-id="e497e-117">이 자습서에서는 전체적으로 URL 체계 _appname_을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-117">In this tutorial, we use the URL scheme _appname_ throughout.</span></span> <span data-ttu-id="e497e-118">그러나 선택한 어떤 URL 체계도 사용 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-118">However, you can use any URL scheme you choose.</span></span> <span data-ttu-id="e497e-119">이 체계는 모바일 응용 프로그램에 고유해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-119">It should be unique to your mobile application.</span></span> <span data-ttu-id="e497e-120">서버 쪽에서 리디렉션을 사용하도록 설정하려면:</span><span class="sxs-lookup"><span data-stu-id="e497e-120">To enable the redirection on the server side:</span></span>
+<span data-ttu-id="8e590-115">보안 인증을 위해서는 앱에 대한 새로운 URL 체계를 정의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-115">Secure authentication requires that you define a new URL scheme for your app.</span></span> <span data-ttu-id="8e590-116">Hello 인증 프로세스가 완료 되 면 hello 인증 시스템 tooredirect 백 tooyour 앱을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-116">This allows hello authentication system tooredirect back tooyour app once hello authentication process is complete.</span></span> <span data-ttu-id="8e590-117">이 자습서에서는 사용 하 여 hello URL 체계 _appname_ 전체.</span><span class="sxs-lookup"><span data-stu-id="8e590-117">In this tutorial, we use hello URL scheme _appname_ throughout.</span></span> <span data-ttu-id="8e590-118">그러나 선택한 어떤 URL 체계도 사용 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-118">However, you can use any URL scheme you choose.</span></span> <span data-ttu-id="8e590-119">고유 tooyour 모바일 응용 프로그램 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-119">It should be unique tooyour mobile application.</span></span> <span data-ttu-id="8e590-120">hello 서버 쪽에서 tooenable hello 리디렉션:</span><span class="sxs-lookup"><span data-stu-id="8e590-120">tooenable hello redirection on hello server side:</span></span>
 
-1. <span data-ttu-id="e497e-121">[Azure Portal]에서 해당 App Service를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-121">In the [Azure portal], select your App Service.</span></span>
+1. <span data-ttu-id="8e590-121">Hello [Azure 포털], 응용 프로그램 서비스를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-121">In hello [Azure portal], select your App Service.</span></span>
 
-2. <span data-ttu-id="e497e-122">**인증/권한 부여** 메뉴 옵션을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-122">Click the **Authentication / Authorization** menu option.</span></span>
+2. <span data-ttu-id="8e590-122">Hello 클릭 **인증 / 권한 부여** 메뉴 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-122">Click hello **Authentication / Authorization** menu option.</span></span>
 
-3. <span data-ttu-id="e497e-123">**허용되는 외부 리디렉션 URL**에서 `url_scheme_of_your_app://easyauth.callback`을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-123">In the **Allowed External Redirect URLs**, enter `url_scheme_of_your_app://easyauth.callback`.</span></span>  <span data-ttu-id="e497e-124">이 문자열의 **url_scheme_of_your_app**은 모바일 응용 프로그램에 대한 URL 체계입니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-124">The **url_scheme_of_your_app** in this string is the URL Scheme for your mobile application.</span></span>  <span data-ttu-id="e497e-125">이 체계는 프로토콜에 대한 일반 URL 사양을 따라야 합니다(문자 및 숫자만 사용하고 문자로 시작).</span><span class="sxs-lookup"><span data-stu-id="e497e-125">It should follow normal URL specification for a protocol (use letters and numbers only, and start with a letter).</span></span>  <span data-ttu-id="e497e-126">여러 위치에서 URL 체계에 따라 모바일 응용 프로그램 코드를 조정해야 할 경우 선택한 문자열을 적어두어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-126">You should make a note of the string that you choose as you will need to adjust your mobile application code with the URL Scheme in several places.</span></span>
+3. <span data-ttu-id="8e590-123">Hello에 **외부 리디렉션 Url 허용**, 입력 `url_scheme_of_your_app://easyauth.callback`합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-123">In hello **Allowed External Redirect URLs**, enter `url_scheme_of_your_app://easyauth.callback`.</span></span>  <span data-ttu-id="8e590-124">hello **url_scheme_of_your_app** 이 문자열에는 모바일 응용 프로그램에 대 한 hello URL 체계입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-124">hello **url_scheme_of_your_app** in this string is hello URL Scheme for your mobile application.</span></span>  <span data-ttu-id="8e590-125">이 체계는 프로토콜에 대한 일반 URL 사양을 따라야 합니다(문자 및 숫자만 사용하고 문자로 시작).</span><span class="sxs-lookup"><span data-stu-id="8e590-125">It should follow normal URL specification for a protocol (use letters and numbers only, and start with a letter).</span></span>  <span data-ttu-id="8e590-126">Tooadjust hello 여러 위치에서 URL 체계를 사용 하 여 모바일 응용 프로그램 코드 필요 하므로 선택 하는 hello 문자열의 메모를 확인 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-126">You should make a note of hello string that you choose as you will need tooadjust your mobile application code with hello URL Scheme in several places.</span></span>
 
-4. <span data-ttu-id="e497e-127">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-127">Click **OK**.</span></span>
+4. <span data-ttu-id="8e590-127">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-127">Click **OK**.</span></span>
 
-5. <span data-ttu-id="e497e-128">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-128">Click **Save**.</span></span>
+5. <span data-ttu-id="8e590-128">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-128">Click **Save**.</span></span>
 
-## <a name="restrict-permissions-to-authenticated-users"></a><span data-ttu-id="e497e-129">사용 권한을 인증된 사용자로 제한</span><span class="sxs-lookup"><span data-stu-id="e497e-129">Restrict permissions to authenticated users</span></span>
+## <a name="restrict-permissions-tooauthenticated-users"></a><span data-ttu-id="8e590-129">Tooauthenticated 사용자 사용 권한 제한</span><span class="sxs-lookup"><span data-stu-id="8e590-129">Restrict permissions tooauthenticated users</span></span>
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-## <a name="add-authentication-to-the-portable-class-library"></a><span data-ttu-id="e497e-130">이식 가능한 클래스 라이브러리에 인증 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-130">Add authentication to the portable class library</span></span>
-<span data-ttu-id="e497e-131">Mobile Apps는 [MobileServiceClient][4]에서 [LoginAsync][3] 확장 메서드를 사용하여 App Service 인증으로 사용자를 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-131">Mobile Apps uses the [LoginAsync][3] extension method on the [MobileServiceClient][4] to sign in a user with App Service authentication.</span></span> <span data-ttu-id="e497e-132">이 샘플에서는 서버 관리 인증 흐름을 사용하여 앱에서 공급자의 로그인 인터페이스를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-132">This sample uses a server-managed authentication flow that displays the provider's sign-in interface in the app.</span></span> <span data-ttu-id="e497e-133">자세한 내용은 [서버 관리 인증][5]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e497e-133">For more information, see [Server-managed authentication][5].</span></span> <span data-ttu-id="e497e-134">프로덕션 앱에서 향상된 사용자 환경을 제공하기 위해 대신 [클라이언트 관리 인증][6]을 사용하는 것을 고려할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-134">To provide a better user experience in your production app, you should consider instead using [Client-managed authentication][6].</span></span>
+## <a name="add-authentication-toohello-portable-class-library"></a><span data-ttu-id="8e590-130">인증 toohello 이식 가능한 클래스 라이브러리 추가</span><span class="sxs-lookup"><span data-stu-id="8e590-130">Add authentication toohello portable class library</span></span>
+<span data-ttu-id="8e590-131">모바일 앱 hello를 사용 하 여 [LoginAsync] [ 3] hello에 대 한 확장 메서드 [MobileServiceClient] [ 4] toosign 앱 서비스와 사용자의 인증입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-131">Mobile Apps uses hello [LoginAsync][3] extension method on hello [MobileServiceClient][4] toosign in a user with App Service authentication.</span></span> <span data-ttu-id="8e590-132">이 샘플에서는 hello 앱에 hello 공급자의 로그인 인터페이스를 표시 하는 서버 관리 인증 흐름을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-132">This sample uses a server-managed authentication flow that displays hello provider's sign-in interface in hello app.</span></span> <span data-ttu-id="8e590-133">자세한 내용은 [서버 관리 인증][5]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8e590-133">For more information, see [Server-managed authentication][5].</span></span> <span data-ttu-id="8e590-134">프로덕션 앱에서 향상된 사용자 환경을 제공하기 위해 대신 [클라이언트 관리 인증][6]을 사용하는 것을 고려할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-134">To provide a better user experience in your production app, you should consider instead using [Client-managed authentication][6].</span></span>
 
-<span data-ttu-id="e497e-135">Xamarin Forms 프로젝트를 사용하여 인증하기 위해서 앱에 대한 이식 가능한 클래스 라이브러리에 **IAuthenticate** 인터페이스를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-135">To authenticate with a Xamarin Forms project, define an **IAuthenticate** interface in the Portable Class Library for the app.</span></span> <span data-ttu-id="e497e-136">또한 이식 가능한 클래스 라이브러리에 정의된 사용자 인터페이스를 업데이트하여 **로그인** 단추를 추가합니다. 사용자는 이 단추를 클릭하여 인증을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-136">Then add a **Sign-in** button to the user interface defined in the Portable Class Library, which you click to start authentication.</span></span> <span data-ttu-id="e497e-137">인증에 성공하면 Mobile App 백 엔드에서 데이터가 로드됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-137">Data is loaded from the mobile app backend after successful authentication.</span></span>
+<span data-ttu-id="8e590-135">Xamarin Forms 프로젝트와 tooauthenticate 정의 **IAuthenticate** hello 앱에 대 한 hello 이식 가능한 클래스 라이브러리에에서 대 한 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-135">tooauthenticate with a Xamarin Forms project, define an **IAuthenticate** interface in hello Portable Class Library for hello app.</span></span> <span data-ttu-id="8e590-136">그런 다음 추가 **로그인** hello 클릭할 수 있는 이식 가능한 클래스 라이브러리에에서 정의 된 단추 toohello 사용자 인터페이스 toostart 인증 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-136">Then add a **Sign-in** button toohello user interface defined in hello Portable Class Library, which you click toostart authentication.</span></span> <span data-ttu-id="8e590-137">인증을 거친 후 hello 모바일 앱 백 엔드에서 데이터 로드 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-137">Data is loaded from hello mobile app backend after successful authentication.</span></span>
 
-<span data-ttu-id="e497e-138">앱에서 지원되는 각 플랫폼에 대해 **IAuthenticate** 인터페이스를 구현합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-138">Implement the **IAuthenticate** interface for each platform supported by your app.</span></span>
+<span data-ttu-id="8e590-138">구현 hello **IAuthenticate** 앱에서 지 원하는 각 플랫폼에 대 한 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-138">Implement hello **IAuthenticate** interface for each platform supported by your app.</span></span>
 
-1. <span data-ttu-id="e497e-139">Visual Studio 또는 Xamarin Studio에서 이름에 **이식 가능**이 있는 프로젝트(이식 가능한 클래스 라이브러리 프로젝트)에서 App.cs를 연 후 다음 `using` 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-139">In Visual Studio or Xamarin Studio, open App.cs from the project with **Portable** in the name, which is Portable Class Library project, then  add the following `using` statement:</span></span>
+1. <span data-ttu-id="8e590-139">Visual Studio 또는 Xamarin Studio에서 사용 하 여 hello 프로젝트를 App.cs를 열고 **휴대용** 이식 가능한 클래스 라이브러리 프로젝트는 hello 이름에 다음 hello 다음 추가 `using` 문:</span><span class="sxs-lookup"><span data-stu-id="8e590-139">In Visual Studio or Xamarin Studio, open App.cs from hello project with **Portable** in hello name, which is Portable Class Library project, then  add hello following `using` statement:</span></span>
 
         using System.Threading.Tasks;
-2. <span data-ttu-id="e497e-140">App.cs에 `App` 클래스 정의 직전에 다음과 같은 `IAuthenticate` 인터페이스 정의를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-140">In App.cs, add the following `IAuthenticate` interface definition immediately before the `App` class definition.</span></span>
+2. <span data-ttu-id="8e590-140">Hello 다음 추가 App.cs에서 `IAuthenticate` 인터페이스 정의 바로 hello 앞 `App` 클래스 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-140">In App.cs, add hello following `IAuthenticate` interface definition immediately before hello `App` class definition.</span></span>
 
         public interface IAuthenticate
         {
             Task<bool> Authenticate();
         }
-3. <span data-ttu-id="e497e-141">플랫폼 전용 구현으로 인터페이스를 초기화하도록 **App** 클래스에 다음 정적 멤버를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-141">To initialize the interface with a platform-specific implementation, add the following static members to the **App** class.</span></span>
+3. <span data-ttu-id="8e590-141">플랫폼별 구현을 tooinitialize hello 인터페이스 추가 다음 정적 멤버 toohello hello **앱** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-141">tooinitialize hello interface with a platform-specific implementation, add hello following static members toohello **App** class.</span></span>
 
         public static IAuthenticate Authenticator { get; private set; }
 
@@ -75,17 +75,17 @@ ms.lasthandoff: 08/18/2017
         {
             Authenticator = authenticator;
         }
-4. <span data-ttu-id="e497e-142">이식 가능한 클래스 라이브러리 프로젝트에서 TodoList.xaml을 열고 **buttonsPanel** 레이아웃 요소의 다음 *Button* 요소를 기존 단추 뒤에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-142">Open TodoList.xaml from the Portable Class Library project, add the following **Button** element in the *buttonsPanel* layout element, after the existing button:</span></span>
+4. <span data-ttu-id="8e590-142">Hello 다음 추가 hello 이식 가능한 클래스 라이브러리 프로젝트에서 TodoList.xaml 열고 **단추** hello 요소 *buttonsPanel* hello 기존 단추 레이아웃 요소:</span><span class="sxs-lookup"><span data-stu-id="8e590-142">Open TodoList.xaml from hello Portable Class Library project, add hello following **Button** element in hello *buttonsPanel* layout element, after hello existing button:</span></span>
 
           <Button x:Name="loginButton" Text="Sign-in" MinimumHeightRequest="30"
             Clicked="loginButton_Clicked"/>
 
-    <span data-ttu-id="e497e-143">이 단추는 모바일 앱 백 엔드로 서버 관리 인증을 트리거합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-143">This button triggers server-managed authentication with your mobile app backend.</span></span>
-5. <span data-ttu-id="e497e-144">이식 가능한 클래스 라이브러리 프로젝트에서 TodoList.xaml.cs를 연 후 다음 필드를 `TodoList` 클래스에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-144">Open TodoList.xaml.cs from the Portable Class Library project, then add the following field to the `TodoList` class:</span></span>
+    <span data-ttu-id="8e590-143">이 단추는 모바일 앱 백 엔드로 서버 관리 인증을 트리거합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-143">This button triggers server-managed authentication with your mobile app backend.</span></span>
+5. <span data-ttu-id="8e590-144">Hello 이식 가능한 클래스 라이브러리 프로젝트에서 TodoList.xaml.cs를 연 다음 필드 toohello 다음 hello 추가 `TodoList` 클래스:</span><span class="sxs-lookup"><span data-stu-id="8e590-144">Open TodoList.xaml.cs from hello Portable Class Library project, then add hello following field toohello `TodoList` class:</span></span>
 
-        // Track whether the user has authenticated.
+        // Track whether hello user has authenticated.
         bool authenticated = false;
-6. <span data-ttu-id="e497e-145">**OnAppearing** 메서드를 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-145">Replace the **OnAppearing** method with the following code:</span></span>
+6. <span data-ttu-id="8e590-145">Hello 대체 **OnAppearing** 메서드 코드 다음 hello로:</span><span class="sxs-lookup"><span data-stu-id="8e590-145">Replace hello **OnAppearing** method with hello following code:</span></span>
 
         protected override async void OnAppearing()
         {
@@ -94,42 +94,42 @@ ms.lasthandoff: 08/18/2017
             // Refresh items only when authenticated.
             if (authenticated == true)
             {
-                // Set syncItems to true in order to synchronize the data
+                // Set syncItems tootrue in order toosynchronize hello data
                 // on startup when running in offline mode.
                 await RefreshItems(true, syncItems: false);
 
-                // Hide the Sign-in button.
+                // Hide hello Sign-in button.
                 this.loginButton.IsVisible = false;
             }
         }
 
-    <span data-ttu-id="e497e-146">이렇게 코드를 변경하면 사용자가 인증된 후에만 데이터가 새로 고침됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-146">This code makes sure that data is only refreshed from the service after you have been authenticated.</span></span>
-7. <span data-ttu-id="e497e-147">**TodoList** 클래스에 **Clicked** 이벤트에 대한 다음 처리기를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-147">Add the following handler for the **Clicked** event to the **TodoList** class:</span></span>
+    <span data-ttu-id="8e590-146">이 코드는 데이터를만 새로 고칠 hello 서비스에서 인증 된 후 않았는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-146">This code makes sure that data is only refreshed from hello service after you have been authenticated.</span></span>
+7. <span data-ttu-id="8e590-147">Hello hello에 대 한 처리기를 다음 추가 **Clicked** 이벤트 toohello **TodoList** 클래스:</span><span class="sxs-lookup"><span data-stu-id="8e590-147">Add hello following handler for hello **Clicked** event toohello **TodoList** class:</span></span>
 
         async void loginButton_Clicked(object sender, EventArgs e)
         {
             if (App.Authenticator != null)
                 authenticated = await App.Authenticator.Authenticate();
 
-            // Set syncItems to true to synchronize the data on startup when offline is enabled.
+            // Set syncItems tootrue toosynchronize hello data on startup when offline is enabled.
             if (authenticated == true)
                 await RefreshItems(true, syncItems: false);
         }
-8. <span data-ttu-id="e497e-148">변경 내용을 저장하고 이식 가능한 클래스 라이브러리 프로젝트를 다시 빌드하여 오류가 없는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-148">Save your changes and rebuild the Portable Class Library project verifying no errors.</span></span>
+8. <span data-ttu-id="8e590-148">변경 내용을 저장 하 고 오류가 없는지 확인 하는 hello 이식 가능한 클래스 라이브러리 프로젝트를 다시 빌드하십시오.</span><span class="sxs-lookup"><span data-stu-id="8e590-148">Save your changes and rebuild hello Portable Class Library project verifying no errors.</span></span>
 
-## <a name="add-authentication-to-the-android-app"></a><span data-ttu-id="e497e-149">Android 앱에 인증 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-149">Add authentication to the Android app</span></span>
-<span data-ttu-id="e497e-150">이 섹션에는 Android 앱 프로젝트에서 **IAuthenticate** 인터페이스를 구현하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-150">This section shows how to implement the **IAuthenticate** interface in the Android app project.</span></span> <span data-ttu-id="e497e-151">Android 장치를 지원하지 않는 경우 이 섹션을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-151">Skip this section if you are not supporting Android devices.</span></span>
+## <a name="add-authentication-toohello-android-app"></a><span data-ttu-id="8e590-149">인증 toohello Android 앱 추가</span><span class="sxs-lookup"><span data-stu-id="8e590-149">Add authentication toohello Android app</span></span>
+<span data-ttu-id="8e590-150">이 섹션에서는 어떻게 tooimplement hello **IAuthenticate** hello Android 응용 프로그램 프로젝트에 대 한 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-150">This section shows how tooimplement hello **IAuthenticate** interface in hello Android app project.</span></span> <span data-ttu-id="8e590-151">Android 장치를 지원하지 않는 경우 이 섹션을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-151">Skip this section if you are not supporting Android devices.</span></span>
 
-1. <span data-ttu-id="e497e-152">Visual Studio 또는 Xamarin Studio에서 **droid** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트로 설정**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-152">In Visual Studio or Xamarin Studio, right-click the **droid** project, then **Set as StartUp Project**.</span></span>
-2. <span data-ttu-id="e497e-153">F5 키를 눌러 디버거에서 프로젝트를 실행하고 앱이 시작된 후 상태 코드 401(인증되지 않음)의 처리되지 않은 예외가 발생하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-153">Press F5 to start the project in the debugger, then verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after the app starts.</span></span> <span data-ttu-id="e497e-154">백 엔드에서 액세스를 인증된 사용자만으로 제한했기 때문에 401 코드가 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-154">The 401 code is produced because access on the backend is restricted to authorized users only.</span></span>
-3. <span data-ttu-id="e497e-155">Android 프로젝트에서 MainActivity.cs를 열고 다음 `using` 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-155">Open MainActivity.cs in the Android project and add the following `using` statements:</span></span>
+1. <span data-ttu-id="8e590-152">Visual Studio 또는 Xamarin Studio 단추로 클릭 하 고 hello **로봇** 프로젝트, 다음 **시작 프로젝트로 설정**합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-152">In Visual Studio or Xamarin Studio, right-click hello **droid** project, then **Set as StartUp Project**.</span></span>
+2. <span data-ttu-id="8e590-153">Hello 디버거에서 toostart hello 프로젝트 F5 키를 눌러 다음 401 (권한 없음) 상태 코드와 함께 처리 되지 않은 예외는 응용 프로그램 시작 후에 발생 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-153">Press F5 toostart hello project in hello debugger, then verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after the app starts.</span></span> <span data-ttu-id="8e590-154">hello 401 코드는 hello 백 엔드에 대 한 액세스는 제한 된 tooauthorized 사용자만 때문에 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-154">hello 401 code is produced because access on hello backend is restricted tooauthorized users only.</span></span>
+3. <span data-ttu-id="8e590-155">MainActivity.cs hello Android 프로젝트에서 열고 hello 다음 추가 `using` 문:</span><span class="sxs-lookup"><span data-stu-id="8e590-155">Open MainActivity.cs in hello Android project and add hello following `using` statements:</span></span>
 
         using Microsoft.WindowsAzure.MobileServices;
         using System.Threading.Tasks;
-4. <span data-ttu-id="e497e-156">다음과 같이 **IAuthenticate** 인터페이스를 구현하도록 **MainActivity** 클래스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-156">Update the **MainActivity** class to implement the **IAuthenticate** interface, as follows:</span></span>
+4. <span data-ttu-id="8e590-156">업데이트 hello **MainActivity** 클래스 tooimplement hello **IAuthenticate** 인터페이스, 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-156">Update hello **MainActivity** class tooimplement hello **IAuthenticate** interface, as follows:</span></span>
 
         public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity, IAuthenticate
-5. <span data-ttu-id="e497e-157">다음과 같이 **IAuthenticate** 인터페이스에 필요한 **MobileServiceUser** 필드 및 **Authenticate** 메서드를 추가하여 **MainActivity** 클래스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-157">Update the **MainActivity** class by adding a **MobileServiceUser** field and an **Authenticate** method, which is required by the **IAuthenticate** interface, as follows:</span></span>
+5. <span data-ttu-id="8e590-157">업데이트 hello **MainActivity** 클래스를 추가 하 여 한 **MobileServiceUser** 필드 및 **Authenticate** hello에 필요한 메서드를 **IAuthenticate**  인터페이스, 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-157">Update hello **MainActivity** class by adding a **MobileServiceUser** field and an **Authenticate** method, which is required by hello **IAuthenticate** interface, as follows:</span></span>
 
         // Define a authenticated user.
         private MobileServiceUser user;
@@ -155,7 +155,7 @@ ms.lasthandoff: 08/18/2017
                 message = ex.Message;
             }
 
-            // Display the success or failure message.
+            // Display hello success or failure message.
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.SetMessage(message);
             builder.SetTitle("Sign-in result");
@@ -164,9 +164,9 @@ ms.lasthandoff: 08/18/2017
             return success;
         }
 
-    <span data-ttu-id="e497e-158">Facebook 이외의 ID 공급자를 사용하는 경우 [MobileServiceAuthenticationProvider][7]에 대해 다른 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-158">If you are using an identity provider other than Facebook, choose a different value for [MobileServiceAuthenticationProvider][7].</span></span>
+    <span data-ttu-id="8e590-158">Facebook 이외의 ID 공급자를 사용하는 경우 [MobileServiceAuthenticationProvider][7]에 대해 다른 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-158">If you are using an identity provider other than Facebook, choose a different value for [MobileServiceAuthenticationProvider][7].</span></span>
 
-6. <span data-ttu-id="e497e-159">AndroidManifest.xml의 <application> 노드 안에 다음 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-159">Add the following code inside <application> node of AndroidManifest.xml:</span></span>
+6. <span data-ttu-id="8e590-159">내 코드 다음 hello 추가 <application> AndroidManifest.xml의 노드:</span><span class="sxs-lookup"><span data-stu-id="8e590-159">Add hello following code inside <application> node of AndroidManifest.xml:</span></span>
 
 ```xml
     <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity" android:launchMode="singleTop" android:noHistory="true">
@@ -179,27 +179,27 @@ ms.lasthandoff: 08/18/2017
     </activity>
 ```
 
-1. <span data-ttu-id="e497e-160">`LoadApplication()`에 대한 호출 이전에 **MainActivity** 클래스의 **OnCreate** 메서드에 다음 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-160">Add the following code to the **OnCreate** method of the **MainActivity** class before the call to `LoadApplication()`:</span></span>
+1. <span data-ttu-id="8e590-160">다음 코드 toohello hello 추가 **OnCreate** hello 방식의 **MainActivity** hello 호출 전에 너무 클래스`LoadApplication()`:</span><span class="sxs-lookup"><span data-stu-id="8e590-160">Add hello following code toohello **OnCreate** method of hello **MainActivity** class before hello call too`LoadApplication()`:</span></span>
 
-        // Initialize the authenticator before loading the app.
+        // Initialize hello authenticator before loading hello app.
         App.Init((IAuthenticate)this);
 
-    <span data-ttu-id="e497e-161">이 코드를 사용하면 앱이 로드되기 전에 인증자가 초기화됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-161">This code ensures the authenticator is initialized before the app loads.</span></span>
-2. <span data-ttu-id="e497e-162">앱을 다시 빌드하고 실행한 후 선택한 인증 공급자를 사용하여 로그인하고 인증된 사용자로 데이터에 액세스할 수 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-162">Rebuild the app, run it, then sign in with the authentication provider you chose and verify you are able to access data as an authenticated user.</span></span>
+    <span data-ttu-id="8e590-161">이 코드에서는 hello 인증자 hello 로드 하기 전에 초기화 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-161">This code ensures hello authenticator is initialized before hello app loads.</span></span>
+2. <span data-ttu-id="8e590-162">Hello 응용 프로그램을 다시 작성 하를 실행 한 후 hello 인증 공급자를 선택 하 고 인증된 된 사용자 수 tooaccess 데이터 확인을 사용 하 여 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-162">Rebuild hello app, run it, then sign in with hello authentication provider you chose and verify you are able tooaccess data as an authenticated user.</span></span>
 
-## <a name="add-authentication-to-the-ios-app"></a><span data-ttu-id="e497e-163">iOS 앱에 인증 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-163">Add authentication to the iOS app</span></span>
-<span data-ttu-id="e497e-164">이 섹션에는 iOS 앱 프로젝트에서 **IAuthenticate** 인터페이스를 구현하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-164">This section shows how to implement the **IAuthenticate** interface in the iOS app project.</span></span> <span data-ttu-id="e497e-165">iOS 장치를 지원하지 않는 경우 이 섹션을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-165">Skip this section if you are not supporting iOS devices.</span></span>
+## <a name="add-authentication-toohello-ios-app"></a><span data-ttu-id="8e590-163">인증 toohello iOS 앱 추가</span><span class="sxs-lookup"><span data-stu-id="8e590-163">Add authentication toohello iOS app</span></span>
+<span data-ttu-id="8e590-164">이 섹션에서는 어떻게 tooimplement hello **IAuthenticate** hello iOS 앱 프로젝트에 대 한 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-164">This section shows how tooimplement hello **IAuthenticate** interface in hello iOS app project.</span></span> <span data-ttu-id="8e590-165">iOS 장치를 지원하지 않는 경우 이 섹션을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-165">Skip this section if you are not supporting iOS devices.</span></span>
 
-1. <span data-ttu-id="e497e-166">Visual Studio 또는 Xamarin Studio에서 **iOS** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트로 설정**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-166">In Visual Studio or Xamarin Studio, right-click the **iOS** project, then **Set as StartUp Project**.</span></span>
-2. <span data-ttu-id="e497e-167">F5 키를 눌러 디버거에서 프로젝트를 실행하고 앱이 시작된 후 상태 코드 401(인증되지 않음)의 처리되지 않은 예외가 발생하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-167">Press F5 to start the project in the debugger, then verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after the app starts.</span></span> <span data-ttu-id="e497e-168">백 엔드에서 액세스를 인증된 사용자만으로 제한했기 때문에 401 응답이 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-168">The 401 response is produced because access on the backend is restricted to authorized users only.</span></span>
-3. <span data-ttu-id="e497e-169">iOS 프로젝트에서 AppDelegate.cs를 열고 다음 `using` 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-169">Open AppDelegate.cs in the iOS project and add the following `using` statements:</span></span>
+1. <span data-ttu-id="8e590-166">Visual Studio 또는 Xamarin Studio 단추로 클릭 하 고 hello **iOS** 프로젝트, 다음 **시작 프로젝트로 설정**합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-166">In Visual Studio or Xamarin Studio, right-click hello **iOS** project, then **Set as StartUp Project**.</span></span>
+2. <span data-ttu-id="8e590-167">Hello 디버거에서 toostart hello 프로젝트 F5 키를 눌러 다음 hello 앱 시작 된 후 401 (권한 없음) 상태 코드와 함께 처리 되지 않은 예외가 발생할 때를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-167">Press F5 toostart hello project in hello debugger, then verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after hello app starts.</span></span> <span data-ttu-id="8e590-168">hello 401 응답 hello 백 엔드에 대 한 액세스는 제한 된 tooauthorized 사용자만 때문에 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-168">hello 401 response is produced because access on hello backend is restricted tooauthorized users only.</span></span>
+3. <span data-ttu-id="8e590-169">AppDelegate.cs hello iOS 프로젝트에서 열고 hello 다음 추가 `using` 문:</span><span class="sxs-lookup"><span data-stu-id="8e590-169">Open AppDelegate.cs in hello iOS project and add hello following `using` statements:</span></span>
 
         using Microsoft.WindowsAzure.MobileServices;
         using System.Threading.Tasks;
-4. <span data-ttu-id="e497e-170">다음과 같이 **IAuthenticate** 인터페이스를 구현하도록 **AppDelegate** 클래스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-170">Update the **AppDelegate** class to implement the **IAuthenticate** interface, as follows:</span></span>
+4. <span data-ttu-id="8e590-170">업데이트 hello **AppDelegate** 클래스 tooimplement hello **IAuthenticate** 인터페이스, 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-170">Update hello **AppDelegate** class tooimplement hello **IAuthenticate** interface, as follows:</span></span>
 
         public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IAuthenticate
-5. <span data-ttu-id="e497e-171">다음과 같이 **IAuthenticate** 인터페이스에 필요한 **MobileServiceUser** 필드 및 **Authenticate** 메서드를 추가하여 **AppDelegate** 클래스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-171">Update the **AppDelegate** class by adding a **MobileServiceUser** field and an **Authenticate** method, which is required by the **IAuthenticate** interface, as follows:</span></span>
+5. <span data-ttu-id="8e590-171">업데이트 hello **AppDelegate** 클래스를 추가 하 여 한 **MobileServiceUser** 필드 및 **Authenticate** hello에 필요한 메서드를 **IAuthenticate**  인터페이스, 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-171">Update hello **AppDelegate** class by adding a **MobileServiceUser** field and an **Authenticate** method, which is required by hello **IAuthenticate** interface, as follows:</span></span>
 
         // Define a authenticated user.
         private MobileServiceUser user;
@@ -228,49 +228,49 @@ ms.lasthandoff: 08/18/2017
                message = ex.Message;
             }
 
-            // Display the success or failure message.
+            // Display hello success or failure message.
             UIAlertView avAlert = new UIAlertView("Sign-in result", message, null, "OK", null);
             avAlert.Show();
 
             return success;
         }
 
-    <span data-ttu-id="e497e-172">Facebook 이외의 ID 공급자를 사용하는 경우 [MobileServiceAuthenticationProvider]에 대해 다른 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-172">If you are using an identity provider other than Facebook, choose a different value for [MobileServiceAuthenticationProvider].</span></span>
+    <span data-ttu-id="8e590-172">Facebook 이외의 ID 공급자를 사용하는 경우 [MobileServiceAuthenticationProvider]에 대해 다른 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-172">If you are using an identity provider other than Facebook, choose a different value for [MobileServiceAuthenticationProvider].</span></span>
 
-6. <span data-ttu-id="e497e-173">OpenUrl(UIApplication 앱, NSUrl url NSDictionary 옵션) 메서드 오버로드를 추가하여 AppDelegate 클래스 업데이트</span><span class="sxs-lookup"><span data-stu-id="e497e-173">Update the AppDelegate class by adding OpenUrl(UIApplication app, NSUrl url, NSDictionary options) method overload</span></span>
+6. <span data-ttu-id="8e590-173">OpenUrl (UIApplication 응용 프로그램, NSUrl url NSDictionary 옵션) 메서드 오버 로드를 추가 하 여 hello AppDelegate 클래스 업데이트</span><span class="sxs-lookup"><span data-stu-id="8e590-173">Update hello AppDelegate class by adding OpenUrl(UIApplication app, NSUrl url, NSDictionary options) method overload</span></span>
 
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
             return TodoItemManager.DefaultManager.CurrentClient.ResumeWithURL(url);
         }
 
-6. <span data-ttu-id="e497e-174">`LoadApplication()`에 대한 호출 이전에 **FinishedLaunching** 메서드에 다음 코드 줄을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-174">Add the following line of code to the **FinishedLaunching** method before the call to `LoadApplication()`:</span></span>
+6. <span data-ttu-id="8e590-174">다음 줄의 코드 toohello hello 추가 **FinishedLaunching** hello 먼저 메서드 호출을 통해서도`LoadApplication()`:</span><span class="sxs-lookup"><span data-stu-id="8e590-174">Add hello following line of code toohello **FinishedLaunching** method before hello call too`LoadApplication()`:</span></span>
 
         App.Init(this);
 
-    <span data-ttu-id="e497e-175">이 코드를 사용하면 앱이 로드되기 전에 인증자가 초기화됩니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-175">This code ensures the authenticator is initialized before the app is loaded.</span></span>
+    <span data-ttu-id="8e590-175">이 코드에서는 hello 인증자 hello 앱 로드 되기 전에 초기화 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-175">This code ensures hello authenticator is initialized before hello app is loaded.</span></span>
 
-6. <span data-ttu-id="e497e-176">Info.plist의 URL 체계에 **{url_scheme_of_your_app}**을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-176">Add **{url_scheme_of_your_app}** to URL Schemes in Info.plist.</span></span>
+6. <span data-ttu-id="8e590-176">추가 **{url_scheme_of_your_app}** Info.plist에서 tooURL 구성표입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-176">Add **{url_scheme_of_your_app}** tooURL Schemes in Info.plist.</span></span>
 
-7. <span data-ttu-id="e497e-177">앱을 다시 빌드하고 실행한 후 선택한 인증 공급자를 사용하여 로그인하고 인증된 사용자로 데이터에 액세스할 수 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-177">Rebuild the app, run it, then sign in with the authentication provider you chose and verify you are able to access data as an authenticated user.</span></span>
+7. <span data-ttu-id="8e590-177">Hello 응용 프로그램을 다시 작성 하를 실행 한 후 hello 인증 공급자를 선택 하 고 인증된 된 사용자 수 tooaccess 데이터 확인을 사용 하 여 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-177">Rebuild hello app, run it, then sign in with hello authentication provider you chose and verify you are able tooaccess data as an authenticated user.</span></span>
 
-## <a name="add-authentication-to-windows-10-including-phone-app-projects"></a><span data-ttu-id="e497e-178">Windows 10(Phone 포함) 앱 프로젝트에 인증 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-178">Add authentication to Windows 10 (including Phone) app projects</span></span>
-<span data-ttu-id="e497e-179">이 섹션에는 Windows 10 앱 프로젝트에서 **IAuthenticate** 인터페이스를 구현하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-179">This section shows how to implement the **IAuthenticate** interface in the Windows 10 app projects.</span></span> <span data-ttu-id="e497e-180">동일한 단계가 UWP(유니버설 Windows 플랫폼) 프로젝트에도 적용되지만 **UWP** 프로젝트(명시된 변경 내용 포함)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-180">The same steps apply for Universal Windows Platform (UWP) projects, but using the **UWP** project (with noted changes).</span></span> <span data-ttu-id="e497e-181">Windows 장치를 지원하지 않는 경우 이 섹션을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-181">Skip this section if you are not supporting Windows devices.</span></span>
+## <a name="add-authentication-toowindows-10-including-phone-app-projects"></a><span data-ttu-id="8e590-178">인증 tooWindows 10 (Phone 포함)를 추가 응용 프로그램 프로젝트</span><span class="sxs-lookup"><span data-stu-id="8e590-178">Add authentication tooWindows 10 (including Phone) app projects</span></span>
+<span data-ttu-id="8e590-179">이 섹션에서는 어떻게 tooimplement hello **IAuthenticate** hello Windows 10 앱 프로젝트에 대 한 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-179">This section shows how tooimplement hello **IAuthenticate** interface in hello Windows 10 app projects.</span></span> <span data-ttu-id="8e590-180">동일한 단계가 hello를 사용 하 여 유니버설 Windows 플랫폼 (UWP) 프로젝트에 적용 하는 hello **UWP** (위에 언급 변경과) 프로젝트.</span><span class="sxs-lookup"><span data-stu-id="8e590-180">hello same steps apply for Universal Windows Platform (UWP) projects, but using hello **UWP** project (with noted changes).</span></span> <span data-ttu-id="8e590-181">Windows 장치를 지원하지 않는 경우 이 섹션을 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-181">Skip this section if you are not supporting Windows devices.</span></span>
 
-1. <span data-ttu-id="e497e-182">Visual Studio에서 **UWP** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **시작 프로젝트로 설정**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-182">"In Visual Studio, right-click either the **UWP** project, then **Set as StartUp Project**.</span></span>
-2. <span data-ttu-id="e497e-183">F5 키를 눌러 디버거에서 프로젝트를 실행하고 앱이 시작된 후 상태 코드 401(인증되지 않음)의 처리되지 않은 예외가 발생하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-183">Press F5 to start the project in the debugger, then verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after the app starts.</span></span> <span data-ttu-id="e497e-184">백 엔드에서 액세스를 인증된 사용자만으로 제한했기 때문에 401 응답이 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-184">The 401 response happens because access on the backend is restricted to authorized users only.</span></span>
-3. <span data-ttu-id="e497e-185">Windows 앱 프로젝트에 대한 MainPage.xaml.cs를 열고 다음 `using` 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-185">Open MainPage.xaml.cs for the Windows app project and add the following `using` statements:</span></span>
+1. <span data-ttu-id="8e590-182">"Visual Studio에서 마우스 오른쪽 단추로 클릭 하거나 hello **UWP** 프로젝트, 다음 **시작 프로젝트로 설정**합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-182">"In Visual Studio, right-click either hello **UWP** project, then **Set as StartUp Project**.</span></span>
+2. <span data-ttu-id="8e590-183">Hello 디버거에서 toostart hello 프로젝트 F5 키를 눌러 다음 hello 앱 시작 된 후 401 (권한 없음) 상태 코드와 함께 처리 되지 않은 예외가 발생할 때를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-183">Press F5 toostart hello project in hello debugger, then verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after hello app starts.</span></span> <span data-ttu-id="8e590-184">hello 401 응답 hello 백 엔드에 대 한 액세스는 제한 된 tooauthorized 사용자만 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-184">hello 401 response happens because access on hello backend is restricted tooauthorized users only.</span></span>
+3. <span data-ttu-id="8e590-185">MainPage.xaml.cs hello Windows 앱 프로젝트에 대 한 열고 hello 다음 추가 `using` 문:</span><span class="sxs-lookup"><span data-stu-id="8e590-185">Open MainPage.xaml.cs for hello Windows app project and add hello following `using` statements:</span></span>
 
         using Microsoft.WindowsAzure.MobileServices;
         using System.Threading.Tasks;
         using Windows.UI.Popups;
         using <your_Portable_Class_Library_namespace>;
 
-    <span data-ttu-id="e497e-186">`<your_Portable_Class_Library_namespace>` 를 이식 가능한 클래스 라이브러리의 네임스페이스로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-186">Replace `<your_Portable_Class_Library_namespace>` with the namespace for your portable class library.</span></span>
-4. <span data-ttu-id="e497e-187">다음과 같이 **IAuthenticate** 인터페이스를 구현하도록 **MainPage** 클래스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-187">Update the **MainPage** class to implement the **IAuthenticate** interface, as follows:</span></span>
+    <span data-ttu-id="8e590-186">대체 `<your_Portable_Class_Library_namespace>` 이식 가능한 클래스 라이브러리에 대 한 hello 네임 스페이스를 가진 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-186">Replace `<your_Portable_Class_Library_namespace>` with hello namespace for your portable class library.</span></span>
+4. <span data-ttu-id="8e590-187">업데이트 hello **MainPage** 클래스 tooimplement hello **IAuthenticate** 인터페이스, 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-187">Update hello **MainPage** class tooimplement hello **IAuthenticate** interface, as follows:</span></span>
 
         public sealed partial class MainPage : IAuthenticate
-5. <span data-ttu-id="e497e-188">다음과 같이 **IAuthenticate** 인터페이스에 필요한 **MobileServiceUser** 필드 및 **Authenticate** 메서드를 추가하여 **MainPage** 클래스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-188">Update the **MainPage** class by adding a **MobileServiceUser** field and an **Authenticate** method, which is required by the **IAuthenticate** interface, as follows:</span></span>
+5. <span data-ttu-id="8e590-188">업데이트 hello **MainPage** 클래스를 추가 하 여 한 **MobileServiceUser** 필드 및 **Authenticate** hello에 필요한 메서드를 **IAuthenticate** 인터페이스, 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-188">Update hello **MainPage** class by adding a **MobileServiceUser** field and an **Authenticate** method, which is required by hello **IAuthenticate** interface, as follows:</span></span>
 
         // Define a authenticated user.
         private MobileServiceUser user;
@@ -300,22 +300,22 @@ ms.lasthandoff: 08/18/2017
                 message = string.Format("Authentication Failed: {0}", ex.Message);
             }
 
-            // Display the success or failure message.
+            // Display hello success or failure message.
             await new MessageDialog(message, "Sign-in result").ShowAsync();
 
             return success;
         }
 
-    <span data-ttu-id="e497e-189">Facebook 이외의 ID 공급자를 사용하는 경우 [MobileServiceAuthenticationProvider]에 대해 다른 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-189">If you are using an identity provider other than Facebook, choose a different value for [MobileServiceAuthenticationProvider].</span></span>
+    <span data-ttu-id="8e590-189">Facebook 이외의 ID 공급자를 사용하는 경우 [MobileServiceAuthenticationProvider]에 대해 다른 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-189">If you are using an identity provider other than Facebook, choose a different value for [MobileServiceAuthenticationProvider].</span></span>
 
-1. <span data-ttu-id="e497e-190">`LoadApplication()`에 대한 호출 이전에 **MainPage** 클래스에 대한 생성자에 다음 코드 줄을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-190">Add the following line of code in the constructor for the **MainPage** class before the call to `LoadApplication()`:</span></span>
+1. <span data-ttu-id="8e590-190">Hello 다음 hello에 대 한 hello 생성자의 코드 줄을 추가 **MainPage** hello 호출 전에 너무 클래스`LoadApplication()`:</span><span class="sxs-lookup"><span data-stu-id="8e590-190">Add hello following line of code in hello constructor for hello **MainPage** class before hello call too`LoadApplication()`:</span></span>
 
-        // Initialize the authenticator before loading the app.
+        // Initialize hello authenticator before loading hello app.
         <your_Portable_Class_Library_namespace>.App.Init(this);
 
-    <span data-ttu-id="e497e-191">`<your_Portable_Class_Library_namespace>` 를 이식 가능한 클래스 라이브러리의 네임스페이스로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-191">Replace `<your_Portable_Class_Library_namespace>` with the namespace for your portable class library.</span></span>
+    <span data-ttu-id="8e590-191">대체 `<your_Portable_Class_Library_namespace>` 이식 가능한 클래스 라이브러리에 대 한 hello 네임 스페이스를 가진 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-191">Replace `<your_Portable_Class_Library_namespace>` with hello namespace for your portable class library.</span></span>
 
-3. <span data-ttu-id="e497e-192">**UWP**를 사용하는 경우 **App** 클래스에 다음 **OnActivated** 메서드 재정의를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-192">If you are using **UWP**, add the following **OnActivated** method override to the **App** class:</span></span>
+3. <span data-ttu-id="8e590-192">사용 중인 경우 **UWP**, hello 다음 추가 **OnActivated** 메서드 재정의 toohello **앱** 클래스:</span><span class="sxs-lookup"><span data-stu-id="8e590-192">If you are using **UWP**, add hello following **OnActivated** method override toohello **App** class:</span></span>
 
        protected override void OnActivated(IActivatedEventArgs args)
        {
@@ -329,21 +329,21 @@ ms.lasthandoff: 08/18/2017
 
        }
 
-   <span data-ttu-id="e497e-193">메서드 재정의가 이미 있는 경우 위의 코드 조각에서 조건부 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-193">When the method override already exists, add the conditional code from the preceding snippet.</span></span>  <span data-ttu-id="e497e-194">이 코드는 유니버설 Windows 프로젝트에는 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-194">This code is not required for Universal Windows projects.</span></span>
+   <span data-ttu-id="8e590-193">Hello 메서드 재정의 이미 있는 경우에서 코드 조각 앞 hello hello 조건부 코드를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-193">When hello method override already exists, add hello conditional code from hello preceding snippet.</span></span>  <span data-ttu-id="8e590-194">이 코드는 유니버설 Windows 프로젝트에는 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-194">This code is not required for Universal Windows projects.</span></span>
 
-3. <span data-ttu-id="e497e-195">Package.appxmanifest에 **{url_scheme_of_your_app}**을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-195">Add **{url_scheme_of_your_app}** in Package.appxmanifest.</span></span> 
+3. <span data-ttu-id="8e590-195">Package.appxmanifest에 **{url_scheme_of_your_app}**을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-195">Add **{url_scheme_of_your_app}** in Package.appxmanifest.</span></span> 
 
-4. <span data-ttu-id="e497e-196">앱을 다시 빌드하고 실행한 후 선택한 인증 공급자를 사용하여 로그인하고 인증된 사용자로 데이터에 액세스할 수 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-196">Rebuild the app, run it, then sign in with the authentication provider you chose and verify you are able to access data as an authenticated user.</span></span>
+4. <span data-ttu-id="8e590-196">Hello 응용 프로그램을 다시 작성 하를 실행 한 후 hello 인증 공급자를 선택 하 고 인증된 된 사용자 수 tooaccess 데이터 확인을 사용 하 여 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-196">Rebuild hello app, run it, then sign in with hello authentication provider you chose and verify you are able tooaccess data as an authenticated user.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="e497e-197">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e497e-197">Next steps</span></span>
-<span data-ttu-id="e497e-198">이 기본 인증 자습서를 완료했으므로 다음 자습서 중 하나를 계속하는 것을 고려해보세요.</span><span class="sxs-lookup"><span data-stu-id="e497e-198">Now that you completed this basic authentication tutorial, consider continuing on to one of the following tutorials:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8e590-197">다음 단계</span><span class="sxs-lookup"><span data-stu-id="8e590-197">Next steps</span></span>
+<span data-ttu-id="8e590-198">이 기본 인증 자습서를 완료 했으므로 tooone의 hello 다음 자습서를 계속 진행 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-198">Now that you completed this basic authentication tutorial, consider continuing on tooone of hello following tutorials:</span></span>
 
-* [<span data-ttu-id="e497e-199">앱에 푸시 알림 추가</span><span class="sxs-lookup"><span data-stu-id="e497e-199">Add push notifications to your app</span></span>](app-service-mobile-xamarin-forms-get-started-push.md)
+* [<span data-ttu-id="8e590-199">푸시 알림 tooyour 앱 추가</span><span class="sxs-lookup"><span data-stu-id="8e590-199">Add push notifications tooyour app</span></span>](app-service-mobile-xamarin-forms-get-started-push.md)
 
-  <span data-ttu-id="e497e-200">앱에 푸시 알림 지원을 추가하고 모바일 앱 백 엔드를 구성하여 푸시 알림을 보내는 Azure Notification Hubs를 사용하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-200">Learn how to add push notifications support to your app and configure your Mobile App backend to use Azure Notification Hubs to send push notifications.</span></span>
-* [<span data-ttu-id="e497e-201">앱에 오프라인 동기화 사용</span><span class="sxs-lookup"><span data-stu-id="e497e-201">Enable offline sync for your app</span></span>](app-service-mobile-xamarin-forms-get-started-offline-data.md)
+  <span data-ttu-id="8e590-200">Tooadd 푸시 알림을 tooyour 앱을 지원 하는 방법을 알아보고 여 모바일 앱 백 엔드 toouse Azure 알림 허브 toosend 푸시 알림을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-200">Learn how tooadd push notifications support tooyour app and configure your Mobile App backend toouse Azure Notification Hubs toosend push notifications.</span></span>
+* [<span data-ttu-id="8e590-201">앱에 오프라인 동기화 사용</span><span class="sxs-lookup"><span data-stu-id="8e590-201">Enable offline sync for your app</span></span>](app-service-mobile-xamarin-forms-get-started-offline-data.md)
 
-  <span data-ttu-id="e497e-202">모바일 앱 백 엔드를 사용하여 앱에 오프라인 지원을 추가하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-202">Learn how to add offline support your app using a Mobile App backend.</span></span> <span data-ttu-id="e497e-203">오프라인 동기화를 사용하면 최종 사용자는 네트워크에 연결되어 있지 않을 때도 모바일 앱과 데이터 보기, 추가 또는 수정과 같은 상호 작용을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e497e-203">Offline sync allows end users to interact with a mobile app - viewing, adding, or modifying data - even when there is no network connection.</span></span>
+  <span data-ttu-id="8e590-202">오프 라인 tooadd 모바일 앱 백 엔드를 사용 하 여 앱을 지 원하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-202">Learn how tooadd offline support your app using a Mobile App backend.</span></span> <span data-ttu-id="8e590-203">오프 라인 동기화 최종 사용자가 toointeract 보기, 추가 또는 네트워크 연결이 없는 경우에 데이터 요금-수정-모바일 앱을 허용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8e590-203">Offline sync allows end users toointeract with a mobile app - viewing, adding, or modifying data - even when there is no network connection.</span></span>
 
 <!-- Images. -->
 

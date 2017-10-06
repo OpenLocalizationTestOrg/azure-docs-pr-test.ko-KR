@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 2.0에서 Linux 환경 만들기 | Microsoft Docs"
-description: "Azure CLI 2.0을 사용하여 저장소, Linux VM, 가상 네트워크 및 서브넷, 부하 분산 장치, NIC, 공용 IP, 네트워크 보안 그룹을 모두 처음부터 새로 만듭니다."
+title: "aaaCreate Azure CLI 2.0 hello로 Linux 환경 | Microsoft Docs"
+description: "Hello Azure CLI 2.0을 사용 하 여 접지 hello 모두에서 저장소, Linux VM, 가상 네트워크 및 서브넷, 부하 분산 장치, NIC를, 공용 IP 및 네트워크 보안 그룹을 만듭니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/06/2017
 ms.author: iainfou
-ms.openlocfilehash: e5c4785428b2150e951923e98079e00808a82d87
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7287ea178e76001b84dade628ead04a59dc27f40
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-virtual-machine-with-the-azure-cli"></a><span data-ttu-id="a722c-103">Azure CLI를 사용하여 완전한 Linux 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-103">Create a complete Linux virtual machine with the Azure CLI</span></span>
-<span data-ttu-id="a722c-104">Azure에서 가상 컴퓨터(VM)를 신속하게 만들려면 기본 값을 사용하여 모든 필요한 지원 리소스를 생성하는 단일 Azure CLI 명령을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-104">To quickly create a virtual machine (VM) in Azure, you can use a single Azure CLI command that uses default values to create any required supporting resources.</span></span> <span data-ttu-id="a722c-105">가상 네트워크, 공용 IP 주소 및 네트워크 보안 그룹 규칙 등의 리소스는 자동으로 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-105">Resources such as a virtual network, public IP address, and network security group rules are automatically created.</span></span> <span data-ttu-id="a722c-106">프로덕션 환경에서의 더 높은 제어를 위해 미리 이 리소스를 만들어 VM을 여기에 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-106">For more control of your environment in production use, you may create these resources ahead of time and then add your VMs to them.</span></span> <span data-ttu-id="a722c-107">이 문서에서는 VM을 만들고 지원 리소스를 하나씩 만드는 방법을 안내합니다. </span><span class="sxs-lookup"><span data-stu-id="a722c-107">This article guides you through how to create a VM and each of the supporting resources one by one.</span></span>
+# <a name="create-a-complete-linux-virtual-machine-with-hello-azure-cli"></a><span data-ttu-id="d5109-103">Hello Azure CLI가 있는 완벽 한 Linux 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-103">Create a complete Linux virtual machine with hello Azure CLI</span></span>
+<span data-ttu-id="d5109-104">모든 필수 리소스를 지 원하는 기본 값 toocreate를 사용 하는 단일 Azure CLI 명령을 사용할 수 있습니다, tooquickly Azure에서 가상 컴퓨터 (VM)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-104">tooquickly create a virtual machine (VM) in Azure, you can use a single Azure CLI command that uses default values toocreate any required supporting resources.</span></span> <span data-ttu-id="d5109-105">가상 네트워크, 공용 IP 주소 및 네트워크 보안 그룹 규칙 등의 리소스는 자동으로 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-105">Resources such as a virtual network, public IP address, and network security group rules are automatically created.</span></span> <span data-ttu-id="d5109-106">프로덕션 환경에서 사용자 환경의 자세한 컨트롤에 대 한 사용, 이러한 리소스 보다 앞선 시간을 만들고 Vm toothem 추가 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-106">For more control of your environment in production use, you may create these resources ahead of time and then add your VMs toothem.</span></span> <span data-ttu-id="d5109-107">이 문서 어떻게 toocreate VM 및 각 hello 하나씩 지원 리소스에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-107">This article guides you through how toocreate a VM and each of hello supporting resources one by one.</span></span>
 
-<span data-ttu-id="a722c-108">최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치했고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인했는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-108">Make sure that you have installed the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and logged to an Azure account in with [az login](/cli/azure/#login).</span></span>
+<span data-ttu-id="d5109-108">Hello 최신 설치 되어 있는지 확인 [Azure CLI 2.0](/cli/azure/install-az-cli2) 에 있는 계정입니다. 기록 된 tooan Azure 및 [az 로그인](/cli/azure/#login)합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-108">Make sure that you have installed hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and logged tooan Azure account in with [az login](/cli/azure/#login).</span></span>
 
-<span data-ttu-id="a722c-109">다음 예제에서 매개 변수 이름을 고유한 값으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-109">In the following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="a722c-110">예제 매개 변수 이름에는 *myResourceGroup*, *myVnet*, *myVM*이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-110">Example parameter names include *myResourceGroup*, *myVnet*, and *myVM*.</span></span>
+<span data-ttu-id="d5109-109">Hello 다음 예제에서는 고유한 값으로 매개 변수 이름 예를 대체 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-109">In hello following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="d5109-110">예제 매개 변수 이름에는 *myResourceGroup*, *myVnet*, *myVM*이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-110">Example parameter names include *myResourceGroup*, *myVnet*, and *myVM*.</span></span>
 
-## <a name="create-resource-group"></a><span data-ttu-id="a722c-111">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-111">Create resource group</span></span>
-<span data-ttu-id="a722c-112">Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> <span data-ttu-id="a722c-113">리소스 그룹은 가상 컴퓨터와 지원하는 가상 네트워크 리소스에 앞서 만들어져야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-113">A resource group must be created before a virtual machine and supporting virtual network resources.</span></span> <span data-ttu-id="a722c-114">[az group create](/cli/azure/group#create)을 사용하여 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-114">Create the resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="a722c-115">다음 예제에서는 *eastus* 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-115">The following example creates a resource group named *myResourceGroup* in the *eastus* location:</span></span>
+## <a name="create-resource-group"></a><span data-ttu-id="d5109-111">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-111">Create resource group</span></span>
+<span data-ttu-id="d5109-112">Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> <span data-ttu-id="d5109-113">리소스 그룹은 가상 컴퓨터와 지원하는 가상 네트워크 리소스에 앞서 만들어져야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-113">A resource group must be created before a virtual machine and supporting virtual network resources.</span></span> <span data-ttu-id="d5109-114">Hello 리소스 그룹을 만들 [az 그룹 만들기](/cli/azure/group#create)합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-114">Create hello resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="d5109-115">hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroup* hello에 *eastus* 위치:</span><span class="sxs-lookup"><span data-stu-id="d5109-115">hello following example creates a resource group named *myResourceGroup* in hello *eastus* location:</span></span>
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-<span data-ttu-id="a722c-116">기본적으로 Azure CLI 명령의 출력은 JSON(JavaScript Object Notation)으로 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-116">By default, the output of Azure CLI commands is in JSON (JavaScript Object Notation).</span></span> <span data-ttu-id="a722c-117">기본 출력을 목록이나 테이블로 변경하려면 [az configure --output](/cli/azure/#configure)을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-117">To change the default output to a list or table, for example, use [az configure --output](/cli/azure/#configure).</span></span> <span data-ttu-id="a722c-118">출력 형식을 1번 변경하기 위해 명령에 `--output`을 추가할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-118">You can also add `--output` to any command for a one time change in output format.</span></span> <span data-ttu-id="a722c-119">다음 예제에서는 `az group create` 명령에서의 JSON 출력을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-119">The following example shows the JSON output from the `az group create` command:</span></span>
+<span data-ttu-id="d5109-116">기본적으로 Azure CLI 명령을 hello 출력은 JSON (JavaScript Object Notation).</span><span class="sxs-lookup"><span data-stu-id="d5109-116">By default, hello output of Azure CLI commands is in JSON (JavaScript Object Notation).</span></span> <span data-ttu-id="d5109-117">예를 들어 사용 toochange hello 기본 출력 tooa 목록 또는 테이블을 [az 구성-출력](/cli/azure/#configure)합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-117">toochange hello default output tooa list or table, for example, use [az configure --output](/cli/azure/#configure).</span></span> <span data-ttu-id="d5109-118">추가할 수도 있습니다 `--output` tooany 명령을 한 번에 대 한 출력 형식으로 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-118">You can also add `--output` tooany command for a one time change in output format.</span></span> <span data-ttu-id="d5109-119">hello 다음 예제에서는 hello JSON 출력을에서 보여 줍니다 hello `az group create` 명령:</span><span class="sxs-lookup"><span data-stu-id="d5109-119">hello following example shows hello JSON output from hello `az group create` command:</span></span>
 
 ```json                       
 {
@@ -49,8 +49,8 @@ az group create --name myResourceGroup --location eastus
 }
 ```
 
-## <a name="create-a-virtual-network-and-subnet"></a><span data-ttu-id="a722c-120">가상 네트워크 및 서브넷 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-120">Create a virtual network and subnet</span></span>
-<span data-ttu-id="a722c-121">다음에는 Azure에서 실행되는 가상 네트워크와, VM을 만들 수 있는 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-121">Next you create a virtual network in Azure and a subnet in to which you can create your VMs.</span></span> <span data-ttu-id="a722c-122">[az network vnet create](/cli/azure/network/vnet#create)를 사용하여 이름이 *myVnet*이고 주소 접두사가 *192.168.0.0/16*인 가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-122">Use [az network vnet create](/cli/azure/network/vnet#create) to create a virtual network named *myVnet* with the *192.168.0.0/16* address prefix.</span></span> <span data-ttu-id="a722c-123">주소 접두사로 *192.168.1.0/24*를 사용하는 *mySubnet*이라는 서브넷도 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-123">You also add a subnet named *mySubnet* with the address prefix of *192.168.1.0/24*:</span></span>
+## <a name="create-a-virtual-network-and-subnet"></a><span data-ttu-id="d5109-120">가상 네트워크 및 서브넷 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-120">Create a virtual network and subnet</span></span>
+<span data-ttu-id="d5109-121">그런 다음 Azure에서 가상 네트워크를 만드는 경우 및 toowhich의 서브넷을 Vm을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-121">Next you create a virtual network in Azure and a subnet in toowhich you can create your VMs.</span></span> <span data-ttu-id="d5109-122">사용 하 여 [az 네트워크 vnet 만들기](/cli/azure/network/vnet#create) toocreate 이라는 가상 네트워크 *myVnet* hello로 *192.168.0.0/16* 주소 접두사입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-122">Use [az network vnet create](/cli/azure/network/vnet#create) toocreate a virtual network named *myVnet* with hello *192.168.0.0/16* address prefix.</span></span> <span data-ttu-id="d5109-123">이라는 서브넷을 추가할 수도 *mySubnet* hello 주소 접두사와 *192.168.1.0/24*:</span><span class="sxs-lookup"><span data-stu-id="d5109-123">You also add a subnet named *mySubnet* with hello address prefix of *192.168.1.0/24*:</span></span>
 
 ```azurecli
 az network vnet create \
@@ -61,7 +61,7 @@ az network vnet create \
     --subnet-prefix 192.168.1.0/24
 ```
 
-<span data-ttu-id="a722c-124">출력에는 가상 네트워크 내에 논리적으로 만들어진 서브넷이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-124">The output shows the subnet as logically created inside the virtual network:</span></span>
+<span data-ttu-id="d5109-124">hello 출력 hello 서브넷을 hello 가상 네트워크 내에 만들어진 논리적으로 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-124">hello output shows hello subnet as logically created inside hello virtual network:</span></span>
 
 ```json
 {
@@ -101,8 +101,8 @@ az network vnet create \
 ```
 
 
-## <a name="create-a-public-ip-address"></a><span data-ttu-id="a722c-125">공용 IP 주소 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-125">Create a public IP address</span></span>
-<span data-ttu-id="a722c-126">이제 [az network public-ip create](/cli/azure/network/public-ip#create)를 사용하여 공용 IP 주소를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-126">Now let's create a public IP address with [az network public-ip create](/cli/azure/network/public-ip#create).</span></span> <span data-ttu-id="a722c-127">이 공용 IP 주소를 사용하면 인터넷에서 VM에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-127">This public IP address enables you to connect to your VMs from the Internet.</span></span> <span data-ttu-id="a722c-128">기본 주소가 동적이므로 `--domain-name-label` 옵션으로 명명된 DNS 항목도 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-128">Because the default address is dynamic, we also create a named DNS entry with the `--domain-name-label` option.</span></span> <span data-ttu-id="a722c-129">다음 예제는 *mypublicdns*라는 DNS 이름으로 *myPublicIP*라는 공용 IP를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-129">The following example creates a public IP named *myPublicIP* with the DNS name of *mypublicdns*.</span></span> <span data-ttu-id="a722c-130">DNS 이름은 고유해야 하므로 자체 DNS 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-130">Because the DNS name must be unique, provide your own unique DNS name:</span></span>
+## <a name="create-a-public-ip-address"></a><span data-ttu-id="d5109-125">공용 IP 주소 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-125">Create a public IP address</span></span>
+<span data-ttu-id="d5109-126">이제 [az network public-ip create](/cli/azure/network/public-ip#create)를 사용하여 공용 IP 주소를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-126">Now let's create a public IP address with [az network public-ip create](/cli/azure/network/public-ip#create).</span></span> <span data-ttu-id="d5109-127">이 공용 IP 주소가 있습니다 tooconnect tooyour를 Vm hello 인터넷에서에서 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-127">This public IP address enables you tooconnect tooyour VMs from hello Internet.</span></span> <span data-ttu-id="d5109-128">Hello로 명명 된 DNS 항목 hello 기본 주소는 동적도 생성 `--domain-name-label` 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-128">Because hello default address is dynamic, we also create a named DNS entry with hello `--domain-name-label` option.</span></span> <span data-ttu-id="d5109-129">hello 다음 예제에서는 명명 된 공용 IP *myPublicIP* 의 hello DNS 이름을 가진 *mypublicdns*합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-129">hello following example creates a public IP named *myPublicIP* with hello DNS name of *mypublicdns*.</span></span> <span data-ttu-id="d5109-130">Hello DNS 이름은 고유 해야 하기 때문에 고유한 DNS 이름을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-130">Because hello DNS name must be unique, provide your own unique DNS name:</span></span>
 
 ```azurecli
 az network public-ip create \
@@ -111,7 +111,7 @@ az network public-ip create \
     --dns-name mypublicdns
 ```
 
-<span data-ttu-id="a722c-131">출력:</span><span class="sxs-lookup"><span data-stu-id="a722c-131">Output:</span></span>
+<span data-ttu-id="d5109-131">출력:</span><span class="sxs-lookup"><span data-stu-id="d5109-131">Output:</span></span>
 
 ```json
 {
@@ -140,8 +140,8 @@ az network public-ip create \
 ```
 
 
-## <a name="create-a-network-security-group"></a><span data-ttu-id="a722c-132">네트워크 보안 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-132">Create a network security group</span></span>
-<span data-ttu-id="a722c-133">VM 내/외부 네트워크 트래픽의 흐름을 제어하기 위해 네트워크 보안 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-133">To control the flow of traffic in and out of your VMs, create a network security group.</span></span> <span data-ttu-id="a722c-134">네트워크 보안 그룹은 NIC 또는 서브넷에 적용될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-134">A network security group can be applied to a NIC or subnet.</span></span> <span data-ttu-id="a722c-135">다음 예제에서는 [az network nsg create](/cli/azure/network/nsg#create)를 사용하여 *myNetworkSecurityGroup*이라는 네트워크 보안 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-135">The following example uses [az network nsg create](/cli/azure/network/nsg#create) to create a network security group named *myNetworkSecurityGroup*:</span></span>
+## <a name="create-a-network-security-group"></a><span data-ttu-id="d5109-132">네트워크 보안 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-132">Create a network security group</span></span>
+<span data-ttu-id="d5109-133">toocontrol hello 트래픽 흐름을 Vm에 내부 및 외부 네트워크 보안 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-133">toocontrol hello flow of traffic in and out of your VMs, create a network security group.</span></span> <span data-ttu-id="d5109-134">네트워크 보안 그룹에 적용 된 tooa NIC 또는 서브넷 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-134">A network security group can be applied tooa NIC or subnet.</span></span> <span data-ttu-id="d5109-135">hello 다음 예제에서는 [az 네트워크 nsg 만들기](/cli/azure/network/nsg#create) 네트워크 보안 그룹 이라는 toocreate *myNetworkSecurityGroup*:</span><span class="sxs-lookup"><span data-stu-id="d5109-135">hello following example uses [az network nsg create](/cli/azure/network/nsg#create) toocreate a network security group named *myNetworkSecurityGroup*:</span></span>
 
 ```azurecli
 az network nsg create \
@@ -149,7 +149,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="a722c-136">특정 트래픽을 허용하거나 거부하는 규칙을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-136">You define rules that allow or deny the specific traffic.</span></span> <span data-ttu-id="a722c-137">[az network nsg rule create](/cli/azure/network/nsg/rule#create)를 사용하여 포트 22에서 모든 인바운드 연결을 허용하는 네트워크 보안 그룹의 인바운드 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-137">To allow inbound connections on port 22 (to support SSH), create an inbound rule for the network security group with [az network nsg rule create](/cli/azure/network/nsg/rule#create).</span></span> <span data-ttu-id="a722c-138">다음 예제에서는 *myNetworkSecurityGroupRuleSSH*이라는 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-138">The following example creates a rule named *myNetworkSecurityGroupRuleSSH*:</span></span>
+<span data-ttu-id="d5109-136">Hello 특정 트래픽을 허용 하거나 거부 하는 규칙을 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-136">You define rules that allow or deny hello specific traffic.</span></span> <span data-ttu-id="d5109-137">tooallow 22 (toosupport SSH) 포트에서 인바운드 연결 네트워크 보안 그룹을 hello에 대 한 인바운드 규칙을 만듭니다 [az 네트워크 nsg 규칙 만들기](/cli/azure/network/nsg/rule#create)합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-137">tooallow inbound connections on port 22 (toosupport SSH), create an inbound rule for hello network security group with [az network nsg rule create](/cli/azure/network/nsg/rule#create).</span></span> <span data-ttu-id="d5109-138">hello 다음 규칙을 만드는 예제는 명명 된 *myNetworkSecurityGroupRuleSSH*:</span><span class="sxs-lookup"><span data-stu-id="d5109-138">hello following example creates a rule named *myNetworkSecurityGroupRuleSSH*:</span></span>
 
 ```azurecli
 az network nsg rule create \
@@ -162,7 +162,7 @@ az network nsg rule create \
     --access allow
 ```
 
-<span data-ttu-id="a722c-139">포트 80에서 인바운드 연결을 허용하기 위해(웹 트래픽 지원) 다른 네트워크 보안 그룹 규칙을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-139">To allow inbound connections on port 80 (to support web traffic), add another network security group rule.</span></span> <span data-ttu-id="a722c-140">다음 예제에서는 *myNetworkSecurityGroupRuleHTTP*라는 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-140">The following example creates a rule named *myNetworkSecurityGroupRuleHTTP*:</span></span>
+<span data-ttu-id="d5109-139">tooallow 다른 네트워크 보안 그룹 규칙을 추가 하는 포트 80 (toosupport 웹 트래픽)에 대 한 인바운드 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-139">tooallow inbound connections on port 80 (toosupport web traffic), add another network security group rule.</span></span> <span data-ttu-id="d5109-140">hello 다음 규칙을 만드는 예제는 명명 된 *myNetworkSecurityGroupRuleHTTP*:</span><span class="sxs-lookup"><span data-stu-id="d5109-140">hello following example creates a rule named *myNetworkSecurityGroupRuleHTTP*:</span></span>
 
 ```azurecli
 az network nsg rule create \
@@ -175,13 +175,13 @@ az network nsg rule create \
     --access allow
 ```
 
-<span data-ttu-id="a722c-141">[az network nsg show](/cli/azure/network/nsg#show)를 사용하여 네트워크 보안 그룹 및 규칙을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-141">Examine the network security group and rules with [az network nsg show](/cli/azure/network/nsg#show):</span></span>
+<span data-ttu-id="d5109-141">Hello 네트워크 보안 그룹 및 규칙을 검사 하 여 [az 네트워크 nsg 쇼](/cli/azure/network/nsg#show):</span><span class="sxs-lookup"><span data-stu-id="d5109-141">Examine hello network security group and rules with [az network nsg show](/cli/azure/network/nsg#show):</span></span>
 
 ```azurecli
 az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="a722c-142">출력:</span><span class="sxs-lookup"><span data-stu-id="a722c-142">Output:</span></span>
+<span data-ttu-id="d5109-142">출력:</span><span class="sxs-lookup"><span data-stu-id="d5109-142">Output:</span></span>
 
 ```json
 {
@@ -236,7 +236,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+      "description": "Allow outbound traffic from all VMs tooall VMs in VNET",
       "destinationAddressPrefix": "VirtualNetwork",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -252,7 +252,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to Internet",
+      "description": "Allow outbound traffic from all VMs tooInternet",
       "destinationAddressPrefix": "Internet",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -331,8 +331,8 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
 }
 ```
 
-## <a name="create-a-virtual-nic"></a><span data-ttu-id="a722c-143">가상 NIC 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-143">Create a virtual NIC</span></span>
-<span data-ttu-id="a722c-144">가상 네트워크 인터페이스 카드(NIC)는 사용할 때 규칙을 적용할 수 있으므로 프로그래밍 방식으로 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-144">Virtual network interface cards (NICs) are programmatically available because you can apply rules to their use.</span></span> <span data-ttu-id="a722c-145">2개 이상 있을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-145">You can also have more than one.</span></span> <span data-ttu-id="a722c-146">다음 [az network nic create](/cli/azure/network/nic#create) 명령에서 이름이 *myNic*인 NIC를 만들어 네트워크 보안 그룹과 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-146">In the following [az network nic create](/cli/azure/network/nic#create) command, you create a NIC named *myNic* and associate it with the network security group.</span></span> <span data-ttu-id="a722c-147">공용 IP 주소 *myPublicIP*도 가상 NIC에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-147">The public IP address *myPublicIP* is also associated with the virtual NIC.</span></span>
+## <a name="create-a-virtual-nic"></a><span data-ttu-id="d5109-143">가상 NIC 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-143">Create a virtual NIC</span></span>
+<span data-ttu-id="d5109-144">가상 네트워크 인터페이스 카드 (Nic)은 tootheir 사용 규칙을 적용할 수 있으므로 프로그래밍 방식으로 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-144">Virtual network interface cards (NICs) are programmatically available because you can apply rules tootheir use.</span></span> <span data-ttu-id="d5109-145">2개 이상 있을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-145">You can also have more than one.</span></span> <span data-ttu-id="d5109-146">Hello 다음과에서 [az 네트워크 nic 만들](/cli/azure/network/nic#create) 명령, 명명 된 NIC를 만들고 *myNic* hello 네트워크 보안 그룹에 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-146">In hello following [az network nic create](/cli/azure/network/nic#create) command, you create a NIC named *myNic* and associate it with hello network security group.</span></span> <span data-ttu-id="d5109-147">공용 IP 주소를 hello *myPublicIP* hello 가상 NIC.과 관련 되어</span><span class="sxs-lookup"><span data-stu-id="d5109-147">hello public IP address *myPublicIP* is also associated with hello virtual NIC.</span></span>
 
 ```azurecli
 az network nic create \
@@ -344,7 +344,7 @@ az network nic create \
     --network-security-group myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="a722c-148">출력:</span><span class="sxs-lookup"><span data-stu-id="a722c-148">Output:</span></span>
+<span data-ttu-id="d5109-148">출력:</span><span class="sxs-lookup"><span data-stu-id="d5109-148">Output:</span></span>
 
 ```json
 {
@@ -435,16 +435,16 @@ az network nic create \
 ```
 
 
-## <a name="create-an-availability-set"></a><span data-ttu-id="a722c-149">가용성 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-149">Create an availability set</span></span>
-<span data-ttu-id="a722c-150">가용성 집합은 장애 도메인 및 업데이트 도메인에 걸쳐 VM을 분산하는 데 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-150">Availability sets help spread your VMs across fault domains and update domains.</span></span> <span data-ttu-id="a722c-151">당장은 하나의 VM만 만든다 하더라도 향후 확장하기 쉽게 가용성 집합을 사용하는 것이 가장 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-151">Even though you only create one VM right now, it's best practice to use availability sets to make it easier to expand in the future.</span></span> 
+## <a name="create-an-availability-set"></a><span data-ttu-id="d5109-149">가용성 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-149">Create an availability set</span></span>
+<span data-ttu-id="d5109-150">가용성 집합은 장애 도메인 및 업데이트 도메인에 걸쳐 VM을 분산하는 데 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-150">Availability sets help spread your VMs across fault domains and update domains.</span></span> <span data-ttu-id="d5109-151">모범 사례 toouse 가용성 집합 toomake는만 하나의 VM 지금 바로 만들 경우에 해당 hello 향후에 더 쉽게 tooexpand 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-151">Even though you only create one VM right now, it's best practice toouse availability sets toomake it easier tooexpand in hello future.</span></span> 
 
-<span data-ttu-id="a722c-152">장애 도메인은 공통의 전원 및 네트워크 스위치를 공유하는 가상 컴퓨터 그룹을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-152">Fault domains define a grouping of virtual machines that share a common power source and network switch.</span></span> <span data-ttu-id="a722c-153">기본적으로 가용성 집합 안에 구성된 가상 컴퓨터는 최대 3개의 장애 도메인에 분산되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-153">By default, the virtual machines that are configured within your availability set are separated across up to three fault domains.</span></span> <span data-ttu-id="a722c-154">이러한 장애 도메인 중 하나에서 발생한 하드웨어 문제가 앱을 실행 중인 모든 VM에 영향을 미치지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-154">A hardware issue in one of these fault domains does not affect every VM that is running your app.</span></span>
+<span data-ttu-id="d5109-152">장애 도메인은 공통의 전원 및 네트워크 스위치를 공유하는 가상 컴퓨터 그룹을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-152">Fault domains define a grouping of virtual machines that share a common power source and network switch.</span></span> <span data-ttu-id="d5109-153">기본적으로 가용성 집합 내에서 구성 된 가상 컴퓨터를 hello toothree 오류 도메인을 걸쳐 분리 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-153">By default, hello virtual machines that are configured within your availability set are separated across up toothree fault domains.</span></span> <span data-ttu-id="d5109-154">이러한 장애 도메인 중 하나에서 발생한 하드웨어 문제가 앱을 실행 중인 모든 VM에 영향을 미치지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-154">A hardware issue in one of these fault domains does not affect every VM that is running your app.</span></span>
 
-<span data-ttu-id="a722c-155">업데이트 도메인은 동시에 다시 부팅할 수 있는 가상 컴퓨터 그룹과 기본 물리적 하드웨어를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-155">Update domains indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.</span></span> <span data-ttu-id="a722c-156">계획된 유지 보수 중에 업데이트 도메인의 재부팅 순서는 순차적으로 진행되지 않을 수 있으며, 한 번에 하나의 업데이트 도메인만 재부팅됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-156">During planned maintenance, the order in which update domains are rebooted might not be sequential, but only one update domain is rebooted at a time.</span></span>
+<span data-ttu-id="d5109-155">업데이트 도메인 hello에서 다시 부팅 해야 하는 기본 실제 하드웨어와 가상 컴퓨터 그룹을 나타내는 동시 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-155">Update domains indicate groups of virtual machines and underlying physical hardware that can be rebooted at hello same time.</span></span> <span data-ttu-id="d5109-156">계획 된 유지 관리 하는 동안 업데이트 도메인 재부팅 됩니다 hello 순서 순차적, 않을 수 있지만 한 번에 하나의 업데이트 도메인을 다시 부팅 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-156">During planned maintenance, hello order in which update domains are rebooted might not be sequential, but only one update domain is rebooted at a time.</span></span>
 
-<span data-ttu-id="a722c-157">Azure는 가용성 집합에 VM을 배치할 때 VM을 전체 장애 및 업데이트 도메인에 자동으로 분산합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-157">Azure automatically distributes VMs across the fault and update domains when placing them in an availability set.</span></span> <span data-ttu-id="a722c-158">자세한 내용은 [VM의 가용성 관리](manage-availability.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a722c-158">For more information, see [managing the availability of VMs](manage-availability.md).</span></span>
+<span data-ttu-id="d5109-157">Azure 자동으로 Vm hello 장애 도메인과 업데이트 도메인에 걸쳐 때 배포 가용성 집합에 배치 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-157">Azure automatically distributes VMs across hello fault and update domains when placing them in an availability set.</span></span> <span data-ttu-id="d5109-158">자세한 내용은 참조 [Vm의 가용성을 hello 관리](manage-availability.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-158">For more information, see [managing hello availability of VMs](manage-availability.md).</span></span>
 
-<span data-ttu-id="a722c-159">[az vm availability-set create](/cli/azure/vm/availability-set#create)를 사용하여 VM에 대한 가용성 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-159">Create an availability set for your VM with [az vm availability-set create](/cli/azure/vm/availability-set#create).</span></span> <span data-ttu-id="a722c-160">다음 예제는 *myAvailabilitySet*이라는 가용성 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-160">The following example creates an availability set named *myAvailabilitySet*:</span></span>
+<span data-ttu-id="d5109-159">[az vm availability-set create](/cli/azure/vm/availability-set#create)를 사용하여 VM에 대한 가용성 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-159">Create an availability set for your VM with [az vm availability-set create](/cli/azure/vm/availability-set#create).</span></span> <span data-ttu-id="d5109-160">hello 다음 예제에서는 가용성 명명 된 집합 *myAvailabilitySet*:</span><span class="sxs-lookup"><span data-stu-id="d5109-160">hello following example creates an availability set named *myAvailabilitySet*:</span></span>
 
 ```azurecli
 az vm availability-set create \
@@ -452,7 +452,7 @@ az vm availability-set create \
     --name myAvailabilitySet
 ```
 
-<span data-ttu-id="a722c-161">출력에서 장애 도메인과 업데이트 도메인을 알립니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-161">The output notes fault domains and update domains:</span></span>
+<span data-ttu-id="d5109-161">출력 메모 오류 도메인 hello 하 고 도메인을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-161">hello output notes fault domains and update domains:</span></span>
 
 ```json
 {
@@ -476,12 +476,12 @@ az vm availability-set create \
 ```
 
 
-## <a name="create-the-linux-vms"></a><span data-ttu-id="a722c-162">Linux VM 만들기</span><span class="sxs-lookup"><span data-stu-id="a722c-162">Create the Linux VMs</span></span>
-<span data-ttu-id="a722c-163">인터넷에서 액세스 가능한 VM을 지원하기 위해 네트워크 리소스를 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-163">You've created the network resources to support Internet-accessible VMs.</span></span> <span data-ttu-id="a722c-164">이제 VM을 만들어 SSH 키로 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-164">Now create a VM and secure it with an SSH key.</span></span> <span data-ttu-id="a722c-165">이 예에서는 가장 최근의 LTS를 기반으로 Ubuntu VM을 만들겠습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-165">In this case, we're going to create an Ubuntu VM based on the most recent LTS.</span></span> <span data-ttu-id="a722c-166">[Azure VM 이미지 찾기](cli-ps-findimage.md)에서 설명한 대로 [az vm image list](/cli/azure/vm/image#list)를 통해 추가적인 이미지를 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-166">You can find additional images with [az vm image list](/cli/azure/vm/image#list), as described in [finding Azure VM images](cli-ps-findimage.md).</span></span>
+## <a name="create-hello-linux-vms"></a><span data-ttu-id="d5109-162">Hello Linux Vm 만들기</span><span class="sxs-lookup"><span data-stu-id="d5109-162">Create hello Linux VMs</span></span>
+<span data-ttu-id="d5109-163">Hello 네트워크 리소스 toosupport를 인터넷에서 액세스할 수 있는 Vm 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-163">You've created hello network resources toosupport Internet-accessible VMs.</span></span> <span data-ttu-id="d5109-164">이제 VM을 만들어 SSH 키로 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-164">Now create a VM and secure it with an SSH key.</span></span> <span data-ttu-id="d5109-165">이 예에서 여기 toocreate Ubuntu VM hello에 따라 가장 최근의 LTS 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-165">In this case, we're going toocreate an Ubuntu VM based on hello most recent LTS.</span></span> <span data-ttu-id="d5109-166">[Azure VM 이미지 찾기](cli-ps-findimage.md)에서 설명한 대로 [az vm image list](/cli/azure/vm/image#list)를 통해 추가적인 이미지를 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-166">You can find additional images with [az vm image list](/cli/azure/vm/image#list), as described in [finding Azure VM images](cli-ps-findimage.md).</span></span>
 
-<span data-ttu-id="a722c-167">인증에 사용할 SSH 키도 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-167">We also specify an SSH key to use for authentication.</span></span> <span data-ttu-id="a722c-168">SSH 공개 키 쌍이 없는 경우 [만들거나 ](mac-create-ssh-keys.md) `--generate-ssh-keys` 매개 변수를 사용하여 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-168">If you do not have an SSH public key pair, you can [create them](mac-create-ssh-keys.md) or use the `--generate-ssh-keys` parameter to create them for you.</span></span> <span data-ttu-id="a722c-169">키 쌍이 있으면 이 매개 변수는 `~/.ssh`의 기존 키를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-169">If you already a key pair, this parameter uses existing keys in `~/.ssh`.</span></span>
+<span data-ttu-id="d5109-167">또한 인증을 위해 SSH 키 toouse를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-167">We also specify an SSH key toouse for authentication.</span></span> <span data-ttu-id="d5109-168">SSH 공개 키 쌍이 없는 경우 다음을 할 수 있습니다 [만들](mac-create-ssh-keys.md) hello를 사용 하 여 또는 `--generate-ssh-keys` 매개 변수 toocreate ç 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-168">If you do not have an SSH public key pair, you can [create them](mac-create-ssh-keys.md) or use hello `--generate-ssh-keys` parameter toocreate them for you.</span></span> <span data-ttu-id="d5109-169">키 쌍이 있으면 이 매개 변수는 `~/.ssh`의 기존 키를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-169">If you already a key pair, this parameter uses existing keys in `~/.ssh`.</span></span>
 
-<span data-ttu-id="a722c-170">[az vm create](/cli/azure/vm#create) 명령으로 모든 리소스 및 정보를 결합하여 VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-170">Create the VM by bringing all our resources and information together with the [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="a722c-171">다음 예제에서는 *myVM*이라는 VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-171">The following example creates a VM named *myVM*:</span></span>
+<span data-ttu-id="d5109-170">모든 리소스와 정보를 hello 함께 전환 하 여 hello VM 만들기 [az vm 만들기](/cli/azure/vm#create) 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-170">Create hello VM by bringing all our resources and information together with hello [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="d5109-171">hello 다음 예제에서는 V *myVM*:</span><span class="sxs-lookup"><span data-stu-id="d5109-171">hello following example creates a VM named *myVM*:</span></span>
 
 ```azurecli
 az vm create \
@@ -495,7 +495,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-<span data-ttu-id="a722c-172">공용 IP 주소를 만들 때 제공한 DNS 항목이 있는 VM에 대한 SSH.</span><span class="sxs-lookup"><span data-stu-id="a722c-172">SSH to your VM with the DNS entry you provided when you created the public IP address.</span></span> <span data-ttu-id="a722c-173">이 `fqdn`은 VM을 만들 때 출력에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-173">This `fqdn` is shown in the output as you create your VM:</span></span>
+<span data-ttu-id="d5109-172">Hello 공용 IP 주소를 만들 때 제공한 DNS 항목 hello로 SSH tooyour VM입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-172">SSH tooyour VM with hello DNS entry you provided when you created hello public IP address.</span></span> <span data-ttu-id="d5109-173">이 `fqdn` VM을 만드는 것 만큼 hello 출력에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-173">This `fqdn` is shown in hello output as you create your VM:</span></span>
 
 ```json
 {
@@ -514,14 +514,14 @@ az vm create \
 ssh azureuser@mypublicdns.eastus.cloudapp.azure.com
 ```
 
-<span data-ttu-id="a722c-174">출력:</span><span class="sxs-lookup"><span data-stu-id="a722c-174">Output:</span></span>
+<span data-ttu-id="d5109-174">출력:</span><span class="sxs-lookup"><span data-stu-id="d5109-174">Output:</span></span>
 
 ```bash
-The authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
+hello authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
 ECDSA key fingerprint is SHA256:SylINP80Um6XRTvWiFaNz+H+1jcrKB1IiNgCDDJRj6A.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) toohello list of known hosts.
+Welcome tooUbuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -534,39 +534,39 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 0 updates are security updates.
 
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
+hello programs included with hello Ubuntu system are free software;
+hello exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+Ubuntu comes with ABSOLUTELY NO WARRANTY, toohello extent permitted by
 applicable law.
 
-To run a command as administrator (user "root"), use "sudo <command>".
+toorun a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
 azureuser@myVM:~$
 ```
 
-<span data-ttu-id="a722c-175">NGINX를 설치하고 VM에 대한 트래픽 흐름을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-175">You can install NGINX and see the traffic flow to the VM.</span></span> <span data-ttu-id="a722c-176">다음과 같이 NGINX를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-176">Install NGINX as follows:</span></span>
+<span data-ttu-id="d5109-175">NGINX를 설치 하 고 hello 트래픽 흐름 toohello VM을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-175">You can install NGINX and see hello traffic flow toohello VM.</span></span> <span data-ttu-id="d5109-176">다음과 같이 NGINX를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-176">Install NGINX as follows:</span></span>
 
 ```bash
 sudo apt-get install -y nginx
 ```
 
-<span data-ttu-id="a722c-177">작동 중인 기본 NGINX 사이트를 확인하려면 웹 브라우저를 열고 FQDN을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-177">To see the default NGINX site in action, open your web browser and enter your FQDN:</span></span>
+<span data-ttu-id="d5109-177">toosee hello 기본 NGINX 사이트 작업에서 웹 브라우저를 열고에 FQDN을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-177">toosee hello default NGINX site in action, open your web browser and enter your FQDN:</span></span>
 
 ![VM의 기본 NGINX 사이트](media/create-cli-complete/nginx.png)
 
-## <a name="export-as-a-template"></a><span data-ttu-id="a722c-179">템플릿으로 내보내기</span><span class="sxs-lookup"><span data-stu-id="a722c-179">Export as a template</span></span>
-<span data-ttu-id="a722c-180">동일한 매개 변수를 사용하여 추가 개발 환경을 만들려고 하거나 일치하는 프로덕션 환경을 만들려면 어떻게 해야 할까요?</span><span class="sxs-lookup"><span data-stu-id="a722c-180">What if you now want to create an additional development environment with the same parameters, or a production environment that matches it?</span></span> <span data-ttu-id="a722c-181">Resource Manager는 사용자 환경에 대한 모든 매개 변수를 정의하는 JSON 템플릿을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-181">Resource Manager uses JSON templates that define all the parameters for your environment.</span></span> <span data-ttu-id="a722c-182">이 JSON 템플릿을 참조하여 전체 환경을 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-182">You build out entire environments by referencing this JSON template.</span></span> <span data-ttu-id="a722c-183">[JSON 템플릿을 수동으로 빌드](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)하거나 기존 환경을 내보내 JSON 템플릿을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-183">You can [build JSON templates manually](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or export an existing environment to create the JSON template for you.</span></span> <span data-ttu-id="a722c-184">다음과 같이 [az group export](/cli/azure/group#export)를 사용하여 리소스 그룹을 내보냅니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-184">Use [az group export](/cli/azure/group#export) to export your resource group as follows:</span></span>
+## <a name="export-as-a-template"></a><span data-ttu-id="d5109-179">템플릿으로 내보내기</span><span class="sxs-lookup"><span data-stu-id="d5109-179">Export as a template</span></span>
+<span data-ttu-id="d5109-180">이제 toocreate hello로 추가 개발 환경을 원하는 경우 동일한 매개 변수 또는 일치 하는 프로덕션 환경?</span><span class="sxs-lookup"><span data-stu-id="d5109-180">What if you now want toocreate an additional development environment with hello same parameters, or a production environment that matches it?</span></span> <span data-ttu-id="d5109-181">리소스 관리자는 사용자 환경에 대 한 모든 hello 매개 변수를 정의 하는 JSON 템플릿을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-181">Resource Manager uses JSON templates that define all hello parameters for your environment.</span></span> <span data-ttu-id="d5109-182">이 JSON 템플릿을 참조하여 전체 환경을 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-182">You build out entire environments by referencing this JSON template.</span></span> <span data-ttu-id="d5109-183">할 수 있습니다 [JSON 서식 파일을 수동으로 빌드할](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 또는 기존 환경 toocreate hello JSON 템플릿을 내보냅니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-183">You can [build JSON templates manually](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or export an existing environment toocreate hello JSON template for you.</span></span> <span data-ttu-id="d5109-184">사용 하 여 [az 그룹 내보내기](/cli/azure/group#export) tooexport 리소스 그룹 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-184">Use [az group export](/cli/azure/group#export) tooexport your resource group as follows:</span></span>
 
 ```azurecli
 az group export --name myResourceGroup > myResourceGroup.json
 ```
 
-<span data-ttu-id="a722c-185">이 명령을 실행하면 `myResourceGroup.json` 파일이 현재 작업 디렉터리에 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-185">This command creates the `myResourceGroup.json` file in your current working directory.</span></span> <span data-ttu-id="a722c-186">이 템플릿에서 환경을 만들면 모든 리소스 이름을 입력하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-186">When you create an environment from this template, you are prompted for all the resource names.</span></span> <span data-ttu-id="a722c-187">`az group export` 명령에 `--include-parameter-default-value` 매개 변수를 추가하여 템플릿 파일에 이러한 이름을 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-187">You can populate these names in your template file by adding the `--include-parameter-default-value` parameter to the `az group export` command.</span></span> <span data-ttu-id="a722c-188">JSON 템플릿을 편집하여 리소스 이름을 지정하거나 리소스 이름을 지정하는 [parameters.json 파일을 만듭니다](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) .</span><span class="sxs-lookup"><span data-stu-id="a722c-188">Edit your JSON template to specify the resource names, or [create a parameters.json file](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) that specifies the resource names.</span></span>
+<span data-ttu-id="d5109-185">이 명령은 만듭니다 hello `myResourceGroup.json` 현재 작업 디렉터리에 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-185">This command creates hello `myResourceGroup.json` file in your current working directory.</span></span> <span data-ttu-id="d5109-186">이 템플릿에서 환경을 만들 때 모든 hello 리소스 이름을 하 라는 메시지가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-186">When you create an environment from this template, you are prompted for all hello resource names.</span></span> <span data-ttu-id="d5109-187">Hello를 추가 하 여 템플릿 파일에 이러한 이름을 채울 수 있습니다 `--include-parameter-default-value` 매개 변수 toohello `az group export` 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-187">You can populate these names in your template file by adding hello `--include-parameter-default-value` parameter toohello `az group export` command.</span></span> <span data-ttu-id="d5109-188">JSON 템플릿 toospecify hello 리소스 이름의 편집 또는 [parameters.json 파일을 만들](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) hello 리소스 이름을 지정 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-188">Edit your JSON template toospecify hello resource names, or [create a parameters.json file](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) that specifies hello resource names.</span></span>
 
-<span data-ttu-id="a722c-189">템플릿에서 환경을 만들려면 다음과 같이 [az group deployment create](/cli/azure/group/deployment#create)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-189">To create an environment from your template, use [az group deployment create](/cli/azure/group/deployment#create) as follows:</span></span>
+<span data-ttu-id="d5109-189">서식 파일을 사용 하 여 환경 toocreate [az 그룹 배포 만들기](/cli/azure/group/deployment#create) 다음과 같습니다:</span><span class="sxs-lookup"><span data-stu-id="d5109-189">toocreate an environment from your template, use [az group deployment create](/cli/azure/group/deployment#create) as follows:</span></span>
 
 ```azurecli
 az group deployment create \
@@ -574,7 +574,7 @@ az group deployment create \
     --template-file myResourceGroup.json
 ```
 
-<span data-ttu-id="a722c-190">[템플릿에서 배포하는 방법에 대해 자세히 읽어볼 수 있습니다](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="a722c-190">You might want to read [more about how to deploy from templates](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="a722c-191">환경을 점진적으로 업데이트하고, 매개 변수 파일을 사용하고, 단일 저장소 위치에서 템플릿에 액세스하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-191">Learn about how to incrementally update environments, use the parameters file, and access templates from a single storage location.</span></span>
+<span data-ttu-id="d5109-190">Tooread 경우가 [방법에 대 한 자세한 템플릿에서 toodeploy](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-190">You might want tooread [more about how toodeploy from templates](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="d5109-191">Tooincrementally 업데이트 환경 hello 매개 변수 파일을 사용 하 고 단일 저장소 위치에서 서식 파일에 액세스 하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-191">Learn about how tooincrementally update environments, use hello parameters file, and access templates from a single storage location.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a722c-192">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a722c-192">Next steps</span></span>
-<span data-ttu-id="a722c-193">이제 여러 네트워킹 구성 요소 및 VM을 사용할 준비가 되셨습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-193">Now you're ready to begin working with multiple networking components and VMs.</span></span> <span data-ttu-id="a722c-194">이 샘플 환경에 사용하여 여기에 소개된 핵심 구성 요소로 응용 프로그램을 빌드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a722c-194">You can use this sample environment to build out your application by using the core components introduced here.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d5109-192">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d5109-192">Next steps</span></span>
+<span data-ttu-id="d5109-193">이제 준비 toobegin 여러 네트워킹 구성 요소 및 Vm을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-193">Now you're ready toobegin working with multiple networking components and VMs.</span></span> <span data-ttu-id="d5109-194">여기 도입 hello 핵심 구성 요소를 사용 하 여이 샘플 환경 toobuild 응용 프로그램에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d5109-194">You can use this sample environment toobuild out your application by using hello core components introduced here.</span></span>

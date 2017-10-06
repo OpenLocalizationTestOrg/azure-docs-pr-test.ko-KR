@@ -1,6 +1,6 @@
 ---
-title: "IoT Hub 장치-클라우드 메시지 처리(Java) | Microsoft Docs"
-description: "다른 백 엔드 서비스에 메시지를 발송하기 위해 경로 규칙 및 사용자 지정 끝점을 사용하여 IoT Hub 장치-클라우드 메시지를 처리하는 방법을 설명합니다."
+title: "Azure IoT Hub 장치-클라우드 메시지 (Java) aaaProcess | Microsoft Docs"
+description: "어떻게 tooprocess 라우팅 규칙 및 사용자 지정 끝점 toodispatch를 사용 하 여 IoT Hub 장치-클라우드 메시지 tooother 백 엔드 서비스 메시지입니다."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
-ms.openlocfilehash: d1aca8f39e305105d4ec9f63fbe7bee95487e294
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 084e84e721ca4297c4d7d6cb06a43b0bed9bce85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="process-iot-hub-device-to-cloud-messages-java"></a><span data-ttu-id="dbc0f-103">IoT Hub 장치-클라우드 메시지 처리(Java)</span><span class="sxs-lookup"><span data-stu-id="dbc0f-103">Process IoT Hub device-to-cloud messages (Java)</span></span>
+# <a name="process-iot-hub-device-to-cloud-messages-java"></a><span data-ttu-id="16508-103">IoT Hub 장치-클라우드 메시지 처리(Java)</span><span class="sxs-lookup"><span data-stu-id="16508-103">Process IoT Hub device-to-cloud messages (Java)</span></span>
 
 [!INCLUDE [iot-hub-selector-process-d2c](../../includes/iot-hub-selector-process-d2c.md)]
 
-<span data-ttu-id="dbc0f-104">Azure IoT Hub는 수백만의 장치와 솔루션 백 엔드 간에서 안정적이고 안전한 양방향 통신이 가능하도록 완전히 관리되는 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-104">Azure IoT Hub is a fully managed service that enables reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="dbc0f-105">다른 자습서([simulated-device] 및 [IoT Hub를 사용하여 클라우드-장치 메시지 보내기][lnk-c2d])에서는 IoT Hub의 기본 장치-클라우드 및 클라우드-장치 메시징 기능을 사용하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-105">Other tutorials ([Get started with IoT Hub] and [Send cloud-to-device messages with IoT Hub][lnk-c2d]) show you how to use the basic device-to-cloud and cloud-to-device messaging functionality of IoT Hub.</span></span>
+<span data-ttu-id="16508-104">Azure IoT Hub는 수백만의 장치와 솔루션 백 엔드 간에서 안정적이고 안전한 양방향 통신이 가능하도록 완전히 관리되는 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-104">Azure IoT Hub is a fully managed service that enables reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="16508-105">다른 자습서 ([IoT 허브 시작] 및 [IoT Hub와 클라우드-장치 메시지를 보낼][lnk-c2d]) 기본 장치-클라우드 및 클라우드-장치 toouse hello 하는 방법을 보여 줍니다 IoT Hub의 메시징 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-105">Other tutorials ([Get started with IoT Hub] and [Send cloud-to-device messages with IoT Hub][lnk-c2d]) show you how toouse hello basic device-to-cloud and cloud-to-device messaging functionality of IoT Hub.</span></span>
 
-<span data-ttu-id="dbc0f-106">이 자습서에서는 [simulated-device] 자습서에 나와 있는 코드를 기반으로 하며, 메시지 라우팅을 사용하여 확장성 있는 방식으로 장치-클라우드 메시지를 처리하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-106">This tutorial builds on the code shown in the [Get started with IoT Hub] tutorial, and shows you how to use message routing to process device-to-cloud messages in a scalable way.</span></span> <span data-ttu-id="dbc0f-107">이 자습서는 솔루션 백 엔드의 즉각적인 작업을 요구하는 메시지를 처리하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-107">The tutorial illustrates how to process messages that require immediate action from the solution back end.</span></span> <span data-ttu-id="dbc0f-108">예를 들어 장치는 CRM 시스템으로의 티켓 삽입을 트리거하는 경보 메시지를 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-108">For example, a device might send an alarm message that triggers inserting a ticket into a CRM system.</span></span> <span data-ttu-id="dbc0f-109">이와 반대로 데이터 요소 메시지는 단순히 분석 엔진으로 전달됩니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-109">By contrast, data-point messages simply feed into an analytics engine.</span></span> <span data-ttu-id="dbc0f-110">예를 들어 나중에 분석을 위해 저장해야 하는 장치의 온도 원격 분석이 데이터 요소 메시지에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-110">For example, temperature telemetry from a device that is to be stored for later analysis is a data-point message.</span></span>
+<span data-ttu-id="16508-106">Hello에 표시 된 hello 코드를 기반으로 한이 자습서 [IoT 허브 시작] 자습서 toouse tooprocess 장치-클라우드 메시지를 라우팅하는 확장 가능한 방식으로 메시지 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="16508-106">This tutorial builds on hello code shown in hello [Get started with IoT Hub] tutorial, and shows you how toouse message routing tooprocess device-to-cloud messages in a scalable way.</span></span> <span data-ttu-id="16508-107">hello 자습서 hello 솔루션에서 즉각적인 동작이 필요한 tooprocess 메시지 끝을 백업 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="16508-107">hello tutorial illustrates how tooprocess messages that require immediate action from hello solution back end.</span></span> <span data-ttu-id="16508-108">예를 들어 장치는 CRM 시스템으로의 티켓 삽입을 트리거하는 경보 메시지를 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-108">For example, a device might send an alarm message that triggers inserting a ticket into a CRM system.</span></span> <span data-ttu-id="16508-109">이와 반대로 데이터 요소 메시지는 단순히 분석 엔진으로 전달됩니다.</span><span class="sxs-lookup"><span data-stu-id="16508-109">By contrast, data-point messages simply feed into an analytics engine.</span></span> <span data-ttu-id="16508-110">예를 들어 온도 원격 분석은 향후 분석을 위해 저장 toobe 하는 장치에서 데이터 요소의 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-110">For example, temperature telemetry from a device that is toobe stored for later analysis is a data-point message.</span></span>
 
-<span data-ttu-id="dbc0f-111">이 자습서의 끝 부분에서는 다음의 세 가지 Java 콘솔 앱을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-111">At the end of this tutorial, you run three Java console apps:</span></span>
+<span data-ttu-id="16508-111">이 자습서의 hello 끝 세 Java 콘솔 응용 프로그램 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-111">At hello end of this tutorial, you run three Java console apps:</span></span>
 
-* <span data-ttu-id="dbc0f-112">**simulated-device**, [simulated-device] 자습서에서 만든 수정된 버전의 앱이며, 매초 데이터 요소 장치-클라우드 메시지를 보내고 10초마다 대화형 장치-클라우드 메시지를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-112">**simulated-device**, a modified version of the app created in the [Get started with IoT Hub] tutorial, sends data-point device-to-cloud messages every second, and interactive device-to-cloud messages every 10 seconds.</span></span> <span data-ttu-id="dbc0f-113">이 앱에서는 IoT Hub와 통신하는 데 AMQP 프로토콜을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-113">This app uses the AMQP protocol to communicate with IoT Hub.</span></span>
-* <span data-ttu-id="dbc0f-114">**read-d2c-messages**는 장치 앱에서 보낸 원격 분석을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-114">**read-d2c-messages** displays the telemetry sent by your device app.</span></span>
-* <span data-ttu-id="dbc0f-115">**read-critical-queue**는 IoT Hub에 연결된 Service Bus 큐에서 중요한 메시지를 큐에서 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-115">**read-critical-queue** de-queues the critical messages from the Service Bus queue attached to the IoT hub.</span></span>
+* <span data-ttu-id="16508-112">**시뮬레이션 된 장치**, hello에서 만든 hello 응용 프로그램의 수정된 된 버전 [IoT 허브 시작] 자습서 1 초 마다 데이터 요소 장치-클라우드 메시지를 보냅니다 및 대화형 장치-클라우드 메시지 마다 10 시간 (초)입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-112">**simulated-device**, a modified version of hello app created in hello [Get started with IoT Hub] tutorial, sends data-point device-to-cloud messages every second, and interactive device-to-cloud messages every 10 seconds.</span></span> <span data-ttu-id="16508-113">이 응용 프로그램 IoT Hub와 AMQP 프로토콜 toocommunicate hello를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-113">This app uses hello AMQP protocol toocommunicate with IoT Hub.</span></span>
+* <span data-ttu-id="16508-114">**읽기-d2c-송신 된 메시지** 장치 앱에서 보낸 hello 원격 분석 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="16508-114">**read-d2c-messages** displays hello telemetry sent by your device app.</span></span>
+* <span data-ttu-id="16508-115">**중요 한 큐 읽기** hello hello 서비스 버스 연결 된 큐 toohello IoT 허브에서에서 중요 한 메시지 큐에 넣고 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-115">**read-critical-queue** de-queues hello critical messages from hello Service Bus queue attached toohello IoT hub.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="dbc0f-116">IoT Hub는 많은 장치 플랫폼 및 언어(C, Java 및 JavaScript 포함)에 SDK를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-116">IoT Hub has SDK support for many device platforms and languages, including C, Java, and JavaScript.</span></span> <span data-ttu-id="dbc0f-117">물리적 장치를 사용하여 이 자습서의 장치를 바꾸는 방법 및 장치를 IoT Hub에 연결하는 방법에 대한 지침은 [Azure IoT 개발자 센터]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-117">For instructions on how to replace the device in this tutorial with a physical device, and how to connect devices to an IoT Hub, see the [Azure IoT Developer Center].</span></span>
+> <span data-ttu-id="16508-116">IoT Hub는 많은 장치 플랫폼 및 언어(C, Java 및 JavaScript 포함)에 SDK를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-116">IoT Hub has SDK support for many device platforms and languages, including C, Java, and JavaScript.</span></span> <span data-ttu-id="16508-117">어떻게 tooreplace hello 장치가이 자습서에서는 실제 장치에 대 한 지침은 tooconnect 장치 tooan IoT Hub hello를 참조 하는 방법 및 [Azure IoT 개발자 센터]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-117">For instructions on how tooreplace hello device in this tutorial with a physical device, and how tooconnect devices tooan IoT Hub, see hello [Azure IoT Developer Center].</span></span>
 
-<span data-ttu-id="dbc0f-118">이 자습서를 완료하려면 다음이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-118">To complete this tutorial, you need the following:</span></span>
+<span data-ttu-id="16508-118">toocomplete이이 자습서에서는 다음 hello 필요:</span><span class="sxs-lookup"><span data-stu-id="16508-118">toocomplete this tutorial, you need hello following:</span></span>
 
-* <span data-ttu-id="dbc0f-119">[simulated-device] 자습서의 전체 작업 버전</span><span class="sxs-lookup"><span data-stu-id="dbc0f-119">A complete working version of the [Get started with IoT Hub] tutorial.</span></span>
-* <span data-ttu-id="dbc0f-120">최신 [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span><span class="sxs-lookup"><span data-stu-id="dbc0f-120">The latest [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span></span>
-* [<span data-ttu-id="dbc0f-121">Maven 3</span><span class="sxs-lookup"><span data-stu-id="dbc0f-121">Maven 3</span></span>](https://maven.apache.org/install.html)
-* <span data-ttu-id="dbc0f-122">활성 Azure 계정.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-122">An active Azure account.</span></span> <span data-ttu-id="dbc0f-123">(계정이 없는 경우 몇 분 만에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.)</span><span class="sxs-lookup"><span data-stu-id="dbc0f-123">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
+* <span data-ttu-id="16508-119">전체 작업 버전의 hello [IoT 허브 시작] 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-119">A complete working version of hello [Get started with IoT Hub] tutorial.</span></span>
+* <span data-ttu-id="16508-120">최신 hello [Java SE 개발 키트 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span><span class="sxs-lookup"><span data-stu-id="16508-120">hello latest [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span></span>
+* [<span data-ttu-id="16508-121">Maven 3</span><span class="sxs-lookup"><span data-stu-id="16508-121">Maven 3</span></span>](https://maven.apache.org/install.html)
+* <span data-ttu-id="16508-122">활성 Azure 계정.</span><span class="sxs-lookup"><span data-stu-id="16508-122">An active Azure account.</span></span> <span data-ttu-id="16508-123">(계정이 없는 경우 몇 분 만에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.)</span><span class="sxs-lookup"><span data-stu-id="16508-123">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
 
-<span data-ttu-id="dbc0f-124">[Azure Storage] 및 [Azure Service Bus]에 대한 기본 지식이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-124">You should have some basic knowledge of [Azure Storage] and [Azure Service Bus].</span></span>
+<span data-ttu-id="16508-124">[Azure Storage] 및 [Azure Service Bus]에 대한 기본 지식이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-124">You should have some basic knowledge of [Azure Storage] and [Azure Service Bus].</span></span>
 
-## <a name="send-interactive-messages-from-a-device-app"></a><span data-ttu-id="dbc0f-125">장치 앱에서 대화형 메시지 보내기</span><span class="sxs-lookup"><span data-stu-id="dbc0f-125">Send interactive messages from a device app</span></span>
-<span data-ttu-id="dbc0f-126">이 섹션에서는 [simulated-device] 자습서에서 만든 장치 앱을 수정하여 즉시 처리해야 하는 메시지를 가끔씩 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-126">In this section, you modify the device app you created in the [Get started with IoT Hub] tutorial to occasionally send messages that require immediate processing.</span></span>
+## <a name="send-interactive-messages-from-a-device-app"></a><span data-ttu-id="16508-125">장치 앱에서 대화형 메시지 보내기</span><span class="sxs-lookup"><span data-stu-id="16508-125">Send interactive messages from a device app</span></span>
+<span data-ttu-id="16508-126">Hello 장치 hello에서 만든 응용 프로그램을 수정이 섹션에서는 [IoT 허브 시작] 자습서 toooccasionally 즉시 처리를 필요로 하는 메시지를 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-126">In this section, you modify hello device app you created in hello [Get started with IoT Hub] tutorial toooccasionally send messages that require immediate processing.</span></span>
 
-1. <span data-ttu-id="dbc0f-127">텍스트 편집기를 사용하여 simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-127">Use a text editor to open the simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span> <span data-ttu-id="dbc0f-128">이 파일에는 **IoT Hub 시작** 자습서에서 만든 [simulated-device] 앱이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-128">This file contains the code for the **simulated-device** app you created in the [Get started with IoT Hub] tutorial.</span></span>
+1. <span data-ttu-id="16508-127">텍스트 편집기 tooopen hello simulated-device\src\main\java\com\mycompany\app\App.java 파일을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-127">Use a text editor tooopen hello simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span> <span data-ttu-id="16508-128">이 파일에 포함 hello에 대 한 hello 코드 **시뮬레이션 된 장치** hello에서 만든 응용 [IoT 허브 시작] 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-128">This file contains hello code for hello **simulated-device** app you created in hello [Get started with IoT Hub] tutorial.</span></span>
 
-2. <span data-ttu-id="dbc0f-129">**MessageSender** 클래스를 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-129">Replace the **MessageSender** class with the following code:</span></span>
+2. <span data-ttu-id="16508-129">Hello 대체 **MessageSender** 코드 다음 hello 사용 하 여 클래스:</span><span class="sxs-lookup"><span data-stu-id="16508-129">Replace hello **MessageSender** class with hello following code:</span></span>
 
     ```java
     private static class MessageSender implements Runnable {
@@ -99,53 +99,53 @@ ms.lasthandoff: 08/03/2017
     }
     ```
    
-    <span data-ttu-id="dbc0f-130">이 메서드는 장치에서 보낸 메시지에 `"level": "critical"` 속성을 임의로 추가합니다. 그러면 응용 프로그램 백 엔드에 의한 즉각적인 작업을 요구하는 메시지를 시뮬레이션합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-130">This method randomly adds the property `"level": "critical"` to messages sent by the device, which simulates a message that requires immediate action by the application back-end.</span></span> <span data-ttu-id="dbc0f-131">응용 프로그램에서 메시지 본문 대신 메시지 속성에 이 정보를 전달하므로 IoT Hub에서 메시지를 적절한 메시지 대상으로 라우팅할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-131">The application passes this information in the message properties, instead of in the message body, so that IoT Hub can route the message to the proper message destination.</span></span>
+    <span data-ttu-id="16508-130">이 메서드는 임의로 hello 속성 추가 `"level": "critical"` toomessages hello 응용 프로그램 백 엔드 하 여 즉각적인 동작이 필요한 메시지를 시뮬레이트하는 hello 장치에 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-130">This method randomly adds hello property `"level": "critical"` toomessages sent by hello device, which simulates a message that requires immediate action by hello application back-end.</span></span> <span data-ttu-id="16508-131">해당 IoT 허브는 hello 메시지 toohello 적절 한 메시지 대상 라우팅할 수 있도록 hello 응용 프로그램 hello 메시지 속성에서이 정보 대신 hello 메시지 본문에 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-131">hello application passes this information in hello message properties, instead of in hello message body, so that IoT Hub can route hello message toohello proper message destination.</span></span>
    
    > [!NOTE]
-   > <span data-ttu-id="dbc0f-132">메시지 속성을 사용하면 여기서 보여 주는 실행 부하 과다 경로(hot path) 예제 외에도 실행 부하 과소 경로(cold path) 처리를 포함하여 다양한 시나리오의 메시지를 라우팅할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-132">You can use message properties to route messages for various scenarios including cold-path processing, in addition to the hot path example shown here.</span></span>
+   > <span data-ttu-id="16508-132">콜드 경로 toohello 실행 부하 과다 경로 여기에 표시 된 예에서는 또한 처리를 포함 하는 다양 한 시나리오에 대 한 메시지 속성 tooroute 메시지를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-132">You can use message properties tooroute messages for various scenarios including cold-path processing, in addition toohello hot path example shown here.</span></span>
 
-2. <span data-ttu-id="dbc0f-133">simulated-device\src\main\java\com\mycompany\app\App.java 파일을 저장한 후 닫습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-133">Save and close the simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
+2. <span data-ttu-id="16508-133">저장 하 고 hello simulated-device\src\main\java\com\mycompany\app\App.java 파일을 닫습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-133">Save and close hello simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="dbc0f-134">간단히 하기 위해 이 자습서에서는 재시도 정책을 구현하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-134">For the sake of simplicity, this tutorial does not implement any retry policy.</span></span> <span data-ttu-id="dbc0f-135">프로덕션 코드에서는 MSDN 문서 [일시적인 오류 처리]에서 제시한 대로 재시도 정책(예: 지수 백오프)을 구현해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-135">In production code, you should implement a retry policy such as exponential backoff, as suggested in the MSDN article [Transient Fault Handling].</span></span>
+    > <span data-ttu-id="16508-134">이 자습서는 간단한 hello 위해서 어떠한 재시도 정책도 구현 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-134">For hello sake of simplicity, this tutorial does not implement any retry policy.</span></span> <span data-ttu-id="16508-135">프로덕션 코드에서는 hello MSDN 문서에 설명 된 대로 지 수 백오프 같은 다시 시도 정책을 구현 해야 [일시적인 오류 처리]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-135">In production code, you should implement a retry policy such as exponential backoff, as suggested in hello MSDN article [Transient Fault Handling].</span></span>
 
-3. <span data-ttu-id="dbc0f-136">Maven을 사용하여 **simulated-device** 앱을 빌드하려면 simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-136">To build the **simulated-device** app using Maven, execute the following command at the command prompt in the simulated-device folder:</span></span>
+3. <span data-ttu-id="16508-136">toobuild hello **시뮬레이션 된 장치** Maven에서 사용 하 여 앱 hello 다음 hello 시뮬레이션 된 장치 폴더에서 hello 명령 프롬프트에서 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-136">toobuild hello **simulated-device** app using Maven, execute hello following command at hello command prompt in hello simulated-device folder:</span></span>
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="add-a-queue-to-your-iot-hub-and-route-messages-to-it"></a><span data-ttu-id="dbc0f-137">IoT Hub에 큐 추가 및 메시지 라우팅</span><span class="sxs-lookup"><span data-stu-id="dbc0f-137">Add a queue to your IoT hub and route messages to it</span></span>
+## <a name="add-a-queue-tooyour-iot-hub-and-route-messages-tooit"></a><span data-ttu-id="16508-137">큐 tooyour IoT 허브 및 경로 메시지 tooit 추가</span><span class="sxs-lookup"><span data-stu-id="16508-137">Add a queue tooyour IoT hub and route messages tooit</span></span>
 
-<span data-ttu-id="dbc0f-138">이 섹션에서는 Service Bus 큐를 만들고, IoT Hub에 연결하고, 메시지에 속성이 존재하는지 여부에 따라 큐에 메시지를 보내도록 IoT Hub를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-138">In this section, you create a Service Bus queue, connect it to your IoT hub, and configure your IoT hub to send messages to the queue based on the presence of a property on the message.</span></span> <span data-ttu-id="dbc0f-139">Service Bus 큐에서 메시지를 처리하는 방법에 대한 자세한 내용은 [큐 시작][lnk-sb-queues-java]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-139">For more information about how to process messages from Service Bus queues, see [Get started with queues][lnk-sb-queues-java].</span></span>
+<span data-ttu-id="16508-138">서비스 버스 큐를 만들이 섹션에서는 tooyour IoT 허브를 연결 및 hello 메시지에서 속성의 hello 존재 여부에 따라 IoT 허브 toosend 메시지 toohello 큐를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-138">In this section, you create a Service Bus queue, connect it tooyour IoT hub, and configure your IoT hub toosend messages toohello queue based on hello presence of a property on hello message.</span></span> <span data-ttu-id="16508-139">서비스 버스 큐에서 메시지를 tooprocess 방법에 대 한 자세한 내용은 참조 [큐 작업 시작][lnk-sb-queues-java]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-139">For more information about how tooprocess messages from Service Bus queues, see [Get started with queues][lnk-sb-queues-java].</span></span>
 
-1. <span data-ttu-id="dbc0f-140">[큐 시작][lnk-sb-queues-java]에서 설명한 대로 Service Bus 큐를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-140">Create a Service Bus queue as described in [Get started with queues][lnk-sb-queues-java].</span></span> <span data-ttu-id="dbc0f-141">네임스페이스 및 큐 이름을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-141">Make a note of the namespace and queue name.</span></span>
+1. <span data-ttu-id="16508-140">[큐 시작][lnk-sb-queues-java]에서 설명한 대로 Service Bus 큐를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="16508-140">Create a Service Bus queue as described in [Get started with queues][lnk-sb-queues-java].</span></span> <span data-ttu-id="16508-141">Hello 네임 스페이스와 큐 이름을 기록해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="16508-141">Make a note of hello namespace and queue name.</span></span>
 
-2. <span data-ttu-id="dbc0f-142">Azure Portal에서 IoT Hub를 열고 **끝점**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-142">In the Azure portal, open your IoT hub and click **Endpoints**.</span></span>
+2. <span data-ttu-id="16508-142">에 Azure 포털 hello IoT 허브를 열고 클릭 **끝점**합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-142">In hello Azure portal, open your IoT hub and click **Endpoints**.</span></span>
 
     ![IoT Hub의 끝점][30]
 
-3. <span data-ttu-id="dbc0f-144">**끝점** 블레이드 위쪽에서 **추가**를 클릭하여 IoT Hub에 큐를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-144">In the **Endpoints** blade, click **Add** at the top to add your queue to your IoT hub.</span></span> <span data-ttu-id="dbc0f-145">끝점 이름을 **CriticalQueue**로 지정하고 드롭다운을 사용하여 **Service Bus 큐**, 큐가 있는 Service Bus 네임스페이스 및 큐 이름을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-145">Name the endpoint **CriticalQueue** and use the drop-downs to select **Service Bus queue**, the Service Bus namespace in which your queue resides, and the name of your queue.</span></span> <span data-ttu-id="dbc0f-146">완료되면 아래쪽의 **저장** 을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-146">When you are done, click **Save** at the bottom.</span></span>
+3. <span data-ttu-id="16508-144">Hello에 **끝점** 블레이드에서 클릭 **추가** 에 hello 상위 tooadd 큐 tooyour IoT 허브입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-144">In hello **Endpoints** blade, click **Add** at hello top tooadd your queue tooyour IoT hub.</span></span> <span data-ttu-id="16508-145">이름 hello 끝점 **CriticalQueue** 드롭다운 tooselect hello를 사용 하 여 **서비스 버스 큐**, 큐 상주 하는 서비스 버스 네임 스페이스 hello 및 hello 큐의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-145">Name hello endpoint **CriticalQueue** and use hello drop-downs tooselect **Service Bus queue**, hello Service Bus namespace in which your queue resides, and hello name of your queue.</span></span> <span data-ttu-id="16508-146">완료 되 면 클릭 **저장** hello 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-146">When you are done, click **Save** at hello bottom.</span></span>
 
     ![끝점 추가][31]
 
-4. <span data-ttu-id="dbc0f-148">이제 IoT Hub에서 **경로**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-148">Now click **Routes** in your IoT Hub.</span></span> <span data-ttu-id="dbc0f-149">블레이드 위쪽에서 **추가**를 클릭하여 방금 추가한 큐로 메시지를 라우팅하는 라우팅 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-149">Click **Add** at the top of the blade to create a routing rule that routes messages to the queue you just added.</span></span> <span data-ttu-id="dbc0f-150">데이터 원본으로 **DeviceTelemetry**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-150">Select **DeviceTelemetry** as the source of data.</span></span> <span data-ttu-id="dbc0f-151">조건으로 `level="critical"`을 입력하고 방금 사용자 지정 끝점으로 추가한 큐를 경로 규칙 끝점으로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-151">Enter `level="critical"` as the condition, and choose the queue you just added as a custom endpoint as the routing rule endpoint.</span></span> <span data-ttu-id="dbc0f-152">완료되면 아래쪽의 **저장** 을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-152">When you are done, click **Save** at the bottom.</span></span>
+4. <span data-ttu-id="16508-148">이제 IoT Hub에서 **경로**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-148">Now click **Routes** in your IoT Hub.</span></span> <span data-ttu-id="16508-149">클릭 **추가** toohello 방금 하면 큐 메시지를 라우팅하는 라우팅 규칙을 추가 하는 hello 블레이드 toocreate hello 위쪽에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-149">Click **Add** at hello top of hello blade toocreate a routing rule that routes messages toohello queue you just added.</span></span> <span data-ttu-id="16508-150">선택 **DeviceTelemetry** hello 데이터 원본으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-150">Select **DeviceTelemetry** as hello source of data.</span></span> <span data-ttu-id="16508-151">입력 `level="critical"` hello 조건으로 사용자 지정 끝점으로 라우팅 규칙 끝점 hello로 방금 추가한 hello 큐를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-151">Enter `level="critical"` as hello condition, and choose hello queue you just added as a custom endpoint as hello routing rule endpoint.</span></span> <span data-ttu-id="16508-152">완료 되 면 클릭 **저장** hello 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-152">When you are done, click **Save** at hello bottom.</span></span>
 
     ![경로 추가][32]
 
-    <span data-ttu-id="dbc0f-154">대체(fallback) 경로가 **ON**으로 설정되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-154">Make sure the fallback route is set to **ON**.</span></span> <span data-ttu-id="dbc0f-155">이 설정은 IoT Hub의 기본 구성입니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-155">This setting is the default configuration of an IoT hub.</span></span>
+    <span data-ttu-id="16508-154">대체 경로 hello 너무 설정 되어 있는지 확인**ON**합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-154">Make sure hello fallback route is set too**ON**.</span></span> <span data-ttu-id="16508-155">이 설정은 IoT hub의 hello 기본 구성입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-155">This setting is hello default configuration of an IoT hub.</span></span>
 
     ![대체(fallback) 경로][33]
 
-## <a name="optional-read-from-the-queue-endpoint"></a><span data-ttu-id="dbc0f-157">(선택 사항) 큐 끝점에서 읽기</span><span class="sxs-lookup"><span data-stu-id="dbc0f-157">(Optional) Read from the queue endpoint</span></span>
+## <a name="optional-read-from-hello-queue-endpoint"></a><span data-ttu-id="16508-157">(선택 사항) Hello 큐 끝점에서 읽기</span><span class="sxs-lookup"><span data-stu-id="16508-157">(Optional) Read from hello queue endpoint</span></span>
 
-<span data-ttu-id="dbc0f-158">[큐 시작][lnk-sb-queues-java]의 지침에 따라 큐 끝점에서 메시지를 선택적으로 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-158">You can optionally read the messages from the queue endpoint by following the instructions in [Get started with queues][lnk-sb-queues-java].</span></span> <span data-ttu-id="dbc0f-159">앱 이름을 **read-critical-queue**로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-159">Name the app **read-critical-queue**.</span></span>
+<span data-ttu-id="16508-158">Hello 지침에 따라 hello 큐 끝점에서 hello 메시지를 읽고 필요에 따라 [큐 작업 시작][lnk-sb-queues-java]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-158">You can optionally read hello messages from hello queue endpoint by following hello instructions in [Get started with queues][lnk-sb-queues-java].</span></span> <span data-ttu-id="16508-159">이름 hello 앱 **중요 큐 읽기**합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-159">Name hello app **read-critical-queue**.</span></span>
 
-## <a name="run-the-applications"></a><span data-ttu-id="dbc0f-160">응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="dbc0f-160">Run the applications</span></span>
+## <a name="run-hello-applications"></a><span data-ttu-id="16508-160">Hello 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="16508-160">Run hello applications</span></span>
 
-<span data-ttu-id="dbc0f-161">이제 세 개의 응용 프로그램을 실행할 준비가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-161">Now you are ready to run the three applications.</span></span>
+<span data-ttu-id="16508-161">이제 모르는 준비 toorun hello 세 개의 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="16508-161">Now you are ready toorun hello three applications.</span></span>
 
-1. <span data-ttu-id="dbc0f-162">**read-d2c-messages** 응용 프로그램을 실행하려면 명령 프롬프트 또는 셸에서 read-d2c 폴더로 이동한 후 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-162">To run the **read-d2c-messages** application, in a command prompt or shell navigate to the read-d2c folder and execute the following command:</span></span>
+1. <span data-ttu-id="16508-162">toorun hello **읽기-d2c-송신 된 메시지** 응용 프로그램 또는 셸 명령 프롬프트에서 toohello 읽기 d2c 폴더를 이동 하 고 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-162">toorun hello **read-d2c-messages** application, in a command prompt or shell navigate toohello read-d2c folder and execute hello following command:</span></span>
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -153,7 +153,7 @@ ms.lasthandoff: 08/03/2017
 
    ![read-d2c-messages 실행][readd2c]
 
-2. <span data-ttu-id="dbc0f-164">**read-critical-queue** 응용 프로그램을 실행하려면 명령 프롬프트 또는 셸에서 read-critical-queue 폴더로 이동한 후 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-164">To run the **read-critical-queue** application, in a command prompt or shell navigate to the read-critical-queue folder and execute the following command:</span></span>
+2. <span data-ttu-id="16508-164">toorun hello **중요 큐 읽기** 응용 프로그램 또는 셸 명령 프롬프트에서 toohello 읽기 중요 큐 폴더를 이동 하 고 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-164">toorun hello **read-critical-queue** application, in a command prompt or shell navigate toohello read-critical-queue folder and execute hello following command:</span></span>
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -161,7 +161,7 @@ ms.lasthandoff: 08/03/2017
    
    ![read-critical-messages 실행][readqueue]
 
-3. <span data-ttu-id="dbc0f-166">**simulated-device** 앱을 실행하려면 명령 프롬프트 또는 셸에서 simulated-device 폴더로 이동한 후 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-166">To run the **simulated-device** app, in a command prompt or shell navigate to the simulated-device folder and execute the following command:</span></span>
+3. <span data-ttu-id="16508-166">toorun hello **시뮬레이션 된 장치** 응용 프로그램 또는 셸 명령 프롬프트에서 toohello 시뮬레이션 된 장치 폴더를 이동 하 고 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-166">toorun hello **simulated-device** app, in a command prompt or shell navigate toohello simulated-device folder and execute hello following command:</span></span>
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -169,17 +169,17 @@ ms.lasthandoff: 08/03/2017
    
    ![simulated-device 실행][simulateddevice]
 
-## <a name="next-steps"></a><span data-ttu-id="dbc0f-168">다음 단계</span><span class="sxs-lookup"><span data-stu-id="dbc0f-168">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="16508-168">다음 단계</span><span class="sxs-lookup"><span data-stu-id="16508-168">Next steps</span></span>
 
-<span data-ttu-id="dbc0f-169">이 자습서에서는 IoT Hub의 메시지 라우팅 기능을 사용하여 장치-클라우드 메시지를 안정적으로 전달하는 방법을 살펴보았습니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-169">In this tutorial, you learned how to reliably dispatch device-to-cloud messages by using the message routing functionality of IoT Hub.</span></span>
+<span data-ttu-id="16508-169">이 자습서에서는 tooreliably IoT 허브의 hello 메시지 라우팅 기능을 사용 하 여 장치-클라우드 메시지를 디스패치 하는 방법을 배웠습니다.</span><span class="sxs-lookup"><span data-stu-id="16508-169">In this tutorial, you learned how tooreliably dispatch device-to-cloud messages by using hello message routing functionality of IoT Hub.</span></span>
 
-<span data-ttu-id="dbc0f-170">[IoT Hub를 사용하여 클라우드-장치 메시지를 보내는 방법][lnk-c2d]에서는 솔루션 백 엔드에서 장치로 메시지를 보내는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-170">The [How to send cloud-to-device messages with IoT Hub][lnk-c2d] shows you how to send messages to your devices from your solution back end.</span></span>
+<span data-ttu-id="16508-170">hello [IoT Hub와 toosend 클라우드-장치 메시지 방법을] [ lnk-c2d] toosend 솔루션 백 엔드에서 tooyour 장치 메시지 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="16508-170">hello [How toosend cloud-to-device messages with IoT Hub][lnk-c2d] shows you how toosend messages tooyour devices from your solution back end.</span></span>
 
-<span data-ttu-id="dbc0f-171">IoT Hub를 사용하는 전체 종단 간 솔루션의 예를 보려면 [Azure IoT Suite][lnk-suite]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-171">To see examples of complete end-to-end solutions that use IoT Hub, see [Azure IoT Suite][lnk-suite].</span></span>
+<span data-ttu-id="16508-171">IoT 허브를 사용 하는 완벽 한 종단 간 솔루션의 toosee 예 참조 [Azure IoT Suite][lnk-suite]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-171">toosee examples of complete end-to-end solutions that use IoT Hub, see [Azure IoT Suite][lnk-suite].</span></span>
 
-<span data-ttu-id="dbc0f-172">IoT Hub를 사용하여 솔루션을 개발하는 방법에 대한 자세한 내용은 [IoT Hub 개발자 가이드]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-172">To learn more about developing solutions with IoT Hub, see the [IoT Hub developer guide].</span></span>
+<span data-ttu-id="16508-172">IoT 허브를 사용 하 여 솔루션 개발에 대 한 더 toolearn 참조 hello [IoT 허브 개발자 가이드]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-172">toolearn more about developing solutions with IoT Hub, see hello [IoT Hub developer guide].</span></span>
 
-<span data-ttu-id="dbc0f-173">IoT Hub의 메시지 라우팅에 대한 자세한 내용은 [IoT Hub를 통해 메시지 보내고 받기][lnk-devguide-messaging]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dbc0f-173">To learn more about message routing in IoT Hub, see [Send and receive messages with IoT Hub][lnk-devguide-messaging].</span></span>
+<span data-ttu-id="16508-173">IoT Hub에 메시지 라우팅에 대 한 더 toolearn 참조 [IoT Hub와 메시지를 주고받을][lnk-devguide-messaging]합니다.</span><span class="sxs-lookup"><span data-stu-id="16508-173">toolearn more about message routing in IoT Hub, see [Send and receive messages with IoT Hub][lnk-devguide-messaging].</span></span>
 
 <!-- Images. -->
 <!-- TODO: UPDATE PICTURES -->
@@ -196,17 +196,17 @@ ms.lasthandoff: 08/03/2017
 
 [lnk-sb-queues-java]: ../service-bus-messaging/service-bus-java-how-to-use-queues.md
 
-<span data-ttu-id="dbc0f-174">[Azure Storage]: https://azure.microsoft.com/documentation/services/storage/</span><span class="sxs-lookup"><span data-stu-id="dbc0f-174">[Azure Storage]: https://azure.microsoft.com/documentation/services/storage/</span></span>
-<span data-ttu-id="dbc0f-175">[Azure Service Bus]: https://azure.microsoft.com/documentation/services/service-bus/</span><span class="sxs-lookup"><span data-stu-id="dbc0f-175">[Azure Service Bus]: https://azure.microsoft.com/documentation/services/service-bus/</span></span>
+[Azure Storage]: https://azure.microsoft.com/documentation/services/storage/
+[Azure Service Bus]: https://azure.microsoft.com/documentation/services/service-bus/
 
-<span data-ttu-id="dbc0f-176">[IoT Hub 개발자 가이드]: iot-hub-devguide.md</span><span class="sxs-lookup"><span data-stu-id="dbc0f-176">[IoT Hub developer guide]: iot-hub-devguide.md</span></span>
+[IoT 허브 개발자 가이드]: iot-hub-devguide.md
 [lnk-devguide-messaging]: iot-hub-devguide-messaging.md
-<span data-ttu-id="dbc0f-177">[simulated-device]: iot-hub-java-java-getstarted.md</span><span class="sxs-lookup"><span data-stu-id="dbc0f-177">[Get started with IoT Hub]: iot-hub-java-java-getstarted.md</span></span>
-<span data-ttu-id="dbc0f-178">[Azure IoT 개발자 센터]: https://azure.microsoft.com/develop/iot</span><span class="sxs-lookup"><span data-stu-id="dbc0f-178">[Azure IoT Developer Center]: https://azure.microsoft.com/develop/iot</span></span>
-<span data-ttu-id="dbc0f-179">[일시적인 오류 처리]: https://msdn.microsoft.com/library/hh675232.aspx</span><span class="sxs-lookup"><span data-stu-id="dbc0f-179">[Transient Fault Handling]: https://msdn.microsoft.com/library/hh675232.aspx</span></span>
+[IoT 허브 시작]: iot-hub-java-java-getstarted.md
+[Azure IoT 개발자 센터]: https://azure.microsoft.com/develop/iot
+[일시적인 오류 처리]: https://msdn.microsoft.com/library/hh675232.aspx
 
 <!-- Links -->
-<span data-ttu-id="dbc0f-180">[일시적인 오류 처리]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx</span><span class="sxs-lookup"><span data-stu-id="dbc0f-180">[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx</span></span>
+[일시적인 오류 처리]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
 [lnk-c2d]: iot-hub-java-java-c2d.md
 [lnk-suite]: https://azure.microsoft.com/documentation/suites/iot-suite/

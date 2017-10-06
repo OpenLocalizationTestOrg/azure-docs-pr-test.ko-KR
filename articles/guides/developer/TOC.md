@@ -46,11 +46,11 @@
 ### [Windows VM](../../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ## [Service Fabric 개요](../../service-fabric/service-fabric-overview.md)
 
-# 방법 가이드
+# 어떻게 tooguides
 ## 계획
 ### [웹 응용 프로그램 아키텍처](../../guidance/guidance-ra-app-service.md)
 ### [VM 아키텍처](../../guidance/guidance-ra-compute.md)
-### [온-프레미스 네트워크에 연결](../../guidance/guidance-ra-hybrid-networking.md)
+### [Tooon 온-프레미스 네트워크에 연결](../../guidance/guidance-ra-hybrid-networking.md)
 ### [마이크로 서비스 패턴/시나리오](../../service-fabric/service-fabric-patterns-and-scenarios.md)
 ## 개발
 ### [WordPress 앱](../../app-service-web/web-sites-php-web-site-gallery.md)
