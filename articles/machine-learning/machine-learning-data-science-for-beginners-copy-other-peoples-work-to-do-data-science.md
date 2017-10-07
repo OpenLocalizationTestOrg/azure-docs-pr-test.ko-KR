@@ -1,6 +1,6 @@
 ---
-title: "다른 사용자의 데이터 과학 예제 복사 - Azure Machine Learning | Microsoft Docs"
-description: "데이터 과학의 비밀: 다른 사람들이 사용자의 작업을 수행하도록 유도 Cortana Analytics 갤러리에서 Machine Learning 예제를 가져옵니다."
+title: "aaaCopy 다른 사용자의 데이터 과학 예제 – Azure 기계 학습 | Microsoft Docs"
+description: "데이터 과학자의 영업 비밀: 다른 사람을 toodo에서 작업 합니다. Hello Cortana 분석 갤러리에서에서 컴퓨터 학습 예제를 가져옵니다."
 keywords: "데이터 과학 예제,Machine Learning 예제,클러스터링 알고리즘,클러스터링 알고리즘 예제"
 services: machine-learning
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: cgronlun
-ms.openlocfilehash: a67d9ccb9d9e6074bee7e1429ede96bd508945c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 41dfc97ef35df772a5ba5e33bb470b1ca268f04e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-other-peoples-work-to-do-data-science"></a>데이터 과학을 수행하기 위해 다른 사람의 작품 복사
+# <a name="copy-other-peoples-work-toodo-data-science"></a>다른 사용자의 작업 toodo 데이터 과학 복사
 ## <a name="video-5-data-science-for-beginners-series"></a>비디오 5: 초급자를 위한 데이터 과학 시리즈
-데이터 과학의 비밀 중 하나는 다른 사람들이 사용자의 작업을 수행하도록 하는 것입니다. Cortana Analytics 갤러리에서 사용자 고유의 Machine Learning 실험에 사용할 클러스터링 알고리즘 예제를 찾습니다.
+다른 점점 hello 영업 비밀 데이터 과학자의 중 하나에서 작업 toodo 사람입니다. 고유한 기계 학습 실험에 대 한 Cortana 분석 갤러리 toouse에서 클러스터링 알고리즘 예제 찾기
 
-시리즈를 최대한 활용하려면 모두 시청하는 것이 좋습니다. [비디오 목록으로 이동](#other-videos-in-this-series)
+hello 시리즈를 최대한 활용 tooget hello 모두 보기 [비디오 이동 toohello 목록](#other-videos-in-this-series)
 <br>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/data-science-for-beginners-series-copy-other-peoples-work-to-do-data-science/player]
@@ -33,64 +33,64 @@ ms.lasthandoff: 08/18/2017
 >
 
 ## <a name="other-videos-in-this-series"></a>이 시리즈의 다른 비디오
-*초급자를 위한 데이터 과학* 은 다섯 개의 짧은 비디오를 통해 데이터 과학을 간략히 소개합니다.
+*초보자를 위한 데이터 과학* 는 5 개의 짧은 비디오의 간략 한 소개 toodata 과학 합니다.
 
-* 비디오 1: [데이터 과학으로 답변할 수 있는 5가지 질문](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5분 14초)*
+* 비디오 1: [hello 5 데이터 과학 답변의 질문](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 분 14 초)*
 * 비디오 2: [데이터 과학에 사용할 수 있게 데이터가 준비되었나요?](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4분 56초)*
 * 비디오 3: [데이터로 대답할 수 있는 질문하기](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) *(4분 17초)*
 * 비디오 4: [단순 모델을 사용하여 답변 예측](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7분 42초)*
-* 비디오 5: 데이터 과학을 수행하기 위해 다른 사람의 작품 복사
+* 비디오 5: 다른 사용자의 작업 toodo 데이터 과학 복사
 
-## <a name="transcript-copy-other-peoples-work-to-do-data-science"></a>비디오 내용: 데이터 과학을 수행하기 위해 다른 사람의 작품 복사
-"초보자를 위한 데이터 과학" 시리즈의 다섯 번째 비디오를 시작합니다.
+## <a name="transcript-copy-other-peoples-work-toodo-data-science"></a>다른 사용자의 작업 toodo 데이터 과학을 복사 하는 대화 내용:
+시작 hello 시리즈의 다섯 번째 비디오 toohello "초보자를 위한 데이터 과학."
 
-여기서는 자신의 작품을 만들 때 시작점으로 차용할 수 있는 예제를 찾을 위치를 검색합니다. 이 시리즈의 이전 비디오를 먼저 시청하면 이 비디오를 최대한 활용할 수 있습니다.
+이 여기에서 자신의 작업에 대 한 시작 점으로 가져온 수 장소 toofind 예제를 볼 수 있습니다. Hello 표시 될 수 있습니다이 비디오에서 가장 먼저 조사 하는 경우 hello이 시리즈의 이전 비디오입니다.
 
-데이터 과학의 비밀 중 하나는 다른 사람들이 사용자의 작업을 수행하도록 하는 것입니다.
+다른 점점 hello 영업 비밀 데이터 과학자의 중 하나에서 작업 toodo 사람입니다.
 
-## <a name="find-examples-in-the-cortana-intelligence-gallery"></a>Cortana Intelligence Gallery에서 예제 찾기
-Microsoft에는 무료로 사용해 볼 수 있는 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/)이라는 클라우드 기반 서비스가 있습니다. 이 서비스는 여러 다른 기계 학습 알고리즘을 시험해 볼 수 있는 작업 영역을 제공하며, 솔루션을 계획할 때 웹 서비스로 실행될 수 있습니다.
+## <a name="find-examples-in-hello-cortana-intelligence-gallery"></a>Hello Cortana 인텔리전스 갤러리에서에서 예제 찾기
+Microsoft는 클라우드 기반 서비스 호출 [Azure 기계 학습](https://azure.microsoft.com/services/machine-learning/) 시작 tootry 무료로 하 합니다. 이 서비스는 여러 다른 기계 학습 알고리즘을 시험해 볼 수 있는 작업 영역을 제공하며, 솔루션을 계획할 때 웹 서비스로 실행될 수 있습니다.
 
-이 서비스의 일부를 **[Cortana 인텔리전스 갤러리](http://aka.ms/CortanaIntelligenceGallery)**라고 합니다. 여기에는 사용자들이 작성한 후 다른 사용자를 위해 제공한 Azure Machine Learning 실험 또는 모델 컬렉션을 비롯한 리소스가 포함됩니다. 이러한 실험은 다른 사람이 생각한 내용과 힘들게 작업한 결과를 자신의 솔루션에 활용할 수 있는 좋은 방법입니다.
+이 서비스의 일부는 것이 바로 hello  **[Cortana 인텔리전스 갤러리](http://aka.ms/CortanaIntelligenceGallery)**합니다. Azure 기계 학습 실험 또는 모델을 사용자 작성 있고 toouse 다른 사용자가 제공한 컬렉션을 비롯 한 리소스를 포함 합니다. 다음이 실험을는 다른 사용자의 작업 tooleverage hello 검토 및 하드 tooget 자신의 솔루션에서 시작 하는 유용한 방법입니다.
 
-갤러리([aka.ms/CortanaIntelligenceGallery](http://aka.ms/CortanaIntelligenceGallery))에서 찾을 수 있습니다. 누구나 검색할 수 있습니다.
+Hello 갤러리에서 찾을 수 있습니다 [aka.ms/CortanaIntelligenceGallery](http://aka.ms/CortanaIntelligenceGallery)합니다. 모든 사용자는를 통해 시작 toobrowse입니다.
 
 ![Cortana 인텔리전스 갤러리](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/cortana-intelligence-gallery.png)
 
-맨 위에 있는 **실험** 을 클릭하면 갤러리에 가장 최근 및 인기 있는 실험이 다양하게 표시됩니다. 화면 맨 위에 있는 **모두 찾아보기** 를 클릭하여 나머지 실험을 검색하고 여기서 검색 용어를 입력하고 검색 필터를 선택할 수 있습니다.
+클릭 하면 **실험** hello 위쪽에, 다양 한 hello 가장 최근의 및 인기 있는 실험 hello 갤러리에 표시 됩니다. 클릭 하 여 실험의 hello rest를 통해 검색할 수 있습니다 **모두 찾아보기** hello hello 화면 위쪽에 입력할 수 있는 용어를 검색 하 고 검색 필터를 선택 합니다.
 
 ## <a name="find-and-use-a-clustering-algorithm-example"></a>클러스터링 알고리즘 예제 찾기 및 사용
-예를 들어 클러스터링 작동 방식을 보여 주는 예제를 보려는 경우 **"클러스터링 비우기"** 실험을 검색합니다.
+따라서 예를 들어, 싶다고 가정해보십시오 toosee 클러스터링 작동 방법의 예를 검색할 **"스윕 클러스터링"** 실험 합니다.
 
 ![클러스터링 실험 검색](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/search-for-clustering-experiments.png)
 
-다음은 사용자들이 갤러리에 제공한 흥미로운 작품입니다.
+다음은 흥미로운 toohello 갤러리를 제공한 사람입니다.
 
 ![클러스터링 실험](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/clustering-experiment.png)
 
-해당 실험을 클릭하면 이 참여자가 수행한 작품과 일부 결과를 설명하는 웹 페이지가 표시됩니다.
+Hello이이 참가자 내가 수행한 작업을, 그 결과 중 일부와 함께 설명 하는 웹 페이지를 얻게 하 고 해당 실험 클릭 합니다.
 
 ![클러스터링 실험 설명 페이지](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/clustering-experiment-description-page.png)
 
-**스튜디오에서 열기**링크가 표시됩니다.
+공지 hello 링크는 **Studio에서 열기**합니다.
 
 ![Open in Studio 단추](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/open-in-studio.png)
 
-이 링크를 클릭하면 **Azure 기계 학습 스튜디오**로 바로 이동됩니다. 실험 복사본이 만들어진 후 내 작업 영역에 배치됩니다. 여기에는 참여자의 데이터 집합, 수행된 모든 처리, 사용된 모든 알고리즘 및 결과 저장 방법이 포함됩니다.
+클릭할 수 있습니다 및 게 너무 오른쪽 이동**Azure 기계 학습 스튜디오**합니다. Hello 실험의 복사본을 만들고 내 작업 영역에 배치 합니다. Hello 참가자 dataset 여기에, 모든 hello는 했다는 것을 사용 하는 hello 알고리즘의 모든 처리 및 어떻게 hello 결과 저장 합니다.
 
 ![Machine Learning Studio-클러스터링 알고리즘 예제에서 갤러리 실험을 엽니다.](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/cluster-experiment-open-in-studio.png)
 
-이제 시작점을 얻게 되었습니다. 해당 데이터를 내 데이터를 교체하고 모델을 직접 조정합니다. 이렇게 하면 좀 더 유리한 고지에서 작업을 시작할 수 있으며 해당 작업을 잘 아는 다른 사람들의 작업을 토대로 구축할 수 있습니다.
+이제 시작점을 얻게 되었습니다. 나만의 대 한 데이터를 교체 보고 hello 모델의 자체 조정 수행할 수 있습니까 합니다. 이렇게 하면 실행 시작 하 고 사용자에 게 무엇을 수행 하 고 있는지 알고 hello 작업 me 있습니다.
 
 ## <a name="find-experiments-that-demonstrate-machine-learning-techniques"></a>기계 학습 방법을 보여 주는 실험 찾기
-[Cortana 인텔리전스 갤러리](http://aka.ms/CortanaIntelligenceGallery) 에는 데이터 과학을 처음 사용하는 사람들에게 방법 예제를 알려주기 위해 특수하게 제공된 다른 실험도 많이 있습니다. 예를 들어 이 갤러리에는 누락된 값을 처리하는 방법을 보여 주는 실험([누락된 값 처리 방법](https://gallery.cortanaintelligence.com/Experiment/Methods-for-handling-missing-values-1))도 있습니다. 여기서는 비어 있는 값을 대체하는 15가지 방법을 안내하고 각 방법의 이점과 사용해야 하는 경우를 설명합니다.
+Hello 있는 다른 실험 [Cortana 인텔리전스 갤러리](http://aka.ms/CortanaIntelligenceGallery) 했던 사람들 새 toodata 과학을 위한 tooprovide 방법-tooexamples 특별히 제공 합니다. 예를 들어, 실험 toohandle 누락 값 하는 방법을 보여 주는 hello 갤러리에 있습니다 ([누락 값 처리 방법에 대해](https://gallery.cortanaintelligence.com/Experiment/Methods-for-handling-missing-values-1)). 과정을 안내 하 15 다양 한 방법 빈 값으로 대체 하 고 각 방법의 hello 이점에 대 한 설명 및 시기 toouse 것입니다.
 
 ![Machine Learning Studio에서 갤러리 실험은 누락된 값에 대한 메서드를 엽니다.](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/experiment-methods-for-handling-missing-values.png)
 
-[Cortana 인텔리전스 갤러리](http://aka.ms/CortanaIntelligenceGallery) 는 자체 솔루션에 대한 시작점으로 사용할 수 있는 작동 중인 실험을 찾을 수 있는 위치입니다.
+[Cortana 인텔리전스 갤러리](http://aka.ms/CortanaIntelligenceGallery) 장소 toofind 사용자 고유의 솔루션에 대 한 시작 점으로 사용할 수 있는 작업 실험은 합니다.
 
-Microsoft Azure 기계 학습의 “초급자를 위한 데이터 과학”에 포함된 다른 비디오도 확인해보세요.
+Hello 아웃 있는지 toocheck "데이터 과학에 대 한 초보자를 위한"에서 Microsoft Azure 기계 학습에서 비디오를 다른 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [Azure 기계 학습으로 첫 번째 데이터 과학 실험 시도](machine-learning-create-experiment.md)
-* [Microsoft Azure의 기계 학습 소개 보기](machine-learning-what-is-machine-learning.md)
+* [가져오기 소개 tooMachine Microsoft Azure에서 학습](machine-learning-what-is-machine-learning.md)

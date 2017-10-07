@@ -1,5 +1,5 @@
 ---
-title: "Application Insights를 사용하여 SharePoint 사이트 모니터링"
+title: "aaaMonitor Application Insights와 SharePoint 사이트"
 description: "새 계측 키를 사용하여 새 응용 프로그램 모니터링 시작"
 services: application-insights
 documentationcenter: 
@@ -13,66 +13,66 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/24/2016
 ms.author: bwren
-ms.openlocfilehash: a3b37674469a131016f46af590e1eee3ba4cdc73
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: acfe99c24a4d77daec1017de0442ec952a1faba2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-a-sharepoint-site-with-application-insights"></a>Application Insights를 사용하여 SharePoint 사이트 모니터링
-Azure Application Insights는 응용 프로그램의 가용성, 성능 및 사용량을 모니터링합니다. 여기에서는 SharePoint 사이트에 맞게 설정하는 방법을 알아봅니다.
+Application Insights azure hello 가용성, 성능 및 사용 중인 응용 프로그램의 모니터링합니다. 여기에 대해 배워 봅니다 어떻게 tooset SharePoint 사이트에 대해 것입니다.
 
 ## <a name="create-an-application-insights-resource"></a>Application Insights 리소스 만들기
-[Azure 포털](https://portal.azure.com)에서 새 Application Insights 리소스를 만듭니다. 응용 프로그램 유형으로 ASP.NET을 선택합니다.
+Hello에 [Azure 포털](https://portal.azure.com), 새 Application Insights 리소스를 만듭니다. ASP.NET hello 응용 프로그램 유형으로 선택 합니다.
 
-![속성 클릭, 키 선택 및 ctrl+C 누르기](./media/app-insights-sharepoint/01-new.png)
+![속성을 클릭 hello 키를 선택 하 고 ctrl + C를 누릅니다.](./media/app-insights-sharepoint/01-new.png)
 
-열리는 블레이드에서 앱의 성능 및 사용 데이터를 볼 수 있습니다. 다음에 Azure에 로그인할 때 다시 이 블레이드로 돌아가려면 시작 화면에서 해당 타일을 찾아야 합니다. 또는 찾아보기를 클릭하여 찾아야 합니다.
+열리는 hello 블레이드는 hello 위치 응용 프로그램에 대 한 성능 및 사용 현황 데이터를 표시 됩니다. tooget 백 tooit 다음에 로그인 tooAzure를 찾아야 타일에 대 한 hello 시작 화면에서 합니다. 또는 찾아보기 toofind 클릭 하 여 것입니다.
 
-## <a name="add-our-script-to-your-web-pages"></a>웹 페이지에 스크립트 추가
-빠른 시작에서 웹 페이지용 스크립트를 가져옵니다.
+## <a name="add-our-script-tooyour-web-pages"></a>스크립트 tooyour 웹 페이지 추가
+빠른 시작에서 웹 페이지에 대 한 hello 스크립트를 얻습니다.
 
 ![](./media/app-insights-sharepoint/02-monitor-web-page.png)
 
-추적하려는 모든 페이지의 &lt;/head&gt; 태그 바로 앞에 스크립트를 삽입합니다. 웹 사이트에 마스터 페이지가 있는 경우 이 페이지에 스크립트를 넣을 수 있습니다. 예를 들어 ASP.NET MVC 프로젝트에서는 View\Shared\_Layout.cshtml에 추가합니다.
+Hello 하기 바로 전에 hello 스크립트 삽입 &lt;/h&gt; 태그 tootrack 모든 페이지의 원하는 합니다. 웹 사이트에서 마스터 페이지, 경우에 hello 스크립트 있습니다 넣을 수 있습니다. 예를 들어 ASP.NET MVC 프로젝트에서는 View\Shared\_Layout.cshtml에 추가합니다.
 
-스크립트에는 Application Insights 리소스에 원격 분석을 전달하는 계측 키가 포함됩니다.
+hello 스크립트 hello 원격 분석 tooyour Application Insights 리소스를 알려 주는 hello 계측 키를 포함 합니다.
 
-### <a name="add-the-code-to-your-site-pages"></a>사이트 페이지에 코드를 추가합니다.
-#### <a name="on-the-master-page"></a>마스터 페이지에서
-사이트의 마스터 페이지를 편집할 수 있는 경우 사이트의 모든 페이지에 대한 모니터링을 제공합니다.
+### <a name="add-hello-code-tooyour-site-pages"></a>Hello 코드 tooyour 사이트 페이지를 추가 합니다.
+#### <a name="on-hello-master-page"></a>Hello 마스터 페이지
+Hello 사이트의 마스터 페이지를 편집할 수 있는 hello 사이트의 모든 페이지에 대 한 모니터링을 제공 합니다입니다.
 
-마스터 페이지를 체크 아웃하고 SharePoint Designer 또는 다른 편집기를 사용하여 편집합니다.
+Hello 마스터 페이지를 확인 하 고 SharePoint Designer 또는 다른 편집기를 사용 하 여 편집 합니다.
 
 ![](./media/app-insights-sharepoint/03-master.png)
 
-</head> 태그 바로 앞에 코드를 추가합니다. 
+Hello 하기 바로 전에 hello 코드를 추가 </head> 태그입니다. 
 
 ![](./media/app-insights-sharepoint/04-code.png)
 
 #### <a name="or-on-individual-pages"></a>또는 개별 페이지에서
-제한된 페이지 집합을 모니터링하려면 각 페이지에 개별적으로 스크립트를 추가합니다. 
+페이지의 제한 된 집합 toomonitor hello 스크립트를 별도로 추가 tooeach 페이지. 
 
-웹 파트를 삽입하고 코드 조각을 포함합니다.
+웹 파트를 삽입 하 고 hello 코드 조각에 포함 합니다.
 
 ![](./media/app-insights-sharepoint/05-page.png)
 
 ## <a name="view-data-about-your-app"></a>앱에 대한 데이터 보기
 응용 프로그램을 다시 배포 합니다.
 
-[Azure 포털](https://portal.azure.com)에서 사용자 응용 프로그램 블레이드로 돌아갑니다.
+Hello에 응용 프로그램 블레이드 반환 tooyour [Azure 포털](https://portal.azure.com)합니다.
 
-첫 번째 이벤트가 검색에 표시됩니다. 
+hello 첫 번째 이벤트는 검색에 표시 됩니다. 
 
 ![](./media/app-insights-sharepoint/09-search.png)
 
 더 많은 데이터를 기대하는 경우 몇 초 후에 새로고침을 클릭합니다.
 
-개요 블레이드에서 **사용 현황 분석** 을 클릭하여 사용자, 세션 및 페이지 보기에 대한 차트를 확인합니다.
+Hello 개요 블레이드에서 클릭 **사용 현황 분석** 사용자, 세션 및 페이지 보기의 toosee toocharts:
 
 ![](./media/app-insights-sharepoint/06-usage.png)
 
-자세한 정보를 보려면 차트를 클릭합니다. 예: 페이지 보기:
+모든 차트 toosee 자세한 세부 정보-예를 들어 페이지 뷰를 클릭 합니다.
 
 ![](./media/app-insights-sharepoint/07-pages.png)
 
@@ -81,14 +81,14 @@ Azure Application Insights는 응용 프로그램의 가용성, 성능 및 사�
 ![](./media/app-insights-sharepoint/08-users.png)
 
 ## <a name="capturing-user-id"></a>사용자 ID 캡처
-표준 웹 페이지 코드 조각은 SharePoint에서 사용자 ID를 캡처하지 않지만 약간 수정하여 캡처할 수 있습니다.
+hello 표준 웹 페이지 코드 조각에는 SharePoint에서 사용자 id hello 캡처하지 않습니다 하지만 작은 수정을 할 수 있습니다.
 
-1. Application Insights의 Essentials 드롭 다운에서 앱의 계측 키를 복사합니다. 
+1. Hello Essentials 드롭 다운 Application Insights에서에서 응용 프로그램의 계측 키를 복사 합니다. 
 
     ![](./media/app-insights-sharepoint/02-props.png)
 
-1. 다음 코드 조각에서 'XXXX'에 대한 계측 키를 대체합니다. 
-2. 포털에서 가져온 코드 조각 대신 SharePoint 앱에 스크립트를 포함합니다.
+1. 'XXXX' hello 계측 키 아래 hello 조각을 대체 합니다. 
+2. Hello 조각 hello 포털에서 받아야 하는 대신 SharePoint 응용 프로그램에 hello 스크립트를 포함 합니다.
 
 ```
 
@@ -99,26 +99,26 @@ Azure Application Insights는 응용 프로그램의 가용성, 성능 및 사�
 <script type="text/javascript"> 
 var personProperties; 
 
-// Ensure that the SP.UserProfiles.js file is loaded before the custom code runs. 
+// Ensure that hello SP.UserProfiles.js file is loaded before hello custom code runs. 
 SP.SOD.executeOrDelayUntilScriptLoaded(getUserProperties, 'SP.UserProfiles.js'); 
 
 function getUserProperties() { 
-    // Get the current client context and PeopleManager instance. 
+    // Get hello current client context and PeopleManager instance. 
     var clientContext = new SP.ClientContext.get_current(); 
     var peopleManager = new SP.UserProfiles.PeopleManager(clientContext); 
 
-    // Get user properties for the target user. 
-    // To get the PersonProperties object for the current user, use the 
+    // Get user properties for hello target user. 
+    // tooget hello PersonProperties object for hello current user, use hello 
     // getMyProperties method. 
 
     personProperties = peopleManager.getMyProperties(); 
 
-    // Load the PersonProperties object and send the request. 
+    // Load hello PersonProperties object and send hello request. 
     clientContext.load(personProperties); 
     clientContext.executeQueryAsync(onRequestSuccess, onRequestFail); 
 } 
 
-// This function runs if the executeQueryAsync call succeeds. 
+// This function runs if hello executeQueryAsync call succeeds. 
 function onRequestSuccess() { 
 var appInsights=window.appInsights||function(config){
 function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
@@ -129,7 +129,7 @@ function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){
     appInsights.trackPageView(document.title,window.location.href, {User: personProperties.get_displayName()});
 } 
 
-// This function runs if the executeQueryAsync call fails. 
+// This function runs if hello executeQueryAsync call fails. 
 function onRequestFail(sender, args) { 
 } 
 </script> 
@@ -140,7 +140,7 @@ function onRequestFail(sender, args) {
 
 
 ## <a name="next-steps"></a>다음 단계
-* [웹 테스트](app-insights-monitor-web-app-availability.md) 
+* [웹 테스트](app-insights-monitor-web-app-availability.md) toomonitor hello 가용성의 사이트입니다.
 * [Application Insights](app-insights-overview.md) 
 
 <!--Link references-->

@@ -1,6 +1,6 @@
 ---
-title: "Azure Multi-factor Authentication 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "간단한 로그인 프로세스를 제공하는 검증 메서드의 범위에서 Multi-Factor Authentication을 배포하는 방법에 대해 알아봅니다. 자습서, SDK, 등입니다."
+title: "multi-factor Authentication 설명서 자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "자세한 내용은 방법 toodeploy 다단계 인증 확인 방법의 범위를 제공 하는 간단한 로그인 프로세스입니다. 자습서, SDK, 등입니다."
 services: multi-factor-authentication
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c4aaa14007bf441f99ef6599bda411bcaed92a92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0ede2ad48a3d4e756aeb0b1f6bc0e07e4e7b1fcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multi-factor-authentication-documentation"></a>Multi-Factor Authentication 설명서
 
-2단계 ID 검증 시스템인 Azure Multi-Factor Authentication을 배포하고 관리하는 방법에 대해 알아봅니다. 자습서, SDK 및 기타 설명서에서는 간단한 로그인 프로세스를 제공하는 동시에 검증 메서드의 범위에서 강력한 인증을 제공하는 방법을 보여 줍니다.
+자세한 내용은 방법 toodeploy 및 Azure Multi-factor Authentication을 2 단계 id 확인 시스템을 관리 합니다. 자습서, SDK, 및 기타 문서 방법을 보여 줍니다 간단한 로그인 프로세스를 제공 하는 동안 확인 방법 범위를 가진 toodeliver 강력한 인증 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>클라우드에서 Azure Multi-Factor Authentication 시작</h3>
+                        <h3>Hello 클라우드에서 Azure multi-factor Authentication 시작</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: "SQL Server 저장 프로시저 작업"
-description: "SQL Server 저장 프로시저 작업을 사용하여 데이터 팩터리 파이프라인으로 Azure SQL 데이터베이스 또는 Azure SQL 데이터 웨어하우스에서 저장 프로시저를 호출하는 방법을 알아봅니다."
+title: "aaaSQL 서버 저장 프로시저 작업"
+description: "SQL Server 저장 프로시저 작업 tooinvoke hello 데이터 팩토리 파이프라인에서 Azure SQL 데이터베이스 또는 Azure SQL 데이터 웨어하우스 저장된 프로시저를 사용 하는 방법에 대해 알아봅니다."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: spelluru
-ms.openlocfilehash: 6505d9aa2c7ae003bd928e2fa82cd923a9615394
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9116f80eefc59d95e866b2ba1de2feb1bdc4b1d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-server-stored-procedure-activity"></a>SQL Server 저장 프로시저 작업
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -34,25 +34,25 @@ ms.lasthandoff: 08/03/2017
 > * [.NET 사용자 지정 작업](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>개요
-Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 변환 작업을 통해 원시 데이터를 변환 및 처리하여 예측 가능한, 통찰력 있는 정보로 만듭니다. 저장 프로시저 작업은 Data Factory에서 지원하는 변환 작업 중 하나입니다. 이 문서는 데이터 팩터리의 데이터 변환 및 지원되는 변환 활동의 일반적인 개요를 표시하는 [데이터 변환 활동](data-factory-data-transformation-activities.md) 문서에서 작성합니다.
+데이터 변환 작업을 사용 하 여 데이터 팩터리에서 [파이프라인](data-factory-create-pipelines.md) 예측 및 통찰력으로 원시 데이터 tootransform 및 프로세스입니다. hello 저장 프로시저 작업은 데이터 팩터리의 지원 hello 변환 활동 중 하나입니다. Hello를 기반으로 한이 문서 [데이터 변환 작업](data-factory-data-transformation-activities.md) 문서 데이터 변환 및 데이터 팩터리의 지원 hello 변환 작업에 대 한 일반적인 개요를 사용 합니다.
 
-저장 프로시저 작업을 사용하여 엔터프라이즈 또는 Azure VM(Virtual Machine)의 다음 데이터 저장소 중 하나에서 저장 프로시저를 호출할 수 있습니다. 
+기업에서 또는 Azure 가상 컴퓨터 (VM)에 같은 데이터가 hello 중 하나에 있는 저장된 프로시저를 저장 하는 hello 저장 프로시저 작업 tooinvoke를 사용할 수 있습니다. 
 
-- Azure SQL 데이터베이스
+- Azure SQL Database
 - Azure SQL 데이터 웨어하우스
-- SQL Server 데이터베이스.  SQL Server를 사용 중인 경우 데이터베이스를 호스트하는 동일한 컴퓨터 또는 데이터베이스에 대한 액세스 권한이 있는 별도 컴퓨터에서 데이터 관리 게이트웨이를 설치합니다. 데이터 관리 게이트웨이는 온-프레미스/Azure VM에서 데이터 원본을 Cloud Services에 안전하고 관리되는 방식으로 연결하는 구성 요소입니다. 자세한 내용은 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 문서를 참조하세요.
+- SQL Server 데이터베이스.  SQL Server를 사용 하는 경우 hello 호스트 데이터베이스 hello 또는 access toohello 데이터베이스 있는 별도 컴퓨터에서 동일한 컴퓨터에 데이터 관리 게이트웨이 설치 합니다. 데이터 관리 게이트웨이는 온-프레미스/Azure VM에서 데이터 원본을 Cloud Services에 안전하고 관리되는 방식으로 연결하는 구성 요소입니다. 자세한 내용은 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 문서를 참조하세요.
 
 > [!IMPORTANT]
-> Azure SQL Database 또는 SQL Server로 데이터를 복사할 때 **sqlWriterStoredProcedureName** 속성을 사용하여 복사 작업에 저장 프로시저를 호출하도록 **SqlSink**를 구성할 수 있습니다. 자세한 내용은 [복사 작업에서 저장 프로시저 호출](data-factory-invoke-stored-procedure-from-copy-activity.md)을 참조하세요. 이 속성에 대한 자세한 내용은 커넥터 문서 [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)를 참조하세요. 복사 작업을 사용하여 Azure SQL Data Warehouse로 데이터를 복사하는 동안 저장 프로시저를 호출하는 것은 지원되지 않습니다. 그러나 저장 프로시저 작업을 사용하여 SQL Data Warehouse의 저장 프로시저를 호출할 수 있습니다. 
+> Azure SQL 데이터베이스 또는 SQL Server에 데이터를 복사할 때 hello를 구성할 수 있습니다 **SqlSink** 복사 활동 tooinvoke hello를 사용 하 여 저장된 프로시저에서에서 **sqlWriterStoredProcedureName** 속성입니다. 자세한 내용은 [복사 작업에서 저장 프로시저 호출](data-factory-invoke-stored-procedure-from-copy-activity.md)을 참조하세요. Hello 속성에 대 한 자세한 커넥터 문서를 다음을 참조: [Azure SQL 데이터베이스](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)합니다. 복사 작업을 사용하여 Azure SQL Data Warehouse로 데이터를 복사하는 동안 저장 프로시저를 호출하는 것은 지원되지 않습니다. 그러나 SQL 데이터 웨어하우스에 hello 저장 프로시저 활동 tooinvoke 저장된 프로시저를 사용할 수 있습니다. 
 >  
-> Azure SQL Database, SQL Server 또는 Azure SQL Data Warehouse에서 데이터를 복사하는 경우 복사 작업에서 **sqlReaderStoredProcedureName** 속성을 사용하여 원본 데이터베이스에서 데이터를 읽는 저장 프로시저를 호출하도록 **SqlSource**를 구성할 수 있습니다. 자세한 내용은 커넥터 문서 [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)를 참조하세요.          
+> Azure SQL 데이터 웨어하우스 또는 SQL Server 나 Azure SQL 데이터베이스에서 데이터를 복사할 때 구성할 수 있습니다 **SqlSource** 복사 활동 tooinvoke hello를 사용 하 여 hello 원본 데이터베이스에서 저장된 프로시저 tooread 데이터에서에서  **sqlReaderStoredProcedureName** 속성입니다. 자세한 내용은 hello 다음 커넥터 문서를 참조 하세요.: [Azure SQL 데이터베이스](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL 데이터 웨어하우스](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
 
 
-다음 연습에서는 파이프라인에서 저장 프로시저 활동을 사용하여 Azure SQL Database에서 저장 프로시저를 호출합니다. 
+연습에서는 다음 hello 파이프라인 tooinvoke Azure SQL 데이터베이스의 저장된 프로시저에서에서 저장 프로시저 작업 hello 합니다. 
 
 ## <a name="walkthrough"></a>연습
 ### <a name="sample-table-and-stored-procedure"></a>샘플 테이블 및 저장 프로시저
-1. SQL Server Management Studio 또는 익숙한 다른 도구를 사용하여 Azure SQL 데이터베이스에서 다음 **테이블** 을 만듭니다. datetimestamp 열은 해당 ID가 생성된 날짜와 시간입니다.
+1. Hello 다음 만들기 **테이블** SQL Server Management Studio 또는 다른 익숙한 도구를 사용 하 여 Azure SQL 데이터베이스에 있습니다. hello datetimestamp 열은 hello 날짜 및 시간을 해당 하는 hello ID 생성 되는 경우.
 
     ```SQL
     CREATE TABLE dbo.sampletable
@@ -65,12 +65,12 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
     CREATE CLUSTERED INDEX ClusteredID ON dbo.sampletable(Id);
     GO
     ```
-    Id는 고유 식별자이며 datetimestamp 열은 해당 ID가 생성된 날짜와 시간입니다.
+    Id는 hello 고유한 식별 하 고 hello datetimestamp 열은 hello 날짜 및 시간 hello 해당 ID가 생성 되는 경우 키를 누릅니다.
     
     ![샘플 데이터](./media/data-factory-stored-proc-activity/sample-data.png)
 
-    이 샘플에서는 저장 프로시저가 Azure SQL Database에 있습니다. 저장 프로시저가 Azure SQL Data Warehouse 및 SQL Server Database에 있는 경우 접근 방법이 비슷합니다. SQL Server Database의 경우 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md)를 설치해야 합니다.
-2. **sampletable**에 데이터를 삽입하는 다음 **저장 프로시저**를 만듭니다.
+    이 샘플에서는 Azure SQL 데이터베이스에서 hello 저장 프로시저는입니다. Hello 저장된 프로시저에 있으면 Azure SQL 데이터 웨어하우스 및 SQL Server 데이터베이스, hello 방법은 비슷합니다. SQL Server Database의 경우 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md)를 설치해야 합니다.
+2. Hello 다음 만들기 **저장 프로시저** toohello에 데이터를 삽입 하는 **하세요**합니다.
 
     ```SQL
     CREATE PROCEDURE sp_sample @DateTime nvarchar(127)
@@ -83,53 +83,53 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
     ```
 
    > [!IMPORTANT]
-   > 매개 변수(이 예에서는 DateTime)의 **이름** 및 **대/소문자**는 파이프라인/작업 JSON에서 지정된 매개 변수의 이름 및 대/소문자와 일치해야 합니다. 저장 프로시저 정의에서 **@** 는 매개 변수에 대한 접두사로 사용되어야 합니다.
+   > **이름** 및 **대/소문자** hello의 매개 변수 (이 예제의 DateTime)와 일치 해야 hello 파이프라인/활동 JSON에에서 지정 된 매개 변수입니다. 저장된 프로시저 정의 hello 하 되도록  **@**  hello 매개 변수에 대 한 접두사로 사용 됩니다.
 
 ### <a name="create-a-data-factory"></a>데이터 팩터리를 만듭니다.
-1. [Azure Portal](https://portal.azure.com/)에 로그인합니다.
-2. 왼쪽 메뉴에서 **새로 만들기**를 클릭하고 **인텔리전스 + 분석**을 클릭한 다음 **Data Factory**를 클릭합니다.
+1. 로그 너무[Azure 포털](https://portal.azure.com/)합니다.
+2. 클릭 **새로** hello 왼쪽된 메뉴를 클릭 **인텔리전스 + 분석**를 클릭 하 고 **Data Factory**합니다.
 
     ![새 data factory](media/data-factory-stored-proc-activity/new-data-factory.png)    
-3. **새 data factory** 블레이드에서 이름으로 **SProcDF**를 입력합니다. Azure Data Factory 이름은 **전역적으로 고유**합니다. 팩터리를 성공적으로 만들려면 데이터 팩터리의 이름의 접두사를 사용자의 이름으로 해야 합니다.
+3. Hello에 **새 데이터 팩터리** 블레이드에서 입력 **SProcDF** hello 이름에 대 한 합니다. Azure Data Factory 이름은 **전역적으로 고유**합니다. 해당 이름의 hello 팩터리의 tooenable hello 성공적으로 만드는 hello 데이터 팩터리의 tooprefix hello 이름이 필요 합니다.
 
    ![새 data factory](media/data-factory-stored-proc-activity/new-data-factory-blade.png)         
 4. Azure **구독**을 선택합니다.
-5. **리소스 그룹**에 대해 다음 단계 중 하나를 수행합니다.
-   1. **새로 만들기**를 클릭하고 리소스 그룹의 이름을 입력합니다.
+5. 에 대 한 **리소스 그룹**, hello 다음 단계 중 하나를 수행 합니다.
+   1. 클릭 **새로 만들기** hello 리소스 그룹에 대 한 이름을 입력 합니다.
    2. **기존 항목 사용**을 클릭하고 기존 리소스 그룹을 선택합니다.  
-6. 데이터 팩터리의 **위치** 를 선택합니다.
-7. 다음에 로그인할 때 대시보드에 Data Factory가 표시되도록 **대시보드에 고정**을 선택합니다.
-8. **새 Data Factory** 블레이드에서 **만들기**를 클릭합니다.
-9. Azure Portal의 **대시보드** 에 생성된 데이터 팩터리가 표시됩니다. 데이터 팩터리 만들기를 완료한 후에는 데이터 팩터리 페이지가 표시되며 여기에 데이터 팩터리의 내용이 표시됩니다.
+6. 선택 hello **위치** hello 데이터 팩토리에 대 한 합니다.
+7. 선택 **Pin toodashboard** 다음에 로그인 할 때 hello 대시보드에서 hello 데이터 팩터리를 볼 수 있습니다.
+8. 클릭 **만들기** hello에 **새 데이터 팩터리** 블레이드입니다.
+9. Hello에 생성 되 고 hello 데이터 팩터리 참조 **대시보드** hello Azure 포털의. 보여 주는 hello 데이터 팩터리 페이지를 참조 하는 hello 데이터 팩터리에서 만들어진 후에 성공적으로, hello 데이터 팩터리의 내용을 hello 합니다.
 
    ![Data Factory 홈페이지](media/data-factory-stored-proc-activity/data-factory-home-page.png)
 
 ### <a name="create-an-azure-sql-linked-service"></a>Azure SQL 연결된 서비스 만들기
-데이터 팩터리를 만든 후 sampletable 테이블 및 sp_sample 저장 프로시저가 포함된 Azure SQL 데이터베이스를 데이터 팩터리에 연결하는 Azure SQL 연결된 서비스를 만듭니다.
+Hello 데이터 팩터리를 만든 후 hello 하세요 테이블 및 sp_sample 저장 프로시저, tooyour 데이터 팩터리를 포함 하 여 Azure SQL 데이터베이스를 연결 하는 Azure SQL 연결 서비스를 만듭니다.
 
-1. **SProcDF**에 대한 **Data Factory** 블레이드에서 **작성 및 배포**를 클릭하여 Data Factory 편집기를 시작합니다.
-2. 명령 모음에서 **새 데이터 저장소**를 클릭하고 **Azure SQL Database**를 선택합니다. 편집기에 Azure SQL 연결된 서비스를 만들기 위한 JSON 스크립트가 표시됩니다.
+1. 클릭 **작성자 및 배포** hello에 **Data Factory** 블레이드 **SProcDF** toolaunch hello 데이터 팩터리 편집기입니다.
+2. 클릭 **새 데이터 저장소** 명령 모음 hello 되 고 선택 **Azure SQL 데이터베이스**합니다. Hello Azure SQL을 만들기 위한 JSON 스크립트는 연결 된 서비스 hello 편집기에 표시 됩니다.
 
    ![새 데이터 저장소](media/data-factory-stored-proc-activity/new-data-store.png)
-3. JSON 스크립트에서 다음과 같이 변경합니다.
+3. Hello JSON 스크립트에서에서 변경 내용을 따라 hello를 확인 합니다.
 
-   1. `<servername>`을 Azure SQL Database 서버의 이름으로 바꿉니다.
-   2. `<databasename>`을 테이블 및 저장 프로시저를 만든 데이터베이스로 바꿉니다.
-   3. `<username@servername>`을 데이터베이스에 대한 액세스 권한이 있는 사용자 계정으로 바꿉니다.
-   4. `<password>`를 사용자 계정의 암호로 바꿉니다.
+   1. 대체 `<servername>` hello Azure SQL 데이터베이스 서버 이름을 사용 합니다.
+   2. 대체 `<databasename>` hello 데이터베이스를 만든 hello 테이블과 hello와 저장 프로시저입니다.
+   3. 대체 `<username@servername>` toohello 데이터베이스 액세스를 가진 hello 사용자 계정을 사용 합니다.
+   4. 대체 `<password>` hello hello 사용자 계정의 암호를 사용 합니다.
 
       ![새 데이터 저장소](media/data-factory-stored-proc-activity/azure-sql-linked-service.png)
-4. 연결된 서비스를 배포하려면 명령 모음에서 **배포**를 클릭합니다. 왼쪽의 트리 뷰에 AzureSqlLinkedService가 표시되는지 확인합니다.
+4. toodeploy hello 연결 된 서비스를 클릭 **배포** hello 명령 모음에서 합니다. Hello 왼쪽에서 볼 hello 트리에서 hello AzureSqlLinkedService 표시 되는지 확인 합니다.
 
     ![연결된 서비스와 트리 뷰](media/data-factory-stored-proc-activity/tree-view.png)
 
 ### <a name="create-an-output-dataset"></a>출력 데이터 집합 만들기
-저장 프로시저가 어떠한 데이터도 생성하지 않는 경우에도 저장 프로시저 작업의 출력 데이터 집합을 지정해야 합니다. 이는 출력 데이터 집합이 작업의 일정(작업 실행 빈도 즉, 매시간, 매일 등)을 지정하기 때문입니다. 출력 데이터 집합은 Azure SQL 데이터베이스 또는 Azure SQL 데이터 웨어하우스나 저장 프로시저를 실행하려는 SQL Server 데이터베이스를 참조하는 **연결된 서비스** 를 사용해야 합니다. 출력 데이터 집합은 파이프라인에서 다른 활동을 통한 후속 처리([활동 체이닝](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline))를 위해 저장 프로시저의 결과를 전달하는 방법으로 사용할 수 있습니다. 그러나 Data Factory는 저장 프로시저의 출력을 이 데이터 집합에 자동으로 쓰지 않습니다. 출력 데이터 집합이 가리키는 SQL 테이블에 기록하는 저장 프로시저입니다. 경우에 따라 출력 데이터 집합은 **더미 데이터 집합**(저장 프로시저의 출력을 실제로 보관하고 있지 않은 테이블을 가리키는 데이터 집합)일 수 있습니다. 더미 데이터 집합은 저장 프로시저 작업의 실행 일정을 지정하는 데에만 사용됩니다. 
+저장된 프로시저 활동에 대 한 출력 데이터 집합 저장 프로시저를 hello 하는 경우에 생성 하지 않으므로 모든 데이터를 지정 해야 합니다. hello 출력 hello 활동 (얼마나 자주 hello 활동 실행-매시간, 매일, 등)의 일정을 hello를 구동 하는 데이터 집합 때문입니다. hello 출력 데이터 집합 사용 해야 합니다는 **연결 된 서비스** tooan Azure SQL 데이터베이스 또는 Azure SQL 데이터 웨어하우스 또는 저장된 프로시저 toorun hello 하려는 SQL Server 데이터베이스를 참조 합니다. hello 출력 데이터 집합으로 사용할 수는 방식으로 toopass hello 결과 후속 처리에 대 한 hello 저장 프로시저의 다른 활동에 의해 ([활동 체인](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) hello 파이프라인에서. 그러나 데이터 팩터리는 저장된 프로시저 toothis 데이터 집합의 hello 출력을 자동으로 기록 하지 않습니다. Hello 저장 프로시저 출력 데이터 집합 가리키는 hello 해당 쓰기 tooa SQL 테이블 이며 경우에 따라 hello 출력 데이터 집합 수는 **더미 데이터 집합** (hello의 출력을 실제로 포함 되지 않는 tooa 테이블을 가리키는 데이터 집합 저장 프로시저). 이 더미 데이터 집합 저장 프로시저 작업 hello를 실행 하기 위한 toospecify hello 일정만 사용 됩니다. 
 
-1. 단추가 표시되지 않는 경우 도구 모음에서 **... 추가**, **새 데이터 집합**, **Azure SQL**을 차례로 클릭합니다. 명령 모음에서 **새 데이터 집합**을 클릭하고 **Azure SQL**을 선택합니다.
+1. 도구 모음에서 **... 더 많은** hello 도구 모음에서 **새 데이터 집합**를 클릭 하 고 **Azure SQL**합니다. **새 데이터 집합** hello 명령 모음 및 선택에 **Azure SQL**합니다.
 
     ![연결된 서비스와 트리 뷰](media/data-factory-stored-proc-activity/new-dataset.png)
-2. 다음 JSON 스크립트를 복사하여 JSON 편집기에 붙여 넣습니다.
+2. 복사/붙여넣기 hello toohello JSON 편집기에서 JSON 스크립트를 수행 합니다.
 
     ```JSON
     {                
@@ -147,21 +147,21 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
         }
     }
     ```
-3. 데이터 집합을 배포하려면 명령 모음에서 **배포**를 클릭합니다. 트리 뷰에 데이터 집합이 표시되는지 확인합니다.
+3. toodeploy hello 데이터 집합, 클릭 **배포** hello 명령 모음에서 합니다. Hello 트리 뷰에서 hello 데이터 집합에 표시 되는지 확인 합니다.
 
     ![연결된 서비스와 트리 뷰](media/data-factory-stored-proc-activity/tree-view-2.png)
 
 ### <a name="create-a-pipeline-with-sqlserverstoredprocedure-activity"></a>SqlServerStoredProcedure 작업을 사용하여 파이프라인 만들기
 이제 저장 프로시저 작업을 사용하여 파이프라인 만들겠습니다. 
 
-다음 속성을 확인합니다. 
+Hello 다음과 같은 속성을 확인 합니다. 
 
-- **type** 속성이 **SqlServerStoredProcedure**로 설정되어 있어야 합니다. 
-- type 속성의 **storedProcedureName**은 **sp_sample**(저장 프로시저의 이름)로 설정되어 있어야 합니다.
-- **storedProcedureParameters** 섹션에는 **DataTime** 매개 변수 하나가 있어야 합니다. JSON에서 이 매개 변수의 이름 및 대/소문자는 저장 프로시저 정의에 있는 매개 변수의 이름 및 대/소문자와 일치해야 합니다. 매개 변수에 대해 null을 전달해야 하는 경우 구문: `"param1": null`(모두 소문자)을 사용합니다.
+- hello **형식** 너무 속성이**SqlServerStoredProcedure**합니다. 
+- hello **storedProcedureName** 속성이 너무 설정 글꼴로**sp_sample** (저장 프로시저 hello의 이름).
+- hello **storedProcedureParameters** 라는 하나의 매개 변수를 포함 하는 섹션 **DataTime**합니다. Hello 이름과 대/소문자 hello 저장 프로시저 정의에 hello 매개 변수의 이름 및 JSON의 hello 매개 변수는 대/소문자 구분 일치 해야 합니다. 매개 변수에 대해 null을 전달 해야 hello 구문을 사용 하 여: `"param1": null` (모두 소문자).
  
-1. 단추가 표시되지 않는 경우 도구 모음에서 **... 추가**를 클릭하고 **새 파이프라인**을 클릭합니다.
-2. 다음 JSON 코드 조각을 복사하여 붙여넣습니다.   
+1. 도구 모음에서 **... 더 많은** 명령 모음 hello 되 고 클릭 **새 파이프라인**합니다.
+2. 다음 JSON 코드 조각은 복사/붙여넣기 hello:   
 
     ```JSON
     {
@@ -194,32 +194,32 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
         }
     }
     ```
-3. 파이프라인을 배포하려면 도구 모음에서 **배포** 를 클릭합니다.  
+3. toodeploy hello 파이프라인 클릭 **배포** hello 도구 모음입니다.  
 
-### <a name="monitor-the-pipeline"></a>파이프라인 모니터링
-1. **X**를 클릭하여 Data Factory 편집기 블레이드를 닫고 Data Factory 블레이드로 돌아가서 **다이어그램**을 클릭합니다.
+### <a name="monitor-hello-pipeline"></a>모니터 hello 파이프라인
+1. 클릭 **X** tooclose 데이터 팩터리 편집기 블레이드를 toonavigate toohello Data Factory 블레이드를 다시 마우스 클릭 **다이어그램**합니다.
 
     ![다이어그램 타일](media/data-factory-stored-proc-activity/data-factory-diagram-tile.png)
-2. **다이어그램 보기**에 파이프라인의 개요와 이 자습서에 사용된 데이터 집합이 표시됩니다.
+2. Hello에 **다이어그램 보기**를 hello 파이프라인에 대 한 개요를 확인 하 고 데이터 집합에 사용 되는이 자습서입니다.
 
     ![다이어그램 타일](media/data-factory-stored-proc-activity/data-factory-diagram-view.png)
-3. [다이어그램 보기]에서 `sprocsampleout` 데이터 집합을 두 번 클릭합니다. 준비 상태의 조각이 표시됩니다. 조각은 JSON에서 시작 시간 및 종료 시간 사이의 매시간 생성되므로 5개 조각입니다.
+3. 다이어그램 보기 hello에서 hello 데이터 집합을 두 번 클릭 `sprocsampleout`합니다. 준비 상태에서 hello 조각이 표시 됩니다. 조각이 hello 시작 시간과 종료 시간 hello JSON에서에서 사이의 각 시간에 대해 생성 되 있으므로 5 개의 분할 영역 이어야 합니다.
 
     ![다이어그램 타일](media/data-factory-stored-proc-activity/data-factory-slices.png)
-4. 조각이 **Ready** 상태일 때 Azure SQL Database에 대해 `select * from sampletable` 쿼리를 실행하여 저장 프로시저에 의해 데이터가 테이블에 삽입되었는지 확인합니다.
+4. 이 분할 영역에 있을 때 **준비** 실행 상태는 `select * from sampletable` 데이터 hello hello Azure SQL 데이터베이스 tooverify에 대 한 쿼리를 hello 저장 프로시저를 통해 toohello 테이블에 삽입 합니다.
 
    ![출력 데이터](./media/data-factory-stored-proc-activity/output.png)
 
-   Azure Data Factory 파이프라인 모니터링에 대한 자세한 내용은 [파이프라인 모니터링](data-factory-monitor-manage-pipelines.md) 을 참조하세요.  
+   참조 [모니터 hello 파이프라인](data-factory-monitor-manage-pipelines.md) Azure 데이터 팩터리 파이프라인을 모니터링 하는 방법에 대 한 자세한 정보에 대 한 합니다.  
 
 
 ## <a name="specify-an-input-dataset"></a>입력 데이터 집합 지정
-이 연습에서는 저장 프로시저 작업에 입력 데이터 집합이 없습니다. 입력 데이터 집합을 지정하면 입력 데이터 집합의 조각을 사용할 수 있을 때까지(준비 상태) 저장 프로시저 작업이 실행되지 않습니다. 데이터 집합은 (동일한 파이프라인의 다른 작업에서 생성하지 않은) 외부 데이터 집합 또는 업스트림 작업(이 작업 이전에 실행된 작업)에서 생성된 내부 데이터 집합일 수 있습니다. 저장 프로시저 작업에 대해 입력 데이터 집합을 여러 개 지정할 수 있습니다. 이렇게 하면 모든 입력 데이터 집합 조각을 사용할 수 있는 경우에만(준비 상태) 저장 프로시저 작업이 실행됩니다. 저장 프로시저에서 입력 데이터 집합을 매개 변수로 사용할 수 없습니다. 저장 프로시저 작업을 시작하기 전에 종속성을 확인하는 데만 사용됩니다.
+Hello 연습에서는 저장된 프로시저 작업 모든 입력된 데이터 집합이 필요 하지 않습니다. 입력된 데이터 집합을 지정 하면 hello 저장된 프로시저 작업까지 실행 되지 않습니다 (준비 상태)에서 입력된 데이터 집합의 조각을 hello를 사용할 수 있습니다. hello 데이터 집합에는 외부 데이터 집합 수 (hello에 다른 활동에 의해 생성 되지 않습니다 동일한 파이프라인) 또는 업스트림 활동 (이 작업 이전에 실행 되 hello 활동)에서 생성 하는 내부 데이터 집합입니다. Hello 저장 프로시저 작업에 대 한 여러 입력된 데이터 집합을 지정할 수 있습니다. 이렇게 하면 hello 저장된 프로시저 작업 실행 모든 hello에 대 한 입력된 데이터 집합 분할 영역을 사용할 수 (준비 상태) 경우에 합니다. hello 입력된 데이터 집합 매개 변수로 hello 저장 프로시저에서 사용할 수 없습니다. 시작 hello 저장 프로시저 작업 전에 것만 사용 되는 toocheck hello 종속성 합니다.
 
 ## <a name="chaining-with-other-activities"></a>다른 작업과 연결
-업스트림 작업을 이 작업과 연결하려는 경우 업스트림 작업의 출력을 이 작업의 입력으로 지정합니다. 이렇게 하면 업스트림 작업이 완료되고 업스트림 작업의 출력 데이터 집합을 사용할 수 있을 때까지(준비 상태) 저장 프로시저 작업이 실행되지 않습니다. 여러 업스트림 작업의 출력 데이터 집합을 저장 프로시저 작업의 입력 데이터 집합으로 지정할 수 있습니다. 이렇게 하면 모든 입력 데이터 집합 조각을 사용할 수 있는 경우에만 저장 프로시저 작업이 실행됩니다.  
+Toochain는 업스트림 활동과이 활동을 사용 하도록 하려는 경우이 활동의 입력으로 hello 업스트림 활동의 hello 출력을 지정 합니다. 이렇게 하면 hello 저장된 프로시저 작업까지 실행 되지 않습니다 hello 업스트림 활동이 완료 되 고 hello 업스트림 활동의 hello 출력 데이터 집합 (준비 됨 상태)에 사용할 수 있습니다. Hello 저장 프로시저 작업의 입력된 데이터 집합으로 업스트림 여러 활동의 출력 데이터 집합을 지정할 수 있습니다. 작업을 수행 하면 hello 저장 프로시저 작업 하므로 모든 hello에 대 한 입력된 데이터 집합 분할 영역을 사용할 수 있는 경우에 실행 됩니다.  
 
-다음 예제에서 복사 작업의 출력은 OutputDataset으로, 저장 프로시저 작업의 입력입니다. 따라서 복사 작업이 완료되고 OutputDataset 조각이 사용할 수 있을 때까지(준비 상태) 저장 프로시저 작업이 실행되지 않습니다. 여러 입력 데이터 집합을 지정하면 입력 데이터 집합의 모든 조각을 사용할 수 있을 때까지(준비 상태) 저장 프로시저 작업이 실행되지 않습니다. 입력 데이터 집합은 저장 프로시저 작업에 대한 매개 변수로 직접 사용할 수 없습니다. 
+다음 예제는 hello, hello 복사 작업의 hello 출력은: OutputDataset hello의 입력이 있는 저장 프로시저 작업 합니다. 따라서 hello 저장된 프로시저 작업까지 실행 되지 않습니다 hello 복사 작업을 완료 되며 hello OutputDataset 분할 영역에서에서 사용할 수 (준비 상태). 여러 입력된 데이터 집합을 지정 하면 hello 저장된 프로시저 작업까지 실행 되지 않습니다 (준비 상태)에 사용할 수 있는 모든 hello 입력된 데이터 집합 슬라이스입니다. hello 입력된 데이터 집합 매개 변수 toohello 저장 프로시저 작업으로 직접 사용할 수 없습니다. 
 
 연결 작업에 대한 자세한 내용은 [파이프라인의 여러 작업](data-factory-create-pipelines.md#multiple-activities-in-a-pipeline)을 참조하세요.
 
@@ -228,7 +228,7 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
 
     "name": "ADFTutorialPipeline",
     "properties": {
-        "description": "Copy data from a blob to blob",
+        "description": "Copy data from a blob tooblob",
         "activities": [
             {
                 "type": "Copy",
@@ -274,15 +274,15 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
 }
 ```
 
-마찬가지로 저장 프로시저 작업을 **다운스트림 작업**(저장 프로시저 작업이 완료된 후 실행되는 작업)과 연결시키려면 저장 프로시저 작업의 출력 데이터 집합을 파이프라인 내 다운스트림 작업의 입력으로 지정합니다.
+마찬가지로, toolink hello 저장 프로시저와 관련 된 활동 **다운스트림 작업** 으로 hello 저장 프로시저 작업의 hello 출력 데이터 집합을 지정 하는 (hello 활동 hello 저장된 프로시저 활동이 완료 된 후 실행 하는), 프로그램 hello 파이프라인의 hello 다운스트림 활동의 입력입니다.
 
 > [!IMPORTANT]
-> Azure SQL Database 또는 SQL Server로 데이터를 복사할 때 **sqlWriterStoredProcedureName** 속성을 사용하여 복사 작업에 저장 프로시저를 호출하도록 **SqlSink**를 구성할 수 있습니다. 자세한 내용은 [복사 작업에서 저장 프로시저 호출](data-factory-invoke-stored-procedure-from-copy-activity.md)을 참조하세요. 이 속성에 대한 자세한 내용은 커넥터 문서 [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)를 참조하세요.
+> Azure SQL 데이터베이스 또는 SQL Server에 데이터를 복사할 때 hello를 구성할 수 있습니다 **SqlSink** 복사 활동 tooinvoke hello를 사용 하 여 저장된 프로시저에서에서 **sqlWriterStoredProcedureName** 속성입니다. 자세한 내용은 [복사 작업에서 저장 프로시저 호출](data-factory-invoke-stored-procedure-from-copy-activity.md)을 참조하세요. Hello 속성에 대 한 자세한 참조 커넥터 문서를 수행 하는 hello: [Azure SQL 데이터베이스](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)합니다.
 >  
-> Azure SQL Database, SQL Server 또는 Azure SQL Data Warehouse에서 데이터를 복사하는 경우 복사 작업에서 **sqlReaderStoredProcedureName** 속성을 사용하여 원본 데이터베이스에서 데이터를 읽는 저장 프로시저를 호출하도록 **SqlSource**를 구성할 수 있습니다. 자세한 내용은 커넥터 문서 [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)를 참조하세요.          
+> Azure SQL 데이터 웨어하우스 또는 SQL Server 나 Azure SQL 데이터베이스에서 데이터를 복사할 때 구성할 수 있습니다 **SqlSource** 복사 활동 tooinvoke hello를 사용 하 여 hello 원본 데이터베이스에서 저장된 프로시저 tooread 데이터에서에서  **sqlReaderStoredProcedureName** 속성입니다. 자세한 내용은 hello 다음 커넥터 문서를 참조 하세요.: [Azure SQL 데이터베이스](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL 데이터 웨어하우스](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
 
 ## <a name="json-format"></a>JSON 형식
-다음은 저장 프로시저 작업을 정의하기 위한 JSON 형식입니다.
+저장 프로시저 작업을 정의 하기 위한 hello JSON 형식은 다음과 같습니다.
 
 ```JSON
 {
@@ -293,7 +293,7 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
     "outputs":  [ { "name": "outputtable" } ],
     "typeProperties":
     {
-        "storedProcedureName": "<name of the stored procedure>",
+        "storedProcedureName": "<name of hello stored procedure>",
         "storedProcedureParameters":  
         {
             "param1": "param1Value"
@@ -303,20 +303,20 @@ Data Factory [파이프라인](data-factory-create-pipelines.md)의 데이터 �
 }
 ```
 
-다음 표에서는 이러한 JSON 속성에 대해 설명합니다.
+다음 표에서 hello 이러한 JSON 속성을 설명 합니다.
 
 | 속성 | 설명 | 필수 |
 | --- | --- | --- |
-| name | 작업의 이름 |예 |
-| 설명 |작업이 무엇에 사용되는지 설명하는 텍스트입니다. |아니요 |
+| name | Hello 활동의 이름 |예 |
+| 설명 |어떤 hello 활동을 설명 하는 텍스트에 사용 됩니다. |아니요 |
 | type | **SqlServerStoredProcedure**로 설정되어야 합니다. | 예 |
-| inputs | 선택 사항입니다. 입력 데이터 집합을 지정하는 경우 실행할 저장 프로시저 작업에 사용할 수 있어야 합니다('Ready' 상태). 저장 프로시저에서 입력 데이터 집합을 매개 변수로 사용할 수 없습니다. 저장 프로시저 작업을 시작하기 전에 종속성을 확인하는 데만 사용됩니다. |아니요 |
-| outputs | 저장 프로시저 작업에 대한 출력 데이터 집합을 지정해야 합니다. 출력 데이터 집합은 저장 프로시저 작업에 대한 **일정** (매시간, 매주, 매월 등)을 지정합니다. <br/><br/>출력 데이터 집합은 Azure SQL 데이터베이스 또는 Azure SQL 데이터 웨어하우스나 저장 프로시저를 실행하려는 SQL Server 데이터베이스를 참조하는 **연결된 서비스** 를 사용해야 합니다. <br/><br/>출력 데이터 집합은 파이프라인에서 다른 활동을 통한 후속 처리([활동 체이닝](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline))를 위해 저장 프로시저의 결과를 전달하는 방법으로 사용할 수 있습니다. 그러나 Data Factory는 저장 프로시저의 출력을 이 데이터 집합에 자동으로 쓰지 않습니다. 출력 데이터 집합이 가리키는 SQL 테이블에 기록하는 저장 프로시저입니다. <br/><br/>경우에 따라 출력 데이터 집합은 저장 프로시저 작업을 실행하는 일정을 지정하기 위해서만 사용되는 **더미 데이터 집합**일 수 있습니다. |예 |
-| storedProcedureName |출력 테이블에서 사용하는 연결된 서비스로 표시되는 Azure SQL Database, Azure SQL Data Warehouse 또는 SQL Server Database의 저장 프로시저 이름을 지정합니다. |예 |
-| storedProcedureParameters |저장 프로시저 매개 변수의 값을 지정합니다. 매개 변수에 대해 null을 전달해야 하는 경우 구문: "param1": null(모두 소문자)을 사용합니다. 이 속성을 사용하는 방법에 대한 자세한 내용은 다음 샘플을 참조하세요. |아니요 |
+| inputs | 선택 사항입니다. 입력된 데이터 집합을 지정 않습니다 ('준비' 상태)에서 사용할 수 있어야 hello에 대 한 저장 프로시저 활동 toorun 합니다. hello 입력된 데이터 집합 매개 변수로 hello 저장 프로시저에서 사용할 수 없습니다. 시작 hello 저장 프로시저 작업 전에 것만 사용 되는 toocheck hello 종속성 합니다. |아니요 |
+| outputs | 저장 프로시저 작업에 대한 출력 데이터 집합을 지정해야 합니다. 출력 데이터 집합 지정 hello **일정** hello에 대 한 저장 프로시저 작업 (시간별, 매주, 매월, 등). <br/><br/>hello 출력 데이터 집합 사용 해야 합니다는 **연결 된 서비스** tooan Azure SQL 데이터베이스 또는 Azure SQL 데이터 웨어하우스 또는 저장된 프로시저 toorun hello 하려는 SQL Server 데이터베이스를 참조 합니다. <br/><br/>hello 출력 데이터 집합으로 사용할 수는 방식으로 toopass hello 결과 후속 처리에 대 한 hello 저장 프로시저의 다른 활동에 의해 ([활동 체인](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) hello 파이프라인에서. 그러나 데이터 팩터리는 저장된 프로시저 toothis 데이터 집합의 hello 출력을 자동으로 기록 하지 않습니다. Hello 저장 프로시저 출력 데이터 집합 가리키는 hello 해당 쓰기 tooa SQL 테이블 이며 <br/><br/>경우에 따라 hello 출력 데이터 집합 수는 **더미 데이터 집합**, hello를 실행 하기 위한 toospecify hello 일정 저장 프로시저 작업에만 사용 되는 합니다. |예 |
+| storedProcedureName |Hello Azure SQL 데이터베이스 또는 출력 테이블 사용 hello hello 연결 된 서비스에 의해 표시 되는 Azure SQL 데이터 웨어하우스 또는 SQL Server 데이터베이스의 hello 저장 프로시저의 hello 이름을 지정 합니다. |예 |
+| storedProcedureParameters |저장 프로시저 매개 변수의 값을 지정합니다. 매개 변수에 대해 toopass을 null 필요 hello 구문 사용: "param1": null (모든 소문자). 이 속성을 사용 하는 방법에 대 한 샘플 toolearn 다음 hello를 참조 하십시오. |아니요 |
 
 ## <a name="passing-a-static-value"></a>정적 값 전달
-'Document sample'라는 정적 값이 포함된 테이블에 'Scenario'라는 다른 열을 추가해보겠습니다.
+이제 '샘플 문서' 라는 정적 값을 포함 하는 hello 테이블의 '시나리오' 라는 다른 열 추가 생각해 봅시다.
 
 ![샘플 데이터 2](./media/data-factory-stored-proc-activity/sample-data-2.png)
 
@@ -347,7 +347,7 @@ BEGIN
 END
 ```
 
-이제 **Scenario** 매개 변수와 저장 프로시저 작업의 값을 전달합니다. 위 샘플에서 **typeProperties** 섹션은 다음 코드 조각과 같습니다.
+이제, hello 통과 **시나리오** hello에서 매개 변수 및 hello 값 저장 프로시저 작업 합니다. hello **typeProperties** hello 샘플 같습니다 hello 다음 코드 조각 앞의 섹션:
 
 ```JSON
 "typeProperties":

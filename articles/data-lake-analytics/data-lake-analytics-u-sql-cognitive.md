@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Lake Analytics에서 U-SQL 인식 기능 사용 | Microsoft Docs"
-description: "U-SQL에서 인텔리전스 인식 기능을 사용하는 방법에 알아봅니다."
+title: "Azure Data Lake 분석 U-SQL Cognitive 기능 aaaUsing | Microsoft Docs"
+description: "Toouse U-SQL에 Cognitive 기능의 intelligence hello 하는 방법에 대해 알아봅니다"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-ms.openlocfilehash: f77329f9838d6e824afa7234de90f62257a004de
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9ac71f490e929070fa0e72b93c3ffdb1ab243b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-get-started-with-the-cognitive-capabilities-of-u-sql"></a>자습서: U-SQL의 인식 기능 시작
+# <a name="tutorial-get-started-with-hello-cognitive-capabilities-of-u-sql"></a>자습서: U-SQL의 hello Cognitive 기능 시작
 
-U-SQL에 대한 인식 기능은 개발자가 빅 데이터 프로그램에서 인텔리전스를 사용하도록 합니다. 전체 프로세스는 간단합니다.
+U-SQL에 대 한 cognitive 기능 개발자 toouse intelligence 빅 데이터 프로그램에서 put을 사용 합니다. 단순에서 전체 프로세스를 hello:
 
-* 참조 어셈블리 문을 사용하여 U-SQL 스크립트에 대한 인식 기능을 사용합니다.
-* 처리 작업을 호출하여 인식 기능 사용 
+* U-SQL 스크립트 hello에 대 한 hello 참조 어셈블리 문을 tooenable hello 인식 기능을 사용 합니다.
+* Toouse hello Cognitive 기능 hello 프로세스 작업 호출 
 
 ## <a name="imaging-scenarios"></a>이미징 시나리오
 
 ### <a name="example-image-tagging"></a>예: 이미지 태그 지정
 
-다음 예제는 이미지에 있는 개체를 감지하기 위한 이미징 기능의 종단 간 사용을 보여 줍니다.
+다음 예제는 hello 이미지에 기능 toodetect 개체 이미징 hello는 종단 간 사용을 보여 줍니다.
 
     REFERENCE ASSEMBLY ImageCommon;
     REFERENCE ASSEMBLY FaceSdk;
@@ -44,7 +44,7 @@ U-SQL에 대한 인식 기능은 개발자가 빅 데이터 프로그램에서 �
         FROM @"/images/{FileName:*}.jpg"
         USING new Cognition.Vision.ImageExtractor();
 
-    // Extract the number of objects on each image and tag them 
+    // Extract hello number of objects on each image and tag them 
     @objects =
         PROCESS @imgs 
         PRODUCE FileName,
@@ -120,7 +120,7 @@ U-SQL에 대한 인식 기능은 개발자가 빅 데이터 프로그램에서 �
                 Text
         USING new Cognition.Text.KeyPhraseExtractor();
 
-    // Tokenize the key phrases.
+    // Tokenize hello key phrases.
     @kpsplits =
         SELECT No,
             Year,

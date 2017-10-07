@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI를 사용하여 Hadoop 클러스터 관리 - Azure HDInsight| Microsoft Docs"
-description: "Azure 명령줄 인터페이스를 사용하여 Azure HDInsight의 Hadoop 클러스터를 관리하는 방법을 알아봅니다. Azure CLI는 Windows, Mac 및 Linux에서 작동합니다."
+title: "Azure CLI-Azure HDInsight를 사용 하 여 aaaManage Hadoop 클러스터 | Microsoft Docs"
+description: "Azure HDInsight에서 toouse hello Azure 명령줄 인터페이스 toomanage Hadoop 클러스터 하는 방법에 대해 알아봅니다. hello Azure CLI는 Windows, Mac 및 Linux에서 작동합니다."
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -16,44 +16,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 0ee9f2f28978b207dcaf8f77950bd82a897d3fd1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 03b0cff9331c1c581095b80cc6d1177d843ffa83
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-hadoop-clusters-in-hdinsight-using-the-azure-cli"></a>Azure CLI를 사용하여 HDInsight의 Hadoop 클러스터 관리
+# <a name="manage-hadoop-clusters-in-hdinsight-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 HDInsight의 Hadoop 클러스터를 관리 합니다.
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-[Azure 명령줄 인터페이스](../cli-install-nodejs.md)를 사용하여 Azure HDInsight의 Hadoop 클러스터를 관리하는 방법을 알아봅니다. Azure CLI는 Node.js로 구현되며 Windows, Mac, Linux를 포함하여 Node.js를 지원하는 플랫폼에서 사용할 수 있습니다.
+자세한 내용은 방법 toouse hello [Azure 명령줄 인터페이스](../cli-install-nodejs.md) toomanage Hadoop Azure HDInsight 클러스터를 합니다. hello Azure CLI Node.js에서 구현 됩니다. Windows, Mac, Linux를 포함하여 Node.js를 지원하는 플랫폼에서 사용할 수 있습니다.
 
-이 문서에서는 HDInsight을 통한 Azure CLI 사용에 대해서만 설명합니다. Azure CLI를 사용하는 방법에 대한 일반 가이드는 [Azure CLI 설치 및 구성][azure-command-line-tools]을 참조하세요.
+이 문서에서는 hello Azure CLI를 사용 하 여 HDInsight와에 대해 설명 합니다. 방법에 대 한 일반 지침에 대 한 Azure CLI toouse 참조 [설치 하 고 Azure CLI 구성][azure-command-line-tools]합니다.
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서를 시작하기 전에 다음이 있어야 합니다.
+이 문서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **Azure 구독**. [Azure 무료 평가판](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)을 참조하세요.
-* **Azure CLI** - 설치 및 구성 정보는 [Azure CLI 설치 및 구성](../cli-install-nodejs.md) 을 참조하세요.
-* **Azure에 연결**. 다음 명령을 사용합니다.
+* **Azure CLI** -참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) 설치 및 구성 정보에 대 한 합니다.
+* **TooAzure 연결**를 사용 하 여 다음 명령을 hello:
   
         azure login
   
-    회사 또는 학교 계정을 사용하여 인증하는 방법에 대한 자세한 내용은 [Azure CLI에서 Azure 구독에 연결](../xplat-cli-connect.md)을 참조하세요.
-* **Azure Resource Manager 모드로 전환**은 다음 명령을 사용합니다.
+    회사 또는 학교 계정을 사용 하 여 인증에 대 한 자세한 내용은 참조 하십시오. [hello Azure CLI에서에서 tooan Azure 구독 연결](../xplat-cli-connect.md)합니다.
+* **Toohello Azure Resource Manager 모드로 전환**를 사용 하 여 다음 명령을 hello:
   
         azure config mode arm
 
-도움말을 보려면 **-h** 스위치를 사용합니다.  예:
+tooget 도움말을 사용 하 여 hello **-h** 전환 합니다.  예:
 
     azure hdinsight cluster create -h
 
-## <a name="create-clusters-with-the-cli"></a>CLI를 사용하여 클러스터 만들기
-[Azure CLI를 사용하여 HDInsight의 클러스터 만들기](hdinsight-hadoop-create-linux-clusters-azure-cli.md)를 참조하세요.
+## <a name="create-clusters-with-hello-cli"></a>CLI hello로 클러스터를 만들려면
+참조 [사용 하 여 HDInsight 클러스터 만들기 hello Azure CLI](hdinsight-hadoop-create-linux-clusters-azure-cli.md)합니다.
 
 ## <a name="list-and-show-cluster-details"></a>클러스터 세부 정보 나열 및 표시
-클러스터 세부 정보를 나열하고 표시하려면 다음 명령을 사용합니다.
+다음 명령을 toolist hello를 사용 하 고 클러스터 세부 정보 표시 됩니다.
 
     azure hdinsight cluster list
     azure hdinsight cluster show <Cluster Name>
@@ -61,16 +61,16 @@ ms.lasthandoff: 08/29/2017
 ![클러스터 목록의 명령줄 보기][image-cli-clusterlisting]
 
 ## <a name="delete-clusters"></a>클러스터 삭제
-클러스터를 삭제하려면 다음 명령을 사용합니다.
+다음 명령은 toodelete 클러스터 hello를 사용 합니다.
 
     azure hdinsight cluster delete <Cluster Name>
 
-또한 클러스터를 포함하는 리소스 그룹을 삭제하여 클러스터를 삭제할 수도 있습니다. 이렇게 하면 기본 저장소 계정을 포함한 그룹 내 모든 리소스가 삭제됩니다.
+또한 hello 클러스터를 포함 하는 hello 리소스 그룹을 삭제 하 여 클러스터를 삭제할 수 있습니다. 하십시오 note, hello 그룹의에서 모든 리소스 hello hello 기본 저장소 계정을 포함 하 여 삭제 합니다.
 
     azure group delete <Resource Group Name>
 
 ## <a name="scale-clusters"></a>클러스터 크기 조정
-Hadoop 클러스터 크기를 변경하려면
+toochange hello Hadoop 클러스터 크기:
 
     azure hdinsight cluster resize [options] <clusterName> <Target Instance Count>
 
@@ -85,12 +85,12 @@ Hadoop 클러스터 크기를 변경하려면
 
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 HDInsight 클러스터 관리 작업을 수행하는 여러 방법에 대해 알아보았습니다. 자세한 내용은 다음 문서를 참조하세요.
+이 문서에서는 배웠습니다 어떻게 tooperform 다른 HDInsight 클러스터 관리 작업입니다. 더 toolearn hello 다음 문서를 참조:
 
-* [Azure Portal을 사용하여 HDInsight 관리][hdinsight-admin-portal]
+* [HDInsight hello Azure 포털을 사용 하 여 관리][hdinsight-admin-portal]
 * [Azure PowerShell을 사용하여 HDInsight 클러스터 관리][hdinsight-admin-powershell]
 * [Azure HDInsight 시작][hdinsight-get-started]
-* [Azure CLI를 사용하는 방법][azure-command-line-tools]
+* [Toouse는 Azure CLI hello 하는 방법][azure-command-line-tools]
 
 [azure-command-line-tools]: ../cli-install-nodejs.md
 [azure-create-storageaccount]:../storage/common/storage-create-storage-account.md

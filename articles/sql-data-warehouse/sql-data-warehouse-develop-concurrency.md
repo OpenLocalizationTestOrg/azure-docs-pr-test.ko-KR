@@ -1,5 +1,5 @@
 ---
-title: "SQL Data Warehouse의 동시성 및 워크로드 관리 | Microsoft Docs"
+title: "SQL 데이터 웨어하우스에 aaaConcurrency 및 작업 관리 | Microsoft Docs"
 description: "솔루션 개발을 위한 Azure SQL 데이터 웨어하우스의 동시성 및 워크로드 관리를 이해합니다."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 08/23/2017
 ms.author: joeyong;barbkess;kavithaj
-ms.openlocfilehash: eaf2d43286dbaa52ada1430fbb7ce1e37f41c0d4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7f7e77aa687760252aed16573b609817ed9111c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="concurrency-and-workload-management-in-sql-data-warehouse"></a>SQL 데이터 웨어하우스의 동시성 및 워크로드 관리
-예측 가능한 성능을 광범위하게 제공하려는 경우 Microsoft Azure SQL Data Warehouse를 사용하면 동시성 수준 및 리소스 할당(예: 메모리, CPU 우선 순위 지정)을 제어할 수 있습니다. 이 문서에서는 동시성 및 워크로드 관리 개념을 소개하며, 두 기능 모두 구현된 방법 및 데이터 웨어하우스에서 이들을 제어할 수 있는 방법을 설명합니다. SQL 데이터 웨어하우스 워크로드 관리는 다중 사용자 환경을 지원합니다. 다중 테넌트 워크로드용은 아닙니다.
+Microsoft Azure SQL 데이터 웨어하우스 규모에 예측 가능한 성능을 toodeliver를 사용 하면 메모리 및 CPU 우선 순위와 같은 리소스 할당 및 동시성 수준을 제어 합니다. 이 문서는 두 기능이 모두 방법을 구현한 데이터 웨어하우스에서 해당를 제어 하는 방법에 대해 동시성 및 작업 관리 toohello 개념을 소개 합니다. SQL 데이터 웨어하우스 작업 관리는 의도 한 toohelp 다중 사용자 환경을 지원 합니다. 다중 테넌트 워크로드용은 아닙니다.
 
 ## <a name="concurrency-limits"></a>동시성 한도
-SQL 데이터 웨어하우스를 사용하여 최대 1,024개의 동시 연결을 할 수 있습니다. 1,024개의 모든 연결을 통해 동시에 쿼리를 제출할 수 있습니다. 그러나 SQL Data Warehouse는 처리량을 최적화하기 위해 각 쿼리가 최소한의 메모리를 부여받도록 일부 쿼리를 대기시킬 수 있습니다. 쿼리 실행 시 큐에 대기하기가 발생합니다. SQL 데이터 웨어하우스는 동시성 한도에 이른 경우 쿼리를 큐에 대기하도록 하여 활성 쿼리가 긴급하게 필요한 메모리 리소스에 액세스할 수 있게 하여 총 처리량을 늘릴 수 있습니다.  
+SQL 데이터 웨어하우스 too1, 024 동시 연결을 허용합니다. 1,024개의 모든 연결을 통해 동시에 쿼리를 제출할 수 있습니다. 그러나 toooptimize 처리량, SQL 데이터 웨어하우스는 각 쿼리는 최소 메모리 부여를 받을 일부 쿼리 tooensure를 대기할 수 있습니다. 쿼리 실행 시 큐에 대기하기가 발생합니다. 큐 쿼리 별 총 처리량을 활성 쿼리 가져올 액세스 toocritically 되도록 하 여 동시성 제한에 도달 하면 SQL 데이터 웨어하우스를 늘릴 수 메모리 리소스를 필요 합니다.  
 
-동시성 한도는 *동시 쿼리 수* 및 *동시성 슬롯 수*라는 두 개념에 의해 제어됩니다. 쿼리가 실행하려면 쿼리 동시성 한도 및 동시성 슬롯 할당 내에서 실행해야 합니다.
+동시성 한도는 *동시 쿼리 수* 및 *동시성 슬롯 수*라는 두 개념에 의해 제어됩니다. 쿼리 tooexecute에 대 한 것 hello 동시성 슬롯 할당와 hello 쿼리 동시성 제한 내에서 실행 해야 합니다.
 
-* 동시 쿼리 수란 동시에 실행하는 쿼리 수입니다. SQL 데이터 웨어하우스는 더 큰 DWU 크기에서 최대 32개의 동시 쿼리를 지원합니다.
-* 동시성 슬롯은 DWU를 기준으로 할당됩니다. 100개의 DWU마다 4개의 동시성 슬롯을 제공합니다. 예를 들어 DW100은 4개의 동시성 슬롯을 할당하고, DW1000은 40개를 할당합니다. 각 쿼리는 쿼리의 [리소스 클래스](#resource-classes) 에 따라 하나 이상의 동시성 슬롯을 사용합니다. smallrc 리소스 클래스에서 실행되는 쿼리는 하나의 동시성 슬롯을 사용합니다. 상위 리소스 클래스에서 실행되는 쿼리는 더 많은 동시성 슬롯을 사용합니다.
+* 동시 쿼리는 hello hello에 동일한 실행 시간입니다. SQL 데이터 웨어하우스 DWU 크기가 더 커지면 hello에 too32 동시 쿼리를 지원합니다.
+* 동시성 슬롯은 DWU를 기준으로 할당됩니다. 100개의 DWU마다 4개의 동시성 슬롯을 제공합니다. 예를 들어 DW100은 4개의 동시성 슬롯을 할당하고, DW1000은 40개를 할당합니다. 하나 이상의 동시성을 슬롯 hello에 종속를 사용 하는 각 쿼리 [리소스 클래스](#resource-classes) hello 쿼리 합니다. Hello smallrc 리소스 클래스에서 실행 되는 쿼리 동시성 슬롯 하나를 사용 합니다. 상위 리소스 클래스에서 실행되는 쿼리는 더 많은 동시성 슬롯을 사용합니다.
 
-다음 테이블에는 다양한 DWU 크기의 동시 쿼리와 동시성 슬롯의 한도가 나와 있습니다.
+hello 다음 설명 동시 쿼리 및 동시성 슬롯 hello에 모두에 대 한 hello도 다양 한 DWU 크기입니다.
 
 ### <a name="concurrency-limits"></a>동시성 한도
 | DWU | 최대 동시 쿼리 수 | 할당된 동시성 슬롯 수 |
@@ -50,21 +50,21 @@ SQL 데이터 웨어하우스를 사용하여 최대 1,024개의 동시 연결�
 | DW3000 |32 |120 |
 | DW6000 |32 |240 |
 
-이러한 임계값 중 하나가 충족되면 새 쿼리가 큐에 추가되고 선입선출 방식으로 실행됩니다.  쿼리가 완료되고 쿼리 및 슬롯의 수가 한도 밑으로 떨어지면 큐에 저장된 쿼리가 릴리스됩니다. 
+이러한 임계값 중 하나가 충족되면 새 쿼리가 큐에 추가되고 선입선출 방식으로 실행됩니다.  쿼리를 완료 하 고 hello 쿼리 및 슬롯 이하가 hello 제한을 큐에 넣은 쿼리에 해제 됩니다. 
 
 > [!NOTE]  
-> *Select* 쿼리 또는 카탈로그 뷰는 어떠한 동시성 한도에 의해서도 제어되지 않습니다. 시스템에서 실행하는 쿼리 수에 관계없이 시스템을 모니터링할 수 있습니다.
+> *선택* 쿼리 실행에 동적 관리 뷰 (Dmv) 또는 카탈로그 뷰는 영향을 받지 않는 hello 동시성 제한 중 하나입니다. Hello에 실행 하는 쿼리 수에 관계 없이 hello 시스템을 모니터링할 수 있습니다.
 > 
 > 
 
 ## <a name="resource-classes"></a>리소스 클래스
-리소스 클래스는 쿼리에 지정된 메모리 할당 및 CPU 사이클을 제어하는 데 도움을 줍니다. 2가지 유형의 리소스 클래스를 데이터베이스 역할 형태로 사용자에게 할당할 수 있습니다. 2가지 유형의 리소스 클래스는 다음과 같습니다.
-1. 동적 리소스 클래스(**smallrc, mediumrc, largerc, xlargerc**)는 현재 DWU에 따라 가변 크기의 메모리를 할당합니다. 즉, 더 큰 DWU로 확장할 경우 쿼리도 자동으로 더 많은 메모리를 얻게 됩니다. 
-2. 정적 리소스 클래스(**staticrc10, staticrc20, staticrc30, staticrc40, staticrc50, staticrc60, staticrc70, staticrc80**)는 현재 DWU에 관계 없이 동일한 양의 메모리를 할당합니다(DWU 자체에 충분한 메모리가 있다고 가정할 경우). 즉, 더 큰 DWU에서는 각 리소스 클래스에서 동시에 더 많은 쿼리를 실행할 수 있습니다.
+리소스 클래스 메모리 할당 및 tooa 쿼리를 지정 하는 CPU 주기를 제어할 수 있습니다. 두 가지 유형의 데이터베이스 역할의 hello 형태로 클래스 tooa 사용자 리소스를 할당할 수 있습니다. hello 두 형식의 리소스 클래스는 다음과 같습니다.
+1. 동적 리소스 클래스 (**smallrc, mediumrc, largerc, xlargerc**) 가변적인 양의 hello에 따라 메모리를 할당할 현재 DWU 합니다. 즉, tooa 수직 큰 DWU 쿼리에 더 많은 메모리가 자동으로 부여 합니다. 
+2. 정적 리소스 클래스 (**staticrc10, staticrc20, staticrc30, staticrc40, staticrc50, staticrc60, staticrc70, staticrc80**) hello 할당 같은 크기에 관계 없이 메모리의 현재 DWU hello (있는 경우 자체 DWU hello 충분 한 메모리가). 즉, 더 큰 DWU에서는 각 리소스 클래스에서 동시에 더 많은 쿼리를 실행할 수 있습니다.
 
-**smallrc** 및 **staticrc10**의 사용자에게 더 적은 양의 메모리가 주어져 더 높은 동시성을 활용할 수 있습니다. 반면, **xlargerc** 또는 **staticrc80**에 할당된 사용자는 많은 양의 메모리가 주어져 더 적은 쿼리가 동시에 실행될 수 있습니다.
+**smallrc** 및 **staticrc10**의 사용자에게 더 적은 양의 메모리가 주어져 더 높은 동시성을 활용할 수 있습니다. 반면, 너무 사용자에 게 할당**xlargerc** 또는 **staticrc80** 많은 양의 메모리를 제공 및 따라서 적은 수의 쿼리 동시에 실행할 수 있습니다.
 
-기본적으로 각 사용자는 작은 리소스 클래스인 **smallrc**의 멤버입니다. `sp_addrolemember` 절차는 리소스 클래스를 늘리는 데 사용되고 `sp_droprolemember` 절차는 리소스 클래스를 줄이는 데 사용됩니다. 예를 들어 이 명령은 loaduser의 리소스 클래스를 **largerc**로 늘립니다.
+기본적으로 각 사용자는 hello 작은 리소스 클래스의 멤버는 **smallrc**합니다. 프로시저 hello `sp_addrolemember` 은 tooincrease hello 리소스 클래스를 사용 하 고 `sp_droprolemember` 은 toodecrease hello 리소스 클래스를 사용 합니다. 예를 들어이 명령은 늘어나기 loaduser의 hello 리소스 클래스 너무**largerc**:
 
 ```sql
 EXEC sp_addrolemember 'largerc', 'loaduser'
@@ -73,24 +73,24 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 
 ### <a name="queries-that-do-not-honor-resource-classes"></a>리소스 클래스를 인식하지 않는 쿼리
 
-더 큰 메모리를 할당해도 별로 도움이 되지 않는 일부 쿼리 형식이 있습니다. 시스템은 리소스 클래스 할당을 무시하고, 대신 이러한 쿼리를 항상 작은 리소스 클래스에서 실행합니다. 이러한 쿼리가 항상 작은 리소스 클래스에서 실행되는 경우 동시성 슬롯이 압박 하에서 실행될 수 있으며 필요한 것보다 더 많은 수의 슬롯을 사용하지 않게 됩니다. 자세한 내용은 [리소스 클래스 예외](#query-exceptions-to-concurrency-limits) 를 참조하세요.
+더 큰 메모리를 할당해도 별로 도움이 되지 않는 일부 쿼리 형식이 있습니다. hello 시스템의 리소스 클래스 할당 건너뛰고 대신 hello 작은 리소스 클래스에서 이러한 쿼리를 항상 실행 합니다. 이러한 쿼리는 항상 hello 작은 리소스 클래스에서 실행 하는 경우 동시성 슬롯 압력을 받고 있기 하 고 필요한 것 보다 더 많은 슬롯이 사용 되지 않습니다은 실행할 수 있습니다. 자세한 내용은 [리소스 클래스 예외](#query-exceptions-to-concurrency-limits) 를 참조하세요.
 
 ## <a name="details-on-resource-class-assignment"></a>리소스 클래스 할당에 대한 세부 정보
 
 
 리소스 클래스에 대한 추가적인 몇 가지 자세한 정보.
 
-* *역할 변경* 권한이 필요합니다.
-* 하나 이상의 더 높은 리소스 클래스에 사용자를 추가할 수 있지만 동적 리소스 클래스는 정적 리소스 클래스보다 우선합니다. 즉, 사용자가 **mediumrc**(동적) 및 **staticrc80**(정적) 둘 다에 할당되는 경우 **mediumrc**가 적용되는 리소스 클래스입니다.
- * 사용자가 특정 리소스 클래스 형식의 둘 이상의 리소스 클래스(여러 개의 동적 리소스 클래스 또는 여러 개의 정적 리소스 클래스)에 할당되는 경우 가장 높은 리소스 클래스가 적용됩니다. 즉, 사용자가 mediumrc와 largerc 둘 다에 할당되면 더 높은 리소스 클래스인 largerc가 적용됩니다. 사용자가 **staticrc20** 및 **statirc80** 둘 다에 할당되면 **staticrc80**이 적용됩니다.
-* 시스템 관리 사용자의 리소스 클래스는 변경할 수 없습니다.
+* *역할 alter* 권한이 필요 합니다는 사용자의 toochange hello 리소스 클래스입니다.
+* 사용자 tooone 또는 그 이상의 hello 더 높은 리소스 클래스를 추가할 수 있지만 동적 리소스 클래스가 정적 리소스 클래스 보다 우선 합니다. 즉, 사용자 tooboth 지정 되 면 **mediumrc**(동적) 및 **staticrc80**(정적) **mediumrc** 적용 되므로 hello 리소스 클래스입니다.
+ * 사용자는 특정 리소스 클래스 형식 (여러 개의 동적 리소스 클래스 또는 여러 개의 정적 리소스 클래스)에 자원 하나씩 클래스 보다 toomore에 할당 된 hello 가장 높은 리소스 클래스는 인식 됩니다. 즉, 사용자는 tooboth mediumrc 및 largerc 할당 되 면 hello 더 높은 리소스 클래스 (largerc) 적용 됩니다. 경우에 사용자가 할당 tooboth **staticrc20** 및 **statirc80**, **staticrc80** 적용 됩니다.
+* hello 시스템 관리자가 사용자의 hello 리소스 클래스를 변경할 수 없습니다.
 
 자세한 예제는 [사용자 리소스 클래스 변경 예제](#changing-user-resource-class-example)를 참조하세요.
 
 ## <a name="memory-allocation"></a>메모리 할당
-사용자의 리소스 클래스를 늘리는 데 따른 장단점이 있습니다. 사용자에 대한 리소스 클래스를 늘리면 쿼리가 더 많은 메모리에 액세스할 수 있게 되고 이렇게 되면 쿼리가 더 빨리 실행됩니다.  하지만 리소스 클래스가 높아질수록 동시에 실행될 수 있는 쿼리의 수도 줄어듭니다. 즉, 단일 쿼리에 많은 양의 메모리를 할당하거나 동시 실행을 위해 역시 메모리 할당이 필요한 다른 쿼리를 허용하는 방식 중에서 하나를 고려해야 합니다. 한 명의 사용자가 쿼리에 대한 메모리 할당을 높게 받는 경우 다른 사용자들은 쿼리를 실행할 목적으로 동일한 메모리에 액세스할 수 없습니다.
+사용자의 리소스 클래스 장점 및 단점 tooincreasing이 됩니다. 증가 하는 사용자에 대 한 리소스 클래스를 의미할 수 있습니다. 쿼리 실행 속도가 빨라집니다 액세스 toomore 메모리 쿼리를 제공 합니다.  그러나 더 높은 리소스 클래스 hello를 실행할 수 있는 동시 쿼리 수가 줄일 수도 있습니다. 이 hello 기능 손실을 절충 많은 양의 메모리 tooa 단일 쿼리를 할당 하거나 toorun 동시에 메모리 할당 해야 하는 다른 쿼리를 허용 합니다. 액세스 toothat 한 명의 사용자 높은 쿼리에 대 한 메모리 할당 인 경우 다른 사용자에 게는 없습니다 동일한 메모리 toorun 쿼리 합니다.
 
-다음 표는 DWU 및 리소스 클래스에 의해 각 배포에 할당된 메모리를 매핑합니다.
+다음 표에서 hello tooeach 배포 DWU 및 리소스 클래스에 의해 할당 된 hello 메모리를 매핑합니다.
 
 ### <a name="memory-allocations-per-distribution-for-dynamic-resource-classes-mb"></a>동적 리소스 클래스에 대한 배포별 메모리 할당(MB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -108,7 +108,7 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 | DW3000 |100 |1,600 |3,200 |6,400 |
 | DW6000 |100 |3,200 |6,400 |12,800 |
 
-다음 표는 DWU 및 정적 리소스 클래스에 의해 각 배포에 할당된 메모리를 매핑합니다. 전역 DWU 제한을 준수하기 위해 더 높은 리소스 클래스의 메모리가 줄어듭니다.
+다음 표에서 hello hello 메모리를 할당 된 tooeach 배포 DWU 정적 리소스 클래스에 매핑합니다. 리소스 클래스 일수록 hello가 메모리 감소 toohonor hello 글로벌 DWU 제한 합니다.
 
 ### <a name="memory-allocations-per-distribution-for-static-resource-classes-mb"></a>정적 리소스 클래스에 대한 배포별 메모리 할당(MB)
 | DWU | staticrc10 | staticrc20 | staticrc30 | staticrc40 | staticrc50 | staticrc60 | staticrc70 | staticrc80 |
@@ -126,7 +126,7 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 | DW3000 |100 |200 |400 |800 |1,600 |3,200 |6,400 |6,400 |
 | DW6000 |100 |200 |400 |800 |1,600 |3,200 |6,400 |12,800 |
 
-이전 테이블에서, **xlargerc** 리소스 클래스의 DW2000에서 실행되는 쿼리는 배포된 60개의 각 데이터베이스 내에서 6,400MB의 메모리에 액세스하게 됩니다.  SQL 데이터 웨어하우스에는 배포가 60개 있습니다. 따라서, 주어진 리소스 클래스 내의 쿼리에 대한 총 메모리 할당을 계산하려면, 위의 값에 60을 곱해야 합니다.
+Hello 앞에 테이블을 볼 수 있습니다는 hello에 DW2000에서 실행 되는 쿼리 **xlargerc** 리소스 클래스 액세스 too6, 각 hello 60 분산된 데이터베이스 내에서 메모리의 400MB 해야 합니다.  SQL 데이터 웨어하우스에는 배포가 60개 있습니다. 따라서 지정 된 리소스 클래스에서 쿼리를 값 위에 hello에 대 한 toocalculate hello 총 메모리 할당이 60을 곱합니다 수 해야 합니다.
 
 ### <a name="memory-allocations-system-wide-gb"></a>시스템 전체 메모리 할당(GB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -144,12 +144,12 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 | DW3000 |6 |94 |188 |375 |
 | DW6000 |6 |188 |375 |750 |
 
-시스템 전체 메모리 할당 테이블에서 보면 xlargerc 리소스 클래스의 DW2000에서 실행되는 쿼리에는 전체 SQL Data Warehouse에 대해 총 375GB(6,400MB * 60개 배포/1,024, 이 결과를 GB로 변환)의 메모리가 할당됩니다.
+이 테이블은 시스템 차원의 메모리 할당을 볼 수 있습니다 hello xlargerc 리소스 클래스에서 DW2000에서 실행 되는 쿼리는 총 메모리의 375 GB가 할당 되는 (6,400 MB * 60 분포 / 1, 024 tooconvert tooGB) hello 전체 SQL 데이터 웨어하우스를 통해 합니다.
 
-동일한 계산이 정적 리소스 클래스에 적용됩니다.
+hello 같은 계산 적용 toostatic 리소스 클래스입니다.
  
 ## <a name="concurrency-slot-consumption"></a>동시성 슬롯 사용량  
-SQL 데이터 웨어하우스는 더 많은 리소스 클래스에서 실행되는 쿼리에 더 많은 메모리를 부여합니다. 메모리는 고정된 리소스입니다.  따라서 쿼리당 할당되는 메모리가 많을수록 동시에 실행할 수 있는 쿼리의 수가 줄어듭니다. 다음 테이블에서는 앞에서 설명한 모든 개념을 단일 보기로 다시 제공합니다. 이 보기에는 DWU에서 사용 가능한 동시성 슬롯의 수와 각 리소스 클래스가 사용하는 슬롯 수가 나와 있습니다.  
+SQL 데이터 웨어하우스 더 높은 리소스 클래스에서 실행 되는 더 많은 메모리 tooqueries 권한을 부여 합니다. 메모리는 고정된 리소스입니다.  쿼리를 더 적은 수의 동시 쿼리를 실행할 수는 hello 당 더 많은 메모리 할당 번호 따라서입니다. hello 다음 표에서 reiterates 모든 hello DWU에서 사용할 수 있는 동시성 슬롯 및 각 리소스 클래스에서 사용 하는 hello 슬롯 수를 표시 하는 단일 뷰에서 hello 이전 개념입니다.  
 
 ### <a name="allocation-and-consumption-of-concurrency-slots-for-dynamic-resource-classes"></a>동적 리소스 클래스에 대한 동시성 슬롯의 할당 및 사용량  
 | DWU | 최대 동시 쿼리 수 | 할당된 동시성 슬롯 수 | smallrc에서 사용되는 슬롯 | mediumrc에서 사용되는 슬롯 | largerc에서 사용되는 슬롯 | xlargerc에서 사용되는 슬롯 |
@@ -183,50 +183,50 @@ SQL 데이터 웨어하우스는 더 많은 리소스 클래스에서 실행되�
 | DW3000 | 32| 120| 1| 2| 4| 8| 16| 32| 64| 64|
 | DW6000 | 32| 240| 1| 2| 4| 8| 16| 32| 64| 128|
 
-이러한 테이블에서 볼 수 있는 것처럼 DW1000으로 실행되는 SQL 데이터 웨어하우스는 최대 32개의 동시 쿼리 및 총 40개의 동시성 슬롯을 할당합니다. 모든 사용자가 smallrc에서 실행하는 경우 각 쿼리가 동시성 슬롯 1개를 소비하므로 32개의 동시성 쿼리가 허용됩니다. DW1000의 모든 사용자가 mediumrc에서 실행하는 경우, 각 쿼리에는 총 메모리 할당량 47GB에서 배포당 800MB가 할당되고 동시성은 5명의 사용자에게 제한됩니다(40개 동시성 슬롯/mediumrc 사용자당 8개 슬롯).
+이러한 테이블에서 볼 수 있는 것처럼 DW1000으로 실행되는 SQL 데이터 웨어하우스는 최대 32개의 동시 쿼리 및 총 40개의 동시성 슬롯을 할당합니다. 모든 사용자가 smallrc에서 실행하는 경우 각 쿼리가 동시성 슬롯 1개를 소비하므로 32개의 동시성 쿼리가 허용됩니다. 모든 사용자는 DW1000에 mediumrc에서 실행 중이 던, 각 쿼리에 쿼리당 47 gb 전체 메모리 할당에 대 한 분포 당 800MB를 할당할 수는 동시성 개이고 경우 제한 too5 사용자 (40 동시성 슬롯 / mediumrc 사용자 당 8 슬롯이).
 
 ## <a name="selecting-proper-resource-class"></a>적절한 리소스 클래스 선택  
-사용자의 리소스 클래스를 변경하기보다는 사용자를 리소스 클래스에 영구적으로 할당하는 것이 좋습니다. 예를 들어 클러스터형 Columnstore 테이블에 대한 로드 시에는 리소스를 많이 할당할수록 품질이 보다 뛰어난 인덱스가 작성됩니다. 로드가 더 높은 메모리에 액세스할 수 있도록 하려면 특별히 데이타 로드에 대한 사용자를 만들고 이 사용자를 더 높은 리소스 클래스에 영구적으로 할당합니다.
-여기에서 준수할 수 있는 몇 가지 모범 사례가 있습니다. 위에서 언급한 것처럼 SQL DW에서는 두 가지 유형의 리소스 클래스 형식, 즉 정적 리소스 클래스 및 동적 리소스 클래스를 지원합니다.
+일반적으로 해당 리소스 클래스를 변경 하는 대신 toopermanently assign users tooa 리소스 클래스 됩니다. 예를 들어 로드 tooclustered columnstore 테이블 더 많은 메모리를 할당 하는 경우 더 높은 품질 인덱스를 만듭니다. tooensure 로드가 toohigher 메모리를 액세스, 사용자 데이터 로드에 맞게를 만들고이 사용자 tooa 더 높은 리소스 클래스를 영구적으로 할당 합니다.
+모범 사례 toofollow 여기에 두 가지가 있습니다. 위에서 언급한 것처럼 SQL DW에서는 두 가지 유형의 리소스 클래스 형식, 즉 정적 리소스 클래스 및 동적 리소스 클래스를 지원합니다.
 ### <a name="loading-best-practices"></a>로드 모범 사례
-1.  보통 크기의 데이터가 로드될 것으로 예상되면 정적 리소스 클래스를 사용하는 것이 좋습니다. 나중에 더 많은 계산 능력을 위해 확장할 경우 로드 사용자는 추가 메모리를 소비하지 않으므로 데이터 웨어하우스는 기본적으로 더 많은 동시 쿼리를 실행할 수 있게 됩니다.
-2.  경우에 따라 더 큰 로드가 예상될 경우 동적 리소스 클래스를 사용하는 것이 좋습니다. 나중에 더 많은 계산 능력을 위해 확장할 경우 로드 사용자는 기본적으로 더 많은 메모리를 얻게 되므로 로드를 더 빠르게 진행할 수 있게 됩니다.
+1.  Hello 기대 일반 양의 데이터를 사용 하 여 로드 인 정적 리소스 클래스는 것이 좋습니다. 나중 더 많은 컴퓨팅 기능, 데이터 웨어하우스 hello tooget 수직 확장 수 없게 됩니다 toorun 더 많은 동시 쿼리 기본, 대로 hello 부하 사용자는 더 많은 메모리를 사용 하지 않습니다.
+2.  Hello 기대 인 큰 부하 일부 경우에는 동적 리소스 클래스는 것이 좋습니다. 이상에서는 tooget, 더 많은 계산 능력이 늘릴 때 hello 부하 사용자가 알 더 많은 메모리-의-즉시 사용, 따라서 hello 부하 tooperform를 더 빠르게 허용.
 
-로드를 효율적으로 처리하는 데 필요한 메모리는 로드된 테이블의 특성과 처리된 데이터의 양에 따라 다릅니다. 예를 들어 CCI 테이블로 데이터를 로드하려면 CCI 행 그룹이 최적성에 도달할 수 있도록 하는 데 메모리가 필요합니다. 자세한 내용은 Columnstore 인덱스 - 데이터 로드 지침을 참조하세요.
+hello 필요한 메모리 tooprocess 로드 효율적으로 hello 특성에 따라 결정 hello 테이블 로드 및 처리 된 데이터 양을 hello 합니다. 예를 들어, CCI 테이블로 데이터 로드 일부 메모리 toolet CCI rowgroup 한 최적 성을 도달 해야 합니다. 자세한 내용은 hello Columnstore 인덱스 데이터 로드 작업 지침을 참조 하십시오.
 
-모범 사례로, 로드 시 200MB 이상의 메모리를 사용하는 것이 좋습니다.
+모범 사례로, 좋습니다 toouse 최소한 200MB의 메모리 로드를 합니다.
 
 ### <a name="querying-best-practices"></a>쿼리 모범 사례
-쿼리마다 복잡성에 따라 다른 요구 사항을 갖습니다. 쿼리당 메모리를 늘리거나 동시성을 늘리면 쿼리 요구에 따라 전체 처리량을 늘릴 수 있습니다.
-1.  주기적으로 복잡한 쿼리가 예상되고(예: 매일 및 매주 보고서 생성) 동시성을 활용할 필요가 없는 경우 동적 리소스 클래스를 사용하는 것이 좋습니다. 시스템에 처리할 더 많은 데이터가 있는 경우 데이터 웨어하우스를 확장하면 쿼리를 실행하는 사용자에게 자동으로 추가 메모리가 제공됩니다.
-2.  가변 또는 일별 동시성 패턴이 예상되는 경우(예를 들어 광범위하게 액세스할 수 있는 웹 UI를 통해 데이터베이스를 쿼리하는 경우) 정적 리소스 클래스를 사용하는 것이 좋습니다. 나중에 데이터 웨어하우스를 확장할 때 정적 리소스 클래스와 관련된 사용자는 자동으로 더 많은 동시 쿼리를 실행할 수 있게 됩니다.
+쿼리마다 복잡성에 따라 다른 요구 사항을 갖습니다. 쿼리당 메모리를 늘리거나 hello 동시성은 증가 모두 올바른 방법 tooaugment hello 쿼리 요구에 따라 전체 처리량입니다.
+1.  Hello 기대는 정기적이 고 복잡 한 쿼리 하는 경우 (예를 들어, toogenerate 매일 및 매주 보고서) 및 동시성 tootake 활용 필요 하지 않습니다, 동적 리소스 클래스는 것이 좋습니다. Hello 시스템에 더 많은 데이터 tooprocess 경우 hello 데이터 웨어하우스를 확장 합니다. 따라서을 자동으로 제공 더 많은 메모리 toohello 사용자 hello 쿼리를 실행 합니다.
+2.  변수 또는 diurnal 동시성 패턴 hello 기대 하는 경우 (예를 들어 웹 광범위 하 게 액세스할 수 있는 UI 통해 hello 데이터베이스를 쿼리 하는 경우), 정적 리소스 클래스는 것이 좋습니다. 이상에서는 toodata 웨어하우스를 확장 하는 경우 hello 정적 리소스 클래스와 관련 된 hello 사용자가을 자동으로 더 많은 동시 쿼리가 수 toorun 될 합니다.
 
-쿼리 요구에 따라 적절한 메모리 권한을 선택하는 작업은 쿼리되는 데이터의 양, 테이블 스키마의 특성, 다양한 조인, 선택 및 그룹 조건자 등에 따라 좌우되므로 복잡할 수 있습니다. 일반적인 관점에서 볼 때 더 많은 메모리를 할당하면 쿼리를 더 빠르게 완료할 수 있지만 전체적인 동시성은 떨어집니다. 동시성이 문제가 되지 않을 경우 메모리를 과도하게 할당해도 괜찮습니다. 처리량을 자세히 조정하려는 경우 다양한 리소스 클래스 특성이 필요할 수 있습니다.
+쿼리 hello 요구에 따라 적절 한 메모리 부여를 선택 하는 hello 테이블 스키마 및 다양 한 조인, 선택 영역 및 그룹 조건자의 hello 특성 hello 쿼리, 데이터 양 등의 많은 요인에 의존 하므로 간단한, 합니다. 쿼리 toocomplete 속도가 더 하면 있지만 높이면 더 많은 메모리 할당 하는 일반 관점에서 전반적인 동시성 hello 합니다. 동시성이 문제가 되지 않을 경우 메모리를 과도하게 할당해도 괜찮습니다. toofine 조정 처리량, 다양 한 리소스 클래스를 시도 필요할 수 있습니다.
 
-다음 저장 프로시저를 사용하여 지정된 SLO에서 리소스 클래스별 동시성 및 메모리 권한을 확인하고 지정된 리소스 클래스의 분할되지 않은 CCI 테이블에 대해 메모리 집약적 CCI 작업을 수행하기 위한 가장 적절한 리소스 클래스를 확인할 수 있습니다.
+Hello 다음 저장을 사용할 수 있습니다에 지정된 된 SLO 및 hello 가장 가까운 최상의 리소스 클래스에 대 한 메모리 집약적 CCI 작업에 지정 된 리소스 클래스 CCI 테이블 분할 되지 않은 리소스 클래스당 동시성 및 메모리 부여 아웃 toofigure 프로시저:
 
 #### <a name="description"></a>설명:  
-이 저장 프로시저의 용도는 다음과 같습니다.  
-1. 사용자가 지정된 SLO에서 리소스 클래스별로 동시성 및 메모리 권한을 파악하도록 도와줍니다. 사용자는 아래 예제에 나와 있는 것처럼 이를 위해 스키마 및 테이블 이름 둘 다에 대해 NULL을 제공해야 합니다.  
-2. 사용자가 지정된 리소스 클래스에서 분할되지 않은 CCI 테이블에 대해 메모리 집약적 CCI 작업(로드, 테이블 복사, 인덱스 다시 작성 등)을 수행하기 위해 가장 적합한 리소스 클래스를 찾아내도록 도와줍니다. 저장 프로시저는 테이블 스키마를 사용하여 필요한 메모리 권한을 확인합니다.
+이 저장된 프로시저의 hello 용도 다음과 같습니다.  
+1. 지정 된 SLO에 리소스 클래스당 동시성 및 메모리 부여 아웃 toohelp 사용자 그림입니다. 아래 hello 예에 나와 있는 것 처럼 사용자 tooprovide NULL 스키마와 테이블 이름에 대 한이 필요 합니다.  
+2. 지정 된 리소스 클래스에서 아닌 분할된 CCI 테이블에 대해 CCI 작업 (로드, 테이블 복사 다시 인덱스 등 빌드) hello 가장 가까운 최상의 리소스에 대 한 클래스 hello 메모리 intensed toohelp 사용자 계산 합니다. 테이블 스키마 toofind 아웃 hello 필요한 메모리 부여를 사용 하 여이 대 한 hello 저장 프로시저.
 
 #### <a name="dependencies--restrictions"></a>종속성 및 제한 사항:
-- 이 저장 프로시저는 분할된 cci 테이블의 메모리 요구 사항을 계산하도록 디자인되지 않았습니다.    
-- 이 저장 프로시저는 CTAS/INSERT-SELECT의 SELECT 부분에 대한 메모리 요구 사항을 고려하지 않으며 간단한 SELECT로 간주합니다.
-- 이 저장 프로시저는 이 저장 프로시저가 만들어진 세션에서 사용할 수 있도록 임시 테이블을 사용합니다.    
-- 이 저장 프로시저는 현재 제공(예: 하드웨어 구성, DMS 구성)에 의존하므로 제공된 구성이 변경될 경우 이 저장 프로시저가 제대로 작동하지 않습니다.  
+- 이 저장된 프로시저 cci를 분할 된 테이블에 대 한 디자인 된 toocalculate 메모리 요구 사항이 아닙니다.    
+- 이 저장된 프로시저의 SELECT/INSERT-CTAS hello SELECT 부분에 대 한 계정으로 메모리 요구 사항이 사용 하지 않습니다 및 toobe 간단한 SELECT를 가정 합니다.
+- 이 저장된 프로시저를이 사용할 수 있도록 hello 세션에서이 저장된 프로시저가 생성 된 임시 테이블을 사용 합니다.    
+- 이 저장된 프로시저를 hello 현재 제품 (예: 하드웨어 구성, DMS 구성)에 따라 달라 집니다 하 고는 식의 변경 되 면 다음이 저장된 프로시저를 올바르게 작동 하지 않습니다.  
 - 이 저장 프로시저는 기존의 제공된 동시성 제한에 의존하므로 이러한 동시성 제한이 변경되면 이 저장 프로시저가 제대로 작동하지 않습니다.  
 - 이 저장 프로시저는 기존에 제공된 리소스 클래스에 의존하므로 이러한 리소스 클래스가 변경되면 이 저장 프로시저가 제대로 작동하지 않습니다.  
 
 >  [!NOTE]  
->  제공된 매개 변수로 저장 프로시저를 실행한 후에 출력이 표시되지 않으면 다음 2가지 경우로 가정할 수 있습니다. <br />1. DW 매개 변수 중 하나에 잘못된 SLO 값이 포함되어 있습니다. <br />2. 또는 테이블 이름이 제공된 경우 CCI 작업에 대해 일치하는 리소스 클래스가 없습니다. <br />예를 들어 DW100에서 사용할 수 있는 가장 높은 메모리 권한은 400MB이고 테이블 스키마가 400MB의 요구 사항을 충족할 만큼 충분히 넓습니다.
+>  제공된 매개 변수로 저장 프로시저를 실행한 후에 출력이 표시되지 않으면 다음 2가지 경우로 가정할 수 있습니다. <br />1. DW 매개 변수 중 하나에 잘못된 SLO 값이 포함되어 있습니다. <br />2. 또는 테이블 이름이 제공된 경우 CCI 작업에 대해 일치하는 리소스 클래스가 없습니다. <br />예를 들어 DW100, 사용 가능한 가장 높은 메모리 부여 400MB 하 고 충분 한 toocross hello 요구 사항은 400mb 테이블 스키마는 넓은 경우.
       
 #### <a name="usage-example"></a>사용법 예제:
 구문  
 `EXEC dbo.prc_workload_management_by_DWU @DWU VARCHAR(7), @SCHEMA_NAME VARCHAR(128), @TABLE_NAME VARCHAR(128)`  
-1. @DWU: NULL 매개 변수를 제공하여 DW DB에서 현재 DWU를 추출하거나 지원되는 모든 DWU를 'DW100' 형식으로 제공
-2. @SCHEMA_NAME: 테이블의 스키마 이름 제공
-3. @TABLE_NAME: 관심 있는 테이블 이름 제공
+1. @DWU:NULL 매개 변수 tooextract 제공 하거나 hello DW DB에서에서 현재 DWU hello 또는 지원 되는 모든 DWU 'DW100' hello 형태로 제공 합니다.
+2. @SCHEMA_NAME:Hello 테이블의 스키마 이름 제공
+3. @TABLE_NAME:Hello 관심 있는 테이블 이름을 제공합니다
 
 이 저장 프로시저 실행 예제:  
 ```sql  
@@ -236,10 +236,10 @@ EXEC dbo.prc_workload_management_by_DWU 'DW6000', NULL, NULL;
 EXEC dbo.prc_workload_management_by_DWU NULL, NULL, NULL;  
 ```
 
-위의 예제에서 사용된 Table1은 아래와 같이 만들 수 있습니다.  
+아래와 같이 hello 위의 예제에서에서 사용 하는 표 1은 만들 수 있습니다.  
 `CREATE TABLE Table1 (a int, b varchar(50), c decimal (18,10), d char(10), e varbinary(15), f float, g datetime, h date);`
 
-#### <a name="heres-the-stored-procedure-definition"></a>저장 프로시저 정의는 다음과 같습니다.
+#### <a name="heres-hello-stored-procedure-definition"></a>Hello 저장 프로시저 정의 다음과 같습니다.
 ```sql  
 -------------------------------------------------------------------------------
 -- Dropping prc_workload_management_by_DWU procedure if it exists.
@@ -259,7 +259,7 @@ CREATE PROCEDURE dbo.prc_workload_management_by_DWU
 AS
 IF @DWU IS NULL
 BEGIN
--- Selecting proper DWU for the current DB if not specified.
+-- Selecting proper DWU for hello current DB if not specified.
 SET @DWU = (
   SELECT 'DW'+CAST(COUNT(*)*100 AS VARCHAR(10))
   FROM sys.dm_pdw_nodes
@@ -271,7 +271,7 @@ SET @DWU_NUM = CAST (SUBSTRING(@DWU, 3, LEN(@DWU)-2) AS INT)
 
 -- Raise error if either schema name or table name is supplied but not both them supplied
 --IF ((@SCHEMA_NAME IS NOT NULL AND @TABLE_NAME IS NULL) OR (@TABLE_NAME IS NULL AND @SCHEMA_NAME IS NOT NULL))
---     RAISEERROR('User need to supply either both Schema Name and Table Name or none of them')
+--     RAISEERROR('User need toosupply either both Schema Name and Table Name or none of them')
        
 -- Dropping temp table if exists.
 IF OBJECT_ID('tempdb..#ref') IS NOT NULL
@@ -279,7 +279,7 @@ BEGIN
   DROP TABLE #ref;
 END
 
--- Creating ref. temptable (CTAS) to hold mapping info.
+-- Creating ref. temptable (CTAS) toohold mapping info.
 -- CREATE TABLE #ref
 CREATE TABLE #ref
 WITH (DISTRIBUTION = ROUND_ROBIN)
@@ -316,7 +316,7 @@ AS
   UNION ALL
     SELECT 'DW6000', 32, 240, 1, 32, 64, 128, 1, 2, 4, 8, 16, 32, 64, 128
 )
--- Creating workload mapping to their corresponding slot consumption and default memory grant.
+-- Creating workload mapping tootheir corresponding slot consumption and default memory grant.
 ,map
 AS
 (
@@ -554,11 +554,11 @@ GO
 ```
 
 ## <a name="query-importance"></a>쿼리 중요도
-SQL 데이터 웨어하우스는 워크로드 그룹을 사용하여 리소스 클래스를 구현합니다. 다양한 DWU 크기의 리소스 클래스 동작을 제어하는 총 8개의 워크로드 그룹이 있습니다. DWU의 경우 SQL 데이터 웨어하우스는 8개의 워크로드 그룹 중 4개만 사용합니다. 각 워크로드 그룹은 4가지 리소스 클래스 smallrc, mediumrc, largerc 또는 xlargerc 중 하나에 할당되기 때문에 이렇게 하는 것이 합리적입니다. 이들 워크로드 그룹의 일부가 더 높은 *중요도*로 설정된다는 점 때문에 워크로드 그룹을 이해하는 것이 중요합니다. 중요도가 CPU 예약에 사용됩니다. 높은 중요도를 갖고 실행되는 쿼리는 중간 중요도의 쿼리보다 3배 더 많은 CPU 사이클을 받게 될 것입니다. 따라서 동시성 슬롯 매핑은 또한 CPU 우선 순위를 결정합니다. 쿼리가 16개 이상의 슬롯을 사용할 경우 중요도 높음으로 실행됩니다.
+SQL 데이터 웨어하우스는 워크로드 그룹을 사용하여 리소스 클래스를 구현합니다. 다양 한 DWU 크기 hello에서 hello 리소스 클래스의 hello 동작을 제어 하는 8 개의 작업 그룹의 총 가지가 있습니다. 모든 DWU에 대 한 SQL 데이터 웨어하우스 hello 8 개의 작업 그룹의 4만 사용 합니다. 각 작업 그룹의 4 개 리소스 클래스 tooone 지정 되기 때문에 이렇게 하면 의미: smallrc, mediumrc, largerc, 또는 xlargerc 합니다. hello 이해 hello 작업 그룹의 중요도 이러한 작업 그룹의 일부 설정 된다는 점 toohigher *중요도*합니다. 중요도가 CPU 예약에 사용됩니다. 높은 중요도를 갖고 실행되는 쿼리는 중간 중요도의 쿼리보다 3배 더 많은 CPU 사이클을 받게 될 것입니다. 따라서 동시성 슬롯 매핑은 또한 CPU 우선 순위를 결정합니다. 쿼리가 16개 이상의 슬롯을 사용할 경우 중요도 높음으로 실행됩니다.
 
-다음 테이블에서는 각 워크로드 그룹에 대한 중요도 매핑을 보여 줍니다.
+hello 다음 표에 각 작업 그룹에 대 한 hello 중요도 매핑이 있습니다.
 
-### <a name="workload-group-mappings-to-concurrency-slots-and-importance"></a>동시성 슬롯 및 중요도에 대한 워크로드 그룹 매핑
+### <a name="workload-group-mappings-tooconcurrency-slots-and-importance"></a>작업 그룹 매핑 tooconcurrency 슬롯 및 중요도
 | 워크로드 그룹 | 동시성 슬롯 매핑 | MB/배포 | 중요도 매핑 |
 |:--- |:---:|:---:|:--- |
 | SloDWGroupC00 |1 |100 |중간 |
@@ -570,9 +570,9 @@ SQL 데이터 웨어하우스는 워크로드 그룹을 사용하여 리소스 �
 | SloDWGroupC06 |64 |6,400 |높음 |
 | SloDWGroupC07 |128 |12,800 |높음 |
 
-**동시성 슬롯의 할당 및 사용량** 차트에서는 DW500이 smallrc, mediumrc, largerc 및 xlargerc 각각에 대해 1, 4, 8 또는 16의 동시성 슬롯을 사용한다는 확인할 수 있습니다. 위의 차트에서 이러한 값을 확인하여 각 리소스 클래스에 대한 중요도를 알 수 있습니다.
+Hello에서 **할당 및 동시성 슬롯의 소비** 차트는 DW500에서는 1, 4, 8 또는 16 동시성 슬롯 smallrc, mediumrc, largerc, 및 xlargerc, 각각을 볼 수 있습니다. 각 리소스 클래스에 대 한 차트 toofind hello 중요도 앞 hello에 해당 값을 조회할 수 있습니다.
 
-### <a name="dw500-mapping-of-resource-classes-to-importance"></a>DW500의 리소스 클래스와 중요도 관계
+### <a name="dw500-mapping-of-resource-classes-tooimportance"></a>리소스 클래스 tooimportance의 DW500 매핑
 | 리소스 클래스 | 워크로드 그룹 | 사용된 동시성 슬롯 수 | MB/배포 | 중요도 |
 |:--- |:--- |:---:|:---:|:--- |
 | smallrc |SloDWGroupC00 |1 |100 |중간 |
@@ -588,7 +588,7 @@ SQL 데이터 웨어하우스는 워크로드 그룹을 사용하여 리소스 �
 | staticrc70 |SloDWGroupC03 |16 |1,600 |높음 |
 | staticrc80 |SloDWGroupC03 |16 |1,600 |높음 |
 
-다음 DMV 쿼리는 리소스 관리자의 관점에서 메모리 리소스 할당의 차이점을 자세히 살펴보거나, 또는 문제를 해결할 때 워크로드 그룹의 활성 및 사용 기록을 분석하는 데도 사용할 수 있습니다.
+Hello hello 차이 hello 리소스 관리자의 hello 관점 또는 hello 작업 그룹의 현재 및 이제 까지의 사용 tooanalyze 자세히 메모리 리소스 할당에서 DMV 쿼리 toolook 문제를 해결 하려면 다음을 사용할 수 있습니다.
 
 ```sql
 WITH rg
@@ -637,9 +637,9 @@ ORDER BY
 ```
 
 ## <a name="queries-that-honor-concurrency-limits"></a>동시성 한도를 적용하는 쿼리
-대부분의 쿼리는 리소스 클래스에 의해 제어됩니다. 이러한 쿼리는 동시 쿼리 및 동시성 슬롯 임계값 둘 다를 벗어나지 않아야 합니다. 사용자는 동시성 슬롯 모델에서 쿼리를 제외하도록 선택할 수 없습니다.
+대부분의 쿼리는 리소스 클래스에 의해 제어됩니다. 이러한 쿼리 hello 동시 쿼리와 동시성 슬롯 임계값 내에 맞아야 합니다. 사용자는 hello 동시성 슬롯 모델에서 tooexclude 쿼리를 선택할 수 없습니다.
 
-다시 한 번 강조하지만 다음 문은 리소스 클래스를 인식합니다.
+tooreiterate, hello 다음 문은 인식 리소스 클래스:
 
 * INSERT-SELECT
 * UPDATE
@@ -652,12 +652,12 @@ ORDER BY
 * CREATE CLUSTERED COLUMNSTORE INDEX
 * CREATE TABLE AS SELECT (CTAS)
 * 데이터 로드
-* DMS(데이터 이동 서비스)에서 수행하는 데이터 이동 작업
+* Hello 데이터 이동 서비스 (DMS)을 통해 수행 되는 데이터 이동 작업
 
-## <a name="query-exceptions-to-concurrency-limits"></a>동시성 제한에 대한 쿼리 예외
-일부 쿼리는 사용자가 할당된 리소스 클래스를 인식하지 않습니다. 동시성 제한에 대한 이러한 예외는 특정 명령에 필요한 메모리 리소스가 부족할 때(종종 명령이 메타데이터 작업이므로) 나타납니다. 이러한 예외는 필요하지 않은 더 큰 양의 메모리가 쿼리에 할당되는 것을 방지하기 위한 것입니다. 이러한 경우에는 사용자에게 할당된 실제 리소스 클래스와 상관없이 기본 또는 작은 리소스 클래스(smallrc)가 항상 사용됩니다. 예를 들어, `CREATE LOGIN` 은 항상 smallrc에서 실행됩니다. 이 작업을 수행하는 데 필요한 리소스가 매우 부족하고 따라서 동시성 슬롯 모델에 쿼리를 포함하는 것이 적합하지 않습니다.  이러한 쿼리는 또한 32명의 사용자 동시성 제한으로 제한되지 않으며, 이러한 쿼리를 개수 제한 없이 1,024개의 세션 제한까지 실행할 수 있습니다.
+## <a name="query-exceptions-tooconcurrency-limits"></a>쿼리 예외 tooconcurrency 제한
+일부 쿼리 hello 리소스를 인식 하지 못합니다 클래스 toowhich hello 사용자에 게 할당 됩니다. 특정 명령에 필요한 hello 메모리 리소스가 부족 한지, 종종 hello 명령은 메타 데이터 작업 이므로 때 이러한 예외 toohello 동시성 제한은 적용 하는 합니다. hello 이들 예외의 ´ ֲ tooavoid 더 큰 메모리 할당에 대 한 쿼리를 활용 하지 것입니다. 이러한 경우 작은 리소스 클래스 (smallrc) hello 실제 리소스 클래스에 관계 없이 항상 사용 하는 hello 기본 toohello 사용자를 할당 합니다. 예를 들어, `CREATE LOGIN` 은 항상 smallrc에서 실행됩니다. hello 필요한 리소스 toofulfill이이 작업 되므로 매우 낮은 hello 동시성 슬롯 모델에서 의미 tooinclude hello 쿼리를 만들지 않습니다.  이러한 쿼리는 또한 hello 32 사용자 동시성 제한으로 제한 되지, 이러한 쿼리 무제한 toohello 세션 제한 1, 024 세션을 실행할 수 있습니다.
 
-다음 문은 리소스 클래스를 인식하지 않습니다.
+다음 조건 hello 리소스 클래스를 인식 하지 못합니다.
 
 * CREATE 또는 DROP TABLE
 * ALTER TABLE ... SWITCH, SPLIT 또는 MERGE PARTITION
@@ -683,7 +683,7 @@ Removed as these two are not confirmed / supported under SQLDW
 -->
 
 ##  <a name="changing-user-resource-class-example"></a> 사용자 리소스 클래스 변경 예제
-1. **로그인 만들기:** SQL Data Warehouse 데이터베이스를 호스트하는 SQL Server에서 **마스터** 데이터베이스에 대한 연결을 열고 다음 명령을 실행합니다.
+1. **로그인을 만듭니다:** 연결 tooyour 열고 **마스터** SQL 데이터 웨어하우스 데이터베이스를 호스팅하는 hello SQL server에서 데이터베이스 및 hello 다음 명령을 실행 합니다.
    
     ```sql
     CREATE LOGIN newperson WITH PASSWORD = 'mypassword';
@@ -691,37 +691,37 @@ Removed as these two are not confirmed / supported under SQLDW
     ```
    
    > [!NOTE]
-   > Azure SQL Data Warehouse 사용자에 대해 마스터 데이터베이스에 사용자를 만드는 것이 좋습니다. 마스터에서 사용자를 만들면 데이터베이스 이름을 지정하지 않아도 사용자가 SSMS 등의 도구를 사용하여 로그인할 수 있습니다.  또한 개체 탐색기를 사용하여 SQL server의 모든 데이터베이스를 볼 수 있습니다.  사용자를 만들고 관리하는 방법에 대한 자세한 내용은 [SQL Data Warehouse에서 데이터베이스 보호][Secure a database in SQL Data Warehouse]를 참조하세요.
+   > Azure SQL 데이터 웨어하우스 사용자에 대 한 hello master 데이터베이스 좋습니다 toocreate 사용자입니다. Master에 사용자를 만들면 SSMS와 같은 도구를 사용 하 여 데이터베이스 이름을 지정 하지 않고 사용자 toologin이 있습니다.  또한 있게 toouse hello 개체 탐색기 tooview에 모든 데이터베이스를 SQL server.  사용자를 만들고 관리하는 방법에 대한 자세한 내용은 [SQL Data Warehouse에서 데이터베이스 보호][Secure a database in SQL Data Warehouse]를 참조하세요.
    > 
    > 
-2. **SQL Data Warehouse 사용자 만들기:** **SQL Data Warehouse** 데이터베이스에 대한 연결을 열고 다음 명령을 실행합니다.
+2. **SQL 데이터 웨어하우스 사용자 만들기:** 연결 toohello 열고 **SQL 데이터 웨어하우스** 데이터베이스 및 hello 다음 명령을 실행 합니다.
    
     ```sql
     CREATE USER newperson FOR LOGIN newperson;
     ```
-3. **사용 권한 부여:** 다음 예제에서는 **SQL Data Warehouse** 데이터베이스에 `CONTROL`을 부여합니다. 데이터베이스 수준에서 `CONTROL`은 SQL Server의 db_owner와 동일합니다.
+3. **권한 부여:** 예제 부여 다음 hello `CONTROL` hello에 **SQL 데이터 웨어하우스** 데이터베이스입니다. `CONTROL`hello에 데이터베이스 수준 db_owner SQL Server에서의 해당 하는 hello 됩니다.
    
     ```sql
-    GRANT CONTROL ON DATABASE::MySQLDW to newperson;
+    GRANT CONTROL ON DATABASE::MySQLDW toonewperson;
     ```
-4. **리소스 클래스 증가:** 다음 쿼리를 사용하여 더 높은 워크로드 관리 역할에 사용자를 추가합니다.
+4. **리소스 클래스를 높일:** 사용 하 여 hello 다음 tooadd 사용자 tooa 높은 작업 관리 역할을 쿼리 합니다.
    
     ```sql
     EXEC sp_addrolemember 'largerc', 'newperson'
     ```
-5. **리소스 클래스 감소:** 다음 쿼리를 사용하여 워크로드 관리 역할에서 사용자를 제거합니다.
+5. **리소스 클래스를 줄이려면:** 사용 하 여 hello 다음 tooremove 작업 관리 역할에서 사용자를 쿼리 합니다.
    
     ```sql
     EXEC sp_droprolemember 'largerc', 'newperson';
     ```
    
    > [!NOTE]
-   > smallrc에서 사용자를 제거하는 것은 불가능합니다.
+   > 가능한 tooremove smallrc에서 사용자는 없습니다.
    > 
    > 
 
 ## <a name="queued-query-detection-and-other-dmvs"></a>큐에 대기 중인 쿼리 검색 및 다른 DMV
-`sys.dm_pdw_exec_requests` DMV는 동시성 큐에 대기 중인 쿼리를 식별하는 데 사용할 수 있습니다. 동시성 슬롯을 대기하는 쿼리는 **일시 중단**상태가 됩니다.
+Hello를 사용할 수 있습니다 `sys.dm_pdw_exec_requests` 동시성 큐에서 대기 하는 DMV tooidentify 쿼리 합니다. 동시성 슬롯을 대기하는 쿼리는 **일시 중단**상태가 됩니다.
 
 ```sql
 SELECT      r.[request_id]                 AS Request_ID
@@ -742,7 +742,7 @@ WHERE   ro.[type_desc]      = 'DATABASE_ROLE'
 AND     ro.[is_fixed_role]  = 0;
 ```
 
-다음 쿼리는 각 사용자에게 어떤 역할이 할당되었는지 보여줍니다.
+다음 쿼리에서 hello에 할당 된 각 사용자 역할을 보여 줍니다.
 
 ```sql
 SELECT     r.name AS role_principal_name
@@ -753,14 +753,14 @@ JOIN    sys.database_principals AS m            ON rm.member_principal_id    = m
 WHERE    r.name IN ('mediumrc','largerc', 'xlargerc');
 ```
 
-SQL 데이터 웨어하우스에 다음과 같은 대기 형식이 있습니다.
+SQL 데이터 웨어하우스 hello 다음을 대기 유형을 있습니다.
 
-* **LocalQueriesConcurrencyResourceType**: 동시성 슬롯 프레임워크 외부에 존재하는 쿼리. `SELECT @@VERSION` 과 같은 DMV 쿼리 및 시스템 함수는 로컬 쿼리의 예입니다.
-* **UserConcurrencyResourceType**: 동시성 슬롯 프레임워크 내에 존재하는 쿼리. 최종 사용자 테이블에 대한 쿼리는 이 리소스 형식을 사용하는 예를 나타냅니다.
+* **LocalQueriesConcurrencyResourceType**: hello 동시성 슬롯 프레임 워크 외부에서 앉아 쿼리 합니다. `SELECT @@VERSION` 과 같은 DMV 쿼리 및 시스템 함수는 로컬 쿼리의 예입니다.
+* **UserConcurrencyResourceType**: hello 동시성 슬롯 프레임 워크 내을 쿼리 합니다. 최종 사용자 테이블에 대한 쿼리는 이 리소스 형식을 사용하는 예를 나타냅니다.
 * **DmsConcurrencyResourceType**: 데이터 이동 작업으로 초래된 대기
-* **BackupConcurrencyResourceType**: 이 대기는 데이터베이스가 백업 중임을 나타냅니다. 이 리소스 유형에 대한 최대값은 1입니다. 여러 백업을 동시에 요청한 경우 다른 백업 요청은 큐에 저장됩니다.
+* **BackupConcurrencyResourceType**: 이 대기는 데이터베이스가 백업 중임을 나타냅니다. 이 리소스 종류에 대 한 hello 최대 값은 1입니다. 여러 백업 hello에 요청 하는 경우 동일한 시간, hello 다른을 대기 합니다.
 
-`sys.dm_pdw_waits` DMV는 요청이 대기 중인 리소스를 알아내는 데 사용할 수 있습니다.
+hello `sys.dm_pdw_waits` DMV는 리소스에 대 한 요청을 대기 하는 사용 되는 toosee 될 수 있습니다.
 
 ```sql
 SELECT  w.[wait_id]
@@ -796,7 +796,7 @@ JOIN    sys.dm_pdw_exec_requests r  ON w.[request_id] = r.[request_id]
 WHERE    w.[session_id] <> SESSION_ID();
 ```
 
-`sys.dm_pdw_resource_waits` DMV는 지정된 쿼리에 사용되는 리소스 대기만 표시합니다. 리소스 대기 시간은 기본 SQL Server가 CPU에 대해 쿼리를 예약하는 데 소요되는 대기 시간을 나타내는 것과 달리 리소스가 제공될 때까지 대기하는 시간만 측정합니다.
+hello `sys.dm_pdw_resource_waits` DMV에서 지정된 된 쿼리에 사용 hello 리소스 대기만 보여 줍니다. 리소스 대기 시간 측정 제공 하는 리소스 toobe 때까지 대기 하는 hello 시간, SQL 서버 tooschedule hello 쿼리 hello CPU에 기본 hello에 대 한 걸리는 것과 반대로 toosignal 시간 hello 시간을 대기 하는 대로 합니다.
 
 ```sql
 SELECT  [session_id]
@@ -814,7 +814,7 @@ FROM    sys.dm_pdw_resource_waits
 WHERE    [session_id] <> SESSION_ID();
 ```
 
-`sys.dm_pdw_wait_stats` DMV는 기록 추세 분석에 사용할 수 있습니다.
+hello `sys.dm_pdw_wait_stats` DMV 대기 작업의 기록 추세 분석에 사용할 수 있습니다.
 
 ```sql
 SELECT    w.[pdw_node_id]
@@ -828,13 +828,13 @@ FROM    sys.dm_pdw_wait_stats w;
 ```
 
 ## <a name="next-steps"></a>다음 단계
-데이터베이스 사용자 및 보안을 관리하는 방법에 대한 자세한 내용은 [SQL Data Warehouse에서 데이터베이스 보호][Secure a database in SQL Data Warehouse]를 참조하세요. 더 큰 리소스 클래스가 클러스터된 columnstore 인덱스 품질을 향상할 방법에 대한 자세한 내용은 [인덱스를 다시 빌드하여 세그먼트 품질 개선]을 참조하세요.
+데이터베이스 사용자 및 보안을 관리하는 방법에 대한 자세한 내용은 [SQL Data Warehouse에서 데이터베이스 보호][Secure a database in SQL Data Warehouse]를 참조하세요. 큰 리소스 클래스에 대 한 자세한 내용은 클러스터형된 columnstore 인덱스 품질을 향상 시킬 수 있습니다, 참조 [tooimprove 세그먼트 품질 인덱스를 다시 작성]합니다.
 
 <!--Image references-->
 
 <!--Article references-->
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
-[인덱스를 다시 빌드하여 세그먼트 품질 개선]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
+[tooimprove 세그먼트 품질 인덱스를 다시 작성]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
 
 <!--MSDN references-->

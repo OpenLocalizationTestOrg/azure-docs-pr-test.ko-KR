@@ -1,6 +1,6 @@
 ---
-title: "PowerShell 및 템플릿으로 리소스 배포 | Microsoft Docs"
-description: "Azure Resource Manager와 Azure PowerShell을 사용하여 Azure에 리소스를 배포합니다. 리소스는 Resource Manager 템플릿에 정의됩니다."
+title: "PowerShell 및 서식 파일을 사용 하 여 aaaDeploy 리소스 | Microsoft Docs"
+description: "리소스 tooAzure toodeploy Azure 리소스 관리자 및 Azure PowerShell을 사용 합니다. hello 리소스는 리소스 관리자 서식 파일에 정의 됩니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5f395abf8ebdfbac18fd17d8183b392673e280ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41506811ba3c2ea5df6313db70978ade50f71161
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-resources-with-resource-manager-templates-and-azure-powershell"></a>리소스 관리자 템플릿과 Azure PowerShell로 리소스 배포
 
-이 항목은 리소스 관리자 템플릿으로 Azure PowerShell을 사용하여 Azure에 리소스를 배포하는 방법을 설명합니다. Azure 솔루션 배포 및 관리와 관련된 개념에 익숙하지 않은 경우 [Azure Resource Manager 개요](resource-group-overview.md)를 참조하세요.
+이 항목에서는 설명 어떻게 리소스 관리자 템플릿 toodeploy와 Azure PowerShell toouse 리소스 tooAzure 합니다. 발생 Azure 솔루션을 관리 하는 배포의 hello 개념에 익숙하지 않은 [Azure 리소스 관리자 개요](resource-group-overview.md)합니다.
 
-배포하는 Resource Manager 템플릿은 컴퓨터의 로컬 파일 또는 GitHub와 같은 저장소에 있는 외부 파일일 수도 있습니다. 이 문서에서 배포하는 템플릿은 [샘플 템플릿](#sample-template) 섹션 또는 [GitHub의 저장소 계정 템플릿](https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json)으로 사용할 수 있습니다.
+hello 리소스 관리자 템플릿 배포를 컴퓨터에 로컬 파일 또는 GitHub와 같은 저장소에 있는 외부 파일 일 수도 있습니다. 이 문서에 배포 하는 hello 템플릿을 hello에 사용할 수는 [예제 서식 파일](#sample-template) 섹션 또는 as [GitHub의 저장소 계정 템플릿](https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json)합니다.
 
 [!INCLUDE [sample-powershell-install](../../includes/sample-powershell-install.md)]
 
@@ -32,15 +32,15 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="deploy-a-template-from-your-local-machine"></a>로컬 컴퓨터에서 템플릿 배포
 
-Azure에 리소스를 배포할 때 다음을 수행합니다.
+리소스 tooAzure를 배포할 때 있습니다.
 
-1. Azure 계정에 로그인합니다.
-2. 배포된 리소스에 대한 컨테이너 역할을 하는 리소스 그룹을 만듭니다. 리소스 그룹의 이름은 영숫자, 마침표, 밑줄, 하이픈 및 괄호만 포함할 수 있습니다. 최대 90자까지 가능합니다. 마침표로 끝날 수 없습니다.
-3. 만들려는 리소스를 정의하는 템플릿을 리소스 그룹에 배포
+1. Azure 계정 tooyour에 로그인
+2. 배포 된 hello 리소스에 대 한 hello 컨테이너 역할을 하는 리소스 그룹을 만듭니다. hello 리소스 그룹의 hello 이름은 영숫자, 마침표, 밑줄, 하이픈 및 괄호에만 포함할 수 있습니다. Too90 문자를 수 있습니다. 마침표로 끝날 수 없습니다.
+3. Toohello 리소스 그룹 hello 템플릿을 hello 리소스 toocreate를 정의 하는 배포
 
-템플릿에는 템플릿 배포를 사용자 지정할 수 있도록 하는 매개 변수가 포함될 수 있습니다. 예를 들어 특정 환경(예: 개발, 테스트 및 프로덕션)에 맞게 조정되는 값을 제공할 수 있습니다. 샘플 템플릿은 저장소 계정 SKU에 대한 매개 변수를 정의합니다.
+템플릿을은 toocustomize hello 배포를 사용 하는 매개 변수를 포함할 수 있습니다. 예를 들어 특정 환경(예: 개발, 테스트 및 프로덕션)에 맞게 조정되는 값을 제공할 수 있습니다. hello 샘플 템플릿은 hello 저장소 계정 SKU에 대 한 매개 변수를 정의합니다.
 
-다음 예제에서는 리소스 그룹을 만들고 로컬 컴퓨터에서 템플릿을 배포합니다.
+다음 예제는 hello 리소스 그룹을 만들고 서식 파일은 로컬 컴퓨터에서 배포.
 
 ```powershell
 Login-AzureRmAccount
@@ -50,7 +50,7 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -TemplateFile c:\MyTemplates\storage.json -storageAccountType Standard_GRS
 ```
 
-배포가 완료될 때까지 몇 분 정도 걸릴 수 있습니다. 완료되면 결과가 포함된 메시지가 표시됩니다.
+hello 배포는 몇 분 toocomplete를 걸릴 수 있습니다. 완료 되 면 hello 결과 포함 하는 메시지가 표시:
 
 ```powershell
 ProvisioningState       : Succeeded
@@ -58,9 +58,9 @@ ProvisioningState       : Succeeded
 
 ## <a name="deploy-a-template-from-an-external-source"></a>외부 원본에서 템플릿 배포
 
-로컬 컴퓨터에 Resource Manager 템플릿을 저장하는 대신, 외부 위치에 저장할 수 있습니다. 원본 제어 리포지토리(예: GitHub)에 템플릿을 저장할 수 있습니다. 또는 조직에서 공유 액세스에 대한 Azure Storage 계정에 저장할 수 있습니다.
+로컬 컴퓨터의 리소스 관리자 템플릿을 저장 하는 대신 toostore 경우가 외부 위치에서 해당 합니다. 원본 제어 리포지토리(예: GitHub)에 템플릿을 저장할 수 있습니다. 또는 조직에서 공유 액세스에 대한 Azure Storage 계정에 저장할 수 있습니다.
 
-외부 템플릿을 배포하려면 **TemplateUri** 매개 변수를 사용합니다. 예제의 URI를 사용하여 GitHub에서 샘플 템플릿을 배포합니다.
+toodeploy 외부 서식 파일을 사용 하 여 hello **TemplateUri** 매개 변수입니다. GitHub에서 hello 예제 toodeploy hello 샘플 템플릿에서 URI hello를 사용 합니다.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
@@ -68,11 +68,11 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -storageAccountType Standard_GRS
 ```
 
-앞의 예제에서는 템플릿에 중요한 데이터가 포함되어 있지 않으므로 대부분의 시나리오에 적합한 이 템플릿에 대해 공개적으로 액세스할 수 있는 URI가 필요합니다. 중요한 데이터(예: 관리자 암호)를 지정해야 하는 경우 해당 값을 안전한 매개 변수로 전달합니다. 그러나 템플릿에 공개적으로 액세스할 수 있도록 하지 않으려면 개인 저장소 컨테이너에 저장하여 보호할 수 있습니다. SAS(공유 액세스 서명) 토큰이 필요한 템플릿을 배포하는 데 관한 내용은 [SAS 토큰으로 개인 템플릿 배포](resource-manager-powershell-sas-token.md)를 참조하세요.
+hello 앞의 예제에서는 공개적으로 액세스할 수 있는 URI 서식 파일에 중요 한 데이터를 포함 하지 해야 하기 때문에 대부분의 시나리오에 대 한 작동 하는 hello 서식 파일 Toospecify 중요 한 데이터 (예: 관리자 암호) 해야 할 경우 해당 값을 안전한 매개 변수로 전달 합니다. 그러나 하지 않을 경우 서식 파일 toobe 공개적으로 액세스할 수 있는, 개인 저장소 컨테이너에 저장 하 여 보호할 수 있습니다. SAS(공유 액세스 서명) 토큰이 필요한 템플릿을 배포하는 데 관한 내용은 [SAS 토큰으로 개인 템플릿 배포](resource-manager-powershell-sas-token.md)를 참조하세요.
 
 ## <a name="parameter-files"></a>매개 변수 파일
 
-매개 변수를 스크립트에 인라인 값으로 전달하는 것보다는, 매개 변수 값이 포함된 JSON 파일을 사용하는 것이 더 쉬울 수 있습니다. 매개 변수 파일은 다음과 같은 형식이어야 합니다.
+인라인 스크립트에는 값으로 매개 변수를 전달 하는 대신 쉽게 toouse를 hello 매개 변수 값을 포함 하는 JSON 파일 좋습니다. hello 매개 변수 파일 형식에 따라 hello 이어야 합니다.
 
 ```json
 {
@@ -86,11 +86,11 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
 }
 ```
 
-매개 변수 섹션에는 템플릿에 정의된 매개 변수(storageAccountType)와 일치하는 매개 변수 이름이 포함되어 있습니다. 매개 변수 파일에는 매개 변수의 값이 포함됩니다. 이 값은 배포 동안 템플릿에 자동으로 전달됩니다. 다양한 배포 시나리오를 위해 여러 매개 변수 파일을 만든 후 적절한 매개 변수 파일을 전달할 수 있습니다. 
+Hello 매개 변수 섹션 (storageAccountType) 서식 파일에 정의 된 hello 매개 변수에 일치 하는 매개 변수 이름을 포함 되어 있는지 확인 합니다. hello 매개 변수 파일 hello 매개 변수의 값을 포함합니다. 자동으로이 값은 배포 중 toohello 서식 파일을 전달 합니다. 다양 한 배포 시나리오에 대 한 여러 매개 변수 파일을 만들고 hello 적절 한 매개 변수 파일에 전달할 수 있습니다. 
 
-앞의 예제를 복사하고 `storage.parameters.json`이라는 파일로 저장합니다.
+앞 예제는 hello를 복사 하 고 이라는 파일로 저장 `storage.parameters.json`합니다.
 
-로컬 매개 변수 파일을 전달하려면 **TemplateParameterFile** 매개 변수를 사용합니다.
+toopass 로컬 매개 변수 파일을 사용 하 여 hello **TemplateParameterFile** 매개 변수:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
@@ -98,7 +98,7 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -TemplateParameterFile c:\MyTemplates\storage.parameters.json
 ```
 
-외부 매개 변수 파일을 전달하려면 **TemplateParameterUri** 매개 변수를 사용합니다.
+toopass 외부 매개 변수 파일을 사용 하 여 hello **TemplateParameterUri** 매개 변수:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
@@ -106,35 +106,35 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -TemplateParameterUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.parameters.json
 ```
 
-동일한 배포 작업에서 인라인 매개 변수 및 로컬 매개 변수 파일을 사용할 수 있습니다. 예를 들어 로컬 매개 변수 파일에서 일부 값을 지정하고 배포하는 동안 인라인으로 다른 값을 추가할 수 있습니다. 로컬 매개 변수 파일 및 인라인에서 매개 변수에 대한 값을 제공하는 경우 인라인 값이 우선합니다.
+인라인 매개 변수를 사용할 수 있습니다 및 hello에 로컬 매개 변수 파일 같은 작업을 배포 합니다. 예를 들어 hello 로컬 매개 변수 파일의 일부 값을 지정할 수 있으며 다른 값 인라인을 배포 하는 동안 추가. Hello 로컬 매개 변수 파일과 인라인 둘 다에 매개 변수의 값을 제공 하는 경우 hello 인라인 값 우선 합니다.
 
-하지만 외부 매개 변수 파일을 사용하면 인라인 또는 로컬 파일에서 다른 값을 전달할 수 없습니다. **TemplateParameterUri** 매개 변수에서 매개 변수 파일을 지정하는 경우 모든 인라인 매개 변수는 무시됩니다. 외부 파일에서 모든 매개 변수 값을 제공해야 합니다. 템플릿이 매개 변수 파일에 포함할 수 없는 중요한 값을 포함하는 경우 해당 값을 키 자격 증명 모음에 추가하고 동적으로 모든 매개 변수 값을 인라인으로 제공합니다.
+하지만 외부 매개 변수 파일을 사용하면 인라인 또는 로컬 파일에서 다른 값을 전달할 수 없습니다. Hello에 매개 변수 파일을 지정할 때 **TemplateParameterUri** 매개 변수, 모든 인라인 매개 변수가 무시 됩니다. Hello 외부 파일에 있는 모든 매개 변수 값을 제공 합니다. 서식 파일에 hello 매개 변수 파일에 포함할 수 없는 중요 한 값을 포함 하는 경우 해당 값 tooa 키 자격 증명 모음을 추가 하거나 모든 매개 변수 값 인라인을 동적으로 제공 합니다.
 
-템플릿에 PowerShell 명령의 매개 변수 중 하나와 이름이 같은 매개 변수가 포함되어 있으면 PowerShell에서 접미사가 **FromTemplate**인 템플릿에서 매개 변수를 제공합니다. 예를 들어 템플릿의 **ResourceGroupName**이라는 매개 변수는 [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) cmdlet의 **ResourceGroupName** 매개 변수와 충돌합니다. **ResourceGroupNameFromTemplate**에 대한 값을 제공하라는 메시지가 표시됩니다. 일반적으로 배포 작업에 사용되는 매개 변수와 동일한 이름을 가진 매개 변수를 명명하지 않음으로써 이러한 혼동이 발생하지 않도록 해야 합니다.
+PowerShell hello 후 위에 서식 파일에서 hello 매개 변수를 제공 hello hello PowerShell 명령에에서 hello 매개 변수 중 하나로 이름과 같은 이름을 가진 매개 변수가 있는 서식 파일의 경우, **FromTemplate**합니다. 예를 들어 매개 변수 이름 **ResourceGroupName** hello와 사용자 템플릿 충돌에서 **ResourceGroupName** hello에 대 한 매개 변수 [새로 만들기-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment)cmdlet. 입력 정보 요청된 tooprovide에 대 한 값은 **ResourceGroupNameFromTemplate**합니다. 일반적으로 이러한 혼동 하지 배포 작업에 사용 되는 매개 변수로 이름과 같은 이름을 hello로 매개 변수 이름을 지정 하지 마십시오.
 
 ## <a name="test-a-template-deployment"></a>템플릿 배포 테스트
 
-리소스를 실제로 배포하지 않고 템플릿과 매개 변수 값을 테스트하려면 [Test-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/test-azurermresourcegroupdeployment)를 사용합니다. 
+실제로 모든 리소스를 배포 하지 않고 템플릿 및 매개 변수 값에 사용 하 여 tootest [테스트 AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/test-azurermresourcegroupdeployment)합니다. 
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
   -TemplateFile c:\MyTemplates\storage.json -storageAccountType Standard_GRS
 ```
 
-오류가 감지되지 않으면 명령은 응답 없이 완료됩니다. 오류가 감지되면 명령은 오류 메시지를 반환합니다. 예를 들어 저장소 계정 SKU에 대해 잘못된 값을 제공하려고 하면 다음 오류가 반환됩니다.
+오류가 감지 되 면 hello 명령 응답 하지 않고 완료 합니다. 오류가 검색 되 면 hello 명령은 오류 메시지를 반환 합니다. 예를 들어 toopass hello 저장소 계정 SKU에 대 한 잘못 된 값을 시도 하면 다음 오류가 hello 반환:
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName testgroup `
   -TemplateFile c:\MyTemplates\storage.json -storageAccountType badSku
 
 Code    : InvalidTemplate
-Message : Deployment template validation failed: 'The provided value 'badSku' for the template parameter 'storageAccountType'
-          at line '15' and column '24' is not valid. The parameter value is not part of the allowed value(s):
+Message : Deployment template validation failed: 'hello provided value 'badSku' for hello template parameter 'storageAccountType'
+          at line '15' and column '24' is not valid. hello parameter value is not part of hello allowed value(s):
           'Standard_LRS,Standard_ZRS,Standard_GRS,Standard_RAGRS,Premium_LRS'.'.
 Details :
 ```
 
-템플릿에 구문 오류가 있으면 명령은 템플릿을 구문 분석할 수 없다는 오류를 반환합니다. 메시지는 줄 번호 및 구문 분석 오류의 위치를 나타냅니다.
+서식 파일에 구문 오류가 있으면 hello 명령은 hello 서식 파일을 분석할 수 없습니다 것을 나타내는 오류를 반환 합니다. hello 메시지 hello 줄 번호 및 구문 분석 오류 hello의 위치를 나타냅니다.
 
 ```powershell
 Test-AzureRmResourceGroupDeployment : After parsing a value an unexpected character was encountered: 
@@ -143,7 +143,7 @@ Test-AzureRmResourceGroupDeployment : After parsing a value an unexpected charac
 
 [!INCLUDE [resource-manager-deployments](../../includes/resource-manager-deployments.md)]
 
-완료 모드를 사용하려면 `Mode` 매개 변수를 사용합니다.
+toouse 전체 모드를 사용 하 여 hello `Mode` 매개 변수:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
@@ -152,7 +152,7 @@ New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
 
 ## <a name="sample-template"></a>샘플 템플릿
 
-다음 템플릿은 이 항목의 예제에 사용됩니다. 복사한 후 storage.json이라는 파일로 저장합니다. 이 템플릿을 만드는 방법을 이해하려면 [첫 번째 Azure Resource Manager 템플릿 만들기](resource-manager-create-first-template.md)를 참조하세요.  
+hello 다음 서식 파일에 사용 됩니다이 항목의 hello 예제. 복사한 후 storage.json이라는 파일로 저장합니다. toounderstand 어떻게 toocreate이 서식이 파일 참조 [첫 번째 Azure 리소스 관리자 서식 파일 만들기](resource-manager-create-first-template.md)합니다.  
 
 ```json
 {
@@ -200,10 +200,10 @@ New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* 이 문서의 예제에서는 리소스를 기본 구독의 리소스 그룹으로 배포합니다. 다른 구독을 사용하려면 [여러 Azure 구독 관리](/powershell/azure/manage-subscriptions-azureps)를 참조하세요.
+* hello이이 문서의 예제에서는 기본 구독에서 리소스 tooa 리소스 그룹을 배포합니다. 다른 구독을 toouse 참조 [여러 Azure 구독을 관리](/powershell/azure/manage-subscriptions-azureps)합니다.
 * 템플릿을 배포하는 전체 샘플 스크립트는 [Resource Manager 템플릿 배포 스크립트](resource-manager-samples-powershell-deploy.md)를 참조하세요.
-* 템플릿에서 매개 변수를 정의하는 방법을 이해하려면 [Azure Resource Manager 템플릿의 구조 및 구문 이해](resource-group-authoring-templates.md)를 참조하세요.
+* 템플릿에 toodefine 매개 변수를 확인 하려면 어떻게 toounderstand [hello 구조 및 Azure 리소스 관리자 템플릿 구문을 이해](resource-group-authoring-templates.md)합니다.
 * 일반적인 배포 오류를 해결하는 방법은 [Azure Resource Manager를 사용한 일반적인 Azure 배포 오류 해결](resource-manager-common-deployment-errors.md)을 참조하세요.
 * SAS 토큰이 필요한 템플릿을 배포하는 데 관한 내용은 [SAS 토큰으로 개인 템플릿 배포](resource-manager-powershell-sas-token.md)를 참조하세요.
-* 엔터프라이즈에서 리소스 관리자를 사용하여 구독을 효과적으로 관리할 수 있는 방법에 대한 지침은 [Azure 엔터프라이즈 스캐폴드 - 규범적 구독 거버넌스](resource-manager-subscription-governance.md)를 참조하세요.
+* 기업에서는 리소스 관리자 tooeffectively 사용 방법에 대 한 지침에 대 한 구독을 관리, 참조 [Azure enterprise 스 캐 폴드-규범적인 구독 거 버 넌 스](resource-manager-subscription-governance.md)합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "DASH.js를 사용하여 HTML5 응용 프로그램에 MPEG-DASH 적응 스트리밍 비디오 포함 | Microsoft 문서"
-description: "이 토픽에서는 DASH.js를 사용하여 HTML5 응용 프로그램에 MPEG-DASH 적응 스트리밍 비디오를 포함시키는 방법을 보여 줍니다."
+title: "MPEG-DASH 적응 스트리밍 비디오 dash.js를 사용 하 여 HTML5 응용 프로그램에서 aaaEmbedding | Microsoft Docs"
+description: "이 항목에서 설명 방법을 tooembed는 MPEG-DASH 적응 스트리밍 비디오 dash.js를 사용 하 여 HTML5 응용 프로그램에 있습니다."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 27ce6325773ba1f9fd9cd9ab9e07ea9f5e2488ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a73713d20f95262654532b94576ae9669d829354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="embedding-a-mpeg-dash-adaptive-streaming-video-in-an-html5-application-with-dashjs"></a>DASH.js를 사용하여 HTML5 응용 프로그램에 MPEG-DASH 적응 스트리밍 비디오 포함
 ## <a name="overview"></a>개요
-MPEG-DASH는 고품질 적응 비디오 스트리밍 출력을 전달하려는 사용자에게 많은 혜택을 제공하는 비디오 콘텐츠의 적응 스트리밍을 위한 ISO 표준입니다. MPEG-DASH를 사용하면 네트워크 정체 상태일 때 비디오 스트림이 자동으로 낮은 화질로 떨어집니다. 따라서 플레이어가 재생할 다음 몇 초를 다운로드(버퍼링)하는 동안 뷰어에 "일시 중지된" 비디오가 표시될 가능성을 줄여줍니다. 네트워크 정체가 줄어들면 비디오 플레이어가 높은 품질의 스트림에 다시 돌아갑니다. 또한 이렇게 필요한 대역폭으로 조정하는 기능 덕분에 비디오의 시작 시간이 더욱 빨라집니다. 즉, 처음 몇 초는 낮은 품질로 세그먼트를 빠르게 다운로드하여 재생한 다음 충분한 콘텐츠가 버퍼링되고 나면 높은 품질로 설정할 수 있습니다.
+MPEG DASH는 toodeliver 고품질의 적응 비디오 스트리밍 출력을 원하는 사용자에 게 많은 혜택을 제공 하는 비디오 콘텐츠의 적응 스트리밍을 hello에 대 한 ISO 표준. MPEG DASH를 hello 비디오 스트림을 자동으로 삭제 합니다 tooa 낮은 정의 hello 네트워크 정체 되는 경우. 이렇게 하면 hello 플레이어 hello 다음 몇 초 tooplay (즉, 버퍼링)를 다운로드 하는 동안 "일시 중지 된" 비디오 보기 hello 뷰어 hello 가능성이 줄어듭니다. 네트워크 정체 줄일 수 hello 비디오 플레이어는 tooa 더 높은 품질 스트림을 다시 반환 합니다. 또한이 기능은 tooadapt hello 대역폭 필요한 비디오에 대 한 빠른 시작 시간에 발생 합니다. 처음 몇 초 hello 있다는 것을 의미 다운로드 하려면 빠른 낮은 품질 세그먼트에서 재생할 수 한 다음 단계를 tooa 더 높은 품질을 충분 한 콘텐츠 버퍼링 된 후입니다.
 
-Dash.js는 JavaScript로 작성된 오픈 소스 MPEG-DASH 비디오 플레이어입니다. 목표는 비디오 재생이 필요한 응용 프로그램에서 자유롭게 다시 사용할 수 있는 강력한 플랫폼 간 플레이어를 제공하는 것입니다. W3C MSE(미디어 원본 확장)를 지원하는 모든 브라우저에서 MPEG-DASH 재생을 제공합니다. 현재는 Chrome, Microsoft Edge 및 IE11에서 지원되며 다른 브라우저는 MSE를 지원하지 않는 것으로 보입니다. DASH.js에 대한 자세한 내용은 GitHub dash.js 리포지토리를 참조하세요.
+Dash.js는 JavaScript로 작성된 오픈 소스 MPEG-DASH 비디오 플레이어입니다. 목표는 tooprovide 비디오를 재생 해야 하는 응용 프로그램에서 자유롭게 다시 사용할 수 있는 강력 하 고 플랫폼 간 플레이어입니다. Hello W3C 미디어 원본 확장 MSE (), 즉 오늘 Chrome, Microsoft Edge 및 IE11 (다른 브라우저의 의도 toosupport MSE를 표시 했습니다)를 지 원하는 모든 브라우저에서 재생을 MPEG DASH를 제공 합니다. Dash.js를 사용 하는 방법에 대 한 자세한 내용은 js hello GitHub dash.js 리포지토리를 참조 합니다.
 
 ## <a name="creating-a-browser-based-streaming-video-player"></a>브라우저 기반 스트리밍 비디오 플레이어 만들기
-재생, 일시 중지, 되감기 등의 원하는 컨트롤이 포함된 비디오 플레이어를 표시하는 간단한 웹 페이지를 만들려면 다음을 수행해야 합니다.
+이러한는 재생, 일시 중지, rewind 등 toocreate 예상 hello로 비디오 플레이어를 표시 하는 간단한 웹 페이지를 제어, 해야 합니다.
 
 1. HTML 페이지 만들기
-2. 비디오 태그 추가
-3. dash.js 플레이어 추가
-4. 플레이어 초기화
+2. Hello 비디오 태그를 추가 합니다.
+3. Hello dash.js 플레이어를 추가 합니다.
+4. Hello 플레이어를 초기화 합니다.
 5. 일부 CSS 스타일 추가
-6. MSE를 구현하는 브라우저에서 결과 보기
+6. Hello 결과 MSE를 구현 하는 브라우저에서 보기
 
-몇 줄의 JavaScript 코드로 플레이어 초기화를 완료할 수 있습니다. dash.js를 사용하면 매우 간단하게 브라우저 기반 응용 프로그램에 MPEG-DASH 비디오를 포함할 수 있습니다.
+JavaScript 코드의 줄 약간에서 hello 플레이어 초기화를 완료할 수 있습니다. Dash.js를 사용 하 여 정말 그렇습니다 브라우저 기반 응용 프로그램에서 간단한 tooembed MPEG-DASH 비디오 해당 합니다.
 
-## <a name="creating-the-html-page"></a>HTML 페이지 만들기
-첫 번째 단계는 다음 예제에 나온 것처럼 **video** 요소가 포함된 표준 HTML 페이지를 만들고 이 파일을 basicPlayer.html로 저장하는 것입니다.
+## <a name="creating-hello-html-page"></a>Hello HTML 페이지 만들기
+hello 첫 번째 단계는 hello를 포함 하는 표준 HTML toocreate 페이지 **비디오** 이 basicPlayer.html 다음 예제는 hello로이 파일 저장 형식 요소를 보여 줍니다.
 
     <!DOCTYPE html>
     <html>
@@ -50,19 +50,19 @@ Dash.js는 JavaScript로 작성된 오픈 소스 MPEG-DASH 비디오 플레이�
       </body>
     </html>
 
-## <a name="adding-the-dashjs-player"></a>DASH.js 플레이어 추가
-응용 프로그램에 dash.js 참조 구현을 추가하려면 dash.js 프로젝트 1.0 릴리스에서 dash.all.js 파일을 가져와야 합니다. 이 파일은 응용 프로그램의 JavaScript 폴더에 저장되어 있어야 합니다. 이 파일은 단일 파일에 모든 필요한 dash.js 코드를 간편하게 취합해 놓은 파일입니다. dash.js 리포지토리를 살펴보면 개별 파일, 테스트 코드 등을 찾을 수 있지만 dash.js만 사용하려는 경우는 dash.all.js 파일이 필요합니다.
+## <a name="adding-hello-dashjs-player"></a>추가 hello DASH.js 플레이어
+tooadd hello dash.js 참조 구현 toohello 응용 프로그램을 dash.js 프로젝트의 hello 1.0 릴리스에서 toograb hello dash.all.js 파일이 필요 합니다. 이것은 응용 프로그램의 hello JavaScript 폴더에 저장 됩니다. 이 파일은 단일 파일에 모든 hello 필요한 dash.js 코드를 가져오는 편의 파일. 참조 hello dash.js 리포지토리 주위를 설정한 경우 hello 개별 파일을 찾을 코드와 더 많은 테스트 하는 모든 원하면 toodo dash.js를 사용 하 여 사용은 다음 hello dash.all.js 파일은 필요한 합니다.
 
-응용 프로그램에 dash.js 플레이어를 추가하려면 basicPlayer.html의 헤드 섹션에 다음 스크립트 태그를 추가합니다.
+tooadd hello dash.js 플레이어 tooyour 응용 프로그램, basicPlayer.html의 스크립트 태그 toohello 헤드 섹션을 추가 합니다.
 
     <!-- DASH-AVC/265 reference implementation -->
     < script src="js/dash.all.js"></script>
 
 
-다음으로, 페이지가 로드될 때 플레이어를 초기화하는 함수를 만듭니다. dash.all.js를 로드하는 행 뒤에 다음 스크립트를 추가합니다.
+다음으로 hello 페이지가 로드 될 때 함수 tooinitialize hello 플레이어를 만듭니다. Hello 스크립트 dash.all.js를 로드 하는 hello 줄 뒤에 다음을 추가 합니다.
 
     <script>
-    // setup the video element and attach it to the Dash player
+    // setup hello video element and attach it toohello Dash player
     function setupVideo() {
       var url = "http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)";
       var context = new Dash.di.DashContext();
@@ -73,17 +73,17 @@ Dash.js는 JavaScript로 작성된 오픈 소스 MPEG-DASH 비디오 플레이�
     }
     </script>
 
-이 함수는 먼저 DashContext를 만듭니다. 이 항목은 특정 런타임 환경에 맞게 응용 프로그램을 구성하는 데 사용됩니다. 기술적인 관점에서 보면, 응용 프로그램을 생성할 때 종속성 주입 프레임 워크를 사용해야 하는 클래스를 정의합니다. 대부분의 경우, Dash.di.DashContext를 사용합니다.
+이 함수는 먼저 DashContext를 만듭니다. 특정 런타임 환경에 대 한 사용 되는 tooconfigure hello 응용 프로그램입니다. 기술적 관점에서 hello 응용 프로그램을 만들 때 hello 종속성 주입 프레임 워크는 클래스를 사용 해야 하는 hello를 정의 합니다. 대부분의 경우, Dash.di.DashContext를 사용합니다.
 
-다음으로, dash.js 프레임워크의 기본 클래스인 MediaPlayer를 인스턴스화합니다. 이 클래스는 재생 및 일시 중지 등의 필요한 핵심 메서드를 포함하며, 비디오 요소와의 관계를 관리하고 재생할 비디오를 설명하는 MPD(미디어 프레젠테이션 설명) 파일의 해석을 관리할 수 있습니다.
+다음으로 hello MediaPlayer hello dash.js 프레임 워크의 기본 클래스를 인스턴스화하십시오. 이 클래스는 hello 코어와 같은 필요한 메서드 재생 및 일시 중지, hello 비디오 요소와 hello 관계를 관리 하 고 hello 비디오 toobe 재생을 설명 하는 hello 미디어 프레젠테이션에 설명 (MPD) 파일의 hello 해석도 관리를 포함 합니다.
 
-플레이어가 비디오를 재생할 준비가 되도록 MediaPlayer 클래스의 startup() 함수가 호출됩니다. 무엇보다도 이 함수는 컨텍스트에 정의된 대로 필요한 모든 클래스가 로드되었는지 확인합니다. 플레이어가 준비되면 attachView() 함수를 사용하여 비디오 요소를 연결할 수 있습니다. 그러면 MediaPlayer가 비디오 스트림을 요소에 주입하고 필요에 따라 재생을 제어할 수도 있습니다.
+hello MediaPlayer 클래스의 startup () 함수 hello tooensure 라고 하는 hello 플레이어는 준비 tooplay 비디오. 다른 작업 중이 함수는 모든 hello 필요한 클래스 (hello 컨텍스트에 의해 정의 됨)으로 로드 되었는지 확인 합니다. Hello 플레이어 준비 되 면 hello 비디오 요소 tooit hello attachView() 함수를 사용 하 여 연결할 수 있습니다. Hello MediaPlayer tooinject hello 비디오 스트림 hello 요소에 사용할 수 있게 하 고 필요에 따라 재생을 제어할 수도 있습니다.
 
-재생하려는 비디오에 대해 알 수 있도록 MediaPlayer에 MPD 파일의 URL을 전달합니다. 방금 만든 setupVideo() 함수는 페이지가 완전히 로드된 후 실행되어야 합니다. body 요소의 onload 이벤트를 사용하여 이 작업을 수행합니다. <body> 요소를 다음으로 변경합니다.
+Hello MPD 파일 toohello MediaPlayer의 hello URL을 전달 하는 것으로 예상 비디오 hello에 대 한 알 수 있도록 방금 만든 tooplay.hello setupVideo() 함수 hello 페이지가 완전히 로드 한 후 실행 되는 toobe 필요 합니다. Hello 본문 요소의 hello onload 이벤트를 사용 하 여이 작업을 수행 합니다. <body> 요소를 다음으로 변경합니다.
 
     <body onload="setupVideo()">
 
-마지막으로, CSS를 사용하여 video 요소의 크기를 설정합니다. 적응 스트리밍 환경에서는 네트워크 상태 변화에 따라 재생이 조정되면 재생 중인 비디오의 크기가 변경될 수 있으므로 이 작업이 특히 중요합니다. 이 간단한 데모에서는 페이지의 헤드 섹션에 다음 CSS를 추가하여 사용 가능한 브라우저 창의 80%가 되도록 비디오 요소를 강제 적용합니다.
+마지막으로, CSS를 사용 하 여 hello 비디오 요소 hello 크기를 설정 하십시오. 적응 스트리밍 환경에서 특히 중요 때문에 이것이 재생 toochanging 네트워크 상태에 맞게 변경 hello 재생 중인 비디오의 hello 크기 변경 될 수 있습니다. 이 간단한 데모에서는 단순히 hello 비디오 요소 toobe hello 사용할 수 있는 브라우저 창의 80%를 추가 하 여 강제로 hello 페이지의 CSS toohello 헤드 섹션 뒤 hello:
 
     <style>
     video {
@@ -93,7 +93,7 @@ Dash.js는 JavaScript로 작성된 오픈 소스 MPEG-DASH 비디오 플레이�
     </style>
 
 ## <a name="playing-a-video"></a>비디오 재생
-비디오를 재생하려면 브라우저가 basicPlayback.html 파일을 가리키도록 지정하고 표시된 비디오 플레이어에서 재생을 클릭합니다.
+비디오 tooplay hello basicPlayback.html 파일에서 브라우저 가리킨 표시 hello 비디오 플레이어에서 재생을 클릭 합니다.
 
 ## <a name="media-services-learning-paths"></a>미디어 서비스 학습 경로
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

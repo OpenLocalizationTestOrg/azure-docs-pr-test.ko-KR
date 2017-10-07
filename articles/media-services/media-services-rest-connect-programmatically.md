@@ -1,6 +1,6 @@
 ---
-title: "REST API를 사용하여 Media Services 계정에 연결 | Microsoft 문서"
-description: "이 토픽에서는 REST API를 사용하여 Media Services에 연결하는 방법을 설명합니다."
+title: "REST API를 사용 하 여 서비스 계정을 aaaConnecting tooMedia | Microsoft Docs"
+description: "이 항목에서 설명 하는 방법을 tooconnect tooMedia 서비스 데 REST API입니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,52 +14,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 4feb0eb81823835e8e0b701463d85b27f5598019
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d5064a3612dc96f5c5ad910d183d84fb70a3b6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-to-media-services-account-using-media-services-rest-api"></a>미디어 서비스 REST API를 사용하여 미디어 서비스 계정에 연결
+# <a name="connecting-toomedia-services-account-using-media-services-rest-api"></a>미디어 서비스 REST API를 사용 하 여 서비스 계정을 tooMedia 연결
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-connect-programmatically.md)
 > * [REST (영문)](media-services-rest-connect-programmatically.md)
 > 
 > 
 
-이 토픽에서는 Media Services REST API로 프로그래밍할 때 Microsoft Azure Media Services에 대한 프로그래밍 방식의 연결을 가져오는 방법을 설명합니다.
+이 항목에서는 프로그래밍 방식으로 연결 tooMicrosoft Azure 미디어 서비스를 사용 하 여 프로그래밍할 때 tooobtain 미디어 서비스 REST API를 hello 하는 방법을 설명 합니다.
 
-Microsoft Azure 미디어 서비스에 액세스할 때는 Azure 액세스 제어 서비스(ACS)와 미디어 서비스 자체의 URI 등, 두 가지가 필요합니다. 미디어 서비스를 호출할 때 올바른 헤더 값을 지정하고 액세스 토큰을 올바르게 통과하면 이 요청을 할 때 사용자가 원하는 방법을 사용할 수 있습니다.
+Microsoft Azure 미디어 서비스에 액세스할 때 다음 두 가지 사항은: 자체 Azure 액세스 제어 서비스 (ACS), 및 hello 미디어 서비스의 URI에서 제공 하는 액세스 토큰입니다. Hello 올바른 헤더 값을 지정 하 고 전달 hello 액세스 토큰에 올바르게 호출 하는 경우 미디어 서비스에 이러한 요청을 만들 때 원하는 모든 수단을 사용할 수 있습니다.
 
-다음 단계는 미디어 서비스 REST API를 사용하여 미디어 서비스에 연결할 때 가장 일반적인 워크플로를 설명합니다.
+미디어 서비스 REST API tooconnect tooMedia hello를 사용 하 여 서비스 때 hello 가장 일반적인 워크플로 설명 하는 단계를 수행 하는 hello:
 
 1. 액세스 토큰 가져오기 
-2. 미디어 서비스 URI에 연결 
+2. 미디어 서비스 URI toohello 연결 
    
    > [!NOTE]
-   > https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
-   > ODATA API 메타데이터 설명을 포함하는 HTTP/1.1 200 응답을 받을 수도 있습니다.
+   > Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
+   > Hello ODATA API 메타 데이터 설명을 포함 하는 HTTP/1.1 200 응답을 나타날 수도 있습니다.
    > 
    > 
-3. 새 URL에 대 한 후속 API 호출을 게시합니다. 
+3. 후속 API 호출 toohello 새 URL을 게시 합니다. 
    
-    예를 들어 연결을 시도한 후 다음 항목을 받은 경우.
+    예를 들어 tooconnect을 시도한 후 hello 다음을 가져왔습니다.
    
         HTTP/1.1 301 Moved Permanently
         Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
    
-    https://wamsbayclus001rest-hs.cloudapp.net/api/에 후속 API 호출을 게시해야 합니다.
+    후속 API 호출 toohttps://wamsbayclus001rest-hs.cloudapp.net/api/ 프로그램을 게시 해야 합니다.
 
     >[!NOTE]
-    >다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
+    >다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
 
 ## <a name="access-control-address"></a>액세스 제어 주소
 Media Services 액세스 제어 주소는 중국 북부 지역을 제외하고 https://wamsprodglobal001acs.accesscontrol.windows.net입니다. 중국 북부 지역은 https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn입니다.
 
 ## <a name="getting-an-access-token"></a>액세스 토큰 가져오기
-REST API를 통해 바로 미디어 서비스에 액세스하려면 ACS에서 액세스 토큰을 검색하여 서비스에 HTTP 요청을 할 때마다 이를 사용합니다. 이 토큰은 HTTP 요청 헤더에서 제공하는 액세스 클레임을 기반으로 하고 OAuth v2 프로토콜을 사용하는 ACS에서 제공하는 다른 토큰과 비슷합니다. 미디어 서비스에 직접 연결하기 전에는 다른 필수 조건은 필요하지 않습니다.
+tooaccess 미디어 서비스 직접 hello REST API를 통해 ACS에서 액세스 토큰을 검색 하 고 hello 서비스에 모든 HTTP 요청 중에 사용 합니다. 이 토큰은 HTTP 요청 및 hello OAuth v2 프로토콜을 사용 하 여 hello 헤더에 제공 된 액세스 클레임을 기반으로 하는 ACS에서 제공 하는 비슷한 tooother 토큰입니다. TooMedia 서비스에 직접 연결 하기 전에 다른 필수 구성 요소가 필요가 없습니다.
 
-다음 예제에서는 HTTP 요청 헤더와 토큰을 검색하는 데 사용되는 본문을 보여 줍니다.
+hello 다음 예제에서는 hello HTTP 요청 헤더와 본문 사용 tooretrieve 토큰
 
 **헤더**:
 
@@ -74,9 +74,9 @@ REST API를 통해 바로 미디어 서비스에 액세스하려면 ACS에서 �
 
 **본문**:
 
-이 요청의 본문에 있는 client_id와 client_secret 값을 입증해야 합니다. client_id와 client_secret은 각각 AccountName과 AccountKey 값에 해당합니다. 이러한 값은 계정을 설정할 때 미디어 서비스에서 제공합니다. 
+이 요청의; hello 본문에 tooprove hello client_id 및 client_secret 값이 필요 하면 client_id 및 client_secret toohello AccountName 및 AccountKey 값을 각각 해당 합니다. 이러한 값 계정을 설정 하는 경우 tooyou 미디어 서비스에 의해 제공 됩니다. 
 
-Media Services 계정에 대한 AccountKey는 URL Encoding이어야 합니다(이 항목을 액세스 토큰 요청에서 client_secret 값으로 사용할 경우 [퍼센트 Encoding](http://tools.ietf.org/html/rfc3986#section-2.1) 참조).
+URL로 인코딩된 미디어 서비스 계정 이어야 합니다는 hello AccountKey 참고 (참조 [퍼센트 인코딩이](http://tools.ietf.org/html/rfc3986#section-2.1) 액세스 토큰 요청에 hello client_secret 값으로 사용 하는 경우.
 
     grant_type=client_credentials&client_id=ams_account_name&client_secret=URL_encoded_ams_account_key&scope=urn%3aWindowsAzureMediaServices
 
@@ -86,7 +86,7 @@ Media Services 계정에 대한 AccountKey는 URL Encoding이어야 합니다(�
     grant_type=client_credentials&client_id=amstestaccount001&client_secret=wUNbKhNj07oqjqU3Ah9R9f4kqTJ9avPpfe6Pk3YZ7ng%3d&scope=urn%3aWindowsAzureMediaServices
 
 
-다음 예제에서는 응답 본문에 액세스 토큰을 포함하는 HTTP 응답을 보여 줍니다.
+hello 다음 예제에서는 hello 액세스를 포함 하는 hello HTTP 응답 토큰 hello 응답 본문에는
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache, no-store
@@ -108,18 +108,18 @@ Media Services 계정에 대한 AccountKey는 URL Encoding이어야 합니다(�
 
 
 > [!NOTE]
-> 외부 저장소에 "access_token" 및 "expires_in" 값을 캐시하는 것이 좋습니다. 나중에 저장소에서 토큰 데이터를 검색하여 미디어 서비스 REST API 호출에서 다시 사용할 수 있습니다. 여러 프로세스 또는 컴퓨터 사이에서 토큰을 안전하게 공유할 수 있는 시나리오에 특히 유용합니다.
+> Toocache hello "access_token" 및 "expires_in" 값 tooan 외부 저장소 것이 좋습니다. hello 토큰 데이터를 hello 저장소에서 검색 하 고 미디어 서비스 REST API 호출에서 다시 사용할 수 나중 합니다. 이 hello 토큰 공유할 수 있는 안전 하 게 여러 프로세스 또는 컴퓨터 간에 시나리오에 특히 유용 합니다.
 > 
 > 
 
-액세스 토큰의 "expires_in" 값을 모니터링하고 필요에 따라 REST API 호출을 새 토큰으로 업데이트해야 합니다.
+토큰의 hello access 있는지 toomonitor hello "expires_in" 값을 확인 하 고 필요에 따라 새 토큰으로 REST API 호출을 업데이트 합니다.
 
-### <a name="connecting-to-the-media-services-uri"></a>미디어 서비스 URI에 연결
-미디어 서비스의 루트 URI는 https://media.windows.net/입니다. 이 URI에 처음으로 연결해야 하며 응답으로 301 리디렉션을 받은 경우 새 URI에 대한 후속 호출을 해야 합니다. 또한 요청에서 자동 리디렉션/팔로우 논리를 사용하지 마세요 HTTP 동사와 요청 본문은 새 URI로 전달되지 않습니다.
+### <a name="connecting-toohello-media-services-uri"></a>미디어 서비스 URI toohello 연결
+hello 루트 미디어 서비스에 대 한 URI에는 https://media.windows.net/입니다. Toothis URI를 처음 연결 해야 하며 후속 호출은 toohello를 구성 해야는 301 리디렉션을에 응답을 발생 하면 새 URI입니다. 또한 요청에서 자동 리디렉션/팔로우 논리를 사용하지 마세요 HTTP 동사 및 요청 본문이 전달 되지 것입니다 toohello 새 URI입니다.
 
-Note 루트 자산 파일 업로드 및 다운로드에 대 한 URI 인지 https://yourstorageaccount.blob.core.windows.net/ 미디어 서비스 계정 설정을 하는 동안 사용 되는 동일한 저장소 계정 이름 됩니다.
+업로드 하기 위한 해당 hello 루트 URI를 기록한 https://yourstorageaccount.blob.core.windows.net/입니다. 여기서 hello 저장소 계정 이름은 미디어 서비스 계정 설정 중에 사용한 동일한 하나 hello 자산 파일을 다운로드 합니다.
 
-다음 예제에서는 Media Services 루트 URI(https://media.windows.net/)에 대한 HTTP 요청을 설명합니다. 요청은 응답에서 301 리디렉션을 받습니다. 후속 요청은 새 URI(https://wamsbayclus001rest-hs.cloudapp.net/api/)를 사용합니다.     
+다음 예제는 hello HTTP 요청 toohello 미디어 서비스 루트 URI (https://media.windows.net/)를 보여 줍니다. hello 요청에 응답은 301 리디렉션을 가져옵니다. hello 후속 요청은 사용 하 여 새 URI (https://wamsbayclus001rest-hs.cloudapp.net/api/) hello 합니다.     
 
 **HTTP 요청**:
 
@@ -143,11 +143,11 @@ Note 루트 자산 파일 업로드 및 다운로드에 대 한 URI 인지 https
     Content-Length: 164
 
     <html><head><title>Object moved</title></head><body>
-    <h2>Object moved to <a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
+    <h2>Object moved too<a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
     </body></html>
 
 
-**HTTP 요청** (새 URI 사용):
+**HTTP 요청** (새 URI를 hello를 사용 하 여):
 
     GET https://wamsbayclus001rest-hs.cloudapp.net/api/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-2233-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -176,7 +176,7 @@ Note 루트 자산 파일 업로드 및 다운로드에 대 한 URI 인지 https
 
 
 > [!NOTE]
-> 새 URI를 받은 후 미디어 서비스와 통신 하는데 사용 해야 하는 URI입니다. 
+> 구입한 후 hello 새 URI는 hello 미디어 서비스를 사용 하는 toocommunicate 되어야 하는 URI입니다. 
 > 
 > 
 

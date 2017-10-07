@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 음성, VoIP 및 SMS 메시징을 위해 Twilio 사용"
-description: "Azure에서 Twilio API 서비스를 사용하여 전화를 걸고 SMS 메시지를 보내는 방법에 대해 알아봅니다. 코드 샘플은 Node.js로 작성되었습니다."
+title: "음성, VoIP 및 Azure에서 SMS 메시징에 대 한 Twilio aaaUsing"
+description: "Azure의 hello Twilio API 서비스와 메시지 toomake 전화 통화 및 SMS 송신에 알아봅니다. 코드 샘플은 Node.js로 작성되었습니다."
 services: 
 documentationcenter: nodejs
 author: devinrader
@@ -14,61 +14,61 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: wpickett
-ms.openlocfilehash: 44ec97812130d41d75be98fc8e2d846b7cb5c913
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c44d60e217fcdf51e69fd2a8197f979afbb507a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-twilio-for-voice-voip-and-sms-messaging-in-azure"></a>Azure에서 음성, VoIP 및 SMS 메시징을 위해 Twilio 사용
-이 가이드에서는 Azure에서 Twilio 및 node.js와 통신하는 앱을 빌드하는 방법을 보여 줍니다.
+이 가이드에서는 방법을 toobuild 앱 통신 하는 Twilio와 Azure에서 node.js 합니다.
 
 <a id="whatis"/>
 
 ## <a name="what-is-twilio"></a>Twilio 정의
-Twilio는 개발자가 전화 통화를 걸고 받고, 문자 메시지를 보내고 받고, VoIP 호출을 브라우저 기반 및 네이티브 모바일 응용 프로그램에 포함하는 작업을 쉽게 수행할 수 있게 해주는 API 플랫폼입니다. 깊이 있게 설명하기 전에 이러한 내용을 간략하게 살펴보겠습니다.
+Twilio는 개발자 toomake 손쉽게 및 전화 통화를 수신, 송신 및 문자 메시지를 받 및 브라우저 기반 및 네이티브 모바일 응용 프로그램에 대 한 VoIP 전화를 포함 하는 API 플랫폼입니다. 깊이 있게 설명하기 전에 이러한 내용을 간략하게 살펴보겠습니다.
 
 ### <a name="receiving-calls-and-text-messages"></a>전화 및 문자 메시지 받기
-Twilio를 통해 개발자는 전화 및 문자 메시지를 보내고 받는 데 모두 사용할 수 있는 [프로그램 가능 전화 번호를 구매][purchase_phone]할 수 있습니다. Twilio 번호가 인바운드 전화 또는 문자를 받으면 Twilio는 웹 응용 프로그램에 HTTP POST 또는 GET 요청을 보내 전화 또는 문자를 처리하는 방법에 대한 지침을 요청합니다. 서버는 전화 또는 문자를 처리하는 방법에 대한 지침이 포함된 간단한 XML 태그 집합인 [TwiML][twiml]을 통해 Twilio의 HTTP 요청에 응답합니다. 잠시 후에 TwiML 예제를 살펴보겠습니다.
+Twilio 너무 개발자가 사용할 수[프로그래밍 가능한 전화 번호를 구입] [ purchase_phone] 보내고 통화 및 문자 메시지를 받을 tooboth 사용된 될 수 있습니다. Twilio 번호는 인바운드 통화 나 문자를 받을 경우 Twilio 송신할 웹 응용 프로그램 HTTP POST 또는 GET 요청 통화 나 문자 toohandle hello 하는 방법에 대 한 지침은 묻는 합니다. 서버는 HTTP 요청에 tooTwilio의 응답 [TwiML][twiml]는 간단한 방법에 대 한 지침을 포함 하는 XML 태그 집합이 toohandle 통화 나 문자입니다. 잠시 후에 TwiML 예제를 살펴보겠습니다.
 
 ### <a name="making-calls-and-sending-text-messages"></a>전화 걸기 및 문자 메시지 보내기
-개발자는 Twilio 웹 서비스 API에 대한 HTTP 요청을 만들어 문자 메시지를 보내거나 아웃바운드 전화 통화를 시작할 수 있습니다. 아웃바운드 전화의 경우 개발자는 아웃바운드 전화가 연결된 후 해당 전화를 처리하는 방법에 대한 TwiML 지침을 반환하는 URL도 지정해야 합니다.
+개발자가 HTTP 요청 toohello Twilio 웹 서비스 API를 늘려 문자 메시지를 보낼 하거나 아웃 바운드 전화 통화를 시작할 수 있습니다. 아웃 바운드 호출에 대 한 hello 개발자 TwiML 지침 toohandle hello 아웃 바운드 연결 되 면를 호출 하는 방법을을 반환 하는 URL을 지정 합니다.
 
 ### <a name="embedding-voip-capabilities-in-ui-code-javascript-ios-or-android"></a>UI 코드(JavaScript, iOS 또는 Android)에 VoIP 기능 포함
-Twilio는 모든 데스크톱 웹 브라우저, iOS 앱 또는 Android 앱을 VoIP 전화로 변환할 수 있는 클라이언트 쪽 SDK를 제공합니다. 이 문서에서는 브라우저에서 VoIP 호출을 사용하는 방법을 집중적으로 설명합니다. 브라우저에서 실행되는 *Twilio JavaScript SDK* 외에 서버 쪽 응용 프로그램(node.js 응용 프로그램)을 사용하여 "기능 토큰"을 JavaScript 클라이언트에 발급해야 합니다. node.js에 VoIP를 사용하는 방법에 대한 자세한 내용은 [Twilio 개발자 블로그][voipnode]에서 참조할 수 있습니다.
+Twilio는 모든 데스크톱 웹 브라우저, iOS 앱 또는 Android 앱을 VoIP 전화로 변환할 수 있는 클라이언트 쪽 SDK를 제공합니다. 이 문서에 대해 살펴볼 것 방법 toouse VoIP hello 브라우저에서 호출 합니다. 또한 toohello에서 *Twilio JavaScript SDK* hello 브라우저에서 실행, 서버 쪽 응용 프로그램 (node.js 응용 프로그램) 이어야 합니다 "기능 토큰" toohello JavaScript 클라이언트 사용된 tooissue 합니다. 자세한 내용은 VoIP node.js와 함께 사용 하는 방법에 대 한 [hello Twilio 개발자 블로그][voipnode]합니다.
 
 <a id="signup"/>
 
 ## <a name="sign-up-for-twilio-microsoft-discount"></a>Twilio 등록(Microsoft 할인)
-Twilio 서비스를 사용하기 전에 먼저 [계정을 등록][signup]해야 합니다. Microsoft Azure 고객은 특별 할인을 받습니다. [반드시 여기서 등록하셔야 합니다][signup]!
+Twilio 서비스를 사용하기 전에 먼저 [계정을 등록][signup]해야 합니다. Microsoft Azure 고객과 특별 할인 가격-수신 [여기 있는지 toosign 수][signup]!
 
 <a id="azuresite"/>
 
 ## <a name="create-and-deploy-a-nodejs-azure-website"></a>node.js Azure 웹 사이트 만들기 및 배포
-이제 Azure에서 실행되는 node.js 웹 사이트를 만들어야 합니다. [이 작업을 수행하는 공식 설명서가 여기에 있습니다][azure_new_site]. 높은 수준에서 봤을 때 다음과 같은 작업을 수행합니다.
+다음으로, 해야 toocreate Azure에서 실행 되는 node.js 웹 사이트. [이 작업을 수행 하는 것에 대 한 공식 설명서 hello은 여기에서 찾을][azure_new_site]합니다. 상위 수준 hello 다음 수행:
 
 * Azure 계정 등록(아직 없는 경우)
-* Azure 관리 콘솔을 사용하여 새 웹 사이트 만들기
+* Hello Azure 관리 콘솔 toocreate 새 웹 사이트를 사용 하 여
 * 소스 제어 지원 추가(git를 사용했다고 가정함)
 * 간단한 node.js 웹 응용 프로그램을 사용하여 파일 `server.js` 만들기
-* 이 간단한 응용 프로그램을 Azure에 배포
+* 이 간단한 응용 프로그램 tooAzure 배포
 
 <a id="twiliomodule"/>
 
-## <a name="configure-the-twilio-module"></a>Twilio 모듈 구성
-이제 Twilio API를 사용하는 간단한 node.js 응응 프로그램 작성을 시작합니다. 시작하기 전에 Twilio 계정 자격 증명을 구성해야 합니다.
+## <a name="configure-hello-twilio-module"></a>Hello Twilio 모듈 구성
+다음으로, toowrite hello Twilio API의 낮추는 간단한 node.js 응용 프로그램을 사용 하기 시작할 예정입니다. 시작 하기 전에 tooconfigure 우리의 Twilio 계정 자격 증명이 필요 합니다.
 
 ### <a name="configuring-twilio-credentials-in-system-environment-variables"></a>시스템 환경 변수에서 Twilio 자격 증명 구성
-Twilio 백 엔드에 대해 인증된 요청을 만들려면 Twilio 계정에 대해 사용자 이름 및 암호 집합 역할을 하는 계정 SID 및 인증 토큰이 필요합니다. Azure에서 노드 모듈에 사용하기 위해 이를 구성하는 가장 안전한 방법은 시스템 환경 변수를 사용하는 것입니다. 시스템 환경 변수는 Azure 관리 콘솔에서 직접 설정할 수 있습니다.
+Hello Twilio 백 엔드에 대 한 주문 toomake 인증 요청에 우리의 계정 SID 및 인증 토큰을 hello 사용자 이름 및 암호가 Twilio 계좌에 대 한 설정으로 어떤 함수가 필요 합니다. 가장 안전한 방법은 tooconfigure hello Azure의 hello 노드 모듈 사용에 대 한 이러한 hello Azure 관리 콘솔에서 직접 설정할 수 있는 시스템 환경 변수를 통해입니다.
 
-node.js 웹 사이트를 선택하고 "구성" 링크를 클릭합니다.  아래로 조금 스크롤하면 응용 프로그램의 구성 속성을 설정할 수 있는 영역이 표시됩니다.  표시된 것처럼 Twilio 계정 자격 증명([Twilio 콘솔에서 찾을 수 있음][twilio_console])을 입력합니다. 이름을 각각 `TWILIO_ACCOUNT_SID` 및 `TWILIO_AUTH_TOKEN`으로 지정해야 합니다.
+Node.js 웹 사이트를 선택 하 고 hello "구성" 링크를 클릭 합니다.  아래로 조금 스크롤하면 응용 프로그램의 구성 속성을 설정할 수 있는 영역이 표시됩니다.  Twilio 계정 자격 증명을 입력 ([Twilio 콘솔에][twilio_console])-표시 된 것 처럼 확인 되었는지 tooname 해당 `TWILIO_ACCOUNT_SID` 및 `TWILIO_AUTH_TOKEN`각각:
 
 ![Azure 관리 콘솔][azure-admin-console]
 
-이러한 변수를 구성하고 나서 Azure 콘솔에서 응용 프로그램을 다시 시작합니다.
+이러한 변수를 구성한 경우 hello Azure 콘솔에서에서 응용 프로그램을 다시 시작 합니다.
 
-### <a name="declaring-the-twilio-module-in-packagejson"></a>package.json에서 Twilio 모듈 선언
-이제 [npm]을 통해 노드 모듈 종속성을 관리하기 위한 package.json을 만들어야 합니다. *Azure/node.js* 자습서에서 만든 `server.js` 파일과 같은 수준에서 `package.json`이라는 파일을 만듭니다.  이 파일 내에 다음을 배치합니다.
+### <a name="declaring-hello-twilio-module-in-packagejson"></a>Package.json의 hello Twilio 모듈 선언
+다음으로 필요한 toocreate package.json toomanage 우리의 노드 모듈 종속성을 통해 [npm]합니다. Hello 동일 수준으로 hello `server.js` hello에서 만든 파일을 *Azure/node.js* 자습서 라는 파일을 만들어 `package.json`합니다.  이 파일을 내부 hello 다음을 배치 합니다.
 
 ```json
 {
@@ -89,12 +89,12 @@ node.js 웹 사이트를 선택하고 "구성" 링크를 클릭합니다.  아�
 }
 ```
 
-그러면 널리 사용되는 [Express 웹 프레임워크][express] 및 EJS 템플릿 엔진뿐만 아니라 종속성으로 twilio 모듈이 선언됩니다.  이제 모두 준비되었으니 코드를 작성하겠습니다.
+이 선언 hello twilio 모듈은 종속성으로 hello 인기 있는 [웹 프레임 워크 Express] [ express] 및 hello EJS 템플릿 엔진입니다.  이제 모두 준비되었으니 코드를 작성하겠습니다.
 
 <a id="makecall"/>
 
 ## <a name="make-an-outbound-call"></a>아웃바운드 전화 걸기
-선택한 번호로 전화하는 간단한 양식을 만들어보겠습니다. `server.js`를 열고 다음 코드를 입력합니다. "CHANGE_ME"라고 표시된 곳에 Azure 웹 사이트의 이름을 배치합니다.
+선택한 호출 tooa 숫자 정렬은 하는 단순 폼을 만들어 보겠습니다. 열고 `server.js`, hello 코드 다음을 입력 합니다. "CHANGE_ME"-azure 웹 사이트의 hello 이름을 대시보드에 배치한 것 라고 표시 된 부분 note:
 
 ```javascript
 // Module dependencies
@@ -123,35 +123,35 @@ if (app.get('env') !== 'production') {
   app.use(errorHandler());
 }
 
-// Render an HTML user interface for the application's home page
+// Render an HTML user interface for hello application's home page
 app.get('/', (request, response) => response.render('index'));
 
-// Handle the form POST to place a call
+// Handle hello form POST tooplace a call
 app.post('/call', (request, response) => {
   var client = twilio(accountSid, authToken);
 
   client.makeCall({
-    // make a call to this number
+    // make a call toothis number
     to:request.body.number,
 
-    // Change to a Twilio number you bought - see:
+    // Change tooa Twilio number you bought - see:
     // https://www.twilio.com/console/phone-numbers/incoming
     from:'+15558675309',
 
     // A URL in our app which generates TwiML
-    // Change "CHANGE_ME" to your app's name
+    // Change "CHANGE_ME" tooyour app's name
     url:'https://CHANGE_ME.azurewebsites.net/outbound_call'
   }, () => {
-      // Go back to the home page
+      // Go back toohello home page
       response.redirect('/');
   });
 });
 
-// Generate TwiML to handle an outbound call
+// Generate TwiML toohandle an outbound call
 app.post('/outbound_call', (request, response) => {
   var twiml = new twilio.TwimlResponse();
 
-  // Say a message to the call's receiver
+  // Say a message toohello call's receiver
   twiml.say('hello - thanks for checking out Twilio and Azure', {
       voice:'woman'
   });
@@ -166,7 +166,7 @@ app.listen(app.get('port'), function(){
 });
 ```
 
-이제 `views`라는 디렉터리를 만들고 이 디렉터리 내에 다음 내용이 포함된 `index.ejs`라는 파일을 만듭니다.
+다음으로 라는 디렉터리를 만듭니다 `views` -이 디렉터리 내 라는 파일을 만들어 `index.ejs` 내용을 따라 hello로:
 
 ```html
 <!DOCTYPE html>
@@ -182,64 +182,64 @@ app.listen(app.get('port'), function(){
   <form action="/call" method="POST">
       <input placeholder="Enter a phone number" name="number"/>
       <br/>
-      <input type="submit" value="Call the number above"/>
+      <input type="submit" value="Call hello number above"/>
   </form>
 </body>
 </html>
 ```
 
-이제 웹 사이트를 Azure에 배포하고 홈을 엽니다. 텍스트 필드에 전화 번호를 입력하고 Twilio 번호로부터 전화를 받을 수 있어야 합니다.
+이제 웹 사이트 tooAzure를 배포 하 고 홈을 엽니다. 수 tooenter hello 텍스트 필드에 전화 번호 고 해야 Twilio 번호에서 전화를 받을!
 
 <a id="sendmessage"/>
 
 ## <a name="send-an-sms-message"></a>SMS 메시지 보내기
-이제 사용자 인터페이스 및 양식 처리 논리를 설정하여 문자 메시지를 보내겠습니다. `server.js`를 열고 `app.post`에 대한 마지막 호출 뒤에 다음 코드를 추가합니다.
+이제, 문자 메시지를 사용자 인터페이스 및 양식 논리 toosend 처리를 보겠습니다 설정 합니다. 열고 `server.js`, hello 너무 hello 마지막 호출 후 코드를 다음 추가`app.post`:
 
 ```javascript
 app.post('/sms', (request, response) => {
   const client = twilio(accountSid, authToken);
 
   client.sendSms({
-      // send a text to this number
+      // send a text toothis number
       to:request.body.number,
 
       // A Twilio number you bought - see:
       // https://www.twilio.com/console/phone-numbers/incoming
       from:'+15558675309',
 
-      // The body of the text message
+      // hello body of hello text message
       body: request.body.message
 
   }, () => {
-      // Go back to the home page
+      // Go back toohello home page
       response.redirect('/');
   });
 });
 ```
 
-`views/index.ejs`에서 첫 번째 양식 아래에 다른 양식을 추가하여 번호 및 문자 메시지를 제출합니다.
+`views/index.ejs`, 숫자 및 문자 메시지를 다른 양식에서 첫 번째 toosubmit hello 추가 합니다.
 
 ```html
 <form action="/sms" method="POST">
   <input placeholder="Enter a phone number" name="number"/>
   <br/>
-  <input placeholder="Enter a message to send" name="message"/>
+  <input placeholder="Enter a message toosend" name="message"/>
   <br/>
-  <input type="submit" value="Send text to the number above"/>
+  <input type="submit" value="Send text toohello number above"/>
 </form>
 ```
 
-응용 프로그램을 Azure에 다시 배포하고 나면 이제 해당 양식을 제출하고 자신(또는 가까운 친구)에게 문자 메시지를 보낼 수 있어야 합니다.
+응용 프로그램 tooAzure 프로그램을 다시 배포 하 고 형성 하 고 직접 (또는 가장 가까운 친구 모든) 문자 메시지를 보낼 수 toosubmit 수 있어야!
 
 <a id="nextsteps"/>
 
 ## <a name="next-steps"></a>다음 단계
-이제 node.js 및 Twilio를 사용하여 통신하는 앱을 빌드하는 방법에 대한 기본 사항을 배웠습니다. 그러나 이러한 예제는 Twilio 및 node.js를 사용하여 수행할 수 있는 작업의 극히 일부에 불과합니다. Twilio와 node.js 사용에 대한 자세한 내용은 다음 리소스를 참조하십시오.
+Node.js와 통신 하는 Twilio toobuild 응용 프로그램을 사용 하 여의 hello 기본 사항을 배웠습니다. 하지만 이러한 예제에는 거의 Twilio 및 node.js로 가능한의 hello 화면 스크래치 합니다. Node.js와 함께 Twilio를 사용 하 여 자세한 내용은 다음 리소스는 hello 확인해 보세요.
 
 * [공식 모듈 문서][docs]
 * [node.js 응용 프로그램에 VoIP 사용 자습서][voipnode]
 * [Votr - node.js 및 CouchDB를 사용한 실시간 SMS 투표 응용 프로그램(세 부분으로 구성되어 있음)][votr]
-* [node.js를 사용한 브라우저에서의 쌍 프로그래밍][pair]
+* [Node.js 사용 하 여 hello 브라우저의 쌍 프로그래밍][pair]
 
 Azure에서 node.js와 Twilio 해킹을 즐기시기를 바랍니다.
 

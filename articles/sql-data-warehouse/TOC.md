@@ -89,7 +89,7 @@
 ### 자습서
 #### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
 
-### 방법 가이드
+### Tooguides 방법
 #### [샘플 데이터](sql-data-warehouse-load-sample-databases.md)
 #### [Azure 데이터 레이크 저장소](sql-data-warehouse-load-from-azure-data-lake-store.md)
 #### [BCP](sql-data-warehouse-load-with-bcp.md)
@@ -106,7 +106,7 @@
 ### [마이그레이션 스키마](sql-data-warehouse-migrate-schema.md)
 ### [코드 마이그레이션](sql-data-warehouse-migrate-code.md)
 ### [데이터 마이그레이션](sql-data-warehouse-migrate-data.md)
-### [프리미엄 저장소로 마이그레이션](sql-data-warehouse-migrate-to-premium-storage.md)
+### [Toopremium 저장소 마이그레이션](sql-data-warehouse-migrate-to-premium-storage.md)
 
 ## 관리 계산
 

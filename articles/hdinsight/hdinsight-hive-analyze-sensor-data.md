@@ -1,6 +1,6 @@
 ---
-title: "Hive 및 Hadoop을 사용하여 센서 데이터 분석 - Azure HDInsight | Microsoft Docs"
-description: "HDInsight(Hadoop)에서 Hive 쿼리 콘솔을 사용하여 센서 데이터를 분석한 다음 Microsoft Excel에서 Power View를 사용하여 데이터를 시각화하는 방법에 대해 알아봅니다."
+title: "Hive 및 Hadoop-Azure HDInsight를 사용 하 여 aaaAnalyze 센서 데이터 | Microsoft Docs"
+description: "Tooanalyze 센서 데이터를 사용 하 여 HDInsight (Hadoop)와 쿼리 콘솔 하이브 hello 하는 방법을 알아보려면 다음 PowerView 사용 하 여 Microsoft excel에서 hello 데이터를 시각화 합니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,28 +16,28 @@ ms.topic: article
 ms.date: 04/14/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 3abb71c12b4769bebd808276f8bdd832aad22d7a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 70e595705c33d9835dc9809161f79c3ac5ece870
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-sensor-data-using-the-hive-query-console-on-hadoop-in-hdinsight"></a>HDInsight의 Hadoop에서 Hive 쿼리 콘솔을 사용하여 센서 데이터 분석
+# <a name="analyze-sensor-data-using-hello-hive-query-console-on-hadoop-in-hdinsight"></a>HDInsight에서 Hadoop에서 하이브 쿼리 콘솔 hello를 사용 하 여 센서 데이터 분석
 
-HDInsight(Hadoop)에서 Hive 쿼리 콘솔을 사용하여 센서 데이터를 분석한 다음 Microsoft Excel에서 Power View를 사용하여 데이터를 시각화하는 방법에 대해 알아봅니다.
+Tooanalyze 센서 데이터를 사용 하 여 HDInsight (Hadoop)와 쿼리 콘솔 하이브 hello 하는 방법을 알아보려면 다음 Power View를 사용 하 여 Microsoft Excel에서 hello 데이터를 시각화 합니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계는 Windows 기반 HDInsight 클러스터에만 적용됩니다. HDInsight는 HDInsight 3.4 이하 버전의 경우 Windows에서만 사용 가능합니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> 이 문서 에서만 작동 하는 Windows 기반 HDInsight 클러스터의에서 hello 단계. HDInsight는 HDInsight 3.4 이하 버전의 경우 Windows에서만 사용 가능합니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 
-이 샘플에서는 Hive를 사용하여 기록 데이터를 처리하고 온방 및 냉방 시스템의 문제를 식별합니다. 특히 다음 작업을 실행하여 시스템이 설정된 온도를 안정적으로 유지할 수 없음을 식별합니다.
+이 샘플에서 하이브 tooprocess 기록 데이터를 사용 하 여 한 난방 및 공기 조절 시스템과 문제를 식별 합니다. 시스템을 식별 하는 구체적으로 수 없습니다. tooreliably 유지 집합 온도 hello 다음 작업을 수행 하 여:
 
-* HIVE 테이블을 만들어 CSV(쉼표로 구분된 값) 파일에 저장된 데이터 쿼리
-* HIVE 쿼리를 만들어 데이터 분석
-* Microsoft Excel로 HDInsight에 연결하여 분석된 데이터 검색
-* Power View를 사용하여 데이터 시각화
+* 만들기 하이브 쉼표로 구분 된 값 (CSV) 파일에 저장 된 tooquery 데이터 테이블입니다.
+* 하이브 쿼리 tooanalyze hello 데이터를 만듭니다.
+* tooretrieve hello 분석 데이터를 Microsoft Excel tooconnect tooHDInsight를 사용 합니다.
+* toovisualize hello 데이터는 Power View를 사용 합니다.
 
-![솔루션 아키텍처 다이어그램](./media/hdinsight-hive-analyze-sensor-data/hvac-architecture.png)
+![Hello 솔루션 아키텍처 다이어그램](./media/hdinsight-hive-analyze-sensor-data/hvac-architecture.png)
 
 ## <a name="prerequisites"></a>필수 조건
 
@@ -49,18 +49,18 @@ HDInsight(Hadoop)에서 Hive 쿼리 콘솔을 사용하여 센서 데이터를 �
 
 * [Microsoft Hive ODBC 드라이버](http://www.microsoft.com/download/details.aspx?id=40886)
 
-## <a name="to-run-the-sample"></a>샘플을 실행하려면
+## <a name="toorun-hello-sample"></a>toorun hello 예제
 
-1. 웹 브라우저에서 다음 URL로 이동합니다. 
+1. 웹 브라우저에서 url toohello 이동: 
 
          https://<clustername>.azurehdinsight.net
 
-    `<clustername>` 을 HDInsight 클러스터 이름으로 바꿉니다.
+    대체 `<clustername>` HDInsight 클러스터의 hello 이름의 합니다.
 
-    메시지가 표시되면 이 클러스터를 프로비전할 때 사용한 관리자 사용자 이름과 암호를 사용하여 인증합니다.
+    메시지가 표시 되 면 hello 관리자 사용자 이름 및이 클러스터를 프로 비전 할 때 사용한 암호를 사용 하 여 인증 합니다.
 
-2. 웹 페이지가 열리면 **시작 갤러리** 탭을 클릭하고 **샘플 데이터가 있는 솔루션** 범주에서**센서 데이터 분석** 샘플을 클릭합니다.
+2. Hello 열리면 hello 웹 페이지에서 클릭 하 **시작 갤러리** 탭을 선택한 다음 hello **샘플 데이터를 사용 하 여 솔루션** 범주를 hello 클릭 **센서 데이터 분석** 샘플입니다.
 
     ![갤러리 이미지 시작하기](./media/hdinsight-hive-analyze-sensor-data/getting-started-gallery.png)
 
-3. 웹 페이지에서 제공되는 지침에 따라 샘플을 완료합니다.
+3. Hello 웹 페이지 toofinish hello 샘플에서 제공 하는 hello 지침을 따릅니다.

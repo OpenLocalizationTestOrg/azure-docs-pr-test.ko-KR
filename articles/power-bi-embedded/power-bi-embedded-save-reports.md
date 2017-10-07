@@ -1,6 +1,6 @@
 ---
-title: "Azure Power BI Embedded에서 보고서 저장 | Microsoft Docs"
-description: "Power BI Embedded 내에서 보고서를 저장하는 방법을 알아봅니다. 성공적인 작업을 위해서는 적절한 사용 권한이 필요합니다."
+title: "Power BI 포함 Azure에서 aaaSave 보고서 | Microsoft Docs"
+description: "Power BI에서 보고서를 toosave 포함 하는 방법에 대해 알아봅니다. 이 성공적으로 순서 toowork에 적절 한 사용 권한이 필요합니다."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: ad895004cc2972f2ded81566186325a16d401151
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 984537ce1ce1afc787d6c6c9f61ae8d6226d1171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="save-reports-in-power-bi-embedded"></a>Power BI Embedded에서 보고서 저장
 
-Power BI Embedded 내에서 보고서를 저장하는 방법을 알아봅니다. 성공적인 작업을 위해서는 적절한 사용 권한이 필요합니다.
+Power BI에서 보고서를 toosave 포함 하는 방법에 대해 알아봅니다. 이 성공적으로 순서 toowork에 적절 한 사용 권한이 필요합니다.
 
-Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있습니다. 새 보고서를 만들고 새 보고서로 저장하여 보고서를 만들 수도 있습니다.
+Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있습니다. 새 보고서를 만들 하 고 하나는 새 보고서 toocreate로 저장할 수도 있습니다.
 
-보고서를 저장하려면 먼저 올바른 범위를 지정하여 특정 보고서에 대한 토큰을 만들어야 합니다.
+순서 toosave 보고서의에서 첫 번째 hello hello 오른쪽 범위와 특정 보고서에 대 한 toocreate 토큰을 필요.
 
-* 저장을 사용하려면 Report.ReadWrite 범위가 필요합니다.
-* 다른 이름으로 저장을 사용하려면 Report.Read 및 Workspace.Report.Copy 범위가 필요합니다.
-* 저장 및 다른 이름으로 저장을 사용하려면 Report.ReadWrite 및 Workspace.Report.Copy가 필요합니다.
+* Report.ReadWrite 범위 저장 tooenable가 필요
+* 저장으로 tooenable Report.Read 및 Workspace.Report.Copy 범위 증명이 있습니다.
+* tooenable 저장 하 고 저장 다른 이름으로 Report.ReadWrite와 Workspace.Report.Copy requierd
 
-파일 메뉴에서 적절한 저장/다른 이름으로 저장 단추를 각각 사용하기 위해서는 보고서를 포함할 때 Embed 구성에서 적절한 사용 권한을 제공해야 합니다.
+각각 순서 tooenable hello 저장/저장 오른쪽에서 파일 메뉴에서 단추가 필요 tooprovide hello 마우스 오른쪽 단추로 hello Embed 구성에 대 한 사용 권한을 포함 하면 보고서를 hello 때:
 
 * models.Permissions.ReadWrite
 * models.Permissions.Copy
 * models.Permissions.All
 
 > [!NOTE]
-> 액세스 토큰에도 적절한 범위가 필요합니다. 자세한 내용은 [범위](power-bi-embedded-app-token-flow.md#scopes)를 참조하세요.
+> 액세스 토큰 hello 적절 한 범위를도 필요합니다. 자세한 내용은 [범위](power-bi-embedded-app-token-flow.md#scopes)를 참조하세요.
 
 ## <a name="embed-report-in-edit-mode"></a>편집 모드에서 보고서 포함
 
-앱 내에서 편집 모드로 보고서를 포함하려고 하므로 Embed 구성에서 올바른 속성을 전달하고 powerbi.embed()를 호출합니다. 편집 모드에 있을 때 저장 및 다른 이름으로 저장 단추를 보려면 사용 권한과 viewMode를 제공해야 합니다. 자세한 내용은 [Embed 구성 정보](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details)를 참조하세요.
+보겠습니다 예: 앱 내 tooEmbed 편집 모드에서 보고서를 원하는 toodo 되었으므로 Embed 구성에서 hello 오른쪽 속성을 전달 powerbi.embed() 호출 합니다. 편집 모드에 있을 때 단추로 toosupply 사용 권한 및 순서 toosee hello에 저장 하 고 저장에서 viewMode 필요 합니다. 자세한 내용은 [Embed 구성 정보](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details)를 참조하세요.
 
 예를 들어 JavaScript에서 다음을 수행합니다.
 
@@ -54,7 +54,7 @@ Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있�
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,10 +71,10 @@ Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있�
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
@@ -82,10 +82,10 @@ Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있�
 
 ## <a name="save-report"></a>보고서 저장
 
-적절한 토큰 및 사용 권한을 사용하여 편집 모드에서 보고서를 포함한 후에는 파일 메뉴 또는 javascript에서 보고서를 저장할 수 있습니다.
+Embbeding hello 보고서 편집 모드 오른쪽 토큰 hello 및 사용 권한으로 후 hello 파일 메뉴에서 또는 javascript에서 hello 보고서를 저장할 수 있습니다.
 
 ```
- // Get a reference to the embedded report.
+ // Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
 
  // Save report
@@ -95,7 +95,7 @@ Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있�
 ## <a name="save-as"></a>다른 이름으로 저장
 
 ```
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
     
     var saveAsParameters = {
@@ -107,9 +107,9 @@ Power BI Embedded 내에서 기존 보고서를 편집하고 저장할 수 있�
 ```
 
 > [!IMPORTANT]
-> *다른 이름으로 저장* 이후에만 새 보고서가 만들어집니다. 저장 후에는 여전히 캔버스에서 새 보고서가 아닌 이전 보고서가 편집 모드로 표시됩니다. 만들어진 새 보고서를 포함해야 합니다. 이렇게 하려면 보고서가 만들어질 때마다 새 액세스 토큰이 필요합니다.
+> *다른 이름으로 저장* 이후에만 새 보고서가 만들어집니다. Hello 저장 hello 캔버스 편집 모드와 하지 hello 새 보고서에 hello 오래 된 보고서를 계속 표시 됩니다. Tooembed hello 새 보고서를 생성 해야 합니다. 이렇게 하려면 보고서가 만들어질 때마다 새 액세스 토큰이 필요합니다.
 
-그런 다음 *다른 이름으로 저장* 후에 새 보고서를 로드해야 합니다. 이것은 보고서를 포함하는 것과 비슷합니다.
+그런 다음 이후의 tooload hello 새 보고서를 해야 합니다는 *다른 이름으로 저장*합니다. 이 비슷한 tooembedding 모든 보고서입니다.
 
 ```
 <div id="reportContainer"></div>
@@ -120,7 +120,7 @@ var embedConfiguration = {
         reportId: '5dac7a4a-4452-46b3-99f6-a25915e0fe54',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Embed report
@@ -135,5 +135,5 @@ var embedConfiguration = {
 [Power BI Embedded에서 인증 및 권한 부여](power-bi-embedded-app-token-flow.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [JavaScript Embed 샘플](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-궁금한 점이 더 있나요? [Power BI 커뮤니티를 이용하세요.](http://community.powerbi.com/)
+궁금한 점이 더 있나요? [Power BI 커뮤니티 hello를 시도 하십시오.](http://community.powerbi.com/)
 

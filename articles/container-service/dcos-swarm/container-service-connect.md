@@ -1,6 +1,6 @@
 ---
-title: "Azure Container Service 클러스터에 연결 | Microsoft 문서"
-description: "원격 컴퓨터의 Azure Container Service에서 Kubernetes, DC/OS 또는 Docker Swarm 클러스터에 연결"
+title: "aaaConnect tooan Azure 컨테이너 서비스 클러스터 | Microsoft Docs"
+description: "원격 컴퓨터에서 Azure 컨테이너 서비스의 tooa Kubernetes, DC/OS 또는 docker는 Docker Swarm 클러스터에 연결"
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: rogardle
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3723795d2daf0a56ee04c04f0606916b3efec635
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 0a2a5349a66e07dbb5ea245a2d32d5255aaa9811
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [container-service-connect.md](../../../includes/container-service-connect.md)]

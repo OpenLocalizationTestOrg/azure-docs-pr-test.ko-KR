@@ -1,6 +1,6 @@
 ---
-title: "Resource Manager 템플릿 함수 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿에서 값을 검색하고 문자열과 숫자로 작업하며 배포 정보를 검색하는 데 사용하는 함수를 설명합니다."
+title: "관리자 템플릿 함수 aaaResource | Microsoft Docs"
+description: "Hello 함수 toouse 설명 Azure 리소스 관리자 템플릿 tooretrieve 값에서 문자열 및 숫자를 사용 하 고 배포 정보를 검색 합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1324bed07e991e9d84cb6832afe78bdb2d3348fa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d1b2e68a33d75058f83d6972dadb33a6390d49b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-manager-template-functions"></a>Azure Resource Manager 템플릿 함수
-이 항목에서는 Azure Resource Manager 템플릿에서 사용할 수 있는 모든 함수에 대해 설명합니다.
+이 항목에서는 Azure Resource Manager 템플릿에 사용 가능한 모든 hello 함수를 설명 합니다.
 
-`[` 및 `]` 각각 대괄호로 묶어서 템플릿에서 기능을 추가합니다. 배포하는 동안 식이 평가됩니다. 문자열 리터럴로 작성되지만 식의 평가 결과는 다른 JSON 형식(예: 배열, 개체 또는 정수)일 수 있습니다. JavaScript에서와 마찬가지로 함수 호출은 `functionName(arg1,arg2,arg3)`과 같이 형식이 지정됩니다. 점과 [인덱스] 연산자를 사용하여 속성을 참조할 수 있습니다.
+`[` 및 `]` 각각 대괄호로 묶어서 템플릿에서 기능을 추가합니다. 배포 하는 동안 hello 식이 계산 됩니다. 문자열 리터럴로 작성 하는 동안 다른 JSON 등의 형식, 배열, 개체 또는 정수 hello 식의 계산 결과 hello 수 있습니다. JavaScript에서와 마찬가지로 함수 호출은 `functionName(arg1,arg2,arg3)`과 같이 형식이 지정됩니다. Hello 점 및 [index] 연산자를 사용 하 여 속성을 참조 합니다.
 
 템플릿 식은 24,576자를 초과할 수 없습니다.
 
-템플릿 함수 및 해당 매개 변수는 대/소문자를 구분하지 않습니다. 예를 들어 Resource Manager에서 **variables('var1')**와 **VARIABLES('VAR1')**는 동일합니다. 계산될 때 함수는 대/소문자를 명시적으로 수정하지 않는 한(toUpper 또는 toLower 등) 대/소문자를 보존합니다. 특정 리소스 유형에는 함수가 계산되는 방식에 관계없이 대/소문자 요구 사항이 있을 수 있습니다.
+템플릿 함수 및 해당 매개 변수는 대/소문자를 구분하지 않습니다. 예를 들어 리소스 관리자는 해결 **variables('var1')** 및 **VARIABLES('VAR1')** 대로 hello 동일 합니다. 평가 시 hello 함수 (예: toUpper 또는 toLower) 대/소문자를 명시적으로 수정 하지 않는 한 hello 함수 hello 대/소문자를 유지 합니다. 특정 리소스 유형에는 함수가 계산되는 방식에 관계없이 대/소문자 요구 사항이 있을 수 있습니다.
 
 <a id="array" />
 <a id="coalesce" />
@@ -87,7 +87,7 @@ Resource Manager는 템플릿에서 비교를 수행하기 위한 몇 가지 함
 <a id="variables" />
 
 ## <a name="deployment-value-functions"></a>배포 값 함수
-Resource Manager는 템플릿의 섹션에서 값을 가져오고 배포와 관련된 값을 가져오기 위한 다음 함수를 제공합니다.
+리소스 관리자는 hello 다음 hello 서식 파일의 섹션에서 값 가져오기에 대 한 함수 및 관련된 toohello 배포 값을 제공 합니다.
 
 * [deployment](resource-group-template-functions-deployment.md#deployment)
 * [매개 변수](resource-group-template-functions-deployment.md#parameters)
@@ -105,7 +105,7 @@ Resource Manager는 템플릿의 섹션에서 값을 가져오고 배포와 관�
 <a id="sub" />
 
 ## <a name="logical-functions"></a>논리 함수
-Resource Manager는 논리 조건 사용을 위한 다음 함수를 제공합니다.
+리소스 관리자 hello를 다음 논리 조건 작업에 대 한 함수를 제공 합니다.
 
 * [and](resource-group-template-functions-logical.md#and)
 * [bool](resource-group-template-functions-logical.md#bool)
@@ -114,7 +114,7 @@ Resource Manager는 논리 조건 사용을 위한 다음 함수를 제공합니
 * [or](resource-group-template-functions-logical.md#or)
 
 ## <a name="numeric-functions"></a>숫자 함수
-Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
+리소스 관리자 hello를 뒤 정수가 포함 된 작업에 대 한 함수를 제공 합니다.
 
 * [추가](resource-group-template-functions-numeric.md#add)
 * [copyIndex](resource-group-template-functions-numeric.md#copyindex)
@@ -136,7 +136,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 <a id="subscription" />
 
 ## <a name="resource-functions"></a>리소스 함수
-Resource Manager는 리소스 값을 가져오기 위한 다음 함수를 제공합니다.
+리소스 관리자 리소스 값을 가져오고이 대 한 함수를 수행 하는 hello를 제공 합니다.
 
 * [listKeys 및 list{Value}](resource-group-template-functions-resource.md#listkeys)
 * [providers](resource-group-template-functions-resource.md#providers)
@@ -176,7 +176,7 @@ Resource Manager는 리소스 값을 가져오기 위한 다음 함수를 제공
 <a id="uricomponenttostring" />
 
 ## <a name="string-functions"></a>문자열 함수
-Resource Manager는 문자열 작업을 위한 다음 함수를 제공합니다.
+리소스 관리자는 다음 문자열 작업에 대 한 함수 hello를 제공 합니다.
 
 * [base64](resource-group-template-functions-string.md#base64)
 * [base64ToJson](resource-group-template-functions-string.md#base64tojson)
@@ -210,8 +210,8 @@ Resource Manager는 문자열 작업을 위한 다음 함수를 제공합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
-* Azure Resource Manager 템플릿의 섹션에 대한 설명은 [Azure Resource Manager 템플릿 작성](resource-group-authoring-templates.md)
-* 여러 템플릿을 병합하려면 [Azure Resource Manager에서 연결된 템플릿 사용](resource-group-linked-templates.md)
-* 리소스 유형을 만들 때 지정된 횟수만큼 반복하려면 [Azure Resource Manager에서 리소스의 여러 인스턴스 만들기](resource-group-create-multiple.md)
-* 만든 템플릿을 배포하는 방법을 보려면 [Azure Resource Manager 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)
+* Azure 리소스 관리자 템플릿의 hello 섹션에 대 한 참조 [제작 Azure 리소스 관리자 템플릿](resource-group-authoring-templates.md)
+* toomerge 템플릿이 여러 개 참조 [Azure 리소스 관리자와 연결 된 템플릿을 사용 하 여](resource-group-linked-templates.md)
+* 지정 된 횟수 만큼 tooiterate 리소스의 종류를 만들 때 참조 [Azure 리소스 관리자 리소스의 여러 인스턴스 만들기](resource-group-create-multiple.md)
+* toosee toodeploy hello 서식 파일을 만든 참조 [Azure 리소스 관리자 템플릿 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)
 

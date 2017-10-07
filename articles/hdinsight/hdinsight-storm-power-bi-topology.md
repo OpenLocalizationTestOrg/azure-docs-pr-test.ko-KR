@@ -1,5 +1,5 @@
 ---
-title: "Power BI에서 Apache Storm 사용 - Azure HDInsight | Microsoft Docs"
+title: "Power bi-Azure HDInsight의 Apache Storm aaaUse | Microsoft Docs"
 description: "HDInsight의 Apache Storm 클러스터에서 실행 중인 C# 토폴로지로부터 데이터를 사용하여 Power BI 보고서를 만듭니다."
 services: hdinsight
 documentationcenter: 
@@ -16,22 +16,22 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 36487c0c34e5a4bb955bbc15c8c96b9e838aeb44
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 194cd8220bd60475af1d64a110e4b23ef92e1bc8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-power-bi-to-visualize-data-from-an-apache-storm-topology"></a>Power BI를 사용하여 Apache Storm 토폴로지에서 데이터 시각화
+# <a name="use-power-bi-toovisualize-data-from-an-apache-storm-topology"></a>Apache Storm 토폴로지에서 Power BI toovisualize 데이터 사용
 
-Power BI를 사용하면 데이터를 보고서로 시각적으로 표시할 수 있습니다. 이 문서는 HDInsight의 Apache Storm을 사용하여 Power BI에 대한 데이터를 생성하는 방법의 예를 제공합니다.
+Power BI 보고서로 데이터를 표시 하는 toovisually를 허용 합니다. 이 문서는 방법의 예에서는 Power BI에 대 한 HDInsight toogenerate 데이터에서 Apache Storm toouse 합니다.
 
 > [!NOTE]
-> 이 문서의 단계는 Visual Studio가 있는 Windows 개발 환경에서 진행해야 합니다. 컴파일된 프로젝트는 Linux 기반 HDInsight 클러스터로 제출할 수 있습니다. 2016년 10월 28일 이후 생성된 Linux 기반 클러스터만 SCP.NET 토폴로지를 지원합니다.
+> hello이 문서의 단계에 의존 Visual Studio와 함께 Windows 개발 환경입니다. hello 컴파일된 프로젝트 제출 된 tooa Linux 기반 HDInsight 클러스터 될 수 있습니다. 2016년 10월 28일 이후 생성된 Linux 기반 클러스터만 SCP.NET 토폴로지를 지원합니다.
 >
-> Linux 기반 클러스터에 C# 토폴로지를 사용하려면 프로젝트에 사용되는 Microsoft.SCP.Net.SDK NuGet 패키지를 0.10.0.6 버전 이상으로 업데이트합니다. 패키지 버전은 HDInsight에 설치된 Storm의 주 버전과도 일치해야 합니다. 예를 들어 HDInsight에서 Storm 버전 3.3 및 3.4는 Storm 버전 0.10.x를 사용하는 반면, HDInsight 3.5는 Storm 1.0.x를 사용합니다.
+> Linux 기반 클러스터에서 업데이트 hello 프로젝트 tooversion 0.10.0.6 프로그램에서 사용 되는 또는 더 높은 Microsoft.SCP.Net.SDK NuGet 패키지는 C# 토폴로지 toouse 합니다. 또한 hello 버전의 hello 패키지 hello HDInsight에 설치 된 Storm의 주 버전을 일치 해야 합니다. 예를 들어 HDInsight에서 Storm 버전 3.3 및 3.4는 Storm 버전 0.10.x를 사용하는 반면, HDInsight 3.5는 Storm 1.0.x를 사용합니다.
 >
-> Linux 기반 클러스터의 C# 토폴로지는 .NET 4.5를 사용해야 하며 Mono를 사용하여 HDInsight 클러스터에서 실행해야 합니다. 대부분의 항목이 작동합니다. 하지만 [Mono 호환성](http://www.mono-project.com/docs/about-mono/compatibility/) 문서에서 잠재적인 비호환성이 있는지 확인해야 합니다.
+> Linux 기반 클러스터에서 C# 토폴로지는.NET 4.5를 사용 하 고 모노 toorun hello HDInsight 클러스터에서 사용 해야 합니다. 대부분의 항목이 작동합니다. 하지만 Hello를 확인 해야 [모노 호환성](http://www.mono-project.com/docs/about-mono/compatibility/) 잠재적인 호환성 문제에 대 한 문서입니다.
 >
 > Linux 기반 또는 Windows 기반 HDInsight로 작동하는 이 프로젝트의 Java 버전에 대해서는 [HDInsight의 Storm으로 Azure 이벤트 허브에서 이벤트 처리(Java)](hdinsight-storm-develop-java-event-hub-topology.md)를 참조하세요.
 
@@ -41,73 +41,73 @@ Power BI를 사용하면 데이터를 보고서로 시각적으로 표시할 수
 * HDInsight 클러스터. 자세한 내용은 [HDInsight에서 Storm 시작](hdinsight-apache-storm-tutorial-get-started-linux.md)을 참조하세요.
 
   > [!IMPORTANT]
-  > Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+  > Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
-* Visual Studio(다음 버전 중 하나)
+* Visual Studio (hello 버전을 다음 중 하나)
 
   * Visual Studio 2012 [업데이트 4](http://www.microsoft.com/download/details.aspx?id=39305)
   * Visual Studio 2013 [업데이트 4](http://www.microsoft.com/download/details.aspx?id=44921) 또는 [Visual Studio 2013 Community](http://go.microsoft.com/fwlink/?linkid=517284&clcid=0x409)
   * [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
   * Visual Studio 2017(모든 버전)
 
-* HDInsight Tools for Visual Studio: 설치 정보는 [HDInsight Tools for Visual Studio 사용 시작](hdinsight-hadoop-visual-studio-tools-get-started.md) 을 참조하세요.
+* Visual Studio 용 HDInsight 도구 hello: 참조 [hello HDInsight 도구를 사용 하 여 Visual Studio 용 시작](hdinsight-hadoop-visual-studio-tools-get-started.md) 설치 정보에 대 한 내용은 합니다.
 
 ## <a name="how-it-works"></a>작동 방법
 
-이 예제에서는 IIS(인터넷 정보 서비스) 로그 데이터를 무작위로 생성하는 C# Storm 토폴로지를 포함합니다. 이 데이터는 SQL 데이터베이스에 기록되고 해당 위치에서 Power BI에 보고서를 생성하는 데 사용됩니다.
+이 예제에서는 IIS(인터넷 정보 서비스) 로그 데이터를 무작위로 생성하는 C# Storm 토폴로지를 포함합니다. 이 데이터 tooa SQL 데이터베이스에 기록 되며 여기에서 Power BI에서 사용 되는 toogenerate 보고서 있습니다.
 
-다음 파일은 이 예제의 주요 기능을 구현합니다.
+이 예의 파일 구현 hello 주요 기능을 다음 hello:
 
-* **SqlAzureBolt.cs**: SQL 데이터베이스에 대한 Storm 토폴로지에서 생성된 정보를 작성합니다.
-* **IISLogsTable.sql**: 데이터가 저장되어 있는 데이터베이스를 생성하는 데 사용되는 Transact-SQL 문입니다.
+* **SqlAzureBolt.cs**: hello 스톰 토폴로지 tooSQL 데이터베이스에서에서 생성 한 정보를 씁니다.
+* **IISLogsTable.sql**: hello 데이터에 저장 되어 있는 hello Transact SQL 문 사용 toogenerate hello 데이터베이스입니다.
 
 > [!WARNING]
-> HDInsight 클러스터에서 토폴로지를 시작하기 전에 SQL Database에 테이블을 만듭니다.
+> SQL 데이터베이스에서 HDInsight 클러스터에서 hello 토폴로지를 시작 하기 전에 hello 테이블을 만듭니다.
 
-## <a name="download-the-example"></a>예제 다운로드
+## <a name="download-hello-example"></a>Hello 예제를 다운로드 합니다.
 
-[HDInsight C# Storm Power BI 예제](https://github.com/Azure-Samples/hdinsight-dotnet-storm-powerbi)를 다운로드합니다. 다운로드하려면 [git](http://git-scm.com/)를 사용하여 포크/복제하거나, **다운로드** 링크를 사용하여 .zip 보관 파일을 다운로드합니다.
+Hello 다운로드 [HDInsight C# 스톰 Power BI 예제](https://github.com/Azure-Samples/hdinsight-dotnet-storm-powerbi)합니다. toodownload, 하거나 포크/복제를 사용 하 여 [git](http://git-scm.com/), 하거나 hello를 사용 하 여 **다운로드** 링크 toodownload hello 보관의.zip 합니다.
 
 ## <a name="create-a-database"></a>데이터베이스 만들기
 
-1. 데이터베이스를 만들려면 [SQL Database 자습서](../sql-database/sql-database-get-started.md) 문서의 단계를 사용합니다.
+1. 데이터베이스 toocreate hello 단계를 사용 하 여 hello에 [SQL 데이터베이스 자습서](../sql-database/sql-database-get-started.md) 문서.
 
-2. [Visual Studio와 함께 SQL Database에 연결](../sql-database/sql-database-connect-query.md) 문서의 단계를 수행하여 데이터베이스에 연결합니다.
+2. Hello에서 단계를 다음 hello 하 여 연결 toohello 데이터베이스 [Visual Studio를 사용 하 여 tooa SQL 데이터베이스 연결](../sql-database/sql-database-connect-query.md) 문서.
 
-3. 개체 탐색기에서 데이터베이스를 마우스 오른쪽 단추로 클릭하고 **새 쿼리**를 선택합니다. 다운로드한 프로젝트에 포함된 **IISLogsTable.sql** 파일의 내용을 쿼리 창에 붙여 넣은 다음 Ctrl + Shift + E를 사용하여 쿼리를 실행합니다. 명령이 성공적으로 완료되었다는 메시지가 표시됩니다.
+3. 개체 탐색기에서 hello 데이터베이스를 마우스 오른쪽 단추로 클릭 하 고 선택 **새 쿼리**합니다. Hello의 hello 내용 붙여넣기 **IISLogsTable.sql** hello에 포함 된 파일 hello 쿼리 창에 프로젝트를 다운로드 한 다음 Ctrl + Shift + E tooexecute hello 쿼리 합니다. Hello 명령을 성공적으로 완료 하는 메시지를 받아야 합니다.
 
-## <a name="configure-the-sample"></a>샘플 구성
+## <a name="configure-hello-sample"></a>Hello 샘플 구성
 
-1. [Azure 포털](https://portal.azure.com)에서 SQL 데이터베이스를 선택합니다. SQL 데이터베이스 블레이드의 **Essentials** 섹션에서 **데이터베이스 연결 문자열 표시**를 선택합니다. 표시되는 목록에서 **ADO.NET(SQL 인증)** 정보를 복사합니다.
+1. Hello에서 [Azure 포털](https://portal.azure.com), SQL 데이터베이스를 선택 합니다. Hello에서 **Essentials** hello SQL 데이터베이스 블레이드, 선택의 섹션 **데이터베이스 연결 문자열 표시**합니다. Hello 목록이 표시 되 면 복사 hello **ADO.NET (SQL 인증)** 정보입니다.
 
-2. Visual Studio에서 샘플을 엽니다. **솔루션 탐색기**에서 **App.config** 파일을 열고 다음 항목을 찾습니다.
+2. Visual Studio에서 hello 샘플을 엽니다. **솔루션 탐색기**개방형 hello **App.config** 파일을 선택한 다음 hello 다음 항목을 찾습니다.
 
         <add key="SqlAzureConnectionString" value="##TOBEFILLED##" />
 
-    **##TOBEFILLED##** 값을 이전 단계에서 복사된 데이터베이스 연결 문자열과 바꿉니다. **{your\_username}** 및 **{your\_password}**를 데이터베이스에 대한 사용자 이름 및 암호와 바꿉니다.
+    Hello 대체 **# # TOBEFILLED # #** hello 이전 단계에서 복사한 값 hello 데이터베이스 연결 문자열을 사용 합니다. 대체 **{프로그램\_사용자 이름}** 및 **{프로그램\_암호}** hello 이름과 hello 데이터베이스에 대 한 암호입니다.
 
-3. 파일을 저장하고 닫습니다.
+3. 저장 하 고 hello 파일을 닫습니다.
 
-## <a name="deploy-the-sample"></a>샘플 배포
+## <a name="deploy-hello-sample"></a>Hello 예제 배포
 
-1. **솔루션 탐색기**에서 **StormToSQL** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **HDInsight에서 Storm에 제출**을 선택합니다. **Storm 클러스터** 드롭다운 대화 상자에서 HDInsight 클러스터를 선택합니다.
+1. **솔루션 탐색기**, 마우스 오른쪽 단추로 클릭 hello **StormToSQL** 프로젝트를 마우스 선택 **HDInsight의 tooStorm 제출**합니다. Hello에서 HDInsight 클러스터를 선택 hello **Storm 클러스터** 드롭다운 대화입니다.
 
    > [!NOTE]
-   > **Storm 클러스터** 드롭다운을 서버 이름으로 채우는 데 몇 초 정도 걸릴 수 있습니다.
+   > Hello에 대 한 몇 초 정도 **Storm 클러스터** 드롭다운 toopopulate 서버 이름으로 합니다.
    >
-   > 메시지가 표시되면 Azure 구독에 대한 로그인 자격 증명을 입력합니다. 하나 이상의 구독이 있는 경우 HDInsight 클러스터의 Storm을 포함하는 자격 증명으로 로그인합니다.
+   > 메시지가 표시 되 면 Azure 구독에 대 한 hello 로그인 자격 증명을 입력 합니다. 구독이 둘 이상 있는 경우 프로그램 스톰 HDInsight 클러스터에 포함 된 toohello에 로그인 합니다.
 
-2. 토폴로지가 제출되었으면 __토폴로지 뷰어__가 나타납니다. 이 토폴로지를 보려면 목록에서 SqlAzureWriterTopology 항목을 선택합니다.
+2. Hello 토폴로지가 제출 될 때 hello __토폴로지 뷰어__ 나타납니다. tooview이 토폴로지, hello 목록에서 선택 hello SqlAzureWriterTopology 항목입니다.
 
-    ![토폴로지가 선택된 토폴로지](./media/hdinsight-storm-power-bi-topology/topologyview.png)
+    ![선택한 hello 토폴로지 hello 토폴로지](./media/hdinsight-storm-power-bi-topology/topologyview.png)
 
-    이 보기를 사용하여 토폴로지에 대한 정보를 확인하거나 항목(예: SqlAzureBolt)을 두 번 클릭하여 토폴로지에서 구성 요소와 관련된 정보를 확인할 수 있습니다.
+    이 보기 toosee 정보를 사용 하 여 hello 토폴로지에서 하거나 hello 토폴로지는 항목 (예: hello SqlAzureBolt) toosee 정보 특정 tooa 구성 요소를 두 번 클릭 수 있습니다.
 
-3. 몇 분 동안 토폴로지를 실행한 후에 데이터베이스를 만드는 데 사용한 SQL 쿼리 창으로 돌아갑니다. 기존 문을 다음 쿼리로 바꿉니다.
+3. Hello 후 토폴로지 실행 몇 분 동안 반환 toohello SQL 쿼리 창 toocreate hello 데이터베이스를 사용 합니다. 다음 쿼리에서 hello hello 기존 문을 바꿉니다.
 
         select * from iislogs;
 
-    Ctrl + Shift + E를 사용하여 쿼리를 실행하면 다음 데이터와 유사한 결과가 표시됩니다.
+    Ctrl + Shift를 사용 하 여 + E tooexecute hello 쿼리의 결과 유사한 toohello 같은 데이터가 수신 해야 합니다.
 
         1    2016-05-27 17:57:14.797    255.255.255.255    /bar    GET    200
         2    2016-05-27 17:57:14.843    127.0.0.1    /spam/eggs    POST    500
@@ -116,56 +116,56 @@ Power BI를 사용하면 데이터를 보고서로 시각적으로 표시할 수
         5    2016-05-27 17:57:14.853    10.9.8.7    /bar    GET    200
         6    2016-05-27 17:57:14.857    192.168.1.1    /spam    DELETE    200
 
-    이 데이터는 Storm 토폴로지에서 작성되었습니다.
+    이 데이터 hello 스톰 토폴로지에서 작성 되었습니다.
 
 ## <a name="create-a-report"></a>보고서 만들기
 
-1. Power BI용 [Azure SQL 데이터베이스 커넥터](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) 에 연결합니다. 
+1. Toohello 연결 [Azure SQL 데이터베이스 커넥터](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) Power BI에 대 한 합니다. 
 
 2. **데이터베이스** 내에서 **가져오기**를 선택합니다.
 
 3. **Azure SQL Database**를 선택한 다음 **연결**을 선택합니다.
 
     > [!NOTE]
-    > 계속하려면 Power BI Desktop을 다운로드하라는 메시지가 표시될 수 있습니다. 이렇게 하려면 다음 단계를 수행하여 연결합니다.
+    > Toodownload hello Power BI Desktop toocontinue를 메시지가 나타날 수 있습니다. 이 경우 다음 단계 tooconnect hello를 사용 합니다.
     >
     > 1. Power BI Desktop을 열고 __Get Data__를 선택합니다.
     > 2  __Azure__를 선택한 다음 __Azure SQL Database__를 선택합니다.
 
-4. 정보를 입력하여 Azure SQL 데이터베이스에 연결합니다. [Azure Portal](https://portal.azure.com)에 방문하고 SQL 데이터베이스를 선택하여 이 정보를 찾을 수 있습니다.
+4. Hello 정보 tooconnect tooyour Azure SQL 데이터베이스를 입력 합니다. Hello를 방문 하 여이 정보를 찾을 수 [Azure 포털](https://portal.azure.com) SQL 데이터베이스를 선택 하 고 있습니다.
 
    > [!NOTE]
-   > 연결 대화 상자에서 **고급 옵션 사용** 을 사용하여 새로 고침 간격 및 사용자 지정 필터를 설정할 수도 있습니다.
+   > 사용 하 여 사용자 지정 필터 및 hello 새로 고침 간격을 설정할 수도 있습니다 **고급 옵션을 사용 하도록 설정** hello에서 대화를 연결 합니다.
 
-5. 연결한 후에 연결한 데이터베이스와 동일한 이름을 가진 새 데이터 집합이 표시됩니다. 데이터 집합을 선택하여 보고서를 만들기 시작합니다.
+5. 를 연결한 후 새 데이터 집합 이름과 같은 이름을 hello 데이터베이스에 연결 하는 hello로 표시 됩니다. Hello dataset toobegin 보고서 디자인을 선택 합니다.
 
-6. **필드**에서 **IISLOGS** 항목을 확장합니다. URI 스템을 나열하는 보고서를 만들려면 **URISTEM** 확인란을 선택합니다.
+6. **필드**, hello 확장 **IISLOGS** 항목입니다. hello 확인란을 선택 하는 보고서 목록 hello URI는 형태소 분석 toocreate **URISTEM**합니다.
 
     ![보고서 만들기](./media/hdinsight-storm-power-bi-topology/createreport.png)
 
-7. 다음으로 **메서드** 보고서를 끌어옵니다. 보고서는 HTTP 요청에 사용된 형태소 및 해당 HTTP 메서드를 목록에 업데이트합니다.
+7. 다음으로 끌어 **메서드** toohello 보고서입니다. hello 보고서 업데이트 toolist hello 생기고 hello 해당 HTTP 메서드 hello HTTP 요청에 사용 됩니다.
 
-    ![메서드 데이터 추가](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
+    ![hello 메서드 데이터를 추가합니다.](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
 
-8. **시각화** 열에서 **필드** 아이콘을 선택한 다음 **값** 섹션의 **메서드** 옆에 있는 아래쪽 화살표를 선택합니다. URI에 액세스한 횟수를 표시하려면 **Count**를 선택합니다.
+8. Hello에서 **시각화** 열, 선택 hello **필드** 아이콘을 선택한 후 hello 아래쪽 화살표 옆 너무**메서드** hello에 **값**섹션. URI에 몇 번의 개수에 액세스 하는 toodisplay 선택 **Count**합니다.
 
-    ![메서드의 수 변경](./media/hdinsight-storm-power-bi-topology/count.png)
+    ![메서드의 tooa 수 변경](./media/hdinsight-storm-power-bi-topology/count.png)
 
-9. 다음으로 **누적 세로 막대형 차트** 를 선택하여 정보가 표시되는 방식을 변경합니다.
+9. Hello를 다음으로, 선택 **누적 세로 막대형 차트** toochange 어떻게 hello 정보가 표시 됩니다.
 
-    ![누적된 차트 변경](./media/hdinsight-storm-power-bi-topology/stackedcolumn.png)
+    ![변경 tooa 누적된 차트](./media/hdinsight-storm-power-bi-topology/stackedcolumn.png)
 
-10. 보고서를 저장하려면 **저장**을 선택하고 보고서의 이름을 입력합니다.
+10. 선택 toosave hello 보고서 **저장** hello 보고서에 대 한 이름을 입력 합니다.
 
-## <a name="stop-the-topology"></a>토폴로지 중지
+## <a name="stop-hello-topology"></a>Hello 토폴로지를 중지 합니다.
 
-토폴로지는 사용자가 중지하거나 HDInsight 클러스터에서 Storm을 삭제할 때까지 계속 실행됩니다. 토폴로지를 중지하려면 다음 단계를 수행합니다.
+hello 토폴로지는 중지 하거나 hello 스톰 HDInsight 클러스터에서 삭제 될 때까지 toorun를 계속 합니다. toostop은 토폴로지 hello에 hello 다음 단계를 수행 합니다.
 
-1. Visual Studio에서 토폴로지 뷰어로 돌아가서 토폴로지를 선택합니다.
+1. Visual Studio에서 toohello 토폴로지 뷰어를 반환 하 고 hello 토폴로지를 선택 합니다.
 
-2. **Kill** 단추를 선택하여 토폴로지를 중지합니다.
+2. 선택 hello **Kill** 단추 toostop hello 토폴로지입니다.
 
-    ![토폴로지 요약의 Kill 단추](./media/hdinsight-storm-power-bi-topology/killtopology.png)
+    ![Kill hello 토폴로지 요약에서 단추](./media/hdinsight-storm-power-bi-topology/killtopology.png)
 
 ## <a name="delete-your-cluster"></a>클러스터 삭제
 
@@ -173,6 +173,6 @@ Power BI를 사용하면 데이터를 보고서로 시각적으로 표시할 수
 
 ## <a name="next-steps"></a>다음 단계
 
-이 문서에서는 Storm 토폴로지에서 SQL 데이터베이스로 데이터를 보낸 다음 Power BI를 사용하여 데이터를 시각화하는 방법을 알아보았습니다. HDInsight에서 Storm을 사용하여 다른 Azure 기술을 사용하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
+이 문서에서 배운 어떻게 스톰 토폴로지 tooSQL 데이터베이스에서에서 toosend 데이터를 시각화 하 여 Power BI를 사용 하 여 hello 데이터입니다. 방법에 대 한 HDInsight에서 Storm를 사용 하 여 다른 Azure 기술로 toowork hello 다음 문서를 참조 하세요.
 
 * [HDInsight의 Storm에 대한 예제 토폴로지](hdinsight-storm-example-topology.md)

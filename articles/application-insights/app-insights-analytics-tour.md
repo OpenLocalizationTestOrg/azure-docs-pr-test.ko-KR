@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 내 Analytics 둘러보기 | Microsoft Docs"
-description: "Application Insights의 강력한 검색 도구인 Analytics의 모든 주요 쿼리에 대한 간단한 샘플"
+title: "Azure Application Insights에서 분석을 통해 aaaA 둘러보기 | Microsoft Docs"
+description: "모든 쿼리의 hello 주 분석에서 Application Insights의 hello 강력한 검색 도구 간단한 샘플입니다."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,35 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/06/2017
 ms.author: bwren
-ms.openlocfilehash: f5650d212eb2f8c460f062b3c11ae14c1e026ba6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c268e26c6bf93ac2ee2a9d5e83613150dcf90b04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="a-tour-of-analytics-in-application-insights"></a>Application Insights의 Analytics 둘러보기
-[분석](app-insights-analytics.md)은 [Application Insights](app-insights-overview.md)의 강력한 검색 기능입니다. 다음 페이지에서는 Log Analytics 쿼리 언어에 대해 설명합니다.
+[분석](app-insights-analytics.md) 의 hello 강력한 검색 기능은 [Application Insights](app-insights-overview.md)합니다. 다음 페이지에서는 Log Analytics 쿼리 언어에 대해 설명합니다.
 
-* **[소개 비디오 보기](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**
-* 앱이 아직 데이터를 Application Insights로 전송하지 않은 경우, **[시뮬레이션된 데이터에 대한 분석을 테스트](https://analytics.applicationinsights.io/demo)**합니다.
-* **[SQL 사용자 치트 시트](https://aka.ms/sql-analytics)**에서는 가장 일반적인 코드를 변환합니다.
+* **[Hello 소개 비디오를 시청](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**합니다.
+* **[시뮬레이션된 데이터에 분석 드라이브를 테스트](https://analytics.applicationinsights.io/demo)**  경우 응용 프로그램 데이터 tooApplication Insights를 아직 전송 되지 않습니다.
+* **[SQL-사용자의 치트 시트](https://aka.ms/sql-analytics)**  hello 가장 일반적인 구문으로 변환 합니다.
 
-시작하기 위해 몇 가지 기본적인 쿼리를 연습해 보겠습니다.
+몇 가지 기본적인 쿼리 tooget 시작한 단계별로 살펴보겠습니다.
 
-## <a name="connect-to-your-application-insights-data"></a>Application Insights 데이터에 연결
+## <a name="connect-tooyour-application-insights-data"></a>Tooyour Application Insights 데이터에 연결
 Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) 에서 분석을 엽니다.
 
 ![portal.azure.com을 열고 Application Insights 리소스를 열고 Analytics를 클릭합니다.](./media/app-insights-analytics-tour/001.png)
 
 ## <a name="takehttpsdocsloganalyticsioquerylanguagequerylanguagetakeoperatorhtml-show-me-n-rows"></a>[Take](https://docs.loganalytics.io/queryLanguage/query_language_takeoperator.html): n개의 행 표시
-사용자 작업(일반적으로 웹앱에서 받는 HTTP 요청)을 기록하는 데이터 요소는 `requests`라는 테이블에 저장됩니다. 각 행은 앱의 Application Insights SDK에서 수신된 원격 분석 데이터 요소입니다.
+사용자 작업(일반적으로 웹앱에서 받는 HTTP 요청)을 기록하는 데이터 요소는 `requests`라는 테이블에 저장됩니다. 각 행에는 응용 프로그램에 Application Insights SDK hello에서 받은 원격 분석 데이터 요소입니다.
 
-테이블의 몇 가지 샘플 행을 검사하는 것으로 시작해 보겠습니다.
+Hello 테이블의 몇 가지 샘플 행을 검사 하 여 시작 하겠습니다.
 
 ![결과](./media/app-insights-analytics-tour/010.png)
 
 > [!NOTE]
-> 이동을 클릭하기 전에 커서를 문의 어딘가에 둡니다. 문을 둘 이상의 행으로 분할할 수 있지만 문에 빈 줄을 넣으면 안 됩니다. 빈 줄은 창에서 여러 개의 별도 쿼리를 유지하는 편리한 방법입니다.
+> Hello 커서 위치에 배치 hello 문의 이동을 클릭 하기 전에. 문을 둘 이상의 행으로 분할할 수 있지만 문에 빈 줄을 넣으면 안 됩니다. 빈 줄은 편리 tookeep 여러 hello 창에서 쿼리를 구분 합니다.
 >
 >
 
@@ -49,19 +49,19 @@ Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) �
 
 ![결과의 오른쪽 위에 있는 열 선택을 클릭](./media/app-insights-analytics-tour/030.png)
 
-세부 정보를 보려면 모든 항목을 확장합니다.
+모든 항목 toosee hello 세부 정보를 확장 합니다.
 
 ![테이블을 선택하고 열을 구성](./media/app-insights-analytics-tour/040.png)
 
 > [!NOTE]
-> 웹 브라우저에서 사용할 수 있는 결과의 순서를 변경하려면 열 머리글을 클릭합니다. 단, 큰 결과 집합의 경우에는 브라우저에 다운로드되는 행의 수가 제한된다는 점을 고려해야 합니다. 이 방식으로 정렬한다고 해서 항상 최상위 항목이나 최하위 항목이 표시되지는 않습니다. 항목을 안정적으로 정렬하려면 `top` 또는 `sort` 연산자를 사용합니다.
+> 열 순서 toore hello 결과 hello 웹 브라우저에서 사용할 수 있는의 hello 헤드를 클릭 합니다. 하지만 큰 결과 집합에 대 한 행 다운로드 한 toohello 브라우저의 hello 번호 제한 된다는 점에 유의 합니다. 이러한 방식으로 정렬 실제 최고 hello 또는 가장 낮은 항목을 항상 표시 되지 않습니다. 안전 하 게 사용 하 여 hello toosort 항목 `top` 또는 `sort` 연산자입니다.
 >
 >
 
 ## <a name="tophttpsdocsloganalyticsioquerylanguagequerylanguagetopoperatorhtml-and-sorthttpsdocsloganalyticsioquerylanguagequerylanguagesortoperatorhtml"></a>[Top](https://docs.loganalytics.io/queryLanguage/query_language_topoperator.html) 및 [sort](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html)
-`take` 은(는) 빨리 확인할 결과 샘플을 가져오는 데 유용하지만 테이블의 행을 특정 순서 없이 표시합니다. 순서가 지정된 보기를 가져오려면 `top`(샘플의 경우) 또는 `sort`(전체 테이블에 대해)을(를) 사용합니다.
+`take`유용한 tooget 결과의 빠른 샘플 않으며 임의의 순서로 hello 테이블에서 행을 표시 하는 것입니다. tooget 순서가 지정 된 뷰를 사용 하 여 `top` (예) 또는 `sort` (hello 전체 테이블)를 통해 합니다.
 
-특정 열을 기준으로 순서가 정해진 처음 n 행 표시:
+Hello 처음 n 개의 행을 특정 열으로 정렬 표시:
 
 ```AIQL
 
@@ -80,9 +80,9 @@ Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) �
     requests | sort by timestamp desc | take 10
 ```
 
-결과는 같지만 조금 더 느리게 실행될 수 있습니다. `sort`의 별칭인 `order`을(를) 작성할 수도 있습니다.
+hello 라고 할 때 결과 hello 동일 하지만 약간 더 느리게 실행 됩니다. `sort`의 별칭인 `order`을(를) 작성할 수도 있습니다.
 
-테이블 보기의 열 머리글을 사용하여 화면에서 결과를 정렬할 수도 있습니다. 하지만 물론 `take` 또는 `top`을(를) 사용하여 테이블의 일부만 검색했다면 검색한 레코드의 순서만 변경될 것입니다.
+hello 표 보기에서 열 머리글에 hello hello 결과 hello 화면에 사용 되는 toosort 될 수도 있습니다. 하지만 물론 사용한 적이 있다면 `take` 또는 `top` tooretrieve 테이블의 한 부분일 뿐, 순서를 변경할 hello 레코드만 검색 한 수행 합니다.
 
 ## <a name="wherehttpsdocsloganalyticsioquerylanguagequerylanguagewhereoperatorhtml-filtering-on-a-condition"></a>[Where](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html): 조건에 대한 필터링
 
@@ -97,7 +97,7 @@ Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) �
 
 ![](./media/app-insights-analytics-tour/250.png)
 
-`where` 연산자는 부울 식을 가져옵니다. 여기서 이에 관한 몇 가지 중요한 사항이 있습니다.
+hello `where` 연산자는 부울 식을 사용 합니다. 여기서 이에 관한 몇 가지 중요한 사항이 있습니다.
 
 * `and`, `or`: 부울 연산자
 * `==`, `<>`, `!=`: 같음 및 같지 않음
@@ -105,7 +105,7 @@ Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) �
 
 <!---Read all about [scalar expressions]().--->
 
-### <a name="getting-the-right-type"></a>올바른 형식 가져오기
+### <a name="getting-hello-right-type"></a>Hello 오른쪽 유형이 나타났다
 성공하지 못한 요청 찾기
 
 ```AIQL
@@ -119,21 +119,21 @@ Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) �
 
 ## <a name="time"></a>Time
 
-기본적으로 쿼리는 마지막 24시간으로 제한됩니다. 그러나 이 값을 변경할 수 있습니다.
+기본적으로 쿼리 지난 24 시간 동안 제한 된 toohello을 됩니다. 그러나 이 값을 변경할 수 있습니다.
 
 ![](./media/app-insights-analytics-tour/change-time-range.png)
 
-where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위를 재정의합니다. 예:
+Hello 시간 범위를 언급 하는 쿼리를 작성 하 여 재정의 `timestamp` where 절에서. 예:
 
 ```AIQL
 
-    // What were the slowest requests over the past 3 days?
+    // What were hello slowest requests over hello past 3 days?
     requests
-    | where timestamp > ago(3d)  // Override the time range
+    | where timestamp > ago(3d)  // Override hello time range
     | top 5 by duration
 ```
 
-시간 범위 기능은 원본 테이블 중 하나를 언급할 때마다 그 다음에 나오는 'where' 절에 해당합니다.
+hello 시간 범위 기능은 해당 tooa hello 원본 테이블 중 하나에 대 한 각 언급이 다음 절을 삽입 하는 'where' 있습니다.
 
 `ago(3d)`는 '3일 전'을 의미합니다. 기타 시간 단위에는 시간(`2h`, `2.5h`), 분(`25m`) 및 초(`10s`)가 포함됩니다.
 
@@ -163,7 +163,7 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 
 
 ## <a name="projecthttpsdocsloganalyticsioquerylanguagequerylanguageprojectoperatorhtml-select-rename-and-compute-columns"></a>[Project](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html): 열 선택, 이름 바꾸기 및 계산
-원하는 열만 선택하려면 [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html)을(를) 사용합니다.
+사용 하 여 [ `project` ](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) hello 열만 원하는 아웃 toopick:
 
 ```AIQL
 
@@ -189,14 +189,14 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ![result](./media/app-insights-analytics-tour/270.png)
 
 * 열 이름은 `['...']` 또는 `["..."]`와 같이 대괄호로 묶은 경우 공백이나 기호를 포함할 수 있습니다.
-* `%` 은(는) 일반적인 모듈로 연산자입니다.
+* `%`모듈로 연산자는 일반적인는 hello입니다.
 * `1d` (한 자릿수, 'd' 한 개)은(는) 하루를 의미하는 시간 간격 리터럴입니다. 기타 시간 간격 리터럴에는 `12h`, `30m`, `10s`, `0.01s` 등이 있습니다.
-* `floor`(별칭 `bin`)은(는) 값을 사용자가 입력하는 기준 값에 가장 가까운 낮은 배수로 반올림합니다. 따라서 `floor(aTime, 1s)` 은(는) 시간을 가장 가까운 초로 반올림합니다.
+* `floor`(별칭 `bin`) 값 아래로 toohello hello 제공 하는 기준 값의 가장 가까운 배수로 반올림 합니다. 따라서 `floor(aTime, 1s)` 초 가장 가까운 toohello 다운 시간을 반올림 합니다.
 
-식은 일반적인 연산자(`+`,`-`, ...)를 모두 포함할 수 있으며, 유용한 함수가 다양하게 사용됩니다.
+식은 모든 hello 일반적인 연산자를 포함할 수 있습니다 (`+`, `-`,...)를 다양 한 유용한 함수가 이며 합니다.
 
 ## <a name="extend"></a>Extend
-기존 열에 열을 추가하기만 하려면 [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html)을(를) 사용합니다.
+사용 하 여 려는 스토리를 기존 tooadd 열 toohello 경우 [ `extend` ](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html):
 
 ```AIQL
 
@@ -205,11 +205,11 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
     | extend timeOfDay = floor(timestamp % 1d, 1s)
 ```
 
-기존 열을 모두 유지하려는 경우 [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html)을(를) 사용하면 [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html)에 비해 표시되는 정보가 상세하지 않습니다.
+사용 하 여 [ `extend` ](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html) 보다 덜 자세 [ `project` ](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) 모든 기존 열을 hello tookeep 하려는 경우.
 
-### <a name="convert-to-local-time"></a>현지 시간으로 변환
+### <a name="convert-toolocal-time"></a>Toolocal 시간으로 변환
 
-타임스탬프는 항상 UTC 기준입니다. 따라서 미국 태평양 연안에 있으며 계절이 겨울이면 다음과 같이 나타낼 수 있습니다.
+타임스탬프는 항상 UTC 기준입니다. 따라서 hello 미국 태평양 coast에 속하고 겨울 인 경우 사용자가 좋아할 만한이:
 
 ```AIQL
 
@@ -222,44 +222,44 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ## <a name="summarizehttpsdocsloganalyticsioquerylanguagequerylanguagesummarizeoperatorhtml-aggregate-groups-of-rows"></a>[요약](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html): 행 그룹 집계
 `Summarize` 은(는) 행 그룹에서 지정된 *집계 함수* 를 적용합니다.
 
-예를 들어 웹앱이 요청에 응답하는 데 걸리는 시간은 `duration`필드에 보고됩니다. 모든 요청에 대한 평균 응답 시간을 살펴보겠습니다.
+예를 들어 hello 웹 앱은 toorespond tooa 요청은 보고 된 시간 hello 필드에 `duration`합니다. 살펴보겠습니다 hello 평균 응답 시간 tooall 요청:
 
 ![](./media/app-insights-analytics-tour/410.png)
 
-또는 결과를 다양한 이름의 요청으로 분리할 수 있습니다.
+또는 서로 다른 이름의 요청으로 hello 결과 분리 수 없습니다.
 
 ![](./media/app-insights-analytics-tour/420.png)
 
-`Summarize`은(는) 스트림의 데이터 요소를 `by` 절에서 동일하게 평가하는 그룹으로 수집합니다. `by` 식의 각 값(예: 위 예제의 경우 각 작업 이름)은 결과 테이블의 행이 됩니다.
+`Summarize`수집은 hello에 대 한 그룹으로 hello 스트림의 데이터 요소 hello `by` 절이 동일 하 게 평가 합니다. द क र hello `by` 식을-hello 위 예제에서에서 각 작업 이름-hello 결과 테이블의 행에 발생 합니다.
 
 또는 하루 중 시간으로 결과를 그룹화할 수 있습니다.
 
 ![](./media/app-insights-analytics-tour/430.png)
 
-`bin` 함수(즉, `floor`)를 사용하는 방법을 알아보겠습니다. `by timestamp`을(를) 사용하면 모든 입력 행이 고유한 작은 그룹이 됩니다. 시간 또는 숫자와 같은 임의 연속 스칼라의 경우 연속되는 범위를 관리할 수 있는 불연속 값의 수로 나누어야 합니다. 익숙한 자리 내림 `floor` 함수인 `bin`은 이 작업을 수행하는 가장 쉬운 방법입니다.
+Hello 사용 하는지 어떻게 알 `bin` 함수 (즉, `floor`). `by timestamp`을(를) 사용하면 모든 입력 행이 고유한 작은 그룹이 됩니다. 모든 연속 스칼라 숫자 like 시간이 나 서로 다른 관리 가능한 수의 불연속 값으로 toobreak hello 연속 범위에 있다고 합니다. `bin`-방금 hello 친숙 한 반올림 다운은 `floor` 함수-hello 가장 쉬운 방법은 toodo은입니다.
 
-동일한 기술을 사용하여 문자열의 범위를 줄일 수 있습니다.
+사용 하는 문자열의 동일한 기술을 tooreduce 범위 hello:
 
 ![](./media/app-insights-analytics-tour/440.png)
 
-`name=`을(를) 사용하여 집계 식 또는 by 절에서 결과 열의 이름을 설정할 수 있습니다.
+사용할 수 있는 알림 `name=` tooset hello 이름 hello 집계 식 또는 hello by-절에 결과 열입니다.
 
 ## <a name="counting-sampled-data"></a>샘플링된 데이터 수 계산
-`sum(itemCount)` 이벤트 수에 대한 권장 집계입니다. 대부분의 경우 itemCount=1이므로 함수는 단순히 그룹의 행 수를 계산합니다. 하지만 [샘플링](app-insights-sampling.md)이 작동 중인 경우에는 Application Insights에서 원래 이벤트의 일부만 데이터 요소로 유지되므로 각 데이터 요소에 `itemCount`개의 이벤트가 있습니다.
+`sum(itemCount)`hello 권장 집계 toocount 이벤트입니다. 대부분의 경우 itemCount 목록을 = = 1 이면 hello 함수를 단순히 hello hello 그룹의 행 수를 계산 합니다. 되지만 [샘플링](app-insights-sampling.md) 은 작업에서 hello 원래 이벤트의 일부만 변수로 유지 됩니다 Application Insights에서 데이터 요소 참조 하면 각 데이터 요소에 대 한 개가 되도록 `itemCount` 이벤트입니다.
 
-예를 들어 샘플링에서 원래 이벤트의 75%를 삭제하는 경우 유지되는 레코드에서 itemCount==4가 됩니다. 즉, 유지된 모든 레코드마다 4개의 원본 레코드가 있게 됩니다.
+예를 들어 샘플링 hello 원래 이벤트가 다음 itemCount의 75%를 삭제 하는 경우 = = 4 hello 유지 레코드-즉, 보존 된 모든 레코드에 대해 있었습니다 4 개의 원래 레코드입니다.
 
-적응 샘플링을 사용하면 응용 프로그램이 과도하게 사용되는 기간 동안 itemCount가 더 높아집니다.
+적응 샘플링 itemCount toobe 높은 경우 응용 프로그램 사용이 기간 동안 발생 합니다.
 
-따라서 itemCount를 합하면 원래 이벤트 수에 대한 적절한 추정치가 제공됩니다.
+이벤트의 hello 원래 수의 적절 한 예측 데이터를 제공 따라서 itemCount를 요약 합니다.
 
 ![](./media/app-insights-analytics-tour/510.png)
 
-그룹의 행 수를 계산하려는 경우 `count()` 집계(및 개수 계산 작업)도 있습니다.
+또한 한 `count()` 집계 (및 count 연산)을 실제로 수행 하려는 경우 toocount hello 그룹의 행 수에 대 한 합니다.
 
 [집계 함수](https://docs.loganalytics.io/learn/tutorials/aggregations.html)의 범위가 있습니다.
 
-## <a name="charting-the-results"></a>결과 차트로 작성
+## <a name="charting-hello-results"></a>Hello 결과 차트
 ```AIQL
 
     exceptions
@@ -271,11 +271,11 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 
 ![](./media/app-insights-analytics-tour/225.png)
 
-테이블 보기보다 더 효과적인 보기가 있습니다. 세로 막대 옵션을 사용하여 차트 보기에서 결과를 살펴보겠습니다.
+Hello 표 보기 보다 더 잘 수행 수입니다. Hello 세로 막대 옵션으로 hello 차트 뷰에서 hello 결과에 대해 살펴보겠습니다.
 
 ![차트를 클릭한 다음 세로 막대 차트를 선택하고 x 및 y축을 할당](./media/app-insights-analytics-tour/230.png)
 
-참고로 결과를 시간에 의해 정렬하지 않았지만(테이블 표시에서 확인 가능) 차트 표시는 언제나 날짜 및 시간을 정확한 순서로 표시합니다.
+되지만 (보시 hello 테이블 디스플레이에서) 시간별 hello 결과 정렬 하지 않은, hello 차트 표시에는 항상 올바른 순서로 datetime 표시 합니다.
 
 
 ## <a name="timecharts"></a>시간 차트
@@ -288,14 +288,14 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
         by bin(timestamp, 1h)
 ```
 
-차트 표시 옵션 선택:
+Hello 차트 표시 옵션을 선택 합니다.
 
 ![시간 차트](./media/app-insights-analytics-tour/080.png)
 
 ## <a name="multiple-series"></a>여러 계열
-`summarize` 절의 여러 식은 여러 열을 만듭니다.
+Hello에서 여러 개의 식을 `summarize` 절 여러 열을 만듭니다.
 
-`by` 절의 여러 식은 값의 각 조합에 대해 하나씩 여러 행을 만듭니다.
+Hello에서 여러 개의 식을 `by` 절 값의 각 조합에 대해 하나씩 여러 개의 행을 만듭니다.
 
 ```AIQL
 
@@ -308,13 +308,13 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ![시간 및 위치별 요청 테이블](./media/app-insights-analytics-tour/090.png)
 
 ### <a name="segment-a-chart-by-dimensions"></a>차원으로 차트를 분할
-문자열 열과 숫자 열이 있는 테이블을 차트화할 경우 숫자 데이터를 별도 계열 요소로 분할하는 데 문자열을 사용할 수 있습니다. 둘 이상의 문자열 열이 있는 경우 판별자로 사용할 열을 선택할 수 있습니다.
+문자열 열과 hello 문자열에 숫자 열이 있는 테이블 차트 수 있으면 사용된 toosplit hello 숫자 데이터를 별도 일련의 점입니다. 여러 개의 문자열 열 이면 hello 판별자로 어떤 열 toouse를 선택할 수 있습니다.
 
 ![분석 차트 분할](./media/app-insights-analytics-tour/100.png)
 
 #### <a name="bounce-rate"></a>반송률
 
-부울을 문자열로 변환하여 판별자로 사용합니다.
+부울 tooa 문자열 toouse 변환 판별자로:
 
 ```AIQL
 
@@ -331,16 +331,16 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ```
 
 ### <a name="display-multiple-metrics"></a>여러 메트릭 표시
-둘 이상의 숫자 열이 있는 테이블을 차트화할 경우 타임스탬프 외에도 모든 조합을 표시할 수 있습니다.
+또한 toohello 타임 스탬프에 둘 이상의 숫자 열이 있는 테이블, 차트 어떠한 조합의 표시할 수 있습니다.
 
 ![분석 차트 분할](./media/app-insights-analytics-tour/110.png)
 
-**분할하지 않음**을 선택해야 여러 숫자 열을 선택할 수 있습니다. 둘 이상의 숫자 열을 표시하면서 동시에 문자열 열로 분할할 수 없습니다.
+**분할하지 않음**을 선택해야 여러 숫자 열을 선택할 수 있습니다. 분할할 수 없습니다 hello에서 문자열 열에 따라 같은 시간으로 여러 개의 숫자 열을 표시 합니다.
 
 ## <a name="daily-average-cycle"></a>일일 평균 주기
-사용량은 평균 일에 대해 얼마나 변화합니까?
+Hello 평균 하루를 통해 사용량 달라질?
 
-시간으로 범주화된 시간 모듈로 하루 기준 계산 요청:
+개수 요청 1 일, 모듈로 hello 시간별 시간으로 범주화 합니다.
 
 ```AIQL
 
@@ -355,12 +355,12 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ![평균 일의 시간에 대한 꺾은선형 차트](./media/app-insights-analytics-tour/120.png)
 
 > [!NOTE]
-> 참고로 현재 우리는 꺾은선형 차트에 표시하기 위해 기간을 날짜 및 시간으로 변환해야 합니다.
+> 현재 있는지 tooconvert 시간 기간 toodatetimes 순서 toodisplay에서 꺾은선형 차트를 확인 합니다.
 >
 >
 
 ## <a name="compare-multiple-daily-series"></a>여러 개의 일일 계열 비교
-서로 다른 국가에서 시각에 따라 사용량은 어떻게 변화합니까?
+어떻게는 사용 시간의 경과 따라 hello 하루 중 다른 국가에서?
 
 ```AIQL
 
@@ -392,16 +392,16 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
     | project d = sessionDuration + datetime("2016-01-01"), count_
 ```
 
-마지막 줄은 날짜/시간으로 변환해야 합니다. 현재 차트의 x축은 날짜/시간인 경우에만 스칼라로 표시됩니다.
+hello 마지막 줄은 필요한 tooconvert toodatetime입니다. 현재는 차트의 hello x 축 날짜/시간 경우에 스칼라도 표시 됩니다.
 
-`where` 절은 단발 세션(sessionDuration==0)을 제외하고 x축의 길이를 설정합니다.
+hello `where` 절 제외 원 샷 세션 (sessionDuration = = 0) 및 집합 hello hello x 축의 길이입니다.
 
 ![](./media/app-insights-analytics-tour/290.png)
 
 ## <a name="percentileshttpsdocsloganalyticsioquerylanguagequerylanguagepercentilesaggfunctionhtml"></a>[백분위수](https://docs.loganalytics.io/queryLanguage/query_language_percentiles_aggfunction.html)
 서로 다른 세션 백분위수를 다루는 기간 범위는 무엇입니까?
 
-위의 쿼리를 사용하되 마지막 줄을 다음으로 바꿈:
+쿼리를 위에 hello를 사용 하 여 하지만 hello 마지막 줄을 바꿉니다.
 
 ```AIQL
 
@@ -415,7 +415,7 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
     | summarize percentiles(sesh, 5, 20, 50, 80, 95)
 ```
 
-또한 둘 이상의 요청을 포함하고 있는 모든 세션을 비롯하여 정확한 그림을 가져오기 위해 where 절에서 상한을 제거했습니다.
+또한 hello 상한값 hello 절 순서 tooget 수치 요청이 둘 이상 있는 모든 세션을 포함 하 여 해결 하는 위치에서 제거:
 
 ![result](./media/app-insights-analytics-tour/180.png)
 
@@ -425,7 +425,7 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 * 세션의 50%가 36분 미만 동안 지속
 * 세션의 5%가 7일보다 오래 지속
 
-각 국가에 대해 별도의 분석을 가져오기 위해 summarize 연산자 둘 다를 통해 client_CountryOrRegion 열을 따로 가져와야 합니다.
+각 국가 대 한 별도 분석 tooget 연산자 요약 둘 다를 통해 개별적으로 toobring hello client_CountryOrRegion 열은:
 
 ```AIQL
 
@@ -443,9 +443,9 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ![](./media/app-insights-analytics-tour/190.png)
 
 ## <a name="join"></a>Join
-요청 및 예외를 비롯한 일부 테이블에 액세스할 수 있습니다.
+요청 및 예외를 비롯 하 여 액세스 tooseveral 테이블 했습니다.
 
-실패 응답을 반환하는 요청과 관련된 예외를 찾으려면 `session_Id`에 대해 테이블을 조인할 수 있습니다.
+toofind hello 예외 관련된 tooa 요청 실패 응답을 반환 하는 hello 테이블에 참여할 수 있습니다 `session_Id`:
 
 ```AIQL
 
@@ -456,12 +456,12 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ```
 
 
-조인을 수행하기 전에 `project`을(를) 사용하여 필요한 열만 선택하는 것이 좋습니다.
-동일한 절에서 타임스탬프 열의 이름을 바꿉니다.
+것이 좋습니다 toouse `project` tooselect 정당한 hello 열을 수행 하기 전에 필요한 hello 조인 합니다.
+Hello에 동일한 절 hello 타임 스탬프 열의 이름을 변경 합니다.
 
-## <a name="lethttpsdocsloganalyticsioquerylanguagequerylanguageletstatementhtml-assign-a-result-to-a-variable"></a>[Let](https://docs.loganalytics.io/queryLanguage/query_language_letstatement.html): 변수에 결과 할당
+## <a name="lethttpsdocsloganalyticsioquerylanguagequerylanguageletstatementhtml-assign-a-result-tooa-variable"></a>[Let](https://docs.loganalytics.io/queryLanguage/query_language_letstatement.html): 결과 tooa 변수 할당
 
-`let`을 사용하여 이전 식의 일부를 분리할 수 있습니다. 결과는 변하지 않음:
+사용 하 여 `let` tooseparate hello 이전 식의 hello 부분입니다. hello 결과가 변경 되지 않습니다.
 
 ```AIQL
 
@@ -474,10 +474,10 @@ where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위
 ```
 
 > [!Tip] 
-> Analytics 클라이언트에서 쿼리 부분 사이에 공백 줄을 넣지 마세요. 이 부분을 모두 실행해야 합니다.
+> Hello 분석 클라이언트에서 hello 쿼리의 hello 부분 사이 빈 줄을 넣지 마세요. 해당 내용을 모두 tooexecute 있는지를 확인 합니다.
 >
 
-`toscalar`를 사용하여 단일 표 셀을 값으로 변환합니다.
+사용 하 여 `toscalar` tooconvert 단일 테이블 셀 tooa 값:
 
 ```AIQL
 let topCities =  toscalar (
@@ -493,7 +493,7 @@ requests
 
 ### <a name="functions"></a>함수
 
-*Let*을 사용하여 함수를 정의합니다.
+사용 하 여 *Let* toodefine 함수:
 
 ```AIQL
 
@@ -507,11 +507,11 @@ requests
 ```
 
 ## <a name="accessing-nested-objects"></a>중첩된 개체에 액세스
-중첩된 개체에 쉽게 액세스할 수 있습니다. 예를 들어 예외 스트림에서 다음과 같이 구조화된 개체가 표시될 수 있습니다.
+중첩된 개체에 쉽게 액세스할 수 있습니다. 예를 들어 hello 예외 스트림 다음과 같이 구조화 된 개체를 확인할 수 있습니다.
 
 ![result](./media/app-insights-analytics-tour/520.png)
 
-관심이 있는 속성을 선택하여 평면화할 수 있습니다.
+에 관심이 hello 속성을 선택 하 여 평면화를 할 수 있습니다.
 
 ```AIQL
 
@@ -519,11 +519,11 @@ requests
     | extend method1 = tostring(details[0].parsedStack[1].method)
 ```
 
-결과를 적절한 형식으로 캐스트해야 합니다.
+Toocast hello 결과 toohello 적절 한 형식을 사용 해야 하는 참고 합니다.
 
 
 ## <a name="custom-properties-and-measurements"></a>사용자 지정 속성 및 측정
-응용 프로그램이 이벤트에 대한 [사용자 지정 차원(속성) 및 사용자 지정 측정](app-insights-api-custom-events-metrics.md#properties)에 연결되면 `customDimensions` 및 `customMeasurements` 개체에 표시됩니다.
+응용 프로그램에 연결 되 면 [사용자 지정 차원 (속성) 및 사용자 지정 측정](app-insights-api-custom-events-metrics.md#properties) tooevents, 다음에 해당 오류가 표시 hello `customDimensions` 및 `customMeasurements` 개체입니다.
 
 예를 들어 앱이 다음을 포함한 경우입니다.
 
@@ -536,17 +536,17 @@ requests
     telemetryClient.TrackEvent("myEvent", dimensions, measurements);
 ```
 
-분석에서 이러한 값을 추출하려면:
+tooextract 분석에서 이러한 값:
 
 ```AIQL
 
     customEvents
     | extend p1 = customDimensions.p1,
-      m1 = todouble(customMeasurements.m1) // cast to expected type
+      m1 = todouble(customMeasurements.m1) // cast tooexpected type
 
 ```
 
-사용자 지정 차원이 특정 형식인지 여부를 확인하려면
+tooverify 특정 유형의 사용자 지정 차원 인지 여부.
 
 ```AIQL
 
@@ -556,47 +556,47 @@ requests
 ```
 
 ## <a name="dashboards"></a>대시보드
-가장 중요한 모든 차트와 테이블을 결합하기 위해 결과를 대시보드에 고정할 수 있습니다.
+모든 가장 중요 한 차트와 테이블 함께 순서 toobring에서 결과 tooa 대시보드를 고정할 수 있습니다.
 
-* [Azure 공유 대시보드](app-insights-dashboards.md#share-dashboards): 고정 아이콘을 클릭합니다. 이렇게 하려면 공유 대시보드가 있어야 합니다. Azure Portal에서 대시보드를 열거나 만들고 공유를 클릭합니다.
+* [Azure 공유 대시보드](app-insights-dashboards.md#share-dashboards): hello 고정 아이콘을 클릭 합니다. 이렇게 하려면 공유 대시보드가 있어야 합니다. Hello Azure 포털에서에서 열기 또는 대시보드를 만들 하 고 공유를 클릭 합니다.
 * [Power BI 대시보드](app-insights-export-power-bi.md): 내보내기, Power BI 쿼리를 클릭합니다. 이 대체의 장점은 광범위한 원본의 다른 결과와 함께 쿼리를 표시할 수 있다는 것입니다.
 
 ## <a name="combine-with-imported-data"></a>가져온 데이터와 결합
 
-분석 보고서는 대시보드에서 보기 좋게 표시되지만 좀 더 이해하기 쉬운 형태로 데이터를 변환하고 싶을 수 있습니다. 예를 들어 인증된 사용자는 원격 분석에서 별칭으로 식별됩니다. 결과에 실제 이름을 표시하고 싶을 수 있습니다. 이렇게 하려면 별칭을 실제 이름에 매핑하는 CSV 파일이 필요합니다.
+분석 보고서 hello 대시보드에서 멋진 보이지만 tootranslate hello 데이터 tooa를 원하는 경우에 따라 더 많은 양이 양식입니다. 예를 들어, 인증 된 사용자가 별칭으로 hello 원격 분석에서 식별 됩니다. 결과에 자신의 실제 이름을 tooshow를 원할 것입니다. toodo이 hello 별칭 toohello 실제 이름에서 매핑하는 CSV 파일이 필요 합니다.
 
-데이터 파일을 가져오고 표준 테이블(요청, 예외 등)처럼 사용할 수 있습니다. 자체적으로 쿼리하거나 다른 테이블과 조인합니다. 예를 들어 usermap이라는 테이블이 있고 `realName` 및 `userId` 열이 있으면 요청 원격 분석에서 `user_AuthenticatedId` 필드를 변환하는 데 사용할 수 있습니다.
+데이터 파일을 가져오고 (요청, 예외 및 등) hello 표준 테이블 처럼 사용할 수 있습니다. 자체적으로 쿼리하거나 다른 테이블과 조인합니다. 예를 들어 usermap, 라는 테이블이 있고에 열 `realName` 및 `userId`, tootranslate hello를 사용할 수 있습니다 `user_AuthenticatedId` hello 요청 원격 분석에서 필드:
 
 ```AIQL
 
     requests
     | where notempty(user_AuthenticatedId)
     | project userId = user_AuthenticatedId
-      // get the realName field from the usermap table:
+      // get hello realName field from hello usermap table:
     | join kind=leftouter ( usermap ) on userId
       // count transactions by name:
     | summarize count() by realName
 ```
 
-테이블을 가져오려면 스키마 블레이드의 **기타 데이터 원본** 아래에서 지침에 따라 데이터 샘플을 업로드하여 새 데이터 원본을 추가합니다. 그런 다음 이 정의를 사용하여 테이블을 업로드할 수 있습니다.
+tooimport hello 스키마 블레이드에서 테이블에서 **기타 데이터 소스**, hello 지침 tooadd 새 데이터 원본을 데이터의 샘플을 업로드 하 여 수행 합니다. 그런 다음이 정의 tooupload 테이블을 사용할 수 있습니다.
 
-가져오기 기능은 현재 미리 보기 상태이므로 처음에 "기타 데이터 원본" 아래 "문의처" 링크가 표시됩니다. 이 링크를 사용하여 미리 보기 프로그램에 등록하고 나면 링크가 "새 데이터 원본 추가" 단추로 바뀝니다.
+hello 가져오기 기능은 현재 미리 보기에서 다른 데이터 원본"."에서 "사용자 의견" 링크 처음 되므로 이 toosign toohello 미리 보기 프로그램을 사용 하 고 hello 링크 "새 데이터 소스 추가" 단추는으로 대체 됩니다.
 
 
 ## <a name="tables"></a>테이블
-앱에서 수신하는 원격 분석의 스트림이 여러 테이블을 통해 액세스할 수 있습니다. 각 테이블에 대해 사용할 수 있는 속성의 스키마는 창의 왼쪽에 표시 됩니다.
+응용 프로그램에서 수신 하는 원격 분석의 hello 스트림이 여러 테이블을 통해 액세스할 수 있습니다. 각 테이블에 대해 사용할 수 있는 속성의 hello 스키마 hello 창의 hello 왼쪽에 표시 됩니다.
 
 ### <a name="requests-table"></a>요청 테이블
-웹 앱 및 페이지 이름별 세그먼트에 대 한 HTTP 요청 수 계산:
+Count HTTP 요청 tooyour web app 및 페이지 이름으로 세그먼트:
 
 ![이름별로 분할된 요청 수 계산](./media/app-insights-analytics-tour/analytics-count-requests.png)
 
-가장 많이 실패하는 요청 찾기:
+가장에 실패 하는 hello 요청을 찾습니다.
 
 ![이름별로 분할된 요청 수 계산](./media/app-insights-analytics-tour/analytics-failed-requests.png)
 
 ### <a name="custom-events-table"></a>사용자 지정 이벤트 테이블
-사용자 고유의 이벤트를 보내기 위해 [Trackevent()](app-insights-api-custom-events-metrics.md#trackevent)를 사용하면 이 테이블에서 이벤트를 읽을 수 있습니다.
+사용 하는 경우 [의 trackevent ()](app-insights-api-custom-events-metrics.md#trackevent) toosend 사용자 고유의 이벤트를 읽을 수 있습니다이 테이블에서 합니다.
 
 응용 프로그램 코드에 이러한 줄을 포함하는 사례:
 
@@ -609,66 +609,66 @@ requests
            {"querytime", totalTime}})
 ```
 
-이러한 이벤트의 빈도 표시:
+이러한 이벤트의 hello 빈도 표시 합니다.
 
 ![사용자 지정 이벤트의 표시 속도](./media/app-insights-analytics-tour/analytics-custom-events-rate.png)
 
-측정값 및 차원을 이벤트에서 추출:
+측정값 및 차원을 hello 이벤트에서 추출:
 
 ![사용자 지정 이벤트의 표시 속도](./media/app-insights-analytics-tour/analytics-custom-events-dimensions.png)
 
 ### <a name="custom-metrics-table"></a>사용자 지정 메트릭 테이블
-사용자 지정 메트릭 값을 보내기 위해 [TrackMetric()](app-insights-api-custom-events-metrics.md#trackmetric)을 사용하면 **customMetrics** 스트림에 결과가 나타납니다. 예:  
+사용 중인 경우 [trackmetric ()](app-insights-api-custom-events-metrics.md#trackmetric) toosend 메트릭 값을 직접 hello에서 그 결과 확인할 수 있습니다 **customMetrics** 스트림 합니다. 예:  
 
 ![Application Insights 분석의 사용자 지정 메트릭](./media/app-insights-analytics-tour/analytics-custom-metrics.png)
 
 > [!NOTE]
-> [메트릭 탐색기](app-insights-metrics-explorer.md)에서 원격 분석의 모든 형식에 연결된 모든 사용자 지정 측정값은 `TrackMetric()`을(를) 사용하여 전송되는 메트릭과 함께 메트릭 블레이드에 표시됩니다. 하지만 분석에서 사용자 지정 측정은 이벤트, 요청 등 수행된 형식의 원격 분석에 연결되고 TrackMetric에 의해 전송된 메트릭은 해당 스트림에 표시됩니다.
+> [메트릭 탐색기](app-insights-metrics-explorer.md), 연결 된 tooany 유형의 원격 분석 메트릭 사용 하 여 보낸 함께 hello 메트릭 블레이드에 함께 표시 하는 모든 사용자 지정 측정 `TrackMetric()`합니다. 분석에서 사용자 지정 측정은 여전히 하지만 연결 toowhichever 유형의 원격 분석 자신의 스트림의 TrackMetric 전송한 메트릭을 표시 하는 동안 (이벤트 또는 요청, 및 등)에 수행 되었습니다.
 >
 >
 
 ### <a name="performance-counters-table"></a>성능 카운터 테이블
-[성능 카운터](app-insights-performance-counters.md)는 CPU, 메모리, 네트워크 사용률 등 앱에 대한 기본 시스템 메트릭을 보여 줍니다. 사용자 지정 카운터를 포함하여 추가 카운터를 보내도록 SDK를 구성할 수 있습니다.
+[성능 카운터](app-insights-performance-counters.md)는 CPU, 메모리, 네트워크 사용률 등 앱에 대한 기본 시스템 메트릭을 보여 줍니다. Hello SDK toosend 추가 카운터를 사용자 지정 카운터를 포함 하 여 구성할 수 있습니다.
 
-**performanceCounters** 스키마는 `category`, `counter` 이름 및 각 성능 카운터의 `instance` 이름을 노출합니다. 카운터 인스턴스 이름은 일부 성능 카운터에만 적용할 수 있으며 일반적으로 개수와 관련된 프로세스의 이름을 나타냅니다. 각 응용 프로그램에 대한 원격 분석 데이터에는 해당 응용 프로그램에 대한 카운터에만 표시됩니다. 예를 들면 어떤 카운터를 사용할 수 있는지 알아보기:
+hello **performanceCounters** 스키마는 hello 노출 `category`, `counter` 이름 및 `instance` 각 성능 카운터의 이름입니다. 카운터 인스턴스 이름이 해당 toosome 성능 카운터만 되며 일반적으로 hello 프로세스 toowhich hello 수의 hello 이름을 연결 됨을 나타냅니다. 각 응용 프로그램에 대 한 hello 원격 분석에서 해당 응용 프로그램에 대 한 hello 카운터에만 표시 됩니다. 예를 들어 toosee 어떤 카운터를 사용할 수 있습니다.
 
 ![Application Insights 분석의 성능 카운터](./media/app-insights-analytics-tour/analytics-performance-counters.png)
 
-선택한 기간 동안 사용 가능한 메모리의 차트를 가져오려면:
+hello 통해 사용 가능한 메모리의 차트 tooget 기간 선택:
 
 ![Application Insights 분석의 메모리 시간 차트](./media/app-insights-analytics-tour/analytics-available-memory.png)
 
-다른 원격 분석과 마찬가지로, **performanceCounters**에도 앱이 실행되는 호스트 컴퓨터의 id를 나타내는 열 `cloud_RoleInstance`이 있습니다. 예를 들어, 서로 다른 컴퓨터에서 앱의 성능을 비교하려면:
+마찬가지로 다른 원격 분석 **performanceCounters** 열도 `cloud_RoleInstance` 앱 실행 되 고 있는 hello 호스트 컴퓨터의 hello id를 나타내는입니다. 예를 들어 toocompare hello 응용 프로그램의 성능을 hello 서로 다른 컴퓨터에서:
 
 ![Application Insights 분석에서 역할 인스턴스에 의해 분할된 성능](./media/app-insights-analytics-tour/analytics-metrics-role-instance.png)
 
 ### <a name="exceptions-table"></a>예외 테이블
 [앱에서 보고된 예외](app-insights-asp-net-exceptions.md)는 이 테이블에서 사용할 수 있습니다.
 
-예외가 발생하는 경우 앱이 처리하는 HTTP 요청을 찾으려면 operation_Id에 참여합니다.
+toofind hello hello 예외가 발생 했을 때 앱을 처리 하는 HTTP 요청, operation_Id에 조인 합니다.
 
 ![Operation_Id에 요청을 사용하여 예외를 조인](./media/app-insights-analytics-tour/analytics-exception-request.png)
 
 ### <a name="browser-timings-table"></a>브라우저 타이밍 테이블
 `browserTimings`은 사용자의 브라우저에서 수집된 페이지 로드 데이터를 보여 줍니다.
 
-이러한 메트릭을 보려면 [클라이언트쪽 원격 분석을 위해 앱을 설정](app-insights-javascript.md)합니다.
+[클라이언트 쪽 원격 분석을 위한 응용 프로그램 설정](app-insights-javascript.md) 의 순서로 toosee 이러한 메트릭을 합니다.
 
-스키마에 [페이지 로드 프로세스의 여러 단계의 길이를 나타내는 메트릭](app-insights-javascript.md#page-load-performance)이 포함됩니다. (사용자가 한 페이지를 읽는 시간의 길이 나타내지 않습니다.)  
+hello 스키마에는 [hello 길이의 hello 페이지 로드 프로세스의 여러 단계를 나타내는 메트릭](app-insights-javascript.md#page-load-performance)합니다. (사용자가 페이지를 읽을 시간의 hello 길이 나타냅니다 하지 않습니다.)  
 
-서로 다른 페이지의 popularities 표시하고 각 페이지에 대한 시간을 로드:
+서로 다른 페이지의 hello popularities를 표시 하 고 각 페이지에 대 한 시간 로드:
 
 ![Analytics에서 페이지 로드 시간](./media/app-insights-analytics-tour/analytics-page-load.png)
 
 ### <a name="availability-results-table"></a>가용성 결과 테이블
-`availabilityResults`은 [웹 테스트](app-insights-monitor-web-app-availability.md) 결과를 표시합니다. 각 테스트 위치에서 테스트가 실행될 때마다 개별적으로 보고됩니다.
+`availabilityResults`표시의 결과 hello 프로그램 [웹 테스트](app-insights-monitor-web-app-availability.md)합니다. 각 테스트 위치에서 테스트가 실행될 때마다 개별적으로 보고됩니다.
 
 ![Analytics에서 페이지 로드 시간](./media/app-insights-analytics-tour/analytics-availability.png)
 
 ### <a name="dependencies-table"></a>종속성 테이블
-앱이 데이터베이스 및 REST Api에 대해 수행한 호출과 TrackDependency()에 대한 다른 호출의 결과가 포함됩니다. 또한 브라우저에서 생성된 AJAX 호출을 포함합니다.
+호출의 결과 포함 tooTrackDependency() 호출 toodatabases 및 REST Api 및 기타 앱이 한다고 합니다. 또한 hello 브라우저에서 AJAX 호출을 포함 합니다.
 
-브라우저의 AJAX 호출:
+Hello 브라우저에서 AJAX 호출:
 
 ```AIQL
 
@@ -676,7 +676,7 @@ requests
     | take 10
 ```
 
-서버의 종속성 호출:
+종속성 호출 hello 서버에서:
 
 ```AIQL
 
@@ -684,10 +684,10 @@ requests
     | take 10
 ```
 
-Application Insights 에이전트가 설치되지 않은 경우 서버 쪽 종속성 결과에는 항상 `success==False`가 표시됩니다. 그러나 다른 데이터는 올바릅니다.
+서버 쪽 종속성 결과 항상 표시 `success==False` hello Application Insights 에이전트는 설치 되지 않습니다. 그러나 hello 다른 데이터 올바릅니다.
 
 ### <a name="traces-table"></a>추적 테이블
-Tracktrace()를 사용하여 앱에서 보낸 원격 분석 데이터나 [다른 로깅 프레임워크](app-insights-asp-net-trace-logs.md)가 포함됩니다.
+Tracktrace ()를 사용 하 여 앱에서 보낸 hello 원격 분석을 포함 또는 [다른 로깅 프레임 워크](app-insights-asp-net-trace-logs.md)합니다.
 
 ## <a name="video"></a>비디오 
 
@@ -700,6 +700,6 @@ Tracktrace()를 사용하여 앱에서 보낸 원격 분석 데이터나 [다른
 
 ## <a name="next-steps"></a>다음 단계
 * [분석 언어 참조](app-insights-analytics-reference.md)
-* [SQL 사용자 치트 시트](https://aka.ms/sql-analytics)에서는 가장 일반적인 코드를 변환합니다.
+* [SQL-사용자의 치트 시트](https://aka.ms/sql-analytics) hello 가장 일반적인 구문으로 변환 합니다.
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]

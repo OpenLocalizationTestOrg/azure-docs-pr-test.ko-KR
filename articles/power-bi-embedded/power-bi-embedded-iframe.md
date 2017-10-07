@@ -1,6 +1,6 @@
 ---
-title: "REST에서 Power BI Embedded를 사용하는 방법 | Microsoft Docs"
-description: "REST에서 Power BI Embedded를 사용하는 방법 알아보기  "
+title: "Power BI 포함 rest aaaHow toouse | Microsoft Docs"
+description: "자세한 내용은 방법 toouse rest Power BI 포함 "
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 02/06/2017
 ms.author: asaxton
-ms.openlocfilehash: 31624b9d15772a4f08cf013ac713b3aa636acfca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 98057724e60ba868f9c93de8c50383569eb8852d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-power-bi-embedded-with-rest"></a>REST에서 Power BI Embedded를 사용하는 방법
+# <a name="how-toouse-power-bi-embedded-with-rest"></a>어떻게 toouse rest Power BI 포함
 
 ## <a name="power-bi-embedded-what-it-is-and-what-its-for"></a>Power BI Embedded: 정의 및 용도
 
-Power BI Embedded의 개요는 공식적인 [Power BI Embedded 사이트](https://azure.microsoft.com/services/power-bi-embedded/)에 설명되어 있으나 REST에서 사용하는 방법을 자세히 살펴보기 전에 간단히 확인해보겠습니다.
+Power BI 포함에 대 한 개요는 hello 공식에 설명 되어 [Power BI 포함 사이트](https://azure.microsoft.com/services/power-bi-embedded/), 살펴보겠습니다 빠른 REST 사용에 대 한 세부 정보 hello에 들어가기 전에 하지만 합니다.
 
-실제로를 상당히 간단합니다. 응용 프로그램 내에서 [Power BI](https://powerbi.microsoft.com)의 동적 데이터 시각화를 사용하려고 할 수 있습니다.
+실제로를 상당히 간단합니다. toouse hello 동적 데이터 시각화의 경우가 [Power BI](https://powerbi.microsoft.com) 사용자 응용 프로그램에서 합니다.
 
-대부분의 사용자 지정 응용 프로그램은 반드시 자체 조직의 사용자가 아닌 자신의 고객에게 데이터를 전달해야 합니다. 예를 들어 회사 A와 B 둘 다에게 서비스를 제공하는 경우 회사 A의 사용자에게는 자신의 회사 A의 데이터만 보입니다. 즉, 이러한 전달을 위해서는 다중 테넌트가 필요합니다.
+가 자신의 조직에서 반드시 사용자가 자신의 고객에 대 한 toodeliver hello 데이터가 있어야 하는 대부분의 사용자 지정 응용 프로그램. 예를 들어, 회사 A와 b에 대 한 몇 가지 서비스를 제공 하 고, 회사 A의에서 사용자가 해야 볼 데이터 자신의 회사 A에 대 한 즉, 다중 테 넌 트 hello hello 배달 필요 합니다.
 
-사용자 지정 응용 프로그램은 자체 인증 방법(예: 폼 인증, 기본 인증 등)을 제공할 수도 있습니다. 그러면 포함 솔루션은 이러한 기존 인증 방법과 공동으로 안전하게 작동될 수 있습니다. 또한 사용자들이 Power BI 구독을 추가로 구입하거나 라이선스가 없는 상태로 해당 ISV 응용 프로그램을 사용할 수 있도록 해야 합니다.
+hello 사용자 지정 응용 프로그램은 자체 인증 방법을 폼 인증, 기본 인증 등도 제공 될 수 있습니다... 그런 다음 솔루션을 포함 하는 hello 해야 협력이 기존 인증 방법을 안전 하 게 합니다. 사용자가 toobe 수 toouse에 필요한 것도 추가 구매 하거나 Power BI 구독 라이선스는 ISV 응용 프로그램 없이 hello 합니다.
 
- **Power BI Embedded**는 정확하게 이러한 종류의 사용자 지정 시나리오를 위한 것입니다. 지금까지 방법을 간단히 살펴보았으므로 좀 더 자세한 부분을 확인해 보겠습니다.
+ **Power BI Embedded**는 정확하게 이러한 종류의 사용자 지정 시나리오를 위한 것입니다. 따라서 해당 간략 한 소개 hello 방식을 만들었으므로 이제 해당 보겠습니다가 일부 세부 정보를
 
-.NET \(C#) 또는 Node.js SDK를 사용하여 Power BI Embedded로 응용 프로그램을 손쉽게 빌드할 수 있습니다. 그러나 이 문서에서는 SDK 없이 Power BI의 HTTP 흐름\(AuthN 포함)에 대해 설명하려고 합니다. 이 흐름을 이해하면 **프로그래밍 언어를 사용하지 않고** 응용 프로그램을 빌드할 수 있으며 Power BI Embedded의 기본 사항을 깊이 있게 이해할 수 있게 됩니다.
+Hello.NET을 사용할 수 있습니다 \(C#) 또는 Node.js SDK, tooeasily Power BI embedded 응용 프로그램을 작성 합니다. 그러나 이 문서에서는 SDK 없이 Power BI의 HTTP 흐름\(AuthN 포함)에 대해 설명하려고 합니다. 이 흐름을 이해, 응용 프로그램을 빌드할 수 **프로그래밍 언어와**, Power BI 포함의 hello 핵심 요소 깊이 이해할 수 있습니다.
 
 ## <a name="create-power-bi-workspace-collection-and-get-access-key-provisioning"></a>Power BI 작업 영역 컬렉션 만들기 및 선택키 가져오기\(프로비전)
 
-Power BI Embedded는 Azure 서비스 중 하나입니다. Azure Portal을 사용하는 ISV에게만 사용 요금이 부과되고\(시간당 사용자 세션), 보고서를 보는 사용자에게는 요금이 부과되지 않고 Azure 구독조차 필요하지 않습니다.
-응용 프로그램 개발을 시작하기 전에 Azure 포털을 사용하여 **Power BI 작업 영역 컬렉션** 을 만들어야 합니다.
+Power BI 포함 Azure 서비스는 hello 중 하나입니다. 유일한 hello Azure 포털을 사용 하는 ISV 사용 요금에 대 한 요금이 부과 됩니다 \(사용자 세션당 매시간), hello 사용자에 게 청구 또는 짝수 뷰 hello 보고서 수 없는 Azure 구독이 필요 합니다.
+이 응용 프로그램 개발을 시작 하기 전에 hello 만들어야 **Power BI 작업 영역 컬렉션** Azure 포털을 사용 하 여 합니다.
 
-Power BI Embedded의 각 작업 영역은 각 고객의 작업 영역(테넌트)이며, 각 작업 영역 컬렉션에 여러 작업 영역을 추가할 수 있습니다. 동일한 선택키가 각 작업 영역 컬렉션에서 사용됩니다. 실제로 작업 영역 컬렉션은 Power BI Embedded에 대한 보안 경계입니다.
+Power BI 포함의 각 작업 영역은 각 고객 (테 넌 트)에 대 한 hello 작업 영역 및 각 작업 영역 컬렉션에서 작업 영역을 추가할 수 있습니다. 각 작업 영역 컬렉션에서 동일한 액세스 키를 사용 하는 번호입니다. 실제로 hello 작업 영역 컬렉션은 Power BI 포함에 대 한 hello 보안 경계입니다.
 
 ![](media/power-bi-embedded-iframe/create-workspace.png)
 
-작업 영역 컬렉션을 다 만들면 Azure 포털에서 선택키를 복사합니다.
+Hello 작업 영역 컬렉션 만들기를 완료 되 면 Azure 포털에서 hello 액세스 키를 복사 합니다.
 
 ![](media/power-bi-embedded-iframe/copy-access-key.png)
 
 > [!NOTE]
-> 또한 작업 영역 컬렉션을 프로비전하고 REST API를 통해 선택키를 가져올 수 있습니다. 자세한 내용은 [Power BI 리소스 공급자 API](https://msdn.microsoft.com/library/azure/mt712306.aspx)를 참조하세요.
+> 또한 hello 작업 영역 컬렉션을 프로 비전 하 고 REST API를 통해 액세스 키를 가져올 수 있습니다. toolearn 더 참조 [Power BI 리소스 공급자 Api](https://msdn.microsoft.com/library/azure/mt712306.aspx)합니다.
 
 ## <a name="create-pbix-file-with-power-bi-desktop"></a>Power BI Desktop으로 .pbix 파일 만들기
 
-다음으로 포함할 데이터 연결 및 보고서를 만들어야 합니다.
+다음으로 hello 데이터 연결 및 포함 된 보고서 toobe 만들어야 합니다.
 이 작업의 경우 프로그래밍 또는 코드는 없습니다. Power BI Desktop만 사용합니다.
-이 문서에서 Power BI Desktop을 사용하는 자세한 방법을 다루지는 않습니다. 이에 대한 추가 도움말이 필요한 경우 [Power BI Desktop 시작](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)을 참조하세요. 예제에서는 [소매점 분석 샘플](https://powerbi.microsoft.com/documentation/powerbi-sample-datasets/)을 사용하게 됩니다.
+방법에 대 한 세부 정보 hello 일일이 다루지는 않겠습니다.에서는이 문서에서는 Power BI Desktop toouse 합니다. 이에 대한 추가 도움말이 필요한 경우 [Power BI Desktop 시작](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)을 참조하세요. 이 예에서는 방금에서는 hello [소매 분석 샘플](https://powerbi.microsoft.com/documentation/powerbi-sample-datasets/)합니다.
 
 ![](media/power-bi-embedded-iframe/power-bi-desktop-1.png)
 
 ## <a name="create-a-power-bi-workspace"></a>Power BI 작업 영역 만들기
 
-이제 프로비전 작업이 모두 완료되었으므로 REST API를 통해 작업 영역 컬렉션에서 고객의 작업 영역을 만들어 보겠습니다. 다음 HTTP POST 요청(REST)은 기존 작업 영역 컬렉션에 새 작업 영역을 만듭니다. 이것은 [POST 작업 영역 API](https://msdn.microsoft.com/library/azure/mt711503.aspx)입니다. 이 예제에서 작업 영역 컬렉션 이름은 **mypbiapp**입니다. 앞서 복사한 선택키를 **AppKey**로 설정합니다. 이 과정은 매우 간단한 인증입니다.
+Hello를 프로 비전 작업이 모두 완료 했으므로 이제 시작 하겠습니다 REST Api를 통해 hello 작업 영역 컬렉션에서 고객의 작업 영역 만들기. hello 다음 HTTP POST 요청 (REST) 만드는 것 hello 새 작업 영역에서 기존 작업 영역 컬렉션입니다. 이 hello [POST 작업 영역 API](https://msdn.microsoft.com/library/azure/mt711503.aspx)합니다. 예에서 hello 작업 영역 컬렉션 이름이 **mypbiapp**합니다. 에서는 이전에 복사한 hello 액세스 키를 설정으로 **AppKey**합니다. 이 과정은 매우 간단한 인증입니다.
 
 **HTTP 요청**
 
@@ -87,13 +87,13 @@ RequestId: 4220d385-2fb3-406b-8901-4ebe11a5f6da
 }
 ```
 
-반환된 **workspaceId** 는 후속 API 호출에 사용됩니다. 응용 프로그램은 이 값을 유지해야 합니다.
+반환 된 hello **workspaceId** hello 후속 API 호출 다음에 사용 됩니다. 응용 프로그램은 이 값을 유지해야 합니다.
 
-## <a name="import-pbix-file-into-the-workspace"></a>작업 영역으로 .pbix 파일 가져오기
+## <a name="import-pbix-file-into-hello-workspace"></a>Hello 작업 영역 크기의.pbix 파일 가져오기
 
-작업 영역의 각 보고서는 데이터 집합\(데이터 원본 설정 포함)이 있는 단일 Power BI Desktop 파일과 일치합니다. 아래 코드에 표시된 대로 .pbix 파일을 작업 영역으로 가져올 수 있습니다. 여기에서 볼 수 있듯이 http에서 MIME 다중 파트를 사용하여 .pbix 파일의 이진 내용을 업로드할 수 있습니다.
+데이터 집합과 tooa 단일 Power BI Desktop 파일을 해당 하는 각 보고서 작업 영역에서 \(데이터 원본 설정 포함). Hello 코드 아래에 나와 있는 것 처럼 취급.pbix 파일 toohello 작업에 가져올 수 있습니다. 볼 수 있듯이 hello 이진 MIME 다중 파트를 사용 하 여 http에서 하는.pbix 파일을 업로드할 수 있습니다.
 
-URI 조각 **32960a09-6366-4208-a8bb-9e0678cdbb9d**는 workspaceId이고 쿼리 매개 변수 **datasetDisplayName**은 만들 데이터 집합 이름입니다. 만든 데이터 집합에서 가져온 데이터, 데이터 원본에 대한 포인터 등의 모든 데이터 관련 아티팩트는 .pbix 파일에 포함됩니다.
+hello uri 조각 **32960a09-6366-4208-a8bb-9e0678cdbb9d** hello workspaceId 및 쿼리 매개 변수는 **datasetDisplayName** hello 데이터 집합 이름 toocreate 됩니다. 관련 된 모든 데이터를 보유 하는 hello 만든 데이터 집합에서 가져온된 데이터를 같은 크기의.pbix 파일 아티팩트 hello 포인터 toohello 데이터 원본 등...
 
 ```
 POST https://api.powerbi.com/v1.0/collections/mypbiapp/workspaces/32960a09-6366-4208-a8bb-9e0678cdbb9d/imports?datasetDisplayName=mydataset01
@@ -103,11 +103,11 @@ Content-Type: multipart/form-data; boundary="A300testx"
 --A300testx
 Content-Disposition: form-data
 
-{the content (binary) of .pbix file}
+{hello content (binary) of .pbix file}
 --A300testx--
 ```
 
-이 가져오기 작업은 잠시 동안 실행될 수 있습니다. 완료되면 응용 프로그램은 가져오기 ID를 사용하여 작업 상태를 요청할 수 있습니다. 이 예제에서 가져오기 ID는 **4eec64dd-533b-47c3-a72c-6508ad854659**입니다.
+이 가져오기 작업은 잠시 동안 실행될 수 있습니다. 완료 되 면 응용 프로그램 가져오기 id를 사용 하 여 hello 작업 상태를 요청할 수 있습니다. 이 예에서 hello 가져오기 id는 **4eec64dd-533b-47c3-a72c-6508ad854659**합니다.
 
 ```
 HTTP/1.1 202 Accepted
@@ -118,14 +118,14 @@ RequestId: 658bd6b4-b68d-4ec3-8818-2a94266dc220
 {"id":"4eec64dd-533b-47c3-a72c-6508ad854659"}
 ```
 
-다음은 이 가져오기 ID를 사용하여 상태를 요청합니다.
+hello 다음이 가져오기 id를 사용 하 여 상태 요청:
 
 ```
 GET https://api.powerbi.com/v1.0/collections/mypbiapp/workspaces/32960a09-6366-4208-a8bb-9e0678cdbb9d/imports/4eec64dd-533b-47c3-a72c-6508ad854659
 Authorization: AppKey MpaUgrTv5e...
 ```
 
-작업이 완료되지 않으면 HTTP 응답은 다음과 같을 수 있습니다.
+Hello 작업 완료 없는 경우 다음과 같이 hello HTTP 응답 수 있습니다.
 
 ```
 HTTP/1.1 200 OK
@@ -141,7 +141,7 @@ RequestId: 614a13a5-4de7-43e8-83c9-9cd225535136
 }
 ```
 
-작업이 완료되면 HTTP 응답은 다음과 같을 수 있습니다.
+Hello 작업이 완료 되 면 hello HTTP 응답을 다음과 같이 더 많은 수 있습니다.
 
 ```
 HTTP/1.1 200 OK
@@ -176,9 +176,9 @@ RequestId: eb2c5a85-4d7d-4cc2-b0aa-0bafee4b1606
 
 ## <a name="data-source-connectivity-and-multi-tenancy-of-data"></a>데이터 원본 연결\(및 데이터의 다중 테넌트)
 
-.pbix 파일의 거의 모든 아티팩트를 작업 영역으로 가져오지만 데이터 원본에 대한 자격 증명은 가져오지 않습니다. 결과적으로 **DirectQuery 모드**를 사용할 경우 포함된 보고서가 올바르게 표시될 수 없습니다. 하지만 **가져오기 모드**를 사용할 때는 기존에 가져온 데이터를 사용하여 보고서를 볼 수 있습니다. 이 경우 REST 호출을 통해 다음 단계를 사용하여 자격 증명을 설정해야 합니다.
+이 작업 영역으로 가져옵니다.pbix 파일의 hello 아티팩트의 거의 모든 데이터 원본에 대 한 자격 증명 hello는 없습니다. 결과적으로 사용 하는 경우 **DirectQuery 모드**, hello 포함 된 보고서를 표시할 수 없습니다 올바르게 합니다. 하지만 사용 하는 경우 **가져오기 모드**, hello 기존 가져온된 데이터를 사용 하 여 hello 보고서를 볼 수 있습니다. 이 경우 hello REST 호출을 통해 다음 단계를 사용 하 여 hello 자격 증명을 설정 해야 합니다.
 
-먼저 게이트웨이 데이터 원본을 가져와야 합니다. 데이터 집합 **ID** 는 이전에 반환된 ID입니다.
+첫째, 우리 hello 게이트웨이 데이터 소스를 가져와야 합니다. 회원님의 hello dataset **id** 는 hello 이전에 반환 된 id입니다.
 
 **HTTP 요청**
 
@@ -207,7 +207,7 @@ RequestId: 574b0b18-a6fa-46a6-826c-e65840cf6e15
 }
 ```
 
-반환된 게이트웨이 ID와 데이터 원본 ID를 사용하여\(반환된 결과의 이전 **gatewayId** 및 **id** 참조) 이 데이터 원본의 자격 증명을 다음과 같이 변경할 수 있습니다.
+게이트웨이 id와 데이터 소스 id를 반환 된 hello를 사용 하 여 \(hello 이전 참조 **gatewayId** 및 **id** hello에 결과 반환 했습니다.),이 데이터 원본의 자격 증명 hello 다음과 같이 변경할 수 있습니다.
 
 **HTTP 요청**
 
@@ -233,9 +233,9 @@ Content-Type: application/octet-stream
 RequestId: 0e533c13-266a-4a9d-8718-fdad90391099
 ```
 
-프로덕션 환경에서 REST API를 사용하여 작업 영역마다 다른 연결 문자열을 설정할 수도 있습니다. \(즉, 고객별로 데이터베이스를 분리할 수 있음).
+프로덕션 환경에서 REST API를 사용 하 여 각 작업 영역에 대 한 hello 다른 연결 문자열도 설정할 수 있습니다. \(즉, 우리 구분할 수 hello 데이터베이스 각 고객에 대 한.)
 
-다음에서는 REST를 통해 데이터 원본의 연결 문자열을 변경합니다.
+hello 다음 REST 통해 데이터 원본의 연결 문자열 hello 변경 됩니다.
 
 ```
 POST https://api.powerbi.com/v1.0/collections/mypbiapp/workspaces/32960a09-6366-4208-a8bb-9e0678cdbb9d/datasets/458e0451-7215-4029-80b3-9627bf3417b0/Default.SetAllConnections
@@ -247,25 +247,25 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-또는 Power BI Embedded에서 행 수준 보안을 사용하고 한 보고서에서 각 사용자의 데이터를 구분할 수 있습니다. 결과적으로 .pbix\(UI 등)는 동일하지만 데이터 원본은 다른 각 고객 보고서를 프로비전할 수 있습니다.
+또는, 행 수준 보안 Power BI 포함에 사용 하 고 한 보고서에서 각 사용자에 대 한 hello 데이터를 구분할 수 있습니다. 결과적으로 .pbix\(UI 등)는 동일하지만 데이터 원본은 다른 각 고객 보고서를 프로비전할 수 있습니다.
 
 > [!NOTE]
-> **DirectQuery 모드** 대신 **가져오기 모드**를 사용하는 경우 API를 통해 모델을 새로 고칠 수 없습니다. 또한 Power BI 게이트웨이 통한 온-프레미스 데이터 원본은 아직 Power BI Embedded에서 지원되지 않습니다. 그러나 [Power BI 블로그](https://powerbi.microsoft.com/blog/) 에서 새로운 기능 및 앞으로 제공될 기능을 확인하는 것도 유용할 것입니다.
+> 사용 중인 경우 **가져오기 모드** 대신 **DirectQuery 모드**는 API 통해 방법은 toorefresh 모델이 없습니다. 또한 Power BI 게이트웨이 통한 온-프레미스 데이터 원본은 아직 Power BI Embedded에서 지원되지 않습니다. 그러나 실제로 합니다 tookeep hello [Power BI 블로그](https://powerbi.microsoft.com/blog/) 새로운 기능 및 향후 예정 사항 나중에 해제 합니다.
 
 ## <a name="authentication-and-hosting-embedding-reports-in-our-web-page"></a>웹 페이지의 인증 및 보고서 호스트(포함)
 
-이전 REST API에서는 선택키 **AppKey** 자체를 권한 부여 헤더로 사용할 수 있습니다. 이러한 호출은 백 엔드 서버 쪽에서 처리될 수 있으므로 안전합니다.
+이전 REST API를 hello, hello 액세스 키를 사용할 수 **AppKey** hello authorization 헤더로 자체입니다. Hello 백 엔드 서버 쪽에서 이러한 호출을 처리할 수 있습니다, 때문에 안전 합니다.
 
-그러나 웹 페이지에 보고서를 포함할 경우 이러한 종류의 보안 정보는 JavaScript를 사용하여 처리됩니다\(프런트 엔드). 그런 다음 권한 부여 헤더 값을 보호해야 합니다. 악의적인 사용자나 악의적인 코드가 선택키를 찾으면 이 키를 사용하여 모든 작업을 호출할 수 있습니다.
+하지만 이러한 종류의 보안 정보 JavaScript를 사용 하 여 처리 됩니다 품질 웹 페이지에 hello 보고서를 포함 했습니다 \(프런트 엔드). 그런 다음 hello 권한 부여 헤더 값은 보호 되어야 합니다. 악의적인 사용자나 악의적인 코드가 선택키를 찾으면 이 키를 사용하여 모든 작업을 호출할 수 있습니다.
 
-따라서 웹 페이지에 보고서를 포함할 경우 선택키 **AppKey**대신 계산된 토큰을 사용해야 합니다. 응용 프로그램은 클레임 및 계산된 디지털 서명으로 구성된 OAuth JWT\(JSON Web Token)를 만들어야 합니다. 아래와 같이 이 OAuth JWT는 점으로 구분된 인코딩된 문자열 토큰입니다.
+선택 키 대신 계산된 토큰 hello를 사용 해야 품질 웹 페이지에 hello 보고서를 포함 했습니다 **AppKey**합니다. 응용 프로그램이 OAuth Json 웹 토큰 hello 만들어야 \(JWT) hello 클레임와 계산 된 디지털 서명이 hello 구성 된 합니다. 아래와 같이 이 OAuth JWT는 점으로 구분된 인코딩된 문자열 토큰입니다.
 
 ![](media/power-bi-embedded-iframe/oauth-jwt.png)
 
-먼저 나중에 서명되는 입력 값을 준비해야 합니다. 이 값은 다음 json의 base64 url 인코딩(rfc4648) 문자열이며, 점\(.) 문자로 구분됩니다. 나중에 보고서 ID를 가져오는 방법이 설명될 것입니다.
+첫째, 나중에 서명이 있는 hello 입력된 값을 준비 해야 합니다. 이 값은 hello base64 url 인코딩된 (rfc4648) 문자열의 json, 다음 hello 및 hello 점으로 구분 된 이러한 \(.) 문자. 이상에서는 tooget 보고서 id hello 하는 방법을 설명 합니다.
 
 > [!NOTE]
-> Power BI Embedded에서 RLS(행 수준 보안)를 사용하려는 경우 클레임에 **사용자 이름** 및 **역할**도 지정해야 합니다.
+> 경우 원하는 toouse Power BI embedded 행 수준 보안 (RLS)도 지정 해야 **username** 및 **역할** hello 클레임에서입니다.
 
 ```
 {
@@ -287,9 +287,9 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-다음으로, SHA256 알고리즘에 따라 base64로 인코딩된 HMAC\(서명) 문자열을 만들어야 합니다. 이 서명된 입력 값은 이전 문자열입니다.
+다음으로, HMAC의 base64 인코딩 문자열 hello 만들어야 \(hello 서명) SHA256 알고리즘을 사용 합니다. 이 지정 된 입력된 값은 hello 이전 문자열입니다.
 
-마지막으로, 점\(.) 문자를 사용하여 입력 값 및 서명 문자열을 결합해야 합니다. 완료된 문자열은 보고서 포함을 위한 앱 토큰입니다. 악의적인 사용자가 앱 토큰을 발견해도 원래 선택키를 가져올 수는 없습니다. 이 앱 토큰은 신속하게 만료됩니다.
+마지막으로, hello 입력된 값과 기간을 사용 하 여 서명 문자열을 결합 해야 우리 \(.) 문자. 완료 하는 hello 문자열은 보고서 포함 하는 hello에 hello 앱 토큰입니다. Hello 앱 토큰 악의적인 사용자가 발견 되는 경우에 hello 원래 선택 키를 가져올 수 없습니다. 이 앱 토큰은 신속하게 만료됩니다.
 
 이러한 단계에 대한 PHP 예제는 다음과 같습니다.
 
@@ -324,7 +324,7 @@ $hash = hash_hmac("sha256",
     true);
 $sig = rfc4648_base64_encode($hash);
 
-// 4. show result (which is the apptoken)
+// 4. show result (which is hello apptoken)
 $apptoken = $inputval . "." . $sig;
 echo($apptoken);
 
@@ -340,9 +340,9 @@ function rfc4648_base64_encode($arg) {
 ?>
 ```
 
-## <a name="finally-embed-the-report-into-the-web-page"></a>마지막으로 웹 페이지에 보고서를 포함합니다.
+## <a name="finally-embed-hello-report-into-hello-web-page"></a>마지막으로 hello 보고서 hello 웹 페이지에 포함
 
-보고서를 포함하기 위해 다음 REST API를 사용하여 포함 URL과 보고서 **ID** 를 가져와야 합니다.
+보고서를 포함 하는 것에 대 한 hello 가져와서 url 및 보고서에 포함할 **id** hello 다음 REST API를 사용 하 여 합니다.
 
 **HTTP 요청**
 
@@ -372,11 +372,11 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 }
 ```
 
-이전 앱 토큰을 사용하여 웹앱에 보고서를 포함할 수 있습니다.
-다음 샘플 코드를 보면 첫 번째 부분은 이전 예제와 동일합니다. 이 샘플의 두 번째 부분에서는 iframe의 **embedUrl**\(이전 결과 참조)를 표시하고 앱 토큰을 iframe에 게시합니다.
+Hello 이전 응용 프로그램 토큰을 사용 하 여 웹 앱에 hello 보고서를 포함할 수 있습니다.
+Hello 다음 샘플 코드를 보면 hello 이전 부분 hello 앞의 예제와 같은 hello 됩니다. Hello 뒷부분에서이 샘플은 hello **embedUrl** \(hello 이전 결과 참조)에 iframe hello 및 hello iframe에 hello 앱 토큰을 게시 하는 합니다.
 
 > [!NOTE]
-> 보고서 ID 값을 원하는 값으로 변경해야 합니다. 또한 콘텐츠 관리 시스템의 버그로 인해 코드 샘플의 iframe 태그는 문자 그대로 읽힙니다. 이 샘플 코드를 복사하여 붙여넣는 경우 태그에서 대문자 텍스트를 제거합니다.
+> 자신만의 toochange hello 보고서 id 값 tooone가 필요 합니다. 또한 콘텐츠 관리 시스템에 tooa 버그 인해 hello iframe 태그 hello 코드 예제에는 읽기 문자 그대로입니다. 이 샘플 코드를 복사한 경우 hello 태그에서 보강 hello 텍스트를 제거 합니다.
 
 ```
     <?php
@@ -460,10 +460,10 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 
 ![](media/power-bi-embedded-iframe/view-report.png)
 
-이번에는 Power BI Embedded에 iframe의 보고서만 표시됩니다. 그렇지만 [Power BI 블로그](https://powerbi.microsoft.com/blog/)를 잘 확인해 보세요. 향후 개선된 기능에서는 정보를 가져올 수 있을 뿐만 아니라 iframe으로 정보를 보낼 수 있도록 하는 새 클라이언트 쪽 API가 사용될 수 있을 것입니다. 기대해 보세요.
+이때 Power BI 포함만 hello 보고서 hello iframe의입니다. Hello 예의 주시 있지만 [Power BI 블로그](https://powerbi.microsoft.com/blog/)합니다. 향후 개선 사항도 새 클라이언트 쪽 됩니다 주세요 hello iframe에 대 한 정보를 보낼 뿐만 아니라 정보를 가져올 수 있는 Api를 사용할 수 있습니다. 기대해 보세요.
 
 ## <a name="see-also"></a>참고 항목
 * [Power BI Embedded에서 인증 및 권한 부여](power-bi-embedded-app-token-flow.md)
 
-궁금한 점이 더 있나요? [Power BI 커뮤니티를 이용하세요.](http://community.powerbi.com/)
+궁금한 점이 더 있나요? [Power BI 커뮤니티 hello를 시도 하십시오.](http://community.powerbi.com/)
 

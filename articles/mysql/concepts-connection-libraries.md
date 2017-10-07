@@ -1,6 +1,6 @@
 ---
-title: "MySQL용 Azure 데이터베이스에 대한 연결 라이브러리 | Microsoft Docs"
-description: "이 문서에는 클라이언트 프로그램에서 MySQL용 Azure 데이터베이스에 연결하는 데 사용할 수 있는 각 라이브러리 또는 드라이버가 나열되어 있습니다."
+title: "MySQL에 대 한 Azure 데이터베이스에 대 한 aaaConnection 라이브러리 | Microsoft Docs"
+description: "이 문서에서는 MySQL 용 tooAzure 데이터베이스를 연결할 때 클라이언트 프로그램에 사용할 수 있는 각 라이브러리 또는 드라이버를 나열 합니다."
 services: mysql
 author: mswutao
 ms.author: wutao
@@ -9,14 +9,14 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/08/2017
-ms.openlocfilehash: e746f28829063f8437ad408c4681f90aec6c0e0a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ff439274ec5865d7713dec18d53e7e44f5886457
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-mysql"></a>MySQL용 Azure 데이터베이스에 대한 연결 라이브러리
-이 항목에는 클라이언트 프로그램에서 MySQL용 Azure 데이터베이스에 연결하는 데 사용할 수 있는 각 라이브러리 또는 드라이버가 나열되어 있습니다.
+이 항목에서는 클라이언트 프로그램에는 MySQL 용 tooAzure 데이터베이스를 연결할 때 사용할 수 있는 각 라이브러리 또는 드라이버를 나열 합니다.
 
 ## <a name="client-interfaces"></a>클라이언트 인터페이스
 MySQL은 산업 표준 ODBC 및 JDBC와 호환되는 응용 프로그램 및 도구와 함께 MySQL을 사용하기 위한 표준 데이터베이스 드라이버 연결을 제공합니다. ODBC 또는 JDBC를 사용하는 모든 시스템은 MySQL을 사용할 수 있습니다.

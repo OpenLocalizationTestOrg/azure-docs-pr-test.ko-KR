@@ -1,6 +1,6 @@
 ---
-title: "B2B(기업 간) 메시지에 대해 파트너 만들기 - Azure Logic Apps | Microsoft Docs"
-description: "엔터프라이즈 통합 팩 및 Logic Apps와 통합 계정에 파트너를 추가하는 방법 알아보기"
+title: "기업 (B2B) 메시지-Azure 논리 앱에 대 한 aaaCreate 파트너 | Microsoft Docs"
+description: "엔터프라이즈 통합 팩 hello 및 논리 앱 tooadd 파트너 tooyour 통합을 고려 하는 방법에 대해 알아봅니다"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,75 +15,75 @@ ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 950cb449b53f400f0f0f860caf5415bbb5212269
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8dc70a8f441fcf228ed178029dcdbac940d794b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-or-update-partners-in-business-to-business-agreements-in-your-workflow"></a>워크플로에서 기업 간 규약에 파트너 추가 또는 업데이트
 
-파트너는 B2B(기업 간) 트랜잭션에 참여하고 서로 메시지를 교환하는 주체입니다. 사용자와 이러한 트랜잭션의 다른 조직을 나타내는 파트너를 만들려면 서로 전송한 메시지를 식별하고 유효성을 확인하는 정보를 공유해야 합니다. 이러한 세부 정보를 확인하고 비즈니스 관계를 시작할 준비가 되면 통합 계정에 쌍방을 나타내는 파트너를 만들 수 있습니다.
+파트너는 B2B(기업 간) 트랜잭션에 참여하고 서로 메시지를 교환하는 주체입니다. 사용자와 이러한 트랜잭션의 다른 조직을 나타내는 파트너를 만들려면 서로 전송한 메시지를 식별하고 유효성을 확인하는 정보를 공유해야 합니다. 통합 계정 toorepresent에서 파트너를 만들 수 있습니다 이러한 세부 정보를 설명 하 고 준비 toostart 비즈니스 관계는 둘 다 있습니다.
 
 ## <a name="what-roles-do-partners-have-in-your-integration-account"></a>파트너는 통합 계정에서 어떤 역할을 갖나요?
 
-파트너 간에 교환되는 메시지에 대한 세부 정보를 정의하려면 해당 파트너 간의 규약을 만듭니다. 그러나 규약을 만들기 전에 통합 계정에 둘 이상의 파트너를 추가해야 합니다. 조직은 **호스트 파트너**로서 규약에 속해야 합니다. 다른 파트너 또는 **게스트 파트너**는 사용자 조직과 메시지를 교환하는 조직을 나타냅니다. 게스트 파트너는 다른 회사 또는 조직 내 다른 부서일 수 있습니다.
+파트너 간에 교환 되는 hello 메시지에 대 한 toodefine 세부 정보를 해당 파트너 간의 규약을 만들 있습니다. 그러나 규약을 만들 수 있습니다, 전에 선택 하 여 두 개 이상의 파트너 tooyour 통합 계정을 추가한 여야 합니다. 조직으로 hello hello 계약의 일부 여야 합니다. **호스트 파트너**합니다. 다른 파트너 hello 또는 **게스트 파트너** 나타냅니다 hello 조직 사용자의 조직과 메시지 교환입니다. hello 게스트 파트너는 다른 회사 또는 조직에서 부서도 가능 합니다.
 
 이러한 파트너를 추가한 후에 규약을 만들 수 있습니다.
 
-수신 및 송신 설정은 호스트 파트너의 관점에서 시작됩니다. 예를 들어 규약의 수신 설정은 호스트 파트너가 게스트 파트너로부터 받은 메시지를 수신하는 방법을 결정합니다. 마찬가지로, 규약의 송신 설정은 호스트 파트너가 게스트 파트너에게 메시지를 보내는 방법을 나타냅니다.
+수신 및 송신 설정은 hello 관점에서의 호스팅 파트너 hello 방향입니다. 예를 들어 hello 설정을 받으며 규약이 hello 호스팅된 파트너에서 게스트 파트너로 보내는 메시지를 수신 하는 방법을 결정 합니다. 마찬가지로, hello 계약에 hello 송신 설정은 호스팅된 hello 파트너 toohello 게스트 파트너로 메시지를 보내는 방법을 나타냅니다.
 
-## <a name="how-to-create-a-partner"></a>파트너를 만드는 방법
+## <a name="how-toocreate-a-partner"></a>어떻게 toocreate 파트너?
 
-1. Azure Portal에서 **찾아보기**를 선택합니다.
+1. Hello Azure 포털에서에서 선택 **찾아보기**합니다.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-1.png)
 
-2. 필터 검색 상자에 **통합**을 입력하고 결과 목록에서 **통합 계정**을 선택합니다.
+2. Hello 필터 검색 상자에 입력 **통합**을 선택한 후 **통합 계정** hello 결과 목록에 있습니다.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-2.png)
 
-3. 파트너를 추가할 통합 계정을 선택합니다.
+3. Hello 통합 계정을 저장할 tooadd 파트너를 선택 합니다.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-3.png)
 
-4. **파트너** 타일을 선택합니다.
+4. 선택 hello **파트너** 바둑판식으로 배열입니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-1.png)
 
-5. 파트너 블레이드에서 **추가**를 선택합니다.
+5. Hello 파트너 블레이드에서 선택 **추가**합니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-2.png)
 
-6. 파트너의 이름을 입력하고 **한정자**를 선택합니다. 마지막으로 앱에 들어오는 문서를 식별하는 데 도움이 되는 **값**을 입력합니다.
+6. 파트너의 이름을 입력하고 **한정자**를 선택합니다. 마지막으로 입력 한 **값** toohelp 앱에 제공 되는 문서를 식별 합니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-3.png)
 
-7. 파트너 생성 프로세스의 진행 상태를 확인하려면 *벨* 알림 아이콘을 선택합니다.
+7. 파트너 만들기 프로세스에 선택 hello에 대 한 toosee hello 진행률 *벨* 알림 아이콘입니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-4.png)
 
-8. 새 파트너가 성공적으로 추가되었는지 확인하려면 **파트너** 타일을 선택합니다.
+8. 새 파트너 성공적으로 tooconfirm 추가, 선택 hello **파트너** 바둑판식으로 배열입니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-5.png)
 
-    파트너 타일을 선택한 후에 새로 추가된 파트너가 파트너 블레이드에 표시됩니다.
+    Hello 파트너 타일을 선택한 후 hello 파트너 블레이드에서 새로 추가 된 파트너에도 표시 됩니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-6.png)
 
-## <a name="how-to-edit-existing-partners-in-your-integration-account"></a>통합 계정에서 기존 파트너를 편집하는 방법
+## <a name="how-tooedit-existing-partners-in-your-integration-account"></a>통합 계정에서 파트너 tooedit 기존 방법
 
-1. **파트너** 타일을 선택합니다.
-2. 파트너 블레이드가 열리면 편집할 파트너를 선택합니다.
-3. **파트너 업데이트** 타일에서 필요한 내용을 변경합니다.
-4. 작업을 마친 후에 **저장**을 선택하고, 변경 내용을 취소하려면 **취소**를 선택합니다.
+1. 선택 hello **파트너** 바둑판식으로 배열입니다.
+2. Hello 파트너 블레이드를 연 후 tooedit hello 파트너를 선택 합니다.
+3. Hello에 **업데이트 파트너** 타일을 변경 합니다.
+4. 을 마친 후에 선택할 **저장**, toocancel 변경 내용을 선택 또는 **취소**합니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/edit-1.png)
 
-## <a name="how-to-delete-a-partner"></a>파트너 삭제 방법
+## <a name="how-toodelete-a-partner"></a>어떻게 toodelete 파트너
 
-1. **파트너** 타일을 선택합니다.
-2. 파트너 블레이드가 열리면 삭제할 파트너를 선택합니다.
+1. 선택 hello **파트너** 바둑판식으로 배열입니다.
+2. Hello 파트너 블레이드를 연 후 toodelete hello 파트너를 선택 합니다.
 3. **삭제**를 선택합니다.
 
     ![](./media/logic-apps-enterprise-integration-partners/delete-1.png)

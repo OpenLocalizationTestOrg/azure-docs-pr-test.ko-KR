@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement Android SDK 통합"
+title: "Mobile Engagement Android SDK 통합 aaaAzure"
 description: "Azure Mobile Engagement용 Android SDK의 최신 업데이트 및 절차"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,28 +14,28 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/27/2016
 ms.author: piyushjo
-ms.openlocfilehash: 26ba47b19f3a503693d60d344ad39b9eba74fe99
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4ab6143771bdc0758a548abb529d6bde98fc0e4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-integrate-engagement-reach-on-android"></a>Android에서 Engagement 도달률을 통합하는 방법
+# <a name="how-toointegrate-engagement-reach-on-android"></a>TooIntegrate Engagement Android에 도달 하는 방법
 > [!IMPORTANT]
-> 이 가이드를 수행하기 전에 Android 문서의 Engagement를 통합하는 방법에 설명된 통합 절차를 따라야 합니다.
+> 이 가이드를 수행 하기 전에 Android에서 Engagement tooIntegrate 문서화 하는 방법을 hello에 설명 된 hello 통합 절차를 따라야 합니다.
 > 
 > 
 
 ## <a name="standard-integration"></a>표준 통합
 
-프로젝트의 SDK에서 도달률 리소스 파일을 다음과 같이 복사합니다.
+프로젝트에 hello SDK에서에서 Reach 리소스 파일을 복사 합니다.
 
-* SDK와 함께 제공된 `res/layout` 폴더의 파일을 응용 프로그램의 `res/layout` 폴더로 복사합니다.
-* SDK와 함께 제공된 `res/drawable` 폴더의 파일을 응용 프로그램의 `res/drawable` 폴더로 복사합니다.
+* Hello에서 hello 파일 복사 `res/layout` 폴더 hello에 hello SDK로 전달 `res/layout` 응용 프로그램의 폴더입니다.
+* Hello에서 hello 파일 복사 `res/drawable` 폴더 hello에 hello SDK로 전달 `res/drawable` 응용 프로그램의 폴더입니다.
 
 `AndroidManifest.xml` 파일을 다음과 같이 편집합니다.
 
-* `<application>` 태그와 `</application>` 태그 사이에 다음 섹션을 추가합니다.
+* 다음 단원을 hello 추가 (hello 사이 `<application>` 및 `</application>` 태그).
   
           <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
             <intent-filter>
@@ -78,47 +78,47 @@ ms.lasthandoff: 07/11/2017
               <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
             </intent-filter>
           </receiver>
-* 부팅할 때 클릭하지 않은 시스템 알림을 재생하려면 이 권한이 있어야 합니다. 그렇지 않으면 시스템 알림이 디스크에서 유지되지만 더 이상 표시되지 않습니다. 따라서 실제로 이 권한을 포함해야 합니다.
+* 부팅 시 클릭 하지 않은이 사용 권한을 tooreplay 시스템 알림이 필요한 (그렇지 않은 경우 디스크에 보관 되지만 더 이상 표시 되지 않습니다, 저장할 필요가 tooinclude이).
   
           <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-* 다음 섹션(`<application>` 태그와 `</application>` 태그 사이)을 복사 및 편집하여 알림(앱과 시스템 둘 다의 알림)에 사용된 아이콘을 지정합니다.
+* 복사한 다음 단원을 hello를 편집 하 여 (app 및 시스템 인수 둘 다) 알림에 사용 되는 프로그램 아이콘 지정 (hello 사이 `<application>` 및 `</application>` 태그).
   
           <meta-data android:name="engagement:reach:notification:icon" android:value="<name_of_icon_WITHOUT_file_extension_and_WITHOUT_'@drawable/'>" />
 
 > [!IMPORTANT]
-> 도달률 캠페인을 만들 때 시스템 알림을 사용하려는 경우 이 섹션은 **필수** 입니다. Android는 아이콘이 없는 시스템 알림이 표시되지 않도록 방지합니다. 따라서 이 섹션을 누락하는 경우 최종 사용자가 해당 시스템 알림을 받을 수 없게 됩니다.
+> 도달률 캠페인을 만들 때 시스템 알림을 사용하려는 경우 이 섹션은 **필수** 입니다. Android는 아이콘이 없는 시스템 알림이 표시되지 않도록 방지합니다. 이 섹션 생략 하면 최종 사용자가 되지 않도록 수 tooreceive 해당 합니다.
 > 
 > 
 
-* 큰 그림을 사용하는 시스템 알림이 있는 캠페인을 만드는 경우 다음 권한을 `</application>` 태그 뒤에 추가해야 합니다(누락된 경우).
+* 다음 권한을 tooadd hello 필요한 큰 그림을 사용 하 여 시스템 알림 캠페인을 만드는 경우 (hello 후 `</application>` 태그) 누락 된 경우:
   
           <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
           <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
   
   * Android M에서 응용 프로그램이 Android API level 23 이상을 대상으로 하는 경우 ``WRITE_EXTERNAL_STORAGE`` 권한에 사용자 승인이 필요합니다. [이 섹션](mobile-engagement-android-integrate-engagement.md#android-m-permissions)을 읽어보세요.
-* 또한 시스템 알림을 위해 장치에서 신호음이 울리거나 진동이 작동해야 하는 경우 도달률 캠페인에서 지정할 수도 있습니다. 신호음이나 진동이 작동하도록 하려면 `</application>` 태그 뒤에 다음 권한을 선언해야 합니다.
+* 시스템 알림 hello에 지정할 수 있습니다에 대 한 hello 장치 해야 링 및/또는 진동 경우 캠페인에 도달 합니다. 에 대 한 toowork, 해야 toomake hello 권한 다음 선언 (hello 후 `</application>` 태그).
   
           <uses-permission android:name="android.permission.VIBRATE" />
   
-  도달률 캠페인 관리자에서 신호음 또는 진동 옵션을 선택한 경우 이 권한이 없으면 Android에서 시스템 알림이 표시되지 않도록 방지합니다.
+  Android 시스템 알림이 표시 되지 않도록이 권한이 없으면 hello 링 또는 hello hello 도달 캠페인 관리자의 옵션 진동를 선택한 경우에 합니다.
 
 ## <a name="native-push"></a>네이티브 푸시
-이제 도달률 모듈을 구성했으므로 장치에서 캠페인을 받을 수 있도록 네이티브 푸시를 구성해야 합니다.
+Reach 모듈을 구성 했으므로 tooconfigure 네이티브 푸시 toobe 수 tooreceive hello 캠페인 hello 장치에 필요 합니다.
 
 Android에서는 다음 두 가지 서비스를 지원합니다.
 
-* Google Play 장치: [GCM과 Engagement 통합 방법](mobile-engagement-android-gcm-integrate.md) 가이드에 따라 [Google Cloud Messaging] 사용
-* Amazon 장치: [ADM과 Engagement 통합 방법 가이드](mobile-engagement-android-adm-integrate.md)에 따라 [Amazon Device Messaging] 사용
+* Google Play 장치: 사용 [Google Cloud Messaging] 다음 hello 여 [tooIntegrate Engagement와 GCM 안내 하는 방법을](mobile-engagement-android-gcm-integrate.md) 가이드입니다.
+* Amazon 장치: 사용 [Amazon 장치 메시징] 다음 hello 여 [tooIntegrate Engagement와 ADM 안내 하는 방법을](mobile-engagement-android-adm-integrate.md) 가이드입니다.
 
-Amazon 및 Google Play 장치를 모두 대상으로 하려는 경우 개발을 위한 단일 AndroidManifest.xml/APK 내에 모든 것을 포함할 수 있습니다. 하지만 Amazon에 제출할 경우 GCM 코드가 발견되면 응용 프로그램이 거부될 수 있습니다.
+Tootarget 하려면 Google Play와 Amazon 장치, 해당 가능한 toohave 개발에 대 한 1 AndroidManifest.xml/APK 내의 모든 항목입니다. 하지만 GCM 코드를 찾을 경우 응용 프로그램 tooAmazon를 전송할 때 거부할 수 있습니다.
 
 이러한 경우에는 여러 APK를 사용해야 합니다.
 
-**이제 응용 프로그램이 도달률 캠페인을 수신하여 표시할 준비가 되었습니다!**
+**응용 프로그램 준비 tooreceive 및 디스플레이 캠페인에 도달 하는 이제는!**
 
-## <a name="how-to-handle-data-push"></a>데이터 푸시를 처리하는 방법
+## <a name="how-toohandle-data-push"></a>Toohandle 데이터 밀어넣기
 ### <a name="integration"></a>통합
-응용 프로그램을 통해 도달률 데이터 푸시를 받으려면 다음과 같이 `com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver`의 하위 클래스를 생성하여 `AndroidManifest.xml` 파일에서 해당 클래스를 참조해야 합니다(`<application>` 및/또는 `</application>` 태그 사이).
+응용 프로그램 toobe 수 tooreceive Reach 데이터 푸시를 하려면 toocreate의 하위 클래스가 있는 `com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver` hello에서 참조 하 고 `AndroidManifest.xml` 파일 (hello 사이 `<application>` 및/또는 `</application>` 태그).
 
             <receiver android:name="<your_sub_class_of_com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver>"
               android:exported="false">
@@ -127,7 +127,7 @@ Amazon 및 Google Play 장치를 모두 대상으로 하려는 경우 개발을 
               </intent-filter>
             </receiver>
 
-그런 다음 `onDataPushStringReceived` 및 `onDataPushBase64Received` 콜백을 재정의할 수 있습니다. 다음은 예제입니다.
+Hello를 재정의할 수 `onDataPushStringReceived` 및 `onDataPushBase64Received` 콜백 합니다. 다음은 예제입니다.
 
             public class MyDataPushReceiver extends EngagementReachDataPushReceiver
             {
@@ -148,46 +148,46 @@ Amazon 및 Google Play 장치를 모두 대상으로 하려는 경우 개발을 
             }
 
 ### <a name="category"></a>Category
-데이터 푸시 캠페인을 만들 때는 필요에 따라 범주 매개 변수를 포함할 수 있으며, 그러면 데이터 푸시를 필터링할 수 있습니다. 범주 매개 변수는 여러 유형의 데이터 푸시를 처리하는 여러 브로드캐스트 수신기가 있는 경우 또는 다른 종류의 `Base64` 데이터를 푸시하면서 구문 분석하기 전에 해당 유형을 식별하려는 경우에 유용합니다.
+hello 범주 매개 변수의 선택적 데이터 푸시 캠페인을 만들 때 이며 허용 하면 toofilter 데이터 푸시 합니다. 다양 한 유형의 데이터 푸시를 처리 하는 몇 가지 브로드캐스트 수신기가 있는 경우에 유용 하거나 toopush 다양 한 종류의 `Base64` 데이터 및 원하는 tooidentify의 형식으로 구문 분석 하기 전에.
 
 ### <a name="callbacks-return-parameter"></a>콜백의 반환 매개 변수
-다음은 `onDataPushStringReceived` 및 `onDataPushBase64Received`의 반환 매개 변수를 올바르게 처리하기 위한 몇 가지 지침입니다.
+다음은 몇 가지 지침 tooproperly 핸들 hello의 반환 매개 변수 `onDataPushStringReceived` 및 `onDataPushBase64Received`:
 
-* 브로드캐스트 수신기가 데이터 푸시의 처리 방법을 모르는 경우 콜백에서 `null`을(를) 반환해야 합니다. 범주를 사용하여 브로드캐스트 수신기가 데이터 푸시를 처리해야 하는지 여부를 확인해야 합니다.
-* 브로드캐스트 수신기 중 하나가 데이터 푸시를 허용하는 경우 콜백에서 `true` 을(를) 반환해야 합니다.
-* 브로드캐스트 수신기 중 하나가 데이터 푸시를 인식하지만 어떤 이유로든 무시한 경우 콜백에서 `false` 을(를) 반환해야 합니다. 예를 들어 수신한 데이터가 잘못된 경우 `false` 을(를) 반환합니다.
-* 하나의 브로드캐스트 수신기가 `true`을(를) 반환하는데 다른 브로드캐스트 수신기가 동일한 데이터 푸시에 대해 `false`을(를) 반환하는 경우 동작이 정의되지 않습니다. 따라서 그렇게 해서는 안됩니다.
+* 브로드캐스트 수신기를 반환 해야 `null` hello 콜백에서 toohandle 데이터 밀어넣기 알 수 없는 경우. 브로드캐스트 수신기 여부 hello 데이터 푸시를 처리 해야 하는지 여부를 범주 toodetermine hello를 사용 해야 합니다.
+* Hello 브로드캐스트 수신기 중 하나를 반환 해야 `true` hello 콜백에서 hello 데이터 푸시를 허용 하는 경우.
+* Hello 브로드캐스트 수신기 중 하나를 반환 해야 `false` hello 콜백에서 hello 데이터 푸시를 인식 하지만 어떤 이유로 든을 무시 합니다. 예를 들어 반환 `false` hello 받은 데이터 유효 하지 않은 경우.
+* 하나 브로드캐스트 수신기 반환 하는 경우 `true` 다른 하나를 반환 하는 동안 `false` hello 동일한 데이터 푸시, hello 동작을 정의 하지 않으면에 대 한 안됩니다입니다.
 
-반환 형식은 다음과 같이 도달률 통계에서만 사용됩니다.
+반환 형식은 hello hello Reach 통계에 대해서만 사용 됩니다.
 
-* `Replied`은(는) 브로드캐스트 수신기 중 하나가 `true` 또는 `false`을(를) 반환한 경우에 증가됩니다.
-* `Actioned`은(는) 브로드캐스트 수신기 중 하나가 `true`을(를) 반환한 경우에만 증가됩니다.
+* `Replied`반환 되 hello 브로드캐스트 수신기 중 하나는 증가 `true` 또는 `false`합니다.
+* `Actioned`hello 중 브로드캐스트 수신기를 반환 하는 경우에 증가 `true`합니다.
 
-## <a name="how-to-customize-campaigns"></a>캠페인을 사용자 지정하는 방법
-캠페인을 사용자 지정하기 위해 Reach SDK에서 제공하는 레이아웃을 수정할 수 있습니다.
+## <a name="how-toocustomize-campaigns"></a>어떻게 toocustomize 캠페인
+toocustomize 캠페인 hello Reach SDK에서에서 제공 하는 hello 레이아웃을 수정할 수 있습니다.
 
-레이아웃에 사용된 모든 식별자를 유지하고, 식별자를 사용하는 뷰의 유형(특히 텍스트 뷰 및 이미지 뷰의 유형)을 유지해야 합니다. 일부 뷰는 영역을 표시하거나 숨기는 데에만 사용되므로 해당 유형을 변경할 수 있습니다. 제공된 레이아웃의 뷰 유형을 변경하려는 경우 소스 코드를 확인하세요.
+Hello 레이아웃에 사용 되는 모든 hello 식별자를 유지 하 고 뷰 텍스트 및 이미지 뷰에 대 한 특히 된 식별자를 사용 하는 hello 뷰의 hello 형식을 유지 해야 합니다. 일부 뷰가 사용된 공간만 toohide 또는 형식별 변경 될 수 있으므로 영역을 보여 줍니다. 제공 된 hello 레이아웃의 toochange hello 유형의 보기를 가져오려는 경우 hello 소스 코드를 확인 하십시오.
 
 ### <a name="notifications"></a>알림
 두 가지 유형의 알림 즉, 다른 레이아웃 파일을 사용하는 시스템 알림과 앱 내 알림이 있습니다.
 
 #### <a name="system-notifications"></a>시스템 알림
-시스템 알림을 사용자 지정하려면 **범주**를 사용해야 합니다. [범주](#categories)로 이동할 수 있습니다.
+toouse hello 필요한 toocustomize 시스템 알림을 **범주**합니다. 너무를 건너뛸 수 있는[범주](#categories)합니다.
 
 #### <a name="in-app-notifications"></a>앱 내 알림
-기본적으로 앱 내 알림은 Android 메서드 `addContentView()`덕분에 현재 작업의 사용자 인터페이스에 동적으로 추가되는 뷰입니다. 이 보기를 알림 오버레이라고 합니다. 알림 오버레이는 응용 프로그램에서 레이아웃을 수정하지 않아도 되므로 빠른 통합에 적절합니다.
+기본적으로 앱 내 알림이 보기를 동적으로 추가 된 toohello 현재 활동 사용자 인터페이스 감사 toohello Android 메서드가 `addContentView()`합니다. 이 보기를 알림 오버레이라고 합니다. 알림 오버레이 필요 하지 않습니다 toomodify 하면 응용 프로그램에서 모든 레이아웃 때문에 빠른 통합에 매우 유용 합니다.
 
-알림 오버레이의 모양을 수정하려면 요구에 맞게 간단히 파일 `engagement_notification_area.xml`을(를) 수정하면 됩니다.
+알림 오버레이 toomodify hello 모양을 수정할 수 hello 파일 `engagement_notification_area.xml` tooyour 필요 합니다.
 
 > [!NOTE]
-> 파일 `engagement_notification_overlay.xml`은(는) 알림 오버레이를 만드는 데 사용되는 파일이며, 이 파일에는 파일`engagement_notification_area.xml`이(가) 포함되어 있습니다. 또한 요구에 맞게 사용자 지정할 수도 있습니다(예: 오버레이 내에서 알림 영역 위치 지정).
+> hello 파일 `engagement_notification_overlay.xml` 알림 오버레이 hello toocreate 사용된 되는 것은 hello 파일 포함 `engagement_notification_area.xml`합니다. 또한 사용자 지정할 수 있습니다 toosuit 요구 사항 (예: hello 오버레이 내 hello 알림 영역 위치 지정).
 > 
 > 
 
 ##### <a name="include-notification-layout-as-part-of-an-activity-layout"></a>작업 레이아웃의 일부로 알림 레이아웃 포함
-오버레이는 빠른 통합에 적절하지만 특수한 경우에는 불편해지거나 부작용이 있을 수 있습니다. 오버레이 시스템을 작업 수준에서 사용자 지정할 수 있으며 특수한 작업의 부작용을 쉽게 예방할 수 있습니다.
+오버레이는 빠른 통합에 적절하지만 특수한 경우에는 불편해지거나 부작용이 있을 수 있습니다. hello 오버레이 시스템은 특수 한 작업에 대 한 쉬운 tooprevent 의도 하는 작업 수준에서 사용자 지정할 수 있습니다.
 
-Android의 **include** 문 덕분에 기존 레이아웃에서 알림 레이아웃을 포함하도록 결정할 수 있습니다. 다음은 `ListView`을(를) 포함하는 수정된 `ListActivity` 레이아웃의 예입니다.
+기존 프로그램 레이아웃 감사 toohello Android에서에서 tooinclude 우리의 알림 레이아웃을 결정할 수 있습니다 **포함** 문. hello 다음은 수정 된의 예가 `ListActivity` 레이아웃만 포함 하는 `ListView`합니다.
 
 **Engagement 통합 이전:**
 
@@ -217,33 +217,33 @@ Android의 **include** 문 덕분에 기존 레이아웃에서 알림 레이아�
 
             </LinearLayout>
 
-이 예제에서는 원래 레이아웃이 최상위 요소로 목록 보기를 사용하므로 부모 컨테이너를 추가했습니다. 또한 `android:layout_weight="1"`을(를) 추가했으므로 `android:layout_height="fill_parent"`(으)로 구성한 목록 보기 아래에 뷰를 추가할 수 있습니다.
+이 예에서 hello 원래 레이아웃 hello 최상위 요소는 목록 보기 사용 있으므로 부모 컨테이너를 추가 합니다. 또한 추가 `android:layout_weight="1"` toobe 수 tooadd 목록 보기 아래에서 보기를 사용 하 여 구성 `android:layout_height="fill_parent"`합니다.
 
-Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 이 작업의 오버레이를 추가하지 않을 것임을 자동으로 검색합니다.
+hello Engagement Reach SDK는 해당 hello 알림 레이아웃이이 활동에 포함 되 고이 작업에 대 한 오버레이 추가 하지 않는 것에 자동으로 검색 합니다.
 
 > [!TIP]
-> 응용 프로그램에서 ListActivity를 사용하는 경우 표시되는 도달률 오버레이는 목록 보기의 클릭된 항목에 더 이상 반응하지 못하도록 방지합니다. 이는 알려진 문제입니다. 이 문제를 해결하려면 앞의 샘플에서와 같이 고유한 목록 작업 레이아웃에 알림 레이아웃을 포함하는 것이 좋습니다.
+> 응용 프로그램에 ListActivity를 사용 하는 경우 표시 Reach 오버레이 수 없게 됩니다 응답할 tooclicked hello 목록 뷰의 항목에서 더 이상. 이는 알려진 문제입니다. toowork이이 문제를 해결 하는 좋습니다 hello 이전 샘플에서와 같은 고유한 목록 활동 레이아웃에서 tooembed hello 알림 레이아웃 합니다.
 > 
 > 
 
 ##### <a name="disabling-application-notification-per-activity"></a>작업별 응용 프로그램 알림 비활성화
-작업에 오버레이를 추가하지 않으려는 경우와 고유 레이아웃에 알림 레이아웃을 포함하지 않은 경우 다음 예제와 같이 `meta-data` 섹션을 추가하여 `AndroidManifest.xml`에서 이 작업의 오버레이를 비활성화하도록 설정할 수 있습니다.
+Hello를 표시 하지 않으려는 경우 오버레이 toobe tooyour 활동을 추가 하 고 자체 레이아웃에 hello 알림 레이아웃을 포함 하지 않으면,이 활동 hello에 대 한 hello 오버레이 비활성화할 수 있습니다 `AndroidManifest.xml` 추가 하 여 한 `meta-data` hello 다음과에서 같은 섹션 예:
 
             <activity android:name="SplashScreenActivity">
               <meta-data android:name="engagement:notification:overlay" android:value="false"/>
             </activity>
 
 #### <a name="categories"></a> 범주
-제공된 레이아웃을 수정할 경우 모든 알림 모양을 수정하게 됩니다. 범주를 사용하면 알림의 여러 대상 모양을 정의할 수 있으며 경우에 따라서는 동작도 정의할 수 있습니다. 도달률 캠페인을 만들 때 범주를 지정할 수 있습니다. 범주를 사용하면 알림과 설문 조사도 사용자 지정할 수 있습니다. 여기에 대해서는 이 문서의 뒷부분에서 설명합니다.
+레이아웃을 제공 하는 hello를 수정 하는 경우 모든 알림 hello 모양을 수정 합니다. 범주를 사용 toodefine 대상 다양 한 알림 (가능 동작)을 찾습니다. 도달률 캠페인을 만들 때 범주를 지정할 수 있습니다. 범주를 사용하면 알림과 설문 조사도 사용자 지정할 수 있습니다. 여기에 대해서는 이 문서의 뒷부분에서 설명합니다.
 
-알림의 범주 처리기를 등록하려면 응용 프로그램이 초기화될 때 호출을 추가해야 합니다.
+알림에 대 한 범주 처리기 tooregister 해야 tooadd 호출 hello 응용 프로그램 초기화 될 때.
 
 > [!IMPORTANT]
-> 계속하기 전에 Android에서 Engagement를 통합하는 방법 항목에서 android:process 특성 \<android-sdk-engagement-process\>에 관한 경고를 읽어보세요.
+> Hello android: 프로세스 특성에 대 한 hello 경고를 읽어 보십시오 \<android sdk-engagement 프로세스\> hello에 어떻게 진행 하기 전에 Android 주제에 참여 tooIntegrate 합니다.
 > 
 > 
 
-다음 예제에서는 이전 경고를 확인하였고 `EngagementApplication`의 하위 클래스를 사용한다고 가정합니다.
+hello 다음 예에서는 가정 hello 이전 경고를 승인 하 고의 하위 클래스를 사용 하 여 `EngagementApplication`:
 
             public class MyApplication extends EngagementApplication
             {
@@ -256,13 +256,13 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
               }
             }
 
-`MyNotifier` 개체는 알림 범주 처리기의 구현입니다. 이 개체는 `EngagementNotifier` 인터페이스의 구현이거나 기본 구현인 `EngagementDefaultNotifier`의 하위 클래스입니다.
+hello `MyNotifier` 개체는 hello 알림 범주 처리기의 hello 구현 합니다. 이 알고리즘은 구현한의 hello `EngagementNotifier` 인터페이스 또는 하위 클래스의 기본 구현은 hello: `EngagementDefaultNotifier`합니다.
 
-동일한 알림으로 여러 범주를 처리할 수 있습니다. 또한 다음과 같이 해당 범주를 등록할 수 있습니다.
+같은 알림 hello는 여러 종류를 처리할 수 있는, 다음과 같이 등록할 수 있습니다.
 
             reachAgent.registerNotifier(new MyNotifier(this), "myCategory", "myAnotherCategory");
 
-기본 범주 구현을 바꾸기 위해 다음 예와 같이 구현을 등록할 수 있습니다.
+tooreplace hello 기본 범주 구현 hello 다음 예제에서에서와 같은 구현을 등록할 수 있습니다.
 
             public class MyApplication extends EngagementApplication
             {
@@ -275,14 +275,14 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
               }
             }
 
-처리기에서 사용된 현재 범주는 `EngagementDefaultNotifier`에서 재정의할 수 있는 대다수 메서드의 매개 변수로 전달됩니다.
+처리기에서 사용 되는 hello 현재 범주에서 재정의할 수 메서드에 대부분 매개 변수로 전달 `EngagementDefaultNotifier`합니다.
 
 그 범주는`String` 매개 변수로 전달되거나 `getCategory()` 메서드가 있는 `EngagementReachContent` 개체에서 간접적으로 전달됩니다.
 
-또한 `EngagementDefaultNotifier`에서 메서드를 다시 정의하여 알림 생성 프로세스의 대부분을 변경할 수 있습니다. 고급 사용자 지정을 더 수행하려면 기술 문서 및 소스 코드를 살펴보세요.
+메서드를 재정의 하 여 hello 알림 생성 프로세스의 대부분을 변경할 수 있습니다 `EngagementDefaultNotifier`고급 사용자 지정 느껴집니다 무료 tootake hello 기술 문서 및 hello 소스 코드에서 참조에 대 한 합니다.
 
 ##### <a name="in-app-notifications"></a>앱 내 알림
-특정 범주에 대체 레이아웃을 사용하려는 경우 다음 예제와 같이 구현할 수 있습니다.
+특정 범주에 대 한 대체 레이아웃 toouse만 하려는 경우 다음 예제는 hello와 같이이 구현할 수 있습니다.
 
             public class MyNotifier extends EngagementDefaultNotifier
             {
@@ -324,7 +324,7 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
 
             </RelativeLayout>
 
-여기에서 알 수 있듯이 오버레이 뷰 식별자는 표준 식별자와 다릅니다. 각 레이아웃에서 오버레이에 고유 식별자를 사용하는 것이 중요합니다.
+볼 수 있듯이 hello 오버레이 뷰 식별자는 hello 표준 하나 보다 차이가 있습니다. 각 레이아웃에서 오버레이에 고유 식별자를 사용하는 것이 중요합니다.
 
 **`my_notification_area.xml`의 예제 :**
 
@@ -406,14 +406,14 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
 
             </merge>
 
-여기에서 알 수 있듯이 알림 영역 뷰 식별자는 표준 식별자와 다릅니다. 각 레이아웃에서 알림 영역에 고유 식별자를 사용하는 것이 중요합니다.
+볼 수 있듯이 hello 알림 영역 보기 식별자는 hello 표준 하나 보다 차이가 있습니다. 각 레이아웃에서 알림 영역에 고유 식별자를 사용하는 것이 중요합니다.
 
-이 간단한 범주 예제는 화면 상단에 표시되는 응용 프로그램(또는 앱 내) 알림을 만듭니다. 알림 영역 자체에 사용되는 표준 식별자는 변경하지 않았습니다.
+응용 프로그램 (또는 앱에서) 알림 hello 위쪽 hello 화면에 표시 하는 범주에 속하는 간단한 예제입니다. 우리는 hello 표준 식별자 자체 hello 알림 영역에 사용 되는 변경 되지 않았습니다.
 
-해당 식별자를 변경하려는 경우 `EngagementDefaultNotifier.prepareInAppArea` 메서드를 다시 정의해야 합니다. 이러한 고급 사용자 지정 수준을 원하는 경우 `EngagementNotifier` 및 `EngagementDefaultNotifier`의 기술 문서와 소스 코드를 살펴보는 것이 좋습니다.
+Toochange, 있다고 tooredefine hello를 원하는 경우 `EngagementDefaultNotifier.prepareInAppArea` 메서드. 것이 좋습니다 toolook hello 기술 문서 및의 hello 소스 코드에서 `EngagementNotifier` 및 `EngagementDefaultNotifier` 하려는 경우이 고급 사용자 지정의 수준입니다.
 
 ##### <a name="system-notifications"></a>시스템 알림
-기본 구현에서 준비한 알림을 변경하려면 `EngagementDefaultNotifier`을(를) 확장하여 `onNotificationPrepared`을(를) 재정의할 수 있습니다.
+확장 하 여 `EngagementDefaultNotifier`를 재정의할 수 있습니다 `onNotificationPrepared` hello 기본 구현에서 사용 했던 tooalter hello 알림입니다.
 
 예:
 
@@ -426,9 +426,9 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
               return true;
             }
 
-이 예제는 "진행 중" 범주를 사용할 때 진행 중인 이벤트로 표시되는 내용에 대한 시스템 알림을 만듭니다.
+이 예제에서는 hello "진행 중" 범주를 사용할 때 진행 중인 이벤트로 표시 되는 콘텐츠에 대 한 시스템 알림.
 
-`Notification` 개체를 처음부터 빌드하려는 경우 메서드에 `false`을(를) 반환하고 `NotificationManager`에서 `notify`을(를) 직접 호출할 수 있습니다. 그런 경우에는 `contentIntent`, `deleteIntent` 및 `EngagementReachReceiver`에 사용되는 알림 식별자를 유지하는 것이 중요합니다.
+Toobuild hello를 원하는 경우 `Notification` 개체 처음부터 반환할 수 있습니다 `false` toohello 메서드와 호출 `notify` hello에 직접 `NotificationManager`합니다. 유지 해야 하는 경우에 `contentIntent`, `deleteIntent` 알림 식별자에서 사용 하는 hello 및 `EngagementReachReceiver`합니다.
 
 다음은 그러한 구현에 대한 올바른 예제입니다.
 
@@ -451,16 +451,16 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
 
               /* Notify here instead of super class */
               NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-              manager.notify(getNotificationId(content), myNotification); // notice the call to get the right identifier
+              manager.notify(getNotificationId(content), myNotification); // notice hello call tooget hello right identifier
 
               /* Return false, we notify ourselves */
               return false;
             }
 
 ##### <a name="notification-only-announcements"></a>공지만 알림
-공지만 알림에 대한 클릭 관리는 `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared`을(를) 재정의하여 준비된 `Intent`을(를) 수정함으로써 사용자 지정할 수 있습니다. 이 메서드를 사용하면 플래그를 쉽게 조정할 수 있습니다.
+hello hello의 관리를 클릭 하는 알림 전용 알림을 재정의 하 여 사용자 지정할 수 있습니다 `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared` 준비 toomodify hello `Intent`합니다. 이 메서드를 사용 하 여 있습니다 tootune hello 플래그를 쉽게.
 
-다음은 `SINGLE_TOP` 플래그를 추가하는 예제입니다.
+예를 들어 tooadd hello `SINGLE_TOP` 플래그:
 
             @Override
             protected Intent onNotifAnnouncementIntentPrepared(EngagementNotifAnnouncement notifAnnouncement,
@@ -470,41 +470,41 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
               return intent;
             }
 
-레거시 Engagement 사용자의 경우 실행 URL이 없는 시스템 알림은 응용 프로그램이 백그라운드에 있으면 해당 응용 프로그램을 시작하므로 이 메서드는 실행 URL이 없는 알림과 함께 호출될 수 있습니다. 의도를 사용자 지정할 때 이런 점을 고려해야 합니다.
+레거시 Engagement 사용자에 대 한 동작 없이 시스템 알림 URL 이제가 실행 하는 hello 응용 프로그램 작업 URL 없이 공지 사항으로이 메서드를 호출할 수 있으므로 백그라운드에서 되었으면 note 하십시오. Hello 의도 사용자 지정할 때를 고려해 야 합니다.
 
 또한 `EngagementNotifier.executeNotifAnnouncementAction` 을(를) 처음부터 구현할 수도 있습니다.
 
 ##### <a name="notification-life-cycle"></a>알림 수명 주기
-기본 범주를 사용할 때는 통계를 보고하고 캠페인 상태를 업데이트하기 위해 `EngagementReachInteractiveContent` 개체에서 일부 수명 주기 메서드를 호출합니다.
+Hello에서 일부 수명 주기 메서드를 호출 hello 기본 범주를 사용할 경우 `EngagementReachInteractiveContent` tooreport 통계 및 업데이트 hello 캠페인 상태 개체:
 
-* 알림이 응용 프로그램에 표시되거나 상태 표시줄에 나타나는 경우 `handleNotification`이(가) `true`을(를) 반환하면 `displayNotification` 메서드가 `EngagementReachAgent`에서 호출되어 통계를 보고합니다.
-* 알림을 해제하면 `exitNotification` 메서드가 호출되고 통계가 보고되며 다음 캠페인을 처리할 수 있게 됩니다.
-* 알림을 클릭하면 `actionNotification` 이(가) 호출되고 통계가 보고되며 연결된 의도가 시작됩니다.
+* Hello 알림을 응용 프로그램에 표시 하거나 hello 상태 표시줄에 배치할 때 hello `displayNotification` (보고 하는 통계) 메서드를 호출 하 여 `EngagementReachAgent` 경우 `handleNotification` 반환 `true`합니다.
+* Hello 알림은 해제 하는 경우 hello `exitNotification` 메서드는 통계는 보고 되며 다음 캠페인을 지금 처리할 수 있습니다.
+* Hello 알림의 클릭할 경우 `actionNotification` 은 호출 통계는 보고 되 고 연결 된 hello 의도 실행 됩니다.
 
-만약 `EngagementNotifier` 구현이 기본 동작을 무시하는 경우에는 이러한 수명 주기 메서드를 직접 호출해야 합니다. 다음 예제에서는 기본 동작을 무시하는 몇 가지 경우를 보여 줍니다.
+경우 구현 `EngagementNotifier` 바이패스 hello 기본 동작, 혼자서 toocall 이러한 수명 주기 메서드를가지고 있어야 합니다. 다음 예제는 hello hello 기본 동작이 사용 하지 않을 경우를 보여 줍니다.
 
 * 범주 처리를 처음부터 구현한 경우처럼 `EngagementDefaultNotifier`을(를) 확장하지 않은 경우
-* 시스템 알림의 경우 `onNotificationPrepared`을(를) 재정의하고 `Notification` 개체에서 `contentIntent` 또는 `deleteIntent`을(를) 수정했습니다.
-* 앱 내 알림의 경우 `prepareInAppArea`을(를) 재정의합니다. U.I 컨트롤 중 하나에 적어도 `actionNotification`을(를) 매핑합니다.
+* Hello를 문제가 시스템 알림에 대해 `onNotificationPrepared` 수정한 및 `contentIntent` 또는 `deleteIntent` hello에 `Notification` 개체입니다.
+* 가 앱에서 알림을 `prepareInAppArea`있는지 toomap 사이, `actionNotification` U.I 컨트롤의 tooone 합니다.
 
 > [!NOTE]
-> `handleNotification`에서 예외가 throw되는 경우 콘텐츠는 삭제되고 `dropContent`이(가) 호출됩니다. 이 사항은 통계로 보고되며 이제 다음 캠페인을 처리할 수 있습니다.
+> 경우 `handleNotification` hello 콘텐츠 예외가 throw는 삭제 및 `dropContent` 라고 합니다. 이 사항은 통계로 보고되며 이제 다음 캠페인을 처리할 수 있습니다.
 > 
 > 
 
 ### <a name="announcements-and-polls"></a>알림 및 설문 조사
 #### <a name="layouts"></a>레이아웃
-`engagement_text_announcement.xml`, `engagement_web_announcement.xml`, `engagement_poll.xml` 파일을 수정하여 텍스트 알림, 웹 알림 및 설문 조사를 사용자 지정할 수 있습니다.
+Hello를 수정할 수 있습니다 `engagement_text_announcement.xml`, `engagement_web_announcement.xml` 및 `engagement_poll.xml` toocustomize 텍스트 공지, 웹 공지 및 설문 조사의 파일입니다.
 
-이러한 파일은 제목 영역 및 단추 영역의 두 가지 일반 레이아웃을 공유합니다. 제목의 레이아웃은 `engagement_content_title.xml` 이며, 배경에 대해 제목과 동일한 이름의 그릴 수 있는 파일을 사용합니다. 실행 및 종료 단추의 레이아웃은 `engagement_button_bar.xml` 이며, 배경에 대해 제목과 동일한 이름의 그릴 수 있는 파일을 사용합니다.
+이러한 파일 hello 제목 영역 및 hello 단추 영역에 대 한 두 가지 일반적인 레이아웃을 공유합니다. hello 제목에 대 한 hello 레이아웃은 `engagement_content_title.xml` 및 사용 하 여 hello hello 배경에 대 한 호응 그릴 수 있는 파일입니다. hello hello 작업 및 끝내기 단추 레이아웃은 `engagement_button_bar.xml` 및 사용 하 여 hello hello 배경에 대 한 호응 그릴 수 있는 파일입니다.
 
-설문 조사에서 질문 레이아웃 및 선택 항목은 질문에 `engagement_question.xml` 레이아웃 파일을 사용하고 선택 항목에 `engagement_choice.xml` 파일을 여러 번 사용하여 동적으로 팽창됩니다.
+에 설문 조사 질문 레이아웃 hello 및 선택 항목은 동적으로 확장 하 여 여러 번 hello를 사용 하 여 `engagement_question.xml` hello 질문과 hello에 대 한 레이아웃 파일 `engagement_choice.xml` hello 선택 항목에 대 한 파일입니다.
 
 #### <a name="categories"></a>범주
 ##### <a name="alternate-layouts"></a>대체 레이아웃
-알림과 마찬가지로 캠페인의 경우에도 범주를 사용하여 알림 및 설문 조사의 대체 레이아웃을 적용할 수 있습니다.
+알림, 같이 hello 캠페인의 범주는 공지 및 설문 조사의 toohave 사용 되는 대체 레이아웃 일 수 있습니다.
 
-예를 들어 텍스트 알림의 범주를 생성하려면 다음과 같이 `EngagementTextAnnouncementActivity`을(를) 확장하고 `AndroidManifest.xml` 파일에서 참조할 수 있습니다.
+예를 들어 toocreate 텍스트 공지에 대 한 범주를 확장할 수 있습니다 `EngagementTextAnnouncementActivity` hello 참조 `AndroidManifest.xml` 파일:
 
             <activity android:name="com.your_company.MyCustomTextAnnouncementActivity">
               <intent-filter>
@@ -514,36 +514,36 @@ Engagement Reach SDK는 알림 레이아웃이 이 작업에 포함되었으며 
               </intent-filter>
             </activity>
 
-의도 필터의 범주는 기본 알림 작업의 차이를 구분하는 데 사용됩니다.
+참고이 hello 범주 hello 의도에 필터를 사용 toomake hello 차이 hello 기본 알림 활동을 포함 합니다.
 
-Reach SDK는 의도 시스템을 사용하여 특정 범주에 대해 올바른 작업을 확인하고, 확인에 실패하는 경우 기본 범주에 의존합니다.
+Reach SDK hello hello 의도 시스템 tooresolve hello 오른쪽 활동을 사용 하 여 특정 범주에 대 한 및 대체 hello 기본 범주에 hello 확인에 실패 한 경우.
 
-그런 다음 `MyCustomTextAnnouncementActivity`을(를) 구현해야 하며, 레이아웃을 변경하지만 동일한 뷰 식별자를 유지하려는 경우 다음 예제와 같이 클래스를 정의해야 합니다.
+Tooimplement 있는 `MyCustomTextAnnouncementActivity`, 방금 toochange hello 레이아웃 (하지만 hello 식별자 동일한 보기 유지), 하기만 하면 같은 toodefine hello 클래스에 다음 예제는 hello:
 
             public class MyCustomTextAnnouncementActivity extends EngagementTextAnnouncementActivity
             {
               @Override
               protected String getLayoutName()
               {
-                return "my_text_announcement";  // tell super class to use R.layout.my_text_announcement
+                return "my_text_announcement";  // tell super class toouse R.layout.my_text_announcement
               }
             }
 
-텍스트 알림의 기본 범주를 바꾸려면 단지 `android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"` 을(를) 고유한 구현으로 바꾸면 됩니다.
+텍스트 공지 tooreplace hello 기본 범주를 바꾸면 `android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"` 구현에 따라 합니다.
 
 웹 알림 및 설문 조사는 유사한 방식으로 사용자 지정할 수 있습니다.
 
-웹 알림의 경우 `EngagementWebAnnouncementActivity`을(를) 확장하고 다음 예제와 같이 `AndroidManifest.xml`에서 작업을 선언할 수 있습니다.
+확장할 수에 대 한 웹 알림을 `EngagementWebAnnouncementActivity` hello에서 활동이 선언 `AndroidManifest.xml` hello 다음 예제에서에서와 같이:
 
             <activity android:name="com.your_company.MyCustomWebAnnouncementActivity">
               <intent-filter>
                 <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
                 <category android:name="my_category" />
-                <data android:mimeType="text/html" />    <!-- only difference with text announcements in the intent is the data mime type -->
+                <data android:mimeType="text/html" />    <!-- only difference with text announcements in hello intent is hello data mime type -->
               </intent-filter>
             </activity>
 
-설문 조사의 경우 `EngagementPollActivity`을(를) 확장하고 다음 예제와 같이 `AndroidManifest.xml`에서 작업을 선언할 수 있습니다.
+폴링 확장 `EngagementPollActivity` 프로그램에 hello를 선언 하 고 `AndroidManifest.xml` hello 다음 예제에서에서와 같이:
 
             <activity android:name="com.your_company.MyCustomPollActivity">
               <intent-filter>
@@ -553,13 +553,13 @@ Reach SDK는 의도 시스템을 사용하여 특정 범주에 대해 올바른 
             </activity>
 
 ##### <a name="implementation-from-scratch"></a>처음부터 구현
-Reach SDK에서 제공하는 `Engagement*Activity` 클래스 중 하나를 확장하지 않고 알림(및 설문 조사) 작업에 대한 범주를 구현할 수 있습니다. 이 작업은, 예를 들어 동일한 뷰를 표준 레이아웃으로 사용하지 않는 레이아웃을 정의하려는 경우에 유용합니다.
+Hello 중 하나를 확장 하지 않고 알림 (및 설문 조사) 작업에 대 한 범주를 구현할 수 `Engagement*Activity` Reach SDK를 hello 클래스에서 제공 합니다. 이 유용한 예를 들어 toodefine hello 표준 레이아웃으로 동일한 뷰 hello를 사용 하지 않는 레이아웃 하려는 경우입니다.
 
-고급 알림 사용자 지정과 마찬가지로 표준 구현의 소스 코드를 확인하는 것이 좋습니다.
+와 같은 고급 알림 사용자 지정을 위한 것이 좋습니다 toolook hello 표준 구현의 hello 소스 코드에서.
 
-이때 Reach는 콘텐츠 식별자인 추가 매개 변수와 함께 특정 의도(의도 필터에 해당)를 사용하여 작업을 시작한다는 점 등 몇 가지 사항에 유의해야 합니다.
+다음 일부의 tookeep 염두에서은: Reach hello 콘텐츠 식별자는 추가 매개 변수가 더하기 hello 활동 특정 의도 (해당 toohello 의도 필터)가 시작 됩니다.
 
-웹 사이트에서 캠페인을 만들 때 지정한 필드를 포함하는 콘텐츠 개체를 검색하려면 다음을 수행합니다.
+때 hello 만들기는 캠페인 hello 웹 사이트에서 사용자 지정한 hello 필드가 포함 된 tooretrieve hello 콘텐츠 개체를 수행 됩니다.
 
             public class MyCustomTextAnnouncement extends EngagementActivity
             {
@@ -586,23 +586,23 @@ Reach SDK에서 제공하는 `Engagement*Activity` 클래스 중 하나를 확�
               }
             }
 
-통계를 위해 다음과 같이 콘텐츠가 `onResume` 이벤트에 표시된다는 것을 보고해야 합니다.
+Hello에 hello 내용이 표시 되 보고 해야 통계의 경우 `onResume` 이벤트:
 
             @Override
             protected void onResume()
             {
-             /* Mark the content displayed */
+             /* Mark hello content displayed */
              mContent.displayContent(this);
              super.onResume();
             }
 
-그런 다음 작업이 백그라운드로 전환되기 전에 잊지 말고 콘텐츠 개체에서 `actionContent(this)` 또는 `exitContent(this)`을(를) 호출해야 합니다.
+그런 다음 반드시 toocall 하거나 `actionContent(this)` 또는 `exitContent(this)` hello 활동 배경으로 모드로 전환 되기 전에 hello 콘텐츠 개체에 합니다.
 
-`actionContent` 또는 `exitContent`을(를) 호출하지 않은 경우 통계가 전송되지 않으며(즉, 캠페인에 대한 분석이 없음), 무엇보다도 응용 프로그램 프로세스가 다시 시작될 때까지 다음 캠페인을 알리지 못합니다.
+호출 하지 않으면 `actionContent` 또는 `exitContent`, 통계 전송 되지 않습니다. (예: hello 캠페인에 없는 분석) 및 더 중요 한 사실은 hello hello 응용 프로그램 프로세스를 다시 시작 될 때까지 다음 캠페인을 받을 수 없습니다.
 
-방향 또는 기타 구성을 변경하면 코드에서 작업을 백그라운드로 전환할지 여부를 결정하는 것이 어려워질 수 있습니다. 표준 구현에서는 사용자가 `HOME` 또는 `BACK`을(를) 눌러 작업을 떠나지만 방향이 변경되지 않은 경우 콘텐츠가 종료된 것으로 보고되도록 합니다.
+방향 또는 기타 구성 변경 내용을 hello 코드 까다로운 toodetermine 여부 hello 활동 배경 진입 여부, 수 있는지 hello 콘텐츠가 보고 되는 hello 사용자가 (하거나 hello 활동 끝났습니다 표준 구현을 사용 하면 hello 키를 누르면 `HOME` 또는 `BACK`) 하지만 not hello 방향을 변경 합니다.
 
-다음은 구현의 흥미로운 부분입니다.
+다음은 hello 구현의 hello 흥미로운 부분이입니다.
 
             @Override
             protected void onUserLeaveHint()
@@ -617,15 +617,15 @@ Reach SDK에서 제공하는 `Engagement*Activity` 클래스 중 하나를 확�
               {
                 /*
                  * Exit content on exit, this is has no effect if another process method has already been
-                 * called so we don't have to check anything here.
+                 * called so we don't have toocheck anything here.
                  */
                 mContent.exitContent(this);
               }
               super.onPause();
             }
 
-여기에서 알 수 있듯이 `actionContent(this)`을(를) 호출한 후 작업을 완료하는 경우 `exitContent(this)`이(가) 영향을 받지 않고 안전하게 호출될 수 있습니다.
+호출 하면 볼 수 있듯이 `actionContent(this)` hello 활동을 완료 한 후 `exitContent(this)` 영향을 주지 않고 안전 하 게 호출할 수 있습니다.
 
 [here]:http://developer.android.com/tools/extras/support-library.html#Downloading
 [Google Cloud Messaging]:http://developer.android.com/guide/google/gcm/index.html
-[Amazon Device Messaging]:https://developer.amazon.com/sdk/adm.html
+[Amazon 장치 메시징]:https://developer.amazon.com/sdk/adm.html

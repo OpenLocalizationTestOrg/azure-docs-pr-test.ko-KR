@@ -1,5 +1,5 @@
 ---
-title: "Miscrosoft Azure 진단을 사용하여 Azure Service Fabric 이벤트 집계 | Microsoft Docs"
+title: "Windows Azure 진단으로 서비스 패브릭 이벤트 집계 aaaAzure | Microsoft Docs"
 description: "Azure Service Fabric 클러스터 모니터링 및 진단을 위해 MAD를 사용하여 이벤트를 집계 및 수집하는 방법에 대해 알아봅니다."
 services: service-fabric
 documentationcenter: .net
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/17/2017
 ms.author: dekapur
-ms.openlocfilehash: 5773361fdec4cb8ee54fa2856f6aa969d5dac4e9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4827ce66620e61c5b4a8682db55952333113188a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-aggregation-and-collection-using-windows-azure-diagnostics"></a>Miscrosoft Azure 진단을 사용하여 이벤트 집계 및 수집
 > [!div class="op_single_selector"]
@@ -27,14 +27,14 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-Azure 서비스 패브릭 클러스터를 실행할 때 모든 노드의 로그를 중앙 위치에 수집하는 것이 좋습니다. 중앙 위치에 로그를 두면 클러스터나 해당 클러스터에서 실행 중인 응용 프로그램 및 서비스의 문제를 분석하고 해결하는 데 도움이 됩니다.
+Azure 서비스 패브릭 클러스터를 실행 하는 경우 중앙 위치에 있는 모든 hello 노드에서 것이 좋습니다 toocollect hello가 있습니다. Hello 로그를 중앙 위치에 있는 분석 및 클러스터의 문제 또는 hello 응용 프로그램 및 해당 클러스터에서 실행 되는 서비스의 문제를 해결 하는 데 도움이 됩니다.
 
-로그를 업로드 및 수집하는 방법 중 하나는 MAD(Microsoft Azure 진단) 확장을 사용하는 것입니다. 이 확장을 사용하면 Azure Storage에 로그를 업로드하고 Azure Application Insights 또는 Event Hubs에 로그를 보낼 수 있습니다. 또한 외부 프로세스를 사용하여 저장소의 이벤트를 읽고 [OMS Log Analytics](../log-analytics/log-analytics-service-fabric.md) 또는 기타 로그 구문 분석 솔루션 등의 분석 플랫폼 제품에 배치할 수 있습니다.
+한 가지 방법은 tooupload 및 수집 로그는 로그 tooAzure 저장소에 업로드 하 고 hello 옵션 toosend 로그 tooAzure Application Insights 또는 이벤트 허브에는 toouse hello Windows WAD (Azure 진단) 확장입니다. 저장소에서 외부 프로세스 tooread hello 이벤트를 사용 하 고와 같은 분석 플랫폼 제품에 배치할 수도 있습니다 [OMS 로그 분석](../log-analytics/log-analytics-service-fabric.md) 또는 다른 로그 구문 분석 솔루션입니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이러한 도구는 이 문서의 일부 작업을 수행하는 데 사용됩니다.
+이러한 도구는 사용 되는 tooperform hello 작업이 문서의 일부를 수행 합니다.
 
-* [Azure 진단](../cloud-services/cloud-services-dotnet-diagnostics.md)(Azure Cloud Services와 관련이 있지만 여러 좋은 정보와 예 제공)
+* [Azure 진단](../cloud-services/cloud-services-dotnet-diagnostics.md) (관련 클라우드 서비스 tooAzure 않았으나 좋은 정보 및 예제)
 * [Azure 리소스 관리자](../azure-resource-manager/resource-group-overview.md)
 * [Azure PowerShell](/powershell/azure/overview)
 * [Azure Resource Manager 클라이언트](https://github.com/projectkudu/ARMClient)
@@ -43,35 +43,35 @@ Azure 서비스 패브릭 클러스터를 실행할 때 모든 노드의 로그�
 ## <a name="log-and-event-sources"></a>로그 및 이벤트 원본
 
 ### <a name="service-fabric-platform-events"></a>Service Fabric 플랫폼 이벤트
-[이 문서](service-fabric-diagnostics-event-generation-infra.md)의 설명대로 Service Fabric은 WAD를 사용하여 모니터링 및 진단 데이터를 저장소 테이블이나 다른 곳에 보내도록 다음 채널을 쉽게 구성할 수 있는 몇 가지 기본 제공 로깅 채널을 소개합니다.
-  * 작업 이벤트: Service Fabric 플랫폼이 수행하는 상위 수준 작업입니다. 응용 프로그램 및 서비스 만들기, 노드 상태 변경, 업그레이드 정보 등을 예로 들 수 있습니다. 이러한 이벤트를 ETW(Windows용 이벤트 추적) 로그로 내보냅니다.
+에 설명 된 대로 [이 여기서](service-fabric-diagnostics-event-generation-infra.md), 서비스 패브릭 설정 하면 기본적으로 로깅 채널의 몇 가지, hello는 다음과 같은 채널은 쉽게 구성 WAD toosend 모니터링 및 진단 데이터 tooa 저장소 테이블 또는 다른 곳에서:
+  * 작업 이벤트: hello 서비스 패브릭 플랫폼을 수행 하는 상위 수준 작업입니다. 응용 프로그램 및 서비스 만들기, 노드 상태 변경, 업그레이드 정보 등을 예로 들 수 있습니다. 이러한 이벤트를 ETW(Windows용 이벤트 추적) 로그로 내보냅니다.
   * [Reliable Actors 프로그래밍 모델 이벤트](service-fabric-reliable-actors-diagnostics.md)
   * [Reliable Services 프로그래밍 모델 이벤트](service-fabric-reliable-services-diagnostics.md)
 
 ### <a name="application-events"></a>응용 프로그램 이벤트
- 응용 프로그램 및 서비스 코드에서 발생하며 Visual Studio에서 제공하는 EventSource 도우미 클래스를 사용하여 작성된 이벤트입니다. 응용 프로그램에서 EventSource 로그를 작성하는 방법에 대한 자세한 내용은 [로컬 컴퓨터 개발 설정에서의 모니터링 및 진단 서비스](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)를 참조하세요.
+ Hello에 Visual Studio 템플릿 제공 하는 이벤트 hello EventSource 도우미 클래스를 사용 하 여 기록 및 응용 프로그램 및 서비스의 코드에서 내보내집니다. EventSource toowrite 응용 프로그램에서 기록 하는 방법에 대 한 자세한 내용은 참조 하십시오. [모니터 하 고 서비스는 로컬 컴퓨터 개발 설정에서 진단](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)합니다.
 
-## <a name="deploy-the-diagnostics-extension"></a>진단 확장 배포
-로그를 수집하는 첫 단계는 서비스 패브릭 클러스터의 각 VM에 진단 확장을 배포하는 것입니다. 진단 확장은 각 VM에서 로그를 수집하여 사용자가 지정하는 저장소 계정에 업로드합니다. 단계는 Azure Portal 또는 Azure Resource Manager 사용 여부에 따라 약간 달라집니다. 또한 배포가 클러스터 생성의 일부인지 아니면 이미 있는 클러스터에 대한 것인지에 따라서도 단계가 달라집니다. 각 시나리오에 대한 단계를 살펴보겠습니다.
+## <a name="deploy-hello-diagnostics-extension"></a>Hello 진단 확장 배포
+로그를 수집 hello 첫 번째 단계는 hello 서비스 패브릭 클러스터에 있는 hello Vm의 각 toodeploy hello 진단 확장입니다. hello 진단 확장 각 VM에서 로그를 수집 하 고 사용자가 지정한 toohello 저장소 계정으로 업로드 합니다. hello 단계 hello Azure 포털 또는 Azure 리소스 관리자를 사용 하는 여부에 따라 약간 다릅니다. 또한 hello 단계 hello 배포의 클러스터 생성의 일부 인지 또는 이미 존재 하는 클러스터에 대 한 인지에 따라 달라 집니다. 각 시나리오에 대 한 hello 단계를 살펴 보겠습니다.
 
-### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-azure-portal"></a>Azure Portal을 통해 클러스터 만들기의 일환으로 진단 확장 배포
-클러스터 만들기의 일부로 클러스터의 VM에 진단 확장을 배포하려면 다음 이미지에 표시된 진단 설정 패널을 사용합니다. [진단]이 **켜기**(기본 설정)로 설정되어 있는지 확인합니다. 클러스터를 만든 후에는 포털을 사용하여 이러한 설정을 변경할 수 없습니다.
+### <a name="deploy-hello-diagnostics-extension-as-part-of-cluster-creation-through-azure-portal"></a>Azure 포털을 통해 클러스터 만들기의 일부로 hello 진단 확장 배포
+hello 다음에 표시 된 hello 진단 설정 패널을 사용 하면 toodeploy hello 진단 확장 toohello Vm 클러스터 만들기의 일부로 hello 클러스터의, 이미지-진단 너무 설정 되어 있는지 확인**에** (기본 설정 hello) . Hello 클러스터를 만드는 hello 포털을 사용 하 여 이러한 설정을 변경할 수 없습니다.
 
-![클러스터를 만들기 위해 포털에서 Azure 진단 설정](media/service-fabric-diagnostics-event-aggregation-wad/azure-enable-diagnostics.png)
+![클러스터 만들기에 대 한 hello 포털의 azure 진단 설정](media/service-fabric-diagnostics-event-aggregation-wad/azure-enable-diagnostics.png)
 
-포털을 사용하여 클러스터를 만드는 경우 클러스터를 만들기 위해 **확인을 클릭하기 전에** 템플릿을 다운로드하는 것이 좋습니다. 자세한 내용은 [Azure Resource Manager 템플릿을 사용하여 Service Fabric 클러스터 설정](service-fabric-cluster-creation-via-arm.md)을 참조하세요. 일부는 포털을 사용하여 변경할 수 없으므로 나중에 변경하려면 템플릿이 필요합니다.
+Hello 포털을 사용 하 여 클러스터를 만들 때 매우 권장 hello 서식 파일을 다운로드 하는 **클릭 하기 전에** toocreate hello 클러스터입니다. 자세한 내용은 참조 너무[Azure 리소스 관리자 템플릿을 사용 하 여 서비스 패브릭 클러스터를 설정](service-fabric-cluster-creation-via-arm.md)합니다. 일부 변경 내용은 hello 포털을 사용 하 여 변경할 수 없으므로 나중 hello 템플릿 toomake 변경 필요 합니다.
 
-### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>Azure 리소스 관리자를 사용하여 클러스터 만들기의 일환으로 진단 확장 배포
-리소스 관리자를 사용하여 클러스터를 만들려면 클러스터를 만들기 전에 진단 구성 JSON을 전체 클러스터 Resource Manager 템플릿에 추가해야 합니다. Resource Manager 템플릿 샘플의 일부로 진단 구성이 추가된 샘플 5VM 클러스터 Resource Manager 템플릿이 제공됩니다. Azure 샘플 갤러리의 [진단 Resource Manager 템플릿 샘플이 포함된 5노드 클러스터](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)에서 샘플을 볼 수 있습니다.
+### <a name="deploy-hello-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>Azure 리소스 관리자를 사용 하 여 클러스터 생성의 일환으로 hello 진단 확장을 배포 합니다.
+리소스 관리자를 사용 하 여 클러스터 toocreate 있어야만 tooadd hello 진단 구성 JSON toohello 전체 클러스터 리소스 관리자 템플릿 hello 클러스터를 만듭니다. 추가 진단 구성을 사용 하 여 샘플 5-V 클러스터 리소스 관리자 템플릿을 제공 tooit 리소스 관리자 템플릿 샘플의 일부분으로 합니다. 이 위치 hello Azure 샘플 갤러리에서 확인할 수 있습니다.: [진단 리소스 관리자 템플릿 샘플 5 개 노드 클러스터](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)합니다.
 
-Resource Manager 템플릿에서 진단 설정을 표시하려면 azuredeploy.json 파일을 열고 **IaaSDiagnostics**를 검색합니다. 이 템플릿을 사용하여 클러스터를 만들려면 이전 링크에 제공된 **Azure에 배포** 버튼을 선택합니다.
+hello 리소스 관리자 템플릿, 열기 hello azuredeploy.json 파일 및 검색에서 toosee hello 진단 설정을 **IaaSDiagnostics**합니다. 이 서식 파일을 선택 하는 hello를 사용 하 여 클러스터 toocreate **tooAzure 배포** hello 이전 링크에서 사용할 수 있는 단추입니다.
 
-또는 리소스 관리자 샘플을 다운로드하여 변경한 후 Azure PowerShell 창에서 `New-AzureRmResourceGroupDeployment` 명령을 사용하여 수정된 템플릿으로 클러스터를 만들 수 있습니다. 명령에 전달할 매개 변수는 다음 코드를 참조하세요. PowerShell을 사용하여 리소스 그룹을 배포하는 방법에 대한 자세한 내용은 [Azure Resource Manager 템플릿을 사용하여 리소스 그룹 배포](../azure-resource-manager/resource-group-template-deploy.md) 문서를 참조하세요.
+또는 hello 리소스 관리자 예제 추가 정보 다운로드, 변경 내용을 tooit 만들고 수 hello를 사용 하 여 hello 수정 된 템플릿을 사용 하 여 클러스터를 만들 `New-AzureRmResourceGroupDeployment` Azure PowerShell 창에서 명령을 합니다. Hello toohello 명령에 전달 하는 hello 매개 변수에 대 한 코드 다음을 참조 하십시오. PowerShell을 사용 하 여 리소스 toodeploy 그룹화 하는 방법에 대 한 자세한 내용은 hello 문서 참조 [hello Azure 리소스 관리자 템플릿 사용 하 여 리소스 그룹 배포](../azure-resource-manager/resource-group-template-deploy.md)합니다.
 
-### <a name="deploy-the-diagnostics-extension-to-an-existing-cluster"></a>기존 클러스터에 진단 확장 배포
-진단이 배포되지 않은 기존 클러스터가 있거나 기존 구성을 수정하려는 경우 기존 클러스터를 추가하거나 업데이트할 수 있습니다. 기존 클러스터를 만드는 데 사용되는 Resource Manager 템플릿을 수정하거나 앞의 설명대로 포털에서 템플릿을 다운로드합니다. 다음 작업을 수행하여 template.json 파일을 수정합니다.
+### <a name="deploy-hello-diagnostics-extension-tooan-existing-cluster"></a>Hello 진단 확장 tooan 기존 클러스터 배포
+기존 클러스터를 배포 하는 진단이 없는 경우 또는 toomodify 기존 구성 하려는 경우 추가 하거나 업데이트할 수 있습니다. Hello 리소스 관리자 템플릿을 사용 하는 toocreate hello 기존 클러스터를 수정 하거나 hello 템플릿을 앞에서 설명한 대로 hello 포털에서 다운로드 합니다. Hello 다음 작업을 수행 하 여 hello template.json 파일을 수정 합니다.
 
-리소스 섹션에 추가하여 새 저장소 리소스를 템플릿에 추가합니다.
+Toohello 리소스 섹션을 추가 하 여 새 저장소 리소스 toohello 서식 파일을 추가 합니다.
 
 ```json
 {
@@ -89,7 +89,7 @@ Resource Manager 템플릿에서 진단 설정을 표시하려면 azuredeploy.js
 },
 ```
 
- 저장소 계정 정의 바로 뒤 `supportLogStorageAccountName`과 `vmNodeType0Name` 사이의 매개 변수 섹션에 추가합니다. 자리 표시자 텍스트 *storage account name goes here*를 저장소 계정의 이름으로 바꿉니다.
+ 다음으로, 중간 hello 저장소 계정 정의 바로 뒤 섹션 toohello 매개 변수를 추가 `supportLogStorageAccountName` 및 `vmNodeType0Name`합니다. Hello 개체 틀 텍스트 바꾸기 *저장소 계정 이름 입력* hello hello 저장소 계정의 이름으로 사용 합니다.
 
 ```json
     "applicationDiagnosticsStorageAccountType": {
@@ -100,18 +100,18 @@ Resource Manager 템플릿에서 진단 설정을 표시하려면 azuredeploy.js
       ],
       "defaultValue": "Standard_LRS",
       "metadata": {
-        "description": "Replication option for the application diagnostics storage account"
+        "description": "Replication option for hello application diagnostics storage account"
       }
     },
     "applicationDiagnosticsStorageAccountName": {
       "type": "string",
       "defaultValue": "storage account name goes here",
       "metadata": {
-        "description": "Name for the storage account that contains application diagnostics data from the cluster"
+        "description": "Name for hello storage account that contains application diagnostics data from hello cluster"
       }
     },
 ```
-그런 다음 확장 배열 내에 다음 코드를 추가하여 template.json의 `VirtualMachineProfile` 섹션을 업데이트합니다. 삽입되는 위치에 따라 시작 부분 또는 끝 부분에 쉼표를 추가해야 합니다.
+그런 다음 업데이트 hello `VirtualMachineProfile` hello 코드 hello 확장 배열 내에서 다음을 추가 하 여 hello template.json 파일의 섹션입니다. 있는지 tooadd hello 시작 이나 삽입 되는 위치에 따라 hello 끝 쉼표 수 있습니다.
 
 ```json
 {
@@ -168,13 +168,13 @@ Resource Manager 템플릿에서 진단 설정을 표시하려면 azuredeploy.js
 }
 ```
 
-template.json 파일을 설명대로 수정한 후에는 Resource Manager 템플릿을 다시 게시합니다. 템플릿을 내보낸 후 deploy.ps1 파일을 실행하면 템플릿이 다시 게시됩니다. 배포 후에는 **ProvisioningState**가 **성공**했는지 확인합니다.
+설명 된 대로 hello template.json 파일을 수정한 후에 hello 리소스 관리자 템플릿을 다시 게시 합니다. Hello 서식 파일을 내보낸 경우 실행 중인 hello deploy.ps1 파일 hello 템플릿을 다시 게시 합니다. 배포 후에는 **ProvisioningState**가 **성공**했는지 확인합니다.
 
 ## <a name="collect-health-and-load-events"></a>상태 및 부하 이벤트 수집
 
-Service Fabric 5.4 버전부터 상태 및 부하 메트릭 이벤트를 컬렉션에 사용할 수 있습니다. 이러한 이벤트는 시스템이나 코드에서 [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) 또는 [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx) 등의 상태 또는 부하 보고 API를 사용하여 시스템 또는 코드에서 생성한 이벤트를 반영합니다. 이를 통해 시간 경과에 따른 시스템 상태의 집계 및 확인과 상태 또는 부하 이벤트 기반의 경고가 가능합니다. Visual Studio의 Diagnostic Event Viewer에서 이 이벤트를 보려면 ETW 공급자 목록에 "Microsoft-ServiceFabric:4:0x4000000000000008"을 추가합니다.
+릴리스부터 hello 5.4 서비스 패브릭의 상태 및 부하 메트릭 이벤트는 컬렉션에 사용할 수 있습니다. 이러한 이벤트 hello 상태를 사용 하 여 hello 시스템 또는 사용자 코드에 의해 생성 된 이벤트를 반영 하거나 보고 Api와 같은 로드 [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) 또는 [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx)합니다. 이를 통해 시간 경과에 따른 시스템 상태의 집계 및 확인과 상태 또는 부하 이벤트 기반의 경고가 가능합니다. 이러한 Visual Studio의 진단 이벤트 뷰어의이 이벤트에에서 추가 tooview "Microsoft-ServiceFabric:4:0x4000000000000008" toohello ETW 공급자 목록입니다.
 
-이벤트를 수집하려면 Resource Manager 템플릿을 수정하여 다음을 포함하도록 합니다.
+toocollect hello 이벤트 hello 리소스 관리자 템플릿 tooinclude 수정
 
 ```json
   "EtwManifestProviderConfiguration": [
@@ -191,11 +191,11 @@ Service Fabric 5.4 버전부터 상태 및 부하 메트릭 이벤트를 컬렉�
 
 ## <a name="collect-reverse-proxy-events"></a>역방향 프록시 이벤트 수집
 
-Service Fabric 5.7 릴리스부터 [역방향 프록시](service-fabric-reverseproxy.md) 이벤트를 컬렉션에 사용할 수 있습니다.
-역방향 프록시는 요청 처리 실패를 나타내는 오류 이벤트가 담긴 채널 하나와, 역방향 프록시에서 처리된 모든 요청에 대한 상세 정보가 담긴 채널 하나 등, 두 채널로 이벤트를 내보냅니다. 
+서비스 패브릭의 hello 5.7 릴리스에서 [역방향 프록시](service-fabric-reverseproxy.md) 이벤트는 컬렉션에 대해 사용할 수 있습니다.
+역방향 프록시 포함 하는 하나의 오류 두 개의 채널에 이벤트를 내보냅니다 반영 하는 이벤트 처리 오류를 요청 하 고 다른 하나 hello 역방향 프록시에서 처리 하는 모든 hello 요청에 대 한 자세한 정보 표시 이벤트에 포함 된 hello 합니다. 
 
-1. 오류 이벤트 수집: Visual Studio의 Diagnostic Event Viewer에서 이 이벤트를 보려면 ETW 공급자 목록에 "Microsoft-ServiceFabric:4:0x4000000000000010"을 추가합니다.
-Azure 클러스터에서 이벤트를 수집하려면 Resource Manager 템플릿을 수정하여 다음을 포함하도록 합니다.
+1. 오류 이벤트 수집: tooview 이러한 Visual Studio의 진단 이벤트 뷰어의이 이벤트에에서 추가 "Microsoft-ServiceFabric:4:0x4000000000000010" toohello ETW 공급자 목록입니다.
+Azure의 클러스터에서 toocollect hello 이벤트 hello 리소스 관리자 템플릿 tooinclude 수정
 
 ```json
   "EtwManifestProviderConfiguration": [
@@ -210,8 +210,8 @@ Azure 클러스터에서 이벤트를 수집하려면 Resource Manager 템플릿
     }
 ```
 
-2. 모든 요청 처리 이벤트 수집: Visual Studio의 진단 이벤트 뷰어에서 ETW 공급자 목록의 Microsoft-ServiceFabric 항목을 "Microsoft-ServiceFabric:4:0x4000000000000020"으로 업데이트합니다.
-Azure Service Fabric 클러스터의 경우 Resource Manager 템플릿을 수정하여 다음을 포함하도록 합니다.
+2. 처리 중인 이벤트의 모든 요청 수집:에서 Visual Studio의 진단 이벤트 뷰어, 업데이트 hello Microsoft ServiceFabric 항목 hello ETW 공급자 목록이 너무 "Microsoft-ServiceFabric:4:0x4000000000000020"입니다.
+Azure 서비스 패브릭 클러스터에 대 한 hello 리소스 관리자 템플릿 tooinclude 수정
 
 ```json
   "EtwManifestProviderConfiguration": [
@@ -225,18 +225,18 @@ Azure Service Fabric 클러스터의 경우 Resource Manager 템플릿을 수정
       }
     }
 ```
-> 여기서는 역방향 프록시를 통과하는 모든 트래픽을 수집하여 저장소 용량을 신속하게 소비할 수 있으므로 이 채널을 통한 이벤트 수집을 활성화할 때는 주의가 필요합니다.
+> Hello 역방향 프록시를 통해 모든 트래픽을 수집할지이 고 저장소 용량을 소비 신속 하 게 수 toojudiciously이이 채널에서 수집할 이벤트 기능 설정 좋습니다.
 
-Azure Service Fabric 클러스터의 경우 모든 노드의 이벤트가 SystemEventTable에 수집되어 집계됩니다.
-역방향 프록시 이벤트의 문제 해결에 관한 자세한 내용은 [역방향 프록시 진단 가이드](service-fabric-reverse-proxy-diagnostics.md)를 참조하세요.
+Azure 서비스 패브릭 클러스터에 대 한 모든 hello 노드에서 hello 이벤트 수집 및 SystemEventTable hello에 집계 합니다.
+상세한 hello 역방향 프록시 이벤트의 문제 해결, 참조 hello [역방향 프록시 진단 가이드](service-fabric-reverse-proxy-diagnostics.md)합니다.
 
 ## <a name="collect-from-new-eventsource-channels"></a>새 EventSource 채널에서 수집
 
-배포하려는 새 응용 프로그램을 나타내는 새 EventSource 채널에서 로그를 수집하도록 진단을 업데이트하려면 기존 클러스터에 대한 이전 설명과 동일한 단계를 수행해야 합니다.
+tooupdate 진단 toocollect 로그 toodeploy에 대 한 사용자가 있는 새 응용 프로그램을 나타내는 새 EventSource 채널에서 기존 클러스터에 대 한 진단의 hello 설치에 대 한 hello 앞에서 설명한 동일한 단계를 수행 합니다.
 
-새 EventSource 채널의 항목을 추가하도록 template.json 파일의 `EtwEventSourceProviderConfiguration` 섹션을 업데이트한 후 `New-AzureRmResourceGroupDeployment` PowerShell 명령을 사용하여 구성 업데이트를 적용합니다. 이벤트 원본의 이름은 ServiceEventSource.cs 파일을 생성한 Visual Studio에서 코드의 일부로 정의됩니다.
+Hello 업데이트 `EtwEventSourceProviderConfiguration` hello 새로운 EventSource 채널 hello 구성을 적용 하기 전에 hello를 사용 하 여 업데이트에 대 한 hello template.json 파일 tooadd 항목 섹션 `New-AzureRmResourceGroupDeployment` PowerShell 명령입니다. hello 이벤트 소스의 hello 이름 hello ServiceEventSource.cs Visual Studio에서 생성 된 파일에 코드의 일부로 정의 됩니다.
 
-예를 들어 이벤트 원본의 이름을 Eventsource라고 지정한 경우 My-Eventsource의 이벤트를 MyDestinationTableName이라는 테이블에 배치하는 다음 코드를 추가합니다.
+예를 들어 이벤트 원본이 Eventsource 내 이름이 이면 hello MyDestinationTableName 라는 테이블로 tooplace hello 이벤트 코드 Eventsource 내에서 다음을 추가 합니다.
 
 ```json
         {
@@ -248,13 +248,13 @@ Azure Service Fabric 클러스터의 경우 모든 노드의 이벤트가 System
         }
 ```
 
-성능 카운터 또는 이벤트 로그를 수집하려면 [Azure Resource Manager 템플릿을 사용하여 모니터링 및 진단이 포함된 Windows 가상 컴퓨터 만들기](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에 제공된 예제를 사용하여 Resource Manager 템플릿을 수정합니다. 그런 다음 Resource Manager 템플릿을 다시 게시합니다.
+toocollect 성능 카운터 또는 이벤트 로그에서 제공 하는 hello 예제를 사용 하 여 hello 리소스 관리자 템플릿을 수정 [는Azure리소스관리자템플릿을사용하여Windows가상컴퓨터를모니터링및진단을작성](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 그런 다음 hello 리소스 관리자 템플릿을 다시 게시 합니다.
 
 ## <a name="collect-performance-counters"></a>성능 카운터 수집
 
-클러스터에서 성능 메트릭을 수집하려면 클러스터에 대한 Resource Manager 템플릿에서 "WadCfg > DiagnosticMonitorConfiguration"에 성능 카운터를 추가합니다. 수집을 권장하는 성능 카운터에 대해서는 [Service Fabric 성능 카운터](service-fabric-diagnostics-event-generation-perf.md)를 참조하세요.
+클러스터에서 toocollect 성능 메트릭을 클러스터에 대 한 리소스 관리자 템플릿을 hello에 hello 성능 카운터 tooyour "WadCfg > DiagnosticMonitorConfiguration"를 추가 합니다. 수집을 권장하는 성능 카운터에 대해서는 [Service Fabric 성능 카운터](service-fabric-diagnostics-event-generation-perf.md)를 참조하세요.
 
-예를 들어, 여기서는 15초마다 샘플링되고(이 값은 변경될 수 있고 "PT\<시간>\<단위>" 형식이 적용됨. 예를 들어 PT3M은 3분 간격으로 샘플링됨) 1분마다 적절한 저장소 테이블에 전송되는 하나의 성능 카운터를 설정합니다.
+예를 들어 하나의 성능 카운터를 15 초 마다 샘플링 설정 여기 (이 변경 될 수 있으며 다음과 hello의 형식을 "PT\<시간 >\<단위 >"를 3 분 간격으로 PT3M 샘플은 예를 들어), toohello 전송 해당 하는 저장소 테이블 1 분 간격입니다.
 
   ```json
   "PerformanceCounters": {
@@ -272,20 +272,20 @@ Azure Service Fabric 클러스터의 경우 모든 노드의 이벤트가 System
   }
   ```
   
-아래 섹션에 설명된 대로 Application Insights 싱크를 사용하고 있을 때 이러한 메트릭을 Application Insights에 표시하려면 위에 표시된 대로 "sinks" 섹션에 싱크 이름을 추가해야 합니다. 또한 성능 카운터를 보낼 별도의 테이블을 만들어 보세요. 그러면 성능 카운터는 사용하도록 설정한 다른 로깅 채널에서 들어오는 데이터를 밀어내지 않습니다.
+아래의 hello 섹션에 설명 된 대로 Application Insights 싱크를 사용 하는 경우 Application Insights에서 이러한 메트릭 tooshow를 원하는 위와 같이 hello "싱크" 섹션에 tooadd hello 싱크 이름이 있는지 확인 합니다. 또한 만드는 것이 좋습니다 별도 테이블 toosend 성능 카운터 hello 아웃 복잡해 지지 하지 하므로에서 가져온 데이터 hello 다른 로깅 채널을 설정한 상태 여야 합니다.
 
 
-## <a name="send-logs-to-application-insights"></a>Application Insights에 로그 보내기
+## <a name="send-logs-tooapplication-insights"></a>송신은 tooApplication 정보를 기록합니다.
 
-WAD 구성의 일부로 모니터링 및 진단 데이터를 AI(Application Insights)에 보낼 수 있습니다. 이벤트 분석 및 시각화에 AI를 사용하도록 결정할 경우 "WadCfg"의 일부로 AI 싱크를 설정하려면 [Application Insights를 사용하여 이벤트 분석 및 시각화](service-fabric-diagnostics-event-analysis-appinsights.md)를 참조하세요.
+모니터링 및 진단 데이터 tooApplication Insights (AI) 보내는 hello WAD 구성의 일부분으로 수행할 수 있습니다. 이벤트 분석 및 시각화에 대 한 AI toouse 결정 한 경우 확인 [이벤트 분석 및 Application Insights를 사용한 시각화](service-fabric-diagnostics-event-analysis-appinsights.md) tooset "WadCfg"의 일부로 AI 싱크를 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure 진단을 제대로 구성하면 저장소 테이블에서 ETW 및 EventSource 로그의 데이터를 확인할 수 있습니다. OMS 또는 Kibana를 사용하거나 Resource Manager 템플릿에서 직접 구성되지 않은 기타 데이터 분석 및 시각화 플랫폼을 사용하도록 선택할 경우 선택한 플랫폼이 이러한 저장소 테이블에서 데이터를 읽도록 설정해야 합니다. OMS에 대해 이 작업을 수행하는 방법은 비교적 간단하고 [OMS를 통해 이벤트 및 로그 분석](service-fabric-diagnostics-event-analysis-oms.md)에서 설명됩니다. Application Insights는 진단 확장 구성의 일부로 구성될 수 있으므로 이런 의미에서 약간 특별한 경우입니다. 따라서 AI를 사용하도록 선택할 경우 [관련 문서](service-fabric-diagnostics-event-analysis-appinsights.md)를 참조하세요.
+Azure 진단을 올바르게 구성한 hello ETW 및 EventSource 로그에서 저장소 테이블에 데이터 표시 됩니다. OMS toouse을 선택 하면 Kibana, 또는 다른 데이터 분석 및 시각화 플랫폼 hello 리소스 관리자 서식 파일에서 직접 구성 되지 않은 hello 테이블의 데이터를 이러한 저장소에 있는지 tooset 선택 tooread의 hello 플랫폼을 확인 합니다. OMS에 대해 이 작업을 수행하는 방법은 비교적 간단하고 [OMS를 통해 이벤트 및 로그 분석](service-fabric-diagnostics-event-analysis-oms.md)에서 설명됩니다. Application Insights는 이런이 의미에서 특별 한 경우의 비트, toohello 참조 하도록 hello 진단 확장 구성의 일부로 구성할 수 있습니다, 때문 [적절 한 문서](service-fabric-diagnostics-event-analysis-appinsights.md) toouse AI를 선택 합니다.
 
 >[!NOTE]
->현재 테이블로 전송되는 이벤트를 필터링하거나 영구 제거할 방법은 없습니다. 테이블에서 이벤트를 제거하는 프로세스를 구현하지 않으면 테이블이 계속 커집니다. 현재 [Watchdog 샘플](https://github.com/Azure-Samples/service-fabric-watchdog-service)에서 실행되는 데이터 그루밍 서비스의 예제가 있고, 30일 또는 90일 넘어서 로그를 저장해야 하는 적절한 이유가 없다면 직접 작성하는 것이 좋습니다.
+>Ľ ř ˝ 방법은 toofilter 또는 그루 밍 hello 이벤트가 toohello 테이블 전송 됩니다. Hello 테이블에서 프로세스 tooremove 이벤트를 구현 하지 않는 경우 hello 테이블 toogrow를 계속 됩니다. 현재 hello에서 실행 되는 데이터 그루 밍 서비스의 예는 [Watchdog 샘플](https://github.com/Azure-Samples/service-fabric-watchdog-service), 것이 좋습니다 작성 하는 자신에 대 한 하나도 좋은 이유가 있습니다 toostore 로그는 30 또는 90 일의 기간 보다 큰 경우를 제외 합니다.
 
-* [진단 확장을 사용하여 성능 카운터 또는 로그를 수집하는 방법 알아보기](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Toocollect 성능 카운터 또는 로그를 사용 하 여 hello 진단 확장 방법에 대해 알아봅니다](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Application Insights를 사용하여 이벤트 분석 및 시각화](service-fabric-diagnostics-event-analysis-appinsights.md)
 * [OMS를 사용하여 이벤트 분석 및 시각화](service-fabric-diagnostics-event-analysis-oms.md)

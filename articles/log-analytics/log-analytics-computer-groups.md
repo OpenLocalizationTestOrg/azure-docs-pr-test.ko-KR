@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics 로그 검색의 컴퓨터 그룹 | Microsoft Docs"
-description: "Log Analytics의 컴퓨터 그룹을 사용하여 로그 검색 범위를 특정 컴퓨터 집합으로 한정할 수 있습니다.  이 문서에서는 컴퓨터 그룹을 만드는 데 사용할 수 있는 몇 가지 방법과 로그 검색에서의 사용 방법을 설명합니다."
+title: "로그 분석에서 aaaComputer 그룹 로그 검색 | Microsoft Docs"
+description: "로그 분석에서 컴퓨터 그룹을 사용 하면 tooscope 로그 검색 tooa 특정 컴퓨터 집합이 있습니다.  이 문서에서는 toocreate 컴퓨터 그룹 및 toouse 로그에서 해당 검색 방법에서는 hello 다양 한 방법을 설명 합니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: bwren
-ms.openlocfilehash: a2ddc932343d54963a378ee27dc962a790326b2a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7dafea9829e541f5582a1d855fafb82aa4d94430
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="computer-groups-in-log-analytics-log-searches"></a>Log Analytics 로그 검색의 컴퓨터 그룹 
 
 >[!NOTE]
-> 이 문서에서는 최신 Log Analytics 쿼리 언어를 사용하는 컴퓨터 그룹 사용 방식에 대해 설명합니다.    작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 컴퓨터 그룹이 다른 방식으로 작동합니다.  이 문서에서는 새 쿼리 언어에서 달라진 구문과 동작에 대해 참고 정보가 제공됩니다.  
+> 이 문서에는 hello 현재 로그 Anayltics 쿼리 언어를 사용 하 여 컴퓨터 그룹의 hello 사용 방법을 설명 합니다.    작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), 컴퓨터 그룹 다르게 작동 합니다.  메모는 hello 새로운 쿼리 언어에 대 한 hello 서로 다른 구문 및 동작이 함께이 문서에 제공 됩니다.  
 
 
-Log Analytics의 컴퓨터 그룹을 사용하여 [로그 검색](log-analytics-log-searches.md) 범위를 특정 컴퓨터 집합으로 한정할 수 있습니다.  각 그룹에는 사용자가 정의를 사용하거나 여러 원본에서 그룹을 가져와 컴퓨터가 채워집니다.  그룹이 로그 검색에 포함된 경우 결과는 그룹의 컴퓨터에 일치하는 레코드로 한정됩니다.
+로그 분석에서 컴퓨터 그룹 허용 tooscope [검색 로그](log-analytics-log-searches.md) tooa 특정 컴퓨터 집합이 있습니다.  각 그룹에는 사용자가 정의를 사용하거나 여러 원본에서 그룹을 가져와 컴퓨터가 채워집니다.  Hello 그룹 로그 검색에 포함 되어 있으면, hello 결과가 hello 그룹의 hello 컴퓨터와 일치 하는 제한 된 toorecords 됩니다.
 
 ## <a name="creating-a-computer-group"></a>컴퓨터 그룹 만들기
-Log Analytics에서 다음 표의 방법 중 하나를 통해 컴퓨터 그룹을 만들 수 있습니다.  각 방법에 대한 자세한 내용은 아래 섹션에서 설명합니다. 
+다음 표에 hello hello 방법 중 하나를 사용 하는 로그 분석에서 컴퓨터 그룹을 만들 수 있습니다.  각 방법에 대 한 내용은 아래 hello 섹션에 제공 됩니다. 
 
 | 메서드 | 설명 |
 |:--- |:--- |
-| 로그 검색 |컴퓨터 목록을 반환하는 로그 검색을 만들고 결과를 컴퓨터 그룹으로 저장합니다. |
-| 로그 검색 API |로그 검색 API를 사용하여 프로그래밍 방식으로 로그 검색 결과에 따라 컴퓨터 그룹을 만듭니다. |
-| Active Directory |Active Directory 도메인의 구성원인 에이전트 컴퓨터의 그룹 구성원을 자동으로 검색하고 각 보안 그룹에 대해 Log Analytics에 그룹을 만듭니다. |
+| 로그 검색 |컴퓨터의 목록을 반환 하는 로그 검색을 만들고 컴퓨터 그룹으로 hello 결과 저장 합니다. |
+| 로그 검색 API |사용 하 여 hello 로그 검색 API tooprogrammatically hello 로그 검색 결과에 따른 컴퓨터 그룹을 만듭니다. |
+| Active Directory |Active Directory 도메인의 멤버 이며 각 보안 그룹에 대 한 로그 분석에서 그룹을 만듭니다는 모든 에이전트 컴퓨터의 hello 그룹 구성원 자격을 자동으로 검색 합니다. |
 | WSUS |대상 그룹에 대해 자동으로 WSUS 서버나 클라이언트를 검색하고 각각에 대해 Log Analytics에 그룹을 만듭니다. |
 
 ### <a name="log-search"></a>로그 검색
-로그 검색으로부터 만든 컴퓨터 그룹은 사용자가 정의한 검색 쿼리가 반환한 모든 컴퓨터를 포함합니다.  이 쿼리는 컴퓨터 그룹이 사용될 때마다 실행되므로 그룹이 만들어진 이후의 모든 변경 내용이 반영됩니다.
+로그 검색에서 생성 하는 컴퓨터 그룹에 모두 정의 하는 검색 쿼리에서 반환 하는 hello 컴퓨터 포함 합니다.  이 쿼리는 hello 그룹이 만들어진 후 변경 내용을 반영 되도록 hello 컴퓨터 그룹을 사용할 때마다 실행 됩니다.
 
-다음 절차를 통해 로그 검색에서 컴퓨터 그룹을 만듭니다.
+로그 검색에서 프로시저 toocreate 컴퓨터 그룹을 다음 hello를 사용 합니다.
 
-1. 컴퓨터 목록을 반환하는 [로그 검색 만듭니다](log-analytics-log-searches.md).  이 검색은 쿼리에서 **Distinct Computer** 또는 **measure count() by Computer** 등과 같은 항목을 사용하여 컴퓨터의 개별 집합을 반환해야 합니다.  
-2. 화면 위쪽에 있는 **저장** 단추를 클릭합니다.
-3. **예**를 선택하여 **이 쿼리를 컴퓨터 그룹으로 저장**합니다.
-4. 그룹의 **이름** 및 **범주**를 입력합니다.  동일한 이름 및 범주를 갖는 검색이 이미 있는 경우 덮어쓴다는 메시지가 표시됩니다.  다른 카테고리에서는 동일한 이름으로 여러 검색을 사용할 수 있습니다. 
+1. 컴퓨터 목록을 반환하는 [로그 검색 만듭니다](log-analytics-log-searches.md).  hello 검색 집합만 반환 해야 합니다는 고유한 컴퓨터와 같은 수준의 암호화를 사용 하 여 **고유 컴퓨터** 또는 **컴퓨터별 개수 () 측정** hello 쿼리에서 합니다.  
+2. Hello 클릭 **저장** hello hello 화면 위쪽에 단추입니다.
+3. 선택 **예** 너무**컴퓨터 그룹으로이 쿼리를 저장 합니다.**합니다.
+4. 에 입력 한 **이름** 및 **범주** hello 그룹에 대 한 합니다.  있는 경우 이미 사용 하 여 검색 hello 동일한 이름 및 범주를 다시 입력 정보 요청된 toooverwrite 수는 것입니다.  다양 한 범주의 이름과 같은 이름을 hello로 여러 개의 검색을 할 수 있습니다. 
 
 다음은 컴퓨터 그룹으로 저장할 수 있는 검색의 예입니다.
 
@@ -54,72 +54,72 @@ Log Analytics에서 다음 표의 방법 중 하나를 통해 컴퓨터 그룹�
     Computer=*srv* | measure count() by Computer
 
 >[!NOTE]
-> 작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 새 컴퓨터 그룹을 만드는 절차가 다음과 같이 변경됩니다.
+> 작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md) hello 다음과 같이 변경 중인 만들어 놓은 toohello 프로시저 toocreate 새 컴퓨터 그룹입니다.
 >  
-> - 컴퓨터 그룹을 만드는 쿼리에 `distinct Computer`를 포함해야 합니다.  컴퓨터 그룹을 만드는 쿼리의 예제는 다음과 같습니다.<br>`Heartbeat | where Computer contains "srv" `
-> - 새 컴퓨터 그룹을 만들 때는 이름 외에 별칭을 지정해야 합니다.  쿼리에서 컴퓨터 그룹을 사용할 때는 아래 설명에 따라 별칭을 사용합니다.  
+> - 컴퓨터 그룹을 포함 해야 하는 쿼리 toocreate hello `distinct Computer`합니다.  다음은 쿼리 toocreate 컴퓨터 그룹의 예입니다.<br>`Heartbeat | where Computer contains "srv" `
+> - 새 컴퓨터 그룹을 만들 때 추가 toohello 이름에 별칭을 지정 해야 합니다.  아래 설명 된 대로 쿼리에서 hello 컴퓨터 그룹을 사용 하는 경우 hello 별칭을 사용 합니다.  
 
 ### <a name="log-search-api"></a>로그 검색 API
-로그 검색 API를 사용하여 만들어진 컴퓨터 그룹은 로그 검색으로 만든 검색과 동일합니다.
+로그 검색 API는 hello를 사용 하 여 만든 컴퓨터 그룹을 hello 로그 검색을 사용 하 여 만든 검색으로 동일 합니다.
 
-로그 검색 API를 사용하여 컴퓨터 그룹을 만드는 것에 대한 자세한 내용은 [Log Analytics 로그 검색 REST API의 컴퓨터 그룹](log-analytics-log-search-api.md#computer-groups)을 참조하세요.
+Hello 로그 검색 API를 사용 하 여 컴퓨터 그룹을 만드는 방법에 대 한 내용은 참조 하십시오 [로그 분석 로그에서 컴퓨터 그룹 검색 REST API](log-analytics-log-search-api.md#computer-groups)합니다.
 
 ### <a name="active-directory"></a>Active Directory
-Active Directory 그룹 멤버 자격을 가져오도록 Log Analytics를 구성하면 OMS 에이전트가 있는 도메인 연결 컴퓨터의 그룹 멤버 자격을 분석합니다.  컴퓨터 그룹은 Log Analytics에서 Active Directory의 각 보안 그룹에 대해 만들어지며 각 컴퓨터는 자신이 속산 보안 그룹에 해당하는 컴퓨터 그룹에 추가됩니다.  이 멤버 자격은 4시간 간격으로 계속 업데이트됩니다.  
+로그 분석 tooimport Active Directory 그룹 멤버 자격을 구성 하면 hello OMS 에이전트는 모든 도메인에 가입 된 컴퓨터의 그룹 구성원 hello 분석 합니다.  Active Directory에서 각 보안 그룹에 대 한 로그 분석에는 컴퓨터 그룹을 만들 및 각 컴퓨터 toohello 보안 그룹의 구성원은 해당 toohello 컴퓨터 그룹에 추가 됩니다.  이 멤버 자격은 4시간 간격으로 계속 업데이트됩니다.  
 
-Log Analytics **설정**의 **컴퓨터 그룹** 메뉴에서 Active Directory 보안 그룹을 가져오도록 Log Analytics를 구성할 수 있습니다.  **자동화**를 선택한 다음 **컴퓨터에서 Active Directory 그룹 멤버 자격을 가져옵니다**.  추가 구성은 필요 없습니다.
+로그 분석에서 hello tooimport Active Directory 보안 그룹 구성 **컴퓨터 그룹** 로그 분석의 메뉴 **설정**합니다.  **자동화**를 선택한 다음 **컴퓨터에서 Active Directory 그룹 멤버 자격을 가져옵니다**.  추가 구성은 필요 없습니다.
 
 ![Active Directory의 컴퓨터 그룹](media/log-analytics-computer-groups/configure-activedirectory.png)
 
-그룹을 가져올 때는 검색된 그룹 멤버 자격 및 가져온 그룹 수와 함께 컴퓨터 수가 메뉴에 나열됩니다.  이 링크 중 하나를 클릭하여 **ComputerGroup** 레코드와 이 정보를 반환할 수 있습니다.
+되 면 그룹 가져왔는지, hello 메뉴 목록 hello 수의 그룹 구성원을 포함 하는 컴퓨터 검색 고 hello 그룹을 가져올 수 있습니다.  이러한 링크 tooreturn hello 중 하나에서 클릭할 수 있는 **ComputerGroup** 이 정보가 포함 된 레코드입니다.
 
 ### <a name="windows-server-update-service"></a>Windows Server 업데이트 서비스
-WSUS 그룹 멤버 자격을 가져오도록 Log Analytics를 구성하면 OMS 에이전트가 있는 컴퓨터의 대상 그룹 멤버 자격을 분석합니다.  클라이언트 쪽 대상을 사용하는 경우 OMS에 연결되고 WSUS 대상 그룹에 속한 모든 컴퓨터의 그룹 멤버 자격을 Log Analytics로 가져옵니다. 서버 쪽을 대상으로 사용하는 경우 그룹 멤버 자격 정보를 OMS로 가져오도록 OMS 에이전트를 WSUS 서버에 설치해야 합니다.  이 멤버 자격은 4시간 간격으로 계속 업데이트됩니다. 
+구성 하는 경우 로그 분석 tooimport WSUS 그룹 구성원 자격, hello OMS 에이전트는 모든 컴퓨터의 그룹 구성원을 대상으로 하는 hello을 분석 합니다.  클라이언트 쪽을 사용 하는 경우 연결 된 tooOMS 이며 부분에서는 모든 WSUS 그룹을 대상으로 하는 모든 컴퓨터를 대상으로 그룹 구성원 자격 가져오기가 tooLog 분석 합니다. Hello WSUS에 OMS 에이전트를 설치 해야 하는 hello를 대상으로 서버 쪽을 사용 하는 경우 서버 hello 그룹 멤버 자격 정보 toobe 위해에서 가져온 tooOMS 합니다.  이 멤버 자격은 4시간 간격으로 계속 업데이트됩니다. 
 
-Log Analytics **설정**의 **컴퓨터 그룹** 메뉴에서 Active Directory 보안 그룹을 가져오도록 Log Analytics를 구성할 수 있습니다.  **Active Directory**를 선택한 다음 **컴퓨터에서 Active Directory 그룹 멤버 자격을 가져옵니다**.  추가 구성은 필요 없습니다.
+로그 분석에서 hello tooimport Active Directory 보안 그룹 구성 **컴퓨터 그룹** 로그 분석의 메뉴 **설정**합니다.  **Active Directory**를 선택한 다음 **컴퓨터에서 Active Directory 그룹 멤버 자격을 가져옵니다**.  추가 구성은 필요 없습니다.
 
 ![Active Directory의 컴퓨터 그룹](media/log-analytics-computer-groups/configure-wsus.png)
 
-그룹을 가져올 때는 검색된 그룹 멤버 자격 및 가져온 그룹 수와 함께 컴퓨터 수가 메뉴에 나열됩니다.  이 링크 중 하나를 클릭하여 **ComputerGroup** 레코드와 이 정보를 반환할 수 있습니다.
+되 면 그룹 가져왔는지, hello 메뉴 목록 hello 수의 그룹 구성원을 포함 하는 컴퓨터 검색 고 hello 그룹을 가져올 수 있습니다.  이러한 링크 tooreturn hello 중 하나에서 클릭할 수 있는 **ComputerGroup** 이 정보가 포함 된 레코드입니다.
 
 ## <a name="managing-computer-groups"></a>컴퓨터 그룹 관리
-Log Analytics **설정**의 **컴퓨터 그룹** 메뉴에서 로그 검색 또는 로그 검색 API로부터 생성된 컴퓨터 그룹을 볼 수 있습니다.  **제거** 열에서 **x**를 클릭하여 컴퓨터 그룹을 삭제합니다.  그룹에 대한 **멤버 보기** 아이콘을 클릭하여 멤버를 반환하는 그룹의 로그 검색을 실행합니다. 
+로그 검색에서 생성 된 컴퓨터 그룹을 보거나 hello에서 로그 검색 API hello 수 **컴퓨터 그룹** 로그 분석에서 메뉴 **설정을**합니다.  Hello 클릭 **x** hello에 **제거** 열 toodelete hello 컴퓨터 그룹입니다.  Hello 클릭 **멤버를 볼** 해당 멤버를 반환 하는 그룹 toorun hello 그룹의 로그 검색에 대 한 아이콘입니다. 
 
 ![저장된 컴퓨터 그룹](media/log-analytics-computer-groups/configure-saved.png)
 
-그룹을 수정하려면 **범주** 및 **이름**이 같은 새 그룹을 만들어 원래의 그룹을 덮어씁니다.
+toomodify hello 그룹에서 새 hello로 동일 그룹 **범주** 및 **이름** toooverwrite hello 원래 그룹입니다.
 
 ## <a name="using-a-computer-group-in-a-log-search"></a>로그 검색에서 컴퓨터 그룹 사용
-다음 구문을 사용하여 로그 검색에서 컴퓨터 그룹을 참조합니다.  **범주** 지정은 선택 사항이며 다른 카테고리에 이름이 같은 컴퓨터 그룹이 있는 경우에만 필수입니다. 
+구문 toorefer tooa 컴퓨터 그룹 로그 검색에 다음 hello를 사용 합니다.  지정 하 여 hello **범주** 은 선택적 이며만 hello 이름과 같은 이름을 가지 범주에 있는 컴퓨터 그룹이 있는 경우에 필요 합니다. 
 
     $ComputerGroups[Category: Name]
 
-검색을 실행하면 검색에 포함된 모든 컴퓨터 그룹의 멤버가 먼저 확인됩니다.  그룹이 로그 검색을 기준으로 할 경우 최상위 로그 검색을 수행하기 전에 그룹의 멤버를 반환하기 위한 검색이 실행됩니다.
+검색을 실행 하는 경우 hello 검색에 포함 된 모든 컴퓨터 그룹의 구성원 hello 먼저 확인 됩니다.  Hello 그룹은 로그 검색을 기반으로, 해당 검색 hello 최상위 로그 검색을 수행 하기 전에 hello 그룹의 tooreturn hello 멤버를 실행 됩니다.
 
-일반적으로 컴퓨터 그룹은 다음 예제에서처럼 로그 검색에서 **IN** 절에서 사용됩니다.
+컴퓨터 그룹 hello는 일반적 사용 **IN** hello 다음 예제와 같이 hello 로그 검색에는 절:
 
     Type=UpdateSummary Computer IN $ComputerGroups[My Computer Group]
 
 >[!NOTE]
-> 작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 다음 예제에서와 같이 컴퓨터 그룹의 별칭을 함수로 처리하는 방식으로 쿼리에서 컴퓨터 그룹을 사용합니다.
+> 작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), 쿼리에서 컴퓨터 그룹을 사용 하 여 해당 별칭 hello 다음 예제와 같이 함수 처리 하 여:
 > 
 >  `UpdateSummary | where Computer IN (MyComputerGroup)`
 
 ## <a name="computer-group-records"></a>컴퓨터 그룹 레코드
-Active Directory 또는 WSUS로 만든 각각의 컴퓨터 그룹 멤버 자격에 대해 OMS 저장소에 레코드가 만들어집니다.  이 레코드의 형식은 **ComputerGroup**이며 다음 표의 속성을 갖습니다.  로그 검색 기반의 컴퓨터 그룹에 대해서는 레코드가 만들어지지 않습니다.
+Active Directory 또는 WSUS에서 만든 각 컴퓨터 그룹 구성원에 대 한 hello OMS 리포지토리에 레코드가 만들어집니다.  이러한 레코드에는 형식이 **ComputerGroup** 한 hello 속성의 다음 표에 hello 합니다.  로그 검색 기반의 컴퓨터 그룹에 대해서는 레코드가 만들어지지 않습니다.
 
 | 속성 | 설명 |
 |:--- |:--- |
 | 형식 |*ComputerGroup* |
 | SourceSystem |*SourceSystem* |
-| 컴퓨터 |멤버 컴퓨터의 이름입니다. |
-| 그룹 |그룹의 이름입니다. |
-| GroupFullName |원본 및 원본 이름을 포함하는 그룹에 대한 전체 경로입니다. |
+| 컴퓨터 |Hello 구성원 컴퓨터의 이름입니다. |
+| 그룹 |Hello 그룹의 이름입니다. |
+| GroupFullName |Hello 원본과 소스 이름을 포함 하 여 전체 경로 toohello 그룹입니다. |
 | GroupSource |그룹을 수집해 온 원본입니다. <br><br>ActiveDirectory<br>WSUS<br>WSUSClientTargeting |
-| GroupSourceName |그룹을 수집해 온 원본의 이름입니다.  Active Directory의 경우 도메인 이름이 됩니다. |
-| ManagementGroupName |SCOM 에이전트의 경우 관리 그룹의 이름.  다른 에이전트의 경우 AOI-\<작업 영역 ID\>입니다. |
-| TimeGenerated |컴퓨터 그룹이 만들어졌거나 업데이트된 날짜 및 시간입니다. |
+| GroupSourceName |그룹 hello hello 원본의 이름에서 수집 된 합니다.  Active Directory에 대 한 hello 도메인 이름입니다. |
+| ManagementGroupName |SCOM 에이전트에 대 한 hello 관리 그룹의 이름입니다.  다른 에이전트의 경우 AOI-\<작업 영역 ID\>입니다. |
+| TimeGenerated |날짜 및 시간 hello 컴퓨터 그룹을 만들거나 업데이트 합니다. |
 
 ## <a name="next-steps"></a>다음 단계
-* 데이터 원본 및 솔루션에서 수집한 데이터를 분석하기 위해 [로그 검색](log-analytics-log-searches.md) 에 대해 알아봅니다.  
+* 에 대 한 자세한 내용은 [검색 로그](log-analytics-log-searches.md) tooanalyze hello 데이터가 데이터 원본 및 솔루션에서 수집 합니다.  
 

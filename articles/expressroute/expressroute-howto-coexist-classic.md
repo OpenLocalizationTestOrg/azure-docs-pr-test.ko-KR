@@ -1,6 +1,6 @@
 ---
 title: "공존할 수 있는 ExpressRoute 및 사이트 간 VPN 연결 구성: 클래식: Azure | Microsoft Docs"
-description: "이 문서에서는 클래식 배포 모델에 대해 공존할 수 있는 Express 경로와 사이트 간 VPN 연결을 구성하는 과정을 안내합니다."
+description: "이 문서에서는 express 경로 hello 클래식 배포 모델에 대 한 공존할 수 있는 사이트 간 VPN 연결을 구성 하는 과정을 안내 합니다."
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: charwen
-ms.openlocfilehash: 09d1649f0ca0cf4ca464d95b29461cad3fe51788
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: abb30fff55e8ec243f2920c5b2f70c43717755fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-expressroute-and-site-to-site-coexisting-connections-classic"></a>ExpressRoute 및 사이트 간 공존 연결 구성(클래식)
 > [!div class="op_single_selector"]
@@ -28,7 +28,7 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-사이트 간 VPN 및 Express 경로를 구성하는 기능이 있으면 여러 장점이 있습니다. 사이트 간 VPN을 Exress 경로에 대한 안전한 장애 조치(failover) 경로로 구성하거나 사이트 간 VPN을 사용하여 Express 경로를 통해 연결되지 않은 사이트에 연결할 수 있습니다. 이 문서에서는 두 시나리오 모두를 구성하는 단계를 설명합니다. 이 문서는 클래식 배포 모델에 적용됩니다. 이 구성은 포털에서 사용할 수 없습니다.
+Hello 기능 tooconfigure 사이트 간 VPN 및 express 경로 여러 가지 장점이 있습니다. ExressRoute에 대 한 보안 장애 조치 경로와 사이트 간 VPN을 구성 하거나 ExpressRoute를 통해 연결 되어 있지 않은 사이트 간 Vpn tooconnect toosites를 사용할 수 있습니다. Hello 단계 tooconfigure 두 시나리오 모두이 문서에서 설명 합니다. 이 문서는 toohello 클래식 배포 모델을 적용합니다. 이 구성은 hello 포털에서 사용할 수 없습니다.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
@@ -37,32 +37,32 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 > [!IMPORTANT]
-> Express 경로 회로는 아래 지침을 수행하기 전에 미리 구성되어야 합니다. 다음 단계를 수행하기 전에 [ExpressRoute 회로 만들기](expressroute-howto-circuit-classic.md) 및 [라우팅 구성](expressroute-howto-routing-classic.md)을 위해 지침을 수행했는지 확인합니다.
+> ExpressRoute 회로 아래 hello 지침을 따르기 전에 미리 구성 해야 합니다. Hello 가이드 너무 수행 되었는지 확인[ExpressRoute 회로 만들기](expressroute-howto-circuit-classic.md) 및 [라우팅 구성](expressroute-howto-routing-classic.md) 아래 hello 단계를 수행 하기 전에.
 > 
 > 
 
 ## <a name="limits-and-limitations"></a>제한 및 제한 사항
 * **통과 라우팅이 지원되지 않습니다.** 사이트 간 VPN을 통해 연결된 로컬 네트워크와 ExpressRoute를 통해 연결된 로컬 네트워크 사이는 Azure를 통해 라우팅할 수 없습니다.
-* **지점 및 사이트 간 라우팅이 지원되지 않습니다.** 지점 및 사이트 간 VPN을 ExpressRoute에 연결된 동일한 VNet에 연결할 수 없습니다. 동일한 VNet에 대해 지점 및 사이트 간 VPN과 Express 경로를 함께 사용할 수 없습니다.
-* **사이트 간 VPN Gateway에서 강제 터널링을 사용할 수 없습니다.** 모든 인터넷 바인딩된 트래픽을 ExpressRoute를 통해 온-프레미스 네트워크에 다시 '강제 적용'할 수 있습니다.
-* **기본 SKU 게이트웨이는 지원되지 않습니다.** [ExpressRoute 게이트웨이](expressroute-about-virtual-network-gateways.md) 및 [VPN Gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md) 모두에 기본이 아닌 SKU 게이트웨이를 사용해야 합니다.
+* **지점 및 사이트 간 라우팅이 지원되지 않습니다.** 지점-사이트 VPN 연결 toohello를 설정할 수 없는 연결 된 tooExpressRoute 동일한 VNet입니다. 지점-사이트 VPN 및 express 경로 공존할 수 없으며 hello에 대 한 동일한 VNet입니다.
+* **사이트 간 VPN 게이트웨이 hello에 강제 터널링을 사용할 수 없습니다.** 만 ExpressRoute 통해 모든 인터넷 바인딩된 트래픽이 백 tooyour 온-프레미스 네트워크를 "강제 적용" 수 있습니다.
+* **기본 SKU 게이트웨이는 지원되지 않습니다.** 두 hello에 대 한 기본 SKU가 아닌 게이트웨이 사용 해야 [express 경로 게이트웨이](expressroute-about-virtual-network-gateways.md) 및 hello [VPN 게이트웨이](../vpn-gateway/vpn-gateway-about-vpngateways.md)합니다.
 * **경로 기반 VPN Gateway만 지원됩니다.** 경로 기반 [VPN Gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md)를 사용해야 합니다.
-* **VPN Gateway에 고정 경로를 구성해야 합니다.** 로컬 네트워크가 ExpressRoute 및 사이트 간 VPN 모두에 연결된 경우 로컬 네트워크에서 정적 경로를 구성하여 사이트 간 VPN 연결을 공용 인터넷에 라우팅해야 합니다.
-* **ExpressRoute 게이트웨이를 먼저 구성해야 합니다.** 사이트 간 VPN Gateway를 추가하기 전에 ExpressRoute 게이트웨이를 먼저 만들어야 합니다.
+* **VPN Gateway에 고정 경로를 구성해야 합니다.** 로컬 네트워크 연결된 tooboth ExpressRoute 이며는-사이트 VPN, 있어야 로컬 네트워크 tooroute hello 사이트 간 VPN 연결 toohello에 구성 된 고정 경로 경우 공용 인터넷 합니다.
+* **ExpressRoute 게이트웨이를 먼저 구성해야 합니다.** Hello 사이트 간 VPN 게이트웨이 추가 하기 전에 hello express 경로 게이트웨이 먼저 만들어야 합니다.
 
 ## <a name="configuration-designs"></a>구성 디자인
 ### <a name="configure-a-site-to-site-vpn-as-a-failover-path-for-expressroute"></a>사이트 간 VPN을 ExpressRoute에 대한 장애 조치(failover) 경로로 구성
-ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 있습니다. Azure 개인 피어링 경로에 연결된 가상 네트워크에만 적용됩니다. 공용 Azure 및 Microsoft 피어링을 통해 액세스할 수 있는 서비스에 대한 VPN 기반 장애 조치 솔루션은 없습니다. Express 경로 회로는 항상 기본 링크입니다. Express 경로 회로가 실패하면 데이터는 사이트 간 VPN 경로를 통해 전송됩니다. 
+ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 있습니다. 이 toovirtual 네트워크 연결 된 toohello Azure 개인 피어 링 경로 적용 됩니다. 공용 Azure 및 Microsoft 피어링을 통해 액세스할 수 있는 서비스에 대한 VPN 기반 장애 조치 솔루션은 없습니다. hello ExpressRoute 회로 항상 hello 기본 링크입니다. ExpressRoute 회로 hello 실패할 경우에 데이터 hello 사이트 간 VPN 경로 통해 전송 됩니다. 
 
 > [!NOTE]
-> 두 경로가 동일한 경우 사이트 간 VPN보다 ExpressRoute 회로가 사용되며, Azure는 가장 긴 접두사 일치 항목을 사용하여 패킷의 대상에 대한 경로를 선택합니다.
+> ExpressRoute 회로 상태인 동안 기본 사이트 간 VPN을 통해 두 경로가 동일한 hello 되는 경우 Azure hello 패킷 대상 쪽으로 hello 가장 긴 접두사 일치 toochoose hello 경로 사용 합니다.
 > 
 > 
 
 ![공존](media/expressroute-howto-coexist-classic/scenario1.jpg)
 
-### <a name="configure-a-site-to-site-vpn-to-connect-to-sites-not-connected-through-expressroute"></a>사이트 간 VPN을 구성하여 ExpressRoute를 통해 연결되지 않은 사이트에 연결
-일부 사이트는 사이트 간 VPN을 통해 Azure에 직접 연결하고 일부 사이트는 ExpressRoute를 통해 연결된 네트워크를 구성할 수 있습니다. 
+### <a name="configure-a-site-to-site-vpn-tooconnect-toosites-not-connected-through-expressroute"></a>ExpressRoute를 통해 연결 되어 있지는 사이트 간 VPN tooconnect toosites 구성
+여기서 일부 사이트 직접 tooAzure 사이트 간 VPN을 통해 연결 하 고 연결 일부 사이트 ExpressRoute를 통해 네트워크를 구성할 수 있습니다. 
 
 ![공존](media/expressroute-howto-coexist-classic/scenario2.jpg)
 
@@ -71,28 +71,28 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
 > 
 > 
 
-## <a name="selecting-the-steps-to-use"></a>사용할 단계 선택
-연결이 공존할 수 있도록 구성하기 위해 선택하는 서로 다른 두 절차가 있습니다. 연결할 기존 가상 네트워크가 있는지, 아니면 새 가상 네트워크를 만들 것인지에 따라 구성 절차를 선택합니다.
+## <a name="selecting-hello-steps-toouse"></a>Hello 단계 toouse 선택
+공존할 수 있는 순서 tooconfigure 연결에서 프로시저 toochoose의 서로 다른 두 가지가 있습니다. 선택 하는 hello 구성 프로시저는 기존 가상 네트워크, tooconnect 하거나 toocreate 새 가상 네트워크를 원하는 있는지 여부에 따라 달라 집니다.
 
-* VNet이 없어서 만들어야 하는 경우
+* VNet 했으며 toocreate 하나 필요 하지 않습니다.
   
-    가상 네트워크가 아직 없는 경우 이 절차에서는 클래식 배포 모델을 사용하여 새 가상 네트워크를 만들고 새 Express 경로 및 사이트 간 VPN 연결을 만드는 과정을 안내합니다. 구성하려면 이 문서의 [새 가상 네트워크 및 공존 연결을 만들려면](#new)섹션에 있는 단계를 따릅니다.
+    가상 네트워크를 아직 없는 경우이 절차는 과정을 단계별로 hello 클래식 배포 모델을 사용 하 고 새 ExpressRoute 및 사이트 간 VPN 연결을 만드는 새 가상 네트워크를 만드는 합니다. tooconfigure, hello 문서 섹션의 hello 단계 수행 [toocreate 새 가상 네트워크 및 공존할 연결](#new)합니다.
 * 이미 클래식 배포 모델 VNet이 있는 경우
   
-    기존 사이트 간 VPN 또는 Express 경로에 연결된 가상 네트워크가 이미 있을 수 있습니다. [기존 VNet에 대해 공존 연결을 구성하려면](#add) 문서 섹션에서는 게이트웨이를 삭제한 다음 새 Express 경로 및 사이트 간 VPN 연결을 만드는 과정을 안내합니다. 새 연결을 만들 때 지정된 순서대로 단계를 완료해야 합니다. 게이트웨이 및 연결을 만들 때 다른 문서의 지침을 사용하지 마세요.
+    기존 사이트 간 VPN 또는 ExpressRoute에 연결된 가상 네트워크가 이미 있을 수 있습니다. 문서 섹션 hello [이미 기존 VNet에 대 한 tooconfigure coexsiting 연결](#add) hello 게이트웨이 삭제 하 고 다음 ExpressRoute 및 사이트 간 VPN에 대 한 새 연결을 만드는 과정을 안내 합니다. Note hello 새 연결을 만들 때 hello 단계에 따라 매우 구체적인 순서를 완료 해야 합니다. 게이트웨이 및 연결에는 기타 기사 toocreate의 hello 지침을 사용 하지 마십시오.
   
-    이 절차에서 함께 사용할 수 있는 연결을 만들려면 게이트웨이를 삭제한 다음 공존할 수 있는 새 게이트웨이를 구성해야 합니다. 이 경우 게이트웨이 및 연결을 삭제하고 다시 만드는 동안 크로스-프레미스 연결을 위한 가동 중지 시간이 발생하지만 VM 또는 서비스를 새 가상 네트워크로 마이그레이션할 필요는 없습니다. VM 및 서비스는 그렇게 구성된 경우 게이트웨이를 구성하는 동안 부하 분산 장치를 통해 계속 통신할 수 있습니다.
+    이 절차에서는 공존할 수 있는 연결을 만드는 및 필요 합니다. 있습니다 toodelete 게이트웨이 새 게이트웨이 구성 합니다. 이 해야 의미 크로스-프레미스 연결에 대 한 가동 중지 시간 toomigrate 필요는 없지만 하지만 삭제 하 고 게이트웨이 및 연결을 다시 만들 Vm 또는 서비스 tooa 새로운 가상 네트워크 중 하나입니다. Vm 및 서비스가 hello 부하 분산 장치를 통해 아웃 수 toocommunicate 있더라도 구성된 toodo 있으므로 게이트웨이 구성 하는 동안 합니다.
 
-## <a name="new"></a>새 가상 네트워크 및 공존 연결을 만들려면
+## <a name="new"></a>새 가상 네트워크를 toocreate 및 공존할 연결
 이 절차는 VNet 만들기를 안내하고 함께 사용하는 사이트 간 및 Express 경로 연결을 만듭니다.
 
-1. 최신 버전의 Azure PowerShell cmdlet을 설치해야 합니다. PowerShell cmdlet 설치에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview) 을 참조하세요. 이 구성에 사용할 cmdlet은 지금까지 익숙하던 cmdlet과는 약간 다를 수 있습니다. 다음 지침에 지정된 cmdlet을 사용해야 합니다. 
-2. 가상 네트워크의 스키마를 만듭니다. 구성 스키마에 대한 자세한 내용은 [Azure 가상 네트워크 구성 스키마](https://msdn.microsoft.com/library/azure/jj157100.aspx)를 참조하세요.
+1. Tooinstall hello 최신 버전의 hello Azure PowerShell cmdlet 필요 합니다. 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview) hello PowerShell cmdlet을 설치 하는 방법에 대 한 자세한 내용은 합니다. Note hello cmdlet는이 구성에 사용할 내용을 저장할 수와 약간 다 수 있습니다. 있는지 toouse hello cmdlet이이 지침에 지정 합니다. 
+2. 가상 네트워크의 스키마를 만듭니다. Hello 구성 스키마에 대 한 자세한 내용은 참조 [Azure 가상 네트워크 구성 스키마](https://msdn.microsoft.com/library/azure/jj157100.aspx)합니다.
    
-    스키마를 만들 때 다음 값을 사용해야 합니다.
+    스키마를 만들 때 다음 값에는 hello를 사용 해야 합니다.
    
-   * 가상 네트워크의 게이트웨이 서브넷은 /27 또는 더 짧은 접두사여야 합니다.(/26 또는 /25와 같이)
-   * 게이트웨이 연결 유형은 "전용"입니다.
+   * hello 가상 네트워크에 대 한 hello 게이트웨이 서브넷은 / 27 또는 짧은 접두사 (예: /26 또는 /25) 이어야 합니다.
+   * hello 게이트웨이 연결 유형은 "전용".
      
              <VirtualNetworkSite name="MyAzureVNET" Location="Central US">
                <AddressSpace>
@@ -114,24 +114,24 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
                  </ConnectionsToLocalNetwork>
                </Gateway>
              </VirtualNetworkSite>
-3. xml 스키마 파일을 만들고 구성한 후 파일을 업로드합니다. 그러면 가상 네트워크가 만들어집니다.
+3. 를 만들고 xml 스키마 파일을 구성 후 hello 파일을 업로드 합니다. 그러면 가상 네트워크가 만들어집니다.
    
-    다음 cmdlet(사용자 고유의 값으로 대체)을 사용하여 파일을 업로드합니다.
+    다음 cmdlet tooupload hello 자신의 hello 값을 대체 하 여 파일을 사용 합니다.
    
         Set-AzureVNetConfig -ConfigurationPath 'C:\NetworkConfig.xml'
-4. <a name="gw"></a>Express 경로 게이트웨이를 만듭니다. GatewaySKU를 *Standard*, *HighPerformance* 또는 *UltraPerformance*로 지정하고 GatewayType을 *DynamicRouting*으로 지정해야 합니다.
+4. <a name="gw"></a>ExpressRoute 게이트웨이를 만듭니다. 있는지 toospecify 수로 GatewaySKU hello *표준*, *HighPerformance*, 또는 *UltraPerformance* 으로 GatewayType hello 및 *DynamicRouting*.
    
-    다음 샘플(사용자 고유의 값으로 대체)을 사용합니다.
+    다음 샘플, 사용자 고유의 대 한 hello 값으로 대체 hello를 사용 합니다.
    
         New-AzureVNetGateway -VNetName MyAzureVNET -GatewayType DynamicRouting -GatewaySKU HighPerformance
-5. Express 경로 게이트웨이를 Express 경로 회로에 연결합니다. 이 단계를 완료하면 Express 경로를 통해 온-프레미스 네트워크와 Azure 간의 연결이 설정됩니다.
+5. Hello express 경로 게이트웨이 toohello ExpressRoute 회로 연결 합니다. 이 단계를 완료 한 후 온-프레미스 네트워크와 Azure ExpressRoute 통해 hello 연결이 설정 됩니다.
    
         New-AzureDedicatedCircuitLink -ServiceKey <service-key> -VNetName MyAzureVNET
-6. <a name="vpngw"></a>그런 다음 사이트 간 VPN 게이트웨이를 만듭니다. GatewaySKU는 *Standard*, *HighPerformance* 또는 *UltraPerformance*이어야 하고 GatewayType은 *DynamicRouting*이어야 합니다.
+6. <a name="vpngw"></a>그런 다음 사이트 간 VPN Gateway를 만듭니다. hello GatewaySKU 해야 *표준*, *HighPerformance*, 또는 *UltraPerformance* hello GatewayType 해야 *DynamicRouting*합니다.
    
         New-AzureVirtualNetworkGateway -VNetName MyAzureVNET -GatewayName S2SVPN -GatewayType DynamicRouting -GatewaySKU  HighPerformance
    
-    게이트웨이 ID와 공용 IP를 비롯한 가상 네트워크 게이트웨이 설정을 검색하려면 `Get-AzureVirtualNetworkGateway` cmdlet을 사용합니다.
+    tooretrieve hello 가상 네트워크 게이트웨이 등의 설정을 hello 게이트웨이 ID와 hello 공용 IP를 사용 하 여 hello `Get-AzureVirtualNetworkGateway` cmdlet.
    
         Get-AzureVirtualNetworkGateway
    
@@ -140,7 +140,7 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
         LastEventData        :
         GatewayType          : DynamicRouting
         LastEventTimeStamp   : 5/29/2015 4:41:41 PM
-        LastEventMessage     : Successfully created a gateway for the following virtual network: GNSDesMoines
+        LastEventMessage     : Successfully created a gateway for hello following virtual network: GNSDesMoines
         LastEventID          : 23002
         State                : Provisioned
         VIPAddress           : 104.43.x.y
@@ -153,14 +153,14 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
         OperationDescription : Get-AzureVirtualNetworkGateway
         OperationId          : 42773656-85e1-a6b6-8705-35473f1e6f6a
         OperationStatus      : Succeeded
-7. 로컬 사이트 VPN 게이트웨이 엔터티를 만듭니다. 이 명령은 온-프레미스 VPN Gateway를 구성하지 않습니다. 대신, Azure VPN 게이트웨이를 연결할 수 있도록 공용 IP 주소 및 온-프레미스 주소 공간과 같은 로컬 게이트웨이 설정을 제공할 수 있게 해줍니다.
+7. 로컬 사이트 VPN Gateway 엔터티를 만듭니다. 이 명령은 온-프레미스 VPN Gateway를 구성하지 않습니다. 대신, tooprovide hello 로컬 게이트웨이 설정 hello 공용 IP와 같은 허용 및 hello 온-프레미스 주소 공간을 hello Azure VPN 게이트웨이에 연결할 수 있도록 tooit 합니다.
    
    > [!IMPORTANT]
-   > 사이트 간 VPN의 로컬 사이트는 netcfg에 정의되지 않습니다. 대신, 다음 cmdlet을 사용하여 로컬 사이트 매개 변수를 지정해야 합니다. 포털 또는 netcfg 파일을 사용하여 정의할 수 없습니다.
+   > 사이트 간 VPN hello에 대 한 로컬 사이트 hello hello netcfg에서 정의 되지 않았습니다. 대신,이 cmdlet toospecify hello 로컬 사이트 매개 변수를 사용 해야 합니다. 포털 또는 hello netcfg 파일 중 하나를 사용 하 여 정의할 수 없습니다.
    > 
    > 
    
-    다음 샘플(사용자 고유의 값으로 대체)을 사용합니다.
+    다음 샘플, 자신의 hello 값 대체 hello를 사용 합니다.
    
         New-AzureLocalNetworkGateway -GatewayName MyLocalNetwork -IpAddress <MyLocalGatewayIp> -AddressSpace <MyLocalNetworkAddress>
    
@@ -169,7 +169,7 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
    > 
    > 
 
-    게이트웨이 ID와 공용 IP를 비롯한 가상 네트워크 게이트웨이 설정을 검색하려면 `Get-AzureVirtualNetworkGateway` cmdlet을 사용합니다. 다음 예제를 참조하세요.
+    tooretrieve hello 가상 네트워크 게이트웨이 등의 설정을 hello 게이트웨이 ID와 hello 공용 IP를 사용 하 여 hello `Get-AzureVirtualNetworkGateway` cmdlet. 다음 예제는 hello를 참조 하십시오.
 
         Get-AzureLocalNetworkGateway
 
@@ -182,41 +182,41 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
         OperationStatus      : Succeeded
 
 
-1. 새 게이트웨이에 연결할 로컬 VPN 장치를 구성합니다. VPN 장치를 구성할 때 6단계에서 검색한 정보를 사용합니다. VPN 장치 구성에 대한 자세한 내용은 [VPN 장치 구성](../vpn-gateway/vpn-gateway-about-vpn-devices.md)을 참조하세요.
-2. Azure의 사이트 간 VPN 게이트웨이를 로컬 게이트웨이에 연결합니다.
+1. 로컬 VPN 장치 tooconnect toohello 새 게이트웨이 구성 합니다. VPN 장치를 구성 하는 경우 6 단계에서 검색 된 hello 정보를 사용 합니다. VPN 장치 구성에 대한 자세한 내용은 [VPN 장치 구성](../vpn-gateway/vpn-gateway-about-vpn-devices.md)을 참조하세요.
+2. Azure toohello 로컬 게이트웨이에 사이트 간 VPN 게이트웨이 hello 하는 링크입니다.
    
-    이 예제에서 connectedEntityId는 `Get-AzureLocalNetworkGateway`를 실행하여 찾을 수 있는 로컬 게이트웨이 ID입니다. virtualNetworkGatewayId는 `Get-AzureVirtualNetworkGateway` cmdlet을 사용하여 찾을 수 있습니다. 이 단계를 수행하면 사이트 간 VPN 연결을 통해 로컬 네트워크와 Azure 간의 연결이 설정됩니다.
+    이 예제에서는 connectedEntityId는를 실행 하 여 찾을 수 있는 hello 로컬 게이트웨이 ID `Get-AzureLocalNetworkGateway`합니다. Hello를 사용 하 여 virtualNetworkGatewayId를 찾을 수 있습니다 `Get-AzureVirtualNetworkGateway` cmdlet. 이 단계를 hello 사이트 간 VPN 연결을 통해 로컬 네트워크와 Azure 간의 hello 연결이 설정 됩니다.
 
         New-AzureVirtualNetworkGatewayConnection -connectedEntityId <local-network-gateway-id> -gatewayConnectionName Azure2Local -gatewayConnectionType IPsec -sharedKey abc123 -virtualNetworkGatewayId <azure-s2s-vpn-gateway-id>
 
-## <a name="add"></a>기존 VNet에 대한 공존 연결을 구성하려면
-기존 가상 네트워크가 있는 경우 게이트웨이 서브넷 크기를 확인합니다. 게이트웨이 서브넷이 /28 또는 /29인 경우 우선 가상 네트워크 게이트웨이를 삭제하고 게이트웨이 서브넷 크기를 늘려야 합니다. 이 섹션에서 단계별 수행 방법을 보여줍니다.
+## <a name="add"></a>기존 VNet에 대 한 tooconfigure coexsiting 연결
+기존 가상 네트워크를 사용 하도록 설정한 경우 hello 게이트웨이 서브넷 크기를 확인 합니다. Hello 게이트웨이 서브넷이 / 28 또는/29 일 경우 먼저 hello 가상 네트워크 게이트웨이 삭제 하며 hello 게이트웨이 서브넷 크기를 늘리세요. hello이 섹션의 단계 방법을 살펴보겠습니다 toodo입니다.
 
-게이트웨어 서브넷이 /27 이상이고 가상 네트워크가 Express 경로를 통해 연결된 경우 아래 단계를 건너뛰고 이전 섹션의 ["6단계 - 사이트 간 VPN 게이트웨이 만들기"](#vpngw) 를 진행할 수 있습니다.
+Hello 게이트웨이 서브넷이 / 27 이상의 및 hello 가상 네트워크는 ExpressRoute를 통해 연결 되어, 다음 hello 단계를 건너뛰고 너무 진행할 수 있습니다["6 단계-사이트 간 VPN 게이트웨이 만들기"](#vpngw) hello 이전 섹션에서.
 
 > [!NOTE]
-> 기존 게이트웨이를 삭제하면 이 구성에서 작업하는 동안 로컬 프레미스와 가상 네트워크의 연결이 끊어집니다.
+> Hello 기존 게이트웨이 삭제 하면이 구성에서 작업 하는 동안 로컬 프레미스 hello 연결 tooyour 가상 네트워크는 손실 됩니다.
 > 
 > 
 
-1. 최신 버전의 Azure 리소스 관리자 PowerShell cmdlet을 설치해야 합니다. PowerShell cmdlet 설치에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview) 을 참조하세요. 이 구성에 사용할 cmdlet은 지금까지 익숙하던 cmdlet과는 약간 다를 수 있습니다. 다음 지침에 지정된 cmdlet을 사용해야 합니다. 
-2. 기존 Express 경로 또는 사이트 간 VPN 게이트웨이를 삭제합니다. 다음 cmdlet(사용자 고유의 값으로 대체)을 사용합니다.
+1. Tooinstall hello 최신 버전의 hello Azure 리소스 관리자 PowerShell cmdlet 필요 합니다. 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview) hello PowerShell cmdlet을 설치 하는 방법에 대 한 자세한 내용은 합니다. Note hello cmdlet는이 구성에 사용할 내용을 저장할 수와 약간 다 수 있습니다. 있는지 toouse hello cmdlet이이 지침에 지정 합니다. 
+2. Hello 기존 express 경로 또는 사이트 간 VPN 게이트웨이 삭제 합니다. 다음 cmdlet, 사용자의 정보로 hello 값 대체 hello를 사용 합니다.
    
         Remove-AzureVNetGateway –VnetName MyAzureVNET
-3. 가상 네트워크 스키마를 내보냅니다. 다음 PowerShell cmdlet(사용자 고유의 값으로 대체)을 사용합니다.
+3. Hello 가상 네트워크 스키마를 내보냅니다. 다음 PowerShell cmdlet, 사용자의 정보로 hello 값 대체 hello를 사용 합니다.
    
         Get-AzureVNetConfig –ExportToFile “C:\NetworkConfig.xml”
-4. 게이트웨이 서브넷이 /27 또는 더 짧은 접두사가 되도록 네트워크 구성 파일 스키마를 편집합니다.(/26 또는 /25와 같이) 다음 예제를 참조하세요. 
+4. Hello 게이트웨이 서브넷이 / 27 또는 짧은 접두사 (예: /26 또는 /25) 있도록 hello 네트워크 구성 파일 스키마를 편집 합니다. 다음 예제는 hello를 참조 하십시오. 
    
    > [!NOTE]
-   > 가상 네트워크에 게이트웨이 서브넷 크기를 늘릴 수 있는 IP 주소가 충분히 남아 있지 않을 경우 추가 IP 주소 공간을 추가해야 합니다. 구성 스키마에 대한 자세한 내용은 [Azure 가상 네트워크 구성 스키마](https://msdn.microsoft.com/library/azure/jj157100.aspx)를 참조하세요.
+   > 가상 네트워크 tooincrease hello 게이트웨이 서브넷 크기에 남아 있는 충분 한 IP 주소를 설정 하지 않은 경우 tooadd IP 주소 공간이 더 필요한 합니다. Hello 구성 스키마에 대 한 자세한 내용은 참조 [Azure 가상 네트워크 구성 스키마](https://msdn.microsoft.com/library/azure/jj157100.aspx)합니다.
    > 
    > 
    
           <Subnet name="GatewaySubnet">
             <AddressPrefix>10.17.159.224/27</AddressPrefix>
           </Subnet>
-5. 이전 게이트웨이가 사이트 간 VPN인 경우 연결 형식을 **전용**으로 변경해야 합니다.
+5. 이전 게이트웨이 사이트 간 VPN 경우도 변경 해야 hello 연결 유형 너무**전용**합니다.
    
                  <Gateway>
                   <ConnectionsToLocalNetwork>
@@ -225,8 +225,8 @@ ExpressRoute에 대한 백업으로 사이트 간 VPN 연결을 구성할 수 �
                     </LocalNetworkSiteRef>
                   </ConnectionsToLocalNetwork>
                 </Gateway>
-6. 이제 게이트웨이가 없는 VNet이 설정됩니다. 새 게이트웨이를 만들고 연결을 완료하려면 이전 단계의 [4단계 - Express 경로 게이트웨이 만들기](#gw)를 진행합니다.
+6. 이제 게이트웨이가 없는 VNet이 설정됩니다. toocreate 새 게이트웨이 연결을 완료 하 고, 계속 진행할 수 [4 단계-express 경로 게이트웨이 만들기](#gw)hello 앞 단계에서에서 발견 되었습니다.
 
 ## <a name="next-steps"></a>다음 단계
-Express 경로에 대한 자세한 내용은 [Express 경로 FAQ](expressroute-faqs.md)
+ExpressRoute에 대 한 자세한 내용은 참조 hello [express 경로 FAQ](expressroute-faqs.md)
 

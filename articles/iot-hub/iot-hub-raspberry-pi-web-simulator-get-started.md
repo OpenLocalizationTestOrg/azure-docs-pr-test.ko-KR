@@ -1,12 +1,12 @@
 ---
-title: "시뮬레이션된 Raspberry Pi-클라우드(Node.js) - Azure IoT Hub에 Raspberry Pi 웹 시뮬레이터 연결 | Microsoft Docs"
-description: "Raspberry Pi가 Azure 클라우드에 데이터를 보내도록 Raspberry Pi 웹 시뮬레이터를 Azure IoT Hub에 연결합니다."
+title: "aaaSimulated 라스베리 Pi toocloud (Node.js)-라스베리 Pi 연결 웹 시뮬레이터 tooAzure IoT 허브 | Microsoft Docs"
+description: "Azure 클라우드 라스베리 Pi toosend 데이터 toohello에 대 한 라스베리 Pi 웹 시뮬레이터 tooAzure IoT 허브를 연결 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "raspberry pi 시뮬레이터, azure iot raspberry pi, raspberry pi iot hub, raspberry pi에서 클라우드로 데이터 전송, raspberry pi-클라우드"
+keywords: "라즈베리 pi 시뮬레이터, azure iot 라즈베리 pi 라즈베리 pi iot 허브 라즈베리 pi toocloud 라즈베리 pi toocloud 데이터 보내기"
 ms.service: iot-hub
 ms.devlang: node
 ms.topic: article
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/28/2017
 ms.author: xshi
-ms.openlocfilehash: 3b80bf35d6af91d5bdb196d97668dc0f837b92cc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83736caf6ce723a49001058495a780f7f51946a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-raspberry-pi-online-simulator-to-azure-iot-hub-nodejs"></a>Azure IoT Hub에 Raspberry Pi 온라인 시뮬레이터 연결(Node.js)
+# <a name="connect-raspberry-pi-online-simulator-tooazure-iot-hub-nodejs"></a>라스베리 Pi 온라인 시뮬레이터 tooAzure IoT Hub (Node.js) 연결
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-이 자습서에서는 Raspberry Pi 온라인 시뮬레이터 작업의 기초부터 학습합니다. 그런 다음 [Azure IoT Hub](iot-hub-what-is-iot-hub.md)를 사용하여 Pi 시뮬레이터를 클라우드에 원활하게 연결하는 방법을 알아봅니다. 
+이 자습서에서는 먼저 온라인 시뮬레이터 라스베리 Pi와 작업의 hello 기본 사항을 학습 합니다. 그런 다음 배웁니다 tooseamlessly hello Pi 시뮬레이터 toohello 클라우드를 사용 하 여 연결 하는 방법을 [Azure IoT Hub](iot-hub-what-is-iot-hub.md)합니다. 
 
-물리적 장치가 있는 경우 시작하려면 [Azure IoT Hub에 Raspberry Pi 연결](iot-hub-raspberry-pi-kit-node-get-started.md)을 방문하세요. 
+물리적 장치를 설정한 경우 방문 [라스베리 Pi 연결 tooAzure IoT Hub](iot-hub-raspberry-pi-kit-node-get-started.md) tooget 시작 합니다. 
 
 <p>
 <div id="diag" style="width:100%; text-align:center">
 <a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#getstarted" target="_blank">
-<img src="media/iot-hub-raspberry-pi-web-simulator/3_banner.png" alt="Connect Raspberry Pi web simulator to Azure IoT Hub" width="400">
+<img src="media/iot-hub-raspberry-pi-web-simulator/3_banner.png" alt="Connect Raspberry Pi web simulator tooAzure IoT Hub" width="400">
 </div>
 <p>
 <div id="button" style="width:100%; text-align:center">
@@ -41,36 +41,36 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="what-you-do"></a>수행할 작업
 
-* Raspberry Pi 온라인 시뮬레이터의 기본 사항을 알아봅니다.
+* 온라인 시뮬레이터 라스베리 Pi의 hello 기본 사항에 알아봅니다.
 * IoT Hub를 만듭니다.
 * IoT Hub에 Pi용 장치를 등록합니다.
-* Pi에서 샘플 응용 프로그램을 실행하여 IoT Hub로 시뮬레이션된 센서 데이터를 보냅니다.
+* Pi 시뮬레이션 toosend 센서 데이터 tooyour IoT 허브에서 샘플 응용 프로그램을 실행 합니다.
 
-앞에서 만든 IoT Hub에 시뮬레이션된 Raspberry Pi를 연결합니다. 그런 다음 시뮬레이터에서 샘플 응용 프로그램을 실행하여 센서 데이터를 생성합니다. 마지막으로 센서 데이터를 IoT Hub로 보냅니다.
+만들면 시뮬레이션된 라스베리 Pi tooan IoT 허브를 연결 합니다. 그런 다음 hello 시뮬레이터 toogenerate 센서 데이터로 샘플 응용 프로그램을 실행 합니다. 마지막으로 hello 센서 데이터 tooyour IoT 허브를 보냅니다.
 
 ## <a name="what-you-learn"></a>학습 내용
 
-* Azure IoT Hub를 만들고 새 장치 연결 문자열을 가져오는 방법 Azure 계정이 없는 경우 몇 분 만에 [Azure 평가판 계정](https://azure.microsoft.com/free/)을 만들 수 있습니다.
-* Raspberry Pi 온라인 시뮬레이터를 사용하는 방법
-* IoT Hub로 센서 데이터를 보내는 방법
+* 어떻게 toocreate Azure IoT hub 가져오고, 새로운 장치 연결 문자열입니다. Azure 계정이 없는 경우 몇 분 만에 [Azure 평가판 계정](https://azure.microsoft.com/free/)을 만들 수 있습니다.
+* 어떻게 라스베리 Pi 온라인 시뮬레이터와 toowork 합니다.
+* 어떻게 toosend 센서 데이터 tooyour IoT 허브입니다.
 
 ## <a name="overview-of-raspberry-pi-web-simulator"></a>Raspberry Pi 웹 시뮬레이터 개요
 
-단추를 클릭하여 Raspberry Pi 온라인 시뮬레이터를 시작합니다.
+Hello 단추 toolaunch 라스베리 Pi 온라인 시뮬레이터를 클릭 합니다.
 
 > [!div class="button"]
 <a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#GetStarted" target="_blank">Raspberry Pi 시뮬레이터 시작</a>
 
-웹 시뮬레이터에는 세 가지 영역이 있습니다.
-1. 어셈블리 영역 - 기본 회로에서는 Pi가 BME280 센서 및 LED에 연결됩니다. 미리 보기 버전에서는 이 영역이 잠겨 있으므로 지금은 사용자 지정을 수행할 수 없습니다.
-2. 코딩 영역 - Raspberry Pi를 사용하여 코딩할 수 있는 온라인 코드 편집기입니다. 기본 샘플 응용 프로그램을 사용하여 BME280 센서에서 센서 데이터를 손쉽게 수집한 후 Azure IoT Hub로 보낼 수 있습니다. 응용 프로그램은 실제 Pi 장치와 완벽하게 호환됩니다. 
-3. 통합 콘솔 창 - 코드의 출력을 표시합니다. 이 창의 맨 위에는 세 개의 단추가 있습니다.
-   * **실행** - 코딩 영역에서 응용 프로그램을 실행합니다.
-   * **다시 설정** - 기본 샘플 응용 프로그램으로 코딩 영역을 다시 설정합니다.
-   * **접기/확장** - 오른쪽에 있는 단추를 사용하여 콘솔 창 접기/확장을 수행할 수 있습니다.
+Hello 웹 시뮬레이터에 있는 세 가지 영역이 있습니다.
+1. 어셈블리-hello 기본 회로 영역은 Pi BME280 센서 및 LED와 연결 되도록 합니다. 미리 보기 버전에서 hello 영역 잠겨 있으므로 현재 사용자 지정을 수행할 수 없습니다.
+2. 영역-라스베리 Pi와 함께 toocode에 대 한 온라인 코드 편집기를 코딩 합니다. hello 기본 샘플 응용 프로그램 BME280 센서에서 toocollect 센서 데이터를 사용 하면 고 tooyour Azure IoT Hub를 보냅니다. hello 응용 프로그램은 실제 Pi 장치 완벽 하 게 호환 됩니다. 
+3. 통합된 콘솔 창-코드의 hello 출력을 표시합니다. 이 창의 hello 위쪽에 세 개의 단추가 있습니다.
+   * **실행** -hello 영역 코딩에서 hello 응용 프로그램을 실행 합니다.
+   * **다시 설정** -재설정 hello 영역 toohello 기본 샘플 응용 프로그램을 코딩 합니다.
+   * **접기/확장** -hello toofold 확장/있습니다 hello 콘솔 창에 대 한 쪽에 있는 단추 오른쪽에 있습니다.
 
 > [!NOTE] 
-Raspberry Pi 웹 시뮬레이터는 현재 미리 보기 버전으로 제공됩니다. [Gitter Chatroom](https://gitter.im/Microsoft/raspberry-pi-web-simulator)에서 사용자 의견을 듣고 싶습니다. 소스 코드는 [Github](https://github.com/Azure-Samples/raspberry-pi-web-simulator)에 공개되어 있습니다.
+hello 라스베리 Pi 웹 시뮬레이터 미리 보기 버전에서 제공 되었습니다. Toohear 같은 hello에 음성을 [Gitter Chatroom](https://gitter.im/Microsoft/raspberry-pi-web-simulator)합니다. hello 소스 코드는 public으로 [Github](https://github.com/Azure-Samples/raspberry-pi-web-simulator)합니다.
 
 ![Pi 온라인 시뮬레이터 개요](media/iot-hub-raspberry-pi-web-simulator/0_overview.png)
 
@@ -79,17 +79,17 @@ Raspberry Pi 웹 시뮬레이터는 현재 미리 보기 버전으로 제공됩�
 
 ## <a name="run-a-sample-application-on-pi-web-simulator"></a>Pi 웹 시뮬레이터에서 샘플 응용 프로그램 실행
 
-1. 코딩 영역에서 기본 샘플 응용 프로그램으로 작업 중인지 확인합니다. 15행의 자리 표시자를 Azure IoT Hub 장치 연결 문자열로 대체합니다.
-   ![장치 연결 문자열 바꾸기](media/iot-hub-raspberry-pi-web-simulator/1_connectionstring.png)
+1. 영역을 코딩에서 hello 기본 샘플 응용 프로그램에서 작업 하는 있는지를 확인 합니다. Azure IoT 허브 장치 연결 문자열 hello 줄 15의 hello 자리 표시자를 바꿉니다.
+   ![Hello 장치 연결 문자열을 바꾸기](media/iot-hub-raspberry-pi-web-simulator/1_connectionstring.png)
 
-2. **실행**을 클릭하거나 `npm start`를 입력하여 응용 프로그램을 실행합니다.
+2. 클릭 **실행** 또는 형식 `npm start` toorun hello 응용 프로그램입니다.
 
 
-IoT Hub로 전송되는 센서 데이터와 메시지를 보여 주는 다음 출력이 표시됩니다. ![출력 - Raspberry Pi에서 IoT Hub로 전송된 센서 데이터](media/iot-hub-raspberry-pi-web-simulator/2_run_application.png)
+다음 hello hello 센서 데이터와 tooyour IoT 허브 전송 되는 hello 메시지를 표시 하는 출력 표시 되어야 ![출력-라스베리 Pi tooyour IoT 허브에서 보낸 센서 데이터](media/iot-hub-raspberry-pi-web-simulator/2_run_application.png)
 
 
 ## <a name="next-steps"></a>다음 단계
 
-샘플 응용 프로그램을 실행하여 센서 데이터를 수집하고 IoT Hub로 전송했습니다.
+샘플 응용 프로그램 toocollect 센서 데이터를 실행 하 고이 정보를 tooyour IoT 허브를 보냅니다.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

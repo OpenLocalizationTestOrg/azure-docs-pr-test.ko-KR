@@ -1,6 +1,6 @@
 ---
-title: "Azure Event Grid 이벤트 스키마"
-description: "Azure Event Grid가 있는 이벤트에 제공되는 속성을 설명합니다."
+title: "aaaAzure 이벤트 표 형태 이벤트 스키마"
+description: "Azure 이벤트 표 형태 있는 이벤트에 대해 제공 되는 hello 속성을 설명 합니다."
 services: event-grid
 author: banisadr
 manager: timlt
@@ -8,34 +8,34 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: babanisa
-ms.openlocfilehash: 9e3c7b31ef23b29827d7184dc033227685ed92f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 37178a5650b93fd9072d9cff3333aae14b2a2ba7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-event-schema"></a>Event Grid 이벤트 스키마
 
-이 문서에서는 이벤트에 대한 속성 및 스키마를 제공합니다. 이벤트는 다섯 개의 필수 문자열 속성 집합과 필수 **데이터** 개체로 구성되어 있습니다. 속성은 모든 게시자에서 모든 이벤트에 공통입니다. **데이터** 개체는 각 게시자에 특정한 속성을 포함합니다. 시스템 토픽의 경우 이러한 속성은 Storage 또는 Event Hubs와 같은 리소스 공급자에 특정적입니다.
+이 문서에서는 이벤트에 대 한 hello 속성 및 스키마를 제공 합니다. 이벤트는 다섯 개의 필수 문자열 속성 집합과 필수 **데이터** 개체로 구성되어 있습니다. hello 속성은 모든 게시자에서 일반적인 tooall 이벤트입니다. hello **데이터** 개체에 특정 tooeach 게시자 되는 속성이 포함 되어 있습니다. 시스템 항목에 대 한 이러한 속성은 저장소 또는 이벤트 허브와 같은 특정 toohello 리소스 공급자입니다.
 
-이벤트는 여러 이벤트 개체를 포함할 수 있는 배열의 Azure Event Grid에 전송됩니다. 단일 이벤트가 하나뿐이면 배열의 길이는 1입니다. 
+이벤트는 이벤트 표 형태 tooAzure 여러 이벤트 개체를 포함할 수 있는 배열에 전송 됩니다. 이벤트는 하나 뿐 이면 hello 배열 길이는 1에 있습니다. 
  
 ## <a name="event-properties"></a>이벤트 속성
 
-모든 이벤트에는 다음과 같은 최상위 수준 데이터가 포함됩니다.
+모든 이벤트 hello 들어갑니다 다음 최상위 수준 데이터 같은 합니다.
 
 | 속성 | 형식 | 설명 |
 | -------- | ---- | ----------- |
-| 토픽 | string | 이벤트 원본에 대한 전체 리소스 경로입니다. 이 필드는 쓸 수 없습니다. |
-| subject | string | 이벤트 주체에 대한 경로가 정의된 게시자입니다. |
-| eventType | string | 이 이벤트 원본에 대해 등록된 이벤트 유형 중 하나입니다. |
-| eventTime | string | 공급자의 UTC 시간을 기준으로 이벤트가 생성되는 시간입니다. |
-| id | string | 이벤트에 대한 고유 식별자입니다. |
-| 데이터 | object | 특정 리소스 공급자에 대한 이벤트 데이터입니다. |
+| 토픽 | string | 전체 리소스 경로 toohello 이벤트 소스입니다. 이 필드는 쓸 수 없습니다. |
+| subject | string | 게시자 정의 된 경로 toohello 이벤트 제목입니다. |
+| eventType | string | 이 이벤트 소스에 대 한 이벤트 유형을 등록 한 hello 중 하나입니다. |
+| eventTime | string | hello 시간 hello 이벤트 hello 공급자의 UTC 시간을 기반으로 생성 됩니다. |
+| id | string | Hello 이벤트에 대 한 고유 식별자입니다. |
+| 데이터 | object | 이벤트 데이터 특정 toohello 리소스 공급자입니다. |
 
 ## <a name="available-event-sources"></a>사용할 수 있는 이벤트 원본
 
-다음 이벤트 원본은 Event Grid를 통해 소비에 대한 이벤트를 게시합니다.
+이벤트 원본 hello 이벤트 표 형태를 통해 소비에 대 한 이벤트 게시:
 
 * 리소스 그룹(관리 작업)
 * Azure 구독(관리 작업)
@@ -126,7 +126,7 @@ Resource Manager에서 이제 VM이 생성되거나 저장소 계정이 삭제�
 
 ## <a name="event-hubs"></a>Event Hubs
 
-Event Hubs 이벤트는 현재 파일이 캡처 기능을 사용하여 저장소에 자동으로 전송되는 경우에만 내보내집니다.
+이벤트 허브 이벤트는 현재 파일 toostorage hello 캡처 기능을 사용 하 여 자동으로 전송 하는 경우에 내보내집니다.
 
 ### <a name="available-event-types"></a>사용할 수 있는 이벤트 유형
 
@@ -134,7 +134,7 @@ Event Hubs 이벤트는 현재 파일이 캡처 기능을 사용하여 저장소
 
 ### <a name="example-event"></a>예제 이벤트
 
-이 샘플 이벤트는 캡처가 파일을 저장하는 경우 발생하는 Event Hubs 이벤트의 스키마를 보여 줍니다. 
+이 샘플 이벤트 캡처 파일을 저장 하는 경우 발생 하는 이벤트 허브 이벤트의 hello 스키마를 보여 줍니다. 
 
 ```json
 [
@@ -173,7 +173,7 @@ Event Grid와의 통합에 등록한 비공개 미리 보기의 Azure Blob Stora
 
 ### <a name="example-event"></a>예제 이벤트
 
-이 샘플 이벤트는 Blob이 생성될 때 발생하는 저장소 이벤트의 스키마를 보여 줍니다. 
+이 샘플 이벤트 blob를 만들 때 발생 하는 저장소 이벤트의 hello 스키마를 보여 줍니다. 
 
 ```json
 [
@@ -206,11 +206,11 @@ Event Grid와의 통합에 등록한 비공개 미리 보기의 Azure Blob Stora
 
 ## <a name="custom-topics"></a>사용자 지정 토픽
 
-사용자 지정 이벤트의 데이터 페이로드는 사용자에 의해 정의되고 포맷이 올바른 모든 JSON이 될 수 있습니다. 최상위 수준 데이터는 표준 리소스 정의 이벤트와 동일한 필드를 포함해야 합니다. 사용자 지정 토픽에 이벤트를 게시할 때 라우팅 및 필터링을 지원하도록 이벤트의 주체를 모델링하는 것을 고려해야 합니다.
+사용자 지정 이벤트의 데이터 페이로드 hello 사용자에 의해 정의 되 고 모든 포맷이 JSON 될 수 있습니다. hello 최상위 수준 데이터에 정의 된 표준 리소스 이벤트에 따라 필드 동일 hello를 포함 되어야 합니다. 이벤트 toocustom 항목을 게시 하는 경우 라우팅 및 필터링 하 여 이벤트 tooaid의 hello 주제를 모델링 하는 것이 좋습니다.
 
 ### <a name="example-event"></a>예제 이벤트
 
-다음 예제에서는 사용자 지정 토픽에 대한 이벤트를 보여 줍니다.
+다음 예제는 hello 사용자 지정 항목에 대 한 이벤트를 보여 줍니다.
 ````json
 [
   {
@@ -230,5 +230,5 @@ Event Grid와의 통합에 등록한 비공개 미리 보기의 Azure Blob Stora
 
 ## <a name="next-steps"></a>다음 단계
 
-* Event Grid에 대한 소개는 [Event Grid란?](overview.md)을 참조하세요.
-* Event Grid 구독을 만드는 방법을 알아보려면 [Event Grid 구독 스키마](subscription-creation-schema.md)를 참조하세요.
+* 소개 tooEvent 표를 참조 하십시오. [이벤트 표 형태는 무엇입니까?](overview.md)
+* 이벤트 표 형태 구독을 만드는 방법에 대해 toolearn 참조 [이벤트 표 형태 구독 스키마](subscription-creation-schema.md)합니다.

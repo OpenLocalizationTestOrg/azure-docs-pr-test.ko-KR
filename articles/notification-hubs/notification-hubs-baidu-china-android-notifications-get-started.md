@@ -1,6 +1,6 @@
 ---
-title: "Baidu를 사용하여 Azure Notification Hubs 시작 | Microsoft Docs"
-description: "이 자습서에서 Baidu를 사용하여 Azure Notification Hubs에서 Android 장치로 푸시 알림을 보내는 방법을 알아봅니다."
+title: "aaaGet Baidu를 사용 하 여 Azure 알림 허브 시작 | Microsoft Docs"
+description: "이 자습서에 설명 방법을 Baidu를 사용 하 여 toouse Azure 알림 허브 toopush 알림 tooAndroid 장치입니다."
 services: notification-hubs
 documentationcenter: android
 author: ysxu
@@ -14,149 +14,149 @@ ms.tgt_pltfrm: mobile-baidu
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: yuaxu
-ms.openlocfilehash: df3bbda15e1245b6068c2b8290d0c96856051f1f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2767fdd3bb04674e7a531634237cc05cd8c21cb8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-notification-hubs-using-baidu"></a>Baidu를 사용하여 Notification Hubs 시작
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ## <a name="overview"></a>개요
-Baidu 클라우드 푸시는 모바일 장치로 푸시 알림을 보내는 데 사용할 수 있는 중국어 클라우드 서비스입니다. 이 서비스는 서로 다른 앱 스토어, 푸시 서비스에 더해 일반적으로 GCM(Google 클라우드 메시징)에 연결되지 않은 Android 장치가 존재하기 때문에 Android로 푸시 알림을 전달하는 것이 복잡한 중국에서 유용합니다.
+Baidu 클라우드 푸시는 중국어 클라우드 서비스 toosend 푸시 알림을 toomobile 장치를 사용할 수 있습니다. 이 서비스는 중국, 여기서 다양 한 앱 저장소 및 푸시의 hello 존재 tooAndroid 되어 복잡 한 푸시 알림 배달 서비스, 또한 Android 하지 않는 장치는 일반적으로 연결 된 tooGCM (Google의 toohello 가용성에서 유용 클라우드 메시징)입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 이 자습서를 사용하려면 다음이 필요합니다.
 
-* <a href="http://go.microsoft.com/fwlink/?LinkId=389797">Android 사이트</a>에서 다운로드할 수 있는 Android SDK(Eclipse를 사용한다고 가정)입니다.
+* Android SDK (가정 Eclipse를 사용 하는) hello에서 다운로드할 수 있는 <a href="http://go.microsoft.com/fwlink/?LinkId=389797">Android 사이트</a>
 * [Mobile Services Android SDK]
 * [Baidu 푸시 Android SDK]
 
 > [!NOTE]
-> 이 자습서를 완료하려면 활성 Azure 계정이 있어야 합니다. 계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 평가판](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-baidu-get-started%2F)을 참조하세요.
+> toocomplete이이 자습서에서는 활성 Azure 계정이 있어야 합니다. 계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 평가판](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-baidu-get-started%2F)을 참조하세요.
 > 
 > 
 
 ## <a name="create-a-baidu-account"></a>Baidu 계정 만들기
-Baidu를 사용하려면 Baidu 계정이 있어야 합니다. 이미 있는 경우 [Baidu 포털]에 로그인하고 다음 단계를 건너뜁니다. 그렇지 않은 경우 Baidu 계정을 만드는 방법은 다음 지침을 참조하세요.  
+Baidu toouse Baidu 계정이 있어야 합니다. 이미 있는 경우, toohello 로그인 [Baidu 포털] toohello 다음 단계를 건너뛰고 있습니다. 그렇지 않으면 hello 방법에 대 한 지침을 참조 toocreate Baidu 계정.  
 
-1. [Baidu 포털]로 이동하여 **登录**(**Login**) 링크를 클릭합니다. **立即注册**을 클릭하여 새 계정 등록 프로세스를 시작합니다.
+1. Toohello 이동 [Baidu 포털] hello 클릭**登录**(**로그인**) 링크 합니다. 클릭**立即注册**toostart hello 계정 등록 프로세스.
    
    ![][1]
-2. 필요한 세부 정보(전화/메일 주소, 암호 및 확인 코드)를 입력하고 **등록**을 클릭합니다.
+2. 필요한 hello 세부 정보를 입력-전화/전자 메일 주소, 암호 및 확인 코드-클릭 **등록**합니다.
    
    ![][2]
-3. 입력한 메일 주소로 Baidu 계정을 활성화할 수 있는 링크가 포함된 메일을 받게 됩니다.
+3. 하면 받게 될 전자 메일 toohello 전자 메일 주소를 입력 했는지와 링크 tooactivate Baidu 계정.
    
    ![][3]
-4. 메일 계정으로 로그인하고 Baidu 활성화 메일을 연 다음 활성화 링크를 클릭하여 Baidu 계정을 활성화합니다.
+4. tooyour 전자 메일 계정, hello Baidu 활성화 메일을 열고 고 hello 활성화 링크 tooactivate Baidu 계정을 클릭 합니다.
    
    ![][4]
 
-활성화된 Baidu 계정이 있으면 [Baidu 포털]에 로그인합니다.
+활성화 된 Baidu 계정 있으면 toohello 로그인 [Baidu 포털]합니다.
 
 ## <a name="register-as-a-baidu-developer"></a>Baidu 개발자로 등록
-1. [Baidu 포털]에 로그인한 후 **更多>>**(**추가**)를 클릭합니다.
+1. Toohello에 로그인 한 후 [Baidu 포털], 클릭**更多 >>** (**자세한**).
    
       ![][5]
-2. **站长与开发者服务(웹 마스터 및 개발자 서비스)** 섹션까지 아래로 스크롤한 후 **百度开放云平台**(**Baidu 개방형 클라우드 플랫폼**)을 클릭합니다.
+2. Hello에서 아래로 스크롤하여**站长与开发者服务 (개발자 서비스 및 웹 마스터)** 섹션 및 클릭**百度开放云平台**(**Baidu 클라우드 플랫폼을 열고**).
    
       ![][6]
-3. 다음 페이지의 오른쪽 위에서 **开发者服务**(**개발자 서비스**)를 클릭합니다.
+3. Hello 다음 페이지에서 클릭**开发者服务**(**개발자 서비스**) hello 오른쪽 위 모퉁이에 있습니다.
    
       ![][7]
-4. 다음 페이지의 오른쪽 위에 있는 메뉴에서 **注册开发者**(**등록된 개발자**)를 클릭합니다.
+4. Hello 다음 페이지에서 클릭**注册开发者**(**등록 개발자**) hello 오른쪽 위 모퉁이에 hello 메뉴에서 합니다.
    
       ![][8]
-5. 이름, 설명 및 확인 문자 메시지를 수신할 휴대폰 번호를 입력하고 **送验证码**(**확인 코드 보내기**)를 클릭합니다. 국제 전화 번호의 경우 국가 번호를 괄호로 묶어야 합니다. 예를 들어 미국 번호는 **(1)1234567890**입니다.
+5. 이름, 설명 및 확인 문자 메시지를 수신할 휴대폰 번호를 입력하고 **送验证码**(**확인 코드 보내기**)를 클릭합니다. 국제 전화 번호에 대 한 괄호 안에 tooenclose hello 국가 코드가 필요 합니다. 예를 들어 미국 번호는 **(1)1234567890**입니다.
    
       ![][9]
-6. 그러면 다음 예와 같이 확인 번호가 포함된 문자 메시지를 받게 됩니다.
+6. 다음 hello 다음 예제에에서 나와 있는 것 처럼 확인 번호와 함께 텍스트 메시지를 받게 됩니다.
    
       ![][10]
-7. 메시지에 포함된 확인 번호를 **验证码**(**확인 코드**)에 입력합니다.
-8. 마지막으로, Baidu 규약 내용에 동의하고 **提交**(**제출**)을 클릭하여 개발자 등록을 완료합니다. 등록이 완료되면 다음 페이지가 표시됩니다.
+7. Hello 메시지에서 hello 확인 번호 입력**验证码**(**확인 코드**).
+8. 마지막으로, hello Baidu 계약을 수락 하 고 클릭 하 여 hello 개발자 등록을 완료**提交**(**전송**). Hello 등록 성공적으로 완료 되는 페이지 다음에 대해 표시 됩니다.
    
       ![][11]
 
 ## <a name="create-a-baidu-cloud-push-project"></a>Baidu 클라우드 푸시 프로젝트 만들기
 Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 키를 받게 됩니다.
 
-1. [Baidu 포털]에 로그인한 후 **更多>>**(**추가**)를 클릭합니다.
+1. Toohello에 로그인 한 후 [Baidu 포털], 클릭**更多 >>** (**자세한**).
    
       ![][5]
-2. **站长与开发者服务**(**웹 마스터 및 개발자 서비스**) 섹션까지 아래로 스크롤한 후 **百度开放云平台**(**Baidu 개방형 클라우드 플랫폼**)을 클릭합니다.
+2. Hello에서 아래로 스크롤하여**站长与开发者服务**(**개발자 서비스 및 웹 마스터**) 섹션 및 클릭**百度开放云平台**(**Baidu 클라우드 플랫폼을 열고**).
    
       ![][6]
-3. 다음 페이지의 오른쪽 위에서 **开发者服务**(**개발자 서비스**)를 클릭합니다.
+3. Hello 다음 페이지에서 클릭**开发者服务**(**개발자 서비스**) hello 오른쪽 위 모퉁이에 있습니다.
    
       ![][7]
-4. 다음 페이지의 **云服务**(**Cloud Services**) 섹션에서 **云推送**(**클라우드 푸시**)를 클릭합니다.
+4. Hello 다음 페이지에서 클릭**云推送**(**클라우드 푸시**) hello에서**云服务**(**클라우드 서비스**) 섹션.
    
       ![][12]
-5. 등록된 개발자인 경우 최상위 메뉴에 **管理控制台**(**관리 콘솔**)이 표시됩니다. **开发者服务管理**(**개발자 서비스 관리**)를 클릭합니다.
+5. 등록 된 개발자 인 경우 되 면 참조**管理控制台**(**관리 콘솔**) hello 상단 메뉴에서 합니다. **开发者服务管理**(**개발자 서비스 관리**)를 클릭합니다.
    
       ![][13]
-6. 다음 페이지에서 **创建工程**(**프로젝트 만들기**)를 클릭합니다.
+6. Hello 다음 페이지에서 클릭**创建工程**(**프로젝트 만들기**).
    
       ![][14]
 7. 응용 프로그램 이름을 입력하고 **创建**(**만들기**)를 클릭합니다.
    
       ![][15]
-8. Baidu 클라우드 푸시 프로젝트를 성공적으로 만들면 **AppID**, **API 키** 및 **비밀 키**가 포함된 페이지가 표시됩니다. 나중에 사용할 API 키와 비밀 키를 적어 둡니다.
+8. Baidu 클라우드 푸시 프로젝트를 성공적으로 만들면 **AppID**, **API 키** 및 **비밀 키**가 포함된 페이지가 표시됩니다. 적어 hello API 키 및 비밀 키를 나중에 사용 합니다.
    
       ![][16]
-9. 왼쪽 창에서 **云推送**(**클라우드 푸시**)를 클릭하여 푸시 알림에 대해 프로젝트를 구성합니다.
+9. 클릭 하 여 푸시 알림에 hello 프로젝트 구성**云推送**(**클라우드 푸시**) hello 왼쪽된 창에서.
    
       ![][31]
-10. 다음 페이지에서 **推送设置**(**푸시 설정**) 단추를 클릭합니다.
+10. Hello 다음 페이지에서 클릭 hello**推送设置**(**설정을 푸시**) 단추입니다.
     
     ![][32]  
-11. 구성 페이지에서 **应用包名**(**응용 프로그램 패키지**) 필드에 Android 프로젝트에 사용할 패키지 이름을 추가하고 **保存设置**(**저장**)를 클릭합니다.  
+11. Hello 구성 페이지에서 추가 hello에서 Android 프로젝트에서 사용 하 여 hello 패키지 이름을**应用包名**(**응용 프로그램 패키지**) 필드를 선택한 다음 클릭**保存设置**드 ( **저장**).  
     
     ![][33]
 
-**保存成功**(**성공적으로 저장했습니다!**) 메시지가 나타납니다.
+Hello 참조**保存成功!**(**성공적으로 저장했습니다!**) 메시지가 나타납니다.
 
 ## <a name="configure-your-notification-hub"></a>알림 허브 구성
-1. [Azure 클래식 포털]에 로그인한 다음 화면 아래쪽에서 **+새로 만들기**를 클릭합니다.
+1. Toohello 로그인 [Azure 클래식 포털], 클릭 하 고 **+ 새로 만들기** hello hello 화면 맨 아래에 있습니다.
 2. **App Services**, **Service Bus**, **Notification Hub** 및 **빠른 생성**을 차례로 클릭합니다.
-3. **알림 허브**의 이름을 입력하고 이 알림 허브를 만들 **하위 지역** 및 **네임스페이스**를 선택한 후 **새 알림 허브 만들기**를 클릭합니다.  
+3. 에 대 한 이름을 제공 하면 **알림 허브**을 선택 hello **지역** 및 hello **Namespace** 여기이 알림 허브를 만들 한 다음 클릭  **새 알림 허브 만들기**합니다.  
    
       ![][17]
-4. 알림 허브를 만든 네임스페이스를 클릭한 후 맨 위에 있는 **Notification Hubs**를 클릭합니다.
+4. 알림 허브를 만든 hello 네임 스페이스를 클릭 한 다음 클릭 **알림 허브** hello 위쪽에 있습니다.
    
       ![][18]
-5. 만든 알림 허브를 선택하고 최상위 메뉴에서 **구성**을 클릭합니다.
+5. 생성을 클릭 한 다음 선택 hello 알림 허브 **구성** hello 상단 메뉴에서 합니다.
    
       ![][19]
-6. **Baidu 알림 설정** 섹션까지 아래로 스크롤한 후 이전에 Baidu 콘솔에서 Baidu 클라우드 푸시 프로젝트에 대해 받은 API 키와 비밀 키를 입력합니다. **Save**를 클릭합니다.
+6. Toohello 아래로 스크롤하여 **baidu 알림 설정** 섹션 고 hello API 키와 가져온 hello Baidu 콘솔에서 이전에 프로그램 Baidu 클라우드 푸시 프로젝트에 대 한 비밀 키를 입력 합니다. **Save**를 클릭합니다.
    
       ![][20]
-7. 맨 위에서 알림 허브에 대한 **대시보드** 탭을 클릭한 후 **연결 문자열 보기**를 클릭합니다.
+7. Hello 클릭 **대시보드** hello 알림 허브에 대 한 hello 위쪽 탭을 클릭 한 다음 **연결 문자열 보기**합니다.
    
       ![][21]
-8. **Access 연결 정보** 창에 있는 **DefaultListenSharedAccessSignature** 및 **DefaultFullSharedAccessSignature**를 적어 둡니다.
+8. Hello 메모 **DefaultListenSharedAccessSignature** 및 **DefaultFullSharedAccessSignature** hello에서 **연결 정보에 액세스** 창.
    
     ![][22]
 
-## <a name="connect-your-app-to-the-notification-hub"></a>알림 허브에 앱 연결
+## <a name="connect-your-app-toohello-notification-hub"></a>응용 프로그램 toohello 알림 허브를 연결 합니다.
 1. Eclipse ADT에서 새로운 Android 프로젝트를 만듭니다(**파일** > **새로 만들기** > **Android 응용 프로그램 프로젝트**).
    
     ![][23]
-2. **응용 프로그램 이름**을 입력하고 **Minimum Required SDK** 버전이 **API 16: Android 4.1**인지 확인합니다.
+2. 입력 한 **응용 프로그램 이름** 해당 hello 확인 **최소 필요한 SDK** 버전이 너무 설정 되어**API 16: Android 4.1**합니다.
    
     ![][24]
-3. **다음**을 클릭하고 **만들기 작업** 창이 표시될 때까지 마법사를 계속 진행합니다. **빈 작업**이 선택되었는지 확인하고 **마침**을 선택하여 새로운 Android 응용 프로그램을 만듭니다.
+3. 클릭 **다음** hello 마법사 hello 될 때까지 다음 계속 **만들 활동** 창이 나타납니다. 다음 사항을 확인 **빈 활동** 가 선택 마지막으로 선택 **마침** toocreate 새 Android 응용 프로그램입니다.
    
     ![][25]
-4. **프로젝트 빌드 대상** 이 올바르게 설정되었는지 확인합니다.
+4. 해당 hello 있는지 확인 **프로젝트 빌드 대상** 올바르게 설정 되어 있습니다.
    
     ![][26]
-5. **Bintray의 Notification-Hubs-Android-SDK** 의 [파일](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4)탭에서 notification-hubs-0.4.jar 파일을 다운로드합니다. Eclipse 프로젝트의 **libs** 폴더에 파일을 추가하고 *libs* 폴더를 새로 고칩니다.
-6. [Baidu 푸시 Android SDK]를 다운로드하여 압축을 풀고 **libs** 폴더를 연 후 **pushservice-x.y.z** jar 파일 및 Android 응용 프로그램의 **libs** 폴더에 있는 **armeabi** & **mips** 폴더를 복사합니다.
-7. Android 프로젝트의 **AndroidManifest.xml** 파일을 열고 Baidu SDK에 필요한 권한을 추가합니다.
+5. Hello에서 hello 0.4.jar 허브-알림-파일을 다운로드 **파일** hello 탭 [알림-허브-Android-SDK Bintray에](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4)합니다. Hello 파일 toohello 추가 **libs** Eclipse 프로젝트 및 새로 고침 hello 폴더 *libs* 폴더입니다.
+6. 다운로드 하 고 hello 압축을 풀면 [Baidu 푸시 Android SDK]개방형 hello **libs** 폴더를 연 다음 복사 hello **pushservice x.y.z 형식이 며** jar 파일 및 hello **armeabi**  &  **mips** 폴더 hello에 **libs** Android 응용 프로그램의 폴더입니다.
+7. 열기 hello **AndroidManifest.xml** 파일의 Android 프로젝트를 마우스 hello Baidu SDK에서 필요로 하는 hello 사용 권한을 추가 합니다.
    
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -170,10 +170,10 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
         <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
         <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
         <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-8. 예를 들어 **com.example.BaiduTest**와 같은 *yourprojectname*을 대체하여 **AndroidManifest.xml**의 **응용 프로그램** 요소에 **android:name** 속성을 추가합니다. 이 프로젝트 이름은 Baidu 콘솔에서 구성한 이름과 일치해야 합니다.
+8. Hello 추가 **android: name** 속성 tooyour **응용 프로그램** 요소 **AndroidManifest.xml**, 대체 *yourprojectname* ( 예제에서는 **com.example.BaiduTest**). 이 프로젝트 이름을 hello Baidu 콘솔에서 구성한 하나 hello 일치 하는지 확인 합니다.
    
         <application android:name="yourprojectname.DemoApplication"
-9. 예를 들어 **com.example.BaiduTest**와 같은 *yourprojectname*을 대체하여 **.MainActivity** 작업 요소 뒤의 응용 프로그램 요소 내에 다음 구성을 추가합니다.
+9. Hello 같은 hello 후 hello 응용 프로그램 요소에 구성이 추가 **합니다. MainActivity** 활동 요소 대체 *yourprojectname* (예를 들어 **com.example.BaiduTest**):
    
         <receiver android:name="yourprojectname.MyPushMessageReceiver">
             <intent-filter>
@@ -212,12 +212,12 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
                 <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
             </intent-filter>
         </service>
-10. **ConfigurationSettings.java** 라는 새 클래스를 프로젝트에 추가합니다.
+10. 라는 새 클래스 추가 **ConfigurationSettings.java** toohello 프로젝트.
     
      ![][28]
     
      ![][29]
-11. 이 클래스에 다음 코드를 추가합니다.
+11. 다음 코드 tooit hello를 추가 합니다.
     
         public class ConfigurationSettings {
                 public static String API_KEY = "...";
@@ -225,8 +225,8 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
                 public static String NotificationHubConnectionString = "...";
             }
     
-    **API_KEY** 값을 앞에서 Baidu 클라우드 프로젝트에서 검색한 값으로 설정하고, **NotificationHubName**을 Azure 클래식 포털의 알림 허브 이름으로 설정하고, **NotificationHubConnectionString**을 Azure 클래식 포털의 DefaultListenSharedAccessSignature로 설정합니다.
-12. **DemoApplication.java**라는 새 클래스를 추가하고 여기에 다음 코드를 추가합니다.
+    hello 값 설정 **API_KEY** 내용 검색 hello Baidu 클라우드 프로젝트에서 이전 버전에서와 **NotificationHubName** hello Azure 클래식 포털에서에서 알림 허브 이름으로 및  **NotificationHubConnectionString** DefaultListenSharedAccessSignature hello Azure 클래식 포털에서에서 사용 합니다.
+12. 라는 새 클래스 추가 **DemoApplication.java**, 다음 코드 tooit hello 추가:
     
         import com.baidu.frontia.FrontiaApplication;
     
@@ -236,7 +236,7 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
                 super.onCreate();
             }
         }
-13. **MyPushMessageReceiver.java**라는 다른 새 클래스를 추가하고 여기에 다음 코드를 추가합니다. 이 클래스는 Baidu 푸시 서버에서 수신된 푸시 알림을 처리합니다.
+13. 이라는 다른 새 클래스를 추가 **MyPushMessageReceiver.java**, 다음 코드 tooit hello를 추가 합니다. 핸들 hello hello Baidu 푸시 서버 로부터 받은 푸시 알림을 hello 클래스입니다.
     
         import java.util.List;
         import android.content.Context;
@@ -246,7 +246,7 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
         import com.microsoft.windowsazure.messaging.NotificationHub;
     
         public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
-            /** TAG to Log */
+            /** TAG tooLog */
             public static NotificationHub hub = null;
             public static String mChannelId, mUserId;
             public static final String TAG = MyPushMessageReceiver.class
@@ -344,29 +344,29 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
                 Log.d(TAG, messageString);
             }
         }
-14. **MainActivity.java**를 열고 **onCreate** 메서드에 다음 코드를 추가합니다.
+14. 열기 **MainActivity.java**, hello toohello 다음 추가 **onCreate** 메서드:
     
             PushManager.startWork(getApplicationContext(),
                     PushConstants.LOGIN_TYPE_API_KEY, ConfigurationSettings.API_KEY);
-15. 그런 다음 맨 위에 다음 import 문을 엽니다.
+15. 다음 가져오기 조건 hello 위쪽 hello를 엽니다.
     
             import com.baidu.android.pushservice.PushConstants;
             import com.baidu.android.pushservice.PushManager;
 
-## <a name="send-notifications-to-your-app"></a>앱에 알림 보내기
-다음 화면과 같이 알림 허브의 [보내기](https://portal.azure.com/) 단추를 사용하여 **Azure Portal**에서 알림을 보내 앱의 알림 수신을 신속하게 테스트할 수 있습니다.
+## <a name="send-notifications-tooyour-app"></a>보낼 알림 tooyour 앱
+Hello에 알림을 전송 하 여 앱에서 알림 받기 신속 하 게 테스트할 수 있습니다 [Azure 포털](https://portal.azure.com/) hello를 사용 하 여 **보낼** hello 화면에 다음 그림과 같이 hello 알림 허브에서 단추:
 
 ![](./media/notification-hubs-baidu-get-started/notification-hub-test-send-baidu.png)
 
-푸시 알림은 일반적으로 호환 라이브러리를 사용하는 Mobile Services 또는 ASP.NET과 같은 백 엔드 서비스에서 전송됩니다. 백 엔드에 라이브러리를 사용할 수 없는 경우 직접 REST API를 사용하여 알림 메시지를 보낼 수도 있습니다.
+푸시 알림은 일반적으로 호환 라이브러리를 사용하는 Mobile Services 또는 ASP.NET과 같은 백 엔드 서비스에서 전송됩니다. Hello REST API를 사용할 수는 라이브러리에 백 엔드에 대해 사용할 수 없는 경우 직접 toosend 알림 메시지입니다.
 
-이 자습서에서는 과정을 단순하게 유지하고 백엔드 서비스 대신 콘솔 응용 프로그램에서 알림 허브에 .NET SDK를 사용하여 알림을 보내서 클라이언트 앱의 테스트만 보여 줍니다. ASP.NET 백엔드에서 알림을 보내기 위한 다음 단계로 [Notification Hubs를 사용하여 사용자에게 알림을 푸시](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) 하는 것이 좋습니다. 그러나 다음 접근 방식을 사용하여 알림을 보낼 수 있습니다.
+이 자습서에서는 단순하게 유지 하 고 방금 hello.NET SDK를 사용 하 여 백 엔드 서비스는 대신 콘솔 응용 프로그램에서 알림 허브에 대 한 알림을 전송 하 여 클라이언트 앱을 테스트 보여 줍니다. Hello 권장 [사용 하 여 알림 허브 toopush 알림 toousers](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) ASP.NET 백 엔드에서 알림을 보내기 위한 hello 다음 단계로 자습서입니다. 그러나 다음 방법 hello 알림을 보내는 데 사용할 수 있습니다.
 
-* **REST 인터페이스**: [REST 인터페이스](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx)를 사용하여 백 엔드 플랫폼에서 알림을 지원할 수 있습니다.
-* **Microsoft Azure Notification Hubs .NET SDK**: Visual Studio용 Nuget 패키지 관리자에서 [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)를 실행합니다.
-* **Node.js**: [Node.js에서 Notification Hubs 사용 방법](notification-hubs-nodejs-push-notification-tutorial.md)
-* **Mobile Apps**: Notification Hubs와 통합된 Azure App Service Mobile Apps 백 엔드에서 알림을 보내는 방법에 대한 예제는 [모바일 앱에 푸시 알림 추가](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)를 참조하세요.
-* **Java / PHP**: REST API를 사용하여 알림을 보내는 방법에 대한 예는 "Java/PHP에서 Notification Hubs를 사용하는 방법"([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md))을 참조하세요.
+* **REST 인터페이스**: hello를 사용 하 여 모든 백 엔드 플랫폼에서 알림을 지원할 수 있습니다 [REST 인터페이스](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx)합니다.
+* **Microsoft Azure 알림 허브.NET SDK**: Visual Studio 용 Nuget 패키지 관리자 hello 실행 [Install-package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)합니다.
+* **Node.js**: [어떻게 toouse Node.js에서 알림 허브](notification-hubs-nodejs-push-notification-tutorial.md)합니다.
+* **모바일 앱**: 방법의 예에 대 한 알림 허브와 통합 된 Azure 앱 서비스 모바일 앱 백 엔드에서 toosend 알림을 참조 [추가 tooyour 모바일 앱 푸시 알림](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)합니다.
+* **Java / PHP**: toosend 알림을 사용 하 여 REST Api를 hello 하는 방법의 예제를 보려면 "어떻게 toouse Java/PHP에서 알림 허브" ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md)).
 
 ## <a name="optional-send-notifications-from-a-net-console-app"></a>(선택 사항) .NET 콘솔 응용 프로그램에서 알림 보내기
 이 섹션에서는 .NET 콘솔 앱을 사용하여 알림을 전송하는 방법을 보여줍니다.
@@ -374,17 +374,17 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
 1. 새 Visual C# 콘솔 응용 프로그램을 만듭니다.
    
     ![][30]
-2. 패키지 관리자 콘솔 창에서 **기본 프로젝트**를 새 콘솔 응용 프로그램 프로젝트로 설정한 후 콘솔 창에서 다음 명령을 실행합니다.
+2. Hello 패키지 관리자 콘솔 창에서에서 설정 hello **기본 프로젝트** tooyour 새 콘솔 응용 프로그램 프로젝트를 선택한 다음 hello 콘솔 창에 다음 명령을 hello를 실행 합니다.
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    이 명령은 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet 패키지</a>를 사용하는 Azure Notification Hubs SDK에 대한 참조를 추가합니다.
+    이 명령은 추가 참조 toohello Azure 알림 허브 SDK hello를 사용 하 여 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification 허브 NuGet 패키지</a>합니다.
    
     ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
-3. **Program.cs** 파일을 열고 다음 using 문을 추가합니다.
+3. 파일 열기 hello **Program.cs** hello 다음 추가 및 문을 사용 하 여:
    
         using Microsoft.Azure.NotificationHubs;
-4. `Program` 클래스에 다음 메서드를 추가하고 *DefaultFullSharedAccessSignatureSASConnectionString* 및 *NotificationHubName*을 보유한 값으로 대체합니다.
+4. 프로그램 `Program` 클래스, 메서드 뒤 hello를 추가 하 고, 바꿀 *DefaultFullSharedAccessSignatureSASConnectionString* 및 *NotificationHubName* hello 값이 적용 해야 합니다.
    
         private static async void SendNotificationAsync()
         {
@@ -392,19 +392,19 @@ Baidu 클라우드 푸시 프로젝트를 만들면 앱 ID, API 키 및 비밀 �
             string message = "{\"title\":\"((Notification title))\",\"description\":\"Hello from Azure\"}";
             var result = await hub.SendBaiduNativeNotificationAsync(message);
         }
-5. **Main** 메서드에 다음 줄을 추가합니다.
+5. Hello 뒤에 있는 줄을 추가 하면 **Main** 메서드:
    
          SendNotificationAsync();
          Console.ReadLine();
 
 ## <a name="test-your-app"></a>앱 테스트
-실제 휴대폰에서 이 앱을 테스트하려면 USB 케이블을 사용하여 휴대폰을 컴퓨터에 연결하면 됩니다. 이 작업은 연결된 전화기의 앱을 로드합니다.
+정당한는 실제 휴대폰으로이 응용 프로그램 연결 tootest USB 케이블을 사용 하 여 전화 tooyour 컴퓨터 hello 합니다. 이 작업에 연결 된 hello 전화 앱을 로드 합니다.
 
-에뮬레이터를 사용하여 이 앱을 테스트하려면 Eclipse 상단 도구 모음에서 **실행**을 클릭하고 앱을 선택합니다. 그러면 에뮬레이터가 시작되고 앱이 로드되어 실행됩니다.
+tootest hello 에뮬레이터 hello Eclipse 위쪽 도구 모음에서이 응용 프로그램 클릭 **실행**, 다음 응용 프로그램을 선택 하 고: hello 에뮬레이터를 로드, 시작 및 실행 hello 응용 프로그램입니다.
 
-앱이 Baidu 푸시 알림 서비스에서 'userId' 및 'channelId'를 검색하고 알림 허브에 등록합니다.
+hello 앱 hello 'userId' 및 'channelId' hello Baidu 푸시 알림 서비스에서에서 검색 하 고 hello 알림 허브에 등록 합니다.
 
-테스트 알림을 보내려면 Azure 클래식 포털의 디버그 탭을 사용할 수 있습니다. Visual Studio에 대해 .NET 콘솔 응용 프로그램을 빌드한 경우 Visual Studio에서 F5 키를 눌러 응용 프로그램을 실행합니다. 응용 프로그램은 장치 또는 에뮬레이터의 상위 알림 영역에 표시되는 알림을 전송합니다.
+테스트 알림을 toosend hello 디버그 탭 hello Azure 클래식 포털을 사용할 수 있습니다. Visual Studio에 대 한 hello.NET 콘솔 응용 프로그램을 빌드한 경우 Visual Studio toorun hello 응용 프로그램에서 hello F5 키를 눌러만 합니다. hello 응용 프로그램에는 장치 또는 에뮬레이터의 hello 상위 알림 영역에 표시 되는 알림을 보냅니다.
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-baidu-get-started/BaiduRegistration.png

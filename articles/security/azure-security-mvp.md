@@ -1,6 +1,6 @@
 ---
-title: "Azure 보안 MVP 프로그램 | Microsoft Docs"
-description: "문서는 MVP 프로그램의 Azure 보안 기여 부문에 대한 개요를 제공합니다."
+title: "보안 MVP 프로그램 aaaAzure | Microsoft Docs"
+description: "hello 문서 hello Azure 보안 기여 영역 hello MVP 프로그램에에서 대 한 개요를 제공합니다."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: 9a9f4341aaca5bb6049c6d85993c92ea6dd1c8dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e8dfea6522055acb9d4c7bbce5c1c1650e29606a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-mvp-program"></a>Azure 보안 MVP 프로그램
-Microsoft MVP(Most Valuable Professional)는 다른 사용자가 그들이 쌓아온 Microsoft 기술에서의 경험을 최대한 활용할 수 있도록 돕기 위해 모범을 보여왔던 커뮤니티 리더입니다. 놀라운 열정, 실제 지식 및 기술적 전문성을 커뮤니티 및 Microsoft와 공유합니다.
+Microsoft Most Valuable Professionals (Mvp) 소는 대표적인 약정 toohelping 살펴보았습니다 커뮤니티 리더가 hello Microsoft 기술 사용 경험을의 대부분 아웃 됩니다. Hello 커뮤니티와 및 Microsoft와의 뛰어난 열 정의 실제 지식 및 기술 전문성 공유 합니다.
 
-Microsoft Azure에서 Azure 보안에 특별한 전문성을 갖춘 커뮤니티 전문가들을 공인함을 알려드리게 되어 기쁩니다. Microsoft MVP는 Azure 보안 기여 부문에서 Microsoft Azure의 MVP를 수상할 수 있습니다.
+Microsoft Azure 인식할 수 있게 된 특별 한 전문 지식 커뮤니티 전문가 Azure 보안에 만족 tooannounce 있습니다. Mvp hello Azure 보안 기여 영역에서에서 Microsoft Azure의 hello MVP 획득할 수 될 수 있습니다.
 
 ![Microsoft MVP](./media/azure-security-mvp/azure-security-mvp-fig1.png)
 
-부분적으로는 기술 및 수명 주기에 따라 달라지기 때문에 MVP가 되기 위한 벤치마크는 없지만 몇 가지 평가 기준에는 Microsoft Answers, TechNet 및 MSDN과 같은 온라인 포럼, wiki 및 온라인 콘텐츠, 회의 및 사용자 그룹, 팟캐스트, 웹 사이트, 블로그 및 소셜 미디어, 기사 및 저서와 관련된 후보자의 영향력이 포함됩니다.
+Hello 조건 평가의 일부 포함 nominee의 기여 tooonline 포럼 Microsoft 답변, TechNet 및 MSDN; 등의 hello 영향 없습니다 벤치 마크에서는 기술 및 수명 주기의 여 달라 지므로 하면 MVP 부분적 지정할 이지만, wiki 및 온라인 콘텐츠; 회 및 사용자 그룹입니다. 웹 사이트, 블로그, 소셜 미디어; 팟캐스트 기사 및 책 합니다.
 
-Azure 보안 전문가입니까? 전문가인 사람을 알고 계십니까? 그렇다면 오늘 [자신이나 다른 사용자를 추천](https://mvp.microsoft.com/Nomination/nominate-an-mvp) 하여 Azure 보안 MVP가 되도록 하십시오!
+Azure 보안 전문가입니까? 전문가인 사람을 알고 계십니까? 그런 다음 [자신이 나 다른 사람 파트너로 지정](https://mvp.microsoft.com/Nomination/nominate-an-mvp) toobecome Azure 보안 MVP 오늘!

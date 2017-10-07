@@ -1,6 +1,6 @@
 ---
-title: "Azure 내부 부하 분산 장치 만들기 - PowerShell 클래식 | Microsoft Docs"
-description: "클래식 배포 모델에서 PowerShell을 사용하여 내부 부하 분산 장치를 만드는 방법에 대해 알아봅니다."
+title: "aaaCreate Azure 내부 부하 분산 장치-PowerShell 클래식 | Microsoft Docs"
+description: "내부 프로그램 toocreate hello 클래식 배포 모델에서 PowerShell을 사용 하 여 분산 장치를 로드 하는 방법에 대해 알아봅니다"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: f701fb3564c62cf8088cc4362a10c5e2c2301ae6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 382db80c42ffab09905513019b72e85a4f9dfeff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-using-powershell"></a>PowerShell을 사용하여 내부 부하 분산 장치(클래식) 만들기 시작
 
@@ -31,7 +31,7 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.  이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. [Resource Manager 모델을 사용하여 이러한 단계를 수행하는](load-balancer-get-started-ilb-arm-ps.md) 방법을 알아봅니다.
+> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.  이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. 너무 방법에 대해 알아봅니다[hello 리소스 관리자 모델을 사용 하 여 이러한 단계를 수행](load-balancer-get-started-ilb-arm-ps.md)합니다.
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -39,28 +39,28 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-an-internal-load-balancer-set-for-virtual-machines"></a>가상 컴퓨터에 대한 내부 부하 분산 장치 집합 만들기
 
-내부 부하 분산 장치 집합과 이 집합으로 해당 트래픽을 전송할 서버를 만들려면 다음을 수행해야 합니다.
+내부 부하 분산 설정 하 고 해당 트래픽 tooit 보낼 서버 hello toocreate, toodo hello 다음을 사용할 수 있습니다.
 
-1. 부하 분산 집합의 서버 간에 부하가 분산될 들어오는 트래픽의 끝점이 되는 내부 부하 분산의 인스턴스를 만듭니다.
-2. 들어오는 트래픽을 수신할 가상 컴퓨터에 해당하는 끝점을 추가합니다.
-3. 부하가 분산될 트래픽을 전송하는 서버가 해당 트래픽을 내부 부하 분산 인스턴스의 VIP(가상 IP) 주소로 전송하도록 구성합니다.
+1. 내부 부하 분산의 부하 분산 된 집합의 hello 서버에 걸쳐 분산 된 들어오는 트래픽 toobe 부하의 hello 끝점 수 있는 인스턴스를 만듭니다.
+2. Hello 들어오는 트래픽을 받게 되 toohello 가상 컴퓨터를 해당 끝점을 추가 합니다.
+3. 송신할 hello 트래픽 toobe 부하 분산 된 toosend 해당 트래픽을 toohello 가상 IP (VIP) 인스턴스의 주소 hello 내부 부하 분산 하는 hello 서버를 구성 합니다.
 
 ### <a name="step-1-create-an-internal-load-balancing-instance"></a>1단계: 내부 부하 분산 인스턴스 만들기
 
-기존 클라우드 서비스 또는 지역 가상 네트워크에 배포된 클라우드 서비스의 경우 다음 Windows PowerShell 명령을 사용하여 내부 부하 분산 인스턴스를 만들 수 있습니다.
+기존 클라우드 서비스 또는 지역 가상 네트워크가 배포 된 클라우드 서비스에 대 한 다음 Windows PowerShell 명령을 hello로 내부 부하 분산 인스턴스를 만들 수 있습니다.
 
 ```powershell
 $svc="<Cloud Service Name>"
 $ilb="<Name of your ILB instance>"
-$subnet="<Name of the subnet within your virtual network>"
-$IP="<The IPv4 address to use on the subnet-optional>"
+$subnet="<Name of hello subnet within your virtual network>"
+$IP="<hello IPv4 address toouse on hello subnet-optional>"
 
 Add-AzureInternalLoadBalancer -ServiceName $svc -InternalLoadBalancerName $ilb –SubnetName $subnet –StaticVNetIPAddress $IP
 ```
 
-이 [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) Windows PowerShell cmdlet 사용에서는 DefaultProbe 매개 변수 집합이 사용됩니다. 추가 매개 변수 집합에 대한 자세한 내용은 [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx)를 참조하세요.
+hello의이 사용이 [Add-azureendpoint](https://msdn.microsoft.com/library/dn495300.aspx) hello DefaultProbe 매개 변수 집합을 사용 하 여 Windows PowerShell cmdlet. 추가 매개 변수 집합에 대한 자세한 내용은 [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx)를 참조하세요.
 
-### <a name="step-2-add-endpoints-to-the-internal-load-balancing-instance"></a>2단계: 내부 부하 분산 인스턴스에 끝점 추가
+### <a name="step-2-add-endpoints-toohello-internal-load-balancing-instance"></a>2 단계: 끝점 toohello 내부 부하 분산 인스턴스를 추가 합니다.
 
 다음은 예제입니다.
 
@@ -76,47 +76,47 @@ $ilb="ilbset"
 Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epname -Lbset $lbsetname -Protocol $prot -LocalPort $locport -PublicPort $pubport –DefaultProbe -InternalLoadBalancerName $ilb | Update-AzureVM
 ```
 
-### <a name="step-3-configure-your-servers-to-send-their-traffic-to-the-new-internal-load-balancing-endpoint"></a>3단계: 새 내부 부하 분산 끝점으로 트래픽을 전송하도록 서버 구성
+### <a name="step-3-configure-your-servers-toosend-their-traffic-toohello-new-internal-load-balancing-endpoint"></a>3 단계: 구성 서버 toosend 해당 트래픽을 toohello 새로운 내부 부하 분산 끝점
 
-해당 트래픽의 부하가 분산될 서버에서 내부 부하 분산 인스턴스의 새 IP 주소(VIP)를 사용하도록 구성해야 합니다. 이 주소는 내부 부하 분산 인스턴스가 수신 대기하는 주소입니다. 대부분의 경우 내부 부하 분산 인스턴스의 VIP에 대한 DNS 레코드를 추가하거나 수정하기만 하면 됩니다.
+진행 중인 toobe 부하 분산 된 toouse hello 새 IP 주소 (VIP hello) hello 인스턴스 내부 부하 분산의 트래픽은 hello 서버를 구성 너무 합니다. 내부 부하 분산 하는 hello 인스턴스가 수신 하는 hello 주소입니다. Toojust 대부분의 경우에서 필요한 추가 하거나 hello 내부 부하 분산 인스턴스의 VIP hello에 대 한 DNS 레코드를 수정 합니다.
 
-내부 부하 분산 인스턴스를 만드는 동안 IP 주소를 지정한 경우 이미 VIP가 있습니다. 그렇지 않으면 다음 명령을 통해 VIP를 확인할 수 있습니다.
+Hello hello 내부 부하 분산 인스턴스를 만드는 동안 hello IP 주소를 지정한 경우 hello VIP이 이미 있습니다. 그렇지 않은 경우 명령 뒤 hello hello 프로덕션으로 VIP를 확인할 수 있습니다.
 
 ```powershell
 $svc="<Cloud Service Name>"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-이러한 명령을 사용하려면 값을 입력하고 < 및 >를 제거합니다. 다음은 예제입니다.
+toouse hello 값 입력 제거 hello 이러한 명령은 < 및 >입니다. 다음은 예제입니다.
 
 ```powershell
 $svc="mytestcloud"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-Get-AzureInternalLoadBalancer 명령 표시에서 IP 주소를 확인하고 필요한 경우 서버 또는 DNS 레코드를 변경하여 트래픽이 VIP로 전송되게 합니다.
+Hello Get AzureInternalLoadBalancer 명령의 hello 디스플레이에서 hello IP 주소 기록한 hello 필요한 변경 tooyour 서버 또는 DNS 레코드 tooensure 트래픽 toohello VIP 전송 되 게 합니다.
 
 > [!NOTE]
-> Microsoft Azure 플랫폼에서는 다양한 관리 시나리오에 공개적으로 라우팅할 수 있는 고정 IPv4 주소를 사용합니다. IP 주소는 168.63.129.16입니다. 이 IP 주소를 방화벽으로 차단하면 안 됩니다. 예기치 않은 동작이 발생할 수 있습니다.
-> Azure 내부 부하 분산과 관련하여 이 IP 주소는 부하 분산된 집합에서 가상 컴퓨터의 상태를 확인하기 위해 부하 분산 장치에서 프로브를 모니터링하는 데 사용됩니다. 내부적으로 부하 분산된 집합의 Azure 가상 컴퓨터로 트래픽을 제한하는 네트워크 보안 그룹이 사용된 경우 168.63.129.16의 트래픽을 허용하도록 네트워크 보안 규칙을 추가해야 합니다.
+> hello Microsoft Azure 플랫폼에는 다양 한 관리 시나리오에 대 한 정적, 공개적으로 라우팅 가능한 IPv4 주소를 사용합니다. hello IP 주소 168.63.129.16입니다. 이 IP 주소를 방화벽으로 차단하면 안 됩니다. 예기치 않은 동작이 발생할 수 있습니다.
+> 내부 부하 분산 측면 tooAzure와 hello 부하 분산 장치 toodetermine hello 상태에서 가상 컴퓨터 부하 분산 집합에 대해 프로브를 모니터링 하 여이 IP 주소 사용 됩니다. 네트워크 보안 그룹 사용 되는 toorestrict 내부적으로 부하 분산 된 집합에 트래픽을 tooAzure 가상 컴퓨터는 되거나 적용 된 tooa 가상 네트워크 서브넷에 경우에 네트워크 보안 규칙 tooallow 트래픽을 168.63.129.16에서 추가 되어 있는지 확인 합니다.
 
 ## <a name="example-of-internal-load-balancing"></a>내부 부하 분산의 예제
 
-두 예제 구성에 대한 부하 분산 집합을 만드는 완전한 프로세스의 단계별 지침은 다음 섹션을 참조하세요.
+toostep 2 가지의 구성 예제에 대 한 부하 분산 집합을 만드는 hello 끝 tooend 과정을 안내 합니다 참조 섹션에서는 다음 hello 합니다.
 
 ### <a name="an-internet-facing-multi-tier-application"></a>인터넷 연결 다중 계층 응용 프로그램
 
-인터넷 연결 웹 서버 집합에 부하 분산 데이터베이스 서비스를 제공하려고 합니다. 두 서버 집합은 단일 Azure 클라우드 서비스에서 호스트됩니다. TCP 포트 1433에 대한 웹 서버 트래픽을 데이터베이스 계층의 2개 가상 컴퓨터에 배포해야 합니다. 그림 1은 구성을 보여 줍니다.
+Tooprovide 인터넷 연결 웹 서버 집합에 대 한 부하 분산 된 데이터베이스 서비스를 사용 하는 것이 좋습니다. 두 서버 집합은 단일 Azure 클라우드 서비스에서 호스트됩니다. 웹 서버 트래픽을 tooTCP 포트 1433 hello 데이터베이스 계층의 가상 컴퓨터에 두 개의 배포 되어야 합니다. 그림 1 hello 구성을 보여 줍니다.
 
-![데이터베이스 계층에 대한 내부 부하 분산 집합](./media/load-balancer-internal-getstarted/IC736321.png)
+![Hello 데이터베이스 계층에 대 한 내부 부하 분산 된 집합](./media/load-balancer-internal-getstarted/IC736321.png)
 
-구성은 다음과 같이 이루어져 있습니다.
+hello 구성 hello 다음 이루어져 있습니다.
 
-* 가상 컴퓨터를 호스트하는 기존 클라우드 서비스의 이름은 mytestcloud입니다.
-* 두 기존 데이터베이스 서버 이름은 DB1, DB2입니다.
-* 웹 계층의 웹 서버는 개인 IP 주소를 사용하여 데이터베이스 계층의 데이터베이스 서버에 연결합니다. 다른 옵션은 가상 네트워크에 자체 DNS를 사용하고 내부 부하 분산 장치 집합에 A 레코드를 수동으로 등록하는 것입니다.
+* mytestcloud hello hello 가상 컴퓨터를 호스팅하는 기존 클라우드 서비스의 이름은입니다.
+* hello 두 명의 기존 데이터베이스 서버 이름은 d b 2 d b 1입니다.
+* Hello 웹 계층의 웹 서버 hello 개인 IP 주소를 사용 하 여 hello 데이터베이스 계층의 toohello 데이터베이스 서버를 연결 합니다. 또 다른 옵션은 toouse hello 가상 네트워크에 대 한 사용자 고유의 DNS 하 고 수동으로 hello 내부 부하 분산 장치 집합에 대 한 A 레코드를 등록 합니다.
 
-다음 명령은 **ILBset** 라는 새 내부 부하 분산 인스턴스를 구성하고 2개의 데이터베이스 서버에 해당하는 가상 컴퓨터에 끝점을 추가합니다.
+hello 다음 명령을 새 인스턴스를 구성 내부 부하 분산 라는 **ILBset** toohello 두 데이터베이스 서버에 해당 하는 끝점 toohello 가상 컴퓨터를 추가 합니다.
 
 ```powershell
 $svc="mytestcloud"
@@ -137,16 +137,16 @@ Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epnam
 
 ## <a name="remove-an-internal-load-balancing-configuration"></a>내부 부하 분산 구성 제거
 
-내부 부하 분산 장치 인스턴스에서 끝점인 가상 컴퓨터를 제거하려면 다음 명령을 사용합니다.
+tooremove 인스턴스로부터 내부 부하 분산 장치, 다음 명령을 사용 하 여 hello 끝점으로 가상 컴퓨터:
 
 ```powershell
 $svc="<Cloud service name>"
-$vmname="<Name of the VM>"
-$epname="<Name of the endpoint>"
+$vmname="<Name of hello VM>"
+$epname="<Name of hello endpoint>"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-이러한 명령을 사용하려면 값을 입력하고 < 및 >를 제거합니다.
+hello 값을 제거 하는 hello toouse 이러한 명령은 입력 < 및 >입니다.
 
 다음은 예제입니다.
 
@@ -157,14 +157,14 @@ $epname="TCP-1433-1433"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-클라우드 서비스에서 내부 부하 분산 장치 인스턴스를 제거하려면 다음 명령을 사용합니다.
+다음 명령을 사용 하 여 hello 클라우드 서비스에서 내부 부하 분산 장치 인스턴스 tooremove:
 
 ```powershell
 $svc="<Cloud service name>"
 Remove-AzureInternalLoadBalancer -ServiceName $svc
 ```
 
-이러한 명령을 사용하려면 값을 입력하고 < 및 >를 제거합니다.
+이러한 명령의 toouse hello 값 입력 하 고 hello 제거 < 및 >입니다.
 
 다음은 예제입니다.
 
@@ -175,7 +175,7 @@ Remove-AzureInternalLoadBalancer -ServiceName $svc
 
 ## <a name="additional-information-about-internal-load-balancer-cmdlets"></a>내부 부하 분산 장치 cmdlet에 대한 추가 정보
 
-내부 부하 분산 cmdlet에 대한 추가 정보를 얻으려면 Windows PowerShell 프롬프트에서 다음 명령을 실행합니다.
+tooobtain hello 다음 Windows PowerShell 프롬프트에서 명령을 실행 합니다. 내부 부하 분산 cmdlet에 대 한 추가 정보:
 
 ```powershell
 Get-Help New-AzureInternalLoadBalancerConfig -full

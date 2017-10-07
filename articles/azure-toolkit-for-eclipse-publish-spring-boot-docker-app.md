@@ -1,6 +1,6 @@
 ---
-title: "Eclipse용 Azure 도구 키트를 사용하여 Spring Boot 앱을 Docker 컨테이너로 게시 | Microsoft Docs"
-description: "Eclipse용 Azure 도구 키트를 사용하여 Docker 컨테이너로 Microsoft Azure에 웹앱을 게시하는 방법을 알아봅니다."
+title: "사용 하 여 Docker 컨테이너 스프링 부팅 앱 aaaPublish hello Azure Toolkit for Eclipse | Microsoft Docs"
+description: "자세한 방법을 사용 하 여 Docker 컨테이너도 Azure는 웹 응용 프로그램 tooMicrosoft toopublish hello Azure Toolkit for Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,27 +14,27 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: robmcm
-ms.openlocfilehash: fcb60fcfbda26f5f37bfb0edcb01f8737188b6bc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 29390c49c339a1ebb87cb3951b21cea01c0da15f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-the-azure-toolkit-for-eclipse"></a>Eclipse용 Azure 도구 키트를 사용하여 Spring Boot 앱을 Docker 컨테이너로 게시
+# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-hello-azure-toolkit-for-eclipse"></a>Eclipse 용 Azure 도구 키트 hello를 사용 하 여 Docker 컨테이너 스프링 부팅 앱 게시
 
-[Spring Framework]는 Java 개발자가 엔터프라이즈 수준의 응용 프로그램을 만드는 데 도움이 되는 오픈 소스 솔루션입니다. 해당 플랫폼을 기반으로 하여 빌드되는 인기 있는 프로젝트 중 하나가 [Spring Boot]입니다. 이 프로젝트는 독립 실행형 Java 응용 프로그램을 만드는 간단한 방법을 제공합니다.
+hello [Spring Framework] 은 오픈 소스 솔루션으로 Java 개발자가 엔터프라이즈 수준의 응용 프로그램을 만들 수 있도록 합니다. 중 만들어지는 hello 더 이상 인기 있는 프로젝트의 플랫폼은 [스프링 부팅], 독립 실행형 Java 응용 프로그램을 만들기 위한 있는 간단한 접근 방법을 제공 합니다.
 
-[Docker]는 개발자가 컨테이너에서 실행되는 응용 프로그램의 배포, 크기 조정 및 관리를 자동화하는 데 도움이 되는 오픈 소스 솔루션입니다.
+[Docker] hello 배포, 배율 및 컨테이너에서 실행 되는 응용 프로그램의 관리 하는데 도움이 되는 오픈 소스 솔루션 자동화 됩니다.
 
-이 자습서에서는 Eclipse용 Azure 도구 키트를 사용하여 Microsoft Azure에 Docker 컨테이너로 Spring Boot 응용 프로그램을 배포하는 단계를 안내합니다.
+이 자습서에서는 hello 단계 toodeploy 스프링 부팅 응용 프로그램으로 Docker 컨테이너 tooMicrosoft Azure Eclipse 용 Azure 도구 키트 hello를 사용 하 여 합니다.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## <a name="clone-the-default-spring-boot-docker-repository"></a>기본 Spring Boot Docker 리포지토리 복제
+## <a name="clone-hello-default-spring-boot-docker-repository"></a>Hello 기본 스프링 부팅 Docker 리포지토리 복제
 
-### <a name="import-the-public-repository"></a>공용 리포지토리 가져오기
+### <a name="import-hello-public-repository"></a>Hello 공개 저장소 가져오기
 
-다음 단계는 IntelliJ를 사용하여 Spring Boot Docker 리포지토리를 로컬 컴퓨터로 복제하는 방법을 안내합니다. 명령줄을 사용하려면 [Azure Container Service에서 Linux에 Spring Boot 응용 프로그램 배포][Deploy Spring Boot on Linux in ACS]를 참조하세요.
+hello 다음 단계에 관한 IntelliJ를 사용 하 여 hello 스프링 부팅 Docker 리포지토리 tooyour 로컬 컴퓨터를 복제 합니다. Toouse 명령줄 참조 [컨테이너 서비스를 Azure에서 Linux에서 스프링 부팅 응용 프로그램 배포][Deploy Spring Boot on Linux in ACS]합니다.
 
 1. Eclipse를 엽니다.
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 08/03/2017
 
    ![File Import 메뉴][CL01]
 
-1. **Import** 대화 상자가 열리면:
+1. Hello 때 **가져오기** 대화 상자가 열립니다.
 
    a. **Git**를 확장합니다.
 
@@ -52,7 +52,7 @@ ms.lasthandoff: 08/03/2017
 
    ![Import 대화 상자][CL02]
 
-1. **Select Repository Source** 페이지에서:
+1. Hello에 **리포지토리 원본 선택** 페이지:
 
    a. **Clone URI**를 선택합니다.
    
@@ -60,37 +60,37 @@ ms.lasthandoff: 08/03/2017
 
    ![Select Repository Source 페이지][CL03]
 
-1. **Source Git Repository** 페이지에서:
+1. Hello에 **소스 Git 리포지토리에** 페이지:
 
-   a. **URI**에 대해 `https://github.com/spring-guides/gs-spring-boot-docker.git`를 입력합니다. 이 단계에서는 **Host** 및 **Repository path** 필드에 올바른 값을 자동으로 채웁니다.
+   a. **URI**에 대해 `https://github.com/spring-guides/gs-spring-boot-docker.git`를 입력합니다. 이 단계는 자동으로 hello 채워야 **호스트** 및 **리포지토리 경로** hello로 필드 값을 수정 합니다.
    
-   b. Spring Boot 리포지토리는 공개되어 있으므로 Git 사용자 이름과 암호를 입력하지 않아도 됩니다.
+   b. Git 사용자 이름 및 암호 tooenter 있어서는 안 되므로 hello 스프링 부팅 저장소는 public입니다.
    
    c. **다음**을 누릅니다.
 
    ![Source Git Repository 페이지][CL04]
 
-1. **Branch Selection** 페이지에서 **Next**를 클릭합니다.
+1. Hello에 **분기 선택** 페이지 **다음**합니다.
 
    ![Branch Selection 페이지][CL05]
 
-1. **Local Destination** 페이지에서:
+1. Hello에 **로컬 대상** 페이지:
 
-   a. 로컬 리포지토리를 저장할 로컬 폴더를 지정합니다.
+   a. 사용자의 로컬 리포지토리를 넣을 hello 로컬 폴더를 지정 합니다.
    
    b. **다음**을 누릅니다.
 
    ![Local Destination 페이지][CL06]
 
-1. **Select a wizard to use for importing projects** 페이지에서:
+1. Hello에 **프로젝트 가져오기 마법사 toouse 선택** 페이지:
 
    a. **Import as a general project**를 선택합니다.
    
    b. **다음**을 누릅니다.
 
-   !["Select a wizard to use for importing projects" 페이지][CL07]
+   !["프로젝트 가져오기 마법사 toouse 선택" 페이지][CL07]
 
-1. **Import Projects** 페이지에서:
+1. Hello에 **가져오기 프로젝트** 페이지:
 
    a. 프로젝트 이름을 지정합니다.
    
@@ -98,19 +98,19 @@ ms.lasthandoff: 08/03/2017
 
    ![Import Projects 페이지][CL08]
 
-1. 리포지토리가 성공적으로 복제되면 Eclipse에 나열된 모든 파일을 볼 수 있습니다.
+1. Hello 리포지토리 복제 했습니다. Eclipse에서 나와 hello 파일 중 일부만 표시 됩니다.
 
    ![로컬 리포지토리][CL09]
 
 ### <a name="create-a-maven-project-from-your-local-repository"></a>로컬 리포지토리에서 Maven 프로젝트 만들기
 
-Spring Boot Docker 리포지토리는 이 자습서에서 사용할 완성된 Maven 프로젝트를 포함하고 있습니다. 
+hello 스프링 부팅 Docker 리포지토리가이 자습서에 사용 하 여 완료 된 Maven 프로젝트가 포함 되어 있습니다. 
 
 1. **File** > **Import**를 차례로 클릭합니다.
 
-   ![File 메뉴의 Import 명령][CL01]
+   ![가져오기 hello 파일 메뉴 명령][CL01]
 
-1. **Import** 대화 상자가 열리면:
+1. Hello 때 **가져오기** 대화 상자가 열립니다.
 
    a. **Maven**을 확장합니다.
    
@@ -120,83 +120,83 @@ Spring Boot Docker 리포지토리는 이 자습서에서 사용할 완성된 Ma
 
    ![Import 대화 상자][MV01]
 
-1. **Maven Projects** 페이지에서:
+1. Hello에 **Maven 프로젝트** 페이지:
 
-   a. **Root Directory**에 대해 로컬 리포지토리의 **전체** 폴더를 지정합니다.
+   a. 에 대 한 **루트 디렉터리**, hello 지정 **완료** 로컬 리포지토리 폴더입니다.
    
-   b. **Advanced** 섹션을 펼치고 **Name template**에 사용자 지정 이름을 입력합니다.
+   b. Hello 확장 **고급** 섹션을 사용자 지정 이름을 입력 **이름 템플릿**합니다.
    
-   c. 프로젝트에서 **pom.xml** 파일에 대한 상자를 선택합니다.
+   c. Hello에 대 한 선택 hello 상자 **pom.xml** hello 프로젝트 파일에에서 있습니다.
    
-   ㄹ. **마침**을 클릭합니다.
+   d. **마침**을 클릭합니다.
 
    ![Maven Projects 페이지][MV02]
 
-1. Maven 프로젝트가 성공적으로 열리면 Eclipse에 나열된 두 번째 프로젝트가 표시됩니다.
+1. Hello Maven 프로젝트를 성공적으로 열면 Eclipse에 나열 된 두 번째 프로젝트를 확인할 수 있습니다.
 
    ![로컬 Maven 프로젝트][MV03]
 
 ## <a name="build-your-spring-boot-app-by-using-maven"></a>Maven을 사용하여 Spring Boot 앱 빌드
 
-1. Eclipse Project Explorer에서 Maven 프로젝트를 선택합니다.
+1. Hello Eclipse 프로젝트 탐색기에서에서 hello Maven 프로젝트를 선택 합니다.
 
 1. **Run** > **Run As** > **Maven build**를 차례로 클릭합니다.
 
-   ![Maven build로 실행하는 명령][BU01]
+   ![Maven 빌드 명령 toorun][BU01]
 
-1. 응용 프로그램이 성공적으로 빌드되면 콘솔 창에 상태가 표시됩니다.
+1. 응용 프로그램을 성공적으로 빌드되면 hello 상태가 hello 콘솔 창에 표시 됩니다.
 
    ![성공적인 Maven 빌드][BU02]
 
-## <a name="publish-your-web-app-to-azure-by-using-a-docker-container"></a>Docker 컨테이너를 사용하여 Azure에 웹앱 게시
+## <a name="publish-your-web-app-tooazure-by-using-a-docker-container"></a>Docker 컨테이너를 사용 하 여 웹 응용 프로그램 tooAzure 게시
 
-1. Eclipse Project Explorer에서 Maven 프로젝트를 선택합니다.
+1. Hello Eclipse 프로젝트 탐색기에서에서 hello Maven 프로젝트를 선택 합니다.
 
-1. Azure **Publish** 메뉴를 클릭한 다음 **Publish as Docker Container**를 클릭합니다.
+1. Azure hello 클릭 **게시** 메뉴를 차례로 클릭 **Docker 컨테이너로 게시**합니다.
 
-   ![Publish as Docker Container 명령][PU01]
+   ![Docker 컨테이너로 게시 명령][PU01]
 
-1. **Deploying Docker Container on Azure** 대화 상자가 표시되면 다음을 수행합니다.
+1. Hello 때 **Azure에서 Docker 컨테이너 배포** 대화 상자가 나타납니다.
 
    a. 사용자 지정 Docker 이미지 이름을 입력합니다.
    
-   b. **Artifact to deploy**에 대해 방금 빌드한 **gs-spring-boot-docker-0.1.0.jar** 파일의 경로를 지정합니다.
+   b. 에 대 한 **아티팩트 toodeploy**, hello 경로 toohello 지정 **gs-스프링-부팅-docker-0.1.0.jar** 방금 빌드한 파일입니다.
 
    ![Docker 옵션 지정][PU02]
 
    기존의 모든 Docker 호스트가 표시됩니다. 
 
-1. 기존 호스트에 배포하려는 경우 5단계로 건너뛸 수 있습니다. 그렇지 않으면 다음 단계에 따라 호스트를 만듭니다.
+1. Toodeploy tooan 기존 호스트를 선택 하면 toostep 5를 건너뛸 수 있습니다. 그렇지 않으면 다음 단계 toocreate 호스트 hello를 사용 합니다.
 
    a. **추가**를 클릭합니다.
 
       ![새 Docker 호스트 추가][PU03]
 
-   b. **Create Docker Host** 대화 상자가 표시되면 기본값을 그대로 허용하도록 선택하거나 새 Docker 호스트에 대한 사용자 지정 설정을 지정할 수 있습니다. 다양한 설정에 대한 자세한 설명은 [IntelliJ용 Azure 도구 키트를 사용하여 웹앱을 Docker 컨테이너로 게시][Publish Container with Azure Toolkit]를 참조하세요. 사용할 설정을 지정하면 **다음**을 클릭합니다.
+   b. Hello 때 **Docker 호스트 만들기** 대화 상자가 표시 됩니다, tooaccept hello 기본값을 선택 하거나 새 Docker 호스트에 대 한 사용자 지정 설정을 지정할 수 있습니다. (다양 한 설정, 참조에 대 한 자세한 설명은 hello [IntelliJ 용 Azure 도구 키트 hello를 사용 하 여 Docker 컨테이너와 웹 응용 프로그램을 게시할][Publish Container with Azure Toolkit].) 클릭 **다음** 어떤 설정 toouse 지정 했으면 합니다.
 
       ![Docker 호스트 옵션 지정][PU04]
 
-   c. Azure Key Vault에서 기존 로그인 자격 증명을 사용하도록 선택하거나 새 Docker 로그인 자격 증명을 입력하도록 선택할 수 있습니다. 옵션을 지정하면 **마침**을 클릭합니다.
+   c. Azure 키 자격 증명 모음에서 toouse 기존 로그인 자격 증명을 선택할 수 있습니다 또는 새 Docker에 대 한 로그인 자격 증명 tooenter를 선택할 수 있습니다. 옵션을 지정하면 **마침**을 클릭합니다.
 
       ![Docker 호스트 자격 증명 지정][PU05]
 
-1. Docker 호스트를 선택하고 **Next**를 클릭합니다.
+1. Docker 호스트를 선택하고 **다음**을 클릭합니다.
 
-   ![사용할 Docker 호스트 선택][PU06]
+   ![Docker 호스트 toouse 선택][PU06]
 
-1. **Deploying Docker Container on Azure** 대화 상자의 마지막 페이지에서 다음 옵션을 지정합니다.
+1. Hello hello의 마지막 페이지에 **Azure에서 Docker 컨테이너 배포** 대화 상자 hello 다음 옵션을 지정 합니다.
 
-   a. Docker 컨테이너를 호스팅할 컨테이너에 대한 사용자 지정 이름을 지정하도록 선택하거나 기본값을 적용할 수 있습니다.
+   a. Docker 컨테이너를 호스팅할 hello 컨테이너에 대 한 사용자 지정 이름을 toospecify를 선택할 수 있습니다 또는 hello 기본값을 그대로 사용할 수 있습니다.
 
-   b. *[외부 포트]*:*[내부 포트]* 구문을 사용하여 Docker 호스트에 대한 TCP 포트를 입력합니다. 예를 들어 **80:8080**은 80 외부 포트 및 8080 기본 내부 Spring Boot 포트를 지정합니다.
+   b. 구문 다음 hello를 사용 하 여 docker 호스트에 대 한 hello TCP 포트를 입력: *[외부 포트]*:*[내부 포트]*합니다. 예를 들어 **80:8080** 외부 포트 80 및 hello 기본 내부 스프링 부팅 포트 8080 지정 합니다.
    
-      내부 포트를 사용자 지정한 경우(예: application.yml 파일 편집) Azure에서 올바른 라우팅을 수행할 포트 번호를 지정해야 합니다.
+      내부 포트 (예를 들어 파일 편집 하 여 hello application.yml) 사용자 지정을 Azure의 hello 올바른 라우팅 toooccur toospecify hello 포트 번호가 필요 합니다.
 
    c. 이러한 옵션을 구성했으면 **Finish**를 클릭합니다.
 
    ![Azure에 Docker 컨테이너 배포][PU07]
 
-1. Azure 도구 키트에서 게시를 완료하면 Azure 활동 로그에 **게시됨** 상태가 표시됩니다.
+1. Azure 도구 키트 hello 게시 완료 되 면 hello Azure 활동 로그 표시 **게시 됨** hello 상태에 대 한 합니다.
 
    ![Docker 호스트를 성공적으로 배포][PU08]
 

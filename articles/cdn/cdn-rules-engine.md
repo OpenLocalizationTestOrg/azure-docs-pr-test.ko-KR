@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN 규칙 엔진을 사용하여 HTTP 동작 재정의 | Microsoft Docs"
-description: "규칙 엔진을 사용하면 특정 유형의 콘텐츠 전달 차단과 같이 Azure CDN에서 HTTP 요청을 처리하는 방식을 사용자 지정하여 캐싱 정책을 정의하고 HTTP 헤더를 수정할 수 있습니다."
+title: "hello Azure CDN 규칙 엔진을 사용 하 여 HTTP aaaOverride 동작 | Microsoft Docs"
+description: "hello 규칙 엔진 toocustomize를 캐싱 정책을 정의 하 고 HTTP 헤더를 수정 하는 특정 유형의 콘텐츠를 차단 hello 배달와 같은 HTTP 요청 Azure CDN에서 처리 하는 방법이 있습니다."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: abfe283476206b181018d187675b47112dc5ad2f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd7194be9dbda43180c64568d3e1f52c5c513a7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="override-http-behavior-using-the-azure-cdn-rules-engine"></a>Azure CDN 규칙 엔진을 사용하여 HTTP 동작 재정의
+# <a name="override-http-behavior-using-hello-azure-cdn-rules-engine"></a>Hello Azure CDN 규칙 엔진을 사용 하 여 HTTP 동작을 재정의
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>개요
-규칙 엔진을 사용하면 특정 유형의 콘텐츠 전달 차단과 같이 HTTP 요청이 처리되는 방식을 사용자 지정하여 캐싱 정책을 정의하고 HTTP 헤더를 수정할 수 있습니다.  이 자습서에서는 CDN 자산의 캐싱 동작을 변경하는 규칙을 만드는 방법을 보여 줍니다.  "[참고 항목](#see-also)" 섹션에는 동영상 콘텐츠도 있습니다.
+hello 규칙 엔진에서는 특정 유형의 콘텐츠를 배달 hello 차단 캐싱 정책을 정의 HTTP 헤더를 수정 등으로 HTTP 요청 처리 되는 방법을 toocustomize가 있습니다.  이 자습서에서는 캐싱 동작 CDN 자산 hello는 규칙을 만들 바뀝니다 보여 줍니다.  Hello에서 사용할 수 있는 비디오 콘텐츠도는 "[참조](#see-also)" 섹션.
 
    > [!TIP] 
-   > 구문에 대한 자세한 정보는 [규칙 엔진 참조](cdn-rules-engine-reference.md)를 확인하세요.
+   > 자세히 참조 toohello 구문에 대 한 참조 [규칙 엔진 참조](cdn-rules-engine-reference.md)합니다.
    > 
 
 
 ## <a name="tutorial"></a>자습서
-1. CDN 프로필 블레이드에서 **관리** 단추를 클릭합니다.
+1. Hello CDN 프로필 블레이드에서 hello 클릭 **관리** 단추입니다.
    
     ![CDN 프로필 블레이드 관리 단추](./media/cdn-rules-engine/cdn-manage-btn.png)
    
-    CDN 관리 포털이 열립니다.
-2. **HTTP Large** 탭, **규칙 엔진**을 차례로 클릭합니다.
+    hello CDN 관리 포털이 열립니다.
+2. Hello 클릭 **HTTP 큰** 탭, **규칙 엔진**합니다.
    
     새 규칙에 대한 옵션이 표시됩니다.
    
     ![CDN 새 규칙 옵션](./media/cdn-rules-engine/cdn-new-rule.png)
    
    > [!IMPORTANT]
-   > 여러 규칙이 나열된 순서는 규칙이 처리되는 방식에 영향을 줍니다. 후속 규칙은 이전 규칙에서 지정된 동작을 재정의할 수 있습니다.
+   > hello 나열 된 여러 규칙의 영향을 줍니다 처리 됩니다. 후속 규칙 이전 규칙에 지정 된 hello 동작을 재정의할 수 있습니다.
    > 
    > 
-3. **이름/설명** 텍스트 상자에 이름을 입력합니다.
-4. 규칙이 적용되는 요청의 유형을 식별합니다.  기본적으로 **항상** 일치 조건이 선택되어 있습니다.  이 자습서에서는 **항상** 을 사용하므로 선택된 상태 그대로 두면 됩니다.
+3. Hello에 이름을 입력 **이름 / 설명** 텍스트 상자에 붙여넣습니다.
+4. Hello 규칙을 적용할 요청 hello 유형을 식별 합니다.  기본적으로 hello **항상** 일치 조건을 선택 합니다.  이 자습서에서는 **항상** 을 사용하므로 선택된 상태 그대로 두면 됩니다.
    
    ![CDN 일치 조건](./media/cdn-rules-engine/cdn-request-type.png)
    
    > [!TIP]
-   > 드롭다운 목록에서 사용할 수 있는 다양한 유형의 일치 조건이 있습니다.  일치 조건의 왼쪽에 있는 파란색 정보 아이콘을 클릭하면 현재 선택한 조건을 자세히 설명합니다.
+   > Hello 드롭다운에서 사용할 수 있는 조건은 다양 한 유형의 일치 합니다.  왼쪽의 일치 조건 hello hello 파란색 정보 아이콘 toohello 클릭 하면 자세히 hello 현재 선택 된 조건을 설명 합니다.
    > 
-   >  조건식의 전체 목록에 대한 자세한 정보는 [규칙 엔진 조건식](cdn-rules-engine-reference-match-conditions.md)을 참조하세요.
+   >  자세히 조건 식의 전체 목록을 hello에 대 한 참조 [규칙 엔진 조건식](cdn-rules-engine-reference-match-conditions.md)합니다.
    >  
-   > 일치 조건의 전체 목록을 자세하게 보려면 [규칙 엔진 일치 조건 및 기능](cdn-rules-engine-reference-match-conditions.md)을 참조하세요.
+   > 일치 조건 자세히의 전체 목록을 hello에 대 한 참조 [규칙 엔진의 일치 조건을](cdn-rules-engine-reference-match-conditions.md)합니다.
    > 
    > 
-5. **기능** 옆에 있는 **+** 단추를 클릭하여 새 기능을 추가합니다.  왼쪽의 드롭다운 목록에서 **Force Internal Max-Age**(내부 Max-Age 강제)를 선택합니다.  표시되는 텍스트 상자에 **300**을 입력합니다.  나머지 기본값을 그대로 둡니다.
+5. Hello 클릭  **+**  너무 단추 옆**기능** tooadd 새로운 기능입니다.  Hello 왼쪽에 hello 드롭다운에서 선택 **Force 내부 Max-age**합니다.  나타나는 hello 텍스트 상자에 입력 **300**합니다.  Hello 나머지 기본값을 그대로 둡니다.
    
    ![CDN 기능](./media/cdn-rules-engine/cdn-new-feature.png)
    
    > [!NOTE]
-   > 일치 조건처럼 새 기능의 왼쪽에 있는 파란색 정보 아이콘을 클릭하면 이 기능에 대한 세부 정보가 표시됩니다.  **Force Internal Max-Age**의 경우 자산의 **Cache-Control** 및 **Expires** 헤더를 재정의하여 CDN 에지 노드가 원본에서 자산을 새로 고치는 시기를 제어합니다.  300초의 경우 원본에서 자산을 새로 고치기 전에 CDN 에지 노드가 자산을 5분 동안 캐시한다는 의미입니다.
+   > 으로 일치 조건으로 hello 파란색 정보 아이콘 toohello 클릭 하면 남아 hello의 새 기능에는이 기능에 대 한 세부 정보가 표시 됩니다.  경우 hello **Force 내부 Max-age**, hello 자산을 재정의 하는 것 **캐시 제어** 및 **Expires** 헤더 toocontrol hello CDN 가장자리 노드 hello 새로 됩니다 hello 원점에서 자산입니다.  300 초의 예제는 hello CDN 가장자리 노드는 hello 자산 hello 자산 원본을 새로 고치기 전에 5 분 동안 캐시를 의미 합니다.
    > 
-   > 기능의 전체 목록을 자세하게 보려면 [규칙 엔진 기능 세부 정보](cdn-rules-engine-reference-features.md)를 참조하세요.
+   > 기능을 자세히 설명의 전체 목록을 hello에 대 한 참조 [규칙 엔진 기능 정보](cdn-rules-engine-reference-features.md)합니다.
    > 
    > 
-6. **추가** 단추를 클릭하여 새 규칙을 저장합니다.  이제 새 규칙이 승인 대기 중입니다. 승인되면 상태가 **보류 중인 XML**에서 **활성 XML**로 변경됩니다.
+6. Hello 클릭 **추가** 단추 toosave hello에 대 한 새 규칙입니다.  이제 hello 새 규칙에는 승인 대기 중입니다. Hello 상태에서 변경 됩니다. 승인 되 면 **보류 중인 XML** 너무**활성 XML**합니다.
    
    > [!IMPORTANT]
-   > 규칙 변경이 CDN을 통해 전파되기까지 최대 90분이 소요될 수 있습니다.
+   > 규칙 변경 내용을 hello CDN 통해 too90 분 toopropagate를 차지할 수 있습니다.
    > 
    > 
 
@@ -83,5 +83,5 @@ ms.lasthandoff: 07/11/2017
 * [규칙 엔진 일치 조건](cdn-rules-engine-reference-match-conditions.md)
 * [규칙 엔진 조건식](cdn-rules-engine-reference-conditional-expressions.md)
 * [규칙 엔진 기능](cdn-rules-engine-reference-features.md)
-* [규칙 엔진을 사용하여 기본 HTTP 동작 재정의](cdn-rules-engine.md)
+* [Hello 규칙 엔진을 사용 하 여 기본 HTTP 동작 재정의](cdn-rules-engine.md)
 * [Azure Fridays: Azure CDN의 강력하고 새로운 프리미엄 기능](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/) (동영상)

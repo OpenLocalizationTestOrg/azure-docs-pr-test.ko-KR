@@ -1,6 +1,6 @@
 ---
 title: "연결 공급자 및 위치: Azure ExpressRoute | Microsoft Docs"
-description: "이 문서에서는 서비스가 제공되는 위치 및 Azure 지역에 연결하는 방법의 자세한 개요를 제공합니다. 연결 공급자에 따라 정렬됩니다."
+description: "이 문서에서는 서비스가 제공 되는 위치와 방법을 위치에 대 한 세부적인된 개요를 제공 tooconnect tooAzure 영역입니다. 연결 공급자에 따라 정렬됩니다."
 services: expressroute
 documentationcenter: na
 author: cherylmc
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2017
 ms.author: kaanan
-ms.openlocfilehash: c9f44dbc943e854915c4e34b4dffa2c294f7866d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: df906ae6ff4e149c9cab4aa46ab78c8dd6aa4366
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 파트너 및 피어링 위치
 
@@ -27,17 +27,17 @@ ms.lasthandoff: 08/29/2017
 > * [위치별 공급자](expressroute-locations-providers.md)
 
 
-이 문서의 표에서는 ExpressRoute 연결 공급자, ExpressRoute 지역 범위, ExpressRoute를 통해 지원되는 Microsoft 클라우드 서비스 및 ExpressRoute SI(시스템 통합업체)에 대한 정보를 제공합니다.
+이 문서의 표에 hello ExpressRoute 연결 공급자, ExpressRoute 지리적 검사 ExpressRoute 시스템 통합 업체가 (SIs) 및 ExpressRoute를 통해 지원 되는 Microsoft 클라우드 서비스에 정보를 제공 합니다.
 
 ## <a name="partners"></a>ExpressRoute 연결 공급자
-ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵에 Azure 지역 및 ExpressRoute 위치 목록을 제공합니다. ExpressRoute 위치는 Microsoft가 여러 서비스 공급자와 피어링하는 위치를 말합니다.
+ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 지도 hello Azure 지역 및 ExpressRoute 위치 목록이 표시 됩니다. ExpressRoute 위치 toothose 여러 서비스 공급자와 함께 Microsoft에 동료를 참조 하십시오.
 
 ![위치 맵][0]
 
-지역 내 하나 이상의 ExpressRoute 위치와 연결된 경우, 지역 내의 모든 지역에 걸쳐 Azure 서비스에 대한 액세스 권한을 갖습니다.
+Hello 지리적 지역 내 tooat 중 하나 이상이 ExpressRoute 위치를 연결 하는 경우 지리적 지역 내에서 모든 지역에 걸쳐 tooAzure 서비스 액세스를 해야 합니다.
 
-### <a name="azure-regions-to-expressroute-locations-within-a-geopolitical-region"></a>지역 내 ExpressRoute 위치에 대한 Azure 지역 
-다음 표에서 지역 내 ExpressRoute 위치에 대한 Azure 지역의 맵을 제공합니다.
+### <a name="azure-regions-tooexpressroute-locations-within-a-geopolitical-region"></a>지리적 지역 내에서 azure 지역 tooExpressRoute 위치입니다.
+다음 표에서 hello Azure 지역 매핑 지리적 지역 내에서 tooExpressRoute 위치를 제공 합니다.
 
 | **지역** | **Azure 지역** | **ExpressRoute 위치** |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 | **대한민국** |한국 중부, 한국 남부 |부산, 서울 |
 
 ### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>국내 클라우드에 대한 지역 및 지리적 경계
-아래 표에서는 국가별 클라우드의 지역 및 지정학적 경계에 대한 정보를 제공합니다.
+hello 표에서 national 클라우드에 대 한 영역 및 지리적 경계에 정보를 제공합니다.
 
 | **지역** | **Azure 지역** | **ExpressRoute 위치** |
 | --- | --- | --- |
@@ -59,11 +59,11 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 | **중국** |중국 북부, 중국 동부 |베이징, 상하이 |
 | **독일** |독일 중부, 독일 동부 |베를린, 프랑크푸르트 |
 
-지정학적 지역에 걸친 연결은 표준 ExpressRoute SKU에서 지원되지 않습니다. 전역 연결을 지원하려면 ExpressRoute 프리미엄 추가 기능을 사용하도록 설정해야 합니다. 국가별 클라우드 환경에 대한 연결은 지원되지 않습니다. 이러한 요구가 발생할 경우 연결 공급자와 함께 작업할 수 있습니다.
+지리적 지역에 걸쳐 연결 hello 표준 ExpressRoute SKU에서 지원 되지 않습니다. Tooenable hello ExpressRoute premium 추가 기능 toosupport 전역 연결을 해야 합니다. 연결 toonational 클라우드 환경 지원 되지 않습니다. 이러한 요구가 발생할 경우 연결 공급자와 함께 작업할 수 있습니다.
 
 ## <a name="locations"></a>연결 공급자 위치
 
-다음 테이블에서는 서비스 공급자별 위치를 보여 줍니다. 위치별 사용 가능한 공급자를 보려는 경우 [위치별 서비스 공급자](expressroute-locations-providers.md#locations)를 참조하세요.
+다음 표에서 hello 서비스 공급자가 위치를 보여줍니다. 위치에 따라 사용 가능한 공급자 tooview 참조 [서비스 위치에 따라 공급자](expressroute-locations-providers.md#locations)합니다.
 
 
 ### <a name="production-azure"></a>프로덕션 Azure
@@ -139,7 +139,7 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 | --- | --- | --- | --- |
 | **China Telecom** |지원됨 |지원되지 않음 |베이징, 상하이 |
 
-자세한 내용은 [중국의 ExpressRoute](http://www.windowsazure.cn/home/features/expressroute/)를 참조하세요.
+toolearn 더 참조 [중국에서 ExpressRoute](http://www.windowsazure.cn/home/features/expressroute/)합니다.
 
 ### <a name="germany"></a>독일
 | **서비스 공급자** | **Microsoft Azure** | **Office 365** | **위치** |
@@ -155,7 +155,7 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 
 연결 공급자가 이전 섹션에 없는 경우에도 연결을 설정할 수 있습니다.
 
-* 연결 공급자에게 문의하여 위의 표에 있는 Exchange 중 하나에 연결되어 있는지 확인합니다. Exchange 공급자가 제공하는 서비스에 대한 자세한 정보를 수집하려면 다음 링크를 확인할 수 있습니다. 여러 연결 공급자는 이미 이더넷 Exchange에 연결되어 있습니다.
+* 연결 된 tooany 위의 hello 표에 hello 교환의 경우 연결 공급자 toosee 확인 하십시오. Hello 다음 링크 toogather exchange 공급자가 제공 하는 서비스에 대 한 자세한 정보를 확인할 수 있습니다. 여러 연결 공급자가 이미 연결 된 tooEthernet 교환 합니다.
   * [Cologix](http://www.cologix.com/)
   * [Console](https://www.consoleconnect.com/partners/cloudsaas/)
   * [CoreSite](http://www.coresite.com/)
@@ -164,10 +164,10 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
   * [Megaport](https://www.megaport.com/services/microsoft-expressroute/)
   * [NextDC](http://www.nextdc.com/)
   * [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
-* 연결 공급자가 선택한 피어링 위치로 네트워크를 확장합니다.
+* 연결 공급자가 선택한 네트워크 toohello 피어 링 위치를 확장 했습니다.
   * 연결 공급자는 단일 실패 지점이 없도록 항상 사용 가능한 방식으로 연결을 확장하는지 확인합니다.
-* Microsoft에 연결할 연결 공급자로 Exchange를 지정하여 ExpressRoute 회로를 정렬합니다.
-  * [ExpressRoute 회로 만들기](expressroute-howto-circuit-classic.md)의 단계에 따라 연결을 설정합니다.
+* Tooconnect tooMicrosoft 연결 공급자로 hello exchange와 ExpressRoute 회로 주문할 합니다.
+  * 단계를 따릅니다 [ExpressRoute 회로 만들기](expressroute-howto-circuit-classic.md) tooset 연결을 합니다.
 
 ## <a name="connectivity-through-additional-service-providers"></a>추가 서비스 공급자를 통한 연결
 
@@ -232,10 +232,10 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 | **SINET**|
 | **Surfnet(GÉANT 경유)**|
 
-* 연결 공급자가 목록에 없는 경우 위에 나열된 ExpressRoute Exchange 파트너 중 하나에 연결되어 있는지 확인해 주세요.
+* 연결 공급자가 목록에 없는 경우 hello 위에 나열 된 ExpressRoute Exchange 파트너의 연결 된 tooany 있더라도 toosee를 확인 하십시오.
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 시스템 통합업체
-사용자 요구에 맞도록 개인 연결을 사용하도록 설정하면 네트워크의 크기에 따라 어려울 수 있습니다. 다음 표에 나열된 시스템 통합 업체와 함께 작업하여 ExpressRoute에 등록할 수 있습니다.
+네트워크의 hello 배율에 따라 개인 연결 toofit 필요 하기 어려울 수 있습니다를 사용 하도록 설정 합니다. 하면 작업할 수 hello 테이블 tooassist 뒤에 나열 된 시스템 통합 업체가 hello 사용 하 여 사용자 온 보 딩 tooExpressRoute.
 
 | **시스템 통합 업체** | **대륙** |
 | --- | --- |
@@ -246,7 +246,7 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 | **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | 북아메리카 |
 | **[FlexManage](http://www.flexmanage.com/cloud)** | 북아메리카 |
 | **[Inframon](http://www.inframon.com/partner/microsoft/)** | 유럽 |
-| **[The IT Consultancy Group](http://itconsult.com.au/microsoft-expressroute)** | 오스트레일리아 |
+| **[hello IT 컨설팅 그룹](http://itconsult.com.au/microsoft-expressroute)** | 오스트레일리아 |
 | **[MOQdigital](http://www.moqdigital.com.au/insights/technical/network-connectivity-options-for-azure)** | 오스트레일리아 |
 | **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | 유럽(독일) |
 | **[Nelite](http://nelite.com/)** | 유럽 |
@@ -260,7 +260,7 @@ ExpressRoute는 모든 Azure 지역 및 위치에서 지원됩니다. 다음 맵
 
 
 ## <a name="next-steps"></a>다음 단계
-* ExpressRoute에 대한 자세한 내용은 [ExpressRoute FAQ](expressroute-faqs.md)를 참조하세요.
+* ExpressRoute에 대 한 자세한 내용은 참조 hello [express 경로 FAQ](expressroute-faqs.md)합니다.
 * 모든 필수 조건이 충족되었는지 확인합니다. [ExpressRoute 필수 조건](expressroute-prerequisites.md)을 참조하세요.
 
 <!--Image References-->

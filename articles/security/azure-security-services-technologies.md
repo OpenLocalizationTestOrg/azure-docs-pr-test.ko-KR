@@ -1,6 +1,6 @@
 ---
-title: "Azure 보안 서비스 및 기술 | Microsoft Docs"
-description: "이 문서는 엄선된 Azure 보안 서비스 및 기술 목록입니다."
+title: "aaaAzure 보안 서비스 및 기술 | Microsoft Docs"
+description: "hello 문서 기술과 Azure 보안 서비스의 큐 레이트 목록을 제공 합니다."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/02/2016
 ms.author: yurid
-ms.openlocfilehash: 0bea62a43cf6cac9132fe64f2d6c54e52def4c55
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 100b7bba46dce5f989bde2f6d930f298beb901a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-services-and-technologies"></a>Azure 보안 서비스 및 기술
-현재 및 미래 Azure 고객들과 이야기를 나눌 때 우리는 이런 질문을 자주 받습니다. “Azure가 제공하는 모든 보안 관련 서비스 및 기술 목록을 구비하고 계십니까?”
+현재와 미래의 Azure 고객와의 토론, 요청한 자주 하는 "모든 hello 보안 목록이 있는 관련 서비스 및 Azure에 toooffer 기술?"
 
-클라우드 서비스 공급자 기술 옵션을 평가할 때, 사용 가능한 목록을 갖고 있다면 시간이 맞을 때 더 자세히 알아보는 데 유용할 수도 있습니다.
+점을 이해 하는 클라우드 서비스 공급자 기술 옵션을 평가 하 고 경우에 유용한 toohave 이와 같은 목록이 toodig를 사용할 수 있는 사용 가능한 경우에 더 깊은 아래로 hello 시간은 적합 한 합니다.
 
-다음은 우리가 목록을 제공하기 위해 기울이는 초기 노력입니다. 시간이 지남에 따라 이 목록은 Azure와 마찬가지로 변경되고 증가합니다. 목록은 분류되며, 범주 목록 또한 시간이 지남에 따라 확장됩니다. 보안 관련 서비스 및 기술을 최신 상태로 유지할 수 있도록 정기적으로 이 페이지를 확인하세요.
+hello 다음은 목록을 제공 하에서 초기 우리의 노력 합니다. 시간이 지남에 따라 이 목록은 Azure와 마찬가지로 변경되고 증가합니다. hello 목록 분류 하 고 시간이 지남에 따라 범주 hello 목록도 커집니다. 확인 있는지 toocheck이이 페이지에 정기적으로 toostay 우리의 보안 관련 서비스 및 기술에서 최신 상태입니다.
 
 ## <a name="azure-security---general"></a>Azure 보안-일반
 * [Azure 보안 센터](https://azure.microsoft.com/documentation/services/security-center/)

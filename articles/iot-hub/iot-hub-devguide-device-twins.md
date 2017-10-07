@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 장치 쌍 이해 | Microsoft Docs"
-description: "개발자 가이드 - 장치 쌍을 사용하여 IoT Hub와 장치 간의 상태 및 구성 데이터 동기화"
+title: "aaaUnderstand Azure IoT Hub 장치 트윈스 | Microsoft Docs"
+description: "개발자 가이드-장치 사용 트윈스 IoT Hub와 장치 간에 toosynchronize 상태 및 구성 데이터"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -15,54 +15,54 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: elioda
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b316aa419d558547f90a914a22fb29935076de21
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7dade18665108ed352ff3d18e864dc34f451bbf6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-and-use-device-twins-in-iot-hub"></a>IoT Hub의 장치 쌍 이해 및 사용
 ## <a name="overview"></a>개요
-*장치 쌍*은 장치 상태 정보(메타데이터, 구성 및 조건)를 저장하는 JSON 문서입니다. IoT Hub는 IoT Hub에 연결하는 각 장치에 대해 하나의 장치 쌍을 유지합니다. 이 문서에서는 다음을 설명합니다.
+*장치 쌍*은 장치 상태 정보(메타데이터, 구성 및 조건)를 저장하는 JSON 문서입니다. IoT Hub tooIoT 허브에 연결 해야 하는 각 장치에 대 한 장치로 이중을 유지 합니다. 이 문서에서는 다음을 설명합니다.
 
-* 장치 쌍의 구조 즉, *태그*, *desired* 및 *reported 속성*
-* 장치 앱과 백 엔드가 장치 쌍에 수행할 수 있는 작업
+* hello 장치로 이중의 구조를 hello: *태그*, *원하는* 및 *속성을 보고*, 및
+* 장치 앱과 백 엔드 트윈스 장치에서 수행할 수 있는 hello 작업입니다.
 
 > [!NOTE]
-> 현재 장치 쌍은 MQTT 프로토콜을 사용하여 IoT Hub에 연결하는 장치에서만 액세스할 수 있습니다. 기존 장치 앱이 MQTT를 사용하도록 변환하는 방법에 관한 설명은 [MQTT 지원][lnk-devguide-mqtt] 문서를 참조하세요.
+> 현재 장치 트윈스 tooIoT 허브를 연결 하는 장치 에서만에서 액세스할 수는 hello MQTT 프로토콜을 사용 합니다. Toohello 참조 [MQTT 지원] [ lnk-devguide-mqtt] 방법에 대 한 문서 tooconvert 기존 장치 앱 toouse MQTT 합니다.
 > 
 > 
 
-### <a name="when-to-use"></a>사용하는 경우
+### <a name="when-toouse"></a>때 toouse
 장치 쌍의 용도:
 
-* 클라우드에서 장치 전용 메타데이터를 저장합니다. 예를 들어 자동 판매기의 배포 위치입니다.
-* 장치 앱의 사용 가능한 기능 및 상태와 같은 현재 상태 정보를 보고합니다. 예를 들어 장치는 셀룰러 또는 WiFi를 통해 IoT Hub에 연결됩니다.
-* 장치 앱과 백 엔드 앱 간에 장기 실행 워크플로의 상태를 동기화합니다. 예를 들어 솔루션 백 엔드가 설치할 새 펌웨어 버전을 지정하고 장치 앱이 다양한 업데이트 프로세스 단계를 보고할 경우입니다.
+* Hello 클라우드에서 장치 관련 메타 데이터를 저장 합니다. 예를 들어 hello 배포의 위치는 판매기입니다.
+* 장치 앱의 사용 가능한 기능 및 상태와 같은 현재 상태 정보를 보고합니다. 예를 들어 장치는 연결 된 tooyour IoT 허브 셀룰러 또는 병렬 WiFi 합니다.
+* 장치 앱과 백 엔드 응용 프로그램 간에 장기 실행 워크플로 hello 상태를 동기화 합니다. 예를 들어 hello 솔루션 다시 끝 새 펌웨어 버전 tooinstall hello 및 hello 장치 응용 프로그램 보고서 hello hello 업데이트 프로세스의 다양 한 단계를 지정 합니다.
 * 장치 메타데이터, 구성 또는 상태를 쿼리합니다.
 
-reported 속성, 장치-클라우드 메시지 또는 파일 업로드 사용에 대한 지침은 [장치-클라우드 통신 지침][lnk-d2c-guidance]을 참조하세요.
-desired 속성, 직접 메서드 또는 클라우드-장치 메시지 사용에 대한 지침은 [클라우드-장치 통신 지침][lnk-c2d-guidance]을 참조하세요.
+너무 참조[장치-클라우드 통신 지침] [ lnk-d2c-guidance] 보고 속성, 장치-클라우드 메시지 또는 파일 업로드를 사용 하 여에 대 한 지침입니다.
+너무 참조[클라우드-장치 통신 지침] [ lnk-c2d-guidance] 원하는 속성, 직접 메서드 또는 클라우드-장치 메시지를 사용 하 여에 대 한 지침입니다.
 
 ## <a name="device-twins"></a>장치 쌍
 장치 쌍이 저장하는 장치 관련 정보는:
 
-* 장치 및 백 엔드가 장치 상태 및 구성 동기화에 사용할 수 있습니다.
-* 솔루션 백 엔드는 오래 실행되는 작업을 쿼리하고 대상으로 하는 데 사용할 수 있습니다.
+* 장치 및 백 엔드 toosynchronize 장치 조건 및 구성에 사용할 수 있습니다.
+* hello 솔루션 백 엔드 tooquery를 사용할 수 있으며 대상 장기 실행 작업.
 
-장치 쌍의 수명 주기는 해당 [장치 ID][lnk-identity]에 연결됩니다. IoT Hub에서 새 장치 ID를 만들거나 삭제하면 장치 쌍이 암시적으로 만들어지거나 삭제됩니다.
+연결 된 장치로 이중의 hello 수명 주기 toohello 해당 [장치 id][lnk-identity]합니다. IoT Hub에서 새 장치 ID를 만들거나 삭제하면 장치 쌍이 암시적으로 만들어지거나 삭제됩니다.
 
 장치 쌍은 JSON 문서이며 다음을 포함합니다.
 
-* **태그**. 솔루션 백 엔드에서 읽고 쓸 수 있는 JSON 문서의 섹션입니다. 태그는 장치 앱에 표시되지 않습니다.
-* **desired 속성**. reported 속성과 함께 장치 구성 또는 상황을 동기화하는 데 사용됩니다. desired 속성은 솔루션 백 엔드에서만 설정할 수 있고 장치 앱에서 읽을 수 있습니다. desired 속성이 변경되면 장치 앱에도 실시간으로 통보될 수 있습니다.
-* **reported 속성**. desired 속성과 함께 장치 구성 또는 상황을 동기화하는 데 사용됩니다. reported 속성은 장치 앱에서만 설정할 수 있고 솔루션 백 엔드에서 읽고 쿼리할 수 있습니다.
+* **태그**. 솔루션 백 엔드 hello hello JSON 문서의 섹션에서 읽고 쓸 수 있습니다. 태그 표시 toodevice 앱 않습니다.
+* **desired 속성**. 보고 속성 toosynchronize 장치 구성 또는 조건을 함께 사용합니다. 원하는 속성에만 설정할 수 hello 솔루션 다시에서 끝 및 hello 장치 응용 프로그램에서 읽을 수 있습니다. 또한 hello 원하는 속성의 변경 내용 중 실시간으로에서 hello 장치 앱을 알릴 수 있습니다.
+* **reported 속성**. 원하는 속성 toosynchronize 장치 구성 또는 조건을 함께 사용합니다. 보고 속성 hello 장치 앱만 설정할 수 있습니다 및 읽고 hello 솔루션 백 엔드도 쿼리할 수 수 있습니다.
 
-또한 장치 쌍 JSON 문서의 루트에는 [ID 레지스트리][lnk-identity]에 포함된 해당 장치 ID의 읽기 전용 속성이 포함됩니다.
+Hello 장치로 이중 JSON 문서의 hello 루트 hello에 저장 된 hello 해당 장치의 id 로부터 hello 읽기 전용 속성을 포함 하는 또한 [id 레지스트리에][lnk-identity]합니다.
 
 ![][img-twin]
 
-다음 예제에서는 장치 쌍 JSON 문서를 보여 줍니다.
+다음 예제는 hello 장치로 이중 JSON 문서를 보여 줍니다.
 
         {
             "deviceId": "devA",
@@ -100,18 +100,18 @@ desired 속성, 직접 메서드 또는 클라우드-장치 메시지 사용에 
             }
         }
 
-루트 개체에는 시스템 속성과 `tags`, `reported` 및 `desired` 속성의 컨테이너 개체가 있습니다. `properties` 컨테이너에는 [장치 쌍 메타데이터][lnk-twin-metadata] 및 [낙관적 동시성][lnk-concurrency] 섹션에서 설명한 몇 가지 읽기 전용 요소(`$metadata`, `$etag` 및 `$version`)가 포함됩니다.
+Hello 루트 개체는 hello 시스템 속성 및 컨테이너에 대 한 개체 `tags` 및 둘 다 `reported` 및 `desired` 속성입니다. hello `properties` 일부 읽기 전용 요소를 포함 하는 컨테이너 (`$metadata`, `$etag`, 및 `$version`) hello에 설명 된 [장치로 이중 메타 데이터] [ lnk-twin-metadata] 및 [ 낙관적 동시성] [ lnk-concurrency] 섹션.
 
 ### <a name="reported-property-example"></a>reported 속성 예
-이전 예제에서 장치 쌍에 `batteryLevel` 속성이 포함되어 있으며 이것은 장치 앱에 의해 보고됩니다. 이 속성은 마지막으로 보고된 배터리 수준에 기반하여 장치에서 쿼리 및 작업을 가능하게 합니다. 다른 예제에는 장치 앱 보고 장치 기능 또는 연결 옵션이 포함됩니다.
+Hello 이전 예에서는 hello 장치로 이중 포함 한 `batteryLevel` hello 장치 앱 로부터 보고 되는 속성입니다. 이 속성 가능한 tooquery 있고 hello 마지막 보고 된 배터리 수준에 따라 장치에 작동 합니다. 다른 예로 hello 장치 앱 보고 장치 기능 또는 연결 옵션입니다.
 
 > [!NOTE]
-> reported 속성은 솔루션 백 엔드가 마지막으로 알려진 속성 값에 관여하는 시나리오를 간소화합니다. 솔루션 백 엔드에서 타임스탬프가 적용된 이벤트 시퀀스(예: 시계열)의 형태로 장치 원격 분석을 처리해야 하는 경우 [장치-클라우드 메시지][lnk-d2c]를 사용합니다.
+> 보고 속성 hello 솔루션 백 엔드 hello 마지막 속성의 값으로는 관심이 시나리오를 단순화 합니다. 사용 하 여 [장치-클라우드 메시지] [ lnk-d2c] hello 솔루션 백 엔드 경우 시계열 같은 타임 스탬프 이벤트의 시퀀스의 hello 형태로 tooprocess 장치 원격 분석에 필요 합니다.
 
 ### <a name="desired-property-example"></a>desired 속성 예제
-이전 예제에서 `telemetryConfig` 장치 쌍 desired 및 reported 속성은 솔루션 백 엔드 및 장치 앱에서 이 장치의 원격 분석 구성을 동기화하는 데 사용됩니다. 예:
+Hello 이전 예에서 hello `telemetryConfig` 장치로 이중 원하는 및 보고 된 속성은이 장치에 대 한 솔루션의 백 엔드 hello 및 hello 장치 앱 toosynchronize hello 원격 분석 구성에서 사용 됩니다. 예:
 
-1. 솔루션 백 엔드는 desired 구성 값으로 desired 속성을 설정합니다. 다음은 desired 속성 집합이 포함된 문서의 일부분입니다.
+1. hello 솔루션 백 엔드 hello 원하는 속성을 원하는 hello 구성 값으로 설정합니다. 다음은 필요한 hello 속성이 설정 된 hello 문서 hello 부분이입니다.
    
         ...
         "desired": {
@@ -121,7 +121,7 @@ desired 속성, 직접 메서드 또는 클라우드-장치 메시지 사용에 
             ...
         },
         ...
-2. 장치 앱이 연결되거나 처음으로 다시 연결되면 변경 내용이 즉시 통보됩니다. 그런 다음 장치 앱은 업데이트된 구성(또는 `status` 속성을 사용한 오류 상태)을 보고합니다. 다음은 reported 속성의 일부분입니다.
+2. hello 장치 앱에 연결 하거나 hello에서 먼저 다시 연결 하는 경우에 즉시 hello 변경 알림이 전송 됩니다. hello 장치 응용 프로그램이 다음 보고 업데이트 하는 hello 구성 (또는 hello를 사용 하 여 오류 조건을 `status` 속성). 다음은 hello 부분의 hello 속성을 보고 합니다.
    
         ...
         "reported": {
@@ -132,20 +132,20 @@ desired 속성, 직접 메서드 또는 클라우드-장치 메시지 사용에 
             ...
         }
         ...
-3. 솔루션 백 엔드는 장치 쌍을 [쿼리][lnk-query]하여 많은 장치의 구성 작업 결과를 추적할 수 있습니다.
+3. hello 솔루션 백 엔드 여 hello 결과 hello 구성 작업의 여러 장치에서 추적할 수 [쿼리] [ lnk-query] 장치 트윈스 합니다.
 
 > [!NOTE]
-> 이전 코드 조각은 장치 구성 및 상태를 인코딩하는 한 가지 방식을 가독성을 위해 최적화해 놓은 예입니다. IoT Hub는 장치 쌍의 desired 및 reported 속성에 대해 특정 스키마를 적용하지 않습니다.
+> hello 이전 조각은 예제를 보려면 장치 구성 및 서버 인스턴스의 상태는 한 가지 방법은 tooencode의 가독성을 위해 최적화 되어 있습니다. IoT Hub는 hello 장치로 이중 원하는 hello 장치 트윈스에서 속성을 보고에 대 한 특정 스키마를 적용 하지 않습니다.
 > 
 > 
 
-쌍을 사용하여 펌웨어 업데이트와 같이 오래 실행되는 작업을 동기화할 수 있습니다. 속성을 사용하여 장치에서 장기 실행 작업을 동기화하고 추적하는 방법에 대한 자세한 내용은 [desired 속성을 사용하여 장치 구성][lnk-twin-properties]을 참조하세요.
+예: 펌웨어 업데이트 트윈스 toosynchronize 장기 실행 작업을 사용할 수 있습니다. Toouse 속성 toosynchronize 및 장치에서 장기 실행 작업 추적 참조 하는 방법에 대 한 자세한 내용은 [속성 tooconfigure 장치 원하는 사용할][lnk-twin-properties]합니다.
 
 ## <a name="back-end-operations"></a>백 엔드 작업
-솔루션 백 엔드는 HTTP를 통해 공개되는 다음과 같은 원자성 작업을 사용하여 장치 쌍에서 작동합니다.
+HTTP를 통해 노출 하는 원자성 작업을 수행 하는 hello를 사용 하 여 hello 장치로 이중에서 작동 하는 hello 솔루션 백 엔드:
 
-1. **ID로 장치 쌍 검색** 이 작업은 태그 및 desired, reported 및 시스템 속성을 포함하여 장치 쌍 문서를 반환합니다.
-2. **장치 쌍 부분 업데이트**. 이 작업은 솔루션 백 엔드에서 장치 쌍의 태그 또는 desired 속성을 부분적으로 업데이트할 수 있도록 합니다. 부분 업데이트는 속성을 추가하거나 업데이트하는 JSON 문서로 표현됩니다. `null`로 설정된 속성은 제거됩니다. 다음 예제에서는 값이 `{"newProperty": "newValue"}`인 desired 속성을 새로 생성하고, `existingProperty`의 기존 값을 `"otherNewValue"`로 덮어쓰고, `otherOldProperty`를 제거합니다. 기존 desired 속성이나 태그에는 변화가 발생하지 않습니다.
+1. **ID로 장치 쌍 검색** 이 작업은 반환 hello 장치로 이중 문서를 태그를 포함 하 고 원하는 경우 보고 및 시스템 속성입니다.
+2. **장치 쌍 부분 업데이트**. 이 작업에는 hello 솔루션 백 엔드 toopartially 업데이트 hello 태그 또는 장치로 이중에서 원하는 속성 수 있습니다. hello 부분 업데이트를 추가 하거나 속성을 업데이트 하는 JSON 문서로 표현 됩니다. 속성이 너무 설정`null` 제거 됩니다. hello 다음 예제에서는 속성을 새로 만들고 원하는 값으로 `{"newProperty": "newValue"}`, hello의 기존 값을 덮어쓰게 `existingProperty` 와 `"otherNewValue"`, 제거 및 `otherOldProperty`합니다. 다른 변경 내용이 없는 원하는 tooexisting 속성 또는 태그:
    
         {
             "properties": {
@@ -158,29 +158,29 @@ desired 속성, 직접 메서드 또는 클라우드-장치 메시지 사용에 
                 }
             }
         }
-3. **desired 속성 바꾸기**. 솔루션 백 엔드에서 기존의 모든 desired 속성을 완전히 덮어쓰고 `properties/desired`에 대해 새 JSON 문서를 대체할 수 있는 작업입니다.
-4. **태그 바꾸기**. 이 작업을 사용하여 솔루션 백 엔드에서 기존의 모든 태그를 완전히 덮어쓰고 `tags`에 대해 새 JSON 문서를 대체할 수 있습니다.
-5. **쌍 알림을 받습니다**. 이 작업을 통해 쌍이 수정될 때 솔루션 백 엔드는 알림을 받습니다. 이를 수행하려면 IoT 솔루션은 경로를 만들고 데이터 원본을 *twinChangeEvents*와 동일하게 설정해야 합니다. 기본적으로 쌍 알림이 전송되지 않습니다. 즉, 이러한 경로는 미리 존재하지 않습니다. 변경 속도가 너무 높은 경우 또는 내부 오류와 같은 다른 이유로 IoT Hub는 모든 변경 내용을 포함하는 하나의 알림만을 보낼 수 있습니다. 따라서 응용 프로그램에 신뢰할 수 있는 감사 및 모든 중간 상태의 로깅이 필요한 경우 D2C 메시지를 사용하는 것이 여전히 좋습니다. 쌍 알림 메시지는 속성 및 본문을 포함합니다.
+3. **desired 속성 바꾸기**. 이 작업을 사용 하면 hello 솔루션 백 엔드 toocompletely 모든 기존 원하는 속성을 덮어쓸 및 새 JSON 문서에 대 한 대체 `properties/desired`합니다.
+4. **태그 바꾸기**. 이 작업을 사용 하면 hello 솔루션 백 엔드 toocompletely 모든 기존 태그를 덮어쓰고 새 JSON 문서에 대 한 대체 `tags`합니다.
+5. **쌍 알림을 받습니다**. 이 작업에는 hello 솔루션 백 엔드 toobe를 hello로 이중 수정 될 때 알릴 수 있습니다. toodo, 하면 IoT 솔루션 필요한 등 toocreate 경로 및 tooset hello 데이터 소스 같음 너무*twinChangeEvents*합니다. 기본적으로 쌍 알림이 전송되지 않습니다. 즉, 이러한 경로는 미리 존재하지 않습니다. 변경의 hello 속도가 너무 빨라 또는 내부 오류와 같은 다른 이유로 hello IoT Hub 모든 변경 내용이 포함 된 하나의 알림을 보낼 수 있습니다. 따라서 응용 프로그램에 신뢰할 수 있는 감사 및 모든 중간 상태의 로깅이 필요한 경우 D2C 메시지를 사용하는 것이 여전히 좋습니다. hello로 이중 알림 메시지에 속성 및 본문에 포함 됩니다.
 
-    - 속성
+    - properties
 
     | 이름 | 값 |
     | --- | --- |
     $content-type | application/json |
-    $iothub-enqueuedtime |  알림이 전송된 시간 |
+    $iothub-enqueuedtime |  Hello 알림을 전송 시간 |
     $iothub-message-source | twinChangeEvents |
     $content-encoding | utf-8 |
-    deviceId | 장치의 ID |
+    deviceId | Hello 장치의 id |
     hubName | IoT Hub의 이름 |
     operationTimestamp | [ISO8601] 작업의 타임스탬프 |
     iothub-message-schema | deviceLifecycleNotification |
     opType | "replaceTwin" 또는 "updateTwin" |
 
-    메시지 시스템 속성 앞에 `'$'` 기호를 붙입니다.
+    메시지 시스템 속성은 hello로 접두사가 `'$'` 기호입니다.
 
-    - 본문
+    - body
         
-    이 섹션은 JSON 형식으로 모든 쌍 변경 내용을 포함합니다. 모든 쌍 섹션: 태그, properties.reported, properties.desired를 포함할 수 있으며 "$metadata" 요소를 포함한다는 차이점으로 패치와 동일한 형식을 사용합니다. 예를 들면 다음과 같습니다.
+    이 섹션에는 JSON 형식의 hello로 이중 변경 내용을 모두 포함 되어 있습니다. 동일한 형식 hello를 사용 하 여 패치로, hello 차이만 한다는 섹션이 포함 되어야 모두로 이중: 태그, properties.reported, properties.desired를 포함 하 고 "$metadata" hello 요소입니다. 예를 들면 다음과 같습니다.
     ```
     {
         "properties": {
@@ -200,38 +200,38 @@ desired 속성, 직접 메서드 또는 클라우드-장치 메시지 사용에 
     }
     ``` 
 
-이전의 모든 작업은 [낙관적 동시성][lnk-concurrency]을 지원하며 [보안][lnk-security] 문서에서 정의한 **ServiceConnect** 권한이 필요합니다.
+이전 작업 지원 hello 모든 [낙관적 동시성] [ lnk-concurrency] hello 필요 **ServiceConnect** hello에 정의 된 사용 권한 [보안 ] [ lnk-security] 문서.
 
-이러한 작업 외에도 솔루션 백 엔드는 다음을 수행할 수 있습니다.
+또한 작업 toothese hello 솔루션 다시 끝 수 있습니다.
 
-* SQL 스타일 [IoT Hub 쿼리 언어][lnk-query]를 사용하여 장치 쌍을 쿼리합니다.
+* Hello 장치 트윈스 hello를 사용 하 여 쿼리 SQL과 비슷한 [IoT Hub 쿼리 언어][lnk-query]합니다.
 * [작업][lnk-jobs]을 사용하여 장치 쌍의 큰 집합에서 작업을 수행합니다.
 
 ## <a name="device-operations"></a>장치 작업
-장치 앱은 다음과 같은 원자성 작업을 사용하여 장치 쌍에서 작동합니다.
+hello 장치 응용 프로그램에서 원자성 작업을 수행 하는 hello를 사용 하 여 hello 장치로 이중은 작동 합니다.
 
-1. **장치 쌍 검색** 이 작업은 현재 연결된 장치의 태그 및 desired, reported 및 시스템 속성을 포함하는 장치 쌍 문서를 반환합니다.
-2. **reported 속성 부분 업데이트**. 현재 연결된 장치의 reported 속성을 부분적으로 업데이트할 수 있는 작업입니다. 이 작업은 desired 속성의 부분 업데이트를 사용하는 솔루션 백 엔드와 동일한 JSON 업데이트 형식을 사용합니다.
-3. **desired 속성 관찰**. 현재 연결된 장치는 desired 속성에 대한 업데이트가 발생하면 알림을 받도록 선택할 수 있습니다. 장치는 솔루션 백 엔드에 의해 실행된 것과 같은 형태의 업데이트(부분 또는 전체 바꾸기)를 수신합니다.
+1. **장치 쌍 검색** 이 작업 hello 장치로 이중 문서를 반환 합니다 (태그를 포함 하 고 원하는, 보고 및 시스템 속성) hello 현재 연결 된 장치에 대 한 합니다.
+2. **reported 속성 부분 업데이트**. 이 작업을 사용 하면 hello의 부분 업데이트 hello hello 현재 연결 된 장치의 속성을 보고 합니다. 이 작업을 사용 하 여 hello 동일한 JSON 업데이트에 해당 hello 솔루션 백 엔드 사용 하 여 원하는 속성의 부분 업데이트에 대 한 서식을 지정 합니다.
+3. **desired 속성 관찰**. 현재 연결 된 장치 hello toobe 발생할 때 업데이트 toohello 필요한 속성에 대 한 알림을 선택할 수 있습니다. hello 장치 hello 솔루션 백 엔드에 의해 같은 형태의 업데이트 (전체 또는 일부 대체) 실행 하는 hello를 받습니다.
 
-이전의 모든 작업에는 [보안][lnk-security] 문서에서 정의한 **DeviceConnect** 권한이 필요합니다.
+이전 작업이 모두 hello hello 필요 **DeviceConnect** hello에 정의 된 사용 권한 [보안] [ lnk-security] 문서.
 
-[Azure IoT 장치 SDK][lnk-sdks]를 사용하면 이전 작업을 다양한 언어와 플랫폼에서 손쉽게 사용할 수 있습니다. desired 속성 동기화를 위한 IoT Hub 기본 형식에 대한 자세한 내용은 [장치 다시 연결 흐름][lnk-reconnection]에서 참조하세요.
+hello [Azure IoT 장치 Sdk] [ lnk-sdks] 쉽게 toouse hello 앞에 다양 한 언어 및 플랫폼에서 작업을 확인 합니다. 자세한 내용은 hello 원하는 속성이 동기화에 대 한 IoT Hub 기본 형식에 있습니다 [장치 다시 연결 흐름][lnk-reconnection]합니다.
 
 > [!NOTE]
-> 현재 장치 쌍은 MQTT 프로토콜을 사용하여 IoT Hub에 연결하는 장치에서만 액세스할 수 있습니다.
+> 현재 장치 트윈스 tooIoT 허브를 연결 하는 장치 에서만에서 액세스할 수는 hello MQTT 프로토콜을 사용 합니다.
 > 
 > 
 
 ## <a name="reference-topics"></a>참조 항목:
-다음 참조 항목에서는 IoT Hub 액세스 제어에 대한 자세한 정보를 제공합니다.
+hello 다음 참조 항목 제공 제어 액세스 tooyour IoT 허브에 대 한 자세한 내용은 합니다.
 
 ## <a name="tags-and-properties-format"></a>태그 및 속성 형식
-tags, desired 및 reported 속성은 JSON 개체이며 다음과 같은 제한 사항이 있습니다.
+태그를 원하는 및 보고 속성 제한 사항에 따라 hello 사용 하 여 JSON 개체는:
 
 * JSON 개체의 모든 키는 대/소문자를 구분하는 64바이트 UTF-8 유니코드 문자열입니다. 허용되는 문자에서 유니코드 제어 문자(세그먼트 C0 및 C1) 및 `'.'`, `' '` 및 `'$'`는 제외됩니다.
-* JSON 개체의 모든 값은 부울, 숫자, 문자열, 개체와 같은 JSON 형식이 될 수 있습니다. 배열은 허용되지 않습니다.
-* tags, desired 속성 및reported 속성의 모든 JSON 개체는 최대 5의 깊이를 가질 수 있습니다. 예를 들어 다음 개체는 유효합니다.
+* JSON 개체의 모든 값의 JSON 유형만 hello 될 수 있습니다: 부울, 숫자, 문자열, 개체입니다. 배열은 허용되지 않습니다.
+* tags, desired 속성 및reported 속성의 모든 JSON 개체는 최대 5의 깊이를 가질 수 있습니다. 예를 들어, 다음 개체는 hello가 올바릅니다.
 
         {
             ...
@@ -254,12 +254,12 @@ tags, desired 및 reported 속성은 JSON 개체이며 다음과 같은 제한 �
 * 모든 문자열 값의 길이는 최대 512바이트입니다.
 
 ## <a name="device-twin-size"></a>장치 쌍 크기
-IoT Hub는 `tags`, `properties/desired` 및 `properties/reported` 값에 8KB의 크기 제한을 적용합니다. 읽기 전용 요소는 제외됩니다.
-크기는 외부에 표시될 때 유니코드 제어 문자(세그먼트 C0 및 C1) 및 공백 `' '`을 제외한 모든 문자의 개수를 세어서 계산됩니다.
-IoT Hub는 한도 이상으로 해당 문서의 크기를 증가시키는 모든 작업을 오류와 함께 거부합니다.
+IoT Hub는 8KB 크기 제한의 hello 값에 적용 `tags`, `properties/desired`, 및 `properties/reported`, 읽기 전용 요소 제외 합니다.
+hello 크기는 계산를 계산 하 여 모든 문자를 제외한 유니코드 제어 문자 (세그먼트 C0 및 C1) 및 공간 `' '` 는 문자열 상수 외부에서 표시 되 면입니다.
+IoT Hub 오류가 발생 하 여 hello 제한 초과 이러한 문서의 hello 크기를 증가 하 게 하는 모든 작업을 거부 합니다.
 
 ## <a name="device-twin-metadata"></a>장치 쌍 메타데이터
-IoT Hub는 장치 쌍 desired 또는 reported 속성의 각 JSON 개체에 대한 마지막 업데이트의 타임스탬프를 유지합니다. 타임스탬프는 UTC 형식이며 [ISO8601] 형식 `YYYY-MM-DDTHH:MM:SS.mmmZ`로 인코딩됩니다.
+IoT Hub 원하는 스탬프와 속성을 보고 hello hello로 이중 장치에 있는 각 JSON 개체에 대 한 마지막 업데이트 타임 스탬프를 유지 관리 합니다. hello 타임 스탬프가 UTC에 있으며 hello에 인코딩된 [ISO8601] 형식 `YYYY-MM-DDTHH:MM:SS.mmmZ`합니다.
 예:
 
         {
@@ -305,49 +305,49 @@ IoT Hub는 장치 쌍 desired 또는 reported 속성의 각 JSON 개체에 대�
             ...
         }
 
-이 정보는 개체 키를 제거하는 업데이트를 유지하기 위해서 모든 수준(JSON 구조의 수준뿐만 아니라)에서 유지됩니다.
+이 정보는 키 개체를 제거 하는 모든 수준 (JSON 구조 hello의 뿐 아니라 hello 잎) toopreserve 업데이트에서 유지 됩니다.
 
 ## <a name="optimistic-concurrency"></a>낙관적 동시성
 태그, desired 및 reported 속성은 모두 낙관적 동시성을 지원합니다.
-[RFC7232]에 따르면 태그에는 ETag가 있고 이것은 태그의 JSON 표현을 나타냅니다. 일관성을 보장하기 위해 솔루션 백 엔드에서 조건부 업데이트 작업에 ETag를 사용할 수 있습니다.
+태그는 ETag를 기준으로 한 [RFC7232], hello 태그의 JSON 표현을 나타내는입니다. Etag는 hello 솔루션 백 엔드 tooensure 일관성에서 조건부 업데이트 작업에 사용할 수 있습니다.
 
-장치 쌍 desired 및 reported 속성에는 ETag가 없지만 증분될 수 있는 `$version` 값이 있습니다. ETag와 마찬가지로 버전은 업데이트의 일관성을 유지하는 파티를 업데이트하여 사용할 수 있습니다. 예를 들어 reported 속성에 대한 장치 앱이나 desired 속성에 대한 솔루션 백 엔드입니다.
+장치로 이중 필요 하 고 속성을 보고 했지만 Etag를 하지 않은 한 `$version` toobe 증분 보장 되는 값입니다. 마찬가지로 tooan ETag, hello 버전 hello 파티 tooenforce 일관성 업데이트를 업데이트 하 여 사용할 수 있습니다. 예를 들어 보고 된 속성이 나 hello 솔루션 백 엔드 원하는 속성에 대 한 장치 앱.
 
-버전은 관찰 에이전트(예: desired 속성을 관찰하는 장치 앱)가 업데이트 알림과 검색 작업의 결과 간에 속도를 중재해야 하는 경우에도 유용합니다. [장치 다시 연결 흐름][lnk-reconnection] 섹션에 자세한 정보가 있습니다.
+버전 (예: hello 원하는 속성을 관찰 hello 장치 응용 프로그램) 관찰 에이전트 검색 작업의 hello 결과 업데이트 알림을 간의 경합을 조정 해야 하는 경우에 유용 합니다. 섹션 hello [장치 다시 연결 흐름] [ lnk-reconnection] 자세한 정보를 제공 합니다.
 
 ## <a name="device-reconnection-flow"></a>장치 다시 연결 흐름
-IoT Hub는 연결되지 않은 장치에 대한 desired 속성 업데이트 알림을 유지하지 않습니다. 연결 중인 장치는 완전한 desired 속성 문서를 가져와야 하고 또한 업데이트 알림을 구독해야 합니다. 업데이트 알림과 전체 검색이 서로 경쟁할 가능성이 있으므로 다음과 같은 흐름을 따라야 합니다.
+IoT Hub는 연결되지 않은 장치에 대한 desired 속성 업데이트 알림을 유지하지 않습니다. _ 연결 하는 장치에서 업데이트 알림에 대 한 추가 toosubscribing hello 전체 원하는 속성 문서를 검색 해야 합니다. 업데이트 알림 및 전체 검색 사이의 레이스가 hello 가능성이 들어 hello 흐름 확보 되어야 합니다.
 
-1. 장치 앱을 IoT hub에 연결합니다.
+1. 장치 앱 tooan IoT 허브를 연결합니다.
 2. 장치 앱이 desired 속성 업데이트 알림을 구독합니다.
-3. 장치 앱이 desired 속성에 대한 전체 문서를 검색합니다.
+3. 장치 앱 hello 원하는 속성에 대 한 전체 문서를 검색합니다.
 
-장치 앱은 검색이 완료된 문서의 버전보다 작거나 같은 `$version`이 포함된 모든 알림을 무시할 수 있습니다. 이 방법은 IoT Hub가 버전이 항상 증가한다는 것을 보장하기 때문에 가능합니다.
+hello 장치 응용 프로그램을 사용 하 여 모든 알림을 무시할 수 `$version` hello 전체 검색 된 문서의 hello 버전 보다 작거나 합니다. 이 방법은 IoT Hub가 버전이 항상 증가한다는 것을 보장하기 때문에 가능합니다.
 
 > [!NOTE]
-> 이 논리는 이미 [Azure IoT 장치 SDK][lnk-sdks]에 구현되어 있습니다. 이 설명은 장치 앱이 Azure IoT 장치 SDK를 아무것도 사용할 수 없고 MQTT 인터페이스를 직접 프로그래밍해야 하는 경우에만 유용합니다.
+> 이 논리 hello에서 이미 구현 되어 [Azure IoT 장치 Sdk][lnk-sdks]합니다. 이 설명은 hello 장치 응용 프로그램이 Azure IoT 장치 Sdk 중 하나를 사용할 수 없는 hello MQTT 인터페이스를 직접 프로그래밍 해야 하는 경우에 유용 합니다.
 > 
 > 
 
 ## <a name="additional-reference-material"></a>추가 참조 자료
-이 IoT Hub 개발자 가이드의 다른 참조 자료:
+Hello IoT 허브 개발자 가이드에서에서 다른 참조 항목은 다음과 같습니다.
 
-* [IoT Hub 끝점][lnk-endpoints] 문서에서는 각 IoT Hub가 런타임 및 관리 작업에 노출하는 다양한 끝점을 설명합니다.
-* [제한 및 할당량][lnk-quotas] 문서에서는 IoT Hub 서비스에 적용되는 할당량과 서비스를 사용할 때 예상되는 제한 동작에 대해 설명합니다.
-* [Azure IoT 장치 및 서비스 SDK][lnk-sdks] 문서에서는 IoT Hub와 상호 작용하는 장치 및 서비스 앱 모두를 개발할 때 사용할 수 있는 다양한 언어 SDK를 나열합니다.
-* [장치 쌍, 작업 및 메시지 라우팅을 위한 IoT Hub 쿼리 언어][lnk-query] 문서에서는 IoT Hub에서 장치 쌍 및 작업에 대한 정보를 검색하는 데 사용할 수 있는 IoT Hub 쿼리 언어에 대해 설명합니다.
-* [IoT Hub MQTT 지원][lnk-devguide-mqtt] 문서에서는 MQTT 프로토콜에 대한 IoT Hub 지원에 대해 자세히 설명합니다.
+* hello [IoT Hub 끝점] [ lnk-endpoints] 설명 hello 런타임 및 관리 작업에 대 한 각 IoT 허브를 노출 하는 다양 한 끝점입니다.
+* hello [제한 및 할당량] [ lnk-quotas] hello 서비스를 사용 하는 경우 조정 동작 tooexpect hello와 toohello IoT 허브 서비스를 적용 하는 hello 할당량에 설명 합니다.
+* hello [Azure IoT 장치 및 서비스 Sdk] [ lnk-sdks] 문서 목록을 hello 다양 한 언어 Sdk IoT Hub와 상호 작용 하는 장치 및 서비스 모두 앱을 개발할 때 사용할 수 있습니다.
+* hello [장치 트윈스, 작업 및 메시지 라우팅에 대 한 IoT Hub 쿼리 언어] [ lnk-query] hello 장치 트윈스 및 작업에 대 한 IoT 허브에서 tooretrieve 정보를 사용 하려면 IoT Hub 쿼리 언어에 설명 .
+* hello [IoT 허브 MQTT 지원] [ lnk-devguide-mqtt] 문서 hello MQTT 프로토콜에 대 한 IoT Hub 지원에 대 한 자세한 정보를 제공 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-장치 쌍에 대해 알아봤으니 다음 IoT Hub 개발자 가이드 항목에 대해서 살펴보세요.
+이제 장치 트윈스 알아보았습니다 hello 다음 IoT 허브 개발자 가이드 항목에에서 관심이 있을 수 있습니다.
 
 * [장치에서 직접 메서드 호출][lnk-methods]
 * [여러 장치에서 jobs 예약][lnk-jobs]
 
-이 문서에서 설명한 일부 개념을 시도해 보려면 다음과 같은 IoT Hub 자습서를 살펴보세요.
+이 문서에서 설명 하는 hello 개념 중 일부는 tootry, 원하는 경우 IoT Hub 자습서를 따라 hello에 관심이 있을 수 있습니다.
 
-* [장치 쌍을 사용하는 방법][lnk-twin-tutorial]
-* [장치 쌍 속성을 사용하는 방법][lnk-twin-properties]
+* [Toouse 장치로 이중 hello 하는 방법][lnk-twin-tutorial]
+* [어떻게 toouse 장치로 이중 속성][lnk-twin-properties]
 
 <!-- links and images -->
 

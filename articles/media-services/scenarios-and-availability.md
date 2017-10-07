@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure Media Services 시나리오 및 데이터 센터에서 기능의 사용 가능성 | Microsoft Docs"
+title: "Azure 미디어 서비스 aaaMicrosoft 시나리오 및 사용 가능한 데이터 센터 간에 기능 | Microsoft Docs"
 description: "이 항목은 Microsoft Azure Media Services 시나리오 및 데이터 센터에서 기능 및 서비스의 사용 가용성 개요를 제공합니다."
 services: media-services
 documentationcenter: 
@@ -13,91 +13,91 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: d9994dd7bfb6b6bf949a7708c07651d667929ae4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3dbab6998ed5da738baf8f1e2fb096dfba336e19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scenarios-and-availability-of-media-services-features-across-datacenters"></a>시나리오 및 데이터 센터에서 Media Services 기능의 사용 가용성
 
-Microsoft AMS(Azure Media Services)는 다양한 클라이언트(예: TV, PC 및 모바일 장치)로의 주문형 및 라이브 스트리밍 배달을 위해 비디오 또는 오디오 콘텐츠를 안전하게 업로드, 저장, 인코딩 및 패키지할 수 있습니다.
+Microsoft Azure 미디어 서비스 AMS ()를 사용 하면 toosecurely 업로드, 저장, 인코딩 및 주문형 및 라이브 스트리밍 배달 toovarious 클라이언트 모두 (예를 들어, TV, PC 및 모바일 장치)에 대 한 비디오 또는 오디오 콘텐츠를 패키지 합니다.
 
-AMS는 전 세계 여러 데이터 센터에서 작동합니다. 이러한 데이터 센터는 지리적 영역으로 그룹화되므로 응용 프로그램을 빌드할 위치를 유연하게 선택할 수 있습니다. [지역 및 위치 목록](https://azure.microsoft.com/regions/)을 검토할 수 있습니다. 
+AMS는 hello 전 세계 여러 데이터 센터에서 작동합니다. 이러한 데이터 센터 위치 선택에 유연성을 제공, toogeographic 영역에 그룹화 되어 toobuild 응용 프로그램입니다. Hello를 검토할 수 있습니다 [지역 및 해당 위치의 목록](https://azure.microsoft.com/regions/)합니다. 
 
-이 항목에서는 [라이브](#live_scenarios) 또는 [주문형](#vod_scenarios) 콘텐츠를 배달하는 일반적인 시나리오를 보여줍니다. 이 항목에서는 데이터 센터에서 미디어 기능 및 서비스의 사용 가용성에 대한 세부 정보도 제공합니다.
+이 항목에서는 [라이브](#live_scenarios) 또는 [주문형](#vod_scenarios) 콘텐츠를 배달하는 일반적인 시나리오를 보여줍니다. 또한 hello 항목 데이터 센터 간 미디어 기능 및 서비스의 가용성에 대 한 세부 정보를 제공합니다.
 
 ## <a name="overview"></a>개요
 
 ### <a name="prerequisites"></a>필수 조건
 
-Azure Media Services 사용을 시작하려면 다음이 있어야 합니다.
+Azure 미디어 서비스를 사용 하 여 toostart hello 다음 있어야 합니다.
 
 * Azure 계정. 계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com)을 참조하세요.
 * Azure Media Services 계정. 자세한 내용은 [계정 만들기](media-services-portal-create-account.md)를 참조하세요.
-* 콘텐츠를 스트리밍하려는 스트리밍 끝점이 **실행** 상태에 있어야 합니다.
+* 스트리밍 끝점 toostream 콘텐츠 원하는 hello hello에 대 한 toobe **실행** 상태입니다.
 
-    AMS 계정이 만들어질 때 **기본** 스트리밍 끝점은 **중지됨** 상태에서 계정에 추가됩니다. 콘텐츠 스트리밍을 시작하고 동적 패키징 및 동적 암호화를 활용하려면 스트리밍 끝점이 **실행** 상태에 있어야 합니다.
+    AMS 계정이 만들어질 때 한 **기본** 스트리밍 끝점에 hello tooyour 계정 추가 됩니다 **Stopped** 상태입니다. 동적 패키징 및 동적 암호화를 hello 스트리밍 끝점의 콘텐츠 및 take 있다는 이점이 스트리밍 toostart hello에 대 한 toobe **실행** 상태입니다.
 
-### <a name="commonly-used-objects-when-developing-against-the-ams-odata-model"></a>AMS OData 모델에 대해 개발할 때 일반적으로 사용되는 개체
+### <a name="commonly-used-objects-when-developing-against-hello-ams-odata-model"></a>일반적으로 사용 되는 개체 hello AMS OData 모델에 대해 개발할 때
 
-다음 이미지에서는 Media Services OData 모델에 대해 개발할 때 가장 일반적으로 사용되는 개체 중 일부를 보여 줍니다.
+hello 다음 이미지에서는 가장 일반적으로 사용 하는 hello 개체 중 일부를 hello 미디어 서비스 OData 모델에 대해 개발할 때
 
-전체 크기로 보려면 이미지를 클릭합니다.  
+전체 크기로 hello 이미지 tooview를 클릭 합니다.  
 
 <a href="./media/media-services-overview/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-overview/media-services-overview-object-model-small.png"></a> 
 
-전체 모델은 [여기](https://media.windows.net/API/$metadata?api-version=2.15)서 볼 수 있습니다 .  
+Hello 전체 모델을 볼 수 있습니다 [여기](https://media.windows.net/API/$metadata?api-version=2.15)합니다.  
 
-## <a name="protect-content-in-storage-and-deliver-streaming-media-in-the-clear-non-encrypted"></a>저장소에서 콘텐츠 보호 및 암호화하지 않고 스트리밍 미디어 배달(암호화되지 않음)
+## <a name="protect-content-in-storage-and-deliver-streaming-media-in-hello-clear-non-encrypted"></a>저장소의 콘텐츠를 보호 하 고 hello에서 스트리밍 미디어 배달 (암호화 되지 않은)의 선택을 취소합니다
 
 ![VoD 워크플로](./media/scenarios-and-availability/scenarios-and-availability01.png)
 
 1. 자산에 고품질 미디어 파일을 업로드합니다.
 
-    업로드하는 동안 및 저장소에 있는 동안 콘텐츠를 보호하기 위해 자산에 저장소 암호화 옵션을 적용하는 것이 좋습니다.
-2. 적응 비트 전송률 MP4 파일 집합으로 인코딩합니다.
+    순서 tooprotect 하는 동안 콘텐츠를 업로드 및 저장소에 저장 된 상태의에서 tooapply 저장소 암호화 옵션 tooyour 자산 것이 좋습니다.
+2. Tooa 적응 비트 전송률 MP4 파일 집합을으로 인코딩하십시오.
 
-    그대로 있는 콘텐츠를 보호하기 위해 출력 자산에 저장소 암호화 옵션을 적용하는 것이 좋습니다.
+    Tooapply 저장소 암호화 옵션 toohello 미사용 콘텐츠 순서 tooprotect에 자산을 출력 하는 것이 좋습니다.
 3. 자산 배달 정책(동적 패키징에서 사용)을 구성합니다.
 
     자산이 암호화된 저장소인 경우 자산 배달 정책을 구성해야 **합니다** .
-4. 주문형 로케이터를 만들어 자산을 게시합니다.
+4. OnDemand 로케이터를 만들어 hello 자산을 게시 합니다.
 5. 게시된 콘텐츠를 스트리밍합니다.
 
-데이터 센터에서 사용 가용성에 대한 정보는 [사용 가능성](#availability) 섹션을 참조하세요.
+데이터 센터의 가용성에 대 한 정보를 참조 hello [가용성](#availability) 섹션.
 
 ## <a name="protect-content-in-storage-deliver-dynamically-encrypted-streaming-media"></a>저장소에서 콘텐츠를 보호하고 암호화된 스트리밍 미디어를 동적으로 배달합니다.
 
 ![PlayReady로 보호](./media/media-services-content-protection-overview/media-services-content-protection-with-multi-drm.png)
 
-1. 자산에 고품질 미디어 파일을 업로드합니다. 저장소 암호화 옵션을 자산에 적용합니다.
-2. 적응 비트 전송률 MP4 파일 집합으로 인코딩합니다. 저장소 암호화 옵션을 출력 자산에 적용합니다.
-3. 재생하는 동안 동적으로 암호화하려는 경우 자산에 대한 암호화 콘텐츠 키를 만듭니다.
+1. 자산에 고품질 미디어 파일을 업로드합니다. 저장소 암호화 옵션 toohello 자산을 적용 합니다.
+2. Tooa 적응 비트 전송률 MP4 파일 집합을으로 인코딩하십시오. 저장소 암호화 옵션 toohello 출력 자산을 적용 합니다.
+3. 동적으로 재생 하는 동안 암호화 toobe 원하는 hello 자산에 대 한 암호화 콘텐츠 키를 만듭니다.
 4. 콘텐츠 키 인증 정책을 구성합니다.
 5. 자산 배달 정책(동적 패키징 및 동적 암호화에서 사용)을 구성합니다.
-6. 주문형 로케이터를 만들어 자산을 게시합니다.
+6. OnDemand 로케이터를 만들어 hello 자산을 게시 합니다.
 7. 게시된 콘텐츠를 스트리밍합니다.
 
-데이터 센터에서 사용 가용성에 대한 정보는 [사용 가능성](#availability) 섹션을 참조하세요.
+데이터 센터의 가용성에 대 한 정보를 참조 hello [가용성](#availability) 섹션.
 
-## <a name="use-media-analytics-to-derive-actionable-insights-from-your-videos"></a>미디어 분석을 사용하여 비디오에 대한 실질적인 통찰력 얻기
+## <a name="use-media-analytics-tooderive-actionable-insights-from-your-videos"></a>미디어 분석 tooderive 비디오에서 실행 가능한 통찰력을 사용 하 여
 
-미디어 분석은 조직과 기업이 비디오 파일에서 실질적인 통찰력을 끌어내기 쉽도록 만드는 언어 및 시각 구성 요소 모음입니다. 자세한 내용은 [Azure Media Services 분석 개요](media-services-analytics-overview.md)를 참조하세요.
+미디어 분석은 쉽게 조직 및 기업 tooderive 실행 가능한 통찰력에 대 한 비디오 파일에서 음성 / 비전 구성 요소 컬렉션입니다. 자세한 내용은 [Azure Media Services 분석 개요](media-services-analytics-overview.md)를 참조하세요.
 
 1. 자산에 고품질 미디어 파일을 업로드합니다.
-2. [미디어 분석 개요](media-services-analytics-overview.md) 섹션에 설명된 미디어 분석 서비스 중 하나를 사용하여 비디오를 처리합니다.
-3. 미디어 분석 미디어 프로세서는 MP4 파일 또는 JSON 파일을 생성합니다. 미디어 프로세서가 MP4 파일을 생성한 경우 파일을 점진적으로 다운로드할 수 있습니다. 미디어 프로세서가 JSON 파일을 생성한 경우 Azure Blob 저장소에서 해당 파일을 다운로드할 수 있습니다.
+2. Hello에 설명 된 hello 미디어 분석 서비스 중 하나가 지정 된 비디오 처리 [미디어 분석 개요](media-services-analytics-overview.md) 섹션.
+3. 미디어 분석 미디어 프로세서는 MP4 파일 또는 JSON 파일을 생성합니다. 미디어 프로세서 MP4 파일을 생성 하는 경우에 hello 파일을 점진적으로 다운로드할 수 있습니다. 미디어 프로세서는 JSON 파일을 생성 하는 경우에 hello Azure blob 저장소에서에서 hello 파일을 다운로드할 수 있습니다.
 
-데이터 센터에서 사용 가용성에 대한 정보는 [사용 가능성](#availability) 섹션을 참조하세요.
+데이터 센터의 가용성에 대 한 정보를 참조 hello [가용성](#availability) 섹션.
 
 ## <a name="deliver-progressive-download"></a>점진적 다운로드 제공
 
 1. 자산에 고품질 미디어 파일을 업로드합니다.
-2. 하나의 MP4 파일로 인코딩합니다.
-3. 주문형 또는 SAS 로케이터를 만들어 자산을 게시합니다.
+2. Tooa 단일 MP4 파일로를 인코딩하십시오.
+3. 요청 시 또는 SAS 로케이터를 만들어 hello 자산을 게시 합니다.
 
-    SAS 로케이터를 사용하는 경우 콘텐츠는 Azure blob 저장소에서 다운로드됩니다. 이 경우 스트리밍 끝점이 시작된 상태에 있을 필요가 없습니다.
+    SAS 로케이터를 사용 하 여 hello 콘텐츠 hello Azure blob 저장소에서에서 다운로드 됩니다. 이 경우 toohave 스트리밍 채널 시작 됨된 상태에 필요 하지 않습니다.
 4. 콘텐츠를 점진적으로 다운로드합니다.
 
 ## <a id="live_scenarios"></a>라이브 스트리밍 이벤트 배달 
@@ -105,57 +105,57 @@ Azure Media Services 사용을 시작하려면 다음이 있어야 합니다.
 1. 다양한 라이브 스트리밍 프로토콜(예: RTMP 또는 부드러운 스트리밍)을 사용하여 라이브 콘텐츠를 수집합니다.
 2. (선택 사항)스트림을 적응 비트 전송률 스트림으로 인코딩합니다.
 3. 라이브 스트림을 미리 봅니다.
-4. 일반적인 스트리밍 프로토콜(예: MPEG DASH, 부드러운, HLS)을 통해 고객에게 직접 또는 추가 배포를 위해 CDN(Content Delivery Network)에 콘텐츠를 배달합니다.
+4. 일반 스트리밍 프로토콜 (예: MPEG DASH, 부드러운 스트리밍, HLS)를 통해 hello 콘텐츠 제공 직접 tooyour 고객 또는 향후 배포를 위해 tooa 네트워크 CDN (콘텐츠 배달).
 
     또는
 
-    나중에 스트리밍하기 위해 수집된 콘텐츠를 기록 및 저장합니다(주문형 비디오).
+    순서 toobe의 레코드와 저장소 hello 수집 된 콘텐츠 이상 (주문형 비디오) 스트리밍.
 
-라이브 스트리밍을 수행할 때 다음 경로 중 하나를 선택할 수 있습니다.
+라이브 스트리밍을 수행할 때 라우팅합니다 hello 다음 중 하나를 선택할 수 있습니다.
 
 ### <a name="working-with-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders-pass-through"></a>온-프레미스 인코더(통과)에서 다중 비트 전송률 라이브 스트림을 받는 채널 작업
 
-다음 다이어그램에서는 **통과** 워크플로에 관련된 AMS 플랫폼의 주요 부분을 보여 줍니다.
+hello 다음 다이어그램에서는 hello와 관련 된 hello AMS 플랫폼의 주요 부분 hello **통과** 워크플로 합니다.
 
 ![라이브 워크플로](./media/scenarios-and-availability/media-services-live-streaming-current.png)
 
 자세한 내용은 [온-프레미스 인코더의 다중 비트 전송률 라이브 스트림을 수신하는 채널 사용](media-services-live-streaming-with-onprem-encoders.md)을 참조하세요.
 
-### <a name="working-with-channels-that-are-enabled-to-perform-live-encoding-with-azure-media-services"></a>Azure Media Services를 사용하여 라이브 인코딩을 수행할 수 있는 채널 작업
+### <a name="working-with-channels-that-are-enabled-tooperform-live-encoding-with-azure-media-services"></a>채널을 사용 활성화 tooperform 라이브 Azure 미디어 서비스로 인코딩
 
-다음 다이어그램에서는 채널이 Media Services를 통해 라이브 인코딩을 수행할 수 있는 라이브 스트리밍 워크플로에 관련된 AMS 플랫폼의 주요 부분을 보여 줍니다.
+hello 다음 그림에 hello를 주요 부분 hello AMS 플랫폼의 라이브 스트리밍 워크플로에 포함 되는 여기서 채널은 라이브 미디어 서비스로 인코딩 tooperform 사용 하도록 설정 합니다.
 
 ![라이브 워크플로](./media/scenarios-and-availability/media-services-live-streaming-new.png)
 
-자세한 내용은 [Azure 미디어 서비스를 사용하여 라이브 인코딩을 수행할 수 있는 채널 작업](media-services-manage-live-encoder-enabled-channels.md)을 참조하세요.
+자세한 내용은 참조 [있는지 Enabled tooPerform 라이브 인코딩하는 Azure 미디어 서비스 채널로 작업](media-services-manage-live-encoder-enabled-channels.md)합니다.
 
-데이터 센터에서 사용 가용성에 대한 정보는 [사용 가능성](#availability) 섹션을 참조하세요.
+데이터 센터의 가용성에 대 한 정보를 참조 hello [가용성](#availability) 섹션.
 
 ## <a name="consuming-content"></a>콘텐츠 사용
 
-Azure Media Services는 iOS 장치, Android 장치, Windows, Windows Phone, Xbox 및 셋톱 박스를 포함한 대부분의 플랫폼에서 풍부한 동적 클라이언트 플레이어 응용 프로그램을 만드는 데 필요한 도구를 제공합니다. 다음 항목에서 제공하는 SDK 및 플레이어 프레임워크 링크를 사용하여 Media Services의 스트리밍 미디어를 사용할 수 있는 클라이언트 응용 프로그램을 개발할 수 있습니다. 자세한 내용은 [비디오 플레이어 응용 프로그램 개발](media-services-develop-video-players.md)을 참조하세요.
+Azure 미디어 서비스는 hello 도구 toocreate rich 필요 등 대부분의 플랫폼에 대 한 동적 클라이언트 플레이어 응용 프로그램: iOS 장치, Android 장치, Windows, Windows Phone, Xbox 및 셋톱 상자입니다. hello 항목 링크 tooSDKs 및 플레이어 프레임 워크를 사용할 수 있는 toodevelop 미디어 서비스에서 스트리밍 미디어를 사용할 수 있는 클라이언트 응용 프로그램을 제공 합니다. 자세한 내용은 [비디오 플레이어 응용 프로그램 개발](media-services-develop-video-players.md)을 참조하세요.
 
 ## <a name="enabling-azure-cdn"></a>Azure CDN 사용하기
 
-Media Services는 Azure CDN과의 통합을 지원합니다. Azure CDN을 사용하도록 설정하는 방법에 대한 자세한 내용은 [미디어 서비스 계정에서 스트리밍 끝점을 관리하는 방법](media-services-portal-manage-streaming-endpoints.md)을 참조하세요.
+Media Services는 Azure CDN과의 통합을 지원합니다. 방법에 대 한 Azure CDN tooenable 참조 [방법을 미디어 서비스 계정에서 tooManage 스트리밍 끝점](media-services-portal-manage-streaming-endpoints.md)합니다.
 
 ## <a id="scaling"></a>Media Services 계정 크기 조정하기
 
 AMS 고객은 해당 AMS 계정에서 스트리밍 끝점, 미디어 처리 및 저장소의 크기를 조정할 수 있습니다.
 
-* Media Services 고객은 **표준** 스트리밍 끝점이나 **프리미엄** 스트리밍 끝점을 선택할 수 있습니다. **표준** 스트리밍 끝점은 대부분의 스트리밍 워크로드에 적합합니다. **프리미엄** 스트리밍 단위와 동일한 기능을 포함하고 아웃바운드 대역폭을 자동으로 확장합니다. 
+* Media Services 고객은 **표준** 스트리밍 끝점이나 **프리미엄** 스트리밍 끝점을 선택할 수 있습니다. **표준** 스트리밍 끝점은 대부분의 스트리밍 워크로드에 적합합니다. Hello로 동일한 기능을 포함 한 **프리미엄** 끝점 및 배율 아웃 바운드 대역폭을 자동으로 스트리밍. 
 
-    **프리미엄** 스트리밍 끝점은 고급 워크로드에 적합하며, 확장성 있는 전용 대역폭 용량을 제공합니다. **프리미엄** 스트리밍 끝점이 있는 고객은 기본적으로 하나의 SU(스트리밍 단위)를 가져옵니다. SU를 추가하여 스트리밍 끝점의 크기를 조정할 수 있습니다. 각 SU는 응용 프로그램에 추가 대역폭 수용작업량을 제공합니다. **프리미엄** 스트리밍 끝점의 크기를 조정하는 방법에 대한 자세한 내용은 [스트리밍 끝점 크기 조정](media-services-portal-scale-streaming-endpoints.md) 항목을 참조하세요.
+    **프리미엄** 스트리밍 끝점은 고급 워크로드에 적합하며, 확장성 있는 전용 대역폭 용량을 제공합니다. **프리미엄** 스트리밍 끝점이 있는 고객은 기본적으로 하나의 SU(스트리밍 단위)를 가져옵니다. SUs를 추가 하 여 hello 스트리밍 끝점을 확장할 수 있습니다. 각 SU 대역폭도 추가로 용량 toohello 응용 프로그램을 제공 합니다. 확장에 대 한 자세한 내용은 **프리미엄** hello 참조 스트리밍 끝점을 [스트리밍 끝점 확장](media-services-portal-scale-streaming-endpoints.md) 항목입니다.
 
-* 미디어 서비스 계정은 미디어 처리 작업을 처리하는 속도를 결정하는 예약 단위 형식과 연결됩니다. **S1**, **S2**, **S3** 예약 단위 유형 중에서 선택할 수 있습니다. 예를 들어 **S2** 예약 단위 유형을 사용하는 경우 **S1** 유형에 비해 동일한 인코딩 작업이 더 빠르게 실행됩니다.
+* 미디어 서비스 계정 작업을 처리 하 여 미디어 처리 되는 hello 속도 결정 하는 예약 된 단위 유형과 연관 되어 있습니다. Hello 다음 중에서 선택할 수 예약 단위 형식: **S1**, **S2**, 또는 **S3**합니다. Hello를 사용할 때 동일한 인코딩 작업이 더 빠르게 실행 하는 hello 예를 들어 **S2** toohello 비교 하는 예약된 단위 형식 **S1** 유형입니다.
 
-    예약 단위 유형을 지정하는 것 외에도 계정에 **RU(예약 단위)**를 프로비전하도록 지정할 수 있습니다. 프로비전되는 RU의 수에 따라 특정 계정에서 동시에 처리할 수 있는 미디어 작업의 수가 결정됩니다.
+    또한 toospecifying hello 예약 단위 형식, tooprovision를 사용 하 여 계정을 지정할 수 있습니다 **예약 단위** (RUs). 프로 비전 된 RUs hello 수 hello 지정된 된 계정에서 동시에 처리할 수 있는 미디어 작업 수를 결정 합니다.
 
     >[!NOTE]
     >RU는 Azure Media Indexer를 사용하는 인덱싱 작업을 비롯하여 모든 미디어 처리 병렬화에 대해 작동합니다. 그러나 인코딩과 달리 인덱싱 작업은 예약 단위가 더 빠르게 실행되어도 더 빨리 처리되지 않습니다.
 
     자세한 내용은 [미디어 처리 크기 조정](media-services-portal-scale-media-processing.md)을 참조하세요.
-* 또한 저장소 계정을 추가하여 Media Services 계정을 확장할 수 있습니다. 각 저장소 계정은 500TB로 제한됩니다. 여러 저장소 계정을 단일 Media Services 계정에 연결하여 기본 제한 이상으로 저장소를 확장할 수 있습니다. 자세한 내용은 [저장소 계정 관리](meda-services-managing-multiple-storage-accounts.md)를 참조하세요.
+* 또한 저장소 계정 tooit를 추가 하 여 미디어 서비스 계정에 확장할 수 있습니다. 각 저장소 계정은 제한 된 too500 TB입니다. tooexpand hello 기본 제한 보다 크게 저장소를 선택할 수 있습니다 tooattach 여러 저장소 계정을 tooa 단일 미디어 서비스 계정입니다. 자세한 내용은 [저장소 계정 관리](meda-services-managing-multiple-storage-accounts.md)를 참조하세요.
 
 ##<a id="availability"></a>데이터 센터에서 Media Services 기능의 사용 가용성
 
@@ -165,11 +165,11 @@ AMS 고객은 해당 AMS 계정에서 스트리밍 끝점, 미디어 처리 및 
 
 #### <a name="availability"></a>Availability
 
-북유럽, 유럽 서부, 미국 서부, 미국 동부, 동남 아시아, 동아시아, 일본 서부, 일본 동부, 브라질 남부, 인도 서부, 인도 남부 및 인도 중부 지역에서 Media Services 계정을 만들 수 있습니다. 
+Hello 다음 지역에서에서 미디어 서비스 계정을 만들 수 있습니다: 북유럽, 서유럽, 미국 서 부, 미국 동부, 동남 아시아, 아시아 동부, 일본 서 부, 일본 동쪽, 브라질 남쪽, 인도 서 부, 인도 남부 및 중앙 인도 있습니다. 
 
 ### <a name="streaming-endpoints"></a>스트리밍 끝점 
 
-Media Services 고객은 **표준** 스트리밍 끝점이나 **프리미엄** 스트리밍 끝점을 선택할 수 있습니다. 자세한 내용은 [크기 조정](#scaling) 섹션을 참조하세요.
+Media Services 고객은 **표준** 스트리밍 끝점이나 **프리미엄** 스트리밍 끝점을 선택할 수 있습니다. 자세한 내용은 참조 hello [배율](#scaling) 섹션.
 
 #### <a name="availability"></a>Availability
 
@@ -197,7 +197,7 @@ AMS에서는 두 가지 주문형 인코더인 **Media Encoder Standard** 및 **
 
 ### <a name="analytics-media-processors"></a>분석 미디어 프로세서
 
-미디어 분석은 조직과 기업이 비디오 파일에서 실질적인 통찰력을 끌어내기 쉽도록 만드는 언어 및 시각 구성 요소 모음입니다. 자세한 내용은 [Azure Media Services 분석 개요](media-services-analytics-overview.md)를 참조하세요.
+미디어 분석은 쉽게 조직 및 기업 tooderive 실행 가능한 통찰력에 대 한 비디오 파일에서 음성 및 비전 구성 요소 컬렉션입니다. 자세한 내용은 [Azure Media Services 분석 개요](media-services-analytics-overview.md)를 참조하세요.
 
 #### <a name="availability"></a>Availability
 
@@ -215,7 +215,7 @@ AMS에서는 두 가지 주문형 인코더인 **Media Encoder Standard** 및 **
 
 ### <a name="protection"></a>보호
 
-Microsoft Azure 미디어 서비스를 사용하면 컴퓨터를 떠날 때부터 저장, 처리 및 배달에 이르는 과정 내내 미디어를 보호할 수 있습니다. 자세한 내용은 [AMS 콘텐츠 보호](media-services-content-protection-overview.md)를 참조하세요.
+Microsoft Azure 미디어 서비스 toosecure 하면 미디어를 저장, 처리 및 배달을 통해 컴퓨터를 벗어나 hello 시간을 수 있습니다. 자세한 내용은 [AMS 콘텐츠 보호](media-services-content-protection-overview.md)를 참조하세요.
 
 #### <a name="availability"></a>Availability
 
@@ -229,9 +229,9 @@ Microsoft Azure 미디어 서비스를 사용하면 컴퓨터를 떠날 때부�
 
 ### <a name="reserved-units-rus"></a>RU(예약 단위)
 
-프로비전되는 예약 단위의 수에 따라 특정 계정에서 동시에 처리할 수 있는 미디어 작업의 수가 결정됩니다. 
+제공된 된 예약된 단위 수가 hello hello 지정된 된 계정에서 동시에 처리할 수 있는 미디어 작업 수를 결정 합니다. 
 
-자세한 내용은 [크기 조정](#scaling) 섹션을 참조하세요.
+자세한 내용은 참조 hello [배율](#scaling) 섹션.
 
 #### <a name="availability"></a>Availability
 
@@ -239,9 +239,9 @@ Microsoft Azure 미디어 서비스를 사용하면 컴퓨터를 떠날 때부�
 
 ### <a name="reserved-unit-ru-type"></a>RU(예약 단위) 형식
 
-Media Services 계정은 미디어 처리 작업을 처리하는 속도를 결정하는 예약 단위 형식과 연결됩니다. S1, S2 또는 S3과 같은 예약 단위 형식 중에서 선택할 수 있습니다.
+미디어 서비스 계정 작업을 처리 하 여 미디어 처리 되는 hello 속도 결정 하는 예약된 단위 형식과 연결 됩니다. Hello 다음 중에서 선택할 수 예약 단위 형식: S1, S2 또는 s 3입니다.
 
-자세한 내용은 [크기 조정](#scaling) 섹션을 참조하세요.
+자세한 내용은 참조 hello [배율](#scaling) 섹션.
 
 #### <a name="availability"></a>Availability
 

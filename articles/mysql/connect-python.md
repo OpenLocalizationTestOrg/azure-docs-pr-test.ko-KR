@@ -1,6 +1,6 @@
 ---
-title: "Python에서 MySQL용 Azure Database에 연결 | Microsoft Docs"
-description: "이 빠른 시작에서는 MySQL용 Azure Database에서 데이터를 연결하고 쿼리하는 데 사용할 수 있는 몇 가지 Python 코드 샘플을 제공합니다."
+title: "Python에서 MySQL에 대 한 데이터베이스 tooAzure 연결 | Microsoft Docs"
+description: "이 퀵 스타트의 여러 Python 코드 Azure 데이터베이스에서 tooconnect 및 쿼리 데이터를 사용 하 여 MySQL 용 샘플을 제공 합니다."
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,79 +11,79 @@ ms.custom: mvc
 ms.devlang: python
 ms.topic: hero-article
 ms.date: 07/12/2017
-ms.openlocfilehash: 4c3a2e65b83fab6fe5b8b7778782a747bb5e9cf9
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 9df5211adcab886a502fd138347aed8fb587cd5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-python-to-connect-and-query-data"></a>MySQL용 Azure Database: Python을 사용하여 데이터 연결 및 쿼리
-이 빠른 시작에서는 [Python](https://python.org)을 사용하여 MySQL용 Azure Database에 연결하는 방법을 보여 줍니다. SQL 문을 사용하여 Mac OS, Ubuntu Linux 및 Windows 플랫폼에서 데이터베이스의 데이터를 쿼리, 삽입, 업데이트 및 삭제합니다. 이 문서의 단계에서는 Python을 사용하여 개발하는 데 익숙하고 MySQL용 Azure Database를 처음 사용한다고 가정합니다.
+# <a name="azure-database-for-mysql-use-python-tooconnect-and-query-data"></a>MySQL에 대 한 azure 데이터베이스: Python 사용 tooconnect 및 쿼리 데이터
+이 빠른 시작에서는 방법을 toouse [Python](https://python.org) tooconnect tooan MySQL에 대 한 Azure 데이터베이스입니다. Mac OS, Ubuntu Linux 및 Windows 플랫폼에서 hello 데이터베이스의 SQL 문 tooquery, 삽입, 업데이트 및 삭제 데이터를 사용합니다. 이 문서의 단계 hello Python을 사용 하 여 개발에 익숙한 하 고 새 tooworking MySQL에 대 한 Azure 데이터베이스는 가정 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 빠른 시작에서는 다음과 같은 가이드 중 하나에서 만들어진 리소스를 시작 지점으로 사용합니다.
+이 퀵 스타트의 시작 지점으로이 가이드의 중 하나에서 만든 hello 리소스를 사용 합니다.
 - [Azure Portal을 사용한 MySQL용 Azure Database 서버 만들기](./quickstart-create-mysql-server-database-using-azure-portal.md)
-- [Azure CLI를 사용한 MySQL용 Azure 데이터베이스 서버 만들기](./quickstart-create-mysql-server-database-using-azure-cli.md)
+- [Azure CLI를 사용한 MySQL용 Azure Database 서버 만들기](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
-## <a name="install-python-and-the-mysql-connector"></a>Python 및 MySQL 커넥터 설치
-자신의 컴퓨터에 [Python](https://www.python.org/downloads/)과 [Python용 MySQL 커넥터](https://dev.mysql.com/downloads/connector/python/)를 설치합니다. 플랫폼에 따라 다음 단계를 수행합니다.
+## <a name="install-python-and-hello-mysql-connector"></a>Python을 설치 하 고 MySQL 커넥터 hello
+설치 [Python](https://www.python.org/downloads/) 및 hello [Python에 대 한 MySQL 커넥터](https://dev.mysql.com/downloads/connector/python/) 사용자의 컴퓨터에 있습니다. 플랫폼에 따라 hello 단계를 수행 합니다.
 
 ### <a name="windows"></a>Windows
 1. [python.org](https://www.python.org/downloads/windows/)에서 Python 2.7을 다운로드하고 설치합니다. 
-2. 명령 프롬프트를 실행하여 Python 설치를 확인합니다. 대문자 V 스위치와 함께 `C:\python27\python.exe -V` 명령을 실행하여 버전 번호를 확인합니다.
-3. [mysql.com](https://dev.mysql.com/downloads/connector/python/)에서 자신의 Python 버전에 해당하는 MySQL용 Python 커넥터를 설치합니다.
+2. Hello 명령 프롬프트를 시작 하 여 hello Python 설치를 확인 합니다. Hello 명령을 실행 `C:\python27\python.exe -V` hello 대문자 V 스위치 toosee hello 버전 번호를 사용 하 여 합니다.
+3. MySQL에 대 한 hello Python 커넥터를 설치 [mysql.com](https://dev.mysql.com/downloads/connector/python/) Python의 해당 tooyour 버전입니다.
 
 ### <a name="linux-ubuntu"></a>Linux(Ubuntu)
-1. Linux(Ubuntu)에서 Python은 일반적으로 기본 설치의 일부로 설치됩니다.
-2. Bash 셸을 실행하여 Python 설치를 확인합니다. 대문자 V 스위치와 함께 `python -V` 명령을 실행하여 버전 번호를 확인합니다.
-3. `pip show pip -V` 명령을 실행하여 버전 번호를 확인함으로써 PIP 설치를 확인합니다. 
-4. PIP는 Python의 일부 버전에 포함될 수 있습니다. PIP가 설치되어 있지 않으면 `sudo apt-get install python-pip` 명령을 실행하여 [PIP](https://pip.pypa.io/en/stable/installing/) 패키지를 설치할 수 있습니다.
-5. `pip install -U pip` 명령을 실행하여 PIP를 최신 버전으로 업데이트합니다.
-6. PIP 명령을 사용하여 Python용 MySQL 커넥터 및 해당 종속성을 설치합니다.
+1. Linux (Ubuntu)에서 Python hello 기본 설치의 일부로 일반적으로 설치 됩니다.
+2. Hello bash 셸의 시작 하 여 hello Python 설치를 확인 합니다. Hello 명령을 실행 `python -V` hello 대문자 V 스위치 toosee hello 버전 번호를 사용 하 여 합니다.
+3. Hello를 실행 하 여 hello PIP 설치 확인 `pip show pip -V` toosee hello 버전 번호 명령입니다. 
+4. PIP는 Python의 일부 버전에 포함될 수 있습니다. Hello [PIP] (https://pip.pypa.io/en/stable/installing/)를 설치할 수 있습니다 PIP 설치 되지 않은 경우 명령을 실행 하 여 패키지 `sudo apt-get install python-pip`합니다.
+5. 업데이트 PIP toohello 최신 버전으로 hello를 실행 하 여 `pip install -U pip` 명령입니다.
+6. Python 및 해당 종속성에 대 한 hello PIP 명령을 사용 하 여 hello MySQL 커넥터를 설치 합니다.
 
    ```bash
    sudo pip install mysql-connector-python-rf
    ```
  
 ### <a name="macos"></a>MacOS
-1. Mac OS에서 Python은 일반적으로 기본 OS 설치의 일부로 설치됩니다.
-2. Bash 셸을 실행하여 Python 설치를 확인합니다. 대문자 V 스위치와 함께 `python -V` 명령을 실행하여 버전 번호를 확인합니다.
-3. `pip show pip -V` 명령을 실행하여 버전 번호를 확인함으로써 PIP 설치를 확인합니다.
-4. PIP는 Python의 일부 버전에 포함될 수 있습니다. PIP가 설치되어 있지 않으면 [PIP](https://pip.pypa.io/en/stable/installing/) 패키지를 설치할 수 있습니다.
-5. `pip install -U pip` 명령을 실행하여 PIP를 최신 버전으로 업데이트합니다.
-6. PIP 명령을 사용하여 Python용 MySQL 커넥터 및 해당 종속성을 설치합니다.
+1. Mac OS에서 Python hello 기본 운영 체제 설치의 일부로 일반적으로 설치 됩니다.
+2. Hello bash 셸의 시작 하 여 hello Python 설치를 확인 합니다. Hello 명령을 실행 `python -V` hello 대문자 V 스위치 toosee hello 버전 번호를 사용 하 여 합니다.
+3. Hello를 실행 하 여 hello PIP 설치 확인 `pip show pip -V` toosee hello 버전 번호 명령입니다.
+4. PIP는 Python의 일부 버전에 포함될 수 있습니다. Hello PIP 설치 되어 있지 않으면 설치할 수 있습니다 [PIP](https://pip.pypa.io/en/stable/installing/) 패키지 합니다.
+5. 업데이트 PIP toohello 최신 버전으로 hello를 실행 하 여 `pip install -U pip` 명령입니다.
+6. Python 및 해당 종속성에 대 한 hello PIP 명령을 사용 하 여 hello MySQL 커넥터를 설치 합니다.
 
    ```bash
    pip install mysql-connector-python-rf
    ```
 
 ## <a name="get-connection-information"></a>연결 정보 가져오기
-MySQL용 Azure Database에 연결하는 데 필요한 연결 정보를 가져옵니다. 정규화된 서버 이름 및 로그인 자격 증명이 필요합니다.
+MySQL 용 hello 연결 필요한 정보 tooconnect toohello를 Azure 데이터베이스를 가져옵니다. 정규화 된 서버 이름 및 로그인 자격 증명 hello 필요 합니다.
 
-1. [Azure 포털](https://portal.azure.com/)에 로그인합니다.
-2. Azure Portal의 왼쪽 메뉴에서 **모든 리소스**를 클릭하고 만든 서버를 검색합니다(예: **myserver4demo**).
-3. **myserver4demo** 서버 이름을 클릭합니다.
-4. 서버의 **속성** 페이지를 선택합니다. **서버 이름** 및 **서버 관리자 로그인 이름**을 기록해 둡니다.
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+2. Azure 포털에서 왼쪽 메뉴 hello에서에서 클릭 **모든 리소스** 같은 creased 한 hello 서버에 대 한 검색 **myserver4demo**합니다.
+3. Hello 서버 이름을 클릭 **myserver4demo**합니다.
+4. 선택 hello 서버 **속성** 페이지. Hello 메모 **서버 이름** 및 **서버 관리자 로그인 이름**합니다.
  ![MySQL용 Azure Database - 서버 관리자 로그인](./media/connect-python/1_server-properties-name-login.png)
-5. 서버 로그인 정보를 잊어버린 경우 **개요** 페이지로 이동하여 서버 관리자 로그인 이름을 확인하고 필요한 경우 암호를 다시 설정합니다.
+5. 서버 로그인 정보를 잊은 경우 탐색 toohello **개요** tooview hello 서버 관리자 로그인 이름 페이지 하 고 필요한 경우 다시 설정 hello 암호입니다.
    
 
 ## <a name="run-python-code"></a>Python 코드 실행
-- 코드를 텍스트 파일에 붙여넣고 C:\pythonmysql\createtable.py 또는 /home/username/pythonmysql/createtable.py와 같이 .py 파일 확장명이 포함된 프로젝트 폴더에 저장합니다.
-- 코드를 실행하려면 명령 프롬프트 또는 Bash 셸을 시작합니다. 디렉터리를 프로젝트 폴더로 변경합니다(예: `cd pythonmysql`). 그런 다음 python 명령 다음에 파일 이름을 입력하여 응용 프로그램을 실행합니다(예: `python createtable.py`). Windows OS에서 python.exe를 찾을 수 없으면 실행 파일의 전체 경로를 제공하거나 경로 환경 변수에 Python 경로를 추가할 수 있습니다. `C:\python27\python.exe createtable.py`
+- 텍스트 파일에 hello 코드를 붙여 넣고 C:\pythonmysql\createtable.py /home/username/pythonmysql/createtable.py 등의 파일 확장명.py와 프로젝트 폴더에 hello 파일을 저장 합니다.
+- toorun hello 코드 hello 명령 프롬프트를 시작 또는 bash 셸은 합니다. 디렉터리를 프로젝트 폴더로 변경합니다(예: `cd pythonmysql`). Hello 파일 이름이 옵니다 hello python 명령을 입력 `python createtable.py` toorun hello 응용 프로그램입니다. Hello Windows 운영 체제에서 python.exe 없으면 hello 전체 경로 toohello 실행 파일인 제공할 수도 있습니다 hello Python 경로 hello path 환경 변수를 추가 합니다. `C:\python27\python.exe createtable.py`
 
 ## <a name="connect-create-table-and-insert-data"></a>테이블 연결, 생성 및 데이터 삽입
-다음 코드를 사용하여 서버에 연결하고, 테이블을 만들고, **INSERT** SQL 문을 통해 데이터를 로드합니다. 
+사용 하 여 hello 다음 tooconnect toohello 서버 코드, 테이블을 만들고 및 사용 하 여 hello 데이터 로드는 **삽입** SQL 문입니다. 
 
-코드에서 mysql.connector 라이브러리를 가져옵니다. [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 구성 컬렉션의 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html)를 사용하여 MySQL용 Azure Database에 연결하는 데 사용됩니다. 코드는 연결에서 커서를 사용하고, [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드는 MySQL 데이터베이스에 대해 SQL 쿼리를 실행합니다. 
+Hello 코드 hello mysql.connector 라이브러리가 가져옵니다. hello [connect ()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 사용 되는 tooconnect tooAzure hello를 사용 하 여 MySQL에 대 한 데이터베이스 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello 구성 컬렉션에 있습니다. hello 코드 hello 연결에서 커서를 사용 하 고 [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드가 MySQL 데이터베이스에 대해 hello SQL 쿼리를 실행 합니다. 
 
-`host`, `user`, `password` 및 `database` 매개 변수는 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
+Hello 대체 `host`, `user`, `password`, 및 `database` hello 값이 hello 서버 및 데이터베이스를 만들 때 지정 된 매개 변수입니다.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -97,7 +97,7 @@ try:
    print("Connection established")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
+    print("Something is wrong with hello user name or password")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
@@ -129,17 +129,17 @@ else:
 ```
 
 ## <a name="read-data"></a>데이터 읽기
-**SELECT** SQL 문을 사용하여 데이터를 연결하고 읽으려면 다음 코드를 사용하세요. 
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 hello 데이터 읽기는 **선택** SQL 문입니다. 
 
-코드에서 mysql.connector 라이브러리를 가져옵니다. [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 구성 컬렉션의 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html)를 사용하여 MySQL용 Azure Database에 연결하는 데 사용됩니다. 코드는 연결에서 커서를 사용하고, [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드는 MySQL 데이터베이스에 대해 SQL 문을 실행합니다. 데이터 행은 [fetchall()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-fetchall.html) 메서드를 사용하여 읽습니다. 결과 집합은 컬렉션 행에 유지되고 for 반복기는 행을 반복하는 데 사용됩니다.
+Hello 코드 hello mysql.connector 라이브러리가 가져옵니다. hello [connect ()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 사용 되는 tooconnect tooAzure hello를 사용 하 여 MySQL에 대 한 데이터베이스 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello 구성 컬렉션에 있습니다. hello 코드 hello 연결에서 커서를 사용 하 고 [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드가 MySQL 데이터베이스에 대해 hello SQL 문을 실행 합니다. hello를 사용 하 여 hello 데이터 행은 읽기 [fetchall()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-fetchall.html) 메서드. hello 결과 집합에에서 유지 되는 컬렉션 행 및 반복기 hello 행에 대해 사용 되는 tooloop입니다.
 
-`host`, `user`, `password` 및 `database` 매개 변수는 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
+Hello 대체 `host`, `user`, `password`, 및 `database` hello 값이 hello 서버 및 데이터베이스를 만들 때 지정 된 매개 변수입니다.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -153,7 +153,7 @@ try:
    print("Connection established")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
+    print("Something is wrong with hello user name or password")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
@@ -178,17 +178,17 @@ else:
 ```
 
 ## <a name="update-data"></a>데이터 업데이트
-**UPDATE** SQL 문을 사용하여 데이터를 연결하고 업데이트하려면 다음 코드를 사용하세요. 
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 hello 데이터 업데이트는 **업데이트** SQL 문입니다. 
 
-코드에서 mysql.connector 라이브러리를 가져옵니다.  [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 구성 컬렉션의 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html)를 사용하여 MySQL용 Azure Database에 연결하는 데 사용됩니다. 코드는 연결에서 커서를 사용하고, [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드는 MySQL 데이터베이스에 대해 SQL 문을 실행합니다. 
+Hello 코드 hello mysql.connector 라이브러리가 가져옵니다.  hello [connect ()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 사용 되는 tooconnect tooAzure hello를 사용 하 여 MySQL에 대 한 데이터베이스 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello 구성 컬렉션에 있습니다. hello 코드 hello 연결에서 커서를 사용 하 고 [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드가 MySQL 데이터베이스에 대해 hello SQL 문을 실행 합니다. 
 
-`host`, `user`, `password` 및 `database` 매개 변수는 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
+Hello 대체 `host`, `user`, `password`, 및 `database` hello 값이 hello 서버 및 데이터베이스를 만들 때 지정 된 매개 변수입니다.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -202,7 +202,7 @@ try:
    print("Connection established")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
+    print("Something is wrong with hello user name or password")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
@@ -210,7 +210,7 @@ except mysql.connector.Error as err:
 else:
   cursor = conn.cursor()
 
-  # Update a data row in the table
+  # Update a data row in hello table
   cursor.execute("UPDATE inventory SET quantity = %s WHERE name = %s;", (200, "banana"))
   print("Updated",cursor.rowcount,"row(s) of data.")
 
@@ -222,17 +222,17 @@ else:
 ```
 
 ## <a name="delete-data"></a>데이터 삭제
-다음 코드를 사용하여 데이터를 연결하고 **DELETE** SQL 문을 통해 데이터를 제거합니다. 
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 데이터를 제거는 **삭제** SQL 문입니다. 
 
-코드에서 mysql.connector 라이브러리를 가져옵니다.  [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 구성 컬렉션의 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html)를 사용하여 MySQL용 Azure Database에 연결하는 데 사용됩니다. 코드는 연결에서 커서를 사용하고, [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드는 MySQL 데이터베이스에 대해 SQL 쿼리를 실행합니다. 
+Hello 코드 hello mysql.connector 라이브러리가 가져옵니다.  hello [connect ()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) 함수는 사용 되는 tooconnect tooAzure hello를 사용 하 여 MySQL에 대 한 데이터베이스 [연결 인수](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello 구성 컬렉션에 있습니다. hello 코드 hello 연결에서 커서를 사용 하 고 [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) 메서드가 MySQL 데이터베이스에 대해 hello SQL 쿼리를 실행 합니다. 
 
-`host`, `user`, `password` 및 `database` 매개 변수는 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
+Hello 대체 `host`, `user`, `password`, 및 `database` hello 값이 hello 서버 및 데이터베이스를 만들 때 지정 된 매개 변수입니다.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -246,7 +246,7 @@ try:
    print("Connection established.")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password.")
+    print("Something is wrong with hello user name or password.")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist.")
   else:
@@ -254,7 +254,7 @@ except mysql.connector.Error as err:
 else:
   cursor = conn.cursor()
 
-  # Delete a data row in the table
+  # Delete a data row in hello table
   cursor.execute("DELETE FROM inventory WHERE name=%(param1)s;", {'param1':"orange"})
   print("Deleted",cursor.rowcount,"row(s) of data.")
 

@@ -1,6 +1,6 @@
 ---
-title: "Eclipse용 Azure 도구 키트 설치 | Microsoft Docs"
-description: "Eclipse용 Azure 도구 키트를 설치하는 방법을 알아봅니다."
+title: "Eclipse 용 Azure 도구 키트 aaaInstalling hello | Microsoft Docs"
+description: "Tooinstall Azure Toolkit for Eclipse hello 하는 방법에 대해 알아봅니다."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,69 +14,69 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 35cddba38c364dfb2f6a8646b0014d48ca4cb795
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c195fab2b47fb5c42541a8cf52be4ec88d27b5d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="installing-the-azure-toolkit-for-eclipse"></a>Eclipse용 Azure 도구 키트 설치
-Eclipse용 Azure 도구 키트는 Eclipse 개발 환경에서 Azure 응용 프로그램을 쉽게 작성, 개발, 테스트 및 배포할 수 있는 템플릿과 기능을 제공합니다. Eclipse용 Azure 도구 키트는 오픈 소스 프로젝트입니다. 소스 코드는 <https://github.com/microsoft/azure-tools-for-java>의 MIT 라이선스 아래에서 확인할 수 있습니다.
+# <a name="installing-hello-azure-toolkit-for-eclipse"></a>Hello Eclipse 용 Azure 도구 키트 설치
+hello Azure Toolkit for Eclipse tooeasily 수 있는 템플릿과 기능을 만드는 나와 개발 테스트 및 hello Eclipse 개발 환경을 사용 하 여 Azure 응용 프로그램을 배포 합니다. hello Eclipse 용 Azure 도구 키트는 오픈 소스 프로젝트. hello 소스 코드는 hello MIT 라이선스에서 <https://github.com/microsoft/azure-tools-for-java>합니다.
 
-다음 단계는 Eclipse용 Azure 도구 키트를 설치하는 방법을 보여줍니다.
+단계를 수행 하는 hello tooinstall Azure Toolkit for Eclipse hello 하는 방법을 보여 줍니다.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## <a name="to-install-the-azure-toolkit-for-eclipse"></a>Eclipse용 Azure 도구 키트 설치
+## <a name="tooinstall-hello-azure-toolkit-for-eclipse"></a>tooinstall hello Eclipse 용 Azure 도구 키트
 1. Eclipse를 시작합니다.
-2. 다음 그림에 표시된 대로 **Help** 메뉴를 클릭하고 **Install New Software**를 클릭합니다.
+2. Hello 클릭 **도움말** 메뉴를 차례로 클릭 **새 소프트웨어 설치**hello 다음 그림에에서 나온 것 처럼 합니다.
    
-    ![Eclipse용 Azure 도구 키트 설치][01]
-3. **Available Software** 대화 상자의 **Work with** 텍스트 상자에 `http://dl.microsoft.com/eclipse`를 입력하고 **Enter** 키를 누릅니다.
-4. **Name** 창에서 **Azure Toolkit for Eclipse**를 선택하고 **Contact all update sites during install to find required software**를 선택하지 않습니다. 화면은 다음과 유사한 모양입니다.
+    ![Hello Eclipse 용 Azure 도구 키트 설치][01]
+3. Hello에 **사용 가능한 소프트웨어** hello 내의 대화 상자 **작업할** 텍스트 상자에서 `http://dl.microsoft.com/eclipse` hello 이어서 **Enter** 키입니다.
+4. Hello에 **이름** 창에서 검사 **Azure Toolkit for Eclipse**의 선택을 취소 **toofind 필요한 소프트웨어를 설치 하는 동안 모든 업데이트 사이트 접촉**합니다. 화면에는 비슷한 toohello 다음과 같아야 합니다.
    
-    ![Eclipse용 Azure 도구 키트 설치][02]
-5. **Azure Toolkit for Eclipse**를 확장하면 다음 항목이 표시됩니다.
+    ![Hello Eclipse 용 Azure 도구 키트 설치][02]
+5. Hello를 확장 하는 경우 **Azure Toolkit for Eclipse**, 다음 항목 hello 표시 됩니다.
    
-   * **Application Insights Plugin for Java**: 이 구성 요소는 응용 프로그램 및 서버 인스턴스에 대해 Azure의 원격 분석 로깅 및 분석 서비스를 사용할 수 있도록 합니다.
-   * **Azure Access Control Services Filter**:이 구성 요소는 Azure ACS에서 응용 프로그램 사용자를 인증하도록 하고 Single Sign-On 시나리오를 사용하도록 하고 응용 프로그램에서 ID 논리를 외부화합니다.
-   * **Azure Common Plugin**: 이 구성 요소는 다른 도구 키트 구성 요소에 필요한 공통 기능을 제공합니다.
-   * **Azure Explorer for Eclipse**: 이 구성 요소는 다른 도구 키트 구성 요소에 필요한 공통 기능을 제공합니다.
-   * **Azure Plugin for Eclipse with Java**: 이 구성 요소는 Eclipse에서 및 명령줄을 통해 Microsoft Azure 클라우드용 Java 응용 프로그램을 빌드, 테스트 및 배포하도록 지원하는 프로젝트를 개발할 수 있도록 합니다.
-   * **Azure Web Apps Plugin with Java**: 이 구성 요소는 Microsoft Azure 웹앱 컨테이너에 Java 웹 응용 프로그램을 배포할 수 있도록 지원합니다.
+   * **Java 용 응용 프로그램 Insights 플러그 인**:이 구성 요소는 toouse Azure의 원격 분석 로깅 및 분석 서비스 응용 프로그램과 서버 인스턴스를 허용 합니다.
+   * **Azure 액세스 제어 서비스 필터**:이 구성 요소를 Azure ACS 응용 프로그램 사용자 인증, single sign-on 시나리오를 사용 하도록 설정 하 고, hello 응용 프로그램에서의 id 논리를 외부화에 대 한 지원을 제공 합니다.
+   * **Azure 공용 플러그인**:이 구성 요소 다른 도구 키트 구성 요소에 필요한 hello 공통 기능을 제공 합니다.
+   * **Eclipse 용 azure 탐색기**:이 구성 요소 다른 도구 키트 구성 요소에 필요한 hello 공통 기능을 제공 합니다.
+   * **Eclipse with Java 용 azure 플러그 인**:이 구성 요소 빌드, 테스트 하 고, Eclipse 및 명령줄을 통해 hello Microsoft Azure 클라우드에 대 한 Java 응용 프로그램을 배포 하는 프로젝트 개발에 대 한 지원을 제공 합니다.
+   * **Java 통해 azure 웹 앱 플러그 인**:이 구성 요소는 Java 웹 응용 프로그램 tooMicrosoft Azure 웹 앱 컨테이너를 배포 하기 위한 지원을 제공 합니다.
    * **Microsoft JDBC Driver 4.2 for SQL Server**: 이 구성 요소는 SQL Server용 JDBC API와 Java Platform Enterprise Edition 8용 Microsoft Azure SQL 데이터베이스를 제공합니다.
-   * **Package for Apache Qpid Client Libraries for JMS**: 이 구성 요소는 응용 프로그램이 Microsoft Azure 내에서 AMQP 메시징을 사용할 수 있도록 Apache Qpid 프로젝트의 JMS 클라이언트 구성 요소를 제공합니다.
+   * **JMS 용 Apache Qpid 클라이언트 라이브러리 패키지**:이 구성 요소는 Microsoft Azure에서 응용 프로그램 toouse AMQP 메시징 hello Apache Qpid 프로젝트 tooenable에서 hello JMS 클라이언트 구성 요소가 제공 합니다.
    * **Package for Microsoft Azure Libraries for Java**: 이 구성 요소는 저장소, 서비스 버스, 서비스 런타임 등의 Microsoft Azure 서비스에 액세스하기 위한 API를 제공합니다.
-6. **다음**을 누릅니다. (도구 키트를 설치하는 동안 비정상적인 지연이 발생하는 경우에는 **Contact all update sites during install to find required software** 가 선택되어 있지 않은지 확인합니다.)
-7. **설치 세부 정보** 대화 상자에서 **다음**을 클릭합니다.
+6. **다음**을 누릅니다. (Hello 도구 키트를 설치 하는 경우 지연 시간이 발생 하면 되도록 **toofind 필요한 소프트웨어를 설치 하는 동안 모든 업데이트 사이트 접촉** 선택 하지 않으면.)
+7. Hello에 **설치 세부 정보** 대화 상자를 클릭 하 여 **다음**합니다.
    
     ![설치 세부 정보 검토][03]
-8. **Review Licenses** 대화 상자에서 사용권 계약 조건을 검토합니다. 사용권 계약 조건에 동의하면 **동의함**을 클릭한 후 **마침**을 클릭합니다. (나머지 단계에서는 사용권 계약 조건에 동의한다고 가정합니다. 사용권 계약 조건에 동의하지 않으면 설치 프로세스를 종료합니다.)
+8. Hello에 **라이선스 검토** 대화 상자에서 hello hello 사용권 계약 약관을 검토 합니다. Hello 사용권 계약의 hello 조건에 동의 하면 클릭 **hello 사용권 계약의 hello 조건에 동의** 클릭 하 고 **마침**합니다. (hello 나머지 단계는 hello 사용권 계약의 hello 조건에 동의 않는 가정 하는 데 사용 합니다. Hello hello 사용권 계약 약관에 동의 하지 않는 hello 설치 프로세스 종료 합니다.)
    
     ![Review Licenses][04]
    
-    Eclipse는 필수 패키지를 다운로드하고 설치합니다.
+    Eclipse를 다운로드 하 여 hello 필요한 패키지를 설치 합니다.
    
     ![설치 진행률][05]
-9. 설치를 완료하기 위해 Eclipse를 다시 시작한다는 메시지가 표시되면 **Yes**를 클릭합니다.
+9. Toorestart Eclipse toocomplete 설치를 묻는 메시지가 나타나면 클릭 **예**합니다.
    
     ![다시 시작 프롬프트][06]
 
 ## <a name="see-also"></a>참고 항목
-Java IDE용 Azure 도구 키트에 대한 자세한 내용은 다음 링크를 참조하세요.
+Java Ide에 대 한 hello Azure 도구 키트에 대 한 자세한 내용은 hello 다음 링크 참조:
 
 * [Eclipse용 Azure 도구 키트]
-  * [Eclipse용 Azure 도구 키트의 새로운 기능]
-  * *Eclipse용 Azure 도구 키트 설치(이 문서)*
-  * [Eclipse용 Azure 도구 키트에 대한 로그인 지침]
+  * [Hello Azure Toolkit for Eclipse에서 새로운 이란]
+  * *Hello Azure Toolkit for Eclipse (이 문서의 내용)를 설치합니다.*
+  * [Eclipse 용 Azure 도구 키트 hello에 대 한 지침에 로그인]
   * [Eclipse에서 Azure용 Hello World 웹앱 만들기]
 * [IntelliJ용 Azure 도구 키트]
-  * [IntelliJ용 Azure 도구 키트의 새로운 기능]
-  * [IntelliJ용 Azure 도구 키트 설치]
-  * [IntelliJ용 Azure 도구 키트에 대한 로그인 지침]
+  * [Hello IntelliJ 용 Azure 도구 키트에서 새로운 이란]
+  * [IntelliJ 용 hello Azure 도구 키트 설치]
+  * [Hello IntelliJ 용 Azure 도구 키트에 대 한 지침에 로그인]
   * [IntelliJ에서 Azure용 Hello World 웹앱 만들기]
 
-Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터]를 참조하세요.
+Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터]합니다.
 
 <!-- URL List -->
 
@@ -84,12 +84,12 @@ Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure
 [IntelliJ용 Azure 도구 키트]: ./azure-toolkit-for-intellij.md
 [Eclipse에서 Azure용 Hello World 웹앱 만들기]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [IntelliJ에서 Azure용 Hello World 웹앱 만들기]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[IntelliJ용 Azure 도구 키트 설치]: ./azure-toolkit-for-intellij-installation.md
-[Eclipse용 Azure 도구 키트에 대한 로그인 지침]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[IntelliJ용 Azure 도구 키트에 대한 로그인 지침]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Eclipse용 Azure 도구 키트의 새로운 기능]: ./azure-toolkit-for-eclipse-whats-new.md
-[IntelliJ용 Azure 도구 키트의 새로운 기능]: ./azure-toolkit-for-intellij-whats-new.md
+[Installing hello Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[IntelliJ 용 hello Azure 도구 키트 설치]: ./azure-toolkit-for-intellij-installation.md
+[Eclipse 용 Azure 도구 키트 hello에 대 한 지침에 로그인]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Hello IntelliJ 용 Azure 도구 키트에 대 한 지침에 로그인]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Hello Azure Toolkit for Eclipse에서 새로운 이란]: ./azure-toolkit-for-eclipse-whats-new.md
+[Hello IntelliJ 용 Azure 도구 키트에서 새로운 이란]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 개발자 센터]: https://azure.microsoft.com/develop/java/
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 웹 SDK 통합 | Microsoft Docs"
-description: "Azure Mobile Engagement 웹 SDK의 최신 업데이트 및 절차"
+title: "Mobile Engagement 웹 SDK 통합 aaaAzure | Microsoft Docs"
+description: "최신 업데이트 및 hello Azure Mobile Engagement 웹 SDK에 대 한 절차 hello"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: js
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: piyushjo
-ms.openlocfilehash: 7d8eaa180e277741a583522ee62d68f5247b92bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99613b68b615bec4ddcfcc8e4e0133ce9d887bad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-mobile-engagement-in-a-web-application"></a>웹 응용 프로그램에 Azure Mobile Engagement 통합
 > [!div class="op_single_selector"]
@@ -29,21 +29,21 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-이 문서의 절차에서는 웹 응용 프로그램에서 Azure Mobile Engagement의 분석 및 모니터링 기능을 활성화하는 가장 간단한 방법을 설명합니다.
+hello 가장 간단한 방법은 tooactivate hello 분석 워크 로드와 웹 응용 프로그램에서 Azure Mobile Engagement의 함수 모니터링이 문서의 hello 절차에 설명 합니다.
 
-다음 단계를 수행하여 사용자, 세션, 활동, 작동 중단 및 기술과 관련된 모든 통계를 계산하는 데 필요한 로그 보고를 활성화합니다. 이벤트, 오류, 작업 등의 응용 프로그램 종속 통계의 경우 Azure Mobile Engagement API를 사용하여 로그 보고를 수동으로 활성화해야 합니다. 자세한 내용은 [웹 응용 프로그램에서 고급 Mobile Engagement 태깅 API를 사용하는 방법](mobile-engagement-web-use-engagement-api.md)을 참조하세요.
+Hello 단계 tooactivate hello 로그 있는 보고서를 필요한 toocompute 사용자, 세션, 활동, 충돌 및 technicals 하는 방법에 대 한 모든 통계를 따릅니다. 이벤트, 오류, 작업 및 등의 응용 프로그램에 따라 통계에 대 한 hello Azure Mobile Engagement API를 사용 하 여 로그 보고서를 수동으로 활성화 해야 있습니다. 자세한 내용은 [어떻게 toouse hello 고급 Mobile Engagement 웹 응용 프로그램에서 API 태깅](mobile-engagement-web-use-engagement-api.md)합니다.
 
 ## <a name="introduction"></a>소개
-[Azure Mobile Engagement 웹 SDK 다운로드](http://aka.ms/P7b453)Mobile Engagement 웹 SDK는 단일 JavaScript 파일인 azure-engagement.js로 제공됩니다.
-이 파일은 사이트 또는 웹 응용 프로그램의 각 페이지에 포함해야 합니다.
+[Hello Azure Mobile Engagement 웹 SDK 다운로드](http://aka.ms/P7b453)합니다.
+hello 모바일 Engagement 웹 SDK는 단일 JavaScript 파일 요소로 제공 되며, azure engagement.js 있는 사이트 또는 웹 응용 프로그램의 각 페이지에서 tooinclude 합니다.
 
 > [!IMPORTANT]
-> 이 스크립트를 실행하려면 먼저 응용 프로그램의 Mobile Engagement를 구성하기 위해 작성한 스크립트 또는 코드 조각을 실행해야 합니다.
+> 이 스크립트를 실행 하기 전에 스크립트를 실행 하거나 코드 조각 tooconfigure Mobile Engagement 응용 프로그램에 대해 작성 해야 합니다.
 > 
 > 
 
 ## <a name="browser-compatibility"></a>브라우저 호환성
-Mobile Engagement 웹 SDK는 크로스 도메인 AJAX 요청 외에 네이티브 JSON 인코딩 및 디코딩을 사용합니다(W3C CORS 사양 사용). 다음 브라우저와 호환됩니다.
+Mobile Engagement 웹 SDK hello 네이티브 JSON 인코딩 및 디코딩, 또한: toocross 도메인 AJAX 요청 (hello W3C CORS 사양에 의존)를 사용 합니다. 브라우저를 수행 하는 hello와 호환 되는지:
 
 * Microsoft Edge 12+
 * Internet Explorer 10+
@@ -53,7 +53,7 @@ Mobile Engagement 웹 SDK는 크로스 도메인 AJAX 요청 외에 네이티브
 * Opera 12+
 
 ## <a name="configure-mobile-engagement"></a>Mobile Engagement 구성
-다음 예제와 같은 전역 `azureEngagement` JavaScript 개체를 만드는 스크립트를 작성합니다. 사이트에 여러 개의 페이지가 있을 수 있으므로 이 예제에서는 이 스크립트가 모든 페이지에 포함되어 있다고 가정합니다. 이 예제에서 JavaScript 개체 이름은 `azure-engagement-conf.js`로 지정됩니다.
+전역 만드는 스크립트를 작성 `azureEngagement` hello 다음 예제와 같이 JavaScript 개체입니다. 사이트에 여러 개의 페이지가 있을 수 있으므로 이 예제에서는 이 스크립트가 모든 페이지에 포함되어 있다고 가정합니다. 이 예제에서는 hello JavaScript 개체 이름은 `azure-engagement-conf.js`합니다.
 
     window.azureEngagement = {
       connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
@@ -61,7 +61,7 @@ Mobile Engagement 웹 SDK는 크로스 도메인 AJAX 요청 외에 네이티브
       appVersionCode: 1
     };
 
-응용 프로그램에 대한 `connectionString` 값이 Azure 포털에 표시됩니다.
+hello `connectionString` hello Azure 포털을 응용 프로그램에 표시 됩니다에 대 한 값입니다.
 
 > [!NOTE]
 > `appVersionName` 및 `appVersionCode`는 선택 사항입니다. 그러나 분석할 때 프로세스 버전 정보가 처리될 수 있도록 구성하는 것이 좋습니다.
@@ -69,7 +69,7 @@ Mobile Engagement 웹 SDK는 크로스 도메인 AJAX 요청 외에 네이티브
 > 
 
 ## <a name="include-mobile-engagement-scripts-in-your-pages"></a>페이지에 Mobile Engagement 스크립트 포함
-다음 방법 중 하나를 사용하여 페이지에 Mobile Engagement 스크립트를 추가합니다.
+Mobile Engagement 스크립트 tooyour 페이지 hello 같은 방법으로 다음 중 하나에 추가 합니다.
 
     <head>
       ...
@@ -88,9 +88,9 @@ Mobile Engagement 웹 SDK는 크로스 도메인 AJAX 요청 외에 네이티브
     </body>
 
 ## <a name="alias"></a>Alias
-Mobile Engagement 웹 SDK 스크립트는 로드되면 SDK API에 액세스하기 위한 **engagement** 별칭을 만듭니다. SDK 구성을 정의하는 데는 이 별칭을 사용할 수 없습니다. 이 별칭은 이 설명서에서 참조로 사용됩니다.
+Hello 만듭니다 hello Mobile Engagement 웹 SDK 스크립트를 로드 한 다음 **engagement** 별칭 tooaccess hello SDK Api입니다. 이 별칭 toodefine hello SDK 구성을 사용할 수 없습니다. 이 별칭은 이 설명서에서 참조로 사용됩니다.
 
-기본 별칭이 페이지의 다른 전역 변수와 충돌할 경우 다음과 같이 Mobile Engagement 웹 SDK를 로드하기 전에 구성에서 재정의할 수 있습니다.
+Note는 hello 기본 별칭 충돌 페이지에서 다른 전역 변수를 재정의할 수 hello 구성에서 다음과 같이 hello Mobile Engagement 웹 SDK를 로드 하기 전에:
 
     window.azureEngagement = {
       connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
@@ -105,9 +105,9 @@ Mobile Engagement의 기본 보고 기능에는 사용자, 세션, 활동 및 �
 ### <a name="session-tracking"></a>세션 추적
 Mobile Engagement 세션은 일련의 활동으로 나뉘며 각각이 이름으로 식별됩니다.
 
-기존 웹 사이트는 사이트의 각 페이지에서 서로 다른 활동을 선언하는 것이 좋습니다. 현재 페이지가 절대 변경되지 않는 웹 사이트 또는 웹 응용 프로그램에서는 페이지 내부와 같이 좀 더 작은 규모로 활동을 추적하는 것이 좋습니다.
+기존 웹 사이트는 사이트의 각 페이지에서 서로 다른 활동을 선언하는 것이 좋습니다. 웹 사이트 또는 웹 응용 프로그램의 어떤 hello에서 현재 페이지는 바뀌지 경우 hello 페이지 내에서 같은 소규모, tootrack hello 활동을 할 수 있습니다.
 
-현재 사용자 활동을 시작하든 변경하든 `engagement.agent.startActivity` 함수를 호출합니다. 예:
+하거나, toostart 또는 변경 hello 현재 사용자 작업을 호출 hello `engagement.agent.startActivity` 함수입니다. 예:
 
     <body onload="yourOnload()">
 
@@ -118,28 +118,28 @@ Mobile Engagement 세션은 일련의 활동으로 나뉘며 각각이 이름으
       engagement.agent.startActivity('welcome');
     };
 
-Mobile Engagement 서버는 응용 프로그램 페이지가 닫히고 3분 이내에 열린 세션을 자동으로 종료합니다.
+Mobile Engagement 서버 hello hello 응용 프로그램 페이지를 닫은 후 3 분 이내 세션이 열린를 자동으로 종료 됩니다.
 
-또는 `engagement.agent.endActivity`를 호출하여 세션을 수동으로 종료할 수 있습니다. 이렇게 하면 현재 사용자 활동이 'Idle'로 설정됩니다.  `engagement.agent.startActivity` 의 새 호출이 세션을 다시 시작하지 않는 한, 세션은 10초 후에 종료됩니다.
+또는 `engagement.agent.endActivity`를 호출하여 세션을 수동으로 종료할 수 있습니다. 이 옵션은 현재 사용자 활동 too'Idle hello 설정 합니다.'  hello 세션 하지 않는 한 10 초 후 종료 됩니다 새 호출을 통해서도`engagement.agent.startActivity` hello 세션을 다시 시작 합니다.
 
-다음과 같이 전역 Engagement 개체에서 10초의 지연을 구성할 수 있습니다.
+Hello 글로벌 engagement 개체에 hello 10 초 지연 시간을 다음과 같이 구성할 수 있습니다.
 
     engagement.sessionTimeout = 2000; // 2 seconds
     // or
-    engagement.sessionTimeout = 0; // end the session as soon as endActivity is called
+    engagement.sessionTimeout = 0; // end hello session as soon as endActivity is called
 
 > [!NOTE]
-> 이 단계에서는 AJAX를 호출할 수 없으므로 `onunload` 콜백에서 `engagement.agent.endActivity`를 사용할 수 없습니다.
+> 사용할 수 없는 `engagement.agent.endActivity` hello에 `onunload` 콜백이이 단계에서 AJAX 호출을 변경할 수 없습니다.
 > 
 > 
 
 ## <a name="advanced-reporting"></a>고급 보고
-필요에 따라 응용 프로그램 관련 이벤트, 오류 및 작업을 보고하려는 경우 Mobile Engagement API를 사용해야 합니다. `engagement.agent` 개체를 통해 Mobile Engagement API에 액세스합니다.
+필요에 따라 tooreport 응용 프로그램별 이벤트, 오류 및 작업을 하려는 경우에 toouse hello Mobile Engagement API 필요 합니다. Hello를 통해 Mobile Engagement API hello 액세스 `engagement.agent` 개체입니다.
 
-Mobile Engagement API의 Mobile Engagement에서 모든 고급 기능에 액세스할 수 있습니다. 이 API는 [웹 응용 프로그램에서 고급 Mobile Engagement 태깅 API를 사용하는 방법](mobile-engagement-web-use-engagement-api.md)문서에 자세히 설명되어 있습니다.
+모든 hello 고급 hello Mobile Engagement API에서에서 Mobile Engagement의 기능에 액세스할 수 있습니다. hello API hello 문서에 자세히 설명 되어 [어떻게 toouse hello 고급 Mobile Engagement 웹 응용 프로그램에서 API 태깅](mobile-engagement-web-use-engagement-api.md)합니다.
 
-## <a name="customize-the-urls-used-for-ajax-calls"></a>AJAX 호출에 사용되는 URL 사용자 지정
-Mobile Engagement 웹 SDK에서 사용되는 URL을 사용자 지정할 수 있습니다. 예를 들어 로그 URL(로깅을 위한 SDK 끝점)을 다시 정의하기 위해 다음과 같이 구성을 재정의할 수 있습니다.
+## <a name="customize-hello-urls-used-for-ajax-calls"></a>AJAX 호출에 사용 되는 hello Url을 사용자 지정
+Mobile Engagement 웹 SDK를 사용 하 여 해당 hello Url을 사용자 지정할 수 있습니다. 예를 들어 tooredefine hello 로그 URL (hello SDK 끝점 로깅에 대 한), hello 구성을 재정의할 수 있습니다 다음과 같이 합니다.
 
     window.azureEngagement = {
       ...
@@ -151,7 +151,7 @@ Mobile Engagement 웹 SDK에서 사용되는 URL을 사용자 지정할 수 있�
       }
     };
 
-URL 함수가 `/`, `//`, `http://` 또는 `https://`로 시작하는 문자열을 반환한다면 기본 구성표가 사용되지 않은 것입니다. 기본적으로 해당 URL에는 `https://` 구성표가 사용됩니다. 기본 구성표를 사용자 지정하고 싶다면 다음과 같이 구성을 재정의합니다.
+URL 함수로 시작 하는 문자열을 반환 하는 경우 `/`, `//`, `http://`, 또는 `https://`, hello 기본 스키마가 사용 되지 않습니다. 기본적으로 hello `https://` 구성표 해당 Url에 사용 됩니다. Toocustomize hello 기본 체계를 사용 하도록 하려는 경우 다음과 같이 hello 구성을 재정의 합니다.
 
     window.azureEngagement = {
       ...
