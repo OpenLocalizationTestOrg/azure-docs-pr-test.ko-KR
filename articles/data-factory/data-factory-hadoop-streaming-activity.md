@@ -1,6 +1,6 @@
 ---
-title: "Hadoop 스트리밍 작업을 사용하여 데이터 변환 - Azure | Microsoft Docs"
-description: "Azure Data Factory에서 Hadoop 스트리밍 작업을 사용하여 주문형/사용자 고유의 HDInsight 클러스터에서 Hadoop 스트리밍 프로그램을 실행함으로써 데이터를 변환하는 방법을 알아봅니다."
+title: "Hadoop 스트리밍 작업-Azure를 사용 하 여 aaaTransform 데이터 | Microsoft Docs"
+description: "에-필요 시/사용자 고유의 HDInsight 클러스터에서 Hadoop 스트리밍 프로그램을 실행 하 여 Azure 데이터 팩터리 tootransform 데이터에서 Hadoop 스트리밍 작업 hello를 사용 하는 방법에 대해 알아봅니다."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: bfe62aa60f5a0ff339e1d495d22a5fdfac10d5dc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a7ddb7268f47162709a9c8136ccd69e0b7d4ad7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-hadoop-streaming-activity-in-azure-data-factory"></a>Azure Data Factory에서 Hadoop 스트리밍 작업을 사용하여 데이터 변환
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,15 +33,15 @@ ms.lasthandoff: 08/18/2017
 > * [Data Lake Analytics U-SQL 작업](data-factory-usql-activity.md)
 > * [.NET 사용자 지정 작업](data-factory-use-custom-activities.md)
 
-HDInsightStreamingActivity 작업을 사용하여 Azure Data Factory 파이프라인에서 Hadoop 스트리밍 작업을 호출할 수 있습니다. 다음 JSON 조각은 파이프라인 JSON 파일에서 HDInsightStreamingActivity를 사용하기 위한 구문을 보여 줍니다. 
+사용할 수 있습니다 HDInsightStreamingActivity 활동 hello Azure 데이터 팩터리 파이프라인에서 Hadoop 스트리밍 작업을 호출 합니다. hello 다음 JSON 코드 조각은 구문을 보여 줍니다 hello HDInsightStreamingActivity hello를 사용 하 여 파이프라인 JSON 파일. 
 
-Data Factory [파이프라인](data-factory-create-pipelines.md)의 HDInsight 스트리밍 작업은 [사용자 고유](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 또는 [주문형](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux 기반 HDInsight 클러스터에서 Hadoop 스트리밍 프로그램을 실행합니다. 이 문서는 데이터 변환 및 지원되는 변환 활동의 일반적인 개요를 표시하는 [데이터 변환 활동](data-factory-data-transformation-activities.md) 문서에서 작성합니다.
+Data Factory에 HDInsight 스트리밍 활동 hello [파이프라인](data-factory-create-pipelines.md) 에서 Hadoop 스트리밍 프로그램을 실행 합니다. [고유한](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 또는 [주문형](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux 기반 HDInsight 클러스터입니다. Hello를 기반으로 한이 문서 [데이터 변환 작업](data-factory-data-transformation-activities.md) 데이터 변환 및 지원 hello 변환 작업에 대 한 일반적인 개요를 제공 하는 문서입니다.
 
 > [!NOTE] 
-> Azure Data Factory를 처음 접하는 경우 [Azure Data Factory 소개](data-factory-introduction.md)를 읽고 이 문서를 읽기 전에 [첫 번째 데이터 파이프라인 빌드](data-factory-build-your-first-pipeline.md) 자습서를 수행하세요. 
+> 새 tooAzure 데이터 팩터리 인 경우 읽어 [소개 tooAzure Data Factory](data-factory-introduction.md) 자습서 hello 수행 하 고: [첫 번째 데이터 파이프라인을 빌드](data-factory-build-your-first-pipeline.md) 이 문서를 읽기 전에 합니다. 
 
 ## <a name="json-sample"></a>JSON 샘플
-HDInsight 클러스터는 예제 프로그램(wc.exe 및 cat.exe) 및 데이터(davinci.txt)와 함께 자동으로 채워집니다. 기본적으로 HDInsight 클러스터에 사용되는 컨테이너의 이름은 클러스터 자체의 이름입니다. 예를 들어, 클러스터 이름이 myhdicluster이면 연결된 BLOB 컨테이너의 이름은 myhdicluster가 됩니다. 
+hello HDInsight 클러스터 (wc.exe 및 cat.exe) 예제 프로그램 및 데이터 (davinci.txt)으로 자동으로 채워집니다. 기본적으로 hello HDInsight 클러스터에서 사용 되는 hello 컨테이너의 이름에는 hello 클러스터 자체의 hello 이름이입니다. 예를 들어 클러스터 이름이 myhdicluster 이면 연결 된 hello blob 컨테이너의 이름을 myhdicluster 것입니다. 
 
 ```JSON
 {
@@ -89,30 +89,30 @@ HDInsight 클러스터는 예제 프로그램(wc.exe 및 cat.exe) 및 데이터(
 }
 ```
 
-다음 사항에 유의하세요.
+포인트 다음 참고 hello:
 
-1. **linkedServiceName** 을 스트리밍 mapreduce 작업을 실행할 수 있는 HDInsight 클러스터를 가리키는 연결된 서비스의 이름으로 설정합니다.
-2. activity의 type을 **HDInsightStreaming**으로 설정합니다.
-3. **mapper** 속성에는 매퍼 실행 파일의 이름을 지정합니다. 예제에서는 cat.exe가 매퍼 실행 파일입니다.
-4. **reducer** 속성에는 리듀서 실행 파일의 이름을 지정합니다. 예제에서는 wc.exe가 리듀서 실행 파일입니다.
-5. **input** 유형 속성에는 매퍼의 입력 파일(위치 포함)을 지정합니다. 예제의 "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt"에서 adfsample은 BLOB 컨테이너이고 example/data/Gutenberg는 폴더이며 davinci.txt는 BOLB입니다.
-6. **output** 유형 속성에는 리듀서의 출력 파일(위치 포함)을 지정합니다. Hadoop 스트리밍 작업의 출력이 이 속성에 지정된 위치에 기록됩니다.
-7. **filePaths** 섹션에서 매퍼 및 리듀서 실행 파일의 경로를 지정합니다. "adfsample/example/apps/wc.exe" 예에서 adfsample은 Blob 컨테이너, example/apps는 폴더, wc.exe는 실행 파일입니다.
-8. **fileLinkedService** 속성에는 filePaths 섹션에 지정된 파일이 포함된 Azure 저장소를 나타내는 Azure 저장소 연결된 서비스를 지정합니다.
-9. **arguments** 속성에는 스트리밍 작업의 인수를 지정합니다.
-10. **getDebugInfo** 속성은 선택적 요소입니다. Failure로 설정되면 실패한 경우에만 로그가 다운로드됩니다. Always로 설정되면 실행 상태에 관계없이 로그가 항상 다운로드됩니다.
+1. 집합 hello **linkedServiceName** 연결 된 서비스는 hello 스트리밍 mapreduce 작업 실행 tooyour HDInsight 클러스터를 가리키는의 hello toohello 이름입니다.
+2. 너무 hello 유형의 hello 활동 설정**HDInsightStreaming**합니다.
+3. Hello에 대 한 **매퍼** 속성을 hello 매퍼 실행 파일 이름을 지정 합니다. Hello 예제 cat.exe는 hello 매퍼 실행 파일입니다.
+4. Hello에 대 한 **리 듀 서** 속성 리 듀 서 실행 파일의 hello 이름을 지정 합니다. Hello 예제 wc.exe는 hello 리 듀 서 실행 합니다.
+5. Hello에 대 한 **입력** type 속성을 hello 맵 편집기에 대 한 hello 입력된 파일 (hello 위치)를 지정 합니다. Hello 예에서: "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample이 blob 컨테이너 hello, 예제/data/Gutenberg hello 폴더 이며 davinci.txt가 blob hello 합니다.
+6. Hello에 대 한 **출력** type 속성을 hello 리 듀 서에 대 한 hello 출력 파일 (hello 위치 포함)를 지정 합니다. hello Hadoop 스트리밍 작업의 hello 출력은이 속성에 지정 된 toohello 위치를 기록 합니다.
+7. Hello에 **filePaths** 섹션에서 hello 매퍼 및 리 듀 서 실행 파일에 대 한 hello 경로 지정 합니다. Hello 예에서: "adfsample/example/apps/wc.exe" adfsample이 blob 컨테이너 hello, example/apps가 hello 폴더 및 wc.exe는 hello를 실행 합니다.
+8. Hello에 대 한 **fileLinkedService** 속성을 hello Azure 저장소 연결 된 서비스를 나타내는 hello hello filePaths 섹션에 지정 된 hello 파일이 포함 된 Azure 저장소를 지정 합니다.
+9. Hello에 대 한 **인수** 속성을 hello 스트리밍 작업에 대 한 hello 인수를 지정 합니다.
+10. hello **getDebugInfo** 속성은 선택적 요소입니다. TooFailure, 설정 되 면 hello 로그 오류에 대해서만 다운로드 됩니다. TooAlways, 설정 되어 있는 경우 로그 hello 실행 상태에 관계 없이 항상 다운로드 됩니다.
 
 > [!NOTE]
-> 예제에서 볼 수 있듯이 **output** 속성에 대해 Hadoop 스트리밍 작업에 대한 출력 데이터 집합을 지정합니다. 이 데이터 집합은 파이프라인 일정을 진행하는데 필요한 더미 데이터 집합입니다. **input** 속성에 대한 작업에 입력 데이터 집합을 지정할 필요가 없습니다.  
+> Hello에 대 한 hello Hadoop 스트리밍 작업에 대 한 출력 데이터 집합 지정 hello 예제 에서처럼 **출력** 속성입니다. 이 데이터 집합은 방금 더미 필요한 toodrive hello 파이프라인 일정입니다. 않아도 toospecify 모든 입력된 데이터 집합 hello에 대 한 hello 활동에 대 한 **입력** 속성입니다.  
 > 
 > 
 
-## <a name="example"></a>예
-이번 연습의 파이프라인에서는 Azure HDInsight 클러스터에서 Word Count 스트리밍 Map/Reduce 프로그램을 실행합니다. 
+## <a name="example"></a>예제
+Azure HDInsight 클러스터에서 hello 단어 개수 스트리밍 Map/Reduce 프로그램을 실행 하는이 연습에서 hello 파이프라인. 
 
 ### <a name="linked-services"></a>연결된 서비스
 #### <a name="azure-storage-linked-service"></a>Azure 저장소 연결된 서비스
-우선 Azure HDInsight 클러스터에서 사용되는 Azure 저장소를 Azure 데이터 팩터리에 연결하도록 연결된 서비스를 생성합니다. 다음 코드를 복사하여 붙여넣는 경우, 잊지 말고 계정 이름과 계정 키를 사용자의 Azure 저장소의 이름과 키로 바꿉니다. 
+먼저, 연결 된 서비스 toolink hello hello Azure HDInsight 클러스터 toohello Azure 데이터 팩터리에서 사용 되는 Azure 저장소를 만듭니다. 경우 하면 복사/붙여넣기 코드 다음 hello 잊지 마십시오 hello 이름의 tooreplace 계정 이름 및 계정 키 및 Azure 저장소의 키입니다. 
 
 ```JSON
 {
@@ -127,7 +127,7 @@ HDInsight 클러스터는 예제 프로그램(wc.exe 및 cat.exe) 및 데이터(
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Azure HDInsight 연결된 서비스
-다음으로, Azure HDInsight 클러스터를 Azure 데이터 팩터리에 연결하도록 연결된 서비스를 만듭니다. 다음 코드를 복사하여 붙여넣는 경우, HDInsight 클러스터 이름을 사용자의 HDInsight 클러스터 이름으로 바꾸고 사용자 이름과 암호 값을 변경합니다. 
+다음으로 연결 된 서비스 toolink Azure HDInsight 클러스터 toohello Azure 데이터 팩터리를 만듭니다. 경우 하면 복사/붙여넣기 코드 다음 hello HDInsight 클러스터의 hello 이름의 HDInsight 클러스터 이름을 바꾼 사용자 이름 및 암호 값을 변경 합니다. 
 
 ```JSON
 {
@@ -146,7 +146,7 @@ HDInsight 클러스터는 예제 프로그램(wc.exe 및 cat.exe) 및 데이터(
 
 ### <a name="datasets"></a>데이터 집합
 #### <a name="output-dataset"></a>출력 데이터 집합
-이 예제의 파이프라인은 input을 포함하지 않습니다. HDInsight 스트리밍 작업에 대한 출력 데이터 집합을 지정합니다. 이 데이터 집합은 파이프라인 일정을 진행하는데 필요한 더미 데이터 집합입니다. 
+이 예제에서 hello 파이프라인 어떤 입력도 수행 하지 않습니다. Hello HDInsight 스트리밍 활동에 대 한 출력 데이터 집합을 지정합니다. 이 데이터 집합은 방금 더미 필요한 toodrive hello 파이프라인 일정입니다. 
 
 ```JSON
 {
@@ -171,9 +171,9 @@ HDInsight 클러스터는 예제 프로그램(wc.exe 및 cat.exe) 및 데이터(
 ```
 
 ### <a name="pipeline"></a>파이프라인
-이 예제의 파이프라인은 **HDInsightStreaming**형식의 작업을 하나만 포함합니다. 
+이 예에서 hello 파이프라인에 유형의 활동이 하나만: **HDInsightStreaming**합니다. 
 
-HDInsight 클러스터는 예제 프로그램(wc.exe 및 cat.exe) 및 데이터(davinci.txt)와 함께 자동으로 채워집니다. 기본적으로 HDInsight 클러스터에 사용되는 컨테이너의 이름은 클러스터 자체의 이름입니다. 예를 들어, 클러스터 이름이 myhdicluster이면 연결된 BLOB 컨테이너의 이름은 myhdicluster가 됩니다.  
+hello HDInsight 클러스터 (wc.exe 및 cat.exe) 예제 프로그램 및 데이터 (davinci.txt)으로 자동으로 채워집니다. 기본적으로 hello HDInsight 클러스터에서 사용 되는 hello 컨테이너의 이름에는 hello 클러스터 자체의 hello 이름이입니다. 예를 들어 클러스터 이름이 myhdicluster 이면 연결 된 hello blob 컨테이너의 이름을 myhdicluster 것입니다.  
 
 ```JSON
 {

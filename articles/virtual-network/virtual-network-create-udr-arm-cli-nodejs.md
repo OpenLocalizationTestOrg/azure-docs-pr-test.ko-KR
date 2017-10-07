@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 1.0을 사용하여 라우팅 및 가상 어플라이언스 제어 | Microsoft Docs"
-description: "Azure CLI 1.0을 사용하여 라우팅 및 가상 어플라이언스 제어 방법 알아보기"
+title: "aaaControl 라우팅 및 가상 어플라이언스를 사용 하 여 hello Azure CLI 1.0 | Microsoft Docs"
+description: "Toocontrol 라우팅 및 가상 어플라이언스를 사용 하 여 Azure CLI 1.0 hello 하는 방법에 대해 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/18/2017
 ms.author: jdial
-ms.openlocfilehash: 5f21bc7a4fcd9507ea9d6b2b752a2328a7b834f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c8a552d949521fa554880c00405e65fa47a8162
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-user-defined-routes-udr-using-the-azure-cli-10"></a>Azure CLI 1.0을 사용하여 UDR(사용자 정의 경로) 만들기
+# <a name="create-user-defined-routes-udr-using-hello-azure-cli-10"></a>사용자 정의 경로 (UDR) hello Azure CLI 1.0을 사용 하 여 만들기
 
 > [!div class="op_single_selector"]
 > * [PowerShell](virtual-network-create-udr-arm-ps.md)
@@ -29,33 +29,33 @@ ms.lasthandoff: 07/11/2017
 > * [PowerShell(클래식)](virtual-network-create-udr-classic-ps.md)
 > * [CLI(클래식)](virtual-network-create-udr-classic-cli.md)
 
-Azure CLI를 사용하여 사용자 지정 라우팅 및 가상 어플라이언스를 만듭니다.
+사용자 지정 라우팅 및 가상 어플라이언스 hello Azure CLI를 사용 하 여 만듭니다.
 
-## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전 
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업 
 
-다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다. 
+Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다. 
 
-- [Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) - 클래식 및 리소스 관리 배포 모델용 CLI(이 문서)
-- [Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) - 리소스 관리 배포 모델용 차세대 CLI 
+- [Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) – 우리의 CLI 모델에 대 한 hello 클래식 및 리소스 관리 배포 (이 문서)
+- [Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) -우리의 차세대 CLI hello 리소스 관리 배포 모델에 대 한 
 
 
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-아래 샘플 Azure CLI 명령에는 위의 시나리오를 기반으로 이미 만들어져 있는 단순한 환경이 필요합니다. 이 문서에 표시된 대로 명령을 실행하려는 경우 먼저 [이 템플릿](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)을 배포하여 테스트 환경을 구축하고 **Azure에 배포**를 클릭한 다음 필요한 경우 기본 매개 변수 값을 바꾸고 포털의 지침을 따릅니다.
+hello 샘플 Azure CLI 명령 아래에 이미 위의 hello 시나리오를 기반으로 만들어진 단순 환경이 필요 합니다. 이 문서에 표시 된 대로 toorun hello 명령을 원하는 경우 먼저 hello 테스트 환경을 구축 배포 하 여 [이 서식 파일](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), 클릭 **tooAzure 배포**, 대체 hello 기본 매개 변수 값 필요한 경우, 및의 지침에 따라 hello hello 포털 하는 경우.
 
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>프런트 엔드 서브넷에 대한 UDR 만들기
-위의 시나리오에 따라 필요한 경로 테이블 및 경로를 만들려면 다음 단계를 수행합니다.
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Hello UDR hello 프런트 엔드 서브넷에 대 한 만들기
+toocreate hello 경로 테이블 및 필요한 위의 hello 시나리오에 따라 hello 프런트 엔드 서브넷에 대 한 경로 아래의 hello 단계를 수행 합니다.
 
-1. 다음 명령을 실행하여 프런트 엔드 서브넷에 대한 경로 테이블을 만듭니다.
+1. 다음 명령은 toocreate hello hello 프런트 엔드 서브넷에 대 한 경로 테이블을 실행 합니다.
 
     ```azurecli
     azure network route-table create -g TestRG -n UDR-FrontEnd -l uswest
     ```
    
-    출력
+    출력:
    
         info:    Executing command network route-table create
         info:    Looking up route table "UDR-FrontEnd"
@@ -71,16 +71,16 @@ Azure CLI를 사용하여 사용자 지정 라우팅 및 가상 어플라이언�
    
     매개 변수:
    
-   * **-g (or --resource-group)**. UDR이 만들어지는 리소스 그룹의 이름입니다. 이 시나리오에서는 *TestRG*입니다.
-   * **-l(또는 --location)**. 새 UDR을 만들 Azure 지역입니다. 이 시나리오에서는 *westus*입니다.
-   * **-n (or --name)**. 새 UDR의 이름입니다. 이 시나리오에서는 *UDR-FrontEnd*입니다.
-2. 다음 명령을 실행하여 경로 테이블에 경로를 만들고 백 엔드 서브넷(192.168.2.0/24)으로 보내진 모든 트래픽을 **FW1** VM(192.168.0.4)으로 보냅니다.
+   * **-g (or --resource-group)**. Hello UDR 만들어지는 hello 리소스 그룹의 이름입니다. 이 시나리오에서는 *TestRG*입니다.
+   * **-l(또는 --location)**. Hello 새 UDR 만들어지는 azure 지역. 이 시나리오에서는 *westus*입니다.
+   * **-n (or --name)**. Hello에 대 한 이름을 새 UDR 합니다. 이 시나리오에서는 *UDR-FrontEnd*입니다.
+2. 모든 트래픽이 toohello 백 엔드 서브넷 (192.168.2.0/24) toohello 명령 toocreate hello 경로 테이블 toosend에서 경로 따라 hello 실행 **FW1** VM (192.168.0.4):
 
     ```azurecli
     azure network route-table route create -g TestRG -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -y VirtualAppliance -p 192.168.0.4
     ```
    
-    출력
+    출력:
    
         info:    Executing command network route-table route create
         info:    Looking up route "RouteToBackEnd" in route table "UDR-FrontEnd"
@@ -97,23 +97,23 @@ Azure CLI를 사용하여 사용자 지정 라우팅 및 가상 어플라이언�
    
     매개 변수
    
-   * **-r(또는 --route-table-name)**. 경로가 추가될 경로 테이블의 이름입니다. 이 시나리오에서는 *UDR-FrontEnd*입니다.
-   * **-a(또는 --address-prefix)**. 패킷을 보내는 서브넷에 대한 주소 접두사입니다. 이 시나리오에서는 *192.168.2.0/24*입니다.
+   * **-r(또는 --route-table-name)**. Hello 경로 추가할 hello 경로 테이블의 이름입니다. 이 시나리오에서는 *UDR-FrontEnd*입니다.
+   * **-a(또는 --address-prefix)**. Hello 서브넷에 패킷을 보내는 위치에 대 한 주소 접두사입니다. 이 시나리오에서는 *192.168.2.0/24*입니다.
    * **-y(또는 --next-hop-type)**. 전송할 개체 트래픽 유형입니다. 가능한 값은 *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet* 또는 *None*입니다.
    * **-p(또는 --next-hop-ip-address**). 다음 홉에 대한 IP 주소입니다. 이 시나리오에서는 *192.168.0.4*입니다.
-3. 다음 명령을 실행하여 위에서 만든 경로 테이블을 **FrontEnd** 서브넷에 연결합니다.
+3. 실행된 hello 다음 명령은 hello를 사용 하 여 위에서 만든 tooassociate hello 경로 테이블 **프런트 엔드** 서브넷:
 
     ```azurecli
     azure network vnet subnet set -g TestRG -e TestVNet -n FrontEnd -r UDR-FrontEnd
     ```
    
-    출력
+    출력:
    
         info:    Executing command network vnet subnet set
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         info:    Looking up route table "UDR-FrontEnd"
         info:    Setting subnet "FrontEnd"
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         virtualNetworks/TestVNet/subnets/FrontEnd
         data:    Type                            : Microsoft.Network/virtualNetworks/subnets
@@ -133,42 +133,42 @@ Azure CLI를 사용하여 사용자 지정 라우팅 및 가상 어플라이언�
    
     매개 변수
    
-   * **-e(또는 --vnet-name)**. 서브넷이 위치한 VNet의 이름입니다. 이 시나리오에서는 *TestVNet*입니다.
+   * **-e(또는 --vnet-name)**. Hello hello 서브넷 위치한 VNet의 이름입니다. 이 시나리오에서는 *TestVNet*입니다.
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>백 엔드 서브넷에 대한 UDR 만들기
-위의 시나리오에 따라 백 엔드 서브넷에 필요한 경로 테이블 및 경로를 만들려면 다음 단계를 마칩니다.
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Hello UDR hello 백 엔드 서브넷에 대 한 만들기
+toocreate hello 경로 테이블 및 위의 단계를 수행 하는 전체 hello hello 시나리오에 따라 hello 백 엔드 서브넷에 필요한 경로:
 
-1. 다음 명령을 실행하여 백 엔드 서브넷에 대한 경로 테이블을 만듭니다.
+1. 다음 명령은 toocreate hello hello 백 엔드 서브넷에 대 한 경로 테이블을 실행 합니다.
 
     ```azurecli
     azure network route-table create -g TestRG -n UDR-BackEnd -l westus
     ```
 
-2. 다음 명령을 실행하여 경로 테이블에 경로를 만들고 프런트 엔드 서브넷(192.168.1.0/24)으로 보내진 모든 트래픽을 **FW1** VM(192.168.0.4)으로 보냅니다.
+2. 모든 트래픽이 toohello 프런트 엔드 서브넷 (192.168.1.0/24) toohello 명령 toocreate hello 경로 테이블 toosend에서 경로 따라 hello 실행 **FW1** VM (192.168.0.4):
 
     ```azurecli
     azure network route-table route create -g TestRG -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -y VirtualAppliance -p 192.168.0.4
     ```
 
-3. 다음 명령을 실행하여 경로 테이블을 **BackEnd** 서브넷에 연결합니다.
+3. 실행 hello 명령 tooassociate hello 경로 테이블 hello로 다음 **백 엔드** 서브넷:
 
     ```azurecli
     azure network vnet subnet set -g TestRG -e TestVNet -n BackEnd -r UDR-BackEnd
     ```
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>FW1에서 IP 전달을 사용하도록 설정
-사용 되는 NIC에서 IP 전달을 사용 하도록 설정 하려면 **FW1**, 다음 단계를 완료 합니다.
+hello에서 사용 하는 NIC에 IP 전달을 tooenable **FW1**완료, 다음 단계 hello:
 
-1. 다음 명령을 실행하고 **IP 전달 사용**에 대한 값을 확인합니다. *false*로 설정해야 합니다.
+1. 뒤에 오는 hello 값에 대 한 hello 명령을 실행 **IP 전달을**합니다. 너무 설정 해야*false*합니다.
 
     ```azurecli
     azure network nic show -g TestRG -n NICFW1
     ```
 
-    출력
+    출력:
    
         info:    Executing command network nic show
-        info:    Looking up the network interface "NICFW1"
+        info:    Looking up hello network interface "NICFW1"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         networkInterfaces/NICFW1
         data:    Name                            : NICFW1
@@ -191,18 +191,18 @@ Azure CLI를 사용하여 사용자 지정 라우팅 및 가상 어플라이언�
         virtualNetworks/TestVNet/subnets/DMZ
         data:    
         info:    network nic show command OK
-2. 다음 명령을 실행하여 IP 전달을 사용하도록 설정합니다.
+2. 다음 명령 tooenable IP 전달을 hello를 실행 합니다.
 
     ```azurecli
     azure network nic set -g TestRG -n NICFW1 -f true
     ```
    
-    출력
+    출력:
    
         info:    Executing command network nic set
-        info:    Looking up the network interface "NICFW1"
+        info:    Looking up hello network interface "NICFW1"
         info:    Updating network interface "NICFW1"
-        info:    Looking up the network interface "NICFW1"
+        info:    Looking up hello network interface "NICFW1"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         networkInterfaces/NICFW1
         data:    Name                            : NICFW1

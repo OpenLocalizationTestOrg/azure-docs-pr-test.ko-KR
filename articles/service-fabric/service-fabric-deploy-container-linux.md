@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 및 Linux에서 컨테이너 배포 | Microsoft Docs"
-description: "Service Fabric 및 마이크로 서비스 응용 프로그램 배포를 위한 Linux 컨테이너 사용. 이 문서는 Service Fabric이 컨테이너에 대해 제공하는 기능과 클러스터에 Linux 컨테이너 이미지를 배포하는 방법을 설명합니다."
+title: "aaaService linux에서 컨테이너를 배포 하 고 패브릭 | Microsoft Docs"
+description: "서비스 패브릭 및 hello Linux 컨테이너 toodeploy 마이크로 서비스 응용 프로그램의 사용합니다. 이 문서에서는 서비스 패브릭 컨테이너와 어떻게 toodeploy Linux 컨테이너는 클러스터로을 이미지를 제공 하는 hello 기능 설명"
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 6/29/2017
 ms.author: msfussell
-ms.openlocfilehash: 9dcec753e5f999a1bac07276373c0c25f89ec58d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e28f99a145b0594d871b0ec0566233a7ad235ce8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-linux-container-to-service-fabric"></a>Linux 컨테이너를 Service Fabric에 배포
+# <a name="deploy-a-linux-container-tooservice-fabric"></a>Linux 컨테이너 tooService 패브릭 배포
 > [!div class="op_single_selector"]
 > * [Windows 컨테이너 배포](service-fabric-deploy-container.md)
 > * [Linux 컨테이너 배포](service-fabric-deploy-container-linux.md)
@@ -31,57 +31,57 @@ ms.lasthandoff: 07/11/2017
 
 Service Fabric에는 컨테이너화된 마이크로 서비스로 구성된 응용 프로그램을 빌드하는 데 도움을 주는 몇 가지 컨테이너 기능이 있습니다. 이를 컨테이너화된 서비스라고 합니다.
 
-기능은 다음과 같습니다.
+hello 기능에는 다음이 포함 됩니다.
 
 * 컨테이너 이미지 배포 및 활성화
 * 리소스 관리
 * 리포지토리 인증
-* 포트 매핑을 호스트하는 컨테이너 포트
+* 컨테이너 포트 toohost 포트 매핑
 * 컨테이너 간 검색 및 통신
-* 환경 변수를 구성하고 설정할 수 있는 기능
+* 기능 tooconfigure 환경 변수 설정
 
 ## <a name="packaging-a-docker-container-with-yeoman"></a>yeoman과 함께 docker 컨테이너 패키징
-Linux에서 컨테이너를 패키징할 경우 yeoman 템플릿을 사용하거나 [응용 프로그램 패키지를 수동으로 만들도록](#manually) 선택할 수 있습니다.
+Linux 컨테이너를 패키지할 때 선택할 수 있습니다 어느 toouse yeoman 서식 파일 또는 [hello 응용 프로그램 패키지를 수동으로 만들](#manually)합니다.
 
-Service Fabric 응용 프로그램은 응용 프로그램의 기능을 제공하는 특정 역할이 있는 하나 이상의 컨테이너를 포함할 수 있습니다. Linux용 Service Fabric SDK는 쉽게 응용 프로그램을 만들고 컨테이너 이미지를 추가할 수 있는 [Yeoman](http://yeoman.io/) 생성기를 포함합니다. Yeoman을 사용하여 *SimpleContainerApp*이라는 단일 Docker 컨테이너가 있는 응용 프로그램을 만들어 보겠습니다. 일반화된 매니페스트 파일을 편집하여 나중에 더 많은 서비스를 추가할 수 있습니다.
+서비스 패브릭 응용 프로그램에는 각각 hello 응용 프로그램의 기능을 제공 하 여 특정 역할에 있는 하나 이상의 컨테이너를 포함할 수 있습니다. hello Linux에 대 한 서비스 패브릭 SDK에 포함 되어는 [Yeoman](http://yeoman.io/) 생성기를 쉽게 toocreate를 사용 하면 응용 프로그램 컨테이너 이미지를 추가 합니다. Yeoman toocreate 라는 단일 Docker 컨테이너와 응용 프로그램을 사용 하 여 보겠습니다 *SimpleContainerApp*합니다. 생성 된 hello 매니페스트 파일을 편집 하 여 더 많은 서비스를 나중에 추가할 수 있습니다.
 
 ## <a name="install-docker-on-your-development-box"></a>개발 상자에 Docker를 설치합니다.
 
-다음 명령을 실행하여 Linux 개발 상자에 docker를 설치합니다(OSX에서 vagrant 이미지를 사용하는 경우 docker가 이미 설치되어 있음).
+실행된 hello 다음 Linux 개발 상자 tooinstall docker 명령 (OSX에서 hello vagrant 이미지를 사용 하는 경우 docker는 이미 설치 됨):
 
 ```bash
     sudo apt-get install wget
     wget -qO- https://get.docker.io/ | sh
 ```
 
-## <a name="create-the-application"></a>응용 프로그램 만들기
+## <a name="create-hello-application"></a>Hello 응용 프로그램 만들기
 1. 터미널에서 `yo azuresfcontainer`을 입력합니다.
 2. 응용 프로그램 이름을 지정합니다(예: mycontainerap).
-3. DockerHub 리포지토리에서 컨테이너 이미지에 대한 URL을 제공합니다. 이미지 매개변수는 [리포지토리]/[이미지 이름] 양식을 사용합니다.
-4. 이미지에 워크로드 진입점이 정의되지 않은 경우 쉼표로 구분된 일련의 명령을 컨테이너 내에서 실행하도록 입력 명령을 명시적으로 지정합니다. 그러면 시작된 후에 컨테이너가 실행되도록 유지합니다.
+3. DockerHub 리포지토리에서 hello 컨테이너 이미지에 대 한 hello URL을 제공 합니다. hello 이미지 매개 변수는 hello 폼 [리포지토리] / [이미지 이름]
+4. Hello 이미지에는 작업-진입점이 정의 없는 경우 tooexplicitly 필요한 쉼표로 구분 된 hello 컨테이너를 시작 하 고 나면 실행은 유지 하는 hello 컨테이너 내 toorun 명령 집합이 포함 된 입력된 명령을 지정 합니다.
 
 ![컨테이너용 Service Fabric Yeoman 생성기][sf-yeoman]
 
-## <a name="deploy-the-application"></a>응용 프로그램 배포
+## <a name="deploy-hello-application"></a>Hello 응용 프로그램 배포
 
 ### <a name="using-xplat-cli"></a>플랫폼 간 CLI 사용
-응용 프로그램이 빌드되면 Azure CLI를 사용하여 로컬 클러스터에 배포할 수 있습니다.
+Hello 응용 프로그램으로 빌드하고 나면 toohello 로컬 클러스터 hello Azure CLI를 사용 하 여 배포할 수 있습니다.
 
-1. 로컬 Service Fabric 클러스터에 연결합니다.
+1. Toohello 로컬 서비스 패브릭 클러스터를 연결 합니다.
 
     ```bash
     azure servicefabric cluster connect
     ```
 
-2. 템플릿에 제공된 설치 스크립트를 사용하여 클러스터의 이미지 저장소에 응용 프로그램 패키지를 복사하고 응용 프로그램 유형을 등록하며 응용 프로그램의 인스턴스를 만듭니다.
+2. 사용 하 여 hello 제공 hello 템플릿 toocopy에 hello 응용 프로그램 패키지 toohello 클러스터 이미지 저장소, hello 응용 프로그램 형식 등록 hello 응용 프로그램의 인스턴스를 만들 스크립트를 설치 합니다.
 
     ```bash
     ./install.sh
     ```
 
-3. 브라우저를 열고 http://localhost:19080/Explorer에서 Service Fabric Explorer로 이동합니다(Mac OS X에서 Vagrant를 사용하는 경우 localhost를 VM의 개인 IP로 바꿉니다).
-4. 응용 프로그램 노드를 확장하면 응용 프로그램 유형에 대한 항목 및 해당 유형의 첫 번째 인스턴스에 대한 다른 항목이 만들어집니다.
-5. 템플릿에 제공된 제거 스크립트를 사용하여 응용 프로그램 인스턴스를 삭제하고 응용 프로그램 유형을 등록 해제합니다.
+3. 브라우저를 열고 http://localhost:19080/탐색기 (hello Vagrant를 사용 하 여 Mac OS X의 경우 VM의 개인 ip hello 바꾸기 localhost)에서 패브릭 탐색기 tooService 이동 합니다.
+4. Hello 응용 프로그램 노드를 확장 하 고 응용 프로그램 종류에 대 한 항목 및 해당 형식의 첫 번째 인스턴스 hello에 대 한 다른 이제입니다.
+5. Hello 제거 스크립트를 사용 하는 hello 템플릿 toodelete hello 응용 프로그램 인스턴스에 제공 된 및 hello 응용 프로그램 종류의 등록을 취소 합니다.
 
     ```bash
     ./uninstall.sh
@@ -89,31 +89,31 @@ Service Fabric 응용 프로그램은 응용 프로그램의 기능을 제공하
 
 ### <a name="using-azure-cli-20"></a>Azure CLI 2.0 사용
 
-[Azure CLI 2.0을 사용하여 응용 프로그램 수명 주기](service-fabric-application-lifecycle-azure-cli-2-0.md)를 관리하는 방법은 참조 문서를 참조하세요.
+관리에 hello 참조 문서를 참조 하십시오.는 [Azure CLI 2.0 hello 응용 프로그램 수명 주기를 사용 하 여](service-fabric-application-lifecycle-azure-cli-2-0.md)합니다.
 
-예제 응용 프로그램에 대해서는 [GitHub에서 Service Fabric 컨테이너 코드 샘플을 확인하세요](https://github.com/Azure-Samples/service-fabric-dotnet-containers)(영문).
+예제 응용 프로그램에 대 한 [GitHub에서 체크 아웃 hello 서비스 패브릭 컨테이너 코드 샘플](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
-## <a name="adding-more-services-to-an-existing-application"></a>기존 응용 프로그램에 더 많은 서비스 추가
+## <a name="adding-more-services-tooan-existing-application"></a>더 많은 서비스 tooan 기존 응용 프로그램 추가
 
-`yo`을 사용하여 다른 컨테이너 서비스를 이미 만든 응용 프로그램에 추가하려면 다음 단계를 수행합니다.
+tooadd 다른 컨테이너 서비스를 사용 하 여 이미 만든 tooan 응용 프로그램 `yo`, hello 다음 단계를 수행 합니다.
 
-1. 기존 응용 프로그램의 루트로 디렉터리를 변경합니다.  예를 들어 `MyApplication`이 Yeoman에서 만든 응용 프로그램인 경우 `cd ~/YeomanSamples/MyApplication`입니다.
-2. `yo azuresfcontainer:AddService`을 실행합니다.
+1. Hello 기존 응용 프로그램의 toohello 루트 디렉터리를 변경 합니다.  예를 들어 `cd ~/YeomanSamples/MyApplication`경우 `MyApplication` 는 Yeoman에서 만든 hello 응용 프로그램입니다.
+2. `yo azuresfcontainer:AddService` 실행
 
 <a id="manually"></a>
 
 ## <a name="manually-package-and-deploy-a-container-image"></a>수동으로 패키징하고 컨테이너 이미지 배포
-컨테이너화된 서비스를 수동으로 패키징하는 프로세스는 다음 단계를 기반으로 합니다.
+수동으로 컨테이너 화 된 서비스를 패키지의 hello 프로세스 단계를 수행 하는 hello를 기반으로 합니다.
 
-1. 컨테이너를 리포지토리에 게시합니다.
-2. 패키지 디렉터리 구조를 만듭니다.
-3. 서비스 매니페스트 파일을 편집합니다.
-4. 응용 프로그램 매니페스트 파일을 편집합니다.
+1. Hello 컨테이너 tooyour 리포지토리를 게시 합니다.
+2. Hello 패키지 디렉터리 구조를 만듭니다.
+3. Hello 서비스 매니페스트 파일을 편집 합니다.
+4. Hello 응용 프로그램 매니페스트 파일을 편집 합니다.
 
 ## <a name="deploy-and-activate-a-container-image"></a>컨테이너 이미지 배포 및 활성화
-Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)에서 컨테이너는 다수의 서비스 복제본이 배치되는 응용 프로그램 호스트를 나타냅니다. 컨테이너를 배포하고 활성화하려면 컨테이너 이미지의 이름을 서비스 매니페스트의 `ContainerHost` 요소에 넣습니다.
+서비스 패브릭 hello에 [응용 프로그램 모델](service-fabric-application-model.md), 컨테이너 되는 여러 서비스 복제본을 배치 하는 응용 프로그램 호스트를 나타냅니다. toodeploy hello 컨테이너 이미지의 put hello 이름, 컨테이너를 활성화 하 고는 `ContainerHost` hello 서비스 매니페스트의 요소입니다.
 
-서비스 매니페스트에서 진입점용 `ContainerHost`를 추가합니다. 그런 다음 `ImageName`을 컨테이너 리포지토리 및 이미지의 이름이 되도록 설정합니다. 다음의 부분 매니페스트는 `myrepo`라는 리포지토리에서 `myimage:v1`라는 컨테이너를 배포하는 방법의 예를 보여줍니다.
+Hello 서비스 매니페스트에 추가 된 `ContainerHost` hello 진입점에 대 한 합니다. 그런 다음 세트 hello `ImageName` toobe hello 이름 hello 컨테이너 리포지토리 및 이미지입니다. hello 다음 부분 매니페스트가의 예가 나와 toodeploy hello 컨테이너 호출 하는 방법을 `myimage:v1` 라는 리포지토리에서 `myrepo`:
 
 ```xml
     <CodePackage Name="Code" Version="1.0">
@@ -126,13 +126,13 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
     </CodePackage>
 ```
 
-컨테이너 내에서 실행할 쉼표로 구분된 명령 집합과 함께 선택적인 `Commands` 요소를 지정하여 입력 명령을 제공할 수 있습니다.
+선택적 hello를 지정 하 여 명령 입력된을 제공할 수 있습니다 `Commands` hello 컨테이너 내 명령 toorun 쉼표로 구분 된 집합이 있는 요소입니다.
 
 > [!NOTE]
-> 이미지에 워크로드 진입점이 정의되지 않은 경우 쉼표로 구분된 일련의 명령을 컨테이너 내에서 실행하도록 `Commands` 요소 안의 입력 명령을 명시적으로 지정합니다. 그러면 시작된 후에 컨테이너가 실행되도록 유지합니다.
+> Hello 이미지에는 작업-진입점이 정의 없는 경우 tooexplicitly 필요한 내부 입력된 명령을 지정 `Commands` hello 컨테이너 이후에 실행은 유지 하는 hello 컨테이너 내 명령 toorun 쉼표로 구분 된 집합이 있는 요소 시작 합니다.
 
 ## <a name="understand-resource-governance"></a>리소스 관리 이해
-리소스 관리는 호스트에서 컨테이너가 사용할 수 있는 리소스를 제한하는 컨테이너의 기능입니다. 응용 프로그램 매니페스트에서 지정된 `ResourceGovernancePolicy`는 서비스 코드 패키지에 대한 리소스 제한을 선언하는 데 사용됩니다. 다음 리소스에 대한 리소스 제한을 설정할 수 있습니다.
+리소스 관리는 hello 호스트에서 컨테이너 hello hello 리소스를 제한 하는 hello 컨테이너의 기능을 사용할 수 있습니다. hello `ResourceGovernancePolicy`, 서비스 코드 패키지에 대 한 사용 되는 toodeclare 리소스 제한을 hello 응용 프로그램 매니페스트에서 지정 합니다. 다음 리소스는 hello에 대 한 리소스 제한은 설정할 수 있습니다.
 
 * 메모리
 * MemorySwap
@@ -156,7 +156,7 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
 ```
 
 ## <a name="authenticate-a-repository"></a>리포지토리 인증
-컨테이너를 다운로드하려면 컨테이너 리포지토리에 대한 로그인 자격 증명을 제공해야 할 수 있습니다. 애플리케이션 매니페스트에 지정된 로그인 자격 증명은 로그인 정보 또는 이미지 리포지토리에서 컨테이너 이미지를 다운로드하기 위한 SSH 키를 지정하는 데 사용됩니다. 다음 예제는 *TestUser*라는 계정과 암호를 일반 텍스트로 보여줍니다(권장되지 *않음*).
+컨테이너 toodownload tooprovide 로그인 자격 증명 toohello 컨테이너 리포지토리를 할 수 있습니다. hello 로그인 자격 증명을 hello 응용 프로그램 매니페스트에 지정은 사용 되는 toospecify hello 로그인 정보, 또는 hello 이미지 리포지토리에서 hello 컨테이너 이미지를 다운로드 하기 위한 SSH 키입니다. hello 다음 예제에서는 호출 계정을 *TestUser* hello 암호를 일반 텍스트로 함께 (*하지* 권장):
 
 ```xml
     <ServiceManifestImport>
@@ -169,11 +169,11 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
     </ServiceManifestImport>
 ```
 
-컴퓨터에 배포된 인증서를 사용하여 암호를 암호화하는 것이 좋습니다.
+Toohello 컴퓨터 배포 된 인증서를 사용 하 여 hello 암호를 암호화 하는 것이 좋습니다.
 
-다음 예제는 *MyCert*라는 인증서를 사용하여 암호가 암호화된 *TestUser*라는 계정을 보여줍니다. `Invoke-ServiceFabricEncryptText` PowerShell 명령을 사용하여 암호에 대한 암호 텍스트를 만들 수 있습니다. 자세한 내용은 [Service Fabric 응용 프로그램의 암호 관리](service-fabric-application-secret-management.md) 문서를 참조하세요.
+hello 다음 예제에서는 호출 계정을 *TestUser*이라는 인증서를 사용 하 여 hello 암호를 암호화 하는 경우, *MyCert*합니다. Hello를 사용할 수 있습니다 `Invoke-ServiceFabricEncryptText` hello 암호에 대 한 PowerShell 명령 toocreate hello 비밀 암호화 텍스트입니다. 자세한 내용은 hello 문서 참조 [서비스 패브릭 응용 프로그램의 암호 관리](service-fabric-application-secret-management.md)합니다.
 
-암호 해독에 사용되는 인증서의 개인 키는 대역외 메서드를 통해 로컬 컴퓨터에 배포되어야 합니다. (Azure에서 이 메서드는 Azure Resource Manager입니다.) 그런 다음 Service Fabric이 서비스 패키지를 컴퓨터에 배포하면 암호를 해독할 수 있습니다. 계정 이름과 암호를 사용하면 컨테이너 리포지토리를 통해 인증할 수 있습니다.
+hello toodecrypt hello 암호를 사용 하는 hello 인증서의 개인 키 대역의 메서드에서 배포 toohello 로컬 컴퓨터 여야 합니다. (Azure에서 이 메서드는 Azure Resource Manager입니다.) 그런 다음 서비스 패브릭 hello 서비스 패키지 toohello 컴퓨터를 배포 하면 hello 암호를 해독할 수 있습니다. Hello 계정 이름과 함께 hello 암호를 사용 하 여 다음 hello 컨테이너 리포지토리와 상호 인증할 수 있습니다.
 
 ```xml
     <ServiceManifestImport>
@@ -187,7 +187,7 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
 ```
 
 ## <a name="configure-container-port-to-host-port-mapping"></a>컨테이너 포트와 호스트 포트 간 매핑 구성
-응용 프로그램 매니페스트에 `PortBinding`을 지정하여 컨테이너와의 통신에 사용되는 호스트 포트를 구성할 수 있습니다. 포트 바인딩은 컨테이너 내에서 서비스가 수신 대기 중인 포트를 호스트의 포트로 매핑합니다.
+지정 하 여 hello 컨테이너와 호스트 사용 되는 포트 toocommunicate를 구성할 수 있습니다는 `PortBinding` hello 응용 프로그램 매니페스트에서 합니다. hello 포트 바인딩 지도 hello 포트 toowhich hello 서비스는 hello 컨테이너 tooa 호스트의 포트에 hello 내 수신 대기 합니다.
 
 ```xml
     <ServiceManifestImport>
@@ -201,9 +201,9 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
 ```
 
 ## <a name="configure-container-to-container-discovery-and-communication"></a>컨테이너 간 검색 및 통신 구성
-`PortBinding` 정책을 사용하면 컨테이너 포트를 서비스 매니페스트의 `Endpoint`에 매핑할 수 있습니다. 끝점 `Endpoint1`(예: 포트 80)은 고정 포트를 지정할 수 있습니다. 어떤 포트도 지정하지 않을 수 있는데, 그런 경우 클러스터의 응용 프로그램 포트 범위에서 포트가 무작위로 선택됩니다.
+Hello를 사용 하 여 `PortBinding` 정책을 컨테이너 포트 tooan 매핑할 수 있습니다 `Endpoint` hello 서비스 매니페스트의 합니다. 끝점 hello `Endpoint1` (예: 포트 80) 고정된 포트를 지정할 수 있습니다. 지정할 수도 있습니다 포트 하지 전혀 있습니다을 위해 hello 클러스터의 응용 프로그램 포트 범위에서 임의 포트를 선택한 경우.
 
-게스트 컨테이너의 서비스 매니페스트에서 `Endpoint` 태그를 사용하여 끝점을 지정하는 경우 Service Fabric은 이 끝점을 명명 서비스에 자동으로 게시할 수 있습니다. 클러스터에서 실행되는 기타 서비스는 해결용 REST 쿼리를 사용하여 이 컨테이너를 검색할 수 있습니다.
+Hello를 사용 하 여 끝점을 지정 하는 경우 `Endpoint` 게스트 컨테이너 서비스 패브릭의 hello 서비스 매니페스트에서 태그를에서 자동으로이 끝점 toohello 명명 서비스를 게시할 수 있습니다. Hello 클러스터에서 실행 되는 다른 서비스를 확인 하기 위한 hello REST 쿼리를 사용 하 여이 컨테이너를 검색할 따라서 수 있습니다.
 
 ```xml
     <ServiceManifestImport>
@@ -216,12 +216,12 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
     </ServiceManifestImport>
 ```
 
-명명 서비스에 등록하면 [역방향 프록시](service-fabric-reverseproxy.md)를 사용하여 컨테이너 내 코드를 통해 쉽게 컨테이너 간 통신을 할 수 있습니다. 역방향 프록시 http 수신 대기 포트와 통신하려는 서비스 이름을 환경 변수로서 제공하면 통신이 이루어집니다. 자세한 내용은 다음 섹션을 참조하세요.
+Hello 명명 서비스를 등록 하면 할 수 있는 쉽게 hello 코드에서이 컨테이너에 컨테이너 통신 내 컨테이너에서 hello를 사용 하 여 [역방향 프록시](service-fabric-reverseproxy.md)합니다. 통신은 hello 역방향 프록시 http 수신 포트 및 환경 변수로 toocommunicate 원하는 hello 서비스의 hello 이름을 제공 하 여 수행 됩니다. 자세한 내용은 hello 다음 섹션을 참조 하세요.
 
 ## <a name="configure-and-set-environment-variables"></a>환경 변수 구성 및 설정
-환경 변수는 컨테이너에 배포된 서비스나 프로세스/게스트 실행 파일로서 배포된 서비스를 위해 서비스 매니페스트의 각 코드 패키지에 지정될 수 있습니다. 이러한 환경 변수 값은 응용 프로그램 매니페스트에서 명확하게 재정의되거나 응용 프로그램 매개 변수로 배포하는 동안 지정될 수 있습니다.
+각 코드 패키지 hello 서비스 매니페스트를 컨테이너에 배포 되는 서비스에 대 한 또는 프로세스/게스트 실행 파일로 배포 된 서비스에 대 한 모두에 대 한 환경 변수를 지정할 수 있습니다. 이러한 환경 변수 값 hello 응용 프로그램 매니페스트에서 구체적으로 재정의 하거나 응용 프로그램 매개 변수로 배포 중에 지정 합니다.
 
-다음 서비스 매니페스트 XML 코드 조각은 코드 패키지에 대한 환경 변수를 지정하는 방법의 예제를 보여줍니다.
+hello 다음 서비스 매니페스트 XML 조각 표시 방법의 예제 코드 패키지에 대 한 toospecify 환경 변수:
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -244,7 +244,7 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
     </ServiceManifest>
 ```
 
-이러한 환경 변수는 응용 프로그램 매니페스트 수준에서 재정의될 수 있습니다.
+이러한 환경 변수는 hello 응용 프로그램 매니페스트 수준에서 재정의할 수 있습니다.
 
 ```xml
     <ServiceManifestImport>
@@ -256,7 +256,7 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
     </ServiceManifestImport>
 ```
 
-이전 예제에서 `HttpGateway` 환경 변수(19000)에는 명확한 값을 지정했던 반면에 `BackendServiceName` 매개 변수의 값은 `[BackendSvc]` 응용 프로그램 매개 변수를 통해 설정했습니다. 이렇게 설정하면 응용 프로그램을 배포하고 매니페스트에 고정된 값을 지정하지 않은 경우 `BackendServiceName`에 값을 지정할 수 있습니다.
+Hello에 대 한 명시적 값을 지정 했기 hello 이전 예에서 `HttpGateway` 환경 변수 (19000), hello 값을 설정 하는 동안 `BackendServiceName` hello 통해 매개 변수 `[BackendSvc]` 응용 프로그램 매개 변수입니다. 이 설정을 통해 toospecify hello 값에 대 한 `BackendServiceName`hello 응용 프로그램을 배포 하 고 hello 매니페스트에 고정된 값이 없는 값입니다.
 
 ## <a name="complete-examples-for-application-and-service-manifest"></a>응용 프로그램 및 서비스 매니페스트에 대한 전체 예제
 
@@ -286,7 +286,7 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
     </ApplicationManifest>
 ```
 
-예제 서비스 매니페스트(이전 응용 프로그램 매니페스트에 지정됨)는 다음을 따릅니다.
+(Hello 응용 프로그램 매니페스트를 앞에 지정 된) 예제 서비스 매니페스트는 다음과 같습니다.
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -317,15 +317,15 @@ Service Fabric [응용 프로그램 모델](service-fabric-application-model.md)
 ```
 
 ## <a name="next-steps"></a>다음 단계
-컨테이너화된 서비스를 배포했으므로 [Service Fabric 응용 프로그램 수명 주기](service-fabric-application-lifecycle.md)를 읽고 수명 주기를 관리하는 방법에 대해 알아보세요.
+이제는 컨테이너 화 된 서비스를 배포한 자세히 배울 방법 toomanage 읽어 주기 [서비스 패브릭 응용 프로그램 수명 주기](service-fabric-application-lifecycle.md)합니다.
 
 * [Service Fabric 및 컨테이너 개요](service-fabric-containers-overview.md)
-* [Azure CLI를 사용하여 Service Fabric 클러스터와 상호 작용](service-fabric-azure-cli.md)
+* [Hello Azure CLI를 사용 하 여 서비스 패브릭 클러스터와의 상호 작용](service-fabric-azure-cli.md)
 
 <!-- Images -->
 [sf-yeoman]: ./media/service-fabric-deploy-container-linux/sf-container-yeoman1.png
 
-## <a name="related-articles"></a>관련된 문서
+## <a name="related-articles"></a>관련 문서
 
 * [Service Fabric 및 Azure CLI 2.0 시작](service-fabric-azure-cli-2-0.md)
 * [Service Fabric 및 XPlat CLI 시작](service-fabric-azure-cli.md)

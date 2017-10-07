@@ -1,5 +1,5 @@
 ---
-title: "복사 작업을 사용하여 데이터 이동 | Microsoft 문서"
+title: "복사 작업을 사용 하 여 aaaMove 데이터 | Microsoft Docs"
 description: "Data Factory 파이프라인에서 데이터를 이동하는 방법(클라우드 저장소 간/온-프레미스 저장소와 클라우드 저장소 간에 데이터 마이그레이션)에 대해 알아봅니다. 또한 복사 활동을 사용하는 방법을 살펴봅니다."
 keywords: "데이터 복사, 데이터 이동, 데이터 마이그레이션, 데이터 전송"
 services: data-factory
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jingwang
-ms.openlocfilehash: 0cefbe1303de1cfa46cc4b771c0cd3aa7819597c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 29b74154b9006795ead3b0ee9638a3dbf2c5d831
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-by-using-copy-activity"></a>복사 활동을 사용하여 데이터 이동
 ## <a name="overview"></a>개요
-Azure Data Factory에서는 복사 작업을 사용해 온-프레미스 및 클라우드 데이터 저장소 간에 데이터를 복사할 수 있습니다. 복사한 데이터는 추가로 변환하고 분석할 수 있습니다. 복사 활동을 통해 BI(비즈니스 인텔리전스) 및 응용 프로그램에서 사용할 수 있도록 변환 및 분석 결과를 게시할 수도 있습니다.
+Azure Data Factory에서 온-프레미스와 클라우드 간 toocopy 데이터 복사 작업을 사용할 수 있습니다 데이터 저장소입니다. Hello 데이터 복사 된 후 추가 변환 하 고 수 분석 합니다. 또한 business intelligence (BI) 및 응용 프로그램 소비에 대 한 복사 작업 toopublish 변환 및 분석 결과 사용할 수 있습니다.
 
 ![복사 활동의 역할](media/data-factory-data-movement-activities/copy-activity.png)
 
@@ -32,62 +32,62 @@ Azure Data Factory에서는 복사 작업을 사용해 온-프레미스 및 클�
 먼저 두 개의 클라우드 데이터 저장소 간, 그리고 온-프레미스 데이터 저장소와 클라우드 데이터 저장소 간에 이루어지는 데이터 마이그레이션 방식에 대해 살펴보겠습니다.
 
 > [!NOTE]
-> 활동과 관련된 전반적인 정보를 살펴보려면 [파이프라인 및 활동 이해](data-factory-create-pipelines.md)를 참조하세요.
+> 활동에 대 한 toolearn 일반적으로 참조 [이해 파이프라인 및 활동](data-factory-create-pipelines.md)합니다.
 >
 >
 
 ### <a name="copy-data-between-two-cloud-data-stores"></a>두 클라우드 데이터 저장소 간의 데이터 복사
-소스 및 싱크 데이터 저장소가 모두 클라우드에 있는 경우 복사 활동은 다음 단계를 통해 소스에서 싱크로 데이터를 복사합니다. 복사 활동을 제공하는 서비스가 다음 작업을 수행합니다.
+소스와 싱크 데이터 저장소 hello 클라우드의 경우 복사 작업은 hello 소스 toohello 싱크에서 같은 단계 toocopy 데이터가 hello 설명 합니다. 복사 작업을 구동 하는 hello 서비스:
 
-1. 소스 데이터 저장소에서 데이터를 읽습니다.
-2. 직렬화/역직렬화, 압축/압축 해제, 열 매핑 및 형식 변환을 수행합니다. 이러한 작업은 입력 데이터 집합, 출력 데이터 집합 및 복사 활동의 구성에 따라 수행됩니다.
-3. 대상 데이터 저장소에 데이터를 씁니다.
+1. Hello 원본 데이터 저장소에서 데이터를 읽습니다.
+2. 직렬화/역직렬화, 압축/압축 해제, 열 매핑 및 형식 변환을 수행합니다. Hello 입력된 데이터 집합, 출력 데이터 집합 및 복사 작업의 hello 구성에 따라 이러한 작업을 수행 합니다.
+3. 데이터 toohello 대상 데이터 저장소를 씁니다.
 
-서비스는 데이터 이동을 수행할 최적의 지역을 자동으로 선택합니다. 이 지역은 대개 싱크 데이터 저장소와 가장 가까운 지역입니다.
+hello 서비스는 hello 최적의 지역 tooperform hello 데이터 이동을 자동으로 선택 합니다. 이 영역은 일반적으로 hello 한 가장 가까운 toohello 싱크 데이터 저장소입니다.
 
 ![클라우드 간 복사](./media/data-factory-data-movement-activities/cloud-to-cloud.png)
 
 ### <a name="copy-data-between-an-on-premises-data-store-and-a-cloud-data-store"></a>온-프레미스 데이터 저장소와 클라우드 데이터 저장소 간 데이터 복사
-온-프레미스 데이터 저장소와 클라우드 데이터 저장소 간에 데이터를 안전하게 이동하려면 온-프레미스 컴퓨터에 데이터 관리 게이트웨이를 설치합니다. 데이터 관리 게이트웨이는 하이브리드 데이터 이동 및 처리를 수행할 수 있도록 하는 에이전트입니다. 게이트웨이는 데이터 저장소 자체와 같은 컴퓨터에 설치할 수도 있고, 데이터 저장소에 액세스할 수 있는 별도의 컴퓨터에 설치할 수도 있습니다.
+온-프레미스 데이터 저장소와 클라우드 데이터 저장소 간에 toosecurely 이동 데이터가 온-프레미스 컴퓨터에 데이터 관리 게이트웨이 설치 합니다. 데이터 관리 게이트웨이는 하이브리드 데이터 이동 및 처리를 수행할 수 있도록 하는 에이전트입니다. Hello hello 데이터 저장소에서 자체 하므로 동일한 컴퓨터 또는 저장 toohello 데이터 액세스를 가진 별도 컴퓨터에 설치할 수 있습니다.
 
-이 시나리오에서는 데이터 관리 게이트웨이가 직렬화/역직렬화, 압축/압축 해제, 열 매핑 및 형식 변환을 수행합니다. 데이터는 Azure Data Factory 서비스를 통과하지 않습니다. 대신 데이터 관리 게이트웨이가 데이터를 대상 저장소에 직접 씁니다.
+이 시나리오에서는 데이터 관리 게이트웨이 hello serialization/deserialization, 압축/압축 풀기, 열 매핑를 실행 하 고 형식 변환 합니다. 데이터는 hello Azure 데이터 팩터리 서비스를 통해 전달 되지 않습니다. 대신, 데이터 관리 게이트웨이 hello 데이터 toohello 대상 저장소를 직접 작성합니다.
 
 ![온-프레미스 및 클라우드 간 복사](./media/data-factory-data-movement-activities/onprem-to-cloud.png)
 
 데이터 이동에 대한 소개와 연습은 [온-프레미스 및 클라우드 데이터 저장소 간에 데이터 이동](data-factory-move-data-between-onprem-and-cloud.md) 을 참조하세요. 이 에이전트에 대한 자세한 내용은 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 를 참조하세요.
 
-데이터 관리 게이트웨이를 사용하여 Azure IaaS VM(Virtual Machines)에서 호스트되는 지원되는 데이터 저장소 간에 데이터를 이동할 수도 있습니다. 이 경우 데이터 관리 게이트웨이는 데이터 저장소 자체와 같은 VM에 설치할 수도 있고, 데이터 저장소에 액세스할 수 있는 별도의 VM에 설치할 수도 있습니다.
+데이터를 이동할 수도 있습니다 / toosupported 데이터를 저장 하는 데이터 관리 게이트웨이 사용 하 여 Azure IaaS 가상 컴퓨터 (Vm)에서 호스팅됩니다. 이 경우에 데이터 관리 게이트웨이 설치할 수 있습니다 hello 데이터 저장소 자체에서 또는 저장 toohello 데이터 액세스를 가진 별도 VM에서 동일한 VM hello 합니다.
 
 ## <a name="supported-data-stores-and-formats"></a>지원되는 데이터 저장소 및 형식
-데이터 팩터리의 복사 활동은 원본 데이터 저장소의 데이터를 싱크 데이터 저장소로 복사합니다. Data Factory는 다음과 같은 데이터 저장소를 지원합니다. 모든 소스의 데이터를 모든 싱크에 쓸 수 있습니다. 데이터 저장소를 클릭하면 해당 저장소에서/저장소로 데이터를 복사하는 방법을 확인할 수 있습니다.
+복사 활동 Data Factory에는 원본 데이터 저장소 tooa 싱크 데이터 저장소에서 데이터를 복사합니다. 데이터 팩터리 hello 다음 데이터 저장소를 지원 합니다. 데이터 소스에서 tooany 싱크를 작성할 수 있습니다. 데이터 저장소 toolearn 방법을 클릭 해당 저장소에서 데이터 tooand toocopy 합니다.
 
 > [!NOTE] 
-> 복사 활동에서 지원되지 않는 데이터 저장소에서/데이터 저장소로 데이터를 이동해야 하는 경우 데이터 복사/이동을 위한 자체 논리가 포함된 **사용자 지정 활동** 을 Data Factory에서 사용합니다. 사용자 지정 활동을 만들고 사용하는 방법에 대한 자세한 내용은 [Azure Data Factory 파이프라인에서 사용자 지정 활동 사용](data-factory-use-custom-activities.md)을 참조하세요.
+> Toomove 데이터 복사 작업을 지원 하지 않는 데이터 저장소에서 필요한 경우 사용 된 **사용자 지정 활동** 를 데이터 복사/이동 하기 위한 사용자 논리로 데이터 팩터리에서 합니다. 사용자 지정 활동을 만들고 사용하는 방법에 대한 자세한 내용은 [Azure Data Factory 파이프라인에서 사용자 지정 활동 사용](data-factory-use-custom-activities.md)을 참조하세요.
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 > [!NOTE]
-> *가 있는 데이터 저장소는 온-프레미스 또는 Azure IaaS에 있을 수 있으며 온-프레미스/Azure IaaS 컴퓨터에 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 를 설치해야 합니다.
+> 데이터 저장소와 * 온-프레미스 될 수 있습니다 또는 Azure IaaS에서 고 tooinstall 있어야 하며 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 에-프레미스/Azure IaaS 컴퓨터에 있습니다.
 
 ### <a name="supported-file-formats"></a>지원 파일 형식
-복사 활동을 사용해서 파일 기반 데이터 저장소 간에 **파일을 있는 그대로 복사**하고, 입력 및 출력 데이터 집합 정의 둘 다에서 [형식 섹션](data-factory-create-datasets.md)을 건너뛸 수 있습니다. 그러면 데이터가 직렬화/역직렬화되지 않고 효율적으로 복사됩니다.
+복사 작업에도 사용할 수 있습니다**파일을 다음으로 복사-은** 두 파일 기반 데이터 저장소 간의 hello를 건너뛸 수 있습니다 [섹션 서식을](data-factory-create-datasets.md) 에 모두 hello 입력 및 출력 데이터 집합의 정의 합니다. hello 데이터가 모든 직렬화/역직렬화 하지 않고 효율적으로 복사 됩니다.
 
-복사 작업은 지정된 형식의 파일에서 읽고 씁니다. **텍스트, JSON, Avro, ORC 및 Parquet**, 압축 코덱 **GZip, Deflate, BZip2 및 ZipDeflate**가 지원됩니다. 자세한 내용은 [지원되는 파일 및 압축 형식](data-factory-supported-file-and-compression-formats.md)을 참조하세요.
+복사 활동도에서 읽고 씁니다 toofiles 지정 된 형식으로: **텍스트, JSON, Avro, ORC, 및 Parquet**, 및 압축 코덱 **GZip, Deflate, BZip2 및 ZipDeflate** 지원 됩니다. 자세한 내용은 [지원되는 파일 및 압축 형식](data-factory-supported-file-and-compression-formats.md)을 참조하세요.
 
-예를 들어 다음 복사 작업을 수행할 수 있습니다.
+수행할 수는 예를 들어 hello 다음 활동을 복사 합니다.
 
-* 온-프레미스 SQL Server에서 데이터를 복사하여 ORC 형식으로 Azure Data Lake Store에 씁니다.
-* 온-프레미스 파일 시스템에서 텍스트(CSV) 형식의 파일을 복사하여 Avro 형식으로 Azure Blob에 씁니다.
-* 온-프레미스 파일 시스템에서 압축된 파일을 복사하고 압축을 푼 다음 Azure Data Lake Store에 씁니다.
-* Azure Blob에서 GZip 압축 텍스트(CSV) 형식의 데이터를 복사하여 Azure SQL Database에 씁니다.
+* 온-프레미스 SQL Server에서 데이터를 복사한 ORC 형식에서 tooAzure 데이터 레이크 저장소를 작성 합니다.
+* 온-프레미스 파일 시스템에서 텍스트 (CSV) 형식에서 파일을 복사 하 고 Avro 형식에서 tooAzure Blob를 작성 합니다.
+* 온-프레미스 파일 시스템에서 압축 된 파일을 복사 하 고 압축을 푸는 다음 tooAzure 데이터 레이크 저장소를 배치 합니다.
+* Azure Blob에서 GZip 압축 된 텍스트 (CSV) 형식으로 데이터를 복사 하 고 tooAzure SQL 데이터베이스를 작성 합니다.
 
 ## <a name="global"></a>전역적으로 사용 가능한 데이터 이동
-Azure Data Factory는 미국 서부, 미국 동부 및 북유럽 지역에서만 사용할 수 있습니다. 그러나 복사 작업을 지원하는 서비스는 다음과 같은 지역 및 지리에서 전역적으로 사용할 수 있습니다. 전역적으로 사용 가능한 토폴로지에서는 대개 지역 간 홉이 없는 효율적인 데이터 이동이 가능합니다. 지역별 Data Factory 및 데이터 이동 기능 사용 가능 여부는 [지역별 서비스](https://azure.microsoft.com/regions/#services) 를 참조하세요.
+Azure 데이터 팩터리는 hello 미국 서 부, 미국 동부 및 북부 유럽 지역 에서만 사용할 수 있습니다. 그러나 복사 작업을 구동 하는 hello 서비스는 hello에서 전체적으로 사용할 수 있는 영역 및 지역입니다. hello 전체적으로 사용 가능한 토폴로지는 일반적으로 지역 간 홉을 방지 하는 효율적인 데이터 이동이 되도록 합니다. 지역별 Data Factory 및 데이터 이동 기능 사용 가능 여부는 [지역별 서비스](https://azure.microsoft.com/regions/#services) 를 참조하세요.
 
 ### <a name="copy-data-between-cloud-data-stores"></a>클라우드 데이터 저장소 간의 데이터 복사
-원본 및 싱크 데이터 저장소가 모두 클라우드에 있는 경우, Data Factory는 데이터 이동을 수행하기 위해 동일한 지역의 싱크 위치에 가장 가까운 지역에서 서비스 배포를 사용합니다. 매핑은 다음 표를 참조하세요.
+데이터 팩터리 서비스 배포를 사용 하 여 hello에 가장 가까운 toohello 싱크가 hello 영역의 hello 클라우드 데이터 저장소를 원본 및 싱크를 같은 지리 toomove hello 데이터입니다. Toohello 다음 매핑에 대 한 표를 참조 하십시오.
 
-| 대상 데이터 저장소의 지리적 위치 | 대상 데이터 저장소의 지역 | 데이터 이동에 사용되는 지역 |
+| Hello 대상 데이터 저장소의 지리적 위치 | Hello 대상 데이터 저장소의 지역 | 데이터 이동에 사용되는 지역 |
 |:--- |:--- |:--- |
 | 미국 | 미국 동부 | 미국 동부 |
 | &nbsp; | 미국 동부 2 | 미국 동부 2 |
@@ -114,27 +114,27 @@ Azure Data Factory는 미국 서부, 미국 동부 및 북유럽 지역에서만
 | &nbsp; | 인도 서부 | 인도 중부 |
 | &nbsp; | 인도 남부 | 인도 중부 |
 
-또는 복사 작업 `typeProperties`에서 `executionLocation` 속성을 지정하여 복사를 수행하는 데 사용할 Data Factory 서비스의 지역을 명시적으로 지정할 수 있습니다. 이 속성에 대한 지원되는 값은 위의 **데이터 이동에 사용되는 지역** 열에 나열됩니다. 데이터는 복사 동안 유선을 통해 해당 하위 지역으로 이동됩니다. 예를 들어 영국의 Azure 저장소 간을 복사하려면 `"executionLocation": "Japan East"`를 지정하여 일본을 통해 라우팅되도록 할 수 있습니다([샘플 JSON](#by-using-json-scripts) 참조).
+또는 나타낼 수 있습니다 명시적으로 지정 하 여 tooperform hello 복사본을 사용 하는 데이터 팩터리 서비스 toobe의 hello 영역 `executionLocation` 복사 작업에서 속성 `typeProperties`합니다. 이 속성에 대한 지원되는 값은 위의 **데이터 이동에 사용되는 지역** 열에 나열됩니다. 데이터를 거칩니다 해당 지역의 hello 유선으로 복사 하는 동안 note 합니다. 예를 들어 Azure 간의 toocopy 저장 한국를 지정할 수 있습니다 `"executionLocation": "Japan East"` 일본 영역을 통해 tooroute (참조 [JSON 샘플](#by-using-json-scripts) 참조로).
 
 > [!NOTE]
-> 대상 데이터 저장소의 지역이 위의 목록에 없거나 검색 가능하지 않을 경우 `executionLocation`을 지정하지 않을 경우 기본적으로 복사 작업이 대체 지역을 거치지 않고 실패합니다. 지원되는 지역 목록은 시간이 지남에 따라 확장됩니다.
+> Hello 대상 데이터 저장소의 hello 영역 앞의 목록에 없거나 또는 검색할 수 없는 경우, 기본적으로 복사 작업은 대체 지역을 통하지 않고 하지 않으면 실패 하는 경우 `executionLocation` 지정 됩니다. 지원 되는 hello 지역 목록 시간에 따라 확장 됩니다.
 >
 
 ### <a name="copy-data-between-an-on-premises-data-store-and-a-cloud-data-store"></a>온-프레미스 데이터 저장소와 클라우드 데이터 저장소 간 데이터 복사
-온-프레미스 또는 Azure Virtual Machines/IaaS와 클라우드 저장소 간에 데이터를 복사할 때 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 는 온-프레미스 컴퓨터 또는 Virtual Machines에서 데이터 이동을 수행합니다. [준비된 복사](data-factory-copy-activity-performance.md#staged-copy) 기능을 사용하는 경우가 아니면 이 데이터는 클라우드의 서비스를 통과하지 않습니다. 이 경우 데이터는 스테이징 Azure Blob 저장소를 통과한 후 싱크 데이터 저장소에 기록됩니다.
+온-프레미스 또는 Azure Virtual Machines/IaaS와 클라우드 저장소 간에 데이터를 복사할 때 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 는 온-프레미스 컴퓨터 또는 Virtual Machines에서 데이터 이동을 수행합니다. hello를 사용 하지 않는 한 hello 데이터 hello 클라우드에서 hello 서비스를 통해 이동 하지 않는 [복사본을 스테이징](data-factory-copy-activity-performance.md#staged-copy) 기능입니다. 이 경우 데이터 hello 싱크 데이터 저장소에 기록 되기 전에 Azure Blob 저장소를 준비 하는 hello 통해 전송 됩니다.
 
 ## <a name="create-a-pipeline-with-copy-activity"></a>복사 활동을 포함하는 파이프라인 만들기
 두 가지 방법을 통해 복사 활동을 포함하는 파이프라인을 만들 수 있습니다.
 
-### <a name="by-using-the-copy-wizard"></a>복사 마법사 사용
-Data Factory 복사 마법사를 사용하면 복사 활동을 포함하는 파이프라인을 만들 수 있습니다. 이 파이프라인에서는 연결된 서비스, 데이터 집합 및 파이프라인에 대한 *JSON 정의를 작성하지 않고도* 지원되는 소스에서 대상으로 데이터를 복사할 수 있습니다. 마법사에 대한 자세한 내용은 [Data Factory 복사 마법사](data-factory-copy-wizard.md) 를 참조하세요.  
+### <a name="by-using-hello-copy-wizard"></a>Hello 복사 마법사를 사용 하 여
+데이터 팩터리 복사 마법사 hello toocreate 파이프라인 복사 작업을 수 있습니다. 이 파이프라인에서 지원 되는 소스 toodestinations toocopy 데이터를 사용 하면 *JSON을 작성 하지 않고도* 연결 된 서비스, 데이터 집합 및 파이프라인에 대 한 정의입니다. 참조 [데이터 팩터리 복사 마법사](data-factory-copy-wizard.md) hello 마법사에 대 한 세부 정보에 대 한 합니다.  
 
 ### <a name="by-using-json-scripts"></a>JSON 스크립트 사용
-Azure 포털, Visual Studio 또는 Azure PowerShell에서 Data Factory Editor를 사용하여 복사 활동을 통해 파이프라인에 대한 JSON 정의를 만들 수 있습니다. 그런 다음 해당 정의를 배포하여 Data Factory에서 파이프라인을 만들 수 있습니다. 단계별 지침이 포함된 자습서는 [자습서: Azure Data Factory 파이프라인에서 복사 활동 사용](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 을 참조하세요.    
+(사용 하 여 복사 작업)는 파이프라인에 대 한 hello Azure 포털, Visual Studio 또는 Azure PowerShell toocreate JSON 정의에서 데이터 팩터리 편집기를 사용할 수 있습니다. 그런 다음 데이터 팩터리에서 toocreate hello 파이프라인 것 것을 배포할 수 있습니다. 단계별 지침이 포함된 자습서는 [자습서: Azure Data Factory 파이프라인에서 복사 활동 사용](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 을 참조하세요.    
 
-이름, 설명, 입력/출력 테이블, 정책 등의 JSON 속성은 모든 형식의 활동에 사용할 수 있습니다. 활동의 `typeProperties` 섹션에서 사용 가능한 속성은 각 활동 형식에 따라 다릅니다.
+이름, 설명, 입력/출력 테이블, 정책 등의 JSON 속성은 모든 형식의 활동에 사용할 수 있습니다. Hello에서 사용할 수 있는 속성 `typeProperties` hello 활동의 섹션에 각 활동 유형에 따라 다릅니다.
 
-복사 활동의 경우 `typeProperties` 섹션은 원본 및 싱크의 형식에 따라 달라집니다. 해당 데이터 저장소에 대한 복사 활동에서 지원하는 형식 속성에 대해 알아보려면 [지원되는 소스 및 싱크](#supported-data-stores-and-formats) 섹션에서 소스/싱크를 클릭하세요.
+복사 작업에 대 한 hello `typeProperties` 섹션 hello 유형의 원본에 따라 다르며 싱크 합니다. Hello에는 원본/싱크 클릭 [원본 및 싱크를 지원](#supported-data-stores-and-formats) 해당 데이터 저장소에 대 한 복사 작업을 지원 합니다. 형식 속성에 대 한 섹션 toolearn 합니다.
 
 샘플 JSON 정의는 다음과 같습니다.
 
@@ -142,7 +142,7 @@ Azure 포털, Visual Studio 또는 Azure PowerShell에서 Data Factory Editor를
 {
   "name": "ADFTutorialPipeline",
   "properties": {
-    "description": "Copy data from Azure blob to Azure SQL table",
+    "description": "Copy data from Azure blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -179,30 +179,30 @@ Azure 포털, Visual Studio 또는 Azure PowerShell에서 Data Factory Editor를
   }
 }
 ```
-출력 데이터 집합에 정의된 일정은 작업 실행 시기를 결정합니다(예: **매일**, 빈도는 **요일** 및 간격은 **1**). 복사 작업에서는 입력 데이터 집합(**source**)에서 출력 데이터 집합(**sink**)으로 데이터를 복사합니다.
+hello에 정의 된 hello 일정 출력 데이터 집합 결정 hello 활동 실행 하는 경우 (예: **매일**와 빈도 **일**, 및 간격으로 **1**). hello 활동에서에서 데이터를 복사 된 입력된 데이터 집합 (**소스**) tooan 출력 데이터 집합 (**싱크**).
 
-복사 활동에 대해 입력 데이터 집합을 둘 이상 지정할 수 있습니다. 이러한 데이터 집합은 활동 실행 전에 종속성을 확인하는 데 사용됩니다. 그러나 첫 번째 데이터 집합의 데이터만 대상 데이터 집합으로 복사됩니다. 자세한 내용은 [예약 및 실행](data-factory-scheduling-and-execution.md)을 참조하세요.  
+둘 이상의 입력된 데이터 집합 tooCopy 활동을 지정할 수 있습니다. 서로 hello 활동이 실행 되기 전에 사용 되는 tooverify hello 종속성입니다. 그러나 hello 첫 번째 데이터 집합의 hello 데이터만 복사 toohello 대상 데이터입니다. 자세한 내용은 [예약 및 실행](data-factory-scheduling-and-execution.md)을 참조하세요.  
 
 ## <a name="performance-and-tuning"></a>성능 및 튜닝
-Azure Data Factory의 데이터 이동(복사 활동) 성능에 영향을 주는 주요 요인에 대해 설명하는 [복사 작업 성능 및 튜닝 가이드](data-factory-copy-activity-performance.md)를 참조하세요. 이 문서에서는 내부 테스트 중에 관찰되는 성능 관련 정보도 제공하며, 복사 활동의 성능을 최적화하는 여러 가지 방법에 대해서도 설명합니다.
+Hello 참조 [복사 활동 성능 및 조정 가이드](data-factory-copy-activity-performance.md)를 설명 하는 Azure Data Factory에서 데이터 이동 (복사 작업)의 hello 성능에 영향을 주는 주요 요인입니다. 또한 내부 테스트 중에 성능을 관찰 된 hello를 나열 하 고 복사 작업의 다양 한 방법으로 toooptimize hello 성능에 설명 합니다.
 
 ## <a name="fault-tolerance"></a>내결함성
-기본적으로 복사 작업은 원본과 싱크 간에 호환되지 않는 데이터가 발견되면 데이터 복사를 중지하고 오류를 반환합니다. 물론 호환되지 않는 행을 건너뛰고 로깅한 후 호환되는 데이터만 복사하여 복사가 성공적으로 수행되도록 명시적으로 구성할 수도 있습니다. 자세한 내용은 [복사 활동 내결함성](data-factory-copy-activity-fault-tolerance.md)을 참조하세요.
+데이터 및 반환 오류 복사 복사 작업은 중지 하는 기본적으로 원본 및 싱크; 간에 호환 되지 않는 데이터를 발견 하면 tooskip 및 로그 hello 호환 되지 않는 행과 복사본만 명시적으로 구성할 수도 있지만 이러한 호환 되는 데이터 toomake hello 복사가 했습니다. Hello 참조 [복사 활동 내결함성](data-factory-copy-activity-fault-tolerance.md) 자세한 세부 정보.
 
 ## <a name="security-considerations"></a>보안 고려 사항
-Azure Data Factory의 데이터 이동 서비스가 데이터를 보호하는 데 사용하는 기본 보안 인프라에 대해 설명하는 [보안 고려 사항](data-factory-data-movement-security-considerations.md)을 참조하세요.
+Hello 참조 [보안 고려 사항](data-factory-data-movement-security-considerations.md), Azure Data Factory에서 데이터 이동 서비스를 있는지 toosecure 데이터를 사용 하는 보안 인프라를 설명 하는 합니다.
 
 ## <a name="scheduling-and-sequential-copy"></a>예약 및 순차 복사
-Data Factory에서 예약 및 실행이 작동하는 방식에 대한 자세한 내용은 [예약 및 실행](data-factory-scheduling-and-execution.md) 을 참조하세요. 순차/순서가 지정된 방식으로 하나씩 여러 복사 작업을 실행하는 것이 가능합니다. [순차적으로 복사](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) 섹션을 참조하세요.
+Data Factory에서 예약 및 실행이 작동하는 방식에 대한 자세한 내용은 [예약 및 실행](data-factory-scheduling-and-execution.md) 을 참조하세요. 것은 가능한 toorun 여러 복사 작업 차례로 정렬/순차적 방식으로 합니다. Hello 참조 [순차적으로 복사](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) 섹션.
 
 ## <a name="type-conversions"></a>형식 변환
-다른 데이터 저장소에는 서로 다른 네이티브 형식 시스템이 있습니다. 복사 활동에서는 다음과 같은 2단계 방식을 통해 소스 형식에서 싱크 형식으로의 자동 형식 변환을 수행합니다.
+다른 데이터 저장소에는 서로 다른 네이티브 형식 시스템이 있습니다. 복사 작업에는 2 단계 방식을 따릅니다 hello로 원본 형식 toosink 유형의 자동 형식 변환을 수행 합니다.
 
-1. 네이티브 소스 형식에서 .NET 형식으로 변환
-2. .NET 형식에서 네이티브 싱크 형식으로 변환
+1. 네이티브 소스 형식 tooa.NET 형식에서 변환 합니다.
+2. .NET 형식 tooa 네이티브 싱크 형식에서 변환 합니다.
 
-네이티브 형식 시스템에서 데이터 저장소용 .NET 형식으로의 매핑은 각 데이터 저장소 문서에 있습니다. 이러한 매핑을 확인하려면 [지원되는 데이터 저장소](#supported-data-stores) 테이블에서 해당 링크를 클릭하세요. 복사 활동에서 적절한 변환을 수행하도록 이러한 매핑을 사용하여 테이블을 만드는 동안 적절한 형식을 결정할 수 있습니다.
+데이터 저장소에 대 한 네이티브 형식 시스템 tooa.NET 유형에 서 hello 매핑 hello 각 데이터 저장소 문서입니다. (Hello hello 특정 링크를 클릭 [데이터 저장소를 지원](#supported-data-stores) 테이블). 복사 활동 hello 오른쪽 변환을 수행 되도록 테이블을 만드는 동안 이러한 매핑 toodetermine 적절 한 형식을 사용할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 복사 작업에 대해 자세히 알아보려면 [Azure Blob 저장소에서 Azure SQL Database로 데이터를 복사](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)를 참조하세요.
-* 온-프레미스 데이터 저장소에서 클라우드 데이터 저장소로 데이터를 이동하는 방법에 대해 알아보려면 [온-프레미스에서 클라우드 데이터 저장소로 데이터 이동](data-factory-move-data-between-onprem-and-cloud.md)을 참조하세요.
+* toolearn hello 더 복사 작업에 대 한 참조 [Azure Blob 저장소 tooAzure SQL 데이터베이스에서에서 데이터를 복사](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)합니다.
+* 온-프레미스 데이터 저장소 tooa 클라우드 데이터 저장소에서 데이터를 이동 하는 방법에 대 한 toolearn 참조 [온-프레미스 toocloud 데이터 저장소에서 데이터를 이동](data-factory-move-data-between-onprem-and-cloud.md)합니다.

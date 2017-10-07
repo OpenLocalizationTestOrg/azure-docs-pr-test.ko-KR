@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Lake U-SQL SDK를 사용하여 U-SQL 로컬 실행 및 테스트 규모 조정 | Microsoft Docs"
-description: "Azure Data Lake U-SQL SDK를 사용하여 로컬 워크스테이션의 명령줄 및 프로그래밍 인터페이스로 U-SQL 작업 로컬 실행 및 테스트 크기를 조정하는 방법을 알아봅니다."
+title: "U-SQL aaaScale 로컬 실행 및 Azure 데이터 레이크 U-SQL SDK와 함께 테스트 | Microsoft Docs"
+description: "로컬 toouse Azure 데이터 레이크 U-SQL SDK tooscale U-SQL 작업 실행 하 고 명령줄에서 로컬 워크스테이션 프로그래밍 인터페이스와 테스트 하는 방법에 대해 알아봅니다."
 services: data-lake-analytics
 documentationcenter: 
 author: 
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: yanacai
-ms.openlocfilehash: 55242bcf644ca0e7f30cfe7eada2130451c36e64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b0a16229789268e333f723ff6fc2c3efdc29905
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-u-sql-local-run-and-test-with-azure-data-lake-u-sql-sdk"></a>Azure Data Lake U-SQL SDK를 사용하여 U-SQL 로컬 실행 및 테스트 규모 조정
 
-U-SQL 스크립트를 개발할 때 클라우드로 제출하기 전에 로컬에서 U-SQL 스크립트를 실행하고 테스트하는 것이 일반적입니다. Azure Data Lake는 이 시나리오에 대해 Azure Data Lake U-SQL SDK라는 Nuget 패키지를 제공합니다. 이를 통해 U-SQL 로컬 실행 및 테스트 규모를 쉽게 조정할 수 있습니다. 이 U-SQL 테스트를 CI(연속 통합) 시스템에 통합하여 컴파일 및 테스트를 자동화할 수도 있습니다.
+U-SQL 스크립트를 개발할 때 일반적인 toorun 이며 테스트 U-SQL 스크립트를 로컬로 전에 제출 toocloud입니다. Azure Data Lake는 이 시나리오에 대해 Azure Data Lake U-SQL SDK라는 Nuget 패키지를 제공합니다. 이를 통해 U-SQL 로컬 실행 및 테스트 규모를 쉽게 조정할 수 있습니다. 이 U-SQL CI (연속 통합) 시스템 tooautomate hello 컴파일 및 테스트와 테스트 가능한 toointegrate 이기도 합니다.
 
-GUI 도구를 사용하여 U-SQL 스크립트를 수동으로 로컬 실행 및 디버깅하는 방법에 관심이 있는 경우 Azure Data Lake Tools for Visual Studio를 사용할 수 있습니다. [여기](data-lake-analytics-data-lake-tools-local-run.md)에서 자세히 알아볼 수 있습니다.
+중요 하지 않은 경우에 대 한 방법을 toomanually 로컬 실행 하 고 디버깅 GUI 도구와 U-SQL 스크립트에 대 한 Visual Studio 용 Azure 데이터 레이크 도구를 사용할 수 있습니다. [여기](data-lake-analytics-data-lake-tools-local-run.md)에서 자세히 알아볼 수 있습니다.
 
 ## <a name="install-azure-data-lake-u-sql-sdk"></a>Azure Data Lake U-SQL SDK 설치
 
-Nuget.org의 [여기](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/)에서 Azure Data Lake U-SQL SDK를 다운로드할 수 있습니다. 사용하기 전에 다음과 같이 종속성이 있는지 확인해야 합니다.
+Azure 데이터 레이크 U-SQL SDK hello를 얻을 수 [여기](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/) Nuget.org에 있습니다. 및를 사용 하기 전에 필요 toomake 종속성을 다음과 같이 해야 합니다.
 
 ### <a name="dependencies"></a>종속성
 
-Data Lake U-SQL SDK에는 다음과 같은 종속성이 필요합니다.
+데이터 레이크 U-SQL SDK hello를 hello를 종속성 다음 사항이 필요 합니다.
 
 - [Microsoft .NET Framework 4.6 이상](https://www.microsoft.com/download/details.aspx?id=17851).
-- Microsoft Visual C++ 14 및 Windows SDK 10.0.10240.0 이상(이 문서에서는 CppSDK로 지칭함). CppSDK는 다음 두 가지 방법으로 다운로드할 수 있습니다.
+- Microsoft Visual C++ 14 및 Windows SDK 10.0.10240.0 이상(이 문서에서는 CppSDK로 지칭함). 두 가지 방법으로 tooget CppSDK 가지가 있습니다.
 
-    - [Visual Studio Community Edition](https://developer.microsoft.com/downloads/vs-thankyou)을 설치합니다. 프로그램 파일 폴더 아래에 \Windows Kits\10 폴더가 생성됩니다(예: C:\Program Files (x86)\Windows Kits\10\). 또한 \Windows Kits\10\Lib 아래에서 Windows 10 SDK 버전을 찾습니다. 이들 폴더가 보이지 않으면 Visual Studio를 다시 설치하고 설치하는 동중 Windows 10 SDK를 선택해야 합니다. Visual Studio와 함께 설치된 경우에는 U-SQL 로컬 컴파일러가 해당 버전을 자동으로 찾습니다.
+    - [Visual Studio Community Edition](https://developer.microsoft.com/downloads/vs-thankyou)을 설치합니다. 예를 들어 C:\Program Files (x86) \Windows Kits\10\ hello Program Files 폴더 아래에서 \Windows Kits\10 폴더를 해야 합니다. 또한 \Windows Kits\10\Lib에서 hello Windows 10 SDK 버전을 찾을 수 있습니다. 이러한 폴더 보이지 않으면 Visual Studio를 다시 설치 하 고 있는지 tooselect hello Windows 10 SDK hello 설치 중 수입니다. Visual Studio와 함께 설치 된이 있다면 hello U-SQL 로컬 컴파일러 것 자동으로.
 
     ![Data Lake Tools for Visual Studio의 Windows 10 SDK 로컬 실행](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-windows-10-sdk.png)
 
-    - [Visual Studio용 Data Lake 도구](http://aka.ms/adltoolsvs)를 설치합니다. 미리 패키지된 Visual C++ 및 Windows SDK 파일은 C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\ADL Tools\X.X.XXXX.X\CppSDK에서 찾을 수 있습니다. 이 경우 U-SQL 로컬 컴파일러는 이러한 종속성을 자동으로 찾을 수 없습니다. 이에 대한 CppSDK 경로를 지정해야 합니다. 파일을 다른 위치로 복사하거나 그대로 사용할 수 있습니다.
+    - [Visual Studio용 Data Lake 도구](http://aka.ms/adltoolsvs)를 설치합니다. Hello (x86) C:\Program Files \Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\ADL Tools\X.X.XXXX.X\CppSDK에서 Visual c + + 및 Windows SDK 파일을 사전 포장 된 고품위 찾을 수 있습니다. 이 경우 hello U-SQL 로컬 컴파일러 hello 종속성을 자동으로 찾을 수 없습니다. 에 대 한 toospecify hello CppSDK 경로가 필요 합니다. Hello 파일 tooanother 위치를 복사 하거나 있는 그대로 사용할 수 있습니다.
 
 ## <a name="understand-basic-concepts"></a>기본 개념 이해
 
 ### <a name="data-root"></a>데이터 루트
 
-데이터 루트 폴더는 로컬 계산 계정의 "로컬 저장소"입니다. 이는 Data Lake Analytics 계정의 Azure Data Lake Store 계정과 동일합니다. 다른 데이터 루트 폴더로 전환하는 것은 다른 저장소 계정으로 전환하는 것과 같습니다. 다른 데이터 루트 폴더와 공유된 데이터에 액세스하려는 경우 스크립트에서 절대 경로를 사용해야 합니다. 또는 데이터 루트 폴더 아래에 파일 시스템 심볼 링크를 만들어 공유 데이터를 가리키도록 합니다(예, NTFS의 **mklink**).
+hello 데이터 루트 폴더는 hello 로컬 계산 계정에 대 한 "로컬 저장소". 이 Data Lake 분석 계정 해당 toohello Azure 데이터 레이크 저장소 계정입니다. 다른 저장소 계정 tooa 전환와 동일 하 게 서로 다른 데이터 루트 폴더는 tooa 전환입니다. Tooaccess 서로 다른 데이터 루트 폴더와 일반적으로 데이터를 공유 하려면 스크립트에서 절대 경로 사용 해야 합니다. 또는 파일 시스템에 대 한 기호화 된 링크를 만듭니다 (예를 들어 **mklink** ntfs) hello 데이터 루트 폴더 toopoint toohello에서 데이터를 공유 합니다.
 
-데이터 루트 폴더는 다음 용도로 사용됩니다.
+hello 데이터 루트 폴더에 사용 됩니다.
 
 - 데이터베이스, 테이블, TVF(테이블 반환 함수), 어셈블리 등의 로컬 메타데이터를 저장합니다.
-- U-SQL에서 상대 경로로 정의된 입력 및 출력 경로 조회 - 상대 경로를 사용하면 U-SQL 프로젝트를 Azure에 보다 쉽게 배포할 수 있습니다.
+- 입력 hello 및 U-SQL에 상대 경로로 정의 된 출력 경로를 조회 합니다. 상대 경로 사용 하 여 사용 하면 보다 쉽게 toodeploy U-SQL 프로젝트 tooAzure 합니다.
 
 ### <a name="file-path-in-u-sql"></a>U-SQL의 파일 경로
 
-U-SQL 스크립트의 상대 경로 및 로컬 절대 경로를 사용할 수 있습니다. 상대 경로는 지정된 데이터-루트 폴더 경로 기준으로 하는 것입니다. 스크립트를 서버 쪽과 호환되게 하려면 경로 구분 기호로 "/"를 사용하는 것이 좋습니다. 다음은 상대 경로 및 이와 대등한 절대 경로의 몇 가지 예입니다. 이 예에서 C:\LocalRunDataRoot는 데이터 루트 폴더입니다.
+U-SQL 스크립트의 상대 경로 및 로컬 절대 경로를 사용할 수 있습니다. hello 상대 경로 상대 toohello 지정한 데이터 루트 폴더 경로입니다. 하면 사용 하 여 "/"로 hello 경로 구분 기호 toomake 스크립트 hello 서버 쪽와 호환 되는 것이 좋습니다. 다음은 상대 경로 및 이와 대등한 절대 경로의 몇 가지 예입니다. 다음 예에서 C:\LocalRunDataRoot는 hello 데이터 루트 폴더입니다.
 
 |상대 경로|절대 경로|
 |-------------|-------------|
@@ -66,7 +66,7 @@ U-SQL 스크립트의 상대 경로 및 로컬 절대 경로를 사용할 수 �
 
 ### <a name="working-directory"></a>작업 디렉터리
 
-U-SQL 스크립트를 로컬로 실행하면 컴파일 중에 현재 실행 중인 디렉터리 아래에 작업 디렉터리가 만들어집니다. 컴파일 결과 외에도 로컬 실행에 필요한 런타임 파일이 이 작업 디렉터리에 섀도 복사됩니다. 작업 디렉터리 루트 폴더를 "ScopeWorkDir"이라고 하고 작업 디렉터리 아래의 파일은 다음과 같습니다.
+Hello U-SQL 스크립트를 로컬로 실행할 때 현재 실행 중인 디렉터리에서 컴파일하는 동안 작업 디렉터리가 만들어집니다. 또한 toohello 컴파일 출력 hello 필요한 로컬 실행에 대 한 런타임 파일 됩니다 섀도 복사한 toothis 작업 디렉터리입니다. 작업 디렉터리 루트 폴더 hello "ScopeWorkDir" 라고 하 고 hello 작업 디렉터리 아래에 있는 hello 파일은 다음과 같습니다.
 
 |디렉터리/파일|디렉터리/파일|디렉터리/파일|정의|설명|
 |--------------|--------------|--------------|----------|-----------|
@@ -80,20 +80,20 @@ U-SQL 스크립트를 로컬로 실행하면 컴파일 중에 현재 실행 중�
 | | |xxxxxxxx.xxx[1..n]\_\*.*|실행 로그|실행 단계에 대한 로그|
 
 
-## <a name="use-the-sdk-from-the-command-line"></a>명령줄에서 SDK 사용
+## <a name="use-hello-sdk-from-hello-command-line"></a>Hello 명령줄에서 SDK hello를 사용 하 여
 
-### <a name="command-line-interface-of-the-helper-application"></a>도우미 응용 프로그램의 명령줄 인터페이스
+### <a name="command-line-interface-of-hello-helper-application"></a>Hello 도우미 응용 프로그램의 명령줄 인터페이스
 
-SDK directory\build\runtime에서 LocalRunHelper.exe는 일반적으로 사용되는 대부분의 로컬 실행 기능에 대한 인터페이스를 제공하는 명령줄 도우미 응용 프로그램입니다. 명령 및 인수 스위치는 모두 대소문자를 구분합니다. 도우미를 호출하려면 다음 명령을 사용합니다.
+SDK directory\build\runtime에서 LocalRunHelper.exe 인터페이스의 일반적으로 사용 하는 hello toomost 로컬 실행 기능을 제공 하는 hello 명령줄 도우미 응용 프로그램입니다. Note 명령을 모두 hello 및 hello 인수 스위치는 대/소문자 구분 합니다. tooinvoke 하기:
 
     LocalRunHelper.exe <command> <Required-Command-Arguments> [Optional-Command-Arguments]
 
-인수를 사용하지 않거나 다음과 같이 **help** 스위치와 함께 LocalRunHelper.exe를 실행하여 도움말 정보를 표시합니다.
+인수 없이 또는 hello로 LocalRunHelper.exe 실행 **도움말** 스위치 tooshow hello 도움말 정보:
 
     > LocalRunHelper.exe help
 
         Command 'help' :  Show usage information
-        Command 'compile' :  Compile the script
+        Command 'compile' :  Compile hello script
         Required Arguments :
             -Script param
                     Script File Path
@@ -101,61 +101,61 @@ SDK directory\build\runtime에서 LocalRunHelper.exe는 일반적으로 사용�
             -Shallow [default value 'False']
                     Shallow compile
 
-도움말 정보에서 다음과 같이 구성됩니다.
+Hello에 지원 정보:
 
--  **Command**: 명령의 이름을 제공합니다.  
+-  **명령** 제공 hello 명령의 이름입니다.  
 -  **Required Argument**: 제공해야 하는 인수를 나열합니다.  
--  **Optional Argument**: 선택적이며 기본값을 갖는 인수를 나열합니다.  선택적 부울 인수에는 매개 변수가 없으며, 이 매개 변수의 출현은 기본값에 부정적이라는 것을 의미합니다.
+-  **Optional Argument**: 선택적이며 기본값을 갖는 인수를 나열합니다.  선택적 부울 인수 매개 변수 및 모양을 음수 tootheir 기본값을 의미 합니다.
 
 ### <a name="return-value-and-logging"></a>반환 값 및 로깅
 
-도우미 응용 프로그램은 성공한 경우 **0**을, 실패한 경우 **-1**을 반환합니다. 기본적으로 도우미는 모든 메시지를 현재 콘솔로 보냅니다. 그러나 대부분의 명령은 출력을 로그 파일로 리디렉션하는 **-MessageOut path_to_log_file** 선택적 인수를 지원합니다.
+hello 도우미 응용 프로그램이 반환 **0** 성공 및 **-1** 실패에 대 한 합니다. 기본적으로 hello 도우미 모든 메시지 toohello 현재 콘솔을 보냅니다. 그러나 대부분의 hello 명령은 지원 hello **-MessageOut path_to_log_file** hello 리디렉션하는 선택적 인수 tooa 로그 파일을 출력 합니다.
 
 ### <a name="environment-variable-configuring"></a>환경 변수 구성
 
-U-SQL 로컬 실행을 위해서는 지정된 데이터 루트가 로컬 저장소 계정으로 필요하고, 종속성에 대해 지정된 CppSDK 경로가 필요합니다. 명령줄에서 인수를 설정하고 그에 대한 환경 변수를 설정할 수 있습니다.
+U-SQL 로컬 실행을 위해서는 지정된 데이터 루트가 로컬 저장소 계정으로 필요하고, 종속성에 대해 지정된 CppSDK 경로가 필요합니다. 명령줄 또는 설정 환경 변수에서 집합 hello 인수 둘 다를 수 있습니다.
 
-- **SCOPE_CPP_SDK** 환경 변수를 설정합니다.
+- 집합 hello **SCOPE_CPP_SDK** 환경 변수입니다.
 
-    Data Lake Tools for Visual Studio를 설치하여 Microsoft Visual C++ 및 Windows SDK를 가져온 경우 다음 폴더가 있는지 확인합니다.
+    Visual Studio에 대 한 데이터 레이크 도구를 설치 하 여 Microsoft Visual c + + 및 Windows SDK hello를 얻게 폴더 다음 hello 있는지를 확인 합니다.
 
         C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Microsoft Azure Data Lake Tools for Visual Studio 2015\X.X.XXXX.X\CppSDK
 
-    이 디렉터리를 가리키도록 **SCOPE_CPP_SDK**라는 새로운 환경 변수를 정의합니다. 또는 다른 위치에 폴더를 복사하고 **SCOPE_CPP_SDK**를 지정합니다.
+    라는 새 환경 변수를 정의 **SCOPE_CPP_SDK** toopoint toothis 디렉터리입니다. 또는 hello 폴더 toohello 다른 위치를 복사 하 고 지정 **SCOPE_CPP_SDK** 된 것입니다.
 
-    환경 변수를 설정하는 것 외에도 명령줄을 사용할 때 **-CppSDK** 인수를 지정할 수도 있습니다. 이 인수는 기본 CppSDK 환경 변수를 덮어씁니다.
+    또한 toosetting hello 환경 변수에서 hello를 지정할 수 있습니다 **-CppSDK** hello 명령줄을 사용 하는 경우에 인수입니다. 이 인수는 기본 CppSDK 환경 변수를 덮어씁니다.
 
-- **LOCALRUN_DATAROOT** 환경 변수를 설정합니다.
+- 집합 hello **LOCALRUN_DATAROOT** 환경 변수입니다.
 
-    데이터 루트를 가리키는 **LOCALRUN_DATAROOT**라는 새로운 환경 변수를 정의합니다.
+    라는 새 환경 변수를 정의 **LOCALRUN_DATAROOT** toohello 데이터 루트를 가리키는 합니다.
 
-    환경 변수를 설정하는 것 외에도 명령줄을 사용할 때 데이터 루트 경로로 **-DataRoot** 인수를 지정할 수 있습니다. 이 인수는 기본 데이터 루트 환경 변수를 덮어씁니다. 모든 작업에 대해 기본 데이터 루트 환경 변수를 덮어 쓸 수 있도록 실행 중인 모든 명령줄에 이 인수를 추가해야 합니다.
+    또한 toosetting hello 환경 변수에서 hello를 지정할 수 있습니다 **-DataRoot** 인수 명령줄을 사용 하는 경우 hello 데이터 루트 경로 사용 합니다. 이 인수는 기본 데이터 루트 환경 변수를 덮어씁니다. 이 인수 tooevery 명령줄 hello 모든 작업에 대 한 기본 데이터 루트 환경 변수를 덮어쓸 수 있도록 실행 하는 tooadd 필요 합니다.
 
 ### <a name="sdk-command-line-usage-samples"></a>SDK 명령줄 사용 샘플
 
 #### <a name="compile-and-run"></a>컴파일 및 실행
 
-**run** 명령은 스크립트를 컴파일한 다음 컴파일 결과를 실행하는 데 사용됩니다. 명령줄 인수는 **compile**과 **execute**의 조합입니다.
+hello **실행** 명령을 사용 하 여 toocompile 스크립트 hello 및 다음 컴파일된 결과 실행 합니다. 명령줄 인수는 **compile**과 **execute**의 조합입니다.
 
     LocalRunHelper run -Script path_to_usql_script.usql [optional_arguments]
 
-다음은 **run**에 대한 선택적 인수입니다.
+hello 다음은 하기 위한 선택적 인수 **실행**:
 
 
 |인수|기본값|설명|
 |--------|-------------|-----------|
-|-CodeBehind|False|스크립트에는 .cs 코드 숨김이 있습니다.|
+|-CodeBehind|False|hello 스크립트의.cs 코드 숨김|
 |-CppSDK| |CppSDK 디렉터리입니다.|
-|-DataRoot| DataRoot 환경 변수|로컬 실행을 위한 데이터 루트이며, 기본값은 'LOCALRUN_DATAROOT' 환경 변수입니다.|
-|-MessageOut| |콘솔의 메시지를 파일에 덤프합니다.|
-|-Parallel|1|지정된 병렬 처리로 계획을 실행합니다.|
-|-References| |';'(세미콜론)으로 구분된 코드 참조의 추가 참조 어셈블리 또는 데이터 파일의 경로 목록입니다.|
+|-DataRoot| DataRoot 환경 변수|로컬 실행에 대 한 DataRoot 너무 기본 'LOCALRUN_DATAROOT' 환경 변수|
+|-MessageOut| |콘솔 tooa 파일에 메시지를 덤프 합니다.|
+|-Parallel|1|Hello 실행 계획 hello로 병렬 처리 수준 지정|
+|-References| |구분 하 여 tooextra 참조 어셈블리 경로 또는 코드 숨김의 데이터 파일의 목록 ';'|
 |-UdoRedirect|False|Udo 어셈블리 리디렉션 구성을 생성합니다.|
-|-UseDatabase|master|코드 숨김 임시 어셈블리 등록에 사용할 데이터베이스입니다.|
+|-UseDatabase|master|임시 어셈블리 등록 뒤에 있는 코드에 대 한 데이터베이스 toouse|
 |-Verbose|False|런타임의 자세한 출력을 표시합니다.|
 |-WorkDir|현재 디렉터리|컴파일러 사용 및 출력을 위한 디렉터리입니다.|
-|-RunScopeCEP|0|사용할 ScopeCEP 모드입니다.|
-|-ScopeCEPTempPath|temp|데이터 스트리밍에 사용할 임시 경로입니다.|
+|-RunScopeCEP|0|ScopeCEP 모드 toouse|
+|-ScopeCEPTempPath|temp|스트리밍 데이터에 대 한 임시 경로 toouse|
 |-OptFlags| |쉼표로 구분된 최적화 프로그램 플래그 목록입니다.|
 
 
@@ -163,30 +163,30 @@ U-SQL 로컬 실행을 위해서는 지정된 데이터 루트가 로컬 저장�
 
     LocalRunHelper run -Script d:\test\test1.usql -WorkDir d:\test\bin -CodeBehind -References "d:\asm\ref1.dll;d:\asm\ref2.dll" -UseDatabase testDB –Parallel 5 -Verbose
 
-**compile**과 **execute**를 조합하는 것 외에도 컴파일된 실행 파일을 개별적으로 컴파일하고 실행할 수 있습니다.
+결합 외에도 **컴파일** 및 **실행**, 컴파일 및 hello 컴파일된 실행 파일을 개별적으로 실행할 수 있습니다.
 
 #### <a name="compile-a-u-sql-script"></a>U-SQL 스크립트 컴파일
 
-**compile** 명령은 U-SQL 스크립트를 실행 파일로 컴파일하는 데 사용됩니다.
+hello **컴파일** 명령에 사용 되는 toocompile는 U-SQL 스크립트 tooexecutables입니다.
 
     LocalRunHelper compile -Script path_to_usql_script.usql [optional_arguments]
 
-다음은 **compile**에 대한 선택적 인수입니다.
+hello 다음은 하기 위한 선택적 인수 **컴파일**:
 
 
 |인수|설명|
 |--------|-----------|
-| -CodeBehind [기본값 'False']|스크립트에는 .cs 코드 숨김이 있습니다.|
+| -CodeBehind [기본값 'False']|hello 스크립트의.cs 코드 숨김|
 | -CppSDK [기본값 '']|CppSDK 디렉터리입니다.|
-| -DataRoot [기본값 'DataRoot 환경 변수']|로컬 실행을 위한 데이터 루트이며, 기본값은 'LOCALRUN_DATAROOT' 환경 변수입니다.|
-| -MessageOut [기본값 '']|콘솔의 메시지를 파일에 덤프합니다.|
-| -References [기본값 '']|';'(세미콜론)으로 구분된 코드 참조의 추가 참조 어셈블리 또는 데이터 파일의 경로 목록입니다.|
+| -DataRoot [기본값 'DataRoot 환경 변수']|로컬 실행에 대 한 DataRoot 너무 기본 'LOCALRUN_DATAROOT' 환경 변수|
+| -MessageOut [기본값 '']|콘솔 tooa 파일에 메시지를 덤프 합니다.|
+| -References [기본값 '']|구분 하 여 tooextra 참조 어셈블리 경로 또는 코드 숨김의 데이터 파일의 목록 ';'|
 | -Shallow [기본값 'False']|단순 컴파일입니다.|
 | -UdoRedirect [기본값 'False']|Udo 어셈블리 리디렉션 구성을 생성합니다.|
-| -UseDatabase [기본값 'master']|코드 숨김 임시 어셈블리 등록에 사용할 데이터베이스입니다.|
+| -UseDatabase [기본값 'master']|임시 어셈블리 등록 뒤에 있는 코드에 대 한 데이터베이스 toouse|
 | -WorkDir [기본값 '현재 디렉터리']|컴파일러 사용 및 출력을 위한 디렉터리입니다.|
-| -RunScopeCEP [기본값 '0']|사용할 ScopeCEP 모드입니다.|
-| -ScopeCEPTempPath [기본값 'temp']|데이터 스트리밍에 사용할 임시 경로입니다.|
+| -RunScopeCEP [기본값 '0']|ScopeCEP 모드 toouse|
+| -ScopeCEPTempPath [기본값 'temp']|스트리밍 데이터에 대 한 임시 경로 toouse|
 | -OptFlags [기본값 '']|쉼표로 구분된 최적화 프로그램 플래그 목록입니다.|
 
 
@@ -196,7 +196,7 @@ U-SQL 스크립트를 컴파일합니다.
 
     LocalRunHelper compile -Script d:\test\test1.usql
 
-U-SQL 스크립트를 컴파일하고 데이터 루트 폴더를 설정합니다. 이는 환경 변수 설정을 덮어 씁니다.
+U-SQL 스크립트를 컴파일하고 hello 데이터 루트 폴더를 설정 합니다. Note 이렇게 환경 변수를 설정 하는 hello 덮어쓰게 됩니다.
 
     LocalRunHelper compile -Script d:\test\test1.usql –DataRoot c:\DataRoot
 
@@ -206,48 +206,48 @@ U-SQL 스크립트를 컴파일하고 작업 디렉터리, 참조 어셈블리 �
 
 #### <a name="execute-compiled-results"></a>컴파일된 결과 실행
 
-**execute** 명령은 컴파일된 결과를 실행하는 데 사용됩니다.   
+hello **실행** 명령에 사용 되는 tooexecute 컴파일 결과입니다.   
 
     LocalRunHelper execute -Algebra path_to_compiled_algebra_file [optional_arguments]
 
-다음은 **compile**에 대한 선택적 인수입니다.
+hello 다음은 하기 위한 선택적 인수 **실행**:
 
 |인수|설명|
 |--------|-----------|
-|-DataRoot [기본값 '']|메타데이터 실행을 위한 루트 데이터입니다. **LOCALRUN_DATAROOT** 환경 변수로 기본 설정합니다.|
-|-MessageOut [기본값 '']|콘솔의 메시지를 파일에 덤프합니다.|
-|-Parallel [기본값 '1']|지정된 병렬 처리 수준으로 생성된 로컬 실행 단계를 실행하는 표시기입니다.|
-|-Verbose [기본값 'False']|런타임의 자세한 출력을 보여주는 표시기입니다.|
+|-DataRoot [기본값 '']|메타데이터 실행을 위한 루트 데이터입니다. 기본적으로 toohello **LOCALRUN_DATAROOT** 환경 변수입니다.|
+|-MessageOut [기본값 '']|Hello 콘솔 tooa 파일에 메시지를 덤프 합니다.|
+|-Parallel [기본값 '1']|병렬 처리 수준을 지정 하는 hello 사용 하 여 표시기 toorun 생성 hello 로컬 실행 단계.|
+|-Verbose [기본값 'False']|표시기 tooshow 자세한 런타임에서 출력 합니다.|
 
 사용 예는 다음과 같습니다.
 
     LocalRunHelper execute -Algebra d:\test\workdir\C6A101DDCB470506\Script_66AE4909AA0ED06C\__script__.abr –DataRoot c:\DataRoot –Parallel 5
 
 
-## <a name="use-the-sdk-with-programming-interfaces"></a>프로그래밍 인터페이스와 함께 SDK 사용
+## <a name="use-hello-sdk-with-programming-interfaces"></a>프로그래밍 인터페이스를 사용 하 여 hello SDK
 
-프로그래밍 인터페이스는 모두 LocalRunHelper.exe에 있습니다. 이 인터페이스를 사용하여 U-SQL SDK 및 C# 테스트 프레임워크의 기능을 통합하여 U-SQL 스크립트 로컬 테스트의 크기를 조정할 수 있습니다. 이 문서에서는 이러한 인터페이스를 사용하여 U-SQL 스크립트를 테스트하는 방법을 보여 주기 위해 표준 C# 단위 테스트 프로젝트를 사용합니다.
+hello 프로그래밍 인터페이스는 모두 LocalRunHelper.exe hello에 있습니다. Hello U-SQL SDK의 toointegrate hello 기능을 사용 하 고 hello C# 테스트 프레임 워크 tooscale U-SQL 스크립트 로컬 테스트 수 있습니다. 이 문서에서는 hello 표준 C# 단위 테스트 프로젝트 tooshow를 어떻게 사용 합니다 toouse 이러한 U-SQL 스크립트 tootest 인터페이스입니다.
 
 ### <a name="step-1-create-c-unit-test-project-and-configuration"></a>1단계: C# 단위 테스트 프로젝트 및 구성 만들기
 
 - 파일 > 새로 만들기 > 프로젝트 > Visual C# > 테스트 > 단위 테스트 프로젝트를 통해 C# 단위 테스트 프로젝트를 만듭니다.
-- 프로젝트에 대한 참조로 LocalRunHelper.exe를 추가합니다. LocalRunHelper.exe는 Nuget 패키지의 \build\runtime\LocalRunHelper.exe에 있습니다.
+- LocalRunHelper.exe hello 프로젝트에 대 한 참조로 추가 합니다. hello LocalRunHelper.exe는 Nuget 패키지에 \build\runtime\LocalRunHelper.exe에 있습니다.
 
     ![Azure Data Lake U-SQL SDK 참조 추가](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-add-reference.png)
 
-- U-SQL SDK는 x64 환경**만** 지원합니다. 따라서 빌드 플랫폼 대상을 x64로 설정해야 합니다. 프로젝트 속성 > 빌드 > 플랫폼 대상을 통해 설정할 수 있습니다.
+- U-SQL SDK **만** x64로 확인 되었는지 tooset 빌드 플랫폼 대상 x64 지원 환경입니다. 프로젝트 속성 > 빌드 > 플랫폼 대상을 통해 설정할 수 있습니다.
 
     ![Azure Data Lake U-SQL SDK x64 프로젝트 구성](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-configure-x64.png)
 
-- 테스트 환경을 x64로 설정해야 합니다. Visual Studio에서 테스트 > 테스트 설정 > 기본 프로세서 아키텍처 > x64를 통해 설정할 수 있습니다.
+- X64로 있는지 tooset 테스트 환경을 확인 합니다. Visual Studio에서 테스트 > 테스트 설정 > 기본 프로세서 아키텍처 > x64를 통해 설정할 수 있습니다.
 
     ![Azure Data Lake U-SQL SDK x64 테스트 환경 구성](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-configure-test-x64.png)
 
-- NugetPackage\build\runtime\ 아래에 있는 모든 종속성 파일을 일반적으로 ProjectFolder\bin\x64\Debug 아래에 있는 프로젝트 작업 디렉터리로 복사해야 합니다.
+- 일반적으로 ProjectFolder\bin\x64\Debug 아래 있는 NugetPackage\build\runtime\ tooproject 작업 디렉터리에 모든 종속 파일 toocopy 있는지를 확인 합니다.
 
 ### <a name="step-2-create-u-sql-script-test-case"></a>2단계: U-SQL 스크립트 테스트 사례 만들기
 
-다음은 U-SQL 스크립트 테스트에 대한 샘플 코드입니다. 테스트를 위해 스크립트, 입력 파일 및 예상 출력 파일을 준비해야 합니다.
+U-SQL 스크립트 테스트에 대 한 hello 샘플 코드는 다음과 같습니다. Tooprepare 스크립트 테스트를 위해 필요한 입력된 파일 및 예상된 출력 파일입니다.
 
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -264,12 +264,12 @@ U-SQL 스크립트를 컴파일하고 작업 디렉터리, 참조 어셈블리 �
             [TestMethod]
             public void TestUSQLScript()
             {
-                //Specify the local run message output path
+                //Specify hello local run message output path
                 StreamWriter MessageOutput = new StreamWriter("../../../log.txt");
 
                 LocalRunHelper localrun = new LocalRunHelper(MessageOutput);
 
-                //Configure the DateRoot path, Script Path and CPPSDK path
+                //Configure hello DateRoot path, Script Path and CPPSDK path
                 localrun.DataRoot = "../../../";
                 localrun.ScriptPath = "../../../Script/Script.usql";
                 localrun.CppSdkDir = "../../../CppSDK";
@@ -285,7 +285,7 @@ U-SQL 스크립트를 컴파일하고 작업 디렉터리, 참조 어셈블리 �
 
                 Test.Helpers.FileAssert.AreEqual(Result, ExpectedResult);
 
-                //Don't forget to close MessageOutput to get logs into file
+                //Don't forget tooclose MessageOutput tooget logs into file
                 MessageOutput.Close();
             }
         }
@@ -331,7 +331,7 @@ U-SQL 스크립트를 컴파일하고 작업 디렉터리, 참조 어셈블리 �
 
 ### <a name="programming-interfaces-in-localrunhelperexe"></a>LocalRunHelper.exe의 프로그래밍 인터페이스
 
-LocalRunHelper.exe는 U-SQL 로컬 컴파일, 실행 등을 위한 프로그래밍 인터페이스를 제공합니다. 이러한 인터페이스는 다음과 같습니다.
+등 hello 인터페이스는 다음과 같이 나열 된, LocalRunHelper.exe hello 프로그래밍 U-SQL 로컬 컴파일, 실행에 대 한 인터페이스를 제공 합니다.
 
 **생성자**
 
@@ -339,31 +339,31 @@ public LocalRunHelper([System.IO.TextWriter messageOutput = null])
 
 |매개 변수|형식|설명|
 |---------|----|-----------|
-|messageOutput|System.IO.TextWriter|출력 메시지의 경우 콘솔을 사용하도록 null로 설정|
+|messageOutput|System.IO.TextWriter|출력 메시지에 대 한 설정 toonull toouse 콘솔|
 
 **속성**
 
 |속성|형식|설명|
 |--------|----|-----------|
-|AlgebraPath|string|대수 파일의 경로입니다(대수 파일은 컴파일 결과 중 하나임).|
-|CodeBehindReferences|string|스크립트에 추가 코드 숨김 참조가 있으면 경로를 ';'으로 구분합니다.|
+|AlgebraPath|string|hello tooalgebra 파일 경로 (대 수 파일은 hello 컴파일 결과 중 하나)|
+|CodeBehindReferences|string|Hello 스크립트에 대 한 참조 뒤에 있는 추가 코드를 구분 하 여 hello 경로 지정 ';'|
 |CppSdkDir|string|CppSDK 디렉터리입니다.|
 |CurrentDir|string|현재 디렉터리입니다.|
 |DataRoot|string|데이터 루트 경로입니다.|
-|DebuggerMailPath|string|디버거 메일 슬롯에 대한 경로입니다.|
-|GenerateUdoRedirect|bool|어셈블리 로딩 리디렉션 오버라이드 구성을 생성하려는 경우에 사용합니다.|
-|HasCodeBehind|bool|스크립트에는 코드 숨김이 있습니다.|
+|DebuggerMailPath|string|hello 경로 toodebugger 메일 슬롯|
+|GenerateUdoRedirect|bool|리디렉션 구성 재정의 toogenerate 어셈블리를 로드.|
+|HasCodeBehind|bool|Hello 스크립트가 코드를 포함 하는 경우|
 |InputDir|string|입력 데이터에 대한 디렉터리입니다.|
 |MessagePath|string|메시지 덤프 파일 경로입니다.|
 |OutputDir|string|출력 데이터에 대한 디렉터리입니다.|
-|병렬 처리|int|대수 실행을 위한 병렬 처리입니다.|
-|ParentPid|int|종료할 서비스 모니터에 대한 상위 모니터 PID입니다. 무시하려면 0 또는 음수로 설정합니다.|
+|병렬 처리|int|병렬 처리 수준 toorun hello 대 수|
+|ParentPid|int|어떤 hello에 서비스 모니터링 tooexit, 집합 too0 또는 음수 tooignore hello 부모의 PID|
 |ResultPath|string|결과 덤프 파일 경로입니다.|
 |RuntimeDir|string|런타임 디렉터리입니다.|
-|ScriptPath|string|스크립트를 찾을 수 있는 위치입니다.|
+|ScriptPath|string|여기서 toofind hello 스크립트|
 |Shallow|bool|단순 컴파일이거나 그렇지 않습니다.|
 |TempDir|string|임시 디렉터리|
-|UseDataBase|string|코드 숨김 임시 어셈블리 등록에 사용할 데이터베이스를 지정합니다. 기본값은 master입니다.|
+|UseDataBase|string|기본적으로 마스터 임시 어셈블리 등록 뒤에 있는 코드에 대 한 데이터베이스 toouse hello를 지정 합니다.|
 |WorkDir|string|기본 설정 작업 디렉터리입니다.|
 
 
@@ -371,27 +371,27 @@ public LocalRunHelper([System.IO.TextWriter messageOutput = null])
 
 |메서드|설명|Return|매개 변수를 포함해야 합니다.|
 |------|-----------|------|---------|
-|public bool DoCompile()|U-SQL 스크립트를 컴파일합니다.|성공 시 True입니다.| |
-|public bool DoExec()|컴파일된 결과를 실행합니다.|성공 시 True입니다.| |
-|public bool DoRun()|U-SQL 스크립트(Compile + Execute)를 실행합니다.|성공 시 True입니다.| |
-|public bool IsValidRuntimeDir(문자열 경로)|지정된 경로가 유효한 런타임 경로인지 확인합니다.|유효한 경우 True입니다.|런타임 디렉터리의 경로입니다.|
+|public bool DoCompile()|Hello U-SQL 스크립트 컴파일|성공 시 True입니다.| |
+|public bool DoExec()|컴파일된 hello 결과 실행|성공 시 True입니다.| |
+|public bool DoRun()|(컴파일 + 실행) hello U-SQL 스크립트를 실행 합니다.|성공 시 True입니다.| |
+|public bool IsValidRuntimeDir(문자열 경로)|경로 지정 된 hello 런타임 유효한 경로 인지 확인|유효한 경우 True입니다.|런타임 디렉터리의 hello 경로|
 
 
 ## <a name="faq-about-common-issue"></a>일반적인 문제에 대한 FAQ
 
 ### <a name="error-1"></a>오류 1:
-E_CSC_SYSTEM_INTERNAL: 내부 오류입니다. 파일 또는 어셈블리 'ScopeEngineManaged.dll'이나 해당 종속성 중 하나를 로드할 수 없습니다. 지정된 모듈을 찾을 수 없습니다.
+E_CSC_SYSTEM_INTERNAL: 내부 오류입니다. 파일 또는 어셈블리 'ScopeEngineManaged.dll'이나 해당 종속성 중 하나를 로드할 수 없습니다. hello 지정 된 모듈을 찾을 수 없습니다.
 
-다음 항목을 확인하세요.
+Hello 다음을 참조 하세요.
 
-- X64 환경인지 확인합니다. 빌드 대상 플랫폼 및 테스트 환경은 x64여야 합니다. 위의 **1단계: C# 단위 테스트 프로젝트 및 구성 만들기**를 참조하세요.
-- NugetPackage\build\runtime\ 아래의 모든 종속 파일을 프로젝트 작업 디렉터리로 복사했는지 확인합니다.
+- X64 환경인지 확인합니다. hello 빌드 대상 플랫폼 및 hello 테스트 환경 x64 합니다 너무 참조**1 단계: 만들기 C# 단위 테스트 프로젝트 및 구성** 위에 있습니다.
+- 모든 종속 파일 NugetPackage\build\runtime\ tooproject 작업 디렉터리에 복사한 있는지 확인 합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-* U-SQL을 알아보려면 [Azure Data Lake Analytics U-SQL 언어 시작](data-lake-analytics-u-sql-get-started.md)을 참조하세요.
-* 진단 정보를 기록하려면 [Azure Data Lake Analytics에 대한 진단 로그에 액세스](data-lake-analytics-diagnostic-logs.md)를 참조하세요.
-* 더 복잡한 쿼리를 보려면 [Azure Data Lake Analytics을 사용하여 웹 사이트 로그 분석](data-lake-analytics-analyze-weblogs.md)을 참조하세요.
-* 작업 세부 정보를 보려면, [Azure Data lake Analytics 작업에 대한 작업 브라우저 및 작업 보기 사용하기](data-lake-analytics-data-lake-tools-view-jobs.md)를 참조하세요.
-* 꼭짓점 실행 보기를 사용하려면 [Data Lake Tools for Visual Studio에서 Vertex Execution View 사용](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)을 참조하세요.
+* toolearn U SQL 참조 [Azure 데이터 레이크 분석 U-SQL 언어 시작](data-lake-analytics-u-sql-get-started.md)합니다.
+* toolog 진단 정보 참조 [Azure Data Lake 분석에 대 한 진단 로그에 액세스](data-lake-analytics-diagnostic-logs.md)합니다.
+* toosee 복잡 한 쿼리를 참조 [Azure 데이터 레이크 분석을 사용 하 여 웹 사이트 로그 분석](data-lake-analytics-analyze-weblogs.md)합니다.
+* tooview 작업 세부 정보 참조 [사용 하 여 작업 브라우저와 Azure 데이터 레이크 분석 작업에 대 한 작업 보기](data-lake-analytics-data-lake-tools-view-jobs.md)합니다.
+* toouse hello 꼭 짓 점 실행 보기 참조 [꼭 짓 점 실행 보기 데이터 레이크 Tools for Visual Studio에서에서 사용 하 여 hello](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)합니다.

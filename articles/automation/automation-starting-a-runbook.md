@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation에서 Runbook 시작 | Microsoft Docs"
-description: "Azure Portal과 Windows PowerShell을 사용하여 Azure Automation에서 Runbook을 시작하고 세부 정보를 제공하는 데 사용할 수 있는 여러 방법을 요약합니다."
+title: "Azure 자동화에서 runbook aaaStarting | Microsoft Docs"
+description: "Azure 자동화에서 runbook을 사용 하는 toostart 수 있으며 모두 사용 하 여에 대 한 내용은 hello Azure 포털 및 Windows PowerShell을 제공 하는 hello 다른 메서드를 요약 합니다."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/07/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 844831b63d5263987ed05370125fbe9f01913ab9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e44bce5b56b8e803f9247fbb4f3d4db7ab35c913
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="starting-a-runbook-in-azure-automation"></a>Azure Automation에서 Runbook 시작
-다음 표를 통해 특정 시나리오에 가장 적합하게 Azure Automation에서 Runbook을 시작하는 방법을 결정할 수 있습니다. 이 문서에서는 Azure Portal 및 Windows PowerShell을 사용하여 Runbook을 시작하는 방법에 대해 자세히 설명합니다. 다른 방법에 대한 자세한 내용은 아래 링크에서 액세스할 수 있는 다른 설명서에 제공됩니다.
+다음 표에서 hello hello 메서드 toostart 가장 적합 한 tooyour 특정 시나리오는 Azure 자동화에서 runbook을 결정 하는 데 도움이 됩니다. 이 문서에는 hello Azure 포털 및 Windows PowerShell로 runbook 시작에 대 한 내용은 포함 되어 있습니다. 세부 정보 아래 hello 링크에서 액세스할 수 있는 기타 문서에 hello에 다른 메서드가 제공 됩니다.
 
 | **방법** | **특성** |
 | --- | --- |
-| [Azure Portal](#starting-a-runbook-with-the-azure-portal) |<li>대화형 사용자 인터페이스를 사용하는 간단한 방법<br> <li>단순한 매개 변수 값을 제공하는 양식<br> <li>작업 상태를 쉽게 추적<br> <li>Azure 로그온을 사용하여 액세스 인증 |
-| [Windows PowerShell](https://msdn.microsoft.com/library/dn690259.aspx) |<li>Windows PowerShell cmdlet을 사용하여 명령줄에서 호출<br> <li>여러 단계로 구성된 자동화된 솔루션에 포함할 수 있음<br> <li>인증서 또는 OAuth 사용자 계정/서비스 보안 주체를 사용하여 요청 인증<br> <li>단순한 매개 변수 값 및 복잡한 매개 변수 값 제공<br> <li>작업 상태 추적<br> <li>클라이언트에서 PowerShell cmdlet을 지원해야 함 |
+| [Azure Portal](#starting-a-runbook-with-the-azure-portal) |<li>대화형 사용자 인터페이스를 사용하는 간단한 방법<br> <li>폼 tooprovide 간단한 매개 변수 값입니다.<br> <li>작업 상태를 쉽게 추적<br> <li>Azure 로그온을 사용하여 액세스 인증 |
+| [Windows PowerShell](https://msdn.microsoft.com/library/dn690259.aspx) |<li>Windows PowerShell cmdlet을 사용하여 명령줄에서 호출<br> <li>여러 단계로 구성된 자동화된 솔루션에 포함할 수 있음<br> <li>인증서 또는 OAuth 사용자 계정/서비스 보안 주체를 사용하여 요청 인증<br> <li>단순한 매개 변수 값 및 복잡한 매개 변수 값 제공<br> <li>작업 상태 추적<br> <li>클라이언트는 toosupport PowerShell cmdlet을 필요합니다. |
 | [Azure Automation API](https://msdn.microsoft.com/library/azure/mt662285.aspx) |<li>가장 유연하지만 가장 복잡한 방법<br> <li>HTTP 요청을 수행할 수 있는 모든 사용자 지정 코드에서 호출<br> <li>인증서 또는 OAuth 사용자 계정/서비스 보안 주체를 사용하여 요청 인증<br> <li>단순한 매개 변수 값 및 복잡한 매개 변수 값 제공<br> <li>작업 상태 추적 |
-| [Webhook](automation-webhooks.md) |<li>단일 HTTP 요청에서 Runbook 시작<br> <li>URL의 보안 토큰으로 인증<br> <li>Webhook를 만들 때 지정된 매개 변수 값을 클라이언트에서 재정의할 수 없음 Runbook에서 HTTP 요청 세부 정보로 채워진 단일 매개 변수를 정의할 수 있음<br> <li>Webhook URL을 통해 작업 상태를 추적할 수 없음 |
-| [Azure 경고에 응답](../log-analytics/log-analytics-alerts.md) |<li>Azure 경고에 답하여 Runbook을 시작합니다.<br> <li>Runbook에 대한 Webhook과 경고 링크를 구성합니다.<br> <li>URL의 보안 토큰으로 인증 |
-| [일정](automation-schedules.md) |<li>매시간, 매일, 매주 또는 매월 일정에 따라 Runbook을 자동으로 시작<br> <li>Azure Portal, PowerShell cmdlet 또는 Azure API를 통해 일정 조작<br> <li>일정에서 사용할 매개 변수 값 제공 |
-| [다른 Runbook에서](automation-child-runbooks.md) |<li>Runbook을 다른 Runbook의 활동으로 사용<br> <li>여러 Runbook에서 사용하는 기능에 유용<br> <li>자식 Runbook에 매개 변수 값을 제공하고 부모 Runbook에서 출력 사용 |
+| [Webhook](automation-webhooks.md) |<li>단일 HTTP 요청에서 Runbook 시작<br> <li>URL의 보안 토큰으로 인증<br> <li>Webhook를 만들 때 지정된 매개 변수 값을 클라이언트에서 재정의할 수 없음 Runbook은 hello HTTP 요청 세부 정보로 채워진 단일 매개 변수를 정의할 수 있습니다.<br> <li>Webhook URL 통해 없음 기능 tootrack 작업 상태입니다. |
+| [TooAzure 경고에 응답](../log-analytics/log-analytics-alerts.md) |<li>응답 tooAzure 경고에서 runbook을 시작 합니다.<br> <li>Runbook에 대 한 webhook을 구성 하 고 tooalert를 연결 합니다.<br> <li>URL의 보안 토큰으로 인증 |
+| [일정](automation-schedules.md) |<li>매시간, 매일, 매주 또는 매월 일정에 따라 Runbook을 자동으로 시작<br> <li>Azure Portal, PowerShell cmdlet 또는 Azure API를 통해 일정 조작<br> <li>일정에 함께 사용 되는 매개 변수 값 toobe를 제공 합니다. |
+| [다른 Runbook에서](automation-child-runbooks.md) |<li>Runbook을 다른 Runbook의 활동으로 사용<br> <li>여러 Runbook에서 사용하는 기능에 유용<br> <li>매개 변수 값 toochild runbook을 제공 하 고 부모 runbook에서 출력을 사용 합니다. |
 
-다음 이미지는 Runbook의 수명 주기에서 자세한 단계별 프로세스를 보여 줍니다. Runbook이 Azure Automation에서 시작하는 다른 방법인 Hybrid Runbook Worker에 필요한 구성 요소를 포함하여 Azure Automation Runbook 및 다른 구성 요소 간의 상호 작용을 실행합니다. 데이터 센터에서 Automation Runbook의 실행에 대해 알아보려면 [Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)
+hello 다음 이미지에서는 자세한 단계별 프로세스는 runbook의 hello 수명 주기에서 다른 방법으로 Azure 자동화에서 runbook 시작 Hybrid Runbook Worker tooexecute Azure 자동화 runbook 및 여러 구성 요소 간의 상호 작용에 필요한 구성 요소를 포함 합니다. 데이터 센터를에서 자동화 runbook을 실행 하는 방법에 대 한 toolearn 너무 참조[hybrid runbook worker](automation-hybrid-runbook-worker.md)
 
 ![Runbook 아키텍처](media/automation-starting-runbook/runbooks-architecture.png)
 
-## <a name="starting-a-runbook-with-the-azure-portal"></a>Azure Portal을 사용하여 Runbook 시작
-1. Azure Portal에서 **Automation**을 선택한 다음 자동화 계정의 이름을 클릭합니다.
-2. 허브 메뉴에서 **Runbook**을 선택합니다.
-3. **Runbook** 블레이드에서 Runbook을 선택하고 **시작**을 클릭합니다.
-4. Runbook에 매개 변수가 있는 경우 각 매개 변수에 대한 텍스트 상자와 함께 값을 제공하라는 메시지가 표시됩니다. 매개 변수에 대한 자세한 내용은 아래의 [Runbook 매개 변수](#Runbook-parameters)를 참조하세요.
-5. **작업** 블레이드에서 Runbook 작업의 상태를 볼 수 있습니다.
+## <a name="starting-a-runbook-with-hello-azure-portal"></a>Azure 포털 hello로 runbook 시작
+1. Hello Azure 포털에서에서 선택 **자동화** 다음 자동화 계정 hello 이름을 클릭 하 고 있습니다.
+2. Hello 허브 메뉴에서 선택 **Runbook**합니다.
+3. Hello에 **Runbook** 블레이드에서 runbook을 선택 하 고 클릭 **시작**합니다.
+4. Hello runbook에 매개 변수가 있으면 각 매개 변수에 대 한 텍스트 상자를 사용 하 여 증명된 tooprovide 값 수 있습니다. 매개 변수에 대한 자세한 내용은 아래의 [Runbook 매개 변수](#Runbook-parameters)를 참조하세요.
+5. Hello에 **작업** 블레이드에서 hello runbook 작업의 hello 상태를 볼 수 있습니다.
 
 ## <a name="starting-a-runbook-with-windows-powershell"></a>Windows PowerShell을 사용하여 Runbook 시작
-[Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) 을 사용하여 Windows PowerShell에서 Runbook을 시작할 수 있습니다. 다음 샘플 코드는 Test-Runbook이라는 Runbook을 시작합니다.
+Hello를 사용할 수 있습니다 [시작 AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart Windows PowerShell로 runbook입니다. hello 다음 샘플 코드 시작 runbook 테스트 Runbook을 호출 합니다.
 
 ```
 Start-AzureRmAutomationRunbook -AutomationAccountName "MyAutomationAccount" -Name "Test-Runbook" -ResourceGroupName "ResourceGroup01"
 ```
 
-Start-AzureRmAutomationRunbook은 Runbook이 시작된 후 해당 상태를 추적하는 데 사용할 수 있는 작업 개체를 반환합니다. [Get-AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx)에서 이 작업 개체를 사용하여 작업 상태를 확인하고 [Get-AzureRmAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx)에서 이 작업 개체를 사용하여 해당 출력을 가져올 수 있습니다. 다음 샘플 코드는 Test-Runbook이라는 Runbook을 시작하고 완료될 때까지 기다린 후 해당 출력을 표시합니다.
+사용할 수 있는 tootrack 상태 hello runbook이 시작 된 후 개체를 작업 시작 AzureRmAutomationRunbook 반환 합니다. 이 작업 개체를 사용할 수 있습니다 [Get AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx) hello 작업의 toodetermine hello 상태 및 [Get AzureRmAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) tooget 출력 합니다. 다음 샘플 코드는 hello Runbook을 완료 된 다음 해당 출력을 표시 될 때까지 기다린 호출 되는 runbook을 시작 합니다.
 
 ```
 $runbookName = "Test-Runbook"
@@ -70,7 +70,7 @@ While ($doLoop) {
 Get-AzureRmAutomationJobOutput –AutomationAccountName $AutomationAcct -Id $job.JobId -ResourceGroupName $ResourceGroup –Stream Output
 ```
 
-Runbook에 매개 변수가 필요한 경우 [해시 테이블](http://technet.microsoft.com/library/hh847780.aspx)로 제공해야 합니다. 해시 테이블의 키는 매개 변수 이름과 일치하고 값은 매개 변수 값입니다. 다음 예제에서는 FirstName 및 LastName이라는 두 개의 문자열 매개 변수와 RepeatCount라는 정수 및 Show라는 부울 매개 변수를 사용하여 Runbook을 시작하는 방법을 보여 줍니다. 매개 변수에 대한 자세한 내용은 아래의 [Runbook 매개 변수](#Runbook-parameters)를 참조하세요.
+Hello runbook에 매개 변수가 필요한 경우와 같이 제공 해야 합니다는 [hashtable](http://technet.microsoft.com/library/hh847780.aspx) hello 매개 변수 값은 hello 매개 변수 이름과 hello 값 hello 해시 테이블의 hello 키와 일치 하는 합니다. hello 다음 예제에서는 toostart 두 문자열 매개 변수를 사용 하 여 runbook의 이름을 지정 방법 FirstName 및 LastName, RepeatCount 라는 정수 및 Show 라는 부울 매개 변수 매개 변수에 대한 자세한 내용은 아래의 [Runbook 매개 변수](#Runbook-parameters)를 참조하세요.
 
 ```
 $params = @{"FirstName"="Joe";"LastName"="Smith";"RepeatCount"=2;"Show"=$true}
@@ -78,14 +78,14 @@ Start-AzureRmAutomationRunbook –AutomationAccountName "MyAutomationAccount" �
 ```
 
 ## <a name="runbook-parameters"></a>Runbook 매개 변수
-Azure Portal 또는 Windows PowerShell을 사용하여 Runbook을 시작한 경우 Azure Automation 웹 서비스를 통해 지침이 전송됩니다. 이 서비스는 복잡한 데이터 형식을 가진 매개 변수를 지원하지 않습니다. 복잡한 매개 변수의 값을 제공해야 하는 경우 [Azure Automation에서 자식 Runbook](automation-child-runbooks.md)에 설명된 대로 다른 Runbook에서 인라인으로 호출해야 합니다.
+Hello Azure 포털 또는 Windows PowerShell에서 runbook을 시작할 때 hello 명령이 hello Azure 자동화 웹 서비스를 통해 전송 됩니다. 이 서비스는 복잡한 데이터 형식을 가진 매개 변수를 지원하지 않습니다. Tooprovide 값 복잡 한 매개 변수를 사용 해야 경우 있습니다 인라인으로 호출 해야 다른 runbook에서에 설명 된 대로 [Azure 자동화에서 자식 runbook](automation-child-runbooks.md)합니다.
 
-Azure Automation 웹 서비스는 다음 섹션에 설명된 대로 특정 데이터 형식을 사용하는 매개 변수에 대해 특별한 기능을 제공합니다.
+hello Azure 자동화 웹 서비스는 hello 다음 섹션에에서 설명 된 대로 특정 데이터 형식을 사용 하 여 매개 변수에 대 한 특별 한 기능을 제공 합니다.
 
 ### <a name="named-values"></a>명명된 값
-매개 변수의 데이터 형식이 [object]인 경우 *{Name1:'Value1', Name2:'Value2', Name3:'Value3'}*JSON 형식을 사용하여 명명된 값 목록으로 전송할 수 있습니다. 이러한 값은 단순한 형식이어야 합니다. Runbook에 각 명명된 값에 해당하는 속성이 있는 [PSCustomObject](https://msdn.microsoft.com/library/system.management.automation.pscustomobject%28v=vs.85%29.aspx)로 매개 변수가 수신됩니다.
+Hello 매개 변수가 [object] 데이터 형식인 경우 hello 다음 JSON 형식을 toosend 것 목록은 명명 된 값을 사용할 수 있습니다: *{Name1: 'Value1', Name2: 'Value2', Name3: 'Value3'}*합니다. 이러한 값은 단순한 형식이어야 합니다. hello runbook으로 hello 매개 변수를 받게 됩니다는 [PSCustomObject](https://msdn.microsoft.com/library/system.management.automation.pscustomobject%28v=vs.85%29.aspx) tooeach 명명 된 값을 해당 하는 속성을 사용 합니다.
 
-예를 들어 다음 테스트 Runbook에서는 user라는 매개 변수를 허용합니다.
+Hello를 사용자 라는 매개 변수를 허용 하는 테스트 runbook을 따르는 것이 좋습니다.
 
 ```
 Workflow Test-Parameters
@@ -103,13 +103,13 @@ Workflow Test-Parameters
 }
 ```
 
-user 매개 변수에 다음 텍스트를 사용할 수 있습니다.
+hello 다음 텍스트를 사용할 수 hello user 매개 변수에 대 한 있습니다.
 
 ```
 {FirstName:'Joe',LastName:'Smith',RepeatCount:'2',Show:'True'}
 ```
 
-그러면 다음과 같이 출력됩니다.
+이 인해 hello 출력을 수행 합니다.
 
 ```
 Joe
@@ -119,9 +119,9 @@ Smith
 ```
 
 ### <a name="arrays"></a>배열
-매개 변수가 [array] 또는 [string[]]과 같은 배열인 경우 *[Value1,Value2,Value3]* JSON 형식을 사용하여 값 목록으로 전송해야 합니다. 이러한 값은 단순한 형식이어야 합니다.
+Hello 매개 변수가 [array]와 같은 배열이 면 또는 [string []]를 사용 하 여 hello JSON 형식 toosend 다음 그 값 목록이: *[Value1, Value2, Value3]*합니다. 이러한 값은 단순한 형식이어야 합니다.
 
-예를 들어 다음 테스트 Runbook에서는 *user*라는 매개 변수를 허용합니다.
+Hello 다음 테스트 runbook을 호출 하는 매개 변수를 허용 하는 것이 좋습니다 *사용자*합니다.
 
 ```
 Workflow Test-Parameters
@@ -138,13 +138,13 @@ Workflow Test-Parameters
 }
 ```
 
-user 매개 변수에 다음 텍스트를 사용할 수 있습니다.
+hello 다음 텍스트를 사용할 수 hello user 매개 변수에 대 한 있습니다.
 
 ```
 ["Joe","Smith",2,true]
 ```
 
-그러면 다음과 같이 출력됩니다.
+이 인해 hello 출력을 수행 합니다.
 
 ```
 Joe
@@ -154,9 +154,9 @@ Smith
 ```
 
 ### <a name="credentials"></a>자격 증명
-매개 변수의 데이터 형식이 **PSCredential**인 경우 Azure Automation [자격 증명 자산](automation-credentials.md)의 이름을 제공할 수 있습니다. Runbook에서 지정한 이름의 자격 증명을 검색합니다.
+Hello 매개 변수 데이터 형식이 면 **PSCredential**, Azure 자동화의 hello 이름을 제공할 수 있습니다 [자격 증명 자산](automation-credentials.md)합니다. hello runbook 지정 하는 hello 이름의 hello 자격 증명을 검색 합니다.
 
-예를 들어 다음 테스트 Runbook에서는 credential이라는 매개 변수를 허용합니다.
+Hello를 라는 자격 증명 매개 변수를 허용 하는 테스트 runbook을 따르는 것이 좋습니다.
 
 ```
 Workflow Test-Parameters
@@ -168,19 +168,19 @@ Workflow Test-Parameters
 }
 ```
 
-*My Credential*이라는 자격 증명 자산이 있다고 가정할 경우 user 매개 변수에 다음 텍스트를 사용할 수 있습니다.
+hello 다음 텍스트에 사용 될 수 있다고 가정할 때 이라는 자격 증명 자산이 hello user 매개 변수에 *내 자격 증명*합니다.
 
 ```
 My Credential
 ```
 
-자격 증명의 사용자 이름을 *jsmith*라고 가정할 경우 다음과 같이 출력됩니다.
+Hello 자격 증명의 사용자 이름 hello 가정함 *jsmith*,이 인해 hello 다음 출력 합니다.
 
 ```
 jsmith
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* 현재 문서의 Runbook 아키텍처는 Hybrid Runbook Worker를 사용하여 Azure 및 온-프레미스에서 리소스를 관리하는 runbook의 대략적인 개요를 제공합니다.  데이터 센터에서 Automation Runbook의 실행에 대해 알아보려면 [Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)를 참조하세요.
-* 특정 또는 일반 함수에 대해 다른 Runbook에서 사용될 모듈식 Runbook 만들기에 대한 자세한 내용은 [자식 Runbook](automation-child-runbooks.md)을 참조하세요.
+* 현재 문서의 hello runbook 아키텍처는 Azure 및 온-프레미스 하이브리드 Runbook 작업자 hello로에서 리소스 관리는 runbook의 대략적인 개요를 제공합니다.  데이터 센터를에서 자동화 runbook을 실행 하는 방법에 대 한 toolearn 너무 참조[Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)합니다.
+* 특정 또는 일반 함수에 대 한 다른 runbook에서 사용 되는 모듈식 runbook toobe 만드는 hello에 대 한 자세한 toolearn 너무 참조[자식 Runbook](automation-child-runbooks.md)합니다.
 

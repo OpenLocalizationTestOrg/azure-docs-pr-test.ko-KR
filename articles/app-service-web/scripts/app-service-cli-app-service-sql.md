@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 스크립트 샘플 - SQL Database에 웹앱 연결 | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - SQL Database에 웹앱 연결"
+title: "aaaAzure CLI 스크립트 샘플-웹 응용 프로그램 tooa SQL 데이터베이스 연결 | Microsoft Docs"
+description: "Azure CLI 스크립트 예제-웹 응용 프로그램 tooa SQL 데이터베이스 연결"
 services: appservice
 documentationcenter: appservice
 author: syntaxc4
@@ -16,32 +16,32 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: ec5e22bfacc12a89f1fb5882487df4829369777c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: adee42cd659d977b49e71d974d240324f68f67f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-web-app-to-a-sql-database"></a>SQL Database에 웹앱 연결
+# <a name="connect-a-web-app-tooa-sql-database"></a>웹 응용 프로그램 tooa SQL 데이터베이스 연결
 
-이 시나리오에서는 Azure SQL Database 및 Azure 웹앱을 만드는 방법을 알아봅니다. 그런 다음 앱 설정을 사용하여 SQL Database를 웹앱에 연결합니다.
+이 시나리오에서는 toocreate Azure SQL 데이터베이스 및 Azure 웹 앱에 방법을 배웁니다. 그런 다음 응용 프로그램 설정을 사용 하 여 hello SQL 데이터베이스 toohello 웹 앱을 연결할 됩니다.
 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
 ## <a name="sample-script"></a>샘플 스크립트
 
-[!code-azurecli-interactive[기본](../../../cli_scripts/app-service/connect-to-sql/connect-to-sql.sh?highlight=9-10 "SQL Database")]
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/connect-to-sql/connect-to-sql.sh?highlight=9-10 "SQL Database")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트는 다음 명령을 사용하여 리소스 그룹, 웹앱, SQL Database 및 모든 관련된 리소스를 만듭니다. 테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.
+이 스크립트 명령 toocreate 리소스 그룹, 웹 응용 프로그램, SQL 데이터베이스 및 모든 관련된 리소스를 수행 하는 hello를 사용 합니다. Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
@@ -49,11 +49,11 @@ CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | App Service 계획을 만듭니다. Azure 웹앱에 대한 서버 팜과 비슷합니다. |
 | [az webapp create](https://docs.microsoft.com/cli/azure/webapp#create) | Azure 웹앱을 만듭니다. |
 | [az sql server create](https://docs.microsoft.com/cli/azure/sql/server#create) | SQL Database 서버를 만듭니다.  |
-| [az sql db create](https://docs.microsoft.com/cli/azure/sql/db#create) | SQL Database 서버를 사용하여 새 데이터베이스를 만듭니다. |
+| [az sql db create](https://docs.microsoft.com/cli/azure/sql/db#create) | SQL 데이터베이스 서버 hello로 새 데이터베이스를 만듭니다. |
 | [az webapp config appsettings set](https://docs.microsoft.com/cli/azure/webapp/config/appsettings#set) | Azure 웹앱에 대한 앱 설정을 만들거나 업데이트합니다. 앱 설정은 앱에 대한 환경 변수로 노출됩니다. |
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
+Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.
 
-추가 App Service CLI 스크립트 샘플은 [Azure App Service 설명서](../app-service-cli-samples.md)에서 확인할 수 있습니다.
+추가 응용 프로그램 서비스 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 앱 서비스 설명서](../app-service-cli-samples.md)합니다.

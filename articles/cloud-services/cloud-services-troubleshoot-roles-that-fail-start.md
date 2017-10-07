@@ -1,6 +1,6 @@
 ---
-title: "시작에 실패한 역할의 문제 해결 | Microsoft Docs"
-description: "클라우드 서비스 역할이 시작에 실패한 이유에 대한 몇 가지 일반적인 원인은 다음과 같습니다. 또한 이러한 문제에 대한 솔루션이 제공됩니다."
+title: "toostart 못하는 aaaTroubleshoot 역할 | Microsoft Docs"
+description: "클라우드 서비스 역할 toostart 못할 이유 몇 가지 일반적인 원인은 다음과 같습니다. 솔루션 toothese 문제 제공 됩니다."
 services: cloud-services
 documentationcenter: 
 author: simonxjx
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: 7d956192e8b9c3688b8b6f0108bd9296f66fbd62
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e2fbecb08a10984add79dfc74e73de6869bb314f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-cloud-service-roles-that-fail-to-start"></a>시작에 실패한 클라우드 서비스 역할의 문제 해결
-시작에 실패한 Azure 클라우드 서비스 역할에 관련된 일반적인 문제 및 솔루션은 다음과 같습니다.
+# <a name="troubleshoot-cloud-service-roles-that-fail-toostart"></a>Toostart 실패 하는 클라우드 서비스 역할 문제 해결
+다음은 몇 가지 일반적인 문제와 toostart 실패 하는 솔루션 관련된 tooAzure 클라우드 서비스 역할입니다.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
@@ -32,97 +32,97 @@ ms.lasthandoff: 08/03/2017
 누락된 DLL 또는 어셈블리의 증상은 다음과 같을 수 있습니다.
 
 * 역할 인스턴스가 **초기화 중**, **사용 중** 및 **중지** 상태를 반복하고 있습니다.
-* 역할 인스턴스가 **준비** 로 이동했지만 웹 응용 프로그램을 탐색하면 페이지가 나타나지 않습니다.
+* 역할 인스턴스에 너무 이동**준비** 하지만 tooyour 웹 응용 프로그램을 이동 하는 경우 hello 페이지가 표시 되지 않습니다.
 
 이러한 문제를 조사하기 위해 권장되는 여러 가지 방법이 있습니다.
 
 ## <a name="diagnose-missing-dll-issues-in-a-web-role"></a>웹 역할에서 누락된 DLL 문제 진단
-웹 역할에 배포된 웹 사이트로 이동하고 브라우저가 다음과 유사한 서버 오류를 표시하는 경우 DLL이 없음을 나타낼 수 있습니다.
+웹 역할에 배포 된 tooa 웹 사이트를 탐색 하 고 hello 브라우저 표시 서버 오류와 비슷한 toohello 다음을를 DLL이 누락 된 나타낼 수 있습니다.
 
 !['/' 응용 프로그램의 서버 오류.](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503388.png)
 
 ## <a name="diagnose-issues-by-turning-off-custom-errors"></a>사용자 지정 오류를 해제하여 문제 진단
-웹 역할에 대해 web.config가 사용자 지정 오류 모드를 꺼짐으로 설정하고 서비스를 다시 배포하도록 구성하여 오류 정보를 더 자세하게 볼 수 있습니다.
+Hello 웹 역할 tooset hello 사용자 지정 오류 모드 tooOff에 대 한 hello web.config를 구성 하 고 hello 서비스를 다시 배포 하 여 자세한 오류 정보를 볼 수 있습니다.
 
-원격 데스크톱을 사용하지 않고 오류를 더 자세하게 보려면
+더 tooview 원격 데스크톱을 사용 하지 않고 오류를 완료 합니다.
 
-1. Microsoft Visual Studio에서 솔루션을 엽니다.
-2. **솔루션 탐색기**에서 web.config 파일을 찾아 엽니다.
-3. Web.config 파일에서 system.web 섹션을 찾아서 다음 줄을 추가합니다.
+1. Microsoft Visual Studio에서 hello 솔루션을 엽니다.
+2. Hello에 **솔루션 탐색기**을 hello web.config 파일을 찾아서 엽니다.
+3. Hello web.config 파일에서 hello system.web 섹션을 찾아서 hello 다음 줄 추가:
 
     ```xml
     <customErrors mode="Off" />
     ```
-4. 파일을 저장합니다.
-5. 서비스를 다시 패키지하고 다시 배포합니다.
+4. Hello 파일을 저장 합니다.
+5. 패키지에 포함 시키고 hello 서비스를 다시 배포 합니다.
 
-서비스가 다시 배포되면 누락된 어셈블리나 DLL의 이름으로 오류 메시지가 표시됩니다.
+Hello 서비스를 다시 배포 되 면 hello 누락 된 어셈블리 또는 DLL의 hello 이름으로 오류 메시지가 표시 됩니다.
 
-## <a name="diagnose-issues-by-viewing-the-error-remotely"></a>원격으로 오류를 확인하여 문제 진단
-원격 데스크톱을 사용하여 역할에 액세스하고 원격으로 오류 정보를 더 자세하게 볼 수 있습니다. 원격 데스크톱을 사용하여 오류를 보려면 다음 단계를 수행합니다.
+## <a name="diagnose-issues-by-viewing-hello-error-remotely"></a>원격으로 hello 오류를 확인 하 여 문제를 진단 합니다.
+원격 데스크톱 tooaccess hello 역할을 사용 하 고 자세한 오류 정보를 원격으로 볼 수 있습니다. 원격 데스크톱을 사용 하 여 다음 단계 tooview hello 오류 hello를 사용 합니다.
 
 1. Azure SDK 1.3 이상이 설치되어야 합니다.
-2. Visual Studio를 사용하여 솔루션을 배포하는 동안 "원격 데스크톱 연결 구성..."을 선택합니다. 원격 데스크톱 연결 구성에 대한 자세한 내용은 [Azure 역할과 함께 원격 데스크톱 사용](../vs-azure-tools-remote-desktop-roles.md)을 참조하세요.
-3. Microsoft Azure 클래식 포털에서 인스턴스 상태가 **준비**로 표시되면 역할 인스턴스 중 하나를 클릭합니다.
-4. 리본의 **원격 액세스** 영역에서 **연결** 아이콘을 클릭합니다.
-5. 원격 데스크톱을 구성하는 동안 지정한 자격 증명을 사용하여 가상 컴퓨터에 로그인합니다.
+2. Visual Studio를 사용 하 여 hello 솔루션의 hello 배포 하는 동안 선택 너무 "원격 데스크톱 연결 구성...". Hello 원격 데스크톱 연결 구성에 대 한 자세한 내용은 참조 하십시오. [Azure 역할과 함께 원격 데스크톱 사용 하 여](../vs-azure-tools-remote-desktop-roles.md)합니다.
+3. Hello Microsoft Azure 클래식 포털에서 hello 인스턴스 상태가 표시 되 면 **준비**, hello 역할 인스턴스 중 하나를 클릭 합니다.
+4. Hello 클릭 **연결** hello 아이콘 **원격 액세스** hello 리본 메뉴의 영역입니다.
+5. Hello 원격 데스크톱 구성 중에 지정 된 hello 자격 증명을 사용 하 여 toohello 가상 컴퓨터에 로그인 합니다.
 6. 명령 창을 엽니다.
-7. `IPconfig`를 입력합니다.
-8. IPV4 주소 값을 적습니다.
+7. `IPconfig`을 입력합니다.
+8. 참고 hello IPV4 주소 값입니다.
 9. Internet Explorer를 엽니다.
-10. 웹 응용 프로그램의 주소 및 이름을 입력합니다. 예: `http://<IPV4 Address>/default.aspx`.
+10. Hello 주소와 hello hello 웹 응용 프로그램 이름을 입력 합니다. 예: `http://<IPV4 Address>/default.aspx`.
 
-웹 사이트를 탐색하면 이제 더 구체적인 오류 메시지가 반환됩니다.
+웹 사이트를 탐색 toohello 하 더 구체적인 오류 메시지가 이제 반환 합니다.
 
 * '/' 응용 프로그램의 서버 오류.
-* 설명: 현재 웹 요청을 실행하는 동안 처리되지 않은 예외가 발생했습니다. 오류에 대한 자세한 내용 및 코드에서 어디에 기반하는지는 스택 추적을 검토합니다.
-* 예외 세부 정보: System.IO.FIleNotFoundException: 파일이나 어셈블리를 로드할 수 없습니다 'Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf856ad364e35’ 또는 해당 종속성 중 하나입니다. 시스템은 지정된 파일을 찾을 수 없습니다.
+* 설명: hello 현재 웹 요청 hello 실행 하는 동안 처리 되지 않은 예외가 발생 했습니다. Hello 오류에 대 한 자세한 내용은 hello 스택 추적 및 hello 코드에서 발생 한 위치를 검토 하십시오.
+* 예외 세부 정보: System.IO.FIleNotFoundException: 파일이나 어셈블리를 로드할 수 없습니다 'Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf856ad364e35’ 또는 해당 종속성 중 하나입니다. hello 시스템 지정 된 hello 파일을 찾을 수 없습니다.
 
 예:
 
 !['/' 응용 프로그램의 명시적 서버 오류](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503389.png)
 
-## <a name="diagnose-issues-by-using-the-compute-emulator"></a>계산 에뮬레이터를 사용하여 문제 진단
-Microsoft Azure 계산 에뮬레이터를 사용하여 누락된 종속성 및 web.config 오류 문제를 진단하고 해결할 수 있습니다.
+## <a name="diagnose-issues-by-using-hello-compute-emulator"></a>Hello 계산 에뮬레이터를 사용 하 여 문제를 진단 합니다.
+Microsoft Azure 계산 에뮬레이터 toodiagnose hello를 사용 하 여 수 있으며의 누락 된 종속성 및 web.config 오류 문제를 해결할 수 있습니다.
 
-이 진단 방법을 사용하여 최상의 결과가 발생한 경우 Windows 새로 설치한 컴퓨터 또는 가상 컴퓨터를 사용해야 합니다. Azure 환경을 가장 잘 시뮬레이션하려면 Windows Server 2008 R2 x64를 사용해야 합니다.
+이 진단 방법을 사용하여 최상의 결과가 발생한 경우 Windows 새로 설치한 컴퓨터 또는 가상 컴퓨터를 사용해야 합니다. toobest은 hello Azure 환경을 시뮬레이션, Windows Server 2008 R2 x64 사용 합니다.
 
-1. [Azure SDK](https://azure.microsoft.com/downloads/)의 독립 실행형 버전을 설치합니다.
-2. 개발 컴퓨터에서 클라우드 서비스 프로젝트를 빌드합니다.
-3. Windows Explorer에서 클라우드 서비스 프로젝트의 bin\debug 폴더로 이동합니다.
-4. 문제를 디버깅하는 데 사용하는 컴퓨터에 .csx 폴더와.cscfg 파일을 복사합니다.
-5. 클린 컴퓨터에서 Azure SDK 명령 프롬프트 창을 열고 `csrun.exe /devstore:start`을 입력합니다.
-6. 명령 프롬프트에 `run csrun <path to .csx folder> <path to .cscfg file> /launchBrowser`을 입력합니다.
-7. 역할이 시작될 때 Internet Explorer에서 자세한 오류 정보가 표시됩니다. 또한 표준 Windows 문제해결 도구를 사용하여 추가로 문제를 진단할 수 있습니다.
+1. 독립 실행형 버전의 hello hello 설치 [Azure SDK](https://azure.microsoft.com/downloads/)합니다.
+2. Hello 개발 컴퓨터에서 hello 클라우드 서비스 프로젝트를 빌드하십시오.
+3. Windows 탐색기에서 hello 클라우드 서비스 프로젝트의 toohello bin\debug 폴더를 이동 합니다.
+4. Hello.csx 폴더와.cscfg 파일 toohello 컴퓨터 toodebug hello 문제를 사용 하 고 있는지를 복사 합니다.
+5. 클린 컴퓨터 hello에서 유형과 Azure SDK 명령 프롬프트 창을 엽니다 `csrun.exe /devstore:start`합니다.
+6. Hello 명령 프롬프트에서 입력 `run csrun <path too.csx folder> <path too.cscfg file> /launchBrowser`합니다.
+7. Hello 역할 시작 될 때 Internet Explorer에 자세한 오류 정보가 표시 됩니다. 표준 Windows 문제 해결 도구를 사용할 수도 있습니다 toofurther hello 문제를 진단 합니다.
 
 ## <a name="diagnose-issues-by-using-intellitrace"></a>IntelliTrace를 사용하여 문제 진단
 .NET Framework 4를 사용하는 작업자 및 웹 역할의 경우 Microsoft Visual Studio Enterprise에서 사용 가능한 [IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx)를 사용할 수 있습니다.
 
-IntelliTrace를 사용하는 서비스를 배포하려면 다음 단계를 수행합니다.
+사용 하도록 설정 하는 IntelliTrace에서 이러한 단계 toodeploy hello 서비스를 수행 합니다.
 
 1. Azure SDK 1.3 이상이 설치되었는지 확인합니다.
-2. Visual Studio를 사용하여 솔루션을 배포합니다. 배포하는 동안 **.NET 4 역할에 IntelliTrace 사용** 확인란을 선택합니다.
-3. 인스턴스가 시작되면 **서버 탐색기**를 엽니다.
-4. **Azure\\클라우드 서비스** 노드를 확장하고 배포를 찾습니다.
-5. 역할 인스턴스를 확인할 때까지 배포를 확장합니다. 마우스 오른쪽 단추로 인스턴스 중 하나를 클릭합니다.
-6. **IntelliTrace 로그 보기**를 선택합니다. **IntelliTrace 요약** 이 열립니다.
-7. 요약의 예외 섹션을 찾습니다. 예외가 있는 경우 해당 섹션이 **예외 데이터**로 표시됩니다.
-8. **예외 데이터**를 확장하고 다음과 비슷한 **System.IO.FileNotFoundException** 오류를 찾습니다.
+2. Visual Studio를 사용 하 여 hello 솔루션을 배포 합니다. 배포 하는 동안 확인 hello **.NET 4 역할에 대해 IntelliTrace 사용** 확인란 합니다.
+3. Hello 인스턴스가 시작 되 면 hello 열어 **서버 탐색기**합니다.
+4. Hello 확장 **Azure\\클라우드 서비스** 노드 hello 배포를 찾습니다.
+5. Hello 배포를 확장 하 고 hello 역할 인스턴스를 참조 하십시오. Hello 인스턴스 중 하나를 오른쪽 단추로 클릭 합니다.
+6. **IntelliTrace 로그 보기**를 선택합니다. hello **IntelliTrace 요약** 열립니다.
+7. Hello 요약의 hello 예외 섹션을 찾습니다. Hello 섹션 표시 되는 예외가 있으면 **예외 데이터**합니다.
+8. Hello 확장 **예외 데이터** 를 찾아서 **System.IO.FileNotFoundException** 비슷한 toohello 다음 오류:
 
 ![예외 데이터, 파일 또는 어셈블리 누락](./media/cloud-services-troubleshoot-roles-that-fail-start/ic503390.png)
 
 ## <a name="address-missing-dlls-and-assemblies"></a>누락된 DLL 및 어셈블리 주소 지정
-누락된 DLL 및 어셈블리 오류에 주소를 지정하려면 다음 단계를 수행합니다.
+DLL 및 어셈블리 오류 누락 tooaddress 다음이 단계를 따르십시오.
 
-1. Visual Studio에서 솔루션을 엽니다.
-2. **솔루션 탐색기**에서 **참조** 폴더를 엽니다.
-3. 오류에서 식별된 어셈블리를 클릭합니다.
-4. **속성** 창에서 **복사 로컬 속성**을 찾아 값을 **True**로 설정합니다.
-5. 클라우드 서비스를 다시 배포합니다.
+1. Visual Studio에서 hello 솔루션을 엽니다.
+2. **솔루션 탐색기**개방형 hello **참조** 폴더입니다.
+3. Hello 오류에서 확인 된 hello 어셈블리를 클릭 합니다.
+4. Hello에 **속성** 창 찾기 **로컬 복사 속성** 너무 hello 값을 설정 하 고**True**합니다.
+5. Hello 클라우드 서비스를 다시 배포 합니다.
 
-모든 오류가 수정되었다고 확인되면 **.NET 4 역할에 IntelliTrace 사용** 확인란을 선택하지 않고 서비스를 배포할 수 있습니다.
+모든 오류가 오류를 확인 한 후 hello를 검사 하지 않고 hello 서비스를 배포할 수 있습니다 **.NET 4 역할에 대해 IntelliTrace 사용** 확인란 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 클라우드 서비스에 대한 [문제해결 문서](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services) 를 더 봅니다.
 
-Azure PaaS 컴퓨터 진단 데이터를 사용하여 클라우드 서비스 역할 문제를 해결하는 방법을 알아보려면 [Kevin Williamson의 블로그 시리즈](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)를 참조하세요.
+Azure PaaS 컴퓨터 진단 데이터를 사용 하 여 tootroubleshoot 클라우드 서비스 역할을 발급 하는 방법을 toolearn 참조 [Kevin Williamson 블로그 시리즈](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)합니다.

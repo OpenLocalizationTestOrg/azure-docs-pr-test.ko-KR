@@ -1,5 +1,5 @@
 ---
-title: "PowerShell cmdlet을 사용하여 가상 컴퓨터 크기 집합 만들기 | Microsoft Docs"
+title: "PowerShell cmdlet을 사용 하 여 설정 하는 가상 컴퓨터 크기 aaaCreating | Microsoft Docs"
 description: "Azure PowerShell cmdlet을 사용하여 첫 번째 Azure 가상 컴퓨터 규모 집합 생성 및 관리 시작하기"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/21/2017
 ms.author: danielsollondon
-ms.openlocfilehash: a3a36028a75d6cb7eb36277f3e2b5ab833c96a96
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7979be367d04c904b60d78849c1b751a52cc8caf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-virtual-machine-scale-sets-using-powershell-cmdlets"></a>PowerShell cmdlet을 사용하여 가상 컴퓨터 크기 집합 만들기
-이 문서에서는 VMSS(가상 컴퓨터 크기 집합)을 만드는 방법의 예제를 설명합니다. 관련 네트워킹 및 저장소를 포함한 세 개 노드의 크기 집합을 만듭니다.
+이 문서는 어떻게 toocreate는 가상 컴퓨터 크기 집합 (VMSS)의 예를 안내 합니다. 관련 네트워킹 및 저장소를 포함한 세 개 노드의 크기 집합을 만듭니다.
 
 ## <a name="first-steps"></a>첫 번째 단계
-크기 집합을 만들고 유지 관리하는 데 필요한 PowerShell commandlet이 있는지 확인하려면 최신 Azure PowerShell 모듈이 설치되어 있는지 확인합니다.
-사용 가능한 최신 Azure 모듈을 보려면 [여기](http://aka.ms/webpi-azps)에서 명령줄 도구로 이동하세요.
+Hello 최신 Azure PowerShell 모듈이 설치 되어 있는, toomake hello PowerShell commandlet 있는지 toomaintain, 필요한 및 크기 집합 만들기를 확인 합니다.
+Toohello 명령줄 도구를 이동 [여기](http://aka.ms/webpi-azps) hello 최신 사용 가능한 Azure 모듈에 대 한 합니다.
 
-VMSS 관련 commandlet을 찾으려면 검색 문자열 \*VMSS\*를 사용하세요. 예: _gcm *vmss*_
+VMSS toofind 관련 commandlet를 hello 검색 문자열을 사용 하 여 \*VMSS\*합니다. 예: _gcm *vmss*_
 
 ## <a name="creating-a-vmss"></a>VMSS 만들기
 #### <a name="create-resource-group"></a>리소스 그룹 만들기
@@ -50,12 +50,12 @@ $subnetName = 'websubnet'
 $vnet = New-AzureRmVirtualNetwork -Force -Name ('vnet' + $rgname) -ResourceGroupName $rgname -Location $loc -AddressPrefix "10.0.0.0/16" -Subnet $subnet;
 $vnet = Get-AzureRmVirtualNetwork -Name ('vnet' + $rgname) -ResourceGroupName $rgname;
 
-# In this case assume the new subnet is the only one
+# In this case assume hello new subnet is hello only one
 $subnetId = $vnet.Subnets[0].Id;
 ```
 
-#### <a name="create-public-ip-resource-to-allow-external-access"></a>외부 액세스를 허용하도록 공용 IP 리소스 만들기
-이 항목은 부하 분산 장치에 바인딩됩니다.
+#### <a name="create-public-ip-resource-tooallow-external-access"></a>공용 IP 리소스 tooAllow 외부 액세스 만들기
+바인딩된 toohello 부하 분산 장치 사용 됩니다.
 
 ```
 $pubip = New-AzureRmPublicIpAddress -Force -Name ('pubip' + $rgname) -ResourceGroupName $rgname -Location $loc -AllocationMethod Dynamic -DomainNameLabel ('pubip' + $rgname);
@@ -71,24 +71,24 @@ $inboundNatPoolName = 'innatpool' + $rgname
 $lbruleName = 'lbrule' + $rgname
 $lbName = 'vmsslb' + $rgname
 
-# Bind Public IP to Load Balancer
+# Bind Public IP tooLoad Balancer
 $frontend = New-AzureRmLoadBalancerFrontendIpConfig -Name $frontendName -PublicIpAddress $pubip
 ```
 
 #### <a name="configure-load-balancer"></a>부하 분산 장치 구성
-백 엔드 주소 풀 구성을 만들기는 크기 집합에 있는 VM의 NIC에서 공유됩니다.
+Hello 크기 집합의 hello Vm의 hello Nic에서 공유할 수는이, 백 엔드 주소 풀 Config를 만듭니다.
 
 ```
 $backendAddressPool = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name $backendAddressPoolName
 ```
 
-부하 분산된 프로브 포트를 설정하고 응용 프로그램에 적합하게 설정을 변경합니다.
+부하 분산 된 프로브 포트 설정, 응용 프로그램에 맞게 hello 설정을 변경 합니다.
 
 ```
 $probe = New-AzureRmLoadBalancerProbeConfig -Name $probeName -RequestPath healthcheck.aspx -Protocol http -Port 80 -IntervalInSeconds 15 -ProbeCount 2
 ```
 
-부하 분산 장치를 통해 크기 집합의 VM에 직접 라우팅된 연결(부하 분산되지 않음)에 대한 인바운드 NAT 풀을 만듭니다. RDP를 사용하여 설명하는 것이고 응용 프로그램에 필요하지 않을 수 있습니다.
+직접 라우팅된 연결 (하지 부하 분산)에 대 한 인바운드 NAT 풀 만들기 hello 부하 분산 장치를 통해 Vm toohello hello 규모에 맞게 설정 합니다. RDP를 사용 하 여 toodemonstrate 이므로 응용 프로그램에 필요할 수 있습니다.
 
 ```
 $frontendpoolrangestart = 3360
@@ -98,7 +98,7 @@ $inboundNatPool = New-AzureRmLoadBalancerInboundNatPoolConfig -Name $inboundNatP
 $frontend.Id -Protocol Tcp -FrontendPortRangeStart $frontendpoolrangestart -FrontendPortRangeEnd $frontendpoolrangeend -BackendPort $backendvmport;
 ```
 
-부하 분산 규칙을 만듭니다. 이 예제에서는 이전 단계의 설정을 사용한 부하 분산 포트 80 요청을 보여 줍니다.
+Hello 부하 분산 규칙을 보여 줍니다 요청의 부하를 분산 포트 80을 이전 단계에서 hello 설정을 사용 하 여이 예제를 만듭니다.
 
 ```
 $protocol = 'Tcp'
@@ -119,14 +119,14 @@ $actualLb = New-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname -Lo
 -Probe $probe -LoadBalancingRule $lbrule -InboundNatPool $inboundNatPool -Verbose;
 ```
 
-LB 설정을 확인하고 부하 분산 포트 구성을 확인합니다. 크기 집합의 VM을 만들 때까지 인바운드 NAT 규칙은 표시되지 않습니다.
+LB 설정을 확인 하십시오 부하 분산 된 포트 configs 참고 hello 크기 집합의 Vm hello까지 인바운드 NAT 규칙을 만들 표시 되지 것입니다.
 
 ```
 $expectedLb = Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname
 ```
 
-##### <a name="configure-and-create-the-scale-set"></a>크기 집합 구성 및 만들기
-이 인프라 예제에서는 크기 집합에서 웹 트래픽 분산 및 확장을 설정하는 방법을 보여 주지만 여기에 지정된 VM 이미지에는 웹 서비스가 설치되어 있지 않습니다.
+##### <a name="configure-and-create-hello-scale-set"></a>구성 하 고 만들기 hello 크기 조정 설정
+Note 보여 주는 인프라 예제를 tooset 배포 방법과 배율 웹 트래픽 hello 크기 집합 하지만 hello 여기에서 지정 된 Vm 이미지에서 설치 된 모든 웹 서비스를 필요가 없습니다.
 
 ```
 # specify scale set Name
@@ -149,7 +149,7 @@ $exttype = 'BGInfo';
 $extver = '2.1';
 ```
 
-부하 분산 장치 및 서브넷에 NIC 바인딩
+서브넷과 NIC tooLoad 분산 장치 바인딩
 
 ```
 $ipCfg = New-AzureRmVmssIPConfig -Name 'nic' `
@@ -179,7 +179,7 @@ $vmss = New-AzureRmVmssConfig -Location $loc -SkuCapacity $numberofnodes -SkuNam
 New-AzureRmVmss -ResourceGroupName $rgname -Name $vmssName -VirtualMachineScaleSet $vmss -Verbose;
 ```
 
-이제 크기 집합을 만들었습니다. 다음 예제에서 RDP를 사용하여 개별 VM에 대한 연결을 테스트할 수 있습니다.
+이제 hello 크기 집합을 만들었습니다. 연결 toohello를 테스트할 수 RDP를 사용 하 여이 예제는 개별 VM:
 
 ```
 VM0 : pubipmynewrgwu.westus.cloudapp.azure.com:3360

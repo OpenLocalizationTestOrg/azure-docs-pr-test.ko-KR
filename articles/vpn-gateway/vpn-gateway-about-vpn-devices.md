@@ -1,6 +1,6 @@
 ---
-title: "크로스-프레미스 Azure 연결에 대한 VPN 장치 정보 | Microsoft Docs"
-description: "이 문서에서는 S2S VPN Gateway 크로스-프레미스 연결에 대한 VPN 장치 및 IPsec 매개 변수에 대해 설명합니다. 구성 지침과 샘플에 대한 링크를 제공합니다."
+title: "크로스-프레미스 Azure 연결의 VPN 장치 aaaAbout | Microsoft Docs"
+description: "이 문서에서는 S2S VPN Gateway 크로스-프레미스 연결에 대한 VPN 장치 및 IPsec 매개 변수에 대해 설명합니다. 링크가는 tooconfiguration 지침 및 샘플 제공 됩니다."
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: yushwang;cherylmc
-ms.openlocfilehash: c8e1db0a5488b1296206a4d557e47599edc59a88
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8b84afbf93d807342ecd56ab369d5909a13343e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-vpn-devices-and-ipsecike-parameters-for-site-to-site-vpn-gateway-connections"></a>사이트 간 VPN Gateway 연결에 대한 VPN 장치 및 IPsec/IKE 매개 변수 정보
 
-VPN Gateway를 사용하여 S2S(사이트 간) 크로스-프레미스 VPN 연결을 구성하려면 VPN 장치가 필요합니다. 온-프레미스 네트워크와 가상 네트워크 간의 보안 연결을 만들려고 할 때마다 또는 하이브리드 솔루션을 만드는 데 사이트 간 연결을 사용할 수 있습니다. 이 문서에서는 유효성이 검사된 VPN 장치 목록과 VPN 게이트웨이의 IPsec/IKE 매개 변수 목록을 제공합니다.
+VPN 장치가 크로스-프레미스 VPN 연결 사이트 및 사이트 간 (S2S) VPN 게이트웨이 사용 하 여 필요한 tooconfigure 합니다. 온-프레미스 네트워크와 가상 네트워크 간의 보안 연결이 필요할 때마다 또는 사이트 간 연결에는 하이브리드 솔루션을 사용 하는 toocreate 수 있습니다. 이 문서에서는 유효성이 검사된 VPN 장치 목록과 VPN 게이트웨이의 IPsec/IKE 매개 변수 목록을 제공합니다.
 
 > [!IMPORTANT]
-> 온-프레미스 VPN 장치와 VPN 게이트웨이 간에 연결 문제가 있는 경우 [알려진 장치 호환성 문제](#known)를 참조하세요.
+> 온-프레미스 VPN 장치 및 VPN 게이트웨이 간에 연결 문제가 발생 하는 경우 참조 너무[알려진 장치 호환성 문제](#known)합니다.
 >
 >
 
-### <a name="items-to-note-when-viewing-the-tables"></a>테이블 확인 시 주의 사항:
+### <a name="items-toonote-when-viewing-hello-tables"></a>항목 toonote hello 테이블을 볼 때:
 
-* Azure VPN 게이트웨이에 대한 용어가 변경되었습니다. 이름만 변경되었습니다. 기능이 변경되지 않았습니다.
+* Azure VPN 게이트웨이에 대한 용어가 변경되었습니다. Hello 이름만 변경 되었습니다. 기능이 변경되지 않았습니다.
   * 정적 라우팅 = 정책 기반
   * 동적 라우팅 = 경로 기반
-* 고성능 VPN 게이트웨이 및 경로 기반 VPN 게이트웨이에 대한 사양은 별도로 언급하지 않는 한 동일합니다. 예를 들어 경로 기반 VPN 게이트웨이와 호환되는 확인된 VPN 장치는 고성능 VPN 게이트웨이와도 호환됩니다.
+* 다른 설명이 없는 한 고성능 VPN 게이트웨이와 RouteBased VPN 게이트웨이에 대 한 사양이 동일 하지만, hello 됩니다. 예를 들어 RouteBased VPN 게이트웨이 호환 되는 유효성을 검사 하는 hello VPN 장치 고성능 VPN 게이트웨이 hello와 호환 됩니다.
 
 ## <a name="devicetable"></a>확인된 VPN 장치 및 장치 구성 가이드
 
@@ -43,9 +43,9 @@ VPN Gateway를 사용하여 S2S(사이트 간) 크로스-프레미스 VPN 연결
 > 사이트 간 연결을 구성할 때 VPN 장치에 공용 IPv4 IP 주소가 필요합니다.
 >
 
-장치 공급업체와 협력하여 표준 VPN 장치 집합의 유효성을 검사했습니다. 다음 목록에 포함된 장치 제품군의 모든 장치는 VPN 게이트웨이에서 작동합니다. 구성하려는 VPN Gateway 솔루션의 VPN 유형(정책 기반 또는 경로 기반)을 이해하려면 [VPN Gateway 설정 정보](vpn-gateway-about-vpn-gateway-settings.md#vpntype)를 참조하세요.
+장치 공급업체와 협력하여 표준 VPN 장치 집합의 유효성을 검사했습니다. 모든 hello 목록 다음에 hello 장치 제품군의 hello 장치의 VPN 게이트웨이 작동 해야 합니다. 참조 [VPN 게이트웨이 설정에 대 한](vpn-gateway-about-vpn-gateway-settings.md#vpntype) toounderstand hello VPN hello tooconfigure VPN 게이트웨이 솔루션에 대 한 use (PolicyBased 또는 RouteBased)를 입력 합니다.
 
-VPN 장치를 구성하려면 적절한 장치 제품군에 해당하는 링크를 참조하세요. 구성 지침에 대한 링크가 가장 효율적으로 제공됩니다. VPN 장치 지원은 장치 제조업체에 문의하세요.
+toohelp은 VPN 장치를 구성 하려면이 tooappropriate 장치 제품군에 해당 하는 toohello 링크를 참조 하십시오. 최선의 노력을 기반으로 hello 링크 tooconfiguration 지침이 제공 됩니다. VPN 장치 지원은 장치 제조업체에 문의하세요.
 
 |**공급업체**          |**장치 패밀리**     |**최소 OS 버전** |**정책 기반 구성 지침** |**경로 기반 구성 지침** |
 | ---                | ---                  | ---                   | ---            | ---           |
@@ -77,16 +77,16 @@ VPN 장치를 구성하려면 적절한 장치 제품군에 해당하는 링크�
 
 ## <a name="additionaldevices"></a>확인되지 않은 VPN 장치
 
-장치가 확인된 VPN 장치 테이블에 없더라도 사이트 간 연결을 사용할 수 있습니다. 추가 지원 및 구성 지침은 장치 제조업체에 문의하세요.
+Hello 유효성을 검사 하는 VPN 장치 표에 나열 된 장치가 표시 되지 않으면, 장치 수 에서도 계속 작동 한 사이트 간 연결입니다. 추가 지원 및 구성 지침은 장치 제조업체에 문의하세요.
 
 ## <a name="editing"></a>장치 구성 샘플 편집
 
-제공된 VPN 장치 구성 샘플을 다운로드한 후 환경에 대한 설정을 반영하기 위해 일부 값을 바꿔야 합니다.
+Tooreplace 해야 hello 제공 된 VPN 장치 구성 샘플을 다운로드 한 후 사용자 환경에 대 한 tooreflect hello 설정을 hello의 일부 값입니다.
 
-### <a name="to-edit-a-sample"></a>샘플을 편집하려면
+### <a name="tooedit-a-sample"></a>tooedit 샘플:
 
-1. 메모장을 사용하여 샘플을 엽니다.
-2. 모든 <*text*> 문자열을 검색하여 환경에 관련된 값으로 바꿉니다. < 및 >를 포함해야 합니다. 이름을 지정할 때 선택하는 이름은 고유해야 합니다. 명령이 작동하지 않는 경우 해당 장치 제조업체 설명서를 참조하세요.
+1. 메모장을 사용 하 여 hello 샘플을 엽니다.
+2. 찾기 및 바꾸기 모두 <*텍스트*> tooyour 환경 관련 된 hello 값이 포함 된 문자열입니다. 수 있는지 tooinclude < 및 >입니다. 이름이 지정 된 경우에 선택한 hello 이름은 고유 해야 합니다. 명령이 작동하지 않는 경우 해당 장치 제조업체 설명서를 참조하세요.
 
 | **샘플 텍스트** | **변경** |
 | --- | --- |
@@ -99,17 +99,17 @@ VPN 장치를 구성하려면 적절한 장치 제품군에 해당하는 링크�
 | &lt;SP_AzureNetworkSubnetMask&gt; |서브넷 마스크를 지정합니다. 예: 255.255.0.0 |
 | &lt;SP_OnPremisesNetworkIpRange&gt; |온-프레미스 범위를 지정합니다. 예: 10.2.1.0 |
 | &lt;SP_OnPremisesNetworkSubnetMask&gt; |온-프레미스 서브넷 마스크를 지정합니다. 예: 255.255.255.0 |
-| &lt;SP_AzureGatewayIpAddress&gt; |이 정보는 가상 네트워크와 관련이 있으며 **게이트웨이 IP 주소**인 관리 포털에 있습니다. |
-| &lt;SP_PresharedKey&gt; |이 정보는 가상 네트워크와 관련이 있으며 키 관리인 관리 포털에 있습니다. |
+| &lt;SP_AzureGatewayIpAddress&gt; |이 정보 특정 tooyour 가상 네트워크 hello 관리 포털에서에서 볼 수 있으며으로 **게이트웨이 IP 주소**합니다. |
+| &lt;SP_PresharedKey&gt; |이 정보는 특정 tooyour 가상 네트워크 및 hello 관리 키로 관리 포털에에서 있는 합니다. |
 
 ## <a name="ipsec"></a>IPsec/IKE 매개 변수
 
 > [!NOTE]
-> 다음 테이블에 나열된 값이 VPN 게이트웨이에서 지원되지만 현재는 VPN 게이트웨이에서 특정 알고리즘 또는 매개 변수의 조합을 지정하거나 선택할 수 있는 메커니즘이 없습니다. 온-프레미스 VPN 장치에서 제약 조건을 지정해야 합니다. 또한 **MSS**를 **1350**에 고정해야 합니다.
+> 다음 표에 hello에 나열 된 hello 값 지원 되지만 hello VPN 게이트웨이에서 현재 없는 메커니즘은 없습니다 있습니다 toospecify 하거나 hello VPN 게이트웨이 매개 변수 이거나 이들 알고리즘의 특정 조합을 선택 합니다. Hello 온-프레미스 VPN 장치에서 모든 제약 조건을 지정 해야 합니다. 또한 **MSS**를 **1350**에 고정해야 합니다.
 > 
 >
 
-다음 테이블에서
+다음 표에서 hello에서:
 
 * SA = 보안 연결
 * IKE 1단계는 "주 모드"라고도 합니다.
@@ -139,7 +139,7 @@ VPN 장치를 구성하려면 적절한 장치 제품군에 해당하는 링크�
 
 ### <a name ="RouteBasedOffers"></a>RouteBased VPN IPsec 보안 연결(IKE 빠른 모드 SA) 제품
 
-다음 표는 IPsec SA(IKE 빠른 모드) 제품을 나열합니다. 제안이 제시되거나 수락되는 기본 설정 순서대로 제안이 나열되어 있습니다.
+hello 다음 표에 나열 IPsec SA (IKE 빠른 모드) 제공 합니다. 제안 나열 된 hello 순서는 해당 hello 제품 기본 설정의 제시 되었거나 수락 합니다.
 
 #### <a name="azure-gateway-as-initiator"></a>Azure 게이트웨이(초기자)
 
@@ -183,20 +183,20 @@ VPN 장치를 구성하려면 적절한 장치 제품군에 해당하는 링크�
 | 25|AES128        |SHA256            |14           |
 | 26|3DES          |SHA1              |14           |
 
-* 경로 기반 및 고성능 VPN 게이트웨이를 사용하여 IPsec ESP NULL 암호화를 지정할 수 있습니다. Null 기반 암호화는 전송 중인 데이터를 보호하지 않으며, 최대 처리량 및 최소 대기 시간이 필요한 경우에만 사용됩니다. 클라이언트에서는 VNet 간 통신 시나리오 또는 솔루션의 다른 곳에서 암호화가 적용된 경우에 이 암호화를 사용할 수 있습니다.
-* 인터넷을 통한 프레미스 간 연결의 경우 중요한 통신의 보안을 보장하려면 위의 테이블에 나열된 암호화 및 해시 알고리즘을 사용하는 기본 Azure VPN Gateway 설정을 사용하세요.
+* 경로 기반 및 고성능 VPN 게이트웨이를 사용하여 IPsec ESP NULL 암호화를 지정할 수 있습니다. Null 기반된 암호화는 전송 중에 보호 toodata를 제공 하지 않으며 최대 때에 사용 해야 처리량 및 최소 대기 시간이 요구 됩니다. 클라이언트 또는 선택할 수 toouse이 VNet 대 VNet 통신 시나리오에서 암호화 hello 솔루션의 다른 곳에서 적용 되는 경우.
+* Hello 인터넷을 통해 크로스-프레미스 연결을 위한 암호화 및 해시 알고리즘에 중요 한 통신의 보안을 tooensure 위에 hello 표에 나열 된 hello 기본 Azure VPN 게이트웨이 설정을 사용 합니다.
 
 ## <a name="known"></a>알려진 장치 호환성 문제
 
 > [!IMPORTANT]
-> 해당 내용은 타사 VPN 장치 및 Azure VPN 게이트웨이 간의 알려진 호환성 문제입니다. Azure 팀은 여기에 나열된 문제를 해결하기 위해 공급 업체와 함께 적극적으로 작업 중입니다. 문제가 해결되면 이 페이지는 가장 최신 정보로 업데이트됩니다. 주기적으로 다시 확인하세요.
+> 이러한 타사 VPN 장치 및 Azure VPN 게이트웨이 간에 알려진된 호환성 문제가 hello 됩니다. Azure 팀 hello tooaddress hello 여기에 나열 된 문제는 hello 공급 업체와 적극적으로 노력 합니다. Hello 문제가 해결 되 면이 페이지는 hello 가장 최신 정보로 업데이트 됩니다. 주기적으로 다시 확인하세요.
 >
 >
 
 ### <a name="feb-16-2017"></a>2017년 2월 16일
 
-Azure 경로 기반 VPN에 대한 **7.1.4 이전 버전으로 Palo Alto Networks 장치**: 7.1.4 이전의 PAN-OS 버전으로 Palo Alto Networks에서 VPN 장치를 사용하고 Azure 경로 기반 VPN 게이트웨이에 연결 문제가 발생하는 경우 다음 단계를 수행하세요.
+**이전 too7.1.4 버전을 사용 하 여 팔로 알토 네트워크 장치** Azure 경로 기반 VPN에 대 한: PAN-OS 버전 이전 too7.1.4를 팔로 알토 네트워크에서 VPN 장치를 사용 하 고 연결을 발생 하는 발급 tooAzure 경로 기반 VPN 게이트웨이 hello 다음 단계를 수행 합니다.
 
-1. Palo Alto Networks 장치의 펌웨어 버전을 확인합니다. PAN-OS 버전이 7.1.4보다 오래된 경우 7.1.4로 업그레이드하세요.
-2. Palo Alto Networks 장치에서 Azure VPN Gateway로 연결하는 경우 단계 2 SA(또는 빠른 모드 SA) 수명을 28,800초(8시간)로 변경합니다.
-3. 여전히 연결 문제가 발생하면 Azure Portal에서 지원 요청을 여세요.
+1. 팔로 알토 네트워크 장치의 hello 펌웨어 버전을 확인 합니다. PAN-OS 버전이 7.1.4 보다 오래 된 경우 too7.1.4를 업그레이드 합니다.
+2. Hello 팔로 알토 네트워크 장치에서 변경 hello 단계 2 SA (또는 빠른 모드 SA) 수명 too28 800 초 (8 시간) 경우 toohello Azure VPN 게이트웨이 연결 합니다.
+3. 연결 문제가 여전히 발생 하는 hello Azure 포털에서에서 지원 요청을 개시 합니다.

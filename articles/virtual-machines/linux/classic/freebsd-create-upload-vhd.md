@@ -1,6 +1,6 @@
 ---
-title: "FreeBSD VM 이미지 만들기 및 업로드 | Microsoft Docs"
-description: "FreeBSD 운영 체제가 포함된 VHD(가상 하드 디스크)를 만들고 업로드하여 Azure 가상 컴퓨터를 만드는 방법을 알아봅니다."
+title: "aaaCreate 및 업로드 FreeBSD VM 이미지 | Microsoft Docs"
+description: "Toocreate 알아보고 hello FreeBSD 운영 체제 toocreate Azure 가상 컴퓨터를 포함 하는 가상 하드 디스크 (VHD)를 업로드 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: KylieLiang
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/08/2017
 ms.author: kyliel
-ms.openlocfilehash: 918f454784a9676297077c2e94c3e49ab2872d2f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f3bd155e496f1a2713d36bb66ea9824ed4c210ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-upload-a-freebsd-vhd-to-azure"></a>FreeBSD VHD를 만들어서 Azure에 업로드
-이 문서에서는 FreeBSD 운영 체제가 포함된 VHD(가상 하드 디스크)를 만들고 업로드하는 방법에 대해 알아봅니다. VHD를 업로드한 후에는 VHD를 사용자 고유의 이미지로 사용하여 Azure에서 VM(가상 컴퓨터)을 만들 수 있습니다.
+# <a name="create-and-upload-a-freebsd-vhd-tooazure"></a>만들기 및 업로드 FreeBSD VHD tooAzure
+이 문서에서는 어떻게 toocreate 및 업로드를 포함 하는 가상 하드 디스크 (VHD) hello FreeBSD 운영 체제입니다. 를 업로드 한 후에 사용자 고유의 이미지 toocreate Azure에서 가상 컴퓨터 (VM)으로 사용할 수 있습니다.
 
 > [!IMPORTANT] 
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. Resource Manager 모델을 사용하여 VHD을 업로드하는 방법에 대한 정보는 [여기](../upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. Hello 리소스 관리자 모델을 사용 하 여 VHD를 업로드 하는 방법에 대 한 내용은 [여기](../upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서에서는 사용자에게 다음 항목이 있다고 가정합니다.
+이 문서에서는 다음 항목 hello 있다고 가정 합니다.
 
-* **Azure 구독**- 계정이 없는 경우 몇 분 만에 계정을 만들 수 있습니다. MSDN 구독이 있는 경우에는 [Visual Studio 구독자를 위한 월간 Azure 크레딧](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 참조하세요. 그렇지 않으면 [무료 평가판 계정 만들기](https://azure.microsoft.com/pricing/free-trial/)를 참조하세요.  
-* **Azure PowerShell 도구**- Azure PowerShell 모듈이 설치되어 있고 Azure 구독을 사용하도록 구성되어 있어야 합니다. 모듈을 다운로드하려면 [Azure 다운로드](https://azure.microsoft.com/downloads/)를 참조하세요. 모듈 설치 및 구성 방법을 설명한 자습서는 여기에서 확인할 수 있습니다. [Azure Downloads](https://azure.microsoft.com/downloads/) cmdlet을 사용하여 VHD를 업로드합니다.
-* **.vhd 파일에 설치된 FreeBSD 운영 체제**- 가상 하드 디스크에 지원되는 FreeBSD 운영 체제를 설치해야 합니다. .vhd 파일을 만드는 도구는 여러 가지가 있습니다. 예를 들어 Hyper-V와 같은 가상화 솔루션을 사용하여 .vhd 파일을 만들고 운영 체제를 설치할 수 있습니다. Hyper-V를 설치하고 사용하는 방법에 대한 자세한 내용은 [Hyper-V 설치 및 가상 컴퓨터 만들기](http://technet.microsoft.com/library/hh846766.aspx)를 참조하세요.
+* **Azure 구독**- 계정이 없는 경우 몇 분 만에 계정을 만들 수 있습니다. MSDN 구독이 있는 경우에는 [Visual Studio 구독자를 위한 월간 Azure 크레딧](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 참조하세요. 그렇지 않은 경우 너무 방법을 알아보려면[무료 평가판 계정을 만들](https://azure.microsoft.com/pricing/free-trial/)합니다.  
+* **Azure PowerShell 도구**-hello Azure PowerShell 모듈을 설치 해야 하 고 toouse Azure 구독을 구성 합니다. toodownload hello 모듈 참조 [Azure 다운로드](https://azure.microsoft.com/downloads/)합니다. 에 대해 설명 하는 자습서는 어떻게 tooinstall 구성 및 여기 hello 모듈을 사용할 수 있습니다. 사용 하 여 hello [Azure 다운로드](https://azure.microsoft.com/downloads/) cmdlet tooupload hello VHD입니다.
+* **.Vhd 파일에 설치 된 FreeBSD 운영 체제**tooa 가상 하드 디스크-는 FreeBSD 운영 체제에서 지원 되는 설치 합니다. 여러 도구 toocreate.vhd 파일을 포함 합니다. 예를 들어 Hyper-v toocreate hello.vhd 파일 등 가상화 솔루션을 사용 하 고 hello 운영 체제를 설치할 수 있습니다. Tooinstall 및 Hyper-v를 사용 하 여 참조 하는 방법에 대 한 지침은 [Hyper-v 설치 및 가상 컴퓨터 만들기](http://technet.microsoft.com/library/hh846766.aspx)합니다.
 
 > [!NOTE]
-> 새 VHDX 형식은 Azure에서 지원되지 않습니다. Hyper-V 관리자 또는 [convert-vhd](https://technet.microsoft.com/library/hh848454.aspx)cmdlet을 사용하여 디스크를 VHD 형식으로 변환할 수 있습니다. 뿐만 아니라 [Hyper-V에 FreeBSD를 사용하는 방법에 대한 MSDN 자습서](http://blogs.msdn.com/b/kylie/archive/2014/12/25/running-freebsd-on-hyper-v.aspx)가 있습니다.
+> Azure의 hello 새로운 VHDX 형식은 지원 되지 않습니다. Hyper-v 관리자를 사용 하 여 hello 디스크 tooVHD 형식을 변환 하거나 cmdlet hello 수 [convert vhd](https://technet.microsoft.com/library/hh848454.aspx)합니다. 또한는 [방법에 대 한 MSDN에서 자습서 toouse hyper-v FreeBSD](http://blogs.msdn.com/b/kylie/archive/2014/12/25/running-freebsd-on-hyper-v.aspx)합니다.
 >
 >
 
-이 작업에는 다음 5단계가 포함됩니다.
+이 태스크는 다섯 단계를 수행 하는 hello를 포함 합니다.
 
-## <a name="step-1-prepare-the-image-for-upload"></a>1단계: 업로드할 이미지 준비
-FreeBSD 운영 체제를 설치한 가상 컴퓨터에서 다음 절차를 완료합니다.
+## <a name="step-1-prepare-hello-image-for-upload"></a>1 단계: 업로드에 대 한 hello 이미지 준비
+Hello FreeBSD 운영 체제를 설치한 hello 가상 컴퓨터에서 다음 절차를 수행 하는 hello를 완료 합니다.
 
 1. DHCP를 활성화합니다.
 
@@ -50,14 +50,14 @@ FreeBSD 운영 체제를 설치한 가상 컴퓨터에서 다음 절차를 완�
         # service netif restart
 2. SSH를 활성화합니다.
 
-    SSH 서버가 설치되어 부팅 시 시작되도록 구성되어 있는지 확인합니다. FreeBSD 디스크에서 설치 후에는 기본적으로 사용하도록 설정되어 있습니다. 
+    해당 hello SSH 서버를 설치 및 부팅 시 toostart을 구성을 확인 합니다. FreeBSD 디스크에서 설치 후에는 기본적으로 사용하도록 설정되어 있습니다. 
 3. 직렬 콘솔을 설치합니다.
 
         # echo 'console="comconsole vidconsole"' >> /boot/loader.conf
         # echo 'comconsole_speed="115200"' >> /boot/loader.conf
 4. sudo를 설치합니다.
 
-    Azure에서 root 계정이 비활성화됩니다. 다시 말해서 상승된 권한으로 명령을 실행하려면 권한 없는 사용자로 sudo를 사용해야 합니다.
+    Azure의 hello 루트 계정이 비활성화 되었습니다. 즉, tooutilize sudo 상승 된 권한으로는 권한 없는 사용자 toorun 명령에서 필요 합니다.
 
         # pkg install sudo
    
@@ -69,7 +69,7 @@ FreeBSD 운영 체제를 설치한 가상 컴퓨터에서 다음 절차를 완�
         # pkg install git
 6. Azure 에이전트를 설치합니다.
 
-    언제든지 최신 버전의 Azure 에이전트를 [github](https://github.com/Azure/WALinuxAgent/releases)에서 확인할 수 있습니다. 버전 2.0.10 이상은 FreeBSD 10 및 10.1을 공식적으로 지원하며, 버전 2.1.4 이상(2.2.x 포함)은 FreeBSD 10.2 이상 릴리스를 공식적으로 지원합니다.
+    hello hello Azure 에이전트의 최신 릴리스에 항상에 있습니다 [github](https://github.com/Azure/WALinuxAgent/releases)합니다. 버전 2.0.10 hello + FreeBSD & 10.1, 버전과 10 hello 2.1.4 + (2.2. x 포함) 정식으로 지 원하는 FreeBSD 10.2 및 이상 릴리스를 공식적으로 지원 합니다.
 
         # git clone https://github.com/Azure/WALinuxAgent.git  
         # cd WALinuxAgent  
@@ -95,7 +95,7 @@ FreeBSD 운영 체제를 설치한 가상 컴퓨터에서 다음 절차를 완�
         # ln -sf /usr/local/sbin/waagent2.0 /usr/sbin/waagent2.0
 
    > [!IMPORTANT]
-   > Azure 에이전트를 설치한 후 에이전트가 실행 중인지 확인하는 것이 좋습니다.
+   > Azure 에이전트를 설치한 후 실행 하는 것이 좋습니다 tooverify 됩니다.
    >
    >
 
@@ -105,9 +105,9 @@ FreeBSD 운영 체제를 설치한 가상 컴퓨터에서 다음 절차를 완�
         # ps auxw | grep waagent
         root   639   0.0  0.5 104620 17520 u0- I    05:17    0:00.20 python /usr/local/sbin/waagent -daemon (python2.7)
         # cat /var/log/waagent.log
-7. 시스템을 프로비전 해제합니다.
+7. Hello 시스템을 프로 비전 해제 합니다.
 
-    시스템을 프로비전 해제하여 다시 프로비전하기에 적합한 상태로 정리합니다. 다음 명령은 마지막으로 프로비전된 사용자 계정 및 관련 데이터를 삭제합니다.
+    프로 비전 해제 하 고 확인 시스템 tooclean hello 다시 프로 비전에 대 한 적합 한 것입니다. hello 다음 명령은 삭제 hello 마지막 프로 비전 된 사용자 계정과 연결 된 hello 데이터:
 
         # echo "y" |  /usr/local/sbin/waagent -deprovision+user  
         # echo  'waagent_enable="YES"' >> /etc/rc.conf
@@ -115,94 +115,94 @@ FreeBSD 운영 체제를 설치한 가상 컴퓨터에서 다음 절차를 완�
     이제 VM을 종료할 수 있습니다.
 
 ## <a name="step-2-create-a-storage-account-in-azure"></a>2단계: Azure에서 저장소 계정 만들기
-가상 컴퓨터를 만드는 데 사용할 수 있도록 .vhd 파일을 업로드하려면 Azure에 저장소 계정이 있어야 합니다. Azure 클래식 포털을 사용하여 저장소 계정을 만들 수 있습니다.
+사용 되는 toocreate 가상 컴퓨터를 사용할 수 있도록 해야 Azure tooupload.vhd 파일의에서 저장소 계정. Hello Azure 클래식 포털 toocreate 저장소 계정 사용할 수 있습니다.
 
-1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
-2. 명령 모음에서 **새로 만들기**를 선택합니다.
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+2. Hello 명령 모음에서 선택 **새로**합니다.
 3. **데이터 서비스** > **저장소** > **빠른 생성**을 선택합니다.
 
     ![저장소 계정 빠른 생성](./media/freebsd-create-upload-vhd/Storage-quick-create.png)
-4. 다음과 같이 필드를 채웁니다.
+4. Hello 필드를 다음과 같이 입력 합니다.
 
-   * **URL** 필드에서 저장소 계정의 URL에 사용할 하위 도메인 이름을 입력합니다. 3-24자의 숫자와 소문자를 사용할 수 있습니다. 이 이름은 구독에 대한 Azure Blob 저장소, Azure 큐 저장소 또는 Azure 테이블 저장소 리소스의 주소를 지정하는 데 사용되는 URL 내의 호스트 이름이 됩니다.
-   * **위치/선호도 그룹** 드롭다운 메뉴에서 저장소 계정의 **위치 또는 선호도 그룹**을 선택합니다. 선호도 그룹을 사용하면 클라우드 서비스와 저장소를 동일한 데이터 센터에 배치할 수 있습니다.
-   * **복제** 필드에서, 저장소 계정에 **지역 중복** 복제를 사용할지 여부를 결정합니다. 지역에서 복제는 기본적으로 설정되어 있습니다. 이 옵션을 사용하면 추가 비용 없이 보조 위치로 데이터를 복제하므로 기본 위치에서 심각한 장애가 발생하는 경우 저장소에서 보조 위치로 장애 조치(Failover)할 수 있습니다. 보조 위치는 자동으로 할당되며 변경될 수 없습니다. 법적 필요 또는 조직 정책에 따라 클라우드 기반 저장소의 위치를 더 엄격하게 제어해야 하는 경우 지역에서 복제를 해제할 수 있습니다. 그러나 나중에 지역에서 복제를 설정하는 경우 기존 데이터를 대체 위치로 복제하는 데 일회성 데이터 전송 요금이 청구됩니다. 지역에서 복제를 사용하지 않는 저장소 서비스는 할인하여 제공됩니다. 저장소 계정의 지역에서 복제를 관리하는 방법에 대한 자세한 내용은 [Azure Storage 복제](../../../storage/common/storage-redundancy.md)에서 확인할 수 있습니다.
+   * Hello에 **URL** 필드 hello 저장소 계정 URL에 하위 도메인 이름 toouse를 입력 합니다. hello 항목 3 ~ 24 숫자 및 소문자에서 포함할 수 있습니다. 이 이름은 사용 되는 tooaddress Azure Blob 저장소, Azure 큐 저장소 또는 Azure 테이블 저장소 리소스 hello 구독에 대 한 hello URL에서 hello 호스트 이름이 됩니다.
+   * Hello에 **위치/선호도 그룹** 드롭 다운 메뉴에서 선택 hello **위치 또는 선호도 그룹** hello 저장소 계정에 대 한 합니다. 선호도 그룹 hello에 클라우드 서비스 및 저장소를 배치 하면 동일한 데이터 센터입니다.
+   * Hello에 **복제** 필드, 결정 여부 toouse **지리적 중복** hello 저장소 계정에 대 한 복제 합니다. 지역에서 복제는 기본적으로 설정되어 있습니다. 이 옵션에 데이터 tooa 보조 위치에 없는 비용 tooyou 복제, hello 기본 위치의 저장소 장애 toothat 위치 하는 경우 오류가 발생 한 조치를 발생 합니다. hello 보조 위치는 자동으로 할당 됩니다 및 변경할 수 없습니다. 기한 toolegal 요구 사항 또는 조직 구성 정책에 클라우드 기반 저장소의 hello 위치 보다 자세히 제어 해야 할 경우 지리적 복제를 해제할 수 있습니다. 그러나 수는 나중에 지리적 복제를 설정 하는 경우 청구 됩니다 일회성 데이터 전송 요금이 tooreplicate 기존 데이터 toohello 보조 위치입니다. 지역에서 복제를 사용하지 않는 저장소 서비스는 할인하여 제공됩니다. 저장소 계정의 지역에서 복제를 관리하는 방법에 대한 자세한 내용은 [Azure Storage 복제](../../../storage/common/storage-redundancy.md)에서 확인할 수 있습니다.
 
      ![저장소 계정 세부 정보 입력](./media/freebsd-create-upload-vhd/Storage-create-account.png)
-5. **저장소 계정 만들기**를 선택합니다. 이제 계정이 **저장소**아래에 나타납니다.
+5. **저장소 계정 만들기**를 선택합니다. hello 계정 아래에 **저장소**합니다.
 
     ![저장소 계정을 성공적으로 만들었음](./media/freebsd-create-upload-vhd/Storagenewaccount.png)
-6. 다음으로 업로드된 .vhd 파일의 컨테이너를 만듭니다. 저장소 계정 이름을 선택하고 **컨테이너**를 선택합니다.
+6. 다음으로 업로드된 .vhd 파일의 컨테이너를 만듭니다. Hello 저장소 계정 이름을 선택한 다음 선택 **컨테이너**합니다.
 
     ![저장소 계정 세부 정보](./media/freebsd-create-upload-vhd/storageaccount_detail.png)
 7. **컨테이너 만들기**를 선택합니다.
 
     ![저장소 계정 세부 정보](./media/freebsd-create-upload-vhd/storageaccount_container.png)
-8. **이름** 필드에 컨테이너의 이름을 입력합니다. 그런 다음 **액세스** 드롭 다운 메뉴에서 원하는 액세스 정책 유형을 선택합니다.
+8. Hello에 **이름** 필드 컨테이너에 대 한 이름을 입력 합니다. 그런 다음, hello **액세스** 드롭 다운 메뉴에서 원하는 액세스 정책의 형식입니다.
 
     ![컨테이너 이름](./media/freebsd-create-upload-vhd/storageaccount_containervalues.png)
 
    > [!NOTE]
-   > 기본적으로 컨테이너는 전용이며 해당 계정 소유자만 액세스할 수 있습니다. 컨테이너 속성 및 메타데이터는 제외하고 컨테이너에 있는 Blob에 대한 공용 읽기 권한을 허용하려면 **공용 Blob** 옵션을 사용하세요. 컨테이너 및 Blob에 대한 전체 공용 읽기 권한을 허용하려면 **공용 컨테이너** 옵션을 사용하세요.
+   > 기본적으로 hello 컨테이너는 전용 포트 이며 hello 계정 소유자만 액세스할 수 있습니다. tooallow 공용 읽기 액세스 권한을 toohello blob을 hello 컨테이너 하지만 하지 toohello 컨테이너 속성과 메타 데이터를 사용 하 여 hello **공용 Blob** 옵션입니다. hello 컨테이너 및 blob를 사용 하 여 hello tooallow 전체 공용 읽기 권한 **공용 컨테이너** 옵션입니다.
    >
    >
 
-## <a name="step-3-prepare-the-connection-to-azure"></a>3단계: Azure 연결 준비
-.vhd 파일을 업로드하려면 컴퓨터와 Azure 구독 간에 보안 연결을 설정해야 합니다. 이를 위해 Azure AD(Azure Active Directory) 방법이나 인증서 방법을 사용할 수 있습니다.
+## <a name="step-3-prepare-hello-connection-tooazure"></a>3 단계: hello 연결 tooAzure 준비
+.Vhd 파일을 업로드 하려면 먼저 컴퓨터와 Azure 구독 간에 tooestablish 보안 연결이 필요 합니다. Hello Azure Active Directory (Azure AD) 메서드를 사용 하거나 인증서 메서드 toodo hello 것입니다.
 
-### <a name="use-the-azure-ad-method-to-upload-a-vhd-file"></a>Azure AD 방법을 사용하여 .vhd 파일 업로드
-1. Azure PowerShell 콘솔을 엽니다.
-2. 다음 명령을 입력합니다.  
+### <a name="use-hello-azure-ad-method-tooupload-a-vhd-file"></a>Azure AD hello 메서드 tooupload.vhd 파일을 사용 하 여
+1. Azure PowerShell 콘솔을 열고 hello 합니다.
+2. Hello 다음 명령을 입력 합니다.  
     `Add-AzureAccount`
 
     이 명령은 직장 또는 학교 계정으로 로그인할 수 있는 로그인 창을 엽니다.
 
     ![PowerShell 창](./media/freebsd-create-upload-vhd/add_azureaccount.png)
-3. Azure가 자격 증명 정보를 인증하고 저장합니다. 그런 다음 창을 닫습니다.
+3. Azure를 인증 하 고 hello 자격 증명 정보를 저장 합니다. Hello 창이 닫힙니다.
 
-### <a name="use-the-certificate-method-to-upload-a-vhd-file"></a>인증서 방법을 사용하여 .vhd 파일 업로드
-1. Azure PowerShell 콘솔을 엽니다.
+### <a name="use-hello-certificate-method-tooupload-a-vhd-file"></a>Hello 인증서 메서드 tooupload.vhd 파일을 사용 하 여
+1. Azure PowerShell 콘솔을 열고 hello 합니다.
 2. 입력: `Get-AzurePublishSettingsFile`
-3. 브라우저 창이 열리고 .publishsettings 파일을 다운로드하라는 메시지가 표시됩니다. 이 파일에는 Azure 구독에 대한 정보와 인증서가 포함되어 있습니다.
+3. 브라우저 창이 열리고 toodownload hello.publishsettings 제출 하 라는 메시지를 표시 합니다. 이 파일에는 Azure 구독에 대한 정보와 인증서가 포함되어 있습니다.
 
     ![브라우저 다운로드 페이지](./media/freebsd-create-upload-vhd/Browser_download_GetPublishSettingsFile.png)
-4. .publishsettings 파일을 저장합니다.
-5. 입력: `Import-AzurePublishSettingsFile <PathToFile>`, 여기서 `<PathToFile>`은 .publishsettings 파일의 전체 경로입니다.
+4. Hello.publishsettings 파일을 저장 합니다.
+5. 형식: `Import-AzurePublishSettingsFile <PathToFile>`여기서 `<PathToFile>` hello toohello.publishsettings 파일 전체 경로입니다.
 
    자세한 내용은 [Azure Cmdlets 시작](http://msdn.microsoft.com/library/windowsazure/jj554332.aspx)을 참조하세요.
 
-   PowerShell 설치 및 구성에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview)을 참조하세요.
+   설치 하 고 PowerShell을 구성 하는 방법에 대 한 자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
 
-## <a name="step-4-upload-the-vhd-file"></a>4단계: .vhd 파일 업로드
-.vhd 파일을 업로드할 때 Blob 저장소 내 임의의 위치에 .vhd 파일을 배치할 수 있습니다. 다음은 파일을 업로드할 때 사용되는 몇 가지 용어입니다.
+## <a name="step-4-upload-hello-vhd-file"></a>4 단계: hello.vhd 파일 업로드
+Hello.vhd 파일을 업로드 하는 경우 Blob 저장소 내의 아무 곳 이나 배치할 수 있습니다. 다음은 몇 가지 용어 hello 파일을 업로드할 때 사용 합니다.
 
-* **BlobStorageURL**은 2단계에서 만든 저장소 계정의 URL입니다.
-* **YourImagesFolder**는 이미지를 저장하려는 Blob 저장소 내 컨테이너입니다.
-* **VHDName**은 가상 하드 디스크를 식별하기 위해 Azure 클래식 포털에 표시되는 레이블입니다.
-* **PathToVHDFile**은 .vhd 파일의 전체 경로 및 이름입니다.
+* **BlobStorageURL** 2 단계에서에서 만든 hello 저장소 계정에 대 한 hello URL입니다.
+* **YourImagesFolder** 은 Blob 저장소 내의 컨테이너 hello toostore 이미지입니다.
+* **VHDName** hello Azure 클래식 포털 tooidentify hello 가상 하드 디스크에 표시 되는 hello 레이블입니다.
+* **PathToVHDFile** hello 전체 경로 및 hello.vhd 파일의 이름입니다.
 
-이전 단계에서 사용한 Azure PowerShell 창에서 다음을 입력합니다.
+Hello 이전 단계에서 사용한 hello Azure PowerShell 창에서 다음을 입력 합니다.
 
         Add-AzureVhd -Destination "<BlobStorageURL>/<YourImagesFolder>/<VHDName>.vhd" -LocalFilePath <PathToVHDFile>
 
-## <a name="step-5-create-a-vm-with-the-uploaded-vhd-file"></a>5단계: 업로드한 .vhd 파일로 VM 만들기
-.vhd 파일을 업로드한 후에는 구독과 연결된 사용자 지정 이미지 목록에 .vhd 파일을 이미지로 추가하고 이 사용자 지정 이미지를 사용하여 가상 컴퓨터를 만들 수 있습니다.
+## <a name="step-5-create-a-vm-with-hello-uploaded-vhd-file"></a>5 단계: hello 업로드 한.vhd 파일로 VM 만들기
+Hello.vhd 파일을 업로드 한 후에 구독에 연결 되며이 사용자 지정 이미지와 가상 컴퓨터를 만들 수 있는 사용자 지정 이미지의 이미지 toohello 목록으로 추가할 수 있습니다.
 
-1. 이전 단계에서 사용한 Azure PowerShell 창에서 다음을 입력합니다.
+1. Hello 이전 단계에서 사용한 hello Azure PowerShell 창에서 다음을 입력 합니다.
 
-        Add-AzureVMImage -ImageName <Your Image's Name> -MediaLocation <location of the VHD> -OS <Type of the OS on the VHD>
+        Add-AzureVMImage -ImageName <Your Image's Name> -MediaLocation <location of hello VHD> -OS <Type of hello OS on hello VHD>
 
    > [!NOTE]
-   > OS 유형으로 Linux를 사용합니다. Azure PowerShell 최신 버전은 매개 변수로 "Linux" 또는 "Windows"만 허용합니다.
+   > Linux를 사용 하 여 hello OS 유형으로. 현재 Azure PowerShell 버전 hello "Linux" 또는 "Windows" 매개 변수로 허용합니다.
    >
    >
-2. 이전 단계를 완료한 후 Azure 클래식 포털에서 **이미지** 탭을 선택하면 새 이미지가 나열됩니다.  
+2. Hello를 선택 하면 hello 새 이미지를 나열 된 hello 이전 단계를 완료 한 후 **이미지** hello Azure 클래식 포털에 탭 합니다.  
 
     ![이미지 선택](./media/freebsd-create-upload-vhd/addfreebsdimage.png)
-3. 갤러리에서 가상 컴퓨터를 만듭니다. 이제 **내 이미지**에서 이 새 이미지를 사용할 수 있습니다.
-4. 새 이미지를 선택합니다. 다음으로 메시지에 따라 호스트 이름, 암호, SSH 키 등을 설정합니다.
+3. Hello 갤러리에서 가상 컴퓨터를 만듭니다. 이제 **내 이미지**에서 이 새 이미지를 사용할 수 있습니다.
+4. Hello 새 이미지를 선택 합니다. 다음으로 hello 메시지 tooset 호스트 이름, 암호, SSH 키를 통해 이동 합니다.
 
     ![사용자 지정 이미지](./media/freebsd-create-upload-vhd/createfreebsdimageinazure.png)
-5. 프로비전이 완료되면 FreeBSD VM이 Azure에서 실행됩니다.
+5. Hello를 프로 비전을 완료 한 후에 Azure에서 실행 중인 FreeBSD VM 표시 됩니다.
 
     ![Azure의 FreeBSD 이미지](./media/freebsd-create-upload-vhd/freebsdimageinazure.png)

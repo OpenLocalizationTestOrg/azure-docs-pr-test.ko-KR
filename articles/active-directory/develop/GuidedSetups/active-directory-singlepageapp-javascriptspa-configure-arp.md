@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 JS SPA 단계별 설치 - 구성(ARP) | Microsoft Docs"
+title: "AD aaaAzure v2 JS SPA 단계별 설치-구성 ARP () | Microsoft Docs"
 description: "JavaScript SPA 응용 프로그램이 Azure Active Directory v2 끝점(ARP)에 의한 액세스 토큰을 필요로 하는 API를 호출하는 방식"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,41 +13,41 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 06/01/2017
 ms.author: andret
-ms.openlocfilehash: 708f4ff606d79639de979918a9cacd4ed75db311
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 157f4e342cd684294e24da6ee1fad8a7c2fc266a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="add-the-applications-registration-information-to-your-app"></a>앱에 응용 프로그램의 등록 정보 추가
+## <a name="add-hello-applications-registration-information-tooyour-app"></a>Hello 응용 프로그램의 등록 정보 tooyour 앱 추가
 
-이 단계에서는 응용 프로그램 등록 정보의 리디렉션 URL을 구성하고 JavaScript SPA 응용 프로그램에 응용 프로그램 ID를 추가해야 합니다.
+이 단계에서는 응용 프로그램 등록 정보 tooconfigure hello 리디렉션 URL이 필요 고 hello 응용 프로그램 Id tooyour JavaScript SPA 응용 프로그램을 추가 합니다.
 
 ### <a name="configure-redirect-url"></a>리디렉션 URL 구성
 
-웹 서버에 따라 index.html 페이지에 대한 URL로 위의 `Redirect URL` 필드를 구성하고 *업데이트*를 클릭합니다.
+Hello 구성 `Redirect URL` 클릭 한 다음 웹 서버에 따라 index.html 페이지에 대 한 hello url 필드 위에 *업데이트*합니다.
 
 
 > #### <a name="visual-studio-instructions-for-obtaining-redirect-url"></a>리디렉션 URL을 얻기 위한 Visual Studio 지침
-> 리디렉션 URL을 가져오려면 아래 지침을 따르세요.
-> 1.    *솔루션 탐색기*에서 프로젝트를 선택하고 `Properties` 창을 확인합니다([속성] 창이 보이지 않으면 `F4` 누르기).
-> 2.    `URL`의 값을 클립보드로 복사합니다.<br/> ![](media/active-directory-singlepageapp-javascriptspa-configure/vs-project-properties-screenshot.png)<br />
-> 3.    값을 이 페이지 맨 위에 `Redirect URL`로 붙여 넣고 `Update`를 클릭합니다.
+> tooobtain에 리디렉션 URL을 다음 지침에 따라 hello:
+> 1.    *솔루션 탐색기*hello 프로젝트를 선택 하 고 hello를 살펴보고 `Properties` 창 (키를 눌러 속성 창을 보이지 않으면 `F4`)
+> 2.    Hello 값에서 복사 `URL` toohello 클립보드:<br/> ![](media/active-directory-singlepageapp-javascriptspa-configure/vs-project-properties-screenshot.png)<br />
+> 3.    Hello 값으로 붙여는 `Redirect URL` hello이이 페이지의 위쪽에 클릭`Update`
 
 <p/>
 
 > #### <a name="setting-redirect-url-for-python"></a>Python에 대한 리디렉션 URL 설정
-> Python의 경우 명령줄을 통해 웹 서버 포트를 설정할 수 있습니다. 이 단계별 설치는 참조를 위해 포트 8080을 사용하지만 다른 포트도 자유롭게 사용 가능합니다. 어떤 경우든, 아래 지침에 따라 응용 프로그램 등록 정보에 리디렉션 URL을 설정합니다.<br/>
-> 이 페이지 맨 위에서 `http://localhost:8080/`을 `Redirect URL`로 설정하거나 사용자 지정 TCP 포트를 사용하는 경우 `http://localhost:[port]/`를 사용하고(여기서 *[port]*는 사용자 지정 TCP 포트 번호임) [업데이트]를 클릭합니다.
+> Python에 대 한 명령줄을 통해 hello 웹 서버 포트를 설정할 수 있습니다. 참조에 대 한 hello 포트 8080을 사용 하는이 단계별된 설치 하지만 사용 가능한 다른 포트 무료 toouse 느껴집니다. 어떤 경우 든, 아래 지침을 hello tooset hello 응용 프로그램 등록 정보에 리디렉션 URL 구성 합니다.<br/>
+> 설정 `http://localhost:8080/` 로 `Redirect URL` 에이 페이지의 맨 위에 hello 또는 사용 하 여 `http://localhost:[port]/` 사용자 지정 TCP 포트를 사용 하는 경우 (여기서 *[port]* 는 TCP 포트 번호를 사용자 지정 하는 hello)를 다음 '업데이트'를 클릭 하 고
 
 ### <a name="configure-your-javascript-spa-application"></a>JavaScript SPA 응용 프로그램 구성
 
-1.  응용 프로그램 등록 정보를 포함하는 `msalconfig.js`라는 파일을 만듭니다. Visual Studio를 사용하는 경우 프로젝트(프로젝트 루트 폴더)를 마우스 오른쪽 단추로 클릭하고 `Add` > `New Item` > `JavaScript File`을 선택합니다. 이름을 `msalconfig.js`로 지정합니다.
-2.  `msalconfig.js` 파일에 다음 코드를 추가합니다.
+1.  라는 파일을 만들어 `msalconfig.js` hello 응용 프로그램 등록 정보를 포함 합니다. Visual Studio, 선택 hello 프로젝트 (프로젝트 루트 폴더)를 사용 하는 인덱스를 마우스 오른쪽 단추로 클릭 하 고 선택: `Add`  >  `New Item`  >  `JavaScript File`합니다. 이름을 `msalconfig.js`로 지정합니다.
+2.  다음 코드 tooyour hello 추가 `msalconfig.js` 파일:
 
 ```javascript
 var msalconfig = {
-    clientID: "[Enter the application Id here]",
+    clientID: "[Enter hello application Id here]",
     redirectUri: location.origin
 };
 ``` 

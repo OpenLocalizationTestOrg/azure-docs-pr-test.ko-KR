@@ -1,6 +1,6 @@
 ---
-title: "Windows Server Azure VM에서 Django 웹앱 | Microsoft Docs"
-description: "클래식 배포 모델로 만든 Windows Server 2012 R2 Datacenter VM을 사용하여 Azure에서 Django 기반 웹 사이트를 호스트하는 방법을 알아봅니다."
+title: "Windows Server Azure VM에서 웹 앱 aaaDjango | Microsoft Docs"
+description: "자세한 내용은 방법 toohost hello 클래식 배포 모델에는 Windows Server 2012 R2 Datacenter VM을 사용 하 여 Azure에서 Django 기반 웹 사이트입니다."
 services: virtual-machines-windows
 documentationcenter: python
 author: huguesv
@@ -15,99 +15,99 @@ ms.devlang: python
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: huvalo
-ms.openlocfilehash: 283a296fb39863c2801be1093cc4f56904786abd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 55847e3c6d6769965be29077e8d4eeebad914637
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="django-hello-world-web-app-on-a-windows-server-vm"></a>Windows Server VM의 Django Hello World 웹앱
 
 > [!IMPORTANT] 
-> Azure에는 리소스를 만들고 작업하는 [Azure Resource Manager와 클래식 배포 모델](../../../resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델에 대해 설명합니다. 대부분의 새로운 배포에서는 Azure Resource Manager 모델을 사용하는 것이 좋습니다.
+> Azure는 만들고 리소스를 사용 하기 위한 두 가지 서로 다른 배포 모델이: [Azure 리소스 관리자 및 hello 클래식 배포 모델](../../../resource-manager-deployment-model.md)합니다. 이 문서에서는 hello 클래식 배포 모델을 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.
 
-이 자습서는 Azure Virtual Machines의 Windows Server에서 Django 기반 웹 사이트를 호스트하는 방법을 보여 줍니다. 이 자습서에서는 사전에 Azure 경험이 없다고 가정합니다. 이 자습서를 완료하면 클라우드에서 Django 기반 응용 프로그램을 실행할 수 있게 됩니다.
+이 자습서에서는 Azure 가상 컴퓨터의 Windows Server에서 Django 기반 웹 사이트 toohost 합니다. Hello 자습서에서는 Azure 사용한 이전 경험이 가정합니다. Hello 자습서를 완료 하면를 Django 기반 응용 프로그램 및 hello 클라우드에서 실행 중인를 가질 수 있습니다.
 
 방법 배우기:
 
-* Django를 호스트하도록 Azure 가상 컴퓨터를 설정합니다. 이 자습서에서는 **Windows Server**에서 작업을 수행하는 방법을 설명하지만, Azure에서 호스트되는 Linux VM에 동일한 작업을 수행할 수 있습니다.
+* Azure 가상 컴퓨터 toohost Django 설정 합니다. 이 자습서에 설명 하지만 방법을 toodo에 대해이 **Windows Server**를 할 수 있는 Azure에서 호스트 되는 Linux VM에 대해 동일한 hello 합니다.
 * Windows에서 새 Django 응용 프로그램을 만듭니다.
 
-자습서는 기본적인 Hello World 웹 응용 프로그램을 빌드하는 방법을 보여 줍니다. 응용 프로그램은 Azure 가상 컴퓨터에 호스트됩니다.
+hello 자습서 toobuild 기본 Hello World 웹 응용 프로그램 하는 방법을 보여 줍니다. hello 응용 프로그램이 Azure 가상 컴퓨터에서 호스팅됩니다.
 
-다음 스크린샷에 완성된 응용 프로그램이 나와 있습니다.
+다음 스크린 샷 hello 완료 hello 응용 프로그램을 보여 줍니다.
 
-![Azure의 hello world 페이지가 표시된 브라우저 창][1]
+![Azure의 hello hello world 페이지를 표시 하는 브라우저 창][1]
 
 [!INCLUDE [create-account-and-vms-note](../../../../includes/create-account-and-vms-note.md)]
 
-## <a name="create-and-set-up-an-azure-virtual-machine-to-host-django"></a>Django를 호스트하기 위해 Azure 가상 컴퓨터 만들기 및 설정
+## <a name="create-and-set-up-an-azure-virtual-machine-toohost-django"></a>만들고 Azure 가상 컴퓨터 toohost Django 설정
 
-1. Windows Server 2012 R2 Datacenter 배포를 사용하여 Azure 가상 컴퓨터를 만들려면 참조 [Azure Portal에서 Windows를 실행하는 가상 컴퓨터 만들기](tutorial.md)를 참조하세요.
-2. 웹을 통해 들어오는 포트 80 트래픽을 가상 컴퓨터의 포트 80으로 보내도록 Azure를 설정합니다.
+1. Azure 가상 컴퓨터를 Windows Server 2012 R2 Datacenter 배포 hello로 toocreate 참조 [hello Azure 포털에서에서 Windows를 실행 중인 가상 컴퓨터를 만드는](tutorial.md)합니다.
+2. Hello 웹 tooport 80 hello 가상 컴퓨터에서 Azure toodirect 포트 80 트래픽을 설정 합니다.
    
-   1. Azure Portal에서 대시보드로 이동하고 새로 만든 가상 컴퓨터를 선택합니다.
+   1. Hello Azure 포털에서에서 toohello 대시보드를 이동 하 고 새로 만든된 가상 컴퓨터를 선택 합니다.
    2. **끝점**을 클릭한 후 **추가**를 클릭합니다.
 
      ![끝점 추가](./media/python-django-web-app/django-helloworld-add-endpoint-new-portal.png)
 
-   3. **끝점 추가** 페이지에서 **이름**에 **HTTP**를 입력합니다. 공용 및 개인 TCP 포트를 **80**에 설정합니다.
+   3. Hello에 **끝점 추가** 페이지에 대 한 **이름**, 입력 **HTTP**합니다. Hello 공용 및 개인 TCP 포트를 너무 설정**80**합니다.
 
      ![이름을 입력하고 공용 및 개인 포트를 설정](./media/python-django-web-app/django-helloworld-add-endpoint-set-ports-new-portal.png)
 
    4. **확인**을 클릭합니다.
      
-3. 대시보드에서 VM을 선택합니다. RDP(원격 데스크톱 프로토콜)를 사용하여 새로 만든 Azure 가상 컴퓨터에 원격으로 로그인하려면 **연결**을 클릭합니다.  
+3. Hello 대시보드에서 VM을 선택 합니다. Azure 가상 컴퓨터를 새로 만든 toohello 로그인 프로토콜 RDP (원격 데스크톱) tooremotely toouse 클릭 **연결**합니다.  
 
 > [!IMPORTANT] 
-> 다음 지침에서는 사용자가 가상 컴퓨터에 올바르게 로그인한 것으로 가정합니다. 또한 로컬 컴퓨터에 없는 명령이 가상 컴퓨터에 발행하였다고 가정합니다.
+> hello 지침에 따라 사용자가 등록 toohello 가상 컴퓨터에 올바르게 가정 합니다. 또한 hello 가상 컴퓨터에 로컬 컴퓨터에 없는 명령을 수행 하는 가정 합니다.
 
 ## <a id="setup"> </a>Python, Django 및 WFastCGI 설치
 > [!NOTE]
-> Internet Explorer를 사용하여 다운로드하려면 Internet Explorer **보안 강화 구성** 설정을 구성해야 할 수 있습니다. 이 작업을 수행하려면 **시작** > **관리 도구** > **서버 관리자** > **로컬 서버**를 클릭합니다. **IE 보안 강화 구성**을 클릭한 후 **끄기**를 선택합니다.
+> Internet Explorer를 사용 하 여 toodownload, Internet Explorer tooconfigure 있을 수 있습니다 **보안 강화 구성** 설정 합니다. toodo이를 클릭 하이 여 **시작** > **관리 도구** > **서버 관리자** > **로컬서버**. **IE 보안 강화 구성**을 클릭한 후 **끄기**를 선택합니다.
 
-1. [python.org][python.org]에서 최신 버전의 Python 2.7 또는 Python 3.4를 설치합니다.
-2. pip를 사용하여 wfastcgi 및 django 패키지를 설치합니다.
+1. Hello 최신 버전의 Python 2.7 또는에서 Python 3.4 설치 [python.org][python.org]합니다.
+2. Pip를 사용 하 여 hello wfastcgi 및 django 패키지를 설치 합니다.
    
-    Python 2.7의 경우 다음 명령을 사용합니다.
+    Python 2.7 hello 다음 명령을 사용 합니다.
    
         c:\python27\scripts\pip install wfastcgi
         c:\python27\scripts\pip install django
    
-    Python 3.4의 경우 다음 명령을 사용합니다.
+    Python 3.4 hello 다음 명령을 사용 합니다.
    
         c:\python34\scripts\pip install wfastcgi
         c:\python34\scripts\pip install django
 
 ## <a name="install-iis-with-fastcgi"></a>FastCGI를 포함하는 IIS 설치
-* FastCGI 지원을 통해 IIS(인터넷 정보 서비스)를 설치합니다. 이 설치를 실행하려면 몇 분 정도 걸릴 수 있습니다.
+* FastCGI 지원을 통해 IIS(인터넷 정보 서비스)를 설치합니다. 몇 분 tooexecute를 걸릴 수 있습니다.
    
         start /wait %windir%\System32\PkgMgr.exe /iu:IIS-WebServerRole;IIS-WebServer;IIS-CommonHttpFeatures;IIS-StaticContent;IIS-DefaultDocument;IIS-DirectoryBrowsing;IIS-HttpErrors;IIS-HealthAndDiagnostics;IIS-HttpLogging;IIS-LoggingLibraries;IIS-RequestMonitor;IIS-Security;IIS-RequestFiltering;IIS-HttpCompressionStatic;IIS-WebServerManagementTools;IIS-ManagementConsole;WAS-WindowsActivationService;WAS-ProcessModel;WAS-NetFxEnvironment;WAS-ConfigurationAPI;IIS-CGI
 
 ## <a name="create-a-new-django-application"></a>새 Django 응용 프로그램 만들기
-1. C:\inetpub\wwwroot에서 새 Django 프로젝트를 만들려면 다음 명령을 입력합니다.
+1. C:\inetpub\wwwroot, 새 Django 프로젝트 toocreate hello 다음 명령을 입력 합니다.
    
-   Python 2.7의 경우 다음 명령을 사용합니다.
+   Python 2.7 hello 다음 명령을 사용 합니다.
    
        C:\Python27\Scripts\django-admin.exe startproject helloworld
    
-   Python 3.4의 경우 다음 명령을 사용합니다.
+   Python 3.4 hello 다음 명령을 사용 합니다.
    
        C:\Python34\Scripts\django-admin.exe startproject helloworld
    
-   ![New-AzureService 명령의 결과](./media/python-django-web-app/django-helloworld-cmd-new-azure-service.png)
-2. `django-admin` 명령은 Django 기반 웹 사이트의 기본 구조를 생성합니다.
+   ![hello New-azureservice 명령의 hello 결과](./media/python-django-web-app/django-helloworld-cmd-new-azure-service.png)
+2. hello `django-admin` 명령은 Django 기반 웹 사이트에 대 한 기본 구조를 생성 합니다.
    
    * `helloworld\manage.py`는 Django 기반 웹 사이트의 호스팅을 시작 및 중지하는 데 도움이 됩니다.
    * `helloworld\helloworld\settings.py`에는 응용 프로그램에 대한 Django 설정이 있습니다.
-   * `helloworld\helloworld\urls.py`에는 각 URL과 뷰 사이 매핑 코드가 있습니다.
-3. C:\inetpub\wwwroot\helloworld\helloworld 디렉터리에서 views.py라는 새 파일을 만듭니다. 이 파일에는 “hello world” 페이지를 렌더링하는 뷰가 포함되어 있습니다. 코드 편집기에서 다음 명령을 입력합니다.
+   * `helloworld\helloworld\urls.py`각 URL과 해당 뷰 사이 hello 매핑 코드를 있습니다.
+3. Hello C:\inetpub\wwwroot\helloworld\helloworld 디렉터리 views.py 라는 새 파일을 만듭니다. 이 파일에 hello "hello world" 페이지를 렌더링 하는 hello 보기가 있습니다. 코드 편집기에서 다음 명령을 hello를 입력 합니다.
    
        from django.http import HttpResponse
        def home(request):
            html = "<html><body>Hello World!</body></html>"
            return HttpResponse(html)
-4. urls.py 파일의 콘텐츠를 다음 명령으로 바꿉니다.
+4. 명령을 수행 하는 hello hello urls.py 파일의 hello 내용을 바꿉니다.
    
        from django.conf.urls import patterns, url
        urlpatterns = patterns('',
@@ -115,10 +115,10 @@ ms.lasthandoff: 08/18/2017
        )
 
 ## <a name="set-up-iis"></a>IIS 설정
-1. 전역 applicationhost.config 파일에서 처리기 섹션의 잠금을 해제합니다.  이렇게 하면 web.config 파일에서 Python 처리기를 사용할 수 있습니다. 다음 명령을 추가합니다.
+1. Hello 글로벌 applicationhost.config 파일에 hello 처리기 섹션의 잠금을 해제 합니다.  따라서 web.config 파일 toouse hello Python 처리기가 있습니다. 다음 명령을 추가합니다.
    
         %windir%\system32\inetsrv\appcmd unlock config -section:system.webServer/handlers
-2. WFastCGI를 활성화합니다. 이렇게 하면 Python 인터프리터 실행 파일과 wfastcgi.py 스크립트를 참조하는 전역 applicationhost.config 파일에 응용 프로그램이 추가됩니다.
+2. WFastCGI를 활성화합니다. 이 응용 프로그램 toohello 글로벌 applicationhost.config 파일을 tooyour Python 인터프리터 실행 파일 및 hello wfastcgi.py 스크립트 참조를 추가 합니다.
    
     Python 2.7에서:
    
@@ -127,7 +127,7 @@ ms.lasthandoff: 08/18/2017
     Python 3.4에서:
    
         C:\python34\scripts\wfastcgi-enable
-3. C:\inetpub\wwwroot\helloworld에서 web.config 파일을 만듭니다. `scriptProcessor` 특성의 값은 이전 단계의 출력과 일치해야 합니다. wfastcgi 설정에 대 한 자세한 내용은 [pypi wfastcgi][wfastcgi]를 참조하세요.
+3. C:\inetpub\wwwroot\helloworld에서 web.config 파일을 만듭니다. 값의 hello hello `scriptProcessor` 특성 hello 출력 hello 단계 앞에서 일치 해야 합니다. Hello wfastcgi 설정에 대 한 자세한 내용은 참조 [pypi wfastcgi][wfastcgi]합니다.
    
    Python 2.7에서:
    
@@ -158,15 +158,15 @@ ms.lasthandoff: 08/18/2017
             </handlers>
           </system.webServer>
         </configuration>
-4. Django 프로젝트 폴더를 가리키도록 IIS 기본 웹 사이트의 위치를 업데이트합니다.
+4. Hello IIS 기본 웹 사이트 toopoint toohello Django 프로젝트 폴더의 hello 위치를 업데이트 합니다.
    
         %windir%\system32\inetsrv\appcmd set vdir "Default Web Site/" -physicalPath:"C:\inetpub\wwwroot\helloworld"
-5. 브라우저에서 웹 페이지를 로드합니다.
+5. 브라우저에서 hello 웹 페이지를 로드 합니다.
 
-![Azure의 hello world 페이지가 표시된 브라우저 창][1]
+![Azure의 hello hello world 페이지를 표시 하는 브라우저 창][1]
 
 ## <a name="shut-down-your-azure-virtual-machine"></a>Azure 가상 컴퓨터 종료
-이 자습서를 완료하면 자습서용으로 만든 Azure VM을 종료하거나 제거하는 것이 좋습니다. 그러면 다른 자습서에 대한 리소스가 해제되어 Azure 사용량 요금이 발생하는 것을 방지할 수 있습니다.
+이 자습서를 완료 하는 경우에 종료 나 hello hello 자습서에 대해 만든 Azure VM을 제거 하는 것이 좋습니다. 그러면 다른 자습서에 대한 리소스가 해제되어 Azure 사용량 요금이 발생하는 것을 방지할 수 있습니다.
 
 [1]: ./media/python-django-web-app/django-helloworld-browser-azure.png
 

@@ -1,6 +1,6 @@
 ---
-title: "탄력적 데이터베이스 도구를 사용하여 분할된 데이터베이스 추가하기 | Microsoft Docs"
-description: "이 문서에서는 탄력적인 확장 API를 사용하여 새 분할된 데이터베이스를 분할된 데이터베이스 집합에 추가하는 방법을 설명합니다."
+title: "탄력적 데이터베이스 도구를 사용 하 여 분할 된 데이터베이스는 aaaAdding | Microsoft Docs"
+description: "탄력적인 확장 Api tooadd 새 분할 영역이 tooa 분할 toouse 설정 하는 방법입니다."
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: 6a91ea2251ea3b748faba5c97765bfded9c00234
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f44b59578376d1238b3012a3cb52339978079f0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="adding-a-shard-using-elastic-database-tools"></a>탄력적 데이터베이스 도구를 사용하여 분할된 데이터베이스 추가하기
-## <a name="to-add-a-shard-for-a-new-range-or-key"></a>새 범위 또는 키에 대해 분할된 데이터베이스를 추가하기
-이미 존재하는 분할된 데이터베이스 맵의 경우 응용 프로그램은 대개 새 키 또는 키 범위에서 예상되는 데이터를 처리할 새로운 분할된 데이터베이스를 추가하기만 하면 됩니다. 예를 들어 테넌트 ID를 기준으로 분할된 응용 프로그램이 새로운 테넌트에 대한 새로운 분할된 데이터베이스를 프로비전해야 할 수 있습니다. 또는 월별로 분할된 데이터의 경우 새로운 달이 시작되기 전에 새로운 분할된 데이터베이스를 프로비전해야 할 수 있습니다. 
+## <a name="tooadd-a-shard-for-a-new-range-or-key"></a>새 범위 또는 키에 대 한 분할 tooadd
+응용 프로그램 종종 필요한 toosimply 새로운 키 또는 키 범위에서 예상 되는 새 분할 영역이 toohandle 데이터 대 한 추가 분할 맵은 이미 존재 합니다. 예를 들어 테 넌 트 ID에 따라 분할 응용 프로그램 tooprovision 새로운 분할 새 테 넌 트에 대 한 하거나 데이터 분할 매월 새로운 분할 hello 새로운 달이 시작 하기 전에 사용자를 프로 비전 할 수 있습니다. 
 
-키 값의 새로운 범위가 기존 매핑에 속하지 않는 경우에는 매우 간편하게 새 분할된 데이터베이스를 추가하고 새 키 또는 범위를 해당 분할된 데이터베이스에 연결할 수 있습니다. 
+Hello 새로운 키 값의 범위로 되어 있지 않은 경우 기존 매핑의 일부를 매우 간단한 tooadd hello 새 분할 영역 및 연결 hello 새 키 또는 범위 toothat 분할 됩니다. 
 
-### <a name="example--adding-a-shard-and-its-range-to-an-existing-shard-map"></a>예 : 기존 분할된 데이터베이스 맵에 분할된 데이터베이스 및 해당 범위 추가
-이 샘플에서는 [TryGetShard](https://msdn.microsoft.com/library/azure/dn823929.aspx), [CreateShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.createshard.aspx), [CreateRangeMapping](https://msdn.microsoft.com/library/azure/dn807221.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeShardMap`1.CreateRangeMapping\(Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeMappingCreationInfo{`0}\)) 메서드를 사용하며 [ShardLocation](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardlocation.shardlocation.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardLocation.) 클래스의 인스턴스를 만듭니다. 아래 샘플에서는 [300, 400) 범위를 포함하도록 **sample_shard_2** 데이터베이스와 이 데이터베이스 내의 필요한 모든 스키마 개체를 만들었습니다.  
+### <a name="example--adding-a-shard-and-its-range-tooan-existing-shard-map"></a>예제: 분할 영역 및 해당 범위 tooan 기존 분할 맵 추가
+이 샘플에서는 hello [TryGetShard](https://msdn.microsoft.com/library/azure/dn823929.aspx) hello [CreateShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.createshard.aspx), [CreateRangeMapping](https://msdn.microsoft.com/library/azure/dn807221.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeShardMap`1.CreateRangeMapping\(Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeMappingCreationInfo{`0}\)) 메서드 hello의 인스턴스를 만듭니다 [ShardLocation](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardlocation.shardlocation.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardLocation.) 클래스입니다. 데이터베이스 이름은 아래 hello 샘플에서 **sample_shard_2** 및 내부에서 모든 필요한 스키마 개체가 만들어진 toohold 범위 [300, 400).  
 
     // sm is a RangeShardMap object.
-    // Add a new shard to hold the range being added. 
+    // Add a new shard toohold hello range being added. 
     Shard shard2 = null; 
 
     if (!sm.TryGetShard(new ShardLocation(shardServer, "sample_shard_2"),out shard2)) 
@@ -39,21 +39,21 @@ ms.lasthandoff: 07/11/2017
         shard2 = sm.CreateShard(new ShardLocation(shardServer, "sample_shard_2"));  
     } 
 
-    // Create the mapping and associate it with the new shard 
+    // Create hello mapping and associate it with hello new shard 
     sm.CreateRangeMapping(new RangeMappingCreationInfo<long> 
                             (new Range<long>(300, 400), shard2, MappingStatus.Online)); 
 
 
-대신 Powershell을 사용하여 새 분할된 데이터베이스 맵 관리자를 만들 수 있습니다. [여기](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db)에 예제가 있습니다.
+대신 Powershell toocreate 새 Shard Map Manager를 사용할 수 있습니다. [여기](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db)에 예제가 있습니다.
 
-## <a name="to-add-a-shard-for-an-empty-part-of-an-existing-range"></a>기존 범위의 빈 부분에 대해 분할된 데이터베이스를 추가하기
-특정 범위를 분할된 데이터베이스에 이미 매핑했으며 데이터를 일부분 추가했는데 그 이후에 들어오는 데이터는 다른 분할된 데이터베이스로 이동하려는 경우가 있을 수 있습니다. 일 범위로 데이터베이스를 분할했으며 분할된 데이터베이스에 이미 50일을 할당했는데 24일째부터는 추가 데이터를 다른 분할된 데이터베이스에 저장하려는 경우를 예로 들 수 있습니다. 탄력적 데이터베이스의 [분할-합병 도구](sql-database-elastic-scale-overview-split-and-merge.md) 는 이 작업을 수행할 수는 있지만 25, 50 범위의 데이터, 즉 25일째부터 50일째까지의 데이터가 없는 경우와 같이 데이터를 이동할 필요가 없는 경우에는 분할된 데이터베이스 맵 관리 API를 직접 사용하여 이 작업 전체를 수행할 수 있습니다.
+## <a name="tooadd-a-shard-for-an-empty-part-of-an-existing-range"></a>기존 범위의 빈 부분에 대 한 분할 tooadd
+일부 환경에서는 이미 범위 tooa 분할 영역을 매핑 고 데이터를 부분적으로 채워진 있을 수 있지만 예정 된 데이터 toobe 방향이 지정 된 tooa 다른 분할 하려는 합니다. 예를 들어 하면 분할 일별 범위 및 50 일 tooa 분할 할당 이미 있지만 다른 분할 영역에 대 한 예측 데이터 tooland 24 일에 수행 합니다. 탄력적 데이터베이스 hello [분할 / 병합 도구](sql-database-elastic-scale-overview-split-and-merge.md) 이 작업을 수행할 수 있지만 25 일 (포함) too50 단독 아직 존재 하지 않는 데이터 이동 필요가 없는 경우 (예: [25, 50 일의 hello 범위에 대 한 데이터), 즉,)를 수행할 수 있습니다 분할 맵 관리 Api를 직접 hello 전적으로 사용 하 여이 있습니다.
 
-### <a name="example-splitting-a-range-and-assigning-the-empty-portion-to-a-newly-added-shard"></a>예: 범위를 분할하고 새로 추가한 분할된 데이터베이스에 빈 부분 할당
+### <a name="example-splitting-a-range-and-assigning-hello-empty-portion-tooa-newly-added-shard"></a>예: hello 할당과 범위 분 빈 부분 tooa 새로 추가 된 분할
 이 예제에서는 "sample_shard_2" 데이터베이스와 해당 데이터베이스 내의 필요한 모든 스키마 개체를 만듭니다.  
 
     // sm is a RangeShardMap object.
-    // Add a new shard to hold the range we will move 
+    // Add a new shard toohold hello range we will move 
     Shard shard2 = null; 
 
     if (!sm.TryGetShard(new ShardLocation(shardServer, "sample_shard_2"),out shard2)) 
@@ -62,19 +62,19 @@ ms.lasthandoff: 07/11/2017
         shard2 = sm.CreateShard(new ShardLocation(shardServer, "sample_shard_2"));  
     } 
 
-    // Split the Range holding Key 25 
+    // Split hello Range holding Key 25 
 
     sm.SplitMapping(sm.GetMappingForKey(25), 25); 
 
-    // Map new range holding [25-50) to different shard: 
+    // Map new range holding [25-50) toodifferent shard: 
     // first take existing mapping offline 
     sm.MarkMappingOffline(sm.GetMappingForKey(25)); 
-    // now map while offline to a different shard and take online 
+    // now map while offline tooa different shard and take online 
     RangeMappingUpdate upd = new RangeMappingUpdate(); 
     upd.Shard = shard2; 
     sm.MarkMappingOnline(sm.UpdateMapping(sm.GetMappingForKey(25), upd)); 
 
-**중요**: 업데이트되는 매핑의 범위가 비어 있는 것이 확실한 경우에만 이 기술을 사용하세요.  위의 방법에서는 이동하는 범위에서 데이터를 확인하지 않으므로 코드에 검사를 포함하는 것이 가장 좋습니다.  이동하는 범위에 행이 있으면 실제 데이터 분포가 업데이트된 분할된 데이터베이스 맵과 일치하지 않게 됩니다. 이 경우 대신 [분할-합병 도구](sql-database-elastic-scale-overview-split-and-merge.md) 를 사용하여 작업을 수행합니다.  
+**중요 한**: hello에 대 한 범위 하는 경우 업데이트 hello 매핑 빈에이 방법을 사용 합니다.  위의 hello 방법 이동 hello 범위에 대 한 데이터를 검사 하지 않습니다, 그리고 코드에서 tooinclude 확인 되므로 것이 좋습니다.  행이 이동 hello 범위에 있는 경우 hello 실제 데이터 분산 hello 업데이트 된 분할 맵을 일치 하지 않습니다. 사용 하 여 hello [분할 / 병합 도구](sql-database-elastic-scale-overview-split-and-merge.md) tooperform hello 작업 대신 이러한 경우에 합니다.  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

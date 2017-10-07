@@ -1,6 +1,6 @@
 ---
-title: "Azure Windows VM의 이미지 캡처 | Microsoft Docs"
-description: "클래식 배포 모델을 사용하여 만든 Azure Windows 가상 컴퓨터의 이미지를 캡처합니다."
+title: "Windows Azure VM의 이미지 aaaCapture | Microsoft Docs"
+description: "Hello 클래식 배포 모델을 사용 하 여 만든 Azure Windows 가상 컴퓨터의 이미지를 캡처하십시오."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,71 +15,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: cynthn
-ms.openlocfilehash: 6032263848c469ce2f416306e5c91c29f4cb30e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9bbc437012aa44295f90941c9d72e39509df28f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="capture-an-image-of-an-azure-windows-virtual-machine-created-with-the-classic-deployment-model"></a>클래식 배포 모델을 사용하여 만든 Azure Windows 가상 컴퓨터의 이미지를 캡처합니다.
+# <a name="capture-an-image-of-an-azure-windows-virtual-machine-created-with-hello-classic-deployment-model"></a>Hello 클래식 배포 모델을 사용 하 여 만든 Azure Windows 가상 컴퓨터의 이미지를 캡처하십시오.
 > [!IMPORTANT]
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. Resource Manager 모델 정보는 [Azure에서 일반화된 VM의 관리되는 이미지 캡처](../capture-image-resource.md)를 참조하세요.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. Resource Manager 모델 정보는 [Azure에서 일반화된 VM의 관리되는 이미지 캡처](../capture-image-resource.md)를 참조하세요.
 
-이 문서에서는 Windows가 실행되는 Azure 가상 컴퓨터를 캡처하여 다른 가상 컴퓨터를 만들 때 이미지로 사용하는 방법을 소개합니다. 이 이미지에는 OS 디스크를 비롯해 가상 컴퓨터에 연결되는 모든 데이터 디스크가 포함됩니다. 네트워킹 구성은 포함되지 않으므로, 이미지를 사용하는 다른 가상 컴퓨터를 만들 때 네트워크 구성을 설정해야 합니다.
+이 문서에서는 어떻게 toocapture Windows 이미지 toocreate로 사용할 수 있도록 다른 가상 컴퓨터를 실행 하는 Azure 가상 컴퓨터. 이 이미지에 hello 운영 체제 디스크는 및 모든 데이터 디스크에 toohello 가상 컴퓨터를 연결 합니다. 네트워킹 구성, 까다롭기 때문에 네트워크 구성을 tooset hello hello 이미지를 사용 하는 다른 가상 컴퓨터를 만들 때 포함 되지 않습니다.
 
-Azure에서는 모든 Azure 서비스를 볼 때 나열된 **계산** 서비스인 **VM 이미지(클래식)** 아래에 이미지를 저장합니다. 사용자가 업로드한 모든 이미지도 이 위치에 저장됩니다. 이미지에 대한 자세한 내용은 [가상 컴퓨터 이미지 정보](about-images.md?toc=%2fazure%2fvirtual-machines%2fWindows%2fclassic%2ftoc.json)를 참조하세요.
+Azure 저장소에서 이미지 hello **VM 이미지 (클래식)**, **계산** 모두를 볼 때 나열 되 서비스에 hello Azure 서비스입니다. 이 hello 업로드 한 이미지가 저장 된 같은 위치입니다. 이미지에 대한 자세한 내용은 [가상 컴퓨터 이미지 정보](about-images.md?toc=%2fazure%2fvirtual-machines%2fWindows%2fclassic%2ftoc.json)를 참조하세요.
 
 ## <a name="before-you-begin"></a>시작하기 전에
-이러한 단계는 이미 Azure 가상 컴퓨터를 만들었으며 데이터 디스크 연결을 비롯해 운영 체제 구성을 완료했다는 것을 전제로 합니다. 아직 수행하지 않은 경우 가상 컴퓨터를 만들고 준비하는 정보는 다음 문서를 참조하세요.
+이러한 단계는 이미 Azure 가상 컴퓨터 생성 되었으며 모든 데이터 디스크를 연결까지 포함 하는 hello 운영 체제 구성 가정 합니다. 아직이 hello 내용은 문서 작성 및 hello 가상 컴퓨터 준비 중에 다음을 참조.
 
 * [이미지에서 가상 컴퓨터 만들기](createportal.md)
-* [가상 컴퓨터에 데이터 디스크를 연결하는 방법](attach-disk.md)
-* 서버 역할이 Sysprep에서 지원되는지 확인합니다. 자세한 내용은 [서버 역할에 대한 Sysprep 지원](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)을 참조하세요.
+* [어떻게 tooattach 데이터 디스크 tooa 가상 컴퓨터](attach-disk.md)
+* Hello 서버 역할 Sysprep로 사용할 수 있는지 확인 합니다. 자세한 내용은 [서버 역할에 대한 Sysprep 지원](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)을 참조하세요.
 
 > [!WARNING]
-> 이 프로세스는 캡처된 후 원래의 가상 컴퓨터를 삭제합니다.
+> 이 프로세스는 캡처된 후 hello 원래 가상 컴퓨터를 삭제 합니다.
 >
 >
 
-Azure Virtual Machine의 이미지를 캡처하기 전에 대상 가상 컴퓨터를 백업하는 것이 좋습니다. Azure 백업을 사용하여 Azure 가상 컴퓨터를 백업할 수 있습니다. 자세한 내용은 [Azure 가상 컴퓨터 백업](../../../backup/backup-azure-vms.md)을 참조하세요. 다른 솔루션은 인증된 파트너에서 사용할 수 있습니다. 무엇이 현재 사용 가능한지 알아보려면, Azure 마켓플레이스를 검색합니다.
+권장 되는 Azure 가상 컴퓨터의 이미지 이전 toocapturing hello 대상 가상 컴퓨터를 백업 합니다. Azure 백업을 사용하여 Azure 가상 컴퓨터를 백업할 수 있습니다. 자세한 내용은 [Azure 가상 컴퓨터 백업](../../../backup/backup-azure-vms.md)을 참조하세요. 다른 솔루션은 인증된 파트너에서 사용할 수 있습니다. 현재 사용할 수 있는 항목을 toofind hello Azure 마켓플레이스를 검색 합니다.
 
-## <a name="capture-the-virtual-machine"></a>가상 컴퓨터 캡처
-1. [Azure Portal](http://portal.azure.com)에서 가상 컴퓨터에 **연결**합니다. 지침은 [Windows Server를 실행하여 가상 컴퓨터에 로그인하는 방법][How to sign in to a virtual machine running Windows Server]을 참조하세요.
+## <a name="capture-hello-virtual-machine"></a>Hello 가상 컴퓨터 캡처
+1. Hello에 [Azure 포털](http://portal.azure.com), **연결** toohello 가상 컴퓨터. 자세한 내용은 [어떻게 toosign Windows Server를 실행 하는 tooa 가상 컴퓨터에서][How toosign in tooa virtual machine running Windows Server]합니다.
 2. 관리자로 명령 프롬프트 창을 엽니다.
-3. 디렉터리를 `%windir%\system32\sysprep`로 변경한 후 sysprep.exe를 실행합니다.
-4. **시스템 준비 도구** 대화 상자가 나타납니다. 다음을 수행합니다.
+3. Hello 디렉터리도 변경`%windir%\system32\sysprep`, 한 다음 sysprep.exe를 실행 합니다.
+4. hello **시스템 준비 도구** 대화 상자가 나타납니다. 다음 hello지 않습니다.
 
-   * **시스템 정리 작업**에서 **시스템 OOBE(첫 실행 경험) 입력**을 선택하고 **일반화**를 선택했는지 확인합니다. Sysprep 사용에 대한 자세한 내용은 [Sysprep 사용 방법: 소개][How to Use Sysprep: An Introduction]를 참조하세요.
+   * **시스템 정리 작업**에서 **시스템 OOBE(첫 실행 경험) 입력**을 선택하고 **일반화**를 선택했는지 확인합니다. Sysprep를 사용 하는 방법에 대 한 자세한 내용은 참조 [어떻게 tooUse Sysprep: 소개][How tooUse Sysprep: An Introduction]합니다.
    * **종료 옵션**에서 **종료**를 선택합니다.
    * **확인**을 클릭합니다.
 
    ![Sysprep 실행](./media/capture-image/SysprepGeneral.png)
-5. Sysprep을 실행하면 가상 컴퓨터가 종료되고 Azure Portal의 가상 컴퓨터 상태가 **중지됨**으로 변경됩니다.
-6. Azure Portal에서 **가상 컴퓨터(클래식)**를 클릭한 후 캡처하려는 가상 컴퓨터를 선택합니다. **VM 이미지(클래식)** 그룹은 **추가 서비스**를 볼 때 **계산** 아래에 나열됩니다.
+5. Sysprep 쪽 hello Azure 포털에서에서 가상 컴퓨터 hello의 hello 상태를 변경 하는 hello 가상 컴퓨터 종료**Stopped**합니다.
+6. Hello Azure 포털에서에서 클릭 **가상 컴퓨터 (클래식)** 선택 hello toocapture 가상 컴퓨터 및 합니다. hello **VM 이미지 (클래식)** 그룹 아래에 있는지 **계산** 볼 때 **더 많은 서비스**합니다.
 
-7. 명령 모음에서 **캡처**를 클릭합니다.
+7. Hello 명령 모음에서 **캡처**합니다.
 
    ![가상 컴퓨터 캡처](./media/capture-image/CaptureVM.png)
 
-   **가상 컴퓨터 캡처** 대화 상자가 나타납니다.
+   hello **가상 컴퓨터 캡처 hello** 대화 상자가 나타납니다.
 
-8. **이미지 이름**에 새 이미지의 이름을 입력합니다. **이미지 레이블**에 새 이미지의 레이블을 입력합니다.
+8. **이미지 이름**를 hello 새 이미지의 이름을 입력 합니다. **이미지 레이블**를 hello 새 이미지에 대 한 레이블을 입력 합니다.
 
-9. **가상 컴퓨터에서 Sysprep를 실행했습니다**를 클릭하세요. 이 확인란은 3~5단계에서 Sysprep을 사용하는 작업을 가리킵니다. 사용자 지정 이미지 집합에 Windows Server 이미지를 추가하기 전에 Sysprep을 실행하여 이미지를 일반화_해야_ 합니다.
+9. 클릭 **hello 가상 컴퓨터에서 Sysprep을 실행 했습니다**합니다. 이 확인란을 3-5 단계에서 Sysprep 사용 하 여 toohello 동작을 의미합니다. 이미지 _해야_ Sysprep을 실행 하는 Windows 서버를 추가 하기 전에 이미지 tooyour 집합이 사용자 지정 이미지를 일반화 합니다.
 
-10. 캡처가 완료되면 새 이미지를 **Marketplace** 및 **계산**, **VM 이미지(클래식)** 컨테이너에서 사용할 수 있습니다.
+10. Hello 캡처 완료 되 면 hello 새 이미지에서에서 사용할 수 있게 hello **마켓플레이스**, hello에 **계산**, **VM 이미지 (클래식)** 컨테이너입니다.
 
     ![이미지 캡처 성공](./media/capture-image/VMCapturedImageAvailable.png)
 
 ## <a name="next-steps"></a>다음 단계
-이제 이미지를 사용하여 가상 컴퓨터를 만들 수 있습니다. 이를 위해 서비스 메뉴의 아래쪽에 있는 **추가 서비스** 메뉴 항목 및 **계산** 그룹에서 **VM 이미지(클래식)**를 선택하여 가상 컴퓨터를 만들 수 있습니다. 지침에 대해서는 [이미지에서 가상 컴퓨터 만들기](createportal.md)를 참조하세요.
+hello 이미지는 사용 되는 준비 toobe toocreate 가상 컴퓨터입니다. toodo이 hello를 선택 하 여 가상 컴퓨터를 만들어 **더 많은 서비스** hello 서비스 메뉴에서 다음의 hello 맨 아래에 있는 메뉴 항목 **VM 이미지 (클래식)** hello에 **계산**그룹입니다. 지침에 대해서는 [이미지에서 가상 컴퓨터 만들기](createportal.md)를 참조하세요.
 
-[How to sign in to a virtual machine running Windows Server]:connect-logon.md
-[How to Use Sysprep: An Introduction]: http://technet.microsoft.com/library/bb457073.aspx
+[How toosign in tooa virtual machine running Windows Server]:connect-logon.md
+[How tooUse Sysprep: An Introduction]: http://technet.microsoft.com/library/bb457073.aspx
 [Run Sysprep.exe]: ./media/virtual-machines-capture-image-windows-server/SysprepCommand.png
 [Enter Sysprep.exe options]: ./media/capture-image/SysprepGeneral.png
-[The virtual machine is stopped]: ./media/virtual-machines-capture-image-windows-server/SysprepStopped.png
-[Capture an image of the virtual machine]: ./media/capture-image/CaptureVM.png
-[Enter the image name]: ./media/virtual-machines-capture-image-windows-server/Capture.png
+[hello virtual machine is stopped]: ./media/virtual-machines-capture-image-windows-server/SysprepStopped.png
+[Capture an image of hello virtual machine]: ./media/capture-image/CaptureVM.png
+[Enter hello image name]: ./media/virtual-machines-capture-image-windows-server/Capture.png
 [Image capture successful]: ./media/virtual-machines-capture-image-windows-server/CaptureSuccess.png
-[Use the captured image]: ./media/virtual-machines-capture-image-windows-server/MyImagesWindows.png
+[Use hello captured image]: ./media/virtual-machines-capture-image-windows-server/MyImagesWindows.png

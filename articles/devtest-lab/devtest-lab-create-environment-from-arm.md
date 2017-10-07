@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 템플릿으로 다중 VM 환경 및 PaaS 리소스 만들기 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿에서 Azure DevTest Labs에 다중 VM 환경 및 PaaS 리소스를 만드는 방법에 대해 알아봅니다."
+title: "aaaCreate 다중 VM 환경 및 Azure 리소스 관리자 템플릿 사용 하 여 PaaS 리소스 | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate 다중 VM 환경 및 Azure 리소스 관리자 템플릿에서 DevTest Labs Azure에서에서 PaaS 리소스"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,119 +14,119 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/31/2017
 ms.author: tarcher
-ms.openlocfilehash: 4e1aae6c041e4572e7e2281203f969e7649e1480
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab8628f6cb5a666435258efb93921ec69ad3a13a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-multi-vm-environments-and-paas-resources-with-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿으로 다중 VM 환경 및 PaaS 리소스 만들기
 
-[Azure Portal](http://go.microsoft.com/fwlink/p/?LinkID=525040)을 사용하면 쉽게 [랩에 VM을 만들고 추가](https://docs.microsoft.com/en-us/azure/devtest-lab/devtest-lab-add-vm)할 수 있습니다. 이 포털은 한 번에 하나씩 VM을 만드는 데 적합합니다. 그러나 환경에서 여러 VM을 포함하는 경우 각 VM을 개별적으로 만들어야 합니다. 다중 계층 웹앱 또는 SharePoint 팜과 같은 시나리오의 경우 한 번에 여러 VM을 만들 수 있는 메커니즘이 필요합니다. Azure Resource Manager 템플릿을 사용하면 Azure 솔루션의 인프라와 구성을 정의하고 여러 VM을 일관된 상태로 반복적으로 배포할 수 있습니다. 이 기능은 다음과 같은 이점을 제공합니다.
+hello [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040) tooeasily를 사용 하면 [만들고 추가 VM tooa 랩](https://docs.microsoft.com/en-us/azure/devtest-lab/devtest-lab-add-vm)합니다. 이 포털은 한 번에 하나씩 VM을 만드는 데 적합합니다. 그러나 hello 환경에서 여러 Vm가 포함 된 경우 각 VM에 toobe 개별적으로 생성 합니다. 예: 다층 계층 웹 응용 프로그램 또는 SharePoint 팜의 시나리오의 경우는 메커니즘은 한 번에 여러 Vm hello 생성에 필요한 tooallow입니다. Azure 리소스 관리자 템플릿을 사용 하 여 이제 hello 인프라 및 Azure 솔루션의 구성을 정의할 수 있으며 반복적으로 일관 된 상태에서 여러 Vm을 배포할 수 있습니다. 이 기능은 hello를 다음 이점을 제공 합니다.
 
 - Azure Resource Manager 템플릿은 소스 제어 리포지토리(GitHub 또는 Team Services Git)에서 직접 로드됩니다.
-- 일단 구성되면 사용자가 Azure Portal에서 다른 유형의 [VM 자료](./devtest-lab-comparing-vm-base-image-types.md)를 처리할 수 있는 것처럼 Azure Resource Manager 템플릿을 선택하여 환경을 만들 수 있습니다.
-- Azure Resource Manager 템플릿과 IaaS VM의 환경에서 Azure PaaS 리소스를 프로비전할 수 있습니다.
-- 다른 유형의 자료로 만든 개별 VM 외에도 랩에서 환경의 비용을 추적할 수 있습니다.
-- PaaS 리소스가 만들어지고 비용 추적에 표시되지만 VM 자동 종료는 PaaS 리소스에 적용되지 않습니다.
-- 사용자가 단일 랩 VM 환경과 동일한 VM 정책을 제어할 수 있습니다.
+- 사용자에 게는 Azure 리소스 관리자 템플릿을 hello와 다른 형식 수 있는 작업으로 Azure 포털에서에서 선택 하 여 환경을 만들 수 구성 되 면 [VM 자료](./devtest-lab-comparing-vm-base-image-types.md)합니다.
+- 또한 tooIaaS Vm에에서 Azure 리소스 관리자 템플릿을 환경에 azure PaaS 리소스를 프로 비전 할 수 있습니다.
+- 또한 tooindividual 밑의 다른 형식에 의해 만들어진 Vm의에서 hello 랩에서 환경의 hello 비용을 추적할 수 있습니다.
+- PaaS 리소스 만들어집니다 및 비용 관리;에 표시 됩니다. 그러나 VM 자동 종료 tooPaaS 리소스 적용 되지 않습니다.
+- 사용자가 단일 랩 Vm에 대 한 것 같은 VM 정책 제어 환경에 대 한 hello 합니다.
 
-단일 작업에서 모든 랩 리소스를 배포, 업데이트 또는 삭제하는 데 많은 [Resource Manager 템플릿 사용의 이점](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#the-benefits-of-using-resource-manager)에 대해 자세히 알아봅니다.
+에 대 한 자세한 hello 많은 [리소스 관리자 템플릿을 사용의 이점](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#the-benefits-of-using-resource-manager) toodeploy, 업데이트 또는 단일 작업에서 랩 리소스를 모두 삭제 합니다.
 
 > [!NOTE]
-> 더 많은 랩 VM을 만드는 기준으로 Resource Manager 템플릿을 사용하는 경우 다중 VM 또는 단일 VM을 만드는지 염두에 둘 차이점이 있습니다. 가상 컴퓨터의 Azure Resource Manager 템플릿 사용은 이러한 차이점을 더 자세히 설명합니다.
+> 를 사용 하면 리소스 관리자 템플릿을 별로 toocreate로 더 많은 랩 Vm 있는 경우 몇 가지 차이점 tookeep 염두에서 다중 Vm 또는 단일 Vm을 만들거나 가상 컴퓨터의 Azure Resource Manager 템플릿 사용은 이러한 차이점을 더 자세히 설명합니다.
 >
 >
 
 ## <a name="configure-azure-resource-manager-template-repositories"></a>Azure Resource Manager 템플릿 리포지토리 구성
 
-코드 기반 인프라와 코드 기반 구성을 사용하는 모범 사례 중 하나인 환경 템플릿은 소스 제어에서 관리해야 합니다. Azure DevTest Labs에서는 이 사례를 따르고 GitHub 또는 VSTS Git 리포지토리에서 직접 Azure Resource Manager 템플릿을 모두 로드합니다. 결과적으로, Resource Manager 템플릿은 테스트 환경에서 프로덕션 환경까지 전체 릴리스 주기에서 사용될 수 있습니다.
+Hello 중 하나로 된 인프라로 코드 및 코드와 구성, 환경 템플릿 모범 사례를 소스 제어에서 관리 되어야 합니다. Azure DevTest Labs에서는 이 사례를 따르고 GitHub 또는 VSTS Git 리포지토리에서 직접 Azure Resource Manager 템플릿을 모두 로드합니다. 결과적으로, 리소스 관리자 템플릿은 hello 테스트 환경 toohello 프로덕션 환경에서 hello 전체 릴리스 주기에서 사용할 수 있습니다.
 
-리포지토리에 Azure Resource Manager 템플릿을 구성하는 따라야 할 몇 가지 규칙이 있습니다.
+두 가지가 규칙 toofollow tooorganize의 Azure 리소스 관리자 템플릿을 저장소에서:
 
-- 마스터 템플릿 파일의 이름은 `azuredeploy.json`으로 지정해야 합니다. 
+- hello 마스터 템플릿 파일 이름을 지정 해야 `azuredeploy.json`합니다. 
 
     ![주요 Azure Resource Manager 템플릿 파일](./media/devtest-lab-create-environment-from-arm/master-template.png)
 
-- 매개 변수 파일에 정의한 매개 변수 값을 사용하려면 매개 변수 파일의 이름을 `azuredeploy.parameters.json`으로 지정해야 합니다.
-- DevTest Labs에서 중첩된 템플릿을 자동으로 관리할 수 있도록 매개 변수 `_artifactsLocation` 및 `_artifactsLocationSasToken`을 사용하여 parametersLink URI 값을 생성합니다. 자세한 내용은 [Azure DevTest Labs에서 테스트 환경에 대해 더 쉽게 중첩된 Resource Manager 템플릿 배포를 만드는 방법](https://blogs.msdn.microsoft.com/devtestlab/2017/05/23/how-azure-devtest-labs-makes-nested-arm-template-deployments-easier-for-testing-environments/)을 참조하세요.
-- 템플릿 표시 이름과 설명을 지정하기 위해 메타데이터를 정의할 수 있습니다. 이 메타데이터는 `metadata.json`이라는 파일에 있어야 합니다. 다음 예제 메타데이터 파일에서는 표시 이름과 설명을 지정하는 방법을 보여 줍니다. 
+- 매개 변수 파일에 정의 된 toouse 매개 변수 값을 원하는 hello 매개 변수 파일 이름을 지정 해야 `azuredeploy.parameters.json`합니다.
+- Hello 매개 변수를 사용할 수 `_artifactsLocation` 및 `_artifactsLocationSasToken` tooconstruct hello parametersLink URI 값을 DevTest Labs tooautomatically 관리할 수 있도록 서식 파일을 중첩 합니다. 자세한 내용은 [Azure DevTest Labs에서 테스트 환경에 대해 더 쉽게 중첩된 Resource Manager 템플릿 배포를 만드는 방법](https://blogs.msdn.microsoft.com/devtestlab/2017/05/23/how-azure-devtest-labs-makes-nested-arm-template-deployments-easier-for-testing-environments/)을 참조하세요.
+- 메타 데이터 정의 toospecify hello 템플릿 표시 이름 및 설명을 수 있습니다. 이 메타데이터는 `metadata.json`이라는 파일에 있어야 합니다. hello 다음 예제에서는 메타 데이터 파일에서는 toospecify hello 이름 및 설명을 표시 하는 방법을 수행 합니다. 
 
 ```json
 {
  
 "itemDisplayName": "<your template name>",
  
-"description": "<description of the template>"
+"description": "<description of hello template>"
  
 }
 ```
 
-다음 단계는 Azure Portal을 사용하여 랩에 리포지토리를 추가하는 과정을 안내합니다. 
+hello 다음 단계를 안내해 hello Azure 포털을 사용 하 여 저장소 tooyour 랩을 추가 하는 과정입니다. 
 
-1. [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)에 로그인합니다.
-1. **추가 서비스**를 선택한 후 목록에서 **DevTest Labs**을 선택합니다.
-1. 랩 목록에서 원하는 랩을 탭합니다.   
-1. 랩의 블레이드에서 **구성 및 정책**을 선택합니다.
+1. Toohello 로그인 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)합니다.
+1. 선택 **더 서비스**를 선택한 후 **DevTest Labs** hello 목록에서 합니다.
+1. 랩의 hello 목록에서 원하는 랩 hello를 선택 합니다.   
+1. Hello 랩 블레이드에서 선택 **구성 및 정책**합니다.
 
     ![구성 및 정책](./media/devtest-lab-create-environment-from-arm/configuration-and-policies-menu.png)
 
-1. **구성 및 정책** 설정 목록에서 **리포지토리**를 선택합니다. **리포지토리** 블레이드에서 랩에 추가된 리포지토리를 나열합니다. 모든 랩에 대해 `Public Repo`라는 리포지토리가 자동으로 생성되고 사용할 여러 VM 아티팩트를 포함하고 있는 [DevTest Labs GitHub 리포지토리](https://github.com/Azure/azure-devtestlab)에 연결됩니다.
+1. Hello에서 **구성 및 정책** 설정 목록 **저장소**합니다. hello **저장소** 블레이드에 toohello 랩 추가 된 hello 저장소를 나열 합니다. 라는 리포지토리 `Public Repo` 모든 랩에 대 한 자동으로 생성 되 고 toohello 연결 [DevTest Labs GitHub 리포지토리](https://github.com/Azure/azure-devtestlab) 사용에 대 한 여러 VM 아티팩트를 포함 하 합니다.
 
     ![공용 리포지토리](./media/devtest-lab-create-environment-from-arm/public-repo.png)
 
-1. **추가+**를 선택하여 Azure Resource Manager 템플릿 리포지토리를 추가합니다.
-1. 두 번째 **리포지토리** 블레이드가 열리면 다음과 같이 필요한 정보를 입력합니다.
-    - **이름** - 랩에서 사용되는 리포지토리 이름을 입력합니다.
-    - **Git 복제 URL** - GitHub 또는 Visual Studio Team Services의 GIT HTTPS 복제 URL을 입력합니다.  
-    - **분기** - Azure Resource Manager 템플릿 정의에 액세스하기 위한 분기 이름을 입력합니다. 
-    - **개인 액세스 토큰** - 개인 액세스 토큰은 리포지토리에 안전하게 액세스하는 데 사용됩니다. Visual Studio Team Services에서 토큰을 가져오려면 **&lt;YourName>> 내 프로필> 보안> 공용 액세스 토큰**을 차례로 선택합니다. GitHub에서 토큰을 가져오려면 **설정 > 공용 액세스 토큰**을 선택한 다음 아바타를 선택합니다. 
-    - **폴더 경로** - 두 입력 필드 중 하나를 사용하여 슬래시(/)로 시작하는 폴더 경로를 입력합니다. 이 경로는 아티팩트 정의(첫 번째 입력 필드) 또는 Azure Resource Manager 템플릿 정의에 대한 Git 복제 URI의 상대 경로입니다.   
+1. 선택 **추가 +** tooadd Azure 리소스 관리자 템플릿 저장소입니다.
+1. 둘째 hello 때 **저장소** 블레이드에서 열립니다 hello 필요한 정보를 다음과 같이 입력 합니다.
+    - **이름** -hello 랩에서 사용 되는 hello 리포지토리 이름을 입력 합니다.
+    - **Git 복제 URL** -GitHub 또는 Visual Studio Team Services hello GIT HTTPS 클론 URL을 입력 합니다.  
+    - **분기** -hello 분기 이름 tooaccess Azure 리소스 관리자 템플릿 정의 입력 합니다. 
+    - **개인용 액세스 토큰** -hello 개인용 액세스 토큰은 사용 toosecurely 저장소에 액세스 합니다. Visual Studio Team Services에서 토큰 선택 tooget  **&lt;YourName >> 내 프로필 > 보안 > 공용 액세스 토큰**합니다. GitHub에서 토큰 뒤에 선택 하 여 아바타를 선택 tooget **설정 > 공용 액세스 토큰**합니다. 
+    - **폴더 경로** -슬래시-/-로 시작 하는 hello 폴더 경로 입력 hello 두 입력된 필드 중 하나를 사용 하 여 하 고 상대 tooyour Git clone URI tooeither 아티팩트 정의 됩니다 (첫 번째 입력된 필드) 또는 Azure 리소스 관리자 템플릿 정의 합니다.   
     
         ![공용 리포지토리](./media/devtest-lab-create-environment-from-arm/repo-values.png)
 
-1. 필수 필드를 모두 입력하고 유효성 검사를 통과하면 **저장**을 선택합니다.
+1. 모든 필수 hello 필드를 입력 하 고 hello 유효성 검사를 통과, 선택할 **저장**합니다.
 
-다음 섹션에서는 Azure Resource Manager 템플릿에서 환경을 만드는 과정을 안내합니다.
+hello 다음 섹션에서 Azure 리소스 관리자 템플릿을 환경을 만드는 과정을 안내 합니다.
 
 ## <a name="create-an-environment-from-an-azure-resource-manager-template"></a>Azure Resource Manager 템플릿에서 환경 만들기
 
-랩에 Azure Resource Manager 템플릿 리포지토리를 구성한 후에 랩 사용자는 Azure Portal을 사용하여 다음 단계에 따라 환경을 만들 수 있습니다.
+Hello 랩에서 Azure 리소스 관리자 템플릿 리포지토리를 구성한 후 랩 사용자가 Azure 포털을 사용 하 여 단계를 수행 하는 hello로 환경을 만들 수 있습니다.
 
-1. [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)에 로그인합니다.
-1. **추가 서비스**를 선택한 후 목록에서 **DevTest Labs**을 선택합니다.
-1. 랩 목록에서 원하는 랩을 탭합니다.   
-1. 랩의 블레이드에서 **추가+**를 선택합니다.
-1. **기본 선택** 블레이드에는 먼저 나열된 Azure Resource Manager 템플릿에서 사용할 수 있는 기본 이미지가 표시됩니다. 원하는 Azure Resource Manager 템플릿을 선택합니다.
+1. Toohello 로그인 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)합니다.
+1. 선택 **더 서비스**를 선택한 후 **DevTest Labs** hello 목록에서 합니다.
+1. 랩의 hello 목록에서 원하는 랩 hello를 선택 합니다.   
+1. Hello 랩 블레이드에서 선택 **추가 +**합니다.
+1. hello **기본 선택** 블레이드 첫 번째로 나열 hello Azure 리소스 관리자 템플릿으로 사용할 수는 hello 기본 이미지를 표시 합니다. Select hello Azure 리소스 관리자 템플릿을 원하는입니다.
 
     ![기본 선택](./media/devtest-lab-create-environment-from-arm/choose-a-base.png)
   
-1. **추가** 블레이드에서 **환경 이름** 값을 입력합니다. 환경 이름은 랩에서 사용자에게 표시되는 이름입니다. 나머지 입력 필드는 Azure Resource Manager 템플릿에 정의되어 있습니다. 기본값이 템플릿에 정의되어 있거나 `azuredeploy.parameter.json` 파일이 있으면 해당 입력 필드에 기본값이 표시되어 있습니다. *보안 문자열* 형식의 매개 변수에는 랩의 [개인 비밀 저장소](https://azure.microsoft.com/en-us/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store)에 저장된 비밀을 사용할 수 있습니다.
+1. Hello에 **추가** 블레이드에서 hello 입력 **환경 이름** 값입니다. hello 환경 이름은 이란 hello 랩에서 표시 tooyour 사용자입니다. hello 나머지 입력된 필드 hello Azure 리소스 관리자 서식 파일에 정의 됩니다. Hello 템플릿이나 hello에 기본값이 정의 된 경우 `azuredeploy.parameter.json` 파일이 있는지, 해당 입력된 필드에 기본값이 표시 됩니다. 형식의 매개 변수로 *보안 문자열*, hello 랩에 저장 된 hello 암호를 사용할 수 있습니다 [개인 비밀 저장소](https://azure.microsoft.com/en-us/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store)합니다.
 
     ![추가 블레이드](./media/devtest-lab-create-environment-from-arm/add.png)
 
     > [!NOTE]
-    > 지정된 경우에도 빈 값으로 표시되는 몇 가지 매개 변수 값이 있습니다. 따라서 사용자가 Azure Resource Manager 템플릿의 매개 변수에 해당 값을 할당하면 DevTest Labs에서는 값을 표시하지 않는 대신 랩 사용자가 환경을 만들 때 값을 입력해야 하는 입력 필드를 빈 상태로 표시합니다.
+    > 지정된 경우에도 빈 값으로 표시되는 몇 가지 매개 변수 값이 있습니다. 따라서 이러한 값 tooparameters Azure Resource Manager 템플릿에 할당 하는 사용자, DevTest Labs 표시 되지 않습니다 hello 값이 있습니다. 대신 값을 보여 주는 hello 랩 필요한 tooenter 빈 입력된 필드 hello 환경을 만들 때.
     > 
     > - GEN-UNIQUE
     > - GEN-UNIQUE-[N]
     > - GEN-SSH-PUB-KEY
     > - GEN-PASSWORD 
  
-1. **추가**를 선택하여 환경을 만듭니다. 환경에서는 **내 가상 컴퓨터** 목록에 상태를 표시하는 즉시 프로비전을 시작합니다. Azure Resource Manager 템플릿에 정의된 모든 리소스를 프로비전하기 위해 랩에서 새 리소스 그룹을 자동으로 만듭니다.
-1. 환경이 만들어지면 **내 가상 컴퓨터** 목록에서 환경을 선택하여 리소스 그룹 블레이드를 열고 환경에 프로비전된 모든 리소스를 찾습니다.
+1. 선택 **추가** toocreate hello 환경입니다. hello 환경을 즉시 hello에 표시 하는 hello 상태와 함께 프로 비전을 시작할 **내 가상 컴퓨터** 목록입니다. 새 리소스 그룹이 자동으로 생성 됩니다 hello 랩 tooprovision hello Azure Resource Manager 템플릿에 정의 된 모든 hello 리소스입니다.
+1. Hello 환경 만들어지면 hello에 hello 환경을 선택 **내 가상 컴퓨터** tooopen hello 리소스 그룹 블레이드를 나열 하 고 모든 hello 환경에서 사용자를 프로 비전 하는 hello 리소스를 검색 합니다.
     
     ![내 가상 컴퓨터 목록](./media/devtest-lab-create-environment-from-arm/all-environment-resources.png)
    
-   또한 환경을 확장하여 환경에서 프로비전되는 VM의 목록만 볼 수 있습니다.
+   Hello 환경에서 프로 비전 되는 Vm의 hello 환경 tooview 정당한 hello 목록을 확장할 수 있습니다.
     
     ![내 가상 컴퓨터 목록](./media/devtest-lab-create-environment-from-arm/my-vm-list.png)
 
-1. 환경을 클릭하여 아티팩트 적용, 데이터 디스크 연결, 자동 종료 시간 변경 등과 같은 사용 가능한 작업을 확인합니다.
+1. Hello 환경 tooview hello 사용 가능한 작업-아티팩트를 연결 하 고 데이터 디스크, 변경 자동 종료 시간 등을 적용 하는 중 하나를 클릭 합니다.
 
     ![환경 작업](./media/devtest-lab-create-environment-from-arm/environment-actions.png)
 
 ## <a name="next-steps"></a>다음 단계
-* VM을 만든 후에는 해당 VM의 블레이드에서 **연결** 을 선택하여 VM에 연결할 수 있습니다.
-* 랩의 **내 가상 컴퓨터** 목록에서 환경을 선택하여 환경에서 리소스를 보고 관리합니다. 
-* [Azure 빠른 시작 템플릿 갤러리의 Azure Resource Manager 템플릿](https://github.com/Azure/azure-quickstart-templates)(영문)을 탐색합니다.
+* VM을 만든 후 toohello VM을 선택 하 여 연결할 수 있습니다 **연결** hello VM 블레이드에서 합니다.
+* 보기 및 hello에 hello 환경을 선택 하 여 환경에서 리소스를 관리할 **내 가상 컴퓨터** 랩의 목록입니다. 
+* Hello 탐색 [Azure 빠른 시작 템플릿 갤러리에서 Azure 리소스 관리자 템플릿](https://github.com/Azure/azure-quickstart-templates)

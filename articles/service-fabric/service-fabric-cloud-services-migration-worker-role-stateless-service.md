@@ -1,6 +1,6 @@
 ---
-title: "Azure Cloud Services 앱을 마이크로 서비스로 변환 | Microsoft Docs"
-description: "이 가이드에서는 클라우드 서비스에서 서비스 패브릭으로 마이그레이션할 수 있도록 클라우드 서비스 웹과 작업자 역할 및 서비스 패브릭 상태 비저장 서비스를 비교합니다."
+title: "Azure 클라우드 서비스 앱 toomicroservices aaaConvert | Microsoft Docs"
+description: "클라우드 서비스 tooService 패브릭에서에서 작업자 역할 및 서비스 패브릭 상태 비저장 서비스 toohelp 마이그레이션할와이 가이드는 클라우드 서비스 웹을 비교 합니다."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 4ab1f83e88b262b1752300b2786340d9abca8154
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c43b11623b2ba7f6069782a8b7e030c82572a6e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-converting-web-and-worker-roles-to-service-fabric-stateless-services"></a>웹 및 작업자 역할을 서비스 패브릭 상태 비저장 서비스로 변환하기 위한 가이드
-이 문서에서는 클라우드 서비스 웹 및 작업자 역할을 서비스 패브릭 상태 비저장 서비스로 마이그레이션하는 방법을 설명합니다. 클라우드 서비스에서 전반적인 아키텍처를 대략적으로 동일하게 유지하는 응용 프로그램에 대한 서비스 패브릭으로의 가장 간단한 마이그레이션 경로입니다.
+# <a name="guide-tooconverting-web-and-worker-roles-tooservice-fabric-stateless-services"></a>Tooconverting 웹 및 작업자 역할 tooService 패브릭 상태 비저장 서비스를 안내 합니다.
+이 문서에서는 설명 방법을 toomigrate 클라우드 서비스 웹 및 작업자 역할 tooService 패브릭 상태 비저장 서비스입니다. 이것은 클라우드 서비스 tooService 패브릭에서에서의 가장 간단한 마이그레이션 경로 hello 응용 프로그램 전체 아키텍처가 될 toostay 대략 hello 동일 합니다.
 
-## <a name="cloud-service-project-to-service-fabric-application-project"></a>클라우드 서비스 프로젝트에서 서비스 패브릭 응용 프로그램 프로젝트
- 클라우드 서비스 프로젝트 및 서비스 패브릭 응용 프로그램 프로젝트는 유사한 구조를 가지며 모두 응용 프로그램에 대한 배포 단위를 나타냅니다. 즉, 각각은 응용 프로그램을 실행하도록 배포되는 완전한 패키지를 정의합니다. 클라우드 서비스 프로젝트는 하나 이상의 웹 또는 작업자 역할을 포함합니다. 유사하게 서비스 패브릭 응용 프로그램 프로젝트에는 하나 이상의 서비스가 포함되어 있습니다. 
+## <a name="cloud-service-project-tooservice-fabric-application-project"></a>클라우드 서비스 프로젝트 tooService 패브릭 응용 프로그램 프로젝트
+ 클라우드 서비스 프로젝트는 서비스 패브릭 응용 프로그램 프로젝트는 유사한 구조와 모두 나타내는 hello 배포 단위 응용 프로그램-즉, 구성 파일은 각각 정의할 hello 완료 된 패키지를 배포 된 toorun 응용 프로그램에 대 한 합니다. 클라우드 서비스 프로젝트는 하나 이상의 웹 또는 작업자 역할을 포함합니다. 유사하게 서비스 패브릭 응용 프로그램 프로젝트에는 하나 이상의 서비스가 포함되어 있습니다. 
 
-클라우드 서비스 프로젝트는 응용 프로그램 배포를 VM 배포와 결합하므로 VM 구성 설정을 포함하고 반면에 서비스 패브릭 응용 프로그램 프로젝트는 서비스 패브릭 클러스터의 기존 VM 집합에 배포되는 응용 프로그램을 정의한다는 차이점이 있습니다. Service Fabric 클러스터 자체는 Resource Manager 템플릿 또는 Azure Portal을 통해 한 번만 배포되고 여러 Service Fabric 응용 프로그램을 배포할 수 있습니다.
+hello 클래스 간의 차이점은 hello 클라우드 서비스 프로젝트 직접 hello VM 배포와 응용 프로그램 배포, VM 구성 설정이 포함 되어 있으므로 반면 hello 서비스 패브릭 응용 프로그램 프로젝트에만 배포 될 응용 프로그램 정의 서비스 패브릭 클러스터에서 기존 Vm의 tooa 집합입니다. 자체 hello 서비스 패브릭 클러스터 리소스 관리자 템플릿을 통해 또는 hello Azure 포털을 통해 및 여러 서비스 패브릭 응용 프로그램 수 tooit를 배포한 후에 배포 됩니다.
 
 ![서비스 패브릭 및 클라우드 서비스 프로젝트 비교][3]
 
-## <a name="worker-role-to-stateless-service"></a>작업자 역할에서 상태 비저장 서비스
-개념적으로 작업자 역할은 모든 작업 인스턴스는 동일하고 언제든지 인스턴스에 요청을 라우팅할 수 있음을 의미하는 상태 비저장 작업을 나타냅니다. 각 인스턴스는 이전 요청을 기억하지 않습니다. 작업이 작동 중인 상태는 Azure 테이블 저장소 또는 Azure Document DB와 같은 외부 상태 저장소에서 관리됩니다. 서비스 패브릭에서 이러한 유형의 작업은 상태 비저장 서비스에 의해 표시됩니다. 작업자 역할을 서비스 패브릭으로 마이그레이션하는 가장 간단한 방법은 작업자 역할 코드를 상태 비저장 서비스로 변환하여 수행할 수 있습니다.
+## <a name="worker-role-toostateless-service"></a>작업자 역할 toostateless 서비스
+개념적으로 작업자 역할은 hello 작업의 모든 인스턴스는 동일 하 고 요청 언제 든 지 라우트된 tooany 인스턴스가 될 수 있습니다 상태 비저장 워크 로드를 나타냅니다. 각 인스턴스가 예상된 tooremember hello에 대 한 이전 요청 되지 않습니다. Hello 워크 로드의 작동 상태에 외부 상태 저장소와 같은 Azure 테이블 저장소 또는 Azure 문서 DB에서 관리 하는 합니다. 서비스 패브릭에서 이러한 유형의 작업은 상태 비저장 서비스에 의해 표시됩니다. hello 가장 간단한 방법은 toomigrating 작업자 역할 tooService 패브릭 가능 하 여 작업자 역할 코드 tooa 상태 비저장 서비스를 변환 합니다.
 
-![작업자 역할에서 상태 비저장 서비스][4]
+![작업자 역할 tooStateless 서비스][4]
 
-## <a name="web-role-to-stateless-service"></a>웹 역할에서 상태 비저장 서비스
-작업자 역할과 마찬가지로 웹 역할도 상태 비저장 작업을 나타내므로 개념적으로 서비스 패브릭 상태 비저장 서비스에 매핑할 수 있습니다. 그러나 웹 역할과 달리 서비스 패브릭은 IIS를 지원하지 않습니다. 웹 역할의 웹 응용 프로그램을 상태 비저장 서비스에 마이그레이션하려면 자체 호스팅될 수 있고 ASP.NET Core 1과 같은 IIS 또는 System.Web에 의존하지 않는 웹 프레임워크로 이동이 필요합니다.
+## <a name="web-role-toostateless-service"></a>웹 역할 toostateless 서비스
+비슷한 tooWorker 역할, 웹 역할도 상태 비저장 작업 나타내며 하므로 개념적으로 너무 수 매핑된 tooa 서비스 패브릭 상태 비저장 서비스 합니다. 그러나 웹 역할과 달리 서비스 패브릭은 IIS를 지원하지 않습니다. toomigrate tooa 상태 비저장 서비스 웹 역할에서에서 웹 응용 프로그램 필요 최초의 이동 tooa 웹 프레임 워크를 자체 호스트 될 수 있습니다 및 IIS 또는 ASP.NET Core 1과 같은 System.Web에 종속 되지 않아야 합니다.
 
 | **응용 프로그램** | **지원됨** | **마이그레이션 경로** |
 | --- | --- | --- |
-| ASP.NET 웹 양식 |아니요 |ASP.NET Core 1 MVC로 변환 |
-| ASP.NET MVC |마이그레이션 사용 |ASP.NET Core 1 MVC로 업그레이드 |
+| ASP.NET 웹 양식 |아니요 |변환 tooASP.NET 핵심 1 MVC |
+| ASP.NET MVC |마이그레이션 사용 |업그레이드 tooASP.NET 핵심 1 MVC |
 | ASP.NET Web API |마이그레이션 사용 |자체 호스팅된 서버 또는 ASP.NET Core 1 사용 |
 | ASP.NET Core 1 |예 |해당 없음 |
 
@@ -105,17 +105,17 @@ namespace Stateless1
 
 ```
 
-둘 모두는 처리를 시작하는 기본 "실행" 재정의를 갖습니다. Service Fabric 서비스는 `Run`, `Start` 및 `Stop`을 단일 액세스 지점, `RunAsync`로 결합합니다. 서비스는 `RunAsync`가 시작될 때 작동을 시작해야 하고 `RunAsync` 메서드의 CancellationToken이 신호될 때 작동을 중지해야 합니다. 
+둘 다는 toobegin 처리 주 "실행" 재정을 가집니다. Service Fabric 서비스는 `Run`, `Start` 및 `Stop`을 단일 액세스 지점, `RunAsync`로 결합합니다. 서비스 작업 하는 경우 시작 해야 `RunAsync` 시작 되 고 해야 작동이 중지 hello `RunAsync` 메서드의 CancellationToken 신호를 받은 합니다. 
 
-작업자 역할 및 서비스 패브릭 서비스의 수명 주기 및 수명 간에는 몇 가지 주요 차이점이 있습니다.
+몇 가지 주요 차이점 hello 수명 주기 및 작업자 역할 및 서비스 패브릭 서비스의 수명이 있습니다.
 
-* **수명 주기:** 가장 큰 차이점은 작업자 역할은 VM이므로 해당 수명 주기는 VM의 시작 및 중지 시기에 대한 이벤트를 포함하는 VM에 연결되어 있다는 점입니다. 서비스 패브릭 서비스는 VM 수명 주기와 별개의 수명 주기를 가지므로 관련되지 않으므로 호스트 VM 또는 컴퓨터의 시작 및 중지 시기에 대한 이벤트를 포함하지 않습니다.
-* **수명:** `Run` 메서드가 종료되는 경우 작업자 역할 인스턴스는 재활용됩니다. 하지만 서비스 패브릭 서비스의 `RunAsync` 메서드는 완료될 때까지 실행할 수 있고 서비스 인스턴스는 제공됩니다. 
+* **수명 주기:** hello 가장 큰 차이점은 작업자 역할 VM은 해당 수명 주기는 동 점된 toohello hello VM의 시작 및 중지 시기에 대 한 이벤트를 포함 하는 VM을 합니다. 서비스 패브릭 서비스 주기가 hello VM 수명 주기 별개 이므로 관련 되지 않은 대로 hello VM 또는 컴퓨터를 시작 및 중지를 호스트 하는 경우에 대 한 이벤트 포함 되지 않습니다.
+* **수명:** 경우 hello 작업자 역할 인스턴스를 재활용 합니다 `Run` 메서드 종료 됩니다. 그러나 hello `RunAsync` 서비스 패브릭 서비스에서 메서드 및 실행할 수 toocompletion hello 서비스 인스턴스를 유지 됩니다. 
 
-서비스 패브릭은 클라이언트 요청을 수신 대기하는 서비스에 대한 선택적 통신 설정 진입점을 제공합니다. RunAsync와 통신 진입점은 서비스 패브릭 서비스에서 선택적 재정의입니다. 서비스는 클라이언트 요청을 수신 대기하거나 처리 루프를 실행하거나 둘 다 수행하도록 선택할 수 있습니다. 클라이언트 요청을 계속해서 수신 대기할 수 있기 때문에 RunAsync 메서드가 서비스 인스턴스를 다시 시작하지 않고 종료하도록 허용되는 것은 이 때문입니다.
+서비스 패브릭은 클라이언트 요청을 수신 대기하는 서비스에 대한 선택적 통신 설정 진입점을 제공합니다. Hello RunAsync와 통신 진입점은 서비스 패브릭 서비스-서비스 수 선택 tooonly 수신 대기 tooclient 요청 또는 처리 루프 또는 둘 다에 실행-이 hello RunAsync 메서드는 허용 하지 않고 tooexit 때문에 옵션 재정의 클라이언트 요청에 대 한 toolisten를 계속할 수 없기 때문에 hello 서비스 인스턴스를 다시 시작 합니다.
 
 ## <a name="application-api-and-environment"></a>응용 프로그램 API 및 환경
-클라우드 서비스 환경 API는 현재 VM 인스턴스에 대한 정보 및 기능 뿐만 아니라 다른 VM 역할 인스턴스에 대한 정보를 제공합니다. 서비스 패브릭은 해당 런타임과 관련된 정보 및 서비스가 현재 실행 중인 노드에 대한 일부 정보를 제공합니다. 
+hello 클라우드 서비스 환경 API 정보 및 다른 VM 역할 인스턴스에 대 한 정보 뿐만 아니라 현재 VM 인스턴스 hello에 대 한 기능을 제공합니다. 서비스 패브릭 tooits 런타임 관련 정보 및 hello 노드는 서비스에 대 한 정보에서 현재 실행 중인를 제공 합니다. 
 
 | **환경 작업** | **클라우드 서비스** | **서비스 패브릭** |
 | --- | --- | --- |
@@ -126,17 +126,17 @@ namespace Stateless1
 | 동시 변경 이벤트 |`RoleEnvironment` |해당 없음 |
 
 ## <a name="configuration-settings"></a>구성 설정
-클라우드 서비스의 구성 설정은 VM 역할에 대해 설정되고 해당 VM 역할의 모든 인스턴스에 적용합니다. 이러한 설정은 ServiceConfiguration.*.cscfg 파일에서 설정된 키-값 쌍이며 RoleEnvironment를 통해 직접 액세스할 수 있습니다. 서비스 패브릭에서 VM은 여러 서비스 및 응용 프로그램을 호스팅할 수 있으므로 설정은 VM이 아닌 각 서비스 및 각 응용 프로그램에 개별적으로 적용됩니다. 서비스는 세 가지 패키지로 구성됩니다.
+클라우드 서비스의 구성 설정 VM 역할에 대해 설정 되 고 tooall 해당 VM 역할 인스턴스를 적용 합니다. 이러한 설정은 ServiceConfiguration.*.cscfg 파일에서 설정된 키-값 쌍이며 RoleEnvironment를 통해 직접 액세스할 수 있습니다. 서비스 패브릭에서 설정이 적용 개별적으로 tooa VM 보다는 tooeach 서비스 tooeach 응용 프로그램 서비스 및 응용 프로그램을 여러 VM를 호스팅할 수 있습니다. 서비스는 세 가지 패키지로 구성됩니다.
 
-* **코드:** 서비스를 실행하는 데 필요한 서비스 실행 파일, 이진 파일, DLL 및 다른 모든 파일을 포함합니다.
+* **코드:** hello 서비스 실행 파일, 이진 파일, Dll, 및 기타 파일에 포함 된 서비스가 필요한 toorun 합니다.
 * **Config:** 서비스에 대한 모든 구성 파일 및 설정.
-* **데이터:** 서비스와 관련된 정적 데이터 파일.
+* **데이터:** hello 서비스와 연결 된 정적 데이터 파일.
 
-이러한 각 패키지는 서비스를 독립적으로 버전 지정 및 업그레이드할 수 있습니다. 클라우드 서비스와 마찬가지로 config 패키지는 API를 통해 프로그래밍 방식으로 액세스할 수 있으며 이벤트는 config 패키지 변경의 서비스를 알리기 위해 사용할 수 있습니다. App.config 파일의 앱 설정 섹션과 유사한 키-값 구성 및 프로그래밍 방식 액세스에 Settings.xml 파일을 사용할 수 있습니다. 그러나 클라우드 서비스와는 달리 서비스 패브릭 config 패키지는 XML, JSON, YAML 또는 사용자 지정 이진 형식이든 모든 형식의 구성 파일을 포함할 수 있습니다. 
+이러한 각 패키지는 서비스를 독립적으로 버전 지정 및 업그레이드할 수 있습니다. API를 통해 비슷한 tooCloud 서비스를 구성 패키지를 프로그래밍 방식으로 액세스할 수 있습니다 및 이벤트는 사용할 수 있는 toonotify hello 서비스의 구성 패키지 변경 합니다. Settings.xml 파일 키-값 구성 및 프로그래밍 방식 액세스 비슷한 toohello 응용 프로그램 설정 섹션의 App.config 파일에 사용할 수 있습니다. 그러나 클라우드 서비스와는 달리 서비스 패브릭 config 패키지는 XML, JSON, YAML 또는 사용자 지정 이진 형식이든 모든 형식의 구성 파일을 포함할 수 있습니다. 
 
 ### <a name="accessing-configuration"></a>구성 액세스
 #### <a name="cloud-services"></a>클라우드 서비스
-ServiceConfiguration.*.cscfg의 구성 설정은 `RoleEnvironment`을(를) 통해 액세스할 수 있습니다. 이러한 설정은 동일한 클라우드 서비스 배포 내에서 모든 역할 인스턴스에 전역적으로 제공됩니다.
+ServiceConfiguration.*.cscfg의 구성 설정은 `RoleEnvironment`을(를) 통해 액세스할 수 있습니다. 이러한 설정은 hello에 전체적으로 사용 가능한 tooall 역할 인스턴스는 동일한 클라우드 서비스 배포 합니다.
 
 ```C#
 
@@ -145,9 +145,9 @@ string value = RoleEnvironment.GetConfigurationSettingValue("Key");
 ```
 
 #### <a name="service-fabric"></a>서비스 패브릭
-각 서비스에는 자체 개별 구성 패키지가 있습니다. 클러스터의 모든 응용 프로그램에서 액세스할 수 있는 전역 구성 설정에 대한 기본 제공 메커니즘이 없습니다. 구성 패키지 내에서 서비스 패브릭의 특별한 Settings.xml 구성 파일을 사용할 때 가능한 응용 프로그램 수준에서 응용 프로그램 수준 구성 설정을 가능하도록 하는 Settings.xml의 값을 덮어쓸 수 있습니다.
+각 서비스에는 자체 개별 구성 패키지가 있습니다. 클러스터의 모든 응용 프로그램에서 액세스할 수 있는 전역 구성 설정에 대한 기본 제공 메커니즘이 없습니다. 구성 패키지 내에서 서비스 패브릭 특수 Settings.xml 구성 파일을 사용할 때 가능한 응용 프로그램 수준 구성 설정을 지정 하기 hello 응용 프로그램 수준 Settings.xml에 값을 덮어쓸 수 있습니다.
 
-구성 설정은 서비스의 `CodePackageActivationContext`을(를) 통한 각 서비스 인스턴스 내의 액세스입니다.
+구성 설정은 hello 서비스를 통해 각 서비스 인스턴스 내의 액세스 `CodePackageActivationContext`합니다.
 
 ```C#
 
@@ -168,7 +168,7 @@ using (StreamReader reader = new StreamReader(Path.Combine(configPackage.Path, "
 
 ### <a name="configuration-update-events"></a>구성 업데이트 이벤트
 #### <a name="cloud-services"></a>클라우드 서비스
-`RoleEnvironment.Changed` 이벤트는 환경에서 구성 변경과 같은 변경이 발생할 때 모든 역할 인스턴스를 알리는 데 사용됩니다. 역할 인스턴스를 재활용하거나 작업자 프로세스를 다시 시작하지 않고 구성 업데이트를 사용하는 데 사용됩니다.
+hello `RoleEnvironment.Changed` 이벤트는 사용 되는 toonotify 변경 될 때 모든 역할 인스턴스가 구성 변경 등의 hello 환경에서 발생 합니다. 역할 인스턴스 재활용 하거나 작업자 프로세스를 다시 시작 하지 않고 사용된 tooconsume 구성 업데이트입니다.
 
 ```C#
 
@@ -176,7 +176,7 @@ RoleEnvironment.Changed += RoleEnvironmentChanged;
 
 private void RoleEnvironmentChanged(object sender, RoleEnvironmentChangedEventArgs e)
 {
-   // Get the list of configuration changes
+   // Get hello list of configuration changes
    var settingChanges = e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>();
 foreach (var settingChange in settingChanges) 
    {
@@ -187,9 +187,9 @@ foreach (var settingChange in settingChanges)
 ```
 
 #### <a name="service-fabric"></a>서비스 패브릭
-서비스의 각 세 가지 패키지 유형(코드, 구성 및 데이터)은 패키지를 업데이트, 추가 또는 제거하는 경우 서비스 인스턴스를 알리는 이벤트를 가집니다. 서비스는 각 유형의 여러 패키지를 포함할 수 있습니다. 예를 들어 서비스에는 각각 개별적으로 버전이 지정되고 업그레이드 가능한 여러 config 패키지가 있을 수 있습니다. 
+각 hello 세 패키지 형식-코드, 구성, 및 데이터 액세스 서비스에는 패키지 업데이트, 추가 또는 제거 하는 경우 서비스 인스턴스를 알려 주는 이벤트가 있습니다. 서비스는 각 유형의 여러 패키지를 포함할 수 있습니다. 예를 들어 서비스에는 각각 개별적으로 버전이 지정되고 업그레이드 가능한 여러 config 패키지가 있을 수 있습니다. 
 
-이러한 이벤트는 서비스 인스턴스를 다시 시작하지 않고 서비스 패키지의 변경 내용을 사용하는 데 사용할 수 있습니다.
+이러한 이벤트는 hello 서비스 인스턴스를 다시 시작 하지 않고 서비스 패키지에 사용할 수 있는 tooconsume 변경 합니다.
 
 ```C#
 
@@ -205,7 +205,7 @@ private void CodePackageActivationContext_ConfigurationPackageModifiedEvent(obje
 ```
 
 ## <a name="startup-tasks"></a>시작 작업
-시작 작업은 응용 프로그램이 시작되기 전에 수행되는 작업입니다. 시작 작업은 상승된 권한을 사용하여 설치 스크립트를 실행하는 데 일반적으로 사용됩니다. 클라우드 서비스와 서비스 패브릭은 시작 작업을 지원합니다. 주요 차이점은 클라우드 서비스에서 시작 작업은 역할 인스턴스의 일부이므로 VM에 연결되는 반면 서비스 패브릭에서 시작 작업은 특정 VM에 연결되지 않은 서비스에 연결된다는 점입니다.
+시작 작업은 응용 프로그램이 시작되기 전에 수행되는 작업입니다. 시작 작업에는 상승 된 권한을 사용 하 여 일반적으로 사용 되는 toorun 설치 스크립트입니다. 클라우드 서비스와 서비스 패브릭은 시작 작업을 지원합니다. hello 주요 차이점은 해당 클라우드 서비스, 시작 작업은 동률된 tooa VM 역할 인스턴스는 속해 있기 때문에 서비스 패브릭 시작 작업 동률된 tooany 않은 동 점된 tooa 서비스입니다. 반면 특정 VM입니다.
 
 | 클라우드 서비스 | 서비스 패브릭 |
 | --- | --- | --- |
@@ -249,13 +249,13 @@ private void CodePackageActivationContext_ConfigurationPackageModifiedEvent(obje
 ``` 
 
 ## <a name="a-note-about-development-environment"></a>개발 환경에 대한 정보
-클라우드 서비스와 서비스 패브릭은 프로젝트 템플릿 및 로컬과 Azure 모두로 디버깅, 구성 및 배포에 대한 지원을 사용하여 Visual Studio와 통합됩니다. 클라우드 서비스와 서비스 패브릭은 로컬 개발 런타임 환경도 제공합니다. 차이점은 클라우드 서비스 개발 런타임은 실행하는 Azure 환경을 에뮬레이션하는 반면 서비스 패브릭은 에뮬레이터를 사용하지 않고 전체 서비스 패브릭 런타임을 사용한다는 점입니다. 로컬 개발 컴퓨터에서 실행하는 서비스 패브릭 환경은 프로덕션 환경에서 실행하는 동일한 환경입니다.
+클라우드 서비스와 서비스 패브릭 및 통합 되어 Visual studio 프로젝트 템플릿 디버깅, 구성 및 둘 다를 로컬로 배포에 대 한 지원 및 tooAzure 합니다. 클라우드 서비스와 서비스 패브릭은 로컬 개발 런타임 환경도 제공합니다. hello 차이점은 hello 개발 런타임을 에뮬레이션 하는 클라우드 서비스 hello 실행 되는 Azure 환경, 서비스 패브릭 에뮬레이터를 사용 하지 않는-hello 전체 서비스 패브릭 런타임을 사용 하는 동안 합니다. hello 로컬 개발 컴퓨터에서 실행 되는 환경이 서비스 패브릭 hello 프로덕션 환경에서 실행 되는 동일한 환경입니다.
 
 ## <a name="next-steps"></a>다음 단계
-서비스 패브릭 기능의 전체 집합을 활용하는 방법을 이해하려면 서비스 패브릭 신뢰할 수 있는 서비스 및 클라우드 서비스와 서비스 패브릭 응용 프로그램 아키텍처 간의 기본적인 차이점에 대해 자세히 알아보세요.
+서비스 패브릭 신뢰할 수 있는 서비스 및 클라우드 서비스 및 서비스 패브릭 응용 프로그램 아키텍처 toounderstand 서비스 패브릭 기능의 전체 hello tootake 활용을 설정 하는 방법 간의 근본적인 차이점 hello에 대 한 자세한 사용 되는 읽기입니다.
 
 * [서비스 패브릭 신뢰할 수 있는 서비스 시작](service-fabric-reliable-services-quick-start.md)
-* [클라우드 서비스와 서비스 패브릭 간의 차이점에 대한 개념 가이드](service-fabric-cloud-services-migration-differences.md)
+* [클라우드 서비스 및 서비스 패브릭 간의 개념적 가이드 toohello 차이점](service-fabric-cloud-services-migration-differences.md)
 
 <!--Image references-->
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png

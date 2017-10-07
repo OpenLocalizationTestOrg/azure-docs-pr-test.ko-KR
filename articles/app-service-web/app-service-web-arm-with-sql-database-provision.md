@@ -1,6 +1,6 @@
 ---
-title: "SQL 데이터베이스를 사용하는 웹앱을 프로비전"
-description: "SQL 데이터베이스가 포함된 웹앱을 배포하는 Azure 리소스 관리자 템플릿을 사용합니다."
+title: "aaaProvision SQL 데이터베이스를 사용 하는 웹 앱"
+description: "Azure 리소스 관리자 템플릿 toodeploy SQL 데이터베이스가 포함 된 웹 응용 프로그램을 사용 합니다."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: cc34f684f8c50e95a62cb7b04fd2ddce5deb68d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 189c0122d201e88f15013bf241d66652ef23df4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-a-web-app-with-a-sql-database"></a>SQL 데이터베이스를 사용하는 웹앱을 프로비전
-이 항목에서는 웹앱 및 SQL 데이터베이스를 배포하는 Azure 리소스 관리자 템플릿을 만드는 방법을 배웁니다. 어떤 리소스를 배포할지 정의하는 방법 및 배포를 실행할 때 매개 변수를 지정하는 방법을 알게 됩니다. 배포를 위해 이 템플릿을 사용하거나 요구 사항에 맞게 사용자 지정을 할 수 있습니다.
+이 항목에서는 살펴보겠습니다 어떻게 toocreate 웹 응용 프로그램 및 SQL 데이터베이스에 배포 하는 Azure 리소스 관리자 템플릿 합니다. 에 대해 설명 합니다 방법을 toodefine 리소스 배포 되 고 toodefine 매개 변수를 hello 배포를 실행 하는 경우 지정 된 합니다. 배포를 위한이 서식 파일을 사용 하거나 toomeet 사용자 지정할 수 있습니다 프로그램 요구 사항입니다.
 
-템플릿을 만드는 더 자세한 내용은 [Azure 리소스 관리자 템플릿 작성하기](../azure-resource-manager/resource-group-authoring-templates.md)를 참조하세요.
+템플릿을 만드는 더 자세한 내용은 [Azure 리소스 관리자 템플릿 작성하기](../azure-resource-manager/resource-group-authoring-templates.md)를 참조하십시오.
 
 앱 배포에 대한 자세한 내용은 [Azure에서 예측 가능하도록 복잡한 응용 프로그램을 배포](app-service-deploy-complex-application-predictably.md)를 참조하세요.
 
-전체 서식 파일을 보려면 [SQL 데이터베이스 템플릿을 사용하는 웹앱](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)을 참조하세요.
+Hello 전체 서식 파일을 참조 하십시오. [SQL 데이터베이스와 웹 응용 프로그램 템플릿](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)합니다.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -41,29 +41,29 @@ ms.lasthandoff: 07/11/2017
 * 경고 규칙
 * App Insights
 
-배포를 자동으로 실행하려면 다음 단추를 클릭합니다.
+toorun 배포를 자동으로 hello, hello 다음 단추를 클릭 합니다.
 
-[![Azure에 배포](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
+[![TooAzure 배포](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
 
-## <a name="parameters-to-specify"></a>지정할 매개변수
+## <a name="parameters-toospecify"></a>매개 변수 toospecify
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="administratorlogin"></a>administratorLogin
-데이터베이스 서버 관리자에 사용할 계정 이름입니다.
+서버 관리자에 게 데이터베이스에 대 한 계정 이름 toouse를 hello 합니다.
 
     "administratorLogin": {
       "type": "string"
     }
 
 ### <a name="administratorloginpassword"></a>administratorLoginPassword
-데이터베이스 서버 관리자에 사용할 암호입니다.
+서버 관리자에 게 데이터베이스에 대 한 hello 암호 toouse 합니다.
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
 ### <a name="databasename"></a>databaseName
-만들려는 새 데이터베이스의 이름입니다.
+새 데이터베이스 toocreate hello의 hello 이름입니다.
 
     "databaseName": {
       "type": "string",
@@ -71,7 +71,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="collation"></a>collation
-문자의 적절한 사용을 제어하기 위해 사용하는 데이터베이스 데이터 정렬입니다.
+적절 한 관리 hello에 대 한 데이터베이스 데이터 정렬 toouse hello 문자를 사용 합니다.
 
     "collation": {
       "type": "string",
@@ -79,7 +79,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="edition"></a>edition
-만들려는 데이터베이스의 형식입니다.
+데이터베이스 toocreate의 hello 유형입니다.
 
     "edition": {
       "type": "string",
@@ -90,12 +90,12 @@ ms.lasthandoff: 07/11/2017
         "Premium"
       ],
       "metadata": {
-        "description": "The type of database to create."
+        "description": "hello type of database toocreate."
       }
     }
 
 ### <a name="maxsizebytes"></a>maxSizeBytes
-(바이트)는 데이터베이스의 최대 크기입니다.
+hello 최대 크기 (바이트) hello 데이터베이스에 대 한입니다.
 
     "maxSizeBytes": {
       "type": "string",
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="requestedserviceobjectivename"></a>requestedServiceObjectiveName
-버전에 대한 성능 수준에 해당하는 이름입니다. 
+hello 이름 해당 toohello 성능 수준에 대 한 버전입니다. 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -118,12 +118,12 @@ ms.lasthandoff: 07/11/2017
         "P3"
       ],
       "metadata": {
-        "description": "Describes the performance level for Edition"
+        "description": "Describes hello performance level for Edition"
       }
     }
 
 ## <a name="variables-for-names"></a>이름에 대한 변수
-이 템플릿에는 템플릿에 사용되는 이름을 생성하는 변수가 포함되어 있습니다. 변수 값은 **uniqueString** 함수를 사용하여 리소스 그룹 id의 이름을 생성합니다.
+이 서식 파일 hello 서식 파일에 사용 되는 이름을 생성 하는 변수를 포함 합니다. 변수 값 hello hello를 사용 하 여 **uniqueString** toogenerate hello 리소스 그룹 id에서 이름을 작동 합니다.
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -132,9 +132,9 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-## <a name="resources-to-deploy"></a>배포할 리소스
+## <a name="resources-toodeploy"></a>리소스 toodeploy
 ### <a name="sql-server-and-database"></a>SQL Server 및 데이터베이스
-새 SQL Server 및 데이터베이스를 만듭니다. 서버 이름은 **serverName** 매개 변수에 지정되고 위치는 **serverLocation** 매개변수에 지정됩니다. 새 서버를 만들 때 데이터베이스 서버 관리자용 로그인 이름 및 암호를 제공해야 합니다. 
+새 SQL Server 및 데이터베이스를 만듭니다. hello 서버 hello 이름을 hello에 지정 된 **serverName** hello에 지정 된 매개 변수 및 hello 위치 **서버** 매개 변수입니다. Hello 새 서버를 만들 때 로그인 이름 및 서버 관리자에 게 데이터베이스에 대 한 암호를 제공 해야 합니다. 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -373,7 +373,7 @@ ms.lasthandoff: 07/11/2017
       },
       "properties": {
         "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
-        "description": "[concat('The average CPU is high across all the instances of ', variables('hostingPlanName'))]",
+        "description": "[concat('hello average CPU is high across all hello instances of ', variables('hostingPlanName'))]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -407,7 +407,7 @@ ms.lasthandoff: 07/11/2017
       },
       "properties": {
         "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
-        "description": "[concat('The HTTP queue for the instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
+        "description": "[concat('hello HTTP queue for hello instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -446,7 +446,7 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-## <a name="commands-to-run-deployment"></a>배포 실행 명령
+## <a name="commands-toorun-deployment"></a>명령 toorun 배포
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -462,6 +462,6 @@ ms.lasthandoff: 07/11/2017
     az resource deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE]
-> JSON 파일의 매개 변수의 내용은 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json)을 참조하세요.
+> Hello 매개 변수에 JSON 파일의 콘텐츠에 대 한 참조 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json)합니다.
 >
 >

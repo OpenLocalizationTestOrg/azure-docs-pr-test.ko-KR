@@ -1,6 +1,6 @@
 ---
-title: "서버 제거 및 보호 사용 안 함 | Microsoft Docs"
-description: "이 문서에서는 사이트 복구 자격 증명 모음에서 서버 등록을 취소하고 가상 컴퓨터 및 물리적 서버의 보호를 사용하지 않도록 설정하는 방법을 설명합니다."
+title: "aaaRemove 서버 및 보호 사용 안 함 | Microsoft Docs"
+description: "이 문서에서는 어떻게 toounregister 서버에서 사이트 복구 자격 증명 모음 및 toodisable 보호 가상 컴퓨터 및 물리적 서버에 대 한 설명입니다."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,82 +14,82 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: raynew
-ms.openlocfilehash: 43f92a35dc9b04584badd1c9f1152470246b5012
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95f20433f782c93685ad4bae93c6bc0e2d2f2356
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="remove-servers-and-disable-protection"></a>서버 제거 및 보호 사용 안 함
 
-Azure Site Recovery 서비스는 BCDR(비즈니스 연속성 및 재해 복구 개선) 전략에 기여하는 서비스로 가상 컴퓨터 및 물리적 서버의 복제, 장애 조치(failover) 및 복구(failback)를 처리합니다. 컴퓨터는 Azure 또는 보조 온-프레미스 데이터 센터로 복제할 수 있습니다. 빠른 개요를 알아보려면 [Azure Site Recovery란?](site-recovery-overview.md)
+Azure Site Recovery 서비스 hello tooyour 비즈니스 연속성 및 재해 복구 (BCDR) 전략에 기여합니다. hello 서비스에는 복제, 장애 조치 및 복구 가상 컴퓨터와 물리적 서버와 조정합니다. 복제 된 tooAzure 또는 tooa 보조 온-프레미스 데이터 센터 컴퓨터 수 있습니다. 빠른 개요를 알아보려면 [Azure Site Recovery란?](site-recovery-overview.md)
 
-이 문서에는 Azure Portal의 Recovery Services 자격 증명 모음에서 서버의 등록을 취소하는 방법 및 Site Recovery를 통해 보호되는 컴퓨터에 대한 보호를 사용하지 않도록 설정하는 방법을 설명합니다.
+이 문서에서는 복구 서비스에서 toounregister 서버 hello Azure 포털에서에서 자격 증명 모음에 어떻게 및 toodisable 보호 컴퓨터에 대 한 Site Recovery에서 보호 하는 방법을 설명 합니다.
 
-이 문서의 하단 또는 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 의견이나 질문을 게시합니다.
+Hello 또는이 문서의 hello 맨 아래에 설명 이나 질문을 게시 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
 
 ## <a name="unregister-a-connected-configuration-server"></a>연결된 구성 서버 등록 취소
 
-VMware VM 또는 Windows/Linux 물리적 서버를 Azure에 복제하는 경우 다음과 같이 자격 증명 모음에서 연결된 구성 서버를 등록 취소할 수 있습니다.
+VMware Vm 또는 실제 서버 tooAzure Windows/Linux를 복제 하는 경우 연결 된 구성 서버에서 자격 증명 모음을 다음과 같이 등록 취소할 수 있습니다.
 
-1. 컴퓨터 보호 사용 안 함. **보호된 항목** > **복제된 항목**을 클릭하고 컴퓨터를 마우스 오른쪽 단추로 클릭한 후 > **삭제**를 클릭합니다.
-2. 모든 정책 연결 해제. **사이트 복구 인프라** > **VMWare 및 물리적 컴퓨터** > **복제 정책**에서 연결된 정책을 두 번 클릭합니다. 구성 서버를 마우스 오른쪽 단추로 클릭하고 > **연결 해제**를 클릭합니다.
-3. 추가 온-프레미스 프로세스 또는 마스터 대상 서버를 제거합니다. **사이트 복구 인프라** > **VMWare 및 물리적 컴퓨터** > **구성 서버**에서 서버를 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-4. 구성 서버를 삭제합니다.
-5. 마스터 대상 서버에서 실행되는 이동성 서비스를 수동으로 제거합니다(별도의 서버이거나 구성 서버에서 실행 중).
+1. 컴퓨터 보호 사용 안 함. **보호 된 항목** > **복제 항목**를 마우스 오른쪽 단추로 클릭 hello 컴퓨터 > **삭제**합니다.
+2. 모든 정책 연결 해제. **사이트 복구 인프라** > **물리적 컴퓨터 및 VMWare에 대 한** > **복제 정책**, hello를 두 번 클릭 연결 된 정책입니다. Hello 구성 서버를 마우스 오른쪽 단추로 클릭 > **연관 해제**합니다.
+3. 추가 온-프레미스 프로세스 또는 마스터 대상 서버를 제거합니다. **사이트 복구 인프라** > **물리적 컴퓨터 및 VMWare에 대 한** > **구성 서버**를 마우스 오른쪽 단추로 클릭 hello 서버 > **삭제**합니다.
+4. Hello 구성 서버를 삭제 합니다.
+5. Hello 마스터 대상 서버에서 실행 되는 hello 모바일 서비스를 수동으로 제거 (이 됩니다는 별도 서버 또는 hello 구성 서버에서 실행).
 6. 추가 프로세스 서버를 제거합니다.
-7. 구성 서버를 제거합니다.
-8. 구성 서버에서 Site Recovery에 의해 설치된 MySQL 인스턴스를 제거합니다.
-9. 구성 서버의 레지스트리에서 ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery`` 키를 삭제합니다.
+7. Hello 구성 서버를 제거 합니다.
+8. Hello 구성 서버에서 hello Site Recovery에 의해 설치 된 MySQL 인스턴스를 제거 합니다.
+9. Hello 구성 서버 hello 레지스트리에 hello 키 삭제 ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``합니다.
 
 ## <a name="unregister-a-unconnected-configuration-server"></a>연결되지 않은 구성 서버 등록 취소
 
-VMware VM 또는 Windows/Linux 물리적 서버를 Azure에 복제하는 경우 다음과 같이 자격 증명 모음에서 연결되지 않은 구성 서버를 등록 취소할 수 있습니다.
+VMware Vm 또는 실제 서버 tooAzure Windows/Linux를 복제 하는 경우는 연결 되지 않은 구성 서버에서 자격 증명 모음을 다음과 같이 등록 취소할 수 있습니다.
 
-1. 컴퓨터 보호 사용 안 함. **보호된 항목** > **복제된 항목**을 클릭하고 컴퓨터를 마우스 오른쪽 단추로 클릭한 후 > **삭제**를 클릭합니다. **컴퓨터 관리 중지**를 선택합니다.
-2. 추가 온-프레미스 프로세스 또는 마스터 대상 서버를 제거합니다. **사이트 복구 인프라** > **VMWare 및 물리적 컴퓨터** > **구성 서버**에서 서버를 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-3. 구성 서버를 삭제합니다.
-4. 마스터 대상 서버에서 실행되는 이동성 서비스를 수동으로 제거합니다(별도의 서버이거나 구성 서버에서 실행 중).
+1. 컴퓨터 보호 사용 안 함. **보호 된 항목** > **복제 항목**를 마우스 오른쪽 단추로 클릭 hello 컴퓨터 > **삭제**합니다. 선택 **hello 컴퓨터 관리 중지**합니다.
+2. 추가 온-프레미스 프로세스 또는 마스터 대상 서버를 제거합니다. **사이트 복구 인프라** > **물리적 컴퓨터 및 VMWare에 대 한** > **구성 서버**를 마우스 오른쪽 단추로 클릭 hello 서버 > **삭제**합니다.
+3. Hello 구성 서버를 삭제 합니다.
+4. Hello 마스터 대상 서버에서 실행 되는 hello 모바일 서비스를 수동으로 제거 (이 됩니다는 별도 서버 또는 hello 구성 서버에서 실행).
 5. 추가 프로세스 서버를 제거합니다.
-6. 구성 서버를 제거합니다.
-7. 구성 서버에서 Site Recovery에 의해 설치된 MySQL 인스턴스를 제거합니다.
-8. 구성 서버의 레지스트리에서 ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery`` 키를 삭제합니다.
+6. Hello 구성 서버를 제거 합니다.
+7. Hello 구성 서버에서 hello Site Recovery에 의해 설치 된 MySQL 인스턴스를 제거 합니다.
+8. Hello 구성 서버 hello 레지스트리에 hello 키 삭제 ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``합니다.
 
 ## <a name="unregister-a-connected-vmm-server"></a>연결된 VMM 서버 등록 취소
 
-Azure에 연결된 경우 VMM 서버의 등록을 취소하는 것이 가장 좋습니다. 이렇게 하면 VMM 서버(및 페어링된 클라우드가 있는 다른 VMM 서버)의 설정이 알맞게 정리됩니다. 연결에 영구적인 문제가 있는 경우에만 연결되지 않은 서버를 제거해야 합니다. VMM 서버가 연결되지 않은 경우 스크립트를 직접 실행하여 설정을 정리해야 합니다.
+모범 사례로, tooAzure에 연결한 경우 hello VMM 서버를 등록 취소 하는 것이 좋습니다. 이렇게 하면 설정 hello VMM 서버에 (및 클라우드와 쌍을 이루는 다른 VMM 서버에서) 제대로 정리 됩니다. 연결에 영구적인 문제가 있는 경우에만 연결되지 않은 서버를 제거해야 합니다. Hello VMM 서버에 연결 되지 않아 경우 해야 toomanually 설정을 스크립트 tooclean를 실행 합니다.
 
-1. 제거할 VMM에서 클라우드에 VM 복제를 중지합니다.
-2. 삭제할 VMM 서버에서 클라우드에 사용된 모든 네트워크 매핑을 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **네트워크 매핑**에서 네트워크 매핑을 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-3. 제거할 VMM 서버의 클라우드에서 복제 정책을 연결 해제합니다.  **사이트 복구 인프라** > **System Center VMM** >  **복제 정책**에서 연결된 정책을 두 번 클릭합니다. 클라우드를 마우스 오른쪽 단추로 클릭하고 > **연결 해제**를 클릭합니다.
-4. VMM 서버 또는 활성 VMM 노드를 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **VMM 서버**에서 서버를 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-5. VMM 서버에서 공급자를 수동으로 제거합니다. 클러스터가 있는 경우 모든 노드에서 제거합니다.
-6. Azure에 복제하는 경우 삭제된 클라우드의 Hyper-V 호스트에서 Microsoft Recovery Services 에이전트를 수동으로 제거합니다.
+1. Vm 클라우드에 hello tooremove VMM 서버에서 복제를 중지 합니다.
+2. Hello toodelete VMM 서버에 클라우드 사용 되는 모든 네트워크 매핑이 삭제 합니다. **사이트 복구 인프라** > **System Center VMM** > **네트워크 매핑을**, hello 네트워크 매핑을 마우스 오른쪽 단추로 클릭 >  **삭제**합니다.
+3. Hello tooremove VMM 서버에 클라우드가 복제 정책 연결이 해제 됩니다.  **사이트 복구 인프라** > **System Center VMM** >  **복제 정책**, 연결 된 hello 정책을 두 번 클릭 합니다. Hello 클라우드를 마우스 오른쪽 단추로 클릭 > **연관 해제**합니다.
+4. Hello VMM 서버 또는 현재 VMM 노드를 삭제 합니다. **사이트 복구 인프라** > **System Center VMM** > **VMM 서버**를 마우스 오른쪽 단추로 클릭 hello 서버 >  **삭제**합니다.
+5. Hello 공급자 hello VMM 서버에서 수동으로 제거 합니다. 클러스터가 있는 경우 모든 노드에서 제거합니다.
+6. TooAzure를 복제 하는 경우 삭제 하는 hello 클라우드에서 Hyper-v 호스트에서 수동으로 hello Microsoft 복구 서비스 에이전트를 제거 합니다.
 
 
 
 ### <a name="unregister-an-unconnected-vmm-server"></a>연결되지 않은 VMM 서버 등록 취소
 
-1. 제거할 VMM에서 클라우드에 VM 복제를 중지합니다.
-2. 삭제할 VMM 서버에서 클라우드에 사용된 모든 네트워크 매핑을 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **네트워크 매핑**에서 네트워크 매핑을 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-3. VMM 서버의 ID를 메모해 둡니다.
-4. 제거할 VMM 서버의 클라우드에서 복제 정책을 연결 해제합니다.  **사이트 복구 인프라** > **System Center VMM** >  **복제 정책**에서 연결된 정책을 두 번 클릭합니다. 클라우드를 마우스 오른쪽 단추로 클릭하고 > **연결 해제**를 클릭합니다.
-5. VMM 서버 또는 활성 노드를 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **VMM 서버**에서 서버를 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-6. VMM 서버에서 [정리 스크립트](http://aka.ms/asr-cleanup-script-vmm)를 다운로드하여 실행합니다. 기본(LocalMachine) 범위에 대한 실행 정책을 변경하려면 **관리자 권한으로 실행** 옵션으로 PowerShell을 엽니다. 스크립트에서 제거할 VMM 서버의 ID를 지정합니다. 이 스크립트는 서버에서 등록 및 클라우드 페어링을 제거합니다.
-5. 제거할 VMM 서버에서 클라우드와 페어링되는 클라우드가 포함된 다른 모든 VMM 서버에서 정리 스크립트를 실행합니다.
-6. 공급자가 설치된 다른 모든 수동 VMM 클러스터 노드에서 정리 스크립트를 실행합니다.
-7. VMM 서버에서 공급자를 수동으로 제거합니다. 클러스터가 있는 경우 모든 노드에서 제거합니다.
-8. Azure에 복제하는 경우 삭제된 클라우드의 Hyper-V 호스트에서 Microsoft Recovery Services 에이전트를 제거할 수 있습니다.
+1. Vm 클라우드에 hello tooremove VMM 서버에서 복제를 중지 합니다.
+2. 원하는 toodelete hello VMM 서버의 클라우드에 사용 되는 모든 네트워크 매핑이 삭제 합니다. **사이트 복구 인프라** > **System Center VMM** > **네트워크 매핑을**, hello 네트워크 매핑을 마우스 오른쪽 단추로 클릭 >  **삭제**합니다.
+3. Note hello ID hello VMM 서버입니다.
+4. Hello tooremove VMM 서버에 클라우드가 복제 정책 연결이 해제 됩니다.  **사이트 복구 인프라** > **System Center VMM** >  **복제 정책**, 연결 된 hello 정책을 두 번 클릭 합니다. Hello 클라우드를 마우스 오른쪽 단추로 클릭 > **연관 해제**합니다.
+5. VMM 서버 hello 또는 액티브 노드를 삭제 합니다. **사이트 복구 인프라** > **System Center VMM** > **VMM 서버**를 마우스 오른쪽 단추로 클릭 hello 서버 >  **삭제**합니다.
+6. 다운로드 및 실행 hello [정리 스크립트](http://aka.ms/asr-cleanup-script-vmm) hello VMM 서버에 있습니다. Hello로 PowerShell을 열고 **관리자 권한으로 실행** toochange hello 실행 정책을 hello 기본 (LocalMachine) 범위에 대 한 옵션입니다. Hello 스크립트에 hello hello tooremove VMM 서버 ID를 지정 합니다. hello 스크립트 등록 및 클라우드 페어링 hello 서버에서 정보를 제거 합니다.
+5. Hello tooremove VMM 서버에 클라우드가 함께 사용 되는 클라우드를 포함 하는 다른 VMM 서버 hello 정리 스크립트를 실행 합니다.
+6. 모든 다른 패시브 노드에서 VMM 클러스터 hello 공급자가 설치 되어 있는 hello 정리 스크립트를 실행 합니다.
+7. Hello 공급자 hello VMM 서버에서 수동으로 제거 합니다. 클러스터가 있는 경우 모든 노드에서 제거합니다.
+8. TooAzure 복제 하면을 제거할 수 있으면 hello Microsoft 복구 서비스 에이전트 hello 삭제 클라우드에서 Hyper-v 호스트에서 합니다.
 
 ## <a name="unregister-a-hyper-v-host-in-a-hyper-v-site"></a>Hyper-V 사이트에서 Hyper-V 호스트 등록 취소
 
 VMM에 의해 관리되지 않는 Hyper-V 호스트가 Hyper-V 사이트로 수집됩니다. 다음과 같이 Hyper-V 사이트에서 호스트를 제거합니다.
 
-1. 호스트에 있는 Hyper-V VM에 대한 복제를 사용하지 않도록 설정합니다.
-2. Hyper-V 사이트에 대한 정책을 연결 해제합니다. **사이트 복구 인프라** > **Hyper-V 사이트** >  **복제 정책**에서 연결된 정책을 두 번 클릭합니다. 사이트를 마우스 오른쪽 단추로 클릭하고 > **연결 해제**를 클릭합니다.
-3. Hyper-V 호스트를 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **Hyper-V 호스트**에서 서버를 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-4. 모든 호스트가 제거되었으면 Hyper-V 사이트를 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **Hyper-V 사이트**에서 사이트를 마우스 오른쪽 단추로 클릭하고 > **삭제**를 클릭합니다.
-5. 제거한 각 Hyper-V 호스트에서 다음 스크립트를 실행합니다. 스크립트는 서버에서 설정을 정리하고 자격 증명 모음에서 설정을 등록 취소합니다.
+1. Hello 호스트에 있는 Hyper-v Vm에 대 한 복제를 사용 하지 않도록 설정 합니다.
+2. Hello 하이퍼-V 사이트에 대 한 정책 연결이 해제 됩니다. **사이트 복구 인프라** > **하이퍼-V 사이트에 대 한** >  **복제 정책**, 연결 된 hello 정책을 두 번 클릭 합니다. 마우스 오른쪽 단추로 클릭 hello 사이트 > **연관 해제**합니다.
+3. Hyper-V 호스트를 삭제합니다. **사이트 복구 인프라** > **System Center VMM** > **Hyper-v 호스트**를 마우스 오른쪽 단추로 클릭 hello 서버 >  **삭제**합니다.
+4. 모든 호스트에서 제거 된 후 hello 하이퍼-V 사이트를 삭제 합니다. **사이트 복구 인프라** > **System Center VMM** > **Hyper-v 사이트**를 마우스 오른쪽 단추로 클릭 hello 사이트 >  **삭제**합니다.
+5. 제거 된 각 Hyper-v 호스트에서 스크립트를 다음 hello를 실행 합니다. hello 스크립트 hello 서버의 설정을 정리 하 고 hello 자격 증명 모음에서 등록을 취소 합니다.
 
 
         `` pushd .
@@ -101,13 +101,13 @@ VMM에 의해 관리되지 않는 Hyper-V 호스트가 Hyper-V 사이트로 수�
              $isAdmin=$principal.IsInRole($administrators)
              if (!$isAdmin)
              {
-                "Please run the script as an administrator in elevated mode."
+                "Please run hello script as an administrator in elevated mode."
                 $choice = Read-Host
                 return;       
              }
 
             $error.Clear()    
-            "This script will remove the old Azure Site Recovery Provider related properties. Do you want to continue (Y/N) ?"
+            "This script will remove hello old Azure Site Recovery Provider related properties. Do you want toocontinue (Y/N) ?"
             $choice =  Read-Host
 
             if (!($choice -eq 'Y' -or $choice -eq 'y'))
@@ -120,7 +120,7 @@ VMM에 의해 관리되지 않는 Hyper-V 호스트가 Hyper-V 사이트로 수�
             $service = Get-Service -Name $serviceName
             if ($service.Status -eq "Running")
             {
-                "Stopping the Azure Site Recovery service..."
+                "Stopping hello Azure Site Recovery service..."
                 net stop $serviceName
             }
 
@@ -152,12 +152,12 @@ VMM에 의해 관리되지 않는 Hyper-V 호스트가 Hyper-V 사이트로 수�
                 "Registry keys removed."
             }
 
-            # First retrive all the certificates to be deleted
+            # First retrive all hello certificates toobe deleted
             $ASRcerts = Get-ChildItem -Path cert:\localmachine\my | where-object {$_.friendlyname.startswith('ASR_SRSAUTH_CERT_KEY_CONTAINER') -or $_.friendlyname.startswith('ASR_HYPER_V_HOST_CERT_KEY_CONTAINER')}
             # Open a cert store object
             $store = New-Object System.Security.Cryptography.X509Certificates.X509Store("My","LocalMachine")
             $store.Open('ReadWrite')
-            # Delete the certs
+            # Delete hello certs
             "Removing all related certificates"
             foreach ($cert in $ASRcerts)
             {
@@ -176,42 +176,42 @@ VMM에 의해 관리되지 않는 Hyper-V 호스트가 Hyper-V 사이트로 수�
 
 ## <a name="disable-protection-for-a-vmware-vm-or-physical-server"></a>VMware VM 또는 물리적 서버에 대한 보호를 사용 안 함
 
-1. **보호된 항목** > **복제된 항목**을 클릭하고 컴퓨터를 마우스 오른쪽 단추로 클릭한 후 > **삭제**를 클릭합니다.
+1. **보호 된 항목** > **복제 항목**를 마우스 오른쪽 단추로 클릭 hello 컴퓨터 > **삭제**합니다.
 2. **컴퓨터 제거**에서 다음 중 하나를 선택합니다.
-    - **컴퓨터에 대한 보호 사용 안 함(권장)**. 컴퓨터 복제를 중지하려면 이 옵션을 사용합니다. Site Recovery 설정은 자동으로 정리됩니다. 다음 상황에서만 이 옵션이 표시됩니다.
-        - **VM 볼륨을 크기 조정했음** - 볼륨 크기를 조정하면 가상 컴퓨터 상태가 심각해집니다. 이 옵션을 선택하면 Azure의 복구 지점을 유지하는 동시에 보호가 비활성화됩니다. 컴퓨터에 보호를 사용하도록 다시 설정할 경우 크기 조정된 볼륨의 데이터가 Azure로 전송됩니다.
-        - **최근에 장애 조치를 실행했음** - 장애 조치를 실행하여 환경을 테스트한 후 이 옵션을 선택하여 온-프레미스 컴퓨터에서 보호를 다시 시작합니다. 그러면 각각의 가상 컴퓨터가 비활성화되며, 다시 보호를 사용하도록 설정해야 합니다. 이 설정으로 컴퓨터를 비활성화할 경우 Azure의 복제 가상 컴퓨터에 영향을 미치지 않습니다. 컴퓨터에서 모바일 서비스를 제거하지 마세요.
-    - **컴퓨터 관리 중지**. 이 옵션을 선택하면 컴퓨터가 자격 증명 모음에서만 제거됩니다. 컴퓨터에 대한 온-프레미스 보호 설정은 영향을 받지 않습니다. 컴퓨터의 설정을 제거하고 Azure 구독에서 컴퓨터를 제거하려면 이동성 서비스를 제거하여 설정을 제거해야 합니다.
+    - **(권장) hello 컴퓨터에 대 한 보호 사용 안 함**합니다. 이 옵션 toostop hello 컴퓨터에 복제를 사용 합니다. Site Recovery 설정은 자동으로 정리됩니다. 이 옵션의 경우 다음 hello에만 나타납니다.
+        - **Hello VM 볼륨 크기를 조정할**-컴퓨터 위험 상태 전환 되는 볼륨 hello 가상 크기를 조정 합니다. Azure에서 복구 지점을 유지 하는 동안이 옵션 toodisables 보호를 선택 합니다. Hello 컴퓨터에 대 한 보호를 다시 사용 하도록 설정 하면 크기가 조정 hello 볼륨에 대 한 hello 데이터 전송된 tooAzure 됩니다.
+        - **장애 조치를 최근에 실행 한**-장애 조치 tootest 환경을 실행 한 후이 옵션 toostart 온-프레미스 컴퓨터를 다시 보호를 선택 합니다. 각 가상 컴퓨터를 비활성화 한 다음 있습니다 tooenable 보호를 다시 합니다. 이 설정을 사용 하지 않도록 설정 hello 컴퓨터 Azure의 hello 복제 가상 컴퓨터에 영향을 주지 않습니다. Hello 컴퓨터에서 hello 모바일 서비스를 제거 하지 마세요.
+    - **Hello 컴퓨터 관리 중지**합니다. 이 옵션을 선택 하는 경우 hello 컴퓨터만 hello 자격 증명 모음에서 제거 됩니다. Hello 컴퓨터에 대 한 온-프레미스 보호 설정의 영향을 받지 않습니다. hello 컴퓨터와 hello Azure 구독에서에서 tooremove hello 컴퓨터, tooremove 설정이 hello 모바일 서비스를 제거 하 여 tooclean hello 설정이 필요 하면 합니다.
 
 ## <a name="disable-protection-for-a-hyper-v-vm-in-a-vmm-cloud"></a>VMM 클라우드에서 Hyper-V VM에 대한 보호 사용 안 함
 
-1. **보호된 항목** > **복제된 항목**을 클릭하고 컴퓨터를 마우스 오른쪽 단추로 클릭한 후 > **삭제**를 클릭합니다.
+1. **보호 된 항목** > **복제 항목**를 마우스 오른쪽 단추로 클릭 hello 컴퓨터 > **삭제**합니다.
 2. **컴퓨터 제거**에서 다음 중 하나를 선택합니다.
 
-    - **컴퓨터에 대한 보호 사용 안 함(권장)**. 컴퓨터 복제를 중지하려면 이 옵션을 사용합니다. Site Recovery 설정은 자동으로 정리됩니다.
-    - **컴퓨터 관리 중지**. 이 옵션을 선택하면 컴퓨터가 자격 증명 모음에서만 제거됩니다. 컴퓨터에 대한 온-프레미스 보호 설정은 영향을 받지 않습니다. 컴퓨터의 설정을 제거하고 Azure 구독에서 컴퓨터를 제거하려면 아래 명령을 사용하여 설정을 수동으로 제거해야 합니다. 가상 컴퓨터와 해당 하드 디스크를 삭제하도록 선택하면 대상 위치에서 제거됩니다.
+    - **(권장) hello 컴퓨터에 대 한 보호 사용 안 함**합니다. 이 옵션 toostop hello 컴퓨터에 복제를 사용 합니다. Site Recovery 설정은 자동으로 정리됩니다.
+    - **Hello 컴퓨터 관리 중지**합니다. 이 옵션을 선택 하는 경우 hello 컴퓨터만 hello 자격 증명 모음에서 제거 됩니다. Hello 컴퓨터에 대 한 온-프레미스 보호 설정의 영향을 받지 않습니다. hello 컴퓨터와 hello Azure 구독에서에서 tooremove hello 컴퓨터, tooremove 설정이 필요한 tooclean hello 설정을 수동으로 아래 hello 지침을 사용 하 여 합니다. 참고 toodelete hello 가상 컴퓨터와 해당 하드 디스크를 선택한 경우 이러한 것에서 꺼내야 합니다 hello 대상 위치입니다.
 
-### <a name="clean-up-protection-settings---replication-to-a-secondary-vmm-site"></a>보호 설정 정리 - 보조 VMM 사이트로 복제
+### <a name="clean-up-protection-settings---replication-tooa-secondary-vmm-site"></a>복제 tooa 보조 VMM 사이트-보호 설정 정리
 
-**컴퓨터 관리 중지**를 선택했고 보조 사이트로 복제하는 경우 주 서버에서 이 스크립트를 실행하여 주 가상 컴퓨터에 대한 설정을 정리합니다. VMM 콘솔에서 VMM PowerShell 콘솔을 열려면 PowerShell 단추를 클릭합니다. SQLVM1을 가상 컴퓨터의 이름으로 바꿉니다.
+선택한 경우 **hello 컴퓨터 관리 중지** hello 주 가상 컴퓨터에 대 한 hello 설정을 hello 주 서버 tooclean에서이 스크립트 실행 tooa 보조 사이트를 복제 해야 하 고 있습니다. Hello VMM 콘솔에서 hello PowerShell 단추 tooopen hello VMM PowerShell 콘솔을 클릭 합니다. SQLVM1 가상 컴퓨터의 hello 이름으로 대체 합니다.
 
          ``$vm = get-scvirtualmachine -Name "SQLVM1"
          Set-SCVirtualMachine -VM $vm -ClearDRProtection``
-2. 보조 VMM 서버에서 이 스크립트를 실행하여 보조 가상 컴퓨터의 설정을 정리합니다.
+2. Hello 보조 VMM 서버에서이 스크립트 tooclean hello 보조 가상 컴퓨터에 대 한 hello 설정을 실행합니다.
 
         ``$vm = get-scvirtualmachine -Name "SQLVM1"
         Remove-SCVirtualMachine -VM $vm -Force``
-3. 두 번째 VMM 서버에서 Hyper-V 호스트 서버에서 가상 컴퓨터를 새로 고쳐 보조 VM이 VMM 콘솔에서 다시 감지되도록 합니다.
-4. 위의 단계는 VMM 서버에서 복제 설정을 정리합니다. 가상 컴퓨터에 대한 복제를 중지하려면 주 및 보조 VM에서 다음 스크립트를 실행합니다. SQLVM1을 가상 컴퓨터의 이름으로 바꿉니다.
+3. 보조 VMM 서버 hello hello Hyper-v 호스트 서버의 가상 컴퓨터 hello hello 보조 VM 가져옵니다 검색 되도록 다시 hello VMM 콘솔에서 새로 고칩니다.
+4. 단계는 hello hello 복제 설정을 hello VMM 서버에서 문제를 해결 합니다. Hello 가상 컴퓨터를 다음 hello 실행에 대 한 toostop 복제 하려는 경우 스크립트 안녕하세요 기본 및 보조 Vm입니다. SQLVM1 가상 컴퓨터의 hello 이름으로 대체 합니다.
 
         ``Remove-VMReplication –VMName “SQLVM1”``
 
-### <a name="clean-up-protection-settings---replication-to-azure"></a>보호 설정 정리 - Azure로 복제
+### <a name="clean-up-protection-settings---replication-tooazure"></a>보호 설정-복제 tooAzure 정리
 
-1. **컴퓨터 관리 중지**를 선택했고 Azure로 복제하는 경우 VMM 콘솔에서 PowerShell을 사용하여 원본 VMM 서버에서 이 스크립트를 실행합니다.
+1. 선택한 경우 **hello 컴퓨터 관리 중지** tooAzure 복제, hello VMM 콘솔에서 PowerShell을 사용 하 여 hello 원본 VMM 서버에서이 스크립트를 실행 하 고 있습니다.
         ``$vm = get-scvirtualmachine -Name "SQLVM1"
         Set-SCVirtualMachine -VM $vm -ClearDRProtection``
-2. 위의 단계는 VMM 서버에서 복제 설정을 지웁니다. Hyper-V 호스트 서버에서 실행하는 가상 컴퓨터의 복제를 중지하려면 이 스크립트를 실행합니다. SQLVM1을 가상 컴퓨터의 이름으로 바꾸고 host01.contoso.com을 Hyper-V 호스트 서버의 이름으로 바꿉니다.
+2. 단계는 hello hello VMM 서버의 복제 설정을 hello 선택을 취소 합니다. 이 스크립트를 실행 하는 hello Hyper-v 호스트 서버에서 실행 하는 hello 가상 컴퓨터에 대 한 toostop 복제 합니다. SQLVM1 hello Hyper-v 호스트 서버 hello 이름 가진 가상 컴퓨터 및 host01.contoso.com hello 이름을 대체 합니다.
 
         ``$vmName = "SQLVM1"
         $hostName  = "host01.contoso.com"
@@ -222,14 +222,14 @@ VMM에 의해 관리되지 않는 Hyper-V 호스트가 Hyper-V 사이트로 수�
 
 ## <a name="disable-protection-for-a-hyper-v-vm-in-a-hyper-v-site"></a>Hyper-V 사이트에서 Hyper-V VM에 대한 보호 사용 안 함
 
-VMM 서버 없이 Hyper-V VM을 Azure에 복제하는 경우 이 절차를 사용합니다.
+VMM 서버 없이 tooAzure Hyper-v Vm을 복제 하는 경우이 절차를 사용 합니다.
 
-1. **보호된 항목** > **복제된 항목**을 클릭하고 컴퓨터를 마우스 오른쪽 단추로 클릭한 후 > **삭제**를 클릭합니다.
-2. **컴퓨터 제거**에서 다음 옵션을 선택할 수 있습니다.
+1. **보호 된 항목** > **복제 항목**를 마우스 오른쪽 단추로 클릭 hello 컴퓨터 > **삭제**합니다.
+2. **컴퓨터 제거**, hello 다음 옵션을 선택할 수 있습니다.
 
-   - **컴퓨터에 대한 보호 사용 안 함(권장)**. 컴퓨터 복제를 중지하려면 이 옵션을 사용합니다. Site Recovery 설정은 자동으로 정리됩니다.
-   - **컴퓨터 관리 중지**. 이 옵션을 선택하면 컴퓨터가 자격 증명 모음에서만 제거됩니다. 컴퓨터에 대한 온-프레미스 보호 설정은 영향을 받지 않습니다. 컴퓨터의 설정을 제거하고 Azure 구독에서 가상 컴퓨터를 제거하려면 설정을 수동으로 제거해야 합니다. 가상 컴퓨터와 해당 하드 디스크를 삭제하도록 선택하면 대상 위치에서 제거됩니다.
-3. **컴퓨터 관리 중지**를 선택한 경우, 원본 Hyper-V 호스트 서버에서 이 스크립트를 실행하여 가상 컴퓨터에 대한 복제를 제거합니다. SQLVM1을 가상 컴퓨터의 이름으로 바꿉니다.
+   - **(권장) hello 컴퓨터에 대 한 보호 사용 안 함**합니다. 이 옵션 toostop hello 컴퓨터에 복제를 사용 합니다. Site Recovery 설정은 자동으로 정리됩니다.
+   - **Hello 컴퓨터 관리 중지**합니다. 이 옵션을 선택 하는 경우 hello 컴퓨터만 hello 자격 증명 모음에서 제거 됩니다. Hello 컴퓨터에 대 한 온-프레미스 보호 설정의 영향을 받지 않습니다. hello 컴퓨터와 hello Azure 구독에서에서 tooremove hello 가상 컴퓨터, tooremove 설정이 필요한 tooclean hello 설정을 수동으로 합니다. Toodelete hello 가상 컴퓨터와 해당 하드 디스크를 선택 하는 경우 hello 대상 위치에서 제거 됩니다.
+3. 선택한 경우 **hello 컴퓨터 관리 중지**,이 hello 원본 Hyper-v 호스트 서버에서 스크립트, tooremove hello 가상 컴퓨터 복제를 실행 합니다. SQLVM1 가상 컴퓨터의 hello 이름으로 대체 합니다.
 
         $vmName = "SQLVM1"
         $vm = Get-WmiObject -Namespace "root\virtualization\v2" -Query "Select * From Msvm_ComputerSystem Where ElementName = '$vmName'"

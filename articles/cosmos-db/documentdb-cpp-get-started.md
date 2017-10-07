@@ -1,5 +1,5 @@
 ---
-title: "Azure Cosmos DB에 대한 C++ 자습서 | Microsoft Docs"
+title: "Azure Cosmos DB에 대 한 aaaC + + 자습서 | Microsoft Docs"
 description: "C++용 Azure Cosmos DB 인증 SDK를 사용하여 C++ 데이터베이스 및 콘솔 응용 프로그램을 만드는 C++ 자습서입니다. Azure Cosmos DB는 전 세계적인 규모의 데이터베이스 서비스입니다."
 services: cosmos-db
 documentationcenter: cpp
@@ -14,13 +14,13 @@ ms.devlang: cpp
 ms.topic: article
 ms.date: 12/25/2016
 ms.author: aasthan
-ms.openlocfilehash: 7d8de973765830ccd7983182bc1bb19b1e01e505
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d5eeff349b7753e39936b7eb77557ad30c5830a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-c-console-application-tutorial-for-the-documentdb-api"></a>Azure Cosmos DB: DocumentDB API에 대한 C++ 콘솔 응용 프로그램 자습서
+# <a name="azure-cosmos-db-c-console-application-tutorial-for-hello-documentdb-api"></a>DocumentDB API hello에 대 한 azure Cosmos DB: c + + 콘솔 응용 프로그램 자습서
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -32,61 +32,61 @@ ms.lasthandoff: 07/11/2017
 > 
  
 
-C++용 Azure Cosmos DB DocumentDB API 인증 SDK에 대한 C++ 자습서를 시작합니다. 이 자습서를 따라 하면 C++ 데이터베이스를 포함하여 Azure Cosmos DB 리소스를 만들고 쿼리하는 콘솔 응용 프로그램이 만들어집니다.
+C + +에 대 한 SDK를 지지 하는 hello Azure Cosmos DB DocumentDB API에 대 한 c + + 자습서 toohello를 시작! 이 자습서를 따라 하면 C++ 데이터베이스를 포함하여 Azure Cosmos DB 리소스를 만들고 쿼리하는 콘솔 응용 프로그램이 만들어집니다.
 
 다음에 대해 설명합니다.
 
-* Azure Cosmos DB 계정 만들기 및 연결
+* 만들기 및 tooan Azure Cosmos DB 계정 연결
 * 응용 프로그램 설정
 * C++ Azure Cosmos DB 데이터베이스 만들기
 * 컬렉션 만들기
 * JSON 문서 만들기
-* 컬렉션 쿼리
+* Hello 컬렉션 쿼리
 * 문서 바꾸기
 * 문서 삭제
-* C++ Azure Cosmos DB 데이터베이스 삭제
+* Hello c + + Azure Cosmos DB 데이터베이스 삭제
 
-시간이 없으십니까? 염려하지 마십시오. [GitHub](https://github.com/stalker314314/DocumentDBCpp)에서 전체 솔루션을 사용할 수 있습니다. 빠른 지침은 [전체 솔루션 다운로드](#GetSolution) 를 참조하세요.
+시간이 없으십니까? 염려하지 마십시오. hello 완벽 한 솔루션에 있는 [GitHub](https://github.com/stalker314314/DocumentDBCpp)합니다. 참조 [hello 완벽 한 솔루션을 가져올](#GetSolution) 빠른 지침에 대 한 합니다.
 
-C++ 자습서를 완료한 후에 이 페이지의 아래쪽에 있는 응답 단추를 통해 의견을 보내주세요. 
+Hello c + + 자습서를 완료 한 후 하십시오 사용 하 여 hello 투표 하는 단추 hello 페이지 toogive이 맨 아래에 us 피드백. 
 
-직접 연락을 받고 싶은 경우 코멘트에 메일 주소를 적거나 [여기에 알려주세요](https://www.research.net/r/8BKRJ3Z). 
+받을지 경우 toocontact를 직접 생각 될 전자 메일 주소 가능한 tooinclude 메모에 또는 [toous 여기 교류할](https://www.research.net/r/8BKRJ3Z)합니다. 
 
 이제 시작하겠습니다.
 
-## <a name="prerequisites-for-the-c-tutorial"></a>C++ 자습서의 필수 구성 요소
-다음 항목이 있는지 확인합니다.
+## <a name="prerequisites-for-hello-c-tutorial"></a>Hello c + + 자습서에 대 한 필수 구성 요소
+Hello 다음 항목이 있는지 확인 하십시오.
 
 * 활성 Azure 계정. 아직 구독하지 않은 경우 [Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.
-* C++ 언어 구성 요소가 설치된 [Visual Studio](https://www.visualstudio.com/downloads/)입니다.
+* [Visual Studio](https://www.visualstudio.com/downloads/), hello c + + 언어 구성 요소가 설치 된 합니다.
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>1단계: Azure Cosmos DB 계정 만들기
-Azure Cosmos DB 계정을 만들어 보겠습니다. 계정이 이미 있는 경우 [C++ 응용 프로그램 설치](#SetupNode)로 건너뛸 수 있습니다.
+Azure Cosmos DB 계정을 만들어 보겠습니다. Toouse 원하는 계정을 이미 있는 경우 건너뛰어도 너무[c + + 응용 프로그램 설치](#SetupNode)합니다.
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 ## <a id="SetupC++"></a>2단계: C++ 응용 프로그램 설정
-1. Visual Studio를 열고 **파일** 메뉴에서 **새로 만들기**를 클릭한 다음 **프로젝트**를 클릭합니다. 
-2. **새 프로젝트** 창의 **설치됨** 창에서 **Visual C++**를 확장하고 **Win32**, **Win32 콘솔 응용 프로그램**을 차례로 클릭합니다. 프로젝트 이름을 hellodocumentdb로 지정한 다음 **확인**을 클릭합니다. 
+1. Visual Studio를 열고 hello에서 **파일** 메뉴를 클릭 **새로**, 클릭 하 고 **프로젝트**합니다. 
+2. Hello에 **새 프로젝트** 창의 hello **설치 됨** 창 확장 **Visual c + +**, 클릭 **Win32**, 클릭 하 고  **Win32 콘솔 응용 프로그램**합니다. Hello 프로젝트 hellodocumentdb 이름을 지정 하 고 클릭 **확인**합니다. 
    
-    ![새 프로젝트 마법사의 스크린샷](media/documentdb-cpp-get-started/hello.png)
-3. Win32 응용 프로그램 마법사가 시작되면 **마침**을 클릭합니다.
-4. 프로젝트를 만들면 **솔루션 탐색기**에서 **hellodocumentdb** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **NuGet 패키지 관리**를 클릭하여 NuGet 패키지 관리자를 엽니다. 
+    ![Hello 새 프로젝트 마법사의 스크린 샷](media/documentdb-cpp-get-started/hello.png)
+3. Hello Win32 응용 프로그램 마법사가 시작 되 면 클릭 **마침**합니다.
+4. Hello 프로젝트를 만든 후 hello를 마우스 오른쪽 단추로 클릭 하 여 hello NuGet 패키지 관리자를 열고 **hellodocumentdb** 프로젝트에서 **솔루션 탐색기** 클릭 하 고 **NuGet패키지관리**. 
    
-    ![프로젝트 메뉴에서 NuGet 패키지 관리를 보여 주는 스크린샷](media/documentdb-cpp-get-started/nuget.png)
-5. **NuGet: hellodocumentdb** 탭에서 **찾아보기**를 클릭한 다음 *documentdbcpp*를 검색합니다. 결과에서 다음 스크린샷에 표시된 것처럼 DocumentDbCPP를 선택합니다. 이 패키지에서는 DocumentDbCPP에 대한 종속성이 있는 C++ REST SDK에 대한 참조를 설치합니다.  
+    ![Hello 프로젝트 메뉴에서 NuGet 패키지 관리를 보여 주는 스크린샷](media/documentdb-cpp-get-started/nuget.png)
+5. Hello에 **NuGet: hellodocumentdb** 탭을 클릭 **찾아보기**, 검색할 *documentdbcpp*합니다. Hello 결과에 스크린 샷 다음 hello와 같이 DocumentDbCPP을 선택 합니다. 이 패키지 설치 참조 tooC + + REST SDK DocumentDbCPP hello에 대 한 종속성 합니다.  
    
-    ![DocumentDbCpp 패키지를 강조 표시하는 스크린샷](media/documentdb-cpp-get-started/cpp.png)
+    ![강조 표시 된 hello DocumentDbCpp 패키지를 보여 주는 스크린샷](media/documentdb-cpp-get-started/cpp.png)
    
-    패키지가 프로젝트에 추가되면 코드 작성을 시작하는 설정이 완료됩니다.   
+    Hello 패키지 tooyour 프로젝트를 추가한 후 모든 집합 toostart 코드를 작성 하는입니다.   
 
 ## <a id="Config"></a>3단계: Azure Cosmos DB 데이터베이스에 대한 Azure Portal의 연결 세부 정보 복사
-[Azure Portal](https://portal.azure.com)을 불러와서, 만든 Azure Cosmos DB 데이터베이스 계정에 트래버스합니다. 다음 단계에서는 C++ 코드 조각에서 연결을 설정하기 위해 Azure Portal의 URI 및 기본 키가 필요합니다. 
+(를) 실행 [Azure 포털](https://portal.azure.com) 만든 toohello Azure Cosmos DB 데이터베이스 계정을 이동 합니다. C + + 코드 조각의 우리의 hello URI 및 hello 다음 단계 tooestablish 연결에서에서 Azure 포털에서 기본 키 hello 필요 합니다. 
 
-![Azure Portal에서 Azure Cosmos DB URI 및 키](media/documentdb-cpp-get-started/nosql-tutorial-keys.png)
+![Azure Cosmos DB URI 및 키 hello Azure 포털에](media/documentdb-cpp-get-started/nosql-tutorial-keys.png)
 
-## <a id="Connect"></a>4단계: Azure Cosmos DB 계정에 연결
-1. `#include "stdafx.h"` 뒤의 소스 코드에 다음 헤더 및 네임스페이스를 추가합니다.
+## <a id="Connect"></a>4 단계: tooan Cosmos DB Azure 계정을 연결 하세요.
+1. 추가 후 헤더 및 네임 스페이스 tooyour 소스 코드를 다음 hello `#include "stdafx.h"`합니다.
    
         #include <cpprest/json.h>
         #include <documentdbcpp\DocumentClient.h>
@@ -96,17 +96,17 @@ Azure Cosmos DB 계정을 만들어 보겠습니다. 계정이 이미 있는 경
         using namespace documentdb;
         using namespace std;
         using namespace web::json;
-2. 그런 다음 main 함수에 다음 코드를 추가하고 계정 구성 및 기본 키를 바꾸어 3단계의 Azure Cosmos DB 설정과 일치시킵니다. 
+2. 다음 추가 hello 다음 tooyour main 함수를 코드로 바꾸고 hello 계정 구성 및 기본 키 toomatch 3 단계에서 Azure Cosmos DB 설정을 대체 합니다. 
    
         DocumentDBConfiguration conf (L"<account_configuration_uri>", L"<primary_key>");
         DocumentClient client (conf);
    
-    documentdb 계정을 시작하는 코드가 있다면 Azure Cosmos DB 리소스와 함께 작동하는지 살펴보겠습니다.
+    Hello 코드 tooinitialize hello documentdb 클라이언트를가지고 살펴보겠습니다는 Azure Cosmos DB 리소스를 사용 합니다.
 
 ## <a id="CreateDBColl"></a>5단계: C++ 데이터베이스 및 컬렉션 만들기
-이 단계를 수행하기 전에 Azure Cosmos DB를 처음 접하는 경우 데이터베이스, 컬렉션 및 문서가 상호 작용하는 방법을 살펴보겠습니다. [데이터베이스](documentdb-resources.md#databases)는 여러 컬렉션으로 분할된 문서 저장소의 논리적 컨테이너입니다. [컬렉션](documentdb-resources.md#collections)은 JSON 문서 및 관련 JavaScript 응용 프로그램 논리의 컨테이너입니다. [Azure Cosmos DB 계층적 리소스 모델 및 개념](documentdb-resources.md)에서 Azure Cosmos DB 계층적 리소스 모델 및 개념에 대해 자세히 알아볼 수 있습니다.
+이 단계를 수행 하기 전에 새 tooAzure Cosmos DB 인 경우에 데이터베이스, 컬렉션 및 문서 상호 작용 하는 방법을 살펴보겠습니다. [데이터베이스](documentdb-resources.md#databases)는 여러 컬렉션으로 분할된 문서 저장소의 논리적 컨테이너입니다. A [컬렉션](documentdb-resources.md#collections) 는 JSON 문서의 컨테이너 및 hello 관련 JavaScript 응용 프로그램 논리입니다. Hello Azure Cosmos DB 계층적 리소스 모델 및 개념에 대 한 자세한 정보 학습할 수 있는 [Azure Cosmos DB 계층적 리소스 모델 및 개념](documentdb-resources.md)합니다.
 
-데이터베이스와 해당 컬렉션을 만들려면 main 함수 끝에 다음 코드를 추가합니다. 이전 단계에서 선언한 클라이언트 구성을 사용하여 'FamilyRegistry'라는 데이터베이스 및 'FamilyCollection'라는 컬렉션을 만듭니다.
+toocreate 데이터베이스 및 해당 컬렉션 hello 코드 toohello의 끝 다음 main 함수를 추가 합니다. 'FamilyRegistry' 및 'FamilyCollection' hello 이전 단계에서 선언 된 hello 클라이언트 구성을 사용 하 여 라는 컬렉션 라는 데이터베이스를 만듭니다.
 
     try {
       shared_ptr<Database> db = client.CreateDatabase(L"FamilyRegistry");
@@ -117,7 +117,7 @@ Azure Cosmos DB 계정을 만들어 보겠습니다. 계정이 이미 있는 경
 
 
 ## <a id="CreateDoc"></a>6단계: 문서 만들기
-[문서](documentdb-resources.md#documents)는 사용자 정의(임의) JSON 콘텐츠입니다. 이제 Azure Cosmos DB에 문서를 삽입할 수 있습니다. main 함수의 끝에 다음 코드를 복사하여 문서를 만들 수 있습니다. 
+[문서](documentdb-resources.md#documents)는 사용자 정의(임의) JSON 콘텐츠입니다. 이제 Azure Cosmos DB에 문서를 삽입할 수 있습니다. Hello hello main 함수 hello 끝에 코드를 다음 복사 하 여 문서를 만들 수 있습니다. 
 
     try {
       value document_family;
@@ -134,14 +134,14 @@ Azure Cosmos DB 계정을 만들어 보겠습니다. 계정이 이미 있는 경
       wcout << ex.message();
     }
 
-요약하자면 이 코드는 Azure Portal의 문서 탐색기에서 쿼리할 수 있는 Azure Cosmos DB 데이터베이스, 컬렉션 및 문서를 만듭니다. 
+toosummarize,이 코드는 Azure Cosmos DB 데이터베이스, 컬렉션 및 Azure 포털의 문서 탐색기에서 쿼리할 수 있는 문서를 만듭니다. 
 
-![C++ 자습서 - 계정, 데이터베이스, 컬렉션 및 문서 간의 계층 관계를 보여 주는 다이어그램](media/documentdb-cpp-get-started/docs.png)
+![C + + 자습서-hello hello 계정과 hello 데이터베이스, hello 컬렉션 hello 문서 간의 계층 관계를 보여 주는 다이어그램](media/documentdb-cpp-get-started/docs.png)
 
 ## <a id="QueryDB"></a>7단계: Azure Cosmos DB 리소스 쿼리
-Azure Cosmos DB는 각 컬렉션에 저장된 JSON 문서에 대해 [다양한 쿼리](documentdb-sql-query.md)를 지원합니다. 다음 샘플 코드는 SQL 구문을 사용해서 만든 다양한 쿼리를 보여 줍니다. 이러한 쿼리는 이전 단계에서 만든 문서에 대해 실행할 수 있습니다.
+Azure Cosmos DB는 각 컬렉션에 저장된 JSON 문서에 대해 [다양한 쿼리](documentdb-sql-query.md)를 지원합니다. hello 다음 샘플 코드에서는 hello 이전 단계에서 만든으로 hello 문서에 대해 실행할 수 있는 SQL 구문을 사용 하 여 수행 되는 쿼리
 
-함수는 문서 클라이언트와 함께 데이터베이스 및 컬렉션에 대한 고유한 식별자 또는 리소스 ID를 인수로 사용합니다. main 함수 앞에 이 코드를 추가합니다.
+hello 함수 인수 hello 고유 식별자 또는 hello 데이터베이스와 함께 hello 문서 클라이언트 hello 컬렉션에 대 한 리소스 id에 됩니다. main 함수 앞에 이 코드를 추가합니다.
 
     void executesimplequery(const DocumentClient &client,
                             const wstring dbresourceid,
@@ -170,7 +170,7 @@ Azure Cosmos DB는 각 컬렉션에 저장된 JSON 문서에 대해 [다양한 �
     }
 
 ## <a id="Replace"></a>8단계: 문서 바꾸기
-Azure Cosmos DB는 다음 코드에서와 같이 JSON 문서를 바꾸도록 지원합니다. executesimplequery 함수 뒤에 이 코드를 추가합니다.
+Azure Cosmos DB hello 코드 다음에 표시 된 대로 교체 JSON 문서를 지원 합니다. Hello executesimplequery 함수 뒤에이 코드를 추가 합니다.
 
     void replacedocument(const DocumentClient &client, const wstring dbresourceid,
                          const wstring collresourceid,
@@ -190,7 +190,7 @@ Azure Cosmos DB는 다음 코드에서와 같이 JSON 문서를 바꾸도록 지
     }
 
 ## <a id="Delete"></a>9단계: 문서 삭제
-Azure Cosmos DB는 JSON 문서를 삭제하도록 지원합니다. replacedocument 함수 뒤에 다음 코드를 복사하고 붙여 넣는 방법으로 수행할 수 있습니다. 
+Azure Cosmos DB JSON 문서 삭제를 지원 하면 복사 및 붙여넣기 hello hello replacedocument 함수 뒤에 코드를 다음으로 합니다. 
 
     void deletedocument(const DocumentClient &client, const wstring dbresourceid,
                         const wstring collresourceid, const wstring docresourceid) {
@@ -205,9 +205,9 @@ Azure Cosmos DB는 JSON 문서를 삭제하도록 지원합니다. replacedocume
     }
 
 ## <a id="DeleteDB"></a>10단계: 데이터베이스 삭제
-만든 데이터베이스를 삭제하면 데이터베이스와 모든 자식 리소스(컬렉션, 문서 등)가 제거됩니다.
+삭제 만든 hello 데이터베이스 hello 데이터베이스와 모든 자식 리소스 (컬렉션, 문서 등)를 제거합니다.
 
-deletedocument 함수 뒤에 다음 코드 조각(함수 정리)을 복사하고 붙여넣어서 데이터베이스와 모든 하위 리소스를 제거합니다.
+복사한 후 hello deletedocument 함수 tooremove hello 데이터베이스와 모든 hello 자식 리소스 코드 조각 (함수 정리)를 수행 하는 hello를 붙여 넣습니다.
 
     void deletedb(const DocumentClient &client, const wstring dbresourceid) {
       try {
@@ -218,9 +218,9 @@ deletedocument 함수 뒤에 다음 코드 조각(함수 정리)을 복사하고
     }
 
 ## <a id="Run"></a>11단계: C# 응용 프로그램 모두 함께 실행
-이제 다른 Azure Cosmos DB 리소스를 만들기, 쿼리, 수정 및 삭제하는 코드를 추가했습니다.  이제 몇몇 진단 메시지와 함께 hellodocumentdb.cpp에서 main 함수의 이러한 다양한 기능에 대한 호출을 추가하여 마무리합니다.
+म 코드 toocreate 이제 추가한 쿼리, 수정 하 고 다른 Azure Cosmos DB 리소스를 삭제 합니다.  주세요 이제이를 연결 hellodocumentdb.cpp 일부 진단 메시지와 함께에서 주 함수에서 호출 toothese 다양 한 기능을 추가 하 여 합니다.
 
-다음 코드로 응용 프로그램의 main 함수를 대체하여 수행할 수 있습니다. 3단계에서 코드에 복사한 account_configuration_uri 및 primary_key를 덮어 쓰기 때문에 해당 줄을 저장하거나 포털에서의 값을 다시 복사합니다. 
+응용 프로그램의 main 함수 hello 코드 다음 hello로 대체 하 여 그렇게 할 수 있습니다. 이 쓰기 hello account_configuration_uri 및 primary_key 3 단계에서에서 hello 코드에 복사 하므로에서 해당 줄 또는 복사 된 hello 값 다시 저장 hello 포털에서 합니다. 
 
     int main() {
         try {
@@ -269,24 +269,24 @@ deletedocument 함수 뒤에 다음 코드 조각(함수 정리)을 복사하고
         cin.get();
     }
 
-이제 Visual Studio에서 F5 키를 누르거나 터미널 창에서 응용 프로그램을 찾고 실행 파일을 실행하여 코드를 빌드하고 실행할 수 있게 됩니다. 
+해야 이제 수 toobuild 수와 Visual Studio에서 f5 키를 눌러 코드를 실행할 또는 또는 hello 응용 프로그램을 찾아 실행 하 여 hello 터미널 창에서 실행를 hello 합니다. 
 
-시작한 앱의 출력이 표시됩니다. 축력은 다음 스크린샷과 일치해야 합니다.
+Get 시작된 응용 프로그램의 hello 출력을 표시 되어야 합니다. hello 출력 스크린 샷 다음 hello를 일치 해야 합니다.
 
 ![Azure Cosmos DB C++ 응용 프로그램 출력](media/documentdb-cpp-get-started/console.png)
 
-축하합니다. C++ 자습서를 완료했으며 첫 번째 Azure Cosmos DB 콘솔 응용 프로그램이 있습니다.
+축하합니다. 첫 번째 Azure Cosmos DB 콘솔 응용 프로그램 있고 hello c + + 자습서!
 
-## <a id="GetSolution"></a> 전체 C++ 자습서 솔루션 가져오기
-이 문서의 모든 샘플을 포함하는 GetStarted 솔루션을 빌드하려면 다음이 필요합니다.
+## <a id="GetSolution"></a>Hello 전체 c + + 자습서 솔루션 가져오기
+이 문서에서 모든 hello 예제가 포함 된 toobuild hello GetStarted 솔루션 hello 다음이 필요 합니다.
 
 * [Azure Cosmos DB 계정][create-account].
-* GitHub에서 제공하는 [GetStarted](https://github.com/stalker314314/DocumentDBCpp) 솔루션
+* hello [GetStarted](https://github.com/stalker314314/DocumentDBCpp) 솔루션 GitHub에서 사용할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* [Azure Cosmos DB 계정 모니터링](monitor-accounts.md) 방법에 대해 알아보세요.
-* [쿼리 실습](https://www.documentdb.com/sql/demo)의 샘플 데이터 집합에 대해 쿼리를 실행합니다.
-* [Azure Cosmos DB 설명서](https://azure.microsoft.com/documentation/services/documentdb/) 페이지의 개발 섹션에서 프로그래밍 모델에 대해 자세히 알아봅니다.
+* 너무 방법에 대해 알아봅니다[Azure Cosmos DB 계정을 모니터링](monitor-accounts.md)합니다.
+* Hello에 우리의 샘플 데이터 집합에 대해 쿼리 실행 [Query Playground](https://www.documentdb.com/sql/demo)합니다.
+* Hello hello의 개발 섹션에서에서 hello 프로그래밍 모델에 대 한 자세한 [Azure Cosmos DB 설명서 페이지](https://azure.microsoft.com/documentation/services/documentdb/)합니다.
 
 [create-account]: create-documentdb-dotnet.md#create-account
 

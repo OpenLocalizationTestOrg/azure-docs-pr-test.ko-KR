@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Bus 메시지 개요 | Microsoft Docs"
+title: "aaaAzure 서비스 버스 메시징 개요 | Microsoft Docs"
 description: "Service Bus 메시지 및 Azure Relay에 대한 설명"
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,42 +14,42 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.date: 05/25/2017
 ms.author: sethm
-ms.openlocfilehash: 3a4382979dd6e18c0e94b4a989bb8289882eeb89
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ede2904e11544d8f9428a2d657dcc77dacd95ac4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="service-bus-messaging-flexible-data-delivery-in-the-cloud"></a>서비스 버스 메시징: 클라우드에서 유연한 데이터 배달
-Microsoft Azure Service Bus는 안정적인 정보 배달 서비스로, 보다 손쉬운 통신을 위해 제공됩니다. 둘 이상의 당사자가 정보를 교환하려면 통신 촉진자가 필요합니다. Service Bus는 조정된 또는 타사 통신 메커니즘으로, 실제 세상에서의 우편 서비스와 비슷합니다. 우편 서비스를 사용하면 원하는 배달 보장 수준을 선택하여 다양한 종류의 서신과 소포를 전 세계 어디로나 매우 쉽게 보낼 수 있습니다.
+# <a name="service-bus-messaging-flexible-data-delivery-in-hello-cloud"></a>서비스 버스 메시징: hello 클라우드의 유연한 데이터 배달
+Microsoft Azure Service Bus는 안정적인 정보 배달 서비스로, 이 서비스의 hello 목적은 toomake 통신을 보다 쉽게을 것입니다. 둘 이상의 파티 tooexchange 정보 시기 통신 촉진을 해야 합니다. Service Bus는 조정된 또는 타사 통신 메커니즘으로, Hello 실제 세계의 유사한 tooa 우편 서비스입니다. 우편 서비스를 통해 매우 쉽게 toosend 서로 다른 문자 및 다양 한 배달 보증을 사용 하 여 패키지의 아무 곳 이나의 hello world.
 
-이처럼 편지를 배달하는 우편 서비스와 마찬가지로 Service Bus는 보낸 사람과 받는 사람이 모두 정보를 유동적으로 배달할 수 있도록 합니다. 메시징 서비스를 사용하면 두 당사자가 동시에 온라인 상태가 아니거나 정확히 동일한 시간에 대화가 가능하지 않더라도 정보를 배달할 수 있습니다. 위에서 설명한 것처럼 이러한 메시징 방식은 편지를 보내는 것과 비슷한 반면 조정되지 않은 통신은 기존의 전화를 거는 것(또는 조정된 메시징과 훨씬 비슷한, 통화 대기 및 발신자 번호 기능이 있기 전의 예전 전화 걸기 방식)과 비슷합니다.
+문자, 서비스 버스를 제공 하는 비슷한 toohello 우편 서비스는 hello 보낸 사람 및 받는 사람 hello 모두에서 유연한 정보 배달 합니다. 메시징 서비스는 hello 하면 hello 정보 hello 두 당사자는 모두 온라인 시간, 같거나 hello에 사용할 수 없는 경우 정확한 동일 hello에 경우에 배달는 시간입니다. 이러한 방식으로 메시징는 비슷한 toosending는 문자, 조정 된 비 통신은 비슷한 tooplacing 전화 통화 (또는 전화 통화 전에 조정 된 메시징 같은 보다 훨씬 호출 대기 및 발신자 ID toobe-를 사용 하는 방법).
 
-메시지 보낸 사람은 트랜잭션, 중복 항목 검색, 시간 기반 만료, 일괄 처리 등의 여러 배달 특성을 필수 옵션으로 지정할 수도 있습니다. 이러한 패턴 역시 우편 서비스의 반복 배달, 서명 요청, 주소 변경, 회수 등과 비슷합니다.
+hello 메시지 보낸 사람에 게 배달 특징 트랜잭션, 중복 검색, 시간 기반 만료를 포함 하 여 오케스트레이션 및 일괄 처리의 다양 한이 필요할 수도 있습니다. 이러한 패턴 역시 우편 서비스의 반복 배달, 서명 요청, 주소 변경, 회수 등과 비슷합니다.
 
 Service Bus는 *Azure Relay*와 *Service Bus 메시지*의 두 가지 메시지 패턴을 지원합니다.
 
 ## <a name="azure-relay"></a>Azure Relay
-Azure Relay의 [WCF 릴레이](../service-bus-relay/relay-what-is-it.md) 구성 요소는 다양한 전송 프로토콜 및 웹 서비스 표준을 지원하는 중앙 집중식(이지만 부하가 잘 분산된) 서비스입니다. 여기에는 SOAP, WS-* 및 REST가 포함됩니다. [릴레이 서비스](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md)는 다양한 릴레이 연결 옵션을 제공하며 가능한 경우 직접 피어 간 연결을 협상하는 데 도움이 될 수 있습니다. 서비스 버스는 성능 및 유용성 둘 다에서 WCF(Windows Communication Foundation)를 사용하는 .NET 개발자에게 최적화되어 있으며 SOAP 및 REST 인터페이스를 통해 릴레이 서비스에 대한 모든 권한을 제공합니다. 이로 인해 모든 SOAP 또는 REST 프로그래밍 환경을 서비스 버스와 통합할 수 있습니다.
+hello [WCF 릴레이](../service-bus-relay/relay-what-is-it.md) Azure 릴레이의 구성 요소는 다양 한 전송 프로토콜을 지원 하는 중앙 집중식 (하지만 부하 분산이 뛰어난) 서비스 및 웹 서비스 표준입니다. 여기에는 SOAP, WS-* 및 REST가 포함됩니다. hello [릴레이 서비스](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md) 다양 한 여러 릴레이 연결 옵션을 제공 하 고 가능한 경우 직접 피어-투-피어 연결을 협상 하는 데 도움이 됩니다. 서비스 버스는 hello WCF Windows Communication Foundation (), 큰지에 tooperformance 및 유용성을 모두 사용 하는.NET 개발자 용으로 최적화 하 고 모든 권한 tooits SOAP 및 REST 인터페이스를 통해 릴레이 서비스를 제공 합니다. 이렇게 하면 모든 SOAP 또는 REST 서비스 버스를 통해 환경 toointegrate 프로그래밍 가능 합니다.
 
-릴레이 서비스는 기존의 단방향 메시징, 요청/응답 메시징 및 피어투피어 메시징을 지원합니다. 또한 인터넷 범위에서 이벤트 배포를 지원하여 향상된 지점 간 효율성을 위한 양방향 소켓 통신과 게시-구독 시나리오를 가능하게 합니다. 릴레이된 메시징 패턴에서는 온-프레미스 서비스가 아웃바운드 포트를 통해 릴레이 서비스에 연결하고 특정 랑데부 주소와 연결된 통신에 사용할 양방향 소켓을 만듭니다. 그러면 클라이언트는 랑데부 주소를 대상으로 하는 릴레이 서비스에 메시지를 전송하여 온-프레미스 서비스와 통신할 수 있습니다. 그 후 릴레이 서비스는 이미 존재하는 양방향 소켓을 통해 온-프레미스 서비스에 메시지를 “릴레이”합니다. 클라이언트는 온-프레미스 서비스에 대한 직접 연결이 필요 없고 서비스가 상주하는 위치를 알 필요도 없으며, 온-프레미스 서비스는 방화벽에 인바운드 포트가 열려 있지 않아도 됩니다.
+hello 릴레이 서비스는 일반적인 단방향 메시징, 요청/응답 메시징 및 피어 투 피어 메시징을 지원 합니다. 이벤트 배포도 지원는 인터넷 범위의 tooenable 게시-구독 시나리오 및 분산과 지점 간 효율성에 대 한 양방향 소켓 통신 합니다. Hello 릴레이 된 메시징 패턴에서는 온-프레미스 서비스 toohello 릴레이 서비스는 아웃 바운드 포트를 통해 연결 하 고 연결 된 통신 tooa 특정 랑 데 부 주소에 대 한 양방향 소켓을 만듭니다. 클라이언트 hello 다음 toohello 릴레이 서비스 hello 랑 데 부 주소를 대상으로 메시지를 전송 하 여 hello 온-프레미스 서비스와 통신할 수 있습니다. hello 릴레이 서비스는 다음 "릴레이" 이미 있는 hello 양방향 소켓을 통해 메시지 toohello 온-프레미스 서비스입니다. hello 클라이언트 toohello 온-프레미스 서비스에 직접 연결 하지 않아도 없거나 이러한 속성이 필요한 it tooknow hello 서비스가 상주 하 고 hello 온-프레미스 서비스는 인바운드 포트가 필요 있는 hello 방화벽에서 열려 있습니다.
 
-WCF "릴레이" 바인딩 모음을 사용하여 온-프레미스 서비스와 릴레이 서비스 사이의 연결을 시작합니다. 내부적으로, 릴레이 바인딩은 클라우드에서 서비스 버스와 통합하는 WCF 채널 구성 요소를 생성하도록 설계된 전송 바인딩 요소에 매핑합니다.
+WCF "릴레이" 바인딩 집합을 사용 하 여 온-프레미스 서비스와 hello 릴레이 서비스 간의 hello 연결을 시작 합니다. Hello 백그라운드 hello 릴레이 바인딩은 tootransport 바인딩 요소 설계 toocreate WCF 채널 구성 요소 매핑 hello 클라우드의 서비스 버스와 통합 하는 합니다.
 
-WCF Relay는 다양한 이점을 제공하지만 메시지를 보내고 받기 위해 서버와 클라이언트가 동시에 온라인 상태여야 합니다. 이는 일반적으로 요청의 수명이 짧은 HTTP 스타일 통신이나 브라우저, 모바일 응용 프로그램 등과 같이 가끔씩만 연결하는 클라이언트에는 적합하지 않습니다. 조정된 메시징은 분리된 통신을 지원하며, 클라이언트와 서버가 필요할 때 연결하고 비동기 방식으로 작업을 수행할 수 있는 고유한 이점이 있습니다.
+WCF 릴레이 다양 한 이점을 제공 하지만 필요 hello 서버 및 클라이언트 tooboth hello 동일한 순서 toosend 시간 메시지를 주고받을 온라인 상태 여야 합니다. HTTP 스타일 통신의 경우에 hello 요청 수 있습니다 일반적으로 수명이 긴 또는 모바일 응용 프로그램, 브라우저 등 가끔씩만 연결 하는 클라이언트에 대 한 최적의 아닙니다. 조정된 메시징은 분리된 통신을 지원하며, 클라이언트와 서버가 필요할 때 연결하고 비동기 방식으로 작업을 수행할 수 있는 고유한 이점이 있습니다.
 
 ## <a name="brokered-messaging"></a>조정된 메시징
-릴레이 스키마와 반대로, Service Bus 메시지 또는 [조정된 메시징](service-bus-queues-topics-subscriptions.md)은 비동기 또는 "일시적 분리"로 생각할 수 있습니다. 생산자(발신자)와 소비자(수신자)가 동시에 온라인 상태가 아니어도 됩니다. 소비하는 쪽에서 메시지를 수신할 준비가 될 때까지 메시징 인프라가 메시지를 "브로커"(예: 큐)에 안정적으로 저장합니다. 따라서 전체 시스템에 영향을 주지 않고 자발적으로(예: 유지 관리의 경우) 또는 구성 요소 크래시로 인해 분산 응용 프로그램 구성 요소의 연결을 끊을 수 있습니다. 또한 업무 종료 시에만 실행해야 하는 재고 관리 시스템과 같이 수신 응용 프로그램이 하루 중 특정 시간에만 온라인 상태여야 하는 경우도 있습니다.
+Toohello 체계, 메시징, 서비스 버스 릴레이 하는 반면 또는 [조정 된 메시징](service-bus-queues-topics-subscriptions.md) "분리 시간적." 또는 비동기으로 생각할 수 있습니다 생산자 (보낸 사람)와 소비자 (받는 사람) toobe 온라인에 없는 hello 동시 합니다. hello 메시징 인프라를 안정적으로 저장 "브로커"에 있는 메시지 (예: 큐) hello 사용 중인 파티가 tooreceive 준비 될 때까지 해당 합니다. 이렇게 하면 연결이 해제 하거나 자발적으로; hello 분산 응용 프로그램 toobe의 hello 구성 요소 예를 들어, 유지 관리를 위해 또는 hello 전체 시스템 영향을 주지 않고 tooa 구성 요소 크래시 등 때문입니다. 또한 hello 수신 응용 프로그램은만 필요한 toorun에 있는 hello hello 업무 종료는 재고 관리 시스템 등 hello 하루 중 특정 시간 동안 toocome 온라인 하나만 될 수 있습니다.
 
-Service Bus 조정된 메시징 인프라의 핵심 구성 요소는 큐, 토픽 및 구독입니다.  두 엔터티의 가장 큰 차이점은, 토픽의 경우 여러 받는 사람에게 보내는 기능을 비롯하여 복잡한 콘텐츠 기반 라우팅 및 배달 논리에 사용할 수 있는 게시/구독 기능을 지원한다는 것입니다. 이러한 구성 요소는 임시 분리, 게시/구독 및 부하 분산과 같은 새로운 비동기 메시징 시나리오를 가능하게 합니다. 이러한 메시징 엔터티에 대한 자세한 내용은 [Service Bus 큐, 토픽 및 구독](service-bus-queues-topics-subscriptions.md)을 참조하세요.
+hello 서비스 버스 조정 된 메시징 인프라의 hello 핵심 구성 요소는 큐, 토픽 및 구독 됩니다.  hello 주요 차이점은 항목 논리에 대 한 복잡 한 콘텐츠 기반 라우팅 및 배달, toomultiple 받는 사람에 게 보내기를 비롯 하 여 사용할 수 있는 게시/구독 기능을 지원 합니다. 이러한 구성 요소는 임시 분리, 게시/구독 및 부하 분산과 같은 새로운 비동기 메시징 시나리오를 가능하게 합니다. 이러한 메시징 엔터티에 대한 자세한 내용은 [Service Bus 큐, 토픽 및 구독](service-bus-queues-topics-subscriptions.md)을 참조하세요.
 
-WCF 릴레이 인프라와 마찬가지로 조정된 메시징 기능은 WCF 및 .NET Framework 프로그래머를 위해 REST를 통해 제공됩니다.
+Hello WCF 릴레이 인프라와 hello 조정 된 메시징 기능 WCF 및.NET Framework 프로그래머를 위한 및 REST를 통해 제공 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
-Service Bus 메시징에 대해 자세히 알아보려면 다음 항목을 참조하세요.
+서비스 버스 메시징에 대 한 더 toolearn hello 다음 항목을 참조 하십시오.
 
 * [서비스 버스 기본 사항](service-bus-fundamentals-hybrid-solutions.md)
 * [Service Bus 큐, 토픽 및 구독](service-bus-queues-topics-subscriptions.md)
-* [서비스 버스 큐를 사용하는 방법](service-bus-dotnet-get-started-with-queues.md)
-* [Service Bus 토픽 및 구독을 사용하는 방법](service-bus-dotnet-how-to-use-topics-subscriptions.md)
+* [어떻게 toouse 서비스 버스 큐](service-bus-dotnet-get-started-with-queues.md)
+* [어떻게 toouse 서비스 버스 항목 및 구독](service-bus-dotnet-how-to-use-topics-subscriptions.md)
 

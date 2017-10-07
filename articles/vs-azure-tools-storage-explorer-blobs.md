@@ -1,5 +1,5 @@
 ---
-title: "저장소 탐색기(미리 보기)를 사용하여 Azure Blob Storage 리소스 관리 | Microsoft Docs"
+title: "저장소 탐색기 (미리 보기)를 사용 하 여 Azure Blob 저장소 리소스 aaaManage | Microsoft Docs"
 description: "저장소 탐색기(미리 보기)를 사용하여 Azure Blob 컨테이너 및 Blobs 관리"
 services: storage
 documentationcenter: na
@@ -14,206 +14,206 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: f833027203441e12340bd93f3570de073d297223
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 503dd061b205875da127378ab48e8d465800fc09
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-blob-storage-resources-with-storage-explorer-preview"></a>저장소 탐색기(미리 보기)를 사용하여 Blob 저장소 리소스 관리
 ## <a name="overview"></a>개요
-[Azure Blob Storage](storage/blobs/storage-dotnet-how-to-use-blobs.md)는 HTTP 또는 HTTPS를 통해 전 세계 어디에서든 액세스할 수 있는 다량의 구조화되지 않은 데이터(예: 텍스트 또는 이진 데이터)를 저장할 수 있는 서비스입니다.
-Blob 저장소를 사용하여 세상에 공개적으로 표시하거나 응용 프로그램 데이터를 비공개적으로 저장할 수 있습니다. 이 문서에서는 저장소 탐색기(미리 보기)를 사용하여 blob 컨테이너 및 blob 작업을 하는 방법을 알아봅니다.
+[Azure Blob 저장소](storage/blobs/storage-dotnet-how-to-use-blobs.md) 는 많은 양의 텍스트 또는 이진 데이터를 액세스할 수 있는에서 아무 곳 이나 HTTP 또는 HTTPS를 통해 hello world에 같은 구조화 되지 않은 데이터를 저장 하는 서비스입니다.
+Blob 저장소 tooexpose 데이터 사용 하 여 공개적으로 toohello 권역 또는 toostore 응용 프로그램 데이터 개인적으로 합니다. 이 문서에서는 알아봅니다 어떻게 toouse 저장소 탐색기 (미리 보기) toowork blob 컨테이너 및 blob와 함께 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서의 단계를 완료하려면 다음과 같이 하는 것이 필요합니다.
+이 문서의 toocomplete hello 단계 hello 다음이 필요 합니다.
 
 * [저장소 탐색기(미리 보기) 다운로드 및 설치](http://www.storageexplorer.com)
-* [Azure 저장소 계정 또는 서비스에 연결](vs-azure-tools-storage-manage-with-storage-explorer.md#connect-to-a-storage-account-or-service)
+* [Tooa Azure 저장소 계정 또는 서비스를 연결 합니다.](vs-azure-tools-storage-manage-with-storage-explorer.md#connect-to-a-storage-account-or-service)
 
 ## <a name="create-a-blob-container"></a>Blob 컨테이너 만들기
 모든 blob은 단지 blob의 논리적 그룹화인 blob 컨테이너에 있어야 합니다. 한 계정에 포함될 수 있는 컨테이너 수에 제한이 없으며, 각 컨테이너에 저장될 수 있는 Blob 수에도 제한이 없습니다.
 
-다음 단계에서는 저장소 탐색기(미리 보기) 내에서 blob 컨테이너를 만드는 방법을 보여 줍니다.
+hello 아래 단계에 설명 방법을 toocreate 저장소 탐색기 (미리 보기) 내에서 blob 컨테이너입니다.
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 blob 컨테이너를 만들고자 하는 곳의 저장소 계정을 확장합니다.
-3. 마우스 오른쪽 단추로 **Blob 컨테이너**를 클릭하고, 상황에 맞는 메뉴에서 **Blob 컨테이너 만들기**를 선택합니다.
+2. Hello 왼쪽된 창에서 원하는 toocreate hello blob 컨테이너는 hello 저장소 계정을 확장 합니다.
+3. 마우스 오른쪽 단추로 클릭 **Blob 컨테이너**, 및-hello 상황에 맞는 메뉴-선택 **Create Blob Container**합니다.
 
    ![Blob 컨테이너 상황에 맞는 메뉴 만들기][0]
-4. 텍스트 상자가 **Blob 컨테이너** 폴더 아래에 표시됩니다. Blob 컨테이너에 대한 이름을 입력합니다. Blob 컨테이너 이름 명명 규칙 및 제한 사항 목록은 [컨테이너 이름 명명 규칙](storage/blobs/storage-dotnet-how-to-use-blobs.md#create-a-container) 섹션을 참조하세요.
+4. Hello 아래 텍스트 상자에 표시 될 **Blob 컨테이너** 폴더입니다. Blob 컨테이너에 대 한 hello 이름을 입력 합니다. Hello 참조 [컨테이너 명명 규칙](storage/blobs/storage-dotnet-how-to-use-blobs.md#create-a-container) 명명 blob 컨테이너에 대 한 제한 규칙의 목록에 대 한 섹션에 있습니다.
 
    ![Blob 컨테이너 텍스트 상자 만들기][1]
-5. Blob 컨테이너 만들기가 끝나면 **Enter** 키를 누르거나 **Esc** 키를 눌러 취소합니다. Blob 컨테이너가 성공적으로 만들어졌다면 선택한 저장소 계정에 대해 **Blob 컨테이너** 폴더 아래에 표시됩니다.
+5. 키를 눌러 **Enter** 끝나면 toocreate hello blob 컨테이너 또는 **Esc** toocancel 합니다. Hello blob 컨테이너 성공적으로 만든 후 그 아래에 표시 됩니다 hello **Blob 컨테이너** 폴더 hello에 대 한 저장소 계정을 선택 합니다.
 
    ![만든 Blob 컨테이너][2]
 
 ## <a name="view-a-blob-containers-contents"></a>Blob 컨테이너 내용 보기
 Blob 컨테이너는 blob 및 폴더(blob도 포함할 수 있음)를 포함하고 있습니다.
 
-다음 단계에서는 저장소 탐색기(미리 보기) 내에서 blob 컨테이너 내용 보기 방법을 보여 줍니다.
+hello 아래 단계에 설명 방법을 저장소 탐색기 (미리 보기) 내에서 blob 컨테이너의 tooview hello 내용:
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 보려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 마우스 오른쪽 단추로 보려는 Blob 컨테이너를 클릭하고, 상황에 맞는 메뉴에서 **Blob 컨테이너 편집기 열기**를 클릭합니다.
-   또한 보려는 blob 컨테이너를 두 번 클릭할 수도 있습니다.
+2. Hello 왼쪽된 창에서 원하는 tooview hello blob 컨테이너를 포함 하는 hello 저장소 계정을 확장 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. Hello blob 컨테이너를 마우스 오른쪽 단추로 클릭 tooview, 원하는-hello 상황에 맞는 메뉴-선택한 **Blob 컨테이너 편집기 열기**합니다.
+   원하는 tooview hello blob 컨테이너를 두 번 클릭 합니다.
 
    ![blob 컨테이너 편집기 상황에 맞는 메뉴 열기][19]
-5. 기본 창에 blob 컨테이너 내용이 표시됩니다.
+5. hello 주 창에는 hello blob 컨테이너의 내용을 표시 됩니다.
 
    ![Blob 컨테이너 편집기][3]
 
 ## <a name="delete-a-blob-container"></a>Blob 컨테이너 삭제
-필요에 따라 Blob 컨테이너를 쉽게 만들고 삭제할 수 있습니다. (개별 Blob 삭제 방법에 대한 자세한 내용은 [Blob 컨테이너의 Blob 관리](#managing-blobs-in-a-blob-container)섹션을 참조하세요.)
+필요에 따라 Blob 컨테이너를 쉽게 만들고 삭제할 수 있습니다. (toodelete 개별 blob toosee toohello 섹션을 참조 하십시오. [blob 컨테이너에 blob 관리](#managing-blobs-in-a-blob-container).)
 
-다음 단계에서는 저장소 탐색기(미리 보기) 내에서 blob 컨테이너를 삭제하는 방법을 보여 줍니다.
+hello 아래 단계에 설명 방법을 toodelete 저장소 탐색기 (미리 보기) 내에서 blob 컨테이너:
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 보려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 마우스 오른쪽 단추로 삭제하려는 Blob 컨테이너를 클릭하고, 상황에 맞는 메뉴에서 **삭제**를 클릭합니다.
-   또한 현재 선택된 blob 컨테이너를 삭제하려면 **삭제** 를 누를 수 있습니다.
+2. Hello 왼쪽된 창에서 원하는 tooview hello blob 컨테이너를 포함 하는 hello 저장소 계정을 확장 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. Hello blob 컨테이너를 마우스 오른쪽 단추로 클릭 toodelete, 원하는-hello 상황에 맞는 메뉴-선택한 **삭제**합니다.
+   또한 누르면 **삭제** toodelete hello 현재 선택 된 blob 컨테이너입니다.
 
    ![Blob 컨테이너 상황에 맞는 메뉴 삭제][4]
-5. 확인 대화 상자에서 **확인** 을 선택합니다.
+5. 선택 **예** toohello 확인 대화 상자.
 
    ![Blob 컨테이너 확인 삭제][5]
 
 ## <a name="copy-a-blob-container"></a>Blob 컨테이너 복사
-저장소 탐색기(미리 보기)를 사용하여 blob 컨테이너를 클립보드에 복사한 다음 다른 저장소 계정에 붙여넣기 할 수 있습니다. (개별 Blob 복사 방법에 대한 자세한 내용은 [Blob 컨테이너의 Blob 관리](#managing-blobs-in-a-blob-container)섹션을 참조하세요.)
+저장소 탐색기 (미리 보기)을 사용 하면 blob 컨테이너 toohello 클립보드 toocopy 및 다른 저장소 계정에 컨테이너 blob 후 붙여넣습니다 있습니다. (toocopy 개별 blob toosee toohello 섹션을 참조 하십시오. [blob 컨테이너에 blob 관리](#managing-blobs-in-a-blob-container).)
 
-다음 단계에서는 한 저장소 계정에서 다른 계정으로 blob 컨테이너를 복사하는 방법을 보여 줍니다.
+단계를 수행 하는 hello toocopy 하나의 저장소에서 blob 컨테이너 tooanother를 고려 하는 방법을 보여 줍니다.
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 복사하려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 마우스 오른쪽 단추로 복사하려는 Blob 컨테이너를 클릭하고, 상황에 맞는 메뉴에서 **Blob 컨테이너 복사**를 클릭합니다.
+2. Hello 왼쪽된 창에서 원하는 toocopy hello blob 컨테이너를 포함 하는 hello 저장소 계정을 확장 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. Hello blob 컨테이너를 마우스 오른쪽 단추로 클릭 toocopy, 원하는-hello 상황에 맞는 메뉴-선택한 **복사 Blob 컨테이너**합니다.
 
    ![Blob 컨테이너 상황에 맞는 메뉴 복사][6]
-5. 마우스 오른쪽 단추로 blob 컨테이너를 붙여 넣을 원하는 "대상" 저장소 계정을 클릭하고, 상황에 맞는 메뉴에서 **Blob 컨테이너 붙여넣기**를 선택합니다.
+5. toopaste hello blob 컨테이너를 한-hello 상황에 맞는 메뉴-선택 hello 원하는 "대상" 저장소 계정을 마우스 오른쪽 단추로 **붙여넣기 Blob 컨테이너**합니다.
 
    ![Blob 컨테이너 상황에 맞는 메뉴 붙여넣기][7]
 
-## <a name="get-the-sas-for-a-blob-container"></a>Blob 컨테이너에 대한 SAS 가져오기
-[SAS(공유 액세스 서명)](storage/common/storage-dotnet-shared-access-signature-part-1.md)는 저장소 계정의 리소스에 대한 위임된 권한을 제공합니다.
-즉, 계정 액세스 키를 공유할 필요 없이 지정된 권한 집합을 사용하여 지정된 기간 동안 클라이언트에게 저장소 계정의 개체에 대한 제한된 권한을 부여할 수 있습니다.
+## <a name="get-hello-sas-for-a-blob-container"></a>Blob 컨테이너에 대 한 SAS hello 가져오기
+A [공유 액세스 서명 (SAS)](storage/common/storage-dotnet-shared-access-signature-part-1.md) 저장소 계정의 tooresources 위임 된 액세스를 제공 합니다.
+이 계정 액세스 키를 공유 하지 않고 시간 및 지정한 사용 권한 집합이 지정된 된 기간에 대 한 제한 된 저장소 계정에 사용 권한을 tooobjects 클라이언트에 부여할 수 있는 것을 의미 합니다.
 
-다음 단계에서는 Blob 컨테이너에 대한 SAS를 만드는 방법을 보여 줍니다.
+hello 아래 단계에 설명 방법을 toocreate blob 컨테이너에 대 한 SAS:
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 SAS 가져오기를 하려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 마우스 오른쪽 단추로 원하는 blob 컨테이너를 클릭하고, 상황에 맞는 메뉴에서 **공유 액세스 서명 가져오기**를 클릭합니다.
+2. Hello 왼쪽된 창에서 확장 hello 저장소 계정을 원하는 tooget SAS hello blob 컨테이너를 포함 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. Hello 원하는 blob 컨테이너를 마우스 오른쪽 단추로 클릭 하 고-hello 상황에 맞는 메뉴-선택 **공유 액세스 서명을 가져올**합니다.
 
    ![SAS 상황에 맞는 메뉴 가져오기][8]
-5. **공유 액세스 서명** 대화 상자에서 정책, 시작 및 만료 날짜, 표준 시간대, 리소스에 적용할 액세스 수준을 지정합니다.
+5. Hello에 **공유 액세스 서명을** 대화 상자에서 hello 정책, 시작 및 만료 날짜, 표준 시간대를 지정 하 고 수준을 hello 리소스에 대 한 액세스.
 
    ![SAS 옵션 가져오기][9]
-6. SAS 옵션 지정하기를 마치면 **만들기**를 선택합니다.
-7. Blob 컨테이너와 함께 저장소 리소스에 액세스하는 데 사용할 수 있는 URL 및 쿼리 문자열이 나열되는 두 번째 **공유 액세스 서명** 대화 상자가 표시됩니다.
-   클립보드에 복사할 URL 옆에 있는 **복사** 를 선택합니다.
+6. Hello SAS 옵션을 지정 하 고 완료 되 면, 선택 **만들기**합니다.
+7. 두 번째 **공유 액세스 서명을** 목록 hello hello URL 따라 blob 컨테이너 및 저장소 리소스를 hello QueryStrings tooaccess를 사용할 수 있습니다에 다음 대화 상자 표시 됩니다.
+   선택 **복사** toocopy toohello 클립보드 원하는 다음 toohello URL입니다.
 
    ![SAS Url 복사][10]
 8. 완료되면 **닫기**를 선택합니다.
 
 ## <a name="manage-access-policies-for-a-blob-container"></a>Blob 컨테이너에 대한 액세스 정책 관리
-다음 단계에서는 Blob 컨테이너에 대한 액세스 정책을 관리(추가 및 제거)하는 방법을 보여 줍니다.
+hello 아래 단계에 설명 방법을 toomanage (추가 및 제거) 액세스 한 blob 컨테이너에 대 한 정책:
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 액세스 정책을 관리하려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 원하는 blob 컨테이너를 선택하고, 상황에 맞는 메뉴에서 **액세스 정책 관리**를 선택합니다.
+2. Hello 왼쪽된 창에서 hello 저장소 계정 blob 컨테이너 hello toomanage 원하는 액세스 정책이 포함 된를 확장 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. Hello 원하는 blob 컨테이너를 선택 하 고-hello 상황에 맞는 메뉴-선택 **액세스 정책 관리**합니다.
 
    ![액세스 정책 상황에 맞는 메뉴 관리][11]
-5. **액세스 정책** 대화 상자는 선택된 blob 컨테이너에 대해 이미 만들어진 모든 액세스 정책을 나열합니다.
+5. hello **액세스 정책을** 대화 이미 만든 hello 선택한 blob 컨테이너에 대 한 모든 액세스 정책 나열 됩니다.
 
    ![액세스 정책 옵션][12]        
-6. 액세스 정책 관리 작업에 따라 다음 단계를 수행하세요.
+6. Hello 액세스 정책 관리 작업에 따라 다음이 단계를 수행 합니다.
 
-   * **새 액세스 정책 추가** - **추가**를 선택합니다. 생성되었다면 **액세스 정책** 대화 상자는 (기본 설정을 사용하여) 새로 추가된 액세스 정책을 표시합니다.
+   * **새 액세스 정책 추가** - **추가**를 선택합니다. 생성 되 면 hello **액세스 정책을** hello 새로 추가 된 대화 상자가 표시 됩니다 (기본 설정)으로 정책에 액세스 합니다.
    * **액세스 정책 편집** -원하는 편집을 모두 마치고, **저장**을 선택합니다.
-   * **액세스 정책 제거** - 제거하려는 액세스 정책 옆에 있는 **제거**를 선택합니다.
+   * **액세스 정책을 제거** -선택 **제거** tooremove 원하는 다음 toohello 액세스 정책.
 
-## <a name="set-the-public-access-level-for-a-blob-container"></a>Blob 컨테이너에 대한 공용 액세스 수준 설정
-기본적으로 모든 blob 컨테이너는 “공용 액세스 없음”으로 설정됩니다.
+## <a name="set-hello-public-access-level-for-a-blob-container"></a>Blob 컨테이너에 대 한 공용 액세스 수준을 hello 설정
+모든 blob 컨테이너가 너무 설정 기본적으로 "공용 액세스 권한이"입니다.
 
-다음 단계에서는 Blob 컨테이너에 대한 공용 액세스 수준을 지정하는 방법을 보여줍니다.
+hello 아래 단계에 설명 공용 액세스 하는 toospecify 방법을 blob 컨테이너에 대 한 수준.
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 액세스 정책을 관리하려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 원하는 blob 컨테이너를 선택하고, 상황에 맞는 메뉴에서 **공용 액세스 수준 설정**을 선택합니다.
+2. Hello 왼쪽된 창에서 hello 저장소 계정 blob 컨테이너 hello toomanage 원하는 액세스 정책이 포함 된를 확장 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. Hello 원하는 blob 컨테이너를 선택 하 고-hello 상황에 맞는 메뉴-선택 **공용 액세스 수준을 설정**합니다.
 
    ![공용 액세스 수준 상황에 맞는 메뉴 설정][13]
-5. **컨테이너 공용 액세스 수준 설정** 대화 상자에서 원하는 액세스 수준을 지정합니다.
+5. Hello에 **컨테이너 공용 액세스 수준을 설정** 대화 상자에서 원하는 hello 액세스 수준을 지정 합니다.
 
    ![공용 액세스 수준 옵션 설정][14]
 6. **적용**을 선택합니다.
 
 ## <a name="managing-blobs-in-a-blob-container"></a>blob 컨테이너의 blob 관리
-Blob 컨테이너를 만들었다면 blob 컨테이너에 blob 업로드, 로컬 컴퓨터에 blob 다운로드, 로컬 컴퓨터에서 blob 열기 등 많은 작업을 할 수 있습니다.
+Blob 컨테이너를 만든 후 blob toothat blob 컨테이너에 업로드 blob tooyour 로컬 컴퓨터에 다운로드을 로컬 컴퓨터에 더 많은 blob을 열 수 있습니다.
 
-다음 단계에서는 Blob 컨테이너 내에서 blobs (및 폴더)를 관리하는 방법을 보여줍니다.
+단계를 수행 하는 hello를 toomanage blob 컨테이너 내의 blob (및 폴더)을 hello 방법을 보여 줍니다.
 
 1. 저장소 탐색기(미리 보기)를 엽니다.
-2. 왼쪽 창에서 관리하려는 blob 컨테이너가 들어 있는 저장소 계정을 확장합니다.
-3. 저장소 계정의 **Blob 컨테이너**를 확장합니다.
-4. 보려는 blob 컨테이너를 두 번 클릭합니다.
-5. 기본 창에 blob 컨테이너 내용이 표시됩니다.
+2. Hello 왼쪽된 창에서 원하는 toomanage hello blob 컨테이너를 포함 하는 hello 저장소 계정을 확장 합니다.
+3. Hello 저장소 계정의 확장 **Blob 컨테이너**합니다.
+4. 원하는 tooview hello blob 컨테이너를 두 번 클릭 합니다.
+5. hello 주 창에는 hello blob 컨테이너의 내용을 표시 됩니다.
 
    ![Blob 컨테이너 보기][3]
-6. 기본 창에 blob 컨테이너 내용이 표시됩니다.
-7. 수행하려는 작업에 따라서 다음 단계를 수행하세요.
+6. hello 주 창에는 hello blob 컨테이너의 내용을 표시 됩니다.
+7. Tooperform 원하는 hello 작업에 따라 다음이 단계를 수행:
 
-   * **Blob 컨테이너에 파일 업로드**
+   * **파일 tooa blob 컨테이너를 업로드 합니다.**
 
-     1. 기본 창 도구 모음에서 **업로드**를 선택하고, 드롭 다운 메뉴에서 **파일 업로드**를 합니다.
+     1. Hello 주 창 도구 모음 선택 **업로드**, 차례로 **파일 업로드** hello 드롭 다운 메뉴에서 합니다.
 
         ![파일 메뉴 업로드][15]
-     2. **파일 업로드** 대화 상자에서 **파일** 텍스트 상자 오른쪽에 있는 줄임표(**…**) 단추를 선택하여 업로드할 파일을 선택합니다.
+     2. Hello에 **파일 업로드** 대화 상자에서 선택 hello 줄임표 (**... **)의 hello hello 오른쪽 단추를 **파일** 텍스트 상자에 원하는 tooupload tooselect hello 파일입니다.
 
         ![파일 옵션 업로드][16]
-     3. **Blob 유형**을 지정합니다. [.NET을 사용하여 Azure Blob 저장소 시작](storage/blobs/storage-dotnet-how-to-use-blobs.md#blob-service-concepts) 문서는 다양한 Blob 유형 간의 차이점을 설명합니다.
-     4. 필요에 따라 선택한 파일을 업로드할 대상 폴더를 지정합니다. 대상 폴더가 없다면 폴더가 만들어집니다.
+     3. Hello 유형의 지정 **유형 Blob**합니다. hello 문서 [.NET을 사용 하 여 Azure Blob 저장소 시작](storage/blobs/storage-dotnet-how-to-use-blobs.md#blob-service-concepts) 다양 한 blob 종류 hello hello 차이점에 설명 합니다.
+     4. 필요에 따라 hello 선택한 파일은 업로드 대상 폴더를 지정 합니다. Hello 대상 폴더가 존재 하지 않는 경우 생성 됩니다.
      5. **업로드**를 선택합니다.
-   * **Blob 컨테이너에 폴더 업로드**
+   * **폴더 tooa blob 컨테이너를 업로드 합니다.**
 
-     1. 기본 창 도구 모음에서 **업로드**를 선택하고, 드롭 다운 메뉴에서 **폴더 업로드**를 선택합니다.
+     1. Hello 주 창 도구 모음 선택 **업로드**, 차례로 **폴더 업로드** hello 드롭 다운 메뉴에서 합니다.
 
         ![폴더 메뉴 업로드][17]
-     2. **폴더 업로드** 대화 상자에서 **폴더** 텍스트 상자 오른쪽에 있는 줄임표(**…**) 단추를 선택하여 내용을 업로드할 폴더를 선택합니다.
+     2. Hello에 **업로드 폴더** 대화 상자에서 선택 hello 줄임표 (**... **)의 hello hello 오른쪽 단추를 **폴더** 텍스트 상자 tooselect hello 내용을 폴더 tooupload 원하는 합니다.
 
         ![폴더 옵션 업로드][18]
-     3. **Blob 유형**을 지정합니다. [.NET을 사용하여 Azure Blob 저장소 시작](storage/blobs/storage-dotnet-how-to-use-blobs.md#blob-service-concepts) 문서는 다양한 Blob 유형 간의 차이점을 설명합니다.
-     4. 필요에 따라 선택한 폴더 내용을 업로드할 대상 폴더를 지정합니다. 대상 폴더가 없다면 폴더가 만들어집니다.
+     3. Hello 유형의 지정 **유형 Blob**합니다. hello 문서 [.NET을 사용 하 여 Azure Blob 저장소 시작](storage/blobs/storage-dotnet-how-to-use-blobs.md#blob-service-concepts) 다양 한 blob 종류 hello hello 차이점에 설명 합니다.
+     4. 필요에 따라 어떤 hello에 선택한 폴더의 내용을 업로드할 수는 대상 폴더를 지정 합니다. Hello 대상 폴더가 존재 하지 않는 경우 생성 됩니다.
      5. **업로드**를 선택합니다.
-   * **로컬 컴퓨터에 blob 다운로드**
+   * **Blob tooyour 로컬 컴퓨터에 다운로드**
 
-     1. 다운로드하려는 blob을 선택합니다.
-     2. 기본 창 도구 모음에서 **다운로드**를 선택합니다.
-     3. **다운로드한 blob을 저장할 위치 지정** 대화 상자에서 blob을 다운로드할 위치와 명명하려는 이름을 지정합니다.  
+     1. 원하는 toodownload hello blob을 선택 합니다.
+     2. Hello 주 창 도구 모음 선택 **다운로드**합니다.
+     3. Hello에 **toosave hello blob를 다운로드 하는 위치 지정** 대화 상자에서 hello blob를 다운로드 한 저장할 hello 위치를 지정 하 고 toogive 이름 hello 것입니다.  
      4. **저장**을 선택합니다.
    * **로컬 컴퓨터에서 blob 열기**
 
-     1. 열려는 blob을 선택합니다.
-     2. 기본 창 도구 모음에서 **열기**를 선택합니다.
-     3. Blob은 blob의 기본 파일 형식과 연결된 응용 프로그램을 사용하여 다운로드하고 엽니다.
-   * **blob을 클립보드에 복사**
+     1. 원하는 tooopen hello blob을 선택 합니다.
+     2. Hello 주 창 도구 모음 선택 **열려**합니다.
+     3. hello blob 다운로드 되 고 hello blob의 기본 파일 형식과 연결 된 hello 응용 프로그램을 사용 하 여 열립니다.
+   * **Blob toohello 클립보드에 복사**
 
-     1. 복사하려는 blob을 선택합니다.
-     2. 기본 창 도구 모음에서 **복사**를 선택합니다.
-     3. 왼쪽 창에서 또 다른 blob 컨테이너로 이동하고 기본 창에서 보려면 두 번 클릭합니다.
-     4. 기본 창 도구 모음에서 blob의 복사본을 만들려면 **붙여넣기** 를 선택합니다.
+     1. 원하는 toocopy hello blob을 선택 합니다.
+     2. Hello 주 창 도구 모음 선택 **복사**합니다.
+     3. Hello 왼쪽된 창에서 tooanother blob 컨테이너를 찾아 두 번 클릭 tooview hello 주 창에 해당 합니다.
+     4. Hello 주 창 도구 모음 선택 **붙여넣기** toocreate hello blob의 복사본입니다.
    * **Blob 삭제**
 
-     1. 삭제하려는 blob을 선택합니다.
-     2. 기본 창 도구 모음에서 **삭제**를 선택합니다.
-     3. 확인 대화 상자에서 **확인** 을 선택합니다.
+     1. 원하는 toodelete hello blob을 선택 합니다.
+     2. Hello 주 창 도구 모음 선택 **삭제**합니다.
+     3. 선택 **예** toohello 확인 대화 상자.
 
 ## <a name="next-steps"></a>다음 단계
-* [최신 저장소 탐색기(미리 보기) 릴리스 정보 및 비디오](http://www.storageexplorer.com)를 보세요.
-* [Azure blob, 테이블, 큐 및 파일을 사용하여 응용 프로그램을 작성](https://azure.microsoft.com/documentation/services/storage/)하는 방법 알아보기.
+* 보기 hello [최신 저장소 탐색기 (미리 보기) 릴리스 정보 및 비디오](http://www.storageexplorer.com)합니다.
+* 너무 방법에 대해 알아봅니다[Azure blob, 테이블, 큐 및 파일을 사용 하 여 응용 프로그램을 만들](https://azure.microsoft.com/documentation/services/storage/)합니다.
 
 [0]: ./media/vs-azure-tools-storage-explorer-blobs/blob-containers-create-context-menu.png
 [1]: ./media/vs-azure-tools-storage-explorer-blobs/blob-container-create.png

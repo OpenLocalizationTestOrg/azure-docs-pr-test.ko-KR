@@ -1,6 +1,6 @@
 ---
-title: "모바일 서비스(VMware/Azure 물리적 서버) 설치 | Microsoft Docs"
-description: "온-프레미스 컴퓨터를 보호하기 위해 모바일 서비스 에이전트를 설치하는 방법을 알아봅니다."
+title: "모바일 서비스 (VMware 또는 물리적 tooAzure) aaaInstall | Microsoft Docs"
+description: "어떻게 tooinstall hello 모바일 서비스 에이전트가 tooprotect 온-프레미스 컴퓨터에 알아봅니다."
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: 848284f37ae2470a169d8f8a8c9c0bb5b926abe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f7836e6b35d3838bae1eff927838ce4b245b9f56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-mobility-service-vmware-or-physical-to-azure"></a>모바일 서비스(VMware/Azure 물리적 서버) 설치
-Azure Site Recovery 모바일 서비스는 컴퓨터에서 데이터 쓰기를 캡처하여 프로세스 서버로 전달합니다. Azure에 복제하려는 모든 컴퓨터에 모바일 서비스(VMware VM 또는 물리적 서버)를 배포합니다. 다음 방법을 사용하여 보호하려는 서버에 모바일 서비스를 배포할 수 있습니다.
+# <a name="install-mobility-service-vmware-or-physical-tooazure"></a>(VMware 또는 물리적 tooAzure) Mobility Service 설치
+Azure Site Recovery 모바일 서비스는 컴퓨터에 데이터 쓰기를 캡처하고 toohello 프로세스 서버로 전달 합니다. 원하는 tooreplicate tooAzure 모바일 서비스 tooevery 컴퓨터 (VMware VM 또는 실제 서버)를 배포 합니다. 모바일 서비스 toohello 서버 hello 다음 메서드를 사용 하 여 tooprotect 되도록 배포할 수 있습니다.
 
 
 * [System Center Configuration Manager와 같은 소프트웨어 배포 도구를 사용하여 모바일 서비스 설치](site-recovery-install-mobility-service-using-sccm.md)
 * [Azure Automation 및 자동화 DSC(필요한 상태 구성)를 사용하여 모바일 서비스 설치](site-recovery-automate-mobility-service-install.md)
-* [GUI(그래픽 사용자 인터페이스)를 사용하여 수동으로 모바일 서비스 설치](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui)
+* [Hello 그래픽 사용자 인터페이스 (GUI)를 사용 하 여 모바일 서비스를 수동으로 설치](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui)
 * [명령 프롬프트에서 수동으로 모바일 서비스 설치](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-at-a-command-prompt)
 * [Azure Site Recovery에서 강제 설치를 사용하여 모바일 서비스 설치](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-by-push-installation-from-azure-site-recovery)
 
 
 >[!IMPORTANT]
-> 9.7.0.0 버전부터 모바일 서비스 설치 관리자는 Windows 가상 컴퓨터에 사용 가능한 최신 [Azure VM 에이전트](../virtual-machines/windows/extensions-features.md#azure-vm-agent)도 설치합니다. 컴퓨터가 Azure로 장애 조치되는 경우에는 VM 확장 사용에 대한 에이전트 설치 필수 조건을 충족합니다.
+> Windows 가상 컴퓨터 (Vm)에 9.7.0.0, 버전부터 hello 모바일 서비스 설치 관리자도 설치 hello 최신 사용 가능한 [Azure VM 에이전트](../virtual-machines/windows/extensions-features.md#azure-vm-agent)합니다. TooAzure 조치는 컴퓨터가 실패할 경우 hello 컴퓨터 hello 에이전트 설치 모든 VM 확장을 사용 하기 위한 필수 구성 요소를 충족 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 서버에 모바일 서비스를 수동으로 설치하기 전에 이러한 필수 조건 단계를 완료합니다.
-1. 구성 서버에 로그인한 후 관리자로 명령 프롬프트 창을 엽니다.
-2. 디렉터리를 Bin 폴더로 변경하고 암호 파일을 만듭니다.
+1. Tooyour 구성 서버에 서명 하 고 관리자 권한으로 명령 프롬프트 창을 엽니다.
+2. Hello 디렉터리 toohello bin 폴더를 변경 하 고 암호 파일을 만듭니다.
 
     ```
     cd %ProgramData%\ASR\home\svsystems\bin
     genpassphrase.exe -v > MobSvc.passphrase
     ```
-3. 암호 파일을 안전한 위치에 저장합니다. 이 파일은 모바일 서비스를 설치하는 동안 사용됩니다.
-4. 지원되는 모든 운영 체제에 대한 모바일 서비스 설치 관리자는 %ProgramData%\ASR\home\svsystems\pushinstallsvc\repository 폴더에 있습니다.
+3. Hello 암호 파일을 안전한 위치에 저장 합니다. Hello 모바일 서비스 설치 중 hello 파일을 사용 합니다.
+4. 지원 되는 모든 운영 체제에 대 한 모바일 서비스 설치 관리자는 hello %ProgramData%\ASR\home\svsystems\pushinstallsvc\repository 폴더에 있습니다.
 
 ### <a name="mobility-service-installer-to-operating-system-mapping"></a>모바일 서비스 설치 관리자와 운영 체제 매핑
 
@@ -59,10 +59,10 @@ Azure Site Recovery 모바일 서비스는 컴퓨터에서 데이터 쓰기를 �
 |Microsoft-ASR\_UA\*UBUNTU-14.04-64\*release.tar.gz | Ubuntu Linux 14.04(64비트만 해당)|
 
 
-## <a name="install-mobility-service-manually-by-using-the-gui"></a>GUI를 사용하여 수동으로 모바일 서비스 설치
+## <a name="install-mobility-service-manually-by-using-hello-gui"></a>Hello GUI를 사용 하 여 모바일 서비스를 수동으로 설치
 
 >[!IMPORTANT]
-> **구성 서버**를 사용하여 Azure 구독/지역 간에 **Azure IaaS 가상 컴퓨터**를 복제하는 경우 **명령줄 기반 설치 메서드를 사용**합니다.
+> 사용 하는 경우는 **구성 서버** tooreplicate **Azure IaaS 가상 컴퓨터** 하나의 Azure 구독/지역 tooanother 다음에서 **hello 명령줄 기반된 설치를 사용 하 여**  메서드
 
 [!INCLUDE [site-recovery-install-mob-svc-gui](../../includes/site-recovery-install-mob-svc-gui.md)]
 
@@ -76,7 +76,7 @@ Azure Site Recovery 모바일 서비스는 컴퓨터에서 데이터 쓰기를 �
 
 
 ## <a name="install-mobility-service-by-push-installation-from-azure-site-recovery"></a>Azure Site Recovery에서 강제 설치를 사용하여 모바일 서비스 설치
-Site Recovery를 사용하여 모바일 서비스의 강제 설치를 수행하려면 모든 대상 컴퓨터가 다음 필수 조건을 충족 해야 합니다.
+Site Recovery를 사용 하 여 모바일 서비스의 강제 설치 toodo 모든 대상 컴퓨터 hello 다음 필수 구성 요소를 충족 해야 합니다.
 
 [!INCLUDE [site-recovery-prepare-push-install-mob-svc-win](../../includes/site-recovery-prepare-push-install-mob-svc-win.md)]
 
@@ -84,18 +84,18 @@ Site Recovery를 사용하여 모바일 서비스의 강제 설치를 수행하�
 
 
 > [!NOTE]
-모바일 서비스를 설치한 후 Azure Portal에서 **복제** 단추를 선택하여 이러한 VM 보호를 시작합니다.
+Hello Azure 포털에서에서 모바일 서비스를 설치한 후 선택 hello **복제** 단추 toostart 이러한 Vm을 보호 합니다.
 
 ## <a name="uninstall-mobility-service-on-a-windows-server-computer"></a>Windows Server 컴퓨터에서 모바일 서비스 제거
-Windows Server 컴퓨터에서 모바일 서비스를 제거하려면 다음 방법 중 하나를 사용합니다.
+Hello 메서드 toouninstall 모바일 서비스는 Windows Server 컴퓨터에서 다음 중 하나를 사용 합니다.
 
-### <a name="uninstall-by-using-the-gui"></a>GUI를 사용하여 제거
+### <a name="uninstall-by-using-hello-gui"></a>Hello GUI를 사용 하 여 제거
 1. 제어판에서 **프로그램**을 선택합니다.
 2. **Microsoft Azure Site Recovery 모바일 서비스/마스터 대상 서버**를 선택한 다음 **제거**를 선택합니다.
 
 ### <a name="uninstall-at-a-command-prompt"></a>명령 프롬프트에서 제거
 1. 관리자로 명령 프롬프트 창을 엽니다.
-2. 모바일 서비스를 제거하려면 다음 명령을 실행합니다.
+2. toouninstall 모바일 서비스 hello 다음 명령을 실행 하는 중:
 
 ```
 MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1} /L+*V "C:\ProgramData\ASRSetupLogs\UnifiedAgentMSIUninstall.log"
@@ -103,8 +103,8 @@ MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1} /L+*V "C:\ProgramData\
 
 ## <a name="uninstall-mobility-service-on-a-linux-computer"></a>Linux 컴퓨터에서 모바일 서비스 제거
 1. Linux 서버에서 **루트** 사용자로 로그인합니다.
-2. 터미널에서 /user/local/ASR로 이동합니다.
-3. 모바일 서비스를 제거하려면 다음 명령을 실행합니다.
+2. 종료, 너무/사용자/로컬/ASR을 이동 합니다.
+3. toouninstall 모바일 서비스 hello 다음 명령을 실행 하는 중:
 
 ```
 uninstall.sh -Y

@@ -1,6 +1,6 @@
 ---
-title: "Azure AD에 연결할 때의 MVC 프로젝트 변경 내용 | Microsoft Docs"
-description: "Visual Studio 연결된 서비스를 사용하여 Azure AD에 연결할 때 MVC 프로젝트의 변경 내용을 설명합니다."
+title: "만든 aaaChanges tooa MVC 프로젝트 tooAzure 광고를 연결 하는 경우 | Microsoft Docs"
+description: "Visual Studio가 연결 되어 서비스를 사용 하 여 tooAzure AD를 연결할 때 tooyour MVC 프로젝트 결과 설명 합니다."
 services: active-directory
 documentationcenter: na
 author: kraigb
@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: 095411a7fc854f4dce11921adb0f57c5389a8e13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5e6d4ce5331eacca5fc83429017ae454fadcc8e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-mvc-project-visual-studio-azure-active-directory-connected-service"></a>내 MVC 프로젝트(Visual Studio Azure Active Directory 연결된 서비스)의 변경 내용
+# <a name="what-happened-toomy-mvc-project-visual-studio-azure-active-directory-connected-service"></a>어떤 발생 했습니다 toomy MVC 프로젝트 (Visual Studio의 Azure Active Directory 서비스를 연결 하는 데 사용)?
 > [!div class="op_single_selector"]
 > * [시작](vs-active-directory-dotnet-getting-started.md)
 > * [변경된 내용](vs-active-directory-dotnet-what-happened.md)
@@ -52,28 +52,28 @@ ms.lasthandoff: 08/29/2017
 * **System.Runtime.Serialization**
 
 ## <a name="code-has-been-added"></a>코드가 추가됨
-### <a name="code-files-were-added-to-your-project"></a>프로젝트에 코드 파일이 추가됨
-Azure AD 인증에 대한 시작 논리가 포함된 인증 시작 클래스 **App_Start/Startup.Auth.cs**가 프로젝트에 추가되었습니다. 또한 **SignIn()** 및 **SignOut()** 메서드를 포함하는 컨트롤러 클래스 Controllers/AccountController.cs가 추가되었습니다. 마지막으로 SignIn/SignOut에 대한 작업 링크를 포함하는 부분 뷰 **Views/Shared/_LoginPartial.cshtml**이 추가되었습니다.
+### <a name="code-files-were-added-tooyour-project"></a>Tooyour 프로젝트에 추가 된 코드 파일이
+인증 시작 클래스, **App_Start/Startup.Auth.cs** Azure AD 인증에 대 한 시작 논리를 포함 하는 tooyour 프로젝트에 추가 되었습니다. 또한 **SignIn()** 및 **SignOut()** 메서드를 포함하는 컨트롤러 클래스 Controllers/AccountController.cs가 추가되었습니다. 마지막으로 SignIn/SignOut에 대한 작업 링크를 포함하는 부분 뷰 **Views/Shared/_LoginPartial.cshtml**이 추가되었습니다.
 
-### <a name="startup-code-was-added-to-your-project"></a>프로젝트에 시작 코드가 추가됨
-프로젝트에 시작 클래스가 이미 있는 경우 **Configuration** 메서드가 업데이트되어 **ConfigureAuth(app)**에 대한 호출이 해당 메서드에 업데이트되었습니다. 그렇지 않으면 시작 클래스가 프로젝트에 추가되었습니다.
+### <a name="startup-code-was-added-tooyour-project"></a>시작 코드 tooyour 프로젝트에 추가 된
+프로젝트에서 시작 클래스 이미 설치한 경우 hello **구성** 메서드가 업데이트 된 tooinclude 호출 너무**ConfigureAuth(app)**합니다. 그렇지 않은 경우 시작 클래스 tooyour 프로젝트를 추가 되었습니다.
 
 ### <a name="your-appconfig-or-webconfig-has-new-configuration-values"></a>app.config 또는 web.config에 새 구성 값이 추가됨
-다음 구성 항목이 추가되었습니다.
+구성 항목을 다음 hello 추가 되었습니다.
 
     <appSettings>
-        <add key="ida:ClientId" value="ClientId from the new Azure AD App" />
+        <add key="ida:ClientId" value="ClientId from hello new Azure AD App" />
         <add key="ida:AADInstance" value="https://login.microsoftonline.com/" />
-        <add key="ida:Domain" value="The selected Azure AD Domain" />
-        <add key="ida:TenantId" value="The Id of your selected Azure AD Tenant" />
+        <add key="ida:Domain" value="hello selected Azure AD Domain" />
+        <add key="ida:TenantId" value="hello Id of your selected Azure AD Tenant" />
         <add key="ida:PostLogoutRedirectUri" value="Your project start page" />
     </appSettings>
 
 ### <a name="an-azure-active-directory-ad-app-was-created"></a>Azure AD(Active Directory) 앱이 만들어짐
-마법사에서 선택한 디렉터리에 Azure AD 응용 프로그램이 만들어졌습니다.
+Azure AD 응용 프로그램은 hello 마법사에서 선택한 hello 디렉터리에서 만들어졌습니다.
 
-## <a name="if-i-checked-disable-individual-user-accounts-authentication-what-additional-changes-were-made-to-my-project"></a>*개별 사용자 계정 인증을 사용하지 않도록 설정*한 경우 내 프로젝트에 추가된 변경 내용은 무엇인가요?
-NuGet 패키지 참조가 제거되고 파일이 제거 및 백업되었습니다. 프로젝트의 상태에 따라 수동으로 추가 참조 또는 파일을 제거하거나 적절하게 코드를 수정해야 할 수도 있습니다.
+## <a name="if-i-checked-disable-individual-user-accounts-authentication-what-additional-changes-were-made-toomy-project"></a>검사 하는 경우 *개별 사용자 계정 인증을 사용 하지 않도록 설정*, 추가 변경 내용을 toomy 프로젝트?
+NuGet 패키지 참조가 제거되고 파일이 제거 및 백업되었습니다. 프로젝트의 hello 상태에 따라 toomanually 추가 참조 또는 파일을 제거 하거나 적절 하 게 코드를 수정 해야 합니다.
 
 ### <a name="nuget-package-references-removed-for-those-present"></a>NuGet 패키지 참조가 제거됨(해당되는 경우)
 * **Microsoft.AspNet.Identity.Core**
@@ -81,7 +81,7 @@ NuGet 패키지 참조가 제거되고 파일이 제거 및 백업되었습니�
 * **Microsoft.AspNet.Identity.Owin**
 
 ### <a name="code-files-backed-up-and-removed-for-those-present"></a>코드 파일이 백업 및 제거됨(해당되는 경우)
-다음 파일이 각각 프로젝트에서 백업 및 제거되었습니다. 백업 파일은 프로젝트 디렉터리의 루트에 있는 'Backup' 폴더에 있습니다.
+다음 파일의 각 백업 하 고 hello 프로젝트에서 제거 되었습니다. 백업 파일은 hello hello 프로젝트의 디렉터리 루트에 '백업' 폴더에 있습니다.
 
 * **App_Start\IdentityConfig.cs**
 * **Controllers\ManageController.cs**
@@ -89,14 +89,14 @@ NuGet 패키지 참조가 제거되고 파일이 제거 및 백업되었습니�
 * **Models\ManageViewModels.cs**
 
 ### <a name="code-files-backed-up-for-those-present"></a>코드 파일이 백업됨(해당되는 경우)
-교체 전에 다음 파일이 각각 백업되었습니다. 백업 파일은 프로젝트 디렉터리의 루트에 있는 'Backup' 폴더에 있습니다.
+교체 전에 다음 파일이 각각 백업되었습니다. 백업 파일은 hello hello 프로젝트의 디렉터리 루트에 '백업' 폴더에 있습니다.
 
 * **Startup.cs**
 * **App_Start\Startup.Auth.cs**
 * **Controllers\AccountController.cs**
 * **Views\Shared\_LoginPartial.cshtml**
 
-## <a name="if-i-checked-read-directory-data-what-additional-changes-were-made-to-my-project"></a>*디렉터리 데이터 읽기*를 선택한 경우 내 프로젝트에 추가된 변경 내용은 무엇인가요?
+## <a name="if-i-checked-read-directory-data-what-additional-changes-were-made-toomy-project"></a>검사 하는 경우 *디렉터리 데이터 읽기*, 추가 변경 내용을 toomy 프로젝트?
 추가 참조가 추가되었습니다.
 
 ### <a name="additional-nuget-package-references"></a>추가 NuGet 패키지 참조
@@ -119,20 +119,20 @@ NuGet 패키지 참조가 제거되고 파일이 제거 및 백업되었습니�
 * **Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms**
 * **System.Spatial**
 
-### <a name="additional-code-files-were-added-to-your-project"></a>프로젝트에 추가 코드 파일이 추가됨
-토큰 캐싱을 지원하기 위해 두 파일 **Models\ADALTokenCache.cs** 및 **Models\ApplicationDbContext.cs**가 추가되었습니다.  추가 컨트롤러와 뷰는 Azure graph API를 사용하여 액세스 사용자 프로필 정보를 설명하기 위해 추가되었습니다.  해당 파일은 **Controllers\UserProfileController.cs** 및 **Views\UserProfile\Index.cshtml**입니다.
+### <a name="additional-code-files-were-added-tooyour-project"></a>추가 코드 파일 tooyour 프로젝트에 추가 된
+두 개의 파일을 추가한 toosupport 토큰 캐싱: **Models\ADALTokenCache.cs** 및 **Models\ApplicationDbContext.cs**합니다.  추가 컨트롤러와 뷰 Azure graph Api를 사용 하 여 사용자 프로필 정보에 액세스 하는 tooillustrate를 추가 되었습니다.  해당 파일은 **Controllers\UserProfileController.cs** 및 **Views\UserProfile\Index.cshtml**입니다.
 
-### <a name="additional-startup-code-was-added-to-your-project"></a>프로젝트에 추가 시작 코드가 추가됨
-**startup.auth.cs** 파일에서 **OpenIdConnectAuthenticationOptions**의 **Notifications** 멤버에 **OpenIdConnectAuthenticationNotifications** 개체가 추가되었습니다.  이를 통해 OAuth 코드를 받고 액세스 토큰에 대해 교환할 수 있습니다.
+### <a name="additional-startup-code-was-added-tooyour-project"></a>추가 시작 코드가 tooyour 프로젝트에 추가 된
+Hello에 **startup.auth.cs** 파일을 새 **OpenIdConnectAuthenticationNotifications** 개체가 toohello 추가 되었으면 **알림** hello 소속  **OpenIdConnectAuthenticationOptions**합니다.  이 hello OAuth 코드를 받아 액세스 토큰에 대 한 교환 tooenable입니다.
 
-### <a name="additional-changes-were-made-to-your-appconfig-or-webconfig"></a>app.config 또는 web.config에 변경 내용 추가됨
-다음 추가 구성 항목이 추가되었습니다.
+### <a name="additional-changes-were-made-tooyour-appconfig-or-webconfig"></a>Tooyour app.config 또는 web.config에 추가 변경 내용이 적용 된
+hello 다음과 같은 추가 구성 항목 추가 되었습니다.
 
     <appSettings>
         <add key="ida:ClientSecret" value="Your Azure AD App's new client secret" />
     </appSettings>
 
-다음 구성 섹션 및 연결 문자열이 추가되었습니다.
+hello 다음 구성 섹션 및 연결 문자열 추가 되었습니다.
 
     <configSections>
         <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
@@ -154,7 +154,7 @@ NuGet 패키지 참조가 제거되고 파일이 제거 및 백업되었습니�
 
 
 ### <a name="your-azure-active-directory-app-was-updated"></a>Azure Active Directory 앱이 업데이트됨
-Azure Active Directory 앱이 *디렉터리 데이터 읽기* 권한을 포함하도록 업데이트되었으며, 추가 키가 생성되어 **web.config** 파일에서 *ida:ClientSecret*으로 사용되었습니다.
+Azure Active Directory 앱이 업데이트 된 tooinclude hello *디렉터리 데이터 읽기* hello로 다음 사용 권한 및 추가 키를 만든 *ida: ClientSecret* hello에  **web.config** 파일입니다.
 
 ## <a name="next-steps"></a>다음 단계
 - [Azure Active Directory에 대한 자세한 정보](https://azure.microsoft.com/services/active-directory/)

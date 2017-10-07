@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Java 및 MySQL 웹앱 빌드"
-description: "Azure MySQL 데이터베이스 서비스에 연결되는 Java 앱이 Azure App Service에서 작동되도록 하는 방법을 알아봅니다."
+title: "aaaBuild Azure에서 Java 및 MySQL 웹 응용 프로그램"
+description: "자세한 내용은 tooget Java 응용 프로그램 하는 연결 하는 방법을 toohello Azure 앱 서비스에서 작업 하는 Azure의 MySQL 데이터베이스 서비스입니다."
 services: app-service\web
 documentationcenter: Java
 author: bbenz
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 05/22/2017
 ms.author: bbenz
 ms.custom: mvc
-ms.openlocfilehash: eb2d59939c4e4486bb14bb143a4a18f9bc1478e1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0820ee9c2b7bf8fcaa22287c27a7ab848a1c4927
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-java-and-mysql-web-app-in-azure"></a>Azure에서 Java 및 MySQL 웹앱 빌드
 
-이 자습서에서는 Azure에서 Java 웹앱을 만들고 MySQL 데이터베이스에 연결하는 방법을 보여 줍니다. 작업이 완료되면 [Azure App Service Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)에서 실행되는 [MySQL용 Azure 데이터베이스](https://docs.microsoft.com/azure/mysql/overview)에 [Spring Boot](https://projects.spring.io/spring-boot/) 응용 프로그램 저장 데이터가 생깁니다.
+이 자습서에는 toocreate Java 웹 앱에 Azure 하 고 tooa MySQL 데이터베이스를 연결 하는 방법을 보여줍니다. 작업이 완료되면 [Azure App Service Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)에서 실행되는 [MySQL용 Azure 데이터베이스](https://docs.microsoft.com/azure/mysql/overview)에 [Spring Boot](https://projects.spring.io/spring-boot/) 응용 프로그램 저장 데이터가 생깁니다.
 
 ![Azure App Service에서 실행 중인 Java 앱](./media/app-service-web-tutorial-java-mysql/appservice-web-app.png)
 
@@ -31,44 +31,44 @@ ms.lasthandoff: 08/29/2017
 
 > [!div class="checklist"]
 > * Azure에서 MySQL 데이터베이스 만들기
-> * 데이터베이스에 샘플 앱 연결
-> * Azure에 앱 배포
-> * 앱 업데이트 및 다시 배포
+> * 샘플 응용 프로그램 toohello 데이터베이스 연결
+> * Hello 앱 tooAzure 배포
+> * 업데이트 하 고 hello 응용 프로그램을 다시 배포
 > * Azure에서 진단 로그 스트림
-> * Azure Portal에서 앱 모니터링
+> * Hello Azure 포털에서에서 hello 앱 모니터링
 
 
 ## <a name="prerequisites"></a>필수 조건
 
 1. [Git 다운로드 및 설치](https://git-scm.com/)
-1. [JDK Java 7 이상 다운로드 및 설치](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+1. [다운로드 및 설치 hello JDK Java 7 이상](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 1. [MySQL 다운로드, 설치 및 시작](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
 ## <a name="prepare-local-mysql"></a>로컬 MySQL 준비 
 
-이 단계에서는 컴퓨터에서 로컬로 앱을 테스트하는 데 사용할 데이터베이스를 로컬 MySQL 서버에 만듭니다.
+이 단계에서는 데이터베이스를 만들면 사용 하기 위해 로컬 MySQL 서버에서 테스트 hello 응용 프로그램에서 로컬 컴퓨터에 합니다.
 
-### <a name="connect-to-mysql-server"></a>MySQL 서버에 연결
+### <a name="connect-toomysql-server"></a>TooMySQL 서버 연결
 
-터미널 창에서 로컬 MySQL 서버에 연결합니다. 이 터미널 창을 사용하여 이 자습서의 모든 명령을 실행할 수 있습니다.
+터미널 창에서 tooyour 로컬 MySQL 서버를 연결 합니다. 이 자습서에서는이 터미널 윈도우 toorun 모든 hello 명령을 사용할 수 있습니다.
 
 ```bash
 mysql -u root -p
 ```
 
-암호를 묻는 메시지가 표시되면 `root` 계정에 대한 암호를 입력합니다. 루트 계정 암호를 기억하지 못하는 경우 [MySQL: 루트 암호를 재설정하는 방법](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)을 참조하세요.
+암호에 대 한 메시지가 hello에 대 한 hello 암호 입력 `root` 계정. 참조 루트 계정 암호를 기억 하지 못하는 경우 [MySQL: tooReset 루트 암호를 hello 어떻게](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)합니다.
 
-명령이 성공적으로 실행되면 MySQL 서버가 이미 실행되고 있는 것입니다. 그렇지 않은 경우 [MySQL 설치 후 단계](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)에 따라 로컬 MySQL 서버가 시작되었는지 확인합니다.
+명령이 성공적으로 실행되면 MySQL 서버가 이미 실행되고 있는 것입니다. 그렇지 않은 경우 로컬 MySQL 서버의 다음 hello에서 시작 되었는지 확인 [MySQL 사후 설치 단계](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)합니다.
 
 ### <a name="create-a-database"></a>데이터베이스 만들기 
 
-`mysql` 프롬프트에서 할 일 항목에 대한 데이터베이스 및 테이블을 만듭니다.
+Hello에 `mysql` 메시지를 표시, 할 일 항목 hello에 대 한 테이블 및 데이터베이스를 만듭니다.
 
 ```sql
 CREATE DATABASE tododb;
@@ -80,49 +80,49 @@ CREATE DATABASE tododb;
 quit
 ```
 
-## <a name="create-and-run-the-sample-app"></a>샘플 앱 만들기 및 실행 
+## <a name="create-and-run-hello-sample-app"></a>만들기 및 hello 샘플 응용 프로그램 실행 
 
-이 단계에서는 샘플 Spring 부팅 앱을 복제하고 로컬 MySQL 데이터베이스를 사용하도록 구성한 다음 컴퓨터에서 실행합니다. 
+이 단계에서는 복제 샘플 스프링 부팅 응용 프로그램, toouse hello 로컬 MySQL 데이터베이스를 구성 하 고 컴퓨터에서 실행 합니다. 
 
-### <a name="clone-the-sample"></a>샘플 복제
+### <a name="clone-hello-sample"></a>복제 hello 예제
 
-터미널 창에서 작업 디렉터리로 이동하고 샘플 리포지토리를 복제합니다. 
+Hello 터미널 창에서 작업 하는 디렉터리 및 복제 hello 샘플 리포지토리 tooa를 이동 합니다. 
 
 ```bash
 git clone https://github.com/azure-samples/mysql-spring-boot-todo
 ```
 
-### <a name="configure-the-app-to-use-the-mysql-database"></a>MySQL 데이터베이스를 사용하도록 앱 구성
+### <a name="configure-hello-app-toouse-hello-mysql-database"></a>Hello app toouse hello MySQL 데이터베이스를 구성 합니다.
 
-MySQL 프롬프트를 여는 데 사용한 것과 동일한 루트 암호로 *spring-boot-mysql-todo/src/main/resources/application.properties*의 `spring.datasource.password` 및 값을 업데이트합니다.
+업데이트 hello `spring.datasource.password` 에 이름과 값 *spring-boot-mysql-todo/src/main/resources/application.properties* hello와 같은 루트 암호 tooopen hello MySQL 프롬프트를 사용 합니다.
 
 ```
 spring.datasource.password=mysqlpass
 ```
 
-### <a name="build-and-run-the-sample"></a>샘플 빌드 및 실행
+### <a name="build-and-run-hello-sample"></a>빌드 및 실행 hello 샘플
 
-리포지토리에 포함된 Maven 래퍼를 사용하여 샘플을 빌드하고 실행합니다.
+빌드 및 hello 리 포에 포함 된 hello Maven 래퍼를 사용 하 여 hello 샘플을 실행 합니다.
 
 ```bash
 cd spring-boot-mysql-todo
 mvnw package spring-boot:run
 ```
 
-브라우저를 열어 http://localhost:8080 에 접속하여 작업의 샘플에서 봅니다. 목록에 작업을 추가하여 MySQL 프롬프트에서 다음 SQL 명령을 사용하여 MySQL에 저장된 데이터를 봅니다.
+작업에 대 한 hello sample에서 브라우저 toohttp://localhost:8080 toosee를 엽니다. 작업 toohello 목록을 추가한 것 처럼 hello MySQL에 저장 된 프롬프트 tooview hello 데이터 hello MySQL에서에서 다음 SQL 명령을 사용 합니다.
 
 ```SQL
 use testdb;
 select * from todo_item;
 ```
 
-터미널에서 `Ctrl`+`C`를 입력하여 응용 프로그램을 중지합니다. 
+클릭 하 여 hello 응용 프로그램을 중지 `Ctrl` + `C` hello 터미널에 있습니다. 
 
 ## <a name="create-an-azure-mysql-database"></a>Azure MySQL 데이트베이스 만들기
 
-이 단계에서는 [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)를 사용하여 [MySQL용 Azure 데이터베이스 ](../mysql/quickstart-create-mysql-server-database-using-azure-cli.md) 인스턴스를 만듭니다. 이 자습서의 후반부에서 샘플 응용 프로그램을 구성하여 이 데이터베이스를 사용합니다.
+이 단계에서는 만듭니다는 [MySQL에 대 한 Azure 데이터베이스](../mysql/quickstart-create-mysql-server-database-using-azure-cli.md) hello를 사용 하 여 인스턴스 [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)합니다. 구성한 hello 샘플 응용 프로그램 toouse이이 데이터베이스 나중에 hello 자습서에서입니다.
 
-터미널 창에서 Azure CLI 2.0을 사용하여 Azure App Service에서 Java 응용 프로그램을 호스트하는 데 필요한 리소스를 만들 예정입니다. [az login](/cli/azure/#login) 명령으로 Azure 구독에 로그인하고 화면의 지시를 따릅니다. 
+터미널 창 toocreate hello 리소스에서 사용 하 여 hello Azure CLI 2.0 toohost Azure 앱 서비스에서 Java 응용 프로그램 필요합니다. Tooyour hello로 Azure 구독에에서 로그인 [az 로그인](/cli/azure/#login) 명령 열고 지시를 따른 hello 화면에 표시 합니다. 
 
 ```azurecli-interactive 
 az login 
@@ -130,20 +130,20 @@ az login
 
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-[az group create](/cli/azure/group#create) 명령을 사용하여 [리소스 그룹](../azure-resource-manager/resource-group-overview.md)을 만듭니다. Azure 리소스 그룹은 웹앱, 데이터베이스, 저장소 계정 등의 관련 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 
+만들기는 [리소스 그룹](../azure-resource-manager/resource-group-overview.md) hello로 [az 그룹 만들기](/cli/azure/group#create) 명령입니다. Azure 리소스 그룹은 웹앱, 데이터베이스, 저장소 계정 등의 관련 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 
 
-다음 예wp에서는 북유럽 지역의 리소스 그룹을 만듭니다.
+hello 다음 예제에서는 리소스 그룹을 만듭니다 hello 북부 유럽 지역에서:
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location "North Europe"
 ```    
 
-`--location`에 사용할 수 있는 가능한 값을 보려면 [az appservice list-locations](/cli/azure/appservice#list-locations) 명령을 사용합니다.
+toosee hello 가능한 값에 사용할 수 있습니다 `--location`, hello를 사용 하 여 [위치 나열 az appservice](/cli/azure/appservice#list-locations) 명령입니다.
 
 ### <a name="create-a-mysql-server"></a>MySQL 서버 만들기
 
-[az mysql server create](/cli/azure/mysql/server#create) 명령을 사용하여 MySQL용 Azure 데이터베이스의 서버를 만듭니다.    
-`<mysql_server_name>` 자리 표시자를 고유한 MySQL 서버 이름으로 바꿉니다. 이 이름은 MySQL 서버의 호스트 이름인 `<mysql_server_name>.mysql.database.azure.com`에 속하므로 전역적으로 고유해야 합니다. 또한 `<admin_user>` 및 `<admin_password>`를 고유한 값으로 바꿉니다.
+Hello로 MySQL (미리 보기)에 대 한 Azure 데이터베이스에서 서버 만들기 [az mysql server 만들기](/cli/azure/mysql/server#create) 명령입니다.    
+Hello를 표시 하 여 고유의 고유한 MySQL 서버 이름을 대체 `<mysql_server_name>` 자리 표시자입니다. 이 이름은 MySQL 서버의 호스트 이름의 일부인 `<mysql_server_name>.mysql.database.azure.com`이므로 toobe 전역적으로 고유 해야 합니다. 또한 `<admin_user>` 및 `<admin_password>`를 고유한 값으로 바꿉니다.
 
 ```azurecli-interactive
 az mysql server create --name <mysql_server_name> \ 
@@ -153,7 +153,7 @@ az mysql server create --name <mysql_server_name> \
     --admin-password <admin_password>
 ```
 
-MySQL 서버를 만들면 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다.
+Hello MySQL 서버를 만든 다음 예제에서는 정보 비슷한 toohello를 hello Azure CLI로 표시 됩니다.
 
 ```json
 {
@@ -171,7 +171,7 @@ MySQL 서버를 만들면 Azure CLI는 다음 예제와 비슷한 정보를 표�
 
 ### <a name="configure-server-firewall"></a>서버 방화벽 구성
 
-[az mysql server firewall-rule create](/cli/azure/mysql/server/firewall-rule#create) 명령을 사용하여 클라이언트 연결을 허용하도록 MySQL 서버에 대한 방화벽 규칙을 만듭니다. 
+방화벽 규칙 만들기 MySQL 서버 tooallow 클라이언트에 대 한 연결 hello를 사용 하 여 [az mysql 서버 방화벽 규칙 만들기](/cli/azure/mysql/server/firewall-rule#create) 명령입니다. 
 
 ```azurecli-interactive
 az mysql server firewall-rule create \
@@ -183,11 +183,11 @@ az mysql server firewall-rule create \
 ```
 
 > [!NOTE]
-> MySQL용 Azure 데이터베이스(미리 보기)는 현재 Azure 서비스에서 자동으로 연결되지 않습니다. Azure의 IP 주소는 동적으로 할당되므로 지금은 모든 IP 주소를 사용하도록 설정하는 것이 좋습니다. 서비스가 미리 보기를 계속 제공하고 있으며, 데이터베이스를 보호하기 위한 더 나은 방법이 제공될 예정입니다.
+> MySQL용 Azure 데이터베이스(미리 보기)는 현재 Azure 서비스에서 자동으로 연결되지 않습니다. Azure의 IP 주소를 동적으로 할당 때 더 나은 tooenable 모든 IP 주소에 대 한 이제 합니다. Hello 서비스 계속의 미리 보기, 데이터베이스를 보호 하기 위한 더 나은 방식 설정 됩니다.
 
-## <a name="configure-the-azure-mysql-database"></a>Azure MySQL 데이터베이스 구성
+## <a name="configure-hello-azure-mysql-database"></a>Hello Azure의 MySQL 데이터베이스를 구성 합니다.
 
-컴퓨터의 터미널 창에서 Azure의 MySQL 서버에 연결합니다. `<admin_user>` 및 `<mysql_server_name>`에 대해 이전에 지정한 값을 사용합니다.
+컴퓨터에서 터미널 창을 hello에서 Azure의 MySQL server toohello를 연결 합니다. 에 대 한 이전에 지정 된 값이 hello를 사용 하 여 `<admin_user>` 및 `<mysql_server_name>`합니다.
 
 ```bash
 mysql -u <admin_user>@<mysql_server_name> -h <mysql_server_name>.mysql.database.azure.com -P 3306 -p
@@ -195,7 +195,7 @@ mysql -u <admin_user>@<mysql_server_name> -h <mysql_server_name>.mysql.database.
 
 ### <a name="create-a-database"></a>데이터베이스 만들기 
 
-`mysql` 프롬프트에서 할 일 항목에 대한 데이터베이스 및 테이블을 만듭니다.
+Hello에 `mysql` 메시지를 표시, 할 일 항목 hello에 대 한 테이블 및 데이터베이스를 만듭니다.
 
 ```sql
 CREATE DATABASE tododb;
@@ -203,11 +203,11 @@ CREATE DATABASE tododb;
 
 ### <a name="create-a-user-with-permissions"></a>사용 권한이 있는 사용자 만들기
 
-데이터베이스 사용자를 만들고 `tododb` 데이터베이스에서 모든 권한을 부여합니다. 자리 표시자 `<Javaapp_user>` 및 `<Javaapp_password>`를 고유한 응용 프로그램 이름으로 바꿉니다.
+데이터베이스 사용자를 만들고 hello에서 모든 권한을 제공 `tododb` 데이터베이스입니다. Hello 자리 표시자를 대체 `<Javaapp_user>` 및 `<Javaapp_password>` 자신의 고유한 응용 프로그램 이름을 사용 합니다.
 
 ```sql
 CREATE USER '<Javaapp_user>' IDENTIFIED BY '<Javaapp_password>'; 
-GRANT ALL PRIVILEGES ON tododb.* TO '<Javaapp_user>';
+GRANT ALL PRIVILEGES ON tododb.* too'<Javaapp_user>';
 ```
 
 `quit`을 입력하여 서버 연결을 종료합니다.
@@ -216,9 +216,9 @@ GRANT ALL PRIVILEGES ON tododb.* TO '<Javaapp_user>';
 quit
 ```
 
-## <a name="deploy-the-sample-to-azure-app-service"></a>Azure App Service에 샘플 배포
+## <a name="deploy-hello-sample-tooazure-app-service"></a>Hello 샘플 tooAzure 앱 서비스 배포
 
-[az appservice plan create](/cli/azure/appservice/plan#create) CLI 명령을 사용하여 **무료** 가격 책정 계층과 함께 Azure App Service 계획을 만듭니다. App Service 계획은 앱을 호스트하는 데 사용되는 실제 리소스를 정의합니다. App Service 계획에 할당된 모든 응용 프로그램은 이들 리소스를 공유하므로 여러 앱을 호스팅할 때 비용을 절감할 수 있습니다. 
+Hello로 Azure 앱 서비스 계획 만들기 **무료** 가격 책정 계층 hello를 사용 하 여 [az 앱 서비스 계획 만들기](/cli/azure/appservice/plan#create) CLI 명령입니다. 앱 서비스 계획 hello hello 사용 하는 물리적 리소스 toohost 앱을 정의합니다. Tooan 앱 서비스 계획을 할당 하는 모든 응용 프로그램에 있도록 toosave 비용 여러 앱을 호스트 하는 경우 이러한 리소스를 공유 합니다. 
 
 ```azurecli-interactive
 az appservice plan create \
@@ -227,7 +227,7 @@ az appservice plan create \
     --sku FREE
 ```
 
-계획이 준비되면 Azure CLI는 다음 예와 비슷한 출력이 표시됩니다.
+Hello 계획 준비 되 면 Azure CLI 표시 비슷한 hello toohello 다음 예제 출력:
 
 ```json
 { 
@@ -247,7 +247,7 @@ az appservice plan create \
 
 ### <a name="create-an-azure-web-app"></a>Azure Web App 만들기
 
- [az webapp create](/cli/azure/appservice/web#create) CLI 명령을 사용하여 `myAppServicePlan` App Service 계획에서 웹앱 정의를 만듭니다. 웹앱 정의는 응용 프로그램에 액세스하는 URL을 제공하고 Azure에 코드를 배포하는 몇 가지 옵션을 구성합니다. 
+ 사용 하 여 hello [az webapp 만들](/cli/azure/appservice/web#create) CLI 명령 toocreate hello에 있는 웹 응용 프로그램 정의 `myAppServicePlan` 앱 서비스 계획 합니다. URL tooaccess 응용 프로그램에 제공 하 고 몇 가지 옵션 toodeploy 코드 tooAzure를 구성 하는 hello 웹 응용 프로그램 정의 합니다. 
 
 ```azurecli-interactive
 az webapp create \
@@ -256,9 +256,9 @@ az webapp create \
     --plan myAppServicePlan
 ```
 
-`<app_name>` 자리 표시자를 고유한 앱 이름으로 대체합니다. 이 고유한 이름은 웹앱에 대한 기본 도메인 이름의 일부이므로 이름은 Azure에 있는 모든 앱에서 고유해야 합니다. 사용자에게 노출하기 전에 웹앱에 사용자 지정 도메인 이름 항목을 매핑할 수 있습니다.
+대체 hello `<app_name>` 자신의 고유한 응용 프로그램 이름 자리 표시자입니다. 이 고유 이름이 hello 웹 앱에 대 한 기본 도메인 이름 hello의 일부 이므로 hello 이름 필요한 toobe 고유 Azure에서 모든 앱에서. Tooyour 사용자 노출 먼저 사용자 지정 도메인 이름 항목 toohello 웹 응용 프로그램을 매핑할 수 있습니다.
 
-웹앱 정의가 준비되면 Azure CLI는 다음 예와 비슷한 정보를 표시합니다. 
+Hello 웹 응용 프로그램 정의 준비 되 면 hello Azure CLI 정보 비슷한 toohello를 다음 예제를 보여 줍니다. 
 
 ```json 
 {
@@ -277,9 +277,9 @@ az webapp create \
 
 ### <a name="configure-java"></a>Java 구성 
 
-[az appservice web config update](/cli/azure/appservice/web/config#update) 명령으로 앱에 필요한 Java 런타임 구성을 설정합니다.
+Hello로 앱 필요한 hello Java 런타임 구성을 설정 [az 앱 서비스 웹 구성 업데이트](/cli/azure/appservice/web/config#update) 명령입니다.
 
-다음 명령은 최근 Java 8 JDK 및 [Apache Tomcat](http://tomcat.apache.org/) 8.0에서 실행되도록 웹앱을 구성합니다.
+hello 다음 명령을 hello 웹 앱 toorun에서 구성 최근 Java 8 JDK 및 [Apache Tomcat](http://tomcat.apache.org/) 8.0 합니다.
 
 ```azurecli-interactive
 az webapp config set \ 
@@ -290,11 +290,11 @@ az webapp config set \
     --java-container-version 8.0
 ```
 
-### <a name="configure-the-app-to-use-the-azure-sql-database"></a>Azure SQL Database를 사용하도록 앱 구성
+### <a name="configure-hello-app-toouse-hello-azure-sql-database"></a>Hello app toouse hello Azure SQL 데이터베이스를 구성 합니다.
 
-샘플 앱을 실행하기 전에 Azure에서 만든 Azure MySQL 데이터베이스를 사용하기 위해 웹앱에서 응용 프로그램 설정을 지정합니다. 이러한 속성은 환경 변수로서 웹 응용 프로그램에 노출되며 패키지된 웹앱 내부의 application.properties에 설정된 값을 재정의합니다. 
+Hello 샘플 응용 프로그램을 실행 하기 전에 Azure에서 만든 hello 웹 응용 프로그램 toouse hello Azure의 MySQL 데이터베이스에 응용 프로그램 설정을 설정 합니다. 이러한 속성은 환경 변수로 toohello 노출 된 웹 응용 프로그램 및 hello application.properties hello 패키지에 포함 된 웹 응용 프로그램 내에서 설정 하는 hello 값을 재정의 합니다. 
 
-CLI에서 [az webapp config appsettings](https://docs.microsoft.com/cli/azure/appservice/web/config/appsettings)를 사용하여 응용 프로그램 설정을 지정합니다.
+응용 프로그램 설정을 사용 하 여 [az webapp config appsettings](https://docs.microsoft.com/cli/azure/appservice/web/config/appsettings) hello CLI에에서:
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -318,9 +318,9 @@ az webapp config appsettings set \
 ```
 
 ### <a name="get-ftp-deployment-credentials"></a>FTP 배포 자격 증명 가져오기 
-FTP, 로컬 Git, GitHub, Visual Studio Team Services 및 BitBucket과 같은 다양한 방법으로 응용 프로그램을 Azure App Service에 배포할 수 있습니다. 이 예에서는 로컬 컴퓨터에 이전에 빌드된 .WAR 파일을 Azure App Service에 배포하는 FTP입니다.
+FTP, 로컬 Git, GitHub, Visual Studio Team Services 및 BitBucket을 비롯 한 다양 한 방법으로 응용 프로그램 tooAzure appservice 프로그램을 배포할 수 있습니다. 예를 들어 FTP toodeploy hello를 선택 합니다. WAR 파일에 로컬 컴퓨터 tooAzure 앱 서비스에서 이전에 작성 합니다.
 
-ftp 명령에서 웹앱으로 전달할 자격 증명을 결정하려면 [az appservice web deployment list-publishing-profiles](https://docs.microsoft.com/cli/azure/appservice/web/deployment#list-publishing-profiles) 명령을 사용합니다. 
+ftp 명령 toohello 웹 응용 프로그램 사용에에서 따라 toopass 자격 증명 toodetermine [az 앱 서비스 웹 배포 목록 게시-프로필](https://docs.microsoft.com/cli/azure/appservice/web/deployment#list-publishing-profiles) 명령: 
 
 ```azurecli-interactive
 az webapp deployment list-publishing-profiles \ 
@@ -340,13 +340,13 @@ az webapp deployment list-publishing-profiles \
 ]
 ```
 
-### <a name="upload-the-app-using-ftp"></a>FTP를 사용하여 앱 업로드
+### <a name="upload-hello-app-using-ftp"></a>FTP를 사용 하 여 hello 앱 업로드
 
-선호하는 FTP 도구를 사용하여 이전 명령의 `URL` 필드에서 가져온 서버 주소에 있는 */site/wwwroot/webapps* 폴더에 .WAR 파일을 배포합니다. 기존 기본(루트) 응용 프로그램 디렉터리를 제거하고 기존 ROOT.war를 자습서의 앞부분에서 빌드한 .WAR 파일로 대체합니다.
+프로그램 즐겨 찾는 FTP 도구 toodeploy hello를 사용 합니다. WAR 파일 toohello */site/wwwroot/webapps* 폴더 hello에서 가져온 hello 서버 주소에 `URL` hello 이전 명령에서 필드입니다. Hello 기존 기본 (루트) 응용 프로그램 디렉터리를 제거 하 고 hello ROOT.war hello로 기존 바꿉니다. WAR 파일 hello 자습서의 앞부분에 나오는 hello에서 기본적으로 제공 합니다.
 
 ```bash
 ftp waws-prod-blu-069.ftp.azurewebsites.windows.net
-Connected to waws-prod-blu-069.drip.azurewebsites.windows.net.
+Connected toowaws-prod-blu-069.drip.azurewebsites.windows.net.
 220 Microsoft FTP Service
 Name (waws-prod-blu-069.ftp.azurewebsites.windows.net:raisa): app_name\$app_name
 331 Password required
@@ -357,26 +357,26 @@ rmdir ROOT/
 put target/TodoDemo-0.0.1-SNAPSHOT.war ROOT.war
 ```
 
-### <a name="test-the-web-app"></a>웹앱 테스트
+### <a name="test-hello-web-app"></a>Hello 웹 응용 프로그램 테스트
 
-`http://<app_name>.azurewebsites.net/`으로 이동한 후 목록에 몇 가지 작업을 추가합니다. 
+너무 찾아보기`http://<app_name>.azurewebsites.net/` 몇 가지 작업 toohello 목록을 추가 합니다. 
 
 ![Azure App Service에서 실행 중인 Java 앱](./media/app-service-web-tutorial-java-mysql/appservice-web-app.png)
 
 **축하합니다.** Azure App Service에서 데이터 기반 Java 앱이 실행되고 있습니다.
 
-## <a name="update-the-app-and-redeploy"></a>앱 업데이트 및 다시 배포
+## <a name="update-hello-app-and-redeploy"></a>Hello 앱 업데이트 및 다시 배포
 
-항목을 만든 날에 대한 할일 목록에 추가 열을 포함하도록 응용 프로그램을 업데이트합니다. 기존 데이터베이스 레코드를 변경하지 않고 데이터 모델이 변경되면 Spring Boot는 사용자에 대한 데이터베이스 스키마 업데이트를 처리합니다.
+Hello 응용 프로그램 tooinclude 일 hello 항목에 대해 만들어진 hello 할 일 목록에 추가 된 열을 업데이트 합니다. 기존 데이터베이스 레코드를 변경 하지 않고 hello 데이터 모델 변경 내용으로 사용자에 대 한 업데이트 hello 데이터베이스 스키마를 처리 하는 스프링 부팅 합니다.
 
-1. 로컬 시스템에서 *src/main/java/com/example/fabrikam/TodoItem.java*를 열고 다음 가져오기를 클래스에 추가합니다.   
+1. 로컬 시스템에서 열고 *src/main/java/com/example/fabrikam/TodoItem.java* hello 다음 toohello 클래스를 가져오고 추가:   
 
     ```java
     import java.text.SimpleDateFormat;
     import java.util.Calendar;
     ```
 
-2. `String` 속성 `timeCreated`를 *src/main/java/com/example/fabrikam/TodoItem.java*에 추가하여 개체 생성 시 timestamp으로 초기화합니다. 이 파일을 편집하는 동안 새 `timeCreated` 속성에 대해 getter/setter를 추가합니다.
+2. 추가 `String` 속성 `timeCreated` 너무*src/main/java/com/example/fabrikam/TodoItem.java*, 개체 생성 시 타임 스탬프를 사용 하 여 초기화 합니다. 새 hello에 대 한 getter/setter 추가 `timeCreated` 이 파일을 편집 하는 동안 속성입니다.
 
     ```java
     private String name;
@@ -400,7 +400,7 @@ put target/TodoDemo-0.0.1-SNAPSHOT.war ROOT.war
     }
     ```
 
-3. *src/main/java/com/example/fabrikam/TodoDemoController.java*를 `updateTodo` 메서드의 라인으로 업데이트하여 timestamp를 설정합니다.
+3. 업데이트 *src/main/java/com/example/fabrikam/TodoDemoController.java* hello에서 선으로 `updateTodo` 메서드 tooset hello 타임 스탬프:
 
     ```java
     item.setComplete(requestItem.isComplete());
@@ -409,7 +409,7 @@ put target/TodoDemo-0.0.1-SNAPSHOT.war ROOT.war
     repository.save(item);
     ```
 
-4. Thymeleaf 템플릿에서 새 필드에 대한 지원을 추가합니다. *src/main/resources/templates/index.html*를 timestamp에 대한 새 테이블 머리글, 그리고 각 테이블의 데이터 행의 timestamp의 값을 표시하는 새 필드로 업데이트합니다.
+4. Hello Thymeleaf 서식 파일에 새 필드 hello에 대 한 지원을 추가 합니다. 업데이트 *src/main/resources/templates/index.html* hello 타임 스탬프 및 새 toodisplay hello의 필드 값을 각 테이블의 데이터 행의 타임 스탬프 hello에 대 한 새 테이블 헤더를 사용 합니다.
 
     ```html
     <th>Name</th>
@@ -422,23 +422,23 @@ put target/TodoDemo-0.0.1-SNAPSHOT.war ROOT.war
     <td><input type="checkbox" th:checked="${item.complete} == true" th:field="*{todoList[__${i.index}__].complete}"/></td>
     ```
 
-5. 응용 프로그램을 다시 빌드합니다.
+5. Hello 응용 프로그램을 다시 작성 하십시오.
 
     ```bash
     mvnw clean package 
     ```
 
-6. FTP는 이전과 같은 업데이트된 .WAR이며, 기존 *site/wwwroot/webapps/ROOT* 디렉터리와 *ROOT.war*를 제거한 다음, 업데이트된 .WAR 파일을 ROOT.war로 업로드합니다. 
+6. FTP hello를 업데이트 합니다. Hello 기존 제거, 이전 처럼 WAR *사이트/wwwroot/webapps/ROOT* 디렉터리 및 *ROOT.war*, hello 업데이트를 업로드 합니다. ROOT.war로 WAR 파일입니다. 
 
-앱을 새로 고치면 **만든 시간** 열이 표시됩니다. 새 작업을 추가하면 앱은 자동으로 timestamp를 채웁니다. 기본 데이터 모델이 변경되더라도 기존 작업은 변경되지 않고 앱와 함께 작동합니다. 
+Hello 앱을 새로 고칠 때는 **만든 시간** 열에 표시 됩니다. 새 작업을 추가 하면 hello 앱 hello 타임 스탬프를 자동으로 입력 됩니다. 기존 작업 유지 hello 내부 데이터 모델 변경 된 경우에 변경 되지 않은 되며 hello 앱 작동 합니다. 
 
 ![새 열로 업데이트된 Java 앱](./media/app-service-web-tutorial-java-mysql/appservice-updates-java.png)
       
 ## <a name="stream-diagnostic-logs"></a>진단 로그 스트림 
 
-Java 응용 프로그램을 Azure App Service에서 실행하는 동안 콘솔 로그를 바로 터미널에 보낼 수 있습니다. 이 방법으로 응용 프로그램 오류를 디버깅하는 데 도움이 되는 진단 메시지를 동일하게 받을 수 있습니다.
+Azure 앱 서비스에서 Java 응용 프로그램 실행 되는 동안에 hello 콘솔을 얻을 수 있습니다 로그 tooyour 터미널 직접 파이프 됩니다. 이런 방식으로 가져올 수 있습니다 hello 같은 진단 메시지 toohelp 응용 프로그램 오류를 디버깅 합니다.
 
-로그 스트리밍을 시작하려면 [az webapp log tail](/cli/azure/appservice/web/log#tail) 명령을 사용합니다.
+스트리밍을 사용 하 여 hello toostart 로그 [az webapp 비상 로그](/cli/azure/appservice/web/log#tail) 명령입니다.
 
 ```azurecli-interactive 
 az webapp log tail \
@@ -448,19 +448,19 @@ az webapp log tail \
 
 ## <a name="manage-your-azure-web-app"></a>Azure Web App 관리
 
-만든 웹앱을 보려면 Azure Portal로 이동합니다.
+만든 toohello Azure 포털 toosee hello 웹 앱을 이동 합니다.
 
-이 작업을 수행하려면 [https://portal.azure.com](https://portal.azure.com)에 로그인합니다.
+toodo이 너무 로그인[https://portal.azure.com](https://portal.azure.com)합니다.
 
-왼쪽 메뉴에서 **App Service**를 클릭한 다음 Azure 웹앱의 이름을 클릭합니다.
+Hello 왼쪽된 메뉴에서 클릭 **앱 서비스**, Azure 웹 앱의 hello 이름을 클릭 합니다.
 
-![Azure 웹앱에 대한 포털 탐색](./media/app-service-web-tutorial-java-mysql/access-portal.png)
+![포털 탐색 tooAzure 웹 응용 프로그램](./media/app-service-web-tutorial-java-mysql/access-portal.png)
 
-기본적으로 웹앱의 블레이드는 **개요** 페이지를 표시합니다. 이 페이지에서는 앱이 어떻게 작동하고 있는지를 보여 줍니다. 여기에서 중지, 시작, 다시 시작, 삭제와 같은 관리 작업을 수행할 수 있습니다. 블레이드의 왼쪽에 있는 탭에서는 열 수 있는 다른 구성 페이지를 보여 줍니다.
+기본적으로 웹 앱 블레이드 표시 hello **개요** 페이지. 이 페이지에서는 앱이 어떻게 작동하고 있는지를 보여 줍니다. 여기에서 중지, 시작, 다시 시작, 삭제와 같은 관리 작업을 수행할 수 있습니다. hello hello 블레이드의 왼쪽에 hello 탭 hello 서로 다른 구성 페이지를 열 수를 표시 합니다.
 
 ![Azure Portal의 App Service 블레이드](./media/app-service-web-tutorial-java-mysql/web-app-blade.png)
 
-블레이드의 이러한 탭은 웹앱에 추가할 수 있는 유용한 많은 기능을 보여 줍니다. 다음은 몇 가지 가능성을 제공합니다.
+Hello 블레이드에서 이러한 탭 hello tooyour 웹 응용 프로그램을 추가할 수는 많은 유용한 기능을 보여 줍니다. hello 목록 다음 몇 가지 hello 가능성을 제공 합니다.
 * 사용자 지정 DNS 이름 매핑
 * 사용자 지정 SSL 인증서 바인딩
 * 지속적 배포 구성
@@ -469,7 +469,7 @@ az webapp log tail \
 
 ## <a name="clean-up-resources"></a>리소스 정리
 
-다른 자습서에서 이러한 리소스가 필요하지 않으면([다음 단계](#next) 참조) 다음 명령을 실행하여 삭제할 수 있습니다. 
+다른 자습서에 대 한 이러한 리소스를 필요 하지 않으면 (참조 [다음 단계](#next)), hello 다음 명령을 실행 하 여 삭제할 수 있습니다. 
   
 ```azurecli-interactive
 az group delete --name myResourceGroup 
@@ -481,13 +481,13 @@ az group delete --name myResourceGroup
 
 > [!div class="checklist"]
 > * Azure에서 MySQL 데이터베이스 만들기
-> * MySQL에 샘플 Java 앱 연결
-> * Azure에 앱 배포
-> * 앱 업데이트 및 다시 배포
+> * 샘플 Java 앱 toohello MySQL 연결
+> * Hello 앱 tooAzure 배포
+> * 업데이트 하 고 hello 응용 프로그램을 다시 배포
 > * Azure에서 진단 로그 스트림
-> * Azure Portal에서 앱 관리
+> * Hello Azure 포털에서에서 hello 응용 프로그램 관리
 
-사용자 지정 DNS 이름을 앱에 매핑하는 방법에 대해 알아보려면 다음 자습서로 이동합니다.
+다음 자습서 toolearn toohello 진행 방법을 사용자 지정 DNS toomap toohello 앱의 이름을 합니다.
 
 > [!div class="nextstepaction"] 
-> [Azure Web Apps에 기존 사용자 지정 DNS 이름 매핑](app-service-web-tutorial-custom-domain.md)
+> [지도 기존 사용자 지정 DNS 이름 tooAzure 웹 응용 프로그램](app-service-web-tutorial-custom-domain.md)

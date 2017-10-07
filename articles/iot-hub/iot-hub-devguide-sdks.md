@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT SDK 이해 | Microsoft Docs"
-description: "개발자 가이드 - 장치 및 백 엔드 앱을 빌드하는데 사용할 수 있는 다양한 Azure IoT 장치 및 서비스 SDK에 대한 링크 정보입니다."
+title: aaaUnderstand hello Azure IoT Sdk | Microsoft Docs
+description: "개발자 가이드-에 대 한 정보 및 링크 toohello toobuild 장치 앱과 백 엔드를 사용할 수 있는 다양 한 Azure IoT 장치 및 서비스 Sdk입니다."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,50 +15,50 @@ ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bcbf4b9633f58293edb19aeb33dec6602ac4ec8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e319451ca97876666e1c011ee0e1a73d0a0f1ed1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-and-use-azure-iot-sdks"></a>Azure IoT SDK 이해 및 사용
 
 IoT Hub를 사용하기 위한 SDK에는 다음 세 가지 범주가 있습니다.
 
-* **장치 SDK**를 사용하면 IoT 장치에서 실행되는 앱을 빌드할 수 있습니다. 이러한 앱은 IoT Hub로 원격 분석을 보내고, 필요에 따라 IoT Hub에서 메시지를 받습니다.
+* **장치 Sdk** IoT 장치에서 실행 되는 toobuild 앱을 사용 합니다. 이러한 응용 프로그램 원격 분석 tooyour IoT hub를 보내고 필요에 따라 IoT 허브에서 메시지를 수신 합니다.
 
-* **서비스 SDK**를 사용하면 IoT Hub를 관리하고, 필요에 따라 IoT 장치로 메시지를 보낼 수 있습니다.
+* **서비스 Sdk** 있습니다 toomanage IoT 허브를 사용 하 고 필요에 따라 메시지를 tooyour IoT 장치 보냅니다.
 
-* **Azure IoT Edge**를 사용하면 지원되는 프로토콜 중 하나를 사용하지 않거나 에지에서 메시지를 처리해야 할 때 장치를 활성화하도록 게이트웨이를 빌드할 수 있습니다.
+* **Azure IoT 가장자리** 하면 toobuild 게이트웨이 tooenable 장치 hello 지원 되는 프로토콜 중 하나를 사용 하지 않는 하 또는 tooprocess 메시지 hello 가장자리를 중지 해야 합니다.
 
-SDK는 여러 프로그래밍 언어를 지원하기 위해 제공됩니다.
+Sdk는 toosupport 여러 프로그래밍 언어를 제공 합니다.
 
 ## <a name="azure-iot-device-sdks"></a>Azure IoT 장치 SDK
 
-Microsoft Azure IoT 장치 SDK에는 Azure IoT Hub 서비스에 연결되고 Azure IoT Hub 서비스에서 관리하는 장치와 응용 프로그램의 빌드를 용이하게 하는 코드가 포함되어 있습니다.
+Microsoft Azure IoT 장치 Sdk hello 건물 장치를 용이 하 게 하는 코드가 들어 및 tooand 연결 하는 응용 프로그램은 Azure IoT 허브 서비스에서 관리 합니다.
 
-다음 Azure IoT 장치 SDK는 GitHub에서 다운로드할 수 있습니다.
+hello 다음 Azure IoT 장치 Sdk는 GitHub에서 사용할 수 있는 toodownload:
 
-* [C용 Azure IoT 장치 SDK][lnk-c-device-sdk] - 이식성과 광범위한 플랫폼 호환성을 위해 ANSI C(C99)로 작성되었습니다. C용 장치 클라이언트 라이브러리에는 하위 수준 **iothub_client** 및 **serializer**의 두 가지가 있습니다.
+* [C용 Azure IoT 장치 SDK][lnk-c-device-sdk] - 이식성과 광범위한 플랫폼 호환성을 위해 ANSI C(C99)로 작성되었습니다. 두 개의 장치 클라이언트 라이브러리, C에 대 한 hello 하위 수준 **iothub_client** 및 hello **serializer**합니다.
 * [.NET용 Azure IoT 장치 SDK][lnk-dotnet-device-sdk]
 * [Java용 Azure IoT 장치 SDK][lnk-java-device-sdk]
 * [Node.js용 Azure IoT 장치 SDK][lnk-node-device-sdk]
 * [Python용 Azure IoT 장치 SDK][lnk-python-device-sdk]
 
 > [!NOTE]
-> 언어 및 플랫폼 특정 패키지 관리자를 사용하여 개발 컴퓨터에서 이진 파일 및 종속성을 설치하는 방법에 대한 정보는 GitHub 리포지토리의 추가 정보 파일을 참조하세요.
+> 개발 컴퓨터에서 언어와 플랫폼별 패키지 관리자 tooinstall 이진 파일 및 종속성을 사용 하는 방법에 대 한 정보에 대 한 hello GitHub 리포지토리에 hello 추가 정보 파일을 참조 하십시오.
 > 
 > 
 
 ### <a name="os-platform-and-hardware-compatibility"></a>OS 플랫폼 및 하드웨어 호환성
 
-특정 하드웨어 장치와의 SDK 호환성에 대한 자세한 내용은 [IoT용 Azure Certified 장치 카탈로그][lnk-certified]를 참조하세요.
+SDK 호환성 특정 하드웨어 장치에 대 한 자세한 내용은 참조 hello [Azure IoT 장치 카탈로그에 대 한 인증][lnk-certified]합니다.
 
 ## <a name="azure-iot-service-sdks"></a>Azure IoT 서비스 SDK
 
-Azure IoT 서비스 SDK에는 장치와 보안을 관리하기 위해 IoT Hub 서비스를 직접 조작하는 응용 프로그램의 빌드를 용이하게 하는 코드가 포함되어 있습니다.
+hello Azure IoT 서비스 Sdk에 포함 되어 코드 toofacilitate IoT Hub toomanage 장치 및 보안와 직접 상호 작용 하는 응용 프로그램을 구축 합니다.
 
-다음 Azure IoT 서비스 SDK는 GitHub에서 다운로드할 수 있습니다.
+hello 다음 Azure IoT 서비스 Sdk는 GitHub에서 사용할 수 있는 toodownload:
 
 * [.NET용 Azure IoT 서비스 SDK][lnk-dotnet-service-sdk]
 * [Node.js용 Azure IoT 서비스 SDK][lnk-node-service-sdk]
@@ -67,17 +67,17 @@ Azure IoT 서비스 SDK에는 장치와 보안을 관리하기 위해 IoT Hub �
 * [C용 Azure IoT 서비스 SDK][lnk-c-service-sdk]
 
 > [!NOTE]
-> 언어 및 플랫폼 특정 패키지 관리자를 사용하여 개발 컴퓨터에서 이진 파일 및 종속성을 설치하는 방법에 대한 정보는 GitHub 리포지토리의 추가 정보 파일을 참조하세요.
+> 개발 컴퓨터에서 언어와 플랫폼별 패키지 관리자 tooinstall 이진 파일 및 종속성을 사용 하는 방법에 대 한 정보에 대 한 hello GitHub 리포지토리에 hello 추가 정보 파일을 참조 하십시오.
 
 ## <a name="azure-iot-edge"></a>Azure IoT Edge
 
-Azure IoT Edge에는 IoT 게이트웨이 솔루션을 만들기 위한 인프라 및 모듈이 포함되어 있습니다. IoT Edge를 확장하여 종단 간 시나리오에 맞는 게이트웨이를 만들 수 있습니다.
+Azure IoT 가장자리 hello 인프라 및 모듈 toocreate IoT 게이트웨이 솔루션을 포함합니다. IoT 가장자리 toocreate 게이트웨이 맞춤형된 tooany 종단 간 시나리오를 확장할 수 있습니다.
 
 GitHub에서 [Azure IoT Edge][lnk-iot-edge]를 다운로드할 수 있습니다.
 
 ## <a name="online-api-reference-documentation"></a>온라인 API 참조 설명서
 
-다음 목록은 Azure IoT 장치, 서비스 및 게이트웨이 라이브러리용 온라인 API 참조 설명서에 대한 링크를 포함합니다.
+hello 다음 목록은 Azure IoT 장치, 서비스 및 게이트웨이 라이브러리에 대 한 링크 tooonline API 참조 문서.
 
 * [IoT(사물 인터넷) .NET][lnk-dotnet-ref]
 * [IoT Hub REST][lnk-rest-ref]

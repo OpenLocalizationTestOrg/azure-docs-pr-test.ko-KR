@@ -1,6 +1,6 @@
 ---
-title: "페이지의 링크가 응용 프로그램 프록시 응용 프로그램에서 작동하지 않음 | Microsoft Docs"
-description: "Azure AD와 통합한 응용 프로그램 프록시 응용 프로그램에 대한 링크가 끊어지는 문제를 해결하는 방법"
+title: "aaaLinks hello 페이지에서 응용 프로그램 프록시 응용 프로그램에 대해 작동 하지 않는 | Microsoft Docs"
+description: "Azure AD와 통합 하는 응용 프로그램 프록시 응용 프로그램에 대 한 링크가 끊어진 tootroubleshoot 발급 하는 방법"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 83c4261fab0498541591c01f9bb692b396c7b751
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 77c1e22d27c7a6436d8e57e105037c2328180481
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="links-on-the-page-dont-work-for-an-application-proxy-application"></a>페이지의 링크가 응용 프로그램 프록시 응용 프로그램에서 작동하지 않습니다.
+# <a name="links-on-hello-page-dont-work-for-an-application-proxy-application"></a>응용 프로그램 프록시 응용 프로그램에 대 한 hello 페이지에는 링크가 작동 하지 않습니다.
 
-이 문서를 통해 Azure Active Directory 응용 프로그램 프록시 응용 프로그램의 링크가 올바르게 작동하지 않는 원인을 해결할 수 있습니다.
+이 문서가 도움이 되었나요 tootroubleshoot Azure Active Directory 응용 프로그램 프록시 응용 프로그램에 대 한 링크 올바르게 작동 하지 않는 이유.
 
 ## <a name="overview"></a>개요 
-응용 프로그램 프록시 앱을 게시한 후에 응용 프로그램에서 기본적으로 작동하는 유일한 링크는 게시된 루트 URL 내에 포함된 대상에 대한 링크입니다. 응용 프로그램 내에 있는 링크가 작동하지 않으면 응용 프로그램의 내부 URL은 아마도 응용 프로그램 내에서 링크의 모든 대상을 포함하지 않습니다.
+응용 프로그램 프록시 응용 프로그램을 게시 한 후 hello 링크만 hello 응용 프로그램에서 기본적으로 작업 링크 toodestinations hello 내에 포함 된 지 루트 URL을 게시 합니다. hello 링크 hello 응용 프로그램 내에서 작동 하지 않는, hello 응용 프로그램에 대 한 내부 URL hello 아마도 모든 hello 대상 hello 응용 프로그램 내에서 링크의 포함 되지 않습니다.
 
-**이런 문제가 발생하는 이유는 무엇인가요?** 응용 프로그램에서 링크를 클릭하면 응용 프로그램 프록시는 동일한 응용 프로그램 내에서 내부 URL 또는 외부에서 사용 가능한 URL을 확인하려고 합니다. 링크가 동일한 응용 프로그램에 속하지 않는 내부 URL을 가리키는 경우 이러한 버킷 중 하나에 속하지 않고 찾을 수 없다는 오류가 발생합니다.
+**이런 문제가 발생하는 이유는 무엇인가요?** 응용 프로그램 프록시 시도 tooresolve hello URL 내에서 내부 URL로 hello 동일 응용 프로그램에서 링크를 클릭 했을 때 응용 프로그램 또는 외부에서 사용 가능한 URL로 합니다. Hello 링크 내에 없는 tooan 내부 URL을 가리키는 경우 hello 동일 응용 프로그램 이러한 버킷 tooeither 속해야 하며 찾을 수 없음 오류가 발생 하지 않습니다.
 
 ## <a name="ways-you-can-resolve-broken-links"></a>끊어진 링크 문제를 해결할 수 있는 방법
 
-이 문제를 해결하는 방법은 세 가지가 있습니다. 아래 문제는 복잡성이 높은 순으로 나열됩니다.
+이 문제는 세 가지 방법으로 tooresolve 합니다. 아래 hello 선택 항목에 나열 된 복잡성에 있습니다.
 
-1.  내부 URL이 응용 프로그램의 모든 관련 링크를 포함하는 루트인지 확인합니다. 이렇게 하면 모든 링크를 동일한 응용 프로그램 내에 게시된 콘텐츠로 해결할 수 있습니다.
+1.  내부 URL hello hello 응용 프로그램에 대 한 모든 hello 관련 링크를 포함 하는 루트 인지 확인 합니다. 이렇게 하면 동일한 hello 내에서 콘텐츠 게시로 확인 하는 모든 링크 toobe 응용 프로그램입니다.
 
-    내부 URL을 변경하지만 사용자의 방문 페이지를 변경하지 않으려는 경우 홈 페이지 URL을 이전에 게시된 내부 URL로 변경합니다. 이를 위해 "Azure Active Directory" -&gt; 앱 등록 -&gt; 응용 프로그램 선택 -&gt; 속성으로 이동하면 됩니다. 이 속성 탭에서 원하는 방문 페이지로 조정할 수 있는 "홈 페이지 URL" 필드를 확인할 수 있습니다.
+    Hello 내부 URL을 변경 해도 toochange hello 사용자가 페이지를 방문 하지 않을 경우 hello 홈 페이지 URL toohello 변경 이전에 내부 URL을 게시 합니다. 너무 이동 하 여이 작업을 수행할 수 있습니다 "Azure Active Directory"-&gt; 앱 등록-&gt; hello 응용 프로그램-선택&gt; 속성입니다. 이 속성 탭에서 조정할 수 있습니다 "홈 페이지 URL" hello 필드 표시 toobe hello 방문 페이지를 원하는 합니다.
 
-2.  응용 프로그램에서 FQDN(정규화된 도메인 이름)을 사용하는 경우 [사용자 지정 도메인](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)을 사용하여 응용 프로그램을 게시할 수 있습니다. 이 기능을 사용하면 동일한 URL을 내부 및 외부에서 모두 사용할 수 있습니다.
+2.  응용 프로그램에서 정규화 된 도메인 이름 (Fqdn)을 사용 하는 경우 사용 하 여 [사용자 지정 도메인](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) toopublish 응용 프로그램입니다. Hello 동일한 URL toobe 모두 내부적으로 사용 되며 외부에서이 기능을 사용 합니다.
 
-    내부 URL에 대한 응용 프로그램 내의 링크도 외부에서 인식하므로 이 옵션은 응용 프로그램의 링크가 응용 프로그램 프록시를 통해 외부에서 액세스될 수 있도록 합니다. 모든 링크가 게시된 응용 프로그램에 속해야 합니다. 그러나 이 옵션을 사용하면 링크가 동일한 응용 프로그램에 속하지 않고 여러 응용 프로그램에 속할 수 있습니다.
+    이 옵션 hello 응용 프로그램 toointernal Url에서 링크를 눌러도 hello 외부적으로 인식도 이후 응용 프로그램에서 hello 링크는 응용 프로그램 프록시를 통해 외부에서 액세스할 수 있는지 확인 합니다. 모든 링크에 여전히 toobelong tooa 필요 응용 프로그램을 게시 합니다. 그러나이 옵션 hello 링크 필요 하지 않습니다 toobelong toohello 동일한 응용 프로그램 toomultiple 응용 프로그램에 속할 수 있습니다.
 
-3.  이러한 옵션 중 어느 것도 쉽지 않은 경우 URL 변환/다시 작성을 수행하는 새로운 기능의 미리 보기에 조인합니다. 이 옵션을 사용하여 응용 프로그램의 HTML 본문에 있는 내부 URL 또는 링크를 번역하거나 게시된 외부 앱 프록시 URL에 "매핑"합니다. HTML 또는 CSS의 링크에만 작동하며 링크가 JS를 통해 생성되는 경우 도움이 되지 않습니다. 
+3.  이러한 옵션 중 어느 것도 쉽지 않은 경우 hello 미리 보기 URL 변환/다시 쓰기를 수행 하는 새로운 기능에 대 한 조인 합니다. 이 옵션을 사용 내부 Url 또는 응용 프로그램의 HTML hello 본문에 있는 링크 수 toohello 외부 응용 프로그램 프록시 Url을 게시 변환 "매핑" 되거나, 합니다. HTML 또는 CSS hello에 대 한 링크에 대 한이 에서만 작동 하 고이 경우에 도움이 되지 링크가 JS를 통해 생성 됩니다. 
 
-결과적으로 가능하면 [사용자 지정 도메인](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) 솔루션을 사용하는 것이 좋습니다. 미리 보기에 조인하지 않으려는 경우 applicationId를 사용하여 <aadapfeedback@microsoft.com>을 전자 메일로 보냅니다.
+결과적으로, 강력 하 게 사용할 수 있는 권장 hello [사용자 지정 도메인](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) 가능 하면 솔루션입니다. Toojoin hello 미리 보기를 보려면 전자 메일로 보내는 < aadapfeedback@microsoft.com > hello applicationId(s) 사용 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [기존 온-프레미스 프록시 서버 작업](application-proxy-working-with-proxy-servers.md)

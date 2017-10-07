@@ -1,6 +1,6 @@
 ---
-title: "Hive 테이블을 만들고 Azure Blob Storage에서 데이터 로드 | Microsoft Docs"
-description: "Hive 테이블을 만들어서 blob의 데이터를 Hive 테이블에 로드"
+title: "aaaCreate 하이브 테이블 및 Azure Blob 저장소에서 데이터를 로드 합니다. | Microsoft Docs"
+description: "Hive 테이블을 만들고 blob toohive 테이블의 데이터를 로드 합니다."
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: eca4ecd8f639bb9816903f4b1d1f999755da819c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 09622972bcac31c2971858393a8340f24e4b7390
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-hive-tables-and-load-data-from-azure-blob-storage"></a>Hive 테이블을 만들고 Azure Blob Storage에서 데이터 로드
-이 토픽에서는 Hive 테이블을 만들고 Azure blob 저장소의 데이터를 로드하는 일반 Hive 쿼리를 보여 줍니다. 또한 Hive 테이블을 분할하고 ORC(Optimized Row Columnar) 형식을 사용하여 쿼리 성능을 개선하는 방법에 대한 지침도 제공됩니다.
+이 토픽에서는 Hive 테이블을 만들고 Azure blob 저장소의 데이터를 로드하는 일반 Hive 쿼리를 보여 줍니다. Hello에 최적화 된 행 열 형식 (ORC) 서식 tooimprove 쿼리 성능을 사용 하 여 및 Hive 테이블 분할에 지침이 제공 됩니다.
 
-이 **메뉴** 는 TDSP(팀 데이터 과학 프로세스) 중 데이터를 저장하고 처리할 수 있는 대상 환경에 데이터를 수집하는 방법을 설명하는 토픽에 연결됩니다.
+이 **메뉴** tootopics hello 데이터 저장 끌어다 하는 동안 처리할 수 있는 대상 환경으로 데이터 tooingest 팀 데이터 과학 프로세스 (TDSP) hello 하는 방법을 설명 하는 링크입니다.
 
 [!INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
@@ -31,101 +31,101 @@ ms.lasthandoff: 08/29/2017
 이 문서에서는 사용자가 다음 작업을 수행한 것으로 가정합니다.
 
 * Azure 저장소 계정을 만들었습니다. 지침이 필요한 경우 [Azure Storage 계정 정보](../storage/common/storage-create-storage-account.md)를 참조하세요.
-* 사용자 지정된 Hadoop 클러스터에 HDInsight 서비스를 프로비전했습니다.  지침이 필요한 경우 [고급 분석을 위한 Azure HDInsight Hadoop 클러스터 사용자 지정](machine-learning-data-science-customize-hadoop-cluster.md)을 참조하세요.
-* 클러스터에 대한 원격 액세스를 설정하고, 로그인하고, Hadoop 명령줄 콘솔을 열었습니다. 지침이 필요한 경우 [Hadoop 클러스터의 헤드 노드에 액세스](machine-learning-data-science-customize-hadoop-cluster.md#headnode)를 참조하세요.
+* Hello HDInsight 서비스를 사용 하 여 사용자 지정 된 Hadoop 클러스터 프로 비전 합니다.  지침이 필요한 경우 [고급 분석을 위한 Azure HDInsight Hadoop 클러스터 사용자 지정](machine-learning-data-science-customize-hadoop-cluster.md)을 참조하세요.
+* 사용 가능한 원격 액세스 toohello 클러스터 로그인 하 고 hello Hadoop 명령줄 콘솔을 열립니다. 지침이 필요한 경우 참조 [액세스 hello Hadoop 클러스터의 헤드 노드](machine-learning-data-science-customize-hadoop-cluster.md#headnode)합니다.
 
-## <a name="upload-data-to-azure-blob-storage"></a>Azure Blob 저장소에 데이터 업로드
-[고급 분석을 위한 Azure 가상 컴퓨터 설정](machine-learning-data-science-setup-virtual-machine.md)의 지침에 따라 Azure 가상 컴퓨터를 만드는 경우 이 스크립트 파일을 가상 컴퓨터의 *C:\\Users\\\<사용자 이름\>\\Documents\\Data Science Scripts* 디렉터리에 다운로드해야 합니다. 이러한 Hive 쿼리는 제출이 가능하도록 적절한 필드에서 사용자 데이터 스키마 및 Azure blob 저장소 구성을 연결하기만 하면 됩니다.
+## <a name="upload-data-tooazure-blob-storage"></a>데이터 tooAzure blob 저장소에 업로드
+에 제공 된 hello 지침에 따라 Azure 가상 컴퓨터를 만든 경우 [고급 분석을 위해 Azure 가상 컴퓨터를 설정](machine-learning-data-science-setup-virtual-machine.md),이 스크립트 파일 되 었어야 다운로드 한 toohello *c:\\ 사용자가\\\<사용자 이름\>\\문서\\데이터 과학 스크립트* hello 가상 컴퓨터에 디렉터리입니다. 이러한 하이브 쿼리 데이터 스키마 및 hello 적절 한 필드 toobe 제출할 준비가에서 Azure blob 저장소 구성을 플러그 인만 필요 합니다.
 
-Hive 테이블의 데이터가 **압축되지 않은** 테이블 형식이고 Hadoop 클러스터에서 사용하는 저장소 계정의 기본 또는 추가 컨테이너에 데이터가 업로드된 것으로 가정합니다.
+라고 가정 Hive 테이블에 대 한 hello 데이터에는 **압축 되지 않은** 테이블 형식 및 hello 데이터 되었음을 업로드 toohello 기본 (또는 추가 tooan) hello Hadoop 클러스터에서 사용 하는 hello 저장소 계정의 컨테이너입니다.
 
-**NYC Taxi Trip Data**로 연습하려면 다음을 수행해야 합니다.
+Hello에 toopractice 하려는 경우 **NYC 택시 여행 데이터**, 해야 합니다.
 
-* **NYC Taxi Trip Data** 파일(12개의 Trip 파일과 12개의 Fare 파일)을 [NYC Taxi Trip Data](http://www.andresmh.com/nyctaxitrips) 합니다.
+* **다운로드** hello 24 [NYC 택시 여행 데이터](http://www.andresmh.com/nyctaxitrips) 파일 (12 개의 여행 파일 및 12 개의 요금 파일)
 * **압축을 풉니다** .
-* **고급 분석 프로세스 및 기술을 위한 Azure HDInsight Hadoop 클러스터 사용자 지정** 항목에 설명된 절차에 따라 생성된 기본(또는 해당 컨테이너) 위치로 [업로드](machine-learning-data-science-customize-hadoop-cluster.md) 합니다. 저장소 계정의 기본 컨테이너에 .csv 파일을 업로드하는 프로세스는 이 [페이지](machine-learning-data-science-process-hive-walkthrough.md#upload)에 나와 있습니다.
+* **업로드** 해당 toohello 기본 적절 한 컨테이너의 또는 hello hello에 설명 된 hello 프로시저에 의해 생성 된 Azure 저장소 계정 [고급 분석 프로세스 및 기술에 대 한 사용자 지정 Azure HDInsight Hadoop 클러스터 ](machine-learning-data-science-customize-hadoop-cluster.md) 항목입니다. hello 프로세스 tooupload hello.csv 파일 toohello 기본 hello 저장소 계정에 있을 수 있습니다이 [페이지](machine-learning-data-science-process-hive-walkthrough.md#upload)합니다.
 
-## <a name="submit"></a>Hive 쿼리를 제출하는 방법
+## <a name="submit"></a>어떻게 toosubmit 하이브 쿼리
 다음을 사용하여 Hive 쿼리를 제출할 수 있습니다.
 
 1. [Hadoop 클러스터 헤드 노드의 Hadoop 명령줄을 통해 Hive 쿼리 제출](#headnode)
-2. [Hive 편집기를 사용하여 Hive 쿼리 제출](#hive-editor)
+2. [Hello 하이브 편집기로 하이브 쿼리를 제출 합니다.](#hive-editor)
 3. [Azure PowerShell 명령을 사용하여 Hive 쿼리 제출](#ps)
 
-Hive 쿼리는 SQL과 유사하므로, SQL에 익숙한 사용자에게는 [SQL 사용자용 Hive 치트 시트](http://hortonworks.com/wp-content/uploads/2013/05/hql_cheat_sheet.pdf)가 유용할 수 있습니다.
+Hive 쿼리는 SQL과 유사하므로, SQL에 익숙한 경우 사용할 수 있습니다 hello [SQL 사용자 치트 시트에 대 한 하이브](http://hortonworks.com/wp-content/uploads/2013/05/hql_cheat_sheet.pdf) 유용 합니다.
 
-또한 Hive 쿼리를 제출할 때 Hive 쿼리에서 화면, 헤드 노드의 로컬 파일, Azure blob 등의 출력 대상을 제어할 수 있습니다.
+하이브 쿼리를 전송할 때 hello 화면 또는 tooa 로컬 파일에 hello 헤드 노드 또는 Azure blob tooan에서 든 관계 없이 하이브 쿼리에서 hello 출력의 hello 대상을 제어할 수 있습니다.
 
 ### <a name="headnode"></a> 1. Hadoop 클러스터 헤드 노드의 Hadoop 명령줄을 통해 Hive 쿼리 제출
-Hive 쿼리가 복잡한 경우 Hadoop 클러스터의 헤드 노드에서 바로 Hive 쿼리를 제출하면 일반적으로 Hive 편집기 또는 Azure PowerShell 스크립트를 사용하여 제출하는 것보다 반환 시간이 빠릅니다.
+Hello 하이브 쿼리가 복잡 한 하이브 편집기 또는 Azure PowerShell 스크립트를 제출 하는 것 보다 toofaster 반환 일반적으로 인해 hello Hadoop 클러스터의 헤드 노드 hello에서 직접 전송 됩니다.
 
-Hadoop 클러스터의 헤드 노드에 로그인하고, 헤드 노드 바탕 화면에서 Hadoop 명령줄을 열고, 명령을 입력합니다 `cd %hive_home%\bin`.
+Hello Hadoop 클러스터의 헤드 노드 toohello 로그인 hello Hadoop 명령줄 hello 헤드 노드의 hello 데스크톱에서 열고 명령을 입력 `cd %hive_home%\bin`합니다.
 
-세 가지 방법으로 Hadoop 명령줄에서 Hive 쿼리를 제출할 수 있습니다.
+세 가지 방법으로 toosubmit 하이브 쿼리 hello Hadoop 명령줄 있습니다:
 
 * 직접 제출
 * .hql 파일을 사용하여 제출
-* Hive 명령 콘솔을 사용하여 제출
+* hello로 하이브 명령 콘솔
 
 #### <a name="submit-hive-queries-directly-in-hadoop-command-line"></a>Hadoop 명령줄에서 직접 Hive 쿼리를 제출합니다.
-`hive -e "<your hive query>;` 같은 명령을 실행하여 Hadoop 명령줄에서 바로 간단한 Hive 쿼리를 제출할 수 있습니다. 다음은 그 예제입니다. 빨간색 상자는 Hive 쿼리를 제출하는 명령을, 녹색 상자는 Hive 쿼리의 출력을 보여 줍니다.
+다음과 같은 명령을 실행할 수 있습니다 `hive -e "<your hive query>;` toosubmit 간단한 하이브 쿼리에서 직접에서 Hadoop 명령줄입니다. 예를 들어 여기서 hello 빨간색 상자 윤곽선 hello 명령 hello 하이브 쿼리를 전송 하 고 hello 하이브 쿼리에서 녹색 상자 윤곽선 hello 출력 hello 다음과 같습니다.
 
 ![작업 영역 만들기](./media/machine-learning-data-science-move-hive-tables/run-hive-queries-1.png)
 
 #### <a name="submit-hive-queries-in-hql-files"></a>.hql 파일로 Hive 쿼리 제출
-Hive 쿼리가 좀 더 복잡하고 줄이 여러 개인 경우 명령줄 또는 Hive 명령 콘솔에서 쿼리를 편집하는 방법은 실용적이지 않습니다. 대신 Hadoop 클러스터의 헤드 노드에서 텍스트 편집기를 사용하여 헤드 노드의 로컬 디렉터리에 있는 .hql 파일에 Hive 쿼리를 저장합니다. 그러면 다음과 같이 `-f` 인수를 사용하여 .hql 파일의 Hive 쿼리를 제출할 수 있습니다.
+Hello 하이브 쿼리는 더 복잡 하 고 여러 줄에, 하이브 명령 콘솔 또는 명령줄에서 쿼리 편집은 바람직하지 않습니다. 대신은 hello Hadoop 클러스터 toosave hello에서에서 하이브 쿼리에 hello 헤드 노드의 로컬 디렉터리에 있는.hql 파일의 헤드 노드 hello toouse 텍스트 편집기입니다. Hello를 사용 하 여 hello.hql 파일에 hello 하이브 쿼리를 제출할 수 있습니다 다음 `-f` 다음과 같이 인수:
 
-    hive -f "<path to the .hql file>"
+    hive -f "<path toohello .hql file>"
 
 ![작업 영역 만들기](./media/machine-learning-data-science-move-hive-tables/run-hive-queries-3.png)
 
 **Hive 쿼리의 진행 상태 화면 인쇄 숨기기**
 
-기본적으로 Hadoop 명령줄에서 Hive 쿼리가 제출되면 맵/감소 작업의 진행 상태가 화면에 인쇄됩니다. 맵/감소 작업의 진행 상태 화면 인쇄를 숨기려면 다음과 같이 명령줄에 `-S` 인수("S"는 대문자)를 사용합니다.
+기본적으로 Command Line Hadoop에서 하이브 쿼리 제출 hello Map/Reduce 작업의 진행률 hello에 인쇄 됩니다 화면. toosuppress hello hello Map/Reduce 작업 진행률의 인쇄 화면, 인수를 사용할 수 있습니다 `-S` (대문자로 "S")의 hello 명령 줄 다음과 같습니다.
 
-    hive -S -f "<path to the .hql file>"
+    hive -S -f "<path toohello .hql file>"
 에서도 확인할 수 있습니다.    hive -S -e "<Hive queries>"
 
 #### <a name="submit-hive-queries-in-hive-command-console"></a>Hive 명령 콘솔에서 Hive 쿼리를 제출합니다.
-또한 Hadoop 명령줄에서 `hive` 명령을 실행하여 Hive 명령 콘솔을 먼저 입력한 후 Hive 명령 콘솔에서 Hive 쿼리를 제출할 수 있습니다. 다음은 예제입니다. 이 예제에서 두 빨간색 상자는 각각 Hive 명령 콘솔을 입력하는 데 사용된 명령과 Hive 명령 콘솔에서 제출된 Hive 쿼리를 보여 줍니다. 녹색 상자는 Hive 쿼리의 출력을 보여 줍니다.
+명령을 실행 하 여 먼저 hello 하이브 명령 콘솔을 입력할 수 있습니다 `hive` Hadoop 명령 줄에서 한 다음 하이브 명령 콘솔에서 하이브 쿼리를 제출 합니다. 다음은 예제입니다. 이 예제에서는 hello 두 빨간 상자 강조 hello 사용 되는 명령 tooenter 하이브 명령 콘솔 hello 및 hello 각각 하이브 명령 콘솔에서 제출 하는 하이브 쿼리 합니다. hello 녹색 상자 hello 하이브 쿼리에서 hello 출력 강조 표시합니다.
 
 ![작업 영역 만들기](./media/machine-learning-data-science-move-hive-tables/run-hive-queries-2.png)
 
-이전 예제에서는 Hive 쿼리 결과가 화면에 바로 출력됩니다. 또한 헤드 로드의 로컬 파일 또는 Azure blob에 출력을 작성할 수 있습니다. 그런 다음 다른 도구를 사용하여 Hive 쿼리 출력을 추가로 분석할 수 있습니다.
+hello 앞의 예제는 hello 하이브 쿼리 결과 화면에 직접 출력합니다. Hello 출력 tooa hello 헤드 노드 또는 Azure blob tooan에 로컬 파일을 작성할 수도 있습니다. 그런 다음 다른 도구를 사용할 수 있습니다 toofurther 하이브 쿼리 hello 출력을 분석 합니다.
 
-**Hive 쿼리 결과를 로컬 파일에 출력합니다.**
-Hive 쿼리 결과를 헤드 노드의 로컬 디렉터리에 출력하려면 다음과 같이 Hadoop 명령줄에서 Hive 쿼리를 제출해야 합니다.
+**하이브 쿼리 결과 tooa 로컬 파일을 출력 합니다.**
+toooutput 하이브 쿼리 결과 tooa 로컬 디렉터리에 hello 헤드 노드를 해야 toosubmit hello 하이브 쿼리 hello Hadoop 명령줄에서에서 다음과 같습니다.
 
-    hive -e "<hive query>" > <local path in the head node>
+    hive -e "<hive query>" > <local path in hello head node>
 
-다음 예제에서 Hive 쿼리의 출력은 `C:\apps\temp` 디렉터리의 `hivequeryoutput.txt` 파일에 작성됩니다.
+다음 예제는 hello, Hive 쿼리의 hello 출력 파일에 작성 된 `hivequeryoutput.txt` 디렉터리에 `C:\apps\temp`합니다.
 
 ![작업 영역 만들기](./media/machine-learning-data-science-move-hive-tables/output-hive-results-1.png)
 
-**Azure blob에 Hive 쿼리 결과 출력**
+**하이브 쿼리 결과 tooan Azure blob를 출력 합니다.**
 
-Hadoop 클러스터의 기본 컨테이너 내에 있는 Azure blob에 Hive 쿼리 결과를 출력할 수도 있습니다. 이 경우 관련 Hive 쿼리는 다음과 같습니다.
+Hello 하이브 쿼리 결과 tooan hello Hadoop 클러스터의 hello 기본 컨테이너 내에서 Azure blob를 출력할 수 있습니다. 이 대 한 hello 하이브 쿼리는 다음과 같습니다.
 
-    insert overwrite directory wasb:///<directory within the default container> <select clause from ...>
+    insert overwrite directory wasb:///<directory within hello default container> <select clause from ...>
 
-다음 예제에서 Hive 쿼리는 Hadoop 클러스터의 기본 컨테이너 내에 있는 blob 디렉터리 `queryoutputdir` 에 작성됩니다. 이때 사용자는 blob 이름 없이 디렉터리 이름만 입력하면 됩니다. `wasb:///queryoutputdir/queryoutput.txt`처럼 디렉터리 이름과 blob 이름을 모두 입력하면 오류가 발생합니다.
+다음 예제는 hello, Hive 쿼리의 hello 출력 tooa blob 디렉터리 작성 된 `queryoutputdir` hello Hadoop 클러스터의 hello 기본 컨테이너 내에서. 여기에서는 tooprovide hello 디렉터리 이름이 hello blob 이름 없이 필요합니다. `wasb:///queryoutputdir/queryoutput.txt`처럼 디렉터리 이름과 blob 이름을 모두 입력하면 오류가 발생합니다.
 
 ![작업 영역 만들기](./media/machine-learning-data-science-move-hive-tables/output-hive-results-2.png)
 
-Azure 저장소 탐색기를 사용하여 Hadoop 클러스터의 기본 컨테이너를 열면 다음과 같은 Hive 쿼리 출력을 볼 수 있습니다. 필터(빨간색 상자로 강조 표시됨)를 적용하여 이름에 지정된 문자가 포함된 blob만 검색할 수 있습니다.
+Azure 저장소 탐색기를 사용 하 여 hello Hadoop 클러스터의 hello 기본 컨테이너를 열면 hello 다음 그림에에서 표시 된 대로 hello 하이브 쿼리의 hello 출력을 볼 수 있습니다. Hello (빨간색 상자 강조 표시) 필터 tooonly 검색 hello 사용 하 여 blob 이름 다음에 지정 된 문자를 적용할 수 있습니다.
 
 ![작업 영역 만들기](./media/machine-learning-data-science-move-hive-tables/output-hive-results-3.png)
 
-### <a name="hive-editor"></a> 2. Hive 편집기를 사용하여 Hive 쿼리 제출
-양식의 URL *https://&#60;Hadoop cluster name>.azurehdinsight.net/Home/HiveEditor*를 웹 브라우저에 입력하여 쿼리 콘솔(Hive 편집기)을 사용할 수도 있습니다. 이 콘솔을 보려면 로그인해야 하며, Hadoop 클러스터 자격 증명이 필요합니다.
+### <a name="hive-editor"></a> 2. Hello 하이브 편집기로 하이브 쿼리를 제출 합니다.
+Hello 양식의 URL을 입력 하 여 hello 쿼리 콘솔 (하이브 편집기)를 사용할 수도 있습니다 *https://&#60; Hadoop 클러스터 이름 >.azurehdinsight.net/Home/HiveEditor* 웹 브라우저에 있습니다. 있어야이 콘솔 hello 참조에 로그인 하 고 여기에 Hadoop 클러스터 자격 따라서 해야 합니다.
 
 ### <a name="ps"></a> 3. Azure PowerShell 명령을 사용하여 Hive 쿼리 제출
-PowerShell을 사용하여 Hive 쿼리를 제출할 수도 있습니다. 자세한 내용은 [PowerShell을 사용하여 Hive 작업 제출](../hdinsight/hdinsight-hadoop-use-hive-powershell.md)을 참조하세요.
+또한 PowerShell toosubmit 하이브 쿼리를 사용할 수 있습니다. 자세한 내용은 [PowerShell을 사용하여 Hive 작업 제출](../hdinsight/hdinsight-hadoop-use-hive-powershell.md)을 참조하세요.
 
 ## <a name="create-tables"></a>Hive 데이터베이스 및 테이블 만들기
-Hive 쿼리는 [GitHub 리포지토리](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_create_db_tbls_load_data_generic.hql)에서 공유되며 여기에서 다운로드할 수 있습니다.
+hello 하이브 쿼리 공유 hello [GitHub 리포지토리](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_create_db_tbls_load_data_generic.hql) 여기에서 다운로드할 수 있습니다.
 
-다음은 Hive 테이블을 만드는 Hive 쿼리입니다.
+하이브 테이블을 만드는 hello 하이브 쿼리는 다음과 같습니다.
 
     create database if not exists <database name>;
     CREATE EXTERNAL TABLE if not exists <database name>.<table name>
@@ -140,34 +140,34 @@ Hive 쿼리는 [GitHub 리포지토리](https://github.com/Azure/Azure-MachineLe
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '<field separator>' lines terminated by '<line separator>'
     STORED AS TEXTFILE LOCATION '<storage location>' TBLPROPERTIES("skip.header.line.count"="1");
 
-다음은 연결해야 하는 필드와 기타 구성에 대한 설명입니다.
+tooplug 해야 하는 hello 필드 및 기타 구성 hello 설명은 다음과 같습니다.
 
-* **&#60;database name>**: 만들려고 하는 데이터베이스 이름입니다. 기본 데이터베이스를 사용하려는 경우 *create database...* 쿼리를 생략할 수 있습니다.
-* **&#60;table name>**: 지정된 데이터베이스 내에 만들려는 테이블 이름입니다. 기본 데이터베이스를 사용하려는 경우 &#60;database name> 없이 *&#60;table name>*을 통해 직접 테이블을 참조할 수 있습니다.
-* **&#60;field separator>**: 데이터 파일에서 Hive 테이블에 업로드할 필드를 구분하는 구분 기호입니다.
-* **&#60;line separator>**: 데이터 파일의 줄을 구분하는 구분 기호입니다.
-* **&#60;storage location>**: Hive 테이블의 데이터를 저장할 Azure Storage 위치입니다. *LOCATION &#60;storage location>*을 지정하지 않으면 기본적으로 데이터베이스 및 테이블이 Hive 클러스터의 기본 컨테이너에 있는 *hive/warehouse/* 디렉터리에 저장됩니다. 저장소 위치를 지정하려면 저장소 위치가 데이터베이스 및 테이블의 기본 컨테이너 내부에 있어야 합니다. 이 위치는 *'wasb:///&#60;directory 1>/'* 또는 *'wasb:///&#60;directory 1>/&#60;directory 2>/'* 등의 형식으로 클러스터 기본 컨테이너에 대한 상대 위치로 참조해야 합니다. 쿼리가 실행된 후 기본 컨테이너 내에 상대 디렉터리가 만들어집니다.
-* **TBLPROPERTIES("skip.header.line.count"="1")**: 데이터 파일에 헤더 줄이 있으면 *create table* 쿼리의 **끝**에 이 속성을 추가해야 합니다. 그렇지 않으면 헤더 줄이 테이블의 레코드로 로드됩니다. 데이터 파일에 헤더 줄이 없으면 쿼리에서 이 구성을 생략해도 됩니다.
+* **&#60; 데이터베이스 이름 >**: toocreate hello 데이터베이스의 이름을 hello 합니다. Toouse hello 기본 데이터베이스를 원하는 경우 hello 쿼리 *데이터베이스를 만드는 중...*  생략할 수 있습니다.
+* **&#60; 테이블 이름 >**: hello 이름 hello 지정 된 데이터베이스 내에서 toocreate hello 테이블입니다. Toouse hello 기본 데이터베이스를 원하는 경우 hello 테이블 참조 될 수 있습니다 직접 *&#60; 테이블 이름 >* 없이 &#60; 데이터베이스 이름 >.
+* **&#60; 필드 구분 >**: hello 데이터 파일 toobe의 필드를 구분 하는 hello 구분 기호 toohello Hive 테이블을 업로드 합니다.
+* **&#60; 선 구분 기호가 >**: hello 데이터 파일에 있는 줄을 구분 하는 hello 구분 기호입니다.
+* **&#60; 저장소 위치 >**: hello Azure 저장소 위치 toosave hello 하이브 테이블의 데이터입니다. 지정 하지 않으면 *위치 &#60; 저장소 위치 >*, 데이터베이스 hello 및 hello 테이블에 저장 됩니다 *hive/웨어하우스/* 디렉터리에서 기본적으로 hello 하이브 클러스터의 hello 기본 컨테이너입니다. Toospecify hello 저장소 위치를 원하는 경우 hello 저장소 위치 toobe hello 데이터베이스 및 테이블에 대 한 hello 기본 컨테이너 내에 있습니다. 이 위치에 hello 형태로 표시의 hello 클러스터의 위치 상대 toohello 기본 컨테이너 라고 toobe *' wasb: / / / &#60; 1 디렉터리 > /'* 또는 *' wasb: / / / &#60; 1 디렉터리 > / &#60; 2 디렉터리 > /'*등입니다. Hello 쿼리를 실행 한 후에 hello 기본 컨테이너에서 hello 상대 디렉터리가 만들어집니다.
+* **TBLPROPERTIES("skip.header.line.count"="1")**: hello 데이터 파일에 헤더 줄을 있으면 tooadd이이 속성 **hello 끝** 의 hello *테이블을 만들* 쿼리 합니다. 그렇지 않으면 hello 헤더 줄은 레코드 toohello 테이블로 로드 됩니다. Hello 데이터 파일에 헤더 줄이 없는 경우이 구성은 hello 쿼리에서 생략할 수 있습니다.
 
-## <a name="load-data"></a>Hive 테이블에 데이터 로드
-다음은 Hive 테이블에 데이터를 로드하는 Hive 쿼리입니다.
+## <a name="load-data"></a>데이터 tooHive 테이블 로드
+Hive 테이블에 데이터를 로드 하는 hello 하이브 쿼리는 다음과 같습니다.
 
-    LOAD DATA INPATH '<path to blob data>' INTO TABLE <database name>.<table name>;
+    LOAD DATA INPATH '<path tooblob data>' INTO TABLE <database name>.<table name>;
 
-* **&#60;path to blob data>**: Hive 테이블에 업로드할 Blob 파일이 HDInsight Hadoop 클러스터의 기본 컨테이너에 있으면 *&#60;path to blob data>*가 *'wasb:///&#60;directory in this container>/&#60;blob file name>'* 형식이어야 합니다. blob 파일이 HDInsight Hadoop 클러스터의 추가 컨테이너에 있을 수도 있습니다. 이 경우 *&#60;path to blob data>*는 *'wasb://&#60;container name>@&#60;storage account name>.blob.core.windows.net/&#60;blob file name>'* 형식이어야 합니다.
+* **&#60; 경로 tooblob 데이터 >**: hello blob 파일 업로드 toobe toohello Hive 테이블 hello HDInsight Hadoop 클러스터의 hello 기본 컨테이너 이면 hello *&#60; 경로 tooblob 데이터 >* hello 형식 이어야 합니다 *' wasb: / / / &#60;이 컨테이너에 디렉터리 > / &#60; blob 파일 이름 >'*합니다. 또한 hello HDInsight Hadoop 클러스터의 추가 컨테이너에서 hello blob 파일 수 있습니다. 이 경우 *&#60; 경로 tooblob 데이터 >* hello 형식은 *' wasb: / / &#60; 컨테이너 이름 > @&#60; 저장소 계정 이름 >.blob.core.windows.net/ &#60; blob 파일 이름 >'*.
 
   > [!NOTE]
-  > Hive 테이블에 업로드할 blob 데이터가 Hadoop 클러스터에 대한 저장소 계정의 기본 또는 추가 컨테이너에 있어야 합니다. 그렇지 않으면 데이터에 액세스할 수 없기 때문에 *LOAD DATA* 쿼리가 실패합니다.
+  > hello blob 데이터 업로드 toobe tooHive 테이블에 toobe hello 기본 또는 hello Hadoop 클러스터에 대 한 hello 저장소 계정의 컨테이너를 추가 합니다. 그렇지 않으면 hello *데이터 로드* hello 데이터를 액세스할 수 없다고 메시지가 쿼리가 실패 합니다.
   >
   >
 
 ## <a name="partition-orc"></a>고급 토픽: 분할된 테이블 및 ORC 형식으로 Hive 데이터 저장
-데이터가 큰 경우 테이블을 분할하면 테이블의 파티션 몇 개만 검색하면 되는 쿼리의 속도가 향상됩니다. 예를 들어 웹 사이트의 로그 데이터를 날짜별로 분할하는 것이 합리적입니다.
+Hello 데이터가 클 경우 hello 테이블 분할은 tooscan hello 테이블의 몇 가지 파티션을 하기만 하는 쿼리에 유용 합니다. 예를 들어, 날짜별으로 웹 사이트의 적절 한 toopartition hello 로그 데이터 됩니다.
 
-Hive 테이블 분할 외에도 Hive 데이터를 ORC(Optimized Row Columnar) 형식으로 저장하는 방법 또한 도움이 됩니다. ORC 형식에 대한 자세한 내용은 <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC#LanguageManualORC-ORCFiles" target="_blank">ORC 파일을 사용하면 Hive에서 데이터를 읽고, 쓰고, 처리할 때 성능 향상</a>을 참조하세요.
+또한 toopartitioning에서 하이브 테이블, hello에 최적화 된 행 열 형식 (ORC) 형식에 유용한 toostore hello 하이브 데이터 이기도 합니다. ORC 형식에 대한 자세한 내용은 <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC#LanguageManualORC-ORCFiles" target="_blank">ORC 파일을 사용하면 Hive에서 데이터를 읽고, 쓰고, 처리할 때 성능 향상</a>을 참조하세요.
 
 ### <a name="partitioned-table"></a>분할된 테이블
-다음은 분할된 테이블을 만들고 그 테이블에 데이터를 로드하는 Hive 쿼리입니다.
+분할된 된 테이블을 만들고 데이터를 로드 하는 hello 하이브 쿼리는 다음과 같습니다.
 
     CREATE EXTERNAL TABLE IF NOT EXISTS <database name>.<table name>
     (field1 string,
@@ -176,10 +176,10 @@ Hive 테이블 분할 외에도 Hive 데이터를 ORC(Optimized Row Columnar) �
     )
     PARTITIONED BY (<partitionfieldname> vartype) ROW FORMAT DELIMITED FIELDS TERMINATED BY '<field separator>'
          lines terminated by '<line separator>' TBLPROPERTIES("skip.header.line.count"="1");
-    LOAD DATA INPATH '<path to the source file>' INTO TABLE <database name>.<partitioned table name>
+    LOAD DATA INPATH '<path toohello source file>' INTO TABLE <database name>.<partitioned table name>
         PARTITION (<partitionfieldname>=<partitionfieldvalue>);
 
-분할된 테이블에 쿼리할 때 `where` 절의 **시작 부분**에 파티션 조건을 추가하면 검색 효율성이 크게 향상됩니다.
+분할 된 테이블을 쿼리할 때 것이 좋습니다 hello에 tooadd hello 파티션 조건을 **시작** hello의 `where` 절이 크게 검색의 hello 효율성을 향상 시킵니다.
 
     select
         field1, field2, ..., fieldN
@@ -187,9 +187,9 @@ Hive 테이블 분할 외에도 Hive 데이터를 ORC(Optimized Row Columnar) �
     where <partitionfieldname>=<partitionfieldvalue> and ...;
 
 ### <a name="orc"></a>ORC 형식으로 Hive 데이터 저장
-blob 저장소의 데이터를 ORC 형식으로 저장된 Hive 테이블에 바로 로드할 수 없습니다. Azure blob의 데이터를 ORC 형식으로 저장된 Hive 테이블에 로드하려면 다음 단계를 수행해야 합니다.
+직접 hello ORC 형식에 저장 된 Hive 테이블에 blob 저장소에서 데이터를 로드할 수 없습니다. 다음은 hello 단계 tootake tooload 데이터 Azure에서 유지 해야 하는 hello blob tooHive 테이블 ORC 형식으로 저장 합니다.
 
-외부 테이블 **STORED AS TEXTFILE** 을 만들고 blob 저장소의 데이터를 이 테이블에 로드합니다.
+외부 테이블 만들기 **AS 텍스트 파일 저장** 및 blob 저장소 toohello 테이블에서 데이터를 로드 합니다.
 
         CREATE EXTERNAL TABLE IF NOT EXISTS <database name>.<external textfile table name>
         (
@@ -202,9 +202,9 @@ blob 저장소의 데이터를 ORC 형식으로 저장된 Hive 테이블에 바�
             lines terminated by '<line separator>' STORED AS TEXTFILE
             LOCATION 'wasb:///<directory in Azure blob>' TBLPROPERTIES("skip.header.line.count"="1");
 
-        LOAD DATA INPATH '<path to the source file>' INTO TABLE <database name>.<table name>;
+        LOAD DATA INPATH '<path toohello source file>' INTO TABLE <database name>.<table name>;
 
-1단계의 외부 테이블과 동일한 스키마 및 필드 구분 기호를 사용하여 내부 테이블을 만들고 Hive 데이터를 ORC 형식으로 저장합니다.
+내부 테이블을 만듭니다 hello로 필드를 구분 기호가 동일 하 고 저장 하는 hello로 1 단계에서 hello 외부 테이블과 같은 스키마 hello 하이브 데이터 hello ORC 형태로 표시 합니다.
 
         CREATE TABLE IF NOT EXISTS <database name>.<ORC table name>
         (
@@ -215,13 +215,13 @@ blob 저장소의 데이터를 ORC 형식으로 저장된 Hive 테이블에 바�
         )
         ROW FORMAT DELIMITED FIELDS TERMINATED BY '<field separator>' STORED AS ORC;
 
-1단계의 외부 테이블에서 데이터를 선택하여 ORC 테이블에 삽입합니다.
+1 단계에서 hello 외부 테이블에서 데이터를 선택 하 고 hello ORC 테이블에 삽입
 
         INSERT OVERWRITE TABLE <database name>.<ORC table name>
             SELECT * FROM <database name>.<external textfile table name>;
 
 > [!NOTE]
-> TEXTFILE 테이블 *&#60;database name>.&#60;external textfile table name>*에 파티션이 있으면 3단계의 `SELECT * FROM <database name>.<external textfile table name>` 명령에서는 반환된 데이터 집합의 필드로 파티션 변수를 선택합니다. *&#60;database name>.&#60;ORC table name>*에 삽입은 실패하는데, *&#60;database name>.&#60;ORC table name>*에는 테이블 스키마의 필드로 해당 파티션 변수가 포함되어 있지 않기 때문입니다. 이 경우 *&#60;database name>.&#60;ORC table name>*에 삽입할 필드를 다음과 같이 구체적으로 선택해야 합니다.
+> 경우 hello 텍스트 파일 테이블 *&#60; 데이터베이스 이름 >. &#60; 텍스트 파일 외부 테이블 이름 >* 에 파티션이 3 단계에서에서 hello `SELECT * FROM <database name>.<external textfile table name>` 선택 hello에 필드가 데이터 집합을 반환 하는 대로 파티션 변수 hello 명령입니다. Hello에 삽입 *&#60; 데이터베이스 이름 >. &#60; ORC 테이블 이름 >* 이후 실패 *&#60; 데이터베이스 이름 >. &#60; ORC 테이블 이름 >* hello 파티션 변수로 없는 hello 테이블 스키마의 필드입니다. Toospecifically 선택 hello 필드 toobe 너무 삽입이 경우 해야*&#60; 데이터베이스 이름 >. &#60; ORC 테이블 이름 >* 다음과 같습니다.
 >
 >
 
@@ -230,8 +230,8 @@ blob 저장소의 데이터를 ORC 형식으로 저장된 Hive 테이블에 바�
            FROM <database name>.<external textfile table name>
            WHERE <partition variable>=<partition value>;
 
-모든 데이터가 *&#60;database name>.&#60;ORC table name>*에 삽입된 후에는 다음 쿼리를 사용할 때 *&#60;external textfile table name>*을 삭제하는 것이 안전합니다.
+안전 toodrop hello *&#60; 텍스트 파일 외부 테이블 이름 >* 경우 모든 데이터 후 다음 쿼리는 hello를 사용 하 여 삽입 한 *&#60; 데이터베이스 이름 >. &#60; ORC 테이블 이름 >*:
 
         DROP TABLE IF EXISTS <database name>.<external textfile table name>;
 
-이 절차를 모두 수행했다면 이제 ORC 형식의 데이터를 사용할 수 있는 테이블이 준비되었을 것입니다.  
+이 절차를 수행 후 hello ORC 형식 준비 toouse에 데이터가 있는 테이블을 있어야 합니다.  

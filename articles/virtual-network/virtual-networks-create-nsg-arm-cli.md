@@ -1,6 +1,6 @@
 ---
-title: "네트워크 보안 그룹 만들기 - Azure CLI 2.0 | Microsoft Docs"
-description: "Azure CLI 2.0을 사용하여 네트워크 보안 그룹을 만들고 배포하는 방법을 알아봅니다."
+title: "aaaCreate 네트워크 보안 그룹-Azure CLI 2.0 | Microsoft Docs"
+description: "자세한 방법을 toocreate hello Azure CLI 2.0을 사용 하 여 네트워크 보안 그룹을 배포 합니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,36 +16,36 @@ ms.workload: infrastructure-services
 ms.date: 02/17/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8efb3ab66d07875b51f723fed5594bcb477ed025
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30b1d60676331bf5e2bbbb046c747477be9d3338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-network-security-groups-using-the-azure-cli-20"></a>Azure CLI 2.0을 사용하여 네트워크 보안 그룹 만들기
+# <a name="create-network-security-groups-using-hello-azure-cli-20"></a>네트워크를 Azure CLI 2.0 hello를 사용 하 여 보안 그룹 만들기
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전 
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업 
 
-다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다. 
+Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다. 
 
-- [Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) - 클래식 및 리소스 관리 배포 모델용 CLI 
-- [Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - 리소스 관리 배포 모델용 차세대 CLI(이 문서)
+- [Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – hello 클래식 및 리소스 관리 배포 모델에 대 한 우리의 CLI 
+- [Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -우리의 차세대 CLI hello 리소스 관리 배포 모델 (이 문서)
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-다음 샘플 Azure CLI 2.0 명령에는 앞의 시나리오를 기반으로 이미 만들어져 있는 단순한 환경이 필요합니다. 
+hello 샘플 Azure CLI 2.0 다음 이미 이전 hello 시나리오를 기반으로 만들어진 단순 환경 예상 되는 명령입니다. 
 
-## <a name="create-the-nsg-for-the-frontend-subnet"></a>`FrontEnd` 서브넷에 대한 NSG 만들기
+## <a name="create-hello-nsg-for-hello-frontend-subnet"></a>Hello에 대 한 hello NSG 만들기 `FrontEnd` 서브넷
 
-앞의 시나리오에 따라 *NSG-FrontEnd*라는 NSG를 만들려면 다음 단계를 따르세요.
+명명 된 NSG toocreate *NSG 프런트 엔드* hello 단계 다음에 따라 이전 hello 시나리오에 따라, 합니다.
 
-1. 아직 설치하지 않은 경우 최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치 및 구성하고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인합니다. 
+1. 하지 않은 아직 설치 하 고 최신 hello 구성 [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 계정을 사용 하 여 로그인 [az 로그인](/cli/azure/#login)합니다. 
 
-2. [az network nsg create](/cli/azure/network/nsg#create) 명령을 실행하여 NSG를 만듭니다. 
+2. Hello를 사용 하 여 NSG 만들기 [az 네트워크 nsg 만들기](/cli/azure/network/nsg#create) 명령입니다. 
 
     ```azurecli
     az network nsg create \
@@ -54,13 +54,13 @@ ms.lasthandoff: 07/11/2017
     --location centralus 
     ```
 
-    매개 변수:
+    매개 변수
    
-   * `--resource-group`: NSG가 만들어지는 리소스 그룹의 이름입니다. 이 시나리오에서는 *TestRG*입니다.
-   * `--location`: 새 NSG를 만들 Azure 지역입니다. 이 시나리오에서는 *westus*입니다.
-   * `--name`: 새 NSG의 이름입니다. 이 시나리오에서는 *NSG-FrontEnd*입니다.
+   * `--resource-group`: Hello NSG를 만들 위치 hello 리소스 그룹의 이름입니다. 이 시나리오에서는 *TestRG*입니다.
+   * `--location`: Azure 영역 hello 새 NSG를 만들 위치입니다. 이 시나리오에서는 *westus*입니다.
+   * `--name`: 이름 hello에 대 한 새 NSG 합니다. 이 시나리오에서는 *NSG-FrontEnd*입니다.
 
-    예상된 출력에는 모든 기본 규칙 목록을 포함하여 매우 많은 정보가 있습니다. 다음 예제에서는 JMESPATH 쿼리 필터를 사용하여 `table` 출력 형식으로 기본 규칙을 보여 줍니다.
+    hello 출력은 모든 hello 기본 규칙의 목록을 포함 하 여 정보의 다소 필요 합니다. hello 다음 예제에서는 hello로 JMESPATH 쿼리 필터를 사용 하 여 hello 기본 규칙 `table` 출력 형식:
 
     ```azurecli
     az network nsg show \
@@ -70,23 +70,23 @@ ms.lasthandoff: 07/11/2017
     -o table
     ```
    
-   출력
+   출력:
 
         Access    Desc                                                    DestPortRange    Direction      Priority
         
         Allow     Allow inbound traffic from all VMs in VNET              *                Inbound           65000
         Allow     Allow inbound traffic from azure load balancer          *                Inbound           65001
         Deny      Deny all inbound traffic                                *                Inbound           65500
-        Allow     Allow outbound traffic from all VMs to all VMs in VNET  *                Outbound          65000
-        Allow     Allow outbound traffic from all VMs to Internet         *                Outbound          65001
+        Allow     Allow outbound traffic from all VMs tooall VMs in VNET  *                Outbound          65000
+        Allow     Allow outbound traffic from all VMs tooInternet         *                Outbound          65001
         Deny      Deny all outbound traffic                               *                Outbound          65500
 
 
 
-3. [az network nsg rule create](/cli/azure/network/nsg/rule#create) 명령을 실행하여 인터넷에서 포트 3389(RDP)에 대한 액세스를 허용하는 규칙을 만듭니다.
+3. Hello로 hello 인터넷에서에서 액세스 tooport 3389 (RDP)를 허용 하는 규칙을 만들 [az 네트워크 nsg 규칙 만들기](/cli/azure/network/nsg/rule#create) 명령입니다.
 
     > [!NOTE]
-    > 사용하는 셸에 따라 인수를 실행하기 전에 확장하지 못하도록 다음 인수에서 `*` 문자를 수정해야 합니다.
+    > 사용 하는 hello 셸 따라 toomodify hello를 할 수 있습니다 `*` hello 인수를 실행 하기 전에 되지 않으므로 tooexpand hello 인수 뒤에 문자입니다.
    
     ```azurecli
     az network nsg rule create \
@@ -124,23 +124,23 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    매개 변수:
+    매개 변수
 
-    * `--resource-group testrg`: 사용할 리소스 그룹입니다. 대/소문자를 구분하지 않습니다.
-    * `--nsg-name NSG-FrontEnd`: 규칙이 만들어질 NSG의 이름입니다.
-    * `--name rdp-rule`: 새 규칙의 이름입니다.
-    * `--access Allow`: 규칙(허용 또는 거부)에 대한 액세스 수준입니다.
+    * `--resource-group testrg`: 리소스 그룹 toouse hello 합니다. 대/소문자를 구분하지 않습니다.
+    * `--nsg-name NSG-FrontEnd`: Hello NSG는 hello 규칙이 만들어질의 이름입니다.
+    * `--name rdp-rule`: Hello 새 규칙의 이름입니다.
+    * `--access Allow`: Hello 규칙 (Deny 또는 허용)에 대 한 액세스 수준입니다.
     * `--protocol Tcp`: 프로토콜(Tcp, Udp 또는 *)입니다.
-    * `--direction Inbound`: 연결 방향(인바운드 또는 아웃바운드)입니다.
-    * `--priority 100`: 규칙에 대한 우선순위입니다.
+    * `--direction Inbound`: Hello 연결 (인바운드 또는 아웃 바운드)의 방향입니다.
+    * `--priority 100`: Hello 규칙에 대 한 우선 순위입니다.
     * `--source-address-prefix Internet`: CIDR 또는 기본 태그를 사용하는 원본 주소 접두사입니다.
-    * `--source-port-range "*"`: 원본 포트 또는 포트 범위입니다. 연결을 여는 포트입니다.
+    * `--source-port-range "*"`: 원본 포트 또는 포트 범위입니다. 포트 연결을 hello 연입니다.
     * `--destination-address-prefix "*"`: CIDR 또는 기본 태그를 사용하는 대상 주소 접두사입니다.
-    * `--destination-port-range 3389`: 대상 포트 또는 포트 범위입니다. 연결 요쳥을 수신하는 포트입니다.
+    * `--destination-port-range 3389`: 대상 포트 또는 포트 범위입니다. Hello 연결 요청을 수신 하는 포트입니다.
 
 
 
-4. **az network nsg rule create** 명령을 실행하여 인터넷에서 포트 80(HTTP)에 대한 액세스를 허용하는 규칙을 만듭니다.
+4. Hello 인터넷에서에서 액세스 tooport 80 (HTTP)를 허용 하는 규칙을 만들 **az 네트워크 nsg 규칙 만들기** 명령입니다.
    
     ```azurecli
     az network nsg rule create \
@@ -178,7 +178,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-5. [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) 명령을 사용하여 NSG를 **FrontEnd** 서브넷에 바인딩합니다.
+5. Hello NSG toohello 바인딩 **프런트 엔드** hello로 서브넷 [az 네트워크 vnet 서브넷 업데이트](/cli/azure/network/vnet/subnet#update) 명령입니다.
         
     ```azurecli
     az network vnet subnet update \
@@ -231,10 +231,10 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-## <a name="create-the-nsg-for-the-backend-subnet"></a>`BackEnd` 서브넷에 대한 NSG 만들기
-앞의 시나리오에 따라 *NSG-BackEnd*라는 NSG를 만들려면 다음 단계를 따르세요.
+## <a name="create-hello-nsg-for-hello-backend-subnet"></a>Hello에 대 한 hello NSG 만들기 `BackEnd` 서브넷
+명명 된 NSG toocreate *NSG 백 엔드* hello 단계 다음에 따라 이전 hello 시나리오에 따라, 합니다.
 
-1. **az network nsg create**를 사용하여 `NSG-BackEnd` NSG를 만듭니다.
+1. Hello 만들기 `NSG-BackEnd` 와 NSG **az 네트워크 nsg 만들기**합니다.
    
     ```azurecli
     az network nsg create \
@@ -243,9 +243,9 @@ ms.lasthandoff: 07/11/2017
     --location centralus
     ```
    
-    앞서 2단계와 마찬가지로 예상된 출력은 기본 규칙을 포함하여 매우 큽니다.
+    앞, 2 단계에서 설명한 대로 hello 출력은 매우 클 기본 규칙을 포함 하 여 필요 합니다.
    
-2. **az network nsg rule create** 명령을 실행하여 `FrontEnd` 서브넷에서 포트 1433(SQL)에 대한 액세스를 허용하는 규칙을 만듭니다.
+2. 액세스 tooport 1433 (SQL) hello에서 허용 하는 규칙을 만들 `FrontEnd` hello로 서브넷 **az 네트워크 nsg 규칙 만들기** 명령입니다.
    
     ```azurecli
     az network nsg rule create \
@@ -283,7 +283,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-3. **az network nsg rule create** 명령을 사용하여 인터넷에 대한 액세스를 거부하는 규칙을 만듭니다.
+3. 사용 하 여 액세스 toohello 인터넷 거부 하는 규칙을 만들 hello **az 네트워크 nsg 규칙 만들기** 명령입니다.
    
     ```azurecli
     az network nsg rule create \
@@ -321,7 +321,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-4. **az network vnet subnet set** 명령을 사용하여 NSG를 `BackEnd` 서브넷에 바인딩합니다.
+4. Hello NSG toohello 바인딩 `BackEnd` hello를 사용 하 여 서브넷 **az 네트워크 vnet 서브넷 집합** 명령입니다.
    
     ```azurecli
     az network vnet subnet update \

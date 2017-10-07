@@ -1,6 +1,6 @@
 ---
-title: "로컬 네트워크 게이트웨이 IP 주소 접두사 및 VPN Gateway IP 주소 수정 | Azure | CLI | Microsoft Docs"
-description: "이 문서에서는 Azure CLI를 사용하여 로컬 네트워크 게이트웨이에 대한 IP 주소 접두사를 변경하는 방법을 안내합니다."
+title: "Hello 로컬 네트워크 게이트웨이 IP 주소 접두사 및 hello VPN 게이트웨이 IP 주소 수정 | Azure | CLI | Microsoft Docs"
+description: "이 문서 hello Azure CLI를 사용 하 여 로컬 네트워크 게이트웨이 IP 주소 접두사를 변경 하지 안내 합니다."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: cherylmc
-ms.openlocfilehash: 7db1ad970ebb93d46d5a861f9a9b27bf121531a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4b8bbf3e9d3d42ac2d12f87360fa0a4134c57a21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="modify-local-network-gateway-settings-using-the-azure-cli"></a>Azure CLI를 사용하여 로컬 네트워크 게이트웨이 설정 수정
+# <a name="modify-local-network-gateway-settings-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 로컬 네트워크 게이트웨이 설정을 수정 합니다.
 
-때때로 로컬 네트워크 게이트웨이 주소 접두사 또는 게이트웨이 IP 주소에 대한 설정이 변경됩니다. 이 문서는 로컬 네트워크 게이트웨이 설정을 수정하는 방법을 안내합니다. 다음 목록에서 다른 옵션을 선택해 다른 방법으로 이러한 설정을 수정할 수도 있습니다.
+경우에 따라 로컬 네트워크 게이트웨이 주소 접두사 또는 게이트웨이 IP 주소에 대 한 hello 설정을 변경합니다. 이 문서에서는 어떻게 toomodify 로컬 네트워크 게이트웨이 설정 합니다. 또한 다른 메서드를 사용 하 여 hello 다음 목록에서에서 다른 옵션을 선택 하 여 이러한 설정을 수정할 수 있습니다.
 
 > [!div class="op_single_selector"]
 > * [Azure 포털](vpn-gateway-modify-local-network-gateway-portal.md)
@@ -34,7 +34,7 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="before"></a>시작하기 전에
 
-최신 버전의 CLI 명령(2.0 이상)을 설치합니다. CLI 명령을 설치하는 방법에 대한 자세한 내용은 [Azure CLI 2.0 설치](https://docs.microsoft.com/cli/azure/install-azure-cli)를 참조하세요.
+Hello hello CLI 명령 (2.0 이상)의 최신 버전을 설치 합니다. Hello CLI 명령 설치에 대 한 정보를 참조 하십시오. [Azure CLI 2.0 설치](https://docs.microsoft.com/cli/azure/install-azure-cli)합니다.
 
 [!INCLUDE [CLI-login](../../includes/vpn-gateway-cli-login-include.md)]
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 08/18/2017
 
 [!INCLUDE [modify-prefix](../../includes/vpn-gateway-modify-ip-prefix-cli-include.md)]
 
-## <a name="gwip"></a>게이트웨이 IP 주소 수정
+## <a name="gwip"></a>Hello 게이트웨이 IP 주소를 수정 합니다.
 
 [!INCLUDE [modify-gateway-IP](../../includes/vpn-gateway-modify-lng-gateway-ip-cli-include.md)]
 

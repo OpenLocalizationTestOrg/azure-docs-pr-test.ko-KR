@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight에서 Spark를 사용하는 데이터 과학 개요 | Microsoft Docs"
-description: "Spark MLlib 도구 키트를 통해 많은 기계 학습 모델링 기능을 이 분산 HDInsight 환경에서 사용할 수 있습니다."
+title: "Azure HDInsight의 Spark를 사용 하 여 데이터 과학자의 aaaOverview | Microsoft Docs"
+description: "hello Spark MLlib 도구 키트는 상당한 기계 학습 기능 distributed toohello HDInsight 환경 모델링을 제공 합니다."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/15/2017
 ms.author: deguhath;bradsev;gokuma
-ms.openlocfilehash: 379b32f4e533f48f1593a97e73737a0c5bfb9135
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 515705684a46917c2741bf063d439b1cda016abb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-data-science-using-spark-on-azure-hdinsight"></a>Azure HDInsight에서 Spark를 사용하는 데이터 과학 개요
 [!INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-이 항목 모음에서는 HDInsight Spark를 사용하여 데이터 수집, 기능 엔지니어링, 모델링 및 모델 평가와 같은 일반적인 데이터 과학 작업을 완료하는 방법을 보여 줍니다. 사용되는 데이터는 2013 NYC Taxi Trip 및 요금 데이터 집합의 샘플입니다. 작성된 모델은 로지스틱 및 선형 회귀, 임의 포리스트 및 그라데이션 향상된 트리를 포함합니다. 또한 이 항목은 이러한 모델을 Azure Blob Storage(WASB)에 저장하고 예측 성능의 점수를 매기며 평가하는 방법도 보여 줍니다. 고급 항목에서는 교차 유효성 검사 및 하이퍼 매개 변수 스위핑을 사용하여 모델을 학습할 수 있는 방법을 다룹니다. 이 개요 토픽은 제공된 연습의 단계를 완료하는 데 필요한 Spark 클러스터를 설정하는 방법을 설명하는 토픽도 참조합니다. 
+이 도구 모음 항목의 데이터를 수집, 기능 엔지니어링, 모델링 및 모델 평가 경우 같은 toouse HDInsight Spark toocomplete 일반 데이터 과학 작업 하는 방법을 보여 줍니다. 사용 되는 hello 데이터는 hello 2013 NYC 택시 여행 및 요금 데이터 집합의 샘플입니다. 작성 된 hello 모델에 물류 및 선형 회귀, 임의 포리스트 및 그라데이션 승격 된 트리에 포함 됩니다. hello 항목도 표시 방법을 toostore 이러한 모델에서 Azure blob 저장소 (WASB)와 방법을 tooscore 하 고 예측의 성능을 평가 합니다. 고급 항목에서는 교차 유효성 검사 및 하이퍼 매개 변수 스위핑을 사용하여 모델을 학습할 수 있는 방법을 다룹니다. 또한이 개요 항목 tooset를 제공 하는 hello 연습에서 toocomplete hello 단계를 보려면 Spark 클러스터 hello 하는 방법을 설명 하는 hello 항목을 참조 합니다. 
 
 ## <a name="spark-and-mllib"></a>Spark 및 MLlib
-[Spark](http://spark.apache.org/) 는 메모리 내 처리를 지원하여 빅데이터 분석 응용 프로그램의 성능을 향상하는 오픈 소스 병렬 처리 프레임워크입니다. 속도, 간편한 사용 및 정교한 분석을 위해 Spark 처리 엔진이 빌드되었습니다. Spark는 메모리 내 분산형 계산 기능을 지원하여 기계 학습 및 그래프 계산에 사용된 반복 알고리즘에 적합합니다. [MLlib](http://spark.apache.org/mllib/)는 Spark의 확장형 기계 학습 라이브러리로, 분산형 환경에서 알고리즘 모델링 기능을 사용할 수 있습니다. 
+[Spark](http://spark.apache.org/) 빅 데이터 분석 응용 프로그램의 tooboost hello 성능을 처리에서 메모리를 지 원하는 오픈 소스 병렬 처리 프레임 워크입니다. hello Spark 처리 엔진에 대 한 속도, 사용 및 복잡 한 분석의 용이성 만들어집니다. 메모리 내 분산된 계산 기능으로 Spark의 게 hello 반복 알고리즘 컴퓨터 학습 및 그래프 계산에 사용 하기에 적합 합니다. [MLlib](http://spark.apache.org/mllib/) 기능 toothis 분산된 환경 모델링 Spark의 확장 가능한 시스템 학습 라이브러리 hello 알고리즘을 제공 하는 것입니다. 
 
 ## <a name="hdinsight-spark"></a>HDInsight Spark
-[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) 는 Azure에서 호스트하는 오픈 소스 Spark의 제품입니다. 또한 Azure Blob(WASB)에 저장된 데이터를 변환, 필터링 및 시각화하기 위해 Spark SQL 대화형 쿼리를 실행할 수 있는 Spark 클러스터상의 **Jupyter PySpark Notebook**에 대한 지원도 포함하고 있습니다. PySpark는 Spark용 Python API입니다. 솔루션을 제공하고 데이터 시각화를 위해 관련 플롯을 여기에 보여 주는 코드 조각은 Spark 클러스터에 설치된 Jupyter Notebook에서 실행됩니다. 이러한 항목의 모델링 단계는 각 모델 유형을 학습, 평가, 저장 및 사용하는 방법을 보여 주는 코드를 포함하고 있습니다. 
+[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) hello Azure 호스팅되는 오픈 소스 Spark의 제공 합니다. 에 대 한 지원도 포함 됩니다 **Jupyter PySpark 노트북** Spark SQL 변환, 필터링 및 Azure Blob (WASB)에 저장 된 데이터를 시각화에 대 한 대화형 쿼리를 실행할 수 있는 hello Spark 클러스터에 있습니다. PySpark는 hello Spark에 대 한 Python API입니다. hello 솔루션을 제공 하 고 여기 Jupyter 노트북 hello Spark 클러스터에 설치에서 실행 하는 hello 관련 점도 toovisualize hello 데이터를 보여 주는 hello 코드 조각입니다. 이 항목의 hello 모델링 단계 tootrain를 평가, 저장 및 각 모델 유형에 사용 방법을 보여 주는 코드가 포함 됩니다. 
 
 ## <a name="setup-spark-clusters-and-jupyter-notebooks"></a>설정: Spark 클러스터 및 Jupyter Notebook
-설치 단계와 코드는 HDInsight Spark 1.6을 사용하는 이 연습에 제공됩니다. 하지만 Jupyter Notebook은 HDInsight Spark 1.6과 Spark 2.0 클러스터 둘 다에 제공됩니다. 노트북과 이에 연결된 링크의 설명은 이들을 포함하는 GitHub 리포지토리의 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md)에 제공됩니다. 그뿐 아니라 여기에 있는 코드와 연결된 Notebook에 있는 코드는 일반적이므로 아무 Spark 클러스터에서나 작동할 것입니다. HDInsight Spark를 사용하지 않는 경우 클러스터 설치 및 관리 단계가 여기에 나오는 내용과 약간 다를 수 있습니다. 편의를 위해, Jupyter Notebook 서버의 pySpark 커널에서 실행되는 Spark 1.6 및 Jupyter Notebook 서버의 pySpark3 커널에서 실행되는 Spark 2.0용 Jupyter Notebook에 연결된 링크는 다음과 같습니다.
+설치 단계와 코드는 HDInsight Spark 1.6을 사용하는 이 연습에 제공됩니다. 하지만 Jupyter Notebook은 HDInsight Spark 1.6과 Spark 2.0 클러스터 둘 다에 제공됩니다. Hello에 전자 필기장 및 링크 toothem hello에 대 한 설명을 제공 됩니다 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 이 포함 하는 hello GitHub 리포지토리에 대 한 합니다. 또한 hello 코드와 연결 된 hello 전자 필기장에서 제네릭 인데 어떤 Spark 클러스터에서 작동 해야 합니다. HDInsight Spark를 사용 하지 않는 경우 hello 클러스터 설치 및 관리 단계는 여기 표시 된에서 약간 다를 수 있습니다. 편의 위해 링크는 다음과 같습니다 hello Spark 1.6 (toobe hello pySpark 커널의 hello Jupyter 노트북 서버에서 실행) 및 Spark 2.0 (toobe hello pySpark3 커널의 hello Jupyter 노트북 서버에서 실행)에 대 한 toohello Jupyter 노트북:
 
-### <a name="spark-16-notebooks"></a>Spark 1.6 노트북
-이러한 Notebook은 Jupyter Notebook 서버의 pySpark 커널에서 실행됩니다.
+### <a name="spark-16-notebooks"></a>Spark 1.6 Notebook
+이러한 전자 필기장 toobe hello pySpark 커널의 Jupyter 노트북 서버에서 실행 됩니다.
 
-- [pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb): 데이터 탐색, 모델링, 그리고 몇 가지 알고리즘으로 점수 매기기 등을 수행하는 방법에 대한 정보를 제공합니다.
+- [pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb): 방법에 대해 설명 tooperform 데이터 탐색, 모델링 및 다양 한 알고리즘이 점수 매기기입니다.
 - [pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb): 노트북 #1의 토픽과 하이퍼 매개 변수 조정 및 교차 유효성 검사를 사용하는 모델 개발을 포함합니다.
-- [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb): HDInsight 클러스터에서 Python을 사용하여 저장된 모델을 운용하는 방법을 보여줍니다.
+- [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb): 방법을 toooperationalize HDInsight에서 Python을 사용 하 여 저장 된 모델 클러스터를 보여 줍니다.
 
-### <a name="spark-20-notebooks"></a>Spark 2.0 노트북
-이러한 Notebook은 Jupyter Notebook 서버의 pySpark3 커널에서 실행됩니다.
+### <a name="spark-20-notebooks"></a>Spark 2.0 Notebook
+이러한 전자 필기장 toobe hello pySpark3 커널의 Jupyter 노트북 서버에서 실행 됩니다.
 
-- [Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb): 이 파일은 NYC Taxi Trip 및 [여기](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data) 설명된 데이터 집합을 사용하여 Spark 2.0 클러스터에서 데이터 탐색, 모델링, 점수 매기기를 수행하는 방법에 대한 정보를 제공합니다. 이 Notebook은 Spark 2.0에 대해 제공했던 코드를 신속하게 탐색하기 위한 좋은 시작점일 수 있습니다. NYC Taxi 데이터를 분석하는 Notebook 상세 정보는 이 목록에서 다음 Notebook을 참조하세요. 이러한 Notebook을 비교하는 목록 다음의 참고 사항을 확인하세요. 
-- [Spark2.0 pySpark3_NYC_Taxi_Tip_Regression.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_NYC_Taxi_Tip_Regression.ipynb): 이 파일은 [여기](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)에 설명된 NYC 택시 여정 및 요금 데이터 집합을 사용한 데이터 랭글링(Spark SQL 및 데이터 프레임 작업), 탐색, 모델링 및 점수 매기기를 수행하는 방법을 보여줍니다.
-- [Spark2.0-pySpark3_Airline_Departure_Delay_Classification.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_Airline_Departure_Delay_Classification.ipynb): 이 파일은 2011년 및 2012년의 유명 항공사 정시 출발 데이터 집합을 사용한 데이터 랭글링(Spark SQL 및 데이터 프레임 작업), 탐색, 모델링 및 점수 매기기를 수행하는 방법을 보여줍니다. 날씨 요소를 모델에 포함시킬 수 있도록 모델링하기 전에 항공사 데이터 집합과 공항 날씨 데이터(예: 풍속, 온도, 고도 등)를 통합하였습니다.
+- [Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb):이 파일 어떻게 tooperform 데이터 탐색, 모델링 및 Spark 2.0에서 점수 매기기 클러스터 NYC 택시 여행 hello를 사용 하 여에 정보를 제공 합니다. 및 데이터 집합 설명 요금 [여기](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)합니다. 이 전자 필기장 신속 하 게 Spark 2.0를 제공 하는 hello 코드를 탐색 하기 위한 좋은 출발점 수도 있습니다. 더 자세한 노트북 hello NYC 택시 데이터를 분석에 대 한이 목록에 다음 노트북을 hello를 참조 하십시오. 이러한 전자 필기장을 비교 하는이 목록 다음 되는 hello 메모를 참조 하세요. 
+- [Spark2.0 pySpark3_NYC_Taxi_Tip_Regression.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_NYC_Taxi_Tip_Regression.ipynb):이 파일은 NYC 택시 여행 및 요금 데이터 집합 설명 tooperform 데이터 wrangling (Spark SQL 및 데이터 프레임 작업) 탐색을 모델링 하 고 사용 하 여 점수 매기기 hello 하는 방법을 보여 줍니다. [ 여기](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)합니다.
+- [Spark2.0 pySpark3_Airline_Departure_Delay_Classification.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_Airline_Departure_Delay_Classification.ipynb):이 파일은 tooperform 데이터 wrangling (Spark SQL 및 데이터 프레임 작업) 탐색을 모델링 하 고 사용 하 여 점수 매기기 잘 알려진 Airline 정시 출발 hello 하는 방법을 보여 줍니다. 2011 및 2012에서 데이터 집합입니다. 에서는 통합 hello airline 데이터 집합 hello 공항 날씨 데이터 (예:: windspeed, 온도, 고도 등) 이전 toomodeling, 되므로 이러한 날씨 기능 hello 모델에 포함 될 수 있습니다.
 
 <!-- -->
 
 > [!NOTE]
-> 항공사 데이터 집합은 분류 알고리즘의 사용 이해를 돕기 위해 Spark 2.0 Notebook에 추가되었습니다. 항공사 정시 출발 데이터 집합 및 날씨 데이터 집합에 대한 내용은 다음 링크를 참조하세요.
+> hello airline 데이터 집합 추가 toohello Spark 2.0 전자 필기장 toobetter 분류 알고리즘의 hello 사용을 보여 줍니다. Airline 정시 출발 집합과 날씨 데이터 집합에 대 한 정보에 대 한 링크를 따라 hello 참조:
 
 >- 항공사 정시 출발 데이터: [http://www.transtats.bts.gov/ONTIME/](http://www.transtats.bts.gov/ONTIME/)
 
@@ -64,25 +64,25 @@ ms.lasthandoff: 07/11/2017
 <!-- -->
 
 > [!NOTE]
-NYC taxi의 Spark 2.0 Notebook 및 항공사 비행 지연 데이터 집합은 실행하는 데 10분 이상이 소요될 수 있습니다(HDI 클러스터의 크기에 따라 다름). 위 목록에서 첫 번째 Notebook은 샘플 수를 줄인 NYC 데이터 집합으로 실행 시간을 줄인 Notebook에서 데이터 탐색, 시각화 및 ML 모델 학습의 다양한 측면을 보여 줍니다. 여기서는 택시 및 요금 파일을 사전에 조인했습니다. [Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb) 이 Notebook은 완료하는 데 훨씬 짧은 시간(2-3분)이 소요되며 Spark 2.0에 대해 제공된 코드를 신속하게 탐색하기 위한 좋은 시작점일 수 있습니다. 
+hello NYC 택시에서 hello Spark 2.0 전자 필기장 및 airline 비행 지연 데이터 집합에는 10 분 또는 (hello의 크기에 따라 HDI 클러스터) 자세한 toorun 걸릴 수 있습니다. hello 목록 위의 hello에서 첫 번째 노트북 hello 데이터 탐색의 다양 한 부분, 시각화 및 기계 학습 모델 교육 축소 샘플링 NYC 데이터 집합으로는 hello 택시 및 요금 파일 미리 조인 했습니다 적은 시간 toorun 받아들이는 노트북: [ Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb) 이 노트북은 훨씬 더 짧은 시간 toofinish (2-3 분) 걸리고 있습니다 수 좋은 시작 지점 신속 하 게 hello 코드 탐색에 대 한 했으므로 Spark 2.0에 대 한 제공 합니다. 
 
 <!-- -->
 
-점수 매기기를 위한 Spark 2.0 모델 및 모델 사용량의 운용에 대한 지침은 [사용량에 관한 Spark 1.6 문서](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb)에서 해당 단계를 설명하는 예제를 참조하세요. Spark 2.0에서 이를 사용하려면 Python 코드 파일을 [이 파일](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)로 대체합니다.
+Spark 2.0 모델 및 점수 매기기에 대 한 모델 소비 화 hello에 대 한 지침을 참조 hello [Spark 1.6 문서 사용에 대 한](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb) 필요한 hello 단계 개요 예에 대 한 합니다. hello Python 코드 파일을 Spark 2.0에 대 한 대체 toouse [이 파일](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)합니다.
 
 ### <a name="prerequisites"></a>필수 조건
-다음 절차는 Spark 1.6에 대한 내용입니다. Spark 2.0 버전의 경우 이전에 설명 및 링크된 Notebook을 사용합니다. 
+다음 절차를 수행 하는 hello 관련된 tooSpark 1.6 됩니다. 사용 하 여 hello 전자 필기장 hello Spark 2.0 버전에 대 한 설명 하 고 toopreviously 연결 합니다. 
 
 1. Azure 구독이 있어야 합니다. 아직 가지고 있지 않은 경우 [Azure 평가판](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)을 참조하세요.
 
-2. 이 연습을 완료하는 데는 Spark 1.6 클러스터가 필요합니다. 만드는 방법은 [시작: Azure HDInsight에서 Apache Spark 만들기](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)를 참조하세요. 클러스터 유형 및 버전은 **클러스터 유형 선택** 메뉴에서 지정됩니다. 
+2.가 연습이에서는 1.6 Spark 클러스터 toocomplete 할 수 있습니다. toocreate 하나, 참조에 제공 된 hello 지침 [시작: Azure HDInsight의 Apache Spark 만들기](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)합니다. hello 클러스터 유형 및 버전 hello에서 지정 된 **클러스터 유형 선택** 메뉴. 
 
 ![클러스터 구성](./media/machine-learning-data-science-spark-overview/spark-cluster-on-portal.png)
 
 <!-- -->
 
 > [!NOTE]
-> Python이 아닌 Scala를 사용하여 종단 간 데이터 과학 프로세스에 대한 작업을 완료하는 방법을 보여 주는 항목에 대해서는 [Azure에서 Spark를 사용하는 데이터 과학](machine-learning-data-science-process-scala-walkthrough.md)을 참조하세요.
+> Toouse Python 보다는 Scala toocomplete 종단 간 데이터 과학 프로세스에 대 한 작업 하는 방법을 보여 주는 항목에 대 한 참조 hello [Scala Azure의 Spark와 함께 사용 하 여 데이터 과학](machine-learning-data-science-process-scala-walkthrough.md)합니다.
 > 
 > 
 
@@ -92,10 +92,10 @@ NYC taxi의 Spark 2.0 Notebook 및 항공사 비행 지연 데이터 집합은 �
 > 
 > 
 
-## <a name="the-nyc-2013-taxi-data"></a>NYC 2013 Taxi 데이터
-NYC Taxi Trip 데이터는 1억 7,300만 개가 넘는 개별 여정 및 각 여정의 요금으로 구성된 약 20GB의 압축된 CSV(쉼표로 구분된 값) 파일(압축되지 않은 경우 약 48GB)입니다. 각 여정 레코드는 승차 및 하차 위치와 시간, 익명 처리된 hack(기사) 면허증 번호 및 medallion(택시의 고유 ID) 번호를 포함합니다. 데이터는 2013년의 모든 여정을 포괄하며, 매월 다음 두 개의 데이터 집합으로 제공됩니다.
+## <a name="hello-nyc-2013-taxi-data"></a>hello NYC 2013 택시 데이터
+hello NYC 택시 여행 데이터는 약 20GB의 압축 된 쉼표로 구분 된 값 (CSV) 파일 (~ 48 GB 압축 되지 않음), 구성 173 백만 개 이상의 개별 라운드트립 및 hello fares 각 시에 대 한 지불 합니다. 각 여행 레코드 hello 선택 및 자동 전송 위치 및 시간, 익명화 된 해킹 (드라이버의) 라이선스 번호 및 메달 (택시의 고유 id) 번호를 포함합니다. hello 데이터 hello 2013 년의 모든 왕복에 설명 하 고 각 월에 대 한 두 개의 데이터 집합을 따라 hello에 제공 됩니다.
 
-1. 'trip_data' CSV 파일은 승객 수, 승차 및 하차 지점, 여정 기간, 여정 거리 등 여정 세부 정보를 포함합니다. 다음은 몇 가지 샘플 레코드입니다.
+1. hello 'trip_data' CSV 파일 승객 수와 같이 여행 세부 정보를 포함 하려면를 선택 하 고 기간과 여행 길이 여행 dropoff 가리킵니다. 다음은 몇 가지 샘플 레코드입니다.
    
         medallion,hack_license,vendor_id,rate_code,store_and_fwd_flag,pickup_datetime,dropoff_datetime,passenger_count,trip_time_in_secs,trip_distance,pickup_longitude,pickup_latitude,dropoff_longitude,dropoff_latitude
         89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,1,N,2013-01-01 15:11:48,2013-01-01 15:18:10,4,382,1.00,-73.978165,40.757977,-73.989838,40.751171
@@ -103,7 +103,7 @@ NYC Taxi Trip 데이터는 1억 7,300만 개가 넘는 개별 여정 및 각 여
         0BD7C8F5BA12B88E0B67BED28BEA73D8,9FD8F69F0804BDB5549F40E9DA1BE472,CMT,1,N,2013-01-05 18:49:41,2013-01-05 18:54:23,1,282,1.10,-74.004707,40.73777,-74.009834,40.726002
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:54:15,2013-01-07 23:58:20,2,244,.70,-73.974602,40.759945,-73.984734,40.759388
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:25:03,2013-01-07 23:34:24,1,560,2.10,-73.97625,40.748528,-74.002586,40.747868
-2. 'trip_fare' CSV 파일은 지불 유형, 금액, 추가 요금 및 세금, 팁 및 통행료, 총 지불 금액 등 각 여정의 요금에 대한 세부 정보를 포함합니다. 다음은 몇 가지 샘플 레코드입니다.
+2. hello 'trip_fare' CSV 파일 hello 요금을 지불 유형, 요금 크기, 추가 요금 및 세금, 팁 및 통행료가, 및 유료 hello 총 금액 등 각 여정에 대해 지불한의 세부 정보를 포함 합니다. 다음은 몇 가지 샘플 레코드입니다.
    
         medallion, hack_license, vendor_id, pickup_datetime, payment_type, fare_amount, surcharge, mta_tax, tip_amount, tolls_amount, total_amount
         89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,2013-01-01 15:11:48,CSH,6.5,0,0.5,0,0,7
@@ -112,7 +112,7 @@ NYC Taxi Trip 데이터는 1억 7,300만 개가 넘는 개별 여정 및 각 여
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:54:15,CSH,5,0.5,0.5,0,0,6
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:25:03,CSH,9.5,0.5,0.5,0,0,10.5
 
-이러한 파일 중 0.1% 샘플을 선택하고 trip\_data 및 trip\_fare CVS 파일을 이 연습의 입력 데이터 집합으로 사용할 단일 데이터 집합에 조인했습니다. trip\_data와 trip\_fare를 조인할 고유 키는 medallion, hack\_licence 및 pickup\_datetime 필드로 구성됩니다. 데이터 집합의 각 레코드는 NYC Taxi 여정을 나타내는 다음과 같은 특성을 포함하고 있습니다.
+이러한 파일 및 조인 된 hello 여행의 0.1% 샘플 이동\_데이터와 여행\_hello이이 연습에 대 한 입력된 데이터 집합으로 CVS 파일에 단일 데이터 집합 toouse 있어 합니다. hello 고유 키 toojoin 여행\_데이터와 여행\_요금 가지 hello 필드로 구성 됩니다: 메달 해킹\_사용권 및 픽업\_날짜/시간입니다. Hello 데이터 집합의 각 레코드는 hello를 NYC 택시 출장을 나타내는 특성에 따라 포함 되어 있습니다.
 
 | 필드 | 간략한 설명 |
 | --- | --- |
@@ -124,7 +124,7 @@ NYC Taxi Trip 데이터는 1억 7,300만 개가 넘는 개별 여정 및 각 여
 | pickup_datetime |승차 날짜 및 시간 |
 | dropoff_datetime |내린 날짜 및 시간 |
 | pickup_hour |승차 시간 |
-| pickup_week |연간 누적 승차 주 수 |
+| pickup_week |Hello 연도의 주를 선택 합니다. |
 | weekday |요일(범위 1-7) |
 | passenger_count |택시 여정의 승객 수 |
 | trip_time_in_secs |여정 시간(초) |
@@ -144,46 +144,46 @@ NYC Taxi Trip 데이터는 1억 7,300만 개가 넘는 개별 여정 및 각 여
 | tipped |팁 지불 여부(아니요 또는 예에 대해 0/1 지정) |
 | tip_class |팁 클래스(0: $0, 1: $0-5, 2: $6-10, 3: $11-20, 4: > $20) |
 
-## <a name="execute-code-from-a-jupyter-notebook-on-the-spark-cluster"></a>Spark 클러스터의 Jupyter Notebook에서 코드 실행
-Azure 포털에서 Jupyter Notebook을 시작할 수 있습니다. 대시보드에서 Spark 클러스터를 찾아 클릭하여 클러스터에 대한 관리 페이지로 들어갑니다. Spark 클러스터와 연결된 Notebook을 열려면 **Cluster 대시보드** -> **Jupyter Notebook**을 클릭합니다.
+## <a name="execute-code-from-a-jupyter-notebook-on-hello-spark-cluster"></a>Hello Spark 클러스터에서 Jupyter 노트북에서 코드를 실행 합니다.
+Hello Jupyter 노트북 hello Azure 포털에서에서 시작할 수 있습니다. 대시보드에 Spark 클러스터를 찾아 클러스터에 대해 tooenter 관리 페이지를 클릭 합니다. hello Spark 클러스터와 연결 된 tooopen hello 노트북 클릭 **클러스터 대시보드** -> **Jupyter 노트북** 합니다.
 
 ![클러스터 대시보드](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
-***https://CLUSTERNAME.azurehdinsight.net/jupyter***로 이동하여 Jupyter Notebook에 액세스할 수도 있습니다. 이 URL의 CLUSTERNAME 부분을 사용자 고유의 클러스터 이름으로 바꿉니다. Notebook에 액세스하려면 관리자 계정에 대한 암호가 필요합니다.
+너무 찾아볼 수도 있습니다***https://CLUSTERNAME.azurehdinsight.net/jupyter*** tooaccess hello Jupyter 노트북 합니다. 이 URL의 hello CLUSTERNAME 부분을 사용자 고유의 클러스터의 hello 이름을 바꿉니다. 관리자 계정 tooaccess hello 전자 필기장에 대 한 hello 암호가 필요 합니다.
 
 ![Jupyter 노트북 찾아보기](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
-PySpark를 선택하여 PySpark API를 사용하는 미리 패키지된 Notebook에 대한 몇 가지 예가 들어 있는 디렉터리를 표시합니다. 이 Spark 항목 모음에 대한 코드 샘플이 포함된 Notebook은 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark)에서 사용할 수 있습니다.
+PySpark toosee Spark 항목의이 도구 모음에 대 한 hello 코드 샘플이 포함 된 PySpark API.hello 전자 필기장에서 사용할 수 있는 hello를 사용 하는 패키지 전자 필기장의 몇 가지 예제가 포함 된 디렉터리를 선택 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark)
 
-노트북을 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark)에서 Spark 클러스터의 Jupyter Notebook 서버에 직접 업로드할 수 있습니다. Jupyter의 홈 페이지에서 화면 오른쪽의 **업로드** 버튼을 클릭합니다. 파일 탐색기가 열립니다. 여기서 Notebook의 GitHub(원시 콘텐츠) URL을 붙여넣고 **열기**를 클릭할 수 있습니다. 
+Hello 전자 필기장에서 직접 업로드할 수 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) Spark 클러스터에서 toohello Jupyter 노트북 서버입니다. 프로그램 Jupyter hello 홈 페이지에서 클릭 hello **업로드** hello hello 화면의 오른쪽 부분에 단추입니다. 파일 탐색기가 열립니다. Hello 노트북 한 hello GitHub (원시 콘텐츠) URL을 붙여넣을 수 여기 **열려**합니다. 
 
-**업로드** 버튼을 다시 사용하면 Jupyter 파일 목록에서 파일 이름을 확인할 수 있습니다. 이 **업로드** 버튼을 클릭합니다. 이제 Notebook을 가져왔습니다. 이 단계를 반복하여 이 연습에서 다른 Notebook을 업로드합니다.
+Hello 파일 이름으로 Jupyter 파일 목록에 표시 된 **업로드** 단추를 다시 합니다. 이 **업로드** 버튼을 클릭합니다. 이제 hello 노트북을 가져왔습니다. 이 연습에서 다른 전자 필기장 이러한 단계 tooupload hello를 반복 합니다.
 
 > [!TIP]
-> 브라우저의 링크를 마우스 오른쪽 단추로 클릭하고 **링크 복사**를 선택하여 github 원시 콘텐츠 URL을 가져올 수 있습니다. Jupyter 업로드 파일 탐색기 대화 상자에 이 URL을 붙여넣을 수 있습니다.
+> 브라우저 및 선택 사항에 대 한 hello 링크를 마우스 오른쪽 단추로 클릭 수 **링크 복사** tooget hello github의 원시 콘텐츠 URL입니다. Hello Jupyter 업로드 파일 탐색기 대화 상자에이 URL을 붙여넣을 수 있습니다.
 > 
 > 
 
 이제 다음을 수행할 수 있습니다.
 
-* Notebook을 클릭하여 코드를 확인합니다.
+* Hello 노트북을 클릭 하 여 hello 코드를 참조 하십시오.
 * **Shift+Enter**를 눌러 각 셀을 실행합니다.
-* **셀** -> **실행**을 클릭하여 전체 Notebook을 실행합니다.
-* 쿼리의 자동 시각화를 사용합니다.
+* 클릭 하 여 hello 전체 전자 필기장 실행 **셀** -> **실행**합니다.
+* 쿼리의 자동 시각화 hello를 사용 합니다.
 
 > [!TIP]
-> PySpark 커널은 SQL(HiveQL) 쿼리의 출력을 자동으로 시각화합니다. Notebook의 **형식** 메뉴 버튼을 사용하여 다양한 시각화 형식(테이블, 원형, 꺾은선형, 영역 또는 막대) 중에서 선택할 수 있는 옵션이 제공됩니다.
+> hello PySpark 커널 hello 출력 (HiveQL) SQL 쿼리를 자동으로 시각화합니다. Hello를 사용 하 여 다양 한 유형의 시각화 (테이블, 원형, 꺾은선형, 영역 또는 막대) 간에 hello 옵션 tooselect 증명이 **형식** hello 전자 필기장의 메뉴 단추:
 > 
 > 
 
 ![일반적인 접근 방식에 대한 로지스틱 회귀 분석 ROC 곡선](./media/machine-learning-data-science-spark-overview/pyspark-jupyter-autovisualization.png)
 
 ## <a name="whats-next"></a>다음 작업
-이제 HDInsight Spark 클러스터를 설치하고 Jupyter Notebook을 업로드했으므로 이 세 PySpark Notebook에 해당하는 항목을 진행할 준비가 되었습니다. 이들 항목은 데이터 탐색 방법을 보여 준 후 모델을 만들고 사용하는 방법을 보여 줍니다. 고급 데이터 탐색 및 모델링 Notebook은 교차 유효성 검사, 하이퍼 매개 변수 비우기 및 모델 평가를 포함하는 방법을 보여 줍니다. 
+HDInsight Spark 클러스터를 사용 하 여 설정 되 고 hello Jupyter 노트북 업로드 했으므로 toohello 세 PySpark 전자 필기장에 해당 하는 hello 항목을 통해 준비 toowork 됩니다. 보여 줍니다 어떻게 tooexplore 데이터와 다음 방법을 toocreate 및 모델을 사용 합니다. 고급 데이터 탐색 및 노트북 표시 방법을 모델링 하는 hello tooinclude 교차 유효성 검사, 하이퍼 매개 변수 비우기 및 모델 평가 합니다. 
 
-**Spark로 데이터 탐색 및 모델링:** [Spark MLlib 도구 키트를 사용하여 데이터에 대한 이진 분류 및 회귀 모델 만들기](machine-learning-data-science-spark-data-exploration-modeling.md) 항목을 수행하여 데이터 집합을 탐색하고 기계 학습 모델 만들기, 점수 매기기 및 평가를 수행합니다.
+**데이터 탐색 및 모델링 spark:** hello 데이터 집합을 탐색 하 고, 점수를 만들고 hello 통해 작업 하 여 hello 기계 학습 모델을 평가 [hello Spark 데이터에 대 한 이진 분류 및 회귀 모델 만들기 MLlib toolkit](machine-learning-data-science-spark-data-exploration-modeling.md) 항목입니다.
 
-**모델 사용:** 이 항목에서 만든 분류 및 회귀 모델의 점수를 매기는 방법을 알아보려면 [Spark로 빌드된 기계 학습 모델 점수 매기기 및 평가](machine-learning-data-science-spark-model-consumption.md)를 참조하세요.
+**소비 모델:** toolearn tooscore hello 분류 및 회귀 모델은이 항목에서 생성 하는 방법 참조 [점수 Spark 작성 기계 학습 모델을 평가 하 고](machine-learning-data-science-spark-model-consumption.md)합니다.
 
 **교차 유효성 검사 및 하이퍼 매개 변수 비우기**: 교차 유효성 검사 및 하이퍼 매개 변수 비우기를 사용하여 모델을 학습하는 방법은 [Spark로 고급 데이터 탐색 및 모델링](machine-learning-data-science-spark-advanced-data-exploration-modeling.md) 을 참조하세요.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Backup FAQ | Microsoft 문서"
-description: "Recovery Services 자격 증명 모음, 백업 대상, 작동 방식, 암호화 및 제한 등 Azure Backup 기능과 관련된 일반적인 질문에 대한 대답입니다. "
+title: "aaaAzure 백업 FAQ | Microsoft Docs"
+description: "에 대 한 toocommon 질문에 답변: 복구 서비스 자격 증명 모음를 백업할 수 내용, 작동 방법, 암호화 및 제한을 비롯 한 Azure 백업 기능입니다. "
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/21/2017
 ms.author: markgal;arunak;trinadhk;
-ms.openlocfilehash: 62ca4e395a7390c57b46c548395333283a06c21a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3338f7620bcc6ebf53c9c161191f2d8bca1a29da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="questions-about-the-azure-backup-service"></a>Azure Backup 서비스에 대한 질문
-이 문서에서는 Azure Backup 구성 요소를 빨리 이해하는 데 도움이 되는 일반적인 질문에 대한 대답을 제공합니다. 대답 중 일부에는 포괄적인 정보를 포함하는 문서에 대한 링크가 있습니다. **의견**(오른쪽)을 클릭하여 Azure Backup에 대한 질문을 할 수 있습니다. 의견은 이 문서의 하단에 나타납니다. Livefyre 계정은 메모가 필수입니다. 또한 [토론 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)에 Azure Backup 서비스에 대한 질문도 게시할 수 있습니다.
+# <a name="questions-about-hello-azure-backup-service"></a>Hello Azure 백업 서비스에 대 한 질문
+이 기술 자료이 문서에 대 한 답변 toocommon 질문 toohelp hello Azure 백업 구성 요소를 신속 하 게 이해 합니다. 일부 hello 대답의 링크 toohello 문서 포괄적인 정보가 포함 되어 있습니다. 클릭 하 여 Azure 백업에 대 한 질문을 요청 **주석** (toohello 오른쪽)입니다. 주석은은 hello이이 문서의 맨 아래에 나타납니다. Livefyre 계정은 필요한 toocomment입니다. Hello에 hello Azure 백업 서비스에 대 한 질문을 게시할 수도 있습니다 [토론 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)합니다.
 
-이 문서의 섹션을 신속하게 검색하려면 **이 문서** 아래의 오른쪽에서 링크를 사용합니다.
+이 문서의 tooquickly 스캔 hello 섹션 사용 hello 링크 toohello 오른쪽 아래에서 **이 문서의**합니다.
 
 
 ## <a name="recovery-services-vault"></a>Recovery Services 자격 증명 모음
 
-### <a name="is-there-any-limit-on-the-number-of-vaults-that-can-be-created-in-each-azure-subscription-br"></a>각 Azure 구독에 만들 수 있는 자격 증명 모음의 개수에 제한이 있나요? <br/>
-예. 2016년 9월을 기준으로 구독 당 25개 Recovery Services 또는 백업 자격 증명 모음을 만들 수 있습니다. 구독당 Azure Backup의 지원되는 지역당 최대 25개의 Recovery Services 자격 증명 모음을 만들 수 있습니다. 추가 자격 증명 모음이 필요한 경우 추가 구독을 만드세요.
+### <a name="is-there-any-limit-on-hello-number-of-vaults-that-can-be-created-in-each-azure-subscription-br"></a>이 각 Azure 구독에서 만들 수 있는 자격 증명 모음 hello 수에 제한이 있습니까? <br/>
+예. 2016년 9월을 기준으로 구독 당 25개 Recovery Services 또는 백업 자격 증명 모음을 만들 수 있습니다. 자격 증명 모음 당 구독 당 Azure Backup의 지원 되는 지역 too25 복구 서비스를 만들 수 있습니다. 추가 자격 증명 모음이 필요한 경우 추가 구독을 만드세요.
 
-### <a name="are-there-limits-on-the-number-of-serversmachines-that-can-be-registered-against-each-vault-br"></a>각 자격 증명 모음에 대해 등록할 수 있는 서버/컴퓨터 수에 제한이 있나요? <br/>
-예, 자격 증명 모음당 컴퓨터를 최대 50대까지 등록할 수 있습니다. Azure IaaS 가상 컴퓨터의 경우 자격 증명 모음당 200대 VM으로 제한됩니다. 더 많은 컴퓨터를 등록해야 할 경우 다른 자격 증명 모음을 만드세요.
+### <a name="are-there-limits-on-hello-number-of-serversmachines-that-can-be-registered-against-each-vault-br"></a>각 자격 증명 모음에 대해 등록할 수 있는 서버/컴퓨터 hello 수에 대 한 제한 사항이 있습니까? <br/>
+예, 자격 증명 모음 당 too50 컴퓨터를 등록할 수 있습니다. Azure IaaS 가상 컴퓨터에 대 한 hello 제한은 200 Vm 당 자격 증명 모음입니다. 더 많은 컴퓨터 tooregister 해야 할 경우 다른 자격 증명 모음을 만듭니다.
 
 ### <a name="if-my-organization-has-one-vault-how-can-i-isolate-one-servers-data-from-another-server-when-restoring-databr"></a>내 조직에 하나의 자격 증명 모음이 있는 경우 데이터를 복원할 때 서버 간에 데이터를 어떻게 격리할 수 있나요?<br/>
-동일한 자격 증명 모음에 등록된 모든 서버는 *동일한 암호를 사용*하는 다른 서버에서 백업된 데이터를 복구할 수 있습니다. 조직의 다른 서버에서 백업 데이터를 격리하고 싶은 서버가 있는 경우 해당 서버에 대해 지정된 암호를 사용합니다. 예를 들어 인사부 서버가 첫 번째 암호화 암호를 사용하고, 회계 서버가 두 번째, 저장소 서버가 세 번째 암호화 암호를 사용할 수 있습니다.
+모든 서버에 동일한 자격 증명 모음을 복구할 수는 등록 된 toohello hello 다른 서버에서 백업 된 데이터 *사용 하는 동일한 암호를 hello*합니다. 원하는 tooisolate 서버가 해당 백업 데이터가 있는 경우 조직의 다른 서버에서 해당 서버에 대해 지정 된 암호를 사용 합니다. 예를 들어 인사부 서버가 첫 번째 암호화 암호를 사용하고, 회계 서버가 두 번째, 저장소 서버가 세 번째 암호화 암호를 사용할 수 있습니다.
 
 ### <a name="can-i-migrate-my-backup-data-or-vault-between-subscriptions-br"></a>구독 간에 내 백업 데이터 또는 자격 증명 모음을 “마이그레이션”할 수 있나요? <br/>
-아니요. 자격 증명 모음은 구독 수준에서 만들어지며 생성된 후에는 다른 구독에 다시 할당할 수 없습니다.
+아니요. hello 자격 증명 모음 구독 수준에서 만들어지고가 만들어지면 재할당할된 tooanother 구독 일 수 없습니다.
 
 ### <a name="recovery-services-vaults-are-resource-manager-based-are-backup-vaults-classic-mode-still-supported-br"></a>Recovery Services 자격 증명 모음은 Resource Manager에 기반합니다. Backup 자격 증명 모음(기본 모드)은 계속 지원되나요? <br/>
-[클래식 포털](https://manage.windowsazure.com)의 모든 기존 Backup 자격 증명 모음은 계속 지원됩니다. 하지만 새 Backup 자격 증명 모음을 배포하는 데 더 이상 클래식 포털을 사용할 수 없습니다. 향후 향상되는 기능이 Recovery Services 자격 증명 모음에만 적용되므로 Microsoft에서는 모든 배포에 Recovery Services 자격 증명 모음을 사용하도록 권장합니다. 클래식 포털에서 Backup 자격 증명 모음을 만들려는 경우 [Azure Portal](https://portal.azure.com)에 리디렉션됩니다.
+모든 기존 백업에서에서 자격 증명 모음 hello [클래식 포털](https://manage.windowsazure.com) 지원 toobe를 계속 합니다. 그러나 hello 클래식 포털 toodeploy 새 백업 자격 증명 모음은 더 이상 사용할 수 없습니다. 이후의 향상 된 내용을 tooRecovery 서비스 자격 증명 모음을만 적용 되므로 모든 배포에 대해 복구 서비스 자격 증명 모음을 사용 하는 것이 좋습니다. 리디렉션된 toohello 됩니다 toocreate hello 클래식 포털에서 백업 자격 증명 모음을 시도 하면 [Azure 포털](https://portal.azure.com)합니다.
 
-### <a name="can-i-migrate-a-backup-vault-to-a-recovery-services-vault-br"></a>Recovery Services 자격 증명 모음에 Backup 자격 증명 모음을 마이그레이션할 수 있나요? <br/>
-아니요, 안타깝지만 Backup 자격 증명 모음의 내용을 Recovery Services 자격 증명 모음에 마이그레이션할 수 없습니다. 이 기능을 추가하려고 노력하고 있지만 현재는 사용할 수 없습니다.
+### <a name="can-i-migrate-a-backup-vault-tooa-recovery-services-vault-br"></a>백업 자격 증명 모음 tooa 복구 서비스 자격 증명 모음을 마이그레이션할 수 있습니까? <br/>
+아쉽게도 아니요, 복구 서비스 자격 증명 모음에 백업 자격 증명 모음 tooa의 hello 콘텐츠를 마이그레이션할 수 없습니다. 이 기능을 추가하려고 노력하고 있지만 현재는 사용할 수 없습니다.
 
-### <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-to-resource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>Backup 자격 증명 모음에 내 클래식 VM을 백업했습니다. 클래식 모드에서 Resource Manager 모드로 내 VM을 마이그레이션하고 Recovery Services 자격 증명 모음에서 보호할 수 있나요?
-클래식 모드에서 Resource Manager 모드로 VM을 바꾸는 경우 백업 자격 증명 모음에 있는 클래식 VM 복구 시점은 Recovery Services 자격 증명 모음에 자동으로 마이그레이션되지 않습니다. VM 백업을 전송하려면 다음 단계를 수행합니다.
+### <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-tooresource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>Backup 자격 증명 모음에 내 클래식 VM을 백업했습니다. 클래식 모드 tooResource 관리자 모드에서 내 Vm 마이그레이션을 복구 서비스 자격 증명 모음에서 보호할 수 있습니까?
+백업 자격 증명 모음에 클래식 VM 복구 지점을 클래식 tooResource 관리자 모드에서에서 hello VM을 이동할 때 tooa 복구 서비스 자격 증명 모음을 자동으로 마이그레이션합니다 하지 않습니다. 이러한 단계 tootransfer VM 백업을 수행 합니다.
 
-1. Backup 자격 증명 모음에서 **보호된 항목** 탭으로 이동하고 VM을 선택합니다. [보호 중지](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines)를 클릭합니다. *연결된 백업 데이터 삭제* 옵션을 **검사하지 않음**으로 둡니다.
-2. VM에서 백업/스냅숏 확장을 삭제합니다.
-3. 클래식 모드에서 Resource Manager 모드로 가상 컴퓨터를 마이그레이션합니다. 가상 컴퓨터에 해당하는 저장소 및 네트워크 정보가 Resource Manager 모드로 마이그레이션되도록 합니다.
-4. 자격 증명 모음 대시보드를 기반으로 **Backup** 작업을 사용하여 Recovery Services 자격 증명 모음을 만들고 마이그레이션된 가상 컴퓨터에 백업을 구성합니다. Recovery Services 자격 증명 모음에 VM을 백업하는 방법에 대한 자세한 내용은 [Recovery Services 자격 증명 모음으로 Azure VM 보호](backup-azure-vms-first-look-arm.md) 문서를 참조하세요.
+1. Hello 백업 자격 증명 모음에서 이동 toohello **보호 된 항목** 탭 하 고 hello VM을 선택 합니다. [보호 중지](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines)를 클릭합니다. *연결된 백업 데이터 삭제* 옵션을 **검사하지 않음**으로 둡니다.
+2. Hello VM에서에서 hello 백업/스냅숏 확장을 삭제 합니다.
+3. 클래식 모드 tooResource 관리자 모드에서 hello 가상 컴퓨터를 마이그레이션하십시오. 해당 toohello 가상 컴퓨터가 이기도 hello 저장소 및 네트워크 정보 tooResource 관리자 모드 마이그레이션 되었는지 확인 합니다.
+4. 복구 서비스 자격 증명 모음 만들기 및 구성 hello에 백업 마이그레이션된 가상 컴퓨터를 사용 하 여 **백업** 자격 증명 모음 대시보드를 기반으로 동작 합니다. 자격 증명 모음에 대 한 자세한 내용은 VM tooa 복구 서비스를 백업, hello 문서 참조 [복구 서비스 자격 증명 모음 Azure Vm 보호](backup-azure-vms-first-look-arm.md)합니다.
 
 ## <a name="azure-backup-agent"></a>Azure Backup 에이전트
 자세한 질문 목록은 [Azure 파일 폴더 백업 FAQ](backup-azure-file-folder-backup-faq.md)에 있습니다.
@@ -63,40 +63,40 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="back-up-vmware-servers"></a>VMware 서버 백업
 
-### <a name="can-i-back-up-vmware-vcenter-servers-to-azure"></a>VMware vCenter 서버를 Azure에 백업할 수 있나요?
+### <a name="can-i-back-up-vmware-vcenter-servers-tooazure"></a>VMware vCenter 서버 tooAzure을 백업할 수 있습니까?
 
-예. VMware vCenter 및 ESXi를 Azure에 백업하는 데 Azure Backup Server를 사용할 수 있습니다. 지원되는 VMware 버전에 대 한 자세한 내용은 [Azure Backup Server 보호 매트릭스](backup-mabs-protection-matrix.md)를 참조하세요. 단계별 지침은 [Azure Backup Server를 사용하여 VMware 서버 백업](backup-azure-backup-server-vmware.md)을 참조하세요.
+예. Azure 백업 서버 tooback VMware vCenter와 ESXi tooAzure를 사용할 수 있습니다. 지원 되는 hello VMware 버전에 대 한 내용은 hello 문서를 참조 [Azure 백업 서버 보호 매트릭스](backup-mabs-protection-matrix.md)합니다. 단계별 지침은 참조 하십시오. [VMware 서버를 사용 하 여 Azure 백업 서버 tooback](backup-azure-backup-server-vmware.md)합니다.
 
 
 ## <a name="azure-backup-server-and-system-center-data-protection-manager"></a>Azure Backup Server 및 System Center Data Protection Manager
-### <a name="can-i-use-azure-backup-server-to-create-a-bare-metal-recovery-bmr-backup-for-a-physical-server-br"></a>Azure Backup 서버를 사용하여 물리적 서버에 대한 BMR(완전 복구) 백업을 만들 수 있나요? <br/>
+### <a name="can-i-use-azure-backup-server-toocreate-a-bare-metal-recovery-bmr-backup-for-a-physical-server-br"></a>사용할 수 있습니까 Azure 백업 서버 toocreate 완전 복구 (BMR) 백업 하는 물리적 서버에 대 한? <br/>
 예.
 
-### <a name="can-i-register-my-dpm-server-to-multiple-vaults-br"></a>여러 자격 증명 모음에 DPM 서버를 등록할 수 있나요? <br/>
-아니요. DPM 또는 MABS 서버는 하나의 자격 증명 모음에만 등록할 수 있습니다.
+### <a name="can-i-register-my-dpm-server-toomultiple-vaults-br"></a>내 DPM 서버 toomultiple 자격 증명 모음을 등록할 수 있습니까? <br/>
+아니요. DPM 또는 MABS 서버 자격 증명 모음 등록된 tooonly 하나 될 수 있습니다.
 
 ### <a name="which-version-of-system-center-data-protection-manager-is-supported-br"></a>지원되는 System Center Data Protection Manager의 버전은 무엇인가요? <br/>
-System Center DPM(Data Protection Manager)용 최신 업데이트 롤업(UR)에 [최신](http://aka.ms/azurebackup_agent) Azure Backup 에이전트를 설치하는 것이 좋습니다. 2016년 8월을 기준으로 업데이트 롤업 11이 최신 업데이트입니다.
+Hello를 설치 하는 것이 좋습니다 [최신](http://aka.ms/azurebackup_agent) hello 최신 업데이트 롤업 (UR)에 대 한 System Center Data Protection Manager (DPM)에서 Azure 백업 에이전트입니다. 2016 년 8 월 업데이트 롤업 11을 hello 최신 업데이트 했습니다.
 
-### <a name="i-have-installed-azure-backup-agent-to-protect-my-files-and-folders-can-i-now-install-system-center-dpm-to-work-with-azure-backup-agent-to-protect-on-premises-applicationvm-workloads-to-azure-br"></a>내 파일 및 폴더를 보호하기 위해 Azure Backup 에이전트를 설치했습니다. 이제 System Center DPM을 설치하여 Azure에 온-프레미스 응용 프로그램/VM 워크로드를 보호하기 위해 Azure Backup 에이전트를 사용할 수 있나요? <br/>
-System Center DPM(Data Protection Manager)과 함께 Azure Backup을 사용하려면 먼저 DPM을 설치하고 Azure Backup 에이전트를 설치합니다. Azure Backup 구성 요소를 이 순서대로 설치하면 Azure Backup 에이전트는 DPM과 함께 작동합니다. DPM을 설치하기 전에 Azure Backup 에이전트를 설치하는 것이 권장되거나 지원되지 않습니다.
+### <a name="i-have-installed-azure-backup-agent-tooprotect-my-files-and-folders-can-i-now-install-system-center-dpm-toowork-with-azure-backup-agent-tooprotect-on-premises-applicationvm-workloads-tooazure-br"></a>Azure 백업 에이전트 tooprotect 내 파일 및 폴더 설치 했습니다. 설치할 수 있는 이제 System Center DPM toowork와 Azure 백업 에이전트 tooprotect 온-프레미스 응용 프로그램/v M 작업 tooAzure? <br/>
+toouse Azure 백업으로 System Center Data Protection Manager (DPM), DPM을 먼저 설치 하 고 Azure 백업 에이전트를 설치 합니다. DPM과 함께 작동 하는 hello Azure 백업 에이전트 확인이 순서로 hello Azure 백업 구성 요소를 설치 합니다. DPM을 설치 하기 전에 hello Azure 백업 에이전트 설치 사전에 알고 있던 하거나 지원 하지 않습니다.
 
 
 ## <a name="how-azure-backup-works"></a>Azure Backup 작동 방식
-### <a name="if-i-cancel-a-backup-job-once-it-has-started-is-the-transferred-backup-data-deleted-br"></a>백업이 시작된 후 백업 작업을 취소하면 전송된 백업 데이터가 삭제되나요? <br/>
-아니요. 백업 작업이 취소되기 전에 자격 증명 모음으로 전송된 모든 데이터는 자격 증명 모음에 유지됩니다. Azure Backup은 백업하는 동안 백업 데이터에 검사점을 간혹 추가하는 검사점 메커니즘을 사용합니다. 백업 데이터에 검사점이 있기 때문에 다음 백업 프로세스에서는 파일의 무결성을 유효성 검사할 수 있습니다. 다음 백업 작업은 이전에 백업한 데이터에 대해 증분됩니다. 증분 백업은 새 데이터 또는 변경된 데이터만 전송하므로 대역폭의 사용률을 개선합니다.
+### <a name="if-i-cancel-a-backup-job-once-it-has-started-is-hello-transferred-backup-data-deleted-br"></a>시작 된 후 백업 작업은 취소를 hello 전송 되는 백업 데이터 삭제 됩니다. <br/>
+아니요. Hello 자격 증명 모음에 hello 백업 작업을 취소 하기 전에 hello 자격 증명 모음으로 전송 되는 모든 데이터가 유지 됩니다. 검사점 메커니즘 toooccasionally 하는 동안 검사점 toohello 백업 데이터를 추가 하는 azure 백업에서는 hello 백업 합니다. Hello 백업 데이터에서 검사점 있기 때문에 hello 다음 백업 프로세스 hello 파일의 hello 무결성 유효성을 검사할 수 있습니다. hello 다음 백업 작업을 증분 toohello 데이터는 이전에 백업 됩니다. 증분 백업을 대역폭의 사용률과 toobetter은 새롭거나 변경 된 데이터를 전송 합니다.
 
-Azure VM에 대한 백업 작업을 취소하면 모든 전송된 데이터는 무시됩니다. 다음 백업 작업은 마지막으로 성공한 백업 작업에서 증분 데이터를 전송합니다.
+Azure VM에 대한 백업 작업을 취소하면 모든 전송된 데이터는 무시됩니다. 다음 백업 작업 hello hello 마지막으로 성공한 백업 작업에서 증분 데이터를 전송합니다.
 
 ### <a name="are-there-limits-on-when-or-how-many-times-a-backup-job-can-be-scheduledbr"></a>백업 작업을 예약할 수 있는 시간 또는 횟수에 제한이 있나요?<br/>
-예. Windows Server 또는 Windows 워크스테이션에서는 하루 최대 3번까지 백업 작업을 실행할 수 있습니다. System Center DPM에서는 하루 2번까지 백업 작업을 실행할 수 있습니다. IaaS VM의 경우 하루에 한 번 백업 작업을 실행할 수 있습니다. Windows Server 또는 Windows 워크스테이션에 대해 예약 정책을 사용하여 일별 또는 주별 일정을 지정할 수 있습니다. System Center DPM을 사용하여 일별, 주별, 월별, 연도별로 일정을 지정할 수 있습니다.
+예. Windows Server 또는 toothree 시간 / 일을 Windows 워크스테이션에서 백업 작업을 실행할 수 있습니다. 하루 tootwice를 System Center DPM에서 백업 작업을 실행할 수 있습니다. IaaS VM의 경우 하루에 한 번 백업 작업을 실행할 수 있습니다. Windows Server 또는 Windows 워크스테이션 toospecify 예약 정책 hello를 사용할 수 있습니다 매일 또는 매주 일정입니다. System Center DPM을 사용하여 일별, 주별, 월별, 연도별로 일정을 지정할 수 있습니다.
 
-### <a name="why-is-the-size-of-the-data-transferred-to-the-recovery-services-vault-smaller-than-the-data-i-backed-upbr"></a>Recovery Services 자격 증명 모음에 전송된 데이터가 백업한 데이터의 크기보다 작은 이유는 무엇인가요?<br/>
- Azure Backup 에이전트 또는 SCDPM 또는 Azure Backup 서버에서 백업된 모든 데이터를 전송하기 전에 압축하고 암호화합니다. 압축 및 암호화를 적용하면 백업 자격 증명 모음에 있는 데이터 크기가 30-40% 줄어듭니다.
+### <a name="why-is-hello-size-of-hello-data-transferred-toohello-recovery-services-vault-smaller-than-hello-data-i-backed-upbr"></a>복구 서비스 자격 증명 모음에 백업 하려면 hello 데이터 보다 더 작은 hello 전송 되는 데이터 toohello의 hello 크기 이유는 무엇입니까?<br/>
+ Azure 백업 에이전트 또는 SCDPM 또는 Azure 백업 서버에서 백업 된 모든 hello 데이터가 압축 되 고 전송 전에 암호화 됩니다. Hello 압축 및 암호화를 적용 한 후 hello 데이터 hello 백업 자격 증명 모음에는 30-40% 더 작은입니다.
 
 ## <a name="what-can-i-back-up"></a>어떤 것을 백업할 수 있나요?
 ### <a name="which-operating-systems-do-azure-backup-support-br"></a>Azure Backup에서 지원하는 운영 체제는 무엇인가요? <br/>
-Azure Backup은 Azure Backup Server 및 System Center DPM(Data Protection Manager)을 사용하여 보호되는 파일과 폴더 및 워크로드 응용 프로그램의 백업을 위한 다음 목록의 운영 체제를 지원합니다.
+Azure 백업 지원를 백업 하기 위한 운영 체제 목록은 다음 hello: 파일 및 폴더와 작업 응용 프로그램을 Azure 백업 서버 및 System Center Data Protection Manager (DPM)를 사용 하 여 보호 합니다.
 
 | 운영 체제 | 플랫폼 | SKU |
 |:--- | --- |:--- |
@@ -116,12 +116,12 @@ Azure Backup은 Azure Backup Server 및 System Center DPM(Data Protection Manage
 
 **Azure VM 백업의 경우:**
 
-* **Linux**: Azure Backup은 Core OS Linux를 제외한 [Azure 인증 배포 목록](../virtual-machines/linux/endorsed-distros.md)을 지원합니다.  가상 컴퓨터에서 VM 에이전트를 사용할 수 있고 Python에 대한 지원이 지속하는 한 기타 Bring-Your-Own-Linux 배포도 작동합니다.
+* **Linux**: Azure Backup은 Core OS Linux를 제외한 [Azure 인증 배포 목록](../virtual-machines/linux/endorsed-distros.md)을 지원합니다.  도 하 게 다른 Bring-Your-소유-Linux 배포판 hello VM 에이전트는 hello 가상 컴퓨터에서 사용할 수 있는 정상적으로 작동 못할 수도 있으며 Python에 대 한 지원.
 * **Windows Server**: Windows Server 2008 R2 이전 버전은 지원되지 않습니다.
 
 
-### <a name="is-there-a-limit-on-the-size-of-each-data-source-being-backed-up-br"></a>백업하는 각 데이터 원본의 크기에 제한이 있나요? <br/>
-자격 증명 모음에 백업할 수 있는 데이터의 양에는 제한이 없습니다. Azure Backup은 데이터 원본에 대한 최대 크기를 제한하지만 이러한 한도는 큽니다. 2015년 8월 기준으로, 지원되는 운영 체제의 최대 크기 데이터 원본은 다음과 같습니다.
+### <a name="is-there-a-limit-on-hello-size-of-each-data-source-being-backed-up-br"></a>백업 중인 데이터 원본의 크기 hello에 대 한 제한을 거기? <br/>
+Hello tooa 자격 증명 모음에 백업할 수 하는 데이터 크기 제한은 없습니다. Azure 백업 hello hello 데이터 원본에 대 한 최대 크기 제한, 이러한 제한 사항은 큰 합니다. 2015 년 8 월 현재 hello hello 지원 운영 체제에 대 한 데이터 원본에 대 한 최대 크기는:
 
 | S.No | 운영 체제 | 데이터 원본의 최대 크기 |
 |:---:|:--- |:--- |
@@ -130,56 +130,56 @@ Azure Backup은 Azure Backup Server 및 System Center DPM(Data Protection Manage
 | 3 |Windows Server 2008, Windows Server 2008 R2 |1700GB |
 | 4 |Windows 7 |1700GB |
 
-다음 표에서는 각 데이터 원본 크기가 어떻게 결정되는지를 설명합니다.
+다음 표에서 hello 각 데이터 원본 크기를 결정 하는 방법을 설명 합니다.
 
 | 데이터 원본 | 세부 정보 |
 |:---:|:--- |
-| 볼륨 |서버 또는 클라이언트 컴퓨터의 단일 볼륨에서 백업되는 데이터 양 |
-| Hyper-V 가상 컴퓨터 |백업되는 가상 컴퓨터의 모든 VHD 데이터 합계 |
+| 볼륨 |서버 또는 클라이언트 컴퓨터의 단일 볼륨에서 백업 되는 데이터 양을 hello |
+| Hyper-V 가상 컴퓨터 |백업 중인 hello 가상 컴퓨터의 모든 hello Vhd의 데이터의 합계 |
 | Microsoft SQL Server 데이터베이스 |백업되는 단일 SQL Database 크기 |
-| Microsoft SharePoint |백업되는 SharePoint 팜 내의 콘텐츠 및 구성 데이터베이스 합계 |
+| Microsoft SharePoint |백업 되는 SharePoint 팜 내부에서 hello 콘텐츠 및 구성 데이터베이스의 합계 |
 | Microsoft Exchange |백업되는 Exchange 서버의 모든 Exchange 데이터베이스 합계 |
-| BMR/시스템 상태 |백업되는 컴퓨터의 각 개별 BMR 복사본 또는 시스템 상태 |
+| BMR/시스템 상태 |각 개별 사본을 hello 컴퓨터의 BMR 또는 시스템 상태 백업 |
 
-Azure VM 백업의 경우 각 VM은 최대 16개의 데이터 디스크를 가질 수 있으며, 각 데이터 디스크의 크기는 1,023GB 이하입니다. 
+Azure VM 백업 각 VM 인 각 데이터 디스크 크기가 1023GB 이하의 too16 데이터 디스크를 포함할 수 있습니다. 
 
 ## <a name="retention-policy-and-recovery-points"></a>보존 정책 및 복구 지점
-### <a name="is-there-a-difference-between-the-retention-policy-for-dpm-and-windows-serverclient-that-is-on-windows-server-without-dpmbr"></a>DPM과 Windows Server/클라이언트(즉, DPM이 없는 Windows Server)에 대한 보존 정책 간에 차이가 있나요?<br/>
+### <a name="is-there-a-difference-between-hello-retention-policy-for-dpm-and-windows-serverclient-that-is-on-windows-server-without-dpmbr"></a>DPM에 대 한 hello 보존 정책 및 Windows Server/client 간의 차이가 (즉, Windows Server DPM 없이)?<br/>
 아니요, DPM 및 Windows Server/클라이언트 모두 일별, 주별, 월별, 연도별 보존 정책을 포함합니다.
 
 ### <a name="can-i-configure-my-retention-policies-selectively--ie-configure-weekly-and-daily-but-not-yearly-and-monthlybr"></a>내 보존 정책을 선택적으로 구성할 수 있나요? 즉, 연도별, 월별 정책은 구성하지 않고 주별, 일별 정책을 구성할 수 있나요?<br/>
-예, Azure Backup 보존 구조를 사용하여 사용자의 요구 사항에 따라 유연하게 보존 정책을 정의할 수 있습니다.
+예, Azure 백업 보존 구조 hello가 있습니다 toohave 완벽 한 유연성을 hello 보존 정책 요구 사항에 따라 정의 합니다.
 
 ### <a name="can-i-schedule-a-backup-at-6pm-and-specify-retention-policies-at-a-different-timebr"></a>오후 6시에 "백업을 예약"하고 다른 시간에 "보존 정책"을 지정할 수 있나요?<br/>
-아니요. 보존 정책은 백업 지점에만 적용할 수 있습니다. 다음 이미지에서는 보존 정책이 오전 12시와 오후 6시에 수행되는 백업에 지정됩니다. <br/>
+아니요. 보존 정책은 백업 지점에만 적용할 수 있습니다. 다음 이미지는 hello, 오전 12 시와 오후 6 시 백업에 대 한 hello 보존 정책 지정 되어 있습니다. <br/>
 
 ![백업 일정 및 보존](./media/backup-azure-backup-faq/Schedule.png)
 <br/>
 
-### <a name="if-a-backup-is-retained-for-a-long-duration-does-it-take-more-time-to-recover-an-older-data-point-br"></a>오랜 시간 동안 백업을 유지하면 오래된 데이터 지점을 복구하는 데 시간이 더 걸리나요? <br/>
-아니요 - 가장 오래된 지점이나 최신 지점을 복구하는 시간은 같습니다. 각 복구 지점은 전체 지점처럼 동작합니다.
+### <a name="if-a-backup-is-retained-for-a-long-duration-does-it-take-more-time-toorecover-an-older-data-point-br"></a>오랜 시간 동안 백업을 유지 하는 경우 데 더 많은 시간 toorecover 이전 하는 데이터 요소? <br/>
+아니요 – hello 시간 toorecover 가장 오래 된 hello 또는 최신 지점 hello 같은 hello 됩니다. 각 복구 지점은 전체 지점처럼 동작합니다.
 
-### <a name="if-each-recovery-point-is-like-a-full-point-does-it-impact-the-total-billable-backup-storagebr"></a>각 복구 지점이 전체 지점과 같은 경우 총 청구 가능 백업 저장소에 영향을 주나요?<br/>
-일반적인 장기 보존 지점 제품은 백업 데이터를 전체 지점으로 저장합니다. 전체 지점은 저장소를 *비효율적* 으로 사용하지만 복원은 쉽고 빠릅니다. 증분 복사본은 저장소를 *효율적* 으로 사용하지만 데이터 체인을 복원해야 하며 이는 복구 시간에 영향을 줍니다. Azure Backup 저장소 아키텍처는 데이터를 빠르게 복원할 수 있게 최적화하여 저장하고 저장소 비용을 낮춰 두 가지 이점을 모두 제공합니다. 이 데이터 저장소 방법을 사용하면 수신 및 발신 대역폭이 효율적으로 사용됩니다. 데이터를 복구하는 데 필요한 데이터 저장소와 시간의 양이 최소로 유지됩니다. [증분 백업](https://azure.microsoft.com/blog/microsoft-azure-backup-save-on-long-term-storage/)이 얼마나 효율적인지 자세히 알아보세요.
+### <a name="if-each-recovery-point-is-like-a-full-point-does-it-impact-hello-total-billable-backup-storagebr"></a>각 복구 지점이 전체 지점 같은 있으면 않습니다으로 영향을 총 청구 가능 백업 저장소 hello?<br/>
+일반적인 장기 보존 지점 제품은 백업 데이터를 전체 지점으로 저장합니다. hello 전체 요소가 저장소 *비효율적인* 더 쉽습니다 및 더 빠른 toorestore 합니다. 증분 복사본은 저장소 *효율적인* 있지만 toorestore 복구 시간에 영향을 주는 데이터의 체인을 해야 합니다. Azure 백업 저장소 아키텍처를 사용 최적으로 빠른 복원에 대 한 데이터를 저장 하 고 낮은 저장소 비용이 발생 하 여의 장점 hello 있습니다. 이 데이터 저장소 방법을 사용하면 수신 및 발신 대역폭이 효율적으로 사용됩니다. 모두 데이터 저장소 및 hello 시간의 hello 크기 필요한 toorecover hello 데이터, 최소 tooa 유지 됩니다. [증분 백업](https://azure.microsoft.com/blog/microsoft-azure-backup-save-on-long-term-storage/)이 얼마나 효율적인지 자세히 알아보세요.
 
-### <a name="is-there-a-limit-on-the-number-of-recovery-points-that-can-be-createdbr"></a>만들 수 있는 복구 지점의 수에 제한이 있나요?<br/>
-보호된 인스턴스당 최대 9999개의 복구 지점을 만들 수 있습니다. 보호된 인스턴스는 Azure에 데이터를 백업하도록 구성된 컴퓨터, 서버(실제 또는 가상) 또는 워크로드입니다. 자세한 내용은 [백업 및 보존](./backup-introduction-to-azure-backup.md#backup-and-retention)과 [보호된 인스턴스란 무엇인가요](./backup-introduction-to-azure-backup.md#what-is-a-protected-instance)?의 설명을 참조하세요.
+### <a name="is-there-a-limit-on-hello-number-of-recovery-points-that-can-be-createdbr"></a>이 hello 만들 수 있는 복구 지점 수에 제한이 있습니까?<br/>
+보호 된 인스턴스 당 too9999 복구 포인트를 만들 수 있습니다. 보호 된 인스턴스는 컴퓨터, 서버 (실제 또는 가상) 또는 데이터 tooAzure 구성 하는 작업 tooback입니다. 자세한 내용은 hello 설명은 참조 하십시오. [백업 및 보존](./backup-introduction-to-azure-backup.md#backup-and-retention), 및 [보호 된 인스턴스를 이란](./backup-introduction-to-azure-backup.md#what-is-a-protected-instance)?
 
-### <a name="how-many-recoveries-can-i-perform-on-the-data-that-is-backed-up-to-azurebr"></a>Azure에 백업된 데이터는 몇 번 복구할 수 있나요?<br/>
-Azure Backup에서 수행할 수 있는 복구 횟수에는 제한이 없습니다.
+### <a name="how-many-recoveries-can-i-perform-on-hello-data-that-is-backed-up-tooazurebr"></a>TooAzure 백업 된 hello 데이터에 대해 수행할 수 있는 개수 복구는 있습니까?<br/>
+Azure 백업에서 복구 hello 수 제한은 없습니다.
 
-### <a name="when-restoring-data-do-i-pay-for-the-egress-traffic-from-azure-br"></a>데이터를 복원할 때 Azure의 송신 트래픽에 대해 요금을 납부하나요? <br/>
-아니요. 복구는 무료이며 송신 트래픽에 요금이 부과되지는 않습니다.
+### <a name="when-restoring-data-do-i-pay-for-hello-egress-traffic-from-azure-br"></a>데이터를 복원할 때 납부 hello 송신 트래픽에 대 한 Azure에서? <br/>
+아니요. 프로그램 복구 수 있고 hello 송신 트래픽에 대 한 비용이 청구 되지 않습니다.
 
 ## <a name="azure-backup-encryption"></a>Azure Backup 암호화
-### <a name="is-the-data-sent-to-azure-encrypted-br"></a>Azure에 전송되는 데이터는 암호화되나요? <br/>
-예. 데이터는 온-프레미스 서버/클라이언트/SCDPM 컴퓨터에서 AES256으로 암호화되어 보안 HTTPS 링크를 통해 전송됩니다.
+### <a name="is-hello-data-sent-tooazure-encrypted-br"></a>hello 데이터 암호화 tooAzure 전송 되나요? <br/>
+예. 데이터는 a e s 256을 사용 하 여 hello 온-프레미스 서버/클라이언트/SCDPM 컴퓨터에서 암호화 및 hello 데이터 보안 HTTPS 링크를 통해 전송 됩니다.
 
-### <a name="is-the-backup-data-on-azure-encrypted-as-wellbr"></a>Azure의 백업 데이터도 암호화되나요?<br/>
-예. Azure에 전송되는 데이터는 암호화 상태(휴지 상태)를 유지합니다. Microsoft는 어떠한 경우에도 백업 데이터를 암호 해독하지 않습니다. Azure VM을 백업할 때 Azure Backup은 가상 컴퓨터의 암호화가 필요합니다. 예를 들어, Azure Disk Encryption 또는 다른 암호화 기술을 사용하여 VM을 암호화하는 경우 Azure Backup은 해당 암호화를 사용하여 데이터를 보호합니다.
+### <a name="is-hello-backup-data-on-azure-encrypted-as-wellbr"></a>암호화 된 상태로 Azure에서 백업 데이터 hello 인가요?<br/>
+예. hello 데이터 전송 tooAzure (rest)로 암호화 된 상태로 유지 됩니다. Microsoft는 언제 든 지 hello 백업 데이터를 해독 하지 않습니다. Azure VM에 백업 하는 경우 Azure 백업 hello 가상 컴퓨터의 암호화 의존 합니다. 예를 들어 VM은 Azure 디스크 암호화 또는 일부 다른 암호화 기술을 사용 하 여 암호화 되 면 Azure 백업을 사용 하 여 해당 암호화 toosecure 데이터.
 
-### <a name="what-is-the-minimum-length-of-encryption-key-used-to-encrypt-backup-data-br"></a>백업 데이터를 암호화하는 데 사용되는 암호화 키의 최소 길이는 어느 정도인가요? <br/>
-Azure 백업 에이전트를 사용하는 경우 암호화 키는 16자 이상이어야 합니다. Azure VM의 경우 Azure Key Vault에서 사용하는 키의 길이는 제한되지 않습니다. 
+### <a name="what-is-hello-minimum-length-of-encryption-key-used-tooencrypt-backup-data-br"></a>Tooencrypt 백업 데이터를 사용할 암호화 키의 최소 길이 hello 이란? <br/>
+Azure 백업 에이전트를 사용 하는 경우에 16 자 이상인 ' hello 암호화 키 해야 합니다. Azure Vm에 대 한 Azure KeyVault 사용 되는 키의 없습니다 제한 toolength가 있습니다. 
 
-### <a name="what-happens-if-i-misplace-the-encryption-key-can-i-recover-the-data-or-can-microsoft-recover-the-data-br"></a>암호화 키를 잃어버리면 어떻게 되나요? 제가 데이터를 복구할 수 있나요? 아니면 Microsoft가 데이터를 복구할 수 있나요? <br/>
-백업 데이터를 암호화하는 데 사용되는 키는 고객 사업장에만 존재합니다. Microsoft는 Azure에 복사본을 유지하지 않으며 키에 대한 어떠한 액세스 권한도 없습니다. 고객이 키를 잃어버릴 경우 Microsoft는 백업 데이터를 복구할 수 없습니다.
+### <a name="what-happens-if-i-misplace-hello-encryption-key-can-i-recover-hello-data-or-can-microsoft-recover-hello-data-br"></a>Hello 암호화 키를 잃어버리기 하려면 어떻게 됩니까? 복구 하는 hello 데이터 (또는) Microsoft hello 데이터를 복구할 수 있습니까? <br/>
+hello 사용 되는 키 tooencrypt hello에 대 한 백업 데이터는 hello 고객 사업장에 대해서만 존재 합니다. Microsoft은 Azure의 복사본을 유지 하지 않는 및 모든 액세스 toohello 키가 없습니다. Hello 고객 misplaces hello 키를 Microsoft hello 백업 데이터를 복구할 수 없습니다.

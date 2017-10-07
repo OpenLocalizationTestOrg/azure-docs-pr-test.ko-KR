@@ -1,6 +1,6 @@
 ---
-title: "Data Factory에서 Resource Manager 템플릿 사용 | Microsoft 문서"
-description: "Azure Resource Manager 템플릿을 만들고 사용하여 데이터 팩터리 엔터티를 만드는 방법을 알아봅니다."
+title: "Data Factory에 aaaUse 리소스 관리자 템플릿을 | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate 및 사용 하 여 Azure 리소스 관리자 템플릿 toocreate Data Factory 엔터티에 합니다."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,45 +14,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: c3ea2c047434b5b5495f0ce85be9376a502e4962
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 60d5dbd29494420006aed6d5bd9a10a63c36bec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-templates-to-create-azure-data-factory-entities"></a>템플릿을 사용하여 Azure Data Factory 엔터티 만들기
+# <a name="use-templates-toocreate-azure-data-factory-entities"></a>템플릿 toocreate Azure Data Factory 엔터티를 사용 하 여
 ## <a name="overview"></a>개요
-데이터 통합 요구에 Azure Data Factory를 사용하면서 다양한 환경에서 동일한 패턴을 재사용하거나 동일한 작업을 동일한 솔루션에서 반복적으로 구현하는 상황이 발생할 수 있습니다. 템플릿을 사용하면 이러한 시나리오에서 간편하게 구현 및 관리할 수 있습니다. Azure Data Factory의 템플릿은 재사용 및 반복이 관계된 시나리오에 적합합니다.
+서로 다른 환경에서 동일한 패턴을 hello 재사용을 직접 데이터 통합 요구 사항에 대 한 Azure 데이터 팩터리를 사용 하는 동안 하거나 hello 구현 동일한 태스크를 반복 해 서 hello 내에서 동일한 솔루션입니다. 템플릿을 사용하면 이러한 시나리오에서 간편하게 구현 및 관리할 수 있습니다. Azure Data Factory의 템플릿은 재사용 및 반복이 관계된 시나리오에 적합합니다.
 
-전 세계에 10개 제조 공장이 있는 조직의 상황을 고려해 보겠습니다. 각 공장의 로그는 개별 온-프레미스 SQL Server 데이터베이스에 저장됩니다. 회사에서는 임시 분석을 위해 클라우드에서 단일 데이터 웨어하우스를 구축하려 합니다. 또한 논리는 동일하면서 구성은 다른 개발, 테스트 및 프러덕션 환경이 필요합니다.
+Hello 상황을 hello 전 세계 조직 10 제조 공장에 있는 것이 좋습니다. 각 식물에서 hello 로그는 별도 온-프레미스 SQL Server 데이터베이스에 저장 됩니다. hello 회사 toobuild hello 클라우드에서는 단일 데이터 웨어하우스에 대 한 임시 분석 하려고합니다. Toohave 있었으면 hello 동일한 논리 하지만 개발, 테스트 및 프로덕션 환경에 대 한 다양 한 구성 합니다.
 
-이 경우 동일한 환경에서 작업을 반복하지만 각 제조 공장에 대해 서로 다른 값을 갖는 10개 데이터 팩터리가 생깁니다. 실제로 **반복**되는 것입니다. 템플릿에서는 이 고유 흐름(즉 각 데이터 팩터리에서 동일한 활동의 파이프라인)의 추상이 가능하지만 각 제조 공장마다 별도의 매개 변수 파일을 사용합니다. 
+반복 toobe는 작업을 수행 하는 경우에 내 동일한 환경 hello 하지만 간에 서로 다른 값으로 hello 각 제조 공장에 대 한 10 데이터 팩터리입니다. 실제로 **반복**되는 것입니다. 템플릿 허용 hello 추상화 하 여이 일반 흐름 (즉, 파이프라인 hello 있는 각 데이터 팩터리에서 동일한 활동), 하지만 각 제조 공장에 대 한 별도 매개 변수 파일을 사용 합니다.
 
-나아가 조직이 서로 다른 환경에서 수차례 이 10개 데이터 팩터리를 배포하려 하므로 템플릿은 개발, 테스트 및 프러덕션 환경에 별도의 매개 변수 파일을 적용함으로써 이러한 **재사용성**을 활용할 수 있습니다.
+또한 hello 조직이 toodeploy 이러한 10 개의 데이터 팩터리 여러 번 서로 다른 환경에서 템플릿을 사용할 수이 **재사용성** 개발을 위한 별도 매개 변수 파일을 사용 하 여 테스트 하 고 프로덕션 환경입니다.
 
 ## <a name="templating-with-azure-resource-manager"></a>Azure Resource Manager의 템플릿
-[Azure Resource Manager 템플릿](../azure-resource-manager/resource-group-overview.md#template-deployment)은 Azure Data Factory에서 템플릿을 만드는 좋은 방법입니다. Resource Manager 템플릿은 JSON 파일을 통해 Azure 솔루션의 인프라와 구성을 정의합니다. Azure Resource Manager 템플릿이 모든/대부분의 Azure 서비스에서 작동하므로 광범위한 사용을 통해 Azure 자산의 모든 리소스를 간편하게 관리할 수 있습니다. Azure Resource Manager 템플릿에 대한 일반적인 내용은 [Azure Resource Manager 템플릿 작성](../azure-resource-manager/resource-group-authoring-templates.md)을 참조하세요.
+[Azure 리소스 관리자 템플릿](../azure-resource-manager/resource-group-overview.md#template-deployment) Azure Data Factory에는 훌륭한 방법 tooachieve 템플릿 됩니다. 리소스 관리자 템플릿 JSON 파일을 통해 hello 인프라 및 Azure 솔루션의 구성을 정의합니다. Azure 리소스 관리자 템플릿을 모든/대부분 Azure 서비스를 사용 하기 때문에 광범위 하 게 사용할 수 tooeasily Azure 자산의 모든 리소스를 관리 합니다. 참조 [제작 Azure 리소스 관리자 템플릿을](../azure-resource-manager/resource-group-authoring-templates.md) toolearn에 더 알아봅니다 hello 리소스 관리자 템플릿을 일반적입니다.
 
 ## <a name="tutorials"></a>자습서
-Resource Manager 템플릿을 사용하여 데이터 팩터리 엔터티를 만들기 위한 단계별 지침은 다음 자습서를 참조하세요.
+리소스 관리자 템플릿을 사용 하 여 toocreate Data Factory 엔터티에 대 한 단계별 지침에 대 한 자습서를 따라 hello를 참조 하십시오.
 
-* [자습서: Azure Resource Manager 템플릿을 사용하여 데이터를 복사하기 위해 파이프라인 생성](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
-* [자습서: Azure Resource Manager 템플릿을 사용하여 데이터를 처리하기 위해 파이프라인 생성](data-factory-build-your-first-pipeline.md)
+* [자습서: Azure 리소스 관리자 템플릿을 사용 하 여 파이프라인 toocopy 데이터 만들기](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
+* [자습서: Azure 리소스 관리자 템플릿을 사용 하 여 파이프라인 tooprocess 데이터 만들기](data-factory-build-your-first-pipeline.md)
 
 ## <a name="data-factory-templates-on-github"></a>GitHub의 Data Factory 템플릿
-GitHub에서 다음 Azure 빠른 시작 템플릿을 확인해 보세요.
+Azure 빠른 시작 서식 파일에 나오는 GitHub에 hello 확인해 보세요.
 
-* [Azure Blob Storage에서 Azure SQL Database로 데이터를 복사하는 데이터 팩터리 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy)
+* [Azure Blob 저장소 tooAzure SQL 데이터베이스에서에서 데이터 팩터리 toocopy 데이터 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy)
 * [Azure HDInsight 클러스터에서 Hive 활동으로 데이터 팩터리 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-hive-transformation)
-* [Salesforce에서 Azure Blob으로 데이터를 복사하는 데이터 팩터리 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-salesforce-to-blob-copy)
-* [작업을 연결하는 Data Factory 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/201-data-factory-ftp-hive-blob): 데이터를 FTP 서버에서 Azure Blob으로 복사하고, 주문형 HDInsight 클러스터의 하이브 스크립트를 호출하여 데이터를 변환하며, Azure SQL Database에 결과를 복사합니다.
+* [Salesforce tooAzure Blob에서 데이터 팩터리 toocopy 데이터 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-salesforce-to-blob-copy)
+* [활동을 연결 하는 데이터 팩터리 만들기: FTP 서버에서 데이터를 복사 tooAzure Blob는 주문형 HDInsight 클러스터 tootransform hello 데이터에서 하이브 스크립트를 호출 하 고 Azure SQL 데이터베이스에 결과 복사](https://github.com/Azure/azure-quickstart-templates/tree/master/201-data-factory-ftp-hive-blob)
 
-[Azure 빠른 시작](https://azure.microsoft.com/documentation/templates/)에서 Azure Data Factory를 자유롭게 공유할 수 있습니다. 이 리포지토리를 통해 공유할 수 있는 템플릿을 개발할 때는 [기여 가이드](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE)를 참조하세요.
+무료 tooshare에서 Azure Data Factory 템플릿을 느껴집니다 [Azure 빠른 시작](https://azure.microsoft.com/documentation/templates/)합니다. Toohello 참조 [기여 가이드](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE) 서식 파일에서이 리포지토리를 통해 공유할 수 있는 개발 하는 중입니다.
 
-다음 섹션에서는 Resource Manager 템플릿에서 데이터 팩터리 리소스를 정의하는 것과 관련한 세부 정보를 제공합니다. 
+hello 다음 섹션에는 리소스 관리자 템플릿을 Data Factory 리소스를 정의 하는 방법에 대 한 세부 정보를 제공 합니다.
 
 ## <a name="defining-data-factory-resources-in-templates"></a>템플릿의 데이터 팩터리 리소스 정의
-데이터 팩터리 정의를 위한 최상위 템플릿은 다음과 같습니다.
+데이터 팩터리를 정의 하기 위한 hello 최상위 서식 파일은입니다.
 
 ```JSON
 "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -81,7 +81,7 @@ GitHub에서 다음 Azure 빠른 시작 템플릿을 확인해 보세요.
 ```
 
 ### <a name="define-data-factory"></a>데이터 팩터리 정의
-다음 예제에서처럼 Resource Manager 템플릿에서 데이터 팩터리를 정의합니다.
+Hello 다음 예제와 같이 hello 리소스 관리자 서식 파일에서 데이터 팩터리를 정의 합니다.
 
 ```JSON
 "resources": [
@@ -92,7 +92,7 @@ GitHub에서 다음 Azure 빠른 시작 템플릿을 확인해 보세요.
     "location": "East US"
 }
 ```
-dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
+hello dataFactoryName로 "변수"에 정의 됩니다.
 
 ```JSON
 "dataFactoryName": "[concat('<myDataFactoryName>', uniqueString(resourceGroup().id))]",
@@ -110,7 +110,7 @@ dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
 }
 ```
 
-배포하려는 특정 연결 서비스의 JSON 속성과 관련한 자세한 내용은 [저장소 연결 서비스](data-factory-azure-blob-connector.md#azure-storage-linked-service) 또는 [연결된 서비스 계산](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)을 참조하세요. "DependsOn" 매개 변수는 해당 데이터 팩터리의 이름을 지정합니다. Azure Storage의 연결 서비스 정의 예제는 다음 JSON 정의에 나와 있습니다.
+참조 [저장소 연결 된 서비스](data-factory-azure-blob-connector.md#azure-storage-linked-service) 또는 [계산 연결 된 서비스](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 원하는 toodeploy hello 특정 연결 된 서비스에 대 한 hello JSON 속성에 대 한 세부 정보에 대 한 합니다. hello "dependsOn" 매개 변수는 hello 해당 데이터 팩터리의 이름을 지정합니다. Azure 저장소에 대 한 연결 된 서비스 정의의 예로 hello JSON 정의 뒤에 표시 됩니다.
 
 ### <a name="define-datasets"></a>데이터 집합 정의
 
@@ -126,7 +126,7 @@ dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
     ...
 }
 ```
-배포할 특정 데이터 집합 형식의 JSON 속성에 관한 자세한 내용은 [지원되는 데이터 저장소](data-factory-data-movement-activities.md#supported-data-stores-and-formats)를 참조하세요. "DependsOn" 매개 변수는 해당 데이터 팩터리와 저장소 연결 서비스의 이름을 지정합니다. Azure Blob 저장소의 데이터 집합 정의 예제는 다음 JSON 정의에 나와 있습니다.
+너무 참조[데이터 저장소를 지원](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 원하는 toodeploy hello 특정 데이터 집합 형식에 대 한 hello JSON 속성에 대 한 세부 정보에 대 한 합니다. 참고 hello "dependsOn" 매개 변수는 hello 해당 데이터의 이름을 지정 합니다. 팩터리 및 저장소 서비스에 연결 합니다. Azure blob 저장소의 데이터 집합 형식 정의의 예로 hello JSON 정의 뒤에 표시 됩니다.
 
 ```JSON
 "type": "datasets",
@@ -172,7 +172,7 @@ dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
 }
 ```
 
-배포할 특정 파이프라인과 활동의 JSON 속성에 대한 자세한 내용은 [파이프라인 정의](data-factory-create-pipelines.md#pipeline-json)를 참조하세요. "dependsOn" 매개 변수는 데이터 팩터리와 해당 연결 서비스 또는 저장소 집합의 이름을 지정합니다. Azure Blob Storage의 데이터를 Azure SQL Database에 복사하는 파이프라인 예제는 다음 JSON 코드 조각에 있습니다.
+너무 참조[파이프라인 정의](data-factory-create-pipelines.md#pipeline-json) toodeploy 원하는 특정 파이프라인 및 활동을 정의 하기 위한 hello JSON 속성에 대 한 세부 정보 hello에 대 한 합니다. 참고 hello "dependsOn" 매개 변수는 hello 데이터 팩터리의 이름 및 해당 연결 된 서비스 또는 데이터 집합을 지정합니다. Azure Blob 저장소 tooAzure SQL 데이터베이스에서에서 데이터를 복사 하는 파이프라인의 예는 다음 JSON 코드 조각은 hello에 표시 됩니다.
 
 ```JSON
 "type": "datapipelines",
@@ -189,7 +189,7 @@ dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
     "activities": [
     {
         "name": "CopyFromAzureBlobToAzureSQL",
-        "description": "Copy data frm Azure blob to Azure SQL",
+        "description": "Copy data frm Azure blob tooAzure SQL",
         "type": "Copy",
         "inputs": [
             {
@@ -227,12 +227,12 @@ dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
 }
 ```
 ## <a name="parameterizing-data-factory-template"></a>데이터 팩터리 템플릿 매개 변수화
-매개 변수화의 모범 사례는 [Azure Resource Manager 템플릿 만들기 모범 사례](../azure-resource-manager/resource-manager-template-best-practices.md#parameters)를 참조하세요. 일반적으로 매개 변수는 최소로 사용해야 합니다. 특히 그 대신 변수를 사용할 수 있는 경우가 그렇습니다. 다음 시나리오에서는 매개 변수만 제공합니다.
+매개 변수화의 모범 사례는 [Azure Resource Manager 템플릿 만들기 모범 사례](../azure-resource-manager/resource-manager-template-best-practices.md#parameters)를 참조하세요. 일반적으로 매개 변수는 최소로 사용해야 합니다. 특히 그 대신 변수를 사용할 수 있는 경우가 그렇습니다. 만 hello 다음 시나리오에서에서 매개 변수를 제공 합니다.
 
 * 설정은 환경에 따라 달라집니다(예: 개발, 테스트, 프러덕션 환경).
 * 암호(Secret)(예: 암호(password))
 
-템플릿을 사용하여 Azure Data Factory 엔터티를 배포할 때 [Azure Key Vault](../key-vault/key-vault-get-started.md)에서 암호를 가져와야 할 경우 다음 예제처럼 **키 자격 증명 모음**과 **암호 이름**을 표시합니다.
+toopull 비밀 해야 할 경우 [Azure 키 자격 증명 모음](../key-vault/key-vault-get-started.md) 템플릿을 사용 하 여 Azure Data Factory 엔터티를 배포할 때 지정 hello **주요 자격 증명 모음** 및 **암호 이름이** 에 표시 된 대로 다음 예제는 hello:
 
 ```JSON
 "parameters": {
@@ -249,6 +249,6 @@ dataFactoryName은 “variables”에 다음과 같이 정의됩니다.
 ```
 
 > [!NOTE]
-> 기존 데이터 팩터리에 대한 템플릿 내보내기는 아직 지원되지 않지만 작업 중에 있습니다.
+> 기존 데이터 팩터리에 대 한 템플릿 내보내기는 현재 지원 되지 않고 아직, hello works입니다.
 >
 >

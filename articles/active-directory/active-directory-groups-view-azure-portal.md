@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory에서 기존의 모든 그룹 보기 | Microsoft Docs"
-description: "Azure Active Directory에서 그룹을 보거나 검색하는 방법"
+title: "Azure Active Directory에서 기존의 모든 aaaView 그룹화 | Microsoft Docs"
+description: "Azure Active Directory에서 tooview 또는 검색에 대 한 그룹화 하는 방법"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1cc8b9194433840df9ce16baf1a0ec2c3dd08ad9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ae668d1cdb8032a332053dc40164d4dc829bdd19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-or-search-for-your-user-groups-in-azure-active-directory"></a>Azure Active Directory에서 사용자 그룹을 보거나 검색
-이 문서는 Azure AD(Azure Active Directory)에서 모든 그룹을 보는 방법을 설명합니다. Azure AD의 사용자 관리 기능 중 하나는 여러 사용자에게 라이선스 또는 사용 권한을 한 번에 할당하는 관리 작업을 수행하는 데 그룹을 사용할 수 있다는 것입니다.
+이 문서에서는 Azure Active Directory (Azure AD)에 모든 tooview 그룹화 하는 방법을 설명 합니다. Hello Azure AD 사용자 관리 기능 중 하나는 할당 하는 등 라이선스 또는 권한을 tooa 사용자 수가 한 번에 그룹 tooperform 관리 작업을 사용할 수 있습니다.
 
-## <a name="how-do-i-see-all-the-groups"></a>모든 그룹을 보려면 어떻게 해야 합니까?
-1. 디렉터리에 대한 전역 관리자인 계정으로 [Azure 포털](https://portal.azure.com) 에 로그인합니다.
-2. **더 많은 서비스**를 선택하고 텍스트 상자에 **사용자 및 그룹**을 입력한 다음 **Enter**를 선택합니다.
+## <a name="how-do-i-see-all-hello-groups"></a>모든 hello 그룹을 보려면 어떻게 해야 합니까?
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com) hello 디렉터리에 대 한 전역 관리자 인 계정을 사용 합니다.
+2. 선택 **더 많은 서비스**, 입력 **사용자 및 그룹** 에 hello 텍스트 상자를 선택한 후 **Enter**합니다.
 
    ![사용자 및 그룹 열기](./media/active-directory-groups-view-azure-portal/search-user-management.png)
-3. **사용자 및 그룹** 블레이드에서 **모든 그룹**을 선택합니다.
+3. Hello에 **사용자 및 그룹** 블레이드를 **모든 그룹**합니다.
 
-   ![그룹 블레이드 열기](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
-4. **사용자 및 그룹 - 모든 그룹** 블레이드에서 표시 열을 추가 또는 제거하고 그룹을 검색할 목록을 필터링하거나 변경할 충분한 사용 권한이 있는 그룹을 변경할 수 있습니다.
+   ![Hello 그룹 블레이드 열기](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
+4. Hello에 **사용자 및 그룹-모든 그룹** 블레이드에서 변경할 충분 한 사용 권한을 toochange 있다고 toogroups 또는 추가 하거나 열 표시 된 그룹에 대 한 필터 hello 목록 toosearch를 제거할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 이러한 문서는 Azure Active Directory에 대한 추가 정보를 제공합니다.

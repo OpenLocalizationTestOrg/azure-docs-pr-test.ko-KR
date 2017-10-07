@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용하여 Service Fabric 앱 업그레이드 | Microsoft Docs"
-description: "이 문서는 PowerShell을 사용하여 서비스 패브릭 응용 프로그램의 배포, 코드 변경, 업그레이드 롤아웃 환경을 안내합니다."
+title: "PowerShell을 사용 하 여 aaaService 패브릭 응용 프로그램 업그레이드 | Microsoft Docs"
+description: "이 문서에서는 서비스 패브릭 응용 프로그램을 배포 하 고, hello 코드를 변경 하 고, PowerShell을 사용 하 여 업그레이드 롤아웃 hello 환경을 안내 합니다."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 3591ced970887d4eb5a33cec8f6951b5476d04f8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f31212264de45c3b257a0efafb75c10c279b989f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-application-upgrade-using-powershell"></a>PowerShell을 사용하여 서비스 패브릭 응용 프로그램 업그레이드
 > [!div class="op_single_selector"]
@@ -29,35 +29,35 @@ ms.lasthandoff: 08/18/2017
 
 <br/>
 
-가장 자주 사용되며 바람직한 업그레이드 방법은 모니터링 되는 롤링 업그레이드입니다.  Azure 서비스 패브릭은 상태 정책 세트에 기반하여 업그레이드되는 응용 프로그램의 상태를 모니터링합니다. UD(업데이트 도메인)이 업그레이드된 경우, 서비스 패브릭은 응용 프로그램의 상태를 평가하고 다음 업데이트 도메인으로 진행할지 또는 업그레이드를 실패할지 여부를 상태 정책에 기반하여 결정합니다.
+hello 가장 자주 사용 되며 권장 되는 업그레이드 방법 모니터링 hello 롤링 업그레이드 합니다.  Azure 서비스 패브릭 상태 정책 집합에 따라 업그레이드 중인 hello 응용 프로그램의 hello 상태를 모니터링 합니다. 업그레이드 된 업데이트 도메인 (UD)는 hello 응용 프로그램 상태를 평가 하는 서비스 패브릭 고 toohello 다음 업데이트 도메인을 진행 하거나 hello 상태 정책에 따라 hello 업그레이드에 실패 합니다.
 
-모니터링되는 응용 프로그램 업그레이드는 관리된 네이티브 API, PowerShell, REST를 사용하여 수행할 수 있습니다. Visual Studio를 사용하여 업그레이드를 수행하는 지침은 [Visual Studio를 사용하여 응용 프로그램 업그레이드](service-fabric-application-upgrade-tutorial.md)를 참조하세요.
+관리 되는 hello 또는 네이티브 Api를 사용 하 여 모니터링 된 응용 프로그램 업그레이드를 수행할 수 있습니다, PowerShell 또는 REST 합니다. Visual Studio를 사용하여 업그레이드를 수행하는 지침은 [Visual Studio를 사용하여 응용 프로그램 업그레이드](service-fabric-application-upgrade-tutorial.md)를 참조하세요.
 
-서비스 패브릭 모니터링되는 롤링 업그레이드는 응용 프로그램 관리자가 서비스 패브릭이 사용하여 응용 프로그램이 정상인지 결정하는 상태 평가 정책을 구성할 수 있게 합니다. 또한 관리자는 상태 평가가 실패했을 때 자동 롤백과 같은 수행할 작업을 구성할 수 있습니다. 이 섹션에서는 PowerShell을 사용하는 SDK 샘플 중 하나에 대해 모니터링되는 업그레이드를 연습합니다. 또한 다음 Microsoft Virtual Academy 비디오는 앱 업그레이드를 안내합니다. <center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=OrHJH66yC_6406218965">
+서비스 패브릭 모니터링 롤링 업그레이드, 응용 프로그램 관리자에 게 hello 상태 평가 정책의 hello 응용 프로그램 상태가 경우 서비스 패브릭 toodetermine을 사용 하도록 구성할 수 있습니다. 또한 관리자에 게 (예: 자동 롤백을 수행 하 고 있습니다.) hello 상태 평가 실패 하는 경우 수행 하는 hello 동작 toobe를 구성할 수 있습니다. 이 섹션은 하나는 PowerShell을 사용 하는 hello SDK 샘플에 대 한 모니터링 된 업그레이드를 안내 합니다. hello 다음 Microsoft Virtual Academy 비디오도 안내 합니다 응용 프로그램 업그레이드:<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=OrHJH66yC_6406218965">
 <img src="./media/service-fabric-application-upgrade-tutorial-powershell/AppLifecycleVid.png" WIDTH="360" HEIGHT="244">
 </a></center>
 
-## <a name="step-1-build-and-deploy-the-visual-objects-sample"></a>1단계: 시각적 개체 샘플 빌드 및 배포
-응용 프로그램 프로젝트 **VisualObjectsApplication,**을 마우스 오른쪽 단추로 클릭하고 **게시** 명령을 선택하여 응용 프로그램을 빌드 및 게시합니다.  자세한 내용은 [서비스 패브릭 응용 프로그램 업그레이드 자습서](service-fabric-application-upgrade-tutorial.md)를 참조하세요.  또는 PowerShell을 사용하여 응용 프로그램을 배포할 수 있습니다.
+## <a name="step-1-build-and-deploy-hello-visual-objects-sample"></a>1 단계: 빌드 및 hello 시각적 개체 예제를 배포 합니다.
+작성 하 고 hello 응용 프로그램 프로젝트를 마우스 오른쪽 단추로 클릭 하 여 hello 응용 프로그램을 게시 **VisualObjectsApplication,** hello를 선택 하 고 **게시** 명령입니다.  자세한 내용은 [서비스 패브릭 응용 프로그램 업그레이드 자습서](service-fabric-application-upgrade-tutorial.md)를 참조하세요.  또는 응용 프로그램 PowerShell toodeploy를 사용할 수 있습니다.
 
 > [!NOTE]
-> 어떤 서비스 패브릭 명령이 PowerShell에서 사용되기 전에 `Connect-ServiceFabricCluster` cmdlet을 사용하여 클러스터에 처음 연결해야 합니다. 마찬가지로, 클러스터는 로컬 컴퓨터에 이미 설치된 것으로 간주됩니다. [서비스 패브릭 개발 환경 설정](service-fabric-get-started.md)문서를 참조하십시오.
+> PowerShell에서 사용할 수 있습니다 hello 서비스 패브릭 명령 중 하나를 먼저 먼저 tooconnect toohello 클러스터 hello를 사용 하 여 `Connect-ServiceFabricCluster` cmdlet. 마찬가지로, 클러스터에 이미 설정 된 로컬 컴퓨터에서 해당 hello를 간주 됩니다. 에 hello 문서를 참조 [서비스 패브릭 개발 환경 설정](service-fabric-get-started.md)합니다.
 > 
 > 
 
-Visual Studio에서 프로젝트를 빌드한 후, PowerShell 명령 [Copy-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 를 사용하여 응용 프로그램 패키지를 ImageStore에 복사합니다. 앱 패키지를 로컬로 확인하려는 경우 [Test-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) cmdlet을 사용합니다. 다음 단계는 [Register-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) cmdlet을 사용하여 서비스 패브릭 런타임에 응용 프로그램을 등록하는 것입니다. 마지막 단계로, [New-ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) cmdlet을 사용하여 응용 프로그램의 인스턴스를 시작합니다.  이 세 단계는 Visual Studio의 **배포** 메뉴를 사용하는 것과 유사합니다.
+Visual Studio에서 hello 프로젝트를 빌드한 후 hello PowerShell 명령을 사용 [복사 ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) toocopy hello 응용 프로그램 패키지 toohello ImageStore 합니다. Tooverify hello 응용 프로그램 패키지를 로컬로 원할 경우 사용 하 여 hello [테스트 ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) cmdlet. hello 다음 단계는 hello를 사용 하 여 tooregister hello 응용 프로그램 toohello 서비스 패브릭 런타임을 [레지스터 ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) cmdlet. hello 마지막 단계는 hello 응용 프로그램의 인스턴스 toostart hello를 사용 하 여 [새로 ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) cmdlet.  이러한 세 단계는 유사한 toousing hello **배포** Visual Studio에서 메뉴 항목입니다.
 
-이제 [클러스터 및 응용 프로그램을 보는 서비스 패브릭 탐색기](service-fabric-visualizing-your-cluster.md)를 사용할 수 있습니다. 응용 프로그램에는 웹 서비스가 있으며, Internet Explorer 주소 표시줄에 [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects) 를 입력하여 웹 서비스로 이동할 수 있습니다.  화면에서 일부 부동 시각적 개체가 움직이는 것을 볼 수 있을 것입니다.  또한 [Get-ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps) 을 사용하여 응용 프로그램 상태를 확인할 수 있습니다.
+이제, 사용할 수 있습니다 [서비스 패브릭 탐색기 tooview hello 클러스터와 hello 응용 프로그램](service-fabric-visualizing-your-cluster.md)합니다. hello 응용 프로그램에 입력 하 여 Internet Explorer tooin를 탐색할된 수 있는 웹 서비스 [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects) hello 주소 표시줄에 있습니다.  Hello 화면 내에서 이동 부동 일부 시각적 개체에 표시 됩니다.  사용할 수는 또한 [Get ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps) toocheck hello 응용 프로그램 상태입니다.
 
-## <a name="step-2-update-the-visual-objects-sample"></a>2단계: 시각적 개체 샘플 업데이트
-1단계에서에서 배포된 버전에서 알 수 있듯이 시각적 개체는 회전하지 않습니다. 이 응용 프로그램을 시각적 개체도 회전하도록 업그레이드하겠습니다.
+## <a name="step-2-update-hello-visual-objects-sample"></a>2 단계: 업데이트 hello 시각적 개체 샘플
+1 단계에서에서 배포 된 hello 버전으로 hello 시각적 개체 회전 하지 않습니다 나타날 수 있습니다. 이 응용 프로그램 tooone hello 시각적 개체도 회전 업그레이드 해 보겠습니다.
 
-VisualObjects 솔루션에서 VisualObjects.ActorService 프로젝트를 선택하고, StatefulVisualObjectActor.cs 파일을 엽니다. 해당 파일 내에서 `MoveObject` 메서드로 이동하고 `this.State.Move()`를 주석 처리하고 `this.State.Move(true)`의 주석 처리를 제거합니다. 이렇게 변경하면 서비스가 업그레이드된 후 개체가 회전됩니다.
+Hello VisualObjects 솔루션 내에서 hello VisualObjects.ActorService 프로젝트를 선택 하 고 hello StatefulVisualObjectActor.cs 파일을 엽니다. 해당 파일 내에서 toohello 메서드를 이동 `MoveObject`를 주석으로 처리 `this.State.Move()`, 주석 처리를 제거 하 고 `this.State.Move(true)`합니다. 이 변경은 hello 서비스를 업그레이드 한 후 hello 개체를 회전 합니다.
 
-프로젝트 *VisualObjects.ActorService* 의 **ServiceManifest.xml**파일(PackageRoot 아래)도 업데이트해야 합니다. *CodePackage* 및 서비스 버전을 2.0으로 업데이트하고 *ServiceManifest.xml* 파일의 해당 줄을 업데이트합니다.
-솔루션을 마우스 오른쪽 단추로 클릭한 다음 Visual Studio *Edit Manifest Files* (매니페스트 파일 편집) 옵션을 사용하여 매니패스트 파일을 변경할 수 있습니다.
+또한 tooupdate hello 필요 *ServiceManifest.xml* hello 프로젝트의 파일 (아래 PackageRoot) **VisualObjects.ActorService**합니다. 업데이트 hello *CodePackage* 서비스 버전 too2.0 hello 및 hello에서 해당 줄 hello *ServiceManifest.xml* 파일입니다.
+Hello Visual Studio를 사용할 수 있습니다 *매니페스트 파일 편집* hello 솔루션 toomake hello 매니페스트 파일 변경 내용에서 마우스 오른쪽 단추로 클릭 한 후 옵션입니다.
 
-변경 후 매니페스트 버전은 다음과 같이 설정됩니다(강조 표시된 글씨가 변경된 부분임).
+Hello 매니페스트 hello 다음과 같습니다 hello 변경 된 후 (강조 표시 된 부분 hello 변경 내용을 표시 하는 데 사용):
 
 ```xml
 <ServiceManifestName="VisualObjects.ActorService" Version="2.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -65,7 +65,7 @@ VisualObjects 솔루션에서 VisualObjects.ActorService 프로젝트를 선택�
 <CodePackageName="Code" Version="2.0">
 ```
 
-이제 *ApplicationManifest.xml* 파일(**VisualObjects** 솔루션 내 **VisualObjects** 프로젝트 내에서 찾을 수 있음)이 **VisualObjects.ActorService** 프로젝트의 2.0 버전으로 업데이트됩니다. 또한 응용 프로그램 버전이 1.0.0.0에서 2.0.0.0으로 업데이트됩니다. *ApplicationManifest.xml* 은 다음 코드 조각과 비슷합니다.
+이제 hello *ApplicationManifest.xml* 파일 (hello 아래 **VisualObjects** hello 중인 프로젝트 **VisualObjects** 솔루션)의 hello 업데이트tooversion2.0은 **VisualObjects.ActorService** 프로젝트. 또한 hello 응용 프로그램 버전이 1.0.0.0에서 업데이트 된 too2.0.0.0 합니다. hello *ApplicationManifest.xml* hello와 비슷한 모양의 조각을 수행 해야 합니다.
 
 ```xml
 <ApplicationManifestxmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="VisualObjects" ApplicationTypeVersion="2.0.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -74,14 +74,14 @@ VisualObjects 솔루션에서 VisualObjects.ActorService 프로젝트를 선택�
 ```
 
 
-이제 **ActorService** 프로젝트를 선택하고 마우스 오른쪽 단추를 클릭한 후 Visual Studio에서 **Build** 옵션을 선택하여 프로젝트를 빌드합니다. **모두 다시 빌드**를 선택한 경우 코드가 변경되었으므로 모든 프로젝트의 버전을 업데이트해야 합니다. 다음으로, ***VisualObjectsApplication***을 마우스 오른쪽 단추로 클릭하고 서비스 패브릭 메뉴를 선택한 후 **패키지**를 선택하여 업데이트된 응용 프로그램을 패키지해봅시다. 이 작업을 수행하면 배포 가능한 응용 프로그램 패키지가 만들어집니다.  업데이트된 응용 프로그램의 배포 준비가 되었습니다.
+이제 정당한 hello를 선택 하 여 hello 프로젝트를 빌드합니다 **ActorService** 프로젝트에 다음 마우스 오른쪽 단추로 클릭 하 고 hello를 선택 하면 **빌드** Visual Studio의 옵션입니다. 선택 하는 경우 **모두 다시 빌드**, hello 코드 변경 후 모든 프로젝트에 대 한 hello 버전을 업데이트 해야 합니다. 그런 다음 패키지 hello 마우스 오른쪽 단추로 클릭 하 여 응용 프로그램을 업데이트 하는 보겠습니다 ***VisualObjectsApplication***hello 서비스 패브릭 메뉴를 선택 하 고 선택 **패키지**합니다. 이 작업을 수행하면 배포 가능한 응용 프로그램 패키지가 만들어집니다.  업데이트 된 응용 프로그램 배포 준비 toobe입니다.
 
 ## <a name="step-3--decide-on-health-policies-and-upgrade-parameters"></a>3단계: 상태 정책 결정 및 매개 변수 업그레이드
-[응용 프로그램 업그레이드 매개 변수](service-fabric-application-upgrade-parameters.md) 및 [업그레이드 프로세스](service-fabric-application-upgrade.md)를 파악하여 다양한 업그레이드 매개 변수, 제한 시간 및 적용되는 상태 조건을 잘 이해하세요. 이 연습에서는 서비스 상태 평가 조건이 모든 서비스 및 인스턴스가 업그레이드 후에 *정상* 이 되어야 함을 의미하는 기본값(및 권장값)으로 설정됩니다.  
+Hello를 숙지 [응용 프로그램 업그레이드 매개 변수](service-fabric-application-upgrade-parameters.md) 및 hello [업그레이드 프로세스](service-fabric-application-upgrade.md) tooget hello 다양 한 업그레이드 매개 변수, 제한 시간, 및 적용 상태 조건 이해 . 이 연습에 대 한 hello 서비스 상태 평가 기준을 toohello 기본 설정 (이며 권장) 값을 모든 서비스 및 인스턴스 되어야 함을 의미 *정상* hello 업그레이드 후 합니다.  
 
-그러나 *HealthCheckStableDuration* 을 60초로 증가시켜 보겠습니다(그러면 서비스는 다음 업데이트 도메인으로 업그레이드를 진행하기 전에 적어도 20초간 정상이 됩니다).  또한 *UpgradeDomainTimeout*을 1200초로, *UpgradeTimeout*을 3000초로 설정해 보겠습니다.
+그러나 hello 보겠습니다 높일 *HealthCheckStableDuration* too60 초 (있도록 hello 서비스는 20 초 이상 hello 업그레이드 toohello 진행 하기 전에 다음 업데이트 하는 도메인에 대 한 정상)입니다.  Hello 설정도 하겠습니다 *UpgradeDomainTimeout* toobe 1200 초가 고 hello *UpgradeTimeout* toobe 3000 초입니다.
 
-마지막으로 *UpgradeFailureAction* 이 롤백되도록 설정해 보겠습니다. 이 옵션에서는 업그레이드 중에 문제가 발생할 경우 서비스 패브릭이 응용 프로그램을 이전 버전으로 롤백해야 합니다. 따라서 업그레이드를 시작할 때(4단계) 다음 매개 변수가 지정됩니다.
+마지막으로, 보겠습니다 또한 설정 hello *UpgradeFailureAction* toorollback 합니다. 이 옵션 hello 업그레이드 하는 동안 문제가 발생 하는 경우 서비스 패브릭 tooroll 백 hello 응용 프로그램 toohello 이전 버전이 필요 합니다. 따라서, (4 단계)의 hello 업그레이드를 시작할 때 hello 다음 매개 변수 지정 됩니다.
 
 FailureAction = Rollback
 
@@ -92,53 +92,53 @@ UpgradeDomainTimeoutSec = 1200
 UpgradeTimeout = 3000
 
 ## <a name="step-4-prepare-application-for-upgrade"></a>4단계: 업그레이드를 위한 응용 프로그램 준비
-이제 응용 프로그램이 빌드되고 업그레이드 준비되었습니다. 관리자로 PowerShell 창을 열고 [Get-ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps)을 입력하면 **VisualObjects**의 응용 프로그램 형식 1.0.0.0이 배포되었음을 알려줍니다.  
+이제 hello 응용 프로그램은 기본 제공 하 고 준비 toobe 업그레이드 됩니다. 관리자로 PowerShell 창을 열고 [Get-ServiceFabricApplication](/powershell/module/servicefabric/get-servicefabricapplication?view=azureservicefabricps)을 입력하면 **VisualObjects**의 응용 프로그램 형식 1.0.0.0이 배포되었음을 알려줍니다.  
 
-이 응용 프로그램 패키지는 Service Fabric SDK의 압축을 푼 다음 상대 경로 아래 저장됩니다. *Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug* 디렉터리에서 응용 프로그램 패키지가 저장된 "Package" 폴더를 찾을 수 있습니다. 타임스탬프를 확인하여 최신 빌드인지 확인합니다(경로를 적절하게 수정해야 할 수 있음).
+hello 응용 프로그램 패키지에서 사용 중이면 hello 다음 상대 경로 hello 서비스 패브릭 SDK-압축 여기서 *Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug*합니다. Hello 응용 프로그램 패키지가 저장 된 해당 디렉터리에 "Package" 폴더를 찾아야 합니다. Hello 타임 스탬프 tooensure hello 최신 빌드 (toomodify hello 경로도 적절 하 게 할 수 있습니다) 인지 확인 합니다.
 
-이제 업데이트된 응용 프로그램 패키지를 서비스 패브릭 ImageStore(서비스 패브릭에 의해 응용 프로그램 패키지가 저장된 곳)에 복사합니다. 매개 변수 *ApplicationPackagePathInImageStore* 는 서비스 패브릭에 응용 프로그램 패키지를 찾을 수 있는 위치를 알립니다. 다음 명령으로 업데이트된 응용 프로그램을 "VisualObjects\_V2"에 저장하였습니다(경로를 다시 적절하게 수정해야 할 수 있습니다).
+이제 보겠습니다 복사 hello 응용 프로그램 패키지 toohello 서비스 패브릭 ImageStore (hello 응용 프로그램 패키지의 저장 위치 서비스 패브릭에서)를 업데이트 합니다. 매개 변수를 hello *ApplicationPackagePathInImageStore* hello 응용 프로그램 패키지를 찾을 수 있는 서비스 패브릭 알립니다. 업데이트 하는 hello 응용 프로그램 놓았습니다 "VisualObjects\_V2" hello 다음 (반드시 toomodify 경로 적절 하 게 다시 할 수도) 명령을 사용 합니다.
 
 ```powershell
 Copy-ServiceFabricApplicationPackage  -ApplicationPackagePath .\Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug\Package
 -ImageStoreConnectionString fabric:ImageStore   -ApplicationPackagePathInImageStore "VisualObjects\_V2"
 ```
 
-다음 단계에서는 Service Fabric으로 이 응용 프로그램을 등록하는 것이며, [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 명령을 사용하여 수행할 수 있습니다.
+hello 다음 단계는 tooregister hello를 사용 하 여 수행할 수 있는 서비스 패브릭이 응용 프로그램 [레지스터 ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 명령:
 
 ```powershell
 Register-ServiceFabricApplicationType -ApplicationPathInImageStore "VisualObjects\_V2"
 ```
 
-위 명령이 실패하면 모든 서비스를 다시 빌드해야 할 가능성이 높습니다. 2단계에서 언급했듯이 WebService 버전도 업데이트해야 합니다.
+Hello 앞의 명령은 성공 하지 못한, 경우 모든 서비스의 다시 작성 해야 할 수 있습니다. 2 단계에서에서 설명 했 듯이 tooupdate을 웹 서비스 버전도 있을 수 있습니다.
 
-## <a name="step-5-start-the-application-upgrade"></a>5단계: 응용 프로그램 업그레이드 시작
-이제 [Start-ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/start-servicefabricapplicationupgrade?view=azureservicefabricps) 명령을 사용하여 응용 프로그램 업그레이드를 시작할 수 있습니다.
+## <a name="step-5-start-hello-application-upgrade"></a>5 단계: hello 응용 프로그램 업그레이드를 시작 합니다.
+이제 우리는 모든 집합 toostart hello 응용 프로그램 hello를 사용 하 여 업그레이드 [시작 ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/start-servicefabricapplicationupgrade?view=azureservicefabricps) 명령:
 
 ```powershell
 Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/VisualObjects -ApplicationTypeVersion 2.0.0.0 -HealthCheckStableDurationSec 60 -UpgradeDomainTimeoutSec 1200 -UpgradeTimeout 3000   -FailureAction Rollback -Monitored
 ```
 
 
-응용 프로그램 이름은 *ApplicationManifest.xml* 파일에 기재된 것과 같습니다. 서비스 패브릭은 이 이름을 사용하여 업그레이드할 응용 프로그램을 식별합니다. 제한 시간을 너무 짧게 설정하면 문제 발생을 알리는 오류 메시지가 발생할 수 있습니다. 문제 해결 섹션을 참조하거나 제한 시간을 늘리십시오.
+hello 응용 프로그램 이름은 hello 동일 hello에서 설명한 것 처럼 *ApplicationManifest.xml* 파일입니다. 서비스 패브릭 응용 프로그램을 업그레이드를 가져오는 이름 tooidentify이를 사용 합니다. 너무 짧은 hello 제한 시간 toobe로 설정 하면 상태 hello 문제는 오류 메시지가 발생할 수 있습니다. Toohello 문제 해결 섹션을 참조 하거나 hello 제한 시간을 늘리십시오.
 
-이제 응용 프로그램 업그레이드가 진행되면 Service Fabric Explorer 또는 [Get-ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/get-servicefabricapplicationupgrade?view=azureservicefabricps) PowerShell 명령을 사용하여 이 업그레이드를 모니터링할 수 있습니다. 
+이제 응용 프로그램 업그레이드 진행 hello,으로 모니터링할 수 있습니다 서비스 패브릭 탐색기를 사용 하 여 또는 hello를 사용 하 여 [Get ServiceFabricApplicationUpgrade](/powershell/module/servicefabric/get-servicefabricapplicationupgrade?view=azureservicefabricps) PowerShell 명령: 
 
 ```powershell
 Get-ServiceFabricApplicationUpgrade fabric:/VisualObjects
 ```
 
-몇 분 후, 앞의 PowerShell 명령을 사용하여 얻은 상태는 모든 업데이트 도메인이 업그레이드되었음(완료)을 알립니다. 브라우저 창에서 시각적 개체가 이제 회전되는 것을 볼 수 있을 것입니다.
+잠시 후에 PowerShell 명령 앞 hello를 사용 하 여 가져온 hello 상태 모든 업데이트 도메인 업그레이드 된 명시 해야 (완료)입니다. 및 회전 hello 브라우저 창에서 시각적 개체 시작 않은 있습니다!
 
-연습을 위해 버전 2에서 버전 3으로 또는 버전 2에서 버전 1로 업그레이드를 시도할 수 있습니다. 버전 2에서 버전 1로 이동하는 것도 업그레이드로 간주됩니다. 제한 시간과 상태 정책을 변경해 보면서 익숙해지십시오. Azure 클러스터에 배포하는 경우 매개 변수를 적절히 설정해야 합니다. 제한 시간을 신중하게 설정하는 것이 좋습니다.
+버전 2 tooversion 3, 또는 버전 2 tooversion 연습으로는 1에서에서 업그레이드를 시도할 수 있습니다. 버전 2 tooversion 1에서에서 이동 업그레이드도 간주 됩니다. 사용할 제한 시간 및 상태 정책 toomake 자신을 살펴봅니다. Tooan Azure 클러스터를 배포 하는 경우 hello 매개 변수 필요성 toobe 집합 적절 하 게 합니다. 것이 좋은 tooset hello 제한 시간 신중 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [Visual Studio를 사용하여 응용 프로그램 업그레이드](service-fabric-application-upgrade-tutorial.md) 에서는 Visual Studio를 사용하여 응용 프로그램 업그레이드를 진행하는 방법을 안내합니다.
 
 [업그레이드 매개 변수](service-fabric-application-upgrade-parameters.md)를 사용하여 응용 프로그램 업그레이드 방법을 제어합니다.
 
-[데이터 직렬화](service-fabric-application-upgrade-data-serialization.md)사용 방법을 익혀 응용 프로그램 업그레이드와 호환되도록 만듭니다.
+응용 프로그램 업그레이드를 학습 하 여 호환 되도록 어떻게 toouse [데이터 직렬화](service-fabric-application-upgrade-data-serialization.md)합니다.
 
-[고급 항목](service-fabric-application-upgrade-advanced.md)을 참조하여 응용 프로그램을 업그레이드하는 동안 고급 기능을 사용하는 방법에 대해 알아봅니다.
+Toouse 너무 참조 하 여 응용 프로그램을 업그레이드 하는 동안 기능에 고급 하는 방법에 대해 알아봅니다[고급 항목](service-fabric-application-upgrade-advanced.md)합니다.
 
-[응용 프로그램 업그레이드 문제 해결](service-fabric-application-upgrade-troubleshooting.md)의 단계를 참조하여 응용 프로그램 업그레이드 중 발생하는 일반적인 문제를 해결합니다.
+toohello 단계를 참조 하 여 응용 프로그램 업그레이드의 일반적인 문제를 수정 [응용 프로그램 업그레이드 문제 해결](service-fabric-application-upgrade-troubleshooting.md)합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 데이터 웨어하우스 - 로컬 및 지역 중복 복원 | Microsoft Docs"
-description: "Azure SQL 데이터 웨어하우스의 데이터베이스를 복구하기 위한 데이터베이스 복원 옵션 개요입니다."
+title: "Azure 데이터 웨어하우스-로컬 및 지리적 중복 aaaRestore | Microsoft Docs"
+description: "Azure SQL 데이터 웨어하우스 데이터베이스를 복구 하기 위한 hello 데이터베이스 복원 옵션의 개요입니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: Lakshmi1812
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: ea42b7135d0695b66d569095e70bb3d9f8b9594b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a96b898372b29d420e1416ca93a172ff8af47fc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-restore"></a>SQL Data Warehouse 복원
 > [!div class="op_single_selector"]
@@ -30,10 +30,10 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-SQL Data Warehouse는 데이터 웨어하우스 재해 복구 기능의 일부로 로컬 및 지리적 복원을 제공합니다. 데이터 웨어하우스 백업을 사용하여 데이터 웨어하우스를 주 지역의 복원 지점으로 복원하거나 지역 중복 백업을 사용하여 다른 지리적 지역으로 복원하세요. 이 문서에서는 데이터 웨어하우스 복원에 대해 구체적으로 설명합니다.
+SQL Data Warehouse는 데이터 웨어하우스 재해 복구 기능의 일부로 로컬 및 지리적 복원을 제공합니다. 데이터 웨어하우스 tooa 복원 hello 기본 지역의 가리키거나 지역 중복 백업을 toorestore tooa 서로 다른 지리적 위치 영역을 사용 하 여 데이터 웨어하우스 백업 toorestore를 사용 합니다. 이 문서에서는 데이터 웨어하우스를 복원의 hello 세부 사항.
 
 ## <a name="what-is-a-data-warehouse-restore"></a>데이터 웨어하우스 복원이란?
-데이터 웨어하우스 복원은 기존 데이터 웨어하우스 또는 삭제된 데이터 웨어하우스의 백업에서 생성되는 새 데이터 웨어하우스입니다. 복원된 데이터 웨어하우스는 특정 시점에 백업된 데이터 웨어하우스를 다시 만듭니다. SQL Data Warehouse는 분산 시스템이므로 Azure blob에 저장된 여러 백업 파일에서 데이터 웨어하우스 복원이 생성됩니다. 
+데이터 웨어하우스 복원은 기존 데이터 웨어하우스 또는 삭제된 데이터 웨어하우스의 백업에서 생성되는 새 데이터 웨어하우스입니다. hello 복원 된 데이터 웨어하우스를 특정 시간에 hello 백업 된 데이터 웨어하우스를 다시 만듭니다. SQL Data Warehouse는 분산 시스템이므로 Azure blob에 저장된 여러 백업 파일에서 데이터 웨어하우스 복원이 생성됩니다. 
 
 데이터베이스 복원은 실수로 손상되거나 삭제된 후 데이터를 다시 만들기 때문에 비즈니스 연속성 및 재해 복구 전략의 필수적인 부분입니다.
 
@@ -43,41 +43,41 @@ SQL Data Warehouse는 데이터 웨어하우스 재해 복구 기능의 일부�
 * [비즈니스 연속성 개요](../sql-database/sql-database-business-continuity.md)
 
 ## <a name="data-warehouse-restore-points"></a>데이터 웨어하우스 복원 지점
-Azure Premium Storage의 장점으로, SQL Data Warehouse는 Azure Storage Blob 스냅숏을 사용하여 기본 데이터 웨어하우스를 백업합니다. 각 스냅숏에는 스냅숏이 시작된 시간을 나타내는 복원 지점이 있습니다. 데이터 웨어하우스를 복원하려면 복원 지점을 선택하고 복원 명령을 실행합니다.  
+Azure 프리미엄 저장소를 사용 하 여 가지이 점으로, SQL 데이터 웨어하우스는 Azure 저장소 Blob 스냅숏을 toobackup hello 기본 데이터 웨어하우스를 사용 합니다. 각 스냅숏은 hello 시간을 나타내는 있는 복원 지점에 hello 스냅숏 시작 합니다. 데이터 웨어하우스 toorestore 복원 지점을 선택한 복원 명령을 실행 합니다.  
 
-SQL Data Warehouse는 항상 새 데이터 웨어하우스에 백업을 복원합니다. 복원된 데이터 웨어하우스와 현재 데이터 웨어하우스 중 하나를 유지하거나 삭제할 수 있습니다. 현재 데이터 웨어하우스를 복원된 데이터 웨어하우스로 대체하려는 경우 이름을 바꿀 수 있습니다.
+SQL 데이터 웨어하우스는 항상 hello 백업 tooa 새 데이터 웨어하우스를 복원합니다. Hello 복원 된 데이터 웨어하우스를 유지 하 고 현재 hello 하거나 그 중 하나를 삭제 합니다. 원하는 tooreplace hello 현재 hello로 데이터 웨어하우스 데이터 웨어하우스를 복원, 이름을 바꿀 수 있습니다.
 
-삭제되거나 일시 중지된 데이터 웨어하우스를 복원해야 하는 경우 [지원 티켓을 만들](sql-data-warehouse-get-started-create-support-ticket.md) 수 있습니다. 
+삭제 또는 일시 중지 된 데이터 웨어하우스 toorestore 해야 할 경우 다음을 할 수 있습니다 [지원 티켓을 만드세요](sql-data-warehouse-get-started-create-support-ticket.md)합니다. 
 
 <!-- 
 ### Can I restore a deleted data warehouse?
 
-Yes, you can restore the last available restore point.
+Yes, you can restore hello last available restore point.
 
-Yes, for the next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps the data warehouse and its snapshots for seven days just in case you need the data. After seven days, you won't be able to restore to any of the restore points. -->
+Yes, for hello next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps hello data warehouse and its snapshots for seven days just in case you need hello data. After seven days, you won't be able toorestore tooany of hello restore points. -->
 
 ## <a name="geo-redundant-restore"></a>지역 중복 복원
-선택한 성능 수준에서 Azure SQL Data Warehouse를 지원하는 모든 영역에 데이터 웨어하우스를 복원할 수 있습니다. 미리 보기 동안에는 일부 지역에서만 9000 및 18000 DWU가 지원될 수 있습니다.
+선택한 성능 수준에서 Azure SQL 데이터 웨어하우스를 지 원하는 데이터 웨어하우스 tooany 영역은 복원할 수 있습니다. Hello 미리 보기 동안 9000 및 18000 DWU 모든 지역에서 지원 되지 않는 note 하십시오.
 
 > [!NOTE]
-> 지역 중복 복원을 수행하려면 이 기능에서 옵트아웃(opt out)하지 않아야 합니다.
+> 지리적 중복 tooperform 복원 하는이 기능을 옵트아웃 하지 하도록 선택 해야 합니다.
 > 
 > 
 
 ## <a name="restore-timeline"></a>복원 타임라인
-지난 7일 이내의 사용 가능한 복원 지점으로 데이터베이스를 복원할 수 있습니다. 스냅숏은 4~8시간마다 시작되며 7일 동안 사용할 수 있습니다. 7일보다 오래된 스냅숏은 만료되고 해당 복원 지점을 더 이상 사용할 수 없게 됩니다.
+지난 7 일 내 hello 데이터베이스 tooany 사용 가능한 복원 지점을 복원할 수 있습니다. 스냅숏은은 tooeight 매 4 시간 마다 시작 하며 7 일 동안 사용할 수 있는 합니다. 7일보다 오래된 스냅숏은 만료되고 해당 복원 지점을 더 이상 사용할 수 없게 됩니다.
 
 ## <a name="restore-costs"></a>복원 비용
-복원된 데이터 웨어하우스에 대한 저장소 비용은 Azure Premium Storage 요금으로 청구됩니다. 
+hello 복원 된 데이터 웨어하우스 저장소 비용이 부과 hello hello Azure 프리미엄 저장소 요금이 청구 됩니다. 
 
-복원된 데이터 웨어하우스를 일시 중지하면 저장소에 Azure Premium Storage 요금이 부과됩니다. 일시 중지의 장점은 DWU 컴퓨팅 리소스에 대한 요금이 부과되지 않는다는 점입니다.
+복원 된 데이터 웨어하우스를 일시 중지 하면 hello Azure 프리미엄 저장소 속도로 저장소에 대 한 요금이 청구 됩니다. 일시 중지 hello 장점은 hello DWU 컴퓨팅 리소스에 대 한 요금이 부과 되지 않으므로입니다.
 
 SQL Data Warehouse 가격 책정에 대한 자세한 내용은 [SQL Data Warehouse 가격 책정](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)을 참조하세요.
 
 ## <a name="uses-for-restore"></a>복원의 용도
-데이터 웨어하우스 복원의 주 용도는 실수로 인한 데이터 손실 또는 손상 후 데이터를 복구하는 것입니다.
+실수로 인 한 데이터 손실 또는 손상 후 toorecover 데이터는 하는 hello 기본으로 사용 되는 데이터 웨어하우스 복원 됩니다.
 
-백업을 7일 넘게 보존하는 데에도 데이터 웨어하우스 복원을 사용할 수 있습니다. 백업이 복원되면 데이터 웨어하우스가 온라인 상태가 되며 계산 비용을 절감하기 위해 이를 무기한 일시 중지할 수 있습니다. 일시 중지된 데이터베이스에는 Azure Premium Storage 요금으로 저장소 비용이 부과됩니다. 
+7 일 이상에 대 한 데이터 웨어하우스 복원 tooretain 백업도 사용할 수 있습니다. Hello 백업이 복원 되 면 hello 데이터 웨어하우스 온라인 있고 일시 중지할 수 무기한 toosave 계산 비용이 합니다. hello 일시 중지 된 데이터베이스에는 hello Azure 프리미엄 저장소 속도로 저장소 요금이 부과 됩니다. 
 
 ## <a name="related-topics"></a>관련된 항목
 ### <a name="scenarios"></a>시나리오
@@ -85,11 +85,11 @@ SQL Data Warehouse 가격 책정에 대한 자세한 내용은 [SQL Data Warehou
 
 <!-- ### Tasks -->
 
-데이터 웨어하우스 복원을 수행하려면 다음을 사용하여 복원합니다.
+데이터 웨어하우스 tooperform 복원를 사용 하 여 복원 합니다.
 
-* Azure Portal의 경우 [Azure Portal을 사용하여 데이터 웨어하우스 복원](sql-data-warehouse-restore-database-portal.md)을 참조하세요.
+* Azure 포털에서 참조 [hello Azure 포털을 사용 하 여 데이터 웨어하우스를 복원 합니다.](sql-data-warehouse-restore-database-portal.md)
 * PowerShell cmdlet의 경우 [PowerShell cmdlet을 사용하여 데이터 웨어하우스 복원](sql-data-warehouse-restore-database-powershell.md)을 참조하세요.
-* REST API의 경우 [REST API를 사용하여 데이터 웨어하우스 복원](sql-data-warehouse-restore-database-rest-api.md)을 참조하세요.
+* REST Api 참조, [hello REST Api를 사용 하 여 데이터 웨어하우스를 복원 합니다.](sql-data-warehouse-restore-database-rest-api.md)
 
 <!-- ### Tutorials -->
 

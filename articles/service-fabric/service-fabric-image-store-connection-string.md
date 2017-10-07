@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 이미지 저장소 연결 문자열 | Microsoft Docs"
-description: "이미지 저장소 연결 문자열 이해"
+title: "서비스 패브릭 이미지 저장소 연결 문자열 aaaAzure | Microsoft Docs"
+description: "Hello 이미지 저장소 연결 문자열을 이해"
 services: service-fabric
 documentationcenter: .net
 author: alexwun
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: alexwun
-ms.openlocfilehash: f497006a8ba48da0032b82113702d8014952ca20
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83f5ad75b5df07726997da3173722028255b8cae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-the-imagestoreconnectionstring-setting"></a>ImageStoreConnectionString 설정 이해
+# <a name="understand-hello-imagestoreconnectionstring-setting"></a>Hello ImageStoreConnectionString 설정 이해
 
-일부 문서에서 의미를 설명하지 않고 "ImageStoreConnectionString"라는 매개 변수가 있는지 간단하게 언급합니다. [PowerShell을 사용하여 응용 프로그램 배포 및 제거][10]와 같은 문서를 완료한 후에 대상 클러스터의 클러스터 매니페스트에 표시된 대로 값을 복사/붙여넣기만 하면 됩니다. 따라서 설정은 클러스터당 구성될 수 있지만 [Azure Portal][11]을 통해 클러스터를 만드는 경우 이 설정을 구성하는 옵션이 없고 "fabric:ImageStore"은 항상 있습니다. 이 설정의 용도는 무엇인가요?
+설명서의 일부 간략하게 언급 hello 존재 "ImageStoreConnectionString" 매개 변수의 의미를 설명 하지 않고 합니다. 와 같은 문서가 완료 된 후 [PowerShell을 사용 하 여 배포 및 제거 응용 프로그램][10], 하기만 하면 같이 hello 대상의 hello 클러스터 매니페스트에 표시 된 대로 복사/붙여넣기 hello 값은 클러스터입니다. 클러스터당 구성 가능한 hello 설정할 수 있지만 hello 통해 클러스터를 만들 때 [Azure 포털][11], 없습니다 옵션 tooconfigure이 설정 및 해당 항상 "fabric: ImageStore"는 합니다. 이 설정은 다음의 hello 목적은 이란?
 
 ![클러스터 매니페스트][img_cm]
 
-Service Fabric은 다양한 팀에서 내부 Microsoft 사용을 위한 플랫폼으로 시작되었습니다. 따라서 "이미지 저장소"와 같은 일부 측면은 자유롭게 사용자 지정할 수 있습니다. 기본적으로, 이미지 저장소는 응용 프로그램 패키지를 저장하기 위한 플러그형 리포지토리입니다. 응용 프로그램을 클러스터의 노드에 배포할 경우 해당 노드는 이미지 저장소에서 응용 프로그램 패키지의 콘텐츠를 다운로드합니다. ImageStoreConnectionString은 클라이언트와 노드 모두에 필요한 정보를 모두 포함하는 설정으로 지정된 클러스터에 대한 올바른 이미지 저장소를 찾습니다.
+서비스 패브릭 내부 Microsoft 소비 하기 위한 플랫폼으로 의해 시작 많은 다양 한 팀의 일부 측면은 고도로 사용자 지정 가능한-hello "Image Store"는 이러한 한 가지 측면인 하므로 있습니다. 기본적으로, hello 이미지 저장소는 응용 프로그램 패키지를 저장 하기 위한 플러그형 리포지토리입니다. Hello 클러스터의 노드에 배포 된 tooa 응용 프로그램을 사용 하는 경우 해당 노드는 응용 프로그램 패키지의 hello 내용을 hello 이미지 저장소에서에서 다운로드 합니다. hello ImageStoreConnectionString은 클라이언트와 노드 toofind hello 올바른 이미지 저장소에 지정된 된 클러스터에 대 한 모든 hello 필요한 정보를 포함 하는 설정입니다.
 
 현재 세 가지 종류의 가능한 이미지 저장소 공급자가 있고 해당하는 연결 문자열은 다음과 같습니다.
 
@@ -36,15 +36,15 @@ Service Fabric은 다양한 팀에서 내부 Microsoft 사용을 위한 플랫�
 
 3. Azure Storage: "xstore:DefaultEndpointsProtocol=https;AccountName=[...];AccountKey=[...];Container=[...]"
 
-프로덕션에 사용되는 공급자 유형은 이미지 저장소 서비스이며 Service Fabric Explorer에서 확인할 수 있는 지속형 상태 저장 시스템 서비스입니다. 
+프로덕션 환경에서 사용 하는 hello 공급자 유형은 hello 이미지 저장소 서비스를 상태 저장 지속형된 시스템 서비스는 서비스 패브릭 탐색기에서 볼 수 있습니다. 
 
 ![이미지 저장소 서비스][img_is]
 
-클러스터 자체 내의 시스템 서비스에서 이미지 저장소를 호스팅하면 패키지 리포지토리에 대한 외부 종속성을 제거하고 저장소의 위치를 제어할 수 있게 됩니다. 단독으로 그렇지 않으면 이미지 저장소에 대한 향후 개선은 먼저 이미지 저장소 공급자를 대상으로 할 가능성이 큽니다. 클라이언트가 대상 클러스터에 이미 연결되어 있으므로 이미지 저장소 서비스 공급자에 대한 연결 문자열에는 고유한 정보가 없습니다. 클라이언트는 시스템 서비스를 대상으로 하는 프로토콜을 사용해야 함을 알고 있어야 합니다.
+Hello 패키지 저장소에 대 한 외부 종속성을 제거 하 고 hello 집약성이 저장소를 보다 상세하게 제공 하는 hello 클러스터 자체 내에서 시스템 서비스에서 호스팅 hello 이미지 저장소. Hello 이미지 저장소 주위 향후 개선 사항도 하지 않은 경우 단독으로 가능성이 tootarget hello 이미지 저장소 공급자를 먼저는 합니다. hello 이미지 저장소 서비스 공급자에 대 한 연결 문자열 hello hello 클라이언트는 이미 연결 된 toohello 대상 클러스터 고유 정보가 되어 있지 않습니다. 클라이언트 hello는 hello 시스템 서비스를 대상으로 하는 프로토콜을 사용 해야 함을 tooknow만 필요 합니다.
 
-개발 중에 one-box 로컬 클러스터에 이미지 저장소 서비스가 아닌 파일 시스템 공급자를 사용하여 클러스터를 약간 더 빠르게 부트스트랩합니다. 차이점은 일반적으로 작지만 개발 중인 사용자 대부분에게 유용한 최적화입니다. 다른 저장소 공급자 유형도 one-box 로컬 클러스터를 배포할 수 있지만 개발/테스트 워크플로가 공급자에 관계 없이 동일하게 유지되기 때문에 일반적으로 작업을 수행할 필요가 없습니다. 이 사용법 이외에 파일 시스템 및 Azure Storage 공급자는 레거시 지원을 위해 존재합니다.
+hello 파일 시스템 공급자 대신 사용 됩니다 hello 이미지 저장소 서비스가 로컬 하나 상자 클러스터에 대 한 개발 toobootstrap hello 클러스터 하는 동안 약간 더 빠르게. hello 차이점은 일반적으로 짧지만 이지만 개발 하는 동안 대부분 사람들에 대 한 유용한 최적화 합니다. 가능한 toodeploy 인 클러스터를 로컬 하나 상자도 다른 저장소 공급자 유형을 hello 하지만 없는 이유는 일반적으로 toodo 하므로 hello 개발/테스트 워크플로 하 게 유지 되므로 hello 동일한 공급자에 관계 없이 합니다. 이 사용법 이외의 hello Azure 저장소 및 파일 시스템 공급자만 레거시 지원에 존재합니다.
 
-따라서 ImageStoreConnectionString을 구성 가능하지만 일반적으로 기본 설정만을 사용합니다. [Visual Studio][12]를 통해 Azure에 게시할 경우 매개 변수가 적절하게 자동으로 설정됩니다. Azure에서 호스트된 클러스터에 프로그래밍 방식으로 배포하는 경우 연결 문자열은 항상 "fabric:ImageStore"입니다. 확실하지 않은 경우에도 [PowerShell](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricclustermanifest), [.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx) 또는 [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest)에서 클러스터 매니페스트를 검색하여 해당 값을 언제든지 확인할 수 있습니다. 온-프레미스 테스트 및 프로덕션 클러스터는 모두 항상 이미지 저장소 서비스 공급자를 사용하도록 구성되어야 합니다.
+따라서 hello ImageStoreConnectionString 구성 가능한 이지만, 일반적으로 방금 hello 기본 설정을 사용 합니다. TooAzure를 통해 게시할 때 [Visual Studio][12], hello 매개 변수는 자동으로 설정 하면 적절 하 게 합니다. Azure에서 호스트 되는 프로그래밍 방식 배포를 tooclusters, hello 연결 문자열은 항상 "fabric: ImageStore"입니다. 의문이 있는 경우 해당 값 항상 확인할 수 있습니다 하 여 hello 클러스터 매니페스트를 검색 하 여 있지만 [PowerShell](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricclustermanifest), [.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx), 또는 [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest)합니다. 온-프레미스 테스트 및 프로덕션 클러스터에서 구성 된 toouse hello 이미지 저장소 서비스 공급자도 항상 있어야 합니다.
 
 ### <a name="next-steps"></a>다음 단계
 [PowerShell을 사용하여 응용 프로그램 배포 및 제거][10]

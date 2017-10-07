@@ -1,6 +1,6 @@
 ---
 title: "자습서: Wizergos Productivity Software와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 Wizergos Productivity Software 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "단일 로그온 tooconfigure 방법을 알아보려면 Azure Active Directory와 Wizergos 생산성 소프트웨어 간의 합니다."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,196 +14,196 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 73b3bc05aeb337c12acb7e47c0dbebe6d0196530
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cdd186c38c426dde404ed8bb84700faf9c8c1a46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-wizergos-productivity-software"></a>자습서: Wizergos Productivity Software와 Azure Active Directory 통합
-이 자습서에서는 Wizergos Productivity Software와 Azure AD(Azure Active Directory)를 통합하는 방법을 보여 줍니다.
+이 자습서의 hello 목적은 tooshow 있습니다 어떻게 toointegrate Wizergos 생산성 소프트웨어와 Azure Active Directory (Azure AD).
 
-Wizergos Productivity Software를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
+다음 이점을 hello로 제공 Wizergos 생산성 소프트웨어 Azure AD와 통합:
 
-* Wizergos Productivity Software에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
-* 사용자가 해당 Azure AD 계정으로 Wizergos Productivity Software SSO(Single Sign-on)에 자동으로 로그온되도록 설정할 수 있습니다.
-* 단일 중앙 위치인 Azure 클래식 포털에서 계정을 관리할 수 있습니다.
+* Azure ad 액세스 tooWizergos 생산성 소프트웨어를 가진 제어할 수 있습니다.
+* Azure AD 계정을 사용 하면 사용자가 tooautomatically get 로그온 tooWizergos 생산성 소프트웨어 single sign on (SSO)를 사용할 수 있습니다.
+* 하나의 중앙 위치-hello Azure 클래식 포털에서에서 사용자 계정을 관리할 수 있습니다.
 
-Azure AD와의 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On](active-directory-appssoaccess-whatis.md)을 참조하세요.
+Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-Wizergos Productivity Software와의 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
+다음 항목 hello가 필요 tooconfigure Wizergos 생산성 소프트웨어와 Azure AD 통합 합니다.
 
 * Azure AD 구독
 * Wizergos Productivity Software SSO가 설정된 구독
 
 >[!NOTE]
->이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다. 
+>이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다. 
 > 
 
-이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
+이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
 
 * 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 않도록 합니다.
 * Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서는 테스트 환경에서 Azure AD SSO를 테스트하는 데 도움을 주기 위해 제공되었습니다.
+이 자습서의 hello 목적은 tooenable 있습니다 tootest Azure AD SSO 테스트 환경에서 합니다.
 
-이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 갤러리에서 Wizergos Productivity Software 추가
+1. Hello 갤러리에서 Wizergos 생산성 소프트웨어 추가
 2. Azure AD SSO 구성 및 테스트
 
-## <a name="adding-wizergos-productivity-software-from-the-gallery"></a>갤러리에서 Wizergos Productivity Software 추가
-Wizergos Productivity Software의 Azure AD 통합을 구성하려면 갤러리의 Wizergos Productivity Software를 관리되는 SaaS 앱 목록에 추가해야 합니다.
+## <a name="adding-wizergos-productivity-software-from-hello-gallery"></a>Hello 갤러리에서 Wizergos 생산성 소프트웨어 추가
+tooconfigure hello와의 통합 Wizergos 생산성 소프트웨어 Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Wizergos 생산성 소프트웨어 tooadd가 필요합니다.
 
-**갤러리에서 Wizergos Productivity Software를 추가하려면 다음 단계를 수행합니다.**
+**hello 갤러리에서 Wizergos 생산성 소프트웨어 tooadd hello 다음 단계를 수행 합니다.**
 
-1. **Azure 클래식 포털**의 왼쪽 탐색 창에서 **Active Directory**를 클릭합니다. 
+1. Hello에 **Azure 클래식 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Active Directory**합니다. 
    
     ![Active Directory][1]
-2. **디렉터리** 목록에서 디렉터리 통합을 사용하도록 설정할 디렉터리를 선택합니다.
-3. 응용 프로그램 보기를 열려면 디렉터리 보기의 최상위 메뉴에서 **응용 프로그램** 을 클릭합니다.
+2. Hello에서 **디렉터리** 목록, 선택 hello 디렉터리 tooenable 디렉터리 통합을 구하려는 합니다.
+3. tooopen hello 응용 프로그램 보기 hello 디렉터리 보기에서 클릭 **응용 프로그램** hello 상단 메뉴에서 합니다.
    
     ![응용 프로그램][2]
-4. 페이지 맨 아래에 있는 **추가** 를 클릭합니다.
+4. 클릭 **추가** hello hello 페이지 맨 아래에 있습니다.
    
     ![응용 프로그램][3]
-5. **수행할 작업** 대화 상자에서 **갤러리에서 응용 프로그램 추가**를 클릭합니다.
+5. Hello에 **하 신 toodo 원하는** 대화 상자에서 클릭 **hello 갤러리에서 응용 프로그램 추가**합니다.
    
     ![응용 프로그램][4]
-6. 검색 상자에 **Wizergos Productivity Software**를 입력합니다.
+6. Hello 검색 상자에 입력 **Wizergos 생산성 소프트웨어**합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_01.png)
-7. 결과 창에서 **Wizergos Productivity Software**를 선택하고 **완료**를 클릭하여 응용 프로그램을 추가합니다.
+7. Hello 결과 패널에서 선택 **Wizergos 생산성 소프트웨어**, 클릭 하 고 **완료** tooadd hello 응용 프로그램입니다.
    
-    ![갤러리에서 앱 선택](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_001.png)
+    ![Hello 갤러리에서 hello 앱 선택](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_001.png)
 
 ## <a name="configure-and-test-azure-ad-sso"></a>Azure AD SSO 구성 및 테스트
-이 섹션은 "Britta Simon"이라는 테스트 사용자를 기반으로 Wizergos Productivity Software에서 Azure AD SSO를 구성하고 테스트하는 방법을 보여 주기 위해 작성되었습니다.
+이 섹션의 hello 목적은 tooshow "Britta Simon" 이라는 테스트 사용자에 따라 tooconfigure 및 Azure AD SSO Wizergos 생산성 소프트웨어 및 테스트 합니다.
 
-SSO가 작동되려면 Azure AD는 Azure AD의 사용자에 해당하는 Wizergos Productivity Software의 사용자가 누군지 알고 있어야 합니다. 즉, Azure AD 사용자와 Wizergos Productivity Software의 관련 사용자 간에 연결이 형성되어야 합니다.
+SSO toowork에 대 한 Azure AD는 tooknow Wizergos 생산성 소프트웨어 tooan 사용자 Azure ad에서에서 어떤 hello 테이블에 해당 사용자가 필요 합니다. 즉, Azure AD 사용자 및 Wizergos 생산성 소프트웨어에서 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
 
-이 연결 관계는 Azure AD의 **사용자 이름** 값을 Wizergos Productivity Software의 **Username** 값으로 할당하여 설정합니다.
+Hello hello 값을 할당 하 여이 링크 관계가 설정 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** Wizergos 생산성 소프트웨어에서.
 
-BynWizergos Productivity Software에서 Azure AD Single Sign-on을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
+tooconfigure 및 BynWizergos 생산성 Softwareder를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
 
-1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-on 테스트하는 데 사용합니다.
-3. **[Wizergos Productivity Software 테스트 사용자 만들기](#creating-a-wizergos-productivity-software-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Wizergos Productivity Software에 만듭니다.
-4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
-5. **[Single Sign-On 테스트](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
+1. **[Azure AD single sign-on 구성](#configuring-azure-ad-single-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
+3. **[Wizergos 생산성 소프트웨어 테스트 사용자 만들기](#creating-a-wizergos-productivity-software-test-user)**  -toohave 그녀의 연결 된 Azure AD toohello 표현인 Wizergos 생산성 소프트웨어에서 Britta Simon의 해당 하는 도구입니다.
+4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
+5. **[Single sign on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
 
 ### <a name="configuring-azure-ad-sso"></a>Azure AD SSO 구성
-이 섹션에서는 클래식 포털에서 Azure AD Single Sign-On을 사용하도록 설정하고 Wizergos Productivity Software 응용 프로그램에서 Single Sign-On을 구성합니다.
+이 섹션에서는 Azure AD에서 single sign-on hello 클래식 포털의 설정 및 Wizergos 생산성 소프트웨어 응용 프로그램에서 single sign on 구성 합니다.
 
-**Wizergos Productivity Software에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**
+**Wizergos 생산성 소프트웨어와 함께 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**
 
-1. 클래식 포털의 **Wizergos Productivity Software** 응용 프로그램 통합 페이지에서 **Single Sign-On 구성**을 클릭하여 **Single Sign-On 구성** 대화 상자를 엽니다.
+1. Hello에 hello 클래식 포털에서 **Wizergos 생산성 소프트웨어** 응용 프로그램 통합 페이지에서 클릭 **single sign on 구성** tooopen hello **구성 Single Sign-on**대화 상자.
    
     ![Single Sign-on 구성][6] 
-2. **Wizergos Productivity Software에 대한 사용자 로그온 방법을 선택하십시오.** 페이지에서 **Azure AD Single Sign-On**을 선택하고 **다음**을 클릭합니다.
+2. Hello에 **어떻게 tooWizergos 생산성 소프트웨어에서 사용자가 toosign 보 시겠습니까** 페이지에서 **Azure AD Single Sign-on**, 클릭 하 고 **다음**:
    
-    ![Single Sign-On 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_03.png)
-3. **앱 설정 구성** 대화 상자 페이지에서 **다음**을 클릭합니다.
+    ![Single Sign-on 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_03.png)
+3. Hello에 **앱 설정 구성** 대화 상자 페이지에서 클릭 **다음**:
    
-    ![Single Sign-On 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_04.png)
-4. **Wizergos Productivity Software에서 Single Sign-On 구성** 페이지에서 **인증서 다운로드**를 클릭하여 컴퓨터에 파일을 저장합니다.
+    ![Single Sign-on 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_04.png)
+4. Hello에 **Wizergos 생산성 Software에서 single sign on 구성** 페이지 **다운로드 인증서**, hello 파일을 컴퓨터에 저장 합니다.
    
     ![Single Sign-on 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_05.png)
-5. 다른 웹 브라우저 창에서 Wizergos Productivity Software 테넌트에 관리자로 로그인합니다.
-6. 햄버거 메뉴에서 **관리자**를 선택합니다.
+5. 다른 웹 브라우저 창에서 관리자 권한으로 로그온 tooyour Wizergos 생산성 소프트웨어 테 넌 트입니다.
+6. Hello 햄버거 메뉴에서 선택 **Admin**합니다.
    
     ![앱 쪽에서 Single Sign-On 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_000.png)
 7. 왼쪽 메뉴의 관리자 페이지에서 **인증**을 선택하고 **Azure AD**를 클릭합니다.
    
     ![앱 쪽에서 Single Sign-On 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_002.png)
-8. **인증** 섹션에서 다음 단계를 수행합니다.
+8. Hello 다음 단계를 수행 **인증** 섹션.
    
     ![앱 쪽에서 Single Sign-On 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_003.png)
-  1. **업로드** 버튼을 클릭하여 Azure AD에서 다운로드한 인증서를 업로드합니다. 
-  2. **발급자 URL** 텍스트 상자에 Azure AD 응용 프로그램 구성 마법사에서 나온 **발급자 URL** 값을 저장합니다.
-  3. **Single Sign-On URL** 텍스트 상자에 Azure AD 응용 프로그램 구성 마법사의 **Single Sign-on 서비스 URL** 값을 입력합니다.
-  4. **Single Sign-Out URL** 텍스트 상자에 Azure AD 응용 프로그램 구성 마법사의 **Single Sign-Out 서비스 URL** 값을 입력합니다.
+  1. 클릭 **업로드** 단추 tooupload hello Azure AD에서 인증서를 다운로드 합니다. 
+  2. Hello에 **발급자 URL** textbox 배치의 hello 값 **발급자 URL** Azure AD 응용 프로그램 구성 마법사에서 합니다.
+  3. Hello에 **Single Sign On URL** textbox 배치의 hello 값 **Single sign-on 서비스 URL** Azure AD 응용 프로그램 구성 마법사에서 합니다.
+  4. Hello에 **Single Sign-Out URL** textbox 배치의 hello 값 **Single Sign-out 서비스 URL** Azure AD 응용 프로그램 구성 마법사에서 합니다.
   5. **저장** 단추를 클릭합니다.
-9. 클래식 포털에서 Single Sign-On 구성 확인을 선택하고 **다음**을 클릭합니다.
+9. Hello 클래식 포털의 hello single sign-on 구성 확인을 선택한 다음 클릭 **다음**합니다.
    
     ![Azure AD Single Sign-On][10]
-10. **Single Sign-On 확인** 페이지에서 **완료**를 클릭합니다.  
+10. Hello에 **Single sign on 확인** 페이지 **완료**합니다.  
     
     ![Azure AD Single Sign-On][11]
 
 ### <a name="create-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 목적은 클래식 포털에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
+이 섹션의 hello 목표 Britta Simon 라는 hello 클래식 포털에서 toocreate 테스트 사용자를입니다.
 
 ![Azure AD 사용자 만들기][20]
 
-**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
+**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
 
-1. **Azure 클래식 포털**의 왼쪽 탐색 창에서 **Active Directory**를 클릭합니다.
+1. Hello에 **Azure 클래식 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Active Directory**합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_09.png)
-2. **디렉터리** 목록에서 디렉터리 통합을 사용하도록 설정할 디렉터리를 선택합니다.
-3. 사용자 목록을 표시하려면 위쪽 메뉴에서 **사용자**를 클릭합니다.
+2. Hello에서 **디렉터리** 목록, 선택 hello 디렉터리 tooenable 디렉터리 통합을 구하려는 합니다.
+3. toodisplay hello 목록이 hello 바탕 화면에서 hello 메뉴에서 사용자가 클릭 **사용자**합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_03.png)
-4. **사용자 추가** 대화 상자를 열려면 아래쪽 도구 모음에서 **사용자 추가**를 클릭합니다.
+4. tooopen hello **사용자 추가** hello 아래쪽에 hello 도구 모음에서 대화 상자에서 클릭 **사용자 추가**합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_04.png)
-5. **이 사용자에 대한 정보 입력** 대화 상자 페이지에서 다음 단계를 수행합니다.
+5. Hello에 **이 사용자에 대해 알리기** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_05.png) 
   1. 사용자 유형에서 조직의 새 사용자를 선택합니다.
-  2. 사용자 이름 **텍스트 상자**에 **BrittaSimon**을 입력합니다.
+  2. Hello 사용자 이름에서에서 **textbox**, 형식 **BrittaSimon**합니다.
   3. **다음**을 누릅니다.
-6. **사용자 프로필** 대화 상자 페이지에서 다음 단계를 수행합니다.
+6. Hello에 **사용자 프로필** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
    
    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_06.png)
-  1. **이름** 텍스트 상자에 **Britta**를 입력합니다.  
-  2. **성** 텍스트 상자에 **Simon**을 입력합니다.
-  3. **표시 이름** 텍스트 상자에 **Britta Simon**을 입력합니다.
-  4. **역할** 목록에서 **사용자**를 선택합니다.
+  1. Hello에 **이름** 텍스트 상자에 **Britta**합니다.  
+  2. Hello에 **성** 텍스트 상자에, **Simon**합니다.
+  3. Hello에 **표시 이름** 텍스트 상자에 **Britta Simon**합니다.
+  4. Hello에 **역할** 목록에서 **사용자**합니다.
   5. **다음**을 누릅니다.
-7. **임시 암호 가져오기** 대화 상자 페이지에서 **만들기**를 클릭합니다.
+7. Hello에 **임시 암호 가져오기** 대화 상자 페이지에서 클릭 **만들**합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_07.png)
-8. **임시 암호 가져오기** 대화 상자 페이지에서 다음 단계를 수행합니다.
+8. Hello에 **임시 암호 가져오기** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
    
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/create_aaduser_08.png)
-  1. **새 암호**값을 적어둡니다.
+  1. Hello hello 값 적어 **새 암호**합니다.
   2. 페이지 맨 아래에 있는 **완료**을 참조하세요.   
 
 ### <a name="create-a-wizergos-productivity-software-test-user"></a>Wizergos Productivity Software 테스트 사용자 만들기
-이 섹션에서는 Wizergos Productivity Software에서 Britta Simon이라는 사용자를 만듭니다. Wizergos Productivity Software 플랫폼에 사용자를 추가하려면 [support@wizergos.com](emailTo:support@wizergos.com) 을 통해 Wizergos Productivity Software 지원 팀과 함께 작업하세요.
+이 섹션에서는 Wizergos Productivity Software에서 Britta Simon이라는 사용자를 만듭니다. 통해 Wizergos 생산성 소프트웨어 지원 팀과 협력 하세요 [ support@wizergos.com ](emailTo:support@wizergos.com) hello Wizergos 생산성 소프트웨어 플랫폼의 tooadd hello 사용자입니다.
 
-### <a name="assign-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
-이 섹션은 Britta Simon에게 Wizergos Productivity Software에 대한 액세스 권한을 부여하여 Azure SSO를 사용할 수 있기 위한 것입니다.
+### <a name="assign-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당 합니다.
+이 섹션의 hello 목표 그녀의 액세스 tooWizergos 생산성 소프트웨어를 부여 하 여 tooenabling Britta Simon toouse Azure SSO를입니다.
 
   ![사용자 할당][200]
 
-**Britta Simon을 Wizergos Productivity Software에 할당하려면 다음 단계를 수행합니다.**
+**tooassign Britta Simon tooWizergos 생산성 소프트웨어 hello 다음 단계를 수행 합니다.**
 
-1. 클래식 포털에서 응용 프로그램 보기를 열려면 디렉터리 보기의 최상위 메뉴에서 **응용 프로그램** 을 클릭합니다.
+1. Hello 클래식 포털에서 tooopen hello 응용 프로그램 보기 hello 디렉터리 보기를 클릭 **응용 프로그램** hello 최상위 메뉴에 있습니다.
    
     ![사용자 할당][201]
-2. 응용 프로그램 목록에서 **Wizergos Productivity Software**를 선택합니다.
+2. Hello 응용 프로그램 목록에서 선택 **Wizergos 생산성 소프트웨어**합니다.
    
-    ![Single Sign-On 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_50.png)
-3. 위쪽의 메뉴에서 **사용자**를 클릭합니다.
+    ![Single Sign-on 구성](./media/active-directory-saas-wizergosproductivitysoftware-tutorial/tutorial_wizergosproductivitysoftware_50.png)
+3. Hello 메뉴에서 hello 위에 표시를 클릭 **사용자**합니다.
    
     ![사용자 할당][203]
-4. 사용자 목록에서 **Britta Simon**을 선택합니다.
-5. 아래쪽 도구 모음에서 **할당**을 클릭합니다.
+4. Hello [사용자] 목록에서 선택 **Britta Simon**합니다.
+5. Hello 아래쪽에 hello 도구 모음에서 클릭 **할당**합니다.
    
     ![사용자 할당][205]
 
 ### <a name="test-single-sign-on"></a>Single Sign-On 테스트
-이 섹션은 액세스 패널을 사용하여 Azure AD SSO 구성을 테스트하기 위한 것입니다.
+이 섹션의 hello 목적은 tootest 액세스 패널을 hello 사용 하 여 Azure AD SSO 구성 합니다.
 
-액세스 패널에서 Wizergos Productivity Software 타일을 클릭하면 Wizergos Productivity Software 응용 프로그램에 자동으로 로그온됩니다.
+Hello 액세스 패널에서에서 hello Wizergos 생산성 소프트웨어 타일을 클릭할 때 자동으로 로그온 tooyour Wizergos 생산성 소프트웨어 응용 프로그램을 구해야 합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
-* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

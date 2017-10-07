@@ -1,6 +1,6 @@
 ---
-title: "변환을 사용하여 XML 데이터 변환 - Azure Logic Apps | Microsoft Docs"
-description: "엔터프라이즈 통합 SDK를 사용하여 Logic Apps에서 XML 데이터를 다른 형식으로 변환하기 위한 변환 또는 맵 만들기"
+title: "Azure 논리 앱-변환 사용 하 여 XML 데이터 aaaConvert | Microsoft Docs"
+description: "변환 또는 mapps hello 엔터프라이즈 통합 SDK를 사용 하 여 논리 앱에 대 한 형식 간에 tooconvert XML 데이터 만들기"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: fb6027769377b3527b11f7831dab3bb8d7061c84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b56ec1072c5058d3aefc7f88ac9b2748ebe56456
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enterprise-integration-with-xml-transforms"></a>XML 변환과 엔터프라이즈 통합
 ## <a name="overview"></a>개요
-엔터프라이즈 통합 변환 커넥터에서는 데이터의 형식을 변환합니다. 예를 들어 YearMonthDay 형식의 현재 날짜가 포함된 들어오는 메시지가 있을 수 있습니다. 날짜를 MonthDayYear 형식으로 변경하는 데 사용할 수 있습니다.
+hello 엔터프라이즈 통합 변환 커넥터 형식 tooanother 형식 으로부터 데이터를 변환합니다. 예를 들어 hello hello YearMonthDay 형식의 현재 날짜를 포함 하는 들어오는 메시지를 할 수 있습니다. 변환 tooreformat hello 날짜 toobe hello MonthDayYear 형식으로 사용할 수 있습니다.
 
 ## <a name="what-does-a-transform-do"></a>변환의 기능은 무엇인가요?
-맵으로 알려진 변환은 원본 XML 스키마(입력)와 대상 XML 스키마(출력)로 구성됩니다. 다양한 기본 제공 함수를 사용하여 문자열 조작, 조건부 할당, 산술 식, 날짜 시간 포맷터, 루핑 구문 등을 비롯한 데이터를 조작하거나 제어할 수 있습니다.
+지도 라고도 변환을 소스 XML 스키마 (입력 hello)와 대상 XML 스키마 (hello 출력)으로 구성 됩니다. 도 루프 구문 및 문자열 조작, 조건부 할당, 산술 식, 날짜 시간 포맷터를 포함 하 여 서로 다른 기본 제공 함수 toohelp 조작 하거나 컨트롤 hello 데이터를 사용할 수 있습니다.
 
-## <a name="how-to-create-a-transform"></a>변환 생성 방법
-Visual Studio [엔터프라이즈 통합 SDK](https://aka.ms/vsmapsandschemas)를 사용하여 변환/맵을 만들 수 있습니다. 변환을 만들고 테스트하는 작업을 완료한 경우 통합 계정으로 업로드합니다. 
+## <a name="how-toocreate-a-transform"></a>어떻게 toocreate 변환?
+변환/매핑 hello Visual Studio를 사용 하 여 만들 수 있습니다 [엔터프라이즈 통합 SDK](https://aka.ms/vsmapsandschemas)합니다. 완료를 만들고 테스트 hello 변환 되 면 통합 계정에 hello 변환을 업로드 합니다. 
 
-## <a name="how-to-use-a-transform"></a>변환 사용 방법
-변환/맵을 통합 계정에 업로드한 후에 논리 앱을 만드는 데 사용할 수 있습니다. 논리 앱은 논리 앱이 트리거될 때마다 (그리고 변환해야 하는 입력 콘텐츠가 있는 경우) 변환을 실행합니다.
+## <a name="how-toouse-a-transform"></a>어떻게 toouse 변환
+Hello 변환/매핑을 통합 계정에 업로드 한 후 논리 앱 toocreate를 사용할 수 있습니다. hello 논리 앱 hello 논리 앱 (트리거되고 toobe 변환 해야 하는 입력 콘텐츠가) 될 때마다 변환을 실행 합니다.
 
-**변환을 사용하는 단계는 다음과 같습니다**.
+**같습니다. hello 단계 toouse 변환을**:
 
 ### <a name="prerequisites"></a>필수 조건
 
-* 통합 계정을 만든 후 맵 추가  
+* 통합 계정을 만들고 지도 tooit 추가  
 
-지금까지 필수 구성 요소를 살펴보았습니다. 이제 논리 앱을 만들 차례입니다.  
+이제 hello 필수 구성 요소 처리 한 있습니다,입니다 시간 toocreate 논리 앱:  
 
-1. 논리 앱을 만들고 맵을 포함하는 [통합 계정에 연결](../logic-apps/logic-apps-enterprise-integration-accounts.md "논리 앱에 통합 계정을 연결하는 방법 알아보기")합니다.
-2. 논리 앱에 **요청** 트리거 추가  
+1. 논리 앱 만들기 및 [tooyour 통합 계정 연결](../logic-apps/logic-apps-enterprise-integration-accounts.md "toolink 통합 계정 tooa 논리 앱에 알아봅니다") hello 맵을 포함 하는 합니다.
+2. 추가 **요청** 트리거 tooyour 논리 앱  
    ![](./media/logic-apps-enterprise-integration-transforms/transform-1.png)    
-3. 먼저 **작업 추가** 를 선택하여 **변환 XML** 작업을 추가합니다.  
+3. 추가 hello **XML 변환** 먼저 선택 하 여 작업 **동작 추가**   
    ![](./media/logic-apps-enterprise-integration-transforms/transform-2.png)   
-4. 사용하려는 작업에 대해 모든 작업을 필터링하기 위해 검색 상자에 *변환*이라는 단어를 입력합니다.  
+4. Hello 단어를 입력 *변환* toouse 되도록 하나 작업 toohello를 모든 hello hello 검색 상자 toofilter  
    ![](./media/logic-apps-enterprise-integration-transforms/transform-3.png)  
-5. **변환 XML** 작업을 선택합니다.   
-6. 변환할 XML **콘텐츠** 를 추가합니다. HTTP 요청에서 수신한 XML 데이터를 **콘텐츠**로 사용할 수 있습니다. 이 예제에서는 논리 앱을 트리거한 HTTP 요청의 본문을 선택합니다.
-7. 변환을 수행하는 데 사용하려는 **맵** 의 이름을 선택합니다. 맵이 이미 통합 계정에 있어야 합니다. 이전 단계에서 맵을 포함한 통합 계정에 논리 앱 액세스 권한을 이미 제공했습니다.      
+5. 선택 hello **XML 변환** 동작   
+6. Hello XML 추가 **콘텐츠** 변환입니다. Hello hello HTTP 요청에 수신 하는 XML 데이터를 사용할 수 있습니다 **콘텐츠**합니다. 이 예에서는 hello hello 논리 앱을 트리거한 hello HTTP 요청 본문을 선택 합니다.
+7. Hello의 선택 hello 이름을 **지도** toouse tooperform hello 변환 한다고 합니다. hello 지도 통합 계정에 이미 있어야 합니다. 이전 단계에서 이미 제공한 맵이 포함 된 논리 앱 액세스 tooyour 통합 계정.      
    ![](./media/logic-apps-enterprise-integration-transforms/transform-4.png) 
 8. 작업을 저장합니다.  
     ![](./media/logic-apps-enterprise-integration-transforms/transform-5.png) 
 
-이 시점에서 맵의 설정이 완료됩니다. 실제 응용 프로그램에서는 SalesForce와 같은 LOB 응용 프로그램에 변환한 데이터를 저장할 수 있습니다. Salesforce에 변환의 출력을 보내는 작업을 쉽게 수행할 수 있습니다. 
+이 시점에서 맵의 설정이 완료됩니다. 실제 응용 프로그램에서 SalesForce와 같은 LOB 응용 프로그램의 toostore 변환 hello 데이터 수도 있습니다. TooSalesforce hello의 동작 toosend hello 출력으로 쉽게 변형할 수 있습니다. 
 
-이제 HTTP 끝점에 요청하여 변환을 테스트할 수 있습니다.  
+이제 요청 toohello HTTP 끝점을 만들어서 변환을 테스트할 수 있습니다.  
 
 ## <a name="features-and-use-cases"></a>기능 및 사용 사례
-* 맵에서 만든 변환은 이름과 주소를 한 문서에서 다른 문서로 복사하는 것과 같이 단순할 수 있습니다. 또는 기본 맵 작업을 사용하여 더 복잡한 변환을 만들 수 있습니다.  
+* 지도에서 만든 hello 변환에서 하나의 문서 tooanother 이름 및 주소를 복사 하는 등의 간단한 될 수 있습니다. 또는 hello의 기본 매핑 작업을 사용 하 여 보다 복잡 한 변환을 만들 수 있습니다.  
 * 문자열, 날짜 시간 함수 등 여러 맵 작업이나 함수를 바로 사용할 수 있습니다.  
-* 스키마 간에 직접 데이터 복사를 수행할 수 있습니다. SDK에 포함된 매퍼에서 원본 스키마의 요소를 대상 스키마의 대응 항목과 연결하는 선을 그리기만 하면 됩니다.  
-* 맵을 만들 때 만들어진 모든 관계와 링크를 보여 주는 맵의 그래픽 표현이 표시됩니다.
-* 맵 테스트 기능을 사용하여 샘플 XML 메시지를 추가합니다. 한 번만 클릭하면 만든 맵을 테스트하고 생성된 출력을 확인할 수 있습니다.  
+* Hello 스키마 간에 직접 데이터 복사를 수행할 수 있습니다. Hello hello SDK에에서 포함 된 맵 편집기, hello 소스 스키마의 hello 요소 hello 대상 스키마의 해당 항목을 연결 하는 선을 그리기 단순하게입니다.  
+* 지도 만들 때 모든 hello 관계를 보여 주는 hello 맵 및 생성 하는 링크의 그래픽 표현을 보려면 합니다.
+* Hello 맵 테스트 기능 tooadd 샘플 XML 메시지를 사용 합니다. 간단한 클릭으로 hello 맵 생성 및 hello 생성 된 출력을 테스트할 수 있습니다.  
 * 기존 데이터 업로드  
-* XML 형식 지원을 포함합니다.
+* Hello XML 형식에 대 한 지원이 포함 되어 있습니다.
 
 ## <a name="learn-more"></a>자세한 정보
-* [엔터프라이즈 통합 팩에 대해 자세히 알아보기](../logic-apps/logic-apps-enterprise-integration-overview.md "엔터프라이즈 통합 팩에 대해 알아보기")  
+* [엔터프라이즈 통합 팩 hello에 대 한 자세한](../logic-apps/logic-apps-enterprise-integration-overview.md "엔터프라이즈 통합 팩에 대 한 자세한 정보")  
 * [맵에 대해 자세히 알아보기](../logic-apps/logic-apps-enterprise-integration-maps.md "엔터프라이즈 통합 맵에 대해 알아보기")  
 

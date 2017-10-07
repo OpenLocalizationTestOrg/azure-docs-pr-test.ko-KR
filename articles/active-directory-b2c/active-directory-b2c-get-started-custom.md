@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C: 사용자 지정 정책 시작 | Microsoft Docs"
-description: "Azure Active Directory B2C 사용자 지정 정책을 시작하는 방법"
+description: "Azure Active Directory B2C 사용자 지정 정책을 사용 하 여 tooget 시작 하는 방법"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,79 +14,79 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja;parahk;gsacavdm
-ms.openlocfilehash: 4f14dbf4b66f10290cd4f98d56a005f97cc6a207
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5ee133806395cddf18682769a6cad149889d82d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-get-started-with-custom-policies"></a>Azure Active Directory B2C: 사용자 지정 정책 시작
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-이 문서의 단계를 완료하면 사용자 지정 정책에서 이메일 주소와 암호를 통한 "로컬 계정" 등록 또는 로그인을 지원합니다. 또한 Facebook 또는 Azure Active Directory와 같은 추가 ID 공급자를 추가하는 환경도 준비합니다. Azure AD(Azure Active Directory ) B2C ID 경험 프레임워크의 다른 용도를 이해하려면 먼저 이 단계를 완료하는 것이 좋습니다.
+사용자 지정 정책을 "로컬 계정" 지원할 hello이이 문서의 단계를 완료 한 후 등록 또는 로그인 전자 메일 주소와 암호를 통해 합니다. 또한 Facebook 또는 Azure Active Directory와 같은 추가 ID 공급자를 추가하는 환경도 준비합니다. Hello (Azure AD) Azure Active Directory B2C Id 경험 프레임 워크의 다른 방법에 대 한 읽기 전에 이러한 단계를 사용 하는 toocomplete를 좋습니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-계속하기 전에 모든 사용자, 응용 프로그램, 정책 등을 위한 컨테이너인 Azure AD B2C 테넌트가 있어야 합니다. 아직 없으면 [Azure AD B2C 테넌트를 만들어야 합니다](active-directory-b2c-get-started.md). 계속하기 전에 모든 개발자가 Azure AD B2C 기본 제공 정책 연습을 완료하고 기본 제공 정책으로 응용 프로그램을 구성하는 것이 좋습니다. 정책 이름을 약간 변경하여 사용자 지정 정책을 호출하면 응용 프로그램이 두 유형의 정책 모두에서 작동합니다.
+계속하기 전에 모든 사용자, 응용 프로그램, 정책 등을 위한 컨테이너인 Azure AD B2C 테넌트가 있어야 합니다. 너무 필요 없는 경우 하나 이미,[Azure AD B2C 테 넌 트 만들기](active-directory-b2c-get-started.md)합니다. म 강력한 모든 개발자가 toocomplete hello Azure AD B2C 기본 제공 정책 연습 들이 고 계속 하기 전에 기본 제공 정책을 사용 하 여 응용 프로그램을 구성 합니다. 최소 변경 toohello 정책 이름 tooinvoke hello 사용자 지정 정책을 확인 한 후 응용 프로그램 두 가지 정책 유형을 사용 합니다.
 
 >[!NOTE]
->사용자 지정 정책 편집에 액세스하려면 테넌트와 연결된 유효한 Azure 구독이 있어야 합니다. [Azure AD B2C 테넌트를 Azure 구독에 연결](active-directory-b2c-how-to-enable-billing.md)하지 않았거나 Azure 구독을 사용할 수 없는 경우 ID 경험 프레임워크 단추를 사용할 수 없습니다.
+>사용자 지정 정책 편집 tooaccess, 올바른 Azure 구독과 연결 된 tooyour 테 넌 트가 필요 합니다. 그렇지 않은 경우 [Azure AD B2C 테 넌 트 tooan Azure 구독 연결](active-directory-b2c-how-to-enable-billing.md) 또는 Azure 구독이 사용 되지 않는지, hello Id 경험 프레임 워크 단추를 사용할 수 없습니다.
 
-## <a name="add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies"></a>사용자 지정 정책에서 사용하도록 B2C 테넌트에 서명 및 암호화 키 추가
+## <a name="add-signing-and-encryption-keys-tooyour-b2c-tenant-for-use-by-custom-policies"></a>사용자 지정 정책에 의해 서명 및 암호화 키 tooyour B2C 테 넌 트 사용 하기 위해 추가
 
-1. Azure AD B2C 테넌트 설정에서 **ID 경험 프레임워크** 블레이드를 엽니다.
-2. **정책 키**를 선택하여 테넌트에 사용 가능한 키를 봅니다.
+1. 열기 hello **Id 경험 프레임 워크** 블레이드 Azure AD B2C 테 넌 트 설정에서 합니다.
+2. 선택 **정책 키** 테 넌 트에 사용할 수 있는 tooview hello 키입니다.
 3. B2C_1A_TokenSigningKeyContainer가 없으면 만듭니다.<br>
     a. **추가**를 선택합니다. <br>
     b. **생성**을 선택합니다.<br>
     c. **이름**에는 `TokenSigningKeyContainer`를 사용합니다. <br> 
-    `B2C_1A_` 접두사가 자동으로 추가될 수 있습니다.<br>
+    hello 접두사 `B2C_1A_` 자동으로 추가 될 수도 있습니다.<br>
     d. **키 유형**에는 **RSA**를 사용합니다.<br>
-    e. **날짜**에는 기본값을 사용합니다. <br>
+    e. 에 대 한 **날짜**, hello 기본값을 사용 합니다. <br>
     f. **키 사용**에는 **서명**을 사용합니다.<br>
     g. **만들기**를 선택합니다.<br>
 4. B2C_1A_TokenEncryptionKeyContainer가 없으면 만듭니다.<br>
  a. **추가**를 선택합니다.<br>
  b. **생성**을 선택합니다.<br>
  c. **이름**에는 `TokenEncryptionKeyContainer`를 사용합니다. <br>
-   `B2C_1A`_ 접두사가 자동으로 추가될 수 있습니다.<br>
+   hello 접두사 `B2C_1A`_를 자동으로 추가 될 수도 있습니다.<br>
  d. **키 유형**에는 **RSA**를 사용합니다.<br>
- e. **날짜**에는 기본값을 사용합니다.<br>
+ e. 에 대 한 **날짜**, hello 기본값을 사용 합니다.<br>
  f. **키 사용**에는 **암호화**를 사용합니다.<br>
  g. **만들기**를 선택합니다.<br>
 5. B2C_1A_FacebookSecret를 만듭니다. <br>
-Facebook 응용 프로그램 비밀이 이미 있을 경우 해당 비밀을 정책 키로 테넌트에 추가합니다. 그렇지 않으면 정책이 유효성 검사를 통과하도록 자리 표시자 값이 있는 키를 만들어야 합니다.<br>
+Facebook 응용 프로그램 암호를 이미 있는 경우 정책 키 tooyour 테 넌 트로 추가 합니다. 그렇지 않으면 hello 키를 만들어야 자리 표시자 값으로 정책 유효성 검사를 통과 되도록 합니다.<br>
  a. **추가**를 선택합니다.<br>
  b. **옵션**에는 **수동**을 사용합니다.<br>
  c. **이름**에는 `FacebookSecret`를 사용합니다. <br>
- `B2C_1A_` 접두사가 자동으로 추가될 수 있습니다.<br>
- d. **비밀** 상자에서 developers.facebook.com의 FacebookSecret 또는 `0`을 자리 표시자로 입력합니다. *Facebook 앱 ID가 아닙니다.* <br>
+ hello 접두사 `B2C_1A_` 자동으로 추가 될 수도 있습니다.<br>
+ d. Hello에 **비밀** 상자를 여 FacebookSecret developers.facebook.com에서 입력 또는 `0` 자리 표시자로 합니다. *Facebook 앱 ID가 아닙니다.* <br>
  e. **키 사용**에는 **서명**을 사용합니다. <br>
  f. **만들기**를 선택하고 이 만들기를 확인합니다.
 
 ## <a name="register-identity-experience-framework-applications"></a>ID 경험 프레임워크 응용 프로그램 등록
 
-Azure AD B2C에서는 엔진에서 사용자를 등록하고 로그인하는 데 사용하는 두 개의 추가 응용 프로그램을 등록해야 합니다.
+Azure AD B2C tooregister에 hello 엔진 toosign를에서 사용 되 고 사용자가 로그인 하는 두 개의 추가 응용 프로그램이 필요 합니다.
 
 >[!NOTE]
->로컬 계정을 사용하여 로그인할 수 있는 두 개의 응용 프로그램, 즉 IdentityExperienceFramework(웹앱) 및 IdentityExperienceFramework 앱에서 위임된 권한이 있는 ProxyIdentityExperienceFramework(네이티브 앱)를 만들어야 합니다. 로컬 계정은 테넌트에만 존재합니다. 사용자는 고유한 이메일 주소/암호 조합으로 등록하여 테넌트에 등록된 응용 프로그램에 액세스합니다.
+>해당 사용에 대 한 로그인 로컬 계정을 사용 하 여 두 개의 응용 프로그램을 만들어야 합니다: IdentityExperienceFramework (웹 응용 프로그램) 및 (네이티브 응용 프로그램)와 ProxyIdentityExperienceFramework hello IdentityExperienceFramework 앱에서 권한을 위임 합니다. 로컬 계정은 테넌트에만 존재합니다. 사용자가 등록 고유한 전자 메일 주소/암호 조합 tooaccess 테 넌 트가 등록 응용 프로그램.
 
-### <a name="create-the-identityexperienceframework-application"></a>IdentityExperienceFramework 응용 프로그램 만들기
+### <a name="create-hello-identityexperienceframework-application"></a>Hello IdentityExperienceFramework 응용 프로그램 만들기
 
-1. [Azure Portal](https://portal.azure.com)에서 [Azure AD B2C 테넌트의 컨텍스트로 전환합니다](active-directory-b2c-navigate-to-b2c-context.md).
-2. **Azure Active Directory** 블레이드를 엽니다(**Azure AD B2C** 블레이드가 아님). **더 많은 서비스**를 선택하여 찾을 수도 있습니다.
+1. Hello에 [Azure 포털](https://portal.azure.com), hello를 전환 [Azure AD B2C 테 넌 트의 상황에 맞는](active-directory-b2c-navigate-to-b2c-context.md)합니다.
+2. 열기 hello **Azure Active Directory** 블레이드 (하지 hello **Azure AD B2C** 블레이드)입니다. Tooselect 해야 **더 서비스** toofind 것입니다.
 3. **앱 등록**을 선택합니다.
 4. **새 응용 프로그램 등록**을 선택합니다.
    * **이름**에는 `IdentityExperienceFramework`를 사용합니다.
    * **응용 프로그램 종류**에는 **웹앱/API**를 사용합니다.
    * **로그온 URL**에는 `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`을 사용합니다. 여기서 `yourtenant`는 Azure AD B2C 테넌트 도메인 이름입니다.
 5. **만들기**를 선택합니다.
-6. 만들어졌으면 새로 만든 **IdentityExperienceFramework** 응용 프로그램을 선택합니다.<br>
+6. 을 만든 후 hello 새로 만든 응용 프로그램을 선택 합니다. **IdentityExperienceFramework**합니다.<br>
    * **속성**을 선택합니다.<br>
-   * 응용 프로그램 ID를 복사하여 나중에 사용할 수 있도록 저장해 둡니다.
+   * Hello 응용 프로그램 ID를 복사 하 고 나중에 저장 합니다.
 
-### <a name="create-the-proxyidentityexperienceframework-application"></a>ProxyIdentityExperienceFramework 응용 프로그램 만들기
+### <a name="create-hello-proxyidentityexperienceframework-application"></a>Hello ProxyIdentityExperienceFramework 응용 프로그램 만들기
 
 1. **앱 등록**을 선택합니다.
 1. **새 응용 프로그램 등록**을 선택합니다.
@@ -94,44 +94,44 @@ Azure AD B2C에서는 엔진에서 사용자를 등록하고 로그인하는 데
    * **응용 프로그램 종류**에는 **네이티브**를 사용합니다.
    * **리디렉션 URI**에는 `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`을 사용합니다. 여기서 `yourtenant`는 Azure AD B2C 테넌트입니다.
 1. **만들기**를 선택합니다.
-1. 만들어졌으면 **ProxyIdentityExperienceFramework** 응용 프로그램을 선택합니다.<br>
+1. 를 만든 후 hello 응용 프로그램을 선택 합니다. **ProxyIdentityExperienceFramework**합니다.<br>
    * **속성**을 선택합니다. <br>
-   * 응용 프로그램 ID를 복사하여 나중에 사용할 수 있도록 저장해 둡니다.
+   * Hello 응용 프로그램 ID를 복사 하 고 나중에 저장 합니다.
 1. **필요한 권한**을 선택합니다.
 1. **추가**를 선택합니다.
 1. **API 선택**을 선택합니다.
-1. IdentityExperienceFramework라는 이름을 검색합니다. 결과에서 **IdentityExperienceFramework**를 선택하고 **선택**을 클릭합니다.
-1. **IdentityExperienceFramework 액세스** 옆의 확인란을 선택한 다음 **선택**을 클릭합니다.
+1. IdentityExperienceFramework hello 이름에 대 한 검색입니다. 선택 **IdentityExperienceFramework** 에 결과 얻으려면 hello 및 클릭 **선택**합니다.
+1. 다음 너무 hello 확인란을 선택한**액세스 IdentityExperienceFramework**, 클릭 하 고 **선택**합니다.
 1. **완료**를 선택합니다.
 1. **권한 부여**을 선택하고 **예**를 선택하여 확인합니다.
 
 ## <a name="download-starter-pack-and-modify-policies"></a>시작 팩 다운로드 및 정책 수정
 
-사용자 지정 정책은 Azure AD B2C 테넌트에 업로드해야 하는 일련의 XML 파일입니다. Microsoft는 사용자의 신속한 진행을 위해 시작 팩을 제공합니다. 다음 목록의 시작 팩 각각에는 설명한 시나리오를 수행하는 데 필요한 최소한의 기술 프로필 및 사용자 경험이 포함되어 있습니다.
- * LocalAccounts - 로컬 계정만 사용할 수 있습니다.
- * SocialAccounts - 소셜(또는 페더레이션) 계정만 사용할 수 있습니다.
- * **SocialAndLocalAccounts** - 이 파일은 연습을 위해 사용됩니다.
+사용자 지정 정책은 업로드 toobe tooyour Azure AD B2C 테 넌 트를 필요로 하는 XML 파일의 집합입니다. 스타터 팩 tooget 제공 신속 하 게 될 것입니다. Hello 목록 다음의 각 스타터 팩 hello 가장 적은 수의 기술 프로필에 포함 및 사용자 친구에 설명 된 tooachieve hello 시나리오 필요:
+ * LocalAccounts - Hello 로컬 계정에만 사용할을 수 있습니다.
+ * SocialAccounts - Hello 소셜 (또는 페더레이션) 계정에만 사용할을 수 있습니다.
+ * **SocialAndLocalAccounts** - Hello 연습에이 파일을 사용 합니다.
  * SocialAndLocalAccountsWithMFA - 소셜, 로컬 및 Multi-Factor Authentication 옵션이 여기에 포함됩니다.
 
 시작 팩 각각에는 다음이 포함됩니다.
 
-* 정책의 [기본 파일](active-directory-b2c-overview-custom.md#policy-files) - 기본 파일에 몇 가지 수정이 필요합니다.
-* 정책의 [확장 파일](active-directory-b2c-overview-custom.md#policy-files) -  이 파일은 구성이 대부분 변경되었습니다.
+* hello [기본 파일](active-directory-b2c-overview-custom.md#policy-files) hello 정책입니다. 몇 가지 수정이 필요한 toohello 기본 합니다.
+* hello [확장 파일](active-directory-b2c-overview-custom.md#policy-files) hello 정책입니다.  이 파일은 구성이 대부분 변경되었습니다.
 * [신뢰 당사자 파일](active-directory-b2c-overview-custom.md#policy-files)은 응용 프로그램에서 호출하는 작업 관련 파일입니다.
 
 >[!NOTE]
->XML 편집기에서 유효성 검사를 지원하는 경우 시작 팩의 루트 디렉터리에 있는 TrustFrameworkPolicy_0.3.0.0.xsd XML 스키마에 대해 파일의 유효성을 검사합니다. 업로드하기 전에 XML 스키마 유효성 검사가 오류를 식별합니다.
+>XML 편집기에서 유효성 검사를 지 원하는 경우 hello 스타터 팩 hello 루트 디렉터리에 있는 hello TrustFrameworkPolicy_0.3.0.0.xsd XML 스키마에 대해 hello 파일의 유효성을 검사 합니다. 업로드하기 전에 XML 스키마 유효성 검사가 오류를 식별합니다.
 
  이제 시작하겠습니다.
 
-1. GitHub에서 active-directory-b2c-custom-policy-starterpack을 다운로드합니다. [.zip 파일을 다운로드](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip)하거나 실행합니다.
+1. GitHub에서 active-directory-b2c-custom-policy-starterpack을 다운로드합니다. [Hello.zip 파일을 다운로드](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip) 또는 실행
 
     ```console
     git clone https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack
     ```
-2. SocialAndLocalAccounts 폴더를 엽니다.  이 폴더의 기본 파일(TrustFrameworkBase.xml)에는 로컬 및 소셜/회사 계정 모두에 필요한 콘텐츠가 포함되어 있습니다. 소셜 콘텐츠는 로컬 계정을 가져오고 실행하기 위한 단계를 방해하지 않습니다.
+2. Hello SocialAndLocalAccounts 폴더를 엽니다.  hello 기본 파일 (TrustFrameworkBase.xml)이이 폴더에 로컬 및 사회/회사 계정에 필요한 콘텐츠를 포함 합니다. 로컬 계정 시작 및 실행에 대 한 hello 단계 hello 소셜 콘텐츠 방해 하지 않습니다.
 3. TrustFrameworkBase.xml을 엽니다. XML 편집기가 필요하면 간단한 플랫폼 간 편집기인 [Visual Studio Code를 사용해 보세요](https://code.visualstudio.com/download).
-4. `TrustFrameworkPolicy` 루트 요소에서 `TenantId` 및 `PublicPolicyUri` 특성을 업데이트하여 `yourtenant.onmicrosoft.com`을 Azure AD B2C 테넌트의 도메인 이름으로 바꿉니다.
+4. Hello 루트에 `TrustFrameworkPolicy` 요소, 업데이트 hello `TenantId` 및 `PublicPolicyUri` 대체 특성 `yourtenant.onmicrosoft.com` 된 Azure AD B2C 테 넌 트의 도메인 이름이 hello:
    ```xml
     <TrustFrameworkPolicy
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -143,54 +143,54 @@ Azure AD B2C에서는 엔진에서 사용자를 등록하고 로그인하는 데
     PublicPolicyUri="http://yourtenant.onmicrosoft.com">
     ```
    >[!NOTE]
-   >`PolicyId`는 포털에 표시되는 정책 이름이며, 다른 정책 파일에서 이 정책 파일을 참조하는 이름입니다.
+   >`PolicyId`이 정책 파일은 다른 정책 파일에서 참조 하는 기준인 hello 이름과 hello 정책 이름을 hello 포털에서 볼 수 있는 경우
 
-5. 파일을 저장합니다.
-6. TrustFrameworkExtensions.xml을 엽니다. `yourtenant.onmicrosoft.com`을 Azure AD B2C 테넌트로 동일하게 두 번 바꿉니다. `<TenantId>` 요소에서 동일하게 총 세 번 바꿉니다. 파일을 저장합니다.
-7. SignUpOrSignIn.xml을 엽니다. 세 위치에 있는 `yourtenant.onmicrosoft.com`을 Azure AD B2C 테넌트로 바꿔 동일하게 변경합니다. 파일을 저장합니다.
-8. 암호 재설정 및 프로필 편집 파일을 엽니다. 각 파일의 세 위치에 있는 `yourtenant.onmicrosoft.com`을 Azure AD B2C 테넌트로 바꿔 동일하게 변경합니다. 파일을 저장합니다.
+5. Hello 파일을 저장 합니다.
+6. TrustFrameworkExtensions.xml을 엽니다. Hello 같은 두 가지 사항을 변경 대체 하 여 `yourtenant.onmicrosoft.com` Azure AD B2C 테 넌 트와 합니다. 동일한 hello 확인 hello에서 대체 `<TenantId>` 총 3 개의 변경 내용에 대 한 요소입니다. Hello 파일을 저장 합니다.
+7. SignUpOrSignIn.xml을 엽니다. 동일 하 게 hello 변경 대체 하 여 `yourtenant.onmicrosoft.com` 다음 세 위치에 Azure AD B2C 테 넌 트와 합니다. Hello 파일을 저장 합니다.
+8. 열기 hello 암호 다시 설정 하 고 프로필 파일을 편집 합니다. 동일 하 게 hello 변경 대체 하 여 `yourtenant.onmicrosoft.com` 각 파일에 다음 세 위치에 Azure AD B2C 테 넌 트와 합니다. Hello 파일을 저장 합니다.
 
-### <a name="add-the-application-ids-to-your-custom-policy"></a>사용자 지정 정책에 응용 프로그램 ID 추가
-확장 파일(`TrustFrameworkExtensions.xml`)에 응용 프로그램 ID를 추가합니다.
+### <a name="add-hello-application-ids-tooyour-custom-policy"></a>Hello tooyour 사용자 지정 정책 응용 프로그램 Id를 추가 합니다.
+Hello 응용 프로그램 Id toohello 확장 파일에 추가 (`TrustFrameworkExtensions.xml`):
 
-1. 확장 파일(TrustFrameworkExtensions.xml)을 열고 `<TechnicalProfile Id="login-NonInteractive">` 요소를 찾습니다.
-2. `IdentityExperienceFrameworkAppId`의 두 인스턴스를 이전에 만든 ID 경험 프레임워크의 응용 프로그램 ID로 바꿉니다. 다음은 예제입니다.
+1. Hello 요소 찾기 (TrustFrameworkExtensions.xml) 하는 hello 확장 파일에서 `<TechnicalProfile Id="login-NonInteractive">`합니다.
+2. 모두 `IdentityExperienceFrameworkAppId` hello 이전에 만든 Id 경험 프레임 워크 응용 프로그램의 hello 응용 프로그램 id입니다. 다음은 예제입니다.
 
    ```xml
    <Item Key="client_id">8322dedc-cbf4-43bc-8bb6-141d16f0f489</Item>
    ```
-3. `ProxyIdentityExperienceFrameworkAppId`의 두 인스턴스를 이전에 만든 프록시 ID 경험 프레임워크 응용 프로그램의 응용 프로그램 ID로 바꿉니다.
+3. 모두 `ProxyIdentityExperienceFrameworkAppId` hello 이전에 만든 프록시 Id 경험 프레임 워크 응용 프로그램의 hello 응용 프로그램 id입니다.
 4. 확장 파일을 저장합니다.
 
-## <a name="upload-the-policies-to-your-tenant"></a>테넌트에 정책 업로드
+## <a name="upload-hello-policies-tooyour-tenant"></a>Hello 정책 tooyour 테 넌 트에 업로드
 
-1. [Azure Portal](https://portal.azure.com)에서 [Azure AD B2C 테넌트의 컨텍스트](active-directory-b2c-navigate-to-b2c-context.md)로 전환하고 **Azure AD B2C** 블레이드를 엽니다.
+1. Hello에 [Azure 포털](https://portal.azure.com), hello를 전환 [Azure AD B2C 테 넌 트의 상황에 맞는](active-directory-b2c-navigate-to-b2c-context.md), 및 열기 hello **Azure AD B2C** 블레이드입니다.
 2. **ID 경험 프레임워크**를 선택합니다.
 3. **정책 업로드**를 선택합니다.
 
     >[!WARNING]
-    >다음과 같은 순서로 사용자 지정 정책 파일을 업로드해야 합니다.
+    >순서에 따라 hello에 hello 사용자 지정 정책 파일을 업로드 해야 합니다.
 
 1. TrustFrameworkBase.xml을 업로드합니다.
 2. TrustFrameworkExtensions.xml을 업로드합니다.
 3. SignUpOrSignin.xml을 업로드합니다.
 4. 다른 정책 파일을 업로드합니다.
 
-파일이 업로드되면 정책 파일의 이름 앞에 `B2C_1A_`가 추가됩니다.
+파일을 업로드 하면 hello hello 정책 파일의 붙습니다 `B2C_1A_`합니다.
 
-## <a name="test-the-custom-policy-by-using-run-now"></a>지금 실행을 사용하여 사용자 지정 정책 테스트
+## <a name="test-hello-custom-policy-by-using-run-now"></a>지금 실행에 사용 하 여 hello 사용자 지정 정책 테스트
 
-1. **Azure AD B2C 설정**을 열고 **ID 경험 프레임워크**로 이동합니다.
+1. 열기 **Azure AD B2C 설정** 너무 이동**Id 경험 프레임 워크**합니다.
 
    >[!NOTE]
-   >**지금 실행**을 사용하려면 하나 이상의 응용 프로그램이 테넌트에 미리 등록되어 있어야 합니다. 응용 프로그램은 Azure AD B2C의 **응용 프로그램** 메뉴 선택 항목 또는 ID 경험 프레임워크를 통해 기본 제공 정책과 사용자 지정 정책을 모두 호출하여 B2C 테넌트에 등록되어야 합니다. 응용 프로그램당 한 번만 등록하면 됩니다.<br><br>
-   응용 프로그램을 등록하는 방법은 Azure AD B2C [시작](active-directory-b2c-get-started.md) 문서 또는 [응용 프로그램 등록](active-directory-b2c-app-registration.md) 문서를 참조하세요.  
+   >**지금 실행** hello 테 넌 트에 응용 프로그램이 하나 이상 toobe 미리 등록 필요 합니다. Hello를 사용 하 여 hello B2C 테 넌 트에서 응용 프로그램을 등록 해야 **응용 프로그램** 메뉴 선택 Azure AD B2C 또는 Id 경험 프레임 워크 tooinvoke hello를 사용 하 여 기본 및 사용자 지정 정책입니다. 응용 프로그램당 한 번만 등록하면 됩니다.<br><br>
+   toolearn tooregister 응용 프로그램을 확인 하려면 어떻게 해야 Azure AD B2C hello [시작](active-directory-b2c-get-started.md) 문서 또는 hello [응용 프로그램 등록](active-directory-b2c-app-registration.md) 문서.  
 
-2. 업로드한 B2C_1A_signup_signin RP(신뢰 당사자) 사용자 지정 정책을 엽니다. **지금 실행**을 선택합니다.
+2. 업로드 하는 신뢰 당사자 (RP) 사용자 지정 정책 hello를 B2C_1A_signup_signin 열고 합니다. **지금 실행**을 선택합니다.
 
-3. 전자 메일 주소를 사용하여 등록할 수 있습니다.
+3. 전자 메일 주소를 사용 하 여 수 toosign 있어야 합니다.
 
-4. 동일한 계정으로 로그인하여 올바르게 구성되었는지 확인합니다.
+4. 동일한 계정 tooconfirm 해야 하는 hello 사용 하 여 로그인 hello 올바른 구성 합니다.
 
 >[!NOTE]
 >로그인이 실패하는 것은 일반적으로 잘못 구성된 IdentityExperienceFramework 앱 때문입니다.
@@ -199,21 +199,21 @@ Azure AD B2C에서는 엔진에서 사용자를 등록하고 로그인하는 데
 ## <a name="next-steps"></a>다음 단계
 
 ### <a name="add-facebook-as-an-identity-provider"></a>Facebook을 ID 공급자로 추가
-Facebook을 설정하려면:
+Facebook tooset:
 1. [developers.facebook.com에서 Facebook 응용 프로그램을 구성합니다](active-directory-b2c-setup-fb-app.md).
-2. [Azure AD B2C 테넌트에 Facebook 응용 프로그램 비밀을 추가합니다](#add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies).
-3. TrustFrameworkExtensions 정책 파일에서 `client_id` 값을 Facebook 응용 프로그램 ID로 바꿉니다.
+2. [Hello Facebook 응용 프로그램 보안 tooyour Azure AD B2C 테 넌 트 추가](#add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies)합니다.
+3. Hello TrustFrameworkExtensions 정책 파일에서의 hello 값 대체 `client_id` hello Facebook 응용 프로그램 id:
 
    ```xml
    <TechnicalProfile Id="Facebook-OAUTH">
      <Metadata>
-     <!--Replace the value of client_id in this technical profile with the Facebook app ID"-->
+     <!--Replace hello value of client_id in this technical profile with hello Facebook app ID"-->
        <Item Key="client_id">00000000000000</Item>
    ```
-4. 테넌트에 TrustFrameworkExtensions.xml 정책 파일을 업로드합니다.
-5. **지금 실행**을 사용하여 테스트하거나 등록된 응용 프로그램에서 바로 정책을 호출합니다.
+4. Hello TrustFrameworkExtensions.xml 정책 파일 tooyour 테 넌 트를 업로드 합니다.
+5. 사용 하 여 테스트 **지금 실행** hello 정책을 등록 된 응용 프로그램에서 직접 호출 하 여 합니다.
 
 ### <a name="add-azure-active-directory-as-an-identity-provider"></a>Azure Active Directory를 ID 공급자로 추가
-이 시작 가이드에서 사용된 기본 파일에는 이미 다른 ID 공급자를 추가하는 데 필요한 내용 일부가 포함되어 있습니다. 로그인 설정에 대한 자세한 내용은 [Azure Active Directory B2C: Azure AD 계정을 사용하여 로그인](active-directory-b2c-setup-aad-custom.md) 문서를 참조하세요.
+이 시작된 가이드에서 이미 사용 하는 hello 기본 파일 기타 id 공급자를 추가 하는 데 필요한 hello 콘텐츠 중 일부를 포함 합니다. 로그인 설정에 대 한 자세한 내용은 참조 hello [Azure Active Directory B2C: Azure AD 계정을 사용 하 여 로그인](active-directory-b2c-setup-aad-custom.md) 문서.
 
-ID 경험 프레임워크를 사용하는 Azure AD B2C의 사용자 지정 정책에 대한 개요는 [Azure Active Directory B2C: 사용자 지정 정책](active-directory-b2c-overview-custom.md) 문서를 참조하세요. 
+Hello Id 경험 프레임 워크를 사용 하는 Azure AD B2C의 사용자 지정 정책 개요를 보려면 hello [Azure Active Directory B2C: 사용자 지정 정책의](active-directory-b2c-overview-custom.md) 문서. 

@@ -1,6 +1,6 @@
 ---
 title: "자습서: Workplace by Facebook과 Azure Active Directory 통합 | Microsoft 문서"
-description: "Azure Active Directory와 Workplace by Facebook 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Facebook에서 회사 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,165 +14,165 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: jeedes
-ms.openlocfilehash: 27e62a00832484667117d8718db9f2fc05e2f4e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fd19b3f178a2aee7dd2f204d6d3cf6df8fe6b444
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-workplace-by-facebook"></a>자습서: Workplace by Facebook과 Azure Active Directory 통합
 
-이 자습서에서는 Azure AD(Azure Active Directory)와 Workplace by Facebook을 통합하는 방법에 대해 알아봅니다.
+이 자습서에 설명 어떻게 toointegrate Facebook Azure Active directory (Azure AD)에서 작업 공간입니다.
 
-Workplace by Facebook과 Azure AD를 통합하면 다음과 같은 이점이 제공됩니다.
+Facebook에서 작업 공간을 Azure AD와 통합 이점을 다음 hello로 제공 합니다.
 
-- Azure AD에서는 Workplace by Facebook에 대한 액세스 권한이 있는 사용자를 제어할 수 있습니다.
-- 사용자가 Azure AD 계정으로 Workplace by Facebook에 자동으로 로그인(Single Sign-On)할 수 있도록 설정할 수 있습니다.
-- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
+- Facebook에서 액세스 tooWorkplace을 지닌 Azure AD에서 제어할 수 있습니다.
+- Tooautomatically 로그 tooWorkplace에 Facebook (single sign on)에서 자신의 Azure AD 계정을 가진 사용자가 설정할 수 있습니다.
+- 하나의 중앙 위치에 사용자 계정을 관리할 수 있습니다: Azure 포털 hello 합니다.
 
 Azure AD와의 SaaS(Software as a Service) 앱 통합에 대한 자세한 내용은 [Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On](active-directory-appssoaccess-whatis.md)을 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-Workplace by Facebook과 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
+Facebook에서 작업 공간와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
 
 - Azure AD 구독
 - Workplace by Facebook SSO(Single Sign-On)가 설정된 구독
 
-이 자습서의 단계를 테스트하려면 다음 권장 사항을 따릅니다.
+이 자습서의 tootest hello 단계에는 이러한 권장 사항을 따르십시오.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD SSO를 테스트합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD SSO를 테스트합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 갤러리에서 Workplace by Facebook을 추가합니다.
+1. Hello 갤러리에서 Facebook에서 작업 공간을 추가 합니다.
 2. Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-## <a name="add-workplace-by-facebook-from-the-gallery"></a>갤러리에서 Workplace by Facebook 추가
-Azure AD에 Workplace by Facebook을 통합하도록 구성하려면 갤러리의 Workplace by Facebook을 관리되는 SaaS 앱 목록에 추가합니다.
+## <a name="add-workplace-by-facebook-from-hello-gallery"></a>Facebook에서 작업 공간 hello 갤러리 추가
+Azure AD Facebook에서 작업 공간으로 tooconfigure hello 통합 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Facebook에서 작업 공간을 추가 합니다.
 
-1. [Azure Portal](https://portal.azure.com)의 왼쪽 창에서 **Azure Active Directory**를 선택합니다. 
+1. Hello에 [Azure 포털](https://portal.azure.com)hello 왼쪽된 창에서 선택 **Azure Active Directory**합니다. 
 
-    ![Azure Active Directory 단추][1]
+    ![hello Azure Active Directory 단추][1]
 
-2. **엔터프라이즈 응용 프로그램** > **모든 응용 프로그램**으로 이동합니다.
+2. 너무 찾아보기**엔터프라이즈 응용 프로그램** > **모든 응용 프로그램**합니다.
 
-    ![엔터프라이즈 응용 프로그램 블레이드][2]
+    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램**을 선택합니다.
+3. tooadd hello 새 응용 프로그램을 선택 **새 응용 프로그램** hello hello 대화 상자 위쪽에 있습니다.
 
-    ![새 응용 프로그램 단추][3]
+    ![hello 새 응용 프로그램 단추][3]
 
-4. 검색 상자에 **Workplace by Facebook**을 선택하고 결과에서 **Workplace by Facebook**을 선택합니다. 그런 후 **추가**를 선택하여 응용 프로그램을 추가합니다.
+4. Hello 검색 상자에 입력 **Facebook에서 작업 공간**를 선택 하 고 **Facebook에서 작업 공간** 결과에서 합니다. 그런 다음 선택 **추가**, tooadd hello 응용 프로그램입니다.
 
-    ![결과 목록의 Workplace by Facebook](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_search.png)
+    ![Facebook에서 작업 공간 hello 결과 목록에서](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_search.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Workplace by Facebook에서 Azure AD SSO를 구성하고 테스트합니다.
 
-SSO가 작동하려면 Azure AD의 사용자에 해당하는 Workplace by Facebook의 사용자가 누구인지 Azure AD에서 알고 있어야 합니다. 즉, Azure AD 사용자와 Workplace by Facebook의 관련 사용자 간에 링크 관계가 설정되어야 합니다.
+SSO toowork에 대 한 Azure AD는 tooknow Facebook에서 직장에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 Facebook에서 직장에서 hello 관련된 사용자 간에 연결 된 관계를 설정 해야 합니다.
 
-Azure AD의 **사용자 이름** 값을 Workplace by Facebook의 **Username** 값으로 할당하여 이 관계를 설정합니다.
+Hello hello 값을 할당 하 여이 관계를 설정할 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** Facebook에서 직장에서 합니다.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure Portal에서 Azure AD SSO를 사용하도록 설정하고 Workplace by Facebook 응용 프로그램에서 SSO를 구성합니다.
+이 섹션에서는 hello Azure 포털에서에서 Azure AD SSO를 사용 하 고 회사에서 Facebook 응용 프로그램에서 SSO를 구성 합니다.
 
-1. Azure Portal의 **Workplace by Facebook** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 선택합니다.
+1. Hello hello에 Azure 포털에서에서 **Facebook에서 작업 공간** 응용 프로그램 통합 페이지에서 선택 **Single sign on**합니다.
 
     ![Single Sign-On 구성 링크][4]
 
-2. SSO를 사용하도록 설정하려면 **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택합니다.
+2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable SSO 합니다.
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_samlbase.png)
 
-3. **Workplace by Facebook 도메인 및 URL** 섹션에서 다음을 수행합니다.
+3. Hello에 **Facebook 도메인 및 Url에서 작업 공간** 섹션에서 다음 hello지 않습니다.
 
-    a. **로그온 URL** 텍스트 상자에서 다음과 같은 패턴을 사용하여 URL을 입력합니다. `https://<company subdomain>.facebook.com`
+    a. Hello에 **로그온 URL** 입력란 hello 패턴을 사용 하는 URL을 입력 합니다.`https://<company subdomain>.facebook.com`
 
-    b. **식별자** 텍스트 상자에서 다음과 같은 패턴을 사용하여 URL을 입력합니다. `https://www.facebook.com/company/<scim company id>`
+    b. Hello에 **식별자** 입력란 hello 패턴을 사용 하는 URL을 입력 합니다.`https://www.facebook.com/company/<scim company id>`
 
     > [!NOTE]
-    > 이러한 값은 예제일 뿐입니다. 실제 로그온 URL 및 식별자로 값을 업데이트합니다. 이러한 값을 구하려면 [Workplace by Facebook 클라이언트 지원 팀](https://workplace.fb.com/faq/)에 문의합니다. 
+    > 이러한 값은 예제일 뿐입니다. Hello 실제 로그온 URL과 식별자와 이러한 값을 업데이트 합니다. 연락처 hello [Facebook 클라이언트 지원 팀에서 작업 공간](https://workplace.fb.com/faq/) tooget 이러한 값입니다. 
 
-4. **SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 선택한 후 컴퓨터에 인증서 파일을 저장합니다.
+4. Hello에 **SAML 서명 인증서** 섹션에서 **인증서 (Base64)**, hello 인증서 파일을 컴퓨터에 저장 합니다.
 
-    ![인증서 다운로드 링크](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_certificate.png) 
+    ![hello 인증서 다운로드 링크](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_certificate.png) 
 
 5. **저장**을 선택합니다.
 
     ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_general_400.png)
 
-6. **Workplace by Facebook 구성** 섹션에서 **Workplace by Facebook 구성**을 선택하여 **로그온 구성** 창을 엽니다. **빠른 참조** 섹션에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.
+6. Hello에 **Facebook 구성 하 여 작업 공간** 섹션에서 **Facebook에서 작업 공간 구성** tooopen hello **sign on 구성** 창. 복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조** 섹션.
 
     ![Workplace by Facebook 구성](./media/active-directory-saas-facebook-at-work-tutorial/config.png) 
 
-7. 다른 웹 브라우저 창에서 Workplace by Facebook 회사 사이트에 관리자로 로그인합니다.
+7. 다른 웹 브라우저 창에서 관리자 권한으로 tooyour Facebook 회사 사이트에서 작업 공간에에서 로그인 합니다.
   
    > [!NOTE] 
-   > SAML 인증 프로세스의 일환으로 Workplace는 Azure AD에 매개 변수를 전달하기 위해 최대 2.5KB 크기의 쿼리 문자열을 사용할 수 있습니다.
+   > Hello SAML 인증 프로세스의 일환으로, 순서 toopass 매개 변수 tooAzure AD 크기에 쿼리 문자열을 too2.5 킬로바이트를 작업 공간 צ ְ ײ 합니다.
 
-8. **회사 대시보드**에서 **인증** 탭으로 이동합니다.
+8. Hello에 **회사 대시보드**, toohello 이동 **인증** 탭 합니다.
 
-9. **SAML 인증** 아래 드롭다운 목록에서 **SSO 전용**을 선택합니다.
+9. 아래 **SAML 인증**선택, **SSO만** hello 드롭 다운 목록에서 합니다.
 
-10. Azure Portal의 **Workplace by Facebook 구성** 섹션에서 복사한 값을 해당 필드에 입력합니다.
+10. Hello에서 복사 된 hello 값 입력 **Facebook 구성 하 여 작업 공간** hello hello 해당 필드에 Azure 포털의 섹션:
 
-    *   **SAML URL** 텍스트 상자에 Azure Portal에서 복사한 **Single Sign-On 서비스 URL** 값을 붙여 넣습니다.
-    *   **SAML 발급자 URL 텍스트 상자**에 Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 붙여 넣습니다.
-    *   **SAML 로그아웃 리디렉션**(선택 사항)에 Azure Portal에서 복사한 **로그아웃 URL**을 붙여 넣습니다.
-    *   Azure Portal에서 다운로드한 **base-64로 인코딩된 인증서**를 메모장에서 엽니다. 내용을 클립보드로 복사한 후 **SAML 인증서** 입력란에 붙여 넣습니다.
+    *   에 **SAML URL** 붙여넣기 hello 값의 텍스트 상자 **Single Sign-on 서비스 URL**, hello Azure 포털에서에서 복사한입니다.
+    *   에 **SAML 발급자 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID**, hello Azure 포털에서에서 복사한입니다.
+    *   **SAML 로그 아웃 리디렉션 (선택 사항)**의 hello 값을 붙여 **Sign-Out URL**, hello Azure 포털에서에서 복사한 있는 합니다.
+    *   Open 프로그램 **e-64로 인코딩된 인증서** 메모장에서 hello Azure 포털에서에서 다운로드 합니다. Hello 내용을 클립보드에 복사한 다음 toothe **SAML 인증서** 입력란.
 
-11. **SAML 구성** 섹션에 나열된 대상 그룹 URL, 받는 사람 URL 및 ACS(Assertion Consumer Service) URL을 입력해야 할 수 있습니다.
+11. Tooenter hello audience 해야 URL, 받는 사람 URL 및 ACS (Assertion Consumer Service) hello 아래 나열 된 URL **SAML 구성** 섹션.
 
-12. 섹션 맨 아래로 스크롤하여 **SSO 테스트**를 선택합니다. Azure AD 로그인 페이지와 팝업 창이 나타납니다. 인증을 받으려면 평소처럼 자격 증명을 입력합니다. Azure AD에서 반환되는 전자 메일 주소가 로그인한 Workplace 계정과 동일한지 확인합니다.
+12. Hello 섹션의 toohello 아래쪽 스크롤하여 선택 **테스트 SSO**합니다. Hello Azure AD 로그인 페이지와 팝업 창이 나타납니다. tooauthenticate를 일반적인 방법으로 자격 증명을 입력 합니다. Azure AD에서 다시 반환 하는 hello 전자 메일 주소는 로그인 하는 작업 공간 계정을 hello와 동일 hello는 확인 합니다.
 
-13. 테스트를 성공적으로 마치면 페이지의 아래쪽으로 스크롤하여 **저장**을 선택합니다.
+13. Hello 페이지를 선택 toohello 아래쪽을 스크롤할 hello 테스트가 성공적으로 완료 되 면 있으면 **저장**합니다.
 
 14. Workplace를 사용하는 모든 사용자에게 이제 인증을 위한 Azure AD 로그인 페이지가 제공됩니다.
 
-Azure AD 로그아웃 페이지를 가리키는 데 사용할 수 있는 SAML 로그아웃 URL을 구성하도록 선택할 수 있습니다. 이 설정을 사용하도록 설정하고 구성하면 더 이상 사용자가 Workplace 로그아웃 페이지로 이동하지 않습니다. 대신 SAML 로그아웃 리디렉션 설정에 추가된 URL로 사용자가 리디렉션됩니다.
+SAML 로그 아웃 URL 로그 아웃 페이지 hello Azure AD에 사용 되는 toopoint 될 수 있는 tooconfigure를 선택할 수 있습니다. 이 설정을 사용 하도록 설정 및 구성 된 경우 hello 사용자가 더 이상 toohello 방향이 지정 된 작업 공간에 대 한 로그 아웃 페이지. 대신, hello 사용자는 hello SAML 로그 아웃 리디렉션 설정에 추가 된 리디렉션된 toohello URL입니다.
 
 
 > [!TIP]
-> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다. **Active Directory** > **엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 선택하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
+> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면, 합니다. Hello에서이 앱을 추가한 후 **Active Directory** > **엔터프라이즈 응용 프로그램** 섹션에서 선택 하기만 하면 hello **Single Sign On** 탭 및 액세스 hello hello 통해 설명서에 포함 된 **구성** hello 아래쪽 섹션. 자세한 내용은 hello 포함 된 설명서 기능 hello에 대 한 [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)합니다.
 
 ### <a name="configure-reauthentication-frequency"></a>재인증 빈도 구성
 
-매일, 3일, 1주, 2주, 매달을 주기로 SAML 확인을 요청하거나 SAML 확인을 요청하지 않도록 Workplace를 구성할 수 있습니다.
+SAML 확인을 3 일 동안 매일 1 주, 2 주, 1 개월에 대 한 작업 공간 tooprompt를 구성할 수 있습니다 또는 never입니다.
 
 > [!NOTE] 
->모바일 응용 프로그램에서 SAML 확인에 대한 최소값은 일주일로 설정되어 있습니다.
+>hello 모바일 응용 프로그램에 대해 hello SAML 확인에 대 한 최소 값은 설정 tooone 주입니다.
 
-모든 사용자에 대해 강제로 SAML 재설정을 수행할 수도 있습니다. 이를 위해서는 **현재 모든 사용자에 대해 SAML 인증 필요** 단추를 사용합니다.
+모든 사용자에 대해 강제로 SAML 재설정을 수행할 수도 있습니다. toodo이를 사용 하 여 hello **필요 SAML 인증 모든 사용자에 게 이제** 단추입니다.
 
 
 ### <a name="create-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
+이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-1. **Azure Portal**의 왼쪽 창에서 **Azure Active Directory**를 선택합니다.
+1. Hello에 **Azure 포털**hello 왼쪽된 창에서 선택 **Azure Active Directory**합니다.
 
-    ![Azure Active Directory 단추](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory 단추](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_01.png) 
 
-2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 선택합니다.
+2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹**, 선택 하 고 **모든 사용자에 게**합니다.
     
-    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_02.png) 
+    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_02.png) 
 
-3. **사용자** 대화 상자를 열려면 **추가**를 선택합니다.
+3. tooopen hello **사용자** 대화 상자에서 **추가**합니다.
  
-    ![추가 단추](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_03.png) 
+    ![hello 추가 단추](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_03.png) 
 
-4. **사용자** 대화 상자에서 다음을 수행합니다.
+4. Hello에 **사용자** 대화 상자에서 다음 hello지 않습니다.
  
-    ![사용자 대화 상자](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_04.png) 
+    ![hello 사용자 대화 상자](./media/active-directory-saas-facebook-at-work-tutorial/create_aaduser_04.png) 
 
-    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
+    a. Hello에 **이름** 텍스트 상자에서 **BrittaSimon**합니다.
 
-    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
+    b. Hello에 **사용자 이름** 텍스트 상자, 형식 hello **전자 메일 주소** BrittaSimon입니다.
 
     c. **암호 표시**를 선택하고 암호를 적어 둡니다.
 
@@ -182,50 +182,50 @@ Azure AD 로그아웃 페이지를 가리키는 데 사용할 수 있는 SAML �
 
 이 섹션에서는 Workplace by Facebook에서 Britta Simon이라는 사용자를 만듭니다. Workplace by Facebook은 기본적으로 사용하도록 설정된 Just-In-Time 프로비전을 지원합니다.
 
-이 섹션에는 사용자의 작업이 없습니다. Workplace by Facebook에 사용자가 없는 경우 Workplace by Facebook에 액세스하려고 하면 새 사용자가 만들어집니다.
+이 섹션에는 사용자의 작업이 없습니다. 사용자가 Facebook에서 작업 공간에 존재 하지 않으면 새 Facebook에서 작업 공간 tooaccess 할 때 생성 됩니다.
 
 >[!Note]
->사용자를 수동으로 만들어야 하는 경우 [Workplace by Facebook 클라이언트 지원 팀](https://workplace.fb.com/faq/)에 문의합니다.
+>Toocreate 사용자를 수동으로 필요한 경우 문의 hello [Facebook 클라이언트 지원 팀에서 작업 공간](https://workplace.fb.com/faq/)합니다.
 
-### <a name="assign-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
+### <a name="assign-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당 합니다.
 
-이 섹션에서는 Britta Simon이 Azure SSO를 사용할 수 있도록 Workplace by Facebook에 대한 액세스 권한을 부여합니다.
+이 섹션에서는 Facebook에서 tooWorkplace 액세스 권한을 부여 하 여 Britta Simon toouse Azure SSO를 사용 합니다.
 
 ![사용자 할당][200] 
 
-1. Azure Portal에서 응용 프로그램 보기를 엽니다. 디렉터리 보기로 가서 **엔터프라이즈 응용 프로그램**으로 이동한 다음 **모든 응용 프로그램**을 선택합니다.
+1. Hello Azure 포털을 열고 hello 응용 프로그램 보기입니다. Toohello 디렉터리 보기, 너무 이동**엔터프라이즈 응용 프로그램**를 선택한 후 **모든 응용 프로그램**합니다.
 
     ![사용자 할당][201] 
 
-2. 응용 프로그램 목록에서 **Workplace by Facebook**을 선택합니다.
+2. Hello 응용 프로그램 목록에서 선택 **Facebook에서 작업 공간**합니다.
 
-    ![응용 프로그램 목록의 Workplace by Facebook 링크](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_app.png) 
+    ![hello 응용 프로그램 목록에서 Facebook 링크 하 여 작업 공간 hello](./media/active-directory-saas-facebook-at-work-tutorial/tutorial_workplacebyfacebook_app.png) 
 
-3. 왼쪽 메뉴에서 **사용자 및 그룹**을 선택합니다.
+3. Hello hello 왼쪽 메뉴에서 선택 **사용자 및 그룹**합니다.
 
-    !["사용자 및 그룹" 링크][202] 
+    ![hello "사용자 및 그룹" 링크][202] 
 
-4. **추가**를 선택합니다. 그런 후 **할당 추가** 창에서 **사용자 및 그룹**을 선택합니다.
+4. **추가**를 선택합니다. 그런 다음, hello **할당 추가** 창 선택 **사용자 및 그룹**합니다.
 
-    ![할당 추가 창][203]
+    ![hello 할당 추가 창][203]
 
-5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
+5. Hello에 **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
 
-6. **사용자 및 그룹** 대화 상자에서 **선택**을 선택합니다.
+6. Hello에 **사용자 및 그룹** 대화 상자에서 **선택**합니다.
 
-7. **할당 추가** 대화 상자에서 **할당**을 선택합니다.
+7. Hello에 **할당 추가** 대화 상자에서 **할당**합니다.
     
 ### <a name="test-single-sign-on"></a>Single Sign-On 테스트
 
-SSO 설정을 테스트하려면 액세스 패널을 엽니다.
-자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요.
+SSO 설정 tootest 원하는 hello 액세스 패널을 엽니다.
+자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)을 참조하세요.
+* Hello 참조 [방법에 대 한 자습서 목록 toointegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)합니다.
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)를 읽어보세요.
-* [사용자 프로비저닝 구성](active-directory-saas-facebook-at-work-provisioning-tutorial.md) 방법을 자세히 알아보세요.
+* 너무 방법에 대 한 자세한[사용자 프로비저닝을 구성할](active-directory-saas-facebook-at-work-provisioning-tutorial.md)합니다.
 
 
 

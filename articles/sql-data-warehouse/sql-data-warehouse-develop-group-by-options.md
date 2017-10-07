@@ -1,5 +1,5 @@
 ---
-title: "SQL Data Warehouse의 GROUP BY 옵션 | Microsoft Docs"
+title: "SQL 데이터 웨어하우스에 옵션에 aaaGroup | Microsoft Docs"
 description: "솔루션 개발을 위한 Azure SQL 데이터 웨어하우스의 GROUP BY 옵션 구현을 위한 팁."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: da71cb834c13da5d0f5690f471efc6c696163f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc443c2af4e3ef2babd74d78aa6fb57bb3c1c7ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="group-by-options-in-sql-data-warehouse"></a>SQL 데이터 웨어하우스의 GROUP BY 옵션
-[GROUP BY][GROUP BY] 절을 사용하여 데이터를 요약 행 집합으로 집계합니다. 또한 Azure SQL 데이터 웨어하우스에서 직접 지원하지 않기 때문에 해결해야 하는 기능을 확장하는 몇 가지 옵션이 있습니다.
+hello [GROUP BY] [ GROUP BY] 절을 사용 하는 tooaggregate 데이터 tooa 요약 행 집합입니다. 또한 Azure SQL 데이터 웨어하우스에서 직접 지원 하지 않는 대로 해결할 필요가 toobe 해당의 기능을 확장 하는 몇 가지 옵션이 있습니다.
 
 이들 옵션은
 
@@ -31,9 +31,9 @@ ms.lasthandoff: 07/11/2017
 * GROUP BY with CUBE
 
 ## <a name="rollup-and-grouping-sets-options"></a>롤업 및 그룹화 집합 옵션
-여기서 가장 간단한 옵션은 명시적 구문에 의존하는 대신 `UNION ALL` 을 사용하여 롤업을 수행하는 것입니다. 결과는 완전히 동일합니다.
+hello 여기 가장 간단한 옵션은 toouse `UNION ALL` 대신에 의존 하지 않고 tooperform hello 롤업 hello 명시적 구문입니다. hello 결과 동일한 hello 정확 하 게
 
-다음은 `ROLLUP` 옵션을 사용하는 GROUP BY 문의 예제입니다.
+다음은 group by hello를 사용 하 여 문의 예 `ROLLUP` 옵션:
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -48,13 +48,13 @@ GROUP BY ROLLUP (
 ;
 ```
 
-ROLLUP을 사용하여 다음과 같은 집계를 요청했습니다.
+롤업을 사용 하 여 집계를 수행 하는 hello 요청한:
 
 * 국가 및 지역
 * 국가
 * 총합계
 
-이 요청을 바꾸려면 `UNION ALL`을 사용해야 하며, 동일한 결과가 반환되도록 필요한 집계를 명시적으로 지정합니다.
+tooreplace toouse 해야이 `UNION ALL`; 명시적으로 필요한 hello 집계 지정 tooreturn hello 동일한 결과:
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -81,14 +81,14 @@ FROM  dbo.factInternetSales s
 JOIN  dbo.DimSalesTerritory t     ON s.SalesTerritoryKey       = t.SalesTerritoryKey;
 ```
 
-GROUPING SETS의 경우 같은 원칙을 적용하되 보고자 하는 집계 수준에 맞는 UNION ALL 섹션만 만들면 됩니다.
+Toosee 원하는 toodo 필요한 것은 채택 GROUPING SETS 주 동일 hello 있지만 계정만 hello에 대 한 UNION ALL 섹션을 만들 집계 수준
 
 ## <a name="cube-options"></a>큐브 옵션
-UNION ALL 접근방식을 사용하여 GROUP BY WITH CUBE를 만들 수 있습니다. 문제는 코드가 금세 번거롭고 다루기 힘들게 될 수 있다는 것입니다. 이 문제를 완화하기 위해 더 고급스러운 이 접근방식을 사용할 수 있습니다.
+가능한 toocreate는 GROUP BY WITH CUBE는 hello UNION ALL 접근 방식을 사용 합니다. hello 문제는 번거롭고 다루기 hello 코드 신속 하 게 될 수 있습니다. toomitigate이이 사용 하 여 고급 방법입니다.
 
-위의 예제를 사용해 보겠습니다.
+위의 hello 예제를 사용 합니다.
 
-첫 번째 단계는 만들고자 하는 집계의 모든 수준을 정의하는 ‘큐브'를 정의하는 것입니다. 파생된 테이블 두 개의 CROSS JOIN에 주목해야 합니다. 이렇게 하면 필요한 모든 수준이 생성됩니다. 코드의 나머지 부분은 사실상 서식 지정을 위한 것입니다.
+hello 첫 번째 단계는 toodefine hello 모든 hello 수준의 toocreate 한다고 집계를 정의 하는 ' 큐브의'입니다. 적절 하지 중요 tootake hello hello 두 파생된 테이블의 CROSS JOIN의 합니다. 이 모든 hello 수준을 위해 생성 됩니다. hello 코드의 나머지 부분 hello 거기 실제로 서식을 지정 하기 위한 합니다.
 
 ```sql
 CREATE TABLE #Cube
@@ -119,11 +119,11 @@ SELECT Cols
 FROM GrpCube;
 ```
 
-CTAS의 결과는 아래와 같습니다.
+hello의 hello 결과 CTAS에는 아래 볼 수 있습니다.
 
 ![][1]
 
-두 번째 단계는 중간 결과를 저장할 대상 테이블을 지정하는 것입니다.
+hello 두 번째 단계는 대상 테이블 toostore 중간 결과 toospecify입니다.
 
 ```sql
 DECLARE
@@ -146,7 +146,7 @@ WITH
 ;
 ```
 
-세 번째 단계는 집계를 수행하는 열의 큐브를 반복하는 것입니다. 쿼리는 #Cube 임시 테이블의 모든 행에 대해 한 번 실행하며 결과를 #Results 임시 테이블에 저장합니다.
+hello 세 번째 단계는 hello 집계를 수행 하는 열이 큐브에 대해 tooloop을 것입니다. hello 쿼리 hello #Cube 임시 테이블의 모든 행에 대해 한 번 실행 되 고 hello 결과 hello #Results 임시 테이블에 저장
 
 ```sql
 SET @nbr =(SELECT MAX(Seq) FROM #Cube);
@@ -170,7 +170,7 @@ BEGIN
 END
 ```
 
-마지막으로 #Results 임시 테이블을 읽어서 결과를 반환할 수 있습니다.
+마지막으로 간단히 hello #Results 임시 테이블에서 참조 하 여 hello 결과 반환할 수 있습니다.
 
 ```sql
 SELECT *
@@ -179,7 +179,7 @@ ORDER BY 1,2,3
 ;
 ```
 
-코드를 섹션으로 분할하고 반복 구성을 생성하면 코드의 관리 및 유지 관리가 더 쉬워집니다.
+Hello 코드 섹션으로 분할 하 고 반복 구문을 hello를 생성 하 여 좀 더 관리 및 유지 관리 가능한 코드 향상 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 더 많은 개발 팁은 [개발 개요][development overview]를 참조하세요.

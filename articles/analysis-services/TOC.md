@@ -2,7 +2,7 @@
 ## [Azure Analysis Services란?](analysis-services-overview.md)
 ## [지원되는 데이터 원본](analysis-services-datasource.md)
 ## [인증 및 사용자 권한](analysis-services-manage-users.md)
-## [온-프레미스 데이터 원본에 연결](analysis-services-gateway.md)
+## [Tooon 온-프레미스 데이터 원본 연결](analysis-services-gateway.md)
 ## [호환성 수준](analysis-services-compat-level.md)
 ## [고가용성](analysis-services-bcdr.md)
 
@@ -12,7 +12,7 @@
 ## [Visual Studio에서 모델 배포](analysis-services-deploy.md)
 ## [Azure Portal에서 모델 만들기(미리 보기)](analysis-services-create-model-portal.md)
 
-# 방법 
+# 방법 너무
 ## [서버 관리](analysis-services-manage.md)
 ## [데이터베이스 사용자 관리](analysis-services-database-users.md)
 ## [서버 관리자 관리](analysis-services-server-admins.md)

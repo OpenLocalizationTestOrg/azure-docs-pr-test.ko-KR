@@ -1,6 +1,6 @@
 ---
-title: "Azure Logic Apps에 Twilio 커넥터 추가 | Microsoft Docs"
-description: "REST API 매개 변수를 사용하는 Twilio 커넥터 개요"
+title: "aaaAdd Azure 논리 앱에서 Twilio 커넥터 hello | Microsoft Docs"
+description: "REST API 매개 변수가 있는 hello Twilio 커넥터 개요"
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 09/19/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: a790ac51b0fea7e3fa379d20e0e094e7ce0d7696
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2b487f34bc76bee24b4237a71ee767d0d22ff7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-twilio-connector"></a>Twilio 커넥터 시작
-Twilio에 연결하여 전역 SMS, MMS 및 IP 메시지를 보내고 받습니다. Twilio를 사용하여 다음을 수행할 수 있습니다.
+# <a name="get-started-with-hello-twilio-connector"></a>Hello Twilio 커넥터와 함께 시작
+전역 SMS, MMS, 및 IP 메시지를 주고받을 tooTwilio toosend 연결 합니다. Twilio를 사용하여 다음을 수행할 수 있습니다.
 
-* Twilio에서 가져온 데이터를 기반으로 비즈니스 흐름을 빌드합니다. 
-* 메시지 가져오기, 메시지 나열 등의 작업을 사용합니다. 이러한 작업을 사용하여 응답을 가져오고 출력을 다른 작업에 사용할 수 있도록 설정합니다. 예를 들어 새 Twilio 메시지를 받은 경우 이 메시지를 가져와 서비스 버스 워크플로에서 사용할 수 있습니다. 
+* Twilio에서 가져오는 hello 데이터를 기반으로 비즈니스 흐름을 작성 합니다. 
+* 메시지 가져오기, 메시지 나열 등의 작업을 사용합니다. 이러한 작업 응답을 가져오고 다른 작업에 사용할 수 있는 hello 출력을 확인 합니다. 예를 들어 새 Twilio 메시지를 받은 경우 이 메시지를 가져와 서비스 버스 워크플로에서 사용할 수 있습니다. 
 
 논리 앱을 만들어 시작할 수 있습니다. [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md)를 참조하세요.
 
-## <a name="create-a-connection-to-twilio"></a>Twilio에 대한 연결 만들기
-논리 앱에 이 커넥터를 추가할 때 다음 Twilio 값을 입력합니다.
+## <a name="create-a-connection-tootwilio"></a>연결 tooTwilio 만들기
+이 커넥터 tooyour 논리 앱을 추가 하면 hello 다음 Twilio 값을 입력 합니다.
 
 | 속성 | 필수 | 설명 |
 | --- | --- | --- |
 | 계정 ID |예 |Twilio 계정 ID 입력 |
 | 액세스 토큰 |예 |Twilio 액세스 토큰 입력 |
 
-> [!INCLUDE [Steps to create a connection to Twilio](../../includes/connectors-create-api-twilio.md)]
+> [!INCLUDE [Steps toocreate a connection tooTwilio](../../includes/connectors-create-api-twilio.md)]
 > 
 > 
 
@@ -45,7 +45,7 @@ Twilio 액세스 토큰이 없으면 [사용자 ID 및 액세스 토큰](https:/
 
 ## <a name="connector-specific-details"></a>커넥터 관련 세부 정보
 
-[커넥터 세부 정보](/connectors/twilio/)에서 swagger에 정의된 모든 트리거 및 작업과 제한 사항도 확인할 수 있습니다.
+모든 트리거 및 hello swagger에 정의 된 작업을 확인 하 고 hello에 어떠한 제한도 볼 [connector 세부 정보](/connectors/twilio/)합니다.
 
 ## <a name="more-connectors"></a>추가 커넥터
-[API 목록](apis-list.md)으로 돌아갑니다.
+Toohello 돌아가서 [Api 목록](apis-list.md)합니다.

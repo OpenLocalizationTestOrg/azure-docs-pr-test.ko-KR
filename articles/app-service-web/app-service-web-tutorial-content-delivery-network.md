@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service에 CDN 추가 | Microsoft Docs"
-description: "Azure App Service에 CDN(Content Delivery Network) 추가하여 전 세계의 고객에게 가까운 서버에서 정적 파일을 캐시하고 제공합니다."
+title: "CDN tooan Azure 앱 서비스 aaaAdd | Microsoft Docs"
+description: "네트워크 CDN (콘텐츠 배달) tooan Azure 앱 서비스 toocache를 추가 하 고 hello 전 세계 닫기 tooyour 고객 서버에서 정적 파일을 제공 합니다."
 services: app-service\web
 author: syntaxc4
 ms.author: cfowler
@@ -10,17 +10,17 @@ ms.service: app-service-web
 manager: erikre
 ms.workload: web
 ms.custom: mvc
-ms.openlocfilehash: 257b75d01f3904661c1a188a2d53ffcb74f48f06
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 88b7fd884517279064472b804a6d1dc2921cbd24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-content-delivery-network-cdn-to-an-azure-app-service"></a>Azure App Service에 CDN(Content Delivery Network) 추가
+# <a name="add-a-content-delivery-network-cdn-tooan-azure-app-service"></a>추가 네트워크 CDN (콘텐츠 배달) tooan Azure 앱 서비스
 
-[Azure CDN(Content Delivery Network)](../cdn/cdn-overview.md)은 전략적으로 배치된 위치에서 정적 웹 콘텐츠를 캐싱하여 사용자에게 콘텐츠를 배달하기 위한 최대 처리량을 제공합니다. 또한 CDN은 웹앱에 대한 서버 부하를 감소시킵니다. 이 자습서에서는 Azure CDN을 [Azure App Service의 웹앱](app-service-web-overview.md)에 추가하는 방법을 보여줍니다. 
+[Azure 네트워크 CDN (콘텐츠 배달)](../cdn/cdn-overview.md) 전략적으로 배치 된 위치 tooprovide 최대 처리량 toousers 콘텐츠를 제공 하기 위한 정적 웹 콘텐츠를 캐시 합니다. hello CDN은 웹 응용 프로그램에 서버 부하를 줄어듭니다. 이 자습서에서는 어떻게 tooadd Azure CDN tooa [Azure 앱 서비스의 웹 앱](app-service-web-overview.md)합니다. 
 
-사용하게 될 샘플 정적 HTML 사이트의 홈 페이지는 다음과 같습니다.
+Hello 사이트의 홈 페이지 hello 샘플 정적 HTML 사용 하는 다음과 같습니다.
 
 ![샘플 앱 홈 페이지](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
 
@@ -29,63 +29,63 @@ ms.lasthandoff: 08/29/2017
 > [!div class="checklist"]
 > * CDN 끝점 만들기
 > * 캐시된 자산 새로 고침
-> * 쿼리 문자열을 사용하여 캐시된 버전 제어
-> * CDN 끝점에 사용자 지정 도메인 사용
+> * 사용 하 여 쿼리 문자열 캐시 toocontrol 버전입니다.
+> * Hello CDN 끝점에 대 한 사용자 지정 도메인을 사용 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서:
 
 - [Git 설치](https://git-scm.com/)
 - [Azure CLI 2.0 설치](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-the-web-app"></a>웹앱 만들기
+## <a name="create-hello-web-app"></a>Hello 웹 앱 만들기
 
-사용할 웹앱을 만들려면 **앱 찾아보기** 단계를 통해 [정적 HTML 빠른 시작](app-service-web-get-started-html.md)을 수행합니다.
+사용 합니다, 따라 hello toocreate hello 웹 앱 [정적 HTML 퀵 스타트](app-service-web-get-started-html.md) hello를 통해 **찾아보기 toohello 앱** 단계입니다.
 
 ### <a name="have-a-custom-domain-ready"></a>사용자 지정 도메인 준비
 
-이 자습서의 사용자 지정 도메인 단계를 완료하려면 사용자 지정 도메인을 소유하고 도메인 공급자(예: GoDaddy)의 DNS 레지스트리에 액세스할 수 있어야 합니다. 예를 들어 `contoso.com` 및 `www.contoso.com`에 대한 DNS 항목을 추가하려면 `contoso.com` 루트 도메인에 대한 DNS 설정을 구성할 수 있는 액세스 권한이 있어야 합니다.
+toocomplete hello 사용자 지정 도메인 단계가이 자습서의 사용자 지정 도메인 tooown 필요 하 고이 도메인 공급자 (예: GoDaddy)에 대 한 액세스 tooyour DNS 레지스트리는 합니다. 에 대 한 DNS 항목 예를 들어 tooadd `contoso.com` 및 `www.contoso.com`, hello에 대 한 액세스 tooconfigure hello DNS 설정이 있어야 `contoso.com` 루트 도메인.
 
-아직 도메인 이름이 없는 경우 Azure Portal을 사용하여 도메인을 구매하려면 [App Service 도메인 자습서](custom-dns-web-site-buydomains-web-app.md)를 수행하는 것이 좋습니다. 
+도메인 이름이 없는 경우 다음과 같은 hello [앱 서비스 도메인 자습서](custom-dns-web-site-buydomains-web-app.md) 사용 하 여 도메인 toopurchase hello Azure 포털입니다. 
 
-## <a name="log-in-to-the-azure-portal"></a>Azure 포털에 로그인
+## <a name="log-in-toohello-azure-portal"></a>Azure 포털 toohello에 로그인
 
-브라우저를 열고 [Azure Portal](https://portal.azure.com)로 이동합니다.
+브라우저를 열고 탐색 toohello [Azure 포털](https://portal.azure.com)합니다.
 
 ## <a name="create-a-cdn-profile-and-endpoint"></a>CDN 프로필 및 끝점 만들기
 
-왼쪽 탐색 영역에서 **App Services**를 선택한 다음 [정적 HTML 빠른 시작](app-service-web-get-started-html.md)에서 만든 앱을 선택합니다.
+왼쪽 탐색 hello, 선택 **응용 프로그램 서비스**, 다음 hello에서 만든 hello 앱을 선택 하 고 [정적 HTML 퀵 스타트](app-service-web-get-started-html.md)합니다.
 
-![포털에서 App Service 앱 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
+![Hello 포털에서 앱 서비스 앱 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
 
-**App Service** 페이지의 **설정** 섹션에서 **네트워킹 > 앱에서 Azure CDN 구성**을 선택합니다.
+Hello에 **앱 서비스** 페이지 hello에서 **설정** 섹션에서 **네트워킹 > 응용 프로그램에 대 한 Azure CDN 구성**합니다.
 
-![포털에서 CDN 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
+![Hello 포털에서 CDN을 선택 합니다.](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
 
-**Azure Content Delivery Network** 페이지에서 테이블에 지정된 대로 **새 끝점** 설정을 제공합니다.
+Hello에 **Azure 콘텐츠 배달 네트워크** 페이지를 hello 제공 **새 끝점** hello 테이블에 지정 된 대로 설정 합니다.
 
-![포털에서 프로필 및 끝점 만들기](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
+![Hello 포털에서 프로필 및 끝점 만들기](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
 
 | 설정 | 제안 값 | 설명 |
 | ------- | --------------- | ----------- |
-| **CDN 프로필** | myCDNProfile | **새로 만들기**를 선택하여 CDN 프로필을 만듭니다. CDN 프로필은 동일한 가격 책정 계층을 가진 CDN 끝점의 컬렉션입니다. |
-| **가격 책정 계층** | Standard Akamai | [가격 책정 계층](../cdn/cdn-overview.md#azure-cdn-features)은 공급자 및 사용 가능한 기능을 지정합니다. 이 자습서에서는 표준 Akamai를 사용합니다. |
-| **CDN 끝점 이름** | azureedge.net 도메인에서 고유한 이름 | 도메인인 *\<endpointname>.azureedge.net*에서 캐시된 리소스에 액세스합니다.
+| **CDN 프로필** | myCDNProfile | 선택 **새로 만들기** toocreate CDN 프로필입니다. CDN 프로필 hello로 CDN 끝점의 컬렉션은 같은 가격 책정 계층입니다. |
+| **가격 책정 계층** | Standard Akamai | hello [가격 책정 계층](../cdn/cdn-overview.md#azure-cdn-features) hello 공급자 및 사용 가능한 기능을 지정 합니다. 이 자습서에서는 표준 Akamai를 사용합니다. |
+| **CDN 끝점 이름** | Hello azureedge.net 도메인에서 고유한 이름 | Hello 도메인에서 캐시 된 리소스에 액세스 하면  *\<endpointname >. azureedge.net*합니다.
 
 **만들기**를 선택합니다.
 
-Azure에서는 프로필 및 끝점을 만듭니다. 새 끝점은 동일한 페이지의 **끝점** 목록에서 표시되고 프로비전될 때 상태가 **실행 중**입니다.
+Azure는 hello 프로필 및 끝점을 만듭니다. hello에 새 끝점의 hello 표시 **끝점** 목록에서 같은 페이지 hello 그리고 hello 상태가 프로 비전 될 때 **실행**합니다.
 
 ![목록의 새 끝점](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint-in-list.png)
 
-### <a name="test-the-cdn-endpoint"></a>CDN 끝점 테스트
+### <a name="test-hello-cdn-endpoint"></a>테스트 hello CDN 끝점
 
 Verizon 가격 책정 계층을 선택한 경우 끝점 전파를 위해 일반적으로 약 90분이 걸립니다. Akamai의 경우 전파하는 데 몇 분이 걸립니다.
 
-샘플 앱에는 `index.html` 파일 및 다른 정적 자산을 포함하는 *css*, *img* 및 *js* 폴더가 있습니다. 이러한 파일에 대한 콘텐츠 경로는 CDN 끝점과 동일합니다. 예를 들어 다음 URL은 모두 *css* 폴더의 *bootstrap.css* 파일에 액세스합니다.
+hello 샘플 응용 프로그램에는 `index.html` 파일 및 *css*, *img*, 및 *js* 다른 정적 자산을 포함 하는 폴더입니다. 이 모든 파일에 대 한 경로 콘텐츠 hello hello CDN 끝점에서 동일한 hello 합니다. 예를 들어 hello 다음 Url의 액세스 hello *bootstrap.css* hello에 대 한 파일 *css* 폴더:
 
 ```
 http://<appname>.azurewebsites.net/css/bootstrap.css
@@ -95,7 +95,7 @@ http://<appname>.azurewebsites.net/css/bootstrap.css
 http://<endpointname>.azureedge.net/css/bootstrap.css
 ```
 
-브라우저를 다음 URL로 이동합니다.
+Url 브라우저 toohello를 이동 합니다.
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -103,36 +103,36 @@ http://<endpointname>.azureedge.net/index.html
 
 ![CDN에서 제공되는 샘플 앱 홈 페이지](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page-cdn.png)
 
- Azure 웹앱에서 이전에 실행한 것과 동일한 페이지가 표시됩니다. Azure CDN에서 원본 웹앱의 자산을 검색하고 CDN 끝점에서 제공하고 있습니다.
+ Hello Azure 웹 앱의 앞부분에 나오는 실행 하는 동일한 페이지를 참조 합니다. Azure CDN이 hello 원본 웹 앱의 자산을 검색 하 고 hello CDN 끝점에서 제공 됩니다.
 
-이 페이지가 CDN에서 캐시된다는 것을 보장하기 위해 페이지를 새로 고칩니다. 동일한 자산에 대한 두 개의 요청에서 CDN은 요청된 콘텐츠를 캐시해야 합니다.
+tooensure이이 페이지 hello CDN에서 새로 고침 hello 페이지에에서 캐시 됩니다. 두 개에 대 한 hello 같은 자산의 경우에 따라 필요한 hello CDN toocache hello 요청한 콘텐츠를 요청 합니다.
 
 Azure CDN 프로필 및 끝점을 만드는 방법에 대한 자세한 내용은 [Azure CDN 시작](../cdn/cdn-create-new-endpoint.md)을 참조하세요.
 
-## <a name="purge-the-cdn"></a>CDN 제거
+## <a name="purge-hello-cdn"></a>CDN hello를 제거 합니다.
 
-CDN은 TTL(time-to-live) 구성을 기반으로 원본 웹앱의 자원을 주기적으로 새로 고칩니다. 기본 TTL은 7일입니다.
+hello CDN에는 hello 활성 시간 (TTL) 구성에 따라 hello 원본 웹 앱에서 리소스를 주기적으로 새로 고쳐집니다. hello 기본 TTL은 7 일입니다.
 
-예를 들어 때때로 웹앱에 업데이트된 콘텐츠를 배포할 때 TTL이 만료되기 전에 CDN을 새로 고쳐야 합니다. 새로 고침을 트리거하기 위해 CDN 리소스를 수동으로 제거할 수 있습니다. 
+때때로 hello-TTL 만료 전에 toorefresh hello CDN 예를 들어 때 필요한 업데이트 된 콘텐츠 toohello 웹 앱을 배포 합니다. 새로 고침 tootrigger hello CDN 리소스를 수동으로 제거할 수 있습니다. 
 
-자습서의 이 섹션에서는 웹앱에 대한 변경 내용을 배포하고 CDN을 삭제하여 캐시를 새로 고치기 위해 CDN을 트리거합니다.
+Hello 자습서의이 섹션에서는 변경 toohello 웹 앱을 배포 하 고 hello CDN tootrigger hello CDN toorefresh 해당 캐시를 제거 합니다.
 
-### <a name="deploy-a-change-to-the-web-app"></a>웹앱에 대한 변경 내용 배포
+### <a name="deploy-a-change-toohello-web-app"></a>변경 toohello 웹 응용 프로그램 배포
 
-다음 예제와 같이 `index.html` 파일을 열고 "-V2"를 H1 제목에 추가합니다. 
+열기 hello `index.html` 파일을 추가 "-V2" hello 다음 예제와 같이 toohello H1 제목을: 
 
 ```
 <h1>Azure App Service - Sample Static HTML Site - V2</h1>
 ```
 
-변경 내용을 커밋하고 웹앱에 배포합니다.
+변경 내용을 커밋하고 toohello 웹 앱을 배포 합니다.
 
 ```bash
 git commit -am "version 2"
 git push azure master
 ```
 
-배포가 완료되면 웹앱 URL을 찾아 변경 사항을 확인합니다.
+배포가 완료 되 면 찾아보기 toohello 웹 앱 URL을 변경 하는 hello를 표시 합니다.
 
 ```
 http://<appname>.azurewebsites.net/index.html
@@ -140,7 +140,7 @@ http://<appname>.azurewebsites.net/index.html
 
 ![웹앱의 제목에서 V2](media/app-service-web-tutorial-content-delivery-network/v2-in-web-app-title.png)
 
-홈 페이지의 CDN 끝점 URL로 이동하더라도 CDN에서 캐시된 버전이 아직 만료되지 않았기 때문에 변경 내용을 표시하지 않습니다. 
+Hello 홈 페이지에 대 한 찾아보기 toohello CDN 끝점 URL hello CDN에에서 캐시 된 버전 hello 아직 만료 되지 않으므로 변경할 hello를 보이지 않습니다. 
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -148,35 +148,35 @@ http://<endpointname>.azureedge.net/index.html
 
 ![CDN의 제목에서 V2 없음](media/app-service-web-tutorial-content-delivery-network/no-v2-in-cdn-title.png)
 
-### <a name="purge-the-cdn-in-the-portal"></a>포털에서 CDN 제거
+### <a name="purge-hello-cdn-in-hello-portal"></a>Hello CDN hello 포털에서 제거
 
-CDN을 트리거하여 캐시된 버전을 업데이트하려면 CDN을 제거합니다.
+tootrigger는 CDN tooupdate 캐시 된 버전의 hello를 CDN hello를 삭제 합니다.
 
-포털 왼쪽 탐색 영역에서 **리소스 그룹**을 선택한 다음 웹앱(myResourceGroup)에 만든 리소스 그룹을 선택합니다.
+Hello 포털 왼쪽된 탐색 영역에서 선택 **리소스 그룹**, 한 다음 웹 앱 (myResourceGroup)에 대해 만든 hello 리소스 그룹을 선택 합니다.
 
 ![리소스 그룹 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-group.png)
 
-리소스의 목록에서 CDN 끝점을 선택합니다.
+Hello 리소스 목록에서 CDN 끝점을 선택 합니다.
 
 ![끝점 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-endpoint.png)
 
-**끝점** 페이지의 맨 위에서 **제거**를 클릭합니다.
+Hello의 hello 위쪽 **끝점** 페이지 **제거**합니다.
 
 ![제거 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-purge.png)
 
-제거하려는 콘텐츠 경로를 입력합니다. 전체 파일 경로를 전달하여 개별 파일을 제거하거나 경로 세그먼트를 전달하여 폴더에서 모든 콘텐츠를 제거하고 새로 고칠 수 있습니다. `index.html`을 변경했으므로 경로 중 하나인지를 확인합니다.
+원하는 toopurge hello 콘텐츠 경로 입력 합니다. 개별 파일 또는 경로 세그먼트 toopurge 전체 파일 경로 toopurge를 전달할 수 있으며 폴더의 모든 콘텐츠를 새로 고칠 수 있습니다. 변경한 이후 `index.html`, 인지 확인 하는 hello 경로 중 하나입니다.
 
-페이지 맨 아래에서 **제거**를 선택합니다.
+Hello 페이지의 hello 맨 아래에 선택 **제거**합니다.
 
 ![페이지 제거](media/app-service-web-tutorial-content-delivery-network/app-service-web-purge-cdn.png)
 
-### <a name="verify-that-the-cdn-is-updated"></a>CDN이 업데이트되었는지 확인
+### <a name="verify-that-hello-cdn-is-updated"></a>해당 hello CDN은 업데이트를 확인 합니다.
 
-제거 요청 처리가 완료될 때까지 일반적으로 몇 분 정도를 기다립니다. 현재 상태를 보려면 페이지 맨 아래에 있는 벨 아이콘을 선택합니다. 
+Hello 삭제 요청은 몇 분 정도 일반적으로 처리를 완료할 때까지 기다립니다. toosee hello 현재 상태를 hello hello 페이지 위쪽에 선택 hello 종 모양 아이콘입니다. 
 
 ![제거 알림](media/app-service-web-tutorial-content-delivery-network/portal-purge-notification.png)
 
-`index.html`에 대한 CDN 끝점 URL로 이동하면 이제 홈 페이지에서 제목에 추가한 V2가 표시됩니다. CDN 캐시를 새로 고쳤다는 것을 보여줍니다.
+Toohello CDN 끝점 URL에 대 한 찾아보기 `index.html`, 나타나고 이제 hello V2 toohello 제목 hello 홈 페이지에 추가 합니다. Hello CDN에 캐시를 새로 고칠를 표시 합니다.
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -186,23 +186,23 @@ http://<endpointname>.azureedge.net/index.html
 
 자세한 내용은 [Azure CDN 끝점 제거](../cdn/cdn-purge-endpoint.md)를 참조하세요. 
 
-## <a name="use-query-strings-to-version-content"></a>버전 콘텐츠에 쿼리 문자열 사용
+## <a name="use-query-strings-tooversion-content"></a>쿼리 문자열 tooversion 콘텐츠 사용
 
-Azure CDN은 다음과 같은 캐싱 동작 옵션을 제공합니다.
+Azure CDN hello hello 다음 캐싱 동작 옵션을 제공 합니다.
 
 * 쿼리 문자열 무시
 * 쿼리 문자열에 대한 캐싱 우회
 * 모든 고유한 URL 캐시 
 
-이 중 첫 번째 옵션이 기본값입니다. 즉 액세스하는 URL의 쿼리 문자열에 관계없이 캐시된 자산의 버전이 하나뿐임을 나타냅니다. 
+먼저 hello 이러한은 hello default, 자산 hello URL에 쿼리 문자열 hello에 관계 없이 캐시 된 버전을 하나만 있다는 것을 나타냅니다. 
 
-자습서의 이 섹션에서는 캐싱 동작을 변경하여 고유한 URL을 캐시합니다.
+Hello 자습서의이 섹션에서는 각 고유한 URL 동작 toocache 캐싱 hello를 변경할 수 있습니다.
 
-### <a name="change-the-cache-behavior"></a>캐시 동작 변경
+### <a name="change-hello-cache-behavior"></a>Hello 캐시 동작 변경
 
-Azure Portal의 **CDN 끝점** 페이지에서 **캐시**를 선택합니다.
+Hello Azure 포털에서에서 **CDN 끝점** 페이지에서 **캐시**합니다.
 
-**쿼리 문자열 캐싱 동작** 드롭다운 목록에서 **모든 고유한 URL 캐시**를 선택합니다.
+선택 **각 고유한 URL 캐시** hello에서 **쿼리 문자열 캐싱 동작** 드롭 다운 목록입니다.
 
 **저장**을 선택합니다.
 
@@ -210,24 +210,24 @@ Azure Portal의 **CDN 끝점** 페이지에서 **캐시**를 선택합니다.
 
 ### <a name="verify-that-unique-urls-are-cached-separately"></a>고유 URL을 별도로 캐시했는지 확인
 
-브라우저의 CDN 끝점에서 홈 페이지로 이동하지만 쿼리 문자열을 포함합니다. 
+브라우저에서 hello CDN 끝점에 toohello 홈 페이지를 탐색 하는 쿼리 문자열을 포함. 
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=1
 ```
 
-CDN은 제목에 "V2"를 포함하는 현재 웹앱 콘텐츠를 반환합니다. 
+CDN hello hello 현재 웹 응용 프로그램 콘텐츠를 hello 제목에 "V2"를 포함 하는 반환 합니다. 
 
-이 페이지가 CDN에서 캐시된다는 것을 보장하기 위해 페이지를 새로 고칩니다. 
+tooensure이이 페이지 hello CDN에서 새로 고침 hello 페이지에에서 캐시 됩니다. 
 
-`index.html`을 열고 "V2" "V3"으로 바꾸고 변경 내용을 배포합니다. 
+열기 `index.html` 너무 "V2" 변경 "V3" hello 변경 내용 배포 및 합니다. 
 
 ```bash
 git commit -am "version 3"
 git push azure master
 ```
 
-브라우저에서 `q=2`과 같은 새 쿼리 문자열이 있는 CDN 끝점 URL로 이동합니다. CDN은 현재 `index.html` 파일을 가져오고 "V3"를 표시합니다.  그러나 `q=1` 쿼리 문자열을 사용하여 CDN 끝점으로 이동하는 경우 "V2"를 참조하세요.
+브라우저에서 새 쿼리 문자열로 toohello CDN 끝점 URL을와 같은 이동 `q=2`합니다. CDN hello hello 현재 가져옵니다 `index.html` 파일을 "V3"를 표시 합니다.  Hello로 toohello CDN 끝점을 이동 하는 경우 하지만 `q=1` 쿼리 문자열, "V2"를 참조 하십시오.
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=2
@@ -244,49 +244,49 @@ http://<endpointname>.azureedge.net/index.html?q=1
 이 출력에서는 각 쿼리 문자열이 다르게 처리됨을 보여 줍니다.
 
 * 이전에는 q=1이 사용되어 캐시된 내용(V2)을 반환합니다.
-* q=2는 새로운 쿼리 문자열이므로 최신 웹앱 내용(V3)을 검색하여 반환합니다.
+* q = 2 이므로 새로 만들었거나, hello 최신 웹 응용 프로그램 콘텐츠 검색 되 고 (V3)을 반환 합니다.
 
 자세한 내용은 [쿼리 문자열을 사용하여 Azure CDN 캐싱 동작 제어](../cdn/cdn-query-string.md)를 참조하세요.
 
-## <a name="map-a-custom-domain-to-a-cdn-endpoint"></a>CDN 끝점에 사용자 지정 도메인 매핑
+## <a name="map-a-custom-domain-tooa-cdn-endpoint"></a>사용자 지정 도메인 tooa CDN 끝점 매핑
 
-CNAME 레코드를 만들어서 CDN 끝점에 사용자 지정 도메인을 매핑합니다. CNAME 레코드는 원본 도메인을 대상 도메인에 매핑하는 DNS 기능입니다. 예를 들어 `cdn.contoso.com` 또는 `static.contoso.com`를 `contoso.azureedge.net`에 매핑할 수 있습니다.
+CNAME 레코드를 만들어 사용자 지정 도메인 tooyour를 CDN 끝점 매핑합니다. CNAME 레코드는 원본 도메인 tooa 대상 도메인을 매핑하는 DNS 기능입니다. 예를 들어 매핑하는 `cdn.contoso.com` 또는 `static.contoso.com` 너무`contoso.azureedge.net`합니다.
 
-사용자 지정 도메인이 없는 경우 Azure Portal을 사용하여 도메인을 구매하려면 [App Service 도메인 자습서](custom-dns-web-site-buydomains-web-app.md)를 따릅니다. 
+사용자 지정 도메인이 없는 경우 다음과 같은 hello [앱 서비스 도메인 자습서](custom-dns-web-site-buydomains-web-app.md) 사용 하 여 도메인 toopurchase hello Azure 포털입니다. 
 
-### <a name="find-the-hostname-to-use-with-the-cname"></a>CNAME을 사용하여 호스트 이름 찾기
+### <a name="find-hello-hostname-toouse-with-hello-cname"></a>CNAME hello로 hello hostname toouse 찾기
 
-Azure Portal의 **끝점** 페이지에 있는 왼쪽 탐색 영역에서 **개요**를 선택한 다음 페이지 맨 위에 있는 **+ 사용자 지정 도메인** 단추를 선택합니다.
+Hello Azure 포털에서에서 **끝점** 페이지에서 **개요** hello 탐색 및 선택 hello 왼쪽에서 선택 된 **+ 사용자 지정 도메인** hello hello 페이지 위쪽에 단추입니다.
 
 ![사용자 지정 도메인 추가 선택](media/app-service-web-tutorial-content-delivery-network/portal-select-add-domain.png)
 
-**사용자 지정 도메인 추가** 페이지에서 CNAME 레코드를 만드는 데 사용할 끝점 호스트 이름을 표시합니다. 호스트 이름은 CDN 끝점 URL인 **&lt;EndpointName>.azureedge.net**에서 파생됩니다. 
+Hello에 **사용자 지정 도메인 추가** 페이지에 CNAME 레코드를 만드는 hello 끝점 호스트 이름 toouse 표시 합니다. CDN 끝점 URL에서 파생 된 hello 호스트 이름:  **&lt;EndpointName >. azureedge.net**합니다. 
 
 ![도메인 페이지 추가](media/app-service-web-tutorial-content-delivery-network/portal-add-domain.png)
 
-### <a name="configure-the-cname-with-your-domain-registrar"></a>도메인 등록 기관과 함께 CNAME 구성
+### <a name="configure-hello-cname-with-your-domain-registrar"></a>도메인 등록 기관과 함께 CNAME hello 구성
 
-도메인 등록 기관의 웹 사이트로 이동한 다음 DNS 레코드를 만들기 위한 섹션을 찾습니다. **도메인 이름**, **DNS** 또는 **이름 서버 관리**와 같은 섹션에서 이를 찾을 수 있습니다.
+Tooyour 도메인 등록 기관의 웹 사이트를 탐색 하 고 DNS 레코드를 만들기 위한 hello 섹션을 찾습니다. **도메인 이름**, **DNS** 또는 **이름 서버 관리**와 같은 섹션에서 이를 찾을 수 있습니다.
 
-CNAME을 관리하기 위한 섹션을 찾습니다. 고급 설정 페이지로 이동하여 CNAME, 별칭 또는 하위 도메인과 같은 단어를 찾아야 할 수도 있습니다.
+CNAMEs를 관리 하기 위한 hello 섹션을 찾습니다. Toogo tooan 고급 설정 페이지를 가질 수 고 CNAME, 별칭 또는 하위 도메인 hello 단어를 검색할 수 있습니다.
 
-선택한 하위 도메인(예: **static** 또는 **cdn**)을 포털에서 이전에 표시한 **끝점 호스트 이름**에 매핑하는 CNAME 레코드를 만듭니다. 
+선택된 된 하위 도메인을 매핑하는 CNAME 레코드를 만듭니다 (예를 들어 **정적** 또는 **cdn**) toohello **끝점 호스트 이름** hello 포털의 앞부분에 표시 합니다. 
 
-### <a name="enter-the-custom-domain-in-azure"></a>Azure에서 사용자 지정 도메인 입력
+### <a name="enter-hello-custom-domain-in-azure"></a>Azure의 hello 사용자 지정 도메인을 입력 합니다.
 
-**사용자 지정 도메인 추가** 페이지로 돌아가 하위 도메인을 포함하는 사용자 지정 도메인을 대화 상자에 입력합니다. 예를 들어 `cdn.contoso.com`을 입력합니다.   
+Toohello 반환 **사용자 지정 도메인 추가** 페이지 및 hello 하위 도메인을 포함 하 여 hello 대화 상자에서 사용자 지정 도메인을 입력 합니다. 예를 들어 `cdn.contoso.com`을 입력합니다.   
    
-Azure에서 입력한 도메인 이름에 대한 CNAME 레코드가 있는지 확인합니다. CNAME이 올바르면 사용자 지정 도메인의 유효성이 검사됩니다.
+Azure는 입력 한 hello 도메인 이름에 대 한 hello CNAME 레코드가 있는지 확인 합니다. Hello CNAME이 올바르면 사용자 지정 도메인의 유효성이 검사 됩니다.
 
-CNAME 레코드가 인터넷의 이름 서버로 전파되는 데 시간이 걸릴 수 있습니다. 도메인의 유효성이 바로 검사되지 않으면 몇 분 후에 다시 시도합니다.
+Hello 인터넷에서 CNAME 레코드 toopropagate tooname 서버 hello에 대 한 시간이 걸릴 수 있습니다. 도메인의 유효성이 바로 검사되지 않으면 몇 분 후에 다시 시도합니다.
 
-### <a name="test-the-custom-domain"></a>사용자 지정 도메인 테스트
+### <a name="test-hello-custom-domain"></a>테스트 hello에 대 한 사용자 지정 도메인
 
-브라우저에서 사용자 지정 도메인을 사용하여 `index.html` 파일로 이동(예: `cdn.contoso.com/index.html`)하여 결과가 직접 `<endpointname>azureedge.net/index.html`으로 이동할 경우와 동일한지를 확인합니다.
+브라우저에서 탐색 toohello `index.html` 사용자 지정 도메인을 사용 하 여 파일 (예를 들어 `cdn.contoso.com/index.html`) hello 결과 tooverify hello로 수행 하는 경우 직접 너무 동일`<endpointname>azureedge.net/index.html`합니다.
 
 ![사용자 지정 도메인 URL을 사용하는 샘플 앱 홈 페이지](media/app-service-web-tutorial-content-delivery-network/home-page-custom-domain.png)
 
-자세한 내용은 [사용자 지정 도메인에 Azure CDN 컨텐츠 매핑](../cdn/cdn-map-content-to-custom-domain.md)을 참조하세요.
+자세한 내용은 참조 [맵 Azure CDN 콘텐츠 tooa 사용자 지정 도메인](../cdn/cdn-map-content-to-custom-domain.md)합니다.
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
@@ -297,10 +297,10 @@ CNAME 레코드가 인터넷의 이름 서버로 전파되는 데 시간이 걸�
 > [!div class="checklist"]
 > * CDN 끝점 만들기
 > * 캐시된 자산 새로 고침
-> * 쿼리 문자열을 사용하여 캐시된 버전 제어
-> * CDN 끝점에 사용자 지정 도메인 사용
+> * 사용 하 여 쿼리 문자열 캐시 toocontrol 버전입니다.
+> * Hello CDN 끝점에 대 한 사용자 지정 도메인을 사용 합니다.
 
-다음 문서에서 CDN 성능을 최적화하는 방법에 대해 알아봅니다.
+Toooptimize CDN 성능에 따라 hello 문서 방법에 대해 알아봅니다.
 
 > [!div class="nextstepaction"]
 > [Azure CDN에서 파일을 압축하여 성능 향상](../cdn/cdn-improve-performance.md)

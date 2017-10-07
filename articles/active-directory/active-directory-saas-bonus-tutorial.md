@@ -1,6 +1,6 @@
 ---
 title: "자습서: Bonusly와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 Bonusly 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Bonusly 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,189 +14,189 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 29a88b2efdb9f0f33f7933bc654a5a0fdf589c5a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 60ad06c028463af81a7901ab321c4ae9346798ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-bonusly"></a>자습서: Bonusly와 Azure Active Directory 통합
 
-이 자습서에서는 Azure AD(Azure Active Directory)와 Bonusly를 통합하는 방법에 대해 알아봅니다.
+이 자습서에 설명 어떻게 toointegrate Bonusly Azure Active directory (Azure AD).
 
-Bonusly를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
+다음 이점을 hello로 제공 Bonusly Azure AD와 통합:
 
-- Bonusly에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
-- 사용자가 해당 Azure AD 계정으로 Bonusly SSO(Single Sign-On)에 자동으로 로그온되도록 설정할 수 있습니다.
-- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
+- 액세스 tooBonusly을 지닌 Azure AD에서 제어할 수 있습니다.
+- 프로그램 사용자 tooautomatically get 로그온 tooBonusly (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.
+- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
+Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-Bonusly와 Azure AD의 통합을 구성하려면 다음 항목이 필요합니다.
+다음 항목 hello가 필요 tooconfigure Bonusly와 Azure AD 통합 합니다.
 
 - Azure AD 구독
 - Bonusly Single Sign-on이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
+> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
 
-이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
+이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 갤러리에서 Bonusly 추가
+1. Bonusly는 hello 갤러리 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-bonusly-from-the-gallery"></a>갤러리에서 Bonusly 추가
-Bonusly의 Azure AD 통합을 구성하려면 갤러리의 Bonusly를 관리되는 SaaS 앱 목록에 추가해야 합니다.
+## <a name="adding-bonusly-from-hello-gallery"></a>Bonusly는 hello 갤러리 추가
+tooconfigure hello와의 통합 Bonusly Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Bonusly tooadd가 필요합니다.
 
-**갤러리에서 Bonusly를 추가하려면 다음 단계를 수행합니다.**
+**hello 갤러리에서 Bonusly tooadd hello 다음 단계를 수행 합니다.**
 
-1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
+1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
 
-    ![Azure Active Directory 단추][1]
+    ![hello Azure Active Directory 단추][1]
 
-2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
+2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
 
-    ![엔터프라이즈 응용 프로그램 블레이드][2]
+    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
+3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
 
-    ![새 응용 프로그램 단추][3]
+    ![hello 새 응용 프로그램 단추][3]
 
-4. 검색 상자에 **Bonusly**를 입력하고 결과 패널에서 **Bonusly**를 선택한 후 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+4. Hello 검색 상자에 입력 **Bonusly**선택, **Bonusly** 결과 패널에서 클릭 **추가** tooadd hello 응용 프로그램 단추입니다.
 
-    ![결과 목록의 Bonusly](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_addfromgallery.png)
+    ![Bonusly hello 결과 목록에서](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Bonusly에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 Bonusly 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 Bonusly의 관련 사용자 간에 연결이 형성되어야 합니다.
+Single sign on toowork에 대 한 Azure AD는 tooknow Bonusly에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 Bonusly에 hello 관련된 사용자 간 링크 관계를 설정할 toobe가 필요 합니다.
 
-Bonusly에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.
+Bonusly에서 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
 
-Bonusly에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
+tooconfigure 및 Bonusly 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
 
-1. **[Azure AD Single Sign-On 구성](#configure-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
-2. **[Azure AD 테스트 사용자 만들기](#create-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
-3. **[Bonusly 테스트 사용자 만들기](#create-a-bonusly-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Bonusly에 만듭니다.
-4. **[Azure AD 테스트 사용자 할당](#assign-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
-5. **[Single Sign-on 테스트](#test-single-sign-on)** - 구성이 작동하는지 여부를 확인합니다.
+1. **[Azure AD Single Sign-on 구성](#configure-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
+2. **[Azure AD 테스트를 만들고](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
+3. **[Bonusly 테스트 사용자 만들기](#create-a-bonusly-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 Bonusly에 해당 하는 도구입니다.
+4. **[Azure AD hello 테스트 사용자를 할당](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
+5. **[Single Sign-on 테스트](#test-single-sign-on)**  -tooverify 구성 works를 hello 여부.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Bonusly 응용 프로그램에서 Single Sign-On을 구성합니다.
+이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Bonusly 응용 프로그램에서 single sign on 구성 합니다.
 
-**Bonusly에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**
+**tooconfigure Azure AD single sign on, Bonusly와 hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal의 **Bonusly** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
+1. Hello hello에 Azure 포털에서에서 **Bonusly** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
 
     ![Single Sign-on 구성][4]
 
-2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
+2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_samlbase.png)
 
-3. **Bonusly 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
+3. Hello에 **Bonusly 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.
 
     ![Bonusly 도메인 및 URL Single Sign-On 정보](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_url.png)
 
-    **회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다.`https://Bonus.ly/saml/<tenant-name>`
+    Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://Bonus.ly/saml/<tenant-name>`
 
     > [!NOTE] 
-    > 이 값은 실제 값이 아닙니다. 실제 회신 URL로 값을 업데이트합니다. 값을 얻으려면 [Bonusly 지원 팀](https://Bonusly/contact)에 문의하세요.
+    > hello 값이 실제 아닙니다. 업데이트 hello 값과 실제 회신 URL hello 합니다. 연락처 [Bonusly 지원 팀](https://Bonusly/contact) tooget hello 값입니다.
  
-4. **SAML 서명 인증서** 섹션에서 인증서의 **지문** 값을 복사합니다.
+4. Hello에 **SAML 서명 인증서** 섹션을 복사 hello **지문** hello 인증서의 값입니다.
 
-    ![인증서 다운로드 링크](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_certificate.png) 
+    ![hello 인증서 다운로드 링크](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_certificate.png) 
 
 5. **저장** 단추를 클릭합니다.
 
     ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-bonus-tutorial/tutorial_general_400.png)
 
-6. **Bonusly 구성** 섹션에서 **Bonusly 구성**을 클릭하여 **로그온 구성** 창을 엽니다. **빠른 참조 섹션**에서 **SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.
+6. Hello에 **Bonusly 구성** 섹션에서 클릭 **Bonusly 구성** tooopen **sign on 구성** 창. 복사 hello **SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**
 
     ![Bonusly 구성](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_configure.png) 
 
-7. 다른 브라우저 창에서 **Bonusly** 테넌트에 로그인합니다.
+7. 다른 브라우저 창에서 tooyour에 로그인 **Bonusly** 테 넌 트입니다.
 
-8. 위쪽에 도구 모음에서 **설정**을 클릭하고 **통합 및 앱**을 선택합니다.
+8. 도구 모음의 hello hello 위쪽에 클릭 **설정**를 선택한 후 **통합 및 앱**합니다.
    
     ![Bonusly 소셜 섹션](./media/active-directory-saas-bonus-tutorial/ic773686.png "Bonusly")
 9. **Single Sign-On**에서 **SAML**을 선택합니다.
 
-10. **SAML** 대화 상자 페이지에서 다음 단계를 수행합니다.
+10. Hello에 **SAML** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
    
     ![Bonusly Saml 대화 상자 페이지](./media/active-directory-saas-bonus-tutorial/ic773687.png "Bonusly")
    
-    a. Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **IdP SSO 대상 URL** 텍스트 상자에 붙여 넣습니다.
+    a. Hello에 **IdP SSO 대상 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL**, Azure 포털에서 복사한입니다.
    
-    b. Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 **IdP 발급자** 텍스트 상자에 붙여 넣습니다. 
+    b. Hello에 **IdP 발급자** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID**, Azure 포털에서 복사한입니다. 
 
-    c. Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **IdP 로그인 URL** 텍스트 상자에 붙여 넣습니다.
+    c. Hello에 **IdP 로그인 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL**, Azure 포털에서 복사한입니다.
 
-    d. Azure Portal에서 복사한 **지문** 값을 **인증서 지문** 텍스트 상자에 붙여 넣습니다.
+    d. 붙여넣기는 **지문** 값이 hello에 Azure 포털에서 복사 **인증서 지문** 텍스트 상자에 붙여넣습니다.
    
 11. **Save**를 클릭합니다.
 
 > [!TIP]
-> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
+> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
+이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
 
 ![Azure AD 테스트 사용자 만들기][100]
 
-**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
+**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
 
-1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
+1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
 
-    ![Azure Active Directory 단추](./media/active-directory-saas-bonus-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory 단추](./media/active-directory-saas-bonus-tutorial/create_aaduser_01.png) 
 
-2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.
+2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.
     
-    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-bonus-tutorial/create_aaduser_02.png) 
+    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-bonus-tutorial/create_aaduser_02.png) 
 
-3. **사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.
+3. tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.
  
-    ![추가 단추](./media/active-directory-saas-bonus-tutorial/create_aaduser_03.png) 
+    ![hello 추가 단추](./media/active-directory-saas-bonus-tutorial/create_aaduser_03.png) 
 
-4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
+4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
  
-    ![사용자 대화 상자](./media/active-directory-saas-bonus-tutorial/create_aaduser_04.png) 
+    ![hello 사용자 대화 상자](./media/active-directory-saas-bonus-tutorial/create_aaduser_04.png) 
 
-    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
+    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
 
-    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
+    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
 
-    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
+    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="create-a-bonusly-test-user"></a>Bonusly 테스트 사용자 만들기
 
-Azure AD 사용자가 Bonusly에 로그인할 수 있도록 하려면 Bonusly로 프로비전되어야 합니다. Bonusly의 경우 프로비전은 수동 작업입니다.
+Tooenable Azure AD 사용자가 toolog tooBonusly에 주문 하 고에 Bonusly에 이들 프로 비전 해야 합니다. Hello Bonusly의 경우에서 프로 비전은 수동 작업입니다.
 
 >[!NOTE]
->다른 Bonusly 사용자 계정 생성 도구 또는 Bonusly가 제공한 API를 사용하여 AAD 사용자 계정을 프로비전할 수 있습니다.
+>다른 Bonusly 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 Api에서 제공 Bonusly tooprovision AAD 사용자 계정을 합니다.
 >  
 
-**사용자 프로비전을 구성하려면 다음 단계를 수행합니다.**
+**tooconfigure 사용자 프로비저닝, hello 다음 단계를 수행:**
 
-1. 브라우저 창에서 Bonusly 테넌트에 로그인합니다.
+1. 웹 브라우저 창에서 tooyour Bonusly 테 넌 트에 로그인 합니다.
 
 2. **설정**을 클릭합니다.
  
     ![설정](./media/active-directory-saas-bonus-tutorial/ic781041.png "설정")
 
-3. **사용자 및 보너스** 탭을 클릭합니다.
+3. Hello 클릭 **사용자 및 보너스** 탭 합니다.
    
     ![사용자 및 보너스](./media/active-directory-saas-bonus-tutorial/ic781042.png "사용자 및 보너스")
 
@@ -208,47 +208,47 @@ Azure AD 사용자가 Bonusly에 로그인할 수 있도록 하려면 Bonusly로
    
     ![사용자 추가](./media/active-directory-saas-bonus-tutorial/ic781044.png "사용자 추가")
 
-6. **사용자 추가** 대화 상자에서 다음 단계를 수행합니다.
+6. Hello에 **사용자 추가** 대화 상자에서 hello 다음 단계를 수행 합니다.
    
     ![사용자 추가](./media/active-directory-saas-bonus-tutorial/ic781045.png "사용자 추가")  
 
-    a. **이름** 텍스트 상자에 사용자의 이름(예: **Britta**)을 입력합니다.
+    a. Hello에 **이름** textbox hello와 같은 사용자의 이름을 입력 **Britta**합니다.
 
-    b. **성** 텍스트 상자에 사용자의 성(예: **Simon**)을 입력합니다.
+    b. Hello에 **성** textbox hello와 같은 사용자의 성을 입력 **Simon**합니다.
  
-    c. **메일** 텍스트 상자에 **brittasimon@contoso.com**과 같은 사용자의 메일 주소를 입력합니다.
+    c. Hello에 **전자 메일** 텍스트 상자와 같은 사용자의 전자 메일을 hello 입력  **brittasimon@contoso.com** 합니다.
 
     d. **Save**를 클릭합니다.
    
      >[!NOTE]
-     >Azure AD 계정 보유자는 활성화되기 전에 계정을 확인하기 위한 링크를 포함하는 전자 메일을 받습니다.
+     >hello Azure AD 계정 보유자 데이터베이스가 활성화 전에 tooconfirm hello 계정 연결을 포함 하는 전자 메일을 수신 합니다.
      >  
 
-### <a name="assign-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
+### <a name="assign-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당 합니다.
 
-이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Bonusly에 대한 액세스 권한을 부여합니다.
+이 섹션에서는 tooBonusly 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.
 
-![사용자 역할 할당][200] 
+![Hello 사용자 역할 할당][200] 
 
-**Britta Simon을 Bonusly에 할당하려면 다음 단계를 수행합니다.**
+**tooassign Britta Simon tooBonusly hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
+1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
 
     ![사용자 할당][201] 
 
-2. 응용 프로그램 목록에서 **Bonusly**를 선택합니다.
+2. Hello 응용 프로그램 목록에서 선택 **Bonusly**합니다.
 
-    ![응용 프로그램 목록의 Bonusly 링크](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_app.png) 
+    ![hello Bonusly hello 응용 프로그램 목록에서 링크](./media/active-directory-saas-bonus-tutorial/tutorial_bonusly_app.png) 
 
-3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
 
-    !["사용자 및 그룹" 링크][202] 
+    ![hello "사용자 및 그룹" 링크][202] 
 
 4. **추가** 단추를 클릭합니다. 그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.
 
-    ![할당 추가 창][203]
+    ![hello 할당 추가 창][203]
 
-5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
+5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -256,13 +256,13 @@ Azure AD 사용자가 Bonusly에 로그인할 수 있도록 하려면 Bonusly로
     
 ### <a name="test-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션은 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트하기 위한 것입니다.
+이 섹션의 hello 목적은 tootest 액세스 패널을 hello 사용 하 여 Azure AD single sign-on 구성 합니다.
 
-액세스 패널에서 Bonusly 타일을 클릭하면 Bonusly 응용 프로그램에 자동으로 로그온됩니다.
+Hello Bonusly 타일을 클릭할 때 hello 액세스 패널에서 자동으로 로그온 tooyour Bonusly 응용 프로그램을 얻어야 합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 작업의 상태 정보 검색 | Microsoft Docs"
-description: "Microsoft Azure Import/Export 서비스 작업에 대한 상태 정보를 얻는 방법에 대해 알아봅니다."
+title: "Azure 가져오기/내보내기 작업에 대 한 상태 정보 aaaRetrieving | Microsoft Docs"
+description: "Tooobtain Microsoft Azure 가져오기/내보내기 서비스 작업에 대 한 정보를 명시 하는 방법에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,81 +14,81 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: muralikk
-ms.openlocfilehash: 13169716c47cf9389c8f2651393ac744441bdd6f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cbc35660519573d92f641924ac0025c9e577d69b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="retrieving-state-information-for-an-importexport-job"></a>Import/Export 작업에 대한 상태 정보 검색
-[작업 가져오기](/rest/api/storageimportexport/jobs#Jobs_Get)(Get Job) 작업을 호출하여 가져오기 및 내보내기 작업에 대한 정보를 검색할 수 있습니다. 반환되는 정보는 다음과 같습니다.
+Hello를 호출할 수 있습니다 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 작업 tooretrieve 정보 둘 다에 대 한 가져오기 및 내보내기 작업 합니다. 반환 된 hello 정보에는 다음이 포함 됩니다.
 
--   작업의 현재 상태
+-   hello hello 작업의 현재 상태입니다.
 
--   각 작업이 완료된 대략적인 백분율
+-   각 작업이 완료 된 hello 대략적인 백분율.
 
--   각 드라이브의 현재 상태
+-   hello 각 드라이브의 현재 상태입니다.
 
 -   오류 로그 및 자세한 로깅 정보를 포함한 Blob에 대한 URI(사용 가능한 경우)
 
-다음 섹션에서는 `Get Job` 작업에서 반환하는 정보에 대해 설명합니다.
+hello 다음 섹션에 설명 hello에서 반환 하는 hello 정보 `Get Job` 작업 합니다.
 
 ## <a name="job-states"></a>작업 상태
-아래 표와 상태 다이어그램에서는 작업이 수명 주기 동안 전환되는 상태를 설명합니다. 작업의 현재 상태는 `Get Job` 작업을 호출하여 확인할 수 있습니다.
+hello 테이블과 hello 상태 다이어그램 아래 수명 주기 작업을 전환 하는 hello 상태를 설명 합니다. 호출 hello 여 hello hello 작업의 현재 상태를 확인할 수 있습니다 `Get Job` 작업 합니다.
 
 ![작업 상태](./media/storage-import-export-retrieving-state-info-for-a-job/JobStates.png "작업 상태")
 
-다음 표에서는 작업이 통과할 수 있는 각각의 상태를 설명합니다.
+hello 다음 표에서 작업이 통과할 수 있는 각 상태.
 
 |작업 상태|설명|
 |---------------|-----------------|
-|`Creating`|작업 배치(Put Job) 작업을 호출하면 작업이 만들어지고 상태는 `Creating`으로 설정됩니다. 작업이 `Creating` 상태로 있는 동안에는 Import/Export 서비스에서 드라이브를 데이터 센터로 운송하지 않았다고 가정합니다. 직업은 최대 2주 동안 `Creating` 상태로 남아 있을 수 있으며 그 이후에는 서비스에서 자동으로 삭제합니다.<br /><br /> 작업이 `Creating` 상태로 있는 동안 작업 속성 업데이트(Update Job Properties) 작업을 호출하면 작업은 `Creating` 상태로 유지되고 시간 제한 간격은 2주로 다시 설정됩니다.|
-|`Shipping`|패키지를 운송한 후에는 작업 속성 업데이트 작업을 호출하여 작업 상태를 `Shipping`으로 업데이트해야 합니다. 운송 중(Shipping) 상태는 `DeliveryPackage`(우편물 운송업체 및 추적 번호) 및 `ReturnAddress` 속성이 작업에 대해 설정된 경우에만 설정할 수 있습니다.<br /><br /> 작업은 최대 2주 동안 '운송 중' 상태로 유지됩니다. 2주가 경과하고 드라이브를 받지 못하면 Import/Export 서비스 운영자에게 알립니다.|
-|`Received`|데이터 센터에서 모든 드라이브를 받은 후에는 작업 상태가 수신됨(Received) 상태로 설정됩니다.|
-|`Transferring`|데이터 센터에서 드라이브를 수신하고 하나 이상의 드라이브가 처리를 시작하면 작업 상태가 `Transferring` 상태로 설정됩니다. 자세한 내용은 아래 `Drive States` 섹션을 참조하세요.|
-|`Packaging`|모든 드라이브에서 처리를 완료한 후에 고객에게 드라이브를 반송할 때까지 작업은 `Packaging` 상태가 됩니다.|
-|`Completed`|고객에게 모든 드라이브를 반송한 후에 작업이 오류 없이 완료되면 작업은 `Completed` 상태로 설정됩니다. 작업은 `Completed` 상태에서 90일이 경과하면 자동으로 삭제됩니다.|
-|`Closed`|고객에게 모든 드라이브를 반송한 후 작업 처리 중에 오류가 발생하면 작업이 `Closed` 상태로 설정됩니다. 작업은 `Closed` 상태에서 90일이 경과하면 자동으로 삭제됩니다.|
+|`Creating`|Hello Put Job 작업을 호출 하 고 ְ  해당 상태는 너무 설정 후`Creating`합니다. Hello 작업 hello 중인 동안 `Creating` 상태 이면 hello 가져오기/내보내기 서비스 hello 드라이브 배송된 toohello 데이터 센터 적용 되지 않은 것으로 가정 합니다. 한 작업 hello에 남아 있을 수 `Creating` tootwo 주, 지나면 hello 서비스에 의해 삭제 자동으로 구성에 대 한 상태입니다.<br /><br /> Hello 작업 hello 중인 동안 hello Update Job Properties 작업을 호출 하는 경우 `Creating` 상태 이면 hello 유지 hello `Creating` 상태 및 hello 제한 시간 간격은 재설정 tootwo 주입니다.|
+|`Shipping`|Hello 작업의 hello 작업 속성을 업데이트 작업 업데이트 hello 상태 너무 호출 해야 패키지를 배송 한 후`Shipping`합니다. 경우에 hello hello 배송 상태를 설정할 수 있습니다 `DeliveryPackage` (배송 업체 및 추적 번호) 및 hello `ReturnAddress` hello 작업에 대 한 속성이 설정 되어 있는지 합니다.<br /><br /> hello 작업 tootwo 주를 hello 배송 상태에 대 한 유지 됩니다. 2 주 경과한 hello 드라이브를 받지 못한 경우 가져오기/내보내기 서비스 운영자 hello 알림을 받게 됩니다.|
+|`Received`|모든 드라이브 hello 데이터 센터에서 받은, hello 작업 상태 toohello Received 상태가 설정 됩니다.|
+|`Transferring`|Hello 드라이브 hello 데이터 센터에서 받은 후 하나 이상의 드라이브가 처리를 시작 하는 hello 작업 상태를 설정할 toohello `Transferring` 상태입니다. Hello 참조 `Drive States` 아래의 세부 정보에 대 한 섹션.|
+|`Packaging`|모든 드라이브 처리를 완료 한 후 hello 작업에에서 표시 됩니다 hello `Packaging` hello 드라이브는 배송된 백 toohello 고객 될 때까지 상태입니다.|
+|`Completed`|모든 드라이브 배송된 백 toohello 고객 된 hello 작업이 오류 없이 완료 된 경우, 다음 hello 작업 설정 됩니다 toohello `Completed` 상태입니다. hello 작업을 자동으로 삭제 hello에서 90 일이 지나면 `Completed` 상태입니다.|
+|`Closed`|모든 드라이브 배송된 백 toohello 고객 된 내용이 있는 경우 모든 오류 hello 작업의 hello 처리 하는 동안, 후 다음 hello 작업을 설정할 toohello `Closed` 상태입니다. hello 작업을 자동으로 삭제 hello에서 90 일이 지나면 `Closed` 상태입니다.|
 
-작업은 특정 상태에서만 취소할 수 있습니다. 취소된 작업은 데이터 복사 단계를 건너뛰지만 취소되지 않은 작업과 동일한 상태 전환을 수행합니다.
+작업은 특정 상태에서만 취소할 수 있습니다. 취소 된 작업 hello 데이터 복사 단계를 건너뛰고 하지만 그렇지 않으면 취소 되지 않은 작업으로 동일한 상태 전환 hello을 따릅니다.
 
-다음 표에서는 각 작업 상태에서 발생할 수 있는 오류와 오류 발생시 작업에 미치는 영향을 설명합니다.
+hello 다음 설명 오류가 있을 때 hello 작업에는 hello 영향 뿐만 아니라 각 작업 상태에 대 한 발생할 수 있는 오류입니다.
 
 |작업 상태|이벤트|해결 방법/다음 단계|
 |---------------|-----------|------------------------------|
-|`Creating or Undefined`|한 작업에 대한 드라이브가 하나 이상 도착했지만 작업이 `Shipping` 상태가 아니거나 작업 레코드가 서비스에 없습니다.|Import/Export 서비스 운영 팀은 작업을 진행하는 데 필요한 정보로 해당 작업을 만들거나 업데이트하도록 고객에게 연락하려고 시도합니다.<br /><br /> 운영 팀이 2주 이내에 고객에게 연락할 수 없는 경우에는 드라이브를 반환하려고 시도합니다.<br /><br /> 드라이브를 반환할 수 없고 고객에게 연락할 수 없는 경우 드라이브는 90일 후에 안전하게 소멸됩니다.<br /><br /> 작업은 상태를 `Shipping`으로 업데이트할 때까지 처리되지 않습니다.|
-|`Shipping`|작업 패키지가 2주 이상 도착하지 않았습니다.|운영 팀이 고객에게 누락된 패키지를 알립니다. 고객의 응답에 따라 운영 팀은 패키지 도착을 기다리거나 작업을 취소할 간격을 연장합니다.<br /><br /> 고객이 30일 이내에 연락할 수 없거나 응답하지 않는 경우 운영 팀은 작업을 `Shipping` 상태에서 `Closed` 상태로 직접 전환하는 작업을 시작합니다.|
-|`Completed/Closed`|드라이브가 반송 주소에 도착하지 않았거나 운송 시 손상되었습니다(내보내기 작업에만 해당).|드라이브가 반송 주소에 도착하지 않은 경우 고객은 먼저 작업 가져오기 작업을 호출하거나 포털에서 작업 상태를 확인하여 드라이브가 운송되었는지 확인해야 합니다. 드라이브가 운송되었으면 고객이 운송업체에 문의하여 드라이브를 찾아야 합니다.<br /><br /> 운송 중에 드라이브가 손상된 경우 고객이 다른 내보내기 작업을 요청하거나 누락된 Bolb을 다운로드하려고 할 수 있습니다.|
-|`Transferring/Packaging`|작업의 반송 주소가 잘못되었거나 누락되었습니다.|운영 팀이 작업 담당자에게 문의하여 올바른 주소를 얻습니다.<br /><br /> 고객에게 연락할 수 없는 경우 90일 이내에 드라이브가 안전하게 소멸됩니다.|
-|`Creating / Shipping/ Transferring`|가져올 드라이브 목록에 나타나지 않는 드라이브가 운송 패키지에 포함되어 있습니다.|추가 드라이브는 처리되지 않으며 작업이 완료되면 고객에게 반환됩니다.|
+|`Creating or Undefined`|작업에 대 한 하나 이상의 드라이브가 도착 했지만 hello 작업 hello에 없는 `Shipping` 상태 또는 hello 서비스에서 hello 작업의 기록이 없습니다.|hello 가져오기/내보내기 서비스 운영 팀 toocontact hello 고객 toocreate 또는 hello 작업 작업과 필요한 정보 toomove hello 앞으로 업데이트 됩니다.<br /><br /> Hello 운영 팀 후 2 주 안에 없습니다 toocontact hello 고객 이면 hello 운영 팀 tooreturn hello 드라이브를 시도 합니다.<br /><br /> Hello 드라이브를 반환할 수 없습니다 및 hello 고객에 연결할 수 없습니다는 hello 이벤트에서 90 일 안에 hello 드라이브는 안전 하 게 제거 됩니다.<br /><br /> 상태로 너무 업데이트 될 때까지 작업을 처리할 수에 유의`Shipping`합니다.|
+|`Shipping`|hello 직업 패키지가 2 주 이상 동안 도착 하지 않았습니다.|hello 운영 팀은 hello 누락 된 패키지의 hello 고객을 게 알립니다. Hello 고객의 응답에 따라 hello 운영 팀은 확장 hello 패키지 tooarrive에 대 한 hello 간격 toowait 하거나 hello 작업을 취소 하십시오.<br /><br /> Hello 이벤트에 해당 hello 고객에 연결할 수 없는 되었거나 hello 운영 팀 hello에서 동작 toomove hello 작업 시작 30 일 이내 응답 하지 않으면 `Shipping` 상태 직접 toohello `Closed` 상태입니다.|
+|`Completed/Closed`|hello 되지 hello 반송 주소에 도달 드라이버나 배송 (내보내기 작업의 유일한 tooan 적용 됨) 중에 손상 되었습니다.|Hello 드라이브 hello 반송 주소에 도달 하지 않으므로 hello 고객은 첫 번째 호출 hello Get Job 작업이 또는에서 hello 작업 상태를 확인 hello 포털 tooensure 드라이브가 배송 되었음을 해당 hello 합니다. Hello 드라이브 배송 된 후 hello 고객 hello 배송 공급자 tootry에 게 문의 하 고 hello 드라이브를 찾을 해야 합니다.<br /><br /> Hello 드라이브 배송 하는 동안 손상 된 경우 hello 고객 다른 내보내기 작업 또는 다운로드 hello 누락 된 blob toorequest 좋습니다.|
+|`Transferring/Packaging`|작업의 반송 주소가 잘못되었거나 누락되었습니다.|hello 운영 팀 toohello 책임자 hello 작업 tooobtain hello 올바른 주소에 연락 합니다.<br /><br /> Hello 이벤트에 해당 hello 고객 연락할 수 없는 경우 hello 90 일 이내에 드라이브를 안전 하 게 폐기 합니다.|
+|`Creating / Shipping/ Transferring`|가져올 드라이브 toobe hello 목록에 나타나지 않는 드라이브 hello 배송 패키지에에서 포함 됩니다.|hello 추가 드라이브 처리 되지 않습니다 및 hello 작업이 완료 될 때 toohello 고객이 반환 됩니다.|
 
 ## <a name="drive-states"></a>드라이브 상태
-아래 표와 다이어그램에서는 개별 드라이브가 가져오기 또는 내보내기 작업을 통해 전환할 때의 수명 주기를 설명합니다. `Get Job` 작업을 호출하고 `DriveList` 속성의 `State` 요소를 검사하여 현재 드라이브 상태를 검색할 수 있습니다.
+hello 테이블과 아래 hello 다이어그램으로 가져오기 또는 내보내기 작업 전환 될 때 개별 드라이브의 수명 주기 hello에 설명 합니다. 호출 hello 여 hello 현재 드라이브 상태를 검색할 수 있습니다 `Get Job` 작업 및 검사 hello `State` hello 요소의 `DriveList` 속성입니다.
 
 ![드라이브 상태](./media/storage-import-export-retrieving-state-info-for-a-job/DriveStates.png "드라이브 상태")
 
-다음 표에서는 드라이브가 통과할 수 있는 각각의 상태를 설명합니다.
+hello 다음 표에서 드라이브가 통과할 수 있는 각 상태.
 
 |드라이브 상태|설명|
 |-----------------|-----------------|
-|`Specified`|가져오기 작업의 경우 작업 배치 작업을 통해 작업을 만들 때 드라이브의 초기 상태는 `Specified` 상태입니다. 내보내기 작업의 경우 작업을 만들 때 드라이브가 지정되지 않으므로 초기 드라이브 상태는 `Received` 상태입니다.|
-|`Received`|Import/Export 서비스 운영자가 가져오기 작업을 위해 운송 회사로부터 받은 드라이브를 처리할 때 드라이브가 `Received` 상태로 전환합니다. 내보내기 작업의 경우 초기 드라이브 상태는 `Received` 상태입니다.|
-|`NeverReceived`|작업 패키지가 도착했지만 패키지에 드라이브가 포함되어 있지 않으면 해당 드라이브가 `NeverReceived` 상태로 전환합니다. 또한 서비스에서 운송 정보를 받은 후 2주가 경과했지만 패키지가 데이터 센터에 아직 도착하지 않은 경우에도 드라이브가 이 상태로 전환할 수 있습니다.|
-|`Transferring`|서비스에서 드라이브로부터 Microsoft Azure Storage로 데이터를 전송하기 시작하면 드라이브가 `Transferring` 상태로 전환합니다.|
-|`Completed`|서비스에서 모든 데이터를 오류 없이 성공적으로 전송하면 드라이브가 `Completed` 상태로 전환합니다.|
-|`CompletedMoreInfo`|데이터를 드라이브에(서) 복사하는 동안 서비스에서 몇 가지 문제가 발생하면 드라이브가 `CompletedMoreInfo` 상태로 전환합니다. 정보에는 Blob 덮어쓰기에 대한 오류, 경고 또는 정보 메시지가 포함될 수 있습니다.|
-|`ShippedBack`|드라이브가 데이터 센터에서 반송 주소로 반송되면 `ShippedBack` 상태로 전환합니다.|
+|`Specified`|가져오기 작업에 대 한 hello 작업이 Put Job 작업 hello로 만들어질 때 드라이브에 대 한 hello 초기 상태는 hello `Specified` 상태입니다. 내보내기 작업에 대 한 hello 작업이 만들어질 때 드라이브를 지정 하므로 hello 초기 드라이브 상태는 hello `Received` 상태입니다.|
+|`Received`|hello toohello 전환 `Received` 가져오기/내보내기 서비스 운영자가 가져오기 작업에 대 한 회사를 전달 하는 hello 로부터 받은 hello 드라이브를 처리 하는 경우 hello 상태입니다. 내보내기 작업에 대 한 hello 초기 드라이브 상태는 hello `Received` 상태입니다.|
+|`NeverReceived`|hello 드라이브 toohello 들어왔다 `NeverReceived` 직업 패키지가 도착 했지만 hello 패키지 hello 드라이브를 포함 하지 않는 경우 hello 상태입니다. Hello 서비스 hello 배송 정보를 받았지만 hello 패키지 hello 데이터 센터에 아직 도착 하지 않은 후 2 주 후 경과 된 경우에이 상태로 드라이브를 이동할 수도 있습니다.|
+|`Transferring`|Toohello 이동 됩니다 `Transferring` 상태 때 hello tootransfer 데이터로 hello 드라이브 tooWindows Azure 저장소 서비스를 시작 합니다.|
+|`Completed`|Toohello 이동 됩니다 `Completed` hello 서비스 모든 hello 데이터를 오류 없이 성공적으로 전송 때 상태입니다.|
+|`CompletedMoreInfo`|Toohello 이동 됩니다 `CompletedMoreInfo` 때 hello 서비스에서 문제가 발생 했습니다 일부 데이터를 복사 하는 동안에서 또는 toohello 드라이브 상태입니다. hello 정보는 오류, 경고 또는 blob 덮어쓰기에 대 한 정보 메시지에 포함할 수 있습니다.|
+|`ShippedBack`|hello 드라이브 toohello 들어왔다 `ShippedBack` hello 데이터 센터 백 toohello 반송 주소에서 배송 되는 경우 상태입니다.|
 
-다음 표에서는 드라이브 오류 상태 및 각 상태에 대해 수행하는 작업을 설명합니다.
+hello 다음 표에 hello 드라이브 오류 상태와 각 상태에 대해 수행 하는 hello 작업이 있습니다.
 
 |드라이브 상태|이벤트|해결 방법/다음 단계|
 |-----------------|-----------|-----------------------------|
-|`NeverReceived`|작업 운송물의 일부로 받지 못하여 `NeverReceived`로 표시된 드라이브가 다른 운송을 통해 도착했습니다.|운영 팀이 드라이브를 `Received` 상태로 전환합니다.|
-|`N/A`|작업에 포함되지 않은 드라이브가 다른 작업의 일부로 데이터 센터에 도착했습니다.|드라이브가 추가 드라이브로 표시되며 원래 패키지와 관련된 작업이 완료되면 고객에게 반송됩니다.|
+|`NeverReceived`|로 표시 된 드라이브 `NeverReceived` (hello 작업 배송의 일부로 수신 되지 않았으므로) 이므로 다른 배송으로 도착 합니다.|hello 운영 팀에 들어왔다 hello 드라이브 toohello `Received` 상태입니다.|
+|`N/A`|작업의 일부가 아닌 드라이브는 다른 작업의 일부로 hello 데이터 센터에 도착 합니다.|hello 드라이브는 추가 드라이브로 표시 하 고 hello 원래 패키지와 관련 된 hello 작업이 완료 될 때 toohello 고객 반환 됩니다.|
 
 ## <a name="faulted-states"></a>오류(Faulted) 상태
-작업 또는 드라이브가 예상 수명 주기 동안 정상적으로 진행되지 않으면 해당 작업 또는 드라이브가 `Faulted` 상태로 전환합니다. 운영 팀이 해당 시점에서 고객에게 전자 메일 또는 전화로 연락합니다. 문제가 해결되면 오류가 발생한 작업 또는 드라이브가 `Faulted` 상태에서 적절한 상태로 전환합니다.
+Hello 작업 또는 드라이브 오류가 발생 하면 일반적으로 예상된 수명 주기를 통한 tooprogress 작업 또는 드라이브로 이동 될 예정는 `Faulted` 상태입니다. 해당 시점에 hello 운영 팀에 전자 메일 이나 전화를 통해 hello 고객을 연락 합니다. Hello 문제가 해결 되 면 hello faulted 작업 또는 드라이브 hello 부족 수행 될 `Faulted` 적절 한 상태를 상태 그리고 hello로 이동 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Import/Export 서비스 REST API 사용](storage-import-export-using-the-rest-api.md)
+* [Hello 가져오기/내보내기 서비스 REST API를 사용 하 여](storage-import-export-using-the-rest-api.md)

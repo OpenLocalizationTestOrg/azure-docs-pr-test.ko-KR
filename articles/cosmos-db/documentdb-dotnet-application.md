@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB용 ASP.NET MVC 자습서: 웹 응용 프로그램 개발 | Microsoft Docs"
-description: "Azure Cosmos DB를 사용하여 MVC 웹 응용 프로그램을 만드는 ASP.NET MVC 자습서 JSON을 저장하고 Azure Websites - ASP NET MVC 단계별 자습서에서 호스팅하는 todo 앱에서 데이터에 액세스합니다."
+description: "ASP.NET MVC 자습서 toocreate Azure Cosmos DB를 사용 하 여 MVC 웹 응용 프로그램 JSON을 저장하고 Azure Websites - ASP NET MVC 단계별 자습서에서 호스팅하는 todo 앱에서 데이터에 액세스합니다."
 keywords: "ASP.NET MVC 자습서, 웹 응용 프로그램 개발, MVC 웹 응용 프로그램, ASP NET MVC 단계별 자습서"
 services: cosmos-db
 documentationcenter: .net
@@ -15,11 +15,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: mimig
-ms.openlocfilehash: 3f2950fe25feb8f3ee81cc0a79bf624f0ee33bd5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dac2a9599b395524533e6fe14983789ff095331f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="_Toc395809351"></a>ASP.NET MVC 자습서: Azure Cosmos DB를 사용한 웹 응용 프로그램 개발
 > [!div class="op_single_selector"]
@@ -30,100 +30,100 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-Azure Cosmos DB를 효율적으로 활용하여 JSON 문서를 저장 및 쿼리할 수 있는 방법을 강조하기 위해 이 문서에서는 Azure Cosmos DB를 사용하여 todo 앱을 빌드하는 방법을 보여 주는 종합적인 연습을 제공합니다. 작업은 Azure Cosmos DB에 JSON 문서로 저장됩니다.
+toohighlight이이 문서에서는 방법을 보여 주는 하는 종단 간 연습을 제공 수 효율적으로 Azure Cosmos DB toostore를 활용 하 고 JSON 문서를 쿼리 하는 방법 toobuild Azure Cosmos DB를 사용 하 여 todo 앱. hello 작업 Azure Cosmos DB에서 JSON 문서도 저장 됩니다.
 
-![이 자습서에서 만든 할 일 모음 MVC 웹 응용 프로그램의 스크린샷 - ASP NET MVC 단계별 자습서](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-image01.png)
+![Hello 할 일 목록 ASP NET MVC 자습서 단계별-이 자습서에서 만든 MVC 웹 응용 프로그램의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-image01.png)
 
-이 연습에서는 Azure Cosmos DB 서비스를 사용하여 Azure에서 호스트되는 ASP.NET MVC 웹 응용 프로그램의 데이터를 저장하고 액세스하는 방법을 보여 줍니다. ASP.NET MVC 구성 요소가 아닌 Azure Cosmos DB에만 집중하는 자습서를 찾는 경우 [Azure Cosmos DB C# 콘솔 응용 프로그램 빌드](documentdb-get-started.md)를 참조하세요.
+이 연습에서는 toouse Azure에서 호스팅되는 ASP.NET MVC 웹 응용 프로그램에서 Azure Cosmos DB 서비스 toostore 및 액세스 데이터를 hello 하는 방법을 보여 줍니다. 표시 되 면 Azure Cosmos DB에만 초점을 두는 자습서에 대 한 원하는 하지 hello ASP.NET MVC 구성 요소 [Azure Cosmos DB C# 콘솔 응용 프로그램을 작성할](documentdb-get-started.md)합니다.
 
 > [!TIP]
-> 이 자습서에서는 이전에 ASP.NET MVC 및 Azure Websites를 사용해 본 경험이 있다고 가정합니다. ASP.NET 또는 [필수 도구](#_Toc395637760)를 처음 사용하는 경우 [GitHub][GitHub]에서 전체 샘플 프로젝트를 다운로드하고 이 샘플의 지침을 따르는 것이 좋습니다. 프로젝트를 빌드하고 나면 이 문서를 검토하여 프로젝트의 컨텍스트에서 코드를 이해할 수 있습니다.
+> 이 자습서에서는 이전에 ASP.NET MVC 및 Azure Websites를 사용해 본 경험이 있다고 가정합니다. 새 tooASP.NET 또는 hello [필수 구성 요소 도구](#_Toc395637760)에서 hello 전체 샘플 프로젝트를 다운로드 하는 것이 좋습니다 [GitHub] [ GitHub] hello 지침에 따라 이 샘플입니다. 를 만든 후 작성 된 것이 문서 toogain에 대 한 정보 hello 프로젝트의 hello 컨텍스트에서 hello 코드를 검토할 수 있습니다.
 > 
 > 
 
 ## <a name="_Toc395637760"></a>이 데이터베이스 자습서의 필수 조건
-이 문서의 지침을 따르기 전에 다음이 있는지 확인해야 합니다.
+Hello이이 문서의 지침을 수행 하기 전에 hello 다음 있는지 확인 해야 합니다.
 
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요. 
 
     또는
 
-    [Azure Cosmos DB 에뮬레이터](local-emulator.md)의 로컬 설치
+    Hello의 로컬 설치 [Azure Cosmos DB 에뮬레이터](local-emulator.md)합니다.
 * [Visual Studio 2017](http://www.visualstudio.com/).  
-* Microsoft Azure SDK for .NET for Visual Studio 2017, Visual Studio 설치 관리자를 통해 사용 가능합니다.
+* Microsoft Azure SDK for.NET에 대 한 Visual Studio 2017 년 hello Visual Studio 설치 관리자를 통해 사용할 수 있습니다.
 
-이 문서의 모든 스크린 샷은 Microsoft Visual Studio Community 2017을 사용하여 작성되었습니다. 시스템이 다른 버전으로 구성된 경우 화면과 옵션이 일부 달라질 수 있지만 위의 필수 구성 요소를 충족하면 솔루션을 사용할 수 있습니다.
+Microsoft Visual Studio 커뮤니티 2017을 사용 하 여이 문서에서 모든 hello 스크린 샷 수행 되었습니다. 시스템 구성에 다른 버전으로 경우 것으로 화면과 옵션 완전히 일치 하지 않습니다 되지만 hello 위의 필수 구성 요소를 충족 하는 경우에이 솔루션 작동 해야 합니다.
 
 ## <a name="_Toc395637761"></a>1단계: Azure Cosmos DB 데이터베이스 계정 만들기
-Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB용 SQL(DocumentDB) 계정이 이미 있거나 이 자습서에 Azure Cosmos DB 에뮬레이터를 사용하고 있는 경우 [새 ASP.NET MVC 응용 프로그램 만들기](#_Toc395637762)로 건너뛸 수 있습니다.
+Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. 경우 이미 Azure Cosmos DB에 대 한 SQL (DocumentDB) 계정이 또는 사용 하는 경우이 자습서에 대 한 Azure Cosmos DB 에뮬레이터 hello를 건너뛸 수 있습니다 너무[새 ASP.NET MVC 응용 프로그램 만들기](#_Toc395637762)합니다.
 
 [!INCLUDE [create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 [!INCLUDE [keys](../../includes/cosmos-db-keys.md)]
 
 <br/>
-이제 새 ASP.NET MVC 응용 프로그램을 처음부터 만드는 방법을 살펴보겠습니다. 
+이제 단계별로 어떻게 toocreate hello에서 새 ASP.NET MVC 응용 프로그램 명확 하 게 해제 합니다. 
 
 ## <a name="_Toc395637762"></a>2단계: 새 ASP.NET MVC 응용 프로그램 만들기
 
-1. Visual Studio의 **파일** 메뉴에서 **새로 만들기**를 가리킨 후 **프로젝트**를 클릭합니다. **새 프로젝트** 대화 상자가 나타납니다.
+1. Hello에 Visual Studio에서 **파일** 메뉴 너무 가리킨**새로**, 클릭 하 고 **프로젝트**합니다. hello **새 프로젝트** 대화 상자가 나타납니다.
 
-2. **프로젝트 형식** 창에서 **템플릿**, **Visual C#**, **웹**을 확장한 후 **ASP.NET 웹 응용 프로그램**을 선택합니다.
+2. Hello에 **프로젝트 형식** 창 확장 **템플릿**, **Visual C#**, **웹**를 선택한 후 **ASP.NET 웹 응용 프로그램** .
 
-      ![ASP.NET 웹 응용 프로그램 프로젝트 유형이 강조 표시된 새 프로젝트 대화 상자의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-project-dialog.png)
+      ![강조 표시 하는 hello ASP.NET 웹 응용 프로그램 프로젝트 형식과 함께 hello 새 프로젝트 대화 상자 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-project-dialog.png)
 
-3. **이름** 상자에 프로젝트의 이름을 입력합니다. 이 자습서에서는 "todo"라는 이름을 사용합니다. 다른 이름을 사용하도록 선택한 경우에는 이 자습서에서 todo 네임스페이스를 지칭할 때마다 지정한 응용 프로그램 이름을 사용하도록 제공된 코드 샘플을 조정해야 합니다. 
-4. **찾아보기**를 클릭하여 프로젝트를 만들 폴더로 이동한 후 **확인**을 클릭합니다.
+3. Hello에 **이름** 상자 hello 프로젝트의 hello 이름을 입력 합니다. 이 자습서에서는 hello 이름 "todo"를 사용 합니다. 을 선택 하면 toouse이 아닌 다른 hello todo 네임 스페이스에 대 한이 자습서 발언 때마다 해야 tooadjust hello 제공 된 코드 샘플 toouse 응용 프로그램이 지정한 이름을. 
+4. 클릭 **찾아보기** toonavigate toohello 폴더 위치 toocreate hello 프로젝트를 선택한 다음 클릭 **확인**합니다.
    
-      **새 ASP.NET 웹 응용 프로그램** 대화 상자가 나타납니다.
+      hello **새 ASP.NET 웹 응용 프로그램** 대화 상자가 나타납니다.
    
-    ![새 ASP.NET 웹 응용 프로그램 대화 상자 스크린샷(MVC 응용 프로그램 템플릿이 강조 표시됨)](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-MVC.png)
-5. 템플릿 창에서 **MVC**를 선택합니다.
+    ![강조 표시 하는 hello MVC 응용 프로그램 템플릿 사용 하 여 hello 새 ASP.NET 웹 응용 프로그램 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-MVC.png)
+5. Hello 템플릿 창에서 선택 **MVC**합니다.
 
-6. **확인** 을 클릭하면 Visual Studio에서 빈 ASP.NET MVC 템플릿을 스캐폴딩합니다. 
+6. 클릭 **확인** 주위 스 캐 폴딩 hello 빈 ASP.NET MVC 템플릿에서 해당 작업을 수행 하는 Visual Studio를 사용 하 고 있습니다. 
 
           
-7. Visual Studio에서 상용구 MVC 응용 프로그램을 만들면 로컬에서 실행할 수 있는 빈 ASP.NET 응용 프로그램을 갖게 됩니다.
+7. Visual Studio 완료 되 면 hello 상용구 MVC 응용 프로그램을 만드는 해야 빈 ASP.NET 응용 프로그램을 로컬로 실행할 수 있습니다.
    
-    모두 ASP.NET "Hello World" 응용 프로그램을 본 적이 있다고 확신하므로 프로젝트 로컬 실행은 건너뛰겠습니다. 바로 이 프로젝트에 Azure Cosmos DB를 추가하고 응용 프로그램을 작성하겠습니다.
+    ASP.NET "Hello World" 모든 표시 hello 이유임 확실 하기 때문에 로컬로 실행 중인 hello 프로젝트 건너뜁니다 응용 프로그램입니다. 직선 tooadding Azure Cosmos DB toothis 프로젝트 및 응용 프로그램을 빌드 해 보겠습니다.
 
-## <a name="_Toc395637767"></a>3단계: MVC 웹 응용 프로그램 프로젝트에 Azure Cosmos DB 추가
-이 솔루션에 필요한 대부분의 ASP.NET MVC 배관을 만들었으므로 이제 이 자습서의 실제 목적으로 돌아가 MVC 웹 응용 프로그램에 Azure Cosmos DB를 추가해 보겠습니다.
+## <a name="_Toc395637767"></a>3 단계: Azure Cosmos DB tooyour MVC 웹 응용 프로그램 프로젝트 추가
+이제 대부분이이 솔루션에 대 한 hello ASP.NET MVC 배관의 했으므로 Azure Cosmos DB tooour MVC 웹 응용 프로그램을 추가 하는이 자습서에서는 주요 목적은 toohello 보겠습니다.
 
-1. Azure Cosmos DB .NET SDK는 패키지되어 NuGet 패키지로 배포되며, Visual Studio에서 NuGet 패키지를 다운로드하려면 **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭한 후 **NuGet 패키지 관리**를 클릭하여 Visual Studio에서 NuGet 패키지 관리자를 사용합니다.
+1. hello Cosmos DB AZURE.NET SDK가 패키징되 어 NuGet 패키지로 배포 됩니다. tooget Visual Studio에서 NuGet 패키지를 hello, Visual Studio에서 hello NuGet 패키지 관리자를 사용 하 여 hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 여 **솔루션 탐색기** 클릭 한 다음 **NuGet 패키지 관리**합니다.
    
-    ![NuGet 패키지 관리가 강조 표시된 솔루션 탐색기 내 웹 응용 프로그램 프로젝트에 대한 마우스 오른쪽 클릭 옵션의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-manage-nuget.png)
+    ![Hello 스크린 샷 단추로 NuGet 패키지 관리 강조 표시 된 솔루션 탐색기에서 hello 웹 응용 프로그램 프로젝트에 대 한 옵션을 클릭 합니다.](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-manage-nuget.png)
    
-    **NuGet 패키지 관리** 대화 상자가 나타납니다.
-2. NuGet **찾아보기** 상자에 ***Azure DocumentDB***를 입력합니다. (패키지 이름은 Azure Cosmos DB로 업데이트되지 않았습니다.)
+    hello **NuGet 패키지 관리** 대화 상자가 나타납니다.
+2. Hello NuGet에서에서 **찾아보기** 상자에서 입력 ***Azure DocumentDB***합니다. (hello 패키지 이름을 업데이트 tooAzure Cosmos DB 되지 않았습니다.)
    
-    결과에서 **Microsoft.Azure.DocumentDB by Microsoft** 패키지를 설치합니다. 그러면 Azure Cosmos DB 패키지 및 모든 종속성(예: Newtonsoft.Json)이 다운로드되어 설치됩니다. **미리 보기** 창에서 **확인**을 클릭하고 **라이선스 승인** 창에서 **동의**를 클릭하여 설치를 완료합니다.
+    Hello 결과 통해 설치 hello **microsoft Microsoft.Azure.DocumentDB** 패키지 합니다. 이 다운로드 하 여 Newtonsoft.Json 등 모든 종속성 뿐 아니라 hello Azure Cosmos DB 패키지를 설치 합니다. 클릭 **확인** hello에 **미리 보기** 창 및 **동의** hello에 **라이선스 승인** 창 toocomplete hello 설치 합니다.
    
-    ![Microsoft Azure DocumentDB Client Library가 강조 표시된 NuGet 패키지 관리 창의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-install-nuget.png)
+    ![화면 샷 hello NuGet 패키지 관리 창 hello 강조 표시 하는 Microsoft Azure DocumentDB 클라이언트 라이브러리](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-install-nuget.png)
    
-      또는 패키지 관리자 콘솔을 사용하여 패키지를 설치할 수 있습니다. 이렇게 하려면 **도구** 메뉴에서 **NuGet 패키지 관리자**, **패키지 관리자 콘솔**을 차례로 클릭합니다. 프롬프트에 다음을 입력합니다.
+      또는 hello 패키지 관리자 콘솔 tooinstall hello 패키지를 사용할 수 있습니다. toodo hello에 너무 **도구** 메뉴를 클릭 하 여 **NuGet 패키지 관리자**, 클릭 하 고 **패키지 관리자 콘솔**합니다. Hello 프롬프트 hello 다음을 입력 합니다.
    
         Install-Package Microsoft.Azure.DocumentDB
         
-3. 패키지가 설치되고 나면 Visual Studio 솔루션은 Microsoft.Azure.Documents.Client 및 Newtonsoft.Json이라는 두 개의 새 참조가 추가된 상태로 다음과 유사합니다.
+3. Hello 패키지를 설치한 후 Visual Studio 솔루션에 두 개의 새 참조 추가, Microsoft.Azure.Documents.Client 및 Newtonsoft.Json을 사용 하 여 hello 다음을 비슷해야 합니다.
    
-    ![솔루션 탐색기에서 JSON 데이터 프로젝트에 추가된 두 참조의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-added-references.png)
+    ![화면 샷 hello 두 개의 참조 솔루션 탐색기에서 toohello JSON 데이터 프로젝트 추가](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-added-references.png)
 
-## <a name="_Toc395637763"></a>4단계: ASP.NET MVC 응용 프로그램 설정
-이제 이 MVC 응용 프로그램에 모델, 뷰 및 컨트롤러를 추가합니다.
+## <a name="_Toc395637763"></a>4 단계: hello ASP.NET MVC 응용 프로그램 설정
+이제 hello 모델, 뷰 및 컨트롤러 toothis MVC 응용 프로그램을 추가 해 보겠습니다.
 
 * [모델 추가](#_Toc395637764).
 * [컨트롤러 추가](#_Toc395637765).
 * [뷰 추가](#_Toc395637766).
 
 ### <a name="_Toc395637764"></a>JSON 데이터 모델 추가
-먼저 MVC의 **M** 인 모델을 만들겠습니다. 
+Hello를 만들어 보겠습니다 **M** mvc에서 모델을 hello 합니다. 
 
-1. **솔루션 탐색기**에서 **Models** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **클래스**를 차례로 클릭합니다.
+1. **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **모델** 폴더를 클릭 **추가**, 클릭 하 고 **클래스**합니다.
    
-      **새 항목 추가** 대화 상자가 나타납니다.
+      hello **새 항목 추가** 대화 상자가 나타납니다.
 2. 새 클래스의 이름을 **Item.cs**로 지정하고 **추가**를 클릭합니다. 
-3. 이 새 **Item.cs** 파일에서 마지막 *using 문*뒤에 다음을 추가합니다.
+3. 이 새로운 **Item.cs** 파일, 마지막 hello hello 뒤에 다음 추가 *문을 사용 하 여*합니다.
    
         using Newtonsoft.Json;
 4. 이제 이 코드를 
@@ -132,7 +132,7 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
         {
         }
    
-    다음 코드로 바꿉니다.
+    코드 다음 안녕하세요와.
    
         public class Item
         {
@@ -149,90 +149,90 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
             public bool Completed { get; set; }
         }
    
-    Azure Cosmos DB의 모든 데이터가 네트워크를 통해 전달되고 JSON으로 저장됩니다. JSON.NET에서 개체를 직렬화/역직렬화하는 방식을 제어하기 위해 방금 만든 **Item** 클래스에서 본 것처럼 **JsonProperty** 특성을 사용할 수 있습니다. 꼭 **필요한** 과정은 아니지만 저는 제가 만든 속성이 JSON camelCase 명명 규칙을 따르는지 확인하고 싶습니다. 
+    Azure Cosmos DB에서 모든 데이터는 hello 네트워크를 통해 전달 되 고 JSON으로 저장 합니다. 개체는 사용할 수 있습니다 JSON.NET 직렬화/역직렬화 toocontrol hello 방식으로 hello **JsonProperty** hello에서와 같이 특성 **항목** 방금 만든 클래스입니다. 그렇지 않으면 **가** toodo 했지만이 원하는 tooensure 내 속성 hello JSON camelCase 명명 규칙을 따르도록 합니다. 
    
-    JSON의 경우 속성 이름 형식을 제어할 수 있을 뿐만 아니라, **Description** 속성에 대해 했던 것처럼 .NET 속성의 이름을 완전히 다시 지정할 수 있습니다. 
+    뿐만 아니라을 조정할 수 hello 속성 이름의 hello 형식은 JSON에 있지만 hello로 했던 처럼.NET 속성을 완전히 바꿀 수 있습니다 **설명** 속성입니다. 
 
 ### <a name="_Toc395637765"></a>컨트롤러 추가
-**M** 작업을 마쳤으므로 이제 MVC의 **C**인 컨트롤러 클래스를 만듭니다.
+Hello의 담당 **M**, 이제 hello를 만들어 보겠습니다 **C** mvc에서 컨트롤러 클래스입니다.
 
-1. **솔루션 탐색기**에서 **Controllers** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **컨트롤러**를 차례로 클릭합니다.
+1. **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **컨트롤러** 폴더를 클릭 **추가**, 클릭 하 고 **컨트롤러**합니다.
    
-    **스캐폴드 추가** 대화 상자가 나타납니다.
+    hello **추가 스 캐 폴드** 대화 상자가 나타납니다.
 2. **MVC 5 컨트롤러 - 비어 있음**을 선택한 후 **추가**를 클릭합니다.
    
-    ![MVC 5 컨트롤러 - 비어 있음 옵션이 강조 표시된 스캐폴드 추가 대화 상자의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-controller-add-scaffold.png)
+    ![MVC 5 컨트롤러 강조 표시 하는 빈 옵션 hello로 hello 스 캐 폴드 추가 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-controller-add-scaffold.png)
 3. 새 컨트롤러의 이름을 **ItemController**
    
-    ![컨트롤러 추가 대화 상자의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-controller.png)
+    ![Hello 컨트롤러 추가 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-controller.png)
    
-    파일을 만들고 나면 Visual Studio 솔루션은 **솔루션 탐색기**에 새 ItemController.cs 파일이 있는 상태로 다음과 유사합니다. 이전에 만든 새 Item.cs 파일도 표시됩니다.
+    Visual Studio 솔루션에 새 ItemController.cs 파일로 hello hello 다음과 같이 해야 hello 파일을 만든 후 **솔루션 탐색기**합니다. 앞에서 만든 hello 새 Item.cs 파일 정보도 표시 됩니다.
    
-    ![Visual Studio 솔루션의 스크린샷 - 새 ItemController.cs 파일 및 Item.cs 파일이 강조 표시된 솔루션 탐색기](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-item-solution-explorer.png)
+    ![Hello Visual Studio 솔루션-hello 새 ItemController.cs 파일과 Item.cs 파일 강조 표시 된 솔루션 탐색기의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-item-solution-explorer.png)
    
-    나중에 돌아올 것이므로 ItemController.cs를 닫아도 됩니다. 
+    ItemController.cs 닫을 수 있습니다, 다시 tooit 나중 살펴보겠습니다. 
 
 ### <a name="_Toc395637766"></a>뷰 추가
-이제 MVC의 **V** 인 뷰를 만듭니다.
+이제 hello를 만들어 보겠습니다 **V** mvc에서는 뷰 hello:
 
 * [항목 인덱스 뷰 추가](#AddItemIndexView).
 * [새 항목 뷰 추가](#AddNewIndexView).
 * [항목 편집 뷰 추가](#_Toc395888515).
 
 #### <a name="AddItemIndexView"></a>항목 인덱스 뷰 추가
-1. **솔루션 탐색기**에서 **Views** 폴더를 확장하고 앞에서 **ItemController**를 추가할 때 Visual Studio에서 만들어진 빈 **Item** 폴더를 마우스 오른쪽 단추로 클릭하고 **추가**, **보기**를 차례로 클릭합니다.
+1. **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 hello 빈 **항목** hello를 추가 했을 때 Visual Studio를 만든 폴더에  **ItemController** 이전에 클릭 **추가**, 클릭 하 고 **보기**합니다.
    
-    ![뷰 추가 명령이 강조 표시된 Visual Studio에서 만든 항목 폴더를 보여 주는 솔루션 탐색기의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view.png)
-2. **뷰 추가** 대화 상자에서 다음을 수행합니다.
+    ![Visual Studio 강조 표시 하는 hello 뷰 추가 명령을 사용 하 여 만든 hello 항목 폴더를 나타내는 솔루션 탐색기의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view.png)
+2. Hello에 **뷰 추가** 대화 상자에서 다음 hello지 않습니다.
    
-   * **뷰 이름** 상자에 ***인덱스***를 입력합니다.
-   * **템플릿** 상자에서 ***목록***을 선택합니다.
-   * **모델 클래스** 상자에서 ***항목(todo.Models)***을 선택합니다.
-   * 레이아웃 페이지 상자에 ***~/Views/Shared/_Layout.cshtml***을 입력합니다.
+   * Hello에 **뷰 이름** 상자에서 입력 ***인덱스***합니다.
+   * Hello에 **템플릿** 상자 ***목록***합니다.
+   * Hello에 **모델 클래스** 상자 ***항목 (할 일입니다. 모델)***합니다.
+   * Hello 레이아웃 페이지 상자에 입력 ***~/Views/Shared/_Layout.cshtml***합니다.
      
-   ![뷰 추가 대화 상자를 보여주는 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view-dialog.png)
-3. 이러한 값이 모두 설정된 후 **추가** 를 클릭하면 Visual Studio에서 새 템플릿 뷰를 만듭니다. 완료되면 만들어진 cshtml 파일이 열립니다. 나중에 돌아올 것이므로 Visual Studio에서 해당 파일을 닫아도 됩니다.
+   ![표시 된 hello 뷰 추가 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view-dialog.png)
+3. 이러한 값이 모두 설정된 후 **추가** 를 클릭하면 Visual Studio에서 새 템플릿 뷰를 만듭니다. 작업이 완료 되 면 만든 hello cshtml 파일이 열립니다. 우리는 나중에 다시 tooit 대로 Visual Studio에서 해당 파일을 닫을 수 있습니다.
 
 #### <a name="AddNewIndexView"></a>새 항목 뷰 추가
-**항목 인덱스** 뷰를 만든 방법과 유사하게 이제 새 **항목**을 만들기 위한 새 뷰를 만듭니다.
+만든 비슷한 toohow는 **항목 인덱스** 보기를 지금 만듭니다 새로 만들기에 대 한 새 보기 **항목**합니다.
 
-1. **솔루션 탐색기**에서 **Item** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **보기**를 차례로 클릭합니다.
-2. **뷰 추가** 대화 상자에서 다음을 수행합니다.
+1. **솔루션 탐색기**, 마우스 오른쪽 단추로 클릭 hello **항목** 폴더를 다시 클릭 **추가**, 클릭 하 고 **보기**합니다.
+2. Hello에 **뷰 추가** 대화 상자에서 다음 hello지 않습니다.
    
-   * **뷰 이름** 상자에 ***Create***를 입력합니다.
-   * **템플릿** 상자에서 ***Create***를 선택합니다.
-   * **모델 클래스** 상자에서 ***항목(todo.Models)***을 선택합니다.
-   * 레이아웃 페이지 상자에 ***~/Views/Shared/_Layout.cshtml***을 입력합니다.
+   * Hello에 **뷰 이름** 상자에서 입력 ***만들기***합니다.
+   * Hello에 **템플릿** 상자 ***만들기***합니다.
+   * Hello에 **모델 클래스** 상자 ***항목 (할 일입니다. 모델)***합니다.
+   * Hello 레이아웃 페이지 상자에 입력 ***~/Views/Shared/_Layout.cshtml***합니다.
    * **추가**를 클릭합니다.
    
 #### <a name="_Toc395888515"></a>항목 편집 뷰 추가
-마지막으로, 이전과 동일한 방식으로 **항목** 을 편집하기 위한 최종 뷰를 추가합니다.
+마지막으로 편집을 위해 마지막 보기를 추가 하 고는 **항목** hello에 이전과 동일한 방식으로 합니다.
 
-1. **솔루션 탐색기**에서 **Item** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **보기**를 차례로 클릭합니다.
-2. **뷰 추가** 대화 상자에서 다음을 수행합니다.
+1. **솔루션 탐색기**, 마우스 오른쪽 단추로 클릭 hello **항목** 폴더를 다시 클릭 **추가**, 클릭 하 고 **보기**합니다.
+2. Hello에 **뷰 추가** 대화 상자에서 다음 hello지 않습니다.
    
-   * **뷰 이름** 상자에 ***Edit***를 입력합니다.
-   * **템플릿** 상자에서 ***Edit***를 선택합니다.
-   * **모델 클래스** 상자에서 ***항목(todo.Models)***을 선택합니다.
-   * 레이아웃 페이지 상자에 ***~/Views/Shared/_Layout.cshtml***을 입력합니다.
+   * Hello에 **뷰 이름** 상자에서 입력 ***편집***합니다.
+   * Hello에 **템플릿** 상자 ***편집***합니다.
+   * Hello에 **모델 클래스** 상자 ***항목 (할 일입니다. 모델)***합니다.
+   * Hello 레이아웃 페이지 상자에 입력 ***~/Views/Shared/_Layout.cshtml***합니다.
    * **추가**를 클릭합니다.
 
-이 작업이 완료되면 나중에 이러한 뷰로 돌아올 것이므로 Visual Studio에서 모든 cshtml 문서를 닫습니다.
+이 작업이 완료 되 면 나중 toothese 뷰를 반환 합니다에서는 Visual Studio에서 모든 hello cshtml 문서를 닫습니다.
 
 ## <a name="_Toc395637769"></a>5단계: Azure Cosmos DB 연결
-표준 MVC를 처리했으므로 이제 Azure Cosmos DB에 대한 코드를 추가해 보겠습니다. 
+Hello 표준 MVC 항목 처리, 했으므로 Azure Cosmos DB에 대 한 tooadding hello 코드를 설정 해 보겠습니다. 
 
-이 섹션에서는 다음을 처리하기 위한 코드를 추가합니다.
+이 섹션에서는 코드 toohandle hello 다음을 추가 하겠습니다.
 
 * [완료되지 않은 항목 나열](#_Toc395637770).
 * [항목 추가](#_Toc395637771).
 * [항목 편집](#_Toc395637772).
 
 ### <a name="_Toc395637770"></a>MVC 웹 응용 프로그램에서 완료되지 않은 항목 나열
-먼저 Azure Cosmos DB에 연결하고 이를 사용할 모든 논리가 포함된 클래스를 추가합니다. 이 자습서에서는 이 모든 논리를 DocumentDBRepository라는 리포지토리 클래스로 캡슐화합니다. 
+hello 첫 번째 것이 toodo은 추가 모든 hello 논리 tooconnect tooand 사용 하 여 Azure Cosmos DB를 포함 하는 클래스입니다. 이 자습서에 대 한 DocumentDBRepository 라는 tooa 저장소 클래스에서이 모든 논리를 캡슐화 할 것 했습니다. 
 
-1. **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가**, **클래스**를 차례로 클릭합니다. 새 클래스의 이름을 **DocumentDBRepository**로 지정하고 **추가**를 클릭합니다.
-2. 새로 만든 **DocumentDBRepository** 클래스에서 *네임스페이스* 선언 위에 다음 *using 문*을 추가합니다.
+1. **솔루션 탐색기**hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 여 **추가**, 클릭 하 고 **클래스**합니다. Hello 새 클래스 이름을 **DocumentDBRepository** 클릭 **추가**합니다.
+2. 새로 만든 hello에 **DocumentDBRepository** 클래스 및 hello 다음 추가 *문을 사용 하 여* hello 위에 *네임 스페이스* 선언
    
         using Microsoft.Azure.Documents; 
         using Microsoft.Azure.Documents.Client; 
@@ -248,7 +248,7 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
         {
         }
    
-    다음 코드로 바꿉니다.
+    코드 다음 안녕하세요와.
    
         public static class DocumentDBRepository<T> where T : class
         {
@@ -306,17 +306,17 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
         }
    
     
-3. 구성에서 일부 값을 읽어올 것이므로 응용 프로그램의 **Web.config** 파일을 열고 `<AppSettings>` 섹션 아래에 다음 줄을 추가합니다.
+3. 구성에서 일부 값을 읽는 하는 것, hello을 열고 **Web.config** 응용 프로그램의 파일 hello hello 아래 줄을 다음 추가 `<AppSettings>` 섹션.
    
-        <add key="endpoint" value="enter the URI from the Keys blade of the Azure Portal"/>
-        <add key="authKey" value="enter the PRIMARY KEY, or the SECONDARY KEY, from the Keys blade of the Azure  Portal"/>
+        <add key="endpoint" value="enter hello URI from hello Keys blade of hello Azure Portal"/>
+        <add key="authKey" value="enter hello PRIMARY KEY, or hello SECONDARY KEY, from hello Keys blade of hello Azure  Portal"/>
         <add key="database" value="ToDoList"/>
         <add key="collection" value="Items"/>
-4. 이제 Azure Portal의 키 블레이드를 사용하여 *끝점* 및 *authKey* 값을 업데이트합니다. 키 블레이드의 **URI**를 끝점 설정 값으로 사용하고 키 블레이드의 **기본 키** 또는 **보조 키**를 authKey 설정 값으로 사용합니다.
+4. 이제, 업데이트에 대 한 hello 값 *끝점* 및 *authKey* hello Azure 포털의 키 블레이드에서 hello를 사용 하 여 합니다. Hello를 사용 하 여 **URI** hello 끝점 설정 및 사용 하 여 hello hello 값으로 hello 키 블레이드에서 **기본 키**, 또는 **보조 키** hello의 hello 값으로 hello 키 블레이드에서 authKey 설정입니다.
 
-    Azure Cosmos DB 리포지토리의 연결을 완료했으므로 이제 응용 프로그램 논리를 추가해 보겠습니다.
+    관리 배선 hello Azure Cosmos DB 리포지토리를 이제 보겠습니다 추가할이 응용 프로그램 논리.
 
-1. todo 모음 응용 프로그램으로 가장 먼저 할 일은 완료되지 않은 항목을 표시하는 것입니다.  다음 코드 조각을 **DocumentDBRepository** 클래스 내의 아무 곳에나 복사하여 붙여 넣습니다.
+1. hello 먼저 원하는 toobe 수 toodo 할 일 목록 응용 프로그램은 toodisplay hello 불완전 한 항목입니다.  복사 및 붙여넣기 hello 내 코드 조각 다음 hello **DocumentDBRepository** 클래스입니다.
    
         public static async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
         {
@@ -333,13 +333,13 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
    
             return results;
         }
-2. 앞에서 추가한 **ItemController** 를 열고 네임스페이스 선언 위에 다음 *using 문* 을 추가합니다.
+2. 열기 hello **ItemController** 앞에 추가 하 고 hello 다음 추가 *문을 사용 하 여* hello 네임 스페이스 선언 위에 있습니다.
    
         using System.Net;
         using System.Threading.Tasks;
         using todo.Models;
    
-    프로젝트 이름이 "todo"가 아닌 경우 프로젝트 이름을 반영하기 위해 "todo.Models";를 사용하여 업데이트해야 합니다.
+    프로젝트 "todo"을 지정 하지 않은 경우 다음 필요한 tooupdate "todo를 사용 하 여. 모델 "; 프로젝트의 tooreflect hello 이름입니다.
    
     이제 이 코드를
    
@@ -349,7 +349,7 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
             return View();
         }
    
-    다음 코드로 바꿉니다.
+    코드 다음 안녕하세요와.
    
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
@@ -357,40 +357,40 @@ Azure Cosmos DB 계정을 만들어 시작해 보겠습니다. Azure Cosmos DB�
             var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
             return View(items);
         }
-3. **Global.asax.cs**를 열고 **Application_Start** 메서드에 다음 줄을 추가합니다. 
+3. 열기 **Global.asax.cs** hello 줄 toohello 다음 추가 **Application_Start** 메서드 
    
         DocumentDBRepository<todo.Models.Item>.Initialize();
 
-이때 오류 없이 솔루션을 작성할 수 있어야 합니다.
+이 시점에서 솔루션에는 오류 없이 수 toobuild 이어야 합니다.
 
-지금 응용 프로그램을 실행하면 **HomeController** 및 해당 컨트롤러의 **인덱스** 뷰로 이동합니다. 이것은 시작할 때 선택한 MVC 템플릿 프로젝트에 대한 기본 동작이지만 여기서는 사용하지 않습니다. 이 동작을 변경하기 위해 이 MVC 응용 프로그램의 라우팅을 변경하겠습니다.
+Toohello 거쳐야 hello 응용 프로그램을 지금 실행 한 경우 **HomeController** 및 hello **인덱스** 해당 컨트롤러의 보기입니다. 이 hello 시작 될 때 선택한 이유는 hello MVC 서식 파일 프로젝트에 대 한 기본 동작 hello 하지만 않도록 하는! 이 MVC 응용 프로그램 tooalter에서이 동작은 라우팅 hello를 변경해 보겠습니다.
 
-***App\_Start\RouteConfig.cs***를 열고 "defaults:"로 시작하는 줄을 찾은 후 다음과 같이 변경합니다.
+열기 ***앱\_Start\RouteConfig.cs*** 찾을 hello 줄으로 시작 하 고 "기본값:" tooresemble hello 다음 변경 합니다.
 
         defaults: new { controller = "Item", action = "Index", id = UrlParameter.Optional }
 
-이 구문은 이제 ASP.NET MVC에 라우팅 동작을 제어하기 위한 URL에 값이 지정되지 않은 경우 **홈** 대신 **항목**을 컨트롤러로 사용하고 사용자 **인덱스**를 뷰로 사용하라고 지시합니다.
+이 구문은 이제 지시 hello URL toocontrol에 값을 지정 하지 않은 경우 hello 라우팅 동작 대신 ASP.NET MVC **홈**를 사용 하 여 **항목** hello 컨트롤러 및 사용자 **인덱스** hello 뷰로 합니다.
 
-이제 응용 프로그램을 실행하면 응용 프로그램에서 리포지토리 클래스를 호출하는 **ItemController**를 호출하며 GetItems 메서드를 사용하여 완료되지 않은 모든 항목을 **Views**\\**Item**\\**Index** 뷰로 반환합니다. 
+Hello 응용 프로그램을 실행 하는 경우에 호출 됩니다는 이제 프로그램 **ItemController** toohello 저장소 클래스에서 호출 되며 모든 hello 불완전 한 항목 toohello GetItems 메서드 tooreturn hello를 사용 하 여 있는 **뷰** \\ **항목**\\**인덱스** 보기. 
 
 이 프로젝트를 지금 빌드하여 실행하면 이제 다음과 같이 표시됩니다.    
 
-![이 데이터베이스 자습서에서 만든 할 일 모음 웹 응용 프로그램의 스크린샷](./media/documentdb-dotnet-application/build-and-run-the-project-now.png)
+![Hello 할 일 목록 웹 응용 프로그램의이 데이터베이스 자습서에서 만든 스크린 샷](./media/documentdb-dotnet-application/build-and-run-the-project-now.png)
 
 ### <a name="_Toc395637771"></a>항목 추가
-빈 그리드 외에 확인할 항목이 있도록 데이터베이스에 일부 항목을 추가하겠습니다.
+에 있는 빈 그리드가 toolook 보다 더 많은 한 일부 항목 데이터베이스로 넘어가면 적용 해 보겠습니다.
 
-Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository 및 ItemController에 일부 코드를 추가하겠습니다.
+일부 코드를 너무 추가해보겠습니다 Azure Cosmos DB에서 Azure Cosmos DBRepository 및 ItemController toopersist hello 레코드입니다.
 
-1. 다음 메서드를 **DocumentDBRepository** 클래스에 추가합니다.
+1. 다음 메서드 tooyour hello 추가 **DocumentDBRepository** 클래스입니다.
    
        public static async Task<Document> CreateItemAsync(T item)
        {
            return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
        }
    
-   이 메서드는 단순히 전달된 개체를 받아서 Azure Cosmos DB에 저장합니다.
-2. ItemController.cs 파일을 열고 클래스 내에 다음 코드 조각을 추가합니다. 이를 통해 ASP.NET MVC에서 **Create** 작업을 위해 수행할 작업을 인식할 수 있습니다. 이 경우 앞에서 만든 관련 Create.cshtml 뷰를 렌더링합니다.
+   이 메서드는 단순히 tooit 전달 되는 개체를 사용 하 고 계속 되 면 Azure Cosmos DB에서.
+2. Hello ItemController.cs 파일을 열고 hello 코드 조각 hello 클래스 내에서 다음을 추가 합니다. 이 ASP.NET MVC의 hello에 대 한 어떤 toodo 알고 어떻게 **만들기** 동작 합니다. 이 경우에 렌더링 hello 관련 앞에서 만든 Create.cshtml 보기.
    
         [ActionName("Create")]
         public async Task<ActionResult> CreateAsync()
@@ -398,8 +398,8 @@ Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository �
             return View();
         }
    
-    이제 **만들기** 뷰의 제출을 수락하는 코드를 이 컨트롤러에 더 추가해야 합니다.
-3. 이 컨트롤러에 대한 폼 POST의 처리 방법을 ASP.NET MVC에 알리는 다음 코드 블록을 ItemController.cs 클래스에 추가합니다.
+    이제 hello에서 hello 전송이 허용 하는이 컨트롤러에 몇 가지 더 많은 코드가 필요 **만들기** 보기.
+3. Hello 코드 toohello 어떤 toodo이이 컨트롤러에 대 한 POST 양식으로 ASP.NET MVC에 알려 주는 ItemController.cs 클래스의 다음 블록을 추가 합니다.
    
         [HttpPost]
         [ActionName("Create")]
@@ -415,18 +415,18 @@ Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository �
             return View(item);
         }
    
-    이 코드는 DocumentDBRepository를 호출하고 CreateItemAsync 메서드를 사용하여 새로운 todo 항목을 데이터베이스에 유지합니다. 
+    이 코드 toohello DocumentDBRepository 호출 하 고 hello CreateItemAsync 메서드 toopersist hello 새 할 일 항목 toohello 데이터베이스를 사용 합니다. 
    
-    **보안 정보**: **ValidateAntiForgeryToken** 특성은 여기서 교차 사이트 요청 위조 공격으로부터 이 응용 프로그램을 보호하는 데 사용됩니다. 이 특성을 추가하는 것 외에 뷰가 이 위조 방지 토큰과 작동하도록 해야 합니다. 이 주제에 대한 자세한 내용과 이를 올바르게 구현하는 방법의 예는 [교차 사이트 요청 위조 방지(영문)][Preventing Cross-Site Request Forgery]를 참조하세요. [GitHub][GitHub]에서 제공하는 소스 코드에는 완벽하게 구현되어 있습니다.
+    **보안 정보**: hello **ValidateAntiForgeryToken** 특성은 사용 여기 toohelp 교차 사이트 요청 위조 공격에 대 한이 응용 프로그램을 보호 합니다. 이 특성을 추가 하는 것 보다 더 많은 tooit를 보기에는이 위조 방지 토큰으로 toowork 필요 없습니다. Hello 제목 및 예제는 어떻게 tooimplement이 올바르게 참조 하십시오에 대 한 자세한 [교차 사이트 요청 위조 방지][Preventing Cross-Site Request Forgery]합니다. 에 제공 된 소스 코드를 hello [GitHub] [ GitHub] hello 완전 한 구현에 있습니다.
    
-    **보안 정보**: 또한 메서드 매개 변수에 **Bind** 특성을 사용하여 과도한 게시 공격으로부터 보호할 수 있습니다. 자세한 내용은 [ASP.NET MVC의 기본 CRUD 작업(영문)][Basic CRUD Operations in ASP.NET MVC]을 참조하세요.
+    **보안 정보**: hello도 사용 **바인딩할** hello 메서드 매개 변수 toohelp 특성이 공격을 과도 하 게 게시 으로부터 보호 합니다. 자세한 내용은 [ASP.NET MVC의 기본 CRUD 작업(영문)][Basic CRUD Operations in ASP.NET MVC]을 참조하세요.
 
-데이터베이스에 새 항목을 추가하는 데 필요한 코드가 완성되었습니다.
+Hello 필요한 코드 tooadd 새 항목 tooour 데이터베이스를 완료 했습니다.
 
 ### <a name="_Toc395637772"></a>항목 편집
-마지막으로 수행할 작업은 데이터베이스에서 **항목** 을 편집하고 완료로 표시하는 기능입니다. 편집용 뷰는 이미 프로젝트에 추가되었으므로 다시 컨트롤러와 **DocumentDBRepository** 클래스에 일부 코드를 추가하기만 하면 됩니다.
+에 마지막으로 toodo, 않으며 하는 tooadd hello 기능 tooedit **항목** hello 데이터베이스와 toomark에서와 같이 완료 합니다. hello 보기 편집을 위해 이미 추가 되었으므로 toohello 프로젝트, 일부 코드 tooour 컨트롤러 및 toohello त ु म च tooadd 하므로 **DocumentDBRepository** 다시 클래스입니다.
 
-1. **DocumentDBRepository** 클래스에 다음을 추가합니다.
+1. Hello toohello 다음 추가 **DocumentDBRepository** 클래스입니다.
    
         public static async Task<Document> UpdateItemAsync(string id, T item)
         {
@@ -453,10 +453,10 @@ Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository �
             }
         }
    
-    이러한 메서드 중 첫 번째 메서드인 **GetItem**은 Azure Cosmos DB에서 항목을 가져오며, 이 항목이 다시 **ItemController** 및 **편집** 뷰로 전달됩니다.
+    이러한 메서드의 첫 번째 hello **GetItem** 백 toohello 전달 되는 Azure Cosmos DB에서 항목을 인출 **ItemController** toohello에서 **편집** 보기.
    
-    방금 추가한 메서드 중 두 번째 메서드는 Cosmos DB의 **문서**를 **ItemController**에서 전달된 **문서** 버전으로 바꿉니다.
-2. **ItemController** 클래스에 다음을 추가합니다.
+    hello 메서드의 두 번째 hello 대체 hello 방금 추가한 **문서** hello 버전의 hello Azure Cosmos DB에서 **문서** hello에서 전달 된 **ItemController**합니다.
+2. Hello toohello 다음 추가 **ItemController** 클래스입니다.
    
         [HttpPost]
         [ActionName("Edit")]
@@ -489,52 +489,52 @@ Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository �
             return View(item);
         }
    
-    첫 번째 메서드는 사용자가 **인덱스** 뷰에서 **편집** 링크를 클릭할 때 발생하는 Http Get을 처리합니다. 이 메서드는 Azure Cosmos DB에서 [**문서**](http://msdn.microsoft.com/library/azure/microsoft.azure.documents.document.aspx)를 가져와 **편집** 뷰에 전달합니다.
+    hello 첫 번째 메서드 핸들 hello hello에 hello 사용자가 클릭할 때 발생 하는 Http GET **편집** hello에서 링크 **인덱스** 보기. 이 메서드를 인출는 [ **문서** ](http://msdn.microsoft.com/library/azure/microsoft.azure.documents.document.aspx) Azure Cosmos DB에서 toohello 전달 **편집** 보기.
    
-    그런 다음 **편집** 뷰는 **IndexController**에 Http Post를 수행합니다. 
+    hello **편집** 보기 다음 Http POST toohello를 수행 **IndexController**합니다. 
    
-    추가한 두 번째 메서드는 데이터베이스에 저장되도록 업데이트된 개체를 Azure Cosmos DB에 전달하는 작업을 처리합니다.
+    업데이트 하는 hello 개체 tooAzure Cosmos DB toobe 전달 핸들 추가 hello 두 번째 방법은 hello 데이터베이스에 보관 합니다.
 
-응용 프로그램을 실행하는 데 필요한 모든 작업(완료되지 않은 **항목** 나열, 새 **항목** 추가 및 **항목** 편집)이 완료되었습니다.
+응용 프로그램 toorun 필요한 모든 구성 되 고, 즉, 완료 되지 않은 목록 **항목**, 새로 추가 **항목**, 편집 및 **항목**합니다.
 
-## <a name="_Toc395637773"></a>6단계: 로컬에서 응용 프로그램 실행
-로컬 컴퓨터에서 응용 프로그램을 테스트하려면 다음을 수행합니다.
+## <a name="_Toc395637773"></a>6 단계: hello 응용 프로그램을 로컬로 실행
+로컬 컴퓨터의 tootest hello 응용 프로그램은 다음 hello지 않습니다.
 
-1. 디버그 모드에서 응용 프로그램을 빌드하려면 Visual Studio에서 F5 키를 누릅니다. 응용 프로그램이 빌드되고 앞에서 본 것처럼 빈 그리드 페이지가 포함된 상태로 브라우저가 시작되어야 합니다.
+1. 디버그 모드에서 Visual Studio toobuild hello 응용 프로그램에서 f5 키를 누르면 됩니다. Hello 응용 프로그램을 작성 하 고 실행 하기 전에 살펴본 hello 빈 그리드 페이지를 사용 하 여 브라우저:
    
-    ![이 데이터베이스 자습서에서 만든 할 일 모음 웹 응용 프로그램의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item-a.png)
+    ![Hello 할 일 목록 웹 응용 프로그램의이 데이터베이스 자습서에서 만든 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item-a.png)
    
      
-2. **새로 만들기** 링크를 클릭하고 **이름** 및 **설명** 필드에 값을 추가합니다. **완료** 확인란을 선택 취소된 상태로 둡니다. 그렇지 않으면 새 **항목**이 완료 상태로 추가되며 초기 목록에 나타나지 않습니다.
+2. Hello 클릭 **새로 만들기** 에 연결 하 고 추가 값 toohello **이름** 및 **설명** 필드입니다. Hello 둡니다 **완료** 확인란 새 그렇지 않으면 hello 선택 되지 않은 **항목** 완료 됨 상태로 추가 되 고 hello 초기 목록에 표시 되지 것입니다.
    
-    ![만들기 뷰의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-new-item.png)
-3. **만들기**를 클릭하면 **인덱스** 뷰로 다시 리디렉션되고 **항목**이 목록에 나타납니다.
+    ![Hello 뷰 만들기 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-new-item.png)
+3. 클릭 **만들기** 리디렉션된 백 toohello 않으며 **인덱스** 보기 및 **항목** hello 목록에 나타납니다.
    
-    ![인덱스 뷰의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item.png)
+    ![Hello 인덱스 뷰 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item.png)
    
-    Todo 목록에 **항목** 을 더 추가해도 됩니다.
+    몇 가지 더 무료 tooadd 느껴집니다 **항목** tooyour 할 일 목록입니다.
     
-4. 목록에서 **항목** 옆의 **편집**을 클릭합니다. **편집** 뷰로 이동되며, 여기서 **완료** 플래그를 비롯한 개체 속성을 업데이트할 수 있습니다. **완료** 플래그를 표시하고 **저장**을 클릭하면 **항목**이 완료되지 않은 작업 목록에서 제거됩니다.
+4. 클릭 **편집** 다음 tooan **항목** hello 목록에 toohello 취해집니다 **편집** hello를 포함 하 여 개체의 모든 속성을 업데이트할 수 있는 보기  **완료** 플래그입니다. Hello를 표시 하는 경우 **완료** 플래그를 클릭 하 여 **저장**, hello **항목** 완료 되지 않은 작업의 hello 목록에서 제거 됩니다.
    
-    ![완료 상자가 선택된 인덱스 뷰의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-completed-item.png)
-5. 앱을 테스트하고 나면 Ctrl+F5를 눌러 앱 디버깅을 중지합니다. 배포할 준비가 되었습니다!
+    ![Hello 인덱스 뷰 hello Completed 확인란을 선택의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-completed-item.png)
+5. Hello 앱을 테스트 하면 Ctrl + f 5 toostop hello 응용 프로그램 디버깅에 키를 누릅니다. 준비 toodeploy 넌!
 
-## <a name="_Toc395637774"></a>7단계: Azure App Service에 응용 프로그램 배포 
-이제 전체 응용 프로그램이 Azure Cosmos DB와 올바르게 작동하므로 Azure App Service에 이 웹앱을 배포하겠습니다.  
+## <a name="_Toc395637774"></a>7 단계: 배포 hello 응용 프로그램 tooAzure 앱 서비스 
+Hello 완전 한 응용 프로그램을가지고 Azure Cosmos DB으로 제대로 작동 여기 toodeploy이 웹 앱 tooAzure 앱 서비스입니다.  
 
-1. 이 응용 프로그램을 게시하기 위해 할 일은 **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 클릭하는 것뿐입니다.
+1. toopublish이 응용이 프로그램 모두 toodo 필요한은에서 hello 프로젝트를 마우스 오른쪽 단추로 클릭 **솔루션 탐색기** 클릭 **게시**합니다.
    
-    ![솔루션 탐색기 내 게시 옵션의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-publish.png)
+    ![Hello 솔루션 탐색기에서 게시 옵션의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-publish.png)
 
-2. **게시** 대화 상자에서 **Microsoft Azure App Service**를 클릭한 다음 **새로 만들기**를 선택하여 App Service 프로필을 만들거나 **기존 항목 선택**을 클릭하여 기존 프로필을 사용합니다.
+2. Hello에 **게시** 대화 상자에서 클릭 **Microsoft Azure 앱 서비스**을 선택한 후 **새로 만들기** toocreate 응용 프로그램 서비스를 프로 파일링 하거나 클릭 **선택 기존** toouse 기존 프로필입니다.
 
     ![Visual Studio에서 대화 상자 게시](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-publish-to-existing.png)
 
-3. 기존 Azure App Service 프로필이 있는 경우 구독 이름을 입력합니다. **보기** 필터를 사용하여 리소스 그룹 또는 리소스 종류별로 정렬한 다음 Azure App Service를 선택합니다. 
+3. 기존 Azure App Service 프로필이 있는 경우 구독 이름을 입력합니다. 사용 하 여 hello **보기** toosort 리소스 그룹 또는 리소스 종류를 필터링 한 다음 Azure 앱 서비스를 선택 합니다. 
    
     ![Visual Studio의 App Service 대화 상자](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-app-service.png)
 
-4. 새 Azure App Service 프로필을 만들려면 **게시** 대화 상자에서 **새로 만들기**를 클릭합니다. **앱 서비스 만들기** 대화 상자에서 웹앱 이름 및 적절한 구독, 리소스 그룹 및 App Service 계획을 입력하고 **만들기**를 클릭합니다.
+4. 새 Azure 앱 서비스 프로필 toocreate 클릭 **새로 만들기** hello에 **게시** 대화 상자. Hello에 **응용 프로그램 서비스 만들기** 대화 상자에서 웹 응용 프로그램 이름 및 적절 한 구독, 리소스 그룹 및 앱 서비스 계획을 입력 한 다음 클릭 **만들기**합니다.
 
     ![Visual Studio의 앱 서비스 만들기 대화 상자](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-app-service.png)
 
@@ -543,9 +543,9 @@ Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository �
 
 
 ## <a name="_Toc395637775"></a>다음 단계
-축하합니다. 지금까지 Azure Cosmos DB를 사용하여 첫 ASP.NET MVC 웹 응용 프로그램을 빌드하고 Azure에 게시했습니다. 이 자습서에 포함되지 않은 세부 정보 및 삭제 기능을 비롯한 전체 응용 프로그램 소스 코드는 [GitHub][GitHub]에서 다운로드하거나 복제할 수 있습니다. 따라서 이 내용을 앱에 추가하려는 경우 코드를 끌어와서 이 앱에 추가하면 됩니다.
+축하합니다. 방금 첫 번째 ASP.NET MVC 웹 응용 프로그램을 Azure Cosmos DB를 사용 하 여 작성 하 고 tooAzure 게시 합니다. hello 전체 응용 프로그램의 경우 hello 세부 정보를 포함 하 여 소스 코드를 hello 및 삭제이 포함 되지 않은 기능 자습서를 다운로드 하거나에서 복제 된 항목 수 [GitHub][GitHub]합니다. 따라서 추가 tooyour 이러한 앱에 관심이 hello 코드 잡은 toothis 앱을 추가 합니다.
 
-응용 프로그램에 기능을 더 추가하려면 [Azure Cosmos DB .NET 라이브러리](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)에서 사용 가능한 API를 검토하고 [GitHub][GitHub]의 Azure Cosmos DB .NET 라이브러리에 자유롭게 기여하세요. 
+tooadd 추가 기능 tooyour 응용 프로그램을 검토 hello hello에서 사용할 수 있는 Api [Azure Cosmos DB.NET 라이브러리](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) 무료 toocontribute toohello Azure Cosmos DB.NET 라이브러리에 여겨지는 [GitHub] [GitHub]. 
 
 [\*]: https://microsoft.sharepoint.com/teams/DocDB/Shared%20Documents/Documentation/Docs.LatestVersions/PicExportError
 [Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx

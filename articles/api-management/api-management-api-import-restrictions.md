@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management 가져오기에서 제한 사항 및 알려진 문제 | Microsoft Docs"
-description: "Open API, WSDL 또는 WADL 형식을 사용하여 Azure API Management로 가져오기 시 알려진 문제 및 제한 사항입니다."
+title: "Azure API 관리 API의 알려진 문제와 aaaRestrictions 가져오기 | Microsoft Docs"
+description: "정보 가져오기 hello Open API, WSDL 또는 WADL 형식을 사용 하 여 Azure API 관리에 대 한 제한 사항 및 알려진된 문제입니다."
 services: api-management
 documentationcenter: 
 author: mattfarm
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: apipm
-ms.openlocfilehash: ac799d66b5038c207413086b0fa71239ff2a332f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bed5ace47de6ccbfbecba25ea6b69c5329de089
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-import-restrictions-and-known-issues"></a>API 가져오기 제한 사항 및 알려진 문제
 ## <a name="about-this-list"></a>다음 목록 정보
-API를 Azure API Management로 가능한 완벽하고 문제 없이 가져올 수 있도록 최선의 노력을 하고 있지만 간혹 제한 사항이 적용되거나 성공적으로 가져오기 위해 수정이 필요한 문제가 확인됩니다. 이 문서에서는 이러한 내용을 API의 가져오기 형식별로 구성하여 설명합니다.
+동안 대처 하는 Azure API 관리 API 가져오기는 안전 tooensure 이루어집니다 문제 없이 최대한,에서는 경우에 따라 제한 사항이 적용 않거나 toobe 성공적으로 가져오기 전에 수정 해야 하는 문제를 식별 합니다. 이 문서에서는 이러한 문서 hello API의 hello 가져오기 형식에 따라 organised 합니다.
 
 ## <a name="open-api"> </a>Open API/Swagger
-일반적으로 Open API 문서를 가져오는 중 오류를 수신하면 새 Azure Portal에서 디자이너를 사용하거나(Design - Front End - Open API Specification Editor) <a href="http://www.swagger.io">Swagger Editor</a>와 같은 타사 도구를 사용하여 유효성을 검사해야 합니다.
+일반적으로 개방형 API 문서를 가져오는 과정에서 오류가 발생 하는 경우 확인 하십시오 것-검사 한 hello 디자이너를 사용 하 여 hello 새 Azure 포털 (디자인-프런트 엔드-API 사양 편집기 열기)에서 또는 세 번째와 자가 도구와 같은 중 <a href="http://www.swagger.io"> 편집기 swagger</a>합니다.
 
 * **호스트 이름** 호스트 이름 특성이 필요합니다.
 * **기본 경로** 기본 경로 특성이 필요합니다.
 * **스키마** 스키마 배열이 필요합니다. 
 
 ## <a name="wsdl"> </a>WSDL
-SOAP 통과 API를 생성하는 데 WSDL 파일이 사용되며 SOAP-to-REST API의 백 엔드로 사용됩니다.
+WSDL 파일 SOAP 통과 Api를 사용 하는 toogenerate 있거나 SOAP-REST API의 백 엔드 hello으로 제공 합니다.
 
-* **WSDL:Import** 현재 이 특성을 사용한 API는 지원하지 않습니다. 고객은 가져온 요소를 문서 하나로 병합해야 합니다.
+* **WSDL:Import** 현재 이 특성을 사용한 API는 지원하지 않습니다. 고객은 하나의 문서로 가져온 hello 요소를 병합 해야 합니다.
 * **여러 부분으로 된 메시지**는 현재 지원되지 않습니다.
 * **WCF wsHttpBinding** Windows Communication Foundation으로 생성된 SOAP 서비스는 basicHttpBinding을 사용해야 합니다. wsHttpBinding은 지원되지 않습니다.
 * **MTOM** MTOM을 사용한 서비스는 <em>작동할 수 있습니다</em>. 현재는 공식적으로 지원되지 않습니다.
-* 재귀적으로 정의된(예: 자체의 배열을 참조) **재귀** 형식은 지원되지 않습니다.
+* **재귀** 않은 형식 정의 재귀적으로 (예: tooan 배열 자체 참조)는 지원 되지 않습니다.
 
 ## <a name="wadl"> </a>WADL
 현재는 알려진 WADL 가져오기 문제가 없습니다.
@@ -77,6 +77,6 @@ SOAP 통과 API를 생성하는 데 WSDL 파일이 사용되며 SOAP-to-REST API
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
-[How to cache operation results in Azure API Management]: api-management-howto-cache.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
+[How toocache operation results in Azure API Management]: api-management-howto-cache.md

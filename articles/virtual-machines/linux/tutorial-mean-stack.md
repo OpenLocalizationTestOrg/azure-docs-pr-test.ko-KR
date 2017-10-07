@@ -1,6 +1,6 @@
 ---
-title: "Azure의 Linux VM에서 MEAN 스택 만들기 | Microsoft Docs"
-description: "Azure의 Linux VM에서 MEAN(MongoDB, Express, AngularJS 및 Node.js) 스택을 만드는 방법을 알아봅니다."
+title: "평균 aaaCreate Azure에서 Linux VM에 대 한 스택 | Microsoft Docs"
+description: "Azure에서 Linux VM의 스택 toocreate는 MongoDB, Express, AngularJS 및 Node.js (평균)에 대해 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: davidmu1
@@ -16,34 +16,34 @@ ms.workload: infrastructure
 ms.date: 08/08/2017
 ms.author: davidmu
 ms.custom: mvc
-ms.openlocfilehash: 892d3481b4ec70fb8434cb25013c5cfd8ab85051
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 82a8e34e60d2bb6e6670ee007faa1113ea78b716
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-mongodb-express-angularjs-and-nodejs-mean-stack-on-a-linux-vm-in-azure"></a>Azure의 Linux VM에서 MEAN(MongoDB, Express, AngularJS 및 Node.js) 스택 만들기
 
-이 자습서에서는 Azure의 Linux VM에서 MEAN(MongoDB, Express, AngularJS 및 Node.js) 스택을 구현하는 방법을 보여 줍니다. 만드는 MEAN 스택을 사용하여 데이터베이스에서 책을 추가, 삭제 및 나열할 수 있습니다. 다음 방법에 대해 알아봅니다.
+이 자습서에서는 Azure에서 Linux VM의 스택 tooimplement는 MongoDB, Express, AngularJS 및 Node.js (평균). 만들면 hello 평균 스택 추가, 삭제 및 나열 하는 데이터베이스에 있는 책 수 있습니다. 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
 > * Linux VM 만들기
 > * Node.js 설치
-> * MongoDB 설치 및 서버 설정
-> * Express 설치 및 서버에 대한 경로 설정
-> * AngularJS를 사용하여 경로에 액세스
-> * 응용 프로그램 실행
+> * MongoDB를 설치 하 고 hello 서버 설정
+> * Express를 설치 하 고 경로 toohello 서버 설정
+> * AngularJS와 액세스 hello 경로
+> * Hello 응용 프로그램 실행
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 자습서에서 Azure CLI 버전 2.0.4 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 자습서를 사용 하려면 2.0.4 hello Azure CLI 버전을 실행 되 고 있는지 이상. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.
 
 
 ## <a name="create-a-linux-vm"></a>Linux VM 만들기
 
-[az group create](https://docs.microsoft.com/cli/azure/group#create) 명령을 사용하여 리소스 그룹을 만들고 [az vm create](https://docs.microsoft.com/cli/azure/vm#create) 명령을 사용하여 Linux VM을 만듭니다. Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다.
+Hello로 리소스 그룹 만들기 [az 그룹 만들기](https://docs.microsoft.com/cli/azure/group#create) hello로 Linux VM을 만들고 명령을 [az vm 만들기](https://docs.microsoft.com/cli/azure/vm#create) 명령입니다. Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다.
 
-다음 예제에서는 Azure CLI를 사용하여 *eastus* 위치에 *myResourceGroupMEAN*이라는 리소스 그룹을 만듭니다. 또한 기본 키 위치에 SSH 키가 없는 경우 SSH 키가 있는 *myVM*이라는 VM이 만들어집니다. 특정 키 집합을 사용하려면 --ssh-key-value 옵션을 사용합니다.
+hello 다음 예제에서는 리소스 그룹 이름이 hello Azure CLI toocreate *myResourceGroupMEAN* hello에 *eastus* 위치 합니다. 또한 기본 키 위치에 SSH 키가 없는 경우 SSH 키가 있는 *myVM*이라는 VM이 만들어집니다. toouse 특정 키를 사용 하 여 hello-ssh 키-값 옵션의 집합입니다.
 
 ```azurecli-interactive
 az group create --name myResourceGroupMEAN --location eastus
@@ -57,7 +57,7 @@ az vm create \
 az vm open-port --port 3300 --resource-group myResourceGroupMEAN --name myVM
 ```
 
-VM을 만든 경우 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다. 
+Hello VM을 만든 다음 예제에서는 정보 비슷한 toohello를 hello Azure CLI로 표시 됩니다. 
 
 ```azurecli-interactive
 {
@@ -71,9 +71,9 @@ VM을 만든 경우 Azure CLI는 다음 예제와 비슷한 정보를 표시합�
   "resourceGroup": "myResourceGroupMEAN"
 }
 ```
-`publicIpAddress`을 기록해 둡니다. 이 주소는 VM에 액세스하는 데 사용됩니다.
+Hello를 메모해 `publicIpAddress`합니다. 이 주소는 사용 되는 tooaccess hello VM입니다.
 
-다음 명령을 사용하여 VM으로 SSH 세션을 만듭니다. 유효한 공용 IP 주소를 사용하고 있는지 확인합니다. 위 예제에서 IP 주소는 13.72.77.9입니다.
+사용 하 여 hello 다음 명령은 VM hello로 SSH 세션 toocreate 합니다. Toouse hello 올바른 공용 IP 주소가 있는지 확인 합니다. 위 예제에서 IP 주소는 13.72.77.9입니다.
 
 ```bash
 ssh azureuser@13.72.77.9
@@ -81,25 +81,25 @@ ssh azureuser@13.72.77.9
 
 ## <a name="install-nodejs"></a>Node.js 설치
 
-[Node.js](https://nodejs.org/en/)는 Chrome의 V8 JavaScript 엔진을 기준으로 하는 JavaScript 런타임입니다. Node.js는 Express 경로 및 AngularJS 컨트롤러를 설정하기 위해 이 자습서에서 사용됩니다.
+[Node.js](https://nodejs.org/en/)는 Chrome의 V8 JavaScript 엔진을 기준으로 하는 JavaScript 런타임입니다. Node.js는 Express 경로 hello 및 AngularJS 컨트롤러를이 자습서 tooset에 사용 됩니다.
 
-VM에서 연 bash 셸을 SSH와 함께 사용하여 Node.js를 설치합니다.
+Hello, SSH를 사용 하 여 열린 hello bash 셸의 사용 하 여 VM에서 Node.js를 설치 합니다.
 
 ```bash
 sudo apt-get install -y nodejs
 ```
 
-## <a name="install-mongodb-and-set-up-the-server"></a>MongoDB 설치 및 서버 설정
-[MongoDB](http://www.mongodb.com)는 유연한 JSON 유사 문서에 데이터를 저장합니다. 데이터베이스의 필드는 문서마다 다를 수 있으며 데이터 구조는 시간이 지남에 따라 변경될 수 있습니다. 예제 응용 프로그램에서는 책 이름, isbn 번호, 저자 및 페이지 수를 포함하는 책 레코드를 MongoDB에 추가할 것입니다. 
+## <a name="install-mongodb-and-set-up-hello-server"></a>MongoDB를 설치 하 고 hello 서버 설정
+[MongoDB](http://www.mongodb.com)는 유연한 JSON 유사 문서에 데이터를 저장합니다. 문서 toodocument에서 다양 한 데이터베이스의 필드 및 데이터 구조는 시간이 지남에 따라 변경 될 수 있습니다. 이 예제에서는 응용 프로그램에 대 한 책 이름, isbn 번호, 작성자 및 페이지 수를 포함 하는 책 레코드 tooMongoDB 추가 됩니다. 
 
-1. VM에서 연 bash 셸을 SSH와 함께 사용하여 MongoDB를 설정합니다.
+1. Hello, SSH를 사용 하 여 열린 hello bash 셸의 사용 하 여 VM에서 hello MongoDB 키로 설정 합니다.
 
     ```bash
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
     echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
     ```
 
-2. 패키지 관리자를 키로 업데이트합니다.
+2. Hello 키로 hello 패키지 관리자를 업데이트 합니다.
   
     ```bash
     sudo apt-get update
@@ -111,27 +111,27 @@ sudo apt-get install -y nodejs
     sudo apt-get install -y mongodb
     ```
 
-4. 서버를 시작합니다.
+4. Hello 서버를 시작 합니다.
 
     ```bash
     sudo service mongodb start
     ```
 
-5. 또한 서버 요청에 전달된 JSON을 처리하는 데 도움이 되는 [body-parser](https://www.npmjs.com/package/body-parser-json) 패키지도 설치해야 합니다.
+5. 또한 tooinstall hello 필요 [본문 파서](https://www.npmjs.com/package/body-parser-json) 패키지 toohelp us 처리 hello JSON 요청 toohello 서버에 전달 합니다.
 
-    npm 패키지 관리자를 설치합니다.
+    Hello npm 패키지 관리자를 설치 합니다.
 
     ```bash
     sudo apt-get install npm
     ```
 
-    본문 파서 패키지를 설치합니다.
+    Hello 본문 파서 패키지를 설치 합니다.
     
     ```bash
     sudo npm install body-parser
     ```
 
-6. *books*라는 폴더를 만들고 웹 서버에 대한 구성을 포함하는 *server.js*라는 파일을 이 폴더에 추가합니다.
+6. 라는 폴더를 만듭니다 *설명서* 라는 파일 tooit 추가 *server.js* hello 웹 서버에 대 한 hello 구성을 포함 하 합니다.
 
     ```node.js
     var express = require('express');
@@ -146,9 +146,9 @@ sudo apt-get install -y nodejs
     });
     ```
 
-## <a name="install-express-and-set-up-routes-to-the-server"></a>Express 설치 및 서버에 대한 경로 설정
+## <a name="install-express-and-set-up-routes-toohello-server"></a>Express를 설치 하 고 경로 toohello 서버 설정
 
-[Express](https://expressjs.com)는 웹 및 모바일 응용 프로그램용 기능을 제공하는 유연한 최소 규모의 Node.js 웹 응용 프로그램 프레임워크입니다. 이 자습서에서는 MongoDB 데이터베이스와 책 정보를 빠르게 주고 받기 위해 Express를 사용합니다. [Mongoose](http://mongoosejs.com)는 응용 프로그램 데이터를 모델링하기 위한 간편한 스키마 기반 솔루션을 제공합니다. Mongoose는 데이터베이스에 책 스키마를 제공하기 위해 이 자습서에서 사용됩니다.
+[Express](https://expressjs.com)는 웹 및 모바일 응용 프로그램용 기능을 제공하는 유연한 최소 규모의 Node.js 웹 응용 프로그램 프레임워크입니다. MongoDB 데이터베이스에서이 자습서 toopass 책 정보 tooand에 빠른 사용 됩니다. [Mongoose](http://mongoosejs.com) 직접적인 스키마 기반 솔루션 toomodel 응용 프로그램 데이터를 제공 합니다. 이 자습서 tooprovide mongoose는 hello 데이터베이스에 대 한 책 스키마입니다.
 
 1. Express 및 Mongoose를 설치합니다.
 
@@ -156,7 +156,7 @@ sudo apt-get install -y nodejs
     sudo npm install express mongoose
     ```
 
-2. *Books* 폴더에서 *apps*라는 폴더를 만들고 Express 경로가 정의된 *routes.js*라는 파일을 추가합니다.
+2. Hello에 *설명서* 폴더를 라는 폴더를 만듭니다 *앱* 라는 파일 *routes.js* hello로 express 경로 정의 합니다.
 
     ```node.js
     var Book = require('./models/book');
@@ -186,7 +186,7 @@ sudo apt-get install -y nodejs
         Book.findOneAndRemove(req.query, function(err, result) {
           if ( err ) throw err;
           res.json( {
-            message: "Successfully deleted the book",
+            message: "Successfully deleted hello book",
             book: result
           });
         });
@@ -198,7 +198,7 @@ sudo apt-get install -y nodejs
     };
     ```
 
-3. *apps* 폴더에서 *models*라는 폴더를 만들고 책 모델 구성이 정의된 *book.js*라는 파일을 추가합니다.  
+3. Hello에 *앱* 폴더 라는 폴더를 만듭니다 *모델* 라는 파일 *book.js* hello 책 모델 구성을 정의 합니다.  
 
     ```node.js
     var mongoose = require('mongoose');
@@ -216,11 +216,11 @@ sudo apt-get install -y nodejs
     module.exports = mongoose.model('Book', bookSchema); 
     ```
 
-## <a name="access-the-routes-with-angularjs"></a>AngularJS를 사용하여 경로에 액세스
+## <a name="access-hello-routes-with-angularjs"></a>AngularJS와 액세스 hello 경로
 
-[AngularJS](https://angularjs.org)는 웹 응용 프로그램에서 동적 뷰를 만들기 위한 웹 프레임워크를 제공합니다. 이 자습서에서는 AngularJS를 사용하여 웹 페이지를 Express에 연결하고 책 데이터베이스에 대해 작업을 수행합니다.
+[AngularJS](https://angularjs.org)는 웹 응용 프로그램에서 동적 뷰를 만들기 위한 웹 프레임워크를 제공합니다. 이 자습서에서는 빠른 AngularJS tooconnect 품질 웹 페이지를 사용 하 고 책 데이터베이스에서 작업을 수행 합니다.
 
-1. 디렉터리를 *Books*로 다시 변경하고(`cd ../..`) *public*이라는 폴더를 만들고 컨트롤러 구성이 정의된 *script.js*라는 파일을 추가합니다.
+1. Hello 디렉터리를 백업에 변경*설명서* (`cd ../..`), 다음 라는 폴더를 만듭니다 *공용* 라는 파일 *script.js* hello 컨트롤러와 정의 된 구성입니다.
 
     ```node.js
     var app = angular.module('myApp', []);
@@ -262,7 +262,7 @@ sudo apt-get install -y nodejs
     });
     ```
     
-2. *public* 폴더에 웹 페이지가 정의된 *index.html*이라는 파일을 만듭니다.
+2. Hello에 *공용* 폴더를 라는 파일을 만들어 *index.html* 된 hello 웹 페이지를 정의 합니다.
 
     ```html
     <!doctype html>
@@ -315,27 +315,27 @@ sudo apt-get install -y nodejs
     </html>
     ```
 
-##  <a name="run-the-application"></a>응용 프로그램 실행
+##  <a name="run-hello-application"></a>Hello 응용 프로그램 실행
 
-1. 디렉터리를 *Books*로 다시 변경하고(`cd ..`) 다음 명령을 실행하여 서버를 시작합니다.
+1. Hello 디렉터리를 백업에 변경*설명서* (`cd ..`)이이 명령을 실행 하 여 hello 서버를 시작 합니다.
 
     ```bash
     nodejs server.js
     ```
 
-2. VM에 대해 기록된 주소로 웹 브라우저를 엽니다. 예: *http://13.72.77.9:3300*. 다음 페이지와 유사한 출력이 표시됩니다.
+2. 웹 브라우저 toohello 주소를 hello VM에 대해 기록를 엽니다. 예: *http://13.72.77.9:3300*. 다음 페이지는 hello와 같은 나타나야 합니다.
 
     ![책 레코드](media/tutorial-mean/meanstack-init.png)
 
-3. 데이터를 텍스트 상자에 입력하고 **추가**를 클릭합니다. 예:
+3. Hello 텍스트 상자에 데이터를 입력 하 고 클릭 **추가**합니다. 예:
 
     ![책 레코드 추가](media/tutorial-mean/meanstack-add.png)
 
-4. 페이지를 새로 고치면 다음 페이지와 같이 표시되어야 합니다.
+4. Hello 페이지를 새로 고친 후 다음과 같이이 페이지를 표시 됩니다.
 
     ![책 레코드 나열](media/tutorial-mean/meanstack-list.png)
 
-5. **삭제**를 클릭하고 데이터베이스에서 책 레코드를 제거합니다.
+5. 누르면 **삭제** hello 데이터베이스에서 hello 책 레코드를 제거 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
@@ -344,12 +344,12 @@ sudo apt-get install -y nodejs
 > [!div class="checklist"]
 > * Linux VM 만들기
 > * Node.js 설치
-> * MongoDB 설치 및 서버 설정
-> * Express 설치 및 서버에 대한 경로 설정
-> * AngularJS를 사용하여 경로에 액세스
-> * 응용 프로그램 실행
+> * MongoDB를 설치 하 고 hello 서버 설정
+> * Express를 설치 하 고 경로 toohello 서버 설정
+> * AngularJS와 액세스 hello 경로
+> * Hello 응용 프로그램 실행
 
-SSL 인증서로 웹 서버를 보호하는 방법에 대해 알아보려면 다음 자습서로 이동합니다.
+다음 자습서 toolearn toohello 어떻게 발전 toosecure 웹 서버 SSL 인증서를 사용 합니다.
 
 > [!div class="nextstepaction"]
 > [SSL로 웹 서버 보안](tutorial-secure-web-server.md)

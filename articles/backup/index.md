@@ -1,6 +1,6 @@
 ---
-title: "Azure Backup 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "Backup 설명서를 사용하여 클라우드에 백업하는 방법을 알아보세요. 응용 프로그램, Windows Server 및 Azure 가상 컴퓨터 백업을 위한 자습서 및 동영상을 참조하세요."
+title: "aaaAzure 백업 설명서-자습서, API 참조 | Microsoft Docs"
+description: "백업 설명서 toolearn toohello tooback 클라우드 방법을 사용 합니다. 응용 프로그램, Windows Server 및 Azure 가상 컴퓨터 백업을 위한 자습서 및 동영상을 참조하세요."
 services: backup
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 3d8b07dc9903a48f6481ceda1922479cc7cd9ef6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 648c83a3ecdc4770859fbea0cc5af9ac2d1fdfd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="backup-documentation"></a>Backup 설명서
 
-장기간 보존 및 복구를 위해 클라우드에서 Azure 백업을 사용하여 데이터를 보호하는 방법에 대해 알아봅니다. 자습서, 비디오 및 기타 설명서에서는 데이터, 응용 프로그램, Windows Servers 및 Azure 가상 컴퓨터를 백업하는 방법을 보여 줍니다.
+Hello에 Azure 백업 toouse 클라우드 장기간 보관 및 복구를 위한 tooprotect 데이터 방법에 대해 알아봅니다. 자습서, 비디오 및 기타 문서 방법을 보여 줍니다 tooback 데이터, 응용 프로그램, Windows server 및 Azure 가상 컴퓨터.
 
 <ul class="panelContent cardsFTitle">
     <li>

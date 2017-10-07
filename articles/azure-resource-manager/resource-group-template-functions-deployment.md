@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 템플릿 함수 - 배포 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿에서 배포 정보를 검색하는 데 사용할 수 있는 함수에 대해 설명합니다."
+title: "aaaAzure 리소스 관리자 템플릿 함수 배포 | Microsoft Docs"
+description: "Hello 함수 toouse는 Azure 리소스 관리자 템플릿 tooretrieve 배포 정보에 설명합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: d7e6bcd669d40cb19de44b646505856ecd8f51a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 458c3f740504fdd6799ed24cc386219726737636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deployment-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿용 배포 함수 
 
-Resource Manager는 템플릿의 섹션에서 값을 가져오고 배포와 관련된 값을 가져오기 위한 다음 함수를 제공합니다.
+리소스 관리자는 hello 다음 hello 서식 파일의 섹션에서 값 가져오기에 대 한 함수 및 관련된 toohello 배포 값을 제공 합니다.
 
 * [deployment](#deployment)
 * [매개 변수](#parameters)
 * [variables](#variables)
 
-리소스, 리소스 그룹 또는 구독에서 값을 가져오려면 [리소스 함수](resource-group-template-functions-resource.md)를 참조하세요.
+리소스, 리소스 그룹 또는 구독에서 tooget 값 참조 [리소스 함수](resource-group-template-functions-resource.md)합니다.
 
 <a id="deployment" />
 
 ## <a name="deployment"></a>배포
 `deployment()`
 
-현재 배포 작업에 대한 정보를 반환합니다.
+Hello 현재 배포 작업에 대 한 정보를 반환합니다.
 
 ### <a name="return-value"></a>반환 값
 
-이 함수는 배포하는 동안 전달되는 개체를 반환합니다. 반환된 개체의 속성은 배포 개체가 링크로 전달되는지 아니면 인라인 개체로 전달되는지에 따라 다릅니다. 배포 개체가 로컬 파일을 가리키기 위해 Azure PowerShell의 **-TemplateFile** 매개 변수를 사용할 때와 같이 인라인으로 전달되는 경우 개체는 다음 형식으로 반환됩니다.
+이 함수는 배포 중에 전달 되는 hello 개체를 반환 합니다. 개체를 반환 하는 hello에 hello 속성 hello 배포 개체를 전달 했는지 여부 또는 인라인 개체로 링크에 따라 다릅니다. Hello 배포 전달 경우 인라인와 같은 hello를 사용 하는 경우 **-TemplateFile** 매개 변수 hello Azure PowerShell toopoint tooa 로컬 파일에서 개체의 형식에 따라 hello을 반환 합니다.
 
 ```json
 {
@@ -61,7 +61,7 @@ Resource Manager는 템플릿의 섹션에서 값을 가져오고 배포와 관�
 }
 ```
 
-개체가 원격 개체를 가리키기 위해 **-TemplateUri** 매개 변수를 사용할 때와 같이 링크로 전달되는 경우 개체는 다음 형식으로 반환됩니다. 
+Hello 개체 때 hello를 사용 하 여 같은 링크로 전달 되 면 **-TemplateUri** 매개 변수 toopoint tooa 원격 개체 형식에 따라 hello에 hello 개체가 반환 됩니다. 
 
 ```json
 {
@@ -87,7 +87,7 @@ Resource Manager는 템플릿의 섹션에서 값을 가져오고 배포와 관�
 
 ### <a name="remarks"></a>설명
 
-deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다른 템플릿에 연결할 수 있습니다.
+Hello hello 부모 템플릿의 URI에 따라 배포 선정 () toolink tooanother 템플릿을 사용할 수 있습니다.
 
 ```json
 "variables": {  
@@ -95,9 +95,9 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 }
 ```  
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 배포 개체를 반환합니다.
+hello 다음 예제에서는 개체를 반환 hello 배포:
 
 ```json
 {
@@ -113,7 +113,7 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 }
 ```
 
-앞의 예제에서는 다음 개체를 반환합니다.
+hello 위 예제에서는 반환 개체를 다음 hello:
 
 ```json
 {
@@ -142,21 +142,21 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 ## <a name="parameters"></a>매개 변수
 `parameters(parameterName)`
 
-매개 변수 값을 반환합니다. 템플릿의 매개 변수 섹션에서 지정된 매개 변수 이름을 정의해야 합니다.
+매개 변수 값을 반환합니다. 지정한 매개 변수 이름이 hello hello 템플릿의 hello 매개 변수 섹션에서 정의 되어야 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| parameterName |예 |string |반환할 매개 변수의 이름입니다. |
+| parameterName |예 |string |hello 매개 변수 tooreturn의 hello 이름입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-지정한 매개 변수의 값입니다.
+hello hello 값 매개 변수를 지정 합니다.
 
 ### <a name="remarks"></a>설명
 
-일반적으로 매개 변수를 사용하여 리소스 값을 설정합니다. 다음 예제에서는 웹 사이트의 이름을 배포 중에 전달된 매개 변수 값으로 설정합니다.
+일반적으로 매개 변수 tooset 리소스 값을 사용 합니다. hello 다음 예제에서는 설정 배포 중에 전달 하는 웹 사이트 toohello 매개 변수 값의 hello 이름입니다.
 
 ```json
 "parameters": { 
@@ -174,9 +174,9 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 ]
 ```
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예에서는 매개 변수 함수의 간소화된 사용을 보여 줍니다.
+hello 다음 예제에서는 hello 매개 변수 함수를 사용 하는 단순화
 
 ```json
 {
@@ -231,7 +231,7 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -246,21 +246,21 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 ## <a name="variables"></a>variables
 `variables(variableName)`
 
-변수의 값을 반환합니다. 템플릿의 변수 섹션에서 지정된 변수 이름을 정의해야 합니다.
+반환 hello 변수의 값입니다. 지정한 변수 이름이 hello hello 템플릿의 hello 변수 섹션에서 정의 되어야 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| variableName |예 |String |반환할 변수의 이름입니다. |
+| variableName |예 |문자열 |hello 변수 tooreturn의 hello 이름입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-지정한 변수의 값입니다.
+hello 지정 변수의 hello 값입니다.
 
 ### <a name="remarks"></a>설명
 
-일반적으로 복잡한 값을 한 번만 구성하여 템플릿을 간소화하기 위해 변수를 사용합니다. 다음 예제에서는 저장소 계정에 대한 고유한 이름을 생성합니다.
+일반적으로 사용 하면 변수 toosimplify 서식 파일에 복잡 한 값을 한 번만 생성 됩니다. hello 다음 구성 예제는 저장소 계정에 대 한 고유 이름입니다.
 
 ```json
 "variables": {
@@ -282,9 +282,9 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 ],
 ```
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-예제 템플릿은 각기 다른 변수 값을 반환합니다.
+hello 예제 템플릿 각기 다른 변수 값을 반환합니다.
 
 ```json
 {
@@ -322,7 +322,7 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -332,8 +332,8 @@ deployment()를 사용하여 부모 템플릿의 URI를 기반으로 하는 다�
 | exampleOutput4 |  Object | {“property1”: “value1”, “property2”: “value2”} |
 
 ## <a name="next-steps"></a>다음 단계
-* Azure Resource Manager 템플릿의 섹션에 대한 설명은 [Azure Resource Manager 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.
-* 여러 템플릿을 병합하려면 [Azure Resource Manager에서 연결된 템플릿 사용](resource-group-linked-templates.md)을 참조하세요.
-* 리소스 유형을 만들 때 지정된 횟수만큼 반복하려면 [Azure 리소스 관리자에서 리소스의 여러 인스턴스 만들기](resource-group-create-multiple.md)를 참조하세요.
-* 만든 템플릿을 배포하는 방법을 보려면 [Azure Resource Manager 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.
+* Azure 리소스 관리자 템플릿의 hello 섹션에 대 한 참조 [제작 Azure 리소스 관리자 템플릿을](resource-group-authoring-templates.md)합니다.
+* toomerge 템플릿이 여러 개 참조 [Azure 리소스 관리자와 연결 된 템플릿을 사용 하 여](resource-group-linked-templates.md)합니다.
+* 지정 된 횟수 만큼 tooiterate 리소스의 종류를 만들 때 참조 [Azure 리소스 관리자 리소스의 여러 인스턴스를 만들](resource-group-create-multiple.md)합니다.
+* toosee toodeploy hello 서식 파일을 만든 참조 [Azure 리소스 관리자 템플릿 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.
 

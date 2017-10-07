@@ -1,5 +1,5 @@
 ---
-title: "Azure AD .NET 웹앱 시작 | Microsoft Docs"
+title: "AD aaaAzure.NET 웹 응용 프로그램 시작 | Microsoft Docs"
 description: "로그인을 위해 Azure AD와 통합되는 .NET MVC 웹앱을 빌드합니다."
 services: active-directory
 documentationcenter: .net
@@ -15,44 +15,44 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 7ac5d3e5cc28ead993e159d003244e6451acb0cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d3098c9e3d7e1916ccb110c703f501ae52e788f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="aspnet-web-app-sign-in-and-sign-out-with-azure-ad"></a>Azure AD에서 ASP.NET 웹앱 로그인 및 로그아웃
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그인 및 로그아웃을 제공하여 간단하게 웹앱의 ID 관리를 아웃소싱할 수 있도록 합니다. .NET (OWIN) 미들웨어에 대한 공개 웹 인터페이스의 Microsoft 구현을 사용하여 ASP.NET 웹앱 내부 및 외부 사용자를 등록할 수 있습니다. 커뮤니티 기반 OWIN 미들웨어는 .NET Framework 4.5에 포함됩니다. 이 문서에서는 다음에 OWIN을 사용하는 방법을 보여 줍니다.
+로그인 및 로그 아웃 하는 단일 단 몇 줄의 코드를 제공 함으로써 Azure Active Directory (Azure AD) 간단 하 게 하면 toooutsource 웹 응용 프로그램 id 관리 합니다. .NET (OWIN) 미들웨어에 대 한 Open Web Interface의 Microsoft 구현 hello를 사용 하 여 ASP.NET 웹 응용 프로그램 내부 및 외부 사용자가 서명할 수 있습니다. 커뮤니티 기반 OWIN 미들웨어는 .NET Framework 4.5에 포함됩니다. 이 문서에서는 어떻게 toouse OWIN에:
 
-* Azure AD를 ID 공급자로 사용하여 사용자를 웹앱에 로그인합니다.
+* Hello id 공급자로 Azure AD를 사용 하 여 tooweb 앱에서 사용자를 로그인 합니다.
 * 일부 사용자 정보를 표시합니다.
-* 앱에서 사용자를 로그아웃합니다.
+* Hello 앱에서 사용자를 로그인 합니다.
 
 ## <a name="before-you-get-started"></a>시작하기 전에
-* [앱 기본 사항](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)을 다운로드하거나 [완성된 샘플](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)을 다운로드하세요.
-* 앱을 등록할 Azure AD 테넌트도 필요합니다. Azure AD 테넌트가 아직 없는 경우 [가져오는 방법을 알아봅니다](active-directory-howto-tenant.md).
+* Hello 다운로드 [앱 스 켈 레 톤](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) hello 다운로드 또는 [완성 된 샘플](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)합니다.
+* 어떤 tooregister hello 앱에서 Azure AD 테 넌 트가 있어야합니다. Azure AD 테 넌 트가 아직 없는 경우 [자세한 방법을 하나 tooget](active-directory-howto-tenant.md)합니다.
 
-준비가 완료되면 다음 4가지 섹션의 절차를 수행합니다.
+준비 되 면 다음 절차에 따라 hello hello 다음 네 개의 절.
 
-## <a name="step-1-register-the-new-app-with-azure-ad"></a>1단계: Azure AD에 새 앱 등록
-사용자를 인증하도록 앱을 설정하려면 먼저 다음을 수행하여 앱을 테넌트에 등록합니다.
+## <a name="step-1-register-hello-new-app-with-azure-ad"></a>1 단계: Azure AD와 hello 새 앱 등록
+tooset hello 앱 tooauthenticate 사용자를 처음 등록할 테 넌 트에 hello 다음을 수행 하 여:
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
-2. 위쪽 모음에서 계정 이름을 클릭합니다. **디렉터리** 목록에서 앱을 등록할 Active Directory 테넌트를 선택합니다.
-3. 왼쪽 창에서 **더 많은 서비스**를 클릭하고 **Azure Active Directory**를 선택합니다.
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
+2. Hello 위쪽 막대에서 계정 이름을 클릭 합니다. Hello에서 **디렉터리** 목록, 선택 hello Active Directory 테 넌 트 tooregister hello 앱을 원하는 합니다.
+3. 클릭 **더 서비스** 에 hello 왼쪽된 창에서 선택한 후 **Azure Active Directory**합니다.
 4. **앱 등록**을 클릭하고 **추가**를 선택합니다.
-5. 프롬프트에 따라 새 **웹 응용 프로그램 및/또는 WebAPI**를 만듭니다.
-  * **이름**은 사용자에게 앱에 대해 설명합니다.
-  * **로그온 URL**은 앱의 기본 URL입니다. 기본 사항의 기본 URL은 http://localhost:44320/입니다.
-6. 등록이 완료되면 Azure AD가 앱에 고유한 응용 프로그램 ID를 할당합니다. 다음 섹션에서 사용할 수 있도록 앱 페이지의 값을 복사합니다.
-7. 응용 프로그램에 대한 **설정** -> **속성** 페이지에서 앱 ID URI를 업데이트합니다. **앱 ID URI**는 앱의 고유 식별자입니다. 명명 규칙은 `https://<tenant-domain>/<app-name>`(예: `https://contoso.onmicrosoft.com/my-first-aad-app`)입니다.
+5. 에 따라 hello에서 묻는 메시지를 표시 하는 새 toocreate **웹 응용 프로그램 및/또는 WebAPI**합니다.
+  * **이름** hello 앱 toousers에 설명 합니다.
+  * **로그온 URL** hello hello 응용 프로그램의 기본 URL입니다. hello 뼈대 기본 URL은 https://localhost:44320 / 합니다.
+6. Azure AD를 hello 등록을 완료 한 후 hello 앱 고유한 응용 프로그램 ID를 할당 Hello 다음 섹션의 앱 페이지 toouse hello에서에서 hello 값을 복사 합니다.
+7. Hello에서 **설정** -> **속성** 응용 프로그램에 대 한 페이지를 hello 앱 ID URI를 업데이트 합니다. hello **앱 ID URI** hello 앱에 대 한 고유 식별자입니다. hello 명명 규칙은 `https://<tenant-domain>/<app-name>` (예를 들어 `https://contoso.onmicrosoft.com/my-first-aad-app`).
 
-## <a name="step-2-set-up-the-app-to-use-the-owin-authentication-pipeline"></a>2단계: OWIN 인증 파이프라인을 사용하도록 앱 설정
-이 단계에서 OpenID Connect 인증 프로토콜을 사용하도록 OWIN 미들웨어를 구성합니다. OWIN을 사용하여 로그인 및 로그아웃 요청을 실행하고, 사용자 세션을 관리하고, 사용자 정보를 가져오는 등의 작업을 수행할 수 있습니다.
+## <a name="step-2-set-up-hello-app-toouse-hello-owin-authentication-pipeline"></a>2 단계: hello 앱 toouse hello OWIN 인증 파이프라인 설정
+이 단계에서는 hello OWIN 미들웨어 toouse hello OpenID Connect 인증 프로토콜을 구성 합니다. OWIN tooissue 로그인 및 로그 아웃 요청을 사용 하 여, 관리 사용자 세션, 사용자 정보를 가져오기 하 등입니다.
 
-1. 시작하려면 패키지 관리자 콘솔을 사용하여 OWIN 미들웨어 NuGet 패키지를 프로젝트에 추가합니다.
+1. toobegin, hello 패키지 관리자 콘솔을 사용 하 여 hello OWIN 미들웨어 NuGet 패키지 toohello 프로젝트를 추가 합니다.
 
      ```
      PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
@@ -60,8 +60,8 @@ Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그
      PM> Install-Package Microsoft.Owin.Host.SystemWeb
      ```
 
-2. `Startup.cs`라는 프로젝트에 OWIN Startup 클래스를 추가하려면 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가**를 선택하고 **새 항목**을 선택한 다음 **OWIN**을 검색합니다. OWIN 미들웨어는 앱을 시작하면 **Configuration(...)** 메서드를 호출합니다.
-3. 클래스 선언을 `public partial class Startup`으로 변경합니다. 다른 파일에서 이 클래스의 일부를 구현했습니다. **Configuration(...)** 메서드에서 **ConfgureAuth(...)**를 호출하여 앱에 대한 인증을 설정합니다.  
+2. OWIN 시작 클래스 toohello 프로젝트 라는 tooadd `Startup.cs`hello 프로젝트를 마우스 오른쪽 단추로 선택 **추가**선택, **새 항목**, 검색할 **OWIN**합니다. hello를 호출 하는 OWIN 미들웨어입니다. hello **Configuration(...)**  hello 앱이 시작 될 때 메서드.
+3. Hello 클래스 선언에도 변경`public partial class Startup`합니다. 다른 파일에서 이 클래스의 일부를 구현했습니다. Hello에 **Configuration(...)**  메서드를 너무 호출할**ConfgureAuth(...)**  tooset hello 앱에 대 한 인증을 합니다.  
 
      ```C#
      public partial class Startup
@@ -73,7 +73,7 @@ Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그
      }
      ```
 
-4. App_Start\Startup.Auth.cs 파일을 연 다음 **ConfigureAuth(...)** 메서드를 구현합니다. *OpenIDConnectAuthenticationOptions*에 제공하는 매개 변수는 앱이 Azure AD와 통신하기 위한 좌표로 사용됩니다. OpenID Connect 미들웨어는 백그라운드에 쿠키를 사용하므로 쿠키 인증도 설정해야 합니다.
+4. 그런 다음 hello를 구현 하 고 hello App_Start\Startup.Auth.cs 파일을 열고 **ConfigureAuth(...)**  메서드. 매개 변수가 hello *OpenIDConnectAuthenticationOptions* 역할을 Azure AD와 앱 toocommunicate hello에 대 한 좌표입니다. 또한 필요 하면 tooset 쿠키 인증을 hello OpenID Connect 미들웨어 hello 백그라운드에서 쿠키를 사용 합니다.
 
      ```C#
      public void ConfigureAuth(IAppBuilder app)
@@ -101,15 +101,15 @@ Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그
      }
      ```
 
-5. 프로젝트 루트에 있는 web.config 파일을 연 다음 `<appSettings>` 섹션에 구성 값을 입력합니다.
-  * `ida:ClientId`: "1단계: Azure AD에 새 앱 등록"에서 Azure Portal에서 복사한 GUID입니다.
-  * `ida:Tenant`: Azure AD 테넌트의 이름(예: contoso.onmicrosoft.com)입니다.
-  * `ida:PostLogoutRedirectUri`: 로그아웃 요청이 성공적으로 완료된 후 사용자가 리디렉션되는 Azure AD를 나타냅니다.
+5. Hello 프로젝트의 hello 루트에서 hello web.config 파일을 연 다음 hello에 hello 구성 값을 입력 `<appSettings>` 섹션.
+  * `ida:ClientId`: Azure 포털에서 hello에서 복사한 GUID hello "1 단계: Azure AD와 hello 새 앱 등록 합니다."
+  * `ida:Tenant`: hello 이름에 Azure AD 테 넌 트 (예: contoso.onmicrosoft.com)입니다.
+  * `ida:PostLogoutRedirectUri`: 사용자 리디렉션해야 로그 아웃 요청을 성공적으로 완료 된 후에 Azure AD를 알려 주는 hello 표시기입니다.
 
-## <a name="step-3-use-owin-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>3단계: OWIN을 사용하여 Azure AD에 로그인 및 로그아웃 요청 실행
-이제 앱은 OpenID Connect 인증 프로토콜을 사용하여 Azure AD와 통신하도록 올바르게 구성되었습니다. OWIN이 인증 메시지를 작성하고, Azure AD에서 토큰의 유효성을 검사하고, 사용자 세션을 유지 관리하는 모든 세부 과정을 처리했습니다. 이제 사용자에게 로그인하고 로그아웃하는 방법을 알려주기만 하면 됩니다.
+## <a name="step-3-use-owin-tooissue-sign-in-and-sign-out-requests-tooazure-ad"></a>3 단계: 사용 tooAzure 광고를 요청 하는 OWIN tooissue 로그인 및 로그 아웃
+hello 이제 앱을 Azure AD와 올바르게 구성 된 toocommunicate hello OpenID Connect 인증 프로토콜을 사용 하 여 합니다. OWIN 인증 메시지를 만들어, Azure AD에서 토큰의 유효성 검사 및 사용자 세션을 유지 관리의 hello 세부 정보를 모두 처리 했습니다. 나머지 작업은 toogive 사용자의 방식으로 toosign 및 로그 아웃 합니다.
 
-1. 컨트롤러에서 권한 부여 태그를 사용하여 사용자가 특정 페이지에 액세스하기 전에 로그인하도록 요구할 수 있습니다. 이렇게 하려면 controllers\ homecontroller.cs를 연 다음 About 컨트롤러에는 `[Authorize]` 태그를 추가합니다.
+1. 에서는 특정 페이지를 액세스 하기 전에 태그에는 컨트롤러 toorequire 사용자 toosign에 권한을 부여 합니다. toodo 따라서 Controllers\HomeController.cs를 열고 다음 추가 hello `[Authorize]` toohello 컨트롤러에 대 한 태그를 지정 합니다.
 
      ```C#
      [Authorize]
@@ -118,7 +118,7 @@ Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그
        ...
      ```
 
-2. 또한 OWIN을 사용하여 코드 내에서 직접 인증 요청을 실행할 수도 있습니다. 이렇게 하려면 Controllers\AccountController.cs를 엽니다. 그런 다음 SignIn() 및 SignOut() 작업에서 OpenID Connect 챌린지 및 로그아웃 요청을 실행합니다.
+2. OWIN toodirectly 문제에서 오는 인증 요청이 코드 내에서 사용할 수도 있습니다. 따라서 toodo Controllers\AccountController.cs를 엽니다. 그런 다음 hello SignIn() 및 SignOut() 작업의 OpenID Connect 챌린지 및 로그 아웃 요청을 실행 합니다.
 
      ```C#
      public void SignIn()
@@ -137,7 +137,7 @@ Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그
      }
      ```
 
-3. Views\Shared\_LoginPartial.cshtml을 열고 사용자에게 앱 로그인 및 로그 아웃 링크를 표시하고 보기에서 사용자의 이름을 인쇄합니다.
+3. Views\Shared 열고\_LoginPartial.cshtml tooshow hello 사용자 hello 응용 프로그램 로그인 및 로그 아웃 링크 및 tooprint 뷰에서 hello 사용자의 이름입니다.
 
     ```HTML
     @if (Request.IsAuthenticated)
@@ -162,9 +162,9 @@ Azure AD(Azure Active Directory)는 몇 개의 코드 줄만으로 단일 로그
     ```
 
 ## <a name="step-4-display-user-information"></a>4단계: 사용자 정보 표시
-OpenID Connect로 사용자를 인증할 때 Azure AD는 “클레임” 또는 사용자에 대한 어설션을 포함하는 id_token을 앱에 반환합니다. 다음을 수행하여 앱 개인에 맞게 이러한 클레임을 사용할 수 있습니다.
+OpenID Connect와 사용자를 인증할 때 Azure AD는 "클레임" 또는 hello 사용자에 대 한 어설션을 포함 하는 id_token toohello 응용 프로그램을 반환 합니다. Hello 다음을 수행 하 여 이러한 클레임 toopersonalize hello 응용 프로그램을 사용할 수 있습니다.
 
-1. Controllers\HomeController.cs 파일을 엽니다. `ClaimsPrincipal.Current` 보안 주체 개체를 통해 컨트롤러의 사용자 클레임에 액세스할 수 있습니다.
+1. Hello Controllers\HomeController.cs 파일을 엽니다. Hello 사용자의 클레임 hello 통해 컨트롤러에 액세스할 수 있습니다 `ClaimsPrincipal.Current` 보안 주체 개체입니다.
 
  ```C#
  public ActionResult About()
@@ -179,17 +179,17 @@ OpenID Connect로 사용자를 인증할 때 Azure AD는 “클레임” 또는 
  }
  ```
 
-2. 앱을 빌드 및 실행합니다. onmicrosoft.com 도메인을 사용하여 테넌트에 아직 새 사용자를 만들지 않았으면 이제 만들어야 합니다. 방법은 다음과 같습니다.
+2. 빌드하고 hello 앱을 실행 합니다. Onmicrosoft.com 도메인 테 넌 트에 새 사용자를 만들지 않았으면, 이제 경우 hello 시간 toodo 하므로입니다. 방법은 다음과 같습니다.
 
-  a. 해당 사용자로 로그인하고 위쪽 모음에 사용자 ID가 반영되는 방식을 확인합니다.
+  a. 해당 사용자도 로그인 하 고 hello 위쪽 막대에 hello 사용자의 id는 반영 하는 방법입니다.
 
   b. 로그아웃하고 테넌트의 다른 사용자로 다시 로그인합니다.
 
   c. 관심이 있으면 이 앱의 다른 인스턴스를 등록 및 실행하고(자체 clientId 사용) SSO(Single Sign-On) 작동을 살펴봅니다.
 
 ## <a name="next-steps"></a>다음 단계
-참조용 자료로 [완성된 샘플](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)(사용자 구성 값 제외)을 참조하세요.
+참조를 참조 하십시오. [완료 hello 샘플](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip) (없이 구성 값).
 
-이제 좀 더 고급 항목으로 이동할 수 있습니다. 예를 들어 [Azure AD를 사용하여 Web API 보안 유지](active-directory-devquickstarts-webapi-dotnet.md)를 시도해 보세요.
+고급 항목 toomore에 이동할 수 있습니다. 예를 들어 [Azure AD를 사용하여 Web API 보안 유지](active-directory-devquickstarts-webapi-dotnet.md)를 시도해 보세요.
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

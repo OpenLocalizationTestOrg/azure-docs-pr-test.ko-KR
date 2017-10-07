@@ -1,5 +1,5 @@
 ---
-title: "Azure CDN POP 위치 | Microsoft Azure"
+title: "CDN POP 위치 aaaAzure | Microsoft Docs"
 description: "이 항목에서는 Azure CDN POP 위치를 나열합니다."
 services: cdn
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 7c13931aa6d17036e59674cdd917e3ca221ac57f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f10afb12c168aa610f996f1e49b0ef133f2236a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cdn-pop-locations"></a>Azure CDN POP 위치
 이 항목에는 **Verizon의 Azure CDN** 및 **Akamai의 Azure CDN**에 대한 현재 POP 위치가 나열되어 있습니다.
@@ -26,7 +26,7 @@ ms.lasthandoff: 07/11/2017
 > [!IMPORTANT]
 > \***Akamai의 Azure CDN** POP 위치는 개별적으로 공개되지 않습니다.  
 > 
-> 두 공급자의 CDN 인프라를 구축하는 방식은 분명히 구별됩니다.  사용할 Azure CDN 제품을 결정하기 위해 POP 위치를 사용하는 것은 좋지 않습니다. 그 대신 기능 및 최종 사용자 성능을 고려하십시오.  두 공급자의 성능을 테스트하여 사용자에게 적합한 Azure CDN 제품을 선택하세요. 
+> 두 공급자의 CDN 인프라를 구축하는 방식은 분명히 구별됩니다.  Azure CDN 제품 toouse 어떤 POP 위치 toodecide를 사용 하는 것이 좋습니다 하 고 대신 기능 및 최종 사용자 성능 고려 합니다.  두 공급자 toochoose hello 오른쪽 Azure CDN 제품 사용자에 대 한 hello 성능을 테스트 합니다. 
 > 
 > 
 
@@ -44,5 +44,5 @@ ms.lasthandoff: 07/11/2017
 | 오스트레일리아 및 뉴질랜드 |멜버른, 오스트레일리아<br />시드니, 오스트레일리아 |**&#x2713;**\* |
 
 ## <a name="see-also"></a>참고 항목
-* [허용 목록에 대한 최신 IP 주소를 얻기 위한 Azure CDN 에지 노드 API](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
+* [Azure CDN Edge 노드 API tooget 최신 IP 주소를 허용 목록](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
 
