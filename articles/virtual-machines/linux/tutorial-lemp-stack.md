@@ -1,6 +1,6 @@
 ---
-title: "Azure의 Linux 가상 컴퓨터에 LEMP 배포 | Microsoft Docs"
-description: "자습서 - Azure에서 Linux VM에 LEMP 스택 설치"
+title: "Azure에서 Linux 가상 컴퓨터에서 LEMP aaaDeploy | Microsoft Docs"
+description: "자습서-Azure에서 Linux VM에 대 한 설치 hello LEMP 스택"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: dlepow
@@ -15,38 +15,38 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: danlep
-ms.openlocfilehash: 653af144eb12cacf955f96a5442efd73add38e88
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d8f9d84c5e9c0df4e9e985c10fe10f63a2f88214
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-a-lemp-web-server-on-an-azure-vm"></a>Azure VM에 LEMP 웹 서버 설치
-이 문서에서는 Azure의 Ubuntu VM에 NGINX 웹 서버, MySQL 및 PHP(LEMP 스택)를 배포하는 방법을 설명합니다. LEMP 스택은 인기 있는 [LAMP 스택](tutorial-lamp-stack.md) 대신 사용할 수 있으며 Azure에도 설치할 수 있습니다. 작동 중인 LEMP 서버를 보려면 필요에 따라 WordPress 사이트를 설치하고 구성할 수 있습니다. 이 자습서에서는 다음 방법에 대해 알아봅니다.
+이 문서 toodeploy는 NGINX 웹 서버, MySQL 및 Azure의 Ubuntu VM에서 PHP (hello LEMP 스택) 방법을 안내 합니다. hello LEMP 스택은 널리 사용 되는 대체 toohello [LAMP 스택](tutorial-lamp-stack.md)는 Azure에서 설치할 수 있습니다. toosee hello LEMP 서버 작업을 필요에 따라 설치 하 고 수 WordPress 사이트를 구성 합니다. 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
-> * Ubuntu VM(LEMP 스택에서 'L') 만들기
+> * Ubuntu VM (hello 'L' hello LEMP 스택의) 만들기
 > * 웹 트래픽에 대해 포트 80 열기
 > * NGINX, MySQL 및 PHP 설치
 > * 설치 및 구성 확인
-> * LEMP 서버에 WordPress 설치
+> * WordPress hello LEMP 서버에 설치
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 자습서에서 Azure CLI 버전 2.0.4 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 자습서를 사용 하려면 2.0.4 hello Azure CLI 버전을 실행 되 고 있는지 이상. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
 [!INCLUDE [virtual-machines-linux-tutorial-stack-intro.md](../../../includes/virtual-machines-linux-tutorial-stack-intro.md)]
 
 ## <a name="install-nginx-mysql-and-php"></a>NGINX, MySQL 및 PHP 설치
 
-다음 명령을 실행하여 Ubuntu 패키지 원본을 업데이트하고 NGINX, MySQL 및 PHP를 설치합니다. 
+Hello 명령 tooupdate Ubuntu 패키지 원본 실행 NGINX, MySQL 및 PHP를 설치 하십시오. 
 
 ```bash
 sudo apt update && sudo apt install nginx mysql-server php-mysql php php-fpm
 ```
 
-패키지 및 기타 종속성을 설치하라는 메시지가 표시됩니다. 메시지가 표시되면 MySQL에 대한 루트 암호를 설정한 다음 [Enter] 키를 눌러 계속합니다. 나머지 지시를 따릅니다. 이 프로세스에서는 PHP와 MySQL을 함께 사용하는 데 필요한 최소한의 PHP 확장을 설치합니다. 
+모르는 증명된 tooinstall hello 패키지 및 기타 종속성입니다. 메시지가 표시 되 면 MySQL을 선택한 다음 [Enter] toocontinue 루트 암호를 설정 합니다. Hello 남아 있는 프롬프트를 따릅니다. 이 프로세스는 MySQL 가진 hello 최소 필요한 PHP 확장 필요한 toouse PHP를 설치합니다. 
 
 ![MySQL 루트 암호 페이지][1]
 
@@ -55,49 +55,49 @@ sudo apt update && sudo apt install nginx mysql-server php-mysql php php-fpm
 
 ### <a name="nginx"></a>NGINX
 
-다음 명령으로 PHP의 버전을 확인합니다.
+다음 명령을 hello로 NGINX의 hello 버전을 확인 합니다.
 ```bash
 nginx -v
 ```
 
-NGINX를 설치하고 VM에 포트 80을 열어서 인터넷에서 웹 서버에 액세스할 수 있습니다. NGINX 시작 페이지를 보려면 웹 브라우저를 열고 VM의 공용 IP 주소를 입력합니다. VM에 SSH하는 데 사용한 공용 IP 주소를 사용합니다.
+NGINX 설치 되어 있으며 포트 80 엽니다 tooyour VM hello 웹 서버 hello에서 액세스할 수 있습니다, 인터넷 합니다. tooview hello NGINX 시작 페이지에서 웹 브라우저를 열고 hello hello VM의 공용 IP 주소를 입력 합니다. Hello tooSSH toohello VM을 사용 하는 공용 IP 주소를 사용 합니다.
 
 ![NGINX 기본 페이지][3]
 
 
 ### <a name="mysql"></a>MySQL
 
-다음 명령을 사용하여 MySQL의 버전을 확인합니다(대문자 `V` 매개 변수 주의).
+다음 명령을 hello로 MySQL의 hello 버전을 확인 (참고 hello 자본 `V` 매개 변수):
 
 ```bash
 msql -V
 ```
 
-MySQL의 설치를 보호하기 위해 다음 스크립트를 실행하는 것이 좋습니다.
+Hello MySQL의 toohelp 보안 hello 설치 스크립트를 실행 하는 것이 좋습니다.
 
 ```bash
 mysql_secure_installation
 ```
 
-MySQL 루트 암호를 입력하고 사용자 환경에 대한 보안 설정을 구성합니다.
+MySQL 루트 암호를 입력 하 고 사용자 환경에 대 한 hello 보안 설정을 구성 합니다.
 
-MySQL 데이터베이스를 만들려면 사용자를 추가하거나 구성 설정을 변경하고 MySQL에 로그인합니다.
+Toocreate MySQL 데이터베이스 사용자를 추가 하거나 로그인 tooMySQL 구성 설정을 변경 합니다.
 
 ```bash
 mysql -u root -p
 ```
 
-완료한 후 `\q`를 입력하여 mysql 프롬프트를 종료합니다.
+을 완료 한 후를 입력 하 여 hello mysql 프롬프트를 종료 `\q`합니다.
 
 ### <a name="php"></a>PHP
 
-다음 명령으로 PHP의 버전을 확인합니다.
+다음 명령을 hello로 hello PHP 버전을 확인 합니다.
 
 ```bash
 php -v
 ```
 
-PHP-FPM(PHP FastCGI Process Manager)를 사용하도록 NGINX를 구성합니다. 다음 명령을 실행하여 원래 NGINX 서버 블록 구성 파일을 백업하고 원하는 편집기에 원본 파일을 편집합니다.
+NGINX toouse hello PHP FastCGI 프로세스 관리자 (PHP FPM)를 구성 합니다. 다음 명령은 tooback hello 원래 NGINX 서버를 구성 파일을 차단 하 고 다음 hello 원하는 편집기에 원본 파일을 편집 하는 hello를 실행 합니다.
 
 ```bash
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_backup
@@ -105,7 +105,7 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_ba
 sudo sensible-editor /etc/nginx/sites-available/default
 ```
 
-편집기에서 `/etc/nginx/sites-available/default`의 내용을 다음으로 바꿉니다. 설정에 대한 설명을 보려면 주석을 참조하세요. VM의 공용 IP 주소를 *yourPublicIPAddress*로 바꾸고 나머지 설정은 그대로 유지합니다. 그런 다음 파일을 저장합니다.
+Hello 편집기에서의 hello 내용을 대체 `/etc/nginx/sites-available/default` hello 다음과 같이 합니다. 에 대 한 설명은 hello 설정의 hello 주석을 참조 하십시오. Hello에 대 한 VM의 공용 IP 주소 대체 *yourPublicIPAddress*, hello 남은 설정을 유지 합니다. Hello 파일을 저장 합니다.
 
 ```
 server {
@@ -130,19 +130,19 @@ server {
 }
 ```
 
-NGINX 구성의 구문 오류를 확인합니다.
+구문 오류에 대 한 hello NGINX 구성을 확인 하십시오.
 
 ```bash
 sudo nginx -t
 ```
 
-구문이 올바른 경우 다음 명령을 사용하여 NGINX를 다시 시작합니다.
+Hello 구문이 올바른 경우 다음 명령을 hello로 NGINX 다시 시작 합니다.
 
 ```bash
 sudo service nginx restart
 ```
 
-추가로 테스트하려는 경우 빠른 PHP 정보 페이지를 만들어 브라우저에서 봅니다. 다음 명령은 PHP 정보 페이지를 만듭니다.
+Tootest 추가 하려는 경우 브라우저에서 빠른 PHP 정보 페이지 tooview를 만듭니다. 다음 명령을 hello hello PHP 정보 페이지를 만듭니다.
 
 ```bash
 sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
@@ -150,7 +150,7 @@ sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
 
 
 
-이제 만든 PHP 정보 페이지를 확인할 수 있습니다. 웹 브라우저를 열고 `http://yourPublicIPAddress/info.php`로 이동합니다. VM의 공용 IP 주소를 대체합니다. 이 이미지와 유사하게 표시됩니다.
+이제 만든 hello PHP 정보 페이지를 확인할 수 있습니다. 브라우저를 열고 너무 이동`http://yourPublicIPAddress/info.php`합니다. VM의 hello 공용 IP 주소를 대체 합니다. 이와 유사한 toothis 이미지 표시 됩니다.
 
 ![PHP 정보 페이지][2]
 
@@ -166,9 +166,9 @@ sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
 > * 웹 트래픽에 대해 포트 80 열기
 > * NGINX, MySQL 및 PHP 설치
 > * 설치 및 구성 확인
-> * LEMP 스택에 WordPress 설치
+> * Hello LEMP 스택에 WordPress 설치
 
-SSL 인증서로 웹 서버를 보호하는 방법에 대해 알아보려면 다음 자습서로 이동합니다.
+다음 자습서 toolearn toohello 어떻게 발전 toosecure 웹 서버 SSL 인증서를 사용 합니다.
 
 > [!div class="nextstepaction"]
 > [SSL로 웹 서버 보안](tutorial-secure-web-server.md)

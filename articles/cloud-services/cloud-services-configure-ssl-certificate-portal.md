@@ -1,6 +1,6 @@
 ---
-title: "클라우드 서비스에 대해 SSL 구성 | Microsoft Docs"
-description: "웹 역할에 대해 HTTPS 끝점을 지정하는 방법 및 응용 프로그램 보안을 위해 SSL 인증서를 업로드하는 방법에 대해 알아봅니다. 이 예제는 Azure 포털을 사용합니다."
+title: "클라우드 서비스에 대 한 SSL aaaConfigure | Microsoft Docs"
+description: "자세한 내용은 방법 toospecify 웹 역할 및 어떻게 tooupload SSL 인증서를 toosecure 응용 프로그램에 대 한 HTTPS 끝점입니다. 이러한 예제는 hello Azure 포털을 사용합니다."
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/26/2017
 ms.author: adegeo
-ms.openlocfilehash: e5c8c3b098772c0586712305a577b24a6f0d924c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b19283bb7b0e95374f2ae9c3532eb1effc7d6a9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-ssl-for-an-application-in-azure"></a>Azure에서 응용 프로그램에 대한 SSL 구성
 > [!div class="op_single_selector"]
@@ -26,38 +26,38 @@ ms.lasthandoff: 07/11/2017
 > * [Azure 클래식 포털](cloud-services-configure-ssl-certificate.md)
 >
 
-SSL(Secure Socket Layer) 암호화는 인터넷을 통해 전송되는 데이터 보호에 가장 일반적으로 사용되는 방법입니다. 이 일반 작업에서는 웹 역할에 대해 HTTPS 끝점을 지정하는 방법 및 응용 프로그램 보안을 위해 SSL 인증서를 업로드하는 방법에 대해 설명합니다.
+Secure Socket Layer (SSL) 암호화는 데이터 hello를 통해 전송 보안의 가장 일반적으로 사용 하는 hello 메서드 인터넷 합니다. 이 작업에 설명 방법을 toospecify 웹 역할 및 어떻게 tooupload SSL 인증서를 toosecure 응용 프로그램에 대 한 HTTPS 끝점입니다.
 
 > [!NOTE]
-> 이 작업의 절차는 Azure 클라우드 서비스에 적용됩니다. 앱 서비스에 대해서는 [이 항목](../app-service-web/web-sites-configure-ssl-certificate.md)을 참조하세요.
+> 이 작업의 절차에서는 hello 적용 tooAzure 클라우드 서비스 응용 프로그램 서비스에 대 한 참조 [이](../app-service-web/web-sites-configure-ssl-certificate.md)합니다.
 >
 
-이 작업에서는 프로덕션 배포를 사용합니다. 스테이징 배포에 대한 정보는 이 항목의 끝에 제공됩니다.
+이 작업에서는 프로덕션 배포를 사용합니다. 스테이징 배포를 사용 하는 방법은이 항목의 hello 끝에서 제공 됩니다.
 
 클라우드 서비스를 아직 만들지 않은 경우 먼저 [이 문서를](cloud-services-how-to-create-deploy-portal.md) 읽어보세요.
 
 [!INCLUDE [websites-cloud-services-css-guided-walkthrough](../../includes/websites-cloud-services-css-guided-walkthrough.md)]
 
 ## <a name="step-1-get-an-ssl-certificate"></a>1단계: SSL 인증서 다운로드
-응용 프로그램에 대해 SSL을 구성하려면 먼저 이 목적으로 인증서를 발급하는 신뢰할 수 있는 타사 CA(인증 기관)에서 서명한 SSL 인증서를 가져와야 합니다. 아직 없는 경우 SSL 인증서를 판매하는 회사에서 구입해야 합니다.
+응용 프로그램에 대 한 SSL을 tooconfigure, 먼저 tooget는 인증 기관 (CA)에서이 목적을 위해 인증서를 발급 하는 신뢰할 수 있는 타사 서명 된 SSL 인증서입니다. 이미 않아도 하나, 하는 경우 SSL 인증서를 판매 하는 회사에서 tooobtain 하나 해야 합니다.
 
-인증서는 Azure의 SSL 인증서에 대한 다음 요구 사항을 충족해야 합니다.
+hello 인증서 hello Azure에서 SSL 인증서에 대 한 요구 사항을 준수를 충족 해야 합니다.
 
-* 인증서에 개인 키가 포함되어 있어야 합니다.
-* 개인 정보 교환(.pfx) 파일로 내보낼 수 있는 키 교환용 인증서를 만들어야 합니다.
-* 인증서의 주체 이름은 클라우드 서비스 액세스에 사용되는 도메인과 일치해야 합니다. cloudapp.net 도메인에 사용되는 SSL 인증서는 CA(인증 기관)에서 얻을 수 없습니다. 서비스에 액세스할 때 사용할 사용자 지정 도메인 이름을 획득해야 합니다. CA에서 인증서를 요청하는 경우 인증서의 주체 이름이 응용 프로그램 액세스에 사용되는 사용자 지정 도메인 이름과 일치해야 합니다. 예를 들어 사용자 지정 도메인 이름이 **contoso.com**인 경우 CA에서 ***.contoso.com** 또는 **www.contoso.com**에 대한 인증서를 요청합니다.
-* 인증서는 최소한 2048비트 암호화를 사용해야 합니다.
+* hello 인증서 개인 키를 포함 해야 합니다.
+* 키 교환, 내보낼 수 있는 tooa 개인 정보 교환 (.pfx) 파일에 대 한 hello 인증서를 만들어야 합니다.
+* hello 인증서의 주체 이름은 일치 해야 hello 사용 되는 도메인 tooaccess hello 클라우드 서비스입니다. Hello cloudapp.net 도메인에 대 한 인증 기관 (CA)에서 SSL 인증서를 가져올 수 없습니다. 사용자 지정 도메인 이름을 toouse 획득 해야 서비스에 액세스할 때. CA에서 인증서를 요청한 응용 프로그램 hello 인증서의 주체 이름은 hello 사용자 지정 도메인 이름 사용 tooaccess 일치 해야 합니다. 예를 들어 사용자 지정 도메인 이름이 **contoso.com**인 경우 CA에서 ***.contoso.com** 또는 **www.contoso.com**에 대한 인증서를 요청합니다.
+* hello 인증서 최소 2048 비트 암호화를 사용 해야 합니다.
 
-테스트용으로 자체 서명된 인증서를 [만들어](cloud-services-certs-create.md) 사용할 수 있습니다. 자체 서명된 인증서는 CA를 통해 인증되지 않으며 cloudapp.net 도메인을 웹 사이트 URL로 사용할 수 있습니다. 예를 들어 다음 작업에서는 인증서에서 사용되는 CN(일반 이름)이 **sslexample.cloudapp.net**인 자체 서명된 인증서를 사용합니다.
+테스트용으로 자체 서명된 인증서를 [만들어](cloud-services-certs-create.md) 사용할 수 있습니다. 자체 서명 된 인증서가 CA를 통해 인증 되지 않은 및 hello cloudapp.net 도메인 hello 웹 사이트 URL로 사용할 수 있습니다. 예를 들어 hello 다음 태스크에서 사용 하는 hello CN (일반 이름) hello 인증서에 사용 되는 자체 서명 된 인증서 **sslexample.cloudapp.net**합니다.
 
-다음으로 인증서에 대한 정보를 서비스 정의 및 서비스 구성 파일에 포함해야 합니다.
+다음으로, 서비스 정 및 서비스 구성 파일에 hello 인증서에 대 한 정보를 포함 해야 합니다.
 
 <a name="modify"> </a>
 
-## <a name="step-2-modify-the-service-definition-and-configuration-files"></a>2단계: 서비스 정의 및 구성 파일 수정
-인증서를 사용하도록 응용 프로그램을 구성하고 HTTPS 끝점을 추가해야 합니다. 따라서 서비스 정의 및 서비스 구성 파일을 업데이트해야 합니다.
+## <a name="step-2-modify-hello-service-definition-and-configuration-files"></a>2 단계: hello 서비스 정 및 구성 파일 수정
+응용 프로그램 구성된 toouse hello 인증서 및 HTTPS 끝점을 추가 해야 합니다. 결과적으로, hello 서비스 정 및 서비스 구성 파일 필요한 toobe 업데이트 합니다.
 
-1. 개발 환경에서 서비스 정의 파일(CSDEF)을 열고 **WebRole** 섹션 내에 **Certificates** 섹션을 추가한 후 인증서(및 중간 인증서)에 대한 다음 정보를 포함합니다.
+1. 개발 환경의 hello 서비스 정의 파일 (CSDEF)을 열고, 추가 **인증서** hello 내의 섹션 **WebRole** 섹션을 hello에 대 한 다음 정보를 포함 합니다.는 인증서 (및 중간 인증서):
 
    ```xml
     <WebRole name="CertificateTesting" vmsize="Small">
@@ -68,11 +68,11 @@ SSL(Secure Socket Layer) 암호화는 인터넷을 통해 전송되는 데이터
                         storeName="My"
                         permissionLevel="limitedOrElevated" />
             <!-- IMPORTANT! Unless your certificate is either
-            self-signed or signed directly by the CA root, you
-            must include all the intermediate certificates
+            self-signed or signed directly by hello CA root, you
+            must include all hello intermediate certificates
             here. You must list them here, even if they are
-            not bound to any endpoints. Failing to list any of
-            the intermediate certificates may cause hard-to-reproduce
+            not bound tooany endpoints. Failing toolist any of
+            hello intermediate certificates may cause hard-to-reproduce
             interoperability problems on some clients.-->
             <Certificate name="CAForSampleCertificate"
                         storeLocation="LocalMachine"
@@ -83,16 +83,16 @@ SSL(Secure Socket Layer) 암호화는 인터넷을 통해 전송되는 데이터
     </WebRole>
     ```
 
-   **Certificates** 섹션에서는 인증서의 이름, 위치 및 인증서가 위치한 저장소의 이름을 정의합니다.
+   hello **인증서** 섹션에는 인증서, 위치 및 위치한 hello 저장소의 hello 이름을의 hello 이름을 정의 합니다.
 
-   권한(`permisionLevel` 특성)은 다음 값 중 하나로 설정될 수 있습니다.
+   사용 권한 (`permisionLevel` 특성) 다음과 같은 값 사용의 hello 집합 tooone 될 수 있습니다.
 
    | 권한 값 | 설명 |
    | --- | --- |
-   | limitedOrElevated |**(기본값)** 모든 역할 프로세스는 개인 키에 액세스할 수 있습니다. |
-   | elevated |승격된 프로세스만 개인 키에 액세스할 수 있습니다. |
+   | limitedOrElevated |**(기본값)**  모든 역할 프로세스가 개인 키 hello에 액세스할 수 있습니다. |
+   | elevated |승격 된 프로세스만 개인 키 hello 액세스할 수 있습니다. |
 
-2. 서비스 정의 파일에서 **끝점** 섹션 내에 **InputEndpoint** 요소를 추가하여 HTTPS를 사용하도록 설정합니다.
+2. 서비스 정의 파일에서 추가 된 **InputEndpoint** hello 내의 요소 **끝점** tooenable HTTPS 섹션:
 
    ```xml
     <WebRole name="CertificateTesting" vmsize="Small">
@@ -105,7 +105,7 @@ SSL(Secure Socket Layer) 암호화는 인터넷을 통해 전송되는 데이터
     </WebRole>
     ```
 
-3. 서비스 정의 파일에서 **Sites** 섹션 내에 **Binding** 요소를 추가합니다. 이 요소는 HTTPS 바인딩을 추가하여 끝점을 사이트에 매핑합니다.
+3. 서비스 정의 파일에서 추가 된 **바인딩** hello 내의 요소 **사이트** 섹션. 이 요소는 HTTPS 바인딩 toomap 끝점 tooyour 사이트를 추가합니다.
 
    ```xml
     <WebRole name="CertificateTesting" vmsize="Small">
@@ -121,8 +121,8 @@ SSL(Secure Socket Layer) 암호화는 인터넷을 통해 전송되는 데이터
     </WebRole>
     ```
 
-   서비스 정의 파일에서 필요한 사항은 모두 변경했지만 인증서 정보를 서비스 구성 파일에 추가해야 합니다.
-4. 서비스 구성 파일(CSCFG), ServiceConfiguration.Cloud.cscfg에서 사용 중인 인증서 값에 해당하는 **Certificates** 값을 추가합니다. 다음 코드 예제에서는 지문 값을 제외한 **Certificates** 섹션의 세부 정보를 제공합니다.
+   Toohello 서비스 정의 파일에 대 한 모든의 hello 필요한 변경을 완료 되었습니다. 하지만 hello 서비스 구성 파일에 tooadd hello 인증서 정보를 제공 해야 합니다.
+4. 서비스 구성 파일(CSCFG), ServiceConfiguration.Cloud.cscfg에서 사용 중인 인증서 값에 해당하는 **Certificates** 값을 추가합니다. hello 다음 코드 샘플을 자세히 설명 hello **인증서** hello 지문 값을 제외한 섹션.
 
    ```xml
     <Role name="Deployment">
@@ -139,51 +139,51 @@ SSL(Secure Socket Layer) 암호화는 인터넷을 통해 전송되는 데이터
     </Role>
     ```
 
-이 예제에서는 지문 알고리즘에 **sha1**을 사용합니다. 인증서의 지문 알고리즘에 적합한 값을 지정하세요.
+(이 예에서는 **sha1** hello 지문 알고리즘에 대 한 합니다. Hello 인증서의 지문 알고리즘에 대 한 적절 한 값을 지정 합니다.)
 
-서비스 정의 및 서비스 구성 파일이 업데이트되었으므로 Azure에 업로드할 배포를 패키지합니다. **cspack**를 사용하는 경우 **/generateConfigurationFile** 플래그를 사용하지 않도록 하세요. 이 플래그는 방금 삽입한 인증서 정보를 덮어씁니다.
+Hello 서비스 정 및 서비스 구성 파일을 업데이트 한 했으므로 tooAzure 업로드에 대 한 배포를 패키지 합니다. **cspack**를 사용하는 경우 **/generateConfigurationFile** 플래그를 사용하지 않도록 하세요. 이 플래그는 방금 삽입한 인증서 정보를 덮어씁니다.
 
 ## <a name="step-3-upload-a-certificate"></a>3단계: 인증서 업로드
-Azure Portal에 연결하고 다음을 수행합니다.
+Azure 포털 toohello 연결 및...
 
-1. 포털의 **모든 리소스** 섹션에서 클라우드 서비스를 선택합니다.
+1. Hello에 **모든 리소스** 섹션 hello 포털의 클라우드 서비스를 선택 합니다.
 
     ![클라우드 서비스 게시](media/cloud-services-configure-ssl-certificate-portal/browse.png)
 
 2. **인증서**를 클릭합니다.
 
-    ![인증서 아이콘 클릭](media/cloud-services-configure-ssl-certificate-portal/certificate-item.png)
+    ![Hello 인증서 아이콘을 클릭 합니다.](media/cloud-services-configure-ssl-certificate-portal/certificate-item.png)
 
-3. 인증서 영역 위쪽에서 **업로드**를 클릭합니다.
+3. 클릭 **업로드** hello hello 인증서 영역 위쪽에 있습니다.
 
-    ![업로드 메뉴 항목 클릭](media/cloud-services-configure-ssl-certificate-portal/Upload_menu.png)
+    ![Hello 업로드 메뉴 항목을 클릭 합니다.](media/cloud-services-configure-ssl-certificate-portal/Upload_menu.png)
 
-4. **파일**, **암호**를 입력하고 데이터 입력 영역 아래쪽의 **업로드**를 클릭합니다.
+4. Hello 제공 **파일**, **암호**, 클릭 **업로드** hello hello 데이터 입력 영역 맨 아래에 있습니다.
 
-## <a name="step-4-connect-to-the-role-instance-by-using-https"></a>4단계: HTTPS를 사용하여 역할 인스턴스에 연결
-이제 Azure에서 배포가 실행되고 있으므로 HTTPS를 사용하여 연결할 수 있습니다.
+## <a name="step-4-connect-toohello-role-instance-by-using-https"></a>4 단계: toohello 역할 인스턴스를 HTTPS를 사용 하 여 연결
+배포 실행 되 고 Azure에서, 했으므로 tooit HTTPS를 사용 하 여 연결할 수 있습니다.
 
-1. **사이트 URL**을 클릭하여 웹 브라우저를 엽니다.
+1. Hello 클릭 **사이트 URL** tooopen hello 웹 브라우저를 합니다.
 
-   ![사이트 URL 클릭](media/cloud-services-configure-ssl-certificate-portal/navigate.png)
+   ![Hello 사이트 URL을 클릭 합니다.](media/cloud-services-configure-ssl-certificate-portal/navigate.png)
 
-2. 웹 브라우저에서 **http** 대신 **https**를 사용하도록 링크를 수정한 다음 페이지를 방문합니다.
+2. 웹 브라우저에서 hello 링크 toouse 수정 **https** 대신 **http**, hello 페이지를 방문 합니다.
 
    > [!NOTE]
-   > 자체 서명된 인증서를 사용하는 경우 자체 서명된 인증서와 연결된 HTTPS 끝점으로 이동하면 브라우저에 인증서오류가 표시됩니다. 신뢰할 수 있는 인증 기관에서 서명한 인증서를 사용하면 이 문제가 해결되지만 이 오류는 무시할 수 있습니다. 또 다른 옵션으로 사용자의 신뢰할 수 있는 인증 기관 인증서 저장소에 자체 서명된 인증서를 추가할 수 있습니다.
+   > Hello 자체 서명 된 인증서와 관련 된 tooan HTTPS 끝점을 찾을 때에 자체 서명 된 인증서를 사용 하는 hello 브라우저에 인증서 오류가 표시 될 수 있습니다. 이 문제는 신뢰할 수 있는 인증 기관에서 서명한 인증서를 사용 하 여 제거 그 동안 hello에 hello 오류를 무시할 수 있습니다. (또 다른 옵션은 tooadd hello 자체 서명 된 인증서 toohello 사용자의 신뢰할 수 있는 인증 기관 인증서 저장소.)
    >
    >
 
    ![사이트 미리 보기](media/cloud-services-configure-ssl-certificate-portal/show-site.png)
 
    > [!TIP]
-   > 프로덕션 배포가 아닌 스테이징 배포에 SSL을 사용하려면 먼저 스테이징 배포에 사용된 URL을 확인해야 합니다. 클라우드 서비스가 배포되면 `https://deployment-id.cloudapp.net/` 형식의 **배포 ID** GUID에 따라 스테이징 환경에 대한 URL이 결정됩니다.  
+   > 프로덕션 배포 하는 대신 스테이징 배포에 대 한 SSL toouse 하려는 경우 먼저 hello 스테이징 배포에 사용 되는 toodetermine hello URL을 해야 합니다. 클라우드 서비스 배포 된 hello URL toohello 스테이징 환경 따라 사용자가 hello **배포 ID** 이 형식의 GUID:`https://deployment-id.cloudapp.net/`  
    >
-   > GUID 기반 URL과 같은 CN(일반 이름)으로 인증서를 만듭니다(예: **328187776e774ceda8fc57609d404462.cloudapp.net**). 스테이징된 클라우드 서비스에 인증서를 추가하려면 포털을 사용합니다. 그런 다음 인증서 정보를 CSDEF 및 CSCFG 파일에 추가하고 응용 프로그램을 다시 패키지하고 스테이징된 배포를 업데이트하여 새 패키지를 사용합니다.
+   > Hello 일반 이름 (CN) 같은 toohello GUID 기반 URL으로 인증서를 만듭니다 (예를 들어 **328187776e774ceda8fc57609d404462.cloudapp.net**). 사용 하 여 hello 포털 tooadd hello 인증서 tooyour 클라우드 서비스를 준비 합니다. 그런 다음 hello는 인증서 정보 tooyour CSDEF 및 CSCFG 파일을 추가 하 고 응용 프로그램을 다시 패키지 다음 준비 된 배포 toouse hello 새 패키지를 업데이트 합니다.
    >
 
 ## <a name="next-steps"></a>다음 단계
 * [클라우드 서비스의 일반 구성](cloud-services-how-to-configure-portal.md)
-* [클라우드 서비스를 배포](cloud-services-how-to-create-deploy-portal.md)하는 방법을 알아봅니다.
-* [사용자 지정 도메인 이름](cloud-services-custom-domain-name-portal.md)을 구성합니다.
+* 너무 방법에 대해 알아봅니다[클라우드 서비스 배포](cloud-services-how-to-create-deploy-portal.md)합니다.
+* [사용자 지정 도메인 이름](cloud-services-custom-domain-name-portal.md)구성
 * [클라우드 서비스를 관리합니다](cloud-services-how-to-manage-portal.md).

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 스크립트 샘플 - CLI를 사용하여 관리 디스크의 스냅숏을 동일한 구독이나 다른 구독으로 복사(이동) | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - CLI를 사용하여 관리 디스크의 스냅숏을 동일한 구독이나 다른 구독으로 복사(이동)"
+title: "CLI 스크립트 샘플-관리 되는 디스크 toosame 또는 다른 구독과 CLI의 복사본 (이동) 스냅숏 aaaAzure | Microsoft Docs"
+description: "Azure CLI 스크립트 샘플-관리 되는 디스크 toosame 또는 다른 구독과 CLI의 스냅숏 복사 (이동)"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: 6cc0125c08ccb77d014b4642d702c556fffdc8bf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f214ab1fc1cb2cb42479d82e455f20a8cc55c83d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-snapshot-of-a-managed-disk-to-same-or-different-subscription-with-cli"></a>CLI를 사용하여 관리 디스크의 스냅숏을 동일한 구독이나 다른 구독으로 복사
+# <a name="copy-snapshot-of-a-managed-disk-toosame-or-different-subscription-with-cli"></a>관리 되는 디스크 toosame 또는 다른 구독과 CLI의 스냅숏을 복사합니다
 
-이 스크립트는 관리 디스크의 스냅숏을 동일한 구독이나 다른 구독으로 복사합니다. 이 스크립트를 사용하여 부모 스냅숏과 같은 지역의 다른 구독으로 스냅숏을 이동합니다.
+이 스크립트는 관리 되는 디스크 toosame 또는 다른 구독에 대 한 스냅숏을 복사합니다. 이 스크립트 toomove 스냅숏 toodifferent 구독을 사용 하 여 hello에 hello 부모 스냅숏의와 동일한 영역입니다.
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,22 +32,22 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="sample-script"></a>샘플 스크립트
 
-[!code-azurecli[main](../../../cli_scripts/virtual-machine/copy-snapshot-to-same-or-different-subscription/copy-snapshot-to-same-or-different-subscription.sh "스냅숏 복사")]
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/copy-snapshot-to-same-or-different-subscription/copy-snapshot-to-same-or-different-subscription.sh "Copy snapshot")]
 
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트에서는 다음 명령을 사용하여 원본 스냅숏의 ID를 사용하여 대상 구독에 스냅숏을 만듭니다. 테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.
+이 스크립트 명령 toocreate 다음 사용 하 여 사용 하 여 hello 대상 구독에서 스냅숏 hello hello 소스 스냅숏의 Id입니다. Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
-| [az snapshot show](https://docs.microsoft.com/cli/azure/snapshot#show) | 스냅숏의 이름 및 리소스 그룹 속성을 사용하여 스냅숏의 모든 속성을 가져옵니다. Id 속성은 스냅숏을 다른 구독으로 복사하는 데 사용됩니다.  |
-| [az snapshot create](https://docs.microsoft.com/cli/azure/snapshot#create) | 부모 스냅숏의 Id와 이름을 사용하여 다른 구독에 스냅숏을 만들어 스냅숏을 복사합니다.  |
+| [az snapshot show](https://docs.microsoft.com/cli/azure/snapshot#show) | 모든 hello 속성의 hello 이름을 사용 하 여 스냅숏 및 hello 스냅숏의 리소스 그룹 속성을 가져옵니다. Id 속성은 사용 되는 toocopy hello 스냅숏 toodifferent 구독.  |
+| [az snapshot create](https://docs.microsoft.com/cli/azure/snapshot#create) | 복사본의 Id 및 이름을 사용 하 여 다른 구독에서 스냅숏을 만들어 스냅숏 hello hello 부모 스냅숏의 합니다.  |
 
 ## <a name="next-steps"></a>다음 단계
 
 [스냅숏에서 가상 컴퓨터 만들기](./virtual-machines-linux-cli-sample-create-vm-from-snapshot.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
+Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.
 
-추가 가상 컴퓨터 및 관리 디스크 CLI 스크립트 샘플은 [Azure Linux VM 설명서](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)에서 확인할 수 있습니다.
+추가 가상 컴퓨터와 관리 되는 디스크 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure Linux VM 설명서](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.

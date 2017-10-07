@@ -1,6 +1,6 @@
 ---
-title: "Azure Virtual Machines에서 SQL Server 개요 | Microsoft Docs"
-description: "Azure Virtual Machines에서 전체 SQL Server 버전을 실행하는 방법을 알아봅니다. 모든 SQL Server VM 이미지 및 관련된 내용에 대한 직접 링크를 가져옵니다."
+title: "Azure 가상 컴퓨터에서 SQL Server의 aaaOverview | Microsoft Docs"
+description: "어떻게 toorun 전체 Azure 가상 컴퓨터에 SQL Server 버전에 알아봅니다. 직접 링크 tooall SQL Server VM 이미지 및 관련된 콘텐츠를 가져옵니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: rothja
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 08/07/2017
 ms.author: jroth
-ms.openlocfilehash: 7d6adc6e186130587f2edad42560533560318bdc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 07be567c76f4435961592fc0872fe41cd45bd79d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-sql-server-on-azure-virtual-machines"></a>Azure Virtual Machines에서 SQL Server 개요
-이 항목에서는 [포털 이미지에 대한 링크](#option-1-create-a-sql-vm-with-per-minute-licensing) 및 [일반적인 태스크](#manage-your-sql-vm)의 개요와 함께 Azure VM(Virtual Machines)에 SQL Server를 실행하는 옵션을 설명합니다.
+이 항목에서는 Azure 가상 컴퓨터 (Vm)에서 SQL Server를 실행 하기 위한 옵션을 함께 설명 [tooportal 이미지 링크](#option-1-create-a-sql-vm-with-per-minute-licensing) 개요 및 [일반적인 작업](#manage-your-sql-vm)합니다.
 
 > [!NOTE]
-> SQL Server에 이미 익숙하고 SQL Server VM을 배포하는 방법을 확인하려는 경우 [Azure Portal에서 SQL Server 가상 컴퓨터 프로비전](virtual-machines-windows-portal-sql-server-provision.md)을 참조하세요.
+> 이미 익숙한 SQL Server 하 고 원하는 toosee toodeploy SQL Server VM을 확인 하려면 어떻게 해야 하는 경우 [hello Azure 포털에서에서 SQL Server 가상 컴퓨터를 프로 비전](virtual-machines-windows-portal-sql-server-provision.md)합니다.
 > 
 > 
 
 ## <a name="overview"></a>개요
-데이터베이스 관리자 또는 개발자인 경우 Azure VM은 온-프레미스 SQL Server 워크로드 및 응용 프로그램을 클라우드로 이동하는 방법을 제공합니다. 다음 비디오는 SQL Server Azure VM에 대한 기술적 개요를 제공합니다.
+데이터베이스 관리자 또는 개발자 인 경우 Azure Vm에 온-프레미스 SQL Server 작업 및 응용 프로그램 toohello 클라우드 방식으로 toomove 제공 합니다. hello 다음 비디오에서는 SQL Server Azure Vm의 기술 개요 합니다.
 
 > [!VIDEO https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016/player]
 > 
 > 
 
-이 비디오에서는 다음과 같은 영역을 다룹니다.
+비디오 hello hello 다음 영역을 다룹니다.
 
 | Time | 영역 |
 | --- | --- |
@@ -51,28 +51,28 @@ ms.lasthandoff: 08/18/2017
 | 08:32 |데모: SQL Server 2016 VM 만들기 |
 
 > [!NOTE]
-> 비디오에서는 SQL Server 2016을 중점적으로 다루지만 2012, 2014 및 2016을 비롯한 여러 버전의 Azure SQL Server에 대한 VM 이미지를 제공합니다. 
+> SQL Server 2016을 중점적으로 비디오 hello 하지만 Azure의 SQL Server 2012, 2014 및 2016를 포함 하 여 여러 버전에 대 한 VM 이미지를 제공 합니다. 
 > 
 > 
 
 ## <a name="scenarios"></a>시나리오
-Azure에서 데이터를 호스트하도록 선택할 수 있는 여러 가지 이유가 있습니다. 응용 프로그램이 Azure로 이동하는 경우 데이터를 이동하는 것이 성능을 향상시킵니다. 하지만 다른 이점도 있습니다. 글로벌 서비스 및 재해 복구를 위해 여러 데이터 센터에 대한 액세스를 자동으로 가집니다. 데이터를 잘 보호하고 지속합니다.
+Azure에서 데이터 toohost를 선택할 수 있는 방법은 여러 가지가 있습니다. 응용 프로그램은 tooAzure를 이동 하는 경우 성능 tooalso 이동 hello 데이터 향상 됩니다. 하지만 다른 이점도 있습니다. 전역의 존재 여부와 재해 복구에 대 한 액세스 toomultiple 데이터 센터 자동으로 부여 합니다. hello 데이터 매우 보안이 유지 되 고 영 속 이기도합니다.
 
-Azure VM에서 실행하는 SQL Server는 관계형 데이터를 Azure에 저장하기 위한 한 가지 옵션입니다. 여기서는 몇 가지 시나리오를 사용하는 것이 좋습니다. 예를 들어, Azure VM을 온-프레미스 SQL Server 컴퓨터와 최대한 비슷하게 구성하려고 합니다. 또는 동일한 데이터베이스 서버에서 추가 응용 프로그램 및 서비스를 실행하려고 합니다. 더 많은 시나리오와 고려 사항을 검토 하는 데 도움이 되는 다음과 같은 두 가지 주요 리소스가 있습니다.
+Azure VM에서 실행하는 SQL Server는 관계형 데이터를 Azure에 저장하기 위한 한 가지 옵션입니다. 여기서는 몇 가지 시나리오를 사용하는 것이 좋습니다. 예를 들어 tooconfigure hello Azure VM을 가능한 tooan 온-프레미스 SQL Server 컴퓨터와 마찬가지로 원하는 수 있습니다. Toorun 추가 응용 프로그램 및 서비스 hello 할 수 있습니다 또는 같은 데이터베이스 서버입니다. 더 많은 시나리오와 고려 사항을 검토 하는 데 도움이 되는 다음과 같은 두 가지 주요 리소스가 있습니다.
 
-* [Azure Virtual Machines의 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)는 Azure VM에서 SQL Server를 사용하기 위한 최상의 시나리오의 개요를 제공합니다. 
+* [Azure 가상 컴퓨터에 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/) Azure Vm에서 SQL Server를 사용 하기 위한 hello 최상의 시나리오의 개요를 제공 합니다. 
 * [클라우드 SQL Server 옵션 선택: Azure SQL(PaaS) Database 또는 Azure VM의 SQL Server(IaaS)](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md)에서는 SQL VM과 SQL Database 간의 자세한 비교를 제공합니다.
 
 ## <a name="create-a-new-sql-vm"></a>새 SQL VM 만들기
-다음 섹션에서는 SQL Server 가상 컴퓨터 갤러리 이미지에 Azure Portal에 대한 직접 링크를 제공합니다. 선택한 이미지에 따라 SQL Server 라이선스 비용을 분당 기준으로 지불하거나 사용자 라이선스가 필요할 수 있습니다(BYOL).
+hello 다음 섹션에서는 Azure 포털의 직접 링크 toohello hello SQL Server 가상 컴퓨터 갤러리 이미지에 대 한 합니다. Hello 이미지 선택에 따라 분 단위로에 SQL Server 라이선스 비용에 대 한 급여 중 하나를 수행할 수 있습니다 또는 (BYOL) 사용자 고유 라이선스를 가져올 수 있습니다.
 
-새 SQL VM을 만드는 단계별 지침은 자습서의 [Azure Portal에서 SQL Server 가상 컴퓨터 프로비전](virtual-machines-windows-portal-sql-server-provision.md)에 있습니다. 또한 프로비전 중 사용 가능한 적절한 컴퓨터 크기 및 다른 기능을 선택하는 방법을 설명하는 [SQL Server VM에 대한 성능 모범 사례](virtual-machines-windows-sql-performance.md)를 검토합니다.
+Hello 자습서에서 새로운 SQL VM을 만들기 위한 단계별 지침을 찾아 [hello Azure 포털에서에서 SQL Server 가상 컴퓨터를 프로 비전](virtual-machines-windows-portal-sql-server-provision.md)합니다. 또한 hello를 검토 [SQL Server Vm에 대 한 성능 모범 사례](virtual-machines-windows-sql-performance.md), 프로 비전 중 tooselect hello 적절 한 컴퓨터 크기 및 기타 기능이 사용할 수 있는 방법에 대해 설명입니다.
 
 ## <a name="option-1-create-a-sql-vm-with-per-minute-licensing"></a>옵션 1: 분당 라이선스를 사용한 SQL VM 만들기
-다음 표에서는 가상 컴퓨터 갤러리의 최신 SQL Server 이미지 매트릭스를 제공합니다. 모든 링크를 클릭하여 지정된 버전, 버전 및 운영 체제로 새 SQL VM 만들기를 시작합니다. 
+hello 다음 표에서 hello hello 가상 컴퓨터 갤러리에서 최신 SQL Server 이미지의 행렬. 모든 링크 toobegin 지정 된 버전, 버전 및 운영 체제를 사용 하 여 새 SQL VM 만들기를 클릭 합니다. 
 
 > [!TIP]
-> 이러한 이미지의 VM 및 SQL 가격은 [SQL Server Azure VM에 대한 가격 책정 지침](virtual-machines-windows-sql-server-pricing-guidance.md)을 참조하세요.
+> toounderstand hello VM 및 이러한 이미지에 대 한 가격 책정 SQL 참조 [SQL Server Azure Vm에 대 한 지침을 가격](virtual-machines-windows-sql-server-pricing-guidance.md)합니다.
 
 | 버전 | 운영 체제 | 버전 |
 | --- | --- | --- |
@@ -80,10 +80,10 @@ Azure VM에서 실행하는 SQL Server는 관계형 데이터를 Azure에 저장
 | **SQL Server 2014 SP2** |Windows Server 2012 R2 |[Enterprise](https://portal.azure.com/#create/Microsoft.SQLServer2014SP2EnterpriseWindowsServer2012R2), [Standard](https://portal.azure.com/#create/Microsoft.SQLServer2014SP2StandardWindowsServer2012R2), [Web](https://portal.azure.com/#create/Microsoft.SQLServer2014SP2WebWindowsServer2012R2), [Express](https://portal.azure.com/#create/Microsoft.SQLServer2014SP2ExpressWindowsServer2012R2) |
 | **SQL Server 2012 SP3** |Windows Server 2012 R2 |[Enterprise](https://portal.azure.com/#create/Microsoft.SQLServer2012SP3EnterpriseWindowsServer2012R2), [Standard](https://portal.azure.com/#create/Microsoft.SQLServer2012SP3StandardWindowsServer2012R2), [Web](https://portal.azure.com/#create/Microsoft.SQLServer2012SP3WebWindowsServer2012R2), [Express](https://portal.azure.com/#create/Microsoft.SQLServer2012SP3ExpressWindowsServer2012R2) |
 
-이 목록 외에도 SQL Server 버전과 운영 체제의 다른 조합을 사용할 수 있습니다. Azure Portal에서 마켓플레이스 검색을 통해 다른 이미지를 찾아보세요. 
+Toothis 목록에서 SQL Server 버전 및 운영 체제의 다른 조합도 사용할 수 있습니다. Hello Azure 포털에서에서 마켓플레이스 검색을 통해 다른 이미지를 찾습니다. 
 
 ## <a id="BYOL"></a> 옵션 2: 기존 라이선스를 사용한 SQL VM 만들기
-사용자 라이선스가 필요할 수도 있습니다(BYOL). 이 시나리오에서는 SQL Server 라이선스에 대한 추가 비용 없이 VM에 대해서만 지불합니다. 사용자 고유 라이선스를 사용하려면 아래의 SQL Server 버전, 버전 및 운영 체제의 매트릭스를 사용합니다. 포털에서 이러한 이미지 이름에는 접두사 **{BYOL}**이 붙습니다.
+사용자 라이선스가 필요할 수도 있습니다(BYOL). 이 경우에만 SQL Server 라이선스에 대 한 모든 추가 비용이 발생 하지 않고 VM hello에 대 한 지불합니다. toouse 사용자 고유 라이선스를 SQL Server 버전, 버전 및 운영 체제 아래의 hello 매트릭스를 사용 합니다. 이러한 이미지 이름이 접두사로 hello 포털에서 **{BYOL}**합니다.
 
 > [!TIP]
 > 사용자 고유의 라이선스를 가져오면 시간에 따른 지속되는 프로덕션 워크로드의 비용을 절약할 수 있습니다. 자세한 내용은 [SQL Server Azure VM에 대한 가격 책정 지침](virtual-machines-windows-sql-server-pricing-guidance.md)을 참조하세요.
@@ -94,41 +94,41 @@ Azure VM에서 실행하는 SQL Server는 관계형 데이터를 Azure에 저장
 | **SQL Server 2014 SP2** |Windows Server 2012 R2 |[Enterprise BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2014SP2EnterpriseWindowsServer2012R2), [Standard BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2014SP2StandardWindowsServer2012R2) |
 | **SQL Server 2012 SP2** |Windows Server 2012 R2 |[Enterprise BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2012SP3EnterpriseWindowsServer2012R2), [Standard  BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2012SP3StandardWindowsServer2012R2) |
 
-이 목록 외에도 SQL Server 버전과 운영 체제의 다른 조합을 사용할 수 있습니다. Azure Portal에서 마켓플레이스 검색을 통해 다른 이미지를 찾아보세요("{BYOL} SQL Server" 검색).
+Toothis 목록에서 SQL Server 버전 및 운영 체제의 다른 조합도 사용할 수 있습니다. Azure 포털 ("SQL Server {BYOL}" 검색) hello에서 마켓플레이스 검색을 통해 다른 이미지를 찾습니다.
 
 > [!IMPORTANT]
-> BYOL VM 이미지를 사용하려면 [Azure에서 Software Assurance를 통한 라이선스 이동](https://azure.microsoft.com/pricing/license-mobility/)으로 기업 계약을 체결해야 합니다. 또한 사용하려는 SQL Server의 버전/버전에 대한 유효한 라이선스가 필요합니다. VM 프로비전의 [10](http://d36cz9buwru1tt.cloudfront.net/License_Mobility_Customer_Verification_Guide.pdf) 일 내에 **필요한 BYOL 정보를 Microsoft에 제공** 해야 합니다. 
+> toouse BYOL VM 이미지를와 기업 계약 있어야 [Azure에서 Software Assurance를 통한 라이선스 이동](https://azure.microsoft.com/pricing/license-mobility/)합니다. 또한 유효한 라이선스가 필요 원하는 toouse hello 버전/버전의 SQL Server에 대 한 합니다. 수행 해야 [hello 필요한 BYOL 정보 tooMicrosoft 제공](http://d36cz9buwru1tt.cloudfront.net/License_Mobility_Customer_Verification_Guide.pdf) 내 **10** VM을 프로 비전 하는 요일입니다. 
 
 > [!NOTE]
-> 사용자 고유의 라이선스를 사용하기 위해 분 단위로 요금이 부과되는 SQL Server VM의 라이선스 모델을 변경할 수 없습니다. 이 경우에 새 BYOL VM을 만들고 새 VM에 데이터베이스를 마이그레이션해야 합니다. 
+> 가능한 toochange hello 분당 지불 SQL Server VM toouse의 모델 사용자 고유 라이선스를 라이선스는 없습니다. 이 경우 새 BYOL VM 만들고 해야 데이터베이스 toohello 마이그레이션 새 VM입니다. 
 
 ## <a name="manage-your-sql-vm"></a>SQL VM 관리
-SQL Server VM을 프로비전한 후 여러 가지 선택적 관리 작업이 있습니다. 여러 측면에서 정확하게 온-프레미스 SQL Server 인스턴스를 관리한 대로 SQL Server를 구성 및 관리합니다. 하지만 일부 태스크는 Azure에 특정됩니다. 다음 섹션에서는 자세한 정보에 대한 링크로 이러한 영역 중 일부를 강조 표시합니다.
+SQL Server VM을 프로비전한 후 여러 가지 선택적 관리 작업이 있습니다. 여러 측면에서 정확하게 온-프레미스 SQL Server 인스턴스를 관리한 대로 SQL Server를 구성 및 관리합니다. 그러나 일부 작업은 특정 tooAzure 됩니다. hello 다음 섹션에서는 강조 표시 링크 toomore 정보로 이러한 영역 중 일부입니다.
 
-### <a name="connect-to-the-vm"></a>VM에 연결
-SSMS(SQL Server Management Studio)와 같은 도구를 통해 SQL Server VM에 연결하는 가장 기본적인 관리 단계 중 하나입니다. Azure의 SQL Server 연결 방법에 대한 지침은 [Azure의 SQL Server 가상 컴퓨터에 연결](virtual-machines-windows-sql-connect.md)을 참조하세요.
+### <a name="connect-toohello-vm"></a>Toohello VM 연결
+Hello 가장 기본적인 관리 단계 중 하나에 SQL Server Management Studio (SSMS)와 같은 도구를 통해 SQL Server VM tooconnect tooyour입니다. 새 SQL Server VM을 확인 하는 tooconnect tooyour 방법에 대 한 지침은 [tooa Azure에서 SQL Server 가상 컴퓨터를 연결](virtual-machines-windows-sql-connect.md)합니다.
 
 ### <a name="migrate-your-data"></a>데이터 마이그레이션
-기존 데이터베이스가 있는 경우 새로 프로비전된 SQL VM으로 이동할 수 있습니다. 마이그레이션 옵션 목록 및 지침은 [Azure VM에서 SQL Server로 데이터베이스 마이그레이션](virtual-machines-windows-migrate-sql.md)을 참조하세요.
+Toomove 좋을 기존 데이터베이스를 설정한 경우 해당 toohello 새로 SQL VM을 프로 비전 합니다. 마이그레이션 옵션 및 지침 목록을 참조 하십시오. [데이터베이스 tooSQL Azure VM에서 서버를 마이그레이션](virtual-machines-windows-migrate-sql.md)합니다.
 
 ### <a name="configure-high-availability"></a>고가용성 구성
-고가용성이 필요한 경우 SQL Server 가용성 그룹을 구성하는 것이 좋습니다. 여기에는 가상 네트워크의 여러 Azure VM이 포함됩니다. Azure Portal에는 사용자를 위해 이 구성을 설정하는 템플릿이 있습니다. 자세한 내용은 [Azure Resource Manager 가상 컴퓨터에서 AlwaysOn 가용성 그룹 구성](virtual-machines-windows-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요. 가용성 그룹과 연결된 수신기를 수동으로 구성하려면 [Azure VM의 AlwaysOn 가용성 그룹 구성](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)을 참조하세요.
+고가용성이 필요한 경우 SQL Server 가용성 그룹을 구성하는 것이 좋습니다. 여기에는 가상 네트워크의 여러 Azure VM이 포함됩니다. hello Azure 포털에는이 구성을 설정 하는 서식 파일을 있습니다. 자세한 내용은 [Azure Resource Manager 가상 컴퓨터에서 AlwaysOn 가용성 그룹 구성](virtual-machines-windows-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요. Toomanually 가용성 그룹과 연결 된 수신기를 구성 하려면 참조 [Azure VM의 AlwaysOn 가용성 그룹 구성](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)합니다.
 
 다른 고가용성 고려 사항은 [Azure Virtual Machines의 SQL Server에 대한 고가용성 및 재해 복구](virtual-machines-windows-sql-high-availability-dr.md)를 참조하세요.
 
 ### <a name="back-up-your-data"></a>데이터 백업
-Azure VM은 [자동화된 Backup](virtual-machines-windows-sql-automated-backup.md)을 이용할 수 있으며 정기적으로 Blob Storage에 데이터베이스의 백업을 만듭니다. 수동으로 이 기술을 사용할 수 있습니다. 자세한 내용은 [SQL Server Backup 및 복원에 Azure Storage 사용](virtual-machines-windows-use-storage-sql-server-backup-restore.md)을 참조하세요. 모든 백업 및 복원 옵션에 대한 개요는 [Azure Virtual Machines에서 SQL Server Backup 및 복원](virtual-machines-windows-sql-backup-recovery.md)을 참조하세요.
+Azure Vm을 이용할 수 [자동화 된 백업](virtual-machines-windows-sql-automated-backup.md)는 정기적으로 데이터베이스 tooblob 저장소의 백업을 만듭니다. 수동으로 이 기술을 사용할 수 있습니다. 자세한 내용은 [SQL Server Backup 및 복원에 Azure Storage 사용](virtual-machines-windows-use-storage-sql-server-backup-restore.md)을 참조하세요. 모든 백업 및 복원 옵션에 대한 개요는 [Azure Virtual Machines에서 SQL Server Backup 및 복원](virtual-machines-windows-sql-backup-recovery.md)을 참조하세요.
 
 ### <a name="automate-updates"></a>업데이트 자동화
-Azure VM은 [자동화된 패치](virtual-machines-windows-sql-automated-patching.md) 를 사용하여 중요한 Windows 및 SQL Server 업데이트를 자동으로 설치하는 유지 관리 창을 예약할 수 있습니다.
+Azure Vm צ ְ ײ [자동화 된 패치 적용](virtual-machines-windows-sql-automated-patching.md) tooschedule 중요 한 windows 및 SQL Server 설치에 대 한 유지 관리 기간을 자동으로 업데이트 합니다.
 
 ### <a name="customer-experience-improvement-program-ceip"></a>CEIP(사용자 환경 개선 프로그램)
-CEIP(사용자 환경 개선 프로그램)를 사용하도록 기본 설정되어 있습니다. 보고서를 주기적으로 Microsoft에 전송하여 SQL Server를 개선하는 데 도움이 됩니다. 프로비전한 후에도 계속 사용하려면 CEIP에 필요한 관리 태스크는 없습니다. 원격 데스크톱을 사용하여 VM에 연결하여 CEIP를 사용자 지정하거나 사용하지 않도록 설정할 수 있습니다. 그런 다음 **SQL Server 오류 및 사용 보고** 유틸리티를 실행합니다. 보고를 해제하려면 지침을 따릅니다. 
+hello 고객 환경 개선 프로그램 (CEIP)은 기본적으로 사용 됩니다. 이 주기적으로 전송 보고서 tooMicrosoft toohelp SQL Server를 개선 합니다. 관리 작업이 toodisable 사용 하려는 경우가 아니면 CEIP에 필요 없는 것 후 프로 비전 합니다. 사용자 지정 하거나 원격 데스크톱으로 toohello VM을 연결 하 여 hello CEIP를 사용 하지 않도록 설정할 수 있습니다. 그러고 나 서 hello **SQL Server 오류 및 사용 보고** 유틸리티입니다. Hello toodisable 보고 지침을 따릅니다. 
 
-자세한 내용은 [사용 조건 동의](https://msdn.microsoft.com/library/ms143343.aspx) 항목의 CEIP 섹션을 참조하세요. 
+자세한 내용은 참조 hello hello의 CEIP 섹션 [사용 조건 동의](https://msdn.microsoft.com/library/ms143343.aspx) 항목입니다. 
 
 ## <a name="next-steps"></a>다음 단계
 
-가격에 대한 문의 사항은 [SQL Server Azure VM에 대한 가격 책정 지침](virtual-machines-windows-sql-server-pricing-guidance.md) 및 [Azure 가격 책정 페이지](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)를 참조하세요. **OS/소프트웨어** 목록에서 SQL Server의 대상 버전을 선택합니다. 그런 다음 다양한 크기의 가상 컴퓨터에 대한 가격을 확인합니다.
+가격에 대 한 질문에 대 한 참조 [SQL Server Azure Vm에 대 한 지침을 가격](virtual-machines-windows-sql-server-pricing-guidance.md) 및 hello [Azure 가격 책정 페이지](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)합니다. Hello에서 SQL Server의 대상 버전을 선택 **OS/소프트웨어** 목록입니다. 그런 다음 다양 한 크기의 가상 컴퓨터에 대 한 hello 가격을 봅니다.
 
-추가 질문이 있나요? 먼저 [Azure Virtual Machines의 SQL Server FAQ](virtual-machines-windows-sql-server-iaas-faq.md)를 참조하세요. 또한 SQL VM 항목의 맨 아래에 질문 또는 의견을 추가하여 Microsoft 및 커뮤니티와 상호 의견을 교환하세요.
+추가 질문이 있나요? 먼저 hello 참조 [Azure 가상 컴퓨터 FAQ에서 SQL Server](virtual-machines-windows-sql-server-iaas-faq.md)합니다. 하지만 Microsoft 및 hello 커뮤니티와 모든 SQL VM 항목 toointeract에 질문이 나 의견 toohello 아래쪽을 추가 합니다.

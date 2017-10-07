@@ -1,6 +1,6 @@
 ---
-title: "IoT DevKit에서 클라우드로 - Azure IoT Hub에 IoT DevKit AZ3166 연결 | Microsoft Docs"
-description: "이 자습서에서는 Azure 클라우드 플랫폼으로 데이터를 보내기 위해 DevKit AZ3166을 설정하고 해당 Azure IoT Hub에 연결하는 방법을 알아봅니다."
+title: "aaaIoT 하세요 toocloud IoT 하세요 AZ3166 연결 tooAzure IoT 허브 | Microsoft Docs"
+description: "자세한 내용은 방법 toosetup이이 자습서에서는 toosend 데이터 toohello Azure 클라우드 플랫폼에 대 한 IoT 하세요 AZ3166 tooAzure IoT 허브를 연결 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/11/2017
 ms.author: xshi
-ms.openlocfilehash: 122fac584ac5b954ef7b33a3121bee2c502ebc63
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fd36abaed1fd9f73028b84312bca9e900fb9c004
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-iot-devkit-az3166-to-azure-iot-hub-in-the-cloud"></a>클라우드에서 Azure IoT Hub에 IoT DevKit AZ3166 연결
+# <a name="connect-iot-devkit-az3166-tooazure-iot-hub-in-hello-cloud"></a>IoT 하세요 AZ3166 tooAzure hello 클라우드에서 IoT 허브를 연결 합니다.
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-Microsoft Azure 서비스를 활용하는 IoT(사물 인터넷) 솔루션을 개발하고 프로토타입하는 데 [MXChip IoT DevKit](https://microsoft.github.io/azure-iot-developer-kit/)를 사용할 수 있습니다. 풍부한 주변 장치 및 센서가 있는 Arduino 호환 보드, 오픈 소스 보드 패키지 및 증가하는 [프로젝트 카탈로그](https://microsoft.github.io/azure-iot-developer-kit/docs/projects/)를 포함합니다.
+hello [MXChip IoT 하세요](https://microsoft.github.io/azure-iot-developer-kit/) 수 사용된 toodevelop 및 프로토타입 Microsoft Azure 서비스 활용 하 여 인터넷 IoT (사물) 솔루션입니다. 풍부한 주변 장치 및 센서가 있는 Arduino 호환 보드, 오픈 소스 보드 패키지 및 증가하는 [프로젝트 카탈로그](https://microsoft.github.io/azure-iot-developer-kit/docs/projects/)를 포함합니다.
 
 ## <a name="what-you-do"></a>수행할 작업
-사용자가 만드는 Azure IoT Hub에 [DevKit](https://microsoft.github.io/azure-iot-developer-kit/)을 연결하고 센서에서 온도 및 습도 데이터를 수집하고 데이터를 IoT 허브로 보냅니다.
+연결 [하세요](https://microsoft.github.io/azure-iot-developer-kit/) tooan Azure IoT 허브를 만들고, 센서의 온도 및 습도 데이터 수집 hello hello 데이터 tooIoT 허브 송신 하 합니다.
 
 DevKit가 아직 없으세요? [여기](https://aka.ms/iot-devkit-purchase)에서 새 DevKit를 받으세요.
 
 ## <a name="what-you-learn"></a>학습 내용
 
-* IoT DevKit를 무선 액세스 지점에 연결하고 개발 환경을 준비하는 방법.
-* IoT Hub를 만들고 MXChip IoT DevKit용 장치를 등록하는 방법.
-* MXChip IoT DevKit에서 샘플 응용 프로그램을 실행하여 센서 데이터를 수집하는 방법.
-* IoT Hub로 센서 데이터를 보내는 방법
+* 어떻게 tooconnect IoT 하세요 tooWireless 액세스 가리킨 개발 환경을 준비 합니다.
+* 어떻게 toocreate IoT hub MXChip IoT 하세요에 장치를 등록 하십시오.
+* 어떻게 MXChip IoT 하세요에서 샘플 응용 프로그램을 실행 하 여 toocollect 센서 데이터입니다.
+* 어떻게 toosend hello 센서 데이터 tooyour IoT 허브입니다.
 
 ## <a name="what-you-need"></a>필요한 항목
 
@@ -47,7 +47,7 @@ DevKit가 아직 없으세요? [여기](https://aka.ms/iot-devkit-purchase)에�
 
 ## <a name="prepare-your-hardware"></a>하드웨어 준비
 
-컴퓨터에 하드웨어를 연결합니다.
+Hello 하드웨어 tooyour 컴퓨터를 연결 합니다.
 
 ### <a name="hardware-you-need"></a>필요한 하드웨어
 
@@ -56,120 +56,120 @@ DevKit가 아직 없으세요? [여기](https://aka.ms/iot-devkit-purchase)에�
 
 ![getting-started-hardware](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/hardware.jpg)
 
-### <a name="connect-devkit-to-your-computer"></a>DevKit를 컴퓨터에 연결
+### <a name="connect-devkit-tooyour-computer"></a>하세요 tooyour 컴퓨터 연결
 
-1. USB 끝을 PC에 연결
-2. Micro USB 끝을 DevKit에 연결
-3. 연결을 확인하는 전원 옆에 있는 녹색 LED
+1. USB 끝 tooyour PC를 연결 합니다.
+2. 마이크로 USB 끝 toohello 하세요 연결
+3. hello 녹색 led가 다음 toopower 연결 확인
 
 ![getting-started-connect](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/connect.jpg)
 
 ## <a name="configure-wifi"></a>WiFi 구성
 
-IoT 프로젝트는 인터넷 연결에 의존합니다. 다음 지침을 사용하여 DevKit를 WiFi에 연결하도록 구성합니다.
+IoT 프로젝트는 인터넷 연결에 의존합니다. 다음 지침 tooconfigure hello 하세요 tooconnect tooWiFi hello를 사용 합니다.
 
 ### <a name="enter-ap-mode"></a>AP 모드로 전환
 
-단추 B를 길게 누른 다음 다시 설정 단추를 눌러서 놓고 단추 B를 놓습니다. DevKit은 WiFi 구성을 위해 AP 모드로 전환합니다. 화면은 구성 포털 IP 주소와 함께 DevKit의 SSID(서비스 설정 식별자)를 표시합니다.
+단추 B 키를 누른 채, 푸시 및 릴리스 hello 단추를 선택한 다음 릴리스 단추 2. 그런 다음 다시 설정 프로그램 하세요 WiFi 구성 AP 모드 입력 됩니다. hello 구성 포털 IP 주소 뿐만 아니라 hello hello 하세요의 서비스 설정 Identifier(SSID) hello 화면 표시 됩니다.
 
 ![getting-started-wifi-ap](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/wifi-ap.jpg)
 
-### <a name="connect-to-devkit-ap"></a>DevKit AP에 연결
+### <a name="connect-toodevkit-ap"></a>TooDevKit AP를 연결 합니다.
 
-이제 다른 WiFi 사용 장치(PC 또는 휴대폰)를 사용하여 DevKit SSID(위 스크린샷에 강조 표시됨)에 연결합니다. 암호는 비워 둡니다.
+이제 다른 WiFi 사용 장치 (PC 또는 모바일 폰) tooconnect toohello 하세요 SSID (또한 위의 스크린 샷에서 hello에 강조 표시)를 사용 하 여, hello 암호를 비워 둡니다.
 
 ![getting-started-ssid](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/connect-ssid.png)
 
 ### <a name="configure-wifi-for-devkit"></a>DevKit용 WiFi 구성
 
-PC 또는 모바일 폰 브라우저에서 DevKit 화면에 표시된 IP 주소를 열고, DevKit에서 연결하려는 WiFi 네트워크를 선택한 다음 암호를 입력합니다. **연결**을 클릭하여 완료합니다.
+PC 또는 모바일 폰 브라우저에서 hello 하세요 화면에 표시 된 hello open IP 주소, hello 하세요 tooconnect 원하는 hello WiFi 네트워크를 선택한 다음 hello 암호를 입력 합니다. 클릭 **연결** toocomplete:
 
 ![getting-started-wifi-portal](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/wifi-portal.png)
 
-연결에 성공하면 DevKit은 몇 초 후에 다시 부팅됩니다. 성공한 경우 화면에 WiFi 이름 및 IP 주소가 표시됩니다.
+Hello 연결에 성공 hello 하세요 몇 초 후에 다시 부팅 됩니다. 성공한 경우 hello 화면에 hello WiFi 이름 및 IP 주소를 표시 됩니다.
 
 ![getting-started-wifi-ip](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/wifi-ip.jpg)
 
 > [!NOTE] 
-사진에 표시된 IP 주소는 DevKit 화면에 할당되고 표시되는 실제 IP와 일치하지 않을 수 있습니다. WiFi는 DHCP를 사용하여 동적으로 IP를 할당하므로 이는 일반적입니다.
+hello 사진에 표시 된 hello IP 주소가 hello 실제 IP 할당 및 hello 하세요 화면에 표시 된 일치 하지 않을 수 있습니다. 이 정상으로 WiFi 사용 하 여 DHCP toodynamically Ip를 할당 합니다.
 
-WiFi를 구성한 후 자격 증명은 분리되는 경우에도 해당 연결에 대해 장치에서 유지됩니다. 예를 들어 집에서 WiFi에 대해 DevKit를 구성한 다음 DevKit를 사무실에 가져간 경우 AP 모드를 다시 구성하여(**AP 모드로 전환** 단계에서 시작) DevKit를 사무실 WiFi에 연결해야 합니다. 
+WiFi을 구성한 후 자격 증명 분리 하는 경우에 해당 연결에 대 한 hello 장치에 유지 됩니다. 예를 들어 집에 hello 하세요 WiFi에 대 한 구성 후 hello 하세요 toohello office 걸린 경우 tooreconfigure AP 모드 해야 합니다 (단계부터 **AP 모드 입력**) tooconnect hello tooyour office WiFi 하세요. 
 
 ## <a name="start-using-devkit"></a>DevKit 사용 시작
 
-DevKit에서 실행 중인 기본 앱은 최신 버전의 펌웨어를 확인하고 일부 센서 진단 데이터를 표시합니다.
+하세요에서 실행 되는 hello 기본 앱 hello 최신 펌웨어 버전을 hello 확인 하 고 사용자에 대 한 일부 센서 진단 데이터를 표시 합니다.
 
-### <a name="upgrade-to-the-latest-firmware"></a>최신 펌웨어로 업그레이드
+### <a name="upgrade-toohello-latest-firmware"></a>Toohello 최신 펌웨어를 업그레이드 합니다.
 
-필요한 업그레이드가 있는 경우 현재 및 최신 펌웨어 버전이 모두 화면에 나타납니다. [펌웨어 업그레이드](https://microsoft.github.io/azure-iot-developer-kit/docs/upgrading/) 가이드를 따라 업그레이드합니다.
+필요한 업그레이드 하는 경우 최신 펌웨어 버전을 hello 둘 다 hello 화면에 나타납니다. 에 따라 [펌웨어를 업그레이드](https://microsoft.github.io/azure-iot-developer-kit/docs/upgrading/) tooupgrade 안내 것입니다.
 
 ![getting-started-firmware](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/firmware.jpg)
 
 > [!NOTE] 
-이는 일회성 작업입니다. DevKit 개발을 시작하고 앱을 업로드하면 앱과 함께 최신 펌웨어가 제공됩니다.
+이 단일 작업 hello 하세요에서 개발을 시작 하면 되며 앱 업로드, hello 최신 펌웨어 응용 프로그램과 함께 제공 해야 합니다.
 
 ### <a name="test-various-sensors"></a>다양한 센서 테스트
 
-단추 B를 눌러 센서를 테스트하고 단추 B를 계속해서 눌렀다 놓아 각 센서를 순환합니다.
+Tootest 센서 단추 B 눌러, 각 센서를 통해 hello B 단추 toocycle를 눌렀다 계속 합니다.
 
 ![getting-started-sensors](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/sensors.jpg)
 
 ## <a name="prepare-development-environment"></a>개발 환경 준비
 
-이제 IoT 응용 프로그램을 빌드하도록 개발 환경(도구 및 패키지)을 설정할 시간입니다. 운영 체제에 따라 Windows 또는 macOS 버전을 선택할 수 있습니다.
+Hello 개발 환경을 시간 tooset 이제: 도구와 toobuild 멋진 IoT 응용 프로그램에 대 한 패키지입니다. Windows 또는 macOS 버전 tooyour 운영 체제에 따라 선택할 수 있습니다.
 
 
 ### <a name="windows"></a>Windows
 
-설치 패키지를 사용하여 개발 환경을 준비하는 것이 좋습니다. 문제가 발생하는 경우 [수동 단계](https://microsoft.github.io/azure-iot-developer-kit/docs/installation/)를 따라 수행할 수 있습니다.
+하면 toouse hello 설치 패키지 tooprepare hello 개발 환경을 사용 하는 것이 좋습니다. 문제가 발생 하는 경우 참고할 수 hello [수동 단계](https://microsoft.github.io/azure-iot-developer-kit/docs/installation/) tooget 수행 합니다.
 
 #### <a name="download-latest-package"></a>최신 패키지 다운로드
 
-다운로드한 `.zip` 파일은 DevKit 개발에 필요한 모든 필요한 도구 및 패키지를 포함합니다.
+hello `.zip` 모든 필요한 도구와 패키지 하세요 개발에 필요한 다운로드 한 파일을 포함 합니다.
 
 > [!div class="button"]
 [다운로드](https://azureboard.azureedge.net/prod/installpackage/devkit_install_1.0.2.zip)
 
 
 > [!NOTE] 
-> `.zip` 파일은 다음 도구 및 패키지를 포함합니다. 이미 일부 구성 요소를 설치한 경우 스크립트에서 이를 검색하고 건너뜁니다.
-> * Node.js 및 Yarn: 설치 스크립트 및 자동화된 작업에 대한 런타임
-> * [Azure CLI 2.0 MSI](https://docs.microsoft.com//cli/azure/install-azure-cli#windows) - Azure 리소스를 관리하기 위한 플랫폼 간 명령줄 환경, MSI는 종속 Python 및 pip를 포함합니다.
+> hello `.zip` hello 다음을 포함 하는 파일 도구와 패키지 합니다. 이미 일부 구성 요소가 설치 되어 있으면 hello 스크립트에서는 검색 하 고을 건너뜁니다.
+> * Node.js 및 Yarn: hello 설치 스크립트 및 자동화 된 작업에 대 한 런타임
+> * [Azure CLI 2.0 MSI](https://docs.microsoft.com//cli/azure/install-azure-cli#windows) -MSI hello Azure 리소스를 관리 하기 위한 플랫폼 간 명령줄 환경을 종속 Python 및 pip를 포함 합니다.
 > * [Visual Studio Code](https://code.visualstudio.com/): DevKit 개발을 위한 간단한 코드 편집기
 > * [Arduino용 Visual Studio Code 확장](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino): VS Code에서 Arduino 개발 활성화
-> * [Arduino IDE](https://www.arduino.cc/en/Main/Software): Arduino에 대한 확장은 이 도구에 의존함
-> * DevKit 보드 패키지: DevKit에 대한 도구 체인, 라이브러리 및 프로젝트
+> * [Arduino IDE](https://www.arduino.cc/en/Main/Software): hello 확장 Arduino에 대 한이 도구에 사용
+> * 하세요 보드 패키지: 도구 체인, 라이브러리 및 프로젝트 형식에 hello 하세요
 > * ST 링크 유틸리티: 필수 유틸리티 및 드라이버
 
 #### <a name="run-installation-script"></a>설치 스크립트 실행
 
-Windows 파일 탐색기에서 `.zip`를 찾고 압축을 풀어 `install.cmd`를 찾고 **"관리자 권한으로 실행"**을 마우스 오른쪽 단추로 클릭하고 선택하여 시작합니다.
+Windows 파일 탐색기에서 찾아 hello `.zip` 압축을 풀고, 찾기 및 `install.cmd`마우스 오른쪽 단추로 클릭 **"관리자 권한으로 실행"** toostart 합니다.
 
 ![getting-started-run-admin](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/run-admin.png)
 
-설치하는 동안 각 도구 또는 패키지의 진행 상태를 볼 수 있습니다.
+설치 하는 동안 각 도구 또는 패키지의 hello 진행률을 표시 됩니다.
 
 ![getting-started-install](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/install.png)
 
-#### <a name="confirm-to-install-drivers"></a>드라이버 설치 확인
+#### <a name="confirm-tooinstall-drivers"></a>Tooinstall 드라이버를 확인 합니다.
 
-Arduino 확장에 대한 VS Code는 Arduino IDE에 의존합니다. Arduino IDE를 처음 설치하는 경우 관련 드라이버를 설치하라는 메시지가 표시됩니다.
+VS Code Arduino 확장에 대 한 hello hello Arduino IDE에 의존합니다. 인 경우 hello hello Arduino IDE를 설치 하는 처음으로 증명된 tooinstall 관련 드라이버 수 있습니다.
 
 ![getting-started-driver](media/iot-hub-arduino-devkit-az3166-get-started/getting-started/driver.png)
 
-인터넷 속도에 따라 설치를 완료하는 데 약 10분이 걸릴 수 있습니다. 설치가 완료되면 바탕 화면에 Visual Studio Code 및 Arduino IDE 바로 가기가 표시됩니다.
+인터넷 속도 따라 약 10 분 toofinish 설치를 취해야 합니다. Hello 설치가 완료 되 면 Visual Studio Code 및 Arduino IDE 바로 가기를 바탕 화면에 표시 됩니다.
 
 > [!NOTE] 
-경우에 따라서 VS Code를 시작할 때 Arduino IDE 또는 관련된 보드 패키지를 찾을 수 없다는 오류와 함께 메시지가 표시됩니다. 이를 해결하기 위해 VS Code를 닫고 Arduino IDE를 한 번 시작하면 VS Code는 Arduino IDE 경로를 올바르게 찾습니다.
+경우에 따라서 VS Code를 시작할 때 Arduino IDE 또는 관련된 보드 패키지를 찾을 수 없다는 오류와 함께 메시지가 표시됩니다. VS Code 및 toosolve Arduino IDE를 한 번 시작 닫기 VS Code 것을 찾아야 Arduino IDE 경로 올바르게 합니다.
 
 
 ### <a name="macos-preview"></a>macOS(미리 보기)
 
-이 단계를 따라 macOS에서 개발 환경을 준비합니다.
+이러한 단계 tooprepare 개발 환경을 macOS에 따릅니다.
 
 #### <a name="install-azure-cli-20"></a>Azure CLI 2.0 설치
 
-[공식 가이드](https://docs.microsoft.com//cli/azure/install-azure-cli)를 따라 Azure CLI 2.0을 설치합니다.
+Hello에 따라 [공식 가이드](https://docs.microsoft.com//cli/azure/install-azure-cli) tooinstall Azure CLI 2.0:
 
 `curl` 명령 하나로 Azure CLI 2.0을 설치합니다.
 
@@ -177,7 +177,7 @@ Arduino 확장에 대한 VS Code는 Arduino IDE에 의존합니다. Arduino IDE�
 curl -L https://aka.ms/InstallAzureCli | bash
 ```
 
-변경 내용을 적용하기 위해 명령 셸을 다시 시작합니다.
+하 고 변경 내용 tootake 효과 대 한 명령 셸에서 다시 시작 합니다.
 
 ```bash
 exec -l $SHELL
@@ -185,24 +185,24 @@ exec -l $SHELL
 
 #### <a name="install-arduino-ide"></a>Arduino IDE 설치
 
-Visual Studio Code Arduino 확장은 Arduino IDE에 의존합니다. [macOS용 Arduino IDE](https://www.arduino.cc/en/Main/Software)를 다운로드하고 설치합니다.
+Visual Studio 코드 Arduino 확장 hello hello Arduino IDE에 의존합니다. 다운로드 및 설치 hello [macOS 용 Arduino IDE](https://www.arduino.cc/en/Main/Software)합니다.
 
 #### <a name="install-visual-studio-code"></a>Visual Studio Code 설치
 
-[macOS용 Visual Studio Code](https://code.visualstudio.com/)를 다운로드하고 설치합니다. 이는 DevKit IoT 응용 프로그램을 구축하기 위한 기본 개발 도구가 됩니다.
+[macOS용 Visual Studio Code](https://code.visualstudio.com/)를 다운로드하고 설치합니다. 하세요 IoT 응용 프로그램을 구축 하기 위한 기본 개발 도구 hello 사용 됩니다.
 
 ####  <a name="download-latest-package"></a>최신 패키지 다운로드
 
-1. Node.js를 설치합니다. 인기 있는 macOS 패키지 관리자 [Homebrew](https://brew.sh/) 또는 [미리 빌드된 설치 관리자](https://nodejs.org/en/download/)를 사용하여 설치할 수 있습니다.
+1. Node.js를 설치합니다. 인기 있는 macOS 패키지 관리자를 사용할 수 있습니다 [Homebrew](https://brew.sh/) 또는 [설치 관리자 미리 만들어진](https://nodejs.org/en/download/) tooinstall 것입니다.
 
 2. VS Code에서 DevKit 개발에 필요한 작업 스크립트를 포함하는 `.zip` 파일을 다운로드합니다.
 
    > [!div class="button"]
    [다운로드](https://azureboard.azureedge.net/installpackage/devkit_tasks_1.0.2.zip)
 
-   `.zip`를 찾고 압축을 풉니다. 그런 다음 **터미널** 앱을 실행하고 다음 명령을 실행하여 구성합니다.
+   Hello 찾을 `.zip` 압축을 풉니다. 다음 실행 **터미널** 앱과 명령을 tooconfigure 다음 실행된 hello:
 
-   압축을 푼 폴더를 macOS 사용자 폴더로 이동합니다.
+   압축 푼된 폴더 tooyour macOS 사용자 폴더를 이동 합니다.
    ```bash
    mv [.zip extracted folder]/azure-board-cli ~/. ; cd ~/azure-board-cli
    ```
@@ -214,55 +214,55 @@ Visual Studio Code Arduino 확장은 Arduino IDE에 의존합니다. [macOS용 A
 
 #### <a name="install-vs-code-extension-for-arduino"></a>Arduino용 VS Code 확장 설치
 
-Visual Studio Code를 사용하면 도구에서 직접 Marketplace 확장을 설치하고 왼쪽 메뉴 창에서 간단히 확장 아이콘을 클릭한 다음 `Arduino`를 검색하여 설치할 수 있습니다.
+Visual Studio Code 있습니다 tooinstall 마켓플레이스 확장 hello 도구에 직접, 단순히 hello 왼쪽된 메뉴 창의 hello 확장 아이콘을 클릭 한 다음 검색 `Arduino` tooinstall:
 
 ![installation-extensions](media/iot-hub-arduino-devkit-az3166-get-started/installation-extensions-mac.png)
 
 #### <a name="install-devkit-board-package"></a>DevKit 보드 패키지 설치
 
-Visual Studio Code에서 보드 관리자를 사용하여 DevKit 보드를 추가해야 합니다.
+Tooadd hello 하세요 보드 hello 보드 관리자를 사용 하 여 Visual Studio Code에서 필요 합니다.
 
-1. `Cmd+Shift+P`를 사용하여 명령 팔레트를 호출하고 **Arduino**를 입력한 다음 찾아서 **Arduino: 보드 관리자**를 선택합니다.
+1. 사용 하 여 `Cmd+Shift+P` tooinvoke 명령 팔레트과 형식 **Arduino** 다음 찾아 선택 **Arduino: 보드 관리자**합니다.
 
-2. 오른쪽 아래에서 **'추가 URL'**을 클릭합니다.
+2. 클릭 **' Url을 추가로 '** 오른쪽 hello 아래에 있습니다.
    ![installation-additional-urls](media/iot-hub-arduino-devkit-az3166-get-started/installation-additional-urls-mac.png)
 
-3. `settings.json` 파일에서 `USER SETTINGS` 창의 아래쪽에 줄을 추가하고 저장합니다.
+3. Hello에 `settings.json` 파일, hello 아래쪽에 선을 추가 `USER SETTINGS` 창 고 저장 합니다.
    ```json
    "arduino.additionalUrls": "https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json"
    ```
    ![installation-settings-json](media/iot-hub-arduino-devkit-az3166-get-started/installation-settings-json-mac.png)
 
-4. 이제 보드 관리자에서 'az3166'을 검색하고 최신 버전을 설치합니다.
+4. 이제 'az3166' hello 보드 관리자에서에서 검색 하 고 hello 최신 버전을 설치 합니다.
    ![installation-az3166](media/iot-hub-arduino-devkit-az3166-get-started/installation-az3166-mac.png)
 
-이제 macOS에 대해 필요한 모든 도구 및 패키지를 설치했습니다.
+이제 모든 hello 필요한 도구 및 macOS에 설치 된 패키지를 완료 합니다.
 
 
 ## <a name="open-project-folder"></a>프로젝트 폴더 열기
 
 ### <a name="launch-vs-code"></a>VS Code 시작
 
-DevKit이 연결되어 있지 않은지 확인합니다. VS Code를 먼저 시작하고 DevKit를 컴퓨터에 연결합니다. VS Code는 자동으로 찾고 소개 페이지를 팝업합니다.
+DevKit이 연결되어 있지 않은지 확인합니다. VS Code를 처음 시작 하 고 hello 하세요 tooyour 컴퓨터를 연결 합니다. VS Code는 자동으로 찾고 소개 페이지를 팝업합니다.
 
 ![mini-solution-vscode](media/iot-hub-arduino-devkit-az3166-get-started/mini-solution-vscode.png)
 
 > [!NOTE] 
-경우에 따라서 VS Code를 시작할 때 Arduino IDE 또는 관련된 보드 패키지를 찾을 수 없다는 오류와 함께 메시지가 표시됩니다. 이를 해결하기 위해 VS Code를 닫고 Arduino IDE를 다시 한 번 시작하면 VS Code는 Arduino IDE 경로를 올바르게 찾습니다.
+경우에 따라서 VS Code를 시작할 때 Arduino IDE 또는 관련된 보드 패키지를 찾을 수 없다는 오류와 함께 메시지가 표시됩니다. toosolve Arduino IDE를 한 번 다시 시작이 닫기 VS Code 및 VS Code을 찾아야 Arduino IDE 경로 올바르게 합니다.
 
 ### <a name="open-arduino-examples-folder"></a>Arduino 예제 폴더 열기
 
-**'Arduino 예제'** 탭으로 전환하고 `Examples for MXCHIP AZ3166 > AzureIoT`로 이동하고 `GetStarted`를 클릭합니다.
+너무 전환**' Arduino 예제 '** 탭, 너무 탐색`Examples for MXCHIP AZ3166 > AzureIoT` 을 클릭할 `GetStarted`합니다.
 
 ![mini-solution-examples](media/iot-hub-arduino-devkit-az3166-get-started/mini-solution-examples.png)
 
-창이 닫힌 경우 다시 로드하려면 `Ctrl+Shift+P`(macOS: `Cmd+Shift+P`)를 사용하여 명령 팔레트를 호출하고 **Arduino**를 입력하여 찾아서 **Arduino: 예제**를 선택합니다.
+Tooclose hello 창에서 문제가 발생 하는 경우 tooreload 것을 사용 하 여 `Ctrl+Shift+P` (macOS: `Cmd+Shift+P`) tooinvoke 명령 팔레트과 형식 **Arduino** toofind 선택 **Arduino: 예제**합니다.
 
 ## <a name="provision-azure-services"></a>Azure 서비스 프로비전
 
-솔루션 창에서 'task cloud-provision'을 입력하여 `Ctrl+P`(macOS: `Cmd+P`)를 통해 작업을 실행합니다.
+Hello 솔루션 창에서 작업을 통해 실행 `Ctrl+P` (macOS: `Cmd+P`) '클라우드를 프로 비전 작업'를 입력 하 여:
 
-VS Code 터미널에서 대화형 명령줄은 필요한 Azure 서비스를 프로비전하는 과정을 안내합니다.
+Hello VS Code 터미널 대화형 명령줄은 과정을 안내 하 프로비저닝 hello Azure 서비스를 필요 합니다.
 
 ![mini-solution-cloud-provision](media/iot-hub-arduino-devkit-az3166-get-started/mini-solution/connect-iothub/cloud-provision.png)
 
@@ -270,45 +270,45 @@ VS Code 터미널에서 대화형 명령줄은 필요한 Azure 서비스를 프�
 
 ### <a name="install-required-library"></a>필요한 라이브러리 설치
 
-1. `F1` 또는 `Ctrl+Shift+P`(macOS: `Cmd+Shift+P`)를 눌러 명령 팔레트를 호출하고 **Arduino**를 입력한 다음 찾아서 **Arduino: 라이브러리 관리자**를 선택합니다.
+1. 키를 눌러 `F1` 또는 `Ctrl+Shift+P` (macOS: `Cmd+Shift+P`) tooinvoke 명령 팔레트과 형식 **Arduino** 다음 찾아 선택 **Arduino: 라이브러리 관리자**합니다.
 
 2. `ArduinoJson` 라이브러리를 검색하고 **설치**를 클릭합니다.
 
-### <a name="build-and-upload-the-device-code"></a>장치 코드 빌드 및 업로드
+### <a name="build-and-upload-hello-device-code"></a>빌드 및 hello 장치 코드 업로드
 
-`Ctrl+P`(macOS: `Cmd+P`)를 사용하여 'task device-upload'를 실행합니다. 터미널에서 구성 모드를 입력하라는 메시지를 표시합니다. 이렇게 하려면 단추 A를 누르고 있다가 다시 설정 단추를 밀어서 놓습니다. 화면에 '구성'이 표시됩니다. 이는 'task cloud-provision' 단계에서 검색하는 연결 문자열을 설정하기 위한 것입니다.
+사용 하 여 `Ctrl+P` (macOS: `Cmd+P`) toorun ' 작업 장치 저장소에 자동 업로드 '. hello 터미널 tooenter 구성 모드 라는 메시지가 나타납니다. toodo A, 단추, 누른 다음 푸시 및 릴리스 hello 단추를 다시 설정 합니다. hello 화면에는 '구성' 표시 됩니다. ' 작업 클라우드 프로 비전 ' 단계에서 검색 하는 tooset hello 연결 문자열입니다.
 
-그런 다음 Arduino 스케치 확인 및 업로드를 시작합니다.
+다음을 확인 하 고 hello Arduino 스케치 업로드 시작 됩니다.
 
 ![mini-solution-device-upload](media/iot-hub-arduino-devkit-az3166-get-started/mini-solution/connect-iothub/device-upload.png)
 
-DevKit가 재부팅되고 코드 실행을 시작합니다.
+hello 하세요 재부팅 되며 hello 코드 실행을 시작 합니다.
 
-## <a name="test-the-project"></a>프로젝트 테스트
+## <a name="test-hello-project"></a>테스트 hello 프로젝트
 
-VS Code에서 상태 표시줄의 전원 플러그 아이콘을 클릭하여 직렬 모니터를 엽니다.
+VS Code hello 상태 표시줄 tooopen hello 직렬 모니터의 hello 전원 플러그 아이콘을 클릭 합니다.
 
-다음과 같은 결과가 표시되면 샘플 응용 프로그램은 성공적으로 실행됩니다.
+hello 결과 뒤에 표시 되 면 hello 샘플 응용 프로그램을 성공적으로 실행:
 
-* 직렬 모니터는 아래 스크린샷의 내용으로 동일한 정보를 표시합니다.
-* MXChip IoT DevKit의 LED가 깜박입니다.
+* hello 직렬 모니터 디스플레이 hello 아래 스크린샷에서 hello의 hello 내용으로 동일한 정보입니다.
+* hello MXChip IoT 하세요 LED가 깜박입니다.
 
 ![VS Code의 최종 출력](media/iot-hub-arduino-devkit-az3166-get-started/mini-solution/connect-iothub/result-serial-output.png)
 
 ## <a name="problems-and-feedback"></a>문제 및 피드백
 
-문제가 발생했거나 아래 채널에서 연락하려는 경우 [FAQ](https://microsoft.github.io/azure-iot-developer-kit/docs/faq/)를 찾을 수 있습니다.
+찾을 수 있습니다 [Faq](https://microsoft.github.io/azure-iot-developer-kit/docs/faq/) 교류할 toous hello 채널 아래에서 문제가 발생 하는 경우.
 
 ## <a name="next-steps"></a>다음 단계
 
-IoT Hub에 MXChip IoT DevKit를 성공적으로 연결하고 캡처된 센서 데이터를 IoT Hub에 전송했습니다.
+성공적 MXChip IoT 하세요 tooyour IoT 허브를 연결 하 고 보낸된 hello 캡처된 센서 데이터 tooyour IoT 허브입니다.
 
-계속해서 IoT Hub을 시작하고 다른 IoT 시나리오를 탐색하려면 다음을 참조하세요.
+시작 toocontinue IoT 허브와 tooexplore 다른 IoT 시나리오를 참조 하세요.
 
 - [iothub-explorer를 사용하여 클라우드 장치 메시지 관리](https://docs.microsoft.com/azure/iot-hub/iot-hub-explorer-cloud-device-messaging)
-- [IoT Hub 메시지를 Azure 데이터 저장소에 저장](https://docs.microsoft.com//azure/iot-hub/iot-hub-store-data-in-azure-table-storage)
-- [Power BI를 사용하여 Azure IoT Hub에서 실시간 센서 데이터 시각화](https://docs.microsoft.com//azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
-- [Azure Web Apps를 사용하여 Azure IoT Hub에서 실시간 센서 데이터 시각화](https://docs.microsoft.com//azure/iot-hub/iot-hub-live-data-visualization-in-web-apps)
-- [Azure Machine Learning에서 IoT Hub의 센서 데이터를 사용한 날씨 예측](https://docs.microsoft.com/azure/iot-hub/iot-hub-weather-forecast-machine-learning)
+- [데이터 저장소 tooAzure IoT Hub 메시지 저장](https://docs.microsoft.com//azure/iot-hub/iot-hub-store-data-in-azure-table-storage)
+- [Azure IoT 허브에서 Power BI toovisualize 실시간 센서 데이터를 사용 하 여](https://docs.microsoft.com//azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
+- [Azure IoT 허브에서 Azure 웹 앱 toovisualize 실시간 센서 데이터를 사용 하 여](https://docs.microsoft.com//azure/iot-hub/iot-hub-live-data-visualization-in-web-apps)
+- [IoT 허브에서 hello 센서 데이터를 사용 하 여 Azure 기계 학습에서 일기 예보](https://docs.microsoft.com/azure/iot-hub/iot-hub-weather-forecast-machine-learning)
 - [iothub-explorer를 사용하여 장치 관리](https://docs.microsoft.com/azure/iot-hub/iot-hub-device-management-iothub-explorer)
 - [Logic Apps를 사용하여 원격 모니터링 및 알림](https://docs.microsoft.com/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps)

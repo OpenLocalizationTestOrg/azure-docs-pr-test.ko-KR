@@ -1,5 +1,5 @@
 ---
-title: "Azure Marketplace 설명서 | Microsoft Docs"
+title: "aaaAzure 마켓플레이스 설명서 | Microsoft Docs"
 description: "Azure Marketplace에 대해 알아봅니다."
 services: marketplace
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/14/2017
 ms.author: carolz
-ms.openlocfilehash: 6dca59ddd5fe524b7778abe770b6387f8bb24f01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc66c89a5e34ec41ff95851a2f02d836ff0d1261
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-marketplace-documentation"></a>Azure Marketplace 설명서
 
-신생 기업에서 기존 기업까지 ISV가 전 세계 고객에게 자사의 솔루션을 제공할 수 있도록 하는 온라인 응용 프로그램 및 서비스인 Azure Marketplace에 대해 알아봅니다.
+Azure 마켓플레이스에서 온라인 응용 프로그램에 대해 알아보고 hello 전 세계의 솔루션 toocustomers 마켓플레이스 시작 tooenterprises toooffer에서 Isv 수 있는 서비스입니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

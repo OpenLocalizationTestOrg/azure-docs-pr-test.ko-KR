@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 2.0을 사용하여 여러 IP 주소가 있는 VM | Microsoft Docs"
-description: "Azure CLI 2.0 | Resource Manager를 사용하여 가상 컴퓨터에 여러 IP 주소를 할당하는 방법을 알아봅니다."
+title: "hello Azure CLI 2.0을 사용 하 여 여러 IP 주소와 aaaVM | Microsoft Docs"
+description: "여러 IP 해결 하는 tooassign 방법을 알아보려면 Azure CLI 2.0 hello tooa 가상 컴퓨터를 사용 하 여 | 리소스 관리자입니다."
 services: virtual-network
 documentationcenter: na
 author: anavinahar
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/17/2016
 ms.author: annahar
-ms.openlocfilehash: 0e9b2ef89ca39a7988a7b2573496a605dfc604b4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15efd853cc7c31bacb64ed052dabedd3fe4d3079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-multiple-ip-addresses-to-virtual-machines-using-the-azure-cli-20"></a>Azure CLI 2.0을 사용하여 가상 컴퓨터에 여러 IP 주소 할당
+# <a name="assign-multiple-ip-addresses-toovirtual-machines-using-hello-azure-cli-20"></a>Azure CLI 2.0 hello를 사용 하 여 toovirtual 컴퓨터에 여러 IP 주소 할당
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-intro.md](../../includes/virtual-network-multiple-ip-addresses-intro.md)]
 
-이 문서는 Azure CLI 2.0을 사용하여 Azure Resource Manager 배포 모델을 통해 VM(가상 컴퓨터)을 만드는 방법을 설명합니다. 클래식 배포 모델을 통해 생성된 리소스에 여러 IP 주소를 할당할 수 없습니다. Azure 배포 모델에 대해 자세히 알아보려면 [배포 모델 이해](../resource-manager-deployment-model.md) 문서를 참조하세요.
+이 문서에서는 toocreate hello Azure 리소스 관리자 배포 모델을 사용 하 여 가상 컴퓨터 (VM) Azure CLI 2.0 hello 하는 방법을 설명 합니다. Hello 클래식 배포 모델을 통해 만든 tooresources 여러 IP 주소를 할당할 수 없습니다. Azure 배포 모델을 읽을 hello에 대 한 자세한 toolearn [배포 모델을 이해](../resource-manager-deployment-model.md) 문서.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name = "create"></a>여러 IP 주소를 사용하여 VM 만들기
 
-Azure CLI 2.0(이 문서) 또는 [Azure CLI 1.0](virtual-network-multiple-ip-addresses-cli-nodejs.md)을 사용하여 이 태스크를 완료할 수 있습니다. 사용자 환경에 적절한 값으로 변경합니다. 다음 단계는 시나리오에 설명된 대로 여러 IP 주소를 가진 예시 VM을 만드는 방법을 설명합니다. ""의 변수 값과 IP 주소 유형을 구현에 필요한 대로 변경합니다. 
+Hello Azure CLI 2.0 (이 문서) 또는 hello를 사용 하 여이 작업을 완료할 수 있습니다 [Azure CLI 1.0](virtual-network-multiple-ip-addresses-cli-nodejs.md)합니다. 사용자 환경에 적절 하 게 hello 값을 변경 합니다. 수행 하는 hello 단계 hello 시나리오에 설명 된 대로 toocreate 예로 여러 IP 사용 하 여 VM 해결 하는 방법을 설명 합니다. ""의 변수 값과 IP 주소 유형을 구현에 필요한 대로 변경합니다. 
 
-1. [Azure CLI 2.0](/cli/azure/install-az-cli2)을 아직 설치하지 않은 경우 설치합니다.
-2. [Linux VM에 SSH 공용 및 개인 키 쌍 만들기](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)의 단계를 완료하여 Linux VM에 SSH 공용 및 개인 키 쌍을 만듭니다.
-3. 명령 셸에서 `az login` 명령을 사용하고 사용 중인 구독을 선택합니다.
-4. Linux 또는 Mac 컴퓨터에서 다음에 나오는 스크립트를 실행하여 VM을 만듭니다. 스크립트는 리소스 그룹, 하나의 VNet(가상 네트워크), 세 개의 IP 구성이 있는 하나의 NIC 및 연결된 두 개의 NIC가 있는 VM을 만듭니다. NIC, 공용 IP 주소, 가상 네트워크 및 VM 리소스는 모두 동일한 위치 및 구독에 있어야 합니다. 리소스가 모두 동일한 리소스 그룹에 위치할 필요는 없습니다. 하지만 다음 스크립트에서는 모두 동일한 리소스 그룹에 위치합니다.
+1. Hello 설치 [Azure CLI 2.0](/cli/azure/install-az-cli2) 아직 없는 설치 하는 경우.
+2. Hello의 hello 단계를 완료 하 여 Linux Vm에 대 한 SSH 공용 및 개인 키 쌍 만들기 [Linux Vm에 대 한 SSH 공용 및 개인 키 쌍 만들기](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)합니다.
+3. Hello 명령 사용 하 여 로그인 명령 셸에서 `az login` 하 고 사용 중인 hello 구독을 선택 합니다.
+4. Linux 또는 Mac 컴퓨터에서 다음에 나오는 hello 스크립트를 실행 하 여 hello VM을 만듭니다. hello 스크립트와 연결 된 Nic tooit hello 두 리소스 그룹, 하나의 가상 네트워크 (VNet), 세 가지 IP 구성 사용 하 여 NIC 1 개 및 VM을 만듭니다. hello NIC, 공용 IP 주소, 가상 네트워크 및 VM 리소스 모두에 존재 해야 hello 동일한 위치 및 구독 합니다. 하지만 hello 리소스 하지 않는 모든 tooexist에서 hello hello 그럴 스크립트 다음에 동일한 리소스 그룹입니다.
 
 ```bash
     
@@ -46,10 +46,10 @@ RgName="myResourceGroup"
 Location="westcentralus"
 az group create --name $RgName --location $Location
     
-# Create a public IP address resource with a static IP address using the `--allocation-method Static` option. If you
-# do not specify this option, the address is allocated dynamically. The address is assigned to the resource from a pool
-# of IP adresses unique to each Azure region. Download and view the file from
-# https://www.microsoft.com/en-us/download/details.aspx?id=41653 that lists the ranges for each region.
+# Create a public IP address resource with a static IP address using hello `--allocation-method Static` option. If you
+# do not specify this option, hello address is allocated dynamically. hello address is assigned toohello resource from a pool
+# of IP adresses unique tooeach Azure region. Download and view hello file from
+# https://www.microsoft.com/en-us/download/details.aspx?id=41653 that lists hello ranges for each region.
 
 PipName="myPublicIP"
 
@@ -78,8 +78,8 @@ az network vnet create \
 --subnet-name $VnetSubnetName \
 --subnet-prefix $VnetSubnetPrefix
 
-# Create a network interface connected to the subnet and associate the public IP address to it. Azure will create the
-# first IP configuration with a static private IP address and will associate the public IP address resource to it.
+# Create a network interface connected toohello subnet and associate hello public IP address tooit. Azure will create the
+# first IP configuration with a static private IP address and will associate hello public IP address resource tooit.
 
 NicName="MyNic1"
 az network nic create \
@@ -91,7 +91,7 @@ az network nic create \
 --vnet-name $VnetName \
 --public-ip-address $PipName
     
-# Create a second public IP address, a second IP configuration, and associate it to the NIC. This configuration has a
+# Create a second public IP address, a second IP configuration, and associate it toohello NIC. This configuration has a
 # static public IP address and a static private IP address.
 
 az network public-ip create \
@@ -108,7 +108,7 @@ az network nic ip-config create \
 --private-ip-address 10.0.0.5 \
 --public-ip-name myPublicIP2
 
-# Create a third IP configuration, and associate it to the NIC. This configuration has  static private IP address and   # no public IP address.
+# Create a third IP configuration, and associate it toohello NIC. This configuration has  static private IP address and # no public IP address.
 
 azure network nic ip-config create \
 --resource-group $RgName \
@@ -116,30 +116,30 @@ azure network nic ip-config create \
 --private-ip-address 10.0.0.6 \
 --name IPConfig-3
 
-# Note: Though this article assigns all IP configurations to a single NIC, you can also assign multiple IP configurations
-# to any NIC in a VM. To learn how to create a VM with multiple NICs, read the Create a VM with multiple NICs 
+# Note: Though this article assigns all IP configurations tooa single NIC, you can also assign multiple IP configurations
+# tooany NIC in a VM. toolearn how toocreate a VM with multiple NICs, read hello Create a VM with multiple NICs 
 # article: https://docs.microsoft.com/azure/virtual-network/virtual-network-deploy-multinic-arm-cli.
 
-# Create a VM and attach the NIC.
+# Create a VM and attach hello NIC.
 
 VmName="myVm"
 
-# Replace the value for the following **VmSize** variable with a value from the
-# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes rticle. The script fails if the VM size
-# is not supported in the location you select. Run the `azure vm sizes --location estcentralus` command to get a full list
+# Replace hello value for hello following **VmSize** variable with a value from the
+# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes rticle. hello script fails if hello VM size
+# is not supported in hello location you select. Run hello `azure vm sizes --location estcentralus` command tooget a full list
 # of VMs in US West Central, for example.
 
 VmSize="Standard_DS1"
 
-# Replace the value for the OsImage variable value with a value for *urn* from the utput returned by entering the
+# Replace hello value for hello OsImage variable value with a value for *urn* from hello utput returned by entering the
 # `az vm image list` command.
 
 OsImage="credativ:Debian:8:latest"
 
 Username="adminuser"
 
-# Replace the following value with the path to your public key file. If you're creating a Windows VM, remove the following
-# line and you'll be prompted for the password you want to configure for the VM.
+# Replace hello following value with hello path tooyour public key file. If you're creating a Windows VM, remove hello following
+# line and you'll be prompted for hello password you want tooconfigure for hello VM.
 
 SshKeyValue="~/.ssh/id_rsa.pub"
 
@@ -154,28 +154,28 @@ az vm create \
 --ssh-key-value $SshKeyValue
 ```
 
-스크립트는 세 가지 IP 구성의 NIC로 VM을 만드는 것 외에 다음 항목을 만듭니다.
+또한 3 개의 IP 구성이와 NIC 사용 하 여 VM toocreating hello 스크립트를 만듭니다.
 
-- 기본적으로 단일 프리미엄이 디스크를 관리했지만 만들 수 있는 디스크 유형에 대한 다른 옵션을 사용할 수 있습니다. 자세한 내용은 [Azure CLI 2.0을 사용하여 Linux VM 만들기](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json)를 참조하세요.
-- 하나의 서브넷 및 두 개의 공용 IP 주소를 가진 가상 네트워크. 또는 *기존* 가상 네트워크, 서브넷, NIC 또는 공용 IP 주소 리소스를 사용할 수 있습니다. 추가 리소스를 만드는 것이 아니라 기존 네트워크 리소스를 사용하는 방법을 알아보려면 `az vm create -h`을 입력합니다.
+- 단일 프리미엄 디스크를 기본적으로 관리 하지만 hello 디스크 유형 만들 수 있습니다에 대 한 다른 옵션이 있습니다. 읽기 hello [hello Azure CLI 2.0을 사용 하 여 Linux VM을 만들](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 을 참조 합니다.
+- 하나의 서브넷 및 두 개의 공용 IP 주소를 가진 가상 네트워크. 또는 *기존* 가상 네트워크, 서브넷, NIC 또는 공용 IP 주소 리소스를 사용할 수 있습니다. 어떻게 toouse 기존 네트워크 리소스 대신 입력 추가 리소스를 만드는 toolearn `az vm create -h`합니다.
 
-공용 IP 주소에는 명목 요금이 부과됩니다. IP 주소 가격에 대한 자세한 내용은 [IP 주소 가격](https://azure.microsoft.com/pricing/details/ip-addresses) 페이지를 참조하세요. 구독 내에서 사용할 수 있는 공용 IP 주소의 수는 제한되어 있습니다. 이러한 한에 대한 자세한 내용은 [Azure 제한](../azure-subscription-service-limits.md#networking-limits) 문서를 참조하세요.
+공용 IP 주소에는 명목 요금이 부과됩니다. 가격 책정, 주소 IP에 대 한 자세한 toolearn 읽을 hello [IP 주소 가격](https://azure.microsoft.com/pricing/details/ip-addresses) 페이지. 구독에서 사용할 수 있는 공용 IP 주소의 제한이 toohello 수가입니다. hello 제한, hello 읽기에 대 한 자세한 toolearn [Azure 제한](../azure-subscription-service-limits.md#networking-limits) 문서.
 
-VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResourceGroup` 명령을 입력하여 NIC 구성을 봅니다. `az network nic ip-config list --nic-name MyNic1 --resource-group myResourceGroup --output table`을 입력하여 NIC에 연결된 IP 구성의 목록을 봅니다.
+Hello VM을 만든 후 입력 hello `az network nic show --name MyNic1 --resource-group myResourceGroup` 명령 tooview hello NIC 구성 합니다. Hello 입력 `az network nic ip-config list --nic-name MyNic1 --resource-group myResourceGroup --output table` toohello NIC. tooview hello IP 구성의 목록에 연결
 
-이 문서의 [VM 운영 체제에 IP 주소 추가](#os-config) 섹션에 나오는 사용자 운영 체제별 단계를 완료하여 개인 IP 주소를 VM 운영 체제에 추가합니다.
+추가 hello 개인 IP 주소 수 toohello VM 운영 체제 hello에 운영 체제에 대 한 hello 단계를 완료 [추가 IP 주소 tooa VM 운영 체제](#os-config) 이 문서의 섹션.
 
-## <a name="add"></a>VM에 IP 주소 추가
+## <a name="add"></a>IP 주소 tooa VM 추가
 
-다음 단계를 완료하여 개인 및 공용 IP 주소를 기존 NIC에 추가할 수 있습니다. 예제는 이 문서에서 설명된 [시나리오](#Scenario)를 기반으로 합니다.
+추가 개인 및 공용 IP 주소 tooan NIC를 수행 하는 hello 단계를 완료 하 여 기존를 추가할 수 있습니다. hello를 바탕으로 hello 예제 [시나리오](#Scenario) 이 문서에서 설명 합니다.
 
-1. 명령 셸을 열고 단일 세션 내에서 이 섹션의 나머지 단계를 완료합니다. 아직 Azure CLI를 설치 및 구성하지 않은 경우 [Azure CLI 2.0 설치](/cli/azure/install-az-cli2?toc=%2fazure%2fvirtual-network%2ftoc.json) 문서에 나오는 단계를 완료하고 `az-login` 명령을 사용하여 Azure 계정에 로그인합니다.
+1. 단일 세션 내에서이 섹션의 단계를 남은 전체 hello 및 명령 셸을 엽니다. 전체 hello hello의 단계를 이미 설치 및 구성 하는 Azure CLI 없다면 [Azure CLI 2.0 설치](/cli/azure/install-az-cli2?toc=%2fazure%2fvirtual-network%2ftoc.json) 아티클과 로그인 tooyour hello로 Azure 계정 `az-login` 명령입니다.
 
-2. 요구 사항에 따라 다음 섹션 중 하나의 단계를 완료합니다.
+2. Hello 절, 요구 사항에 따라 다음 중 하나의 hello 단계를 완료 합니다.
 
     **개인 IP 주소 추가**
     
-    NIC에 개인 IP 주소를 추가하려면 다음 명령을 사용하여 IP 구성을 만들어야 합니다. 고정 IP 주소는 서브넷에 사용되지 않는 주소여야 합니다.
+    개인 IP 주소 tooa NIC tooadd 뒤에 오는 hello 명령을 사용 하 여 IP 구성을 만들어야 합니다. hello 고정 IP 주소는 hello 서브넷에 대 한 사용 되지 않는 주소 여야 합니다.
 
     ```bash
     az network nic ip-config create \
@@ -189,13 +189,13 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
 
     **공용 IP 주소 추가**
     
-    공용 IP 주소는 새 IP 구성 또는 기존 IP 구성에 연결하면 해당 주소가 추가됩니다. 필요에 따라 이후 섹션 중 하나에 나와 있는 단계를 완료합니다.
+    공용 IP 주소를 tooeither 연결 하 여 추가 되는 새 IP 구성 또는 기존 IP 구성 합니다. 필요한 만큼 따르려면 hello 섹션 중 하나에 hello 단계를 완료 합니다.
 
-    공용 IP 주소에는 명목 요금이 부과됩니다. IP 주소 가격에 대한 자세한 내용은 [IP 주소 가격](https://azure.microsoft.com/pricing/details/ip-addresses) 페이지를 참조하세요. 구독 내에서 사용할 수 있는 공용 IP 주소의 수는 제한되어 있습니다. 이러한 한에 대한 자세한 내용은 [Azure 제한](../azure-subscription-service-limits.md#networking-limits) 문서를 참조하세요.
+    공용 IP 주소에는 명목 요금이 부과됩니다. 가격 책정, 주소 IP에 대 한 자세한 toolearn 읽을 hello [IP 주소 가격](https://azure.microsoft.com/pricing/details/ip-addresses) 페이지. 구독에서 사용할 수 있는 공용 IP 주소의 제한이 toohello 수가입니다. hello 제한, hello 읽기에 대 한 자세한 toolearn [Azure 제한](../azure-subscription-service-limits.md#networking-limits) 문서.
 
-    - **새 IP 구성에 리소스 연결**
+    - **Hello 리소스 tooa 새 IP 구성에 연결**
     
-        새 IP 구성의 공용 IP 주소를 추가할 때마다 모든 IP 구성 시 개인 IP 주소가 있어야 하기 때문에 개인 IP 주소도 추가해야 합니다. 기존 공용 IP 주소 리소스를 추가하거나 새로 만들 수 있습니다. 새 파일을 만들려면 다음 명령을 입력합니다.
+        새 IP 구성의 공용 IP 주소를 추가할 때마다 모든 IP 구성 시 개인 IP 주소가 있어야 하기 때문에 개인 IP 주소도 추가해야 합니다. 기존 공용 IP 주소 리소스를 추가하거나 새로 만들 수 있습니다. toocreate 한 새 hello 다음 명령을 입력 합니다.
     
         ```bash
         az network public-ip create \
@@ -205,7 +205,7 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
         --dns-name mypublicdns3
         ```
 
-        고정 개인 IP 주소 및 여기에 연결된 *myPublicP3* 공용 IP 주소 리소스가 있는 새 IP 구성을 만들려면 다음 명령을 입력합니다.
+        개인 고정 IP 주소와 연결 된 hello 새 IP 구성이 toocreate *myPublicIP3* 공용 IP 리소스에 주소를 hello 다음 명령을 입력 합니다.
 
         ```bash
         az network nic ip-config create \
@@ -216,7 +216,7 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
         --public-ip-address myPublicIP3
         ```
 
-    - **기존 IP 구성에 리소스 연결** 공용 IP 주소 리소스에 아직 연결 되어 있는 IP 구성에 연결할 수만 있습니다. 다음 명령을 입력하면 IP 구성에 연결된 공용 IP 주소가 있는지 여부를 확인할 수 있습니다.
+    - **연결 hello 리소스 tooan 기존 IP 구성** 공용 IP 주소 리소스에 아직 연결 되어 관련된 tooan IP 구성만 될 수 있습니다. IP 구성 hello 다음 명령을 입력 하 여 연결 된 공용 IP 주소에 있는지 여부를 확인할 수 있습니다.
 
         ```bash
         az network nic ip-config list \
@@ -233,7 +233,7 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
             IPConfig-2  /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP2
             IPConfig-3
 
-        *IpConfig-3*에 대한 **PublicIpAddressId** 열이 출력에서 비어 있기 때문에 현재 공용 IP 주소 리소스가 여기에 연결되어 있지 않습니다. IpConfig-3에 기존 공용 IP 주소 리소스를 추가하거나 다음 명령을 입력하여 새로 만들 수 있습니다.
+        Hello 이후 **PublicIpAddressId** 열에 대 한 *IpConfig-3* 는 hello 비어 출력을 공용 IP 주소 리소스가 현재 연결된 tooit 합니다. 기존 공용 IP 주소 리소스 tooIpConfig-3, 더하거나 명령 toocreate 하나를 수행 하는 hello 입력:
 
         ```bash
         az network public-ip create \
@@ -244,7 +244,7 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
         --allocation-method Static
         ```
     
-        *IPConfig 3*이라는 기존 IP 구성에 공용 IP 주소 리소스를 연결하려면 다음 명령을 입력합니다.
+        다음 명령을 tooassociate hello 공용 IP 주소 리소스 toohello 기존 IP 구성 라는 hello 입력 *IPConfig-3*:
     
         ```bash
         az network nic ip-config update \
@@ -254,7 +254,7 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
         --public-ip myPublicIP3
         ```
 
-3. NIC에 할당된 개인 IP 주소 및 공용 IP 주소 리소스 ID를 보려면 다음 명령을 입력합니다.
+3. 보기 hello 개인 IP 주소 및 공용 IP hello 다음 명령을 입력 하 여 NIC hello toohello 할당 된 리소스 Id를 처리 합니다.
 
     ```bash
     az network nic ip-config list \
@@ -272,6 +272,6 @@ VM을 만든 후에 `az network nic show --name MyNic1 --resource-group myResour
         IPConfig-3  10.0.0.6            Static                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP3
     
 
-4. 이 문서의 [VM 운영 체제에 IP 주소 추가](#os-config) 섹션에 나오는 지침에 따라 NIC에 추가한 개인 IP 주소를 VM 운영 체제에 추가합니다. 운영 체제에 공용 IP 주소를 추가하지 마십시오.
+4. Hello에 대 한 hello 지침에 따라 toohello NIC toohello VM 운영 체제를 추가한 hello 개인 IP 주소 추가 [추가 IP 주소 tooa VM 운영 체제](#os-config) 이 문서의 섹션. Hello 공용 IP 주소 toohello 운영 체제를 추가 하지 마십시오.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]

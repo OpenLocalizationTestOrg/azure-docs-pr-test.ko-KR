@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher를 사용하여 네트워크 보안 그룹 흐름 로그 관리 - REST API | Microsoft Docs"
-description: "이 페이지에서는 REST API를 사용하여 Azure Network Watcher의 네트워크 보안 그룹 흐름 로그를 관리하는 방법을 설명합니다."
+title: "Azure 네트워크 감시자-REST API를 사용 하 여 기록 네트워크 보안 그룹 흐름 aaaManage | Microsoft Docs"
+description: "이 페이지에서는 toomanage 네트워크 보안 그룹 흐름 REST API와 Azure 네트워크 감시자 로그인 하는 방법을 설명 합니다."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: c89a2ab4c39978771c940a819493b4e2283d5f9f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: be81e35f4d01c67efef99773e9b4e2ae4b8e209e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-network-security-group-flow-logs-using-rest-api"></a>REST API를 사용하여 네트워크 보안 그룹 흐름 로그 구성
 
@@ -29,20 +29,20 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-nsg-flow-logging-cli.md)
 > - [REST API](network-watcher-nsg-flow-logging-rest.md)
 
-네트워크 보안 그룹 흐름 로그는 네트워크 보안 그룹을 통해 수신 및 송신 IP 트래픽에 대한 정보를 볼 수 있는 Network Watcher의 기능입니다. 이러한 흐름 로그는 json 형식으로 작성되고 트래픽이 허용되거나 거부된 경우 각 규칙을 기준으로 아웃바운드 및 인바운드 흐름, 흐름이 적용되는 NIC, 흐름에 대한 5개의 튜플 정보(원본/대상 IP, 원본/대상 포트, 프로토콜)를 보여 줍니다.
+네트워크 보안 그룹 흐름 로그는 네트워크 보안 그룹을 통해 IP 트래픽 ingress 및 egress에 대 한 tooview 정보 수 있는 네트워크 감시자의 기능입니다. 이러한 흐름 로그 json 형식으로 작성 되 고 아웃 바운드 표시 및 hello 흐름 (소스/대상 IP, 소스/대상 포트, 프로토콜)에 대 한 5-튜플 정보에 각 규칙 별로 인바운드 흐름 hello NIC hello 흐름 적용 하 고 트래픽이 허용 된 경우 hello 또는 거부 됩니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
+ARMclient는 PowerShell을 사용 하 여 사용 되는 toocall hello REST API입니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
 
-이 시나리오에서는 사용자가 Network Watcher를 만드는 [Network Watcher 만들기](network-watcher-create.md)의 단계를 이미 수행했다고 가정합니다.
+이 시나리오에서는 hello 단계에 따라 이미 가정 [네트워크 감시자를 만들](network-watcher-create.md) toocreate 네트워크 감시자 합니다.
 
 > [!Important]
-> Network Watcher REST API 호출의 경우 요청 URI에 있는 리소스 그룹 이름은 진단 작업이 수행되는 리소스가 아니라, Network Watcher를 포함하는 리소스 그룹입니다.
+> 네트워크 감시자 REST API에 대 한 호출 hello hello 요청 URI는 hello 진단 작업에서 수행 하는 hello 리소스가 아닌 hello 네트워크 감시자를 포함 하는 hello 리소스 그룹에에서 리소스 그룹 이름입니다.
 
 ## <a name="scenario"></a>시나리오
 
-이 문서에서 다루는 시나리오는 REST API를 사용하여 흐름 로그를 사용하거나 사용하지 않도록 설정하고 쿼리하는 방법을 보여 줍니다. 네트워크 보안 그룹 흐름 로깅에 대한 자세한 내용은 [네트워크 보안 그룹 흐름 로깅 - 개요](network-watcher-nsg-flow-logging-overview.md)를 참조하세요.
+이 문서에서 다루는 hello 시나리오 tooenable, 사용 안 함, 및 쿼리 hello REST API를 사용 하 여 로그의 흐름 방식 보여 줍니다. 네트워크 보안 그룹 흐름 loggings에 대 한 자세한 toolearn 방문 [네트워크 보안 그룹 흐름 로깅-개요](network-watcher-nsg-flow-logging-overview.md)합니다.
 
 이 시나리오에서는 다음을 수행합니다.
 
@@ -52,7 +52,7 @@ PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩�
 
 ## <a name="log-in-with-armclient"></a>ARMClient에 로그인
 
-Azure 자격 증명으로 armclient에 로그인합니다.
+Tooarmclient Azure 자격 증명으로 로그인 합니다.
 
 ```PowerShell
 armclient login
@@ -60,7 +60,7 @@ armclient login
 
 ## <a name="register-insights-provider"></a>Insights 공급자 등록
 
-흐름 로깅이 성공적으로 작동하기 위해서 **Microsoft.Insights** 공급자를 등록해야 합니다. **Microsoft.Insights** 공급자가 등록되어 있는지 확실하지 않은 경우 다음 스크립트를 실행합니다.
+흐름에 대 한 순서 대로 로깅 toowork 성공적으로 hello **Microsoft.Insights** 공급자를 등록 해야 합니다. 경우 hello 확실 하지 않은 경우 **Microsoft.Insights** 공급자가 등록 된, 실행 hello 다음 스크립트입니다.
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -69,7 +69,7 @@ armclient post "https://management.azure.com//subscriptions/${subscriptionId}/pr
 
 ## <a name="enable-network-security-group-flow-logs"></a>네트워크 보안 그룹 흐름 로그 사용
 
-다음 예제에서는 흐름 로그를 사용하도록 설정하는 명령이 표시됩니다.
+다음 예제는 hello hello 명령 tooenable 흐름 로그를 보여 줍니다.
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -94,7 +94,7 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/configureFlowLog?api-version=2016-12-01" $requestBody
 ```
 
-이전 예제에서 반환한 응답은 다음과 같습니다.
+hello에서 응답이 반환 되었습니다 hello 위의 예는 다음과 같습니다.
 
 ```json
 {
@@ -112,7 +112,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="disable-network-security-group-flow-logs"></a>네트워크 보안 그룹 흐름 로그를 사용하지 않도록 설정
 
-다음 예제를 사용하여 흐름 로그를 사용하지 않도록 설정합니다. 호출은 흐름 로그를 사용하도록 설정하는 것과 같습니다(단, 활성화된 속성에 대해 **false**가 설정된 경우 제외).
+다음 예에서는 toodisable 흐름 사용 하 여 hello를 기록 합니다. hello 호출은 제외 하 고 흐름 로그를 활성화할 때와 동일한 hello **false** 사용 하도록 설정 하는 hello 속성에 설정 되어 있습니다.
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -137,7 +137,7 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/configureFlowLog?api-version=2016-12-01" $requestBody
 ```
 
-이전 예제에서 반환한 응답은 다음과 같습니다.
+hello에서 응답이 반환 되었습니다 hello 위의 예는 다음과 같습니다.
 
 ```json
 {
@@ -155,7 +155,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="query-flow-logs"></a>흐름 로그 쿼리
 
-다음 REST 호출은 네트워크 보안 그룹에서 흐름 로그의 상태를 쿼리합니다.
+쿼리 hello 흐름의 상태는 REST 호출 다음 hello를 네트워크 보안 그룹에 기록 합니다.
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -171,7 +171,7 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/queryFlowLogStatus?api-version=2016-12-01" $requestBody
 ```
 
-다음은 반환된 응답의 예제입니다.
+hello 다음은 반환 하는 hello 응답의 예입니다.
 
 ```json
 {
@@ -189,9 +189,9 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="download-a-flow-log"></a>흐름 로그 다운로드
 
-흐름 로그의 저장소 위치를 만들 때 정의합니다. 저장소 계정에 저장되는 이러한 흐름 로그에 액세스하는 편리한 도구는 Microsoft Azure Storage 탐색기이며 http://storageexplorer.com/에서 다운로드할 수 있습니다.
+흐름 로그의 hello 저장소 위치를 만들 때 정의 됩니다. 이러한 흐름 저장 된 로그 tooa 저장소 계정이 여기에서 다운로드할 수 있는 Microsoft Azure 저장소 탐색기는 편리한 도구 tooaccess: http://storageexplorer.com/
 
-저장소 계정이 지정되어 있으면 패킷 캡처 파일은 다음 위치에서 저장소 계정에 저장됩니다.
+저장소 계정이 지정 되어 있으면 hello 수정할 수 있는 위치에서 저장소 계정은 tooa 패킷 캡처 파일에 저장 됩니다.
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
@@ -199,6 +199,6 @@ https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecurity
 
 ## <a name="next-steps"></a>다음 단계
 
-[PowerBI를 사용하여 NSG 흐름 로그를 시각화](network-watcher-visualize-nsg-flow-logs-power-bi.md)하는 방법 알아보기
+너무 방법에 대해 알아봅니다[PowerBI와 NSG 흐름 로그를 시각화 합니다.](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
-[오픈 소스 도구를 사용하여 NSG 흐름 로그를 시각화](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)하는 방법 알아보기
+너무 방법에 대해 알아봅니다[오픈 소스 도구와 함께 NSG 흐름 로그를 시각화 합니다.](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)

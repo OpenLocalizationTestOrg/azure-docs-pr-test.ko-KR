@@ -1,6 +1,6 @@
 ---
-title: "역할 기반 액세스 제어를 사용하여 Azure Site Recovery 관리 | Microsoft Docs"
-description: "이 문서에서는 RBAC(역할 기반 액세스 제어)를 적용 및 사용하여 Azure Site Recovery 배포를 관리하는 방법을 설명합니다."
+title: "Azure Site Recovery aaaUsing 역할 기반 액세스 제어 toomanage | Microsoft Docs"
+description: "이 문서에서 설명 하는 방법을 tooapply 및 사용 역할 기반 액세스 제어 (RBAC) toomanage Azure 사이트 복구 배포"
 services: site-recovery
 documentationcenter: 
 author: mayanknayar
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: manayar
-ms.openlocfilehash: 9dd74014bf05234a83c7678b67b42b96cd8b8d64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7b721090351e561b28317ccdcf0ff283e0b146ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-role-based-access-control-to-manage-azure-site-recovery-deployments"></a>역할 기반 액세스 제어를 사용하여 Azure Site Recovery 관리
+# <a name="use-role-based-access-control-toomanage-azure-site-recovery-deployments"></a>역할 기반 액세스 제어 toomanage Azure 사이트 복구 배포를 사용 하 여
 
-Azure RBAC(역할 기반 액세스 제어)를 통해 Azure에 대한 세밀한 액세스 관리가 가능합니다. RBAC를 사용하여 팀 내 책임을 구분하고, 특정 작업을 수행하는 데 필요한 사용자에게 특정 액세스 권한만 부여할 수 있습니다.
+Azure RBAC(역할 기반 액세스 제어)를 통해 Azure에 대한 세밀한 액세스 관리가 가능합니다. RBAC를 사용 하 여 팀 내에서 책임을 구분할 수 있으며 필요한 tooperform 특정 작업으로 사용 권한을 toousers만 특정 액세스 권한을 부여할 수도 있습니다.
 
-Azure Site Recovery는 Site Recovery 관리 작업을 제어하는 3가지 기본 제공 역할을 제공합니다. [Azure RBAC 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)에 대해 알아보기
+Azure Site Recovery 3 기본 제공 역할 toocontrol 사이트 복구 관리 작업을 제공합니다. [Azure RBAC 기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)에 대해 알아보기
 
-* [Site Recovery 참가자](../active-directory/role-based-access-built-in-roles.md#site-recovery-contributor) - 이 역할에는 Recovery Services 자격 증명 모음에서 Azure Site Recovery 작업을 관리하는 데 필요한 모든 사용 권한이 있습니다. 그러나 이 역할의 사용자는 Recovery Services 자격 증명 모음을 만들거나 삭제할 수 없고 액세스 권한을 다른 사용자에게 할당할 수 없습니다. 이 역할은 응용 프로그램이나 전체 조직에 재해 복구를 사용하도록 설정하고 관리할 수 있는 재해 복구 관리자에 대해 가장 적합합니다.
-* [Site Recovery 연산자](../active-directory/role-based-access-built-in-roles.md#site-recovery-operator) - 이 역할에는 장애 조치 및 장애 복구 작업을 실행하고 관리하는 사용 권한이 있습니다. 이 역할의 사용자는 복제를 활성화하거나 비활성화할 수 없고, 자격 증명 모음을 만들거나 삭제할 수 없으며, 새로운 인프라를 등록하거나 다른 사용자에게 액세스 권한을 할당할 수 없습니다. 이 역할은 실제 또는 시뮬레이션된 재해 상황에서 DR 드릴과 같은 응용 프로그램 소유자 및 IT 관리자가 지시하는 경우 가상 컴퓨터 또는 응용 프로그램을 장애 조치할 수 있는 재해 복구 연산자에 가장 적합합니다. 재해를 해결한 후에 게시 DR 연산자는 가상 컴퓨터를 다시 보호하고 장애 복구할 수 있습니다.
-* [Site Recovery 읽기 권한자](../active-directory/role-based-access-built-in-roles.md#site-recovery-reader) - 이 역할은 모든 Site Recovery 관리 작업을 볼 수 있는 권한을 갖습니다. 이 역할은 현재 보호 상태를 모니터링하고 필요한 경우 지원 티켓을 발행할 수 있는 IT 모니터링 경영자에게 가장 적합합니다.
+* [사이트 복구 참가자](../active-directory/role-based-access-built-in-roles.md#site-recovery-contributor) -이 역할은 복구 서비스 자격 증명 모음에 모든 권한이 필요한 toomanage Azure 사이트 복구 작업을 갖습니다. 그러나이 역할을 통해 사용자 만들거나 수 없습니다 또는 복구 서비스 자격 증명 모음 삭제 액세스 tooother 사용자 권한 할당. 이 역할은 hello 사례 수 있으므로 재해 복구 관리자를 사용 하도록 설정 하 고 응용 프로그램이 나 전체 조직에 대 한 재해 복구를 관리할 수 있는 가장 적합 합니다.
+* [사이트 복구 연산자](../active-directory/role-based-access-built-in-roles.md#site-recovery-operator) -이 역할에 사용 권한을 tooexecute 및 관리자 장애 조치 및 장애 복구 작업입니다. 이 역할의 사용자에 수 없습니다 활성화 또는 비활성화 복제, 만들기 또는 자격 증명 모음 삭제, 새로운 인프라를 등록 하거나 액세스 권한 tooother 사용자를 할당 합니다. 이 역할은 실제 또는 시뮬레이션된 재해 상황에서 DR 드릴과 같은 응용 프로그램 소유자 및 IT 관리자가 지시하는 경우 가상 컴퓨터 또는 응용 프로그램을 장애 조치할 수 있는 재해 복구 연산자에 가장 적합합니다. Post hello 재해 해상도 hello DR 연산자 다시 보호할 수 있으며 장애 복구 hello 가상 컴퓨터.
+* [사이트 복구 판독기](../active-directory/role-based-access-built-in-roles.md#site-recovery-reader) -이 역할에 사용 권한을 tooview 모든 사이트 복구 관리 작업입니다. 이 역할은 IT 모니터링 임원 hello 보호의 현재 상태를 모니터링 하 고 필요한 경우 지원 티켓을 발생 시킬 수 있는 가장 적합 합니다.
 
-더 많은 제어를 위해 사용자 고유의 역할을 정의하려는 경우 Azure의 [사용자 지정 역할 작성](../active-directory/role-based-access-control-custom-roles.md) 방법을 참조하세요.
+찾고 있는 경우 toodefine 더 많은 컨트롤에 대 한 사용자 역할, 참조 방법을 너무[빌드 사용자 지정 역할](../active-directory/role-based-access-control-custom-roles.md) Azure에서.
 
-## <a name="permissions-required-to-enable-replication-for-new-virtual-machines"></a>새 가상 컴퓨터에 대한 복제를 사용하도록 설정하는 데 필요한 사용 권한
-Azure Site Recovery를 사용하여 새 가상 컴퓨터를 Azure에 복제할 때 연결된 사용자의 액세스 수준이 유효한지 확인하여 사용자에게 Site Recovery에 제공되는 Azure 리소스를 사용하는 데 필요한 권한이 있는지 검토됩니다.
+## <a name="permissions-required-tooenable-replication-for-new-virtual-machines"></a>새 가상 컴퓨터에 대 한 복제 tooEnable 필요한 권한
+Hello 연결 된 사용자의 액세스 수준을 사용자 hello 유효성이 검사 된 tooensure은 새 가상 컴퓨터를 Azure Site Recovery를 사용 하 여 복제 된 tooAzure 이면 hello 요구에 사용 권한을 toouse hello 제공 하는 Azure 리소스 tooSite 복구 합니다.
 
-새 가상 컴퓨터에 대한 복제를 사용하도록 설정하려면 사용자에게 다음 권한이 있어야 합니다.
-* 선택한 리소스 그룹에서 가상 컴퓨터를 만들 수 있는 권한
-* 선택한 가상 네트워크에서 가상 컴퓨터를 만들 수 있는 권한
-* 선택한 저장소 계정에 대한 쓰기 권한
+새 가상 컴퓨터에 대 한 복제 tooenable, 사용자에 게 있어야 합니다.
+* 사용 권한 toocreate hello 선택한 리소스 그룹에서 가상 컴퓨터
+* 사용 권한 toocreate hello 선택한 가상 네트워크의 가상 컴퓨터
+* 사용 권한 toowrite toohello 선택한 저장소 계정
 
-사용자는 새 가상 컴퓨터의 복제를 완료하려면 다음 권한이 필요합니다.
+사용자에 게 필요한 hello 새 가상 컴퓨터의 사용 권한 toocomplete 복제를 수행 합니다.
 
 > [!IMPORTANT]
->리소스 배포에 사용되는 배포 모델(Resource Manager/클래식)마다 적절한 권한이 추가되는지 확인합니다.
+>관련 사용 권한을 hello 배포 모델에 대해 추가 되었는지 확인 (리소스 관리자 / 클래식) 리소스 배포에 사용 합니다.
 
 | **리소스 종류** | **배포 모델** | **사용 권한** |
 | --- | --- | --- |
@@ -73,11 +73,11 @@ Azure Site Recovery를 사용하여 새 가상 컴퓨터를 Azure에 복제할 �
 | 리소스 그룹 | 리소스 관리자 | Microsoft.Resources/deployments/* |
 |  |  | Microsoft.Resources/subscriptions/resourceGroups/read |
 
-Resource Manager 및 클래식 배포 모델에 대해 각각 '가상 컴퓨터 참여자' 및 '클래식 가상 컴퓨터 참여자' [기본 제공 역할](../active-directory/role-based-access-built-in-roles.md)을 사용하는 것이 좋습니다.
+Hello ' 가상 컴퓨터 참가자 ' 및 ' 클래식 가상 컴퓨터 참가자 '를 사용 하는 것이 좋습니다 [기본 제공 역할](../active-directory/role-based-access-built-in-roles.md) 리소스 관리자 및 클래식 배포에 대 한 각각을 모델링 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* [역할 기반 액세스 제어](../active-directory/role-based-access-control-configure.md): Azure 포털에서 RBAC를 통해 시작합니다.
-* 다음을 사용하여 액세스를 관리하는 방법에 대해 알아봅니다.
+* [역할 기반 액세스 제어](../active-directory/role-based-access-control-configure.md): RBAC hello Azure 포털을에서 시작 합니다.
+* Toomanage로 액세스 하는 방법에 대해 알아봅니다.
   * [PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md)
   * [Azure CLI](../active-directory/role-based-access-control-manage-access-azure-cli.md)
   * [REST API](../active-directory/role-based-access-control-manage-access-rest.md)

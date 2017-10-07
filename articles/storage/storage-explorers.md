@@ -1,6 +1,6 @@
 ---
-title: "Azure Storage 작업을 위한 도구 | Microsoft Docs"
-description: "Azure 저장소 데이터를 보고 상호 작용할 수 있는 도구 목록입니다."
+title: "Azure 저장소를 사용 하기 위한 aaaTools | Microsoft Docs"
+description: "목록 Azure 저장소 데이터와 tooview/상호 작용할 수 있는 도구입니다."
 services: storage
 documentationcenter: 
 author: dineshmurthy
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: dineshmurthy
-ms.openlocfilehash: 620efda06d8225b21b6bb9b104b79061ebb6515c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3308de2153099a05a676ab1d76426bd932e8a96c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-client-tools"></a>Azure 저장소 클라이언트 도구
-Azure 저장소의 사용자는 Azure 저장소 클라이언트 도구를 사용하여 데이터를 보기/상호 작용하려는 경우가 많습니다. 아래 표에는 이 작업을 수행할 수 있게 해 주는 여러 도구가 나와 있습니다. 해당 도구가 데이터 추상화를 열거 및/또는 액세스할 수 있는 기능을 제공하는 경우 각 블록에 “X” 표시를 합니다. 또한 도구가 무료인지 여부도 나와 있습니다. “평가판”은 무료 평가판이 있음을 나타내지만 정품은 무료가 아님을 나타냅니다. “Y/N”는 특정 버전은 무료로 제공되지만 다른 버전은 구매할 수 있는지를 나타냅니다.
+사용자가 Azure 저장소의 자주 원하는 toobe 수 tooview/상호 작용는 Azure 저장소 클라이언트 도구를 사용 하 여 해당 데이터를 사용 합니다. Hello 테이블 아래에 나열 다양 한 toodo 할 수 있도록 도구가이 합니다. Hello 기능을 제공 하는 경우 각 블록에 "X" 입력 tooeither 열거 및/또는 액세스 hello 데이터 추상화 합니다. hello 테이블에는 hello 도구 무료 인지 인지 보여 줍니다. "평가판" 무료 평가판을는 있지만 hello 정식 제품은 무료를 나타냅니다. “Y/N”는 특정 버전은 무료로 제공되지만 다른 버전은 구매할 수 있는지를 나타냅니다.
 
-사용 가능한 Azure 저장소 클라이언트 도구의 스냅숏만 제공합니다. 이러한 도구의 기능은 계속 개선 및 확장될 수 있습니다. 수정 사항이나 업데이트가 있는 경우 의견을 남겨주세요. 여기에 포함해야 할 도구가 있는 경우에도 알려주시면 추가해 드리겠습니다.
+Azure 저장소 클라이언트 도구를 사용할 수 있는 hello에 대 한 스냅숏을 제공 했습니다. 이러한 도구는 tooevolve 계속 하 고 기능이 증가할 수 있습니다. 가 있는 경우에 수정 사항이 나 업데이트 알려주세요 주석 toolet를 남겨 주세요. hello 같은 기준이 만족도 매우 tooadd 하겠습니다-toobe 여기에 포함 해야 하는 도구가 알고 있는 경우 해당 합니다.
 
 **Microsoft Azure 저장소 클라이언트 도구**
 
@@ -91,7 +91,7 @@ Azure 저장소의 사용자는 Azure 저장소 클라이언트 도구를 사용
 
 **타사 Azure 저장소 클라이언트 도구**
 
-다음의 타사 도구가 주장하는 기능이나 품질은 보장할 수 없으며 목록에 포함되었다고 해서 Microsoft가 보증한다는 것을 의미하지 않습니다.
+Hello 기능 또는 품질 hello 타사 도구 및 해당 목록에서 Microsoft의 보증을 의미 하지 않습니다 확인 하지 않았으며 합니다.
 
 <table>
   <tr>

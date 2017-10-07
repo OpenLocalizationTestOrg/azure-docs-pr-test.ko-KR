@@ -1,6 +1,6 @@
 ---
-title: "ESP8266에서 클라우드로 - Feather HUZZAH ESP8266을 Azure IoT Hub에 연결 | Microsoft Docs"
-description: "이 자습서에서는 Azure 클라우드 플랫폼으로 데이터를 보내기 위해 Adafruit Feather HUZZAH ESP8266를 설정하고 해당 Azure IoT Hub에 연결하는 방법을 알아봅니다."
+title: "aaaESP8266 toocloud-페더 HUZZAH ESP8266 연결 tooAzure IoT 허브 | Microsoft Docs"
+description: "자세한 방법을 toosetup 하 고이 자습서에서는 Adafruit 페더 HUZZAH ESP8266 tooAzure IoT 허브에 대 한 toosend 데이터 toohello Azure 클라우드 플랫폼을 연결 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/15/2017
 ms.author: xshi
-ms.openlocfilehash: 6a450579c848fe6030a328ddf410f139baae2324
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 44fd47232488948d21c7aa71bdd865397e41e63e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-adafruit-feather-huzzah-esp8266-to-azure-iot-hub-in-the-cloud"></a>Adafruit Feather HUZZAH ESP8266을 클라우드의 Azure IoT Hub에 연결
+# <a name="connect-adafruit-feather-huzzah-esp8266-tooazure-iot-hub-in-hello-cloud"></a>Adafruit 페더 HUZZAH ESP8266 tooAzure hello 클라우드에서 IoT 허브를 연결 합니다.
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
@@ -30,39 +30,39 @@ ms.lasthandoff: 08/03/2017
 ## <a name="what-you-do"></a>수행할 작업
 
 
-사용자가 만든 IoT Hub에 Adafruit Feather HUZZAH ESP8266을 연결합니다. 그런 다음 ESP8266에서 샘플 응용 프로그램을 실행하여 DHT22 센서로부터 온도 및 습도 데이터를 수집합니다. 마지막으로 센서 데이터를 IoT Hub로 보냅니다.
+만들면 Adafruit 페더 HUZZAH ESP8266 tooan IoT 허브를 연결 합니다. 다음 DHT22 센서에서 ESP8266 toocollect hello 온도 및 습도 데이터에는 예제 응용 프로그램을 실행 합니다. 마지막으로 hello 센서 데이터 tooyour IoT 허브를 보냅니다.
 
 > [!NOTE]
-> 다른 ESP8266 보드를 사용하는 경우에도 이러한 단계에 따라 IoT Hub에 계속 연결할 수 있습니다. 사용하는 ESP8266 보드에 따라 `LED_PIN`을 다시 구성해야 할 수도 있습니다. 예를 들어 AI-Thinker의 ESP8266을 사용하는 경우 `0`을 `2`로 변경할 수 있습니다. 아직 키트가 없으세요? [Azure 웹 사이트에서 가져오기](http://azure.com/iotstarterkits)
+> 이러한 단계 tooconnect 다른 ESP8266 보드를 사용 하는 경우 여전히 따라 수 것 tooyour IoT 허브입니다. Hello ESP8266 보드를 사용 하는, 따라 tooreconfigure hello를 할 수 있습니다 `LED_PIN`합니다. 예를 들어 ESP8266 AI Thinker에서를 사용 하 여 변경할 수 있습니다에서 `0` 너무`2`합니다. 아직 키트가 없으세요? Hello에서 가져올 [Azure 웹 사이트](http://azure.com/iotstarterkits)합니다.
 
 
 
 
 ## <a name="what-you-learn"></a>학습 내용
 
-* IoT Hub를 만들고 장치를 Feather HUZZAH ESP8266으로 등록하는 방법
-* 센서와 컴퓨터에 Feather HUZZAH ESP8266을 연결하는 방법
-* Feather HUZZAH ESP8266에서 샘플 응용 프로그램을 실행하여 센서 데이터를 수집하는 방법
-* 센서 데이터를 IoT Hub로 보내는 방법
+* 어떻게 toocreate IoT hub 페더 HUZZAH ESP8266에 대 한 장치를 등록 하 고
+* 어떻게 tooconnect 페더 HUZZAH ESP8266 hello 센서와 사용자의 컴퓨터
+* 어떻게 페더 HUZZAH ESP8266에서 샘플 응용 프로그램을 실행 하 여 toocollect 센서 데이터
+* Toosend 센서 데이터 tooyour IoT 허브를 hello 하는 방법
 
 ## <a name="what-you-need"></a>필요한 항목
 
-![이 자습서에 필요한 부품](media/iot-hub-arduino-huzzah-esp8266-get-started/2_parts-needed-for-the-tutorial.png)
+![hello 자습서에 필요한 부품](media/iot-hub-arduino-huzzah-esp8266-get-started/2_parts-needed-for-the-tutorial.png)
 
-이 작업을 완료하려면 Feather HUZZAH ESP8266 시작 키트에서 다음 부품이 필요합니다.
+toocomplete 페더 HUZZAH ESP8266 시작 키트에서 파트를 수행 하는 hello 해야이 작업을이 수행 합니다.
 
-* Feather HUZZAH ESP8266 보드
-* Micro USB - A형 USB 케이블
+* hello 페더 HUZZAH ESP8266 보드
+* 마이크로 USB tooType A USB 케이블
 
-또한 개발 환경에는 다음 사항도 필요합니다.
+Hello 개발 환경에 대 한 작업을 수행 해야 합니다.
 
 * 활성 Azure 구독. Azure 계정이 없는 경우 몇 분 만에 [Azure 평가판 계정](https://azure.microsoft.com/free/)을 만들 수 있습니다.
 * Windows 또는 Ubuntu가 실행되는 Mac 또는 PC
-* Feather HUZZAH ESP8266을 연결할 무선 네트워크
-* 구성 도구를 다운로드하기 위한 인터넷 연결
-* [Arduino IDE](https://www.arduino.cc/en/main/software) 버전 1.6.8 이상 이전 버전은 Azure IoT 라이브러리에서 작동하지 않습니다.
+* 무선 네트워크를 페더 HUZZAH ESP8266 tooconnect에 대 한 합니다.
+* 인터넷 연결 toodownload hello 구성 도구입니다.
+* [Arduino IDE](https://www.arduino.cc/en/main/software) 버전 1.6.8 이상 이전 버전 hello AzureIoT 라이브러리와 함께 작동 하지 않습니다.
 
-센서가 없는 경우 다음 항목은 선택 사항입니다. 시뮬레이션된 센서 데이터를 사용하는 옵션도 있습니다.
+hello 다음 항목은 선택적 요소는 센서 없는 경우. 시뮬레이션 된 센서 데이터를 사용 하 여 hello 옵션이 있습니다.
 
 * Adafruit DHT22 온도 및 습도 센서
 * 실험용 회로판
@@ -71,16 +71,16 @@ ms.lasthandoff: 08/03/2017
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-## <a name="connect-feather-huzzah-esp8266-with-the-sensor-and-your-computer"></a>Feather HUZZAH ESP8266을 센서와 컴퓨터에 연결
-이 섹션에서는 센서를 보드에 연결합니다. 그런 다음 장치를 나중에 사용할 컴퓨터에 연결합니다.
-### <a name="connect-a-dht22-temperature-and-humidity-sensor-to-feather-huzzah-esp8266"></a>Feather HUZZAH ESP8266에 DHT22 온도 및 습도 센서 연결
+## <a name="connect-feather-huzzah-esp8266-with-hello-sensor-and-your-computer"></a>페더 HUZZAH ESP8266 hello 센서 및 컴퓨터를 사용 하 여 연결
+이 섹션에서는 hello 센서 tooyour 보드를 연결합니다. 그런 다음 나중에 사용할 장치 tooyour 컴퓨터에 연결할 수도 있습니다.
+### <a name="connect-a-dht22-temperature-and-humidity-sensor-toofeather-huzzah-esp8266"></a>DHT22 온도 및 습도 센서 tooFeather HUZZAH ESP8266 연결
 
-다음과 같이 실험용 회로판과 점퍼 와이어를 사용하여 연결합니다. 센서가 없는 경우 시뮬레이션된 센서 데이터를 사용할 수 있으므로 이 섹션을 건너뜁니다.
+다음과 같이 hello breadboard 및 점퍼 와이어 toomake hello 연결을 사용 합니다. 센서가 없는 경우 시뮬레이션된 센서 데이터를 사용할 수 있으므로 이 섹션을 건너뜁니다.
 
 ![연결 참조](media/iot-hub-arduino-huzzah-esp8266-get-started/15_connections_on_breadboard.png)
 
 
-센서 핀의 경우 다음 배선을 사용합니다.
+센서 핀에 대 한 다음 배선 hello를 사용 합니다.
 
 
 | 시작(센서)           | 끝(보드)           | 케이블 색   |
@@ -95,88 +95,88 @@ ms.lasthandoff: 08/03/2017
 
 이제 Feather Huzzah ESP8266을 작동 센서와 연결해야 합니다.
 
-![DHT22를 Feather Huzzah에 연결](media/iot-hub-arduino-huzzah-esp8266-get-started/8_connect-dht22-feather-huzzah.png)
+![DHT22를 Feather Huzzah와 연결](media/iot-hub-arduino-huzzah-esp8266-get-started/8_connect-dht22-feather-huzzah.png)
 
-### <a name="connect-feather-huzzah-esp8266-to-your-computer"></a>Feather HUZZAH ESP8266을 컴퓨터에 연결
+### <a name="connect-feather-huzzah-esp8266-tooyour-computer"></a>페더 HUZZAH ESP8266 tooyour 컴퓨터 연결
 
-다음과 같이 Micro USB - A형 USB 케이블을 사용하여 Feather HUZZAH ESP8266을 컴퓨터에 연결합니다.
+다음과 같이 hello 마이크로 USB tooType USB 케이블 tooconnect 페더 HUZZAH ESP8266 tooyour 컴퓨터를 사용 합니다.
 
-![Feather Huzzah를 컴퓨터에 연결](media/iot-hub-arduino-huzzah-esp8266-get-started/9_connect-feather-huzzah-computer.png)
+![페더 Huzzah tooyour 컴퓨터 연결](media/iot-hub-arduino-huzzah-esp8266-get-started/9_connect-feather-huzzah-computer.png)
 
-### <a name="add-serial-port-permissions-ubuntu-only"></a>직렬 포트 권한 추가 – Ubuntu만
-
-
-Ubuntu를 사용하는 경우 Feather HUZZAH ESP8266의 USB 포트에서 작동할 수 있는 권한이 있는지 확인합니다. 직렬 포트 권한을 추가하려면 다음 단계를 수행합니다.
+### <a name="add-serial-port-permissions-ubuntu-only"></a>직렬 포트 권한 추가(Ubuntu만 해당)
 
 
-1. 터미널에서 다음 명령을 실행합니다.
+Ubuntu를 사용 하는 경우 했는지 확인 hello 권한을 toooperate에 hello USB 포트의 페더 HUZZAH ESP8266 합니다. tooadd 직렬 포트 사용 권한을 다음이 단계를 따르십시오.
+
+
+1. Hello 다음 터미널에서 명령을 실행 합니다.
 
    ```bash
    ls -l /dev/ttyUSB*
    ls -l /dev/ttyACM*
    ```
 
-   다음 출력 중 하나가 표시됩니다.
+   Hello 다음 출력 중 하나를 가져오는:
 
    * crw-rw---- 1 root uucp xxxxxxxx
    * crw-rw---- 1 root dialout xxxxxxxx
 
-   출력에서 `uucp` 또는 `dialout`이 USB 포트의 그룹 소유자 이름인지 확인합니다.
+   Hello 출력 알 수 있듯이 `uucp` 또는 `dialout` hello USB 포트 hello 그룹 소유자 이름입니다.
 
-1. 다음 명령을 실행하여 그룹에 사용자를 추가 합니다.
+1. Hello 다음 명령을 실행 하 여 hello 사용자 toohello 그룹을 추가 합니다.
 
    ```bash
    sudo usermod -a -G <group-owner-name> <username>
    ```
 
-   `<group-owner-name>`은 이전 단계에서 얻은 그룹 소유자 이름입니다. `<username>`은 Ubuntu 사용자 이름입니다.
+   `<group-owner-name>`hello 이전 단계에서는 가져온 hello 그룹 소유자 이름입니다. `<username>`은 Ubuntu 사용자 이름입니다.
 
-1. Ubuntu에서 로그아웃한 다음 다시 로그인하면 변경 내용이 표시됩니다.
+1. Ubuntu에서 서명 하 고 변경 tooappear hello에 대 한 다음 다시 로그인 합니다.
 
-## <a name="collect-sensor-data-and-send-it-to-your-iot-hub"></a>센서 데이터를 수집하여 IoT Hub에 보내기
+## <a name="collect-sensor-data-and-send-it-tooyour-iot-hub"></a>센서 데이터를 수집 하 고 tooyour IoT hub 보내기
 
-이 섹션에서는 Feather HUZZAH ESP8266에 대한 응용 프로그램 예제를 배포하고 실행합니다. 샘플 응용 프로그램은 Feather HUZZAH ESP8266의 LED를 깜박이고 DHT22 센서에서 수집된 온도 및 습도 데이터를 IoT Hub로 보냅니다.
+이 섹션에서는 Feather HUZZAH ESP8266에 대한 응용 프로그램 예제를 배포하고 실행합니다. hello 샘플 응용 프로그램 hello 페더 HUZZAH ESP8266 led가 깜박입니다 hello 온도 보냅니다 및 IoT 허브에서 hello DHT22 센서 tooyour 습도 데이터 수집 합니다.
 
-### <a name="get-the-sample-application-from-github"></a>GitHub에서 샘플 응용 프로그램 가져오기
+### <a name="get-hello-sample-application-from-github"></a>GitHub에서 hello 샘플 응용 프로그램 가져오기
 
-샘플 응용 프로그램은 GitHub에서 호스팅됩니다. GitHub에서 응용 프로그램 예제가 포함된 샘플 리포지토리를 복제합니다. 샘플 리포지토리를 복제하려면 다음 단계를 수행합니다.
+hello 샘플 응용 프로그램은 GitHub에서 호스트 됩니다. GitHub에서 hello 샘플 응용 프로그램을 포함 하는 hello 샘플 리포지토리를 복제 합니다. tooclone hello 샘플 리포지토리 다음이 단계를 수행 합니다.
 
 1. 명령 프롬프트 또는 터미널 창을 엽니다.
-1. 응용 프로그램 예제를 저장하려는 폴더로 이동합니다.
-1. 다음 명령을 실행합니다.
+1. 저장 된 hello 샘플 응용 프로그램 toobe 저장할 tooa 폴더를 이동 합니다.
+1. Hello 다음 명령을 실행 합니다.
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-feather-huzzah-client-app.git
    ```
 
-Arduino IDE에 Feather HUZZAH ESP8266 패키지를 설치합니다.
+Hello Arduino IDE에서에서 페더 HUZZAH ESP8266에 대 한 hello 패키지를 설치 합니다.
 
-1. 응용 프로그램 예제가 저장된 폴더를 엽니다.
-1. Arduino IDE의 앱 폴더에서 app.ino 파일을 엽니다.
+1. Hello 샘플 응용 프로그램 저장 된 hello 폴더를 엽니다.
+1. Hello Arduino IDE의에서 hello 응용 프로그램 폴더에 hello app.ino 파일을 엽니다.
 
-   ![Arduino IDE에서 샘플 응용 프로그램 열기](media/iot-hub-arduino-huzzah-esp8266-get-started/10_arduino-ide-open-sample-app.png)
+   ![Arduino IDE에서 열린 hello 샘플 응용 프로그램](media/iot-hub-arduino-huzzah-esp8266-get-started/10_arduino-ide-open-sample-app.png)
 
-1. Arduino IDE에서 **파일** > **기본 설정**을 클릭합니다.
-1. **기본 설정** 대화 상자에서 **Additional Boards Manager URLs**(추가 보드 관리자 URL) 상자 옆에 있는 아이콘을 클릭합니다.
-1. 팝업 창에 다음 URL을 입력한 다음 **확인**을 클릭합니다.
+1. Hello Arduino IDE, 클릭 **파일** > **기본 설정**합니다.
+1. Hello에 **기본 설정** 대화 상자에서 hello 아이콘 다음 toohello 클릭 **보드 관리자 Url을 추가로** 상자입니다.
+1. Hello 팝업 창에 hello url을 입력 한 다음 클릭 **확인**합니다.
 
    `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 
-   ![Arduino IDE에서 패키지 URL 가리키기](media/iot-hub-arduino-huzzah-esp8266-get-started/11_arduino-ide-package-url.png)
+   ![Arduino IDE tooa 패키지 url 지정](media/iot-hub-arduino-huzzah-esp8266-get-started/11_arduino-ide-package-url.png)
 
-1. **기본 설정** 대화 상자에서 **확인**을 클릭합니다.
+1. Hello에 **Preference** 대화 상자를 클릭 **확인**합니다.
 1. **도구** > **보드** > **보드 관리자**를 클릭한 후 esp8266을 검색합니다.
 
    [보드 관리자]에서 ESP8266 2.2.0 이상 버전으로 설치되었음을 나타냅니다.
 
-   ![esp8266 패키지 설치됨](media/iot-hub-arduino-huzzah-esp8266-get-started/12_arduino-ide-esp8266-installed.png)
+   ![hello esp8266 패키지가 설치 되어](media/iot-hub-arduino-huzzah-esp8266-get-started/12_arduino-ide-esp8266-installed.png)
 
 1. **도구** > **보드** > **Adafruit HUZZAH ESP8266**를 클릭합니다.
 
 ### <a name="install-necessary-libraries"></a>필요한 라이브러리 설치
 
-1. Arduino IDE에서 **스케치** > **라이브러리 포함** > **라이브러리 관리**를 클릭합니다.
-1. 다음 라이브러리 이름을 하나씩 검색합니다. 찾은 각 라이브러리에 대해 **설치**를 클릭합니다.
+1. Hello Arduino IDE, 클릭 **스케치** > **라이브러리 포함** > **관리 라이브러리**합니다.
+1. 다음 라이브러리 이름을 하나씩 hello에 대 한 검색입니다. 찾은 각 라이브러리에 대해 **설치**를 클릭합니다.
    * `AzureIoTHub`
    * `AzureIoTUtility`
    * `AzureIoTProtocol_MQTT`
@@ -186,47 +186,47 @@ Arduino IDE에 Feather HUZZAH ESP8266 패키지를 설치합니다.
 
 ### <a name="dont-have-a-real-dht22-sensor"></a>실제 DHT22 센서가 없나요?
 
-실제 DHT22 센서가 없는 경우 응용 프로그램 예제에서 온도 및 습도 데이터를 시뮬레이션할 수 있습니다. 시뮬레이션된 데이터를 사용하도록 샘플 응용 프로그램을 설정하려면 다음 단계를 수행합니다.
+실제 DHT22 센서 없는 경우 hello 샘플 응용 프로그램 데이터를 온도 및 습도 시뮬레이션할 수 있습니다. tooset hello 샘플 응용 프로그램 toouse 시뮬레이션 데이터를 다음이 단계를 따르십시오.
 
-1. `app` 폴더에서 `config.h` 파일을 엽니다.
-1. 다음 코드 줄을 찾아 값을 `false`에서 `true`로 변경합니다.
+1. 열기 hello `config.h` hello에 대 한 파일 `app` 폴더입니다.
+1. 다음 코드 줄을 hello를 찾아 hello 값에서 변경 `false` 너무`true`:
    ```c
    define SIMULATED_DATA true
    ```
-   ![시뮬레이션된 데이터를 사용하도록 샘플 응용 프로그램 구성](media/iot-hub-arduino-huzzah-esp8266-get-started/13_arduino-ide-configure-app-use-simulated-data.png)
+   ![hello 샘플 응용 프로그램 toouse 시뮬레이션 데이터를 구성 합니다.](media/iot-hub-arduino-huzzah-esp8266-get-started/13_arduino-ide-configure-app-use-simulated-data.png)
 
-1. `Control-s`로 파일을 저장합니다.
+1. Hello 파일을 저장 `Control-s`합니다.
 
-### <a name="deploy-the-sample-application-to-feather-huzzah-esp8266"></a>Feather HUZZAH ESP8266에 응용 프로그램 예제 배포
+### <a name="deploy-hello-sample-application-toofeather-huzzah-esp8266"></a>Hello 샘플 응용 프로그램 tooFeather HUZZAH ESP8266 배포
 
-1. Arduino IDE에서 **도구** > **포트**를 클릭한 후 Feather HUZZAH ESP8266에 대한 직렬 포트를 클릭합니다.
-1. **스케치** > **업로드**를 클릭하여 응용 프로그램 예제를 빌드하여 Feather HUZZAH ESP8266에 배포합니다.
+1. Hello Arduino IDE, 클릭 **도구** > **포트**, 페더 HUZZAH ESP8266에 대 한 hello 직렬 포트를 클릭 하 고 있습니다.
+1. 클릭 **스케치** > **업로드** toobuild hello 샘플 응용 프로그램 tooFeather HUZZAH ESP8266를 배포 합니다.
 
 ### <a name="enter-your-credentials"></a>자격 증명 입력
 
-업로드를 성공적으로 완료했으면 다음 단계에 따라 자격 증명을 입력합니다.
+Hello 업로드 성공적으로 완료 되 면 이러한 단계 tooenter 자격 증명를 따릅니다.
 
-1. Arduino IDE에서 **도구** > **직렬 모니터**를 클릭합니다.
-1. 직렬 모니터 창의 오른쪽 아래 모서리에 있는 두 개의 드롭다운 목록을 확인합니다.
-1. 왼쪽 드롭다운 목록에서 **No line ending**(줄 끝 없음)을 선택합니다.
-1. 오른쪽 드롭다운 목록에서 **115200 baud**를 선택합니다.
-1. 직렬 모니터 창 맨 위에 있는 입력 상자에 정보를 입력하라는 메시지가 표시되면 다음 정보를 입력한 후 **보내기**를 클릭합니다.
+1. Hello Arduino IDE, 클릭 **도구** > **직렬 모니터**합니다.
+1. Hello 직렬 모니터 창에서 hello 오른쪽 아래 모서리에 hello 두 드롭 다운 목록을 확인 합니다.
+1. 선택 **줄 닫는** hello 왼쪽된 드롭다운 목록에 대 한 합니다.
+1. 선택 **115200 보드** hello 오른쪽 드롭다운 목록에 대 한 합니다.
+1. Hello 직렬 모니터 창의 hello 위쪽에 있는 입력된 상자 hello에에서 hello tooprovide 요청 하는 경우 다음 정보를 입력, 클릭 하 고 **보낼**합니다.
    * Wi-Fi SSID
    * Wi-Fi 암호
    * 장치 연결 문자열
 
 > [!Note]
-> 자격 증명 정보는 Feather HUZZAH ESP8266의 EEPROM에 저장됩니다. Feather HUZZAH ESP8266 보드에서 리셋 단추를 클릭하면 샘플 응용 프로그램에서 정보를 지울 것인지 묻는 메시지가 표시됩니다. 정보를 지우려면 `Y`를 입력합니다. 정보를 다시 제공하라는 메시지가 표시됩니다.
+> hello 자격 증명 정보는 hello 페더 HUZZAH ESP8266 EEPROM에에서 저장 됩니다. Hello 페더 HUZZAH ESP8266 보드에 hello reset 단추를 누르면 hello 샘플 응용 프로그램 묻는 tooerase hello 정보입니다. 입력 `Y` toohave hello 정보를 삭제 합니다. Tooprovide hello 정보를 두 번째로 단계가 있습니다.
 
-### <a name="verify-the-sample-application-is-running-successfully"></a>응용 프로그램 예제가 성공적으로 실행 중인지 확인합니다.
+### <a name="verify-hello-sample-application-is-running-successfully"></a>Hello 샘플 응용 프로그램을 성공적으로 실행 되는지 확인 합니다.
 
-직렬 모니터 창에 다음 출력이 표시되고 Feather HUZZAH ESP8266의 LED가 깜박이면 응용 프로그램 예제가 성공적으로 실행 중입니다.
+표시 되 면 hello 다음 hello 직렬 모니터 창에서 출력 및 hello 페더 HUZZAH ESP8266 hello 샘플 응용 프로그램의 led가 깜박입니다.이 성공적으로 실행 됩니다.
 
 ![Arduino IDE의 최종 출력](media/iot-hub-arduino-huzzah-esp8266-get-started/14_arduino-ide-final-output.png)
 
 ## <a name="next-steps"></a>다음 단계
 
-IoT Hub에 Feather HUZZAH ESP8266를 성공적으로 연결하고 캡처한 센서 데이터를 IoT Hub로 보냈습니다. 
+페더 HUZZAH ESP8266 tooyour IoT 허브를 연결 하 고 캡처한 hello 센서 데이터 tooyour IoT 허브를 전송 했습니다. 
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 

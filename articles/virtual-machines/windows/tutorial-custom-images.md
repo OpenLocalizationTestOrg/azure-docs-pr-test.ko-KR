@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell을 사용하여 사용자 지정 VM 이미지 만들기 | Microsoft Docs"
-description: "자습서 - Azure PowerShell을 사용하여 사용자 지정 VM 이미지 만들기"
+title: "Azure PowerShell hello 사용 하 여 사용자 지정 VM 이미지를 aaaCreate | Microsoft Docs"
+description: "자습서-hello Azure PowerShell을 사용 하 여 사용자 지정 VM 이미지를 만듭니다."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,97 +16,97 @@ ms.workload: infrastructure
 ms.date: 05/08/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 96be2872a902a7d7063bf1dff7b4ca209a5b67c1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a759fe1b7e7b72f531399b0f4a99e341713c6a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-of-an-azure-vm-using-powershell"></a>PowerShell을 사용하여 Azure VM의 사용자 지정 이미지 만들기
 
-사용자 지정 이미지는 Marketplace 이미지와 같지만 직접 만듭니다. 응용 프로그램 사전 로드, 응용 프로그램 구성 및 기타 OS 구성과 같은 부트스트랩 구성에 사용자 지정 이미지를 사용할 수 있습니다. 이 자습서에서는 Azure Virtual Machines의 사용자 지정 이미지를 만듭니다. 다음 방법에 대해 알아봅니다.
+사용자 지정 이미지는 Marketplace 이미지와 같지만 직접 만듭니다. 사용자 지정 이미지에는 응용 프로그램, 응용 프로그램 구성 및 기타 운영 체제 구성을 미리 로드 하는 등 사용된 toobootstrap 구성 될 수 있습니다. 이 자습서에서는 Azure Virtual Machines의 사용자 지정 이미지를 만듭니다. 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
 > * VM Sysprep 및 일반화
 > * 사용자 지정 이미지 만들기
 > * 사용자 지정 이미지에서 VM 만들기
-> * 구독에 모든 이미지 나열
+> * 구독에서 모든 hello 이미지 나열
 > * 이미지 삭제
 
-이 자습서에는 Azure PowerShell 모듈 버전 3.6 이상이 필요합니다. ` Get-Module -ListAvailable AzureRM`을 실행하여 버전을 찾습니다. 업그레이드해야 하는 경우 [Azure PowerShell 모듈 설치](/powershell/azure/install-azurerm-ps)를 참조하세요.
+이 자습서는 Azure PowerShell 모듈 버전 3.6 이상 hello가 필요합니다. 실행 ` Get-Module -ListAvailable AzureRM` toofind hello 버전입니다. Tooupgrade 필요한 경우 참조 [Azure PowerShell 설치 모듈](/powershell/azure/install-azurerm-ps)합니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-아래 단계에서는 기존 VM을 가져와서 새 VM 인스턴스를 만드는 데 사용할 수 있는 재사용 가능 사용자 지정 이미지로 변환하는 방법을 설명합니다.
+다음 hello 단계 tootake 기존 VM 및 설정에 재사용 가능한 사용자 지정 이미지를 toocreate 새 VM 인스턴스 사용 방법을 자세히 설명 합니다.
 
-이 자습서의 예제를 완료하려면 기존 가상 컴퓨터가 있어야 합니다. 필요한 경우 이 [스크립트 샘플](../scripts/virtual-machines-windows-powershell-sample-create-vm.md)을 사용하여 가상 컴퓨터를 만들 수 있습니다. 이 자습서를 진행할 때 필요한 경우 리소스 그룹 및 VM 이름을 바꿉니다.
+이 자습서에서는 toocomplete hello 예제에서는 기존 가상 컴퓨터 있어야 합니다. 필요한 경우 이 [스크립트 샘플](../scripts/virtual-machines-windows-powershell-sample-create-vm.md)을 사용하여 가상 컴퓨터를 만들 수 있습니다. Hello 자습서를 통해 작업 대체 필요한 경우 hello 리소스 그룹 및 VM 이름 합니다.
 
 ## <a name="prepare-vm"></a>VM 준비
 
-가상 컴퓨터의 이미지를 만들려면 VM을 일반화하고 할당을 취소한 후 Azure에서 원본 VM을 일반화된 것으로 표시하여 VM을 준비해야 합니다.
+가상 컴퓨터의 이미지 toocreate tooprepare hello VM 일반화 hello VM 할당 해제, 한 다음 Azure에서 일반화 된 것과 같이 VM hello 소스를 표시 하 여 필요 합니다.
 
-### <a name="generalize-the-windows-vm-using-sysprep"></a>Sysprep을 사용하여 Windows VM 일반화
+### <a name="generalize-hello-windows-vm-using-sysprep"></a>일반화 hello Sysprep를 사용 하 여 Windows VM
 
-Sysprep은 여러 정보 중에서 모든 개인 계정 정보를 제거하고 이미지로 사용할 컴퓨터를 준비합니다. Sysprep에 대한 자세한 내용은 [Sysprep 사용 방법: 소개](http://technet.microsoft.com/library/bb457073.aspx)를 참조하세요.
+Sysprep는 특히, 모든 개인 계정 정보를 제거 하 고 이미지 형식으로 사용 되는 hello 컴퓨터 toobe를 준비 합니다. Sysprep에 대 한 세부 정보를 참조 하십시오. [어떻게 tooUse Sysprep: 소개](http://technet.microsoft.com/library/bb457073.aspx)합니다.
 
 
-1. 가상 컴퓨터에 연결합니다.
-2. 관리자로 명령 프롬프트 창을 엽니다. 디렉터리를 *%windir%\system32\sysprep*로 변경한 후 *sysprep.exe*를 실행합니다.
-3. **시스템 준비 도구** 대화 상자에서 *시스템 OOBE(첫 실행 경험) 입력*을 선택하고 *일반화* 확인란을 선택했는지 확인합니다.
+1. Toohello 가상 컴퓨터를 연결 합니다.
+2. Hello 명령 프롬프트 창을 관리자 권한으로 엽니다. Hello 디렉터리도 변경*%windir%\system32\sysprep*, 한 다음 실행 *sysprep.exe*합니다.
+3. Hello에 **시스템 준비 도구** 대화 상자에서 *입력 시스템을 기본 OOBE (Experience)*, 해당 hello 있는지 확인 하 고 *일반화* 확인란을 선택 합니다.
 4. **종료 옵션**에서 *종료*를 선택한 다음 **확인**을 클릭합니다.
-5. Sysprep이 완료되면 가상 컴퓨터를 종료합니다. **VM을 다시 시작하지 마세요**.
+5. Sysprep이 완료 된 hello 가상 컴퓨터를 종료 합니다. **Hello VM 다시 시작 하지 않으면**합니다.
 
-### <a name="deallocate-and-mark-the-vm-as-generalized"></a>할당을 취소하고 VM을 일반화된 것으로 표시
+### <a name="deallocate-and-mark-hello-vm-as-generalized"></a>할당을 취소 하 고 hello VM 일반화 된 대로 표시
 
-이미지를 만들려면 VM의 할당을 취소하고 Azure에서 일반화된 것으로 표시해야 합니다.
+이미지 toocreate hello VM toobe 할당 취소 되 고 Azure에서 일반화 한 것으로 표시 해야 합니다.
 
-[Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm)을 사용하여 VM의 할당을 취소합니다.
+사용 하 여 할당 취소 된 hello VM [중지 AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm)합니다.
 
 ```powershell
 Stop-AzureRmVM -ResourceGroupName myResourceGroupImages -Name myVM -Force
 ```
 
-[Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm)을 사용하여 가상 컴퓨터의 상태를 `-Generalized`으로 설정합니다. 
+Hello 가상 컴퓨터의 hello 상태를 너무 설정`-Generalized` 를 사용 하 여 [집합 AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm)합니다. 
    
 ```powershell
 Set-AzureRmVM -ResourceGroupName myResourceGroupImages -Name myVM -Generalized
 ```
 
 
-## <a name="create-the-image"></a>이미지 만들기
+## <a name="create-hello-image"></a>Hello 이미지 만들기
 
-이제 [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) 및 [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage)를 사용하여 VM 이미지를 만들 수 있습니다. 다음 예제에서는 *myVM*이라는 VM에서 *myImage*라는 이미지를 만듭니다.
+이제를 사용 하 여 hello VM의 이미지를 만들 수 [새로 AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) 및 [새로 AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage)합니다. hello 다음 예제에서는 명명 된 이미지 *myImage* 라는 VM에서 *myVM*합니다.
 
-가상 컴퓨터를 가져옵니다. 
+Hello 가상 컴퓨터를 가져옵니다. 
 
 ```powershell
 $vm = Get-AzureRmVM -Name myVM -ResourceGroupName myResourceGroupImages
 ```
 
-이미지 구성을 만듭니다.
+Hello 이미지 구성을 만듭니다.
 
 ```powershell
 $image = New-AzureRmImageConfig -Location EastUS -SourceVirtualMachineId $vm.ID 
 ```
 
-이미지를 만듭니다.
+Hello 이미지를 만듭니다.
 
 ```powershell
 New-AzureRmImage -Image $image -ImageName myImage -ResourceGroupName myResourceGroupImages
 ``` 
 
  
-## <a name="create-vms-from-the-image"></a>이미지에서 VM 만들기
+## <a name="create-vms-from-hello-image"></a>Hello 이미지에서 Vm 만들기
 
-이미지가 생겼으니, 이 이미지에서 하나 이상의 새 VM을 만들 수 있습니다. 사용자 지정 이미지에서 VM을 만드는 방법은 Marketplace 이미지를 사용하여 VM을 만드는 방법과 매우 비슷합니다. Marketplace 이미지를 사용하는 경우 이미지, 이미지 공급자, 제품, SKU 및 버전에 대한 정보를 제공해야 합니다. 사용자 지정 이미지를 사용하는 경우 사용자 지정 이미지 리소스의 ID만 제공하면 됩니다. 
+이미지를가지고 hello 이미지에서 하나 이상의 새 Vm을 만들 수 있습니다. 사용자 지정 이미지에서 VM 만들기는 매우 유사한 toocreating 마켓플레이스 이미지를 사용 하는 VM입니다. 마켓플레이스 이미지를 사용 하면 hello 이미지, 이미지 공급자, 제품, SKU 및 버전에 대 한 tooinformation을 해야 합니다. 사용자 지정 이미지를 사용 하기만 하면 hello 사용자 지정 이미지 리소스의 tooprovide hello ID입니다. 
 
-다음 스크립트에서는 [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage)를 사용하여 사용자 지정 이미지에 대한 정보를 저장하는 *$image* 변수를 만든 다음 [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage)를 사용하고 방금 만든 *$image* 변수를 사용하여 ID를 지정합니다. 
+다음 스크립트는 hello, 변수 만듭니다 *$image* toostore hello 사용자 지정 이미지를 사용 하는 방법은 [Get AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) 데 사용 되는 다음 [집합-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage)hello를 사용 하 여 hello ID를 지정 하 고 *$image* 변수 방금 만든 합니다. 
 
-이 스크립트는 *미국 서부* 위치의 새 리소스 그룹 *myResourceGroupFromImage*에 있는 사용자 지정 이미지로 *myVMfromImage*라는 VM을 만듭니다.
+hello 스크립트 라는 VM 만듭니다 *myVMfromImage* 라는 새 리소스 그룹에는 사용자 지정 이미지에서 *myResourceGroupFromImage* hello에 *West US* 위치 합니다.
 
 
 ```powershell
-$cred = Get-Credential -Message "Enter a username and password for the virtual machine."
+$cred = Get-Credential -Message "Enter a username and password for hello virtual machine."
 
 New-AzureRmResourceGroup -Name myResourceGroupFromImage -Location EastUS
 
@@ -159,12 +159,12 @@ $vmConfig = New-AzureRmVMConfig `
         -ComputerName myComputer `
         -Credential $cred 
 
-# Here is where we create a variable to store information about the image 
+# Here is where we create a variable toostore information about hello image 
 $image = Get-AzureRmImage `
     -ImageName myImage `
     -ResourceGroupName myResourceGroupImages
 
-# Here is where we specify that we want to create the VM from and image and provide the image ID
+# Here is where we specify that we want toocreate hello VM from and image and provide hello image ID
 $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -Id $image.Id
 
 $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
@@ -177,7 +177,7 @@ New-AzureRmVM `
 
 ## <a name="image-management"></a>이미지 관리 
 
-일반적인 이미지 관리 작업의 몇 가지 예제와 PowerShell을 사용하여 완료하는 방법은 다음과 같습니다.
+다음은 일반 관리 이미지 작업의 몇 가지 예제와 방법을 toocomplete PowerShell을 사용 하 게 합니다.
 
 이름별로 모든 이미지를 나열합니다.
 
@@ -186,7 +186,7 @@ $images = Find-AzureRMResource -ResourceType Microsoft.Compute/images
 $images.name
 ```
 
-이미지를 삭제합니다. 이 예제에서는 *myResourceGroup*에서 *myOldImage*라는 이미지를 삭제합니다.
+이미지 삭제를 삭제합니다. 이 예에서는 삭제 hello 라는 이미지 *myOldImage* hello에서 *myResourceGroup*합니다.
 
 ```powershell
 Remove-AzureRmImage `
@@ -202,10 +202,10 @@ Remove-AzureRmImage `
 > * VM Sysprep 및 일반화
 > * 사용자 지정 이미지 만들기
 > * 사용자 지정 이미지에서 VM 만들기
-> * 구독에 모든 이미지 나열
+> * 구독에서 모든 hello 이미지 나열
 > * 이미지 삭제
 
-고가용성 Virtual Machines에 대해 자세히 알아보려면 다음 자습서로 이동합니다.
+어떻게 항상 사용 가능한 가상 컴퓨터에 대 한 다음 자습서 toolearn toohello를 진행 합니다.
 
 > [!div class="nextstepaction"]
 > [항상 사용 가능한 VM 만들기](tutorial-availability-sets.md)

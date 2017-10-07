@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory B2B 공동 작업 코드 및 PowerShell 샘플 | Microsoft Docs"
-description: "Azure Active Directory B2B 공동 작업에 대한 코드 및 PowerShell 샘플"
+title: "aaaAzure Active Directory B2B 공동 작업 코드 및 PowerShell 샘플 | Microsoft Docs"
+description: "Azure Active Directory B2B 공동 작업을 위한 코드 및 PowerShell 샘플"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 04/11/2017
 ms.author: sasubram
-ms.openlocfilehash: cae69f57627b3058bf96c3d1eea7dadc81147153
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8e4f66fcb50d190899304831ea7ccd2203c5468c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2b-collaboration-code-and-powershell-samples"></a>Azure Active Directory B2B 공동 작업 코드 및 PowerShell 샘플
 
 ## <a name="powershell-example"></a>PowerShell 예제
-.CSV 파일로 저장한 전자 메일 주소에서 외부 사용자를 대량으로 조직에 초대할 수 있습니다.
+있습니다 수 대량-초대에 저장 된 전자 메일 주소에서 tooan 조직 외부 사용자가 합니다. CSV 파일입니다.
 
-1. .CSV 파일 준비. 즉 새 CSV 파일을 만들고 invitations.csv라고 지정합니다. 이 예제에서 파일은 C:\data에 저장되고 다음 정보를 포함합니다.
+1. Hello를 준비 합니다. CSV 파일 새로운 CSV 파일을 만들기 및 invitations.csv 라는 이름을 지정 합니다. 이 예제에서는 hello 파일 C:\data에 저장 되 고 hello 다음 정보를 포함 합니다.
   
   이름                  |  InvitedUserEmailAddress
   --------------------- | --------------------------
@@ -34,16 +34,16 @@ ms.lasthandoff: 07/11/2017
   Outlook B2B 초대 대상자   | b2binvitee@outlook.com
 
 
-2. 최신 Azure AD PowerShell 다운로드. 새 cmdlet을 사용하려면 [Powershell 모듈 릴리스 페이지](https://www.powershellgallery.com/packages/AzureADPreview)에서 다운로드할 수 있는 업데이트된 Azure AD PowerShell 모듈을 설치해야 합니다.
+2. 최신 Azure AD PowerShell toouse hello 가져오기 hello 새로운 cmdlet에서 다운로드할 수 있는 업데이트 hello Azure AD PowerShell 모듈을 설치 해야 [hello Powershell 모듈의 릴리스 페이지](https://www.powershellgallery.com/packages/AzureADPreview)
 
-3. 테넌시에 로그인
+3. Tooyour 테 넌 트에 로그인
 
     ```
     $cred = Get-Credential
     Connect-AzureAD -Credential $cred
     ```
 
-4. PowerShell cmdlet 실행
+4. Hello PowerShell cmdlet을 실행
 
   ```
   $invitations = import-csv C:\data\invitations.csv
@@ -52,13 +52,13 @@ ms.lasthandoff: 07/11/2017
   foreach ($email in $invitations) {New-AzureADMSInvitation -InvitedUserEmailAddress $email.InvitedUserEmailAddress -InvitedUserDisplayName $email.Name -InviteRedirectUrl https://wingtiptoysonline-dev-ed.my.salesforce.com -InvitedUserMessageInfo $messageInfo -SendInvitationMessage $true}
   ```
 
-이 cmdlet은 invitations.csv의 전자 메일 주소로 초대를 전송합니다. 이 cmdlet의 추가 기능은 다음과 같습니다.
-- 전자 메일 메시지의 사용자 지정된 텍스트
-- 초대한 사용자의 표시 이름 포함
-- CC로 메시지를 보내거나 전자 메일 메시지를 완전히 숨김
+이 cmdlet invitations.csv에 초대 toohello 전자 메일 주소를 보냅니다. 이 cmdlet의 추가 기능은 다음과 같습니다.
+- Hello 전자 메일 메시지에 사용자 지정 된 텍스트
+- 사용자 초대 hello에 대 한 표시 이름을 포함 하 여
+- 메시지 tooCCs 보내거나 완전히 전자 메일 메시지를 표시 하지 않음
 
 ## <a name="code-sample"></a>코드 샘플
-여기에서는 "앱 전용" 모드로 초대 API를 호출하여 B2B 사용자를 초대하는 리소스에 대한 상환 URL을 가져오는 방법을 보여 줍니다. 목표는 사용자 지정 초대 전자 메일을 보내는 것입니다. HTTP 클라이언트를 통해 전자 메일을 작성하여 Graph API를 통해 표시되고 전송되는 방식을 사용자 지정할 수 있습니다.
+여기서 "응용 프로그램 전용" 모드로 toocall hello 초대 API, 초대할 hello 리소스 toowhich tooget hello 상환 URL B2B 사용자 hello 방법을 설명 합니다. hello 목표는 사용자 지정 초대 메일 toosend입니다. hello 전자 메일 모양을 사용자 지정할 수 있으며 Graph API를 통해 메시지를 보낼 수 있도록 HTTP 클라이언트를 구성할 수 있습니다.
 
 ```
 namespace SampleInviteApp
@@ -82,34 +82,34 @@ namespace SampleInviteApp
         static readonly string InviteEndPoint = "https://graph.microsoft.com/v1.0/invitations";
  
         /// <summary>
-        ///  Authentication endpoint to get token.
+        ///  Authentication endpoint tooget token.
         /// </summary>
         static readonly string EstsLoginEndpoint = "https://login.microsoftonline.com";
  
         /// <summary>
-        /// This is the tenantid of the tenant you want to invite users to.
+        /// This is hello tenantid of hello tenant you want tooinvite users to.
         /// </summary>
         private static readonly string TenantID = "";
  
         /// <summary>
-        /// This is the application id of the application that is registered in the above tenant.
-        /// The required scopes are available in the below link.
+        /// This is hello application id of hello application that is registered in hello above tenant.
+        /// hello required scopes are available in hello below link.
         /// https://developer.microsoft.com/graph/docs/api-reference/v1.0/api/invitation_post
         /// </summary>
         private static readonly string TestAppClientId = "";
  
         /// <summary>
-        /// Client secret of the application.
+        /// Client secret of hello application.
         /// </summary>
         private static readonly string TestAppClientSecret = @"
  
         /// <summary>
-        /// This is the email address of the user you want to invite.
+        /// This is hello email address of hello user you want tooinvite.
         /// </summary>
         private static readonly string InvitedUserEmailAddress = @"";
  
         /// <summary>
-        /// This is the display name of the user you want to invite.
+        /// This is hello display name of hello user you want tooinvite.
         /// </summary>
         private static readonly string InvitedUserDisplayName = @"";
  
@@ -124,12 +124,12 @@ namespace SampleInviteApp
         }
  
         /// <summary>
-        /// Create the invitation object.
+        /// Create hello invitation object.
         /// </summary>
-        /// <returns>Returns the invitation object.</returns>
+        /// <returns>Returns hello invitation object.</returns>
         private static Invitation CreateInvitation()
         {
-            // Set the invitation object.
+            // Set hello invitation object.
             Invitation invitation = new Invitation();
             invitation.InvitedUserDisplayName = InvitedUserDisplayName;
             invitation.InvitedUserEmailAddress = InvitedUserEmailAddress;
@@ -139,7 +139,7 @@ namespace SampleInviteApp
         }
  
         /// <summary>
-        /// Send the guest user invite request.
+        /// Send hello guest user invite request.
         /// </summary>
         /// <param name="invitation">Invitation object.</param>
         private static void SendInvitation(Invitation invitation)
@@ -148,7 +148,7 @@ namespace SampleInviteApp
  
             HttpClient httpClient = GetHttpClient(accessToken);
  
-            // Make the invite call. 
+            // Make hello invite call. 
             HttpContent content = new StringContent(JsonConvert.SerializeObject(invitation));
             content.Headers.Add("ContentType", "application/json");
             var postResponse = httpClient.PostAsync(InviteEndPoint, content).Result;
@@ -157,10 +157,10 @@ namespace SampleInviteApp
         }
  
         /// <summary>
-        /// Get the HTTP client.
+        /// Get hello HTTP client.
         /// </summary>
         /// <param name="accessToken">Access token</param>
-        /// <returns>Returns the Http Client.</returns>
+        /// <returns>Returns hello Http Client.</returns>
         private static HttpClient GetHttpClient(string accessToken)
         {
             // setup http client.
@@ -169,20 +169,20 @@ namespace SampleInviteApp
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             httpClient.DefaultRequestHeaders.Add("client-request-id", Guid.NewGuid().ToString());
             Console.WriteLine(
-                "CorrelationID for the request: {0}",
+                "CorrelationID for hello request: {0}",
                 httpClient.DefaultRequestHeaders.GetValues("client-request-id").Single());
             return httpClient;
         }
  
         /// <summary>
-        /// Get the access token for our application to talk to microsoft graph.
+        /// Get hello access token for our application tootalk toomicrosoft graph.
         /// </summary>
-        /// <returns>Returns the access token for our application to talk to microsoft graph.</returns>
+        /// <returns>Returns hello access token for our application tootalk toomicrosoft graph.</returns>
         private static string GetAccessToken()
         {
             string accessToken = null;
  
-            // Get the access token for our application to talk to microsoft graph.
+            // Get hello access token for our application tootalk toomicrosoft graph.
             try
             {
                 AuthenticationContext testAuthContext =
@@ -194,7 +194,7 @@ namespace SampleInviteApp
             }
             catch (AdalException ex)
             {
-                Console.WriteLine("An exception was thrown while fetching the token: {0}.", ex);
+                Console.WriteLine("An exception was thrown while fetching hello token: {0}.", ex);
                 throw;
             }
  
@@ -217,7 +217,7 @@ namespace SampleInviteApp
             public string InvitedUserEmailAddress { get; set; }
  
             /// <summary>
-            /// Gets or sets a value indicating whether Invitation Manager should send the email to InvitedUser.
+            /// Gets or sets a value indicating whether Invitation Manager should send hello email tooInvitedUser.
             /// </summary>
             public bool SendInvitationMessage { get; set; }
  
@@ -237,7 +237,7 @@ Azure AD B2B 공동 작업에 대한 다른 문서 찾아보기:
 
 * [Azure AD B2B 공동 작업이란?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B 공동 작업 사용자 속성](active-directory-b2b-user-properties.md)
-* [역할에 B2B 공동 작업 사용자 추가](active-directory-b2b-add-guest-to-role.md)
+* [B2B 공동 작업 사용자 tooa 역할 추가](active-directory-b2b-add-guest-to-role.md)
 * [B2B 공동 작업 초대 위임](active-directory-b2b-delegate-invitations.md)
 * [동적 그룹 및 B2B 공동 작업](active-directory-b2b-dynamic-groups.md)
 * [B2B 공동 작업용 SaaS 앱 구성](active-directory-b2b-configure-saas-apps.md)

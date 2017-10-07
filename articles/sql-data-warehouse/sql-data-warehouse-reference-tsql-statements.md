@@ -1,6 +1,6 @@
 ---
-title: "SQL Data Warehouse Transact-SQL 참조 | Microsoft Docs"
-description: "SQL 데이터 웨어하우스에 의해 사용되는 TRANSACT-SQL 항목에 대한 참조 내용에 대한 링크"
+title: "데이터 웨어하우스 TRANSACT-SQL 참조 aaaSQL | Microsoft Docs"
+description: "SQL 데이터 웨어하우스에서 사용 하는 hello TRANSACT-SQL 항목 링크 tooreference 콘텐츠입니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: d6ad9db8eae0dc35580194f2ffbf02eeab6b70d2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4b3c6cf666e9572a910784c39fd1f7c473d8821
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transact-sql-topics"></a>Transact-SQL 항목
 ## <a name="data-definition-language-ddl-statements"></a>데이터 정의 언어(DDL) 문

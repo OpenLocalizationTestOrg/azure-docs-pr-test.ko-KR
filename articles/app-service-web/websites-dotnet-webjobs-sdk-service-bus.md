@@ -1,6 +1,6 @@
 ---
-title: "WebJob SDK를 사용하여 Azure 서비스 버스로 작업하는 방법"
-description: "WebJobs SDK를 사용하여 Azure 서비스 버스 큐 및 항목으로 작업하는 방법에 대해 알아봅니다."
+title: "WebJobs SDK hello로 aaaHow toouse Azure 서비스 버스"
+description: "Toouse Azure 서비스 버스 큐 및 항목을 WebJobs SDK hello 방법에 대해 알아봅니다."
 services: app-service\web, service-bus
 documentationcenter: .net
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 7cec03cae5d20d1ead9eb24e99415c33d8b76f05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb801a9320a20c276da4f48c8941c09d3f09bb1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-service-bus-with-the-webjobs-sdk"></a>WebJob SDK를 사용하여 Azure 서비스 버스로 작업하는 방법
+# <a name="how-toouse-azure-service-bus-with-hello-webjobs-sdk"></a>와 toouse Azure 서비스 버스 방법 hello WebJobs SDK
 ## <a name="overview"></a>개요
-이 가이드에서는 Azure 서비스 버스 메시지를 받았을 때 프로세스를 트리거하는 방법을 보여 주는 C# 코드 샘플을 제공합니다. 코드 샘플에서는 [WebJobs SDK](websites-dotnet-webjobs-sdk.md) 버전 1.x를 사용합니다.
+이 가이드에서는 C# 코드 샘플 표시 하는 방법을 tootrigger Azure 서비스 버스 메시지를 받을 때 사용 하는 프로세스입니다. hello 코드 사용 샘플 [WebJobs SDK](websites-dotnet-webjobs-sdk.md) 버전 1.x 합니다.
 
-이 가이드에서는 [저장소 계정을 가리키는 연결 문자열을 사용하여 Visual Studio에서 WebJob 프로젝트를 만드는 방법](websites-dotnet-webjobs-sdk-get-started.md)을 알고 있는 것으로 가정합니다.
+hello 가이드 알고 있다고 가정 [toocreate 연결이 포함 된 Visual Studio에서 WebJob 프로젝트의 해당 지점 tooyour 저장소 계정 문자열 어떻게](websites-dotnet-webjobs-sdk-get-started.md)합니다.
 
-코드 조각은 다음 예제와 같이 `JobHost` 개체를 만드는 코드가 아니라 함수만 보여 줍니다.
+hello를 만드는 코드를 hello hello 코드 조각은 함수, 표시 `JobHost` 다음이 예제와 같이 개체:
 
 ```
 public class Program
@@ -41,12 +41,12 @@ public class Program
 }
 ```
 
-[전체 서비스 버스 코드 예제](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) 는 GitHub.com의 azure-webjobs-sdk-samples 리포지토리에 있습니다.
+A [전체 서비스 버스에 대 한 코드 예제에서는](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) GitHub.com에 hello webjobs sdk 샘플 azure 저장소에 있습니다.
 
 ## <a id="prerequisites"></a> 필수 조건
-서비스 버스로 작업하려면 다른 WebJobs SDK 패키지와 함께 [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) NuGet 패키지를 설치해야 합니다. 
+toowork tooinstall hello 서비스 버스에 있는 [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) NuGet 패키지로 또한 toohello 다른 WebJobs SDK 패키지 합니다. 
 
-또한 저장소 연결 문자열과 함께 AzureWebJobsServiceBus 연결 문자열을 설정해야 합니다.  다음 예제와 같이 App.config 파일의 `connectionStrings` 섹션에서 이 작업을 수행할 수 있습니다.
+또한 toohello 저장소 연결 문자열에 갖게 tooset hello AzureWebJobsServiceBus 연결 문자열입니다.  Hello에 이렇게 하려면 `connectionStrings` hello 다음 예제와 같이 hello App.config 파일의 섹션:
 
         <connectionStrings>
             <add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
@@ -54,20 +54,20 @@ public class Program
             <add name="AzureWebJobsServiceBus" connectionString="Endpoint=sb://[yourServiceNamespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[yourKey]"/>
         </connectionStrings>
 
-App.config 파일에 서비스 버스 연결 문자열 설정을 포함하는 샘플 프로젝트의 경우 [서비스 버스 예제](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples/ServiceBus)를 참조하세요. 
+서비스 버스 연결 문자열 설정을 hello hello App.config 파일에 포함 된 샘플 프로젝트에 대 한 참조 [서비스 버스 예제](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples/ServiceBus)합니다. 
 
-Azure 런타임 환경에서 연결 문자열을 설정할 수도 있으며, 이 문자열은 Azure에서 WebJob이 실행될 때 App.config 설정을 재정의합니다. 자세한 내용은 [WebJobs SDK 시작](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account)을 참조하세요.
+WebJob hello Azure;에서 실행 될 때에 다음 hello App.config 설정 재정의 하는 hello Azure 런타임 환경에 연결 문자열 hello를 설정할 수도 있습니다. 자세한 내용은 참조 [hello WebJobs SDK 시작](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account)합니다.
 
-## <a id="trigger"></a> 서비스 버스 큐 메시지가 수신될 때 함수를 트리거하는 방법
-큐 메시지가 수신될 때 WebJobs SDK에서 호출하는 함수를 작성하려면 `ServiceBusTrigger` 특성을 사용합니다. 특성 생성자는 폴링할 큐의 이름을 지정하는 매개 변수를 사용합니다.
+## <a id="trigger"></a>서비스 버스 큐 메시지를 대기 하는 경우 함수 tootrigger 수신 되는 방법
+큐 메시지를 받을 때 toowrite hello WebJobs SDK는 함수 호출, hello를 사용 하 여 `ServiceBusTrigger` 특성입니다. hello 특성 생성자 hello 큐 toopoll의 hello 이름을 지정 하는 매개 변수를 사용 합니다.
 
 ### <a name="how-servicebustrigger-works"></a>ServiceBusTrigger 작동 방식
-SDK는 `PeekLock` 모드로 메시지를 받아 함수가 성공적으로 완료된 경우 메시지에서 `Complete`를 호출하고, 함수가 실패한 경우 `Abandon`을 호출합니다. 함수가 `PeekLock` 시간 제한보다 오래 실행되는 경우 잠금이 자동으로 갱신됩니다.
+hello SDK가 메시지에 `PeekLock` 모드 및 호출 `Complete` hello 함수는 성공적으로 완료 되 면 hello 메시지 또는 호출 `Abandon` hello 함수가 실패 한 경우. Hello 함수 hello 보다 오래 실행 되 면 `PeekLock` hello 잠금 제한 시간이 자동으로 갱신 합니다.
 
-서비스 버스는 WebJobs SDK에 의해 제어 또는 구성할 수 없는 자체 포이즌 큐 처리를 수행합니다. 
+서비스 버스를 제어 하거나 hello WebJobs SDK 여 구성할 수 없는 자체 포이즌 큐 처리를 수행 합니다. 
 
 ### <a name="string-queue-message"></a>문자열 큐 메시지
-다음 코드 샘플은 문자열이 포함된 큐 메시지를 읽고 WebJobs SDK 대시보드에 씁니다.
+hello 다음 코드 샘플 메시지를 읽고 큐 하는 문자열을 포함 하 고 hello 문자열 toohello WebJobs SDK 대시보드를 씁니다.
 
         public static void ProcessQueueMessage([ServiceBusTrigger("inputqueue")] string message, 
             TextWriter logger)
@@ -75,20 +75,20 @@ SDK는 `PeekLock` 모드로 메시지를 받아 함수가 성공적으로 완료
             logger.WriteLine(message);
         }
 
-**참고:** WebJobs SDK를 사용하지 않는 응용 프로그램에서 큐 메시지를 만드는 경우 [BrokeredMessage.ContentType](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.contenttype.aspx) 을 "text/plain"으로 설정해야 합니다.
+**참고:** hello 큐 메시지 hello WebJobs SDK를 사용 하지 않는 응용 프로그램에서 만드는 경우 확인 되었는지 tooset [BrokeredMessage.ContentType](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.contenttype.aspx) 너무 "텍스트/일반"입니다.
 
 ### <a name="poco-queue-message"></a>POCO 큐 메시지
-SDK에서는 POCO( [Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 유형에 대한 JSON이 포함된 큐 메시지를 자동으로 deserialize합니다. 다음 코드 샘플은 `BlobName` 속성을 가진 `BlobInformation` 개체가 포함된 큐 메시지를 읽습니다.
+hello SDK는 POCO에 대 한 JSON이 포함 된 큐 메시지를 자동으로 deserialize 됩니다 [(Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 형식입니다. hello 다음 코드 샘플 메시지를 읽고 큐를 포함 하는 `BlobInformation` 있는 개체는 `BlobName` 속성:
 
         public static void WriteLogPOCO([ServiceBusTrigger("inputqueue")] BlobInformation blobInfo,
             TextWriter logger)
         {
-            logger.WriteLine("Queue message refers to blob: " + blobInfo.BlobName);
+            logger.WriteLine("Queue message refers tooblob: " + blobInfo.BlobName);
         }
 
-POCO 속성을 사용하여 동일한 함수의 Blob 및 테이블로 작업하는 방법을 보여 주는 코드 샘플은 [이 문서의 저장소 큐 버전](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#pocoblobs)을 참조하세요.
+Blob 및 테이블에 있는 hello POCO toowork의 toouse 속성 동일 hello 방법을 보여 주는 코드 샘플에 대 한 함수를 hello 참조 [이 문서의 저장소 큐 버전](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#pocoblobs)합니다.
 
-큐 메시지를 만든 코드가 WebJobs SDK를 사용하지 않을 경우 다음 예제와 유사한 코드를 사용합니다.
+Hello 큐 메시지를 작성 하는 코드 hello WebJobs SDK를 사용 하지 않는 경우 다음 예제 코드와 유사한 toohello를 사용 합니다.
 
         var client = QueueClient.CreateFromConnectionString(ConfigurationManager.ConnectionStrings["AzureWebJobsServiceBus"].ConnectionString, "blobadded");
         BlobInformation blobInformation = new BlobInformation () ;
@@ -96,13 +96,13 @@ POCO 속성을 사용하여 동일한 함수의 Blob 및 테이블로 작업하�
         client.Send(message);
 
 ### <a name="types-servicebustrigger-works-with"></a>ServiceBusTrigger가 작동하는 유형
-`string` 및 POCO 유형 외에 바이트 배열 또는 `BrokeredMessage` 개체에서 `ServiceBusTrigger` 특성을 사용할 수 있습니다.
+외에 `string` 및 POCO 형식 hello를 사용할 수 있습니다 `ServiceBusTrigger` 바이트 배열로 특성 또는 `BrokeredMessage` 개체입니다.
 
-## <a id="create"></a> 서비스 버스 큐 메시지를 만드는 방법
-새 큐 메시지를 만드는 함수를 작성하려면 `ServiceBus` 특성을 사용하고 특성 생성자로 큐 이름을 전달합니다. 
+## <a id="create"></a>Toocreate 서비스 버스에서 메시지를 큐 하는 방법
+toowrite 새 큐 메시지를 만드는 함수를 사용 하 여 hello `ServiceBus` 특성 및 hello 큐 이름 toohello 특성 생성자에 전달 합니다. 
 
 ### <a name="create-a-single-queue-message-in-a-non-async-function"></a>비동기가 아닌 함수로 단일 큐 메시지를 만들기
-다음 코드 샘플은 출력 매개 변수를 사용하여 "inputqueue"라는 큐에 수신된 메시지와 동일한 콘텐츠를 가진 새 메시지를 "outputqueue"라는 큐에 만듭니다.
+아래의 코드 예제는 hello는 출력 매개 변수 toocreate hello 큐에서 새 메시지를 라는 "outputqueue" hello "inputqueue" 라는 hello 큐에서 받은 메시지 콘텐츠 다른 이름으로 같은 hello로 사용 합니다.
 
         public static void CreateQueueMessage(
             [ServiceBusTrigger("inputqueue")] string queueMessage,
@@ -111,17 +111,17 @@ POCO 속성을 사용하여 동일한 함수의 Blob 및 테이블로 작업하�
             outputQueueMessage = queueMessage;
         }
 
-단일 큐 메시지를 만들기 위한 출력 매개 변수는 다음 유형 중 하나일 수 있습니다.
+단일 큐 메시지를 만들기 위한 hello 출력 매개 변수 유형만 hello 중 하나일 수 있습니다.
 
 * `string`
 * `byte[]`
 * `BrokeredMessage`
 * 사용자가 정의한 serialize 가능 POCO 유형. JSON으로 자동으로 serialize됨
 
-POCO 유형 매개 변수의 경우 함수가 종료되면 큐 메시지가 항상 만들어집니다. 매개 변수가 null인 경우에는 SDK에서 메시지가 수신되고 deserialize될 때 null을 반환하는 큐 메시지를 만듭니다. 다른 유형의 경우 매개 변수가 null이면 큐 메시지가 만들어지지 않습니다.
+POCO 형식 매개 변수에 대해 큐 메시지는 항상 생성 hello 함수 끝나면; hello 매개 변수가 null 인 경우 hello SDK hello 메시지를 수신 하 고 역직렬화 하는 경우 null 반환 하는 큐 메시지를 만듭니다. Hello 다른 형식에 대 한, hello 매개 변수가 null 이면 큐 메시지 없이 만들어집니다.
 
 ### <a name="create-multiple-queue-messages-or-in-async-functions"></a>여러 큐 메시지 만들기 또는 비동기 함수로 큐 메시지 만들기
-여러 메시지를 만들려면 다음 코드 샘플과 같이 `ICollector<T>` 또는 `IAsyncCollector<T>`에서 `ServiceBus` 특성을 사용합니다.
+toocreate 여러 개의 메시지를 사용 하 여 hello `ServiceBus` 특성이 `ICollector<T>` 또는 `IAsyncCollector<T>`hello 아래의 코드 예제에에서 나온 것 처럼:
 
         public static void CreateQueueMessages(
             [ServiceBusTrigger("inputqueue")] string queueMessage,
@@ -133,10 +133,10 @@ POCO 유형 매개 변수의 경우 함수가 종료되면 큐 메시지가 항�
             outputQueueMessage.Add(queueMessage + "2");
         }
 
-`Add` 메서드를 호출하면 각 큐 메시지가 즉시 생성됩니다.
+각 큐 메시지 즉시 때 만들어집니다 hello `Add` 메서드를 호출 합니다.
 
-## <a id="topics"></a>서비스 버스 항목으로 작업하는 방법
-서비스 버스 항목에 메시지가 수신될 때 SDK에서 호출하는 함수를 작성하려면 다음 코드 샘플과 같이 항목 이름 및 구독 이름을 가져오는 생성자와 함께 `ServiceBusTrigger` 특성을 사용합니다.
+## <a id="topics"></a>어떻게 서비스 버스 주제와 toowork
+서비스 버스 항목에서 메시지를 받으면 toowrite SDK hello 하는 함수 호출, hello를 사용 하 여 `ServiceBusTrigger` hello 아래의 코드 예제와 같이 항목 이름 및 구독 이름을 사용 하는 hello 생성자를 사용 하 여 특성:
 
         public static void WriteLog([ServiceBusTrigger("outputtopic","subscription1")] string message,
             TextWriter logger)
@@ -144,32 +144,32 @@ POCO 유형 매개 변수의 경우 함수가 종료되면 큐 메시지가 항�
             logger.WriteLine("Topic message: " + message);
         }
 
-항목에 대한 메시지를 만들려면 큐 이름과 동일한 방식으로 항목 이름에서 `ServiceBus` 특성을 사용합니다.
+항목을 사용 하 여 hello에 대 한 메시지 toocreate `ServiceBus` 동일 항목 이름 hello로 특성 큐 이름으로 사용 하는 방식으로 합니다.
 
 ## <a name="features-added-in-release-11"></a>버전 1.1에 추가된 기능
-릴리스 1.1에서 다음과 같은 기능이 추가되었습니다.
+같은 기능 hello 버전 1.1에서에서 추가 되었습니다.
 
 * `ServiceBusConfiguration.MessagingProvider`를 통해 메시지 처리를 상세하게 사용자 지정할 수 있습니다.
-* `MessagingProvider`는 서비스 버스 `MessagingFactory` 및 `NamespaceManager`의 사용자 지정을 지원합니다.
-* `MessageProcessor` 전략 패턴을 통해 큐/토픽별로 프로세서를 지정할 수 있습니다.
+* `MessagingProvider`에서는 서비스 버스 hello 사용자 지정할 `MessagingFactory` 및 `NamespaceManager`합니다.
+* A `MessageProcessor` 전략 패턴 있습니다 toospecify 큐/항목당 프로세서.
 * 메시지 처리 동시성이 기본적으로 지원됩니다. 
 * `ServiceBusConfiguration.MessageOptions`를 통해 `OnMessageOptions`를 쉽게 사용자 지정할 수 있습니다.
-* 관리 권한이 없을 수 있는 시나리오에 대해 `ServiceBusTriggerAttribute`/`ServiceBusAttribute`에서 [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71)를 지정하는 것을 허용합니다. 관리 AccessRights가 없으면 Azure Webjob에서 존재하지 않는 큐 및 토픽을 자동으로 프로비전할 수 없습니다.
+* 허용 [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) 에 지정 된 toobe `ServiceBusTriggerAttribute` / `ServiceBusAttribute` (에 대 한 권한을 관리 하는 시나리오에 없는 것일 수 있습니다). Azure WebJobs 없습니다 tooautomatically 프로 비전 존재 하지 않는 큐 및 항목 AccessRights 관리 하지 않고 인지 확인 합니다.
 
-## <a id="queues"></a>저장소 큐 방법 문서에서 다루는 관련 항목
-서비스 버스에 특정하지 않은 WebJobs SDK 시나리오에 대한 자세한 내용은 [WebJobs SDK를 사용하여 Azure 큐 저장소로 작업하는 방법](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)을 참조하세요. 
+## <a id="queues"></a>Hello 저장소 큐 방법 tooarticle에서 포함 된 관련된 항목
+WebJobs SDK 시나리오에 대 한 정보에 대 한 특정 하지 않은 tooService 버스 참조 [toouse Azure WebJobs SDK hello 사용 하 여 저장소를 대기 하는 방법을](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)합니다. 
 
-이 문서에서 다루는 항목은 다음과 같습니다.
+이 문서에서 다루는 항목 hello 다음과를 같습니다.
 
 * 비동기 함수
 * 여러 인스턴스
 * 정상 종료
-* 함수 본문에 WebJobs SDK 특성 사용
-* 코드에서 SDK 연결 문자열 설정
+* WebJobs SDK 특성 hello 함수 본문에서 사용 하 여
+* 코드에서 hello SDK 연결 문자열을 설정 합니다.
 * 코드에서 WebJobs SDK 생성자 매개 변수 값 설정
 * 수동으로 함수 트리거
 * 로그 작성
 
 ## <a id="nextsteps"></a> 다음 단계
-이 가이드에서는 Azure 서비스 버스 작업에 대한 일반적인 시나리오를 처리하는 방법을 보여 주는 코드 샘플을 제공했습니다. Azure WebJob 및 WebJob SDK를 사용하는 방법에 대한 자세한 내용은 [Azure WebJob 권장 리소스](http://go.microsoft.com/fwlink/?linkid=390226)를 참조하세요.
+이 가이드는 코드를 제공 하는 방법을 보여 주는 샘플 toohandle Azure 서비스 버스를 사용 하기 위한 일반적인 시나리오입니다. Azure WebJobs toouse 및 hello WebJobs SDK를 참조 하는 방법에 대 한 자세한 내용은 [Azure WebJobs 리소스 권장](http://go.microsoft.com/fwlink/?linkid=390226)합니다.
 

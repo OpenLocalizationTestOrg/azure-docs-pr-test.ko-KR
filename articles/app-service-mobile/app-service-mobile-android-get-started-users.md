@@ -1,6 +1,6 @@
 ---
-title: "Mobile App을 사용하여 Android에 인증 추가 | Microsoft Docs"
-description: "Azure App Service 기능의 Mobile Apps를 사용하여 Google, Facebook, Twitter, Microsoft를 비롯한 다양한 ID 공급자를 통해 Android 앱의 사용자를 인증하는 방법을 알아봅니다."
+title: "Android 모바일 앱에서 aaaAdd 인증 | Microsoft Docs"
+description: "Toouse 다양 한 Google, Facebook, Twitter 및 Microsoft를 비롯 한 id 공급자를 통해 Android 앱의 Azure 앱 서비스 tooauthenticate 사용자의 모바일 앱 기능을 hello 하는 방법에 대해 알아봅니다."
 services: app-service\mobile
 documentationcenter: android
 author: ggailey777
@@ -14,65 +14,65 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 81331142aa6110d4e29e6fb30a90ce6e3a853439
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 01f608f996c931c643790ed2778df11cf590c903
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-authentication-to-your-android-app"></a>Android 앱에 인증 추가
+# <a name="add-authentication-tooyour-android-app"></a>인증 tooyour Android 앱 추가
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
 ## <a name="summary"></a>요약
-이 자습서에서는 지원되는 ID 공급자를 사용하여 Android의 할 일 모음 빠른 시작 프로젝트에 인증을 추가합니다. 이 자습서는 [모바일 앱 시작] 자습서를 기반으로 하며 이를 먼저 완료해야 합니다.
+이 자습서에서는 지원 되는 id 공급자를 사용 하 여 Android에서 인증 toohello todolist 퀵 스타트 프로젝트를 추가 합니다. 이 자습서는 hello 기반 [모바일 앱 시작] 자습서 먼저 완료 해야 합니다.
 
 ## <a name="register"></a>인증을 위한 앱 등록 및 Azure App Service 구성
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="redirecturl"></a>허용되는 외부 리디렉션 URL에 앱 추가
+## <a name="redirecturl"></a>응용 프로그램 toohello 허용 된 외부 리디렉션 Url을 사용 하 여 추가
 
-보안 인증을 위해서는 앱에 대한 새로운 URL 체계를 정의해야 합니다. 이를 통해 인증 시스템은 인증 프로세스가 완료되면 앱으로 다시 리디렉션될 수 있습니다. 이 자습서에서는 전체적으로 URL 체계 _appname_을 사용합니다. 그러나 선택한 어떤 URL 체계도 사용 가능합니다. 이 체계는 모바일 응용 프로그램에 고유해야 합니다. 서버 쪽에서 리디렉션을 사용하도록 설정하려면:
+보안 인증을 위해서는 앱에 대한 새로운 URL 체계를 정의해야 합니다. Hello 인증 프로세스가 완료 되 면 hello 인증 시스템 tooredirect 백 tooyour 앱을 수 있습니다. 이 자습서에서는 사용 하 여 hello URL 체계 _appname_ 전체. 그러나 선택한 어떤 URL 체계도 사용 가능합니다. 고유 tooyour 모바일 응용 프로그램 이어야 합니다. hello 서버 쪽에서 tooenable hello 리디렉션:
 
-1. [Azure Portal]에서 해당 App Service를 선택합니다.
+1. Hello [Azure 포털], 응용 프로그램 서비스를 선택 합니다.
 
-2. **인증/권한 부여** 메뉴 옵션을 클릭합니다.
+2. Hello 클릭 **인증 / 권한 부여** 메뉴 옵션입니다.
 
-3. **허용되는 외부 리디렉션 URL**에서 `appname://easyauth.callback`을 입력합니다.  이 문자열의 _appname_은 모바일 응용 프로그램에 대한 URL 체계입니다.  이 체계는 프로토콜에 대한 일반 URL 사양을 따라야 합니다(문자 및 숫자만 사용하고 문자로 시작).  여러 위치에서 URL 체계에 따라 모바일 응용 프로그램 코드를 조정해야 할 경우 선택한 문자열을 적어두어야 합니다.
+3. Hello에 **외부 리디렉션 Url 허용**, 입력 `appname://easyauth.callback`합니다.  hello _appname_ 이 문자열에는 모바일 응용 프로그램에 대 한 hello URL 체계입니다.  이 체계는 프로토콜에 대한 일반 URL 사양을 따라야 합니다(문자 및 숫자만 사용하고 문자로 시작).  Tooadjust hello 여러 위치에서 URL 체계를 사용 하 여 모바일 응용 프로그램 코드 필요 하므로 선택 하는 hello 문자열의 메모를 확인 해야 합니다.
 
 4. **확인**을 클릭합니다.
 
-5. **저장**을 클릭합니다.
+5. **Save**를 클릭합니다.
 
-## <a name="permissions"></a>사용 권한을 인증된 사용자로 제한
+## <a name="permissions"></a>Tooauthenticated 사용자 사용 권한 제한
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-* Android Studio에서 [모바일 앱 시작] 자습서를 완료한 프로젝트를 엽니다. **실행** 메뉴에서 **앱 실행**을 클릭하여 앱이 시작된 후 상태 코드 401(인증되지 않음)의 처리되지 않은 예외가 발생하는지 확인합니다.
+* Android Studio에서 hello 자습서와 함께 완료 hello 프로젝트를 열고 [모바일 앱 시작]합니다. Hello에서 **실행** 메뉴를 클릭 하 여 **응용 프로그램을 실행**, hello 앱 시작 된 후 401 (권한 없음) 상태 코드와 함께 처리 되지 않은 예외가 발생할 때 확인 합니다.
 
-     이 예외는 앱이 인증되지 않은 사용자로 백 엔드에 액세스하려고 시도하지만 *할 일 모음* 테이블에서 이제 인증을 요구하기 때문에 발생합니다.
+     이 예외는 hello 앱 시도 tooaccess hello 다시 인증 되지 않은 사용자로 종료 하지만 hello 때문에 발생 *TodoItem* 테이블에는 이제 인증이 필요 합니다.
 
-다음으로 앱을 업데이트하여 Mobile Apps 백 엔드에서 리소스를 요청하기 전에 사용자를 인증하도록 합니다. 
+다음으로, 모바일 앱을 다시 종료 hello에서 리소스를 요청 하기 전에 hello 앱 tooauthenticate 사용자를 업데이트 합니다. 
 
-## <a name="add-authentication-to-the-app"></a>앱에 인증 추가
+## <a name="add-authentication-toohello-app"></a>인증 toohello 앱 추가
 [!INCLUDE [mobile-android-authenticate-app](../../includes/mobile-android-authenticate-app.md)]
 
 
 
-## <a name="cache-tokens"></a>클라이언트에 인증 토큰 캐시
+## <a name="cache-tokens"></a>Hello 클라이언트에서 인증 토큰을 캐시
 [!INCLUDE [mobile-android-authenticate-app-with-token](../../includes/mobile-android-authenticate-app-with-token.md)]
 
 ## <a name="next-steps"></a>다음 단계
-이 기본 인증 자습서를 완료했으므로 다음 자습서 중 하나를 계속하는 것을 고려해보세요.
+이 기본 인증 자습서를 완료 했으므로 tooone의 hello 다음 자습서를 계속 진행 하는 것이 좋습니다.
 
-* [Android 앱에 푸시 알림을 추가합니다](app-service-mobile-android-get-started-push.md).
-  Azure Notification Hubs를 사용하는 Mobile Apps 백 엔드를 구성하여 푸시 알림을 보내는 방법을 알아봅니다.
+* [푸시 알림 tooyour Android 앱 추가](app-service-mobile-android-get-started-push.md)합니다.
+  모바일 앱 다시 tooconfigure toouse Azure 알림 허브 toosend 푸시 알림을 종료 하는 방법에 대해 알아봅니다.
 * [Android 앱에 대해 오프라인 동기화를 사용합니다](app-service-mobile-android-get-started-offline-data.md).
-  Mobile Apps 백 엔드를 사용하여 앱에 오프라인 지원을 추가하는 방법을 알아봅니다. 오프라인 동기화를 사용하면 사용자는 네트워크에 연결되어 있지 않을 때도 모바일 앱&mdash;데이터 보기, 추가 또는 수정&mdash;과 같은 상호 작용을 수행할 수 있습니다.
+  오프 라인 tooadd 모바일 앱 백 엔드를 사용 하 여 tooyour 응용 프로그램을 지 원하는 방법에 대해 알아봅니다. 오프라인 동기화를 사용하면 사용자는 네트워크에 연결되어 있지 않을 때도 모바일 앱&mdash;데이터 보기, 추가 또는 수정&mdash;과 같은 상호 작용을 수행할 수 있습니다.
 
 <!-- Anchors. -->
 [Register your app for authentication and configure Mobile Services]: #register
-[Restrict table permissions to authenticated users]: #permissions
-[Add authentication to the app]: #add-authentication
-[Store authentication tokens on the client]: #cache-tokens
+[Restrict table permissions tooauthenticated users]: #permissions
+[Add authentication toohello app]: #add-authentication
+[Store authentication tokens on hello client]: #cache-tokens
 [Refresh expired tokens]: #refresh-tokens
 [Next Steps]:#next-steps
 

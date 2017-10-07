@@ -1,6 +1,6 @@
 ---
-title: "Azure 배치 풀에서 자동으로 계산 노드 크기 조정 | Microsoft Docs"
-description: "클라우드 풀에서 자동 크기 조정을 사용하면 풀의 계산 노드 수를 동적으로 조정합니다."
+title: "aaaAutomatically 눈금의에서 계산 노드 Azure 배치 풀 | Microsoft Docs"
+description: "Enable에 대해 자동 크기 조정을 클라우드 풀 toodynamically hello hello 풀의 계산 노드 수를 조정 합니다."
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,52 +15,52 @@ ms.workload: multiple
 ms.date: 06/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f0e49cd8a64a48c53f5b6104703164a597c797f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6d1e0c5d8e0e56e15a4d3588150f2466a689f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-automatic-scaling-formula-for-scaling-compute-nodes-in-a-batch-pool"></a>Batch 풀에서 계산 노드의 크기를 조정하는 자동 크기 조정 수식 만들기
 
-Azure Batch는 정의한 매개 변수에 따라 풀을 자동으로 크기 조정합니다. 자동 크기 조정을 사용하면 작업 요구가 증가함에 따라 Batch에서 풀에 노드를 동적으로 추가하고, 감소함에 따라 계산 노드를 제거합니다. Batch 응용 프로그램에서 사용하는 계산 노드 수를 자동으로 조정하여 시간과 비용을 모두 절약할 수 있습니다. 
+Azure Batch는 정의한 매개 변수에 따라 풀을 자동으로 크기 조정합니다. 자동 크기 조정 된 일괄 처리 작업 요구량이 증가으로 노드 tooa 풀을 동적으로 추가 및 감소은 계산 노드를 제거 합니다. Hello 일괄 처리 응용 프로그램에서 사용 되는 계산 노드 수를 자동으로 조정 하 여 시간과 비용을 저장할 수 있습니다. 
 
-사용자가 정의한 *자동 크기 조정 수식*에 연결하면 계산 노드 풀에서 자동으로 크기를 조정할 수 있습니다. Batch 서비스는 자동 크기 조정 수식을 사용하여 워크로드를 실행하는 데 필요한 계산 노드의 수를 결정합니다. 계산 노드는 전용 노드이거나 [우선 순위가 낮은 노드](batch-low-pri-vms.md)일 수 있습니다. Batch는 주기적으로 수집되는 서비스 메트릭 데이터에 응답합니다. Batch는 이 메트릭 데이터를 사용하여 구성 가능한 간격으로 수식에 따라 풀의 계산 노드 수를 조정합니다.
+사용자가 정의한 *자동 크기 조정 수식*에 연결하면 계산 노드 풀에서 자동으로 크기를 조정할 수 있습니다. hello 일괄 처리 서비스는 hello 자동 크기 조정 수식 toodetermine hello 계산 노드 수를 필요한 tooexecute는 작업을 사용 합니다. 계산 노드는 전용 노드이거나 [우선 순위가 낮은 노드](batch-low-pri-vms.md)일 수 있습니다. 일괄 처리 응답 tooservice 메트릭 데이터는 주기적으로 수집 합니다. 이 메트릭 데이터를 사용 하 여 일괄 처리는 hello 수식에서 구성 가능한 간격을 기반으로 하는 hello 풀의 계산 노드 수를 조정 합니다.
 
-풀을 만들 때 또는 기존 풀에서 자동 크기 조정을 사용하도록 설정할 수 있습니다. 자동 크기 조정에 대해 구성된 풀의 기존 수식을 변경할 수도 있습니다. Batch를 사용하면 풀에 할당하기 전에 수식을 평가하고, 자동 크기 조정 실행 상태를 모니터링할 수 있습니다.
+풀을 만들 때 또는 기존 풀에서 자동 크기 조정을 사용하도록 설정할 수 있습니다. 자동 크기 조정에 대해 구성된 풀의 기존 수식을 변경할 수도 있습니다. 일괄 처리에 자동 크기 조정의 toopools 및 toomonitor hello 상태를 할당 하기 전에 수식을 실행 tooevaluate가 있습니다.
 
-이 문서에서는 변수, 연산자, 작업 및 함수를 포함하여 자동 크기 조정 수식을 구성하는 다양한 엔터티를 설명합니다. Batch 내의 다양한 계산 리소스 및 작업 메트릭을 가져오는 방법을 알아봅니다. 이러한 메트릭을 사용하여 리소스 사용량과 작업 상태에 따라 풀의 노드 수를 조정할 수 있습니다. 그런 다음 Batch REST 및 .NET API를 모두 사용하여 수식을 구성하고 풀에서 자동 크기 조정을 사용하는 방법을 설명합니다. 마지막으로 몇 가지 예제 수식으로 마무리하겠습니다.
+이 문서에서는 hello, 변수, 연산자, 작업 및 함수를 포함 하 여 자동 크기 조정 수식을 구성 하는 다양 한 엔터티. 에서는 어떻게 tooobtain 다양 한 일괄 처리 내에서 리소스 및 작업 메트릭을 계산 합니다. 이러한 메트릭을 tooadjust 리소스 사용량 및 작업 상태에 따라 풀의 노드 수를 사용할 수 있습니다. 다음 수식 tooconstruct를 사용 하도록 설정한 자동 풀을 모두 사용 하 여 크기를 조정 배치 REST 및.NET Api hello 하는 방법을 설명 합니다. 마지막으로 몇 가지 예제 수식으로 마무리하겠습니다.
 
 > [!IMPORTANT]
-> 배치 계정을 만들 때 [계정 구성](batch-api-basics.md#account)을 지정할 수 있습니다. 이 구성은 Batch 서비스 구독(기본값) 또는 사용자 구독에 풀을 할당하는지 여부를 결정합니다. 기본 Batch 서비스 구성으로 배치 계정을 만든 경우 계정은 처리에 사용할 수 있는 코어의 최대 개수로 제한됩니다. Batch 서비스는 계산 노드를 해당 코어 제한까지만 확장합니다. 이러한 이유로 Batch 서비스는 자동 크기 조정 수식에 지정된 계산 노드의 목표 수에 도달하지 못할 수 있습니다. 계정 할당량을 보고 늘리는 방법에 대한 내용은 [Azure 배치 서비스에 대한 할당량 및 제한](batch-quota-limit.md)을 참조하세요.
+> Hello 일괄 처리 계정을 만들 때 지정할 수 있습니다 [계정 구성](batch-api-basics.md#account), 풀 일괄 처리 서비스 구독 (hello 기본값) 또는 사용자 구독에 할당 된 여부를 결정 하는 합니다. Hello 기본 일괄 처리 서비스 구성을 사용 하 여 일괄 처리 계정이 만든 경우 사용자 계정은 제한 된 tooa 최대 처리를 위해 사용할 수 있는 코어 수입니다. 일괄 처리 서비스 hello toothat 코어 제한부터만 계산 노드를 확장합니다. 이러한 이유로 hello 일괄 처리 서비스 자동 크기 조정 수식에 의해 지정 된 계산 노드의 hello 대상 수에 도달 하지 않을 수 있습니다. 참조 [할당량과 hello Azure 배치 서비스에 대 한 제한을](batch-quota-limit.md) 보기 및 계정 할당량 증가에 대 한 내용은 합니다.
 >
->사용자 구독 구성으로 계정을 만든 경우 계정은 구독의 코어 할당량을 공유합니다. 자세한 내용은 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)에서 [Virtual Machines 제한](../azure-subscription-service-limits.md#virtual-machines-limits)을 참조하세요.
+>Hello 사용자 구독 구성을 사용 하 여 계정의 만든 계정 hello 구독에 대 한 코어 할당량 hello에서에서 공유 합니다. 자세한 내용은 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)에서 [Virtual Machines 제한](../azure-subscription-service-limits.md#virtual-machines-limits)을 참조하세요.
 >
 >
 
 ## <a name="automatic-scaling-formulas"></a>자동 크기 조정 수식
-자동 크기 조정 수식은 하나 이상의 문을 포함하는 사용자가 정의한 문자열 값입니다. 자동 크기 조정 수식은 풀의 [autoScaleFormula][rest_autoscaleformula] 요소(Batch REST) 또는 [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] 속성(Batch .NET)에 할당됩니다. Batch 서비스는 처리할 다음 간격을 위해 풀의 대상 계산 노드 수를 결정하는 수식을 사용합니다. 수식 문자열은 8KB를 초과할 수 없고, 세미콜론으로 구분된 구문을 100개까지 포함할 수 있으며, 줄 바꿈과 주석을 포함할 수 있습니다.
+자동 크기 조정 수식은 하나 이상의 문을 포함하는 사용자가 정의한 문자열 값입니다. hello 자동 크기 조정 수식이 tooa 풀에 할당 된 [autoScaleFormula] [ rest_autoscaleformula] 요소 (일괄 처리 REST) 또는 [CloudPool.AutoScaleFormula] [ net_cloudpool_autoscaleformula] 속성 (일괄 처리.NET)입니다. hello 일괄 처리 서비스는 hello 다음 처리 간격에 대 한 hello 풀의 수식 toodetermine hello 대상 수가 계산 노드를 사용합니다. hello 수식 문자열 8KB를 초과할 수 없습니다, 그리고 세미콜론으로 구분 되 고 줄 바꿈 및 주석을 포함할 수 있는 too100 문을를 포함할 수 있습니다.
 
-자동 크기 조정 수식은 Batch 자동 크기 조정 "언어"로 고려할 수 있습니다. 수식 문은 자유 형식이고 서비스가 정의한 변수(배치 서비스에 의해 정의된 변수) 및 사용자가 정의한 변수(사용자가 정의한 변수)를 포함할 수 있습니다. 기본 제공 형식, 연산자 및 함수를 사용하여 이러한 값에 다양한 작업을 수행할 수 있습니다. 예를 들어 문은 다음과 같은 형태일 수 있습니다.
+자동 크기 조정 수식은 Batch 자동 크기 조정 "언어"로 고려할 수 있습니다. 수식 문은 서비스 정의 변수 (hello 일괄 처리 서비스에서 정의 된 변수) 및 사용자 정의 변수 (사용자가 정의한 변수)를 모두 포함할 수 있는 자유형 식이 됩니다. 기본 제공 형식, 연산자 및 함수를 사용하여 이러한 값에 다양한 작업을 수행할 수 있습니다. 예를 들어 문을 다음 양식 hello를 걸릴 수 있습니다.
 
 ```
 $myNewVariable = function($ServiceDefinedVariable, $myCustomVariable);
 ```
 
-수식은 일반적으로 이전 문에서 가져온 값에 대한 작업을 수행하는 여러 문을 포함합니다. 예를 들어 먼저 `variable1`에 대한 값을 구한 다음 `variable2`을(를) 채우는 함수로 전달합니다.
+수식은 일반적으로 이전 문에서 가져온 값에 대한 작업을 수행하는 여러 문을 포함합니다. 에 대 한 값을 구한 먼저 예를 들어 `variable1`, tooa 함수 toopopulate 전달 `variable2`:
 
 ```
 $variable1 = function1($ServiceDefinedVariable);
 $variable2 = function2($OtherServiceDefinedVariable, $variable1);
 ```
 
-자동 크기 조정 수식에 이러한 문을 포함하여 계산 노드의 목표 수에 도달합니다. 전용 노드와 우선 순위가 낮은 노드에는 각각 자체의 목표 설정이 있으므로 각 노드 형식의 목표를 정의할 수 있습니다. 자동 크기 조정 수식에는 전용 노드의 목표 값, 우선 순위가 낮은 노드의 목표 값 또는 둘 다가 포함될 수 있습니다.
+대상 수의 계산 노드 자동 크기 조정 수식 tooarrive 프로그램에서 이러한 문을 포함 합니다. 전용 노드와 우선 순위가 낮은 노드에는 각각 자체의 목표 설정이 있으므로 각 노드 형식의 목표를 정의할 수 있습니다. 자동 크기 조정 수식에는 전용 노드의 목표 값, 우선 순위가 낮은 노드의 목표 값 또는 둘 다가 포함될 수 있습니다.
 
-노드의 목표 수는 풀에 있는 해당 노드 형식의 현재 수보다 높거나, 낮거나, 같을 수 있습니다. Batch는 풀의 자동 크기 조정 수식을 특정 간격([자동 크기 조정 간격](#automatic-scaling-interval) 참조)으로 평가합니다. Batch는 풀에 있는 각 노드 형식의 목표 수를 크기 조정 수식에서 평가할 때 지정하는 수로 조정합니다.
+hello 대상 노드 수 이상에서 이하로 되었거나 hello hello 현재 hello 풀에서 해당 형식의 노드 수와 동일 합니다. Batch는 풀의 자동 크기 조정 수식을 특정 간격([자동 크기 조정 간격](#automatic-scaling-interval) 참조)으로 평가합니다. 각 유형의 자동 크기 조정 수식 평가 hello 시 지정 하는 hello 풀 toohello 숫자의 노드에서 hello 대상 수를 조정 하는 일괄 처리 합니다.
 
 ### <a name="sample-autoscale-formula"></a>샘플 자동 크기 조정 수식
 
-다음은 대부분의 시나리오에 맞게 조정할 수 있는 자동 크기 조정 수식의 예제입니다. 예제 수식에서 변수 `startingNumberOfVMs` 및 `maxNumberofVMs`는 필요에 따라 조정할 수 있습니다. 이 수식은 전용 노드를 크기 조정하지만 우선 순위가 낮은 노드를 크기 조정하는 데 적용되도록 수정할 수 있습니다. 
+대부분의 시나리오에 대 한 조정 된 toowork 일 수 있는 자동 크기 조정 수식의 예를 들면 다음과 같습니다. 변수 hello `startingNumberOfVMs` 및 `maxNumberofVMs` hello 예의 수식이 조정된 tooyour 요구 될 수 있습니다. 이 수식은 전용된 노드를 확장 하지만 수정 된 tooapply tooscale 우선 순위가 낮은 노드도 될 수 있습니다. 
 
 ```
 startingNumberOfVMs = 1;
@@ -70,52 +70,52 @@ pendingTaskSamples = pendingTaskSamplePercent < 70 ? startingNumberOfVMs : avg($
 $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
 ```
 
-이 자동 크기 조정 수식을 사용하면 풀은 단일 VM으로 처음에 생성됩니다. `$PendingTasks` 메트릭은 실행 중이거나 큐에 대기 중인 작업의 수를 정의합니다. 수식은 지난 180초 동안 보류 중인 작업의 평균 수를 찾고 이에 따라 `$TargetDedicatedNodes` 변수를 설정합니다. 수식은 전용 노드의 목표 수가 25개 VM을 절대로 초과하지 않도록 합니다. 새 작업이 제출되면 풀은 자동으로 증가합니다. 작업이 완료되면 VM은 하나씩 비워지고 자동 크기 조정 수식은 풀을 축소합니다.
+이 자동 크기 조정 수식을 사용 하 여 hello 풀은 처음에 단일 VM으로 만들어집니다. hello `$PendingTasks` 메트릭을 실행 중이거나 큐에 대기 중인 작업의 hello 수를 정의 합니다. hello 지난 180 초 동안 hello에서 보류 중인 작업의 hello 평균 수를 찾습니다 수식과 hello 설정 `$TargetDedicatedNodes` 변수 적절 하 게 합니다. hello 수식은 되도록 전용 노드의 hello 대상 수 25 Vm을 초과 하지 않습니다. 새 작업 제출 되 hello 풀 자동으로 증가 합니다. 작업 완료, Vm 하나씩 무료 되 고 hello 자동 크기 조정 수식 hello 풀을 축소 합니다.
 
 ## <a name="variables"></a>variables
-자동 크기 조정 수식에는 **서비스 정의** 및 **사용자 정의** 변수를 모두 사용할 수 있습니다. 서비스 정의 변수는 Batch 서비스에 기본 제공되어 있습니다. 서비스 정의 변수 일부는 읽기-쓰기이고, 일부는 읽기 전용입니다. 사용자 정의 변수는 사용자가 정의한 변수입니다. 이전 섹션에 나온 예제 수식에서 `$TargetDedicatedNodes` 및 `$PendingTasks`는 서비스 정의 변수입니다. 변수 `startingNumberOfVMs` 및 `maxNumberofVMs`는 사용자 정의 변수입니다.
+자동 크기 조정 수식에는 **서비스 정의** 및 **사용자 정의** 변수를 모두 사용할 수 있습니다. 서비스 정의 변수 hello toohello 일괄 처리 서비스에서에서 빌드됩니다. 서비스 정의 변수 일부는 읽기-쓰기이고, 일부는 읽기 전용입니다. 사용자 정의 변수는 사용자가 정의한 변수입니다. Hello 예의 수식을 hello 이전 섹션에 표시 된 것에서 `$TargetDedicatedNodes` 및 `$PendingTasks` 도 서비스 정의 변수가 있습니다. 변수 `startingNumberOfVMs` 및 `maxNumberofVMs`는 사용자 정의 변수입니다.
 
 > [!NOTE]
-> 서비스 정의 변수에는 항상 달러($) 기호가 앞에 붙습니다. 사용자 정의 변수의 경우 달러 기호는 선택 사항입니다.
+> 서비스 정의 변수에는 항상 달러($) 기호가 앞에 붙습니다. 사용자 정의 변수에 대 한 hello 달러 기호는 선택 사항입니다.
 >
 >
 
-아래 표에서는 Batch 서비스에서 정의하는 읽기-쓰기 및 읽기 전용 변수를 모두 보여 줍니다.
+다음 표에서 hello 읽기 / 쓰기 권한 모두 및 읽기 전용으로 정의 된 변수 hello 일괄 처리 서비스를 보여 줍니다.
 
-다음과 같은 서비스 정의 변수의 값을 가져오고 설정하여 풀의 계산 노드 수를 관리할 수 있습니다.
+있습니다 가져오고 설정할 수 있습니다 이러한 서비스 정의 변수의 hello 값 toomanage hello 계산 노드 수는 풀에서:
 
 | 읽기-쓰기 서비스 정의 변수 | 설명 |
 | --- | --- |
-| $TargetDedicatedNodes |풀에 대한 전용 계산 노드의 목표 수입니다. 풀에서 항상 원하는 수의 노드에 도달할 수 없으므로 전용 노드의 수가 목표 수로 지정됩니다. 예를 들어 풀에서 최초 목표에 도달하기 전에 자동 크기 조정 평가에 따라 전용 노드의 목표 수가 수정되는 경우 풀에서 목표에 도달하지 못할 수 있습니다. <br /><br /> 목표가 배치 계정 노드 또는 코어 할당량을 초과하는 경우 Batch 서비스 구성으로 만든 계정의 풀에서 해당 목표에 도달하지 못할 수 있습니다. 목표가 구독의 공유 코어 할당량을 초과하는 경우 사용자 구독 구성으로 만든 계정의 풀에서 해당 목표에 도달하지 못할 수 있습니다.|
-| $TargetLowPriorityNodes |풀에 대한 우선 순위가 낮은 계산 노드의 목표 수입니다. 풀에서 항상 원하는 수의 노드에 도달할 수 없으므로 우선 순위가 낮은 노드의 수가 목표 수로 지정됩니다. 예를 들어 풀에서 최초 목표에 도달하기 전에 자동 크기 조정 평가에 따라 우선 순위가 낮은 노드의 목표 수가 수정되는 경우 풀에서 목표에 도달하지 못할 수 있습니다. 목표가 배치 계정 노드 또는 코어 할당량을 초과하는 경우 풀에서 해당 목표에 도달하지 못할 수도 있습니다. <br /><br /> 우선 순위가 낮은 계산 노드에 대한 자세한 내용은 [Batch(미리 보기)에서 낮은 우선 순위 VM 사용](batch-low-pri-vms.md)을 참조하세요. |
-| $NodeDeallocationOption |풀에서 계산 노드가 제거되는 경우 발생하는 작업입니다. 가능한 값은 다음과 같습니다.<ul><li>**requeue** - 태스크를 즉시 종료하고 일정을 재조정하도록 작업 큐에 다시 배치합니다.<li>**terminate** - 태스크를 즉시 종료하고 작업 큐에서 제거합니다.<li>**taskcompletion** - 현재 실행 중인 태스크가 완료되기를 기다린 다음 풀에서 해당 노드를 제거합니다.<li>**retaineddata** - 노드의 모든 로컬 태스크 보유 데이터가 정리되기를 기다린 다음 풀에서 해당 노드를 제거합니다.</ul> |
+| $TargetDedicatedNodes |hello 대상 수 전용된 hello 풀에 대 한 노드를 계산합니다. 전용된 노드 수가 hello 풀 hello 필요한 노드 수를 항상 얻을 수 있으므로 대상으로 지정 됩니다. 예를 들어 전용 노드의 hello 대상 수 수정 되 면 hello 하기 전에 자동 크기 조정 평가 하 여 풀 hello 최초 목표에 도달 다음 hello 풀 hello 목표에 도달 하지 않을 수 있습니다. <br /><br /> Hello 일괄 처리 서비스 구성을 사용 하 여 생성 된 계정에서 풀 hello 대상 일괄 처리 계정 노드나 코어 할당량을 초과 하는 경우 목표를 얻지 못할 수 있습니다. Hello 사용자 구독 구성으로 생성 하는 계정에 풀 hello 대상 hello 구독에 대 한 hello 공유 코어 할당량을 초과 하는 경우 목표를 얻지 못할 수 있습니다.|
+| $TargetLowPriorityNodes |hello 대상 수가 우선 순위가 낮은 hello 풀에 대 한 노드를 계산 합니다. 우선 순위가 낮은 노드 수가 hello 풀 hello 필요한 노드 수를 항상 얻을 수 있으므로 대상으로 지정 됩니다. 예를 들어 우선 순위가 낮은 노드의 hello 대상 수 수정 되 면 hello 하기 전에 자동 크기 조정 평가 하 여 풀 hello 최초 목표에 도달 다음 hello 풀 hello 목표에 도달 하지 않을 수 있습니다. 풀을 수도 얻지 못할 대상 hello 대상 일괄 처리 계정 노드나 코어 할당량을 초과 하는 경우. <br /><br /> 우선 순위가 낮은 계산 노드에 대한 자세한 내용은 [Batch(미리 보기)에서 낮은 우선 순위 VM 사용](batch-low-pri-vms.md)을 참조하세요. |
+| $NodeDeallocationOption |계산 노드는 풀에서 제거할 때 발생 하는 hello 동작입니다. 가능한 값은 다음과 같습니다.<ul><li>**다시 대기**-작업을 즉시 종료 하 고 다시 예약할 수 있도록 hello 작업 큐에 다시 넣습니다.<li>**종료**-작업을 즉시 종료 하 고 hello 작업 큐에서 제거 합니다.<li>**taskcompletion**-때까지 대기 toofinish 현재 실행 중인 작업과 다음 hello 풀에서 hello 노드를 제거 합니다.<li>**retaineddata**-에 있는 모든 hello 로컬 태스크 보존 데이터가 hello 노드 toobe 대기 hello 노드 hello 풀에서 제거 하기 전에 정리 합니다.</ul> |
 
-이러한 서비스 정의 변수의 값을 가져와서 Batch 서비스의 메트릭을 기반으로 하여 조정할 수 있습니다.
+Hello 일괄 처리 서비스에서 메트릭을 기반으로 하는 서비스 정의 변수 toomake 조정의 hello 값을 얻을 수 있습니다.
 
 | 읽기 전용 서비스 정의 변수 | 설명 |
 | --- | --- |
-| $CPUPercent |평균 CPU 사용량 비율. |
-| $WallClockSeconds |사용된 시간(초) 수. |
-| $MemoryBytes |사용된 평균 메가바이트 수. |
-| $DiskBytes |로컬 디스크에서 사용된 평균 기가바이트 수. |
-| $DiskReadBytes |읽은 바이트 수. |
-| $DiskWriteBytes |쓴 바이트 수. |
-| $DiskReadOps |수행된 디스크 읽기 작업 수. |
-| $DiskWriteOps |수행된 디스크 쓰기 작업 수. |
-| $NetworkInBytes |인바운드 바이트 수. |
-| $NetworkOutBytes |아웃바운드 바이트 수. |
-| $SampleNodeCount |계산 노드 수. |
-| $ActiveTasks |실행할 준비가 되었지만 아직 실행되지 않은 작업 수입니다. $ActiveTasks 수에는 활성 상태에 있고 종속성이 충족된 작업이 모두 포함됩니다. 활성 상태이지만 종속성이 충족되지 않은 작업은 모두 $ActiveTasks 수에서 제외됩니다.|
-| $RunningTasks |실행 중 상태인 태스크 수. |
-| $PendingTasks |$ActiveTasks 및 $RunningTasks의 합입니다. |
-| $SucceededTasks |성공적으로 완료된 태스크 수. |
-| $FailedTasks |실패한 태스크 수. |
-| $CurrentDedicatedNodes |현재 전용 계산 노드 수. |
-| $CurrentLowPriorityNodes |선점된 노드를 포함하여 우선 순위가 낮은 계산 노드의 현재 수입니다. |
-| $PreemptedNodeCount | 선점 상태에 있는 풀의 노드 수입니다. |
+| $CPUPercent |hello CPU 사용량 평균 비율입니다. |
+| $WallClockSeconds |사용 하는 시간 (초) hello 수입니다. |
+| $MemoryBytes |hello 사용 (메가바이트)의 평균 수입니다. |
+| $DiskBytes |hello hello 로컬 디스크에 사용 되는 기가바이트의 평균 수입니다. |
+| $DiskReadBytes |hello 읽은 바이트 수입니다. |
+| $DiskWriteBytes |hello 쓴 바이트 수입니다. |
+| $DiskReadOps |디스크 읽기 작업의 hello 수 수행 됩니다. |
+| $DiskWriteOps |hello 디스크 쓰기 작업 수행 수입니다. |
+| $NetworkInBytes |hello 인바운드 바이트 수입니다. |
+| $NetworkOutBytes |hello 아웃 바운드 바이트 수입니다. |
+| $SampleNodeCount |hello 계산 노드 수입니다. |
+| $ActiveTasks |hello 수 준비 tooexecute 되어 있지만 아직 실행 되지 않는 작업입니다. hello $ActiveTasks 수 hello 활성 상태에 있으며 종속성 조건이 충족 되는 모든 작업이 포함 됩니다. Hello 활성 상태에 있지만 종속성이 충족 되지 않은 모든 작업은 hello $ActiveTasks 개수에서 제외 됩니다.|
+| $RunningTasks |태스크 실행 중 상태로 hello 수입니다. |
+| $PendingTasks |$ActiveTasks 및 $RunningTasks hello 합입니다. |
+| $SucceededTasks |hello 성공적으로 완료 하는 작업 수입니다. |
+| $FailedTasks |hello 실패 한 태스크 수입니다. |
+| $CurrentDedicatedNodes |hello 현재 개수 전용된 노드를 계산합니다. |
+| $CurrentLowPriorityNodes |hello 현재 수가 우선 순위가 낮은 중지 되었던 모든 노드를 포함 하 여 노드를 계산 합니다. |
+| $PreemptedNodeCount | 중지 상태에 있는 hello 풀에 있는 노드의 hello 수입니다. |
 
 > [!TIP]
-> 앞의 표에서 설명하는 읽기 전용 서비스 정의 변수는 각각에 연결된 데이터에 액세스하는 다양한 메서드를 제공하는 *개체*입니다. 자세한 내용은 이 문서의 뒷부분에 나오는 [샘플 데이터 가져오기](#getsampledata)를 참조하세요.
+> hello hello 이전 표에 표시 되는 서비스 정의 읽기 전용 변수는 *개체* 다양 한 메서드를 제공 하는 각 연결 된 tooaccess 데이터입니다. 자세한 내용은 이 문서의 뒷부분에 나오는 [샘플 데이터 가져오기](#getsampledata)를 참조하세요.
 >
 >
 
@@ -126,12 +126,12 @@ $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
 * doubleVec
 * doubleVecList
 * string
-* timestamp--타임스탬프는 다음의 멤버를 포함하는 복합 구조입니다.
+* 타임 스탬프-타임 스탬프는 hello 다음 멤버를 포함 하는 복합 구조:
 
   * year
   * month (1-12)
   * day (1-31)
-  * weekday(숫자 형식, 예: 1은 월요일을 의미함)
+  * 요일 (소수점 숫자의 hello 형식에서 예를 들어 1은 월요일)
   * hour(24시간 형식, 예: 13은 오후 1시를 의미함)
   * minute (00-59)
   * second (00-59)
@@ -149,7 +149,7 @@ $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
   * TimeInterval_Year
 
 ## <a name="operations"></a>작업
-이전 섹션에서 나열된 형식에서 허용되는 연산은 다음과 같습니다.
+이러한 작업은 hello 이전 섹션에 나열 된 hello 형식에서 허용 됩니다.
 
 | 작업 | 지원되는 연산자 | 결과 형식 |
 | --- | --- | --- |
@@ -173,38 +173,38 @@ $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
 3항 연산자(`double ? statement1 : statement2`)가 있는 이중 연산자를 테스트할 경우 0이 아님이 **true**이고 0은 **false**입니다.
 
 ## <a name="functions"></a>함수
-이러한 미리 정의된 **함수** 는 자동 크기 조정 수식을 정의하는 데 사용할 수 있습니다.
+이러한 미리 정의 된 **함수** toouse는 자동 크기 조정 수식을 정의 사용할 수 있습니다.
 
 | 함수 | 반환 형식 | 설명 |
 | --- | --- | --- |
-| avg(doubleVecList) |double |doubleVecList에 있는 모든 값의 평균 값을 반환합니다. |
-| len(doubleVecList) |double |doubleVecList에서 만든 벡터의 길이를 반환합니다. |
-| lg(double) |double |double의 로그 밑 2를 반환합니다. |
-| lg(doubleVecList) |doubleVec |doubleVecList의 구성 요소 로그 밑 2를 반환합니다. vec(double)은 매개 변수에 대해 명시적으로 전달되어야 합니다. 그렇지 않으면 double lg(double) 버전으로 간주됩니다. |
-| ln(double) |double |double의 자연 로그를 반환합니다. |
-| ln(doubleVecList) |doubleVec |doubleVecList의 구성 요소 로그 밑 2를 반환합니다. vec(double)은 매개 변수에 대해 명시적으로 전달되어야 합니다. 그렇지 않으면 double lg(double) 버전으로 간주됩니다. |
-| log(double) |double |double의 로그 밑 10을 반환합니다. |
-| log(doubleVecList) |doubleVec |doubleVecList의 구성 요소 로그 밑 10을 반환합니다. vec(double)은 단일 이중 매개 변수에 대해 명시적으로 전달되어야 합니다. 그렇지 않으면 double log(double) 버전으로 간주됩니다. |
-| max(doubleVecList) |double |doubleVecList의 최대값을 반환합니다. |
-| min(doubleVecList) |double |doubleVecList의 최소값을 반환합니다. |
-| norm(doubleVecList) |double |doubleVecList에서 만든 벡터의 두 기준을 반환합니다. |
-| percentile(doubleVec v, double p) |double |벡터 v의 백분위수 요소를 반환합니다. |
+| avg(doubleVecList) |double |반환 hello hello doubleVecList의 모든 값에 대 한 평균 값입니다. |
+| len(doubleVecList) |double |반환 hello hello doubleVecList에서 생성 되는 hello 벡터의 길이입니다. |
+| lg(double) |double |반환 hello 로그 밑이 2 hello double 합니다. |
+| lg(doubleVecList) |doubleVec |밑이 2 hello doubleVecList hello component-wise 로그를 반환합니다. vec(double) hello 매개 변수에 대해 명시적으로 전달 되어야 합니다. 그렇지 않으면 hello double lg (double) 버전으로 간주 됩니다. |
+| ln(double) |double |반환 hello hello double의 자연 로그입니다. |
+| ln(doubleVecList) |doubleVec |밑이 2 hello doubleVecList hello component-wise 로그를 반환합니다. vec(double) hello 매개 변수에 대해 명시적으로 전달 되어야 합니다. 그렇지 않으면 hello double lg (double) 버전으로 간주 됩니다. |
+| log(double) |double |Hello 로그 밑수 10을 반환 hello double입니다. |
+| log(doubleVecList) |doubleVec |Hello component-wise 로그 hello doubleVecList의 밑수 10을 반환 합니다. vec(double) hello 단일 double 매개 변수에 대해 명시적으로 전달 되어야 합니다. 그렇지 않으면 hello log (double) 버전으로 간주 됩니다. |
+| max(doubleVecList) |double |반환 hello hello doubleVecList의 최대값입니다. |
+| min(doubleVecList) |double |반환 hello hello doubleVecList의 최소값입니다. |
+| norm(doubleVecList) |double |반환 hello hello doubleVecList에서 생성 되는 hello 벡터의 2-norm 합니다. |
+| percentile(doubleVec v, double p) |double |반환 hello hello 벡터 v의 백분위 수 요소입니다. |
 | rand() |double |0.0에서 1.0 사이의 임의 값을 반환합니다. |
-| range(doubleVecList) |double |doubleVecList에 있는 최소값과 최대값 사이의 차이를 반환합니다. |
-| std(doubleVecList) |double |doubleVecList에 있는 값의 샘플 표준 편차를 반환합니다. |
-| stop() | |자동 크기 조정 식의 평가를 중지합니다. |
-| sum(doubleVecList) |double |doubleVecList에 있는 모든 구성 요소의 합계를 반환합니다. |
-| time(string dateTime="") |timestamp |매개 변수가 전달되지 않는 경우 현재 시간의 타임스탬프 또는 매개 변수가 전달되는 경우 dateTime 문자열의 타임스탬프를 반환합니다. 지원되는 dateTime 형식은 W3C-DTF 및 RFC 1123입니다. |
-| val(doubleVec v, double i) |double |시작 인덱스가 0인 벡터 v의 위치 i 요소 값을 반환합니다. |
+| range(doubleVecList) |double |Hello doubleveclist에서 hello hello 최소 및 최대 값의 차이 반환 합니다. |
+| std(doubleVecList) |double |반환 hello hello doubleVecList의 hello 값 샘플 표준 편차입니다. |
+| stop() | |Hello 자동 크기 조정 식의 평가 중지합니다. |
+| sum(doubleVecList) |double |반환 hello 전체적인 hello doubleVecList의 모든 hello 구성 요소입니다. |
+| time(string dateTime="") |timestamp |매개 변수가 전달 되는 경우 또는 전달 되 면 hello dateTime 문자열의 타임 스탬프를 환영 하는 경우 hello의 타임 스탬프 hello 현재 시간을 반환 합니다. 지원되는 dateTime 형식은 W3C-DTF 및 RFC 1123입니다. |
+| val(doubleVec v, double i) |double |시작 인덱스가 0 인 벡터 v의에서 위치 i에 있는 hello 요소의 hello 값을 반환 합니다. |
 
-앞의 표에서 설명하는 함수 중 일부는 목록을 인수로 허용할 수 있습니다. 쉼표로 구분된 목록은 *double* 및 *doubleVec*의 조합입니다. 예:
+목록을 수락할 hello 앞의 표에서 설명 하는 hello 함수 중 일부를 인수로 수 있습니다. hello 쉼표로 구분 된 목록은 어떠한 조합의 *double* 및 *doubleVec*합니다. 예:
 
 `doubleVecList := ( (double | doubleVec)+(, (double | doubleVec) )* )?`
 
-*doubleVecList* 값은 평가 전 단일 *doubleVec*으로 변환됩니다. 예를 들어 `v = [1,2,3]`의 경우 `avg(v)` 호출은 `avg(1,2,3)` 호출과 동일합니다. `avg(v, 7)` 호출은 `avg(1,2,3,7)` 호출과 동일합니다.
+hello *doubleVecList* 값은 변환 된 tooa 단일 *doubleVec* 평가 하기 전에. 예를 들어 경우 `v = [1,2,3]`를 호출한 다음 `avg(v)` 해당 toocalling은 `avg(1,2,3)`합니다. 호출 `avg(v, 7)` 해당 toocalling은 `avg(1,2,3,7)`합니다.
 
 ## <a name="getsampledata"></a>샘플 데이터 가져오기
-자동 크기 조정 수식은 배치 서비스에서 제공한 메트릭 데이터(샘플)에서 작동합니다. 수식은 서비스에서 가져온 값에 따라 풀 크기를 늘리거나 줄입니다. 앞에서 설명한 서비스 정의 변수는 해당 개체에 연결된 데이터에 액세스하는 다양한 메서드를 제공하는 개체입니다. 예를 들어, 다음 식은 최근 5분 동안의 CPU 사용률을 얻기 위한 요청을 보여 줍니다.
+자동 크기 조정 수식 hello 일괄 처리 서비스에서 제공 되는 메트릭 데이터 (샘플)에 적용 됩니다. 수식을 확장 하거나 hello 서비스에서 얻은 hello 값에 따라 풀 크기를 축소 합니다. 설명한 hello 서비스 정의 된 변수는 이전에 tooaccess 데이터를 해당 개체와 연결 된 다양 한 메서드를 제공 하는 개체는입니다. 예를 들어 hello 다음 식을 보여 줍니다 요청 tooget hello 지난 5 분 동안 CPU 사용량:
 
 ```
 $CPUPercent.GetSample(TimeInterval_Minute * 5)
@@ -212,58 +212,58 @@ $CPUPercent.GetSample(TimeInterval_Minute * 5)
 
 | 메서드 | 설명 |
 | --- | --- |
-| GetSample() |`GetSample()` 메서드는 데이터 샘플의 벡터를 반환합니다.<br/><br/>하나의 샘플은 30초 동안의 메트릭 데이터입니다. 즉 30초마다 샘플을 가져옵니다. 그러나 아래에서 설명하듯이 샘플이 수집된 시간과 해당 샘플을 수식에 사용할 수 있게 되는 시간 사이에 지연이 있습니다. 따라서 지정된 기간 동안 일부 샘플을 수식에 의한 평가에 사용할 수 없을지도 모릅니다.<ul><li>`doubleVec GetSample(double count)`<br/>수집한 최근 샘플에서 가져올 샘플 수를 지정합니다.<br/><br/>`GetSample(1)`은 사용 가능한 마지막 샘플을 반환합니다. 그러나 `$CPUPercent`와 같은 메트릭의 경우 샘플이 수집된 *시기*를 알 수 없기 때문에 이 메서드를 사용해서는 안 됩니다. 최근 샘플일 수도 있지만 시스템 문제로 인해 훨씬 오래된 샘플일 수도 있습니다. 그러한 경우 아래에 표시된 것처럼 시간 간격을 사용하는 것이 좋습니다.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>샘플 데이터를 수집하기 위한 시간 프레임을 지정합니다. 선택적으로 요청 시간 프레임에 있어야 하는 샘플의 백분율을 지정합니다.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)`은 지난 10분 동안의 모든 샘플이 CPUPercent 기록에 있는 경우 20개 샘플을 반환합니다. 그러나 내역의 마지막 분을 사용할 수 없으면 샘플 18개만 반환될 것입니다. 이 경우 다음과 같습니다.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)`은 샘플의 90%만 사용할 수 있으므로 실패합니다.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)`은 성공합니다.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>시작 시간과 종료 시간을 사용하여 데이터를 수집하기 위한 시간 프레임을 지정합니다.<br/><br/>위에서 언급했듯이 샘플이 수집된 시간과 해당 샘플을 수식에 사용할 수 있게 되는 시간 사이에 지연이 있습니다. `GetSample` 메서드를 사용할 때 이 지연을 고려해 보세요. 아래 `GetSamplePercent` 참조 |
-| GetSamplePeriod() |기록 샘플 데이터 집합에서 가져온 샘플의 기간을 반환합니다. |
-| Count() |메트릭 기록에 있는 총 샘플 수를 반환합니다. |
-| HistoryBeginTime() |메트릭에 대해 사용 가능한 가장 오래된 데이터 샘플의 타임스탬프를 반환합니다. |
-| GetSamplePercent() |지정된 시간 간격에 사용할 수 있는 샘플의 백분율을 반환합니다. 예:<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>반환된 샘플의 백분율이 지정한 `samplePercent`보다 작은 경우 `GetSample` 메서드가 실패하기 때문에 `GetSamplePercent` 메서드를 사용하여 먼저 확인할 수 있습니다. 그런 다음 비효율적인 샘플이 존재하는 경우 자동 크기 조정 평가를 중단하지 않고 대체 작업을 수행할 수 있습니다. |
+| GetSample() |hello `GetSample()` 메서드 데이터 샘플의 벡터를 반환 합니다.<br/><br/>하나의 샘플은 30초 동안의 메트릭 데이터입니다. 즉 30초마다 샘플을 가져옵니다. 하지만 아래 설명과 같이 샘플 수집 하는 경우와 사용 가능한 tooa 수식을 때 까지는 지연 시간이 있습니다. 따라서 지정된 기간 동안 일부 샘플을 수식에 의한 평가에 사용할 수 없을지도 모릅니다.<ul><li>`doubleVec GetSample(double count)`<br/>수집 된 가장 최근 샘플 hello에서에서 샘플 tooobtain hello 수를 지정 합니다.<br/><br/>`GetSample(1)`hello 마지막 사용 가능한 샘플을 반환합니다. 그러나 메트릭과 같이 `$CPUPercent`,이 쓰일 수 없습니다 불가능 한 tooknow 있기 때문에 *때* hello 샘플이 수집 된 합니다. 최근 샘플일 수도 있지만 시스템 문제로 인해 훨씬 오래된 샘플일 수도 있습니다. 이러한 경우 toouse 아래와 같이 시간 간격에에서 두는 것이 좋습니다.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>샘플 데이터를 수집하기 위한 시간 프레임을 지정합니다. 필요에 따라 지정 hello에서 사용할 수 있어야 하는 샘플의 hello 백분율 시간 프레임을 요청 했습니다.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)`지난 10 분 hello에 대 한 모든 샘플 hello CPUPercent 기록에 있는 경우에 20 샘플을 반환 합니다. 그러나 Hello 지난 1 분간 기록 하지 않았으면만 18 샘플 반환 됩니다. 이 경우 다음과 같습니다.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)`hello 샘플의 90%에만 사용할 수 있으므로 실패 합니다.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)`은 성공합니다.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>시작 시간과 종료 시간을 사용하여 데이터를 수집하기 위한 시간 프레임을 지정합니다.<br/><br/>위에서 설명 했 듯이 샘플 수집 하는 경우와 사용 가능한 tooa 수식을 때 까지는 지연 시간이 있습니다. Hello를 사용 하는 경우 이러한 지연 시간을 고려 `GetSample` 메서드. 아래 `GetSamplePercent` 참조 |
+| GetSamplePeriod() |기록 샘플 데이터 집합에서 수행 된 샘플의 hello 기간을 반환 합니다. |
+| Count() |반환 hello 총 hello 메트릭 기록에는 샘플 수입니다. |
+| HistoryBeginTime() |반환 hello hello hello 메트릭에 대 한 가장 오래 된 사용 가능한 데이터 샘플의 타임 스탬프입니다. |
+| GetSamplePercent() |반환 hello는 주어진된 시간 간격에 사용할 수 있는 샘플의 백분율입니다. 예:<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>때문에 hello `GetSample` 메서드가 반환 하는 샘플의 hello 백분율 미만이 면 hello 실패 `samplePercent` 지정 hello를 사용할 수 `GetSamplePercent` 메서드 toocheck 첫 번째입니다. 그런 다음 부족 하 여 샘플 hello 자동 크기 조정 평가 중지 하지 않고 표시 되어 있는 경우 다른 동작을 수행할 수 있습니다. |
 
-### <a name="samples-sample-percentage-and-the-getsample-method"></a>샘플, 샘플 비율 및 *GetSample()* 메서드
-자동 크기 조정 수식의 핵심 작업은 작업 및 리소스 메트릭 데이터를 가져오고 데이터를 기반으로 풀 크기를 조정하는 것입니다. 따라서 자동 크기 조정 수식이 메트릭 데이터(샘플)과 상호 작용하는 방식을 명확히 이해해야 합니다.
+### <a name="samples-sample-percentage-and-hello-getsample-method"></a>샘플, 샘플 비율 및 hello *GetSample()* 메서드
+자동 크기 조정 수식이의 핵심 작업 hello tooobtain 작업 및 자원 메트릭 데이터 이며 해당 데이터에 따라 풀 크기를 조정 합니다. 따라서 것은 중요 한 toohave 자동 크기 조정 수식 메트릭 데이터 (샘플)와 상호 작용 하는 방법을 파악 합니다.
 
 **샘플**
 
-Batch 서비스는 정기적으로 작업 및 리소스 메트릭의 샘플을 가져와 자동 크기 조정 수식에 사용할 수 있도록 합니다. 이러한 샘플은 배치 서비스에서 30초 마다 기록됩니다. 하지만 일반적으로 이러한 샘플을 기록하는 시간과 자동 크기 조정 수식에서 사용할 수 있을 시간(읽을 수 있는 시간) 사이에 지연이 있습니다. 또한 네트워크 또는 다른 인프라 문제와 같이 다양한 요인으로 인해 샘플이 특정 기간에 기록되지 않을 수 있습니다.
+hello 일괄 처리 서비스는 정기적으로 작업 및 자원 메트릭 샘플을 사용 하 고 자동 크기 조정 수식을 사용할 수 있는 tooyour 끌고 있습니다. 이러한 예제는 hello 일괄 처리 서비스에서 30 초 마다 기록 됩니다. 그러나는 일반적으로 이러한 샘플 기록 된 시간 사이의 너무 사용할 수 있습니다 (고 때에서 읽을 수)는 지연을 자동 크기 조정 수식입니다. 또한 네트워크나 기타 인프라 문제 toovarious 요인 인해 샘플 하지 기록 될 수 있습니다는 특정 기간에 대 한 합니다.
 
 **샘플 비율**
 
-`samplePercent`를 `GetSample()` 메서드에 전달하거나 `GetSamplePercent()` 메서드를 호출하는 경우 _percent_(비율)는 Batch 서비스에서 기록하는 샘플의 가능한 총 수와 자동 크기 조정 수식에서 사용할 수 있는 샘플 수를 비교한 것입니다.
+때 `samplePercent` toohello 전달 되 `GetSample()` 메서드 또는 hello `GetSamplePercent()` 메서드는 _%_ tooa 비교 hello 가능한 최대 수 hello 일괄 처리 서비스에서 기록 되는 샘플을 참조 하 고 사용 가능한 tooyour 자동 크기 조정 수식이 있는 샘플 hello 수입니다.
 
-예를 들어 10분 TimeSpan을 살펴보겠습니다. 샘플이 10분 시간 간격 내에서 30초마다 기록되므로 Batch에 서 기록하는 샘플의 최대 총 수는 20개 샘플(분당 2개)입니다. 그러나 보고 메커니즘의 고유한 대기 시간 또는 Azure 내의 다른 문제로 인해 자동 크기 조정 수식에서 읽는 데 사용할 수 있는 샘플은 15개뿐일 수 있습니다. 즉 10분 동안 기록하는 샘플의 총 개수 중 75%만 수식에서 사용할 수 있습니다.
+예를 들어 10분 TimeSpan을 살펴보겠습니다. 샘플에는 10 분 시간 범위 내에서 30 초 마다 기록 되므로, 일괄 처리에 의해 기록 되는 샘플의 hello 최대 총 수는 20 샘플 (2 분 당) 것입니다. 그러나 메커니즘 및 Azure 내에서 기타 문제를 보고 하는 hello의 내재 된 대기 시간 toohello 인해 있을 수 있습니다만 15 샘플 읽기에 대 한 사용 가능한 tooyour 자동 크기 조정 수식에는. 따라서 예를 들어 그 10 분 동안 hello 총 기록 하는 샘플 수의 75%에만 수 있습니다 사용할 수 있는 tooyour 수식입니다.
 
 **GetSample() 및 샘플 범위**
 
-자동 크기 조정 수식은 풀을 확장하거나 축소합니다. 즉 노드를 추가하거나 제거합니다. 노드에 비용이 들기 때문에 수식은 충분한 데이터를 기반으로 지능형 분석 메서드를 사용해야 합니다. 따라서 수식에서 추세 형식 분석을 사용하는 것이 좋습니다. 이 형식은 수집된 샘플의 범위에 따라 풀을 확장하고 축소합니다.
+자동 크기 조정 수식은 진행 중인 toobe 증가 및 축소 풀 &mdash; 노드 노드 추가 또는 제거 합니다. 노드 비용이 있습니다, 때문 분석 충분 한 데이터를 기반으로 하는 지능형 메서드를 사용 하는 수식을 tooensure를 좋습니다. 따라서 수식에서 추세 형식 분석을 사용하는 것이 좋습니다. 이 형식은 수집된 샘플의 범위에 따라 풀을 확장하고 축소합니다.
 
-이렇게 하려면 `GetSample(interval look-back start, interval look-back end)`를 사용하여 샘플의 벡터를 반환합니다.
+toodo를 사용 하 여 `GetSample(interval look-back start, interval look-back end)` tooreturn 벡터의 샘플:
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(1 * TimeInterval_Minute, 6 * TimeInterval_Minute);
 ```
 
-위의 줄이 Batch에 의해 확인된 경우 다양한 샘플을 값의 벡터로 반환합니다. 예:
+일괄 처리에 의해 줄 위에 hello 계산할 때 값의 벡터 샘플의 범위를 반환 합니다. 예:
 
 ```
 $runningTasksSample=[1,1,1,1,1,1,1,1,1,1];
 ```
 
-샘플의 벡터를 수집했으면 `min()`, `max()` 및 `avg()`과 같은 함수를 사용하여 수집된 범위에서 의미 있는 값을 파생할 수 있습니다.
+와 같은 함수를 유도할 수 있습니다 hello 벡터의 샘플을 수집 했습니다 면 `min()`, `max()`, 및 `avg()` tooderive hello에서 의미 있는 값 범위를 수집 합니다.
 
-추가 보안을 위해 특정 샘플 비율 미만을 특정 기간 동안 사용할 수 있는 경우 수식 평가가 실패하도록 강제할 수 있습니다. 수식 평가가 실패하도록 강제하면 지정된 샘플 비율을 사용할 수 없는 경우 Batch에 수식의 추가 평가를 중단하도록 지시합니다. 이 경우 풀 크기가 변경되지 않습니다. 평가가 성공하기 위해 샘플의 필요한 백분율을 지정하려면 `GetSample()`에 대한 세 번째 매개 변수로 지정합니다. 여기에서는 샘플의 75% 요구 사항이 지정됩니다.
+추가 보안을 위해 특정 기간 동안 사용할 수 있는 특정 샘플 비율 보다 작은 경우 수식 평가 toofail를 강제할 수 있습니다. 수식 평가 toofail 강제 때 지시할 있습니다 일괄 처리 toocease 추가 hello 식의 평가 hello 지정 샘플의 백분율을 사용할 수 없습니다. 이 경우에 변경 되지 않습니다 toohello 풀 크기입니다. hello 평가 toosucceed에 대 한 샘플의 필요한 백분율 toospecify가 세 번째 매개 변수를 너무 hello 대로 지정`GetSample()`합니다. 여기에서는 샘플의 75% 요구 사항이 지정됩니다.
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * TimeInterval_Second, 75);
 ```
 
-또한 샘플 가용성에 지연 시간이 있을 수 있으므로 시간 범위를 1분 이상인 돌아보기 시작 시간으로 지정하는 것이 중요합니다. 샘플이 시스템을 통해 전파되는 데 약 1분 정도가 걸리므로 `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` 범위에 있는 샘플은 사용하지 못할 수도 있습니다. 다시 `GetSample()`라는 백분율 매개 변수를 사용하여 특정 샘플 비율 요구 사항을 강제할 수 있습니다.
+샘플 가용성에 지연이 있을 수 있습니다, 때문에 반드시 tooalways 모양을 다시 시작 시간이 1 분 보다 오래 된 시간 범위를 지정 합니다. Hello 시스템을 통해 샘플 toopropagate hello 범위 내에 있으므로 샘플에 대 한 약 1 분 걸리는 `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` 사용할 수 없습니다. hello 백분율 매개 변수를 사용할 수는 다시 `GetSample()` tooforce 특정 샘플 비율 요구 사항입니다.
 
 > [!IMPORTANT]
-> **자동 크기 조정 수식의 `GetSample(1)`*만* 신뢰하지 않는** 것이 **좋습니다**. `GetSample(1)`은 기본적으로 Batch 서비스에 “경과한 시간에 관계 없이 마지막 샘플을 제공하도록” 요구하기 때문입니다. 이 샘플은 단일 샘플이고 오래된 샘플이기 때문에 최근 작업 또는 리소스 상태의 큰 그림을 나타내지 않을 수 있습니다. `GetSample(1)`을 사용하는 경우 큰 문의 일부이며 수식이 사용하는 유일한 데이터 지점이 아니도록 주의합니다.
+> **자동 크기 조정 수식의 `GetSample(1)`*만* 신뢰하지 않는** 것이 **좋습니다**. 때문에 이것이 `GetSample(1)` toohello 일괄 처리 서비스를 "me hello를 마지막 예제 제공에 관계 없이 검색 경과한 시간입니다." 라는 내용을 않을 이전 샘플 수도 가구의 단일 샘플만는 최근 작업 또는 리소스 상태 hello 더 큰 그림을 대표 하지 수 있습니다. 사용 않으면 `GetSample(1)`, 더 큰 문의 일부 인지 확인 및 수식에 사용 하는 데이터 요소만 하지 hello 합니다.
 >
 >
 
 ## <a name="metrics"></a>메트릭
-수식을 정의할 때 리소스 및 작업 메트릭을 모두 사용할 수 있습니다. 가져오고 평가한 메트릭 데이터를 기반으로 하는 풀의 전용 노드 대상 수를 조정합니다. 각 메트릭에 대한 자세한 내용은 위의 [변수](#variables) 섹션을 참조하세요.
+수식을 정의할 때 리소스 및 작업 메트릭을 모두 사용할 수 있습니다. 평가 하는 hello 메트릭 데이터를 기반으로 하는 hello 풀의 전용된 노드 hello 대상 수를 조정 합니다. Hello 참조 [변수](#variables) 각 메트릭에 대 한 자세한 내용은 섹션.
 
 <table>
   <tr>
@@ -272,7 +272,7 @@ $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * Ti
   </tr>
   <tr>
     <td><b>리소스</b></td>
-    <td><p>리소스 메트릭은 CPU, 대역폭, 계산 노드의 메모리 사용량 및 노드 수를 기반으로 합니다.</p>
+    <td><p>리소스 메트릭 hello CPU, hello 대역폭, 계산 노드의 hello 메모리 사용량을 기반으로 및 hello 노드 수입니다.</p>
         <p> 이러한 서비스 정의 변수는 노드 수에 기반하여 조정하는 데 유용합니다.</p>
     <p><ul>
             <li>$TargetDedicatedNodes</li>
@@ -296,8 +296,8 @@ $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * Ti
       <li>$NetworkOutBytes</li></ul></p>
   </tr>
   <tr>
-    <td><b>작업</b></td>
-    <td><p>작업 메트릭은 활성, 보류 중 및 완료됨과 같은 작업 상태를 기반으로 합니다. 다음 서비스 정의 변수는 노드 작업 메트릭에 기반하여 풀 크기를 조정하는 데 유용합니다.</p>
+    <td><b>Task</b></td>
+    <td><p>작업은 보류 중, 활성, 같은 작업의 hello 상태에 따라 메트릭과 완료 합니다. hello 다음 서비스 정의 된 변수는 작업 기준에 따라 풀 크기를 조정 하는 데 유용 합니다.</p>
     <p><ul>
       <li>$ActiveTasks</li>
       <li>$RunningTasks</li>
@@ -309,15 +309,15 @@ $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * Ti
 </table>
 
 ## <a name="write-an-autoscale-formula"></a>자동 크기 조정 수식 작성
-위의 구성 요소를 사용하는 구문을 구성하여 자동 크기 조정 수식을 작성한 다음 해당 구문을 완전한 수식으로 결합합니다. 이 섹션에서는 몇 가지 실제 크기 조정을 결정할 수 있는 자동 크기 조정 수식 예제를 만듭니다.
+구성 요소를 위에서 hello를 사용 하는 문을 형성 하 여 자동 크기 조정 수식을 작성 한 다음 해당 문을 완전 한 수식으로 결합 합니다. 이 섹션에서는 몇 가지 실제 크기 조정을 결정할 수 있는 자동 크기 조정 수식 예제를 만듭니다.
 
-먼저 새 자동 크기 조정 수식에 대한 요구 사항을 정의합니다. 수식은 다음과 같아야 합니다.
+첫째, 이제 새 자동 크기 조정 수식의 hello 요구 사항을 정의 합니다. hello 수식 수행 해야합니다.
 
-1. CPU 사용량이 많은 경우 풀에 있는 전용 계산 노드의 목표 수를 늘립니다.
-2. CPU 사용량이 적은 경우 풀에 있는 전용 계산 노드의 목표 수를 줄입니다.
-3. 전용 노드의 최대 수는 항상 400으로 제한합니다.
+1. CPU 사용량이 높은 경우 풀의 전용된 계산 노드 hello 대상 수를 늘립니다.
+2. CPU 사용량이 낮을 때 풀의 전용된 계산 노드 hello 대상 수를 줄입니다.
+3. 항상 전용된 노드 too400 hello 최대 수를 제한 합니다.
 
-CPU 사용량이 많은 동안 노드 수를 늘리려면, 지난 10분 동안 CPU 최소 평균 사용량이 70%를 초과한 경우에만 사용자 정의 변수(`$totalDedicatedNodes`)를 전용 노드의 현재 목표 수의 110%인 값으로 채우는 문을 정의합니다. 그렇지 않으면 전용 노드의 현재 수에 대한 값을 사용합니다.
+사용자 정의 변수를 채우는 hello 보고서를 정의 하는 동안 CPU 사용량이 노드의 tooincrease hello 수 (`$totalDedicatedNodes`) 경우에만 전용 노드의 hello 현재 대상 수의 110% 있는 값을 가진 hello 최소 평균 CPU 사용량 hello 중 지난 10 분 70% 이상 이었습니다. 그렇지 않으면 hello 현재 전용된 노드 수에 대 한 hello 값을 사용 합니다.
 
 ```
 $totalDedicatedNodes =
@@ -325,7 +325,7 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 1.1) : $CurrentDedicatedNodes;
 ```
 
-CPU 사용량이 많은 동안 노드 수를 *줄이려면*, 지난 60분 동안 CPU 평균 사용량이 20% 미만인 경우 수식의 다음 문에서 동일한 `$totalDedicatedNodes` 변수를 전용 노드의 현재 목표 수의 90%로 설정합니다. 그렇지 않으면 위 구문에 채워진 `$totalDedicatedNodes`의 현재 값을 사용합니다.
+너무*감소* 중 CPU 사용량이 낮은 전용된 노드 수가 hello, 우리의 수식 집합 hello의 다음 문으로 동일 hello `$totalDedicatedNodes` 변수 too90% 경우 hello 전용 노드의 hello 현재 대상 수의 평균 CPU 사용량 hello에 지난 60 분에서 20% 였습니다. 그렇지 않으면 hello의 현재 값을 사용 하 여 `$totalDedicatedNodes` 위의 hello 문에서 채운 합니다.
 
 ```
 $totalDedicatedNodes =
@@ -333,13 +333,13 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 0.9) : $totalDedicatedNodes;
 ```
 
-이제 전용 계산 노드의 목표 수를 최대 400으로 제한합니다.
+이제 hello 400 전용된 계산 노드 tooa 최대 대상 수 제한:
 
 ```
 $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 ```
 
-완성된 수식은 다음과 같습니다.
+Hello 완전 한 수식을 다음과 같습니다.
 
 ```
 $totalDedicatedNodes =
@@ -353,15 +353,15 @@ $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 
 ## <a name="create-an-autoscale-enabled-pool-with-net"></a>.NET으로 자동 크기 조정 가능한 풀 만들기
 
-.NET에서 자동 크기 조정 가능한 풀을 만들려면 다음 단계를 수행합니다.
+.net을 사용 하도록 설정 하는 자동 크기 조정 기능을 사용 하 여 풀 toocreate 다음이 단계를 따르십시오.
 
-1. [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool)을 사용하여 풀을 만듭니다.
-2. [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) 속성을 `true`로 설정합니다.
-3. 자동 크기 조정 수식을 사용하여 [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) 속성을 설정합니다.
-4. (선택 사항) [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) 속성을 설정합니다(기본값: 15 분).
-5. [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) 또는 [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync)로 풀을 커밋합니다.
+1. 사용 하 여 hello 풀 만들기 [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool)합니다.
+2. 집합 hello [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) 속성 너무`true`합니다.
+3. 집합 hello [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) 자동 크기 조정 수식 사용 하 여 속성입니다.
+4. (선택 사항) 집합 hello [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) 속성 (기본값은 15 분)입니다.
+5. 사용 하 여 hello 풀 커밋 [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) 또는 [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync)합니다.
 
-다음 코드 조각에서는 .NET에서 자동 크기 조정 가능한 풀을 만듭니다. 풀의 자동 크기 조정 수식에서 전용 노드의 목표 수를 월요일에는 5로, 그 외 다른 요일에는 1로 설정합니다. [자동 크기 조정 간격](#automatic-scaling-interval)은 30분으로 설정됩니다. 이 코드 조각과 이 문서의 다른 C# 코드 조각에서 `myBatchClient`는 [BatchClient][net_batchclient] 클래스의 올바르게 초기화된 인스턴스입니다.
+hello 다음 코드 조각에서는 자동 크기 조정 가능한 풀.net에서 합니다. hello 풀의 자동 크기 조정 수식이 hello 대상의 수를 설정 월요일, 전용된 노드 too5 및 hello 주 중 일 마다 1입니다. hello [자동 크기 조정 간격](#automatic-scaling-interval) 는 too30 시간 (분)을 설정 합니다. 이 다른 C# 코드 조각이 문서에서는 hello 및 `myBatchClient` hello는 올바르게 초기화 된 인스턴스가 [BatchClient] [ net_batchclient] 클래스입니다.
 
 ```csharp
 CloudPool pool = myBatchClient.PoolOperations.CreatePool(
@@ -375,54 +375,54 @@ await pool.CommitAsync();
 ```
 
 > [!IMPORTANT]
-> 자동 크기 조정 가능한 풀을 만들 때는 **CreatePool**에 대한 호출에서 _targetDedicatedComputeNodes_ 매개 변수 또는 _targetLowPriorityComputeNodes_ 매개 변수를 지정하지 마세요. 대신 풀에 **AutoScaleEnabled** 및 **AutoScaleFormula** 속성을 지정합니다. 이러한 속성의 값은 각 노드 형식의 목표 수를 결정합니다. 또한 자동 크기 조정 가능한 풀의 크기를 수동으로 조정하려는 경우(예: [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync] 사용) 먼저 풀에서 자동 크기 조정을 **사용하지 않도록** 설정한 다음 풀의 크기를 조정합니다.
+> 자동 크기 조정 가능한 풀을 만들 때 hello를 지정 하지 않으면 _targetDedicatedComputeNodes_ 매개 변수 또는 hello _targetLowPriorityComputeNodes_ hello에 매개 변수가 너무 호출 **CreatePool**합니다. 대신, hello 지정 **AutoScaleEnabled** 및 **AutoScaleFormula** hello 풀의 속성입니다. 이러한 속성에 대 한 hello 값 각 유형의 노드에 hello 대상 수를 결정합니다. Toomanually 자동 크기 조정 가능한 풀의 크기를 조정 또한 (예: [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync]), 첫 번째 **사용 하지 않도록 설정** 에 자동 크기 조정 풀 hello 다음 크기를 조정 합니다.
 >
 >
 
-Batch .NET 외에도 다른 [Batch SDK](batch-apis-tools.md#azure-accounts-for-batch-development), [Batch REST](https://docs.microsoft.com/rest/api/batchservice/), [Batch PowerShell cmdlet](batch-powershell-cmdlets-get-started.md) 및 [Batch CLI](batch-cli-get-started.md) 중 하나를 사용하여 자동 크기 조정을 구성할 수 있습니다.
+또한 tooBatch.NET을 사용할 수 있습니다 다른 hello의 [일괄 처리 Sdk](batch-apis-tools.md#azure-accounts-for-batch-development), [배치 REST](https://docs.microsoft.com/rest/api/batchservice/), [일괄 처리 PowerShell cmdlet](batch-powershell-cmdlets-get-started.md), 및 hello [일괄 처리 CLI](batch-cli-get-started.md)tooconfigure 자동 크기 조정 합니다.
 
 
 ### <a name="automatic-scaling-interval"></a>자동 크기 조정 간격
-기본적으로 Batch 서비스는 15분마다 자동 크기 조정 수식에 따라 풀의 크기를 조정합니다. 이 간격은 다음 풀 속성을 사용하여 구성할 수 있습니다.
+기본적으로 hello 일괄 처리 서비스가 풀의 크기에 따라 tooits 자동 크기 조정 수식이 15 분 마다 조정 합니다. 이 간격은 다음과 같은 풀 속성 hello를 사용 하 여 구성할 수 있습니다.
 
 * [CloudPool.AutoScaleEvaluationInterval][net_cloudpool_autoscaleevalinterval] (Batch .NET)
 * [autoScaleEvaluationInterval][rest_autoscaleinterval] (REST API)
 
-최소 간격은 5분이고 최대 간격은 168시간입니다. 이 범위를 벗어나는 간격을 지정하면 Batch 서비스에서 잘못된 요청(400) 오류를 반환합니다.
+hello 최소 간격은 5 분 이며 최대 hello 168 시간입니다. 이 범위를 벗어나는 간격을 지정 하는 경우 hello 일괄 처리 서비스는 잘못 된 요청 (400) 오류를 반환 합니다.
 
 > [!NOTE]
-> 자동 크기 조정은 현재 1분 미만의 변경 내용에 응답하지 않지만 워크로드를 실행하면 점차적으로 풀의 크기를 조정합니다.
+> 자동 크기 조정에 1 분 미만, 현재 상태의 toorespond toochanges은 아니지만 보다는 하기 위해 사용 하면 풀의 tooadjust hello 크기 점진적으로 작업을 실행 합니다.
 >
 >
 
 ## <a name="enable-autoscaling-on-an-existing-pool"></a>기존 풀에서 자동 크기 조정 사용
 
-Batch SDK마다 자동 크기 조정을 사용하도록 설정하는 방법을 제공합니다. 예:
+각 일괄 처리 SDK 방법을 tooenable 자동 크기 조정을 제공합니다. 예:
 
 * [BatchClient.PoolOperations.EnableAutoScaleAsync][net_enableautoscaleasync](Batch .NET)
 * [풀에서 자동 크기 조정 사용][rest_enableautoscale] (REST API)
 
-기존 풀에서 자동 크기 조정을 사용하도록 설정하는 경우 다음 사항에 유의하세요.
+기존 풀에서 자동 크기 조정을 사용 하도록 설정 하면 주의 hello 지점 다음에 유의 하십시오.
 
-* 자동 크기 조정을 사용하기 위한 요청을 발급할 때 현재 풀에서 자동 크기 조정을 사용하지 않도록 설정되어 있으면 이 요청을 발급할 때 유효한 자동 크기 조정 수식을 지정해야 합니다. 필요에 따라 자동 크기 조정 평가 간격을 지정할 수 있습니다. 간격을 지정하지 않으면 기본값인 15분이 사용됩니다.
-* 현재 풀에서 자동 크기 조정을 사용할 수 있는 경우 자동 크기 조정 수식, 평가 간격 또는 둘 다를 지정할 수 있습니다. 이러한 속성 중 하나 이상을 지정해야 합니다.
+* 자동 크기 조정을 현재에서 해제 되 면 hello 풀 hello 요청 tooenable 자동 크기 조정 실행 하면, hello 요청을 실행할 유효한 자동 크기 조정 수식을 지정 해야 합니다. 필요에 따라 자동 크기 조정 평가 간격을 지정할 수 있습니다. 간격을 지정 하지 않으면 hello 기본값인 15 분이 사용 됩니다.
+* 자동 크기 조정이 hello 풀에서 현재 사용 하는 경우에 자동 크기 조정 수식 평가 간격, 또는 둘 다 지정할 수 있습니다. 이러한 속성 중 하나 이상을 지정해야 합니다.
 
-  * 새로운 자동 크기 조정 간격을 지정하면 기존 평가 일정이 중지되고 새 일정이 시작됩니다. 새 일정의 시작 시간은 자동 크기 조정을 사용하기 위한 요청이 발급된 시간입니다.
-  * 자동 크기 조정 수식 또는 평가 간격을 생략하면 배치 서비스에서 해당 설정의 현재 값을 계속 사용합니다.
+  * 새 자동 크기 조정 평가 기간을 지정 하면 hello 기존 평가 일정 중지 되 고 새 일정을 시작 하는 것입니다. hello 새 일정의 시작 시간은 hello는 hello 요청 tooenable 자동 크기 조정 발급 된 시간을 시작 합니다.
+  * 어느 hello 자동 크기 조정 수식 또는 계산 간격을 생략 하면 hello 일괄 처리 서비스는 hello toouse 해당 설정의 현재 값을 계속 합니다.
 
 > [!NOTE]
-> .NET에서 풀을 만들 때 **CreatePool** 메서드의 *targetDedicatedComputeNodes* 또는 *targetLowPriorityComputeNodes* 매개 변수에 대한 값을 지정했거나 다른 언어의 비교 가능한 매개 변수에 대한 값을 지정한 경우, 자동 크기 조정 수식을 평가할 때 해당 값이 무시됩니다.
+> Hello에 대 한 값을 지정한 경우 *targetDedicatedComputeNodes* 또는 *targetLowPriorityComputeNodes* hello의 매개 변수 **CreatePool** hello를 만들 때 메서드 수식을 확장 자동 hello 계산 하는 경우.net, 또는 다른 언어를 다음 그러한 값에 hello 비교 가능한 매개 변수에 대 한 풀은 무시 됩니다.
 >
 >
 
-이 C# 코드 조각에서 다음과 같이 [Batch .NET][net_api] 라이브러리를 사용하여 기존 풀에서 자동 크기 조정을 사용하도록 설정합니다.
+이 C# 코드 조각은 hello를 사용 하 여 [일괄 처리.NET] [ net_api] 기존 풀에서 라이브러리 tooenable 자동 크기 조정 기능:
 
 ```csharp
-// Define the autoscaling formula. This formula sets the target number of nodes
-// to 5 on Mondays, and 1 on every other day of the week
+// Define hello autoscaling formula. This formula sets hello target number of nodes
+// too5 on Mondays, and 1 on every other day of hello week
 string myAutoScaleFormula = "$TargetDedicatedNodes = (time().weekday == 1 ? 5:1);";
 
-// Set the autoscale formula on the existing pool
+// Set hello autoscale formula on hello existing pool
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     "myexistingpool",
     autoscaleFormula: myAutoScaleFormula);
@@ -430,7 +430,7 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ### <a name="update-an-autoscale-formula"></a>자동 크기 조정 수식 업데이트
 
-기존의 자동 크기 조정 가능한 풀에서 수식을 업데이트하려면 새 수식을 사용하여 자동 크기 조정을 사용하도록 다시 설정하는 작업을 호출합니다. 예를 들어 다음 .NET 코드가 실행될 때 `myexistingpool`에서 자동 크기 조정을 사용하도록 이미 설정되어 있으면 자동 크기 조정 수식이 `myNewFormula`의 내용으로 바뀝니다.
+기존 자동 크기 조정 가능한 풀, 호출 hello 작업 tooenable 자동 크기 조정 hello 새 수식 사용 하 여 다시에서 tooupdate hello 수식입니다. 예를 들어, 자동 크기 조정에서 이미 사용 되 면 `myexistingpool` hello 다음.NET 코드를 실행 하면 해당 자동 크기 조정 수식이 아래 템플릿으로 바뀝니다 hello 내용의 `myNewFormula`합니다.
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -438,9 +438,9 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     autoscaleFormula: myNewFormula);
 ```
 
-### <a name="update-the-autoscale-interval"></a>자동 크기 조정 간격 업데이트
+### <a name="update-hello-autoscale-interval"></a>업데이트 hello 자동 크기 조정 간격
 
-기존의 자동 크기 조정 가능한 풀의 자동 크기 조정 평가 간격을 업데이트하려면 새 간격으로 자동 크기 조정을 사용하도록 다시 설정하는 작업을 호출합니다. 예를 들어 .NET에서 이미 자동 크기 조정 가능한 풀에 대해 자동 크기 조정 평가 간격을 60분으로 설정하려면 다음을 수행합니다.
+hello 자동 크기 조정 평가 간격은 기존 자동 크기 조정 가능한 풀, 호출 hello 작업 tooenable 자동 크기 조정 hello 새 간격을 사용 하 여 다시의 tooupdate 하 고 있습니다. 예를 들어 tooset hello 자동 크기 조정 평가 간격 too60 (분)는 이미.NET에서 자동 크기 조정 사용 하는 풀에:
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -450,50 +450,50 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ## <a name="evaluate-an-autoscale-formula"></a>자동 크기 조정 수식 평가
 
-수식은 풀에 적용하기 전에 평가할 수 있습니다. 이러한 방법으로 수식을 테스트하여 프로덕션 환경에 해당 수식을 배포하기 전에 문이 평가되는 방식을 확인할 수 있습니다.
+수식을 tooa 풀 적용 하기 전에 평가할 수 있습니다. 이러한 방식으로 hello 수식 toosee hello 수식을 프로덕션 환경에 배포 하기 전에 해당 문을 평가 하는 방법을 테스트할 수 있습니다.
 
-자동 크기 조정 수식을 평가하려면 먼저 유효한 수식을 사용하여 풀에서 자동 크기 조정을 사용하도록 설정해야 합니다. 아직 자동 크기 조정을 사용할 수 없는 풀에서 수식을 테스트하려면 자동 크기 조정을 처음 사용할 때 한 줄로 구성된 `$TargetDedicatedNodes = 0` 수식을 사용합니다. 그런 후에 다음 중 하나를 사용하여 테스트할 수식을 평가합니다.
+자동 크기 조정 수식이 tooevaluate 먼저 유효한 수식 사용 하 여 hello 풀에서 자동 크기 조정을 설정 해야 합니다. tootest 아직 없는 경우 자동 크기 조정 하는 풀에 대 한 수식을 사용 하도록 설정 사용 하 여 hello 한 줄 수식을 `$TargetDedicatedNodes = 0` 자동 크기 조정 기능을 먼저 활성화 합니다. 그런 다음 다음 tootest 원하는 tooevaluate hello 수식을 hello 중 하나를 따릅니다.
 
 * [BatchClient.PoolOperations.EvaluateAutoScale](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscale) 또는 [EvaluateAutoScaleAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscaleasync)
 
-    이러한 배치.NET 메서드를 사용하려면 기존 풀의 ID와 평가할 자동 크기 조정 수식이 포함된 문자열이 필요합니다.
+    이러한 일괄 처리.NET 메서드는 기존 풀과 hello 자동 크기 조정 수식 tooevaluate를 포함 하는 문자열의 hello ID가 필요 합니다.
 
 * [자동 크기 조정 수식 평가](https://docs.microsoft.com/rest/api/batchservice/evaluate-an-automatic-scaling-formula)
 
-    이 REST API 요청에서 풀 ID는 URI에 지정하고, 자동 크기 조정 수식은 요청 본문의 *autoScaleFormula* 요소에 지정합니다. 작업 응답에는 수식과 관련이 있을 수 있는 오류 정보가 포함됩니다.
+    이 REST API 요청 URI, hello에 hello 풀 ID를 지정 하 고 hello에 대 한 자동 크기 조정 수식을 hello *autoScaleFormula* hello 요청 본문의 요소입니다. hello 연산의 hello 응답 관련된 toohello 수식이 될 수 있는 오류 정보를 포함 합니다.
 
-이 [Batch .NET][net_api] 코드 조각에서는 자동 크기 조정 수식을 평가합니다. 풀에서 자동 크기 조정을 사용할 수 없으면 먼저 풀에서 이 기능을 사용할 수 있도록 설정해야 합니다.
+이 [Batch .NET][net_api] 코드 조각에서는 자동 크기 조정 수식을 평가합니다. Hello 풀에 사용 하도록 설정 하는 자동 크기 조정 설정 여부 것 먼저 합니다.
 
 ```csharp
-// First obtain a reference to an existing pool
+// First obtain a reference tooan existing pool
 CloudPool pool = await batchClient.PoolOperations.GetPoolAsync("myExistingPool");
 
-// If autoscaling isn't already enabled on the pool, enable it.
+// If autoscaling isn't already enabled on hello pool, enable it.
 // You can't evaluate an autoscale formula on non-autoscale-enabled pool.
 if (pool.AutoScaleEnabled == false)
 {
-    // We need a valid autoscale formula to enable autoscaling on the
-    // pool. This formula is valid, but won't resize the pool:
+    // We need a valid autoscale formula tooenable autoscaling on the
+    // pool. This formula is valid, but won't resize hello pool:
     await pool.EnableAutoScaleAsync(
         autoscaleFormula: "$TargetDedicatedNodes = {pool.CurrentDedicatedNodes};",
         autoscaleEvaluationInterval: TimeSpan.FromMinutes(5));
 
-    // Batch limits EnableAutoScaleAsync calls to once every 30 seconds.
-    // Because we want to apply our new autoscale formula below if it
+    // Batch limits EnableAutoScaleAsync calls tooonce every 30 seconds.
+    // Because we want tooapply our new autoscale formula below if it
     // evaluates successfully, and we *just* enabled autoscaling on
-    // this pool, we pause here to ensure we pass that threshold.
+    // this pool, we pause here tooensure we pass that threshold.
     Thread.Sleep(TimeSpan.FromSeconds(31));
 
-    // Refresh the properties of the pool so that we've got the
+    // Refresh hello properties of hello pool so that we've got the
     // latest value for AutoScaleEnabled
     await pool.RefreshAsync();
 }
 
-// We must ensure that autoscaling is enabled on the pool prior to
+// We must ensure that autoscaling is enabled on hello pool prior to
 // evaluating a formula
 if (pool.AutoScaleEnabled == true)
 {
-    // The formula to evaluate - adjusts target number of nodes based on
+    // hello formula tooevaluate - adjusts target number of nodes based on
     // day of week and time of day
     string myFormula = @"
         $curTime = time();
@@ -503,32 +503,32 @@ if (pool.AutoScaleEnabled == true)
         $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
     ";
 
-    // Perform the autoscale formula evaluation. Note that this code does not
-    // actually apply the formula to the pool.
+    // Perform hello autoscale formula evaluation. Note that this code does not
+    // actually apply hello formula toohello pool.
     AutoScaleRun eval =
         await batchClient.PoolOperations.EvaluateAutoScaleAsync(pool.Id, myFormula);
 
     if (eval.Error == null)
     {
-        // Evaluation success - print the results of the AutoScaleRun.
-        // This will display the values of each variable as evaluated by the
+        // Evaluation success - print hello results of hello AutoScaleRun.
+        // This will display hello values of each variable as evaluated by the
         // autoscale formula.
         Console.WriteLine("AutoScaleRun.Results: " +
             eval.Results.Replace("$", "\n    $"));
 
-        // Apply the formula to the pool since it evaluated successfully
+        // Apply hello formula toohello pool since it evaluated successfully
         await batchClient.PoolOperations.EnableAutoScaleAsync(pool.Id, myFormula);
     }
     else
     {
-        // Evaluation failed, output the message associated with the error
+        // Evaluation failed, output hello message associated with hello error
         Console.WriteLine("AutoScaleRun.Error.Message: " +
             eval.Error.Message);
     }
 }
 ```
 
-이 코드 조각에 표시된 수식을 성공적으로 평가하면 다음과 비슷한 결과가 생성됩니다.
+이 코드 조각에 표시 하는 hello 수식의 성공적인 평가 비슷한 결과 생성 합니다.
 
 ```
 AutoScaleRun.Results:
@@ -542,17 +542,17 @@ AutoScaleRun.Results:
 
 ## <a name="get-information-about-autoscale-runs"></a>자동 크기 조정 실행에 대한 정보 가져오기
 
-수식이 예상대로 수행되는지 확인하려면 풀에서 자동 크기 조정을 실행한 결과를 Batch에서 정기적으로 확인하는 것이 좋습니다. 이렇게 하려면 풀에 대한 참조를 가져오고(또는 새로 고침) 마지막 자동 크기 조정 실행의 속성을 검사합니다.
+tooensure 수식으로 수행 하는 예상 하면 풀에 대해 일괄 처리를 수행 하는 hello 자동 크기 조정 실행의 hello 결과 주기적으로 확인 하는 것이 좋습니다. toodo, get (또는 새로 고침) 참조 toohello, 풀 및 해당 마지막 자동 크기 조정 실행의 hello 속성을 검사 합니다.
 
-Batch .NET에서 [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) 속성에는 풀에서 수행된 마지막 자동 크기 조정 실행에 대한 정보를 제공하는 몇 가지 속성이 있습니다.
+일괄 처리.net에서 hello [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) 속성에는 hello 최신 자동 크기 조정을 수행 hello 풀에서 실행 하는 방법에 대 한 정보를 제공 하는 여러 속성이 있습니다.
 
 * [AutoScaleRun.Timestamp](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.timestamp)
 * [AutoScaleRun.Results](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.results)
 * [AutoScaleRun.Error](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.error)
 
-REST API에서 [풀에 대한 정보 가져오기](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) 요청은 [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun) 속성에 마지막 자동 크기 조정 실행 정보가 포함된 풀 관련 정보를 반환합니다.
+REST API hello에 hello [풀에 대 한 정보를 가져올](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) hello 최신 자동 크기 조정을 hello에서 실행 되는 정보를 포함 하는 hello 풀에 대 한 정보를 반환 하는 요청 [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun) 속성.
 
-다음 C# 코드 조각에서는 Batch .NET 라이브러리를 사용하여 _myPool_ 풀에서 마지막으로 실행된 자동 크기 조정에 대한 정보를 출력합니다.
+hello 다음 C# 코드 조각 정보 사용 하 여 hello 일괄 처리.NET 라이브러리 tooprint hello 마지막 자동 크기 조정 풀에서 실행 하는 방법에 대 한 _myPool_:
 
 ```csharp
 await Cloud pool = myBatchClient.PoolOperations.GetPoolAsync("myPool");
@@ -561,7 +561,7 @@ Console.WriteLine("Result:" + pool.AutoScaleRun.Results.Replace("$", "\n  $"));
 Console.WriteLine("Error: " + pool.AutoScaleRun.Error);
 ```
 
-앞에서 언급한 코드 조각의 샘플 출력은 다음과 같습니다.
+Hello 조각 앞의 예제 출력:
 
 ```
 Last execution: 10/14/2016 18:36:43
@@ -576,12 +576,12 @@ Error:
 ```
 
 ## <a name="example-autoscale-formulas"></a>자동 크기 조정 수식 예제
-풀의 계산 리소스 양을 조정하는 여러 가지 방법을 보여 주는 몇 가지 수식을 살펴보겠습니다.
+풀의 계산 리소스의 다양 한 방법 tooadjust hello 크기를 표시 하는 몇 가지 수식을 살펴보겠습니다.
 
 ### <a name="example-1-time-based-adjustment"></a>예제1: 시간 기반 조정
-요일과 시간에 따라 풀 크기를 조정한다고 가정합니다. 이 예제에서는 풀의 노드 수를 적절히 늘리거나 줄이는 방법을 보여 줍니다.
+Hello 요일 hello 및 하루 중 시간에 따라 tooadjust hello 풀 크기를 한다고 가정 합니다. 이 예제는 hello의 노드 hello 수 tooincrease 또는 감소를 그에 따라 풀을 보여줍니다.
 
-먼저 수식에서 현재 시간을 가져옵니다. 평일(1-5)에 근무 시간(오전 8시-오후 6시)인 경우, 대상 풀 크기는 20개의 노드로 설정됩니다. 그렇지 않으면 10개 노드로 설정됩니다.
+hello 수식은 먼저 hello를 현재 시간 가져옵니다. 요일 (1-5) 이면 및 작업 시간 (오전 8 시 too6 PM), hello 대상 풀 크기는 too20 노드를 설정 합니다. 그렇지 않으면 too10 노드는 설정 합니다.
 
 ```
 $curTime = time();
@@ -592,54 +592,54 @@ $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
 ```
 
 ### <a name="example-2-task-based-adjustment"></a>예제2: 작업 기반 조정
-이 예에서는 풀 크기는 큐에 있는 작업의 수에 따라 조정 됩니다. 주석과 줄 바꿈은 모두 수식 문자열에 허용됩니다.
+이 예제에서는 hello 풀 크기는 hello hello 큐에 있는 작업 수에 따라 조정 됩니다. 주석과 줄 바꿈은 모두 수식 문자열에 허용됩니다.
 
 ```csharp
-// Get pending tasks for the past 15 minutes.
+// Get pending tasks for hello past 15 minutes.
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
-// If we have fewer than 70 percent data points, we use the last sample point,
-// otherwise we use the maximum of last sample point and the history average.
+// If we have fewer than 70 percent data points, we use hello last sample point,
+// otherwise we use hello maximum of last sample point and hello history average.
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1), avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// If number of pending tasks is not 0, set targetVM to pending tasks, otherwise
+// If number of pending tasks is not 0, set targetVM toopending tasks, otherwise
 // half of current dedicated.
 $targetVMs = $tasks > 0? $tasks:max(0, $TargetDedicatedNodes/2);
-// The pool size is capped at 20, if target VM value is more than that, set it
-// to 20. This value should be adjusted according to your use case.
+// hello pool size is capped at 20, if target VM value is more than that, set it
+// too20. This value should be adjusted according tooyour use case.
 $TargetDedicatedNodes = max(0, min($targetVMs, 20));
 // Set node deallocation mode - keep nodes active only until tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-3-accounting-for-parallel-tasks"></a>예제3: 병렬 작업에 대한 회계
-이 예제에서는 작업의 수에 따라 풀 크기를 조정합니다. 이 수식은 또한 풀에 대해 설정된 [MaxTasksPerComputeNode][net_maxtasks] 값을 고려합니다. 이 방법은 [병렬 작업 실행](batch-parallel-node-tasks.md)이 풀에서 사용된 경우에 특히 유용합니다.
+이 예제에서는 작업 hello 수에 따라 hello 풀 크기를 조정 합니다. 이 수식에서는 계정 hello에도 사용 [MaxTasksPerComputeNode] [ net_maxtasks] hello 풀에 대해 설정 된 값입니다. 이 방법은 [병렬 작업 실행](batch-parallel-node-tasks.md)이 풀에서 사용된 경우에 특히 유용합니다.
 
 ```csharp
-// Determine whether 70 percent of the samples have been recorded in the past
+// Determine whether 70 percent of hello samples have been recorded in hello past
 // 15 minutes; if not, use last sample
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1),avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// Set the number of nodes to add to one-fourth the number of active tasks (the
-// MaxTasksPerComputeNode property on this pool is set to 4, adjust this number
+// Set hello number of nodes tooadd tooone-fourth hello number of active tasks (the
+// MaxTasksPerComputeNode property on this pool is set too4, adjust this number
 // for your use case)
 $cores = $TargetDedicatedNodes * 4;
 $extraVMs = (($tasks - $cores) + 3) / 4;
 $targetVMs = ($TargetDedicatedNodes + $extraVMs);
-// Attempt to grow the number of compute nodes to match the number of active
+// Attempt toogrow hello number of compute nodes toomatch hello number of active
 // tasks, with a maximum of 3
 $TargetDedicatedNodes = max(0,min($targetVMs,3));
-// Keep the nodes active until the tasks finish
+// Keep hello nodes active until hello tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-4-setting-an-initial-pool-size"></a>예제4: 초기 풀 크기 설정
-이 예제에서는 초기 기간 동안 풀 크기를 지정된 노드 수로 설정하는 자동 크기 조정 수식이 있는 C# 코드 조각을 보여 줍니다. 그런 다음 초기 기간이 경과한 후 실행 중이고 활성화된 작업 수를 기반으로 풀 크기를 조정합니다.
+이 예제에서는 C# 코드 조각 설정 하는 자동 크기 조정 수식 사용 하 여 hello 풀 크기 tooa 초기 시간 기간에 대 한 노드 수를 지정 합니다. Hello 실행 수에 따라 hello 풀 크기를 조정 하 고 hello 초기 기간 후 활성 작업 기간이 경과 합니다.
 
-다음 코드 조각의 수식은 다음과 같습니다.
+다음 코드 조각 hello에 hello 수식:
 
-* 초기 풀 크기를 4 노드로 설정합니다.
-* 풀의 수명 주기의 처음 10분 이내에는 풀 크기를 조정하지 않습니다.
-* 10분 후 지난 60분 이내에 실행 중이고 활성화된 작업 수의 최대값을 가져옵니다.
-  * 두 값이 모두 0이면(마지막 60분 동안 실행 중이거나 활성화된 작업이 없었음을 나타냄) 풀 크기가 0입니다.
+* Hello 초기 풀 크기 toofour 노드를 설정합니다.
+* Hello 풀 크기를 hello 내에서 처음 10 분 hello 풀의 수명 주기 조정 되지 않습니다.
+* 10 분 후 hello의 최대값을 가져옵니다 hello 내에서 작업 실행 수 및 활성 hello 지난 60 분입니다.
+  * 두 값이 0 (작업이 없는 되었는지 실행 중이거나 hello에 활성 지난 60 분을 나타냄) 인 경우 hello 풀 크기 too0을 설정 됩니다.
   * 값 중 하나가 0보다 큰 경우 변경되지 않습니다.
 
 ```csharp
@@ -656,8 +656,8 @@ string formula = string.Format(@"
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* [동시 노드 작업으로 Azure 배치 계산 리소스 사용 극대화](batch-parallel-node-tasks.md) 는 풀의 계산 노드에서 여러 작업을 동시에 실행할 수 있는 방법을 자세히 설명합니다. 자동 크기 조정 외에도 이 기능은 일부 워크로드에 대한 작업 기간을 줄여서 비용을 절약하는 데 도움이 될 수 있습니다.
-* 다른 효율성 부스터의 경우 배치 응용 프로그램이 배치 서비스를 최적화하여 쿼리하도록 합니다. 잠재적으로 수천 개의 계산 노드 또는 작업의 상태를 쿼리할 때 네트워크를 교차하는 데이터의 양을 제한하는 방법을 알아보려면 [효율적인 Azure Batch 서비스 쿼리](batch-efficient-list-queries.md)를 참조하세요.
+* [동시 노드 작업과 Azure 배치 계산 리소스 사용량을 최대화](batch-parallel-node-tasks.md) 어떻게에 실행할 수 있습니다 여러 작업이 동시에 풀의 계산 노드 hello에 대 한 세부 정보를 포함 합니다. 또한 tooautoscaling,이 기능은 도움이 될 수 있습니다 toolower 작업 기간을 일부 워크 로드에 비용을 절약할 수 있습니다.
+* 다른 효율성 부스터 일괄 처리 응용 프로그램 쿼리 hello hello 최적의 방법으로 대부분의 일괄 처리 서비스는 장애 조치 합니다. 참조 [hello Azure 배치 서비스를 효율적으로 쿼리](batch-efficient-list-queries.md) toolearn toolimit hello 잠재적으로 수천 대의 hello 상태를 쿼리할 때 hello 와이어 교차 하는 데이터 양을 방법 계산 노드 또는 작업입니다.
 
 [net_api]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch
 [net_batchclient]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.batchclient

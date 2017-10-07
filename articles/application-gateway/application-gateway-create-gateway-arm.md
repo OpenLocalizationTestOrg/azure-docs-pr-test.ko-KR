@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Gateway 만들기 및 관리 - PowerShell | Microsoft Docs"
-description: "이 페이지에서는 Azure Resource Manager를 사용하여 Azure 응용 프로그램 게이트웨이를 만들고, 구성하고, 시작하고, 삭제하기 위한 지침을 제공합니다."
+title: "aaaCreate 및 Azure 응용 프로그램 게이트웨이-PowerShell 관리 | Microsoft Docs"
+description: "이 페이지에서는 toocreate, 구성, 시작 및 Azure 리소스 관리자를 사용 하 여 Azure 응용 프로그램 게이트웨이 삭제 하는 지침을 제공 합니다."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: 5f1713365406764998de505ff62309bab9fa2567
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ab98d5f9aa0dc309f8353b7f72591359e1121849
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-start-or-delete-an-application-gateway-by-using-azure-resource-manager"></a>Azure 리소스 관리자를 사용하여 응용 프로그램 게이트웨이 만들기, 시작 또는 삭제
 
@@ -28,44 +28,44 @@ ms.lasthandoff: 08/03/2017
 > * [Azure Resource Manager 템플릿](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
 
-Azure 응용 프로그램 게이트웨이는 계층 7 부하 분산 장치입니다. 클라우드 또는 온-프레미스에 상관없이 서로 다른 서버 간에 장애 조치(failover) 및 성능 라우팅 HTTP 요청을 제공합니다. Application Gateway는 HTTP 부하 분산, 쿠키 기반 세션 선호도, SSL(Secure Sockets Layer) 오프로드, 사용자 지정 상태 프로브, 다중 사이트 지원 및 기타 여러 기능을 포함하여 다양한 ADC(Application Delivery Controller)를 제공합니다. 지원되는 기능의 전체 목록을 보려면 [Application Gateway 개요](application-gateway-introduction.md)를 방문하세요.
+Azure Application Gateway는 계층 7 부하 분산 장치입니다. Hello 클라우드 또는 온-프레미스에 있는지 여부를 장애 조치 및 다른 서버 간에 HTTP 요청 성능 라우팅을 제공 합니다. Application Gateway는 HTTP 부하 분산, 쿠키 기반 세션 선호도, SSL(Secure Sockets Layer) 오프로드, 사용자 지정 상태 프로브, 다중 사이트 지원 및 기타 여러 기능을 포함하여 다양한 ADC(Application Delivery Controller)를 제공합니다. 지원 되는 기능의 전체 목록은 toofind 방문 [응용 프로그램 게이트웨이 개요](application-gateway-introduction.md)합니다.
 
-이 문서는 응용 프로그램 게이트웨이를 생성, 구성, 시작 및 삭제하는 단계를 안내합니다.
+이 문서 단계별로 hello 단계 toocreate, 구성, 시작 및 응용 프로그램 게이트웨이 삭제 합니다.
 
 > [!IMPORTANT]
-> Azure 리소스로 작업하기 전에 Azure에는 현재 Resource Manager와 클래식 모드의 두 가지 배포 모델이 있다는 것을 이해해야 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-classic-rm.md)를 이해해야 합니다. 이 문서의 윗부분에 있는 탭을 클릭하여 다양한 도구에 대한 설명서를 볼 수 있습니다. 이 문서에서는 Azure Resource Manager를 사용하여 응용 프로그램 게이트웨이 만들기를 설명합니다. 클래식 버전을 사용하려면 [PowerShell을 사용하여 응용 프로그램 게이트웨이 클래식 배포 만들기](application-gateway-create-gateway.md)로 이동합니다.
+> Azure 리소스를 사용 하기 전에 Azure에 현재 두 가지 배포 모델에 중요 한 toounderstand: 리소스 관리자 및 기본 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-classic-rm.md)를 이해해야 합니다. 이 문서의 hello 위쪽 hello 탭을 클릭 하 여 다양 한 도구에 대 한 hello 설명서를 볼 수 있습니다. 이 문서에서는 Azure Resource Manager를 사용하여 응용 프로그램 게이트웨이 만들기를 설명합니다. toouse hello 클래식 버전 너무 이동[PowerShell을 사용 하 여 응용 프로그램 게이트웨이 클래식 배포를 만들](application-gateway-create-gateway.md)합니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-1. 웹 플랫폼 설치 관리자를 사용하는 Azure PowerShell cmdlet의 최신 버전을 설치합니다. **다운로드 페이지** 의 [Windows PowerShell](https://azure.microsoft.com/downloads/)섹션에서 최신 버전을 다운로드하여 설치할 수 있습니다.
-1. 기존 가상 네트워크가 있는 경우 기존의 빈 서브넷을 선택하거나 응용 프로그램 게이트웨이에서 사용할 기존 가상 네트워크에만 서브넷을 만듭니다. 응용 프로그램 게이트웨이 뒤에 배포하려는 리소스가 아닌 다른 가상 네트워크에 응용 프로그램 게이트웨이를 배포할 수 없습니다.
-1. 응용 프로그램 게이트웨이를 사용하도록 구성된 서버가 존재하거나 가상 네트워크나 공용 IP/VIP가 할당된 해당 끝점이 만들어져야 합니다.
+1. Hello 웹 플랫폼 설치 관리자를 사용 하 여 hello 최신 버전의 hello Azure PowerShell cmdlet 설치 합니다. 다운로드 하 고 hello에서 hello 최신 버전을 설치할 수 **Windows PowerShell** hello 섹션 [다운로드 페이지](https://azure.microsoft.com/downloads/)합니다.
+1. 기존 가상 네트워크를 사용 하도록 설정한 경우 기존 빈 서브넷을 선택 하거나 hello 응용 프로그램 게이트웨이에서 사용 하기 위해서만 기존 가상 네트워크의 서브넷을 만듭니다. Hello 응용 프로그램 게이트웨이 tooa 다른 가상 네트워크를 배포할 수 없습니다 하려는 hello 응용 프로그램 게이트웨이 뒤 toodeploy hello 리소스 보다 합니다.
+1. toouse hello 응용 프로그램 게이트웨이 구성 하는 hello 서버에 존재 해야 하거나 또는 hello 가상 네트워크에서 공용 IP/VIP와 만든 끝점을 할당 합니다.
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>응용 프로그램 게이트웨이를 만드는 데 필요한 것은 무엇입니까?
+## <a name="what-is-required-toocreate-an-application-gateway"></a>필요한 toocreate 응용 프로그램 게이트웨이 란?
 
-* **백 엔드 서버 풀:** 백 엔드 서버의 IP 주소, FQDN 또는 NIC 목록입니다. 사용되는 IP 주소는 가상 네트워크 서브넷에 속하거나 공용 IP/VIP여야 합니다.
-* **백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다. 이러한 설정은 풀에 연결 및 풀 내의 모든 서버에 적용 됩니다.
-* **프런트 엔드 포트:** 이 포트는 응용 프로그램 게이트웨이에서 열려 있는 공용 포트입니다. 트래픽이 이 포트에 도달하면, 백엔드 서버 중의 하나가 리디렉트됩니다.
-* **수신기:** 수신기에는 프런트 엔드 포트, 프로토콜(Http 또는 Https, 이 값은 대/소문자 구분) 및 SSL 인증서 이름(SSL 오프로드를 구성하는 경우)이 있습니다.
-* **규칙:** 규칙은 수신기와 백 엔드 서버 풀을 바인딩하고 특정 수신기에 도달했을 때 트래픽이 이동되는 백 엔드 서버 풀을 정의합니다.
+* **백 엔드 서버 풀:** IP 주소, Fqdn 또는 hello 백 엔드 서버의 Nic의 hello 목록입니다. IP 주소를 사용 하면은 해야 하거나 toohello 가상 네트워크 서브넷 속하거나, 공용 IP/VIP가 있어야 합니다.
+* **백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다. 이러한 설정은 동률된 tooa 풀 및 hello 풀 내에서 적용 된 tooall 서버입니다.
+* **프런트 엔드 포트:** 이 포트는 hello 응용 프로그램 게이트웨이에 열려 있는 hello 공용 포트입니다. 트래픽이이 포트에 도달 하 고 hello 백 엔드 서버의 리디렉션된 tooone 가져옵니다.
+* **수신기:** hello 수신기에 프런트 엔드 포트, 프로토콜 (Http 또는 Https의 경우, 이러한 값은 대/소문자 구분), 및 hello SSL 인증서 이름 (오프 로드 SSL 구성) 하는 경우.
+* **규칙:** hello 규칙 hello 수신기를 hello 백 엔드 서버 풀에 바인딩하고 정의 백 엔드 서버 풀 hello 트래픽을 특정 수신기 페이로드만 directed toowhen 이어야 합니다.
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>리소스 관리자에 대한 리소스 그룹 만들기
 
-Azure PowerShell의 최신 버전을 사용하고 있는지 확인합니다. 자세한 내용은 [Resource Manager에서 Windows PowerShell](../powershell-azure-resource-manager.md)사용을 참조하세요.
+Hello 최신 버전의 Azure PowerShell을 사용 하 고 있는지 확인 합니다. 자세한 내용은 [Resource Manager에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.
 
-1. Azure에 로그인하여 자격 증명을 입력합니다.
+1. TooAzure를 로그인 하 고 자격 증명을 입력 합니다.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-2. 계정에 대한 구독을 확인합니다.
+2. Hello 계정에 대 한 hello 구독을 확인 합니다.
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-3. 사용할 Azure 구독을 선택합니다.
+3. Azure 구독 toouse 선택 합니다.
 
   ```powershell
   Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -77,84 +77,84 @@ Azure PowerShell의 최신 버전을 사용하고 있는지 확인합니다. 자
   New-AzureRmResourceGroup -Name ContosoRG -Location "West US"
   ```
 
-Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다. 이 위치는 해당 리소스 그룹에서 리소스의 기본 위치로 사용됩니다. 응용 프로그램 게이트웨이를 만들기 위한 모든 명령이 동일한 리소스 그룹을 사용하는지 확인합니다.
+Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다. 이 위치는 해당 리소스 그룹의 리소스에 대 한 hello 기본 위치로 사용 됩니다. 응용 프로그램 게이트웨이 사용 하 여 모든 명령을 toocreate hello 동일 하 고 있는지 확인 리소스 그룹입니다.
 
-위의 예제에서는 **ContosoRG**라는 리소스 그룹과 **미국 동부**라는 위치를 만들었습니다.
+리소스 그룹이 위의 hello 예제에서 만든 **ContosoRG** 및 위치 **미국 동부**합니다.
 
 > [!NOTE]
-> 응용 프로그램 게이트웨이에 대한 사용자 지정 프로브를 구성해야 하는 경우 [PowerShell을 사용하여 사용자 지정 프로브로 응용 프로그램 게이트웨이 만들기](application-gateway-create-probe-ps.md)를 참조하세요. 자세한 내용은 [사용자 지정 프로브 및 상태 모니터링](application-gateway-probe-overview.md)을 확인합니다.
+> 응용 프로그램 게이트웨이에 대 한 사용자 지정 프로브 tooconfigure 필요 하면 방문: [PowerShell을 사용 하 여 사용자 지정 프로브 사용 하 여 응용 프로그램 게이트웨이 만들](application-gateway-create-probe-ps.md)합니다. 자세한 내용은 [사용자 지정 프로브 및 상태 모니터링](application-gateway-probe-overview.md) 을 확인합니다.
 
 
-## <a name="create-the-application-gateway-configuration-objects"></a>응용 프로그램 게이트웨이 구성 개체 만들기
+## <a name="create-hello-application-gateway-configuration-objects"></a>구성 개체 hello 응용 프로그램 게이트웨이 만들기
 
-응용 프로그램 게이트웨이를 만들기 전에 모든 구성 항목을 설정해야 합니다. 다음 단계 응용 프로그램 게이트웨이 리소스에 필요한 구성 항목을 만듭니다.
+Hello 응용 프로그램 게이트웨이 만들기 전에 모든 구성 항목 설정 해야 합니다. hello 다음 단계 hello 구성 항목을 만드는 응용 프로그램 게이트웨이 리소스에 대 한 필요 합니다.
 
 ```powershell
-# Create a subnet and assign the address space of 10.0.0.0/24
+# Create a subnet and assign hello address space of 10.0.0.0/24
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 
-# Create a virtual network with the address space of 10.0.0.0/16 and add the subnet
+# Create a virtual network with hello address space of 10.0.0.0/16 and add hello subnet
 $vnet = New-AzureRmVirtualNetwork -Name ContosoVNET -ResourceGroupName ContosoRG -Location "East US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 
-# Retrieve the newly created subnet
+# Retrieve hello newly created subnet
 $subnet=$vnet.Subnets[0]
 
-# Create a public IP address that is used to connect to the application gateway. Application Gateway does not support custom DNS names on public IP addresses.  If a custom name is required for the public endpoint, a CNAME record should be created to point to the automatically generated DNS name for the public IP address.
+# Create a public IP address that is used tooconnect toohello application gateway. Application Gateway does not support custom DNS names on public IP addresses.  If a custom name is required for hello public endpoint, a CNAME record should be created toopoint toohello automatically generated DNS name for hello public IP address.
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName ContosoRG -name publicIP01 -location "East US" -AllocationMethod Dynamic
 
-# Create a gateway IP configuration. The gateway picks up an IP addressfrom the configured subnet and routes network traffic to the IP addresses in the backend IP pool. Keep in mind that each instance takes one IP address.
+# Create a gateway IP configuration. hello gateway picks up an IP addressfrom hello configured subnet and routes network traffic toohello IP addresses in hello backend IP pool. Keep in mind that each instance takes one IP address.
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 
-# Configure a backend pool with the addresses of your web servers. These backend pool members are all validated to be healthy by probes, whether they are basic probes or custom probes.  Traffic is then routed to them when requests come into the application gateway. Backend pools can be used by multiple rules within the application gateway, which means one backend pool could be used for multiple web applications that reside on the same host.
+# Configure a backend pool with hello addresses of your web servers. These backend pool members are all validated toobe healthy by probes, whether they are basic probes or custom probes.  Traffic is then routed toothem when requests come into hello application gateway. Backend pools can be used by multiple rules within hello application gateway, which means one backend pool could be used for multiple web applications that reside on hello same host.
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221, 134.170.185.50
 
-# Configure backend http settings to determine the protocol and port that is used when sending traffic to the backend servers. Cookie-based sessions are also determined by the backend HTTP settings.  If enabled, cookie-based session affinity sends traffic to the same backend as previous requests for each packet.
+# Configure backend http settings toodetermine hello protocol and port that is used when sending traffic toohello backend servers. Cookie-based sessions are also determined by hello backend HTTP settings.  If enabled, cookie-based session affinity sends traffic toohello same backend as previous requests for each packet.
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled -RequestTimeout 120
 
-# Configure a frontend port that is used to connect to the application gateway through the public IP address
+# Configure a frontend port that is used tooconnect toohello application gateway through hello public IP address
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 80
 
-# Configure the frontend IP configuration with the public IP address created earlier.
+# Configure hello frontend IP configuration with hello public IP address created earlier.
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
 
-# Configure the listener.  The listener is a combination of the front end IP configuration, protocol, and port and is used to receive incoming network traffic. 
+# Configure hello listener.  hello listener is a combination of hello front end IP configuration, protocol, and port and is used tooreceive incoming network traffic. 
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01 -Protocol Http -FrontendIPConfiguration $fipconfig -FrontendPort $fp
 
-# Configure a basic rule that is used to route traffic to the backend servers. The backend pool settings, listener, and backend pool created in the previous steps make up the rule. Based on the criteria defined traffic is routed to the appropriate backend.
+# Configure a basic rule that is used tooroute traffic toohello backend servers. hello backend pool settings, listener, and backend pool created in hello previous steps make up hello rule. Based on hello criteria defined traffic is routed toohello appropriate backend.
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 
-# Configure the SKU for the application gateway, this determines the size and whether or not WAF is used.
+# Configure hello SKU for hello application gateway, this determines hello size and whether or not WAF is used.
 $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 
-# Create the application gateway
+# Create hello application gateway
 $appgw = New-AzureRmApplicationGateway -Name ContosoAppGateway -ResourceGroupName ContosoRG -Location "East US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku
 ```
 
-완료되면 응용 프로그램 게이트웨이에 연결된 공용 IP 리소스에서 응용 프로그램 게이트웨이의 DNS 및 VIP 세부 정보를 검색합니다.
+완료 되 면 hello 공용 IP 리소스 toohello 연결 된 응용 프로그램 게이트웨이에서 DNS 및 VIP hello 응용 프로그램 게이트웨이 세부 정보를 검색 합니다.
 
 ```powershell
 Get-AzureRmPublicIpAddress -Name publicIP01 -ResourceGroupName ContosoRG
 ```
 
-## <a name="delete-the-application-gateway"></a>응용 프로그램 게이트웨이 삭제
+## <a name="delete-hello-application-gateway"></a>Hello 응용 프로그램 게이트웨이 삭제 합니다.
 
-다음 예제에서는 응용 프로그램 게이트웨이를 삭제합니다.
+hello 다음 삭제 하는 예제 응용 프로그램 게이트웨이 hello 합니다.
 
 ```powershell
-# Retrieve the application gateway
+# Retrieve hello application gateway
 $gw = Get-AzureRmApplicationGateway -Name ContosoAppGateway -ResourceGroupName ContosoRG
 
-# Stops the application gateway
+# Stops hello application gateway
 Stop-AzureRmApplicationGateway -ApplicationGateway $gw
 
-# Once the application gateway is in a stopped state, use the `Remove-AzureRmApplicationGateway` cmdlet to remove the service.
+# Once hello application gateway is in a stopped state, use hello `Remove-AzureRmApplicationGateway` cmdlet tooremove hello service.
 Remove-AzureRmApplicationGateway -Name ContosoAppGateway -ResourceGroupName ContosoRG -Force
 ```
 
 > [!NOTE]
-> **-force** 스위치를 사용하여 제거 확인 메시지가 표시되지 않도록 할 수 있습니다.
+> hello **-강제로** 스위치 사용된 toosuppress hello 제거 확인 메시지를 수 있습니다.
 
-서비스가 제거되었는지 확인하려면 `Get-AzureRmApplicationGateway` cmdlet을 사용합니다. 이 단계는 필요 하지 않습니다.
+서비스 hello tooverify 제거 된 hello를 사용할 수 있습니다, `Get-AzureRmApplicationGateway` cmdlet. 이 단계는 필요 하지 않습니다.
 
 ```powershell
 Get-AzureRmApplicationGateway -Name ContosoAppGateway -ResourceGroupName ContosoRG
@@ -162,10 +162,10 @@ Get-AzureRmApplicationGateway -Name ContosoAppGateway -ResourceGroupName Contoso
 
 ## <a name="get-application-gateway-dns-name"></a>응용 프로그램 게이트웨이 DNS 이름 가져오기
 
-게이트웨이가 생성되면 다음 단계는 통신에 대한 프런트 엔드를 구성하는 것입니다. 공용 IP를 사용할 때 Application Gateway는 식별 이름이 아닌 동적으로 할당된 DNS 이름이 필요합니다. 최종 사용자가 Application Gateway를 누를 수 있도록 하려면 CNAME 레코드를 사용하여 Application Gateway의 공용 끝점을 가리키도록 합니다. 이 작업을 수행하려면 Application Gateway에 연결된 PublicIPAddress 요소를 사용하여 Application Gateway 및 관련 IP/DNS 이름에 대한 세부 정보를 검색합니다. 이 작업은 [공용 IP 주소](../dns/dns-custom-domain.md#public-ip-address)를 가리키는 CNAME 레코드를 만들어 Azure DNS 또는 다른 DNS 공급자를 사용하여 수행할 수 있습니다. A 레코드를 사용할 경우 응용 프로그램 게이트웨이 다시 시작 시 VIP가 변경될 수 있으므로 이는 권장되지 않습니다.
+Hello 게이트웨이가 생성 된 hello 다음 단계는 통신을 위해 tooconfigure hello 프런트 엔드입니다. 공용 IP를 사용할 때 Application Gateway는 식별 이름이 아닌 동적으로 할당된 DNS 이름이 필요합니다. tooensure 최종 사용자가 hello 응용 프로그램 게이트웨이 적중할 수, CNAME 레코드를 사용 하는 toopoint toohello hello 응용 프로그램 게이트웨이의 공용 끝점 수 있습니다. toodo hello 응용 프로그램 게이트웨이 및 연결 된 해당 IP/DNS 이름 hello PublicIPAddress 요소 toohello 연결 된 응용 프로그램 게이트웨이 사용 하 여이 검색 세부 정보입니다. 이렇게 Azure DNS 또는 기타 DNS 공급자에서 toohello 가리키는 CNAME 레코드를 만들어 [공용 IP 주소](../dns/dns-custom-domain.md#public-ip-address)합니다. A 레코드의 hello 사용 hello VIP는 응용 프로그램 게이트웨이 다시 시작으로 변동 될 수 있으므로 권장 되지 않습니다.
 
 > [!NOTE]
-> 서비스를 시작할 때 응용 프로그램 게이트웨이에 IP 주소가 할당됩니다.
+> IP 주소는 hello 서비스가 시작 될 때 toohello 응용 프로그램 게이트웨이 할당 됩니다.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName ContosoRG -Name publicIP01
@@ -195,7 +195,7 @@ DnsSettings              : {
 
 ## <a name="delete-all-resources"></a>모든 리소스 삭제
 
-이 문서에서 만든 모든 리소스를 삭제하려면 다음 단계를 완료합니다.
+이 문서의 단계 다음에 나오는 전체 hello 만든 모든 리소스를 toodelete:
 
 ```powershell
 Remove-AzureRmResourceGroup -Name ContosoRG
@@ -203,9 +203,9 @@ Remove-AzureRmResourceGroup -Name ContosoRG
 
 ## <a name="next-steps"></a>다음 단계
 
-SSL 오프로드를 구성하려는 경우 [SSL 오프로드에 대한 응용 프로그램 게이트웨이 구성](application-gateway-ssl.md)을 참조하세요.
+SSL 오프 로드 tooconfigure 방문: [SSL 오프 로드에 대 한 응용 프로그램 게이트웨이 구성](application-gateway-ssl.md)합니다.
 
-내부 부하 분산 장치에서 사용하도록 응용 프로그램 게이트웨이를 구성하려면 [ILB(내부 부하 분산 장치)를 사용하여 응용 프로그램 게이트웨이 만들기](application-gateway-ilb.md)를 참조하세요.
+내부 부하 분산 장치는 응용 프로그램 게이트웨이 toouse tooconfigure 방문: [내부 부하 분산 장치 (ILB) 응용 프로그램 게이트웨이 만들](application-gateway-ilb.md)합니다.
 
 부하 분산 옵션에 대한 자세한 정보는 다음을 방문하세요.
 

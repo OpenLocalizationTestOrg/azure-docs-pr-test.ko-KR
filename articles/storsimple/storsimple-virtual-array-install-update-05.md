@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 가상 배열에 업데이트 0.5 설치 | Microsoft Docs"
-description: "StorSimple 가상 배열 웹 UI를 사용하여 Azure Portal 및 핫픽스 방법을 사용하는 업데이트를 적용하는 방법을 설명합니다."
+title: "StorSimple 가상 배열에 0.5 업데이트 aaaInstall | Microsoft Docs"
+description: "Toouse hello StorSimple 가상 배열 웹 UI tooapply 업데이트를 사용 하 여 Azure 포털 및 핫픽스 메서드 hello 하는 방법을 설명 합니다."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,107 +14,107 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/10/2017
 ms.author: alkohli
-ms.openlocfilehash: c47da5b90c16e2d5b5709e2a6affc026238b9468
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c38daa85daa0086e67cf0206d76cb19d9c8b21b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-update-05-on-your-storsimple-virtual-array"></a>StorSimple 가상 배열에 업데이트 0.5 설치
 
 ## <a name="overview"></a>개요
 
-이 문서에서는 로컬 웹 UI 및 Azure Portal을 사용하여 StorSimple 가상 배열에 업데이트 0.5를 설치하는 데 필요한 단계를 설명합니다. StorSimple 가상 배열을 최신 상태로 유지하려면 소프트웨어 업데이트 또는 핫픽스를 적용해야 합니다.
+이 문서에서는 hello 로컬 웹 UI 통해 및 hello Azure 포털을 통해 StorSimple 가상 배열에 hello 단계 필요한 tooinstall 0.5 업데이트를 설명 합니다. 필요한 소프트웨어 업데이트 또는 핫픽스 tookeep tooapply StorSimple 가상 배열 최신 상태입니다.
 
-업데이트를 적용하기 전에 호스트에서 볼륨 또는 공유를 오프라인으로 전환한 후 장치를 오프라인으로 전환하는 것이 좋습니다. 이렇게 하면 데이터 손상 가능성이 최소화됩니다. 볼륨 또는 공유가 오프라인 상태가 되면 장치의 수동 백업도 수행해야 합니다.
+업데이트를 적용 하기 전에 수행한 hello 볼륨 또는 공유 hello에 오프 라인에서 먼저 호스트 및 다음 장치를 hello 하는 것이 좋습니다. 이렇게 하면 데이터 손상 가능성이 최소화됩니다. Hello 볼륨 또는 공유가 오프 라인 상태인 후 취해야 수동 hello 장치의 백업 합니다.
 
 > [!IMPORTANT]
-> - 업데이트 0.5는 장치에 있는 소프트웨어 버전 **10.0.10290.0**에 해당합니다. 이 업데이트의 새로운 기능에 대한 자세한 내용은 [업데이트 0.5에 대한 릴리스 정보](storsimple-virtual-array-update-05-release-notes.md)로 이동합니다.
+> - 업데이트 0.5 너무 해당**10.0.10290.0** 장치에서 소프트웨어 버전입니다. 이 업데이트의 새로운 기능에 대 한 내용은 이동 너무[0.5 업데이트에 대 한 릴리스 정보](storsimple-virtual-array-update-05-release-notes.md)합니다.
 >
-> - 업데이트 0.2 이상을 실행 중인 경우 Azure Portal을 통해 업데이트를 설치하는 것이 좋습니다. 업데이트 0.1 또는 GA 소프트웨어 버전을 실행 중인 경우 로컬 웹 UI를 통해 핫픽스 메서드를 사용하여 업데이트 0.5를 설치해야 합니다.
+> - 이상 버전에서는 것을 권장 합니다 또는 0.2 업데이트를 실행 하는 경우 hello Azure 포털을 통해 hello 업데이트를 설치 합니다. 업데이트 0.1 또는 GA 소프트웨어 버전을 실행 하는 경우에 hello 로컬 웹 UI tooinstall 0.5 업데이트를 통해 hello 핫픽스 메서드를 사용 해야 합니다.
 >
-> - 업데이트 또는 핫픽스를 설치하면 장치가 다시 시작됩니다. StorSimple 가상 배열이 단일 노드 장치인 경우 진행 중인 모든 IO가 중단되고 장치에 가동 중지 시간이 발생합니다.
+> - 업데이트 또는 핫픽스를 설치하면 장치가 다시 시작됩니다. 주어진는 hello StorSimple 가상 배열은 단일 노드에 장치, 진행 중인 모든 I/O 중단 된와 장치에 가동 중지 시간이 발생 합니다.
 
-## <a name="use-the-azure-portal"></a>Azure 포털 사용
+## <a name="use-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여
 
-업데이트 0.2 이상을 실행하는 경우 Azure Portal을 통해 업데이트를 설치하는 것이 좋습니다. 포털 절차를 사용하려면 사용자가 업데이트를 스캔, 다운로드한 다음 설치해야 합니다. 이 절차를 완료하는 데 약 7분이 걸립니다. 다음 단계를 수행하여 업데이트 또는 핫픽스를 설치합니다.
+업데이트를 0.2 이상을 실행 하는 경우에 hello Azure 포털을 통해 업데이트를 설치 하는 것이 좋습니다. hello 포털 프로시저 hello 사용자 tooscan 필요 하 고, 다운로드 및 다음 hello 업데이트를 설치 합니다. 이 프로시저는 약 7 분 toocomplete. Hello 다음이 수행 단계 tooinstall hello 업데이트나 핫픽스를 설치 합니다.
 
 [!INCLUDE [storsimple-virtual-array-install-update-via-portal](../../includes/storsimple-virtual-array-install-update-via-portal-04.md)]
 
-설치가 완료된 후 StorSimple 장치 관리자 서비스로 이동합니다. **장치**를 선택한 후 방금 업데이트한 장치를 선택하고 클릭합니다. **설정 > 관리 > 장치 업데이트**로 이동합니다. 표시된 소프트웨어 버전은 **10.0.10290.0**이어야 합니다.
+Hello 후 설치 완료, 이동 tooyour StorSimple 장치 관리자 서비스는 합니다. 선택 **장치** 다음 선택 하 고 방금 업데이트 hello 장치를 클릭 합니다. 너무 이동**설정 > 관리 > 장치 업데이트**합니다. 표시 되는 hello 소프트웨어 버전 이어야 합니다 **10.0.10290.0**합니다.
 
-## <a name="use-the-local-web-ui"></a>로컬 웹 UI 사용
+## <a name="use-hello-local-web-ui"></a>Hello 로컬 웹 UI를 사용 하 여
 
-로컬 웹 UI를 사용하는 경우 다음 두 단계로 구성됩니다.
+Hello 로컬 웹 UI를 사용 하는 데는 두 단계가 있습니다.
 
-* 업데이트 또는 핫픽스 다운로드
-* 업데이트 또는 핫픽스 설치
+* Hello 업데이트 또는 hello 핫픽스를 다운로드 합니다.
+* Hello 업데이트 또는 hello 핫픽스 설치
 
-### <a name="download-the-update-or-the-hotfix"></a>업데이트 또는 핫픽스 다운로드
+### <a name="download-hello-update-or-hello-hotfix"></a>Hello 업데이트 또는 hello 핫픽스를 다운로드 합니다.
 
-Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운로드하려면 다음 단계를 수행합니다.
+Hello hello Microsoft Update 카탈로그에서에서 단계 toodownload hello 소프트웨어 업데이트를 다음을 수행 합니다.
 
-#### <a name="to-download-the-update-or-the-hotfix"></a>업데이트 또는 핫픽스를 다운로드하려면
+#### <a name="toodownload-hello-update-or-hello-hotfix"></a>toodownload hello 업데이트나 hello 핫픽스
 
-1. Internet Explorer를 시작하고 [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)으로 이동합니다.
+1. Internet Explorer를 시작 하 고 탐색 너무[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)합니다.
 
-2. 이 컴퓨터에서 Microsoft 업데이트 카탈로그를 처음 사용하는 경우 Microsoft 업데이트 카탈로그 추가 기능을 설치하라는 메시지가 나타나면 **설치** 를 클릭합니다.
+2. Microsoft Update 카탈로그 hello를 사용 하 여이 컴퓨터에 처음으로 이면 클릭 **설치** 때 메시지 표시 tooinstall hello Microsoft Update 카탈로그 추가 기능입니다.
 
-3. Microsoft 업데이트 카탈로그의 검색 상자에 다운로드하려는 핫픽스의 KB(기술 자료) 번호를 입력합니다. 업데이트 0.5의 경우 **4021576**을 입력하고 **검색**을 클릭합니다.
+3. Hello 기술 자료 (KB) 번호를 입력 hello Microsoft Update 카탈로그의 hello 검색 상자에 원하는 toodownload hello 핫픽스의 합니다. 업데이트 0.5의 경우 **4021576**을 입력하고 **검색**을 클릭합니다.
    
-    핫픽스 목록(예: **StorSimple 가상 배열 업데이트 0.5**)이 나타납니다.
+    hello 핫픽스 목록이 표시 되 면 예를 들어 **StorSimple 가상 배열 업데이트 0.5**합니다.
    
     ![카탈로그 검색](./media/storsimple-virtual-array-install-update-05/download1.png)
 
 4. **다운로드**를 클릭합니다. 
 
-5. 다운로드할 수 있는 2개의 파일 *.msu* 및 *.cab*가 표시됩니다. 이러한 각 파일을 폴더에 다운로드합니다. 장치에서 연결할 수 있는 네트워크 공유에 폴더도 복사할 수 있습니다.
+5. 두 개의 파일 toodownload 표시 됩니다는 *.msu* 및 *.cab* 파일입니다. 이러한 파일 tooa 폴더의 각를 다운로드 합니다. hello 폴더 hello 장치에서 연결할 수 있는 tooa 복사한 네트워크 공유 될 수도 있습니다.
 
-6. 파일이 있는 폴더를 엽니다.
-    ![패키지의 파일](./media/storsimple-virtual-array-install-update-05/update05folder.png)
+6. Hello 파일이 있는 hello 폴더를 엽니다.
+    ![Hello 패키지의 파일](./media/storsimple-virtual-array-install-update-05/update05folder.png)
 
     다음이 표시됩니다.
-    -  Microsoft 업데이트 독립 실행형 패키지 파일 `WindowsTH-KB3011067-x64`. 이 파일은 장치 소프트웨어를 업데이트하는 데 사용됩니다.
-    - Geneva 모니터링 에이전트 패키지 파일 `GenevaMonitoringAgentPackageInstaller`. 이 파일은 MDS(모니터링 및 진단 서비스) 에이전트를 업데이트하는 데 사용됩니다. cab 파일을 두 번 클릭합니다. .msi가 표시됩니다. 파일을 선택하고 마우스 오른쪽 단추로 클릭한 다음 파일 **압축을 풉니다**. _.msi_ 파일을 사용하여 에이전트를 업데이트합니다.
+    -  Microsoft 업데이트 독립 실행형 패키지 파일 `WindowsTH-KB3011067-x64`. 이 파일은 사용 되는 tooupdate hello 장치 소프트웨어.
+    - Geneva 모니터링 에이전트 패키지 파일 `GenevaMonitoringAgentPackageInstaller`. 이 파일은 사용 되는 tooupdate hello 모니터링 및 진단 서비스 (MDS) 에이전트입니다. Hello cab 파일을 두 번 클릭 합니다. .msi가 표시됩니다. 선택 hello 파일을 마우스 오른쪽 단추로 클릭 한 다음 **추출** hello 파일입니다. Hello를 사용 하 여 _.msi_ 파일 tooupdate hello 에이전트입니다.
 
         ![MDS 에이전트 업데이트 파일 압축 풀기](./media/storsimple-virtual-array-install-update-05/extract-geneva-monitoring-agent-installer.png)
         
     
 
-### <a name="install-the-update-or-the-hotfix"></a>업데이트 또는 핫픽스 설치
+### <a name="install-hello-update-or-hello-hotfix"></a>Hello 업데이트 또는 hello 핫픽스 설치
 
-업데이트 또는 핫픽스를 설치하기 전에, 업데이트 또는 핫픽스를 호스트의 로컬에 다운로드하거나 네트워크 공유를 통해 액세스할 수 있는지 확인합니다.
+이전 toohello 업데이트 또는 핫픽스 설치 hello 업데이트가 설치 되어 있거나 호스트에서 로컬로 hello 핫픽스 다운로드 하 고 있는지 또는 네트워크 공유를 통해 액세스할 수 있도록 합니다.
 
-GA 또는 업데이트 0.1 소프트웨어 버전을 실행하는 장치에 업데이트를 설치하려면 이 방법을 사용합니다. 이 절차를 완료하는 데 2분 미만이 걸립니다. 다음 단계를 수행하여 업데이트 또는 핫픽스를 설치합니다.
+GA를 실행 하는 장치에이 메서드가 tooinstall 업데이트를 사용 하거나 0.1 소프트웨어 버전으로 업데이트 합니다. 이 프로시저는 2 분 toocomplete 보다 작습니다. Hello 다음이 수행 단계 tooinstall hello 업데이트나 핫픽스를 설치 합니다.
 
-#### <a name="to-install-the-update-or-the-hotfix"></a>업데이트 또는 핫픽스를 설치하려면
+#### <a name="tooinstall-hello-update-or-hello-hotfix"></a>tooinstall hello 업데이트나 hello 핫픽스
 
-1. 로컬 웹 UI에서 **유지 관리** > **소프트웨어 업데이트**로 이동합니다.
+1. Hello 로컬 웹 UI에서에서 이동 너무**유지 관리** > **소프트웨어 업데이트**합니다.
    
     ![장치 업데이트](./media/storsimple-virtual-array-install-update-05/update1m.png)
 
-2. **업데이트 파일 경로**에 업데이트 또는 핫픽스의 파일 이름을 입력합니다. 네트워크 공유에 있는 경우 업데이트 또는 핫픽스 설치 파일로 이동할 수 있습니다. **적용**을 클릭합니다.
+2. **업데이트 파일 경로**, hello 업데이트에 대 한 hello 파일 이름을 입력 또는 핫픽스를 환영 합니다. 네트워크 공유에 배치 하는 경우에 toohello 업데이트 또는 핫픽스 설치 파일을 찾아볼 수 있습니다. **Apply**를 클릭합니다.
    
     ![장치 업데이트](./media/storsimple-virtual-array-install-update-05/update2m.png)
 
-3. 경고가 표시됩니다. 단일 노드 장치인 경우 업데이트가 적용된 후 장치를 다시 시작하고 가동 중지 시간이 발생합니다. 확인 아이콘을 클릭합니다.
+3. 경고가 표시됩니다. 이 지정 된 단일 노드 장치, hello 업데이트를 적용 하 고 hello 장치가 다시 시작 될 동안 가동 중지 후입니다. Hello 확인 아이콘을 클릭 합니다.
    
    ![장치 업데이트](./media/storsimple-virtual-array-install-update-05/update3m.png)
 
-4. 업데이트가 시작됩니다. 장치가 성공적으로 업데이트된 후 다시 시작됩니다. 이 시간 동안 로컬 UI에 액세스할 수 없습니다.
+4. hello 업데이트를 시작합니다. Hello 장치를 업데이트 한 후 다시 시작 됩니다. hello 로컬 UI 액세스할 수 없는 경우이 기간 동안
    
     ![장치 업데이트](./media/storsimple-virtual-array-install-update-05/update5m.png)
 
-5. 다시 시작이 완료된 후 **로그인** 페이지가 열립니다. 로컬 웹 UI에서 장치 소프트웨어가 업데이트되었는지 확인하려면 **유지 관리** > **소프트웨어 업데이트**로 이동합니다. 표시된 소프트웨어 버전은 업데이트 0.5의 경우 **10.0.0.0.0.10290.0** 입니다.
+5. Toohello 취해집니다 hello를 다시 시작이 완료 된 후 **로그인** 페이지. hello 장치 소프트웨어 hello 로컬 웹 UI에서에서 업데이트 된 tooverify 너무 이동**유지 관리** > **소프트웨어 업데이트**합니다. 표시 되는 hello 소프트웨어 버전 이어야 합니다 **10.0.0.0.0.10290.0** 0.5 업데이트에 대 한 합니다.
    
    > [!NOTE]
-   > 로컬 웹 UI 및 Azure Portal에서 약간 다른 방법으로 소프트웨어 버전을 보고합니다. 예를 들어 같은 버전에 대해 로컬 웹 UI는 **10.0.0.0.0.10290**, Azure Portal은 **10.0.10290.0**을 보고합니다.
+   > Hello 로컬 웹 UI에서에서 약간 다른 방식으로 hello 소프트웨어 버전을 보고 하 고 hello Azure 포털입니다. 예를 들어 로컬 웹 UI 보고서 hello **10.0.0.0.0.10290** Azure 포털 보고서 hello 및 **10.0.10290.0** hello에 대 한 동일한 버전입니다.
    
     ![장치 업데이트](./media/storsimple-virtual-array-install-update-05/update6m.png)
 
-6. 다음 단계는 MDS 에이전트를 업데이트하는 것입니다. **소프트웨어 업데이트** 페이지에는 **업데이트 파일 경로**로 이동한 후 `GenevaMonitoringAgentPackageInstaller.msi` 파일을 찾습니다. 2-4단계를 반복합니다. 가상 배열이 다시 시작되면 로컬 웹 UI에 로그인합니다.
+6. hello 다음 단계는 tooupdate hello MDS 에이전트입니다. Hello에 **소프트웨어 업데이트** 페이지에서 이동 toohello **업데이트 파일 경로** toohello 찾아보기 및 `GenevaMonitoringAgentPackageInstaller.msi` 파일입니다. 2-4단계를 반복합니다. Hello 가상 배열 다시 시작 되 면 hello 로컬 웹 UI에 로그인 합니다.
 
-이제 업데이트가 완료되었습니다.
+hello 업데이트가 완료 되었습니다.
 
 ## <a name="next-steps"></a>다음 단계
 

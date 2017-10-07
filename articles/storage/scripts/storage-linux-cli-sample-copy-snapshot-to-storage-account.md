@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 스크립트 샘플 - 스냅숏을 VHD로 다른 지역의 저장소 계정으로 내보내기/복사 | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - 스냅숏을 VHD로 동일한 구독 또는 다른 구독의 저장소 계정으로 내보내기/복사"
+title: "CLI 스크립트 샘플-다른 지역의 VHD tooa 저장소 계정으로 내보내기/복사 스냅숏 aaaAzure | Microsoft Docs"
+description: "Azure CLI 스크립트 샘플-동일 하거나 다른 구독에서 VHD tooa 저장소 계정으로 내보내기/복사 스냅숏"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: fafb74af5f02f74036c770934c5e33f1b8a5593e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 027c5e588c4f10d64d125c17f4c78a7d8e1ef060
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-cli"></a>CLI를 사용하여 관리 스냅숏을 VHD로 다른 지역의 저장소 계정으로 내보내기/복사
+# <a name="exportcopy-managed-snapshots-as-vhd-tooa-storage-account-in-different-region-with-cli"></a>CLI 사용 하 여 다른 영역에서 VHD tooa 저장소 계정으로 관리 되는 스냅숏 내보내기/복사
 
-이 스크립트는 관리 스냅숏을 다른 지역의 저장소 계정으로 내보냅니다. 먼저 스냅숏의 SAS URI를 생성한 다음 이를 사용하여 다른 지역의 저장소 계정으로 스냅숏을 복사합니다. 이 스크립트를 사용하여 재해 복구를 위해 다른 지역에서 관리 디스크의 백업을 유지 관리합니다. 
+이 스크립트는 관리 되는 스냅숏 tooa 저장소 계정을 다른 지역에 내보냅니다. 먼저 hello hello 스냅숏의 SAS URI를 생성 하 고 다음 toocopy 사용 것 tooa 다른 지역의 저장소 계정입니다. 재해 복구를 위해 다른 지역에이 스크립트 toomaintain 백업을 관리 되는 디스크를 사용 합니다. 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,17 +32,17 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="sample-script"></a>샘플 스크립트
 
-[!code-azurecli[main](../../../cli_scripts/storage/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "스냅숏 복사")]
+[!code-azurecli[main](../../../cli_scripts/storage/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "Copy snapshot")]
 
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트에서는 다음 명령을 사용하여 관리 스냅숏의 SAS URI를 생성하고 SAS URI를 사용하여 저장소 계정에 스냅숏을 복사합니다. 테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.
+다음 명령을 toogenerate 사용 하 여 관리 되는 스냅숏 및 복사본이 hello에 대 한 SAS URI 스냅숏 tooa 저장소 계정의 SAS URI를 사용 하 여이 스크립트입니다. Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
-| [az snapshot grant-access](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | 기본 VHD 파일을 저장소 계정으로 복사하거나 온-프레미스로 다운로드하는 데 사용되는 읽기 전용 SAS를 생성합니다.  |
-| [az storage blob copy start](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | 하나의 저장소 계정에서 다른 저장소 계정으로 Blob을 비동기적으로 복사 |
+| [az snapshot grant-access](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | Tooon 온-프레미스 기본 VHD 파일 tooa 저장소 계정을 사용 하는 toocopy 되거나 다운로드 되는 읽기 전용 SAS를 생성 합니다.  |
+| [az storage blob copy start](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | 저장소 계정 tooanother 하나에서 blob를 비동기적으로 복사 |
 
 ## <a name="next-steps"></a>다음 단계
 
@@ -50,6 +50,6 @@ ms.lasthandoff: 08/03/2017
 
 [관리 디스크에서 가상 컴퓨터 만들기](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
+Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.
 
-추가 가상 컴퓨터 및 관리 디스크 CLI 스크립트 샘플은 [Azure Linux VM 설명서](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)에서 확인할 수 있습니다.
+추가 가상 컴퓨터와 관리 되는 디스크 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure Linux VM 설명서](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.

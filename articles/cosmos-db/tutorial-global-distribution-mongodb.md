@@ -1,6 +1,6 @@
 ---
-title: "MongoDB API의 Azure Cosmos DB 전역 배포 자습서 | Microsoft Docs"
-description: "MongoDB API를 사용하여 Azure Cosmos DB 전역 배포를 설정하는 방법에 대해 알아봅니다."
+title: "MongoDB API에 대 한 aaaAzure Cosmos DB 글로벌 메일 자습서 | Microsoft Docs"
+description: "어떻게 MongoDB API를 사용 하 여 toosetup Azure Cosmos DB 글로벌 메일 hello에 대해 알아봅니다."
 services: cosmos-db
 keywords: "전역 배포, MongoDB"
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: a2747102f4d8cac412b67abc3fd07cfa3661bcee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0fc2d670bb4e21ac5f813f9586b407ba06ccf354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-mongodb-api"></a>MongoDB API를 사용하여 Azure Cosmos DB 전역 배포를 설정하는 방법
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-mongodb-api"></a>어떻게 MongoDB API를 사용 하 여 toosetup Azure Cosmos DB 글로벌 메일 hello
 
-이 문서에서는 Azure Portal을 사용하여 Azure Cosmos DB 전역 배포를 설정한 다음 MongoDB API를 사용하여 연결하는 방법을 보여 줍니다.
+이 문서에서는 toouse hello Azure 포털 toosetup Azure Cosmos DB 글로벌 배포 하 고 다음 hello MongoDB API를 사용 하 여를 연결 하는 방법을 보여줍니다.
 
-이 문서에서 다루는 작업은 다음과 같습니다. 
+이 문서에서는 다음 작업 hello를 다룹니다. 
 
 > [!div class="checklist"]
-> * Azure Portal을 사용하여 전역 배포 구성
-> * [MongoDB API](mongodb-introduction.md)를 사용하여 전역 배포 구성
+> * Hello Azure 포털을 사용 하 여 글로벌 배포를 구성 합니다.
+> * Hello를 사용 하 여 글로벌 배포를 구성 [MongoDB API](mongodb-introduction.md)
 
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
-## <a name="verifying-your-regional-setup-using-the-mongodb-api"></a>MongoDB API를 사용하여 지역별 설정 확인
-MongoDB API 내에서 글로벌 구성을 이중 확인하는 가장 간단한 방법은 Mongo Shell에서 *isMaster()* 명령을 실행하는 것입니다.
+## <a name="verifying-your-regional-setup-using-hello-mongodb-api"></a>Hello MongoDB API를 사용 하 여 국가별 설치 확인
+MongoDB toorun hello에 대 한 API 내에서 전역 구성을 검사 하는 double의 가장 간단한 방법은 hello *isMaster()* hello Mongo 셸 명령을 합니다.
 
 Mongo Shell에서 다음을 수행합니다.
 
@@ -68,23 +68,23 @@ Mongo Shell에서 다음을 수행합니다.
       }
    ```
 
-## <a name="connecting-to-a-preferred-region-using-the-mongodb-api"></a>MongoDB API를 사용하여 기본 설정 지역에 연결
+## <a name="connecting-tooa-preferred-region-using-hello-mongodb-api"></a>Hello MongoDB API를 사용 하 여 tooa 기본 영역 연결
 
-MongoDB API를 사용하면 전역적으로 분산된 데이터베이스에 대한 컬렉션의 읽기 기본 설정을 지정할 수 있습니다. 짧은 대기 시간 읽기 및 글로벌 고가용성을 위해 컬렉션의 읽기 기본 설정을 *nearest*(최근접)로 설정하는 것이 좋습니다. *nearest*(최근접)의 읽기 기본 설정은 가장 가까운 지역에서 읽도록 구성됩니다.
+hello MongoDB API를 사용 하면 있습니다 toospecify 세계적으로 분산 된 데이터베이스에 대 한 컬렉션의 읽기 기본 설정. 컬렉션의 읽기 기본 설정 지정 너무 권장 읽기 대기 시간 및 전역 높은 가용성, 낮은 둘 다에 대 한*가장 가까운*합니다. 기본 설정을 읽기 *가장 가까운* hello 가장 가까운 영역에서 구성 된 tooread 됩니다.
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Nearest));
 ```
 
-주 읽기/쓰기 지역 및 재해 복구(DR) 시나리오를 위한 보조 지역이 있는 응용 프로그램에는 컬렉션의 읽기 기본 설정을 *secondary preferred*(보조 기본 설정)로 설정하는 것이 좋습니다. *secondary preferred*(보조 기본 설정)의 읽기 기본 설정은 주 지역의 데이터를 사용할 수 없는 경우 보조 지역에서 읽도록 구성됩니다.
+응용 프로그램을 기본 읽기/쓰기가 지역과 보조 지역에 대 한 재해 복구 (DR) 시나리오에 대 한 컬렉션의 읽기 기본 설정 지정 너무는 것이 좋습니다*선호 하는 보조*합니다. 읽기 기본 설정을 *선호 하는 보조* hello 기본 지역에 사용할 수 없는 경우 hello 보조 지역에서 구성 된 tooread는 합니다.
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.SecondaryPreferred));
 ```
 
-마지막으로 읽기 지역을 수동으로 지정하려고 합니다. 읽기 기본 설정 내에서 지역 태그를 설정할 수 있습니다.
+마지막으로 지정 하면 읽기 영역 toomanually와 같은 경우입니다. Hello 지역 태그 읽기 기본 설정 내에서 설정할 수 있습니다.
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
@@ -92,17 +92,17 @@ var tag = new Tag("region", "Southeast Asia");
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Secondary, new[] { new TagSet(new[] { tag }) }));
 ```
 
-이것으로 끝이며, 이 자습서를 완료했습니다! [Azure Cosmos DB의 일관성 수준](consistency-levels.md)을 참조하여 전역적으로 복제한 계정의 일관성을 관리하는 방법에 대해 알아볼 수 있습니다. 그리고 Azure Cosmos DB에서 전역 데이터베이스 복제가 작동하는 방법에 대한 자세한 내용은 [Azure Cosmos DB를 사용하여 전역적으로 데이터 배포](distribute-data-globally.md)를 참조하세요.
+이것으로 끝이며, 이 자습서를 완료했습니다! 읽어 toomanage 전역적으로 복제 된 계정의 일관성 hello 하는 방법을 학습할 수 있는 [Azure Cosmos DB의 일관성 수준](consistency-levels.md)합니다. 그리고 Azure Cosmos DB에서 전역 데이터베이스 복제가 작동하는 방법에 대한 자세한 내용은 [Azure Cosmos DB를 사용하여 전역적으로 데이터 배포](distribute-data-globally.md)를 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 다음을 수행했습니다.
+이 자습서에서는 hello 다음 작업을 수행 하면:
 
 > [!div class="checklist"]
-> * Azure Portal을 사용하여 전역 배포 구성
-> * DocumentDB API를 사용하여 전역 배포 구성
+> * Hello Azure 포털을 사용 하 여 글로벌 배포를 구성 합니다.
+> * Hello DocumentDB Api를 사용 하 여 글로벌 배포를 구성 합니다.
 
-이제 다음 자습서로 진행하여 Azure Cosmos DB 로컬 에뮬레이터를 사용하여 로컬로 개발하는 방법에 대해 자세히 알아볼 수 있습니다.
+다음 자습서 toolearn toohello 이제 진행할 수 있습니다 어떻게 사용 하 여 로컬로 toodevelop hello Azure Cosmos DB의 로컬 에뮬레이터입니다.
 
 > [!div class="nextstepaction"]
-> [에뮬레이터를 사용하여 로컬로 개발](local-emulator.md)
+> [Hello 에뮬레이터를 사용 하 여 로컬 개발](local-emulator.md)

@@ -1,6 +1,6 @@
 ---
 title: "Azure PowerShell: SQL Database 만들기 | Microsoft Docs"
-description: "Azure Portal에서 SQL Database 논리 서버, 서버 수준 방화벽 규칙 및 데이터베이스를 만드는 방법을 알아봅니다."
+description: "Toocreate SQL 데이터베이스 논리 서버, 서버 수준 방화벽 규칙의 데이터베이스 및 Azure 포털을 hello 방법에 대해 알아봅니다."
 keywords: "SQL 데이터베이스 자습서, SQL 데이터베이스 만들기"
 services: sql-database
 documentationcenter: 
@@ -16,23 +16,23 @@ ms.devlang: PowerShell
 ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: carlrab
-ms.openlocfilehash: 44ed4a603977617c898315c4fc0b2d3dd3a8f16a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e89f68b44083a3b64e61f95117dbbedfa6647ccb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-single-azure-sql-database-using-powershell"></a>PowerShell을 사용하여 단일 Azure SQL Database 만들기
 
-명령줄 또는 스크립트에서 Azure 리소스를 만들고 관리하는 데 PowerShell이 사용됩니다. 이 가이드에서는 PowerShell을 사용하여 [Azure SQL Database 논리 서버](sql-database-features.md)의 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md)에서 Azure SQL Database를 배포하는 방법에 대해 자세히 설명합니다.
+PowerShell 사용된 toocreate 이며 hello 명령줄에서 또는 스크립트에서 Azure 리소스를 관리 합니다. 이 가이드 toodeploy PowerShell을 사용 하 여 정보에 Azure SQL 데이터베이스는 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md) 에 [Azure SQL 데이터베이스 논리 서버](sql-database-features.md)합니다.
 
 Azure 구독이 아직 없는 경우 시작하기 전에 [체험](https://azure.microsoft.com/free/) 계정을 만듭니다.
 
-이 자습서에는 Azure PowerShell 모듈 버전 4.0 이상이 필요합니다. ` Get-Module -ListAvailable AzureRM`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure PowerShell 모듈 설치](/powershell/azure/install-azurerm-ps)를 참조하세요. 
+이 자습서는 hello Azure PowerShell 모듈 버전 4.0 이상이 필요합니다. 실행 ` Get-Module -ListAvailable AzureRM` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure PowerShell 설치 모듈](/powershell/azure/install-azurerm-ps)합니다. 
 
-## <a name="log-in-to-azure"></a>Azure에 로그인
+## <a name="log-in-tooazure"></a>TooAzure 로그인
 
-[Add-AzureRmAccount](/powershell/module/azurerm.profile/add-azurermaccount) 명령을 사용하여 Azure 구독에 로그인하고 화면의 지시를 따릅니다.
+Hello를 사용 하 여 Azure 구독 tooyour 로그인 [추가 AzureRmAccount](/powershell/module/azurerm.profile/add-azurermaccount) 명령 열고 지시를 따른 hello 화면에 표시 합니다.
 
 ```powershell
 Add-AzureRmAccount
@@ -40,35 +40,35 @@ Add-AzureRmAccount
 
 ## <a name="create-variables"></a>변수 만들기
 
-이 빠른 시작의 스크립트에서 사용할 변수를 정의합니다.
+이 빠른 시작의 hello 스크립트에서 사용할 변수를 정의 합니다.
 
 ```powershell
-# The data center and resource name for your resources
+# hello data center and resource name for your resources
 $resourcegroupname = "myResourceGroup"
 $location = "WestEurope"
-# The logical server name: Use a random value or replace with your own value (do not capitalize)
+# hello logical server name: Use a random value or replace with your own value (do not capitalize)
 $servername = "server-$(Get-Random)"
 # Set an admin login and password for your database
-# The login information for the server
+# hello login information for hello server
 $adminlogin = "ServerAdmin"
 $password = "ChangeYourAdminPassword1"
-# The ip address range that you want to allow to access your server - change as appropriate
+# hello ip address range that you want tooallow tooaccess your server - change as appropriate
 $startip = "0.0.0.0"
 $endip = "0.0.0.0"
-# The database name
+# hello database name
 $databasename = "mySampleDatabase"
 ```
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-[New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 명령을 사용하여 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md)을 만듭니다. 리소스 그룹은 Azure 리소스가 그룹으로 배포되고 관리되는 논리 컨테이너입니다. 다음 예제는 `westeurope` 위치에 `myResourceGroup`이라는 리소스 그룹을 만듭니다.
+만들기는 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md) hello를 사용 하 여 [새로 AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 명령입니다. 리소스 그룹은 Azure 리소스가 그룹으로 배포되고 관리되는 논리 컨테이너입니다. hello 다음 예제에서는 명명 된 리소스 그룹 `myResourceGroup` hello에 `westeurope` 위치 합니다.
 
 ```powershell
 New-AzureRmResourceGroup -Name $resourcegroupname -Location $location
 ```
 ## <a name="create-a-logical-server"></a>논리 서버 만들기
 
-[New-AzureRmSqlServer](/powershell/module/azurerm.sql/new-azurermsqlserver) 명령을 사용하여 [Azure SQL Database 논리 서버](sql-database-features.md)를 만듭니다. 논리 서버는 그룹으로 관리되는 데이터베이스 그룹을 포함합니다. 다음 예제에서는 관리자 로그인 이름이 `ServerAdmin`이고 암호가 `ChangeYourAdminPassword1`인 리소스 그룹에 임의로 이름이 지정된 서버를 생성합니다. 이러한 미리 정의된 값은 필요에 따라 바꿉니다.
+만들기는 [Azure SQL 데이터베이스 논리 서버](sql-database-features.md) hello를 사용 하 여 [새로 AzureRmSqlServer](/powershell/module/azurerm.sql/new-azurermsqlserver) 명령입니다. 논리 서버는 그룹으로 관리되는 데이터베이스 그룹을 포함합니다. hello 다음 예제에서는 만듭니다 임의로 지정 된 서버 리소스 그룹에 라는 관리자 로그인과 `ServerAdmin` 이 고 암호가 `ChangeYourAdminPassword1`합니다. 이러한 미리 정의된 값은 필요에 따라 바꿉니다.
 
 ```powershell
 New-AzureRmSqlServer -ResourceGroupName $resourcegroupname `
@@ -79,7 +79,7 @@ New-AzureRmSqlServer -ResourceGroupName $resourcegroupname `
 
 ## <a name="configure-a-server-firewall-rule"></a>서버 방화벽 규칙 구성
 
-[New-AzureRmSqlServerFirewallRule](/powershell/module/azurerm.sql/new-azurermsqlserverfirewallrule) 명령을 사용하여 [Azure SQL Database 서버 수준 방화벽 규칙](sql-database-firewall-configure.md)을 만듭니다. 서버 수준 방화벽 규칙을 통해 외부 응용 프로그램(예: SQL Server Management Studio 또는 SQLCMD 유틸리티)이 SQL Database 서비스 방화벽을 통해 SQL Database에 연결되도록 할 수 있습니다. 다음 예제에서 방화벽은 다른 Azure 리소스에 대해서만 열립니다. 외부 연결을 사용하려면 IP 주소를 사용자 환경에 적절한 주소로 변경합니다. 모든 IP 주소를 열려면 시작 IP 주소로 0.0.0.0을, 끝나는 IP 주소로 255.255.255.255를 사용합니다.
+만들기는 [Azure SQL 데이터베이스 서버 수준 방화벽 규칙](sql-database-firewall-configure.md) hello를 사용 하 여 [새로 AzureRmSqlServerFirewallRule](/powershell/module/azurerm.sql/new-azurermsqlserverfirewallrule) 명령입니다. 서버 수준 방화벽 규칙에는 SQL Server Management Studio 또는 hello SQLCMD 유틸리티 tooconnect tooa SQL 데이터베이스 같은 hello SQL 데이터베이스 서비스 방화벽을 통해 외부 응용을 프로그램 수 있습니다. 다음 예제는 hello,에서는 hello 방화벽은 다른 Azure 리소스에 대 한 열만. tooenable 외부 연결을 변경 hello IP 주소 tooan 사용자 환경에 대 한 적절 한 주소입니다. tooopen 모든 IP 주소를 IP 주소와 255.255.255.255 끝 주소 hello로 시작 하는 hello로 0.0.0.0를 사용 합니다.
 
 ```powershell
 New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourcegroupname `
@@ -88,12 +88,12 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourcegroupname `
 ```
 
 > [!NOTE]
-> SQL Database는 포트 1433을 통해 통신합니다. 회사 네트워크 내에서 연결을 시도하는 경우 포트 1433을 통한 아웃바운드 트래픽이 네트워크 방화벽에서 허용되지 않을 수 있습니다. 이 경우 IT 부서에서 포트 1433을 열지 않으면 Azure SQL Database 서버에 연결할 수 없습니다
+> SQL Database는 포트 1433을 통해 통신합니다. 회사 네트워크 내부에서 tooconnect을 시도 하는 포트 1433 통한 아웃 바운드 트래픽 네트워크의 방화벽에서 허용 되지 않을 수 있습니다. 이 경우 됩니다 수 tooconnect tooyour Azure SQL 데이터베이스 서버 않으면 IT 부서는 포트 1433을 엽니다.
 >
 
-## <a name="create-a-database-in-the-server-with-sample-data"></a>샘플 데이터를 사용하여 서버에서 데이터베이스 만들기
+## <a name="create-a-database-in-hello-server-with-sample-data"></a>샘플 데이터로 hello 서버에서 데이터베이스 만들기
 
-[New-AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase) 명령을 사용하여 서버에 [S0 성능 수준](sql-database-service-tiers.md)인 데이터베이스를 만듭니다. 다음 예제에서는 `mySampleDatabase`라는 데이터베이스를 만들고 AdventureWorksLT 샘플 데이터를 이 데이터베이스에 로드합니다. 이러한 미리 정의된 값을 원하는 대로 대체합니다(이 컬렉션 빌드의 다른 빠른 시작은 이 빠른 시작의 값에 기반함).
+사용 하 여 데이터베이스를 만들기는 [S0 성능 수준이](sql-database-service-tiers.md) hello를 사용 하 여 hello 서버에서 [새로 AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase) 명령입니다. hello 다음 예에서는 라는 데이터베이스를 만드는 `mySampleDatabase` 로드 AdventureWorksLT 샘플 데이터를이 데이터베이스에 hello 및 합니다. 이러한 미리 정의 된 대체 값 (hello 값이 빠른 시작에서에이 컬렉션 빌드에서 다른 빠른 시작)이 원하는 대로 합니다.
 
 ```powershell
 New-AzureRmSqlDatabase  -ResourceGroupName $resourcegroupname `
@@ -108,7 +108,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName $resourcegroupname `
 이 컬렉션의 다른 빠른 시작은 이 빠른 시작을 기반으로 합니다. 
 
 > [!TIP]
-> 다음 빠른 시작을 사용하여 계속하려는 경우 이 빠른 시작에서 만든 리소스를 정리하지 않습니다. 계속하지 않으려는 경우 다음 단계에 따라 Azure Portal에서 이 빠른 시작에서 만든 모든 리소스를 삭제합니다.
+> 후속 빠른 시작으로 toowork toocontinue 하려는 경우이 빠른에서 만든 hello 리소스를 정리 실행할 수 없습니다. Toocontinue 않으려는 경우 모든 리소스를 만들 단계 toodelete hello Azure 포털에서에서이 빠른 시작에서 다음 hello를 사용 합니다.
 >
 
 ```powershell

@@ -1,7 +1,7 @@
 ---
 redirect_url: /azure/sql-data-warehouse/sql-data-warehouse-load-with-data-factory
-title: "Azure Blob 저장소에서 Azure SQL Data Warehouse(Azure Data Factory)로 데이터 로드 | Microsoft Docs"
-description: "Azure Data Factory를 사용하여 데이터를 로드하는 방법을 알아보세요."
+title: "aaaLoad 데이터를 Azure blob 저장소에 Azure SQL 데이터 웨어하우스 (Azure 데이터 팩터리) | Microsoft Docs"
+description: "Azure 데이터 팩터리를 사용 하 여 tooload 데이터에 알아봅니다"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
@@ -17,11 +17,11 @@ ms.workload: data-services
 ms.date: 11/22/2016
 ms.author: barbkess
 ms.custom: loading
-ms.openlocfilehash: ca8bdfc21582253e8709a33eb624547fed4461d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 29a220679a11cedefb0dfd06c0a6838f81a90447
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-from-azure-blob-storage-into-azure-sql-data-warehouse-azure-data-factory"></a>Azure Blob 저장소에서 Azure SQL 데이터 웨어하우스로 데이터 로드(Azure Data Factory)
 > [!div class="op_single_selector"]
@@ -30,48 +30,48 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
- 이 자습서는 Azure Data Factory에서 파이프라인을 만들어 Azure 저장소 BLOB에서 SQL 데이터 웨어하우스로 데이터를 이동하는 방법을 보여 줍니다. 다음 단계에서 수행할 작업은 다음과 같습니다.
+ 이 자습서에서는 Azure 저장소 Blob tooSQL 데이터 웨어하우스에서에서 toomove 데이터를 Azure 데이터 팩터리 파이프라인 toocreate 합니다. 단계를 수행 하는 hello로 다음을 수행 합니다.
 
 * Azure 저장소 BLOB에서 샘플 데이터를 설정합니다.
-* Azure Data Factory로 리소스를 연결합니다.
-* 저장소 BLOB에서 SQL 데이터 웨어하우스로 데이터를 이동하는 파이프라인을 만듭니다.
+* 리소스 tooAzure Data Factory를 연결 합니다.
+* 데이터 웨어하우스 저장소 Blob tooSQL에서 파이프라인 toomove 데이터를 만듭니다.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-Azure-SQL-Data-Warehouse-with-Azure-Data-Factory/player]
 > 
 > 
 
 ## <a name="before-you-begin"></a>시작하기 전에
-Azure Data Factory를 익히려면 [Azure Data Factory 소개][Introduction to Azure Data Factory]를 참조하세요.
+toofamiliarize Azure 데이터 팩터리와 직접 참조 [소개 tooAzure Data Factory][Introduction tooAzure Data Factory]합니다.
 
 ### <a name="create-or-identify-resources"></a>리소스 만들기 또는 식별
-이 자습서를 시작하기 전에 다음 리소스를 마련해야 합니다.
+이 자습서를 시작 하기 전에 다음 리소스 toohave hello를 해야 합니다.
 
-* **Azure 저장소 BLOB**: 이 자습서에서는 Azure Data Factory 파이프라인에 대한 데이터 원본으로 Azure BLOB 저장소를 사용하므로 샘플 데이터를 저장할 Azure BLOB 저장소가 필요합니다. 저장소 계정이 아직 없는 경우 [저장소 계정을 만드는 방법][Create a storage account]을 알아봅니다.
-* **SQL Data Warehouse**: 이 자습서는 Azure Storage Blob에서 SQL Data Warehouse로 데이터를 이동하므로 AdventureWorksDW 샘플 데이터와 함께 로드되는 데이터 웨어하우스 온라인이 필요합니다. 데이터 웨어하우스가 아직 없는 경우 [프로비전하는 방법][Create a SQL Data Warehouse]을 알아봅니다. 데이터 웨어하우스가 있지만 샘플 데이터를 사용하여 프로비전하지 않은 경우 [수동으로 로드][Load sample data into SQL Data Warehouse]할 수 있습니다.
-* **Azure Data Factory**: Azure Data Factory에서 실제로 로드를 완료하므로 데이터 이동 파이프라인을 빌드하는 데 사용할 수 있는 Azure Data Factory가 필요합니다. 아직 없는 경우 [Azure Data Factory 시작(Data Factory 편집기)][Get started with Azure Data Factory (Data Factory Editor)]의 1단계에서 만드는 방법을 알아봅니다.
-* **AZCopy**: 로컬 클라이언트에서 Azure 저장소 BLOB으로 샘플 데이터를 복사할 AZCopy가 필요합니다. 설치 지침은 [AZCopy 설명서][AZCopy documentation]를 참조하세요.
+* **Azure 저장소 Blob**: toohave 하나의 사용 가능한 toostore hello 샘플 데이터가 필요 하므로 및이 자습서에서는 hello Azure 데이터 팩터리 파이프라인에 대 한 Azure 저장소 Blob hello 데이터 원본으로 사용 합니다. 없는 경우 하나 이미, 너무 방법을 알아보려면[저장소 계정을 만드는][Create a storage account]합니다.
+* **SQL 데이터 웨어하우스**: Azure 저장소 Blob에서이 자습서 이동 hello 데이터 너무 SQL 데이터 웨어하우스 등 필요한 toohave AdventureWorksDW 예제 데이터 hello로 로드 되는 데이터 웨어하우스의 온라인입니다. 데이터 웨어하우스 아직 없는 경우 너무 방법을 알아볼[하나를 프로 비전][Create a SQL Data Warehouse]합니다. 데이터 웨어하우스를 갖지만 hello 예제 데이터와 함께 프로 비전 하지 않은 경우 다음을 할 수 있습니다 [수동으로 로드][Load sample data into SQL Data Warehouse]합니다.
+* **Azure Data Factory**: Azure Data Factory hello 실제 부하가 완료 되 고 따라서 toobuild hello 데이터 이동을 파이프라인을 사용할 수 있는 하나 toohave 해야 합니다. 없는 이미, 경우에 대해 배울 방법 toocreate 하나 1 단계에서에서의 [(데이터 팩터리 편집기) Azure 데이터 팩터리 시작][Get started with Azure Data Factory (Data Factory Editor)]합니다.
+* **AZCopy**: 사용자 로컬 클라이언트 tooyour Azure 저장소 Blob에서에서 AZCopy toocopy hello 샘플 데이터가 필요 합니다. 설치 지침은 hello [AZCopy 설명서][AZCopy documentation]합니다.
 
-## <a name="step-1-copy-sample-data-to-azure-storage-blob"></a>1단계: 샘플 데이터를 Azure 저장소 Blob에 복사
-모든 부분이 준비되면 샘플 데이터를 Azure 저장소 Blob에 복사할 준비가 됩니다.
+## <a name="step-1-copy-sample-data-tooazure-storage-blob"></a>1 단계: 샘플 데이터 tooAzure 저장소 Blob 복사
+모든 hello 조각을 준비 했으면 준비 toocopy 샘플 데이터 tooyour Azure 저장소 Blob 됩니다.
 
-1. [샘플 데이터를 다운로드][Download sample data]합니다. 이 데이터는 AdventureWorksDW 샘플 데이터에 3년의 판매 데이터를 추가합니다.
-2. 이 AZCopy 명령을 사용하여 Azure 저장소 Blob에 3년 분량의 데이터를 복사합니다.
+1. [샘플 데이터를 다운로드][Download sample data]합니다. 이 데이터는 다른 3 년의 판매 데이터 tooyour AdventureWorksDW 예제 데이터를 추가 합니다.
+2. 데이터 tooyour Azure 저장소 Blob의 3 년이 AZCopy 명령 toocopy hello를 사용 합니다.
 
 ````
 AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core.windows.net/<container name> /DestKey:<storage key> /Pattern:FactInternetSales.csv
 ````
 
 
-## <a name="step-2-connect-resources-to-azure-data-factory"></a>2단계: Azure Data Factory로 리소스를 연결합니다.
-이제 데이터가 생성되었으므로 Azure 데이터 팩터리 파이프라인을 만들어 Azure Blob 저장소에서 SQL 데이터 웨어하우스로 데이터를 이동할 수 있습니다.
+## <a name="step-2-connect-resources-tooazure-data-factory"></a>2 단계: 리소스 tooAzure Data Factory에 연결
+Hello 데이터 준비에서는에서는 만들 수 hello Azure 데이터 팩터리 파이프라인 toomove hello 데이터 Azure blob 저장소의 SQL 데이터 웨어하우스로 합니다.
 
-시작하려면 [Azure Portal][Azure portal]을 열고 왼쪽 메뉴에서 사용자의 데이터 팩터리를 선택합니다.
+tooget 시작 열기 hello [Azure 포털] [ Azure portal] hello 왼쪽 메뉴에서 데이터 팩터리를 선택 합니다.
 
 ### <a name="step-21-create-linked-service"></a>2.1단계: 연결된 서비스 만들기
-Azure 저장소 계정과 SQL 데이터 웨어하우스를 데이터 팩터리로 연결합니다.  
+Azure 저장소 계정 및 SQL 데이터 웨어하우스 tooyour 데이터 팩터리에 연결 합니다.  
 
-1. 우선 데이터 팩터리의 '연결된 서비스' 섹션을 클릭한 다음 '새 데이터 저장소'를 클릭하여 등록 프로세스를 시작합니다. Azure 저장소를 등록할 이름을 선택하고 유형으로 Azure 저장소를 선택한 다음 계정 이름과 계정 키를 입력합니다.
-2. SQL 데이터 웨어하우스를 등록하려면 '작성 및 배포' 섹션을 탐색하고 '새 데이터 저장소'와 'Azure SQL 데이터 웨어하우스'를 차례로 선택합니다. 이 템플릿에 붙여 넣은 다음 특정 정보를 입력합니다.
+1. 먼저, 데이터 팩터리의 hello ' 연결 된 서비스 ' 섹션을 클릭 하 여 hello 등록 프로세스를 시작 하 고 '새 데이터 저장소'를 클릭 한 다음 이름 tooregister 사용자 형식으로 선택 Azure 저장소에서 azure 저장소를 선택 하 고 계정 이름과 계정 키를 입력 합니다.
+2. SQL 데이터 웨어하우스 tooregister toohello '작성자 및 배포' 섹션 이동 ' 새 데이터 저장소 ' 및 ' Azure SQL 데이터 웨어하우스 '를 선택 합니다. 이 템플릿에 붙여 넣은 다음 특정 정보를 입력합니다.
 
 ```JSON
 {
@@ -86,11 +86,11 @@ Azure 저장소 계정과 SQL 데이터 웨어하우스를 데이터 팩터리�
 }
 ```
 
-### <a name="step-22-define-the-dataset"></a>2.2단계: 데이터 집합 정의
-연결된 서비스를 만든 다음 데이터 집합을 정의해야 합니다.  여기서 저장소에서 데이터 웨어하우스로 이동하는 데이터의 구조를 정의하는 것을 의미합니다.  만들기에 대해 자세히 알아볼 수 있습니다.
+### <a name="step-22-define-hello-dataset"></a>2.2 단계: hello 데이터 집합 정의
+연결 된 서비스를 만드는 hello, म toodefine hello 데이터 집합을 갖게 됩니다.  이 의미 여기 저장소 tooyour 데이터 웨어하우스에서 이동 하는 hello 데이터의 hello 구조를 정의 합니다.  만들기에 대해 자세히 알아볼 수 있습니다.
 
-1. 이 프로세스를 시작하려면 가장 먼저 사용자 데이터 팩터리의 '작성 및 배포' 섹션으로 이동합니다.
-2. '새 데이터 집합'을 클릭한 다음 'Azure BLOB 저장소'를 클릭하여 저장소를 데이터 팩터리에 연결합니다.  아래 스크립트를 사용하여 Azure BLOB 저장소에서 데이터를 정의할 수 있습니다.
+1. 데이터 팩터리의 toohello '작성자 및 배포' 섹션을 탐색 하 여이 프로세스를 시작 합니다.
+2. '새 데이터 집합' 및 'Azure Blob 저장소' toolink 저장소 tooyour 데이터 팩터리를 클릭 합니다.  Azure Blob 저장소에 스크립트 toodefine 아래 hello 데이터를 사용할 수 있습니다.
 
 ```JSON
 {
@@ -124,7 +124,7 @@ Azure 저장소 계정과 SQL 데이터 웨어하우스를 데이터 팩터리�
 ```
 
 
-1. 이제 SQL 데이터 웨어하우스의 데이터 집합을 정의합니다.  마찬가지로 '새 데이터 집합'을 클릭한 다음 'Azure SQL 데이터 웨어하우스'를 클릭합니다.
+1. 이제 SQL 데이터 웨어하우스의 데이터 집합을 정의합니다.  Hello에서 시작 '새 데이터 집합' 및 ' Azure SQL 데이터 웨어하우스 '를 클릭 하 여 동일한 방식으로 합니다.
 
 ```JSON
 {
@@ -144,9 +144,9 @@ Azure 저장소 계정과 SQL 데이터 웨어하우스를 데이터 팩터리�
 ```
 
 ## <a name="step-3-create-and-run-your-pipeline"></a>3단계: 파이프라인 만들기 및 실행
-마지막으로 Azure Data Factory에서 파이프라인을 설정 및 실행합니다.  이 작업을 수행하면 실제 데이터 이동이 완료됩니다.  [여기][Move data to and from Azure SQL Data Warehouse using Azure Data Factory]서 SQL Data Warehouse와 Azure Data Factory를 사용하여 수행할 수 있는 작업에 대한 전체 보기를 찾을 수 있습니다.
+마지막으로, Azure 데이터 팩터리에서 hello 파이프라인을 설정 및 실행 합니다.  Hello 실제 데이터 이동이 완료 되는 hello 작업입니다.  SQL 데이터 웨어하우스 및 Azure Data Factory를 완료할 수 있는 hello 작업의 전체 뷰를 찾을 수 [여기][Move data tooand from Azure SQL Data Warehouse using Azure Data Factory]합니다.
 
-'작성 및 배포' 섹션에서 이제 '추가 명령'을 클릭한 다음 '새 파이프라인'을 클릭합니다.  파이프라인을 만든 다음 아래 코드를 사용하여 데이터를 데이터 웨어하우스로 전송할 수 있습니다.
+Hello '작성자 및 배포' 섹션에서 이제 ' 기타 명령을 ' 및 ' 새 파이프라인 '을 클릭 합니다.  Hello 파이프라인을 만든 후에 아래 코드 tootransfer hello 데이터 tooyour 데이터 웨어하우스 hello를 사용할 수 있습니다.
 
 ```JSON
 {
@@ -197,15 +197,15 @@ Azure 저장소 계정과 SQL 데이터 웨어하우스를 데이터 팩터리�
 ```
 
 ## <a name="next-steps"></a>다음 단계
-자세한 내용은 다음을 확인하여 시작합니다.
+toolearn을 확인 하 여 시작 합니다.
 
 * [Azure Data Factory 학습 경로][Azure Data Factory learning path]
-* [Azure SQL Data Warehouse 커넥터][Azure SQL Data Warehouse Connector] Azure SQL 데이터 웨어하우스와 함께 Azure Data Factory를 사용하기 위한 핵심 참조 항목입니다.
+* [Azure SQL Data Warehouse 커넥터][Azure SQL Data Warehouse Connector] Azure 데이터 팩터리를 사용 하 여 Azure SQL 데이터 웨어하우스에 대 한 hello 코어 참조 항목입니다.
 
-이러한 항목은 Azure Data Factory에 대한 자세한 정보를 제공합니다. Azure SQL 데이터베이스 또는 HDinsight를 설명하지만 해당 정보는 Azure SQL 데이터 웨어하우스에도 적용됩니다.
+이러한 항목은 Azure Data Factory에 대한 자세한 정보를 제공합니다. Azure SQL 데이터베이스 또는 HDinsight에 이야기 있지만 tooAzure SQL 데이터 웨어하우스 hello 정보에도 적용 됩니다.
 
-* [자습서: Azure Data Factory 시작][Tutorial: Get started with Azure Data Factory] Azure Data Factory를 사용하여 데이터를 처리하기 위한 핵심 자습서입니다. 이 자습서에서 HDInsight를 사용하여 월별 웹 로그를 변환 및 분석하는 첫 번째 파이프라인을 빌드합니다. 이 자습서에는 복사 작업이 없습니다.
-* [자습서: Azure Storage Blob에서 Azure SQL Database로 데이터 복사][Tutorial: Copy data from Azure Storage Blob to Azure SQL Database] 이 자습서에서는 Azure 저장소 Blob에서 Azure SQL 데이터베이스로 데이터를 복사하는 파이프라인을 Azure 데이터 팩터리에 만듭니다.
+* [자습서: Azure 데이터 팩터리 시작] [ Tutorial: Get started with Azure Data Factory] Azure 데이터 팩터리를 사용 하 여 데이터를 처리 하기 위한 hello 코어 자습서입니다. 이 자습서에서는 HDInsight tootransform를 사용 하 여 첫 번째 파이프라인 빌드하고 월별로 웹 로그 분석 합니다. 이 자습서에는 복사 작업이 없습니다.
+* [자습서: Azure 저장소 Blob tooAzure SQL 데이터베이스에서에서 데이터를 복사][Tutorial: Copy data from Azure Storage Blob tooAzure SQL Database]합니다. 이 자습서에서는 Azure 저장소 Blob tooAzure SQL 데이터베이스에서에서 Azure Data Factory toocopy 데이터에서 파이프라인을 만들어집니다.
 
 <!--Image references-->
 
@@ -217,11 +217,11 @@ Azure 저장소 계정과 SQL 데이터 웨어하우스를 데이터 팩터리�
 [Create a storage account]: ../storage/storage-create-storage-account.md#create-a-storage-account
 [Data Factory]: sql-data-warehouse-get-started-load-with-azure-data-factory.md
 [Get started with Azure Data Factory (Data Factory Editor)]: ../data-factory/data-factory-build-your-first-pipeline-using-editor.md
-[Introduction to Azure Data Factory]: ../data-factory/data-factory-introduction.md
+[Introduction tooAzure Data Factory]: ../data-factory/data-factory-introduction.md
 [Load sample data into SQL Data Warehouse]: sql-data-warehouse-load-sample-databases.md
-[Move data to and from Azure SQL Data Warehouse using Azure Data Factory]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
+[Move data tooand from Azure SQL Data Warehouse using Azure Data Factory]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
 [PolyBase]: sql-data-warehouse-get-started-load-with-polybase.md
-[Tutorial: Copy data from Azure Storage Blob to Azure SQL Database]: ../data-factory/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
+[Tutorial: Copy data from Azure Storage Blob tooAzure SQL Database]: ../data-factory/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
 [Tutorial: Get started with Azure Data Factory]: ../data-factory/data-factory-build-your-first-pipeline.md
 
 <!--MSDN references-->

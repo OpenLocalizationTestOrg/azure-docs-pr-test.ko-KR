@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 매니페스트 파일 형식 | Microsoft Docs"
-description: "Import/Export 서비스에서 Azure Blob Storage의 Blob와 가져오기 또는 내보내기 작업에 있는 드라이브의 파일 간에 매핑을 설명하는 드라이브 매니페스트 파일의 형식에 대해 알아봅니다."
+title: "aaaAzure 가져오기/내보내기 매니페스트 파일 형식 | Microsoft Docs"
+description: "Azure Blob 저장소의 blob 및 hello 가져오기/내보내기 서비스에서 가져오기 또는 내보내기 작업의 드라이브에서 파일 간의 hello 매핑을 설명 하는 hello 드라이브 매니페스트 파일의 hello 형식에 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: c1857eb94fba13c30e7f07669616f5d0ab9953f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7e5e1990482916f7ff5f891c97343b52e82b2f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-importexport-service-manifest-file-format"></a>Azure Import/Export 서비스 매니페스트 파일 형식
-드라이브 매니페스트 파일에서는 Azure Blob Storage의 Blob와 가져오기 또는 내보내기 작업으로 구성된 드라이브의 파일 간에 매핑을 설명합니다. 가져오기 작업의 경우 매니페스트 파일은 드라이브 준비 프로세스의 일부로 만들어지고 Azure 데이터 센터에 드라이브를 전송하기 전에 드라이브에 저장됩니다. 내보내기 작업 도중 Azure Import/Export 서비스에 의해 매니페스트가 생성되어 드라이브에 저장됩니다.  
+hello 드라이브 매니페스트 파일에는 Azure Blob 저장소에서 blob과 가져오기 또는 내보내기 작업으로 구성 된 드라이브에 파일 간의 hello 매핑을 설명 합니다. 가져오기 작업에 대 한 hello 매니페스트 파일 hello 드라이브 준비 프로세스의 일부로 만들어지고 hello 드라이브 toohello Azure 데이터 센터로 전송 되기 전에 hello 드라이브에 저장 됩니다. 내보내기 작업 중 hello 매니페스트 생성 되어 hello Azure 가져오기/내보내기 서비스에서 hello 드라이브에 저장 합니다.  
   
-가져오기 또는 내보내기 작업의 경우 드라이브 매니페스트 파일은 가져오기 및 내보내기 드라이브에 저장되고 API 작업을 통해 서비스에 전송되지 않습니다.  
+둘 다 가져오기 및 내보내기 작업 hello 드라이브 매니페스트 파일 저장에 대 한 hello에 가져오기 또는 내보내기 드라이브; 없으면 toohello 서비스 API 작업을 통해 전송 합니다.  
   
-다음은 드라이브 매니페스트 파일의 일반 형식에 대해 설명합니다.  
+hello 다음 드라이브 매니페스트 파일의 일반 형식은 hello를 설명합니다.  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -36,7 +36,7 @@ ms.lasthandoff: 07/11/2017
   
     <!-- First Blob List -->  
     <BlobList>  
-      <!-- Global properties and metadata that applies to all blobs -->  
+      <!-- Global properties and metadata that applies tooall blobs -->  
       [<MetadataPath Hash="md5-hash">global-metadata-file-path</MetadataPath>]  
       [<PropertiesPath   
         Hash="md5-hash">global-properties-file-path</PropertiesPath>]  
@@ -93,44 +93,44 @@ block-list ::=
 
 ## <a name="manifest-xml-elements-and-attributes"></a>매니페스트 XML 요소 및 특성
 
-드라이브 매니페스트 XML 형식의 데이터 요소 및 특성은 다음 테이블에 지정됩니다.  
+hello 드라이브 매니페스트 XML 형식의의 hello 데이터 요소와 특성은 다음 표에 hello에 지정 됩니다.  
   
 |XML 요소|형식|설명|  
 |-----------------|----------|-----------------|  
-|`DriveManifest`|루트 요소|매니페스트 파일의 루트 요소입니다. 파일의 다른 모든 요소는 이 요소에 있습니다.|  
-|`Version`|특성, 문자열|매니페스트 파일의 버전입니다.|  
-|`Drive`|중첩 XML 요소|각 드라이브에 대한 매니페스트를 포함합니다.|  
-|`DriveId`|문자열|드라이브의 고유한 드라이브 식별자입니다. 해당 일련 번호에 대한 드라이브를 쿼리하여 드라이브 식별자를 찾을 수 있습니다. 드라이브 일련 번호는 일반적으로 드라이브의 외부에 인쇄됩니다. `DriveID` 요소는 매니페스트 파일에서 `BlobList` 요소보다 먼저 나타나야 합니다.|  
-|`StorageAccountKey`|string|`ContainerSas`이 지정되지 않은 경우 가져오기 작업에 필요합니다. Azure Storage 계정의 계정 키는 작업과 연결되었습니다.<br /><br /> 이 요소는 내보내기 작업에 대한 매니페스트에서 생략됩니다.|  
-|`ContainerSas`|string|`StorageAccountKey`이 지정되지 않은 경우 가져오기 작업에 필요합니다. 작업과 연결된 Blob에 액세스하기 위한 컨테이너 SAS입니다. 해당 형식은 [작업 배치](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate)를 참조하세요. 이 요소는 내보내기 작업에 대한 매니페스트에서 생략됩니다.|  
-|`ClientCreator`|문자열|XML 파일을 만든 클라이언트를 지정합니다. 이 값은 Import/Export 서비스에서 해석되지 않습니다.|  
-|`BlobList`|중첩 XML 요소|가져오기 또는 내보내기 작업의 일부인 Blob의 목록을 포함합니다. Blob 목록에 있는 각 Blob는 동일한 메타데이터 및 속성을 공유합니다.|  
-|`BlobList/MetadataPath`|문자열|선택 사항입니다. 기본 메타데이터를 포함하는 디스크에 대한 파일의 상대 경로를 지정합니다. 메타데이터는 가져오기 작업의 Blob 목록에 있는 Blob에 대해 설정됩니다. 이 메타데이터는 Blob 별로 선택적으로 재정의될 수 있습니다.<br /><br /> 이 요소는 내보내기 작업에 대한 매니페스트에서 생략됩니다.|  
-|`BlobList/MetadataPath/@Hash`|특성, 문자열|메타데이터 파일의 Base16 인코딩 MD5 해시 값을 지정합니다.|  
-|`BlobList/PropertiesPath`|string|선택 사항입니다. 기본 속성을 포함하는 디스크에 대한 파일의 상대 경로를 지정합니다. 속성은 가져오기 작업의 Blob 목록에 있는 Blob에 대해 설정됩니다. 이러한 속성은 Blob 별로 선택적으로 재정의될 수 있습니다.<br /><br /> 이 요소는 내보내기 작업에 대한 매니페스트에서 생략됩니다.|  
-|`BlobList/PropertiesPath/@Hash`|특성, 문자열|속성 파일의 Base16 인코딩 MD5 해시 값을 지정합니다.|  
+|`DriveManifest`|루트 요소|hello hello 매니페스트 파일의 루트 요소입니다. Hello 파일의 다른 모든 요소는이 요소 아래에 있습니다.|  
+|`Version`|특성, 문자열|hello 매니페스트 파일의 hello 버전입니다.|  
+|`Drive`|중첩 XML 요소|각 드라이브에 대 한 hello 매니페스트를 포함합니다.|  
+|`DriveId`|문자열|hello hello 드라이브에 대 한 고유 드라이브 식별자입니다. hello 드라이브 식별자를 hello 드라이브 일련 번호에 대 한 쿼리를 통해 찾을 수 있습니다. 드라이브 일련 번호 hello hello 드라이브도 외부 hello에 일반적으로 인쇄 됩니다. hello `DriveID` 하기 전에 나타나야 합니다 `BlobList` hello 매니페스트 파일의 요소입니다.|  
+|`StorageAccountKey`|문자열|`ContainerSas`이 지정되지 않은 경우 가져오기 작업에 필요합니다. hello 작업과 연결 된 hello Azure 저장소 계정에 대 한 hello 계정 키입니다.<br /><br /> 이 요소는 내보내기 작업에 대 한 hello 매니페스트에서 생략 됩니다.|  
+|`ContainerSas`|문자열|`StorageAccountKey`이 지정되지 않은 경우 가져오기 작업에 필요합니다. hello 작업과 연결 된 hello blob에 액세스 하기 위한 hello 컨테이너 SAS입니다. 참조 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 해당 형식에 대 한 합니다. 이 요소는 내보내기 작업에 대 한 hello 매니페스트에서 생략 됩니다.|  
+|`ClientCreator`|문자열|Hello을 만든 클라이언트를 hello XML 파일을 지정 합니다. 이 값 hello 가져오기/내보내기 서비스에서 해석 되지 않습니다.|  
+|`BlobList`|중첩 XML 요소|부분이 hello 가져오기 또는 내보내기 작업 하는 blob의 목록을 포함 합니다. Blob 목록에 각 blob 공유 hello 같은 메타 데이터 및 속성입니다.|  
+|`BlobList/MetadataPath`|문자열|선택 사항입니다. Hello 가져오기 작업에 대 한 hello blob 목록 blob에에서 대해 설정할 수 있는 hello 기본 메타 데이터를 포함 하는 hello 디스크에 있는 파일의 상대 경로 지정 합니다. 이 메타데이터는 Blob 별로 선택적으로 재정의될 수 있습니다.<br /><br /> 이 요소는 내보내기 작업에 대 한 hello 매니페스트에서 생략 됩니다.|  
+|`BlobList/MetadataPath/@Hash`|특성, 문자열|Hello 메타 데이터 파일에 대 한 hello Base16 인코딩된 MD5 해시 값을 지정합니다.|  
+|`BlobList/PropertiesPath`|문자열|선택 사항입니다. Hello 가져오기 작업에 대 한 hello blob 목록 blob에에서 대해 설정할 수 있는 hello 기본 속성을 포함 하는 hello 디스크에 있는 파일의 상대 경로 지정 합니다. 이러한 속성은 Blob 별로 선택적으로 재정의될 수 있습니다.<br /><br /> 이 요소는 내보내기 작업에 대 한 hello 매니페스트에서 생략 됩니다.|  
+|`BlobList/PropertiesPath/@Hash`|특성, 문자열|Hello 속성 파일에 대 한 hello Base16 인코딩된 MD5 해시 값을 지정합니다.|  
 |`Blob`|중첩 XML 요소|각 Blob 목록에 있는 각 Blob에 대한 정보를 포함합니다.|  
-|`Blob/BlobPath`|문자열|컨테이너 이름으로 시작하는 Blob에 대한 상대 URI입니다. Blob가 루트 컨테이너에 있으면 `$root`로 시작해야 합니다.|  
-|`Blob/FilePath`|string|드라이브의 파일에 대한 상대 경로를 지정합니다. 내보내기 작업의 경우 가능하면 Blob 경로를 파일 경로에 사용합니다. *예를 들어* `pictures/bob/wild/desert.jpg`을 `\pictures\bob\wild\desert.jpg`로 내보냅니다. 그러나 NTFS 이름의 제한으로 인해 Blob 경로와 유사하지 않은 경로를 사용하여 Blob를 파일로 내보낼 수 있습니다.|  
-|`Blob/ClientData`|string|선택 사항입니다. 고객의 의견을 포함하고 있습니다. 이 값은 Import/Export 서비스에서 해석되지 않습니다.|  
-|`Blob/Snapshot`|DateTime|내보내기 작업의 경우 선택 사항입니다. 내보낸 Blob 스냅숏의 스냅숏 식별자를 지정합니다.|  
-|`Blob/Length`|Integer|Blob의 총 길이를 바이트 단위로 지정합니다. 값은 블록 Blob의 경우 최대 200GB이고 페이지 Blob의 경우 최대 1TB가 될 수 있습니다. 페이지 Blob의 경우 이 값은 512의 배수입니다.|  
-|`Blob/ImportDisposition`|문자열|가져오기 작업의 경우 선택 사항이고 내보내기 작업의 경우 생략됩니다. 그러면 동일한 이름의 Blob가 이미 있는 가져오기 작업인 경우 Import/Export 서비스에서 처리해야 하는 방법을 지정합니다. 이 값을 가져오기 매니페스트에서 생략하면 기본값은 `rename`입니다.<br /><br /> 이 요소의 값은 다음과 같습니다.<br /><br /> -   `no-overwrite`: 이미 같은 이름의 대상 Blob가 있는 경우 가져오기 작업에서는 이 파일을 가져오는 단계를 건너뜁니다.<br />-   `overwrite`: 새로 가져온 파일은 모든 기존 대상 Blob를 완전히 덮어씁니다.<br />-   `rename`: 새 Blob는 수정된 이름으로 업로드됩니다.<br /><br /> 이름 바꾸기 규칙은 다음과 같습니다.<br /><br /> - Blob 이름에 점이 포함되지 않는 경우 `(2)`을 원래 Blob 이름에 추가하여 새 이름을 생성합니다. 새 이름이 기존 Blob 이름과 충돌할 경우 `(2)` 대신 `(3)`가 추가됩니다.<br />- Blob 이름에 점이 포함되는 경우 마지막 점의 뒷부분이 확장명으로 간주됩니다. 위의 절차와 비슷하게 새 이름을 생성하려면 마지막 점 앞에 `(2)`을 삽입합니다. 새 이름이 여전히 기존 Blob 이름과 충돌하는 경우 서비스에서는 충돌하지 않는 이름을 찾을 때까지 `(3)`, `(4)` 등을 시도합니다.<br /><br /> 일부 사례:<br /><br /> Blob `BlobNameWithoutDot`의 이름은 다음으로 바뀝니다.<br /><br /> `BlobNameWithoutDot (2)  // if BlobNameWithoutDot exists`<br /><br /> `BlobNameWithoutDot (3)  // if both BlobNameWithoutDot and BlobNameWithoutDot (2) exist`<br /><br /> Blob `Seattle.jpg`의 이름은 다음으로 바뀝니다.<br /><br /> `Seattle (2).jpg  // if Seattle.jpg exists`<br /><br /> `Seattle (3).jpg  // if both Seattle.jpg and Seattle (2).jpg exist`|  
-|`PageRangeList`|중첩 XML 요소|페이지 Blob에 필요합니다.<br /><br /> 가져오기 작업의 경우 가져올 파일의 바이트 범위 목록을 지정합니다. 각 페이지 범위는 지역의 MD5 해시와 함께 페이지 범위를 설명하는 원본 파일의 오프셋과 길이를 기준으로 설명됩니다. 페이지 범위의 `Hash` 특성이 필요합니다. 서비스에서는 Blob에 있는 데이터의 해시가 페이지 범위에서 계산된 MD5 해시와 일치하는지 확인합니다. 총 크기가 최대 1TB인 가져오기의 파일을 설명하는 데 페이지 범위의 모든 수를 사용할 수 있습니다. 오프셋을 기준으로 모든 페이지 범위를 정렬해야 하고 겹치지 않아야 합니다.<br /><br /> 내보내기 작업의 경우 드라이브로 내보내진 Blob의 바이트 범위 집합을 지정합니다.<br /><br /> 페이지 범위는 Blob 또는 파일의 하위 범위만을 허용할 수 있습니다.  페이지 범위에서 허용되지 않는 파일의 나머지 부분이 발생하면 해당 콘텐츠는 정의되지 않을 수 있습니다.|  
+|`Blob/BlobPath`|문자열|hello 상대 URI toohello blob hello 컨테이너 이름으로 시작 합니다. 로 시작 해야 hello blob이 루트 컨테이너에 있으면, `$root`합니다.|  
+|`Blob/FilePath`|문자열|Hello hello 드라이브에 toohello 파일 상대 경로 지정합니다. 내보내기 작업에 대 한 hello blob 경로에 사용할 가능 하면; hello 파일 경로 *예:*, `pictures/bob/wild/desert.jpg` 너무 내보낼`\pictures\bob\wild\desert.jpg`합니다. 그러나 NTFS 이름의 제한 toohello, 기한 blob hello blob 경로 유사 하지 않은 경로 사용 하 여 내보낸된 tooa 파일 수 있습니다.|  
+|`Blob/ClientData`|문자열|선택 사항입니다. Hello 고객의 주석이 포함 됩니다. 이 값 hello 가져오기/내보내기 서비스에서 해석 되지 않습니다.|  
+|`Blob/Snapshot`|DateTime|내보내기 작업의 경우 선택 사항입니다. 내보낸된 blob 스냅숏에 대 한 hello 스냅숏 식별자를 지정합니다.|  
+|`Blob/Length`|Integer|Hello hello blob의 총 길이 바이트 단위로 지정 합니다. hello 값 too200 GB 블록 blob 및 페이지 blob에 대 한 too1 TB를 수 있습니다. 페이지 Blob의 경우 이 값은 512의 배수입니다.|  
+|`Blob/ImportDisposition`|문자열|가져오기 작업의 경우 선택 사항이고 내보내기 작업의 경우 생략됩니다. 이 가져오기/내보내기 서비스 hello 처리 방법을 hello 경우 가져오기 작업에 대 한 hello 이미 이름과 같은 이름을 사용 하 여 blob가 존재 하는 위치를 지정 합니다. Hello 기본값은 hello 가져오기 매니페스트에서이 값을 생략 하면 `rename`합니다.<br /><br /> 이 요소에 대 한 hello 값은 다음과 같습니다.<br /><br /> -   `no-overwrite`: 대상 blob가 이미 hello로 있는 경우 이름이 같은 hello 가져오기 작업의 가져오기를 건너뜁니다이 파일입니다.<br />-   `overwrite`: 모든 기존 대상 blob은 완전히 덮어씁니다 hello 새로 가져온된 파일이 있습니다.<br />-   `rename`: 새 blob hello 수정 된 이름으로 업로드 됩니다.<br /><br /> 규칙 이름 바꾸기 hello는 다음과 같습니다.<br /><br /> -추가 하 여 새 이름이 생성 hello blob 이름에 점이 포함 하지 않는 경우 `(2)` toohello 원래 blob 이름에이 새로운 이름을 충돌 하는 기존 blob 이름과 다음 경우 `(3)` 가 대신 추가 `(2)`식입니다.<br />-Hello blob 이름에 점이 있으면, hello 마지막 점 hello 부분은 hello 확장 이름으로 간주 됩니다. 절차, 위 비슷한 toohello `(2)` 앞에 삽입 된 마지막 점 toogenerate 새 이름을 hello; hello 새 이름을 기존 blob 이름과 여전히 충돌, 다음 hello 서비스 시도 `(3)`, `(4)`, 등의 충돌 하지 않는 될 때까지 이름은 찾을 수 있습니다.<br /><br /> 일부 사례:<br /><br /> hello blob `BlobNameWithoutDot` 로 바뀝니다:<br /><br /> `BlobNameWithoutDot (2)  // if BlobNameWithoutDot exists`<br /><br /> `BlobNameWithoutDot (3)  // if both BlobNameWithoutDot and BlobNameWithoutDot (2) exist`<br /><br /> hello blob `Seattle.jpg` 로 바뀝니다:<br /><br /> `Seattle (2).jpg  // if Seattle.jpg exists`<br /><br /> `Seattle (3).jpg  // if both Seattle.jpg and Seattle (2).jpg exist`|  
+|`PageRangeList`|중첩 XML 요소|페이지 Blob에 필요합니다.<br /><br /> 가져오기에 대 한 작업을 가져올 파일 toobe의 바이트 범위 목록을 지정 합니다. 각 페이지 범위는 오프셋과 길이 hello 영역의 MD5 해시와 함께 hello 페이지 범위를 설명 하는 hello 소스 파일에 설명 되어 있습니다. hello `Hash` 페이지 범위의 특성이 필요 합니다. hello 서비스는 hello blob 데이터를 hello의 hello 해시 hello 페이지 범위에서 계산 된 hello MD5 해시와 일치 하는지 확인 합니다. 페이지 범위를 개수에 관계 없이 사용 되는 toodescribe too1 TB hello 전체 크기를 사용 하 여 프로그램 가져오기에 대 한 파일 수 있습니다. 오프셋을 기준으로 모든 페이지 범위를 정렬해야 하고 겹치지 않아야 합니다.<br /><br /> 내보내기 작업에 대 한 된 blob의 바이트 범위 집합을 내보낸 toohello 드라이브를 지정 합니다.<br /><br /> 함께 hello 페이지 범위는 blob 또는 파일의 하위 범위에만 넘어갈 수 있습니다.  페이지 범위가 적용 되지 않는 hello 파일의 나머지 부분 hello는 하며 해당 콘텐츠를 정의 되지 않은 상태일 수 있습니다.|  
 |`PageRange`|XML 요소|페이지 범위를 나타냅니다.|  
-|`PageRange/@Offset`|특성, 정수|지정된 페이지 범위가 시작되는 전송 파일 및 Blob의 오프셋을 지정합니다. 이 값은 512의 배수여야 합니다.|  
-|`PageRange/@Length`|특성, 정수|페이지 범위의 길이를 지정합니다. 이 값은 512의 배수이고 4MB 이하여야 합니다.|  
-|`PageRange/@Hash`|특성, 문자열|페이지 범위의 Base16 인코딩 MD5 해시 값을 지정합니다.|  
-|`BlockList`|중첩 XML 요소|블록의 이름을 지정한 블록 Blob에 필요합니다.<br /><br /> 가져오기 작업의 경우 블록 목록은 Azure Storage로 가져올 블록 집합을 지정합니다. 내보내기 작업의 경우 블록 목록은 각 블록이 내보내기 디스크의 파일에 저장된 위치를 지정합니다. 각 블록은 파일 및 블록 길이에 있는 오프셋을 기준으로 설명되고 추가로 블록 ID 특성 별로 이름이 지정되며 블록에 대한 MD5 해시를 포함합니다. Blob을 설명하는 데 최대 50,000개의 블록을 사용할 수 있습니다.  모든 블록은 오프셋을 기준으로 정렬되고 파일의 전체 범위를 포함해야 합니다. *즉*, 블록 사이에 간격이 없어야 합니다. Blob이 64MB 이하인 경우 각 블록의 블록 ID는 모두 지워지거나 모두 표시되어야 합니다. 블록 ID는 Base64 인코딩 문자열이어야 합니다. 블록 ID에 대한 추가 요구 사항은 [블록 배치](/rest/api/storageservices/put-block)를 참조하세요.|  
+|`PageRange/@Offset`|특성, 정수|Hello 오프셋 hello 전송 파일과 hello blob hello 페이지 범위를 지정 하는 위치에서 시작을 지정 합니다. 이 값은 512의 배수여야 합니다.|  
+|`PageRange/@Length`|특성, 정수|Hello 페이지 범위의 hello 길이 지정합니다. 이 값은 512의 배수이고 4MB 이하여야 합니다.|  
+|`PageRange/@Hash`|특성, 문자열|Hello 페이지 범위에 대 한 hello Base16 인코딩된 MD5 해시 값을 지정합니다.|  
+|`BlockList`|중첩 XML 요소|블록의 이름을 지정한 블록 Blob에 필요합니다.<br /><br /> 가져오기 작업에 대 한 hello 블록 목록은 Azure 저장소로 가져올 블록의 집합을 지정 합니다. 내보내기 작업에 대 한 hello 블록 목록은 각 블록 hello hello 내보내기 디스크 파일에 저장 된 위치를 지정 합니다. 각 블록 hello 파일과 블록 길이가;에 있는 오프셋 하 여 설명 각 블록은 블록 ID 특성을 사용 하 여 추가로 이름이 지정 하며 hello 블록에 대 한 MD5 해시를 포함 합니다. Too50, 위로 000 블록 blob를 사용 하는 toodescribe 될 수 있습니다.  모든 블록 순서를 지정 해야 오프셋 및 함께 hello hello 파일의 전체 범위를 다루어야 *즉,*, 블록 사이 간격 없는 이어야 합니다. Hello blob 각 블록에 대해 개 이하의 64MB hello 블록 Id가 없는 모든 또는 모두 제공 합니다. 블록 Id는 필수 toobe Base64 인코딩 문자열입니다. 블록 ID에 대한 추가 요구 사항은 [블록 배치](/rest/api/storageservices/put-block)를 참조하세요.|  
 |`Block`|XML 요소|블록을 나타냅니다.|  
-|`Block/@Offset`|특성, 정수|지정된 블록이 시작하는 오프셋을 지정합니다.|  
-|`Block/@Length`|특성, 정수|블록에서 바이트 수를 지정합니다. 이 값은 4MB 이하여야 합니다.|  
-|`Block/@Id`|특성, 문자열|블록의 블록 ID를 나타내는 문자열을 지정합니다.|  
-|`Block/@Hash`|특성, 문자열|블록의 Base16 인코딩 MD5 해시를 지정합니다.|  
-|`Blob/MetadataPath`|string|선택 사항입니다. 메타데이터 파일의 상대 경로를 지정합니다. 가져오기 작업 중 대상 Blob에 메타데이터가 설정됩니다. 내보내기 작업 중 Blob의 메타데이터는 드라이브의 메타데이터 파일에 저장됩니다.|  
-|`Blob/MetadataPath/@Hash`|특성, 문자열|Blob 메타데이터 파일의 Base16 인코딩 MD5 해시를 지정합니다.|  
-|`Blob/PropertiesPath`|string|선택 사항입니다. 속성 파일의 상대 경로를 지정합니다. 가져오기 작업 중 대상 Blob에 속성이 설정됩니다. 내보내기 작업 중 Blob 속성은 드라이브의 속성에 저장됩니다.|  
-|`Blob/PropertiesPath/@Hash`|특성, 문자열|Blob 속성 파일의 Base16 인코딩 MD5 해시를 지정합니다.|  
+|`Block/@Offset`|특성, 정수|Hello 오프셋 hello 지정 된 블록의 시작 위치를 지정 합니다.|  
+|`Block/@Length`|특성, 정수|Hello 블록;에 hello 바이트 수를 지정합니다. 이 값은 최대 4MB 이어야 합니다.|  
+|`Block/@Id`|특성, 문자열|Hello 블록에 대 한 hello 블록 ID를 나타내는 문자열을 지정 합니다.|  
+|`Block/@Hash`|특성, 문자열|Hello 블록의 hello Base16 인코딩된 MD5 해시를 지정합니다.|  
+|`Blob/MetadataPath`|문자열|선택 사항입니다. Hello 메타 데이터 파일의 상대 경로 지정합니다. 가져오기 작업 중 hello 메타 데이터는 hello 대상 blob에 설정 됩니다. 내보내기 작업 중 hello blob의 메타 데이터는 hello 드라이브에 hello 메타 데이터 파일에 저장 됩니다.|  
+|`Blob/MetadataPath/@Hash`|특성, 문자열|Hello blob의 메타 데이터 파일의 hello Base16 인코딩된 MD5 해시를 지정합니다.|  
+|`Blob/PropertiesPath`|문자열|선택 사항입니다. Hello 속성 파일의 상대 경로 지정합니다. 가져오기 작업 중 hello 속성 hello 대상 blob에 설정 됩니다. 내보내기 작업 중 hello blob 속성 hello 드라이브에 hello 속성 파일에 저장 됩니다.|  
+|`Blob/PropertiesPath/@Hash`|특성, 문자열|Hello blob의 속성 파일의 hello Base16 인코딩된 MD5 해시를 지정합니다.|  
   
 ## <a name="next-steps"></a>다음 단계
  

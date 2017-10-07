@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure 저장소에서 동시성 관리"
-description: "Blob, 큐, 테이블 및 파일 서비스의 동시성을 관리하는 방법에 대해 알아봅니다."
+title: "Microsoft Azure 저장소에 대 한 동시성 aaaManaging"
+description: "방법에 대 한 동시성 toomanage hello Blob, 큐, 테이블 및 파일 서비스"
 services: storage
 documentationcenter: 
 author: jasontang501
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: jasontang501
-ms.openlocfilehash: 8b894af2f15cd22f04701c545d8250e20b99a094
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 277fbbb880906da6be67b2267ed5c8e457455bd1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-concurrency-in-microsoft-azure-storage"></a>Microsoft Azure 저장소에서 동시성 관리
 ## <a name="overview"></a>개요
-최신 인터넷 기반 응용 프로그램에서는 대개 여러 사용자가 데이터를 동시에 보고 업데이트합니다. 이로 인해 응용 프로그램 개발자는 최종 사용자에게 예측 가능한 환경을 제공하는 방법, 특히 여러 사용자가 같은 데이터를 업데이트할 수 있는 시나리오를 신중하게 고려해야 합니다. 개발자가 일반적으로 고려하는 주요 데이터 동시성 전략에는 다음의 세 가지가 있습니다.  
+최신 인터넷 기반 응용 프로그램에서는 대개 여러 사용자가 데이터를 동시에 보고 업데이트합니다. 이렇게 하려면 예측 가능한 a tooprovide tootheir 최종 사용자가 경험 하는 방법에 대 한 신중 하 게 응용 프로그램 개발자가 toothink 특히 동일한 여러 사용자가 업데이트할 수 있는 시나리오 hello에 대 한 데이터입니다. 개발자가 일반적으로 고려하는 주요 데이터 동시성 전략에는 다음의 세 가지가 있습니다.  
 
-1. 낙관적 동시성 - 업데이트를 수행하는 응용 프로그램이 업데이트의 일환으로 응용 프로그램이 데이터를 마지막으로 읽은 이후 해당 데이터가 변경되었는지를 확인합니다. 예를 들어 Wiki 페이지를 보는 두 사용자가 같은 페이지를 업데이트하면 Wiki 플랫폼은 두 번째 업데이트가 첫 번째 업데이트를 덮어쓰지 않도록 해야 하며, 두 사용자가 모두 자신의 업데이트가 정상적으로 적용되었는지를 파악할 수 있도록 해야 합니다. 이 전략은 웹 응용 프로그램에서 가장 흔히 사용됩니다.
-2. 비관적 동시성 - 업데이트를 수행하려는 응용 프로그램이 개체를 잠가서 다른 사용자가 잠금이 해제될 때까지 데이터를 업데이트하지 못하도록 합니다. 예를 들어 마스터만 업데이트를 수행하는 마스터/슬레이브 데이터 복제 시나리오에서는 다른 사람이 데이터를 업데이트할 수 없도록 대개 마스터가 데이터에 대해 장시간 배타적 잠금을 적용합니다.
-3. 마지막 작성자의 업데이트 적용 - 응용 프로그램이 데이터를 처음 읽은 후 다른 응용 프로그램이 데이터를 업데이트했는지 여부를 확인하지 않고 모든 업데이트 작업을 진행하도록 허용하는 방식입니다. 데이터가 분할되어 여러 사용자가 같은 데이터에 액세스할 가능성이 없을 때는 일반적으로 이 전략을 사용하거나 공식적인 전략을 사용하지 않습니다. 일시적인 데이터 스트림을 처리하는 경우에도 이 전략이 유용할 수 있습니다.  
+1. 낙관적 동시성 – 데이터를 읽는 마지막 업데이트는 해당 업데이트의 일부로 확인 hello 응용 프로그램 이후 hello 데이터가 변경 되었는지 여부는 응용 프로그램이 수행 합니다. 예를 들어 두 사용자를 한 wiki 페이지 보기 업데이트 toohello 확인 하는 경우 동일한 페이지 hello wiki 플랫폼 해당 hello 두 번째 업데이트 hello 첫 번째 업데이트 –를 덮어쓰지 않습니다을 확인 해야 하 고 두 사용자가 자신의 업데이트가 성공 했는지 여부를 이해 하는 합니다. 이 전략은 웹 응용 프로그램에서 가장 흔히 사용됩니다.
+2. 비관적 동시성 – tooperform 업데이트를 확인 하는 응용 프로그램 다른 사용자 hello 잠금이 해제 될 때까지 hello 데이터를 업데이트 하는 것을 방지 하는 개체를 잠금을 수행 합니다. 예를 들어 마스터/슬레이브 데이터 복제 시나리오만 hello 마스터 업데이트를 수행 하는 hello 마스터에서는 일반적으로 보관 한 단독 잠금을 오랜 시간에 없는 다른 사람이 hello 데이터 tooensure 문자열을 업데이트할 수에 대 한 합니다.
+3. 마지막 기록자 우선 – hello 응용 프로그램 먼저 hello 데이터를 읽은 후 다른 응용 프로그램 hello 데이터에 업데이트를 확인 하지 않고 모든 업데이트 작업이 tooproceed를 허용 하 합니다. 이 전략 (또는 정식 전략의 부족)은 여러 사용자가 hello를 액세스 가능성이 없는 인지 하는 방식으로 데이터 분할 되는 위치 사용 일반적으로 동일한 데이터입니다. 일시적인 데이터 스트림을 처리하는 경우에도 이 전략이 유용할 수 있습니다.  
 
-이 문서에서는 Azure 저장소 플랫폼이 이와 같은 모든 세 가지 동시성 전략에 대해 가장 효율적인 지원을 제공함으로써 개발을 간소화하는 방식을 대략적으로 설명합니다.  
+이 문서에서는 hello Azure 저장소 플랫폼 이러한 동시성 전략의 세 가지 모두에 대 한 최고 수준의 지원을 제공 하 여 배포를 간소화 하는 방법의 개요를 제공 합니다.  
 
 ## <a name="azure-storage--simplifies-cloud-development"></a>Azure 저장소 - 클라우드 개발 간소화
-Azure 저장소 서비스는 세 가지 전략을 모두 지원하지만 특히 낙관적 동시성과 비관적 동시성을 완벽하게 지원할 수 있습니다. 저장소 서비스가 데이터 삽입 또는 업데이트 작업을 커밋하면 해당 데이터에 대한 모든 추가 액세스 시 최신 업데이트가 표시되도록 보장하는 강력한 동시성 모델을 사용하도록 디자인되었기 때문입니다. 결과적 일관성 모델을 사용하는 저장소 플랫폼에서는 특정 사용자가 쓰기를 수행하는 시점과 다른 사용자에게 업데이트된 데이터가 표시되는 시점 간에 지연 시간이 있으므로, 불일치 사항이 최종 사용자에게 영향을 주지 않도록 하기 위해 클라이언트 응용 프로그램 개발 과정이 복잡해집니다.  
+hello Azure 저장소 서비스는 어떠한 강력한 일관성 모델 디자인 된 tooembrace 되었기 때문에 낙관적 및 비관적 동시성에 대 한 기능 tooprovide 완전히 지원에 고유한 기능은 없지만 모든 세 가지 전략을 지 원하는 안녕 저장소 서비스 커밋 데이터 삽입 또는 업데이트 작업 이후의 모든 액세스 toothat 데이터가 최신 업데이트 hello 표시 됩니다. 최고의 일관성 모델이 사용 하는 저장소 플랫폼에 대 한 쓰기 사용자가 수행 될 때 사이는 간격이 존재 하 고 따라서 순서 tooprevent 불일치가 클라이언트 응용 프로그램을 개발 하므로 복잡해 집니다. 다른 사용자가 데이터를 볼 수 hello 업데이트 될 때 최종 사용자가에 영향을 주는 합니다.  
 
-개발자는 적절한 동시성 전략을 선택해야 할 뿐 아니라 저장소 플랫폼이 변경 내용, 특히 여러 트랜잭션 간의 같은 개체에 대한 변경 내용을 격리하는 방법도 파악해야 합니다. Azure 저장소 서비스는 스냅숏 격리를 사용하여 단일 파티션 내에서 읽기 작업과 쓰기 작업이 동시에 수행되도록 허용합니다. 다른 격리 수준과는 달리 스냅숏 격리에서는 업데이트가 수행되는 동안에도 모든 읽기 시 데이터의 일관된 스냅숏이 표시됩니다. 이를 위해 업데이트 트랜잭션을 처리하는 동안 마지막으로 커밋된 값을 반환합니다.  
+또한 tooselecting 적절 한 동시성 전략 개발자도 알고 있어야 하는 저장소 플랫폼 변경 내용 – 동일한 트랜잭션에 걸쳐 개체 변경 내용 toohello 특히를 격리 하는 방법입니다. hello Azure 저장소 서비스는 단일 파티션 내에서 쓰기 작업이 동시에 작업 toohappen 읽기 스냅숏 격리 tooallow를 사용 합니다. 다른 격리 수준이 달리 스냅숏 격리를 사용 하면 모든 읽기 확인 hello 데이터의 일관 된 스냅숏을 업데이트가 발생 – 기본적으로 처리 되는 업데이트 트랜잭션 동안 hello 마지막으로 커밋된 값을 반환 하 여는 동안에 합니다.  
 
 ## <a name="managing-concurrency-in-blob-storage"></a>Blob 저장소에서 동시성 관리
-낙관적 동시성 모델이나 비관적 동시성 모델을 사용하여 Blob 서비스의 컨테이너와 Blob에 대한 액세스를 관리할 수 있습니다. 전략을 명시적으로 지정하지 않으면 마지막 작성자의 업데이트 적용 전략이 기본적으로 사용됩니다.  
+Toouse 낙관적 또는 비관적 동시성 모델 toomanage 액세스 tooblobs 및 컨테이너에서 hello blob 서비스 중 하나를 선택할 수 있습니다. 전략을 명시적으로 지정 하지 않으면 마지막 wins는 hello 기본 기록 합니다.  
 
 ### <a name="optimistic-concurrency-for-blobs-and-containers"></a>Blob 및 컨테이너에 대한 낙관적 동시성
-저장소 서비스는 저장되는 모든 개체에 식별자를 할당합니다. 이 식별자는 개체에 대해 업데이트 작업을 수행할 때마다 업데이트되며, HTTP 프로토콜 내에 정의된 ETag(엔터티 태그) 헤더를 사용하여 HTTP GET 응답의 일부분으로 클라이언트에 반환됩니다. 이러한 개체에 대해 업데이트를 수행하는 사용자는 조건부 헤더와 함께 원본 ETag를 보내 특정 조건이 충족된 경우에만 업데이트가 수행되도록 할 수 있습니다. 이 경우 조건은 “If-Match” 헤더로, 저장소 서비스는 업데이트 요청에 지정된 ETag의 값이 저장소 서비스에 저장된 값과 같은지를 확인해야 합니다.  
+저장소 서비스 hello 식별자 tooevery 저장 된 개체를 할당 합니다. 이 식별자는 개체에 대해 업데이트 작업을 수행할 때마다 업데이트되며, HTTP 프로토콜 내에 정의된 ETag(엔터티 태그) 헤더를 사용하여 HTTP GET 응답의 일부분으로 클라이언트에 반환됩니다. hello 식별자 toohello 클라이언트 hello HTTP 프로토콜 내에 정의 된 hello (엔터티 태그) ETag 헤더를 사용 하 여 HTTP GET 응답의 일부로 반환 됩니다. 특정 조건이 충족 hello 조건이 hello 저장소를 필요로 하는 "If-match" 헤더가 예제의 경우 업데이트가 발생 하는 조건부 헤더를 tooensure 함께 원래 ETag hello를 수행 하는 사용자에 이러한 개체에 대 한 업데이트를 보낼 수 있습니다. 서비스 tooensure hello hello 업데이트 요청에 지정 된 ETag는 hello 저장소 서비스에에서 저장 된 것과 동일한 hello hello의 값입니다.  
 
-이 프로세스는 대략적으로 다음과 같이 수행됩니다.  
+이 프로세스의 hello 개요는 다음과 같습니다.  
 
-1. 저장소 서비스에서 Blob를 검색합니다. 응답에는 저장소 서비스에서 개체의 현재 버전을 식별하는 HTTP ETag 헤더 값이 포함됩니다.
-2. Blob를 업데이트할 때는 서비스로 보내는 요청의 **If-Match** 조건부 헤더에 1단계에서 받은 ETag 값을 포함합니다.
-3. 서비스가 요청의 ETag 값을 Blob의 현재 ETag 값과 비교합니다.
-4. Blob의 현재 ETag 값이 요청의 **If-Match** 조건부 헤더에 포함된 ETag와 다른 버전이면 서비스는 클라이언트에 412 오류를 반환합니다. 클라이언트는 이 오류를 통해 Blob를 검색한 후 다른 프로세스에서 Blob를 업데이트했음을 확인할 수 있습니다.
-5. Blob의 현재 ETag 값이 요청의 **If-Match** 조건부 헤더에 포함된 ETag와 같은 버전이면 서비스는 요청된 작업을 수행하며 Blob의 현재 ETag 값을 업데이트하여 새 버전을 만들었음을 표시합니다.  
+1. Hello 저장소 서비스에서 blob를 검색, hello 응답 hello hello 저장소 서비스에 hello 개체의 현재 버전을 식별 하는 HTTP ETag 헤더 값을 포함 합니다.
+2. Hello blob를 업데이트 하는 경우 hello에 1 단계에서 받은 hello ETag 값이 포함 **If-match** toohello 서비스 보낼 hello 요청의 조건부 헤더입니다.
+3. hello 서비스 hello 요청의 hello hello blob의 현재 ETag 값을 가진 hello ETag 값을 비교합니다.
+4. Hello hello blob의 현재 ETag 값이 서로 다른 버전 hello에 ETag를 hello 보다 **If-match** hello 서비스 hello 요청에 조건부 헤더가 412 오류 toohello 클라이언트를 반환 합니다. 이 toohello 클라이언트 hello 클라이언트 것으로 검색 한 이후 다른 프로세스 hello blob가 업데이트를 나타냅니다.
+5. Hello 현재 ETag hello blob의 값이 동일한 버전으로 hello 경우 ETag hello에 hello **If-match** 조건부 헤더를 요청 hello hello 서비스에서에서 수행 hello 작업 및 업데이트 hello hello blob의 현재 ETag 값 요청 새 버전 만들었음을 tooshow 합니다.  
 
-클라이언트 저장소 라이브러리 4.2.0을 사용하는 다음 C# 코드 조각은 이전에 검색했거나 삽입한 Blob의 속성에서 액세스할 수 있는 ETag 값을 기준으로 **If-Match AccessCondition** 을 생성하는 방법의 간단한 예제를 보여 줍니다. 그런 다음 Blob을 업데이트할 때 **AccessCondition** 개체를 사용합니다: **AccessCondition** 개체는 요청에 **If-Match** 헤더를 추가합니다. 다른 프로세스가 Blob을 업데이트한 경우 Blob 서비스는 HTTP 412(전재 조건 실패) 상태 메시지를 반환합니다. [Azure 저장소를 사용하여 동시성 관리](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)에서 전체 샘플을 다운로드할 수 있습니다.  
+hello 다음 C# 코드 조각 (클라이언트 저장소 라이브러리 4.2.0 hello를 사용 하 여) 예제를 보여 주는 간단한 방법의 tooconstruct는 **If-match AccessCondition** hello 않은 blob의 hello 속성에서 액세스 하는 ETag 값에 따라 이전에 검색 된 또는 삽입 합니다. Hello 사용 하 여 다음 **AccessCondition** 개체 때 hello blob를 업데이트 하기: hello **AccessCondition** hello를 추가 하는 개체 **If-match** toohello 요청 헤더입니다. 다른 프로세스가 hello blob가 업데이트 면 hello blob 서비스는 HTTP 412 (전제 조건 실패) 상태 메시지를 반환 합니다. 전체 샘플 hello 다운로드할 수 있습니다: [Azure 저장소를 사용 하 여 관리 동시성](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)합니다.  
 
 ```csharp
-// Retrieve the ETag from the newly created blob
+// Retrieve hello ETag from hello newly created blob
 // Etag is already populated as UploadText should cause a PUT Blob call
-// to storage blob service which returns the etag in response.
+// toostorage blob service which returns hello etag in response.
 string orignalETag = blockBlob.Properties.ETag;
 
 // This code simulates an update by a third party.
@@ -65,10 +65,10 @@ blockBlob.UploadText(helloText);
 Console.WriteLine("Blob updated. Updated ETag = {0}",
 blockBlob.Properties.ETag);
 
-// Now try to update the blob using the orignal ETag provided when the blob was created
+// Now try tooupdate hello blob using hello orignal ETag provided when hello blob was created
 try
 {
-    Console.WriteLine("Trying to update blob using orignal etag to generate if-match access condition");
+    Console.WriteLine("Trying tooupdate blob using orignal etag toogenerate if-match access condition");
     blockBlob.UploadText(helloText,accessCondition:
     AccessCondition.GenerateIfMatchCondition(orignalETag));
 }
@@ -77,16 +77,16 @@ catch (StorageException ex)
     if (ex.RequestInformation.HttpStatusCode == (int)HttpStatusCode.PreconditionFailed)
     {
         Console.WriteLine("Precondition failure as expected. Blob's orignal etag no longer matches");
-        // TODO: client can decide on how it wants to handle the 3rd party updated content.
+        // TODO: client can decide on how it wants toohandle hello 3rd party updated content.
     }
     else
         throw;
 }  
 ```
 
-저장소 서비스는 **If-Modified-Since**, **If-Unmodified-Since** 및 **If-None-Match**와 같은 추가 조건부 헤더 및 이러한 헤더의 조합도 지원합니다. 자세한 내용은 MSDN의 [Blob 서비스 작업의 조건부 헤더 지정](http://msdn.microsoft.com/library/azure/dd179371.aspx) 을 참조하세요.  
+저장소 서비스 hello도 포함 되어 추가 조건부 헤더에 대 한 지원 같은 **If-수정-이후**, **If-수정 되지 않은-이후** 및 **없음-If-match** 으로 이들 조합 합니다. 자세한 내용은 MSDN의 [Blob 서비스 작업의 조건부 헤더 지정](http://msdn.microsoft.com/library/azure/dd179371.aspx) 을 참조하세요.  
 
-아래 표에는 요청에서 **If-Match** 와 같은 조건부 헤더를 수락하며 응답에서 ETag 값을 반환하는 컨테이너 작업이 요약되어 있습니다.  
+hello 다음 표에 요약 되어와 같은 조건부 헤더를 허용 하는 hello 컨테이너 작업 **If-match** 에 해당 하며 hello 요청 hello 응답에 ETag 값을 반환 합니다.  
 
 | 작업 | 컨테이너 ETag 값 반환 | 추가 헤더 수락 |
 |:--- |:--- |:--- |
@@ -100,9 +100,9 @@ catch (StorageException ex)
 | 컨테이너 임대 |예 |예 |
 | Blob 나열 |아니요 |아니요 |
 
-(*) SetContainerACL이 정의하는 권한은 캐시되며 이러한 권한에 대한 업데이트가 전파되려면 30초가 걸립니다. 이 시간 동안에는 업데이트의 일관성이 보장되지 않습니다.  
+(*) hello 권한을 SetContainerACL 정의한 캐시 하 고 업데이트 toothese 사용 권한을 toopropagate는 기간 동안 업데이트 되지 않습니다 보장 toobe 일치 하는 30 초를 수행 합니다.  
 
-아래 표에는 요청에서 **If-Match** 와 같은 조건부 헤더를 수락하며 응답에서 ETag 값을 반환하는 Blob 작업이 요약되어 있습니다.
+hello 다음 표에 요약 되어와 같은 조건부 헤더를 허용 하는 hello blob 작업 **If-match** 에 해당 하며 hello 요청 hello 응답에 ETag 값을 반환 합니다.
 
 | 작업 | ETag 값 반환 | 추가 헤더 수락 |
 |:--- |:--- |:--- |
@@ -123,14 +123,14 @@ catch (StorageException ex)
 | 페이지 가져오기 |예 |예 |
 | 페이지 범위 가져오기 |예 |예 |
 
-(*) Blob 임대에서는 Blob의 ETag가 변경되지 않습니다.  
+(*) Blob 임대 된 blob에서 ETag hello를 변경 되지 않습니다.  
 
 ### <a name="pessimistic-concurrency-for-blobs"></a>Blob에 대한 비관적 동시성
-단독 사용을 위해 Blob를 잠그려는 경우 Blob에 대한 [임대](http://msdn.microsoft.com/library/azure/ee691972.aspx)를 획득할 수 있습니다. 임대를 획득하는 경우 임대에 필요한 기간을 지정합니다. 이 기간은 15초에서 60초 사이이거나 배타적 잠금 상태가 되는 무한일 수 있습니다. 유한 임대는 갱신하여 연장할 수 있으며 완료된 임대는 해제할 수 있습니다. Blob 서비스는 만료된 유한 임대를 자동으로 해제합니다.  
+toolock 독점적인 사용을 위해 blob을 얻을 수 있습니다는 [임대](http://msdn.microsoft.com/library/azure/ee691972.aspx) 에 있습니다. 기간에 대 한 임대를 hello 필요한 지정 임대를 획득 하는 경우:이 수에 대 한 15 too60 초 사이 또는 무한 금액 tooan 배타적 잠금. 한 있습니다 함께 했으면 모든 임대를 해제할 수 유한 임대 tooextend를 갱신할 수 있습니다. hello blob 서비스는 자동으로 만료 될 때 유한 임대를 해제 합니다.  
 
-임대를 사용하면 배타적 쓰기/공유 읽기, 배타적 쓰기/배타적 읽기, 공유 쓰기/배타적 읽기 등의 다양한 동기화 전략을 지원할 수 있습니다. 임대가 있는 상태에서 저장소 서비스가 배타적 쓰기(배치, 설정 및 삭제 작업)를 강제로 수행하지만 읽기 작업에 대해 독점성을 보장하는 경우 개발자는 모든 클라이언트 응용 프로그램에서 임대 ID를 사용하고 한 번에 한 클라이언트만 유효한 임대 ID를 사용하도록 해야 합니다. 임대 ID를 포함하지 않는 읽기 작업에서는 공유 읽기가 수행됩니다.  
+임대 다른 동기화 전략 toobe 지원 단독 쓰기를 포함 하 여 사용 / 읽기, 전용 쓰기 공유 / 단독 읽기 및 쓰기 공유 / 단독 읽기입니다. 하지만 Hello 저장소 서비스에서 배타적 쓰기 (put, 설정 및 삭제 작업) 한 번에 모든 클라이언트 응용 프로그램 사용 임대 ID와 하나의 해당 클라이언트는 hello 개발자 tooensure 필요 읽기 작업에 대 한 단독으로 사용할 보장 강제로 적용 한 임 대권을 존재 하는 경우 유효한 임대 ID를 가집니다. 임대 ID를 포함하지 않는 읽기 작업에서는 공유 읽기가 수행됩니다.  
 
-다음 C# 코드 조각은 Blob에 대해 30초 동안 배타적 임대를 획득하고 Blob의 내용을 업데이트한 후에 임대를 해제하는 예제를 보여 줍니다. 새 임대를 획득하려 할 때 Blob에 대해 유효한 임대가 이미 있으면 Blob service는 “HTTP(409) 충돌” 상태 결과를 반환합니다. 아래 코드 조각은 저장소 서비스에서 Blob를 업데이트하기 위한 요청을 할 때 **AccessCondition** 개체를 사용하여 임대 정보를 캡슐화합니다.  [Azure 저장소를 사용하여 동시성 관리](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)에서 전체 샘플을 다운로드할 수 있습니다.
+hello 다음 C# 조각은의 예가 나와 blob에서 30 초 동안 단독 임대를 획득를 hello blob의 hello 콘텐츠를 업데이트 한 다음 hello 임대를 해제 합니다. 이미 있으면 유효한 임대 hello blob에서 새로운 임대 tooacquire 려 할 때, hello blob 서비스는 "HTTP (409) 충돌" 상태 결과 반환 합니다. 사용 하 여 hello 조각은 **AccessCondition** hello 저장소 서비스에 요청 tooupdate hello blob는 시 tooencapsulate hello 임대 정보 개체입니다.  전체 샘플 hello 다운로드할 수 있습니다: [Azure 저장소를 사용 하 여 관리 동시성](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)합니다.
 
 ```csharp
 // Acquire lease for 15 seconds
@@ -143,11 +143,11 @@ var accessCondition = AccessCondition.GenerateLeaseCondition(lease);
 blockBlob.UploadText(helloText, accessCondition: accessCondition);
 Console.WriteLine("Blob updated using an exclusive lease");
 
-//Simulate third party update to blob without lease
+//Simulate third party update tooblob without lease
 try
 {
     // Below operation will fail as no valid lease provided
-    Console.WriteLine("Trying to update blob without valid lease");
+    Console.WriteLine("Trying tooupdate blob without valid lease");
     blockBlob.UploadText("Update without lease, will fail");
 }
 catch (StorageException ex)
@@ -159,9 +159,9 @@ catch (StorageException ex)
 }  
 ```
 
-임대 ID를 전달하지 않고 임대한 Blob에 대해 쓰기 작업을 시도하면 요청이 실패하고 412 오류가 발생합니다. **UploadText** 메서드를 호출하기 전에 임대가 만료되었는데 임대 ID를 전달하는 경우에도 요청이 실패하고 **412** 오류가 발생합니다. 임대 만료 시간 및 임대 ID를 관리하는 방법에 대한 자세한 내용은 [Blob 임대](http://msdn.microsoft.com/library/azure/ee691972.aspx) REST 문서를 참조하세요.  
+Hello 임대 ID를 전달 하지 않고 임대 된 blob에 쓰기 작업을 시도 하면 hello 요청이 412 오류와 함께 실패 합니다. 참고 경우 hello 임대가 만료 hello를 호출 하기 전에 되 **UploadText** 메서드 있지만 여전히 hello 임대 ID,와 hello 요청도 실패 한 **412** 오류입니다. 임대 만료 시간 및 표준 임대 id를 관리 하는 방법에 대 한 자세한 내용은 참조 hello [Blob 임대](http://msdn.microsoft.com/library/azure/ee691972.aspx) REST 설명서입니다.  
 
-다음 Blob 작업에서는 임대를 사용하여 비관적 동시성을 관리할 수 있습니다.  
+hello 다음 blob 작업 צ ְ ײ 임대 toomanage 비관적 동시성:  
 
 * Blob 배치
 * Blob 가져오기
@@ -176,14 +176,14 @@ catch (StorageException ex)
 * 페이지 가져오기
 * 페이지 범위 가져오기
 * 스냅숏 Blob - 임대가 있는 경우 임대 ID는 선택 사항임
-* Blob 복사 - 대상 Blob에 대한 임대가 있는 경우 임대 ID는 필수임
-* Blob 복사 중단 - 대상 Blob에 대한 무한 임대가 있는 경우 임대 ID는 필수임
+* Blob 복사-임대 ID 필요한 hello 대상 blob에 임대가 있는 경우
+* Blob 복사 중단-임대 ID hello 대상 blob에 무한 임대 존재 하는 경우 필수
 * Blob 임대  
 
 ### <a name="pessimistic-concurrency-for-containers"></a>컨테이너에 대한 비관적 동시성
-컨테이너에 대해 임대를 사용하면 배타적 쓰기/공유 읽기, 배타적 쓰기/배타적 읽기, 공유 쓰기/배타적 읽기 등 Blob에서와 같은 동기화 전략을 지원할 수 있습니다. 그러나 Blob와 달리 저장소 서비스에서는 삭제 작업에 대해서만 독점성을 적용합니다. 임대가 활성 상태인 컨테이너를 삭제하려면 클라이언트가 삭제 요청에 활성 임대 ID를 포함해야 합니다. 기타 모든 컨테이너 작업은 임대 ID를 포함하지 않아도 임대한 컨테이너에서 성공합니다. 이 경우 해당 작업은 공유 작업입니다. 업데이트(배치 또는 설정) 또는 읽기 작업에서 독점성이 필요한 경우 개발자는 모든 클라이언트가 임대 ID를 사용하고 한 번에 한 클라이언트만 유효한 임대 ID를 사용하도록 해야 합니다.  
+그러나 컨테이너에서 임대 blob에서와 같은 동기화 전략 toobe 지원 hello를 사용 하도록 설정 (단독 쓰기 / 읽기, 전용 쓰기 공유 / 단독 읽기 및 쓰기 공유 단독 읽기 /) 달리 blob 저장소 서비스 hello만 강제 단독으로 사용할 delete 작업입니다. 활성 임대가 있는 컨테이너 toodelete 클라이언트 hello 삭제 요청에 hello 활성 임대 ID가 포함 되어야 합니다. 다른 모든 컨테이너 작업 하지 않아도 임대 된 컨테이너에서 hello 임대 ID를 포함 하 여 작업을 공유 하는 경우. 업데이트(배치 또는 설정) 또는 읽기 작업에서 독점성이 필요한 경우 개발자는 모든 클라이언트가 임대 ID를 사용하고 한 번에 한 클라이언트만 유효한 임대 ID를 사용하도록 해야 합니다.  
 
-다음 컨테이너 작업에서는 임대를 사용하여 비관적 동시성을 관리할 수 있습니다.  
+hello 다음 컨테이너 작업 צ ְ ײ 임대 toomanage 비관적 동시성:  
 
 * 컨테이너 삭제
 * 컨테이너 속성 가져오기
@@ -199,20 +199,20 @@ catch (StorageException ex)
 * [컨테이너 임대](http://msdn.microsoft.com/library/azure/jj159103.aspx)
 * [Blob 임대 ](http://msdn.microsoft.com/library/azure/ee691972.aspx)
 
-## <a name="managing-concurrency-in-the-table-service"></a>테이블 서비스에서 동시성 관리
-낙관적 동시성 검사를 수행하도록 명시적으로 선택해야 하는 Blob 서비스에서와는 달리 테이블 서비스에서는 엔터티로 작업할 때 낙관적 동시성 검사를 기본 동작으로 사용합니다. 테이블 서비스와 Blob 서비스의 또 다른 차이점은, 테이블 서비스에서는 엔터티의 동시성 동작만 관리할 수 있는 반면 Blob 서비스에서는 컨테이너와 Blob의 동시성을 모두 관리할 수 있다는 것입니다.  
+## <a name="managing-concurrency-in-hello-table-service"></a>Hello 테이블 서비스의에서 동시성을 관리합니다.
+hello 테이블 서비스에서는 낙관적 동시성 tooperform 낙관적 동시성 검사를 명시적으로 선택 해야 하는 hello blob 서비스와 달리 엔터티를 사용 하 여 작업할 때 hello 기본 동작으로 검사 합니다. hello 다른 차이점 hello 테이블 및 blob 서비스는 hello blob 서비스의 컨테이너와 blob hello 동시성을 관리할 수 있습니다 하지만 엔터티 hello 동시성 동작만 관리할 수 있습니다.  
 
-낙관적 동시성을 사용하고 엔터티를 테이블 저장소 서비스에서 검색한 이후 다른 프로세스에서 해당 엔터티를 수정했는지 확인하려는 경우 테이블 서비스에서 엔터티를 반환할 때 수신되는 ETag 값을 사용하면 됩니다. 이 프로세스는 대략적으로 다음과 같이 수행됩니다.  
+toouse 낙관적 동시성 및 toocheck hello 테이블 저장소 서비스에서 검색 한 후 다른 프로세스가 엔터티를 수정 하는 경우에 hello 테이블 서비스 엔터티를 반환 하는 경우 수신 hello ETag 값을 사용할 수 있습니다. 이 프로세스의 hello 개요는 다음과 같습니다.  
 
-1. 테이블 저장소 서비스에서 엔터티를 검색합니다. 응답에는 저장소 서비스에서 해당 엔터티와 연결된 현재 식별자를 식별하는 ETag 값이 포함됩니다.
-2. 엔터티를 업데이트할 때는 서비스로 보내는 요청의 필수 **If-Match** 헤더에 1단계에서 받은 ETag 값을 포함합니다.
-3. 서비스가 요청의 ETag 값을 엔터티의 현재 ETag 값과 비교합니다.
-4. 엔터티의 현재 ETag 값이 요청의 필수 **If-Match** 헤더에 포함된 ETag와 다르면 서비스는 클라이언트에 412 오류를 반환합니다. 클라이언트는 이 오류를 통해 엔터티를 검색한 후 다른 프로세스에서 Blob를 업데이트했음을 확인할 수 있습니다.
-5. 엔터티의 현재 ETag 값이 요청의 필수 **If-Match** 헤더에 포함된 ETag와 같거나 **If-Match** 헤더에 와일드카드 문자(*)가 포함되어 있으면 서비스는 요청된 작업을 수행하며 엔터티의 현재 ETag 값을 업데이트하여 엔터티가 업데이트되었음을 표시합니다.  
+1. Hello 테이블 저장소 서비스에서 엔터티를 검색, hello 응답 hello 저장소 서비스에 해당 엔터티와 관련 된 hello 현재 식별자를 식별 하는 ETag 값을 포함 합니다.
+2. Hello 엔터티를 업데이트할 때 필수 hello에 1 단계에서 받은 hello ETag 값이 포함 **If-match** toohello 서비스 보낼 hello 요청의 헤더입니다.
+3. hello 서비스는 hello 요청의 hello hello 엔터티의 현재 ETag 값을 가진 hello ETag 값을 비교합니다.
+4. Hello hello 엔터티의 현재 ETag 값과 다른 필수 hello에 ETag hello 경우 **If-match** hello 서비스 hello 요청에서 헤더 412 오류 toohello 클라이언트를 반환 합니다. 이 다른 프로세스가 hello 클라이언트 것으로 검색 한 이후 hello 엔터티를 업데이트 하는 toohello 클라이언트를 나타냅니다.
+5. Hello hello 엔터티의 현재 ETag 값이 필수 hello에 ETag를 hello와 동일 hello는 경우 **If-match** 헤더 hello 요청 또는 hello에 **If-match** 헤더 hello 와일드 카드 문자 (*) hello 서비스 포함 수행 작업 및 업데이트에 업데이트 된 hello 엔터티 tooshow의 현재 ETag 값 hello hello 요청 합니다.  
 
-Blob 서비스와 달리 테이블 서비스에서는 클라이언트가 업데이트 요청에 **If-Match** 헤더를 포함해야 합니다. 그러나 클라이언트가 요청에서 **If-Match** 헤더를 와일드카드 문자(*)로 설정하는 경우에는 무조건 업데이트(마지막 작성자의 업데이트 적용 전략)를 강제 지정하고 동시성 검사를 무시할 수 있습니다.  
+Hello blob 서비스와 달리 hello 테이블 서비스 해야 hello 클라이언트 tooinclude는 **If-match** 업데이트 요청에 헤더입니다. 그러나 가능한 tooforce는 무조건는 (마지막 기록기 wins 전략)를 업데이트 하 고 hello 클라이언트 hello를 설정 하는 경우 동시성 검사를 무시 **If-match** hello 요청에 헤더 toohello 와일드 카드 문자 (*).  
 
-다음 C# 코드 조각은 이전에 만들거나 검색한 customer 엔터티의 메일 주소를 업데이트하는 작업을 보여 줍니다. 초기 삽입 또는 검색 작업에서는 ETag 값을 customer 개체에 저장합니다. 이 샘플은 바꾸기 작업을 실행할 때 같은 개체 인스턴스를 사용하므로 ETag 값을 테이블 서비스에 자동으로 다시 보내기 때문에 서비스가 동시성 위반을 검사할 수 있습니다. 다른 프로세스가 테이블 저장소에서 엔터티를 업데이트한 경우 서비스는 HTTP 412(전재 조건 실패) 상태 메시지를 반환합니다.  [Azure 저장소를 사용하여 동시성 관리](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)에서 전체 샘플을 다운로드할 수 있습니다.
+다음 C# 조각은 hello 이전에 만들어졌거나 업데이트 자신의 전자 메일 주소를 검색 하는 customer 엔터티를 보여 줍니다. hello 초기를 삽입 하거나 hello customer 개체의 작업 저장소 hello ETag 값을 검색할 hello hello를 실행 하는 경우 동일한 개체 인스턴스 바꾸기 작업 hello 샘플에서 사용 하기 때문에, hello ETag 값 백 toohello 테이블 서비스를 자동으로 전송 동시성 위반에 대 한 서비스 toocheck hello를 사용 하도록 설정 합니다. 다른 프로세스가 테이블 저장소의 엔터티에 hello 업데이트 hello 서비스가 HTTP 412 (전제 조건 실패) 상태 메시지를 반환 합니다.  전체 샘플 hello 다운로드할 수 있습니다: [Azure 저장소를 사용 하 여 관리 동시성](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)합니다.
 
 ```csharp
 try
@@ -231,13 +231,13 @@ catch (StorageException ex)
 }  
 ```
 
-동시성 검사를 명시적으로 사용하지 않도록 설정하려면 바꾸기 작업을 실행하기 전에 **employee** 개체의 **ETag** 속성을 “*”로 설정해야 합니다.  
+tooexplicitly hello 동시성 검사 사용 안 함, hello 설정할지 **ETag** hello 속성 **직원** 너무 개체 "*" hello 바꾸기 작업을 실행 하기 전에.  
 
 ```csharp
 customer.ETag = "*";  
 ```
 
-다음 표에는 테이블 엔터티 작업이 ETag 값을 사용하는 방식이 요약되어 있습니다.
+hello 다음 표에 요약 hello 테이블 엔터티 작업 ETag 값을 사용 하는 방법.
 
 | 작업 | ETag 값 반환 | If-Match 요청 헤더 필요 여부 |
 |:--- |:--- |:--- |
@@ -249,44 +249,44 @@ customer.ETag = "*";
 | 엔터티 삽입 또는 바꾸기 |예 |아니요 |
 | 엔터티 삽입 또는 병합 |예 |아니요 |
 
-**엔터티 삽입 또는 바꾸기**와 **엔터티 삽입 또는 병합** 작업에서는 테이블 서비스에 ETag 값을 보내지 않으므로 동시성 검사를 수행하지 *않습니다*.  
+해당 hello 참고 **삽입 또는 교체 엔터티** 및 **삽입 또는 병합 엔터티** operations *하지* ETag 값 toohello 보내지 동시성 검사를 수행 합니다. 테이블 서비스입니다.  
 
-일반적으로 테이블을 사용하는 개발자는 확장 가능한 응용 프로그램을 개발할 때 낙관적 동시성을 사용해야 합니다. 비관적 잠금이 필요한 경우 개발자가 테이블에 액세스할 때 사용할 수 있는 한 가지 방법은 각 테이블에 대해 지정된 Blob를 할당하고 테이블에 작업을 수행하기 전에 Blob에 대한 임대를 받는 것입니다. 이 방식을 사용하는 경우 응용 프로그램은 테이블에 작업을 수행하기 전에 모든 데이터 액세스 경로가 임대를 획득하는지 확인해야 합니다. 또한 최소 임대 시간은 15초이므로 확장성을 신중하게 고려해야 합니다.  
+일반적으로 테이블을 사용하는 개발자는 확장 가능한 응용 프로그램을 개발할 때 낙관적 동시성을 사용해야 합니다. 비관적 잠금 필요한 한 가지 방법은 개발자 tooassign 각 테이블에 대해 지정 된 blob는 테이블에 액세스할 때 수행할 수 고 hello 테이블을 조작 하기 전에 tootake hello blob에서 임대를 시도 합니다. 이 방법에는 필요 hello 응용 프로그램 tooensure 데이터에 대 한 모든 액세스 경로 hello hello 테이블에서 이전 toooperating 임대를 가져옵니다. hello 최소 임대 시간은 15 초 필요한입니다 확장성을 위해 신중 하 게 고려 점에 유의 해야 합니다.  
 
 자세한 내용은 다음을 참조하세요.  
 
 * [엔터티에 대한 작업](http://msdn.microsoft.com/library/azure/dd179375.aspx)  
 
-## <a name="managing-concurrency-in-the-queue-service"></a>큐 서비스에서 동시성 관리
-큐 서비스에서 동시성이 중요한 시나리오 중 하나는 여러 클라이언트가 큐에서 메시지를 검색할 때입니다. 큐에서 메시지를 검색할 때 응답에는 메시지와 PopReceipt 값(메시지를 삭제할 때 필요함)이 포함됩니다. 메시지는 큐에서 자동으로 삭제되지 않으며 검색된 후 visibilitytimeout 매개 변수로 지정된 시간 간격 동안 다른 클라이언트에는 표시되지 않습니다. 메시지를 검색하는 클라이언트는 메시지가 처리된 후 응답의 TimeNextVisible 요소로 지정된 시간 전에 메시지를 삭제해야 합니다. 이 시간은 visibilitytimeout 매개 변수의 값을 기준으로 계산됩니다. visibilitytimeout의 값을 메시지가 검색된 시간에 합하여 TimeNextVisible의 값을 결정합니다.  
+## <a name="managing-concurrency-in-hello-queue-service"></a>Hello 큐 서비스의에서 동시성을 관리합니다.
+동시성 hello 큐 서비스의 우려가 하는 한 시나리오는 여러 클라이언트가 큐에서 메시지를 검색 됩니다. 를 hello 큐에서 메시지를 검색할 때 hello 응답에는 hello 메시지와 필요한 toodelete hello 메시지 popreceipt 값 포함 됩니다. hello 메시지가 hello 큐에서 자동으로 삭제 되지 않으면 검색 한 후 것만 표시 tooother 클라이언트 hello visibilitytimeout 매개 변수로 지정 된 hello 시간 간격에 대 한 합니다. hello 전에 지정 된 시간 hello hello 응답의 계산 된 hello visibilitytimeout hello 값에 따라 TimeNextVisible 요소 및 처리 된 후 hello 클라이언트 hello 메시지를 검색 하는 예상된 toodelete hello 메시지 매개 변수입니다. visibilitytimeout hello 값 toohello 시간은 hello 메시지 TimeNextVisible toodetermine hello 값 검색을 추가 합니다.  
 
-큐 서비스는 낙관적 동시성이나 비관적 동시성을 지원하지 않으므로 큐에서 검색된 메시지를 처리하는 클라이언트는 메시지가 idempotent 방식으로 처리되는지를 확인해야 합니다. SetQueueServiceProperties, SetQueueMetaData, SetQueueACL, UpdateMessage 등의 업데이트 작업에는 마지막 작성자의 업데이트 적용 전략이 사용됩니다.  
+hello 큐 서비스에 낙관적 또는 비관적 동시성에 대 한 지원 없고이 큐에서 검색 된 메시지를 처리 하는 이유 클라이언트 idempotent 방식으로 메시지를 처리 하기 해야 합니다. SetQueueServiceProperties, SetQueueMetaData, SetQueueACL, UpdateMessage 등의 업데이트 작업에는 마지막 작성자의 업데이트 적용 전략이 사용됩니다.  
 
 자세한 내용은 다음을 참조하세요.  
 
 * [큐 서비스 REST API](http://msdn.microsoft.com/library/azure/dd179363.aspx)
 * [메시지 가져오기](http://msdn.microsoft.com/library/azure/dd179474.aspx)  
 
-## <a name="managing-concurrency-in-the-file-service"></a>파일 서비스에서 동시성 관리
-서로 다른 두 프로토콜 끝점인 SMB와 REST를 사용하여 파일 서비스에 액세스할 수 있습니다. REST 서비스는 낙관적 잠금이나 비관적 잠금을 지원하지 않으며 모든 업데이트는 마지막 작성자의 업데이트 적용 전략을 따릅니다. 파일 공유를 탑재하는 SMB 클라이언트는 파일 시스템 잠금 메커니즘을 활용하여 공유 파일에 대한 액세스를 관리할 수 있습니다. 여기에는 비관적 잠금을 수행하는 기능이 포함됩니다. SMB 클라이언트는 파일을 열 때 파일 액세스 및 공유 모드를 모두 지정합니다. 파일 공유 모드를 "없음"으로 지정하는 동시에 파일 액세스 옵션을 "쓰기" 또는 "읽기/쓰기"로 설정하면 파일을 닫을 때까지 SMB 클라이언트가 파일을 잠급니다. SMB 클라이언트가 파일을 잠근 경우 해당 파일에 대해 REST 작업을 시도하면 REST 서비스가 상태 코드 409(충돌) 및 오류 코드 SharingViolation을 반환합니다.  
+## <a name="managing-concurrency-in-hello-file-service"></a>Hello 파일 서비스의에서 동시성을 관리합니다.
+hello 파일 서비스는 두 개의 다른 프로토콜 끝점-SMB 및 REST를 사용 하 여 액세스할 수 있습니다. hello REST 서비스에 낙관적 잠금 또는 비관적 잠금에 대 한 지원 없고 모든 업데이트는 마지막 기록기 wins 전략을 따를 것입니다. 파일 공유를 탑재 된 SMB 클라이언트 파일 시스템 잠금 메커니즘 toomanage tooshared 파일 액세스 – hello 기능 tooperform 비관적 잠금을 포함 하 여 활용할 수 있습니다. Hello 파일 액세스 및 공유를 모두 지정 SMB 클라이언트는 파일을 열면 모드입니다. "None"의 파일 공유 모드와 함께 "쓰기" 또는 "읽기/쓰기"의 파일 액세스 옵션을 설정 hello 파일을 닫을 때까지 SMB 클라이언트에 의해 잠기지 hello 파일에서 발생 합니다. SMB 클라이언트 hello 파일이 잠겨에 있는 파일에 대해 REST 작업을 시도 하는 경우 hello REST 서비스는 오류 코드 sharingviolation이 표시와 함께 상태 코드 409 (충돌)를 반환 합니다.  
 
-SMB 클라이언트는 삭제를 위해 파일을 열 때 해당 파일에 대한 기타 모든 SMB 클라이언트 열기 핸들이 닫힐 때까지 파일을 삭제 보류 중으로 표시합니다. 파일이 삭제 보류 중으로 표시되어 있는 동안 해당 파일에 대해 REST 작업을 수행하면 상태 코드 409(충돌)와 오류 코드 SMBDeletePending이 반환됩니다. SMB 클라이언트가 파일을 닫기 전에 삭제 보류 중 플래그를 제거할 수 있으므로 상태 코드 404(찾을 수 없음)는 반환되지 않습니다. 즉, 파일이 제거된 경우에만 상태 코드 404(찾을 수 없음)가 반환됩니다. SMB 삭제 보류 중 상태인 파일은 파일 나열 결과에 표시되지 않습니다. 또한 REST 파일 삭제 및 REST 디렉터리 삭제 작업은 자동으로 커밋되므로 파일이 삭제 보류 중 상태가 되지 않습니다.  
+SMB 클라이언트에서 삭제를 위해 파일을 열면 해당 파일에 대해 열린 핸들이 닫힐 때 보류 중인 다른 모든 SMB 클라이언트까지 삭제가 때 hello 파일을 표시 합니다. 파일이 삭제 보류 중으로 표시되어 있는 동안 해당 파일에 대해 REST 작업을 수행하면 상태 코드 409(충돌)와 오류 코드 SMBDeletePending이 반환됩니다. 보류 중인 삭제 플래그 이전 tooclosing hello 파일 hello SMB 클라이언트 tooremove hello에 대 한 수 있기 때문에 상태 코드 404 (찾을 수 없음) 반환 되지 않습니다. 즉, 상태 코드 404 (찾을 수 없음)는 hello 파일 제거 된 경우에 필요 합니다. 파일이 smb 삭제 보류 중 상태가 상태 것 포함 되지 않습니다 hello 파일 목록 결과에서 note 합니다. 또한 hello 파일을 삭제 하는 REST 및 디렉터리를 삭제 하는 REST 작업은 원자성으로 되는데도 나타나지 보류 중 상태를 삭제 합니다.  
 
 자세한 내용은 다음을 참조하세요.  
 
 * [파일 잠금 관리](http://msdn.microsoft.com/library/azure/dn194265.aspx)  
 
 ## <a name="summary-and-next-steps"></a>요약 및 다음 단계
-Microsoft Azure 저장소 서비스는 개발자가 기본적으로 제공하려는 동시성 및 데이터 일관성과 같은 주요 디자인 가정 사항을 다시 고려하거나 절충하지 않고도 매우 복잡한 온라인 응용 프로그램의 요구 사항을 충족할 수 있도록 디자인되었습니다.  
+hello Microsoft Azure 저장소 서비스 했습니다 설계 hello 가장 복잡 한 온라인 응용 프로그램의 toomeet hello 요구 개발자 toocompromise 또는 재고 주요 디자인 가정 동시성 및 데이터 일관성 등 tootake를 발견 했을 시작 하지 않고 당연 합니다.  
 
-이 블로그에서 참조하는 전체 샘플 응용 프로그램은 다음 문서를 참조하세요.  
+Hello에 대 한이 블로그에서 참조 하는 샘플 응용 프로그램을 완료 합니다.  
 
 * [Azure 저장소를 사용하여 동시성 관리 - 샘플 응용 프로그램](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)  
 
 Azure 저장소에 대한 자세한 내용은 다음을 참조하세요.  
 
 * [Microsoft Azure 저장소 홈페이지](https://azure.microsoft.com/services/storage/)
-* [Azure 저장소 소개](storage-introduction.md)
+* [소개 tooAzure 저장소](storage-introduction.md)
 * [Blob](storage-dotnet-how-to-use-blobs.md), [테이블](storage-dotnet-how-to-use-tables.md), [큐](storage-dotnet-how-to-use-queues.md) 및 [파일](storage-dotnet-how-to-use-files.md)에 대한 저장소 시작
 * 저장소 아키텍처 – [Azure 저장소: 강력한 일관성과 함께 항상 사용 가능한 클라우드 저장소 서비스](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure WebHooks를 사용하여 .NET으로 Media Services 작업 알림 모니터링 | Microsoft Docs"
-description: "Azure WebHooks를 사용하여 Media Services 작업 알림을 모니터링하는 방법에 대해 알아봅니다. 코드 샘플은 C#으로 작성되었으며 Media Services SDK for .NET을 사용합니다."
+title: ".net aaaUse Azure Webhook toomonitor 미디어 서비스 작업 알림 | Microsoft Docs"
+description: "Toouse Azure Webhook toomonitor 미디어 서비스 알림 작업 하는 방법에 대해 알아봅니다. hello 코드 예제는 C#으로 작성 하 고 hello Media Services SDK for.NET 사용."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,63 +14,63 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: juliako
-ms.openlocfilehash: eaa875a7c78de0b69c81514ea023f9b8bceb2656
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b7df597da20e551cb2a02cd21c96c7bddf9e1a66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-webhooks-to-monitor-media-services-job-notifications-with-net"></a>Azure WebHooks를 사용하여 .NET으로 Media Services 작업 알림 모니터링
-작업을 실행할 때 작업 진행 상태를 추적하는 방법이 종종 필요합니다. Azure Webhooks 또는 [Azure Queue Storage](media-services-dotnet-check-job-progress-with-queues.md)를 사용하여 Media Services 작업 알림을 모니터링할 수 있습니다 이 항목에서는 Webhook을 사용하는 방법을 보여 줍니다.
+# <a name="use-azure-webhooks-toomonitor-media-services-job-notifications-with-net"></a>.NET과 함께 Azure Webhook toomonitor 미디어 서비스 작업 알림 사용
+작업을 실행 하면 일반적 방법을 tootrack 작업 진행 상황을 필요 합니다. Azure Webhooks 또는 [Azure Queue Storage](media-services-dotnet-check-job-progress-with-queues.md)를 사용하여 Media Services 작업 알림을 모니터링할 수 있습니다 이 항목에서는 방법을 toowork Webhook 사용 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-자습서를 완료하는 데 필요한 조건은 다음과 같습니다.
+hello 다음은 필요한 toocomplete hello 자습서입니다.
 
 * Azure 계정. 자세한 내용은 [Azure 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
-* Media Services 계정. Media Services 계정을 만들려면 [Media Services 계정을 만드는 방법](media-services-portal-create-account.md)을 참조하세요.
-* [Azure Functions를 사용하는 방법](../azure-functions/functions-overview.md)을 이해합니다. 또한 [Azure Functions HTTP 및 WebHook 바인딩](../azure-functions/functions-bindings-http-webhook.md)을 검토합니다.
+* Media Services 계정. 미디어 서비스 계정 toocreate 참조 [어떻게 tooCreate Media Services 계정을](media-services-portal-create-account.md)합니다.
+* 이해 [어떻게 toouse Azure 함수](../azure-functions/functions-overview.md)합니다. 또한 [Azure Functions HTTP 및 WebHook 바인딩](../azure-functions/functions-bindings-http-webhook.md)을 검토합니다.
 
 이 항목에서는 다음을 수행하는 방법을 보여 줍니다.
 
-*  Webhook에 응답하도록 사용자 지정된 Azure Function을 정의합니다. 
+*  사용자 지정 된 toorespond toowebhooks Azure 함수를 정의 합니다. 
     
-    이 경우에 인코딩 작업이 상태를 변경하면 Webhook이 Media Services에서 트리거됩니다. 함수는 Media Services 알림의 Webhook 호출을 수신 대기하고 작업이 완료되면 출력 자산을 게시합니다. 
+    이 경우 hello webhook 인코딩 작업 상태를 변경 하는 경우 미디어 서비스에 의해 트리거됩니다. 미디어 서비스 알림에서 hello webhook 호출에 대 한 수신 하 고 hello 작업이 완료 되 면 hello 출력 자산을 게시 하는 hello 함수입니다. 
     
     >[!NOTE]
     >계속 진행하기 전에 [Azure Functions HTTP 및 Webhook 바인딩](../azure-functions/functions-bindings-http-webhook.md) 작동 방법에 대해 이해해야 합니다.
     >
     
-* 인코딩 태스크에 Webhook을 추가하고 Webhook URL 및 이 Webhook이 응답하는 암호 키를 지정합니다. 여기에 표시된 예제에서 인코딩 태스크를 만드는 코드는 콘솔 앱입니다.
+* Webhook tooyour 인코딩 태스크를 추가 하 고 hello webhook URL 및이 webhook이 응답 하는 비밀 키를 지정 합니다. Hello 예에서 여기에 표시 된 hello를 만드는 코드를 hello 인코딩 작업은 콘솔 앱입니다.
 
 ## <a name="setting-up-webhook-notification-azure-functions"></a>“웹후크 알림" Azure 기능 설정
 
-이 섹션의 코드는 Webhook에서 Azure Function의 구현을 보여 줍니다. 이 샘플에서 함수는 Media Services 알림의 Webhook 호출을 수신 대기하고 작업이 완료되면 출력 자산을 게시합니다.
+이 섹션의 hello 코드는 webhook은 Azure 함수의 구현을 보여 줍니다. 이 샘플에서는 hello 함수 미디어 서비스 알림에서 hello webhook 호출에 대 한 수신 대기 하 고 hello 작업이 완료 되 면 hello 출력 자산을 게시 합니다.
 
-Webhook은 알림 끝점을 구성하는 경우에 전달되는 것과 일치하는 서명 키(자격 증명)이 필요합니다. 서명 키는 Azure Media Services에서 Webhook 콜백을 보호하고 보안하는 데 사용되는 64바이트 Base64 인코딩 값입니다. 
+hello webhook에서는 서명 키 (자격 증명) toomatch hello 하나 hello 알림 끝점을 구성 하는 때를 전달 합니다. 서명 키 hello는 사용 되는 tooprotect 되며 Webhook 콜백을 Azure 미디어 서비스에서 보안 된 hello 64 바이트 Base64 인코딩 값입니다. 
 
-다음 코드에서 **VerifyWebHookRequestSignature** 메서드는 알림 메시지에 대한 검증을 수행합니다. 이 유효성 검사는 메시지가 Azure Media Services에서 전송되었는지, 손상되지 않았는지 확인하기 위해 수행됩니다. 전송 계층 보안(TLS)에서 쿼리 매개 변수로 **코드** 값을 보유하는 것처럼 서명도 Azure Functions에 대해 선택적입니다. 
+코드 다음 hello, hello **VerifyWebHookRequestSignature** 메서드 확인 hello 알림 메시지에 hello지 않습니다. hello이 유효성이 검사의 목적은 환영 메시지가 tooensure Azure 미디어 서비스에서 보낸 및 손상 되지 않았음을입니다. hello가 hello 서명을 Azure 기능에 대 한 선택 사항 **코드** 값으로 쿼리 매개 변수를 통해 보안 TLS (전송 계층). 
 
-[여기](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)에서는 이 항목에 나와 있는 항목을 포함하여 다양한 Media Services .NET Azure Functions의 정의를 찾을 수 있습니다.
+다양 한 미디어 서비스.NET Azure 함수 (이 항목의 뒤에 하나 hello 포함)의 hello 정의 찾을 수 있습니다 [여기](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)합니다.
 
-다음 코드 목록은 Azure Function 매개 변수 및 Azure Function과 관련된 function.json, project.json, run.csx라는 세 개 파일의 정의를 보여 줍니다.
+hello 다음 코드 목록 정의 보여 줍니다 hello Azure 함수 매개 변수 및 Azure 함수 hello와 관련 된 세 개의 파일의: function.json, project.json, 및 run.csx 합니다.
 
 ### <a name="application-settings"></a>응용 프로그램 설정 
 
-다음 표에는 이 섹션에 정의된 Azure 함수에 사용되는 매개 변수가 나와 있습니다. 
+hello 다음 표에 hello이이 섹션에 정의 된 Azure 함수에서 사용 되는 hello 매개 변수가 있습니다. 
 
 |이름|정의|예| 
 |---|---|---|
 |AMSAccount|AMS 계정 이름입니다. |juliakomediaservices|
 |AMSKey |AMS 계정 키입니다. | JUWJdDaOHQQqsZeiXZuE76eDt2SO+YMJk25Lghgy2nY=|
-|MediaServicesStorageAccountName |AMS 계정과 연결된 저장소 계정의 이름입니다.| storagepkeewmg5c3peq|
-|MediaServicesStorageAccountKey |AMS 계정과 연결된 저장소 계정의 키입니다.|
+|MediaServicesStorageAccountName |AMS 계정과 연결 된 hello 저장소 계정의 이름입니다.| storagepkeewmg5c3peq|
+|MediaServicesStorageAccountKey |AMS 계정과 연결 된 hello 저장소 계정의 키입니다.|
 |SigningKey |서명 키입니다.| j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt|
 |WebHookEndpoint | 웹후크 끝점 주소입니다. | https://juliakofuncapp.azurewebsites.net/api/Notification_Webhook_Function?code=iN2phdrTnCxmvaKExFWOTulfnm4C71mMLIy8tzLr7Zvf6Z22HHIK5g==.|
 
 ### <a name="functionjson"></a>function.json
 
-function.json 파일은 함수 바인딩 및 기타 구성 설정을 정의합니다. 런타임은 이 파일을 사용하여 모니터링할 이벤트와 함수 실행에서 데이터를 전달하고 반환하는 방법을 결정합니다. 
+hello function.json 파일 hello 함수 바인딩 및 기타 구성 설정을 정의합니다. hello 런타임은이 파일 toodetermine hello 이벤트 toomonitor 및 toopass 데이터를 한 반환 데이터에서 실행이 작동 방식을 사용 합니다. 
 
     {
       "bindings": [
@@ -96,7 +96,7 @@ function.json 파일은 함수 바인딩 및 기타 구성 설정을 정의합�
     
 ### <a name="projectjson"></a>project.json
 
-project.json 파일은 종속성을 포함합니다. 
+hello project.json 파일 종속성을 포함합니다. 
 
     {
       "frameworks": {
@@ -111,11 +111,11 @@ project.json 파일은 종속성을 포함합니다.
     
 ### <a name="runcsx"></a>run.csx
 
-다음 C# 코드는 Webhook인 Azure Function의 정의를 보여 줍니다. 함수는 Media Services 알림의 Webhook 호출을 수신 대기하고 작업이 완료되면 출력 자산을 게시합니다. 
+hello 다음 C# 코드를 보여 줍니다 여 webhook을 사용할지를 Azure 함수의 정의입니다. 미디어 서비스 알림에서 hello webhook 호출에 대 한 수신 하 고 hello 작업이 완료 되 면 hello 출력 자산을 게시 하는 hello 함수입니다. 
 
 
 >[!NOTE]
->다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
+>다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
 
     ///////////////////////////////////////////////////
     #r "Newtonsoft.Json"
@@ -177,7 +177,7 @@ project.json 파일은 종속성을 포함합니다.
                 if(_context!=null)   
                 {                        
                 string urlForClientStreaming = PublishAndBuildStreamingURLs(msg.Properties["JobId"]);
-                log.Info($"URL to the manifest for client streaming using HLS protocol: {urlForClientStreaming}");
+                log.Info($"URL toohello manifest for client streaming using HLS protocol: {urlForClientStreaming}");
                 }
             }
 
@@ -210,19 +210,19 @@ project.json 파일은 종속성을 포함합니다.
         TimeSpan.FromDays(30),
         AccessPermissions.Read);
 
-        // Create a locator to the streaming content on an origin. 
+        // Create a locator toohello streaming content on an origin. 
         ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
         policy,
         DateTime.UtcNow.AddMinutes(-5));
 
 
-        // Get a reference to the streaming manifest file from the  
-        // collection of files in the asset. 
+        // Get a reference toohello streaming manifest file from hello  
+        // collection of files in hello asset. 
         var manifestFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                     EndsWith(".ism")).
                     FirstOrDefault();
 
-        // Create a full URL to the manifest file. Use this for playback
+        // Create a full URL toohello manifest file. Use this for playback
         // in streaming media clients. 
         string urlForClientStreaming = originLocator.Path + manifestFile.Name + "/manifest" +  "(format=m3u8-aapl)";
         return urlForClientStreaming;
@@ -278,7 +278,7 @@ project.json 파일은 종속성을 포함합니다.
     private static readonly char[] HexLookup = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
     /// <summary>
-    /// Converts a <see cref="T:byte[]"/> to a hex-encoded string.
+    /// Converts a <see cref="T:byte[]"/> tooa hex-encoded string.
     /// </summary>
     private static string ToHex(byte[] data)
     {
@@ -320,7 +320,7 @@ project.json 파일은 종속성을 포함합니다.
 
 ### <a name="function-output"></a>함수 출력
 
-위의 예제는 다음과 같이 출력되고 사용자의 값이 달라 집니다.
+위의 hello 예제 hello 다음 출력을 생성, 값이 달라 집니다.
 
     C# HTTP trigger function processed a request. RequestUri=https://juliako001-functions.azurewebsites.net/api/Notification_Webhook_Function?code=9376d69kygoy49oft81nel8frty5cme8hb9xsjslxjhalwhfrqd79awz8ic4ieku74dvkdfgvi
     Request Body = {
@@ -339,19 +339,19 @@ project.json 파일은 종속성을 포함합니다.
       }
     }
     
-    URL to the manifest for client streaming using HLS protocol: http://mediapkeewmg5c3peq.streaming.mediaservices.windows.net/0ac98077-2b58-4db7-a8da-789a13ac6167/BigBuckBunny.ism/manifest(format=m3u8-aapl)
+    URL toohello manifest for client streaming using HLS protocol: http://mediapkeewmg5c3peq.streaming.mediaservices.windows.net/0ac98077-2b58-4db7-a8da-789a13ac6167/BigBuckBunny.ism/manifest(format=m3u8-aapl)
 
-## <a name="adding-webhook-to-your-encoding-task"></a>인코딩 태스크에 Webhook 추가
+## <a name="adding-webhook-tooyour-encoding-task"></a>Webhook tooyour 인코딩 태스크 추가
 
-이 섹션에서는 태스크에 Webhook 알림을 추가하는 코드가 표시됩니다. 작업 수준 알림을 추가할 수도 있습니다. 그러면 연결된 태스크를 사용하여 작업에 더 유용합니다.  
+이 섹션에서는 webhook 알림 tooa 작업을 추가 하는 hello 코드가 표시 됩니다. 작업 수준 알림을 추가할 수도 있습니다. 그러면 연결된 태스크를 사용하여 작업에 더 유용합니다.  
 
-1. Visual Studio를 사용하여 새 C# 콘솔 응용 프로그램을 만듭니다. 이름, 위치 및 솔루션 이름을 입력하고 확인을 클릭합니다.
-2. [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices)을 사용하여 Azure Media Services를 설치합니다.
+1. Visual Studio를 사용하여 새 C# 콘솔 응용 프로그램을 만듭니다. Hello 이름, 위치 및 솔루션 이름을 입력 하 고 확인을 클릭 합니다.
+2. 사용 하 여 [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) tooinstall Azure 미디어 서비스입니다.
 3. App.config 파일을 적절한 값으로 업데이트합니다. 
     
     * 알림을 전송하는 Azure Media Services 이름 및 키 
-    * 알림을 가져오려는 Webhook URL 
-    * Webhook이 필요로 하는 키와 일치하는 서명 키 서명 키는 Azure Media Services에서 Webhook 콜백을 보호하고 보안하는 데 사용되는 64바이트 Base64 인코딩 값입니다. 
+    * tooget hello 알림의 가지는 webhook URL 
+    * 서명 키 여 webhook을 가지는 hello 키와 일치 하는 번호입니다. 서명 키 hello는 사용 되는 tooprotect 되며 Webhook 콜백을 Azure 미디어 서비스에서 보안 된 hello 64 바이트 Base64 인코딩 값입니다. 
 
             <appSettings>
               <add key="MediaServicesAccountName" value="AMSAcctName" />
@@ -360,7 +360,7 @@ project.json 파일은 종속성을 포함합니다.
               <add key="WebhookSigningKey" value="j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt" />
             </appSettings>
             
-4. Program.cs 파일을 다음 코드로 업데이트합니다.
+4. 코드 다음 hello로 Program.cs 파일을 업데이트 합니다.
 
         using System;
         using System.Configuration;
@@ -371,7 +371,7 @@ project.json 파일은 종속성을 포함합니다.
         {
             class Program
             {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _mediaServicesAccountName =
                 ConfigurationManager.AppSettings["MediaServicesAccountName"];
             private static readonly string _mediaServicesAccountKey =
@@ -387,7 +387,7 @@ project.json 파일은 종속성을 포함합니다.
             static void Main(string[] args)
             {
 
-                // Used the cached credentials to create CloudMediaContext.
+                // Used hello cached credentials toocreate CloudMediaContext.
                 _context = new CloudMediaContext(new MediaServicesCredentials(
                         _mediaServicesAccountName,
                         _mediaServicesAccountKey));
@@ -396,7 +396,7 @@ project.json 파일은 종속성을 포함합니다.
 
                 IAsset newAsset = _context.Assets.FirstOrDefault();
 
-                // Check for existing Notification Endpoint with the name "FunctionWebHook"
+                // Check for existing Notification Endpoint with hello name "FunctionWebHook"
 
                 var existingEndpoint = _context.NotificationEndPoints.Where(e => e.Name == "FunctionWebHook").FirstOrDefault();
                 INotificationEndPoint endpoint = null;
@@ -413,11 +413,11 @@ project.json 파일은 종속성을 포함합니다.
                 Console.WriteLine("Notification Endpoint Created with Key : {0}", keyBytes.ToString());
                 }
 
-                // Declare a new encoding job with the Standard encoder
+                // Declare a new encoding job with hello Standard encoder
                 IJob job = _context.Jobs.Create("MES Job");
 
-                // Get a media processor reference, and pass to it the name of the 
-                // processor to use for the specific task.
+                // Get a media processor reference, and pass tooit hello name of hello 
+                // processor toouse for hello specific task.
                 IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
                 ITask task = job.Tasks.AddNew("My encoding task",
@@ -425,15 +425,15 @@ project.json 파일은 종속성을 포함합니다.
                 "Adaptive Streaming",
                 TaskOptions.None);
 
-                // Specify the input asset to be encoded.
+                // Specify hello input asset toobe encoded.
                 task.InputAssets.Add(newAsset);
 
-                // Add an output asset to contain the results of the job. 
+                // Add an output asset toocontain hello results of hello job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means the output asset is not encrypted. 
+                // means hello output asset is not encrypted. 
                 task.OutputAssets.AddNew(newAsset.Name, AssetCreationOptions.None);
 
-                // Add the WebHook notification to this Task and request all notification state changes.
+                // Add hello WebHook notification toothis Task and request all notification state changes.
                 // Note that you can also add a job level notification
                 // which would be more useful for a job with chained tasks.  
                 if (endpoint != null)
@@ -448,8 +448,8 @@ project.json 파일은 종속성을 포함합니다.
 
                 job.Submit();
 
-                Console.WriteLine("Expect WebHook to be triggered for the Job ID: {0}", job.Id);
-                Console.WriteLine("Expect WebHook to be triggered for the Task ID: {0}", task.Id);
+                Console.WriteLine("Expect WebHook toobe triggered for hello Job ID: {0}", job.Id);
+                Console.WriteLine("Expect WebHook toobe triggered for hello Task ID: {0}", task.Id);
 
                 Console.WriteLine("Job Submitted");
 

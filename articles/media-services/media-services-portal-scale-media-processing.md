@@ -1,6 +1,6 @@
 ---
-title: "Azure Portal을 사용하여 미디어 처리 크기 조정 | Microsoft Docs"
-description: "이 자습서에서는 Azure Portal을 사용하여 미디어 처리의 크기를 조정하는 단계를 안내합니다."
+title: "사용 하 여 처리 aaaScale 미디어 hello Azure 포털 | Microsoft Docs"
+description: "이 자습서에서는 hello Azure 포털을 사용 하 여 처리 하는 크기 조정 미디어의 hello 단계를 안내 합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/04/2017
 ms.author: juliako
-ms.openlocfilehash: 46ca29d3e66701f2abcb185791089e94761984e8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 89240c6f7579b8795e7b47f2b1c398b1d5477e20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-reserved-unit-type"></a>예약 단위 유형 변경
+# <a name="change-hello-reserved-unit-type"></a>Hello 예약 단위 형식 변경
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-encoding-units.md)
 > * [포털](media-services-portal-scale-media-processing.md)
@@ -32,32 +32,32 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>개요
 
-미디어 서비스 계정은 미디어 처리 작업을 처리하는 속도를 결정하는 예약 단위 형식과 연결됩니다. **S1**, **S2**, **S3** 예약 단위 유형 중에서 선택할 수 있습니다. 예를 들어 **S2** 예약 단위 유형을 사용하는 경우 **S1** 유형에 비해 동일한 인코딩 작업이 더 빠르게 실행됩니다.
+미디어 서비스 계정 작업을 처리 하 여 미디어 처리 되는 hello 속도 결정 하는 예약 된 단위 유형과 연관 되어 있습니다. Hello 다음 중에서 선택할 수 예약 단위 형식: **S1**, **S2**, 또는 **S3**합니다. Hello를 사용할 때 동일한 인코딩 작업이 더 빠르게 실행 하는 hello 예를 들어 **S2** toohello 비교 하는 예약된 단위 형식 **S1** 유형입니다.
 
-예약 단위 유형을 지정하는 것 외에도 계정에 **RU(예약 단위)**를 프로비전하도록 지정할 수 있습니다. 프로비전되는 RU의 수에 따라 특정 계정에서 동시에 처리할 수 있는 미디어 작업의 수가 결정됩니다.
+또한 toospecifying hello 예약 단위 형식, tooprovision를 사용 하 여 계정을 지정할 수 있습니다 **예약 단위** (RUs). 프로 비전 된 RUs hello 수 hello 지정된 된 계정에서 동시에 처리할 수 있는 미디어 작업 수를 결정 합니다.
 
 >[!NOTE]
 >RU는 Azure Media Indexer를 사용하는 인덱싱 작업을 비롯하여 모든 미디어 처리 병렬화에 대해 작동합니다. 그러나 인코딩과 달리 인덱싱 작업은 예약 단위가 더 빠르게 실행되어도 더 빨리 처리되지 않습니다.
 
 > [!IMPORTANT]
-> 미디어 처리 크기 조정에 대해 자세히 알아보려면 이 [개요](media-services-scale-media-processing-overview.md) 항목을 참조하세요.
+> 있는지 tooreview hello 확인 [개요](media-services-scale-media-processing-overview.md) 항목 tooget 항목을 처리 하는 미디어 확장에 대 한 자세한 내용은 합니다.
 > 
 > 
 
 ## <a name="scale-media-processing"></a>미디어 처리 크기 조정
-예약 단위 유형 및 예약 단위 수를 변경하려면 다음을 수행합니다.
+toochange hello 예약 단위 형식 및 hello 예약된 단위 수를 다음 hello지 않습니다.
 
-1. [Azure Portal](https://portal.azure.com/)에서 Azure Media Services 계정을 선택합니다.
-2. **설정** 창에서 **미디어 예약 단위**를 선택합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com/)를 Azure 미디어 서비스 계정을 선택 합니다.
+2. Hello에 **설정** 창에서 **미디어 예약 단위**합니다.
    
-    선택한 예약 단위 유형의 예약 단위 수를 변경하려면 **미디어 예약 단위** 슬라이더를 사용합니다.
+    예약된 단위 형식 너무 많이 선택 hello에 대 한 예약 단위 toochange hello 수, hello를 사용 하 여 **미디어 처리 단위** 슬라이더 합니다.
    
-    **예약 단위 형식**을 변경하려면 S1, S2 또는 S3을 누릅니다.
+    toochange hello **예약 단위 형식**, S1, S2 또는 S3 키를 누릅니다.
    
     ![프로세서 페이지](./media/media-services-portal-scale-media-processing/media-services-scale-media-processing.png)
-3. 저장 단추를 눌러 변경 내용을 저장합니다.
+3. 단추 toosave 변경 내용을 저장 하는 hello 키를 누릅니다.
    
-    저장을 누르면 새 예약 단위가 할당됩니다.
+    저장 단추를 누를 때 hello 새 예약된 단위 할당 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 Media Services 학습 경로를 검토합니다.

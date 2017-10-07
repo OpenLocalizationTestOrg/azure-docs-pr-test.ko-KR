@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 기본 제공 끝점 이해 | Microsoft Docs"
-description: "개발자 가이드에서는 기본 제공 이벤트 허브 호환 끝점을 사용하여 장치-클라우드 메시지를 읽는 방법을 설명합니다."
+title: "aaaUnderstand hello Azure IoT 허브에 대 한 기본 제공 끝점 | Microsoft Docs"
+description: "개발자 가이드-toouse 기본 제공, 이벤트 허브 호환 끝점 태그로 장치-클라우드 메시지 hello 하는 방법을 설명 합니다."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -13,63 +13,63 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: fcc3743028e369fdc42b71887d49fb41fba2c0dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15484c1b1828151ffcae5f4a1407264374223da1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="read-device-to-cloud-messages-from-the-built-in-endpoint"></a>기본 제공 끝점에서 장치-클라우드 메시지 읽기
+# <a name="read-device-to-cloud-messages-from-hello-built-in-endpoint"></a>Hello 기본 제공 끝점에서 장치-클라우드 메시지 읽기
 
-기본적으로 메시지는 [Event Hubs][lnk-event-hubs]와 호환되는 기본 제공 서비스 연결 끝점(**messages/events**)으로 라우팅됩니다. 이 끝점은 현재 [AMQP][lnk-amqp] 프로토콜을 통해서만 포트 5671에 노출됩니다. IoT Hub는 다음 속성을 노출하여 기본 제공 Event Hub와 호환되는 메시징 끝점 **messages/events**를 제어할 수 있게 합니다.
+기본적으로 메시지는 라우트된 toohello 기본 제공 서비스 연결 끝점 (**이벤트 메시지/**), 즉 호환 [이벤트 허브][lnk-event-hubs]합니다. 데이터베이스 미러링이 끝점은 현재 hello를 사용 하 여에 노출 [AMQP] [ lnk-amqp] 포트 5671의 프로토콜입니다. IoT hub hello를 노출 하면 toocontrol 속성 tooenable 다음 기본 제공 이벤트 허브 호환 메시징 끝점을 hello **이벤트메시지/**합니다.
 
 | 속성            | 설명 |
 | ------------------- | ----------- |
-| **분할 개수** | 이 속성은 생성 시 설정하여 장치-클라우드 이벤트 수집에 대한 [파티션][lnk-event-hub-partitions] 수를 정의합니다. |
-| **보존 시간**  | 이 속성은 IoT Hub에서 메시지를 보존할 일 수를 지정합니다. 기본값은 1일이지만 7일로 늘릴 수 있습니다. |
+| **분할 개수** | 생성 toodefine hello 수의이 속성을 설정 [파티션을] [ lnk-event-hub-partitions] 장치-클라우드 이벤트 수집 합니다. |
+| **보존 시간**  | 이 속성은 IoT Hub에서 메시지를 보존할 일 수를 지정합니다. hello 기본값은 1 일 이지만 증가 tooseven 일 수 있습니다. |
 
-또한 IoT Hub를 사용하면 기본 제공 장치-클라우드 수신 끝점에서 소비자 그룹을 관리할 수 있습니다.
+IoT Hub 사용 하면 수도 toomanage 소비자 그룹에 hello 기본 제공 장치-클라우드 끝점을 수신 합니다.
 
-기본적으로 메시지 라우팅 규칙과 명시적으로 일치하지 않는 모든 메시지는 기본 제공 끝점에 기록됩니다. 이 대체 경로를 비활성화하면 메시지 라우팅 규칙과 명시적으로 일치하지 않는 메시지는 삭제됩니다.
+기본적으로 모든 메시지는 메시지 라우팅 규칙을 명시적으로 일치 하지 않는 기본 제공 끝점 toohello 기록 됩니다. 이 대체 경로를 비활성화하면 메시지 라우팅 규칙과 명시적으로 일치하지 않는 메시지는 삭제됩니다.
 
-[IoT Hub 리소스 공급자 REST API][lnk-resource-provider-apis]를 통해 프로그래밍 방식으로 또는 [Azure Portal][lnk-management-portal]을 사용하여 보존 시간을 수정할 수 있습니다.
+Hello를 통해 프로그래밍 방식으로 hello 보존 시간을 수정할 수 있습니다 [IoT 허브 리소스 공급자 REST Api][lnk-resource-provider-apis], 또는 hello를 사용 하 여 [Azure 포털] [ lnk-management-portal].
 
-IoT Hub는 허브에서 수신한 장치-클라우드 메시지를 읽도록 백 엔드 서비스의 기본 제공 끝점인 **messages/events**를 공개합니다. 이 끝점은 Event Hub와 호환되기 때문에 Event Hubs 서비스가 메시지 읽기에 대해 지원하는 모든 메커니즘을 사용할 수 있습니다.
+IoT Hub 노출 hello **이벤트메시지/** 백 엔드에 대 한 기본 제공 끝점 허브에서 수신한 tooread hello 장치-클라우드 메시지를 서비스 합니다. 데이터베이스 미러링이 끝점은 이벤트 허브 호환 toouse 메시지 도착 읽기에 대 한 지원 hello 메커니즘 hello 이벤트 허브 서비스 중 하나를 사용할 수 있는 합니다.
 
-## <a name="read-from-the-built-in-endpoint"></a>기본 제공 끝점에서 읽기
+## <a name="read-from-hello-built-in-endpoint"></a>Hello 기본 제공 끝점에서 읽기
 
-[.NET용 Azure Service Bus SDK][lnk-servicebus-sdk] 또는 [Event Hubs - 이벤트 프로세서 호스트][lnk-eventprocessorhost]를 사용하는 경우 적절한 권한으로 모든 IoT Hub 연결 문자열을 사용할 수 있습니다. **이벤트/메시지** 를 이벤트 허브 이름으로 사용합니다.
+Hello를 사용 하는 경우 [.NET 용 Azure 서비스 버스 SDK] [ lnk-servicebus-sdk] 또는 hello [이벤트 허브-이벤트 프로세서 호스트][lnk-eventprocessorhost], 모든 IoT 허브 연결을 사용할 수 있습니다 hello 올바른 사용 권한이 있는 문자열입니다. 다음 사용 하 여 **이벤트메시지/** hello 이벤트 허브 이름으로 합니다.
 
-IoT Hub를 인식하지 않는 SDK(또는 제품 통합)를 사용하는 경우 [Azure Portal][lnk-management-portal]의 IoT Hub 설정에서 Event Hub 호환 끝점 및 Event Hub 호환 이름을 검색해야 합니다.
+사용 하는 경우 Sdk (또는 제품 통합) IoT Hub 인식 하지 않습니다, hello의 hello IoT Hub 설정에서 이벤트 허브 호환 끝점 및 이벤트 허브 호환 이름을 검색 해야 [Azure 포털] [ lnk-management-portal]:
 
-1. IoT Hub 블레이드에서 **끝점**을 클릭합니다.
-1. **기본 제공 끝점** 섹션에서 **이벤트**를 클릭합니다. 블레이드에서는 **Event Hub 호환 끝점**, **Event Hub 호환 이름**, **파티션**, **보존 시간** 및 **소비자 그룹** 값을 포함하고 있습니다.
+1. Hello IoT 허브 블레이드에서 클릭 **끝점**합니다.
+1. Hello에 **기본 제공 끝점** 섹션에서 클릭 **이벤트**합니다. hello 블레이드 포함 된 다음 값에는 hello: **호환 이벤트 허브 끝점**, **이벤트 허브와 호환 가능한 이름**, **파티션을**, **보존시간**, 및 **소비자 그룹**합니다.
 
     ![장치-클라우드 설정][img-eventhubcompatible]
 
-IoT Hub SDK에는 **끝점** 블레이드에서 보여 주듯이 IoT Hub 끝점 이름으로 **messages/events**가 필요합니다.
+IoT 허브 SDK hello 필요 hello IoT Hub 끝점 이름이 며, **이벤트 메시지/** hello에 나와 있는 것 처럼 **끝점** 블레이드입니다.
 
-사용 중인 SDK에 **호스트 이름** 또는 **네임스페이스** 값이 필요한 경우 **Event Hub 호환 끝점**에서 스키마를 제거합니다. 예를 들어 Event Hubs 호환 끝점이 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**인 경우 **호스트 이름**은 **iothub-ns-myiothub-1234.servicebus.windows.net**이 되고 **네임스페이스**는 **iothub-ns-myiothub-1234**가 됩니다.
+SDK를 사용 하는 hello 요구 하는 경우는 **Hostname** 또는 **Namespace** hello에서 hello 구성표 제거, 값 **호환 이벤트 허브 끝점**합니다. 예를 들어 이벤트 허브 호환 끝점 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**, hello **Hostname** 것  **iothub ns-myiothub 1234.servicebus.windows.net**, 및 hello **Namespace** 것 **ns myiothub 1234 iothub**합니다.
 
-지정된 Event Hubs에 연결할 수 있는 **ServiceConnect** 권한이 있는 공유 액세스 정책을 사용할 수 있습니다.
+Hello에 있는 공유 액세스 정책을 사용할 수 있습니다 **ServiceConnect** 권한 tooconnect toohello 이벤트 허브를 지정 합니다.
 
-이전의 정보를 사용하여 이벤트 허브 연결 문자열을 작성해야 하는 경우 다음과 같은 패턴을 사용합니다.
+Hello 이전 정보를 사용 하 여 toobuild 이벤트 허브 연결 문자열을 원하는 경우 hello 패턴을 사용 합니다.
 
 `Endpoint={Event Hub-compatible endpoint};SharedAccessKeyName={iot hub policy name};SharedAccessKey={iot hub policy key}`
 
-IoT Hub를 노출하는 이벤트 허브와 호환 가능한 끝점으로 사용할 수 있는 SDK 및 통합에는 다음 목록의 항목이 포함됩니다.
+hello Sdk 및 IoT Hub를 노출 하는 이벤트 허브 호환 끝점으로 사용할 수 있는 통합 hello 목록 다음에 hello 항목을 포함 합니다.
 
 * [Java 이벤트 허브 클라이언트](https://github.com/hdinsight/eventhubs-client)
-* [Apache Storm spout](../hdinsight/hdinsight-storm-develop-csharp-event-hub-topology.md). GitHub의 [spout 원본](https://github.com/apache/storm/tree/master/external/storm-eventhubs) 을 볼 수 있습니다.
+* [Apache Storm spout](../hdinsight/hdinsight-storm-develop-csharp-event-hub-topology.md). Hello를 볼 수 있습니다 [소스 spout](https://github.com/apache/storm/tree/master/external/storm-eventhubs) GitHub에서 합니다.
 * [Apache Spark 통합](../hdinsight/hdinsight-apache-spark-eventhub-streaming.md)
 
 ## <a name="next-steps"></a>다음 단계
 
 IoT Hub 끝점에 대한 자세한 내용은 [IoT Hub 끝점][lnk-endpoints]을 참조하세요.
 
-[시작][lnk-get-started] 자습서에서는 시뮬레이션된 장치에서 장치-클라우드 메시지를 보내고 기본 제공 끝점에서 메시지를 읽는 방법을 설명합니다. 자세한 내용은 [경로를 사용하여 IoT Hub 장치-클라우드 메시지 처리][lnk-d2c-tutorial] 자습서를 참조하세요.
+hello [시작] [ lnk-get-started] 보여 주는 자습서 toosend 장치-클라우드 메시지를이 장치를 시뮬레이션 하 고 hello 기본 제공 끝점에서 hello 메시지를 읽은 하는 방법입니다. 자세한 정보를 얻기 위해 hello 참조 [경로 사용 하 여 프로세스 IoT Hub 장치-클라우드 메시지] [ lnk-d2c-tutorial] 자습서입니다.
 
-장치-클라우드 메시지를 사용자 지정 끝점으로 라우팅하려면 [장치-클라우드 메시지에 대해 메시지 라우팅 및 사용자 지정 끝점 사용][lnk-custom]을 참조하세요.
+사용자 장치-클라우드 메시지 toocustom 끝점 tooroute 하려는 경우, 참조 [장치-클라우드 메시지에 대 한 메시지 경로 및 사용자 지정 끝점을 사용 하 여][lnk-custom]합니다.
 
 [img-eventhubcompatible]: ./media/iot-hub-devguide-messages-read-builtin/eventhubcompatible.png
 

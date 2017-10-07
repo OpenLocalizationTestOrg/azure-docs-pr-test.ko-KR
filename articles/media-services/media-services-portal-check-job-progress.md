@@ -1,6 +1,6 @@
 ---
-title: "Azure 포털을 통해 인코딩 작업 진행 상태 모니터링"
-description: "이 자습서에서는 Azure 포털을 사용하여 작업 진행 상태를 모니터링하는 단계를 안내합니다."
+title: "aaaMonitor 인코딩 hello Azure 포털을 사용 하 여 작업 진행률"
+description: "이 자습서의 hello Azure 포털을 사용 하 여 작업 진행률을 모니터링 hello 단계를 안내 합니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 571d222068e92a45b0e37bec298bab7a6825f731
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4282553d5dbed65ea6427bcd6de778795f1ff9ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-encoding-job-progress-with-the-azure-portal"></a>Azure 포털을 통해 인코딩 작업 진행 상태 모니터링
+# <a name="monitor-encoding-job-progress-with-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 인코딩 작업 진행률을 모니터링 합니다.
 > [!div class="op_single_selector"]
 > * [포털](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
@@ -30,17 +30,17 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>개요
 > [!NOTE]
-> 이 자습서를 완료하려면 Azure 계정이 필요합니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요. 
+> toocomplete이이 자습서에서는 Azure 계정이 필요 합니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요. 
 > 
 > 
 
-작업을 실행할 때 작업 진행 상태를 추적하는 방법이 종종 필요합니다. 
+작업을 실행 하면 일반적 방법을 tootrack 작업 진행 상황을 필요 합니다. 
 
-인코딩 작업의 진행 상태를 모니터링하려면 페이지 맨 위에 있는 **설정**을 클릭한 후 **작업**을 선택합니다.
+인코딩 작업을 하는 hello의 toomonitor hello 진행률 클릭 **설정** (hello 페이지의 위쪽 hello)를 클릭 한 **작업**합니다.
 
 ![작업](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-작업을 클릭하면 자세한 내용을 확인할 수 있습니다.
+자세한 내용은 작업 toosee hello를 클릭할 수 있습니다.
 
 ![작업](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
 

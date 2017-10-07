@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 시작(Java) | Microsoft Docs"
-description: "Java용 IoT SDK를 사용하여 Azure IoT Hub에 장치-클라우드 메시지를 보내는 방법을 알아봅니다. 시뮬레이션된 장치 및 서비스 앱을 만들어서 장치를 등록하고 메시지를 전송하고 IoT Hub의 메시지를 읽습니다."
+title: "Azure IoT Hub (Java) aaaGet 시작 | Microsoft Docs"
+description: "Toosend 장치-클라우드 tooAzure IoT Sdk를 사용 하 여 Java에 대 한 IoT Hub를 메시지 하는 방법을 알아봅니다. 시뮬레이션 된 장치 및 서비스 응용 프로그램 tooregister 장치, 메시지를 보낼 만들고 IoT 허브에서 메시지를 읽은 합니다."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -15,50 +15,50 @@ ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 707356a49970bcd76a55ee1b8a6fbddf6a6ba390
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac954f0522b46ed2a5b4a819bc611c13be0b9a9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-your-iot-hub-using-java"></a>Java를 사용하여 IoT Hub에 장치 연결
+# <a name="connect-your-device-tooyour-iot-hub-using-java"></a>Java를 사용 하 여 장치 tooyour IoT 허브를 연결 합니다.
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-이 자습서의 끝 부분에서 다음의 세 가지 Java 콘솔 앱이 만들어집니다.
+이 자습서의 hello 끝 세 개의 Java 콘솔 앱을 사용할 수 있습니다.
 
-* **create-device-identity**는 장치 ID 및 연결된 보안 키를 만들어 장치 앱에 연결합니다.
-* **read-d2c-messages**는 장치 앱에서 보낸 원격 분석을 표시합니다.
-* **simulated-device**는 앞에서 만든 장치 ID로 IoT Hub에 연결하고 MQTT 프로토콜을 사용하여 매초마다 원격 분석 메시지를 보냅니다.
+* **장치 만들기-id**, 장치 id를 만드는 연결 된 보안 키 tooconnect 장치 응용 프로그램 및입니다.
+* **읽기-d2c-송신 된 메시지**, 장치 앱에서 보낸 hello 원격 분석을 표시 하는 합니다.
+* **시뮬레이션 된 장치**, 이전에 만든 hello 장치 id를 가진 tooyour IoT 허브를 연결 하 고 MQTT 프로토콜 hello 하 여 모든 두 번째 원격 분석 메시지를 보냅니다.
 
 > [!NOTE]
-> [Azure IoT SDKs][lnk-hub-sdks] 문서는 장치와 솔루션 백 엔드에서 실행하기 위해 두 앱을 빌드하는 데 사용할 수 있는 Azure IoT SDK에 관한 정보를 제공합니다.
+> hello 문서 [Azure IoT Sdk] [ lnk-hub-sdks] 사용할 수 있는 toobuild 두 앱 toorun 장치와 솔루션 백 엔드에, Azure IoT Sdk hello에 대 한 정보를 제공 합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요:
 
-* 최신 [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
+* 최신 hello [Java SE 개발 키트 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
 * [Maven 3](https://maven.apache.org/install.html) 
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 안에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-마지막 단계로 **기본 키** 값을 적어둡니다. 그런 다음 **끝점** 및 **이벤트** 기본 제공 끝점을 클릭합니다. **속성** 블레이드에서 **Event Hub 호환 이름** 및 **Event Hub 호환 끝점** 주소를 기록해 둡니다. **read-d2c-messages** 앱을 만들 때 이러한 값이 필요합니다.
+마지막 단계로 hello 적어 **기본 키** 값입니다. 클릭 **끝점** 및 hello **이벤트** 기본 제공 끝점입니다. Hello에 **속성** 블레이드를 기록해 둡니다 hello **이벤트 허브와 호환 가능한 이름** 및 hello **호환 이벤트 허브 끝점** 주소입니다. **read-d2c-messages** 앱을 만들 때 이러한 값이 필요합니다.
 
 ![Azure Portal IoT Hub 메시징 블레이드][6]
 
-IoT Hub를 만들었습니다. 이 자습서를 완료하는 데 필요한 IoT Hub 호스트 이름, IoT Hub 연결 문자열, IoT Hub 기본 키, Event Hub 호환 이름 및 Event Hub 호환 끝점이 있습니다.
+IoT Hub를 만들었습니다. 해야 hello IoT Hub 호스트 이름, IoT 허브 연결 문자열, IoT 허브에 대 한 기본 키, 이벤트 허브와 호환 가능한 이름 및 이벤트 허브 호환 끝점 toocomplete이이 자습서를 해야 합니다.
 
 ## <a name="create-a-device-identity"></a>장치 ID 만들기
-이 섹션에서는 IoT Hub의 ID 레지스트리에서 장치 ID를 만드는 Java 콘솔 앱을 작성합니다. ID 레지스트리에 항목이 없는 경우 장치를 IoT Hub에 연결할 수 없습니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]의 **ID 레지스트리** 섹션을 참조하세요. 이 콘솔 앱을 실행하면 장치-클라우드 메시지를 IoT Hub로 보낼 때 장치가 자체적으로 ID를 식별하는 데 사용할 수 있는 고유한 장치 ID와 키를 생성합니다.
+이 섹션에서는 hello id 레지스트리에 IoT 허브에서에서 장치 id를 작성 하는 Java 콘솔 앱을 만듭니다. 장치 id 레지스트리에 hello에 항목이 없는 경우 tooIoT 허브를 연결할 수 없습니다. 자세한 내용은 참조 hello **Id 레지스트리에** hello 섹션 [IoT 허브 개발자 가이드][lnk-devguide-identity]합니다. 이 콘솔 응용 프로그램을 실행 하면 고유한 장치 ID를 생성 및 메시지 tooIoT 허브를 키 장치-클라우드 보낼 때 장치가 tooidentify 자체를 사용할 수 있습니다.
 
-1. iot-java-get-started라는 빈 폴더를 만듭니다. 명령 프롬프트에서 다음 명령을 사용하여 iot-java-get-started 폴더에 **create-device-identity**라는 새 Maven 프로젝트를 만듭니다. 긴 단일 명령입니다.
+1. iot-java-get-started라는 빈 폴더를 만듭니다. Hello iot-java-get 시작 폴더에서 라는 Maven 프로젝트를 만듭니다 **장치 만들기-id** hello 다음 명령 프롬프트에서 명령을 사용 합니다. 긴 단일 명령입니다.
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=create-device-identity -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. 명령 프롬프트에서 create-device-identity 폴더로 이동합니다.
+2. 명령 프롬프트 toohello 장치 만들기-id 폴더를 이동 합니다.
 
-3. 텍스트 편집기를 사용하여 create-device-identity 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성으로 인해 앱에서 iot-service-client 패키지를 사용할 수 있습니다.
+3. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 장치 만들기-id 폴더에 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 패키지를 통해 있습니다 toouse hello iot 서비스 클라이언트 응용 프로그램에서:
 
     ```xml
     <dependency>
@@ -69,13 +69,13 @@ IoT Hub를 만들었습니다. 이 자습서를 완료하는 데 필요한 IoT H
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-service-search]을 사용하여 **iot-service-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 서비스 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-service-search]합니다.
 
-4. pom.xml 파일을 저장하고 닫습니다.
+4. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-5. 텍스트 편집기를 사용하여 create-device-identity\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+5. 텍스트 편집기를 사용 하 여 hello create-device-identity\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-6. 파일에 다음 **import** 문을 추가합니다.
+6. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.exceptions.IotHubException;
@@ -86,7 +86,7 @@ IoT Hub를 만들었습니다. 이 자습서를 완료하는 데 필요한 IoT H
     import java.net.URISyntaxException;
     ```
 
-7. **App** 클래스에 다음 클래스 수준 변수를 추가하고 **{yourhubconnectionstring}**를 앞에서 기록해둔 값으로 바꿉니다.
+7. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스를 대체 **{yourhubconnectionstring}** hello로 값에 명시 된 이전 버전:
 
     ```java
     private static final String connectionString = "{yourhubconnectionstring}";
@@ -94,13 +94,13 @@ IoT Hub를 만들었습니다. 이 자습서를 완료하는 데 필요한 IoT H
     ```
 [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
 
-8. **main** 메서드의 서명을 수정하여 다음과 같은 예외를 포함합니다.
+8. Hello의 hello 서명을 수정 **주** 메서드 tooinclude 예외를 다음과 같이 hello:
 
     ```java
     public static void main( String[] args ) throws IOException, URISyntaxException, Exception
     ```
 
-9. **main** 메서드의 본문으로 다음 코드를 추가합니다. 이 코드는 IoT Hub ID 레지스트리에 *javadevice* 라는 장치를 만듭니다(없는 경우). 그런 다음 나중에 필요한 장치 ID와 키를 표시합니다.
+9. Hello hello의 hello 본문으로 코드를 다음 추가 **주** 메서드. 이 코드는 IoT Hub ID 레지스트리에 *javadevice* 라는 장치를 만듭니다(없는 경우). 다음 hello 장치 ID와 키 나중에 필요를 표시 합니다.
 
     ```java
     RegistryManager registryManager = RegistryManager.createFromConnectionString(connectionString);
@@ -112,7 +112,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     try {
       device = registryManager.addDevice(device);
     } catch (IotHubException iote) {
-      // If the device already exists.
+      // If hello device already exists.
       try {
         device = registryManager.getDevice(deviceId);
       } catch (IotHubException iotf) {
@@ -130,7 +130,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     try {
       device = registryManager.addDevice(device);
     } catch (IotHubException iote) {
-      // If the device already exists.
+      // If hello device already exists.
       try {
         device = registryManager.getDevice(deviceId);
       } catch (IotHubException iotf) {
@@ -144,41 +144,41 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     System.out.println("Device key: " + device.getPrimaryKey());
     ```
 
-10. App.java 파일을 저장하고 닫습니다.
+10. 저장 하 고 hello App.java 파일을 닫습니다.
 
-11. Maven을 사용하여 **create-device-identity** 앱을 빌드하려면 create-device-identity 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+11. toobuild hello **장치 만들기-id** Maven에서 사용 하 여 앱 hello 다음 hello 장치 만들기-id 폴더에 hello 명령 프롬프트에서 명령을 실행 합니다.
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-12. Maven을 사용하여 **create-device-identity** 앱을 실행하려면 create-device-identity 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+12. toorun hello **장치 만들기-id** Maven에서 사용 하 여 앱 hello 다음 hello 장치 만들기-id 폴더에 hello 명령 프롬프트에서 명령을 실행 합니다.
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-13. **장치 ID**와 **장치 키**를 기록해 둡니다. 나중에 장치로 IoT Hub에 연결하는 앱을 만들 때 이러한 값이 필요합니다.
+13. Hello 메모 **장치 ID** 및 **장치 키**합니다. 이 값이 필요 하면 이러한 나중 tooIoT 장치로 허브를 연결 하는 앱을 만들 때.
 
 > [!NOTE]
-> IoT Hub ID 레지스트리는 장치 ID만 저장하여 IoT Hub에 보안 액세스를 사용합니다. 보안 자격 증명으로 사용하기 위해 장치 ID 및 키와 개별 장치에 대해 액세스하지 못하도록 설정할 수 있는 사용/사용 안 함 플래그를 저장합니다. 앱이 다른 장치별 메타데이터를 저장해야 할 경우 앱별 저장소를 사용해야 합니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]를 참조하세요.
+> IoT Hub id 레지스트리에 hello만 장치 identities tooenable 보안 액세스 toohello IoT 허브를 저장합니다. 장치 Id와 키 toouse 보안 자격 증명 및 개별 장치에 대 한 toodisable 액세스를 사용할 수 있는 사용/사용 안 함 플래그로 저장 합니다. 앱은 toostore 다른 장치 관련 메타 데이터를 필요한 경우에 응용 프로그램별 저장소를 사용 해야 합니다. 자세한 내용은 참조 hello [IoT 허브 개발자 가이드][lnk-devguide-identity]합니다.
 
 ## <a name="receive-device-to-cloud-messages"></a>장치-클라우드 메시지 받기
 
-이 섹션에서는 IoT Hub에서 장치-클라우드 메시지를 읽는 Java 콘솔 앱을 만듭니다. IoT Hub가 [Event Hub][lnk-event-hubs-overview] 호환 끝점을 노출하여 장치-클라우드 메시지를 읽을 수 있습니다. 작업을 단순화하기 위해 이 자습서에서는 처리량이 높은 배포용이 아닌 기본적인 판독기를 만듭니다. [장치-클라우드 메시지 처리][lnk-process-d2c-tutorial] 자습서는 대량의 장치-클라우드 메시지를 처리하는 방법을 보여 줍니다. [Event Hubs 시작][lnk-eventhubs-tutorial] 자습서는 Event Hubs의 메시지를 처리하는 방법에 대해 추가 정보를 제공하며 IoT Hub Event Hub 호환 끝점에 적용됩니다.
+이 섹션에서는 IoT Hub에서 장치-클라우드 메시지를 읽는 Java 콘솔 앱을 만듭니다. IoT hub를 노출 한 [이벤트 허브][lnk-event-hubs-overview]-호환 되는 끝점 tooenable tooread 장치-클라우드 메시지입니다. 단순 tookeep 항목을이 자습서에서는 처리량이 높은 배포에 적합 하지 않은 기본 판독기를 만듭니다. hello [장치-클라우드 메시지를 처리] [ lnk-process-d2c-tutorial] 자습서에서는 배율로 tooprocess 장치-클라우드 메시지 방법을 합니다. hello [이벤트 허브 시작] [ lnk-eventhubs-tutorial] 자습서 tooprocess 이벤트 허브에서 메시지를 하 고는 적용 가능한 toohello IoT 허브 이벤트 허브 호환 되지 않는 끝점 하는 방법에 자세한 정보를 제공 합니다.
 
 > [!NOTE]
-> 장치-클라우드 메시지를 읽는 Event Hub와 호환 가능한 끝점은 항상 AMQP 프로토콜을 사용합니다.
+> hello 항상 장치-클라우드 메시지 도착 읽기에 대 한 이벤트 허브 호환 끝점 hello AMQP 프로토콜이 사용 됩니다.
 
-1. *장치 ID 만들기* 섹션에서 만든 iot-java-get-started 폴더의 명령 프롬프트에서 다음 명령을 사용하여 **read-d2c-messages**라는 Maven 프로젝트를 만듭니다. 긴 단일 명령입니다.
+1. Hello에서 만든 hello iot-java-get 시작 폴더에 *장치 id를 만드는* 섹션, 호출 Maven 프로젝트 만들기 **읽기-d2c-송신 된 메시지** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 긴 단일 명령입니다.
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=read-d2c-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. 명령 프롬프트에서 read-d2c-messages 폴더로 이동합니다.
+2. 명령 프롬프트 toohello 읽기-d2c-송신 된 메시지 폴더를 이동 합니다.
 
-3. 텍스트 편집기를 사용하여 read-d2c-messages 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 앱에서 eventhubs-client 패키지를 사용하여 Event Hub 호환 끝점에서 읽을 수 있습니다.
+3. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 메시지 d2c-읽기-폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 toouse hello eventhubs 클라이언트 패키지를 하면 앱 tooread hello 호환 이벤트 허브 끝점에서의 있습니다.
 
     ```xml
     <dependency> 
@@ -188,11 +188,11 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     </dependency>
     ```
 
-4. pom.xml 파일을 저장하고 닫습니다.
+4. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-5. 텍스트 편집기를 사용하여 read-d2c-messages\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+5. 텍스트 편집기를 사용 하 여 hello read-d2c-messages\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-6. 파일에 다음 **import** 문을 추가합니다.
+6. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import java.io.IOException;
@@ -204,13 +204,13 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     import java.util.function.*;
     ```
 
-7. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. **{youriothubkey}**, **{youreventhubcompatibleendpoint}** 및 **{youreventhubcompatiblename}**을 앞에서 기록해둔 값으로 바꿉니다.
+7. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 대체 **{youriothubkey}**, **{youreventhubcompatibleendpoint}**, 및 **{youreventhubcompatiblename}** hello 값이 이전에 기록한:
 
     ```java
     private static String connStr = "Endpoint={youreventhubcompatibleendpoint};EntityPath={youreventhubcompatiblename};SharedAccessKeyName=iothubowner;SharedAccessKey={youriothubkey}";
     ```
 
-8. 다음 **receiveMessages** 메서드를 **App** 클래스에 추가합니다. 이 메서드는 **EventHubClient** 인스턴스를 만들어 Event Hub 호환 끝점에 연결하고 **PartitionReceiver** 인스턴스를 비동기식으로 만들어 Event Hub 파티션에서 읽습니다. 계속해서 반복하고 앱이 종료될 때까지 메시지 세부 정보를 출력합니다.
+8. Hello 다음 추가 **receiveMessages** 메서드 toohello **앱** 클래스입니다. 이 메서드는 만듭니다는 **EventHubClient** tooconnect toohello 호환 이벤트 허브 끝점 인스턴스 선택한 비동기적으로 만듭니다는 **PartitionReceiver** 인스턴스 tooread 이벤트 허브에서 파티션입니다. 지속적으로 루프를 실행 하 고 hello 앱이 종료 될 때까지 hello 메시지 세부 정보를 출력 합니다.
 
     ```java
     // Create a receiver on a partition.
@@ -219,7 +219,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
       try {
         client = EventHubClient.createFromConnectionStringSync(connStr);
       } catch (Exception e) {
-        System.out.println("Failed to create client: " + e.getMessage());
+        System.out.println("Failed toocreate client: " + e.getMessage());
         System.exit(1);
       }
       try {
@@ -251,33 +251,33 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
                   System.out.println(String.format("Partition: %s, ReceivedBatch Size: %s", partitionId, batchSize));
                 }
               } catch (Exception e) {
-                System.out.println("Failed to receive messages: " + e.getMessage());
+                System.out.println("Failed tooreceive messages: " + e.getMessage());
               }
             }
           });
         } catch (Exception e) {
-          System.out.println("Failed to create receiver: " + e.getMessage());
+          System.out.println("Failed toocreate receiver: " + e.getMessage());
       }
       return client;
     }
     ```
 
    > [!NOTE]
-   > 이 메서드는 수신기를 만들 때 필터를 사용하여 수신기는 수신기 실행이 시작된 후 IoT Hub에 전송된 메시지를 읽습니다. 이 방법은 테스트 환경에서 현재 메시지 집합을 볼 수 있어 유용합니다. 프로덕션 환경에서는 코드가 모든 메시지를 처리하는지 확인해야 합니다. 자세한 내용은 [IoT Hub 장치-클라우드 메시지 처리 방법][lnk-process-d2c-tutorial] 자습서를 참조하세요.
+   > 이 메서드는 읽을 수 있도록 hello 수신기만 보낸 메시지 tooIoT 허브를 실행 하는 hello 수신기가 시작 되 면 hello 수신기를 만들 때 필터를 사용 합니다. 이 방법은 hello 메시지의 현재 집합을 볼 수 있도록 테스트 환경에서 유용 합니다. 프로덕션 환경에서 코드 있어야-자세한 정보에 대 한 모든 hello 메시지를 처리 하도록 확인을 참조 하세요 hello [어떻게 tooprocess IoT Hub 장치-클라우드 메시지] [ lnk-process-d2c-tutorial] 자습서입니다.
 
-9. **main** 메서드의 서명을 수정하여 다음과 같은 예외를 포함합니다.
+9. Hello의 hello 서명을 수정 **주** 메서드 tooinclude 예외를 다음과 같이 hello:
 
     ```java
     public static void main( String[] args ) throws IOException
     ```
 
-10. **App** 클래스의 **main** 메서드에 다음 코드를 추가합니다. 이 코드에서는 **EventHubClient** 및 **PartitionReceiver**라는 두 개의 인스턴스를 만들고 메시지 처리를 완료할 때 앱을 닫을 수 있습니다.
+10. 다음 코드 toohello hello 추가 **주** hello에 대 한 메서드 **앱** 클래스. 이 코드에서는 두 hello **EventHubClient** 및 **PartitionReceiver** 인스턴스를 사용 하면 tooclose hello 앱 메시지 처리를 완료 합니다.
 
     ```java
     // Create receivers for partitions 0 and 1.
     EventHubClient client0 = receiveMessages("0");
     EventHubClient client1 = receiveMessages("1");
-    System.out.println("Press ENTER to exit.");
+    System.out.println("Press ENTER tooexit.");
     System.in.read();
     try {
       client0.closeSync();
@@ -289,28 +289,28 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     ```
 
     > [!NOTE]
-    > 이 코드는 F1(무료) 계층에서 IoT Hub를 만들었다고 가정합니다. 무료 IoT Hub에는 "0" 및 "1"이라는 두 개의 파티션이 있습니다.
+    > 이 코드는 hello F1 (무료) 계층에 있는 IoT 허브를 만든 경우입니다. 무료 IoT Hub에는 "0" 및 "1"이라는 두 개의 파티션이 있습니다.
 
-11. App.java 파일을 저장하고 닫습니다.
+11. 저장 하 고 hello App.java 파일을 닫습니다.
 
-12. Maven을 사용하여 **read-d2c-messages** 앱을 빌드하려면 read-d2c-messages 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+12. toobuild hello **읽기-d2c-송신 된 메시지** Maven에서 사용 하 여 앱 hello 다음 hello 메시지 d2c-읽기-폴더에 hello 명령 프롬프트에서 명령을 실행 합니다.
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
 ## <a name="create-a-device-app"></a>장치 앱 만들기
-이 섹션에서는 IoT Hub로 장치-클라우드 메시지를 전송하는 장치를 시뮬레이션하는 Java 콘솔 앱을 작성합니다.
+이 섹션에서는 tooan IoT hub 장치-클라우드 메시지를 전송 하는 장치를 시뮬레이션 하는 Java 콘솔 앱을 만듭니다.
 
-1. *장치 ID 만들기* 섹션에서 만든 iot-java-get-started 폴더의 명령 프롬프트에서 다음 명령을 사용하여 **simulated-device**라는 Maven 프로젝트를 만듭니다. 긴 단일 명령입니다.
+1. Hello에서 만든 hello iot-java-get 시작 폴더에 *장치 id를 만드는* 섹션, 호출 Maven 프로젝트 만들기 **시뮬레이션 된 장치** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 긴 단일 명령입니다.
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. 명령 프롬프트에서 simulated-device 폴더로 이동합니다.
+2. 명령 프롬프트 toohello 시뮬레이션 된 장치 폴더를 이동 합니다.
 
-3. 텍스트 편집기를 사용하여 simulated-device 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT Hub와 통신하고 JSON으로 Java 개체를 직렬화하도록 앱에서 iothub-java-client 패키지를 사용할 수 있습니다.
+3. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 시뮬레이션 된 장치 폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 있습니다 toouse hello iothub java 클라이언트에서에서 패키지를 하면 앱 toocommunicate IoT 허브와 tooserialize Java 개체 tooJSON 수 있습니다.
 
     ```xml
     <dependency>
@@ -326,13 +326,13 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-device-search]을 사용하여 **iot-device-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 장치 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-device-search]합니다.
 
-4. pom.xml 파일을 저장하고 닫습니다.
+4. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-5. 텍스트 편집기를 사용하여 simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+5. 텍스트 편집기를 사용 하 여 hello simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-6. 파일에 다음 **import** 문을 추가합니다.
+6. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -345,7 +345,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     import java.util.concurrent.ExecutorService;
     ```
 
-7. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. **{youriothubname}**을 IoT Hub 이름으로 바꾸고 **{yourdevicekey}**를 *장치 ID 만들기* 섹션에서 만든 장치 키 값으로 바꿉니다.
+7. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 교체 **{youriothubname}** 을 IoT 허브 이름으로, 및 **{yourdevicekey}** hello에 생성 된 hello 장치 키 값을 가진 *장치 id를 만드는* 섹션:
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myFirstJavaDevice;SharedAccessKey={yourdevicekey}";
@@ -354,9 +354,9 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     private static DeviceClient client;
     ```
    
-    이 샘플 앱은 **DeviceClient** 개체를 인스턴스화할 때 **프로토콜** 변수를 사용합니다. MQTT, AMQP 또는 HTTP 프로토콜을 사용하여 IoT Hub와 통신할 수 있습니다.
+    이 샘플 응용 프로그램 hello를 사용 하 여 **프로토콜** 를 인스턴스화할 때 변수는 **DeviceClient** 개체입니다. IoT Hub와 hello MQTT, AMQP 또는 HTTP 프로토콜 toocommunicate 중 하나를 사용할 수 있습니다.
 
-8. 다음의 중첩된 **TelemetryDataPoint** 클래스를 **App** 클래스 안에 추가하여 장치가 IoT Hub에 전송한 원격 분석 데이터를 지정합니다.
+8. 중첩 된 hello 다음 추가 **TelemetryDataPoint** hello 내부 클래스 **앱** toospecify hello 원격 분석 데이터 tooyour IoT 허브를 전송 하는 사용자 장치 클래스:
 
     ```java
     private static class TelemetryDataPoint {
@@ -370,12 +370,12 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
       }
     }
     ```
-9. 다음의 중첩된 **EventCallback** 클래스를 **App** 클래스 안에 추가하여 장치 앱의 메시지를 처리할 때 IoT Hub가 반환하는 확인 상태를 표시합니다. 이 메서드는 또한 메시지가 처리되면 앱에서 메인 스레드를 알립니다.
+9. 중첩 된 hello 다음 추가 **EventCallback** hello 내부 클래스 **앱** 클래스 toodisplay hello 승인 상태 hello IoT 허브는 hello 장치 응용 프로그램에서 메시지를 처리할 때를 반환 합니다. 이 메서드도 hello 메시지 처리 되 면 hello 응용 프로그램의 주 스레드에서를 hello에 게 알립니다.
    
     ```java
     private static class EventCallback implements IotHubEventCallback {
       public void execute(IotHubStatusCode status, Object context) {
-        System.out.println("IoT Hub responded to message with status: " + status.name());
+        System.out.println("IoT Hub responded toomessage with status: " + status.name());
    
         if (context != null) {
           synchronized (context) {
@@ -386,7 +386,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     }
     ```
 
-10. 다음의 중첩된 **MessageSender** 클래스를 **App** 클래스 안에 추가합니다. 이 클래스의 **run** 메서드는 IoT Hub에 전송할 샘플 원격 분석 데이터를 생성하고 다음 메시지를 전송하기 전에 확인을 기다립니다.
+10. 중첩 된 hello 다음 추가 **MessageSender** hello 내부 클래스 **앱** 클래스입니다. hello **실행** 이 클래스의 메서드와 샘플 원격 분석 데이터 toosend tooyour IoT 허브를 생성 하 고 hello 다음 메시지를 보내기 전에 승인을 기다립니다.
 
     ```java
     private static class MessageSender implements Runnable {
@@ -426,9 +426,9 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     }
     ```
 
-    이 메서드는 IoT Hub에서 이전 메시지를 확인하고 1초 후 새 장치-클라우드 메시지를 보냅니다. 메시지에는 장치 ID가 있는 JSON 직렬화된 개체와 온도 센서 및 습도 센서를 시뮬레이션하기 위해 임의로 생성된 숫자가 있습니다.
+    이 메서드는 1 초 hello IoT hub hello 이전 메시지를 승인한 후 새 장치-클라우드 메시지를 보냅니다. hello 메시지 hello deviceId 가진 JSON 직렬화 된 개체가 포함 하 고 숫자 toosimulate 온도 센서 및 습도 센서를 임의로 생성 합니다.
 
-11. **main** 메서드를 장치-클라우드 메시지를 사용자의 IoT Hub로 전송하는 스레드를 만드는 다음 코드로 바꿉니다.
+11. Hello 대체 **주** 스레드 toosend 장치-클라우드 메시지 tooyour IoT 허브를 만드는 코드를 다음 hello로 메서드:
 
     ```java
     public static void main( String[] args ) throws IOException, URISyntaxException {
@@ -440,58 +440,58 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
       ExecutorService executor = Executors.newFixedThreadPool(1);
       executor.execute(sender);
     
-      System.out.println("Press ENTER to exit.");
+      System.out.println("Press ENTER tooexit.");
       System.in.read();
       executor.shutdownNow();
       client.closeNow();
     }
     ```
 
-12. App.java 파일을 저장하고 닫습니다.
+12. 저장 하 고 hello App.java 파일을 닫습니다.
 
-13. Maven을 사용하여 **simulated-device** 앱을 빌드하려면 simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+13. toobuild hello **시뮬레이션 된 장치** Maven에서 사용 하 여 앱 hello 다음 hello 시뮬레이션 된 장치 폴더에서 hello 명령 프롬프트에서 명령을 실행 합니다.
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
 > [!NOTE]
-> 간단히 하기 위해 이 자습서에서는 다시 시도 정책을 구현하지 않습니다. 프로덕션 코드에서는 MSDN 문서 [일시적인 오류 처리][lnk-transient-faults]에서 제시한 대로 다시 시도 정책(예: 지수 백오프)을 구현해야 합니다.
+> 단순 tookeep 항목을이 자습서는 어떠한 재시도 정책도 구현 하지 않습니다. 프로덕션 코드에서는 hello MSDN 문서에 설명 된 대로 다시 시도 정책 (예: 지 수 백오프)를 구현 해야 [일시적인 오류 처리][lnk-transient-faults]합니다.
 
-## <a name="run-the-apps"></a>앱 실행
+## <a name="run-hello-apps"></a>Hello 앱 실행
 
-이제 앱을 실행할 준비가 되었습니다.
+준비 toorun hello 앱입니다.
 
-1. read-d2c 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub에서 첫 번째 파티션의 모니터링을 시작합니다.
+1. Hello 읽기 d2c 폴더에 명령 프롬프트에서 다음 명령 toobegin IoT 허브에서 첫 번째 파티션에 hello를 모니터링 하는 hello를 실행 합니다.
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![장치-클라우드 메시지를 모니터링하는 Java IoT Hub 서비스 앱][7]
+    ![Java IoT 허브 서비스 응용 프로그램 toomonitor 장치-클라우드 메시지][7]
 
-2. simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub에 원격 분석 데이터 전송을 시작합니다.
+2. Hello 시뮬레이션 된 장치 폴더에서 명령 프롬프트에서 다음 원격 분석 데이터 tooyour IoT 허브를 보내는 명령 toobegin hello를 실행 합니다.
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
 
-    ![장치-클라우드 메시지를 전송하는 Java IoT Hub 장치 앱][8]
+    ![Java IoT Hub 장치 앱 toosend 장치-클라우드 메시지][8]
 
-3. [Azure Portal][lnk-portal]의 **사용량** 타일에 IoT Hub로 전송된 메시지 수가 표시됩니다.
+3. hello **사용량** hello에 바둑판식으로 배열 [Azure 포털] [ lnk-portal] 표시 hello 보낸 메시지 toohello IoT 허브의 수:
 
-    ![IoT Hub에 전송된 메시지의 수를 보여주는 Azure Portal 사용량 타일][43]
+    ![Azure 포털 사용량 타일 보여 주는 수가 전송 된 메시지 tooIoT 허브][43]
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 Azure Portal에서 새 IoT Hub를 구성한 다음, IoT Hub의 ID 레지스트리에서 장치 ID를 만들었습니다. 이 장치 ID를 사용하여 장치-클라우드 메시지를 IoT Hub로 보내기 위해 장치 앱을 사용하도록 설정했습니다. IoT Hub에서 받은 메시지를 표시하는 앱도 만들었습니다.
+이 자습서에서는 hello Azure 포털에서에서 새 IoT 허브를 구성 하 고 id 레지스트리에 hello IoT hub에서 장치 id를 만든 다음 합니다. 이 장치 identity tooenable hello 장치 앱 toosend 장치-클라우드 메시지 toohello IoT 허브를 사용 했습니다. 또한 hello IoT 허브에서 수신 하는 hello 메시지를 표시 하는 응용 프로그램을 만들었습니다.
 
-계속해서 IoT Hub을 시작하고 다른 IoT 시나리오를 탐색하려면 다음을 참조하세요.
+시작 toocontinue IoT 허브와 tooexplore 다른 IoT 시나리오를 참조 하세요.
 
 * [장치 연결][lnk-connect-device]
 * [장치 관리 시작][lnk-device-management]
 * [Azure IoT Hub 시작][lnk-iot-edge]
 
-IoT 솔루션을 확장하고 대량의 장치-클라우드 메시지를 처리하는 방법을 알아보려면 [장치-클라우드 메시지 처리][lnk-process-d2c-tutorial] 자습서를 참조하세요.
+toolearn tooextend 배율 사용할 때 IoT 솔루션 및 프로세스 장치-클라우드 메시지를 확인 하려면 어떻게 hello [장치-클라우드 메시지를 처리] [ lnk-process-d2c-tutorial] 자습서입니다.
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 
 <!-- Images. -->

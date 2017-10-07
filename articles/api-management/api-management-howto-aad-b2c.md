@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory B2C를 사용하여 개발자 계정에 권한 부여 - Azure API Management | Microsoft Docs"
-description: "API Management에서 Azure Active Directory B2C를 사용하여 사용자에게 권한을 부여하는 방법에 대해 알아보세요."
+title: "Azure Active Directory B2C-Azure API 관리를 사용 하 여 개발자 계정을 aaaAuthorize | Microsoft Docs"
+description: "자세한 내용은 방법 API 관리에서 Azure Active Directory B2C를 사용 하 여 tooauthorize 사용자입니다."
 services: api-management
 documentationcenter: API Management
 author: miaojiang
@@ -14,101 +14,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: eb7deb1a79d9db9ac5cfbea69b8d3c564eb55577
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 28f7cae53138938dbbc848b4afcbf08b72690e37
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-by-using-azure-active-directory-b2c-in-azure-api-management"></a>Azure API Management에서 Azure Active Directory B2C를 사용하여 개발자 계정에 권한을 부여하는 방법
+# <a name="how-tooauthorize-developer-accounts-by-using-azure-active-directory-b2c-in-azure-api-management"></a>Azure API 관리에서 Azure Active Directory B2C를 사용 하 여 tooauthorize 개발자 계정을 하는 방법
 ## <a name="overview"></a>개요
-Azure Active Directory B2C는 소비자 지향 웹 및 모바일 응용 프로그램을 위한 클라우드 ID 관리 솔루션입니다. 개발자 포털에 대한 액세스 권한을 관리하는 데 사용할 수 있습니다. 이 가이드에서는 Azure Active Directory B2C와 통합하려는 API Management 서비스에 필요한 구성을 보여 줍니다. 클래식 Azure Active Directory를 사용하여 개발자 포털에 대한 액세스를 사용하는 방법에 대한 정보는 [Azure Active Directory를 사용하여 개발자 계정에 권한을 부여하는 방법]을 참조하세요.
+Azure Active Directory B2C는 소비자 지향 웹 및 모바일 응용 프로그램을 위한 클라우드 ID 관리 솔루션입니다. Toomanage 액세스 tooyour 개발자 포털을 사용할 수 있습니다. 이 가이드와 Azure Active Directory B2C API 관리 서비스 toointegrate 프로그램에 필요한 구성 hello를 표시 합니다. 클래식 Azure Active Directory를 사용 하 여 액세스 toohello 개발자 포털을 사용 하는 방법에 대 한 정보를 참조 하십시오. [tooauthorize 개발자 방법을 사용 하 여 계정을 Azure Active Directory]합니다.
 
 > [!NOTE]
-> 이 가이드의 단계를 완료하려면 먼저 응용 프로그램을 만들 Azure Active Directory B2C 테넌트가 있어야 합니다. 또한, 등록 및 로그인 정책이 준비되어야 합니다. 자세한 내용은 [Azure Active Directory B2C 개요]를 참조하세요.
+> toocomplete hello이이 가이드의에서 단계를 먼저 Azure Active Directory B2C 테 넌 트 toocreate 응용 프로그램의 해야 합니다. 또한 정책이 필요 한가요 toohave 등록 및 signin 준비 합니다. 자세한 내용은 [Azure Active Directory B2C 개요]를 참조하세요.
 
 ## <a name="authorize-developer-accounts-by-using-azure-active-directory-b2c"></a>Azure Active Directory B2C를 사용하여 개발자 계정에 권한 부여
 
-1. 시작하려면 Azure Portal에서 API Management 서비스에 대한 **게시자 포털**을 클릭합니다. API 관리 게시자 포털로 이동됩니다.
+1. 시작 tooget 클릭 **게시자 포털** hello API 관리 서비스에 대 한 Azure 포털의에서. API 관리 게시자 포털 toohello 이동합니다.
 
    ![게시자 포털][api-management-management-console]
 
    > [!NOTE]
-   > 아직 API Management 서비스 인스턴스를 만들지 않은 경우 [Azure API Management 시작 자습서][Get started with Azure API Management]의 [API Management 서비스 인스턴스 만들기][Create an API Management service instance]를 참조하세요.
+   > API 관리 서비스 인스턴스를 아직 만들지 않은 경우 참조 [API 관리 서비스 인스턴스를 만들] [ Create an API Management service instance] hello에 [Azure API 관리 자습서시작][Get started with Azure API Management].
 
-2. **API Management** 메뉴에서 **보안**을 클릭합니다. **ID** 탭에서 **Azure Active Directory B2C**를 선택합니다.
+2. Hello에 **API 관리** 메뉴를 클릭 하 여 **보안**합니다. Hello에 **Identities** 탭에서 선택 **Azure Active Directory B2C**합니다.
 
   ![외부 ID 1][api-management-howto-aad-b2c-security-tab]
 
-3. **리디렉션 URL**을 기록해 두고 Azure Portal에서 Azure Active Directory B2C로 전환합니다.
+3. Hello 메모 **리디렉션 URL** hello Azure 포털에서에서 Active Directory B2C tooAzure 전환 하 고 있습니다.
 
   ![외부 ID 2][api-management-howto-aad-b2c-security-tab-reply-url]
 
-4. **응용 프로그램** 단추를 클릭합니다.
+4. Hello 클릭 **응용 프로그램** 단추입니다.
 
   ![새 응용 프로그램 1 등록][api-management-howto-aad-b2c-portal-menu]
 
-5. **추가** 단추를 클릭하여 새 Azure Active Directory B2C 응용 프로그램을 만듭니다.
+5. Hello 클릭 **추가** toocreate 새 Azure Active Directory B2C 응용 프로그램 단추입니다.
 
   ![새 응용 프로그램 2 등록][api-management-howto-aad-b2c-add-button]
 
-6. **새 응용 프로그램** 블레이드에서 응용 프로그램의 이름을 입력합니다. **Web App/Web API**에서 **예**를 선택하고 **암시적 흐름 허용**에서 **예**를 선택합니다. 그런 다음, 게시자 포털의 **ID** 탭에 있는 **Azure Active Directory B2C** 섹션에서 **리디렉션 URL**을 복사하여 **회신 URL** 텍스트 상자에 붙여넣습니다.
+6. Hello에 **새 응용 프로그램** 블레이드에서 hello 응용 프로그램에 대 한 이름을 입력 합니다. **Web App/Web API**에서 **예**를 선택하고 **암시적 흐름 허용**에서 **예**를 선택합니다. 그런 다음 복사본 hello **리디렉션 URL** hello에서 **Azure Active Directory B2C** hello 섹션 **Identities** hello 게시자 포털을 탭 하 고 hello 에붙여**회신 URL** 입력란.
 
   ![새 응용 프로그램 3 등록][api-management-howto-aad-b2c-app-details]
 
-7. **만들기** 단추를 클릭합니다. 응용 프로그램이 만들어지면 **응용 프로그램** 블레이드에 표시됩니다. 세부 정보를 보려면 응용 프로그램 이름을 클릭합니다.
+7. Hello 클릭 **만들기** 단추입니다. Hello에 나타나는 hello 응용 프로그램을 만든 경우 **응용 프로그램** 블레이드입니다. Hello 응용 프로그램 이름 toosee 세부 정보를 클릭 합니다.
 
   ![새 응용 프로그램 4 등록][api-management-howto-aad-b2c-app-created]
 
-8. **속성** 블레이드에서 **응용 프로그램 ID**를 클립보드에 복사합니다.
+8. Hello에서 **속성** 블레이드, 복사 hello **응용 프로그램 ID** toohello 클립보드 합니다.
 
   ![응용 프로그램 ID 1][api-management-howto-aad-b2c-app-id]
 
-9. 게시자 포털로 다시 전환하고 ID를 **클라이언트 ID** 텍스트 상자에 붙여넣습니다.
+9. 뒤로 toohello 게시자 포털을 전환 하 고 hello ID hello에 붙여 **클라이언트 Id** 입력란.
 
   ![응용 프로그램 ID 2][api-management-howto-aad-b2c-client-id]
 
-10. Azure Portal로 다시 전환하고 **키** 단추를 클릭한 다음 **키 생성**을 클릭합니다. **저장**을 클릭하여 구성을 저장하고 **앱 키**를 표시합니다. 키를 클립보드에 복사합니다.
+10. 전환 백 toohello Azure 포털을 hello 클릭 **키** 단추를 선택한 다음 클릭 **키 생성**합니다. 클릭 **저장** toosave hello 구성 및 표시 hello **응용 프로그램 키는**합니다. Hello 키 toohello 클립보드에 복사 합니다.
 
   ![앱 키 1][api-management-howto-aad-b2c-app-key]
 
-11. 게시자 포털로 다시 전환하고 키를 **클라이언트 암호** 텍스트 상자에 붙여 넣습니다.
+11. 스위치 백 toohello 게시자 포털 및 붙여넣기 hello 키 hello에 **클라이언트 암호** 입력란.
 
   ![앱 키 2][api-management-howto-aad-b2c-client-secret]
 
-12. **허용된 테넌트**에서 Azure Active Directory B2C 테넌트의 도메인 이름을 지정합니다.
+12. Hello hello Azure Active Directory B2C 테 넌 트에 도메인 이름을 지정 **허용 테 넌 트**합니다.
 
   ![허용된 테넌트][api-management-howto-aad-b2c-allowed-tenant]
 
-13. **등록 정책** 및 **로그인 정책**을 지정합니다. 선택적으로 **프로필 편집 정책** 및 **암호 재설정 정책**을 제공할 수도 있습니다.
+13. Hello 지정 **등록 정책** 및 **Signin 정책**합니다. 선택적으로 제공할 수도 있습니다 hello **프로필 편집 정책** 및 **암호 재설정 정책**합니다.
 
   ![정책][api-management-howto-aad-b2c-policies]
 
   > [!NOTE]
   > 정책에 대한 자세한 내용은 [Azure Active Directory B2C: 확장할 수 있는 정책 프레임워크]를 참조하세요.
 
-14. 원하는 구성이 지정되면 **저장**을 클릭합니다.
+14. 원하는 구성 hello를 지정한 후 클릭 **저장**합니다.
 
-  변경 내용이 저장되면 개발자는 Azure Active Directory B2C를 사용하여 새 계정을 만들고 개발자 포털에 로그인할 수 있습니다.
+  Hello 변경 내용이 저장 된 후 개발자 수 toocreate 새 계정이 되며 Azure Active Directory B2C를 사용 하 여 toohello 개발자 포털에 로그인 합니다.
 
 ## <a name="sign-up-for-a-developer-account-by-using-azure-active-directory-b2c"></a>Azure Active Directory B2C를 사용하여 개발자 계정에 등록
 
-1. Azure Active Directory B2C를 사용하여 개발자 계정에 등록하려면 새 브라우저 창을 열고 개발자 포털로 이동합니다. **등록** 단추를 클릭합니다.
+1. 에 Azure Active Directory B2C를 사용 하 여 개발자 계정으로 가입할 toosign 새 브라우저 창을 열고 toohello 개발자 포털을 이동 합니다. Hello 클릭 **등록** 단추입니다.
 
    ![개발자 포털 1][api-management-howto-aad-b2c-dev-portal]
 
-2. **Azure Active Directory B2C**를 사용하여 등록하도록 선택합니다.
+2. 선택 하는 toosign **Azure Active Directory B2C**합니다.
 
    ![개발자 포털 2][api-management-howto-aad-b2c-dev-portal-b2c-button]
 
-3. 이전 섹션에서 구성하였던 등록 정책으로 리디렉션됩니다. 전자 메일 주소 또는 기존 소셜 계정 중 하나를 사용하여 등록하도록 선택합니다.
+3. 리디렉션된 toohello 등록 정책 hello 이전 섹션에서 구성 하는 것입니다. 전자 메일 주소 또는 기존 소셜 계정 중 하나를 사용 하 여 위로 toosign를 선택 합니다.
 
    > [!NOTE]
-   > Azure Active Directory B2C가 게시자 포털의 **ID** 탭에서 사용하도록 설정되는 유일한 옵션인 경우 등록 정책에 직접 리디렉션됩니다.
+   > Azure Active Directory B2C hello에 사용 하도록 설정 된 옵션만 hello 이면 **Identities** 탭 hello 게시자 포털에서 수 리디렉션된 toohello 등록 정책을 직접 합니다.
 
    ![개발자 포털][api-management-howto-aad-b2c-dev-portal-b2c-options]
 
-   등록이 완료되면 개발자 포털로 다시 리디렉션됩니다. 이제 API Management 서비스 인스턴스에 대한 개발자 포털에 로그인됩니다.
+   Hello 등록 완료 되 면 리디렉션된 백 toohello 개발자 포털 것입니다. API 관리 서비스 인스턴스에 대 한 toohello 개발자 포털을 지금 로그인 되어 있습니다.
 
     ![등록 완료][api-management-registration-complete]
 
@@ -172,10 +172,10 @@ Azure Active Directory B2C는 소비자 지향 웹 및 모바일 응용 프로�
 [api-management-groups]: ./media/api-management-howto-aad/api-management-groups.png
 [api-management-edit-group]: ./media/api-management-howto-aad/api-management-edit-group.png
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -184,9 +184,9 @@ Azure Active Directory B2C는 소비자 지향 웹 및 모바일 응용 프로�
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[Accessing the Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
+[Accessing hello Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
 [Azure Active Directory B2C 개요]: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-overview
-[Azure Active Directory를 사용하여 개발자 계정에 권한을 부여하는 방법]: https://docs.microsoft.com/azure/api-management/api-management-howto-aad
+[tooauthorize 개발자 방법을 사용 하 여 계정을 Azure Active Directory]: https://docs.microsoft.com/azure/api-management/api-management-howto-aad
 [Azure Active Directory B2C: 확장할 수 있는 정책 프레임워크]: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-policies
 [Azure Active Directory B2C에서 Microsoft 계정을 ID 공급자로 사용]: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-setup-msa-app
 [Azure Active Directory B2C에서 Google 계정을 ID 공급자로 사용]: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-setup-goog-app
@@ -195,8 +195,8 @@ Azure Active Directory B2C는 소비자 지향 웹 및 모바일 응용 프로�
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
-[Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
+[Log in toohello Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account

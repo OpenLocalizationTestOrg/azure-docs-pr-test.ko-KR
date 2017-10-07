@@ -1,6 +1,6 @@
 ---
-title: "PHP에서 MySQL용 Azure Database에 연결 | Microsoft Docs"
-description: "이 빠른 시작에서는 MySQL용 Azure Database의 데이터를 연결하고 쿼리하는 데 사용할 수 있는 여러 PHP 코드 샘플을 제공합니다."
+title: "PHP에서 MySQL에 대 한 데이터베이스 tooAzure 연결 | Microsoft Docs"
+description: "이 퀵 스타트의 tooconnect를 사용 하 고 MySQL에 대 한 Azure 데이터베이스에서 데이터를 쿼리할 수 여러 PHP 코드 샘플을 제공 합니다."
 services: mysql
 author: mswutao
 ms.author: wuta
@@ -10,17 +10,17 @@ ms.service: mysql-database
 ms.custom: mvc
 ms.topic: hero-article
 ms.date: 07/12/2017
-ms.openlocfilehash: 59da1ab9e76685d7ed0c4415ef99578c982e956c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b928748c473c1aef320ae2183f237b5b845e83f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-php-to-connect-and-query-data"></a>MySQL용 Azure Database: PHP를 사용하여 데이터 연결 및 쿼리
-이 빠른 시작에서는 [PHP](http://php.net/manual/intro-whatis.php) 응용 프로그램을 사용하여 MySQL용 Azure Database에 연결하는 방법을 보여줍니다. SQL 문을 사용하여 데이터베이스의 데이터를 쿼리, 삽입, 업데이트 및 삭제하는 방법을 보여 줍니다. 이 문서에서는 개발자가 PHP를 사용하여 개발하는 것에 익숙하고 MySQL용 Azure Database 작업에 익숙하지 않다고 가정합니다.
+# <a name="azure-database-for-mysql-use-php-tooconnect-and-query-data"></a>MySQL에 대 한 azure 데이터베이스: 사용 하 여 PHP tooconnect 및 쿼리 데이터
+이 빠른 시작에서는 방법을 tooconnect tooan Azure를 사용 하 여 MySQL에 대 한 데이터베이스는 [PHP](http://php.net/manual/intro-whatis.php) 응용 프로그램입니다. Toouse SQL 문 tooquery를 삽입, 업데이트 및 hello 데이터베이스의 데이터를 삭제 방법을 보여 줍니다. 이 문서에서는 익숙한 PHP를 사용 하 여 개발 하지만 새 tooworking MySQL에 대 한 Azure 데이터베이스는 가정 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 빠른 시작에서는 다음과 같은 가이드 중 하나에서 만들어진 리소스를 시작 지점으로 사용합니다.
+이 퀵 스타트의 시작 지점으로이 가이드의 중 하나에서 만든 hello 리소스를 사용 합니다.
 - [Azure Portal을 사용한 MySQL용 Azure Database 서버 만들기](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [Azure CLI를 사용한 MySQL용 Azure Database 서버 만들기](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
@@ -29,32 +29,32 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="macos"></a>MacOS
 - [PHP 7.1.4 버전](http://php.net/downloads.php) 다운로드
-- PHP를 설치하고 [PHP 매뉴얼](http://php.net/manual/install.macosx.php)에서 자세한 구성 정보 참조
+- PHP를 설치 하 고 toohello 참조 [PHP 매뉴얼](http://php.net/manual/install.macosx.php) 향후 구성
 
 ### <a name="linux-ubuntu"></a>Linux(Ubuntu)
 - [PHP 7.1.4 스레드로부터 안전하지 않은(x64) 버전](http://php.net/downloads.php) 다운로드
-- PHP를 설치하고 [PHP 매뉴얼](http://php.net/manual/install.unix.php)에서 자세한 구성 정보 참조
+- PHP를 설치 하 고 toohello 참조 [PHP 매뉴얼](http://php.net/manual/install.unix.php) 향후 구성
 
 ### <a name="windows"></a>Windows
 - [PHP 7.1.4 스레드로부터 안전하지 않은(x64) 버전](http://windows.php.net/download#php-7.1) 다운로드
-- PHP를 설치하고 [PHP 매뉴얼](http://php.net/manual/install.windows.php)에서 자세한 구성 정보 참조
+- PHP를 설치 하 고 toohello 참조 [PHP 매뉴얼](http://php.net/manual/install.windows.php) 향후 구성
 
 ## <a name="get-connection-information"></a>연결 정보 가져오기
-MySQL용 Azure Database에 연결하는 데 필요한 연결 정보를 가져옵니다. 정규화된 서버 이름 및 로그인 자격 증명이 필요합니다.
+MySQL 용 hello 연결 필요한 정보 tooconnect toohello를 Azure 데이터베이스를 가져옵니다. 정규화 된 서버 이름 및 로그인 자격 증명 hello 필요 합니다.
 
-1. [Azure 포털](https://portal.azure.com/)에 로그인합니다.
-2. 왼쪽 창에서 **모든 리소스**를 클릭하고 만든 서버를 검색합니다(예: **myserver4demo**).
-3. 서버 이름을 클릭합니다.
-4. 서버의 **속성** 페이지를 선택합니다. **서버 이름** 및 **서버 관리자 로그인 이름**을 기록해 둡니다.
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+2. Hello 왼쪽된 창에서 클릭 **모든 리소스**, 한 hello 서버를 만든 다음 검색 (예를 들어 **myserver4demo**).
+3. Hello 서버 이름을 클릭 합니다.
+4. 선택 hello 서버 **속성** 페이지. Hello 메모 **서버 이름** 및 **서버 관리자 로그인 이름**합니다.
  ![MySQL용 Azure Database 서버 이름](./media/connect-php/1_server-properties-name-login.png)
-5. 서버 로그인 정보를 잊어버린 경우 **개요** 페이지로 이동하여 서버 관리자 로그인 이름을 확인하고 필요한 경우 암호를 다시 설정합니다.
+5. 서버 로그인 정보를 잊은 경우 탐색 toohello **개요** tooview hello 서버 관리자 로그인 이름 페이지 하 고 필요한 경우 다시 설정 hello 암호입니다.
 
 ## <a name="connect-and-create-a-table"></a>테이블 연결 및 생성
-**CREATE TABLE** SQL 문을 사용하여 테이블을 연결하고 생성하려면 다음 코드를 사용하세요. 
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 테이블을 만들 **CREATE TABLE** SQL 문입니다. 
 
-이 코드는 PHP에 포함된 **MySQL Improved Extension**(mysqli) 클래스를 사용합니다. 이 코드는 [mysqli_init](http://php.net/manual/mysqli.init.php) 및 [mysqli_real_connect](http://php.net/manual/mysqli.real-connect.php) 메서드를 호출하여 MySQL에 연결합니다. 그리고 [mysqli_query](http://php.net/manual/mysqli.query.php) 메서드를 호출하여 쿼리를 실행합니다. 그런 다음 [mysqli_close](http://php.net/manual/mysqli.close.php) 메서드를 호출하여 연결을 닫습니다.
+hello 코드 hello를 사용 하 여 **MySQL 향상 확장** PHP에 포함 된 (mysqli) 클래스입니다. 메서드를 호출 하는 코드를 hello [mysqli_init](http://php.net/manual/mysqli.init.php) 및 [mysqli_real_connect](http://php.net/manual/mysqli.real-connect.php) tooconnect tooMySQL 합니다. 메서드를 호출 하는 다음 [mysqli_query](http://php.net/manual/mysqli.query.php) toorun hello 쿼리 합니다. 메서드를 호출 하는 다음 [mysqli_close](http://php.net/manual/mysqli.close.php) tooclose hello 연결 합니다.
 
-host, username, password 및 db_name 매개 변수는 원하는 값으로 바꾸세요. 
+Hello 호스트, 사용자 이름, 암호 및 db_name 매개 변수를 원하는 값으로 대체 합니다. 
 
 ```php
 <?php
@@ -63,14 +63,14 @@ $username = 'myadmin@myserver4demo';
 $password = 'your_password';
 $db_name = 'your_database';
 
-//Establishes the connection
+//Establishes hello connection
 $conn = mysqli_init();
 mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
 if (mysqli_connect_errno($conn)) {
-die('Failed to connect to MySQL: '.mysqli_connect_error());
+die('Failed tooconnect tooMySQL: '.mysqli_connect_error());
 }
 
-// Run the create table query
+// Run hello create table query
 if (mysqli_query($conn, '
 CREATE TABLE Products (
 `Id` INT NOT NULL AUTO_INCREMENT ,
@@ -83,17 +83,17 @@ PRIMARY KEY (`Id`)
 printf("Table created\n");
 }
 
-//Close the connection
+//Close hello connection
 mysqli_close($conn);
 ?>
 ```
 
 ## <a name="insert-data"></a>데이터 삽입
-**INSERT** SQL 문을 사용하여 데이터를 연결하고 삽입하려면 다음 코드를 사용하세요.
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 데이터를 삽입 한 **삽입** SQL 문입니다.
 
-이 코드는 PHP에 포함된 **MySQL Improved Extension**(mysqli) 클래스를 사용합니다. 이 코드는 [mysqli_prepare](http://php.net/manual/mysqli.prepare.php) 메서드를 사용하여 준비된 INSERT 문을 만든 후 [mysqli_stmt_bind_param](http://php.net/manual/mysqli-stmt.bind-param.php) 메서드를 사용하여 삽입된 각 열 값의 매개 변수를 바인딩합니다. [mysqli_stmt_execute](http://php.net/manual/mysqli-stmt.execute.php) 메서드를 사용하여 문을 실행한 후 [mysqli_stmt_close](http://php.net/manual/mysqli-stmt.close.php) 메서드를 사용하여 문을 닫습니다.
+hello 코드 hello를 사용 하 여 **MySQL 향상 확장** PHP에 포함 된 (mysqli) 클래스입니다. hello 코드 메서드를 사용 하 여 [mysqli_prepare](http://php.net/manual/mysqli.prepare.php) 준비 toocreate insert 문, 다음 바인딩 메서드를 사용 하 여 각 삽입 된 열 값에 대 한 매개 변수를 hello [mysqli_stmt_bind_param](http://php.net/manual/mysqli-stmt.bind-param.php)합니다. hello 코드 실행 메서드를 사용 하 여 hello 문을 [mysqli_stmt_execute](http://php.net/manual/mysqli-stmt.execute.php) 나중에 닫히는 hello 메서드를 사용 하 여 문 및 [mysqli_stmt_close](http://php.net/manual/mysqli-stmt.close.php)합니다.
 
-host, username, password 및 db_name 매개 변수는 원하는 값으로 바꾸세요. 
+Hello 호스트, 사용자 이름, 암호 및 db_name 매개 변수를 원하는 값으로 대체 합니다. 
 
 ```php
 <?php
@@ -102,11 +102,11 @@ $username = 'myadmin@myserver4demo';
 $password = 'your_password';
 $db_name = 'your_database';
 
-//Establishes the connection
+//Establishes hello connection
 $conn = mysqli_init();
 mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
 if (mysqli_connect_errno($conn)) {
-die('Failed to connect to MySQL: '.mysqli_connect_error());
+die('Failed tooconnect tooMySQL: '.mysqli_connect_error());
 }
 
 //Create an Insert prepared statement and run it
@@ -120,15 +120,15 @@ printf("Insert: Affected %d rows\n", mysqli_stmt_affected_rows($stmt));
 mysqli_stmt_close($stmt);
 }
 
-// Close the connection
+// Close hello connection
 mysqli_close($conn);
 ?>
 ```
 
 ## <a name="read-data"></a>데이터 읽기
-**SELECT** SQL 문을 사용하여 데이터를 연결하고 읽으려면 다음 코드를 사용하세요.  이 코드는 PHP에 포함된 **MySQL Improved Extension**(mysqli) 클래스를 사용합니다. [mysqli_query](http://php.net/manual/mysqli.query.php) 메서드를 사용하여 sql 쿼리를 수행하고 [mysqli_fetch_assoc](http://php.net/manual/mysqli-result.fetch-assoc.php) 메서드를 사용하여 결과 행을 가져옵니다.
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 hello 데이터 읽기는 **선택** SQL 문입니다.  hello 코드 hello를 사용 하 여 **MySQL 향상 확장** PHP에 포함 된 (mysqli) 클래스입니다. hello 코드 메서드를 사용 하 여 [mysqli_query](http://php.net/manual/mysqli.query.php) hello sql 쿼리를 사용 하 여 수행 [mysqli_fetch_assoc](http://php.net/manual/mysqli-result.fetch-assoc.php) 메서드 toofetch hello 결과 행.
 
-host, username, password 및 db_name 매개 변수는 원하는 값으로 바꾸세요. 
+Hello 호스트, 사용자 이름, 암호 및 db_name 매개 변수를 원하는 값으로 대체 합니다. 
 
 ```php
 <?php
@@ -137,31 +137,31 @@ $username = 'myadmin@myserver4demo';
 $password = 'your_password';
 $db_name = 'your_database';
 
-//Establishes the connection
+//Establishes hello connection
 $conn = mysqli_init();
 mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
 if (mysqli_connect_errno($conn)) {
-die('Failed to connect to MySQL: '.mysqli_connect_error());
+die('Failed tooconnect tooMySQL: '.mysqli_connect_error());
 }
 
-//Run the Select query
+//Run hello Select query
 printf("Reading data from table: \n");
 $res = mysqli_query($conn, 'SELECT * FROM Products');
 while ($row = mysqli_fetch_assoc($res)) {
 var_dump($row);
 }
 
-//Close the connection
+//Close hello connection
 mysqli_close($conn);
 ?>
 ```
 
 ## <a name="update-data"></a>데이터 업데이트
-**UPDATE** SQL 문을 사용하여 데이터를 연결하고 업데이트하려면 다음 코드를 사용하세요.
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 hello 데이터 업데이트는 **업데이트** SQL 문입니다.
 
-이 코드는 PHP에 포함된 **MySQL Improved Extension**(mysqli) 클래스를 사용합니다. 이 코드는 [mysqli_prepare](http://php.net/manual/mysqli.prepare.php) 메서드를 사용하여 준비된 UPDATE 문을 만든 후 [mysqli_stmt_bind_param](http://php.net/manual/mysqli-stmt.bind-param.php) 메서드를 사용하여 업데이트된 각 열 값의 매개 변수를 바인딩합니다. [mysqli_stmt_execute](http://php.net/manual/mysqli-stmt.execute.php) 메서드를 사용하여 문을 실행한 후 [mysqli_stmt_close](http://php.net/manual/mysqli-stmt.close.php) 메서드를 사용하여 문을 닫습니다.
+hello 코드 hello를 사용 하 여 **MySQL 향상 확장** PHP에 포함 된 (mysqli) 클래스입니다. hello 코드 메서드를 사용 하 여 [mysqli_prepare](http://php.net/manual/mysqli.prepare.php) toocreate 준비 된 update 문을 다음 메서드를 사용 하 여 각 업데이트 된 열 값에 대 한 hello 매개 변수를 바인딩합니다 [mysqli_stmt_bind_param](http://php.net/manual/mysqli-stmt.bind-param.php)합니다. hello 코드 실행 메서드를 사용 하 여 hello 문을 [mysqli_stmt_execute](http://php.net/manual/mysqli-stmt.execute.php) 나중에 닫히는 hello 메서드를 사용 하 여 문 및 [mysqli_stmt_close](http://php.net/manual/mysqli-stmt.close.php)합니다.
 
-host, username, password 및 db_name 매개 변수는 원하는 값으로 바꾸세요. 
+Hello 호스트, 사용자 이름, 암호 및 db_name 매개 변수를 원하는 값으로 대체 합니다. 
 
 ```php
 <?php
@@ -170,14 +170,14 @@ $username = 'myadmin@myserver4demo';
 $password = 'your_password';
 $db_name = 'your_database';
 
-//Establishes the connection
+//Establishes hello connection
 $conn = mysqli_init();
 mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
 if (mysqli_connect_errno($conn)) {
-die('Failed to connect to MySQL: '.mysqli_connect_error());
+die('Failed tooconnect tooMySQL: '.mysqli_connect_error());
 }
 
-//Run the Update statement
+//Run hello Update statement
 $product_name = 'BrandNewProduct';
 $new_product_price = 15.1;
 if ($stmt = mysqli_prepare($conn, "UPDATE Products SET Price = ? WHERE ProductName = ?")) {
@@ -185,7 +185,7 @@ mysqli_stmt_bind_param($stmt, 'ds', $new_product_price, $product_name);
 mysqli_stmt_execute($stmt);
 printf("Update: Affected %d rows\n", mysqli_stmt_affected_rows($stmt));
 
-//Close the connection
+//Close hello connection
 mysqli_stmt_close($stmt);
 }
 
@@ -195,11 +195,11 @@ mysqli_close($conn);
 
 
 ## <a name="delete-data"></a>데이터 삭제
-**DELETE** SQL 문을 사용하여 데이터를 연결하고 읽으려면 다음 코드를 사용하세요. 
+사용 하 여 hello 다음 tooconnect 코드을 사용 하 여 hello 데이터 읽기는 **삭제** SQL 문입니다. 
 
-이 코드는 PHP에 포함된 **MySQL Improved Extension**(mysqli) 클래스를 사용합니다. 이 코드는 [mysqli_prepare](http://php.net/manual/mysqli.prepare.php) 메서드를 사용하여 준비된 DELETE 문을 만든 후 [mysqli_stmt_bind_param](http://php.net/manual/mysqli-stmt.bind-param.php) 메서드를 사용하여 문의 Where 절에 대한 매개 변수를 바인딩합니다. [mysqli_stmt_execute](http://php.net/manual/mysqli-stmt.execute.php) 메서드를 사용하여 문을 실행한 후 [mysqli_stmt_close](http://php.net/manual/mysqli-stmt.close.php) 메서드를 사용하여 문을 닫습니다.
+hello 코드 hello를 사용 하 여 **MySQL 향상 확장** PHP에 포함 된 (mysqli) 클래스입니다. hello 코드 메서드를 사용 하 여 [mysqli_prepare](http://php.net/manual/mysqli.prepare.php) toocreate 준비 된 문을 삭제 한 다음 바인딩 hello hello에 대 한 매개 변수 있는 메서드를 사용 하 여 hello 문에서 절 [mysqli_stmt_bind_param](http://php.net/manual/mysqli-stmt.bind-param.php)합니다. hello 코드 실행 메서드를 사용 하 여 hello 문을 [mysqli_stmt_execute](http://php.net/manual/mysqli-stmt.execute.php) 나중에 닫히는 hello 메서드를 사용 하 여 문 및 [mysqli_stmt_close](http://php.net/manual/mysqli-stmt.close.php)합니다.
 
-host, username, password 및 db_name 매개 변수는 원하는 값으로 바꾸세요. 
+Hello 호스트, 사용자 이름, 암호 및 db_name 매개 변수를 원하는 값으로 대체 합니다. 
 
 ```php
 <?php
@@ -208,14 +208,14 @@ $username = 'myadmin@myserver4demo';
 $password = 'your_password';
 $db_name = 'your_database';
 
-//Establishes the connection
+//Establishes hello connection
 $conn = mysqli_init();
 mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
 if (mysqli_connect_errno($conn)) {
-die('Failed to connect to MySQL: '.mysqli_connect_error());
+die('Failed tooconnect tooMySQL: '.mysqli_connect_error());
 }
 
-//Run the Delete statement
+//Run hello Delete statement
 $product_name = 'BrandNewProduct';
 if ($stmt = mysqli_prepare($conn, "DELETE FROM Products WHERE ProductName = ?")) {
 mysqli_stmt_bind_param($stmt, 's', $product_name);
@@ -224,7 +224,7 @@ printf("Delete: Affected %d rows\n", mysqli_stmt_affected_rows($stmt));
 mysqli_stmt_close($stmt);
 }
 
-//Close the connection
+//Close hello connection
 mysqli_close($conn);
 ?>
 ```

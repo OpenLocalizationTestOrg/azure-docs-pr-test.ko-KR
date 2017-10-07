@@ -1,5 +1,5 @@
 ---
-title: "Azure VM에서 SAP NetWeaver - DBMS 배포 가이드 | Microsoft Docs"
+title: "Azure Vm-DBMS 배포 가이드에서 NetWeaver aaaSAP | Microsoft Docs"
 description: "Azure VMs(Virtual Machines)에서 SAP NetWeaver - DBMS 배포 가이드"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: 
@@ -17,14 +17,14 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cc7c85382d8f8183ef3eb3cc7496b012808148e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a56b8f6b3b26fa10e01a25a251a3e4a7bfc77e2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sap-netweaver-on-azure-windows-virtual-machines-vms--dbms-deployment-guide"></a>Azure Windows VM(가상 컴퓨터)에서 SAP NetWeaver - DBMS 배포 가이드
-[767598]:https://launchpad.support.sap.com/#/notes/767598
+[767598 ]:https://launchpad.support.sap.com/#/notes/767598
 [773830]:https://launchpad.support.sap.com/#/notes/773830
 [826037]:https://launchpad.support.sap.com/#/notes/826037
 [965908]:https://launchpad.support.sap.com/#/notes/965908
@@ -257,7 +257,7 @@ ms.lasthandoff: 07/11/2017
 [virtual-machines-azure-resource-manager-architecture]:../../resource-manager-deployment-model.md
 [virtual-machines-azurerm-versus-azuresm]:../../resource-manager-deployment-model.md
 [virtual-machines-windows-classic-configure-oracle-data-guard]:../virtual-machines-windows-classic-configure-oracle-data-guard.md
-[virtual-machines-linux-cli-deploy-templates]:../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI)
+[virtual-machines-linux-cli-deploy-templates]:../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI)
 [virtual-machines-deploy-rmtemplates-powershell]:../virtual-machines-windows-ps-manage.md (Manage virtual machines using Azure Resource Manager and PowerShell)
 [virtual-machines-linux-agent-user-guide]:../linux/agent-user-guide.md
 [virtual-machines-linux-agent-user-guide-command-line-options]:../linux/agent-user-guide.md#command-line-options
@@ -303,42 +303,42 @@ ms.lasthandoff: 07/11/2017
 [xplat-cli]:../../cli-install-nodejs.md
 [xplat-cli-azure-resource-manager]:../../xplat-cli-azure-resource-manager.md
 
-이 가이드는 Microsoft Azure에서의 SAP 소프트웨어 구현 및 배포에 대한 설명서의 일부입니다. 이 가이드를 읽기 전에 [계획 및 구현 가이드][planning-guide]를 참조하세요. 이 문서에서는 Azure IaaS(서비스 제공 인프라) 기능을 사용하는 Microsoft Azure VM(가상 컴퓨터)에서 SAP와 함께 다양한 RDBMS(관계형 데이터베이스 관리 시스템) 및 관련 제품을 배포하는 방법에 대해 설명합니다.
+이 가이드는 구현 및 Microsoft Azure의 hello SAP 소프트웨어 배포에 hello 설명서의 일부입니다. 이 가이드를 읽기 전에 hello를 읽어 보십시오 [계획 및 구현 가이드][planning-guide]합니다. 이 문서에서는 다양 한 RDBMS 관계형 데이터베이스 관리 시스템 () 및 관련된 제품에 Microsoft Azure 가상 컴퓨터 (Vm) SAP와 함께에서 hello Azure 인프라 서비스 (IaaS) 기능으로 사용 하 여 hello 배포를 설명 합니다.
 
-이 문서는 지정된 플랫폼에서 SAP 소프트웨어 설치 및 배포에 대한 기본 리소스를 나타내는 SAP 설치 설명서 및 SAP 정보를 보완합니다.
+hello 용지 보완 hello SAP 설치 설명서 및 SAP Note hello에 SAP 소프트웨어 배포 및 설치에 대 한 기본 리소스를 부여 플랫폼
 
 ## <a name="general-considerations"></a>일반적인 고려 사항
-이 챕터에서는 Azure VM에서 SAP 관계형 DBMS 시스템을 실행할 때의 고려 사항을 소개합니다. 이 챕터에는 특정 DBMS 시스템에 대한 참조가 거의 없습니다. 대신 이 챕터를 마친 후 이 문서 내에서 특정 DBMS 시스템을 다룹니다.
+이 챕터에서는 Azure VM에서 SAP 관계형 DBMS 시스템을 실행할 때의 고려 사항을 소개합니다. 몇 가지 참조 toospecific DBMS 시스템에에서는이 장의입니다. 대신 특정 DBMS 시스템 hello는이 백서의 다음 장에서이 설명 처리 됩니다.
 
 ### <a name="definitions-upfront"></a>사전 정의
-문서 전체에서 다음과 같은 용어를 사용 합니다.
+Hello 문서 전체에서 용어를 수행 하는 hello를 사용 합니다.
 
 * IaaS: 서비스 제공 인프라
 * PaaS: Platform as a Service
 * SaaS: Software as a Service
 * SAP 구성 요소: ECC, BW, Solution Manager 또는 EP 등의 개별 SAP 응용 프로그램입니다.  SAP 구성 요소는 기존의 ABAP 또는 Java 기술을 기반으로 하거나 비즈니스 개체와 같은 비NetWeaver 기반 응용 프로그램을 기반으로 사용할 수 있습니다.
-* SAP 환경: 하나 이상의 SAP 구성 요소가 논리적으로 그룹화되어 개발, QAS, 학습, DR 또는 프로덕션과 같은 비즈니스 기능을 수행합니다.
-* SAP 배경: 고객 IT 환경의 전체 SAP 자산입니다. SAP 배경에는 모든 프로덕션 및 비프로덕션 환경이 포함됩니다.
-* SAP 시스템: 예를 들어 SAP ERP 개발 시스템, SAP BW 테스트 시스템, SAP CRM 프로덕션 시스템 등의 응용 프로그램 계층과 DBMS 계층의 조합입니다. Azure 배포에서는 온-프레미스와 Azure 간에 이러한 두 계층을 나눌 수 없습니다. 즉, SAP 시스템은 온-프레미스에 배포되거나 Azure에 배포됩니다. 그러나 Azure 또는 온-프레미스에는 SAP 배경의 서로 다른 시스템을 배포할 수 있습니다. 예를 들어 Azure에는 SAP CRM 개발 및 테스트 시스템을 배포할 수 있지만 온-프레미스에는 SAP CRM 프로덕션 시스템을 배포할 수 있습니다.
-* 클라우드 전용 배포: Azure 구독이 사이트 간 연결 또는 Express 경로 연결을 통해 온-프레미스 네트워크 인프라에 연결되지 않는 배포입니다. 공통 Azure 설명서에서는 이러한 종류의 배포를 '클라우드 전용' 배포라고도 합니다. 이 방법으로 배포된 가상 컴퓨터는 인터넷과 Azure의 VM에 할당된 공용 인터넷 끝점을 통해 액세스됩니다. 이러한 유형의 배포에서는 온-프레미스 AD(Active Directory) 및 DNS가 Azure로 확장되지 않습니다. 따라서 VM은 온-프레미스 Active Directory에 속하지 않습니다. 참고: 이 문서에서 클라우드 전용 배포는 온-프레미스에서 Active Directory 또는 이름 확인을 공용 클라우드로 확장하지 않고 Azure에서 단독으로 실행 중인 전체 SAP 배경으로 정의됩니다. Azure에서 호스트되는 SAP 시스템과 온-프레미스에 상주하는 리소스 간에 SAP STMS 또는 기타 온-프레미스 리소스를 사용해야 하는 프로덕션 SAP 시스템 또는 구성에 대해서는 클라우드 전용 구성이 지원되지 않습니다.
-* 프레미스 간: VM이 온-프레미스 데이터 센터와 Azure 간에 사이트-사이트, 다중 사이트 또는 Express 경로 방식으로 연결되는 Azure 구독에 배포되는 시나리오를 설명합니다. 공통 Azure 설명서에서 이러한 종류의 배포를 프레미스 간 시나리오라고도 합니다. 연결하는 이유는 온-프레미스 도메인, 온-프레미스 Active Directory 및 온-프레미스 DNS를 Azure로 확장하기 위한 것입니다. 온-프레미스 배경은 구독의 Azure 자산으로 확장됩니다. 이렇게 확장된 VM은 온-프레미스 도메인에 속할 수 있습니다. 온-프레미스 도메인의 도메인 사용자는 서버에 액세스하고 이러한 VM에서 서비스(예: DBMS 서비스)를 실행할 수 있습니다. 온-프레미스에 배포된 VM과 Azure에 배포된 VM 간의 통신 및 이름 확인이 가능합니다. 이 기능은 Azure의 SAP 자산 배포를 위한 가장 일반적인 시나리오가 될 것입니다. 자세한 내용은 [이 문서][vpn-gateway-cross-premises-options] 및 [이 문서][vpn-gateway-site-to-site-create]를 참조하세요.
+* SAP 환경: 하나 이상의 SAP 구성 요소 tooperform 개발, QAS, 학습, DR 또는 프로덕션 등의 비즈니스 기능을 논리적으로 그룹화 합니다.
+* SAP 지형:이 참조 toohello 전체 SAP 자산에 고객의 IT 지형 합니다. hello SAP 지형에는 모든 프로덕션 및 비프로덕션 환경이 포함 되어 있습니다.
+* 예를 들어는 SAP ERP 개발 시스템, SAP BW 테스트 시스템, SAP CRM 프로덕션 시스템 등의 응용 프로그램 계층과 DBMS 계층의 SAP 시스템: hello 조합입니다. Azure에서 온-프레미스와 Azure 간에 이러한 두 계층 배포 없으면이 toodivide을 지원 합니다. 즉, SAP 시스템은 온-프레미스에 배포되거나 Azure에 배포됩니다. 그러나 hello 서로 다른 시스템에서 Azure 또는 온-프레미스 SAP 지형의을 배포할 수 있습니다. 예를 들어 SAP CRM 프로덕션 시스템 온-프레미스 hello 하지만 Azure의 hello SAP CRM 개발 및 테스트 시스템을 배포할 수 있습니다.
+* 클라우드 전용 배포: 여기서 hello Azure 구독이 사이트-사이트를 통해 연결 되어 있지 않거나 ExpressRoute 연결 toohello 온-프레미스 네트워크 인프라를 배포 합니다. 공통 Azure 설명서에서는 이러한 종류의 배포를 '클라우드 전용' 배포라고도 합니다. 이 방법으로 배포 된 가상 컴퓨터 이용 하 여 hello 인터넷 및 공용 인터넷 끝점 Azure의 toohello Vm을 할당 합니다. hello 온-프레미스 AD (Active Directory) 및 DNS가 이러한 유형의 배포에서 tooAzure 확장 되지 않습니다. 따라서 hello Vm hello 온-프레미스 Active Directory의 일부가 아닌 합니다. 참고: 이 문서에서 클라우드 전용 배포는 온-프레미스에서 Active Directory 또는 이름 확인을 공용 클라우드로 확장하지 않고 Azure에서 단독으로 실행 중인 전체 SAP 배경으로 정의됩니다. 클라우드 전용 구성은 프로덕션 SAP 시스템 또는 SAP STMS 또는 다른 온-프레미스 리소스 toobe 있는 온-프레미스 리소스 및 Azure에서 호스트 되는 SAP 시스템 사이 사용 해야 하는 구성에 대 한 지원 되지 않습니다.
+* 크로스-프레미스: Vm은 배포 된 tooan 사이트-사이트, 다중 사이트 된 Azure 구독 또는 express 경로 연결 hello 온-프레미스 센터와 Azure 간 시나리오에 설명 합니다. 공통 Azure 설명서에서 이러한 종류의 배포를 프레미스 간 시나리오라고도 합니다. hello hello 연결에 대 한 원인은 tooextend 온-프레미스 도메인, 온-프레미스 Active Directory 및 온-프레미스 DNS Azure로입니다. hello 온-프레미스 가로 확장된 toohello hello 구독의 Azure 자산 됩니다. Hello Vm이 확장명이 hello 온-프레미스 도메인의 일부를 수 있습니다. Hello 온-프레미스 도메인의 도메인 사용자 hello 서버에 액세스할 수 및 서비스를 실행할 수에 Vm (예: DBMS 서비스)입니다. 온-프레미스에 배포된 VM과 Azure에 배포된 VM 간의 통신 및 이름 확인이 가능합니다. Azure에서 SAP 자산 배포를 위한이 toobe hello 가장 일반적인 시나리오 라고 생각 됩니다. 자세한 내용은 [이 문서][vpn-gateway-cross-premises-options] 및 [이 문서][vpn-gateway-site-to-site-create]를 참조하세요.
 
 > [!NOTE]
-> 프로덕션 SAP 시스템의 경우 SAP 시스템을 실행 중인 Azure 가상 컴퓨터가 온-프레미스 도메인의 멤버인 SAP 시스템의 프레미스 간 배포가 지원됩니다. 일부 또는 전체 SAP 배경을 Azure로 배포하는 데 프레미스 간 구성이 지원됩니다. Azure에서 전체 SAP 배경을 실행하려고 해도 이러한 VM이 온-프레미스 도메인 및 ADS에 속해야 합니다. 이전 버전의 문서에서 하이브리드-IT 시나리오에 대해 설명했습니다. '하이브리드'란 온-프레미스와 Azure 간에 프레미스 간 연결을 사용한다는 사실을 기반으로 합니다. 이 경우 '하이브리드'는 Azure의 VM이 온-프레미스 Active Directory의 일부임을 의미하기도 합니다.
+> 프로덕션 SAP 시스템의 경우 SAP 시스템을 실행 중인 Azure 가상 컴퓨터가 온-프레미스 도메인의 멤버인 SAP 시스템의 프레미스 간 배포가 지원됩니다. 일부 또는 전체 SAP 배경을 Azure로 배포하는 데 프레미스 간 구성이 지원됩니다. Azure의 hello 전체 SAP 지형을 실행에 온-프레미스 도메인 및 광고의 일부로 해당 Vm을 포함 해야 합니다. 이전 버전의 hello 문서 hello 용어 '혼합' 온-프레미스와 Azure 간 크로스-프레미스 연결 된다는 hello 사실에 입각에 루 팅 하는 하이브리드-IT 시나리오에 대 한 얘기 합니다. 이 경우 '혼합'도 Azure의 hello Vm은 hello의 일부 임을 의미 온-프레미스 Active Directory.
 >
 >
 
-일부 Microsoft 문서에서는 특히 DBMS HA 구성의 경우 프레미스 간 시나리오를 약간 다르게 설명합니다. SAP 관련 문서의 경우 프레미스 간 시나리오가 사이트 간 또는 개인(Express 경로) 방식으로 연결되고 SAP 배경이 온-프레미스와 Azure 간에 분산된다고 요약되어 있습니다.
+일부 Microsoft 문서에서는 특히 DBMS HA 구성의 경우 프레미스 간 시나리오를 약간 다르게 설명합니다. Hello hello SAP의 대/소문자 관련 문서, hello 크로스-프레미스 시나리오만 수행 하는 경우 toohaving 사이트 간 또는 개인 (express 경로) 연결 및 toohello 팩트 hello SAP 지형이 온-프레미스와 Azure 간 배포 됩니다.
 
 ### <a name="resources"></a>리소스
-다음 가이드는 Azure의 SAP 배포 항목에 대해 사용할 수 있습니다.
+hello 다음 가이드는 hello Azure에서 SAP 배포 항목에 사용할 수 있습니다.
 
 * [Azure VMs(Virtual Machines)의 SAP NetWeaver - 계획 및 구현 가이드][planning-guide]
 * [Azure VMs(Virtual Machines)의 SAP NetWeaver - 배포 가이드][deployment-guide]
 * [Azure VMs(Virtual Machines)에서 SAP NetWeaver – DBMS 배포 가이드(이 문서)][dbms-guide]
 * [Azure VMs(Virtual Machines)에서 SAP NetWeaver - 고가용성 배포 가이드][ha-guide]
 
-다음 SAP 정보는 Azure의 SAP 항목과 관련이 있습니다.
+SAP Note 다음 hello는 Azure의 SAP toohello 관련된 항목:
 
 | Note 번호 | 제목 |
 | --- | --- |
@@ -348,65 +348,65 @@ ms.lasthandoff: 07/11/2017
 | [2178632] |Microsoft Azure의 SAP용 주요 모니터링 메트릭 |
 | [1409604] |Windows에서의 가상화: 향상된 모니터링 |
 | [2191498] |Azure와 Linux의 SAP: 향상된 모니터링 |
-| [2039619] |Oracle Database를 사용하는 Microsoft Azure의 SAP 응용 프로그램: 지원 제품 및 버전 |
+| [2039619] |사용 하 여 Microsoft Azure의 SAP 응용 프로그램에는 Oracle 데이터베이스 hello: 제품 지원 및 버전 |
 | [2233094] |DB6: Linux, UNIX 및 Windows용 IBM DB2를 사용하는 SAP 응용 프로그램 - 추가 정보 |
 | [2243692] |Microsoft Azure(IaaS) VM의 Linux: SAP 라이선스 문제 |
 | [1984787] |SUSE LINUX Enterprise Server 12: 설치 참고 |
 | [2002167] |Red Hat Enterprise Linux 7.x: 설치 및 업그레이드 |
 
-Linux용 SAP 정보를 모두 포함하는 [SCN Wiki](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) 를 읽어 보세요.
+또한 읽으십시오 hello [SCN Wiki](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) Linux에 대 한 모든 SAP Note를 포함 하 합니다.
 
-Microsoft Azure 아키텍처 및 Microsoft Azure 가상 컴퓨터 배포와 작동에 대한 실무 지식이 있어야 합니다. 자세한 내용은 <https://azure.microsoft.com/documentation/>에서 찾을 수 있습니다.
+Microsoft Azure 아키텍처 hello 및 Microsoft Azure 가상 컴퓨터는 배포 하 고 작동 하는 방법에 대 한 작업 지식을 갖추고 있어야 합니다. 자세한 내용은 <https://azure.microsoft.com/documentation/>에서 찾을 수 있습니다.
 
 > [!NOTE]
-> Microsoft Azure Platform의 Microsoft Azure PaaS(Platform as a Service)에 대해서는 다루지 **않습니다** . 이 문서에서는 온-프레미스 환경에서 DBMS(데이터베이스 관리 시스템)를 실행하는 것처럼 Microsoft Azure Virtual Machines(IaaS)에서 DBMS를 실행하는 방법에 대해 설명합니다. 이러한 두 환경에서의 데이터베이스 기능은 매우 다르므로 서로 혼합하지 않아야 합니다. 참고 항목: <https://azure.microsoft.com/services/sql-database/>
+> 우리는 **하지** 서비스 (PaaS) 제품의 hello Microsoft Azure 플랫폼으로 Microsoft Azure 플랫폼에 논의 합니다. 이 백서는 hello DBMS를 실행 하는 온-프레미스 환경에서와 마찬가지로 데이터베이스 관리 시스템 (DBMS)에서 Microsoft Azure 가상 컴퓨터 (IaaS)를 실행 하는 방법에 대 한 합니다. 이러한 두 환경에서의 데이터베이스 기능은 매우 다르므로 서로 혼합하지 않아야 합니다. 참고 항목: <https://azure.microsoft.com/services/sql-database/>
 >
 >
 
-여기에서는 IaaS에 대해 설명하고 있으므로 Windows, Linux 및 DBMS 설치와 구성은 기본적으로 온-프레미스에 설치할 완전 컴퓨터 또는 가상 컴퓨터와 동일합니다. 그러나 IaaS를 사용하는 경우 일부 아키텍처 및 시스템 관리 구현이 달라집니다. 이 문서의 목적은 IaaS를 사용할 때 대비해야 하는 특정 아키텍처 및 시스템 관리의 차이점을 설명하는 것입니다.
+IaaS를 논의 이후 일반적 hello Windows, Linux 및 DBMS 설치 및 구성은 기본적으로 hello 모든 가상 컴퓨터 또는 베어 메탈 컴퓨터 온-프레미스를 설치 하는 것과 동일 합니다. 그러나 IaaS를 사용하는 경우 일부 아키텍처 및 시스템 관리 구현이 달라집니다. hello이 문서의 목적은 tooexplain hello 특정 아키텍처 및 시스템 관리의 차이 IaaS를 사용 하는 경우에 대 한 준비 해야 합니다.
 
-일반적으로 이 문서에서 다루는 차이점의 전반적인 영역은 다음과 같습니다.
+일반적으로 hello 전반적인의 차이이 백서를 영역은 다음과 같습니다.
 
-* 적절한 데이터 파일 레이아웃을 사용하고 워크로드에 대한 충분한 IOPS를 얻기 위한 SAP 시스템의 적절한 VM/VHD 레이아웃 계획
+* SAP 시스템 tooensure의 hello 적절 한 VM/VHD 레이아웃 계획 있습니다 hello 적절 한 데이터 파일 레이아웃이 있으며 작업에 대 한 충분 한 IOPS를 얻을 수 있습니다.
 * IaaS 사용 시 네트워킹 고려 사항
-* 데이터베이스 레이아웃을 최적화하기 위해 사용할 특정 데이터베이스 기능
+* 주문 toooptimize hello 데이터베이스 레이아웃에서 특정 데이터베이스 기능 toouse 합니다.
 * IaaS 사용 시 백업 및 복원 고려 사항
 * 배포에 다양한 이미지 형식 사용
 * Azure IaaS의 고가용성
 
 ## <a name="65fa79d6-a85f-47ee-890b-22e794f51a64"></a>RDBMS 배포 구조
-이 챕터를 수행하려면 [배포 가이드][deployment-guide]의 [이][deployment-guide-3] 챕터에서 설명하는 내용을 이해해야 합니다. 이 챕터를 읽기 전에 다양한 VM 시리즈와 그 차이점 및 Azure 표준과 프리미엄 저장소의 차이점에 대한 정보를 이해해야 합니다.
+순서에 따라이 장에서 것을 필요한 toounderstand에서 제시한 [이] [ deployment-guide-3] hello 장 [배포 가이드][deployment-guide]합니다. 에 대 한 지식을 hello 다른 VM 시리즈와의 차이점 및 Azure 표준 및 프리미엄 저장소의 차이점 이해 하 고 해야이 장의 읽기 전에 알려진 합니다.
 
-2015년 3월까지 운영 체제를 포함한 Azure VHD 크기가 127GB로 제한되었습니다. 이 제한은 2015년 3월에 해제되었습니다(자세한 내용은 <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/> 확인). 이후 운영 체제를 포함하는 VHD는 다른 모든 VHD와 같은 크기를 가질 수 있습니다. 그렇지만 운영 체제, DBMS 및 최종 SAP 이진 파일이 데이터베이스 파일과 구분되는 배포 구조를 사용하는 것이 더 좋습니다. 따라서 Azure 가상 컴퓨터에서 실행 중인 SAP 시스템에 운영 체제와 함께 기본 VM(또는 VHD), DBMS(데이터베이스 관리 시스템) 실행 파일 및 SAP 실행 파일이 설치되어 있어야 합니다. DBMS 데이터 및 로그 파일은 Azure 저장소(표준 또는 프리미엄 저장소)에서 별도의 VHD 파일에 저장되며 원래 Azure 운영 체제 이미지 VM에 논리 디스크로 연결됩니다.
+2015 년 3 월까지 운영 체제에 포함 된 Azure Vhd의 크기 제한 too127 GB 했습니다. 이 제한은 2015년 3월에 해제되었습니다(자세한 내용은 <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/> 확인). Vhd에는 여기에서 hello 운영 체제를 포함 하 수 있는 hello 같은 크기 모든 다른 VHD입니다. 그럼에도 불구 하 고 여전히 좋습니다 hello 운영 체제, DBMS 및 SAP 바이너리 최종 있는 hello 데이터베이스 파일과 별개의 배포의 구조를입니다. 따라서 Azure 가상 컴퓨터에서 실행 하는 SAP 시스템 hello 기본 VM (또는 VHD) hello 운영 체제에 설치 된 데이터베이스 관리 시스템 실행 파일 및 SAP 실행 파일과 갖습니다 라고 생각 됩니다. hello DBMS 데이터 및 로그 파일이 별도 VHD 파일에 Azure 저장소 (표준 또는 프리미엄 저장소)에 저장 및 논리 디스크 toohello 원래 Azure 운영 체제 이미지 VM으로 연결 됩니다.
 
-Azure Standard Storage 또는 Azure Premium Storage(예: DS 시리즈 VM 또는 GS 시리즈 VM 사용)를 활용함에 따라 Azure 할당량이 달라지며, [여기][virtual-machines-sizes]에 문서화되어 있습니다. Azure VHD를 계획할 때 다음에 대한 최적의 할당량 균형을 찾아야 합니다.
+활용 하 여 Azure에 대 한 표준 또는 프리미엄 저장소 (예: hello DS 시리즈 또는 GS 시리즈 Vm 사용)가 있는에 의존 하는 설명 되어 있는 Azure의 기타 할당량은 [여기][virtual-machines-sizes]합니다. Azure Vhd를 계획할 때는 hello 다음에 대 한 toofind hello 최상의 hello 할당량 균형이 필요 합니다.
 
-* 데이터 파일 수
-* 파일에 포함된 VHD 수
-* 단일 VHD당 IOPS 할당량
-* VHD당 데이터 처리량
-* VM 크기당 가능한 추가 VHD 수
-* VM에서 제공할 수 있는 전체 저장소 처리량
+* hello 데이터 파일 수입니다.
+* hello hello 파일이 들어 있는 Vhd 수입니다.
+* hello 단일 VHD의 IOPS 할당량입니다.
+* VHD 당 hello 데이터 처리량입니다.
+* VM 크기당 추가 Vhd 수 hello 수입니다.
+* hello 전체 저장소 처리량 VM 제공할 수 있습니다.
 
-Azure는 VHD 드라이브당 IOPS 할당량을 적용합니다. 이러한 할당량은 VHD가 Azure 표준 저장소에서 호스트되는지 또는 프리미엄 저장소에서 호스트되는지에 따라 달라집니다. I/O 대기 시간도 두 저장소에서 서로 다르며 프리미엄 저장소를 사용할 때 더 나은 I/O 대기 시간 요소를 제공합니다. 각 VM 유형에는 연결할 수 있는 VHD 수가 제한되어 있습니다. 또한 특정 VM 유형만 Azure 프리미엄 저장소를 활용할 수 있습니다. 즉, 특정 VM 유형을 결정할 때 고려해야 할 사항에 CPU 및 메모리 요구 사항뿐 아니라 IOPS, 대기 시간 및 디스크 처리량 요구 사항도 포함되며, 보통 VHD 수 또는 프리미엄 저장소 디스크의 형식에 따라 달라집니다. 특히 프리미엄 저장소를 사용할 경우 VHD의 크기는 각 VHD에서 필요한 IOPS 수 및 처리량을 반영해야 할 수 있습니다.
+Azure는 VHD 드라이브당 IOPS 할당량을 적용합니다. 이러한 할당량은 VHD가 Azure 표준 저장소에서 호스트되는지 또는 프리미엄 저장소에서 호스트되는지에 따라 달라집니다. I/O 대기 시간이 매우 다른 hello 두 가지 유형의 저장소 간에 더 나은 I/O 대기 시간이 요소를 제공 하는 프리미엄 저장소로 수도 있습니다. Hello 여러 VM 유형의 각기 수 tooattach는 Vhd 수가 제한 됩니다. 또한 특정 VM 유형만 Azure Premium Storage를 활용할 수 있습니다. 즉, 특정 VM 유형은 대 한 hello 결정 하지만으로 인해 발생할 수 hello CPU 및 메모리 요구 사항으로 뿐만 아니라 hello IOPS, 대기 시간 및 디스크 처리량 요구 일반적으로 hello Vhd 수와 크기가 조정 되어 또는 프리미엄 저장소 디스크의 종류를 환영 합니다. 프리미엄 저장소로 특히 VHD의 hello 크기 또한 수 있습니다. 따라 결정 hello에 필요한 각 VHD를 낼 수 toobe 처리량 및 IOPS 수 있습니다.
 
-전체 IOPS 속도, 탑재된 VHD 수 및 VM 크기는 모두 관련되어 있으므로 SAP 시스템의 Azure 구성이 온-프레미스 배포와 다를 수 있습니다. LUN당 IOPS 제한은 일반적으로 온-프레미스 배포에서 구성할 수 있습니다. Azure 저장소를 사용할 경우 이러한 제한이 고정되는 반면 프리미엄 저장소의 경우 디스크 형식에 따라 달라집니다. 따라서 온-프레미스 배포를 사용할 경우 SAP 및 DBMS와 같은 특수 실행 파일용 볼륨 또는 임시 데이터베이스나 테이블 공간용 특수 볼륨을 위한 다양한 볼륨을 사용하는 데이터베이스 서버의 고객 구성을 보게 됩니다. 이러한 온-프레미스 시스템을 Azure로 이동하는 경우 IOPS를 전혀 수행하지 않거나 적게 수행하는 실행 파일 또는 데이터베이스에 대해 VHD를 사용하여 IOPS 대역폭이 낭비될 수 있습니다. 따라서 Azure VM에서는 가능하면 DBMS 및 SAP 실행 파일을 OS 디스크에 설치하는 것이 좋습니다.
+전체 IOPS 속도, 탑재 된 Vhd 수가 hello hello 및 hello VM 모두 결합 된을의 크기를 hello hello 사실을 온-프레미스 배포와 다른 SAP 시스템 toobe의 Azure 구성이 발생할 수 있습니다. LUN 당 IOPS 제한 hello 일반적으로 온-프레미스 배포에서 구성할 수 있습니다. 반면 Azure 저장소 한도 고정 또는 hello 디스크 종류에 의존 하는 프리미엄 저장소에서와 같이 합니다. 따라서 온-프레미스 배포와 데이터베이스 서버는 SAP와 같은 특수 한 실행 파일에 대 한 여러 다른 볼륨을 사용 하 고 hello DBMS 또는 임시 데이터베이스 또는 테이블 공간에 대 한 특별 한 볼륨의 고객 구성 표시 됩니다. 온-프레미스 시스템 등 이동한 tooAzure 경우 tooa 잠재적인 IOPS 대역폭 낭비 또는 하지 많은 IOPS 수행 하지 않는 데이터베이스 파일 또는 실행에 대 한 VHD를 낭비 하 여 발생할 수 있습니다 것입니다. 따라서 Azure Vm에서 가능한 경우 hello OS 디스크에 설치 하도록 hello DBMS 및 SAP 실행 파일을 하는 것이 좋습니다.
 
-데이터베이스 파일 및 로그 파일의 배치와 사용되는 Azure 저장소 형식은 IOPS, 대기 시간 및 처리량 요구 사항에 따라 정의되어야 합니다. 트랜잭션 로그에 대해 충분한 IOPS를 사용하려면 트랜잭션 로그 파일을 위한 VHD를 여러 개 활용하거나 더 큰 프리미엄 저장소 디스크를 사용해야 할 수 있습니다. 이 경우 트랜잭션 로그를 포함할 VHD와 함께 소프트웨어 RAID(예: Windows용 Windows 저장소 풀 또는 Linux용 MDADM 및 LVM(논리 볼륨 관리자))를 빌드합니다.
+hello 배치 hello 데이터베이스 파일 및 로그 파일을 사용 하는 Azure 저장소의 hello 유형을 정의 해야 IOPS, 대기 시간 및 처리량 요구 사항으로 합니다. Hello 트랜잭션 로그에 대 한 충분 한 IOPS을 순서 toohave에 hello 트랜잭션 로그에 대 한 여러 Vhd 파일 또는 더 큰 프리미엄 저장소 디스크를 사용 하 여 강제 tooleverage 해야 수도 있습니다. 이 경우 만들기만 하면 하나는 소프트웨어는 (예: Windows 저장소 풀에 대 한 Windows 또는 MDADM 및 Linux 용 (논리 볼륨 관리자) LVM) hello hello 트랜잭션 로그를 포함 하는 Vhd로 RAID 됩니다.
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> Azure VM의 드라이브 D:\는 Azure 계산 노드의 일부 로컬 디스크에서 지원하는 비지속형 드라이브입니다. 비지속형이기 때문에 VM을 다시 부팅하면 D:\ 드라이브의 변경 내용이 손실됩니다. "변경 내용"이란 저장된 파일, 생성된 디렉터리, 설치된 응용 프로그램 등을 의미합니다.
+> Azure VM의 D:\ 드라이브는 비지속형 드라이브 hello Azure 계산 노드에서 일부 로컬 디스크에 의해 지원 됩니다. 비지속형 이기 때문에 hello VM 다시 부팅 될 때 hello D:\ 드라이브의 변경 내용을 toohello 콘텐츠가 손실 된다는 것을 의미 합니다. "변경 내용"이란 저장된 파일, 생성된 디렉터리, 설치된 응용 프로그램 등을 의미합니다.
 >
 > ![Linux][Logo_Linux] Linux
 >
-> Linux Azure VM은 Azure 계산 노드의 논리 디스크에서 지원하는 비지속형 드라이브의 /mnt/resource에 자동으로 탑재됩니다. 비지속형이기 때문에 VM을 다시 부팅하면 /mnt/resource의 변경 내용이 손실됩니다. 변경 내용이란 저장된 파일, 생성된 디렉터리, 설치된 응용 프로그램 등을 의미합니다.
+> Linux Azure Vm의 경우 자동으로 hello Azure 계산 노드에서 로컬 디스크에서 지원 되는 비지속형 드라이브는 /mnt/resource에 드라이브를 탑재할 합니다. 비지속형 이기 때문에 hello VM 다시 부팅 될 때 /mnt/resource에 모든 변경 내용을 toocontent 손실 된다는 것을 의미 합니다. 변경 내용이란 저장된 파일, 생성된 디렉터리, 설치된 응용 프로그램 등을 의미합니다.
 >
 >
 
 - - -
-Azure VM 시리즈에 따라 계산 노드의 논리 디스크에 다음과 같이 범주로 분류할 수 있는 다양한 성능이 표시됩니다.
+Hello Azure VM 시리즈에 종속, hello hello 로컬 디스크와 같은 분류할 수 있는 노드 표시 다른 성능 계산:
 
 * A0-A7: 매우 제한된 성능. Windows 페이지 파일 이외에 어떤 것에 대해서도 사용할 수 없음
 * A8-A11: 매우 양호한 성능(수 만개의 IOPS 및 1GB/초 이상의 처리량)
@@ -415,45 +415,45 @@ Azure VM 시리즈에 따라 계산 노드의 논리 디스크에 다음과 같�
 * G 시리즈: 매우 양호한 성능(수 만개의 IOPS 및 1GB/초 이상의 처리량)
 * GS 시리즈: 매우 양호한 성능(수 만개의 IOPS 및 1GB/초 이상의 처리량)
 
-위의 문은 SAP에서 인증된 VM 유형에 적용됩니다. tempdb 또는 임시 테이블 공간과 같이 일부 DBMS 기능에서 활용하는 데 필요한 뛰어난 IOPS 및 처리량을 제공하는 VM 시리즈입니다.
+위의 문을 sap에 인증 된 toohello VM 유형에 적용 하는 합니다. 뛰어난 IOPS 및 처리량 VM 시리즈 hello 활용 하는 방법에 대 한 tempdb 또는 임시 테이블 공간와 같은 일부 DBMS 기능을 사용 하 여 한정 합니다.
 
 ### <a name="c7abf1f0-c927-4a7c-9c1d-c7b5b3b7212f"></a>VM 및 VHD에 대한 캐싱
-포털을 통해 이러한 디스크/VHD를 생성하거나 업로드된 VHD를 VM에 탑재할 때 VM과 Azure 저장소에 있는 VHD 간의 I/O 트래픽을 캐시할지 여부를 선택할 수 있습니다. Azure 표준 및 프리미엄 저장소에서는 이 유형의 캐시에 대해 두 가지 기술을 사용합니다. 두 경우 모두 캐시 자체가 VM의 임시 디스크(Windows의 D:\ 또는 Linux의 /mnt/resource)에서 사용하는 것과 동일한 드라이브에서 지원하는 디스크입니다.
+Hello 포털에서 또는 업로드 된 Vhd tooVMs 탑재 때 디스크/Vhd를 만들 때 Azure 저장소에 있는 Vhd와 VM hello 간의 hello I/O 트래픽을 캐시 되는지 여부를 선택할 수 있습니다. Azure Standard 및 Premium Storage에서는 이 유형의 캐시에 대해 두 가지 기술을 사용합니다. 두 경우 모두 hello 캐시 자체는 디스크 hello를 사용 하는 동일한 드라이브에 의해 지원 hello 임시 디스크 (Windows에서 D:\) 또는 Linux에서 /mnt/resource hello VM의 합니다.
 
-Azure 표준 저장소의 경우 가능한 캐시 유형은 다음과 같습니다.
+표준 저장소 Azure hello 가능한 캐시 유형은 다음과 같습니다.
 
 * 캐싱 없음
 * 읽기 캐싱
 * 읽기 및 쓰기 캐싱
 
-일관성 있고 결정적 성능을 얻으려면 Azure 표준 저장소에서 **DBMS 관련 데이터 파일, 로그 파일 및 테이블 공간을 포함하는 모든 VHD의 캐싱을 '없음'**으로 설정해야 합니다. VM 캐싱은 기본값으로 유지할 수 있습니다.
+순서 tooget 일관성 있고 명확한 성능을 설정 해야 hello Azure 표준 저장소에 모든 Vhd에 대 한 캐싱을 포함 된 **DBMS 관련 데이터 파일, 로그 파일 및 테이블 공간 too'NONE'**합니다. 기본값은 hello hello hello VM의 캐싱을 남을 수 있습니다.
 
-Azure Premium Storage의 경우 다음과 같은 캐싱 옵션이 있습니다.
+Azure 프리미엄 저장소에 대 한 캐싱 옵션을 다음 hello가 있습니다.
 
 * 캐싱 없음
 * 읽기 캐싱
 
-Azure Premium Storage에 대한 권장 사항은 SAP 데이터베이스의 **데이터 파일 읽기 캐싱**을 활용하고 **로그 파일의 VHD에 대한 캐싱 없음**을 선택하는 것입니다.
+Azure 프리미엄 저장소에 권장 되는 tooleverage **읽기 데이터 파일에 대 한 캐싱을** hello SAP 데이터베이스와 선택한 **hello VHD(s) 로그 파일에 대 한 캐싱 없음**합니다.
 
 ### <a name="c8e566f9-21b7-4457-9f7f-126036971a91"></a>소프트웨어 RAID
-위에서 설명한 것처럼 데이터베이스 파일에 필요한 IOPS 수를 구성 가능한 VHD 수 및 Azure VM이 VHD 또는 프리미엄 저장소 디스크 형식당 제공할 최대 IOPS에 맞게 배분해야 합니다. VHD에 대한 IOPS 부하를 처리하는 가장 쉬운 방법은 여러 VHD에 소프트웨어 RAID를 빌드하는 것입니다. 그런 다음 SAP DBMS의 여러 데이터 파일을 소프트웨어 RAID에서 얻은 LUN에 배치합니다. 3가지 프리미엄 저장소 디스크 중 2개는 표준 저장소 기반의 VHD보다 더 높은 IOPS 할당량을 제공하므로 요구 사항에 따라 프리미엄 저장소 사용도 고려해야 합니다. 또한 Azure 프리미엄 저장소는 훨씬 더 향상된 I/O 대기 시간을 제공합니다.
+설명한 것 처럼 위에서 해야 IOPS toobalance hello 수 필요한 hello 수의 Vhd를 구성할 수 있습니다 및 hello hello 데이터베이스 파일에 대 한 최대 IOPS는 Azure VM 당 VHD 또는 프리미엄 저장소를 제공 합니다 디스크 유형. Vhd IOPS 부하 hello로 toodeal toobuild 소프트웨어 RAID 스타일러스가 가장 쉬운 방법은 다른 Vhd hello 합니다. 다음 LUN hello 소프트웨어 RAID 된 hello에 다양 한 hello SAP DBMS의 데이터 파일을 배치 합니다. Tooconsider hello 뿐만 아니라 사용 프리미엄 저장소의 경우가 hello 요구 사항에 따라 달라 두 hello 이후 세 가지 다른 프리미엄 저장소 디스크 제공 표준 저장소에 따라 Vhd 보다 더 높은 IOPS 할당량 합니다. Azure 프리미엄 저장소에서 I/O 대기 시간을 제공 하는 더 중요 한 hello 외에 합니다.
 
-다른 DBMS 시스템의 트랜잭션 로그에도 동일하게 적용됩니다. DBMS 시스템은 한 번에 한 파일에만 쓰므로 Tlog 파일을 더 추가해도 도움이 되지 않습니다. VHD 기반의 단일 표준 저장소에서 제공하는 것보다 더 높은 IOPS 속도가 필요한 경우 여러 표준 저장소 VHD를 스트라이프하거나 해당 IOPS 속도보다 더 큰 프리미엄 저장소 디스크 형식을 사용하여 트랜잭션 로그에 I/O를 쓰기 위한 대기 시간을 줄일 수 있습니다.
+Hello 다른 DBMS 시스템의 toohello 트랜잭션 로그에도 마찬가지입니다. 더 많은 Tlog 파일을 추가 하는 것 중 많은 hello DBMS 시스템 hello 파일 중 하나에 한 번에 쓰기 때문 도움이 되지 않습니다. 단일 표준 기반 저장소 보다 IOPS 속도 더 필요한 경우 VHD 제공할 수 있는, 표준 저장소의 여러 Vhd로 스트라이프 할 수 있습니다 또는 더 큰 프리미엄 저장소 디스크 형식을 전달 하는 IOPS 속도 더 이상도 요소 더 낮은 대기 시간 hello 쓰기를 위해 사용할 수 있습니다 I / Hello 트랜잭션 로그에 운영 체제입니다.
 
 Azure 배포에서 소프트웨어 RAID를 사용해야 하는 상황은 다음과 같습니다.
 
 * 트랜잭션 로그/다시 실행 로그에서 Azure에서 단일 VHD에 제공하는 것보다 더 많은 IOPS를 필요로 하는 경우. 위에서 언급한 대로 소프트웨어 RAID를 사용하여 여러 VHD에 LUN을 빌드하여 이 문제를 해결할 수 있습니다.
-* SAP 데이터베이스의 여러 데이터 파일에 I/O 워크로드가 균등하지 않게 배분된 경우. 이러한 경우 한 데이터 파일이 자주 할당량에 도달하고, 다른 데이터 파일은 단일 VHD의 IOPS 할당량에 근접하지도 않을 가능성이 있습니다. 이러한 경우 가장 간단한 해결책은 소프트웨어 RAID를 사용하여 여러 VHD에 하나의 LUN을 빌드하는 것입니다.
-* 데이터 파일당 정확한 I/O 워크로드는 알 수 없으며 DBMS에 대한 전체 IOPS 워크로드만 대략적으로 알 수 있습니다. 소프트웨어 RAID를 사용하여 하나의 LUN을 빌드하는 것이 가장 간단합니다. 이 LUN 뒤의 다중 VHD 할당량의 합이 알려진 IOPS 속도를 충족해야 합니다.
+* I/O 작업 불균일 hello 서로 다른 데이터 파일에 대해 hello SAP 데이터베이스의 합니다. 이러한 경우에 종종 대신 hello 할당량에 도달 하는 하나의 데이터 파일에서 경험할 수 있는 하나. 반면 다른 데이터 파일도 단일 VHD의 IOPS 할당량 닫기 toohello를 가져오지 않습니다. 이러한 경우 hello에 가장 쉬운 방법은 하나 toobuild 소프트웨어 RAID를 사용 하 여 여러 Vhd로 LUN.
+* 알 수 없는 어떤 hello 정확한 I/O 작업의 데이터 파일당은 및 에서만 대략 hello 무엇을 알고 전체 DBMS hello에 대 한 IOPS 작업 됩니다. 가장 쉬운 toodo toobuild hello로 하나의 LUN 소프트웨어 RAID의 도움말입니다. 이 LUN 뒤에 있는 여러 Vhd의 할당량의 hello 합 해야 IOPS 알려진 hello 충족 다음 속도입니다.
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> 이전 Windows 버전의 Windows 스트라이프보다 Windows Server 2012 이상 저장소 공간이 더 효율적이므로 이 공간을 사용하는 것이 좋습니다. Windows Server 2012를 운영 체제로 사용하는 경우 PowerShell 명령을 사용하여 Windows 저장소 풀과 저장소 공간을 만들어야 할 수도 있습니다. PowerShell 명령은 <https://technet.microsoft.com/library/jj851254.aspx>에서 확인할 수 있습니다.
+> 이전 Windows 버전의 Windows 스트라이프보다 Windows Server 2012 이상 저장소 공간이 더 효율적이므로 이 공간을 사용하는 것이 좋습니다. 필요할 수 있는 toocreate hello Windows 저장소 풀 및 저장소 공간 PowerShell 명령을 사용 하 여 운영 체제와 Windows Server 2012를 사용 하는 경우 주의 하십시오. hello PowerShell 명령을 확인할 수 있습니다 <https://technet.microsoft.com/library/jj851254.aspx>
 >
 > ![Linux][Logo_Linux] Linux
 >
-> Linux에서 소프트웨어 RAID를 빌드하는 경우 MDADM 및 LVM(논리 볼륨 관리자)만 지원됩니다. 자세한 내용은 다음 문서를 읽어보세요.
+> MDADM와 LVM (논리 볼륨 관리자)만 지원 되는 소프트웨어 RAID linux toobuild 됩니다. 자세한 내용은 다음 문서는 hello 읽기:
 >
 > * [Linux에서 소프트웨어 RAID 구성][virtual-machines-linux-configure-raid](MDADM용)
 > * [Azure에서 Linux VM에 LVM 구성][virtual-machines-linux-configure-lvm]
@@ -461,261 +461,261 @@ Azure 배포에서 소프트웨어 RAID를 사용해야 하는 상황은 다음�
 >
 
 - - -
-Azure 프리미엄 저장소와 함께 사용할 수 있는 VM 시리즈 활용에 대한 고려 사항은 일반적으로 다음과 같습니다.
+Azure 프리미엄 저장소로 수 toowork 일반적으로 VM 시리즈를 활용 하기 위해 고려 사항이 있습니다.
 
-* SAN/NAS 장치에서 제공하는 것과 가까운 I/O 대기 시간에 대한 요구
+* I/O 대기 시간이 잘못에 대 한 요청이 toowhat SAN/NAS 장치 배달을 닫습니다.
 * Azure 표준 저장소에서 제공할 수 있는 것보다 더 나은 I/O 대기 시간 요소에 대한 요구
 * 특정 VM 유형에 대해 여러 표준 저장소 VHD를 사용하여 얻을 수 있는 것보다 더 높은 VM당 IOPS
 
-기본 Azure 저장소는 각 VHD를 3개 이상의 저장소 노드에 복제하므로 간단한 RAID 0 스트라이프를 사용할 수 있습니다. RAID5 또는 RAID1을 구현할 필요가 없습니다.
+Hello 이후 기본 Azure 저장소 복제 각 VHD tooat 최소 3 저장소 노드에 간단한 RAID 0 스트라이프를 사용할 수 있습니다. RAID5 또는 RAID1 필요 tooimplement 하지 않습니다.
 
 ### <a name="10b041ef-c177-498a-93ed-44b3441ab152"></a>Microsoft Azure Storage
-Microsoft Azure 저장소는 최소 3개의 개별 저장소 노드에 기본 VM(OS 포함) 및 VHD 또는 BLOB을 저장합니다. 저장소 계정을 만들 때는 다음과 같은 보호를 선택할 수 있습니다.
+Microsoft Azure 저장소에 저장 합니다 (OS)와 기본 VM 및 Vhd 또는 Blob tooat 최소 3 별도 저장소 노드에 hello 합니다. 저장소 계정을 만들 때는 다음과 같은 보호를 선택할 수 있습니다.
 
 ![Azure 저장소 계정에 대해 지역에서 복제 사용][dbms-guide-figure-100]
 
-Azure 저장소 로컬 복제(로컬 중복)는 인프라 장애로 인한 데이터 손실로부터 보호할 수 있는 수준을 제공하지만 대부분의 고객은 경제적 부담이 커서 구입하지 못합니다. 위와 같이 서로 다른 4개의 옵션이 있으며 5번째는 처음 3개 옵션 중 하나의 변형입니다. 자세히 살펴보면 다음과 같이 구분할 수 있습니다.
+(로컬 중복) azure 저장소 로컬 복제 적은 수의 고객이 toodeploy를 구입할 수 있었습니다 tooinfrastructure 오류로 인해 데이터 손실 로부터 보호 수준을 제공 합니다. 위와 같이 다섯 번째 되 고 hello 중 하나의 변형 처음 세 가지 4 다른 옵션이 있습니다. 자세히 살펴보면 다음과 같이 구분할 수 있습니다.
 
-* **프리미엄 LRS(로컬 중복 저장소)**: Azure 프리미엄 저장소는 I/O 사용량이 많은 워크로드를 실행하는 가상 컴퓨터에서 대기 시간이 짧은 고성능 디스크 지원을 제공합니다. Azure 지역의 동일한 Azure 데이터 센터 내에 3개의 데이터 복제본이 있습니다. 복사본은 여러 장애 도메인과 업그레이드 도메인에 있습니다(개념에 대해서는 [계획 가이드][planning-guide]의 [이][planning-guide-3.2] 챕터 참조). 저장소 노드 오류 또는 디스크 오류로 인해 서비스에서 제공하는 데이터가 복제되는 경우 새 복제본이 자동으로 생성됩니다.
-* **LRS(로컬 중복 저장소)**: 이 경우 Azure 지역의 동일한 Azure 데이터 센터 내에 데이터의 복제본이 3개 있습니다. 복사본은 여러 장애 도메인과 업그레이드 도메인에 있습니다(개념에 대해서는 [계획 가이드][planning-guide]의 [이][planning-guide-3.2] 챕터 참조). 저장소 노드 오류 또는 디스크 오류로 인해 서비스에서 제공하는 데이터가 복제되는 경우 새 복제본이 자동으로 생성됩니다.
-* **GRS(지역 중복 저장소)**: 이 경우 다른 Azure 지역에 있는 3개의 추가 데이터 복제본을 공급하는 비동기 복제가 있습니다. 이러한 경우 대부분 동일한 지역(예: 북유럽 및 유럽 서부)에 있습니다. 이렇게 하면 추가 복제본이 3개가 되므로 총 6개의 복제본이 있습니다. 변형은 지역에서 복제된 Azure 지역의 데이터를 읽기 용도(읽기-액세스 지역 중복)로 사용할 수 있는 위치가 추가된 것입니다.
-* **ZRS(영역 중복 저장소)**: 이 경우 동일한 Azure 지역에 3개의 데이터 복제본이 있습니다. [계획 가이드][planning-guide]의 [이][planning-guide-3.1] 챕터에서 설명한 대로 Azure 지역은 근접해 있는 여러 데이터 센터일 수 있습니다. LRS의 경우 복제본은 하나의 Azure 지역을 구성하는 여러 데이터 센터에 분산됩니다.
+* **프리미엄 LRS(로컬 중복 저장소)**: Azure Premium Storage는 I/O 사용량이 많은 워크로드를 실행하는 가상 컴퓨터에서 대기 시간이 짧은 고성능 디스크 지원을 제공합니다. Hello 내 hello 데이터의 복제본이 3 Azure 지역의 동일한 Azure 데이터 센터입니다. hello 복사본에 포함 됩니다 여러 장애 도메인과 업그레이드 도메인 (개념 참조에 대 한 [이] [ planning-guide-3.2] hello 장 [계획 가이드][planning-guide]). Tooa 저장소 노드 오류 또는 디스크 오류로 인해 서비스에서 나가는 hello 데이터의 복제본을 발생 한 경우 새 복제본을 자동으로 생성 됩니다.
+* **로컬 중복 저장소 (LRS)**:이 경우 hello 내 hello 데이터의 복제본 3 개 있습니다. Azure 지역의 동일한 Azure 데이터 센터입니다. hello 복사본에 포함 됩니다 여러 장애 도메인과 업그레이드 도메인 (개념 참조에 대 한 [이] [ planning-guide-3.2] hello 장 [계획 가이드][planning-guide]). Tooa 저장소 노드 오류 또는 디스크 오류로 인해 서비스에서 나가는 hello 데이터의 복제본을 발생 한 경우 새 복제본을 자동으로 생성 됩니다.
+* **지역 중복 저장소 (GRS)**:이 경우에 추가로 제공 하는 비동기 복제는 있습니다. 대부분의 hello 사례에 있는 다른 Azure 지역의 hello 데이터의 복제본 3 개 hello 동일한 지리적 지역 (예: 유럽 북부 및 서 부 유럽)입니다. 이렇게 하면 추가 복제본이 3개가 되므로 총 6개의 복제본이 있습니다. 이 변형을 추가 되는 (읽기 액세스 지리적 중복) 읽기 위해 hello 지리적 복제 된 Azure 지역에서 hello 데이터를 사용할 수 있는 위치입니다.
+* **영역 중복 저장소 (ZRS)**:이 경우 3 hello 복제본의 데이터에 유지 하는 hello hello 같은 Azure 지역입니다. 에 설명 된 대로 [이] [ planning-guide-3.1] hello 장 [계획 가이드] [ planning-guide] 서로 가까이 있는 Azure 지역 데이터 센터의 수를 수 있습니다. LRS hello 경우에서 Azure 지역에 있도록 hello 서로 다른 데이터 센터에 대해 hello 복제본 배포 합니다.
 
 자세한 내용은 [여기][storage-redundancy]에 있습니다.
 
 > [!NOTE]
-> DBMS 배포의 경우 지역 중복 저장소의 사용은 권장되지 않습니다.
+> DBMS 배포에 대 한 지리 중복 저장소의 hello 사용은 권장 되지 않습니다.
 >
-> Azure 저장소 지역에서 복제는 비동기적입니다. 잠금 단계에서는 단일 VM에 탑재된 개별 VHD 복제가 동기화되지 않습니다. 따라서 여러 VHD에 분산되거나 다중 VHD 기반의 소프트웨어 RAID에 대해 배포된 DBMS 파일을 복제하는 데 적합하지 않습니다. DBMS 소프트웨어를 사용하려면 영구 디스크 저장소가 여러 LUN 및 기본 디스크/VHD/스핀들 간에 정확하게 동기화되어야 합니다. DBMS 소프트웨어는 다양한 메커니즘을 사용하여 I/O 쓰기 작업의 순서를 지정하고 이러한 작업이 몇 밀리초라도 다른 경우 DBMS는 복제에서 지정한 디스크 저장소가 손상된 것으로 보고합니다. 따라서 지역 복제된 여러 VHD에 분산된 데이터베이스 구성을 원하는 경우 데이터베이스 도구 및 기능을 사용하여 이러한 복제를 수행해야 합니다. 이 작업을 수행하기 위해 Azure 저장소 지역에서 복제를 사용해서는 안 됩니다.
+> Azure 저장소 지역에서 복제는 비동기적입니다. 복제 개별 vhd 탑재 tooa 잠금 단계에서는 단일 VM이 동기화 되지 않습니다. 따라서 여러 Vhd에 배포 되거나 여러 Vhd에 따라 RAID는 소프트웨어에 대해 배포 된 적합 한 tooreplicate DBMS 파일 않습니다. DBMS 소프트웨어 다른 Lun 및 기본 디스크/Vhd/스핀 들 간에 hello 영구 디스크 저장소가 정확 하 게 동기화 되는 필요 합니다. DBMS 소프트웨어는 다양 한 메커니즘 toosequence IO 쓰기 작업을 사용 하 고 DBMS 몇 밀리초 해도 다른 경우 hello 복제에 의해 대상으로 하는 hello 디스크 저장소가 손상 되었음을 보고 합니다. 따라서 지리적으로 복제 된 여러 Vhd에 걸친 데이터베이스로 사용 하려는 데이터베이스를 구성, 이러한 복제는 toobe 데이터베이스 수단 및 기능을 사용 하 여 수행 해야 합니다. 하나 안됩니다 Azure 저장소 지역 간 복제 tooperform이이 작업 합니다.
 >
-> 문제는 예제 시스템을 사용하여 설명하는 것이 가장 간단합니다. DBMS 데이터 파일을 포함하는 8개의 VHD와 트랜잭션 로그 파일을 포함하는 하나의 VHD가 있는 Azure에 SAP 시스템을 업로드했다고 가정합니다. 이러한 9개의 각 VHD에는 데이터가 데이터 파일에 기록되는지 트랜잭션 로그 파일에 기록되는지에 관계없이 DBMS에 따라 일관된 방법으로 데이터가 기록됩니다.
+> hello 문제는 예를 통해 가장 간단한 tooexplain입니다. Azure의 hello DBMS의 데이터 파일 및 VHD 포함 hello 트랜잭션 로그 파일이 포함 된 Vhd 8에 업로드 된 SAP 시스템이 있다고 가정해 보겠습니다. 이러한 9 Vhd 중 하나를 각 hello 데이터를 쓰고 toohello 데이터 또는 트랜잭션 로그 파일 여부 toothem toohello DBMS에 따라 일관 된 방법에서 기록 된 데이터를 갖습니다.
 >
-> 데이터를 올바르게 지역 복제하고 일관성 있는 데이터베이스 이미지를 유지하려면 9개의 모든 VHD 콘텐츠가 서로 다른 9개 VHD에 대해 실행된 I/O 작업 순서와 동일하게 지역 복제되어야 합니다. 그러나 Azure 저장소 지역에서 복제는 VHD 간 종속성 선언을 허용하지 않습니다. 즉, Microsoft Azure 저장소 지역에서 복제는 이러한 서로 다른 9개 VHD의 콘텐츠가 서로 관련되어 있으며 데이터 변경 내용이 9개 VHD 모두에서 발생한 I/O 작업 순서대로 복제할 때만 일관되게 적용된다는 사실을 알지 못합니다.
+> 순서 대로 tooproperly 지역 간 복제 데이터 hello 및 동일한 데이터베이스 이미지, hello 콘텐츠를 유지 관리 9 개의 모든 Vhd toobe hello 정확한 순서 hello I/O 작업에서 지리적 복제 된 실행 한 hello 9에 대해 여러 Vhd입니다. 그러나 Azure 저장소 지역 간 복제는 Vhd 간에 toodeclare 종속성을 허용 하지 않습니다. 즉, Microsoft Azure 저장소 지역 간 복제 hello 팩트 이러한 9 개의 다른 Vhd의 hello 콘텐츠 다른 관련된 tooeach를 hello 데이터 변경 내용이 일관적 hello 순서 hello I/O 작업에서 복제 하는 경우에 발생 한 알 수 없습니다. 여러 모든 hello 9 Vhd입니다.
 >
-> 이 시나리오에서는 지역 복제된 이미지가 일관성 있는 데이터베이스 이미지를 제공하지 않을 가능성이 높을 뿐 아니라, 성능에 큰 영향을 줄 수 있는 지역 중복 저장소의 성능이 저하됩니다. 한 마디로 말해 DBMS 형식 워크로드에 대해서는 이러한 유형의 저장소 중복을 사용하지 마세요.
+> 가능성이 높게 hello 지리적 복제 이미지 hello 시나리오에서 동일한 데이터베이스 이미지를 제공 하지 않으면, 또한 성능이 크게 저하 될 심각 하 게 수행할 수 있는 지역 중복 저장소 보여 주는 것 외에도 성능 영향을 줄 합니다. 한 마디로 말해 DBMS 형식 워크로드에 대해서는 이러한 유형의 저장소 중복을 사용하지 마세요.
 >
 >
 
 #### <a name="mapping-vhds-into-azure-virtual-machine-service-storage-accounts"></a>VHD를 Azure 가상 컴퓨터 서비스 저장소 계정에 매핑
-Azure 저장소 계정은 관리 구성 요소일 뿐 아니라 제한의 대상이 됩니다. 단, 제한은 Azure 표준 저장소 계정인지 또는 Azure Premium Storage 계정인지에 따라 달라집니다. 정확한 기능 및 제한은 [여기][storage-scalability-targets]서 나열하고 있습니다.
+Azure 저장소 계정은 관리 구성 요소일 뿐 아니라 제한의 대상이 됩니다. 반면 Azure 표준 저장소 계정 또는 Azure 프리미엄 저장소 계정에 대해 논의할 여부에 따라 다를 hello 제한 합니다. 나열 된 hello 정확한 기능 및 제한 사항 [여기][storage-scalability-targets]
 
-따라서 Azure Standard Storage의 경우 저장소 계정당 IOPS에 제한이 있습니다([이 문서][storage-scalability-targets]의 '총 요청 속도'가 포함된 행). 또한 2015년 7월 현재 초기 제한은 Azure 구독당 100개의 저장소 계정으로 설정되어 있습니다. 따라서 Azure 표준 저장소를 사용할 때 여러 저장소 계정 간 VM의 IOPS 균형을 조정해야 합니다. 반면 단일 VM은 가능한 경우 하나의 저장소 계정을 사용하는 것이 이상적입니다. 따라서 Azure 표준 저장소에서 호스트되는 각 VHD가 해당 할당량 한도에 도달할 수 있는 DBMS 배포의 경우 Azure 표준 저장소를 사용하는 Azure 저장소 계정당 30-40개의 VHD만 배포해야 합니다. 반면 Azure Premium Storage를 활용하고 대용량 데이터베이스를 저장하려는 경우 IOPS에 대해 신경 쓰지 않아도 됩니다. 하지만 Azure Premium Storage 계정은 데이터 볼륨 면에서 Azure 표준 저장소 계정보다 훨씬 더 제한적입니다. 결과적으로, 데이터 볼륨 제한에 도달할 때까지만 Azure 프리미엄 저장소 계정 내에 제한된 수의 VHD를 배포할 수 있습니다. 결국 Azure 저장소 계정은 IOPS 및/또는 용량이 제한된 "가상 SAN"이라고 할 수 있습니다. 결과적으로, 작업은 온-프레미스 배포에서처럼 여러 '가상 SAN 장치' 또는 Azure 저장소 계정에 대해 여러 SAP 시스템의 VHD 레이아웃을 정의합니다.
+저장소 계정당 IOPS hello에는 제한이 되므로 Azure 표준 저장소에 대 한 중요 한 toonote (의 ' 총 요청 속도입니다. ' 포함 된 행 [hello 문서][storage-scalability-targets]). 또한 2015년 7월 현재 초기 제한은 Azure 구독당 100개의 저장소 계정으로 설정되어 있습니다. 따라서 Azure 표준 저장소를 사용 하는 경우 여러 저장소 계정 간에 IOPS Vm toobalance를 좋습니다. 반면 단일 VM은 가능한 경우 하나의 저장소 계정을 사용하는 것이 이상적입니다. 따라서 Azure 표준 저장소에서 호스트되는 각 VHD가 해당 할당량 한도에 도달할 수 있는 DBMS 배포의 경우 Azure 표준 저장소를 사용하는 Azure 저장소 계정당 30-40개의 VHD만 배포해야 합니다. Hello Azure 프리미엄 저장소를 활용 하 고 toostore 큰 데이터베이스의 볼륨을 원하는 경우 수 있습니다 IOPS를 기준으로 세밀 하 게 합니다. 하지만 Azure Premium Storage 계정은 데이터 볼륨 면에서 Azure 표준 저장소 계정보다 훨씬 더 제한적입니다. 결과적으로, hello 데이터 볼륨 제한에 도달 하기 전에 Azure 프리미엄 저장소 계정 내의 Vhd 수가 제한만 배포할 수 있습니다. "가상 SAN"으로 Azure 저장소 계정의 hello 최종 인지에서 IOPS 및/또는 용량에 기능이 제한 되어 있습니다. 결과적으로, hello 작업 toodefine hello 레이아웃의 hello hello hello 다른 '가상 SAN 장치'를 통해 서로 다른 SAP 시스템의 Vhd 또는 Azure 저장소 계정, 온-프레미스 배포 에서처럼 유지 합니다.
 
-Azure 표준 저장소의 경우 여러 저장소 계정의 저장소를 단일 VM에 두는 것은 권장되지 않습니다.
+Azure에 대 한 VM는 가능 하면 단일 표준 저장소 toopresent 스토리지를 다른 저장소 계정 tooa 권장 되지 않습니다.
 
-반면 Azure VM의 DS 또는 GS 시리즈를 사용할 경우 Azure 표준 저장소 계정 및 프리미엄 저장소 계정에서 VHD를 탑재할 수 있습니다. VHD에서 지원되는 표준 저장소에 백업을 작성하고 프리미엄 저장소에 DBMS 데이터 및 로그 파일이 있는 경우 이렇게 다른 유형의 저장소를 활용할 수 있습니다.
+반면 hello DS 또는 GS 시리즈의 Azure Vm을 사용 하 여 Azure 저장소 계정 표준 및 프리미엄 저장소 계정에서 가능한 toomount Vhd는 합니다. DBMS 데이터를 포함 하는 반면 표준 저장소에 백업을 쓰는 같은 사용 사례에 Vhd 백업 파일과 로그 파일을 프리미엄 저장소에 toomind 이러한 다른 유형의 저장소를 이용 될 수 있습니다.
 
-고객 배포 및 테스트에 따르면 데이터베이스 데이터 파일 및 로그 파일을 포함하는 30-40개의 VHD를 단일 Azure 표준 저장소 계정에 프로비전해야 적절한 성능을 제공할 수 있습니다. 앞서 언급했듯이 Azure Premium Storage 계정의 제한은 IOPS가 아니라 포함할 수 있는 데이터 용량과 관련이 있습니다.
+데이터베이스 데이터 파일과 로그 파일에 포함 된 Vhd에 허용 가능한 성능 갖춘 단일 Azure 표준 저장소 계정이 프로 비전 할 수의 고객 배포 및 테스트 약 30 too40 기반으로 합니다. 앞서 언급 했 듯이 보유할 수 있는 가능성이 toobe hello 데이터 용량 및 IOPS 하지 Azure 프리미엄 저장소 계정을의 hello 제한은입니다.
 
-SAN 장치 온-프레미스처럼 공유를 위해서는 모니터링을 수행하여 Azure 저장소 계정의 병목을 검색해야 합니다. SAP용 Azure 모니터링 확장 및 Azure 포털은 현재 사용 중이며 차선의 IO 성능을 제공할 수 있는 Azure 저장소 계정을 검색할 수 있는 도구입니다.  이 상황이 검색되면 사용 중인 VM을 다른 Azure 저장소 계정으로 이동하는 것이 좋습니다. SAP 호스트 모니터링 기능을 활성화하는 방법에 대한 자세한 내용은 [배포 가이드][deployment-guide]를 참조하세요.
+일부 모니터링 순서 tooeventually에 필요한 공유 SAN 장치 온-프레미스, Azure 저장소 계정에서 병목 상태를 검색 합니다. SAP 용 Azure 모니터링 확장 hello 및 hello Azure 포털 사용된 toodetect 일 수 있는 도구는 불충분 한 IO 성능을 제공 하 고 있는 Azure 저장소 계정 사용 중입니다.  이 경우 toomove 사용 중 Vm tooanother Azure 저장소 계정 것이 좋습니다 검색 된 합니다. Toohello를 참조 하십시오 [배포 가이드] [ deployment-guide] tooactivate hello SAP 모니터링 기능을 호스트 하는 방법에 대 한 내용은 합니다.
 
 Azure 표준 저장소 및 Azure 표준 저장소 계정에 대한 모범 사례를 요약한 다른 문서는 여기(<https://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx>)를 참조하세요.
 
-#### <a name="moving-deployed-dbms-vms-from-azure-standard-storage-to-azure-premium-storage"></a>배포된 DBMS VM을 Azure 표준 저장소에서 Azure 프리미엄 저장소로 이동
-고객이 배포된 VM을 Azure 표준 저장소에서 Azure 프리미엄 저장소로 이동을 원하는 경우가 있습니다. 이 작업은 데이터를 물리적으로 이동하지 않으면 불가능합니다. 다음과 같은 방법을 사용할 수 있습니다.
+#### <a name="moving-deployed-dbms-vms-from-azure-standard-storage-tooazure-premium-storage"></a>Azure 표준 저장소 tooAzure 프리미엄 저장소에서에서 DBMS Vm을 배포 이동
+상당한 있는 시나리오는 고객으로 서 Azure 표준 저장소에서 배포 된 VM toomove Azure 프리미엄 저장소로 발생 합니다. 이것이 불가능 hello 데이터를 실제로 이동 하지 않고 있습니다. 여러 가지 방법으로 tooachieve hello 목표 가지가 있습니다.
 
-* 모든 VHD, 기본 VHD 및 데이터 VHD를 새 Azure 프리미엄 저장소 계정으로 간단하게 복사할 수 있습니다. 데이터 볼륨이 필요한 이유가 아니더라도 Azure 표준 저장소의 VHD 수를 선택해야 할 때가 많습니다. 하지만 대부분은 IOPS 때문에 VHD가 필요합니다. Azure 프리미엄 저장소로 이동한 후에는 VHD를 줄여 일부 IOPS 처리량을 달성할 수 있습니다. Azure 표준 저장소의 경우 명목상의 디스크 크기가 아니라 사용된 데이터에 대해 청구되므로 VHD 수는 비용 면에서 크게 중요하지 않습니다. 그러나 Azure 프리미엄 저장소는 명목상의 디스크 크기에 대해 청구됩니다. 따라서 대부분의 고객은 프리미엄 저장소의 Azure VHD 수를 필요한 IOPS 처리량을 얻는 데 필요한 수로 유지하려고 합니다. 그러므로 대부분 1:1 복사본 비율을 사용합니다.
-* 탑재되지 않은 경우 SAP 데이터베이스의 데이터베이스 백업을 포함할 수 있는 단일 VHD를 탑재합니다. 백업 후 백업이 있는 VHD를 포함한 모든 VHD의 탑재를 해제하고 기본 VHD 및 백업이 있는 VHD를 Azure Premium Storage 계정으로 복사합니다. 그런 다음 기본 VHD를 기반으로 VM을 배포하고 백업이 있는 VHD를 탑재합니다. 이제 데이터베이스를 복원하는 데 사용되는 VM에 대한 빈 Premium Storage 디스크를 추가로 만듭니다. 여기에서는 복원 프로세스 중 DBMS를 사용하여 데이터 및 로그 파일에 대한 경로를 변경할 수 있다고 가정합니다.
-* 또는 이전 프로세스를 변형하여, 백업 VHD를 Azure Premium Storage로 복사하고 새로 배포 및 설치한 VM에 연결할 수 있습니다.
-* 네 번째 방법은 데이터베이스의 데이터 파일 수를 변경해야 할 시기를 선택하는 것입니다. 이 경우 내보내기/가져오기를 사용하여 형식이 같은 SAP 시스템 복사를 수행합니다. Azure 프리미엄 저장소 계정에 복사된 VHD에 내보내기 파일을 저장하고 이를 가져오기 프로세스를 실행하는 데 사용할 VM에 연결합니다. 고객은 주로 이 방법을 사용하여 데이터 파일의 수를 줄입니다.
+* 모든 VHD, 기본 VHD 및 데이터 VHD를 새 Azure Premium Storage 계정으로 간단하게 복사할 수 있습니다. 매우 자주 hello 데이터 볼륨 필요 함을 hello 사실 때문이 아니라 Azure 표준 저장소에 Vhd 수가 hello 선택한입니다. 하지만 IOPS hello 때문에 많은 Vhd 필요 합니다. TooAzure 방법을 이동할 수 있습니다는 프리미엄 저장소를 이동 했으므로 적은 Vhd tooachieve hello 몇 가지 IOPS 처리량입니다. Hello에 대 한 비용을 지불 하는 표준 Azure 저장소에 사용 하는 데이터 hello 최소 디스크 크기가 아니라 hello 팩트 들어 hello Vhd 수가 않았습니다 실제로 중요 하지 비용 측면에서. 그러나 Azure 프리미엄 저장소를 지불할 hello 최소 디스크 크기에 대 한 합니다. 따라서 대부분 hello 고객의 hello 숫자 필요한 tooachieve hello IOPS 처리량에서 필요한 프리미엄 저장소에 Azure Vhd의 tookeep hello 번호를 선택 하십시오. 따라서 대부분의 고객 복사본 간단한 1:1 hello 방법에 대해 결정합니다.
+* 탑재되지 않은 경우 SAP 데이터베이스의 데이터베이스 백업을 포함할 수 있는 단일 VHD를 탑재합니다. Hello 백업 후 hello VHD 포함 hello 백업을 비롯 하 여 모든 Vhd를 탑재 해제 하 고 복사 hello 기본 VHD 및 Azure 프리미엄 저장소 계정에 VHD hello 백업을 사용 하 여 hello 합니다. Hello hello 기본 VHD 및 탑재 hello VHD hello 백업 사용 하 여을 기반으로 하는 VM 배포 했습니다. 추가로 만들 이제 VM hello에 대 한 프리미엄 저장소 디스크에 사용 되는 toorestore hello 데이터베이스를 비웁니다. 이 해당 hello DBMS 있습니다 toochange 경로 toohello 데이터 및 로그 파일 hello 복원 프로세스의 일환으로 가정 합니다.
+* 또 다른 원인은 hello 이전 프로세스를 방금 hello 백업 VHD Azure 프리미엄 저장소로 복사한 있는 새로 배포 하 고 설치 하는 VM에 대 한 연결의 변형입니다.
+* 네 번째 가능성 hello toochange hello 수 데이터베이스의 데이터 파일의가 필요할 경우 선택 합니다. 이 경우 내보내기/가져오기를 사용하여 형식이 같은 SAP 시스템 복사를 수행합니다. Azure 프리미엄 저장소 계정에 복사 된 VHD에 내보내기 파일 및 tooa toorun hello 가져오기 프로세스를 사용 하는 VM을 연결 하는 것에 넣어야 합니다. 고객은 데이터 파일의 toodecrease hello 수 하려는 경우에 주로이 가능성을 사용 합니다.
 
 ### <a name="deployment-of-vms-for-sap-in-azure"></a>Azure의 SAP용 VM 배포
-Microsoft Azure는 VM 및 관련 디스크를 배포하기 위한 여러 가지 방법을 제공합니다. 따라서 배포 방법에 따라 VM 준비가 달라질 수 있으므로 차이점을 이해해야 합니다. 일반적으로 다음 챕터에서 설명하는 시나리오를 살펴봅니다.
+Microsoft Azure에서는 여러 가지 방법으로 toodeploy Vm 및 연결 된 디스크가 있습니다. 함으로써가 매우 중요 한 toounderstand hello 차이가 있으므로 hello vm 준비 hello 방식의 배포에 종속 다를 수 있습니다. 일반적으로 다음 장 hello에 설명 된 hello 시나리오로 찾습니다.
 
-#### <a name="deploying-a-vm-from-the-azure-marketplace"></a>Azure 마켓플레이스에서 VM 배포
-Azure 마켓플레이스에서 Microsoft 또는 타사에서 제공한 이미지를 사용할 수 있습니다. Azure에서 VM을 배포한 후 온-프레미스 환경에서와 동일한 지침 및 도구를 사용하여 VM 내부에 SAP 소프트웨어를 설치합니다. Azure VM에 SAP 소프트웨어를 설치할 때는 SAP 설치 미디어를 Azure VHD에 업로드 및 저장하거나 필요한 SAP 설치 미디어를 모두 포함하는 '파일 서버'로 사용할 Azure VM을 만드는 것이 좋습니다.
+#### <a name="deploying-a-vm-from-hello-azure-marketplace"></a>Hello Azure Marketplace에서에서 VM 배포
+Tootake Microsoft 또는 타사 VM hello Azure 마켓플레이스 toodeploy에서 이미지를 제공 합니다. Hello를 수행 하는 Azure에서 VM을 배포한 후 온-프레미스 환경에서 때와 동일한 지침 및 도구 tooinstall hello VM 내부에 SAP 소프트웨어. Hello Azure VM 내에 hello SAP 소프트웨어를 설치 하기 위한 SAP 및 Microsoft tooupload 권장 고 저장 hello SAP 설치 미디어 Azure Vhd 또는 toocreate Azure VM 모든 hello 필요한 SAP 설치 미디어가 포함 된 '파일 서버'에 따라 작동 합니다.
 
 #### <a name="deploying-a-vm-with-a-customer-specific-generalized-image"></a>고객별 범용 이미지를 사용하여 VM 배포
-OS 또는 DBMS 버전에 대한 특정 패치 요구 사항으로 인해 Azure 마켓플레이스에 제공된 이미지가 용도에 맞지 않을 수 있습니다. 따라서 '개인' OS/DBMS VM 이미지를 사용하는 VM을 만들어 이후 여러 번 배포할 수 있습니다. 복제를 위해 이러한 '개인' 이미지를 준비하려면 온-프레미스 VM에서 OS를 일반화해야 합니다. VM을 일반화하는 방법에 대한 자세한 내용은 [배포 가이드][deployment-guide]를 참조하세요.
+패치 요구 사항에 대 한 예정 tooyour OS 또는 DBMS 버전으로 toospecific, 기한 hello Azure Marketplace에서에서 제공 하는 hello 이미지 요구 사항 맞지 않을 수 있습니다. 따라서 이후 여러 번 배포할 수 있는 사용자 고유의 '개인' OS/DBMS VM 이미지를 사용 하는 VM toocreate를 할 수 있습니다. 복제용 '개인' 이미지 tooprepare hello에 운영 체제를 일반화 해야 합니다는 hello 온-프레미스 VM입니다. Toohello를 참조 하십시오 [배포 가이드] [ deployment-guide] 방법에 대 한 자세한 내용은 toogeneralize VM입니다.
 
-온-프레미스 VM(특히 2계층 시스템)에 SAP 콘텐츠를 이미 설치한 경우 Azure VM 배포 후 SAP Software Provisioning Manager에서 지원하는 인스턴스 이름 변경 절차를 통해 SAP 시스템 설정을 적용할 수 있습니다(SAP Note [1619720]). 그렇지 않은 경우 Azure VM 배포 후 나중에 SAP 소프트웨어를 설치할 수 있습니다.
+Hello 배포 hello 인스턴스를 통해 hello Azure VM의 SAP 소프트웨어 구축 hello에서 지원 되는 프로시저 이름 바꾸기 후 hello SAP 시스템 설정을 조정할 수 있는지 (특히 2 계층 시스템) 용 온-프레미스 VM에서 SAP 콘텐츠를 이미 설치한 경우 관리자 (SAP Note [1619720]). 그렇지 않으면 hello Azure VM의 hello 배포 후 나중에 hello SAP 소프트웨어를 설치할 수 있습니다.
 
-SAP 응용 프로그램에서 사용하는 데이터베이스 콘텐츠를 기준으로 SAP 설치를 통해 콘텐츠를 새롭게 생성하거나 DBMS 데이터베이스 백업이 있는 VHD나 DBMS 기능을 통해 Microsoft Azure 저장소에 직접 백업하여 콘텐츠를 Azure로 가져올 수 있습니다. 이 경우 DBMS 데이터 및 로그 파일 온-프레미스를 사용하여 VHD를 준비한 다음 디스크로서 Azure로 가져올 수도 있습니다. 하지만 온-프레미스에서 Azure에 로드되는 DBMS 데이터 전송은 온-프레미스를 프로비전해야 하는 VHD 디스크에 대해 작동합니다.
+Hello SAP 응용 프로그램에서 사용 하는 hello 데이터베이스 내용을 기준으로 SAP 설치를 통해 hello 콘텐츠를 새롭게 생성할 수도 있습니다 또는 DBMS 데이터베이스 백업이 저장 된 VHD를 사용 하 여 또는 hello DBMS toodirectly의 기능을 활용 하 여 Azure에 콘텐츠를 가져올 수 있습니다. Microsoft Azure 저장소로 백업입니다. 이 경우에 DBMS 데이터 hello로 Vhd를 준비 하 고 및 로그 파일 온-프레미스 하 고, 다음 Azure 디스크로 가져올 수 있습니다. 하지만 온-프레미스 tooAzure에서 로드 되는 DBMS 데이터 전송을 hello toobe 온-프레미스를 준비 해야 하는 VHD 디스크를 통해 작동할 것입니다.
 
-#### <a name="moving-a-vm-from-on-premises-to-azure-with-a-non-generalized-disk"></a>일반화되지 않은 디스크를 사용하여 온-프레미스에서 Azure로 VM 이동
-온-프레미스에서 Azure로 특정 SAP 시스템을 이동하려고 합니다(리프트 및 전환). 이 작업은 OS, SAP 이진 파일 및 결과적 DBMS 이진을 포함하는 VHD와 DBMS 데이터와 로그 파일이 있는 VHD를 Azure에 업로드하여 수행할 수 있습니다. 위의 시나리오 2와는 달리 Azure VM에서 호스트 이름, SAP SID 및 SAP 사용자 계정을 온-프레미스 환경에서 구성된 대로 유지합니다. 그러므로 이미지 일반화는 필요하지 않습니다. 이 경우는 SAP 배경의 일부가 온-프레미스에서 실행되고 일부는 Azure에서 실행되는 프레미스 간 시나리오에 주로 적용됩니다.
+#### <a name="moving-a-vm-from-on-premises-tooazure-with-a-non-generalized-disk"></a>일반화 되지 않은 디스크와 온-프레미스 tooAzure에서 VM 이동
+확인할 toomove 온-프레미스 tooAzure (리프트 및 shift)에서 특정 SAP 시스템을 계획합니다. 이 hello hello 운영 체제를 포함 하는 VHD를 업로드 하 여 수행할 수 있습니다, SAP 바이너리 및 결과적 DBMS 바이너리 hello와 Vhd의 hello DBMS tooAzure hello 데이터 및 로그 파일과 함께 hello 합니다. , 위의 2 tooscenario 반대 유지 hello 호스트 이름, SAP SID 및 SAP 사용자 계정은 hello Azure VM에서에서 hello 온-프레미스 환경에서 구성 된 대로 합니다. 따라서 hello 이미지를 일반화 필요는 없습니다. 이 경우 SAP 지형 hello의 일부가 실행 되는 위치 부품 온-프레미스 및 Azure에서 크로스-프레미스 시나리오에 주로 적용 됩니다.
 
 ## <a name="871dfc27-e509-4222-9370-ab1de77021c3"></a>Azure VM을 사용한 고가용성 및 재해 복구
-Azure는 SAP 및 DBMS 배포에 사용할 다양한 구성 요소에 적용할 수 있는 다음과 같은 HA(고가용성) 및 DR(재해 복구) 기능을 제공합니다.
+Azure에서는 SAP 및 DBMS 배포용 사용 하면 toodifferent 구성 요소에 적용 되는 HA (고가용성) 및 DR (재해 복구) 기능을 수행 하는 hello
 
 ### <a name="vms-deployed-on-azure-nodes"></a>Azure 노드에 배포된 VM
-Azure 플랫폼은 배포된 VM을 위한 실시간 마이그레이션 등의 기능을 제공하지 않습니다. 즉, VM이 배포된 서버 클러스터에 유지 관리가 필요한 경우 VM을 중지했다가 다시 시작해야 합니다. Azure에서의 유지 관리는 서버 클러스터 내의 업그레이드 도메인을 통해 수행됩니다. 한 번에 하나의 업그레이드 도메인만 유지 관리됩니다. 이렇게 다시 시작하는 동안 VM이 종료될 때 서비스가 중단되었다가 유지 관리가 수행되고 VM이 다시 시작됩니다. 그러나 대부분의 DBMS 공급업체는 주 노드를 사용할 수 없는 경우 다른 노드에서 DBMS 서비스를 신속하게 다시 시작하는 고가용성 및 재해 복구 기능을 제공합니다. Azure 플랫폼에서는 VM, 저장소 및 기타 Azure 서비스를 업그레이드 도메인에 분산하는 기능을 제공하여 계획된 유지 관리를 수행합니다. 그렇지 않으면 인프라 장애가 소수의 VM 또는 서비스에만 영향을 줍니다.  신중하게 계획할 경우 온-프레미스 인프라와 비슷한 수준의 가용성을 얻을 수 있습니다.
+hello Azure 플랫폼은 배포 된 Vm에 대 한 실시간 마이그레이션과 같은 기능을 제공 하지 않습니다. 즉, 한 VM을 배포 하는 서버 클러스터에 필요한 유지 관리 없는, 경우 hello VM tooget 중지 되었다가 다시 시작 합니다. Azure에서의 유지 관리는 서버 클러스터 내의 업그레이드 도메인을 통해 수행됩니다. 한 번에 하나의 업그레이드 도메인만 유지 관리됩니다. 이러한 다시 시작 하는 동안 hello VM을 종료 하는 동안 서비스는 중단, 유지 관리가 수행 되 고 VM 다시 시작 합니다. 그러나 대부분의 DBMS 공급 업체는 hello 주 노드를 사용할 수 없는 경우 다른 노드에서 DBMS 서비스 hello를 재시작 신속 하 게 될 고가용성 및 재해 복구 기능을 제공 합니다. hello Azure 플랫폼 제안 기능 toodistribute Vm, 저장소 및 기타 Azure 서비스에서 유지 관리 또는 인프라 오류가 계획 된 업그레이드 도메인 tooensure만 영향을 미치도록 Vm 또는 서비스의 작은 하위 집합입니다.  신중 하 게 계획 하는 사용 가능한 tooachieve 가용성 수준 비교 가능한 tooon 온-프레미스 인프라 집니다.
 
-Microsoft Azure 가용성 집합은 VM 및 기타 서비스를 클러스터 내 다른 장애 및 업그레이드 도메인에 배포하여 한 번에 한 노드만 종료되도록 하는 VM 또는 서비스의 논리적 그룹입니다(자세한 내용은 [이 문서][virtual-machines-manage-availability] 참조).
+Microsoft Azure 가용성 집합은 Vm의 논리적 그룹 또는 Vm을 보장 하는 서비스 및 기타 서비스 되는 분산된 toodifferent 오류 도메인과 업그레이드 도메인 클러스터 내에서 됩니다 한 노드가 종료 한 시점에서 ( 읽기시간[이] [ virtual-machines-manage-availability] 을 참조 하십시오).
 
-VM을 롤아웃하려는 경우 다음과 같이 구성해야 합니다.
+다음 그림과 같이 Vm을 롤아웃하는 경우 목적에 맞게 구성 toobe 필요:
 
 ![DBMS HA 구성에 대한 가용성 집합 정의][dbms-guide-figure-200]
 
-DBMS 배포의 고가용성 구성을 생성하려는 경우(사용된 개별 DBMS HA 기능과 별개로) DBMS VM에 대해 다음을 수행해야 합니다.
+Toocreate 항상 사용 가능한 독립 hello 개별 DBMS HA 기능 사용의 DBMS 배포 구성을 원하는 경우에 hello DBMS Vm에 필요 합니다.
 
-* 동일한 Azure Virtual Network에 VM 추가(<https://azure.microsoft.com/documentation/services/virtual-network/>)
-* HA 구성의 VM은 동일한 서브넷에 있어야 합니다. 클라우드 전용 배포에서 서로 다른 서브넷 간의 이름 확인은 불가능하며 IP 확인만 가능합니다. 프레미스 간 배포에 대한 Express 경로 또는 사이트 간 연결을 사용하여 하나 이상의 서브넷이 있는 네트워크가 이미 구성되어 있습니다. 이름 확인은 온-프레미스 AD 정책 및 네트워크 인프라에 따라 수행됩니다.
+* Hello Vm toohello 추가 동일한 Azure 가상 네트워크 (<https://azure.microsoft.com/documentation/services/virtual-network/>)
+* hello hello HA 구성의 Vm hello에 속해 있어야 동일한 서브넷입니다. 클라우드 전용 배포에서 hello 서로 다른 서브넷 간의 이름 확인 불가능, IP 확인만 작동 합니다. 프레미스 간 배포에 대한 Express 경로 또는 사이트 간 연결을 사용하여 하나 이상의 서브넷이 있는 네트워크가 이미 구성되어 있습니다. 이름 확인은 수행 toohello에 따라 온-프레미스 AD 정책 및 네트워크 인프라입니다.
 
 [comment]: <> (ARM에서 여전히 true인 경우 MSSedusch TODO 테스트)
 
 #### <a name="ip-addresses"></a>IP 주소
-복구 가능한 방법으로 HA 구성을 위한 VM을 설정하는 것이 좋습니다. IP 주소를 사용하여 HA 구성 내에서 HA 파트너를 확인하는 것은 Azure에서 고정 IP 주소를 사용하지 않는 한 안정적이지 않습니다. Azure에는 두 가지 "종료" 개념이 있습니다.
+HA 구성 위한 toosetup hello Vm 복원이 쉬운 방식으로 매우 권장 됩니다. Hello HA 구성 내에서 IP 주소 tooaddress hello HA 파트너에 의존 하지 않는 Azure에서 신뢰할 수 있는 고정 IP 주소 사용 됩니다. Azure에는 두 가지 "종료" 개념이 있습니다.
 
-* Azure 포털 또는 Azure PowerShell cmdlet Stop-AzureRmVM을 통한 종료: 이 경우 가상 컴퓨터가 종료되고 할당이 취소됩니다. Azure 계정에 더 이상 이 VM에 대해 청구되지 않으므로 사용한 저장소에 대해서만 비용이 발생합니다. 그러나 네트워크 인터페이스의 개인 IP 주소가 고정이 아닌 경우 IP 주소가 해제되고 네트워크 인터페이스가 VM 다시 시작 후 다시 할당된 이전 IP 주소를 가져온다는 것을 보장할 수 없습니다. Azure 포털을 통해 또는 Stop-AzureRmVM을 호출하여 종료를 수행하면 자동으로 할당이 취소됩니다. 컴퓨터 할당을 취소하지 않으려면 Stop-AzureRmVM -StayProvisioned을 사용합니다.
-* OS 수준에서 VM을 종료하는 경우 VM이 종료되고 할당이 취소되지 않습니다. 그러나 이 경우 종료 후에도 Azure 계정에 계속 VM에 대해 청구됩니다. 이러한 경우 중지된 VM에 대한 IP 주소 할당은 그대로 유지됩니다. VM을 종료하면 할당 취소가 자동으로 실행되지 않습니다.
+* Azure 포털 또는 Azure PowerShell cmdlet 중지 AzureRmVM을 통한 종료: 여기 hello 가상 컴퓨터 종료 되 고 할당을 취소 합니다. Azure 계정은 사용 하는 hello 저장소 부과할 hello만 금액이 청구 되므로 더 이상이 VM에 대 한 청구 됩니다. 그러나 hello hello 네트워크 인터페이스의 개인 IP 주소를 고정 한 경우 hello IP 주소가 해제 되 고 해당 hello 네트워크 인터페이스 hello VM의 다시 시작 후에 다시 할당 된 hello 이전 IP 주소를 가져옵니다는 보장 되지 않습니다. Hello 수행 hello Azure 포털을 통한 종료 또는 중지 AzureRmVM를 호출 하 여 자동으로 할당 취소 합니다. Toodeallocat hello 컴퓨터 사용 중지 AzureRmVM StayProvisioned 원하지 않는 경우
+* Hello OS 수준에서 VM 종료 하면 VM hello 가져옵니다 종료 하 고 할당이 취소 되지는 않습니다. 그러나이 경우 Azure 계정 계속 청구 됩니다 종료 된다는 hello 사실에 입각 불구 하 고 VM hello에 대 한 합니다. 이러한 경우 hello hello IP 주소 tooa의 할당 중지 VM 그대로 유지 됩니다. Hello 종료 vm 내에서 VM은 자동으로 강제 하지 할당 취소 합니다.
 
-프레미스 간 시나리오에서 DHCP 설정의 온-프레미스 정책이 다른 경우에도 기본적으로 종료 및 할당 취소는 VM에서의 IP 주소 할당 취소를 의미합니다.
+크로스-프레미스 시나리오에 대해서도 기본적으로 종료 및 할당 취소는 할당 취소를 의미의 hello hello VM에서에서 IP 주소 DHCP 설정의 온-프레미스 정책이 서로 다른 경우에 합니다.
 
-* 예외는 [여기][virtual-networks-reserved-private-ip]서 설명한 대로 고정 IP 주소를 네트워크 인터페이스에 할당하는 경우입니다.
-* 이러한 경우 네트워크 인터페이스가 삭제되지 않는 한 IP 주소가 고정 상태로 유지됩니다.
+* hello 예외는 고정 IP 주소 tooa 네트워크 인터페이스를 할당 한 경우 설명 [여기][virtual-networks-reserved-private-ip]합니다.
+* 이러한 경우 hello IP 주소는 유지 됩니다 고정 hello 네트워크 인터페이스는 삭제 되지 않습니다.
 
 > [!IMPORTANT]
-> 전체 배포를 단순하고 관리하기 편하게 유지하려면 Azure 내의 DBMS HA 또는 DR 구성에서 여러 관련 VM 간에 작동하는 이름 확인 방법으로 VM 파트너를 설정하는 것이 좋습니다.
+> 순서 tookeep hello 전체 배포에서 간단 하 고 관리할 수 있는 권장 toosetup 명확한 hello Vm hello 관련 된 여러 Vm 간에 이름 확인이 방식으로 Azure 내에서 DBMS HA 또는 DR 구성의 파트너 hello 합니다.
 >
 >
 
 ## <a name="deployment-of-host-monitoring"></a>호스트 모니터링 배포
-Azure 가상 컴퓨터에서 SAP 응용 프로그램을 생산적으로 사용하려면 Azure 가상 컴퓨터를 실행 중인 물리적 호스트에서 호스트 모니터링 데이터를 가져오는 기능이 SAP에 필요합니다. SAPOSCOL 및 SAP HostAgent에서 이 기능을 사용하려면 특정 SAP HostAgent 패치 수준이 필요합니다. 정확한 패치 수준은 SAP Note [1409604]에 설명되어 있습니다.
+Azure 가상 컴퓨터의 SAP 응용 프로그램의 생산적인 사용에 대 한 SAP hello 기능 tooget 호스트 hello Azure 가상 컴퓨터를 실행 하는 hello 물리적 호스트에서 데이터를 모니터링 해야 합니다. SAPOSCOL 및 SAP HostAgent에서 이 기능을 사용하려면 특정 SAP HostAgent 패치 수준이 필요합니다. hello 정확한 패치 수준은 SAP Note에서 설명 [1409604]합니다.
 
-SAPOSCOL 및 SAPHostAgent에 호스트 데이터를 제공하는 구성 요소의 배포 및 이러한 구성 요소의 수명 주기 관리에 대한 자세한 내용은 [배포 가이드][deployment-guide]를 참조하세요.
+호스트 데이터 tooSAPOSCOL 제공 하는 구성의 배포 및 해당 구성 요소의 SAPHostAgent와 hello 수명 주기 관리에 대 한 hello 내용은 toohello를 참조 하십시오 [배포 가이드][deployment-guide]
 
-## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>Microsoft SQL Server에 대한 고유 정보
+## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>구체적인 tooMicrosoft SQL Server
 ### <a name="sql-server-iaas"></a>SQL Server IaaS
-Microsoft Azure부터 Windows Server 플랫폼에 빌드된 기존 SQL Server 응용 프로그램을 쉽게 Azure 가상 컴퓨터로 마이그레이션할 수 있습니다. 가상 컴퓨터에서 SQL Server를 사용하면 이러한 응용 프로그램을 Microsoft Azure로 쉽게 마이그레이션하여 엔터프라이즈 수준의 응용 프로그램에 대한 배포, 관리 및 유지 관리의 총 소유 비용을 줄일 수 있습니다. Azure 가상 컴퓨터에서 SQL Server를 사용하면 관리자와 개발자가 온-프레미스와 동일한 개발 및 관리 도구를 사용할 수 있습니다.
+Microsoft Azure부터 Windows Server 플랫폼 tooAzure 가상 컴퓨터에서 빌드된 기존 SQL Server 응용 프로그램 쉽게 마이그레이션할 수 있습니다. 가상 컴퓨터에서 SQL Server에는 이러한 응용 프로그램 tooMicrosoft Azure로 쉽게 마이그레이션하여 여 있습니다 tooreduce hello 총 소유 비용을의 배포, 관리 및 유지 관리 엔터프라이즈 범위의 응용 수 있습니다. SQL Server는 Azure 가상 컴퓨터에서 사용 관리자와 개발자가 hello 동일한 개발 및 관리 도구를 사용할 수 있는 온-프레미스를 계속 사용할 수 있습니다.
 
 > [!IMPORTANT]
-> 여기에서는 Microsoft Azure Platform의 PaaS(Platform as a Service)인 Microsoft Azure SQL 데이터베이스에 대해서는 다루지 않습니다. 이 문서에서는 Azure의 IaaS(서비스 제공 인프라)를 활용하여 Azure 가상 컴퓨터에서 온-프레미스 배포에 대해 알려진 SQL Server 제품을 실행하는 방법에 대해 설명합니다. 이러한 두 환경에서의 데이터베이스 기능은 다르므로 서로 혼합하지 않아야 합니다. 참고 항목: <https://azure.microsoft.com/services/sql-database/>
+> Microsoft Azure SQL 데이터베이스의 hello Microsoft Azure 플랫폼 서비스 제품으로는 플랫폼에 논의 하지 note 하십시오. 이 문서에 대 한 hello 설명은 온-프레미스 배포에서 Azure 가상 컴퓨터를 활용 hello Azure의 서비스 기능으로는 인프라에 대 한 알려진 hello SQL Server 제품을 실행 하는 방법에 대 한 않습니다. 이러한 두 환경에서의 데이터베이스 기능은 다르므로 서로 혼합하지 않아야 합니다. 참고 항목: <https://azure.microsoft.com/services/sql-database/>
 >
 >
 
-계속하기 전에 [이 문서][virtual-machines-sql-server-infrastructure-services]를 검토하는 것이 좋습니다.
+Tooreview이 가장 좋습니다 [이] [ virtual-machines-sql-server-infrastructure-services] 계속 하기 전에 문서입니다.
 
-다음 섹션에서는 위 링크에 있는 설명서의 일부를 집계 및 설명합니다. SAP에 대한 정보도 언급되며 몇 가지 개념도 보다 자세히 설명합니다. 그러나 SQL Server 관련 문서를 읽기 전에 먼저 위의 문서를 통해 작업하는 것이 좋습니다.
+Hello에 부분에서 위의 hello 링크 hello 설명서의 다음 섹션에서는 데이터가 집계 되며 언급 합니다. SAP에 대한 정보도 언급되며 몇 가지 개념도 보다 자세히 설명합니다. 그러나 hello SQL Server 관련 문서를 읽기 전에 먼저 위에 hello 설명서를 통해 toowork를 좋습니다 됩니다.
 
 계속하기 전에 다음과 같은 IaaS의 SQL Server 관련 정보를 참조하세요.
 
 * **가상 컴퓨터 SLA**: Azure에서 실행 중인 가상 컴퓨터용 SLA는 <https://azure.microsoft.com/support/legal/sla/>에 있습니다.  
-* **SQL 버전 지원**: SAP 고객의 경우 Microsoft Azure 가상 컴퓨터에서 SQL Server 2008 R2 이상 버전을 지원합니다. 이전 버전은 지원되지 않습니다. 자세한 내용은 이 일반 [지원 설명](https://support.microsoft.com/kb/956893) 을 참조하세요. 일반적으로 SQL Server 2008은 Microsoft에서도 지원됩니다. 그러나 SQL Server 2008 R2에 SAP용 중요 기능이 도입되어 있으므로 SQL Server 2008 R2 이상 릴리스를 사용해야 합니다. SQL Server 2012 및 2014에서는 IaaS 시나리오(Azure 저장소에 대한 직접 백업 등)와 더 밀접하게 통합되어 확장되었습니다. 따라서 이 문서는 SQL Server 2012 및 2014와 Azure용 최신 패치 수준으로 제한됩니다.
-* **SQL 기능 지원**: 대부분의 SQL Server 기능이 Microsoft Azure Virtual Machines에서 지원되지만 몇 가지 예외가 있습니다. **공유 디스크를 사용하는 SQL Server 장애 조치(failover) 클러스터링은 지원되지 않습니다**.  데이터베이스 미러링, AlwaysOn 가용성 그룹, 복제, 로그 전달 및 Service Broker와 같은 분산 기술은 단일 Azure 지역 내에서 지원됩니다. SQL Server AlwaysOn은 여기(<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>)에 설명된 대로 다른 Azure 지역 간 지원됩니다.  자세한 내용은 [지원 설명](https://support.microsoft.com/kb/956893) 을 참조하세요. AlwaysOn 구성을 배포하는 방법에 대한 예제는 [이 문서][virtual-machines-workload-template-sql-alwayson]에 보여 줍니다. 또한 [여기][virtual-machines-sql-server-infrastructure-services]서 설명하는 모범 사례도 참조하세요.
-* **SQL 성능**: Microsoft Azure에서 호스트되는 가상 컴퓨터는 다른 공용 클라우드 가상화 서비스보다 훨씬 뛰어난 성능을 제공하지만 개별 결과는 다를 수 있습니다. [이 문서][virtual-machines-sql-server-performance-best-practices]를 참조하세요.
-* **Azure 마켓플레이스에서 이미지 사용**: 새 Microsoft Azure VM을 배포하는 가장 빠른 방법은 Azure 마켓플레이스의 이미지를 사용하는 것입니다. Azure 마켓플레이스에는 SQL Server를 포함한 이미지가 있습니다. SQL Server가 이미 설치된 이미지는 SAP NetWeaver 응용 프로그램에 즉시 사용할 수 없습니다. 그 이유는 이러한 이미지 내에 SAP NetWeaver 시스템에 필요한 데이터 정렬이 아닌 기본 SQL Server 데이터 정렬이 설치되어 있기 때문입니다. 이러한 이미지를 사용하려면 [Microsoft Azure Marketplace에서 SQL Server 이미지 사용][dbms-guide-5.6] 챕터에서 설명하는 단계를 확인하세요.
-* 자세한 내용은 [가격 책정 정보](https://azure.microsoft.com/pricing/) 를 확인하세요. [SQL Server 2012 라이선스 가이드](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf) 및 [SQL Server 2014 라이선스 가이드](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf)도 중요한 리소스입니다.
+* **SQL 버전 지원**: SAP 고객의 경우 Microsoft Azure 가상 컴퓨터에서 SQL Server 2008 R2 이상 버전을 지원합니다. 이전 버전은 지원되지 않습니다. 자세한 내용은 이 일반 [지원 설명](https://support.microsoft.com/kb/956893) 을 참조하세요. 일반적으로 SQL Server 2008은 Microsoft에서도 지원됩니다. 그러나 SQL Server 2008 r 2와 함께 도입 된 SAP 용 toosignificant 기능, 인해 SQL Server 2008 r 2는 hello SAP 용 최소 릴리스입니다. SQL Server 2012 및 2014 hello IaaS 시나리오 (예: Azure 저장소로 직접 백업)를 밀접 하 게 통합 된 확장 염두에서에 둬야 합니다. 따라서 제한할이 용지 tooSQL Server 2012 및 2014의 최신 패치 수준으로 Azure에 대 한 합니다.
+* **SQL 기능 지원**: 대부분의 SQL Server 기능이 Microsoft Azure Virtual Machines에서 지원되지만 몇 가지 예외가 있습니다. **공유 디스크를 사용하는 SQL Server 장애 조치(failover) 클러스터링은 지원되지 않습니다**.  데이터베이스 미러링, AlwaysOn 가용성 그룹, 복제, 로그 전달 및 Service Broker와 같은 분산 기술은 단일 Azure 지역 내에서 지원됩니다. SQL Server AlwaysOn은 여기(<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>)에 설명된 대로 다른 Azure 지역 간 지원됩니다.  검토 hello [지원 정책](https://support.microsoft.com/kb/956893) 내용을 확인 합니다. Toodeploy AlwaysOn 구성에 표시 방법의 예로 [이] [ virtual-machines-workload-template-sql-alwayson] 문서. 또한 hello 문서화 하는 모범 사례를 확인해 [여기][virtual-machines-sql-server-infrastructure-services]
+* **SQL 성능**: 확신 Microsoft Azure 호스트 된 가상 컴퓨터 성능이 매우 비교 tooother 공용 클라우드 가상화 서비스 하지만 개별 결과에 따라 달라질 수 있습니다. [이 문서][virtual-machines-sql-server-performance-best-practices]를 참조하세요.
+* **이미지를 사용 하 여 Azure 마켓플레이스의**: hello 가장 빠른 방법은 toodeploy 새 Microsoft Azure VM은 toouse hello Azure Marketplace에서에서 이미지입니다. SQL Server를 포함 하는 hello Azure Marketplace에서에서 이미지 있습니다. SQL Server 이미 설치 되어 있는 hello 이미지는 SAP NetWeaver 응용 프로그램에 대 한 즉시 사용할 수 없습니다. hello 이유는 이러한 이미지 및 SAP NetWeaver 시스템에 필요한 hello 데이터 정렬 하지 내 hello 기본 SQL Server 데이터 정렬에 설치 되며입니다. 이러한 이미지 toouse 순서를 확인 하십시오. 장에서 설명 하는 hello 단계 [hello Microsoft Azure Marketplace에서 이미지 SQL Server를 사용 하 여][dbms-guide-5.6]합니다.
+* 자세한 내용은 [가격 책정 정보](https://azure.microsoft.com/pricing/) 를 확인하세요. hello [SQL Server 2012 라이선스 가이드](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf) 및 [SQL Server 2014 라이선스 가이드](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf) 중요 한 리소스 수도 있습니다.
 
 ### <a name="sql-server-configuration-guidelines-for-sap-related-sql-server-installations-in-azure-vms"></a>Azure VM의 SAP 관련 SQL Server 설치에 대한 SQL Server 구성 지침
 #### <a name="recommendations-on-vmvhd-structure-for-sap-related-sql-server-deployments"></a>SAP 관련 SQL Server 배포용 VM/VHD 구조에 대한 권장 사항
-일반적인 설명에 따라 SQL Server 실행 파일을 VM의 기본 VHD(드라이브 C:\)에 있는 시스템 드라이브에 배치 또는 설치해야 합니다.  일반적으로 대부분의 SQL Server 시스템 데이터베이스는 SAP NetWeaver 워크로드에서 높은 수준으로 사용되지 않습니다. 따라서 SQL Server의 시스템 데이터베이스(master, msdb 및 model)는 C:\ 드라이브에 남아 있을 수 있습니다. 단, tempdb는 예외적으로 일부 SAP ERP 및 모든 BW 워크로드에서 원본 VM보다 더 많은 데이터 볼륨 또는 I/O 작업 볼륨을 필요로 할 수 있습니다. 이러한 시스템의 경우 다음 단계를 수행해야 합니다.
+Hello 일반적인 설명에 따라 SQL Server 실행 파일을 찾을, hello VM의 기본 VHD의 hello 시스템 드라이브에 설치 (c: 드라이브\)합니다.  일반적으로 대부분의 hello SQL Server 시스템 데이터베이스는 SAP NetWeaver 작업에 의해 높은 수준에서 사용 되지 않습니다. 따라서 hello 시스템 데이터베이스 (master, msdb 및 model) SQL Server의 hello C:\ 드라이브에 남아 있을 수 있습니다. 예외일 수 tempdb hello 경우 일부 SAP ERP 및 모든 BW 작업의 더 큰 데이터 볼륨 또는 hello에 맞지 않는 I/O 작업 볼륨이 필요할 수 있는 원본 VM입니다. 이러한 시스템에 대 한 단계를 수행 하는 hello는 수행 해야 합니다.
 
-* 주 tempdb 데이터 파일을 SAP 데이터베이스의 주 데이터 파일과 같은 논리 드라이브로 이동합니다.
-* 추가 tempdb 데이터 파일을 SAP 사용자 데이터베이스의 데이터 파일을 포함하는 다른 논리 드라이브에 각각 추가합니다.
-* tempdb 로그 파일을 사용자 데이터베이스의 로그 파일을 포함하는 논리 드라이브에 추가합니다.
-* **로컬 SSD를 사용하는 VM 형식의 경우에만** 계산 노드에서 tempdb 데이터 및 로그 파일을 D:\ 드라이브에 배치할 수 있습니다. 그러나 여러 tempdb 데이터 파일을 사용하도록 권장할 수 있습니다. D:\ 드라이브 볼륨은 VM 유형에 따라 다릅니다.
+* Hello 주 tempdb 데이터 파일 toohello 이동 hello SAP 데이터베이스의 hello 주 데이터 파일과 같은 논리 드라이브입니다.
+* Hello SAP 사용자 데이터베이스의 데이터 파일을 포함 하는 다른 논리 드라이브의 hello tooeach 하는 추가 tempdb 데이터 파일을 추가 합니다.
+* Hello tempdb 로그 파일 toohello 포함 된 논리 드라이브 hello 사용자 데이터베이스 로그 파일을 추가 합니다.
+* **로컬 Ssd를 사용 하 여 사용 하는 VM 유형에** hello 계산 노드 tempdb 데이터 및 로그 파일 hello D:\ 드라이브에 저장할 수 있습니다. 그럼에도 불구 하 고는 것이 권장 toouse tempdb 데이터 파일이 여러 개 있습니다. D:\ 드라이브 볼륨을 다른 주의 기반 hello VM 유형으로 해야 합니다.
 
-이러한 구성을 사용하면 tempdb에서 시스템 드라이브에서 제공할 수 있는 것보다 더 많은 공간을 사용할 수 있습니다. 적절한 tempdb 크기를 확인하려면 온-프레미스에서 실행 중인 기존 시스템에서 tempdb 크기를 확인합니다. 또한 이러한 구성은 시스템 드라이브에서 tempdb에 대해 제공할 수 있는 것보다 더 많은 IOPS 수를 허용합니다. 다시 말해, 온-프레미스에서 실행 중인 시스템은 tempdb에 대한 I/O 워크로드를 모니터링하여 tempdb에 필요한 IOPS 수를 파생할 수 있습니다.
+이러한 구성은 tempdb tooconsume hello 시스템 드라이브는 수 tooprovide 보다 더 많은 공간을 사용 합니다. 순서 toodetermine hello 적절 한 tempdb 크기에서 온-프레미스를 실행 중인 기존 시스템에서 hello tempdb 크기를 확인할 수 하나. 또한 이러한 구성을 hello 시스템 드라이브로 제공할 수 없는 tempdb에 대 한 IOPS 값을 사용 합니다. 다시 온-프레미스를 실행 중인 시스템 toosee tempdb에서 예상한 하는 hello IOPS 값을 파생 시킬 수 있습니다를 tempdb에 대 한 사용된 toomonitor I/O 작업 수 있습니다.
 
-SQL Server와 SAP 데이터베이스를 실행하고 tempdb 데이터 및 tempdb 로그 파일이 D:\ 드라이브에 배치된 VM 구성은 다음과 같습니다.
+VM 구성을 SAP 데이터베이스와 SQL Server를 실행 하 고 hello D:\ 드라이브에 tempdb 데이터 및 tempdb 로그 파일 위치 같습니다.
 
 ![SAP용 Azure IaaS VM의 참조 구성][dbms-guide-figure-300]
 
-D:\ 드라이브의 크기는 VM 유형에 따라 달라집니다. D:\ 드라이브가 너무 작은 경우 tempdb 크기 요구 사항에 따라 tempdb 데이터 및 로그 파일을 SAP 데이터베이스 데이터 및 로그 파일에 강제로 연결해야 할 수 있습니다.
+해당 hello D:\ 드라이브에 hello VM 유형에 종속 다양 한 크기에 주의 합니다. Tempdb의 hello 크기 요구 사항을에 종속 될 수도 있습니다 강제 toopair tempdb 데이터 및 hello로 로그 파일 SAP 데이터베이스 데이터 및 로그 파일 D:\ 드라이브를 너무 작은 경우에 합니다.
 
-#### <a name="formatting-the-vhds"></a>VHD 형식 설정
-SQL Server의 경우 SQL Server 서버 데이터 및 로그 파일을 포함하는 VHD의 NTFS 블록 크기는 64K여야 합니다. D:\ 드라이브의 형식을 설정할 필요가 없습니다. 이 드라이브는 미리 포맷되어 있습니다.
+#### <a name="formatting-hello-vhds"></a>Hello Vhd 서식 지정
+SQL Server hello SQL Server 데이터 및 로그에 포함 된 Vhd의 NTFS 블록 크기에 대 한 파일 64k 있어야 합니다. 필요 tooformat hello D:\ 드라이브 있습니다. 이 드라이브는 미리 포맷되어 있습니다.
 
-데이터베이스를 복원 또는 생성해도 파일 콘텐츠를 비워 데이터 파일이 초기화되지 않도록 하려면 SQL Server 서비스가 실행 중인 사용자 컨텍스트에 특정 사용 권한이 있어야 합니다. 일반적으로 Windows 관리자 그룹의 사용자에게는 이러한 권한이 있습니다. SQL Server 서비스가 Windows 관리자가 아닌 사용자의 사용자 컨텍스트에서 실행되는 경우 해당 사용자에게 '볼륨 유지 관리 작업 수행' 사용자 권한을 할당해야 합니다.  자세한 내용은 Microsoft 기술 자료 문서 <https://support.microsoft.com/kb/2574695>를 참조하세요.
+Hello 복원 작업이 나 데이터베이스 생성 초기화 하지 hello 데이터 파일의 hello 파일 hello 콘텐츠 비우기를 통해, 있어야 하는지 순서 toomake hello 사용자 컨텍스트 hello SQL Server 서비스 실행 되 고 있는지에 특정 권한을 있습니다. 일반적으로 hello Windows 관리자 그룹의 사용자가 이러한 권한이 있습니다. Windows 관리자가 아닌 사용자의 hello 사용자 컨텍스트에서 hello SQL Server 서비스를 실행 하면 해당 사용자 hello '볼륨 유지 관리 작업을 수행' 사용자 권한을 tooassign 할 수 있습니다.  이 Microsoft 기술 자료 문서 hello 세부 사항을 볼: <https://support.microsoft.com/kb/2574695>
 
 #### <a name="impact-of-database-compression"></a>데이터베이스 압축의 영향
-I/O 대역폭이 제한 요인이 될 수 있는 구성에서 IOPS를 줄여 Azure와 같이 IaaS 시나리오에서 실행할 수 있는 워크로드를 확장할 수 있습니다. 그러므로 아직 수행하지 않은 경우 기존 SAP 데이터베이스를 Azure에 업로드하기 전에 SQL Server 페이지 압축을 적용하는 것이 좋습니다.
+I/O 대역폭이 제한 요인으로 작용할 수 있는 구성에서를 IOPS를 줄이는 모든 수단이 Azure와 같은 IaaS 시나리오에서 실행할 수 있는 toostretch hello 작업 부하를 이해할 수 있습니다. 따라서 수행 하지 않은 경우 SQL Server PAGE 압축을 적용 좋습니다 SAP 및 Microsoft 둘 다로 tooAzure 데이터베이스는 기존 SAP를 업로드 하기 전에.
 
-Azure에 업로드하기 전에 데이터베이스 압축을 수행하는 이유는 두 가지입니다.
+tooAzure 업로드 하기 전에 hello 권장 tooperform 데이터베이스 압축은 두 가지 이유에서 제공 됩니다.
 
-* 업로드할 데이터의 양이 적어집니다.
-* 더 향상된 CPU가 있는 강력한 하드웨어 또는 더 높은 I/O 대역폭이나 낮은 I/O 대기 시간의 온-프레미스를 사용할 경우 압축 실행 시간이 짧아집니다.
-* 데이터베이스 크기가 작을수록 디스크 할당 비용이 줄어들 수 있습니다.
+* 업로드 된 데이터 toobe hello 양을 낮습니다.
+* hello hello 압축 실행 기간 동안 더 많은 Cpu 또는 I/O 대역폭이 더 높거나 이하의 I/O 대기 시간 온-프레미스 보다 강력한 하드웨어 사용할 수 있다고 가정 하면 짧습니다.
+* 데이터베이스 크기가 작은 디스크 할당에 대 한 tooless 비용이 발생할 수 있습니다.
 
-데이터베이스 압축은 Azure 가상 컴퓨터에서도 온-프레미스에서와 마찬가지로 잘 작동합니다. 기존 SAP SQL Server 데이터베이스 압축 방법에 대한 자세한 내용은 <https://blogs.msdn.com/b/saponsqlserver/archive/2010/10/08/compressing-an-sap-database-using-report-msscompress.aspx>를 참조하세요.
+데이터베이스 압축은 Azure 가상 컴퓨터에서도 온-프레미스에서와 마찬가지로 잘 작동합니다. 에 대 한 자세한 내용은 어떻게 toocompress 기존 SAP SQL Server 데이터베이스 확인 하십시오: <https://blogs.msdn.com/b/saponsqlserver/archive/2010/10/08/compressing-an-sap-database-using-report-msscompress.aspx>
 
 ### <a name="sql-server-2014--storing-database-files-directly-on-azure-blog-storage"></a>SQL Server 2014 - Azure 블로그 저장소에 데이터베이스 파일 직접 저장
-SQL Server 2014에서는 VHD '래퍼' 없이 Azure Blob 저장소에 직접 데이터베이스 파일을 저장할 수 있습니다. 특히 표준 Azure 저장소 또는 더 작은 VM 유형을 사용할 경우 일부 더 작은 VM 유형에 탑재할 수 있는 VHD 수를 제한하여 IOPS 제한을 극복할 수 있습니다. 이 방법은 사용자 데이터베이스에는 적용되지만 SQL Server의 시스템 데이터베이스에는 사용할 수 없습니다. SQL Server의 데이터 및 로그 파일에도 사용할 수 있습니다. VHD로 '래핑'하지 않고 이 방법으로 SAP SQL Server 데이터베이스를 배포하려는 경우 다음 사항에 유의하세요.
+SQL Server 2014 vhd 주위에 ' 래퍼' hello 없이 Azure Blob 저장소에서 직접 hello 가능성 toostore 데이터베이스 파일을 엽니다. 특히 표준 Azure 저장소 서비스 또는 더 작은 VM 형식을 사용 하는이 통해 시나리오 탑재 된 toosome 더 작은 VM 유형이 될 수 있는 Vhd 수가 제한에 의해 적용 하는 IOPS의 hello 제한을 해결할 수 있습니다. 이 방법은 사용자 데이터베이스에는 적용되지만 SQL Server의 시스템 데이터베이스에는 사용할 수 없습니다. SQL Server의 데이터 및 로그 파일에도 사용할 수 있습니다. SAP SQL Server 데이터베이스 대신 이러한 방식으로 toodeploy 원하는 경우 '묶어서' Vhd에 명심 하십시오 hello 다음:
 
-* 사용된 저장소 계정이 SQL Server가 실행 중인 VM을 배포하는 데 사용된 것과 동일한 Azure 지역에 있어야 합니다.
-* 앞 부분에서 설명한 여러 Azure 저장소 계정에 VHD 분산과 관련된 고려 사항이 이 배포 방법에도 적용됩니다. Azure Storage 계정의 제한에 대한 I/O 작업 수를 의미합니다.
+* 사용 된 저장소 계정 요구 toobe hello hello 사용 되는 toodeploy hello SQL Server VM에서 실행 되는 것 처럼 동일한 Azure 지역 hello 합니다.
+* 배포에도이 방법에 대 한 통해 서로 다른 Azure 저장소 계정에 대 한 예정 toodistribute Vhd의 앞부분에 나열 된 고려 사항을 적용 합니다. 의미 hello hello 제한의 hello Azure 저장소 계정에 대해 I/O 작업 수입니다.
 
 [comment]: <> (MSSedusch TODO 하지만 저장소 대역폭이 아닌 네트워크 대역폭을 사용하지 않나요?)
 
 이 배포 유형에 대한 자세한 내용은 <https://msdn.microsoft.com/library/dn385720.aspx>를 참조하세요.
 
-SQL Server 데이터 파일을 Azure Premium Storage에 직접 저장하려면 최소 <https://support.microsoft.com/kb/3063054>에서 설명한 SQL Server 2014 패치 릴리스가 필요합니다. Azure 표준 저장소에 SQL Server 데이터 파일을 저장하는 작업은 SQL Server 2014의 릴리스 버전에서 사용할 수 있습니다. 그러나 해당 패치에는 SQL Server 데이터 파일 및 백업을 위한 Azure Blob 저장소의 직접 사용을 더 안정적으로 만드는 수정 사항과 다른 시리즈의 수정 사항이 포함되어 있습니다. 따라서 일반적으로 이러한 패치를 사용하는 것이 좋습니다.
+여기에 설명 되어 있는 최소 SQL Server 2014 toohave 패치 릴리스 순서 toostore SQL Server 데이터 파일에 Azure 프리미엄 저장소에서 직접 필요한: <https://support.microsoft.com/kb/3063054>합니다. 표준 저장소를 Azure에 SQL Server 데이터 파일을 저장할 hello 릴리스 버전의 SQL Server 2014와 작동 합니다. 그러나 hello 매우 동일한 패치 포함 다른 일련의 수정 하는 SQL Server 데이터 파일 및 백업에 대 한 Azure Blob 저장소의 hello 직접 사용 안정적 수 있습니다. 따라서 좋습니다 toouse 이러한 패치를 일반적입니다.
 
 ### <a name="sql-server-2014-buffer-pool-extension"></a>SQL Server 2014 버퍼 풀 확장
-SQL Server 2014에는 버퍼 풀 확장이라는 새로운 기능이 도입되었습니다. 이 기능은 메모리에 저장된 SQL Server의 버퍼 풀과 서버 또는 VM의 로컬 SSD에서 지원되는 보조 수준 캐시를 확장합니다. 따라서 '메모리 내'에서 더 큰 데이터 작업 집합을 유지할 수 있습니다. Azure 표준 저장소 액세스에 비해 Azure VM의 로컬 SSD에 저장된 버퍼 풀 확장에 대한 액세스는 많은 요소를 더 빠르게 만듭니다.  따라서 뛰어난 IOPS 및 처리량을 갖는 VM 유형의 로컬 D:\ 드라이브를 활용할 경우 Azure 저장소에 대한 IOPS 부하를 줄이고 쿼리 응답 시간을 크게 향상시킬 수 있습니다. 이 이점은 프리미엄 저장소를 사용하지 않는 경우에 특히 적용됩니다. 프리미엄 저장소와 계산 노드에서 프리미엄 Azure 읽기 캐시를 사용하는 경우 데이터 파일에 대해 권장된 것처럼 큰 차이가 없습니다. 그 이유는 두 캐시(SQL Server 버퍼 풀 확장 및 프리미엄 저장소 읽기 캐시)가 계산 노드의 로컬 디스크를 사용하기 때문입니다.
+SQL Server 2014에는 버퍼 풀 확장이라는 새로운 기능이 도입되었습니다. 이 기능은 로컬 Ssd 서버 또는 VM에서 지 원하는 두 번째 수준 캐시를 사용 하 여 메모리에 유지 되는 SQL Server의 hello 버퍼 풀을 확장 합니다. 그러면 tookeep '메모리'에서 데이터의 작업 집합이 있습니다. 비교 tooaccessing Azure 표준 저장소 hello 액세스의 Azure VM의 로컬 Ssd에 저장 되어 있는 hello 버퍼 풀 확장 hello로 여러 가지 요소 들이 더 빠릅니다.  따라서 뛰어난 IOPS 및 처리량이 있는 hello VM 유형의 hello 로컬 D:\ 드라이브를 활용 하는 매우 합리적인 방법이 tooreduce hello IOPS는 Azure 저장소에 대해 로드 및 쿼리 응답 시간을 크게 향상 될 수 있습니다. 이 이점은 Premium Storage를 사용하지 않는 경우에 특히 적용됩니다. 프리미엄 저장소 및 hello 계산 노드에 대해 프리미엄 Azure 읽기 캐시 hello hello 사용의 경우 데이터 파일에 대 한 권장 사항에 따라 큰 차이가 없습니다 예상 됩니다. (SQL Server 버퍼 풀 확장 및 프리미엄 저장소 읽기 캐시) 모두 캐시 hello hello 계산 노드의 로컬 디스크에 사용 하는 것이 위해서입니다.
 이 기능에 대한 자세한 내용은 <https://msdn.microsoft.com/library/dn133176.aspx> 문서를 참조하세요.
 
 ### <a name="backuprecovery-considerations-for-sql-server"></a>SQL Server에 대한 백업/복구 고려 사항
-Azure에 SQL Server를 배포하는 경우 백업 방법을 검토해야 합니다. 생산성이 높은 시스템이 아니더라도 SQL Server에서 호스트하는 SAP 데이터베이스를 정기적으로 백업해야 합니다. Azure 저장소에는 이제 세 개의 이미지가 있으므로 저장소 작동 중단을 보완하는 측면에서 백업의 중요성이 줄어들었습니다. 적절한 백업 및 복구 계획 유지 관리가 중요한 이유는 특정 시점 복구 기능을 제공하여 논리/수동 오류를 보완할 수 있기 때문입니다. 따라서 목표는 백업을 사용하여 데이터베이스를 다시 특정 시점으로 복원하거나 기존 데이터베이스를 복사하여 다른 시스템에 시딩하는 데 Azure의 백업을 사용하는 것입니다. 예를 들어 백업을 복구하여 2계층 SAP 구성을 동일한 시스템의 3계층 시스템 설정으로 전송할 수 있습니다.
+Azure에 SQL Server를 배포하는 경우 백업 방법을 검토해야 합니다. Hello 시스템이 생산적인 시스템이 아닌 경우에 SQL Server에서 호스트 되는 hello SAP 데이터베이스를 백업 해야 주기적으로 합니다. Azure 저장소에 백업을 중요성이 존중 toocompensating 저장소 충돌에에서 세 개의 이미지를 유지 되므로 합니다. hello 우선 순위 적절 한 백업 및 복구 계획을 유지 관리 하는 지점 시간 복구 기능에서을 제공 하 여 논리적/수동 오류 보완할 수 있습니다 더 합니다. Hello 목표 tooeither 백업을 toorestore hello 데이터베이스 사용 다시 이므로 tooa 특정 지점에서 Azure tooseed 시간 또는 toouse hello 백업에 다른 시스템 hello 기존 데이터베이스를 복사 하 여 합니다. 예를 들어으로 전환할 수 있습니다의 hello는 2 계층 SAP 구성 tooa 3 계층 시스템 설정에서 동일한 시스템 백업을 복원 하 여 합니다.
 
-SQL Server를 Azure 저장소에 백업하는 방법은 세 가지가 있습니다.
+세 가지 방법으로 toobackup SQL Server tooAzure 저장소 가지가 있습니다.
 
-1. SQL Server 2012 CU4 이상에서는 기본적으로 데이터베이스를 URL에 백업할 수 있습니다. 이 내용은 [SQL Server 2014의 새로운 기능 – 5부 - 백업/복원 향상](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx)블로그에 자세히 나와 있습니다. [SQL Server 2012 SP1 CU4 이상][dbms-guide-5.5.1] 챕터를 참조하세요.
-2. SQL 2012 CU4 이전의 SQL Server 릴리스는 리디렉션 기능을 사용하여 VHD에 백업하고 기본적으로 쓰기 스트림을 구성된 Azure 저장소 위치로 이동합니다. [SQL Server 2012 SP1 CU3 및 이전 버전][dbms-guide-5.5.2] 챕터를 참조하세요.
-3. 마지막 방법은 기존의 디스크에 SQL Server 백업 명령을 VHD 디스크 장치에 백업하는 것입니다.  이는 온-프레미스 배포 패턴과 동일하며 이 문서에서 자세히 설명하지 않습니다.
+1. SQL Server 2012 CU4 및 더 높은 수 기본적으로 백업 데이터베이스 tooa URL입니다. Hello 블로그가 내용은 [백업/복원 향상-5 부-SQL Server 2014의에서 새로운 기능](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx)합니다. [SQL Server 2012 SP1 CU4 이상][dbms-guide-5.5.1] 챕터를 참조하세요.
+2. SQL Server 릴리스 이전 tooSQL 2012 CU4 리디렉션 기능 toobackup tooa VHD를 사용 하 고 기본적으로 hello 쓰기 스트림을 구성 된 Azure 저장소 위치 추구할 수 있습니다. [SQL Server 2012 SP1 CU3 및 이전 버전][dbms-guide-5.5.2] 챕터를 참조하세요.
+3. hello 마지막 방법은 tooperform VHD 디스크 장치에 기존 SQL Server 백업 toodisk 명령입니다.  온-프레미스 배포 패턴과 동일 toohello 이므로이 문서에 자세히 설명 하지 않습니다.
 
 #### <a name="0fef0e79-d3fe-4ae2-85af-73666a6f7268"></a>SQL Server 2012 SP1 CU4 이상
-이 기능을 사용하면 Azure BLOB 저장소에 직접 백업할 수 있습니다. 이 방법을 사용하지 않을 경우 VHD 및 IOPS 용량을 사용하는 다른 Azure VHD에 백업해야 합니다. 기본 개념은 다음과 같습니다.
+이 기능은 toodirectly 백업 tooAzure BLOB 저장소가 있습니다. 이 방법에서는 없이 tooother Azure Vhd VHD 및 IOPS 용량을 사용 하는 백업 해야 합니다. hello 아이디어는 기본적으로이:
 
- ![Microsoft Azure 저장소 BLOB에 SQL Server 2012 백업 사용][dbms-guide-figure-400]
+ ![SQL Server 2012 백업 tooMicrosoft Azure 저장소 BLOB을 사용 하 여][dbms-guide-figure-400]
 
-이 경우 SQL Server 백업을 저장할 VHD가 필요하지 않습니다. 그러므로 할당되는 VHD 수가 적고 VHD IOPS의 전체 대역폭을 데이터 및 로그 파일에 사용할 수 있습니다. <https://msdn.microsoft.com/library/dn435916.aspx#limitations> 문서의 '제한' 섹션에 설명된 대로 최대 백업 크기는 1TB로 제한되어 있습니다. SQL Server 백업 압축을 사용하더라도 백업 크기가 1TB를 넘으면 이 문서의 [SQL Server 2012 SP1 CU3 및 이전 버전][dbms-guide-5.5.2] 챕터에서 설명하는 기능을 사용해야 합니다.
+이 경우이 hello 장점은 toospend Vhd toostore SQL Server 백업의에 필요 하지 않습니다 하나입니다. 따라서 더 적은 Vhd가 할당 된 바뀌고 VHD IOPS의 전체 대역폭 hello 데이터 및 로그 파일에 사용할 수 있습니다. 이 문서의 '제한' hello 섹션에 설명 된 대로 hello 백업의 최대 크기는 1TB 제한 tooa 최대: <https://msdn.microsoft.com/library/dn435916.aspx#limitations>합니다. SQL Server 백업 압축을 사용 했는데도 hello 백업 크기의 크기가 1TB를 초과 하면, hello 장에서 설명 하는 기능 [SQL Server 2012 SP1 CU3 및 이전 릴리스에] [ dbms-guide-5.5.2] 이 문서에 필요 toobe 사용 합니다.
 
-Azure Blob 저장소 백업에서의 데이터베이스 복원을 설명하는 [관련 문서](https://msdn.microsoft.com/library/dn449492.aspx)에서는 백업 크기가 25GB를 넘을 경우 Azure Blob 저장소에서 직접 복원하지 않도록 권장하고 있습니다. 이 문서에서는 기능 제한 때문이 아니라 단순히 성능 고려 사항을 기준으로 한 것입니다. 따라서 상황별로 서로 다른 조건이 적용될 수 있습니다.
+[관련 설명서](https://msdn.microsoft.com/library/dn449492.aspx) hello 백업 하는 경우 Azure BLOB 저장소에서 직접 toorestore 하지 권장 hello 복원의 Azure Blob 저장소에 대 한 백업에서 데이터베이스를 설명 하는 > 25GB입니다. 이 문서의 hello 권장은 단순히에 따라 성능 고려 사항 toofunctional 제한 하지 인해 합니다. 따라서 상황별로 서로 다른 조건이 적용될 수 있습니다.
 
 이러한 형식의 백업 설정 및 활용 방법에 대한 설명서는 [이](https://msdn.microsoft.com/library/dn466438.aspx) 자습서에서 확인할 수 있습니다.
 
-단계 순서의 예제는 [여기](https://msdn.microsoft.com/library/dn435916.aspx)를 참조하세요.
+Hello 일련의 단계의 예를 읽을 수 [여기](https://msdn.microsoft.com/library/dn435916.aspx)합니다.
 
-백업 자동화는 각 백업의 BLOB 이름을 다르게 지정하도록 하기 위해 중요합니다. 그렇지 않은 경우 백업이 덮어써지며 복원 체인이 끊어집니다.
+백업을 자동화은 가장 높은 중요도 toomake 각 백업에 대 한 hello Blob 다르게 명명 된 있는지 합니다. 그렇지 않으면를 덮어쓰도록 하 고 hello 복원 체인이 손상 되었습니다.
 
-3가지 백업 유형이 혼합되지 않게 하려면 백업에 사용되는 저장소 계정에 다른 컨테이너를 생성하는 것이 좋습니다. 컨테이너는 VM 전용 또는 VM과 백업 형식이 될 수 있습니다. 스키마는 다음과 같습니다.
+Hello 3 다른 유형의 백업 간에 가지 toomix 하지 순서에서 권장 toocreate 백업에 사용 된 hello 저장소 계정 아래로 다른 컨테이너입니다. hello 컨테이너 수 vm만 또는 VM 및 백업 유형입니다. hello 스키마 같을 수 있습니다.
 
- ![Microsoft Azure 저장소 BLOB에 SQL Server 2012 백업 사용 - 개별 저장소 계정의 다양한 컨테이너][dbms-guide-figure-500]
+ ![별도 저장소 계정에서 컨테이너를 다른 SQL Server 2012 백업 tooMicrosoft – Azure 저장소 BLOB을 사용 하 여][dbms-guide-figure-500]
 
-위의 예제에서 백업은 VM이 배포된 것과 동일한 저장소 계정으로 수행할 수 없습니다. 특히 백업을 위한 새 저장소 계정이 있어야 합니다. 저장소 계정 내에는 백업 형식 및 VM 이름의 매트릭스를 사용하여 생성된 여러 컨테이너가 있습니다. 이러한 구분을 사용하면 여러 VM의 백업을 쉽게 관리할 수 있습니다.
+동일한 저장소 계정 위치 hello hello에 백업이 수행 되지 않습니다 hello 위의 hello 예제 Vm 배포 됩니다. 새 저장소 계정을 특히 hello 백업에 대 한 것입니다. Hello 저장소 계정 내에서 백업 및 hello VM 이름 hello 형식의 매트릭스를 사용 하 여 만든 다른 컨테이너 있을 것입니다. 이러한 구분 하면 보다 쉽게 tooadministrate hello 백업을 hello의 다른 Vm입니다.
 
-백업에 직접 쓰는 BLOB은 VM의 VHD 수에 추가되지 않습니다. 따라서 데이터 및 트랜잭션 로그 파일을 위해 특정 VM SKU에 탑재되는 최대 VHD 수를 최대화하고 저장소 컨테이너에 대해 백업을 실행할 수 있습니다.
+hello 백업을 직접 쓰면 hello Blob toohello 개수 hello은 VM의 Vhd 추가 됩니다. 따라서 hello 최대 hello 데이터에 대 한 hello 특정 VM SKU에 탑재 된 Vhd 최대화 하 하나 및 트랜잭션 로그 파일 및 저장소 컨테이너에 대해 백업 실행 합니다.
 
 #### <a name="f9071eff-9d72-4f47-9da4-1852d782087b"></a>SQL Server 2012 SP1 CU3 및 이전 버전
-Azure Storage에 대해 백업을 직접 수행하려면 먼저 [이](https://www.microsoft.com/download/details.aspx?id=40740) KBA 문서에 연결된 msi를 다운로드해야 합니다.
+Azure 저장소에 직접 백업 tooachieve 순서에서에서 수행 해야 하는 hello 첫 번째 단계는 toodownload hello msi 너무 연결 되어 있는 것[이](https://www.microsoft.com/download/details.aspx?id=40740) KBA 문서.
 
-x64 설치 파일 및 설명서를 다운로드합니다. 이 파일은 ‘Microsoft SQL Server Backup to Microsoft Azure Tool’ 프로그램을 설치합니다. 제품 설명서를 자세히 읽어보세요.  이 도구는 기본적으로 다음과 같은 방식으로 작동합니다.
+Hello x64 설치 파일 및 hello 설명서를 다운로드 합니다. hello 파일 라는 프로그램을 설치 합니다: 'Microsoft SQL Server Backup tooMicrosoft Azure 도구'. 철저 하 게 hello 제품의 hello 설명서를 확인 합니다.  hello 도구는 기본적으로 hello 방식으로 다음에서 작동 합니다.
 
-* SQL Server 측에서 SQL Server 백업에 대한 디스크 위치가 정의됩니다(D:\ 드라이브 사용 안 함).
-* 이 도구를 사용하면 다른 유형의 백업을 서로 다른 Azure 저장소 컨테이너에 저장할 수 있는 규칙을 정의할 수 있습니다.
-* 규칙이 적용되면 이 도구가 VHD/디스크 중 하나에 대한 백업의 쓰기 스트림을 앞에서 정의한 Azure 저장소 위치로 리디렉션합니다.
-* 이 도구는 SQL Server 백업에 대해 정의된 VHD/디스크에서 약간의 스텁 파일(몇 KB)을 남겨 둡니다. **이 파일은 Azure 저장소에서 다시 복원하는 데 필요하므로 저장소 위치에 남겨 두어야 합니다.**
-  * 스텁 파일이 손실되고(예: 스텁 파일이 포함된 저장소 미디어 손실) Microsoft Azure 저장소 계정에 백업하는 옵션을 선택한 경우 저장소 컨테이너에서 다운로드하여 Microsoft Azure 저장소를 통해 스텁 파일을 복구할 수 있습니다. 그런 다음 암호화가 원래 규칙을 통해 사용된 경우 도구가 동일한 암호화 암호를 사용하여 검색 및 동일한 컨테이너에 업로드하도록 구성된 로컬 컴퓨터의 폴더에 스텁 파일을 배치합니다.
+* SQL Server 쪽 hello에서 hello SQL Server 백업에 대 한 디스크 위치가 정의 됩니다 (이에 hello D:\ 드라이브를 사용 하지 않습니다).
+* hello 도구를 사용 하는 toodirect 서로 다른 유형의 백업 toodifferent Azure 저장소 컨테이너 수 있는 toodefine 규칙 통해 합니다.
+* Hello 규칙을 저장 되 면 hello 도구는 이전에 정의 된 Azure 저장소 위치의 hello Vhd/디스크 toohello의 hello 백업 tooone의 hello 쓰기 스트림을 리디렉션합니다.
+* hello 도구 그대로 몇 KB 크기의 작은 스텁 파일 hello hello SQL Server에 대해 정의 된 H d/디스크에 백업 합니다. **Azure 저장소에서 다시 필요한 toorestore 이므로이 파일 hello 저장소 위치에 두어야 합니다.**
+  * Microsoft Azure 저장소를 통해 hello 스텁 파일을 복구할 수 있습니다 (예: 통해 hello 스텁 파일을 포함 하는 hello 저장소 미디어의 손실) hello 스텁 파일을 잃어버린 hello tooa Microsoft Azure 저장소 계정의 백업 옵션을 선택한 경우 배치 된 hello 저장소 컨테이너에서 다운로드 합니다. 그런 다음 hello 스텁 파일 hello 도구는 구성 된 toodetect 및 업로드 toohello hello 로컬 컴퓨터에서 폴더에 두어야 hello 사용 하 여 동일한 컨테이너 hello 원래 규칙 암호화가 사용 된 경우 동일한 암호화 암호가 합니다.
 
-이는 위에서 설명한 것처럼 최신 릴리스의 SQL Server에 대한 스키마를 Azure 저장소 위치의 주소 지정을 직접 허용하지 않는 SQL Server 릴리스에도 배치할 수 있다는 의미입니다.
+이 hello 스키마 보다 최신 버전의 SQL Server에 대해 위에서 설명한 대로에 배치할 수 직접 주소는 Azure 저장소 위치를 허용 하지 않는 SQL Server 릴리스에 대해서도 의미 합니다.
 
-이 방법은 Azure 저장소에 대해 기본적으로 백업을 지원하는 최신 SQL Server 버전에서는 사용하지 않아야 합니다. 단, Azure로의 기본 백업 제한이 Azure로의 기본 백업 실행을 차단합니다.
+이 방법은 Azure 저장소에 대해 기본적으로 백업을 지원하는 최신 SQL Server 버전에서는 사용하지 않아야 합니다. Azure에 hello 네이티브 백업 제한인 Azure에 기본 백업 실행을 차단 하는 예외입니다.
 
-#### <a name="other-possibilities-to-backup-sql-server-databases"></a>SQL Server 데이터베이스를 백업하는 다른 방법
-데이터베이스를 백업하는 다른 방법은 백업을 저장하는 데 사용하는 VM에 추가 VHD를 연결하는 것입니다. 이러한 경우 VHD가 모두 실행되고 있지 않은지 확인해야 합니다. 해당하는 경우 VHD의 탑재를 해제하고 '보관'한 다음 빈 VHD로 바꿔야 합니다. 패치를 다운한 경우 데이터베이스 파일이 있는 VHD에서 이러한 VHD를 별도의 Azure 저장소 계정에 보관해야 합니다.
+#### <a name="other-possibilities-toobackup-sql-server-databases"></a>다른 가능성 toobackup SQL Server 데이터베이스
+다른 가능성 toobackup 데이터베이스 tooattach 추가 Vhd tooa에서 toostore 백업을 사용 하는 VM입니다. 이 경우 toomake 있는지 확인 해야 해당 hello Vhd 전체 실행 되지 않는 경우 해당 되는 hello 경우 toounmount hello VHD 해야 파일과 하므로 toospeak '보관' 새 빈 VHD로 바꿉니다. 해당 경로의 아래로 이동 하려는 경우 tookeep hello hello 데이터베이스 파일과 함께 Vhd hello 하에서에서 별도 Azure 저장소 계정에 이러한 Vhd입니다.
 
-두 번째 방법은 많은 VHD를 연결할 수 있는 대용량 VM을 사용하는 것입니다. 예: 32VHD가 있는 D14. 저장소 공간을 사용하여 사용되는 공유를 빌드할 수 있는 유연한 환경을 구성한 다음 다양한 DBMS 서버에 대한 백업 대상으로 만듭니다.
+두 번째 가능성 toouse 연결 된 여러 Vhd를 가질 수 있는 대규모 VM입니다. 예: 32VHD가 있는 D14. 저장소 공간 toobuild 하는 공유를 작성할 수 있는 유연한 환경을 적합 한 다음 백업 대상으로 다른 DBMS 서버 hello 사용 합니다.
 
 몇 가지 모범 사례가 [여기](https://blogs.msdn.com/b/sqlcat/archive/2015/02/26/large-sql-server-database-backup-on-an-azure-vm-and-archiving.aspx) 에 설명되어 있습니다.
 
 #### <a name="performance-considerations-for-backupsrestores"></a>백업/복원에 대한 성능 고려 사항
-완전 배포에서처럼 백업/복원 성능은 병렬로 읽을 수 있는 볼륨 수와 이러한 볼륨의 처리량에 따라 달라집니다. 또한 백업 압축에서 사용하는 CPU 사용량은 최대 8개 CPU 스레드까지 VM에서 중요 역할을 수행할 수 있습니다. 따라서 다음을 가정할 수 있습니다.
+완전 배포 에서처럼 백업/복원 성능은 동시에 읽을 수 있는 볼륨 수 및 이러한 볼륨의 어떤 hello 출력 수에 따라 달라 집니다. 또한 hello 백업 압축을 통해 CPU 사용률 too8 CPU 스레드를 방금 된 Vm에서 중요 한 역할을 재생 수 있습니다. 따라서 다음을 가정할 수 있습니다.
 
-* 데이터 파일을 저장하는 데 사용하는 VHD 수가 적을수록 전반적인 읽기 처리량이 줄어듭니다.
-* VM의 CPU 스레드 수가 적을수록 백업 압축에 대한 영향이 커집니다.
-* 백업을 작성하는 대상(BLOB 또는 VHD) 수가 적을수록 처리량이 줄어듭니다.
-* VM 크기가 작을수록 Azure 저장소에서 쓰고 읽는 저장소 처리량 할당량이 줄어듭니다. 백업이 Azure Blob에 직접 저장되는지 여부 또는 VHD에 저장되는지 여부에 관계없이 다시 Azure Blob에 저장됩니다.
+* hello Vhd hello 수를 적게 사용 되지 않는 toostore hello 데이터 파일, hello 읽기에서 전반적인 처리량을 더 작은 hello 합니다.
+* 더 작은 hello hello VM의에서 CPU 스레드 수가 hello, 백업 압축의 심각한 hello 영향 hello 합니다.
+* hello 적은 대상 (Blob 또는 Vhd) toowrite hello를 백업, 더 적은 hello 처리량 hello 합니다.
+* hello 작은 hello VM 크기, hello 작은 hello 저장소 처리량 할당량 쓰기 및 Azure 저장소에서 읽기 Hello 백업이 Azure Blob에 직접 저장 되는 여부 또는 Azure Blob에 다시 저장 된 Vhd에 저장 여부는 독립적입니다.
 
-Microsoft Azure 저장소 BLOB을 더 최신 버전의 백업 대상으로 사용할 경우 각 특정 백업에 대해 하나의 URL 대상만 지정할 수 있습니다.
+Microsoft Azure 저장소 BLOB을 사용 하 여 최신 릴리스에서 hello 백업 대상으로, 각각의 특정 백업에 대 한 제한 된 toodesignating 하나만 URL 대상이 됩니다.
 
-그러나 이전 버전에서 ‘Microsoft SQL Server Backup to Microsoft Azure Tool’을 사용할 때는 둘 이상의 파일 대상을 정의할 수 있습니다. 둘 이상의 대상을 사용하여 백업을 확장하고 백업 처리량을 늘릴 수 있습니다. 그 결과 Azure 저장소 계정에도 여러 파일이 만들어집니다. 테스트에 따르면 여러 파일 대상을 사용하여 SQL Server 2012 SP1 CU4에 구현된 백업 확장으로 얻을 수 있는 처리량을 확실하게 얻을 수 있습니다. Azure로의 기본 백업 크기가 1TB로 제한되지도 않습니다.
+하지만 이전 릴리스에서 hello 'Microsoft SQL Server Backup tooMicrosoft Azure 도구'를 사용할 경우 파일 대상을 두 개 이상 정의할 수 있습니다. 둘 이상의 대상을 사용 하 여 hello 백업을 확장할 수 있고 hello hello 백업 처리량이 더 높습니다. 따라서 특성도 hello Azure 저장소 계정에서 여러 파일에 있습니다. 이 테스트에서는 하나 hello 백업 확장으로 얻을 수 있는 hello 처리량을 분명히 얻을 수는 여러 파일 대상을 사용 하 여 이상에서 구현 된 SQL Server 2012 SP1 CU4에 합니다. 하면 수도 의해 차단 되지 않는지 hello 기본 백업 에서처럼 1TB 제한 hello Azure에 있습니다.
 
-그러나 처리량은 백업에 사용하는 Azure 저장소 계정의 위치에 따라 달라집니다. VM이 실행되지 않는 다른 지역에서 저장소 계정을 찾을 수 있습니다. 예: 유럽 서부에서 VM 구성을 실행하고 백업에 사용할 저장소 계정을 북유럽에 둘 수 있습니다. 이렇게 하면 대상 저장소 및 VM이 동일한 지역 데이터 센터에서 실행될 수 있으므로 백업 처리량에 영향을 주고 150MB/초의 처리량을 생성할 가능성이 없습니다.
+그러나 염두에서에 둬야, hello 처리량도 hello hello hello 백업에 사용할 Azure 저장소 계정 위치에 따라 달라 집니다. 관념은 toolocate hello 저장소 계정에서 실행 중인 Vm hello와 다른 지역에 수도 있습니다. 예: hello VM 구성은 서 부 유럽에서 실행 하는 hello 북부 유럽의 마련할 tooback를 사용 하는 저장소 계정을 저장 합니다. 확실히 hello 백업 처리량에 영향을 줄 이며 희박 toogenerate 150 m B/초의 처리량 hello에서 실행 하는 대상 저장소 hello Vm hello 하는 경우에서 가능한 toobe 보이기 어려워 동일한 지역의 데이터 센터입니다.
 
 #### <a name="managing-backup-blobs"></a>백업 BLOB 관리
-백업을 직접 관리해야 합니다. 잦은 트랜잭션 로그 백업의 실행으로 많은 blob이 생성되므로 이러한 blob의 관리를 통해 쉽게 Azure 포털의 작업 부하를 줄일 수 있습니다. 따라서 Azure 저장소 탐색기를 활용하는 것이 좋습니다. Azure 저장소 계정을 관리하는 데 도움이 되는 몇 가지 도구를 사용할 수 있습니다.
+요구 사항 toomanage hello 백업을 직접 있습니다. 많은 blob 자주 트랜잭션 로그 백업을 실행 하 여 만들어졌는지 hello expectation 이므로 이러한 blob 관리 쉽게 수 과부하를 일으킬 hello Azure 포털입니다. Azure 저장소 탐색기 것이 좋습니다 tooleverage 쉽습니다. 몇 가지 유용한 탐색기 toomanage Azure 저장소 계정 수 있는
 
 * Azure SDK가 설치되어 있는 Microsoft Visual Studio(<https://azure.microsoft.com/downloads/>)
 * Microsoft Azure Storage 탐색기(<https://azure.microsoft.com/downloads/>)
@@ -723,77 +723,77 @@ Microsoft Azure 저장소 BLOB을 더 최신 버전의 백업 대상으로 사�
 
 [comment]: <> (ARM에서 아직 지원되지 않음)
 [comment]: <> (#### Azure VM Backup)
-[comment]: <> (SAP 시스템 내의 VM은 Azure Virtual Machine 백업 기능을 사용하여 백업할 수 있습니다. Azure 가상 컴퓨터 백업은 2015년 초반에 도입된 이후 Azure에서 전체 VM을 백업하는 표준 방법이 되었습니다. Azure Backup은 Azure에 백업을 저장하고 VM을 다시 복원할 수 있도록 합니다.)
-[comment]: <> (DBMS 시스템에서 Windows VSS(Volume Shadow Copy Service)<https://msdn.microsoft.com/library/windows/desktop/bb968832.aspx>를 지원하는 경우 데이터베이스를 실행하는 VM을 SQL Server 등을 통해 일관된 방법으로 백업할 수 있습니다. 따라서 Azure VM 백업을 사용하여 SAP 데이터베이스의 복원 가능한 백업을 가져올 수 있습니다. 그러나 데이터베이스의 Azure VM 백업 기반의 지정 시간 복원은 가능하지 않습니다. 따라서 Azure VM 백업을 사용하지 않고 DBMS 기능을 사용하여 데이터베이스 백업을 수행하는 것이 좋습니다.)
-[comment]: <> (Azure Virtual Machine 백업에 익숙해지려면 <https://azure.microsoft.com/documentation/services/backup/> 에서 시작하세요.)
+[comment]: <> (Hello SAP 시스템 내의 Vm은 Azure 가상 컴퓨터 백업 기능을 사용 하 여 백업할 수 있습니다. Azure 가상 컴퓨터 백업 hello 2015 년 초기에 도입 된 및 한편 표준 방법을 toobackup을 전체 Azure에서 VM은 합니다. Azure 백업에서는 Azure의 hello 백업을 저장 하는 VM의 복원을 다시 하며)
+[comment]: <> (실행된 데이터베이스를 백업할 수 있습니다를 일관성 있게 hello DBMS 시스템에서는 Windows VSS 볼륨 섀도 복사본 서비스 hello 경우 Vm < SQL 서버로 https://msdn.microsoft.com/library/windows/desktop/bb968832.aspx> 않습니다. Azure VM 백업을 사용 하 여 복원 가능한 방식으로 tooget tooa 될 수 있으므로 SAP 데이터베이스의 백업입니다. 그러나 데이터베이스의 Azure VM 백업 기반의 지정 시간 복원은 가능하지 않습니다. 따라서 hello 권장 사항은 Azure VM 백업에 의존 하지 않고 DBMS 기능 있는 데이터베이스의 tooperform 백업입니다.)
+[comment]: <> (Azure 가상 컴퓨터 백업에 잘 알고 tooget 여기서 시작 하십시오 < https://azure.microsoft.com/documentation/services/backup/>)
 
-### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>Microsoft Azure 마켓플레이스에서 SQL Server 이미지 사용
-Microsoft는 Azure 마켓플레이스에서 이미 SQL Server를 포함하는 버전의 VM을 제공합니다. SQL Server 및 Windows 라이선스가 필요한 SAP 고객의 경우, 이미 SQL Server가 설치된 VM을 스핀업하여 라이선스에 대한 요구 사항을 충족시킬 수 있습니다. SAP에 대한 이러한 이미지를 사용하려면 다음 사항을 고려해야 합니다.
+### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>Microsoft Azure Marketplace hello에서 SQL Server 이미지를 사용 하 여
+Microsoft은 Azure Marketplace 이미 버전의 SQL Server를 포함 하는 hello에 Vm을 제공 합니다. SQL Server 및 Windows 용 라이선스가 필요한 SAP 고객,이 이미 설치 된 SQL Server Vm 구성 함으로써 라이선스에 대 한는 영업 기회 toobasically 커버 hello 요구 될 수 있습니다. SAP에 대 한 이러한 이미지 순서 toouse에 hello 고려 사항에 따라 필요 toobe 수행 합니다.
 
-* 평가판이 아닌 SQL Server 버전은 Azure 마켓플레이스에서 배포된 'Windows 전용' VM보다 비용이 더 높습니다. 가격을 비교하려면 <https://azure.microsoft.com/pricing/details/virtual-machines/> 및 <https://azure.microsoft.com/pricing/details/virtual-machines/#Sql> 문서를 참조하세요.
+* hello SQL Server 정품 버전에만 ' Windows 전용 ' VM Azure 마켓플레이스의 배포 보다 비용이 더 많이 획득 합니다. 이러한 문서 toocompare 가격을 참조 하십시오: <https://azure.microsoft.com/pricing/details/virtual-machines/> 및 <https://azure.microsoft.com/pricing/details/virtual-machines/#Sql>합니다.
 * SQL Server 2012처럼 SAP에서 지원하는 SQL Server 릴리스만 사용할 수 있습니다.
-* Azure 마켓플레이스에서 제공되는 VM에 설치되는 SQL Server 인스턴스의 데이터 정렬은 SAP NetWeaver에서 SQL Server 인스턴스를 실행하는 데 필요한 데이터 정렬이 아닙니다. 다음 섹션의 지침을 사용하여 데이터 정렬을 변경할 수 있습니다.
+* hello Azure Marketplace에서에서 제공 하는 hello Vm에 설치 되는 hello SQL Server 인스턴스의 데이터 정렬이 hello hello 데이터 정렬의 SAP NetWeaver 필요 hello SQL Server 인스턴스 toorun 않습니다. Hello 지시 hello 섹션 다음에 사항이 있는 hello 데이터 정렬을 변경할 수 있습니다.
 
-#### <a name="changing-the-sql-server-collation-of-a-microsoft-windowssql-server-vm"></a>Microsoft Windows/SQL Server VM의 SQL Server 데이터 정렬 변경
-Azure 마켓플레이스의 SQL Server 이미지는 SAP NetWeaver 응용 프로그램에서 요구하는 데이터 정렬을 사용하도록 설정되어 있지 않으므로 배포 후 즉시 변경해야 합니다. SQL Server 2012의 경우 VM을 배포하자마자 다음 단계를 통해 이 작업을 수행할 수 있으며 관리자가 배포된 VM에 로그인할 수 있습니다.
+#### <a name="changing-hello-sql-server-collation-of-a-microsoft-windowssql-server-vm"></a>Hello는 Microsoft Windows/SQL Server VM의 SQL Server 데이터 정렬 변경
+Hello SQL Server 이미지 hello Azure Marketplace에서에서 SAP NetWeaver 응용 프로그램에 필요한 toouse hello 데이터 정렬에 설정 되 면 이후 toobe hello 배포 후 즉시 변경 해야 합니다. SQL Server 2012에 대 한 hello로 수행할 수 있습니다 다음 단계는 즉시 hello VM가 배포 되 고 관리자가 수 toolog hello에 배포 된 VM:
 
 * '관리자'로 Windows 명령 창을 엽니다.
-* 디렉터리를 C:\Program Files\Microsoft SQL Server\110\Setup Bootstrap\SQLServer2012로 변경합니다.
-* Setup.exe /QUIET /ACTION=REBUILDDATABASE /INSTANCENAME=MSSQLSERVER /SQLSYSADMINACCOUNTS=`<local_admin_account_name`> /SQLCOLLATION=SQL_Latin1_General_Cp850_BIN2 명령을 실행합니다.   
-  * `<local_admin_account_name`>은 갤러리를 통해 처음으로 VM을 배포할 때 관리자 계정으로 정의된 계정입니다.
+* Hello 디렉터리 tooC:\Program Files\Microsoft SQL Server\110\Setup Bootstrap\SQLServer2012를 변경 합니다.
+* Hello 명령을 실행: /QUIET Setup.exe /ACTION = REBUILDDATABASE /INSTANCENAME = MSSQLSERVER /SQLSYSADMINACCOUNTS =`<local_admin_account_name`> /SQLCOLLATION SQL_Latin1_General_Cp850_BIN2 =   
+  * `<local_admin_account_name`> hello 갤러리를 통해 처음으로 hello에 대 한 hello VM을 배포할 때 hello 관리자 계정으로 정의 된 hello 계정입니다.
 
-이 프로세스는 몇 분밖에 안 걸립니다. 단계가 올바르게 수행되었는지 확인하려면 다음 단계를 수행하세요.
+hello 프로세스 몇 분만 사용 해야 합니다. 순서 toomake 있는지에서 hello 단계 hello 올바른 결과 함께 결국 여부 하십시오 단계를 수행 하는 hello를 수행 합니다.
 
 * SQL Server Management Studio를 엽니다.
 * 쿼리 창을 엽니다.
-* SQL Server master 데이터베이스에서 sp_helpsort 명령을 실행합니다.
+* Hello SQL Server 마스터 데이터베이스에서 sp_helpsort 명령을 hello를 실행 합니다.
 
-다음과 같은 결과가 나와야 합니다.
+hello 원하는 결과 같습니다.
 
     Latin1-General, binary code point comparison sort for Unicode Data, SQL Server Sort Order 40 on Code Page 850 for non-Unicode Data
 
-원하는 결과가 아닌 경우 SAP 배포를 중지하고 설치 명령이 원하는 대로 작동되지 않은 이유를 확인합니다. 위에서 언급한 것과 다른 SQL Server 코드 페이지를 사용하여 SAP NetWeaver 응용 프로그램을 SQL Server 인스턴스에 배포할 수는 **없습니다** .
+이것이 hello 결과 SAP 배포를 중지 하 고 hello setup 명령은 작동 하지 않는 이유 예상 대로 조사 합니다. 다른 SQL Server 코드 페이지를 사용 하 여 SQL Server 인스턴스에 SAP NetWeaver 응용 프로그램 배포 hello 위에 언급 된 것 보다는 **하지** 지원 합니다.
 
 ### <a name="sql-server-high-availability-for-sap-in-azure"></a>Azure의 SAP용 SQL Server 고가용성
-이 문서 앞부분에서 언급했듯이 이전 SQL Server 고가용성 기능 활용에 필요한 공유 저장소를 만들 수는 없습니다. 이 기능은 사용자 데이터베이스(및 tempdb)용 공유 디스크를 사용하여 WSFC(Windows Server 장애 조치(failover) 클러스터)에 둘 이상의 SQL Server 인스턴스를 설치합니다. 이는 SAP에서도 지원되는 오래된 표준 고가용성 방법입니다. Azure에서는 공유 저장소를 지원하지 않으므로 공유 디스크 클러스터 구성의 SQL Server 고가용성 구성을 인식할 수 없습니다. 그러나 여러 가지 다른 고가용성 방법을 사용할 수 있으며 다음 섹션에서 설명합니다.
+이 백서의 앞에서 설명 했 듯이 hello 가장 오래 된 SQL Server 고가용성 기능의 hello 사용 하는데 필요한 가능성 toocreate 공유 저장소가 없기 합니다. 이 기능에는 장애 조치 클러스터 WSFC (Windows Server) hello 사용자 데이터베이스 (및 결국 tempdb)에 대 한 공유 디스크를 사용 하 여 두 개 이상의 SQL Server 인스턴스를 설치 합니다. 또한 SAP에서 지원 되는 hello 오랜 시간이 표준 고가용성 방법입니다. Azure에서는 공유 저장소를 지원하지 않으므로 공유 디스크 클러스터 구성의 SQL Server 고가용성 구성을 인식할 수 없습니다. 그러나 여러 가지 고가용성 방법은 될 수도 및 hello 다음 섹션에서에서 설명 합니다.
 
-[comment]: <> (문서는 여전히 ASM을 참조합니다.)
-[comment]: <> (Azure의 SQL Server에 사용 가능한 다른 특정 고가용성 기술을 읽기 전에 [여기][virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions]에서 자세한 내용을 참조하세요.)
+[comment]: <> (문서는 여전히 참조 tooASM)
+[comment]: <> (Azure의 SQL Server에 대 한 사용 가능한 hello 다른 특정 고가용성 기술을 읽기 전에 되는 매우 문서를 읽어보세요 자세한 내용 및 요점이 [여기] [ virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions])
 
 #### <a name="sql-server-log-shipping"></a>SQL Server 로그 전달
-HA(고가용성) 방법 중 하나는 SQL Server 로그 전달입니다. HA 구성에 참여하는 VM에 이름 확인 작업이 있는 경우 아무 문제가 없으며 Azure 설정이 온-프레미스의 설정과 다르지 않습니다. IP 확인만 사용하는 것은 권장되지 않습니다. 로그 전달 및 로그 전달 관련 원칙 설정에 대한 내용은 이 설명서를 참조하세요.
+고가용성 (HA)의 hello 메서드 중 하나는 SQL Server 로그 전달 합니다. Hello HA 구성에 참여 하는 hello Vm가 이름 확인에 관한 작업, 아무런 문제가 및 Azure의 hello 설정은 온-프레미스 수행 된 모든 설정과에서 다르지 않습니다. IP 확인만 toorely는 권장 되지 않습니다. 로그 전달 및 로그 전달 관련 원칙 hello toosetting 시에서이 설명서를 참조 하세요.
 
 <https://technet.microsoft.com/library/ms187103.aspx>
 
-고가용성을 실현하기 위해서는 이러한 로그 전달 구성 내에 있는 VM을 동일한 Azure 가용성 집합 내에 있도록 배포해야 합니다.
+순서 tooreally에서 모든 가용성을 높이기 위해, 한 toodeploy hello Vm은 내에서 이러한는 로그 전달 구성 toobe 내 hello 동일한 Azure 가용성 집합에 있어야 합니다.
 
 #### <a name="database-mirroring"></a>데이터베이스 미러링
-SAP에서 지원하는 데이터베이스 미러링(SAP Note [965908]참조)은 SAP 연결 문자열의 장애 조치(failover) 파트너 정의를 사용합니다. 프레미스 간 사례의 경우 두 VM이 동일한 도메인에 있고 두 개의 SQL Server 인스턴스를 실행 중인 사용자 컨텍스트도 도메인 사용자이며 관련된 두 개의 SQL Server 인스턴스에 대한 충분한 권한이 있다고 가정합니다. 따라서 Azure에서의 데이터베이스 미러링 설정은 일반적인 온-프레미스 설정/구성 간에 다르지 않습니다.
+SAP에서 지 원하는 데이터베이스 미러링 (SAP Note 참조 [965908]) hello SAP 연결 문자열에에서 장애 조치 파트너 정의에 의존 합니다. Hello 두 Vm이 해당 hello 가정 hello 크로스-프레미스의 경우 동일한 도메인에서 hello 사용자 컨텍스트 hello 두 SQL Server 인스턴스가 실행 되 고 도메인 사용자 이기도 및 관련 된 SQL Server 인스턴스에서 두 hello에 대 한 충분 한 권한이 있습니다. 따라서 Azure에서 데이터베이스 미러링의 hello 설치 일반적인 온-프레미스 설치/구성 간에 다르지 않습니다.
 
-클라우드 전용 배포 시 가장 쉬운 방법은 Azure에서 이러한 DBMS VM(및 이상적인 전용 SAP VM)을 한 도메인 내에 배치할 수 있도록 다른 도메인을 설정하는 것입니다.
+클라우드 전용 배포의 hello 가장 쉬운 방법은 toohave 대로 다른 도메인 설정 Azure toohave에서 해당 DBMS Vm (및 이상적인 전용된 SAP Vm) 한 도메인 내 합니다.
 
-도메인을 사용할 수 없는 경우 <https://technet.microsoft.com/library/ms191477.aspx>에 설명된 대로 데이터베이스 미러링 끝점에 대한 인증서를 사용할 수도 있습니다.
+인증서 hello 데이터베이스 미러링 끝점을 여기에 설명 된 대로에 사용할 수 도메인 수 없는 경우: <https://technet.microsoft.com/library/ms191477.aspx>
 
-Azure에서 데이터베이스 미러링을 설정하는 자습서는 <https://technet.microsoft.com/library/ms189852.aspx>에서 찾을 수 있습니다.
+자습서 tooset 접속 데이터베이스 미러링 Azure에서 확인할 수 있습니다: <https://technet.microsoft.com/library/ms189852.aspx>
 
 #### <a name="alwayson"></a>AlwaysOn
-AlwaysOn은 SAP 온-프레미스에 대해 지원되므로(SAP Note [1772688]참조) Azure에서 SAP와 함께 사용할 수 없습니다. Azure에서 공유 디스크를 만들 수는 없지만 여러 VM 간에 AlwaysOn WSFC(Windows Server 장애 조치(failover) 클러스터) 구성을 만들 수는 있습니다. 단, 클러스터 구성에서 공유 디스크를 쿼럼으로 사용할 수는 없습니다. 따라서 Azure에서 AlwaysOn WSFC 구성을 빌드할 수 있으며 단순히 공유 디스크를 사용하는 쿼럼 유형을 선택할 수 없습니다. 이러한 VM이 배포된 Azure 환경은 VM을 이름으로 확인해야 하며 VM이 동일한 도메인에 있어야 합니다. 이는 Azure 전용 및 프레미스 간 배포에만 적용됩니다. SQL Server 가용성 그룹 수신기(Azure 가용성 집합과 다름) 배포와 관련된 일부 특별 고려 사항이 있으며 Azure는 이 시점에서 온-프레미스처럼 AD/DNS 개체를 만들 수 없습니다. 따라서 Azure의 특정 동작을 극복하려면 몇 가지 다른 설치 단계가 필요합니다.
+AlwaysOn은 SAP 온-프레미스에 대 한 지원 (SAP Note 참조 [1772688]), 지원 되는 toobe Azure에서 SAP와 함께에서 사용 되는 것이 합니다. Azure에서 디스크를 공유 하는 수 toocreate 없는 hello 팩트는 다른 Vm 간에 AlwaysOn Windows Server 장애 조치 클러스터 (WSFC) 구성 프로그램을 만들 수 없습니다 하나 하는 것은 아닙니다. 하지 않았는지 hello 가능성 toouse 공유 디스크를 쿼럼으로 hello 클러스터 구성에만 의미 합니다. 따라서 Azure에서 AlwaysOn WSFC 구성을 빌드할 수 있으며 단순히 공유 디스크를 활용 하는 hello 쿼럼 유형을 선택 하지 수도 있습니다. hello Azure 환경 해당 Vm에 배포 된 Vm 이름으로 hello 및 hello Vm hello에 있어야 합니다. 해결 해야 동일한 도메인입니다. 이는 Azure 전용 및 프레미스 간 배포에만 적용됩니다. SQL Server 가용성 그룹 수신기 (하지 Azure 가용성 집합 hello와 혼동된 toobe) hello 배포 특별 한 고려 사항이 가능한 그대로 toosimply AD/DNS 개체를 만들 Azure가이 시점에서 허용 하지 않는 이후 온-프레미스입니다. 따라서 일부 다른 설치 단계는 필요한 tooovercome hello Azure의 특정 동작입니다.
 
 가용성 그룹 수신기를 사용하는 경우 몇 가지 고려 사항이 있습니다.
 
-* 가용성 그룹 수신기는 Windows Server 2012 또는 Windows Server 2012 R2를 VM의 게스트 OS로 사용할 때만 사용할 수 있습니다. Windows Server 2012의 경우 <https://support.microsoft.com/kb/2854082> 패치가 적용되고 있는지 확인해야 합니다.
-* Windows Server 2008 R2의 경우 이 패치가 없고 연결 문자열에서 장애 조치(failover) 파트너를 지정하여 데이터베이스 미러링과 같은 방법으로 AlwaysOn을 사용해야 합니다(SAP default.pfl 매개 변수 dbs/mss/server를 통해 수행 - SAP Note [965908]참조).
-* 가용성 그룹 수신기를 사용할 경우 데이터베이스 VM을 전용 부하 분산 장치에 연결해야 합니다. 클라우드 전용 배포의 이름을 확인하려면 SAP 시스템의 모든 VM(응용 프로그램 서버, DBMS 서버 및 (A)SCS 서버)이 동일한 가상 네트워크에 있어야 하며, SQL Server VM의 VM 이름을 확인하려면 SAP 응용 프로그램 계층에서 etc\host 파일을 유지 관리해야 합니다. 두 VM이 우발적으로 동시에 종료되는 경우 Azure에서 새 IP 주소를 할당하지 않도록 하려면 AlwaysOn 구성에서 해당 VM의 네트워크 인터페이스에 고정 IP 주소를 할당해야 합니다(고정 IP 주소 정의는 [이 문서][virtual-networks-reserved-private-ip]에서 설명).
+* 가용성 그룹 수신기를 사용 하 여은 Windows Server 2012 또는 Windows Server 2012 r 2에 있을 수 있는 변수로 hello VM의 게스트 OS 합니다. Toomake이이 패치 적용 하는 Windows Server 2012에 대 한 필요한: <https://support.microsoft.com/kb/2854082>
+* Windows Server 2008 R2이이 패치 존재 하지 않는 및 AlwaysOn 해야 toobe 레지스트리에 hello 동일 방식 hello 연결 문자열에 장애 조치 파트너 지정 하 여 데이터베이스 미러링 (수행 통해 SAP default.pfl 매개 변수 dbs/mss/서버 hello – SAP 메모를 참조 하십시오. [965908]).
+* 가용성 그룹 수신기, hello 데이터베이스 Vm을 사용 하 여 연결 toobe 경우 tooa 부하 분산 장치는 전용입니다. 이름 확인 클라우드 전용 배포에서 SAP 시스템의 모든 Vm 필요 하거나 hello 동일한 가상 네트워크 또는 hello etc\host 파일에는 SAP 응용 프로그램 계층 hello 유지 관리에서 구성 요소가 필요 합니다 (응용 프로그램 서버, DBMS 서버 및 (A) SCS 서버)에 주문 tooget hello의 VM 이름을 hello SQL Server Vm을 확인 합니다. Azure가 인 경우 두 Vm 부수적 종료에서에서 새 IP 주소를 할당 하는 순서 tooavoid에 할당 해야 합니다 고정 IP 주소 (고정 IP 주소에 설명 되어 정의 hello AlwaysOn 구성에서 해당 Vm의 toohello 네트워크 인터페이스 [이] [ virtual-networks-reserved-private-ip] 문서)
 
 [comment]: <> (이전 블로그)
 [comment]: <> (<https://blogs.msdn.com/b/alwaysonpro/archive/2014/08/29/recommendations-and-best-practices-when-deploying-sql-server-alwayson-availability-groups-in-windows-azure-iaas.aspx>, <https://blogs.technet.com/b/rmilne/archive/2015/07/27/how-to-set-static-ip-on-azure-vm.aspx>)
-* 현재 기능의 Azure는 클러스터가 만들어진 노드와 동일한 IP 주소를 클러스터 이름에 할당하므로 클러스터에 특정 IP 주소를 할당해야 하는 WSFC 클러스터를 구성할 때는 특별한 단계가 필요합니다. 즉, 클러스터에 다른 IP 주소를 할당하기 위해서는 수동 단계를 수행해야 합니다.
-* 가용성 그룹 수신기는 가용성 그룹의 기본 및 보조 복제본을 실행 중인 VM에 할당된 TCP/IP 끝점을 사용하여 Azure에서 만들어집니다.
-* 이러한 끝점은 ACL로 보호해야 할 수 있습니다.
+* 최신 기능을 갖춘 Azure hello 클러스터 이름을 할당 하기 때문에 할당 된 hello 클러스터에 특별 IP 주소를 해야 하는 hello WSFC 클러스터 구성을 빌드할 때 필요한 특별 한 단계는 hello hello 노드 hello 클러스터와 동일한 IP 주소 에 생성 됩니다. 즉, 수동 단계를 수행된 하는 다른 IP 주소 toohello 클러스터 tooassign 이어야 합니다.
+* hello 가용성 그룹 수신기는 toobe hello hello 가용성 그룹의 주 및 보조 복제본을 실행 하는 toohello Vm 할당 된 TCP/IP 끝점과 함께 Azure에서 만든 것입니다.
+* 이러한 끝점은 Acl로 필요 toosecure 수 있습니다.
 
 [comment]: <> (TODO 이전 블로그)
-[comment]: <> (Azure에서 AlwaysOn 구성 설치에 대한 자세한 단계 및 필요성은 [여기][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]에서 사용할 수 있는 자습서를 살펴보는 것이 좋습니다.)
-[comment]: <> (Azure 갤러리<https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>를 통해 미리 구성된 AlwaysOn 설정)
+[comment]: <> (자세한 단계 hello 및 Azure에서 AlwaysOn 구성 설치의 필요성은 hello 자습서 사용할 수 있는 [here][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups] 해 보면 보는 가장)
+[comment]: <> (AlwaysOn 설정 hello Azure 갤러리를 통해 미리 구성 된 < https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>)
 [comment]: <> (가용성 그룹 수신기 생성은 [이][virtual-machines-windows-classic-ps-sql-int-listener] 자습서에 잘 설명되어 있습니다.)
 [comment]: <> (ACL을 사용한 네트워크 끝점 보호는 여기를 참조하세요.)
 [comment]: <> (*    <https://michaelwasham.com/windows-azure-powershell-reference-guide/network-access-control-list-capability-in-windows-azure-powershell/>)
@@ -801,21 +801,21 @@ AlwaysOn은 SAP 온-프레미스에 대해 지원되므로(SAP Note [1772688]참
 [comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/01/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-2-of-2.aspx>)  
 [comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/18/creating-acls-for-windows-azure-endpoints.aspx>)
 
-여러 Azure 지역에 SQL Server AlwaysOn 가용성 그룹을 배포할 수도 있습니다. 이 기능은 Azure VNet 간 연결을 활용합니다([자세한 내용][virtual-networks-configure-vnet-to-vnet-connection]).
+SQL Server AlwaysOn 가용성 그룹의 가능한 toodeploy이 서로 다른 Azure 지역 통해 합니다. 이 기능은 hello Azure VNet 대 Vnet 연결을 활용 됩니다 ([자세히][virtual-networks-configure-vnet-to-vnet-connection]).
 
 [comment]: <> (TODO 이전 블로그)
-[comment]: <> (이러한 시나리오에서 SQL Server AlwaysOn 가용성 그룹의 설정은 <https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>에서 설명합니다.)
+[comment]: <> (이러한 시나리오에서는 SQL Server AlwaysOn 가용성 그룹의 hello 설치 여기에 설명 된: < https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx> 합니다.)
 
 #### <a name="summary-on-sql-server-high-availability-in-azure"></a>Azure의 SQL Server 고가용성 요약
-Azure 저장소가 콘텐츠를 보호하는 경우 상시 대기 이미지를 고집할 이유가 줄어듭니다. 즉, 고가용성 시나리오는 다음과 같은 경우에 대해서만 방지해야 합니다.
+상시 대기 이미지만 적은 이유 tooinsist 하나는 Azure 저장소의 hello 콘텐츠 보호 하는 hello 팩트를 제공입니다. 즉, 고가용성 시나리오 tooonly 비활성화 hello 으로부터 보호 합니다.
 
-* Azure의 서버 클러스터 유지 관리 또는 기타 이유로 인해 VM을 전체적으로 사용할 수 없는 경우
-* SQL Server 인스턴스에 소프트웨어 문제가 발생한 경우
+* Azure의 hello 서버 클러스터에 toomaintenance 또는 기타 이유로 인해 전체적으로 hello VM 사용 불가능
+* Hello SQL Server 인스턴스의 소프트웨어 문제
 * 데이터가 삭제되고 지정 시간 복구가 필요하여 수동 오류로부터 보호해야 하는 경우
 
-기술적인 면에서 처음 두 경우는 데이터베이스 미러링 또는 AlwaysOn을 통해 해결할 수 있으며 세 번째 경우는 로그 전달을 통해서만 가능합니다.
+일치 하는 기술 hello 세 번째 경우 수 작성 된 로그 전달 하는 반면 데이터베이스 미러링 또는 AlwaysOn, hello 처음 두 가지 경우를 다룰 수 있습니다 주장할 수 있을 하나 찾습니다.
 
-AlwaysOn의 경우 데이터베이스 미러링에 비해 더 복잡한 설정이 필요하지만 AlwaysOn의 이점이 있습니다. 이러한 이점은 다음과 같습니다.
+Toobalance 해야 더 복잡 한 비교 tooDatabase AlwaysOn 설정은 hello 미러링, AlwaysOn의 hello 장점 합니다. 이러한 이점은 다음과 같습니다.
 
 * 읽기 가능한 보조 복제본
 * 보조 복제본에서 백업
@@ -823,80 +823,80 @@ AlwaysOn의 경우 데이터베이스 미러링에 비해 더 복잡한 설정�
 * 둘 이상의 보조 복제본
 
 ### <a name="9053f720-6f3b-4483-904d-15dc54141e30"></a>Azure의 SAP용 SQL Server에 대한 일반적 요약
-이 가이드에는 많은 권장 사항이 있으며 Azure 배포를 계획하기 전에 두 번 이상 읽는 것이 좋습니다. 하지만 일반적으로 상위 10개의 일반 Azure DBMS 특정 사항을 따라야 합니다.
+이 가이드에는 많은 권장 사항이 있으며 Azure 배포를 계획하기 전에 두 번 이상 읽는 것이 좋습니다. 일반적으로 하지만 될 있는지 toofollow hello Azure의 특정 지점에서 상위 10 개의 일반 DBMS:
 
 [comment]: <> (2.3 더 높은 처리량이 필요한 경우 수행할 작업 하나 이상의 VHD는?)
-1. Azure에서 가장 많은 이점을 제공하는 SQL Server 2014와 같은 최신 DBMS 릴리스를 사용합니다. SQL Server의 경우 Azure 저장소 백업 기능을 포함하는 SQL Server 2012 SP1 CU4입니다. 그러나 SAP와 함께 최소 SQL Server 2014 SP1 CU1 또는 SQL Server 2012 SP2 및 최신 CU를 권장합니다.
-2. 데이터 파일 레이아웃과 Azure 제한 사항 균형을 조정하도록 Azure에서 SAP 시스템 배경을 신중하게 계획합니다.
-   * VHD가 너무 많으면 안 되지만 필요한 IOPS에 도달할 수 있을 만큼 충분해야 합니다.
+1. Hello 최신 DBMS 릴리스, Azure의 hello를 가장 많은 이점을 있는 SQL Server 2014와 같은 사용 합니다. SQL Server, SQL Server 2012 SP1 CU4 포함 릴리스는 Azure 저장소는 지원의 hello 기능입니다. 그러나 SAP와 함께에서 것이 좋습니다 이상 SQL Server 2014 SP1 c u 1 또는 SQL Server 2012 SP2 및 hello 최신 CU입니다.
+2. Azure toobalance hello 데이터 파일 레이아웃과 Azure 제한 사항에서 SAP 시스템 지형을 프로그램을 신중 하 게 계획 합니다.
+   * Vhd가 너무 많이 필요는 없지만 충분 한 tooensure 필요한 IOPS에 도달할 수 있어야 합니다.
    * IOPS는 Azure Storage 계정별로 제한되며, 해당 저장소 계정도 각 Azure 구독 내에서 제한됩니다([자세한 내용][azure-subscription-service-limits]).
-   * 더 높은 처리량이 필요한 경우에만 VHD를 스트라이프합니다.
-3. D:\ 드라이브는 비영구적이며 Windows 재부팅 시 이 드라이브의 내용이 모두 손실되므로 계속 유지해야 하는 소프트웨어를 설치하거나 파일을 저장하지 마세요.
+   * 여러 Vhd tooachieve 더 높은 처리량을 해야 할 경우만 스트라이프 합니다.
+3. 소프트웨어를 설치 하지 않거나 또는 비 영구적인 및 Windows 다시 부팅할 때 손실 됩니다이 드라이브에 hello D:\ 드라이브에 지 속성을 필요로 하는 파일을 배치 합니다.
 4. Azure 표준 저장소에 대해 Azure VHD 캐싱을 사용하지 마세요.
 5. Azure 지역에서 복제된 저장소 계정을 사용하지 마세요.  DBMS 워크로드에 대한 로컬 중복을 사용합니다.
-6. DBMS 공급업체의 HA/DR 솔루션을 사용하여 데이터베이스 데이터를 복제합니다.
+6. DBMS 공급 업체의 HA/DR 솔루션 tooreplicate 데이터베이스 데이터를 사용 합니다.
 7. 항상 이름 확인을 사용하고 IP 주소를 사용하지 마세요.
-8. 가능한 가장 높은 데이터베이스 압축을 사용합니다. SQL Server의 경우 페이지 압축입니다.
-9. Azure Marketplace의 SQL Server 이미지를 사용할 때는 주의하세요. SQL Server 이미지를 사용하는 경우 SAP NetWeaver 시스템을 설치하기 전에 인스턴스 데이터 정렬을 변경해야 합니다.
-10. [배포 가이드][deployment-guide]에서 설명한 대로 Azure용 SAP 호스트 모니터링을 설치 및 구성합니다.
+8. Hello 가장 높은 데이터베이스 압축을 사용 가능 합니다. SQL Server의 경우 페이지 압축입니다.
+9. Hello Azure Marketplace에서에서 SQL Server 이미지를 사용 하 여 주의 해야 합니다. Hello 하나는 SQL Server를 사용 하면 SAP NetWeaver 시스템에 설치 하기 전에 hello 인스턴스 데이터 정렬을 변경 해야 합니다.
+10. 설치 하 고에 설명 된 대로 Azure 용 SAP Host Monitoring hello 구성 [배포 가이드][deployment-guide]합니다.
 
-## <a name="specifics-to-sap-ase-on-windows"></a>Windows의 SAP ASE에 대한 고유 정보
-Microsoft Azure부터 기존 SAP ASE 응용 프로그램을 쉽게 Azure 가상 컴퓨터로 마이그레이션할 수 있습니다. 가상 컴퓨터에서 SAP ASE를 사용하면 이러한 응용 프로그램을 Microsoft Azure로 쉽게 마이그레이션하여 엔터프라이즈 수준의 응용 프로그램에 대한 배포, 관리 및 유지 관리의 총 소유 비용을 줄일 수 있습니다. Azure 가상 컴퓨터에서 SAP ASE를 사용하면 관리자와 개발자가 온-프레미스와 동일한 개발 및 관리 도구를 사용할 수 있습니다.
+## <a name="specifics-toosap-ase-on-windows"></a>Windows에서 ASE 비슷하므로 tooSAP
+Microsoft Azure를 시작 하면 기존 SAP ASE 응용 프로그램 tooAzure 가상 컴퓨터를 쉽게 마이그레이션할 수 있습니다. 가상 컴퓨터에서 SAP ASE에는 이러한 응용 프로그램 tooMicrosoft Azure로 쉽게 마이그레이션하여 여 있습니다 tooreduce hello 총 소유 비용을의 배포, 관리 및 유지 관리 엔터프라이즈 범위의 응용 수 있습니다. SAP ASE Azure 가상 컴퓨터에서 사용 관리자와 개발자가 동일한 개발 및 관리 도구를 사용할 수 있는 온-프레미스 hello를 계속 사용할 수 있습니다.
 
-Azure 가상 컴퓨터용 SLA는 <https://azure.microsoft.com/support/legal/sla>에 있습니다.
+Hello 여기에서 찾을 수 있는 Azure 가상 컴퓨터에 대 한 SLA는: <https://azure.microsoft.com/support/legal/sla>
 
-Microsoft Azure에서 호스트되는 가상 컴퓨터는 다른 공용 클라우드 가상화 서비스에 비해 훨씬 뛰어난 성능을 제공하지만 개별 결과는 다를 수 있습니다. 서로 다른 SAP 인증 VM SKU의 SAP 크기 조정 SAPS 번호는 별도 SAP Note [1928533]에서 제공됩니다.
+Microsoft Azure 호스트 된 가상 컴퓨터 성능이 매우 비교 tooother 공용 클라우드 가상화 서비스 하지만 개별 결과에 따라 달라질 수 있습니다 시킨다 고 확신 하는입니다. SAP의 서로 다른 SAP VM Sku 별도 SAP Note에서 제공 됩니다 인증 hello SAPS 숫자 크기 조정 [1928533]합니다.
 
-이 문서의 처음 네 챕터에서 설명한 것처럼 SAP 응용 프로그램과 함께 SAP ASE를 배포할 때는 Azure 저장소 사용, SAP VM 또는 SAP 모니터링 배포와 관련된 설명 및 권장 사항이 적용됩니다.
+문 및 Azure 저장소, SAP Vm 배포 또는 SAP 모니터링의 큰지에 toohello 사용의 권장 사항을 toodeployments SAP ASE의 SAP 응용 프로그램이 문서의 처음 네 개의 장 hello 전체에서 명시 된 대로 함께 적용 됩니다.
 
 ### <a name="sap-ase-version-support"></a>SAP ASE 버전 지원
-SAP는 현재 SAP ASE 버전 16.0을 SAP Business Suite 제품과 함께 사용하도록 지원합니다. SAP Business Suite 제품과 함께 사용할 SAP ASE 서버 또는 JDBC 및 ODBC 드라이버에 대한 모든 업데이트는 <https://support.sap.com/swdc>에서 SAP Service 마켓플레이스를 통해서만 제공됩니다.
+SAP는 현재 SAP ASE 버전 16.0을 SAP Business Suite 제품과 함께 사용하도록 지원합니다. SAP Business Suite 제품은 통해서만 제공 함께 사용 하는 JDBC 및 ODBC 드라이버 toobe 또는 SAP ASE 서버에 대 한 모든 업데이트에서 SAP Service Marketplace hello: <https://support.sap.com/swdc>합니다.
 
-온-프레미스 설치와 마찬가지로 Sybase 웹 사이트에서 직접 SAP ASE 서버 또는 JDBC 및 ODBC 드라이버에 대한 업데이트를 다운로드하지 마세요. 온-프레미스 및 Azure 가상 컴퓨터에서 SAP Business Suite 제품을 사용하도록 지원되는 패치에 대한 자세한 내용은 다음 SAP Note를 참조하세요.
+설치 온-프레미스의 경우와 Sybase 웹 사이트에서 직접 hello SAP ASE 서버 또는 hello JDBC 및 ODBC 드라이버에 대 한 업데이트를 다운로드 하지 않습니다. SAP Business Suite 제품 온-프레미스와 Azure 가상 컴퓨터에서 사용 하기 위해 지원 되는 패치 대 한 자세한 내용은 SAP Note 다음 hello 참조:
 
 * [1590719]
 * [1973241]
 
-SAP ASE에서의 SAP Business Suite 실행에 대한 일반 정보는 [SCN](https://scn.sap.com/community/ase)
+Hello에서 SAP ASE에서 SAP Business Suite 실행에 대 한 일반 정보를 찾을 수 있습니다 [SCN](https://scn.sap.com/community/ase)
 
 ### <a name="sap-ase-configuration-guidelines-for-sap-related-sap-ase-installations-in-azure-vms"></a>Azure VM의 SAP 관련 SAP ASE 설치에 대한 SAP ASE 구성 지침
-#### <a name="structure-of-the-sap-ase-deployment"></a>SAP ASE 배포의 구조
-일반적인 설명에 따라 SAP ASE 실행 파일을 VM의 기본 VHD에 있는 시스템 드라이브(드라이브 C:\)에 배치 또는 설치해야 합니다. 일반적으로 대부분의 SAP ASE 시스템 및 도구 데이터베이스는 실제로 SAP NetWeaver 워크로드에서 사용되지 않습니다. 따라서 시스템 및 도구 데이터베이스(master, model, saptools, sybmgmtdb, sybsystemdb)가 C:\ 드라이브에 남아 있을 수 있습니다.
+#### <a name="structure-of-hello-sap-ase-deployment"></a>Hello SAP ASE 배포의 구조
+Hello 일반적인 설명에 따라 SAP ASE 실행 파일을 찾을, hello VM의 기본 VHD의 hello 시스템 드라이브에 설치 (c: 드라이브\)합니다. 일반적으로 대부분의 hello SAP ASE 시스템과 도구 데이터베이스 하지 실제로에서 활용 됩니다 하드 SAP NetWeaver 작업 합니다. 따라서 시스템을 hello 및 도구 데이터베이스 (master, model, saptools sybmgmtdb, sybsystemdb)도 C:\drive hello에 남아 있을 수 있습니다.
 
-단, SAP ASE에 의해 만들어진 모든 작업 테이블 및 임시 테이블을 포함하는 임시 데이터베이스는 예외입니다. 이 경우 일부 SAP ERP 및 모든 BW 워크로드에서 원본 VM의 기본 VHD(C: 드라이브\)에 맞지 않는 더 큰 데이터 볼륨 또는 I/O 작업 볼륨이 필요할 수 있습니다.
+예외에는 모든 작업 테이블 및 일부 SAP ERP 및 모든 BW 작업의 경우 더 큰 데이터 볼륨 또는 원래 hello에 맞지 않는 I/O 작업 볼륨이 필요할 수 있습니다. 있는 SAP ASE에 의해 생성 된 임시 테이블을 포함 하는 hello 임시 데이터베이스 수 있습니다. VM의 기본 VHD (c: 드라이브\)합니다.
 
-시스템을 설치하는 데 사용되는 SAPInst/SWPM의 버전에 따라 데이터베이스에 다음 항목이 포함될 수 있습니다.
+SAPInst/SWPM의 버전 사용 tooinstall hello 시스템 hello에 따라, hello 데이터베이스 포함 될 수 있습니다.
 
 * SAP ASE를 설치할 때 만들어지는 단일 SAP ASE tempdb
-* SAP 설치 루틴에 의해 만들어지는 SAP ASE 및 추가 saptempdb를 설치하여 만들어지는 SAP ASE tempdb
-* ERP/BW 특정 tempdb 요구 사항에 맞게 SAP ASE 및 수동으로 만든 추가 tempdb를 설치하여 만들어지는 SAP ASE tempdb(예: SAP Note [1752266])
+* SAP ASE 및 hello SAP 설치 루틴에서 만든 추가 saptempdb는 설치 하 여 생성 하는 SAP ASE tempdb
+* SAP ASE 및 수동으로 만든 추가 tempdb는 설치 하 여 생성 하는 SAP ASE tempdb (예: SAP Note를 다음 [1752266]) toomeet ERP/BW 특정 tempdb 요구 사항
 
-특정 ERP 또는 모든 BW 작업의 경우 이렇게 하면, tempdb 장치 (SWPM 또는 수동으로) 또한 만든 tempdb 이외의 C:\ 드라이브에 유지 하려면 성능 관련 하 여 있습니다. 추가 tempdb가 없는 경우 새로 만드는 것이 좋습니다(SAP Note [1752266]).
+특정 ERP 또는 모든 BW 작업의 경우 이렇게 하면, 큰지에 tooperformance에서 tookeep hello tempdb 장치 또한 만든 hello tempdb (SWPM 또는 수동으로) 이외의 C:\ 드라이브에 있습니다. 추가 tempdb 없는 없으면 하나 toocreate 것이 좋습니다 (SAP Note [1752266]).
 
-이러한 시스템의 경우 추가로 생성된 tempdb에 대해 다음 단계를 수행해야 합니다.
+이러한 시스템 hello에 대 한 또한 tempdb를 생성 하는 hello에 대 한 다음 단계를 수행 해야 합니다.
 
-* 첫 번째 tempdb 장치를 SAP 데이터베이스의 첫 번째 장치로 이동
-* SAP 데이터베이스의 장치를 포함하는 각 VHD에 tempdb 장치 추가
+* Hello 첫 번째 tempdb 장치 toohello 첫 번째 장치 hello SAP 데이터베이스의 이동
+* Hello hello SAP 데이터베이스의 장치를 포함 하는 Vhd의 tempdb 장치 tooeach 추가
 
-이 구성을 사용하면 tempdb에서 시스템 드라이브에서 제공할 수 있는 것보다 더 많은 공간을 사용할 수 있습니다. 참조로 온-프레미스에서 실행 중인 기존 시스템에서 tempdb 장치 크기를 확인할 수 있습니다. 또는 이러한 구성은 시스템 드라이브에서 tempdb에 대해 제공할 수 있는 것보다 더 많은 IOPS 수를 사용합니다. 다시 말하지만 온-프레미스에서 실행 중인 시스템에서 tempdb에 대해 I/O 워크로드를 모니터링할 수 있습니다.
+이 구성을 사용 하면 tempdb tooeither hello 시스템 드라이브는 수 tooprovide 보다 더 많은 공간을 사용 합니다. 참조로 하나 온-프레미스를 실행 중인 기존 시스템에서 hello tempdb 장치 크기를 확인할 수 있습니다. 또는 이러한 구성 hello 시스템 드라이브로 제공할 수 없는 tempdb에 대 한 IOPS 값을 사용 합니다. 다시 온-프레미스를 실행 중인 시스템에는 tempdb에 대 한 사용된 toomonitor I/O 작업 수 있습니다.
 
-SAP ASE 장치를 VM의 D:\ 드라이브에 배치하지 마세요. 이는 tempdb에도 적용되며 tempdb에 저장된 개체가 임시 개체인 경우에도 마찬가지입니다.
+Hello hello VM의 D:\ 드라이브에 저장 하는 모든 SAP ASE 장치 하면 안 됩니다. 또한 toohello tempdb hello tempdb에 보관 하는 hello 개체는 임시만 하는 경우에 마찬가지입니다.
 
 #### <a name="impact-of-database-compression"></a>데이터베이스 압축의 영향
-I/O 대역폭이 제한 요인이 될 수 있는 구성에서 IOPS를 줄여 Azure와 같이 IaaS 시나리오에서 실행할 수 있는 워크로드를 확장할 수 있습니다. 따라서 기존 SAP 데이터베이스를 Azure에 업로드하기 전에 SAP ASE 압축이 사용되는지 확인해야 합니다.
+I/O 대역폭이 제한 요인으로 작용할 수 있는 구성에서를 IOPS를 줄이는 모든 수단이 Azure와 같은 IaaS 시나리오에서 실행할 수 있는 toostretch hello 작업 부하를 이해할 수 있습니다. 따라서 하는 것이 좋습니다 toomake SAP ASE 압축 기존 SAP 데이터베이스 tooAzure 업로드 하기 전에 사용 되도록 합니다.
 
-아직 구현되지 않은 경우 Azure에 업로드하기 전에 압축을 수행해야 하는 이유는 다음과 같습니다.
+구현 되지 않은 경우 tooAzure를 업로드 하기 전에 hello 권장 tooperform 압축 몇 가지 이유로에서 제공 됩니다.
 
-* Azure에 업로드할 데이터의 양이 적어집니다.
-* 더 향상된 CPU가 있는 강력한 하드웨어 또는 더 높은 I/O 대역폭이나 낮은 I/O 대기 시간의 온-프레미스를 사용할 경우 압축 실행 시간이 짧아집니다.
-* 데이터베이스 크기가 작을수록 디스크 할당 비용이 줄어들 수 있습니다.
+* 데이터 업로드 toobe tooAzure hello 양을 낮습니다.
+* hello hello 압축 실행 기간은 짧은 더 많은 Cpu 또는 I/O 대역폭이 더 높거나 이하의 I/O 대기 시간 온-프레미스 보다 강력한 하드웨어 사용할 수 있다고 가정 하면
+* 데이터베이스 크기가 작은 디스크 할당에 대 한 tooless 비용이 발생할 수 있습니다.
 
-데이터 및 LOB 압축은 Azure 가상 컴퓨터에서 호스트되는 VM에서도 온-프레미스에서와 마찬가지로 작동합니다. 기존 SAP ASE 데이터베이스에서 압축이 이미 사용 중인지 확인하는 방법은 SAP Note [1750510]을 참조하세요.
+데이터 및 LOB 압축은 Azure 가상 컴퓨터에서 호스트되는 VM에서도 온-프레미스에서와 마찬가지로 작동합니다. 기존 SAP ASE에 toocheck 압축이 이미 있는 경우 사용 하는 방법에 대 한 자세한 내용은 데이터베이스를 확인 하십시오 SAP Note [1750510]합니다.
 
-#### <a name="using-dbacockpit-to-monitor-database-instances"></a>DBACockpit를 사용하여 데이터베이스 인스턴스 모니터링
-SAP ASE를 데이터베이스 플랫폼으로 사용하는 SAP 시스템의 경우 DBACockpit는 트랜잭션 DBACockpit에 포함된 브라우저 창 또는 Webdynpro로 액세스할 수 있습니다. 그러나 데이터베이스 모니터링 및 관리를 위한 전체 기능은 DBACockpit의 Webdynpro 구현에서만 사용할 수 있습니다.
+#### <a name="using-dbacockpit-toomonitor-database-instances"></a>DBACockpit toomonitor 데이터베이스 인스턴스를 사용 하 여
+데이터베이스 플랫폼으로 SAP ASE를 사용 하는 SAP 시스템에 대 한 hello DBACockpit는 DBACockpit 트랜잭션에 포함 된 브라우저 창을 또는 Webdynpro로 액세스할 수 있습니다. 그러나 모니터링 하기 위한 모든 기능을 hello 되며 관리 hello 데이터베이스 hello DBACockpit의 hello Webdynpro 구현에서 사용할 수 있습니다.
 
-DBACockpit의 Webdynpro 구현에 의해 사용되는 모든 SAP NetWeaver 기능을 사용하려면 온-프레미스 시스템처럼 여러 단계가 필요합니다. webdynpro를 사용하도록 설정하고 필요한 경우 생성하려면 SAP Note [1245200] 을 참조하세요. 위의 Note 지침을 수행하면 http 및 https 연결에 사용할 포트와 함께 ICM(Internet Communication Manager)도 구성하게 됩니다. Http에 대한 기본 설정은 다음과 같습니다.
+으로 온-프레미스 시스템 몇 가지 단계가 필요 tooenable hello DBACockpit hello Webdynpro 구현에 의해 사용 되는 모든 SAP NetWeaver 기능 합니다. SAP Note를 수행 하십시오 [1245200] tooenable hello webdynpros의 사용 및 생성 hello 더 필요 합니다. 때 다음 hello 지침 정보 또한 구성한 hello 인터넷 통신 관리자 (icm)와 함께 위의 hello에 http 및 https 연결에 사용 되는 포트 toobe hello 합니다. http에 대 한 hello 기본 설정은 다음과 같습니다.
 
 > icm/server_port_0 = PROT=HTTP,PORT=8000,PROCTIMEOUT=600,TIMEOUT=600
 >
@@ -904,7 +904,7 @@ DBACockpit의 Webdynpro 구현에 의해 사용되는 모든 SAP NetWeaver 기�
 >
 >
 
-트랜잭션 DBACockpit에서 생성된 링크는 다음과 같습니다.
+및 DBACockpit 트랜잭션에서 생성 된 hello 링크 유사한 toothis 표시 됩니다.
 
 > https://`<fullyqualifiedhostname`>:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -912,17 +912,17 @@ DBACockpit의 Webdynpro 구현에 의해 사용되는 모든 SAP NetWeaver 기�
 >
 >
 
-SAP 시스템을 호스트하는 Azure 가상 컴퓨터가 사이트 간, 다중 사이트 또는 Express 경로(프레미스 간 배포)를 통해 연결되었는지 여부 및 그 방법에 따라 ICM이 DBACockpit를 열려는 컴퓨터에서 확인할 수 있는 정규화된 호스트 이름을 사용하는지 확인해야 합니다. ICM에서 프로필 매개 변수에 따라 정규화된 호스트 이름을 확인하는 방법을 이해하고 필요한 경우 icm/host_name_full 매개 변수를 명시적으로 설정하려면 SAP Note [773830]을 참조하세요.
+에 따라와 hello Azure 가상 컴퓨터 호스팅 hello SAP 시스템 사이트를 통해 연결 하는 방법을 멀티 사이트 또는 express 경로 (크로스-프레미스 배포의 경우) 해야 toomake 있는지 해당 ICM 사용 확인 될 수 있는 정규화 된 호스트 이름 hello에 tooopen 시도 하 고 있는 컴퓨터에서 DBACockpit hello 합니다. SAP Note를 참조 하십시오 [773830] ICM 결정 하는 방법 toounderstand hello 프로필 매개 변수 및 매개 변수 icm/host_name_full 집합에 따라 정규화 된 호스트 이름을 명시적으로 필요한 경우.
 
-온-프레미스와 Azure 간에 프레미스 간 연결이 없는 클라우드 전용 시나리오에서 VM을 배포한 경우 공용 IP 주소 및 도메인 레이블을 정의해야 합니다. VM의 공용 DNS 이름 형식은 다음과 같습니다.
+온-프레미스와 Azure 간 크로스-프레미스 연결 없이 클라우드 전용 시나리오에서 hello VM을 배포한 경우 공용 IP 주소와는 domainlabel toodefine 필요 합니다. 그런 다음 hello VM의 공용 DNS 이름 hello hello 형식은 다음과 같이 표시 됩니다.
 
 > `<custom domainlabel`>.`<azure region`>.cloudapp.azure.com
 >
 >
 
-DNS 이름과 관련된 자세한 내용은 [여기][virtual-machines-azurerm-versus-azuresm]에 있습니다.
+자세한 내용은 관련 toohello DNS 이름을 찾을 수 [여기][virtual-machines-azurerm-versus-azuresm]합니다.
 
-SAP 프로필 매개 변수 icm/host_name_full을 Azure VM의 DNS 이름으로 설정할 경우 링크는 다음과 같습니다.
+설정을 hello SAP 프로필 매개 변수 icm/host_name_full toohello hello Azure VM hello 링크의 DNS 이름을 유사 하 게 나타날 수 있습니다.
 
 > https://mydomainlabel.westeurope.cloudapp.net:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -930,18 +930,18 @@ SAP 프로필 매개 변수 icm/host_name_full을 Azure VM의 DNS 이름으로 �
 >
 >
 
-이 경우 다음을 확인해야 합니다.
+이 경우에 필요 toomake 해야 합니다.
 
-* Azure 포털의 네트워크 보안 그룹에 ICM과 통신하는 데 사용되는 TCP/IP 포트에 대한 인바운드 규칙을 추가합니다.
-* Windows 방화벽 구성에 ICM과 통신하는 데 사용되는 TCP/IP 포트에 대한 인바운드 규칙을 추가합니다.
+* ICM와 toocommunicate를 사용 하는 hello TCP/IP 포트에 대 한 hello Azure 포털에서에서 인바운드 규칙 toohello 네트워크 보안 그룹 추가
+* ICM hello로 TCP/IP 사용 포트 toocommunicate hello에 대 한 인바운드 규칙 toohello Windows 방화벽 구성 추가
 
-사용 가능한 모든 수정 사항을 자동으로 가져오려면 SAP 버전에 적용할 수 있는 수정 사항 모음 SAP Note를 정기적으로 적용하는 것이 좋습니다.
+자동화 된 가져온 사용 가능한 모든 수정에 대 한 권장 tooperiodically hello 수정 컬렉션 SAP Note 적용 가능한 tooyour SAP 버전을 적용 합니다.
 
 * [1558958]
 * [1619967]
 * [1882376]
 
-SAP ASE의 DBA Cockpit에 대한 자세한 내용은 다음 SAP Note에서 확인할 수 있습니다.
+SAP ASE에 대 한 DBA Cockpit에 대 한 자세한 내용은 SAP Note 다음 hello에 있습니다.
 
 * [1605680]
 * [1757924]
@@ -953,103 +953,103 @@ SAP ASE의 DBA Cockpit에 대한 자세한 내용은 다음 SAP Note에서 확�
 * [1956005]
 
 #### <a name="backuprecovery-considerations-for-sap-ase"></a>SAP ASE에 대한 백업/복구 고려 사항
-Azure에 SAP ASE를 배포하는 경우 백업 방법을 검토해야 합니다. 생산성이 높은 시스템이 아니더라도 SAP ASE에서 호스트하는 SAP 데이터베이스를 정기적으로 백업해야 합니다. Azure 저장소에는 이제 세 개의 이미지가 있으므로 저장소 작동 중단을 보완하는 측면에서 백업의 중요성이 줄어들었습니다. 적절한 백업 및 복원 계획 유지 관리가 중요한 이유는 지정 시간 복구 기능을 제공하여 논리/수동 오류를 보완할 수 있기 때문입니다. 따라서 목표는 백업을 사용하여 데이터베이스를 다시 특정 시점으로 복원하거나 기존 데이터베이스를 복사하여 다른 시스템에 시딩하는 데 Azure의 백업을 사용하는 것입니다. 예를 들어 백업을 복구하여 2계층 SAP 구성을 동일한 시스템의 3계층 시스템 설정으로 전송할 수 있습니다.
+Azure에 SAP ASE를 배포하는 경우 백업 방법을 검토해야 합니다. 경우에 hello 시스템 운영 중인 시스템이, SAP ASE에서 호스트 되는 hello SAP 데이터베이스를 백업 해야 주기적으로 합니다. Azure 저장소에 백업을 중요성이 존중 toocompensating 저장소 충돌에에서 세 개의 이미지를 유지 되므로 합니다. hello 적절 한 백업 및 복원 계획을 유지 관리에 대 한 주된 이유 때문입니다 지점 시간 복구 기능에서을 제공 하 여 논리적/수동 오류 보완할 수 있습니다. Hello 목표 tooeither 백업을 toorestore hello 데이터베이스 사용 다시 이므로 tooa 특정 지점에서 Azure tooseed 시간 또는 toouse hello 백업에 다른 시스템 hello 기존 데이터베이스를 복사 하 여 합니다. 예를 들어으로 전환할 수 있습니다의 hello는 2 계층 SAP 구성 tooa 3 계층 시스템 설정에서 동일한 시스템 백업을 복원 하 여 합니다.
 
-Azure에서의 데이터베이스 백업 및 복원은 온-프레미스와 동일한 방식으로 진행됩니다. 다음 SAP Note를 참조하세요.
+Azure works에서 데이터베이스 백업 및 복원 hello 동일한 방식으로 온-프레미스를 수행 합니다. 다음 SAP Note를 참조하세요.
 
 * [1588316]
 * [1585981]
 
-여기에는 덤프 구성 생성 및 백업 예약에 대한 자세한 내용이 나와 있습니다. 전략 및 요구 사항에 따라 데이터베이스를 구성하고 디스크 덤프를 기존 VHD 중 하나에 기록하거나 백업을 위해 다른 VHD를 추가할 수 있습니다.  오류가 발생할 경우 데이터 손실의 위험을 줄이기 위해서는 데이터베이스 장치가 없는 VHD를 사용하는 것이 좋습니다.
+여기에는 덤프 구성 생성 및 백업 예약에 대한 자세한 내용이 나와 있습니다. 전략 및 구성할 수 요구 사항에 따라 데이터베이스 및 로그 toodisk hello 기존 Vhd 중 하나에 덤프 하거나 hello 백업에 대 한 추가 VHD를 추가 합니다.  오류 발생 시 데이터 손실의 tooreduce hello 위험 권장 toouse 데이터베이스 장치가 없거나 위치한 VHD입니다.
 
-데이터 및 LOB 압축 SAP ASE 외에도 백업 압축을 제공합니다. 데이터베이스 및 로그 덤프의 공간 사용량을 줄이려면 백업 압축을 사용하는 것이 좋습니다. 자세한 내용은 SAP Note [1588316] 을 참조하세요. 백업 압축은 백업 또는 백업 덤프를 포함하는 VHD를 Azure 가상 컴퓨터에서 온-프레미스로 다운로드하려고 할 때 전송되는 데이터 양을 줄이는 데도 효과적입니다.
+데이터 및 LOB 압축 SAP ASE 외에도 백업 압축을 제공합니다. 복사 하는 hello 데이터베이스 및 로그를 사용 하 여 공간을 덜 toooccupy toouse 백업 압축 것이 좋습니다. 자세한 내용은 SAP Note [1588316] 을 참조하세요. 압축 hello 백업이 중요 tooreduce hello 양의 toodownload 백업 또는 hello tooon-프레미스 Azure 가상 컴퓨터에서에서 백업 덤프에 포함 된 Vhd를 계획 하는 경우에 전송할 데이터 toobe 이기도 합니다.
 
 데이터베이스 또는 로그 덤프 대상으로 D:\ 드라이브를 사용하지 마세요.
 
 #### <a name="performance-considerations-for-backupsrestores"></a>백업/복원에 대한 성능 고려 사항
-완전 배포에서처럼 백업/복원 성능은 병렬로 읽을 수 있는 볼륨 수와 이러한 볼륨의 처리량에 따라 달라집니다. 또한 백업 압축에서 사용하는 CPU 사용량은 최대 8개 CPU 스레드까지 VM에서 중요 역할을 수행할 수 있습니다. 따라서 다음을 가정할 수 있습니다.
+완전 배포 에서처럼 백업/복원 성능은 동시에 읽을 수 있는 볼륨 수 및 이러한 볼륨의 어떤 hello 출력 수에 따라 달라 집니다. 또한 hello 백업 압축을 통해 CPU 사용률 too8 CPU 스레드를 방금 된 Vm에서 중요 한 역할을 재생 수 있습니다. 따라서 다음을 가정할 수 있습니다.
 
-* 데이터베이스 장치를 저장하는 데 사용하는 VHD 수가 적을수록 전반적인 읽기 처리량이 줄어듭니다.
-* VM의 CPU 스레드 수가 적을수록 백업 압축에 대한 영향이 커집니다.
-* 백업을 작성하는 대상(스트라이프 디렉터리, VHD) 수가 적을수록 처리량이 줄어듭니다.
+* hello Vhd hello 수를 적게 사용 toostore hello 데이터베이스 장치 hello 읽기에서 전반적인 처리량을 더 작은 hello
+* 더 작은 hello hello VM의에서 CPU 스레드 수가 hello, 백업 압축의 심각한 hello 영향 hello
+* 더 적은 대상 (Stripe 디렉터리, Vhd) toowrite hello에 대 한 백업 hello, 더 적은 hello 처리량 hello
 
-작성할 대상 수를 늘리려면 두 가지 옵션을 필요에 따라 사용/혼합할 수 있습니다.
+tooincrease hello 수가 대상 toowrite toothere 두 가지 옵션이 필요에 따라 사용 되 는/결합 될 수 있습니다.
 
-* 해당 스트라이프 볼륨에 대한 IOPS 처리량을 개선하려면 탑재된 여러 VHD에 백업 대상 볼륨을 스트라이프합니다.
-* 둘 이상의 대상 디렉터리를 사용하여 덤프를 작성하는 SAP ASE 수준에서 덤프 구성을 만듭니다.
+* 백업 대상 볼륨을 hello 순서 tooimprove hello IOPS 처리량이 해당 스트라이프 볼륨에 여러 탑재 된 Vhd로 스트라이프
+* 둘 이상의 대상 디렉터리 toowrite hello 덤프를 사용 하 여 SAP ASE 수준에서 덤프 구성 만들기
 
-탑재된 여러 VHD에 볼륨을 스트라이프하는 방법은 이 가이드의 앞부분에서 설명했습니다. 여러 디렉터리를 사용하여 SAP ASE 덤프를 구성하는 방법에 대한 자세한 내용은 [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp)에서 덤프 구성을 만드는 데 사용되는 저장 프로시저 sp_config_dump에 대한 설명서를 참조하세요.
+탑재된 여러 VHD에 볼륨을 스트라이프하는 방법은 이 가이드의 앞부분에서 설명했습니다. 사용 하 여 대 한 자세한 내용은 hello SAP ASE 덤프 구성에서 여러 디렉터리를 참조 하십시오 toohello 설명서에는 hello에 사용 되는 toocreate hello 덤프 구성 인 저장 프로시저 sp_config_dump [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp).
 
 ### <a name="disaster-recovery-with-azure-vms"></a>Azure VM을 사용한 재해 복구
 #### <a name="data-replication-with-sap-sybase-replication-server"></a>SA Sybase Replication Server를 사용한 데이터 복제
-SAP SRS(Sybase Replication Server)를 사용하면 SAP ASE에서 멀리 떨어진 위치에 데이터베이스 트랜잭션을 비동기적으로 전송하는 웜 대기 솔루션을 제공합니다.
+Hello로 SAP Sybase 복제 서버 (SRS) SAP ASE 비동기적으로 웜 대기 솔루션 tootransfer 데이터베이스 트랜잭션 tooa 멀리 떨어진 위치를 제공합니다.
 
-SRS 설치 및 작동은 Azure 가상 컴퓨터 서비스에서 호스트되는 VM에서도 온-프레미스에서처럼 기능적으로 작동합니다.
+hello 설치 되 고 SRS의 작동에도 온-프레미스와 마찬가지로 Azure 가상 컴퓨터 서비스에서 호스팅되는 VM에서 기능적으로 작동 합니다.
 
 SAP Replication Server를 통한 ASE HADR은 향후 릴리스에 도입될 예정입니다. 이 기능은 곧 Microsoft Azure Platform에 대해 테스트되고 릴리스될 예정입니다.
 
-## <a name="specifics-to-sap-ase-on-linux"></a>Linux의 SAP ASE에 대한 고유 정보
-Microsoft Azure부터 기존 SAP ASE 응용 프로그램을 쉽게 Azure 가상 컴퓨터로 마이그레이션할 수 있습니다. 가상 컴퓨터에서 SAP ASE를 사용하면 이러한 응용 프로그램을 Microsoft Azure로 쉽게 마이그레이션하여 엔터프라이즈 수준의 응용 프로그램에 대한 배포, 관리 및 유지 관리의 총 소유 비용을 줄일 수 있습니다. Azure 가상 컴퓨터에서 SAP ASE를 사용하면 관리자와 개발자가 온-프레미스와 동일한 개발 및 관리 도구를 사용할 수 있습니다.
+## <a name="specifics-toosap-ase-on-linux"></a>Linux에서 비슷하므로 tooSAP ASE
+Microsoft Azure를 시작 하면 기존 SAP ASE 응용 프로그램 tooAzure 가상 컴퓨터를 쉽게 마이그레이션할 수 있습니다. 가상 컴퓨터에서 SAP ASE에는 이러한 응용 프로그램 tooMicrosoft Azure로 쉽게 마이그레이션하여 여 있습니다 tooreduce hello 총 소유 비용을의 배포, 관리 및 유지 관리 엔터프라이즈 범위의 응용 수 있습니다. SAP ASE Azure 가상 컴퓨터에서 사용 관리자와 개발자가 동일한 개발 및 관리 도구를 사용할 수 있는 온-프레미스 hello를 계속 사용할 수 있습니다.
 
-Azure VM을 배포하려면 공식 SLA를 알아야 합니다. <https://azure.microsoft.com/support/legal/sla>에서 확인할 수 있습니다.
+중요 한 tooknow hello 여기에서 찾을 수 있는 공식 Sla는 Azure Vm을 배포 하기 위한: <https://azure.microsoft.com/support/legal/sla>
 
 SAP 크기 조정 정보 및 SAP 인증 VM SKU 목록은 SAP Note [1928533]을 참조하세요. Azure Virtual Machines에 대한 추가 SAP 크기 조정 문서는 <http://blogs.msdn.com/b/saponsqlserver/archive/2015/06/19/how-to-size-sap-systems-running-on-azure-vms.aspx> 및 <http://blogs.msdn.com/b/saponsqlserver/archive/2015/12/01/new-white-paper-on-sizing-sap-solutions-on-azure-public-cloud.aspx>에서 찾을 수 있습니다.
 
-이 문서의 처음 네 챕터에서 설명한 것처럼 SAP 응용 프로그램과 함께 SAP ASE를 배포할 때는 Azure 저장소 사용, SAP VM 또는 SAP 모니터링 배포와 관련된 설명 및 권장 사항이 적용됩니다.
+문 및 Azure 저장소, SAP Vm 배포 또는 SAP 모니터링의 큰지에 toohello 사용의 권장 사항을 toodeployments SAP ASE의 SAP 응용 프로그램이 문서의 처음 네 개의 장 hello 전체에서 명시 된 대로 함께 적용 됩니다.
 
-다음 두 SAP Note에는 Linux의 ASE 및 클라우드의 ASE에 대한 일반 정보가 포함되어 있습니다.
+hello 다음 두 SAP Note에서 Linux 및 ASE ASE에 대 한 일반 정보에에서 포함 클라우드 hello:
 
 * [2134316]
 * [1941500]
 
 ### <a name="sap-ase-version-support"></a>SAP ASE 버전 지원
-SAP는 현재 SAP ASE 버전 16.0을 SAP Business Suite 제품과 함께 사용하도록 지원합니다. SAP Business Suite 제품과 함께 사용할 SAP ASE 서버 또는 JDBC 및 ODBC 드라이버에 대한 모든 업데이트는 <https://support.sap.com/swdc>에서 SAP Service 마켓플레이스를 통해서만 제공됩니다.
+SAP는 현재 SAP ASE 버전 16.0을 SAP Business Suite 제품과 함께 사용하도록 지원합니다. SAP Business Suite 제품은 통해서만 제공 함께 사용 하는 JDBC 및 ODBC 드라이버 toobe 또는 SAP ASE 서버에 대 한 모든 업데이트에서 SAP Service Marketplace hello: <https://support.sap.com/swdc>합니다.
 
-온-프레미스 설치와 마찬가지로 Sybase 웹 사이트에서 직접 SAP ASE 서버 또는 JDBC 및 ODBC 드라이버에 대한 업데이트를 다운로드하지 마세요. 온-프레미스 및 Azure 가상 컴퓨터에서 SAP Business Suite 제품을 사용하도록 지원되는 패치에 대한 자세한 내용은 다음 SAP Note를 참조하세요.
+설치 온-프레미스의 경우와 Sybase 웹 사이트에서 직접 hello SAP ASE 서버 또는 hello JDBC 및 ODBC 드라이버에 대 한 업데이트를 다운로드 하지 않습니다. SAP Business Suite 제품 온-프레미스와 Azure 가상 컴퓨터에서 사용 하기 위해 지원 되는 패치 대 한 자세한 내용은 SAP Note 다음 hello 참조:
 
 * [1590719]
 * [1973241]
 
-SAP ASE에서의 SAP Business Suite 실행에 대한 일반 정보는 [SCN](https://scn.sap.com/community/ase)
+Hello에서 SAP ASE에서 SAP Business Suite 실행에 대 한 일반 정보를 찾을 수 있습니다 [SCN](https://scn.sap.com/community/ase)
 
 ### <a name="sap-ase-configuration-guidelines-for-sap-related-sap-ase-installations-in-azure-vms"></a>Azure VM의 SAP 관련 SAP ASE 설치에 대한 SAP ASE 구성 지침
-#### <a name="structure-of-the-sap-ase-deployment"></a>SAP ASE 배포의 구조
-일반적인 설명에 따라 SAP ASE 실행 파일을 VM의 루트 파일 시스템(/sybase)에 배치 또는 설치해야 합니다. 일반적으로 대부분의 SAP ASE 시스템 및 도구 데이터베이스는 실제로 SAP NetWeaver 워크로드에서 사용되지 않습니다. 따라서 시스템 및 도구 데이터베이스(master, model, saptools, sybmgmtdb, sybsystemdb)가 루트 파일 시스템에 남아 있을 수 있습니다.
+#### <a name="structure-of-hello-sap-ase-deployment"></a>Hello SAP ASE 배포의 구조
+Hello 일반적인 설명에 따라 SAP ASE 해야 수 있는 파일 또는 실행 hello (/sybase) VM의 hello 루트 파일 시스템에 설치 됩니다. 일반적으로 대부분의 hello SAP ASE 시스템과 도구 데이터베이스 하지 실제로에서 활용 됩니다 하드 SAP NetWeaver 작업 합니다. 따라서 시스템을 hello 및 도구 데이터베이스 (master, model, saptools sybmgmtdb, sybsystemdb) hello 루트 파일 시스템에 남아 있을 수 있습니다.
 
-단, SAP ASE에서 만들어진 모든 작업 테이블 및 임시 테이블을 포함하는 임시 데이터베이스는 예외입니다. 이 경우 일부 SAP ERP 및 모든 BW 워크로드에서 원본 VM의 OS 디스크에 맞지 않는 더 큰 데이터 볼륨 또는 I/O 작업 볼륨이 필요할 수 있습니다.
+예외에는 모든 작업 테이블 및 일부 SAP ERP 및 모든 BW 작업의 경우 더 큰 데이터 볼륨 또는 원래 hello에 맞지 않는 I/O 작업 볼륨이 필요할 수 있습니다. 있는 SAP ASE에 의해 생성 된 임시 테이블을 포함 하는 hello 임시 데이터베이스 수 있습니다. VM의 OS 디스크입니다.
 
-시스템을 설치하는 데 사용되는 SAPInst/SWPM의 버전에 따라 데이터베이스에 다음 항목이 포함될 수 있습니다.
+SAPInst/SWPM의 버전 사용 tooinstall hello 시스템 hello에 따라, hello 데이터베이스 포함 될 수 있습니다.
 
 * SAP ASE를 설치할 때 만들어지는 단일 SAP ASE tempdb
-* SAP 설치 루틴에 의해 만들어지는 SAP ASE 및 추가 saptempdb를 설치하여 만들어지는 SAP ASE tempdb
-* ERP/BW 특정 tempdb 요구 사항에 맞게 SAP ASE 및 수동으로 만든 추가 tempdb를 설치하여 만들어지는 SAP ASE tempdb(예: SAP Note [1752266])
+* SAP ASE 및 hello SAP 설치 루틴에서 만든 추가 saptempdb는 설치 하 여 생성 하는 SAP ASE tempdb
+* SAP ASE 및 수동으로 만든 추가 tempdb는 설치 하 여 생성 하는 SAP ASE tempdb (예: SAP Note를 다음 [1752266]) toomeet ERP/BW 특정 tempdb 요구 사항
 
-특정 ERP 또는 모든 BW 워크로드의 경우 성능을 위해 추가로 생성된 tempdb(SWPM을 통해 또는 수동으로)를 단일 Azure 데이터 디스크 또는 여러 Azure 데이터 디스크에 걸친 Linux RAID로 표현될 수 있는 별도의 파일 시스템에 유지해야 합니다. 추가 tempdb가 없는 경우 새로 만드는 것이 좋습니다(SAP Note [1752266]).
+특정 ERP 또는 모든 BW 작업의 경우 적합, 큰지에 tooperformance tookeep hello tempdb 장치는 단일 Azure 데이터 디스크 또는 Linux RAID로 나타낼 수 있는 별도 파일 시스템에 만든 또한 hello tempdb (SWPM 또는 수동으로) 여러 Azure 데이터 디스크를 확장 합니다. 추가 tempdb 없는 없으면 하나 toocreate 것이 좋습니다 (SAP Note [1752266]).
 
-이러한 시스템의 경우 추가로 생성된 tempdb에 대해 다음 단계를 수행해야 합니다.
+이러한 시스템 hello에 대 한 또한 tempdb를 생성 하는 hello에 대 한 다음 단계를 수행 해야 합니다.
 
-* SAP 데이터베이스의 첫 번째 파일 시스템으로 첫 번째 tempdb 디렉터리 이동
-* SAP 데이터베이스의 파일 시스템을 포함하는 각 VHD에 tempdb 디렉터리 추가
+* Hello 첫 번째 tempdb 디렉터리 toohello 첫 번째 파일 시스템의 hello SAP 데이터베이스를 이동 합니다.
+* Hello hello SAP 데이터베이스의 파일 시스템에 포함 된 Vhd의 tempdb 디렉터리 tooeach 추가
 
-이 구성을 사용하면 tempdb에서 시스템 드라이브에서 제공할 수 있는 것보다 더 많은 공간을 사용할 수 있습니다. 참조로 온-프레미스에 실행 중인 기존 시스템에서 tempdb 디렉터리 크기를 확인할 수 있습니다. 또는 이러한 구성은 시스템 드라이브에서 tempdb에 대해 제공할 수 있는 것보다 더 많은 IOPS 수를 사용합니다. 다시 말하지만 온-프레미스에서 실행 중인 시스템에서 tempdb에 대해 I/O 워크로드를 모니터링할 수 있습니다.
+이 구성을 사용 하면 tempdb tooeither hello 시스템 드라이브는 수 tooprovide 보다 더 많은 공간을 사용 합니다. 참조로 하나 온-프레미스를 실행 중인 기존 시스템에서 hello tempdb 디렉터리 크기를 확인할 수 있습니다. 또는 이러한 구성 hello 시스템 드라이브로 제공할 수 없는 tempdb에 대 한 IOPS 값을 사용 합니다. 다시 온-프레미스를 실행 중인 시스템에는 tempdb에 대 한 사용된 toomonitor I/O 작업 수 있습니다.
 
-SAP ASE 디렉터리를 VM의 /mnt 또는 /mnt/resource에 배치하지 마세요. 이는 tempdb에도 적용되며 tempdb에 저장된 개체가 임시 개체인 경우에도 마찬가지입니다. 왜냐하면 /mnt 또는 /mnt/resource가 비영구적인 기본 Azure VM 임시 공간이기 때문입니다. Azure VM 임시 공간에 대한 자세한 내용은 [이 문서][virtual-machines-linux-how-to-attach-disk]에 있습니다.
+/Mnt 또는 /mnt/resource hello VM의 SAP ASE 디렉터리가 저장 하면 안 됩니다. 이 경우에 hello tempdb에 보관 하는 hello 개체만 임시 /mnt 또는 /mnt/resource는 지속 되지 않는 한 기본 Azure VM 임시 공간 toohello tempdb도 적용 합니다. Azure VM 임시 공간 hello에 대 한 자세한 내용은에서 확인할 수 있습니다 [이 문서][virtual-machines-linux-how-to-attach-disk]
 
 #### <a name="impact-of-database-compression"></a>데이터베이스 압축의 영향
-I/O 대역폭이 제한 요인이 될 수 있는 구성에서 IOPS를 줄여 Azure와 같이 IaaS 시나리오에서 실행할 수 있는 워크로드를 확장할 수 있습니다. 따라서 기존 SAP 데이터베이스를 Azure에 업로드하기 전에 SAP ASE 압축이 사용되는지 확인해야 합니다.
+I/O 대역폭이 제한 요인으로 작용할 수 있는 구성에서를 IOPS를 줄이는 모든 수단이 Azure와 같은 IaaS 시나리오에서 실행할 수 있는 toostretch hello 작업 부하를 이해할 수 있습니다. 따라서 하는 것이 좋습니다 toomake SAP ASE 압축 기존 SAP 데이터베이스 tooAzure 업로드 하기 전에 사용 되도록 합니다.
 
-아직 구현되지 않은 경우 Azure에 업로드하기 전에 압축을 수행해야 하는 이유는 다음과 같습니다.
+구현 되지 않은 경우 tooAzure를 업로드 하기 전에 hello 권장 tooperform 압축 몇 가지 이유로에서 제공 됩니다.
 
-* Azure에 업로드할 데이터의 양이 적어집니다.
-* 더 향상된 CPU가 있는 강력한 하드웨어 또는 더 높은 I/O 대역폭이나 낮은 I/O 대기 시간의 온-프레미스를 사용할 경우 압축 실행 시간이 짧아집니다.
-* 데이터베이스 크기가 작을수록 디스크 할당 비용이 줄어들 수 있습니다.
+* 데이터 업로드 toobe tooAzure hello 양을 낮습니다.
+* hello hello 압축 실행 기간은 짧은 더 많은 Cpu 또는 I/O 대역폭이 더 높거나 이하의 I/O 대기 시간 온-프레미스 보다 강력한 하드웨어 사용할 수 있다고 가정 하면
+* 데이터베이스 크기가 작은 디스크 할당에 대 한 tooless 비용이 발생할 수 있습니다.
 
-데이터 및 LOB 압축은 Azure 가상 컴퓨터에서 호스트되는 VM에서도 온-프레미스에서와 마찬가지로 작동합니다. 기존 SAP ASE 데이터베이스에서 압축이 이미 사용 중인지 확인하는 방법은 SAP Note [1750510]을 참조하세요. 또한 SAP Note [2121797] 에서 데이터베이스 압축에 대한 자세한 내용을 참조하세요.
+데이터 및 LOB 압축은 Azure 가상 컴퓨터에서 호스트되는 VM에서도 온-프레미스에서와 마찬가지로 작동합니다. 기존 SAP ASE에 toocheck 압축이 이미 있는 경우 사용 하는 방법에 대 한 자세한 내용은 데이터베이스를 확인 하십시오 SAP Note [1750510]합니다. 또한 SAP Note [2121797] 에서 데이터베이스 압축에 대한 자세한 내용을 참조하세요.
 
-#### <a name="using-dbacockpit-to-monitor-database-instances"></a>DBACockpit를 사용하여 데이터베이스 인스턴스 모니터링
-SAP ASE를 데이터베이스 플랫폼으로 사용하는 SAP 시스템의 경우 DBACockpit는 트랜잭션 DBACockpit에 포함된 브라우저 창 또는 Webdynpro로 액세스할 수 있습니다. 그러나 데이터베이스 모니터링 및 관리를 위한 전체 기능은 DBACockpit의 Webdynpro 구현에서만 사용할 수 있습니다.
+#### <a name="using-dbacockpit-toomonitor-database-instances"></a>DBACockpit toomonitor 데이터베이스 인스턴스를 사용 하 여
+데이터베이스 플랫폼으로 SAP ASE를 사용 하는 SAP 시스템에 대 한 hello DBACockpit는 DBACockpit 트랜잭션에 포함 된 브라우저 창을 또는 Webdynpro로 액세스할 수 있습니다. 그러나 모니터링 하기 위한 모든 기능을 hello 되며 관리 hello 데이터베이스 hello DBACockpit의 hello Webdynpro 구현에서 사용할 수 있습니다.
 
-DBACockpit의 Webdynpro 구현에 의해 사용되는 모든 SAP NetWeaver 기능을 사용하려면 온-프레미스 시스템처럼 여러 단계가 필요합니다. webdynpro를 사용하도록 설정하고 필요한 경우 생성하려면 SAP Note [1245200] 을 참조하세요. 위의 Note 지침을 수행하면 http 및 https 연결에 사용할 포트와 함께 ICM(Internet Communication Manager)도 구성하게 됩니다. Http에 대한 기본 설정은 다음과 같습니다.
+으로 온-프레미스 시스템 몇 가지 단계가 필요 tooenable hello DBACockpit hello Webdynpro 구현에 의해 사용 되는 모든 SAP NetWeaver 기능 합니다. SAP Note를 수행 하십시오 [1245200] tooenable hello webdynpros의 사용 및 생성 hello 더 필요 합니다. 때 다음 hello 지침 정보 또한 구성한 hello 인터넷 통신 관리자 (icm)와 함께 위의 hello에 http 및 https 연결에 사용 되는 포트 toobe hello 합니다. http에 대 한 hello 기본 설정은 다음과 같습니다.
 
 > icm/server_port_0 = PROT=HTTP,PORT=8000,PROCTIMEOUT=600,TIMEOUT=600
 >
@@ -1057,7 +1057,7 @@ DBACockpit의 Webdynpro 구현에 의해 사용되는 모든 SAP NetWeaver 기�
 >
 >
 
-트랜잭션 DBACockpit에서 생성된 링크는 다음과 같습니다.
+및 DBACockpit 트랜잭션에서 생성 된 hello 링크 유사한 toothis 표시 됩니다.
 
 > https://`<fullyqualifiedhostname`>:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -1065,17 +1065,17 @@ DBACockpit의 Webdynpro 구현에 의해 사용되는 모든 SAP NetWeaver 기�
 >
 >
 
-SAP 시스템을 호스트하는 Azure 가상 컴퓨터가 사이트 간, 다중 사이트 또는 Express 경로(프레미스 간 배포)를 통해 연결되었는지 여부 및 그 방법에 따라 ICM이 DBACockpit를 열려는 컴퓨터에서 확인할 수 있는 정규화된 호스트 이름을 사용하는지 확인해야 합니다. ICM에서 프로필 매개 변수에 따라 정규화된 호스트 이름을 확인하는 방법을 이해하고 필요한 경우 icm/host_name_full 매개 변수를 명시적으로 설정하려면 SAP Note [773830]을 참조하세요.
+에 따라와 hello Azure 가상 컴퓨터 호스팅 hello SAP 시스템 사이트를 통해 연결 하는 방법을 멀티 사이트 또는 express 경로 (크로스-프레미스 배포의 경우) 해야 toomake 있는지 해당 ICM 사용 확인 될 수 있는 정규화 된 호스트 이름 hello에 tooopen 시도 하 고 있는 컴퓨터에서 DBACockpit hello 합니다. SAP Note를 참조 하십시오 [773830] ICM 결정 하는 방법 toounderstand hello 프로필 매개 변수 및 매개 변수 icm/host_name_full 집합에 따라 정규화 된 호스트 이름을 명시적으로 필요한 경우.
 
-온-프레미스와 Azure 간에 프레미스 간 연결이 없는 클라우드 전용 시나리오에서 VM을 배포한 경우 공용 IP 주소 및 도메인 레이블을 정의해야 합니다. VM의 공용 DNS 이름 형식은 다음과 같습니다.
+온-프레미스와 Azure 간 크로스-프레미스 연결 없이 클라우드 전용 시나리오에서 hello VM을 배포한 경우 공용 IP 주소와는 domainlabel toodefine 필요 합니다. 그런 다음 hello VM의 공용 DNS 이름 hello hello 형식은 다음과 같이 표시 됩니다.
 
 > `<custom domainlabel`>.`<azure region`>.cloudapp.azure.com
 >
 >
 
-DNS 이름과 관련된 자세한 내용은 [여기][virtual-machines-azurerm-versus-azuresm]에 있습니다.
+자세한 내용은 관련 toohello DNS 이름을 찾을 수 [여기][virtual-machines-azurerm-versus-azuresm]합니다.
 
-SAP 프로필 매개 변수 icm/host_name_full을 Azure VM의 DNS 이름으로 설정할 경우 링크는 다음과 같습니다.
+설정을 hello SAP 프로필 매개 변수 icm/host_name_full toohello hello Azure VM hello 링크의 DNS 이름을 유사 하 게 나타날 수 있습니다.
 
 > https://mydomainlabel.westeurope.cloudapp.net:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -1083,18 +1083,18 @@ SAP 프로필 매개 변수 icm/host_name_full을 Azure VM의 DNS 이름으로 �
 >
 >
 
-이 경우 다음을 확인해야 합니다.
+이 경우에 필요 toomake 해야 합니다.
 
-* Azure 포털의 네트워크 보안 그룹에 ICM과 통신하는 데 사용되는 TCP/IP 포트에 대한 인바운드 규칙을 추가합니다.
-* Windows 방화벽 구성에 ICM과 통신하는 데 사용되는 TCP/IP 포트에 대한 인바운드 규칙을 추가합니다.
+* ICM와 toocommunicate를 사용 하는 hello TCP/IP 포트에 대 한 hello Azure 포털에서에서 인바운드 규칙 toohello 네트워크 보안 그룹 추가
+* ICM hello로 TCP/IP 사용 포트 toocommunicate hello에 대 한 인바운드 규칙 toohello Windows 방화벽 구성 추가
 
-사용 가능한 모든 수정 사항을 자동으로 가져오려면 SAP 버전에 적용할 수 있는 수정 사항 모음 SAP Note를 정기적으로 적용하는 것이 좋습니다.
+자동화 된 가져온 사용 가능한 모든 수정에 대 한 권장 tooperiodically hello 수정 컬렉션 SAP Note 적용 가능한 tooyour SAP 버전을 적용 합니다.
 
 * [1558958]
 * [1619967]
 * [1882376]
 
-SAP ASE의 DBA Cockpit에 대한 자세한 내용은 다음 SAP Note에서 확인할 수 있습니다.
+SAP ASE에 대 한 DBA Cockpit에 대 한 자세한 내용은 SAP Note 다음 hello에 있습니다.
 
 * [1605680]
 * [1757924]
@@ -1106,54 +1106,54 @@ SAP ASE의 DBA Cockpit에 대한 자세한 내용은 다음 SAP Note에서 확�
 * [1956005]
 
 #### <a name="backuprecovery-considerations-for-sap-ase"></a>SAP ASE에 대한 백업/복구 고려 사항
-Azure에 SAP ASE를 배포하는 경우 백업 방법을 검토해야 합니다. 생산성이 높은 시스템이 아니더라도 SAP ASE에서 호스트하는 SAP 데이터베이스를 정기적으로 백업해야 합니다. Azure 저장소에는 이제 세 개의 이미지가 있으므로 저장소 작동 중단을 보완하는 측면에서 백업의 중요성이 줄어들었습니다. 적절한 백업 및 복원 계획 유지 관리가 중요한 이유는 지정 시간 복구 기능을 제공하여 논리/수동 오류를 보완할 수 있기 때문입니다. 따라서 목표는 백업을 사용하여 데이터베이스를 다시 특정 시점으로 복원하거나 기존 데이터베이스를 복사하여 다른 시스템에 시딩하는 데 Azure의 백업을 사용하는 것입니다. 예를 들어 백업을 복구하여 2계층 SAP 구성을 동일한 시스템의 3계층 시스템 설정으로 전송할 수 있습니다.
+Azure에 SAP ASE를 배포하는 경우 백업 방법을 검토해야 합니다. 경우에 hello 시스템 운영 중인 시스템이, SAP ASE에서 호스트 되는 hello SAP 데이터베이스를 백업 해야 주기적으로 합니다. Azure 저장소에 백업을 중요성이 존중 toocompensating 저장소 충돌에에서 세 개의 이미지를 유지 되므로 합니다. hello 적절 한 백업 및 복원 계획을 유지 관리에 대 한 주된 이유 때문입니다 지점 시간 복구 기능에서을 제공 하 여 논리적/수동 오류 보완할 수 있습니다. Hello 목표 tooeither 백업을 toorestore hello 데이터베이스 사용 다시 이므로 tooa 특정 지점에서 Azure tooseed 시간 또는 toouse hello 백업에 다른 시스템 hello 기존 데이터베이스를 복사 하 여 합니다. 예를 들어으로 전환할 수 있습니다의 hello는 2 계층 SAP 구성 tooa 3 계층 시스템 설정에서 동일한 시스템 백업을 복원 하 여 합니다.
 
-Azure에서의 데이터베이스 백업 및 복원은 온-프레미스와 동일한 방식으로 진행됩니다. 다음 SAP Note를 참조하세요.
+Azure works에서 데이터베이스 백업 및 복원 hello 동일한 방식으로 온-프레미스를 수행 합니다. 다음 SAP Note를 참조하세요.
 
 * [1588316]
 * [1585981]
 
-여기에는 덤프 구성 생성 및 백업 예약에 대한 자세한 내용이 나와 있습니다. 전략 및 요구 사항에 따라 데이터베이스를 구성하고 디스크 덤프를 기존 VHD 중 하나에 기록하거나 백업을 위해 다른 VHD를 추가할 수 있습니다.  오류가 발생할 경우 데이터 손실의 위험을 줄이기 위해서는 데이터베이스 디렉터리/파일이 없는 VHD를 사용하는 것이 좋습니다.
+여기에는 덤프 구성 생성 및 백업 예약에 대한 자세한 내용이 나와 있습니다. 전략 및 구성할 수 요구 사항에 따라 데이터베이스 및 로그 toodisk hello 기존 Vhd 중 하나에 덤프 하거나 hello 백업에 대 한 추가 VHD를 추가 합니다.  오류 발생 시 데이터 손실의 tooreduce hello 위험 권장 toouse 없는 데이터베이스 디렉터리/파일 위치한 VHD입니다.
 
-데이터 및 LOB 압축 SAP ASE 외에도 백업 압축을 제공합니다. 데이터베이스 및 로그 덤프의 공간 사용량을 줄이려면 백업 압축을 사용하는 것이 좋습니다. 자세한 내용은 SAP Note [1588316] 을 참조하세요. 백업 압축은 백업 또는 백업 덤프를 포함하는 VHD를 Azure 가상 컴퓨터에서 온-프레미스로 다운로드하려고 할 때 전송되는 데이터 양을 줄이는 데도 효과적입니다.
+데이터 및 LOB 압축 SAP ASE 외에도 백업 압축을 제공합니다. 복사 하는 hello 데이터베이스 및 로그를 사용 하 여 공간을 덜 toooccupy toouse 백업 압축 것이 좋습니다. 자세한 내용은 SAP Note [1588316] 을 참조하세요. 압축 hello 백업이 중요 tooreduce hello 양의 toodownload 백업 또는 hello tooon-프레미스 Azure 가상 컴퓨터에서에서 백업 덤프에 포함 된 Vhd를 계획 하는 경우에 전송할 데이터 toobe 이기도 합니다.
 
-Azure VM 임시 공간 /mnt 또는 /mnt/resource를 데이터베이스 또는 로그 덤프 대상으로 사용하지 마세요.
+Hello Azure VM 임시 공간 /mnt 또는 /mnt/resource 데이터베이스 또는 로그 덤프 대상으로 사용 하지 마십시오.
 
 #### <a name="performance-considerations-for-backupsrestores"></a>백업/복원에 대한 성능 고려 사항
-완전 배포에서처럼 백업/복원 성능은 병렬로 읽을 수 있는 볼륨 수와 이러한 볼륨의 처리량에 따라 달라집니다. 또한 백업 압축에서 사용하는 CPU 사용량은 최대 8개 CPU 스레드까지 VM에서 중요 역할을 수행할 수 있습니다. 따라서 다음을 가정할 수 있습니다.
+완전 배포 에서처럼 백업/복원 성능은 동시에 읽을 수 있는 볼륨 수 및 이러한 볼륨의 어떤 hello 출력 수에 따라 달라 집니다. 또한 hello 백업 압축을 통해 CPU 사용률 too8 CPU 스레드를 방금 된 Vm에서 중요 한 역할을 재생 수 있습니다. 따라서 다음을 가정할 수 있습니다.
 
-* 데이터베이스 장치를 저장하는 데 사용하는 VHD 수가 적을수록 전반적인 읽기 처리량이 줄어듭니다.
-* VM의 CPU 스레드 수가 적을수록 백업 압축에 대한 영향이 커집니다.
-* 백업을 작성하는 대상(Linux 소프트웨어 RAID, VHD) 수가 적을수록 처리량이 줄어듭니다.
+* hello Vhd hello 수를 적게 사용 toostore hello 데이터베이스 장치 hello 읽기에서 전반적인 처리량을 더 작은 hello
+* 더 작은 hello hello VM의에서 CPU 스레드 수가 hello, 백업 압축의 심각한 hello 영향 hello
+* hello 적은 대상 (Linux 소프트웨어 raid를 장점 Vhd) toowrite hello를 백업, 더 적은 hello 처리량 hello
 
-작성할 대상 수를 늘리려면 두 가지 옵션을 필요에 따라 사용/혼합할 수 있습니다.
+tooincrease hello 수가 대상 toowrite toothere 두 가지 옵션이 필요에 따라 사용 되 는/결합 될 수 있습니다.
 
-* 해당 스트라이프 볼륨에 대한 IOPS 처리량을 개선하려면 탑재된 여러 VHD에 백업 대상 볼륨을 스트라이프합니다.
-* 둘 이상의 대상 디렉터리를 사용하여 덤프를 작성하는 SAP ASE 수준에서 덤프 구성을 만듭니다.
+* 백업 대상 볼륨을 hello 순서 tooimprove hello IOPS 처리량이 해당 스트라이프 볼륨에 여러 탑재 된 Vhd로 스트라이프
+* 둘 이상의 대상 디렉터리 toowrite hello 덤프를 사용 하 여 SAP ASE 수준에서 덤프 구성 만들기
 
-탑재된 여러 VHD에 볼륨을 스트라이프하는 방법은 이 가이드의 앞부분에서 설명했습니다. 여러 디렉터리를 사용하여 SAP ASE 덤프를 구성하는 방법에 대한 자세한 내용은 [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp)에서 덤프 구성을 만드는 데 사용되는 저장 프로시저 sp_config_dump에 대한 설명서를 참조하세요.
+탑재된 여러 VHD에 볼륨을 스트라이프하는 방법은 이 가이드의 앞부분에서 설명했습니다. 사용 하 여 대 한 자세한 내용은 hello SAP ASE 덤프 구성에서 여러 디렉터리를 참조 하십시오 toohello 설명서에는 hello에 사용 되는 toocreate hello 덤프 구성 인 저장 프로시저 sp_config_dump [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp).
 
 ### <a name="disaster-recovery-with-azure-vms"></a>Azure VM을 사용한 재해 복구
 #### <a name="data-replication-with-sap-sybase-replication-server"></a>SA Sybase Replication Server를 사용한 데이터 복제
-SAP SRS(Sybase Replication Server)를 사용하면 SAP ASE에서 멀리 떨어진 위치에 데이터베이스 트랜잭션을 비동기적으로 전송하는 웜 대기 솔루션을 제공합니다.
+Hello로 SAP Sybase 복제 서버 (SRS) SAP ASE 비동기적으로 웜 대기 솔루션 tootransfer 데이터베이스 트랜잭션 tooa 멀리 떨어진 위치를 제공합니다.
 
-SRS 설치 및 작동은 Azure 가상 컴퓨터 서비스에서 호스트되는 VM에서도 온-프레미스에서처럼 기능적으로 작동합니다.
+hello 설치 되 고 SRS의 작동에도 온-프레미스와 마찬가지로 Azure 가상 컴퓨터 서비스에서 호스팅되는 VM에서 기능적으로 작동 합니다.
 
-SAP Replication Server를 통한 ASE HADR은 현재 지원되지 않습니다. 이 기능은 곧 Microsoft Azure Platform에 대해 테스트되고 릴리스될 예정입니다.
+SAP Replication Server를 통한 ASE HADR은 현재 지원되지 않습니다. 테스트를 받는 이며 hello 나중에 Microsoft Azure 플랫폼에 대 한 출시 수 수 있습니다.
 
-## <a name="specifics-to-oracle-database-on-windows"></a>Windows의 Oracle 데이터베이스에 대한 고유 정보
-2013년 중반부터 Microsoft Windows Hyper-V 및 Azure에서 Oracle 소프트웨어가 지원됩니다. Oracle의 Windows Hyper-V 및 Azure 지원에 대한 자세한 내용은 <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces>를 참조하세요.
+## <a name="specifics-toooracle-database-on-windows"></a>구체적인 tooOracle Windows에서 데이터베이스
+2013 중간 이후 Oracle 소프트웨어는 Microsoft Windows Hyper-v와 Azure에서 Oracle toorun에서 지원 됩니다. Windows Hyper-v와 Oracle에서 Azure의 hello 일반 지원에 대 한 자세한 내용은이 문서 tooget를 참조 하십시오: <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces>
 
-일반 지원에 따라 Oracle 데이터베이스를 활용하는 SAP 응용 프로그램의 특정 시나리오도 지원됩니다. 자세한 내용은 문서의 이 부분에 나와 있습니다.
+Hello 일반 지원에 다음 Oracle 데이터베이스를 활용 하는 SAP 응용 프로그램의 hello 특정 시나리오 에서도 지원 됩니다. 세부 정보는 hello 문서의이 부분 이름은 지정 됩니다.
 
 ### <a name="oracle-version-support"></a>Oracle 지원 버전
-Azure 가상 컴퓨터에서 Oracle의 SAP 실행을 위해 지원되는 Oracle 버전 및 해당 OS 버전에 대한 자세한 내용은 SAP Note [2039619]
+Oracle 버전 및 Azure 가상 컴퓨터에서 Oracle에서 SAP를 실행 중인 hello SAP Note를 다음에서 확인할 수 있습니다에 대 한 지원 되는 해당 OS 버전에 대 한 모든 세부 정보 [2039619]
 
 Oracle에서의 SAP Business Suite 실행에 대한 일반 정보는 SCN <https://scn.sap.com/community/oracle>에서 찾을 수 있습니다.
 
 ### <a name="oracle-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Azure VM의 SAP 설치에 대한 Oracle 구성 지침
 #### <a name="storage-configuration"></a>저장소 구성
-NTFS로 포맷된 디스크를 사용하는 하나의 Oracle 인스턴스만 지원됩니다. 모든 데이터베이스 파일은 VHD 디스크 기반의 NTFS 파일 시스템에 저장되어야 합니다. 이러한 VHD는 Azure VM에 탑재되어 있으며 Azure 페이지 Blob Storage를 기반으로 합니다(<https://msdn.microsoft.com/library/azure/ee691964.aspx>).
+NTFS로 포맷된 디스크를 사용하는 하나의 Oracle 인스턴스만 지원됩니다. 모든 데이터베이스 파일을 VHD 디스크에 따라 hello NTFS 파일 시스템에 저장 되어야 합니다. 이러한 Vhd는 탑재 된 toohello Azure VM 및 Azure 페이지 BLOB 저장소를 기반으로 (<https://msdn.microsoft.com/library/azure/ee691964.aspx>).
 모든 종류의 네트워크 드라이브 또는 Azure 파일 서비스와 같은 원격 공유:
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
@@ -1161,78 +1161,78 @@ NTFS로 포맷된 디스크를 사용하는 하나의 Oracle 인스턴스만 지
 
 Oracle 데이터베이스 파일에 대해 지원되지 **않습니다** .
 
-Azure 페이지 Blob Storage에 기반한 Azure VHD를 사용하는 경우 이 문서의 [VM 및 VHD에 대한 캐싱][dbms-guide-2.1] 및 [Microsoft Azure Storage][dbms-guide-2.3] 챕터에서 설명한 내용이 Oracle Database와 함께 배포하는 경우에도 적용됩니다.
+이 문서의 장에서에 작성 된 문이 hello Azure 페이지 BLOB 저장소에 따라 Azure Vhd를 사용 하 여 [Vm 및 Vhd에 대 한 캐싱을] [ dbms-guide-2.1] 및 [Microsoft Azure Storage] [ dbms-guide-2.3] toodeployments hello Oracle 데이터베이스도로 적용 합니다.
 
-이 문서 앞부분의 일반 정보에서 설명했듯이 Azure VHD에 대한 IOPS 처리량에 할당량이 존재합니다. 정확한 할당량은 사용되는 VM 유형에 따라 달라집니다. VM 유형과 해당 할당량의 목록은 [여기][virtual-machines-sizes]에 있습니다.
+Hello 문서의 hello 일반 부분의 앞부분에 나오는 설명 했 듯이 할당량 Azure Vhd에 대 한 IOPS 처리량에 존재 합니다. hello 정확한 할당량 hello VM 유형에 따라 사용 됩니다. VM 유형과 해당 할당량의 목록은 [여기][virtual-machines-sizes]에 있습니다.
 
-지원되는 Azure VM 형식을 식별하려면 SAP Note [1928533]
+지원 되는 Azure VM 유형 tooidentify hello, tooSAP 참고를 참조 하십시오 [1928533]
 
-디스크당 현재 IOPS 할당량이 요구 사항을 충족하는 경우 탑재된 단일 Azure VHD에 모든 DB 파일을 저장할 수 있습니다.
+디스크당 hello 현재 IOPS 할당량이 hello 요구를 충족 하는 경우으로 것은 가능한 toostore 모든 hello DB 파일에 동일한 Azure VHD를 탑재 합니다.
 
-더 많은 IOPS가 필요한 경우 Window 저장소 풀(Windows Server 2012 이상에서만 사용 가능) 또는 Windows 2008 R2용 Windows 스트라이프를 사용하여 탑재된 여러 VHD 디스크에 하나의 큰 논리적 장치를 만드는 것이 좋습니다. 또한 이 문서의 [소프트웨어 RAID][dbms-guide-2.2] 챕터를 참조하세요. 이 방법을 사용하면 디스크 공간 관리를 위한 관리 오버헤드를 간소화하고 탑재된 여러 VHD에 파일을 수동으로 배포하는 수고를 덜 수 있습니다.
+더 많은 IOPS 필요한 경우 (Windows Server 2012에서 사용할 수 및 더 높은) toouse 창 저장소 풀 또는 여러 탑재 된 VHD 디스크를 통해 하나의 큰 논리적 장치를 toocreate Windows 2008 r 2에 대 한 스트라이프 Windows 것이 좋습니다. 또한 이 문서의 [소프트웨어 RAID][dbms-guide-2.2] 챕터를 참조하세요. 이 방법은 hello 관리 오버 헤드 toomanage hello 디스크 공간을 단순화 하 고 hello 노력을 피할 수 toomanually 여러 탑재 된 Vhd에 걸쳐 파일을 배포 합니다.
 
 #### <a name="backup--restore"></a>백업/복원
-백업/복원 기능의 경우 SAP BR*Tools for Oracle은 표준 Windows Server 운영 체제 및 Hyper-V와 동일한 방법으로 지원됩니다. Oracle RMAN(Recovery Manager)에서도 디스크에 백업 및 디스크에서의 복원이 지원됩니다.
+백업 / 복원 기능, SAP BR hello * 도구 Oracle에서 지원 되는 hello 같은 방식에서 같이 표준 Windows Server 운영 체제 및 Hyper-v입니다. Oracle 복구 관리자 (RMAN) 백업 toodisk 및 디스크에서 복원도 지원 됩니다.
 
 #### <a name="high-availability"></a>고가용성
-[comment]: <> (ASM 참조 링크)
+[comment]: <> (링크는 tooASM 참조)
 높은 가용성 및 재해 복구를 위해 Oracle Data Guard가 지원됩니다. 자세한 내용은 [이 설명서][virtual-machines-windows-classic-configure-oracle-data-guard]에 있습니다.
 
 #### <a name="other"></a>기타
-Azure 가용성 집합 또는 SAP 모니터링과 같은 기타 일반적인 항목은 모두 이 문서의 처음 세 챕터에서 Oracle Database와 VM 배포에 대해 설명한 대로 적용됩니다.
+Azure 가용성 집합 또는 SAP 모니터링와 같은 기타 모든 일반 항목에도 Oracle 데이터베이스 hello로 Vm의 배포를 위해이 문서의 처음 세 개의 장 hello에 설명 된 대로 적용 됩니다.
 
-## <a name="specifics-for-the-sap-maxdb-database-on-windows"></a>Windows의 SAP MaxDB 데이터베이스에 대한 고유 정보
+## <a name="specifics-for-hello-sap-maxdb-database-on-windows"></a>Windows에서 SAP MaxDB 데이터베이스 hello에 대 한 구체적인 정보
 ### <a name="sap-maxdb-version-support"></a>SAP MaxDB 버전 지원
-SAP는 현재 SAP MaxDB 버전 7.9를 Azure의 SAP NetWeaver 기반 제품에 사용하도록 지원합니다. SAP NetWeaver 기반 제품과 함께 사용할 SAP MaxDB 서버 또는 JDBC 및 ODBC 드라이버에 대한 모든 업데이트는 <https://support.sap.com/swdc>에서 SAP Service 마켓플레이스를 통해서만 제공됩니다.
+SAP는 현재 SAP MaxDB 버전 7.9를 Azure의 SAP NetWeaver 기반 제품에 사용하도록 지원합니다. SAP Service Marketplace에서 SAP NetWeaver 기반 제품을 함께 사용 하는 JDBC 및 ODBC 드라이버 toobe 또는 SAP MaxDB 서버에 대 한 모든 업데이트 hello을 통해서만 제공 됩니다 <https://support.sap.com/swdc>합니다.
 SAP MaxDB에서의 SAP NetWeaver 실행에 대한 일반 정보는 <https://scn.sap.com/community/maxdb>에서 찾을 수 있습니다.
 
 ### <a name="supported-microsoft-windows-versions-and-azure-vm-types-for-sap-maxdb-dbms"></a>SAP MaxDB DBMS에 대해 지원되는 Microsoft Windows 버전 및 Azure VM 유형
-Azure에서 지원되는 SAP MaxDB DBMS용 Microsoft Windows 버전을 찾으려면 다음을 참조하세요.
+Azure에서 SAP MaxDB dbms toofind 지원 hello Microsoft Windows 버전을 참조 하세요.
 
 * [SAP PAM(제품 가용성 매트릭스)][sap-pam]
 * SAP Note [1928533]
 
-최신 버전의 Microsoft Windows 운영 체제인 Microsoft Windows 2012 R2를 사용하는 것이 좋습니다.
+Toouse hello 최신 버전의 Microsoft Windows 2012 r 2는 Microsoft Windows hello 운영 체제 가장 좋습니다.
 
 ### <a name="available-sap-maxdb-documentation"></a>사용 가능한 SAP MaxDB 설명서
-SAP Note [767598]
+SAP Note 다음 hello에서 SAP MaxDB 문서 목록이 업데이트 hello를 찾을 수 있습니다 [767598 ]
 
 ### <a name="sap-maxdb-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Azure VM의 SAP 설치에 대한 SAP MaxDB 구성 지침
 #### <a name="b48cfe3b-48e9-4f5b-a783-1d29155bd573"></a>저장소 구성
-SAP MaxDB에 대한 Azure Storage 모범 사례는 [RDBMS 배포 구조][dbms-guide-2] 챕터에서 설명한 일반 권장 사항을 따릅니다.
+SAP MaxDB에 대 한 azure 저장소의 유용한 장에서 설명한 hello 일반 권장 사항에 따라 [RDBMS 배포의 구조][dbms-guide-2]합니다.
 
 > [!IMPORTANT]
-> 다른 데이터베이스처럼 SAP MaxDB에도 데이터 및 로그 파일이 있습니다. 그러나 SAP MaxDB 용어에서 올바른 용어는 "볼륨"("파일" 아님)입니다. 예를 들어 SAP MaxDB 데이터 볼륨 및 로그 볼륨이 있습니다. 운영 체제 디스크 볼륨과 혼동하지 마세요.
+> 다른 데이터베이스처럼 SAP MaxDB에도 데이터 및 로그 파일이 있습니다. 그러나 SAP MaxDB 용어에서 hello 올바른 용어는 "볼륨" (아닙니다: "file"). 예를 들어 SAP MaxDB 데이터 볼륨 및 로그 볼륨이 있습니다. 운영 체제 디스크 볼륨과 혼동하지 마세요.
 >
 >
 
 한마디로 다음을 수행해야 합니다.
 
-* [Microsoft Azure Storage][dbms-guide-2.3] 챕터에서 지정한 대로 SAP MaxDB 데이터 및 로그 볼륨(즉, 파일)을 유지하는 Azure 저장소 계정을 **LRS(로컬 중복 저장소)**로 설정합니다.
-* 로그 볼륨(즉, 파일)에 대한 IO 경로에서 SAP MaxDB 데이터 볼륨(즉, 파일)에 대한 IO 경로를 구분합니다. 즉, SAP MaxDB 데이터 볼륨(즉, 파일)을 하나의 논리 드라이브에 설치하고 SAP MaxDB 로그 볼륨(즉, 파일)을 다른 논리 드라이브에 설치해야 합니다.
-* [VM에 대한 캐싱][dbms-guide-2.1] 챕터에서 설명한 대로 SAP MaxDB 데이터 또는 로그 볼륨(즉, 파일)에 사용하는지 여부와 Azure Standard Storage 또는 Azure Premium Storage에 사용하는지 여부에 따라 각 Azure Blob에 대해 적절한 파일 캐싱을 설정합니다.
-* 디스크당 현재 IOPS 할당량이 요구 사항을 충족하는 경우 탑재된 단일 Azure VHD의 모든 데이터 볼륨을 저장하고 다른 탑재된 단일 Azure VHD에 모든 데이터베이스 로그 볼륨을 저장할 수 있습니다.
-* 더 많은 IOPS 및/또는 공간이 필요한 경우 Microsoft Window 저장소 풀(Microsoft Windows Server 2012 이상에서만 사용 가능) 또는 Windows 2008 R2용 Microsoft Windows 스트라이프를 사용하여 탑재된 여러 VHD 디스크에 하나의 큰 논리적 장치를 만드는 것이 좋습니다. 또한 이 문서의 [소프트웨어 RAID][dbms-guide-2.2] 챕터를 참조하세요. 이 방법을 사용하면 디스크 공간 관리를 위한 관리 오버헤드를 간소화하고 탑재된 여러 VHD에 파일을 수동으로 배포하는 수고를 덜 수 있습니다.
-* IOPS 요구 사항이 높은 경우 DS 시리즈와 GS 시리즈 VM에서 사용 가능한 Azure 프리미엄 저장소를 사용할 수 있습니다.
+* 너무 hello SAP MaxDB 데이터 및 로그 볼륨 (예: 파일)를 보유 하는 hello Azure 저장소 계정을 설정**로컬 중복 저장소 (LRS)** 장에 지정 된 대로 [Microsoft Azure 저장소] [ dbms-guide-2.3].
+* 로그 볼륨 (예: 파일)에 대 한 hello IO 경로에서 SAP MaxDB 데이터 볼륨 (예: 파일)에 대 한 별도 hello IO 경로입니다. 즉, SAP MaxDB 데이터 볼륨 (예: 파일)가 하나의 논리 드라이브에 설치 된 toobe SAP MaxDB 로그 볼륨 (예: 파일) toobe 다른 논리 드라이브에 설치 했습니다.
+* Hello 장에 설명 된 대로 적절 한 파일 사용 여부 것 SAP MaxDB 데이터 또는 로그 볼륨 (예: 파일)에 대 한 및 표준 Azure 또는 Azure 프리미엄 저장소를 사용 하는지 여부에 따라 각 Azure blob에 대 한 캐싱을 설정 [Vm에 대 한 캐싱을] [ dbms-guide-2.1].
+* Hello 요구를 충족 하는 hello 디스크당 현재 IOPS 할당량으로 가능한 toostore 단일 탑재 된 Azure VHD에 있는 모든 hello 데이터 볼륨은 하 고 다른 단일 탑재 된 Azure VHD에 모든 데이터베이스 로그 볼륨을 저장할 수도 있습니다.
+* IOPS 및/또는 공간이 더 필요한 경우이 가장 좋습니다 (Microsoft Windows Server 2012에서 사용할 수 및 더 높은) toouse Microsoft 창 저장소 풀 또는 Microsoft Windows 하나의 큰 논리적 장치에 대 한 Microsoft Windows 2008 R2 toocreate 스트라이프 여러 탑재 된 VHD 디스크를 통해 또한 이 문서의 [소프트웨어 RAID][dbms-guide-2.2] 챕터를 참조하세요. 이 방법은 hello 관리 오버 헤드 toomanage hello 디스크 공간 단순 해지고 여러 탑재 된 Vhd에 걸쳐 파일을 수동으로 배포 하는 hello 노력을 피할 수 있습니다.
+* 가장 높은 IOPS 요구 hello에 대 한 DS 시리즈 및 GS 시리즈 Vm에서 사용 가능한 Azure 프리미엄 저장소를 사용할 수 있습니다.
 
 ![SAP MaxDB DBMS에 대한 Azure IaaS VM의 참조 구성][dbms-guide-figure-600]
 
 #### <a name="23c78d3b-ca5a-4e72-8a24-645d141a3f5d"></a>백업 및 복원
-Azure에 SAP MaxDB를 배포하는 경우 백업 방법을 검토해야 합니다. 생산성이 높은 시스템이 아니더라도 SAP MaxDB에서 호스트하는 SAP 데이터베이스를 정기적으로 백업해야 합니다. Azure 저장소에는 세 개의 이미지가 유지되므로 저장소 오류 및 더 중요한 작동 또는 관리 오류에 대한 시스템 보호 면에서 백업의 중요성이 줄어들었습니다. 적절한 백업 및 복원 계획 유지 관리가 중요한 이유는 지정 시간 복구 기능을 제공하여 논리 또는 수동 오류를 보완할 수 있기 때문입니다. 따라서 목표는 백업을 사용하여 데이터베이스를 특정 시점으로 복원하거나 기존 데이터베이스를 복사하여 Azure의 백업을 다른 시스템에 시딩하는 데 Azure의 백업을 사용하는 것입니다. 예를 들어 백업을 복구하여 2계층 SAP 구성을 동일한 시스템의 3계층 시스템 설정으로 전송할 수 있습니다.
+Azure에 SAP MaxDB를 배포하는 경우 백업 방법을 검토해야 합니다. Hello 시스템이 생산적인 시스템이 아닌 경우에 SAP MaxDB에서 호스트 되는 hello SAP 데이터베이스를 백업 해야 주기적으로 합니다. Azure 저장소에는 세 개의 이미지가 유지되므로 저장소 오류 및 더 중요한 작동 또는 관리 오류에 대한 시스템 보호 면에서 백업의 중요성이 줄어들었습니다. hello 적절 한 백업 및 복원 계획을 유지 관리에 대 한 주된 이유는 되므로 지정 시간 복구 기능을 제공 하 여 논리적 또는 수동 오류 조정할 수 있습니다. Hello 목표 이므로 tooeither 사용 하 여 백업을 toorestore hello 데이터베이스 tooa 특정 지점에서 Azure tooseed 시간 또는 toouse hello 백업에 다른 시스템 hello 기존 데이터베이스를 복사 하 여 합니다. 예를 들어으로 전환할 수 있습니다의 hello는 2 계층 SAP 구성 tooa 3 계층 시스템 설정에서 동일한 시스템 백업을 복원 하 여 합니다.
 
-Azure에서의 데이터베이스 백업 및 복원 방법은 온-프레미스 시스템에서와 동일합니다. 그러므로 SAP Note [767598]에 나열된 SAP MaxDB 설명서 중 하나에서 설명한 표준 SAP MaxDB 백업/복원 도구를 사용할 수 있습니다.
+SAP Note에 나열 된 Azure 작동 hello 같은 방식으로 표준 SAP MaxDB를 사용할 수 있도록 온-프레미스 시스템에 적용 되는 백업/복원 hello SAP MaxDB 설명서 문서 중 하나에서 설명 하는 도구에서에서 데이터베이스 백업 및 복원 [767598 ].
 
 #### <a name="77cd2fbb-307e-4cbf-a65f-745553f72d2c"></a>백업 및 복원에 대한 성능 고려 사항
-완전 배포에서처럼 백업 및 복원 성능은 병렬로 읽을 수 있는 볼륨 수와 이러한 볼륨의 처리량에 따라 달라집니다. 또한 백업 압축에서 사용하는 CPU 사용량은 최대 8개 CPU 스레드까지 VM에서 중요 역할을 수행할 수 있습니다. 따라서 다음을 가정할 수 있습니다.
+완전 배포 에서처럼 백업 및 복원 성능은 이러한 볼륨의 병렬 및 hello 처리량에 읽을 수 있는 볼륨 수에 따라 달라 집니다. 또한 hello 백업 압축을 통해 CPU 사용률 too8 CPU 스레드를 된 Vm에서 중요 한 역할을 수행할 수 있습니다. 따라서 다음을 가정할 수 있습니다.
 
-* 데이터베이스 장치를 저장하는 데 사용하는 VHD 수가 적을수록 전반적인 읽기 처리량이 줄어듭니다.
-* VM의 CPU 스레드 수가 적을수록 백업 압축에 대한 영향이 커집니다.
-* 백업을 작성하는 대상(스트라이프 디렉터리, VHD) 수가 적을수록 처리량이 줄어듭니다.
+* 사용 되는 Vhd toostore hello 데이터베이스 장치 hello 수를 적게 hello, hello 낮은 hello 전체 읽기 처리량
+* 더 작은 hello hello VM의에서 CPU 스레드 수가 hello, 백업 압축의 심각한 hello 영향 hello
+* hello hello 낮은 hello 처리량을 더 적은 toowrite hello 백업 대상 (Stripe 디렉터리, Vhd)
 
-작성할 대상 수를 늘리려면 두 가지 옵션을 사용할 수 있으며 필요에 따라 혼합할 수 있습니다.
+tooincrease hello 수가 대상에 toowrite, 사용할 수 있는, 조합에 있을 수 있음 필요에 따라 두 가지가 있습니다.
 
 * 백업에 대해 별도의 볼륨을 지정합니다.
-* 해당 스트라이프 디스크 볼륨에 대한 IOPS 처리량을 개선하려면 탑재된 여러 VHD에 백업 대상 볼륨을 스트라이프합니다.
+* 백업 대상 볼륨을 hello 순서 tooimprove hello IOPS 처리량이 해당 스트라이프 디스크 볼륨에 여러 탑재 된 Vhd로 스트라이프
 * 다음을 위한 별도의 전용 논리적 디스크 장치가 필요합니다.
   * SAP MaxDB 백업 볼륨(즉, 파일)
   * SAP MaxDB 데이터 볼륨(즉, 파일)
@@ -1241,8 +1241,8 @@ Azure에서의 데이터베이스 백업 및 복원 방법은 온-프레미스 �
 탑재된 여러 VHD에 대한 볼륨 스트라이프는 이 문서 앞부분의 [소프트웨어 RAID][dbms-guide-2.2] 챕터에서 설명했습니다.
 
 #### <a name="f77c1436-9ad8-44fb-a331-8671342de818"></a>기타
-Azure 가용성 집합 또는 SAP 모니터링과 같은 기타 일반적인 항목은 모두 이 문서의 처음 세 챕터에서 SAP MaxDB 데이터베이스와 VM 배포에 대해 설명한 대로 적용됩니다.
-다른 SAP MaxDB 관련 설정은 Azure VM에 투명하며 SAP Note [767598] 에 나열된 다른 문서 및 다음 SAP Note에서 설명됩니다.
+일반 다른 모든 설명서에는 Azure 가용성 집합 또는 SAP 모니터링 hello SAP MaxDB 데이터베이스와 Vm의 배포를 위해이 문서의 처음 세 개의 장 hello에 설명 된 대로도 적용 됩니다.
+다른 SAP MaxDB 관련 설정은 투명 tooAzure Vm 고 SAP Note에 나열 된 다른 문서에 설명 된 [767598 ] 및 이러한 SAP note에서:
 
 * [826037]
 * [1139904]
@@ -1253,39 +1253,39 @@ Azure 가용성 집합 또는 SAP 모니터링과 같은 기타 일반적인 항
 Azure Virtual Machines에서 지원되는 SAP liveCache의 최소 버전은 **EhP 2 for SAP SCM 7.0** 이상에 대해 릴리스된 **liveCache 7.9.08.31** 및 **LCA-Build 25**를 포함하는 **SAP LC/LCAPPS 10.0 SP 25**입니다.
 
 ### <a name="supported-microsoft-windows-versions-and-azure-vm-types-for-sap-livecache-dbms"></a>SAP liveCache DBMS에 대해 지원되는 Microsoft Windows 버전 및 Azure VM 유형
-Azure에서 지원되는 SAP liveCache용 Microsoft Windows 버전을 찾으려면 다음을 참조하세요.
+Azure에서 SAP liveCache에 대 한 toofind 지원 hello Microsoft Windows 버전 참조:
 
 * [SAP PAM(제품 가용성 매트릭스)][sap-pam]
 * SAP Note [1928533]
 
-최신 버전의 Microsoft Windows 운영 체제인 Microsoft Windows 2012 R2를 사용하는 것이 좋습니다.
+Toouse hello 최신 버전의 Microsoft Windows 2012 r 2는 Microsoft Windows hello 운영 체제 가장 좋습니다.
 
 ### <a name="sap-livecache-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Azure VM의 SAP 설치에 대한 SAP liveCache 구성 지침
 #### <a name="recommended-azure-vm-types"></a>권장되는 Azure VM 유형
-SAP liveCache는 많은 계산을 수행하는 응용 프로그램이므로 RAM과 CPU의 양 및 속도가 SAP liveCache 성능에 큰 영향을 줍니다.
+SAP liveCache 거 대 한 계산을 수행 하는 응용 프로그램 그대로 hello 양과 RAM과 CPU의 속도 SAP liveCache 성능에 큰 영향을 있습니다.
 
-SAP에서 지원하는 Azure VM 형식(SAP Note [1928533])의 경우, VM에 할당된 모든 가상 CPU 리소스가 하이퍼바이저의 전용 물리적 CPU 리소스에 의해 지원됩니다. 오버프로비저닝이 발생되지 않습니다(따라서 CPU 리소스에 대한 경쟁 없음).
+SAP에서 지 원하는 hello Azure VM 유형에 (SAP Note [1928533]), 모든 가상 CPU 리소스 할당 toohello VM 전용된 물리적 CPU 리소스가 hello 하이퍼바이저에 의해 지원 됩니다. 오버프로비저닝이 발생되지 않습니다(따라서 CPU 리소스에 대한 경쟁 없음).
 
-마찬가지로, SAP에서 지원하는 모든 Azure VM 인스턴스 형식의 경우 VM 메모리가 모두 실제 메모리에 매핑되므로 예를 들어 오버프로비저닝(오버 커밋)이 사용되지 않습니다.
+마찬가지로, SAP에서 지 원하는 모든 Azure VM 인스턴스 형식에 대해 hello VM 메모리는 100% 매핑된 toohello 물리적 메모리-과도 프로 비전 (오버 커밋), 예를 들어, 사용 되지 않습니다.
 
-이러한 관점에서 볼 때, 새로운 D 시리즈 또는 DS 시리즈(Azure 프리미엄 저장소와 함께 사용) Azure VM 유형은 A 시리즈보다 60% 더 빠른 프로세서를 제공하므로 이 형식을 사용하는 것이 좋습니다. RAM 및 CPU 부하가 매우 높은 경우 G 시리즈와 GS 시리즈(Azure 프리미엄 저장소와 함께 사용) VM을 최신 Intel® Xeon® 프로세서 E5 v3 제품군과 함께 사용할 수 있으며 그 결과 D/DS 시리즈에 비해 2배 많은 메모리 및 4배 많은 SSD(반도체 드라이브)를 사용할 수 있습니다.
+이러한 관점에서 것은 좋습니다 toouse hello 새 D 시리즈 또는 DS 시리즈 (Azure 프리미엄 저장소와 함께)에서 Azure VM 유형은 60 %A 시리즈 hello 보다 빠른 프로세서가 있는입니다. Hello 가장 높은 RAM과 CPU 부하를 사용할 수 있습니다 G 시리즈 및 GS 시리즈 (Azure 프리미엄 저장소와 함께)에서 Vm hello 최신 Intel® Xeon® 프로세서 hello 메모리 및 hello D의 4 번 hello 솔리드 스테이트 드라이브 저장소 (Ssd) 두 번 포함 하는 E5 v3 제품군 / DS 시리즈 합니다.
 
 #### <a name="storage-configuration"></a>저장소 구성
-SAP liveCache는 SAP MaxDB 기술을 기반으로 하므로 SAP MaxDB에 대해 [저장소 구성][dbms-guide-8.4.1] 챕터에서 설명한 모든 Azure Storage 모범 사례 권장 사항이 SAP liveCache에도 적용됩니다.
+Azure 저장소 최선의 방법 권장 사항에 대 한 SAP MaxDB 장에서 설명한 hello 모든 SAP liveCache은 SAP MaxDB 기술을 기반으로, [저장소 구성] [ dbms-guide-8.4.1] SAP liveCache에 대 한 유효 합니다.
 
 #### <a name="dedicated-azure-vm-for-livecache"></a>liveCache용 전용 Azure VM
-SAP liveCache는 컴퓨팅 기능을 집중적으로 사용하므로 생산적인 사용을 위해 전용 Azure 가상 컴퓨터에 배포하는 것이 좋습니다.
+SAP liveCache 컴퓨팅 기능을 집중적으로 사용 하는 대로 생산적인 사용에 대 한 것이 좋습니다 toodeploy 전용된 Azure 가상 컴퓨터에서.
 
 ![생산적인 사용 사례를 위한 liveCache용 전용 Azure VM][dbms-guide-figure-700]
 
 #### <a name="backup-and-restore"></a>백업 및 복원
-성능 고려 사항을 포함한 백업 및 복원은 이미 SAP MaxDB 관련의 [백업 및 복원][dbms-guide-8.4.2] 및 [백업 및 복원에 대한 성능 고려 사항][dbms-guide-8.4.3] 챕터에서 설명하고 있습니다.
+백업 및 복원, 성능 고려 사항 포함 하 여 hello 관련 SAP MaxDB 장에서 이미 설명 [백업 및 복원] [ dbms-guide-8.4.2] 및 [백업에 대 한 성능 고려 사항 복원 및][dbms-guide-8.4.3]합니다.
 
 #### <a name="other"></a>기타
-다른 모든 일반 항목은 이미 SAP MaxDB 관련의 [이][dbms-guide-8.4.4] 챕터에서 설명하고 있습니다.
+기타 모든 일반 항목 hello에서 이미 설명 된 관련 SAP MaxDB [이] [ dbms-guide-8.4.4] 장 합니다.
 
-## <a name="specifics-for-the-sap-content-server-on-windows"></a>Windows의 SAP Content Server에 대한 고유 정보
-SAP Content Server는 다양한 형식의 전자 문서와 같은 콘텐츠를 저장하기 위한 별도의 서버 기반 구성 요소입니다. SAP Content Server는 기술 개발을 통해 제공되며 SAP 응용 프로그램의 응용 프로그램 간에 사용됩니다. 별도의 시스템에 설치됩니다. 일반적인 콘텐츠는 기술 웨어하우스 설명서 또는 mySAP PLM 문서 관리 시스템의 기술 드로잉 및 교육 자료입니다.
+## <a name="specifics-for-hello-sap-content-server-on-windows"></a>Windows에서 SAP 콘텐츠 서버 hello에 대 한 구체적인 정보
+hello SAP 콘텐츠 서버는 서로 다른 형식에서 전자 문서와 같은 별도 서버 기반 구성 요소로, toostore 콘텐츠입니다. SAP 콘텐츠 서버 hello 기술을 개발 하 여 제공 하며 toobe 사용 되는 응용 프로그램 간 모든 SAP 응용 프로그램에 대 한 있습니다. 별도의 시스템에 설치됩니다. 일반적인 콘텐츠는 자료 및 기술 웨어하우스나 hello mySAP PLM 문서 관리 시스템에서에서 발생 하는 기술 드로잉의 설명서 교육을 진행 합니다.
 
 ### <a name="sap-content-server-version-support"></a>SAP Content Server 버전 지원
 SAP에서 현재 다음을 지원합니다.
@@ -1294,107 +1294,107 @@ SAP에서 현재 다음을 지원합니다.
 * **SAP MaxDB 버전 7.9**
 * **Microsoft IIS(인터넷 정보 서비스) 버전 8.0 이상**
 
-SAP Content Server의 최신 버전을 사용하는 것이 좋습니다. 이 문서를 작성할 당시를 기준으로 하면 **6.50 SP4**와 **Microsoft IIS 8.5**가 최신 버전입니다.
+Hello toouse hello이이 문서 작성 당시에는 SAP 콘텐츠 서버에서의 최신 버전을 적극 권장 **6.50 SP4**, 및 최신 버전의 hello **Microsoft IIS 8.5**합니다.
 
-지원되는 최신 버전의 SAP Content Server 및 Microsoft IIS는 [SAP PAM(제품 가용성 매트릭스)][sap-pam]을 참조하세요.
+Hello에 SAP 콘텐츠 서버 및 Microsoft IIS의 최신 지원 hello 버전 확인 [SAP 제품 사용 가능성 행렬 (PAM)][sap-pam]합니다.
 
 ### <a name="supported-microsoft-windows-and-azure-vm-types-for-sap-content-server"></a>SAP Content Server에 대해 지원되는 Microsoft Windows 버전 및 Azure VM 유형
-Azure의 SAP Content Server에서 지원되는 Windows 버전을 확인하려면 다음을 참조하세요.
+Azure에서 SAP 콘텐츠 서버에 대 한 지원 되는 Windows 버전 아웃 toofind 참조:
 
 * [SAP PAM(제품 가용성 매트릭스)][sap-pam]
 * SAP Note [1928533]
 
-Microsoft Windows의 최신 버전을 사용하는 것이 좋습니다. 이 문서를 작성할 당시를 기준으로 하면 **Windows Server 2012 R2**입니다.
+Hello toouse hello이이 문서 작성 당시에는 Microsoft Windows의 최신 버전을 적극 권장 **Windows Server 2012 R2**합니다.
 
 ### <a name="sap-content-server-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Azure VM의 SAP 설치에 대한 SAP Content Server 구성 지침
 #### <a name="storage-configuration"></a>저장소 구성
-SAP MaxDB 데이터베이스에 파일을 저장하도록 SAP Content Server를 구성하는 경우 SAP MaxDB에 대해 [저장소 구성][dbms-guide-8.4.1] 챕터에서 설명한 모든 Azure Storage 모범 사례 권장 사항이 SAP Content Server 시나리오에도 적용됩니다.
+모든 Azure 저장소 모범 사례 장에서 설명한 SAP MaxDB에 대 한 권장 사항 hello MaxDB SAP 데이터베이스의 toostore 파일 SAP 콘텐츠 서버를 구성 하는 경우 [저장소 구성] [ dbms-guide-8.4.1] 도 hello SAP 콘텐츠 서버 시나리오에 대해 유효 합니다.
 
-파일 시스템에 파일을 저장하도록 SAP Content Server를 구성한 경우 전용 논리 드라이브를 사용하는 것이 좋습니다. 저장소 공간을 사용하면 [소프트웨어 RAID][dbms-guide-2.2] 챕터에서 설명한 대로 논리 디스크 크기 및 IOPS 처리량을 늘릴 수 있습니다.
+Hello 파일 시스템의 SAP 콘텐츠 서버 toostore 파일을 구성 하는 경우 전용된 논리 드라이브 toouse 것이 좋습니다. 저장소 공간을 사용 하 여 사용 하면 tooalso 증가 논리 디스크 크기 및 IOPS 처리량 장에서 설명 된 대로 [소프트웨어 RAID][dbms-guide-2.2]합니다.
 
 #### <a name="sap-content-server-location"></a>SAP Content Server 위치
-SAP Content Server는 SAP 시스템이 배포된 것과 동일한 Azure VNET 및 Azure 지역에 배포되어야 합니다. SAP Content Server 구성 요소는 전용 Azure VM 또는 SAP 시스템이 실행 중인 동일한 VM에 배포할 수 있습니다.
+SAP 콘텐츠 서버에 toobe hello에 배포 된 동일한 Azure 지역 및 SAP 시스템 hello를 배포 하는 Azure VNET 합니다. Toodeploy SAP 콘텐츠 서버 구성 요소는 전용된 Azure VM 또는 hello hello SAP 시스템에서 실행 하는 동일한 VM 것인지 무료 toodecide 됩니다.
 
 ![SAP Content Server용 전용 Azure VM][dbms-guide-figure-800]
 
 #### <a name="sap-cache-server-location"></a>SAP Cache Server 위치
-SAP Cache Server는 로컬에 있는 (캐시된) 문서에 대한 액세스를 제공하는 추가 서버 기반 구성 요소입니다. SAP Cache Server는 SAP Content Server 문서를 캐시합니다. 이 기능의 목적은 서로 다른 위치에서 문서를 두 번 이상 검색해야 하는 경우 네트워크 트래픽을 최적화하는 것입니다. 일반적으로 SAP Cache Server는 SAP Cache Server에 액세스하는 클라이언트와 물리적으로 가까워야 합니다.
+hello SAP 캐시 서버는 추가 서버 기반 구성 요소 tooprovide 액세스 too(cached) 문서 로컬로입니다. SAP 캐시 서버 hello hello 문서 SAP 콘텐츠 서버에 캐시합니다. 문서가 여러 위치에서 두 번 이상 검색 toobe 가질 경우 toooptimize 네트워크 트래픽입니다. hello 일반적은 해당 hello SAP 캐시 서버 hello SAP 캐시 서버에 액세스 하는 toobe 실제로 닫기 toohello 클라이언트가지고 있다고 가정 합니다.
 
 다음 두 가지 옵션이 있습니다.
 
-1. **클라이언트가 백 엔드 SAP 시스템인 경우** SAP Content Server에 액세스하도록 백 엔드 SAP 시스템이 구성된 경우 해당 SAP 시스템은 클라이언트입니다. SAP 시스템과 SAP Content Server는 모두 같은 Azure 지역, 즉 동일한 Azure 데이터 센터에 배포되므로 물리적으로 서로 가깝습니다. 따라서 전용 SAP Cache Server를 사용할 필요가 없습니다. SAP UI 클라이언트(SAP GUI 또는 웹 브라우저)는 SAP 시스템에 직접 액세스하고 SAP 시스템은 SAP Content Server에서 문서를 검색합니다.
-2. **클라이언트가 온-프레미스 웹 브라우저인 경우** 웹 브라우저에서 직접 액세스하도록 SAP Content Server를 구성할 수 있습니다. 이 경우 온-프레미스에서 실행하는 웹 브라우저는 SAP Content Server의 클라이언트입니다. 온-프레미스 데이터 센터와 Azure 데이터 센터는 서로 다른 물리적 위치에 있습니다(이상적으로는 서로 가까워야 함). 온-프레미스 데이터 센터는 Azure 사이트 간 VPN 또는 ExpressRoute를 통해 Azure에 연결됩니다. 두 옵션 모두 Azure에 대한 보안 VPN 네트워크 연결을 제공하지만 사이트 간 네트워크 연결은 온-프레미스 데이터 센터와 Azure 데이터 센터 간의 네트워크 대역폭 및 대기 시간 SLA를 제공하지 않습니다. 문서에 대한 액세스 속도를 향상시키기 위해 다음 중 하나를 수행할 수 있습니다.
-   1. 온-프레미스 웹 브라우저 근처에 온-프레미스 SAP Cache Server를 설치합니다([이][dbms-guide-900-sap-cache-server-on-premises] 그림의 옵션).
+1. **클라이언트는 백 엔드 SAP 시스템** 해당 SAP 시스템은 클라이언트 구성된 tooaccess SAP 콘텐츠 서버는 백 엔드 SAP 시스템을 사용 하는 경우. SAP 시스템과 SAP 콘텐츠 서버 hello에 배포 되 hello에 같은 Azure 지역 – 닫기 실제로 동일한 Azure 데이터 센터-다른 tooeach 합니다. 따라서 없습니다 필요 toohave 전용된 SAP 캐시 서버입니다. SAP UI (SAP GUI 나 웹 브라우저) 클라이언트 액세스 hello SAP 시스템을 직접 및 hello SAP hello SAP 콘텐츠 서버에서에서 시스템 검색 문서.
+2. **클라이언트는 온-프레미스 웹 브라우저** hello SAP 콘텐츠 서버에 구성 된 toobe hello 웹 브라우저에서 직접 액세스할 수 있습니다. 이 경우 온-프레미스를 실행 하는 웹 브라우저는 클라이언트의 hello SAP 콘텐츠 서버. 온-프레미스 데이터 센터 및 Azure 데이터 센터 (이상적으로 닫기 tooeach 다른) 서로 다른 물리적 위치에 배치 됩니다. 온-프레미스 데이터 센터는 Azure 사이트 간 VPN 또는 express 경로 통해 연결 된 tooAzure입니다. 두 옵션 모두 보안 VPN 네트워크 연결 tooAzure를 제공 하지만 사이트 간 네트워크 연결에는 hello 온-프레미스 데이터 센터 및 hello Azure 데이터 센터 간 네트워크 대역폭 및 대기 시간 SLA를 제공 하지 않습니다. 액세스 toodocuments toospeed, hello 다음 중 하나를 수행할 수 있습니다.
+   1. 온-프레미스 SAP 캐시 서버를 설치, toohello 온-프레미스 웹 브라우저를 닫습니다 (옵션을 [이] [ dbms-guide-900-sap-cache-server-on-premises] 그림)
    2. 빠른 속도와 짧은 대기 시간의 온-프레미스 데이터 센터와 Azure 데이터 센터 간 전용 네트워크 연결을 제공하는 Azure ExpressRoute를 구성합니다.
 
-![SAP Cache Server 온-프레미스 설치 옵션][dbms-guide-figure-900]
+![옵션 tooinstall SAP 캐시 서버 온-프레미스][dbms-guide-figure-900]
 <a name="642f746c-e4d4-489d-bf63-73e80177a0a8"></a>
 
 #### <a name="backup--restore"></a>백업/복원
-SAP MaxDB 데이터베이스에 파일을 저장하도록 SAP Content Server를 구성하는 경우 백업/복원 절차 및 성능 고려 사항은 이미 SAP MaxDB 관련의 [백업 및 복원][dbms-guide-8.4.2] 및 [백업 및 복원에 대한 성능 고려 사항][dbms-guide-8.4.3] 챕터에서 설명하고 있습니다.
+Hello 백업/복원 절차 및 성능 고려 사항은 SAP MaxDB 장에서 이미 설명 된 hello MaxDB SAP 데이터베이스의 hello SAP 콘텐츠 서버 toostore 파일을 구성 하는 경우 [백업 및 복원] [ dbms-guide-8.4.2] 및 장 [백업 및 복원에 대 한 성능 고려 사항][dbms-guide-8.4.3]합니다.
 
-파일 시스템에 파일을 저장하도록 SAP Content Server를 구성하는 경우 문서가 위치한 전체 파일 구조의 수동 백업/복원을 실행할 수 있습니다. SAP MaxDB 백업/복원과 마찬가지로, 백업 목적을 위한 전용 디스크 볼륨을 사용하는 것이 좋습니다.
+Hello 파일 시스템의 hello SAP 콘텐츠 서버 toostore 파일을 구성 하는 경우 한 가지 방법은 tooexecute 수동 백업/복원 hello 전체 파일 구조는 hello 문서의 위치입니다. 비슷한 tooSAP MaxDB 백업/복원, 백업 목적을 위해 toohave 전용된 디스크 볼륨을 권장 합니다.
 
 #### <a name="other"></a>기타
-다른 SAP Content Server 관련 설정은 Azure VM에 투명하며 다양한 문서 및 SAP Note에 설명되어 있습니다.
+다른 SAP 콘텐츠 서버 특정 설정은 투명 tooAzure Vm 고 다양 한 문서 및 SAP Note에서 설명 합니다.
 
 * <https://service.sap.com/contentserver>
 * SAP Note [1619726]  
 
-## <a name="specifics-to-ibm-db2-for-luw-on-windows"></a>Windows의 LUW용 IBM DB2에 대한 고유 정보
-Microsoft Azure를 사용하면 Linux, UNIX, Windows(LUW)용 IBM DB2에서 실행 중인 기존 SAP 응용 프로그램을 Azure 가상 컴퓨터로 쉽게 마이그레이션할 수 있습니다. LUW용 IBM DB2에서 SAP를 사용하면 관리자와 개발자가 온-프레미스와 동일한 개발 및 관리 도구를 사용할 수 있습니다.
-LUW용 IBM DB2에서의 SAP Business Suite 실행에 대한 일반 정보는 <https://scn.sap.com/community/db2-for-linux-unix-windows>의 SCN(SAP Community Network)을 참조하세요.
+## <a name="specifics-tooibm-db2-for-luw-on-windows"></a>Windows에서 LUW 용 DB2 비슷하므로 tooIBM
+Microsoft azure Linux, UNIX 및 Windows (LUW) tooAzure 가상 컴퓨터에 대해 IBM d b 2에서 실행 중인 기존 SAP 응용 프로그램을 쉽게 마이그레이션할 수 있습니다. LUW 용 IBM d b 2에서의 SAP, 사용 관리자와 개발자가 사용할 수 있는 동일한 개발 및 관리 도구 온-프레미스 hello를 계속 사용할 수 있습니다.
+LUW에서 찾을 수 있습니다에 대 한 SAP Business Suite IBM d b 2에서 실행 하는 방법에 대 한 일반 정보에 SAP 커뮤니티 네트워크 (SCN) hello <https://scn.sap.com/community/db2-for-linux-unix-windows>합니다.
 
 Azure에서 LUW용 DB2의 SAP에 대한 추가 정보 및 업데이트는 SAP Note [2233094]를 참조하세요.
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-version-support"></a>Linux, UNIX 및 Windows용 IBM DB2 버전 지원
-Microsoft Azure 가상 컴퓨터 서비스에서 LUW용 IBM DB2의 SAP는 DB2 버전 10.5부터 지원됩니다.
+Microsoft Azure Virtual Machines 서비스에서 LUW용 IBM DB2의 SAP는 DB2 버전 10.5부터 지원됩니다.
 
-지원되는 SAP 제품 및 Azure VM 형식에 대한 내용은 SAP Note [1928533]을 참조하세요.
+지원 되는 SAP 제품 및 Azure VM 유형에 대 한 내용은 tooSAP 참고를 참조 하십시오 [1928533]합니다.
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-configuration-guidelines-for-sap-installations-in-azure-vms"></a>Azure VM의 SAP 설치에 대한 Linux, UNIX 및 Windows용 IBM DB2 구성 지침
 #### <a name="storage-configuration"></a>저장소 구성
-모든 데이터베이스 파일은 VHD 디스크 기반의 NTFS 파일 시스템에 저장되어야 합니다. 이러한 VHD는 Azure VM에 탑재되어 있으며 Azure 페이지 Blob Storage를 기반으로 합니다(<https://msdn.microsoft.com/library/azure/ee691964.aspx>).
-모든 종류의 네트워크 드라이브 또는 다음 Azure 파일 서비스 같은 원격 공유는 데이터베이스 파일에 대해 지원되지 **않습니다** .
+모든 데이터베이스 파일을 VHD 디스크에 따라 hello NTFS 파일 시스템에 저장 되어야 합니다. 이러한 Vhd는 탑재 된 toohello Azure VM 및 Azure 페이지 BLOB 저장소에 따라 (<https://msdn.microsoft.com/library/azure/ee691964.aspx>).
+모든 종류의 네트워크 드라이브 또는 원격 공유 hello 다음 Azure 파일 서비스는 같은 **하지** 데이터베이스 파일에 대 한 지원:
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
 
-Azure 페이지 Blob Storage에 기반한 Azure VHD를 사용하는 경우 이 문서의 [RDBMS 배포 구조][dbms-guide-2] 챕터에서 설명한 내용이 LUW 데이터베이스용 IBM DB2와 함께 배포하는 경우에도 적용됩니다.
+Azure 페이지 BLOB 저장소에 따라 Azure Vhd를 사용 하는 경우이 문서의 장에서에 작성 된 문이 hello [RDBMS 배포의 구조] [ dbms-guide-2] LUW 용 IBM DB2 hello로 toodeployments에도 적용 데이터베이스입니다.
 
-이 문서 앞부분의 일반 정보에서 설명했듯이 Azure VHD에 대한 IOPS 처리량에 할당량이 존재합니다. 정확한 할당량은 사용되는 VM 유형에 따라 달라집니다. VM 유형과 해당 할당량의 목록은 [여기][virtual-machines-sizes]에 있습니다.
+Hello 문서의 hello 일반 부분의 앞부분에 나오는 설명 했 듯이 할당량 Azure Vhd에 대 한 IOPS 처리량에 존재 합니다. hello 정확한 할당량 사용 hello VM 형식에 따라 달라 집니다. VM 유형과 해당 할당량의 목록은 [여기][virtual-machines-sizes]에 있습니다.
 
-디스크당 현재 IOPS 할당량이 충분한 경우 탑재된 단일 Azure VHD에 모든 데이터베이스 파일을 저장할 수 있습니다.
+디스크당 hello 현재 IOPS 할당량은 충분 한 것이 데이터베이스 파일에 hello 모든 가능한 toostore로 하나의 단일 Azure VHD를 탑재 합니다.
 
-SAP 설치 가이드의 "데이터베이스 디렉터리의 데이터 보안 및 성능 고려 사항" 챕터에서도 성능 고려 사항을 참조할 수 있습니다.
+성능 고려 사항 toochapter "데이터 보안 및 성능 고려 사항에 대 한 데이터베이스 디렉터리" SAP 설치 가이드에서 참조 합니다.
 
-또는 이 문서의 [소프트웨어 RAID][dbms-guide-2.2] 챕터에서 설명한 대로 Window 저장소 풀(Windows Server 2012 이상에서만 사용 가능) 또는 Windows 2008 R2용 Windows 스트라이프를 사용하여 탑재된 여러 VHD 디스크에 하나의 큰 논리적 장치를 만들 수 있습니다.
-sapdata 및 saptmp 디렉터리에 대한 DB2 저장소 경로를 포함하는 디스크의 경우 물리적 디스크 섹터 크기를 512KB로 지정해야 합니다. Windows 저장소 풀을 사용하는 경우 “-LogicalSectorSizeDefault” 매개 변수를 사용하여 명령줄 인터페이스를 통해 수동으로 저장소 풀을 만들어야 합니다. 자세한 내용은 <https://technet.microsoft.com/library/hh848689.aspx>를 참조하세요.
+(Windows Server 2012에서 사용할 수 및 더 높은) Windows 저장소 풀을 사용할 수 있습니다 또는 Windows 2008 r 2와 Windows 스트라이프 장에서 설명 또는 [소프트웨어 RAID] [ dbms-guide-2.2] 이 문서의 toocreate 하나의 큰 논리 장치 여러 탑재 된 VHD 디스크를 통해.
+Sapdata 및 saptmp 디렉터리에 대 한 hello DB2 저장소 경로 포함 하는 hello 디스크, 실제 디스크 섹터 크기는 512KB를 지정 해야 합니다. Windows 저장소 풀을 사용할 경우 만들어야 hello hello 매개 변수를 사용 하 여 명령줄 인터페이스를 통해 수동으로 저장소 풀이 "-LogicalSectorSizeDefault"입니다. 자세한 내용은 <https://technet.microsoft.com/library/hh848689.aspx>를 참조하세요.
 
 #### <a name="backuprestore"></a>백업/복원
-LUW용 IBM DB2의 백업/복원 기능은 표준 Windows Server 운영 체제 및 Hyper-V와 동일한 방법으로 지원됩니다.
+IBM d b 2에 대 한 백업/복원 기능 hello LUW에서 지원 되는 hello 동일 방식에서 같이 표준 Windows Server 운영 체제 및 Hyper-v입니다.
 
 유효한 데이터베이스 백업 전략이 있는지 확인해야 합니다.
 
-완전 배포에서처럼 백업/복원 성능은 병렬로 읽을 수 있는 볼륨 수와 이러한 볼륨의 처리량에 따라 달라집니다. 또한 백업 압축에서 사용하는 CPU 사용량은 최대 8개 CPU 스레드까지 VM에서 중요 역할을 수행할 수 있습니다. 따라서 다음을 가정할 수 있습니다.
+완전 배포 에서처럼 백업/복원 성능은 동시에 읽을 수 있는 볼륨 수 및 이러한 볼륨의 어떤 hello 출력 수에 따라 다릅니다. 또한 hello 백업 압축을 통해 CPU 사용률 too8 CPU 스레드를 방금 된 Vm에서 중요 한 역할을 재생 수 있습니다. 따라서 다음을 가정할 수 있습니다.
 
-* 데이터베이스 장치를 저장하는 데 사용하는 VHD 수가 적을수록 전반적인 읽기 처리량이 줄어듭니다.
-* VM의 CPU 스레드 수가 적을수록 백업 압축에 대한 영향이 커집니다.
-* 백업을 작성하는 대상(스트라이프 디렉터리, VHD) 수가 적을수록 처리량이 줄어듭니다.
+* hello Vhd hello 수를 적게 사용 toostore hello 데이터베이스 장치 hello 읽기에서 전반적인 처리량을 더 작은 hello
+* 더 작은 hello hello VM의에서 CPU 스레드 수가 hello, 백업 압축의 심각한 hello 영향 hello
+* hello hello 낮은 hello 처리량을 더 적은 toowrite hello 백업 대상 (Stripe 디렉터리, Vhd)
 
-작성할 대상 수를 늘리려면 두 가지 옵션을 필요에 따라 사용/혼합할 수 있습니다.
+대상으로 toowrite tooincrease hello 수, 두 가지 옵션이 필요에 따라 사용 되 는/결합 될 수 있습니다.
 
-* 해당 스트라이프 볼륨에 대한 IOPS 처리량을 개선하려면 탑재된 여러 VHD에 백업 대상 볼륨을 스트라이프합니다.
-* 둘 이상의 대상 디렉터리를 사용하여 백업을 작성합니다.
+* 백업 대상 볼륨을 hello 순서 tooimprove hello IOPS 처리량이 해당 스트라이프 볼륨에 여러 탑재 된 Vhd로 스트라이프
+* 에 둘 이상의 대상 디렉터리 toowrite hello 백업을 사용 하 여
 
 #### <a name="high-availability-and-disaster-recovery"></a>고가용성 및 재해 복구
 MSCS(Microsoft Cluster Server)는 지원되지 않습니다.
 
-DB2 HADR(고가용성 재해 복구)은 지원됩니다. HA 구성의 가상 컴퓨터에 이름 확인 작업이 있는 경우 Azure 설정이 온-프레미스의 설정과 다르지 않습니다. IP 확인만 사용하는 것은 권장되지 않습니다.
+DB2 HADR(고가용성 재해 복구)은 지원됩니다. Hello HA 구성의 가상 컴퓨터를 hello가 이름 확인에 관한 작업을 Azure의 hello 설정은 온-프레미스 수행 된 모든 설정과에서 다르지 않습니다. IP 확인만 toorely는 권장 되지 않습니다.
 
-Azure 저장소 지역에서 복제는 사용하지 마세요. 자세한 내용은 [Microsoft Azure Storage][dbms-guide-2.3] 및 [Azure VM을 사용한 고가용성 및 재해 복구][dbms-guide-3] 챕터를 참조하세요.
+Azure 저장소 지역에서 복제는 사용하지 마세요. 자세한 내용은 참조 toochapter [Microsoft Azure 저장소] [ dbms-guide-2.3] 및 장 [고가용성 및 재해 복구 Azure Vm과] [ dbms-guide-3].
 
 #### <a name="other"></a>기타
-Azure 가용성 집합 또는 SAP 모니터링과 같은 기타 일반적인 항목은 모두 이 문서의 처음 세 챕터에서 LUW용 IBM DB2와 VM 배포에 대해 설명한 대로 적용됩니다.
+Azure 가용성 집합 또는 SAP 모니터링와 같은 일반 다른 모든 항목 에서도 LUW 용 IBM d b 2와 Vm의 배포를 위해이 문서의 처음 세 개의 장 hello에 설명 된 대로 적용 됩니다.
 
-또한 [Azure의 SAP용 SQL Server에 대한 일반적 요약][dbms-guide-5.8] 챕터를 참조하세요.
+또한 toochapter 참조할 [Azure 요약에서의 SAP 용 일반 SQL Server][dbms-guide-5.8]합니다.

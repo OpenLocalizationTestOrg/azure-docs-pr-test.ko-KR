@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Windows VM에 대한 가용성 집합 자습서 | Microsoft Docs"
-description: "Azure에서 Windows VM에 대한 가용성 집합에 대해 알아봅니다."
+title: "Azure의 Windows Vm에 대 한 자습서를 설정 하는 aaaAvailability | Microsoft Docs"
+description: "Hello 가용성 집합에 대 한 Windows Azure에서 Vm에 알아봅니다."
 documentationcenter: 
 services: virtual-machines-windows
 author: cynthn
@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 05/08/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d918362106ef93cf47620e0018d363cd510884b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 853775c5f126dd815c1933f9d71d2274a75ea661
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-availability-sets"></a>가용성 집합 사용 방법
+# <a name="how-toouse-availability-sets"></a>Toouse 가용성 설정 하는 방법
 
-이 자습서에서는 가용성 집합이라는 기능을 사용하여 Azure에서 VM(가상 컴퓨터) 솔루션의 가용성과 안정성을 향상시키는 방법에 대해 알아봅니다. 가용성 집합을 사용하면 Azure에 배포한 VM이 격리된 여러 하드웨어 클러스터에 분산되도록 할 수 있습니다. 이렇게 하면 Azure 내의 하드웨어 또는 소프트웨어 오류가 발생할 때 VM의 하위 집합에만 영향을 주며 전체 솔루션을 사용하는 고객의 관점에서 전체 솔루션을 사용할 수 있게 됩니다. 
+이 자습서에서는 tooincrease hello 가용성 및 안정성 기능을 사용 하 여 Azure에서 가상 컴퓨터 솔루션의 가용성 집합을 호출 방법을 배웁니다. 가용성 집합에 Vm을 Azure에 배포 하면 여러 개의 분리 된 하드웨어 클러스터에 분산 되어 해당 hello를 확인 합니다. 이렇게 있도록 Azure 내에서 하드웨어 또는 소프트웨어 오류가 발생 하는, 하위 집합이 Vm에 영향을 받음 및 사용 가능 하 고 사용 하 여 고객의 hello 관점에서 operational 전체 솔루션 유지 되 있습니다. 
 
 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
@@ -33,19 +33,19 @@ ms.lasthandoff: 07/11/2017
 > * 가용성 집합에서 VM 만들기
 > * 사용 가능한 VM 크기 확인
 
-이 자습서에는 Azure PowerShell 모듈 버전 3.6 이상이 필요합니다. ` Get-Module -ListAvailable AzureRM`을 실행하여 버전을 찾습니다. 업그레이드해야 하는 경우 [Azure PowerShell 모듈 설치](/powershell/azure/install-azurerm-ps)를 참조하세요.
+이 자습서는 Azure PowerShell 모듈 버전 3.6 이상 hello가 필요합니다. 실행 ` Get-Module -ListAvailable AzureRM` toofind hello 버전입니다. Tooupgrade 필요한 경우 참조 [Azure PowerShell 설치 모듈](/powershell/azure/install-azurerm-ps)합니다.
 
 ## <a name="availability-set-overview"></a>가용성 집합 개요
 
-가용성 집합은 해당 집합에 배치한 VM 리소스가 Azure 데이터 센터에 배포될 때 서로 간에 격리되도록 하기 위해 Azure에서 사용할 수 있는 논리적 그룹화 기능입니다. Azure는 가용성 집합 내에 배치한 VM을 여러 물리적 서버, 계산 랙, 저장 단위 및 네트워크 스위치에서 실행되도록 합니다. 이렇게 하면 하드웨어 또는 Azure 소프트웨어 오류가 발생할 경우 VM의 하위 집합에만 영향을 주는 한편 전체 응용 프로그램은 계속 유지되어 고객이 계속 사용할 수 있습니다. 가용성 집합을 사용하는 것은 안정적인 클라우드 솔루션을 구축하려고 할 때 활용할 수 있는 필수적인 기능입니다.
+가용성 집합 Azure tooensure Azure 데이터 센터 내에서 배포 하는 경우 그 안에 배치 hello VM 리소스를 서로 격리 되어 있는지에 사용할 수 있는 논리 그룹 기능입니다. Azure는 hello Vm 여러 물리적 서버에서 실행 되는 가용성 집합 내에서 배치 되도록 하, 랙, 저장 장치 및 네트워크 스위치를 계산 합니다. 이렇게 하면 하드웨어 또는 소프트웨어 Azure 실패 hello 이벤트에서 Vm의 하위 집합만 영향을 주지 전반적인 응용 프로그램에서 가동 상태 유지 하 고 toobe tooyour 사용할 수 있는 고객을 계속 합니다. 가용성 집합을 사용 하는 필수 기능 tooleverage 때 toobuild 신뢰할 수 있는 클라우드 솔루션입니다.
 
-4개의 프런트 엔드 웹 서버가 있고 데이터베이스를 호스팅하는 2개의 백 엔드 VM을 사용하는 일반적인 VM 기반 솔루션을 고려해 보겠습니다. Azure를 사용하면 VM을 배포하기 전에 하나는 “웹” 계층, 다른 하나는 “데이터베이스” 계층에 대한 집합인 두 개의 가용성 집합을 정의해야 합니다. 새 VM을 만들 때 az vm create 명령에 대한 매개 변수로 가용성 집합을 지정할 수 있으며, Azure에서는 사용 가능한 집합 내에 만든 VM이 여러 물리적 하드웨어 리소스에서 자동으로 격리되도록 합니다. 즉, 웹 서버 VM 또는 데이터베이스 서버 VM 중 하나가 실행 중인 물리적 하드웨어에 문제가 있는 경우 웹 서버 VM과 데이터베이스 VM의 다른 인스턴스가 다른 하드웨어에 있기 때문에 계속 실행된다는 것을 알 수 있습니다.
+4개의 프런트 엔드 웹 서버가 있고 데이터베이스를 호스팅하는 2개의 백 엔드 VM을 사용하는 일반적인 VM 기반 솔루션을 고려해 보겠습니다. Azure를 원할 toodefine 두 가용성 집합에 Vm을 배포 하기 전에: hello "웹" 계층 및 하나의 가용성 hello "database" 계층에 대 한 설정에 대 한 가용성 집합입니다. 그런 다음 매개 변수 toohello az vm 명령을 만들고 Azure 해당 hello hello 사용할 수 있는 내부에서 만든 Vm에 자동으로 확인 됩니다 설정 hello 가용성을 지정할 수는 새 VM을 만들 때 집합에서 여러 물리적 하드웨어 리소스 간의 격리 됩니다. 즉, 웹 서버 또는 데이터베이스 서버 Vm 중 하나에서 실행 되는 hello 물리적 하드웨어에 문제가 있는 경우 해당 hello을 파악 하는 웹 서버 및 데이터베이스 Vm의 다른 인스턴스는 계속 실행 제대로 다른 하드웨어에 있기 때문에 있습니다.
 
-Azure 내에서 신뢰할 수 있는 VM 기반 솔루션을 배포하려면 항상 가용성 집합을 사용해야 합니다.
+Azure 내에서 신뢰할 수 있는 VM 기반 솔루션 toodeploy 하려는 경우에 항상 가용성 집합을 사용 해야 합니다.
 
 ## <a name="create-an-availability-set"></a>가용성 집합 만들기
 
-[New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset)을 사용하여 가용성 집합을 만들 수 있습니다. 이 예제에서는 *myResourceGroupAvailability* 리소스 그룹의 *myAvailabilitySet*라는 가용성 집합에 대해 업데이트 수와 장애 도메인 수를 모두 *2*로 설정합니다.
+[New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset)을 사용하여 가용성 집합을 만들 수 있습니다. 이 예제에서 업데이트 및 오류 도메인의 hello 번호가 모두 설정 *2* hello 가용성 명명 된 집합에 대 한 *myAvailabilitySet* hello에 *myResourceGroupAvailability*리소스 그룹입니다.
 
 리소스 그룹을 만듭니다.
 
@@ -66,20 +66,20 @@ New-AzureRmAvailabilitySet `
 
 ## <a name="create-vms-inside-an-availability-set"></a>가용성 집합에 포함된 VM 만들기
 
-VM은 하드웨어에 제대로 분산되도록 가용성 집합 내에 만들어야 합니다. VM을 만든 후에는 가용성 집합에 기존 VM을 추가할 수 없습니다. 
+Vm은 hello 가용성 집합 toomake hello 하드웨어 올바르게 분할 되어 있는지 내에서 만든 toobe가 필요 합니다. 기존 VM tooan 가용성 집합을 만든 후 추가할 수 없습니다. 
 
-한 위치의 하드웨어는 여러 개의 업데이트 도메인 및 장애 도메인으로 구분됩니다. **업데이트 도메인**은 동시에 다시 부팅할 수 있는 VM 그룹과 기본 물리적 하드웨어입니다. 동일한 **장애 도메인**의 VM은 공통의 저장소뿐만 아니라 공통의 전원 및 네트워크 스위치를 공유합니다. 
+위치에 hello 하드웨어 toomultiple 업데이트 도메인과 오류 도메인에 분할 됩니다. **업데이트 도메인** Vm 및 hello에서 다시 부팅 해야 하는 기본 실제 하드웨어의 그룹은 같은 시간입니다. Vm에 동일 hello **장애 도메인** 공통 저장소 뿐만 아니라 일반적인 전원 원본과 네트워크 스위치를 공유 합니다. 
 
-[New-AzureRMVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig)를 사용하는 구성으로 VM을 만들 때 가용성 집합의 ID를 지정하는 `-AvailabilitySetId` 매개 변수를 사용하여 가용성 집합을 지정합니다.
+사용 하 여 구성을 사용 하는 VM을 만들 때 [새로 AzureRMVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) hello를 사용 하 여 설정 하는 hello 가용성 지정 `-AvailabilitySetId` hello 가용성 집합의 매개 변수 toospecify hello ID입니다.
 
-가용성 집합에 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)으로 2개의 VM을 만듭니다.
+와 2 개의 Vm을 만들 [새로 AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) hello 가용성 집합에 있습니다.
 
 ```powershell
 $availabilitySet = Get-AzureRmAvailabilitySet `
     -ResourceGroupName myResourceGroupAvailability `
     -Name myAvailabilitySet
 
-$cred = Get-Credential -Message "Enter a username and password for the virtual machine."
+$cred = Get-Credential -Message "Enter a username and password for hello virtual machine."
 
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
     -Name mySubnet `
@@ -125,7 +125,7 @@ for ($i=1; $i -le 2; $i++)
         -PublicIpAddressId $pip.Id `
         -NetworkSecurityGroupId $nsg.Id
 
-   # Here is where we specify the availability set
+   # Here is where we specify hello availability set
    $vm = New-AzureRmVMConfig `
         -VMName myVM$i `
         -VMSize Standard_D1 `
@@ -158,11 +158,11 @@ for ($i=1; $i -le 2; $i++)
 
 ```
 
-두 VM을 만들고 구성하는 데 몇 분 정도 소요됩니다. 완료되면 2대의 Virtual Machines가 기본 하드웨어에 분산되었습니다. 
+몇 분 toocreate 걸리고 두 Vm을 구성 합니다. 완료 되 면 hello 기반 하드웨어를 분산 하는 가상 컴퓨터 2 해야 합니다. 
 
 ## <a name="check-for-available-vm-sizes"></a>사용 가능한 VM 크기 확인 
 
-나중에 더 많은 VM을 가용성 집합에 추가할 수 있지만 하드웨어에서 사용 가능한 VM 크기를 알아야 합니다. [Get-AzureRMVMSize](/powershell/module/azurerm.compute/get-azurermvmsize)를 사용하여 하드웨어 클러스터에서 사용 가능한 모든 가용성 집합 크기를 나열합니다.
+더 많은 Vm toohello 가용성을 설정 하 고, 나중에 추가할 수 있지만 어떤 VM 크기 hello 하드웨어에서 사용할 수 있는 tooknow 필요 합니다. 사용 하 여 [Get AzureRMVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) toolist hello 가용성 집합에 대 한 클러스터 hello 하드웨어에서 모든 hello 사용 가능한 크기입니다.
 
 ```powershell
 Get-AzureRmVMSize `
@@ -179,7 +179,7 @@ Get-AzureRmVMSize `
 > * 가용성 집합에서 VM 만들기
 > * 사용 가능한 VM 크기 확인
 
-가상 컴퓨터 확장 집합에 대해 알아보려면 다음 자습서로 이동합니다.
+가상 컴퓨터 크기 집합에 대 한 다음 자습서 toolearn toohello를 진행 합니다.
 
 > [!div class="nextstepaction"]
 > [VM Scale Set 만들기](tutorial-create-vmss.md)

@@ -1,6 +1,6 @@
 ---
-title: Azure Active Directory B2C | Microsoft Docs
-description: "Azure Active Directory B2C 및 OAuth 2.0 액세스 토큰을 사용하여 .NET 웹앱을 빌드하고 웹 API를 호출하는 방법입니다."
+title: Active Directory B2C aaaAzure | Microsoft Docs
+description: "어떻게 toobuild.NET 웹 응용 프로그램 web를 호출 하 고 Azure Active Directory B2C 및 OAuth 2.0 액세스 토큰을 사용 하 여 api입니다."
 services: active-directory-b2c
 documentationcenter: .net
 author: parakhj
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: parakhj
-ms.openlocfilehash: 48452eb68f826d1c7aa61d5e5531f941ac1422b0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9b248e3bf18968e12aae73c07083fa8278befb3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-b2c-call-a-net-web-api-from-a-net-web-app"></a>Azure AD B2C: .NET 웹앱에서 .NET 웹 API 호출
 
-Azure AD B2C를 사용하여 강력한 ID 관리 기능을 웹앱 및 웹 API에 추가할 수 있습니다. 이 문서에서는 액세스 토큰을 요청하고 .NET "할 일 모음" 웹앱에서 .NET 웹 API로 호출하는 방법을 설명합니다.
+Azure AD B2C를 사용 하 여 강력한 id 관리 기능 tooyour 웹 앱 및 웹 Api 추가할 수 있습니다. 이 문서에서는 방법을 알아보고 toorequest 액세스 토큰 호출 "할 일 목록".NET에서 웹 앱 tooa.NET 웹 api입니다.
 
-이 문서는 Azure AD B2C를 사용하여 등록, 로그인 및 프로필 관리를 구현하는 방법을 다루지 않습니다. 사용자를 인증한 후에 Web API를 호출하는 데 집중합니다. 아직 하지 않은 경우 다음을 수행해야 합니다.
+이 적용 되지 않습니다 어떻게 tooimplement 로그인 등록, Azure AD B2C를 사용 하 여 관리 프로필 및 합니다. Hello 사용자가 이미 인증 된 후 호출 웹 Api에 집중 합니다. 아직 하지 않은 경우 다음을 수행해야 합니다.
 
 * [.NET 웹앱](active-directory-b2c-devquickstarts-web-dotnet-susi.md) 시작
 * [.NET 웹 API](active-directory-b2c-devquickstarts-api-dotnet.md) 시작
 
 ## <a name="prerequisite"></a>필수 요소
 
-웹 API를 호출하는 웹 응용 프로그램을 빌드하려면 다음을 수행해야 합니다.
+toobuild web를 호출 하는 웹 응용 프로그램에 필요한 api:
 
 1. [Azure AD B2C 테넌트를 만듭니다](active-directory-b2c-get-started.md).
 2. [웹 API를 등록합니다](active-directory-b2c-app-registration.md#register-a-web-api).
 3. [웹앱을 등록합니다](active-directory-b2c-app-registration.md#register-a-web-app).
 4. [정책을 설정합니다](active-directory-b2c-reference-policies.md).
-5. [웹 API를 사용하도록 웹앱 권한을 부여합니다](active-directory-b2c-access-tokens.md#publishing-permissions).
+5. [Grant hello 웹 응용 프로그램 사용 권한 toouse hello 웹 api](active-directory-b2c-access-tokens.md#publishing-permissions)합니다.
 
 > [!IMPORTANT]
-> 클라이언트 응용 프로그램 및 웹 API는 동일한 Azure AD B2C 디렉터리를 사용해야 합니다.
+> hello 클라이언트 응용 프로그램 및 web API hello 동일한 Azure AD B2C 디렉터리를 사용 해야 합니다.
 >
 
-## <a name="download-the-code"></a>코드 다운로드
+## <a name="download-hello-code"></a>Hello 코드 다운로드
 
-이 자습서에 대한 코드는 [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi)에서 유지 관리됩니다. 다음을 실행하여 샘플을 복제할 수 있습니다.
+이 자습서에 대 한 hello 코드에서 유지 관리 됩니다 [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi)합니다. 실행 하 여 hello 샘플을 복제할 수 있습니다.
 
 ```console
 git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi.git
 ```
 
-샘플 코드를 다운로드한 후 Visual Studio .sln 파일을 열어 시작합니다. 이제 솔루션에는 `TaskWebApp`과 `TaskService`, 2개의 프로젝트가 있습니다. `TaskWebApp`은 사용자와 상호 작용하는 MVC 웹 응용 프로그램입니다. `TaskService` 는 각 사용자의 할 일 모음을 저장하는 앱의 백 엔드 Web API입니다. 이 문서에서는 `TaskWebApp` 웹앱 또는 `TaskService` 웹 API를 구축하는 방법을 다루지 않습니다. Azure AD B2C를 사용하여 .NET 웹앱을 구축하는 방법을 알아보려면 [.NET 웹앱 자습서](active-directory-b2c-devquickstarts-web-dotnet-susi.md)를 참조하세요. Azure AD B2C를 사용하여 보안된 .NET 웹 API를 구축하는 방법을 알아보려면 [.NET 웹 API 자습서](active-directory-b2c-devquickstarts-api-dotnet.md)를 참조하세요.
+Hello 샘플 코드를 다운로드 한 후 hello open Visual Studio.sln 파일 tooget 시작 합니다. hello 솔루션 파일에는 두 개의 프로젝트가 포함 되어: `TaskWebApp` 및 `TaskService`합니다. `TaskWebApp`와 상호 작용 사용자 hello MVC 웹 응용 프로그램입니다. `TaskService`각 사용자의 할 일 목록에 저장 하는 hello 앱 백 엔드 웹 API입니다. 이 문서 작성 hello를 다루지 않습니다 `TaskWebApp` 웹 응용 프로그램 또는 hello `TaskService` 웹 api입니다. toolearn toobuild hello.NET 웹 응용 프로그램을 Azure AD B2C를 사용 하 여 참조 우리의 [.NET 웹 응용 프로그램 자습서](active-directory-b2c-devquickstarts-web-dotnet-susi.md)합니다. toolearn toobuild hello.NET web API Azure AD B2C를 사용 하 여 보안 하는 방법을 참조 우리의 [.NET web API 자습서](active-directory-b2c-devquickstarts-api-dotnet.md)합니다.
 
-### <a name="update-the-azure-ad-b2c-configuration"></a>Azure AD B2C 구성 업데이트
+### <a name="update-hello-azure-ad-b2c-configuration"></a>Azure AD B2C hello 구성 업데이트
 
-샘플은 데모 테넌트의 정책 및 클라이언트 ID를 사용하도록 구성되어 있습니다. 자신의 테넌트를 사용하려는 경우:
+이 샘플은 구성 된 toouse hello 정책 및 클라이언트 ID 우리의 데모 테 넌 트입니다. Toouse 원하는 경우 자신의 테 넌 트:
 
-1. `TaskService` 프로젝트에서 `web.config`을 열고 다음 값을 바꿉니다.
+1. 열기 `web.config` hello에 `TaskService` 프로젝트 및에 대 한 hello 값 바꾸기
 
     * `ida:Tenant`를 테넌트 이름으로 바꿉니다.
     * `ida:ClientId`를 웹 API 응용 프로그램 ID로 바꿉니다.
     * `ida:SignUpSignInPolicyId`를 "등록 또는 로그인" 정책 이름으로 바꿉니다.
 
-2. `TaskWebApp` 프로젝트에서 `web.config`를 열고 다음 값을 바꿉니다.
+2. 열기 `web.config` hello에 `TaskWebApp` 프로젝트 및에 대 한 hello 값 바꾸기
 
     * `ida:Tenant`를 테넌트 이름으로 바꿉니다.
     * `ida:ClientId`를 웹앱 응용 프로그램 ID로 바꿉니다.
@@ -76,11 +76,11 @@ git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-an
 
 ## <a name="requesting-and-saving-an-access-token"></a>액세스 토큰 요청 및 저장
 
-### <a name="specify-the-permissions"></a>사용 권한 지정
+### <a name="specify-hello-permissions"></a>Hello 사용 권한을 지정합니다
 
-웹 API에 대한 호출을 만들려면 사용자를 인증하고(등록/로그인 정책 사용) Azure AD B2C에서 [액세스 토큰을 받아야](active-directory-b2c-access-tokens.md) 합니다. 액세스 토큰을 받으려면 먼저 액세스 토큰을 부여하려는 권한을 지정해야 합니다. `/authorize` 끝점에 대한 요청을 만들 때 `scope` 매개 변수에서 권한이 지정됩니다. 예를 들어 `https://contoso.onmicrosoft.com/tasks`의 앱 ID URI를 가진 리소스 응용 프로그램에 대한 "읽기" 권한으로 액세스 토큰을 얻으려면 범위는 `https://contoso.onmicrosoft.com/tasks/read`가 됩니다.
+순서 toomake hello 호출 toohello web API의 tooauthenticate hello 사용자 (로그-up/로그인 정책 사용)가 필요 하 고 [액세스 토큰을 받는](active-directory-b2c-access-tokens.md) Azure AD B2C에서 합니다. 순서 tooreceive 액세스 토큰에서에서 먼저 hello 액세스 토큰 toogrant 원하는 hello 사용 권한을 지정 해야 합니다. hello에 지정 된 hello 권한 `scope` hello 요청 toohello 확인 될 때 매개 변수 `/authorize` 끝점입니다. 예를 들어 hello로 액세스 토큰 "읽기" 권한 toohello 리소스 응용 프로그램을 tooacquire hello의 앱 ID URI `https://contoso.onmicrosoft.com/tasks`, hello 범위 것 `https://contoso.onmicrosoft.com/tasks/read`합니다.
 
-이 샘플의 범위를 지정하려면 `App_Start\Startup.Auth.cs` 파일을 열고 OpenIdConnectAuthenticationOptions에서 `Scope` 변수를 정의합니다.
+샘플을 열고 hello 파일에서 toospecify hello 범위 `App_Start\Startup.Auth.cs` hello를 정의 하 고 `Scope` OpenIdConnectAuthenticationOptions에 변수입니다.
 
 ```CSharp
 // App_Start\Startup.Auth.cs
@@ -90,16 +90,16 @@ git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-an
         {
             ...
 
-            // Specify the scope by appending all of the scopes requested into one string (seperated by a blank space)
+            // Specify hello scope by appending all of hello scopes requested into one string (seperated by a blank space)
             Scope = $"{OpenIdConnectScopes.OpenId} {ReadTasksScope} {WriteTasksScope}"
         }
     );
 }
 ```
 
-### <a name="exchange-the-authorization-code-for-an-access-token"></a>액세스 토큰에 대한 인증 코드 교환
+### <a name="exchange-hello-authorization-code-for-an-access-token"></a>액세스 토큰에 대 한 Exchange hello 인증 코드
 
-사용자가 등록 또는 로그인 환경을 완료한 후 앱은 Azure AD B2C에서 인증 코드를 받습니다. OWIN OpenID Connect 미들웨어는 코드를 저장하지만 액세스 토큰에 대해 교환하지 않습니다. [MSAL 라이브러리](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)를 사용하여 교환할 수 있습니다. 샘플에서는 권한 부여 코드를 받을 때마다 OpenID Connect 미들웨어로 알림 콜백을 구성합니다. 콜백에서 MSAL을 사용하여 토큰에 대한 코드를 교환하고 토큰을 캐시에 저장합니다.
+Hello 등록 또는 로그인 환경을 사용자 인 완료 된 후 앱이 Azure AD B2C에서 인증 코드를 받습니다. hello OpenID Connect OWIN 미들웨어는 hello 코드를 저장 하지만 액세스 토큰에 대 한 교환 하지 않습니다. Hello를 사용할 수 있습니다 [MSAL 라이브러리](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) toomake hello 교환 합니다. 이 샘플에서는 구성 했습니다 알림 콜백을 hello OpenID Connect 미들웨어에 인증 코드를 받을 때마다. Hello 콜백에서는 MSAL tooexchange hello 코드를 사용 하 여 토큰에 대 하 고 hello 토큰 hello 캐시에 저장 합니다.
 
 ```CSharp
 /*
@@ -107,14 +107,14 @@ git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-an
 */
 private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification notification)
 {
-    // Extract the code from the response notification
+    // Extract hello code from hello response notification
     var code = notification.Code;
 
     var userObjectId = notification.AuthenticationTicket.Identity.FindFirst(ObjectIdElement).Value;
     var authority = String.Format(AadInstance, Tenant, DefaultPolicy);
     var httpContext = notification.OwinContext.Environment["System.Web.HttpContextBase"] as HttpContextBase;
 
-    // Exchange the code for a token. Make sure to specify the necessary scopes
+    // Exchange hello code for a token. Make sure toospecify hello necessary scopes
     ClientCredential cred = new ClientCredential(ClientSecret);
     ConfidentialClientApplication app = new ConfidentialClientApplication(authority, Startup.ClientId,
                                             RedirectUri, cred, new NaiveSessionCache(userObjectId, httpContext));
@@ -122,19 +122,19 @@ private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotifica
 }
 ```
 
-## <a name="calling-the-web-api"></a>웹 API 호출
+## <a name="calling-hello-web-api"></a>Hello 웹 API를 호출합니다.
 
-이 섹션에서는 웹 API에 액세스하기 위해 Azure AD B2C를 사용하여 등록/로그인 중에 받은 토큰을 사용하는 방법을 설명합니다.
+이 섹션에서는 동안 toouse hello 토큰을 수신 하는 방법을 설명 로그-up/사용 하 여 로그인 Azure AD B2C 순서로 tooaccess hello 웹 API입니다.
 
-### <a name="retrieve-the-saved-token-in-the-controllers"></a>컨트롤러에서 저장된 토큰 검색
+### <a name="retrieve-hello-saved-token-in-hello-controllers"></a>Hello 컨트롤러에 저장 하는 hello 토큰을 가져옵니다.
 
-`TasksController`은 HTTP 요청을 API로 보내 작업을 읽고 만들고 삭제하도록 웹 API와 통신을 담당합니다. API는 Azure AD B2C에 의해 보안되므로, 먼저 위의 단계에서 저장한 토큰을 검색해야 합니다.
+hello `TasksController` hello web API와의 통신을 담당 하 고 HTTP 요청 toohello API tooread 전송용 만들고 작업을 삭제 합니다. Hello API, Azure AD B2C 하 여 보안 된 셀 이므로 toofirst 검색 hello 토큰 단계 위에 hello에 저장 해야 합니다.
 
 ```CSharp
 // Controllers\TasksController.cs
 
 /*
-* Uses MSAL to retrieve the token from the cache
+* Uses MSAL tooretrieve hello token from hello cache
 */
 private async void acquireToken(String[] scope)
 {
@@ -143,7 +143,7 @@ private async void acquireToken(String[] scope)
 
     ClientCredential credential = new ClientCredential(Startup.ClientSecret);
 
-    // Retrieve the token using the provided scopes
+    // Retrieve hello token using hello provided scopes
     ConfidentialClientApplication app = new ConfidentialClientApplication(authority, Startup.ClientId,
                                         Startup.RedirectUri, credential,
                                         new NaiveSessionCache(userObjectID, this.HttpContext));
@@ -153,9 +153,9 @@ private async void acquireToken(String[] scope)
 }
 ```
 
-### <a name="read-tasks-from-the-web-api"></a>Web API로부터 작업 읽기
+### <a name="read-tasks-from-hello-web-api"></a>Hello web API 로부터 작업 읽기
 
-이제 토큰이 있으므로 `Authorization` 헤더에서 HTTP `GET` 요청에 토큰을 연결하여 `TaskService`를 안전하게 호출할 수 있습니다.
+토큰을 사용 하는 경우 연결 toohello HTTP `GET` hello에 대 한 요청 `Authorization` 헤더 toosecurely 호출 `TaskService`:
 
 ```CSharp
 // Controllers\TasksController.cs
@@ -164,13 +164,13 @@ public async Task<ActionResult> Index()
 {
     try {
 
-        // Retrieve the token with the specified scopes
+        // Retrieve hello token with hello specified scopes
         acquireToken(new string[] { Startup.ReadTasksScope });
 
         HttpClient client = new HttpClient();
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, apiEndpoint);
 
-        // Add token to the Authorization header and make the request
+        // Add token toohello Authorization header and make hello request
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         HttpResponseMessage response = await client.SendAsync(request);
 
@@ -179,11 +179,11 @@ public async Task<ActionResult> Index()
 
 ```
 
-### <a name="create-and-delete-tasks-on-the-web-api"></a>Web API에서 작업 만들기 및 삭제
+### <a name="create-and-delete-tasks-on-hello-web-api"></a>만들기 및 hello 웹 API에서 작업 삭제
 
-캐시에서 액세스 토큰을 검색하기 위해 `POST` 및 `DELETE` 요청을 MSAL을 사용하여 웹 API에 보낼 때 동일한 패턴을 따릅니다.
+보낼 때 같은 패턴에 따라 hello `POST` 및 `DELETE` MSAL tooretrieve hello 액세스 토큰을 사용 하 여 hello 캐시에서 toohello 웹 API를 요청 합니다.
 
-## <a name="run-the-sample-app"></a>샘플 앱 실행
+## <a name="run-hello-sample-app"></a>Hello 샘플 응용 프로그램 실행
 
-마지막으로 두 앱을 빌드 및 실행합니다. 등록하고 로그인하여, 로그인된 사용자에 대한 작업을 만듭니다. 로그아웃했다가 다른 사용자로 로그인합니다. 해당 사용자에 대한 작업을 만듭니다. API 가 받는 토큰에서 사용자의 ID를 추출하므로 API에 사용자별 작업이 저장됩니다. 또한 범위 다루기를 시도해 볼 수도 있습니다. "쓰기"에 대한 권한을 제거한 다음 작업을 추가합니다. 범위를 변경할 때마다 로그아웃해야 합니다.
+마지막으로, 빌드 및 두 hello 앱을 실행 합니다. 등록 및 로그인 한 hello 로그인 한 사용자에 대 한 작업을 만듭니다. 로그아웃했다가 다른 사용자로 로그인합니다. 해당 사용자에 대한 작업을 만듭니다. 수신한 hello 토큰에서 hello 사용자의 id를 추출 하는 hello API 때문에 hello 작업 저장된 사용자별 hello API에는 하는 방법을 확인 합니다. 또한 hello 범위가 재생 해 봅니다. Hello 권한을 제거 너무 "쓰기" 및 다음 작업을 추가 해 보십시오. 단지 있는지 toosign을 hello 범위를 변경할 때마다 아웃 합니다.
 

@@ -1,5 +1,5 @@
 ---
-title: "비정상적인 로그인 활동을 포함하는 사용자 보고서"
+title: "비정상적인 로그인 활동이 있는 aaaUsers"
 description: "비정상적인 로그인 활동이 식별된 모든 사용자 계정을 나타내는 보고서입니다."
 services: active-directory
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: acba4a4d3fa589aa1846f63883e5482e60605b70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efc9e21cfc3156b345a84da7527bf749af2b563c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="users-with-anomalous-sign-in-activity"></a>비정상적인 로그인 활동을 포함하는 사용자 보고서
-다음 보고서에서 의심스러운 로그인을 결합하는 집계 보고서입니다.
+다음은 보고서를 다음 hello에서 의심 스러운 로그인 결합 하는 집계 보고서입니다.
 
 <ul><li>알 수 없는 원본에서 로그인</li>
 <li>여러 번의 실패 후 로그인</li>

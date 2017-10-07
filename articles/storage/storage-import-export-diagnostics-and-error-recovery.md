@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 작업에 대한 진단 및 오류 복구 | Microsoft Docs"
-description: "Microsoft Azure Import/Export 서비스 작업에 대해 자세한 정보 로깅을 설정하는 방법을 알아봅니다."
+title: "Azure 가져오기/내보내기 작업에 대 한 aaaDiagnostics 및 오류 복구 | Microsoft Docs"
+description: "자세한 내용은 tooenable 자세한 정보 로깅을 Microsoft Azure 가져오기/내보내기에 대 한 작업을 서비스 하는 방법입니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 0068aae9d6780aa41a070db0eb191d0d5a165d21
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48164279e7904c78fed802aa3cff66e589c3f12c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnostics-and-error-recovery-for-azure-importexport-jobs"></a>Azure Import/Export 작업에 대한 진단 및 오류 복구
-처리된 각 드라이브의 경우 Azure Import/Export 서비스가 연결된 저장소 계정에 오류 로그를 만듭니다. [작업 배치](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 또는 [업데이트 작업 속성](/rest/api/storageimportexport/jobs#Jobs_Update) 작업을 호출할 때 `LogLevel` 속성을 `Verbose`로 설정하여 자세한 정보 로깅을 사용하도록 설정할 수도 있습니다.
+처리 하는 각 드라이브에 대 한 hello Azure 가져오기/내보내기 서비스는 hello 연결 된 저장소 계정에 오류 로그를 만듭니다. Hello 설정 하 여 자세한 로깅을 설정할 수도 있습니다 `LogLevel` 속성 너무`Verbose` hello를 호출할 때 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 또는 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) 작업 합니다.
 
- 기본적으로 로그는 `waimportexport`라는 컨테이너에 기록됩니다. `Put Job` 또는 `Update Job Properties` 조작을 호출할 때 `DiagnosticsPath` 속성을 설정하여 다른 이름을 지정할 수 있습니다. 로그는 다음 명명 규칙을 사용하여 블록 Blob으로 저장됩니다. `waies/jobname_driveid_timestamp_logtype.xml`.
+ 기본적으로 로그가 라는 tooa 컨테이너 기록 `waimportexport`합니다. Hello 설정 하 여 다른 이름을 지정할 수 있습니다 `DiagnosticsPath` 속성 hello를 호출할 때 `Put Job` 또는 `Update Job Properties` 작업 합니다. hello 로그는 블록 blob으로 저장 명명 규칙 hello로: `waies/jobname_driveid_timestamp_logtype.xml`합니다.
 
- [작업 가져오기](/rest/api/storageimportexport/jobs#Jobs_Get) 작업을 호출하여 작업의 로그 URI를 검색할 수 있습니다. 자세한 정보 로그의 URI는 각 드라이브의 `VerboseLogUri` 속성에서 반환되는 반면 오류 로그의 URI는 `ErrorLogUri` 속성에서 반환됩니다.
+ Hello 호출 하 여 hello 작업에 대 한 hello 로그의 URI를 검색할 수 있습니다 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 작업 합니다. 자세한 로그 hello에 대 한 URI hello hello에 반환 된 `VerboseLogUri` hello 오류 로그에 대 한 URI hello hello에 반환 되는 동안 각 드라이브에 대 한 속성 `ErrorLogUri` 속성입니다.
 
-로깅 데이터를 사용하여 다음 문제를 식별할 수 있습니다.
+Hello 될 데이터 tooidentify hello 로깅을 사용할 수 있습니다.
 
 ## <a name="drive-errors"></a>드라이브 오류
 
-다음 항목은 드라이브 오류로 분류됩니다.
+다음 항목 hello 드라이브 오류도 분류 됩니다.
 
--   매니페스트 파일 액세스 또는 읽기 오류
+-   매니페스트 파일 액세스 또는 hello 읽기 오류
 
 -   잘못된 BitLocker 키
 
@@ -41,7 +41,7 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="blob-errors"></a>Blob 오류
 
-다음 항목은 Blob 오류로 분류됩니다.
+다음 항목 hello blob 오류도 분류 됩니다.
 
 -   잘못되었거나 충돌하는 Blob 또는 이름
 
@@ -49,16 +49,16 @@ ms.lasthandoff: 07/11/2017
 
 -   Blob을 찾을 수 없음
 
--   잘린 파일(디스크의 파일이 매니페스트에 지정된 것보다 작음)
+-   잘린된 파일 (hello 파일을 hello 디스크에는 hello 매니페스트에 지정 된 것 보다 더 작은)
 
 -   손상된 파일 콘텐츠(가져오기 작업의 경우 MD5 체크섬 불일치로 감지됨)
 
 -   손상된 Blob 메타데이터 및 속성 파일(MD5 체크섬 불일치로 감지됨)
 
--   Blob 속성 및/또는 메타데이터 파일에 대한 잘못된 스키마
+-   Hello blob 속성 및/또는 메타 데이터 파일에 대 한 잘못 된 스키마
 
-가져오기 또는 내보내기 작업의 일부가 성공적으로 완료되지 않은 상태에서 전체 작업은 여전히 완료되는 경우가 있을 수 있습니다. 이 경우 누락된 데이터를 네트워크를 통해 업로드 또는 다운로드하거나 새 작업을 만들어 데이터를 전송할 수 있습니다. 네트워크를 통해 데이터를 복구하는 방법을 알아보려면 [Azure Import/Export 도구 참조](storage-import-export-tool-how-to-v1.md)를 참조하세요.
+여기서 가져오기 또는 내보내기 작업의 일부 않습니다 성공적으로 완료 되지를 완료 하는 동안 hello 전반적인 작업 여전히 경우가 있을 수 있습니다. 이 경우 업로드 하거나 네트워크를 통해 hello 데이터 누락 hello를 다운로드 하거나 새 작업 tootransfer hello 데이터를 만들 수 있습니다. Hello 참조 [Azure 가져오기/내보내기 도구 참조](storage-import-export-tool-how-to-v1.md) toolearn toorepair 네트워크를 통해 데이터를 hello 하는 방법입니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Import/Export 서비스 REST API 사용](storage-import-export-using-the-rest-api.md)
+* [Hello 가져오기/내보내기 서비스 REST API를 사용 하 여](storage-import-export-using-the-rest-api.md)

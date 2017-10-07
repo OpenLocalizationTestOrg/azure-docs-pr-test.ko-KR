@@ -1,6 +1,6 @@
 ---
-title: "행위자 형식 직렬화에 대한 Reliable Actors 참고 사항 | Microsoft Docs"
-description: "서비스 패브릭 Reliable Actors 상태 및 인터페이스를 정의하는 데 사용될 수 있는 직렬화가 가능 클래스를 정의하기 위한 기본 요구 사항을 설명합니다."
+title: "작업자에 대 한 aaaReliable 행위자 메모 입력 serialization | Microsoft Docs"
+description: "서비스 패브릭 Reliable Actors 상태 사용된 toodefine 일 수 있는 직렬화 가능 클래스 및 인터페이스를 정의 하기 위한 기본적인 요구 사항 설명"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 4b48b893e5a3bf5620f00a336576efe1ad63def8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8584e7d90fe1c68af38983e71e5d0a7554689bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="notes-on-service-fabric-reliable-actors-type-serialization"></a>서비스 패브릭 신뢰할 수 있는 행위자 형식 직렬화에 대한 참고 사항
-모든 메서드의 인수인 행위자 인터페이스의 각 메서드에 의해 반환되는 태스크의 결과 형식 및 행위자의 상태 관리자에 저장된 개체는 [데이터 계약 직렬화가 가능](https://msdn.microsoft.com/library/ms731923.aspx)해야 합니다. 또한 [행위자 이벤트 인터페이스](service-fabric-reliable-actors-events.md)에 정의된 메서드의 인수에도 적용됩니다. (행위자 이벤트 인터페이스 메서드는 항상 void를 반환합니다.)
+모든 메서드의 hello 인수는 행위자 인터페이스의 각 메서드에 의해 반환 된 hello 작업의 결과 형식 및 행위자의 상태 관리자에 저장 된 개체 여야 [데이터 계약 직렬화 가능](https://msdn.microsoft.com/library/ms731923.aspx)합니다. 이 적용 됩니다. toohello 인수에 정의 된 hello 메서드의 [행위자 이벤트 인터페이스](service-fabric-reliable-actors-events.md)합니다. (행위자 이벤트 인터페이스 메서드는 항상 void를 반환합니다.)
 
 ## <a name="custom-data-types"></a>사용자 지정 데이터 형식
-이 예제에서 다음과 같은 행위자 인터페이스는 `VoicemailBox`이라는 사용자 지정 데이터 형식을 반환하는 메서드를 정의합니다.
+이 예에서 행위자 인터페이스 뒤 hello 이라는 사용자 지정 데이터 형식을 반환 하는 메서드를 정의 합니다. `VoicemailBox`:
 
 ```csharp
 public interface IVoiceMailBoxActor : IActor
@@ -40,7 +40,7 @@ public interface VoiceMailBoxActor extends Actor
 }
 ```
 
-이 인터페이스는 행위자에서 구현되며 이는 상태 관리자를 사용하여 `VoicemailBox` 개체를 저장합니다.
+상태 관리자 toostore hello를 사용 하는 행위자가 hello 인터페이스를 구현는 `VoicemailBox` 개체:
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -76,12 +76,12 @@ public class VoiceMailBoxActorImpl extends FabricActor implements VoicemailBoxAc
 
 ```
 
-이 예제에서는 다음의 경우 `VoicemailBox` 개체를 직렬화합니다.
+이 예제에서는 hello `VoicemailBox` 개체가 serialize 되는 경우:
 
-* 개체는 행위자 인스턴스와 호출자 간에 전송됩니다.
-* 개체는 디스크에 유지되고 다른 노드에 복제되는 상태 관리자에 저장됩니다.
+* hello 개체 행위자 인스턴스와 호출자 간에 전송 됩니다.
+* hello 개체는 지속형된 toodisk 하 고 복제 tooother 노드 hello 상태 관리자에 저장 됩니다.
 
-Reliable Actor 프레임워크는 DataContract 직렬화를 사용합니다. 따라서 사용자 지정 데이터 개체와 해당 멤버는 각각 **DataContract** 및 **DataMember** 특성을 사용하여 주석으로 첨부되어야 합니다.
+hello Reliable Actor framework DataContract serialization을 사용합니다. 따라서 사용자 지정 데이터 개체를 hello 및 해당 멤버 hello로 주석을 달아야 **DataContract** 및 **DataMember** 특성에 각각 있습니다.
 
 ```csharp
 [DataContract]

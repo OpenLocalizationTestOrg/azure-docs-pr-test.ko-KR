@@ -1,0 +1,337 @@
+---
+title: "자습서: Kantega SSO for Bamboo와 Azure Active Directory 통합 | Microsoft Docs"
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Bamboo에 대 한 SSO Kantega 사이입니다."
+services: active-directory
+documentationCenter: na
+author: jeevansd
+manager: femila
+ms.assetid: e238b574-9e9b-43b7-ab98-d2a87ff89d48
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/12/2017
+ms.author: jeedes
+ms.openlocfilehash: 8bf637ff440e8e3948db882861bee6e73f8aa879
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="tutorial-azure-active-directory-integration-with-kantega-sso-for-bamboo"></a>자습서: Kantega SSO for Bamboo와 Azure Active Directory 통합
+
+이 자습서에 설명 어떻게 toointegrate Kantega SSO Bamboo Azure Active directory (Azure AD)에 대 한 합니다.
+
+다음 이점을 hello로 제공 Kantega SSO Bamboo에 대 한 Azure AD와 통합:
+
+- Bamboo에 대 한 SSO 액세스 tooKantega을 지닌 Azure AD에서 제어할 수 있습니다.
+- 프로그램 사용자 tooautomatically get 로그온 tooKantega SSO (Single Sign-on) 표시 하며 Bamboo에 대 한 자신의 Azure AD 계정으로 사용 하도록 설정할 수 있습니다.
+- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
+
+Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
+
+## <a name="prerequisites"></a>필수 조건
+
+Bamboo에 대 한 Kantega SSO와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
+
+- Azure AD 구독
+- Kantega SSO for Bamboo Single Sign-on이 설정된 구독
+
+> [!NOTE]
+> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+
+이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+
+- 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
+- Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
+
+## <a name="scenario-description"></a>시나리오 설명
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+
+1. Bamboo에 대 한 SSO Kantega hello 갤러리 추가
+2. Azure AD Single Sign-on 구성 및 테스트
+
+## <a name="adding-kantega-sso-for-bamboo-from-hello-gallery"></a>Bamboo에 대 한 SSO Kantega hello 갤러리 추가
+tooconfigure hello와의 통합 Kantega SSO Bamboo에 대 한 Azure AD로 필요 tooadd Kantega SSO Bamboo 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 합니다.
+
+**Bamboo hello 갤러리에서에 대 한 SSO Kantega tooadd hello 다음 단계를 수행 합니다.**
+
+1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+
+    ![Active Directory][1]
+
+2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+
+    ![응용 프로그램][2]
+    
+3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
+
+    ![응용 프로그램][3]
+
+4. Hello 검색 상자에 입력 **Bamboo에 대 한 SSO Kantega**합니다.
+
+    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_search.png)
+
+5. Hello 결과 패널에서 선택 **Bamboo에 대 한 Kantega SSO**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
+
+    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_addfromgallery.png)
+
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
+이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Kantega SSO for Bamboo에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
+
+Single sign on toowork에 대 한 Azure AD는 tooknow Bamboo에 대 한 Kantega SSO에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 hello Bamboo에 대 한 Kantega SSO에서 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
+
+Bamboo에 대 한 Kantega sso에서는 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
+
+tooconfigure와 Bamboo에 대 한 Kantega SSO와 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+
+1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
+3. **[Bamboo 테스트 사용자에 대 한 Kantega SSO 만들기](#creating-a-kantega-sso-for-bamboo-test-user)**  -toohave Britta Simon Kantega SSO는 사용자의 연결 된 Azure AD toohello 표현 Bamboo에 대 한에 해당 하는 도구입니다.
+4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
+5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+
+### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
+
+이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Bamboo 응용 프로그램에 대 한 프로그램 Kantega SSO에서 single sign on 구성 합니다.
+
+**Bamboo에 대 한 Kantega SSO와 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**
+
+1. Hello hello에 Azure 포털에서에서 **Bamboo에 대 한 Kantega SSO** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+
+    ![Single Sign-on 구성][4]
+
+2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
+ 
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_samlbase.png)
+
+3. **IDP** 시작 모드 hello에 **Bamboo 도메인 및 Url에 대 한 SSO Kantega** 섹션 hello 단계 다음에 수행:
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_url1.png)
+    
+    a. Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+
+    b. Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+
+4. **SP** 검사 시작된 모드 **고급 URL 설정 표시** hello 단계 다음에 수행:
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_url2.png)
+    
+    Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+     
+    > [!NOTE] 
+    > 이러한 값은 실제 값이 아닙니다. 이러한 항목을 업데이트 식별자, 회신 URL 및 로그온 URL 실제 hello로 값입니다. 이러한 값은 hello 자습서의 뒷부분에 설명 된 Bamboo 플러그 인의 hello 구성 하는 동안 수신 됩니다.
+
+5. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello 메타 데이터 파일을 컴퓨터에 저장 합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_certificate.png) 
+
+6. **저장** 단추를 클릭합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_400.png)
+    
+7. 다른 웹 브라우저 창에서 관리자 권한으로 tooyour Bamboo 프레미스 서버에 로그인 합니다.
+
+8. Hello를 누르고 선 위에 마우스를 가져가면 **추가 기능**합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon1.png)
+
+9. [추가 기능] 탭 섹션에서 **새 추가 기능 찾기**를 클릭합니다. 검색 **Bamboo (SAML & Kerberos)에 대 한 Kantega SSO** 클릭 **설치** 단추 tooinstall hello 새 SAML 플러그 인 합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon2.png)
+
+10. hello 플러그 인 설치가 시작 됩니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon21.png)
+
+11. 한 번 hello 설치가 완료 되었습니다. **닫기**를 클릭합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon33.png)
+
+12. **관리**를 클릭합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon34.png)
+    
+13. 클릭 **구성** tooconfigure hello 새 플러그 인 합니다.  
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon3.png)
+
+14. Hello에 **SAML** 섹션. 선택 **Azure Active Directory (Azure AD)** hello에서 **추가 id 공급자** 드롭다운입니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon4.png)
+
+15. 구독 수준을 **기본**으로 선택합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon5.png)
+
+16. Hello에 **앱 속성** 섹션에서 다음 단계를 수행 합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon6.png)
+
+    a. 복사 hello **앱 ID URI** 값으로 사용 하 여 **식별자, 회신 URL 및 로그온 URL** hello에 **Bamboo 도메인 및 Url에 대 한 SSO Kantega** Azure 포털에서 섹션.
+
+    b. **다음**을 누릅니다.
+
+17. Hello에 **메타 데이터 가져오기** 섹션에서 다음 단계를 수행 합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon7.png)
+
+    a. **Metadata file on my computer**(내 컴퓨터의 메타데이터 파일)를 클릭하여 Azure Portal에서 다운로드한 메타데이터 파일을 업로드합니다.
+
+    b. **다음**을 누릅니다.
+
+18. Hello에 **이름과 SSO 위치** 섹션에서 다음 단계를 수행 합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon8.png)
+
+    a. Hello Id 공급자의 이름을 추가에서 **Id 공급자 이름** (예: Azure AD) 텍스트 상자에 붙여넣습니다.
+
+    b. **다음**을 누릅니다.
+
+19. Hello 서명 인증서를 확인 하 고 클릭 **다음**합니다.    
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon9.png)
+
+20. Hello에 **Bamboo 사용자 계정** 섹션에서 다음 단계를 수행 합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon10.png)
+
+    a. 선택 **필요한 경우 Bamboo의 내부 디렉터리에서 사용자를 만들려면** 사용자에 대 한 hello 그룹의 hello 적절 한 이름을 입력 하 고 (수 여러 아니요. 그룹의 쉼표로 구분).
+
+    b. **다음**을 누릅니다.
+
+21. **Finish**를 클릭합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon11.png)
+
+22. Hello에 **도메인을 Azure AD에 대 한 알려진** 섹션에서 다음 단계를 수행 합니다.   
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon12.png)
+
+    a. 선택 **알려진 도메인** hello hello 페이지의 왼쪽된 창에서.
+
+    b. Hello에 도메인 이름을 입력 **알려진 도메인** 텍스트 상자에 붙여넣습니다.
+
+    c. **Save**를 클릭합니다.
+
+> [!TIP]
+> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
+
+### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
+이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
+
+![Azure AD 사용자 만들기][100]
+
+**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+
+1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
+
+    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_01.png) 
+
+2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.
+    
+    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_02.png) 
+
+3. tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.
+ 
+    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_03.png) 
+
+4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
+ 
+    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_04.png) 
+
+    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
+
+    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
+
+    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
+
+    d. **만들기**를 클릭합니다.
+ 
+### <a name="creating-a-kantega-sso-for-bamboo-test-user"></a>Kantega SSO for Bamboo 테스트 사용자 만들기
+
+tooenable Azure AD 사용자가 toolog tooBamboo에서 이러한 해야에 프로 비전 Bamboo 합니다. Kantega SSO for Bamboo에서는 프로비전이 수동 작업입니다.
+
+**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**
+
+1. Bamboo tooyour 프레미스 서버에서 관리자 권한으로 로그인 합니다.
+
+2. Hello를 누르고 선 위에 마우스를 가져가면 **사용자 관리**합니다.
+
+    ![직원 추가](./media/active-directory-saas-kantegassoforbamboo-tutorial/user1.png) 
+
+3. **사용자**를 클릭합니다. Hello에서 **사용자 추가** 섹션에서 다음 단계를 수행 합니다.
+
+    ![직원 추가](./media/active-directory-saas-kantegassoforbamboo-tutorial/user2.png) 
+
+    a. Hello에 **Username** 텍스트 형식 hello 전자 메일 사용자의 같은 Brittasimon@contoso.com합니다.
+    
+    b. Hello에 **암호** textbox, 사용자의 hello 암호를 입력 합니다.
+
+    c. Hello에 **암호 확인** textbox, 사용자의 hello 암호 다시 입력 합니다.
+    
+    d. Hello에 **전체 이름을** 텍스트 형식 Britta Simon 같은 hello 사용자의 전체 이름입니다.
+    
+    e. Hello에 **전자 메일** textbox, 사용자의 hello 전자 메일 주소를 입력 같은 Brittasimon@contoso.com합니다.
+    
+    f. **Save**를 클릭합니다.
+
+### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
+
+이 섹션에서는 액세스 tooKantega SSO Bamboo에 대 한 권한을 부여 하 여 Britta Simon toouse Azure single sign on을 사용 합니다.
+
+![사용자 할당][200] 
+
+**tooassign Britta Simon tooKantega Bamboo에 대 한 SSO hello 다음 단계를 수행 합니다.**
+
+1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+
+    ![사용자 할당][201] 
+
+2. Hello 응용 프로그램 목록에서 선택 **Bamboo에 대 한 SSO Kantega**합니다.
+
+    ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_app.png) 
+
+3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+
+    ![사용자 할당][202] 
+
+4. **추가** 단추를 클릭합니다. 그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.
+
+    ![사용자 할당][203]
+
+5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+
+6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
+
+7. **할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.
+    
+### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
+
+이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+
+Hello 액세스 패널에에서 표시 하며 Bamboo 타일에 대 한 hello Kantega SSO를 클릭할 때 Bamboo 응용 프로그램에 대 한 자동으로 로그온 tooyour Kantega SSO를 가져와야 합니다.
+액세스 패널에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다. 
+
+## <a name="additional-resources"></a>추가 리소스
+
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
+
+
+
+<!--Image references-->
+
+[1]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_01.png
+[2]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_02.png
+[3]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_03.png
+[4]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_04.png
+
+[100]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_100.png
+
+[200]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_200.png
+[201]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_202.png
+[203]: ./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_203.png
+

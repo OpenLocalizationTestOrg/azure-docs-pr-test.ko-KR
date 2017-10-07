@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 클래식 포털 보고 가이드 | Microsoft Docs"
-description: "Azure 클래식 포털에 대한 모든 Azure Active Directory Reporting 문서가 포함된 가이드"
+title: "aaaAzure Active Directory 클래식 포털 보고 가이드 | Microsoft Docs"
+description: "Hello Azure 클래식 포털에 대 한 모든 Azure Active Directory Reporting 아티클을 포함 하는 지침"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2017
 ms.author: femila;markvi
-ms.openlocfilehash: aed80f667faad7eaa7fb9cb744e3061daa3ea61e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7efe79e0bf61ad055f5a1b302b0630250d1ab9da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-classic-portal-reporting-guide"></a>Azure Active Directory 클래식 포털 보고 가이드
 > [!div class="op_single_selector"]

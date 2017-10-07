@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 독립 실행형 클러스터 구성 | Microsoft Docs"
-description: "독립 실행형 또는 개인 Service Fabric 클러스터를 구성하는 방법에 대해 알아봅니다."
+title: "aaaConfigure 독립 실행형 Azure 서비스 패브릭 클러스터 | Microsoft Docs"
+description: "자세한 내용은 방법 tooconfigure 독립 실행형 또는 개인 서비스 패브릭 클러스터입니다."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dekapur
-ms.openlocfilehash: 9885dce18dabac4a945dafd219e3ae190e34a83b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ce2ad387162a05668bbd3a271c754776fe471850
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuration-settings-for-standalone-windows-cluster"></a>독립 실행형 Windows 클러스터에 대한 구성 설정
-이 문서에서는 ***ClusterConfig.JSON*** 파일을 사용하여 독립 실행형 Service Fabric 클러스터를 구성하는 방법을 설명합니다. 이 파일을 사용하여 독립 실행형 클러스터에 대한 Service Fabric 노드 및 해당 IP 주소, 클러스터의 다른 노드 형식, 보안 구성에 대한 정보와 장애/업그레이드 도메인과 관련된 네트워크 토폴로지에 대한 정보를 지정할 수 있습니다.
+이 문서에서 설명 하는 방법을 사용 하 여 독립 실행형 서비스 패브릭 클러스터 tooconfigure hello ***ClusterConfig.JSON*** 파일입니다. 독립 실행형 프로그램에 대 한 hello 네트워크 토폴로지 장애/업그레이드 도메인의 관점에서 뿐만 아니라 hello 클러스터, hello 보안 구성에이 파일 toospecify 정보 hello 서비스 패브릭 노드 및 해당 IP 주소, 다른 유형의 노드를 사용할 수 있습니다. 클러스터입니다.
 
-[독립 실행형 Service Fabric 패키지를 다운로드](service-fabric-cluster-creation-for-windows-server.md#downloadpackage)하면 ClusterConfig.JSON 파일의 몇 가지 샘플이 작업 컴퓨터에 다운로드됩니다. 이름에 *DevCluster*가 있는 샘플은 논리 노드처럼 세 노드가 모두 동일한 컴퓨터에 있는 클러스터를 만드는 데 도움이 됩니다. 세 노드 중 하나 이상은 주 노드로 표시되어야 합니다. 이 클러스터는 개발 또는 테스트 환경에 유용하며, 프로덕션 클러스터로 지원되지 않습니다. 이름에 *MultiMachine*이 있는 샘플은 각 노드가 별도의 컴퓨터에 있는 프로덕션 품질 클러스터를 만드는 데 도움이 됩니다.
+때 있습니다 [hello 독립 실행형 서비스 패브릭 패키지 다운로드](service-fabric-cluster-creation-for-windows-server.md#downloadpackage), hello ClusterConfig.JSON 파일의 몇 가지 예제는 다운로드 한 tooyour 작업 컴퓨터입니다. 발생 하는 hello 샘플 *DevCluster* 이름에는 데 도움이 됩니다 hello 논리 노드 같이 동일한 컴퓨터에서 모든 세 개의 노드가 있는 클러스터를 만들 수 있습니다. 세 노드 중 하나 이상은 주 노드로 표시되어야 합니다. 이 클러스터는 개발 또는 테스트 환경에 유용하며, 프로덕션 클러스터로 지원되지 않습니다. 발생 하는 hello 샘플 *MultiMachine* 이름에 만들 수 있습니다는 프로덕션 품질 클러스터 각 노드에 별도 컴퓨터.
 
-1. *ClusterConfig.Unsecure.DevCluster.JSON* 및 *ClusterConfig.Unsecure.MultiMachine.JSON*은 각각 보안되지 않은 테스트 또는 프로덕션 클러스터를 만드는 방법을 보여 줍니다. 
-2. *ClusterConfig.Windows.DevCluster.JSON* 및 *ClusterConfig.Windows.MultiMachine.JSON*은 [Windows 보안](service-fabric-windows-cluster-windows-security.md)을 사용하여 보안이 유지되는 테스트 또는 프로덕션 클러스터를 만드는 방법을 보여 줍니다.
-3. *ClusterConfig.X509.DevCluster.JSON* 및 *ClusterConfig.X509.MultiMachine.JSON*은 [X509 인증서 기반 보안](service-fabric-windows-cluster-x509-security.md)을 사용하여 보안이 유지되는 테스트 또는 프로덕션 클러스터를 만드는 방법을 보여 줍니다. 
+1. *ClusterConfig.Unsecure.DevCluster.JSON* 및 *ClusterConfig.Unsecure.MultiMachine.JSON* toocreate 안전 하지 않은 테스트 또는 프로덕션 각각 클러스터를 표시 합니다. 
+2. *ClusterConfig.Windows.DevCluster.JSON* 및 *ClusterConfig.Windows.MultiMachine.JSON* toocreate 테스트 또는 프로덕션 클러스터를 사용 하 여 보안 방법을 표시 [Windows 보안](service-fabric-windows-cluster-windows-security.md)합니다.
+3. *ClusterConfig.X509.DevCluster.JSON* 및 *ClusterConfig.X509.MultiMachine.JSON* toocreate 테스트 또는 프로덕션 클러스터를 사용 하 여 보안 방법을 표시 [X509 인증서 기반 보안이](service-fabric-windows-cluster-x509-security.md). 
 
-이제 아래와 같이 ***ClusterConfig.JSON*** 파일의 여러 섹션을 검토해 보겠습니다.
+이제는 살펴보겠습니다 hello의 다양 한 섹션을 ***ClusterConfig.JSON*** 아래와 같이 파일.
 
 ## <a name="general-cluster-configurations"></a>일반 클러스터 구성
-여기서는 아래의 JSON 코드 조각에 표시된 광범위한 클러스터별 구성을 살펴봅니다.
+이 hello 광범위 한 클러스터 특정 구성 아래 hello JSON 조각에 표시 된 대로 다룹니다.
 
     "name": "SampleCluster",
     "clusterConfigurationVersion": "1.0.0",
     "apiVersion": "01-2017",
 
-Service Fabric 클러스터를 **name** 변수에 할당하여 이름 지정할 수 있습니다. **clusterConfigurationVersion**은 클러스터의 버전 번호이며, Service Fabric 클러스터를 업그레이드할 때마다 증가해야 합니다. 그러나 **apiVersion**은 기본값으로 그대로 두어야 합니다.
+Toohello 할당 하 여 모든 이름을 tooyour 서비스 패브릭 클러스터를 제공할 수 있습니다 **이름** 변수입니다. hello **clusterConfigurationVersion** ; 클러스터의 버전 번호 hello 서비스 패브릭 클러스터를 업그레이드할 때마다 증가 해야 합니다. 그러나 유지 해야 합니다. hello **apiVersion** toohello 기본값입니다.
 
 <a id="clusternodes"></a>
 
-## <a name="nodes-on-the-cluster"></a>클러스터의 노드
-다음 코드 조각처럼 **nodes** 섹션을 사용하여 Service Fabric 클러스터에서 노드를 구성할 수 있습니다.
+## <a name="nodes-on-hello-cluster"></a>Hello 클러스터의 노드
+Hello를 사용 하 여 서비스 패브릭 클러스터에서 hello 노드를 구성할 수 있습니다 **노드** 조각과 다음 hello 처럼 섹션.
 
     "nodes": [{
         "nodeName": "vm0",
@@ -65,39 +65,39 @@ Service Fabric 클러스터를 **name** 변수에 할당하여 이름 지정할 
         "upgradeDomain": "UD2"
     }],
 
-Service Fabric 클러스터에는 세 개 이상의 노드가 있어야 합니다. 설정에 따라 이 섹션에 노드를 더 추가할 수 있습니다. 다음 표에서는 각 노드의 구성 설정에 대해 설명합니다.
+Service Fabric 클러스터에는 세 개 이상의 노드가 있어야 합니다. 설치 프로그램에 따라 더 많은 노드 toothis 섹션을 추가할 수 있습니다. 다음 표에서 hello 각 노드에 대 한 hello 구성 설정에 설명 합니다.
 
 | **노드 구성** | **설명** |
 | --- | --- |
-| nodeName |노드에 이름을 지정할 수 있습니다. |
-| iPAddress |명령 창을 열고 `ipconfig`를 입력하여 노드의 IP 주소를 찾습니다. IPV4 주소를 적어둔 후 **iPAddress** 변수에 할당합니다. |
-| nodeTypeRef |노드마다 다른 노드 형식을 할당할 수 있습니다. [노드 형식](#nodetypes) 은 아래 섹션에 정의됩니다. |
-| faultDomain |장애 도메인은 클러스터 관리자가 공유되는 물리적 종속성으로 인해 동시에 장애를 경험할 가능성이 있는 실제 노드를 정의할 수 있도록 합니다. |
-| upgradeDomain |업그레이드 도메인은 Service Fabric 업그레이드를 위해 거의 같은 시간에 종료된 노드 집합을 나타냅니다. 물리적 요구 사항에 따라 제한되지 않으므로 어떤 업그레이드 도메인에 어떤 노드를 할당할지 선택할 수 있습니다. |
+| nodeName |식별 이름 toohello 노드를 지정할 수 있습니다. |
+| iPAddress |명령 창을 열고을 입력 하 여 노드의 hello IP 주소를 찾으려면 `ipconfig`합니다. Hello IPV4 주소를 확인 하 고 toohello 할당 **iPAddress** 변수입니다. |
+| nodeTypeRef |노드마다 다른 노드 형식을 할당할 수 있습니다. hello [노드 형식](#nodetypes) hello 섹션 아래에 정의 되어 있습니다. |
+| faultDomain |Tooshared 물리적 종속성 인해 시간이 오류 도메인 사용 되는 클러스터 관리자 toodefine hello 실제 노드 hello에 실패할 수 있습니다. |
+| upgradeDomain |서비스 패브릭에 업그레이드 hello에 대 한 동일에 대 한 종료 된 노드 집합을 설명 하는 업그레이드 도메인 시간입니다. 모든 물리적 요구 사항에 따라 제한 되지 않습니다 대로 업그레이드 도메인 노드 tooassign toowhich를 선택할 수 있습니다. |
 
 ## <a name="cluster-properties"></a>클러스터 속성
-ClusterConfig.JSON의 **properties** 섹션은 다음과 같이 클러스터를 구성하는 데 사용됩니다.
+hello **속성** 섹션 hello ClusterConfig.JSON에에서 사용 되는 tooconfigure hello 클러스터는 다음과 같습니다.
 
 <a id="reliability"></a>
 
 ### <a name="reliability"></a>안정성
-**reliabilityLevel**이라는 개념은 클러스터의 주 노드에서 실행될 수 있는 Service Fabric 시스템 서비스의 복사본 또는 인스턴스 수를 정의합니다. 이는 이러한 서비스의 안정성 및 클러스터의 안정성을 결정합니다. 값은 클러스터 생성 및 업그레이드 시 시스템에 의해 계산됩니다.
+hello 개념 **reliabilityLevel** 복제본 수가 hello 또는 hello 클러스터의 hello 주 노드에서 실행 될 수 있는 hello 서비스 패브릭 시스템 서비스의 인스턴스를 정의 합니다. 따라서 클러스터를 hello 및 이러한 서비스의 hello 안정성을 결정 합니다. hello 기간은 hello 시스템에 의해 계산 된 클러스터 만들기 및 업그레이드 시입니다.
 
 ### <a name="diagnostics"></a>진단
-다음 코드 조각과 같이 **diagnosticsStore** 섹션을 사용하여 진단 및 문제 해결 노드와 클러스터 오류를 사용하도록 매개 변수를 구성할 수 있습니다. 
+hello **diagnosticsStore** 섹션 있습니다 tooconfigure 매개 변수 tooenable 진단 및 문제 해결 노드 또는 클러스터 오류 hello 다음 코드 조각에에서 나와 있는 것 처럼 합니다. 
 
     "diagnosticsStore": {
-        "metadata":  "Please replace the diagnostics store with an actual file share accessible from all cluster machines.",
+        "metadata":  "Please replace hello diagnostics store with an actual file share accessible from all cluster machines.",
         "dataDeletionAgeInDays": "7",
         "storeType": "FileShare",
         "IsEncrypted": "false",
         "connectionstring": "c:\\ProgramData\\SF\\DiagnosticsStore"
     }
 
-**metadata** 는 클러스터 진단에 대한 설명으로 설정에 따라 지정될 수 있습니다. 이러한 변수는 성능 카운터는 물론 ETW 추적 로그, 크래시 덤프를 수집하는 데 유용합니다. ETW 추적 로그에 대한 자세한 내용은 [Tracelog](https://msdn.microsoft.com/library/windows/hardware/ff552994.aspx) 및 [ETW 추적](https://msdn.microsoft.com/library/ms751538.aspx)을 읽어보세요. [크래시 덤프](https://blogs.technet.microsoft.com/askperf/2008/01/08/understanding-crash-dump-files/) 및 [성능 카운터](https://msdn.microsoft.com/library/windows/desktop/aa373083.aspx)를 포함하는 모든 로그는 컴퓨터의 **connectionString** 폴더로 보내질 수 있습니다. 진단을 저장하는 데 *AzureStorage* 를 사용할 수도 있습니다. 샘플 코드 조각에 대해서는 아래를 참조하세요.
+hello **메타 데이터** 클러스터 진단에 대 한 설명을 이며 설치 프로그램에 따라 설정할 수 있습니다. 이러한 변수는 성능 카운터는 물론 ETW 추적 로그, 크래시 덤프를 수집하는 데 유용합니다. ETW 추적 로그에 대한 자세한 내용은 [Tracelog](https://msdn.microsoft.com/library/windows/hardware/ff552994.aspx) 및 [ETW 추적](https://msdn.microsoft.com/library/ms751538.aspx)을 읽어보세요. 포함 한 모든 로그 [크래시 덤프](https://blogs.technet.microsoft.com/askperf/2008/01/08/understanding-crash-dump-files/) 및 [÷ ´ ֹ](https://msdn.microsoft.com/library/windows/desktop/aa373083.aspx) toohello 방향이 지정 된 수 **connectionString** 컴퓨터의 폴더에 있습니다. 진단을 저장하는 데 *AzureStorage* 를 사용할 수도 있습니다. 샘플 코드 조각에 대해서는 아래를 참조하세요.
 
     "diagnosticsStore": {
-        "metadata":  "Please replace the diagnostics store with an actual file share accessible from all cluster machines.",
+        "metadata":  "Please replace hello diagnostics store with an actual file share accessible from all cluster machines.",
         "dataDeletionAgeInDays": "7",
         "storeType": "AzureStorage",
         "IsEncrypted": "false",
@@ -105,7 +105,7 @@ ClusterConfig.JSON의 **properties** 섹션은 다음과 같이 클러스터를 
     }
 
 ### <a name="security"></a>보안
-**security** 섹션은 보안 독립 실행형 Service Fabric 클러스터에 필요합니다. 다음 코드 조각에서는 이 섹션의 일부를 보여 줍니다.
+hello **보안** 섹션은 보안 독립 실행형 서비스 패브릭 클러스터에 필요 합니다. 다음 코드 조각 hello이이 섹션의 일부를 보여 줍니다.
 
     "security": {
         "metadata": "This cluster is secured using X509 certificates.",
@@ -114,12 +114,12 @@ ClusterConfig.JSON의 **properties** 섹션은 다음과 같이 클러스터를 
         . . .
     }
 
-**metadata** 는 보안 클러스터에 대한 설명으로 설정에 따라 설정될 수 있습니다. **ClusterCredentialType** 및 **ServerCredentialType**은 클러스터 및 노드가 구현하는 보안 유형을 결정합니다. 인증서 기반 보안의 경우는 *X509*로, Azure Active Directory 기반 보안의 경우는 *Windows*로 설정될 수 있습니다. **security** 섹션의 나머지는 보안 유형을 기준으로 합니다. 나머지 **security** 섹션을 채우는 방법에 대한 자세한 내용은 [독립 실행형 클러스터의 인증서 기반 보안](service-fabric-windows-cluster-x509-security.md) 또는 [독립 실행형 클러스터의 Windows 보안](service-fabric-windows-cluster-windows-security.md)을 읽어보세요.
+hello **메타 데이터** 보안 클러스터에 대 한 설명을 이며 설치 프로그램에 따라 설정할 수 있습니다. hello **ClusterCredentialType** 및 **ServerCredentialType** hello hello 클러스터 및 hello 노드는 구현 하는 보안 형식을 결정 합니다. Tooeither를 설정할 수 있습니다 *X509* 인증서 기반 보안을 위해 또는 *Windows* Azure Active Directory 기반 보안에 대 한 합니다. hello 나머지 hello **보안** 섹션 hello 유형의 hello 보안에 따라 달라 집니다. 읽기 [독립 실행형 클러스터에서 인증서 기반 보안](service-fabric-windows-cluster-x509-security.md) 또는 [독립 실행형 클러스터에서 Windows 보안](service-fabric-windows-cluster-windows-security.md) hello 아웃 toofill hello 나머지 방법에 대 한 내용은 **보안**섹션.
 
 <a id="nodetypes"></a>
 
 ### <a name="node-types"></a>노드 형식
-**nodeTypes** 섹션에서는 클러스터가 갖는 노드 형식에 대해 설명합니다. 아래 코드 조각처럼 클러스터에 대해 노드 형식을 하나 이상 지정해야 합니다. 
+hello **nodeTypes** 섹션에는 클러스터에 있는 hello 노드의 hello 유형에 대해 설명 합니다. 하나 이상의 노드 유형에 아래 hello 조각에 나와 있는 것 처럼 클러스터에 대해 지정 되어야 합니다. 
 
     "nodeTypes": [{
         "name": "NodeType0",
@@ -140,20 +140,20 @@ ClusterConfig.JSON의 **properties** 섹션은 다음과 같이 클러스터를 
         "isPrimary": true
     }]
 
-**name** 은 이 특정 노드 형식의 이름입니다. 이 노드 형식의 노드를 만들려면 [위](#clusternodes)에 설명된 대로 해당 이름을 해당 노드의 **nodeTypeRef**에 할당합니다. 각 노드 형식에 대해 사용되는 연결 끝점을 정의합니다. 이 클러스터의 다른 끝점과 충돌하지 않는 한, 이러한 연결 끝점에 대해 어떤 포트 번호도 선택할 수 있습니다. 다중 노드 클러스터에는 [**reliabilityLevel**](#reliability)에 따라 하나 이상의 주 노드가 있습니다(즉, **isPrimary**가 *true*로 설정됨). **nodeTypes** 및 **reliabilityLevel**에 대한 자세한 내용과 주 노드 형식 및 주 노드가 아닌 다른 노드 형식에 대한 자세한 내용은 [Service Fabric 클러스터 용량 계획 고려 사항](service-fabric-cluster-capacity.md)을 참조하세요. 
+hello **이름** 이 특정 노드 형식에 대 한 hello 친근 한 이름입니다. 이 노드 유형의 노드 toocreate 할당의 식별 이름 toohello **nodeTypeRef** 설명 했 듯이 해당 노드에 대 한 변수 [위에](#clusternodes)합니다. 각 노드 유형에 대해 사용 되는 hello 연결 끝점을 정의 합니다. 이 클러스터의 다른 끝점과 충돌하지 않는 한, 이러한 연결 끝점에 대해 어떤 포트 번호도 선택할 수 있습니다. 다중 노드 클러스터를 하나 이상의 주 노드가 됩니다 (즉, **isPrimary** 도*true*) hello에 따라 [ **reliabilityLevel** ](#reliability). 읽기 [서비스 패브릭 클러스터 용량 계획 고려 사항](service-fabric-cluster-capacity.md) 에 대 한 내용은 **nodeTypes** 및 **reliabilityLevel**, 및는 주 대상과 hello tooknow 기본이 아닌 노드 형식입니다. 
 
-#### <a name="endpoints-used-to-configure-the-node-types"></a>노드 형식을 구성하는 데 사용되는 끝점
-* *clientConnectionEndpointPort*는 클라이언트 API를 사용할 때 클라이언트에서 클러스터에 연결하는 데 사용되는 포트입니다. 
-* *clusterConnectionEndpointPort*는 노드 간에 서로 통신하는 데 사용되는 포트입니다.
-* *leaseDriverEndpointPort*는 노드가 여전히 활성 상태인지 확인하기 위해 클러스터에서 드라이버를 임대하는 데 사용되는 포트입니다. 
-* *serviceConnectionEndpointPort*는 노드에 배포된 서비스 및 응용 프로그램에서 해당 특정 노드의 Service Fabric 클라이언트와 통신하는 데 사용되는 포트입니다.
-* *httpGatewayEndpointPort*는 Service Fabric Explorer에서 클러스터에 연결하는 데 사용되는 포트입니다.
-* *ephemeralPorts*는 [OS에서 사용되는 동적 포트](https://support.microsoft.com/kb/929851)를 재정의합니다. Service Fabric은 이 중 일부를 응용 프로그램 포트로 사용하고, 나머지를 OS에 사용합니다. 또한 이 범위를 OS에 있는 기존 범위에 매핑하므로 지정된 매핑을 JSON 파일에서 어떤 용도로든 사용할 수 있습니다. 시작 포트와 끝 포트 간의 차이가 255 이상인지 확인해야 합니다. 이 차이가 매우 낮으면 이 범위가 운영 체제에서 공유되므로 충돌이 발생할 수 있습니다. `netsh int ipv4 show dynamicport tcp`를 실행하여 구성된 동적 포트 범위를 참조하세요.
-* *applicationPorts*는 Service Fabric 응용 프로그램에서 사용되는 포트입니다. 응용 프로그램 포트 범위는 응용 프로그램의 끝점 요구 사항을 충족할 수 있을 만큼 충분히 커야 합니다. 이 범위는 컴퓨터의 동적 포트 범위, 즉 구성에 설정된 대로 *ephemeralPorts* 범위에서 제외되어야 합니다.  Service Fabric은 새 포트가 필요할 때마다 이를 사용하며 이러한 포트의 방화벽 열기를 처리합니다. 
+#### <a name="endpoints-used-tooconfigure-hello-node-types"></a>끝점 사용 tooconfigure hello 노드 형식
+* *clientConnectionEndpointPort* hello 클라이언트 Api를 사용 하는 경우 hello 클라이언트 tooconnect toohello 클러스터에서 사용 하는 hello 포트입니다. 
+* *clusterConnectionEndpointPort* hello 노드는 서로 통신 하는 hello 포트입니다.
+* *leaseDriverEndpointPort* hello 노드가 아직 활성 상태인 경우 hello 아웃 임대 드라이버 toofind 클러스터에서 사용 하는 hello 포트입니다. 
+* *serviceConnectionEndpointPort* 는 hello 응용 프로그램에서 사용 되는 hello 포트 및 서비스에 해당 특정 노드의 서비스 패브릭 클라이언트 hello와 toocommunicate 노드를 배포 합니다.
+* *httpGatewayEndpointPort* hello 서비스 패브릭 탐색기 tooconnect toohello 클러스터에서 사용 하는 hello 포트입니다.
+* *ephemeralPorts* hello 재정의 [hello 운영 체제에서 사용 하는 동적 포트](https://support.microsoft.com/kb/929851)합니다. 서비스 패브릭 응용 프로그램 포트로 이러한 일부 ´ ֲ 및 hello 남은 hello OS에 사용할 수 있습니다. 것도 매핑됩니다이 범위 toohello 기존 범위 hello OS에 있는 모든 용도 대 한 hello 샘플 JSON 파일에 지정 된 hello 범위를 사용할 수 있습니다. Toomake hello 차이 hello 시작 및 끝 포트 hello 이상 255 되는지 확인 해야 합니다. 이러한 차이 hello 운영 체제와 공유 하는이 범위 때문에 너무 낮은 경우 충돌이 발생할 수 있습니다. 실행 하 여 동적 포트 범위를 구성 하는 hello 참조 `netsh int ipv4 show dynamicport tcp`합니다.
+* *applicationPorts* 는 hello 서비스 패브릭 응용 프로그램에서 사용할 수는 hello 포트입니다. hello 응용 프로그램 포트 범위는 응용 프로그램의 hello 끝점 요구 사항을 충분히 큰 toocover 여야 합니다. 이 범위, 즉 hello hello 머신에서 hello 동적 포트 범위에서 배타적 해야 *ephemeralPorts* hello 구성에 설정 된 대로 범위입니다.  서비스 패브릭 새 포트 필요한으로 이러한 포트에 대 한 hello 방화벽을 열어 처리할 때마다이 사용 합니다. 
 * *reverseProxyEndpointPort*는 선택적 역방향 프록시 끝점입니다. 자세한 내용은 [Service Fabric 역방향 프록시](service-fabric-reverseproxy.md)를 참조하세요. 
 
 ### <a name="log-settings"></a>로그 설정
-**fabricSettings** 섹션에서는 Service Fabric 데이터 및 로그에 대한 루트 디렉터리를 설정할 수 있습니다. 이러한 디렉터리는 초기 클러스터 생성 중에만 사용자 지정할 수 있습니다. 이 섹션의 샘플 코드 조각에 대해서는 아래를 참조하세요.
+hello **fabricSettings** 섹션에서는 hello 서비스 패브릭 데이터와 로그에 대 한 tooset hello 루트 디렉터리입니다. Hello 초기 클러스터 생성 중에 이러한를 사용자 지정할 수 있습니다. 이 섹션의 샘플 코드 조각에 대해서는 아래를 참조하세요.
 
     "fabricSettings": [{
         "name": "Setup",
@@ -165,11 +165,11 @@ ClusterConfig.JSON의 **properties** 섹션은 다음과 같이 클러스터를 
             "value": "C:\\ProgramData\\SF\\Log"
     }]
 
-OS가 아닌 드라이브를 사용하면 OS 충돌 시에도 더 큰 안정성을 제공하므로 이러한 드라이브를 FabricDataRoot 및 FabricLogRoot로 사용하는 것이 좋습니다. 데이터 루트만 사용자 지정하는 경우 로그 루트가 데이터 루트에서 한 수준 아래에 배치됩니다.
+및 사용 하 여 hello FabricDataRoot와 OS가 아닌 드라이브 FabricLogRoot OS 충돌에 대 한 안정성을 제공 하는 것이 좋습니다. Note만 hello 데이터 루트를 사용자 지정 하는 경우 다음 hello 로그 루트는 배치 하는 것 보다 한 수준 아래 hello 데이터 루트입니다.
 
 ### <a name="stateful-reliable-service-settings"></a>상태 저장 신뢰할 수 있는 서비스 설정
-**KtlLogger** 섹션에서는 Reliable Services에 대한 전역 구성 설정을 설정할 수 있습니다. 이러한 설정에 대한 자세한 내용 [상태 저장 신뢰할 수 있는 서비스 구성](service-fabric-reliable-services-configuration.md)을 참조하세요.
-아래 예제에서는 상태 저장 서비스에 대한 모든 신뢰할 수 있는 컬렉션 백업을 만드는 공유 트랜잭션 로그를 변경하는 방법을 보여 줍니다.
+hello **KtlLogger** 섹션에서는 신뢰할 수 있는 서비스에 대 한 tooset hello 전역 구성 설정입니다. 이러한 설정에 대한 자세한 내용 [상태 저장 신뢰할 수 있는 서비스 구성](service-fabric-reliable-services-configuration.md)을 참조하세요.
+다음 예제에서는 hello toochange hello hello 공유 트랜잭션 로그를 가져오는 만드는 방법을 tooback 상태 저장 서비스에 대 한 신뢰할 수 있는 모든 컬렉션 보여 줍니다.
 
     "fabricSettings": [{
         "name": "KtlLogger",
@@ -180,7 +180,7 @@ OS가 아닌 드라이브를 사용하면 OS 충돌 시에도 더 큰 안정성�
     }]
 
 ### <a name="add-on-features"></a>추가 기능
-추가 기능을 구성하려면 apiVersion은 '04-2017' 이상으로 구성되어야 하며 addonFeatures를 구성해야 합니다.
+tooconfigure 추가 기능 hello apiVersion 구성으로 ' 04-2017' 이상 이어야 합니다 하며 addonFeatures toobe 구성:
 
     "apiVersion": "04-2017",
     "properties": {
@@ -191,9 +191,9 @@ OS가 아닌 드라이브를 사용하면 OS 충돌 시에도 더 큰 안정성�
     }
 
 ### <a name="container-support"></a>컨테이너 지원
-독립 실행형 클러스터에 대한 Windows Server 컨테이너와 hyper-v 컨테이너를 위한 컨테이너 지원을 사용하려면 'DnsService' 추가 기능을 사용해야 합니다.
+tooenable 컨테이너에 대 한 지원을 모두 windows server 컨테이너와 hyper-v 컨테이너 독립 실행형 클러스터에 대 한 hello 'DnsService' 부가 기능 toobe 사용 하도록 설정 해야 합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
-독립 실행형 클러스터 설치에 따라 완전한 ClusterConfig.JSON 파일을 구성한 경우 [독립 실행형 Service Fabric 클러스터 만들기](service-fabric-cluster-creation-for-windows-server.md) 문서에 따라 클러스터를 배포한 다음 [Service Fabric Explorer로 클러스터 시각화](service-fabric-visualizing-your-cluster.md)를 계속 진행할 수 있습니다.
+독립 실행형 클러스터 설치에 따라 구성 된 전체 ClusterConfig.JSON 파일을 만든 후 다음 hello 문서를 통해 클러스터를 배포할 수 있습니다 [독립 실행형 서비스 패브릭 클러스터 만들기](service-fabric-cluster-creation-for-windows-server.md) 너무 진행할[서비스 패브릭 탐색기를 사용 하 여 클러스터 시각화](service-fabric-visualizing-your-cluster.md)합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 역방향 프록시 | Microsoft Docs"
-description: "Service Fabric의 역방향 프록시를 사용하여 클러스터 내부 및 외부에서 마이크로 서비스와 통신"
+title: "서비스 패브릭 aaaAzure 역방향 프록시 | Microsoft Docs"
+description: "서비스 패브릭 역방향 프록시를 사용 하 여 내부 및 외부 hello 클러스터에서 toomicroservices 통신에 대 한 합니다."
 services: service-fabric
 documentationcenter: .net
 author: BharatNarasimman
@@ -14,102 +14,102 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 08/08/2017
 ms.author: bharatn
-ms.openlocfilehash: 7897458e9e4a0bbe185bd3f7b4c133c1b26769f9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0e7835a64ccd74293c7bdd8b41deae414c83dffa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reverse-proxy-in-azure-service-fabric"></a>Azure Service Fabric의 역방향 프록시
-Azure Service Fabric에 기본 제공되는 역방향 프록시에서는 HTTP 끝점을 노출하는 Service Fabric 클러스터의 마이크로 서비스를 처리합니다.
+Azure Service Fabric에 기본 제공 되는 역방향 프록시를 hello microservices HTTP 끝점을 노출 하는 hello 서비스 패브릭 클러스터에서 해결 합니다.
 
 ## <a name="microservices-communication-model"></a>마이크로 서비스 통신 모델
-Service Fabric의 마이크로 서비스는 일반적으로 가상 컴퓨터의 일부를 클러스터에서 실행하고 여러 가지 이유로 한 가상 컴퓨터를 다른 VM으로 이동할 수 있습니다. 따라서 마이크로 서비스에 대한 끝점은 동적으로 변할 수 있습니다. 마이크로 서비스와 통신하는 일반적인 패턴은 다음 확인 루프입니다.
+일반적으로 서비스 패브릭에서 Microservices hello 클러스터의 가상 컴퓨터의 하위 집합에서 실행 하 고 다양 한 이유로 하나의 가상 컴퓨터 tooanother에서 이동할 수 있습니다. 따라서 microservices에 대 한 hello 끝점 동적으로 변경할 수 있습니다. hello 대부분의 일반적인 패턴 toocommunicate toohello 마이크로 서비스는 hello 다음 루프를 해결 합니다.
 
-1. 처음에는 이름 지정 서비스를 통해 서비스 위치를 확인합니다.
-2. 서비스에 연결합니다.
-3. 연결 실패의 원인을 결정하고 필요한 경우 서비스 위치를 다시 확인합니다.
+1. Hello 명명 서비스를 통해 처음 hello 서비스 위치를 확인 합니다.
+2. Toohello 서비스를 연결 합니다.
+3. Hello 연결 실패 원인을 확인 하 고 필요한 경우 hello 서비스 위치를 다시 확인 합니다.
 
-이 프로세스는 일반적으로 서비스 확인 및 재시도 정책을 구현하는 재시도 루프에 클라이언트 쪽 통신 라이브러리의 매핑을 포함합니다.
+이 프로세스는 일반적으로 hello 서비스 확인 및 다시 시도 정책을 구현 하는 다시 시도 루프에서 클라이언트 통신 라이브러리 래핑 포함 됩니다.
 자세한 내용은 [서비스와 연결 및 통신](service-fabric-connect-and-communicate-with-services.md)을 참조하세요.
 
-### <a name="communicating-by-using-the-reverse-proxy"></a>역방향 프록시를 사용하여 통신
-Service Fabric의 역방향 프록시는 클러스터의 모든 노드에서 실행됩니다. 클라이언트를 대신하여 전체 서비스 확인 프로세스를 수행한 다음 클라이언트 요청을 전달합니다. 따라서 클러스터에서 실행되는 클라이언트는 클라이언트 쪽 HTTP 통신 라이브러리를 사용하여 동일한 노드에서 로컬로 실행되는 역방향 프록시를 사용하여 대상 서비스와 대화할 수 있습니다.
+### <a name="communicating-by-using-hello-reverse-proxy"></a>Hello 역방향 프록시를 사용 하 여 통신 합니다.
+서비스 패브릭에서 역방향 프록시 hello hello 클러스터의 모든 hello 노드에서 실행 됩니다. 클라이언트를 대신 하 여 hello 전체 서비스 확인 프로세스를 수행 하 고 hello 클라이언트 요청을 전달 합니다. 따라서 hello 클러스터에서 실행 하는 클라이언트에서 로컬로 실행 hello 동일한 노드는 hello 역방향 프록시를 사용 하 여 클라이언트 쪽 HTTP 통신 라이브러리 tootalk toohello 대상 서비스를 사용할 수 있습니다.
 
 ![내부 통신][1]
 
-## <a name="reaching-microservices-from-outside-the-cluster"></a>클러스터 외부에서 마이크로 서비스에 연결
-마이크로 서비스에 대한 기본 외부 통신 모델은 옵트인 모델이며, 여기서 각 서비스는 외부 클라이언트에서 직접 액세스될 수 없습니다. 마이크로 서비스와 외부 클라이언트 간의 네트워크 경계인 [Azure Load Balancer](../load-balancer/load-balancer-overview.md)는 네트워크 주소 변환을 수행하고 외부 요청을 내부 IP:port 끝점에 전달합니다. 마이크로 서비스의 끝점에서 외부 클라이언트에 직접 액세스할 수 있도록 하려면 먼저 클러스터의 서비스가 사용하는 각 포트에 트래픽을 전달하도록 부하 분산 장치를 구성해야 합니다. 그뿐 아니라 대부분 마이크로 서비스( 특히 상태 저장 마이크로 서비스)가 클러스터의 모든 노드에 있는 것은 아닙니다. 마이크로 서비스는 장애 조치(Failover) 시 노드 간을 이동할 수 있습니다. 이러한 경우 부하 분산 장치를 트래픽을 전달할 복제본의 대상 노드 위치를 효과적으로 확인할 수 없습니다.
+## <a name="reaching-microservices-from-outside-hello-cluster"></a>Hello 클러스터 외부에서 microservices 도달
+microservices hello 기본 외부 통신 모델은 외부 클라이언트에서 직접 각 서비스에 액세스할 수 없는 옵트인 모델입니다. [Azure 부하 분산 장치](../load-balancer/load-balancer-overview.md)microservices와 외부 클라이언트 간의 네트워크 경계는 네트워크 주소 변환 하 고 수행한 전달 외부 toointernal ip: port 끝점 요청 합니다. toomake 마이크로 서비스의 끝점 tooexternal 직접 액세스할 수 있는 클라이언트를 먼저 구성 해야 tooforward 트래픽 tooeach 포트 서비스 hello를 사용 하 여 부하 분산 장치 hello 클러스터에 있습니다. 또한 대부분 microservices, 상태 저장 microservices 특히 hello 클러스터의 모든 노드에서 실시간 하지 않습니다. hello microservices 장애 조치 노드 간에 이동할 수 있습니다. 이러한 경우 부하 분산 장치 결정할 수 없습니다 효율적으로 hello 위치 hello 복제본 toowhich hello 대상 노드의 트래픽을 전달 합니다.
 
-### <a name="reaching-microservices-via-the-reverse-proxy-from-outside-the-cluster"></a>클러스터 외부에서 역방향 프록시를 통해 마이크로 서비스에 연결
-부하 분산 장치에서 개별 서비스의 포트를 구성하는 대신, 부하 분산 장치에서 역방향 프록시 포트만 구성할 수 있습니다. 이 구성을 사용하면 클러스터 외부의 클라이언트가 추가 구성 없이 역방향 프록시를 사용하여 클러스터 내부의 서비스에 연결할 수 있습니다.
+### <a name="reaching-microservices-via-hello-reverse-proxy-from-outside-hello-cluster"></a>Hello 외부 hello 클러스터에서 역방향 프록시를 통해 microservices 도달
+부하 분산 장치에서 개별 서비스의 hello 포트를 구성 하는 대신 부하 분산 장치에만 hello 포트 hello 역방향 프록시를 구성할 수 있습니다. 이 구성을 통해 hello 클러스터 외부의 클라이언트가 추가 구성 없이 hello 역방향 프록시를 사용 하 여 hello 클러스터 내 서비스를 연결할 수 있습니다.
 
 ![외부 통신][0]
 
 > [!WARNING]
-> 부하 분산 장치에서 역방향 프록시의 포트를 구성하면 HTTP 끝점을 표시하는 클러스터의 모든 마이크로 서비스의 주소를 클러스터 외부에서 지정할 수 있습니다.
+> 부하 분산 장치에서 hello 역방향 프록시 포트를 구성 하는 경우 HTTP 끝점을 노출 하는 hello 클러스터의 모든 microservices hello 클러스터 외부에서 주소 지정 가능한 됩니다.
 >
 >
 
 
-## <a name="uri-format-for-addressing-services-by-using-the-reverse-proxy"></a>역방향 프록시를 사용하여 서비스 주소를 지정하기 위한 URI 형식
-역방향 프록시는 특정 URI(Uniform Resource Identifier) 형식을 사용하여 수신 요청을 전달해야 하는 서비스 파티션을 식별합니다.
+## <a name="uri-format-for-addressing-services-by-using-hello-reverse-proxy"></a>Hello 역방향 프록시를 사용 하 여 서비스를 해결 하기 위한 URI 형식
+hello 역방향 프록시 사용 하 여 특정 uniform 리소스 URI (identifier) 형식 tooidentify hello 서비스 파티션 toowhich hello 들어오는 요청을 전달 해야 합니다.
 
 ```
 http(s)://<Cluster FQDN | internal IP>:Port/<ServiceInstanceName>/<Suffix path>?PartitionKey=<key>&PartitionKind=<partitionkind>&ListenerName=<listenerName>&TargetReplicaSelector=<targetReplicaSelector>&Timeout=<timeout_in_seconds>
 ```
 
-* **http(s):** 역방향 프록시를HTTP 또는 HTTPS 트래픽을 허용하도록 구성할 수 있습니다. HTTPS 전달의 경우 HTTPS에서 수신 대기하도록 역방향 프록시가 설정되면 [Connect to a secure service with the reverse proxy](service-fabric-reverseproxy-configure-secure-communication.md)(역방향 프록시를 사용하여 보안 서비스에 연결)를 참조하세요.
-* **클러스터 FQDN(정규화된 도메인 이름) | 내부 IP:** 외부 클라이언트의 경우 클러스터 도메인(예: mycluster.eastus.cloudapp.azure.com)을 통해 도달할 수 있도록 역방향 프록시를 구성할 수 있습니다. 기본적으로 역방향 프록시는 모든 노드에서 실행됩니다. 내부 트래픽의 경우 localhost 또는 모든 내부 노드 IP(예: 10.0.0.1)에서 역방향 프록시에 연결할 수 있습니다.
-* **포트:** 역방향 프록시에 대해 지정된 포트(예: 19081)입니다.
-* **ServiceInstanceName:** "fabric:/" 체계 없이 연결하려고 하는 배포된 서비스 인스턴스의 정규화된 이름입니다. 예를 들어 *fabric:/myapp/myservice/* 서비스에 연결하려면 *myapp/myservice*를 사용합니다.
+* **http (s):** hello 역방향 프록시 구성된 tooaccept HTTP 또는 HTTPS 트래픽이 될 수 있습니다. HTTPS 전달 하기 위해 참조 너무[hello 역방향 프록시를 사용 하 여 보안 서비스 tooa 연결](service-fabric-reverseproxy-configure-secure-communication.md) HTTPS에 대해 역방향 프록시 설치 toolisten를 설정한 후 합니다.
+* **클러스터 정규화 된 도메인 이름 (FQDN) | 내부 IP:** 외부 클라이언트에 대해 구성할 수 있습니다 hello 역방향 프록시 mycluster.eastus.cloudapp.azure.com 같은 hello 클러스터 도메인을 통해 연결할 수 있도록 합니다. 기본적으로 모든 노드에 대해 hello 역방향 프록시 실행 합니다. 내부 트래픽에 대 한 역방향 프록시 hello 10.0.0.1와 같은 모든 내부 노드 IP 또는 localhost에 도달할 수 있습니다.
+* **포트:** hello 역방향 프록시에 대 한 지정 된 19081, 같은 hello 포트입니다.
+* **ServiceInstanceName:** hello hello 없이 tooreach를 시도 하는 배포 된 hello 서비스 인스턴스의 정규화 된 이름 "fabric: /" 구성표입니다. 예를 들어 tooreach hello *패브릭: / myapp/myservice/* 서비스를 사용 하 여 *myapp/myservice*합니다.
 
-    서비스 인스턴스 이름은 대/소문자를 구분합니다. URL에서 서비스 인스턴스 이름의 대/소문자 표기가 달라지면 요청이 실패하고 404(찾을 수 없음)가 표시됩니다.
-* **접미사 경로:** *myapi/values/add/3*과 같이 연결할 서비스에 대한 실제 URL 경로입니다.
-* **PartitionKey:** 분할 서비스의 경우 연결할 파티션의 계산된 파티션 키입니다. 참고로 이는 파티션 ID GUID가 *아닙니다* . 이 매개 변수는 단일 파티션 체계를 사용하는 서비스에는 필요하지 않습니다.
-* **PartitionKind:** 서비스 파티션 체계입니다. 이는 'Int64Range' 또는 'Named'일 수 있습니다. 이 매개 변수는 단일 파티션 체계를 사용하는 서비스에는 필요하지 않습니다.
-* **ListenerName**: 서비스의 끝점 형식은 {"Endpoints":{"Listener1":"Endpoint1","Listener2":"Endpoint2" ...}}입니다. 서비스에서 여러 끝점을 노출하는 경우 이 매개 변수는 클라이언트 요청을 전달해야 하는 끝점을 식별합니다. 서비스에 수신기 하나만 있으면 생략할 수 있습니다.
-* **TargetReplicaSelector**: 대상 복제본 또는 인스턴스를 선택하는 방법을 지정합니다.
-  * 대상 서비스가 상태 저장인 경우 TargetReplicaSelector는 'PrimaryReplica', 'RandomSecondaryReplica' 또는 'RandomReplica' 중 하나일 수 있습니다. 이 매개 변수를 지정하지 않으면 기본값은 'PrimaryReplica'입니다.
-  * 대상 서비스가 상태 비저장인 경우 역방향 프록시는 서비스 파티션의 임의 인스턴스를 선택하여 요청을 전달합니다.
-* **Timeout:** 서비스에 대한 역방향 프록시가 클라이언트 요청을 대신하여 만든 HTTP 요청에 대한 시간 제한을 지정합니다. 기본값은 60초입니다. 선택적 매개 변수입니다.
+    hello 서비스 인스턴스 이름은 대/소문자 구분입니다. 404 (찾을 수 없음) hello 요청 toofail 되 면 서로 다른 대/소문자를 사용 하 여 hello URL에서 hello 서비스 인스턴스 이름을.
+* **경로 접미사:** 같은 hello 실제 URL 경로입니다 *myapi/값/추가/3*, tooconnect를 원하는 hello 서비스에 대 한 합니다.
+* **PartitionKey:** 분할 된 서비스 tooreach hello 파티션의 hello 계산 된 파티션 키입니다. 이것은 *하지* hello 파티션 ID GUID입니다. 이 매개 변수 hello singleton 파티션 구성표를 사용 하는 서비스에 대 한 필요 하지 않습니다.
+* **PartitionKind:** hello 서비스 파티션 구성표입니다. 이는 'Int64Range' 또는 'Named'일 수 있습니다. 이 매개 변수 hello singleton 파티션 구성표를 사용 하는 서비스에 대 한 필요 하지 않습니다.
+* **ListenerName** hello 폼의 hello 서비스에서 hello 끝점은 {"끝점": {"Listener1": "Endpoint1", "Listener2": "Endpoint2"...}}. 이 식별 hello 끝점 hello 서비스에서 여러 끝점을 노출할 때 해당 hello 클라이언트 요청을 전달 해야 합니다. Hello 서비스에 수신기가 하나만 있으면 생략할 수 있습니다.
+* **TargetReplicaSelector** 방법을 hello 대상 복제본 또는 인스턴스 선택 해야 합니다.이 지정 합니다.
+  * Hello TargetReplicaSelector hello 다음 중 하나일 수 hello 대상 서비스 이면 상태 저장: 'PrimaryReplica', 'RandomSecondaryReplica' 또는 'RandomReplica'. 이 매개 변수를 지정 하지 않으면 'PrimaryReplica' hello 기본값은입니다.
+  * Hello 대상 서비스는 상태 비저장 역방향 프록시에서는 hello 서비스 파티션 tooforward hello 요청을의 임의 인스턴스를 선택 합니다.
+* **시간 초과:** hello 클라이언트 요청을 대신해 hello 역방향 프록시 toohello 서비스에 의해 만들어진 hello HTTP 요청에 대 한 hello 시간 제한을 지정 합니다. hello 기본값은 60 초입니다. 선택적 매개 변수입니다.
 
 ### <a name="example-usage"></a>사용 예
-예를 들어 다음 URL에서 HTTP 수신기를 여는 *fabric:/MyApp/MyService* 서비스를 살펴보겠습니다.
+예를 들어 보겠습니다 hello *패브릭: / MyApp/MyService* hello url에 HTTP 수신기를 서비스:
 
 ```
 http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/
 ```
 
-다음은 서비스에 대한 리소스입니다.
+다음은 hello 서비스에 대 한 hello 리소스:
 
 * `/index.html`
 * `/api/users/<userId>`
 
-서비스가 단일 분할 체계를 사용하는 경우 *PartitionKey* 및 *PartitionKind* 쿼리 문자열 매개 변수는 필요하지 않으며 다음과 같이 게이트웨이를 사용하여 서비스에 연결할 수 있습니다.
+Hello 서비스가 hello singleton 파티션 구성표를 사용 하는 경우 hello *PartitionKey* 및 *PartitionKind* 쿼리 문자열 매개 변수가 필요 하지 않습니다. 및 hello 게이트웨이 사용 하 여 hello 서비스에 연결할 수 있습니다.
 
 * 외부에서: `http://mycluster.eastus.cloudapp.azure.com:19081/MyApp/MyService`
 * 내부에서: `http://localhost:19081/MyApp/MyService`
 
-서비스가 Uniform Int64 분할 체계를 사용하는 경우 *PartitionKey* 및 *PartitionKind* 쿼리 문자열 매개 변수를 사용하여 서비스의 파티션에 연결해야 합니다.
+Hello 서비스가 hello 균일 Int64 파티션 구성표를 사용 하는 경우 hello *PartitionKey* 및 *PartitionKind* 쿼리 문자열 매개 변수가 사용 되는 tooreach hello 서비스의 파티션을 이어야 합니다.
 
 * 외부에서: `http://mycluster.eastus.cloudapp.azure.com:19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
 * 내부에서: `http://localhost:19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
 
-서비스가 노출하는 리소스에 연결하려면 URL의 서비스 이름 뒤에 리소스 경로를 추가합니다.
+tooreach hello 리소스 hello 서비스를 노출 하는 단순히 hello URL에 hello 서비스 이름 뒤에 오는 hello 리소스 경로 배치 합니다.
 
 * 외부에서: `http://mycluster.eastus.cloudapp.azure.com:19081/MyApp/MyService/index.html?PartitionKey=3&PartitionKind=Int64Range`
 * 내부에서: `http://localhost:19081/MyApp/MyService/api/users/6?PartitionKey=3&PartitionKind=Int64Range`
 
-그러면 게이트웨이가 이 요청을 서비스의 URL에 전달합니다.
+hello 게이트웨이 이러한 요청 toohello 서비스의이 URL을 전달 합니다.
 
 * `http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/index.html`
 * `http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/api/users/6`
 
 ## <a name="special-handling-for-port-sharing-services"></a>포트 공유 서비스에 대한 특수 처리
-Azure Application Gateway는 서비스 주소의 다시 확인을 시도하고 서비스에 연결할 수 없는 경우 요청을 재시도합니다. 이는 클라이언트 코드가 자체 서비스 확인 및 확인 루프를 구현할 필요가 없으므로 Application Gateway의 주요 이점이 됩니다.
+Azure 응용 프로그램 게이트웨이 시도 tooresolve 서비스 다시 주소와 서비스에 연결할 수 없는 경우 hello 요청을 다시 시도 합니다. 응용 프로그램 게이트웨이의 큰 장점은 클라이언트 코드는 자체 서비스 해상도 tooimplement 필요 하며 루프를 해결 하지 때문입니다.
 
-일반적으로 서비스에 연결할 수 없는 경우 서비스 인스턴스 또는 복제가 일반적인 수명 주기의 일부로 다른 노드로 이동된 것입니다. 이 경우 Application Gateway는 끝점이 더 이상 원래 확인된 주소에 열려 있지 않음을 나타내는 네트워크 연결 오류를 수신할 수 있습니다.
+일반적으로 서비스에 연결할 수 없는 경우 hello 서비스 인스턴스나 복제본에 이동의 기본 수명 주기의 일부로 tooa 다른 노드. 이 경우 응용 프로그램 게이트웨이 네트워크 연결 오류 끝점 임을 나타내는 hello에 긴 열지 않고는 원래 주소 확인을 받을 수 없습니다.
 
 그러나 복제 또는 서비스 인스턴스는 호스트 프로세스를 공유할 수 있으며 다음을 비롯하여 http.sys 기반 웹 서버에 의해 호스팅될 경우 포트를 공유할 수도 있습니다.
 
@@ -117,39 +117,39 @@ Azure Application Gateway는 서비스 주소의 다시 확인을 시도하고 �
 * [ASP.NET 코어 WebListener](https://docs.asp.net/latest/fundamentals/servers.html#weblistener)
 * [카타나](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.OwinSelfHost/)
 
-이 상황에서 웹 서버는 호스트 프로세스에서 사용할 수 있고 요청에 응답할 가능성이 있지만 확인된 서비스 인스턴스 또는 복제는 더 이상 호스트에서 사용할 수 없습니다. 이 경우 게이트웨이는 웹 서버에서 HTTP 404 응답을 수신합니다. 따라서 HTTP 404에는 다음과 같은 두 가지 의미가 있습니다.
+이 경우 해당 hello 웹 서버 hello 호스트 프로세스 및 toorequests, 하지만 hello 해결 서비스 인스턴스 또는 복제본을 더 이상 사용할 수 hello 호스트에 응답에서 사용할 수 있는 가능성이 높습니다. 이 경우 hello 게이트웨이 hello 웹 서버에서 HTTP 404 응답을 받게 됩니다. 따라서 HTTP 404에는 다음과 같은 두 가지 의미가 있습니다.
 
-- 사례 #1: 서비스 주소가 올바르지만 사용자가 요청한 리소스가 없습니다.
-- 사례 #2: 서비스 주소가 올바르지 않고 사용자가 요청한 리소스가 다른 노드에 있을 수 있습니다.
+- 사례 #1: hello 서비스 주소가 올바르지만 요청 사용자 hello hello 리소스가 존재 하지 않아야 합니다.
+- 사례 2: hello 서비스 주소가 올바르지 않은 및 사용자 요청 hello hello 리소스는 서로 다른 노드에 있을 수 있습니다.
 
-첫 번째 경우는 사용자 오류로 간주되는 일반적인 HTTP 404입니다. 그러나 두 번째 경우에 사용자는 존재하는 리소스를 요청했습니다. 서비스 자체가 이동되었으므로 Application Gateway에서 해당 서비스를 찾을 수 없습니다. Application Gateway는 주소를 다시 확인하고 요청을 다시 시도해야 합니다.
+hello 첫 번째 경우에는 사용자 오류 하다 고 간주 되는 일반 HTTP 404입니다. 그러나 hello 두 번째 경우에 hello 사용자가 존재 하는 리소스를 요청 했습니다. 응용 프로그램 게이트웨이 없습니다 toolocate hello 서비스 자체 때문에 이동 했습니다. 응용 프로그램 게이트웨이 요구 tooresolve hello 주소 다시 및 hello 요청을 다시 시도 합니다.
 
-그러므로 Application Gateway는 두 경우를 구별하는 방법이 필요합니다. 이러한 구별을 하려면 서버에서 제공하는 힌트가 필요합니다.
+응용 프로그램 게이트웨이 이러한 두 사례 사이의 방식으로 toodistinguish 따라서 해야합니다. 이러한 방식으로 구분 hello 서버에서 힌트 필수임 toomake 합니다.
 
-* 기본적으로 Application Gateway는 사례 # 2를 가정하여 요청을 다시 확인하고 다시 실행하려고 시도합니다.
-* Application Gateway에 대해 사례 #1을 나타내려면 서비스가 다음과 같은 HTTP 응답 헤더를 반환해야 합니다.
+* 기본적으로 응용 프로그램 게이트웨이 대/소문자 #2 맡고 tooresolve 및 문제 hello 요청을 다시 시도 됩니다.
+* tooindicate 사례 #1 tooApplication 게이트웨이, hello 서비스 HTTP 응답 헤더 뒤에 오는 hello를 반환 합니다.
 
   `X-ServiceFabric : ResourceNotFound`
 
-이 HTTP 응답 헤더는 요청한 리소스가 존재하지 않는 일반적인 HTTP 404 상황을 나타내며, Application Gateway는 서비스 주소를 다시 확인하려고 시도하지 않습니다.
+이 HTTP 응답 헤더는 hello에 요청 된 리소스가 존재 하지 않습니다, 일반적인 HTTP 404 상황을 나타내고 응용 프로그램 게이트웨이 tooresolve hello 서비스 주소를 다시 시도 하지 않습니다.
 
 ## <a name="setup-and-configuration"></a>설정 및 구성
 
 ### <a name="enable-reverse-proxy-via-azure-portal"></a>Azure Portal을 통해 역방향 프록시 사용
 
-Azure Portal은 새 Service Fabric 클러스터를 만드는 동안 역방향 프록시를 사용하는 옵션을 제공합니다.
-**Service Fabric 클러스터 만들기**, 2단계: 클러스터 구성, 노드 유형 구성에서 "역방향 프록시 사용"으로 확인란을 선택합니다.
-보안 역방향 프록시를 구성하기 위해 SSL 인증서는 3단계: 보안, 클러스터 보안 설정 구성에서 지정되고, "역방향 프록시에 대한 SSL 인증서 포함" 확인란을 선택하고, 인증서 세부 정보를 입력하면 됩니다.
+Azure 포털은 새 서비스 패브릭 클러스터를 만드는 동안 옵션 tooenable 역방향 프록시를 제공 합니다.
+아래 **만들 서비스 패브릭 클러스터**, 2 단계: 클러스터 구성에서 노드 유형 구성 너무 hello 확인란을 선택 "역방향 프록시 사용"입니다.
+보안 역방향 프록시를 구성 하는 데 SSL 인증서에에서 지정할 수 3 단계: 클러스터 보안 설정 구성, 확인란 선택 hello 너무 "역방향 프록시에 대 한 SSL 인증서가 포함" 보안과 hello 인증서 세부 정보를 입력 합니다.
 
 ### <a name="enable-reverse-proxy-via-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿을 통해 역방향 프록시 사용
 
-[Azure Resource Manager 템플릿](service-fabric-cluster-creation-via-arm.md)을 사용하여 클러스터에 대해 Service Fabric의 역방향 프록시를 사용하도록 설정할 수 있습니다.
+Hello를 사용할 수 있습니다 [Azure 리소스 관리자 템플릿](service-fabric-cluster-creation-via-arm.md) tooenable hello 역방향 프록시 서비스 패브릭에서 hello 클러스터에 대 한 합니다.
 
-인증서로 보안 역방향 프록시를 구성하고 인증서 롤오버를 처리하기 위한 Azure Resource Manager 템플릿 샘플에 대해서는 [보안 클러스터에서 HTTPS 역방향 프록시 구성](https://github.com/ChackDan/Service-Fabric/tree/master/ARM Templates/ReverseProxySecureSample#configure-https-reverse-proxy-in-a-secure-cluster)을 참조하세요.
+너무 참조[HTTPS 역방향 프록시 구성에서 보안 클러스터](https://github.com/ChackDan/Service-Fabric/tree/master/ARM Templates/ReverseProxySecureSample#configure-https-reverse-proxy-in-a-secure-cluster) Azure 리소스 관리자에 대 한 서식 파일 예제 tooconfigure 보안 역방향 프록시 인증서 및 처리 인증서 롤오버로 합니다.
 
-먼저 배포하려는 클러스터에 대한 템플릿을 가져옵니다. 예제 템플릿을 사용하거나 사용자 지정 Resource Manager 템플릿을 만들 수 있습니다. 그런 후 다음 단계를 사용하여 역방향 프록시를 사용하도록 설정할 수 있습니다.
+첫째, 얻게 hello 템플릿 hello 클러스터에 대 한 toodeploy 되도록 합니다. Hello 예제 서식 파일을 사용 하거나 사용자 지정 리소스 관리자 템플릿을 만들 수 있습니다. 그런 다음 단계를 수행 하는 hello를 사용 하 여 hello 역방향 프록시를 설정할 수 있습니다.
 
-1. 템플릿의 [매개 변수 섹션](../azure-resource-manager/resource-group-authoring-templates.md) 에서 역방향 프록시에 대한 포트를 정의합니다.
+1. Hello에 hello 역방향 프록시에 대 한 포트 정의 [매개 변수 섹션](../azure-resource-manager/resource-group-authoring-templates.md) hello 템플릿의 합니다.
 
     ```json
     "SFReverseProxyPort": {
@@ -160,9 +160,9 @@ Azure Portal은 새 Service Fabric 클러스터를 만드는 동안 역방향 �
         }
     },
     ```
-2. **클러스터** [리소스 형식 섹션](../azure-resource-manager/resource-group-authoring-templates.md)에서 각 nodetype 개체에 대한 포트를 지정합니다.
+2. 각 hello에 hello nodetype 개체에 hello 포트를 지정 **클러스터** [리소스 유형 섹션](../azure-resource-manager/resource-group-authoring-templates.md)합니다.
 
-    포트는 reverseProxyEndpointPort라는 매개 변수 이름으로 식별됩니다.
+    hello 포트 reverseProxyEndpointPort hello 매개 변수 이름으로 식별 됩니다.
 
     ```json
     {
@@ -182,7 +182,7 @@ Azure Portal은 새 Service Fabric 클러스터를 만드는 동안 역방향 �
         ...
     }
     ```
-3. Azure 클러스터 외부에서 역방향 프록시 주소를 지정하려면 1단계에서 지정한 포트에 대해 Azure Load Balancer 규칙을 설정합니다.
+3. 1 단계에서 지정한 hello 포트에 대 한 hello Azure 부하 분산 장치 규칙을 설정 해 서 Azure 클러스터 hello 외부에서 tooaddress hello의 역방향 프록시입니다.
 
     ```json
     {
@@ -226,7 +226,7 @@ Azure Portal은 새 Service Fabric 클러스터를 만드는 동안 역방향 �
         ]
     }
     ```
-4. 역방향 프록시에 대한 포트에서 SSL 인증서를 구성하려면 **클러스터** [리소스 형식 섹션](../resource-group-authoring-templates.md)에서 해당 인증서를 ***reverseProxyCertificate*** 속성에 추가합니다.
+4. hello 역방향 프록시에 대 한 hello 포트에서 SSL 인증서 tooconfigure 추가 hello 인증서 toohello ***reverseProxyCertificate*** hello에 대 한 속성 **클러스터** [리소스 유형 섹션](../resource-group-authoring-templates.md).
 
     ```json
     {
@@ -249,8 +249,8 @@ Azure Portal은 새 Service Fabric 클러스터를 만드는 동안 역방향 �
     }
     ```
 
-### <a name="supporting-a-reverse-proxy-certificate-thats-different-from-the-cluster-certificate"></a>클러스터 인증서와 다른 역방향 프록시 인증서 지원
- 역방향 프록시 인증서가 클러스터를 보호하는 인증서와 다른 경우 이전에 지정한 인증서를 가상 컴퓨터에 설치하고 ACL(액세스 제어 목록)에 추가하여 Service Fabric에서 액세스할 수 있게 합니다. 이 작업은 **virtualMachineScaleSets** [리소스 형식 섹션](../resource-group-authoring-templates.md)에서 수행할 수 있습니다. 설치의 경우 해당 인증서를 osProfile에 추가합니다. 템플릿의 확장 섹션은 ACL의 인증서를 업데이트할 수 있습니다.
+### <a name="supporting-a-reverse-proxy-certificate-thats-different-from-hello-cluster-certificate"></a>Hello 클러스터 인증서와에서 다른 역방향 프록시 인증서를 지원 합니다.
+ Hello 역방향 프록시 인증서 hello 클러스터를 보호 하는 hello 인증서와에서 다른 경우 다음 hello 이전에 지정한 인증서 hello 가상 컴퓨터에 설치 해야 하 고 서비스 패브릭 수 있도록 toohello 액세스 제어 목록 (ACL)에 추가 액세스. Hello에 이렇게 **virtualMachineScaleSets** [리소스 유형 섹션](../resource-group-authoring-templates.md)합니다. 설치의 경우 해당 인증서 toohello osProfile를 추가 합니다. hello 서식 파일의 확장명 섹션 hello hello ACL에에서 hello 인증서를 업데이트할 수 있습니다.
 
   ```json
   {
@@ -302,11 +302,11 @@ Azure Portal은 새 Service Fabric 클러스터를 만드는 동안 역방향 �
     }
   ```
 > [!NOTE]
-> 클러스터 인증서와 다른 인증서를 사용하여 기존 클러스터에서 역방향 프록시를 사용하도록 설정하는 경우 먼저 역방향 프록시를 사용하도록 설정하기 전에 클러스터에 역방향 프록시 인증서를 설치하고 ACL을 업데이트합니다. 배포를 시작하여 1-4 단계를 통해 역방향 프록시를 사용하도록 설정하기 전에 위에서 언급한 설정을 사용하여 [Azure Resource Manager 템플릿](service-fabric-cluster-creation-via-arm.md) 배포를 완료합니다.
+> Hello 클러스터 인증서 tooenable hello 역방향 프록시를 기존 클러스터의 다른 인증서를 사용할 때 hello 역방향 프록시 인증서를 설치 하 고 hello 역방향 프록시를 사용 하기 전에 hello 클러스터에서 hello ACL을 업데이트 합니다. 전체 hello [Azure 리소스 관리자 템플릿](service-fabric-cluster-creation-via-arm.md) 배포 언급 된 hello 설정을 사용 하 여 이전에 배포 tooenable hello 역방향 프록시를 시작 하기 전에에 1-4 단계.
 
 ## <a name="next-steps"></a>다음 단계
 * [GitHub의 샘플 프로젝트](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)에서 서비스 간 HTTP 통신의 예제를 참조하세요.
-* [역방향 프록시를 사용하여 보안 HTTP 서비스에 전달](service-fabric-reverseproxy-configure-secure-communication.md)
+* [Hello 역방향 프록시를 사용 하 여 HTTP 서비스 toosecure 전달](service-fabric-reverseproxy-configure-secure-communication.md)
 * [Reliable Services 원격을 사용하여 원격 프로시저 호출](service-fabric-reliable-services-communication-remoting.md)
 * [Reliable Services에서 OWIN을 사용하는 Web API](service-fabric-reliable-services-communication-webapi.md)
 * [Reliable Services를 사용한 WCF 통신](service-fabric-reliable-services-communication-wcf.md)

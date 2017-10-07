@@ -1,5 +1,5 @@
 ---
-title: "Azure Monitor 자동 크기 조정 공용 메트릭 | Microsoft Docs"
+title: "모니터 자동 크기 조정에 대 한 일반 메트릭 aaaAzure | Microsoft Docs"
 description: "클라우드 서비스, 가상 컴퓨터 및 웹앱의 자동 크기 조정에 일반적으로 사용되는 메트릭에 대해 알아봅니다."
 author: anirudhcavale
 manager: orenr
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/6/2016
 ms.author: ancav
-ms.openlocfilehash: 240a230d09680672ccd5316470a87d047fab9fd1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 372a40d72d7a6c22c5ff854b1460ec8a3b7ed1d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Azure Monitor 자동 크기 조정 공용 메트릭
-Azure Monitor 자동 크기 조정을 사용하여 원격 분석 데이터(메트릭)에 따라 실행 중인 인스턴트 수를 늘리거나 줄일 수 있습니다. 이 문서에서는 사용하고자 하는 공용 메트릭에 대해 설명합니다. Cloud Services 및 서버 팜용 Azure Portal에서 크기를 조정할 리소스의 메트릭을 선택할 수 있습니다. 그러나 크기를 조정하기 위해 여러 리소스에서 임의 메트릭을 선택할 수도 있습니다.
+Azure 모니터의 자동 크기 조정이 있습니다 tooscale hello 실행 중인 인스턴스 수를를 위 또는 아래로 원격 분석 데이터 (메트릭)를 기반으로 합니다. 이 문서에서는 공통 메트릭을 toouse 알았으므로 설명 합니다. Azure 포털 클라우드 서비스 및 서버 팜 hello에 하 여 hello 리소스 tooscale의 hello 메트릭을 선택할 수 있습니다. 그러나 하 여 다른 리소스 tooscale에서 모든 메트릭을 선택할 수도 있습니다.
 
-Azure Monitor 자동 크기 조정은 [가상 컴퓨터 확장 집합](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Cloud Services](https://azure.microsoft.com/services/cloud-services/) 및 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)에만 적용됩니다. 다른 Azure 서비스에는 다른 크기 조정 방법이 사용됩니다.
+Azure 모니터의 자동 크기 조정 적용만 너무[가상 컴퓨터 크기 집합](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [클라우드 서비스](https://azure.microsoft.com/services/cloud-services/), 및 [앱 서비스-웹 응용 프로그램](https://azure.microsoft.com/services/app-service/web/)합니다. 다른 Azure 서비스에는 다른 크기 조정 방법이 사용됩니다.
 
 ## <a name="compute-metrics-for-resource-manager-based-vms"></a>Resource Manager 기반 VM용 메트릭 계산
-기본적으로 Resource Manager 기반 Virtual Machines 및 Virtual Machine Scale Sets는 기본(호스트 수준) 메트릭을 내보냅니다. 또한 Azure VM 및 VMSS용 진단 데이터 수집을 구성하면 Azure 진단 확장은 게스트 OS 성능 카운터(일반적으로 "게스트 OS 메트릭"이라고 함)도 내보냅니다.  자동 크기 조정 규칙에서 이러한 모든 메트릭을 사용합니다.
+기본적으로 Resource Manager 기반 Virtual Machines 및 Virtual Machine Scale Sets는 기본(호스트 수준) 메트릭을 내보냅니다. 또한 Azure VM 및 VMSS에 대 한 진단 데이터 수집을 구성한 경우 Azure 진단 확장 hello 게스트 OS 성능 카운터를 (일반적으로 "게스트 OS 메트릭" 라고 함)도 내보냅니다.  자동 크기 조정 규칙에서 이러한 모든 메트릭을 사용합니다.
 
-`Get MetricDefinitions` API/PoSH/CLI를 사용하여 VMSS 리소스에 사용할 수 있는 메트릭을 볼 수 있습니다.
+Hello를 사용할 수 있습니다 `Get MetricDefinitions` CLI PoSH/API/tooview hello 메트릭을 VMSS 리소스에 대해 사용할 수 있습니다.
 
 VM 규모 집합을 사용 중인데 특정 메트릭이 목록에 표시되지 않는 경우, 이는 진단 확장에서 *사용하지 않도록 설정*되었을 수 있습니다.
 
-특정 메트릭이 원하는 빈도로 샘플링 또는 전송되고 있지 않은 경우 진단 구성을 업데이트할 수 있습니다.
+특정 메트릭에 샘플링 또는에서 전송 된 hello 빈도 되 고 있지 않습니다, hello 진단 구성을 업데이트할 수 있습니다.
 
-위 경우 중 하나가 해당되면 PowerShell에 대한 [PowerShell을 사용하여 Windows를 실행하는 가상 컴퓨터에서 Azure 진단을 사용하도록 설정](../virtual-machines/windows/ps-extensions-diagnostics.md)을 검토하여 메트릭을 사용하도록 Azure VM 진단 확장을 구성 및 업데이트합니다. 이 문서에는 샘플 진단 구성 파일도 포함되어 있습니다.
+위의 두 경우 모두 true 이면 다음 검토 [Windows를 실행 하는 가상 컴퓨터에서 PowerShell 사용 하 여 tooenable Azure 진단](../virtual-machines/windows/ps-extensions-diagnostics.md) PowerShell tooconfigure 및 업데이트에 대 한 Azure VM 진단 확장 tooenable hello 메트릭을 합니다. 이 문서에는 샘플 진단 구성 파일도 포함되어 있습니다.
 
 ### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>Resource Manager 기반 Windows 및 Linux VM용 호스트 메트릭
-기본적으로 Windows 및 Linux 인스턴스 모두 Azure VM 및 VMSS용으로 다음 호스트 수준 메트릭을 내보냅니다. 이러한 메트릭은 Azure VM을 설명하지만 게스트 VM에 설치된 에이전트를 통하는 대신 Azure VM 호스트에서 수집됩니다. 자동 크기 조정 규칙에서 이러한 메트릭을 사용할 수 있습니다.
+다음 호스트 수준 메트릭 hello는 Windows와 Linux의 경우에서 Azure VM 및 VMSS 기본적으로 내보냅니다. 이러한 메트릭은 Azure VM에 설명 하지만 hello 게스트 VM에 설치 된 에이전트를 통해 대신 hello Azure VM 호스트에서 수집 됩니다. 자동 크기 조정 규칙에서 이러한 메트릭을 사용할 수 있습니다.
 
 - [Resource Manager 기반 Windows 및 Linux VM용 호스트 메트릭](monitoring-supported-metrics.md#microsoftcomputevirtualmachines)
 - [Resource Manager 기반 Windows 및 Linux VM Scale Sets용 호스트 메트릭](monitoring-supported-metrics.md#microsoftcomputevirtualmachinescalesets)
 
 ### <a name="guest-os-metrics-resource-manager-based-windows-vms"></a>게스트 OS 메트릭 Resource Manager 기반 Windows VM
-Azure에서 VM을 만들 때 진단 확장을 사용하여 진단을 사용하도록 설정합니다. 진단 확장을 사용하여 VM 내에서 가져온 메트릭 집합을 내보냅니다. 즉, 기본적으로 내보내지 않도록 메트릭의 자동 크기 조정을 해제할 수 있습니다.
+Azure에서 VM을 만들 진단 hello 진단 확장을 사용 하 여 활성화 됩니다. hello 진단 확장 hello VM 내부에서 가져온 메트릭 집합을을 내보냅니다. 즉, 기본적으로 내보내지 않도록 메트릭의 자동 크기 조정을 해제할 수 있습니다.
 
-PowerShell에서 다음 명령을 사용하여 메트릭 목록을 생성할 수 있습니다.
+다음 powershell에서 명령을 hello를 사용 하 여 hello 메트릭 목록은 생성할 수 있습니다.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-다음 메트릭에 대한 경고를 만들 수 있습니다.
+다음 메트릭 hello에 대 한 경고를 만들 수 있습니다.
 
 | 메트릭 이름 | 단위 |
 | --- | --- |
@@ -86,13 +86,13 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 ### <a name="guest-os-metrics-linux-vms"></a>게스트 OS 메트릭 Linux VM
 Azure에서 VM을 만들 때 진단 확장을 사용하여 기본적으로 진단을 사용하도록 설정합니다.
 
-PowerShell에서 다음 명령을 사용하여 메트릭 목록을 생성할 수 있습니다.
+다음 powershell에서 명령을 hello를 사용 하 여 hello 메트릭 목록은 생성할 수 있습니다.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
- 다음 메트릭에 대한 경고를 만들 수 있습니다.
+ 다음 메트릭 hello에 대 한 경고를 만들 수 있습니다.
 
 | 메트릭 이름 | 단위 |
 | --- | --- |
@@ -136,10 +136,10 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | \NetworkInterface\TotalCollisions |개수 |
 
 ## <a name="commonly-used-web-server-farm-metrics"></a>일반적으로 사용되는 웹(서버 팜) 메트릭
-Http 큐 길이와 같이 공용 웹 서버 메트릭을 기반으로 자동 크기 조정을 수행할 수도 있습니다. 메트릭 이름은 **HttpQueueLength**입니다.  다음 섹션에는 사용 가능한 서버 팜(웹앱) 메트릭이 나열되어 있습니다.
+Hello Http 큐 길이 등 일반적인 웹 서버 메트릭을 기반으로 하는 자동 크기 조정을 수행할 수도 있습니다. 메트릭 이름은 **HttpQueueLength**입니다.  다음 섹션 목록 사용 가능한 서버 팜 (웹 앱) 메트릭 번호입니다.
 
 ### <a name="web-apps-metrics"></a>웹앱 메트릭
-PowerShell에서 다음 명령을 사용하여 웹앱 메트릭 목록을 생성할 수 있습니다.
+다음 powershell에서 명령을 hello를 사용 하 여 hello 웹 응용 프로그램 메트릭 목록은 생성할 수 있습니다.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
@@ -157,11 +157,11 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | BytesSent |바이트 |
 
 ## <a name="commonly-used-storage-metrics"></a>일반적으로 사용되는 저장소 메트릭
-저장소 큐의 메시지 수인 저장소 큐 길이의 크기를 조정할 수 있습니다. 저장소 큐 길이는 특수한 메트릭이고 임계값은 인스턴스당 메시지 수입니다. 예를 들어 인스턴스가 두 개이고 임계값이 100으로 설정된 경우 큐에서 총 메시지 수가 200일 때 크기가 조정됨을 의미합니다. 인스턴스당 메시지는 100개, 120개 및 80개, 또는 최대 200개 이상을 추가하는 임의의 기타 조합이 될 수 있습니다.
+저장소 큐 길이 hello hello 저장소 큐의 메시지 수를으로 확장할 수 있습니다. 저장소 큐 길이 특별 한 메트릭 및 hello 임계값은 hello 인스턴스 당 메시지 수입니다. 예를 들어 두 개의 인스턴스가 있는 및 hello 임계값 too100 설정 되 면 hello hello 큐에 메시지의 총 수는 200 때 발생 크기 조정 합니다. 인스턴스 당 100 개의 메시지, 120 및 80, 또는 모든 기타 조합을 too200 이상의를 추가 하는 일 수 있는 합니다.
 
-Azure Portal의 **설정** 블레이드에서 이 설정을 구성합니다. VM Scale Sets의 경우 *metricName*을 *ApproximateMessageCount*로 사용하고 저장소 큐 ID를 *metricResourceUri*로 전달하도록 Resource Manager 템플릿에서 자동 크기 조정 설정을 업데이트할 수 있습니다.
+이 설정은 hello hello에서 Azure 포털 구성 **설정을** 블레이드입니다. VM 크기 집합에 대 한 리소스 관리자 템플릿 toouse hello에에서 hello 자동 크기 조정 설정을 업데이트할 수 있습니다 *metricName* 으로 *ApproximateMessageCount* 으로 hello 저장소 큐의 hello ID 전달  *metricResourceUri*합니다.
 
-예를 들어 클래식 저장소 계정을 사용하면 자동 크기 조정 설정 metricTrigger는 다음을 포함합니다.
+예를 들어 클래식 저장소 계정을 hello로 자동 크기 조정 설정을 metricTrigger 포함:
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -169,7 +169,7 @@ Azure Portal의 **설정** 블레이드에서 이 설정을 구성합니다. VM 
  "metricResourceUri": "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RES_GROUP_NAME/providers/Microsoft.ClassicStorage/storageAccounts/STORAGE_ACCOUNT_NAME/services/queue/queues/QUEUE_NAME"
  ```
 
-(클래식이 아닌) 저장소 계정의 경우 metricTrigger는 다음을 포함합니다.
+(비 클래식) 저장소 계정에 대 한 hello metricTrigger 다음과 같습니다.
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -178,9 +178,9 @@ Azure Portal의 **설정** 블레이드에서 이 설정을 구성합니다. VM 
 ```
 
 ## <a name="commonly-used-service-bus-metrics"></a>자주 사용되는 서비스 버스 메트릭
-서비스 버스 큐의 메시지 수인 서비스 버스 큐 길이의 크기를 조정할 수 있습니다. Service Bus 큐 길이는 특수한 메트릭이고 임계값은 인스턴스당 메시지 수입니다. 예를 들어 인스턴스가 두 개이고 임계값이 100으로 설정된 경우 큐에서 총 메시지 수가 200일 때 크기가 조정됨을 의미합니다. 인스턴스당 메시지는 100개, 120개 및 80개, 또는 최대 200개 이상을 추가하는 임의의 기타 조합이 될 수 있습니다.
+서비스 버스 큐 길이 hello hello 서비스 버스 큐의 메시지 수를 확장할 수 있습니다. 서비스 버스 큐 길이 특별 한 메트릭 및 hello 임계값은 hello 인스턴스 당 메시지 수입니다. 예를 들어 두 개의 인스턴스가 있는 및 hello 임계값 too100 설정 되 면 hello hello 큐에 메시지의 총 수는 200 때 발생 크기 조정 합니다. 인스턴스 당 100 개의 메시지, 120 및 80, 또는 모든 기타 조합을 too200 이상의를 추가 하는 일 수 있는 합니다.
 
-VM Scale Sets의 경우 *metricName*을 *ApproximateMessageCount*로 사용하고 저장소 큐 ID를 *metricResourceUri*로 전달하도록 Resource Manager 템플릿에서 자동 크기 조정 설정을 업데이트할 수 있습니다.
+VM 크기 집합에 대 한 리소스 관리자 템플릿 toouse hello에에서 hello 자동 크기 조정 설정을 업데이트할 수 있습니다 *metricName* 으로 *ApproximateMessageCount* 으로 hello 저장소 큐의 hello ID 전달  *metricResourceUri*합니다.
 
 ```
 "metricName": "MessageCount",
@@ -189,6 +189,6 @@ VM Scale Sets의 경우 *metricName*을 *ApproximateMessageCount*로 사용하�
 ```
 
 > [!NOTE]
-> 서비스 버스의 경우 리소스 그룹 개념이 없지만 Azure Resource Manager가 지역마다 기본 리소스 그룹을 만듭니다. 리소스 그룹은 일반적으로 'Default-ServiceBus-[region]' 형식입니다. 예를 들어 'Default-ServiceBus-EastUS', 'Default-ServiceBus-WestUS', 'Default-ServiceBus-AustraliaEast' 등입니다.
+> 서비스 버스에 대 한 hello 리소스 그룹 개념 존재 하지 않는 있지만 Azure 리소스 관리자 / 지역당 기본 리소스 그룹을 만듭니다. hello 리소스 그룹은 일반적으로 hello 'Default-ServiceBus-[region]' 형태로 표시 합니다. 예를 들어 'Default-ServiceBus-EastUS', 'Default-ServiceBus-WestUS', 'Default-ServiceBus-AustraliaEast' 등입니다.
 >
 >

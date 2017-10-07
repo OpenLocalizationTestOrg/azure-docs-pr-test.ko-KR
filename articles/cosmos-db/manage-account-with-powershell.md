@@ -1,5 +1,5 @@
 ---
-title: "Azure Cosmos DB 자동화 - Powershell로 관리 | Microsoft Docs"
+title: "Powershell 사용한 관리 aaaAzure Cosmos DB 자동화-| Microsoft Docs"
 description: "Azure Powershell을 사용하여 Azure Cosmos DB 계정을 관리합니다."
 services: cosmos-db
 author: dmakwana
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/21/2017
 ms.author: dimakwan
-ms.openlocfilehash: 25c543528119410dff0684845a713dcb0d6151d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3239fb815918a0e47bff69fcd1ab6562519e429b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-cosmos-db-account-using-powershell"></a>PowerShell을 사용하여 Azure Cosmos DB 계정 만들기
 
-이 문서에서는 Azure Powershell을 사용하여 Azure Cosmos DB 데이터베이스 계정 관리를 자동화하는 명령에 대해 설명합니다. [다중 하위 지역 데이터베이스 계정][scaling-globally]에서 계정 키 및 장애 조치 우선 순위를 관리하는 명령도 포함되어 있습니다. 데이터베이스 계정을 업데이트하면 일관성 정책을 수정하고 하위 지역을 추가/제거할 수 있습니다. Azure Cosmos DB 계정의 플랫폼 간 관리를 위해 [Azure CLI](cli-samples.md), [리소스 공급자 REST API][rp-rest-api] 또는 [Azure Portal](create-documentdb-dotnet.md#create-account)을 사용할 수 있습니다.
+hello 다음 가이드에서는 설명 Azure Powershell을 사용 하 여 Azure Cosmos DB 데이터베이스 계정 명령 tooautomate 관리. 에 포함 되어 명령 toomanage 계정 키 및 장애 조치 우선 순위에서 [다중 지역 데이터베이스 계정][scaling-globally]합니다. 데이터베이스 계정을 업데이트 하는 사용 하면 toomodify 일관성 정책 및 영역 추가/제거 합니다. Azure Cosmos DB 계정의 플랫폼 간 관리를 위해 사용할 수 있습니다 [Azure CLI](cli-samples.md), hello [리소스 공급자 REST API][rp-rest-api], 또는 hello [Azure 포털](create-documentdb-dotnet.md#create-account)합니다.
 
 ## <a name="getting-started"></a>시작하기
 
-[Azure PowerShell을 설치 및 구성하는 방법][powershell-install-configure]의 지침에 따라 Powershell에서 Azure Resource Manager 계정을 설치하고 로그인합니다.
+Hello 지침에 따라 [어떻게 tooinstall Azure PowerShell을 구성 하 고] [ powershell-install-configure] tooinstall tooyour Azure 리소스 관리자 로그인 계정에 Powershell 합니다.
 
 ### <a name="notes"></a>참고 사항
 
-* 사용자에게 확인을 요구하지 않고 다음 명령을 실행하려면 명령에 `-Force` 플래그를 추가합니다.
-* 다음 명령은 모두 동기식입니다.
+* Tooexecute hello 사용자에 게 확인 하지 않고도 명령 뒤, 원하는 경우 추가 hello `-Force` toohello 명령 플래그를 지정 합니다.
+* 다음 명령은 모든 hello는 동기적입니다.
 
 ## <a id="create-documentdb-account-powershell"></a> Azure Cosmos DB 계정 만들기
 
-이 명령을 사용하면 Azure Cosmos DB 데이터베이스 계정을 만들 수 있습니다. 새 데이터베이스 계정을 특정 [일관성 정책](consistency-levels.md)을 사용하여 단일 하위 지역 또는 [다중 하위 지역][scaling-globally]으로 구성합니다.
+이 명령은 Azure Cosmos DB 데이터베이스 계정 toocreate가 있습니다. 새 데이터베이스 계정을 특정 [일관성 정책](consistency-levels.md)을 사용하여 단일 하위 지역 또는 [다중 하위 지역][scaling-globally]으로 구성합니다.
 
     $locations = @(@{"locationName"="<write-region-location>"; "failoverPriority"=0}, @{"locationName"="<read-region-location>"; "failoverPriority"=1})
     $iprangefilter = "<ip-range-filter>"
@@ -44,15 +44,15 @@ ms.lasthandoff: 07/11/2017
     $CosmosDBProperties = @{"databaseAccountOfferType"="Standard"; "locations"=$locations; "consistencyPolicy"=$consistencyPolicy; "ipRangeFilter"=$iprangefilter}
     New-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName <resource-group-name>  -Location "<resource-group-location>" -Name <database-account-name> -Properties $CosmosDBProperties
     
-* `<write-region-location>` - 데이터베이스 계정의 쓰기 하위 지역의 위치 이름입니다. 이 위치에는 0인 장애 조치 우선 순위 값이 있어야 합니다. 데이터베이스 계정마다 정확히 쓰기 하위 지역 하나만 있어야 합니다.
-* `<read-region-location>` - 데이터베이스 계정의 읽기 하위 지역의 위치 이름입니다. 이 위치에는 0보다 큰 장애 조치 우선 순위 값이 있어야 합니다. 데이터베이스 계정마다 읽기 하위 지역이 둘 이상 있을 수 있습니다.
-* `<ip-range-filter>` 지정된 데이터베이스 계정에 대해 허용된 클라이언트 IP 목록으로 포함할 IP 주소 집합 또는 IP 주소 범위를 CIDR 형식으로 지정합니다. IP 주소/범위는 쉼표로 구분하며 공백을 포함해서는 안 됩니다. 자세한 내용은 [Azure Cosmos DB 방화벽 지원](firewall-support.md)을 참조하세요.
-* `<default-consistency-level>`Azure Cosmos DB 계정의 기본 일관성 수준입니다. 자세한 내용은 [Azure Cosmos DB의 일관성 수준](consistency-levels.md)을 참조하세요.
-* `<max-interval>` - 제한된 부실(Bounded Staleness) 일관성과 함께 사용되는 경우 이 값은 부실 허용 시간(초)을 나타냅니다. 값의 허용 범위는 1-100입니다.
-* `<max-staleness-prefix>` - 제한된 부실 일관성과 함께 사용되는 경우 이 값은 허용된 부실 요청 수를 나타냅니다. 이 값의 허용 범위는 1-2,147,483,647입니다.
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<resource-group-location>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 Azure 리소스 그룹의 위치입니다.
-* `<database-account-name>` - 만들어질 Azure Cosmos DB 데이터베이스 계정의 이름입니다. 소문자, 숫자, '-'(대시) 문자만 사용할 수 있으며, 3-50자여야 합니다.
+* `<write-region-location>`hello의 hello 위치 이름 hello 데이터베이스 계정의 지역을 작성 합니다. 이 위치는 필수 toohave 장애 조치 우선 순위 값이 0입니다. 데이터베이스 계정마다 정확히 쓰기 하위 지역 하나만 있어야 합니다.
+* `<read-region-location>`hello 데이터베이스 계정의 지역 대 한 읽기의 hello hello 위치 이름입니다. 이 위치는 필수 toohave 장애 조치 우선 순위 값이 0 보다 큰 값입니다. 데이터베이스 계정마다 읽기 하위 지역이 둘 이상 있을 수 있습니다.
+* `<ip-range-filter>`Hello 허용 지정된 데이터베이스 계정에 대 한 클라이언트 Ip의 목록으로 포함 하는 CIDR 형식 toobe hello 집합이 IP 주소 또는 IP 주소 범위를 지정 합니다. IP 주소/범위는 쉼표로 구분하며 공백을 포함해서는 안 됩니다. 자세한 내용은 [Azure Cosmos DB 방화벽 지원](firewall-support.md)을 참조하세요.
+* `<default-consistency-level>`hello Azure Cosmos DB 계정 hello 기본 일관성 수준입니다. 자세한 내용은 [Azure Cosmos DB의 일관성 수준](consistency-levels.md)을 참조하세요.
+* `<max-interval>`Bounded Staleness 일관성을 사용 하는 경우이 값 hello 시간 양을 (초)의 부실 허용할 것인지를 나타냅니다. 값의 허용 범위는 1-100입니다.
+* `<max-staleness-prefix>`Bounded Staleness 일관성을 사용 하는 경우이 값 hello 허용 하는 오래 된 요청 수를 나타냅니다. 이 값의 허용 범위는 1-2,147,483,647입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<resource-group-location>`hello 위치의 hello Azure 리소스 그룹 toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello Azure Cosmos DB 데이터베이스 계정 toobe 생성의 hello 이름입니다. 사용할 수 있습니다만 소문자, 숫자, hello '-' 문자, 있으며 3 ~ 50 자 사이 여야 합니다.
 
 예제: 
 
@@ -63,15 +63,15 @@ ms.lasthandoff: 07/11/2017
     New-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "rg-test" -Location "West US" -Name "docdb-test" -Properties $CosmosDBProperties
 
 ### <a name="notes"></a>참고 사항
-* 앞의 예제에서는 두 개의 하위 지역이 있는 데이터베이스 계정을 만듭니다. 하나의 하위 지역(쓰기 하위 지역으로 지정되고 장애 조치 우선 순위 값이 0임) 또는 세 개 이상의 하위 지역이 있는 데이터베이스 계정도 만들 수 있습니다. 자세한 내용은 [다중 하위 지역 데이터베이스 계정][scaling-globally]을 참조하세요.
-* 위치는 Azure Cosmos DB를 일반적으로 사용할 수 있는 하위 지역이어야 합니다. 현재 하위 지역 목록은 [Azure 지역 페이지](https://azure.microsoft.com/regions/#services)에 제공됩니다.
+* hello 앞의 예제 데이터베이스 계정을 만듭니다 두 영역. 가능한 toocreate 하나의 지역 (hello 쓰기 영역으로 지정 하 고 장애 조치 우선 순위 값이 0) 또는 두 개 이상의 영역과 함께 데이터베이스 계정 이기도 합니다. 자세한 내용은 [다중 하위 지역 데이터베이스 계정][scaling-globally]을 참조하세요.
+* hello 위치 Azure Cosmos DB는 일반적으로 사용할 수 있는 영역 이어야 합니다. hello hello 현재 지역 목록이 제공 됩니다 [Azure 지역 페이지](https://azure.microsoft.com/regions/#services)합니다.
 
 ## <a id="update-documentdb-account-powershell"></a> DocumentDB 데이터베이스 계정 업데이트
 
-이 명령을 사용하면 Azure Cosmos DB 데이터베이스 계정 속성을 업데이트할 수 있습니다. 여기에는 일관성 정책과 데이터베이스 계정이 있는 위치가 포함됩니다.
+이 명령을 사용 하면 tooupdate Azure Cosmos DB 데이터베이스 계정 속성입니다. Hello 일관성 정책 및 hello 위치는 hello 데이터베이스 계정이에 있는이 포함 됩니다.
 
 > [!NOTE]
-> 이 명령을 사용하면 하위 지역을 추가/제거할 수 있지만 장애 조치 우선 순위는 수정할 수 없습니다. 장애 조치 우선 순위를 수정하려면 [아래 예제](#modify-failover-priority-powershell)를 참조하세요.
+> 이 명령은 tooadd 및 제거 하는 영역 사용 하면 하지만 toomodify 장애 조치 우선 순위 수 하지 않습니다. toomodify 장애 조치 우선 순위 참조 [아래](#modify-failover-priority-powershell)합니다.
 
     $locations = @(@{"locationName"="<write-region-location>"; "failoverPriority"=0}, @{"locationName"="<read-region-location>"; "failoverPriority"=1})
     $iprangefilter = "<ip-range-filter>"
@@ -79,15 +79,15 @@ ms.lasthandoff: 07/11/2017
     $CosmosDBProperties = @{"databaseAccountOfferType"="Standard"; "locations"=$locations; "consistencyPolicy"=$consistencyPolicy; "ipRangeFilter"=$iprangefilter}
     Set-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName <resource-group-name> -Name <database-account-name> -Properties $CosmosDBProperties
     
-* `<write-region-location>` - 데이터베이스 계정의 쓰기 하위 지역의 위치 이름입니다. 이 위치에는 0인 장애 조치 우선 순위 값이 있어야 합니다. 데이터베이스 계정마다 정확히 쓰기 하위 지역 하나만 있어야 합니다.
-* `<read-region-location>` - 데이터베이스 계정의 읽기 하위 지역의 위치 이름입니다. 이 위치에는 0보다 큰 장애 조치 우선 순위 값이 있어야 합니다. 데이터베이스 계정마다 읽기 하위 지역이 둘 이상 있을 수 있습니다.
-* `<default-consistency-level>`Azure Cosmos DB 계정의 기본 일관성 수준입니다. 자세한 내용은 [Azure Cosmos DB의 일관성 수준](consistency-levels.md)을 참조하세요.
-* `<ip-range-filter>` 지정된 데이터베이스 계정에 대해 허용된 클라이언트 IP 목록으로 포함할 IP 주소 집합 또는 IP 주소 범위를 CIDR 형식으로 지정합니다. IP 주소/범위는 쉼표로 구분하며 공백을 포함해서는 안 됩니다. 자세한 내용은 [Azure Cosmos DB 방화벽 지원](firewall-support.md)을 참조하세요.
-* `<max-interval>` - 제한된 부실(Bounded Staleness) 일관성과 함께 사용되는 경우 이 값은 부실 허용 시간(초)을 나타냅니다. 값의 허용 범위는 1-100입니다.
-* `<max-staleness-prefix>` - 제한된 부실 일관성과 함께 사용되는 경우 이 값은 허용된 부실 요청 수를 나타냅니다. 이 값의 허용 범위는 1-2,147,483,647입니다.
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<resource-group-location>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 Azure 리소스 그룹의 위치입니다.
-* `<database-account-name>` - 업데이트할 Azure Cosmos DB 데이터베이스 계정의 이름입니다.
+* `<write-region-location>`hello의 hello 위치 이름 hello 데이터베이스 계정의 지역을 작성 합니다. 이 위치는 필수 toohave 장애 조치 우선 순위 값이 0입니다. 데이터베이스 계정마다 정확히 쓰기 하위 지역 하나만 있어야 합니다.
+* `<read-region-location>`hello 데이터베이스 계정의 지역 대 한 읽기의 hello hello 위치 이름입니다. 이 위치는 필수 toohave 장애 조치 우선 순위 값이 0 보다 큰 값입니다. 데이터베이스 계정마다 읽기 하위 지역이 둘 이상 있을 수 있습니다.
+* `<default-consistency-level>`hello Azure Cosmos DB 계정 hello 기본 일관성 수준입니다. 자세한 내용은 [Azure Cosmos DB의 일관성 수준](consistency-levels.md)을 참조하세요.
+* `<ip-range-filter>`Hello 허용 지정된 데이터베이스 계정에 대 한 클라이언트 Ip의 목록으로 포함 하는 CIDR 형식 toobe hello 집합이 IP 주소 또는 IP 주소 범위를 지정 합니다. IP 주소/범위는 쉼표로 구분하며 공백을 포함해서는 안 됩니다. 자세한 내용은 [Azure Cosmos DB 방화벽 지원](firewall-support.md)을 참조하세요.
+* `<max-interval>`Bounded Staleness 일관성을 사용 하는 경우이 값 hello 시간 양을 (초)의 부실 허용할 것인지를 나타냅니다. 값의 허용 범위는 1-100입니다.
+* `<max-staleness-prefix>`Bounded Staleness 일관성을 사용 하는 경우이 값 hello 허용 하는 오래 된 요청 수를 나타냅니다. 이 값의 허용 범위는 1-2,147,483,647입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<resource-group-location>`hello 위치의 hello Azure 리소스 그룹 toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello Azure Cosmos DB 데이터베이스 계정 toobe 업데이트의 hello 이름입니다.
 
 예제: 
 
@@ -99,12 +99,12 @@ ms.lasthandoff: 07/11/2017
 
 ## <a id="delete-documentdb-account-powershell"></a> DocumentDB 데이터베이스 계정 삭제
 
-이 명령을 사용하면 기존 Azure Cosmos DB 데이터베이스 계정을 삭제할 수 있습니다.
+이 명령은 toodelete를 기존 Azure Cosmos DB 데이터베이스 계정이 있습니다.
 
     Remove-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "<resource-group-name>" -Name "<database-account-name>"
     
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<database-account-name>` - 삭제할 Azure Cosmos DB 데이터베이스 계정의 이름입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello Azure Cosmos DB 데이터베이스 계정 toobe 삭제의 hello 이름입니다.
 
 예제:
 
@@ -112,12 +112,12 @@ ms.lasthandoff: 07/11/2017
 
 ## <a id="get-documentdb-properties-powershell"></a> DocumentDB 데이터베이스 계정 속성 가져오기
 
-이 명령을 사용하면 기존 Azure Cosmos DB 데이터베이스 계정의 속성을 가져올 수 있습니다.
+이 명령은 기존 Azure Cosmos DB 데이터베이스 계정의 tooget hello 속성이 있습니다.
 
     Get-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "<resource-group-name>" -Name "<database-account-name>"
 
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<database-account-name>` - Azure Cosmos DB 데이터베이스 계정의 이름입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello 이름 hello Azure Cosmos DB 데이터베이스 계정입니다.
 
 예제:
 
@@ -125,10 +125,10 @@ ms.lasthandoff: 07/11/2017
 
 ## <a id="update-tags-powershell"></a> - Azure Cosmos DB 데이터베이스 계정의 업데이트 태그입니다.
 
-다음 예제에서는 Azure Cosmos DB 데이터베이스 계정에 대해 [Azure 리소스 태그][azure-resource-tags]를 설정하는 방법을 설명합니다.
+hello 다음 예에서는 설명 방법을 tooset [Azure 리소스 태그] [ azure-resource-tags] 데이터베이스 계정을 Azure Cosmos DB에 대 한 합니다.
 
 > [!NOTE]
-> 이 명령은 `-Tags` 플래그에 해당 매개 변수를 추가하여 만들기 또는 업데이트 명령과 결합할 수 있습니다.
+> 이 명령은 hello와 결합할 수 있습니다 만들거나 hello를 추가 하 여 업데이트 명령을 `-Tags` hello 해당 매개 변수를 사용 하는 플래그입니다.
 
 예제:
 
@@ -137,12 +137,12 @@ ms.lasthandoff: 07/11/2017
 
 ## <a id="list-account-keys-powershell"></a> 계정 키 나열
 
-Azure Cosmos DB 계정을 만들면 해당 서비스에서 Azure Cosmos DB 계정에 액세스할 때 인증에 사용할 수 있는 2개의 마스터 액세스 키가 생성됩니다. Azure Cosmos DB에서는 2개의 액세스 키를 제공해서 사용자가 Azure Cosmos DB 계정에 대한 중단 없이 키를 다시 생성할 수 있습니다. 읽기 전용 작업을 인증하기 위한 읽기 전용 키도 사용할 수 있습니다. 두 개의 읽기-쓰기 키(기본 및 보조) 및 두 개의 읽기 전용 키(기본 및 보조)가 있습니다.
+Azure Cosmos DB 계정을 만들 때 hello 서비스는 hello Azure Cosmos DB 계정에 액세스할 때 인증에 사용할 수 있는 두 개의 마스터 액세스 키를 생성 합니다. 두 개의 액세스 키를 제공 함으로써 Azure Cosmos DB 하면 없는 중단 tooyour Azure Cosmos DB 계정 사용 하 여 tooregenerate hello 키. 읽기 전용 작업을 인증하기 위한 읽기 전용 키도 사용할 수 있습니다. 두 개의 읽기-쓰기 키(기본 및 보조) 및 두 개의 읽기 전용 키(기본 및 보조)가 있습니다.
 
     $keys = Invoke-AzureRmResourceAction -Action listKeys -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "<resource-group-name>" -Name "<database-account-name>"
 
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<database-account-name>` - Azure Cosmos DB 데이터베이스 계정의 이름입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello 이름 hello Azure Cosmos DB 데이터베이스 계정입니다.
 
 예제:
 
@@ -150,12 +150,12 @@ Azure Cosmos DB 계정을 만들면 해당 서비스에서 Azure Cosmos DB 계�
 
 ## <a id="list-connection-strings-powershell"></a> 연결 문자열 나열
 
-MongoDB 계정의 경우 MongoDB 앱을 데이터베이스 계정에 연결하기 위한 연결 문자열은 다음 명령을 사용하여 검색할 수 있습니다.
+MongoDB 계정에 대 한 hello 연결 문자열 tooconnect MongoDB 앱 toohello 데이터베이스 계정 hello 다음 명령을 사용 하 여 검색할 수 있습니다.
 
     $keys = Invoke-AzureRmResourceAction -Action listConnectionStrings -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "<resource-group-name>" -Name "<database-account-name>"
 
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<database-account-name>` - Azure Cosmos DB 데이터베이스 계정의 이름입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello 이름 hello Azure Cosmos DB 데이터베이스 계정입니다.
 
 예제:
 
@@ -163,13 +163,13 @@ MongoDB 계정의 경우 MongoDB 앱을 데이터베이스 계정에 연결하�
 
 ## <a id="regenerate-account-key-powershell"></a> 계정 키 다시 생성
 
-저장소 연결을 더욱 안전하게 유지할 수 있도록 정기적으로 Azure Cosmos DB 계정의 액세스 키를 변경해야 합니다. 두 개의 액세스 키가 할당되므로 액세스 키 하나를 다시 생성하는 동안 다른 액세스 키를 사용하여 Azure Cosmos DB 계정에 대한 연결을 유지할 수 있습니다.
+Hello 액세스 키 tooyour Azure Cosmos DB 계정을 변경 해야 주기적으로 toohelp 유지 되며 연결 더 안전 합니다. 두 개의 액세스 키 tooenable 할당 하면 toomaintain 연결 toohello 다시 생성 하는 동안에 한 선택 키를 사용 하 여 Azure Cosmos DB 계정을 hello 다른 선택 키입니다.
 
     Invoke-AzureRmResourceAction -Action regenerateKey -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "<resource-group-name>" -Name "<database-account-name>" -Parameters @{"keyKind"="<key-kind>"}
 
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<database-account-name>` - Azure Cosmos DB 데이터베이스 계정의 이름입니다.
-* `<key-kind>` - 다시 생성할 네 가지 유형의 키, 즉 ["Primary"|"Secondary"|"PrimaryReadonly"|"SecondaryReadonly"] 중 하나입니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello 이름 hello Azure Cosmos DB 데이터베이스 계정입니다.
+* `<key-kind>`Hello 4 유형의 키 중 하나: ["Primary" | " 보조 "|" PrimaryReadonly "|" SecondaryReadonly "] 싶다는 의사를 tooregenerate 합니다.
 
 예제:
 
@@ -177,15 +177,15 @@ MongoDB 계정의 경우 MongoDB 앱을 데이터베이스 계정에 연결하�
 
 ## <a id="modify-failover-priority-powershell"></a> Azure Cosmos DB 데이터베이스 계정의 장애 조치(Failover) 우선 순위 수정
 
-다중 하위 지역 데이터베이스 계정의 경우 Azure Cosmos DB 데이터베이스 계정이 있는 다양한 하위 지역의 장애 조치(Failover) 우선 순위를 변경할 수 있습니다. Azure Cosmos DB 데이터베이스 계정의 장애 조치(Failover)에 대한 자세한 내용은 [Azure Cosmos DB를 사용하여 전역적으로 데이터 배포][distribute-data-globally]를 참조하세요.
+다중 영역 데이터베이스 계정에 대 한 Azure Cosmos DB 데이터베이스 계정 hello는 다양 한 지역에 있는 hello의 hello 장애 조치 우선 순위를 변경할 수 있습니다. Azure Cosmos DB 데이터베이스 계정의 장애 조치(Failover)에 대한 자세한 내용은 [Azure Cosmos DB를 사용하여 전역적으로 데이터 배포][distribute-data-globally]를 참조하세요.
 
     $failoverPolicies = @(@{"locationName"="<write-region-location>"; "failoverPriority"=0},@{"locationName"="<read-region-location>"; "failoverPriority"=1})
     Invoke-AzureRmResourceAction -Action failoverPriorityChange -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "<resource-group-name>" -Name "<database-account-name>" -Parameters @{"failoverPolicies"=$failoverPolicies}
 
-* `<write-region-location>` - 데이터베이스 계정의 쓰기 하위 지역의 위치 이름입니다. 이 위치에는 0인 장애 조치 우선 순위 값이 있어야 합니다. 데이터베이스 계정마다 정확히 쓰기 하위 지역 하나만 있어야 합니다.
-* `<read-region-location>` - 데이터베이스 계정의 읽기 하위 지역의 위치 이름입니다. 이 위치에는 0보다 큰 장애 조치 우선 순위 값이 있어야 합니다. 데이터베이스 계정마다 읽기 하위 지역이 둘 이상 있을 수 있습니다.
-* `<resource-group-name>` - 새 Azure Cosmos DB 데이터베이스 계정이 속하는 [Azure 리소스 그룹][azure-resource-groups]의 이름입니다.
-* `<database-account-name>` - Azure Cosmos DB 데이터베이스 계정의 이름입니다.
+* `<write-region-location>`hello의 hello 위치 이름 hello 데이터베이스 계정의 지역을 작성 합니다. 이 위치는 필수 toohave 장애 조치 우선 순위 값이 0입니다. 데이터베이스 계정마다 정확히 쓰기 하위 지역 하나만 있어야 합니다.
+* `<read-region-location>`hello 데이터베이스 계정의 지역 대 한 읽기의 hello hello 위치 이름입니다. 이 위치는 필수 toohave 장애 조치 우선 순위 값이 0 보다 큰 값입니다. 데이터베이스 계정마다 읽기 하위 지역이 둘 이상 있을 수 있습니다.
+* `<resource-group-name>`hello의 hello 이름 [Azure 리소스 그룹] [ azure-resource-groups] toowhich hello 새 Azure Cosmos DB 데이터베이스 계정에 속해 있습니다.
+* `<database-account-name>`hello 이름 hello Azure Cosmos DB 데이터베이스 계정입니다.
 
 예제:
 
@@ -194,11 +194,11 @@ MongoDB 계정의 경우 MongoDB 앱을 데이터베이스 계정에 연결하�
 
 ## <a name="next-steps"></a>다음 단계
 
-* .NET을 사용하여 연결하려면 [.NET을 사용하여 연결 및 쿼리](create-documentdb-dotnet.md)를 참조하세요.
-* .NET Core를 사용하여 연결하려면 [.NET Core를 사용하여 연결 및 쿼리](create-documentdb-dotnet-core.md)를 참조하세요.
-* Node.js를 사용하여 연결하려면 [Node.js 및 MongoDB 앱을 사용하여 연결 및 쿼리](create-mongodb-nodejs.md)를 참조하세요.
+* .NET을 사용 하 여 tooconnect 참조 [연결 및 쿼리.net](create-documentdb-dotnet.md)합니다.
+* .NET Core를 사용 하 여 tooconnect 참조 [연결 및.NET Core를 사용 하 여 쿼리](create-documentdb-dotnet-core.md)합니다.
+* Node.js를 사용 하 여 tooconnect 참조 [연결 및 Node.js 및 MongoDB 앱으로 쿼리](create-mongodb-nodejs.md)합니다.
 
-<!--Reference style links - using these makes the source content way more readable than using inline links-->
+<!--Reference style links - using these makes hello source content way more readable than using inline links-->
 [powershell-install-configure]: https://docs.microsoft.com/azure/powershell-install-configure
 [scaling-globally]: distribute-data-globally.md#EnableGlobalDistribution
 [distribute-data-globally]: distribute-data-globally.md

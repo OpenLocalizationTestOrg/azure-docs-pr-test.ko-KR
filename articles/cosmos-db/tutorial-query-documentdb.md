@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB에서 SQL을 사용하여 쿼리하는 방법 | Microsoft Docs"
-description: "Azure Cosmos DB에서 SQL을 사용하여 DocumentDB 데이터를 쿼리하는 방법을 알아봅니다."
+title: "Cosmos DB Azure에서에서 SQL로 aaaHow tooquery? | Microsoft Docs"
+description: "Sql Azure Cosmos DB에서 DocumentDB 데이터로 tooquery에 알아봅니다"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: a2a562c06c6302b9548e758b4c6754ec13b6001d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3dc51acf92cb78d4f4d9dbac7ec54b1382431cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-how-to-query-using-sql"></a>Azure Cosmos DB: SQL을 사용하여 쿼리하는 방법
+# <a name="azure-cosmos-db-how-tooquery-using-sql"></a>Azure Cosmos DB: 어떻게 SQL을 사용 하 여 tooquery?
 
-Azure Cosmos DB [DocumentDB API](documentdb-introduction.md)는 SQL을 사용하여 문서를 쿼리할 수 있도록 지원합니다. 이 문서에서는 샘플 문서 및 두 가지 샘플 SQL 쿼리와 결과를 제공합니다.
+hello Azure Cosmos DB [DocumentDB API](documentdb-introduction.md) 지원 SQL을 사용 하 여 문서를 쿼리 합니다. 이 문서에서는 샘플 문서 및 두 가지 샘플 SQL 쿼리와 결과를 제공합니다.
 
-이 문서에서 다루는 작업은 다음과 같습니다. 
+이 문서에서는 다음 작업 hello를 다룹니다. 
 
 > [!div class="checklist"]
 > * SQL을 사용한 데이터 쿼리
 
 ## <a name="sample-document"></a>샘플 문서
 
-이 문서의 SQL 쿼리에서는 다음과 같은 샘플 문서를 사용합니다.
+이 문서의 hello SQL 쿼리는 다음 샘플 문서 hello를 사용 합니다.
 
 ```json
 {
@@ -65,18 +65,18 @@ Azure Cosmos DB [DocumentDB API](documentdb-introduction.md)는 SQL을 사용하
 ```
 ## <a name="where-can-i-run-sql-queries"></a>SQL 쿼리를 실행할 수 있는 위치
 
-Azure Portal의 [데이터 탐색기]를 사용하여 [REST API 및 SDK](documentdb-sdk-dotnet.md)를 통해 쿼리를 실행할 수 있으며, 기존 샘플 데이터 집합에 대해 쿼리를 실행하는 [쿼리 실습](https://www.documentdb.com/sql/demo)도 사용할 수 있습니다.
+Hello hello 통해 Azure 포털에에서 있는 데이터 탐색기 hello를 사용 하 여 쿼리를 실행할 수 있습니다 [REST API와 Sdk](documentdb-sdk-dotnet.md), 및에 hello [Query playground](https://www.documentdb.com/sql/demo), 기존 샘플 데이터 집합에서 쿼리를 실행 합니다.
 
 SQL 쿼리에 대한 자세한 내용은 다음을 참조하세요.
 * [SQL 쿼리 및 SQL 구문](documentdb-sql-query.md)
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서에서는 Azure Cosmos DB 계정과 컬렉션이 있다고 가정합니다. 이들 중 하나라도 없는가요? 그러면 [5분 퀵 스타트](create-mongodb-nodejs.md) 또는 [개발자 자습서](tutorial-develop-mongodb.md)를 수행하여 계정과 컬렉션을 만들어 놓으세요.
+이 자습서에서는 Azure Cosmos DB 계정과 컬렉션이 있다고 가정합니다. 이들 중 하나라도 없는가요? 전체 hello [5 분 퀵 스타트](create-mongodb-nodejs.md) 또는 hello [개발자 자습서](tutorial-develop-mongodb.md) toocreate 계정과 컬렉션입니다.
 
 ## <a name="example-query-1"></a>예제 쿼리 1
 
-위의 샘플 가족 문서를 고려해 볼 때 다음 SQL 쿼리에서는 ID 필드가 `WakefieldFamily`와 일치하는 문서를 반환합니다. `SELECT *` 문이므로 쿼리 결과는 완전한 JSON 문서입니다.
+매개 변수로 받아 hello 샘플 패밀리 문서 위의 다음 SQL 쿼리에서 반환 hello 문서 hello id 필드와 일치 하는 `WakefieldFamily`합니다. 이기 때문에 `SELECT *` 문, hello 쿼리의 hello 출력은 JSON 문서를 완료 하는 hello:
 
 **쿼리**
 
@@ -117,7 +117,7 @@ SQL 쿼리에 대한 자세한 내용은 다음을 참조하세요.
 
 ## <a name="example-query-2"></a>예제 쿼리 2
 
-다음 쿼리에서는 ID가 `WakefieldFamily`와 일치하는 가족의 자식 이름을 학년(grade) 순서로 정렬하여 모두 반환합니다.
+hello 다음 쿼리 id와 일치 하는 hello 제품군의 자식 항목의 모든 hello 지정 된 이름을 반환 `WakefieldFamily` 해당 등급으로 정렬 합니다.
 
 **쿼리**
 
@@ -137,12 +137,12 @@ SQL 쿼리에 대한 자세한 내용은 다음을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 다음을 수행했습니다.
+이 자습서에서는 hello 다음 작업을 수행 하면:
 
 > [!div class="checklist"]
-> * SQL을 사용하여 쿼리하는 방법  
+> * 방법에 대해 배웠습니다 tooquery SQL을 사용 하 여  
 
-이제 전 세계로 데이터를 배포하는 방법을 알아보려면 다음 자습서로 진행할 수 있습니다.
+이제 진행할 수 있습니다 다음 자습서 toolearn toohello 어떻게 toodistribute 데이터 전체적으로 합니다.
 
 > [!div class="nextstepaction"]
 > [전 세계로 데이터 배포](tutorial-global-distribution-documentdb.md)

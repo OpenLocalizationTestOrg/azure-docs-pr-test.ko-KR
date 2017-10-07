@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect: Seamless Single Sign-On 문제 해결 | Microsoft Docs"
-description: "이 항목에서는 Azure AD Seamless SSO(Azure Active Directory Seamless Single Sign-On) 문제를 해결하는 방법을 설명합니다."
+description: "이 항목에서는 설명 방법을 tootroubleshoot Azure Active Directory 원활한 Single Sign-on (Azure AD 원활한 SSO)."
 services: active-directory
 keywords: "Azure AD Connect의 정의, Active Directory 설치, Azure AD에 대한 필수 구성 요소, SSO, Single Sign-on"
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: billmath
-ms.openlocfilehash: bc4ff9125553c8918df3a1f84041560a5b7d4cd8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f1c1c11522f22d5bc742c126fff483c5b06e1f06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-active-directory-seamless-single-sign-on"></a>Azure Active Directory Seamless Single Sign-On 문제 해결
 
@@ -26,59 +26,59 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="known-issues"></a>알려진 문제
 
-- 30개 이상의 AD 포리스트를 동기화하면 Azure AD Connect를 통해 Seamless SSO를 활성화할 수 없습니다. 이 경우 테넌트에서 이 기능을 [수동으로 활성화](#manual-reset-of-azure-ad-seamless-sso)하여 해결할 수 있습니다.
-- "로컬 인트라넷" 영역 대신 "신뢰할 수 있는 사이트" 영역에 Azure AD 서비스 URL(https://autologon.microsoftazuread-sso.com, https://aadg.windows.net.nsatc.net)을 추가하면 **사용자가 로그인 할 수 없습니다**.
+- 30개 이상의 AD 포리스트를 동기화하면 Azure AD Connect를 통해 Seamless SSO를 활성화할 수 없습니다. 문제를 해결할 수 있습니다 [수동으로 활성화 해야](#manual-reset-of-azure-ad-seamless-sso) 테 넌 트에 hello 기능입니다.
+- "추가 Azure AD 서비스 Url (https://autologon.microsoftazuread-sso.com, https://aadg.windows.net.nsatc.net) toohello"신뢰할 수 있는 사이트"hello 로컬 인트라넷 영역 대신 영역" **사용자가 로그인**합니다.
 - Firefox 및 Edge의 개인 검색 모드에서는 Seamless SSO가 작동하지 않습니다. 또한 Internet Explorer에서 향상된 보호 모드가 켜져 있을 때도 마찬가지입니다.
 
 >[!IMPORTANT]
->최근 고객이 신고한 문제를 조사하기 위해 에지에 대한 지원을 롤백했습니다.
+>에서는 최근에 롤백 가장자리 tooinvestigate에 대 한 지원 고객이 신고한 문제.
 
-## <a name="check-status-of-the-feature"></a>기능의 상태 확인
+## <a name="check-status-of-hello-feature"></a>Hello 기능의 상태를 확인 합니다.
 
-테넌트에서 Seamless SSO 기능이 여전히 **활성화**되어 있는지 확인합니다. [Azure Active Directory 관리 센터](https://aad.portal.azure.com/)의 **Azure AD Connect** 블레이드로 이동하여 상태를 확인할 수 있습니다.
+Hello 원활한 SSO 기능을는 여전히 확인 **Enabled** 테 넌 트에 있습니다. Toohello 이동 하 여 상태를 확인할 수 있습니다 **Azure AD Connect** hello에 블레이드 [Azure Active Directory 관리 센터](https://aad.portal.azure.com/)합니다.
 
 ![Azure Active Directory 관리 센터 - Azure AD Connect 블레이드](./media/active-directory-aadconnect-sso/sso10.png)
 
-## <a name="sign-in-failure-reasons-on-the-azure-active-directory-admin-center"></a>Azure Active Directory 관리 센터에서 로그인이 실패한 이유
+## <a name="sign-in-failure-reasons-on-hello-azure-active-directory-admin-center"></a>Hello Azure Active Directory 관리 센터에 로그인 실패 이유
 
-Seamless SSO를 사용하여 사용자 로그인 문제를 해결하려면 [Azure Active Directory 관리 센터](https://aad.portal.azure.com/)에서 [로그인 활동 보고서](../active-directory-reporting-activity-sign-ins.md)를 살펴보는 것이 좋습니다.
+원활한 SSO와 사용자 로그인 문제를 해결 하는 것이 좋습니다 toostart는 hello에 toolook [로그인 활동 보고서](../active-directory-reporting-activity-sign-ins.md) hello에 [Azure Active Directory 관리 센터](https://aad.portal.azure.com/)합니다.
 
 ![Azure Active Directory 관리 센터 - 로그인 보고서](./media/active-directory-aadconnect-sso/sso9.png)
 
-[Azure Active Directory 관리 센터](https://aad.portal.azure.com/)에서 **Azure Active Directory** -> **로그인**으로 차례로 이동하고 특정 사용자의 로그인 활동을 클릭합니다. **로그인 오류 코드** 필드를 찾습니다. 다음 표를 사용하여 해당 필드의 값을 실패 이유 및 해결에 매핑합니다.
+너무 이동**Azure Active Directory** -> **로그인** hello에 [Azure Active Directory 관리 센터](https://aad.portal.azure.com/) 특정 사용자의 로그인 활동을 클릭 합니다. Hello에 대 한 확인 **로그인 오류 코드** 필드입니다. 해당 필드 tooa 실패 이유 및 다음 표에 hello를 사용 하는 확인의 hello 값을 매핑하십시오.
 
 |로그인 오류 코드|로그인 실패 이유|해결 방법
 | --- | --- | ---
 | 81001 | 사용자의 Kerberos 티켓이 너무 큽니다. | 사용자의 그룹 멤버 자격 수를 줄이고 다시 시도합니다.
-| 81002 | 사용자의 Kerberos 티켓에 대한 유효성을 검사할 수 없습니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
-| 81003 | 사용자의 Kerberos 티켓에 대한 유효성을 검사할 수 없습니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
+| 81002 | 없습니다 toovalidate 사용자의 Kerberos 티켓입니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
+| 81003 | 없습니다 toovalidate 사용자의 Kerberos 티켓입니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
 | 81004 | Kerberos 인증 시도가 실패했습니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
-| 81008 | 사용자의 Kerberos 티켓에 대한 유효성을 검사할 수 없습니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
-| 81009 | 사용자의 Kerberos 티켓에 대한 유효성을 검사할 수 없습니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
-| 81010 | 사용자의 Kerberos 티켓이 만료되었거나 잘못되었으므로 Seamless SSO가 실패했습니다. | 사용자는 회사 네트워크 내부의 도메인 가입 장치에서 로그인해야 합니다.
-| 81011 | 사용자의 Kerberos 티켓 정보에 기반하여 사용자 개체를 찾을 수 없습니다. | Azure AD Connect를 사용하여 사용자 정보를 Azure AD와 동기화합니다.
-| 81012 | Azure AD에 로그인하려는 사용자가 장치에 로그인한 사용자와 다릅니다. | 다른 장치에서 로그인합니다.
-| 81013 | 사용자의 Kerberos 티켓 정보에 기반하여 사용자 개체를 찾을 수 없습니다. |Azure AD Connect를 사용하여 사용자 정보를 Azure AD와 동기화합니다. 
+| 81008 | 없습니다 toovalidate 사용자의 Kerberos 티켓입니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
+| 81009 | "Toovalidate 수 없습니다 사용자의 Kerberos 티켓입니다. | [문제 해결 검사 목록](#troubleshooting-checklist)을 참조하세요.
+| 81010 | 원활한 SSO 없으므로 hello 사용자의 Kerberos 티켓이 만료 되었거나 올바르지 않습니다. | 사용자는 회사 네트워크 내부 도메인에 가입 된 장치에서 toosign에 필요합니다.
+| 81011 | 없습니다 toofind 사용자 개체 hello 사용자의 Kerberos 티켓에 대 한 정보를 기반 합니다. | Azure AD에 Azure AD Connect toosynchronize 사용자 정보를 사용 합니다.
+| 81012 | tooAzure AD에서에서 toosign hello 사용자는 hello 장치에 로그인 하는 hello 사용자와에서 다릅니다. | 다른 장치에서 로그인합니다.
+| 81013 | 없습니다 toofind 사용자 개체 hello 사용자의 Kerberos 티켓에 대 한 정보를 기반 합니다. |Azure AD에 Azure AD Connect toosynchronize 사용자 정보를 사용 합니다. 
 
 ## <a name="troubleshooting-checklist"></a>문제 해결 검사 목록
 
-다음 검사 목록을 사용하여 Seamless SSO 문제를 해결합니다.
+다음 검사 목록 tootroubleshoot 원활한 SSO 문제 hello를 사용 합니다.
 
-- Azure AD Connect에서 Seamless SSO 기능이 활성화되는지 확인합니다. 차단된 포트 등과 같은 이유로 기능을 활성화할 수 없으면 모든 [필수 조건](active-directory-aadconnect-sso-quick-start.md#step-1-check-prerequisites)가 제대로 충족되고 있는지 확인합니다.
-- 이러한 Azure AD URL(https://autologon.microsoftazuread-sso.com 및 https://aadg.windows.net.nsatc.net)이 모두 사용자의 인트라넷 영역 설정의 일부인지 확인합니다.
-- 회사 장치가 AD 도메인에 가입되어 있는지 확인합니다.
-- 사용자가 AD 도메인 계정으로 장치에 로그인했는지 확인합니다.
-- 사용자의 계정이 Seamless SSO가 설정된 AD 포리스트에 있는지 확인합니다.
-- 장치가 회사 네트워크에 연결되어 있는지 확인합니다.
-- 장치의 시간이 Active Directory 및 도메인 컨트롤러의 시간과 동기화되고 서로 5분 이내에 있는지 확인합니다.
-- 명령 프롬프트에서 **klist** 명령을 사용하여 장치의 기존 Kerberos 티켓을 나열합니다. `AZUREADSSOACCT` 컴퓨터 계정으로 발급된 티켓이 있는지 확인합니다. 사용자의 Kerberos 티켓은 일반적으로 12시간 동안 유효합니다. Active Directory에 다른 설정이 있을 수 있습니다.
-- **klist purge** 명령을 사용하여 장치에서 기존 Kerberos 티켓을 제거한 다음 다시 시도합니다.
-- JavaScript 관련 문제가 있는지 확인하려면 브라우저의 콘솔 로그("개발자 도구" 아래)를 검토합니다.
-- [도메인 컨트롤러 로그](#domain-controller-logs)도 검토하세요.
+- Azure AD Connect에서 hello 원활한 SSO 기능 사용 하는지 확인 합니다. 모든 hello 있는지 확인 하는 경우 (예를 들어 인해 차단 tooa 포트) hello 기능을 사용할 수 없습니다 [필수](active-directory-aadconnect-sso-quick-start.md#step-1-check-prerequisites) 위치에 있습니다.
+- 이러한 Azure AD 두 Url 모두 (https://autologon.microsoftazuread-sso.com 및 https://aadg.windows.net.nsatc.net)은 hello 사용자 인트라넷 영역 설정의 일부를 확인 합니다.
+- 회사 장치 hello은 조인 된 toohello AD 도메인을 확인 합니다.
+- Hello 사용자가 AD 도메인 계정을 사용 하 여 toohello 장치에서 로그를 확인 합니다.
+- Hello 사용자의 계정이 설정 되어 있는지 AD 포리스트에서 원활한 SSO 된 위치에서 확인 하십시오.
+- Hello 장치는 hello 회사 네트워크에 연결 되어 있는지 확인 합니다.
+- Hello 장치 시간 hello Active Directory와 hello 도메인 컨트롤러의 시간과 동기화 되었는지 확인 하는 서로 5 분 이내.
+- Hello를 사용 하 여 hello 장치에서 기존 Kerberos 티켓이 목록 **klist** 명령 프롬프트에서 명령을 합니다. Hello에 대 한 티켓을 발급 하는 경우 확인 `AZUREADSSOACCT` 컴퓨터 계정이 있는지 합니다. 사용자의 Kerberos 티켓은 일반적으로 12시간 동안 유효합니다. Active Directory에 다른 설정이 있을 수 있습니다.
+- Hello를 사용 하 여 hello 장치에서 기존 Kerberos 티켓을 제거 **klist 제거** 명령을 실행 하 고 다시 시도 하십시오.
+- toodetermine는 JavaScript 관련 문제가 있을 경우 로그를 검토 hello 콘솔 hello 브라우저 (아래에서 "개발자 도구")입니다.
+- 검토 hello [도메인 컨트롤러 로그](#domain-controller-logs) 도 합니다.
 
 ### <a name="domain-controller-logs"></a>도메인 컨트롤러 로그
 
-도메인 컨트롤러에서 성공 감사가 사용되면 사용자가 Seamless SSO를 사용하여 로그인할 때마다 보안 항목이 이벤트 로그에 기록됩니다. 다음 쿼리를 사용하여 이러한 보안 이벤트를 찾을 수 있습니다(**AzureADSSOAcc$** 컴퓨터 계정과 연결된 **4769** 이벤트 찾기)
+도메인 컨트롤러에서 성공 감사를 사용 하는 경우 다음 사용자가 원활 하 게 SSO를 사용 하 여 로그인 할 때마다 보안 항목은 hello 이벤트 로그에 기록 합니다. 다음 쿼리에서 hello를 사용 하 여 이러한 보안 이벤트를 찾을 수 있습니다 (이벤트 **4769** hello 컴퓨터 계정에 연결 된 **AzureADSSOAcc$**):
 
 ```
     <QueryList>
@@ -88,33 +88,33 @@ Seamless SSO를 사용하여 사용자 로그인 문제를 해결하려면 [Azur
     </QueryList>
 ```
 
-## <a name="manual-reset-of-the-feature"></a>기능의 수동 다시 설정
+## <a name="manual-reset-of-hello-feature"></a>Hello 기능의 수동 다시 설정
 
-문제 해결이 도움이 되지 않으면 테넌트에서 해당 기능을 수동으로 다시 설정할 수 있습니다. Azure AD Connect를 실행 중인 온-프레미스 서버에서 다음 단계를 따릅니다.
+도움이 되지 않는 문제 해결, 경우에 테 넌 트에 hello 기능을 수동으로 재설정할 수 있습니다. Azure AD Connect를 실행 중인 hello 온-프레미스 서버에서 다음이 단계를 따릅니다.
 
-### <a name="step-1-import-the-seamless-sso-powershell-module"></a>1단계: Seamless SSO PowerShell 모듈 가져오기
+### <a name="step-1-import-hello-seamless-sso-powershell-module"></a>1 단계: hello 원활한 SSO PowerShell 모듈을 가져옵니다
 
-1. 먼저 [Microsoft Online Services 로그인 도우미](http://go.microsoft.com/fwlink/?LinkID=286152)를 다운로드하여 설치합니다.
-2. 그런 다음 [Windows PowerShell 용 64비트 Azure Active Directory 모듈](http://go.microsoft.com/fwlink/p/?linkid=236297)을 다운로드하고 설치합니다.
-3. `%programfiles%\Microsoft Azure Active Directory Connect` 폴더로 이동합니다.
-4. 다음 명령을 사용하여 Seamless SSO PowerShell 모듈을 가져옵니다. `Import-Module .\AzureADSSO.psd1`
+1. 첫째, 다운로드 및 설치 hello [Microsoft Online Services 로그인 도우미](http://go.microsoft.com/fwlink/?LinkID=286152)합니다.
+2. 다운로드 하 고 hello 설치 [Windows PowerShell 용 Azure Active Directory 모듈을 64 비트](http://go.microsoft.com/fwlink/p/?linkid=236297)합니다.
+3. Toohello 이동 `%programfiles%\Microsoft Azure Active Directory Connect` 폴더입니다.
+4. 이 명령을 사용 하 여 hello 원활한 SSO PowerShell 모듈 가져오기: `Import-Module .\AzureADSSO.psd1`합니다.
 
-### <a name="step-2-get-the-list-of-ad-forests-on-which-seamless-sso-has-been-enabled"></a>2단계: Seamless SSO가 사용하도록 설정된 AD 포리스트 목록 가져오기
+### <a name="step-2-get-hello-list-of-ad-forests-on-which-seamless-sso-has-been-enabled"></a>2 단계: AD 포리스트 원활한 SSO를 사용할 수 있는 hello 목록 가져오기
 
 1. 관리자 권한으로 PowerShell을 실행합니다. PowerShell에서 `New-AzureADSSOAuthenticationContext`를 호출합니다. 메시지가 표시되면 테넌트의 전역 관리자 자격 증명을 입력합니다.
-2. `Get-AzureADSSOStatus`를 호출합니다. 사용하도록 설정된 AD 포리스트 목록("도메인" 목록에 있음)이 표시됩니다.
+2. `Get-AzureADSSOStatus`를 호출합니다. 이 명령에이 기능이 설정 되는 AD 포리스트 ("hello"도메인 목록 보고) 목록 hello를 제공 합니다.
 
 ### <a name="step-3-disable-seamless-sso-for-each-ad-forest-that-it-was-set-it-up-on"></a>3단계: 사용하도록 설정된 각 AD 포리스트에 대한 Seamless SSO 비활성화
 
-1. `$creds = Get-Credential`를 호출합니다. 메시지가 표시되면 의도한 AD 포리스트에 대한 도메인 관리자 자격 증명을 입력합니다.
-2. `Disable-AzureADSSOForest -OnPremCredentials $creds`를 호출합니다. 이 명령은 이 특정 AD 포리스트에 대한 온-프레미스 도메인 컨트롤러에서 `AZUREADSSOACCT` 컴퓨터 계정을 제거합니다.
-3. 기능을 설정한 각 AD 포리스트에 대해 위의 단계를 반복합니다.
+1. `$creds = Get-Credential`를 호출합니다. 메시지가 표시 되 면 hello AD 포리스트 의도 대 한 hello 도메인 관리자 자격 증명을 입력 합니다.
+2. `Disable-AzureADSSOForest -OnPremCredentials $creds`를 호출합니다. 이 명령은 제거 hello `AZUREADSSOACCT` hello에서 컴퓨터 계정 온-프레미스 도메인 컨트롤러가 특정 AD 포리스트에 대 한 합니다.
+3. 이전 단계에서 hello 기능을 설정 하는 각 AD 포리스트에 대 한 hello를 반복 합니다.
 
 ### <a name="step-4-enable-seamless-sso-for-each-ad-forest"></a>4단계: 각 AD 포리스트에 대한 Seamless SSO 활성화
 
-1. `Enable-AzureADSSOForest`를 호출합니다. 메시지가 표시되면 의도한 AD 포리스트에 대한 도메인 관리자 자격 증명을 입력합니다.
-2. 기능을 설정하려는 각 AD 포리스트에 대해 위의 단계를 반복합니다.
+1. `Enable-AzureADSSOForest`를 호출합니다. 메시지가 표시 되 면 hello AD 포리스트 의도 대 한 hello 도메인 관리자 자격 증명을 입력 합니다.
+2. Hello 이전에 tooset hello 기능을 사용 하려는 각 AD 포리스트에 대 한 단계를 반복 합니다.
 
-### <a name="step-5-enable-the-feature-on-your-tenant"></a>5단계. 테넌트에서 기능 활성화
+### <a name="step-5-enable-hello-feature-on-your-tenant"></a>5단계. 테 넌 트에 hello 기능 설정
 
-`Enable-AzureADSSO`를 호출하고 `Enable: ` 프롬프트에서 "true"를 입력하여 테넌트에서 해당 기능을 설정합니다.
+호출 `Enable-AzureADSSO` hello에 "true"를 입력 `Enable: ` 프롬프트 tooturn 테 넌 트의 hello 기능입니다.

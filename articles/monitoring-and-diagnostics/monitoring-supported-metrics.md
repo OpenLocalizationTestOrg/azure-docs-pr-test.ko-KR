@@ -1,5 +1,5 @@
 ---
-title: "Azure Monitor 메트릭 - 리소스 유형별 지원 메트릭 | Microsoft Docs"
+title: "모니터 메트릭-리소스 유형 마다 지원 되는 메트릭 aaaAzure | Microsoft Docs"
 description: "Azure Monitor의 각 리소스 유형별로 사용 가능한 메트릭 목록."
 author: johnkemnetz
 manager: orenr
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/05/2017
 ms.author: johnkem
-ms.openlocfilehash: 4cd72c8193d66f164d9afa53af4b5203369b32dc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 66834238a1a4fcd7db1464cc023c18ee2563517a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-metrics-with-azure-monitor"></a>Azure Monitor에서 지원되는 메트릭
-Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세스, PowerShell이나 CLI를 통한 쿼리 등, 메트릭과 상호 작용하는 몇 가지 방법을 제공합니다. 다음은 현재 Azure Monitor의 메트릭 파이프라인을 통해 사용할 수 있는 모든 메트릭의 전체 목록입니다. 
+Azure 모니터 hello 포털에서이 차트, hello REST API를 통한 액세스 또는 쿼리 하기를 포함 하 여 메트릭을 사용 하 여 여러 가지 방법으로 toointeract 제공 PowerShell 또는 CLI를 사용 하 여 합니다. 다음은 현재 Azure Monitor의 메트릭 파이프라인을 통해 사용할 수 있는 모든 메트릭의 전체 목록입니다. 
 
 > [!NOTE]
-> 레거시 API를 통해서 또는 포털에서 다른 메트릭을 제공할 수 있습니다. 이 목록에는 통합 Azure Monitor 메트릭 파이프라인의 공개 미리 보기를 통해 사용할 수 있는 공개 미리보기 메트릭만 포함됩니다.
+> 기타 메트릭을 hello 포털 또는 레거시 Api를 사용 하 여 사용할 수 있습니다. 이 목록에 통합 하는 hello Azure 모니터 메트릭 파이프라인의 hello 공개 미리 보기를 사용 하 여 사용 가능한 공개 미리 보기 메트릭만을 포함 됩니다.
 >
 >
 
@@ -38,40 +38,40 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 |SuccessfullConnectionsPerSec|초당 성공한 연결 수|초당 개수|평균|성공적으로 완료된 연결 비율입니다.|
 |TotalConnectionFailures|총 연결 실패 수|개수|평균|실패한 총 연결 시도 수입니다.|
 |CurrentUserSessions|현재 사용자 세션 수|개수|평균|현재 설정된 사용자 세션 수입니다.|
-|QueryPoolBusyThreads|쿼리 풀의 사용 중인 스레드|개수|평균|쿼리 스레드 풀의 사용 중인 스레드 수입니다.|
-|CommandPoolJobQueueLength|명령 풀의 작업 큐 길이|개수|평균|명령 스레드 풀의 큐에 있는 작업 수입니다.|
-|ProcessingPoolJobQueueLength|처리 풀의 작업 큐 길이|개수|평균|처리 스레드 풀의 큐에 있는 비-I/O 작업 수입니다.|
+|QueryPoolBusyThreads|쿼리 풀의 사용 중인 스레드|개수|평균|hello 쿼리 스레드 풀에서 사용 중인 스레드 수입니다.|
+|CommandPoolJobQueueLength|명령 풀의 작업 큐 길이|개수|평균|Hello 명령 스레드 풀의 hello 큐에 있는 작업 수입니다.|
+|ProcessingPoolJobQueueLength|처리 풀의 작업 큐 길이|개수|평균|스레드 풀을 처리 하는 hello의 hello 큐에 비-I/o 작업 수입니다.|
 |CurrentConnections|연결: 현재 연결|개수|평균|현재 설정된 클라이언트 연결 수입니다.|
-|CleanerCurrentPrice|메모리: 클리너 현재 가격|개수|평균|현재 메모리 가격, $/바이트/시간, 1000으로 일반화됩니다.|
-|CleanerMemoryShrinkable|메모리: 클리너 메모리 축소 가능|바이트|평균|메모리 양, 바이트 단위, 백그라운드 클리너에 의해 제거되는 대상입니다.|
-|CleanerMemoryNonshrinkable|메모리: 클리너 메모리 축소 불가능|바이트|평균|메모리 양, 바이트 단위, 백그라운드 클리너에 의해 제거되는 대상이 아닙니다.|
-|MemoryUsage|메모리: 메모리 사용량|바이트|평균|클리너 메모리 가격을 계산하는 데 사용되는 서버 프로세스의 메모리 사용량입니다. 메모리 매핑된 데이터 크기를 더한 카운터 Process\PrivateBytes와 동일하며 xVelocity 엔진 메모리 제한을 초과하여 xVelocity 메모리 내 분석 엔진(VertiPaq)에서 매핑하거나 할당하는 메모리를 무시합니다.|
+|CleanerCurrentPrice|메모리: 클리너 현재 가격|개수|평균|메모리, $/ 바이트/시간, 정규화 된 too1000의 현재 가격입니다.|
+|CleanerMemoryShrinkable|메모리: 클리너 메모리 축소 가능|바이트|평균|메모리의 양 (바이트)에서 hello 백그라운드 클리너로 주체 toopurging 합니다.|
+|CleanerMemoryNonshrinkable|메모리: 클리너 메모리 축소 불가능|바이트|평균|메모리의 양 (바이트)에서 hello 백그라운드 클리너로 주체 toopurging 되지 않습니다.|
+|MemoryUsage|메모리: 메모리 사용량|바이트|평균|더욱 명확한 메모리 비용 계산에 사용 되는 hello 서버 프로세스의 메모리 사용량입니다. 같은 toocounter Process\PrivateBytes hello와 크기를 더한 메모리 매핑된 데이터를 메모리 매핑 되었거나 hello xVelocity 메모리 내 분석 엔진 (VertiPaq) hello xVelocity 엔진 Memory Limit를 초과 하 여 할당 된는 무시 합니다.|
 |MemoryLimitHard|메모리: 메모리 제한 하드|바이트|평균|하드 메모리 제한, 구성 파일 원본입니다.|
 |MemoryLimitHigh|메모리: 메모리 제한 상한|바이트|평균|상한 메모리 제한, 구성 파일 원본입니다.|
 |MemoryLimitLow|메모리: 메모리 제한 하한|바이트|평균|하한 메모리 제한, 구성 파일 원본입니다.|
 |MemoryLimitVertiPaq|메모리: 메모리 제한 VertiPaq|바이트|평균|메모리 내 제한, 구성 파일 원본입니다.|
 |할당량|메모리: 할당량|바이트|평균|현재 메모리 할당량, 바이트 단위입니다. 메모리 할당량은 메모리 부여 또는 메모리 예약이라고도 합니다.|
 |QuotaBlocked|메모리: 차단된 할당량|개수|평균|다른 메모리 할당량이 해제될 때까지 차단되는 할당량 요청의 현재 수입니다.|
-|VertiPaqNonpaged|메모리: 페이징되지 않은 VertiPaq|바이트|평균|메모리 내 엔진에서 사용하기 위해 설정된 작동 중에 잠긴 메모리 바이트입니다.|
+|VertiPaqNonpaged|메모리: 페이징되지 않은 VertiPaq|바이트|평균|바이트의 메모리 사용에 대 한 hello 작업 집합에 hello 메모리 내 엔진에 의해 잠겼습니다.|
 |VertiPaqPaged|메모리: 페이징된 VertiPaq|바이트|평균|메모리 내 데이터에 사용 중인 페이징된 메모리 바이트입니다.|
 |RowsReadPerSec|처리: 초당 읽은 행|초당 개수|평균|모든 관계형 데이터베이스에서 읽은 행의 비율입니다.|
 |RowsConvertedPerSec|처리: 초당 변환된 행|초당 개수|평균|처리하는 동안 변환된 행의 비율입니다.|
 |RowsWrittenPerSec|처리: 초당 작성된 행|초당 개수|평균|처리하는 동안 작성된 행의 비율입니다.|
-|CommandPoolBusyThreads|스레드: 명령 풀 사용 중인 스레드|개수|평균|명령 스레드 풀의 사용 중인 스레드 수입니다.|
-|CommandPoolIdleThreads|스레드: 명령 풀 유휴 상태 스레드|개수|평균|명령 스레드 풀의 유휴 상태 스레드 수입니다.|
-|LongParsingBusyThreads|스레드: 긴 구문 분석 사용 중인 스레드|개수|평균|긴 구문 분석 스레드 풀에서 사용 중인 스레드 수입니다.|
-|LongParsingIdleThreads|스레드: 긴 구문 분석 유휴 상태 스레드|개수|평균|긴 구문 분석 스레드 풀에서 유휴 상태 스레드 수입니다.|
-|LongParsingJobQueueLength|스레드: 긴 구문 분석 작업 큐 길이|개수|평균|긴 구문 분석 스레드 풀의 큐에 있는 작업 수입니다.|
-|ProcessingPoolBusyIOJobThreads|스레드: 처리 풀 사용 중인 I/O 작업 스레드|개수|평균|처리 스레드 풀에서 I/O 작업을 실행 중인 스레드 수입니다.|
-|ProcessingPoolBusyNonIOThreads|스레드: 처리 풀 사용 중인 비-I/O 스레드|개수|평균|처리 스레드 풀에서 비-I/O 작업을 실행 중인 스레드 수입니다.|
-|ProcessingPoolIOJobQueueLength|스레드: 처리 풀 I/O 작업 큐 길이|개수|평균|처리 스레드 풀의 큐에 있는 I/O 작업 수입니다.|
-|ProcessingPoolIdleIOJobThreads|스레드: 처리 풀 유휴 상태 I/O 작업 스레드|개수|평균|처리 스레드 풀에서 I/O 작업의 유휴 상태 스레드 수입니다.|
-|ProcessingPoolIdleNonIOThreads|스레드: 처리 풀 유휴 상태 비-I/O 스레드|개수|평균|비-I/O 작업 전용인 처리 스레드 풀에서 유휴 상태 스레드 수입니다.|
-|QueryPoolIdleThreads|스레드: 쿼리 풀 유휴 상태 스레드|개수|평균|처리 스레드 풀에서 I/O 작업의 유휴 상태 스레드 수입니다.|
-|QueryPoolJobQueueLength|스레드: 쿼리 풀 작업 큐 길이|개수|평균|쿼리 스레드 풀의 큐에 있는 작업 수입니다.|
-|ShortParsingBusyThreads|스레드: 짧은 구문 분석 사용 중인 스레드|개수|평균|짧은 구문 분석 스레드 풀에서 사용 중인 스레드 수입니다.|
-|ShortParsingIdleThreads|스레드: 짧은 구문 분석 유휴 상태 스레드|개수|평균|짧은 구문 분석 스레드 풀에서 유휴 상태 스레드 수입니다.|
-|ShortParsingJobQueueLength|스레드: 짧은 구문 분석 작업 큐 길이|개수|평균|짧은 구문 분석 스레드 풀의 큐에 있는 작업 수입니다.|
+|CommandPoolBusyThreads|스레드: 명령 풀 사용 중인 스레드|개수|평균|hello 명령 스레드 풀에서 사용 중인 스레드 수입니다.|
+|CommandPoolIdleThreads|스레드: 명령 풀 유휴 상태 스레드|개수|평균|Hello 명령 스레드 풀의 유휴 상태 스레드 수입니다.|
+|LongParsingBusyThreads|스레드: 긴 구문 분석 사용 중인 스레드|개수|평균|긴 스레드 풀 구문 분석 하는 hello 사용 중인 스레드 수입니다.|
+|LongParsingIdleThreads|스레드: 긴 구문 분석 유휴 상태 스레드|개수|평균|긴 스레드 풀 구문 분석 하는 hello의 유휴 상태 스레드 수입니다.|
+|LongParsingJobQueueLength|스레드: 긴 구문 분석 작업 큐 길이|개수|평균|긴 스레드 풀 구문 분석 하는 hello의 hello 큐에서 작업 수입니다.|
+|ProcessingPoolBusyIOJobThreads|스레드: 처리 풀 사용 중인 I/O 작업 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 I/O 작업을 실행 중인 스레드 수입니다.|
+|ProcessingPoolBusyNonIOThreads|스레드: 처리 풀 사용 중인 비-I/O 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 비-I/o 작업을 실행 중인 스레드 수입니다.|
+|ProcessingPoolIOJobQueueLength|스레드: 처리 풀 I/O 작업 큐 길이|개수|평균|스레드 풀을 처리 하는 hello의 hello 큐에서 I/O 작업 수입니다.|
+|ProcessingPoolIdleIOJobThreads|스레드: 처리 풀 유휴 상태 I/O 작업 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 I/O 작업에 대 한 유휴 상태 스레드 수입니다.|
+|ProcessingPoolIdleNonIOThreads|스레드: 처리 풀 유휴 상태 비-I/O 스레드|개수|평균|스레드 풀을 처리 하는 hello에 유휴 상태 스레드 수는 toonon-I/o 작업 전용입니다.|
+|QueryPoolIdleThreads|스레드: 쿼리 풀 유휴 상태 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 I/O 작업에 대 한 유휴 상태 스레드 수입니다.|
+|QueryPoolJobQueueLength|스레드: 쿼리 풀 작업 큐 길이|개수|평균|Hello 쿼리 스레드 풀의 hello 큐에 있는 작업 수입니다.|
+|ShortParsingBusyThreads|스레드: 짧은 구문 분석 사용 중인 스레드|개수|평균|스레드 풀 구문 분석 짧은 hello 사용 중인 스레드 수입니다.|
+|ShortParsingIdleThreads|스레드: 짧은 구문 분석 유휴 상태 스레드|개수|평균|스레드 풀 구문 분석 짧은 hello의 유휴 상태 스레드 수입니다.|
+|ShortParsingJobQueueLength|스레드: 짧은 구문 분석 작업 큐 길이|개수|평균|스레드 풀 구문 분석 짧은 hello의 hello 큐에서 작업 수입니다.|
 |memory_thrashing_metric|메모리 쓰래싱|백분율|평균|평균 메모리 쓰래싱입니다.|
 
 ## <a name="microsoftapimanagementservice"></a>Microsoft.ApiManagement/service
@@ -88,20 +88,20 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|CoreCount|전용된 코어 수|개수|합계|배치 계정의 총 전용 코어 수|
-|TotalNodeCount|전용된 노드 수|개수|합계|배치 계정의 총 전용 노드 수|
-|LowPriorityCoreCount|LowPriority 코어 수|개수|합계|배치 계정의 우선 순위가 낮은 총 코어 수|
-|TotalLowPriorityNodeCount|우선 순위가 낮은 노드 수|개수|합계|배치 계정의 우선 순위가 낮은 총 노드 수|
+|CoreCount|전용된 코어 수|개수|합계|Hello 일괄 처리 계정에 전용된 코어의 총 수|
+|TotalNodeCount|전용된 노드 수|개수|합계|Hello 일괄 처리 계정에 대 한 전용 노드의 총 수|
+|LowPriorityCoreCount|LowPriority 코어 수|개수|합계|Hello 일괄 처리 계정에 우선 순위가 낮은 코어의 총 수|
+|TotalLowPriorityNodeCount|우선 순위가 낮은 노드 수|개수|합계|Hello 일괄 처리 계정에 대 한 우선 순위가 낮은 노드의 총 수|
 |CreatingNodeCount|노드 수 만들기|개수|합계|만든 노드 수|
 |StartingNodeCount|시작 노드 수|개수|합계|시작 노드 수|
-|WaitingForStartTaskNodeCount|작업 시작 대기 노드 수|개수|합계|시작 작업 완료를 기다리는 노드 수|
-|StartTaskFailedNodeCount|시작 작업 실패 노드 수|개수|합계|시작 작업이 실패한 노드 수|
+|WaitingForStartTaskNodeCount|작업 시작 대기 노드 수|개수|합계|작업 시작 toocomplete hello에 대 한 대기 하는 노드 수|
+|StartTaskFailedNodeCount|시작 작업 실패 노드 수|개수|합계|노드 hello 작업 시작에 실패 한 위치 수|
 |IdleNodeCount|유휴 상태인 노드 수|개수|합계|유휴 노드 수|
 |OfflineNodeCount|오프라인 노드 수|개수|합계|오프라인 노드 수|
 |RebootingNodeCount|재부팅 노드 수|개수|합계|다시 부팅하는 노드의 수|
 |ReimagingNodeCount|이미지로 다시 설치하는 노드 수|개수|합계|이미지로 다시 설치하는 노드의 수|
 |RunningNodeCount|실행 노드 수|개수|합계|실행 중인 노드의 수|
-|LeavingPoolNodeCount|나가는 풀 노드 수|개수|합계|풀을 나가는 노드 수|
+|LeavingPoolNodeCount|나가는 풀 노드 수|개수|합계|Hello 풀을 유지 하는 노드 수|
 |UnusableNodeCount|사용 불가 노드 수|개수|합계|사용할 수 없는 노드 수|
 |PreemptedNodeCount|선점된 노드 수|개수|합계|선점된 노드 수|
 |TaskStartEvent|작업 시작 이벤트|개수|합계|시작된 총 작업 수|
@@ -301,11 +301,11 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|백분율 CPU|백분율 CPU|백분율|평균|현재 가상 컴퓨터에서 사용 중인 할당된 계산 단위의 백분율|
-|네트워크 인|네트워크 인|바이트|합계|가상 컴퓨터가 모든 네트워크 인터페이스에서 수신한(들어오는 트래픽) 바이트 수|
-|네트워크 아웃|네트워크 아웃|바이트|합계|가상 컴퓨터가 모든 네트워크 인터페이스에서 내보낸(나가는 트래픽) 바이트 수|
+|백분율 CPU|백분율 CPU|백분율|평균|현재 hello 가상 컴퓨터에서 사용 중인 할당 된 계산 단위의 hello 백분율|
+|네트워크 인|네트워크 인|바이트|합계|hello hello (들어오는 트래픽) 가상 컴퓨터에서 모든 네트워크 인터페이스에서 받은 바이트 수|
+|네트워크 아웃|네트워크 아웃|바이트|합계|hello hello (송신 트래픽) 가상 컴퓨터에서 모든 네트워크 인터페이스에서 바이트 수|
 |디스크 읽기 바이트|디스크 읽기 바이트|바이트|합계|모니터링 기간 동안 디스크에서 읽은 총 바이트|
-|디스크 쓰기 바이트|디스크 쓰기 바이트|바이트|합계|모니터링 기간 동안 디스크에 쓴 총 바이트|
+|디스크 쓰기 바이트|디스크 쓰기 바이트|바이트|합계|Toodisk 기간을 모니터링 하는 동안 쓴 총 바이트|
 |디스크 읽기 작업/초|디스크 읽기 작업/초|초당 개수|평균|디스크 읽기 IOPS|
 |디스크 쓰기 작업/초|디스크 쓰기 작업/초|초당 개수|평균|디스크 쓰기 IOPS|
 
@@ -313,11 +313,11 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|백분율 CPU|백분율 CPU|백분율|평균|현재 가상 컴퓨터에서 사용 중인 할당된 계산 단위의 백분율|
-|네트워크 인|네트워크 인|바이트|합계|가상 컴퓨터가 모든 네트워크 인터페이스에서 수신한(들어오는 트래픽) 바이트 수|
-|네트워크 아웃|네트워크 아웃|바이트|합계|가상 컴퓨터가 모든 네트워크 인터페이스에서 내보낸(나가는 트래픽) 바이트 수|
+|백분율 CPU|백분율 CPU|백분율|평균|현재 hello 가상 컴퓨터에서 사용 중인 할당 된 계산 단위의 hello 백분율|
+|네트워크 인|네트워크 인|바이트|합계|hello hello (들어오는 트래픽) 가상 컴퓨터에서 모든 네트워크 인터페이스에서 받은 바이트 수|
+|네트워크 아웃|네트워크 아웃|바이트|합계|hello hello (송신 트래픽) 가상 컴퓨터에서 모든 네트워크 인터페이스에서 바이트 수|
 |디스크 읽기 바이트|디스크 읽기 바이트|바이트|합계|모니터링 기간 동안 디스크에서 읽은 총 바이트|
-|디스크 쓰기 바이트|디스크 쓰기 바이트|바이트|합계|모니터링 기간 동안 디스크에 쓴 총 바이트|
+|디스크 쓰기 바이트|디스크 쓰기 바이트|바이트|합계|Toodisk 기간을 모니터링 하는 동안 쓴 총 바이트|
 |디스크 읽기 작업/초|디스크 읽기 작업/초|초당 개수|평균|디스크 읽기 IOPS|
 |디스크 쓰기 작업/초|디스크 쓰기 작업/초|초당 개수|평균|디스크 쓰기 IOPS|
 
@@ -325,11 +325,11 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|백분율 CPU|백분율 CPU|백분율|평균|현재 가상 컴퓨터에서 사용 중인 할당된 계산 단위의 백분율|
-|네트워크 인|네트워크 인|바이트|합계|가상 컴퓨터가 모든 네트워크 인터페이스에서 수신한(들어오는 트래픽) 바이트 수|
-|네트워크 아웃|네트워크 아웃|바이트|합계|가상 컴퓨터가 모든 네트워크 인터페이스에서 내보낸(나가는 트래픽) 바이트 수|
+|백분율 CPU|백분율 CPU|백분율|평균|현재 hello 가상 컴퓨터에서 사용 중인 할당 된 계산 단위의 hello 백분율|
+|네트워크 인|네트워크 인|바이트|합계|hello hello (들어오는 트래픽) 가상 컴퓨터에서 모든 네트워크 인터페이스에서 받은 바이트 수|
+|네트워크 아웃|네트워크 아웃|바이트|합계|hello hello (송신 트래픽) 가상 컴퓨터에서 모든 네트워크 인터페이스에서 바이트 수|
 |디스크 읽기 바이트|디스크 읽기 바이트|바이트|합계|모니터링 기간 동안 디스크에서 읽은 총 바이트|
-|디스크 쓰기 바이트|디스크 쓰기 바이트|바이트|합계|모니터링 기간 동안 디스크에 쓴 총 바이트|
+|디스크 쓰기 바이트|디스크 쓰기 바이트|바이트|합계|Toodisk 기간을 모니터링 하는 동안 쓴 총 바이트|
 |디스크 읽기 작업/초|디스크 읽기 작업/초|초당 개수|평균|디스크 읽기 IOPS|
 |디스크 쓰기 작업/초|디스크 쓰기 작업/초|초당 개수|평균|디스크 쓰기 IOPS|
 
@@ -407,58 +407,58 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|d2c.telemetry.ingress.allProtocol|원격 분석 메시지 보내기 시도|개수|합계|IoT Hub로 보내려 한 장치-클라우드 원격 분석 메시지 수|
-|d2c.telemetry.ingress.success|보낸 원격 분석 메시지|개수|합계|IoT Hub로 보내기 성공한 장치-클라우드 원격 분석 메시지 수|
-|c2d.commands.egress.complete.success|완료된 명령|개수|합계|장치에서 성공적으로 완료한 클라우드-장치 명령 수|
-|c2d.commands.egress.abandon.success|중단된 명령|개수|합계|장치에서 중단한 클라우드-장치 명령 수|
-|c2d.commands.egress.reject.success|거부된 명령|개수|합계|장치에서 거부한 클라우드-장치 명령 수|
-|devices.totalDevices|총 장치|개수|합계|IoT 허브에 등록된 장치 수|
-|devices.connectedDevices.allProtocol|연결된 장치|개수|합계|IoT 허브에 연결된 장치 수|
-|d2c.telemetry.egress.success|배달된 원격 분석 메시지|개수|합계|메시지가 끝점에 성공적으로 작성된 횟수(전체)|
-|d2c.telemetry.egress.dropped|삭제된 메시지|개수|합계|배달 끝점이 쓸모가 없어졌기 때문에 삭제된 메시지 수|
-|d2c.telemetry.egress.orphaned|분리된 메시지|개수|합계|대체 경로를 포함하여 경로가 일치하지 않는 메시지 수|
-|d2c.telemetry.egress.invalid|잘못된 메시지|개수|합계|끝점과 호환되지 않아서 배달되지 않은 메시지 수|
-|d2c.telemetry.egress.fallback|대체(fallback) 조건과 일치하는 메시지|개수|합계|대체(fallback) 끝점에 작성된 메시지 수|
-|d2c.endpoints.egress.eventHubs|이벤트 허브 끝점에 배달된 메시지|개수|합계|메시지가 이벤트 허브 끝점에 성공적으로 작성된 횟수|
-|d2c.endpoints.latency.eventHubs|이벤트 허브 끝점에 대한 메시지 대기 시간|밀리초|평균|IoT Hub에 대한 메시지 수신과 이벤트 허브 끝점에 대한 메시지 수신 간의 평균 대기 시간(밀리초)|
-|d2c.endpoints.egress.serviceBusQueues|Service Bus 큐 끝점에 배달된 메시지|개수|합계|메시지가 Service Bus 큐 끝점에 성공적으로 작성된 횟수|
-|d2c.endpoints.latency.serviceBusQueues|Service Bus 큐 끝점에 대한 메시지 대기 시간|밀리초|평균|IoT Hub에 대한 메시지 수신과 Service Bus 큐 끝점에 대한 메시지 수신 간의 평균 대기 시간(밀리초)|
-|d2c.endpoints.egress.serviceBusTopics|Service Bus 토픽 끝점에 배달된 메시지|개수|합계|메시지가 Service Bus 토픽 끝점에 성공적으로 작성된 횟수|
-|d2c.endpoints.latency.serviceBusTopics|Service Bus 항목 끝점에 대한 메시지 대기 시간|밀리초|평균|IoT Hub에 대한 메시지 수신과 Service Bus 토픽 끝점에 대한 메시지 수신 간의 평균 대기 시간(밀리초)|
-|d2c.endpoints.egress.builtIn.events|기본 제공 끝점에 배달된 메시지(메시지/이벤트)|개수|합계|메시지가 기본 제공 끝점에 성공적으로 작성된 횟수(메시지/이벤트)|
-|d2c.endpoints.latency.builtIn.events|기본 제공 끝점에 대한 메시지 대기 시간(메시지/이벤트)|밀리초|평균|IoT Hub에 대한 메시지 수신과 기본 제공 끝점(메시지.이벤트)에 대한 메시지 수신 간의 평균 대기 시간(밀리초) |
-|d2c.twin.read.success|장치에서의 성공한 쌍 읽기|개수|합계|성공한 모든 장치 시작 쌍 읽기 수입니다.|
-|d2c.twin.read.failure|장치에서의 실패한 쌍 읽기|개수|합계|실패한 모든 장치 시작 쌍 읽기 수입니다.|
-|d2c.twin.read.size|장치에서의 쌍 읽기 응답 크기|바이트|평균|성공한 모든 장치 시작 쌍 읽기 수의 평균, 최소값 및 최대값입니다.|
-|d2c.twin.update.success|장치에서의 성공한 쌍 업데이트|개수|합계|성공한 모든 장치 시작 쌍 업데이트 수입니다.|
-|d2c.twin.update.failure|장치에서의 실패한 쌍 업데이트|개수|합계|실패한 모든 장치 시작 쌍 업데이트 수입니다.|
-|d2c.twin.update.size|장치에서의 쌍 업데이트 크기|바이트|평균|성공한 모든 장치 시작 쌍 업데이트 수의 평균, 최소 및 최대 크기입니다.|
-|c2d.methods.success|성공한 직접 메서드 호출|개수|합계|성공한 모든 직접 메서드 호출의 수입니다.|
-|c2d.methods.failure|실패한 직접 메서드 호출|개수|합계|실패한 모든 직접 메서드 호출의 수입니다.|
-|c2d.methods.requestSize|직접 메서드 호출의 요청 크기|바이트|평균|성공한 모든 직접 메서드 요청의 평균, 최소값, 최대값입니다.|
-|c2d.methods.responseSize|직접 메서드 호출의 응답 크기|바이트|평균|성공한 모든 직접 메서드 응답의 평균, 최소값, 최대값입니다.|
-|c2d.twin.read.success|백 엔드에서의 성공한 쌍 읽기|개수|합계|성공한 모든 백 엔드 시작 쌍 읽기 수입니다.|
-|c2d.twin.read.failure|백 엔드에서의 실패한 쌍 읽기|개수|합계|실패한 모든 백 엔드 시작 쌍 읽기 수입니다.|
-|c2d.twin.read.size|백 엔드에서의 쌍 읽기 응답 크기|바이트|평균|성공한 모든 백 엔드 시작 쌍 읽기 수의 평균, 최소값 및 최대값입니다.|
-|c2d.twin.update.success|백 엔드에서의 성공한 쌍 업데이트|개수|합계|성공한 모든 백 엔드 시작 쌍 업데이트 수입니다.|
-|c2d.twin.update.failure|백 엔드에서의 실패한 쌍 업데이트|개수|합계|실패한 모든 백 엔드 시작 쌍 업데이트 수입니다.|
-|c2d.twin.update.size|백 엔드에서의 쌍 업데이트 크기|바이트|평균|성공한 모든 백 엔드 시작 쌍 업데이트 수의 평균, 최소 및 최대 크기입니다.|
-|twinQueries.success|성공한 쌍 쿼리|개수|합계|성공한 모든 쌍 쿼리의 수입니다.|
-|twinQueries.failure|실패한 쌍 쿼리|개수|합계|실패한 모든 쌍 쿼리의 수입니다.|
-|twinQueries.resultSize|쌍 쿼리 결과 크기|바이트|평균|성공한 모든 쌍 쿼리 결과 크기의 평균, 최소값 및 최대값입니다.|
-|jobs.createTwinUpdateJob.success|쌍 업데이트 작업에 대한 성공한 만들기|개수|합계|쌍 업데이트 작업에 대한 성공한 모든 만들기의 수입니다.|
-|jobs.createTwinUpdateJob.failure|쌍 업데이트 작업에 대한 실패한 만들기|개수|합계|쌍 업데이트 작업에 대한 실패한 모든 만들기의 수입니다.|
-|jobs.createDirectMethodJob.success|메서드 호출 작업에 대한 성공한 만들기|개수|합계|직접 메서드 호출 작업에 대한 성공한 모든 만들기의 수입니다.|
-|jobs.createDirectMethodJob.failure|실패한 메서드 호출 작업 만들기|개수|합계|직접 메서드 호출 작업에 대한 실패한 모든 만들기의 수입니다.|
-|jobs.listJobs.success|목록 작업에 대한 성공한 호출|개수|합계|목록 작업에 대한 성공한 모든 호출 수입니다.|
-|jobs.listJobs.failure|목록 작업에 대한 실패한 호출|개수|합계|목록 작업에 대한 실패한 모든 호출 수입니다.|
-|jobs.cancelJob.success|성공한 작업 취소|개수|합계|작업 취소에 대한 성공한 모든 호출 수입니다.|
-|jobs.cancelJob.failure|실패한 작업 취소|개수|합계|작업 취소에 대한 실패한 모든 호출 수입니다.|
-|jobs.queryJobs.success|성공한 작업 쿼리|개수|합계|쿼리 작업에 대한 성공한 모든 호출 수입니다.|
-|jobs.queryJobs.failure|실패한 작업 쿼리|개수|합계|쿼리 작업에 대한 실패한 모든 호출 수입니다.|
-|jobs.completed|완료된 작업|개수|합계|완료된 모든 작업의 수입니다.|
-|jobs.failed|실패한 작업|개수|합계|실패한 모든 작업의 수입니다.|
-|d2c.telemetry.ingress.sendThrottle|제한 오류 수|개수|합계|장치 처리량 제한으로 인한 제한 오류 수|
+|d2c.telemetry.ingress.allProtocol|원격 분석 메시지 보내기 시도|개수|합계|Tooyour IoT 허브를 전송 하는 원격 분석 장치-클라우드 메시지 시도한 toobe의 수|
+|d2c.telemetry.ingress.success|보낸 원격 분석 메시지|개수|합계|원격 분석 장치-클라우드 메시지 수가 성공적으로 보낸 tooyour IoT 허브|
+|c2d.commands.egress.complete.success|완료된 명령|개수|합계|클라우드-장치 명령 hello 장치에 의해 완료 수입니다.|
+|c2d.commands.egress.abandon.success|중단된 명령|개수|합계|Hello 장치에 의해 중단 된 클라우드-장치 명령 수입니다.|
+|c2d.commands.egress.reject.success|거부된 명령|개수|합계|Hello 장치에 의해 거부 클라우드-장치 명령 수입니다.|
+|devices.totalDevices|총 장치|개수|합계|Tooyour IoT 허브 등록 된 장치 수|
+|devices.connectedDevices.allProtocol|연결된 장치|개수|합계|Tooyour IoT 허브를 연결 된 장치 수|
+|d2c.telemetry.egress.success|배달된 원격 분석 메시지|개수|합계|메시지 tooendpoints (합계)을 성공적으로 작성 된 횟수|
+|d2c.telemetry.egress.dropped|삭제된 메시지|개수|합계|Hello 배달 끝점 데드 않아 삭제 된 메시지 수|
+|d2c.telemetry.egress.orphaned|분리된 메시지|개수|합계|hello 메시지의 수 hello 대체 경로 포함 하 여 모든 경로 일치 하지 않습니다|
+|d2c.telemetry.egress.invalid|잘못된 메시지|개수|합계|hello 메시지의 수 배달 되지 인해 tooincompatibility hello 끝점과|
+|d2c.telemetry.egress.fallback|대체(fallback) 조건과 일치하는 메시지|개수|합계|대체 끝점 toohello 작성 된 메시지 수|
+|d2c.endpoints.egress.eventHubs|메시지가 배달 tooEvent 허브 끝점|개수|합계|메시지가 성공적으로 작성 된 tooEvent 허브 끝점 된 횟수|
+|d2c.endpoints.latency.eventHubs|이벤트 허브 끝점에 대한 메시지 대기 시간|밀리초|평균|밀리초에서의 이벤트 허브 끝점으로 메시지 수신 toohello IoT hub 및 메시지 수신 간의 hello 평균 대기|
+|d2c.endpoints.egress.serviceBusQueues|메시지가 배달 tooService 버스 큐 끝점|개수|합계|메시지 버스 큐 끝점 tooService 성공적으로 작성된 된 횟수|
+|d2c.endpoints.latency.serviceBusQueues|Service Bus 큐 끝점에 대한 메시지 대기 시간|밀리초|평균|시간 (밀리초)에 있는 서비스 버스 큐 끝점에 메시지 수신 toohello IoT hub 및 메시지 수신 간의 hello 평균 대기|
+|d2c.endpoints.egress.serviceBusTopics|메시지가 배달 tooService 버스 항목 끝점|개수|합계|메시지 버스 항목 끝점 성공적으로 작성 된 tooService 된 횟수|
+|d2c.endpoints.latency.serviceBusTopics|Service Bus 항목 끝점에 대한 메시지 대기 시간|밀리초|평균|시간 (밀리초)에 있는 서비스 버스 주제 끝점에 메시지 수신 toohello IoT hub 및 메시지 수신 간의 hello 평균 대기|
+|d2c.endpoints.egress.builtIn.events|메시지가 배달 toohello 기본 제공 끝점 (메시지/이벤트)|개수|합계|메시지가 성공적으로 작성 된 toohello 기본 제공 끝점 (메시지/이벤트) 된 횟수|
+|d2c.endpoints.latency.builtIn.events|Hello 기본 제공 끝점 (메시지/이벤트)에 대 한 메시지 대기 시간|밀리초|평균|hello 평균 대기 시간 메시지 수신 toohello IoT hub 및 메시지 수신 사이의 밀리초에서 hello 기본 제공 끝점 (메시지/이벤트) |
+|d2c.twin.read.success|장치에서의 성공한 쌍 읽기|개수|합계|성공한 모든 장치에서 시작한로 이중 hello 수를 읽습니다.|
+|d2c.twin.read.failure|장치에서의 실패한 쌍 읽기|개수|합계|모든의 hello 개수 장치 시작로 이중 읽기 실패 했습니다.|
+|d2c.twin.read.size|장치에서의 쌍 읽기 응답 크기|바이트|평균|hello average, min, 및 최대 성공한 모든 장치에서 시작한로 이중 읽습니다.|
+|d2c.twin.update.success|장치에서의 성공한 쌍 업데이트|개수|합계|성공한 모든 장치에서 시작한로 이중 업데이트 hello 수입니다.|
+|d2c.twin.update.failure|장치에서의 실패한 쌍 업데이트|개수|합계|hello 수가 모두로 이중 장치에서 시작 된 업데이트에 실패 했습니다.|
+|d2c.twin.update.size|장치에서의 쌍 업데이트 크기|바이트|평균|hello 평균, 최소값, 및 성공한 모든의 최대 크기 장치 시작로 이중 업데이트 합니다.|
+|c2d.methods.success|성공한 직접 메서드 호출|개수|합계|성공한 모든 직접 메서드 호출의 hello 수입니다.|
+|c2d.methods.failure|실패한 직접 메서드 호출|개수|합계|모든의 hello 개수 직접 메서드 호출에 실패 했습니다.|
+|c2d.methods.requestSize|직접 메서드 호출의 요청 크기|바이트|평균|hello 평균, 최소 및 최대 성공한 모든 메서드가 요청에 전달 합니다.|
+|c2d.methods.responseSize|직접 메서드 호출의 응답 크기|바이트|평균|hello average, min, 및 성공적인 직접적인 방법에 대 한 모든 응답의 최대값입니다.|
+|c2d.twin.read.success|백 엔드에서의 성공한 쌍 읽기|개수|합계|성공한 모든 백 엔드 시작로 이중 hello 수를 읽습니다.|
+|c2d.twin.read.failure|백 엔드에서의 실패한 쌍 읽기|개수|합계|모든의 hello 개수 읽기로 이중 백 엔드 시작 실패 했습니다.|
+|c2d.twin.read.size|백 엔드에서의 쌍 읽기 응답 크기|바이트|평균|hello average, min, 및 최대 성공한 모든 백 엔드 시작로 이중 읽습니다.|
+|c2d.twin.update.success|백 엔드에서의 성공한 쌍 업데이트|개수|합계|성공한 모든로 이중 백 엔드 시작 업데이트의 hello 수입니다.|
+|c2d.twin.update.failure|백 엔드에서의 실패한 쌍 업데이트|개수|합계|모든의 hello 개수로 이중 백 엔드 시작 된 업데이트에 실패 했습니다.|
+|c2d.twin.update.size|백 엔드에서의 쌍 업데이트 크기|바이트|평균|hello average, min, 및 성공한 모든의 최대 크기 백 엔드 시작로 이중 업데이트 합니다.|
+|twinQueries.success|성공한 쌍 쿼리|개수|합계|모든 성공적인로 이중 쿼리의 hello 수입니다.|
+|twinQueries.failure|실패한 쌍 쿼리|개수|합계|모든 실패 한로 이중 쿼리의 hello 수입니다.|
+|twinQueries.resultSize|쌍 쿼리 결과 크기|바이트|평균|hello average, min, 및 모든 성공적인로 이중 쿼리의 hello 결과 크기의 최대값입니다.|
+|jobs.createTwinUpdateJob.success|쌍 업데이트 작업에 대한 성공한 만들기|개수|합계|hello 모든 성공적으로 만드는 이중 업데이트 작업의 수입니다.|
+|jobs.createTwinUpdateJob.failure|쌍 업데이트 작업에 대한 실패한 만들기|개수|합계|실패 한 모두로 이중 업데이트 작업 만들기의 hello 수입니다.|
+|jobs.createDirectMethodJob.success|메서드 호출 작업에 대한 성공한 만들기|개수|합계|직접 메서드 호출 작업의 모든 성공적으로 만드는 hello 수입니다.|
+|jobs.createDirectMethodJob.failure|실패한 메서드 호출 작업 만들기|개수|합계|직접 메서드 호출 작업의 모든 실패 한 만들기의 hello 수입니다.|
+|jobs.listJobs.success|성공한 호출 toolist 작업|개수|합계|모든 호출이 성공 toolist 작업의 hello 수입니다.|
+|jobs.listJobs.failure|실패 한 호출 toolist 작업|개수|합계|모든 실패 한 호출 toolist 작업의 hello 수입니다.|
+|jobs.cancelJob.success|성공한 작업 취소|개수|합계|성공한 모든 hello 수 toocancel 작업을 호출합니다.|
+|jobs.cancelJob.failure|실패한 작업 취소|개수|합계|모든 실패 한 호출 toocancel 작업의 hello 수입니다.|
+|jobs.queryJobs.success|성공한 작업 쿼리|개수|합계|모든 호출이 성공 tooquery 작업의 hello 수입니다.|
+|jobs.queryJobs.failure|실패한 작업 쿼리|개수|합계|모든 실패 한 호출 tooquery 작업의 hello 수입니다.|
+|jobs.completed|완료된 작업|개수|합계|모든 완료 된 작업의 hello 수입니다.|
+|jobs.failed|실패한 작업|개수|합계|모든 실패 한 작업의 hello 수입니다.|
+|d2c.telemetry.ingress.sendThrottle|제한 오류 수|개수|합계|Toodevice 처리량 스로틀 인해 제한 오류 수|
 |dailyMessageQuotaUsed|사용된 전체 메시지 수|개수|평균|현재 사용되는 전체 메시지 수|
 
 ## <a name="microsofteventhubnamespaces"></a>Microsoft.EventHub/namespaces
@@ -531,12 +531,12 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|registration.all|등록 작업|개수|합계|성공한 모든 등록 작업(만들기 업데이트 쿼리 및 삭제)입니다. |
-|registration.create|등록 만들기 작업|개수|합계|성공한 모든 등록 만들기의 수입니다.|
-|registration.update|등록 업데이트 작업|개수|합계|성공한 모든 등록 업데이트의 수입니다.|
-|registration.get|등록 읽기 작업|개수|합계|성공한 모든 등록 쿼리의 수입니다.|
-|registration.delete|등록 삭제 작업|개수|합계|성공한 모든 등록 삭제의 수입니다.|
-|incoming|들어오는 메시지 |개수|합계|성공한 모든 API 호출 전송의 수입니다. |
+|registration.all|등록 작업|개수|합계|hello 성공한 모든 등록 작업 (업데이트 쿼리 만들기 및 삭제) 수입니다. |
+|registration.create|등록 만들기 작업|개수|합계|성공한 모든 등록 만들기의 hello 수입니다.|
+|registration.update|등록 업데이트 작업|개수|합계|성공한 모든 등록 업데이트의 hello 수입니다.|
+|registration.get|등록 읽기 작업|개수|합계|모든 성공적인 등록 쿼리의 hello 수입니다.|
+|registration.delete|등록 삭제 작업|개수|합계|성공한 모든 등록 삭제의 hello 수입니다.|
+|incoming|들어오는 메시지 |개수|합계|hello 수가 성공한 모든 보내기 API 호출 합니다. |
 |incoming.scheduled|전송된 예약된 푸시 알림|개수|합계|취소된 예약된 푸시 알림|
 |incoming.scheduled.cancel|취소된 예약된 푸시 알림|개수|합계|취소된 예약된 푸시 알림|
 |scheduled.pending|보류 중인 예약된 알림|개수|합계|보류 중인 예약된 알림|
@@ -545,52 +545,52 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 |installation.upsert|설치 작업 만들기 또는 업데이트|개수|합계|설치 작업 만들기 또는 업데이트|
 |installation.patch|설치 작업 패치|개수|합계|설치 작업 패치|
 |installation.delete|설치 작업 삭제|개수|합계|설치 작업 삭제|
-|outgoing.allpns.success|성공적인 알림|개수|합계|성공한 모든 알림의 수입니다.|
-|outgoing.allpns.invalidpayload|페이로드 오류|개수|합계|PNS가 잘못된 페이로드 오류를 반환하기 때문에 실패한 푸시의 수입니다.|
-|outgoing.allpns.pnserror|외부 알림 시스템 오류|개수|합계|PNS와 통신하는 데 문제(인증 문제 제외)가 있기 때문에 실패한 푸시의 수입니다.|
-|outgoing.allpns.channelerror|채널 오류|개수|합계|채널이 잘못되었거나 제한 또는 만료된 올바른 앱과 연결되지 않았으므로 실패 한 푸시의 수입니다.|
-|outgoing.allpns.badorexpiredchannel|잘못되거나 만료된 채널 오류|개수|합계|등록의 channel/token/registrationId가 만료되었거나 올바르지 않기 때문에 실패한 푸시의 수입니다.|
-|outgoing.wns.success|WNS 성공적인 알림|개수|합계|성공한 모든 알림의 수입니다.|
-|outgoing.wns.invalidcredentials|WNS 권한 부여 오류(잘못된 자격 증명)|개수|합계|PNS가 제공된 자격 증명을 수락하지 않았거나 자격 증명이 차단되어 실패한 푸시의 수입니다. (Windows Live는 자격 증명을 인식하지 못함)|
-|outgoing.wns.badchannel|WNS 잘못된 채널 오류|개수|합계|등록의 ChannelURI가 인식되지 않아 실패한 푸시의 수입니다(WNS 상태: 404 찾을 수 없음).|
-|outgoing.wns.expiredchannel|WNS 만료된 채널 오류|개수|합계|ChannelURI가 만료되어 실패한 푸시의 수입니다(WNS 상태: 410 없음).|
-|outgoing.wns.throttled|WNS 제한된 알림|개수|합계|WNS가 이 앱을 제한하기 때문에 실패한 푸시의 수입니다(WNS 상태: 406 승인 금지).|
+|outgoing.allpns.success|성공적인 알림|개수|합계|성공한 모든 알림의 hello 수입니다.|
+|outgoing.allpns.invalidpayload|페이로드 오류|개수|합계|hello PNS 반환 된 잘못 된 페이로드 오류 때문에 실패 한 푸시의 수를 hello입니다.|
+|outgoing.allpns.pnserror|외부 알림 시스템 오류|개수|합계|hello PNS (인증 문제는 제외)와 통신에 문제가 있기 때문에 실패 한 푸시의 수를 hello입니다.|
+|outgoing.allpns.channelerror|채널 오류|개수|합계|hello 채널이 잘못 되었거나 올바른 앱 정체 또는 만료 hello와 연결 되지 않은 때문에 실패 한 푸시의 hello 수 있습니다.|
+|outgoing.allpns.badorexpiredchannel|잘못되거나 만료된 채널 오류|개수|합계|hello 채널/token/registrationId hello 등록이 만료 되었거나 잘못 때문에 실패 한 푸시의 hello 수 있습니다.|
+|outgoing.wns.success|WNS 성공적인 알림|개수|합계|성공한 모든 알림의 hello 수입니다.|
+|outgoing.wns.invalidcredentials|WNS 권한 부여 오류(잘못된 자격 증명)|개수|합계|hello PNS에서 자격 증명이 나 hello 차단 된 hello 제공 받아들이지 않으므로 실패 한 푸시의 hello 수 있습니다. (Windows Live 인식 하지 못합니다 hello 자격 증명).|
+|outgoing.wns.badchannel|WNS 잘못된 채널 오류|개수|합계|hello hello 등록의 ChannelURI hello 인식 되지 않아 실패 한 푸시의 수입니다 (WNS 상태: 404 찾을 수 없음).|
+|outgoing.wns.expiredchannel|WNS 만료된 채널 오류|개수|합계|hello hello ChannelURI가 만료 되어 실패 한 푸시의 수입니다 (WNS 상태: 410 없음).|
+|outgoing.wns.throttled|WNS 제한된 알림|개수|합계|hello WNS이이 응용 프로그램을 조절 하 여 실패 한 푸시의 수입니다 (WNS 상태: 406 허용 되지 않습니다).|
 |outgoing.wns.tokenproviderunreachable|WNS 권한 부여 오류(연결할 수 없음)|개수|합계|Windows Live에 연결할 수 없습니다.|
-|outgoing.wns.invalidtoken|WNS 권한 부여 오류(잘못된 토큰)|개수|합계|WNS에 제공한 토큰이 잘못되었습니다(WNS 상태: 401 권한 없음).|
-|outgoing.wns.wrongtoken|WNS 권한 부여 오류(잘못된 토큰)|개수|합계|WNS에 제공된 토큰은 유효하지만 다른 응용 프로그램에 대해서는 유효하지 않습니다(WNS 상태: 403 사용 권한 없음). 등록의 ChannelURI가 다른 앱에 연결된 경우 이 문제가 발생할 수 있습니다. 클라이언트 앱은 자격 증명이 알림 허브에 있는 동일한 앱과 연결되어 있는지 확인합니다.|
-|outgoing.wns.invalidnotificationformat|WNS 잘못된 알림 형식|개수|합계|알림의 형식이 잘못되었습니다(WNS 상태: 400). WNS가 잘못된 모든 페이로드를 거부하지는 않습니다.|
-|outgoing.wns.invalidnotificationsize|WNS 잘못된 알림 크기 오류|개수|합계|알림 페이로드가 너무 큽니다(WNS 상태: 413).|
-|outgoing.wns.channelthrottled|WNS 채널 제한|개수|합계|등록의 ChannelURI가 제한되어 알림이 삭제되었습니다(WNS 응답 헤더: X-WNS-NotificationStatus:channelThrottled).|
-|outgoing.wns.channeldisconnected|WNS 채널 연결 끊김|개수|합계|등록의 ChannelURI가 제한되어 알림이 삭제되었습니다(WNS 응답 헤더: X-WNS-DeviceConnectionStatus: disconnected).|
-|outgoing.wns.dropped|WNS 삭제된 알림|개수|합계|등록의 ChannelURI가 제한되어 알림이 삭제되었습니다(X-WNS-NotificationStatus: dropped but not X-WNS-DeviceConnectionStatus: disconnected).|
+|outgoing.wns.invalidtoken|WNS 권한 부여 오류(잘못된 토큰)|개수|합계|hello 토큰이 제공 tooWNS 잘못 되었습니다 (WNS 상태: 401 권한 없음).|
+|outgoing.wns.wrongtoken|WNS 권한 부여 오류(잘못된 토큰)|개수|합계|제공 된 tooWNS는 유효 하지만 다른 응용 프로그램에 대 한 토큰을 hello (WNS 상태: 403 사용할 수 없음). 이 hello 등록의 ChannelURI hello는 다른 앱과 연결 하는 경우 발생할 수 있습니다. Hello와 연결 된 해당 hello 클라이언트 응용 프로그램 확인 hello 알림 허브에 자격 증명이 있는 동일한 응용 프로그램입니다.|
+|outgoing.wns.invalidnotificationformat|WNS 잘못된 알림 형식|개수|합계|hello 알림의 hello 형식이 잘못 되었습니다 (WNS 상태: 400). WNS가 잘못된 모든 페이로드를 거부하지는 않습니다.|
+|outgoing.wns.invalidnotificationsize|WNS 잘못된 알림 크기 오류|개수|합계|hello 알림 페이로드가 너무 큽니다 (WNS 상태: 413).|
+|outgoing.wns.channelthrottled|WNS 채널 제한|개수|합계|스로틀 되는 hello 등록의 ChannelURI hello hello 알림이 삭제 되었습니다 (WNS 응답 헤더: X-WNS-NotificationStatus:channelThrottled).|
+|outgoing.wns.channeldisconnected|WNS 채널 연결 끊김|개수|합계|스로틀 되는 hello 등록의 ChannelURI hello hello 알림이 삭제 되었습니다 (WNS 응답 헤더: DeviceConnectionStatus-WNS-X: 연결 끊김).|
+|outgoing.wns.dropped|WNS 삭제된 알림|개수|합계|스로틀 되는 hello 등록의 ChannelURI hello hello 알림이 삭제 되었습니다 (X-WNS-NotificationStatus: 삭제 하지만 하지: X-WNS-DeviceConnectionStatus: 연결 끊김).|
 |outgoing.wns.pnserror|WNS 오류|개수|합계|WNS와의 통신 오류로 인해 알림이 배달되지 않습니다.|
 |outgoing.wns.authenticationerror|WNS 인증 오류|개수|합계|Windows Live와의 통신 오류(잘못된 자격 증명 또는 잘못된 토큰)로 인해 알림이 배달되지 않습니다.|
-|outgoing.apns.success|APNS 성공적인 알림|개수|합계|성공한 모든 알림의 수입니다.|
-|outgoing.apns.invalidcredentials|APNS 권한 부여 오류|개수|합계|PNS가 제공된 자격 증명을 수락하지 않았거나 자격 증명이 차단되어 실패한 푸시의 수입니다.|
-|outgoing.apns.badchannel|APNS 잘못된 채널 오류|개수|합계|토큰이 잘못되어 실패한 푸시의 수입니다(APNS 상태 코드: 8).|
-|outgoing.apns.expiredchannel|APNS 만료된 채널 오류|개수|합계|APNS 피드백 채널에서 무효화된 토큰의 수입니다.|
-|outgoing.apns.invalidnotificationsize|APNS 잘못된 알림 크기 오류|개수|합계|페이로드가 너무 커서 실패한 푸시의 수입니다(APNS 상태 코드: 7).|
-|outgoing.apns.pnserror|APNS 오류|개수|합계|APNS와의 통신 오류로 인해 실패한 푸시의 수입니다.|
-|outgoing.gcm.success|GCM 성공적인 알림|개수|합계|성공한 모든 알림의 수입니다.|
-|outgoing.gcm.invalidcredentials|GCM 권한 부여 오류(잘못된 자격 증명)|개수|합계|PNS가 제공된 자격 증명을 수락하지 않았거나 자격 증명이 차단되어 실패한 푸시의 수입니다.|
-|outgoing.gcm.badchannel|GCM 잘못된 채널 오류|개수|합계|등록의 registrationId가 인식되지 않기 때문에 실패한 푸시의 수입니다(GCM 결과: 잘못된 등록).|
-|outgoing.gcm.expiredchannel|GCM 만료된 채널 오류|개수|합계|등록의 registrationId가 만료되었기 때문에 실패한 푸시의 수입니다(GCM 결과: NotRegistered).|
-|outgoing.gcm.throttled|GCM 제한된 알림|개수|합계|GCM이 이 앱을 제한하기 때문에 실패한 푸시의 수(GCM 상태 코드: 501-599 또는 결과: Unavailable).|
-|outgoing.gcm.invalidnotificationformat|GCM 잘못된 알림 형식|개수|합계|페이로드 형식이 올바르지 않기 때문에 실패한 푸시의 수입니다(GCM 결과: InvalidDataKey 또는 InvalidTtl).|
-|outgoing.gcm.invalidnotificationsize|GCM 잘못된 알림 크기 오류|개수|합계|페이로드가 너무 커서 실패한 푸시의 수입니다(GCM 결과: MessageTooBig).|
-|outgoing.gcm.wrongchannel|GCM 잘못된 채널 오류|개수|합계|등록의 registrationId가 현재 앱과 연결되지 않기 때문에 실패한 푸시의 수입니다(GCM 결과: InvalidPackageName).|
-|outgoing.gcm.pnserror|GCM 오류|개수|합계|GCM과의 통신 오류로 인해 실패한 푸시의 수입니다.|
-|outgoing.gcm.authenticationerror|GCM 인증 오류|개수|합계|PNS가 제공된 자격 증명을 수락하지 않았거나, 자격 증명이 차단되었거나, 앱에서 SenderId가 올바르게 구성되지 않았기 때문에 실패한 푸시의 수입니다(GCM 결과: MismatchedSenderId).|
-|outgoing.mpns.success|MPNS 성공적인 알림|개수|합계|성공한 모든 알림의 수입니다.|
-|outgoing.mpns.invalidcredentials|MPNS 잘못된 자격 증명|개수|합계|PNS가 제공된 자격 증명을 수락하지 않았거나 자격 증명이 차단되어 실패한 푸시의 수입니다.|
-|outgoing.mpns.badchannel|MPNS 잘못된 채널 오류|개수|합계|등록의 ChannelURI가 인식되지 않아 실패한 푸시의 수입니다(MPNS 상태: 404 찾을 수 없음).|
-|outgoing.mpns.throttled|MPNS 제한된 알림|개수|합계|MPNS가 이 앱을 제한하기 때문에 실패한 푸시의 수입니다(WNS MPNS: 406 승인 금지).|
-|outgoing.mpns.invalidnotificationformat|MPNS 잘못된 알림 형식|개수|합계|알림의 페이로드가 너무 커서 실패한 푸시의 수입니다.|
-|outgoing.mpns.channeldisconnected|MPNS 채널 연결 끊김|개수|합계|등록의 ChannelURI 연결이 끊어졌으므로 실패한 푸시의 수입니다(MPNS 상태: 412 찾을 수 없음).|
-|outgoing.mpns.dropped|MPNS 삭제된 알림|개수|합계|MPNS에서 삭제된 푸시의 수입니다(MPNS 응답 헤더: X-NotificationStatus: QueueFull 또는 Suppressed).|
-|outgoing.mpns.pnserror|MPNS 오류|개수|합계|MPNS와의 통신 오류로 인해 실패한 푸시의 수입니다.|
-|outgoing.mpns.authenticationerror|MPNS 인증 오류|개수|합계|PNS가 제공된 자격 증명을 수락하지 않았거나 자격 증명이 차단되어 실패한 푸시의 수입니다.|
-|notificationhub.pushes|모든 나가는 알림 수|개수|합계|알림 허브의 모든 나가는 알림 수|
+|outgoing.apns.success|APNS 성공적인 알림|개수|합계|성공한 모든 알림의 hello 수입니다.|
+|outgoing.apns.invalidcredentials|APNS 권한 부여 오류|개수|합계|hello PNS에서 자격 증명이 나 hello 차단 된 hello 제공 받아들이지 않으므로 실패 한 푸시의 hello 수 있습니다.|
+|outgoing.apns.badchannel|APNS 잘못된 채널 오류|개수|합계|hello hello 토큰이 잘못 되었습니다. 실패 한 푸시의 수입니다 (APNS 상태 코드: 8).|
+|outgoing.apns.expiredchannel|APNS 만료된 채널 오류|개수|합계|hello APNS 피드백 채널에서 무효화 된 토큰의 hello 수입니다.|
+|outgoing.apns.invalidnotificationsize|APNS 잘못된 알림 크기 오류|개수|합계|hello hello 페이로드가 너무 커서 실패 한 푸시의 수입니다 (APNS 상태 코드: 7).|
+|outgoing.apns.pnserror|APNS 오류|개수|합계|APNS와의 통신 오류로 인해 실패 한 푸시의 hello 수입니다.|
+|outgoing.gcm.success|GCM 성공적인 알림|개수|합계|성공한 모든 알림의 hello 수입니다.|
+|outgoing.gcm.invalidcredentials|GCM 권한 부여 오류(잘못된 자격 증명)|개수|합계|hello PNS에서 자격 증명이 나 hello 차단 된 hello 제공 받아들이지 않으므로 실패 한 푸시의 hello 수 있습니다.|
+|outgoing.gcm.badchannel|GCM 잘못된 채널 오류|개수|합계|hello hello 등록의 registrationId hello 인식 되지 않아 실패 한 푸시의 수입니다 (GCM 결과: 잘못 된 등록).|
+|outgoing.gcm.expiredchannel|GCM 만료된 채널 오류|개수|합계|hello hello 등록의 hello registrationId가 만료 되어 실패 한 푸시의 수입니다 (GCM 결과: NotRegistered).|
+|outgoing.gcm.throttled|GCM 제한된 알림|개수|합계|hello GCM이이 앱을 제한 하기 때문에 실패 한 푸시의 수입니다 (GCM 상태 코드: 501-599 또는 결과: 사용할 수 없음).|
+|outgoing.gcm.invalidnotificationformat|GCM 잘못된 알림 형식|개수|합계|hello hello 페이로드 형식이 올바르지 않습니다. 실패 한 푸시의 수입니다 (GCM 결과: InvalidDataKey 또는 InvalidTtl).|
+|outgoing.gcm.invalidnotificationsize|GCM 잘못된 알림 크기 오류|개수|합계|hello hello 페이로드가 너무 커서 실패 한 푸시의 수입니다 (GCM 결과: MessageTooBig).|
+|outgoing.gcm.wrongchannel|GCM 잘못된 채널 오류|개수|합계|hello 등록의 registrationId hello 없기 때문에 실패 한 푸시의 수 hello toohello 현재 앱에 연결 (GCM 결과: InvalidPackageName).|
+|outgoing.gcm.pnserror|GCM 오류|개수|합계|GCM과의 통신 오류로 인해 실패 한 푸시의 hello 수입니다.|
+|outgoing.gcm.authenticationerror|GCM 인증 오류|개수|합계|hello PNS 자격 증명 hello 자격 증명이 차단 hello 제공을 수락 하지 않았거나 hello 또는 hello SenderId가 hello 응용 프로그램에서 올바르게 구성 되지 않아 실패 한 푸시의 수입니다 (GCM 결과: MismatchedSenderId).|
+|outgoing.mpns.success|MPNS 성공적인 알림|개수|합계|성공한 모든 알림의 hello 수입니다.|
+|outgoing.mpns.invalidcredentials|MPNS 잘못된 자격 증명|개수|합계|hello PNS에서 자격 증명이 나 hello 차단 된 hello 제공 받아들이지 않으므로 실패 한 푸시의 hello 수 있습니다.|
+|outgoing.mpns.badchannel|MPNS 잘못된 채널 오류|개수|합계|hello hello 등록의 ChannelURI hello 인식 되지 않아 실패 한 푸시의 수입니다 (MPNS 상태: 404 찾을 수 없음).|
+|outgoing.mpns.throttled|MPNS 제한된 알림|개수|합계|hello MPNS이이 응용 프로그램을 조절 하 여 실패 한 푸시의 수입니다 (WNS MPNS: 406 허용 되지 않습니다).|
+|outgoing.mpns.invalidnotificationformat|MPNS 잘못된 알림 형식|개수|합계|hello 알림의 hello 페이로드가 너무 커서 때문에 실패 한 푸시의 hello 수입니다.|
+|outgoing.mpns.channeldisconnected|MPNS 채널 연결 끊김|개수|합계|hello hello 등록의 ChannelURI hello 연결이 끊어졌습니다. 실패 한 푸시의 수입니다 (MPNS 상태: 412 찾을 수 없음).|
+|outgoing.mpns.dropped|MPNS 삭제된 알림|개수|합계|hello MPNS에 의해 삭제 된 푸시의 수입니다 (MPNS 응답 헤더: X NotificationStatus: QueueFull 또는 억제).|
+|outgoing.mpns.pnserror|MPNS 오류|개수|합계|MPNS와의 통신 오류로 인해 실패 한 푸시의 hello 수입니다.|
+|outgoing.mpns.authenticationerror|MPNS 인증 오류|개수|합계|hello PNS에서 자격 증명이 나 hello 차단 된 hello 제공 받아들이지 않으므로 실패 한 푸시의 hello 수 있습니다.|
+|notificationhub.pushes|모든 나가는 알림 수|개수|합계|Hello 알림 허브의 모든 나가는 알림|
 |incoming.all.requests|들어오는 모든 요청|개수|합계|알림 허브에 대해 들어오는 전체 요청|
 |incoming.all.failedrequests|들어오는 모든 실패한 요청|개수|합계|알림 허브에 대해 들어오는 실패한 전체 요청|
 
@@ -604,49 +604,49 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 |SuccessfullConnectionsPerSec|초당 성공한 연결 수|초당 개수|평균|성공적으로 완료된 연결 비율입니다.|
 |TotalConnectionFailures|총 연결 실패 수|개수|평균|실패한 총 연결 시도 수입니다.|
 |CurrentUserSessions|현재 사용자 세션 수|개수|평균|현재 설정된 사용자 세션 수입니다.|
-|QueryPoolBusyThreads|쿼리 풀의 사용 중인 스레드|개수|평균|쿼리 스레드 풀의 사용 중인 스레드 수입니다.|
-|CommandPoolJobQueueLength|명령 풀의 작업 큐 길이|개수|평균|명령 스레드 풀의 큐에 있는 작업 수입니다.|
-|ProcessingPoolJobQueueLength|처리 풀의 작업 큐 길이|개수|평균|처리 스레드 풀의 큐에 있는 비-I/O 작업 수입니다.|
+|QueryPoolBusyThreads|쿼리 풀의 사용 중인 스레드|개수|평균|hello 쿼리 스레드 풀에서 사용 중인 스레드 수입니다.|
+|CommandPoolJobQueueLength|명령 풀의 작업 큐 길이|개수|평균|Hello 명령 스레드 풀의 hello 큐에 있는 작업 수입니다.|
+|ProcessingPoolJobQueueLength|처리 풀의 작업 큐 길이|개수|평균|스레드 풀을 처리 하는 hello의 hello 큐에 비-I/o 작업 수입니다.|
 |CurrentConnections|연결: 현재 연결|개수|평균|현재 설정된 클라이언트 연결 수입니다.|
-|CleanerCurrentPrice|메모리: 클리너 현재 가격|개수|평균|현재 메모리 가격, $/바이트/시간, 1000으로 일반화됩니다.|
-|CleanerMemoryShrinkable|메모리: 클리너 메모리 축소 가능|바이트|평균|메모리 양, 바이트 단위, 백그라운드 클리너에 의해 제거되는 대상입니다.|
-|CleanerMemoryNonshrinkable|메모리: 클리너 메모리 축소 불가능|바이트|평균|메모리 양, 바이트 단위, 백그라운드 클리너에 의해 제거되는 대상이 아닙니다.|
-|MemoryUsage|메모리: 메모리 사용량|바이트|평균|클리너 메모리 가격을 계산하는 데 사용되는 서버 프로세스의 메모리 사용량입니다. 메모리 매핑된 데이터 크기를 더한 카운터 Process\PrivateBytes와 동일하며 xVelocity 엔진 메모리 제한을 초과하여 xVelocity 메모리 내 분석 엔진(VertiPaq)에서 매핑하거나 할당하는 메모리를 무시합니다.|
+|CleanerCurrentPrice|메모리: 클리너 현재 가격|개수|평균|메모리, $/ 바이트/시간, 정규화 된 too1000의 현재 가격입니다.|
+|CleanerMemoryShrinkable|메모리: 클리너 메모리 축소 가능|바이트|평균|메모리의 양 (바이트)에서 hello 백그라운드 클리너로 주체 toopurging 합니다.|
+|CleanerMemoryNonshrinkable|메모리: 클리너 메모리 축소 불가능|바이트|평균|메모리의 양 (바이트)에서 hello 백그라운드 클리너로 주체 toopurging 되지 않습니다.|
+|MemoryUsage|메모리: 메모리 사용량|바이트|평균|더욱 명확한 메모리 비용 계산에 사용 되는 hello 서버 프로세스의 메모리 사용량입니다. 같은 toocounter Process\PrivateBytes hello와 크기를 더한 메모리 매핑된 데이터를 메모리 매핑 되었거나 hello xVelocity 메모리 내 분석 엔진 (VertiPaq) hello xVelocity 엔진 Memory Limit를 초과 하 여 할당 된는 무시 합니다.|
 |MemoryLimitHard|메모리: 메모리 제한 하드|바이트|평균|하드 메모리 제한, 구성 파일 원본입니다.|
 |MemoryLimitHigh|메모리: 메모리 제한 상한|바이트|평균|상한 메모리 제한, 구성 파일 원본입니다.|
 |MemoryLimitLow|메모리: 메모리 제한 하한|바이트|평균|하한 메모리 제한, 구성 파일 원본입니다.|
 |MemoryLimitVertiPaq|메모리: 메모리 제한 VertiPaq|바이트|평균|메모리 내 제한, 구성 파일 원본입니다.|
 |할당량|메모리: 할당량|바이트|평균|현재 메모리 할당량, 바이트 단위입니다. 메모리 할당량은 메모리 부여 또는 메모리 예약이라고도 합니다.|
 |QuotaBlocked|메모리: 차단된 할당량|개수|평균|다른 메모리 할당량이 해제될 때까지 차단되는 할당량 요청의 현재 수입니다.|
-|VertiPaqNonpaged|메모리: 페이징되지 않은 VertiPaq|바이트|평균|메모리 내 엔진에서 사용하기 위해 설정된 작동 중에 잠긴 메모리 바이트입니다.|
+|VertiPaqNonpaged|메모리: 페이징되지 않은 VertiPaq|바이트|평균|바이트의 메모리 사용에 대 한 hello 작업 집합에 hello 메모리 내 엔진에 의해 잠겼습니다.|
 |VertiPaqPaged|메모리: 페이징된 VertiPaq|바이트|평균|메모리 내 데이터에 사용 중인 페이징된 메모리 바이트입니다.|
 |RowsReadPerSec|처리: 초당 읽은 행|초당 개수|평균|모든 관계형 데이터베이스에서 읽은 행의 비율입니다.|
 |RowsConvertedPerSec|처리: 초당 변환된 행|초당 개수|평균|처리하는 동안 변환된 행의 비율입니다.|
 |RowsWrittenPerSec|처리: 초당 작성된 행|초당 개수|평균|처리하는 동안 작성된 행의 비율입니다.|
-|CommandPoolBusyThreads|스레드: 명령 풀 사용 중인 스레드|개수|평균|명령 스레드 풀의 사용 중인 스레드 수입니다.|
-|CommandPoolIdleThreads|스레드: 명령 풀 유휴 상태 스레드|개수|평균|명령 스레드 풀의 유휴 상태 스레드 수입니다.|
-|LongParsingBusyThreads|스레드: 긴 구문 분석 사용 중인 스레드|개수|평균|긴 구문 분석 스레드 풀에서 사용 중인 스레드 수입니다.|
-|LongParsingIdleThreads|스레드: 긴 구문 분석 유휴 상태 스레드|개수|평균|긴 구문 분석 스레드 풀에서 유휴 상태 스레드 수입니다.|
-|LongParsingJobQueueLength|스레드: 긴 구문 분석 작업 큐 길이|개수|평균|긴 구문 분석 스레드 풀의 큐에 있는 작업 수입니다.|
-|ProcessingPoolBusyIOJobThreads|스레드: 처리 풀 사용 중인 I/O 작업 스레드|개수|평균|처리 스레드 풀에서 I/O 작업을 실행 중인 스레드 수입니다.|
-|ProcessingPoolBusyNonIOThreads|스레드: 처리 풀 사용 중인 비-I/O 스레드|개수|평균|처리 스레드 풀에서 비-I/O 작업을 실행 중인 스레드 수입니다.|
-|ProcessingPoolIOJobQueueLength|스레드: 처리 풀 I/O 작업 큐 길이|개수|평균|처리 스레드 풀의 큐에 있는 I/O 작업 수입니다.|
-|ProcessingPoolIdleIOJobThreads|스레드: 처리 풀 유휴 상태 I/O 작업 스레드|개수|평균|처리 스레드 풀에서 I/O 작업의 유휴 상태 스레드 수입니다.|
-|ProcessingPoolIdleNonIOThreads|스레드: 처리 풀 유휴 상태 비-I/O 스레드|개수|평균|비-I/O 작업 전용인 처리 스레드 풀에서 유휴 상태 스레드 수입니다.|
-|QueryPoolIdleThreads|스레드: 쿼리 풀 유휴 상태 스레드|개수|평균|처리 스레드 풀에서 I/O 작업의 유휴 상태 스레드 수입니다.|
-|QueryPoolJobQueueLength|스레드: 쿼리 풀 작업 큐 길이|개수|평균|쿼리 스레드 풀의 큐에 있는 작업 수입니다.|
-|ShortParsingBusyThreads|스레드: 짧은 구문 분석 사용 중인 스레드|개수|평균|짧은 구문 분석 스레드 풀에서 사용 중인 스레드 수입니다.|
-|ShortParsingIdleThreads|스레드: 짧은 구문 분석 유휴 상태 스레드|개수|평균|짧은 구문 분석 스레드 풀에서 유휴 상태 스레드 수입니다.|
-|ShortParsingJobQueueLength|스레드: 짧은 구문 분석 작업 큐 길이|개수|평균|짧은 구문 분석 스레드 풀의 큐에 있는 작업 수입니다.|
+|CommandPoolBusyThreads|스레드: 명령 풀 사용 중인 스레드|개수|평균|hello 명령 스레드 풀에서 사용 중인 스레드 수입니다.|
+|CommandPoolIdleThreads|스레드: 명령 풀 유휴 상태 스레드|개수|평균|Hello 명령 스레드 풀의 유휴 상태 스레드 수입니다.|
+|LongParsingBusyThreads|스레드: 긴 구문 분석 사용 중인 스레드|개수|평균|긴 스레드 풀 구문 분석 하는 hello 사용 중인 스레드 수입니다.|
+|LongParsingIdleThreads|스레드: 긴 구문 분석 유휴 상태 스레드|개수|평균|긴 스레드 풀 구문 분석 하는 hello의 유휴 상태 스레드 수입니다.|
+|LongParsingJobQueueLength|스레드: 긴 구문 분석 작업 큐 길이|개수|평균|긴 스레드 풀 구문 분석 하는 hello의 hello 큐에서 작업 수입니다.|
+|ProcessingPoolBusyIOJobThreads|스레드: 처리 풀 사용 중인 I/O 작업 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 I/O 작업을 실행 중인 스레드 수입니다.|
+|ProcessingPoolBusyNonIOThreads|스레드: 처리 풀 사용 중인 비-I/O 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 비-I/o 작업을 실행 중인 스레드 수입니다.|
+|ProcessingPoolIOJobQueueLength|스레드: 처리 풀 I/O 작업 큐 길이|개수|평균|스레드 풀을 처리 하는 hello의 hello 큐에서 I/O 작업 수입니다.|
+|ProcessingPoolIdleIOJobThreads|스레드: 처리 풀 유휴 상태 I/O 작업 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 I/O 작업에 대 한 유휴 상태 스레드 수입니다.|
+|ProcessingPoolIdleNonIOThreads|스레드: 처리 풀 유휴 상태 비-I/O 스레드|개수|평균|스레드 풀을 처리 하는 hello에 유휴 상태 스레드 수는 toonon-I/o 작업 전용입니다.|
+|QueryPoolIdleThreads|스레드: 쿼리 풀 유휴 상태 스레드|개수|평균|스레드 풀을 처리 하는 hello에서 I/O 작업에 대 한 유휴 상태 스레드 수입니다.|
+|QueryPoolJobQueueLength|스레드: 쿼리 풀 작업 큐 길이|개수|평균|Hello 쿼리 스레드 풀의 hello 큐에 있는 작업 수입니다.|
+|ShortParsingBusyThreads|스레드: 짧은 구문 분석 사용 중인 스레드|개수|평균|스레드 풀 구문 분석 짧은 hello 사용 중인 스레드 수입니다.|
+|ShortParsingIdleThreads|스레드: 짧은 구문 분석 유휴 상태 스레드|개수|평균|스레드 풀 구문 분석 짧은 hello의 유휴 상태 스레드 수입니다.|
+|ShortParsingJobQueueLength|스레드: 짧은 구문 분석 작업 큐 길이|개수|평균|스레드 풀 구문 분석 짧은 hello의 hello 큐에서 작업 수입니다.|
 |memory_thrashing_metric|메모리 쓰래싱|백분율|평균|평균 메모리 쓰래싱입니다.|
 
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.Search/searchServices
 
 |메트릭|메트릭 표시 이름|단위|집계 형식|설명|
 |---|---|---|---|---|
-|SearchLatency|검색 대기 시간|초|평균|검색 서비스에 대한 평균 검색 대기 시간|
-|SearchQueriesPerSecond|초당 검색 쿼리 수|초당 개수|평균|검색 서비스에 대한 초당 검색 쿼리|
-|ThrottledSearchQueriesPercentage|제한된 검색 쿼리 백분율|백분율|평균|검색 서비스에 대해 제한된 검색 쿼리의 백분율|
+|SearchLatency|검색 대기 시간|초|평균|Hello 검색 서비스에 대 한 평균 검색 대기 시간|
+|SearchQueriesPerSecond|초당 검색 쿼리 수|초당 개수|평균|Hello 검색 서비스에 대 한 초당 검색 쿼리|
+|ThrottledSearchQueriesPercentage|제한된 검색 쿼리 백분율|백분율|평균|Hello 검색 서비스에 대 한 제한 된 검색 쿼리의 비율|
 
 ## <a name="microsoftservicebusnamespaces"></a>Microsoft.ServiceBus/namespaces
 
@@ -797,4 +797,4 @@ Azure Monitor에서는 포털에서의 차트 작성, REST API를 통한 액세�
 ## <a name="next-steps"></a>다음 단계
 * [Azure Monitor의 메트릭에 대해 읽기](monitoring-overview-metrics.md)
 * [메트릭에 대한 경고 만들기](insights-receive-alert-notifications.md)
-* [저장소, 이벤트 허브 또는 Log Analytics에 메트릭 내보내기](monitoring-overview-of-diagnostic-logs.md)
+* [메트릭 toostorage, 이벤트 허브 또는 분석 로그 내보내기](monitoring-overview-of-diagnostic-logs.md)

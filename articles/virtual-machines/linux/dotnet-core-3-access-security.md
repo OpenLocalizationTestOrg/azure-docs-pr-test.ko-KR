@@ -1,5 +1,5 @@
 ---
-title: "Linux VM용 Azure 템플릿의 액세스 및 보안 | Microsoft Docs"
+title: "aaaAccess에서 Linux Vm에 대 한 Azure 템플릿 및 보안 | Microsoft Docs"
 description: "Azure 가상 컴퓨터 DotNet Core 자습서"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,24 +16,24 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4ef4fc4109d4ccf4be273608bacacce820deb281
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 88fedc8287c1f8ab8397a03ddefe1e60a686815e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-and-security-in-azure-resource-manager-templates-for-linux-vms"></a>Linux VM용 Azure Resource Manager 템플릿의 액세스 및 보안
 
-Azure에 호스트되는 응용 프로그램은 인터넷 또는 Azure와의 VPN/Express 경로 연결을 통해 액세스되어야 할 수 있습니다. Music Store 응용 프로그램 샘플을 사용할 경우 공용 IP 주소를 통해 인터넷에서 해당 웹 사이트를 사용할 수 있습니다. 액세스가 설정되면 응용 프로그램에 대한 연결 및 가상 컴퓨터 리소스에 대한 액세스가 자체적으로 보호되어야 합니다. 이 액세스 보안은 네트워크 보안 그룹을 통해 제공됩니다. 
+응용 프로그램에서 Azure 할 가능성이 toobe 액세스를 통해 호스트 되 hello 인터넷 또는 VPN / azure Express 경로 연결 합니다. Hello 음악 스토어 응용 프로그램 샘플에서와 hello 웹 사이트에서 사용할 수는 공용 IP 주소로 인터넷 hello 합니다. 설정에 연결 된 연결 toohello 응용 프로그램 리소스를 액세스할 toohello 가상 컴퓨터 자체를 보호 해야 합니다. 이 액세스 보안은 네트워크 보안 그룹을 통해 제공됩니다. 
 
-이 문서에서는 샘플 Azure Resource Manager 템플릿에서 Music Store 응용 프로그램의 보안을 유지하는 방법을 자세히 설명합니다. 모든 종속성 및 고유한 구성이 강조 표시됩니다. 최상의 환경을 위해서는 솔루션 인스턴스를 Azure 구독에 미리 배포하고 Azure Resource Manager 템플릿을 따라 작업하는 것이 좋습니다. 전체 템플릿은 [Ubuntu의 Music Store 배포](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)에서 확인할 수 있습니다. 
+이 문서에 hello 샘플 Azure 리소스 관리자 템플릿 hello 음악 스토어 응용 프로그램 보호 되는 방식을 자세히 설명 합니다. 모든 종속성 및 고유한 구성이 강조 표시됩니다. Hello 최상의 경험에 대 한 미리 hello 솔루션 tooyour Azure 구독 및 Azure 리소스 관리자 템플릿 hello와 함께 작업의 인스턴스를 배포 합니다. hello 완전 한 템플릿 여기 – 있습니다 [ubuntu 음악 스토어 배포](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)합니다. 
 
 ## <a name="public-ip-address"></a>공용 IP 주소
-Azure 리소스에 대한 공용 액세스를 제공하려면 공용 IP 주소 리소스를 사용할 수 있습니다. 정적 또는 동적 IP 주소로 공용 IP 주소를 구성할 수 있습니다. 동적 주소가 사용되고 가상 컴퓨터를 중지된 후 할당 취소되면 해당 주소가 제거됩니다. 컴퓨터 다시 시작되면 다른 공용 IP 주소를 할당할 수 있습니다. IP 주소가 변경되지 않게 하려면 예약된 IP 주소를 사용할 수 있습니다. 
+tooprovide 공용 액세스 tooan Azure 리소스, 공용 IP 주소 리소스를 사용할 수 있습니다. 정적 또는 동적 IP 주소로 공용 IP 주소를 구성할 수 있습니다. 동적 주소를 사용 하 고 hello 가상 컴퓨터를 중지 하 고 할당 취소 hello 주소 제거 됩니다. Hello 컴퓨터 다시 시작 되 면 다른 공용 IP 주소를 할당할 수 있습니다. 가 변경할 tooprevent는 IP 주소, 예약된 된 IP 주소를 사용할 수 있습니다. 
 
-Visual Studio 새 리소스 추가 마법사를 사용하거나 템플릿에 유효한 JSON을 삽입하여 Azure Resource Manager 템플릿에 공용 IP 주소를 추가할 수 있습니다. 
+공용 IP 주소는 Visual Studio 새 리소스 추가 마법사, hello를 사용 하 여 tooan Azure 리소스 관리자 템플릿을 추가할 수 있습니다 또는 서식 파일에 유효한 JSON을 삽입 하 여 합니다. 
 
-[공용 IP 주소](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L121)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [공용 IP 주소](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L121)합니다.
 
 ```json
 {
@@ -53,9 +53,9 @@ Visual Studio 새 리소스 추가 마법사를 사용하거나 템플릿에 유
 }
 ```
 
-공용 IP 주소를 가상 네트워크 어댑터 또는 부하 분산 장치에 연결할 수 있습니다. 이 예제에서는 Music Store 웹 사이트 부하가 여러 가상 컴퓨터에서 분산되기 때문에 공용 IP 주소가 부하 분산 장치에 연결됩니다.
+공용 IP 주소를 가상 네트워크 어댑터 또는 부하 분산 장치에 연결할 수 있습니다. 이 예제에서는 hello 음악 스토어 웹 사이트는 여러 가상 컴퓨터에서 부하 분산 때문에 hello 공용 IP 주소에는 연결 된 toohello 부하 분산 장치는 합니다.
 
-[공용 IP 주소와 부하 부산 장치 연결](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L208)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [부하 분산 된 공용 IP 주소 연결](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L208)합니다.
 
 ```json
 "frontendIPConfigurations": [
@@ -70,16 +70,16 @@ Visual Studio 새 리소스 추가 마법사를 사용하거나 템플릿에 유
 ]
 ```
 
-Azure Portal에 표시된 공용 IP 주소. 공용 IP 주소가 가상 컴퓨터가 아닌 부하 분산 장치에 연결되어 있는지 확인합니다. 네트워크 부하 분산 장치는 이 시리즈의 다음 문서에 자세히 나와 있습니다.
+hello와 공용 IP 주소에서에서 본 hello Azure 포털입니다. 관련된 tooa 부하 분산 장치 및 가상 컴퓨터가 아닌 hello 공용 IP 주소 인지 확인 합니다. 네트워크 부하 분산 장치 hello이이 시리즈의 다음 문서에 자세히 설명 합니다.
 
 ![공용 IP 주소](./media/dotnet-core-3-access-security/pubip.png)
 
 Azure 공용 IP 주소에 대한 자세한 내용은 [Azure의 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)를 참조하세요.
 
 ## <a name="network-security-group"></a>네트워크 보안 그룹
-Azure 리소스에 대한 액세스가 설정되면 이 액세스를 제한해야 합니다. Azure 가상 컴퓨터의 경우 네트워크 보안 그룹을 사용하여 보안 액세스가 설정됩니다. Music Store 응용 프로그램 샘플을 사용하면 가상 컴퓨터에 대한 모든 액세스가 제한됩니다. 단 http 액세스를 위한 포트 80과 SSH 액세스를 위한 포트 22는 예외입니다. Visual Studio 새 리소스 추가 마법사를 사용하거나 템플릿에 유효한 JSON을 삽입하여 Azure Resource Manager 템플릿에 네트워크 보안 그룹을 추가할 수 있습니다.
+액세스에 설정 된 tooAzure 리소스를 수행한 후에이 액세스 제한 되어야 합니다. Azure 가상 컴퓨터의 경우 네트워크 보안 그룹을 사용하여 보안 액세스가 설정됩니다. Hello 음악 스토어 응용 프로그램 샘플에서와 모든 액세스 toohello 가상 컴퓨터는 http 액세스에 대 한 포트 80 및 SSH 액세스를 위한 포트 22 통해 제외 하 고 제한. 네트워크 보안 그룹은 Visual Studio 새 리소스 추가 마법사, hello를 사용 하 여 tooan Azure 리소스 관리자 템플릿을 추가할 수 있습니다 또는 서식 파일에 유효한 JSON을 삽입 하 여 합니다.
 
-[네트워크 보안 그룹](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L68)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [네트워크 보안 그룹](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L68)합니다.
 
 ```json
 {
@@ -112,9 +112,9 @@ Azure 리소스에 대한 액세스가 설정되면 이 액세스를 제한해�
 }
 ```
 
-이 예제에서 네트워크 보안 그룹은 가상 네트워크 리소스에 선언된 서브넷 개체와 연결됩니다. 
+이 예제에서는 hello 네트워크 보안 그룹 hello 가상 네트워크 리소스에 선언 된 hello 서브넷 개체와 연결 됩니다. 
 
-[네트워크 보안 그룹과 가상 네트워크의 연결](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L158)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [가상 네트워크와 네트워크 보안 그룹 연결이](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L158)합니다.
 
 ```json
 "subnets": [
@@ -129,7 +129,7 @@ Azure 리소스에 대한 액세스가 설정되면 이 액세스를 제한해�
   }
 ```
 
-Azure Portal의 네트워크 보안 그룹은 다음과 같습니다. NSG는 서브넷 및/또는 네트워크 인터페이스와 연결될 수 있습니다. 이 경우 NSG는 서브넷에 연결됩니다. 이 구성에서 인바운드 규칙이 서브넷에 연결된 모든 가상 컴퓨터에 적용됩니다.
+다음은 어떤 hello 네트워크 보안 그룹 모양 hello에서 Azure 포털입니다. NSG는 서브넷 및/또는 네트워크 인터페이스와 연결될 수 있습니다. 이 경우 hello NSG에는 관련된 tooa 서브넷입니다. 이 구성에서는 hello 인바운드 규칙을 적용 tooall 연결 된 가상 컴퓨터 toohello 서브넷입니다.
 
 ![네트워크 보안 그룹](./media/dotnet-core-3-access-security/nsg.png)
 

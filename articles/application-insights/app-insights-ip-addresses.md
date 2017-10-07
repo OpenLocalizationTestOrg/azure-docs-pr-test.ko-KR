@@ -1,5 +1,5 @@
 ---
-title: "Application Insights에 사용된 IP 주소 | Microsoft Docs"
+title: "Application Insights에서 사용 되는 aaaIP 주소 | Microsoft Docs"
 description: "Application Insights에 필요한 서버 방화벽 예외"
 services: application-insights
 documentationcenter: .net
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/11/2017
 ms.author: bwren
-ms.openlocfilehash: 3bb076c63223fc1567c6b7b25c1a513bbc81ed58
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2c101b8da2ba9594fbff607f4f7551cda80c3c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ip-addresses-used-by-application-insights"></a>Application Insights에 사용된 IP 주소
-[Azure Application Insights](app-insights-overview.md) 서비스는 많은 IP 주소를 사용합니다. 모니터링하는 앱이 방화벽 뒤에서 호스팅되는 경우 이러한 주소를 알아야 할 수도 있습니다.
+hello [Azure Application Insights](app-insights-overview.md) 서비스의 IP 주소 수를 사용 합니다. 모니터링 중인 hello 앱 방화벽 뒤에 있는 호스트 되는 경우 이러한 주소 tooknow 할 수 있습니다.
 
 > [!NOTE]
-> 이러한 주소는 정적이지만 경우에 따라 변경해야 할 수 있습니다.
+> 하지만 이러한 주소는 정적가 toochange 필요 합니다 시간 tootime에서 합니다.
 > 
 > 
 
 ## <a name="outgoing-ports"></a>발신 포트
-Application Insights SDK 및/또는 상태 모니터가 데이터를 포털에 보낼 수 있도록 서버 방화벽에서 일부 나가는 포트를 열어야 합니다.
+일부 서버의 방화벽 tooallow hello Application Insights SDK에서에서 송신 포트 및/또는 상태 모니터 toosend 데이터 toohello 포털 tooopen 필요합니다.
 
 | 목적 | URL | IP | 포트 |
 | --- | --- | --- | --- |
@@ -56,7 +56,7 @@ Application Insights SDK 및/또는 상태 모니터가 데이터를 포털에 �
 | 충돌 데이터 |gate.hockeyapp.net |104.45.136.42 |80, 443 |
 
 ## <a name="availability-tests"></a>가용성 테스트
-[가용성 웹 테스트](app-insights-monitor-web-app-availability.md) 가 실행되는 주소 목록입니다. 앱에서 웹 테스트를 실행하려고 하지만 웹 서버가 특정 클라이언트 서비스를 제공하도록 제한된 경우 가용성 테스트 서버에서 들어오는 트래픽을 허용해야 합니다.
+주소를 hello 목록이 [가용성 웹 테스트](app-insights-monitor-web-app-availability.md) 실행 됩니다. Toorun 웹 테스트 응용 프로그램에서 원하는 경우 웹 서버에 있으면 제한 된 tooserving 특정 클라이언트 가용성 테스트 서버에서 들어오는 트래픽을 toopermit 해야 합니다.
 
 이 주소에서 들어오는 트래픽에 대한 포트 80(http) 및 443(https)을 엽니다(IP 주소가 위치별로 그룹화됨).
 

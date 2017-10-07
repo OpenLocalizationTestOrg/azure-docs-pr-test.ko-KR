@@ -1,6 +1,6 @@
 ---
-title: "Azure RemoteApp 컬렉션에 대해 가상 네트워크를 계획하는 방법 | Microsoft 문서"
-description: "Azure RemoteApp 컬렉션에 대한 가상 네트워크를 계획하는 방법에 대해 알아봅니다."
+title: "aaaHow tooplan Azure RemoteApp 컬렉션에 대 한 가상 네트워크 | Microsoft Docs"
+description: "자세한 내용은 방법 tooplan Azure RemoteApp 컬렉션에 대 한 가상 네트워크입니다."
 services: remoteapp
 documentationcenter: 
 author: mghosh1616
@@ -13,47 +13,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 1eb8115b13fb18074b4c4726b69e3d9faf387c32
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7eeefc3c66815b18f9338e2e428585e6f81a12a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-plan-your-virtual-network-for-azure-remoteapp"></a>Azure RemoteApp에 대한 가상 네트워크를 계획하는 방법
+# <a name="how-tooplan-your-virtual-network-for-azure-remoteapp"></a>어떻게 tooplan Azure RemoteApp에 대 한 가상 네트워크
 > [!IMPORTANT]
-> Azure RemoteApp은 2017년 8월 31일에 중단되었습니다. 자세한 내용은 [알림](https://go.microsoft.com/fwlink/?linkid=821148) 을 읽어보세요.
+> Azure RemoteApp은 2017년 8월 31일에 중단되었습니다. 읽기 hello [알림](https://go.microsoft.com/fwlink/?linkid=821148) 대 한 자세한 내용은 합니다.
 > 
 > 
 
-이 문서에서는 Azure RemoteApp에 대한 Azure 가상 네트워크(VNET) 및 서브넷을 설정하는 방법을 설명합니다. Azure 가상 네트워크에 익숙하지 않은 경우 클라우드로 네트워크 인프라를 가상화하고 Azure 및 온-프레미스 리소스로 하이브리드 솔루션을 만들 수 있도록 하는 기능입니다. 해당 서비스에 대한 자세한 내용은 [여기](../virtual-network/virtual-networks-overview.md)에서 확인할 수 있습니다.
+이 문서에서는 설명 어떻게 tooset Azure 가상 네트워크 (VNET) 및 Azure RemoteApp에 대 한 hello 서브넷을 합니다. Azure 가상 네트워크를 잘 모르는 경우 이것이 사용 하 여 네트워크 인프라 toohello 클라우드와 toocreate 하이브리드 솔루션 Azure와 온-프레미스 리소스 toovirtualize 하는 데 도움이 되는 기능입니다. 해당 서비스에 대한 자세한 내용은 [여기](../virtual-network/virtual-networks-overview.md)에서 확인할 수 있습니다.
 
-Azure RemoteApp을 배포하고 있는 가상 네트워크의 트래픽(수신 및 송신)에 대한 보안 정책을 정의하려는 경우 Azure 가상 네트워크의 배포의 나머지 부분에서 Azure RemoteApp에 대한 별도 서브넷을 만드는 것이 좋습니다. Azure 가상 네트워크 서브넷에 대한 보안 정책을 정의하는 방법에 대한 자세한 내용은 [NSG(네트워크 보안 그룹)란?](../virtual-network/virtual-networks-nsg.md)을 읽어 보세요.
+Azure RemoteApp을 배포 하는 가상 네트워크의 (수신 및 송신) 트래픽에 대 한 보안 정책을 toodefine를 하려는 경우 좋습니다 hello 나머지 hello Azure에서에서 배포를 Azure RemoteApp에 대 한 별도 서브넷을 만드는 가상 네트워크입니다. 어떻게 toodefine 보안 정책에서 Azure 가상 네트워크 서브넷에 대 한 자세한 내용은 읽으십시오 [는 보안 그룹 NSG (네트워크) 이란?](../virtual-network/virtual-networks-nsg.md)합니다.
 
 ## <a name="types-of-azure-remoteapp-collections-with-azure-virtual-networks"></a>Azure 가상 네트워크를 사용한 Azure RemoteApp 컬렉션 형식
-다음 그래픽은 가상 네트워크를 사용하려는 경우 두 가지 다른 컬렉션 옵션을 표시합니다.
+hello 다음 그래픽 옵션을 표시할 hello 두 개의 다른 컬렉션 toouse 가상 네트워크를 하려는 경우.
 
 ### <a name="azure-remoteapp-cloud-collection-with-vnet"></a>VNET을 통한 Azure RemoteApp 클라우드 컬렉션
  ![VNET을 통한 Azure RemoteApp - 클라우드 컬렉션](./media/remoteapp-planvpn/ra-cloudvpn.png)
 
-Azure RemoteApp 컬렉션을 나타내며 여기에서 액세스가 필요한 RemoteApp 세션이 호스팅하는 모든 리소스는 Azure에서 배포됩니다. Azure에 있는 RemoteApp VNET 또는 다른 VNET과 같이 동일한 VNET에 있을 수 있습니다.
+Azure의 hello RemoteApp 세션 호스트에 필요 하며 tooaccess hello 리소스를 모두 배포 되는 위치 Azure RemoteApp 컬렉션을 나타냅니다. RemoteApp VNET을 hello로 동일한 VNET 또는 Azure에서 서로 다른 VNET hello에 있을 수 있습니다.
 
 ### <a name="azure-remoteapp-hybrid-collection-with-vnet"></a>VNET을 통한 Azure RemoteApp 하이브리드 컬렉션
 ![VNET을 통한 Azure RemoteApp - 하이브리드 컬렉션](./media/remoteapp-planvpn/ra-hybridvpn.png)
 
-Azure RemoteApp 컬렉션을 나타내며 여기에서 액세스가 필요한 RemoteApp 세션이 호스팅하는 일부 리소스는 온-프레미스에서 배포됩니다. RemoteApp VNET은 사이트 간 VPN 또는 Express Route와 같은 Azure 하이브리드 기술을 사용하여 온-프레미스 네트워크에 연결됩니다.
+여기서 hello RemoteApp 세션 호스트에 필요 하며 tooaccess hello 리소스 중 일부는 온-프레미스 배포 Azure RemoteApp 컬렉션을 나타냅니다. RemoteApp VNET을 hello는 사이트 간 VPN 또는 Express 경로 같은 Azure 하이브리드 기술을 사용 하 여 연결 된 toohello 온-프레미스 네트워크입니다.
 
-## <a name="how-the-system-works"></a>시스템 작동 방식
-실제로 Azure RemoteApp은 Azure 가상 컴퓨터(업로드된 이미지)를 프로비전하는 동안 선택한 가상 네트워크 서브넷에 배포합니다. 하이브리드 컬렉션을 선택한 경우 가상 네트워크에 제공된 DNS 서버를 통해 프로비전 워크플로에 입력한 도메인 컨트롤러의 FQDN을 해결하기 위해 노력합니다.  
-기존 가상 네트워크에 연결하고 있는 경우 Azure RemoteApp 서브넷에서 네트워크 보안 그룹의 필요한 포트를 노출해야 합니다. 
+## <a name="how-hello-system-works"></a>Hello 시스템 작동 하는 방법
+Azure RemoteApp hello에서는 Azure 가상 컴퓨터 (업로드 된 이미지)를 구축 하는 동안 선택한 toohello 가상 네트워크 서브넷을 배포 합니다. 하이브리드 컬렉션을 선택한 경우 tooresolve hello hello 가상 네트워크에서 제공 하는 hello DNS 서버를 통해 워크플로 프로 비전 하는 hello에 입력 한 hello 도메인 컨트롤러의 FQDN을 시도 했습니다.  
+Tooan 기존 가상 네트워크를 연결 하는 경우 Azure RemoteApp 서브넷에서 네트워크 보안 그룹에 있는지 tooexpose hello 필요한 포트를 확인 합니다. 
 
-[Azure RemoteApp에 대해 충분히 큰 서브넷](remoteapp-vnetsizing.md)을 사용하는 것이 좋습니다. Azure 가상 네트워크에서 가장 많이 지원되는 것은 /8(CIDR 서브넷 정의 사용)입니다. 사용자의 서브넷은 더 많은 사용자가 응용 프로그램에 액세스할 때 확장하는 동안 모든 Azure RemoteApp VM을 수용하기에 충분해야 합니다. 
+[Azure RemoteApp에 대해 충분히 큰 서브넷](remoteapp-vnetsizing.md)을 사용하는 것이 좋습니다. 가장 큰 hello Azure 가상 네트워크에서 지원 되 는/8 (CIDR 서브넷 정의 사용). 서브넷에 충분히 큰 tooaccommodate 하는 동안 모든 hello Azure RemoteApp Vm 수직 hello 앱에 액세스 하는 더 많은 사용자가 있어야 합니다. 
 
-다음은 가상 네트워크 서브넷에서 사용하도록 설정해야 하는 항목입니다. 
+다음은 가상 네트워크 서브넷에서 tooenable 필요한 hello 작업: 
 
-1. 서브넷 아웃바운드 트래픽은 내부 Azure RemoteApp 서비스 중 하나와 통신하도록 포트 범위 10101-10175에서 허용되어야 합니다.
-2. 아웃바운드 트래픽은 포트 443의 Azure 저장소에 연결하도록 서브넷에서 허용되어야 합니다.
-3. Azure에서 호스팅되는 Active Directory가 있는 경우 Azure RemoteApp에 대한 가상 네트워크 서브넷 내의 모든 VM은 해당 도메인 컨트롤러에 연결할 수 있는지 확인합니다. 가상 네트워크의 DNS는 해당 도메인 컨트롤러의 FQDN을 확인할 수 있어야 합니다.
+1. Hello 서브넷의 아웃 바운드 트래픽이 hello 내부 Azure RemoteApp 서비스 중 하나가 지정 된 포트 범위 10101 10175 toocommunicate에서 허용 되어야 합니다.
+2. 서브넷 tooconnect tooAzure 포트 443에서 저장소에서에서 허용 되는 아웃 바운드 트래픽은
+3. Azure에서 호스트 되는 Active Directory를 사용 하도록 설정한 경우에 Azure RemoteApp에 대 한 hello 가상 네트워크 서브넷 내에서 VM 수 tooconnect toothat 도메인 컨트롤러 인지 확인 합니다. hello 가상 네트워크에 DNS hello 수 tooresolve hello이 도메인 컨트롤러의 FQDN 이어야 합니다.
 
 ## <a name="virtual-network-with-forced-tunneling"></a>강제 터널링을 통한 가상 네트워크
-[강제 터널링](../vpn-gateway/vpn-gateway-about-forced-tunneling.md) 은 이제 모든 새 Azure RemoteApp 컬렉션에 지원됩니다. 현재 강제 터널링을 지원하기 위해 기존 컬렉션의 마이그레이션이 지원되지 않습니다.  Azure RemoteApp에 연결 중인 VNET을 사용하여 모든 기존 컬렉션을 삭제하고 컬렉션에서 활성화된 강제 터널링을 가져오도록 새 것을 만들어야 합니다. 
+[강제 터널링](../vpn-gateway/vpn-gateway-about-forced-tunneling.md) 은 이제 모든 새 Azure RemoteApp 컬렉션에 지원됩니다. 에서는 현재 마이그레이션을 지원 하지 않는 hello 강제 터널링 하는 기존 컬렉션 toosupport입니다.  Toodelete hello VNET tooAzure RemoteApp을 연결 하는 강제 터널링을 사용 하면 컬렉션에 새 하나의 tooget 만들기를 사용 하 여 모든 기존 컬렉션 해야 합니다. 
 

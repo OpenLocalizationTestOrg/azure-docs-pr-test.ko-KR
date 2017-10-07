@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight에서 Apache Spark 클러스터 관련 문제 해결 | Microsoft Docs"
-description: "Azure HDInsight의 Apache Spark 클러스터 관련 문제 및 이를 해결하는 방법에 대해 알아봅니다."
+title: "Azure HDInsight의 Apache Spark와 함께 aaaTroubleshoot 문제 클러스터가 | Microsoft Docs"
+description: "Azure HDInsight의 Spark 클러스터 관련된 tooApache 문제에 대 한 자세한 내용은 방법과 toowork 주위 하는 것입니다."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,31 +16,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 3a493a2c35a6cdd31bb1e4ff66113a8f8d97d4f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7373b90524ae5dbb10ab8ded593aa38d12c14b55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-issues-for-apache-spark-cluster-on-hdinsight"></a>HDInsight의 Apache Spark 클러스터에 대한 알려진 문제
 
-이 문서는 HDInsight Spark 공개 미리 보기에 대한 모든 알려진 문제를 추적합니다.  
+이 문서는의 알려진 문제 hello HDInsight Spark 공개 미리 보기에 대 한 모든 hello 추적 합니다.  
 
 ## <a name="livy-leaks-interactive-session"></a>Livy 누수 대화형 세션
-Livy가 여전히 활성 상태인 대화형 세션으로 재시작하는 경우(Ambari에서 또는 헤드 노드 0 가상 컴퓨터 재부팅으로 인해) 대화형 작업 세션이 손실됩니다. 이로 인해 새 작업은 수락된 상태에 멈출 수 있으며 시작할 수 없습니다.
+리비 시작 될 때 (Ambari 또는 tooheadnode 0 가상 컴퓨터를 다시 부팅 때문) 여전히 활성 대화형 세션으로 대화형 작업 세션 누출 됩니다. 이 때문에 새로운 작업 있습니다 hello 수락 됨 상태에서에서 멈출 하 고 시작할 수 없습니다.
 
 **해결 방법:**
 
-다음 절차에 따라 문제를 해결합니다.
+다음 프로시저 tooworkaround hello 문제 hello를 사용 합니다.
 
 1. 헤드 노드로 ssh합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-2. 다음 명령을 실행하여 Livy를 통해 시작한 대화형 작업의 응용 프로그램 ID를 찾습니다. 
+2. 다음 명령은 toofind hello 응용 프로그램 실행된 hello hello 대화형 작업의 Id 리비를 통해 시작 합니다. 
    
         yarn application –list
    
-    작업이 명시적 이름이 지정되지 않은 Livy 대화형 세션으로 시작된 경우 기본 작업 이름은 Livy가 되며 Jupyter 노트북으로 시작된 Livy 세션의 경우 작업 이름은 remotesparkmagics_*로 시작됩니다. 
-3. 다음 명령을 실행하여 해당 작업을 중지합니다. 
+    hello 기본 작업 이름은 됩니다 리비 hello 작업 hello에 대 한 지정 된 이름이 없으면 명시적 리비 대화형 세션으로 시작 된 경우 Jupyter 노트북에 의해 시작 리비 세션 hello 작업 이름은 remotesparkmagics_ *로 시작 됩니다. 
+3. 다음 명령은 tookill hello 이러한 작업을 실행 합니다. 
    
         yarn application –kill <Application ID>
 
@@ -51,63 +51,63 @@ Livy가 여전히 활성 상태인 대화형 세션으로 재시작하는 경우
 
 **해결 방법:** 
 
-Ambari에서 기록 서버를 수동으로 시작합니다.
+Ambari에서 hello 기록 서버를 수동으로 시작 합니다.
 
 ## <a name="permission-issue-in-spark-log-directory"></a>Spark 로그 디렉터리에 대한 사용 권한 문제
-hdiuser가 spark-제출로 작업을 제출하는 경우 오류 java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log(사용 권한 거부됨)가 있고 드라이버 로그가 작성되지 않습니다. 
+Hdiuser가 spark-submit 인 작업을 제출 하는 경우 오류 java.io.FileNotFoundException 있습니다: /var/log/spark/sparkdriver_hdiuser.log (사용 권한이 거부 되었습니다) 및 hello 드라이버 로그 기록 되지 않습니다. 
 
 **해결 방법:**
 
-1. hdiuser를 Hadoop 그룹에 추가합니다. 
+1. Hdiuser toohello Hadoop 그룹을 추가 합니다. 
 2. 클러스터를 만든 후에 /var/log/spark에 777 권한을 제공합니다. 
-3. Ambari를 사용하여 777 권한으로 디렉터리가 되도록 spark 로그 위치를 업데이트합니다.  
+3. Ambari toobe 디렉터리 777 사용 권한과 함께 사용 하는 hello spark 로그 위치를 업데이트 합니다.  
 4. sudo로 spark-제출을 실행합니다.  
 
 ## <a name="spark-phoenix-connector-is-not-supported"></a>Spark-Phoenix 커넥터가 지원되지 않음
 
-현재 Spark-Phoenix 커넥터는 HDInsight Spark 클러스터에서 지원되지 않습니다.
+현재 hello 피닉스 Spark 커넥터 HDInsight Spark 클러스터와 지원 되지 않습니다.
 
 **해결 방법:**
 
-대신 Spark-HBase 커넥터를 사용해야 합니다. 자세한 내용은 [Spark-HBase 커넥터 사용 방법](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/)을 참조하세요.
+Hello HBase Spark 커넥터를 대신 사용 해야 합니다. 에 대 한 참조 [어떻게 toouse HBase Spark 커넥터](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/)합니다.
 
-## <a name="issues-related-to-jupyter-notebooks"></a>Jupyter Notebook 관련 문제
-다음은 Jupyter Notebook과 관련된 몇 가지 알려진 문제입니다.
+## <a name="issues-related-toojupyter-notebooks"></a>TooJupyter 전자 필기장 관련 된 문제
+다음은 몇 가지 알려진된 문제 관련된 tooJupyter 전자 필기장입니다.
 
 ### <a name="notebooks-with-non-ascii-characters-in-filenames"></a>파일 이름에 ASCII가 아닌 문자가 있는 Notebook
-Spark HDInsight 클러스터에서 사용할 수 있는 Jupyter Notebook은 파일 이름에 ASCII가 아닌 문자를 포함할 수 없습니다. ASCII가 아닌 파일 이름을 가진 파일을 Jupyter UI를 통해 업로드하려고 하면 자동으로 실패합니다. 즉, Jupyter에서 파일을 업로드할 수 없지만 시각적 오류도 throw되지 않습니다. 
+Spark HDInsight 클러스터에서 사용할 수 있는 Jupyter Notebook은 파일 이름에 ASCII가 아닌 문자를 포함할 수 없습니다. 자동으로 실패 합니다 tooupload hello ASCII가 아닌 파일 이름 Jupyter UI를 통해 파일을 시도 하는 경우 (즉, Jupyter hello 파일을 업로드 하면 수 없을 하지만 하거나 표시 되는 오류를 발생 하지 않습니다 것). 
 
 ### <a name="error-while-loading-notebooks-of-larger-sizes"></a>더 큰 Notebook을 로드하는 중 오류
 더 큰 Notebook을 로드할 때 **`Error loading notebook`** 오류가 표시될 수 있습니다.  
 
 **해결 방법:**
 
-이 오류가 발생했다고 해서 데이터가 손상되거나 손실된 것은 아닙니다.  Notebook은 여전히 `/var/lib/jupyter`의 디스크에 있으며 클러스터에 대한 SSH를 통해 액세스할 수 있습니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
+이 오류가 발생했다고 해서 데이터가 손상되거나 손실된 것은 아닙니다.  전자 필기장은 여전히 디스크에서 `/var/lib/jupyter`, hello 클러스터 tooaccess에 SSH를 사용 하면 해당 합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-SSH를 사용하여 클러스터에 연결한 경우 Notebook을 사용자의 클러스터에서 로컬 컴퓨터에(SCP 또는 WinSCP를 사용하여) 백업으로 복사하여 Notebook의 중요 데이터 손실을 방지할 수 있습니다. 그런 다음 포트 8001의 헤드 노드에 대한 SSH 터널을 통해 게이트웨이를 거치지 않고 Jupyter에 액세스할 수 있습니다.  여기에서 노트북의 출력을 지우고 다시 저장하여 노트북의 크기를 최소화할 수 있습니다.
+SSH를 사용 하 여 toohello 클러스터를 연결 하 고 나면 hello 전자 필기장의 중요 한 데이터 백업 tooprevent hello 손실로 전자 필기장 (SCP 또는 WinSCP 사용) 하 여 클러스터 tooyour 로컬 컴퓨터에서 복사할 수 있습니다. 그런 다음 SSH 터널 포트 8001 tooaccess Jupyter에서 프로그램 헤드 노드에 hello 게이트웨이 통과 하지 않고 있습니다.  여기에서 있습니다 수 전자 필기장의 hello 출력 지우고 다시 저장 toominimize hello 노트북의 크기입니다.
 
-나중에 이 오류가 발생하지 않도록 하려면 몇 가지 모범 사례를 따라야 합니다.
+tooprevent이이 오류 이후 몇 가지 모범 사례를 수행 해야 하는 hello에 발생에서 합니다.
 
-* 노트북 크기를 작게 유지하는 것이 중요합니다. Jupyter에 다시 전송된 Spark 작업의 출력은 노트북에 보관됩니다.  RDD의 데이터 프레임에서 `.collect()`를 실행하지 못하도록 하는 것이 Jupyter의 모범 사례입니다. 그 대신 RDD의 콘텐츠를 살펴보려면 출력이 너무 커지지 않도록 `.take()` 또는 `.sample()`의 실행을 고려합니다.
-* 또한 노트북을 저장할 때 모든 출력을 지워서 크기를 줄입니다.
+* 중요 한 tookeep hello 노트북 크기가 작은 경우 다시 전송 되기 tooJupyter hello 노트북에서 유지 되는 Spark 작업에서 출력 합니다.  Jupyter에 대 한 모범 사례를 실행 하는 일반 tooavoid 중인 `.collect()` on 큰 RDD 또는 데이터 프레임; RDD의 내용을 toopeek 하려는 경우를 고려해 야 실행 `.take()` 또는 `.sample()` 출력이 너무 커서 함을 알 수 있도록 합니다.
+* 또한, 노트북을 저장할 때 선택을 취소 모든 출력을 셀 tooreduce hello 크기입니다.
 
 ### <a name="notebook-initial-startup-takes-longer-than-expected"></a>노트북 초기 시작이 예상보다 오래 걸리는 경우
 Jupyter Notebook에서 Spark 매직을 사용한 첫 번째 코드 문의 경우 1분 이상이 걸릴 수 있습니다.  
 
 **설명:**
 
-이는 첫 번째 코드 셀이 실행될 때 발생합니다. 백그라운드에서 세션 구성이 시작되고 Spark, SQL 및 Hive 컨텍스트가 설정됩니다. 이러한 컨텍스트가 설정된 후 첫 번째 문이 실행되므로 문이 완료되는 데 시간이 오래 걸린 것 같은 느낌이 듭니다.
+이 첫 번째 코드 셀 hello를 실행할 때 발생 합니다. Hello 백그라운드에서이 세션 구성 및 Spark, SQL를 시작 하 고 하이브 컨텍스트가 설정 됩니다. 이러한 컨텍스트를 설정한 후 hello 첫 번째 문을 실행 하 고 hello 인상을 hello 문을 걸린 시간이 오래 toocomplete를 제공 합니다.
 
-### <a name="jupyter-notebook-timeout-in-creating-the-session"></a>세션 만들기에서 Jupyter 노트북 시간 제한
-Spark 클러스터에 리소스가 부족할 때 Jupyter 노트북에서 Spark 및 Pyspark 커널은 세션을 만들려고 할 때 시간 초과가 됩니다. 
+### <a name="jupyter-notebook-timeout-in-creating-hello-session"></a>Hello 세션을 만드는 Jupyter 노트북 시간 제한
+Spark 클러스터 리소스가 부족할 때 Spark hello 및 hello Jupyter 노트북에 Pyspark 커널 toocreate hello 세션 중 시간이 초과 됩니다. 
 
 **해결 방법:** 
 
 1. 다음과 같은 방법으로 Spark 클러스터의 리소스를 확보합니다.
    
-   * Close and Halt 메뉴로 이동하거나 노트북 탐색기에서 종료를 클릭하여 다른 Spark 노트북을 중지합니다.
+   * 다른 스파크 전자 필기장 toohello 이동 닫기 및 중단 메뉴 하거나 hello 노트북 탐색기에서 시스템 종료를 클릭 하 여를 중지 하는 중입니다.
    * YARN에서 다른 Spark 응용 프로그램을 중지합니다.
-2. 시작하려는 노트북을 다시 시작합니다. 이제 세션을 만들기 위한 충분한 리소스를 사용할 수 있습니다.
+2. Hello 노트북을 toostart 하려던 다시 시작 합니다. 충분 한 리소스는 세션을 지금 toocreate 있습니다 사용할 수 해야 합니다.
 
 ## <a name="see-also"></a>참고 항목
 * [개요: Azure HDInsight에서 Apache Spark](hdinsight-apache-spark-overview.md)
@@ -115,7 +115,7 @@ Spark 클러스터에 리소스가 부족할 때 Jupyter 노트북에서 Spark �
 ### <a name="scenarios"></a>시나리오
 * [BI와 Spark: BI 도구와 함께 HDInsight에서 Spark를 사용하여 대화형 데이터 분석 수행](hdinsight-apache-spark-use-bi-tools.md)
 * [기계 학습과 Spark: HVAC 데이터를 사용하여 건물 온도를 분석하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [기계 학습과 Spark: 음식 검사 결과를 예측하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark와 기계 학습: HDInsight toopredict 음식 검사 결과에 사용 하 여 Spark](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 스트리밍: HDInsight에서 Spark를 사용하여 실시간 스트리밍 응용 프로그램 빌드](hdinsight-apache-spark-eventhub-streaming.md)
 * [HDInsight의 Spark를 사용하여 웹 사이트 로그 분석](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -124,14 +124,14 @@ Spark 클러스터에 리소스가 부족할 때 Jupyter 노트북에서 Spark �
 * [Livy를 사용하여 Spark 클러스터에서 원격으로 작업 실행](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>도구 및 확장
-* [IntelliJ IDEA용 HDInsight 도구 플러그 인을 사용하여 Spark Scala 응용 프로그램 만들기 및 제출](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [IntelliJ IDEA용 HDInsight 도구 플러그 인을 사용하여 Spark 응용 프로그램을 원격으로 디버그](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [IntelliJ 아이디어 toocreate에 대 한 HDInsight 도구 플러그 인을 사용 하 고 스파크 Scala 개 제출](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [IntelliJ 아이디어 toodebug Spark 응용 프로그램에 대 한 HDInsight 도구 플러그 인을 원격으로 사용](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [HDInsight에서 Spark 클러스터와 함께 Zeppelin Notebook 사용](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight의 Spark 클러스터에서 Jupyter Notebook에 사용할 수 있는 커널](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Jupyter 노트북에서 외부 패키지 사용](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [컴퓨터에 Jupyter를 설치하고 HDInsight Spark 클러스터에 연결](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Jupyter 사용자 컴퓨터에 설치 하 고 tooan HDInsight Spark 클러스터를 연결 합니다.](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>리소스 관리
-* [Azure HDInsight에서 Apache Spark 클러스터에 대한 리소스 관리](hdinsight-apache-spark-resource-manager.md)
+* [Azure HDInsight의 Apache Spark 클러스터 hello에 대 한 리소스를 관리 합니다.](hdinsight-apache-spark-resource-manager.md)
 * [HDInsight의 Apache Spark 클러스터에서 실행되는 작업 추적 및 디버그](hdinsight-apache-spark-job-debugging.md)
 

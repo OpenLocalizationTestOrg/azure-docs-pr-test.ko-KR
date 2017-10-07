@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management의 제품 템플릿 | Microsoft Docs"
-description: "Azure API Management 개발자 포털에서 제품 페이지의 콘텐츠를 사용자 지정하는 방법을 알아봅니다."
+title: "Azure API 관리에서 aaaProduct 템플릿 | Microsoft Docs"
+description: "Hello 제품 toocustomize hello 콘텐츠 hello Azure API 관리 개발자 포털에서 페이지 하는 방식에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 9ddbb9860b437cb3e7334bdf5891f2fba1cffb76
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 60600299287aad87f9b621782ab5ceb866601d03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="product-templates-in-azure-api-management"></a>Azure API Management의 제품 템플릿
-Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사용하여 개발자 포털 페이지의 콘텐츠를 사용자 지정하는 기능을 제공합니다. 이러한 템플릿에서 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers) 및 제공된 지역화 [String 리소스](api-management-template-resources.md#strings), [Glyph 리소스](api-management-template-resources.md#glyphs) 및 [Page 컨트롤](api-management-page-controls.md)의 집합과 같은 편집기를 사용하여 필요에 따라 페이지 콘텐츠를 유연하게 구성할 수 있습니다.  
+Azure API 관리 개발자 포털 페이지 콘텐츠를 구성 하는 템플릿 집합을 사용 하 여 콘텐츠의 toocustomize hello 기능 hello를 제공 합니다. 사용 하 여 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 hello 편집기의 선택한와 같은 [디자이너에 대 한 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), 제공 된 집합을 지역화 [문자열 리소스](api-management-template-resources.md#strings), [ 문자 모양 리소스](api-management-template-resources.md#glyphs), 및 [컨트롤 페이지](api-management-page-controls.md), 이러한 템플릿을 사용 하 여 나타나며 hello 페이지의 뛰어난 유연성 tooconfigure hello 내용을 백업이 있어야 합니다.  
   
- 이 섹션의 템플릿을 통해 개발자 포털에서 제품 페이지의 콘텐츠를 사용자 지정할 수 있습니다.  
+ 이 섹션의 hello 템플릿을 hello 개발자 포털에서 toocustomize hello 내용의 hello 제품 페이지를 사용 합니다.  
   
 -   [제품 목록](#ProductList)  
   
 -   [제품](#Product)  
   
 > [!NOTE]
->  다음 문서에는 샘플 기본 템플릿이 포함되어 있지만 지속적인 향상으로 인해 변경될 수 있습니다. 원하는 개별 템플릿으로 이동하여 개발자 포털에서 라이브 기본 템플릿을 볼 수 있습니다. 템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)을 참조하세요.  
+>  예제 기본 서식 파일 설명서, hello에 포함 되었지만 이러한 toocontinuous 개선 인해 주체 toochange 됩니다. 원하는 toohello 개별 서식 파일을 이동 하 여 hello 라이브 기본 템플릿 hello 개발자 포털에서 볼 수 있습니다. 서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)합니다.  
   
 ##  <a name="ProductList"></a> 제품 목록  
- **제품 목록** 템플릿을 통해 개발자 포털에서 제품 목록 페이지의 본문을 사용자 지정할 수 있습니다.  
+ hello **제품 목록을** 템플릿을 사용 하 여 hello 제품 목록 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.  
   
  ![제품 목록](./media/api-management-product-templates/APIM_ProductsListTemplatePage.png "APIM_ProductsListTemplatePage")  
   
@@ -66,9 +66,9 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ### <a name="controls"></a>컨트롤  
- `Product list` 템플릿에서 다음 [페이지 컨트롤](api-management-page-controls.md)을 사용할 수 있습니다.  
+ hello `Product list` 템플릿 hello 다음을 사용할 수 있습니다 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
--   [페이징 컨트롤](api-management-page-controls.md#paging-control)  
+-   [paging-control](api-management-page-controls.md#paging-control)  
   
 -   [검색 컨트롤](api-management-page-controls.md#search-control)  
   
@@ -76,9 +76,9 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
   
 |속성|형식|설명|  
 |--------------|----------|-----------------|  
-|페이징|[페이징](api-management-template-data-model-reference.md#Paging) 엔터티.|제품 컬렉션에 대한 페이징 정보입니다.|  
-|필터링|[필터링](api-management-template-data-model-reference.md#Filtering) 엔터티.|제품 목록 페이지에 대한 필터링 정보입니다.|  
-|제품|[제품](api-management-template-data-model-reference.md#Product) 엔터티의 컬렉션입니다.|현재 사용자에게 표시되는 제품입니다.|  
+|페이징|[페이징](api-management-template-data-model-reference.md#Paging) 엔터티입니다.|hello hello 제품 컬렉션에 대 한 페이징 정보입니다.|  
+|필터링|[필터링](api-management-template-data-model-reference.md#Filtering) 엔터티.|hello hello 제품 목록 페이지에 대 한 정보를 필터링 합니다.|  
+|제품|[제품](api-management-template-data-model-reference.md#Product) 엔터티의 컬렉션입니다.|hello 제품 표시 toohello 현재 사용자입니다.|  
   
 ### <a name="sample-template-data"></a>샘플 템플릿 데이터  
   
@@ -99,7 +99,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
         {  
             "Id": "56f9445ffaf7560049060001",  
             "Title": "Starter",  
-            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "Terms": "",  
             "ProductState": 1,  
             "AllowMultipleSubscriptions": false,  
@@ -108,7 +108,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
         {  
             "Id": "56f9445ffaf7560049060002",  
             "Title": "Unlimited",  
-            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "Description": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "Terms": null,  
             "ProductState": 1,  
             "AllowMultipleSubscriptions": false,  
@@ -119,7 +119,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ##  <a name="Product"></a> 제품  
- **제품** 템플릿을 통해 개발자 포털에서 제품 페이지의 본문을 사용자 지정할 수 있습니다.  
+ hello **제품** 템플릿을 사용 하 여 hello 제품 페이지 toocustomize hello 본문 hello 개발자 포털에서 합니다.  
   
  ![개발자 포털 제품 페이지](./media/api-management-product-templates/APIM_ProductPage.png "APIM_ProductPage")  
   
@@ -193,25 +193,25 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ### <a name="controls"></a>컨트롤  
- `Product list` 템플릿에서 다음 [페이지 컨트롤](api-management-page-controls.md)을 사용할 수 있습니다.  
+ hello `Product list` 템플릿 hello 다음을 사용할 수 있습니다 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
--   [구독 단추](api-management-page-controls.md#subscribe-button)  
+-   [subscribe-button](api-management-page-controls.md#subscribe-button)  
   
 ### <a name="data-model"></a>데이터 모델  
   
 |속성|형식|설명|  
 |--------------|----------|-----------------|  
-|제품|[제품](api-management-template-data-model-reference.md#Product)|지정된 제품.|  
-|IsDeveloperSubscribed|부울|현재 사용자가 이 제품을 구독하는지 여부입니다.|  
-|SubscriptionState|number|구독의 상태입니다. 가능한 상태는 다음과 같습니다.<br /><br /> -   `0 - suspended` – 구독이 차단되고 구독자는 제품의 API를 호출할 수 없습니다.<br />-   `1 - active` – 구독이 활성화되어 있습니다.<br />-   `2 - expired` - 구독이 만료 날짜에 도달되었고 비활성화되었습니다.<br />-   `3 - submitted` - 구독 요청이 개발자에 의해 발생했지만 아직 승인 또는 거부되지 않았습니다.<br />-   `4 - rejected` – 구독 요청이 관리자에 의해 거부되었습니다.<br />-   `5 - cancelled` - 구독이 개발자 또는 관리자에 의해 취소되었습니다.|  
+|제품|[제품](api-management-template-data-model-reference.md#Product)|지정 된 제품 hello 합니다.|  
+|IsDeveloperSubscribed|부울|여부 hello 현재 사용자는 구독 된 toothis 제품입니다.|  
+|SubscriptionState|number|hello 구독의 hello 상태입니다. 가능한 상태는 다음과 같습니다.<br /><br /> -   `0 - suspended`– hello 구독이 차단 되 고 hello 구독자 hello 제품의 Api를 호출할 수 없습니다.<br />-   `1 - active`– hello 구독이 활성화 되어 있습니다.<br />-   `2 - expired`– hello 구독 만료 날짜에 도달 하 고 비활성화 합니다.<br />-   `3 - submitted`– hello 구독 요청이 hello 개발자가 이루어졌을 하지만 아직 승인 또는 거부 합니다.<br />-   `4 - rejected`– 관리자가 hello 구독 요청이 거부 되었습니다.<br />-   `5 - cancelled`– hello 개발자 또는 관리자가 hello 구독을 취소 했습니다.|  
 |제한|array|이 속성은 사용되지 않으며 사용할 수 없습니다.|  
 |DelegatedSubscriptionEnabled|부울|[위임](https://azure.microsoft.com/documentation/articles/api-management-howto-setup-delegation/)이 이 구독에 대해 활성화되었는지 여부입니다.|  
-|DelegatedSubscriptionUrl|string|위임을 사용하는 경우 위임된 구독 URL입니다.|  
-|IsAgreed|부울|제품에 약관이 있는 경우 현재 사용자가 약관에 동의했는지 여부입니다.|  
-|구독|[구독 요약](api-management-template-data-model-reference.md#SubscriptionSummary) 엔터티의 컬렉션입니다.|제품에 대한 구독입니다.|  
-|API|[API](api-management-template-data-model-reference.md#API) 엔터티의 컬렉션입니다.|이 제품의 API입니다.|  
-|CannotAddBecauseSubscriptionNumberLimitReached|부울|현재 사용자가 구독 제한과 관련하여 이 제품을 구독할 수 있는지 여부입니다.|  
-|CannotAddBecauseMultipleSubscriptionsNotAllowed|부울|현재 사용자가 허용 또는 허용되지 않는 여러 구독과 관련하여 이 제품을 구독할 수 있는지 여부입니다.|  
+|DelegatedSubscriptionUrl|string|위임을 사용 하는 경우 구독 URL hello에 위임 합니다.|  
+|IsAgreed|부울|Hello 제품 용어 있으면 여부 hello 현재 사용자가 동의 toohello 용어입니다.|  
+|구독|[구독 요약](api-management-template-data-model-reference.md#SubscriptionSummary) 엔터티의 컬렉션입니다.|hello 구독 toohello 곱입니다.|  
+|API|[API](api-management-template-data-model-reference.md#API) 엔터티의 컬렉션입니다.|이 제품에 Api 번호입니다.|  
+|CannotAddBecauseSubscriptionNumberLimitReached|부울|Hello 현재 사용자 인지 여부와 관계 toohello 구독 제한 된 적격 toosubscribe toothis 제품입니다.|  
+|CannotAddBecauseMultipleSubscriptionsNotAllowed|부울|Hello 현재 사용자가 적격 toosubscribe toothis 제품 허용 여부와 관계 toomultiple 구독과 인지 여부.|  
   
 ### <a name="sample-template-data"></a>샘플 템플릿 데이터  
   
@@ -220,7 +220,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
     "Product": {  
         "Id": "56f9445ffaf7560049060001",  
         "Title": "Starter",  
-        "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+        "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
         "Terms": "",  
         "ProductState": 1,  
         "AllowMultipleSubscriptions": false,  
@@ -258,4 +258,4 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```
 
 ## <a name="next-steps"></a>다음 단계
-템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](api-management-developer-portal-templates.md)을 참조하세요.
+서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](api-management-developer-portal-templates.md)합니다.

@@ -1,5 +1,5 @@
 ---
-title: "Mobile Apps 및 Mobile Services에서 클라이언트 및 서버 SDK 버전 관리 | Microsoft Docs"
+title: "모바일 앱 및 모바일 서비스에서 aaaClient 및 서버 SDK 버전 관리 | Microsoft Docs"
 description: "모바일 서비스와 Azure 모바일 앱에 대한 클라이언트 SDK의 목록 및 서버 SDK 버전과 호환성"
 services: app-service\mobile
 documentationcenter: 
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: f79e819b1547f81498ea213858faf3c75e374782
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5874b7455ea407ca8c77fb1bd03d97d0767ebb47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="client-and-server-versioning-in-mobile-apps-and-mobile-services"></a>모바일 앱 및 모바일 서비스에서 클라이언트 및 서버 버전 관리
-Azure 모바일 서비스의 최신 버전은 Azure 앱 서비스의 **모바일 앱** 기능입니다.
+hello 최신 버전의 Azure 모바일 서비스는 hello **모바일 앱** Azure 앱 서비스 기능입니다.
 
-모바일 앱 클라이언트 및 서버 SDK는 원래 모바일 서비스를 기반으로 하지만 서로 호환되지 *않습니다* .
-즉, *Mobile Apps* 서버 SDK 및 마찬가지로 *Mobile Services*를 사용하는 *Mobile Apps* 클라이언트 SDK를 사용해야 합니다. 이 계약은 클라이언트 및 서버 SDK인 `ZUMO-API-VERSION`에서 사용하는 특별한 헤더 값을 통해 적용됩니다.
+모바일 응용 프로그램 클라이언트 hello 및 서버 Sdk는 모바일 서비스에서 항목에 따라 원래 되어도 없지만 *하지* 서로 호환 됩니다.
+즉, *Mobile Apps* 서버 SDK 및 마찬가지로 *Mobile Services*를 사용하는 *Mobile Apps* 클라이언트 SDK를 사용해야 합니다. 이 계약은 hello 클라이언트와 서버 Sdk에서 사용 되는 특별 한 헤더 값을 통해 적용 `ZUMO-API-VERSION`합니다.
 
-참고: 이 문서가 *모바일 서비스* 백 엔드를 참조할 때마다 반드시 모바일 서비스에서 호스팅해야 할 필요는 없습니다. 이제 코드를 변경하지 않고 App Service에서 실행되도록 Mobile Services를 마이그레이션할 수 있지만 서비스는 *Mobile Services* SDK 버전을 사용합니다.
+참고: 때마다이 문서는 참조 tooa *모바일 서비스* 백 엔드, 필요 하지 않습니다 반드시 toobe 모바일 서비스에서 호스트 합니다. Hello 서비스 여전히 사용 될 수 있지만 가능한 toomigrate 코드 변경 하지 않고 앱 서비스 모바일 서비스 toorun은 이제 *모바일 서비스* SDK 버전입니다.
 
-코드 변경 없이 앱 서비스에 마이그레이션하는 방법을 자세히 알아보려면 [Azure 앱 서비스에 모바일 서비스 마이그레이션]문서를 참조하세요.
+에 대해 더 알아봅니다 toolearn hello 문서를 참조 tooApp 서비스 코드 변경 없이 마이그레이션할 [모바일 서비스 tooAzure 앱 서비스를 마이그레이션할]합니다.
 
 ## <a name="header-specification"></a>헤더 사양
-키 `ZUMO-API-VERSION` 는 HTTP 헤더 또는 쿼리 문자열에 지정될 수 있습니다. 값은 **x.y.z**형식의 버전 문자열입니다.
+hello 키 `ZUMO-API-VERSION` hello HTTP 헤더 또는 hello 쿼리 문자열에 지정할 수 있습니다. hello 값은 버전 문자열 hello 형태로 **x.y.z 형식이 며**합니다.
 
 예:
 
@@ -42,15 +42,15 @@ HEADERS: ZUMO-API-VERSION: 2.0.0
 POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 ## <a name="opting-out-of-version-checking"></a>버전 확인 건너뛰기
-앱 설정 **MS_SkipVersionCheck**에 대한 **true** 값을 설정하여 버전 확인을 건너뛸 수 있습니다. Web.config 또는 Azure 포털의 응용 프로그램 설정 섹션에서 이를 지정합니다.
+버전의 값을 설정 하 여 확인을 취소 수 **true** hello 응용 프로그램 설정에 대 한 **MS_SkipVersionCheck**합니다. Web.config 파일에 또는 hello hello Azure 포털의 응용 프로그램 설정 섹션에서에서이 지정 합니다.
 
 > [!NOTE]
-> 오프라인 동기화, 인증 및 푸시 알림 영역에서 특히 모바일 서비스와 모바일 앱 간의 많은 동작 변경 사항이 있습니다. 이러한 동작 변경이 앱의 기능을 중단하지 않도록 테스트를 완료한 후에 버전 확인을 옵트아웃해야 합니다.
+> 모바일 서비스와 특히 hello 오프 라인 동기화, 인증 및 푸시 알림 영역에서에서 모바일 응용 프로그램 간의 동작 변경의 여러 가지가 있습니다. 이러한 동작 변경 내용은 앱의 기능을 해제 되지 않도록 테스트 tooensure 완료 후 확인 버전만 취소 해야 합니다.
 >
 >
 
 ## <a name="summary-of-compatibility-for-all-versions"></a>모든 버전에 대한 호환성 요약
-아래 차트에서는 모든 클라이언트 및 서버 형식 간의 호환성을 보여줍니다. 백 엔드는 사용하는 서버 SDK에 기반하여 모바일 **서비스** 또는 모바일 **앱**으로 구분됩니다.
+아래 hello 차트에서는 모든 클라이언트 및 서버 형식 간에 hello 호환성을 보여 줍니다. 백 엔드 어느 모바일으로 분류 됩니다 **서비스** 또는 모바일 **앱** hello 서버에서 사용 하는 SDK에 기반 합니다.
 
 |  | **모바일 서비스** Node.js 또는 .NET | **모바일 앱** Node.js 또는 .NET |
 | --- | --- | --- |
@@ -59,14 +59,14 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 \***MS_SkipVersionCheck**를 지정하여 제어될 수 있습니다.
 
-<!-- IMPORTANT!  The anchors for Mobile Services and Mobile Apps MUST be 1.0.0 and 2.0.0 respectively, since there is an exception error message that uses those anchors. -->
+<!-- IMPORTANT!  hello anchors for Mobile Services and Mobile Apps MUST be 1.0.0 and 2.0.0 respectively, since there is an exception error message that uses those anchors. -->
 
-<!-- NOTE: the fwlink to this document is http://go.microsoft.com/fwlink/?LinkID=690568 -->
+<!-- NOTE: hello fwlink toothis document is http://go.microsoft.com/fwlink/?LinkID=690568 -->
 
 ## <a name="1.0.0"></a>모바일 서비스 클라이언트 및 서버
-아래 테이블의 클라이언트 SDK는 **모바일 서비스**와 호환됩니다.
+hello 테이블 아래에 hello 클라이언트 Sdk와 호환 되는 **모바일 서비스**합니다.
 
-참고: 모바일 서비스 클라이언트 SDK는 `ZUMO-API-VERSION`에 헤더 값을 보내지 *않습니다*. 서비스가 헤더 또는 쿼리 문자열 값을 수신하는 경우 위에서 설명한 대로 명시적으로 건너뛰지 않으면 오류가 반환됩니다.
+참고: hello 모바일 서비스 클라이언트 Sdk *없는* 헤더 값에 대 한 보내기 `ZUMO-API-VERSION`합니다. 이 헤더 또는 쿼리 문자열 값인 hello 서비스에서 수신 하는 경우 위에 설명 된 대로 선택한 명시적으로 하지 않으면 오류가 반환 될 됩니다.
 
 ### <a name="MobileServicesClients"></a> 모바일 *서비스* 클라이언트 SDK
 | 클라이언트 플랫폼 | 버전 | 버전 헤더 값 |
@@ -93,7 +93,7 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 ## <a name="2.0.0"></a>Azure 모바일 앱 클라이언트 및 서버
 ### <a name="MobileAppsClients"></a> 모바일 *앱* 클라이언트 SDK
-버전 확인은 **Azure 모바일 앱**에 대한 클라이언트 SDK의 다음 버전부터 도입됩니다.
+다음 버전의 hello 클라이언트 SDK hello로 시작 도입 된 버전을 확인에 대 한 **Azure 모바일 앱**:
 
 | 클라이언트 플랫폼 | 버전 | 버전 헤더 값 |
 | --- | --- | --- |
@@ -121,11 +121,11 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 | 3.0.0-3.x.y |False/지정되지 않음 |400 - 잘못된 요청 |
 
 ## <a name="next-steps"></a>다음 단계
-* [Azure 앱 서비스에 모바일 서비스 마이그레이션]
+* [모바일 서비스 tooAzure 앱 서비스를 마이그레이션할]
 
 [모바일 서비스 클라이언트]: #MobileServicesClients
 [모바일 앱 클라이언트]: #MobileAppsClients
 
 
 [Mobile App Server SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
-[Azure 앱 서비스에 모바일 서비스 마이그레이션]: app-service-mobile-migrating-from-mobile-services.md
+[모바일 서비스 tooAzure 앱 서비스를 마이그레이션할]: app-service-mobile-migrating-from-mobile-services.md

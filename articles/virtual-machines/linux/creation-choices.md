@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Linux VM을 만드는 다양한 방법 | Microsoft Azure"
-description: "각 방법에 대한 도구 및 자습서를 비롯하여 Azure에 Linux 가상 컴퓨터를 만드는 다양한 방법을 알아봅니다."
+title: "Azure에서 Linux VM aaaDifferent 방법 toocreate | Microsoft Azure"
+description: "Hello 다양 한 방법 toocreate 링크 tootools 등 각 방법에 대 한 자습서는 Azure에서 Linux 가상 컴퓨터에 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: b2f93579eb1c7a69d0dbd1b0ef112aed9b2168c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 250e92c063c87a8c1279097dc2264777d95478d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="different-ways-to-create-a-linux-vm"></a>Linux VM을 만드는 다양한 방법
-Azure에는 편리한 도구와 워크플로를 사용하여 Linux VM(가상 컴퓨터)을 만드는 유연성이 있습니다. 이 문서에서는 Azure CLI 2.0을 포함하여 Linux 가상 컴퓨터를 만드는 경우의 차이점과 옵션을 요약하고 있습니다. [Azure CLI 1.0](creation-choices-nodejs.md)을 포함하여 만들기 선택 항목을 볼 수도 있습니다.
+# <a name="different-ways-toocreate-a-linux-vm"></a>다양 한 방법 toocreate Linux VM
+에 유연성이 있습니다 hello Azure toocreate 능숙 tooyou 도구 및 워크플로 사용 하 여 Linux 가상 컴퓨터 (VM). 이 문서에는 이러한 차이점과 hello Azure CLI 2.0을 포함 하 여 Linux Vm을 만들기 위한 예제가 요약 되어 있습니다. Hello를 포함 하 여 만들기 옵션을 볼 수 있습니다 [Azure CLI 1.0](creation-choices-nodejs.md)합니다.
 
-[Azure CLI 2.0](/cli/azure/install-az-cli2)은 npm 패키지, 배포판 제공 패키지 또는 Docker 컨테이너를 통해 여러 플랫폼에서 사용할 수 있습니다. [az login](/cli/azure/#login)을 사용하여 Azure 계정에 환경 및 로그인에 가장 적합한 빌드를 설치합니다.
+hello [Azure CLI 2.0](/cli/azure/install-az-cli2) npm 패키지, 패키지, distro 제공 또는 Docker 컨테이너를 통해 플랫폼에서 제공 됩니다. 사용자 환경에 대 한 hello 가장 적합 한 빌드를 설치 하 고 tooan Azure 계정을 사용 하 여 로그인 [az 로그인](/cli/azure/#login)
 
-* [Azure CLI 2.0을 사용하여 Linux VM 만들기](quick-create-cli.md)
+* [Hello Azure CLI 2.0 여 Linux VM 만들기](quick-create-cli.md)
   
   * *myResourceGroup*이라는 [az group create](/cli/azure/group#create)를 사용하여 리소스 그룹을 만듭니다. 
    
@@ -34,7 +34,7 @@ Azure에는 편리한 도구와 워크플로를 사용하여 Linux VM(가상 컴
     az group create --name myResourceGroup --location eastus
     ```
     
-  * 최신 *UbuntuLTS* 이미지를 사용하여 *myVM*이라는 [az vm create](/cli/azure/vm#create)를 사용하여 VM을 만들고 *~/.ssh*에 없는 경우 SSH 키를 생성합니다.
+  * 사용 하 여 VM 만들기 [az vm 만들기](/cli/azure/vm#create) 라는 *myVM* 최신 hello를 사용 하 여 *UbuntuLTS* 이미지에 이미 존재 하지 않는 경우 SSH 키를 생성 및 *~/.ssh*:
 
     ```azurecli
     az vm create \
@@ -46,7 +46,7 @@ Azure에는 편리한 도구와 워크플로를 사용하여 Linux VM(가상 컴
 
 * [Azure 템플릿을 사용하여 Linux VM 만들기](create-ssh-secured-vm-from-template.md)
   
-  * 다음 예제에서는 GitHub에 저장된 템플릿에서 VM을 만들기 위해 [az group deployment create](/cli/azure/group/deployment#create)를 사용합니다.
+  * hello 다음 예제에서는 [az 그룹 배포 만들기](/cli/azure/group/deployment#create) toocreate GitHub에 저장 된 템플릿에서 VM:
     
     ```azurecli
     az group deployment create --resource-group myResourceGroup \ 
@@ -58,17 +58,17 @@ Azure에는 편리한 도구와 워크플로를 사용하여 Linux VM(가상 컴
 * [여러 Linux VM에서 부하가 분산된 고가용성 응용 프로그램 만들기](tutorial-load-balancer.md)
 
 
-## <a name="azure-portal"></a>Azure 포털
-[Azure Portal](https://portal.azure.com) 을 사용하면 시스템에 설치할 프로그램이 없으므로 VM을 신속하게 만들 수 있습니다. Azure 포털을 사용하여 다음과 같이 VM을 만듭니다.
+## <a name="azure-portal"></a>Azure portal
+hello [Azure 포털](https://portal.azure.com) 있습니다 tooquickly 없기 때문에 VM을 만들 tooinstall 시스템에 있습니다. Hello Azure 포털 toocreate hello VM을 사용 합니다.
 
-* [Azure 포털을 사용하여 Linux VM 만들기](quick-create-portal.md) 
+* [Hello Azure 포털을 사용 하 여 Linux VM 만들기](quick-create-portal.md) 
 
 
 ## <a name="operating-system-and-image-choices"></a>운영 체제 및 이미지 선택
-VM을 만드는 경우 실행하려는 운영 체제에 따라 이미지를 선택합니다. Azure 및 해당 파트너는 미리 설치된 응용 프로그램 및 도구를 포함하는 여러 이미지를 제공합니다. 또는 사용자 고유의 이미지 중 하나를 업로드합니다( [다음 섹션](#use-your-own-image)을 참조).
+VM을 만들 때 운영 체제 toorun 원하는 hello를 기반으로 이미지를 선택 합니다. Azure 및 해당 파트너는 미리 설치된 응용 프로그램 및 도구를 포함하는 여러 이미지를 제공합니다. 또는 사용자 고유의 이미지 중 하나를 업로드 (참조 [섹션 다음 hello](#use-your-own-image)).
 
 ### <a name="azure-images"></a>Azure 이미지
-[az vm image](/cli/azure/vm/image) 명령을 사용하여 게시자, 배포판 릴리스 및 빌드에 따라 사용 가능한 기능을 확인합니다.
+사용 하 여 hello [az vm 이미지](/cli/azure/vm/image) 게시자, distro 릴리스 및 빌드에 따라 사용 가능한 란 toosee 명령입니다.
 
 사용 가능한 게시자 나열:
 
@@ -94,9 +94,9 @@ az vm image list-skus --publisher Canonical --offer UbuntuServer --location east
 az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS --location eastus
 ```
 
-사용 가능한 이미지 검색 및 사용에 대한 추가 예제는 [Azure CLI를 사용하여 Azure 가상 컴퓨터 이미지 탐색 및 선택](cli-ps-findimage.md)을 참조하세요.
+검색 및 사용 가능한 이미지를 사용 하 여 더 많은 예제를 참조 하십시오. [탐색 하 고 hello Azure CLI를 사용 하 여 Azure 가상 컴퓨터 이미지 선택](cli-ps-findimage.md)합니다.
 
-[az vm create](/cli/azure/vm#create) 명령에는 일반적인 배포판 및 해당 최신 릴리스에 빠르게 액세스하는 데 사용할 수 있는 몇 가지 별칭이 있습니다. 별칭을 사용하는 방법이 VM을 만들 때마다 게시자, 제품, SKU 및 버전을 지정하는 것보다 빠릅니다.
+hello [az vm 만들기](/cli/azure/vm#create) 명령 tooquickly 액세스를 사용 하 여 별칭에는 일반적인 배포판 및 최신 버전의 hello 합니다. 별칭을 사용 하 여 hello 게시자, 제품, SKU 및 버전을 지정 하는 VM을 만들 때 보다 신속 하 게 관리가:
 
 | Alias | 게시자 | 제안 | SKU | 버전 |
 |:--- |:--- |:--- |:--- |:--- |
@@ -109,13 +109,13 @@ az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS --
 | UbuntuLTS |Canonical |UbuntuServer |14.04.4-LTS |최신 |
 
 ### <a name="use-your-own-image"></a>사용자 고유의 이미지 사용
-특정 사용자 지정이 필요한 경우 해당 VM을 캡처하여 기존 Azure VM을 기반으로 하는 이미지를 사용할 수 있습니다. 이미지로 만든 온-프레미스를 업로드할 수도 있습니다. 지원되는 배포판 및 사용자 고유의 이미지를 사용하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
+특정 사용자 지정이 필요한 경우 해당 VM을 캡처하여 기존 Azure VM을 기반으로 하는 이미지를 사용할 수 있습니다. 이미지로 만든 온-프레미스를 업로드할 수도 있습니다. 지원 되는 배포판에 대 한 자세한 내용은 toouse 사용자 고유의 이미지를 확인 하려면 어떻게 해야 하 고 문서 다음 hello:
 
 * [Azure 인증 배포](endorsed-distros.md)
 * [보증되지 않는 배포에 대한 정보](create-upload-generic.md)
-* [기존 Azure VM에서 이미지를 만드는 방법](tutorial-custom-images.md)
+* [어떻게 toocreate 기존 Azure VM에서 이미지](tutorial-custom-images.md)합니다.
   
-  * 기존 Azure VM에서 이미지를 만드는 빠른 시작 예제 명령:
+  * 빠른 시작 예제에서는 기존 Azure VM에서 이미지 toocreate 명령:
     
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
@@ -124,6 +124,6 @@ az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS --
     ```
 
 ## <a name="next-steps"></a>다음 단계
-* [CLI](quick-create-cli.md)로 [포털](quick-create-portal.md)에서 Linux VM을 만들거나 [Azure Resource Manager 템플릿](../windows/cli-deploy-templates.md)을 사용하여 Linux VM을 만듭니다.
+* Hello로 Linux VM을 만들 [CLI](quick-create-cli.md), hello에서 [포털](quick-create-portal.md), 또는 사용 하는 [Azure 리소스 관리자 템플릿](../windows/cli-deploy-templates.md)합니다.
 * Linux VM을 만든 후 [Azure 디스크 및 저장소에 대해 알아봅니다](tutorial-manage-disks.md).
-* [암호 또는 SSH 키를 다시 설정하고 사용자를 관리](using-vmaccess-extension.md)하는 빠른 단계.
+* 빠른 단계 너무[암호 또는 SSH 키를 다시 설정 하 고 사용자 관리](using-vmaccess-extension.md)합니다.

@@ -1,6 +1,6 @@
 ---
-title: "Azure VPN Gateway 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "클라우드 가상 네트워크와 온-프레미스 또는 클라우드 VNet간에 트래픽을 관리하도록 VPN(가상 사설망) Gateway를 구성하는 방법에 대해 알아봅니다."
+title: "aaaAzure VPN 게이트웨이 설명서 자습서, API 참조 | Microsoft Docs"
+description: "클라우드 가상 네트워크와 온-프레미스 또는 클라우드 Vnet 간의 tooconfigure 가상 사설망 (VPN) 게이트웨이 toomanage 트래픽을 하는 방법에 대해 알아봅니다."
 services: vpn-gateway
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 350264be2b885720359b72660397d24dc4d03e11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a518f39e0cb8761e239d0c033a7801803edfd0a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vpn-gateway-documentation"></a>VPN Gateway 설명서
 
-개인 가상 네트워크 게이트웨이인 VPN Gateway를 구성하는 방법에 대해 알아봅니다. 설명서에서는 Azure 가상 네트워크와 온-프레미스 위치 또는 다른 Azure VNet(가상 네트워크) 간에 네트워크 트래픽을 보내는 방법을 설명합니다.
+자세한 내용은 방법 tooconfigure VPN 게이트웨이, 가상 사설망 게이트웨이 합니다. 설명서에는 어떻게 toosend 간의 네트워크 트래픽은 Azure 가상 네트워크와 온-프레미스 위치 또는 다른 Azure 가상 네트워크 (Vnet) 표시 됩니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Portal을 사용하여 사이트 간 연결 만들기 시작</h3>
+                        <h3>Hello Azure 포털을 사용 하는 사이트 간 연결을 만들기 시작</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Portal을 사용하여 지점 및 사이트 간 연결 만들기 시작</h3>
+                        <h3>Hello Azure 포털을 사용 하는 지점 및 사이트 연결을 만들기 시작</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Portal을 사용하여 VNet 간 연결 만들기 시작</h3>
+                        <h3>Hello Azure 포털을 사용 하는 VNet 대 VNet 연결을 만들기 시작</h3>
                     </div>
                 </div>
             </div>

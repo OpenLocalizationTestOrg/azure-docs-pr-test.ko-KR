@@ -1,5 +1,5 @@
 ---
-title: "Azure에서 PHP 웹앱 만들기 | Microsoft Docs"
+title: "PHP aaaCreate 웹 앱에 Azure | Microsoft Docs"
 description: "몇 분 안에 Azure App Service Web Apps에서 첫 번째 PHP Hello World를 배포합니다."
 services: app-service\web
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.topic: quickstart
 ms.date: 07/21/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 3a78e0b485046ad6228bf4819d3908042c298d1a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8e1022889ca162f8f15ce7435cc9393cc6efef06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-php-web-app-in-azure"></a>Azure에서 PHP 웹앱 만들기
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.  이 빠른 시작 자습서에서는 PHP 앱을 Azure Web Apps에 배포하는 방법을 보여 줍니다. Cloud Shell에서 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)를 사용하여 웹앱을 만들고 Git을 사용하여 웹앱에 샘플 PHP 코드를 배포합니다.
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.  이 빠른 시작 자습서에서는 어떻게 toodeploy PHP 응용 프로그램 tooAzure 웹 앱입니다. Hello를 사용 하 여 hello 웹 앱을 만드는 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) 에 클라우드 셸 및 Git toodeploy 샘플 PHP 코드 toohello 웹 응용 프로그램을 사용할 수 있습니다.
 
 ![Azure에서 실행되는 샘플 앱]](media/app-service-web-get-started-php/hello-world-in-browser.png)
 
-Mac, Windows 또는 Linux 컴퓨터를 사용하여 아래 단계를 따르면 됩니다. 필수 구성 요소가 설치된 후 단계를 완료하는 데는 약 5분 정도 걸립니다.
+Mac, Windows 또는 Linux 컴퓨터를 사용 하 여 아래 hello 단계를 따를 수 있습니다. Hello 필수 구성 요소가 설치 되 면 약 5 분 toocomplete hello 단계가 필요 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 빠른 시작을 완료하려면 다음이 필요합니다.
+toocomplete이 빠른이 시작:
 
 * [Git 설치](https://git-scm.com/)
 * [PHP 설치](https://php.net)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="download-the-sample-locally"></a>로컬로 샘플 다운로드
+## <a name="download-hello-sample-locally"></a>Hello 샘플 로컬로 다운로드
 
-터미널 창에서 다음 명령을 실행합니다. 그러면 응용 프로그램 예제가 로컬 컴퓨터에 복제되고 샘플 코드가 들어 있는 디렉터리로 이동합니다.
+터미널 창에서 다음 명령을 hello를 실행 합니다. Hello 샘플 응용 프로그램 tooyour 로컬 컴퓨터에 복제 되 고 toohello 디렉터리 포함 hello 샘플 코드를 탐색 합니다.
 
 ```bash
 git clone https://github.com/Azure-Samples/php-docs-hello-world
 cd php-docs-hello-world
 ```
 
-## <a name="run-the-app-locally"></a>로컬에서 앱 실행
+## <a name="run-hello-app-locally"></a>Hello 응용 프로그램을 로컬로 실행
 
-PHP 웹 서버에서 기본 제공을 시작하려면 터미널 창을 열고 `php` 명령을 사용하여 응용 프로그램을 로컬로 실행합니다.
+터미널 윈도우를 열고 hello를 사용 하 여 hello 응용 프로그램을 로컬로 실행 `php` 명령 toolaunch hello PHP 웹 서버 기본 제공 합니다.
 
 ```bash
 php -S localhost:8080
 ```
 
-웹 브라우저를 열고 http://localhost:8080에서 샘플 앱으로 이동합니다.
+웹 브라우저를 열고 http://localhost:8080에서 toohello 샘플 응용 프로그램을 이동 합니다.
 
-이 페이지에 표시된 샘플 앱의 **Hello World!** 메시지가 표시됩니다.
+Hello 참조 **Hello World!** hello 페이지에 표시 되는 hello 샘플 응용 프로그램의 메시지입니다.
 
 ![로컬로 실행되는 샘플 앱](media/app-service-web-get-started-php/localhost-hello-world-in-browser.png)
 
-터미널 창에서 **Ctrl+C**를 눌러 웹 서버를 종료합니다.
+사용자의 터미널 창에서 눌러 **Ctrl + C** tooexit hello 웹 서버.
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
@@ -79,11 +79,11 @@ Azure에서 비어 있는 새 웹앱을 만들었습니다.
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 2, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (2/2), 352 bytes | 0 bytes/s, done.
 Total 2 (delta 1), reused 0 (delta 0)
@@ -102,56 +102,56 @@ remote: Ignoring: .git
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
    cc39b1e..25f1805  master -> master
 ```
 
-## <a name="browse-to-the-app-locally"></a>앱으로 로컬 이동
+## <a name="browse-toohello-app-locally"></a>로컬로 앱 toohello 찾아보기
 
-웹 브라우저를 사용하여 배포된 응용 프로그램으로 이동합니다.
+찾아보기 toohello 웹 브라우저를 사용 하 여 응용 프로그램을 배포 합니다.
 
 ```bash
 http://<app_name>.azurewebsites.net
 ```
 
-PHP 샘플 코드는 Azure App Service 웹앱에서 실행 중입니다.
+hello PHP 샘플 코드는 Azure 앱 서비스 웹 앱에서 실행 중입니다.
 
 ![Azure에서 실행되는 샘플 앱](media/app-service-web-get-started-php/hello-world-in-browser.png)
 
-**축하합니다.** App Service에 첫 번째 PHP 앱을 배포했습니다.
+**축하합니다.** 배포한 프로그램 첫 번째 PHP 응용 프로그램 tooApp 서비스입니다.
 
-## <a name="update-locally-and-redeploy-the-code"></a>로컬로 코드 업데이트 및 다시 배포
+## <a name="update-locally-and-redeploy-hello-code"></a>로컬에서 업데이트 하 고 hello 코드를 다시 배포
 
-로컬 텍스트 편집기를 사용하여 PHP 앱 내에서 `index.php` 파일을 열고 `echo` 옆에 있는 문자열 내의 텍스트를 약간 변경합니다.
+Hello를 열고 로컬 텍스트 편집기를 사용 하 여 `index.php` hello PHP 응용 프로그램 내에서 파일을 너무 hello 문자열 내에서 작은 변경 toohello 텍스트를 다음 확인`echo`:
 
 ```php
 echo "Hello Azure!";
 ```
 
-Git에서 변경 내용을 커밋한 다음 Azure에 코드 변경 내용을 푸시합니다.
+Git에서 변경 내용을 커밋하고 hello 코드 변경 내용을 tooAzure 푸시하고 합니다.
 
 ```bash
 git commit -am "updated output"
 git push azure master
 ```
 
-배포가 완료되면 **앱으로 이동** 단계에서 열린 브라우저 창으로 다시 전환하고 페이지를 새로 고칩니다.
+배포가 완료 되 면 hello에서 열린 백 toohello 브라우저 창을 전환 **찾아보기 toohello 앱** 단계 및 새로 고침 hello 페이지.
 
 ![Azure에서 실행되는 업데이트된 샘플 앱](media/app-service-web-get-started-php/hello-azure-in-browser.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>새로운 Azure 웹앱 관리
 
-만든 웹앱을 관리하려면 <a href="https://portal.azure.com" target="_blank">Azure Portal</a>로 이동합니다.
+Toohello 이동 <a href="https://portal.azure.com" target="_blank">Azure 포털</a> 만든 toomanage hello 웹 앱입니다.
 
-왼쪽 메뉴에서 **App Services**를 클릭한 다음 Azure 웹앱의 이름을 클릭합니다.
+Hello 왼쪽된 메뉴에서 클릭 **응용 프로그램 서비스**, Azure 웹 앱의 hello 이름을 클릭 하 고 있습니다.
 
-![Azure 웹앱에 대한 포털 탐색](./media/app-service-web-get-started-php/php-docs-hello-world-app-service-list.png)
+![포털 탐색 tooAzure 웹 응용 프로그램](./media/app-service-web-get-started-php/php-docs-hello-world-app-service-list.png)
 
 웹앱의 개요 페이지가 표시됩니다. 여기에서 찾아보기, 중지, 시작, 다시 시작, 삭제와 같은 기본 관리 작업을 수행할 수 있습니다.
 
 ![Azure Portal의 App Service 블레이드](media/app-service-web-get-started-php/php-docs-hello-world-app-service-detail.png)
 
-왼쪽 메뉴는 앱 구성을 위한 서로 다른 페이지를 제공합니다. 
+왼쪽된 메뉴 hello 응용 프로그램을 구성 하는 서로 다른 페이지를 제공 합니다. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

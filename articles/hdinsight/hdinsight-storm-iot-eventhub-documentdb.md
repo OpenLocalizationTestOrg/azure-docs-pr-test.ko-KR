@@ -1,6 +1,6 @@
 ---
-title: "HDInsight의 Apache Storm을 사용하여 차량 센서 데이터 처리 | Microsoft Docs"
-description: "HDInsight의 Apache Storm을 사용하여 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다. Azure Cosmos DB에서 모델 데이터를 추가하고 저장소에 출력을 저장합니다."
+title: "HDInsight의 Apache Storm를 사용 하 여 aaaProcess 차량 센서 데이터 | Microsoft Docs"
+description: "자세한 내용은 방법 HDInsight의 Apache Storm를 사용 하 여 이벤트 허브에서 tooprocess 자동차 센서 데이터입니다. Azure Cosmos DB에서 모델 데이터를 추가 하 고 출력 toostorage를 저장 합니다."
 services: hdinsight,documentdb,notification-hubs
 documentationcenter: 
 author: Blackmist
@@ -15,49 +15,49 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 8e8ebc724e1c70e8fcd56312adef5da2342373ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7b1dbb9072e095ea32160bb731bedd071288af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a>HDInsight의 Apache Storm을 사용하여 Azure 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다.
 
-HDInsight의 Apache Storm을 사용하여 Azure 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다. 이 예제에서는 Azure Event Hub에서 센서 데이터를 읽고, Azure Cosmos DB에 저장된 데이터를 참조하여 데이터를 보강합니다. 데이터는 HDFS(Hadoop 파일 시스템)를 사용하여 Azure Storage에 저장됩니다.
+자세한 내용은 방법 HDInsight의 Apache Storm를 사용 하 여 Azure 이벤트 허브에서 tooprocess 자동차 센서 데이터입니다. 이 예제에서는 Azure 이벤트 허브에서 센서 데이터를 읽고, Azure Cosmos DB에 저장 된 데이터를 참조 하 여 hello 데이터를 강화 합니다. hello 데이터는 Hadoop 파일 시스템 (HDFS) hello를 사용 하 여 Azure 저장소에 저장 됩니다.
 
-![HDInsight 및 IoT(사물 인터넷) 아키텍처 다이어그램](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
+![HDInsight 및 hello 인터넷 IoT (사물) 아키텍처 다이어그램](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
 
 ## <a name="overview"></a>개요
 
-차량에 센서를 추가하면 과거 데이터 추세를 기반으로 장비 문제를 예측할 수 있습니다. 또한 사용 패턴 분석에 따라 향후 버전을 개선할 수 있습니다. MapReduce 처리가 가능하기 위해서는 모든 차량의 데이터를 Hadoop으로 빠르고 효율적으로 로드할 수 있어야 합니다. 또한 중요한 고장 경로(엔진 온도, 브레이크 등)에 대한 분석을 실시간으로 수행할 수 있습니다.
+센서 toovehicles 추가 기록 데이터 추세를 기반으로 toopredict 장비 문제가 있습니다. Toomake 개선 사용량 패턴 분석에 따라 toofuture 버전을 수도 있습니다. 수 tooquickly를 여야 하며 효율적으로 hello 데이터 로드 모든 차량에서 Hadoop MapReduce 처리가 발생할 수 있습니다. 또한 중요 한 경로 (엔진 온도, brakes, 등)에 대 한 toodo 분석 실시간으로 지정할 수 있습니다.
 
-Azure Event Hub는 센서에서 생성된 방대한 데이터 볼륨을 처리하기 위해 개발되었습니다. Apache Storm은 HDFS에 데이터를 저장하기 전에 데이터를 로드해 처리하는 데 사용할 수 있습니다.
+Azure 이벤트 허브는 센서에 의해 생성 된 데이터의 toohandle hello 대규모 볼륨을 만들어집니다. Apache Storm HDFS에 저장 되기 전에 사용 되는 tooload 및 hello 데이터 처리를 수 있습니다.
 
 ## <a name="solution"></a>해결 방법
 
-엔진 온도, 주변 온도 및 차량 속도에 대한 원격 분석 데이터는 센서에서 기록합니다. 그런 다음 데이터는 VIN(차량 식별 번호) 및 타임스탬프와 함께 Event Hub로 전송됩니다. 그러면 HDInsight의 Apache Storm에서 실행되는 Storm 토폴로지가 데이터를 읽고 처리한 후 HDFS에 저장합니다.
+엔진 온도, 주변 온도 및 차량 속도에 대한 원격 분석 데이터는 센서에서 기록합니다. 데이터는 tooEvent 허브 hello 자동차의 자동차를 움직일 식별 번호 (VIN) 및 타임 스탬프와 함께 전송 됩니다. 여기에서 HDInsight 클러스터에는 Apache Storm에서 실행 되는 스톰 토폴로지 hello 데이터를 읽고, 처리 한 HDFS에 저장 합니다.
 
-처리하는 동안 VIN은 Cosmos DB에서 모델 정보를 검색하는 데 사용됩니다. 이 데이터는 저장되기 전에 데이터 스트림에 추가됩니다.
+처리 하는 동안 hello VIN Cosmos DB에서 사용 되는 tooretrieve 모델 정보입니다. 이 데이터는 저장 되기 전에 toohello 데이터 스트림을 추가 됩니다.
 
-Storm 토폴로지에서 사용되는 구성 요소는 다음과 같습니다.
+Storm 토폴로지 hello에 사용 된 hello 구성 요소입니다.
 
 * **EventHubSpout** - Azure 이벤트 허브에서 데이터를 읽습니다.
-* **TypeConversionBolt** - JSON 문자열을 Event Hub에서 다음 센서 데이터가 포함된 튜블로 변환합니다.
+* **TypeConversionBolt** -변환 hello 같은 센서 데이터가 포함 된 튜플로 이벤트 허브에서 JSON 문자열 hello:
     * 엔진 온도
     * 주변 온도
     * 속도
     * VIN
     * Timestamp
-* **DataReferencBolt** - VIN을 사용하여 Cosmos DB에서 차량 모델을 조회합니다.
-* **WasbStoreBolt** - HDFS(Azure 저장소)에 데이터를 저장합니다.
+* **DataReferencBolt** -hello VIN를 사용 하 여 Cosmos DB에서 hello 차량 모델을 조회 합니다.
+* **WasbStoreBolt** -저장소 hello 데이터 tooHDFS (Azure 저장소)
 
-다음 이미지는 이 솔루션의 다이어그램입니다.
+hello 다음 이미지는이 솔루션의 다이어그램:
 
 ![Storm 토폴로지](./media/hdinsight-storm-iot-eventhub-documentdb/iottopology.png)
 
 ## <a name="implementation"></a>구현
 
-이 시나리오에 대한 전체 자동화된 솔루션은 GitHub에서 [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) 리포지토리의 일부로 제공됩니다. 이 예제를 사용하려면 [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md)의 단계를 따르세요.
+완전 한 자동화 된 방법으로이 시나리오를 사용할 수 없으면 hello의 일부로 [예제-스톰-HDInsight](https://github.com/hdinsight/hdinsight-storm-examples) GitHub의 리포지토리 합니다. toouse hello에 hello 단계 수행이이 예제에서는 [IoTExample 추가 정보입니다. MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md)합니다.
 
 ## <a name="next-steps"></a>다음 단계
 

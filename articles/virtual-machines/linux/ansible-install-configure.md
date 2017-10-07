@@ -1,6 +1,6 @@
 ---
-title: "Azure Virtual Machines에서 사용할 Ansible 설치 및 구성 | Microsoft Docs"
-description: "Ubuntu, CentOS 및 SLES에서 Azure 리소스를 관리하기 위해 Ansible을 설치 및 구성하는 방법을 알아봅니다."
+title: "aaaInstall 및 Azure 가상 컴퓨터를 사용 하기 위해 Ansible 구성 | Microsoft Docs"
+description: "자세한 내용은 방법 tooinstall Ansible Ubuntu, CentOS 및 SLES에서 Azure 리소스를 관리 하기 위한 구성"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/25/2017
 ms.author: iainfou
-ms.openlocfilehash: 52b763274437961dccfc862c8a45fbd57ea9fc4e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b33d1893909b6134a5474617c9af2d6e4f627c05
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-and-configure-ansible-to-manage-virtual-machines-in-azure"></a>Azure에서 가상 컴퓨터를 관리하기 위한 Ansible 설치 및 구성
-이 문서에는 가장 일반적인 Linux 배포판 중 일부에 대해 Ansible 및 필요한 Azure Python SDK 모듈을 설치하는 방법을 자세히 설명합니다. 설치된 패키지를 특정 플랫폼에 맞게 조정하여 다른 배포판에 Ansible을 설치할 수 있습니다. Azure 리소스를 안전하게 만들기 위해 Ansible에 대한 자격 증명을 만들고 정의하는 방법도 알아봅니다. 
+# <a name="install-and-configure-ansible-toomanage-virtual-machines-in-azure"></a>설치 하 고 Azure에서 Ansible toomanage 가상 컴퓨터 구성
+이 문서 tooinstall Ansible와 필수 Azure Python SDK 모듈의 일부에 대 한 가장 일반적인 Linux 배포판 hello 방법을 자세히 설명 합니다. 에 설치할 수 있습니다 Ansible 다른 배포판 hello 설치 패키지 toofit 조정 하 여 특정 플랫폼에 있습니다. toocreate Azure 안전한 방식으로 리소스를 배울 있습니다 어떻게 toocreate Ansible toouse에 대 한 자격 증명을 정의 합니다. 
 
-추가 플랫폼에 대한 설치 옵션 및 단계는 [Ansible 설치 가이드](https://docs.ansible.com/ansible/intro_installation.html)를 참조하세요.
+자세한 설치 옵션 및 다른 플랫폼에 대 한 단계에 대 한 참조 hello [Ansible 설치 가이드](https://docs.ansible.com/ansible/intro_installation.html)합니다.
 
 
 ## <a name="install-ansible"></a>Ansible 설치
-먼저 [az group create](/cli/azure/group#create)를 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *eastus* 위치에 *myResourceGroupAnsible*이라는 리소스 그룹을 만듭니다.
+먼저 [az group create](/cli/azure/group#create)를 사용하여 리소스 그룹을 만듭니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroupAnsible* hello에 *eastus* 위치:
 
 ```azurecli
 az group create --name myResourceGroupAnsible --location eastus
 ```
 
-이제 VM을 만들고 다음 배포판 중 하나에 대해 Ansible을 설치합니다.
+이제 VM을 만들고 Ansible hello 배포판을 다음 중 하나에 대 한 설치:
 
 - [Ubuntu 16.04 LTS](#ubuntu1604-lts)
 - [CentOS 7.3](#centos-73)
 - [SLES 12.2 SP2](#sles-122-sp2)
 
 ### <a name="ubuntu-1604-lts"></a>Ubuntu 16.04 LTS
-[az vm create](/cli/azure/vm#create)로 VM을 만듭니다. 다음 예제에서는 *myVMAnsible*이라는 VM을 만듭니다.
+[az vm create](/cli/azure/vm#create)로 VM을 만듭니다. hello 다음 예제에서는 V *myVMAnsible*:
 
 ```bash
 az vm create \
@@ -52,13 +52,13 @@ az vm create \
     --generate-ssh-keys
 ```
 
-VM 만들기 작업의 출력에 기록된 `publicIpAddress`를 사용하여 VM에 SSH 연결합니다.
+SSH tooyour VM를 사용 하 여 hello `publicIpAddress` hello에 명시 된 hello VM에서에서 출력 만들기 작업:
 
 ```bash
 ssh azureuser@<publicIpAddress>
 ```
 
-VM에서 Azure Python SDK 모듈 및 Ansible에 대한 필수 패키지를 다음과 같이 설치합니다.
+VM에 Azure Python SDK 모듈과 Ansible hello에 대 한 hello 필요한 패키지를 다음과 같이 설치 합니다.
 
 ```bash
 ## Install pre-requisite packages
@@ -73,11 +73,11 @@ sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update && sudo apt-get install -y ansible
 ```
 
-이제 계속해서 [Azure 자격 증명 만들기](#create-azure-credentials) 작업을 수행합니다.
+이제 너무 이동[만들 Azure 자격 증명](#create-azure-credentials)합니다.
 
 
 ### <a name="centos-73"></a>CentOS 7.3
-[az vm create](/cli/azure/vm#create)로 VM을 만듭니다. 다음 예제에서는 *myVMAnsible*이라는 VM을 만듭니다.
+[az vm create](/cli/azure/vm#create)로 VM을 만듭니다. hello 다음 예제에서는 V *myVMAnsible*:
 
 ```bash
 az vm create \
@@ -88,13 +88,13 @@ az vm create \
     --generate-ssh-keys
 ```
 
-VM 만들기 작업의 출력에 기록된 `publicIpAddress`를 사용하여 VM에 SSH 연결합니다.
+SSH tooyour VM를 사용 하 여 hello `publicIpAddress` hello에 명시 된 hello VM에서에서 출력 만들기 작업:
 
 ```bash
 ssh azureuser@<publicIpAddress>
 ```
 
-VM에서 Azure Python SDK 모듈 및 Ansible에 대한 필수 패키지를 다음과 같이 설치합니다.
+VM에 Azure Python SDK 모듈과 Ansible hello에 대 한 hello 필요한 패키지를 다음과 같이 설치 합니다.
 
 ```bash
 ## Install pre-requisite packages
@@ -108,11 +108,11 @@ sudo pip install "azure==2.0.0rc5" msrestazure
 sudo yum install -y ansible
 ```
 
-이제 계속해서 [Azure 자격 증명 만들기](#create-azure-credentials) 작업을 수행합니다.
+이제 너무 이동[만들 Azure 자격 증명](#create-azure-credentials)합니다.
 
 
 ### <a name="sles-122-sp2"></a>SLES 12.2 SP2
-[az vm create](/cli/azure/vm#create)로 VM을 만듭니다. 다음 예제에서는 *myVMAnsible*이라는 VM을 만듭니다.
+[az vm create](/cli/azure/vm#create)로 VM을 만듭니다. hello 다음 예제에서는 V *myVMAnsible*:
 
 ```bash
 az vm create \
@@ -123,13 +123,13 @@ az vm create \
     --generate-ssh-keys
 ```
 
-VM 만들기 작업의 출력에 기록된 `publicIpAddress`를 사용하여 VM에 SSH 연결합니다.
+SSH tooyour VM를 사용 하 여 hello `publicIpAddress` hello에 명시 된 hello VM에서에서 출력 만들기 작업:
 
 ```bash
 ssh azureuser@<publicIpAddress>
 ```
 
-VM에서 Azure Python SDK 모듈 및 Ansible에 대한 필수 패키지를 다음과 같이 설치합니다.
+VM에 Azure Python SDK 모듈과 Ansible hello에 대 한 hello 필요한 패키지를 다음과 같이 설치 합니다.
 
 ```bash
 ## Install pre-requisite packages
@@ -141,19 +141,19 @@ sudo zypper addrepo http://download.opensuse.org/repositories/systemsmanagement/
 sudo zypper refresh && sudo zypper install ansible
 ```
 
-이제 계속해서 [Azure 자격 증명 만들기](#create-azure-credentials) 작업을 수행합니다.
+이제 너무 이동[만들 Azure 자격 증명](#create-azure-credentials)합니다.
 
 
 ## <a name="create-azure-credentials"></a>Azure 자격 증명 만들기
-Ansible은 사용자 이름 및 암호 또는 서비스 주체를 사용하여 Azure와 통신합니다. Azure 서비스 주체는 앱, 서비스 및 Ansible과 같은 자동화 도구를 사용할 수 있는 보안 ID입니다. 서비스 주체가 Azure에서 수행할 수 있는 작업에 대한 사용 권한은 사용자가 제어하고 정의합니다. 사용자 이름 및 암호를 입력하는 것 이상으로 보안을 강화하기 위해 이 예제에서는 기본 서비스 주체를 만듭니다.
+Ansible은 사용자 이름 및 암호 또는 서비스 주체를 사용하여 Azure와 통신합니다. Azure 서비스 주체는 앱, 서비스 및 Ansible과 같은 자동화 도구를 사용할 수 있는 보안 ID입니다. 제어 하 고이 정보를 toowhat 작업 hello 서비스 사용자는 Azure에서 수행할 수 있는 대로 hello 사용 권한을 정의 합니다. 제공 하는 것 사용자 이름 및 암호를 통해 tooimprove 보안,이 예제에서는 기본 서비스 보안 주체
 
-[az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac)를 사용하여 서비스 주체를 만들고 Ansible에서 요구하는 자격 증명을 출력합니다.
+서비스와 사용자 만들기 [az ad sp 만들기에 대 한-rbac](/cli/azure/ad/sp#create-for-rbac) Ansible 해야 하는 출력 hello 자격 증명:
 
 ```azurecli
 az ad sp create-for-rbac --query [appId,password,tenant]
 ```
 
-이전 명령에서 출력의 예는 다음과 같습니다.
+Hello 명령 앞에서 hello 출력의 예는 다음과 같습니다.
 
 ```json
 [
@@ -163,17 +163,17 @@ az ad sp create-for-rbac --query [appId,password,tenant]
 ]
 ```
 
-Azure를 인증하기 위해 [az account show](/cli/azure/account#show)를 사용하여 Azure 구독 ID를 가져와야 합니다.
+tooauthenticate tooAzure 하면 Azure 구독 ID와 tooobtain [az 계정 표시](/cli/azure/account#show):
 
 ```azurecli
 az account show --query [id] --output tsv
 ```
 
-다음 단계에서 이러한 두 명령의 출력을 사용합니다.
+Hello 다음 단계에서이 두 명령은에서 hello 출력을 사용합니다.
 
 
 ## <a name="create-ansible-credentials-file"></a>Ansible 자격 증명 파일 만들기
-Ansible에 자격 증명을 제공하려면 환경 변수를 정의하거나 로컬 자격 증명 파일을 만듭니다. Ansible 자격 증명을 정의하는 방법에 대한 자세한 내용은 [Azure 모듈에 자격 증명 제공](https://docs.ansible.com/ansible/guide_azure.html#providing-credentials-to-azure-modules)을 참조하세요. 
+tooprovide tooAnsible 자격 증명을 환경 변수를 정의 하거나 로컬 자격 증명 파일을 만듭니다. 방법에 대 한 자세한 내용은 toodefine Ansible 자격 증명 참조 [자격 증명을 제공 하 tooAzure 모듈](https://docs.ansible.com/ansible/guide_azure.html#providing-credentials-to-azure-modules)합니다. 
 
 개발 환경의 경우 호스트 VM에서 다음과 같이 Ansible에 대한 *자격 증명* 파일을 만듭니다.
 
@@ -182,7 +182,7 @@ mkdir ~/.azure
 vi ~/.azure/credentials
 ```
 
-*자격 증명* 파일 자체는 구독 ID와 서비스 주체 만들기의 출력을 결합합니다. 이전 [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) 명령의 출력은 *client_id*, *secret* 및 *tenant*에 필요한 대로 동일한 순서입니다. 다음 예제 *자격 증명* 파일은 이전 출력과 일치하는 이러한 값을 보여 줍니다. 다음과 같이 사용자 고유의 값을 입력합니다.
+hello *자격 증명* 파일 자체 hello 구독 ID를 결합 하 여 서비스 사용자를 만드는 hello 출력을 제공 합니다. 이전 hello에서 출력 [az ad sp 만들기에 대 한-rbac](/cli/azure/ad/sp#create-for-rbac) 동일 hello 명령입니다 필요에 따라 주문 *client_id*, *비밀*, 및 *테 넌 트* . 다음 예에서는 hello *자격 증명* 파일 hello 이전 출력 일치 하는 이러한 값을 보여 줍니다. 다음과 같이 사용자 고유의 값을 입력합니다.
 
 ```bash
 [default]
@@ -194,7 +194,7 @@ tenant=72f988bf-86f1-41af-91ab-2d7cd011db47
 
 
 ## <a name="use-ansible-environment-variables"></a>Ansible 환경 변수 사용
-Ansible Tower 또는 Jenkins와 같은 도구를 사용하려는 경우 다음과 같이 환경 변수를 정의할 수 있습니다. 이러한 변수는 구독 ID와 서비스 주체 만들기의 출력을 결합합니다. 이전 [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) 명령의 출력은 *AZURE_CLIENT_ID*, *AZURE_SECRET* 및 *AZURE_TENANT*에 필요한 대로 동일한 순서입니다. 
+Toouse Ansible 타워 또는 Jenkins 등의 도구를 사용 하도록 하려는 경우 환경 변수를 다음과 같이 정의할 수 있습니다. 이러한 변수 서비스 보안 주체를 만드는 hello 출력 hello 구독 ID를 결합 합니다. 이전 hello에서 출력 [az ad sp 만들기에 대 한-rbac](/cli/azure/ad/sp#create-for-rbac) 명령 동일 hello입니다 필요에 따라 주문 *AZURE_CLIENT_ID*, *AZURE_SECRET*, 및 *AZURE_ 테 넌 트*합니다. 
 
 ```bash
 export AZURE_SUBSCRIPTION_ID=xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -204,4 +204,4 @@ export AZURE_TENANT=72f988bf-86f1-41af-91ab-2d7cd011db47
 ```
 
 ## <a name="next-steps"></a>다음 단계
-이제 Ansible 및 필요한 Azure Python SDK 모듈을 설치하고 사용할 Ansible 자격 증명을 정의했습니다. [Ansible을 사용하여 VM을 만드는](ansible-create-vm.md) 방법을 알아봅니다. [Ansible을 사용하여 전체 Azure VM 및 지원 리소스를 만드는](ansible-create-complete-vm.md) 방법도 배울 수 있습니다.
+Ansible 있으며 Azure Python SDK 모듈 설치 및 자격 증명 Ansible toouse에 대해 정의 된 hello 필요한 수 있습니다. 너무 방법에 대해 알아봅니다[VM Ansible을 만들어](ansible-create-vm.md)합니다. 배울 수 있습니다 어떻게 너무[전체 Azure VM을 만들고 Ansible 사용 하 여 리소스를 지 원하는](ansible-create-complete-vm.md)합니다.

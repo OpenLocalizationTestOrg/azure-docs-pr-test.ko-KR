@@ -1,6 +1,6 @@
 ---
-title: "Azure 파일 공유를 만드는 방법 | Microsoft Docs"
-description: "Azure Portal, PowerShell 및 Azure CLI를 사용하여 Azure File Storage에 Azure 파일 공유를 만드는 방법입니다."
+title: "aaaHow toocreate Azure 파일 공유 | Microsoft Docs"
+description: "Toocreate Azure 파일의에서 공유 어떻게 hello Azure 포털, PowerShell 및 Azure CLI hello를 사용 하 여 Azure 파일 저장소."
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: b81701e2544ace092f007e5d98b3141e1f7da724
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 816694e411a993dae881816fc62173e2b7afe990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-file-share-in-azure-file-storage"></a>Azure File Storage에 파일 공유 만들기
-[Azure Portal](https://portal.azure.com/), Azure Storage PowerShell cmdlet, Azure Storage 클라이언트 라이브러리 또는 Azure Storage REST API를 사용하여 Azure 파일 공유를 만들 수 있습니다. 이 자습서에서는 다음 항목에 대해 알아봅니다.
-* [Azure Portal을 사용하여 Azure 파일 공유를 만드는 방법](#Create file share through the Portal)
-* [Powershell을 사용하여 Azure 파일 공유를 만드는 방법](#Create file share using PowerShell)
-* [CLI를 사용하여 Azure 파일 공유를 만드는 방법](#create-file-share-using-command-line-interface-cli)
+사용 하 여 Azure 파일 공유를 만들 수 있습니다 [Azure 포털](https://portal.azure.com/)hello Azure 저장소 PowerShell cmdlet, Azure 저장소 클라이언트 라이브러리를 hello 또는 hello Azure 저장소 REST API입니다. 이 자습서에서는 배웁니다.
+* [Hello Azure 포털을 사용 하 여 toocreate Azure 파일을 공유 하는 방법](#Create file share through hello Portal)
+* [어떻게 toocreate Azure 파일 공유 Powershell을 사용 하 여](#Create file share using PowerShell)
+* [어떻게 toocreate Azure 파일 공유 CLI를 사용 하 여](#create-file-share-using-command-line-interface-cli)
 
 ## <a name="prerequisites"></a>필수 조건
-Azure 파일 공유를 만들려면 이미 존재하는 저장소 계정을 사용하거나 [새 Azure 저장소 계정을 만들 수 있습니다](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json). PowerShell을 사용하여 Azure 파일 공유를 만들려면 저장소 계정의 계정 키와 이름이 필요합니다. Powershell 또는 CLI를 사용하려면 저장소 계정 키가 필요합니다.
+Azure 파일 공유 toocreate 이미 존재 하는 저장소 계정을 사용할 수 있습니다 또는 [새 Azure 저장소 계정 만들기](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)합니다. PowerShell 사용 하 여 Azure 파일 공유 toocreate hello 계정 키와 저장소 계정의 이름이 필요 합니다... 저장소 계정 키 toouse Powershell 또는 CLI를 계획 하는 경우 필요 합니다.
 
-## <a name="create-file-share-through-the-portal"></a>포털을 통해 파일 공유 만들기
-1. **Azure Portal에서 저장소 계정 블레이드로 이동합니다**.    
+## <a name="create-file-share-through-hello-portal"></a>Hello 포털을 통해 파일 공유 만들기
+1. **Azure 포털에서 이동 tooStorage 계정 블레이드**:    
     ![저장소 계정 블레이드](./media/storage-how-to-create-file-share/create-file-share-portal1.png)
 
 2. **파일 공유 추가 단추를 클릭합니다**.    
-    ![파일 공유 추가 단추 클릭](./media/storage-how-to-create-file-share/create-file-share-portal2.png)
+    ![Hello 클릭 하 여 파일 공유 단추를 추가 합니다.](./media/storage-how-to-create-file-share/create-file-share-portal2.png)
 
 3. **이름과 할당량을 제공합니다. 할당량은 현재 최대 5TB일 수 있습니다**.    
-    ![새 파일 공유에 대한 이름과 원하는 할당량 제공](./media/storage-how-to-create-file-share/create-file-share-portal3.png)
+    ![Hello 새 파일 공유에 대 한 이름 및 원하는 할당량 지정](./media/storage-how-to-create-file-share/create-file-share-portal3.png)
 
 4. **새 파일 공유를 확인합니다**. ![새 파일 공유 보기](./media/storage-how-to-create-file-share/create-file-share-portal4.png)
 
@@ -47,12 +47,12 @@ Azure 파일 공유를 만들려면 이미 존재하는 저장소 계정을 사�
 
 
 ## <a name="create-file-share-through-powershell"></a>PowerShell 통해 파일 공유 만들기
-PowerShell 사용을 준비하려면 Azure PowerShell cmdlet을 다운로드하여 설치합니다. 설치 지점 및 설치 지침에 대해서는 [Azure PowerShell 설치 및 구성 방법](https://azure.microsoft.com/documentation/articles/powershell-install-configure/) 을 참조하세요.
+tooprepare toouse PowerShell 다운로드 하 여 hello Azure PowerShell cmdlet을 설치 합니다. 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](https://azure.microsoft.com/documentation/articles/powershell-install-configure/) hello에 대 한 지점 및 설치 지침을 설치 합니다.
 
 > [!Note]  
-> 최신 Azure PowerShell 모듈을 다운로드하여 설치하거나 최신 모듈로 업그레이드하는 것이 좋습니다.
+> 다운로드 및 설치 하거나 업그레이드 toohello 최신 Azure PowerShell 모듈 것이 좋습니다.
 
-1. **저장소 계정 및 키에 대한 컨텍스트를 만듭니다**. 컨텍스트는 저장소 계정 이름과 계정 키를 캡슐화합니다. [Azure Portal](https://portal.azure.com/)에서 계정 키를 복사하는 방법에 대한 지침은 [저장소 액세스 키 보기 및 복사](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#view-and-copy-storage-access-keys)를 참조하세요.
+1. **저장소 계정 및 키에 대 한 컨텍스트를 만들어** hello 컨텍스트 hello 저장소 계정 이름 및 계정 키를 캡슐화 합니다. [Azure Portal](https://portal.azure.com/)에서 계정 키를 복사하는 방법에 대한 지침은 [저장소 액세스 키 보기 및 복사](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#view-and-copy-storage-access-keys)를 참조하세요.
 
     ```powershell
     $storageContext = New-AzureStorageContext <storage-account-name> <storage-account-key>
@@ -65,20 +65,20 @@ PowerShell 사용을 준비하려면 Azure PowerShell cmdlet을 다운로드하�
     ```
 
 > [!Note]  
-> 파일 공유의 이름은 모두 소문자여야 합니다. 파일 공유 및 파일 이름 지정에 대한 자세한 내용은 [공유, 디렉터리, 파일 및 메타데이터 이름 지정 및 참조](https://msdn.microsoft.com/library/azure/dn167011.aspx)를 참조하세요.
+> 파일 공유 hello 이름이 모두 소문자 여야 합니다. 파일 공유 및 파일 이름 지정에 대한 자세한 내용은 [공유, 디렉터리, 파일 및 메타데이터 이름 지정 및 참조](https://msdn.microsoft.com/library/azure/dn167011.aspx)를 참조하세요.
 
 ## <a name="create-file-share-through-command-line-interface-cli"></a>CLI(명령줄 인터페이스)를 통해 파일 공유 만들기
-1. **명령줄 인터페이스(CLI)를 사용하도록 준비하려면 Azure CLI를 다운로드하여 설치합니다.**  
+1. **tooprepare toouse 명령줄 인터페이스 (CLI)를 다운로드 하 여 hello Azure CLI를 설치 합니다.**  
     [Azure CLI 2.0 설치](/cli/azure/install-az-cli2.md) 및 [Azure CLI 2.0 시작](/cli/azure/get-started-with-azure-cli.md)을 참조하세요.
 
-2. **공유를 만들 저장소 계정에 연결 문자열을 만듭니다.**  
-    다음 예제에서는 ```<storage-account>``` 및 ```<resource_group>```을 사용자의 저장소 계정 이름 및 리소스 그룹으로 바꿉니다.
+2. **Toocreate hello 공유 저장할 연결 문자열 toohello 저장소 계정을 만듭니다.**  
+    대체 ```<storage-account>``` 및 ```<resource_group>``` hello 다음 예제에서에서 저장소 계정 이름과 리소스 그룹을 사용 합니다.
 
    ```azurecli
     current_env_conn_string = $(az storage account show-connection-string -n <storage-account> -g <resource-group> --query 'connectionString' -o tsv)
 
     if [[ $current_env_conn_string == "" ]]; then  
-        echo "Couldn't retrieve the connection string."
+        echo "Couldn't retrieve hello connection string."
     fi
     ```
 

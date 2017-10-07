@@ -1,6 +1,6 @@
 ---
-title: "Azure Web Apps의 Maven 플러그 인을 사용하여 Spring Boot 앱을 Azure에 배포하는 방법"
-description: "Azure Web Apps의 Maven 플러그 인을 사용하여 Spring Boot 앱을 Azure에 배포하는 방법을 알아봅니다."
+title: "Azure 웹 앱 toodeploy 스프링 부팅 앱 tooAzure에 대 한 aaaHow toouse hello Maven 플러그 인"
+description: "어떻게 toouse hello Maven 플러그 인 toodeploy Azure 웹 앱에 대 한 스프링 부팅 앱 tooAzure에 알아봅니다."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,38 +14,38 @@ ms.devlang: java
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robmcm;kevinzha
-ms.openlocfilehash: dceb7edf788bd87b1de04aa435a12cd5853755b9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 376fe90fe20621e15d7c9856214937c78b66026a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-maven-plugin-for-azure-web-apps-to-deploy-a-spring-boot-app-to-azure"></a>Azure Web Apps의 Maven 플러그 인을 사용하여 Spring Boot 앱을 Azure에 배포하는 방법
+# <a name="how-toouse-hello-maven-plugin-for-azure-web-apps-toodeploy-a-spring-boot-app-tooazure"></a>어떻게 toouse hello Maven 플러그 인 toodeploy Azure 웹 앱에 대 한 스프링 부팅 앱 tooAzure
 
-[Apache Maven](http://maven.apache.org/)에서 [Azure Web Apps의 Maven 플러그 인](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin)은 Maven 프로젝트에 Azure App Service의 원활한 통합을 제공하고 Azure App Service에 웹앱을 배포하는 개발자를 위한 프로세스를 간소화합니다.
+hello [Azure 웹 앱에 대 한 Maven 플러그인](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) 에 대 한 [Apache Maven](http://maven.apache.org/) Maven 프로젝트에 Azure 앱 서비스의 원활한 통합을 제공 하며 개발자 toodeploy 웹 앱에 대 한 hello 프로세스를 간소화 합니다. 앱 서비스 tooAzure 합니다.
 
-이 문서에서는 Azure Web Apps의 Maven 플러그 인을 사용하여 Azure App Services에 샘플 Spring Boot 응용 프로그램을 배포하는 방법을 보여줍니다.
+이 문서에서는 Azure 웹 앱 toodeploy 용 hello Maven 플러그 인을 사용 하 여 샘플 스프링 부팅 응용 프로그램 tooAzure 응용 프로그램 서비스입니다.
 
 > [!NOTE]
 >
-> Azure Web Apps의 Maven 플러그 인은 현재 미리 보기로 사용할 수 있습니다. 지금은 FTP 게시만 지원되지만 향후에 기능이 추가될 계획입니다.
+> Azure 웹 앱에 대 한 Maven 플러그인 hello는 현재 미리 보기로 사용할 수 있습니다. 지금은 FTP 게시만 지원 되지만 이후 hello에 대 한 추가 기능이 계획 합니다.
 >
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서의 단계를 완료하려면 다음 필수 구성 요소가 필요합니다.
+이 자습서에서는 toocomplete hello 단계 순서를 필수 구성 요소를 다음 toohave hello가 필요 합니다.
 
 * Azure 구독. Azure 구독이 아직 없는 경우 [MSDN 구독자 혜택]을 활성화하거나 [무료 Azure 계정]에 등록할 수 있습니다.
-* [Azure CLI(명령줄 인터페이스)]
+* hello [Azure 명령줄 인터페이스 (CLI)]합니다.
 * 최신 [JDK(Java Development Kit)], 버전 1.7 이상
 * Apache의 [Maven] 빌드 도구(버전 3)
 * [Git] 클라이언트
 
-## <a name="clone-the-sample-spring-boot-web-app"></a>샘플 Spring Boot 웹앱 복제
+## <a name="clone-hello-sample-spring-boot-web-app"></a>복제 hello 샘플 스프링 부팅 웹 응용 프로그램
 
 이 섹션에서는 완료된 Spring Boot 응용 프로그램을 복제하고 로컬로 테스트합니다.
 
-1. 명령 프롬프트 또는 터미널 창을 열고 Spring Boot 응용 프로그램을 저장할 로컬 디렉터리를 만들고 해당 디렉터리로 변경합니다. 예:
+1. 명령 프롬프트 또는 터미널 윈도우를 열고 스프링 부팅 응용 프로그램 및 toothat 디렉터리를 변경 합니다; 로컬 디렉터리 toohold 만들기 예를 들어:
    ```shell
    md C:\SpringBoot
    cd C:\SpringBoot
@@ -56,52 +56,52 @@ ms.lasthandoff: 08/18/2017
    cd /users/robert/SpringBoot
    ```
 
-1. [Spring Boot 시작하기] 샘플 프로젝트를 만든 디렉터리에 복제합니다. 예:
+1. 복제 hello [스프링 부팅 시작] 샘플 프로젝트를 만든; hello 디렉터리 예:
    ```shell
    git clone https://github.com/microsoft/gs-spring-boot
    ```
 
-1. 디렉터리를 완료된 프로젝트로 변경합니다. 예:
+1. 디렉터리 toohello 완료 된 프로젝트를 변경 합니다. 예를 들어:
    ```shell
    cd gs-spring-boot/complete
    ```
 
-1. Maven을 사용하여 JAR 파일을 빌드합니다. 예:
+1. Maven;를 사용 하 여 hello JAR 파일 빌드 예를 들어:
    ```shell
    mvn clean package
    ```
 
-1. 웹앱을 만들면 Maven을 사용하여 웹앱을 시작합니다. 예:
+1. Hello 웹 응용 프로그램을 만들면 Maven;를 사용 하 여 hello 웹 응용 프로그램을 시작 합니다. 예를 들어:
    ```shell
    mvn spring-boot:run
    ```
 
-1. 웹 브라우저를 사용하여 로컬로 이동하여 웹앱을 테스트합니다. 예를 들어, curl을 사용할 수 있는 경우 다음 명령을 사용할 수 있습니다.
+1. 웹 브라우저를 사용 하 여 로컬로 tooit 이동 하 여 hello 웹 앱을 테스트 합니다. 예를 들어 hello curl을 사용할 수 있는 경우 다음 명령을 사용할 수 있습니다.
    ```shell
    curl http://localhost:8080
    ```
 
-1. 다음과 같이 **Greetings from Spring Boot!**라는 메시지가 표시됩니다.
+1. Hello 메시지 표시의 뒤에 표시 됩니다: **스프링 부팅의!**
 
 ## <a name="create-an-azure-service-principal"></a>Azure 서비스 주체 만들기
 
-이 섹션에서는 웹앱을 Azure에 배포할 때 Maven 플러그 인에서 사용하는 Azure 서비스 주체를 만듭니다.
+이 섹션에서는 Azure 웹 앱 tooAzure를 배포할 때 Maven 플러그 인 사용 하 여 hello 서비스 사용자를 만듭니다.
 
 1. 명령 프롬프트를 엽니다.
 
-1. Azure CLI를 사용하여 Azure 계정에 로그인합니다.
+1. 사용 하 여 Azure 계정에 로그인 Azure CLI hello:
    ```shell
    az login
    ```
-   지시에 따라 로그인 프로세스를 완료합니다.
+   Hello 지침 toocomplete hello 로그인 프로세스를 따릅니다.
 
 1. Azure 서비스 주체 만들기
    ```shell
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   여기서 `uuuuuuuu`는 사용자 이름이고 `pppppppp`는 서비스 사용자에 대한 암호입니다.
+   여기서 `uuuuuuuu` hello 사용자 이름 및 `pppppppp` hello 서비스 사용자에 대 한 hello 암호입니다.
 
-1. Azure는 다음 예제와 유사한 JSON로 응답합니다.
+1. Azure는 다음 예제는 hello 유사한 JSON로 응답 합니다.
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -114,20 +114,20 @@ ms.lasthandoff: 08/18/2017
 
    > [!NOTE]
    >
-   > 웹앱을 Azure에 배포하도록 Maven 플러그 인을 구성하는 경우 이 JSON 응답의 값을 사용합니다. `aaaaaaaa`, `uuuuuuuu`, `pppppppp` 및 `tttttttt`는 다음 섹션에서 Maven `settings.xml` 파일을 구성할 때 이러한 값을 해당 요소에 쉽게 매핑할 수 있도록 이 예제에서 사용되는 자리 표시자 값입니다.
+   > 웹 앱 tooAzure hello Maven 플러그 인 toodeploy를 구성할 때 hello 값이 JSON 응답을 사용 합니다. hello `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, 및 `tttttttt` 되는 자리 표시자 값은 사용이 예제에서는 toomake에 보다 쉽게 toomap 이러한 값 tootheir 각 요소가 사용자 Maven을 구성할 때 `settings.xml` hello에 다음 파일 단원을 참조 하십시오입니다.
    >
    >
 
-## <a name="configure-maven-to-use-your-azure-service-principal"></a>Azure 서비스 주체를 사용하도록 Maven 구성
+## <a name="configure-maven-toouse-your-azure-service-principal"></a>Maven toouse Azure 서비스 사용자 구성
 
-이 섹션에서는 Maven에서 웹앱을 Azure에 배포할 때 사용할 인증을 구성하기 위해 Azure 서비스 주체의 값을 사용합니다.
+이 섹션에서는 Maven 웹 응용 프로그램 tooAzure를 배포할 때 사용 하 여 Azure 서비스 주체 tooconfigure hello 인증에서 hello 값을 사용 합니다.
 
-1. 텍스트 편집기에서 Maven `settings.xml` 파일을 엽니다. 이 파일은 다음 예제와 같은 경로에 있을 수 있습니다.
+1. 프로그램 Maven 열고 `settings.xml` 텍스트 편집기에서 파일;이 파일은 다음 예제는 hello와 같은 경로에 있을 수 있습니다.
    * `/etc/maven/settings.xml`
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. *settings.xml* 파일의 `<servers>` 컬렉션에 이 자습서의 이전 섹션에 있는 Azure 서비스 주체 설정을 추가합니다. 예:
+1. 이 자습서 toohello의 hello 이전 섹션에서 Azure 서비스 보안 주체 설정 추가 `<servers>` hello에 대 한 컬렉션 *settings.xml* 파일; 예:
 
    ```xml
    <servers>
@@ -145,17 +145,17 @@ ms.lasthandoff: 08/18/2017
    여기서,
    요소 | 설명
    ---|---|---
-   `<id>` | Azure에 웹앱을 배포할 때 Maven을 사용하여 보안 설정을 조회하는 고유한 이름을 지정합니다.
-   `<client>` | 서비스 사용자의 `appId` 값을 포함합니다.
-   `<tenant>` | 서비스 사용자의 `tenant` 값을 포함합니다.
-   `<key>` | 서비스 사용자의 `password` 값을 포함합니다.
-   `<environment>` | 대상 Azure 클라우드 환경을 정의합니다. 이 예에서는 `AZURE`입니다. (환경의 전체 목록은 [Azure Web Apps의 Maven 플러그 인] 설명서에서 제공됩니다.)
+   `<id>` | Maven 웹 응용 프로그램 tooAzure를 배포할 때 toolook 보안 설정을 사용 하는 고유한 이름을 지정 합니다.
+   `<client>` | Hello 포함 `appId` 서비스 사용자의 값입니다.
+   `<tenant>` | Hello 포함 `tenant` 서비스 사용자의 값입니다.
+   `<key>` | Hello 포함 `password` 서비스 사용자의 값입니다.
+   `<environment>` | hello 대상 Azure 클라우드 환경 정의 `AZURE` 이 예에서 합니다. (전체 환경 목록을 hello 영어로 [Azure 웹 앱에 대 한 Maven 플러그인] 설명서)
 
-1. *settings.xml* 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello *settings.xml* 파일입니다.
 
-## <a name="optional-customize-your-pomxml-before-deploying-your-web-app-to-azure"></a>선택 사항: 웹앱을 Azure에 배포하기 전에 pom.xml 사용자 지정
+## <a name="optional-customize-your-pomxml-before-deploying-your-web-app-tooazure"></a>선택 사항: 사용자 지정 프로그램 pom.xml 웹 응용 프로그램 tooAzure를 배포 하기 전에
 
-텍스트 편집기에서 Spring Boot 응용 프로그램에 대한 `pom.xml` 파일을 열고 `azure-webapp-maven-plugin`에 대한 `<plugin>` 요소를 찾습니다. 이 요소는 다음 예제와 유사합니다.
+열기 hello `pom.xml` 텍스트 편집기에서 스프링 부팅 응용 프로그램에 대 한 파일을 찾은 후 hello `<plugin>` 요소에 대 한 `azure-webapp-maven-plugin`합니다. 이 요소에는 다음 예제는 hello와 유사 합니다.
 
    ```xml
    <plugin>
@@ -191,75 +191,75 @@ ms.lasthandoff: 08/18/2017
    </plugin>
    ```
 
-Maven 플러그 인에 대해 수정할 수 있는 여러 값이 있으며 이러한 각 요소에 대한 자세한 설명을 [Azure Web Apps의 Maven 플러그 인] 설명서에서 사용할 수 있습니다. 즉, 이 문서에서 강조 표시된 값은 여러 개입니다.
+Hello Maven 플러그 인에 대해 수정할 수 있는 값이 여러 개인 및 이러한 각 요소에 대 한 자세한 설명을 hello 영어로 [Azure 웹 앱에 대 한 Maven 플러그인] 설명서입니다. 즉, 이 문서에서 강조 표시된 값은 여러 개입니다.
 
 요소 | 설명
 ---|---|---
-`<version>` | [Azure Web Apps의 Maven 플러그 인] 버전을 지정합니다. [Maven 중앙 리포지토리](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22)에 나열된 버전을 검사하여 최신 버전을 사용하고 있는지 확인해야 합니다.
-`<authentication>` | Azure에 대한 인증 정보를 지정합니다. 이 예제에서는 `azure-auth`이 포함된 `<serverId>` 요소를 포함합니다. Maven에서는 해당 값을 사용하여 이 문서의 이전 섹션에 정의된 Maven *settings.xml* 파일에서 Azure 서비스 주체 값을 조회합니다.
-`<resourceGroup>` | 대상 리소스 그룹, 즉, 이 예에서 `maven-plugin`을 지정합니다. 리소스 그룹이 아직 존재하지 않는 경우 배포 중에 만들어집니다.
-`<appName>` | 웹앱에 대한 대상 이름을 지정합니다. 이 예제에서는 대상 이름은 `maven-web-app-${maven.build.timestamp}`이며 이 예제에서 충돌을 피하기 위해 여기에 `${maven.build.timestamp}` 접미사가 추가됩니다. (타임스탬프는 선택 사항입니다. 앱 이름에 대한 고유한 문자열을 지정할 수 있습니다.)
-`<region>` | 대상 지역을 지정합니다. 이 예제에서는 `westus`입니다. (전체 목록은 [Azure Web Apps의 Maven 플러그 인] 설명서에서 제공됩니다.)
-`<javaVersion>` | 웹앱에 Java 런타임 버전을 지정합니다. (전체 목록은 [Azure Web Apps의 Maven 플러그 인] 설명서에서 제공됩니다.)
+`<version>` | Hello 버전의 hello 지정 [Azure 웹 앱에 대 한 Maven 플러그인]합니다. Hello에 나열 된 hello 버전을 검사 해야 하면 [Maven 중앙 리포지토리](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) 사용 중인 tooensure hello 최신 버전입니다.
+`<authentication>` | 이 예제에 포함 된 Azure의 hello 인증 정보를 지정 된 `<serverId>` 포함 된 요소 `azure-auth`; Maven hello Azure 서비스 주체 값을 해당 값 toolook 프로그램 Maven에서 사용 하 여 *settings.xml* 이 문서의 이전 섹션에 정의 된 파일입니다.
+`<resourceGroup>` | Hello 대상 리소스 그룹, 즉 지정 `maven-plugin` 이 예에서 합니다. hello 리소스 그룹은 이미 존재 하지 않는 경우 배포 중에 만들어집니다.
+`<appName>` | 웹 앱에 대 한 hello 대상 이름을 지정합니다. 이 예제에서는 hello 대상 이름은 `maven-web-app-${maven.build.timestamp}`여기서 hello `${maven.build.timestamp}` 이 예제에서는 tooavoid 충돌의 접미사가 추가 됩니다. (hello 타임 스탬프는 선택 사항) hello 응용 프로그램 이름에 대 한 고유 문자열을 모두 지정할 수 있습니다.
+`<region>` | 이 예제는 hello 대상 지역을 지정 `westus`합니다. (전체 목록은 hello에 [Azure 웹 앱에 대 한 Maven 플러그인] 설명서입니다.)
+`<javaVersion>` | 웹 앱에 대 한 hello Java 런타임 버전을 지정합니다. (전체 목록은 hello에 [Azure 웹 앱에 대 한 Maven 플러그인] 설명서입니다.)
 `<deploymentType>` | 웹앱의 배포 형식을 지정합니다. 지금은 `ftp`만 지원되지만 다른 배포 형식의 지원을 개발 중입니다.
-`<resources>` | Maven이 Azure에 웹앱을 배포할 때 사용하는 리소스 및 대상을 지정합니다. 이 예제에서 두 개의 `<resource>` 요소는 Maven이 웹앱에 JAR 파일을 배포하고 Spring Boot 프로젝트에서 *web.config* 파일을 배포합니다.
+`<resources>` | 리소스 및 Maven 웹 응용 프로그램 tooAzure를 배포할 때 사용 하 여 대상 대상을 지정 합니다. 이 예제에서는 두 개의 `<resource>` 요소 지정 Maven 웹 앱과 hello에 대 한 hello JAR 파일을 배포 합니다 *web.config* hello 스프링 부팅 프로젝트에서 파일입니다.
 
-## <a name="build-and-deploy-your-web-app-to-azure"></a>Azure에 웹앱 빌드 및 배포
+## <a name="build-and-deploy-your-web-app-tooazure"></a>빌드 및 웹 응용 프로그램 tooAzure 배포
 
-이 문서의 이전 섹션에서 설정을 모두 구성했으면 웹앱을 Azure에 배포할 준비가 되었습니다. 이렇게 하려면 다음 단계를 수행합니다.
+준비 toodeploy는 hello 이전이 문서의 섹션에서에서 hello 설정을 모두 구성 했으면, 웹 응용 프로그램 tooAzure 합니다. 따라서 toodo 단계를 수행 하는 hello를 사용 합니다.
 
-1. *pom.xml* 파일을 변경한 경우 이전에 사용하던 명령 프롬프트 또는 터미널 창에서 Maven를 사용하여 JAR 파일을 다시 작성합니다. 예:
+1. Hello 명령 프롬프트 또는 이전에 사용 하 던 터미널 창에서 모든 변경 내용을 toohello을 만든 경우 Maven를 사용 하 여 hello JAR 파일을 다시 작성 *pom.xml* 파일; 예:
    ```shell
    mvn clean package
    ```
 
-1. Maven을 사용하여 Azure에 웹앱을 배포합니다. 예:
+1. Maven;를 사용 하 여 웹 응용 프로그램 tooAzure 배포 예를 들어:
    ```shell
    mvn azure-webapp:deploy
    ```
 
-Maven은 Azure에 웹앱을 배포합니다. 웹앱이 아직 없는 경우 생성됩니다.
+Maven 프로그램 웹 응용 프로그램 tooAzure; 배포 웹 앱 hello가 아직 없는 경우 생성 됩니다.
 
-웹을 배포하면 [Azure Portal]을 사용하여 작업을 관리할 수 있습니다.
+웹 배포 된 수 toomanage 됩니다 hello를 사용 하 여 [Azure 포털]합니다.
 
 * 웹앱은 **App Services**에 나열됩니다.
 
    ![Azure Portal App Services에 나열된 웹앱][AP01]
 
-* 웹앱의 URL은 웹앱의 **개요**에 나열됩니다.
+* 웹 앱 hello에 나열 됩니다에 대 한 URL을 hello 및 **개요** 웹 앱에 대 한:
 
-   ![웹앱의 URL 확인][AP02]
+   ![웹 앱에 대 한 hello URL 확인][AP02]
 
 <!--
-##  OPTIONAL: Configure the embedded Tomcat server to run on a different port
+##  OPTIONAL: Configure hello embedded Tomcat server toorun on a different port
 
-The embedded Tomcat server in the sample Spring Boot application is configured to run on port 8080 by default. However, if you want to run the embedded Tomcat server to run on a different port, such as port 80 for local testing, you can configure the port by using the following steps.
+hello embedded Tomcat server in hello sample Spring Boot application is configured toorun on port 8080 by default. However, if you want toorun hello embedded Tomcat server toorun on a different port, such as port 80 for local testing, you can configure hello port by using hello following steps.
 
-1. Go to the *resources* directory (or create the directory if it does not exist); for example:
+1. Go toohello *resources* directory (or create hello directory if it does not exist); for example:
    ```shell
    cd src/main/resources
    ```
 
-1. Open the *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
+1. Open hello *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
 
-1. Modify the **server** setting so that the server runs on port 80; for example:
+1. Modify hello **server** setting so that hello server runs on port 80; for example:
    ```yaml
    server:
       port: 80
    ```
 
-1. Save and close the *application.yml* file.
+1. Save and close hello *application.yml* file.
 -->
 
 ## <a name="next-steps"></a>다음 단계
 
-이 문서에서 설명하는 다양한 기술에 대한 자세한 내용은 다음 문서를 참조하세요.
+Hello에 대 한 자세한 내용은이 문서에서 설명 하는 다양 한 기술 참조 문서 다음 hello:
 
-* [Azure Web Apps의 Maven 플러그 인]
+* [Azure 웹 앱에 대 한 Maven 플러그인]
 
-* [Azure CLI에서 Azure에 로그인](/azure/xplat-cli-connect)
+* [TooAzure hello Azure CLI에서 로그인](/azure/xplat-cli-connect)
 
-* [Azure Web Apps의 Maven 플러그 인을 사용하여 컨테이너화된 Spring Boot 앱을 Azure에 배포하는 방법](app-service-web-deploy-containerized-spring-boot-app-with-maven-plugin.md)
+* [어떻게 toouse hello Maven 플러그 인 toodeploy Azure 웹 앱에 대 한 컨테이너 화 된 스프링 부팅 앱 tooAzure](app-service-web-deploy-containerized-spring-boot-app-with-maven-plugin.md)
 
 * [Azure CLI 2.0을 사용하여 Azure 서비스 주체 만들기](/cli/azure/create-an-azure-service-principal-azure-cli)
 
@@ -267,9 +267,9 @@ The embedded Tomcat server in the sample Spring Boot application is configured t
 
 <!-- URL List -->
 
-[Azure CLI(명령줄 인터페이스)]: /cli/azure/overview
+[Azure 명령줄 인터페이스 (CLI)]: /cli/azure/overview
 [Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
-[Azure Portal]: https://portal.azure.com/
+[Azure 포털]: https://portal.azure.com/
 [무료 Azure 계정]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
 [Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/
@@ -277,9 +277,9 @@ The embedded Tomcat server in the sample Spring Boot application is configured t
 [Maven]: http://maven.apache.org/
 [MSDN 구독자 혜택]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring Boot 시작하기]: https://github.com/microsoft/gs-spring-boot
+[스프링 부팅 시작]: https://github.com/microsoft/gs-spring-boot
 [Spring Framework]: https://spring.io/
-[Azure Web Apps의 Maven 플러그 인]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
+[Azure 웹 앱에 대 한 Maven 플러그인]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
 
 <!-- IMG List -->
 

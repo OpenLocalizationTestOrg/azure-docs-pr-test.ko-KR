@@ -1,6 +1,6 @@
 ---
-title: "Azure 청구서 이해 | Microsoft Docs"
-description: "Azure 구독에 대한 사용량 및 청구를 읽고 이해하는 방법에 대해 알아봅니다."
+title: "aaaUnderstand azure 청구서 | Microsoft Docs"
+description: "자세한 내용은 방법 tooread 하 고 사용 현황 및 Azure 구독에 대 한 이해"
 services: 
 documentationcenter: 
 author: tonguyen10
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/14/2017
 ms.author: tonguyen
-ms.openlocfilehash: 547b035646ccb80d1001591ae59e6a0871d1ed2c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a3195eb129b1576e8cb665aa6f88a1a2647edd78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-your-bill-for-microsoft-azure"></a>Microsoft Azure 청구서 이해
-Azure 청구서를 이해하려면 Azure Portal에서 자세한 일별 사용 현황 파일 및 비용 관리 보고서와 청구서를 비교합니다.
+toounderstand Azure 청구 hello 자세한 일일 사용량 파일 및 hello hello Azure 포털에서에서 관리 보고서를 비용 청구서를 비교 합니다.
 
-청구서 PDF 및 자세한 일별 사용 현황 파일 CSV를 다운로드하려면 [Azure 청구서 및 일별 사용 현황 데이터 가져오기](billing-download-azure-invoice-daily-usage-date.md)를 참조하세요. 
+청구서의 PDF와 자세한 일일 사용량 파일 CSV 다운로드의 복사본이 tooobtain 참조 [Azure 청구서 및 일일 사용 현황 데이터를 청구 가져오기](billing-download-azure-invoice-daily-usage-date.md)합니다. 
 
 청구서 및 자세한 일별 사용 현황 파일의 자세한 용어 및 설명은 [Microsoft Azure 청구서의 용어 이해](billing-understand-your-invoice.md) 및 [Microsoft Azure 자세한 사용 현황의 용어 이해](billing-understand-your-usage.md)를 참조하세요. 
 
-비용 관리 보고서에 대한 세부 정보는 [Azure Portal 비용 관리](https://docs.microsoft.com/en-us/azure/billing/billing-getting-started)를 참조하세요.
+관리 보고서를 비용 hello에 대 한 세부 정보를 참조 하십시오. [Azure 포털 비용 관리](https://docs.microsoft.com/en-us/azure/billing/billing-getting-started)합니다.
 
 
-## <a name="charges"></a>청구서의 요금이 맞는지 확인하려면 어떻게 할까요?
+## <a name="charges"></a>내 송장에 hello 요금 정확한 지 확인 하려면 어떻게 해야 합니까?
 자세한 내용을 보려는 청구서에 대한 요금이 청구되는 경우 다음과 같은 두 가지 옵션이 있습니다.
 
-### <a name="option-1-review-your-invoice-and-compare-the-usage-and-costs-with-the-detailed-usage-csv-file"></a>옵션 1: 청구서를 검토하고 자세한 사용 현황 CSV 파일과 사용 현황 및 비용 비교
+### <a name="option-1-review-your-invoice-and-compare-hello-usage-and-costs-with-hello-detailed-usage-csv-file"></a>옵션 1: 청구서를 검토 하 고 자세한 hello로 hello 사용과 비용을 비교 하 CSV 파일 사용
 
-자세한 사용 현황 CSV 파일은 청구 기간 및 일별 사용 현황별로 청구액을 보여 줍니다. 자세한 사용 현황 CSV 파일을 가져오려면 [Azure 청구서 및 일별 사용 현황 데이터 가져오기](https://docs.microsoft.com/en-us/azure/billing/billing-download-azure-invoice-daily-usage-date)를 참조하세요.
+hello 자세한 사용 CSV 파일을 보여 줍니다 사용자의 요금 청구 기간 및 일일 사용량. tooget 자세한 사용 현황 CSV 파일 참조 [Azure 청구서 및 일일 사용 현황 데이터를 청구 가져오기](https://docs.microsoft.com/en-us/azure/billing/billing-download-azure-invoice-daily-usage-date)합니다.
 
-미터 수준에서 사용 현황 요금이 표시됩니다. 다음 용어는 청구서와 자세한 사용 현황 파일에서 동일한 항목을 의미합니다. 예를 들어 청구서의 청구 주기는 자세한 사용 현황 파일에 표시된 요금 청구 기간과 같습니다.
+Hello 미터 수준에서 사용 요금이 표시 됩니다. hello 다음 용어가 처럼 두 hello 송장 이와 같은 기능이 hello 자세한 사용 파일 hello 됩니다. 예를 들어 결제 hello 청구서에 주기 hello 해당 toohello 청구 기간의 hello 자세한 사용 파일에 표시 된 것입니다.
 
  | 청구서(PDF) | 자세한 사용 현황(CSV)|
  | --- | --- |
@@ -51,56 +51,56 @@ Azure 청구서를 이해하려면 Azure Portal에서 자세한 일별 사용 �
  |포함됨 |표함된 수량 |
  |청구 가능 |초과 수량 |
 
-청구서의 **사용 요금** 섹션에는 청구 기간 동안 사용된 각 미터의 총 값이 있습니다. 예를 들어, 다음 스크린샷은 Azure Scheduler 서비스에 대한 사용 요금을 보여줍니다.
+hello **사용 요금** 청구서의 섹션에는 청구 기간 동안 사용 된 각 수준에 대 한 hello 총 값입니다. 예를 들어 hello 다음 스크린샷은 hello Azure 스케줄러 서비스에 대 한 사용 요금이 청구 됩니다.
 
 ![청구서 사용 요금](./media/billing-understand-your-bill/1.png)
 
-자세한 사용 현황의 **명세서** 섹션은 동일한 요금을 보여 줍니다. *사용* 금액과 *값* 모두가 청구서와 일치합니다.
+hello **문을** 섹션 자세한 사용 현황 CSV의 표시 hello 동일한 요금이 청구 됩니다. 두 hello *사용 됨* 양 및 *값* hello 송장 일치 합니다.
 
 ![CSV 사용 요금](./media/billing-understand-your-bill/2.png)
 
-일일 단위로 이 요금의 세부 내역을 확인하려면 CSV의 **일일 사용량** 섹션으로 이동하세요. *측정기 범주*에서 "Scheduler"로 필터링하면 측정기가 사용된 기간(일)과 소비량을 확인할 수 있습니다. 비교를 위해 *리소스*와 *리소스 그룹* 정보도 나열됩니다. *사용* 값은 모두 합산되어 청구서에 표시된 금액이 되어야 합니다.
+매일, 이동 toohello 대금이 청구를 간략하게 toosee **일일 사용량** hello CSV의 섹션입니다. 아래 "스케줄러"에 대 한 필터링 *미터 범주* 일 hello 미터는 사용 되 고 사용 된 양을 확인할 수 있습니다. hello *리소스* 및 *리소스 그룹* 정보가 비교에도 나열 됩니다. hello *사용 됨* hello 청구서에 표시 된 값 toowhat의를 추가 해야 합니다.
 
-![CSV의 일일 사용량 섹션](./media/billing-understand-your-bill/3.png)
+![일별 사용 현황 섹션 hello CSV에서](./media/billing-understand-your-bill/3.png)
 
-일별 비용을 가져오려면 *사용* 금액을 **명세서** 섹션의 *요율* 값으로 곱합니다.
+하루에 tooget hello 비용 곱하기 hello *사용 됨* hello 시간과 *속도* hello에서 값 **문을** 섹션.
 
-청구서에 대해 자세히 알아 보려면 [Azure 청구서 이해](billing-understand-your-invoice.md)를 참조하세요.
+toolearn hello 송장에 대 한 자세한 참조 [Azure 청구서 이해](billing-understand-your-invoice.md)합니다.
 
-CSV에 있는 각 열에 대한 자세한 내용은 [Azure 자세한 사용 현황 이해](billing-understand-your-invoice.md)를 참조하세요.
+toolearn hello CSV의에서 hello 열 각각에 대 한 참조 [Azure 자세한 사용량을 이해](billing-understand-your-invoice.md)합니다.
 
-### <a name="option-2-review-your-invoice-and-compare-with-the-usage-and-costs-in-the-azure-portal"></a>옵션 2: Azure Portal에서 청구서 검토 및 사용 현황, 비용과 비교
+### <a name="option-2-review-your-invoice-and-compare-with-hello-usage-and-costs-in-hello-azure-portal"></a>옵션 2: 청구서를 검토 하 고 hello 사용량과 hello Azure 포털에서에서 비용을 비교 합니다.
 
-Azure Portal은 요금을 확인하는 데도 도움이 됩니다. Azure Portal은 청구서의 사용 현황 및 요금의 빠른 개요에 대한 비용 관리 차트를 제공합니다.
+Azure 포털 hello 수 사용자 요금을 확인 하는 데도 도움이 됩니다. hello Azure 포털 사용 및 hello 요금 청구서의 간략 한 개요에 대 한 비용 관리 차트를 제공 합니다.
 
-위의 예로 계속하려면 [구독 페이지](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade)에 방문하고 구독을 선택한 다음 **비용 분석**을 선택합니다. 여기에서 기간을 지정하고 Azure Scheduler 서비스에 대한 사용 요금을 확인할 수 있습니다.
+hello 위의 예제에서와 toocontinue 방문 hello [구독 페이지](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade)구독을 선택한 다음 선택 **비용 분석**합니다. 여기에서 hello 시간 범위를 지정 하 고 hello Azure 스케줄러 서비스에 대 한 사용 요금을 확인할 수 있습니다.
 
 ![Azure Portal의 비용 분석 보기](./media/billing-understand-your-bill/4.png)
 
-**비용 내역**에서 일별 비용 세부 내용을 확인하려면 행을 클릭합니다.
+toosee hello 일별로 비용 구분 **기록 비용**, hello 행을 클릭 합니다.
 
 ![Azure Portal의 비용 내역 뷰](./media/billing-understand-your-bill/5.png)
 
-자세히 알아보려면 [Azure 청구 및 비용 관리를 사용하여 예상치 못한 비용 방지](billing-getting-started.md#costs)를 참조하세요.
+toolearn 더 참조 [Azure 청구 및 비용 관리를 사용 하 여 예기치 않은 비용을 방지](billing-getting-started.md#costs)합니다.
 
 ## <a name="external"></a>외부 서비스 요금은 어떤가요?
-외부 서비스(또는 Azure Marketplace 주문)는 독립 서비스 공급업체에서 제공하며 별도로 청구됩니다. Azure 청구서에 요금이 표시되지 않습니다. 자세한 내용은 [Azure 외부 서비스 요금의 이해](billing-understand-your-azure-marketplace-charges.md)를 참조하세요.
+외부 서비스(또는 Azure Marketplace 주문)는 독립 서비스 공급업체에서 제공하며 별도로 청구됩니다. hello 요금 Azure 청구서에 표시 하지 않습니다. toolearn 더 참조 [사용자의 Azure 외부 서비스 요금 이해](billing-understand-your-azure-marketplace-charges.md)합니다.
 
 ## <a name="payment"></a>지불하려면 어떻게 할까요?
 
-결제 방법으로 신용 카드 또는 직불 카드를 설정한 경우 청구 기간 종료 후 10일 이내에 결제가 자동으로 청구됩니다. 신용 카드 명세서에서 품목명은 **MSFT Azure**입니다.
+결제 방법으로 신용 카드 또는 직불 카드를 설정한 경우 hello 청구 기간이 종료 된 후 10 일 이내에 자동으로 hello 지불 대금이 청구 됩니다. 신용 카드 명세서에 hello 품목 말하고 **MSFT Azure**합니다.
 
-[청구로 결제](billing-how-to-pay-by-invoice.md)할 경우 청구서 아래쪽에 나열된 위치로 결제 금액을 보냅니다. 자세한 도움말은 [지원에 문의](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)합니다.
+경우 있습니다 [송장으로 지불](billing-how-to-pay-by-invoice.md), 청구서 hello 맨 아래에 나열 된 지불 toohello 위치 송신 합니다. 자세한 도움말은 [지원에 문의](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)합니다.
 
-## <a name="how-do-i-check-the-status-of-a-payment-made-by-credit-card"></a>신용 카드 지불 상태를 어떻게 확인하나요?
+## <a name="how-do-i-check-hello-status-of-a-payment-made-by-credit-card"></a>신용 카드로 지급액의 hello 상태는 어떻게 확인할 수 있습니까?
 
-결제 상태를 요청하는 [지원 티켓을 만듭니다](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade). 
+[지원 티켓을 만드세요](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooask 결제의 hello 상태에 대 한 합니다. 
 
 ## <a name="tips-for-cost-management"></a>비용 관리 팁
-- [가격 책정 계산기](https://azure.microsoft.com/pricing/calculator/)와 [총 소유 비용 계산기](https://aka.ms/azure-tco-calculator)를 사용하여 비용을 산정하고 [각 서비스에 대한 자세한 가격 책정 정보](https://azure.microsoft.com/en-us/pricing/)를 가져옵니다.
+- Hello를 사용 하 여 비용을 예측 [가격 계산기](https://azure.microsoft.com/pricing/calculator/) 및 [총 비용 소유권 계산기의](https://aka.ms/azure-tco-calculator), 가져오고, hello [자세한 가격 정보 각 서비스에 대 한](https://azure.microsoft.com/en-us/pricing/)합니다.
 - [청구 경고 설정](billing-set-up-alerts.md)
-- [Azure Portal에서 정기적으로 사용량 및 비용 검토](billing-getting-started.md#costs)
+- [사용 및 비용 hello Azure 포털에 정기적으로 검토](billing-getting-started.md#costs)합니다.
 
 ## <a name="need-help-contact-support"></a>도움이 필요하세요? 지원에 문의하세요.
 
-다른 도움이 필요한 경우 [지원에 문의](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)하여 문제를 신속하게 해결하세요.
+도움이 필요 하면 여전히 필요 하면 [지원에 문의](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget 문제가 해결 신속 하 게 합니다.

@@ -1,6 +1,6 @@
 ---
-title: "StorSimple Cloud Appliance로 StorSimple 장애 조치(failover), 재해 복구 | Microsoft Docs"
-description: "클라우드 어플라이언스로 StorSimple 8000 시리즈 물리적 장치를 장애 조치(failover)하는 방법에 대해 알아봅니다."
+title: "장애 조치 aaaStorSimple 재해 복구 tooa StorSimple 클라우드 어플라이언스에 | Microsoft Docs"
+description: "어떻게 하면 StorSimple 8000 시리즈 실제 장치 tooa 통해 toofail 클라우드 어플라이언스에 알아봅니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,84 +14,84 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: ec8bebf2854e84a37e84b45564e80fc20b63d8d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e8a0bca057024358e3a557fe85a42ddefea36cff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="fail-over-to-your-storsimple-cloud-appliance"></a>StorSimple Cloud Appliance로 장애 조치(failover)
+# <a name="fail-over-tooyour-storsimple-cloud-appliance"></a>장애 조치 tooyour 클라우드 StorSimple 어플라이언스
 
 ## <a name="overview"></a>개요
 
-이 자습서에서는 재해가 발생하는 경우 StorSimple 8000 시리즈 물리적 장치를 StorSimple Cloud Appliance로 장애 조치(failover)하는 데 필요한 단계를 설명합니다. StorSimple에서는 장치 장애 조치(failover) 기능을 사용하여 데이터 센터의 원본 물리적 장치로부터 Azure에서 실행 중인 클라우드 어플라이언스로 데이터를 마이그레이션합니다. 이 자습서의 지침은 StorSimple 8000 시리즈 물리적 장치 및 소프트웨어 버전 업데이트 3 이상을 실행하는 클라우드 어플라이언스에 적용됩니다.
+이 자습서에서는 재해가 경우 hello 단계 필요한 toofail StorSimple 8000 시리즈 실제 장치 tooa StorSimple 클라우드 어플라이언스를 통해 설명 합니다. StorSimple에서 hello 데이터 센터 tooa 클라우드 어플라이언스에 Azure에서 실행 되는 원본 물리적 장치에서 hello 장치 장애 조치 기능 toomigrate 데이터를 사용 합니다. 이 자습서의 지침에 hello tooStorSimple 8000 시리즈 실제 장치 및 3 이상 소프트웨어 업데이트 버전을 실행 하는 클라우드 어플라이언스에 적용 합니다.
 
-장치 장애 조치(failover) 및 재해 복구에 사용되는 방법에 대해 자세히 알아보려면 [StorSimple 8000 시리즈 장치에 대한 장애 조치(failover) 및 재해 복구](storsimple-8000-device-failover-disaster-recovery.md)로 이동하세요.
+장치 장애 조치 및 재해를 사용 하는 toorecover는 방법에 대해 자세히 toolearn 너무 이동[StorSimple 8000 시리즈 장치에 대 한 장애 조치 및 재해 복구](storsimple-8000-device-failover-disaster-recovery.md)합니다.
 
-StorSimple 물리적 장치를 다른 물리적 장치로 장애 조치(failover)하려면 [StorSimple 물리적 장치로 장애 조치(failover)](storsimple-8000-device-failover-physical-device.md)로 이동하세요. 장치를 자체 장치로 장애 조치(failover)하려면 [동일한 StorSimple 물리적 장치로 장애 조치(failover)](storsimple-8000-device-failover-same-device.md)로 이동하세요.
+StorSimple 물리적 장치 tooanother 물리적 장치를 통해 toofail 너무 이동[tooa StorSimple 물리적 장치용 장애 조치할](storsimple-8000-device-failover-physical-device.md)합니다. 장치 tooitself 통해 toofail 너무 이동[장애 조치 toohello 동일 StorSimple 물리적 장치용](storsimple-8000-device-failover-same-device.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-- 장치 장애 조치(failover)에 대한 고려 사항을 검토했는지 확인하세요. 자세한 내용을 보려면 [장치 장애 조치(failover)에 대한 일반적인 고려 사항](storsimple-8000-device-failover-disaster-recovery.md)으로 이동하세요.
+- 장치 장애 조치에 대 한 hello 고려 사항 검토 했음을 확인 합니다. 자세한 내용은 이동 너무[장치 장애 조치에 대 한 일반적인 고려 사항](storsimple-8000-device-failover-disaster-recovery.md)합니다.
 
-- 이 절차를 수행하기에 앞서 StorSimple Cloud Appliance를 먼저 만들고 구성해야 합니다. 업데이트 3 이상의 소프트웨어 버전을 실행하고 있는 경우 DR에 8020 클라우드 어플라이언스 사용을 고려해 보세요. 8020 모델은 64TB이며 Premium Storage를 사용합니다. 자세한 내용을 보려면 [StorSimple Cloud Appliance 배포 및 관리](storsimple-8000-cloud-appliance-u2.md)로 이동하세요.
+- 이 절차를 수행하기에 앞서 StorSimple Cloud Appliance를 먼저 만들고 구성해야 합니다. 실행 중인 소프트웨어 버전 3을 업데이트 하거나 나중에 대 한 8020 클라우드 어플라이언스에 사용 하는 것이 좋습니다 hello DR. hello 8020 모델 64TB 개이고 프리미엄 저장소를 사용 합니다. 자세한 내용은 이동 너무[배포 및 StorSimple 클라우드 어플라이언스에 관리](storsimple-8000-cloud-appliance-u2.md)합니다.
 
-## <a name="steps-to-fail-over-to-a-cloud-appliance"></a>클라우드 어플라이언스로 장애 조치(failover)하는 단계
+## <a name="steps-toofail-over-tooa-cloud-appliance"></a>Tooa 클라우드 어플라이언스를 통해 단계 toofail
 
-대상 StorSimple Cloud Appliance에 장치를 복원하려면 다음 단계를 수행합니다.
+Hello 단계 toorestore hello 장치 tooa 대상 StorSimple 클라우드 어플라이언스에 다음을 수행 합니다.
 
-1.  장애 조치하려는 볼륨 컨테이너에 연결된 클라우드 스냅숏이 있는지 확인합니다. 자세한 내용을 보려면 [StorSimple 장치 관리자 서비스를 사용하여 백업 만들기](storsimple-8000-manage-backup-policies-u2.md)로 이동합니다.
-2. StorSimple 장치 관리자 서비스로 이동한 다음 **장치**를 클릭합니다. **장치** 블레이드에서 서비스와 연결된 장치 목록으로 이동합니다.
+1.  통해 toofail 하려는 해당 hello 볼륨 컨테이너에 연결 된 클라우드 스냅숏이 확인 합니다. 자세한 내용은 이동 너무[StorSimple 장치 관리자를 사용 하 여 서비스 toocreate 백업은](storsimple-8000-manage-backup-policies-u2.md)합니다.
+2. Tooyour StorSimple 장치 관리자 서비스를 이동 하 고 클릭 **장치**합니다. Hello에 **장치** 블레이드, 서비스와 연결 된 장치 이동 toohello 목록입니다.
     ![장치 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev1.png)
-3. 원본 장치를 선택하고 클릭합니다. 원본 장치에는 장애 조치(failover)하려는 볼륨 컨테이너가 있습니다. **설정 > 볼륨 컨테이너**로 이동합니다.
+3. 원본 장치를 선택하고 클릭합니다. hello 원본 장치를 통해 toofail 하려는 hello 볼륨 컨테이너에 있습니다. 너무 이동**설정 > 볼륨 컨테이너**합니다.
 
     ![장치 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev2.png)
     
-4. 다른 장치에 장애 조치하려는 볼륨 컨테이너를 선택합니다. 볼륨 컨테이너를 클릭하여 이 컨테이너 내에 볼륨의 목록을 표시합니다. 볼륨을 선택하고 마우스 오른쪽 단추를 클릭한 다음, **오프라인으로 전환**을 클릭하여 볼륨을 오프라인으로 전환합니다.
+4. 싶다는 의사를 toofail tooanother 장치에 대 한 볼륨 컨테이너를 선택 합니다. 이 컨테이너 내의 볼륨 hello 볼륨 컨테이너 toodisplay hello 목록을 클릭 합니다. 볼륨, 마우스 클릭 선택 **오프 라인으로 전환** tootake hello 볼륨을 오프 합니다.
 
     ![장치 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev5.png)
 
-5. 볼륨 컨테이너의 모든 볼륨에 이 프로세스를 반복합니다.
+5. Hello 볼륨 컨테이너에서 모든 hello 볼륨에 대해이 프로세스를 반복 합니다.
 
      ![장치 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev7.png)
 
-6. 다른 장치에 장애 조치하려는 모든 볼륨 컨테이너에 이전 단계를 반복합니다.
+6. 이전 단계를 반복 hello toofail tooanother 장치를 통해 하려는 모든 볼륨 컨테이너를 hello에 대 한 합니다.
 
-7. **장치** 블레이드로 다시 이동합니다. 명령 모음에서 **장애 조치(failover)**를 클릭합니다.
+7. Toohello 돌아가서 **장치** 블레이드입니다. Hello 명령 모음에서 클릭 **장애 조치**합니다.
 
     ![장애 조치(failover) 클릭](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev8.png)
-8. **장애 조치(failover)** 블레이드에서 다음 단계를 수행합니다.
+8. Hello에 **장애 조치** 블레이드에서 hello 다음 단계를 수행 합니다.
    
-    1. **원본**을 클릭합니다. 장애 조치(failover)할 볼륨 컨테이너를 선택합니다. **클라우드 스냅숏과 연결된 볼륨 컨테이너와 오프라인 볼륨만 표시됩니다.**
+    1. **원본**을 클릭합니다. 통해 볼륨 컨테이너 toofail hello를 선택 합니다. **연결 된 클라우드 스냅숏이 있는 볼륨 컨테이너를 hello만 하 고 오프 라인 볼륨이 표시 됩니다.**
         ![원본 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev11.png)
-    2. **대상**을 클릭합니다. 사용 가능한 장치 드롭다운 목록에서 대상 클라우드 어플라이언스를 선택합니다. **원본 볼륨 컨테이너를 수용할 용량이 충분한 장치만 목록에 표시됩니다.**
+    2. **대상**을 클릭합니다. 대상 클라우드 어플라이언스에 hello 사용 가능한 장치 드롭다운 목록에서 선택 합니다. **충분 한 용량 tooaccommodate 원본 볼륨 컨테이너에 있는 hello 장치만 hello 목록에 표시 됩니다.**
 
         ![대상 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev12.png)
 
-    3. **요약**에서 장애 조치(failover) 설정을 검토하고 선택한 볼륨 컨테이너의 볼륨이 오프라인 상태임을 나타내는 확인란을 선택합니다. 
+    3. 장애 조치 설정을 hello 검토 **요약** hello 확인란을 선택한 볼륨 컨테이너에서 hello 볼륨이 오프 라인 인지 나타내는 선택 합니다. 
 
         ![장애 조치(failover) 설정 검토](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev13.png)
 
-9. 장애 조치(failover) 작업이 만들어집니다. 장애 조치(failover) 작업을 모니터링하려면 작업 알림을 클릭합니다.
+9. 장애 조치(failover) 작업이 만들어집니다. toomonitor hello 장애 조치 작업를 작업 알림 hello를 클릭 합니다.
 
     ![장애 조치(failover) 작업 모니터링](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev13.png)
 
-10. 장애 조치(failover)를 완료한 후 **장치** 블레이드로 다시 이동합니다.
+10. Hello 장애 조치가 완료 되 면 toohello 돌아가서 **장치** 블레이드입니다.
 
-    1. 장애 조치(failover) 대상으로 사용된 장치를 선택합니다.
+    1. Hello 장애 조치에 대 한 hello 대상으로 사용 된 hello 장치를 선택 합니다.
 
        ![장치 선택](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev14.png)
 
-    2. **볼륨 컨테이너**를 클릭합니다. 이전 장치의 볼륨과 함께 모든 볼륨 컨테이너가 나열됩니다.
+    2. **볼륨 컨테이너**를 클릭합니다. Hello hello 이전 장치의 볼륨과 함께 모든 hello 볼륨 컨테이너를 나열 합니다.
 
-       장애 조치(failover)한 볼륨 컨테이너에 로컬로 고정된 볼륨이 있는 경우 이러한 볼륨은 계층화된 볼륨으로 장애 조치(failover)됩니다. StorSimple Cloud Appliance에서는 로컬로 고정된 볼륨이 지원되지 않습니다.
+       장애 조치 hello 볼륨 컨테이너에 볼륨 고정 된 로컬로 하는 경우 이러한 볼륨은 장애 조치 계층화 된 볼륨으로. StorSimple Cloud Appliance에서는 로컬로 고정된 볼륨이 지원되지 않습니다.
 
        ![대상 볼륨 컨테이너 보기](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev17.png)
 
 
 ## <a name="next-steps"></a>다음 단계
 
-* 장애 조치(failover)를 수행한 후에 [StorSimple 장치 비활성화 또는 삭제](storsimple-8000-deactivate-and-delete-device.md)를 해야 할 수도 있습니다.
+* 장애 조치를 수행한 후 해야 너무[비활성화 또는 삭제 StorSimple 장치](storsimple-8000-deactivate-and-delete-device.md)합니다.
 
-* StorSimple 장치 관리자 서비스를 사용하는 방법에 대한 자세한 내용을 보려면 [Use the StorSimple Device Manager service to administer your StorSimple device](storsimple-8000-manager-service-administration.md)(StorSimple 장치 관리자 서비스를 사용하여 StorSimple 장치 관리)로 이동하세요.
+* Toouse StorSimple 장치 관리자 hello 하는 방법에 대 한 정보에 대 한 서비스, 너무 이동[사용 하 여 StorSimple 장치를 StorSimple 장치 관리자 서비스 tooadminister hello](storsimple-8000-manager-service-administration.md)합니다.
 

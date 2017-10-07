@@ -1,6 +1,6 @@
 ---
-title: "IntelliJ용 Azure 탐색기를 사용하여 Redis Cache 관리 | Microsoft Docs"
-description: "IntelliJ용 Azure 탐색기를 사용하여 Azure Redis Cache를 관리하는 방법을 알아봅니다."
+title: "IntelliJ에 대 한 Azure 탐색기 hello aaaManaging Redis 캐시를 사용 하 여 | Microsoft Docs"
+description: "Toomanage 프로그램 Azure redis 캐시 하는 방식을 IntelliJ 용 hello Azure 탐색기를 사용 하 여에 대해 알아봅니다."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,15 +14,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9ab8ae17ee2a92b5b16d2210366c00b5b8023fa8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 76ba37a2a35c26d0045e17003181108992eb957d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-redis-caches-using-the-azure-explorer-for-intellij"></a>IntelliJ용 Azure 탐색기를 사용하여 Redis Cache 관리
+# <a name="managing-redis-caches-using-hello-azure-explorer-for-intellij"></a>Redis 캐시 IntelliJ 용 hello Azure 탐색기를 사용 하 여 관리
 
-IntelliJ용 Azure 도구 키트의 일부인 Azure 탐색기는 IntelliJ IDE 내에서 Azure 계정의 Redis Cache를 관리하기 위한 사용하기 쉬운 솔루션을 Java 개발자에게 제공합니다.
+hello hello IntelliJ 용 Azure 도구 키트의 일부인 Java 개발자가 사용 하기 쉬운 솔루션 내에서 Azure 계정과에 캐시가 redis 관리에 대 한 hello IntelliJ IDE를 제공 하는 Azure 탐색기.
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
@@ -30,60 +30,60 @@ IntelliJ용 Azure 도구 키트의 일부인 Azure 탐색기는 IntelliJ IDE 내
 
 ## <a name="create-a-redis-cache-by-using-intellij"></a>IntelliJ를 사용하여 Redis Cache 만들기
 
-다음 단계에서는 Azure 탐색기를 사용하여 Redis Cache를 만드는 단계를 안내합니다.
+단계를 수행 하는 hello 과정을 단계별로 hello 단계 toocreate hello Azure 탐색기를 사용 하 여 redis 캐시 합니다.
 
-1. [IntelliJ용 Azure 도구 키트에 대한 로그인 지침] 문서의 단계를 사용하여 Azure 계정에 로그인합니다.
+1. Tooyour hello hello 단계를 사용 하는 Azure 계정 로그인 [hello IntelliJ 용 Azure 도구 키트에 대 한 로그인에 지침] 문서.
 
-1. **Azure 탐색기** 도구 창에서 **Azure** 노드를 펼치고 **Redis Caches**를 마우스 오른쪽 단추로 클릭한 다음 **Redis Cache 만들기**를 클릭합니다.
+1. Hello에 **Azure 탐색기** 도구 창, hello 확장 **Azure** 노드를 마우스 오른쪽 단추로 클릭 **Redis 캐시**, 클릭 하 고 **Create Redis Cache**합니다.
 
    ![Redis Cache 만들기 메뉴][CR01]
 
-1. **새 Redis Cache** 대화 상자가 표시되면 다음 옵션을 지정합니다.
+1. Hello 때 **새 Redis 캐시** hello 다음 옵션을 지정 대화 상자가 나타납니다.
 
    ![새 Redis Cache 만들기 대화 상자][CR02]
 
-   a. **DNS 이름**: 새 Redis Cache에 대한 DNS 하위 도메인을 지정합니다. 이 주소는 ".redis.cache.windows.net" 앞에 추가됩니다(예: *wingtiptoys.redis.cache.windows.net*).
+   a. **DNS 이름**: 너무 앞에 추가 됩니다 hello 새 redis 캐시에 대 한 hello DNS 하위 도메인을 지정 ". redis.cache.windows.net"; 예: *wingtiptoys.redis.cache.windows.net*합니다.
 
-   b. **구독**: 새 Redis Cache에 사용할 Azure 구독을 지정합니다.
+   b. **구독**: hello toouse hello 새 redis 캐시에 사용할 Azure 구독을 지정 합니다.
 
-   c. **리소스 그룹**: Redis Cache에 대한 리소스 그룹을 지정합니다. 다음 옵션 중 하나를 선택해야 합니다.
-      * **새로 만들기**: 새 리소스 그룹을 만들도록 지정합니다.
+   c. **리소스 그룹**: redis 캐시에 대 한 hello 리소스 그룹을 지정 합니다. 즉 hello 다음 옵션 중 하나를 toochoose 필요:
+      * **새로 만들기**: toocreate 새 리소스 그룹 한다고 지정 합니다.
       * **기존 그룹 사용**: Azure 계정과 연결된 리소스 그룹 목록에서 선택하도록 지정합니다.
 
-   d. **위치**: Redis Cache를 만들 위치를 지정합니다(예: *미국 서부*).
+   d. **위치**: redis 캐시를 만들 위치; hello 위치를 지정 예를 들어 *West US*합니다.
 
-   e. **가격 책정 계층**: Redis Cache에서 사용하는 가격 책정 계층을 지정합니다. 이 설정은 클라이언트 연결 수를 결정합니다. 자세한 내용은 [Redis Cache 가격]을 참조하세요.
+   e. **가격 책정 계층**: redis 캐시를 사용 하는 가격 책정 계층을 지정 5d;이 설정은 hello 클라이언트 연결 수를 결정 합니다. 자세한 내용은 [Redis Cache 가격]을 참조하세요.
 
    f. **비SSL 포트**: Redis Cache에서 비SSL 연결을 허용하는지 여부를 지정합니다. 기본적으로 SSL 연결만 허용됩니다.
 
 1. 모든 Redis Cache 설정을 지정한 후 **확인**을 클릭합니다.
 
-Redis Cache를 만들면 Azure 탐색기에서 해당 Redis Cache가 표시됩니다.
+Redis 캐시를 만든 후 hello Azure 탐색기에에서 표시 됩니다.
 
    ![Azure 탐색기의 Redis Cache][CR03]
 
 > [!NOTE]
 >
-> Azure Redis Cache 설정을 구성하는 방법에 대한 자세한 내용은 [Azure Redis Cache 구성 방법]을 참조하세요.
+> Redis cache 설정 Azure를 구성 하는 방법에 대 한 자세한 내용은 참조 하십시오. [어떻게 tooconfigure Azure Redis Cache]합니다.
 >
 
-## <a name="display-the-properties-for-your-redis-cache-in-intellij"></a>IntelliJ에서 Redis Cache에 대한 속성 표시
+## <a name="display-hello-properties-for-your-redis-cache-in-intellij"></a>IntelliJ에서 Redis 캐시에 대 한 hello 속성을 표시 합니다.
 
-1. [Azure 탐색기]에서 Redis Cache를 마우스 오른쪽 단추로 클릭하고 **속성 표시**를 클릭합니다.
+1. 에 Azure 탐색기 hello redis 캐시를 마우스 오른쪽 단추로 클릭 하 고 클릭 **속성 표시**합니다.
 
-   ![Redis Cache에 대한 속성을 표시하는 Azure 탐색기 컨텍스트 메뉴][SP01]
+   ![Redis 캐시에 대 한 azure 탐색기 상황에 맞는 메뉴 toodisplay 속성][SP01]
 
-1. Azure 탐색기에서 Redis Cache에 대한 속성을 표시합니다.
+1. hello Azure 탐색기 redis 캐시에 대 한 hello 속성을 표시합니다.
 
    ![Redis Cache 속성][SP02]
 
 ## <a name="delete-your-redis-cache-by-using-intellij"></a>IntelliJ를 사용하여 Redis Cache 삭제
 
-1. [Azure 탐색기]에서 Redis Cache를 마우스 오른쪽 단추로 클릭하고 **삭제**를 클릭합니다.
+1. 에 Azure 탐색기 hello redis 캐시를 마우스 오른쪽 단추로 클릭 하 고 클릭 **삭제**합니다.
 
-   ![Redis Cache를 삭제하는 Azure 탐색기 컨텍스트 메뉴][DE01]
+   ![Azure 탐색기 상황에 맞는 메뉴 toodelete redis 캐시][DE01]
 
-1. Redis Cache를 삭제할지 묻는 메시지가 표시되면 **예**를 클릭합니다.
+1. 클릭 **예** 때 toodelete redis 캐시 라는 메시지가 표시 됩니다.
 
    ![Redis Cache 삭제 프롬프트][DE02]
 
@@ -91,20 +91,20 @@ Redis Cache를 만들면 Azure 탐색기에서 해당 Redis Cache가 표시됩�
 
 [!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
-Azure Redis Cache, 구성 설정 및 가격 책정에 대한 자세한 내용은 다음 링크를 참조하세요.
+Azure redis 캐시, 구성 설정 및 가격에 대 한 자세한 내용은 hello 다음 링크 참조:
 
 * [Azure Redis 캐시(영문)]
 * [Redis Cache 설명서]
 * [Redis Cache 가격]
-* [Azure Redis Cache 구성 방법]
+* [어떻게 tooconfigure Azure Redis Cache]
 
 <!-- URL List -->
 
 [Redis Cache 가격]: https://azure.microsoft.com/pricing/details/cache/
 [Azure Redis 캐시(영문)]: https://azure.microsoft.com/services/cache/
 [Redis Cache 설명서]: ./redis-cache/index.md
-[Azure Redis Cache 구성 방법]: ./redis-cache/cache-configure.md
-[IntelliJ용 Azure 도구 키트에 대한 로그인 지침]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[어떻게 tooconfigure Azure Redis Cache]: ./redis-cache/cache-configure.md
+[hello IntelliJ 용 Azure 도구 키트에 대 한 로그인에 지침]: ./azure-toolkit-for-intellij-sign-in-instructions.md
 
 <!-- IMG List -->
 

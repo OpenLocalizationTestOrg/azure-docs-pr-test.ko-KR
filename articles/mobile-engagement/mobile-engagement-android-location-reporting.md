@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement Android SDK에 대한 위치 보고"
-description: "Azure Mobile Engagement Android SDK에 대해 위치 보고를 구성하는 방법에 대해 설명합니다"
+title: "aaaLocation Azure Mobile Engagement Android SDK에 대 한 보고"
+description: "설명 방법을 tooconfigure 위치 Azure Mobile Engagement Android SDK에 대 한 보고"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 777d5719cce505b55dfb61c91dcac7e713b077a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2cb097df2a77bee2d56ffe9509dc116548db408
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="location-reporting-for-azure-mobile-engagement-android-sdk"></a>Azure Mobile Engagement Android SDK에 대한 위치 보고
 > [!div class="op_single_selector"]
@@ -26,52 +26,52 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-이 항목에서는 Android 응용 프로그램에서 위치 보고를 수행하는 방법을 설명합니다.
+이 항목에서는 설명 방법을 toodo 위치 Android 응용 프로그램에 대 한 보고 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
 ## <a name="location-reporting"></a>위치 보고
-위치가 보고되도록 하려는 경우 몇 줄의 구성을 `<application>` 태그와 `</application>` 태그 사이에 추가해야 합니다.
+위치 toobe 보고 하려는 경우 필요한 tooadd 몇 줄의 구성 (hello 사이 `<application>` 및 `</application>` 태그).
 
 ### <a name="lazy-area-location-reporting"></a>지연 영역 위치 보고
-지연 영역 위치 보고를 통해 국가, 지역 및 장치와 연결된 위치를 보고할 수 있습니다. 이러한 유형의 위치 보고에서는 네트워크 위치(셀 ID 또는 WIFI 기반)만 사용합니다. 장치 영역은 세션당 한번 이하로 보고됩니다. GPS는 전혀 사용되지 않으므로 이러한 위치 보고 형식은 배터리에 미미한 영향을 미칩니다.
+지연 된 영역 위치 보고 보고 hello 국가, 지역 및 장치가 연결 된 위치 수 있습니다. 이러한 유형의 위치 보고에서는 네트워크 위치(셀 ID 또는 WIFI 기반)만 사용합니다. hello 장치 영역의 세션당 한 번만 보고 됩니다. hello GPS은 사용 되지 않거나, 따라서 이러한 유형의 위치 보고서 대 한 영향이 낮은 hello 배터리 합니다.
 
-보고된 영역은 사용자, 세션, 이벤트 및 오류에 대한 지리적 통계를 계산하는 데 사용됩니다. 이 영역은 도달률 캠페인의 기준으로도 사용할 수 있습니다.
+보고 된 영역은 사용자, 세션, 이벤트 및 오류에 대 한 사용 되는 toocompute 지리적 통계입니다. 이 영역은 도달률 캠페인의 기준으로도 사용할 수 있습니다.
 
-이 절차의 앞에서 설명한 구성을 사용하여 지연 영역 위치 보고를 사용하도록 설정할 수 있습니다.
+이 절차 앞부분에서 설명한 hello 구성을 사용 하 여 보고 하는 지연 된 영역 위치를 사용 하도록 설정 합니다.
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setLazyAreaLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-위치 권한도 지정해야 합니다. 다음 코드에서는 ``COARSE`` 권한을 사용합니다.
+Toospecify 위치 권한이 있어야합니다. 다음 코드에서는 ``COARSE`` 권한을 사용합니다.
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 앱에서 필요한 경우 대신 ``ACCESS_FINE_LOCATION`` 을 사용할 수 있습니다.
 
 ### <a name="real-time-location-reporting"></a>실시간 위치 보고
-실시간 위치 보고를 통해 장치와 연결된 위도와 경도를 보고할 수 있습니다. 기본적으로 이러한 형식의 위치 보고에서는 셀 ID 또는 WIFI를 기반으로 하는 네트워크 위치만 사용합니다. 이 보고 기능은 응용 프로그램이 포그라운드로 실행되는 경우(예: 세션 중)에만 활성 상태입니다.
+실시간 위치 보고 보고 hello 위도 및 경도 장치와 연관 수 있습니다. 기본적으로 이러한 형식의 위치 보고에서는 셀 ID 또는 WIFI를 기반으로 하는 네트워크 위치만 사용합니다. hello 보고는 hello 응용 프로그램 (예를 들어 세션) 포그라운드에서 실행 될 때 활성화 됩니다.
 
-실시간 위치는 통계를 계산하는 데 사용되지 *않습니다* . 유일한 용도는 도달률 캠페인에서 실시간 지리적 펜스 \<Reach-Audience-geofencing\> 사용을 허용하는 것입니다.
+실시간 위치는 *하지* toocompute 통계를 사용 합니다. 유일한 목적은 실시간 지리적 펜스 tooallow hello 사용 하는 \<지 오 펜싱 Reach-대상 그룹\> Reach 캠페인의 기준입니다.
 
-실시간 위치 보고를 활성화하려면 시작 관리자 활동에서 Engagement 연결 문자열을 설정하는 위치에 코드 행을 추가합니다. 결과는 다음과 같이 표시됩니다.
+tooenable 실시간 위치 보고, 줄을 추가한 코드 toowhere의 hello Engagement 연결 문자열에서에서 설정한 hello 시작 관리자 활동이 있습니다. hello 결과 hello 다음과 같이 표시 됩니다.
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-        You also need to specify a location permission. This code uses ``COARSE`` permission:
+        You also need toospecify a location permission. This code uses ``COARSE`` permission:
 
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
         If your app requires it, you can use ``ACCESS_FINE_LOCATION`` instead.
 
 #### <a name="gps-based-reporting"></a>GPS 기반 보고
-기본적으로 실시간 위치 보고에서는 네트워크 기반 위치만 사용합니다. 훨씬 더 정밀한 GPS 기반 위치의 사용을 설정하려면 구성 개체를 사용합니다.
+기본적으로 실시간 위치 보고에서는 네트워크 기반 위치만 사용합니다. 훨씬 더 정확 하 게 되는 GPS 기반 위치, tooenable hello 사용 hello 구성 개체를 사용 합니다.
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -79,12 +79,12 @@ ms.lasthandoff: 07/11/2017
     engagementConfiguration.setFineRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-또한 아직 없는 경우 다음 권한도 추가해야 합니다.
+또한 권한이 없는 경우 다음 tooadd hello가 필요 합니다.
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 #### <a name="background-reporting"></a>백그라운드 보고
-기본적으로 실시간 위치 보고는 응용 프로그램이 포그라운드로 실행되는 경우(예: 세션 중)에만 활성 상태입니다. 백그라운드에서도 보고를 활성화하려면 이 구성 개체를 사용합니다.
+기본적으로 실시간 위치 보고는 활성 (예를 들어 동안 세션) 포그라운드에서 hello 응용 프로그램을 실행 합니다. 이 구성 개체를 사용 하는 백그라운드에서도 보고 tooenable hello:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -93,11 +93,11 @@ ms.lasthandoff: 07/11/2017
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
 > [!NOTE]
-> 응용 프로그램이 백그라운드에서 실행될 때 GPS를 활성화한 경우에도 네트워크 기반 위치만 보고됩니다.
+> Hello 응용 프로그램이 백그라운드에서 실행 위치에만 네트워크 기반 보고를 사용 하도록 설정한 경우에 hello GPS.
 > 
 > 
 
-사용자가 장치를 다시 부팅하는 경우 백그라운드 위치 보고가 중지됩니다. 부팅 시에 자동으로 다시 시작되도록 하려면 다음 코드를 추가합니다.
+Hello 사용자가 장치를 다시 부팅 hello 배경 위치 보고서 중지 됩니다. 이 코드를 추가 하는 toomake 부팅 시 자동으로 다시 시작 합니다.
 
     <receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
            android:exported="false">
@@ -106,25 +106,25 @@ ms.lasthandoff: 07/11/2017
         </intent-filter>
     </receiver>
 
-또한 아직 없는 경우 다음 권한도 추가해야 합니다.
+또한 권한이 없는 경우 다음 tooadd hello가 필요 합니다.
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 ## <a name="android-m-permissions"></a>Android M 권한
 Android M부터는 일부 권한이 런타임 시 관리되며 사용자 승인이 필요합니다.
 
-Android API Level 23을 대상으로 하는 경우 새 앱 설치에 대해서는 기본적으로 런타임 권한이 해제됩니다. 그렇지 않으면 기본적으로 활성화됩니다.
+Android API 수준 23 대상 경우 새 응용 프로그램 설치에 대해 기본적으로 hello 런타임 권한은 비활성화 되어 있습니다. 그렇지 않으면 기본적으로 활성화됩니다.
 
-장치 설정 메뉴에서 이러한 권한을 설정/해제할 수 있습니다. 시스템 메뉴에서 권한을 해제하면 응용 프로그램의 백그라운드 프로세스가 중단되며 이것은 시스템 동작으로 백그라운드로 푸시 알림을 받는 기능에는 영향을 주지 않습니다.
+있습니다 수 설정/해제 hello 장치 설정 메뉴에서 이러한 권한 합니다. 시스템 동작 이므로 백그라운드에서 기능 tooreceive 푸시에 어떠한 영향도 미치지 hello 응용 프로그램의 백그라운드 프로세스 hello 해제 hello 시스템 메뉴에서 사용 권한을 해제 합니다.
 
-Mobile Engagement 위치 보고의 컨텍스트에서 런타임 시 승인이 필요한 권한은 다음과 같습니다.
+Mobile Engagement 위치 보고의 hello 컨텍스트에서 런타임 시 승인이 필요한 hello 사용 권한은 다음과 같습니다.
 
 * `ACCESS_COARSE_LOCATION`
 * `ACCESS_FINE_LOCATION`
 
-표준 시스템 대화 상자를 사용하여 사용자로부터 권한을 요청합니다. 사용자가 승인하는 경우 ``EngagementAgent`` 에 실시간으로 변경을 고려할 것을 지시합니다. 그렇지 않으면 다음에 사용자가 응용 프로그램을 시작할 때 변경 내용이 처리됩니다.
+표준 시스템 대화 상자를 사용 하 여 hello 사용자에서 권한을 요청 합니다. Hello 사용자가을 승인 하는 경우 ``EngagementAgent`` tootake 실시간 계정으로 변경 하는 합니다. 그렇지 않으면 hello 변경 처리 hello 다음 시간 hello 사용자를 실행 하는 hello 응용 프로그램입니다.
 
-다음은 사용 권한을 요청하고 ``EngagementAgent``에 긍정적인 경우 결과를 전달하는 응용 프로그램의 활동에 사용할 코드 샘플입니다.
+양수 응용 프로그램 toorequest 사용 권한 및 앞으로 hello 결과 활동에서 다음 코드 샘플 toouse은 너무``EngagementAgent``:
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -142,9 +142,9 @@ Mobile Engagement 위치 보고의 컨텍스트에서 런타임 시 승인이 �
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
       {
         /*
-         * Request location permission, but this doesn't explain why it is needed to the user.
-         * The standard Android documentation explains with more details how to display a rationale activity to explain the user why the permission is needed in your application.
-         * Putting COARSE vs FINE has no impact here, they are part of the same group for runtime permission management.
+         * Request location permission, but this doesn't explain why it is needed toohello user.
+         * hello standard Android documentation explains with more details how toodisplay a rationale activity tooexplain hello user why hello permission is needed in your application.
+         * Putting COARSE vs FINE has no impact here, they are part of hello same group for runtime permission management.
          */
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
           requestPermissions(new String[] { android.Manifest.permission.ACCESS_FINE_LOCATION }, 0);
@@ -155,7 +155,7 @@ Mobile Engagement 위치 보고의 컨텍스트에서 런타임 시 승인이 �
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
-      /* Only a positive location permission update requires engagement agent refresh, hence the request code matching from above function */
+      /* Only a positive location permission update requires engagement agent refresh, hence hello request code matching from above function */
       if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         getEngagementAgent().refreshPermissions();
     }

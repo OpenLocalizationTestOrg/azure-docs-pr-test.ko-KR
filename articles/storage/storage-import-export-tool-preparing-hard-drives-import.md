@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 가져오기 작업을 위한 하드 드라이브 준비 | Microsoft Docs"
-description: "WAImportExport 도구로 하드 드라이브를 준비하여 Azure Import/Export 서비스의 가져오기 작업을 만드는 방법에 대해 알아봅니다."
+title: "aaaPreparing 하드 드라이브 Azure 가져오기/내보내기에 대 한 가져오기 작업 | Microsoft Docs"
+description: "Tooprepare 하드 드라이브를 사용 하 여 WAImportExport 도구 toocreate hello Azure 가져오기/내보내기 서비스에 대 한 가져오기 작업을 hello 하는 방법에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: muralikk
-ms.openlocfilehash: 5b894dac8fdc26999b6f3cbffaf7e6a98e68d000
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3f247a9efee29da2d18140353edc9dd7103a0761
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>가져오기 작업을 위한 하드 드라이브 준비
 
-WAImportExport 도구는 [Microsoft Azure Import/Export 서비스](storage-import-export-service.md)에서 사용할 수 있는 드라이브 준비 및 복구 도구입니다. 이 도구를 사용하여 Azure 데이터 센터에 운송할 하드 드라이브에 데이터를 복사할 수 있습니다. 가져오기 작업이 완료된 후에는 이 도구를 사용하여 손상되거나 누락되거나 다른 Blob과 충돌한 Blob을 복구할 수 있습니다. 완료된 내보내기 작업에서 드라이브를 받은 후에는 이 도구를 사용하여 드라이브에서 손상되거나 누락된 파일을 복구할 수 있습니다. 이 문서에서는 이 도구를 사용하는 방법을 살펴보겠습니다.
+hello WAImportExport 도구는 hello 드라이브 준비 및 복구 도구 hello로 사용할 수 있는 [Microsoft Azure 가져오기/내보내기 서비스](storage-import-export-service.md)합니다. 이 도구 toocopy 데이터 toohello 하드 드라이브 tooship tooan Azure 데이터 센터를 사용할 수 있습니다. 가져오기 작업이 완료 된 후 사용할 수 있습니다이 도구 toorepair 손상 된, 누락 된 또는 충돌 하는 모든 blob 다른 blob과. 완료 된 내보내기 작업에서 hello 드라이브를 받은 후에 손상 된 파일 또는 hello 드라이브에 없기 때문에이 도구 toorepair를 사용할 수 있습니다. 이 문서에서는이 도구의 hello 사용을 통해 이동합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
@@ -30,14 +30,14 @@ WAImportExport 도구는 [Microsoft Azure Import/Export 서비스](storage-impor
 
 - **컴퓨터 구성**
   - Windows 7, Windows Server 2008 R2 또는 최신 Windows 운영 체제
-  - .NET Framework 4가 설치되어 있어야 합니다. .Net Framework가 컴퓨터에 설치되어 있는지 확인하는 방법은 [FAQ](#faq)를 참조하세요.
-- **저장소 계정 키** - 저장소 계정의 계정 키가 하나 이상 필요합니다.
+  - .NET Framework 4가 설치되어 있어야 합니다. 참조 [FAQ](#faq) 방법에.Net Framework 경우 toocheck hello 컴퓨터에 설치 합니다.
+- **저장소 계정 키** -hello 저장소 계정에 대 한 hello 계정 키 중 하나 이상을 해야 합니다.
 
 ### <a name="preparing-disk-for-import-job"></a>가져오기 작업을 위한 디스크 준비
 
-- **BitLocker -** WAImportExport 도구를 실행하는 컴퓨터에서 BitLocker를 사용하도록 설정해야 합니다. BitLocker를 사용하도록 설정하는 방법은 [FAQ](#faq)를 참조하세요.
+- **BitLocker-** hello 컴퓨터 실행 중인 hello WAImportExport 도구에 BitLocker를 설정 해야 합니다. Hello 참조 [FAQ](#faq) 방법에 대 한 BitLocker tooenable 합니다.
 - **디스크** - WAImportExport 도구를 실행하는 컴퓨터에서 액세스할 수 있습니다. 디스크 사양은 [FAQ](#faq)를 참조하세요.
-- **원본 파일** - 네트워크 공유 드라이브 또는 로컬 하드 드라이브 중 어느 것에 있든지 간에 가져올 파일은 복사할 컴퓨터에서 액세스할 수 있어야 합니다.
+- **소스 파일** -네트워크 공유 나 로컬 하드 드라이브에 있는지 여부를 tooimport hello 파일 hello 복사 컴퓨터에서 액세스할 수 있어야 합니다.
 
 ### <a name="repairing-a-partially-failed-import-job"></a>부분적으로 실패한 가져오기 작업 복구
 
@@ -50,19 +50,19 @@ WAImportExport 도구는 [Microsoft Azure Import/Export 서비스](storage-impor
 
 ## <a name="download-and-install-waimportexport"></a>WAImportExport 다운로드 및 설치
 
-[최신 WAImportExport.exe 버전](https://www.microsoft.com/download/details.aspx?id=55280)을 다운로드합니다. 컴퓨터의 디렉터리에 압축된 내용을 추출합니다.
+Hello 다운로드 [최신 버전의 WAImportExport.exe](https://www.microsoft.com/download/details.aspx?id=55280)합니다. Hello 압축 된 콘텐츠 tooa 컴퓨터 디렉터리에 추출 합니다.
 
-다음 작업은 CSV 파일을 만드는 것입니다.
+다음 작업은 toocreate CSV 파일입니다.
 
-## <a name="prepare-the-dataset-csv-file"></a>데이터 집합 CSV 파일 준비
+## <a name="prepare-hello-dataset-csv-file"></a>Hello dataset CSV 파일을 준비
 
 ### <a name="what-is-dataset-csv"></a>데이터 집합 CSV 정의
 
-데이터 집합 CSV 파일은 /dataset 플래그의 값으로 대상 드라이브에 복사할 디렉터리 목록 및/또는 파일 목록을 포함하고 있는 CSV 파일입니다. 가져오기 작업을 만드는 첫 번째 단계는 가져올 디렉터리와 파일을 결정하는 것입니다. 디렉터리 목록, 고유한 파일 목록 또는 그 둘의 조합일 수 있습니다. 디렉터리가 포함되는 경우 디렉터리 및 하위 디렉터리의 모든 파일이 가져오기 작업의 일부가 됩니다.
+데이터 집합 CSV 파일은 /dataset 플래그의 hello 값은 디렉터리 목록이 및/또는 파일 복사 toobe tootarget 드라이브의 목록을 포함 하는 CSV 파일입니다. hello 첫 번째 단계 toocreating 가져오기 작업은 toodetermine 하는 디렉터리와 파일 있습니다 tooimport 하려고 합니다. 디렉터리 목록, 고유한 파일 목록 또는 그 둘의 조합일 수 있습니다. 디렉터리가 포함 된 경우 hello 디렉터리 및 하위 디렉터리의 모든 파일 hello 가져오기 작업의 일부가 됩니다.
 
-가져올 각 디렉터리 또는 파일의 경우 Azure Blob service에서 대상 가상 디렉터리 또는 Blob을 식별해야 합니다. 이러한 대상을 WAImportExport 도구의 입력으로 사용합니다. 디렉터리는 "/"(슬래시) 문자로 구분해야 합니다.
+가져올 각 디렉터리나 파일 toobe에 대 한 대상 가상 디렉터리 또는 hello Azure Blob 서비스에에서 blob을 식별 해야 합니다. 이러한 대상을 입력 toohello WAImportExport 도구를 사용 합니다. 디렉터리는 슬래시 문자 hello로 구분 해야 "/"입니다.
 
-다음 표에서는 Blob 대상의 몇 가지 예제를 보여 줍니다.
+다음 표에서 hello blob 대상의 몇 가지 예를 보여 줍니다.
 
 | 원본 파일 또는 디렉터리 | 대상 Blob 또는 가상 디렉터리 |
 | --- | --- |
@@ -83,24 +83,24 @@ BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 
 | 필드 | 설명 |
 | --- | --- |
-| BasePath | **[필수]**<br/>이 매개 변수 값은 데이터를 가져올 수 있는 원본의 위치를 나타냅니다. 도구는 이 경로 아래에 있는 모든 데이터를 재귀적으로 복사합니다.<br><br/>**허용되는 값**: 로컬 컴퓨터 또는 유효한 공유 경로의 유효한 경로여야 하며 사용자가 액세스할 수 있어야 합니다. 디렉터리 경로는 절대 경로(상대 경로 아님)이어야 합니다. 경로가 "\\"로 끝나는 경우 디렉터리를 나타내고 "\\"로 끝나지 않는 경로는 파일을 나타냅니다.<br/>이 필드에는 정규식을 사용할 수 없습니다. 경로에 공백이 있으면 "" 안에 경로를 넣습니다.<br><br/>**예제**: "c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\sharename\directory\"  |
-| DstBlobPathOrPrefix | **[필수]**<br/> Microsoft Azure 저장소 계정의 대상 가상 디렉터리에 대한 경로입니다. 가상 디렉터리가 이미 있거나 없을 수도 있습니다. 없는 경우 Import/Export 서비스에서 하나의 가상 디렉터리를 만듭니다.<br/><br/>대상 가상 디렉터리 또는 BLOB를 지정할 때는 유효한 컨테이너 이름을 사용해야 합니다. 컨테이너 이름은 소문자여야 합니다. 컨테이너 명명 규칙에 대해서는 [컨테이너, Blob, 메타데이터의 명명 및 참조](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)(영문)를 참조하세요. 루트를 지정하는 경우에만 소스의 디렉터리 구조가 대상 Blob 컨테이너에 복제됩니다. 소스의 디렉터리 구조가 아닌 다른 디렉터리 구조를 사용하는 경우 CSV에서 여러 행을 매핑합니다.<br/><br/>music/70s/와 같이 컨테이너 또는 Blob 접두사를 지정할 수 있습니다. 대상 디렉터리는 컨테이너 이름과 "/"(슬래시)로 시작해야 하며 선택적으로 "/"로 끝나는 가상 Blob 디렉터리를 포함할 수도 있습니다.<br/><br/>대상 컨테이너가 루트 컨테이너인 경우 슬래시를 포함하여 $root/로 루트 컨테이너를 명시적으로 지정해야 합니다. 루트 컨테이너 아래의 Blob에는 이름에 "/"를 포함할 수 없으므로 대상 디렉터리가 루트 컨테이너인 경우 원본 디렉터리의 모든 하위 디렉터리는 복사되지 않습니다.<br/><br/>**예제**<br/>대상 Blob 경로가 https://mystorageaccount.blob.core.windows.net/video인 경우 이 필드의 값은 video/입니다.  |
-| BlobType | **[선택]** block &#124; page<br/>현재 Import/Export 서비스는 두 가지 종류의 Blob을 지원합니다. 페이지 Blob과 블록 Blob은 기본적으로 모든 파일을 블록 Blob으로 가져옵니다. 그리고 \*.vhd\* 및 .vhdx는 페이지 Blob으로 가져오게 됩니다. 블록 Blob 및 페이지 Blob에 허용되는 크기는 제한됩니다. 자세한 내용은 [저장소 확장성 목표](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files)를 참조하세요.  |
-| Disposition | **[선택]** rename &#124; no-overwrite &#124; overwrite <br/> 이 필드는 가져오기 중, 즉 디스크에서 저장소 계정으로 데이터를 업로드할 때의 복사 동작을 지정합니다. 디스크에서 저장소 계정으로 데이터를 업로드할 때 사용 가능한 옵션은 이름 바꾸기, 덮어쓰기, 덮어쓰지 않기입니다. 아무 것도 지정하지 않는 경우 기본값으로 "이름 바꾸기"를 사용합니다. <br/><br/>**이름 바꾸기**: 이름이 같은 개체가 있으면 대상에 복사본을 만듭니다.<br/>overwrite: 파일을 새 파일로 덮어씁니다. 마지막으로 수정된 파일이 우선합니다.<br/>**no-overwrite**: 이미 파일이 있는 경우 파일 쓰기를 건너뜁니다.|
-| MetadataFile | **[선택]** <br/>이 필드의 값은 개체의 메타데이터를 보존해야 하거나 사용자 지정 메타데이터를 제공해야 하는 경우 제공할 수 있는 메타데이터 파일입니다. 대상 Blob에 대한 메타데이터 파일의 경로입니다. 자세한 내용은 [Import/Export 서비스의 메타데이터 및 속성 파일 형식](storage-import-export-file-format-metadata-and-properties.md)을 참조하세요. |
-| PropertiesFile | **[선택]** <br/>대상 Blob에 대한 속성 파일의 경로입니다. 자세한 내용은 [Import/Export 서비스의 메타데이터 및 속성 파일 형식](storage-import-export-file-format-metadata-and-properties.md)을 참조하세요. |
+| BasePath | **[필수]**<br/>이 매개 변수의 hello 값 가져온 hello 데이터 toobe 위치한 hello 소스를 나타냅니다. hello 도구가이 경로 아래에 있는 모든 데이터를 재귀적으로 복사 됩니다.<br><br/>**허용 되는 값**: toobe에 로컬 컴퓨터에 유효한 경로 또는 올바른 공유 경로이 고 hello 사용자가 액세스할 수 있어야 합니다. hello 디렉터리 경로 절대 경로 (상대 경로가 아닌) 이어야 합니다. Hello 경로로 끝나는 경우 "\\", 하지 않고 종료 하는 경로 다른 디렉터리를 나타내는"\\" 파일을 나타냅니다.<br/>이 필드에는 정규식을 사용할 수 없습니다. Hello 경로 공백이에 넣을 ""입니다.<br><br/>**예제**: "c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\sharename\directory\"  |
+| DstBlobPathOrPrefix | **[필수]**<br/> hello 경로 toohello 대상 가상 디렉터리의 Windows Azure 저장소 계정입니다. hello 가상 디렉터리 되었거나 존재 하지 않을 수 있습니다. 없는 경우 Import/Export 서비스에서 하나의 가상 디렉터리를 만듭니다.<br/><br/>대상 가상 디렉터리 또는 blob을 지정 하는 경우 있는지 toouse 유효한 컨테이너 이름을 수 있습니다. 컨테이너 이름은 소문자여야 합니다. 컨테이너 명명 규칙에 대해서는 [컨테이너, Blob, 메타데이터의 명명 및 참조](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)(영문)를 참조하세요. 만 루트 지정 hello 원본의 hello 디렉터리 구조는 hello 대상 blob 컨테이너에 복제 됩니다. 다른 디렉터리 구조 보다을 사용할 경우 hello 소스, CSV에서 매핑 여러 행에서<br/><br/>music/70s/와 같이 컨테이너 또는 Blob 접두사를 지정할 수 있습니다. hello 대상 디렉터리로 시작 해야 hello 컨테이너 이름, 밑줄 앞에 슬래시 "/", 필요에 따라로 끝나는 가상 blob 디렉터리를 포함할 수 있습니다 "/"입니다.<br/><br/>Hello 루트 컨테이너를 $root으로 hello 정방향 슬래시를 포함 하 여 명시적으로 지정 해야 hello 대상 컨테이너 hello 루트 컨테이너 이면 / 합니다. 이후 hello 루트 컨테이너 아래의 blob를 포함할 수 없습니다 "/" 이름에 hello 대상 디렉터리 hello 루트 컨테이너인 경우 hello 원본 디렉터리의 모든 하위 디렉터리가 복사 되지 않습니다.<br/><br/>**예제**<br/>이 필드의 hello 값 비디오 수 hello 대상 blob 경로 https://mystorageaccount.blob.core.windows.net/video 이면 /  |
+| BlobType | **[선택]** block &#124; page<br/>현재 Import/Export 서비스는 두 가지 종류의 Blob을 지원합니다. 페이지 Blob과 블록 Blob은 기본적으로 모든 파일을 블록 Blob으로 가져옵니다. 및 \*.vhd 및 \*페이지 BlobsThere hello 블록 blob과 페이지 blob 허용 크기에 제한이 있는 그대로.vhdx를 가져옵니다. 자세한 내용은 [저장소 확장성 목표](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files)를 참조하세요.  |
+| Disposition | **[선택]** rename &#124; no-overwrite &#124; overwrite <br/> 이 필드 즉, 가져오기 중 hello 복사 동작 지정 데이터 되는 경우 hello 디스크에서 toohello 저장소 계정에 업로드 합니다. 사용 가능한 옵션은: 이름 바꾸기 &#124; 속성 &#124; 아니요-덮어쓰기. 기본값 너무 "이름 바꾸기" 경우 아무 것도 지정 합니다. <br/><br/>**이름 바꾸기**: 이름이 같은 개체가 있으면 대상에 복사본을 만듭니다.<br/>덮어쓰기: 최신 파일과 함께 hello 파일을 덮어씁니다. wins 마지막 수정 된 hello 파일입니다.<br/>**아니요-덮어쓰기**: hello 작성을 건너뛰고 파일 이미 있는 경우.|
+| MetadataFile | **[선택]** <br/>hello 값 toothis 필드는 hello 메타 데이터 파일을 하나 hello hello 개체의 toopreserve hello 메타 데이터를 필요한 경우 제공 하거나 사용자 지정 메타 데이터를 제공 합니다. Hello 대상 blob에 대 한 경로 toohello 메타 데이터 파일입니다. 자세한 내용은 [Import/Export 서비스의 메타데이터 및 속성 파일 형식](storage-import-export-file-format-metadata-and-properties.md)을 참조하세요. |
+| PropertiesFile | **[선택]** <br/>Hello 대상 blob에 대 한 toohello 속성 파일 경로입니다. 자세한 내용은 [Import/Export 서비스의 메타데이터 및 속성 파일 형식](storage-import-export-file-format-metadata-and-properties.md)을 참조하세요. |
 
 ## <a name="prepare-initialdriveset-or-additionaldriveset-csv-file"></a>InitialDriveSet 또는 AdditionalDriveSet CSV 파일 준비
 
 ### <a name="what-is-driveset-csv"></a>드라이브 집합 CSV 정의
 
-/InitialDriveSet 또는 /AdditionalDriveSet 플래그의 값은 도구에서 준비할 디스크 목록을 정확하게 선택할 수 있도록 드라이브 문자가 매핑된 디스크 목록을 포함하고 있는 CSV 파일입니다. 데이터 크기가 단일 디스크 크기보다 큰 경우 WAImportExport 도구는 이 CSV 파일에 참여된 여러 디스크에 데이터를 최적화된 방식으로 분산합니다.
+hello hello /InitialDriveSet 또는 /AdditionalDriveSet 플래그의 값은 디스크 toowhich hello 드라이브 문자는 hello 도구 수 올바르게 hello의 선택 목록 준비 디스크 toobe 있도록 매핑됩니다 hello 목록을 포함 하는 CSV 파일입니다. Hello 데이터 크기는 단일 디스크 크기 보다 큰 경우 hello WAImportExport 도구에서는이 CSV 파일에 참여 하는 최적화 된 방식으로 여러 디스크에 걸쳐 hello 데이터를 배포 합니다.
 
-단일 세션에서 데이터를 쓸 수 있는 디스크의 수는 제한되지 않습니다. 이 도구는 디스크 크기와 폴더 크기에 따라 데이터를 분산합니다. 개체 크기에 가장 최적화된 디스크를 선택합니다. 저장소 계정에 업로드된 데이터는 데이터 집합 파일에 지정한 디렉터리 구조로 다시 정리됩니다. 드라이브 집합 CSV를 만들려면 다음 단계를 수행합니다.
+hello hello 데이터 디스크 수에 제한이 없음을 단일 세션 tooin를 작성할 수 있습니다. hello 도구에서는 디스크 크기와 폴더 크기를 기반으로 데이터를 배포 합니다. 가장 hello 디스크를 선택 합니다 hello 개체 크기에 맞게 최적화 합니다. 데이터 업로드 하면 hello toohello 저장소 계정에서 데이터 집합 파일에 지정 된 수렴 형된 백 toohello 디렉터리 구조를 수 있습니다. 순서 toocreate driveset CSV는 아래의 hello 단계를 수행 합니다.
 
 ### <a name="create-basic-volume-and-assign-drive-letter"></a>기본 볼륨 만들기 및 드라이브 문자 할당
 
-기본 볼륨을 만들고 드라이브 문자를 할당하려면 [디스크 관리 개요](https://technet.microsoft.com/library/cc754936.aspx)에서 제공하는 "간단한 파티션 만들기" 지침을 따릅니다.
+에 기본 볼륨 toocreate 주문 하 고 드라이브 문자 "간단한 파티션 생성"에 대 한 hello 지침에 따라 할당 [디스크 관리 개요](https://technet.microsoft.com/library/cc754936.aspx)합니다.
 
 ### <a name="sample-initialdriveset-and-additionaldriveset-csv-file"></a>샘플 InitialDriveSet 및 AdditionalDriveSet CSV 파일
 
@@ -114,19 +114,19 @@ H,Format,SilentMode,Encrypt,
 
 | 필드 | 값 |
 | --- | --- |
-| DriveLetter | **[필수]**<br/> 대상으로 도구에 제공되는 각 드라이브에는 NTFS 단순 볼륨과 여기에 할당된 드라이브 문자가 있어야 합니다.<br/> <br/>**예제**: R 또는 r |
-| FormatOption | **[필수]** Format &#124; AlreadyFormatted<br/><br/> **Format**: 이 값을 지정하면 디스크의 모든 데이터가 포맷됩니다. <br/>**AlreadyFormatted**: 이 값을 지정하면 포맷을 건너뜁니다. |
-| SilentOrPromptOnFormat | **[필수]** SilentMode &#124; PromptOnFormat<br/><br/>**SilentMode**: 이 값을 제공하면 사용자가 자동 모드에서 도구를 실행할 수 있습니다. <br/>**PromptOnFormat**: 도구에서 해당 작업이 실제로 모든 형식을 대상으로 하는지 여부를 확인하도록 요구하는 메시지를 사용자에게 표시합니다.<br/><br/>설정하지 않으면 명령이 중단되고 "잘못된 SilentOrPromptOnFormat 값: 없음"이라는 오류 메시지를 표시합니다. |
-| 암호화 | **[필수]** Encrypt &#124; AlreadyEncrypted<br/> 이 필드의 값은 암호화할 디스크와 암호화하지 않을 디스크를 결정합니다. <br/><br/>**암호화**: 도구에서 드라이브를 포맷합니다. "FormatOption" 필드의 값이 "Format"인 경우 이 값은 "Encrypt"여야 합니다. 이 경우 "AlreadyEncrypted"를 지정하면 "Format이 지정되면 Encrypt도 지정해야 합니다,"라는 오류가 발생합니다.<br/>**AlreadyEncrypted**: 도구에서 "ExistingBitLockerKey" 필드에 제공된 BitLockerKey를 사용하여 드라이브 암호화를 해제합니다. "FormatOption" 필드의 값이 "AlreadyFormatted"인 경우 이 값은 "Encrypt" 또는 "AlreadyEncrypted"입니다. |
-| ExistingBitLockerKey | **[필수]** "Encryption" 필드의 값이 "AlreadyEncrypted"인 경우<br/> 이 필드의 값은 특정 디스크와 연결되는 BitLocker 키입니다. <br/><br/>"Encryption" 필드의 값이 "Encrypt"인 경우 이 필드는 비워 두어야 합니다.  이 경우 BitLocker 키가 지정되면 "BitLocker 키는 지정할 수 없습니다."라는 오류가 발생합니다.<br/>  **예제**: 060456-014509-132033-080300-252615-584177-672089-411631|
+| DriveLetter | **[필수]**<br/> Toohello 도구 hello 대상으로 제공 되는 각 드라이브 단순 NTFS 볼륨에 있어야 하며 드라이브 문자가 할당 tooit 합니다.<br/> <br/>**예제**: R 또는 r |
+| FormatOption | **[필수]** Format &#124; AlreadyFormatted<br/><br/> **형식**: hello 디스크에 모든 hello 데이터 서식을 지정이 지정 합니다. <br/>**AlreadyFormatted**: hello 도구는이 값은 지정 될 때 서식 지정을 건너뜁니다. |
+| SilentOrPromptOnFormat | **[필수]** SilentMode &#124; PromptOnFormat<br/><br/>**SilentMode**: 자동 모드에서 사용자 toorun hello 도구에서는이 값을 제공 합니다. <br/>**PromptOnFormat**: hello 동작 모든 형식에 실제로 용도가 여부 hello 도구 hello 사용자 tooconfirm 라는 메시지가 표시 됩니다.<br/><br/>설정하지 않으면 명령이 중단되고 "잘못된 SilentOrPromptOnFormat 값: 없음"이라는 오류 메시지를 표시합니다. |
+| 암호화 | **[필수]** Encrypt &#124; AlreadyEncrypted<br/> 이 필드의 hello 값 아니라 어떤 디스크 tooencrypt 및 결정합니다. <br/><br/>**암호화**: 도구 hello 드라이브를 포맷 합니다. "FormatOption" 필드의 값은 "Format" 하는 경우이 값은 필수 toobe "Encrypt"입니다. 이 경우 "AlreadyEncrypted"를 지정하면 "Format이 지정되면 Encrypt도 지정해야 합니다,"라는 오류가 발생합니다.<br/>**AlreadyEncrypted**: 도구 BitLockerKey "ExistingBitLockerKey" 필드에 제공 된 hello를 사용 하 여 hello 드라이브 암호를 해독 합니다. "FormatOption" 필드의 값이 "AlreadyFormatted"인 경우 이 값은 "Encrypt" 또는 "AlreadyEncrypted"입니다. |
+| ExistingBitLockerKey | **[필수]** "Encryption" 필드의 값이 "AlreadyEncrypted"인 경우<br/> 이 필드의 값 hello는 hello BitLocker 키 hello 특정 디스크와 연결 된입니다. <br/><br/>이 필드는 "암호화" 필드의 hello 값은 "Encrypt" 비워 두어야 합니다.  이 경우 BitLocker 키가 지정되면 "BitLocker 키는 지정할 수 없습니다."라는 오류가 발생합니다.<br/>  **예제**: 060456-014509-132033-080300-252615-584177-672089-411631|
 
 ##  <a name="preparing-disk-for-import-job"></a>가져오기 작업을 위한 디스크 준비
 
-가져오기 작업을 위해 드라이브를 준비하려면 **PrepImport** 명령을 사용하여 WAImportExport 도구를 호출합니다. 포함할 매개 변수는 첫 번째 복사 세션인지 또는 후속 복사 세션인지의 여부에 따라 다릅니다.
+hello로 hello WAImportExport 도구를 호출 하는 가져오기 작업에 대 한 tooprepare 드라이브 **PrepImport** 명령입니다. 포함 하는 매개 변수 인지 첫 번째 복사 세션 또는 후속 복사 세션을 hello은이에 따라 달라 집니다.
 
 ### <a name="first-session"></a>첫 번째 세션
 
-CSV 파일에 지정된 내용에 따라 단일/다중 디렉터리를 단일/다중 디스크에 복사하기 위한 첫 번째 복사 세션입니다. 첫 번째 복사 세션에서 새 복사 세션으로 디렉터리 및/또는 파일을 복사하기 위한 WAImportExport 도구의 PrepImport 명령은 다음과 같습니다.
+첫 번째 복사 세션 tooCopy Single/Multiple 디렉터리 tooa 단일/다중 디스크 (CSV 파일에 지정 된) 따라 WAImportExport 도구 hello에 대 한 PrepImport 명령은 먼저 세션 toocopy 디렉터리 및/또는 새 복사 세션을 사용 하 여 파일에 복사 합니다.
 
 ```
 WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> [/logdir:<LogDirectory>] [/sk:<StorageAccountKey>] [/silentmode] [/InitialDriveSet:<driveset.csv>] DataSet:<dataset.csv>
@@ -140,7 +140,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1  /sk:\*\*\*\*\*\*
 
 ### <a name="add-data-in-subsequent-session"></a>후속 세션에서 데이터 추가
 
-후속 복사 세션에서는 초기 매개 변수를 지정할 필요가 없습니다. 이전 세션에서 남겨진 위치를 기억하기 위해 도구에서 동일한 저널 파일을 사용해야 합니다. 복사 세션의 상태는 저널 파일에 기록됩니다. 추가 디렉터리 및/또는 파일을 복사하는 후속 복사 세션의 구문은 다음과 같습니다.
+후속 복사 세션 toospecify hello 초기 매개 변수 필요 하지 않습니다. Toouse 필요한 hello 동일한 저널 파일 도구 tooremember hello에 대 한 순서로 된 지점을 선택할 hello에서 이전 세션입니다. hello 복사 세션의 hello 상태 toohello 저널 파일에 기록 됩니다. 다음은 hello 구문에 대 한 후속 복사 세션 toocopy 추가 디렉터리 또는 파일:
 
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<DifferentSessionId>  [DataSet:<differentdataset.csv>]
@@ -152,12 +152,12 @@ WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<DifferentSessionId>  [Da
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset-2.csv
 ```
 
-### <a name="add-drives-to-latest-session"></a>마지막 세션에 드라이브 추가
+### <a name="add-drives-toolatest-session"></a>드라이브 toolatest 세션 추가
 
-데이터가 InitialDriveset에 지정한 드라이브에 맞지 않으면 도구를 사용하여 동일한 복사 세션에 추가 드라이브를 추가할 수 있습니다. 
+Hello 데이터 InitialDriveset에 지정 된 드라이브에 맞지 않습니다, 하나 hello 도구 tooadd 추가 드라이브 toosame 복사 세션을 사용할 수 있습니다. 
 
 >[!NOTE] 
->세션 ID는 이전 세션 ID와 일치해야 합니다. 저널 파일은 이전 세션에서 지정한 파일과 일치해야 합니다.
+>hello 세션 id hello 이전 세션 id와 일치 해야 합니다. 저널 파일은 이전 세션에 지정 된 hello를 일치 해야 합니다.
 >
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /AdditionalDriveSet:<newdriveset.csv>
@@ -169,9 +169,9 @@ WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /Addition
 WAImportExport.exe PrepImport /j:SameJournalTest.jrn /id:session#2  /AdditionalDriveSet:driveset-2.csv
 ```
 
-### <a name="abort-the-latest-session"></a>마지막 세션 중단
+### <a name="abort-hello-latest-session"></a>Hello 최신 세션을 중단 합니다.
 
-복사 세션이 중단되어 다시 시작할 수 없는 경우(예: 원본 디렉터리에 액세스할 수 없다고 판명된 경우) 롤백하여 새 복사 세션을 시작할 수 있도록 현재 세션을 중단해야 합니다.
+복사 세션이 중단 되 고, 없습니다. 가능한 tooresume (예를 들어 경우 원본 디렉터리에 액세스할 수 없거나이 증명 된)을 중단 해야 hello 현재 세션 수 취소할 수 있도록 하는 경우 새 복사 세션 및 다시 시작할 수 있습니다.
 
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /AbortSession
@@ -183,11 +183,11 @@ WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /AbortSes
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /AbortSession
 ```
 
-마지막 복사 세션만 비정상적으로 종료되면 이 세션을 중단할 수 있습니다. 드라이브의 첫 번째 복사 세션은 중단할 수 없습니다. 대신 새 저널 파일로 복사 세션을 다시 시작해야 합니다.
+Hello만 마지막 복사 세션 비정상적으로 종료 된 경우 중단할 수 있습니다. 없습니다을 중단 하는 hello 드라이브에 대 한 첫 번째 복사 세션을 참고 합니다. 대신 새 저널 파일로 hello 복사 세션을 다시 시작 해야 있습니다.
 
 ### <a name="resume-a-latest-interrupted-session"></a>중단된 마지막 세션 다시 시작
 
-어떤 이유로 복사 세션이 중단된 경우 지정된 저널 파일 만으로 도구를 실행하여 복사 세션을 다시 시작할 수 있습니다.
+어떤 이유로 든 복사 세션이 중단 되 면 hello 저널 파일만 지정 된 hello 도구를 실행 하 여 다시 시작할 수 있습니다.
 
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /ResumeSession
@@ -200,30 +200,30 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /ResumeSession
 ```
 
 > [!IMPORTANT] 
-> 복사 세션을 다시 시작할 때는 파일을 추가하거나 제거하여 원본 데이터 파일과 디렉터리를 수정하지 마세요.
+> 복사 세션을 다시 시작할 때 수정 하지 마십시오 hello 원본 데이터 파일 및 디렉터리에 추가 하거나 제거할 파일입니다.
 
 ## <a name="waimportexport-parameters"></a>WAImportExport 매개 변수
 
 | 매개 변수 | 설명 |
 | --- | --- |
-|     /j:&lt;JournalFile&gt;  | **필수**<br/> 저널 파일의 경로입니다. 저널 파일은 일단의 드라이브를 추적하고 이러한 드라이브를 준비하는 진행 상태를 기록합니다. 저널 파일은 항상 지정해야 합니다.  |
-|     /logdir:&lt;LogDirectory&gt;  | **옵션**. 로그 디렉터리입니다.<br/> 일부 임시 파일뿐만 아니라 자세한 로그 파일도 이 디렉터리에 기록됩니다. 지정하지 않으면 현재 디렉터리가 로그 디렉터리로 사용됩니다. 로그 디렉터리는 동일한 저널 파일에 대해 한 번만 지정할 수 있습니다.  |
-|     /id:&lt;SessionId&gt;  | **필수**<br/> 세션 ID는 복사 세션을 식별하는 데 사용됩니다. 중단된 복사 세션의 정확한 복구를 위해 사용됩니다.  |
-|     /ResumeSession  | 선택 사항입니다. 마지막 복사 세션이 비정상적으로 종료된 경우 이 매개 변수를 지정하여 해당 세션을 다시 시작할 수 있습니다.   |
-|     /AbortSession  | 선택 사항입니다. 마지막 복사 세션이 비정상적으로 종료된 경우 이 매개 변수를 지정하여 해당 세션을 중단할 수 있습니다.  |
-|     /sn:&lt;StorageAccountName&gt;  | **필수**<br/> RepairImport 및 RepairExport에만 적용됩니다. 저장소 계정 이름입니다.  |
-|     /sk:&lt;StorageAccountKey&gt;  | **필수**<br/> 저장소 계정 키입니다. |
-|     /InitialDriveSet:&lt;driveset.csv&gt;  | **필수** 첫 번째 복사 세션을 실행할 때<br/> 준비할 드라이브 목록을 포함하고 있는 CSV 파일입니다.  |
-|     /AdditionalDriveSet:&lt;driveset.csv&gt; | **필수입니다**. 현재 복사 세션에 드라이브를 추가할 때. <br/> 추가할 드라이브 목록을 포함하고 있는 CSV 파일입니다.  |
-|      /r:&lt;RepairFile&gt; | **필수** RepairImport 및 RepairExport에만 적용됩니다.<br/> 복구 진행 상태를 추적하기 위한 파일의 경로입니다. 각 드라이브에는 하나의 복구 파일만 있어야 합니다.  |
-|     /d:&lt;TargetDirectories&gt; | **필수입니다**. RepairImport 및 RepairExport에만 적용됩니다. RepairImport의 경우 세미콜론으로 하나 이상 구분된 디렉터리를 복구합니다. RepairExport의 경우 디렉터리 하나만 복구합니다(예: 드라이브의 루트 디렉터리).  |
-|     /CopyLogFile:&lt;DriveCopyLogFile&gt; | **필수** RepairImport 및 RepairExport에만 적용됩니다. 드라이브 복사 로그 파일(자세한 정보 또는 오류)의 경로입니다.  |
-|     /ManifestFile:&lt;DriveManifestFile&gt; | **필수** RepairExport에만 적용됩니다.<br/> 드라이브 매니페스트 파일의 경로입니다.  |
-|     /PathMapFile:&lt;DrivePathMapFile&gt; | **옵션**. RepairImport에만 적용됩니다.<br/> 실제 파일의 위치(탭 구분 형식)와 드라이브 루트에 상대적인 파일 경로의 매핑을 포함하고 있는 파일의 경로입니다. 처음에 지정되면 빈 대상이 포함된 파일의 경로로 채워집니다. 즉 대상이 TargetDirectories에 없거나 액세스가 거부되었거나 잘못된 이름으로 되어 있거나 여러 디렉터리에 있음을 의미합니다. 정확한 대상 경로를 포함하도록 경로 매핑 파일을 수동으로 편집하고 도구에서 파일 경로를 정확하게 해석하도록 다시 지정할 수 있습니다.  |
-|     /ExportBlobListFile:&lt;ExportBlobListFile&gt; | **필수입니다**. PreviewExport에만 적용됩니다.<br/> 내보낼 Blob에 대한 Blob 경로 또는 Blob 경로 접두사 목록을 포함하고 있는 XML 파일의 경로입니다. 파일 형식은 Import/Export 서비스 REST API의 작업 배치(Put Job) 작업에서 사용되는 Blob 목록 Blob 형식과 동일합니다.  |
-|     /DriveSize:&lt;DriveSize&gt; | **필수입니다**. PreviewExport에만 적용됩니다.<br/>  내보내기에 사용할 드라이브 크기입니다. 예: 500GB, 1.5TB 참고: 1GB = 1,000,000,000바이트 1TB = 1,000,000,000,000바이트  |
-|     /DataSet:&lt;dataset.csv&gt; | **필수**<br/> 대상 드라이브에 복사할 디렉터리 목록 및/또는 파일 목록을 포함하고 있는 CSV 파일입니다.  |
-|     /silentmode  | **옵션**.<br/> 지정하지 않으면 드라이브 요구 사항을 알려주며 계속하려면 사용자의 확인이 필요합니다.  |
+|     /j:&lt;JournalFile&gt;  | **필수**<br/> Toohello 저널 파일 경로입니다. 레코드 hello 이러한 드라이브를 준비 하는 진행률 및 저널 파일을 드라이브의 집합을 추적 합니다. hello 저널 파일은 항상 지정 되어야 합니다.  |
+|     /logdir:&lt;LogDirectory&gt;  | **옵션**. hello 로그 디렉터리입니다.<br/> 자세한 로그 파일 뿐 아니라 일부 임시 파일 디렉터리 toothis 작성 됩니다. 그렇지 않은 경우 지정 된, 현재 디렉터리 hello 로그 디렉터리로 사용 됩니다. hello 로그 디렉터리에 지정할 수 있습니다 한 번만 hello 동일한 저널 파일입니다.  |
+|     /id:&lt;SessionId&gt;  | **필수**<br/> Id가 복사 세션을 사용 하는 tooidentify hello 세션입니다. 중단된 된 복사 세션의 정확한 복구를 사용 하는 tooensure 것합니다.  |
+|     /ResumeSession  | 선택 사항입니다. Hello 마지막 복사 세션 종료 비정상적으로,이 매개 변수 지정된 tooresume hello 세션 될 수 있습니다.   |
+|     /AbortSession  | 선택 사항입니다. Hello 마지막 복사 세션 종료 비정상적으로,이 매개 변수 지정된 tooabort hello 세션 될 수 있습니다.  |
+|     /sn:&lt;StorageAccountName&gt;  | **필수**<br/> RepairImport 및 RepairExport에만 적용됩니다. hello hello 저장소 계정의 이름입니다.  |
+|     /sk:&lt;StorageAccountKey&gt;  | **필수**<br/> hello 저장소 계정의 hello 키입니다. |
+|     /InitialDriveSet:&lt;driveset.csv&gt;  | **필요한** 실행 하는 경우 hello 첫 번째 복사 세션<br/> 드라이브 tooprepare의 목록을 포함 하는 CSV 파일입니다.  |
+|     /AdditionalDriveSet:&lt;driveset.csv&gt; | **필수입니다**. 드라이브 toocurrent 복사 세션을 추가할 때 <br/> 추가 드라이브 toobe 추가의 목록을 포함 하는 CSV 파일입니다.  |
+|      /r:&lt;RepairFile&gt; | **필수** RepairImport 및 RepairExport에만 적용됩니다.<br/> 복구 진행률을 추적 하기 위한 toohello 파일 경로입니다. 각 드라이브에는 하나의 복구 파일만 있어야 합니다.  |
+|     /d:&lt;TargetDirectories&gt; | **필수입니다**. RepairImport 및 RepairExport에만 적용됩니다. RepairImport에 대 한 하나 이상의 세미콜론으로 구분 된 디렉터리 toorepair; RepairExport, 디렉터리 toorepair hello 드라이브의 디렉터리를 루트 예를 들어 합니다.  |
+|     /CopyLogFile:&lt;DriveCopyLogFile&gt; | **필수** RepairImport 및 RepairExport에만 적용됩니다. 경로 toohello 드라이브 복사 로그 파일 (자세한 정보 또는 오류).  |
+|     /ManifestFile:&lt;DriveManifestFile&gt; | **필수** RepairExport에만 적용됩니다.<br/> 경로 toohello 드라이브 매니페스트 파일입니다.  |
+|     /PathMapFile:&lt;DrivePathMapFile&gt; | **옵션**. RepairImport에만 적용됩니다.<br/> (탭 구분 형식)는 실제 파일의 파일 경로가 상대 toohello 드라이브 루트 toolocations의 매핑을 포함 하는 경로 toohello 파일입니다. 처음에 지정되면 빈 대상이 포함된 파일의 경로로 채워집니다. 즉 대상이 TargetDirectories에 없거나 액세스가 거부되었거나 잘못된 이름으로 되어 있거나 여러 디렉터리에 있음을 의미합니다. hello 경로 맵 파일 hello 올바른 대상 경로 수동으로 편집한 tooinclude 수 있으며 올바르게 hello 도구 tooresolve hello 파일 경로 대 한 다시 지정 합니다.  |
+|     /ExportBlobListFile:&lt;ExportBlobListFile&gt; | **필수입니다**. PreviewExport에만 적용됩니다.<br/> 경로 toohello XML blob 경로 목록을 포함 파일 접두사 또는 blob 경로 hello blob toobe 내보낸에 대 한 합니다. hello 파일 형식 hello hello 가져오기/내보내기 서비스 REST API의 Put Job 작업 hello blob 목록 blob 형식과으로 hello는 동일 합니다.  |
+|     /DriveSize:&lt;DriveSize&gt; | **필수입니다**. PreviewExport에만 적용됩니다.<br/>  내보내기에 사용 되는 드라이브 toobe의 크기입니다. 예: 500GB, 1.5TB 참고: 1GB = 1,000,000,000바이트 1TB = 1,000,000,000,000바이트  |
+|     /DataSet:&lt;dataset.csv&gt; | **필수**<br/> 디렉터리 목록이 및/또는 파일 toobe 목록이 포함 된 CSV 파일 복사 tootarget 드라이브.  |
+|     /silentmode  | **옵션**.<br/> 지정 하지 않으면 메시지를 표시 하 여 드라이브의 요구 사항을 hello을 확인 toocontinue 합니다.  |
 
 ## <a name="tool-output"></a>도구 출력
 
@@ -238,7 +238,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /ResumeSession
       <ClientCreator>client-creator</ClientCreator>
       <!-- First Blob List -->
       <BlobList Id="session#1-0">
-         <!-- Global properties and metadata that applies to all blobs -->
+         <!-- Global properties and metadata that applies tooall blobs -->
          <MetadataPath Hash="md5-hash">global-metadata-file-path</MetadataPath>
          <PropertiesPath Hash="md5-hash">global-properties-file-path</PropertiesPath>
          <!-- First Blob -->
@@ -284,7 +284,7 @@ SaveCommandOutput: Completed
 [EndUpdateRecord]
 ```
 
-### <a name="sample-journal-file-jrn-for-session-that-records-the-trail-of-sessions"></a>세션 내역을 기록하는 세션의 샘플 저널 파일(JRN)
+### <a name="sample-journal-file-jrn-for-session-that-records-hello-trail-of-sessions"></a>세션의 hello 내역을 기록 하는 세션에 대 한 샘플 저널 파일 (JRN)
 
 ```
 [BeginUpdateRecord][2016/11/02 18:24:14.735][Type:NewJournalFile]
@@ -306,23 +306,23 @@ StorageAccountKey: *******
 
 #### <a name="what-is-waimportexport-tool"></a>WAImportExport 도구란?
 
-WAImportExport 도구는 Microsoft Azure Import/Export 서비스에서 사용할 수 있는 드라이브 준비 및 복구 도구입니다. 이 도구를 사용하여 Azure 데이터 센터에 운송할 하드 드라이브에 데이터를 복사할 수 있습니다. 가져오기 작업이 완료된 후에는 이 도구를 사용하여 손상되거나 누락되거나 다른 Blob과 충돌한 Blob을 복구할 수 있습니다. 완료된 내보내기 작업에서 드라이브를 받은 후에는 이 도구를 사용하여 드라이브에서 손상되거나 누락된 파일을 복구할 수 있습니다.
+hello WAImportExport 도구는 hello 드라이브 준비 및 Microsoft Azure 가져오기/내보내기 서비스 hello로 사용할 수 있는 복구 도구입니다. 이 도구 toocopy 데이터 toohello 하드 드라이브 tooship tooan Azure 데이터 센터를 사용할 수 있습니다. 가져오기 작업이 완료 된 후 사용할 수 있습니다이 도구 toorepair 손상 된, 누락 된 또는 충돌 하는 모든 blob 다른 blob과. 완료 된 내보내기 작업에서 hello 드라이브를 받은 후에 손상 된 파일 또는 hello 드라이브에 없기 때문에이 도구 toorepair를 사용할 수 있습니다.
 
-#### <a name="how-does-the-waimportexport-tool-work-on-multiple-source-dir-and-disks"></a>WAImportExport 도구는 여러 소스 디렉터리와 디스크에서 어떻게 작동합니까?
+#### <a name="how-does-hello-waimportexport-tool-work-on-multiple-source-dir-and-disks"></a>WAImportExport 도구는 hello 작동 방법에 여러 개의 소스 dir 및 디스크?
 
-데이터 크기가 단일 디스크 크기보다 큰 경우 WAImportExport 도구는 디스크에 데이터를 최적화된 방식으로 분산합니다. 여러 디스크에 대한 데이터 복사는 동시에 또는 순차적으로 수행할 수 있습니다. 동시에 데이터를 쓸 수 있는 디스크의 수는 제한되지 않습니다. 이 도구는 디스크 크기와 폴더 크기에 따라 데이터를 분산합니다. 개체 크기에 가장 최적화된 디스크를 선택합니다. 저장소 계정에 업로드된 데이터는 지정한 디렉터리 구조로 다시 정리됩니다.
+Hello 데이터 크기가 hello 디스크 크기 보다 큰 경우 hello WAImportExport 도구는 최적화 된 방식에서 hello 데이터를 hello 디스크를 배포 합니다. 순차적으로 또는 병렬로 hello 디스크 toomultiple 데이터 복사를 수행할 수 있습니다. hello hello 데이터 디스크 수에 제한이 없음을 toosimultaneously를 작성할 수 있습니다. hello 도구에서는 디스크 크기와 폴더 크기를 기반으로 데이터를 배포 합니다. 가장 hello 디스크를 선택 합니다 hello 개체 크기에 맞게 최적화 합니다. 데이터 업로드 하면 hello toohello 저장소 계정을 다시 수렴 형 됩니다 toohello 디렉터리 구조를 지정 합니다.
 
 #### <a name="where-can-i-find-previous-version-of-waimportexport-tool"></a>이전 버전의 WAImportExport 도구는 어디서 찾을 수 있습니까?
 
-WAImportExport 도구에는 WAImportExport V1 도구의 모든 기능이 있습니다. WAImportExport 도구를 사용하면 여러 소스를 지정하고 여러 드라이브에 쓸 수 있습니다. 또한 하나의 CSV 파일에서 데이터를 복사해야 하는 여러 원본 위치를 쉽게 관리할 수 있습니다. 그러나 SAS 지원이 필요하거나 단일 원본을 단일 디스크에 복사하려면 [WAImportExport V1 도구를 다운로드](http://go.microsoft.com/fwlink/?LinkID=301900&amp;clcid=0x409)하면 됩니다. WAImportExport V1 사용에 대한 도움말은 [WAImportExport V1 참조](storage-import-export-tool-how-to-v1.md)(영문)를 참조하세요.
+WAImportExport 도구에는 WAImportExport V1 도구의 모든 기능이 있습니다. WAImportExport 도구를 사용 하면 여러 원본과 쓰기 toomultiple 드라이브 사용자 toospecify 합니다. 또한 단일 CSV 파일에 복사 toobe 필요한 hello 데이터를 여러 소스 위치를 쉽게 관리할 수 하나. 그러나 SAS 필요한 경우에서 못하거나 WAImportExport V1 도구 수 [다운로드] 있습니다 toocopy 단일 소스 toosingle 디스크 (http://go.microsoft.com/fwlink/? LinkID = 301900&amp;clcid = 0x409) 너무 참조[WAImportExport V1 참조](storage-import-export-tool-how-to-v1.md) WAImportExport V1 사용에 대 한 도움말입니다.
 
 #### <a name="what-is-a-session-id"></a>세션 ID란?
 
-데이터를 여러 디스크에 분산하려는 경우 도구에서는 동일한 복사 세션(/id) 매개 변수를 사용합니다. 복사 세션의 동일한 이름을 유지하면 하나 이상의 원본 위치에서 하나 이상의 대상 디스크/디렉터리로 데이터를 복사할 수 있습니다. 동일한 세션 ID를 유지하면 도구에서 마지막으로 남아 있던 파일의 복사본을 선택할 수 있습니다.
+hello 도구 hello 복사 세션에 필요 (/ id) 매개 변수 toobe hello hello 의도 toospread hello 데이터가 여러 디스크에 걸쳐 경우 동일 합니다. 동일한 hello 유지 hello 복사 세션의 이름에는 하나 이상의 대상 디스크/디렉터리에 하나 또는 여러 개의 소스 위치에서 사용자 toocopy 데이터 사용 됩니다. 동일한 세션 id를 유지 관리 hello 도구 toopick을 hello 마지막으로 중지 된 위치에서 파일의 hello 복사본을 수 있습니다.
 
-그러나 동일한 복사 세션을 사용하여 다른 저장소 계정으로 데이터를 가져올 수는 없습니다.
+그러나 동일한 복사 세션에 사용 되는 tooimport 데이터 toodifferent 저장소 계정 수 없습니다.
 
-도구의 여러 실행에서 복사 세션 이름이 동일한 경우 로그 파일(/logdir) 및 저장소 계정 키(/sk)도 동일해야 합니다.
+Hello 도구를 여러 번 실행 간에 복사 세션 이름 같은 이면 hello 로그 파일 (/ logdir) 및 저장소 계정 키 (/ sk)는 또한 예상된 toobe hello 동일 합니다.
 
 SessionId는 0-9, 밑줄(\_), 대시(-) 또는 해시(#)로 구성할 수 있으며 길이는 3-30자여야 합니다.
 
@@ -330,52 +330,52 @@ SessionId는 0-9, 밑줄(\_), 대시(-) 또는 해시(#)로 구성할 수 있으
 
 #### <a name="what-is-a-journal-file"></a>저널 파일이란?
 
-WAImportExport 도구를 실행하여 파일을 하드 드라이브에 복사할 때마다 이 도구에서 복사 세션을 만듭니다. 복사 세션의 상태는 저널 파일에 기록됩니다. 복사 세션이 중단된 경우(예: 시스템 전원 손실로 인해) 도구를 다시 실행하고 명령줄에서 저널 파일을 지정하여 해당 세션을 다시 시작할 수 있습니다.
+Hello WAImportExport 도구 toocopy 파일 toohello 하드 드라이브를 실행할 때마다 hello 도구는 복사 세션을 만듭니다. hello 복사 세션의 hello 상태 toohello 저널 파일에 기록 됩니다. (예를 들어 인해 tooa 시스템 전원 손실과) 복사 세션이 중단 되 면 hello 도구를 다시 실행 하 고 hello 명령줄에 hello 저널 파일을 지정 하 여 다시 시작할 수 있습니다.
 
-Azure Import/Export 도구를 사용하여 준비하는 각 하드 드라이브의 경우 이 도구에서 "&lt;DriveID&gt;.xml" 이름의 단일 저널 파일을 만듭니다. 여기서 드라이브 ID는 도구에서 디스크로부터 읽어 들이는 드라이브와 관련된 일련 번호입니다. 가져오기 작업을 만들려면 모든 드라이브의 저널 파일이 필요합니다. 도구가 중단되는 경우 저널 파일을 사용하여 드라이브 준비를 다시 시작할 수도 있습니다.
+Hello Azure 가져오기/내보내기 도구를 준비 하는 각 하드 드라이브에 대 한 hello 도구는 단일 저널 파일 이름이 만들기 "&lt;드라이브 Id&gt;.xml"에서 도구 hello toohello 드라이브를 읽고 여기서 드라이브 Id는 연결 된 hello 일련 번호 hello 디스크입니다. 모든 드라이브 toocreate hello 가져오기 작업의 hello 저널 파일이 필요 합니다. hello 도구가 중단 되 면 hello 저널 파일에 사용 되는 tooresume 드라이브 준비 될 수도 있습니다.
 
 #### <a name="what-is-a-log-directory"></a>로그 디렉터리란?
 
-로그 디렉터리는 자세한 로그와 임시 매니페스트 파일을 저장하는 데 사용할 디렉터리를 지정합니다. 지정하지 않으면 현재 디렉터리가 로그 디렉터리로 사용됩니다. 로그는 자세한 정보 표시 로그입니다.
+hello 로그 디렉터리 디렉터리 toobe 사용 toostore 자세한 로그 뿐만 아니라 임시 매니페스트 파일을 지정 합니다. 지정 하지 않으면 현재 디렉터리가 hello hello 로그 디렉터리로 사용 됩니다. hello 로그는 자세한 로그입니다.
 
 ### <a name="prerequisites"></a>필수 조건
 
-#### <a name="what-are-the-specifications-of-my-disk"></a>내 디스크의 사양은?
+#### <a name="what-are-hello-specifications-of-my-disk"></a>내 디스크의 hello 사양 이란?
 
-복사 컴퓨터에 연결된 하나 이상의 빈 2.5"/3.5" SATA II/III 또는 SSD 하드 드라이브
+하나 이상의 빈 2.5 인치 또는 3.5 인치 SATAII 또는 III 또는 SSD 하드 드라이브와 연결 된 toohello 복사 컴퓨터.
 
 #### <a name="how-can-i-enable-bitlocker-on-my-machine"></a>내 컴퓨터에서 BitLocker를 사용하도록 설정하려면 어떻게 합니까?
 
-시스템 드라이브를 마우스 오른쪽 단추로 클릭만 하면 간단히 확인할 수 있습니다. 이 기능이 설정되어 있으면 Bitlocker에 대한 옵션이 표시되지만, 해제되어 있으면 해당 옵션이 표시되지 않습니다.
+간단한 방법을 toocheck은 시스템 드라이브를 마우스 오른쪽 단추로 클릭 합니다. 설명 Bitlocker에 대 한 옵션 hello 기능이 설정 된 경우. 해제되어 있으면 해당 옵션이 표시되지 않습니다.
 
 ![BitLocker 확인](./media/storage-import-export-tool-preparing-hard-drives-import/BitLocker.png)
 
-[BitLocker를 사용하도록 설정하는 방법](https://technet.microsoft.com/library/cc766295.aspx) 문서를 참조하세요.
+여기에 자료 문서가 [어떻게 tooenable BitLocker](https://technet.microsoft.com/library/cc766295.aspx)
 
-컴퓨터에 TPM 칩이 없을 수도 있습니다. tpm.msc를 사용하여 출력을 얻지 못하면 다음 FAQ를 살펴보세요.
+컴퓨터에 TPM 칩이 없을 수도 있습니다. Tpm.msc를 사용 하 여 출력을 얻지 못한 경우 hello 다음 FAQ를 살펴봅니다.
 
-#### <a name="how-to-disable-trusted-platform-module-tpm-in-bitlocker"></a>BitLocker에서 TPM(신뢰할 수 있는 플랫폼 모듈)을 사용하지 않도록 설정하려면 어떻게 합니까?
+#### <a name="how-toodisable-trusted-platform-module-tpm-in-bitlocker"></a>어떻게 toodisable BitLocker의 신뢰할 수 있는 플랫폼 모듈 (TPM)?
 > [!NOTE]
-> 해당 서버에 TPM이 없는 경우에만 TPM 정책을 사용하지 않도록 해야 합니다. 사용자의 서버에서 신뢰할 수 있는 TPM이 없는 경우 TPM을 사용하지 않도록 설정할 필요는 없습니다. 
+> 서버에 없는 TPM 인 경우에 toodisable TPM 정책을 해야 합니다. 사용자의 서버에서 신뢰할 수 있는 TPM이 없는 경우 필요한 toodisable TPM 않습니다. 
 > 
 
-BitLocker에서 TPM을 사용하지 않도록 설정하려면 다음 단계를 수행합니다.<br/>
-1. 명령 프롬프트에서 gpedit.msc를 입력하여 **그룹 정책 편집기**를 시작합니다. **그룹 정책 편집기**에서 사용할 수 없는 것으로 표시되면 먼저 BitLocker를 사용하도록 설정합니다. 앞서의 FAQ를 참조하세요.
+순서 toodisable BitLocker에서 TPM의에서 단계를 수행 하는 hello를 통해 이동.<br/>
+1. 명령 프롬프트에서 gpedit.msc를 입력하여 **그룹 정책 편집기**를 시작합니다. 경우 **그룹 정책 편집기** toobe 먼저 BitLocker를 사용 하도록 설정에 사용할 수 없는 나타납니다. 앞서의 FAQ를 참조하세요.
 2. **로컬 컴퓨터 정책 &gt; 컴퓨터 구성 &gt; 관리 템플릿 &gt; Windows 구성 요소 &gt; BitLocker 드라이브 암호화 &gt; 운영 체제 드라이브**를 차례로 이동합니다.
 3. **시작 시 추가 인증 요구** 정책을 편집합니다.
-4. 정책을 **사용**으로 설정하고 **호환되는 TPM이 없이 BitLocker 허용**이 선택되어 있는지 확인합니다.
+4. 너무 hello 정책 설정**Enabled** 있는지 확인 하 고 **호환 되는 TPM 없이 BitLocker 허용** 을 선택 합니다.
 
-####  <a name="how-to-check-if-net-4-or-higher-version-is-installed-on-my-machine"></a>내 컴퓨터에 .NET 4 이상의 버전이 설치되어 있는지 확인하려면 어떻게 합니까?
+####  <a name="how-toocheck-if-net-4-or-higher-version-is-installed-on-my-machine"></a>어떻게 toocheck.NET 4 또는 더 높은 버전으로 내 컴퓨터에 설치 된 경우?
 
 모든 Microsoft .NET Framework 버전은 %windir%\Microsoft.NET\Framework\ 디렉터리에 설치됩니다.
 
-도구를 실행해야 하는 대상 컴퓨터에서 위에서 언급한 부분으로 이동합니다. "v4"로 시작하는 폴더 이름을 찾습니다. 이러한 디렉터리가 없으면 컴퓨터에 .NET 4가 설치되지 않은 것입니다. [Microsoft .NET Framework 4(웹 설치 관리자)](https://www.microsoft.com/download/details.aspx?id=17851)를 사용하면 컴퓨터에 .Net 4를 다운로드할 수 있습니다.
+Hello 도구에서 toorun를 필요한 대상 컴퓨터에 언급 한 파트 위에 toohello를 이동 합니다. "v4"로 시작하는 폴더 이름을 찾습니다. 이러한 디렉터리가 없으면 컴퓨터에 .NET 4가 설치되지 않은 것입니다. [Microsoft .NET Framework 4(웹 설치 관리자)](https://www.microsoft.com/download/details.aspx?id=17851)를 사용하면 컴퓨터에 .Net 4를 다운로드할 수 있습니다.
 
 ### <a name="limits"></a>제한
 
-#### <a name="how-many-drives-can-i-preparesend-at-the-same-time"></a>동시에 준비/전송할 수 있는 드라이브는 몇 개입니까?
+#### <a name="how-many-drives-can-i-preparesend-at-hello-same-time"></a>드라이브 수 수 있습니까 준비/송신 hello에 동시?
 
-도구에서 준비할 수 있는 디스크의 수는 제한되지 않습니다. 그러나 이 도구는 드라이브 문자를 입력으로 사용합니다. 따라서 최대 25개의 디스크를 동시에 준비할 수 있습니다. 단일 작업에서 한 번에 최대 10개의 디스크를 처리할 수 있습니다. 동일한 저장소 계정을 대상으로 하는 10개 이상의 디스크를 준비하는 경우 디스크를 여러 작업에 분산할 수 있습니다.
+Hello 도구 hello 있는 디스크 수에 제한이 없습니다를 준비할 수 있습니다. 그러나 hello 도구에 대 한 입력으로 드라이브 문자 필요 합니다. too25 동시 디스크 준비를 제한 합니다. 단일 작업에서 한 번에 최대 10개의 디스크를 처리할 수 있습니다. 10 개 이상의 디스크를 준비 하는 경우 동일한 저장소 계정 hello 대상으로, 여러 작업 간에 hello 디스크를 배포할 수 있습니다.
 
 #### <a name="can-i-target-more-than-one-storage-account"></a>둘 이상의 저장소 계정을 대상으로 지정할 수 있습니까?
 
@@ -387,33 +387,33 @@ BitLocker에서 TPM을 사용하지 않도록 설정하려면 다음 단계를 �
 
 예. 이 프로세스에서 BitLocker 암호화는 사용할 수 있으며 필요합니다.
 
-#### <a name="what-will-be-the-hierarchy-of-my-data-when-it-appears-in-the-storage-account"></a>내 데이터의 계층 구조가 저장소 계정에 표시되면 어떻게 됩니까?
+#### <a name="what-will-be-hello-hierarchy-of-my-data-when-it-appears-in-hello-storage-account"></a>가 될 작업 내 데이터의 계층 구조가 hello hello 저장소 계정에 표시 되 면?
 
-데이터가 여러 디스크에 분산되어 있지만 저장소 계정에 업로드된 데이터는 데이터 집합 CSV 파일에 지정한 디렉터리 구조로 다시 정리됩니다.
+데이터 디스크에 분산 하지만 hello 업로드 하면 데이터 toohello 저장소 계정이 포함 수렴 형 hello dataset CSV 파일에 지정 된 toohello 디렉터리 구조를 백업 합니다.
 
-#### <a name="how-many-of-the-input-disks-will-have-active-io-in-parallel-when-copy-is-in-progress"></a>복사가 진행 중일 때 활성 IO를 병렬로 갖추게 되는 입력 디스크는 몇 개입니까?
+#### <a name="how-many-of-hello-input-disks-will-have-active-io-in-parallel-when-copy-is-in-progress"></a>Hello 얼마나 많이 복사가 진행 중인 경우 디스크 병렬로 현재 IO는 됩니다 입력?
 
-도구에서는 입력 파일의 크기에 따라 입력 디스크에 데이터를 분산합니다. 즉 병렬로 연결되는 활성 디스크의 수는 입력 데이터의 특성에 따라 다릅니다. 입력 데이터 집합의 개별 파일 크기에 따라 하나 이상의 디스크에 활성 IO가 병렬로 표시될 수 있습니다. 자세한 내용은 다음 질문을 참조하세요.
+hello 도구 hello 입력된 파일의 hello 크기에 따라 hello 입력된 디스크에서 데이터를 배포 합니다. 즉, 동시에 활성 디스크 수가 hello hello 입력된 데이터의 hello 특성에 완전히 delends 합니다. 하나 이상의 디스크 hello 입력된 데이터 집합의 개별 파일의 hello 크기에 따라 동시에 활성 IO를 표시할 수 있습니다. 자세한 내용은 다음 질문을 참조하세요.
 
-#### <a name="how-does-the-tool-distribute-the-files-across-the-disks"></a>도구에서 어떻게 파일을 디스크에 분산합니까?
+#### <a name="how-does-hello-tool-distribute-hello-files-across-hello-disks"></a>어떻게는 hello 도구 hello 파일 여러 디스크에 분산 hello?
 
-WAImportExport 도구는 배치 기준으로 파일을 읽고 쓰며, 배치 하나당 최대 100,000개 파일을 포함할 수 있습니다. 즉 최대 100,000개 파일을 동시에 쓸 수 있습니다. 이러한 100,000개 파일을 여러 드라이브에 분산하는 경우 여러 디스크에 동시에 쓸 수 있습니다. 그러나 도구에서 여러 디스크에 동시에 쓰는지 또는 단일 디스크에 쓰는지의 여부는 배치의 누적 크기에 따라 다릅니다. 예를 들어 파일 크기가 작을 경우 10,0000개 파일을 모두 하나의 드라이브에 맞출 수 있는 경우 도구에서는 이 배치를 처리하는 동안 디스크 하나에만 기록합니다.
+WAImportExport 도구는 배치 기준으로 파일을 읽고 쓰며, 배치 하나당 최대 100,000개 파일을 포함할 수 있습니다. 즉 최대 100,000개 파일을 동시에 쓸 수 있습니다. 여러 디스크 toosimultaneously 100000 이러한 파일이 없으면 distributed toomulti 드라이브 기록 됩니다. 그러나 여부 hello 도구 toomultiple 디스크에 동시에 기록 하거나 단일 디스크 hello hello 일괄 처리의 총 크기에 따라 달라 집니다. 예를 들어, 더 작은 파일의 경우 10,0000 파일 모두에 단일 드라이브가 수 toofit을 작성할 tooonly 하나 디스크가 일괄이 처리의 hello 처리 중입니다.
 
 ### <a name="waimportexport-output"></a>WAImportExport 출력
 
-#### <a name="there-are-two-journal-files-which-one-should-i-upload-to-azure-portal"></a>저널 파일이 2개 있습니다. Azure Portal에는 어느 파일을 업로드해야 합니까?
+#### <a name="there-are-two-journal-files-which-one-should-i-upload-tooazure-portal"></a>어떤 것은 저널 파일이 두 개 tooAzure 포털에 업로드 하나요?
 
-**.xml** - WAImportExport 도구를 사용하여 준비하는 각 하드 드라이브의 경우 이 도구에서 `<DriveID>.xml` 이름의 단일 저널 파일을 만듭니다. 여기서 드라이브 ID는 도구에서 디스크로부터 읽어 들이는 드라이브와 관련된 일련 번호입니다. Azure Portal에서 가져오기 작업을 만들려면 모든 드라이브의 저널 파일이 필요합니다. 도구가 중단되는 경우 이 저널 파일을 사용하여 드라이브 준비를 다시 시작할 수도 있습니다.
+**.xml** -hello WAImportExport 도구를 준비 하는 각 하드 드라이브에 대 한 hello 도구가 단일 저널 파일이 만들어집니다 이름의 `<DriveID>.xml` 도구 hello toohello 드라이브 hello 디스크에서 읽고 여기서 드라이브 Id는 연결 된 hello 일련 번호입니다. Hello Azure 포털에서에서 사용자 드라이브 toocreate hello 가져오기 작업의 모든 hello 저널 파일이 필요 합니다. 이 저널 파일 hello 도구가 중단 되는 경우 사용 되는 tooresume 드라이브 준비 수도 있습니다.
 
-**.jrn** - `.jrn` 접미사가 있는 저널 파일에는 하드 드라이브의 모든 복사 세션에 대한 상태가 포함됩니다. 가져오기 작업을 만드는 데 필요한 정보도 포함됩니다. WAImportExport 도구를 실행할 때 항상 저널 파일과 복사 세션 ID를 지정해야 합니다.
+**.jrn** -접미사와 함께 hello 저널 파일 `.jrn` 하드 드라이브에 대 한 모든 복사 세션에 대 한 hello 상태를 포함 합니다. 또한 필요한 toocreate hello 가져오기 작업 hello 정보를 포함 합니다. 으로 실행 중인 hello WAImportExport 도구는 복사 세션 id입니다. 경우에 항상 저널 파일을 지정 해야
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Azure Import/Export 도구 설정](storage-import-export-tool-setup.md)
-* [가져오기 프로세스 중에 속성 및 메타데이터 설정](storage-import-export-tool-setting-properties-metadata-import.md)
-* [가져오기 작업을 위한 하드 드라이브를 준비하는 샘플 워크플로](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
+* [설정 hello Azure 가져오기/내보내기 도구](storage-import-export-tool-setup.md)
+* [속성 설정 및 hello 중에 메타 데이터 가져오기 프로세스](storage-import-export-tool-setting-properties-metadata-import.md)
+* [샘플 워크플로 tooprepare 가져오기 작업을 위해 하드 드라이브](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
 * [자주 사용 되는 명령에 대한 빠른 참조](storage-import-export-tool-quick-reference.md) 
 * [복사 로그 파일을 사용하여 작업 상태 검토](storage-import-export-tool-reviewing-job-status-v1.md)
 * [가져오기 작업 복구](storage-import-export-tool-repairing-an-import-job-v1.md)
 * [내보내기 작업 복구](storage-import-export-tool-repairing-an-export-job-v1.md)
-* [Azure Import/Export 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)
+* [Hello Azure 가져오기/내보내기 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)

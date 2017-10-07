@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 템플릿을 사용하여 Windows VM 만들기 | Microsoft Docs"
-description: "Resource Manager 템플릿 및 PowerShell을 사용하여 새 Windows VM을 쉽게 만들 수 있습니다."
+title: "Azure에서 서식 파일에서 Windows VM aaaCreate | Microsoft Docs"
+description: "리소스 관리자 템플릿을 사용 하 여 및 PowerShell tooeasily 새로운 Windows VM을 생성 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 07/18/2017
 ms.author: davidmu
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ddab80262fe27c1f5995858ec7de75d7c46df081
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 630111482c7dc046091632e2ed458ac143325d59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-windows-virtual-machine-from-a-resource-manager-template"></a>Resource Manager 템플릿을 사용하여 Windows 가상 컴퓨터 만들기
 
-이 문서에서는 PowerShell을 사용하여 Azure Resource Manager 템플릿을 배포하는 방법을 보여줍니다. 만든 템플릿은 단일 서브넷을 사용하는 새 가상 네트워크에서 Windows Server를 실행하는 단일 가상 컴퓨터를 배포합니다.
+이 문서에서는 Azure 리소스 관리자 toodeploy PowerShell을 사용 하 여 템플릿을 합니다. 만든 hello 템플릿을 단일 서브넷으로 새 가상 네트워크에서 Windows Server를 실행 하는 단일 가상 컴퓨터를 배포 합니다.
 
-가상 컴퓨터 리소스에 대한 자세한 설명은 [Azure Resource Manager 템플릿의 가상 컴퓨터](template-description.md)를 참조하세요. 템플릿에 있는 모든 리소스에 대한 자세한 내용은 [Azure Resource Manager 템플릿 연습](../../azure-resource-manager/resource-manager-template-walkthrough.md)을 참조하세요.
+에 대 한 자세한 설명은 hello 가상 컴퓨터 리소스를 참조 하세요. [가상 컴퓨터는 Azure 리소스 관리자 템플릿](template-description.md)합니다. 서식 파일의 모든 hello 리소스에 대 한 자세한 내용은 참조 [Azure 리소스 관리자 템플릿 연습](../../azure-resource-manager/resource-manager-template-walkthrough.md)합니다.
 
-이 문서의 단계를 수행하려면 약 5분이 걸립니다.
+이 문서의 단계를 toodo hello 5 분 정도 걸리는 합니다.
 
 ## <a name="install-azure-powershell"></a>Azure Powershell 설치
 
-최신 버전의 Azure PowerShell 설치, 구독 선택, 자신의 계정에 로그인하는 방법에 대해서는 [Azure PowerShell 설치 및 구성 방법](../../powershell-install-configure.md)을 참조하세요.
+참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](../../powershell-install-configure.md) hello 최신 버전의 Azure PowerShell을 설치, 구독을 선택 하 고 tooyour 계정에 로그인 하는 방법에 대 한 정보에 대 한 합니다.
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
@@ -44,17 +44,17 @@ ms.lasthandoff: 08/29/2017
     Get-AzureRmLocation | sort DisplayName | Select DisplayName
     ```
 
-2. 선택한 위치에서 리소스 그룹을 만듭니다. 이 예제에서는 **미국 서부** 지역에 **myResourceGroup**이라는 이름의 리소스 그룹을 만드는 과정을 보여 줍니다.
+2. Hello 리소스 그룹을 선택 하는 hello 위치에 만듭니다. 이 예제에는 명명 된 리소스 그룹의 hello 만드는 방법을 보여 줍니다. **myResourceGroup** hello에 **West US** 위치:
 
     ```powershell   
     New-AzureRmResourceGroup -Name "myResourceGroup" -Location "West US"
     ```
 
-## <a name="create-the-files"></a>파일 만들기
+## <a name="create-hello-files"></a>Hello 파일 만들기
 
-이 단계에서는 리소스를 배포하는 템플릿 파일과 템플릿에 매개 변수 값을 제공하는 매개 변수 파일을 만듭니다. 또한 Azure Resource Manager 작업을 수행하는 데 사용되는 권한 부여 파일을 만듭니다.
+이 단계에서는 hello 리소스를 배포 하는 템플릿 파일 및 매개 변수 값 toohello 서식 파일을 제공 하는 매개 변수 파일을 만듭니다. 권한 부여 되는 파일을 사용 하는 tooperform Azure 리소스 관리자 작업을 만들 수도 있습니다.
 
-1. *CreateVMTemplate.json*이라는 파일을 만들고 이 JSON 코드를 추가합니다.
+1. 라는 파일을 만들어 *CreateVMTemplate.json* 이 JSON 코드 tooit 추가:
 
     ```json
     {
@@ -159,7 +159,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-2. *Parameters.json*이라는 파일을 만들고 이 JSON 코드를 추가합니다.
+2. 라는 파일을 만들어 *Parameters.json* 이 JSON 코드 tooit 추가:
 
     ```json
     {
@@ -182,18 +182,18 @@ ms.lasthandoff: 08/29/2017
     New-AzureStorageContainer -Name "templates" -Context $context -Permission Container
     ```
 
-4. 저장소 계정에 파일을 업로드합니다.
+4. Hello, toohello 저장소 계정 파일을 업로드 합니다.
 
     ```powershell
     Set-AzureStorageBlobContent -File "C:\templates\CreateVMTemplate.json" -Context $context -Container "templates"
     Set-AzureStorageBlobContent -File "C:\templates\Parameters.json" -Context $context -Container templates
     ```
 
-    -File 경로를 파일을 저장한 위치로 변경합니다.
+    변경 hello-파일 경로 toohello 위치 hello 파일을 저장 합니다.
 
-## <a name="create-the-resources"></a>리소스 만들기
+## <a name="create-hello-resources"></a>Hello 리소스 만들기
 
-매개 변수를 사용하여 템플릿 배포
+Hello 매개 변수를 사용 하 여 hello 템플릿을 배포 합니다.
 
 ```powershell
 $templatePath = "https://" + $storageName + ".blob.core.windows.net/templates/CreateVMTemplate.json"
@@ -202,10 +202,10 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myResourceGroup" -Name "m
 ```
 
 > [!NOTE]
-> 로컬 파일에서 템플릿 및 매개 변수를 배포할 수도 있습니다. 자세한 내용은 [Azure Storage와 함께 Azure PowerShell 사용](../../storage/common/storage-powershell-guide-full.md)을 참조하세요.
+> 로컬 파일에서 템플릿 및 매개 변수를 배포할 수도 있습니다. toolearn 더 참조 [Azure 저장소와 Azure PowerShell을 사용 하 여](../../storage/common/storage-powershell-guide-full.md)합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-- 배포에 문제가 있는 경우 [Azure Resource Manager를 사용한 일반적인 Azure 배포 오류 해결](../../resource-manager-common-deployment-errors.md)을 살펴봅니다.
-- [Azure PowerShell 모듈을 사용하여 Windows VM 만들기 및 관리](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에서 가상 컴퓨터를 만들고 관리하는 방법을 알아봅니다.
+- 살펴보면 걸리는 hello 배포 문제가 있는 경우 [Azure 리소스 관리자와 일반적인 Azure 배포 오류 문제 해결](../../resource-manager-common-deployment-errors.md)합니다.
+- 자세한 내용은 어떻게 toocreate에 가상 컴퓨터를 관리 하 고 [만들기 hello Azure PowerShell 모듈을 사용 하 여 Windows Vm을 관리 하 고](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
 

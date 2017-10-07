@@ -1,5 +1,5 @@
 ---
-title: "워크플로 작업 및 트리거 - Azure Logic Apps | Microsoft Docs"
+title: "aaaWorkflow 동작 및 트리거-Azure 논리 앱 | Microsoft Docs"
 description: 
 services: logic-apps
 author: MandiOhlinger
@@ -14,25 +14,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/17/2016
 ms.author: LADocs; mandia
-ms.openlocfilehash: bd3f1d225b974ebde889738bb435825658d1e1e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 857927b7d7df3fc9cdc4931ffdb613efde0db9f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="workflow-actions-and-triggers-for-azure-logic-apps"></a>Azure Logic Apps의 워크플로 작업 및 트리거
 
-논리 앱은 트리거와 작업으로 구성됩니다. 트리거에는 여섯 가지 유형이 있습니다. 각 유형마다 서로 다른 인터페이스 및 동작을 포함합니다. [워크플로 정의 언어](logic-apps-workflow-definition-language.md)의 세부 정보를 확인하여 기타 자세한 내용을 알아볼 수도 있습니다.  
+논리 앱은 트리거와 작업으로 구성됩니다. 트리거에는 여섯 가지 유형이 있습니다. 각 유형마다 서로 다른 인터페이스 및 동작을 포함합니다. Hello의 hello 세부 정보를 확인 하 여 다른 세부 정보에 대해 알아볼 수 있습니다 [워크플로 정의 언어](logic-apps-workflow-definition-language.md)합니다.  
   
-트리거 및 작업에 대한 자세한 내용과 이들을 사용하여 논리 앱을 빌드하고 비즈니스 프로세스 및 워크플로를 개선하는 방법에 대해 알아보세요.  
+비즈니스 프로세스와 워크플로 트리거 및 동작 사용 하는 방법으로 toobuild 논리 앱 tooimprove에 대해 자세히 toolearn 계속 읽어 보십시오.  
   
 ### <a name="triggers"></a>트리거  
 
-트리거는 논리 앱 워크플로의 실행을 시작할 수 있는 호출을 지정합니다. 워크플로 실행을 시작하는 두 가지 서로 다른 방법은 다음과 같습니다.  
+트리거 논리 앱 워크플로 실행을 시작할 수 있는 hello 호출을 지정 합니다. Hello 두 가지 방법으로 tooinitiate 워크플로 실행 하는 다음과 같습니다.  
   
 -   폴링 트리거  
 
--   푸시 트리거 - [워크플로 서비스 REST API](https://docs.microsoft.com/rest/api/logic/workflows) 호출  
+-   Hello 호출 하 여 밀어넣기 트리거- [워크플로 서비스 REST API](https://docs.microsoft.com/rest/api/logic/workflows)  
   
 모든 트리거는 다음과 같은 상위 수준 요소를 포함합니다.  
   
@@ -45,8 +45,8 @@ ms.lasthandoff: 07/11/2017
         "interval": "<recurrence interval in units of frequency>"
     },
     "conditions": [ <array-of-required-conditions > ],
-    "splitOn" : "<property to create runs for>",
-    "operationOptions": "<operation options on the trigger>"
+    "splitOn" : "<property toocreate runs for>",
+    "operationOptions": "<operation options on hello trigger>"
 }
 ```
 
@@ -54,22 +54,22 @@ ms.lasthandoff: 07/11/2017
 
 다음과 같은 트리거 유형을 사용할 수 있습니다.
   
--   **Request** \- 논리 앱을 사용자가 호출할 끝점으로 만듭니다.  
+-   **요청** \- toocall 있습니다에 대 한 끝점 hello 논리 앱을 사용 하면  
   
 -   **Recurrence** \- 정의된 일정에 따라 실행합니다.  
   
--   **HTTP** \- HTTP 웹 끝점을 폴링합니다. HTTP 끝점은 202\-비동기 패턴을 사용하거나 배열을 반환하여 \- 특정 트리거링 계약을 준수해야 합니다.  
+-   **HTTP** \- HTTP 웹 끝점을 폴링합니다. hello HTTP 끝점 tooa 특정 트리거 계약을 준수 해야 \- 202를 사용 하 여\-비동기 패턴 또는 배열을 반환 하 여  
   
--   **ApiConnection** \- HTTP 트리거처럼 폴링하지만 [Microsoft 관리 API](https://docs.microsoft.com/azure/connectors/apis-list)를 활용합니다.  
+-   **그러나 ApiConnection** \- 설문 hello HTTP와 같은 트리거, 이용할 hello [Microsoft 관리 Api](https://docs.microsoft.com/azure/connectors/apis-list)  
   
--   **HTTPWebhook** \- 수동 트리거처럼 끝점을 열지만 지정된 URL을 호출하여 등록 및 등록 취소도 가능합니다.  
+-   **그러나 HTTPWebhook** \- 끝점의 경우 유사한 toohello 수동 트리거가 호출 tooa 아웃 URL tooregister 지정 및 등록 취소  
   
--   **ApiConnectionWebhook** \- Microsoft 관리 API를 활용하여 HTTPWebhook 트리거처럼 작동합니다.       
+-   **ApiConnectionWebhook** \- HTTPWebhook 트리거 hello Microsoft 관리 Api 활용 하 여 hello 처럼 작동 합니다.       
     각 트리거 형식은 해당 동작을 정의하는 서로 다른 **입력** 집합을 포함합니다.  
   
 ## <a name="request-trigger"></a>요청 트리거  
 
-이 트리거는 논리 앱을 호출하는 HTTP 요청을 통해 호출하는 끝점으로 사용됩니다. 요청 트리거는 다음 예제와 같이 표시됩니다.  
+이 트리거 논리 앱을 통해 HTTP 요청 tooinvoke 호출 하는 끝점으로 사용 됩니다. 요청 트리거는 다음 예제와 같이 표시됩니다.  
   
 ```json
 "<name-of-the-trigger>" : {
@@ -92,9 +92,9 @@ ms.lasthandoff: 07/11/2017
   
 |요소 이름|필수|설명|  
 |----------------|------------|---------------|  
-|schema|아니요|들어오는 요청의 유효성을 검사하는 JSON 스키마입니다. 후속 워크플로 단계에서 참조할 속성을 파악하는 데 유용합니다.|
+|schema|아니요|Hello 들어오는 요청을 확인 하는 JSON 스키마입니다. 이후 워크플로 단계 알고 있는 속성 tooreference 수 있도록 지 원하는 데 유용 합니다.|
 
-이 끝점을 호출하려면 *listCallbackUrl* API를 호출해야 합니다. [워크플로 서비스 REST API](https://docs.microsoft.com/rest/api/logic/workflows)를 참조하세요.  
+tooinvoke이이 끝점 toocall hello 해야 *listCallbackUrl* API입니다. [워크플로 서비스 REST API](https://docs.microsoft.com/rest/api/logic/workflows)를 참조하세요.  
   
 ## <a name="recurrence-trigger"></a>되풀이 트리거  
 
@@ -110,16 +110,16 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-보시는 바와 같이 워크플로를 실행하는 간단한 방법입니다.  
+볼 수 있듯이 간단한 방법을 toorun 워크플로 됩니다.  
   
 |요소 이름|필수|설명|  
 |----------------|------------|---------------|  
-|frequency|예|트리거가 실행되는 빈도입니다. second, minute, hour, day, week, month 또는 year 중에 하나만 사용할 수 있습니다.|  
-|interval|예|되풀이에 대해 지정된 빈도 간격|  
+|frequency|예|얼마나 자주 hello 트리거 실행 됩니다. second, minute, hour, day, week, month 또는 year 중에 하나만 사용할 수 있습니다.|  
+|interval|예|Hello 되풀이 빈도 지정 하는 hello의 간격|  
 |startTime|아니요|UTC 오프셋 없이 startTime이 제공될 경우 이 timeZone이 사용됩니다.|  
 |timeZone|no|UTC 오프셋 없이 startTime이 제공될 경우 이 timeZone이 사용됩니다.|  
   
-미래의 특정 시점에 실행을 시작하도록 트리거를 예약할 수도 있습니다. 예를 들어 매주 월요일마다 보고서를 시작하려면 다음 트리거를 만들어 월요일마다 시작하도록 논리 앱을 예약할 수 있습니다.  
+특정 시점 이후 hello에서 트리거 toostart 실행을 예약할 수 있습니다. 예를 들어 toostart 주 단위 매주 월요일을 보고 하려는 경우 예약할 수 있습니다 hello 논리 앱 toostart 매주 월요일 hello 다음 트리거를 만들어:  
 
 ```json
 "dailyReport" : {
@@ -134,46 +134,46 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="http-trigger"></a>HTTP 트리거  
 
-HTTP 트리거는 지정된 끝점을 폴링하고 응답을 확인하여 워크플로를 실행할지 여부를 결정합니다. 입력 개체는 HTTP 호출을 구성하는 데 필요한 매개 변수 집합을 사용합니다.  
+HTTP 트리거 폴링을 지정 된 끝점 및 hello 응답 toodetermine를 hello 워크플로 실행 해야 하는지 여부를 확인 합니다. 필요한 tooconstruct HTTP 호출을 매개 변수는 hello 집합을 사용 하는 hello 입력 개체:  
   
 |요소 이름|필수|설명|형식|  
 |----------------|------------|---------------|--------|  
-|메서드|yes|다음 HTTP 메서드 중 하나일 수 있습니다. GET, POST, PUT, DELETE, PATCH 또는 HEAD|문자열|  
-|uri|yes|호출된 http 또는 https 끝점입니다. 최대 2킬로바이트입니다.|string|  
-|쿼리|아니요|URL에 추가할 쿼리 매개 변수를 나타내는 개체입니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }`은 URL에 `?api-version=2015-02-01`을 추가합니다.|Object|  
-|headers|아니요|요청에 전송된 각 헤더를 나타내는 개체입니다. 예를 들어 요청에 언어 및 형식을 설정하려면 다음과 같이 합니다. `"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|Object|  
-|body|아니요|끝점에 전송된 페이로드를 나타내는 개체입니다.|Object|  
-|retryPolicy|아니요|4xx 또는 5xx 오류에 대한 재시도 동작을 사용자 지정할 수 있는 개체입니다.|Object|  
-|authentication|아니요|요청을 인증해야 하는 메서드를 나타냅니다. 이 개체에 대한 자세한 내용은 [스케줄러 아웃바운드 인증](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)을 참조하세요. 스케줄러 이외에도 지원되는 속성이 하나 더 있습니다. `authority` 기본적으로 이 값은 지정되지 않은 경우 `https://login.windows.net`이지만 `https://login.windows\-ppe.net`과 같이 다른 대상 그룹을 사용할 수 있습니다.|Object|  
+|메서드|yes|Hello HTTP 메서드를 다음 중 하나일 수 있습니다: GET, POST, PUT, DELETE, 패치 또는 H e a d|문자열|  
+|uri|yes|hello http 또는 https 끝점을 호출 합니다. 최대 2킬로바이트입니다.|string|  
+|쿼리|아니요|Hello 쿼리 매개 변수 tooadd toohello URL을 나타내는 개체입니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }` 추가 `?api-version=2015-02-01` toohello URL입니다.|Object|  
+|headers|아니요|각각의 toohello 요청이 발송 되 hello 머리글을 나타내는 개체입니다. 예를 들어 tooset hello 언어 및 요청에는 형식:`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|Object|  
+|body|아니요|Toohello 끝점으로 전송 되는 hello 페이로드를 나타내는 개체입니다.|Object|  
+|retryPolicy|아니요|4xx 또는 5xx 오류에 대 한 hello 다시 시도 동작을 사용자 지정할 수 있는 개체입니다.|Object|  
+|authentication|아니요|요청 hello 나타냅니다 hello 메서드를 인증 해야 합니다. 이 개체에 대한 자세한 내용은 [스케줄러 아웃바운드 인증](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)을 참조하세요. 스케줄러 이외에도 지원되는 속성이 하나 더 있습니다. `authority` 기본적으로 이 값은 지정되지 않은 경우 `https://login.windows.net`이지만 `https://login.windows\-ppe.net`과 같이 다른 대상 그룹을 사용할 수 있습니다.|Object|  
   
-HTTP 트리거가 논리 앱과 잘 작동하도록 하려면 특정 패턴을 따르는 HTTP API가 필요합니다. 다음 필드가 필요합니다.  
+hello HTTP 트리거 논리 앱 함께 특정 패턴 toowork와 hello HTTP API tooconform이 필요합니다. 다음 필드는 hello 필요:  
   
 |응답|설명|  
 |------------|---------------|  
-|상태 코드|상태 코드 200 \(OK\)이면 실행이 진행됩니다. 다른 상태 코드이면 실행이 진행되지 않습니다.|  
-|Retry\-after 헤더|논리 앱이 끝점을 다시 폴링할 때까지 시간(초) 수입니다.|  
-|위치 헤더|다음 폴링 간격에서 호출할 URL입니다. 지정하지 않으면 원래 URL이 사용됩니다.|  
+|상태 코드|상태 코드 200 \(확인\) toocause 실행 합니다. 다른 상태 코드이면 실행이 진행되지 않습니다.|  
+|Retry\-after 헤더|Hello 논리 앱 hello 끝점을 다시 폴링하여 될 때까지 초 수입니다.|  
+|위치 헤더|hello 다음 폴링 간격에 대 한 hello URL toocall 합니다. 지정 하지 않으면 hello 원래 URL이 사용 됩니다.|  
   
 다양한 요청 유형의 다양한 동작에 대한 예는 다음과 같습니다.  
   
 |응답 코드|Retry\-After|동작|  
 |-----------------|----------------|------------|  
-|200|\(없음\)|유효한 트리거가 아니므로 Retry\-After가 필요하나, 없는 경우 엔진에서 다음 요청을 폴링하지 않습니다.|  
-|202|60|워크플로를 트리거하지 않습니다. 1분 후 다음 시도가 발생합니다.|  
-|200|10|워크플로를 실행하고 10초 후 더 많은 내용에 대해 다시 확인합니다.|  
-|400|\(없음\)|잘못된 요청이며 워크플로를 실행하지 않습니다. **다시 시도 정책**이 정의되지 않으면 기본 정책이 사용됩니다. 다시 시도 횟수에 도달하면 트리거가 더 이상 유효하지 않습니다.|  
-|500|\(없음\)|서버 오류이며 워크플로를 실행하지 않습니다.  **다시 시도 정책**이 정의되지 않으면 기본 정책이 사용됩니다. 다시 시도 횟수에 도달하면 트리거가 더 이상 유효하지 않습니다.|  
+|200|\(없음\)|하지 유효한 트리거를 다시 시도\-필수 또는 다른 hello 엔진을는 후 hello 다음 요청에 대 한 폴링 되지 않습니다.|  
+|202|60|Hello 워크플로 트리거하지 않습니다. hello 다음 시도가 1 분 후에 발생합니다.|  
+|200|10|Hello 워크플로 실행 하 고 10 초 후에 더 많은 콘텐츠 다시 확인 합니다.|  
+|400|\(없음\)|잘못 된 요청 hello 워크플로 실행 하지 마십시오. 없는 경우 없는 **을 다시 시도 정책** 정의 hello 기본 정책이 사용 됩니다. Hello 재시도 횟수에 도달 하면 hello 트리거를 더 이상 사용할 합니다.|  
+|500|\(없음\)|서버 오류를 hello 워크플로 실행 하지 마십시오입니다.  없는 경우 없는 **을 다시 시도 정책** 정의 hello 기본 정책이 사용 됩니다. Hello 재시도 횟수에 도달 하면 hello 트리거를 더 이상 사용할 합니다.|  
   
-HTTP 트리거의 출력은 다음 예제와 같습니다.  
+hello 출력의 HTTP 트리거는이 예제와 같습니다.  
   
 |요소 이름|설명|형식|  
 |----------------|---------------|--------|  
-|headers|http 응답의 헤더입니다.|Object|  
-|body|http 응답의 본문입니다.|Object|  
+|headers|hello http 응답의 hello 헤더입니다.|Object|  
+|body|hello http 응답의 hello 본문입니다.|Object|  
   
 ## <a name="api-connection-trigger"></a>API 연결 트리거  
 
-API 연결 트리거는 기본 기능에서 HTTP 트리거와 유사합니다. 하지만 작업을 식별하는 매개 변수는 다릅니다. 다음은 예제입니다.  
+hello API 연결 트리거는 기본 기능에 비슷한 toohello HTTP 트리거입니다. 그러나 hello 동작을 식별 하는 것에 대 한 hello 매개 변수는 다릅니다. 다음은 예제입니다.  
   
 ```json
 "dailyReport" : {
@@ -197,31 +197,31 @@ API 연결 트리거는 기본 기능에서 HTTP 트리거와 유사합니다. �
 
 |요소 이름|필수|형식|설명|  
 |----------------|------------|--------|---------------|  
-|host|예||ApiApp 호스트된 게이트웨이 및 ID입니다.|  
-|메서드|예|String|다음 HTTP 메서드 중 하나일 수 있습니다. **GET**, **POST**, **PUT**, **DELETE**, **PATCH** 또는 **HEAD**|  
-|쿼리|아니요|Object|URL에 추가할 쿼리 매개 변수를 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }`은 URL에 `?api-version=2015-02-01`을 추가합니다.|  
-|headers|아니요|Object|요청에 전송된 각 헤더를 나타냅니다. 예를 들어 요청에 언어 및 형식을 설정하려면 다음과 같이 합니다. `"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|아니요|Object|끝점에 전송된 페이로드를 나타냅니다.|  
-|retryPolicy|아니요|Object|4xx 또는 5xx 오류에 대한 재시도 동작을 사용자 지정할 수 있습니다.|  
-|authentication|아니요|Object|요청을 인증해야 하는 메서드를 나타냅니다. 이 개체에 대한 자세한 내용은 [스케줄러 아웃바운드 인증](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)을 참조하세요.|  
+|host|예||hello ApiApp 호스팅되는 게이트웨이 및 id입니다.|  
+|메서드|예|문자열|Hello HTTP 메서드를 다음 중 하나일 수 있습니다: **가져오기**, **POST**, **배치**, **삭제**, **패치**, 또는  **H E A D**|  
+|쿼리|아니요|Object|나타냅니다 hello 쿼리 매개 변수 toobe toohello URL을 추가 합니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }` 추가 `?api-version=2015-02-01` toohello URL입니다.|  
+|headers|아니요|Object|각각의 toohello 요청이 발송 되 hello 머리글을 나타냅니다. 예를 들어 tooset hello 언어 및 요청에는 형식:`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|아니요|Object|Toohello 끝점으로 전송 되는 hello 페이로드를 나타냅니다.|  
+|retryPolicy|아니요|Object|4xx 또는 5xx 오류 toocustomize hello 다시 시도 동작이 있습니다.|  
+|인증|아니요|Object|요청 hello 나타냅니다 hello 메서드를 인증 해야 합니다. 이 개체에 대한 자세한 내용은 [스케줄러 아웃바운드 인증](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)을 참조하세요.|  
   
-호스트 속성은 다음과 같습니다.  
+호스트에 대 한 hello 속성은 같습니다.  
   
 |요소 이름|필수|설명|  
 |----------------|------------|---------------|  
-|api runtimeUrl|예|관리 API의 끝점입니다.|  
-|connection name||`$connection`이라는 매개 변수에 대한 참조여야 하며 워크플로에서 사용하는 관리 API 연결의 이름입니다.|
+|api runtimeUrl|예|관리 되는 API의 hello hello 끝점입니다.|  
+|connection name||참조 tooa 매개 변수를 호출 해야 `$connection` hello 워크플로 사용 하 여 관리 하는 hello API 연결의 hello 이름입니다.|
   
-API 연결 트리거의 출력은 다음과 같습니다.
+API 연결 트리거의 hello 출력 됩니다.
   
 |요소 이름|형식|설명|  
 |----------------|--------|---------------|  
-|headers|Object|http 응답의 헤더입니다.|  
-|body|Object|http 응답의 본문입니다.|  
+|headers|Object|hello http 응답의 hello 헤더입니다.|  
+|body|Object|hello http 응답의 hello 본문입니다.|  
   
 ## <a name="httpwebhook-trigger"></a>HTTPWebhook 트리거  
 
-HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 URL을 호출하여 등록 및 등록 취소도 가능합니다. HTTPWebhook 트리거의 예는 다음과 같습니다.  
+hello HTTPWebhook 트리거는 끝점, 비슷한 toohello 수동 트리거 있지만 hello HTTPWebhook 트리거 tooa 아웃 계획도 URL tooregister 지정 열리고 등록을 취소 합니다. HTTPWebhook 트리거의 예는 다음과 같습니다.  
 
 ```json
 "myappspottrigger": {
@@ -254,41 +254,41 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
     }
 ```
 
-대부분의 섹션은 선택 사항이며 웹후크의 동작은 어떤 섹션이 제공 또는 생략되었는지에 따라 달라집니다.  
-웹후크의 속성은 다음과 같습니다.  
+이 섹션에서는 다양 한 사항이 며 hello Webhook의 hello 동작 섹션을 제공 하거나 생략 됩니다에 따라 달라 집니다.  
+Webhook의 hello 속성은 다음과 같습니다.  
   
 |요소 이름|필수|설명|  
 |----------------|------------|---------------|  
-|subscribe|아니요|트리거가 만들어지고 초기 등록을 수행할 때 호출되는 나가는 요청입니다.|  
-|unsubscribe|아니요|트리거가 삭제될 때 나가는 요청입니다.|  
+|subscribe|아니요|나가는 요청 hello 트리거가 만들어집니다 및 hello 초기 등록을 수행할 때 호출 되는 번호입니다.|  
+|unsubscribe|아니요|hello hello 트리거를 삭제 요청을 송신 합니다.|  
   
--   **Subscribe**은 이벤트 수신 대기를 시작하기 위해 수행되는 나가는 호출입니다. 이 호출은 일반 HTTP 작업에서 수행할 때와 동일한 매개 변수 집합으로 시작됩니다. 이 나가는 호출은 예를 들어 자격 증명이 롤링되거나 트리거의 입력 매개 변수가 변경될 때마다 등 워크플로가 어떤 식으로든 변경될 때 언제든지 이루어집니다.
+-   **구독** hello toostart 수신 tooevents가 변경한 호출 나갑니다. 이 호출이 동일한 일반 HTTP 작업 hello 매개 변수 집합이 않습니다 hello로 시작 합니다. 나가는 호출이 만들어진 모든 시간 hello 어떤 방식으로든에서 워크플로 변경 내용을, 예를 들어 때마다 hello 자격 증명을 전달 하는, 또는 hello 트리거의 입력 매개 변수 변경 합니다.
   
-    이 호출을 지원하기 위해 `@listCallbackUrl()`이라는 새로운 함수가 제공됩니다. 이 함수는 이 워크플로에서 특정 트리거에 대해 고유한 URL을 반환합니다. 서비스 REST를 사용하는 끝점에 대한 고유한 식별자를 나타냅니다.  
+    toosupport 호출이 새 함수가: `@listCallbackUrl()`합니다. 이 함수는 이 워크플로에서 특정 트리거에 대해 고유한 URL을 반환합니다. Hello hello 서비스 REST를 사용 하는 hello 끝점에 대 한 고유 식별자를 나타냅니다.  
   
 -   **Unsubscribe**는 다음과 같이 작업에서 이 트리거를 무효화하도록 렌더링할 때 호출됩니다.  
   
-    -   트리거 삭제 또는 비활성화  
+    -   삭제 또는 hello 트리거 비활성화  
   
-    -   워크플로 삭제 또는 비활성화  
+    -   삭제 또는 hello 워크플로 사용 하지 않도록 설정  
   
-    -   구독 삭제 또는 비활성화  
+    -   삭제 하거나 hello 구독 해제 합니다.  
   
-    논리 앱에서 구독 취소(unsubscribe) 작업을 자동으로 호출합니다. 이 함수에 대한 매개 변수는 HTTP 트리거와 같습니다.  
+    hello를 자동으로 호출 하는 hello 논리 앱 작업 구독을 취소 합니다. hello 매개 변수 toothis 함수는 hello HTTP 트리거로 hello 동일 합니다.  
   
-    HTTPWebhook 트리거에 대한 출력은 들어오는 요청의 콘텐츠입니다.  
+    hello hello HTTPWebhook 트리거의 출력은 hello 들어오는 요청의 hello 내용을:  
   
 |요소 이름|형식|설명|  
 |-----------------|--------|---------------|  
-|headers|Object|http 요청의 헤더입니다.|  
-|body|Object|http 요청의 본문입니다.|  
+|headers|Object|hello http 요청의 hello 헤더입니다.|  
+|body|Object|hello hello http 요청 본문입니다.|  
 
-[HTTP 비동기 제한](#asynchronous-limits)과 동일한 방식으로 웹후크 작업에 대한 제한을 지정할 수 있습니다.
+Hello webhook 작업에 대 한 제한을 지정할 수와 동일 하 게 [HTTP 비동기 제한](#asynchronous-limits)합니다.
   
 
 ## <a name="conditions"></a>조건  
 
-모든 트리거에 대해 하나 이상의 조건을 사용하여 워크플로의 실행 여부를 결정할 수 있습니다. 예:  
+모든 트리거 여부 hello 워크플로 실행 해야 하는지 여부를 하나 이상의 조건 toodetermine를 사용할 수 있습니다. 예:  
 
 ```json
 "dailyReport" : {
@@ -303,7 +303,7 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 }
 ```
 
-이 경우 워크플로의 `sendReports` 매개 변수가 true로 설정된 동안만 보고서가 트리거됩니다. 마지막으로 조건에서 트리거의 상태 코드를 참조할 수 있습니다. 예를 들어 다음과 같이 웹 사이트에서 상태 코드 500을 반환하는 경우에만 워크플로를 시작할 수 있습니다.
+이 경우 hello 워크플로 하는 동안 보고서만 트리거 hello `sendReports` 매개 변수가 tootrue 설정 됩니다. 마지막으로, 조건이 hello 트리거의 hello 상태 코드를 참조할 수 있습니다. 예를 들어 다음과 같이 웹 사이트에서 상태 코드 500을 반환하는 경우에만 워크플로를 시작할 수 있습니다.
   
 ```  
 "conditions": [  
@@ -314,13 +314,13 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 ```  
   
 > [!NOTE]  
-> 식에서 트리거의 상태 코드를 참조하는 경우\(어떤 식으로든\) 기본 동작\(200 \(OK\)에서만 트리거됨\)이 바뀝니다. 예를 들어 상태 코드 200 및 상태 코드 201 모두에서 트리거하려면 조건으로 `@or(equals(triggers().code, 200),equals(triggers().code,201))`을 포함해야 합니다.  
+> 모든 식 hello 트리거의 hello 상태 코드를 참조 하는 경우 \(어떤 방식으로든에서\), 기본 동작을 hello \(200에 대해서만 트리거 \(확인\) \) 대체 됩니다. 예를 들어, 상태 코드 200와 상태 코드 201 tootrigger 원하는 있으면 tooinclude: `@or(equals(triggers().code, 200),equals(triggers().code,201))` 조건으로 합니다.  
   
 ## <a name="start-multiple-runs-for-a-request"></a>요청에 대해 여러 실행 시작
 
-단일 요청에 대해 여러 실행을 시작하려면 `splitOn`이 유용합니다. 예를 들어 폴링 간격 중에 새 항목을 여러 개 포함할 수 있는 끝점을 폴링하려는 경우를 들 수 있습니다.
+단일 요청에 대 한 여러 실행 오프 tookick `splitOn` 유용, 예를 들어 toopoll 폴링 간격 사이 여러 새 항목을 가질 수 있는 끝점을 사용 하려는 경우.
   
-`splitOn`에는 트리거 실행을 시작하는 데 각 항목을 사용할 항목 배열을 포함하는 응답 페이로드 내에 속성을 지정합니다. 예를 들어 다음 응답을 반환하는 API가 있다고 가정해 보겠습니다.  
+와 `splitOn`, 원하는 각 항목의 hello 배열이 포함 된 hello 응답 페이로드 내 hello 속성 지정 toouse toostart hello 트리거를 실행 하는 합니다. 예를 들어 hello 다음 응답을 반환 하는 API가 있는 같이 가정해 봅니다.  
   
 ```json
 {
@@ -338,7 +338,7 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 }
 ```
   
-논리 앱에는 Rows 콘텐츠만 필요하므로 다음 예제처럼 트리거를 구성할 수 있습니다.  
+논리 앱 하기만 hello 행 콘텐츠이 예제에서와 같이 트리거가 작성할 수 있습니다.  
   
 ```json
 "mysplitter" : {
@@ -355,7 +355,7 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 }
 ```
   
-그러면 워크플로 정의에서 `@triggerBody().name`이 첫 번째 실행에 대해 `mycoolrow`를 반환하고 두 번째 실행에 대해 `another row`를 반환합니다. 트리거 출력은 다음 예제와 같이 표시됩니다.  
+그런 다음, hello 워크플로 정의 `@triggerBody().name` 반환 `mycoolrow` 를 처음 실행 하는 hello에 대 한 및 `another row` hello 두 번째 실행에 대 한 합니다. 이 예제에서와 같이 hello 트리거 출력 보기:  
   
 ```json
 {
@@ -366,16 +366,16 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 }
 ```
 
-따라서 `SplitOn`을 사용하는 경우 배열 외부의 속성(이 경우 `Status` 필드)을 가져올 수 없습니다.  
+사용 하는 경우에 따라서 `SplitOn`, 외부에 있는 hello 배열에이 예에서 hello hello 속성을 가져올 수 없는 `Status` 필드입니다.  
   
 > [!NOTE]  
-> 이 예에서는 `?` 연산자를 사용하여 `Rows` 속성이 없는 경우 오류를 방지할 수 있습니다. 
+> 이 예제에서는 사용 하 여 hello `?` 연산자 toobe 수 tooavoid 문제일 경우 hello `Rows` 속성 나타나지 않습니다. 
   
 ## <a name="single-run-instance"></a>단일 실행 인스턴스
 
-모든 활성 실행이 완료된 경우에만 실행할 되풀이 속성이 있는 트리거를 구성할 수 있습니다. 진행 중인 실행이 있는 동안 예약된 되풀이가 발생하면 트리거는 이를 건너뛰고 다음 예정된 되풀이 간격까지 기다렸다가 다시 확인합니다.
+되풀이 속성 tooonly 화재 되어 모든 활성 실행 완료 하는 경우 트리거를 구성할 수 있습니다. 예약 된 되풀이 되는 경우 진행 중인 실행 중이면 hello 트리거를 건너뛰어 hello 다음 예약 된 되풀이 간격 toocheck 다시 될 때까지 대기 합니다.
 
-작업 옵션을 통해 이 설정을 구성할 수 있습니다.
+Hello 작업 옵션을 통해이 설정을 구성할 수 있습니다.
 
 ```json
 "triggers": {
@@ -396,9 +396,9 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 
 -   **HTTP** 이 작업은 HTTP 웹 끝점을 호출합니다.  
   
--   **ApiConnection** \- HTTP 작업처럼 동작하지만 Microsoft 관리 API를 사용합니다.  
+-   **ApiConnection** \- HTTP 동작 hello와 비슷하게 동작 하는이 작업 이지만 사용 하 여 hello Microsoft에서 관리 하는 Api입니다.  
   
--   **ApiConnectionWebhook** \- HTTPWebhook와 유사하지만 Microsoft 관리 API를 사용합니다.  
+-   **ApiConnectionWebhook** \- 같은 HTTPWebhook 하지만 사용 하 여 hello Microsoft 관리 Api입니다.  
   
 -   **Response** \- 들어오는 호출에 대한 응답을 정의합니다.  
   
@@ -412,30 +412,30 @@ HTTPWebhook 트리거는 수동 트리거처럼 끝점을 열지만 지정된 UR
 
 -   **Scope** \- 다른 작업의 논리적 그룹화입니다.
 
--   **Condition** \- 식을 평가하고 해당하는 결과 분기를 실행합니다.
+-   **조건** \- 이 식을 계산 하는 작업과 hello 해당 결과 분기를 실행 합니다.
 
 -   **ForEach** \- 이 루프 작업은 배열을 반복하고 각 항목에 대해 내부 작업을 수행합니다.
 
--   **Until** \- 이 루프 작업은 조건 결과가 true일 때까지 내부 작업을 실행합니다.
+-   **될 때까지** \- 조건 결과 tootrue 될 때까지이 반복 작업 내부 작업을 실행 합니다.
   
 각 작업 형식은 작업의 동작을 정의하는 서로 다른 **입력** 집합을 포함합니다.  
   
 ## <a name="http-action"></a>HTTP 동작  
 
-HTTP 작업은 지정된 끝점을 호출하고 응답을 확인하여 워크플로를 실행할지 여부를 결정합니다. **입력** 개체는 HTTP 호출을 구성하는 데 필요한 매개 변수 집합을 사용합니다.  
+지정 된 끝점을 호출 하 고 hello 워크플로 실행 해야 하는지 여부를 hello 응답 toodetermine를 확인 하는 HTTP 작업 합니다. hello **입력** 필요한 tooconstruct hello HTTP 호출 매개 변수는 hello 집합을 사용 하는 개체:  
   
 |요소 이름|필수|형식|설명|  
 |----------------|------------|--------|---------------|  
-|메서드|예|String|다음 HTTP 메서드 중 하나일 수 있습니다. **GET**, **POST**, **PUT**, **DELETE**, **PATCH** 또는 **HEAD**|  
-|uri|예|String|호출된 http 또는 https 끝점입니다. 최대 길이는 2킬로바이트입니다.|  
-|쿼리|아니요|Object|URL에 추가할 쿼리 매개 변수를 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }`은 URL에 `?api-version=2015-02-01`을 추가합니다.|  
-|headers|아니요|Object|요청에 전송된 각 헤더를 나타냅니다. 예를 들어 요청에 언어 및 형식을 설정하려면 다음과 같이 합니다. `"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|아니요|Object|끝점에 전송된 페이로드를 나타냅니다.|  
-|retryPolicy|아니요|Object|4xx 또는 5xx 오류에 대한 재시도 동작을 사용자 지정할 수 있습니다.|  
-|operationsOptions|아니요|string|재정의할 특정 동작 집합을 정의합니다.|  
-|authentication|아니요|Object|요청을 인증해야 하는 메서드를 나타냅니다. 이 개체에 대한 자세한 내용은 [스케줄러 아웃바운드 인증](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)을 참조하세요. 스케줄러 이외에도 지원되는 속성이 하나 더 있습니다. `authority` 기본적으로 지정되지 않은 경우 `https://login.windows.net`이지만 `https://login.windows\-ppe.net`과 같이 다른 대상 그룹을 사용할 수 있습니다.|  
+|메서드|예|문자열|Hello HTTP 메서드를 다음 중 하나일 수 있습니다: **가져오기**, **POST**, **배치**, **삭제**, **패치**, 또는  **H E A D**|  
+|uri|예|문자열|hello http 또는 https 끝점을 호출 합니다. 최대 길이는 2킬로바이트입니다.|  
+|쿼리|아니요|Object|Hello 쿼리 매개 변수 tooadd toohello URL을 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }` 추가 `?api-version=2015-02-01` toohello URL입니다.|  
+|headers|아니요|Object|각각의 toohello 요청이 발송 되 hello 머리글을 나타냅니다. 예를 들어 tooset hello 언어 및 요청에는 형식:`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|아니요|Object|Toohello 끝점으로 전송 되는 hello 페이로드를 나타냅니다.|  
+|retryPolicy|아니요|Object|4xx 또는 5xx 오류에 대 한 hello 다시 시도 동작을 사용자 지정할 수 있습니다.|  
+|operationsOptions|아니요|문자열|특별 한 동작 toooverride hello 집합을 정의합니다.|  
+|인증|아니요|Object|요청 hello 나타냅니다 hello 메서드를 인증 해야 합니다. 이 개체에 대한 자세한 내용은 [스케줄러 아웃바운드 인증](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)을 참조하세요. 스케줄러 이외에도 지원되는 속성이 하나 더 있습니다. `authority` 기본적으로 지정되지 않은 경우 `https://login.windows.net`이지만 `https://login.windows\-ppe.net`과 같이 다른 대상 그룹을 사용할 수 있습니다.|  
   
-HTTP 작업 \(및 API 연결\) 작업은 다시 시도 정책을 지원합니다. 다시 시도 정책은 모든 연결 예외 외에도 HTTP 상태 코드 408, 429 및 5xx로 지정되는 일시적인 오류에 적용됩니다. 이 정책은 여기에 표시된 대로 정의된 *retryPolicy* 개체를 사용하여 설명합니다.
+HTTP 작업 \(및 API 연결\) 작업은 다시 시도 정책을 지원합니다. 다시 시도 정책은 toointermittent 오류, HTTP 상태에 대 한 규정 적용 408, 429, 및 추가 tooany 연결 예외가 5xx 코드로 작성 합니다. 이 정책은 hello를 사용 하 여 설명 *retryPolicy* 다음과 같이 정의 된 개체:
   
 ```json
 "retryPolicy" : {
@@ -445,9 +445,9 @@ HTTP 작업 \(및 API 연결\) 작업은 다시 시도 정책을 지원합니다
 }
 ```
   
-재시도 간격은 ISO 8601 형식으로 지정됩니다. 이 간격에는 기본값이 있으며 최소값은 20초인 반면 최대값은 1시간입니다. 기본값 및 최대 재시도 횟수는 4시간입니다. 다시 시도 정책 정의가 지정되지 않은 경우 기본 재시도 횟수 및 간격 값으로 `fixed` 전략이 사용됩니다. 다시 시도 정책을 사용하지 않도록 설정하려면 해당 형식을 `None`으로 설정합니다.  
+hello 다시 시도 간격 hello ISO 8601 형식으로 지정 됩니다. Hello 최 댓 값은 1 시간 동안이 간격에 기본값 및 최소값 20 초 있습니다. hello 기본 및 최대 재시도 수는 4 시간입니다. Hello 재시도 정책 정의 지정 하지 않은 경우는 `fixed` 전략이 기본 다시 시도 횟수 및 간격 값으로 사용 합니다. toodisable hello 재시도 정책을 설정 타입이 너무`None`합니다.  
   
-예를 들어 다음 작업은 일시적인 오류가 있는 경우 최신 뉴스 가져오기를 두 번 다시 시도하는 데 각 시도 사이에 30초 지연을 포함하여 총 3번 실행합니다.  
+예를 들어 hello 다음 작업을 다시 시도 반입 hello 최신 뉴스를 두 번 시도 사이의 30 초의 지연 시간에 세 개의 실행 환경에서는 총 일시적인 오류가 발생 하는 경우:  
   
 ```json
 "latestNews" : {
@@ -465,9 +465,9 @@ HTTP 작업 \(및 API 연결\) 작업은 다시 시도 정책을 지원합니다
 ```
 ### <a name="asynchronous-patterns"></a>비동기 패턴
 
-기본적으로 모든 HTTP 기반 작업은 표준 비동기 작업 패턴을 지원합니다. 따라서 원격 서버가 202 \(허용됨\) 응답으로 처리를 위해 요청을 수락했다는 것을 나타내면 Logic Apps 엔진은 터미널 상태가 \(비\-202 응답\)에 도달할 때까지 응답의 위치 헤더에 지정된 URL의 폴링을 유지합니다.  
+기본적으로 모든 HTTP 기반 동작 hello 표준 비동기 작업 패턴을 지원 합니다. Hello 원격 서버 hello 요청을 나타내는 경우 202 사용 하 여 처리에 대 한 허용 됩니다 하므로 \("승인 됨"\) 응답으로 hello 논리 앱 엔진 터미널에 도달할 때까지 hello 응답의 위치 헤더에 지정 된 hello URL 폴링 유지 상태 \(비\-202 응답\)합니다.  
   
-이전에 설명된 비동기 동작을 사용하지 않도록 하려면 작업 입력에서 `DisableAsyncPattern` 옵션을 설정합니다. 이 경우 작업의 출력은 서버에서 초기 202 응답을 기반으로 합니다.  
+이전에 toodisable hello 비동기 동작에서 설명한 설정는 `DisableAsyncPattern` hello 작업 입력에 있는 옵션입니다. 이 경우 hello 작업의 출력 hello hello hello 서버에서 초기 202 응답은 기반으로 합니다.  
   
 ```json
 "invokeLongRunningOperation" : {
@@ -482,7 +482,7 @@ HTTP 작업 \(및 API 연결\) 작업은 다시 시도 정책을 지원합니다
 
 #### <a name="asynchronous-limits"></a>비동기 제한
 
-비동기 패턴의 지속 시간은 특정 시간 간격으로 제한될 수 있습니다.  터미널 상태에 도달하지 않고 시간 간격이 경과하면 작업의 상태가 `ActionTimedOut` 코드로 `Cancelled`로 표시됩니다.  시간 제한은 ISO 8601 형식으로 지정됩니다.  제한은 다음 구문을 사용하여 지정할 수 있습니다.
+비동기 패턴은 해당 기간 tooa 특정 시간 간격에 제한 될 수 있습니다.  Hello 동작의 hello 상태 표시될지 터미널 상태에 도달 하지 않고 hello 시간 간격이 지나면 `Cancelled` 코드 `ActionTimedOut`합니다.  hello 제한 시간 초과 ISO 8601 형식에 지정 됩니다.  제한 구문 다음 hello로 지정할 수 있습니다.
 
 ``` json
 "<action-name>": {
@@ -497,18 +497,18 @@ HTTP 작업 \(및 API 연결\) 작업은 다시 시도 정책을 지원합니다
 ## <a name="api-connection"></a>API 연결  
 
 API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
-이 작업에는 유효한 연결에 대한 참조와 필요한 API 및 매개 변수에 대한 정보가 필요합니다.
+이 작업에 hello API 및 필요한 매개 변수 방법과 참조 tooa 유효한 연결이 필요 합니다.
 
 |요소 이름|필수|형식|설명|  
 |----------------|------------|--------|---------------|  
-|host|예|Object|runtimeUrl 및 연결 개체에 대한 참조 등 커넥터 정보를 나타냅니다.|
-|메서드|예|String|다음 HTTP 메서드 중 하나일 수 있습니다. **GET**, **POST**, **PUT**, **DELETE**, **PATCH** 또는 **HEAD**|  
-|path|예|문자열|API 작업의 경로입니다.|  
-|쿼리|아니요|Object|URL에 추가할 쿼리 매개 변수를 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }`은 URL에 `?api-version=2015-02-01`을 추가합니다.|  
-|headers|아니요|Object|요청에 전송된 각 헤더를 나타냅니다. 예를 들어 요청에 언어 및 형식을 설정하려면 다음과 같이 합니다. `"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|아니요|Object|끝점에 전송된 페이로드를 나타냅니다.|  
-|retryPolicy|아니요|Object|4xx 또는 5xx 오류에 대한 재시도 동작을 사용자 지정할 수 있습니다.|  
-|operationsOptions|아니요|string|재정의할 특정 동작 집합을 정의합니다.|  
+|host|예|Object|Hello runtimeUrl 및 참조 toohello connection 개체와 같은 hello 커넥터 정보를 나타냅니다.|
+|메서드|예|문자열|Hello HTTP 메서드를 다음 중 하나일 수 있습니다: **가져오기**, **POST**, **배치**, **삭제**, **패치**, 또는  **H E A D**|  
+|path|예|문자열|hello API 작업의 hello 경로입니다.|  
+|쿼리|아니요|Object|Hello 쿼리 매개 변수 tooadd toohello URL을 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }` 추가 `?api-version=2015-02-01` toohello URL입니다.|  
+|headers|아니요|Object|각각의 toohello 요청이 발송 되 hello 머리글을 나타냅니다. 예를 들어 tooset hello 언어 및 요청에는 형식:`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|아니요|Object|Toohello 끝점으로 전송 되는 hello 페이로드를 나타냅니다.|  
+|retryPolicy|아니요|Object|4xx 또는 5xx 오류에 대 한 hello 다시 시도 동작을 사용자 지정할 수 있습니다.|  
+|operationsOptions|아니요|문자열|특별 한 동작 toooverride hello 집합을 정의합니다.|  
 
 ```json
 "Send_Email": {
@@ -563,11 +563,11 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
 
-[HTTP 비동기 제한](#asynchronous-limits)과 동일한 방식으로 웹후크 작업에 대한 제한을 지정할 수 있습니다.
+Hello webhook 작업에 대 한 제한을 지정할 수와 동일 하 게 [HTTP 비동기 제한](#asynchronous-limits)합니다.
   
 ## <a name="response-action"></a>응답 작업  
 
-이 작업 유형에는 HTTP 요청의 전체 응답 페이로드와 statusCode, body 및 headers가 포함됩니다.  
+이 동작 형식이 HTTP 요청에서 hello 전체 응답 페이로드를 포함 하 고는 statusCode, 본문 및 헤더를 포함:  
   
 ```json
 "myresponse" : {
@@ -587,17 +587,17 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
   
-응답 작업에는 다른 작업에는 적용되지 않는 특수한 제한이 있습니다. 구체적으로 살펴보면 다음과 같습니다.  
+hello 응답 동작 tooother 동작이 적용 되지 않는 특별 한 제한이 있습니다. 구체적으로 살펴보면 다음과 같습니다.  
   
--   들어오는 요청에 대해 결정적 응답이 필요하므로 응답 작업은 정의에 병렬일 수 없습니다.  
+-   결정적 응답 toohello 들어오는 요청이 필요 하므로 응답 작업 정의에 병렬 일 수 없습니다.  
   
--   들어오는 요청이 응답을 수신한 후 응답 작업에 도달하면 작업은 실패\(충돌\)로 간주되므로 실행은 `Failed`입니다.  
+-   Hello 들어오는 요청에 응답을 받은 후 응답 동작에 도달 하면, hello 동작 것으로 간주 됩니다 실패 \(충돌\), 되며 결과적으로, 실행 하는 hello `Failed`합니다.  
   
--   응답 작업이 있는 워크플로는 한 번의 호출로 여러 개의 실행이 발생하므로 해당 트리거에 `splitOn`을 포함할 수 없습니다. 따라서 흐름이 PUT이면 유효성을 검사해야 하며 잘못된 요청이 발생합니다.  
+-   응답 작업이 있는 워크플로는 한 번의 호출로 여러 개의 실행이 발생하므로 해당 트리거에 `splitOn`을 포함할 수 없습니다. 결과적으로,이 유효성을 검사 해야 hello 흐름은 PUT 및 원인은 잘못 된 요청 하는 경우.  
   
 ## <a name="wait-action"></a>대기 작업  
 
-`wait` 작업은 지정된 간격에 워크플로 실행을 일시 중단합니다. 예를 들어 15분을 기다리려면 이 코드 조각을 사용할 수 있습니다.  
+hello `wait` 동작 hello 지정 된 간격에 대 한 워크플로 실행을 일시 중단 합니다. 예를 들어, toowait 15 분이 코드이 조각을 사용할 수 있습니다.  
   
 ```json
 "waitForFifteenMinutes" : {
@@ -611,7 +611,7 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```  
   
-또는 특정 시점까지 대기하려면 다음 예제를 사용할 수 있습니다.  
+또는 toowait를 특정 시점에에서 될 때까지이 예제를 사용할 수 있습니다.  
   
 ```json
 "waitUntilOctober" : {
@@ -625,19 +625,19 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 ```
   
 > [!NOTE]  
-> 대기 시간은 **interval** 개체 또는 **until** 개체를 사용하여 지정할 수 있으나 둘 다 사용할 수는 없습니다.  
+> hello 대기 시간이 하거나 지정할 수 hello를 사용 하 여 **간격** 개체나 hello **될 때까지** 개체가 아니라 둘 중 하나입니다.  
   
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|interval|아니요|Object|시간에 따른 대기 시간입니다.|  
+|interval|아니요|Object|hello 대기 시간에 따라 기간.|  
 |interval unit|예|String|second, minute, hour, day, week, month, year 간격 중 하나입니다.|  
-|interval count|예|String|지정된 간격 단위에 따른 기간입니다.|  
-|until|아니요|Object|특정 시점에 따른 대기 시간입니다.|  
-|until timestamp|예|String|String&#124;대기가 만료되는 특정 시점(UTC)입니다.|  
+|interval count|예|문자열|내부 단위를 지정 하는 hello에 따라 기간입니다.|  
+|until|아니요|Object|hello 대기 시간에는 지점에 기반 하는 기간.|  
+|until timestamp|예|문자열|문자열 &#124; hello 지정 hello 대기 만료 될 때 utc에서 시간입니다.|  
 
 ## <a name="query-action"></a>쿼리 작업
 
-`query` 작업을 통해 조건에 따라 배열을 필터링할 수 있습니다. 예를 들어 2보다 큰 수를 선택하려면 다음을 사용할 수 있습니다.
+hello `query` 작업을 사용 하면 조건에 따라 배열을 필터링 합니다. 예를 들어 tooselect 2 보다 큰 숫자를 사용할 수 있습니다.
 
 ```json
 "FilterNumbers" : {
@@ -649,20 +649,20 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
 
-`query` 작업의 출력은 조건을 충족하는 입력 배열의 요소를 포함하는 배열입니다.
+hello 출력 hello `query` 동작은 hello 조건을 만족 하는 hello 입력 배열에서 요소가 포함 된 배열입니다.
 
 > [!NOTE]
-> `where` 조건을 충족하는 값이 없는 경우 결과는 빈 배열입니다.
+> Hello를 만족 하는 값이 없는 경우 `where` 조건의 경우 hello 결과 빈 배열입니다.
 
 |이름|필수|형식|설명|
 |--------|------------|--------|---------------|
-|from|예|배열|원본 배열입니다.|
-|여기서,|예|String|원본 배열의 각 요소에 적용할 조건입니다.|
+|from|예|배열|hello 소스 배열입니다.|
+|여기서,|예|문자열|hello 조건 tooapply tooeach hello 소스 배열의 요소입니다.|
 
 ## <a name="select-action"></a>작업 선택
 
-`select` 작업은 배열의 각 요소를 새 값으로 프로젝션하도록 합니다.
-예를 들어 숫자 배열을 개체 배열로 변환하려면 다음을 사용할 수 있습니다.
+hello `select` 작업을 사용 하면 새 값으로는 배열의 각 요소를 프로젝션 합니다.
+예를 들어, 개체의 배열에는 숫자의 배열을 tooconvert 다음을 사용할 수 있습니다.
 
 ```json
 "SelectNumbers" : {
@@ -674,16 +674,16 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
 
-`select` 작업의 출력은 `select` 속성으로 정의되어 변환된 입력 배열과 동일한 카디널리티를 가진 배열입니다. 입력이 빈 배열인 경우 출력도 빈 배열입니다.
+출력의 hello hello `select` 동작은 hello 하 여 hello 동일한 카디널리티 변환 된 각 요소와 입력된 배열의 hello으로 정의 된 배열을 `select` 속성입니다. 빈 배열을 hello 입력을 사용 하는 경우 hello 출력 빈 배열을 이기도 합니다.
 
 |이름|필수|형식|설명|
 |--------|------------|--------|---------------|
-|from|예|배열|원본 배열입니다.|
-|선택|예|모두|원본 배열의 각 요소에 적용할 프로젝션입니다.|
+|from|예|배열|hello 소스 배열입니다.|
+|선택|예|모두|hello 프로젝션 tooapply tooeach hello 소스 배열의 요소입니다.|
 
 ## <a name="terminate-action"></a>종료 작업
 
-종료 작업은 진행 중인 작업을 중단하고 나머지 작업을 건너뛰어 워크플로 실행을 중단합니다. 예를 들어 **실패** 상태의 실행을 종료하려면 다음 코드 조각을 사용할 수 있습니다.
+hello 종결 동작 hello 워크플로 실행을 모든 진행 중인 작업을 중단 하 고 남은 작업도 건너뜁니다의 실행을 중지 합니다. Tooterminate 상태와 함께 실행 하는 예를 들어 **실패**, 다음 코드 조각 hello를 사용할 수 있습니다.
 
 ```json
 "HandleUnexpectedResponse" : {
@@ -699,18 +699,18 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 ```
 
 > [!NOTE]
-> 이미 완료된 작업은 종료 작업에 의해 영향을 받지 않습니다.
+> 작업을 이미 완료 hello 영향을 받지 않는 작업을 종료 합니다.
 
 |이름|필수|형식|설명|
 |--------|------------|--------|---------------|
-|runStatus|예|string|커넥터 실행 상태 **Failed** 또는 **Cancelled**입니다.|
-|runError|아니요|Object|오류 세부 정보입니다. **runStatus**가 **Failed**로 설정된 경우에만 지원됩니다.|
-|runError code|아니요|문자열|실행 오류 코드입니다.|
-|runError message|아니요|문자열|실행 오류 메시지입니다.|
+|runStatus|예|문자열|hello 대상 실행 상태입니다. **Failed** 또는 **Cancelled**입니다.|
+|runError|아니요|Object|hello 오류 세부 정보입니다. 실행할 수만 **runStatus** 너무 설정**실패**합니다.|
+|runError code|아니요|문자열|오류 코드를 실행 하는 번호입니다.|
+|runError message|아니요|문자열|오류 메시지를 실행 하는 번호입니다.|
 
 ## <a name="compose-action"></a>작성 작업
 
-작성 작업을 통해 임의 개체를 생성할 수 있습니다. 작성 작업의 출력은 해당 입력을 평가한 결과입니다. 예를 들어 작성 작업을 사용하여 여러 작업의 출력을 병합할 수 있습니다.
+hello 작성 작업을 사용 하면 임의의 개체를 생성할 수 있습니다. hello의 hello 출력 작성 작업은 해당 입력 평가 hello 결과입니다. 예를 들어 hello를 사용할 수 있습니다 여러 동작의 작업 toomerge 출력을 작성 합니다.
 
 ```json
 "composeUserRecord" : {
@@ -725,11 +725,11 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 ```
 
 > [!NOTE]
-> **작성** 작업은 개체, 배열 및 논리 앱에서 기본적으로 지원하는 기타 형식(XML 및 이진)을 포함한 출력을 생성하는 데 사용할 수 있습니다.
+> hello **Compose** 동작 개체, 배열 및 기본적으로 XML 및 이진 같은 논리 앱에서 지 원하는 다른 형식을 포함 하 여 출력을 사용 하는 tooconstruct를 수 있습니다.
 
 ## <a name="table-action"></a>테이블 작업
 
-`table`을 사용하면 항목의 배열을 **CSV** 또는 **HTML** 테이블로 변환할 수 있습니다.
+hello `table` tooconvert에 항목 배열을 사용 하면 한 **CSV** 또는 **HTML** 테이블입니다.
 
 @triggerBody()을 다음으로 가정합니다
 
@@ -743,7 +743,7 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }]
 ```
 
-작업이 다음으로 정의되게 합니다
+Hello 동작으로 정의할 수 있도록
 
 ```json
 "ConvertToTable" : {
@@ -755,11 +755,11 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
 
-위의 내용은 다음을 생성합니다
+위의 hello 생성
 
 <table><thead><tr><th>id</th><th>name</th></tr></thead><tbody><tr><td>0</td><td>사과</td></tr><tr><td>1</td><td>오렌지</td></tr></tbody></table>"
 
-테이블을 사용자 지정하려면 열을 명시적으로 지정할 수 있습니다. 예:
+순서 toocustomize hello 표에 hello 열을 명시적으로 지정할 수 있습니다. 예:
 
 ```json
 "ConvertToTable" : {
@@ -778,29 +778,29 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
 
-위의 내용은 다음을 생성합니다
+위의 hello 생성
 
 <table><thead><tr><th>ID를 생성합니다</th><th>설명</th></tr></thead><tbody><tr><td>0</td><td>신선한 사과</td></tr><tr><td>1</td><td>신선한 오렌지</td></tr></tbody></table>"
 
-`from` 속성 값이 빈 배열인 경우 출력도 빈 테이블입니다.
+경우 hello `from` hello 출력은 빈 테이블, 속성 값은 빈 배열입니다.
 
 |이름|필수|형식|설명|
 |--------|------------|--------|---------------|
-|from|예|배열|원본 배열입니다.|
-|format|예|문자열|형식은 **CSV** 또는 **HTML**입니다.|
-|열|아니요|배열|열입니다. 테이블의 기본 셰이프를 재정의할 수 있습니다.|
-|열 머리글|아니요|string|열의 머리글입니다.|
-|열 값|예|String|열의 값입니다.|
+|from|예|배열|hello 소스 배열입니다.|
+|format|예|문자열|형식으로 하거나 hello **CSV** 또는 **HTML**합니다.|
+|열|아니요|배열|hello 열입니다. Hello 표의 toooverride hello 기본 형태를 허용합니다.|
+|열 머리글|아니요|문자열|hello 열의 hello 헤더입니다.|
+|열 값|예|문자열|hello 열의 hello 값입니다.|
 
 ## <a name="workflow-action"></a>워크플로 작업   
 
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|host id|예|String|호출할 워크플로의 리소스 ID입니다.|  
-|host triggerName|예|String|호출할 트리거의 이름입니다.|  
-|쿼리|아니요|Object|URL에 추가할 쿼리 매개 변수를 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }`은 URL에 `?api-version=2015-02-01`을 추가합니다.|  
-|headers|아니요|Object|요청에 전송된 각 헤더를 나타냅니다. 예를 들어 요청에 언어 및 형식을 설정하려면 다음과 같이 합니다. `"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|아니요|Object|끝점에 전송된 페이로드를 나타냅니다.|  
+|host id|예|문자열|hello toocall hello 워크플로의 리소스 ID입니다.|  
+|host triggerName|예|문자열|tooinvoke hello 트리거가의 hello 이름입니다.|  
+|쿼리|아니요|Object|Hello 쿼리 매개 변수 tooadd toohello URL을 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }` 추가 `?api-version=2015-02-01` toohello URL입니다.|  
+|headers|아니요|Object|각각의 toohello 요청이 발송 되 hello 머리글을 나타냅니다. 예를 들어 tooset hello 언어 및 요청에는 형식:`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|아니요|Object|Toohello 끝점으로 전송 하는 hello 페이로드를 나타냅니다.|  
   
 ```json
 "mynestedwf" : {
@@ -826,19 +826,19 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
     }
 ```
   
-워크플로\(보다 구체적으로 트리거\)에 대해 액세스 검사가 이루어지므로 워크플로에 액세스해야 합니다.  
+액세스 검사 hello 워크플로에서 만든 \(hello 트리거 보다 구체적으로,\), toohello 워크플로 액세스 할 수 있음을 의미 합니다.  
   
-`workflow` 작업의 출력은 하위 워크플로에서 `response` 작업에 정의된 내용을 기반으로 합니다. 어떤 `response` 작업도 정의되지 않은 경우 출력은 비어 있습니다.  
+hello hello에서 출력 `workflow` hello에 정의 된에 기반한 동작 `response` hello 자식 워크플로에서 동작입니다. 정의 되지 않은 경우 `response` 작업과 차례로 hello 출력 비어 있습니다.  
 
 ## <a name="function-action"></a>Function 작업   
 
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|function id|예|string|호출하려는 함수의 리소스 ID입니다.|  
-|메서드|아니요|string|함수를 호출하는 데 사용되는 HTTP 메서드입니다. 기본적으로 지정되지 않은 경우 `POST`입니다.|  
-|쿼리|아니요|Object|URL에 추가할 쿼리 매개 변수를 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }`은 URL에 `?api-version=2015-02-01`을 추가합니다.|  
-|headers|아니요|Object|요청에 전송된 각 헤더를 나타냅니다. 예를 들어 요청에 언어 및 형식을 설정하려면 다음과 같이 합니다. `"headers" : { "Accept-Language": "en-us" }`|  
-|body|아니요|Object|끝점에 전송된 페이로드를 나타냅니다.|  
+|function id|예|문자열|hello tooinvoke hello 함수의 리소스 ID입니다.|  
+|메서드|아니요|문자열|HTTP 메서드 hello tooinvoke hello 함수를 사용 했습니다. 기본적으로 지정되지 않은 경우 `POST`입니다.|  
+|쿼리|아니요|Object|Hello 쿼리 매개 변수 tooadd toohello URL을 나타냅니다. 예를 들어 `"queries" : { "api-version": "2015-02-01" }` 추가 `?api-version=2015-02-01` toohello URL입니다.|  
+|headers|아니요|Object|각각의 toohello 요청이 발송 되 hello 머리글을 나타냅니다. 예를 들어: tooset hello 언어와 요청에는 유형을: `"headers" : { "Accept-Language": "en-us" }`합니다.|  
+|body|아니요|Object|Toohello 끝점으로 전송 하는 hello 페이로드를 나타냅니다.|  
 
 ```json
 "myfunc" : {
@@ -863,25 +863,25 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```
 
-논리 앱을 저장하는 경우 참조된 함수에 대한 몇 가지 검사를 수행합니다.
--   함수에 액세스할 수 있어야 합니다.
+Hello 논리 앱을 저장할 때 참조 된 hello 함수에 대 한 몇 가지 검사 수행:
+-   Toohave access toohello 함수가 필요합니다.
 -   표준 HTTP 트리거 또는 일반 JSON 웹후크 트리거만 허용됩니다.
 -   경로를 정의하지 않아야 합니다.
 -   "함수" 및 "익명" 권한 부여 수준만 허용됩니다.
 
-트리거 URL은 런타임에 검색, 캐시 및 사용됩니다. 따라서 어떤 작업으로 캐시된 URL이 무효화되면 런타임에 작업이 실패합니다. 이 문제를 해결하려면 논리 앱을 다시 저장합니다. 그러면 논리 앱이 트리거 URL을 다시 검색하고 캐시합니다.
+hello 트리거 URL 검색, 캐시 및 런타임에 사용 합니다. 따라서 캐시 hello URL을 무효화 하는 모든 작업을 런타임 시 hello 작업이 실패 합니다. 이 문제를 해결 toowork hello 논리 다시 응용 프로그램, 논리 앱 tooretrieve 되며 hello 트리거 URL을 다시 캐시를 저장 합니다.
 
 ## <a name="collection-actions-scopes-and-loops"></a>컬렉션 작업(범위 및 루프)
 
-일부 작업 유형은 자체 내에 작업을 포함할 수 있습니다. 컬렉션 내에서 참조 작업은 컬렉션 외부에서 직접 참조할 수 있습니다. 범위에 `http`를 정의한 경우 `@body('http')`는 워크플로 어느 곳에서나 여전히 유효합니다. 컬렉션 내에 있는 작업은 동일한 컬렉션 내에 있는 다른 작업만 `runAfter`할 수 있습니다.
+일부 작업 유형은 자체 내에 작업을 포함할 수 있습니다. 컬렉션 내에서 동작 참조 hello 컬렉션 외부에서 직접 참조할 수 있습니다. 범위에 `http`를 정의한 경우 `@body('http')`는 워크플로 어느 곳에서나 여전히 유효합니다. 컬렉션 내에서 동작의 기능은 `runAfter` 내에서 다른 작업에만 hello 동일한 컬렉션입니다.
 
 ## <a name="scope-action"></a>범위 작업
 
-`scope` 작업을 통해 워크플로에서 작업을 논리적으로 그룹화할 수 있습니다.
+hello `scope` 동작을 수행 하면 논리적으로 워크플로에서 그룹 작업 합니다.
 
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|actions|예|Object|범위 내에서 실행할 내부 작업|
+|actions|예|Object|내부 작업 tooexecute hello 범위 내에서|
 
 ```json
 {
@@ -901,13 +901,13 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 
 ## <a name="foreach-action"></a>ForEach 작업
 
-이 루프 작업은 배열을 반복하고 각 항목에 대해 내부 작업을 수행합니다. 기본적으로 foreach 루프는 병렬로 실행됩니다(한 번에 20개 실행을 병렬로 수행). `operationOptions` 매개 변수를 사용하여 실행 규칙을 설정할 수 있습니다.
+이 루프 작업은 배열을 반복하고 각 항목에 대해 내부 작업을 수행합니다. 기본적으로 hello foreach 루프 (20 번 실행 동시에 한 번에) 병렬로 실행합니다. Hello를 사용 하 여 실행 규칙을 설정할 수 있습니다 `operationOptions` 매개 변수입니다.
 
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|actions|예|Object|루프 내에서 실행할 내부 작업|
-|foreach|예|string|반복할 배열|
-|operationOptions|no|string|동작에 대한 모든 작업 옵션입니다. 현재는 반복을 순차적으로 실행하는 `sequential`만 지원합니다(기본 동작은 병렬).|
+|actions|예|Object|내부 작업 tooexecute hello 루프 내에서|
+|foreach|예|string|통해 배열 tooiterate hello|
+|operationOptions|no|string|동작에 대한 모든 작업 옵션입니다. 현재 까지만 지원 `sequential` tooexecute 반복 순서 대로) (기본 동작은 병렬)|
 
 ```json
 "forEach_email": {
@@ -938,15 +938,15 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 
 ## <a name="until-action"></a>Until 작업
 
-이 루프 작업은 조건 결과가 true일 때까지 내부 작업을 실행합니다.
+이 반복 작업 조건 결과 tootrue 될 때까지 내부 작업을 실행 합니다.
 
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|actions|예|Object|루프 내에서 실행할 내부 작업|
-|식|예|string|각 반복 후마다 평가할 식|
-|limit|yes|Object|루프에 대한 제한 - 제한을 하나 이상 정의해야 함|
-|count|no|int|수행할 수 있는 반복 수에 대한 제한|
-|시간 제한|no|string|반복 기간에 대한 시간 제한입니다.  ISO 8601 형식|
+|actions|예|Object|내부 작업 tooexecute hello 루프 내에서|
+|식|예|string|반복할 때마다 식 tooevaluate hello|
+|limit|yes|Object|hello 반복-하나 이상의 제한에 대 한 hello도 정의 해야 합니다.|
+|count|no|int|수행할 수 있는 반복 횟수 제한 toohello hello|
+|시간 제한|no|string|반복 기간에 대 한 hello 시간이 초과 되었습니다.  ISO 8601 형식|
 
 
 ```json
@@ -973,13 +973,13 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 
 ## <a name="conditions---if-action"></a>조건 - If 작업
 
-`If` 작업을 통해 조건을 평가하고 식이 `true`로 평가되는지 여부에 따라 분기를 실행할 수 있습니다.
+hello `If` 조건을 평가 하 고 hello 식이 너무 계산 여부에 따라 분기 실행 동작을 수행 하면`true`합니다.
 
 |이름|필수|형식|설명|  
 |--------|------------|--------|---------------|  
-|actions|예|Object|식이 `true`로 평가될 때 실행할 내부 작업|
-|식|예|string|평가할 식|
-|else|no|Object|식이 `false`로 평가될 때 실행할 내부 작업|
+|actions|예|Object|내부 작업 tooexecute 식이 너무 평가 되 면`true`|
+|식|예|string|hello 식 tooevaluate|
+|else|no|Object|내부 작업 tooexecute 식이 너무 평가 되 면`false`|
   
 ```json
 "My_condition": {
@@ -1011,17 +1011,17 @@ API 연결은 Microsoft 관리 커넥터를 참조하는 작업입니다.
 }
 ```  
   
-다음 표에서는 조건에서 작업에 식을 사용하는 방법에 대한 예를 보여 줍니다.  
+hello 다음 표에서 사용 방법의 조건 식 동작:  
   
 |JSON 값|결과|  
 |--------------|----------|  
-|`"expression": "@parameters('hasSpecialAction')"`|true로 평가되는 모든 값을 통해 이 조건을 통과합니다. 부울 식만 지원됩니다. 다른 형식을 부울로 변환하려면 `empty`, `equals` 함수를 사용합니다.|  
-|`"expression": "@greater(actions('act1').output.value, parameters('threshold'))"`|비교 함수는 지원됩니다. 여기에 표시된 예제에서는 act1의 출력이 임계값보다 큰 경우에만 작업이 실행됩니다.|  
-|`"expression": "@or(greater(actions('act1').output.value, parameters('threshold')), less(actions('act1').output.value, 100))"`|중첩된 부울 식을 만들기 위해 논리 함수도 지원됩니다. 이 경우 act1의 출력이 임계값보다 크거나 100 미만인 경우 작업이 실행됩니다.|  
-|`"expression": "@equals(length(actions('act1').outputs.errors), 0))"`|배열 함수를 사용하여 배열에 항목이 있는지 확인할 수 있습니다. 이 경우 오류 배열이 비어 있으면 작업이 실행됩니다.| 
+|`"expression": "@parameters('hasSpecialAction')"`|Tootrue를 평가 하는 모든 값이 조건 toopass를 하면 됩니다. 부울 식만 지원됩니다. 다른 tooconvert tooBoolean를 사용 하 여 함수 형식 `empty`, `equals`합니다.|  
+|`"expression": "@greater(actions('act1').output.value, parameters('threshold'))"`|비교 함수는 지원됩니다. 예: hello 여기 hello 동작 act1의 hello 출력 hello 임계값 보다 큰 경우에 실행 합니다.|  
+|`"expression": "@or(greater(actions('act1').output.value, parameters('threshold')), less(actions('act1').output.value, 100))"`|논리 함수는 또한 지원 되는 toocreate 중첩 부울 식입니다. 이 경우 hello 동작 act1 hello 출력은 100 이하일 hello 임계값을 초과 하는 경우를 실행 합니다.|  
+|`"expression": "@equals(length(actions('act1').outputs.errors), 0))"`|배열에 항목이 있으면 배열 함수 toocheck를 사용할 수 있습니다. 이 경우 hello 동작 hello 오류 배열이 비어 있는 경우를 실행 합니다.| 
 |`"expression": "parameters('hasSpecialAction')"`|오류 - 조건에 @이 필요하므로 유효한 조건이 아닙니다.|  
   
-조건이 성공적으로 평가되면 조건이 `Succeeded`로 표시됩니다. `actions` 또는 `else` 개체 내의 작업이 실행되어 성공하면 `Succeeded`로 평가되고, 실행되어 실패하면 `Failed`로, 분기가 실행되지 않으면 `Skipped`로 평가됩니다.
+Hello 조건으로 표시 되어 조건이 성공적으로 확인 되 면 `Succeeded`합니다. 어느 hello 내의 동작 `actions` 또는 `else` 개체 너무 평가`Succeeded` 실행 한 성공한 경우 `Failed` 실행 한 실패 한 경우 또는 `Skipped` 해당 분기는 실행 되지 않습니다.
 
 ## <a name="next-steps"></a>다음 단계
 

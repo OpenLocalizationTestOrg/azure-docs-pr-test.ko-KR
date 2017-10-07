@@ -1,6 +1,6 @@
 ---
-title: "Microsoft 모니터링 제품의 경고 관리 | Microsoft Docs"
-description: "경고는 관리자가 주목해야 하는 문제를 나타냅니다.  이 문서는 SCOM(System Center Operations Manager)과 Log Analytics에서 경고를 생성 및 관리하는 방식의 차이에 대해 설명하며 하이브리드 경고 관리 전략에 두 가지 제품을 활용하는 모범 사례를 제공합니다."
+title: "microsoft 모니터링 제품 aaaAlert 관리 | Microsoft Docs"
+description: "경고는 관리자가 주목해야 하는 문제를 나타냅니다.  이 문서는 hello 차이점 경고가 만들고 System Center Operations Manager (SCOM) 및 로그 분석에서 관리 하는 방법에 대해 설명 하 고 하이브리드 경고 관리 전략에 대 한 hello 두 제품을 활용 하 여의 유용한 정보를 제공 합니다."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: bwren
-ms.openlocfilehash: 7df2fd7ef838465a60e3b0ce2f889127b7487684
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 526a3d92f3b6a5d6dec2f3979a934cc94c13f2e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-alerts-with-microsoft-monitoring"></a>Microsoft 모니터링으로 경고 관리
 경고는 관리자가 주목해야 하는 문제를 나타냅니다.  OMS(Operations Management Suite)의 Log Analytics 및 SCOM(System Center Operations Manager)은 경고의 생성 방식, 관리 및 분석 방식, 중요 문제가 검색되었음을 알리는 방식에서 분명한 차이가 있습니다.
 
 ## <a name="alerts-in-operations-manager"></a>Operations Manager의 경고
-SCOM의 경고는 특정 문제를 나타내기 위해 개별 규칙 또는 모니터에 의해 생성됩니다.  모니터는 오류 상태가 될 때 경고를 발생하지만 규칙은 관리되는 개체의 상태와 직접적 관련이 없는 일부 중요 문제를 나타내기 위해 경고를 발생할 수 있습니다.  관리 팩에는 관리하는 응용 프로그램 또는 서비스에 대해 경고를 생성하는 다양한 워크플로가 포함되어 있습니다.  새 관리 팩을 구성하는 프로세스 중에는 중요하지 않다고 판단하는 문제에 대해 과도한 경고를 수신하지 않도록 조정하는 기능이 포함되어 있습니다.
+SCOM의 경고는 개별 규칙 또는 모니터 tooindicate 특정 문제에 의해 생성 됩니다.  모니터 경고를 생성할 수 오류 상태 규칙 경고 tooindicate를 생성할 수 있습니다 하는 동안 실행 될 때 관리 되는 개체의 직접적인 관련된은 toohello 상태 없는 몇 가지 중요 한 문제가 있습니다.  관리 팩 hello 응용 프로그램에 대 한 경고를 생성 하는 워크플로 또는 관리 되는 서비스의 다양 한 포함 되어 있습니다.  Hello 구성 프로세스는 새 관리 팩의 일부 튜닝은 tooensure 것으로 간주 하지 중요 한 문제에 대 한 과도 한 경고를 수신 하지 않습니다.
 
 ![SCOM 경고 보기](media/operations-management-suite-monitoring-alerts/scom-alert-view.png)
 
-SCOM은 관리자가 문제 해결을 위해 작업하면서 상태를 변경할 수 있는 경고를 포함하여 완전한 경고 관리를 제공합니다.  문제가 해결되면 관리자가 경고를 닫도록 설정합니다. 그러면 미해결 경고가 더 이상 보기에 표시되지 않습니다.  모니터에서 생성된 경고는 모니터가 정상 상태로 돌아가면 자동으로 해결될 수 있습니다.
+SCOM 필요 tooresolve hello 문제를 작업 관리자가 변경 될 수 있는 상태 경고 전체 경고 관리를 제공 합니다.  Hello 문제가 해결 되었는지, 관리자에 게 활성 경고를 표시 하는 뷰에 hello 경고 tooclosed 이때 것은 더 이상 표시를 설정 합니다.  모니터에서 생성 되는 경고 hello 모니터 tooa 정상 상태로 돌아오면 자동으로 해결할 수 있습니다.
 
 ![경고 상태](media/operations-management-suite-monitoring-alerts/scom-alert-status.png)
 
 ## <a name="alerts-in-log-analytics"></a>Log Analytics의 경고
-Log Analytics의 경고는 정기 간격으로 자동 실행되는 로그 쿼리에서 생성됩니다.  모든 로그 쿼리에서 경고 규칙을 만들 수 있습니다.  쿼리에서 사용자가 지정한 기준과 일치하는 결과를 반환하면 경고가 생성됩니다.  이 경우 특정 이벤트가 검색될 경우 경고를 생성하는 특정 쿼리일 수 있으며 특정 응용 프로그램과 관련된 오류 이벤트를 찾는 더 일반적인 쿼리를 사용할 수도 있습니다.
+Log Analytics의 경고는 정기 간격으로 자동 실행되는 로그 쿼리에서 생성됩니다.  모든 로그 쿼리에서 경고 규칙을 만들 수 있습니다.  Hello 쿼리가 지정 하는 hello 조건과 일치 하는 결과 반환 하는 경우 경고가 생성 됩니다.  이 특정 이벤트 감지 되 면에서 경고를 생성 하는 특정 쿼리 수 또는 모든 오류 이벤트에 대 한 모양 관련 tooa 특정 응용 프로그램 하는 보다 일반적인 쿼리를 사용할 수 있습니다.
 
-Log Analytics 경고는 OMS 리포지토리에 이벤트로 기록되며 로그 쿼리로 검색할 수 있습니다.  이러한 경고는 문제가 해결된 때는 나타낼 수 있도록 SCOM 이벤트와 같은 상태가 없습니다.
+로그 분석 경고 toohello OMS 리포지토리에 이벤트로 기록 됩니다 되며 로그 쿼리를 통해 검색할 수 있습니다.  Hello 문제가 해결 된 경우를 나타낼 수 있도록 SCOM와 같은 상태를 갖지 않습니다.
 
 ![OMS 경고](media/operations-management-suite-monitoring-alerts/oms-alert.png)
 
-SCOM이 Log Analytics의 데이터 원본으로 사용된 경우 SCOM 경고가 생성 및 수정될 때 OMS 리포지토리에 기록됩니다.  
+SCOM은 로그 분석에 데이터 원본으로 사용 된 경우 SCOM 경고 만들고 수정 하는 대로 toohello OMS 리포지토리에 기록 됩니다.  
 
 ![SCOM 경고](media/operations-management-suite-monitoring-alerts/scom-alert.png)
 
-[경고 관리 솔루션](http://technet.microsoft.com/library/mt484092.aspx) 은 미해결 경고와 다양한 경고 집합을 검색하는 몇 가지 일반 쿼리를 요약하여 제공합니다.  이 정보를 사용하여 SCOM의 보고서보다 경고를 더욱 효과적으로 분석할 수 있습니다.  요약을 상세 데이터로 드릴다운하고 임시 쿼리를 만들어 다양한 경고 집합을 검색할 수 있습니다.
+hello [경고 관리 솔루션](http://technet.microsoft.com/library/mt484092.aspx) tooretrieve 다른 경고 집합이 활성 경고와 몇 가지 일반적인 쿼리의 요약을 제공 합니다.  이 정보를 사용하여 SCOM의 보고서보다 경고를 더욱 효과적으로 분석할 수 있습니다.  Hello 요약 toodetailed 데이터에서에서 드릴 다운 하 고 경고의 상이한 tooretrieve 임시 쿼리를 만들 수 있습니다.
 
 ![경고 관리 솔루션](media/operations-management-suite-monitoring-alerts/alert-management.png)
 
 ## <a name="notifications"></a>알림
-SCOM의 알림은 특정 기준과 일치하는 경고에 대응하여 메일 또는 텍스트를 전송합니다.  개체를 모니터링하면서 경고의 심각도, 검색된 문제의 종류, 시간 등의 기준에 따라 다른 사람에게 알림을 전송하는 다양한 알림 구독을 만들 수 있습니다.
+SCOM에서 알림을 보내 메일 또는 텍스트의 특정 조건과 일치 하는 응답 tooalerts.  알림을 모니터링 하는 hello 개체로 이러한 조건에 따라 서로 다른 사람, hello 경고나 hello 종류의 문제를 감지 하는 hello의 심각도 hello 다양 한 알림 구독을 만들 수 하루 중 시간입니다.
 
-많은 수의 관리 팩에 대해 완전한 알림 전략을 구현하려면 적은 수의 구독을 사용합니다.
+몇 구독에 사용 되는 많은 수의 관리 팩에 대 한 전체 알림 전략 tooimplement 될 수 있습니다.
 
 ![SCOM 경고](media/operations-management-suite-monitoring-alerts/alerts-overview-scom.png)
 
-각 [경고 규칙](http://technet.microsoft.com/library/mt614775.aspx)에 전자 메일 알림 작업을 설정하면 Log Analytics에서 경고가 생성되었음을 메일을 통해 알릴 수 있습니다.  Log Analytics에는 SCOM과 같이 단일 규칙으로 여러 경고를 구독하는 기능이 없습니다.  또한 OMS는 사전 구성을 제공하지 않으므로 고유한 경고 규칙을 만들어야 합니다.
+각 [경고 규칙](http://technet.microsoft.com/library/mt614775.aspx)에 전자 메일 알림 작업을 설정하면 Log Analytics에서 경고가 생성되었음을 메일을 통해 알릴 수 있습니다.  단일 규칙으로 toomultiple 경고 구독 SCOM hello의 hello 능력을 없습니다.  또한 해야 toocreate 경고 규칙을 직접 OMS 제공 하지 않는 미리 구성 된 모든 합니다.
 
-![Log Analytics rudrh](media/operations-management-suite-monitoring-alerts/alerts-overview-oms.png)
+![Log Analytics 경고](media/operations-management-suite-monitoring-alerts/alerts-overview-oms.png)
 
-SCOM 경고는 운영 콘솔에서만 수정할 수 있기 때문에 Log Analytics에서 SCOM 경고를 완전히 관리할 수 없습니다.  하지만 Log Analytics는 SCOM에만 없는 분석 기능을 제공하므로 경고 관리 프로세스에 유용합니다.
+Hello 운영 콘솔에에서만 수정할 수 있으므로 하지만 로그 분석에서 SCOM 경고를 관리할 수 없습니다 완전히.  하지만 Log Analytics는 SCOM에만 없는 분석 기능을 제공하므로 경고 관리 프로세스에 유용합니다.
 
 ## <a name="alert-remediation"></a>경고 수정
-[수정](http://technet.microsoft.com/library/mt614775.aspx) 은 경고에서 식별한 문제를 자동으로 수정하려는 시도를 나타냅니다.
+[업데이트 관리](http://technet.microsoft.com/library/mt614775.aspx) 경고도 식별 된 tooan 시도 tooautomatically 올바른 hello 문제를 나타냅니다.
 
-SCOM에서는 비정상 상태로 전환된 모니터에 대응하여 진단 및 복구를 실행할 수 있습니다.  이 작업은 모니터가 경고를 생성하는 작업과 동시에 실행됩니다.  진단 및 복구는 일반적으로 에이전트에서 실행되는 스크립트로 구현됩니다.  진단은 검색된 문제에 대한 자세한 정보를 수집하려는 시도를 하며 복구는 문제를 해결하려는 시도를 합니다.
+SCOM 있습니다 toorun 진단 및 복구에 응답 tooa 모니터가 비정상 상태를 입력 합니다.  Hello 경고를 만드는 동시 toohello 모니터를 이런 경우가 발생 합니다.  진단 및 복구는 일반적으로 hello 에이전트에서 실행 되는 스크립트로 구현 됩니다.  진단 시도 toogather hello에 대 한 자세한 내용은 복구를 시도 toocorrect hello 문제 하는 동안 문제가 발견 합니다.
 
-Log Analytics에서는 Log Analytics 경고에 대응하여 [Azure Automation Runbook](https://azure.microsoft.com/documentation/services/automation/)을 시작하거나 웹후크를 호출할 수 있습니다.  Runbook에는 PowerShell에 구현된 복잡한 논리를 포함할 수 있습니다.  스크립트는 Azure에서 실행되며 클라우드에서 사용 가능한 Azure 리소스 또는 외부 리소스에 액세스할 수 있습니다.  Azure 자동화는 로컬 데이터 센터의 서버에서 Runbook을 실행할 수 있지만 현재 이 기능은 Log Analytics 경고에 대응하여 Runbook을 시작할 경우에는 사용할 수 없습니다.
+로그 분석 하면 toostart는 [Azure 자동화 runbook](https://azure.microsoft.com/documentation/services/automation/) 하거나 응답 tooa 로그 분석 경고는 webhook을 호출 합니다.  Runbook에는 PowerShell에 구현된 복잡한 논리를 포함할 수 있습니다.  hello 스크립트는 Azure에서 실행 되며 클라우드 hello에서에서 모든 Azure 리소스 또는 사용할 수 있는 외부 리소스에 액세스할 수 있습니다.  Azure 자동화 hello 기능 tooexecute runbook 로컬 데이터 센터의 서버에 있지만 응답 tooLog 분석 경고에 hello runbook을 시작할 때이 기능을 현재 사용할 수 없습니다.
 
-SCOM의 복구와 OMS의 Runbook 모두 PowerShell 스크립트를 포함할 수 있지만 복구는 반드시 관리 팩에 포함해야 하기 때문에 생성 및 관리가 훨씬 더 어렵습니다.  Runbook은 Runbook 작성, 테스트, 관리 기능을 제공하는 Azure 자동화에 저장합니다.
+SCOM에 대 한 복구와 OMS에서 runbook을 모두 PowerShell 스크립트를 포함할 수 있지만 복구 하기가 더 어려워지므로 toocreate 되며 관리는 관리 팩에 포함 되어야 합니다.  Runbook은 Runbook 작성, 테스트, 관리 기능을 제공하는 Azure 자동화에 저장합니다.
 
-Log Analytics의 데이터 원본으로 SCOM을 사용하는 경우 OMS 리포지토리에 저장된 SCOM 경고를 검색하려면 로그 쿼리를 사용하여 Log Analytics 경고를 만듭니다.  그러면 SCOM 경고에 대응하여 Azure 자동화 Runbook을 실행할 수 있습니다.  물론 Runbook은 Azure에서 실행되기 때문에 온-프레미스 문제를 복구하는 전략으로는 적합하지 않습니다.
+로그 분석에 대 한 데이터 소스로 SCOM를 사용 하는 경우에 구성 요소를 OMS 리포지토리에 저장 된 hello SCOM 경고 로그 쿼리 tooretrieve를 사용 하 여 로그 분석 경고를 만들 수 있습니다.  이렇게 하면 Azure 자동화 runbook toorun 응답 tooa SCOM 경고 합니다.  물론, hello runbook도 Azure에서 실행 됩니다 하지 않는 것이 온-프레미스 문제 복구에 대 한 실행 가능한 전략입니다.
 
 ## <a name="next-steps"></a>다음 단계
-* [SCOM(System Center Operations Manager)의 경고](https://technet.microsoft.com/library/hh212913.aspx)에 대해 자세히 알아봅니다.
+* 세부 사항을 hello [System Center Operations Manager (SCOM) 경고](https://technet.microsoft.com/library/hh212913.aspx)합니다.
 

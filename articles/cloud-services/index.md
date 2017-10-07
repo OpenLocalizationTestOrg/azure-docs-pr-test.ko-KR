@@ -1,6 +1,6 @@
 ---
-title: "Azure Cloud Services 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "자습서, API 참조 및 기타 설명서에서는 Cloud Services를 사용하여 가용성 및 확장이 뛰어난 클라우드 응용 프로그램 및 API를 호스트하고 실행하는 방법을 보여 줍니다."
+title: "클라우드 서비스 설명서 자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "자습서, API 참조 및 기타 문서 방법을 보여 줍니다 toouse 클라우드 서비스 toohost 및 항상 사용 가능 하 고 확장 가능한 클라우드 응용 프로그램과 Api를 실행 합니다."
 services: cloud-services
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 16bbb9953db91bfe031e5e87e14aac84d32799b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80793de5a66c9f125c23caf2664fbf08015298ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-services-documentation"></a>Cloud Services 설명서
 
-Cloud Services를 사용하여 가용성 및 확장성이 뛰어난 클라우드 응용 프로그램 및 API를 호스트하고 실행하는 방법에 대해 알아봅니다.  자습서, API 참조 및 기타 설명서에서는 가상 컴퓨터 호스트를 관리하고 소프트웨어를 구성, 패치 및 설치하는 방법을 보여 줍니다.
+자세한 방법을 toouse 클라우드 서비스 toohost 및 고가용성, 확장 가능한 클라우드 응용 프로그램을 실행된 및 Api입니다.  자습서, API 참조 및 기타 문서 알려주는 방법 toomanage 가상 컴퓨터를 호스트 하 고 구성, patch, 및 소프트웨어를 설치 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: "REST를 사용하여 콘텐츠 키 인증 정책 구성 | Microsoft 문서"
-description: "미디어 서비스 REST API를 사용하여 콘텐츠 키에 대한 인증 정책을 구성하는 방법에 대해 알아봅니다."
+title: "-Azure 남은 부분과 aaaConfigure 콘텐츠 키 권한 부여 정책 | Microsoft Docs"
+description: "자세한 내용은 방법 tooconfigure 미디어 서비스 REST API를 사용 하 여 콘텐츠 키에 대 한 권한 부여 정책."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: ed20fca35070c190bb63925d0a57cf919bcdd96c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c058b7682bcbfb736faba18ec7fce33f2f2acb49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dynamic-encryption-configure-content-key-authorization-policy"></a>동적 암호화: 콘텐츠 키 인증 정책 구성
 [!INCLUDE [media-services-selector-content-key-auth-policy](../../includes/media-services-selector-content-key-auth-policy.md)]
 
 ## <a name="overview"></a>개요
-Microsoft Azure 미디어 서비스를 사용하면 128비트 암호화 키를 사용하는 AES(Advanced Encryption Standard) 및 PlayReady 또는 Widevine DRM으로 동적 암호화된 콘텐츠를 제공할 수 있습니다. 또한 미디어 서비스는 인증된 클라이언트에게 키 및 PlayReady/Widevine 라이선스를 배달하는 서비스를 제공합니다.
+Microsoft Azure 미디어 서비스 있습니다 toodeliver 암호화 표준 AES (고급) (128 비트 암호화 키 사용) 및 PlayReady 또는 Widevine DRM을 사용 하 여 (동적)를 암호화 하 여 콘텐츠를 수 있습니다. 미디어 서비스는 또한 tooauthorized 클라이언트 키 및 PlayReady/Widevine 라이선스 배달용 서비스를 제공 합니다.
 
-Media Services에서 자산을 암호화하려는 경우 [여기](media-services-rest-create-contentkey.md)서 설명한 대로 암호화 키(**CommonEncryption** 또는 **EnvelopeEncryption**)와 자산을 연결하고, 이 문서에서 설명한 대로 키 인증 정책도 구성해야 합니다.
+에 대해 원하는 tooencrypt 미디어 서비스 자산, 해야 tooassociate 암호화 키 (**CommonEncryption** 또는 **EnvelopeEncryption**) hello 자산에 (설명 된 대로 [여기](media-services-rest-create-contentkey.md)) 고도 hello 키 (이 문서에서 설명)에 대 한 권한 부여 정책을 구성 합니다.
 
-플레이어가 스트림을 요청하면 미디어 서비스는 지정된 키를 사용하고 AES 또는 PlayReady 암호화를 사용하여 동적으로 사용자의 콘텐츠를 암호화합니다. 스트림을 해독하기 위해 플레이어는 키 배달 서비스에서 키를 요청합니다. 사용자에게 키를 얻을 수 있는 권한이 있는지 여부를 결정하기 위해 서비스는 키에 지정된 권한 부여 정책을 평가합니다.
+미디어 서비스는 지정 된 hello 플레이어에서 스트림을 요청 되 면 키 toodynamically AES 또는 PlayReady 암호화를 사용 하 여 콘텐츠를 암호화 합니다. toodecrypt hello 스트림 hello 플레이어 hello 키 배달 서비스에서 hello 키를 요청 합니다. hello 사용자가 아닌지 toodecide 권한이 tooget hello 키, hello 서비스 hello 키에 대해 지정한 hello 권한 부여 정책을 평가 합니다.
 
-미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다. 콘텐츠 키 권한 부여 정책에는 **열기** 또는 **토큰** 제한과 같은 하나 이상의 권한 부여 제한이 있을 수 있습니다. 토큰 제한 정책은 보안 토큰 서비스(STS)에 의해 발급된 토큰이 수반되어야 합니다. Media Services는 [SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)(**단순 웹 토큰**) 형식과 **JWT(**JSON Web Token) 형식의 토큰을 지원합니다.
+미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다. hello 콘텐츠 키 인증 정책이 있을 수 하나 이상의 권한 부여 제한을: **열고** 또는 **토큰** 제한 합니다. 보안 토큰 서비스 (STS)에서 발급 한 토큰 hello 토큰 제한 정책은 함께 제공 해야 합니다. 미디어 서비스는 hello에 토큰을 지원 **단순 웹 토큰** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 형식 및 * * **(JWT) JSON 웹 토큰 형식입니다.
 
-미디어 서비스는 보안 토큰 서비스를 제공하지 않습니다. 사용자 지정 STS를 만들거나 Microsoft Azure ACS를 활용하여 토큰을 발급할 수 있습니다. 지정된 키로 서명된 토큰을 만들고 토큰 제한 구성에서 지정한 클레임을 발급하려면 반드시 STS를 구성해야 합니다(이 문서에서 설명). 토큰이 유효하고 해당 토큰의 클레임이 콘텐츠 키에 대해 구성된 클레임과 일치하는 경우 미디어 서비스 키 배달 서비스는 암호화 키를 클라이언트에게 반환합니다.
+미디어 서비스는 보안 토큰 서비스를 제공하지 않습니다. 사용자 지정 STS를 만들거나 Microsoft Azure ACS tooissue 토큰을 활용할 수 있습니다. hello STS 구성된 toocreate hello 지정 된 키로 토큰에 서명 해야 하 고 (이 문서에서 설명)으로 hello 토큰 제한 구성에서 지정한 클레임을 발급 합니다. hello 미디어 서비스 키 배달 서비스는 hello 암호화 키 toohello 클라이언트 반환 hello 토큰은 유효 하 고 hello hello 토큰의 클레임이 일치 hello 콘텐츠 키에 대해 구성 된 경우.
 
 자세한 내용은 다음을 참조하세요.
 
@@ -40,31 +40,31 @@ Media Services에서 자산을 암호화하려는 경우 [여기](media-services
 
 [Azure Active Directory와 Azure 미디어 서비스 OWIN MVC 기반 앱을 Azure Active Directory와 통합하고 JWT 클레임을 기반으로 하는 콘텐츠 키 배달을 제한합니다](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/).
 
-[Azure ACS를 사용하여 토큰을 발급합니다](http://mingfeiy.com/acs-with-key-services).
+[Azure ACS tooissue 토큰을 사용 하 여](http://mingfeiy.com/acs-with-key-services)합니다.
 
 ### <a name="some-considerations-apply"></a>다음과 같은 몇 가지 고려 사항이 적용됩니다.
-* 동적 패키징 및 동적 암호화를 사용하려면 콘텐츠를 스트리밍하려는 스트리밍 끝점이 **실행** 상태인지 확인합니다.
+* toobe 수 toouse 동적 패키징 및 동적 암호화 toostream 원하는 끝점 콘텐츠 스트리밍 hello hello에 있는지 확인 **실행** 상태입니다.
 * 사용자의 자산은 적응 비트 전송률 MP4 또는 적응 비트 전송률 부드러운 스트리밍 파일 집합을 포함해야 합니다. 자세한 내용은 [자산 인코딩](media-services-encode-asset.md)을 참조하세요.
 * **AssetCreationOptions.StorageEncrypted** 옵션을 사용하여 자산을 업로드하고 인코딩합니다.
-* 동일한 정책 구성이 필요한 여러 콘텐츠 키를 사용하려는 경우 단일 인증 정책을 만들고 여러 콘텐츠 키와 함께 다시 사용 하는 것이 좋습니다.
-* 키 배달 서비스는 ContentKeyAuthorizationPolicy 및 관련 개체(정책 옵션 및 제한 사항)를 15분 동안 캐시합니다.  ContentKeyAuthorizationPolicy를 만들고 "Token" 제한을 사용하도록 지정 및 테스트하고 정책의 제한을 "개방"으로 업데이트 하는 경우, 해당 정책이 "개방" 버전으로 전환하는 데 약 15분이 소요됩니다.
+* 동일 해야 하는 여러 콘텐츠 키 hello toohave 하려는 경우 정책 구성 하는 것이 권장 toocreate 단일 권한 부여 정책 및 여러 콘텐츠 키에 다시 사용 합니다.
+* 키 배달 서비스 hello ContentKeyAuthorizationPolicy 및 관련된 개체 (정책 옵션 및 제한) 15 분 동안 캐시합니다.  ContentKeyAuthorizationPolicy 만들기 및 toouse "토큰" 제한을 지정 합니다. 그런 다음 테스트 한 hello 정책을 업데이트 하는 경우 너무 "열" 제한, hello 정책 스위치 toohello "열기" 버전의 hello 정책 하기 전에 약 15 분이 걸립니다.
 * 자산 배달 정책을 추가하거나 업데이트하는 경우 기존 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.
 * 현재 점진적 다운로드를 암호화할 수 없습니다.
 
 ## <a name="aes-128-dynamic-encryption"></a>AES 128 동적 암호화.
 > [!NOTE]
-> 미디어 서비스 REST API를 사용할 때는 다음 사항을 고려해야 합니다.
+> Hello hello 미디어 서비스 REST API를 사용 하는 경우 다음 고려 사항이 적용 됩니다.
 > 
 > 미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 > 
-> https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다. AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요.
+> Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다. AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다.
 > 
 > 
 
 ### <a name="open-restriction"></a>열기 제한
-열기 제한은 시스템이 키를 요청하는 사람에게 키를 제공하는 것을 의미합니다. 이 제한은 테스트 목적으로 유용할 수 있습니다.
+개방형 제한 hello 시스템 키를 요청 하는 hello 키 tooanyone 제공 의미 합니다. 이 제한은 테스트 목적으로 유용할 수 있습니다.
 
-다음 예제에서는 열기 권한 부여 정책을 만들고 콘텐츠 키에 추가합니다.
+다음 예제는 hello open authorization 정책을 만들고 toohello 콘텐츠 키를 추가 합니다.
 
 #### <a id="ContentKeyAuthorizationPolicies"></a>ContentKeyAuthorizationPolicies 만들기
 요청:
@@ -159,7 +159,7 @@ Media Services에서 자산을 암호화하려는 경우 [여기](media-services
 
     HTTP/1.1 204 No Content
 
-#### <a id="AddAuthorizationPolicyToKey"></a>콘텐츠 키에 인증 정책 추가
+#### <a id="AddAuthorizationPolicyToKey"></a>권한 부여 정책 toohello 콘텐츠 키를 추가 합니다.
 요청:
 
     PUT https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeys('nb%3Akid%3AUUID%3A2e6d36a7-a17c-4e9a-830d-eca23ad1a6f9') HTTP/1.1
@@ -181,9 +181,9 @@ Media Services에서 자산을 암호화하려는 경우 [여기](media-services
     HTTP/1.1 204 No Content
 
 ### <a name="token-restriction"></a>토큰 제한
-이 섹션에서는 콘텐츠 키 인증 정책을 만들고 콘텐츠 키와 연결하는 방법을 설명합니다. 인증 정책은 사용자가 키를 받도록 인증받는지 여부를 결정하기 위해 어떤 인증 요구 사항이 충족돼야 하는지 설명합니다(예: “확인 키”목록은 토큰 서명에 사용된 키를 포함).
+이 섹션에서는 toocreate 콘텐츠 키 권한 부여 정책 및 hello 콘텐츠 키와 연결 방법을 설명 합니다. hello 권한 부여 정책은 설명 hello 사용자가 권한 있는 tooreceive hello 키 권한 부여 요구 사항이 충족된 toodetermine 이어야 합니다 (예를 들어 hello "확인 키" 목록 증명이 hello 키로 서명 된 hello 토큰).
 
-토큰 제한 옵션을 구성하려면 XML을 사용하여 토큰의 권한 부여 요구 사항을 설명해야 합니다. 토큰 제한 구성 XML은 다음 XML 스키마를 준수 해야 합니다.
+XML toouse 해야 tooconfigure hello 토큰 제한 옵션을 toodescribe hello 토큰의 권한 부여 요구 사항입니다. hello 토큰 제한 구성 XML은 XML 스키마를 따르는 toohello를 준수 해야 합니다.
 
 #### <a id="schema"></a>토큰 제한 스키마
     <?xml version="1.0" encoding="utf-8"?>
@@ -233,12 +233,12 @@ Media Services에서 자산을 암호화하려는 경우 [여기](media-services
       <xs:element name="SymmetricVerificationKey" nillable="true" type="tns:SymmetricVerificationKey" />
     </xs:schema>
 
-**토큰** 제한 정책을 구성할 때는 기본** 확인 키**, **issuer** 및 **audience** 매개 변수를 지정해야 합니다. **기본 확인 키**는 토큰 서명 시 사용된 키를 포함하며, **issuer**는 토큰을 발급한 보안 토큰 서비스입니다. **대상**(때로는 **범위**라고도 함)은 토큰의 의도 또는 토큰에서 접근을 인증하는 대상 리소스를 설명합니다. 미디어 서비스 키 배달 서비스는 이러한 토큰의 값이 템플릿 파일에 있는 값과 일치하는지 확인합니다. 
+Hello를 구성할 때 **토큰** 제한 정책을, hello 기본 * * 확인 키 * *를 지정 해야 **발급자** 및 **audience** 매개 변수입니다. hello * * 기본 확인 키 * * 포함 토큰 hello hello 키 서명 된 **발급자** hello 보안 토큰 서비스에는 해당 문제 hello 토큰입니다. hello **audience** (라고도 **범위**) hello 의도 설명 hello 토큰 hello 토큰 또는 hello 리소스에 대 한 액세스 권한을 부여 합니다. hello 미디어 서비스 키 배달 서비스는 hello 토큰의 이러한 값 hello 템플릿에서 hello 값과 일치 하는지 확인 합니다. 
 
-다음 예제에서는 토큰 제한으로 인증 정책을 만듭니다. 이 예제에서는 서명 키(VerificationKey), 토큰 발급자 및 필요한 클레임을 포함하는 토큰을 제공해야 합니다.
+다음 예제는 hello 토큰 제한 된 권한 부여 정책을 만듭니다. 이 예제에서는 hello 클라이언트는 toopresent 포함 하는 토큰: 서명 요구 된 클레임, 토큰 발급자 및 키 제시 해야 합니다.
 
 ### <a name="create-contentkeyauthorizationpolicies"></a>ContentKeyAuthorizationPolicies 만들기
-[여기](#ContentKeyAuthorizationPolicies)에 표시된 대로 "Token Restriction Policy" 생성
+표시 된 것 처럼 "토큰 제한 정책" hello 만들기 [여기](#ContentKeyAuthorizationPolicies)합니다.
 
 ### <a name="create-contentkeyauthorizationpolicyoptions"></a>ContentKeyAuthorizationPolicyOptions 만들기
 요청:
@@ -279,18 +279,18 @@ Media Services에서 자산을 암호화하려는 경우 [여기](media-services
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>ContentKeyAuthorizationPolicies를 옵션과 연결
 [여기](#ContentKeyAuthorizationPolicies)에 표시된 대로 ContentKeyAuthorizationPolicies을 옵션과 연결
 
-#### <a name="add-authorization-policy-to-the-content-key"></a>콘텐츠 키에 인증 정책 추가
-[여기](#AddAuthorizationPolicyToKey)에 표시된 대로 AuthorizationPolicy를 ContentKey에 추가
+#### <a name="add-authorization-policy-toohello-content-key"></a>권한 부여 정책 toohello 콘텐츠 키를 추가 합니다.
+표시 된 것 처럼 AuthorizationPolicy toohello ContentKey 추가 [여기](#AddAuthorizationPolicyToKey)합니다.
 
 ## <a name="playready-dynamic-encryption"></a>PlayReady 동적 암호화
-Media Services를 사용하면 사용자가 보호된 콘텐츠를 재생하려고 할 때 PlayReady DRM 런타임이 적용하도록 하려는 권한 및 제한을 구성할 수 있습니다. 
+미디어 서비스 tooconfigure hello 권한 및 제한 되도록 PlayReady DRM 런타임에서 tooenforce hello에 대 한 사용자가 하려고 할 때 tooplay 다시 보호 된 콘텐츠를 있습니다. 
 
-PlayReady로 콘텐츠를 보호하려는 경우 권한 부여 정책에서 지정해야 하는 항목 중 하나는 [PlayReady 라이선스 템플릿](media-services-playready-license-template-overview.md)을 정의하는 XML 문자열입니다. 
+PlayReady로 콘텐츠를 보호 하는 경우 hello 중 하나가 필요한 권한 부여 정책에서 toospecify hello를 정의 하는 XML 문자열은 [PlayReady 라이선스 템플릿을](media-services-playready-license-template-overview.md)합니다. 
 
 ### <a name="open-restriction"></a>열기 제한
-열기 제한은 시스템이 키를 요청하는 사람에게 키를 제공하는 것을 의미합니다. 이 제한은 테스트 목적으로 유용할 수 있습니다.
+개방형 제한 hello 시스템 키를 요청 하는 hello 키 tooanyone 제공 의미 합니다. 이 제한은 테스트 목적으로 유용할 수 있습니다.
 
-다음 예제에서는 열기 권한 부여 정책을 만들고 콘텐츠 키에 추가합니다.
+다음 예제는 hello open authorization 정책을 만들고 toohello 콘텐츠 키를 추가 합니다.
 
 #### <a id="ContentKeyAuthorizationPolicies2"></a>ContentKeyAuthorizationPolicies 만들기
 요청:
@@ -368,11 +368,11 @@ PlayReady로 콘텐츠를 보호하려는 경우 권한 부여 정책에서 지�
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>ContentKeyAuthorizationPolicies를 옵션과 연결
 [여기](#ContentKeyAuthorizationPolicies)에 표시된 대로 ContentKeyAuthorizationPolicies을 옵션과 연결
 
-#### <a name="add-authorization-policy-to-the-content-key"></a>콘텐츠 키에 인증 정책 추가
-[여기](#AddAuthorizationPolicyToKey)에 표시된 대로 AuthorizationPolicy를 ContentKey에 추가
+#### <a name="add-authorization-policy-toohello-content-key"></a>권한 부여 정책 toohello 콘텐츠 키를 추가 합니다.
+표시 된 것 처럼 AuthorizationPolicy toohello ContentKey 추가 [여기](#AddAuthorizationPolicyToKey)합니다.
 
 ### <a name="token-restriction"></a>토큰 제한
-토큰 제한 옵션을 구성하려면 XML을 사용하여 토큰의 권한 부여 요구 사항을 설명해야 합니다. 토큰 제한 구성 XML은 [이](#schema) 섹션에 표시된 XML 스키마를 준수해야 합니다.
+XML toouse 해야 tooconfigure hello 토큰 제한 옵션을 toodescribe hello 토큰의 권한 부여 요구 사항입니다. hello 토큰 제한 구성 XML에 표시 된 toohello XML 스키마를 준수 해야 [이](#schema) 섹션.
 
 #### <a name="create-contentkeyauthorizationpolicies"></a>ContentKeyAuthorizationPolicies 만들기
 [여기](#ContentKeyAuthorizationPolicies2)에 표시된 대로 ContentKeyAuthorizationPolicies 만들기
@@ -416,8 +416,8 @@ PlayReady로 콘텐츠를 보호하려는 경우 권한 부여 정책에서 지�
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>ContentKeyAuthorizationPolicies를 옵션과 연결
 [여기](#ContentKeyAuthorizationPolicies)에 표시된 대로 ContentKeyAuthorizationPolicies을 옵션과 연결
 
-#### <a name="add-authorization-policy-to-the-content-key"></a>콘텐츠 키에 인증 정책 추가
-[여기](#AddAuthorizationPolicyToKey)에 표시된 대로 AuthorizationPolicy를 ContentKey에 추가
+#### <a name="add-authorization-policy-toohello-content-key"></a>권한 부여 정책 toohello 콘텐츠 키를 추가 합니다.
+표시 된 것 처럼 AuthorizationPolicy toohello ContentKey 추가 [여기](#AddAuthorizationPolicyToKey)합니다.
 
 ## <a id="types"></a>ContentKeyAuthorizationPolicy를 정의할 때 사용되는 형식
 ### <a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
@@ -445,5 +445,5 @@ PlayReady로 콘텐츠를 보호하려는 경우 권한 부여 정책에서 지�
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>다음 단계
-콘텐츠 키의 권한 부여 정책을 구성했으므로 [자산 배포 정책 구성 방법](media-services-rest-configure-asset-delivery-policy.md) 항목으로 이동합니다.
+콘텐츠 키 권한 부여 정책을 구성 했으므로 이동 toohello [어떻게 tooconfigure 자산 배달 정책](media-services-rest-configure-asset-delivery-policy.md) 항목입니다.
 

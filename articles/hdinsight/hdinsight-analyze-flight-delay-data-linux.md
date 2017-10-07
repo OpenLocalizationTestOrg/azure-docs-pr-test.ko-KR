@@ -1,6 +1,6 @@
 ---
-title: "HDInsight에서 Hive를 사용하여 비행 지연 데이터 분석 - Azure | Microsoft Docs"
-description: "Hive를 사용하여 Linux 기반 HDInsight에서 비행 데이터를 분석한 다음 Sqoop을 사용하여 SQL 데이터베이스에 데이터를 내보내는 방법에 대해 알아봅니다 "
+title: "Azure HDInsight의 Hive와 aaaAnalyze 비행 연착 데이터 | Microsoft Docs"
+description: "Toouse을 hello 데이터 tooSQL 내보낼 tooanalyze 비행 데이터 Linux 기반 HDInsight의 Hive 수에 대해 알아봅니다 Sqoop를 사용 하 여 데이터베이스입니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,18 +16,18 @@ ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 8cdc19ac8a517b6d8eefabb5476a686aa252a332
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7830457a7100880dff1c647dde1b4d203bfea3c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-on-linux-based-hdinsight"></a>Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터 분석
 
-Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분석한 다음 Sqoop을 사용하여 Azure SQL 데이터베이스에 데이터를 내보내는 방법에 대해 알아봅니다.
+방법에서 사용 하 여 하이브 Linux 기반 HDInsight 다음 tooanalyze 비행 연착 데이터 내보내기 hello 데이터 tooAzure SQL 데이터베이스에 알아봅니다 Sqoop를 사용 하 여 합니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계에는 Linux를 사용하는 HDInsight 클러스터가 필요합니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> 이 문서의 단계 hello Linux를 사용 하는 HDInsight 클러스터를 필요 합니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 ### <a name="prerequisites"></a>필수 조건
 
@@ -35,13 +35,13 @@ Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분
 
 * **Azure SQL 데이터베이스**. Azure SQL Database를 대상 데이터 저장소로 사용합니다. SQL 데이터베이스가 없는 경우 [SQL 데이터베이스 자습서: 몇 분 만에 SQL 데이터베이스 만들기](../sql-database/sql-database-get-started.md)를 참조하세요.
 
-* **Azure CLI**. Azure CLI를 설치하지 않은 경우 자세한 단계는 [Azure CLI 설치 및 구성](../cli-install-nodejs.md)을 참조하세요.
+* **Azure CLI**. Hello Azure CLI를 설치 하지 않은 경우 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) 더 많은 단계에 대 한 합니다.
 
-## <a name="download-the-flight-data"></a>비행 데이터 다운로드
+## <a name="download-hello-flight-data"></a>Hello 비행 데이터 다운로드
 
-1. [Research and Innovative Technology Administration, Bureau of Transportation Statistics][rita-website](영문)로 이동합니다.
+1. 너무 찾아보기[연구 및 운송 통계 Bureau 혁신적인 기술을 관리][rita-website]합니다.
 
-2. 페이지에서 다음 값을 선택합니다.
+2. Hello 페이지에서 다음 값에는 hello를 선택 합니다.
 
    | 이름 | 값 |
    | --- | --- |
@@ -51,26 +51,26 @@ Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분
 
 3. **다운로드**를 클릭합니다.
 
-## <a name="upload-the-data"></a>데이터 업로드
+## <a name="upload-hello-data"></a>Hello 데이터 업로드
 
-1. 다음 명령을 사용하여 HDInsight 클러스터 헤드 노드에 zip 파일을 업로드합니다.
+1. 노드 다음에 오는 명령 tooupload hello zip 파일 toohello HDInsight 클러스터 헤드 hello를 사용 합니다.
 
     ```
     scp FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:
     ```
 
-    **FILENAME**을 zip 파일의 이름으로 바꿉니다. **USERNAME**을 HDInsight 클러스터에 대한 SSH 로그인으로 바꿉니다. CLUSTERNAME을 HDInsight 클러스터의 이름으로 바꿉니다.
+    대체 **FILENAME** hello zip 파일의 hello 이름을 사용 합니다. 대체 **USERNAME** hello HDInsight 클러스터에 대 한 hello SSH 로그인을 사용 합니다. CLUSTERNAME를 hello HDInsight 클러스터의 hello 이름을 바꿉니다.
 
    > [!NOTE]
-   > SSH 로그인을 인증하는 암호를 사용한 경우 암호를 묻는 메시지가 나타납니다. 공용 키를 사용하는 경우, `-i` 매개 변수를 사용하고 개인 키와 일치하는 경로를 지정합니다. 예: `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`.
+   > 암호 tooauthenticate SSH 로그인을 사용 하면 hello 암호에 대 한 메시지가 표시 됩니다. 공개 키를 사용한 경우 toouse hello 할 수 있습니다 `-i` 매개 변수 하 고 개인 키와 일치 하는 hello 경로 toohello를 지정 합니다. 예: `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`.
 
-2. 업로드가 완료되면 SSH를 사용하여 클러스터에 연결합니다.
+2. Hello 업로드가 완료 되 면 연결 SSH를 사용 하 여 toohello 클러스터:
 
     ```ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net```
 
     자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-3. 연결되면 다음을 사용하여.zip 파일의 압축을 풉니다.
+3. 연결 되 면 hello 다음 toounzip hello.zip 파일을 사용 합니다.
 
     ```
     unzip FILENAME.zip
@@ -78,28 +78,28 @@ Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분
 
     이 명령은 크기가 약 60MB인 .csv 파일의 압축을 풉니다.
 
-4. 다음 명령을 사용하여 HDInsight 저장소에 디렉터리를 만들고 파일을 디렉터리에 복사합니다.
+4. 명령 toocreate 디렉터리에 나오는 HDInsight 저장소에 hello를 사용 하 고 hello 파일 toohello 디렉터리를 복사 합니다.
 
     ```
     hdfs dfs -mkdir -p /tutorials/flightdelays/data
     hdfs dfs -put FILENAME.csv /tutorials/flightdelays/data/
     ```
 
-## <a name="create-and-run-the-hiveql"></a>HiveQL 만들기 및 실행
+## <a name="create-and-run-hello-hiveql"></a>만들기 및 hello HiveQL를 실행 합니다.
 
-다음 단계를 사용하여 CSV 파일에서 **지연**라는 Hive 테이블로 데이터를 가져옵니다.
+사용 하 여 hello 다음 tooimport 데이터 hello CSV 파일에서 명명 된 Hive 테이블에 단계 **지연**합니다.
 
-1. 다음 명령을 사용하여 **flightdelays.hql**이라는 새 파일을 만들고 편집합니다.
+1. 사용 하 여 hello 다음 toocreate 명령 및 라는 새 파일을 편집 **flightdelays.hql**:
 
     ```
     nano flightdelays.hql
     ```
 
-    이 파일의 내용으로 다음 텍스트를 사용합니다.
+    이 파일의 내용에 hello 텍스트를 다음 hello를 사용 합니다.
 
     ```hiveql
     DROP TABLE delays_raw;
-    -- Creates an external table over the csv file
+    -- Creates an external table over hello csv file
     CREATE EXTERNAL TABLE delays_raw (
         YEAR string,
         FL_DATE string,
@@ -123,16 +123,16 @@ Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분
         NAS_DELAY float,
         SECURITY_DELAY float,
         LATE_AIRCRAFT_DELAY float)
-    -- The following lines describe the format and location of the file
+    -- hello following lines describe hello format and location of hello file
     ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     STORED AS TEXTFILE
     LOCATION '/tutorials/flightdelays/data';
 
-    -- Drop the delays table if it exists
+    -- Drop hello delays table if it exists
     DROP TABLE delays;
-    -- Create the delays table and populate it with data
-    -- pulled in from the CSV file (via the external table defined previously)
+    -- Create hello delays table and populate it with data
+    -- pulled in from hello CSV file (via hello external table defined previously)
     CREATE TABLE delays AS
     SELECT YEAR AS year,
         FL_DATE AS flight_date,
@@ -157,24 +157,24 @@ Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분
     FROM delays_raw;
     ```
 
-2. 파일을 저장하려면 **Ctrl + X**, **Y**를 차례로 사용합니다.
+2. toosave hello 파일을 사용 하 여 **Ctrl + X**, 다음 **Y** 합니다.
 
-3. Hive를 시작하고 **flightdelays.hql** 파일을 실행하려면 다음 명령을 사용합니다.
+3. toostart Hive 및 실행된 hello **flightdelays.hql** 파일에서 다음 명령을 hello를 사용 하 여:
 
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -f flightdelays.hql
     ```
 
    > [!NOTE]
-   > 이 예제에서 HDInsight 클러스터의 헤드 노드에 연결되어 있기 때문에 `localhost`을 사용합니다. 여기서 HiveServer2가 실행 중입니다.
+   > 이 예제에서는 `localhost` HiveServer2 실행 되 고 hello HDInsight 클러스터의 헤드 노드에 연결 된 toohello 되므로 사용 됩니다.
 
-4. __flightdelays.hql__ 스크립트 실행이 완료되면 다음 명령을 사용하여 대화형 Beeline 세션을 엽니다.
+4. 한 번 hello __flightdelays.hql__ 스크립트 실행이 완료 될을 사용 하 여 hello 다음 명령은 대화형 Beeline 세션 tooopen:
 
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http'
     ```
 
-5. `jdbc:hive2://localhost:10001/>` 프롬프트를 수신하면, 다음 쿼리를 사용하여 가져온 비행 지연 데이터에서 데이터를 검색합니다.
+5. Hello를 받는 경우 `jdbc:hive2://localhost:10001/>` 가져온 hello 비행 연착 데이터에서 같은 쿼리 tooretrieve 데이터가 hello를 사용 하 여, 메시지를 표시 합니다.
 
     ```hiveql
     INSERT OVERWRITE DIRECTORY '/tutorials/flightdelays/output'
@@ -186,47 +186,47 @@ Linux 기반 HDInsight에서 Hive를 사용하여 비행 지연 데이터를 분
     GROUP BY origin_city_name;
     ```
 
-    이 쿼리는 평균 지연 시간과 함께 날씨 지연이 발생된 도시 목록이 검색된 후 `/tutorials/flightdelays/output`에 저장됩니다. 나중에 Sqoop는 이 위치에서 데이터를 읽어 Azure SQL Database로 내보냅니다.
+    이 쿼리는 hello 평균 함께 숙련 된 날씨 지연 시간을 지연 하 고 너무 저장 도시 목록을 검색`/tutorials/flightdelays/output`합니다. 나중에, Sqoop hello 데이터를이 위치 읽고 tooAzure SQL 데이터베이스 내보내기.
 
-6. Beeline을 종료하려면 프롬프트에 `!quit`을 입력합니다.
+6. tooexit Beeline, 입력 `!quit` hello 프롬프트입니다.
 
 ## <a name="create-a-sql-database"></a>SQL 데이터베이스 만들기
 
-SQL 데이터베이스가 이미 있는 경우 서버 이름을 가져와야 합니다. [SQL Databases](https://portal.azure.com)를 선택하여 **Azure Portal**에서 서버 이름을 찾은 다음 사용하려는 데이터베이스의 이름을 필터링합니다. 서버 이름은 **서버** 열에 나열됩니다.
+SQL 데이터베이스를 이미 있는 경우에 hello 서버 이름을 가져와야 합니다. Hello에 hello 서버 이름을 찾을 수 있습니다 [Azure 포털](https://portal.azure.com) 선택 하 여 **SQL 데이터베이스**, 데이터베이스의 hello hello 이름에 대해 다음 필터링 하 고 원하는 toouse 합니다. hello에 hello 서버 이름이 나열 되어 **서버** 열입니다.
 
-SQL 데이터베이스가 없는 경우 [SQL 데이터베이스 자습서: 몇 분 만에 SQL 데이터베이스 만들기](../sql-database/sql-database-get-started.md) 의 정보를 사용하여 만듭니다. 데이터베이스에 사용한 서버 이름을 저장합니다.
+SQL 데이터베이스 아직 없는 경우에 hello 정보 사용 [SQL 데이터베이스 자습서: 분 후에 SQL 데이터베이스 만들기](../sql-database/sql-database-get-started.md) toocreate 하나입니다. Hello 데이터베이스에 사용 되는 hello 서버 이름을 저장 합니다.
 
 ## <a name="create-a-sql-database-table"></a>SQL 데이터베이스 테이블 만들기
 
 > [!NOTE]
-> 여러 가지 방법으로 SQL Database에 연결하고 테이블을 생성할 수 있습니다. 다음 단계는 HDInsight 클러스터의 [FreeTDS](http://www.freetds.org/)를 사용합니다.
+> 여러 가지 방법 tooconnect tooSQL 데이터베이스는 고 테이블을 만듭니다. 다음 단계 사용 하 여 hello [FreeTDS](http://www.freetds.org/) hello HDInsight 클러스터에서 합니다.
 
 
-1. SSH를 사용하여 Linux 기반 HDInsight 클러스터에 연결하고 SSH 세션에서 다음 단계를 실행합니다.
+1. SSH tooconnect toohello Linux 기반 HDInsight 클러스터와 hello SSH 세션에서 단계를 수행 하는 실행된 hello를 사용 합니다.
 
-2. 다음 명령을 사용하여 FreeTDS:를 설치합니다.
+2. 다음 명령은 tooinstall FreeTDS hello를 사용 합니다.
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-3. 설치가 끝나면 다음 명령을 사용하여 SQL Database 서버에 연결합니다. **serverName**을 SQL 데이터베이스 서버 이름으로 바꿉니다. **adminLogin** 및 **adminPassword**를 SQL Database의 로그인으로 바꿉니다. **databaseName**을 데이터베이스 이름으로 바꿉니다.
+3. Hello 설치 완료 되 면 다음 명령 tooconnect toohello SQL 데이터베이스 서버 hello를 사용 합니다. 대체 **serverName** hello SQL 데이터베이스 서버 이름으로 합니다. 대체 **adminLogin** 및 **adminPassword** SQL 데이터베이스에 대 한 hello 로그인을 사용 합니다. 대체 **databaseName** hello 데이터베이스 이름으로 합니다.
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
 
-    다음 텍스트와 비슷한 출력이 표시됩니다.
+    텍스트 다음 출력 유사한 toohello를 나타납니다.
 
     ```
     locale is "en_US.UTF-8"
     locale charset is "UTF-8"
     using default charset "UTF-8"
-    Default database being set to sqooptest
+    Default database being set toosqooptest
     1>
     ```
 
-4. `1>` 프롬프트에 다음 행을 입력합니다.
+4. Hello에 `1>` 프롬프트 hello 줄을 다음을 입력 합니다.
 
     ```
     CREATE TABLE [dbo].[delays](
@@ -237,60 +237,60 @@ SQL 데이터베이스가 없는 경우 [SQL 데이터베이스 자습서: 몇 �
     GO
     ```
 
-    `GO` 문을 입력하면 이전 문이 평가됩니다. 이 쿼리는 클러스터형 인덱스가 있는 **지연**이라는 테이블을 만듭니다.
+    Hello 때 `GO` hello 이전 문이 계산을 문을 입력 합니다. 이 쿼리는 클러스터형 인덱스가 있는 **지연**이라는 테이블을 만듭니다.
 
-    다음 쿼리를 사용하여 테이블이 생성되었는지 확인합니다.
+    다음 테이블 hello 쿼리 tooverify 사용 하 여 hello가 만들어졌습니다.
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    다음 텍스트와 유사하게 출력됩니다.
+    hello는 텍스트 다음 비슷한 toohello 출력:
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     databaseName       dbo     delays      BASE TABLE
     ```
 
-5. `exit` at the `1>`를 입력하여 tsql 유틸리티를 종료합니다.
+5. 입력 `exit` hello에 `1>` tooexit hello tsql 유틸리티 메시지를 표시 합니다.
 
 ## <a name="export-data-with-sqoop"></a>Sqoop으로 데이터 내보내기
 
-1. 다음 명령을 사용하여 Sqoop이 SQL 데이터베이스를 볼 수 있는지 확인합니다.
+1. 사용 하 여 hello 다음 명령 tooverify Sqoop SQL 데이터베이스를 볼 수 있습니다.
 
     ```
     sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> --password <adminPassword>
     ```
 
-    이 명령은 지연 테이블을 만든 데이터베이스를 포함한 데이터베이스 목록을 반환합니다.
+    이 명령은 hello 지연 테이블에서 이전에 만든 hello 데이터베이스를 포함 하 여 데이터베이스의 목록을 반환 합니다.
 
-2. 다음 명령을 사용하여 hivesampletable에서 mobiledata 테이블로 데이터를 내보냅니다.
+2. Hello 명령 tooexport 데이터 hivesampletable toohello mobiledata 테이블에서 다음을 사용 합니다.
 
     ```
     sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir '/tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
     ```
 
-    Sqoop은 지연 테이블을 포함하는 데이터베이스에 연결되고 `/tutorials/flightdelays/output` 디렉터리에서 지연 테이블로 데이터를 내보냅니다.
+    Sqoop hello 지연 테이블이 포함 된 toohello 데이터베이스를 연결 하 고 hello에서 데이터를 내보내는 `/tutorials/flightdelays/output` 디렉터리 toohello 지연 테이블입니다.
 
-3. 명령이 완료되면 다음을 통해 TSQL을 사용하여 데이터베이스에 연결합니다.
+3. Hello 명령이 완료 된 후 다음 TSQL을 사용 하 여 tooconnect toohello 데이터베이스 hello를 사용 합니다.
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
 
-    연결되면 다음 명령문을 사용하여 데이터가 mobiledata 테이블로 내보내기되었는지 확인합니다.
+    연결 되 면 다음 문을 tooverify hello 데이터 내보낸된 toohello mobiledata 테이블 했음을 hello를 사용 합니다.
 
     ```
     SELECT * FROM delays
     GO
     ```
 
-    테이블에 데이터 목록이 표시됩니다. `exit` 를 입력하여 tsql 유틸리티를 종료합니다.
+    Hello 테이블의에서 데이터를 목록이 표시 됩니다. 형식 `exit` tooexit hello tsql 유틸리티입니다.
 
 ## <a id="nextsteps"></a> 다음 단계
 
-HDInsight에서 데이터 사용에 대한 자세한 내용은 다음 문서를 참조하세요.
+toolearn HDInsight의 데이터로 자세한 방법으로 toowork 참조 문서 다음 hello:
 
 * [HDInsight에서 Hive 사용][hdinsight-use-hive]
 * [HDInsight에서 Oozie 사용][hdinsight-use-oozie]

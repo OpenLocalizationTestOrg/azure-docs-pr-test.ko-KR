@@ -1,6 +1,6 @@
 ---
-title: "다중 테넌트 SaaS 앱에서 다수의 Azure SQL 데이터베이스 성능 모니터링 | Microsoft Docs"
-description: "Azure SQL Database Wingtip SaaS 앱에서 데이터베이스 및 풀의 성능 모니터링 및 관리"
+title: "다중 테 넌 트 SaaS 응용 프로그램에서 많은 Azure SQL 데이터베이스의 aaaMonitor 성능을 | Microsoft Docs"
+description: "모니터링 및 관리 데이터베이스 및 hello Azure SQL 데이터베이스 Wingtip SaaS 응용 프로그램 풀의 성능"
 keywords: "SQL Database 자습서"
 services: sql-database
 documentationcenter: 
@@ -16,73 +16,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: sstein
-ms.openlocfilehash: 42f727aa40e744916b1a8adf634c10d55880bef0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f0d7ba456c485b7de249a56abac3cf4be3857285
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-performance-of-the-wingtip-saas-application"></a>Wingtip SaaS 응용 프로그램의 성능 모니터링
+# <a name="monitor-performance-of-hello-wingtip-saas-application"></a>Hello Wingtip SaaS 응용 프로그램의 성능을 모니터링합니다
 
-이 자습서에서는 SaaS 응용 프로그램에서 사용되는 몇 가지 주요 성능 관리 시나리오를 살펴봅니다. 부하 생성기를 사용하여 모든 테넌트 데이터베이스에서의 활동을 시뮬레이션하여 SQL Database 및 탄력적 풀의 기본 제공 모니터링 및 경고 기능을 보여 줍니다.
+이 자습서에서는 SaaS 응용 프로그램에서 사용되는 몇 가지 주요 성능 관리 시나리오를 살펴봅니다. 부하 생성기 toosimulate 동작을 사용 하 여 모든 테 넌 트 데이터베이스에서 기본 제공 모니터링 hello 및 SQL 데이터베이스와 탄력적 풀의 경고 기능을 보여 줍니다.
 
-Wingtip SaaS 앱은 단일 테넌트 데이터 모델을 사용하며, 각 장소(테넌트)에 자체 데이터베이스가 있습니다. 많은 SaaS 응용 프로그램과 마찬가지로 예상 테넌트 워크로드 패턴은 예측하기 어렵고 간헐적입니다. 예를 들어 티켓 판매는 아무 때나 발생할 수 있습니다. 이러한 일반적인 데이터베이스 사용 패턴을 이용하기 위해 테넌트 데이터베이스가 Elastic Database 풀에 배포됩니다. 탄력적 풀은 많은 데이터베이스에 걸쳐 리소스를 공유하여 솔루션의 비용을 최적화합니다. 이 유형의 패턴에서는 풀 전체에 걸쳐 부하가 합리적으로 균형을 유지하도록 데이터베이스 및 풀 리소스 사용을 모니터링해야 합니다. 또한 개별 데이터베이스에 적합한 리소스가 있고 풀이 [eDTU](sql-database-what-is-a-dtu.md) 한도에 도달하지 않도록 해야 합니다. 이 자습서에서는 데이터베이스와 풀을 모니터링하고 관리하는 방법과 워크로드 변화에 응답하여 정정 작업을 실행하는 방법을 탐색합니다.
+hello Wingtip SaaS 앱 각 장소 (테 넌 트)의 해당 데이터베이스에 있는 단일 테 넌 트 데이터 모델을 사용 합니다. 대부분의 SaaS 응용 프로그램 처럼 hello 테 넌 트 작업 부하 패턴은 드물게 발생 하 고 예측할 수 없는 것으로 예상 합니다. 예를 들어 티켓 판매는 아무 때나 발생할 수 있습니다. tootake 활용이 일반적인 데이터베이스 사용 패턴, 테 넌 트 데이터베이스를 탄력적 데이터베이스 풀으로 배포 됩니다. 탄력적 풀에서 많은 데이터베이스 리소스를 공유 하 여 솔루션의 hello 비용을 최적화 합니다. 이 유형의 패턴을는 중요 한 toomonitor 데이터베이스 균등 하 게 풀 리소스 사용량 tooensure 로드 하는 합리적으로 풀에 걸쳐 있습니다. 또한 개별 데이터베이스에 리소스가 충분 한지 및 풀에 도달 하지 tooensure 해야 자신의 [eDTU](sql-database-what-is-a-dtu.md) 제한 합니다. 이 자습서 방법으로 toomonitor 탐색 하 고 데이터베이스 및 풀 관리 방법과 tootake 작업에서 응답 toovariations에 정정 작업입니다.
 
 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
 
-> * 제공된 부하 생성기를 실행하여 테넌트 데이터베이스에 대한 사용량 시뮬레이션
-> * 부하 증가에 응답하여 테넌트 데이터베이스 모니터링
-> * 증가된 데이터베이스 부하에 응답하여 탄력적 풀 강화
-> * 데이터베이스 작업의 부하를 분산하도록 두 번째 탄력적 풀을 프로비전
+> * 제공 된 부하 생성기를 실행 하 여 hello 테 넌 트 데이터베이스에서의 사용을 시뮬레이션 합니다.
+> * 올바르게 응답 하지 않는 부하 toohello 증가 하는 대로 모니터 hello 테 넌 트 데이터베이스
+> * 탄력적 풀 응답 toohello 높아지는 데이터베이스 부하에 hello 수직 확장
+> * 두 번째 탄력적 풀 tooload 균형 데이터베이스 활동을 프로 비전
 
 
-이 자습서를 수행하려면 다음 필수 조건이 완료되었는지 확인합니다.
+toocomplete이이 자습서에서는 다음 필수 구성 요소 확인 되었는지 hello 완료 됩니다.
 
-* Wingtip SaaS 앱이 배포되었습니다. 5분 내에 배포하려면 [Wingtip SaaS 응용 프로그램 배포 및 탐색](sql-database-saas-tutorial.md)을 참조하세요.
+* hello Wingtip SaaS 앱을 배포 합니다. 5 분 이내에 toodeploy 참조 [배포 하 고 hello Wingtip SaaS 응용 프로그램 탐색](sql-database-saas-tutorial.md)
 * Azure PowerShell이 설치되었습니다. 자세한 내용은 [Azure PowerShell 시작](https://docs.microsoft.com/powershell/azure/get-started-azureps)을 참조하세요.
 
-## <a name="introduction-to-saas-performance-management-patterns"></a>SaaS 성능 관리 패턴 소개
+## <a name="introduction-toosaas-performance-management-patterns"></a>소개 tooSaaS 성능 관리 패턴
 
-데이터베이스 성능 관리는 성능 데이터 컴파일과 분석 및 그런 다음 응용 프로그램에 대해 허용되는 응답 시간을 유지하도록 매개 변수를 조정하여 이 데이터에 반응하는 과정으로 구성됩니다. 여러 테넌트를 호스팅할 때 Elastic Database 풀은 예측 불가능한 워크로드를 가진 데이터베이스 그룹에 대한 리소스를 제공하고 관리하는 비용 효율적인 방법입니다. 특정 워크로드 패턴의 경우 풀에서 관리하면 S3 데이터베이스 두 개만 이점을 얻을 수 있습니다.
+데이터베이스 성능 관리 컴파일 및 성능 데이터 분석 및 다음 매개 변수 toomaintain 응용 프로그램에 대 한 적절 한 응답 시간을 조정 하 여 toothis 데이터 반응으로 구성 됩니다. 여러 테 넌 트를 호스팅하는 경우 탄력적 데이터베이스 풀은 비용 효율적인 방식으로 tooprovide 하 고 예측할 수 없는 작업이 있는 데이터베이스 그룹에 대 한 리소스를 관리 합니다. 특정 워크로드 패턴의 경우 풀에서 관리하면 S3 데이터베이스 두 개만 이점을 얻을 수 있습니다.
 
 ![미디어](./media/sql-database-saas-tutorial-performance-monitoring/app-diagram.png)
 
-풀 및 풀에 있는 데이터베이스를 모니터링하여 성능의 허용 범위로 유지되는지 확인해야 합니다. 풀 구성을 모든 데이터베이스의 집계 워크로드에 대한 요구에 맞게 조정하여 풀 eDTU가 전체 워크로드에 적합하게 해야 합니다. 데이터베이스별 최소 및 데이터베이스별 최대 eDTU 값을 특정 응용 프로그램 요구 사항에 적합한 값으로 조정합니다.
+풀 및 풀의 hello 데이터베이스 모니터링된 tooensure 성능의 허용 가능한 범위 내에서 유지 해야 합니다. 튜닝 hello 풀 구성 toomeet hello 작업의 요구 사항을 hello 집계는 hello 풀 Edtu hello에 대 한 적절 한 되도록 하는 모든 데이터베이스의 전체 작업 합니다. 값을 조정 hello 데이터베이스당 min 및 데이터베이스당 최대 eDTU 값 tooappropriate 특정 응용 프로그램 요구 사항에 대 한 합니다.
 
 ### <a name="performance-management-strategies"></a>성능 관리 전략
 
-* 수동으로 성능을 모니터링할 필요가 없도록 하려면 **데이터베이스 또는 풀이 정상 범위를 벗어난 경우 트리거되는 경고를 설정**하는 것이 가장 효과적입니다.
-* 풀의 집계 성능의 단기적 변동에 대응하기 위해 **풀 eDTU 수준을 확장하거나 축소할 수 있습니다**. 이러한 변동이 정기적으로 또는 예측 가능한 단위로 발생하는 경우 **풀 크기 조정을 자동으로 일어나도록 예약**할 수 있습니다. 예를 들어 워크로드가 가볍다고 알고 있는 경우 야간 또는 주말 중으로 규모를 축소할 수 있습니다.
-* 더 장기적인 변동 또는 데이터베이스 수 변화에 대응하기 위해 **개별 데이터베이스를 다른 풀로 이동**할 수 있습니다.
-* *개별* 데이터베이스 부하의 단기적 증가에 대응하기 위해 **개별 데이터베이스를 풀에서 제외하고 개별 성능 수준을 할당**할 수 있습니다. 부하가 감소한 후 데이터베이스를 풀에 반환할 수 있습니다. 이러한 상황을 미리 안다면 데이터베이스에 언제나 필요한 리소스가 있도록 하고 풀에 있는 다른 데이터베이스에 영향을 미치지 않도록 데이터베이스를 선제적으로 이동할 수 있습니다. 이 요구 사항이 예측 가능하다면 인기 있는 이벤트에 대한 티켓 판매의 급격한 증가를 경험한 영역을 응용 프로그램에 통합할 수 있습니다.
+* tooavoid toomanually 모니터 성능 있는 것이 가장 효과적 너무**일반 범위를 벗어나는 들어가지 않도록 데이터베이스 또는 풀을 트리거할 경고 설정**합니다.
+* toorespond tooshort 용어 변동은 풀의 hello 집계 성능 수준에 hello **풀 eDTU 수준 위로 또는 아래로 확장 될 수 있습니다**합니다. 이 변동 정기적으로 또는 예측 가능한 단위로 발생 하는 경우 **hello 풀 크기 조정 toooccur 예약된을 자동으로 될 수 있습니다**합니다. 예를 들어 워크로드가 가볍다고 알고 있는 경우 야간 또는 주말 중으로 규모를 축소할 수 있습니다.
+* toorespond toolonger 용어 변동 사항이 나 변경 사항을 hello 데이터베이스 개수, **개별 데이터베이스를 다른 풀으로 이동할 수 있습니다**합니다.
+* toorespond tooshort 용어 증가 *개별* 데이터베이스 로드 **개별 데이터베이스를 풀에서 제거 하 고 개별 성능 수준이 할당 수**합니다. Hello 부하는 감소 되 면 hello 데이터베이스 수 다음 반환할 toohello 풀입니다. 이 배열은 미리 알려져 있는 경우 데이터베이스는 이동할 수 미리 tooensure hello 데이터베이스 항상에 필요한 hello 리소스 및 tooavoid 영향 hello 풀의 다른 데이터베이스에 있습니다. 이 요구 사항을 발생 하는 인기 있는 이벤트에 대 한 티켓 판매 러시 장소 같은 예측 가능한 경우이 관리 동작은 hello 응용 프로그램에 통합할 수 있습니다.
 
-[Azure Portal](https://portal.azure.com)은 대부분의 리소스에 대한 기본 제공 모니터링 및 경고를 제공합니다. SQL Database의 경우 데이터베이스 및 풀에 대한 모니터링 및 경고가 가능합니다. 이 기본 제공 모니터링 및 경고는 리소스별로 다르므로 소수의 리소스에 사용하면 편리하지만 많은 리소스를 가지고 작업하는 경우 그리 편리하지 않을 수 있습니다.
+hello [Azure 포털](https://portal.azure.com) 기본 제공 모니터링 및 대부분의 리소스에 경고를 제공 합니다. SQL Database의 경우 데이터베이스 및 풀에 대한 모니터링 및 경고가 가능합니다. 이 기본 제공 모니터링 및 경고 리소스 관련 이므로 적은 수의 리소스에 대 한 편리한 toouse 이지만 많은 리소스를 작업할 때 매우 편리 하 게 됩니다.
 
-여러 리소스로 작업하는 대규모 시나리오의 경우 [Log Analytics(OMS)](sql-database-saas-tutorial-log-analytics.md)를 사용할 수 있습니다. 이것은 여러 서비스에서 원격 분석을 수집하고 쿼리 및 경고 설정에 사용할 수 있는 Log Analytics 작업 영역에서 수집된 원격 분석에 대한 분석을 제공하는 개별 Azure 서비스입니다.
+여러 리소스로 작업하는 대규모 시나리오의 경우 [Log Analytics(OMS)](sql-database-saas-tutorial-log-analytics.md)를 사용할 수 있습니다. 이것은 여러 서비스에서 원격 분석을 수집하고 쿼리 및 경고 설정에 사용할 수 있는 Log Analytics 작업 영역에서 수집된 로그 분석 많은 서비스에서 원격 분석 수집 및 수 사용된 tooquery 있으며 경고를 설정 합니다.
 
-## <a name="get-the-wingtip-application-source-code-and-scripts"></a>Wingtip 응용 프로그램 소스 코드 및 스크립트 가져오기
+## <a name="get-hello-wingtip-application-source-code-and-scripts"></a>Hello Wingtip 응용 프로그램 소스 코드 및 스크립트 가져오기
 
-Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드는 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 리포지토리에서 사용할 수 있습니다. [Wingtip SaaS 스크립트를 다운로드하는 단계](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
+hello Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드에서에서 사용할 수 있는 hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 리포지토리 합니다. [Toodownload hello Wingtip SaaS 스크립트 단계](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)합니다.
 
 ## <a name="provision-additional-tenants"></a>추가 테넌트 프로비전
 
-풀은 S3 데이터베이스가 단 두 개인 경우 비용 효율적일 수 있지만 풀에 있는 데이터베이스가 많을수록 평균 적용이 더 비용 효율적입니다. 성능 모니터링과 관리가 규모별로 작동하는 방법을 잘 이해하기 위해 이 자습서에서 적어도 20개의 데이터베이스를 배포해야 합니다.
+풀 하는 두 개의 점으로만 S3 데이터베이스와 함께 비용 효율적인 동안 hello 자세한에 있는 데이터베이스는 비용 효율적인 hello 풀 hello 효과 평균을 구하여 hello 됩니다. 성능 모니터링과 관리가 규모별로 작동하는 방법을 잘 이해하기 위해 이 자습서에서 적어도 20개의 데이터베이스를 배포해야 합니다.
 
-이미 이전 자습서에서 테넌트의 배치를 프로비전한 경우 [모든 테넌트 데이터베이스에 대한 사용량 시뮬레이션](#simulate-usage-on-all-tenant-databases) 섹션을 건너뛸 수 있습니다.
+이미 이전 자습서의 테 넌 트의 일괄 처리를 프로 비전, toohello 건너뜁니다 [모든 테 넌 트 데이터베이스에서 시뮬레이션 사용량이](#simulate-usage-on-all-tenant-databases) 섹션.
 
-1. *PowerShell ISE*에서 ...\\Learning Modules\\성능 모니터링 및 관리\\*Demo-PerformanceMonitoringAndManagement.ps1*을 엽니다. 이 자습서를 실행하는 동안 여러 시나리오를 실행할 때 이 스크립트를 열어 두세요.
+1. 열기... \\학습 모듈\\성능 모니터링 및 관리\\*데모 PerformanceMonitoringAndManagement.ps1* hello에 *PowerShell ISE*합니다. 이 자습서를 실행하는 동안 여러 시나리오를 실행할 때 이 스크립트를 열어 두세요.
 1. **$DemoScenario** = **1**, **Provision a batch of tenants** 설정
-1. **F5** 키를 눌러 스크립트를 실행합니다.
+1. 키를 눌러 **F5** toorun hello 스크립트입니다.
 
-이 스크립트는 테넌트 17개를 5분 이내에 배포합니다.
+hello 스크립트는 5 분 이내에 17 테 넌 트를 배포 합니다.
 
-*New-TenantBatch* 스크립트는 테넌트의 배치를 만드는 [Resource Manager](../azure-resource-manager/index.md) 템플릿의 중첩 또는 연결된 집합을 사용하며, 기본적으로 **basetenantdb** 데이터베이스를 카탈로그 서버에 복사하여 새 테넌트 데이터베이스를 만든 다음 이들을 카탈로그에 등록하며, 끝으로 이들을 테넌트 이름과 장소 유형으로 초기화합니다. 이 방법은 앱이 새 테넌트를 프로비전하는 방법과 일치합니다. *basetenantdb*에 대해 실행한 변경은 이후 프로비전하는 새 테넌트에 모두 적용됩니다. *기존* 테넌트 데이터베이스(*basetenantdb* 데이터베이스 포함)에 대해 스키마를 변경하는 방법은 [스키마 관리 자습서](sql-database-saas-tutorial-schema-management.md)를 참조하세요.
+hello *새로 TenantBatch* 스크립트 중첩 또는 연결 된 집합을 사용 하 여 [리소스 관리자](../azure-resource-manager/index.md) 기본적으로 hello 데이터베이스를 복사 하는 테 넌 트, 일괄 처리를 만드는 템플릿을 **basetenantdb** hello 카탈로그 server toocreate hello 새 테 넌 트 데이터베이스를 만든 다음 등록 hello 카탈로그에서 이러한 및 마지막으로 형식과 hello 테 넌 트 이름 및 위치를 초기화 합니다. 이 hello 방식으로 hello 앱 프로 비전 하는 새 테 넌 트와 일치 합니다. 변경 내용을 너무*basetenantdb* 적용된 tooany 새 테 넌 트 그 후 사용자를 프로 비전 됩니다. Hello 참조 [스키마 관리 자습서](sql-database-saas-tutorial-schema-management.md) toomake 스키마 너무 어떻게 변경 되는지 toosee*기존* 데이터베이스 테 넌 트 (hello를 포함 하 여 *basetenantdb* 데이터베이스).
 
 ## <a name="simulate-usage-on-all-tenant-databases"></a>모든 테넌트 데이터베이스에 대한 사용 시뮬레이션
 
-*Demo-PerformanceMonitoringAndManagement.ps1* 스크립트는 모든 테넌트 데이터베이스에 대해 실행되는 워크로드를 시뮬레이션하는 경우 제공됩니다. 사용 가능한 부하 시나리오 중 하나를 사용하여 부하가 생성됩니다.
+hello *데모 PerformanceMonitoringAndManagement.ps1* 스크립트는 모든 테 넌 트 데이터베이스에 대해 실행 되는 작업 부하를 시뮬레이션 하는 제공 합니다. hello 부하 hello 사용 가능한 부하 시나리오 중 하나를 사용 하 여 생성 됩니다.
 
 | 데모 | 시나리오 |
 |:--|:--|
@@ -92,140 +92,140 @@ Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드는 [WingtipSaaS]
 | 5 | 표준 부하에 더하여 단일 테넌트의 높은 부하 생성(약 95 DTU)|
 | 6 | 여러 풀에 걸쳐 불균형 부하 생성|
 
-부하 생성기는 *가상* CPU만의 부하를 모든 테넌트 데이터베이스에 적용합니다. 이 생성기는 각 테넌트 데이터베이스에 대해 작업을 시작하여 부하를 생성하는 저장 프로세서를 주기적으로 호출합니다. 부하 수준(eDTU 단위), 기간 및 간격은 모든 데이터베이스에 걸쳐 변화하여 예측 불가능한 테넌트 작업을 시뮬레이션합니다.
+hello 부하 생성기 적용 되는 *가상* CPU 전용 로드 tooevery 테 넌 트 데이터베이스입니다. hello 생성기 호출 하는 저장된 프로시저 주기적으로 hello 부하를 생성 하는 각 테 넌 트 데이터베이스에 대 한 작업을 시작 합니다. hello 부하 수준 (Edtu), 지속 시간 및 간격을 예측할 수 없는 테 넌 트 작업을 시뮬레이션 하는 모든 데이터베이스에 걸쳐 다양 합니다.
 
-1. *PowerShell ISE*에서 ...\\Learning Modules\\성능 모니터링 및 관리\\*Demo-PerformanceMonitoringAndManagement.ps1*을 엽니다. 이 자습서를 실행하는 동안 여러 시나리오를 실행할 때 이 스크립트를 열어 두세요.
+1. 열기... \\학습 모듈\\성능 모니터링 및 관리\\*데모 PerformanceMonitoringAndManagement.ps1* hello에 *PowerShell ISE*합니다. 이 자습서를 실행하는 동안 여러 시나리오를 실행할 때 이 스크립트를 열어 두세요.
 1. **$DemoScenario** = **2**를 설정하고, *일반 강도 부하를 생성*합니다.
-1. **F5**를 눌러 모든 테넌트 데이터베이스에 부하를 적용합니다.
+1. 키를 눌러 **F5** tooapply 부하 tooall 테 넌 트 데이터베이스.
 
-Wingtip은 SaaS 앱이며 SaaS 앱상의 실제 부하는 일반적으로 간헐적이고 예측할 수 없습니다. 이를 시뮬레이션하기 위해 부하 생성기에서 모든 테넌트에 대해 분산된 임의의 부하를 생성합니다. 부하 패턴이 나타나기 위해서는 몇 분 정도 걸리므로, 다음 섹션의 부하 모니터링을 수행하기 전에 약 3~5분 동안 부하 생성기를 실행합니다.
+Wingtip SaaS 앱 이며 SaaS 앱에 대 한 hello 실제 부하는 일반적으로 드물게 발생 하 고 예측할 수 없는 합니다. toosimulate이 임의 부하를 모든 테 넌 트 간의 분산 hello 부하 생성기 생성 합니다. 몇 분 정도 hello 다음 섹션에서에서 toomonitor hello 부하를 시도 하기 전에 3-5 분 동안 hello 부하 생성기를 실행 하므로 hello 부하 패턴 tooemerge 필요 합니다.
 
 > [!IMPORTANT]
-> 부하 생성기는 로컬 PowerShell 세션에서 일련의 작업으로 실행 중입니다. *Demo-PerformanceMonitoringAndManagement.ps1* 탭을 열어 두세요! 탭을 닫거나 컴퓨터를 일시 중단하면 부하 생성기가 중단됩니다. 부하 생성기는 *job-invoking* 상태로 유지되어 부하 생성기가 시작된 후에 프로비전되는 모든 새 테넌트에서 부하를 생성합니다. *Ctrl-C*를 사용하여 새 작업 호출을 중지하고 스크립트를 종료합니다. 부하 생성기는 계속 실행되지만 기존 테넌트에만 실행됩니다.
+> hello 부하 생성기는 일련의 작업으로 로컬 PowerShell 세션에서 실행 중입니다. Hello 유지 *데모 PerformanceMonitoringAndManagement.ps1* 탭 열기! Hello 탭을 종료 하거나 컴퓨터를 일시 중단, hello 부하 생성기를 중지 합니다. hello 부하 생성기에 남아는 *작업 호출* 상태 hello 생성기 시작 된 후 프로 비전 되는 새 테 넌 트에 부하를 생성 합니다. 사용 하 여 *Ctrl-c* toostop 새 작업 및 끝내기 hello 스크립트를 호출 합니다. hello 부하 생성기는 toorun, 기존 테 넌 트에만 계속 합니다.
 
-## <a name="monitor-resource-usage-using-the-azure-portal"></a>Azure Portal을 사용하여 리소스 사용 모니터링
+## <a name="monitor-resource-usage-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 리소스 사용 모니터링
 
-적용 중인 부하 때문에 발생하는 리소스 사용을 모니터링하려면 테넌트 데이터베이스가 포함된 풀에 대해 포털을 엽니다.
+적용 되 고 결과 hello에서 로드 하는 toomonitor hello 자원 배정 현황 hello 테 넌 트 데이터베이스를 포함 하는 hello 포털 toohello 풀을 엽니다.
 
-1. [Azure Portal](https://portal.azure.com)을 열고 *tenants1-&lt;USER&gt;* 서버를 찾습니다.
-1. 아래로 스크롤하여 탄력적 풀을 찾은 다음 **Pool1**을 클릭합니다. 이 풀에는 지금까지 만든 모든 테넌트 데이터베이스가 포함되어 있습니다.
+1. 열기 hello [Azure 포털](https://portal.azure.com) toohello 찾아보기 및 *tenants1-&lt;사용자&gt;*  서버입니다.
+1. 아래로 스크롤하여 탄력적 풀을 찾은 다음 **Pool1**을 클릭합니다. 이 풀에는 지금까지 만든 모든 hello 테 넌 트 데이터베이스 포함 되어 있습니다.
 
-**탄력적 풀 모니터링** 및 **Elastic Database 모니터링** 차트를 확인합니다.
+Hello 관찰 **탄력적 풀 모니터링** 및 **탄력적 데이터베이스 모니터링** 차트입니다.
 
-풀의 리소스 사용률은 풀에 있는 모든 데이터베이스에 대한 집계 데이터베이스 사용률입니다. 데이터베이스 차트에는 가장 많이 사용되는 5개의 데이터베이스가 표시됩니다.
+hello 풀의 리소스 사용률은 hello 풀의 모든 데이터베이스에 대 한 hello 집계 데이터베이스 사용. hello 데이터베이스 차트 hello 5 개의 가장 많이 사용 데이터베이스를 보여 줍니다.
 
 ![](./media/sql-database-saas-tutorial-performance-monitoring/pool1.png)
 
-풀에는 상위 5개 데이터베이스 이외에 추가 데이터베이스가 있으므로 풀 사용률은 상위 5개 데이터베이스 차트에 반영되지 않은 작업을 표시합니다. 추가 세부 정보를 보려면 **데이터베이스 리소스 사용률**을 클릭합니다.
+Hello 풀 외에 추가 데이터베이스 때문에 상위 5 개 hello, hello 풀 사용률이 hello 상위 5 개 데이터베이스가 차트에 반영 되지 않은 활동을 보여 줍니다. 추가 세부 정보를 보려면 **데이터베이스 리소스 사용률**을 클릭합니다.
 
 ![](./media/sql-database-saas-tutorial-performance-monitoring/database-utilization.png)
 
 
-## <a name="set-performance-alerts-on-the-pool"></a>풀에 대한 성능 경고 설정
+## <a name="set-performance-alerts-on-hello-pool"></a>Hello 풀에서 성능 경고를 설정 합니다.
 
-풀에 대해 다음과 같이 사용률 \>75%일 때 트리거되는 경고를 설정합니다.
+트리거를 실행 하는 hello 풀에 대 한 경고를 설정 \>다음과 같이 사용률이 75%:
 
-1. [Azure Portal](https://portal.azure.com)에서 *Pool1*(*tenants1-\<user\>* 서버에 있는)을 엽니다.
+1. 열기 *Pool1* (hello에 *tenants1-\<사용자\>*  서버) hello에 [Azure 포털](https://portal.azure.com)합니다.
 1. **경고 규칙**, **+ 경고 추가**를 차례로 클릭합니다.
 
    ![경고 추가](media/sql-database-saas-tutorial-performance-monitoring/add-alert.png)
 
 1. **높은 DTU** 등과 같은 이름을 제공
-1. 다음 값을 설정합니다.
+1. Hello 다음 값을 설정 합니다.
    * **메트릭 = eDTU 백분율**
    * **조건 = 보다 큼**.
    * **임계값 = 75**.
-   * **기간 = 지난 30분 동안**.
-1. *추가 관리자 전자 메일* 상자에 메일 주소를 추가하고 **확인**을 클릭합니다.
+   * **'를 ' hello를 통해 마지막 30 분**합니다.
+1. 전자 메일 주소 toohello 추가 *추가 관리자 email(s)* 상자 한 클릭 **확인**합니다.
 
    ![경고 설정](media/sql-database-saas-tutorial-performance-monitoring/alert-rule.png)
 
 
 ## <a name="scale-up-a-busy-pool"></a>사용 중인 풀 확장
 
-풀에 대한 집계 부하 수준이 풀에서 최대로 출력되는 지점까지 증가하고 eDTU 사용률이 100%에 도달한 경우 개별 데이터베이스 성능에 영향을 주며 풀에 있는 모든 데이터베이스에 대한 쿼리 응답 시간이 느려질 가능성이 있습니다.
+Hello 집계 부하 수준을 최대한 활용 hello 풀 eDTU 사용량 100%에 도달 하는 풀 toohello 지점에 증가 한 다음 개별 데이터베이스 성능 영향을, hello 풀의 모든 데이터베이스에 대 한 쿼리 응답 시간이 느려질 수 있으므로 잠재적으로.
 
-**단기적으로** 추가 리소스를 제공하도록 풀을 확장하거나 풀에서 데이터베이스를 제거할 것을 생각할 수 있습니다(다른 풀로 이동 또는 풀에서 독립형 서비스 계층으로).
+**단기**, hello 풀 tooprovide 추가 리소스를 확장 하거나 hello 풀에서 데이터베이스를 제거 하십시오 (옮겨 tooother 풀, 내부 또는 외부로 hello 풀 tooa 독립 실행형 서비스 계층).
 
-**장기적으로** 데이터베이스 성능을 개선하기 위해 쿼리 또는 인덱스의 최적화를 생각할 수 있습니다. 성능에 대한 응용 프로그램의 민감도에 따라 풀이 사용률 100% eDTU에 도달하기 전에 풀을 확장하는 자체의 모범 사례를 발행합니다. 경고를 사용하여 미리 경고합니다.
+**장기적인**, 쿼리를 최적화 하는 것이 좋습니다. 또는 인덱스 사용 tooimprove 데이터베이스 성능. Hello에 따라 응용 프로그램의 민감도 tooperformance 발급의 모범 사례 tooscale를 풀 eDTU 사용량 100%에 도달 하기 전에 합니다. 경고 toowarn를 사용 하 여 사전에 있습니다.
 
-생성기에 의해 생성된 부하를 증가시켜 사용 중인 풀을 시뮬레이션할 수 있습니다. 데이터베이스가 더 자주 그리고 더 오래 버스트하도록 하면 개별 데이터베이스의 요구 사항을 변경하지 않고 풀에 대한 집계 부하가 증가합니다. 풀 확장은 포털 내에서 또는 PowerShell에서 쉽게 수행됩니다. 이 연습에서는 포털을 사용합니다.
+Hello 생성기에서 생성 된 hello 부하가 증가 하 여 사용 중인 풀을 시뮬레이션할 수 있습니다. 인해 hello 데이터베이스 tooburst 더 자주 및 총 부하를 증가, 더 긴 hello에 대 한 hello 풀에 hello 요구 사항을 hello 개별 데이터베이스를 변경 하지 않고 있습니다. Hello 풀 수직 확장은 hello 포털 또는 PowerShell에서 쉽게 설정할 수 있습니다. 이 연습에서는 hello 포털을 사용 합니다.
 
-1. *$DemoScenario* = **3**를 설정하고, 데이터베이스별로 더 오래 더 잦은 버스트를 사용하여 부하를 생성하여 각 데이터베이스에서 요구하는 최고 부하를 변경하지 않고 _풀에 대한 집계 부하의 강도를 증가_시킵니다.
-1. **F5**를 눌러 모든 테넌트 데이터베이스에 부하를 적용합니다.
+1. 설정 *$DemoScenario* = **3**, _데이터베이스당 더 긴를 더 자주 필요 생성 부하_ 의 hello 집계 로드 tooincrease hello 강도 각 데이터베이스에 필요한 hello 최대 부하를 변경 하지 않고 hello 풀입니다.
+1. 키를 눌러 **F5** tooapply 부하 tooall 테 넌 트 데이터베이스.
 
-1. Azure Portal에서 **Pool1**로 이동합니다.
+1. 너무 이동**Pool1** hello Azure 포털의에서.
 
-상위 차트에 대해 증가한 풀 eDTU 사용량을 모니터링합니다. 더 높은 새 부하를 시작하려면 몇 분 걸리지만 풀이 최대 사용률에 도달하기 시작하는 것을 보고 바로 알 수 있으며 부하가 새로운 패턴으로 안정됨에 따라 풀에 빠르게 과부하가 걸립니다.
+모니터 hello hello 위쪽 차트에서 풀 eDTU 사용량을 증가합니다. Hello 새 더 높은 부하 tookick 몇 분 정도 걸리는 있고 toohit 최대 사용률을 시작 하는 hello 풀 신속 하 게 나타납니다 신속 하 게 hello 풀 오버 로드 hello 부하 hello 새 패턴으로 steadies,으로 합니다.
 
-1. 풀을 강화하려면 **Pool1** 페이지 위쪽의 **풀 구성**을 클릭합니다.
-1. **풀 eDTU** 설정을 **100**으로 조정합니다. 풀 eDTU를 변경해도 데이터베이스별 설정은 변경되지 않습니다(여전히 데이터베이스별로 최대 50 eDTU). **풀 구성** 페이지의 오른쪽에서 데이터베이스별 설정을 볼 수 있습니다.
-1. **저장**을 클릭하여 풀 크기 조정 요청을 제출합니다.
+1. tooscale hello 풀을 클릭 하 여 **풀 구성** hello의 hello 위쪽 **Pool1** 페이지.
+1. Hello 조정 **풀 eDTU** 너무 설정**100**합니다. Hello 풀 edtu로 변경 하는 경우에 (이 여전히 데이터베이스당 최대 50 eDTU) hello 데이터베이스당 설정을 변경 하지 않습니다. Hello hello 오른쪽에 hello 데이터베이스당 설정을 볼 수 있습니다 **풀 구성** 페이지.
+1. 클릭 **저장** toosubmit hello 요청 tooscale hello 풀입니다.
 
-**Pool1** > **개요**로 돌아가 모니터링 차트를 볼 수 있습니다. 풀에 더 많은 리소스를 제공한 효과를 모니터링합니다(데이터베이스 수가 적고 임의 부하이지만 일정 시간 동안 실행할 때까지 최종적으로 보는 것이 언제나 쉽지는 않음). 차트를 보는 동안 하위 차트 100%가 여전히 50 eDTU이지만 데이터베이스별 최대값이 여전히 50 eDTU이므로 상위 차트의 100%가 이제 100 eDTU를 나타낸다는 것을 염두에 둡니다.
+너무 돌아가서**Pool1** > **개요** tooview hello 차트를 모니터링 합니다. Hello (몇 개의 데이터베이스와 임의 로드가 하지는 않지만 항상 쉽게 toosee 내릴 일정 시간 동안 실행 될 때까지) hello 풀 더 많은 리소스를 제공 하는 효과 모니터링 합니다. 보고 동안 hello 차트 약 염두에서 100 %hello 위쪽에 hello에 낮은 차트 100 %hello 여전히 50 Edtu 데이터베이스당 최대는 여전히 50 Edtu를으로 이제 차트 100 Edtu를 나타냅니다.
 
-데이터베이스는 프로세스 전체에 걸쳐 온라인이고 완전하게 사용할 수 있도록 남아 있습니다. 마지막 순간에 각 데이터베이스가 새 풀 eDTU에 대해 사용할 수 있는 준비가 되어 있고 활성 연결은 끊어집니다. 응용 프로그램 코드는 언제나 끊어진 연결을 재시도하도록 작성해야 하므로 확장된 풀의 데이터베이스에 다시 연결합니다.
+데이터베이스는 온라인 상태이 고 hello 프로세스 전체에서 완벽 하 게 사용할 수 있는 상태로 유지 합니다. Hello에서 마지막 순간 각 데이터베이스는 준비 toobe hello 새 풀 eDTU를 사용 하도록 설정 하는 대로 모든 활성 연결 분리 됩니다. 응용 프로그램 코드 삭제 tooretry 연결 작성 항상 등과 toohello 데이터베이스 hello 수직 풀의 데이터베이스를 다시 연결 됩니다.
 
 ## <a name="load-balance-between-pools"></a>풀 간의 부하 분산
 
-풀을 확장하는 대안으로 두 번째 풀을 만들고 데이터베이스를 해당 풀로 이동하여 두 풀 사이에 부하를 분산합니다. 이렇게 하려면 첫 번째와 같은 서버에 새 풀을 만들어야 합니다.
+대체는 tooscaling hello 풀을 두 번째 풀을 만들고 데이터베이스 테이블로 이동 toobalance hello 두 개의 풀을 hello 간의 로드 합니다. 에이 hello 새 풀을 만들어야 toodo hello와 동일한 서버를 먼저 hello 합니다.
 
-1. [Azure Portal](https://portal.azure.com)에서 **tenants1-&lt;USER&gt;** 서버를 엽니다.
-1. **+ 새 풀**을 클릭하고 현재 서버에 풀을 만듭니다.
-1. **Elastic Database 풀** 템플릿에서 다음을 수행합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com)개방형 hello **tenants1-&lt;사용자&gt;**  서버입니다.
+1. 클릭 **+ 새 풀** toocreate hello 현재 서버에서 풀입니다.
+1. Hello에 **탄력적 데이터베이스 풀** 템플릿:
 
-    1. **이름**을 *Pool2*로 설정합니다.
-    1. 가격 책정 계층을 **표준 풀**로 남겨 둡니다.
+    1. 설정 **이름** 너무*Pool2*합니다.
+    1. 가격 책정 계층으로 hello 둡니다 **표준 풀**합니다.
     1. **구성 풀**을 클릭합니다.
-    1. **풀 eDTU**를 *50 eDTU*로 설정합니다.
-    1. **데이터베이스 추가**를 클릭하여 서버에서 *Pool2*에 추가할 수 있는 데이터베이스 목록을 확인합니다.
-    1. 데이터베이스 10개를 선택하여 새 풀로 이동하고 **선택**을 클릭합니다. 부하 생성기를 실행한 경우 서비스에서 성능 프로필에 기본 50 eDTU 크기보다 더 큰 풀이 필요한 것을 이미 알고 있으며 100 eDTU 설정으로 시작하도록 권장합니다.
+    1. 설정 **풀 eDTU** 너무*50 eDTU*합니다.
+    1. 클릭 **데이터베이스를 추가할** toosee 너무 추가할 수 있는 hello 서버의 데이터베이스 목록이*Pool2*합니다.
+    1. 모든 10 개의 데이터베이스 toomove 이러한 toohello 새 풀을 선택한 다음 클릭 **선택**합니다. Hello 부하 생성기를 실행 된 했으므로, 경우 hello 서비스 이미 알고 있는 성능 프로필 hello 기본 50 eDTU 크기 보다 더 큰 풀 걸리며 100 eDTU 설정으로 시작 하는 것이 좋습니다.
 
     ![권장 사항](media/sql-database-saas-tutorial-performance-monitoring/configure-pool.png)
 
-    1. 이 자습서에서는 기본값 50 eDTU를 유지하고 **선택**을 다시 클릭합니다.
-    1. **확인**을 클릭하여 새 풀을 만들고 선택한 데이터베이스를 이동합니다.
+    1. 이 자습서에 대 한 hello 기본 50 Edtu 하 고 클릭 **선택** 다시 합니다.
+    1. 선택 **확인** toocreate hello 새 풀 및 toomove hello에 데이터베이스를 선택 합니다.
 
-풀을 만들고 데이터베이스를 해당 풀로 이동하는 데 몇 분이 걸립니다. 이동 중인 데이터베이스는 열려 있는 모든 연결이 닫히는 시점인 마지막 순간까지 온라인이고 완전히 액세스할 수 있는 상태로 남아 있습니다. 몇 가지 다시 시도 논리가 있는 경우 클라이언트는 새 풀의 데이터베이스에 연결합니다.
+Hello 풀을 만들고 hello 데이터베이스 이동 하는 몇 분이 걸립니다. 데이터베이스를 이동 하는 마지막 순간 hello까지 온라인 상태이 고 완전히 액세스할 수 있도록 유지 하는 대로 이때 모든 열린 연결이 닫힙니다. 몇 가지 재시도 논리를 설정한 상태로 클라이언트는 다음 toohello 데이터베이스 hello 새 풀에 연결 합니다.
 
-**Pool2**(*tenants1* 서버)로 이동하여 풀을 열고 성능을 모니터링합니다. 표시되지 않는 경우 새 풀의 프로비전이 완료될 때까지 기다립니다.
+너무 찾아보기**Pool2** (hello에 *tenants1* 서버) tooopen 풀 hello 및 성능을 모니터링 합니다. 표시 되지 않는 경우 프로 비전 hello 새 풀 toocomplete을 기다립니다.
 
 이제 *Pool1*의 리소스 사용량이 떨어지고 *Pool2*에 유사한 부하가 걸려 있는 것으로 나타나야 합니다.
 
 ## <a name="manage-performance-of-a-single-database"></a>단일 데이터베이스의 성능 관리
 
-풀에 있는 단일 데이터베이스가 지속적인 높은 부하를 경험하는 경우 풀 구성에 따라 풀의 리소스를 많이 차지하고 다른 데이터베이스에 영향을 주는 경향이 있을 수 있습니다. 작업이 일정 시간 동안 계속되는 것으로 보이면 데이터베이스를 잠시 풀에서 밖으로 이동할 수 있습니다. 이를 통해 데이터베이스에 필요한 추가 리소스를 유지하고 다른 데이터베이스와 격리할 수 있습니다.
+Hello 풀 구성에 따라 지속적인된 높은 부하에서 발생 하는 풀에서 단일 데이터베이스의 경우 hello 풀의 toodominate hello 리소스는 경향이 및 다른 데이터베이스에 영향을 줄 수 것입니다. Hello 작업이 일정 시간 동안 가능성이 toocontinue 인 경우 hello 풀에서 hello 데이터베이스를 일시적으로 이동할 수 있습니다. 이렇게 하면 hello 데이터베이스 toohave hello 추가 리소스가 필요한 하 고 다른 데이터베이스 hello에서 격리 합니다.
 
-이 연습에서는 인기 있는 콘서트에 대한 티켓을 판매할 때 높은 부하를 경험하는 Contoso 콘서트 홀의 영향을 시뮬레이션합니다.
+이 연습 티켓 인기 있는 함께 대 한 판매에 이동 하는 경우 높은 부하가 발생 하는 Contoso 함께 Hall의 hello 효과 시뮬레이션 합니다.
 
-1. ...\\*Demo-PerformanceMonitoringAndManagement.ps1* 스크립트를 엽니다.
+1. Hello 열기... \\ *데모 PerformanceMonitoringAndManagement.ps1* 스크립트입니다.
 1. **$DemoScenario = 5를 설정하고, 표준 부하에 더하여 단일 테넌트에 대한 높은 부하(약 95 DTU)를 생성합니다.**
 1. **$SingleTenantDatabaseName = contosoconcerthall** 설정
-1. **F5**를 사용하여 스크립트를 실행합니다.
+1. 사용 하 여 hello 스크립트 실행 **F5**합니다.
 
 
-1. [Azure Portal](https://portal.azure.com)에서 **Pool1**을 엽니다.
-1. **탄력적 풀 모니터링** 차트를 검사하고 증가된 풀 eDTU 사용량을 확인합니다. 1~2분 후 더 높은 부하가 시작되어야 하며 곧 이어 풀이 100% 사용률에 도달하는 것을 확인해야 합니다.
-1. 지난 시간에 가장 많이 사용한 데이터베이스를 나타내는 **Elastic Database 모니터링**을 검사합니다. *contosoconcerthall* 데이터베이스는 곧 가장 많이 사용한 데이터베이스 5개 중 하나로 나타나야 합니다.
-1. **Elastic Database 모니터링** **차트**를 클릭하면 아무 데이터베이스나 모니터링할 수 있는 **데이터베이스 리소스 사용률** 페이지가 열립니다. 이 기능을 사용하여 *contosoconcerthall* 데이터베이스에 대한 화면을 격리할 수 있습니다.
-1. 데이터베이스 목록을 보려면 **contosoconcerthall**을 클릭합니다.
-1. **가격 책정 계층(DTU 조정)**을 클릭하여 **성능 구성** 페이지를 엽니다. 여기에서 데이터베이스에 대한 독립 실행형 성능 수준을 설정할 수 있습니다.
-1. **표준** 탭을 클릭하여 표준 계층에서 규모 옵션을 엽니다.
-1. **DTU 슬라이드**를 오른쪽으로 밀어 **100** DTU를 선택합니다. 이는 서비스 목표 **S3**에 해당합니다.
-1. **적용**을 클릭하여 데이터베이스를 풀에서 밖으로 이동하고 *표준 S3* 데이터베이스로 만듭니다.
-1. 크기 조정이 완료되면 탄력적 풀과 데이터베이스 블레이드에서 contosoconcerthall 데이터베이스 및 Pool1에 대한 영향을 모니터링합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com) 열고 **Pool1**합니다.
+1. Hello 검사 **탄력적 풀 모니터링** 차트 및 풀 eDTU 사용량 증가 hello 찾아보십시오. 2 분 정도로 후 hello 더 높은 부하에서 tookick 시작 해야 하 고 hello 풀 사용률이 100%에 도달 있는지 신속 하 게 나타납니다.
+1. Hello 검사 **탄력적 데이터베이스 모니터링** 지난 시간 hello에서 hello 가장 많이 사용 데이터베이스를 보여 주는 표시 합니다. hello *contosoconcerthall* hello 5 가장 많이 사용 하는 데이터베이스 중 하나로 데이터베이스 곧 나타납니다.
+1. **Hello 탄력적 데이터베이스 모니터링 클릭** **차트** hello 열리는 **데이터베이스 리소스 사용률** hello 데이터베이스를 모니터링할 수 있는 페이지. 이렇게 하면 hello에 대 한 hello 표시 격리 *contosoconcerthall* 데이터베이스입니다.
+1. 데이터베이스의 hello 목록에서 클릭 **contosoconcerthall**합니다.
+1. 클릭 **가격 책정 계층 (배율 Dtu)** tooopen hello **성능을 구성** 페이지 hello 데이터베이스에 대 한 독립 실행형 성능 수준을 설정할 수 있습니다.
+1. Hello 클릭 **표준** hello 표준 계층에 tooopen hello 크기 조정 옵션을 탭 합니다.
+1. Hello 슬라이드 **DTU 슬라이더** tooright tooselect **100** Dtu입니다. 참고가 해당 toohello 서비스 목표 **S3**합니다.
+1. 클릭 **적용** toomove hello hello 풀에서 데이터베이스와 쉽게는 *표준 S3* 데이터베이스입니다.
+1. 크기 조정 되 면 완료, hello contosoconcerthall 데이터베이스에는 모니터 hello 영향 및 hello 탄력적 풀 및 데이터베이스 블레이드에서 Pool1 합니다.
 
-비용을 줄이기 위해 contosoconcerthall 데이터베이스에 대해 높은 부하가 진정되면 지체 없이 풀로 반환해야 합니다. 이러한 상황이 일어나는 시기를 확실히 모르는 경우 DTU 사용량이 풀의 데이터베이스별 최대값보다 낮게 떨어질 때 트리거되는 데이터베이스에 대한 경고를 설정할 수 있습니다. 풀로 데이터베이스 이동은 연습 5에서 설명합니다.
+Hello contosoconcerthall 데이터베이스에 로드 양이 많으면 hello subsides 되 면 신속 하 게 반환 해야 toohello 풀 tooreduce 비용입니다. 확실 하지 않으면 하는 경우에 설정할 수 있습니다 경고 hello 데이터베이스에 있는 수행 됩니다 트리거할 해당 DTU 사용량 hello 데이터베이스당 아래로 떨어질 경우 hello 풀에 최대 합니다. 풀로 데이터베이스 이동은 연습 5에서 설명합니다.
 
 ## <a name="other-performance-management-patterns"></a>다른 성능 관리 패턴
 
-**선제적 크기 조정** 위 연습에서는 찾는 데이터베이스가 어느 것인지 알고 있는 격리된 데이터베이스를 크기 조정하는 방법을 탐색했습니다. Contoso 콘서트 홀의 관리 부서에서 티켓 판매가 임박했음을 Wingtips에 알리면 데이터베이스가 선제적으로 풀에서 밖으로 이동될 수 있습니다. 그렇지 않으면 풀 또는 데이터베이스에 무슨 일이 일어나고 있는지 파악하라는 경고가 필요했을 가능성이 있습니다. 성능 저하에 대해 불평하는 풀에 있는 다른 테넌트에서 이에 관하여 알아보기를 원하지 않을 수 있습니다. 테넌트가 추가 리소스를 필요로 하는 기간을 예측할 수 있는 경우 Azure Automation Runbook을 설정하여 데이터베이스를 풀에서 밖으로 이동한 다음 정의된 일정에 다시 안으로 이동할 수 있습니다.
+**선점형 배율** hello 실습 위의 방법을 tooscale 격리 된 데이터베이스를 알고 있는 데이터베이스 toolook에 대 한 탐색 있습니다. Contoso 함께 Hall의 hello 관리에 Wingtips hello 임박 했음을 알리는 티켓이 판매 정보를 얻으려면 경우 hello 데이터베이스 이동 되었을 hello 풀에서 미리 합니다. 그렇지 않으면 가능성이 필요 했을 것 hello 풀 또는 hello 데이터베이스 toospot에 알림을 일어나 되었습니다. 이 대 한 hello에서 toolearn hello 풀 성능 저하의 메시지가에 다른 테 넌 트 않을 있습니다. 와 경우 hello 테 넌 트 hello 풀에서 Azure 자동화 runbook toomove hello 데이터베이스를 설정할 수 있으며 다음 백업에서 다시 정의 된 일정에 따라 추가 리소스는 필요한 기간을 예측할 수 있습니다.
 
-**테넌트 셀프 서비스 크기 조정** 크기 조정은 관리 API가 통해 쉽게 호출되는 작업이므로 테넌트 데이터베이스를 테넌트가 마주치는 응용 프로그램으로 크기 조정하는 기능을 쉽게 만들어 SaaS 서비스의 기능으로 제공할 수 있습니다. 예를 들어 테넌트가 확장과 축소를 직접 관리하게 할 수 있으며, 이는 아마도 테넌트의 대금 청구에 직접 연결될 것입니다!
+**테 넌 트 셀프 서비스 크기 조정** 배율 쉽게 hello 관리 API 통해 호출 하는 작업 이기 때문에 쉽게 hello 기능 tooscale 테 넌 트 데이터베이스를 테 넌 트 웹 응용 프로그램에 빌드하고 수 SaaS 서비스의 기능으로 제공 합니다. 예를 들어 self-administer 아마도 직접 연결 된 위쪽 / 아래쪽 크기 조정 하는 테 넌 트를 통해 tootheir 청구!
 
-**풀을 사용량 패턴에 맞게 일정에 따라 확장 및 축소**
+**일정 toomatch 사용 패턴에 위와 아래로 풀 크기 조정**
 
-집계 테넌트 사용량이 예측 가능한 사용량 패턴을 따르는 경우 Azure Automation을 사용하여 풀을 일정에 따라 확장 및 축소할 수 있습니다. 예를 들어 리소스 요구 사항이 떨어지는 것으로 알고 있는 평일 오후 6시 후에 풀을 축소하고 오전 6시 전에 다시 확장할 수 있습니다.
+집계 테 넌 트 사용은 예측 가능한 사용 패턴을 따릅니다, 여기서 아래로 일정에 따라 Azure 자동화 tooscale 풀을 사용할 수 있습니다. 예를 들어 리소스 요구 사항이 떨어지는 것으로 알고 있는 평일 오후 6시 후에 풀을 축소하고 오전 6시 전에 다시 확장할 수 있습니다.
 
 
 
@@ -234,17 +234,17 @@ Wingtip은 SaaS 앱이며 SaaS 앱상의 실제 부하는 일반적으로 간헐
 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
-> * 제공된 부하 생성기를 실행하여 테넌트 데이터베이스에 대한 사용량 시뮬레이션
-> * 부하 증가에 응답하여 테넌트 데이터베이스 모니터링
-> * 증가된 데이터베이스 부하에 응답하여 탄력적 풀 강화
-> * 데이터베이스 작업의 부하를 분산하도록 두 번째 탄력적 풀을 프로비전
+> * 제공 된 부하 생성기를 실행 하 여 hello 테 넌 트 데이터베이스에서의 사용을 시뮬레이션 합니다.
+> * 올바르게 응답 하지 않는 부하 toohello 증가 하는 대로 모니터 hello 테 넌 트 데이터베이스
+> * 탄력적 풀 응답 toohello 높아지는 데이터베이스 부하에 hello 수직 확장
+> * 두 번째 탄력적 풀 tooload 균형 hello 데이터베이스 활동을 프로 비전
 
 [단일 테넌트 복원 자습서](sql-database-saas-tutorial-restore-single-tenant.md)
 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [Wingtip SaaS 응용 프로그램 배포를 기반으로 작성된](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials) 추가 자습서
+* 추가 [hello Wingtip SaaS 응용 프로그램 배포를 구축 하는 자습서](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [SQL 탄력적 풀](sql-database-elastic-pool.md)
 * [Azure Automation](../automation/automation-intro.md)
 * [Log Analytics](sql-database-saas-tutorial-log-analytics.md) - Log Analytics 설정 및 사용 자습서

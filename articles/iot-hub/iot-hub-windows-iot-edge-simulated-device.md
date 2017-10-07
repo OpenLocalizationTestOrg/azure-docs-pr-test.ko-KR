@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Edge를 사용하여 장치 시뮬레이션(Windows) | Microsoft Docs"
-description: "Windows에서 Azure IoT Edge를 사용하여 Azure IoT Edge 게이트웨이를 통해 원격 분석을 IoT Hub에 전송하는 시뮬레이션된 장치를 만드는 방법입니다."
+title: "Azure IoT 가장자리 (Windows)를 사용 하 여 장치 aaaSimulate | Microsoft Docs"
+description: "어떻게 Windows toocreate 시뮬레이션된 된 장치에서 Azure IoT 가장자리 toouse를 보내는 Azure IoT 가장자리 게이트웨이 tooan IoT hub 통해 원격 분석."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: andbuc
-ms.openlocfilehash: e7eb2931993daf3f0aecbd4a43d27ebd5adc10b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ddbe85eb956e9934e80e2e80e09f77b24cf54856
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-iot-edge-to-send-device-to-cloud-messages-with-a-simulated-device-windows"></a>Azure IoT Edge를 사용하여 시뮬레이션된 장치(Windows)에서 장치-클라우드 메시지 보내기
+# <a name="use-azure-iot-edge-toosend-device-to-cloud-messages-with-a-simulated-device-windows"></a>Azure IoT 가장자리 toosend 장치-클라우드 메시지를 사용 하 여 시뮬레이션 된 장치 (Windows)
 
 [!INCLUDE [iot-hub-iot-edge-simulated-selector](../../includes/iot-hub-iot-edge-simulated-selector.md)]
 
 [!INCLUDE [iot-hub-iot-edge-install-build-windows](../../includes/iot-hub-iot-edge-install-build-windows.md)]
 
-## <a name="how-to-run-the-sample"></a>샘플을 실행하는 방법
+## <a name="how-toorun-hello-sample"></a>Toorun 샘플 hello 하는 방법
 
-**build.cmd** 스크립트는 **iot-edge** 리포지토리의 로컬 복사본에 있는 **build** 폴더에 해당 출력을 생성합니다. 이 출력에는 이 샘플에서 사용된 네 개의 IoT Edge 모듈이 포함됩니다.
+hello **build.cmd** hello로 해당 출력을 생성 하는 스크립트 **빌드** hello의 로컬 복사본에서 폴더 **iot 가장자리** 저장소입니다. 이 출력 hello이이 샘플에 사용 되는 4 개의 IoT 가장자리 모듈을 포함 합니다.
 
-빌드 스크립트는 다음을 배치합니다.
+빌드 스크립트 위치 hello에서:
 
-* **build\\modules\\logger\\Debug** 폴더에 **logger.dll**.
-* **build\\modules\\iothub\\Debug** 폴더에 **iothub.dll**.
-* **build\\modules\\identitymap\\Debug** 폴더에 **identity\_map.dll**.
-* **build\\modules\\simulated\_device\\Debug** 폴더에 **simulated\_device.dll**.
+* **logger.dll** hello에 **빌드\\모듈\\로 거\\디버그** 폴더입니다.
+* **iothub.dll** hello에 **빌드\\모듈\\iothub\\디버그** 폴더입니다.
+* **identity\_map.dll** hello에 **빌드\\모듈\\identitymap\\디버그** 폴더입니다.
+* **시뮬레이션 된\_device.dll** hello에 **빌드\\모듈\\시뮬레이션\_장치\\디버그** 폴더입니다.
 
-다음 JSON 설정 파일에 표시된 대로 **module path** 값에 이러한 경로를 사용합니다.
+이러한 경로 사용 하 여 hello에 대 한 **모듈 경로** hello 다음 JSON 설정 파일에에서 표시 된 대로 값:
 
-simulated\_device\_cloud\_upload\_sample 프로세스는 JSON 구성 파일에 대한 경로를 명령줄 인수 형태로 사용합니다. 다음 예제 JSON 파일은 **samples\\simulated\_device\_cloud\_upload\_sample\\src\\simulated\_device\_cloud\_upload\_sample\_win.json**의 SDK 리포지토리에서 제공됩니다. 이 구성 파일은 빌드 스크립트를 수정하여 IoT Edge 모듈이나 샘플 실행 파일을 기본 위치가 아닌 위치에 배치한 경우 외에는 그대로 작동합니다.
+시뮬레이션 된 hello\_장치\_클라우드\_업로드\_샘플 프로세스 명령줄 인수로 hello 경로 tooa JSON 구성 파일을 사용 합니다. hello 다음 예제에서는 JSON 파일에에서 제공에서 hello SDK 리포지토리 **샘플\\시뮬레이션\_장치\_클라우드\_업로드\_샘플\\src\\ 시뮬레이션 된\_장치\_클라우드\_업로드\_샘플\_win.json**합니다. hello를 수정 하지 않는 한이 구성 파일 작동 스크립트 tooplace hello IoT 가장자리 모듈 빌드하거나 기본이 아닌 위치에서 실행 파일을 샘플링 합니다.
 
 > [!NOTE]
-> 모듈 경로는 simulated\_device\_cloud\_upload\_sample.exe가 있는 디렉터리에 대한 상대 경로입니다. 샘플 JSON 구성 파일은 현재 작업 디렉터리에서 작성 중인 ‘deviceCloudUploadGatewaylog.log’를 기본값으로 사용합니다.
+> hello 모듈 경로 상대 toohello 디렉터리 hello 시뮬레이션 된\_장치\_클라우드\_업로드\_sample.exe 위치한 합니다. hello 샘플 JSON 구성 파일 toowriting too'deviceCloudUploadGatewaylog.log 기본값 ' 현재 작업 디렉터리에 있습니다.
 
-텍스트 편집기에서 **iot-edge** 리포지토리의 로컬 복사본에 있는 **samples\\simulated\_device\_cloud\_upload\_sample\\src\\simulated\_device\_cloud\_upload\_win.json** 파일을 엽니다. 이 파일은 샘플 게이트웨이에서 IoT Edge 모듈을 구성합니다.
+텍스트 편집기를 열고 hello 파일 **샘플\\시뮬레이션\_장치\_클라우드\_업로드\_샘플\\src\\시뮬레이션\_장치 \_클라우드\_업로드\_win.json** hello의 로컬 복사본에 **iot 가장자리** 저장소입니다. 이 파일 hello 샘플 게이트웨이에 hello IoT 가장자리 모듈을 구성합니다.
 
-* **IoTHub** 모듈이 IoT Hub에 연결됩니다. IoT Hub에 데이터를 보내도록 이를 구성합니다. 특히 **IoTHubName** 값을 IoT Hub의 이름으로 설정하고, **IoTHubSuffix** 값을 **azure-devices.net**으로 설정합니다. **HTTP**, **AMQP** 또는 **MQTT** 중 하나에 **Transport** 값을 설정합니다. 현재 **HTTP**만 모든 장치 메시지에 대한 하나의 TCP 연결을 공유합니다. 값을 **AMQP** 또는 **MQTT**로 설정하는 경우 게이트웨이는 각 장치에 대해 IoT Hub에 대한 별도의 TCP 연결을 유지합니다.
-* **mapping** 모듈은 시뮬레이션된 장치의 MAC 주소를 IoT Hub 장치 ID에 매핑합니다. **deviceId** 값이 IoT Hub에 추가한 두 장치의 ID와 일치하는지, 그리고 **deviceKey** 값에 두 장치의 키가 포함되어 있는지 확인합니다.
-* **BLE1** 및 **BLE2** 모듈은 시뮬레이션된 장치입니다. 해당 모듈 MAC 주소가 **mapping** 모듈의 주소와 어떻게 일치되는지 확인합니다.
-* **Logger** 모듈은 게이트웨이 활동을 파일에 로깅합니다.
-* 다음 예제에 나온 **module path** 값은 simulated\_device\_cloud\_upload\_sample.exe가 있는 디렉터리에 대한 상대 경로입니다.
-* JSON 파일의 맨 아래에 있는 **링크** 배열은 **BLE1** 및 **BLE2** 모듈을 **매핑** 모듈에 연결하고 **매핑** 모듈을 **IoTHub** 모듈에 연결합니다. 또한 **로거** 모듈이 모든 메시지를 기록하는지 확인합니다.
+* hello **IoTHub** 모듈 tooyour IoT 허브를 연결 합니다. 구성한 toosend 데이터 tooyour IoT 허브입니다. 특히 집합 hello **IoTHubName** 값 IoT 허브의 toohello 이름 및 hello 설정 **IoTHubSuffix** 너무 값**azure devices.net**합니다. 집합 hello **전송** 의 값 tooone: **HTTP**, **AMQP**, 또는 **MQTT**합니다. 현재 **HTTP**만 모든 장치 메시지에 대한 하나의 TCP 연결을 공유합니다. 너무 hello 값을 설정 하면**AMQP**, 또는 **MQTT**, hello 게이트웨이 별도 TCP 연결 tooIoT 허브 각 장치에 대 한 유지 관리 합니다.
+* hello **매핑** 모듈 시뮬레이션 된 장치 tooyour IoT Hub 장치 id hello MAC 주소를 매핑합니다. 다음 사항을 확인 **deviceId** 값 일치 hello id의 hello tooyour IoT hub 및 해당 hello를 추가 하는 두 개의 장치 **deviceKey** 두 장치 hello 키를 포함 하는 값입니다.
+* hello **BLE1** 및 **BLE2** 모듈은 hello 시뮬레이션 된 장치. Hello 모듈 MAC 주소와 hello에 hello 주소를 일치 하는 방법을 **매핑** 모듈입니다.
+* hello **로 거** 모듈 게이트웨이 활동 tooa 파일에 기록 합니다.
+* hello **모듈 경로** hello 다음 예제에에서 표시 된 값은 상대 toohello 디렉터리 hello 시뮬레이션 된\_장치\_클라우드\_업로드\_sample.exe 위치한 합니다.
+* hello **링크** hello를 연결 하는 hello JSON 파일의 hello 맨 아래에 있는 배열의 **BLE1** 및 **BLE2** 모듈 toohello **매핑** 모듈과 hello **매핑** 모듈 toohello **IoTHub** 모듈입니다. 또한 모든 메시지가 hello로 기록 됩니다 하면 **로 거** 모듈입니다.
 
 ```json
 {
@@ -138,17 +138,17 @@ simulated\_device\_cloud\_upload\_sample 프로세스는 JSON 구성 파일에 �
 }
 ```
 
-구성 파일에 적용한 변경 내용을 저장합니다.
+Hello 변경 내용을 저장할 toohello 구성 파일의 내용이 되었습니다.
 
-샘플을 실행하려면
+toorun hello 샘플:
 
-1. 명령 프롬프트에서 **iot-edge** 리포지토리의 로컬 복사본에 있는 **build** 폴더로 이동합니다.
-2. 다음 명령 실행:
+1. 명령 프롬프트에서 이동 toohello **빌드** hello의 로컬 복사본에서 폴더 **iot 가장자리** 저장소입니다.
+2. Hello 다음 명령을 실행 합니다.
    
     ```cmd
     samples\simulated_device_cloud_upload\Debug\simulated_device_cloud_upload_sample.exe ..\samples\simulated_device_cloud_upload\src\simulated_device_cloud_upload_win.json
     ```
-3. [장치탐색기][lnk-device-explorer] 또는 [iothub-explorer][lnk-iothub-explorer] 도구를 사용하여 IoT Hub가 게이트웨이에서 수신하는 메시지를 모니터링할 수 있습니다. 예를 들어 iothub-explorer를 사용하면 다음 명령으로 장치-클라우드 메시지를 모니터링할 수 있습니다.
+3. Hello를 사용할 수 있습니다 [장치 탐색기] [ lnk-device-explorer] 또는 [iothub 탐색기] [ lnk-iothub-explorer] IoT hub hello 로부터 받는 toomonitor hello 메시지 도구 게이트웨이입니다. 예를 들어 iothub 탐색기를 사용 하 여 다음 명령을 hello를 사용 하 여 장치-클라우드 메시지 모니터링할 수 있습니다.
 
     ```cmd
     iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
@@ -156,15 +156,15 @@ simulated\_device\_cloud\_upload\_sample 프로세스는 JSON 구성 파일에 �
 
 ## <a name="next-steps"></a>다음 단계
 
-IoT Edge와 코드 예제 실험에 대해 더욱 심도 있게 이해하려면 다음 개발자 자습서 및 리소스를 참고하세요.
+더에 대 한 IoT 가장자리와 실험 몇 가지 코드 예제와 toogain 방문 hello 다음 개발자 자습서 및 리소스:
 
 * [IoT Edge를 사용하여 물리적 장치에서 장치-클라우드 메시지 보내기][lnk-physical-device]
 * [Azure IoT Edge][lnk-iot-edge]
 
-IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.
+toofurther는 IoT Hub의 hello 기능을 참조 하십시오.
 
 * [IoT Hub 개발자 가이드][lnk-devguide]
-* [처음부터 IoT 솔루션 보안 유지][lnk-securing]
+* [Hello 접지에서 IoT 솔루션 보안][lnk-securing]
 
 <!-- Links -->
 [lnk-iot-edge]: https://github.com/Azure/iot-edge/

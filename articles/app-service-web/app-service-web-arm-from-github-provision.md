@@ -1,6 +1,6 @@
 ---
-title: "GitHub 리포지토리에 연결된 웹앱 배포 | Microsoft Docs"
-description: "Azure 리소스 관리자 템플릿을 사용하여 GitHub 리포지토리에서 프로젝트가 포함된 웹앱을 배포합니다."
+title: "웹 응용 프로그램이 aaaDeploy tooa GitHub 리포지토리 연결 | Microsoft Docs"
+description: "Azure 리소스 관리자 템플릿 toodeploy GitHub 리포지토리에서 프로젝트를 포함 하는 웹 앱을 사용 합니다."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: 77064802814296d0c21f004534e4264d2f97252e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b23416c4c06a60991517e6ee4cd82bebc5a9d73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-web-app-linked-to-a-github-repository"></a>GitHub 리포지토리에 연결된 웹앱 배포
-이 항목에서는 GitHub 리포지토리의 프로젝트에 연결된 웹앱을 배포하는 Azure 리소스 관리자 템플릿을 만드는 방법을 배웁니다. 어떤 리소스를 배포할지 정의하는 방법 및 배포를 실행할 때 매개 변수를 지정하는 방법을 알게 됩니다. 배포를 위해 이 템플릿을 사용하거나 요구 사항에 맞게 사용자 지정을 할 수 있습니다.
+# <a name="deploy-a-web-app-linked-tooa-github-repository"></a>웹 응용 프로그램 연결 tooa GitHub 리포지토리를 배포 합니다.
+이 항목은 웹 앱을 배포 하는 Azure 리소스 관리자 템플릿을 toocreate GitHub 리포지토리에 tooa 프로젝트를 연결 하는 방법을 배웁니다. 에 대해 설명 합니다 방법을 toodefine 리소스 배포 되 고 toodefine 매개 변수를 hello 배포를 실행 하는 경우 지정 된 합니다. 배포를 위한이 서식 파일을 사용 하거나 toomeet 사용자 지정할 수 있습니다 프로그램 요구 사항입니다.
 
-템플릿을 만드는 더 자세한 내용은 [Azure 리소스 관리자 템플릿 작성하기](../azure-resource-manager/resource-group-authoring-templates.md)를 참조하세요.
+템플릿을 만드는 더 자세한 내용은 [Azure 리소스 관리자 템플릿 작성하기](../azure-resource-manager/resource-group-authoring-templates.md)를 참조하십시오.
 
-전체 서식 파일을 보려면 [GitHub 템플릿에 연결된 웹앱](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json)을 참조하세요.
+Hello 전체 서식 파일을 참조 하십시오. [응용 프로그램에 연결 된 웹 tooGitHub 템플릿](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json)합니다.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="what-you-will-deploy"></a>배포할 내용
-이 템플릿을 사용하여 GitHub의 프로젝트에서 코드를 포함하는 웹앱을 배포합니다.
+이 템플릿을 사용 하 여 GitHub의 프로젝트에서 hello 코드를 포함 하는 웹 앱을 배포 합니다.
 
-배포를 자동으로 실행하려면 다음 단추를 클릭합니다.
+toorun 배포를 자동으로 hello, hello 다음 단추를 클릭 합니다.
 
-[![Azure에 배포](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)
+[![TooAzure 배포](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>매개 변수
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="repourl"></a>repoURL
-배포하는 프로젝트를 포함하는 GitHub 리포지토리에 대한 URL입니다. 이 매개 변수는 기본값을 포함하지만 이 값은 어떻게 저장소에 대한 URL을 제공하는지 보여주기 위해 의도적으로 지정되었습니다. 템플릿을 테스트할 때 이 값을 사용할 수 있지만, 템플릿을 사용하여 작업하는 경우 사용자 고유 저장소에 UIRL을 제공할 때도 필요합니다.
+hello 프로젝트 toodeploy 포함 된 GitHub 리포지토리에 대 한 hello URL입니다. 이 매개 변수에 기본값을 포함 하지만이 값은 의도 한 tooshow만 하면 tooprovide 저장소에 대 한 URL을 hello 하는 방법입니다. Hello 템플릿 있지만 테스트는 하려면 tooprovide hello URL 사용자 고유의 저장소 hello 템플릿을 사용 하 여 작업 하는 경우이 값을 사용할 수 있습니다.
 
     "repoURL": {
         "type": "string",
@@ -48,23 +48,23 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="branch"></a>분기
-응용 프로그램을 배포할 때 사용하는 저장소의 분기입니다. 기본값은 master, 하지만 배포 하고자 하는 저장소의 모든 분기의 이름을 제공할 수 있습니다.
+hello 분기 hello 리포지토리 toouse hello 응용 프로그램을 배포 하는 경우입니다. hello 기본값은 master, 하지만 toodeploy 한다고 hello 리포지토리의 모든 분기의 hello 이름을 제공할 수 있습니다.
 
     "branch": {
         "type": "string",
         "defaultValue": "master"
     }
 
-## <a name="resources-to-deploy"></a>배포할 리소스
+## <a name="resources-toodeploy"></a>리소스 toodeploy
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
 ### <a name="web-app"></a>웹앱
-GitHub의 프로젝트에 연결된 웹앱 만들기 
+GitHub에 연결 된 toohello 프로젝트가 hello 웹 앱을 만듭니다. 
 
-**siteName** 매개 변수를 통해 웹앱의 이름을 지정하고 웹앱의 위치는 **siteLocation** 매개 변수를 통해 지정합니다. **dependsOn** 요소에서 템플릿은 서비스 호스팅 계획에 따라 웹앱을 달리 정의합니다. 이것은 호스팅 계획에 따라 달라지기 때문에 호스팅 계획 만들기가 끝날 때까지 웹앱이 생성되지 않습니다. **dependsOn** 요소는 배포 순서를 지정하는 데만 사용됩니다. 호스팅을 계획하기 전에 웹앱을 만드는 경우 호스팅 계획에 따라 달라지는 웹앱을 표시하지 않으면 Azure 리소스 관리자가 동시에 두 리소스를 만들려 해서 오류가 표시될 수 있습니다.
+Hello 통해 hello 웹 응용 프로그램의 hello 이름을 지정 하면 **siteName** 매개 변수 및 hello 통해 hello 웹 응용 프로그램의 hello 위치 **siteLocation** 매개 변수입니다. Hello에 **dependsOn** 요소 hello 템플릿 hello 웹 응용 프로그램 호스팅 계획 hello 서비스에 종속로 정의 합니다. 호스팅 계획 hello에 의존 하므로 hello 웹 앱 호스팅 계획 hello 생성이 완료 될 때까지 생성 되지 않습니다. hello **dependsOn** 요소는 사용 되는 toospecify 배포 순서일 뿐입니다. Hello 호스팅 계획에 종속으로 hello 웹 앱으로 표시 하면 Azure 리소스 관리자는 시도 toocreate 리소스가 모두 hello에서 동일한 시간 및 오류 메시지가 나타날 수 hello 호스팅 계획 하기 전에 hello 웹 응용 프로그램을 만들면 됩니다.
 
-또한 웹앱에는 아래 **리소스** 섹션에 정의된 자식 리소스가 있습니다. 이 자식 리소스는 웹앱과 함께 배포된 프로젝트에 대한 소스 제어를 정의합니다. 이 템플릿에서 소스 제어는 특정 GitHub 리포지토리에 연결됩니다. GitHub 리포지토리에 코드 **"RepoUrl":"https://github.com/davidebbo-test/Mvc52Application.git"**로 정의됩니다. 최소한의 매개 변수를 필요로 하는 동안 반복해서 단일 프로젝트를 배포하는 템플릿을 만드는 경우 리포지토리 URL를 하드 코딩할 수 있습니다.
-하드 코드한 리포지토리 URL 대신에 리포지토리 URL에 대한 매개 변수를 추가하고 해당 값을 **RepoUrl** 속성에 사용할 수 있습니다.
+hello 웹 응용 프로그램에 정의 된 자식 리소스에 **리소스** 아래 섹션. 이 자식 리소스 hello 웹 앱을 사용 하 여 배포 된 hello 프로젝트에 대 한 소스 제어를 정의 합니다. 이 서식 파일에서 hello 소스 제어 연결된 tooa 특정 GitHub 리포지토리 됩니다. hello GitHub 리포지토리 hello 코드를 사용 하 여 정의 **"RepoUrl": "https://github.com/davidebbo-test/Mvc52Application.git"** toocreate 반복적으로 배포 하는 템플릿을 원하는 경우에 하드 코딩 hello 리포지토리 URL을 수 있습니다는 hello 최소 매개 변수 개수를 요구 하는 동안 단일 프로젝트입니다.
+리포지토리 URL을 hello 하드 코딩 하는 대신, hello 리포지토리 URL에 대 한 매개 변수를 추가 하 고 해당 값을 사용 하 여 hello에 대 한 **RepoUrl** 속성입니다.
 
     {
       "apiVersion": "2015-08-01",
@@ -94,7 +94,7 @@ GitHub의 프로젝트에 연결된 웹앱 만들기
       ]
     }
 
-## <a name="commands-to-run-deployment"></a>배포 실행 명령
+## <a name="commands-toorun-deployment"></a>명령 toorun 배포
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -109,7 +109,7 @@ GitHub의 프로젝트에 연결된 웹앱 만들기
     az group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE] 
-> JSON 파일의 매개 변수의 내용은 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json)을 참조하세요.
+> Hello 매개 변수에 JSON 파일의 콘텐츠에 대 한 참조 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json)합니다.
 >
 >
 

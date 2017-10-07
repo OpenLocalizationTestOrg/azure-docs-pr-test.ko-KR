@@ -1,6 +1,6 @@
 ---
-title: "Azure Linux VM 크기 - HPC | Microsoft Docs"
-description: "Azure의 Linux 고성능 컴퓨팅 가상 컴퓨터에 사용할 수 있는 다양한 크기를 나열합니다."
+title: "Linux VM aaaAzure 크기-HPC | Microsoft Docs"
+description: "Linux 고성능 컴퓨팅 Azure의 가상 컴퓨터에 사용할 수 있는 hello 다른 크기를 나열 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: b7a3844ce86b4efac8a4fc3c2540e7b6460873a2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0b02ee592902ff8097a71898faea1ac17a947d1a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="high-performance-compute-linux-vm-sizes"></a>고성능 계산 Linux VM 크기
 
@@ -30,13 +30,13 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [virtual-machines-common-a8-a9-a10-a11-specs](../../../includes/virtual-machines-common-a8-a9-a10-a11-specs.md)]
 
 ## <a name="rdma-capable-instances"></a>RDMA 지원 인스턴스
-계산 집약적 인스턴스(H16r, H16mr, A8 및 A9) 일부는 RDMA(원격 직접 메모리 액세스) 연결을 위한 네트워크 인터페이스로 사용됩니다. 이 인터페이스는 다른 VM 크기에서 사용할 수 있는 표준 Azure 네트워크 인터페이스 외에 추가로 사용됩니다. 
+Hello 계산 집약적인 인스턴스 (H16r, H16mr, A8 및 A9)의 하위 집합에는 원격 직접 메모리 액세스 (RDMA) 연결에 대 한 네트워크 인터페이스를 기능입니다. 이 인터페이스는 또한 toohello 표준 Azure 네트워크 인터페이스 tooother 사용 가능한 VM 크기입니다. 
   
-이 인터페이스를 사용하면 RDMA 지원 인스턴스가 InfiniBand 네트워크를 통해 통신할 수 있으며 H16r 및 H16mr 가상 컴퓨터에서는 FDR 속도로, A8 및 A9 가상 컴퓨터에서는 QDR 속도로 작동할 수 있습니다. 이러한 RDMA 기능은 MPI(Message Passing Interface) 응용 프로그램의 확장성 및 성능을 높일 수 있습니다.
+이 인터페이스는 H16r 및 H16mr 가상 컴퓨터에 대 한 FDR 속도 및 A8 및 A9 가상 컴퓨터에 대 한 QDR 속도에서 작동 하는 InfiniBand 네트워크를 통해 RDMA 가능 인스턴스 toocommunicate hello를 허용 합니다. 이러한 RDMA 기능 인터페이스 MPI (Message Passing) 응용 프로그램의 hello 확장성과 성능을 높일 수 있습니다.
 
-다음은 RDMA 지원 Linux VM이 Azure RDMA 네트워크에 액세스하기 위한 요구 사항입니다.
+다음은 Linux Vm의 경우 RDMA 가능 tooaccess hello Azure RDMA 네트워크에 대 한 요구 사항입니다.
  
-* **배포판** - Azure 마켓플레이스의 RDMA 지원 SLES(SUSE Linux Enterprise Server) 또는 Rogue Wave Software(이전의 OpenLogic) CentOS 기반 HPC 이미지에서 VM을 배포해야 합니다. 다음 Marketplace 이미지는 RDMA 연결을 지원합니다.
+* **분포** -Vm에서 RDMA 가능 SUSE Linux Enterprise Server (SLES)를 배포 해야 또는 불량 웨이브 소프트웨어 (이전의 OpenLogic) CentOS 기반 HPC 이미지에서 Azure 마켓플레이스를 환영 합니다. hello 다음 마켓플레이스 이미지 지원 RDMA 연결 합니다.
   
     * HPC용 SLES 12 SP1 또는 HPC용 SLES 12 SP1(Premium)
     
@@ -45,14 +45,14 @@ ms.lasthandoff: 08/03/2017
         > [!NOTE]
         > H 시리즈 VM의 경우 HPC용 SLES 12 SP1 이미지 또는 CentOS 기반 7.1 이상 HPC 이미지가 권장됩니다.
         >
-        > CentOS 기반 HPC 이미지에서 커널 업데이트는 **yum** 구성 파일에서 사용할 수 없습니다. 즉 Linux RDMA 드라이버가 RPM 패키지로 배포되기 때문에 커널이 업데이트되는 경우 드라이버 업데이트가 작동하지 않을 수 있습니다.
+        > Hello HPC CentOS 기반 이미지에서 커널 업데이트는 해제 되어 hello **yum** 구성 파일입니다. Hello Linux RDMA 드라이버 배포 되는 RPM 패키지 및 드라이버 업데이트에는 hello 커널 업데이트 되는 경우 작동 하지 않을 수 때문입니다.
         > 
         > 
 * **MPI** - Intel MPI Library 5
   
-    선택한 마켓플레이스 이미지에 따라 다음과 같이 Intel MPI의 별도 라이선스, 설치 또는 구성이 필요할 수 있습니다. 
+    Hello 마켓플레이스 이미지에 따라을 선택 하면 별도 라이선스를 설치 또는 Intel MPI의 구성이 필요할 수 있습니다. 다음과 같습니다. 
   
-  * **HPC 이미지의 SLES 12 SP1** - VM에 Intel MPI 패키지를 배포합니다. 다음 명령을 실행하여 설치합니다.
+  * **HPC 이미지에 대 한 SLES 12 SP1** -Intel MPI 패키지 hello VM에 배포 됩니다. Hello 다음 명령을 실행 하 여 설치 합니다.
 
       ```bash
       sudo rpm -v -i --nodeps /opt/intelMPI/intel_mpi_packages/*.rpm
@@ -60,15 +60,15 @@ ms.lasthandoff: 08/03/2017
 
   * **CentOS 기반 HPC 이미지** - Intel MPI 5.1은 미리 설치되어 있습니다.  
     
-    클러스터된 VM에서 MPI 작업을 실행하기 위해 추가 시스템 구성이 필요합니다. 예를 들어 VM 클러스터에서 계산 노드 간에 트러스트를 설정해야 합니다. 일반적인 설정에 대해서는 [MPI 응용 프로그램을 실행하도록 Linux RDMA 클러스터 설정](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)을 참조하세요.
+    추가 시스템 구성은 클러스터 된 Vm에서 필요한 toorun MPI 작업을 합니다. 예를 들어 tooestablish 필요한 Vm의 클러스터에서 계산 노드 hello 간의 트러스트 합니다. 일반 설정에 대 한 참조 [Linux RDMA 클러스터 toorun MPI 응용 프로그램 설정](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="network-topology-considerations"></a>네트워크 토폴로지 고려 사항
-* Azure의 RDMA 지원 Linux VM에서 Eth1은 RDMA 네트워크 트래픽용으로 예약됩니다. Eth1 설정 또는 이 네트워크를 참조하는 구성 파일의 정보를 변경하지 마세요. Eth0은 일반 Azure 네트워크 트래픽용으로 예약됩니다.
+* Azure의 RDMA 지원 Linux VM에서 Eth1은 RDMA 네트워크 트래픽용으로 예약됩니다. E t h 1 설정은 되거나 toothis 네트워크를 참조 하는 hello 구성 파일에 대 한 정보를 변경 하지 마십시오. Eth0은 일반 Azure 네트워크 트래픽용으로 예약됩니다.
 
 * Azure에서 IP over IB(Infiniband)는 지원되지 않습니다. RDMA over IB만 지원됩니다.
 
 ## <a name="using-hpc-pack"></a>HPC Pack 사용
-Microsoft의 무료 HPC 클러스터 및 작업 관리 솔루션인 [HPC Pack](https://technet.microsoft.com/library/jj899572.aspx)은 Linux에서 계산 집약적 인스턴스를 사용하기 위한 한 가지 옵션입니다. HPC 팩의 최신 릴리스는 여러 Linux 배포를 지원하여 Windows Server 헤드 노드를 통해 관리되는 Azure VM에서 배포된 계산 노드에서 실행할 수 있습니다. RDMA 지원 Linux 계산 노드에서 Intel MPI가 실행되는 경우 HPC Pack은 RDMA 네트워크에 액세스하는 Linux MPI 응용 프로그램을 예약하고 실행할 수 있습니다. [Azure에서 HPC 팩 클러스터의 Linux 계산 노드 시작](classic/hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)을 참조하세요.
+[HPC Pack](https://technet.microsoft.com/library/jj899572.aspx), Microsoft의 무료 HPC 클러스터 및 작업 관리 솔루션에서 Linux 사용 하 여 toouse hello 계산 집약적인 인스턴스를 하나의 옵션입니다. HPC 팩의 최신 릴리스에 hello toorun에 계산 노드 헤드 노드를 Windows Server에서 관리 되는 Azure Vm에 배포 된 여러 Linux 배포판을 지원 합니다. Intel MPI 실행 되는 RDMA 가능 Linux의 계산 노드, 사용 HPC Pack 예약 하 고 hello RDMA 네트워크를 액세스 Linux MPI 응용 프로그램을 실행할 수 있습니다. [Azure에서 HPC 팩 클러스터의 Linux 계산 노드 시작](classic/hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)을 참조하세요.
 
 ## <a name="other-sizes"></a>기타 크기
 - [범용](sizes-general.md)
@@ -80,7 +80,7 @@ Microsoft의 무료 HPC 클러스터 및 작업 관리 솔루션인 [HPC Pack](h
 
 ## <a name="next-steps"></a>다음 단계
 
-- Linux에서 RDMA를 사용하여 계산 집약적 크기를 배포하고 사용하려면 [MPI 응용 프로그램을 실행하기 위해 Linux RDMA 클러스터 설정](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)을 참조하세요.
+- 배포 하 고 계산 집약적인 크기를 사용 하 여 linux에서 RDMA와 시작 tooget 참조 [Linux RDMA 클러스터 toorun MPI 응용 프로그램 설정](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)합니다.
 
 - [ACU(Azure Compute 단위)](acu.md)가 Azure SKU 간의 Compute 성능을 비교하는 데 어떻게 도움을 줄 수 있는지 알아봅니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Managed Application UI 정의 만들기 함수 | Microsoft Docs"
-description: "Azure Managed Applications에 대한 UI 정의를 생성할 때 사용하는 함수에 대해 설명합니다."
+title: "관리 되는 응용 프로그램 aaaAzure UI 정의 함수를 만들 | Microsoft Docs"
+description: "Azure 관리 되는 응용 프로그램에 대 한 UI 정의 생성할 때 hello 함수 toouse 설명"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 635e44a7ec6f9244f5fe75eb5ad947cdd8ae59a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a34c6202372168cda769c471b1c9fdd539dd0f1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="createuidefinition-elements"></a>CreateUiDefinition 요소
-이 문서에서는 CreateUiDefinition에 지원되는 모든 요소에 대한 스키마와 속성에 대해 설명합니다. [Azure 관리되는 응용 프로그램을 만드는](managed-application-publishing.md) 경우 이 요소를 사용합니다. 대부분의 요소에 대한 스키마는 다음과 같습니다.
+이 문서에서는 hello 스키마와는 CreateUiDefinition의 지원 되는 모든 요소에 대 한 속성을 설명 합니다. [Azure 관리되는 응용 프로그램을 만드는](managed-application-publishing.md) 경우 이 요소를 사용합니다. 대부분의 요소에 대 한 hello 스키마는 다음과 같습니다.
 
 ```json
 {
@@ -28,7 +28,7 @@ ms.lasthandoff: 07/11/2017
   "type": "Microsoft.Common.TextBox",
   "label": "Some text box",
   "defaultValue": "foobar",
-  "toolTip": "Keep calm and visit the [Azure Portal](portal.azure.com).",
+  "toolTip": "Keep calm and visit hello [Azure Portal](portal.azure.com).",
   "constraints": {},
   "options": {},
   "visible": true
@@ -36,18 +36,18 @@ ms.lasthandoff: 07/11/2017
 ```
 | 속성 | 필수 | 설명 |
 | -------- | -------- | ----------- |
-| name | 예 | 요소의 특정 인스턴스를 참조하는 내부 식별자입니다. 요소 이름의 가장 일반적인 사용법은 `outputs`에 있으며, 지정된 요소의 출력 값이 템플릿의 매개 변수에 매핑됩니다. 또한 요소의 출력 값을 다른 요소의 `defaultValue`에 바인딩하는 데 사용할 수 있습니다. |
-| type | 예 | 요소에 대해 렌더링할 UI 컨트롤입니다. 지원되는 형식 목록은 [요소](#elements)를 참조하세요. |
-| label | 예 | 요소의 표시 텍스트입니다. 일부 요소 형식에는 여러 개의 레이블이 포함되므로 값은 여러 문자열을 포함하는 개체가 될 수 있습니다. |
-| defaultValue | 아니요 | 요소의 기본값입니다. 일부 요소 형식에서 복잡한 기본값을 지원하므로 이 값은 개체가 될 수 있습니다. |
-| toolTip | 아니요 | 요소의 도구 설명에 표시할 텍스트입니다. `label`과 마찬가지로 일부 요소에서 여러 개의 도구 설명 문자열을 지원합니다. Markdown 구문을 사용하여 인라인 링크를 포함할 수 있습니다.
-| constraints | 아니요 | 요소의 유효성 검사 동작을 사용자 지정하는 데 사용되는 하나 이상의 속성입니다. 제약 조건에 지원되는 속성은 요소 형식에 따라 다릅니다. 일부 요소 형식에서는 유효성 검사 동작의 사용자 지정을 지원하지 않으므로 제약 조건 속성이 없습니다. |
-| options | 아니요 | 요소의 동작을 사용자 지정하는 추가 속성입니다. `constraints`과 마찬가지로 지원되는 속성은 요소 형식에 따라 다릅니다. |
-| visible | 아니요 | 요소가 표시되는지 여부를 나타냅니다. `true`이면 요소 및 적용 가능한 자식 요소가 표시됩니다. 기본값은 `true`입니다. [논리 함수](managed-application-createuidefinition-functions.md#logical-functions)를 사용하여 이 속성의 값을 동적으로 제어합니다.
+| name | 예 | 내부 식별자 tooreference 요소의 특정 인스턴스. hello hello 요소 이름의 가장 일반적으로 사용 중인 `outputs`hello의 hello 출력 값 요소는 hello 서식 파일의 매핑된 toohello 매개 변수를 지정 합니다. 사용할 수 있습니다도 toobind hello 출력 값의 요소 toohello `defaultValue` 다른 요소가 있습니다. |
+| type | 예 | hello UI toorender hello 요소에 대 한 제어 합니다. 지원되는 형식 목록은 [요소](#elements)를 참조하세요. |
+| label | 예 | hello는 hello 요소의 텍스트를 표시 합니다. 일부 요소 형식은 레이블이 여러 개 포함할 hello 값에는 여러 문자열을 포함 하는 개체 일 수 있습니다. |
+| defaultValue | 아니요 | hello hello 요소의 기본 값입니다. 일부 요소 형식은 hello 값 개체 일 수 있으므로 복잡 한 기본값을 지원 합니다. |
+| toolTip | 아니요 | hello 요소의 hello 도구 설명에 hello 텍스트 toodisplay 합니다. 비슷한 너무`label`, 일부 요소는 여러 도구 설명 문자열을 지원 합니다. Markdown 구문을 사용하여 인라인 링크를 포함할 수 있습니다.
+| constraints | 아니요 | Hello 요소의 hello 유효성 검사 동작을 사용 하는 toocustomize 있는 하나 이상의 속성입니다. 제약 조건에 대 한 지원 hello 속성 요소 유형에 따라 달라 집니다. 일부 요소 형식은 hello 유효성 검사 동작을 사용자 지정을 지원 하지 않으며 제약 조건 속성이 있으므로 합니다. |
+| options | 아니요 | Hello 요소의 hello 동작을 사용자 지정 하는 추가 속성입니다. 비슷한 너무`constraints`, 지원 되는 hello 속성 요소 유형에 따라 달라 집니다. |
+| visible | 아니요 | Hello 요소가 표시 되는지 여부를 나타냅니다. 경우 `true`, hello 요소 및 해당 자식 요소가 표시 됩니다. hello 기본값은 `true`합니다. 사용 하 여 [논리 함수](managed-application-createuidefinition-functions.md#logical-functions) toodynamically이이 속성의이 값을 제어 합니다.
 
 ## <a name="elements"></a>요소
 
-각 요소에 대한 설명서에는 UI 샘플, 스키마, 요소의 동작에 대한 설명(일반적으로 유효성 검사 및 지원되는 사용자 지정과 관련됨) 및 샘플 출력이 포함되어 있습니다.
+설명서 hello 스키마 hello 요소 (일반적으로 관련 유효성 검사 및 지원 되는 사용자 지정) 및 샘플 출력의 hello 동작에 주의 각 요소는 UI 샘플에 대 한 합니다.
 
 - [Microsoft.Common.DropDown](managed-application-microsoft-common-dropdown.md)
 - [Microsoft.Common.FileUpload](managed-application-microsoft-common-fileupload.md)
@@ -64,5 +64,5 @@ ms.lasthandoff: 07/11/2017
 - [Microsoft.Storage.StorageAccountSelector](managed-application-microsoft-storage-storageaccountselector.md)
 
 ## <a name="next-steps"></a>다음 단계
-* 관리되는 응용 프로그램에 대한 소개는 [Azure Managed Application 개요](managed-application-overview.md)를 참조하세요.
-* UI 정의 만들기에 대한 소개는 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)을 참조하세요.
+* 소개 toomanaged 응용 프로그램에 대 한 참조 [Azure 관리 되는 응용 프로그램 개요](managed-application-overview.md)합니다.
+* 소개 toocreating UI 정의 대 한 참조 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)합니다.

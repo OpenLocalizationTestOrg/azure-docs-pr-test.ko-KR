@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB에서 변경 피드 지원 사용 | Microsoft Docs"
-description: "Azure Cosmos DB의 변경 피드 지원을 사용하여 문서에서 변경 내용을 추적하고 트리거와 마찬가지로 이벤트 기반 처리를 수행하고 캐시 및 분석 시스템을 최신 상태로 유지합니다."
+title: "hello 변경 aaaWorking Azure Cosmos DB에서 지원 피드 | Microsoft Docs"
+description: "사용 하 여 Azure Cosmos DB 문서에 피드 지원 tootrack 변경 사항을 변경 하 고 트리거와 마찬가지로 이벤트 기반 처리와 캐시 및 분석 시스템을 최신 상태로 유지를 수행 합니다."
 keywords: "변경 피드"
 services: cosmos-db
 author: arramac
@@ -15,68 +15,68 @@ ms.devlang: rest-api
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: arramac
-ms.openlocfilehash: 160fbc98e0f3dcc7d17cbe0c7f7425811596a896
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a4dcf4ceb476e3e08266dbcdcbee1d75e1d1eed4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="working-with-the-change-feed-support-in-azure-cosmos-db"></a>Azure Cosmos DB에서 변경 피드 지원 사용
-[Azure Cosmos DB](../cosmos-db/introduction.md)는 빠르고 유연성 있는, 전역적으로 복제된 데이터베이스 서비스로 읽기 및 쓰기에 대해 한 자릿수 밀리초인 예측 가능한 대기 시간 동안 대량의 트랜잭션 및 운영 데이터를 저장하는 데 사용됩니다. 따라서 IoT, 게임, 소매 및 운영 로깅 응용 프로그램에 적합합니다. 이러한 응용 프로그램에서 일반적인 디자인 패턴은 Azure Cosmos DB 데이터에 대한 변경 내용을 추적하고 구체화된 뷰를 업데이트하며 실시간 분석을 수행하고 콜드 저장소에 데이터를 보관하며 이러한 변경 내용을 기반으로 특정 이벤트에 대한 알림을 트리거하는 것입니다. Azure Cosmos DB의 **변경 피드 지원**을 사용하면 이러한 패턴 각각에 대해 효율적이고 확장 가능한 솔루션을 구축할 수 있습니다.
+# <a name="working-with-hello-change-feed-support-in-azure-cosmos-db"></a>Cosmos DB Azure의에서 hello 변경 피드 지원 팀과 작업
+[Azure Cosmos DB](../cosmos-db/introduction.md)는 빠르고 유연성 있는, 전역적으로 복제된 데이터베이스 서비스로 읽기 및 쓰기에 대해 한 자릿수 밀리초인 예측 가능한 대기 시간 동안 대량의 트랜잭션 및 운영 데이터를 저장하는 데 사용됩니다. 따라서 IoT, 게임, 소매 및 운영 로깅 응용 프로그램에 적합합니다. 이러한 응용 프로그램에서 일반적인 디자인 패턴 tootrack 변경 내용을 tooAzure Cosmos DB 데이터 및 구체화 된 뷰를 업데이트, 이러한 변경 내용에 따라 특정 이벤트에서 실시간 분석, 보관 데이터 toocold 저장소 및 알림을 전송할 수행 됩니다. hello **변경 피드 지원** Azure Cosmos DB에서 사용 하면 toobuild 효율적이 고 확장 가능한 솔루션 각 이러한 패턴에 대 한 합니다.
 
-Azure Cosmos DB에서는 변경 피드 지원을 사용하여 Azure Cosmos DB 컬렉션 내 문서의 정렬된 목록을 수정된 순서로 제공합니다. 컬렉션 내에서 데이터에 대한 수정을 수신 대기하고 다음과 같은 작업을 수행하기 위해 이 피드를 사용할 수 있습니다.
+지원 피드 변경으로 인해 Azure Cosmos DB 문서 수정 된 hello 순서로 프로그램 Azure Cosmos DB 컬렉션 내에서 정렬 된 목록을 제공 합니다. 이 피드 hello 컬렉션 내에서 toodata 수정에 대 한 사용된 toolisten 수 및와 같은 작업을 수행할 수 있습니다.
 
-* 문서를 삽입하거나 수정하는 경우 API에 대한 호출 트리거
+* 문서를 삽입 하거나 수정할 때 호출 tooan API 트리거
 * 업데이트에 대한 실시간(스트림) 처리 수행
 * 캐시, 검색 엔진 또는 데이터 웨어하우스와 데이터 동기화
 
-Azure Cosmos DB의 변경 내용이 유지되면 비동기적으로 처리되고 병렬 처리를 위해 한 명 이상의 소비자에게 분산될 수 있습니다. 변경 피드에 대한 API 및 이를 사용하여 확장 가능한 실시간 응용 프로그램을 빌드하는 방법에 대해 살펴보겠습니다. 이 문서에서는 Azure Cosmos DB 변경 피드 및 DocumentDB API를 사용하는 방법을 보여줍니다. 
+Azure Cosmos DB의 변경 내용이 유지되면 비동기적으로 처리되고 병렬 처리를 위해 한 명 이상의 소비자에게 분산될 수 있습니다. 변경 피드를 사용 하는 방법으로 toobuild 확장 가능한 실시간 응용 프로그램에 대 한 Api hello를 살펴 보겠습니다. 이 문서 toowork Azure Cosmos DB와 함께 피드 및 hello DocumentDB API을 변경 하는 방법을 보여 줍니다. 
 
-![Azure Cosmos DB 변경 피드를 사용하여 실시간 분석 및 이벤트 기반 컴퓨팅 시나리오 작동](./media/change-feed/changefeedoverview.png)
+![Azure Cosmos DB 변경을 사용 하 여 피드 toopower 실시간 분석 및 이벤트 기반 컴퓨팅 시나리오](./media/change-feed/changefeedoverview.png)
 
 > [!NOTE]
-> 이 시점에 변경 피드 지원은 DocumentDB API에만 제공됩니다. Graph API 및 Table API는 현재 지원되지 않습니다.
+> 지원 피드 변경에만 제공 됩니다 hello DocumentDB API 시킵니다. Graph API hello 및 테이블 API 현재 지원 되지 않습니다.
 
 ## <a name="use-cases-and-scenarios"></a>사용 사례 및 시나리오
-변경 피드를 사용하면 많은 양의 쓰기가 포함된 큰 데이터 집합을 효율적으로 처리할 수 있고 변경된 내용을 식별하는 전체 데이터 집합을 쿼리하는 대안을 제공합니다. 예를 들어, 다음 작업을 효율적으로 수행할 수 있습니다.
+변경 피드는 많은 양의 쓰기와 큰 데이터 집합의 효율적인 처리를 허용 하 고 변경 된 내용을 대체 tooquerying 전체 데이터 집합 tooidentify를 제공 합니다. 예를 들어 hello 작업을 효율적으로 다음을 수행할 수 있습니다.
 
 * Azure Cosmos DB에 저장된 데이터를 사용하여 캐시, 검색 인덱스 또는 데이터 웨어하우스를 업데이트합니다.
-* 응용 프로그램 수준 데이터 계층 및 보관을 구현합니다. 즉, Azure Cosmos DB에 "핫 데이터"를 저장하고 "콜드 데이터"를 [Azure Blob Storage](../storage/common/storage-introduction.md) 또는 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)로 내보냅니다.
+* 응용 프로그램 수준 데이터 계층화 및 보관 구현, 즉, Azure Cosmos DB에서 "핫 데이터를" 저장 하 고 너무 "콜드 데이터 를" age[Azure Blob 저장소](../storage/common/storage-introduction.md) 또는 [Azure 데이터 레이크 저장소](../data-lake-store/data-lake-store-overview.md)합니다.
 * [Apache Hadoop](run-hadoop-with-hdinsight.md)를 사용하여 데이터에 대한 Batch 분석을 구현합니다.
 * Azure Cosmos DB를 사용하여 [Azure의 람다 파이프라인](https://blogs.technet.microsoft.com/msuspartner/2016/01/27/azure-partner-community-big-data-advanced-analytics-and-lambda-architecture/)을 구현합니다. Azure Cosmos DB는 수집 및 쿼리를 모두 처리할 수 있는 확장성이 뛰어난 데이터베이스 솔루션을 제공하고 TCO가 낮은 람다 아키텍처를 구현합니다. 
-* 다른 파티션 구성표를 사용하여 다른 Azure Cosmos DB 계정에 대한 중단 시간이 없는 마이그레이션을 수행합니다.
+* 0 가동 중지 시간이 마이그레이션 tooanother Azure Cosmos DB 계정과 다른 파티션 구성표를 수행 합니다.
 
 **수집 및 쿼리에 Azure Cosmos DB를 사용하는 람다 파이프라인:**
 
 ![수집 및 쿼리에 대한 Azure Cosmos DB 기반 람다 파이프라인](./media/change-feed/lambda.png)
 
-Azure Cosmos DB를 사용하여 장치, 센서, 인프라 및 응용 프로그램에서 이벤트 데이터를 수신하고 저장하며 [Azure Stream Analytics](../stream-analytics/stream-analytics-documentdb-output.md), [Apache Storm](../hdinsight/hdinsight-storm-overview.md) 또는 [Apache Spark](../hdinsight/hdinsight-apache-spark-overview.md)를 사용하여 이러한 이벤트를 실시간으로 처리합니다. 
+Azure Cosmos DB tooreceive를 사용 하 여 하 고 장치, 센서, 인프라 및 응용 프로그램에서 이벤트 데이터를 저장 하 고 이러한 이벤트를 처리 수와 실시간 [Azure 스트림 분석](../stream-analytics/stream-analytics-documentdb-output.md), [Apache Storm](../hdinsight/hdinsight-storm-overview.md), 또는 [Apache Spark](../hdinsight/hdinsight-apache-spark-overview.md)합니다. 
 
-[서버를 사용하지 않는](http://azure.com/serverless) 웹 및 모바일 앱 내에서는 [Azure Functions](../azure-functions/functions-bindings-documentdb.md) 또는 [App Services](https://azure.microsoft.com/services/app-service/)를 사용하여 해당 장치에 푸시 알림을 보내는 등의 특정 작업을 트리거하기 위해 고객의 프로필, 기본 설정 또는 위치에 대한 변경 내용과 같은 이벤트를 추적할 수 있습니다. 예를 들어, Azure Cosmos DB를 사용하여 게임을 빌드하는 경우 변경 피드를 사용하여 완료된 게임의 점수에 따라 실시간 순위표를 구현할 수 있습니다.
+내에서 프로그램 [서버가 없는](http://azure.com/serverless) 웹 및 모바일 앱 푸시 알림 tootheir 장치 를사용하여보내는같은특정작업변경내용tooyour고객프로필,기본설정또는위치tootrigger같은추적이벤트수있습니다[Azure 함수](../azure-functions/functions-bindings-documentdb.md) 또는 [응용 프로그램 서비스](https://azure.microsoft.com/services/app-service/)합니다. Azure Cosmos DB toobuild 게임을 사용 하는 경우 예를 들어 변경 피드 tooimplement 실시간 순위표 완료 게임에서 점수에 따라 사용할 수 있습니다.
 
 ## <a name="how-change-feed-works-in-azure-cosmos-db"></a>Azure Cosmos DB에서 변경 피드의 작동 방식
-Azure Cosmos DB에서는 증분 방식으로 Azure Cosmos DB 컬렉션에 이뤄진 업데이트를 읽는 기능을 제공합니다. 이 변경 피드에는 다음과 같은 속성이 있습니다.
+Azure Cosmos DB hello 기능 tooincrementally 읽기 업데이트를 수행 해도 tooan Azure Cosmos DB 컬렉션을 제공 합니다. 이 변경 피드 hello 다음과 같은 속성에 있습니다.
 
 * 변경 내용이 Azure Cosmos DB에서 지속되면 비동기적으로 처리될 수 있습니다.
-* 컬렉션 내 문서에 대한 변경 내용은 변경 피드에서 즉시 사용할 수 있습니다.
-* 각 문서에 대한 변경 내용이 한 번 변경 피드에 즉시 표시되고 클라이언트는 해당 검사점 논리를 관리합니다. 변경 피드 프로세서 라이브러리는 자동 검사점 및 “최소 한 번” 의미 체계를 제공합니다.
-* 지정된 문서에 대한 가장 최근의 변경 내용만이 변경 로그에 포함됩니다. 중간 변경 내용을 사용할 수 없습니다.
-* 변경 피드는 각 파티션 키 값 내에서 수정된 순서로 정렬됩니다. 파티션 키 값에 보장된 순서가 없습니다.
+* 컬렉션 내에서 변경 내용을 toodocuments hello 변경 피드 즉시 제공 됩니다.
+* 각 변경 tooa 문서 hello 변경 피드에 정확히 한 번만 표시 하 고 클라이언트 검사점 논리를 관리 합니다. hello 변경 피드 프로세서 라이브러리 자동 검사점을 설정 하 고 "최소 한 번" 의미 체계를 제공 합니다.
+* 지정된 된 문서에 대 한 유일한 hello 가장 최근의 변경 hello 변경 로그에 포함 됩니다. 중간 변경 내용을 사용할 수 없습니다.
+* hello 변경 피드 내 각 파티션 키 값 수정 순서를 기준으로 정렬 됩니다. 파티션 키 값에 보장된 순서가 없습니다.
 * 특정 시점에서 변경 내용을 동기화할 수 있습니다. 즉, 변경 내용을 사용할 수 있는 고정 데이터 보존 기간이 없습니다.
-* 변경 내용은 파티션 키 범위에서 사용할 수 있습니다. 이 기능을 사용하면 대규모 컬렉션의 변경 내용을 여러 소비자/서버에 의해 병렬로 처리할 수 있습니다.
-* 응용 프로그램은 동일한 컬렉션에서 동시에 여러 변경 피드를 요청할 수 있습니다.
+* 변경 내용은 파티션 키 범위에서 사용할 수 있습니다. 이 기능을 동시에 여러 소비자/서버에서 처리 하는 광범위 한 모음 toobe의 변경 내용을 사용 합니다.
+* 여러 개의 변경 피드를 동시에 hello에 동일한 응용 프로그램 요청 수 수집 합니다.
 
-Azure Cosmos DB의 변경 피드는 모든 계정에 기본적으로 사용됩니다. 쓰기 지역 또는 [읽기 지역](distribute-data-globally.md)에서 [프로비전된 처리량](request-units.md)을 사용하여 Azure Cosmos DB의 다른 작업과 마찬가지로 변경 피드에서 읽을 수 있습니다. 변경 피드는 컬렉션 내의 문서에 수행된 삽입 및 업데이트 작업을 포함합니다. 삭제 대신 문서 내에서 "soft-delete" 플래그를 설정하여 삭제를 캡처할 수 있습니다. 또는 [TTL 기능](time-to-live.md)을 통해 문서에 대한 제한 만료 기간을 설정할 수 있습니다. 예를 들어, 24시간으로 설정하고 해당 속성의 값을 사용하여 삭제를 캡처합니다. 이 솔루션을 사용하여 TTL 만료 기간보다 짧은 시간 간격 내에 변경 내용을 처리해야 합니다. 변경 피드는 문서 컬렉션 내에서 각 파티션 키 범위에 대해 사용할 수 있으며 따라서 병렬 처리를 위해 한 명 이상의 소비자에게 배포할 수 있습니다. 
+Azure Cosmos DB의 변경 피드는 모든 계정에 기본적으로 사용됩니다. 사용할 수 있습니다 프로그램 [프로 비전 된 처리량](request-units.md) 쓰기 지역 또는에 [영역을 읽을](distribute-data-globally.md) hello에서 tooread Azure Cosmos DB에서 다른 작업에서와 마찬가지로 피드를 변경 합니다. hello 변경 피드에 삽입 및 toodocuments hello 컬렉션 내에서 실행 한 업데이트 작업이 포함 됩니다. 삭제 대신 문서 내에서 "soft-delete" 플래그를 설정하여 삭제를 캡처할 수 있습니다. 또는 hello 통해 문서에 대 한 유한 만료 기간을 설정할 수 [TTL 기능](time-to-live.md)예: 24 시간 및 사용 하 여 hello 값에 대 한 해당 속성의 toocapture 삭제 합니다. 이 솔루션을 hello TTL 만료 기간 보다 짧은 시간 간격 내 tooprocess 변경 내용이 있습니다. hello 변경 피드 hello 문서 컬렉션 내에서 각 파티션 키 범위에 사용할 수 있으며 따라서 병렬 처리에 대 한 하나 이상의 소비자에서 배포할 수 있습니다. 
 
 ![Azure Cosmos DB 변경 피드의 분산 처리](./media/change-feed/changefeedvisual.png)
 
-클라이언트 코드에서 변경 피드를 구현하는 방법에는 몇 가지 옵션이 있습니다. 다음에 이어지는 섹션에서는 Azure Cosmos DB REST API 및 DocumentDB SDK를 사용하여 변경 피드를 구현하는 방법을 설명합니다. 그러나 .NET 응용 프로그램의 경우, 새로운 [변경 피드 프로세서 라이브러리](#change-feed-processor)를 사용하여 변경 피드의 이벤트를 처리하는 것이 좋습니다. 이 라이브러리 사용 시, 전체 파티션의 변경 사항 읽기가 간소해지고 여러 스레드를 병렬로 실행할 수 있습니다. 
+클라이언트 코드에서 변경 피드를 구현하는 방법에는 몇 가지 옵션이 있습니다. 다음 tooimplement이 hello Azure Cosmos DB REST API를 사용 하 여 변경 공급 hello 하 고 DocumentDB Sdk hello 하는 방법을 설명 하는 즉시 hello 섹션입니다. 그러나.NET 응용 프로그램에 사용할 수 있는 권장 hello 새 [변경 피드 프로세서 라이브러리](#change-feed-processor) hello에서 이벤트를 처리 파티션 간에 읽기 변경 사항을 간소화 하 고에서 작업 하는 여러 스레드가 피드 변경 병렬 처리 합니다. 
 
-## <a id="rest-apis"></a>REST API 및 DocumentDB SDK 사용
-Azure Cosmos DB에서는 **컬렉션**이라는 저장소 및 처리량의 탄력적인 컨테이너를 제공합니다. 확장성 및 성능을 위해 [파티션 키](partition-data.md)를 사용하여 컬렉션 내의 데이터를 논리적으로 그룹화합니다. Azure Cosmos DB에서는 ID(읽기/가져오기), 쿼리 및 읽기-피드(검색) 기준 조회를 포함하여 이 데이터에 액세스하기 위한 다양한 API를 제공합니다. 변경 피드는 DocumentDB의 `ReadDocumentFeed` API에 두 가지 새로운 요청 헤더를 채워서 가져올 수 있으며 파티션 키 범위에서 동시에 처리할 수 있습니다.
+## <a id="rest-apis"></a>REST API 및 DocumentDB Sdk hello 사용
+Azure Cosmos DB에서는 **컬렉션**이라는 저장소 및 처리량의 탄력적인 컨테이너를 제공합니다. 확장성 및 성능을 위해 [파티션 키](partition-data.md)를 사용하여 컬렉션 내의 데이터를 논리적으로 그룹화합니다. Azure Cosmos DB에서는 ID(읽기/가져오기), 쿼리 및 읽기-피드(검색) 기준 조회를 포함하여 이 데이터에 액세스하기 위한 다양한 API를 제공합니다. hello 변경 피드 얻을 수 있습니다 두 개의 새 요청 헤더 toohello DocumentDB를 채워 `ReadDocumentFeed` API를 파티션 키 범위에서 동시에 처리할 수 있습니다.
 
 ### <a name="readdocumentfeed-api"></a>ReadDocumentFeed API
-ReadDocumentFeed의 작동 방식에 대해 간략하게 살펴보겠습니다. Azure Cosmos DB에서는 `ReadDocumentFeed` API를 통해 컬렉션 내에서 문서의 피드를 읽도록 지원합니다. 예를 들어, 다음 요청은 `serverlogs` 컬렉션의 내부에서 문서의 페이지를 반환합니다. 
+ReadDocumentFeed의 작동 방식에 대해 간략하게 살펴보겠습니다. Azure Cosmos DB 지원 문서 hello 통해 컬렉션 내에서 피드를 읽는 `ReadDocumentFeed` API입니다. 예를 들어 hello 다음 요청 페이지를 반환 hello 구조로 문서 `serverlogs` 컬렉션입니다. 
 
     GET https://mydocumentdb.documents.azure.com/dbs/smalldb/colls/serverlogs HTTP/1.1
     x-ms-date: Tue, 22 Nov 2016 17:05:14 GMT
@@ -88,11 +88,11 @@ ReadDocumentFeed의 작동 방식에 대해 간략하게 살펴보겠습니다. 
     Accept: application/json
     Host: mydocumentdb.documents.azure.com
 
-`x-ms-max-item-count` 헤더를 사용하여 결과를 제한할 수 있고 이전 응답에서 반환된 `x-ms-continuation` 헤더로 요청을 다시 제출하여 읽기를 다시 시작할 수 있습니다. 단일 클라이언트에서 수행되는 경우, `ReadDocumentFeed`는 전체 파티션의 결과를 순차적으로 반복합니다. 
+Hello를 사용 하 여 결과 제한 될 수 있습니다 `x-ms-max-item-count` 머리글과 읽기와 hello 요청을 다시 제출 하 여 다시 시작할 수는 `x-ms-continuation` hello 이전 응답에서 헤더를 반환 합니다. 단일 클라이언트에서 수행되는 경우, `ReadDocumentFeed`는 전체 파티션의 결과를 순차적으로 반복합니다. 
 
 **문서 피드의 순차적 읽기**
 
-지원되는 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 중 하나를 사용하여 문서의 피드를 검색할 수도 있습니다. 예를 들어, 다음 코드 조각은 .NET에서 [ReadDocumentFeedAsync 메서드](/dotnet/api/microsoft.azure.documents.client.documentclient.readdocumentfeedasync?view=azure-dotnet)를 사용하는 방법을 보여줍니다.
+지원 되는 hello 중 하나를 사용 하 여 문서의 hello 피드를 검색할 수도 있습니다 [Azure Cosmos DB Sdk](documentdb-sdk-dotnet.md)합니다. 예를 들어 hello를 조각과 방법을 따르는 toouse hello [ReadDocumentFeedAsync 메서드](/dotnet/api/microsoft.azure.documents.client.documentclient.readdocumentfeedasync?view=azure-dotnet) .net에서 합니다.
 
 ```csharp
 FeedResponse<dynamic> feedResponse = null;
@@ -104,17 +104,17 @@ while (feedResponse.ResponseContinuation != null);
 ```
 
 ### <a name="distributed-execution-of-readdocumentfeed"></a>ReadDocumentFeed의 분산 실행
-테라바이트 이상의 데이터를 포함하거나 대량의 업데이트를 수집하는 컬렉션의 경우, 단일 클라이언트 컴퓨터에서 읽기 피드를 순차적으로 실행하면 실용적이지 않습니다. 이러한 빅 데이터 시나리오를 지원하기 위해 Azure Cosmos DB에서는 API를 제공하여 여러 클라이언트 판독기/소비자에게 `ReadDocumentFeed` 호출을 투명하게 배포합니다. 
+테라바이트 이상의 데이터를 포함하거나 대량의 업데이트를 수집하는 컬렉션의 경우, 단일 클라이언트 컴퓨터에서 읽기 피드를 순차적으로 실행하면 실용적이지 않습니다. 순서 toosupport 이러한 빅 데이터 시나리오, Azure Cosmos DB 제공 Api toodistribute `ReadDocumentFeed` 여러 클라이언트 판독기/소비자를 넘어선 투명 하 게 호출 합니다. 
 
 **분산 읽기 문서 피드**
 
-증분 변경 내용의 확장 가능한 처리를 제공하기 위해 Azure Cosmos DB에서는 파티션 키 범위에 따라 변경 피드 API의 확장 모델을 지원합니다.
+증분 변경, Azure Cosmos DB tooprovide 확장성이 높은 처리 hello 변경 피드 파티션 키의 범위에 따라 API는 확장 모델을 지원 합니다.
 
 * `ReadPartitionKeyRanges` 호출을 수행하는 컬렉션에 대한 파티션 키 범위의 목록을 가져올 수 있습니다. 
-* 각 파티션 키 범위의 경우 해당 범위 내에서 파티션 키를 사용하여 문서를 읽는 `ReadDocumentFeed`을 수행할 수 있습니다.
+* 각 파티션 키 범위에 대해 수행할 수 있습니다는 `ReadDocumentFeed` 범위 내에서 파티션 키를 사용 하 여 tooread 문서.
 
 ### <a name="retrieving-partition-key-ranges-for-a-collection"></a>컬렉션에 대한 파티션 키 범위 검색
-컬렉션 내에서 `pkranges` 리소스를 요청하여 파티션 키 범위를 검색할 수 있습니다. 예를 들어, 다음 요청은 `serverlogs` 컬렉션에 대한 파티션 키 범위 목록을 검색합니다.
+요청 hello 여 hello 파티션 키 범위를 검색할 수 있습니다 `pkranges` 컬렉션 내의 리소스입니다. 예를 들어 hello 다음 요청 hello의 목록을 검색 hello에 대 한 파티션 키 범위 `serverlogs` 컬렉션:
 
     GET https://querydemo.documents.azure.com/dbs/bigdb/colls/serverlogs/pkranges HTTP/1.1
     x-ms-date: Tue, 15 Nov 2016 07:26:51 GMT
@@ -124,7 +124,7 @@ while (feedResponse.ResponseContinuation != null);
     Accept: application/json
     Host: querydemo.documents.azure.com
 
-이 요청에는 파티션 키 범위에 대한 메타데이터가 포함된 다음과 같은 응답을 반환합니다.
+이 요청 hello 다음 hello 파티션 키 범위에 대 한 메타 데이터를 포함 하는 응답을 반환 합니다.
 
     HTTP/1.1 200 Ok
     Content-Type: application/json
@@ -150,7 +150,7 @@ while (feedResponse.ResponseContinuation != null);
     }
 
 
-**파티션 키 범위 속성**: 각 파티션 키 범위에는 다음 테이블에 있는 메타데이터 속성이 포함됩니다.
+**키 범위 속성을 파티션**: 다음 표에 hello에 hello 메타 데이터 속성을 포함 하는 각 파티션 키 범위:
 
 <table>
     <tr>
@@ -160,21 +160,21 @@ while (feedResponse.ResponseContinuation != null);
     <tr>
         <td>id</td>
         <td>
-            <p>파티션 키 범위에 대한 ID입니다. 각 컬렉션 내에서 안정적이고 고유한 ID입니다.</p>
-            <p>파티션 키 범위에서 변경 내용을 읽는 다음 호출에서 사용해야 합니다.</p>
+            <p>hello 파티션 키 범위에 대 한 hello ID입니다. 각 컬렉션 내에서 안정적이고 고유한 ID입니다.</p>
+            <p>파티션 키 범위 하 여 hello tooread 변경 내용을 호출 다음에 사용 되어야 합니다.</p>
         </td>
     </tr>
     <tr>
         <td>maxExclusive</td>
-        <td>파티션 키 범위에 대한 파티션 키 해시의 최대 값입니다. 내부에 사용합니다.</td>
+        <td>hello 파티션 키 범위에 대 한 hello 최대 파티션 키 해시 값입니다. 내부에 사용합니다.</td>
     </tr>
     <tr>
         <td>minInclusive</td>
-        <td>파티션 키 범위에 대한 파티션 키 해시의 최소 값입니다. 내부에 사용합니다.</td>
+        <td>hello 파티션 키 범위에 대 한 hello 최소 파티션 키 해시 값입니다. 내부에 사용합니다.</td>
     </tr>       
 </table>
 
-지원되는 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 중 하나를 사용하여 수행할 수 있습니다. 예를 들어, 다음 코드 조각은 [ReadPartitionKeyRangeFeedAsync](/dotnet/api/microsoft.azure.documents.client.documentclient.readpartitionkeyrangefeedasync?view=azure-dotnet) 메서드를 사용하여 .NET에서 파티션 키 범위를 검색하는 방법을 보여 줍니다.
+지원 되는 hello 중 하나를 사용 하 여 수행할 수 있습니다 [Azure Cosmos DB Sdk](documentdb-sdk-dotnet.md)합니다. 예를 들어 hello 다음 코드 조각에서는.net에서 tooretrieve 파티션 키 범위 하는 방법을 hello를 사용 하 여 [ReadPartitionKeyRangeFeedAsync](/dotnet/api/microsoft.azure.documents.client.documentclient.readpartitionkeyrangefeedasync?view=azure-dotnet) 메서드.
 
 ```csharp
 string pkRangesResponseContinuation = null;
@@ -192,18 +192,18 @@ do
 while (pkRangesResponseContinuation != null);
 ```
 
-Azure Cosmos DB에서는 옵션 `x-ms-documentdb-partitionkeyrangeid` 헤더를 설정하여 파티션 키 범위당 문서 검색을 지원합니다. 
+선택적 설정 hello 하 여 파티션 키 범위 당 문서를 검색할 수 있도록 azure Cosmos DB `x-ms-documentdb-partitionkeyrangeid` 헤더입니다. 
 
 ### <a name="performing-an-incremental-readdocumentfeed"></a>증분 ReadDocumentFeed 수행
-ReadDocumentFeed는 Azure Cosmos DB 컬렉션의 변경 내용을 증분 처리하는 다음과 같은 시나리오/작업을 지원합니다.
+ReadDocumentFeed는 시나리오/의 Azure Cosmos DB 컬렉션의 변경 내용 증분 처리에 대 한 작업을 수행 하는 hello를 지원 합니다.
 
-* 처음부터 즉, 컬렉션 생성에서부터 문서에 대한 모든 변경 내용을 읽습니다.
-* 현재 시간부터 문서의 향후 업데이트에 대한 모든 변경 내용 또는 사용자가 지정한 시간 이후의 변경 내용을 읽습니다.
-* 컬렉션의 논리 버전부터 문서에 대한 모든 변경 내용을 읽습니다(ETag). 증분 읽기 피드 요청에서 반환된 ETag에 따라 소비자의 검사점을 지정할 수 있습니다.
+* 모든 읽기 컬렉션 만들기에서 hello부터 toodocuments 즉, 변경합니다.
+* 모든 읽기 사용자가 지정한 시간 이후에 현재 시간 또는 변경 내용을 toofuture 업데이트 toodocuments를 변경 합니다.
+* 모든 읽기 hello 컬렉션 (ETag)의 논리적 버전에서 toodocuments를 변경합니다. 소비자 기반 증분 피드 읽기 요청에서 ETag를 반환 하는 hello로 검사점을 수 있습니다.
 
-변경 내용에는 문서에 대한 삽입 및 업데이트가 포함됩니다. 삭제를 캡처하려면 문서 내에서 "soft delete" 속성을 사용하거나 [기본 제공 TTL 속성](time-to-live.md)을 사용하여 변경 피드에서 보류 중인 삭제를 알려야 합니다.
+hello 변경 내용에는 삽입 및 업데이트 toodocuments를 포함 합니다. toocapture 삭제 되 면 문서, 내에서 "소프트 삭제" 속성을 사용 하거나 hello를 사용 하 여 [기본 제공 TTL 속성](time-to-live.md) toosignal hello에 보류 중인 삭제 피드를 변경 합니다.
 
-다음 테이블에서는 ReadDocumentFeed 작업에 대한 [요청](/rest/api/documentdb/common-documentdb-rest-request-headers.md) 및 [응답 헤더](/rest/api/documentdb/common-documentdb-rest-response-headers.md)를 나열합니다.
+다음 테이블 목록 hello hello [요청](/rest/api/documentdb/common-documentdb-rest-request-headers.md) 및 [응답 헤더](/rest/api/documentdb/common-documentdb-rest-response-headers.md) ReadDocumentFeed 작업에 대 한 합니다.
 
 **증분 ReadDocumentFeed에 대한 요청 헤더**:
 
@@ -214,14 +214,14 @@ ReadDocumentFeed는 Azure Cosmos DB 컬렉션의 변경 내용을 증분 처리�
     </tr>
     <tr>
         <td>A-IM</td>
-        <td>"증분 피드"로 설정하거나 그렇지 않으면 생략해야 합니다.</td>
+        <td>설정 해야 너무 "증분 피드" 그렇지 않으면 생략 하거나</td>
     </tr>
     <tr>
         <td>If-None-Match</td>
         <td>
-            <p>헤더 없음: 처음(컬렉션 생성)부터 모든 변경 내용을 반환합니다.</p>
-            <p>"*": 컬렉션 내의 데이터에 대한 새 변경 내용을 모두 반환합니다.</p>           
-            <p>&lt;etag&gt;: ETag 컬렉션에 설정한 경우 해당 논리 타임스탬프 이후에 변경한 모든 내용을 반환합니다.</p>
+            <p>머리글이 없음: (컬렉션 생성)를 시작 하는 hello에서 모든 변경 내용을 반환</p>
+            <p>"*": hello 컬렉션 내에서 모든 새 변경 내용을 toodata 반환</p>         
+            <p>&lt;etag&gt;: 경우 ETag tooa 컬렉션 설정, 해당 논리 타임 스탬프 이후 모든 변경 내용을 반환</p>
         </td>
     </tr>
     <tr>    
@@ -230,7 +230,7 @@ ReadDocumentFeed는 Azure Cosmos DB 컬렉션의 변경 내용을 증분 처리�
     </tr> 
     <tr>
         <td>x-ms-documentdb-partitionkeyrangeid</td>
-        <td>데이터를 읽는 파티션 키 범위 ID입니다.</td>
+        <td>데이터를 읽기 위한 hello 파티션 키 범위 ID입니다.</td>
     </tr>
 </table>
 
@@ -243,13 +243,13 @@ ReadDocumentFeed는 Azure Cosmos DB 컬렉션의 변경 내용을 증분 처리�
     <tr>
         <td>etag</td>
         <td>
-            <p>응답에서 반환되는 최근 문서의 LSN(논리 시퀀스 번호)입니다.</p>
+            <p>hello 논리적 시퀀스 번호 (LSN) hello 응답에서 반환 된 마지막 문서입니다.</p>
             <p>증분 ReadDocumentFeed는 If-None-Match에서 이 값을 다시 제출하여 다시 시작할 수 있습니다.</p>
         </td>
     </tr>
 </table>
 
-다음 논리적 버전/ETag `28535` 및 파티션 키 범위 = `16`의 컬렉션에서 모든 증분 변경 내용을 반환하는 샘플 요청입니다.
+다음 샘플 요청 tooreturn은 hello 논리 버전/ETag에서 컬렉션의 모든 증분 변경 내용을 `28535` 키 범위를 분할 하 고 = `16`:
 
     GET https://mydocumentdb.documents.azure.com/dbs/bigdb/colls/bigcoll/docs HTTP/1.1
     x-ms-max-item-count: 1
@@ -262,14 +262,14 @@ ReadDocumentFeed는 Azure Cosmos DB 컬렉션의 변경 내용을 증분 처리�
     Accept: application/json
     Host: mydocumentdb.documents.azure.com
 
-변경 내용은 파티션 키 범위 내의 각 파티션 키 값 안에서 시간 기준으로 정렬됩니다. 파티션 키 값에 보장된 순서가 없습니다. 단일 페이지에 맞출 수 있는 것보다 결과가 많은 경우 이전 응답의 `etag`와 같은 값을 포함한 `If-None-Match` 헤더로 요청을 다시 제출하여 결과의 다음 페이지를 읽을 수 있습니다. 저장 프로시저 또는 트리거 내에서 여러 문서를 트랜잭션 방식으로 삽입 또는 업데이트한 경우 동일한 응답 페이지 내에서 모두 반환됩니다.
+변경 내용은 hello 파티션 키 범위 내에서 각 파티션 키 값에서 시간으로 정렬 됩니다. 파티션 키 값에 보장된 순서가 없습니다. 단일 페이지에 포함할 수 있는 것 보다 많은 결과가 있으면 hello로 hello 요청을 다시 제출 하 여 hello 결과의 다음 페이지를 읽을 수 있습니다 `If-None-Match` 값 같은 toohello 헤더 `etag` hello 이전 응답에서 합니다. 여러 문서 삽입 되거나 저장된 프로시저 또는 트리거 내에서 트랜잭션 방식으로 업데이트 된 경우 모두 반환 됩니다 hello 내에서 동일한 응답 페이지.
 
 > [!NOTE]
-> 변경 피드를 사용하면 저장된 프로시저 또는 트리거 내에서 여러 문서를 삽입 또는 업데이트할 때 `x-ms-max-item-count`에 지정된 것보다 더 많은 항목이 한 페이지에 반환됩니다. 
+> 변경 피드를 사용 더 많은 항목에 지정 된 버전과 페이지에 반환 될 수 있습니다 `x-ms-max-item-count` 삽입 되거나 업데이트 저장된 프로시저 내의 여러 문서의 경우 hello 또는 트리거. 
 
-.NET SDK(1.17.0)를 사용하는 경우 `CreateDocumentChangeFeedQuery`를 호출할 때 `StartTime` 이후에 변경된 문서를 즉시 반환하도록 `ChangeFeedOptions`의 `StartTime` 필드를 설정합니다. REST API를 사용하여 `If-Modified-Since`를 지정하면 사용자 요청은 문서 자체가 아닌 응답 헤더의 연속 토큰 또는 `etag`를 반환하게 됩니다. 지정된 시간이 수정된 문서를 반환하려면 `If-None-Match`를 사용하는 다음 요청에 연속 토큰 `etag`를 사용하여 실제 문서를 반환해야 합니다. 
+Hello.NET SDK (1.17.0)를 사용할 때는 hello 필드 설정 `StartTime` 에 `ChangeFeedOptions` 이후 변경 toodirectly 반환 문서 `StartTime` 를 호출할 때 `CreateDocumentChangeFeedQuery`합니다. 지정 하 여 `If-Modified-Since` hello REST API를 사용 하 여 요청은 문서를 반환 하지 hello 자체 하지만 대신 hello 연속 토큰 또는 `etag` hello 응답 헤더에 있습니다. 시간, hello continuation 토큰을 지정 하는 수정 된 hello tooreturn hello 문서 `etag` hello 다음 요청에 사용 해야 합니다 `If-None-Match` tooreturn hello 실제 문서. 
 
-.NET SDK는 컬렉션의 변경 내용에 액세스할 수 있도록 [CreateDocumentChangeFeedQuery](/dotnet/api/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery?view=azure-dotnet) 및 [ChangeFeedOptions](/dotnet/api/microsoft.azure.documents.client.changefeedoptions?view=azure-dotnet) 도우미 클래스를 제공합니다. 다음 코드 조각에서는 단일 클라이언트에서 .NET SDK를 사용하여 처음부터 모든 변경 내용을 검색하는 방법을 보여 줍니다.
+.NET SDK hello 제공 hello [CreateDocumentChangeFeedQuery](/dotnet/api/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery?view=azure-dotnet) 및 [ChangeFeedOptions](/dotnet/api/microsoft.azure.documents.client.changefeedoptions?view=azure-dotnet) 도우미 클래스가 tooaccess 변경한 tooa 컬렉션입니다. hello 다음 코드 조각은 변경 내역을 보여 tooretrieve 모든 단일 클라이언트에서.NET SDK hello를 사용 하 여 hello부터에서 합니다.
 
 ```csharp
 private async Task<Dictionary<string, string>> GetChanges(
@@ -322,20 +322,20 @@ private async Task<Dictionary<string, string>> GetChanges(
     return checkpoints;
 }
 ```
-다음 코드 조각에서는 변경 피드 지원과 앞의 함수를 사용하여 Azure Cosmos DB에서 실시간으로 변경 내용을 처리하는 방법을 보여 줍니다. 첫 번째 호출은 컬렉션에 있는 모든 문서를 반환하고 두 번째 호출은 최근 검사점 이후에 만들어진 만든 두 개의 문서만을 반환합니다.
+Hello 다음 코드 조각은 변경 내역을 보여 tooprocess 실시간 및 hello 변경 사용 하 여 Azure Cosmos DB와 함께 지원 피드 및 hello 함수 앞에 있습니다. hello 첫 번째 호출이 hello 컬렉션의 모든 hello 문서를 반환 하 고 hello 둘째만 hello hello 마지막 검사점 이후 생성 된 만든 두 문서
 
 ```csharp
-// Returns all documents in the collection.
+// Returns all documents in hello collection.
 Dictionary<string, string> checkpoints = await GetChanges(client, collection, new Dictionary<string, string>());
 
 await client.CreateDocumentAsync(collection, new DeviceReading { DeviceId = "xsensr-201", MetricType = "Temperature", Unit = "Celsius", MetricValue = 1000 });
 await client.CreateDocumentAsync(collection, new DeviceReading { DeviceId = "xsensr-212", MetricType = "Pressure", Unit = "psi", MetricValue = 1000 });
 
-// Returns only the two documents created above.
+// Returns only hello two documents created above.
 checkpoints = await GetChanges(client, collection, checkpoints);
 ```
 
-선택적으로 이벤트를 처리하기 위해 클라이언트 쪽 논리를 사용하여 변경 피드를 필터링할 수도 있습니다. 예를 들어, 장치 센서에서 온도 변경 이벤트만을 처리하는 클라이언트 쪽 LINQ를 사용하는 코드 조각은 다음과 같습니다.
+클라이언트 쪽 논리 tooselectively 프로세스 이벤트를 사용 하 여 hello 변경 공급을 필터링 할 수도 있습니다. 예를 들어 다음은 장치 센서의 온도 변경 이벤트에만 클라이언트 쪽 LINQ tooprocess를 사용 하는 조각입니다.
 
 ```csharp
 FeedResponse<DeviceReading> readChangesResponse = query.ExecuteNextAsync<DeviceReading>().Result;
@@ -348,44 +348,44 @@ foreach (DeviceReading changedDocument in
 ```
 
 ## <a id="change-feed-processor"></a>변경 피드 프로세서 라이브러리
-또 다른 옵션은 [Azure Cosmos DB 변경 피드 프로세서 라이브러리](https://docs.microsoft.com/azure/cosmos-db/documentdb-sdk-dotnet-changefeed)를 사용하는 것입니다. 이 라이브러리 사용 시, 여러 소비자에게 변경 피드의 이벤트 처리를 쉽게 분산할 수 있습니다. 이 라이브러리는 .NET 플랫폼에서 변경 피드 독자(reader)를 구축하는 데 유용합니다. 다른 Cosmos DB SDK에 포함된 메서드에 변경 피드 프로세서 라이브러리를 사용하면, 다음 워크플로가 간소화됩니다. 
+두 번째 방법은 toouse hello [Azure Cosmos DB 변경 피드 프로세서 라이브러리](https://docs.microsoft.com/azure/cosmos-db/documentdb-sdk-dotnet-changefeed)를 쉽게 이벤트 여러 소비자에서 피드는 변경 내용으로 인해 처리를 배포 하면 도움이 될 수 있는 합니다. hello 라이브러리는 변경 판독기 hello.NET 플랫폼에서 피드를 구축 하기 위한 훌륭한입니다. Hello에 포함 된 hello 메서드를 통해 hello 프로세서 피드 교환 라이브러리를 사용 하 여 단순화 하는 일부 워크플로 다른 Cosmos DB Sdk를 포함 합니다. 
 
 * 데이터가 여러 파티션에 저장되어 있는 경우, 변경 피드에서 업데이트 풀링
-* 컬렉션 간, 데이터 이동 또는 복제
-* 데이터 및 변경 피드의 업데이트에 의해 트리거되는 작업의 병렬 실행 
+* 이동 하거나 컬렉션을 하나 tooanother에서 데이터 복제
+* 업데이트 toodata가 트리거하는 작업 및 변경 피드의 병렬 실행 
 
-Cosmos SDK에서 API를 사용하면 각 파티션의 변경 피드 업데이트에 정확하게 액세스할 수 있는 반면, 변경 피드 프로세서 라이브러리를 사용하면 전체 파티션의 변경 사항 읽기가 간소해지고 여러 스레드를 병렬로 실행할 수 있습니다. 변경 피드 프로세서는 수동으로 각 컨테이너에서 변경 내용을 읽고 각 파티션의 연속 토큰을 저장하지 않고 임대 메커니즘을 사용하여 전체 파티션의 변경 사항 읽기를 자동으로 관리합니다.
+Hello Cosmos Sdk의에서 Api hello를 사용 하 여 정확한 액세스 toochange 파티션마다에서 업데이트 피드 제공 하며, hello 프로세서 피드 교환 라이브러리를 사용 하 여 변경 내용을 읽는 파티션과 병렬로 작동 하는 여러 스레드 간에 간단해 집니다. 수동으로 각 컨테이너에서 변경 내용을 읽는 각 파티션에 대 한 연속 토큰을 저장 하는 대신 hello 프로세서 피드 교환 임대 메커니즘을 사용 하 여 파티션 간에 읽기 변경 내용을 자동으로 관리 합니다.
 
-이 라이브러리는 NuGet 패키지인  [Microsoft.Azure.Documents.ChangeFeedProcessor](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.ChangeFeedProcessor/)로 제공되며, 소스 코드에서 Github [샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/ChangeFeedProcessor)로 사용할 수 있습니다. 
+hello 라이브러리는 NuGet 패키지로 사용할 수 있는: [Microsoft.Azure.Documents.ChangeFeedProcessor](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.ChangeFeedProcessor/) Github로 소스 코드와 [샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/ChangeFeedProcessor)합니다. 
 
 ### <a name="understanding-change-feed-processor-library"></a>변경 피드 프로세서 라이브러리의 이해 
 
-변경 피드 프로세서를 구현하는 4개의 주요 구성 요소는 '모니터링되는 컬렉션, 임대 컬렉션, 프로세서 호스트, 소비자'입니다. 
+네 가지 주요 요소가 hello 프로세서 피드 교환 구현의: hello 컬렉션, hello 임대 컬렉션, hello 프로세서 호스트 및 hello 소비자를 모니터링 합니다. 
 
-**모니터링되는 컬렉션:** 모니터링되는 컬렉션은 변경 피드가 생성되는 데이터입니다. 모니터링되는 컬렉션에 대한 모든 삽입 및 변경 내용은 컬렉션의 변경 피드에 반영됩니다. 
+**모니터링 대상된 컬렉션:** 모니터링 hello 컬렉션이 hello 데이터는 hello에서 변경 피드가 생성 합니다. 모든 삽입 및 변경 내용을 모니터링 toohello 컬렉션 hello 컬렉션의 변경 피드 hello에에서 반영 됩니다. 
 
-**임대 컬렉션:** 임대 컬렉션은 여러 작업자 사이에서 변경 피드의 처리를 조정합니다. 임대는 개별 컬렉션을 사용하여 저장됩니다(각 파티션마다 하나의 임대). 이 임대 컬렉션은 변경 피드 프로세서를 실행하는 곳과 가장 근접한 쓰기 영역에서 다른 계정으로 저장하는 것이 유용합니다. 임대 개체에는 다음 특성이 포함됩니다. 
-* Owner: 임대를 소유하는 호스트를 지정합니다.
-* Continuation: 특정 파티션에 대한 변경 피드에서의 위치(연속 토큰)를 지정합니다.
-* Timestamp: 마지막으로 임대가 업데이트된 시간입니다. 타임스탬프를 사용하여 임대가 만료된 것으로 간주되는지 여부를 확인할 수 있습니다. 
+**임대 수집:** hello 임대 컬렉션 좌표 여러 작업자 간에 피드 hello 변경 처리 합니다. 별도 컬렉션은 사용 되는 toostore hello 임대 파티션당 1 개씩 사용 합니다. 유리 toostore hello로 다른 계정에이 임대 수집 쓰기 지역 자세히 toowhere hello 변경 피드 프로세서가 실행 중인 경우 임대 개체 특성을 다음 hello를 포함 되어 있습니다. 
+* 소유자: hello 임대를 소유 하는 hello 호스트를 지정 합니다.
+* 특정 파티션에 대 한 피드 hello 변경에 hello 위치 (연속 토큰)를 지정 하는 연속 작업:
+* 타임 스탬프: 임대 업데이트 된 시간입니다. hello 타임 스탬프 hello 임대가 만료 된 것으로 간주 됩니다 여부를 사용 하는 toocheck 될 수 있습니다 
 
-**프로세서 호스트:** 각 호스트는 활성 임대가 포함된 호스트의 다른 인스턴스 수에 따라, 처리할 파티션 수를 결정합니다. 
-1.  호스트가 시작되면 임대를 획득하여 모든 호스트에서 워크로드를 분산합니다. 호스트는 임대가 활성 상태로 유지되도록 주기적으로 임대를 갱신합니다. 
-2.  호스트는 읽기를 수행할 때마다 해당 임대에 대한 가장 최근 연속 토큰의 검사점을 설정합니다. 동시성 안전을 보장하기 위해 호스트는 각 임대 업데이트에 대한 ETag를 확인합니다. 다른 검사점 전략도 지원됩니다.  
-3.  종료 시 호스트는 모든 임대를 해제하지만 나중에 저장된 검사점에서 읽기를 다시 시작할 수 있도록 연속 정보를 유지합니다. 
+**프로세서 호스트:** 각 호스트 호스트의 다른 인스턴스를 개수에 활성 임대가 기준으로 파티션을 tooprocess 개수를 결정 합니다. 
+1.  호스트 시작 되 면 모든 호스트에 걸쳐 임대 toobalance hello 작업 부하를 획득 합니다. 호스트는 임대가 활성 상태로 유지되도록 주기적으로 임대를 갱신합니다. 
+2.  호스트 검사점 hello 마지막 연속 토큰 tooits 임대 각 읽기에 대 한 합니다. tooensure 동시성 안전 호스트 각 임대 업데이트에 대 한 hello ETag를 확인합니다. 다른 검사점 전략도 지원됩니다.  
+3.  종료, 모든 임대를 해제 하는 호스트 않고 유지 hello 연속 정보 나중 hello 저장 된 검사점에서 읽기를 다시 시작할 수 있도록 합니다. 
 
-이 경우에 호스트 수는 파티션(임대) 수보다 클 수 없습니다.
+이 이번에 hello 호스트 수가 파티션 (임대) hello 수보다 클 수 없습니다.
 
-**소비자:** 소비자나 작업자는 각 호스트에서 시작된 변경 피드 처리를 수행하는 스레드입니다. 각 프로세서 호스트에는 여러 소비자가 있을 수 있습니다. 각 소비자는 할당된 파티션에서 변경 피드를 읽고 호스트에게 변경 사항 및 만료된 임대를 알려줍니다.
+**소비자가:** 소비자나 작업자는 각 호스트에 의해 시작 된 처리 피드 hello 변경을 수행 하는 스레드입니다. 각 프로세서 호스트에는 여러 소비자가 있을 수 있습니다. 각 소비자가 읽는 hello 변경 피드 hello에서 tooand 할당 된 파티션 변경의 해당 호스트에 알립니다 및 만료 된 임대 합니다.
 
-변경 피드 프로세서의 이러한 4개의 요소가 상호 작용하는 방법을 이해하기 위해 다음 다이어그램의 예제를 살펴보겠습니다. 모니터링되는 컬렉션은 문서를 저장하고 파티션 키로 "city"를 사용합니다. 파란색 파티션에는 "A~E"의 "city" 필드가 있는 문서가 포함된 것을 확인할 수 있습니다. 두 호스트에는 동시에 4개의 파티션을 읽는 두 명의 소비자가 있습니다. 화살표는 소비자가 읽는 변경 피드의 특정 지점을 표시합니다. 첫 번째 파티션에서, 어두운 파란색은 변경 피드의 아직 읽지 않은 변경 내용을 나타내는 반면, 연한 파란색은 이미 읽은 변경 내용을 나타냅니다. 호스트는 임대 컬렉션을 사용하여 "continuation" 값을 저장하고, 이로써 각 소비자의 현재 읽기 위치를 추적할 수 있습니다. 
+toofurther 변경 피드 프로세서의 이러한 4 개의 요소를 함께 작동을 hello 다이어그램을 다음의 예제를 살펴보겠습니다. hello는 컬렉션 저장소 문서를 모니터링 하 고 hello 파티션 키로 hello "city"를 사용 합니다. 파란색 hello 파티션 포함 "E" hello "city" 필드를 사용 하 여 문서에 표시 됩니다. 각각 4 hello 파티션을 병렬로 읽는 두 소비자와 함께 두 호스트 가지가 있습니다. hello 화살표 hello의 특정 지점에서 읽는 hello 소비자 변경 피드를 표시 합니다. Hello 첫 번째 파티션에 hello 어두운 파란색 hello 연한 파랑은 hello 변경 피드에 변경 내용을 이미 파악 하는 hello 읽지 않은 변경 내용을 나타냅니다. hello 호스트 hello 임대 컬렉션 toostore "연속" 값 tookeep 트랙의 각 소비자에 대 한 위치를 읽는 현재 hello 사용 합니다. 
 
-![Azure Cosmos DB 변경 피드 프로세서 호스트 사용](./media/change-feed/changefeedprocessornew.png)
+![프로세서 호스트 피드 hello Azure Cosmos DB 변경 사용](./media/change-feed/changefeedprocessornew.png)
 
 ### <a name="using-change-feed-processor-library"></a>변경 피드 프로세서 라이브러리 사용 
-다음 섹션에서는 소스 컬렉션에서 대상 컬렉션에 변경 내용을 복제하는 컨텍스트에서 변경 피드 프로세서 라이브러리를 사용하는 방법을 설명합니다. 여기에서 소스 컬렉션은 변경 피드 프로세서에서 모니터링되는 컬렉션입니다. 
+다음 단원을 hello toouse 소스 컬렉션 tooa 대상 컬렉션에서 변경 내용 복제의 hello 컨텍스트에서 변경 내용 피드 처리기 라이브러리 hello 하는 방법을 설명 합니다. 여기서 hello 소스 컬렉션은 변경 피드 프로세서에서 모니터링 하는 hello 컬렉션입니다. 
 
-**변경 피드 프로세서 NuGet 패키지를 설치하고 포함하기** 
+**설치 하 고 hello 변경 피드 프로세서 NuGet 패키지를 포함 합니다.** 
 
 변경 피드 프로세서 NuGet 패키지를 설치하기 전에 먼저 다음을 설치합니다. 
 * Microsoft.Azure.DocumentDB, 버전 1.13.1 이상 
@@ -393,24 +393,24 @@ Cosmos SDK에서 API를 사용하면 각 파티션의 변경 피드 업데이트
 
 **모니터링되는 컬렉션, 임대 및 대상 컬렉션 만들기** 
 
-변경 피드 프로세서 라이브러리를 사용하려면 프로세서 호스트를 실행하기 전에 임대 컬렉션을 생성해야 합니다. 앞서 언급했지만, 임대 컬렉션은 변경 피드 프로세서를 실행하는 곳과 가장 근접한 쓰기 영역에서 다른 계정으로 저장하는 것이 좋습니다. 이 데이터 이동 예제에서는 변경 피드 프로세서 호스트를 실행하기 전에 대상 컬렉션을 만들어야 합니다. 샘플 코드에서 도우미 메서드를 호출하여 모니터링되는 컬렉션, 임대되는 컬렉션, 대상 컬렉션이 존재하지 않을 경우 이러한 컬렉션을 만들 수 있습니다. 
+순서 toouse hello 프로세서 라이브러리 피드 변경, hello 임대 컬렉션 hello 프로세서 호스트를 실행 하기 전에 만든 toobe 제공 되어야 합니다. 다시 임대 컬렉션 변경 피드 프로세서에서 실행 되 고 쓰기 지역 자세히 toowhere hello로 다른 계정에 저장 하는 것이 좋습니다. 이 예에서 데이터 이동 toocreate hello 대상 컬렉션 hello 프로세서 피드 교환 호스트를 실행 하기 전에 필요 합니다. Hello 샘플 코드에서 지속적으로 모니터링 하는 도우미 메서드 toocreate hello 이라고 임대 및 존재 하지 않을 경우 대상 컬렉션입니다. 
 
 > [!WARNING]
-> 응용 프로그램이 Azure Cosmos DB와 통신하기 위해 처리량을 예약할 때 컬렉션을 만드는 것은 가격에 영향을 미칩니다. 자세한 내용은 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/cosmos-db/)를 참조하세요.
+> 컬렉션을 만드는 영향을 줍니다 가격의 Azure Cosmos DB와 함께 응용 프로그램 toocommunicate hello에 대 한 처리량을 예약 하는. 자세한 내용은 hello를 방문 하세요 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/cosmos-db/)
 > 
 > 
 
 *프로세서 호스트 만들기*
 
-`ChangeFeedProcessorHost` 클래스는 검사점 및 파티션 임대 관리를 제공하는 이벤트 처리기 구현을 위한 스레드 안전, 다중 프로세스, 안전한 런타임 환경을 제공합니다. `ChangeFeedProcessorHost` 클래스를 사용하려면 `IChangeFeedObserver`를 구현하면 됩니다. 이 인터페이스는 세 가지 메서드가 포함합니다.
+hello `ChangeFeedProcessorHost` 클래스는 검사점 설정 및 파티션 임대 관리 기능도 제공 하는 이벤트 프로세서 구현을 스레드로부터 안전한, 다중 프로세스, 안전한 런타임 환경을 제공 합니다. toouse hello `ChangeFeedProcessorHost` 클래스를 구현할 수 있습니다 `IChangeFeedObserver`합니다. 이 인터페이스는 세 가지 메서드가 포함합니다.
 
-* `OpenAsync`: 이 함수는 변경 피드 관찰자를 열 때 호출됩니다. 소비자/관찰자가 열릴 때 특정 작업을 수행하도록 수정할 수 있습니다.  
-* `CloseAsync`: 이 함수는 변경 피드 관찰자를 종료할 때 호출됩니다. 소비자/관찰자가 닫힐 때 특정 작업을 수행하도록 함수를 수정할 수 있습니다.  
-* `ProcessChangesAsync`: 이 함수는 변경 피드에서 문서의 새로운 변경 내용을 사용할 수 있을 때 호출됩니다. 모든 변경 피드 업데이트 시 특정 작업을 수행하도록 함수를 수정할 수 있습니다.  
+* `OpenAsync`: 이 함수는 변경 피드 관찰자를 열 때 호출됩니다. 소비자/관찰자를 열 때 수정 된 tooperform 특정 작업을 수 있습니다.  
+* `CloseAsync`: 이 함수는 변경 피드 관찰자를 종료할 때 호출됩니다. 소비자/관찰자를 닫으면 수정 된 tooperform 특정 작업을 수 있습니다.  
+* `ProcessChangesAsync`: 이 함수는 변경 피드에서 문서의 새로운 변경 내용을 사용할 수 있을 때 호출됩니다. 수정 된 tooperform 모든 피드 변경 업데이트할 때 특정 작업을 수 있습니다.  
 
-이 예제에서는 `DocumentFeedObserver` 클래스를 통해 `IChangeFeedObserver` 인터페이스를 구현합니다. 여기서 `ProcessChangesAsync` 함수는 변경 피드에서 대상 컬렉션에 문서를 upsert(업데이트)합니다. 이 예제는 데이터 집합의 파티션 키를 변경하기 위해 하나의 컬렉션에서 다른 컬렉션으로 데이터를 이동하는 데 유용합니다. 
+Hello 인터페이스 구현 예제에서는 `IChangeFeedObserver` hello를 통해 `DocumentFeedObserver` 클래스입니다. 여기에서 hello `ProcessChangesAsync` upserts (업데이트) 변경 내용으로 인해 문서 피드 hello 대상 컬렉션으로 작동 합니다. 이 예제는 데이터 집합의 순서 toochange hello 파티션 키의 컬렉션을 하나 tooanother에서 데이터를 이동 하는 데 유용 합니다. 
 
-*프로세서 호스트 실행*
+*실행 중인 hello 프로세서 호스트*
 
 이벤트 처리를 시작하기 전에, 변경 피드 옵션 및 변경 피드 호스트 옵션을 모두 사용자 지정할 수 있습니다. 
 ```csharp
@@ -423,12 +423,12 @@ Cosmos SDK에서 API를 사용하면 각 파티션의 변경 피드 업데이트
 
     ChangeFeedHostOptions feedHostOptions = new ChangeFeedHostOptions();
 
-    // ie. customizing lease renewal interval to 15 seconds
+    // ie. customizing lease renewal interval too15 seconds
     // can customize LeaseRenewInterval, LeaseAcquireInterval, LeaseExpirationInterval, FeedPollDelay 
     feedHostOptions.LeaseRenewInterval = TimeSpan.FromSeconds(15);
 
 ```
-사용자 지정할 수 있는 특정 필드는 다음 표에 요약되어 있습니다. 
+다음 표에서 hello에 지정할 수 있는 hello 특정 필드 요약 되어 있습니다. 
 
 **변경 피드 옵션**:
 <table>
@@ -438,23 +438,23 @@ Cosmos SDK에서 API를 사용하면 각 파티션의 변경 피드 업데이트
     </tr>
     <tr>
         <td>MaxItemCount</td>
-        <td>Azure Cosmos DB 데이터베이스 서비스의 열거 작업에서 반환할 항목의 최대 수를 가져오거나 설정합니다.</td>
+        <td>Hello 항목 toobe hello Azure Cosmos DB 데이터베이스 서비스의에서 hello 열거 작업에서 반환 된 최대 수를 가져오거나 설정 합니다.</td>
     </tr>
     <tr>
         <td>PartitionKeyRangeId</td>
-        <td>Azure Cosmos DB 데이터베이스 서비스에서 현재 요청에 대한 파티션 키 범위 ID를 가져오거나 설정합니다.</td>
+        <td>Hello Azure Cosmos DB 데이터베이스 서비스에서 hello 현재 요청에 대 한 hello 파티션 키 범위 id를 가져오거나 설정 합니다.</td>
     </tr>
     <tr>
         <td>RequestContinuation</td>
-        <td>Azure Cosmos DB 데이터베이스 서비스에서 요청 연속 토큰을 가져오거나 설정합니다.</td>
+        <td>Hello Azure Cosmos DB 데이터베이스 서비스에서 hello 요청 continuation 토큰을 가져오거나 설정 합니다.</td>
     </tr>
         <tr>
         <td>SessionToken</td>
-        <td>Azure Cosmos DB 데이터베이스 서비스에서 세션 일관성에 사용할 세션 토큰을 가져오거나 설정합니다.</td>
+        <td>세션 일관성 hello Azure Cosmos DB 데이터베이스 서비스에에서 사용 하기 위해 hello 세션 토큰을 가져오거나 설정 합니다.</td>
     </tr>
         <tr>
         <td>StartFromBeginning</td>
-        <td>Azure Cosmos DB 데이터베이스 서비스에서 변경 피드가 처음(true)부터 시작해야 하는지 아니면 현재(false)부터 시작해야 하는지를 가져오거나 설정합니다. 기본적으로 현재(false)부터 시작합니다.</td>
+        <td>Hello Azure Cosmos DB 데이터베이스 서비스에서 피드 변경 (true) 시작 하 고 hello 또는 현재 (false)에서 시작할지 여부를 나타내는 값을 가져오거나 설정 합니다. 기본적으로 현재(false)부터 시작합니다.</td>
     </tr>
 </table>
 
@@ -468,49 +468,49 @@ Cosmos SDK에서 API를 사용하면 각 파티션의 변경 피드 업데이트
     <tr>
         <td>LeaseRenewInterval</td>
         <td>TimeSpan</td>
-        <td>ChangeFeedEventHost 인스턴스에서 현재 보유한 파티션의 모든 임대에 대한 간격입니다.</td>
+        <td>hello ChangeFeedEventHost 인스턴스에서 현재 보유 하는 파티션에 대 한 모든 임대에 대 한 hello 간격입니다.</td>
     </tr>
     <tr>
         <td>LeaseAcquireInterval</td>
         <td>TimeSpan</td>
-        <td>파티션이 알려진 호스트 인스턴스 간에 균등하게 배포되는지를 계산하는 태스크를 시작하는 간격입니다.</td>
+        <td>파티션에 균등 하 게 알려진된 호스트 인스턴스에서 여부를 태스크 toocompute 오프 간격 tookick을 hello 합니다.</td>
     </tr>
     <tr>
         <td>LeaseExpirationInterval</td>
         <td>TimeSpan</td>
-        <td>파티션을 나타내는 임대에 대한 임대 기간인 간격입니다. 이 간격 내에서 임대를 갱신하지 않으면 기간이 만료되어 다른 ChangeFeedEventHost 인스턴스로 파티션 소유권이 이동합니다.</td>
+        <td>hello 간격은 hello에 대 한 파티션을 나타내는 임대를 임대를 가져옵니다. 이 간격을 hello 임대 갱신 하지 않으면 만료 되어 및 hello 파티션의 소유권 tooanother ChangeFeedEventHost 인스턴스를 이동 합니다.</td>
     </tr>
     <tr>
         <td>FeedPollDelay</td>
         <td>TimeSpan</td>
-        <td>현재 변경 내용이 모두 삭제된 후에 피드에 대한 새로운 변경 내용의 파티션을 폴링하는 작업 간의 지연입니다.</td>
+        <td>모든 현재 변경 내용을 종료 후 hello hello에 새 변경 내용에 대 한 파티션을 폴링 간격 피드입니다.</td>
     </tr>
     <tr>
         <td>CheckpointFrequency</td>
         <td>CheckpointFrequency</td>
-        <td>검사점 임대에 대한 빈도입니다.</td>
+        <td>hello 주파수 toocheckpoint 임대 합니다.</td>
     </tr>
     <tr>
         <td>MinPartitionCount</td>
         <td>int</td>
-        <td>호스트의 최소 파티션 수입니다.</td>
+        <td>hello hello 호스트에 대 한 최소 파티션 수입니다.</td>
     </tr>
     <tr>
         <td>MaxPartitionCount</td>
         <td>int</td>
-        <td>호스트에 가능한 최대 파티션 수입니다.</td>
+        <td>hello 파티션 hello 호스트의 최대 수를 사용할 수 있습니다.</td>
     </tr>
     <tr>
         <td>DiscardExistingLeases</td>
         <td>Bool</td>
-        <td>호스트의 시작에서 모든 기존 임대를 삭제하고 호스트를 처음부터 다시 시작해야 하는지 여부입니다.</td>
+        <td>여부에서 hello 시작 hello 호스트의 모든 기존 임대 삭제 하 고 hello 호스트는 처음부터 다시 시작 해야 합니다.</td>
     </tr>
 </table>
 
 
-이벤트 처리를 시작하려면 Azure Cosmos DB 컬렉션에 적절한 매개 변수를 제공하여 `ChangeFeedProcessorHost`를 인스턴스화합니다. 그런 다음 `RegisterObserverAsync`를 호출하여 `IChangeFeedObserver`(이 예제의 DocumentFeedObserver) 구현을 런타임에 등록합니다. 이 시점에서 호스트는 "greedy" 알고리즘을 사용하여 Azure Cosmos DB 컬렉션의 모든 파티션 키 범위에서 임대를 획득하려 합니다. 이러한 임대는 지정된 시간 프레임 동안 지속되며 갱신되어야 합니다. 새 노드(이 예제에서는 작업자(worker) 인스턴스)가 온라인 상태가 되면 임대 예약을 하고, 각 호스트가 더 많은 임대를 획득하려 하면서 시간이 지남에 따라 노드 간에 부하가 이동합니다. 
+toostart 이벤트 처리를 인스턴스화할 `ChangeFeedProcessorHost`, Azure Cosmos DB 컬렉션에 대 한 hello 적절 한 매개 변수를 제공 합니다. 그런 다음 호출 `RegisterObserverAsync` tooregister 프로그램 `IChangeFeedObserver` hello 런타임 (이 예제의 DocumentFeedObserver) 구현 합니다. 이 시점에서 hello 호스트 tooacquire 모든 파티션 키 범위 "과 대" 알고리즘을 사용 하 여 hello Azure Cosmos DB 컬렉션에 대 한 임 대권을 시도 합니다. 이러한 임대는 지정된 시간 프레임 동안 지속되며 갱신되어야 합니다. 새 노드로 작업자 인스턴스는이 경우 온라인 상태로, 임대를 예약을 배치 하 고 시간이 지남에 따라 hello 부하 이동 노드 간 각 호스트 시도 tooacquire 임대가 더 합니다. 
 
-이 샘플 코드에서는 팩터리 클래스(DocumentFeedObserverFactory.cs)를 사용하여 관찰자를 만들고 `RegistObserverFactoryAsync`로 관찰자를 등록합니다. 
+Hello 샘플 코드를 사용 하 여 팩터리 클래스 (DocumentFeedObserverFactory.cs) toocreate 관찰자 및 hello `RegistObserverFactoryAsync` tooregister hello observer입니다. 
 
 ```csharp
 using (DocumentClient destClient = new DocumentClient(destCollInfo.Uri, destCollInfo.MasterKey))
@@ -520,14 +520,14 @@ using (DocumentClient destClient = new DocumentClient(destCollInfo.Uri, destColl
 
         await host.RegisterObserverFactoryAsync(docObserverFactory);
 
-        Console.WriteLine("Running... Press enter to stop.");
+        Console.WriteLine("Running... Press enter toostop.");
         Console.ReadLine();
 
         await host.UnregisterObserversAsync();
     }
 ```
-시간이 지남에 따라 평형이 설정됩니다. 이 동적 기능을 사용하면 확장 및 축소 모두에 대해 CPU 기반의 자동 크기 조정을 소비자에게 적용할 수 있습니다. 변경 내용을 소비자가 처리할 수 있는 것보다 빠르게 Azure Cosmos DB에서 사용할 수 있는 경우 소비자에 대한 CPU가 증가하여 작업자 인스턴스 수의 크기를 자동으로 조정할 수 있습니다.
+시간이 지남에 따라 평형이 설정됩니다. 이 동적 기능을 사용 하면 수직 확장 및 축소 모두에 대 한 자동 크기 조정 적용 toobe tooconsumers CPU 기반 합니다. 변경 내용을 처리할 수 있는 것 보다 빠른 속도로 Azure Cosmos DB에서 사용할 수 있는 경우 소비자에 대 한 hello CPU 증가 작업자 인스턴스 수에 사용 되는 toocause 자동으로 조정할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* [GitHub의 Azure Cosmos DB 변경 피드 코드 샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/ChangeFeed) 사용
-* [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 또는 [REST API](/rest/api/documentdb/)를 사용하여 코딩 시작
+* Hello 시도 [Azure Cosmos DB 변경 GitHub에서 코드 샘플 피드](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/ChangeFeed)
+* Hello로 코딩을 시작 해 [Azure Cosmos DB Sdk](documentdb-sdk-dotnet.md) 또는 hello [REST API](/rest/api/documentdb/)합니다.

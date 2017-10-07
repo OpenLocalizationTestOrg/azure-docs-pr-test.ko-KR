@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery를 사용하여 온-프레미스 VMware VM을 Azure에 복제하도록 Azure 리소스 준비 | Microsoft Docs"
-description: "Azure Site Recovery를 사용하여 온-프레미스 VMware VM을 Azure에 복제하기 전에 Azure에서 준비해야 하는 항목 설명"
+title: "Azure 리소스 tooreplicate aaaPrepare 온-프레미스 Azure Site Recovery를 사용 하 여 VMware Vm tooAzure | Microsoft Docs"
+description: "필요한 Azure에서 위치에 Azure Site Recovery를 사용 하 여 온-프레미스 VMware Vm tooAzure 복제를 시작 하기 전에 설명"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 40abff72278c9f8d9f701023fd473fe52c17b421
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac72fff0593783add789408ecfeb1812d70108b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-5-prepare-azure-resources-for-vmware-replication-to-azure"></a>5단계: Azure에 VMWare을 복제하도록 Azure 리소스 준비
+# <a name="step-5-prepare-azure-resources-for-vmware-replication-tooazure"></a>5 단계: 복제 tooAzure VMWare에 대 한 Azure 리소스 준비
 
 
-Azure 리소스를 준비하는 이 문서의 지침을 사용하여 [Azure Site Recovery](site-recovery-overview.md) 서비스를 사용하여 온-프레미스 컴퓨터를 Azure에 복제할 수 있습니다.
+이 문서 tooprepare Azure의에서 hello 지침을 사용 하 여 리소스 hello를 사용 하 여 온-프레미스 컴퓨터 tooAzure 복제할 수 있도록 [Azure Site Recovery](site-recovery-overview.md) 서비스입니다.
 
-이 문서의 하단 또는 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 의견이나 질문을 게시합니다.
+Hello 아래쪽 hello 또는이 문서에 의견과 질문을 게시 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
 
 ## <a name="before-you-start"></a>시작하기 전에
 
-[필수 조건](vmware-walkthrough-prerequisites.md)을 읽었는지 확인합니다.
+Hello 참고 있는지 확인 하십시오 [필수 구성 요소](vmware-walkthrough-prerequisites.md)
 
 ## <a name="set-up-an-azure-account"></a>Azure 계정 설정
 
 - [Microsoft Azure 계정](http://azure.microsoft.com/)을 가져옵니다.
 - [평가판](https://azure.microsoft.com/pricing/free-trial/)으로 시작할 수 있습니다.
-- [Azure Site Recovery 가격 책정 세부 정보](https://azure.microsoft.com/pricing/details/site-recovery/)의 지역 가용성에서 Site Recovery에 지원되는 지역을 확인하세요.
-- [Site Recovery 가격 책정](site-recovery-faq.md#pricing)에 대해 알아보고 [가격 책정 세부 정보](https://azure.microsoft.com/pricing/details/site-recovery/)를 가져옵니다.
+- 사이트 복구를 아래에서 지역 가용성을 위한 지원 hello 영역 확인 [Azure 사이트 복구 가격 정보](https://azure.microsoft.com/pricing/details/site-recovery/)합니다.
+- 에 대 한 자세한 내용은 [사이트 복구 가격](site-recovery-faq.md#pricing), 가져오고, hello [가격 정보](https://azure.microsoft.com/pricing/details/site-recovery/)합니다.
 
 
 
-## <a name="set-up-an-azure-network"></a>Azure 네트워크를 설정합니다
+## <a name="set-up-an-azure-network"></a>Azure 네트워크를 설정
 
 - Azure 네트워크 설정 Azure VM은 장애 조치 후 처음 만들 때 이 네트워크에 배치됩니다.
-- Azure Portal의 Site Recovery에서는 [리소스 관리자](../resource-manager-deployment-model.md) 또는 클래식 모드에서 설정된 네트워크를 사용할 수 있습니다.
-- 네트워크가 Recovery Services 자격 증명 모음과 같은 지역에 있어야 합니다.
+- Hello Azure 포털에서에서 사이트 복구에서를 설정 하는 네트워크를 사용할 수 있습니다 [리소스 관리자](../resource-manager-deployment-model.md), 또는 클래식 모드에서.
+- hello 네트워크 hello에 있어야 hello와 동일한 지역 복구 서비스 자격 증명 모음
 - [가상 네트워크 가격 책정](https://azure.microsoft.com/pricing/details/virtual-network/)에 대해 알아봅니다.
 - 장애 조치 후에 [Azure VM 연결](site-recovery-network-design.md)에 대해 알아봅니다.
 
 
 ## <a name="set-up-an-azure-storage-account"></a>Azure 저장소 계정을 설정
 
-- Site Recovery는 온-프레미스 컴퓨터를 Azure Storage에 복제합니다. 장애 조치가 발생한 후에 저장소에서 Azure VM을 만듭니다.
+- Site Recovery 온-프레미스 컴퓨터 tooAzure 저장소를 복제합니다. Azure Vm 장애 조치 발생 후 hello 저장소에서 생성 됩니다.
 - 복제 데이터를 저장할 [Azure Storage 계정](../storage/common/storage-create-storage-account.md#create-a-storage-account)을 설정합니다.
-- Azure Portal의 Site Recovery에서는 리소스 관리자 또는 클래식 모드에서 설정된 저장소 계정을 사용할 수 있습니다.
-- 저장소 계정은 표준 또는 [프리미엄](../storage/common/storage-premium-storage.md)일 수 있습니다.
+- Hello Azure 포털에서에서 사이트 복구가 צ ְ ײ 저장소 계정 리소스 관리자, 또는 클래식 모드를 설정 합니다.
+- 저장소 계정 hello 표준 수 또는 [프리미엄](../storage/common/storage-premium-storage.md)합니다.
 - 프리미엄 계정을 설정하는 경우 로그 데이터에 추가 표준 계정이 필요합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-[6단계: VMware 리소스 준비](vmware-walkthrough-prepare-vmware.md)로 이동합니다.
+너무 이동[6 단계: 준비 VMware 리소스](vmware-walkthrough-prepare-vmware.md)

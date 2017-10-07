@@ -1,6 +1,6 @@
 ---
-title: "Azure Virtual Network 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "클라우드에서 가상 네트워크를 사용하는 방법에 대해 알아봅니다. 설명서에서는 VNet을 배포하고 사용하여 리소스를 시작하고 온-프레미스 네트워크와 통합하는 방법을 보여 줍니다."
+title: "가상 네트워크 설명서-자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "어떻게 toouse hello에 가상 네트워크를 클라우드에 대해 알아봅니다. 문서에서는 toodeploy VNet toolaunch 리소스를 사용 하 고 온-프레미스 네트워크와 통합 하는 방법을 보여 줍니다."
 services: virtual-network
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c3535b428fa4cb4ca3fc348e4f57eab8a0def1e9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ecaecfab31a2bbfb46a712a035e07a059fa40be7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="virtual-network-documentation"></a>Virtual Network 설명서
 
-클라우드의 사용자 네트워크를 논리적으로 나타내는 표현인 VNet(Virtual Network)을 사용하는 방법에 대해 알아봅니다. 설명서에서는 리소스에 대한 제어를 유지하면서 VNet을 설정하고 관리하고 사용하여 Virtual Machines 또는 Cloud Services를 시작하고 VNet을 온-프레미스 네트워크에 연결하고 네트워크를 클라우드로 확장하는 방법을 보여 줍니다.
+가상 네트워크 (VNet) 네트워크의 hello에 논리적으로 나타낸 toouse 클라우드 방법에 대해 알아봅니다. 설명서 방법을 설정 하 고 관리 VNet, toolaunch 가상 컴퓨터 또는 클라우드 서비스 사용, hello VNet tooyour 온-프레미스 네트워크에 연결 하의 네트워크 toohello 클라우드 리소스에 대 한 제어를 유지 하면서 확장을 보여 줍니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Portal을 사용하여 Virtual Network 시작</h3>
+                        <h3>Hello Azure 포털을 사용 하 여 가상 네트워크 시작</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure CLI를 사용하여 Virtual Network 시작</h3>
+                        <h3>Hello Azure CLI를 사용 하 여 가상 네트워크 시작</h3>
                     </div>
                 </div>
             </div>

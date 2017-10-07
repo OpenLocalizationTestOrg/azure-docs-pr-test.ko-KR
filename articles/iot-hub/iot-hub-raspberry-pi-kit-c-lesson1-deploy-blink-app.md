@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT에 Raspberry Pi(C) 연결 - 단원 1: 앱 배포 | Microsoft Docs"
-description: "GitHub에서 샘플 C 응용 프로그램과, Raspberry Pi 3 보드에 이 응용 프로그램을 배포하기 위한 gulp를 복제합니다. 이 샘플 응용 프로그램은 보드에 연결된 LED를 2초마다 깜박이게 합니다."
+title: "Connect Raspberry Pi (C) tooAzure IoT-1 단원: 앱 배포 | Microsoft Docs"
+description: "GitHub에서 hello C 샘플 응용 프로그램을 복제 하 고이 응용 프로그램 tooyour 라스베리 Pi 3 보드 toodeploy gulp 합니다. 이 샘플 응용 프로그램 2 초 마다 hello 연결 LED toohello 보드를 깜박입니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,54 +17,54 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 2ae409c6a39521711777ec329d2507a2801cc985
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e90c3360c4de1873313db19561c781eb21dbf1d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-deploy-the-blink-application"></a>깜박임 응용 프로그램 만들기 및 배포
+# <a name="create-and-deploy-hello-blink-application"></a>만들기 및 hello 깜박임 응용 프로그램 배포
 ## <a name="what-you-will-do"></a>수행할 사항
-GitHub에서 샘플 C 응용 프로그램을 복제하고 gulp 도구를 사용하여 Raspberry Pi 3에 샘플 응용 프로그램을 배포합니다. 샘플 응용 프로그램은 보드에 연결된 LED를 2초마다 깜박이게 합니다. 문제가 있으면 [문제 해결 페이지](iot-hub-raspberry-pi-kit-c-troubleshooting.md)에서 솔루션을 검색하세요.
+Hello 샘플 GitHub에서 응용 프로그램 C를 복제 하 고 hello gulp 도구 toodeploy hello 샘플 응용 프로그램 tooRaspberry Pi 3을 사용 합니다. hello 샘플 응용 프로그램 2 초 마다 hello 연결 LED toohello 보드를 깜박입니다. 문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지](iot-hub-raspberry-pi-kit-c-troubleshooting.md)합니다.
 
 ## <a name="what-you-will-learn"></a>알아볼 내용
 이 문서에서는 다음에 대해 알아봅니다.
 
-* Pi에 관한 네트워킹 정보를 검색하기 위해 `device-discover-cli` 도구 사용 방법.
-* Pi에서 샘플 응용 프로그램을 배포하고 실행하는 방법.
-* Pi에서 원격으로 실행되는 응용 프로그램을 배포하고 디버깅하는 방법.
+* 어떻게 toouse hello `device-discover-cli` 도구 tooretrieve 네트워킹 Pi에 대 한 정보입니다.
+* 어떻게 toodeploy 및 실행된 hello 샘플 원주율 응용 프로그램입니다.
+* 어떻게 toodeploy 및 디버그 응용 프로그램 플랫폼에서 원격으로 실행 합니다.
 
 ## <a name="what-you-need"></a>필요한 항목
-다음 작업을 성공적으로 완료해야 합니다.
+성공적으로 완료 해야 다음 작업 hello:
 
 * [장치 구성](iot-hub-raspberry-pi-kit-c-lesson1-configure-your-device.md)
-* [도구 얻기](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
+* [Hello 도구 가져오기](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
 
-## <a name="obtain-the-ip-address-and-host-name-of-pi"></a>Pi의 IP 주소 및 호스트 이름 가져오기
-macOS 또는 Ubuntu의 터미널이나 Windows에서 명령 프롬프트를 열고 다음 명령을 실행합니다.
+## <a name="obtain-hello-ip-address-and-host-name-of-pi"></a>Pi의 hello IP 주소 및 호스트 이름 가져오기
+Windows 또는 macOS 또는 Ubuntu, 터미널 명령 프롬프트를 열고 hello 다음 명령을 실행 합니다.
 
 ```bash
 devdisco list --eth
 ```
 
-출력은 다음과 유사해야 합니다.
+Toohello 다음과 유사한 출력을 표시 되어야 합니다.
 
 ![장치 검색](media/iot-hub-raspberry-pi-lessons/lesson1/device_discovery.png)
 
-Pi의 `IP address` 및 `hostname`을 기록해 둡니다. 이 정보는 이 문서의 뒤 부분에서 필요합니다.
+Hello를 메모해 `IP address` 및 `hostname` Pi의 합니다. 이 정보는 이 문서의 뒤 부분에서 필요합니다.
 
 > [!NOTE]
-> Pi가 컴퓨터와 같은 네트워크에 연결되어 있어야 합니다. 예를 들어 컴퓨터는 무선 네트워크, Pi는 유선 네트워크에 연결되었다면 devdisco 출력에 IP 주소가 표시되지 않을 수 있습니다.
+> Pi 사용자 컴퓨터와 동일한 네트워크 연결된 toohello 인지 확인 합니다. 예를 들어 컴퓨터는 연결 된 tooa 무선 네트워크 Pi는 유선 네트워크 연결된 tooa를 동안 표시 될 수 없습니다 hello IP hello devdisco 출력에는 주소입니다.
 
-## <a name="open-the-sample-application"></a>샘플 응용 프로그램 열기
-샘플 응용 프로그램을 열려면 다음 단계를 따릅니다.
+## <a name="open-hello-sample-application"></a>열기 hello 샘플 응용 프로그램
+tooopen hello 샘플 응용 프로그램, 다음이 단계를 수행 합니다.
 
-1. 다음 명령을 실행하여 GitHub에서 샘플 리포지토리를 복제합니다.
+1. Hello 다음 명령을 실행 하 여 GitHub에서 hello 샘플 리포지토리를 복제 합니다.
    
     ```bash
     git clone https://github.com/Azure-Samples/iot-hub-c-raspberrypi-getting-started.git
     ```
-2. 다음 명령을 실행하여 Visual Studio Code에서 샘플 응용 프로그램을 엽니다.
+2. Hello 다음 명령을 실행 하 여 Visual Studio Code에서 hello 샘플 응용 프로그램을 엽니다.
    
     ```bash
     cd iot-hub-c-raspberrypi-getting-started
@@ -74,27 +74,27 @@ Pi의 `IP address` 및 `hostname`을 기록해 둡니다. 이 정보는 이 문�
 
 ![Repo 구조](media/iot-hub-raspberry-pi-lessons/lesson1/vscode-blink-c-mac.png)
 
-`app` 하위 폴더의 `main.c` 파일은 LED 제어 코드가 담긴 핵심 원본 파일입니다.
+hello `main.c` hello에 대 한 파일 `app` 하위 폴더는 hello 코드 toocontrol hello LED가 있는 hello 키 원본 파일입니다.
 
 ### <a name="install-application-dependencies"></a>응용 프로그램 종속성 설치
-다음 명령을 실행하여 샘플 응용 프로그램에 필요한 라이브러리 및 기타 모듈을 설치합니다.
+Hello 라이브러리 및 hello 다음 명령을 실행 하 여 hello 샘플 응용 프로그램에 필요한 다른 모듈을 설치 합니다.
 
 ```bash
 npm install
 ```
 
-## <a name="configure-the-device-connection"></a>장치 연결 구성
-장치 연결을 구성하려면 다음 단계를 따릅니다.
+## <a name="configure-hello-device-connection"></a>Hello 장치 연결 구성
+tooconfigure 장치 연결 hello, 다음이 단계를 수행 합니다.
 
-1. 다음 명령을 실행하여 장치 구성 파일을 생성합니다.
+1. Hello 다음 명령을 실행 하 여 hello 장치 구성 파일을 생성 합니다.
    
    ```bash
    gulp init
    ```
    
-   구성 파일 `config-raspberrypi.json`에는 Pi에 로그인하는 데 사용하는 사용자 자격 증명이 포함됩니다. 사용자 자격 증명의 유출을 방지하기 위해 구성 파일은 컴퓨터 홈 폴더의 `.iot-hub-getting-started` 하위 폴더에 생성됩니다.
+   hello 구성 파일 `config-raspberrypi.json` toolog tooPi에서 사용 하 여 hello 사용자 자격 증명을 포함 합니다. tooavoid hello 누수 hello 하위 폴더에 사용자 자격 증명의 hello 구성 파일이 생성 됩니다 `.iot-hub-getting-started` hello 컴퓨터에서 홈 폴더의 합니다.
 
-2. 다음 명령을 실행하여 Visual Studio Code에서 장치 구성 파일을 엽니다.
+2. Hello 다음 명령을 실행 하 여 Visual Studio Code에서 hello 장치 구성 파일을 엽니다.
    
    ```bash
    # For Windows command prompt
@@ -104,18 +104,18 @@ npm install
    code ~/.iot-hub-getting-started/config-raspberrypi.json
    ```
 
-3. 자리 표시자 `[device hostname or IP address]`를 앞서 "Pi의 IP 주소 및 호스트 이름 가져오기"에서 확보한 IP 주소 또는 호스트 이름과 바꿉니다.
+3. Hello 자리 표시자 대체 `[device hostname or IP address]` hello IP 주소 또는 "얻기 hello IP 주소 및 호스트 이름 Pi의"에서 이전에 가져온 hello 호스트 이름
    
    ![Config.json](media/iot-hub-raspberry-pi-lessons/lesson1/vscode-config-mac.png)
 
 > [!NOTE]
-> Raspberry Pi에 연결할 때 사용자 이름과 암호 대신 SSH 키를 사용할 수 있습니다. 사용 하 여 키를 생성 해야 하며이 작업을 수행 하기 위해 **붙여넣으세요** 및 **@ ssh-복사-id pi\<장치 주소\>**합니다.
+> Pi tooRaspberry 연결할 때 사용자 이름 및 암호 대신 SSH 키를 사용할 수 있습니다. 순서로 toodo toogenerate hello 사용 하 여 키 해야이 **붙여넣으세요** 및 **@ ssh-복사-id pi\<장치 주소\>**합니다.
 >
 > Windows의 경우 이러한 명령은 **Git Bash**에서 사용할 수 있습니다.
 >
-> MacOS의 경우 **brew install ssh-copy-id**를 실행해야 합니다.
+> Toorun MacOS에서 필요한 **brew 설치 ssh-복사-id**합니다.
 >
-> 키를 Raspberry Pi에 업로드한 후, **config-raspberrypi.json**에서 **device_password**를 **device_key_path** 속성으로 바꿉니다.
+> Hello 키 toohello 라스베리 Pi을 성공적으로 업로드 한 후 교체 **device_password** 와 **device_key_path** 속성 **config raspberrypi.json**합니다.
 >
 > 업데이트된 줄은 다음과 같이 표시되어야 합니다.
 > ```javascript
@@ -123,31 +123,31 @@ npm install
 > "device_key_path": "id_rsa",
 > ```
 
-축하합니다. Pi의 첫 번째 샘플 응용 프로그램을 만들었습니다.
+축하합니다. Hello 첫 번째 Pi에 대 한 샘플 응용 프로그램을 성공적으로 만들었습니다.
 
-## <a name="deploy-and-run-the-sample-application"></a>샘플 응용 프로그램 배포 및 실행
-### <a name="install-the-azure-iot-hub-sdk-on-pi"></a>Pi에 Azure IoT Hub SDK를 설치합니다.
-다음 명령을 실행하여 Azure Linux Hub SDK를 Pi에 설치합니다.
+## <a name="deploy-and-run-hello-sample-application"></a>배포 하 고 hello 샘플 응용 프로그램 실행
+### <a name="install-hello-azure-iot-hub-sdk-on-pi"></a>Pi에 hello Azure IoT 허브 SDK를 설치 합니다.
+원주율 hello 다음 명령을 실행 하 여 hello Azure IoT 허브 SDK를 설치 합니다.
 
 ```bash
 gulp install-tools
 ```
 
-이 태스크를 처음 실행 시 완료하려면 몇 분의 시간이 소요될 수 있습니다.
+이 태스크는 처음 실행 하면 몇 분 toocomplete hello를 걸릴 수 있습니다.
 
-### <a name="deploy-and-run-the-sample-app"></a>샘플 앱 배포 및 실행
-다음 명령을 실행하여 샘플 응용 프로그램을 배포하고 실행합니다.
+### <a name="deploy-and-run-hello-sample-app"></a>배포 하 고 hello 샘플 응용 프로그램 실행
+배포 하 고 hello 다음 명령을 실행 하 여 hello 샘플 응용 프로그램을 실행 합니다.
 
 ```bash
 gulp deploy && gulp run
 ```
 
-### <a name="verify-the-app-works"></a>앱 작동 확인
-샘플 응용 프로그램은 LED를 20번 깜박인 후 자동으로 종료됩니다. Led가 깜박이지 않으면 [문제 해결 가이드](iot-hub-raspberry-pi-kit-c-troubleshooting.md)에서 일반적인 문제에 대한솔루션을 참조하세요.
+### <a name="verify-hello-app-works"></a>Hello 앱 작동 확인
+hello 샘플 응용 프로그램 hello led가 깜박입니다 20 배에 대 한 후 자동으로 종료 합니다. Hello led가 깜박입니다.이 표시 되지 않으면 참조 hello [문제 해결 가이드](iot-hub-raspberry-pi-kit-c-troubleshooting.md) toocommon 문제 해결 방법에 대 한 합니다.
 ![LED 깜박임](media/iot-hub-raspberry-pi-lessons/lesson1/led_blinking.jpg)
 
 ## <a name="summary"></a>요약
-Pi 작동에 필요한 도구를 설치했으며 LED를 깜박이게 하는 샘플 응용 프로그램을 Pi에 배포했습니다. 이제 메시지 송수신을 위해 Azure IoT Hub에 Pi를 연결하는 다른 샘플 응용 프로그램을 만들고, 배포하고, 실행할 수 있습니다.
+필요한 hello 도구 toowork Pi와 함께 설치 하 고 샘플 응용 프로그램 tooPi tooblink hello LED를 배포 합니다. 있습니다 수 이제 만들고, 배포, 및 Pi tooAzure toosend IoT 허브를 연결 하는 또 다른 샘플 응용 프로그램을 실행 하 고 메시지를 수신 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [Azure 도구 얻기](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)

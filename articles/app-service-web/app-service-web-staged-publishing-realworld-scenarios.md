@@ -1,6 +1,6 @@
 ---
-title: "웹앱에서 효과적으로 DevOps 환경 사용 | Microsoft Docs"
-description: "배포 슬롯을 사용하여 응용 프로그램에 여러 개발 환경을 설정 및 관리하는 방법을 살펴봅니다."
+title: "웹 앱에 대 한 효과적으로 aaaUse DevOps 환경 | Microsoft Docs"
+description: "응용 프로그램에 대 한 여러 개발 환경을 관리 하 고 toouse 배포 tooset를 슬롯 하는 방법에 대해 알아봅니다"
 services: app-service\web
 documentationcenter: 
 author: sunbuild
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 10/24/2016
 ms.author: sumuth
-ms.openlocfilehash: 25248411659f6c7b2e386e310428c365c44ea2e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61a552e735a4ad9769b661d7c988744074ba2962
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-devops-environments-effectively-for-your-web-apps"></a>웹 앱에서 DevOps 환경을 효과적으로 사용하기
-이 문서에서는 여러 버전의 응용 프로그램이 개발, 준비, QA 및 프로덕션과 같이 다양한 환경에 있을 때 웹 응용 프로그램 배포를 설정하고 관리하는 방법에 대해 설명합니다. 응용 프로그램의 각 버전은 배포 프로세스의 특정 목적을 위한 개발 환경으로 간주될 수 있습니다. 예를 들어 개발자는 QA 환경을 사용하여 변경 내용을 프로덕션에 적용하기 전에 응용 프로그램의 품질을 테스트할 수 있습니다.
-코드를 추적하고 리소스(계산, 웹앱, 데이터베이스, 캐시 등)를 관리하고 여러 환경에 코드를 배포해야 하기 때문에 여러 개발 환경이 힘든 과제일 수 있습니다.
+이 문서에서는 어떻게 tooset 및 개발, 스테이징, QA (품질 보증), 프로덕션 등의 다양 한 환경에서 응용 프로그램의 여러 버전을 하는 경우 웹 응용 프로그램 배포를 관리 합니다. 각 버전의 응용 프로그램 배포 프로세스의 hello 특정 목적을 위해 개발 환경으로 간주할 수 있습니다. 예를 들어 개발자는 hello 변경 tooproduction를 강제 하기 전에 hello QA 환경 tootest hello 품질 hello 응용 프로그램을 사용할 수 있습니다.
+여러 개발 환경을 challenge tootrack 코드 필요 하기 때문에 (계산, 웹 응용 프로그램, 데이터베이스, 캐시, 등) 리소스를 관리 하 고 코드 환경에서 배포 될 수 있습니다.
 
 ## <a name="set-up-a-non-production-environment-stage-dev-qa"></a>비프로덕션 환경(스테이지, 개발, QA) 설정
-프로덕션 웹앱을 작동 및 실행한 후 다음 단계는 비프로덕션 환경을 만드는 것입니다. 배포 슬롯을 사용하려면 Standard 또는 Premium Azure App Service 계획 모드에서 실행해야 합니다. 배포 슬롯은 자체 호스트 이름을 갖춘 라이브 웹앱입니다. 웹앱 콘텐츠 및 구성 요소는 프로덕션 슬롯을 포함하여 두 배포 슬롯 간에 교환될 수 있습니다. 응용 프로그램을 배포 슬롯에 배포하면 다음과 같은 이점이 있습니다.
+프로덕션 웹 앱 및 실행 되 면 hello 다음 단계는 비-프로덕션 환경 toocreate입니다. toouse 배포 슬롯 hello Standard 또는 Premium Azure 앱 서비스 계획 모드에서 실행 되 고 있는지 확인 합니다. 배포 슬롯은 자체 호스트 이름을 갖춘 라이브 웹앱입니다. 웹 응용 프로그램 콘텐츠 및 구성 요소는 hello 프로덕션 슬롯을 포함 하 여 두 배포 슬롯 간에 교환할 수 있습니다. 내 응용 프로그램 tooa 배포 슬롯을 배포 하면 혜택을 따라 hello 가져오기:
 
-- 프로덕션 슬롯으로 앱을 교환하기 전에 스테이징 배포 슬롯에서 웹앱 변경 내용의 유효성을 검사할 수 있습니다.
-- 먼저 웹앱을 슬롯에 배포한 다음 프로덕션으로 교환하면 프로덕션 환경으로 교환되기 전에 슬롯의 모든 인스턴스가 준비됩니다. 이 프로세스는 웹앱을 배포할 때 가동 중지가 발생하지 않습니다. 트래픽 리디렉션은 중단 없이 원활하게 수행되며 교환 작업으로 인해 삭제되는 요청은 없습니다. 사전 교환 유효성 검사가 필요하지 않을 때 [자동 교환](web-sites-staged-publishing.md#configure-auto-swap)을 구성하면 이 워크플로 전체를 자동화할 수 있습니다.
-- 교환 후에는 이전에 준비된 웹앱이 있던 슬롯에 이전의 프로덕션 웹앱이 들어갑니다. 프로덕션 슬롯으로 교환된 변경 내용이 예상한 대로 변경되지 않은 경우 동일한 교환을 즉시 수행하여 "마지막으로 알려진 양호한" 웹앱을 다시 가져올 수 있습니다.
+- Hello 앱 hello 프로덕션 슬롯으로 교환 하기 전에 스테이징 배포 슬롯의 변경 내용을 tooa 웹 앱을 확인할 수 있습니다.
+- 웹 앱 tooa 슬롯을 먼저 배포 하 고 프로덕션 환경으로 교체 하는 경우 hello 슬롯의 모든 인스턴스 전에 프로덕션으로 교환 하 준비 됩니다. 이 프로세스는 웹앱을 배포할 때 가동 중지가 발생하지 않습니다. hello 트래픽 리디렉션이 원활 하 게, 고 tooswap 작업 인해 요청 없음이 삭제 됩니다. tooautomate이 전체 워크플로 구성 [자동 교환](web-sites-staged-publishing.md#configure-auto-swap) 사전 교환 유효성 검사가 필요 하지 않습니다.
+- 교환, 후 이전에 준비 된 hello 웹 응용 프로그램에는 이제 hello 슬롯 hello 이전 프로덕션 웹 앱을 있습니다. Hello 프로덕션 슬롯으로 교환 된 hello 변경 하면 예상과 다른 경우에 hello을 수행할 수 있습니다 동일한 교환 즉시 tooget 프로그램 "마지막으로 성공한" 웹 응용 프로그램 백 합니다.
 
-스테이징 배포 슬롯을 설정하려면 [Azure App Service에서 웹앱에 대한 스테이징 환경 설정](web-sites-staged-publishing.md)을 참조하세요. 모든 환경에는 고유한 리소스 집합이 있어야 합니다. 예를 들어 웹앱에서 데이터베이스를 사용하는 경우 프로덕션 웹앱과 스테이징 웹앱은 서로 다른 데이터베이스를 사용해야 합니다. 스테이징 개발 환경을 설정하려면 데이터베이스, 저장소 또는 캐시와 같은 스테이징 개발 환경 리소스를 추가합니다.
+스테이징 배포 슬롯을 tooset 참조 [스테이징 환경에서 Azure 앱 서비스 웹 앱에 대 한 설정](web-sites-staged-publishing.md)합니다. 모든 환경에는 고유한 리소스 집합이 있어야 합니다. 예를 들어 웹앱에서 데이터베이스를 사용하는 경우 프로덕션 웹앱과 스테이징 웹앱은 서로 다른 데이터베이스를 사용해야 합니다. 개발 환경을 준비 데이터베이스, 저장소, 또는 캐시 tooset 등 준비 개발 환경 리소스를 추가 합니다.
 
 ## <a name="examples-of-using-multiple-development-environments"></a>여러 개발 환경을 사용하는 예
-모든 프로젝트는 최소한 두 가지 환경(개발 및 생산)에서 소스 코드 관리를 수행해야 합니다. CMS(콘텐츠 관리 시스템), 응용 프로그램 프레임워크 등을 사용하는 경우 응용 프로그램에서 이 시나리오를 지원하려면 반드시 사용자 지정해야 합니다. 이 사건은 다음 섹션에서 설명하는 인기 있는 프레임워크 중 일부에 해당합니다. CMS/프레임워크로 작업할 때는 다음과 같은 많은 질문에 대해 생각하게 됩니다.
+모든 프로젝트는 최소한 두 가지 환경(개발 및 생산)에서 소스 코드 관리를 수행해야 합니다. 콘텐츠 관리 시스템 (CMSs), 응용 프로그램 프레임 워크를 사용 하는 경우 hello 응용 프로그램 사용자 지정 하지 않고이 시나리오를 지원 하지 않습니다. 이러한 상황 hello 다음 섹션에에서 설명 된 hello 인기 있는 프레임 워크의 일부에 적용 됩니다. 다양 한 질문으로 작업할 때 CMS/프레임 워크와 같은 toomind를 가져옵니다.
 
-- 콘텐츠를 다른 환경으로 어떻게 나눕니까?
+- 어떻게 수행 하면 분해 hello 콘텐츠를 다른 환경으로?
 - 프레임워크 버전 업데이트에 영향을 주지 않고 변경할 수 있는 파일은 무엇입니까?
 - 환경별 구성은 어떻게 관리합니까?
-- 모듈, 플러그 인 및 코어 프레임워크의 버전 업데이트는 어떻게 관리합니까?
+- 모듈, 플러그 인 및 hello 핵심 프레임 워크에 대 한 업데이트 된 버전은 어떻게 관리 해야 할까요?
 
-프로젝트에 여러 환경을 설정하는 방법은 여러 가지 있습니다. 다음 예제에서는 각각의 응용 프로그램에 대한 한 가지 방법을 보여 줍니다.
+프로젝트에 대 한 여러 환경을를 여러 방법으로 tooset 가지가 있습니다. hello 다음 예제에서는 각 각각의 응용 프로그램에 대 한 한 가지 방법은
 
 ### <a name="wordpress"></a>WordPress
-이 섹션에서는 WordPress용 슬롯을 사용하여 배포 워크플로를 설정하는 방법에 대해 알아봅니다. 대부분의 CMS 솔루션처럼 WordPress도 여러 개발 환경을 지원하려면 사용자 지정해야 합니다. Azure App Service의 Web Apps 기능에는 구성 설정을 코드 외부에 쉽게 저장할 수 있는 몇 가지 기능이 있습니다.
+이 섹션에서는 사용 하 여 배포 워크플로를 tooset WordPress에 대 한 슬롯 하는 방법을 배웁니다. 대부분의 CMS 솔루션처럼 WordPress도 여러 개발 환경을 지원하려면 사용자 지정해야 합니다. Azure 앱 서비스의 hello 웹 응용 프로그램 기능을 코드 외부에서 쉽게 toostore 구성 설정을 구성 하는 몇 가지 기능이 있습니다.
 
-1. 스테이징 슬롯을 만들기 전에 여러 환경을 지원하도록 응용 프로그램 코드를 설정합니다. WordPress의 여러 환경을 지원하려면 로컬 개발 웹앱에서 `wp-config.php`를 편집하고 파일의 시작 부분에 다음 코드를 추가해야 합니다. 이 프로세스를 통해 응용 프로그램에서 선택한 환경을 기반으로 하여 올바른 구성을 선택할 수 있습니다.
+1. 스테이징 슬롯을 만들기 전에 설정 응용 프로그램 코드 toosupport 여러 환경. toosupport 여러 환경 tooedit 해야 WordPress, `wp-config.php` 로컬 개발에 웹 앱 및 코드 hello 파일 시작 부분의 hello 다음 hello를 추가 합니다. 이 프로세스를 응용 프로그램 toopick hello 올바른 구성 hello 선택한 환경에 따라 사용 하 고 있습니다.
 
     ```
     // Support multiple environments
-    // set the config file based on current environment
+    // set hello config file based on current environment
     if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false) {
     // local development
      $config_file = 'config/wp-config.local.php';
@@ -61,18 +61,18 @@ ms.lasthandoff: 07/11/2017
     }
     $path = dirname(__FILE__). '/';
     if (file_exists($path. $config_file)) {
-    // include the config file if it exists, otherwise WP is going to fail
+    // include hello config file if it exists, otherwise WP is going toofail
     require_once $path. $config_file;
     ```
 
-2. `config`라는 웹앱 루트 아래에 폴더를 만들고 각각 Azure 환경과 로컬 환경을 나타내는 `wp-config.azure.php` 및 `wp-config.local.php` 파일을 추가합니다.
+2. 호출 하는 웹 응용 프로그램 루트 아래에 폴더 `config`, hello 추가 `wp-config.azure.php` 및 `wp-config.local.php` 파일을 각각 Azure 환경 및 로컬 환경을 나타냅니다.
 
-3. `wp-config.local.php`에 다음을 복사합니다.
+3. hello 다음 복사 `wp-config.local.php`:
 
     ```
     <?php
     // MySQL settings
-    /** The name of the database for WordPress */
+    /** hello name of hello database for WordPress */
 
     define('DB_NAME', 'yourdatabasename');
 
@@ -86,7 +86,7 @@ ms.lasthandoff: 07/11/2017
     define('DB_HOST', 'localhost');
     /**
      * For developers: WordPress debugging mode.
-     * * Change this to true to enable the display of notices during development.
+     * * Change this tootrue tooenable hello display of notices during development.
      * It is strongly recommended that plugin and theme developers use WP_DEBUG
      * in their development environments.
      */
@@ -111,14 +111,14 @@ ms.lasthandoff: 07/11/2017
     $table_prefix = 'wp_';
     ```
 
-    이전 코드에서 설명한 대로 보안 키를 설정하면 웹앱을 해킹하지 못하도록 방지할 수 있으므로 고유한 값을 사용합니다. 코드에서 언급한 보안 키의 문자열을 생성해야 하는 경우 [자동 생성기로 이동](https://api.wordpress.org/secret-key/1.1/salt)하여 새 키/값 쌍을 만들 수 있습니다.
+    Hello 이전 코드와 같이 hello 보안 키를 설정 해킹에서 tooprevent 웹 앱을 도움말, 고유 값을 사용 하므로 수 있습니다. Toogenerate hello 문자열 hello 코드에서 언급 한 보안 키를 해야 하는 경우 다음을 할 수 있습니다 [이동 toohello 자동 생성기](https://api.wordpress.org/secret-key/1.1/salt) toocreate 새로운 키/값 쌍입니다.
 
-4. `wp-config.azure.php`에서 다음 코드로 바꿉니다.
+4. 복사 hello 다음 코드에서는 `wp-config.azure.php`:
 
     ```    
     <?php
     // MySQL settings
-    /** The name of the database for WordPress */
+    /** hello name of hello database for WordPress */
 
     define('DB_NAME', getenv('DB_NAME'));
 
@@ -134,12 +134,12 @@ ms.lasthandoff: 07/11/2017
     /**
     * For developers: WordPress debugging mode.
     *
-    * Change this to true to enable the display of notices during development.
+    * Change this tootrue tooenable hello display of notices during development.
     * It is strongly recommended that plugin and theme developers use WP_DEBUG
     * in their development environments.
-    * Turn on debug logging to investigate issues without displaying to end user. For WP_DEBUG_LOG to
+    * Turn on debug logging tooinvestigate issues without displaying tooend user. For WP_DEBUG_LOG to
     * do anything, WP_DEBUG must be enabled (true). WP_DEBUG_DISPLAY should be used in conjunction
-    * with WP_DEBUG_LOG so that errors are not displayed on the page */
+    * with WP_DEBUG_LOG so that errors are not displayed on hello page */
 
     */
     define('WP_DEBUG', getenv('WP_DEBUG'));
@@ -147,7 +147,7 @@ ms.lasthandoff: 07/11/2017
     define('WP_DEBUG_DISPLAY',false);
 
     //Security key settings
-    /** If you need to generate the string for security keys mentioned above, you can go the automatic generator to create new keys/values: https://api.wordpress.org/secret-key/1.1/salt **/
+    /** If you need toogenerate hello string for security keys mentioned above, you can go hello automatic generator toocreate new keys/values: https://api.wordpress.org/secret-key/1.1/salt **/
     define('AUTH_KEY',getenv('DB_AUTH_KEY'));
     define('SECURE_AUTH_KEY', getenv('DB_SECURE_AUTH_KEY'));
     define('LOGGED_IN_KEY', getenv('DB_LOGGED_IN_KEY'));
@@ -167,9 +167,9 @@ ms.lasthandoff: 07/11/2017
     ```
 
 #### <a name="use-relative-paths"></a>상대 경로 사용
-WordPress 앱에서 구성하는 마지막 한 가지는 상대 경로입니다. WordPress는 URL 정보를 데이터베이스에 저장합니다. 이 저장소는 콘텐츠를 한 환경에서 다른 환경으로 이동하는 것을 더욱 어렵게 만듭니다. 로컬에서 스테이지로 또는 스테이지에서 프로덕션 환경으로 이동할 때마다 데이터베이스를 업데이트해야 합니다. 한 환경에서 다른 환경으로 데이터베이스를 배포할 때마다 이 배포로 인해 발생할 수 있는 문제의 위험을 줄이려면 WordPress 관리자 대시보드를 사용하여 설치할 수 있는 [상대 루트 링크 플러그 인](https://wordpress.org/plugins/root-relative-urls/)을 사용합니다.
+Hello WordPress 응용 프로그램에서 한 마지막 작업 tooconfigure 상대 경로입니다. WordPress는 hello 데이터베이스 URL 정보를 저장합니다. 이 저장소 tooanother 하나의 환경에서에서 콘텐츠를 이동 더 어려워집니다. 로컬 toostage 또는 스테이지 tooproduction 환경에서 이동 될 때마다 tooupdate hello 데이터베이스가 필요 합니다. 하나의 환경 tooanother를 사용 하 여 hello에서 배포 될 때마다 데이터베이스 배포에 발생할 수 있는 문제의 tooreduce hello 위험 [관련 루트 플러그 인 연결](https://wordpress.org/plugins/root-relative-urls/)는 hello WordPress 관리자를 사용 하 여 설치할 수 있습니다 대시보드입니다.
 
-`wp-config.php` 파일에서 `That's all, stop editing!` 주석 앞에 다음 항목을 추가합니다.
+다음 항목 tooyour hello 추가 `wp-config.php` hello 대기 시키기 전에 파일 `That's all, stop editing!` 메모:
 
 ```
 
@@ -179,30 +179,30 @@ WordPress 앱에서 구성하는 마지막 한 가지는 상대 경로입니다.
     define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
 ```
 
-WordPress 관리자 대시보드에서 `Plugins` 메뉴를 통해 플러그 인을 활성화합니다. WordPress 앱에 대한 고정 링크 설정을 저장합니다.
+Hello 플러그 인 hello 통해 활성화 `Plugins` WordPress 관리자 대시보드에 대 한 메뉴입니다. WordPress 앱에 대한 고정 링크 설정을 저장합니다.
 
-#### <a name="the-final-wp-configphp-file"></a>최종 `wp-config.php` 파일
-WordPress 코어 업데이트는 `wp-config.php`, `wp-config.azure.php` 및 `wp-config.local.php` 파일에 영향을 주지 없습니다. `wp-config.php` 파일의 최종 버전은 다음과 같습니다.
+#### <a name="hello-final-wp-configphp-file"></a>최종 hello `wp-config.php` 파일
+WordPress 코어 업데이트는 `wp-config.php`, `wp-config.azure.php` 및 `wp-config.local.php` 파일에 영향을 주지 없습니다. 다음은 최종 버전의 hello `wp-config.php` 파일:
 
 ```
 <?php
 /**
- * The base configurations of the WordPress.
+ * hello base configurations of hello WordPress.
  *
- * This file has the following configurations: MySQL settings, Table Prefix,
+ * This file has hello following configurations: MySQL settings, Table Prefix,
  * Secret Keys, and ABSPATH. You can find more information by visiting
  *
- * Codex page. You can get the MySQL settings from your web host.
+ * Codex page. You can get hello MySQL settings from your web host.
  *
- * This file is used by the wp-config.php creation script during the
- * installation. You don't have to use the web web app, you can just copy this file
- * to "wp-config.php" and fill in the values.
+ * This file is used by hello wp-config.php creation script during the
+ * installation. You don't have toouse hello web web app, you can just copy this file
+ * too"wp-config.php" and fill in hello values.
  *
  * @package WordPress
  */
 
 // Support multiple environments
-// set the config file based on current environment
+// set hello config file based on current environment
 if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false) { // local development
   $config_file = 'config/wp-config.local.php';
 }
@@ -213,14 +213,14 @@ elseif ((strpos(getenv('WP_ENV'),'stage') !== false) ||(strpos(getenv('WP_ENV'),
 
 $path = dirname(__FILE__). '/';
 if (file_exists($path. $config_file)) {
-  // include the config file if it exists, otherwise WP is going to fail
+  // include hello config file if it exists, otherwise WP is going toofail
   require_once $path. $config_file;
 }
 
-/** Database Charset to use in creating database tables. */
+/** Database Charset toouse in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
-/** The Database Collate type. Don't change this if in doubt. */
+/** hello Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
 
@@ -231,7 +231,7 @@ define('WP_SITEURL', 'http://'. $_SERVER['HTTP_HOST']);
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', $_SERVER['HTTP_HOST']);
 
-/** Absolute path to the WordPress directory. */
+/** Absolute path toohello WordPress directory. */
 if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__). '/');
 
@@ -240,21 +240,21 @@ require_once(ABSPATH. 'wp-settings.php');
 ```
 
 #### <a name="set-up-a-staging-environment"></a>스테이징 환경 설정
-1. Azure 구독에서 이미 실행 중인 WordPress 웹앱을 사용하는 경우 [Azure Portal](http://portal.azure.com)에 로그인한 다음 WordPress 웹앱으로 이동합니다. WordPress 웹앱이 없으면 Azure Marketplace에서 만들 수 있습니다. 자세한 내용은 [Azure App Service에서 WordPress 웹앱 만들기](web-sites-php-web-site-gallery.md)를 참조하세요.
-**설정** > **배포 슬롯** > **추가**를 차례로 클릭하여 *stage* 이름의 배포 슬롯을 만듭니다. 배포 슬롯은 이전에 만든 기본 웹앱과 동일한 리소스를 공유하는 다른 웹 응용 프로그램입니다.
+1. Azure 구독에서 실행 중인 WordPress 웹 앱이 이미 있는 경우 toohello 로그인 [Azure 포털](http://portal.azure.com), tooyour WordPress 웹 응용 프로그램을 이동 합니다. WordPress 웹 응용 프로그램에 없을 경우 hello Azure Marketplace에서에서 하나를 만들 수 있습니다. toolearn 더 참조 [Azure 앱 서비스에서 WordPress 웹 앱을 만들](web-sites-php-web-site-gallery.md)합니다.
+클릭 **설정** > **배포 슬롯** > **추가** toocreate hello 이름의 배포 슬롯을 *단계*. 배포 슬롯은 다른 웹 응용 프로그램 공유 hello 이전에 만든 hello 기본 웹 응용 프로그램으로 동일한 리소스입니다.
 
     ![스테이지 배포 슬롯 만들기](./media/app-service-web-staged-publishing-realworld-scenarios/1setupstage.png)
 
-2. `wordpress-stage-db`라는 다른 MySQL 데이터베이스를 `wordpressapp-group` 리소스 그룹에 추가합니다.
+2. 예를 들어 다른 MySQL 데이터베이스를 추가 `wordpress-stage-db`, tooyour 리소스 그룹 `wordpressapp-group`합니다.
 
-    ![리소스 그룹에 MySQL 데이터베이스 추가](./media/app-service-web-staged-publishing-realworld-scenarios/2addmysql.png)
+    ![MySQL 데이터베이스 tooresource 그룹 추가](./media/app-service-web-staged-publishing-realworld-scenarios/2addmysql.png)
 
-3. 스테이지 배포 슬롯의 연결 문자열을 새로운 `wordpress-stage-db` 데이터베이스를 가리키도록 업데이트합니다. `wordpressprodapp` 프로덕션 웹앱과 `wordpressprodapp-stage` 스테이징 웹앱은 서로 다른 데이터베이스를 가리켜야 합니다.
+3. 스테이지 배포 슬롯 toopoint toohello 새 데이터베이스에 대 한 hello 연결 문자열 업데이트 `wordpress-stage-db`합니다. 프로덕션 웹 앱 `wordpressprodapp`, 웹 앱을 준비 하 고 `wordpressprodapp-stage`, 지점 toodifferent 데이터베이스 해야 합니다.
 
 #### <a name="configure-environment-specific-app-settings"></a>환경 관련 앱 설정 구성
-개발자는 Azure에서 웹앱과 관련된 **앱 설정**이라는 구성 정보의 일부로 키/값 문자열 쌍을 저장할 수 있습니다. 런타임에서 웹앱은 이러한 값을 자동으로 검색하여 웹앱에서 실행 중인 코드에서 사용할 수 있도록 합니다. 보안 측면에서 암호가 포함된 데이터베이스 연결 문자열과 같은 중요한 정보는 `wp-config.php`와 같은 파일에 일반 텍스트로 표시되지 않기 때문에 긍정적인 부수 효과가 있습니다.
+개발자 hello 구성 정보, 호출의 일부분으로 Azure에서 키/값 문자열 쌍에 저장할 수 있습니다 **앱 설정**, 웹 앱과 연결 된입니다. 런타임 시 웹 응용 프로그램은 자동으로 이러한 값을 검색 하 고 웹 응용 프로그램에서 실행 중인 toocode 사용할 수 있도록 합니다. 보안 측면에서 암호가 포함된 데이터베이스 연결 문자열과 같은 중요한 정보는 `wp-config.php`와 같은 파일에 일반 텍스트로 표시되지 않기 때문에 긍정적인 부수 효과가 있습니다.
 
-다음 단락에서 설명하는 프로세스는 WordPress 앱의 파일 변경과 데이터베이스 변경을 모두 포함하기 때문에 유용합니다.
+단락 뒤 hello에 설명 된이 프로세스는 파일 변경 내용 및 hello WordPress 응용 프로그램에 대 한 데이터베이스 변경 내용을 모두 포함 하기 때문에 유용 합니다.
 
 * WordPress 버전 업그레이드
 * 플러그 인 새로 추가, 편집 또는 업그레이드
@@ -268,99 +268,99 @@ require_once(ABSPATH. 'wp-settings.php');
 
 ![Wordpress 웹앱에 대한 앱 설정](./media/app-service-web-staged-publishing-realworld-scenarios/3configure.png)
 
-프로덕션 웹앱과 스테이지 슬롯에 대해 다음 앱 설정을 추가해야 합니다. 프로덕션 웹앱과 스테이징 웹앱은 서로 다른 데이터베이스를 사용합니다.
+Hello 다음 프로덕션 웹 앱 및 단계 슬롯에 대 한 응용 프로그램 설정을 추가 하 고 있는지 확인 합니다. Hello 프로덕션 웹 앱 및 웹 응용 프로그램을 스테이징 서로 다른 데이터베이스를 사용 하는지 확인 합니다.
 
-1. WP_ENV를 제외한 모든 설정 매개 변수에 대해 **슬롯 설정** 확인란의 선택을 취소합니다. 이 프로세스는 웹앱, 파일 내용 및 데이터베이스의 구성을 교환합니다. **슬롯 설정**을 선택하면 **교환** 작업을 수행할 때 웹앱의 앱 설정 및 연결 문자열 구성이 환경 간에 이동하지 *않습니다*. 데이터베이스 변경 내용이 있더라도 프로덕션 웹앱은 손상되지 않습니다.
+1. 지우기 hello **슬롯 설정을** WP_ENV 제외한 모든 hello 설정 매개 변수에 대 한 확인란을 선택 합니다. 이 프로세스 됩니다 웹 앱, 파일 내용 및 데이터베이스에 대 한 hello 구성을 교체 합니다. 경우 **슬롯 설정을** 은 됩니다 hello 웹 앱의 앱 설정 및 연결 문자열 구성 옵션을 선택 *하지* 수행 하는 경우 환경에 걸쳐 이동는 **교체** 작업 합니다. 데이터베이스 변경 내용이 있더라도 프로덕션 웹앱은 손상되지 않습니다.
 
-2. WebMatrix 또는 선택한 도구(예: FTP, Git 또는 PhpMyAdmin)를 사용하여 스테이지 웹앱과 데이터베이스에 로컬 개발 환경 웹앱을 배포합니다.
+2. WebMatrix 또는 사용자가 선택한, FTP, Git, 또는 PhpMyAdmin 같은 도구를 사용 하 여 hello 로컬 개발 환경 웹 응용 프로그램 toohello 단계 웹 앱 및 데이터베이스를 배포 합니다.
 
     ![WordPress 웹앱에 Web Matrix 게시 대화 상자](./media/app-service-web-staged-publishing-realworld-scenarios/4wmpublish.png)
 
-3. 스테이징 웹앱을 찾아 테스트합니다. 웹앱 테마를 업데이트하는 시나리오의 준비 웹앱을 가정해 보겠습니다.
+3. 스테이징 웹앱을 찾아 테스트합니다. 여기서 hello 웹 응용 프로그램의 hello 테마는 toobe 업데이트 시나리오를 고려 하면 웹 앱을 준비 하는 hello 다음과 같습니다.
 
     ![슬롯 교환 전에 스테이징 웹앱 찾아보기](./media/app-service-web-staged-publishing-realworld-scenarios/5wpstage.png)
 
-4. 모든 항목이 양호하면 스테이징 웹앱에서 **교환** 단추를 클릭하여 콘텐츠를 프로덕션 환경으로 이동합니다. 이 경우 모든 **교환** 작업 중에 환경 간에 웹앱과 데이터베이스를 교환합니다.
+4. 상태가 양호해 클릭 hello **교체** 콘텐츠 toohello 프로덕션 환경에 스테이징 웹 응용 프로그램 toomove 단추입니다. 이 경우 중 환경에 걸쳐 hello web app 및 hello 데이터베이스 교체 모든 **스왑** 작업 합니다.
 
     ![WordPress에 대한 변경 내용 미리 보기 교환](./media/app-service-web-staged-publishing-realworld-scenarios/6swaps1.png)
 
     > [!NOTE]
-    > 시나리오에서 파일만 푸시해야 하는 경우(데이터베이스 업데이트 없음) **교환**을 수행하기 전에 Azure Portal의 **웹앱 설정** 블레이드에서 모든 데이터베이스 관련 *앱 설정* 및 *연결 문자열 설정*에 대한 **슬롯 설정**을 확인합니다. 이 경우 **교환**을 수행할 때 DB_NAME, DB_HOST, DB_PASSWORD, DB_USER 및 기본 연결 문자열 설정이 변경 내용 미리 보기에 표시되지 않아야 합니다. 이 시점에서 **교환** 작업을 완료하면 WordPress 웹앱에 업데이트 파일만 있습니다.
+    > 시나리오 tooonly 푸시 파일 (어떤 데이터베이스 업데이트)를 필요한 경우를 확인 한 다음 **슬롯 설정을** 데이터베이스와 관련 된 모든 hello에 대 한 *앱 설정* 및 *연결 문자열 설정을*hello에 **웹 앱 설정을** hello hello를 수행 하기 전에 Azure 포털 내에서 블레이드 **교체**합니다. 이 경우 **교환**을 수행할 때 DB_NAME, DB_HOST, DB_PASSWORD, DB_USER 및 기본 연결 문자열 설정이 변경 내용 미리 보기에 표시되지 않아야 합니다. Hello을 완료 하는 경우 지금은 **교체** 작업, WordPress 웹 응용 프로그램은 hello 있는 hello 업데이트 파일에만 해당 합니다.
     >
     >
 
-    **교환**을 수행하기 전의 WordPress 프로덕션 웹앱은 다음과 같습니다.
+    이렇게 하면 하기 전에 **교체**, hello 프로덕션 WordPress 웹 앱 다음과 같습니다.
     ![슬롯 교환 전 프로덕션 웹앱](./media/app-service-web-staged-publishing-realworld-scenarios/7bfswap.png)
 
-    **교환** 작업 후에는 프로덕션 웹앱의 테마가 업데이트됩니다.
+    Hello 후 **교체** 프로덕션 웹 앱에서 작업을 hello 테마 업데이트 되었습니다.
 
     ![슬롯 교환 후 프로덕션 웹앱](./media/app-service-web-staged-publishing-realworld-scenarios/8afswap.png)
 
-5. 롤백해야 하는 경우 프로덕션 웹 **앱 설정**으로 이동하고 **교환** 단추를 클릭하여 웹앱과 데이터베이스를 프로덕션에서 스테이징 슬롯으로 교환할 수 있습니다. 데이터베이스 변경 내용이 **교환** 작업에 포함된 경우 다음 번에 스테이징 웹앱에 배포할 때 해당 데이터베이스 변경 내용을 스테이징 데이터베이스 웹앱의 현재 데이터베이스에 배포해야 합니다. 현재 데이터베이스는 이전 프로덕션 데이터베이스 또는 스테이지 데이터베이스일 수 있습니다.
+5. Tooroll 다시 필요할 때 toohello 프로덕션 웹 이동할 수 있습니다 **앱 설정**, hello를 클릭 하 고 **교체** tooswap hello 웹 응용 프로그램 및 데이터베이스를 프로덕션 toostaging 슬롯 단추입니다. 데이터베이스 변경 내용에 포함 된 경우는 **교체** 작업, 다음 hello tooyour 스테이징 웹 앱을 배포한 다음에 스테이징 웹 앱에 대 한 toodeploy hello 데이터베이스 변경 내용을 toohello 현재 데이터베이스가 필요 합니다. hello 현재 데이터베이스 hello 이전 프로덕션 데이터베이스 또는 hello 단계 데이터베이스 일 수 있습니다.
 
 #### <a name="summary"></a>요약
 다음은 데이터베이스가 있는 모든 응용 프로그램에 일반화된 프로세스입니다.
 
-1. 로컬 환경에 응용 프로그램 설치
+1. 로컬 환경에 hello 응용 프로그램을 설치 합니다.
 2. 환경별 구성(로컬 및 Azure Web Apps) 포함
 3. Web Apps의 스테이징 환경 및 프로덕션 환경 설정
-4. Azure에서 프로덕션 응용 프로그램을 이미 실행하고 있는 경우 로컬 및 스테이징 환경으로 프로덕션 콘텐츠(파일/코드 및 데이터베이스) 동기화
+4. Azure에서 이미 실행 하는 프로덕션 응용 프로그램의 경우 프로덕션 콘텐츠 (파일/코드 및 데이터베이스) toolocal 및 준비 환경을 동기화 합니다.
 5. 로컬 환경에서 응용 프로그램 개발
-6. 프로덕션 웹앱을 유지 관리나 잠김 모드로 전환 및 프로덕션 환경에서 스테이징 및 개발 환경으로 데이터베이스 콘텐츠 동기화
-7. 스테이징 환경에 배포 및 테스트
-8. 프로덕션 환경에 배포
+6. 유지 관리 또는 잠긴된 모드에서 프로덕션 웹 앱 하 고 프로덕션 toostaging 및 개발 환경에서 데이터베이스 콘텐츠를 동기화 합니다.
+7. Toohello 준비 환경 및 테스트를 배포 합니다.
+8. Tooproduction 환경을 배포 합니다.
 9. 4-6단계 반복
 
 ### <a name="umbraco"></a>Umbraco
-이 섹션에서는 Umbraco CMS에서 사용자 지정 모듈을 사용하여 여러 DevOps 환경에 배포하는 방법에 대해 알아봅니다. 이 예제에서는 여러 개발 환경을 관리하는 다른 방법을 제공합니다.
+이 섹션에서는 hello Umbraco CMS 다중 DevOps 환경에서 사용자 지정 모듈 toodeploy를 사용 하는 방법을 배웁니다. 이 예에서는 여러 개발 환경을 다른 접근 방식을 toomanaging를 제공합니다.
 
-[Umbraco CMS](http://umbraco.com/)는 많은 개발자가 사용하는 인기 있는 .NET CMS 솔루션이며, 개발, 스테이징, 프로덕션 환경 순으로 배포하는 [Courier2](http://umbraco.com/products/more-add-ons/courier-2) 모듈을 제공합니다. Visual Studio 또는 WebMatrix를 사용하여 Umbraco CMS 웹앱용 로컬 개발 환경을 쉽게 만들 수 있습니다.
+[Umbraco CMS](http://umbraco.com/)는 많은 개발자가 사용하는 인기 있는 .NET CMS 솔루션이며, Hello 제공 [Courier2](http://umbraco.com/products/more-add-ons/courier-2) 개발 toostaging tooproduction 환경에서 모듈 toodeploy 합니다. Visual Studio 또는 WebMatrix를 사용하여 Umbraco CMS 웹앱용 로컬 개발 환경을 쉽게 만들 수 있습니다.
 
 - [Visual Studio를 사용하여 Umbraco 웹앱 만들기](https://our.umbraco.org/documentation/Installation/install-umbraco-with-nuget)
 - [WebMatrix를 사용하여 Umbraco 웹앱 만들기](http://umbraco.tv/videos/umbraco-v7/implementor/fundamentals/installation/creating-umbraco-site-from-webmatrix-web-gallery/)
 
-반드시 응용 프로그램에서 `install` 폴더를 제거하고, 이 폴더를 스테이지 또는 프로덕션 웹앱에 업로드하면 안 됩니다. 이 자습서에서는 WebMatrix를 사용합니다.
+항상 잊지 말고 수행 tooremove hello `install` 응용 프로그램 아래에 폴더 toostage 또는 프로덕션 웹 앱 업로드 되지 않습니다. 이 자습서에서는 WebMatrix를 사용합니다.
 
 #### <a name="set-up-a-staging-environment"></a>스테이징 환경 설정
-1. Umbraco CMS 웹앱을 이미 작동 및 실행하고 있다고 가정하고 Umbraco CMS 웹앱에 대해 앞에서 언급한 대로 배포 슬롯을 만듭니다. 그렇지 않으면 마켓플레이스에서 만들 수 있습니다.
-2. 새 **umbraco-stage-db** 데이터베이스를 가리키도록 스테이지 배포 슬롯의 연결 문자열을 업데이트합니다. 프로덕션 웹앱(umbraositecms-1)과 스테이징 웹앱(umbracositecms-1-stage)은 서로 다른 데이터베이스를 *가리켜야 합니다*.
+1. Hello Umbraco CMS 웹 앱이 이미 있는 것으로 가정 하 고 실행 Umbraco CMS 웹 앱에 대 한 앞서 언급 했 듯이 배포 슬롯을 만듭니다. 이렇게 하지 않으면 hello Marketplace에서에서 하나를 만들 수 있습니다.
+2. 사용자 단계 배포 슬롯 toopoint toohello 새에 대 한 hello 연결 문자열을 업데이트 **umbraco-단계-db** 데이터베이스입니다. 프로덕션 웹 앱 (umbraositecms-1)과 스테이징 웹 응용 프로그램 (umbracositecms 1 단계) *해야* 지점 toodifferent 데이터베이스.
 
     ![새 스테이징 데이터베이스를 통해 스테이징 웹앱의 연결 문자열 업데이트](./media/app-service-web-staged-publishing-realworld-scenarios/9umbconnstr.png)
 
-3. **스테이지** 배포 슬롯에 대해 **게시 설정 가져오기**를 클릭합니다. 이 프로세스는 응용 프로그램을 로컬 개발 웹앱에서 Azure 웹앱으로 게시하는 데 필요한 모든 정보를 Visual Studio 또는 WebMatrix에서 저장하는 게시 설정 파일을 다운로드합니다.
+3. 클릭 **제작 가져오기 설정** hello 배포 슬롯에 대 한 **단계**합니다. 이 프로세스는 모든 hello 필요한 정보를 Visual Studio 또는 WebMatrix toopublish hello 로컬 개발 웹 앱 toohello Azure 웹 앱에서 응용 프로그램을 저장 하 여 게시 설정 파일을 다운로드 합니다.
 
-    ![스테이징 웹앱의 게시 설정 가져오기](./media/app-service-web-staged-publishing-realworld-scenarios/10getpsetting.png)
-4. WebMatrix 또는 Visual Studio에서 로컬 개발 웹앱을 엽니다. 이 자습서에서는 WebMatrix를 사용합니다. 먼저 스테이징 웹앱의 게시 설정 파일을 가져와야 합니다.
+    ![Get 게시의 웹 앱을 준비 하는 hello 설정](./media/app-service-web-staged-publishing-realworld-scenarios/10getpsetting.png)
+4. WebMatrix 또는 Visual Studio에서 로컬 개발 웹앱을 엽니다. 이 자습서에서는 WebMatrix를 사용합니다. 먼저 tooimport hello 스테이징 웹 앱에 대 한 설정 파일을 게시 합니다.
 
     ![Web Matrix를 사용하여 Umbraco 게시 설정 가져오기](./media/app-service-web-staged-publishing-realworld-scenarios/11import.png)
 
-5. 대화 상자에서 변경 내용을 검토하고 로컬 웹앱을 *umbracositecms-1-stage* Azure 웹앱에 배포합니다. 파일을 스테이징 웹앱에 직접 배포할 경우 `~/app_data/TEMP/` 폴더에 있는 모든 파일은 생략합니다. 이러한 파일은 스테이지 웹앱을 처음 시작할 때 다시 생성되기 때문입니다. 또한 재생성될 `~/app_data/umbraco.config` 파일도 생략해야 합니다.
+5. Hello 대화 상자의 변경 내용을 검토 하 고 로컬 웹 앱 tooyour Azure 웹 앱을 배포할 *umbracositecms 1 단계*합니다. Hello에 파일을 생략 됩니다 tooyour 스테이징 웹 앱을 직접 파일을 배포 하면 `~/app_data/TEMP/` 폴더 hello 단계 웹 앱이 첫 번째 때 이러한 파일은 다시 생성 됩니다 때문에 시작 합니다. 또한 hello를 생략 해야 `~/app_data/umbraco.config` 파일에도 다시 생성 되지 것입니다.
 
     ![Web Matrix에서 게시 설정 검토](./media/app-service-web-staged-publishing-realworld-scenarios/12umbpublish.png)
 
-6. 스테이징 웹앱에 Umbraco 로컬 웹앱을 성공적으로 게시한 후 스테이징 웹앱을 탐색하고 몇 가지 테스트를 실행하여 문제를 제거합니다.
+6. Hello Umbraco 로컬 웹 앱 toohello 스테이징 웹 응용 프로그램을 성공적으로 게시 한 후 tooyour 스테이징 웹 앱을 찾아 문제를 해결 하는 몇 가지 테스트 toorule를 실행 합니다.
 
-#### <a name="set-up-the-courier2-deployment-module"></a>Courier2 배포 모듈 설정
-[Courier2](http://umbraco.com/products/more-add-ons/courier-2) 모듈을 사용하면 콘텐츠, 스타일시트 및 개발 모듈을 마우스 오른쪽 단추로 클릭하여 스테이징 웹앱에서 프로덕션 웹앱으로 간단하게 푸시할 수 있습니다. 이 프로세스는 업데이트를 배포할 때 프로덕션 웹앱이 손상될 위험을 줄입니다.
-`*.azurewebsites.net` 도메인 및 사용자 지정 도메인 (예:  http://abc.com ) 에 대한 Courier2 라이선스를 구입합니다. 라이선스를 구입한 후 다운로드한 라이선스(.LIC 파일)를 `bin` 폴더에 저장합니다.
+#### <a name="set-up-hello-courier2-deployment-module"></a>Hello Courier2 배포 모듈 설정
+Hello로 [Courier2](http://umbraco.com/products/more-add-ons/courier-2) 모듈 toopush 콘텐츠, 스타일 시트 및 스테이징 웹 응용 프로그램 tooa 프로덕션 웹 앱의 모듈을 개발 하면 단추로 클릭 합니다. 이 프로세스는 hello를 깰 위험을 프로덕션 웹 앱 업데이트를 배포 하는 경우를 줄입니다.
+Hello에 대 한 Courier2에 대 한 라이선스를 구입 `*.azurewebsites.net` 도메인 및 사용자 지정 도메인 (예: http://abc.com). 현재 위치 hello 라이선스 다운로드 hello 라이선스를 구입한 후 (합니다. 파일-사용권 계약) hello에 `bin` 폴더입니다.
 
 ![라이선스 파일을 bin 폴더에 넣기](./media/app-service-web-staged-publishing-realworld-scenarios/13droplic.png)
 
-1. [Courier2 패키지를 다운로드합니다](https://our.umbraco.org/projects/umbraco-pro/umbraco-courier-2/). 스테이지 웹앱(http://umbracocms-site-stage.azurewebsites.net/umbraco)에 로그인하고 **개발자** 메뉴를 클릭한 다음 **패키지** > **로컬 패키지 설치**를 차례로 클릭합니다.
+1. [Hello Courier2 패키지 다운로드](https://our.umbraco.org/projects/umbraco-pro/umbraco-courier-2/)합니다. 예를 들어 http://umbracocms-site-stage.azurewebsites.net/umbraco tooyour 단계 웹 앱에서 로그인 hello 클릭 **개발자** 메뉴를 차례로 클릭 **패키지** > **설치 로컬 패키지**합니다.
 
     ![Umbraco 패키지 설치 관리자](./media/app-service-web-staged-publishing-realworld-scenarios/14umbpkg.png)
 
-2. 설치 관리자를 사용하여 Courier2 패키지를 업로드합니다.
+2. Hello 설치 관리자를 사용 하 여 hello Courier2 패키지를 업로드 합니다.
 
     ![Courier 모듈에 대한 패키지 업로드](./media/app-service-web-staged-publishing-realworld-scenarios/15umbloadpkg.png)
 
-3. 패키지를 구성하려면 웹앱의 **Config** 폴더 아래에 있는 courier.config 파일을 업데이트해야 합니다.
+3. hello에서 tooupdate hello courier.config 파일이 필요 tooconfigure hello 패키지 **Config** 웹 응용 프로그램의 폴더입니다.
 
     ```xml
     <!-- Repository connection settings -->
-     <!-- For each site, a custom repository must be configured, so Courier knows how to connect and authenticate-->
+     <!-- For each site, a custom repository must be configured, so Courier knows how tooconnect and authenticate-->
      <repositories>
-        <!-- If a custom Umbraco Membership provider is used, specify login & password + set the passwordEncoding to clear: -->
+        <!-- If a custom Umbraco Membership provider is used, specify login & password + set hello passwordEncoding tooclear: -->
         <repository name="production web app" alias="stage" type="CourierWebserviceRepositoryProvider" visible="true">
           <url>http://umbracositecms-1.azurewebsites.net</url>
           <user>0</user>
@@ -371,18 +371,18 @@ require_once(ABSPATH. 'wp-settings.php');
      </repositories>
      ```
 
-4. `<repositories>`에서 프로덕션 사이트 URL 및 사용자 정보를 입력하세요.
-    기본 Umbraco 멤버 자격 공급자를 사용하는 경우 &lt;user&gt; 섹션에서 관리 사용자의 ID를 추가합니다.
-    사용자 지정 Umbraco 멤버 자격 공급자를 사용하는 경우 Courier2 모듈에서 `<login>`,`<password>`를 사용하여 프로덕션 사이트에 연결합니다.
-    자세한 내용은 [Courier2 모듈 설명서](http://umbraco.com/help-and-support/customer-area/courier-2-support-and-download/developer-documentation)(영문)를 검토하세요.
+4. `<repositories>`, hello 프로덕션 사이트 URL 및 사용자 정보를 입력 합니다.
+    Hello 기본 Umbraco 멤버 자격 공급자를 사용 하는 경우 다음 hello 관리 사용자에 대 한 hello ID에서에서 추가 hello &lt;사용자&gt; 섹션.
+    사용자 지정 Umbraco 멤버 자격 공급자를 사용 하는 경우 사용 하 여 `<login>`,`<password>` hello Courier2 모듈 tooconnect toohello 프로덕션 사이트에 있습니다.
+    자세한 내용은 [hello Courier2 모듈에 대 한 hello 설명서를 검토](http://umbraco.com/help-and-support/customer-area/courier-2-support-and-download/developer-documentation)합니다.
 
-5. 마찬가지로 프로덕션 사이트에 Courier2 모듈을 설치하고, 각 courier.config 파일에서 여기서 표시한 대로 스테이지 웹앱을 가리키도록 구성합니다.
+5. 마찬가지로, 프로덕션 사이트에 hello Courier2 모듈을 설치 하 고 여기 표시 된 대로 해당 courier.config 파일 toopoint toohello 단계 웹 응용 프로그램을 구성 합니다.
 
     ```xml
      <!-- Repository connection settings -->
-     <!-- For each site, a custom repository must be configured, so Courier knows how to connect and authenticate-->
+     <!-- For each site, a custom repository must be configured, so Courier knows how tooconnect and authenticate-->
      <repositories>
-        <!-- If a custom Umbraco Membership provider is used, specify login & password + set the passwordEncoding to clear: -->
+        <!-- If a custom Umbraco Membership provider is used, specify login & password + set hello passwordEncoding tooclear: -->
         <repository name="Stage web app" alias="stage" type="CourierWebserviceRepositoryProvider" visible="true">
           <url>http://umbracositecms-1-stage.azurewebsites.net</url>
           <user>0</user>
@@ -390,55 +390,55 @@ require_once(ABSPATH. 'wp-settings.php');
      </repositories>
     ```
 
-6. Umbraco CMS 웹앱 대시보드에서 **Courier2** 탭을 클릭한 다음 **위치**를 클릭합니다. `courier.config`에 설명된 대로 리포지토리 이름이 표시됩니다. 프로덕션 웹앱 및 스테이징 웹앱 모두에서 이 프로세스를 수행합니다.
+6. Hello 클릭 **Courier2** hello Umbraco CMS 웹 응용 프로그램 대시보드에에서 탭을 클릭 한 다음 **위치**합니다. 설명한 것 처럼 hello 리포지토리 이름이 표시 되어야 `courier.config`합니다. 프로덕션 웹앱 및 스테이징 웹앱 모두에서 이 프로세스를 수행합니다.
 
     ![대상 웹앱 리포지토리 보기](./media/app-service-web-staged-publishing-realworld-scenarios/16courierloc.png)
 
-7. 콘텐츠를 스테이징 사이트에서 프로덕션 사이트로 배포하려면 **콘텐츠**로 이동하여 기존 페이지를 선택하거나 새 페이지를 만듭니다. 웹앱에서 **시작 – 새로 만들기** 페이지 제목의 기존 페이지를 선택한 다음 **저장 및 게시**를 클릭합니다.
+7. hello 준비 사이트 toohello 프로덕션 사이트의에서 콘텐츠를 toodeploy 너무 이동**콘텐츠**, 기존 페이지를 선택 하거나 새 페이지를 만듭니다. 기존 페이지 hello 페이지의 제목 hello 여기서는 웹 응용 프로그램에서 선택 하겠습니다. **시작-새**, 클릭 하 고 **저장 및 게시**합니다.
 
     ![페이지 제목 변경 및 게시](./media/app-service-web-staged-publishing-realworld-scenarios/17changepg.png)
 
-8. 수정된 페이지를 마우스 오른쪽 단추로 클릭하여 모든 옵션을 확인합니다. **Courier**를 클릭하여 **배포** 대화 상자를 엽니다. **배포**를 클릭하여 배포를 시작합니다.
+8. 마우스 오른쪽 단추로 클릭 hello 페이지 tooview 모든 hello 옵션을 수정합니다. 클릭 **Courier** tooopen hello **배포** 대화 상자. 클릭 **배포** tooinitiate 배포 합니다.
 
     ![Courier 모듈 배포 대화 상자](./media/app-service-web-staged-publishing-realworld-scenarios/18dialog1.png)
 
-9. 변경 내용을 검토한 다음 **계속**을 클릭합니다.
+9. Hello 변경 내용을 검토 한 다음 클릭 **계속**합니다.
 
     ![Courier 모듈 배포 대화 상자 변경 내용 검토](./media/app-service-web-staged-publishing-realworld-scenarios/19dialog2.png)
 
-    배포 로그에서 배포 성공 여부를 표시합니다.
+    hello 배포 로그 hello 배포가 성공적으로 수행 하는 경우 표시 됩니다.
 
      ![Courier 모듈에서 배포 로그 보기](./media/app-service-web-staged-publishing-realworld-scenarios/20successdlg.png)
 
-10. 프로덕션 웹앱을 탐색하여 변경 내용이 반영되었는지 확인합니다.
+10. Hello 변경 내용이 반영 하는 경우 프로덕션 웹 앱 toosee 사용자를 찾습니다.
 
      ![프로덕션 웹앱 찾아보기](./media/app-service-web-staged-publishing-realworld-scenarios/21umbpg.png)
 
-Courier 사용 방법에 대한 자세한 내용은 설명서를 검토합니다.
+Courier, 검토 toouse 설명서 hello 하는 방법에 대 한 자세한 toolearn 합니다.
 
-#### <a name="how-to-upgrade-the-umbraco-cms-version"></a>Umbraco CMS 버전을 업그레이드하는 방법
-Courier는 한 버전의 Umbraco CMS에서 다른 버전으로 업그레이드하는 데 도움이 되지 않습니다. Umbraco CMS 버전을 업그레이드할 때는 사용자 지정 모듈 또는 파트너 및 Umbraco 코어 라이브러리 모듈과의 비호환성을 확인해야 합니다. 모범 사례는 다음과 같습니다.
+#### <a name="how-tooupgrade-hello-umbraco-cms-version"></a>Tooupgrade는 Umbraco CMS 버전 hello 하는 방법
+Courier이 Umbraco CMS tooanother의 한 버전에서 업그레이드 하는 도움말 되지 않습니다. Umbraco CMS 버전을 업그레이드할 때 사용자 지정 모듈 또는 모듈에서 파트너와의 비 호환성을 확인 하 고 Umbraco 핵심 라이브러리 hello 해야 합니다. 모범 사례는 다음과 같습니다.
 
-* 업그레이드하기 전에 항상 웹앱과 데이터베이스를 백업합니다. Azure의 웹앱에서 백업 기능을 사용하여 웹 사이트의 자동 백업을 설정하고, 필요할 경우 복원 기능을 사용하여 사이트를 복원할 수 있습니다. 자세한 내용은 [웹앱 백업 방법](web-sites-backup.md) 및 [웹앱 복원 방법](web-sites-restore.md)을 참조하세요.
-* 파트너의 패키지가 업그레이드하려는 버전과 호환되는지 확인합니다. 패키지의 다운로드 페이지에서 Umbraco CMS 버전과의 프로젝트 호환성을 검토합니다.
+* 업그레이드하기 전에 항상 웹앱과 데이터베이스를 백업합니다. Azure에서 웹 앱에 hello 백업 기능을 사용 하 여 웹 사이트에 대 한 자동 백업을 설정 하 고 hello 복원 기능을 사용 하 여 필요한 경우 사이트를 복원할 수 있습니다. 자세한 내용은 참조 하십시오. [어떻게 tooback 웹 앱을](web-sites-backup.md) 및 [어떻게 toorestore 웹 앱](web-sites-restore.md)합니다.
+* 파트너 로부터 패키지를 업그레이드 하는 hello 버전과 호환 되는지 확인 합니다. Hello 패키지에 다운로드 페이지, hello 프로젝트 호환성 Umbraco CMS 버전을 검토 합니다.
 
-웹앱을 로컬로 업그레이드하는 방법에 대한 자세한 내용은 [일반 업그레이드 지침](https://our.umbraco.org/documentation/getting-started/setup/upgrading/general)을 참조하세요.
+방법에 대 한 자세한 내용은 tooupgrade 웹 앱을 로컬로 [hello 일반적인 업그레이드 지침 참조](https://our.umbraco.org/documentation/getting-started/setup/upgrading/general)합니다.
 
-로컬 개발 사이트를 업그레이드한 후에 변경 내용을 스테이징 웹앱에 게시합니다. 응용 프로그램을 테스트합니다. 모든 항목이 양호하면 **교환** 단추를 사용하여 스테이징 사이트를 프로덕션 웹앱으로 교환합니다. **교환** 작업을 수행하면 웹앱 구성에 영향을 미칠 변경 내용을 확인할 수 있습니다. 이 **교환** 작업은 웹앱과 데이터베이스를 교환합니다. **교환** 후에는 프로덕션 웹앱은 umbraco-stage-db 데이터베이스를 가리키며, 스테이징 웹앱은 umbraco-prod-db 데이터베이스를 가리키게 됩니다.
+로컬 개발 사이트를 업그레이드 한 후 웹 앱을 준비 하는 hello 변경 toohello를 게시 합니다. 응용 프로그램을 테스트합니다. 상태가 양호해 hello를 사용 하 여 **교체** 단추 tooswap 준비 사이트 toohello 프로덕션 웹 앱입니다. Hello를 사용 하는 경우 **교체** 작업을 웹 앱의 구성에 영향을 받을 hello 변경을 볼 수 있습니다. 이 **교체** hello 웹 응용 프로그램 및 데이터베이스 작업을 바꿉니다. Hello 후 **교체**, hello 프로덕션 웹 앱 됩니다 지점 toohello umbraco-단계-db 데이터베이스 및 웹 응용 프로그램 준비 됩니다 지점 tooumbraco prod db 데이터베이스 hello 합니다.
 
 ![Umbraco CMS 배포를 위한 교환 미리보기](./media/app-service-web-staged-publishing-realworld-scenarios/22umbswap.png)
 
-웹앱과 데이터베이스를 교환하는 이점은 다음과 같습니다.
+교환 하는 hello 웹 앱과 hello 데이터베이스 둘 다의 장점은 다음과 같습니다.
 
-* 응용 프로그램에 문제가 있는 경우 다른 **교환**을 사용하여 웹앱의 이전 버전으로 롤백할 수 있습니다.
-* 업그레이드하는 경우 스테이징 웹앱의 파일과 데이터베이스를 프로덕션 웹앱과 데이터베이스에 배포해야 합니다. 파일과 데이터베이스를 배포할 때 많은 문제가 발생할 수 있습니다. 슬롯의 **교환** 기능을 사용하면 업그레이드 동안의 가동 중지 시간을 줄이고 변경 내용을 배포할 때 발생할 수 있는 오류 위험을 낮출 수 있습니다.
-* [프로덕션에서 테스트](https://azure.microsoft.com/documentation/videos/introduction-to-azure-websites-testing-in-production-with-galin-iliev/) 기능을 사용하여 **A/B 테스트**를 수행할 수 있습니다.
+* 롤백할 수 있습니다 다른 웹 응용 프로그램의 이전 버전 toohello **교체** 응용 프로그램에 문제가 있는 경우.
+* 업그레이드 하는 toodeploy 파일 및 웹 응용 프로그램 toohello 프로덕션 웹 앱을 준비 하는 hello에서 데이터베이스 및 데이터베이스 필요 합니다. 파일과 데이터베이스를 배포할 때 많은 문제가 발생할 수 있습니다. Hello를 사용 하 여 **교체** 기능, 슬롯의 업그레이드 하는 동안 가동 중지 시간 감소를 변경 내용을 배포할 때 발생할 수 있는 오류의 hello 위험을 줄일 수 있습니다.
+* 작업을 수행할 수 **A / B 테스트** hello를 사용 하 여 [프로덕션 환경에서 테스트](https://azure.microsoft.com/documentation/videos/introduction-to-azure-websites-testing-in-production-with-galin-iliev/) 기능입니다.
 
-이 예에서는 전체 환경에서 배포를 관리하기 위해 Umbraco Courier 모듈과 유사한 사용자 지정 모듈을 구축할 수 있는 플랫폼 유연성을 보여줍니다.
+이 예제를 작성할 수 있는 사용자 지정 모듈 비슷한 tooUmbraco Courier 모듈 toomanage 배포 환경에 걸쳐 hello 플랫폼의 융통성 hello를 표시 합니다.
 
 ## <a name="references"></a>참조
 [Azure 앱 서비스를 사용하여 Agile 소프트웨어 개발](app-service-agile-software-development.md)
 
 [Azure 앱 서비스에서 웹 앱에 대한 스테이징 환경 설정](web-sites-staged-publishing.md)
 
-[비 프로덕션 배포 슬롯에 대한 웹 액세스를 차단하는 방법](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
+[Tooblock 웹 toonon 프로덕션 배포 슬롯을 액세스 하는 방법](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)

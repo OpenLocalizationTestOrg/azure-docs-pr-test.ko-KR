@@ -1,6 +1,6 @@
 ---
-title: "Ruby에서 Queue Storage를 사용하는 방법 | Microsoft Docs"
-description: "Azure 큐 서비스를 사용하여 큐를 작성 및 삭제하고 메시지를 삽입하고 가져오고 삭제하는 방법을 알아봅니다. 샘플은 Ruby로 작성되었습니다."
+title: "aaaHow toouse Ruby에서 큐 저장소 | Microsoft Docs"
+description: "방법 toouse hello Azure 큐 서비스 toocreate 및 큐 삭제 및 삽입, 및 메시지 삭제에 대해 알아봅니다. 샘플은 Ruby로 작성되었습니다."
 services: storage
 documentationcenter: ruby
 author: robinsh
@@ -14,20 +14,20 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: b978b65bb3b717362697a41510c5b2b4d057cf1f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 726c7d2f08b2d5938ee5f9dcdc2735e447388856
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-ruby"></a>Ruby에서 큐 저장소를 사용하는 방법
+# <a name="how-toouse-queue-storage-from-ruby"></a>어떻게 toouse Ruby에서 큐 저장소
 [!INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>개요
-이 가이드에서는 Microsoft Azure 큐 저장소 서비스를 사용하여 일반 시나리오를 수행하는 방법을 설명합니다. 샘플은 Ruby Azure API를 사용하여 작성되었습니다.
-여기서 다루는 시나리오에는 **큐 만들기 및 삭제**뿐만 아니라 큐 메시지 **삽입**, **보기**, **가져오기** 및 **삭제**가 포함됩니다.
+이 가이드에서는 tooperform 일반적인 시나리오를 사용 하 여 Microsoft Azure 큐 저장소 서비스를 hello 하는 방법을 보여 줍니다. hello 샘플 hello Ruby Azure API를 사용 하 여 기록 됩니다.
+hello 가이드에서 다루는 시나리오 포함 **삽입**, **관찰**, **가져오는**, 및 **삭제** 메시지를 큐와  **만들기 및 큐 삭제**합니다.
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
@@ -36,52 +36,52 @@ ms.lasthandoff: 07/11/2017
 ## <a name="create-a-ruby-application"></a>Ruby 응용 프로그램 만들기
 Ruby 응용 프로그램을 만듭니다. 지침은 [Azure VM의 Ruby on Rails 웹 응용 프로그램](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)을 참조하세요.
 
-## <a name="configure-your-application-to-access-storage"></a>저장소에 액세스하도록 응용 프로그램 구성
-Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편리한 라이브러리 집합이 포함된 Ruby Azure 패키지를 다운로드하여 사용해야 합니다.
+## <a name="configure-your-application-tooaccess-storage"></a>응용 프로그램 tooAccess 저장소 구성
+Azure 저장소 toouse toodownload 및 사용 하 여 hello hello 저장소 REST 서비스와 통신 하는 편리한 라이브러리의 집합을 포함 하는 Ruby azure 패키지 해야 합니다.
 
-### <a name="use-rubygems-to-obtain-the-package"></a>RubyGems를 사용하여 패키지 가져오기
+### <a name="use-rubygems-tooobtain-hello-package"></a>RubyGems tooobtain hello 패키지 사용
 1. **PowerShell**(Windows), **Terminal**(Mac) 또는 **Bash**(Unix)와 같은 명령줄 인터페이스를 사용합니다.
-2. 명령 창에 "gem install azure"를 입력하여 gem 및 종속성을 설치합니다.
+2. "보석" 설치 azure의 hello 명령 창 tooinstall hello 보석 및 종속성을 입력 합니다.
 
-### <a name="import-the-package"></a>패키지 가져오기
-원하는 텍스트 편집기를 사용하여 저장소를 사용하려는 Ruby 파일의 맨 위에 다음을 추가합니다.
+### <a name="import-hello-package"></a>Hello 패키지 가져오기
+원하는 텍스트 편집기를 사용 하 여 hello toohello hello toouse 저장소 이점을 얻을 수 Ruby 파일 맨 뒤를 추가 합니다.
 
 ```ruby
 require "azure"
 ```
 
 ## <a name="setup-an-azure-storage-connection"></a>Azure 저장소 연결 설정
-Azure 모듈은 **AZURE\_STORAGE\_ACCOUNT** 및 **AZURE\_STORAGE\_ACCESS_KEY** 환경 변수를 읽고 Azure Storage 계정에 연결하는 데 필요한 정보를 확인합니다. 이러한 환경 변수가 설정되지 않으면 **Azure::QueueService** 를 사용하기 전에 다음 코드로 계정 정보를 지정해야 합니다.
+hello azure 모듈 hello 환경 변수는 읽기 **AZURE\_저장소\_계정** 및 **AZURE\_저장소\_ACCESS_KEY** 에 대 한 정보는 tooconnect tooyour Azure 저장소 계정이 필요합니다. 사용 하기 전에 hello 계정 정보를 지정 해야 이러한 환경 변수가 설정 되지 않은 경우 **Azure::QueueService** 코드 다음 hello로:
 
 ```ruby
 Azure.config.storage_account_name = "<your azure storage account>"
 Azure.config.storage_access_key = "<your Azure storage access key>"
 ```
 
-Azure 포털의 클래식 또는 Resource Manager 저장소 계정에서 이러한 값을 가져오려면
+tooobtain hello Azure 포털에서에서 기존 또는 리소스 관리자 저장소에서 이러한 값 계정:
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
-2. 사용하려는 저장소 계정으로 이동합니다.
-3. 오른쪽의 설정 블레이드에서 **액세스 키**를 클릭합니다.
-4. 나타나는 액세스 키 블레이드에 액세스 키 1 및 액세스 키 2가 표시되어 있습니다. 이 둘 중 하나를 사용할 수 있습니다. 
-5. 복사 아이콘을 클릭하여 키를 클립보드에 복사합니다. 
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
+2. Toouse 사용할 toohello 저장소 계정을 이동 합니다.
+3. Hello 오른쪽에 hello 설정 블레이드에서 클릭 **선택 키**합니다.
+4. 나타나는 hello 액세스 키 블레이드에서 hello 선택 키 1 및 2 선택 키 표시 됩니다. 이 둘 중 하나를 사용할 수 있습니다. 
+5. Hello 아이콘 toocopy hello 키 toohello 클립보드로 복사를 클릭 합니다. 
 
-클래식 Azure 포털의 클래식 저장소 계정에서 이러한 값을 가져오려면
+tooobtain 클래식 저장소에서 이러한 값 hello 클래식 Azure 포털의 계정:
 
-1. [클래식 Azure 포털](https://manage.windowsazure.com)에 로그인합니다.
-2. 사용하려는 저장소 계정으로 이동합니다.
-3. 탐색 창 아래쪽에서 **액세스 키 관리** 를 클릭합니다.
-4. 팝업 대화 상자에 저장소 계정 이름, 기본 액세스 키 및 보조 액세스 키가 표시됩니다. 액세스 키의 경우 기본 액세스 키 또는 보조 액세스 키를 사용할 수 있습니다. 
-5. 복사 아이콘을 클릭하여 키를 클립보드에 복사합니다.
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+2. Toouse 사용할 toohello 저장소 계정을 이동 합니다.
+3. 클릭 **액세스 키 관리** hello hello 탐색 창 맨 아래에 있습니다.
+4. 팝업 대화 상자 창이 hello, hello 저장소 계정 이름, 기본 액세스 키 및 보조 액세스 키를 표시 됩니다. 선택 키에 대 한 hello 기본 또는 보조 로케이터로 hello 중 하나를 사용할 수 있습니다. 
+5. Hello 아이콘 toocopy hello 키 toohello 클립보드로 복사를 클릭 합니다.
 
 ## <a name="how-to-create-a-queue"></a>큐를 만드는 방법
-다음 코드는 **Azure::QueueService** 개체를 만들어 큐 작업을 수행할 수 있게 해 줍니다.
+hello 다음 코드에서는 **Azure::QueueService** toowork 큐로 사용할 수 있는 개체입니다.
 
 ```ruby
 azure_queue_service = Azure::QueueService.new
 ```
 
-**create_queue()** 메서드를 사용하여 지정된 이름이 있는 큐를 만듭니다.
+사용 하 여 hello **create_queue()** 메서드 toocreate hello로 큐 이름을 지정 합니다.
 
 ```ruby
 begin
@@ -92,27 +92,27 @@ end
 ```
 
 ## <a name="how-to-insert-a-message-into-a-queue"></a>큐에 메시지를 삽입하는 방법
-큐에 메시지를 삽입하려면 **create_message()** 메서드를 사용하여 새 메시지를 만들고 이 메시지를 큐에 추가합니다.
+메시지 큐를 사용 하 여 hello에 tooinsert **create_message()** 메서드 toocreate 새 메시지 toohello 큐에 추가 합니다.
 
 ```ruby
 azure_queue_service.create_message("test-queue", "test message")
 ```
 
-## <a name="how-to-peek-at-the-next-message"></a>다음 메시지를 보는 방법
-큐에서 메시지를 제거하지 않고도 **peek\_messages()** 메서드를 호출하여 큐의 맨 앞에서 원하는 메시지를 볼 수 있습니다. 기본적으로 **peek\_messages()**는 단일 메시지를 읽습니다. 보려는 메시지의 수를 지정할 수도 있습니다.
+## <a name="how-to-peek-at-hello-next-message"></a>방법: hello 다음 메시지 피킹
+Hello를 호출 하 여 hello 큐에서 제거 하지 않고 큐의 hello 앞에 hello 메시지를 피킹할 수 있습니다 **peek\_messages()** 메서드. 기본적으로 **peek\_messages()**는 단일 메시지를 읽습니다. 메시지 수를 지정할 수도 있습니다 toopeek 원하는 합니다.
 
 ```ruby
 result = azure_queue_service.peek_messages("test-queue",
   {:number_of_messages => 10})
 ```
 
-## <a name="how-to-dequeue-the-next-message"></a>큐에서 다음 메시지를 제거하는 방법
+## <a name="how-to-dequeue-hello-next-message"></a>방법: hello 다음 메시지 큐에서 제거
 2단계를 거쳐 큐에서 메시지를 제거할 수 있습니다.
 
-1. **list\_messages()**를 호출하면 기본적으로 큐에서 다음 메시지를 가져옵니다. 가져오려는 메시지의 수를 지정할 수도 있습니다. **list\_messages()**에서 반환된 메시지는 이 큐의 메시지를 읽는 다른 코드에는 표시되지 않습니다. 표시 제한 시간(초 단위)을 매개 변수로 전달합니다.
-2. 큐에서 메시지 제거를 완료하려면 **delete_message()**도 호출해야 합니다.
+1. 호출 하는 경우 **목록\_messages()**, 기본적으로 큐에 있는 다음 메시지로 hello를 얻을 수 있습니다. 메시지 수를 지정할 수도 있습니다 tooget 원하는 합니다. 반환 된 메시지 hello **목록\_messages()** 보이지 않는 tooany이이 큐에서 메시지를 읽을 다른 코드 됩니다. 매개 변수로 초 hello 표시 제한 시간에 전달 합니다.
+2. toofinish 제거 hello 큐에서에서 메시지를 hello 호출 해야 **delete_message()**합니다.
 
-메시지를 제거하는 이 2단계 프로세스는 코드가 하드웨어 또는 소프트웨어 오류로 인해 메시지를 처리하지 못하는 경우 코드의 다른 인스턴스가 동일한 메시지를 가져와서 다시 시도할 수 있도록 보장합니다. 코드는 메시지가 처리된 직후에 **delete\_message()**를 호출합니다.
+이러한 2 단계 프로세스의 메시지를 제거 되었는지를 확인 다시 toohardware 또는 소프트웨어 오류가, 코드의 다른 인스턴스는 메시지를 가져올 수 하 여 코드 실패 tooprocess hello 같은 메시지와 시도 하는 경우. 코드 호출 **삭제\_message()** 직후 hello 메시지를 처리 합니다.
 
 ```ruby
 messages = azure_queue_service.list_messages("test-queue", 30)
@@ -120,8 +120,8 @@ azure_queue_service.delete_message("test-queue",
   messages[0].id, messages[0].pop_receipt)
 ```
 
-## <a name="how-to-change-the-contents-of-a-queued-message"></a>대기 중인 메시지의 콘텐츠 변경 방법
-큐에 있는 메시지의 콘텐츠를 변경할 수 있습니다. 아래 코드는 **update_message()** 메서드를 사용하여 메시지를 업데이트합니다. 이 메서드는 큐 메시지의 pop 확인 및 메시지가 큐에 표시되는 시간을 나타내는 UTC 날짜 시간 값이 포함된 튜플을 반환합니다.
+## <a name="how-to-change-hello-contents-of-a-queued-message"></a>방법: 대기 중인 메시지의 내용을 hello 변경
+메시지 전체 hello 큐에서의 hello 내용을 변경할 수 있습니다. 아래 hello 코드 hello를 사용 하 여 **update_message()** 메서드 tooupdate 메시지입니다. hello 메서드 hello 큐 메시지의 popreceipt hello 포함 된 튜플 및 hello 메시지가 hello 큐에 표시 될 때를 나타내는 UTC 날짜 시간 값을 반환 합니다.
 
 ```ruby
 message = azure_queue_service.list_messages("test-queue", 30)
@@ -134,9 +134,9 @@ pop_receipt, time_next_visible = azure_queue_service.update_message(
 큐에서 메시지 검색을 사용자 지정할 수 있는 방법으로는 두 가지가 있습니다.
 
 1. 메시지의 배치를 가져올 수 있습니다.
-2. 표시하지 않는 제한 시간을 더 길거나 더 짧게 설정하여 코드에서 각 메시지를 완전히 처리하는 시간을 늘리거나 줄일 수 있습니다.
+2. 각 메시지를 처리 하는 작은 시간 toofully 또는 코드를 자세히 허용 더 길거나 더 짧은 표시 안 함 시간 제한이 설정할 수 있습니다.
 
-다음 코드 예제는 **list\_messages()** 메서드를 사용하여 한 번 호출에서 15개의 메시지를 가져옵니다. 그런 다음 각 메시지를 인쇄하고 삭제합니다. 또한 각 메시지에 대해 표시하지 않는 제한 시간을 5분으로 설정합니다.
+hello 다음 코드 예제에서는 hello **목록\_messages()** 메서드 tooget 15 메시지 한 번 호출에서 합니다. 그런 다음 각 메시지를 인쇄하고 삭제합니다. 또한 각 메시지에 대 한 hello 표시 안 함 시간 초과 toofive 분을 설정합니다.
 
 ```ruby
 azure_queue_service.list_messages("test-queue", 300
@@ -146,8 +146,8 @@ azure_queue_service.list_messages("test-queue", 300
 end
 ```
 
-## <a name="how-to-get-the-queue-length"></a>방법: 큐 길이 가져오기
-큐에 있는 메시지의 추정된 개수를 가져올 수 있습니다. **get\_queue\_metadata()** 메서드는 큐 서비스에 대략적인 메시지 개수 및 큐에 대한 메타데이터를 반환하도록 요청합니다.
+## <a name="how-to-get-hello-queue-length"></a>방법: hello 큐 길이 가져오기
+Hello 큐에 메시지 hello 수의 예측을 얻을 수 있습니다. hello **가져오기\_큐\_metadata()** 메서드 hello 큐에 대 한 hello 큐 서비스 tooreturn hello 대략적인 메시지 수 및 메타 데이터를 요청 합니다.
 
 ```ruby
 message_count, metadata = azure_queue_service.get_queue_metadata(
@@ -155,16 +155,16 @@ message_count, metadata = azure_queue_service.get_queue_metadata(
 ```
 
 ## <a name="how-to-delete-a-queue"></a>방법: 큐 삭제
-큐 및 해당 큐의 모든 메시지를 삭제하려면 큐 개체의 **delete\_queue()** 메서드를 호출합니다.
+toodelete는 큐와 모든 hello 메시지에 포함 된, 호출 hello **삭제\_queue ()** hello 큐 개체에서 메서드.
 
 ```ruby
 azure_queue_service.delete_queue("test-queue")
 ```
 
 ## <a name="next-steps"></a>다음 단계
-이제 큐 저장소의 기본 사항을 배웠으므로 다음 링크를 따라 좀 더 복잡한 저장소 작업에 대해 알아보세요.
+큐 저장소의 hello 기본 사항 학습 한, 했으므로 더 복잡 한 저장소 작업에 대 한 이러한 링크 toolearn을 따릅니다.
 
-* [Azure 저장소 팀 블로그](http://blogs.msdn.com/b/windowsazurestorage/)
-* GitHub에서 [Azure SDK for Ruby](https://github.com/WindowsAzure/azure-sdk-for-ruby) (영문) 리포지토리를 방문하세요.
+* Hello 방문 [Azure 저장소 팀 블로그](http://blogs.msdn.com/b/windowsazurestorage/)
+* Hello 방문 [Ruby 용 Azure SDK](https://github.com/WindowsAzure/azure-sdk-for-ruby) GitHub의 리포지토리
 
-이 항목에서 다룬 Azure 큐 서비스와 [Service Bus 큐를 사용하는 방법](/develop/ruby/how-to-guides/service-bus-queues/) 항목에서 다루는 Azure Service Bus 큐를 비교하려면 [Azure Queues 및 Service Bus 큐 - 비교 및 대조](../service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted.md)를 참조하세요.
+간의 비교에 대 한 Azure 큐 서비스 및이 아티클과 hello에서 설명 하는 Azure 서비스 버스 큐에 설명 된 hello [어떻게 toouse 서비스 버스 큐](/develop/ruby/how-to-guides/service-bus-queues/) 문서를 참조 하십시오. [Azure 큐 및 서비스 버스 큐-비교 및 대조](../service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted.md)

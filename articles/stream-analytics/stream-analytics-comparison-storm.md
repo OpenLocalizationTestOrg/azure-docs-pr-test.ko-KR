@@ -1,6 +1,6 @@
 ---
-title: "분석 플랫폼: Apache Storm과 Stream Analytics 비교 | Microsoft Docs"
-description: "Apache Storm과 Azure Stream Analytics 비교를 사용하여 클라우드 분석 플랫폼 선택에 대한 지침을 확인하세요. 기능 및 차이점을 이해하세요."
+title: "분석 플랫폼: Apache Storm 비교 tooStream 분석 | Microsoft Docs"
+description: "Apache Storm 비교 tooStream 분석을 사용 하 여 클라우드 분석 플랫폼을 선택 하는 지침을 알아봅니다. 기능 및 차이점을 이해하세요."
 keywords: "분석 플랫폼, 클라우드 분석 플랫폼, storm 비교"
 services: stream-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/27/2017
 ms.author: samacha
-ms.openlocfilehash: 97044cb5d7b0b3fcb3b85328df618a265bc59b61
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5a0ec5b2439596f0da962f04b776472031660062
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="choosing-a-streaming-analytics-platform-comparing-apache-storm-and-azure-stream-analytics"></a>스트리밍 분석 플랫폼 선택: Apache Storm 및 Azure Stream Analytics 비교
-Azure는 스트리밍 데이터 분석을 위해 [Azure Streaming Analytics](https://docs.microsoft.com/azure/stream-analytics/) 및 [Azure HDInsight의 Apache Storm](https://azure.microsoft.com/services/hdinsight/apache-storm/)과 같은 여러 솔루션을 제공합니다. 두 분석 플랫폼 모두 PaaS 솔루션의 이점을 제공합니다. 하지만 두 플랫폼은 그 기능과 구성 및 관리 방법면에서 상당한 차이점이 있습니다. 
+Azure는 스트리밍 데이터 분석을 위해 [Azure Streaming Analytics](https://docs.microsoft.com/azure/stream-analytics/) 및 [Azure HDInsight의 Apache Storm](https://azure.microsoft.com/services/hdinsight/apache-storm/)과 같은 여러 솔루션을 제공합니다. 분석 플랫폼은 모두 PaaS 솔루션의 hello 이점을 제공합니다. 하지만 hello 플랫폼도 구성 하 고 이러한 컴퓨터를 관리 하는 방법을 에서처럼의 기능에 따라 다릅니다. 
 
-이 문서에서는 Apache Storm 및 Azure Stream Analytics 중에서 클라우드 분석 플랫폼을 선택하는 데 도움이 되는 단계별 기능 비교를 제공합니다. 
+이 문서에서는 Apache Storm와 클라우드 분석 플랫폼으로 서 Azure 스트림 분석 중에서 선택할 기능 toohelp-나란히 비교 합니다. 
 
 ## <a name="general-features"></a>일반 기능
 
@@ -121,14 +121,14 @@ Azure는 스트리밍 데이터 분석을 위해 [Azure Streaming Analytics](htt
             </td>
             <td width="204" valign="top">
                 <p>
-처리되는 데이터 볼륨 및 작업이 실행되는 시간당 필요한 스트리밍 단위의 수에 따라 가격이 책정됩니다. 
+처리 된 데이터의 볼륨에 의해 가격이 책정 hello 스트리밍 단위 수가 필요한 시간당 작업 hello 있지만 실행 되 고 있습니다. 
                 </p>
                     <p>자세한 내용은 <a href="http://azure.microsoft.com/pricing/details/stream-analytics/">Stream Analytics 가격</a>을 참조하세요.</p>
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-구매 단위는 클러스터 기반이며 배포된 작업과는 별개로, 클러스터가 실행되는 시간을 기준으로 요금이 청구됩니다.
+hello 단위 구입 클러스터 기반 이며 hello 클러스터가 실행 중인지, 배포 하는 작업의 독립적인 hello 시간에 따라 청구 됩니다.
                 </p>
                 <p>
 자세한 내용은 <a href="http://azure.microsoft.com/pricing/details/hdinsight/">HDInsight 가격</a>을 참조하세요.
@@ -189,7 +189,7 @@ Azure는 스트리밍 데이터 분석을 위해 [Azure Streaming Analytics](htt
             </td>
             <td width="246" valign="top">
                 <p>
-temporal 연산자는 사용자가 구현해야 합니다.
+임시 연산자는 hello 사용자에 의해 구현 되어야 합니다.
                 </p>
             </td>
         </tr>
@@ -201,12 +201,12 @@ temporal 연산자는 사용자가 구현해야 합니다.
             </td>
             <td width="204" valign="top">
                 <p>
-사용자는 Azure Portal을 통해, 라이브 스트림에서 파생된 샘플 데이터를 사용하여 작업을 만들고 디버깅하며 모니터할 수 있습니다.
+사용자 만들 수, 디버깅 및 라이브 스트림을에서 파생 된 샘플 데이터를 사용 하 여 hello Azure 포털을 통해 작업을 모니터링 합니다.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-.NET을 사용하는 사용자는 Visual Studio를 통해 개발, 디버그 및 모니터할 수 있습니다. Java 또는 기타 언어를 사용하는 사용자는 원하는 IDE를 사용할 수 있습니다.
+.NET을 사용하는 사용자는 Visual Studio를 통해 개발, 디버그 및 모니터할 수 있습니다. Java 또는 기타 언어를 사용 하 여 사용자가 선택한 IDE hello를 사용 수 있습니다.
                 </p>
             </td>
         </tr>
@@ -218,12 +218,12 @@ temporal 연산자는 사용자가 구현해야 합니다.
             </td>
             <td width="204" valign="top">
                 <p>
-기본 작업 상태 및 작업 로그는 디버깅을 지원하기 위해 제공됩니다. 현재는 사용자가 Stream Analytics를 통해 로그에 포함된 콘텐츠 또는 콘텐츠의 양을 지정할 수 없습니다(즉, 자세한 정보 표시 모드).
+기본 작업 상태 및 작업 로그는 사용할 수 있는 toohelp 디버그 합니다. 스트림 분석 현재 수는 없습니다 사용자 지정 콘텐츠 또는 콘텐츠 hello 로그 (즉, 자세한 정보 표시 모드)에 포함 됩니다.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-자세한 로그를 사용할 수 있습니다. 사용자가 Visual Studio에서 로그에 액세스하거나 클러스터에 로그인하고 로그에 직접 액세스할 수 있습니다.
+자세한 로그를 사용할 수 있습니다. 사용자가 로그 toohello 클러스터를 로그인 하 고 hello 로그에 직접 액세스 하거나 Visual Studio에서 액세스할 수 있습니다.
                 </p>
             </td>
         </tr>
@@ -388,7 +388,7 @@ Azure Portal, PowerShell, Visual Studio 및 REST API.
             </td>
             <td width="246" valign="top">
                 <p>
-모니터링은 Storm UI 및 REST API를 사용하여 구현됩니다.
+모니터링 스톰 UI hello 및 REST Api를 사용 하 여 구현 됩니다.
                 </p>
             </td>
         </tr>
@@ -400,12 +400,12 @@ Azure Portal, PowerShell, Visual Studio 및 REST API.
             </td>
             <td width="204" valign="top">
                 <p>
-확장성은 각 작업에 대한 SU(스트리밍 단위) 수에 따라 결정됩니다. 스트리밍 단위당 최대 1MB/초로 처리하며 최대 단위는 50입니다. 자세한 내용은 <a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">크기를 조정하여 처리량 늘리기</a>를 참조하세요.
+확장성은 hello 스트리밍 단위 수가 (SUs) 각 작업에 의해 결정 됩니다. 최대 50 명의 단위와 m B/초를 too1를 처리 하는 각 스트리밍 단위 합니다. 자세한 내용은 참조 <a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">배율 tooincrease 처리량</a>합니다.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-확장성은 HDInsight Storm 클러스터의 노드 수에 따라 결정됩니다. 상위 제한 노드 수는 사용자의 Azure 할당량에 의해 정의됩니다.
+확장성은 hello hello HDInsight Storm 클러스터의에서 노드 수가 결정 됩니다. hello 상위 노드의 hello 수 제한은 15 hello 사용자의 Azure 할당량에 의해 정의 됩니다.
                 </p>
             </td>
         </tr>
@@ -417,7 +417,7 @@ Azure Portal, PowerShell, Visual Studio 및 REST API.
             </td>
             <td width="204" valign="top">
                 <p>
-사용자가 데이터 처리를 늘리거나 스트리밍 단위 수를 늘리거나 줄여서 비용을 최적화할 수 있습니다. 이 경우 상한은 1GB/초입니다.
+사용자가 데이터 처리 늘리거나 증가 또는 감소 hello 개수 스트리밍 단위를 1 g B/초의 상한값을 적용 하 여 비용을 최적화 수입니다.
                 </p>
             </td>
             <td width="246" valign="top">
@@ -475,10 +475,10 @@ Azure Portal, PowerShell, Visual Studio 및 REST API.
             </td>
             <td width="246" valign="top">
                 <p>
-스톰 클러스터의 SLA 가동 시간 99.9% 
+Hello Storm 클러스터의 99.9% 가동률의 SLA를 제공 합니다. 
                 </p>
                 <p>
-Apache Storm는 내결함성이 있는 스트리밍 플랫폼입니다. 하지만 스트리밍 작업이 중단 없이 계속 실행되도록 하는 것은 사용자 책임입니다.
+Apache Storm는 내결함성이 있는 스트리밍 플랫폼입니다. 그러나는 스트리밍 작업이 실행 되는 중단 없이 hello 사용자의 책임 tooensure 되기 합니다.
                 </p>
             </td>
         </tr>
@@ -519,7 +519,7 @@ Apache Storm는 내결함성이 있는 스트리밍 플랫폼입니다. 하지�
             </td>
             <td width="246" valign="top">
                 <p>
-사용자는 이 시나리오를 처리하기 위한 논리를 구현해야 합니다.
+사용자가 논리 toohandle이이 시나리오를 구현 해야 합니다.
                 </p>
             </td>
         </tr>
@@ -531,7 +531,7 @@ Apache Storm는 내결함성이 있는 스트리밍 플랫폼입니다. 하지�
             </td>
             <td width="204" valign="top">
                 <p>
-참조 데이터를 최대 100MB의 메모리 내 캐시가 있는 Azure Blob Storage에서 사용할 수 있습니다. 참조 데이터는 서비스에서 새로 고쳐집니다.
+참조 데이터를 최대 100MB의 메모리 내 캐시가 있는 Azure Blob Storage에서 사용할 수 있습니다. 참조 데이터는 hello 서비스에서 새로 고쳐집니다.
                 </p>
             </td>
             <td width="246" valign="top">

@@ -1,6 +1,6 @@
 ---
-title: "등록 관리"
-description: "이 항목에서는 푸시 알림을 받기 위해 알림 허브에 장치를 등록하는 방법에 대해 설명합니다."
+title: "aaaRegistration 관리"
+description: "이 항목에서는 순서 tooreceive에서 알림 허브를 사용 하 여 tooregister 장치 푸시 알림 방법을 설명 합니다."
 services: notification-hubs
 documentationcenter: .net
 author: ysxu
@@ -14,34 +14,34 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: a1a349150ef4c7837932706f0c4fcc8d022ec7ab
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 76471a45c7a0da1614ceed82b73cdb3319979ff7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="registration-management"></a>등록 관리
 ## <a name="overview"></a>개요
-이 항목에서는 푸시 알림을 받기 위해 알림 허브에 장치를 등록하는 방법에 대해 설명합니다. 먼저 높은 수준에서 등록을 설명한 다음 장치를 등록하는 두 가지 주 패턴, 즉 장치에서 알림 허브에 직접 등록 및 응용 프로그램 백 엔드를 통해 등록을 소개합니다. 
+이 항목에서는 순서 tooreceive에서 알림 허브를 사용 하 여 tooregister 장치 푸시 알림 방법을 설명 합니다. hello 항목 높은 수준에서 등록 한 다음 장치를 등록 하기 위한 두 hello 주 패턴이 도입: hello 장치에서 등록 직접 toohello 알림 허브를 통해 등록 하는 응용 프로그램 백 엔드 합니다. 
 
 ## <a name="what-is-device-registration"></a>장치 등록이란?
 Notification Hub에 장치 등록은 **등록** 또는 **설치**를 사용하여 수행됩니다.
 
 #### <a name="registrations"></a>등록
-등록은 태그 및 아마도 템플릿을 가진 장치에 대해 플랫폼 알림 서비스(PNS) 핸들을 연결합니다. PNS 핸들은 ChannelURI, 장치 토큰 또는 GCM 등록 ID일 수 있습니다. 태그는 장치 핸들의 정확한 집합에 알림을 올바른 장치 핸들 집합에 라우팅하기 위해 사용됩니다. 자세한 내용은 [라우팅 및 태그 식](notification-hubs-tags-segment-push-message.md)을 참조하세요. 템플릿은 등록당 변환을 구현하는 데 사용됩니다. 자세한 내용은 [템플릿](notification-hubs-templates-cross-platform-push-messages.md)을 사용하세요.
+등록 하는 태그 및 템플릿을 사용 하 여 장치에 대 한 서비스 PNS (플랫폼 알림) 처리 하는 hello에 연결 합니다. ChannelURI, 장치 토큰 또는 GCM 등록 id hello PNS 핸들 수 있습니다. 태그는 사용 되는 tooroute 알림 toohello 올바른 장치 핸들 집합입니다. 자세한 내용은 [라우팅 및 태그 식](notification-hubs-tags-segment-push-message.md)을 참조하세요. 템플릿은 등록 당 변환을 사용 하는 tooimplement입니다. 자세한 내용은 [템플릿](notification-hubs-templates-cross-platform-push-messages.md)을 사용하세요.
 
 #### <a name="installations"></a>설치
-설치는 푸시 모음 관련 속성을 포함하고 있는 향상된 등록입니다. 이는 장치 등록에 대한 최근의 가장 우수한 방식입니다. 그러나 아직 클라이언트 쪽 .NET SDK([백 엔드 작업을 위한 알림 허브 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/))에서는 지원되지 않습니다.  즉, 클라이언트 장치 자체에서 등록하는 경우 설치를 지원하기 위해 [알림 허브 REST API](https://msdn.microsoft.com/library/mt621153.aspx) 접근 방식을 사용해야 합니다. 백 엔드 서비스를 사용하는 경우 [백 엔드 작업을 위한 알림 허브 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)를 사용할 수 있습니다.
+설치는 푸시 모음 관련 속성을 포함하고 있는 향상된 등록입니다. 장치를 최신 하 고 가장 좋은 방법은 tooregistering hello 이며 그러나 아직 클라이언트 쪽 .NET SDK([백 엔드 작업을 위한 알림 허브 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/))에서는 지원되지 않습니다.  즉, toouse hello 갖기 hello 클라이언트 장치 자체에서 등록 하는 경우 [알림 허브 REST API](https://msdn.microsoft.com/library/mt621153.aspx) toosupport 설치에 접근 합니다. 백 엔드 서비스를 사용 하는 경우 수 toouse 있어야 [백 엔드 작업에 대 한 알림 허브 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)합니다.
 
-설치 사용의 몇 가지 주요 장점은 다음과 같습니다.
+hello 다음은 몇 가지 주요 이점은 toousing 설치입니다.
 
 * 설치 만들기 또는 업데이트가 완전히 멱등 상태입니다. 따라서 중복 등록을 걱정할 필요 없이 재시도할 수 있습니다.
-* 설치 모델은 개별 푸시 - 특정 장치 대상 지정이 쉽게 해줍니다. 시스템 태그 **"$InstallationId:[installationId]"** 는 각 설치 기반 등록에 자동으로 추가됩니다. 따라서 추가 코딩을 수행할 필요 없이 이 태그 보내기를 호출하여 특정 장치를 대상 지정할 수 있습니다.
-* 또한 설치를 사용하여 부분적인 등록 업데이트를 수행할 수도 있습니다. 설치의 부분 업데이트는 [JSON 패치 표준](https://tools.ietf.org/html/rfc6902)을 사용하여 PATCH 메서드에서 요청됩니다. 이는 등록 시 태그를 업데이트하려고 할 때 특히 유용합니다. 전체 등록을 풀다운한 다음 모든 이전 태그를 다시 보낼 필요가 없습니다.
+* hello 설치 모델을 사용 하면 쉽게 toodo 개별 푸시-특정 장치를 대상으로 지정 합니다. 시스템 태그 **"$InstallationId:[installationId]"** 는 각 설치 기반 등록에 자동으로 추가됩니다. 따라서 호출할 수 있습니다 송신 toothis 태그 tootarget 특정 장치 필요 toodo 추가 코딩 없이 합니다.
+* 또한 설치를 사용 하 여 toodo 부분 등록 업데이트 수 있습니다. hello 부분 업데이트를 설치 하는 요청 된 hello를 사용 하 여 패치 메서드로 [JSON 패치 표준](https://tools.ietf.org/html/rfc6902)합니다. Tooupdate 태그 hello 등록 하려는 경우 특히 유용 합니다. 없습니다 toopull hello 전체 등록 다운 하 고 모든 hello 이전 태그 다시 보내십시오.
 
-설치는 다음과 같은 속성을 포함할 수 있습니다. 설치 속성의 전체 목록은 [REST API를 사용하여 설치 만들기 또는 덮어쓰기](https://msdn.microsoft.com/library/azure/mt621153.aspx) 또는 [설치 속성](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx)을 참조하세요.
+설치 된 hello hello 다음과 같은 속성을 포함할 수 있습니다. Hello 설치 속성 참조의 전체 목록을 보려면 [만들기 또는 REST api 설치를 덮어쓸](https://msdn.microsoft.com/library/azure/mt621153.aspx) 또는 [설치 속성](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx) hello에 대 한 합니다.
 
-    // Example installation format to show some supported properties
+    // Example installation format tooshow some supported properties
     {
         installationId: "",
         expirationTime: "",
@@ -77,37 +77,37 @@ Notification Hub에 장치 등록은 **등록** 또는 **설치**를 사용하�
 
 
 
-기본적으로 등록 및 설치는 더 이상 만료되지 않음에 유의해야 합니다.
+것이 더 이상 만료 등록 및 기본적으로 설치 하는 중요 한 toonote 합니다.
 
-등록 및 설치는 각 장치/채널에 대한 유효한 PNS 핸들을 포함해야 합니다. PNS 핸들은 장치의 클라이언트 앱에서만 획득할 수 있으므로 한 가지 패턴은 클라이언트 앱을 사용하여 해당 장치에서 직접 등록하는 것입니다. 한편 태그와 관련된 보안 고려 사항 및 비즈니스 논리 때문에 앱 백 엔드에서 장치 등록을 관리해야 할 수 있습니다. 
+등록 및 설치는 각 장치/채널에 대한 유효한 PNS 핸들을 포함해야 합니다. Hello 장치에서 클라이언트 응용 프로그램에서 PNS 핸들을 가져올 수만, 한 패턴 hello 클라이언트 응용 프로그램으로 해당 장치에 직접 tooregister은입니다. Hello 다른 손, 보안 고려 사항 및 비즈니스 논리 관련 tootags toomanage 장치 등록 hello 앱 백 엔드에 필요할 수 있습니다. 
 
 #### <a name="templates"></a>템플릿
-[템플릿](notification-hubs-templates-cross-platform-push-messages.md)을 사용하려면 장치 설치에서 해당 장치와 연결된 모든 템플릿을 JSON 형식으로 유지합니다(위 샘플 참조). 템플릿 이름은는 동일한 장치에 대한 서로 다른 템플릿을 대상 도움이 됩니다.
+Toouse 하려는 경우 [템플릿](notification-hubs-templates-cross-platform-push-messages.md), hello 장치 설치 json에서 해당 장치와 연결 된 모든 템플릿을 포함할 형식 (위의 예제 참조). hello 템플릿 이름 도움말 hello에 대 한 서로 다른 템플릿을 대상으로 동일한 장치입니다.
 
-참고로 각 템플릿 이름은 템플릿 본문 및 선택적 태그 집합에 매핑됩니다. 또한 각 플랫폼이 추가 템플릿 속성을 가질 수 있습니다. Windows 스토어(WNS 사용) 및 Windows Phone 8(MPNS 사용)의 경우 추가 헤더 집합이 템플릿의 일부일 수 있습니다. APN의 경우 만료 속성을 상수 또는 템플릿 식으로 설정할 수 있습니다. 설치 속성의 전체 목록은 [REST를 사용하여 설치 만들기 또는 덮어쓰기](https://msdn.microsoft.com/library/azure/mt621153.aspx) 항목을 참조하세요.
+각 템플릿 이름이 매핑됨을 tooa 템플릿 본문 및 선택적 태그 집합을 참고 합니다. 또한 각 플랫폼이 추가 템플릿 속성을 가질 수 있습니다. (WNS를 사용 하 여) Windows 스토어 및 Windows Phone 8 (MPNS를 사용 하 여)에 대 한 추가 헤더 집합이 hello 서식 파일의 일부를 수 있습니다. APNs의 경우 hello 만료 속성 tooeither 상수 또는 tooa 템플릿 식을 설정할 수 있습니다. Hello 설치 속성 참조의 전체 목록을 보려면 [만들거나 rest 설치를 덮어쓸](https://msdn.microsoft.com/library/azure/mt621153.aspx) 항목입니다.
 
 #### <a name="secondary-tiles-for-windows-store-apps"></a>Windows 스토어 앱용 보조 타일
-Windows 스토어 클라이언트 응용 프로그램의 경우 보조 타일에 알림을 보내는 것은 기본 타일에 보내는 것과 같습니다. 이 기능은 설치에서도 지원됩니다. 참고로 보조 타일에는 클라이언트 앱의 SDK가 투명하게 처리하는 다른 ChannelUri가 있습니다.
+Windows 스토어 클라이언트 응용 프로그램에 대 한 toosecondary 타일은 알림을 보내는 hello 동일 보내 toohello 기본으로 합니다. 이 기능은 설치에서도 지원됩니다. 보조 타일 클라이언트 앱에는 hello SDK에서 투명 하 게 처리 하는 다른 ChannelUri 한지 확인 합니다.
 
-SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 만드는 데 사용하는 것과 같은 TileId를 사용합니다.
-기본 ChannelUri와 마찬가지로 보조 타일의 ChannelUris도 언제든지 변경할 수 있습니다. 알림 허브의 설치를 계속 업데이트되게 하려면 장치가 설치를 보조 타일의 현재 ChannelUris로 새로 고쳐야 합니다.
+hello SecondaryTiles 사전을 사용 하 여 hello 동일한 TileId Windows 스토어 앱에 사용 되는 toocreate hello SecondaryTiles 개체입니다.
+처럼 hello 기본 ChannelUri, 보조 타일의 Channeluri 언제 든 지 변경할 수 있습니다. Hello 알림 허브를 업데이트에서 tookeep hello 설치 순서에에서 hello 장치를 새로 고쳐야 하 hello로 hello 보조 타일의 최신 Channeluri 합니다.
 
-## <a name="registration-management-from-the-device"></a>장치에서 등록 관리
-클라이언트 앱에서 장치 등록을 관리하는 경우 백 엔드만는 알림을 보내기만 합니다. 클라이언트 앱은 PNS 핸들을 최신 상태로 유지하고 태그를 등록합니다. 다음 그림은 이 패턴을 보여 줍니다.
+## <a name="registration-management-from-hello-device"></a>Hello 장치에서 등록 관리
+클라이언트 앱에서 장치 등록을 관리 하는 경우 hello 백 엔드는 알림 전송만 합니다. 클라이언트 앱을 toodate, PNS 핸들을 유지 하 고 태그를 등록 합니다. 다음 그림 hello이이 패턴을 보여 줍니다.
 
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-device.png)
 
-장치는 먼저 PNS에서 PNS 핸들을 검색한 다음 알림 허브에 직접 등록합니다. 등록이 성공한 후 앱 백 엔드는 해당 등록을 대상으로 지정하는 알림을 보낼 수 있습니다. 알림을 보내는 방법에 대한 자세한 내용은 [라우팅 및 태그 식](notification-hubs-tags-segment-push-message.md)을 참조하세요.
-참고로 이 경우 수신 권한만 사용하여 장치에서 사용자의 알림 허브에 액세스합니다. 자세한 내용은 [보안](notification-hubs-push-notification-security.md)을 참조하세요.
+hello 장치는 먼저 hello PNS에서에서 PNS 핸들과 hello 검색 다음 hello 알림 허브에 직접 등록 합니다. Hello 등록 되 면 hello 앱 백 엔드에서 해당 등록을 대상으로 하는 알림을 보낼 수 있습니다. 방법에 대 한 자세한 내용은 toosend 알림을 참조 [라우팅 및 태그 식](notification-hubs-tags-segment-push-message.md)합니다.
+이 예에서 사용할 참고의 hello 장치에서 알림 허브 권한 tooaccess를만 수신 대기 합니다. 자세한 내용은 [보안](notification-hubs-push-notification-security.md)을 참조하세요.
 
-장치에서 등록은 가장 간단한 방법이지만 몇 가지 단점이 있습니다.
-첫 번째 단점은 클라이언트 앱이 활성 상태일 때에만 태그를 업데이트할 수 있다는 것입니다. 예를 들어 사용자가 스포츠 팀과 관련된 태그를 등록하는 장치 두 개를 가지고 있는 경우 첫 번째 장치가 추가 태그(예: Seahawks)에 대해 등록하면 두 번째 장치는 두 번째 장치의 앱이 두 번째로 실행될 때까지 Seahawks에 관한 알림을 받지 않습니다. 더 일반적으로 태그가 여러 장치의 영향을 받는 경우 백 엔드에서 태그 관리가 바람직한 옵션입니다.
-클라이언트 앱에서 등록 관리의 두 번째 단점은 앱이 해킹을 당할 수 있으므로 “태그 수준 보안" 섹션에서 설명했듯이 특정 태그에 대한 등록을 보호하려면 좀 더 주의해야 합니다.
+Hello 장치에서 등록 된 hello 가장 간단한 방법은 수도 있지만 몇 가지 단점이 있습니다.
+hello 첫 번째 단점은 클라이언트 앱 hello 앱 활성화 된 경우 해당 태그 업데이트할만 수입니다. 예를 들어 사용자는 추가 태그 (예를 들어 Seahawks) hello 첫 번째 장치를 등록 하는 경우 태그 관련된 toosport 팀을 등록 하는 두 개의 장치를 두 번째 장치 hello hello Seahawks에 대 한 hello 알림을 때까지 나타나지 않습니다 hello에 hello 앱 두 번째 장치를 두 번 실행 됩니다. 보다 일반적으로 태그를 여러 장치에 영향을 받는 hello 백 엔드에서 태그 관리 경우 알맞은 방법 있습니다.
+hello 두 번째의 단점은 hello 클라이언트 응용 프로그램에서 등록을 관리 하는 앱을 해킹 가능 하므로 특별히 주의 해야 hello 등록 toospecific 태그를 보호 하려면 즉, "태그 수준 보안 합니다." hello 섹션에 설명 된 대로
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-an-installation"></a>설치를 사용하여 장치에서 알림 허브에 등록하는 예제 코드
-현재 이 기능은 [알림 허브 REST API](https://msdn.microsoft.com/library/mt621153.aspx)를 사용해서만 지원됩니다.
+#### <a name="example-code-tooregister-with-a-notification-hub-from-a-device-using-an-installation"></a>설치를 사용 하는 장치에서 알림 허브와 예제 코드 tooregister
+이 때만 지원 됩니다 hello를 사용 하 여 [알림 허브 REST API](https://msdn.microsoft.com/library/mt621153.aspx)합니다.
 
-설치를 업데이트하는 경우 [JSON 패치 표준](https://tools.ietf.org/html/rfc6902) 을 사용하여 PATCH 메서드를 사용할 수도 있습니다.
+Hello를 사용 하 여 hello 패치 메서드를 사용할 수도 있습니다 [JSON 패치 표준](https://tools.ietf.org/html/rfc6902) hello 설치를 업데이트 합니다.
 
     class DeviceInstallation
     {
@@ -128,7 +128,7 @@ SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 �
         string hubResource = "installations/" + deviceInstallation.installationId + "?";
         string apiVersion = "api-version=2015-04";
 
-        // Determine the targetUri that we will sign
+        // Determine hello targetUri that we will sign
         string uri = connectionSaSUtil.Endpoint + hubName + "/" + hubResource + apiVersion;
 
         //=== Generate SaS Security Token for Authorization header ===
@@ -186,17 +186,17 @@ SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 �
 
 
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration"></a>등록을 사용하여 장치에서 알림 허브에 등록하는 예제 코드
-이러한 메서드는 호출되는 장치에 대한 등록을 만들거나 업데이트합니다. 즉, 핸들이나 태그를 업데이트하려면 전체 등록을 덮어써야 합니다. 참고로 등록은 일시적이므로 언제나 특정 장치에 필요한 현재 태그와 함께 신뢰할 수 있는 저장소가 있어야 합니다.
+#### <a name="example-code-tooregister-with-a-notification-hub-from-a-device-using-a-registration"></a>등록을 사용 하는 장치에서 알림 허브와 예제 코드 tooregister
+이러한 메서드 만들기 또는 호출 된 hello 장치에 대 한 등록을 업데이트 합니다. 즉, 순서-tooupdate hello 핸들 또는 hello 태그에 hello 전체 등록 덮어쓰기 해야 합니다. 등록은 일시적인 항목 이므로 특정 장치에 필요한 hello 현재 태그와 신뢰할 수 있는 저장소는 항상 있어야 기억 합니다.
 
-    // Initialize the Notification Hub
+    // Initialize hello Notification Hub
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(listenConnString, hubName);
 
-    // The Device id from the PNS
+    // hello Device id from hello PNS
     var pushChannel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-    // If you are registering from the client itself, then store this registration id in device
-    // storage. Then when the app starts, you can check if a registration id already exists or not before
+    // If you are registering from hello client itself, then store this registration id in device
+    // storage. Then when hello app starts, you can check if a registration id already exists or not before
     // creating.
     var settings = ApplicationData.Current.LocalSettings.Values;
 
@@ -240,21 +240,21 @@ SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 �
 
 
 ## <a name="registration-management-from-a-backend"></a>백 엔드에서 등록 관리
-백 엔드에서 등록을 관리하려면 추가 코드를 작성해야 합니다. 장치의 앱은 앱이 시작될 때마다 업데이트된 PNS 핸들을 백 엔드에 제공해야 하며(태그 및 템플릿과 함께), 백 엔드는 알림 허브에 대해 이 핸들을 업데이트해야 합니다. 다음 그림은 이 디자인을 보여 줍니다.
+Hello 백 엔드에서 등록을 관리 하려면 추가 코드를 작성 해야 합니다. hello 앱 태그 및 템플릿) (함께 시작 될 때마다 업데이트 된 PNS 핸들 toohello 백 엔드 hello 및 hello 백 엔드 hello 알림 허브에서이 핸들을 업데이트 해야 hello 앱 hello 장치에서 제공 해야 합니다. hello 다음 그림에 이러한 디자인이 나와 있습니다.
 
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-backend.png)
 
-백 엔드에서 등록을 관리할 경우의 이점은 장치의 해당 앱이 비활성화되었을 때에도 등록에 대한 태그를 수정할 수 있고 태그를 등록에 추가하기 전에 클라이언트 앱을 인증할 수 있다는 것입니다.
+hello hello 백 엔드에서 등록을 관리의 이점 중 hello 기능 toomodify 태그 tooregistrations hello hello 장치에서 해당 앱이 비활성, 경우에 있고 tooauthenticate hello에 대 한 클라이언트 응용 프로그램을 tooits 등록 하는 태그를 추가 하기 전에입니다.
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-backend-using-an-installation"></a>설치를 사용하여 백 엔드에서 알림 허브에 등록하는 예제 코드
-클라이언트 장치는 여전히 해당 PNS 핸들 및 관련 설치 속성을 전과 같이 가져오며 등록을 수행하고 태그 등에 권한을 부여할 수 있는 백 엔드의 사용자 지정 API를 호출합니다. 백 엔드는 [백 엔드 작업용 Notification Hub SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)를 활용할 수 있습니다.
+#### <a name="example-code-tooregister-with-a-notification-hub-from-a-backend-using-an-installation"></a>설치를 사용 하는 백 엔드에서 알림 허브와 예제 코드 tooregister
+hello 클라이언트 장치 여전히 정의와 PNS 핸들 및 관련 된 설치 속성 이전과 가져오고 등 hello 백 엔드 태그를 삽입 hello 등록을 수행 하 고 권한을 부여할 수 있는 hello 백 엔드에 사용자 지정 API 호출 hello를 활용할 수 [용 알림 허브 SDK 백 엔드 작업](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)합니다.
 
-설치를 업데이트하는 경우 [JSON 패치 표준](https://tools.ietf.org/html/rfc6902) 을 사용하여 PATCH 메서드를 사용할 수도 있습니다.
+Hello를 사용 하 여 hello 패치 메서드를 사용할 수도 있습니다 [JSON 패치 표준](https://tools.ietf.org/html/rfc6902) hello 설치를 업데이트 합니다.
 
-    // Initialize the Notification Hub
+    // Initialize hello Notification Hub
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(listenConnString, hubName);
 
-    // Custom API on the backend
+    // Custom API on hello backend
     public async Task<HttpResponseMessage> Put(DeviceInstallation deviceUpdate)
     {
 
@@ -282,7 +282,7 @@ SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 �
         }
 
 
-        // In the backend we can control if a user is allowed to add tags
+        // In hello backend we can control if a user is allowed tooadd tags
         //installation.Tags = new List<string>(deviceUpdate.Tags);
         //installation.Tags.Add("username:" + username);
 
@@ -292,12 +292,12 @@ SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 �
     }
 
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration-id"></a>등록 ID를 사용하여 장치에서 알림 허브에 등록하는 예제 코드
+#### <a name="example-code-tooregister-with-a-notification-hub-from-a-device-using-a-registration-id"></a>등록 id를 사용 하는 장치에서 알림 허브와 예제 코드 tooregister
 앱 백 엔드에서 등록에 대해 기본 CRUDS 작업을 수행할 수 있습니다. 예:
 
     var hub = NotificationHubClient.CreateClientFromConnectionString("{connectionString}", "hubName");
 
-    // create a registration description object of the correct type, e.g.
+    // create a registration description object of hello correct type, e.g.
     var reg = new WindowsRegistrationDescription(channelUri, tags);
 
     // Create
@@ -316,5 +316,5 @@ SecondaryTiles 사전은 Windows 스토어 앱에서 SecondaryTiles 개체를 �
     await hub.DeleteRegistrationAsync(r);
 
 
-백 엔드에서 등록 업데이트 간의 동시성을 처리해야 합니다. 서비스 버스는 등록 관리를 위해 낙관적 동시성 제어를 제공합니다. HTTP 수준에서 이 기능은 등록 관리 작업에 ETag를 사용하여 구현 됩니다. 이 기능은 동시성 문제로 인해 업데이트가 거부될 경우 예외를 throw하는 Microsoft SDK에 의해 투명하게 사용됩니다. 앱 백 엔드는 이러한 예외를 처리하고 필요한 경우 업데이트를 다시 시도하는 일을 담당합니다.
+hello 백 엔드 등록 업데이트 간의 동시성을 처리 해야 합니다. 서비스 버스는 등록 관리를 위해 낙관적 동시성 제어를 제공합니다. Hello HTTP 수준에서 등록 관리 작업에서 ETag의 hello 사용으로 구현 됩니다. 이 기능은 동시성 문제로 인해 업데이트가 거부될 경우 예외를 throw하는 Microsoft SDK에 의해 투명하게 사용됩니다. hello 앱 백 엔드는 이러한 예외를 처리 하 고 필요한 경우 hello 업데이트를 다시 시도 하는 일을 담당 합니다.
 

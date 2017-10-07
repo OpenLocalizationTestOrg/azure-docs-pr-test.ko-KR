@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB 디자인 패턴: 소셜 미디어 앱 | Microsoft Docs"
-description: "Azure Cosmos DB 및 기타 Azure 서비스의 저장소 유연성을 활용하여 소셜 네트워크에 대한 디자인 패턴을 알아봅니다."
+description: "Azure Cosmos DB 및 다른 Azure 서비스의 hello 저장소 유연성을 활용 하 여 소셜 네트워크에 대 한 디자인 패턴에 대 한 알아봅니다."
 keywords: "소셜 미디어 앱"
 services: cosmos-db
 author: ealsur
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/29/2017
 ms.author: mimig
-ms.openlocfilehash: 43025adeaf954fedfbcee32e636fb30935f2126b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 47a22f2c5762d62b176921c8052e7bd75d8cf6ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="going-social-with-azure-cosmos-db"></a>Azure Cosmos DB를 사용하여 소셜 네트워크 디자인
-광범위하게 상호 연결된 사회에서 살고 있다는 것은 삶의 어느 시점에서 **소셜 네트워크**의 일부가 된다는 것을 의미합니다. 우리는 소셜 네트워크를 사용하여 친구, 동료, 가족 등과 연락하거나, 때로는 공통의 관심사를 가진 사람들과 열정을 공유합니다.
+광범위하게 상호 연결된 사회에서 살고 있다는 것은 삶의 어느 시점에서 **소셜 네트워크**의 일부가 된다는 것을 의미합니다. 사용 친구, 동료, 패밀리 또는 경우에 따라 tooshare 연락을 소셜 네트워크 tookeep 우리의 열 정의 공통 관심사를 가진 사용자와 합니다.
 
-엔지니어 또는 개발자로서 우리는 이러한 네트워크가 데이터를 저장하고 상호 연결하는 방법 또는 특정 틈새 시장을 위한 새로운 소셜 네트워크를 만들거나 설계하는 데 활용되어 왔을 수 있는 방법이 궁금할 수 있습니다. 특히 이 모든 데이터가 어떻게 저장되는지가 매우 궁금할 때 더욱 그렇습니다.
+엔지니어 또는 개발자로 어떻게 이러한 네트워크를 저장 하 고 데이터를 상호 연결 궁금 있을 수 있습니다 또는 수 있을 되었습니다 보강이 toocreate 또는 특정 드러나는 일에 대 한 새 소셜 네트워크 설계자 시장 자기 자신입니다. 이 경우에 발생 하는 hello 중요 한 질문:이 모든 데이터 저장 방법?
 
-사용자가 사진, 동영상 또는 음악과 같은 관련 미디어와 함께 문서를 게시할 수 있는 새롭고 참신한 소셜 네트워크를 만든다고 가정해 보겠습니다. 사용자는 게시물에 의견을 달고 평점을 매길 수 있습니다. 기본 웹 사이트 방문 페이지에는 사용자가 보고 상호 작용할 수 있는 게시물 피드가 있을 것입니다. 처음에는 실제로 복잡하게 들리지 않겠지만 간단한 설명을 위해 이에 대한 내용은 생략하겠습니다(관계별 영향을 받는 사용자 지정 사용자 피드를 자세히 살펴볼 수 있지만 이는 이 문서의 목표를 벗어남).
+사용자가 사진, 동영상 또는 음악과 같은 관련 미디어와 함께 문서를 게시할 수 있는 새롭고 참신한 소셜 네트워크를 만든다고 가정해 보겠습니다. 사용자는 게시물에 의견을 달고 평점을 매길 수 있습니다. 사용자와 수 toointeract hello 기본 웹 사이트 방문 페이지 수를 참조 하는 게시물의 피드가 됩니다. 이 실제로 복잡 한 사운드 하지 않습니다 (처음)에서는 편의 hello 위해서 보겠습니다 여기서 중지 하지만 (관계에 의해 영향을 받는 사용자 지정 피드 살펴 보겠습니다 수 있지만이 문서의 hello 목표 초과).
 
 그렇다면 데이터는 어디에 어떻게 저장될까요?
 
-여러분 대다수는 SQL 데이터베이스에 대한 경험이 있거나 적어도 [데이터의 관계형 모델링](https://en.wikipedia.org/wiki/Relational_model) 에 대한 개념을 알고 있을 것이므로 다음과 같은 다이어그램을 그리기 시작할 수 있을 것입니다.
+SQL 데이터베이스에 대 본 경험이 수도의 개념이 최소한 여러분 중 많은 [관계형 데이터의 모델링](https://en.wikipedia.org/wiki/Relational_model) 시도할된 toostart 그리기 다음과 같이 필요할 수:
 
 ![상대 관계형 모델을 보여 주는 다이어그램](./media/social-media-apps/social-media-apps-sql.png) 
 
@@ -38,12 +38,12 @@ ms.lasthandoff: 08/29/2017
 
 저에 대해 오해하지 마세요. 저는 SQL 데이터베이스를 평생 사용해 왔으며, SQL 데이터베이스는 정말 대단하지만 모든 패턴, 방식 및 소프트웨어 플랫폼과 마찬가지로 모든 시나리오에 완벽한 것은 아닙니다.
 
-이 시나리오에서 SQL이 최선의 선택이 아닌 이유는 무엇일까요? 단일 게시물의 구조를 살펴봅시다. 웹사이트나 응용 프로그램에 이 게시물을 나타내려면 테이블 조인 8개(!)로 쿼리를 수행해야 합니다. 단지 게시물 하나를 나타내기 위해서 말입니다. 이제 동적으로 로드되어 화면에 나타나는 게시물 스트림을 그려보면 어디를 향하고 있는지 볼 수 있습니다.
+이 시나리오에서는 SQL hello 최선의 선택 되지 않는 이유는? 단일 post의 hello 구조에 살펴보겠습니다, 그리고 웹 사이트 또는 응용 프로그램에서 게시 하는 tooshow을 원할 경우 되어 toodo 사용 하 여 쿼리 중... 8 테이블 조인 (!) 정당한 tooshow 하나의 단일 post, 이제 그림 댓를 동적으로 로드 하 고 hello 화면에 표시 하는 게시물의 스트림을 표시 될 수 있습니다.
 
-물론 이 많은 조인으로 수천 개의 쿼리를 해결할 정도의 방대한 SQL 인스턴스를 사용하여 콘텐츠를 제공할 수 있지만 보다 간단한 솔루션이 있는 데 그래야 하는 이유가 있을까요?
+म 수 물론, humongous SQL 인스턴스와 함께 사용할 충분 한 전력 toosolve 수천 쿼리의 이러한 많은 조인 tooserve와 콘텐츠를 하지만 진정한 이유는 경우 간단한 솔루션에서는 존재?
 
-## <a name="the-nosql-road"></a>NoSQL
-이 문서에서는 Azure의 NoSQL 데이터베이스 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)를 사용하여 비용 효율적인 방법으로 소셜 플랫폼의 데이터를 모델링하고 [Gremlin Graph API](../cosmos-db/graph-introduction.md) 같은 다른 Azure Cosmos DB 기능을 활용하는 방법을 안내합니다. [NoSQL](https://en.wikipedia.org/wiki/NoSQL) 접근 방식을 사용하여 데이터를 JSON 형식으로 저장하고 [역정규화](https://en.wikipedia.org/wiki/Denormalization)를 적용하면 이전의 복잡한 게시물을 단일 [문서](https://en.wikipedia.org/wiki/Document-oriented_database)로 변환할 수 있습니다.
+## <a name="hello-nosql-road"></a>hello NoSQL road
+이 문서에서는 하면 Azure의 NoSQL 데이터베이스를 사용 하 여 소셜 플랫폼의 데이터 모델링에 안내 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) hello와 같은 다른 Azure Cosmos DB 기능을 활용 하면서 비용 효율적인 방식으로 [Gremlin Graph API ](../cosmos-db/graph-introduction.md). [NoSQL](https://en.wikipedia.org/wiki/NoSQL) 접근 방식을 사용하여 데이터를 JSON 형식으로 저장하고 [역정규화](https://en.wikipedia.org/wiki/Denormalization)를 적용하면 이전의 복잡한 게시물을 단일 [문서](https://en.wikipedia.org/wiki/Document-oriented_database)로 변환할 수 있습니다.
 
 
     {
@@ -54,18 +54,18 @@ ms.lasthandoff: 08/29/2017
         "createdBy":User,
         "images":["http://myfirstimage.png","http://mysecondimage.png"],
         "videos":[
-            {"url":"http://myfirstvideo.mp4", "title":"The first video"},
-            {"url":"http://mysecondvideo.mp4", "title":"The second video"}
+            {"url":"http://myfirstvideo.mp4", "title":"hello first video"},
+            {"url":"http://mysecondvideo.mp4", "title":"hello second video"}
         ],
         "audios":[
-            {"url":"http://myfirstaudio.mp3", "title":"The first audio"},
-            {"url":"http://mysecondaudio.mp3", "title":"The second audio"}
+            {"url":"http://myfirstaudio.mp3", "title":"hello first audio"},
+            {"url":"http://mysecondaudio.mp3", "title":"hello second audio"}
         ]
     }
 
-또한 조인 없이 단일 쿼리로 이를 실현할 수 있습니다. 이는 훨씬 간단하고 저렴하며, 보다 적은 리소스로 더 나은 결과를 얻을 수 있는 방법입니다.
+또한 조인 없이 단일 쿼리로 이를 실현할 수 있습니다. 이 훨씬 더 쉽고 간단 하 고 budget-wise, 더 적은 리소스 tooachieve 더 좋은 결과 필요 합니다.
 
-Azure Cosmos DB는 모든 속성이 자체 자동 인덱싱을 통해 인덱싱되도록 하며, 이를 [사용자 지정](indexing-policies.md)할 수도 있습니다. 스키마 없는 접근 방식을 통해 다양한 동적 구조로 문서를 저장할 수 있으며, 향후에는 게시물과 관련된 해시 태그 또는 범주 목록을 함께 유지할 수 있을 것입니다. Cosmos DB는 추가 작업 없이 새 문서를 추가된 특성과 함께 처리합니다.
+Azure Cosmos DB 있게 된 모든 hello 속성 인덱싱 되는지와 해당 자동 인덱싱이 될 수 있습니다 [사용자 지정 된](indexing-policies.md)합니다. hello 접근 방식을 통해 서로 다른 문서를 저장 하 고 동적 구조, 어쩌면 내일 게시물 toohave 처리 하는 범주 또는 Cosmos DB 그와 관련 된 해시의 목록을 원하는 hello로 새 문서를 hello 스키마 없는 추가 사용 하 여 특성 추가 자체는 데 필요한 작업입니다.
 
 부모 속성을 사용하여 게시물에 대한 의견을 다른 게시물로 처리할 수 있습니다. 이는 개체 매핑을 간소화합니다. 
 
@@ -103,13 +103,13 @@ Azure Cosmos DB는 모든 속성이 자체 자동 인덱싱을 통해 인덱싱�
         {"relevance":7, "post":"w34r-qeg6-ref6-8565"}
     ]
 
-만든 날짜 순으로 게시물이 정렬된 “최신” 스트림을 유지하거나, 지난 24시간 이내에 좋아요가 많이 추가된 순으로 게시물이 정렬된 “인기” 스트림을 유지할 수 있습니다. 또한 팔로워와 관심사 같은 논리에 따라 각 사용자에 대한 사용자 지정 스트림을 구현할 수도 있으며, 이는 여전히 게시물 목록으로 유지됩니다. 이러한 목록을 빌드하는 방법이 중요하지만 읽기 성능이 그대로 유지되어야 합니다. 이러한 목록 중 하나를 가져온 후에는 여러 페이지의 게시물을 한 번에 가져오기 위해 [IN 연산자](documentdb-sql-query.md#WhereClause)를 사용하여 Cosmos DB에 대한 단일 쿼리를 실행합니다.
+"최신" 스트림을 만든 날짜별으로 정렬 된 포스트가, 지난 24 시간 동안 hello에 더 많은 like 있는 게시 설정과 "가장 많이 사용" 스트림도 구현 하 여 후속 작업이 관심사에 같은 논리에 따라 각 사용자에 대 한 사용자 지정 스트림 및 목록이 됩니다.  게시합니다. 어떻게 toobuild 이러한으로 나열 하는 것 이지만 hello 읽기 성능 제약 없이 유지 됩니다. 이러한 목록 중 하나를 획득 म म 실행 하 여 단일 쿼리 tooCosmos DB hello를 사용 하 여 [연산자에서](documentdb-sql-query.md#WhereClause) 한 번에 대 한 게시의 tooobtain 페이지입니다.
 
-피드 스트림은 [Azure App Service](https://azure.microsoft.com/services/app-service/)의 백그라운드 프로세스인 [Webjobs](../app-service-web/web-sites-create-web-jobs.md)를 사용하여 빌드할 수 있습니다. 게시물을 만든 후 [Azure Webjobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md)를 통해 트리거되고 고유한 사용자 지정 논리를 기반으로 스트림 내에 게시물 전파를 구현하는 [Azure Storage](https://azure.microsoft.com/services/storage/), [큐](../storage/queues/storage-dotnet-how-to-use-queues.md) 및 Webjobs를 사용하여 백그라운드 처리를 트리거할 수 있습니다. 
+스트림 피드 hello를 사용 하 여 구축 될 수 [Azure 앱 서비스](https://azure.microsoft.com/services/app-service/) 백그라운드 프로세스: [Webjobs](../app-service-web/web-sites-create-web-jobs.md)합니다. 사용 하 여 백그라운드 처리를 트리거할 수 게시물 만들어지면 [Azure 저장소](https://azure.microsoft.com/services/storage/) [큐](../storage/queues/storage-dotnet-how-to-use-queues.md) Webjobs hello를 사용 하 여 발생 하 고 [Azure Webjobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md), 구현 hello 고유한 사용자 지정 논리에 따라 스트림 내 전파를 게시 합니다. 
 
-이 동일한 기술을 사용하여 궁극적으로 일관된 환경을 만들어 게시물에 대한 평점 및 좋아요를 지연된 방식으로 처리할 수 있습니다.
+지점 및 게시물을 통해 사용이 동일한 기술을 toocreate 결국 일관 된 환경을 사용 하 여 지연 된 방식으로 처리할 수 있습니다.
 
-팔로워는 더 복잡합니다. Cosmos DB에는 최대 문서 크기 제한이 있으며 크기가 큰 문서의 읽기/쓰기는 응용 프로그램의 확장성에 영향을 줄 수 있습니다. 다음 구조를 사용하여 팔로워를 저장하는 방법을 고려할 수 있습니다.
+팔로워는 더 복잡합니다. Cosmos DB에는 최대 문서 크기 제한 및 큰 문서에 대 한 읽기/쓰기 응용 프로그램의 hello 확장성에 영향을 줄 수 있습니다. 다음 구조를 사용하여 팔로워를 저장하는 방법을 고려할 수 있습니다.
 
     {
         "id":"234d-sd23-rrf2-552d",
@@ -122,9 +122,9 @@ Azure Cosmos DB는 모든 속성이 자체 자동 인덱싱을 통해 인덱싱�
         ]
     }
 
-이 방식은 수천 명의 팔로워를 지닌 사용자에게 적합하지만 일부 유명인이 랭크에 조인하면 결국 이 접근 방식은 큰 문서에 도달해 문서 크기 용량이 부족하게 될 수 있습니다.
+이 방식은 몇 천 있는 사용자에 대 한 작동 후속 작업이 있지만 경우 일부 유명인 우리의 순위 조인,이 방법은 tooa 큰 문서 크기를 일으킵니다 결국 적중된 hello 문서 크기를 닫을 수 있습니다.
 
-이 문제를 해결하기 위해 혼합된 접근 방식을 사용할 수 있습니다. 사용자 통계 문서의 일부로 팔로워의 수를 저장할 수 있습니다.
+toosolve이 혼합된 접근 방식을 사용할 수 있습니다. Hello 사용자 통계 문서의 일부로 hello 수가 후속 작업이 저장할 수 있습니다.:
 
     {
         "id":"234d-sd23-rrf2-552d",
@@ -134,16 +134,16 @@ Azure Cosmos DB는 모든 속성이 자체 자동 인덱싱을 통해 인덱싱�
         "totalPoints":11342
     }
 
-Azure Cosmos DB [Gremlin Graph API](../cosmos-db/graph-introduction.md)를 사용하여 팔로워의 실제 그래프를 저장하고, 각 사용자에 대한 [꼭짓점](http://mathworld.wolfram.com/GraphVertex.html)을 만들고, "A가 B를 팔로우" 관계를 유지하는 [가장자리](http://mathworld.wolfram.com/GraphEdge.html)를 만들 수 있습니다. Graph API를 사용하여 특정 사용자의 팔로워를 가져올 수 있을 뿐 아니라 공통점이 있는 사람들을 제안하는 좀 더 복잡한 쿼리도 만들 수 있습니다. 그래프에 사람들이 좋아하는 콘텐츠 범주를 추가하면 스마트 콘텐츠 검색이 포함된 환경을 만들어서 우리가 팔로우 또는 좋아하는 콘텐츠를 제안하거나 공통점이 많을 것 같은 사람을 찾을 수 있습니다.
+후속 작업이의 실제 그래프 hello Azure Cosmos DB를 사용 하 여 저장 될 수 있습니다 [Gremlin Graph API](../cosmos-db/graph-introduction.md), toocreate [정점](http://mathworld.wolfram.com/GraphVertex.html) 각 사용자에 대해 및 [가장자리](http://mathworld.wolfram.com/GraphEdge.html) hello 유지 관리 하는 " A-다음과 같이-B "관계입니다. hello Graph API 보겠습니다 있습니다 가져올 특정 사용자의 hello 후속 작업이 뿐아니라 tooeven 공통 사용자를 제안 하는 보다 복잡 한 쿼리를 만들 수 있습니다. Toohello 그래프 hello 추가 콘텐츠 범주 주는 같은 또는 즐길 수, 우리 수 시작 스마트 내용 검색을 포함 하는 환경을 구성 콘텐츠를 제안 하는 것 것 처럼, 따릅니다 또는 함께 수 있는 많은 공통 사람 찾기.
 
-사용자 통계 문서는 여전히 UI 또는 빠른 프로필 미리 보기에서 카드를 만드는 데 사용할 수 있습니다.
+hello 사용자 통계 문서 hello UI 또는 빠른 프로필 미리 보기에서 사용 되는 toocreate 카드 될 수 있습니다.
 
-## <a name="the-ladder-pattern-and-data-duplication"></a>"사다리" 패턴 및 데이터 중복
-게시물을 참조하는 JSON 문서에서 볼 수 있듯이 하나의 사용자가 여러 번 발생합니다. 이는 이러한 역정규화가 주어진 경우 사용자를 나태는 정보가 여러 곳에 표시될 수 있음을 의미합니다.
+## <a name="hello-ladder-pattern-and-data-duplication"></a>"사다리" 패턴 및 데이터 중복 hello
+게시물을 참조 하는 hello JSON 문서에서 보았을 것, 사용자를 여러 번 있습니다. 고가 있는 개이면 오른쪽이 비 정규화 지정 된 사용자를 나타내는 hello 정보는 둘 이상의 위치에 있는 될 수 있습니다.
 
-데이터 중복이 발생하도록 둔 것은 더 빠른 쿼리를 허용하기 위해서입니다. 그 부작용으로 인한 문제는 일부 작업으로 인해 사용자의 데이터가 변경된 경우 해당 사용자가 지금까지 수행한 모든 활동을 찾아서 모두 업데이트해야 한다는 점입니다. 그다지 실용적으로 들리지 않죠, 그렇죠?
+더 빠른 쿼리에 대 한 순서 tooallow에서 우리에 데이터 중복을 발생 시킵니다. 이 인해 hello 문제는 일부 작업을 사용자의 데이터 변경 내용을 통해 toofind 해야 하는 경우 모든 hello 활동 그 되지 않았습니다 및 업데이트는 모두입니다. 그다지 실용적으로 들리지 않죠, 그렇죠?
 
-각 활동에 대해 응용 프로그램에 표시하는 사용자의 주요 특성을 식별하여 문제를 해결할 수 있습니다. 게시물을 응용 프로그램에 시각적으로 표시하고 만든 사람의 이름과 사진만 표시했을 뿐인데 "createdBy" 특성에 해당 사용자의 모든 데이터가 저장되는 이유는 무엇일까요? 각 의견에 대해 사용자의 사진만 표시하면 나머지 정보는 필요 없습니다. 바로 여기에 "사다리 패턴"이 적용됩니다.
+진행 중인 toosolve 각 활동에 대 한 응용 프로그램에서 표시 하는 사용자의 키 속성을 식별 하 여 hello 하는입니다. 시각적으로 응용 프로그램의 게시물을 표시 하 고 방금 hello 작성자의 이름 및 표시 사진, 경우 이유 저장 hello 사용자의 데이터를 모두 createdBy"hello" 특성에 합니까? 각 추가 대 한 방금 알아보겠습니다 hello 사용자의 사진, 경우 hello 나머지 자신의 정보 실제로 필요 하지 않습니다. 플레이 놓임 "사다리 패턴" hello를 호출 하는 것입니다.
 
 다음 사용자 정보를 예로 들어 보겠습니다.
 
@@ -165,13 +165,13 @@ Azure Cosmos DB [Gremlin Graph API](../cosmos-db/graph-introduction.md)를 사�
 
 ![사다리 패턴의 다이어그램](./media/social-media-apps/social-media-apps-ladder.png)
 
-가장 작은 단계는 사용자를 식별하는 정보의 최소 조각인 UserChunk로서, 데이터 중복에 사용됩니다. 중복된 데이터의 크기를 “표시”할 정보로만 줄이면 대량 업데이트의 가능성이 줄어듭니다.
+hello 가장 작은 단계 UserChunk, hello 최소 부분의 사용자를 식별 하는 정보 라고 하 고 데이터 중복 제거에 사용 됩니다. 중복 hello 데이터 tooonly hello 정보 "보겠지만" hello 크기를 줄여 대규모 업데이트 hello 가능성을 줄입니다.
 
-중간 단계는 사용자라고 합니다. 이는 Cosmos DB에 대한 대부분의 성능 종속 쿼리에 사용되고 가장 자주 액세스되며 중요한 전체 데이터입니다. 여기에는 UserChunk가 나타내는 정보가 포함됩니다.
+hello 중간 단계 hello 사용자 라고, 것이 가장 액세스 되 고 중요 한 Cosmos DB에서 대부분의 성능 종속 쿼리에 사용 될 hello 전체 데이터 hello 합니다. UserChunk 표현 hello 정보를 포함 합니다.
 
-가장 큰 단계는 Extended User입니다. 여기에는 중요한 모든 사용자 정보와 실제로 빠르게 읽을 필요가 없으며 마지막에 사용되는(예: 로그인 프로세스) 기타 데이터가 포함됩니다. 이 데이터를 Cosmos DB 외부, Azure SQL Database 또는 Azure Storage 테이블에 저장할 수 있습니다.
+가장 큰 hello는 hello 확장 사용자입니다. 모든 hello 중요 사용자 정보를 포함 하지 않는 정말 신속 하 게 toobe 읽기를 필요한 다른 데이터 또는 사용이 최종 (예: hello 로그인 프로세스). 이 데이터를 Cosmos DB 외부, Azure SQL Database 또는 Azure Storage 테이블에 저장할 수 있습니다.
 
-사용자를 분할하고 심지어 이 정보를 여러 곳에 저장하는 이유는 무엇일까요? 성능 면에서 문서가 클수록 쿼리 비용이 많이 들기 때문입니다. 소셜 네트워크에 대한 모든 성능 종속 쿼리를 수행하는 데 적합한 정보로 문서를 간소하게 유지하고 전체 프로필 편집, 로그인, 사용량 분석 및 빅 데이터 이니셔티브를 위한 데이터 마이닝 등 최종적인 시나리오에 대한 기타 추가 정보를 저장하세요. 사용자 환경이 빠르고 간소하게 유지된다면 데이터 마이닝을 위한 데이터 수집이 Azure SQL 데이터베이스에서 실행되기 때문에 느려지는 것은 중요하지 않습니다. Cosmos DB에 저장된 사용자는 다음과 같이 표시됩니다.
+이유는 म hello 사용자 나누고도 서로 다른 위치에서이 정보를 저장할? 성능 관점에서 hello 큰 hello 문서 hello costlier hello 쿼리 때문에 있습니다. 문서 보관 hello로 slim 오른쪽 정보 toodo 모든 사용자 성능 종속 소셜 네트워크를 쿼리하고 저장소 hello 같은 최종 시나리오, 전체 프로필을 편집, 로그인에 대 한 기타 추가 정보, 사용 현황 분석 및 큰에 대 한 데이터 마이닝에도 데이터 이니셔티브입니다. 에서는 실제로 중요 하지 않으면 Azure SQL 데이터베이스에서 실행 되 고 있어서 hello 데이터 수집을 데이터 마이닝에 대 한 느린 경우, 우리 않습니다가 관련 하지만 사용자가 신속 하 고 slim 경험 합니다. Cosmos DB에 저장된 사용자는 다음과 같이 표시됩니다.
 
     {
         "id":"dse4-qwe2-ert4-aad2",
@@ -194,61 +194,61 @@ Azure Cosmos DB [Gremlin Graph API](../cosmos-db/graph-introduction.md)를 사�
         }
     }
 
-청크의 특성 중 하나가 영향을 받는 곳에서 편집 작업이 수행된 경우 인덱싱된 특성(SELECT * FROM posts p WHERE p.createdBy.id == “edited_user_id”)을 가리키는 쿼리를 사용한 후 청크를 업데이트하여 영향을 받는 문서를 쉽게 찾을 수 있습니다.
+이므로 여기서 hello 청크의 hello 특성 중 하나는 영향을 편집 하는 발생 하는 경우 쉽게 toofind 영향을 받는 hello 문서 toohello 인덱싱된 특성을 가리키는 쿼리를 사용 하 여 (선택 * FROM 게시 p WHERE p.createdBy.id "edited_user_id" = =) 제거한 다음 업데이트 hello 청크 합니다.
 
-## <a name="the-search-box"></a>검색 상자
-다행히 사용자는 많은 콘텐츠를 생성합니다. 우리는 콘텐츠 스트림에 없을 수 있는 콘텐츠를 검색하고 찾을 수 있는 기능을 제공할 수 있어야 합니다. 만든 사람을 추적하지 않거나 6개월 전에 게시한 오래된 게시물을 찾으려고 할 수 있기 때문입니다.
+## <a name="hello-search-box"></a>hello 검색 상자
+다행히 사용자는 많은 콘텐츠를 생성합니다. 수 tooprovide hello 기능 toosearch 수와 수 없는 자신의 콘텐츠 스트림을에서 직접 미정 hello 작성자를 준수 하지 않는 것 때문에 콘텐츠를 찾을 해야 하거나 미정 노력 하 고 방금 toofind 6 개월 전에 수행한 해당 이전 게시물.
 
-다행히 Azure Cosmos DB를 사용하기 때문에 단일 코드 줄을 입력하지 않고도 [Azure Search](https://azure.microsoft.com/services/search/)를 통해 몇 분 이내에 검색 엔진을 쉽게 구현할 수 있습니다(검색 프로세스 및 UI가 아님).
+다행히 Azure Cosmos DB를 사용 하 고 있으므로 서 구현할 수 있는 쉽게 사용 하 여 검색 엔진 및 [Azure 검색](https://azure.microsoft.com/services/search/) 는 몇 시간 (분) 및 코드 한 줄을 입력 하지 않고도 (물론 hello 이외의 검색 프로세스와 UI).
 
 이 작업이 이렇게 쉬운 이유는 무엇일까요?
 
-Azure Search는 데이터 리포지토리에 후크되는 백그라운드 프로세스인 [인덱서](https://msdn.microsoft.com/library/azure/dn946891.aspx)를 호출하여 인덱스에서 개체를 자동으로 추가, 업데이트 또는 제거하는 기능을 구현하기 때문입니다. Azure Search는 [Azure SQL Database 인덱서](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/), [Azure Blob 인덱서](../search/search-howto-indexing-azure-blob-storage.md) 그리고 다행히도 [Azure Cosmos DB 인덱서](../search/search-howto-index-documentdb.md)를 지원합니다. Cosmos DB에서 Azure Search로 정보를 전환하는 것은 간단합니다. 둘 다 정보를 JSON 형식으로 저장하기 때문에 [인덱스를 만들고](../search/search-create-index-portal.md) 문서에서 인덱싱할 특성을 매핑하기만 하면 됩니다. 그러면 몇 분(데이터 크기에 따라 다름) 이내에 클라우드 인프라에서 제공되는 최고의 SaaS(Search-as-a-Service) 솔루션을 통해 모든 콘텐츠를 검색할 수 있게 됩니다. 
+Azure 검색을 호출 하기 구현 [인덱서](https://msdn.microsoft.com/library/azure/dn946891.aspx), 백그라운드 처리 후크 하는 데이터 저장소에서 및 자동으로 추가, 업데이트 또는 hello 인덱스에 개체를 제거 합니다. Azure Search는 [Azure SQL Database 인덱서](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/), [Azure Blob 인덱서](../search/search-howto-indexing-azure-blob-storage.md) 그리고 다행히도 [Azure Cosmos DB 인덱서](../search/search-howto-index-documentdb.md)를 지원합니다. hello Cosmos DB tooAzure 검색에서에서 정보의 변환은 두 저장소 정보를 JSON 형식으로 간단 하 게, त ु म च 너무[우리의 인덱스를 만들](../search/search-create-index-portal.md) 문서 특성 인덱싱된 원하는 및 설정 작업이 완료를 하 고 매핑할 몇 분 내에 (데이터의 hello 크기에 따라 다름)이 모든 콘텐츠는 클라우드 인프라에서 hello 최상의 검색-as a Service 솔루션에 의해 검색 되는 특성을 사용할 수 있는 toobe 됩니다. 
 
-Azure 검색에 대한 자세한 내용은 [Hitchhiker의 검색 가이드](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/02/02/a-hitchhikers-guide-to-search/)를 참조하세요.
+Azure 검색에 대 한 자세한 내용은 hello를 방문할 수 있는 [Hitchhiker's Guide tooSearch](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/02/02/a-hitchhikers-guide-to-search/)합니다.
 
-## <a name="the-underlying-knowledge"></a>기본 지식
+## <a name="hello-underlying-knowledge"></a>hello 기본 기술
 매일 증가하는 이 모든 콘텐츠를 저장한 후에는 이 모든 사용자 정보 스트림으로 수행할 수 있는 작업이 무엇인지 궁금할 수 있습니다.
 
-대답은 간단합니다. 사용할 수 있도록 구성한 후 학습하는 것입니다.
+hello 응답은 간단: toowork 배치 고 알아두는 것입니다.
 
-그렇다면 무엇을 배울 수 있을까요? 몇 가지 쉬운 예를 들면 [정서 분석](https://en.wikipedia.org/wiki/Sentiment_analysis), 사용자의 선호도에 따른 콘텐츠 추천 또는 소셜 네트워크에서 게시된 모든 콘텐츠가 가족에게 안전하도록 보장하는 자동화된 콘텐츠 중재자 등이 있습니다.
+그렇다면 무엇을 배울 수 있을까요? 몇 가지 쉽게 예로 [감성 분석](https://en.wikipedia.org/wiki/Sentiment_analysis), 사용자의 기본 설정에 따라 권장 사항을 또는 심지어는 자동화 된 콘텐츠 중재자 소셜 네트워크에서 게시 한 콘텐츠를 hello 모두 보장 하는 hello에 대 한 안전 콘텐츠 패밀리입니다.
 
-이제 간단한 데이터베이스 및 파일에서 이러한 패턴과 정보를 추출하려면 수학 박사가 필요하다고 생각하겠지만 그렇지 않습니다.
+연결 하면 수신 됨, 했으므로 이러한 패턴 및 단순 데이터베이스 및 파일을 정보 수학 과학 tooextract에서 일부 조차 필요 하지만 잘못 된 것 아마도 생각할 수 있습니다.
 
-[Cortana Intelligence 제품군](https://www.microsoft.com/en/server-cloud/cortana-analytics-suite/overview.aspx)의 일부인 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/)은 완전히 관리되는 클라우드 서비스로서, 간단한 끌어서 놓기 인터페이스에서 알고리즘을 사용하여 워크플로를 만들거나, [R](https://en.wikipedia.org/wiki/R_\(programming_language\))에서 사용자 고유의 알고리즘을 코딩하거나, 이미 빌드되고 즉시 사용 가능한 API(예: [텍스트 분석](https://gallery.cortanaanalytics.com/MachineLearningAPI/Text-Analytics-2), [Content Moderator](https://www.microsoft.com/moderator) 또는 [추천](https://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2))를 사용할 수 있도록 해줍니다.
+[Azure 기계 학습](https://azure.microsoft.com/services/machine-learning/)hello의 일부인 [Cortana 인텔리전스 Suite](https://www.microsoft.com/en/server-cloud/cortana-analytics-suite/overview.aspx)는 hello 간단한 끌어서 놓기 인터페이스에서 알고리즘을 사용 하 여 워크플로 만들고, 사용자 고유의 알고리즘 코드 있습니다 수 있게 해 주는 완전히 관리 되는 클라우드 서비스 [R](https://en.wikipedia.org/wiki/R_\(programming_language\)) hello 이미 작성의 일부를 사용 하 고 사용할 수 있는 상태 toouse Api와 같은: [텍스트 분석](https://gallery.cortanaanalytics.com/MachineLearningAPI/Text-Analytics-2), [콘텐츠 중재자](https://www.microsoft.com/moderator) 또는 [권장사항](https://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2).
 
-이러한 Machine Learning 시나리오를 달성하려면 [Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/)를 사용하여 다양 한 원본에서 정보를 수집하고 [U-SQL](https://azure.microsoft.com/documentation/videos/data-lake-u-sql-query-execution/)을 사용하여 정보를 처리하고 Azure Machine Learning에서 처리할 수 있는 출력을 생성할 수 있습니다.
+tooachieve 모든 이러한 기계 학습 시나리오를 사용할 수 [Azure 데이터 레이크](https://azure.microsoft.com/services/data-lake-store/) tooingest hello 다양 한 원본에서 정보 및 사용 하 여 [U-SQL](https://azure.microsoft.com/documentation/videos/data-lake-u-sql-query-execution/) tooprocess hello 정보 및 출력을 생성 합니다. Azure 기계 학습에서 처리 될 수 있는 합니다.
 
-또 다른 사용 가능한 옵션은 [Microsoft Cognitive Services](https://www.microsoft.com/cognitive-services)를 사용하여 사용자의 콘텐츠를 분석하는 것입니다. 이를 통해 보다 잘 이해할 수 있을 뿐만 아니라([Text Analytics API](https://www.microsoft.com/cognitive-services/en-us/text-analytics-api)로 작성한 것을 분석하여) 원치 않거나 성숙한 콘텐츠를 검색하고 [Computer Vision API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api)를 사용하여 그에 따라 동작할 수 있습니다. Cognitive Services는 사용하기 위해 Machine Learning의 지식이 필요하지 않은 많은 기본 제공 솔루션을 포함합니다.
+또 다른 사용 가능한 옵션은 toouse [Microsoft Cognitive 서비스](https://www.microsoft.com/cognitive-services) tooanalyze 콘텐츠; 뿐만 아니라 이해 수에서는 사용자에 게 더욱 효율적인 (으로 작성할 어떤 분석을 통해 [텍스트 분석 API](https://www.microsoft.com/cognitive-services/en-us/text-analytics-api)), 하지만 또한 원하지 않거나 성숙한 내용을 검색 하 고 적절 하 게 작동할 수와 [컴퓨터 비전 API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api)합니다. Cognitive 서비스의 기본 솔루션에 어떤 유형의 기계 학습 기술 toouse 요구 하지 않는 많이 포함 됩니다.
 
 ## <a name="a-planet-scale-social-experience"></a>전 세계적인 규모의 소셜 환경
-마지막으로 해결해야 하는 중요한 사항은 **확장성**입니다. 아키텍처를 디자인하는 경우 더 많은 데이터를 처리해야 하거나 더 큰 지역 적용 범위가 필요하기 때문에(또는 두 가지 이유 모두로 인해) 각 구성 요소를 자체적으로 확장할 수 하는지가 중요합니다. 다행스럽게도 Cosmos DB를 사용하여 **턴키 환경**에서 이러한 복잡한 작업을 수행할 수 있습니다.
+마지막으로 해결해야 하는 중요한 사항은 **확장성**입니다. 각 구성 요소 크기를 조정할 수는 자체적으로 하거나 tooprocess 더 많은 데이터가 필요 하기 때문에 중요 한 아키텍처를 설계할 때 또는 큰 지리적 검사 (또는 둘 다!) toohave 확인 하겠습니다. 다행스럽게도 Cosmos DB를 사용하여 **턴키 환경**에서 이러한 복잡한 작업을 수행할 수 있습니다.
 
-Cosmos DB는 지정된 **파티션 키**(문서의 특성 중 하나로 정의됨)를 기반으로 해서 파티션을 자동으로 만들어 기본적으로 [동적 분할](https://azure.microsoft.com/blog/10-things-to-know-about-documentdb-partitioned-collections/)을 지원합니다. 디자인 과정에서 올바른 파티션 키를 정의해야 합니다. 또한 [모범 사례](../cosmos-db/partition-data.md#designing-for-partitioning) 사용할 수 있다는 점을 기억하세요. 소셜 환경의 경우에 쿼리(동일한 파티션 내의 읽기는 바람직함) 및 작성(여러 파티션에 쓰기를 분산하여 "핫 스폿" 방지)하는 방법으로 분할 전략을 정렬해야 합니다. 일부 옵션은 다음과 같습니다. 콘텐츠 범주별, 지리적 지역별, 사용자별 임시 키(일/월/주)에 기반한 파티션은 데이터를 쿼리하는 방법에 따라 다르고 소셜 환경에서 표시됩니다. 
+Cosmos DB 지원 [동적 분할](https://azure.microsoft.com/blog/10-things-to-know-about-documentdb-partitioned-collections/) -의-즉시 자동으로 만들어을 기반으로 파티션은 주어진 **파티션 키** (문서에 hello 특성 중 하나로 정의 됨). 디자인 타임에 파티션 키를 수행 해야 올바른 hello를 정의 하 고 주의 hello에 유지 [모범 사례](../cosmos-db/partition-data.md#designing-for-partitioning) 사용할 수 있습니다;은 소셜 환경의 hello 경우 분할 전략에 정렬 되어야 합니다 (읽기를 쿼리 하는 hello 방식으로 hello에 동일한 파티션에 바람직한) 및 쓰기 ("핫 스폿을" 여러 파티션에 쓰기를 분산 함으로써 방지). 일부 옵션은:; 사용자가 지리적 지역에 따라 콘텐츠 범주별으로 보여 줍니다 (일/월/주) 임시 키에 따라 파티션 실제로 이것은 모두는 hello 데이터를 쿼리 하는 방법을 소셜 환경을에 표시 합니다. 
 
-한 가지 흥미로운 점은 Cosmos DB가 모든 파티션에 투명하게 쿼리([집계](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/) 포함)를 실행한다는 것입니다. 데이터의 증가에 따라 논리를 추가할 필요가 없습니다.
+중요 한 한 흥미로운 점을 주의 해야 Cosmos DB가 쿼리를 실행 합니다 (포함 하 여 [집계](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/)) 모든 파티션을 통해 투명 하 게, 필요 하지 않습니다 tooadd는 논리 데이터 증가 합니다.
 
-시간이 지나면 결국 트래픽이 증가하고 리소스 사용([RU](request-units.md) 또는 요청 단위)도 증가합니다. userbase가 증가하면 더 자주 읽고 쓰게 되고 더 많은 콘텐츠를 만들고 읽기 시작합니다. **처리량 크기 조정** 기능이 매우 중요합니다. RU를 증가시키는 것은 매우 쉽습니다. Azure Portal에서 몇 번 클릭하거나 [API를 통해 명령을 실행](https://docs.microsoft.com/rest/api/documentdb/replace-an-offer)하여 수행할 수 있습니다.
+시간이 지나면 결국 트래픽이 증가하고 리소스 사용([RU](request-units.md) 또는 요청 단위)도 증가합니다. 읽기 및 쓰기 작업을 더 자주 프로그램 userbase 증가 하 고 만들고 더 많은 콘텐츠; 읽기 시작 합니다 됩니다. 능력을 hello **처리량 배율** 이 중요 합니다. 우리의 RUs 증가 하는 것은 매우 쉽게, 또는 hello Azure 포털에서 몇 번의 클릭 하겠습니다 [hello API 통해 명령을 발급](https://docs.microsoft.com/rest/api/documentdb/replace-an-offer)합니다.
 
 ![파티션 키 확장 및 정의](./media/social-media-apps/social-media-apps-scaling.png)
 
 기능이 점점 확장되고 다른 지역, 국가 또는 대륙의 사용자가 당신의 플랫폼을 알고 사용하기 시작한다면 놀라운 일이 벌어집니다.
 
-하지만 플랫폼에서 해당 환경이 최적화되지 않음을 알게 됩니다. 당신의 운영 지역에서 멀리 떨어져 있으므로 대기 시간이 엄청나지만 포기할 수는 없습니다. **글로벌 도달률을 확장**하는 쉬운 방법이 있다면 얼마나 좋을까요. 방법이 있습니다!
+잠깐... 경험 플랫폼에 최적이 아닌; 곧 실현 지금까지 operational 해당 지역에서 멀리는 hello 대기 시간은 테러, 분명 할 tooquit 합니다. **글로벌 도달률을 확장**하는 쉬운 방법이 있다면 얼마나 좋을까요. 방법이 있습니다!
 
-Cosmos DB를 사용하면 몇 번의 클릭으로 투명하게 [데이터를 전역으로 복제](../cosmos-db/tutorial-global-distribution-documentdb.md)하고 [클라이언트 코드](../cosmos-db/tutorial-global-distribution-documentdb.md)에서 사용 가능한 지역 중 하나를 자동으로 선택할 수 있습니다. 즉, [여러 장애 조치 지역](regional-failover.md)을 사용할 수 있습니다. 
+Cosmos DB을 사용 하면 [데이터를 전역적으로 복제](../cosmos-db/tutorial-global-distribution-documentdb.md) 투명 하 게의 클릭 하 고 자동으로 두 hello에서 사용 가능한 영역 사이에서 선택할 사용자 [클라이언트 코드](../cosmos-db/tutorial-global-distribution-documentdb.md)합니다. 즉, [여러 장애 조치 지역](regional-failover.md)을 사용할 수 있습니다. 
 
-전역적으로 데이터를 복제하는 경우 클라이언트에서 활용할 수 있는지 확인합니다. 웹 프런트 엔드를 사용하거나 모바일 클라이언트의 API에 액세스하는 경우 확장된 글로벌 범위를 지원하는 [성능 구성](../app-service-web/web-sites-traffic-manager.md)을 사용하여 [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/)를 배포하고 원하는 모든 지역에서 Azure App Service를 복제할 수 있습니다. 클라이언트가 프런트 엔드 또는 API에 액세스하는 경우 가장 가까운 App Service에 라우팅되고 따라서 로컬 Cosmos DB 복제본에 연결됩니다.
+데이터를 전역적으로 복제 하 여 클라이언트를 사용할 수 있습니다는 있는지 toomake가 필요 합니다. 웹 프런트 엔드 또는 모바일 클라이언트 로부터의 액세스 Api 사용 하는 경우 배포할 수 있습니다 [Azure 트래픽 관리자](https://azure.microsoft.com/services/traffic-manager/) 및 Azure 앱 서비스에서 모든 필요한 hello 지역을 사용 하 여 복제를 [성능 구성](../app-service-web/web-sites-traffic-manager.md)toosupport 확장된 광범위 합니다. 라우트된 toohello 됩니다 클라이언트 프런트 엔드 또는 Api에 액세스 하는 경우 가장 가까운 응용 프로그램 서비스를 차례로 toohello 로컬 Cosmos DB 복제본 연결 됩니다.
 
-![소셜 플랫폼에 전역적 적용 범위 추가](./media/social-media-apps/social-media-apps-global-replicate.png)
+![범위 tooyour 소셜 플랫폼 추가](./media/social-media-apps/social-media-apps-global-replicate.png)
 
 ## <a name="conclusion"></a>결론
-이 문서에서는 완전히 Azure에서 저렴한 서비스를 사용하여 소셜 네트워크를 만들고, 다중 계층 저장소 솔루션 및 “사다리”라는 데이터 분산을 사용하도록 권장하여 뛰어난 결과를 제공하는 대안에 대해 살펴보았습니다.
+이 문서는 tooshed 저렴 한 비용 서비스와 Azure에서 완전히 소셜 네트워크를 만드는 및 "사다리" 라는 저장소 다중 계층된 솔루션 및 데이터 배포 하도록 권유 hello 사용 하 여 만족 스러운 결과 제공 하는 hello 대안에 연한 일부를 시도 합니다.
 
 ![소셜 네트워킹에 대한 Azure 서비스 간 상호 작용의 다이어그램](./media/social-media-apps/social-media-apps-azure-solution.png)
 
-이러한 종류의 시나리오에 대한 묘책은 없습니다. 이는 뛰어난 환경을 빌드할 수 있도록 해주는 유용한 서비스의 조합으로 생성되는 시너지입니다. 예를 들어 뛰어난 소셜 응용 프로그램을 제공하는 Azure Cosmos DB의 속도와 자유로움, Azure Search와 같은 최고 수준의 검색 솔루션에 숨은 인텔리전스, 언어에 관계없는 응용 프로그램뿐 아니라 강력한 백그라운드 프로세스를 호스트하는 Azure App Services의 유연성, 방대한 양의 데이터를 저장하기 위한 확장 가능한 Azure Storage 및 Azure SQL Database, 프로세스에 대한 피드백을 제공할 수 있는 지식과 인텔리전스를 만들고 올바른 사용자에게 올바른 콘텐츠를 제공하도록 도와주는 Azure Machine Learning의 분석 기능 등이 조합된 결과입니다.
+이러한 종류의 시나리오에 대 한 은색 글머리 기호 없음에 hello 사실입니다 hello toobuild 훌륭한 환경을 수 있는 훌륭한 서비스의 hello 조합 하 여 만든 시너지 효과: 속도 Azure Cosmos DB tooprovide 훌륭한 소셜 응용 프로그램의 자유 hello Azure 앱 서비스 toohost의 hello 유연성 강력한 백그라운드 프로세스를 제외한 언어를 알 수 없는 응용 프로그램에도 없고 Azure 저장소 및 Azure SQL 데이터베이스에 대 한 확장 가능한 hello, hello intelligence 첫 번째 클래스 검색 솔루션 뒤에 Azure 검색 등과 같은 대량의 toocreate Azure 기계 학습의 데이터 및 hello 분석 전원 저장 지식과 tooour 프로세스 피드백을 제공 하 고 도움을 수 있는 intelligence hello 오른쪽 콘텐츠 toohello 오른쪽 사용자에 게 제공 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-Cosmos DB의 사용 사례에 대한 자세한 내용은 [일반적인 Cosmos DB 사용 사례](use-cases.md)를 참조하세요.
+Cosmos DB에 대 한 사용 사례에 대해 자세히 toolearn 참조 [Cosmos DB 일반적인 사용 사례](use-cases.md)합니다.

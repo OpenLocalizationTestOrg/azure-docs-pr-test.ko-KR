@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 내보내기 작업 복구 - v1 | Microsoft Docs"
-description: "Azure Import/Export 서비스를 사용하여 생성 및 실행된 내보내기 작업을 복구하는 방법을 알아봅니다."
+title: "Azure 가져오기/내보내기 내보내기 작업-v1 aaaRepairing | Microsoft Docs"
+description: "Toorepair 생성 되어 사용 하 여 실행 하는 내보내기 작업의 경우 Azure 가져오기/내보내기 hello 하는 방법에 대해 알아봅니다 서비스입니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 30ca0f8d06cb1927c19e66035ff485db0fc09e5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 96c674fc7c697c37882fb2980c340303896ac6c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repairing-an-export-job"></a>내보내기 작업 복구
-내보내기 작업이 완료된 후에 온-프레미스에서 Microsoft Azure Import/Export 도구를 실행하여 다음을 수행할 수 있습니다.  
+내보내기 작업이 완료 되 면 hello Microsoft Azure 가져오기/내보내기 도구 온-프레미스를 실행할 수 있습니다.  
   
-1.  Azure Import/Export 서비스로 내보낼 수 없는 모든 파일을 다운로드합니다.  
+1.  Hello Azure 가져오기/내보내기 서비스에서 없습니다 tooexport는 모든 파일을 다운로드 합니다.  
   
-2.  드라이브의 파일이 제대로 내보내졌는지 확인합니다.  
+2.  Hello 파일 hello 드라이브에 올바르게 내보냈는지 있는지 확인 합니다.  
   
-이 기능을 사용하려면 Azure Storage에 연결되어 있어야 합니다.  
+이 기능은 연결 tooAzure 저장소 toouse 있어야 합니다.  
   
-가져오기 작업을 복구하는 명령은 **RepairExport**입니다.
+가져오기 작업 복구 hello 명령은 **RepairExport**합니다.
 
 ## <a name="repairexport-parameters"></a>RepairExport 매개 변수
 
-**RepairExport**와 함께 다음 매개 변수를 지정할 수 있습니다.  
+hello 다음 매개 변수 지정 될 수 있습니다 **RepairExport**:  
   
 |매개 변수|설명|  
 |---------------|-----------------|  
-|**/r:<RepairFile\>**|필수입니다. 복구의 진행 상황을 추적하고 중단된 복구를 다시 시작할 수 있도록 하는 복구 파일의 경로입니다. 각 드라이브에는 하나의 복구 파일만 있어야 합니다. 지정된 드라이브의 복구를 시작할 때 아직 존재하지 않는 복구 파일의 경로를 지정합니다. 중단된 복구를 다시 시작하려면 기존 복구 파일의 이름을 제공해야 합니다. 대상 드라이브에 해당하는 복구 파일을 항상 지정해야 합니다.|  
-|**/logdir:<LogDirectory\>**|선택 사항입니다. 로그 디렉터리입니다. 이 디렉터리에 자세한 로그 파일이 기록됩니다. 로그 디렉터리를 지정하지 않는 경우 현재 디렉터리가 로그 디렉터리로 사용됩니다.|  
-|**/d:<TargetDirectory\>**|필수입니다. 유효성을 검사하고 복구할 디렉터리입니다. 일반적으로는 내보내기 드라이브의 루트 디렉터리이지만 내보낸 파일의 복사본을 포함하는 네트워크 파일 공유일 수도 있습니다.|  
-|**/bk:<BitLockerKey\>**|선택 사항입니다. 내보낸 파일이 저장되는 암호화된 위치의 잠금을 해제하려면 BitLocker 키를 지정해야 합니다.|  
-|**/sn:<StorageAccountName\>**|필수입니다. 내보내기 작업에 대한 저장소 계정의 이름입니다.|  
-|**/sk:<StorageAccountKey\>**|컨테이너 SAS가 지정되지 않은 경우에만 **필수**입니다. 내보내기 작업에 대한 저장소 계정의 계정 키입니다.|  
-|**/csas:<ContainerSas\>**|저장소 계정 키가 지정되지 않은 경우에만 **필수**입니다. 내보내기 작업과 연결된 blob에 액세스하기 위한 컨테이너 SAS입니다.|  
-|**/CopyLogFile:<DriveCopyLogFile\>**|필수입니다. 드라이브 복사 로그 파일의 경로입니다. 이 파일은 Microsoft Azure Import/Export 서비스에 의해 생성되고 작업과 연결된 Blob Storage에서 다운로드할 수 있습니다. 복사 로그 파일에는 복구해야 하는 실패한 blob 또는 파일에 대한 정보가 포함되어 있습니다.|  
-|**/ManifestFile:<DriveManifestFile\>**|선택 사항입니다. 내보내기 드라이브의 매니페스트 파일 경로입니다. 이 파일은 Microsoft Azure Import/Export 서비스에서 생성되고 내보내기 드라이브 및 경우에 따라 작업과 연결된 저장소 계정의 blob에 저장됩니다.<br /><br /> 내보내기 드라이브에 있는 파일의 내용은 이 파일에 포함된 MD5 해시를 사용해서 확인됩니다. 손상된 것으로 확인된 모든 파일은 다운로드된 후 대상 디렉터리에 다시 써집니다.|  
+|**/r:<RepairFile\>**|필수입니다. 경로 toohello 복구는 파일 hello 복구 hello 진행 상태를 추적 하 고 중단된 된 복구 tooresume 있습니다. 각 드라이브에는 하나의 복구 파일만 있어야 합니다. 지정 된 드라이브의 복구를 시작할 때 아직 존재 하지 않는 hello 경로 tooa 복구 파일에 전달 합니다. 중단된 된 복구 tooresume 기존 복구 파일의 hello 이름에 전달 해야 합니다. hello 복구 파일 해당 toohello 대상 드라이브를 항상 지정 되어야 합니다.|  
+|**/logdir:<LogDirectory\>**|선택 사항입니다. hello 로그 디렉터리입니다. 자세한 로그 파일 디렉터리 toothis 작성 됩니다. 없는 로그 디렉터리를 지정 하는 경우 현재 디렉터리 hello hello 로그 디렉터리로 사용 됩니다.|  
+|**/d:<TargetDirectory\>**|필수입니다. hello 디렉터리 toovalidate 및 복구 합니다. 일반적으로 hello 내보내기 드라이브의 루트 디렉터리 hello 이지만 수 될 네트워크 파일 공유 포함 된 hello 내보낸 파일의 복사본입니다.|  
+|**/bk:<BitLockerKey\>**|선택 사항입니다. Hello 도구 toounlock 암호화 된 hello 내보낸 파일은 저장 하려는 경우에 hello BitLocker 키를 지정 해야 합니다.|  
+|**/sn:<StorageAccountName\>**|필수입니다. hello hello 저장소 계정의 이름으로 hello에 대 한 내보내기 작업 합니다.|  
+|**/sk:<StorageAccountKey\>**|컨테이너 SAS가 지정되지 않은 경우에만 **필수**입니다. hello에 대 한 hello 저장소 계정에 대 한 hello 계정 키 내보내기 작업 합니다.|  
+|**/csas:<ContainerSas\>**|**필요한** hello 저장소 계정 키를 지정 하지 않으면 하는 경우에 합니다. hello 내보내기 작업과 연결 된 hello blob에 액세스 하기 위한 hello 컨테이너 SAS입니다.|  
+|**/CopyLogFile:<DriveCopyLogFile\>**|필수입니다. hello 경로 toohello 드라이브 복사 로그 파일입니다. hello 파일 hello Windows Azure 가져오기/내보내기 서비스에서 생성 되 고 hello 작업과 연결 된 hello blob 저장소에서 다운로드할 수 있습니다. hello 복사 로그 파일을 사용 하면 실패 한 blob 또는 파일은 toobe 복구 하는 방법에 대 한 정보가 있습니다.|  
+|**/ManifestFile:<DriveManifestFile\>**|선택 사항입니다. hello 경로 toohello 내보내기 드라이브 매니페스트 파일입니다. 이 파일은 hello Windows Azure 가져오기/내보내기 서비스에서 생성 하며 및 필요에 따라 hello 작업과 연결 된 hello 저장소 계정의 blob에에서 hello 내보내기 드라이브에 저장 됩니다.<br /><br /> hello 콘텐츠의 hello hello 내보내기 드라이브에 파일을이 파일에 포함 된 hello MD5 해시와 함께 확인 됩니다. 결정된 toobe 손상 된 파일에 다운로드 하 고 다시 작성 toohello 대상 디렉터리 됩니다.|  
   
-## <a name="using-repairexport-mode-to-correct-failed-exports"></a>RepairExport 모드를 사용하여 실패한 내보내기 수정  
-Azure Import/Export 도구를 사용하여 내보내기에 실패한 파일을 다운로드할 수 있습니다. 복사 로그 파일에는 내보내기에 실패한 파일 목록이 포함됩니다.  
+## <a name="using-repairexport-mode-toocorrect-failed-exports"></a>RepairExport를 사용 하 여 모드 toocorrect 내보내기가 실패  
+Tooexport 실패 한 hello Azure 가져오기/내보내기 도구 toodownload 파일을 사용할 수 있습니다. hello 복사 로그 파일 tooexport 못한 파일 목록이 포함 됩니다.  
   
-내보내기 실패의 원인에는 다음 가능성이 포함됩니다.  
+내보내기 실패의 원인은 hello hello를 가능성에 따라 다음과 같습니다.  
   
 -   손상된 드라이브  
   
--   전송 프로세스 중에 변경된 저장소 계정 키  
+-   hello 전송 프로세스 중에 변경 하는 hello 저장소 계정 키  
   
-이 도구를 **RepairExport** 모드로 실행하려면 먼저 내보낸 파일을 포함하는 드라이브를 사용자 컴퓨터에 연결해야 합니다. 다음에는 Azure Import/Export 도구를 실행하고, `/d` 매개 변수를 사용하여 해당 드라이브의 경로를 지정합니다. 또한 다운로드한 드라이브의 복사 로그 파일 경로를 지정해야 합니다. 아래의 명령줄 예제에서는 이 도구를 실행하여 내보내기에 실패한 모든 파일을 복구합니다.  
+toorun hello 도구에서 **RepairExport** 모드에서는 먼저 hello 내보낸된 파일 tooyour 컴퓨터를 포함 하는 tooconnect hello 드라이브입니다. 다음으로 실행 하는 Azure 가져오기/내보내기 도구를 hello로 hello 경로 toothat 드라이브를 지정 하면 hello `/d` 매개 변수입니다. 또한 toospecify hello 경로 toohello 드라이브 복사 로그 파일 다운로드 해야 합니다. hello 다음 명령줄 예에서는 실행 hello 도구 toorepair tooexport 실패 한 모든 파일:  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log  
 ```  
   
-다음은 blob의 한 블록을 내보내지 못했음을 보여 주는 복사 로그 파일의 예입니다.  
+hello 다음은 hello 실패 blob tooexport에 하나의 해당 블록을 보여 주는 복사 로그 파일의 예입니다.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -81,20 +81,20 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 </DriveLog>  
 ```  
   
-이 복사 로그 파일은 Microsoft Azure Import/Export 서비스가 blob 블록 중 하나를 내보내기 드라이브의 파일에 다운로드하는 동안 오류가 발생했음을 나타냅니다. 파일의 다른 구성 요소는 성공적으로 다운로드되었으며 파일 길이도 올바르게 설정되었습니다. 이 경우 도구는 드라이브의 파일을 열고 저장소 계정에서 블록을 다운로드한 후 길이가 65536이고 오프셋 65536부터 시작하는 파일 범위에 씁니다.  
+hello 복사 로그 파일 hello 내보내기 드라이브에 hello blob의 블록 toohello 파일 중 하나는 hello Windows Azure 가져오기/내보내기 서비스를 다운로드 하는 동안 오류가 발생 했음을 나타냅니다. 성공적으로 다운로드 하는 hello 파일의 다른 구성 요소를 hello 및 hello 파일 길이 잘못 설정 되었습니다. 이 경우 hello 도구는 hello 드라이브에 hello 파일을 열, hello 블록 hello 저장소 계정에서 다운로드 및 길이가 65536 인 65536 오프셋에서 시작 하는 파일 범위 toohello 작성 합니다.  
   
-## <a name="using-repairexport-to-validate-drive-contents"></a>RepairExport를 사용하여 드라이브 내용의 유효성 검사  
-**RepairExport** 옵션과 Azure Import/Export를 함께 사용하여 드라이브 내용이 올바른지 검사할 수도 있습니다. 각 내보내기 드라이브에 있는 매니페스트 파일에는 드라이브 내용에 대한 MD5가 포함되어 있습니다.  
+## <a name="using-repairexport-toovalidate-drive-contents"></a>RepairExport toovalidate 드라이브 콘텐츠를 사용 하 여  
+Azure 가져오기/내보내기 hello로 사용할 수도 있습니다 **RepairExport** 옵션 toovalidate hello hello 드라이브의 내용이 올바른 합니다. 각 내보내기 드라이브에 hello 매니페스트 파일에 hello 드라이브의 hello 내용 m d 5가 포함 되어 있습니다.  
   
-Azure Import/Export 서비스는 내보내기 프로세스 동안 저장소 계정에 이 매니페스트 파일을 저장할 수도 있습니다. 매니페스트 파일의 위치는 작업이 완료될 때 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 작업을 통해 사용할 수 있습니다. 드라이브 매니페스트 파일의 형식에 대한 자세한 내용은 [Import/Export 서비스 매니페스트 파일 형식](storage-import-export-file-format-metadata-and-properties.md)을 참조하세요.  
+Azure 가져오기/내보내기 서비스 hello 저장할 수도 hello 매니페스트 파일 tooa 저장소 계정 hello 내보내기 프로세스 중. hello hello 매니페스트 파일의 위치는 hello를 통해 사용할 수 있는 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) hello 작업이 완료 될 때 작업 합니다. 참조 [가져오기/내보내기 서비스 매니페스트 파일 형식](storage-import-export-file-format-metadata-and-properties.md) 드라이브 매니페스트 파일의 hello 형식에 대 한 자세한 내용은 합니다.  
   
-다음 예제에서는 **/ManifestFile** 및 **/CopyLogFile** 매개 변수를 사용하여 Azure Import/Export 도구를 실행하는 방법을 보여 줍니다.  
+hello 다음 예제에서는 toorun hello로 Azure 가져오기/내보내기 도구를 hello 하는 방법을 **/ManifestFile** 및 **/CopyLogFile** 매개 변수:  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log /ManifestFile:G:\9WM35C3U.manifest  
 ```  
   
-다음은 매니페스트 파일의 예입니다.  
+hello 다음은 매니페스트 파일의 예입니다.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -131,7 +131,7 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 </DriveManifest>  
 ``` 
   
-복구 프로세스를 마친 후 이 도구는 매니페스트 파일에 참조된 각 파일을 읽고 MD5 해시를 사용하여 파일 무결성을 확인합니다. 위에 있는 매니페스트의 경우 다음 구성 요소가 확인됩니다.  
+Hello 복구 프로세스 완료 후 hello 도구 hello 매니페스트 파일에서 참조 된 각 파일을 통해 읽고 hello MD5 해시와 함께 hello 파일의 무결성을 확인 하십시오. 위의 hello 매니페스트의 경우 다음과 같은 구성 요소가 hello를 거치게 됩니다.  
 
 ```  
 G:\pictures\city\redmond.jpg, offset 0, length 3584  
@@ -153,12 +153,12 @@ G:\pictures\wild\canyon.jpg, offset 8163, length 2721
 G:\pictures\wild\canyon.jpg.properties  
 ```
 
-확인에 실패한 모든 구성 요소는 도구를 통해 다운로드된 후 드라이브의 동일한 파일에 다시 써집니다.  
+Hello 확인에 실패 한 모든 구성 요소 hello 도구를 통해 다운로드 되 고 다시 작성 toohello hello 드라이브에 파일 동일 합니다.  
   
 ## <a name="next-steps"></a>다음 단계
  
-* [Azure Import/Export 도구 설정](storage-import-export-tool-setup-v1.md)   
+* [설정 hello Azure 가져오기/내보내기 도구](storage-import-export-tool-setup-v1.md)   
 * [가져오기 작업을 위한 하드 드라이브 준비](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
 * [복사 로그 파일을 사용하여 작업 상태 검토](storage-import-export-tool-reviewing-job-status-v1.md)   
 * [가져오기 작업 복구](storage-import-export-tool-repairing-an-import-job-v1.md)   
-* [Azure Import/Export 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)
+* [Hello Azure 가져오기/내보내기 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)

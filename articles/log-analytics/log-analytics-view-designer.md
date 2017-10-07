@@ -1,6 +1,6 @@
 ---
-title: "OMS Log Analytics에서 데이터를 분석하는 보기 만들기 | Microsoft 문서"
-description: "Log Analytics에서 뷰 디자이너를 사용하면 OMS 및 Azure Portal에 표시되고 OMS 리포지토리에 있는 데이터를 여러 방법으로 시각화하는 사용자 지정 보기를 만들 수 있습니다. 이 문서에는 뷰 디자이너 개요 및 사용자 지정 보기를 만들고 편집하는 절차가 포함되어 있습니다."
+title: "aaaCreate OMS 로그 분석에 tooanalyze 데이터 뷰 | Microsoft Docs"
+description: "로그 분석에서 보기 디자이너 있습니다 toocreate 사용자 지정 보기 hello OMS 리포지토리에 데이터의 각기 다른 시각화를 포함 하는 hello OMS 및 Azure 포털에 표시 됩니다. 이 문서에는 뷰 디자이너 개요 및 사용자 지정 보기를 만들고 편집하는 절차가 포함되어 있습니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: e3c463d749dc4179df58286b9bb75584880a6bc6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40b4bfef50d70e4479b6cae16abfa8ec33d1a2f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-view-designer-to-create-custom-views-in-log-analytics"></a>뷰 디자이너를 사용하여 Log Analytics에서 사용자 지정 보기 만들기
-[Log Analytics](log-analytics-overview.md)에서 뷰 디자이너를 사용하면 OMS 리포지토리에 있는 데이터를 여러 방법으로 시각화하는 사용자 지정 보기를 만들 수 있습니다. 이 문서에는 뷰 디자이너 개요 및 사용자 지정 보기를 만들고 편집하는 절차가 포함되어 있습니다.
+# <a name="use-view-designer-toocreate-custom-views-in-log-analytics"></a>뷰 디자이너 toocreate 사용자 지정 보기를 사용 하 여 로그 분석에서
+hello 뷰 디자이너에서 [로그 분석](log-analytics-overview.md) toocreate 사용자 지정 보기 hello OMS 콘솔에서 hello OMS 리포지토리에 데이터의 각기 다른 시각화를 포함 하는 있습니다. 이 문서에는 뷰 디자이너 개요 및 사용자 지정 보기를 만들고 편집하는 절차가 포함되어 있습니다.
 
 뷰 디자이너에 적용할 수 있는 다른 문서는 다음과 같습니다.
 
-* [타일 참조](log-analytics-view-designer-tiles.md) - 사용자 지정 보기에 사용할 수 있는 타일 각각의 설정에 대한 참조
-* [시각화 요소 참조](log-analytics-view-designer-parts.md) - 사용자 지정 보기에 사용할 수 있는 타일 각각의 설정에 대한 참조
+* [참조 바둑판식으로 배열](log-analytics-view-designer-tiles.md) -참조 각 hello에 대 한 hello 설정의 사용자 지정 보기에서 사용할 수 있는 toouse 바둑판식으로 표시 합니다.
+* [시각화 파트 참조](log-analytics-view-designer-parts.md) -참조 각 hello에 대 한 hello 설정의 사용자 지정 보기에서 사용할 수 있는 toouse 바둑판식으로 표시 합니다.
 
 >[!NOTE]
-> 작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우 모든 뷰의 쿼리를 [새 쿼리 언어](https://go.microsoft.com/fwlink/?linkid=856078)로 써야 합니다.  작업 영역을 업그레이드하기 전에 생성된 모든 뷰는 자동으로 변환됩니다.
+> 작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), hello 모든 보기에서 쿼리를 작성 해야 하는 다음 [새로운 쿼리 언어](https://go.microsoft.com/fwlink/?linkid=856078)합니다.  작업 영역 hello를 업그레이드 하기 전에 생성 된 모든 뷰 automtically 변환 됩니다.
 
 ## <a name="concepts"></a>개념
-뷰 디자이너에서 만드는 보기에 포함되는 요소는 다음 표와 같습니다.
+Hello 뷰 디자이너를 사용 하 여 만든 뷰는 다음 표에 hello에 hello 요소를 포함 합니다.
 
 | 부 | 설명 |
 |:--- |:--- |
-| 타일 |기본 Log Analytics 개요 대시보드에서 표시됩니다.  사용자 지정 보기에 있는 정보를 요약하는 시각적 개체를 포함하고 있습니다.  타일 유형마다 OMS 리포지토리에 있는 레코드에 대해 차별화된 시각화를 제공합니다.  타일을 클릭하면 사용자 지정 보기가 열립니다. |
-| 사용자 지정 보기 |사용자가 타일을 클릭할 때 표시됩니다.  시각화 요소를 하나 이상 포함하고 있습니다. |
-| 시각화 요소 |OMS 리포지토리의 데이터에 대한 [로그 검색](log-analytics-log-searches.md) 하나 이상에 기반한 시각화입니다.  대부분의 요소에는 높은 수준의 시각화와 상위 결과 목록을 제공하는 머리글이 포함되어 있습니다.  요소 유형마다 OMS 리포지토리에 있는 레코드에 대해 차별화된 시각화를 제공합니다.  요소의 항목을 클릭하면 상세 레코드를 제공하는 로그 검색을 수행합니다. |
+| 타일 |Hello 주 로그 분석 개요 대시보드에 나타납니다.  Hello에 포함 된 hello 정보를 시각적 요약 포함 사용자 지정 보기.  다른 타일 형식은 hello OMS 리포지토리에 레코드의 각기 다른 시각화를 제공합니다.  사용자 지정 보기 타일 tooopen hello hello 클릭 합니다. |
+| 사용자 지정 보기 |Hello 사용자 hello 타일을 클릭할 때 표시 됩니다.  시각화 요소를 하나 이상 포함하고 있습니다. |
+| 시각화 요소 |하나 이상의에 따라 hello OMS 리포지토리에 데이터의 시각화 [검색 로그](log-analytics-log-searches.md)합니다.  대부분 파트는 높은 수준의 시각화를 제공 하는 헤더 및 hello 상위 결과 목록이 포함 됩니다.  다른 부분 형식 hello OMS 리포지토리에 레코드의 각기 다른 시각화를 제공합니다.  세부 레코드를 제공 하는 로그 검색 hello 부분 tooperform에 요소를 클릭 합니다. |
 
 ![뷰 디자이너 개요](media/log-analytics-view-designer/overview.png)
 
-## <a name="add-view-designer-to-your-workspace"></a>작업 영역에 뷰 디자이너 추가
-뷰 디자이너가 미리 보기 상태에 있는 동안에 OMS 포털의 **설정** 섹션에서 **미리 보기 기능**을 선택하여 작업 영역에 뷰 디자이너를 추가해야 합니다.
+## <a name="add-view-designer-tooyour-workspace"></a>뷰 디자이너 tooyour 작업 영역 추가
+뷰 디자이너 미리 보기 상태인 동안 추가 해야 tooyour 작업 영역을 선택 하 여 **미리 보기 기능** hello에 **설정을** hello OMS 포털의 섹션입니다.
 
 ![미리 보기 사용](media/log-analytics-view-designer/preview.png)
 
 ## <a name="creating-and-editing-views"></a>보기 만들기 및 편집
 ### <a name="create-a-new-view"></a>새 보기 만들기
-기본 OMS 대시보드에서 뷰 디자이너 타일을 클릭하여 **뷰 디자이너**에서 새 보기를 엽니다.
+Hello에 새 보기를 열고 **뷰 디자이너** hello 뷰 디자이너를 클릭 하 여 hello 기본 OMS 대시보드의 타일입니다.
 
 ![뷰 디자이너 타일](media/log-analytics-view-designer/view-designer-tile.png)
 
 ### <a name="edit-an-existing-view"></a>기존 보기 편집
-뷰 디자이너에서 기존 보기를 편집하려면 기본 OMS 대시보드에서 해당 타일을 클릭하여 해당 보기를 엽니다.  그런 다음 **편집** 단추를 클릭하여 뷰 디자이너에서 해당 보기를 엽니다.
+tooedit hello open hello 보기 hello 주 OMS 대시보드에 타일을 클릭 하 여 뷰 디자이너에서에서 기존 보기.  Hello 클릭 **편집** hello 뷰 디자이너에서에서 tooopen hello 보기 단추입니다.
 
 ![보기 편집](media/log-analytics-view-designer/menu-edit.png)
 
 ### <a name="clone-an-existing-view"></a>기존 보기 복제
-보기를 복제하면 새 보기를 만들고 뷰 디자이너에서 이 보기를 엽니다.  새 보기에는 원본과 동일한 이름 끝에 "복사본"이 추가된 이름이 적용됩니다.  보기를 복제하려면 기본 OMS 대시보드에서 해당 타일을 클릭하여 기존 보기를 엽니다.  그런 다음 **복제** 단추를 클릭하여 뷰 디자이너에서 해당 보기를 엽니다.
+뷰를 복제 하면 보기를 새로 만들고 hello 뷰 디자이너에서에서 엽니다.  새 보기 hello hello "복사" 추가 된 toohello 끝에 있는 원래 hello로 이름과 같은 이름을 갖습니다.  tooclone 보기, 열기 hello hello 주 OMS 대시보드에 타일을 클릭 하 여 기존 보기.  Hello 클릭 **복제** hello 뷰 디자이너에서에서 tooopen hello 보기 단추입니다.
 
 ![보기 복제](media/log-analytics-view-designer/edit-menu-clone.png)
 
 ### <a name="delete-an-existing-view"></a>기존 보기 삭제
-기존 보기를 삭제하려면 기본 OMS 대시보드에서 해당 타일을 클릭하여 해당 보기를 엽니다.  그런 다음 **편집** 단추를 클릭하여 뷰 디자이너에서 해당 보기를 열고 **보기 삭제**를 클릭합니다.
+toodelete 기존 보기를 hello 주 OMS 대시보드에 타일을 클릭 하 여 열기 hello 보기.  Hello 클릭 **편집** hello 뷰 디자이너에서에서 tooopen hello 보기 단추를 누르고 **보기 삭제**합니다.
 
 ![보기 삭제](media/log-analytics-view-designer/edit-menu-delete.png)
 
 ### <a name="export-an-existing-view"></a>기존 보기 내보내기
-보기는 다른 작업 영역으로 가져오거나 [Azure Resource Manager 템플릿](../azure-resource-manager/resource-group-authoring-templates.md)에서 사용할 수 있는 JSON 파일에 내보낼 수 있습니다.  기존 보기를 내보려면 기본 OMS 대시보드에서 해당 타일을 클릭하여 해당 보기를 엽니다.  그런 다음 **내보내기** 단추를 클릭하여 브라우저의 다운로드 폴더에 파일을 만듭니다.  파일 이름은 보기 이름과 *omsview* 확장명으로 구성됩니다.
+사용 하거나 다른 작업 영역으로 가져올 수 있는 보기 tooa JSON 파일을 내보낼 수는 [Azure 리소스 관리자 템플릿](../azure-resource-manager/resource-group-authoring-templates.md)합니다.  tooexport 기존 보기를 hello 주 OMS 대시보드에 타일을 클릭 하 여 열기 hello 보기.  Hello 클릭 **내보내기** 단추 toocreate hello 브라우저 다운로드 폴더의 파일에에서 있습니다.  hello hello 파일의 hello 이름이 됩니다 hello 확장명이 hello 뷰의 *omsview*합니다.
 
 ![보기 내보내기](media/log-analytics-view-designer/edit-menu-export.png)
 
 ### <a name="import-an-existing-view"></a>기존 보기 가져오기
-다른 관리 그룹에서 내보낸 *omsview* 파일을 가져올 수 있습니다.  기존 보기를 가져오려면 먼저 새 보기를 만듭니다.  그런 다음 **가져오기** 단추를 클릭하여 *omsview* 파일을 선택합니다.  파일의 구성이 기존 보기에 복사됩니다.
+다른 관리 그룹에서 내보낸 *omsview* 파일을 가져올 수 있습니다.  먼저 기존 보기를 tooimport 새 보기를 만듭니다.  Hello 클릭 **가져오기** 단추와 선택 hello *omsview* 파일입니다.  hello 파일의 hello 구성 hello 기존 보기에 복사 됩니다.
 
 ![보기 내보내기](media/log-analytics-view-designer/edit-menu-import.png)
 
 ## <a name="working-with-view-designer"></a>뷰 디자이너 작업
-뷰 디자이너에는 세 개의 창이 있습니다.  **디자인** 창에서는 사용자 지정 보기를 표시합니다.  **제어** 창에서 **디자인** 창으로 타일과 요소를 추가하면 해당 타일과 요소가 보기에 추가됩니다.  **속성** 창에서는 타일 또는 선택한 요소의 속성을 표시합니다.
+hello 뷰 디자이너에 세 개의 창이 있습니다.  hello **디자인** 창 hello 사용자 지정 보기를 나타냅니다.  Hello에서 타일 및 일부 추가 되는 경우 **제어** 창 toohello **디자인** 는 창 toohello 보기를 추가 합니다.  hello **속성** hello 타일 또는 선택한 부분에 대 한 hello 속성 창에 표시 됩니다.
 
 ![뷰 디자이너](media/log-analytics-view-designer/view-designer-screenshot.png)
 
 ### <a name="configure-view-tile"></a>보기 타일 구성
-사용자 지정 보기에는 타일 하나만 있을 수 있습니다.  **제어** 창에서 **타일** 탭을 선택하여 현재 타일을 확인하거나 다른 타일을 선택합니다.  **속성** 창에서는 현재 타일의 속성을 표시합니다.  [타일 참조](log-analytics-view-designer-tiles.md)의 세부 정보에 따라 타일 속성을 구성한 다음 **적용**을 클릭하여 변경 내용을 저장합니다.
+사용자 지정 보기에는 타일 하나만 있을 수 있습니다.  선택 hello **타일** hello 탭 **제어** tooview hello 현재 창 바둑판식으로 배열 하거나 대체를 선택 합니다.  hello **속성** hello 현재 타일에 대 한 hello 속성 창에 표시 됩니다.  Hello 타일 속성 구성 toohello에 따라 자세한 정보를 hello에 [바둑판식으로 배열 참조](log-analytics-view-designer-tiles.md) 클릭 **적용** toosave 변경 합니다.
 
 ### <a name="configure-visualization-parts"></a>시각화 요소 구성
-보기에는 시각화 요소가 얼마든지 포함될 수 있습니다.  **보기** 탭, 보기에 추가할 시각화 요소를 차례로 선택합니다.  **속성** 창에서는 선택한 요소의 속성을 표시합니다.  [시각화 요소 참조](log-analytics-view-designer-parts.md)의 세부 정보에 따라 보기일 속성을 구성한 다음 **적용**을 클릭하여 변경 내용을 저장합니다.
+보기에는 시각화 요소가 얼마든지 포함될 수 있습니다.  선택 hello **보기** 탭 한 다음 시각화 부 tooadd toohello 보기.  hello **속성** hello 선택 부분에 대 한 hello 속성 창에 표시 됩니다.  Hello 뷰 구성 자세한 hello에 대 한 정보를 toohello에 따라 속성 [시각화 파트 참조](log-analytics-view-designer-parts.md) 클릭 **적용** toosave 변경 합니다.
 
 ### <a name="delete-a-visualization-part"></a>시각화 요소 삭제
-요소 오른쪽 위 모서리의 **X** 단추를 클릭하면 보기에서 시각화 요소를 제거할 수 있습니다.
+Hello를 클릭 하 여 hello 보기에서 시각화 파트를 제거할 수 **X** hello의 오른쪽 위 모서리 hello 부분에서에서 단추입니다.
 
 ### <a name="rearrange-visualization-parts"></a>시각화 요소 다시 정렬
-보기에는 시각화 요소의 행 하나만 있습니다.  기존 요소를 클릭하여 새 위치로 끌어가면 보기에서 해당 요소를 다시 정렬할 수 있습니다.
+보기에는 시각화 요소의 행 하나만 있습니다.  클릭 하 여 tooa 새 위치로 끌어 뷰의 기존 파트를 다시 정렬 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 사용자 지정 보기에 [타일](log-analytics-view-designer-tiles.md) 추가
-* 사용자 지정 보기에 [시각화 요소](log-analytics-view-designer-parts.md) 추가
+* 추가 [타일](log-analytics-view-designer-tiles.md) tooyour 사용자 지정 보기.
+* 추가 [시각화 부분](log-analytics-view-designer-parts.md) tooyour 사용자 지정 보기.

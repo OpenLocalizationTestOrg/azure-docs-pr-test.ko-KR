@@ -1,6 +1,6 @@
 ---
-title: "Azure 마이크로 서비스 테스트를 위한 클러스터 노드 시작 및 중지 | Microsoft Docs"
-description: "클러스터 노드를 시작 및 중지하여 Service Fabric 응용 프로그램을 테스트하기 위해 오류 주입을 사용하는 방법을 살펴봅니다."
+title: "aaaStart 및 중지할 클러스터 노드의 tootest Azure microservices | Microsoft Docs"
+description: "어떻게 toouse 오류 주입 tootest 서비스 패브릭 응용 프로그램을 시작 하 고 클러스터 노드를 중지 하 여에 대해 알아봅니다."
 services: service-fabric
 documentationcenter: .net
 author: LMWF
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 6/12/2017
 ms.author: lemai
-ms.openlocfilehash: 850fbc0c74811ec942292da64064dec867cd1b9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7d3f5147328e6233a67533fbfb2a525aa5fc060e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replacing-the-start-node-and-stop-node-apis-with-the-node-transition-api"></a>시작 노드 및 중지 노드 API를 노드 전환 API로 바꾸기
+# <a name="replacing-hello-start-node-and-stop-node-apis-with-hello-node-transition-api"></a>Hello 노드 시작 및 중지 노드 Api hello 노드 전환 API로 교체
 
-## <a name="what-do-the-stop-node-and-start-node-apis-do"></a>시작 노드 및 중지 노드 API는 어떤 작업을 수행하나요?
+## <a name="what-do-hello-stop-node-and-start-node-apis-do"></a>노드 중지 hello 수행 기능 하 고 노드 Api 시작 합니까?
 
-노드 중지 API(관리: [StopNodeAsync()][stopnode], PowerShell: [Stop-ServiceFabricNode][stopnodeps])는 Service Fabric 노드를 중지합니다.  Service Fabric 노드는 VM도 컴퓨터도 아닌 프로세스입니다. VM이나 컴퓨터는 계속 실행됩니다.  이 문서의 나머지 부분에서 "노드"는 Service Fabric 노드를 의미합니다.  노드를 중지하면 클러스터의 멤버가 아니고 서비스를 호스트할 수 없는 *중지됨* 상태가 되므로 *작동 중단* 노드가 시뮬레이트됩니다.  이 기능은 시스템에 오류를 삽입하여 응용 프로그램을 테스트할 때 유용합니다.  노드 시작 API(관리: [StartNodeAsync()][startnode], PowerShell: [Start-ServiceFabricNode][startnodeps]])는 노드 중지 API를 되돌려 노드를 다시 정상 상태로 만듭니다.
+hello 노드 API 중지 (관리 되는: [StopNodeAsync()][stopnode], PowerShell: [중지 ServiceFabricNode][stopnodeps]) 서비스 패브릭 노드를 중지 합니다.  서비스 패브릭 노드는 프로세스, VM 또는 컴퓨터 아닙니다. – hello VM 또는 컴퓨터는 계속 실행 됩니다.  Hello 나머지 hello 문서에 대 한 "노드" 서비스 패브릭 노드를 의미 합니다.  가져와 노드를 중지 한 *중지* 상태 hello 클러스터의 구성원이 아니므로 하 고 시뮬레이션할 서비스를 호스팅할 수 없습니다는 *아래로* 노드.  이 응용 프로그램 시스템 tootest hello에 오류를 삽입 하는 데 유용 합니다.  hello 노드 API 시작 (관리 되는: [StartNodeAsync()][startnode], PowerShell: [시작 ServiceFabricNode][startnodeps]]) 역방향 hello 노드 API 중지  hello 노드 백 tooa 정상 상태로 표시 합니다.
 
 ## <a name="why-are-we-replacing-these"></a>이러한 API를 교체하는 이유는 무엇일까요?
 
-앞에서 설명한 대로 *중지됨* Service Fabric 노드는 노드 중지 API를 사용할 때 의도적으로 대상으로 지정되는 노드입니다.  *작동 중단* 노드는 어떤 이유로든 작동 중단된 노드입니다(예: VM 또는 컴퓨터가 꺼져 있음).  노드 중지 API를 사용할 경우 시스템은 *중지됨* 노드와 *작동 중단* 노드 간을 구분하기 위한 정보를 제공하지 않습니다.
+앞에서 설명한 대로 *중지* 서비스 패브릭 노드는 의도적으로 hello 중지 노드 API를 사용 하 여 대상 노드입니다.  A *아래로* (VM 또는 컴퓨터 예: hello 해제 되어 있음) 되는 다른 어떤 이유로 아래에 있는 노드.  Hello 시스템 노드 API 중지 hello로 사이의 toodifferentiate 정보를 노출 하지 않습니다 *중지* 노드 및 *아래로* 노드.
 
-또한 이러한 API에서 반환하는 일부 오류는 충분한 설명을 포함하지 않습니다.  예를 들어 이미 *중지된* 노드에 대해 노드 중지 API를 호출하면 오류 *InvalidAddress*가 반환됩니다.  이러한 환경을 향상시킬 수 있습니다.
+또한 이러한 API에서 반환하는 일부 오류는 충분한 설명을 포함하지 않습니다.  예를 들어 호출에 중지 노드 API hello는 이미 *중지* 노드는 hello 오류를 반환 하는 *InvalidAddress*합니다.  이러한 환경을 향상시킬 수 있습니다.
 
-또한 노드 시작 API를 호출할 때까지 노드가 중지된 기간은 "무제한"이 됩니다.  이로 인해 문제가 발생하고 오류가 발생하기 쉬워질 수 있습니다.  예를 들어 사용자가 노드에 대해 노드 중지 API를 호출한 다음 그 사실을 잊어버리는 문제가 확인되었습니다.  따라서 나중에 노드가 *작동 중단* 또는 *중지됨* 상태인지가 명확해지지 않을 수 있습니다.
+또한 hello 기간에 대 한 노드 중지 된은 "무제한" hello 시작 노드 API를 호출할 때까지 합니다.  이로 인해 문제가 발생하고 오류가 발생하기 쉬워질 수 있습니다.  예를 들어 여기서 사용자 노드에서 hello 중지 노드 API를 호출 하 고 다음 항목에 대 한 찾기 문제 살펴보았습니다.  Hello 노드가 명확 없었습니다 나중 *아래로* 또는 *중지*합니다.
 
 
-## <a name="introducing-the-node-transition-apis"></a>노드 전환 API 소개
+## <a name="introducing-hello-node-transition-apis"></a>Hello 노드 전환 Api 소개
 
-새로운 API 집합에서 이러한 문제를 살펴보았습니다.  새로운 노드 전환 API(관리: [StartNodeTransitionAsync()][snt])는 Service Fabric 노드를 *중지됨* 상태로 전환하거나 *중지됨* 상태를 정상 작동 상태로 전환하는 데 사용할 수 있습니다.  API의 이름에 "Start"가 있다고 해서 노드 시작을 나타내는 것은 아닙니다.  시스템이 노드를 *중지됨* 또는 시작됨 상태로 전환하기 위해 실행하는 비동기 작업이 시작됨을 나타냅니다.
+새로운 API 집합에서 이러한 문제를 살펴보았습니다.  hello 새 노드 전환 API (관리 되는: [StartNodeTransitionAsync()][snt]) 서비스 패브릭 노드 tooa 사용된 tootransition 수 *중지* 상태나 tootransition 것 *중지* 상태를 정상 상태로 tooa 합니다.  Hello API의 hello 이름에 해당 hello "Start" toostarting 노드를 참조 하지 않는 note 하십시오.  Toobeginning hello 시스템은 tootransition hello 노드 tooeither를 실행 하는 비동기 작업 참조 *중지* 또는 상태를 시작 합니다.
 
 **사용 현황**
 
-노드 전환 API가 호출 시 예외를 throw하지 않으면 시스템은 해당 비동기 작업을 수락하고 실행합니다.  호출이 성공했다고 해서 작업이 이미 완료된 것을 의미하지는 않습니다.  작업의 현재 상태에 대한 정보를 가져오려면 이 작업에 대해 노드 전환 API(관리: [GetNodeTransitionProgressAsync()][gntp])를 호출할 때 사용되는 GUID를 사용하여 노드 전환 진행률 API를 호출합니다.  노드 전환 진행률 API는 NodeTransitionProgress 개체를 반환합니다.  이 개체의 State 속성은 작업의 현재 상태를 지정합니다.  상태가 "실행 중"이면 작업이 실행되고 있는 것입니다.  상태가 완료됨이면 작업이 오류 없이 완료된 것입니다.  상태가 실패인 경우 작업을 실행하는 동안 문제가 발생한 것입니다.  Result 속성의 Exception 속성은 발생한 문제가 어떤 것인지를 나타냅니다.  State 속성에 대한 자세한 내용은 https://docs.microsoft.com/dotnet/api/system.fabric.testcommandprogressstate 를 참조하고, 코드 예제에 대해서는 아래의 "샘플 사용" 섹션을 참조하세요.
+Hello 노드 전환 API에서 호출 될 때 예외를 throw 하지 않습니다, hello 시스템에서 hello 비동기 작업을 수락 및 실행 됩니다.  호출이 성공 hello 작업이 아직 완료 하는 것을 의미 하지 않습니다.  hello hello 작업을 호출 hello 노드 전환 진행률 API의 현재 상태에 대 한 tooget 정보 (관리 되는: [GetNodeTransitionProgressAsync()][gntp]) 노드를 호출할 때 사용 되는 hello guid를 가진 이 작업에 대 한 전환 API입니다.  hello 노드 전환 진행률 API NodeTransitionProgress 개체를 반환 합니다.  이 개체의 State 속성이 hello hello 작업의 현재 상태를 지정합니다.  Hello 상태가 "Running" hello 작업이 중입니다.  완료 되 면 hello 작업이 오류 없이 완료 되었습니다.  Faulted 인 경우 hello 작업을 실행 하는 문제가 발생 했습니다.  속성은 어떤 hello 발급 나타냅니다 hello 결과 속성의 예외는입니다.  Https://docs.microsoft.com/dotnet/api/system.fabric.testcommandprogressstate hello State 속성 및 코드 예제에 대 한 아래의 hello "샘플 사용" 섹션에 대 한 자세한 내용은 참조 하십시오.
 
 
-**중지된 노드와 작동 중단된 노드 간 구분** 노드가 노드 전환 API를 사용하여 *중지된* 경우 노드 쿼리의 출력(관리: [GetNodeListAsync()][nodequery], PowerShell: [Get-ServiceFabricNode][nodequeryps])에는 이 노드의 *IsStopped* 속성 값이 true임이 표시됩니다.  이 값은 *Down*으로 표시되는 *NodeStatus* 속성 값과 다릅니다.  *NodeStatus* 속성 값이 *Down*이지만 *IsStopped*가 false이면 노드는 노드 전환 API를 사용하여 중지되지 않은 것이며 다른 이유로 인해 *Down* 상태인 것입니다.  *IsStopped* 속성이 true이고 *NodeStatus* 속성이 *Down*이면 노드 전환 API를 사용하여 중지된 것입니다.
+**중지 된 노드와 아래쪽 노드가 차별화** 노드를 경우 *중지* 노드 전환 API 노드 쿼리의 hello 출력 hello를 사용 하 여 (관리 되는: [GetNodeListAsync()] [ nodequery], PowerShell: [Get ServiceFabricNode][nodequeryps]) 노드마다이 표시 됩니다는 *IsStopped* 속성 값이 true입니다.  이 hello의 hello 값과에서 다른 *NodeStatus* 됩니다 속성 *아래로*합니다.  경우 hello *NodeStatus* 속성의 값은 *아래로*, 하지만 *IsStopped* 이며가 false 이면 hello 노드 hello 노드 전환 API를 사용 하 여 중지 되지 않았습니다  *아래로* 다른 이유로 인해 합니다.  경우 hello *IsStopped* 속성은 true와 hello *NodeStatus* 속성은 *아래로*, hello 노드 전환 API를 사용 하 여 중지 합니다.
 
-노드 전환 API를 사용하여 *중지된* 노드를 시작하면 클러스터의 일반 멤버로 다시 작동됩니다.  노드 쿼리 API의 출력에는 *IsStopped*가 false로, *NodeStatus*가 Down이 아닌 다른 상태(예: Up)로 표시됩니다.
+시작 하는 *중지* hello 노드 전환 API를 사용 하 여 노드는 반환 toofunction hello 클러스터의 정상적인 멤버로 다시 합니다.  hello hello 노드 쿼리 API의 출력 표시 됩니다 *IsStopped* false로 및 *NodeStatus* 축 (예: 작동) 다운 하지 않습니다.
 
 
-**기간 제한** 노드 전환 API를 사용하여 노드를 중지할 때 필수 매개 변수 *stopNodeDurationInSeconds* 중 하나는 노드를 *중지됨* 상태로 유지할 시간(초)을 나타냅니다.  이 값은 허용되는 600~14400초 범위 내에 있어야 합니다.  이 시간이 만료되면 노드는 자동으로 작동 상태로 다시 시작됩니다.  사용 예제를 보려면 아래의 샘플 1을 참조하세요.
-
-> [!WARNING]
-> 노드 전환 API와 노드 중지 및 노드 시작 API를 혼합해서 사용하지 마세요.  노드 전환 API만 사용하는 것이 좋습니다.  노드 중지 API를 사용하여 노드가 이미 중지된 경우 노드 전환 API를 사용하기 전에 먼저 노드 시작 API를 사용하여 노드를 시작해야 합니다.
+**제한 기간** hello 노드 전환 API toostop 노드를 사용할 때 필수 매개 hello 중 하나 *stopNodeDurationInSeconds*를 나타내는 시간 (초) tookeep hello 노드 hello  *중지*합니다.  이 값은 허용 되는 범위는 600의 최소와 최대 14400 hello에 있어야 합니다.  이 시간이 만료 되 면 hello 노드 됩니다에 자체 상태를 자동으로 다시 시작 합니다.  사용법 tooSample 1 아래를 참조 하십시오.
 
 > [!WARNING]
-> 동일한 노드에 대해 여러 노드 전환 API 호출을 동시에 수행할 수 없습니다.  이러한 경우 노드 전환 API는 ErrorCode 속성 값 NodeTransitionInProgress을 사용하여 FabricException을 throw합니다.  특정 노드의 노드 전환이 시작되면 해당 작업이 종료 상태(Completed, Faulted, 또는 ForceCancelled)에 도달할 때까지 기다렸다가 같은 노드에서 새 전환을 시작해야 합니다.  여러 다른 노드에 대한 병렬 노드 전환 호출이 허용됩니다.
+> 노드 중지 및 시작 노드 Api hello 및 노드 전환 Api 혼합을 방지 합니다.  hello 너무 hello 노드 전환 API를 사용 하 여 좋습니다.  > 노드가 이미 된 경우 hello 중지 노드 API를 사용 하 여 중지 하기 시작 해야 hello를 사용 하기 전에 먼저 hello 시작 노드 API를 사용 > 노드 전환 Api입니다.
+
+> [!WARNING]
+> 여러 노드 전환 Api 호출에서 만들 수 없습니다 hello 동시에 동일한 노드.  Hello 노드 전환 API는 이러한 상황에서 > ErrorCode 속성 값이 NodeTransitionInProgress FabricException을 throw 합니다.  특정 노드에서 노드 전환 되 면 > 되었습니다 시작 기다려야 hello 작업에 종료 상태 (Completed, Faulted, 또는 ForceCancelled)을 시작 하기 전에 도달할 때까지 > new 전환 hello에 동일한 노드.  여러 다른 노드에 대한 병렬 노드 전환 호출이 허용됩니다.
 
 
 #### <a name="sample-usage"></a>샘플 사용
 
 
-**샘플 1** - 다음 샘플에서는 노드 전환 API를 사용하여 노드를 중지합니다.
+**예제 1** -샘플에서는 다음 hello hello 노드 전환 API toostop 노드.
 
 ```csharp
-        // Helper function to get information about a node
+        // Helper function tooget information about a node
         static Node GetNodeInfo(FabricClient fc, string node)
         {
             NodeList n = null;
@@ -105,7 +105,7 @@ ms.lasthandoff: 07/11/2017
 
                     if (progress.State == TestCommandProgressState.Faulted)
                     {
-                        // Inspect the progress object's Result.Exception.HResult to get the error code.
+                        // Inspect hello progress object's Result.Exception.HResult tooget hello error code.
                         Console.WriteLine("'{0}' failed with: {1}, HResult: {2}", operationId, progress.Result.Exception, progress.Result.Exception.HResult);
 
                         // ...additional logic as required
@@ -125,7 +125,7 @@ ms.lasthandoff: 07/11/2017
 
         static async Task StopNodeAsync(FabricClient fc, string nodeName, int durationInSeconds)
         {
-            // Uses the GetNodeListAsync() API to get information about the target node
+            // Uses hello GetNodeListAsync() API tooget information about hello target node
             Node n = GetNodeInfo(fc, nodeName);
 
             // Create a Guid
@@ -140,7 +140,7 @@ ms.lasthandoff: 07/11/2017
             {
                 try
                 {
-                    // Invoke StartNodeTransitionAsync with the NodeStopDescription from above, which will stop the target node.  Retry transient errors.
+                    // Invoke StartNodeTransitionAsync with hello NodeStopDescription from above, which will stop hello target node.  Retry transient errors.
                     await fc.TestManager.StartNodeTransitionAsync(description, TimeSpan.FromMinutes(1), CancellationToken.None).ConfigureAwait(false);
                     wasSuccessful = true;
                 }
@@ -163,12 +163,12 @@ ms.lasthandoff: 07/11/2017
         }
 ```
 
-**샘플 2** - 다음 샘플에서는 *중지된* 노드를 시작합니다.  여기서는 첫 번째 샘플의 일부 도우미 메서드를 사용합니다.
+**예제 2** -hello 다음 샘플 시작 되는 *중지* 노드.  Hello 첫 번째 예제에서 일부 도우미 메서드를 사용합니다.
 
 ```csharp
         static async Task StartNodeAsync(FabricClient fc, string nodeName)
         {
-            // Uses the GetNodeListAsync() API to get information about the target node
+            // Uses hello GetNodeListAsync() API tooget information about hello target node
             Node n = GetNodeInfo(fc, nodeName);
 
             Guid guid = Guid.NewGuid();
@@ -183,7 +183,7 @@ ms.lasthandoff: 07/11/2017
             {
                 try
                 {
-                    // Invoke StartNodeTransitionAsync with the NodeStartDescription from above, which will start the target stopped node.  Retry transient errors.
+                    // Invoke StartNodeTransitionAsync with hello NodeStartDescription from above, which will start hello target stopped node.  Retry transient errors.
                     await fc.TestManager.StartNodeTransitionAsync(description, TimeSpan.FromMinutes(1), CancellationToken.None).ConfigureAwait(false);
                     wasSuccessful = true;
                 }
@@ -206,7 +206,7 @@ ms.lasthandoff: 07/11/2017
         }
 ```
 
-**샘플 3** - 다음 샘플에서는 잘못된 사용을 보여 줍니다.  제공하는 *stopDurationInSeconds*가 허용 범위보다 크기 때문에 이 사용은 잘못된 것입니다.  StartNodeTransitionAsync()는 치명적인 오류로 인해 실패하므로 작업은 허용되지 않고 진행률 API가 호출되지 않습니다.  이 샘플에서는 첫 번째 샘플의 일부 도우미 메서드를 사용합니다.
+**예제 3** -hello 다음 예제에서는 잘못 된 사용을 보여 줍니다.  이 사용이 잘못 되었습니다. 때문에 hello *stopDurationInSeconds* hello 허용 되는 범위 보다 크면를 제공 합니다.  이후 StartNodeTransitionAsync()는 오류를 표시 하며 실패 합니다 hello 작업이 적절 하지 않습니다 및 hello 진행률 API를 호출 하지 않아야 합니다.  이 샘플에서는 hello 첫 번째 예제에서 일부 도우미 메서드를 사용 합니다.
 
 ```csharp
         static async Task StopNodeWithOutOfRangeDurationAsync(FabricClient fc, string nodeName)
@@ -215,7 +215,7 @@ ms.lasthandoff: 07/11/2017
 
             Guid guid = Guid.NewGuid();
 
-            // Use an out of range value for stopDurationInSeconds to demonstrate error
+            // Use an out of range value for stopDurationInSeconds toodemonstrate error
             NodeStopDescription description = new NodeStopDescription(guid, n.NodeName, n.NodeInstanceId, 99999);
 
             try
@@ -237,7 +237,7 @@ ms.lasthandoff: 07/11/2017
         }
 ```
 
-**샘플 4** - 다음 샘플에서는 노드 전환 API에 의해 시작된 작업이 허용되지만 나중에 실행하는 동안 오류가 발생하는 경우 노드 전환 진행률 API에서 반환될 오류 정보를 보여 줍니다.  이 경우 노드 전환 API가 존재하지 않는 노드를 시작하려고 하기 때문에 실패합니다.  이 샘플에서는 첫 번째 샘플의 일부 도우미 메서드를 사용합니다.
+**예제 4** -hello 다음 예제에서는 hello hello 노드 전환 API 초기화 된 hello 작업을 허용 하지만 나중에 실행 하는 동안 오류가 발생 하는 경우 노드 전환 진행률 API에서에서 반환 되는 hello 오류 정보를 보여 줍니다.  Hello 경우에는 hello 노드 전환 API toostart 존재 하지 않는 노드를 시도 하기 때문에 실패 합니다.  이 샘플에서는 hello 첫 번째 예제에서 일부 도우미 메서드를 사용 합니다.
 
 ```csharp
         static async Task StartNodeWithNonexistentNodeAsync(FabricClient fc)
@@ -254,7 +254,7 @@ ms.lasthandoff: 07/11/2017
             {
                 try
                 {
-                    // Invoke StartNodeTransitionAsync with the NodeStartDescription from above, which will start the target stopped node.  Retry transient errors.
+                    // Invoke StartNodeTransitionAsync with hello NodeStartDescription from above, which will start hello target stopped node.  Retry transient errors.
                     await fc.TestManager.StartNodeTransitionAsync(description, TimeSpan.FromMinutes(1), CancellationToken.None).ConfigureAwait(false);
                     wasSuccessful = true;
                 }
@@ -272,8 +272,8 @@ ms.lasthandoff: 07/11/2017
             }
             while (!wasSuccessful);
 
-            // Now call StartNodeTransitionProgressAsync() until the desired state is reached.  In this case, it will end up in the Faulted state since the node does not exist.
-            // When StartNodeTransitionProgressAsync()'s returned progress object has a State if Faulted, inspect the progress object's Result.Exception.HResult to get the error code.
+            // Now call StartNodeTransitionProgressAsync() until hello desired state is reached.  In this case, it will end up in hello Faulted state since hello node does not exist.
+            // When StartNodeTransitionProgressAsync()'s returned progress object has a State if Faulted, inspect hello progress object's Result.Exception.HResult tooget hello error code.
             // In this case, it will be NodeNotFound.
             await WaitForStateAsync(fc, guid, TestCommandProgressState.Faulted).ConfigureAwait(false);
         }

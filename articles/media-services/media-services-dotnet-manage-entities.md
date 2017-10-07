@@ -1,6 +1,6 @@
 ---
-title: "미디어 서비스.NET SDK를 사용하여 자산 및 관련 엔터티 관리"
-description: "Media Services SDK for .NET을 사용하여 자산 및 관련 엔터티를 관리하는 방법을 알아봅니다."
+title: "aaaManaging 자산 및 미디어 서비스.NET SDK와 관련 엔터티"
+description: "어떻게 toomanage 자산과 관련된 엔터티에 hello Media Services SDK for.NET에 알아봅니다."
 author: juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 5efe16a09808267d0797521f9e1df2b60aec9cbb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 59a8543ffc6f7f30da2c67a6fcae09bc46da7a52
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-assets-and-related-entities-with-media-services-net-sdk"></a>미디어 서비스.NET SDK를 사용하여 자산 및 관련 엔터티 관리
 > [!div class="op_single_selector"]
@@ -27,50 +27,50 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-이 항목에서는 .NET를 사용하여 Azure Media Services 엔터티를 관리하는 방법을 보여 줍니다. 
+이 항목에서는 방법을 toomanage Azure 미디어 서비스.net 엔터티. 
 
 >[!NOTE]
-> 2017년 4월 1일부터 레코드의 총 수가 최고 할당량 미만인 경우에도 사용자 계정에 있는 90일이 지난 작업 레코드는 연결된 태스크 레코드와 함께 자동으로 삭제됩니다. 예를 들어, 2017년 4월 1일에는 계정에 있는 2016년 12월 31일 이전의 모든 작업 레코드가 자동으로 삭제됩니다. 작업/태스크 정보를 보관해야 하는 경우에는 이 항목에 설명된 코드를 사용할 수 있습니다.
+> 2017 년 4 월 1부터 90 일 보다 오래 된 계정에서 모든 작업 기록은 자동으로 함께 삭제 됩니다, 관련된 작업 레코드를 레코드의 총 수 hello hello 최대 할당량 미만인 경우에 합니다. 예를 들어, 2017년 4월 1일에는 계정에 있는 2016년 12월 31일 이전의 모든 작업 레코드가 자동으로 삭제됩니다. Tooarchive hello 작업/태스크 정보가 필요 하면이 항목에서 설명 하는 hello 코드를 사용할 수 있습니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
+개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
 
 ## <a name="get-an-asset-reference"></a>자산 참조 가져오기
-자주 수행하는 작업은 미디어 서비스에서 기존 자산에 대한 참조를 가져오는 것입니다. 다음 코드 예제에서는 자산 ID를 기준으로 서버 컨텍스트 개체에 대한 Assets 컬렉션에서 자산 참조를 가져오는 방법을 보여 줍니다. 다음 코드 예제에서는 Linq 쿼리를 사용하여 기존 IAsset 개체에 대한 참조를 가져옵니다.
+자주 작업은 미디어 서비스에서 참조 tooan 기존 자산 tooget. 다음 코드 예제에서 사용 하는 자산 id입니다. hello에 따라 Linq 쿼리 tooget 참조 tooan 기존 IAsset 개체를 다음 코드 예제는 hello를 가져오는 방법을 자산 참조 hello 서버 hello 자산 컬렉션에서 컨텍스트 개체 보여 줍니다.
 
     static IAsset GetAsset(string assetId)
     {
-        // Use a LINQ Select query to get an asset.
+        // Use a LINQ Select query tooget an asset.
         var assetInstance =
             from a in _context.Assets
             where a.Id == assetId
             select a;
-        // Reference the asset as an IAsset.
+        // Reference hello asset as an IAsset.
         IAsset asset = assetInstance.FirstOrDefault();
 
         return asset;
     }
 
 ## <a name="list-all-assets"></a>모든 자산 나열
-저장소에 포함된 자산 수가 증가하면 자산을 나열하는 것이 좋습니다. 다음 코드 예제에서는 서버 컨텍스트 개체에 대한 Assets 컬렉션을 반복하는 방법을 보여 줍니다. 각 자산이 포함된 코드 예제에서는 일부 속성 값을 콘솔에도 씁니다. 예를 들어 각 자산에는 많은 미디어 파일이 포함될 수 있습니다. 코드 예제에서는 각 자산과 관련된 모든 파일을 씁니다.
+Hello 저장소에 보유 한 자산의 수가 증가 하면 때 유용한 toolist 자산입니다. 다음 코드 예제는 hello를 통해 tooiterate 자산 컬렉션 hello 서버 컨텍스트 개체에 hello 하는 방법을 보여 줍니다. 각 자산에서 코드 예제에서는 hello를 기록 하는 속성 값 toohello 콘솔의 일부도 합니다. 예를 들어 각 자산에는 많은 미디어 파일이 포함될 수 있습니다. hello 코드 예제에서는 각 자산과 관련 된 모든 파일을 작성 합니다.
 
     static void ListAssets()
     {
-        string waitMessage = "Building the list. This may take a few "
-            + "seconds to a few minutes depending on how many assets "
+        string waitMessage = "Building hello list. This may take a few "
+            + "seconds tooa few minutes depending on how many assets "
             + "you have."
             + Environment.NewLine + Environment.NewLine
             + "Please wait..."
             + Environment.NewLine;
         Console.Write(waitMessage);
 
-        // Create a Stringbuilder to store the list that we build. 
+        // Create a Stringbuilder toostore hello list that we build. 
         StringBuilder builder = new StringBuilder();
 
         foreach (IAsset asset in _context.Assets)
         {
-            // Display the collection of assets.
+            // Display hello collection of assets.
             builder.AppendLine("");
             builder.AppendLine("******ASSET******");
             builder.AppendLine("Asset ID: " + asset.Id);
@@ -78,7 +78,7 @@ ms.lasthandoff: 08/29/2017
             builder.AppendLine("==============");
             builder.AppendLine("******ASSET FILES******");
 
-            // Display the files associated with each asset. 
+            // Display hello files associated with each asset. 
             foreach (IAssetFile fileItem in asset.AssetFiles)
             {
                 builder.AppendLine("Name: " + fileItem.Name);
@@ -93,48 +93,48 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="get-a-job-reference"></a>작업 참조 가져오기
 
-미디어 서비스 코드로 작업을 처리할 때 종종 ID에 따라 기존 작업에 대한 참조를 가져와야 합니다. 다음 코드 예제에서는 Jobs 컬렉션에서 IJob 개체에 대한 참조를 가져오는 방법을 보여 줍니다.
+미디어 서비스 코드에서 처리 태스크를 사용 하는 경우 다음 코드 예제는 id입니다. hello에 따라 참조 tooan 기존 작업 hello 작업 컬렉션에서 tooget 참조 tooan IJob 개체 하는 방법을 보여 줍니다. tooget이 필요한 경우가 많습니다.
 
-실행 시간이 긴 인코딩 작업을 시작할 때 작업 참조를 가져와야 하고 스레드에서 작업 상태를 확인해야 합니다. 이 경우 메서드가 스레드에서 반환될 때 작업에 대한 새로 고쳐진 참조를 검색해야 합니다.
+있습니다 수 tooget 작업 참조 인코딩 장기 실행 작업을 시작할 때 하며, 필요 스레드에 toocheck hello 작업 상태입니다. 다음과 같은 경우에 스레드에서 hello 메서드가 반환 될 때 tooretrieve 새로 고친된 참조 tooa 작업 해야 합니다.
 
     static IJob GetJob(string jobId)
     {
-        // Use a Linq select query to get an updated 
+        // Use a Linq select query tooget an updated 
         // reference by Id. 
         var jobInstance =
             from j in _context.Jobs
             where j.Id == jobId
             select j;
-        // Return the job reference as an Ijob. 
+        // Return hello job reference as an Ijob. 
         IJob job = jobInstance.FirstOrDefault();
 
         return job;
     }
 
 ## <a name="list-jobs-and-assets"></a>작업 및 자산 나열
-중요한 관련 작업은 미디어 서비스에서 관련 작업이 있는 자산을 나열하는 것입니다. 다음 코드 예제에서는 각 IJob 개체를 나열하는 방법을 보여 주고, 각 작업에 대해 작업 관련 속성, 모든 관련 작업, 모든 입력 자산 및 모든 출력 자산을 표시합니다. 이 예제의 코드는 다양한 다른 작업에 유용할 수 있습니다. 예를 들어 이전에 실행한 하나 이상의 인코딩 작업에서 출력 자산을 나열하려고 하면 이 코드에서는 출력 자산에 액세스하는 방법을 보여 줍니다. 출력 자산에 대한 참조가 있으면 콘텐츠를 다운로드하거나 URL을 제공하여 다른 사용자나 응용 프로그램에 콘텐츠를 배달할 수 있습니다. 
+중요 한 관련된 작업에는 미디어 서비스에서 관련된 작업을 사용 하 여 toolist 자산입니다. hello 다음 코드 예제에서는 방법을 보여 줍니다 toolist 각 IJob 개체 및 다음 hello 작업, 모든 관련된 작업, 모든 입력된 자산에 대 한 속성이 표시 각 작업에 대 한 모든 출력 자산입니다. 이 예제의 hello 코드는 다른 여러 작업 유용할 수 있습니다. 예를 들어 이전에 실행 된 하나 이상의 인코딩 작업에서 toolist hello 출력 자산을 원하는 경우이 코드 tooaccess hello 자산을 출력 하는 방법을 표시 됩니다. 참조 tooan 출력 자산을 사용 하는 경우에 hello 콘텐츠 tooother 사용자 또는 응용 프로그램 다운로드 하거나 Url을 제공 하 여 제공할 수 있습니다. 
 
-자산 배달 옵션에 대한 자세한 내용은 [Media Services SDK for .NET을 사용하여 자산 배달](media-services-deliver-streaming-content.md)을 참조하세요.
+자산을 배달 하기 위한 옵션에 대 한 자세한 내용은 참조 하십시오. [hello Media Services SDK for.NET을 사용 하 여 자산 제공](media-services-deliver-streaming-content.md)합니다.
 
-    // List all jobs on the server, and for each job, also list 
+    // List all jobs on hello server, and for each job, also list 
     // all tasks, all input assets, all output assets.
 
     static void ListJobsAndAssets()
     {
-        string waitMessage = "Building the list. This may take a few "
-            + "seconds to a few minutes depending on how many assets "
+        string waitMessage = "Building hello list. This may take a few "
+            + "seconds tooa few minutes depending on how many assets "
             + "you have."
             + Environment.NewLine + Environment.NewLine
             + "Please wait..."
             + Environment.NewLine;
         Console.Write(waitMessage);
 
-        // Create a Stringbuilder to store the list that we build. 
+        // Create a Stringbuilder toostore hello list that we build. 
         StringBuilder builder = new StringBuilder();
 
         foreach (IJob job in _context.Jobs)
         {
-            // Display the collection of jobs on the server.
+            // Display hello collection of jobs on hello server.
             builder.AppendLine("");
             builder.AppendLine("******JOB*******");
             builder.AppendLine("Job ID: " + job.Id);
@@ -144,7 +144,7 @@ ms.lasthandoff: 08/29/2017
             builder.AppendLine("==============");
 
 
-            // For each job, display the associated tasks (a job  
+            // For each job, display hello associated tasks (a job  
             // has one or more tasks). 
             builder.AppendLine("******TASKS*******");
             foreach (ITask task in job.Tasks)
@@ -160,7 +160,7 @@ ms.lasthandoff: 08/29/2017
                 builder.AppendLine("==============");
             }
 
-            // For each job, display the list of input media assets.
+            // For each job, display hello list of input media assets.
             builder.AppendLine("******JOB INPUT MEDIA ASSETS*******");
             foreach (IAsset inputAsset in job.InputMediaAssets)
             {
@@ -173,7 +173,7 @@ ms.lasthandoff: 08/29/2017
                 }
             }
 
-            // For each job, display the list of output media assets.
+            // For each job, display hello list of output media assets.
             builder.AppendLine("******JOB OUTPUT MEDIA ASSETS*******");
             foreach (IAsset theAsset in job.OutputMediaAssets)
             {
@@ -192,9 +192,9 @@ ms.lasthandoff: 08/29/2017
     }
 
 ## <a name="list-all-access-policies"></a>모든 액세스 정책 나열
-미디어 서비스에서 자산 또는 해당 파일에 대한 액세스 정책을 정의할 수 있습니다. 액세스 정책은 파일 또는 자산에 대한 권한을 정의합니다(액세스 유형 및 기간). 미디어 서비스 코드에서는 일반적으로 IAccessPolicy 개체를 만들고 기존 자산에 연결하여 액세스 정책을 정의합니다. 그다음에 미디어 서비스에서 자산에 직접 액세스할 수 있게 하는 ILocator 개체를 만듭니다. 이 설명서 시리즈와 함께 제공되는 Visual Studio 프로젝트에는 액세스 정책과 로케이터를 만들고 자산에 할당하는 방법을 보여 주는 몇 가지 코드 예제가 들어 있습니다.
+미디어 서비스에서 자산 또는 해당 파일에 대한 액세스 정책을 정의할 수 있습니다. 액세스 정책은 파일이 나 자산 (어떤 유형의 액세스 및 hello 기간)에 대 한 hello 권한을 정의합니다. 미디어 서비스 코드에서는 일반적으로 IAccessPolicy 개체를 만들고 기존 자산에 연결하여 액세스 정책을 정의합니다. 그런 다음 미디어 서비스에 대 한 직접 액세스 tooassets 제공할 수 있도록 ILocator 개체를 만들 있습니다. 이 문서 시리즈와 함께 제공 되는 hello Visual Studio 프로젝트 toocreate 및 할당 액세스 정책 및 로케이터 tooassets 방법을 보여 주는 몇 가지 코드 예제가 포함 되어 있습니다.
 
-다음 코드 예제에서는 서버의 모든 액세스 정책을 나열하는 방법과 각 액세스 정책과 관련된 권한 유형을 보여 줍니다. 액세스 정책을 보는 또 다른 유용한 방법은 서버의 모든 ILocator 개체를 나열하는 것이고, 이렇게 하면 각 로케이터에 대해 AccessPolicy 속성을 사용하여 관련 액세스 정책을 나열할 수 있습니다.
+코드 예제에서 보여 주는 방법을 다음 hello toolist 각각와 연관 된 모든 액세스 정책을 hello 서버 및 사용 권한의 hello 유형을 보여 줍니다. 또 다른 유용한 방법은 tooview 액세스 정책을 toolist hello 서버에서 모든 ILocator 개체 수 있으며, 그런 다음 각 로케이터에 대 한 관련된 액세스 정책을 해당 AccessPolicy 속성을 사용 하 여 합니다.
 
     static void ListAllPolicies()
     {
@@ -212,9 +212,9 @@ ms.lasthandoff: 08/29/2017
 ## <a name="limit-access-policies"></a>액세스 정책 제한 
 
 >[!NOTE]
-> 다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 
+> 다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 
 
-예를 들어, 응용 프로그램에서 한 번만 실행하는 다음 코드와 일반 정책 집합을 만들 수 있습니다. 나중에 사용할 로그 파일에 ID를 기록할 수 있습니다.
+예를 들어 응용 프로그램에 한 번 실행 되는 코드 다음 hello로 일반 정책 집합을 만들 수 있습니다. 나중에 사용할 Id tooa 로그 파일을 기록할 수 있습니다.
 
     double year = 365.25;
     double week = 7;
@@ -226,18 +226,18 @@ ms.lasthandoff: 08/29/2017
     Console.WriteLine("100 year policy ID is: " + policy100Year.Id);
     Console.WriteLine("One week policy ID is: " + policyWeek.Id);
 
-그런 다음 다음과 같이 코드에서 기존 ID를 사용할 수 있습니다.
+그런 다음 다음과 같이 코드의 Id를 기존 hello를 사용할 수 있습니다.
 
     const string policy1YearId = "nb:pid:UUID:2a4f0104-51a9-4078-ae26-c730f88d35cf";
 
 
-    // Get the standard policy for 1 year read only
+    // Get hello standard policy for 1 year read only
     var tempPolicyId = from b in _context.AccessPolicies
                        where b.Id == policy1YearId
                        select b;
     IAccessPolicy policy1Year = tempPolicyId.FirstOrDefault();
 
-    // Get the existing asset
+    // Get hello existing asset
     var tempAsset = from a in _context.Assets
                 where a.Id == assetID
                 select a;
@@ -246,14 +246,14 @@ ms.lasthandoff: 08/29/2017
     ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
         policy1Year,
         DateTime.UtcNow.AddMinutes(-5));
-    Console.WriteLine("The locator base path is " + originLocator.BaseUri.ToString());
+    Console.WriteLine("hello locator base path is " + originLocator.BaseUri.ToString());
 
 ## <a name="list-all-locators"></a>모든 로케이터 나열
-로케이터는 로케이터의 관련 액세스 정책에 정의된 대로 자산에 대한 권한과 함께 자산에 액세스하는 직접 경로를 제공하는 URL입니다. 각 자산은 Locators 속성에서 자산과 연결된 ILocator 개체의 컬렉션을 포함할 수 있습니다. 서버 컨텍스트는 모든 로케이터가 포함된 Locators 컬렉션도 포함합니다.
+로케이터는 hello 로케이터의 관련된 액세스 정책에 의해 정의 된 대로 직접 경로 tooaccess 권한 toohello 자산 함께 자산을 제공 하는 URL입니다. 각 자산은 Locators 속성에서 자산과 연결된 ILocator 개체의 컬렉션을 포함할 수 있습니다. hello 서버 컨텍스트에 모든 로케이터를 포함 하는 Locator 컬렉션을 있습니다.
 
-다음 코드 예제에서는 서버의 모든 로케이터를 나열합니다. 각 로케이터에 대해 관련 자산 및 액세스 정책에 대한 ID를 표시합니다. 또한 자산에 대한 전체 경로, 권한 유형 및 만료 날짜를 표시합니다.
+hello 다음 코드 예제에서는 모든 로케이터를 나열 hello 서버에 있습니다. 각 로케이터에 대 한 관련된 자산 hello 및 액세스 정책에 대 한 Id hello 보여 줍니다. 또한 hello 유형 사용 권한, hello 만료 날짜 및 hello 전체 경로 toohello 자산을 표시합니다.
 
-자산에 대한 로케이터 경로는 자산에 대한 기준 URL일 뿐입니다. 사용자 또는 응용 프로그램이 이동할 수 있는 개별 파일에 대한 직접 경로를 만들려면 코드에서 로케이터 경로에 특정 파일 경로를 추가해야 합니다. 이 작업을 수행하는 방법에 대한 자세한 내용은 [Media Services SDK for .NET을 사용하여 자산 배달](media-services-deliver-streaming-content.md)항목을 참조하세요.
+로케이터 경로 tooan 자산은 기본 URL toohello 자산만 참고 합니다. 직접 경로 tooindividual 파일을 사용자 또는 응용 프로그램을 찾아 수 toocreate, 코드 hello 특정 파일 경로 toohello 로케이터 경로 추가 해야 합니다. 방법에 대 한 자세한 내용은 toodo이,이 참조 hello 항목 [hello Media Services SDK for.NET을 사용 하 여 자산 제공](media-services-deliver-streaming-content.md)합니다.
 
     static void ListAllLocators()
     {
@@ -265,18 +265,18 @@ ms.lasthandoff: 08/29/2017
             Console.WriteLine("Locator access policy Id: " + locator.AccessPolicyId);
             Console.WriteLine("Access policy permissions: " + locator.AccessPolicy.Permissions);
             Console.WriteLine("Locator expiration: " + locator.ExpirationDateTime);
-            // The locator path is the base or parent path (with included permissions) to access  
-            // the media content of an asset. To create a full URL to a specific media file, take 
-            // the locator path and then append a file name and info as needed.  
+            // hello locator path is hello base or parent path (with included permissions) tooaccess  
+            // hello media content of an asset. toocreate a full URL tooa specific media file, take 
+            // hello locator path and then append a file name and info as needed.  
             Console.WriteLine("Locator base path: " + locator.Path);
             Console.WriteLine("");
         }
     }
 
 ## <a name="enumerating-through-large-collections-of-entities"></a>대용량 엔터티 컬렉션 열거
-엔터티를 쿼리할 때 한 번에 반환되는 엔터티 수는 최대 1000개입니다. 공용 REST v2에서는 쿼리 결과를 1000개로 제한하기 때문입니다. 대용량 엔터티 컬렉션을 열거할 때 Skip 및 Take를 사용해야 합니다. 
+엔터티를 쿼리할 때 공용 REST v2 쿼리 결과 too1000 결과 제한 하기 때문에 한 번에 반환 된 1000 엔터티 제한이 있습니다. 큰 엔터티 컬렉션을 열거 하는 경우 toouse Skip 및 Take 필요 합니다. 
 
-다음 함수는 제공된 미디어 서비스 계정에서 모든 작업을 반복합니다. 미디어 서비스는 작업 컬렉션의 작업 1000개를 반환합니다. 이 함수는 Skip 및 Take를 사용하여 모든 작업이 연결되었는지 확인합니다(계정에 1000개가 넘는 작업이 있는 경우).
+hello hello에서 모든 hello 작업을 통해 다음 함수 루프 미디어 서비스 계정을 제공 했습니다. 미디어 서비스는 작업 컬렉션의 작업 1000개를 반환합니다. hello 함수는 Skip을 사용 하 고 있는지 toomake을 수행 (있을 경우 1000 개 이상의 작업 계정에) 모든 작업 열거 된 합니다.
 
     static void ProcessJobs()
     {
@@ -289,7 +289,7 @@ ms.lasthandoff: 08/29/2017
 
             while (true)
             {
-                // Loop through all Jobs (1000 at a time) in the Media Services account
+                // Loop through all Jobs (1000 at a time) in hello Media Services account
                 IQueryable _jobsCollectionQuery = _context.Jobs.Skip(skipSize).Take(batchSize);
                 foreach (IJob job in _jobsCollectionQuery)
                 {
@@ -315,23 +315,23 @@ ms.lasthandoff: 08/29/2017
     }
 
 ## <a name="delete-an-asset"></a>자산 삭제
-다음 예제에서는 자산을 삭제합니다.
+다음 예에서는 hello 자산을 삭제 합니다.
 
     static void DeleteAsset( IAsset asset)
     {
-        // delete the asset
+        // delete hello asset
         asset.Delete();
 
         // Verify asset deletion
         if (GetAsset(asset.Id) == null)
-            Console.WriteLine("Deleted the Asset");
+            Console.WriteLine("Deleted hello Asset");
 
     }
 
 ## <a name="delete-a-job"></a>작업 삭제
-작업을 삭제하려면 State 속성에 표시된 작업의 상태를 확인해야 합니다. 완료되거나 취소된 작업을 삭제할 수 있지만, 큐에 대기됨, 예약됨 또는 처리 중 등의 특정 상태에 있는 작업을 먼저 취소해야 해당 작업을 삭제할 수 있습니다.
+작업 toodelete hello State 속성에 표시 된 대로 hello 작업의 hello 상태를 확인 해야 합니다. 완료되거나 취소된 작업을 삭제할 수 있지만, 큐에 대기됨, 예약됨 또는 처리 중 등의 특정 상태에 있는 작업을 먼저 취소해야 해당 작업을 삭제할 수 있습니다.
 
-다음 코드 예제에서는 작업 상태를 확인하고 상태가 완료됨 또는 취소됨일 때 삭제하는 방법으로 작업을 삭제하는 메서드를 보여 줍니다. 이 코드에서는 작업에 대한 참조를 가져오는 방법에 대한 이 항목의 이전 섹션인 작업 참조 가져오기를 사용합니다.
+hello 다음 코드 예제에서는 작업 상태를 확인 한 후 hello 상태가 완료 또는 취소 하는 경우를 삭제 한 작업을 삭제 하기 위한 메서드 이 코드 hello 참조 tooa 작업을 가져오기 위한이 항목의 이전 섹션에 따라 다릅니다: 작업 참조 가져오기.
 
     static void DeleteJob(string jobId)
     {
@@ -353,7 +353,7 @@ ms.lasthandoff: 08/29/2017
                 case JobState.Error:
                     // Job errors should already be logged by polling or event 
                     // handling methods such as CheckJobProgress or StateChanged.
-                    // You can also call job.DeleteAsync to do async deletes.
+                    // You can also call job.DeleteAsync toodo async deletes.
                     job.Delete();
                     Console.WriteLine("Job has been deleted.");
                     jobDeleted = true;
@@ -380,12 +380,12 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="delete-an-access-policy"></a>액세스 정책 삭제
-다음 코드 예제에서는 정책 ID에 따라 액세스 정책에 대한 참조를 가져오고 정책을 삭제하는 방법을 보여 줍니다.
+hello 다음 코드 예제에서는 tooget 참조 tooan 액세스 정책에 따라 방법 정책 Id 및 다음 toodelete hello 정책
 
     static void DeleteAccessPolicy(string existingPolicyId)
     {
-        // To delete a specific access policy, get a reference to the policy.  
-        // based on the policy Id passed to the method.
+        // toodelete a specific access policy, get a reference toohello policy.  
+        // based on hello policy Id passed toohello method.
         var policyInstance =
                 from p in _context.AccessPolicies
                 where p.Id == existingPolicyId

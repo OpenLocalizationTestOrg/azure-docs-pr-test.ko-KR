@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Factory 파이프라인에서 사용자 지정 작업 사용"
-description: "사용자 지정 작업을 만들고 Azure Data Factory 파이프라인에서 사용하는 방법에 대해 알아봅니다."
+title: "Azure 데이터 팩터리 파이프라인에서 aaaUse 사용자 지정 활동"
+description: "자세한 방법을 toocreate 사용자 지정 활동 Azure 데이터 팩터리 파이프라인에서 사용 하 고 있습니다."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: f3d265f31cb653d32076747e586383d67bbccc41
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 23e33727b2160541ab40938ffd911fdd484b3daa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-custom-activities-in-an-azure-data-factory-pipeline"></a>Azure Data Factory 파이프라인에서 사용자 지정 작업 사용
 
@@ -36,18 +36,18 @@ ms.lasthandoff: 08/29/2017
 
 Azure Data Factory 파이프라인에서 사용할 수 있는 두 가지 작업 유형이 있습니다.
 
-- [데이터 이동 작업](data-factory-data-movement-activities.md)은 [지원되는 원본 및 싱크 데이터 저장소](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 간에 데이터를 이동하는 작업입니다.
-- [데이터 변환 작업](data-factory-data-transformation-activities.md)은 Azure HDInsight, Azure Batch, Azure Machine Learning과 같은 계산 서비스를 사용하여 데이터를 변환하는 작업입니다. 
+- [데이터 이동 작업](data-factory-data-movement-activities.md) 간에 toomove 데이터 [원본 및 싱크 데이터 저장소를 지원](data-factory-data-movement-activities.md#supported-data-stores-and-formats)합니다.
+- [데이터 변환 작업](data-factory-data-transformation-activities.md) tootransform 데이터를 사용 하 여 Azure HDInsight, Azure 일괄 처리 및 Azure 기계 학습 등의 서비스를 계산 합니다. 
 
-Data Factory에서 지원되지 않는 데이터 저장소에서 다른 위치로 또는 그 반대로 데이터를 이동하려면 고유의 데이터 이동 논리가 포함된 **사용자 지정 작업**을 만들어서 파이프라인에 해당 작업을 사용합니다. 마찬가지로, Data Factory에서 지원되지 않는 방식으로 데이터를 변환/처리하려면 고유의 데이터 변환 논리가 포함된 사용자 지정 작업을 만들어서 파이프라인에 해당 작업을 사용합니다. 
+toomove 한 데이터를 Data Factory 지원 하지 않는 데이터 저장소에서 만들는 **사용자 지정 활동** 사용자 고유의 데이터 이동 논리 및 사용 하 여 hello의에서 활동과 파이프라인. 마찬가지로, 데이터 팩터리에서 지원 되지 않는 방식으로 데이터 tootransform/처리는 사용자 지정 활동 데이터 변환 논리로 만들고 파이프라인에서 hello 활동을 사용 합니다. 
 
-Virtual Machines의 **Azure Batch** 풀 또는 Windows 기반 **Azure HDInsight** 클러스터에서 실행할 사용자 지정 작업을 구성할 수 있습니다. Azure Batch를 사용할 때는 기존 Azure Batch 풀만 사용할 수 있습니다. 반면, HDInsight를 사용할 때는 기존 HDInsight 클러스터 또는 필요 시 런타임에 자동으로 생성된 클러스터를 사용할 수 있습니다.  
+사용자 지정 활동 toorun를 구성할 수 있습니다는 **Azure 배치** 풀의 가상 컴퓨터 또는 Windows 기반 **Azure HDInsight** 클러스터입니다. Azure Batch를 사용할 때는 기존 Azure Batch 풀만 사용할 수 있습니다. 반면, HDInsight를 사용할 때는 기존 HDInsight 클러스터 또는 필요 시 런타임에 자동으로 생성된 클러스터를 사용할 수 있습니다.  
 
-다음 연습에서는 사용자 지정 .NET 작업을 만들어서 해당 사용자 작업을 파이프라인에 사용하는 단계별 지침을 제공합니다. 이 연습에서는 **Azure Batch** 연결된 서비스를 사용합니다. Azure HDInsight 연결된 서비스를 대신 사용하려면 **HDInsight**(사용자 고유의 HDInsight 클러스터) 또는 **HDInsightOnDemand**(Data Factory에서 필요 시 HDInsight 클러스터 생성) 형식의 연결된 서비스를 만듭니다. 그런 다음 HDInsight 연결된 서비스를 사용하도록 사용자 지정 작업을 구성합니다. Azure HDInsight를 사용하여 사용자 지정 작업을 실행하는 방법에 대한 자세한 내용은 [Azure HDInsight 연결된 서비스 사용](#use-hdinsight-compute-service) 을 참조하세요.
+hello 다음 연습에서는 사용자 지정.NET 작업 만들기 및 hello 사용자 지정 활동을 사용 하 여 파이프라인의 단계별 지침을 합니다. 사용 하 여 hello 연습은 **Azure 배치** 연결 된 서비스입니다. 대신 연결 된 서비스는 Azure HDInsight toouse, 형식의 연결 된 서비스를 만들면 **HDInsight** (HDInsight 클러스터 사용자 고유의) 또는 **HDInsightOnDemand** (데이터 팩터리에서 생성 하는 HDInsight 클러스터 요청 시)입니다. 그런 다음 사용자 지정 활동 toouse hello HDInsight 연결 된 서비스를 구성 합니다. 참조 [사용 하 여 Azure HDInsight 연결 된 서비스](#use-hdinsight-compute-service) Azure HDInsight toorun hello에 대 한 사용자 지정 활동을 사용 하 여 대 한 자세한 내용은 섹션.
 
 > [!IMPORTANT]
-> - 사용자 지정 .NET 작업은 Windows 기반 HDInsight 클러스터에서만 실행됩니다. 이 제한 사항에 대한 해결 방법은 MapReduce 작업을 사용하여 Linux 기반 HDInsight 클러스터에서 사용자 지정 Java 코드를 실행하는 것입니다. 또 다른 옵션은 VM의 Azure Batch 풀을 사용하여 HDInsight 클러스터를 사용하는 대신 사용자 지정 작업을 실행하는 것입니다.
-> - 사용자 지정 작업에서 데이터 관리 게이트웨이를 사용하여 온-프레미스 데이터 원본에 액세스할 수는 없습니다. 현재 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md)에서는 Data Factory의 복사 작업 및 저장 프로시저 작업만 지원합니다.   
+> - 사용자 지정.NET 작업 hello Windows 기반 HDInsight 클러스터에 대해서만 실행 합니다. 이 제한에 대 한 해결 방법은 toouse hello Linux 기반 HDInsight 클러스터에서 맵 줄일 활동 toorun 사용자 지정 Java 코드입니다. 두 번째 방법은 toouse Vm toorun HDInsight 클러스터를 사용 하는 대신 사용자 지정 활동의 Azure 배치 풀 합니다.
+> - 가능한 toouse 사용자 지정 활동 tooaccess 온-프레미스 데이터 원본에서 데이터 관리 게이트웨이 없습니다. 현재 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) Data Factory에 hello 복사 작업 및 저장된 프로시저 작업을 지원 합니다.   
 
 ## <a name="walkthrough-create-a-custom-activity"></a>연습: 사용자 지정 작업 만들기
 ### <a name="prerequisites"></a>필수 조건
@@ -55,39 +55,39 @@ Virtual Machines의 **Azure Batch** 풀 또는 Windows 기반 **Azure HDInsight*
 * [Azure .NET SDK](https://azure.microsoft.com/downloads/)
 
 ### <a name="azure-batch-prerequisites"></a>Azure 배치 필수 조건
-이 연습에서는 Azure 배치를 계산 리소스로 사용하여 사용자 지정 .NET 작업을 실행할 것입니다. **Azure Batch**는 클라우드에서 대규모 병렬 및 HPC(고성능 컴퓨팅) 응용 프로그램을 효율적으로 실행하기 위한 플랫폼 서비스입니다. Azure Batch는 **가상 컴퓨터의 관리되는 컬렉션**에서 실행되는 계산 집약적 작업을 예약하고, 작업 요구에 맞게 계산 리소스의 규모를 자동으로 조정할 수 있습니다. Azure Batch 서비스의 개요에 대한 자세한 내용은 [Azure Batch 기본 사항][batch-technical-overview] 문서를 참조하세요.
+Hello 연습에서는 Azure 배치를 계산 리소스로 사용 하 여 사용자 지정.NET 작업 실행. **Azure 배치** 는 대규모 병렬 실행에 대 한 서비스 및 고성능 컴퓨팅 hello 클라우드에서 효율적으로 (HPC) 응용 프로그램 플랫폼입니다. Azure 일괄 처리에서 관리 되는 계산 집약적인 작업 toorun 예약 **가상 컴퓨터의 컬렉션**를 계산할 수 있습니다 자동으로 크기 조정 작업의 리소스 toomeet hello 요구 하 고 있습니다. 참조 [Azure 배치 기본 사항] [ batch-technical-overview] hello Azure 배치 서비스의 문서에 대 한 자세한 개요입니다.
 
-자습서를 위해 VM 풀과 함께 Azure Batch 계정을 만듭니다. 단계는 다음과 같습니다.
+Hello 자습서에 대 한 Vm의 풀과 Azure 배치 계정을 만듭니다. Hello 단계는 다음과 같습니다.
 
-1. **Azure 포털** 을 사용하여 [Azure 배치 계정](http://portal.azure.com)을 만듭니다. 지침은 [Azure Batch 계정 만들기 및 관리][batch-create-account] 문서를 참조하세요.
-2. Azure Batch 계정 이름, 계정 키, URI 및 풀 이름을 적어둡니다. Azure Batch 연결된 서비스를 만드는 데 필요합니다.
-    1. Azure Batch 계정의 홈 페이지에서 `https://myaccount.westus.batch.azure.com` 형식의 **URL**이 표시됩니다. 이 예제에서 **myaccount**는 Azure Batch 계정 이름입니다. 연결된 서비스 정의에서 사용하는 URI는 계정 이름이 없는 URL입니다. 예: `https://<region>.batch.azure.com`
-    2. 왼쪽 메뉴에서 **키**를 클릭하고 **기본 액세스 키**를 복사합니다.
-    3. 기존 풀을 사용하려면 메뉴에서 **풀**을 클릭하고 풀의 **ID**를 메모해둡니다. 기존 풀이 없는 경우 다음 단계로 이동합니다.     
+1. 만들기는 **Azure 배치 계정** hello를 사용 하 여 [Azure 포털](http://portal.azure.com)합니다. 지침은 [Azure Batch 계정 만들기 및 관리][batch-create-account] 문서를 참조하세요.
+2. Hello Azure 배치 계정 이름, 계정 키, URI 및 풀 이름 아래로 note 합니다. Azure 배치 연결 된 서비스 toocreate가 필요 합니다.
+    1. Azure 배치 계정에 대 한 hello 홈 페이지에 표시 된 **URL** 형식에 따라 hello에: `https://myaccount.westus.batch.azure.com`합니다. 이 예제에서는 **myaccount** hello hello Azure 배치 계정 이름입니다. 연결 된 hello 서비스 정의에 사용할 URI은 hello 계정의 hello 이름 없이 hello URL입니다. 예: `https://<region>.batch.azure.com`
+    2. 클릭 **키** hello 왼쪽된 메뉴 및 복사 hello **기본 액세스 키**합니다.
+    3. 기존 풀 toouse 클릭 **풀** hello 메뉴 및 hello 적어 둡니다 **ID** hello 풀의 합니다. 기존 풀 없으면 toohello 다음 단계로 이동 합니다.     
 2. **Azure 배치 풀**을 만듭니다.
 
-   1. [Azure 포털](https://portal.azure.com)에서 왼쪽 메뉴의 **찾아보기**, **배치 계정**을 차례로 클릭합니다.
-   2. Azure 배치 계정을 선택하여 **배치 계정** 블레이드를 엽니다.
+   1. Hello에 [Azure 포털](https://portal.azure.com), 클릭 **찾아보기** 에서 왼쪽된 메뉴 hello 하 고 클릭 **일괄 처리 계정**합니다.
+   2. 선택 하면 Azure 배치 계정 tooopen hello **일괄 처리 계정** 블레이드입니다.
    3. **풀** 타일을 클릭합니다.
-   4. **풀** 블레이드에서 도구 모음의 추가 단추를 클릭하여 풀을 추가합니다.
-      1. 풀에 대한 ID(풀 ID)를 입력합니다. Data Factory 솔루션을 만들 때 필요하므로 **풀의 ID**를 메모해둡니다.
-      2. 운영 체제 제품군 설정에 **Windows Server 2012 R2** 를 지정합니다.
+   4. Hello에 **풀** 블레이드에서 hello 도구 모음 tooadd 풀에 추가 단추를 클릭 합니다.
+      1. Hello 풀 (풀 ID)에 대 한 ID를 입력 합니다. 참고 hello **hello 풀의 ID**; hello Data Factory 솔루션을 만들 때 필요 합니다.
+      2. 지정 **Windows Server 2012 R2** hello 운영 체제 제품군 설정에 대 한 합니다.
       3. **노드 가격 책정 계층**을 선택합니다.
-      4. **대상 전용** 설정 값으로 **2**를 입력합니다.
-      5. **노드당 최대 작업** 설정 값으로 **2**를 입력합니다.
-   5. **확인** 을 클릭하여 풀을 만듭니다.
-   6. 풀의 **ID**를 메모해둡니다 
+      4. 입력 **2** hello에 대 한 값으로 **대상 전용** 설정 합니다.
+      5. 입력 **2** hello에 대 한 값으로 **노드당 최대 작업** 설정 합니다.
+   5. 클릭 **확인** toocreate hello 풀입니다.
+   6. Hello 기록해 **ID** hello 풀의 합니다. 
 
 
 
 ### <a name="high-level-steps"></a>대략적인 단계
-이 연습의 일환으로 수행하는 두 가지 대략적인 단계는 다음과 같습니다. 
+이 연습의 일부분으로 수행 hello 두 개의 상위 수준 단계는 다음과 같습니다. 
 
 1. 간단한 데이터 변환/처리 논리가 포함된 사용자 지정 작업을 만듭니다.
-2. 사용자 지정 작업을 사용하는 파이프라인으로 Azure Data Factory를 만듭니다.
+2. Hello 사용자 지정 활동을 사용 하는 파이프라인을 Azure 데이터 팩터리를 만듭니다.
 
 ### <a name="create-a-custom-activity"></a>사용자 지정 작업 만들기
-.NET 사용자 지정 작업을 만들려면 **IDotNetActivity** 인터페이스를 구현하는 클래스를 사용하는 **.NET 클래스 라이브러리** 프로젝트를 만들어야 합니다. 이 인터페이스는 [Execute](https://msdn.microsoft.com/library/azure/mt603945.aspx) 라는 메서드 하나만 포함하며 서명은 다음과 같습니다.
+toocreate.NET 사용자 지정 활동을 만듭니다는 **.NET 클래스 라이브러리** 를 구현 하는 클래스를 사용 하 여 프로젝트 **IDotNetActivity** 인터페이스입니다. 이 인터페이스는 [Execute](https://msdn.microsoft.com/library/azure/mt603945.aspx) 라는 메서드 하나만 포함하며 서명은 다음과 같습니다.
 
 ```csharp
 public IDictionary<string, string> Execute(
@@ -98,41 +98,41 @@ public IDictionary<string, string> Execute(
 ```
 
 
-이 메서드는 다음과 같은 네 개의 매개 변수를 사용합니다.
+hello 메서드 4 개의 매개 변수를 사용 합니다.
 
-- **linkedServices**. 이 속성은 작업에 대한 입력/출력으로 참조되는 데이터 저장소 연결된 서비스의 열거형 목록입니다.   
-- **datasets**. 이 속성은 작업에 대한 입력/출력 데이터 집합의 열거형 목록입니다. 이 매개 변수를 사용하여 입력 및 출력 데이터 집합에 정의된 위치 및 스키마를 가져올 수 있습니다.
-- **activity**. 이 속성은 현재 작업을 나타냅니다. 사용자 지정 작업과 연결된 확장된 속성에 액세스하려면 사용할 수 있습니다. 자세한 내용은 [확장 속성 액세스](#access-extended-properties)를 참조하세요.
-- **logger**. 이 개체를 사용하면 파이프라인에 대한 사용자 로그로 노출할 디버그 주석을 기록할 수 있습니다.
+- **linkedServices**. 이 속성은 hello 활동에 대 한 입/출력 데이터 집합에서 참조 하는 데이터 저장소 연결 된 서비스의 열거형 목록.   
+- **datasets**. 이 속성은 hello 활동에 대 한 입/출력 데이터 집합의 열거형 목록. 이 매개 변수 tooget hello 위치 및 입력 및 출력 데이터 집합에 정의 된 스키마를 사용할 수 있습니다.
+- **activity**. 이 속성은 hello 현재 활동을 나타냅니다. 사용자 지정 활동 hello와 연관 된 확장 속성 사용된 tooaccess 수 있습니다. 자세한 내용은 [확장 속성 액세스](#access-extended-properties)를 참조하세요.
+- **logger**. 이 개체를 사용 하면 디버그 주석을 해당 화면 hello 파이프라인에 대 한 hello 사용자 로그에 기록할 수 있습니다.
 
-이 메서드는 나중에 사용자 지정 작업을 함께 연결하는 데 사용할 수 있는 사전을 반환합니다. 이 기능은 아직 구현되지 않았기 때문에, 메서드로부터 빈 사전이 반환됩니다.  
+hello 메서드 hello 미래에 함께 사용 되는 toochain 사용자 지정 활동을 저장할 수 있는 사전을 반환 합니다. 이 기능은 아직 구현 되지 않았습니다, 그리고 따라서 hello 메서드에서 빈 사전이 반환을 반환 합니다.  
 
 ### <a name="procedure"></a>절차
 1. **.NET 클래스 라이브러리** 프로젝트를 만듭니다.
    <ol type="a">
      <li><b>Visual Studio 2017</b> 또는 <b>Visual Studio 2015</b> 또는 <b>Visual Studio 2013</b> 또는 <b>Visual Studio 2012</b>를 시작합니다.</li>
-     <li><b>파일</b>을 클릭하고 <b>새로 만들기</b>를 가리킨 다음 <b>프로젝트</b>를 클릭합니다.</li>
-     <li><b>템플릿</b>을 확장하고 <b>Visual C#</b>를 선택합니다. 이 연습에서는 C#을 사용하지만 다른 .NET 언어를 사용하여 사용자 지정 작업을 개발할 수도 있습니다.</li>
-     <li>오른쪽의 프로젝트 형식 목록에서 <b>클래스 라이브러리</b>를 선택합니다. VS 2017에서 <b>클래스 라이브러리(.NET Framework)</b> 를 선택합니다.</li>
-     <li><b>이름</b>에 <b>MyDotNetActivity</b>를 입력합니다.</li>
-     <li><b>위치</b>에 <b>C:\ADFGetStarted</b>를 선택합니다.</li>
-     <li><b>확인</b> 을 클릭하여 프로젝트를 만듭니다.</li>
+     <li>클릭 <b>파일</b>, 너무 가리킨<b>새로</b>를 클릭 하 고 <b>프로젝트</b>합니다.</li>
+     <li><b>템플릿</b>을 확장하고 <b>Visual C#</b>를 선택합니다. 이 연습에서는 C#을 사용 하지만 모든.NET 언어 toodevelop hello 사용자 지정 활동을 사용할 수 있습니다.</li>
+     <li>선택 <b>클래스 라이브러리</b> hello hello 오른쪽에 프로젝트 형식 목록에서 합니다. VS 2017에서 <b>클래스 라이브러리(.NET Framework)</b> 를 선택합니다.</li>
+     <li>입력 <b>MyDotNetActivity</b> hello에 대 한 <b>이름</b>합니다.</li>
+     <li>선택 <b>C:\ADFGetStarted</b> hello에 대 한 <b>위치</b>합니다.</li>
+     <li>클릭 <b>확인</b> toocreate hello 프로젝트.</li>
    </ol>
-2. **도구**를 클릭하고 **NuGet 패키지 관리자**를 가리킨 다음 **패키지 관리자 콘솔**을 클릭합니다.
-3. 패키지 관리자 콘솔에서 다음 명령을 실행하여 **Microsoft.Azure.Management.DataFactories**를 가져옵니다.
+2.클릭 **도구**, 너무 가리킨**NuGet 패키지 관리자**를 클릭 하 고 **패키지 관리자 콘솔**합니다.
+3. Hello 패키지 관리자 콘솔에서에서 실행 하 여 다음 명령 tooimport hello **Microsoft.Azure.Management.DataFactories**합니다.
 
     ```PowerShell
     Install-Package Microsoft.Azure.Management.DataFactories
     ```
-4. **Azure 저장소** NuGet 패키지를 프로젝트로 가져옵니다.
+4. 가져오기 hello **Azure 저장소** toohello 프로젝트에서 NuGet 패키지 합니다.
 
     ```PowerShell
     Install-Package WindowsAzure.Storage -Version 4.3.0
     ```
 
     > [!IMPORTANT]
-    > Data Factory 서비스 시작 관리자에는 4.3 버전의 WindowsAzure.Storage가 필요합니다. 사용자 지정 작업 프로젝트에서 이후 버전의 Azure Storage 어셈블리에 대한 참조를 추가한 경우 작업을 실행할 때 오류가 표시됩니다. 이 오류를 해결하려면 [Appdomain 격리](#appdomain-isolation) 섹션을 참조하세요. 
-5. 다음 **using** 문을 프로젝트의 원본 파일에 추가합니다.
+    > 데이터 팩터리 서비스 시작 관리자에는 특히 WindowsAzure.Storage hello 4.3 버전이 필요합니다. 참조 tooa를 추가 하는 경우 사용자 지정 작업 프로젝트에 Azure 저장소 어셈블리의 이후 버전 hello 활동에서 실행 오류가 표시 됩니다. tooresolve hello 오류 참조 [Appdomain 격리](#appdomain-isolation) 섹션. 
+5. Hello 다음 추가 **를 사용 하 여** hello 프로젝트에서 문 toohello 소스 파일입니다.
 
     ```csharp
 
@@ -157,24 +157,24 @@ public IDictionary<string, string> Execute(
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
     ```
-6. **namespace**의 이름을 **MyDotNetActivityNS**로 변경합니다.
+6. Hello의 hello 이름 변경 **네임 스페이스** 너무**MyDotNetActivityNS**합니다.
 
     ```csharp
     namespace MyDotNetActivityNS
     ```
-7. 클래스 이름을 **MyDotNetActivity**로 변경하고 다음 코드 조각에서 보여 주듯이 **IDotNetActivity** 인터페이스에서 해당 클래스를 파생합니다.
+7. Hello 클래스의 hello 이름도 변경**MyDotNetActivity** hello에서 파생 되 고 **IDotNetActivity** hello 다음 코드 조각에에서 나와 있는 것 처럼 인터페이스:
 
     ```csharp
     public class MyDotNetActivity : IDotNetActivity
     ```
-8. **IDotNetActivity** 인터페이스의 **Execute** 메서드를 **MyDotNetActivity** 클래스에 구현(추가)하고 다음 샘플 코드를 메서드에 복사합니다.
+8. 구현 (추가) hello **Execute** hello 방식의 **IDotNetActivity** toohello 인터페이스 **MyDotNetActivity** 다음 샘플 코드 toohello 메서드에 클래스와 복사 hello 합니다.
 
-    다음 샘플은 데이터 조각과 연결된 각 Blob의 검색 단어("Microsoft") 발생 횟수를 계산합니다.
+    hello 다음 샘플 수를 hello hello 검색 단어 ("Microsoft")의 발생 수는 데이터 조각과와 연결 된 각 blob 합니다.
 
     ```csharp
     /// <summary>
-    /// Execute method is the only method of IDotNetActivity interface you must implement.
-    /// In this sample, the method invokes the Calculate method to perform the core logic.  
+    /// Execute method is hello only method of IDotNetActivity interface you must implement.
+    /// In this sample, hello method invokes hello Calculate method tooperform hello core logic.  
     /// </summary>
     
     public IDictionary<string, string> Execute(
@@ -188,7 +188,7 @@ public IDictionary<string, string> Execute(
         DotNetActivity dotNetActivity = (DotNetActivity)activity.TypeProperties;
         string sliceStartString = dotNetActivity.ExtendedProperties["SliceStart"];
     
-        // to log information, use the logger object
+        // toolog information, use hello logger object
         // log all extended properties            
         IDictionary<string, string> extendedProperties = dotNetActivity.ExtendedProperties;
         logger.Write("Logging extended properties if any...");
@@ -201,23 +201,23 @@ public IDictionary<string, string> Execute(
         // in this example, same storage is used for both input/output
         AzureStorageLinkedService inputLinkedService;
 
-        // get the input dataset
+        // get hello input dataset
         Dataset inputDataset = datasets.Single(dataset => dataset.Name == activity.Inputs.Single().Name);
     
-        // declare variables to hold type properties of input/output datasets
+        // declare variables toohold type properties of input/output datasets
         AzureBlobDataset inputTypeProperties, outputTypeProperties;
         
-        // get type properties from the dataset object
+        // get type properties from hello dataset object
         inputTypeProperties = inputDataset.Properties.TypeProperties as AzureBlobDataset;
     
         // log linked services passed in linkedServices parameter
         // you will see two linked services of type: AzureStorage
-        // one for input dataset and the other for output dataset 
+        // one for input dataset and hello other for output dataset 
         foreach (LinkedService ls in linkedServices)
             logger.Write("linkedService.Name {0}", ls.Name);
     
-        // get the first Azure Storate linked service from linkedServices object
-        // using First method instead of Single since we are using the same
+        // get hello first Azure Storate linked service from linkedServices object
+        // using First method instead of Single since we are using hello same
         // Azure Storage linked service for input and output.
         inputLinkedService = linkedServices.First(
             linkedService =>
@@ -225,21 +225,21 @@ public IDictionary<string, string> Execute(
             inputDataset.Properties.LinkedServiceName).Properties.TypeProperties
             as AzureStorageLinkedService;
     
-        // get the connection string in the linked service
+        // get hello connection string in hello linked service
         string connectionString = inputLinkedService.ConnectionString;
     
-        // get the folder path from the input dataset definition
+        // get hello folder path from hello input dataset definition
         string folderPath = GetFolderPath(inputDataset);
         string output = string.Empty; // for use later.
     
-        // create storage client for input. Pass the connection string.
+        // create storage client for input. Pass hello connection string.
         CloudStorageAccount inputStorageAccount = CloudStorageAccount.Parse(connectionString);
         CloudBlobClient inputClient = inputStorageAccount.CreateCloudBlobClient();
     
-        // initialize the continuation token before using it in the do-while loop.
+        // initialize hello continuation token before using it in hello do-while loop.
         BlobContinuationToken continuationToken = null;
         do
-        {   // get the list of input blobs from the input storage client object.
+        {   // get hello list of input blobs from hello input storage client object.
             BlobResultSegment blobList = inputClient.ListBlobsSegmented(folderPath,
                                      true,
                                      BlobListingDetails.Metadata,
@@ -248,50 +248,50 @@ public IDictionary<string, string> Execute(
                                      null,
                                      null);
     
-            // Calculate method returns the number of occurrences of
-            // the search term (“Microsoft”) in each blob associated
-               // with the data slice. definition of the method is shown in the next step.
+            // Calculate method returns hello number of occurrences of
+            // hello search term (“Microsoft”) in each blob associated
+               // with hello data slice. definition of hello method is shown in hello next step.
     
             output = Calculate(blobList, logger, folderPath, ref continuationToken, "Microsoft");
     
         } while (continuationToken != null);
     
-        // get the output dataset using the name of the dataset matched to a name in the Activity output collection.
+        // get hello output dataset using hello name of hello dataset matched tooa name in hello Activity output collection.
         Dataset outputDataset = datasets.Single(dataset => dataset.Name == activity.Outputs.Single().Name);
 
-        // get type properties for the output dataset
+        // get type properties for hello output dataset
         outputTypeProperties = outputDataset.Properties.TypeProperties as AzureBlobDataset;
     
-        // get the folder path from the output dataset definition
+        // get hello folder path from hello output dataset definition
         folderPath = GetFolderPath(outputDataset);
 
-        // log the output folder path   
-        logger.Write("Writing blob to the folder: {0}", folderPath);
+        // log hello output folder path 
+        logger.Write("Writing blob toohello folder: {0}", folderPath);
     
-        // create a storage object for the output blob.
+        // create a storage object for hello output blob.
         CloudStorageAccount outputStorageAccount = CloudStorageAccount.Parse(connectionString);
-        // write the name of the file.
+        // write hello name of hello file.
         Uri outputBlobUri = new Uri(outputStorageAccount.BlobEndpoint, folderPath + "/" + GetFileName(outputDataset));
     
-        // log the output file name
+        // log hello output file name
         logger.Write("output blob URI: {0}", outputBlobUri.ToString());
 
-        // create a blob and upload the output text.
+        // create a blob and upload hello output text.
         CloudBlockBlob outputBlob = new CloudBlockBlob(outputBlobUri, outputStorageAccount.Credentials);
-        logger.Write("Writing {0} to the output blob", output);
+        logger.Write("Writing {0} toohello output blob", output);
         outputBlob.UploadText(output);
     
-        // The dictionary can be used to chain custom activities together in the future.
+        // hello dictionary can be used toochain custom activities together in hello future.
         // This feature is not implemented yet, so just return an empty dictionary.  
     
         return new Dictionary<string, string>();
     }
     ```
-9. 다음과 같은 도우미 메서드를 추가합니다. 
+9. Hello 다음 도우미 메서드를 추가 합니다. 
 
     ```csharp
     /// <summary>
-    /// Gets the folderPath value from the input/output dataset.
+    /// Gets hello folderPath value from hello input/output dataset.
     /// </summary>
     
     private static string GetFolderPath(Dataset dataArtifact)
@@ -301,19 +301,19 @@ public IDictionary<string, string> Execute(
             return null;
         }
 
-        // get type properties of the dataset   
+        // get type properties of hello dataset 
         AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
         if (blobDataset == null)
         {
             return null;
         }
     
-        // return the folder path found in the type properties
+        // return hello folder path found in hello type properties
         return blobDataset.FolderPath;
     }
     
     /// <summary>
-    /// Gets the fileName value from the input/output dataset.   
+    /// Gets hello fileName value from hello input/output dataset.   
     /// </summary>
     
     private static string GetFileName(Dataset dataArtifact)
@@ -323,20 +323,20 @@ public IDictionary<string, string> Execute(
             return null;
         }
     
-        // get type properties of the dataset
+        // get type properties of hello dataset
         AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
         if (blobDataset == null)
         {
             return null;
         }
     
-        // return the blob/file name in the type properties
+        // return hello blob/file name in hello type properties
         return blobDataset.FileName;
     }
     
     /// <summary>
-    /// Iterates through each blob (file) in the folder, counts the number of instances of search term in the file,
-    /// and prepares the output text that is written to the output blob.
+    /// Iterates through each blob (file) in hello folder, counts hello number of instances of search term in hello file,
+    /// and prepares hello output text that is written toohello output blob.
     /// </summary>
     
     public static string Calculate(BlobResultSegment Bresult, IActivityLogger logger, string folderPath, ref BlobContinuationToken token, string searchTerm)
@@ -355,14 +355,14 @@ public IDictionary<string, string> Execute(
                                  where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()
                                  select word;
                 int wordCount = matchQuery.Count();
-                output += string.Format("{0} occurrences(s) of the search term \"{1}\" were found in the file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
+                output += string.Format("{0} occurrences(s) of hello search term \"{1}\" were found in hello file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
             }
         }
         return output;
     }
     ```
 
-    GetFolderPath 메서드는 데이터 집합이 가리키는 폴더로 경로를 반환하고 GetFileName 메서드는 데이터 집합이 가리키는 BLOB/파일의 이름을 반환합니다. {Year}, {Month}, {Day} 등의 변수를 사용하여 폴더 경로를 정의하면 이 메서드는 변수를 런타임 값으로 바꾸지 않고 문자열을 있는 그대로 반환합니다. SliceStart, SliceEnd 등에 대한 액세스에 대해 자세히 알아보려면 [확장 속성 액세스](#access-extended-properties) 를 참조하세요.    
+    hello GetFolderPath 메서드 반환 hello 경로 toohello 폴더를 데이터 집합을 hello tooand hello GetFileName 메서드 반환 hello hello blob 파일의 이름을/데이터 집합 가리키는 hello를 가리킵니다. HavefolderPath 있습니다 {Year} 같은 변수를 사용 하 여 정의 하는 경우 {Month} {Day} 등, hello 메서드 반환 값이 런타임 바꾸지 않고 그대로 문자열 hello 합니다. SliceStart, SliceEnd 등에 대한 액세스에 대해 자세히 알아보려면 [확장 속성 액세스](#access-extended-properties) 를 참조하세요.    
 
     ```JSON
     "name": "InputDataset",
@@ -374,97 +374,97 @@ public IDictionary<string, string> Execute(
             "folderPath": "adftutorial/inputfolder/",
     ```
 
-    Calculate 메서드는 입력 파일(폴더에서 BLOB)에서 Microsoft 키워드의 인스턴스 수를 계산합니다. 검색 용어("Microsoft")는 코드에 하드 코딩됩니다.
-10. 프로젝트를 컴파일합니다. 메뉴에서 **빌드**, **솔루션 빌드**를 차례로 클릭합니다.
+    hello Calculate 메서드 hello 키워드 hello 입력된 파일 (blob의 hello 폴더에 있는 경우)에서 Microsoft의 인스턴스 수를 계산합니다. hello 검색 단어 ("Microsoft") hello 코드에 하드 코딩 되어 있습니다.
+10. Hello 프로젝트를 컴파일하십시오. 클릭 **빌드** hello 메뉴에서 **솔루션 빌드**합니다.
 
     > [!IMPORTANT]
-    > 4.5.2 버전의 .NET Framework를 프로젝트의 대상 프레임워크로 설정합니다. 프로젝트를 마우스 오른쪽 단추로 클릭하고 **속성**을 클릭하여 대상 프레임워크를 설정합니다. 데이터 팩터리는 .NET Framework 4.5.2 이후 버전에 대해 컴파일된 사용자 지정 작업을 지원하지 않습니다.
+    > 프로젝트에 대 한 hello 대상 프레임 워크로.NET Framework의 집합 4.5.2 버전: hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 클릭 **속성** tooset hello에 대 한 대상 프레임 워크입니다. 데이터 팩터리는 .NET Framework 4.5.2 이후 버전에 대해 컴파일된 사용자 지정 작업을 지원하지 않습니다.
 
-11. **Windows 탐색기**를 시작하고 빌드 유형에 따라 **bin\debug** 또는 **bin\release** 폴더로 이동합니다.
-12. <project folder>\bin\Debug 폴더의 이진을 모두 포함하는 **MyDotNetActivity.zip** Zip 파일을 만듭니다. 오류가 있는 경우 문제를 발생시킨 소스 코드의 줄 번호 같은 추가 정보를 받을 수 있도록 **MyDotNetActivity.pdb** 파일을 포함합니다. 
+11. 시작 **Windows 탐색기**, 너무 이동**bin\debug** 또는 **bin\release** 빌드의 hello 종류에 따라 폴더입니다.
+12. Zip 파일을 만들 **MyDotNetActivity.zip** hello에서 모든 hello 이진 파일을 포함 하는 <project folder>\bin\Debug 폴더입니다. Hello 포함 **MyDotNetActivity.pdb** 파일 오류가 발생 한 경우 hello 문제를 발생 시킨 hello 소스 코드의 줄 번호 등의 추가 정보를 받을 수 있도록 합니다. 
 
     > [!IMPORTANT]
-    > 사용자 지정 작업에 대한 zip 파일의 모든 파일은 하위 폴더가 없는 **최상위** 여야 합니다.
+    > Hello에 hello 사용자 지정 활동 이어야 hello zip 파일의 파일을 hello 모든 **최상위** 와 하위 폴더가 없습니다.
 
     ![이진 출력 파일](./media/data-factory-use-custom-activities/Binaries.png)
 14. 명명된 Blob 컨테이너 **customactivitycontainer**가 아직 없는 경우 새로 만듭니다. 
-15. MyDotNetActivity.zip을 AzureStorageLinkedService에서 참조되는 **범용** Azure Blob Storage(핫/쿨 Blob Storage 아님)의 customactivitycontainer에 Blob으로 업로드합니다.  
+15. MyDotNetActivity.zip에 blob toohello customactivitycontainer로 업로드 하는 **범용** AzureStorageLinkedService에서 참조는 Azure blob 저장소 (Blob storage 하지 핫/쿨).  
 
 > [!IMPORTANT]
-> Data Factory 프로젝트를 포함하는 Visual Studio의 솔루션에 이 .NET 작업 프로젝트를 추가하고 Data Factory 응용 프로그램 프로젝트의 .NET 작업 프로젝트에 참조를 추가하는 경우에는 zip 파일을 만들고 범용 Azure Blob Storage에 업로드하는 마지막 두 단계를 수행할 필요가 없습니다. Visual Studio를 사용하여 데이터 팩터리 엔터티를 게시하면 이러한 단계가 게시 프로세스에서 자동으로 수행됩니다. 자세한 내용은 [Visual Studio의 데이터 팩터리 프로젝트](#data-factory-project-in-visual-studio) 섹션을 참조하세요.
+> Data Factory 프로젝트를 포함 하는 Visual Studio에서이.NET 활동 프로젝트 tooa 솔루션을 추가 하 고 hello Data Factory 응용 프로그램 프로젝트에서 참조 too.NET 활동 프로젝트를 추가 하는 경우 수동으로 만드는 tooperform hello 마지막 두 단계 불필요 hello zip 파일을 선택 하 고 toohello 범용 Azure blob 저장소에 업로드 합니다. Visual Studio를 사용 하 여 데이터 팩터리 엔터티를 게시 하면 다음이 단계 hello 게시 프로세스에 의해 자동으로 수행 됩니다. 자세한 내용은 [Visual Studio의 데이터 팩터리 프로젝트](#data-factory-project-in-visual-studio) 섹션을 참조하세요.
 
 ## <a name="create-a-pipeline-with-custom-activity"></a>사용자 지정 작업을 포함하는 파이프라인 만들기
-사용자 지정 작업을 만들어 이진 파일이 있는 zip 파일을 **범용** Azure Storage 계정의 Blob 컨테이너에 업로드했습니다. 이 섹션에서는 사용자 지정 작업을 사용하는 파이프라인으로 Azure Data Factory를 만듭니다.
+사용자 지정 활동을 만들고 바이너리 tooa blob 컨테이너에서 hello zip 파일을 업로드 한 **범용** Azure 저장소 계정입니다. 이 섹션에서는 Azure 데이터 팩터리에 hello 사용자 지정 활동을 사용 하는 파이프라인을 사용 하 여 만듭니다.
 
-사용자 지정 작업에 대한 입력 데이터 집합은 Blob Storage에서 adftutorial 컨테이너의 customactivityinput 폴더에 있는 Blob(파일)을 나타냅니다. 작업에 대한 출력 데이터 집합은 Blob Storage에서 adftutorial 컨테이너의 customactivityoutput 폴더에 있는 출력 Blob을 나타냅니다.
+hello 사용자 지정 활동에 대 한 입력된 데이터 집합 hello hello blob 저장소의 adftutorial 컨테이너의 hello customactivityinput 폴더에 blob을 (파일)을 나타냅니다. hello 활동에 대 한 출력 데이터 집합 hello hello blob 저장소의 adftutorial 컨테이너의 hello customactivityoutput 폴더에 출력 blob을 나타냅니다.
 
-다음 내용이 포함된 **file.txt** 파일을 만들고 **adftutorial** 컨테이너의 **customactivityinput** 폴더에 업로드합니다. 아직 없는 경우 adftutorial 컨테이너를 만듭니다. 
+만들 **file.txt** 다음 콘텐츠을 너무 업로드 hello로 파일**customactivityinput** hello의 폴더 **adftutorial** 컨테이너입니다. 이미 존재 하지 않는 경우 hello adftutorial 컨테이너를 만듭니다. 
 
 ```
 test custom activity Microsoft test custom activity Microsoft
 ```
 
-입력 폴더는 폴더에 2개 이상의 파일이 포함된 경우에도 Azure Data Factory의 조각에 해당합니다. 각 조각이 파이프라인으로 처리될 때 사용자 지정 작업은 해당 조각에 대한 입력 폴더에서 모든 BLOB를 반복합니다.
+hello 입력된 폴더 hello 폴더에 파일이 두 개 이상의 경우에 Azure 데이터 팩터리에서 조각 tooa 해당 합니다. 각 조각은 hello 파이프라인에서 처리 될 때 hello 사용자 지정 활동에 대 한 해당 조각의 hello 입력된 폴더의 모든 hello blob을 반복 합니다.
 
-adftutorial\customactivityoutput 폴더에 1개 이상의 줄(입력 폴더에서 Blob 수와 동일)이 포함된 하나의 출력 파일이 표시됩니다.
+하나 이상의 줄만 작성 (hello 입력된 폴더에 있는 blob 수와 동일) hello adftutorial\customactivityoutput 폴더에 파일을 출력 하는 것이 표시 됩니다.
 
 ```
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2016-11-16-00/file.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2016-11-16-00/file.txt.
 ```
 
 
-이 섹션에서 수행하는 단계는 다음과 같습니다.
+이 섹션에서 수행 하는 hello 단계는 다음과 같습니다.
 
 1. **데이터 팩터리**를 만듭니다.
-2. 사용자 지정 작업이 실행되는 VM의 Azure Batch 풀과 입/출력 Blob을 보유하는 Azure Storage에 대한 **연결된 서비스**를 만듭니다.
-3. 사용자 지정 작업의 입력 및 출력을 나타내는 입력 및 출력 **데이터 집합**을 만듭니다.
-4. 사용자 지정 작업을 사용하는 **파이프라인**을 만듭니다.
+2. 만들 **연결 된 서비스** Vm는 hello에 사용자 지정 활동을 실행 하 고 hello hello 입/출력 blob를 보유 하는 Azure 저장소의 hello Azure 배치 풀에 대 한 합니다.
+3. 입력 및 출력 만들기 **데이터 집합** hello 사용자 지정 활동의 입력 및 출력을 나타냅니다.
+4. 만들기는 **파이프라인** hello 사용자 지정 활동을 사용 하 여 합니다.
 
 > [!NOTE]
-> 아직 **file.txt** 을 만들어서 Blob 컨테이너에 업로드하지 않았으면 지금 합니다. 이전 섹션의 지침을 참조하세요.   
+> Hello 만들기 **file.txt** 아직 수행 하지 않은 경우 blob 컨테이너 tooa을 업로드 합니다. Hello 이전 섹션의에서 지침을 참조 하십시오.   
 
-### <a name="step-1-create-the-data-factory"></a>1단계: 데이터 팩터리 만들기
-1. Azure Portal에 로그인한 후에 다음 단계를 수행합니다.
-   1. 왼쪽 메뉴에서 **새로 만들기** 를 클릭합니다.
-   2. **새** 블레이드에서 **데이터 + 분석**을 클릭합니다.
-   3. **데이터 분석** 블레이드에서 **Data Factory**를 클릭합니다.
+### <a name="step-1-create-hello-data-factory"></a>1 단계: hello 데이터 팩터리 만들기
+1. 로그인 한 후 toohello Azure 포털 수행 hello 단계를 수행 합니다.
+   1. 클릭 **새로** hello 왼쪽된 메뉴에 있습니다.
+   2. 클릭 **데이터 + 분석** hello에 **새로** 블레이드입니다.
+   3. 클릭 **Data Factory** hello에 **데이터 분석** 블레이드입니다.
    
     ![새 Azure Data Factory 메뉴](media/data-factory-use-custom-activities/new-azure-data-factory-menu.png)
-2. **새 Data Factory** 블레이드에서 이름으로 **CustomActivityFactory**를 입력합니다. Azure Data Factory 이름은 전역적으로 고유해야 합니다. **"CustomActivityFactory" Data Factory 이름은 사용할 수 없습니다.**라는 오류 메시지가 표시되는 경우 Data Factory 이름을 변경하고(예: **yournameCustomActivityFactory**) 해당 Data Factory를 다시 만듭니다.
+2. Hello에 **새 데이터 팩터리** 블레이드에서 입력 **CustomActivityFactory** hello 이름에 대 한 합니다. hello Azure 데이터 팩터리의 hello 이름을 전역적으로 고유 해야 합니다. Hello 오류가 나타나면: **"CustomActivityFactory" 데이터 팩터리 이름을 사용할 수 없으면**, hello 데이터 팩터리의 hello 이름 변경 (예를 들어 **yournameCustomActivityFactory**) 만들기를 시도 하십시오. 다시 실행 합니다.
 
     ![새 Azure Data Factory 블레이드](media/data-factory-use-custom-activities/new-azure-data-factory-blade.png)
 3. **리소스 그룹 이름**을 클릭하여 기존 리소스 그룹을 선택하거나 리소스 그룹을 만듭니다.
-4. **subscription** 및 Data Factory를 만들려는 **region**을 제대로 사용하고 있는지 확인합니다.
-5. **새 Data Factory** 블레이드에서 **만들기**를 클릭합니다.
-6. Azure 포털의 **대시보드** 에 생성된 데이터 팩터리가 표시됩니다.
-7. 데이터 팩터리 만들기를 완료한 후에는 Data Factory 블레이드가 표시되며 여기에 데이터 팩터리의 내용이 표시됩니다.
+4. 올바른 hello를 사용 하 고 있는지 확인 하십시오. **구독** 및 **지역** hello 데이터 팩터리 toobe 만든 원하는 합니다.
+5. 클릭 **만들기** hello에 **새 데이터 팩터리** 블레이드입니다.
+6. Hello에 생성 되 고 hello 데이터 팩터리 참조 **대시보드** hello Azure 포털의.
+7. Hello Data Factory 블레이드 보여 주는 참조 hello 데이터 팩터리에서 만들어진 후에 성공적으로, hello 데이터 팩터리의 내용을 hello 합니다.
     
     ![데이터 팩터리 블레이드](media/data-factory-use-custom-activities/data-factory-blade.png)
 
 ### <a name="step-2-create-linked-services"></a>2단계: 연결된 서비스 만들기
-연결된 서비스는 데이터 저장소 또는 계산 서비스를 Azure Data Factory에 연결합니다. 이 단계에서는 Azure Storage 계정 및 Azure 배치 계정을 데이터 팩터리에 연결합니다.
+연결 된 서비스 데이터 저장소를 연결 하거나 서비스 tooan Azure 데이터 팩터리를 계산 합니다. 이 단계에서는 Azure 저장소 계정 및 Azure 배치 계정 tooyour 데이터 팩터리를 연결합니다.
 
 #### <a name="create-azure-storage-linked-service"></a>Azure 저장소 연결된 서비스 만들기
-1. **CustomActivityFactory**에 대한 **Data Factory** 블레이드에서 **작성 및 배포 타일**을 클릭합니다. 데이터 팩터리 편집기가 표시됩니다.
-2. 명령 모음에서 **새 데이터 저장소**를 클릭하고 **Azure 저장소**를 선택합니다. 편집기에 Azure 저장소 연결된 서비스를 만들기 위한 JSON 스크립트가 표시됩니다.
+1. Hello 클릭 **작성자 및 배포** hello 타일 **DATA FACTORY** 블레이드 **CustomActivityFactory**합니다. 데이터 팩터리 편집기 hello를 표시 됩니다.
+2. 클릭 **새 데이터 저장소** 명령 모음 hello 되 고 선택 **Azure 저장소**합니다. 표시 되어야 hello Azure 저장소를 만들기 위한 JSON 스크립트 hello 편집기에서 서비스를 연결 합니다.
     
     ![새 데이터 저장소 - Azure Storage](media/data-factory-use-custom-activities/new-data-store-menu.png)
-3. `<accountname>`을 Azure Storage 계정 이름으로 바꾸고 `<accountkey>`를 Azure Storage 계정의 액세스 키로 바꿉니다. 저장소 액세스 키를 확보하는 방법을 알아보려면 [저장소 액세스 키 보기, 복사 및 다시 생성](../storage/common/storage-create-storage-account.md#manage-your-storage-account)을 참조하세요.
+3. 대체 `<accountname>` 사용자의 Azure 저장소 계정 이름의 및 `<accountkey>` 의 hello Azure 저장소 계정 액세스 키로 합니다. toolearn 어떻게 tooget 저장소 액세스 키가 참조 [보기, 복사 및 다시 생성 저장소 액세스 키](../storage/common/storage-create-storage-account.md#manage-your-storage-account)합니다.
 
     ![Azure Storage 연결 서비스](media/data-factory-use-custom-activities/azure-storage-linked-service.png)
-4. 명령 모음에서 **배포**를 클릭하여 연결된 서비스를 배포합니다.
+4. 클릭 **배포** hello 명령 toodeploy hello 연결 된 서비스 모음에 있습니다.
 
 #### <a name="create-azure-batch-linked-service"></a>Azure 배치 연결된 서비스 만들기
-1. Data Factory Editor의 도구 모음에서 **... 추가**를 클릭하고 **새 계산**을 클릭한 다음 메뉴에서 **Azure 배치**를 선택합니다.
+1. 데이터 팩터리 편집기 hello 클릭 **중... 더 많은** hello 명령 모음에서 **새 계산**를 선택한 후 **Azure 배치** hello 메뉴에서 합니다.
 
     ![새 계산 - Azure 배치](media/data-factory-use-custom-activities/new-azure-compute-batch.png)
-2. JSON 스크립트를 다음과 같이 변경합니다.
+2. Hello 다음 변경 내용을 toohello JSON 스크립트를 확인 합니다.
 
-   1. **accountName** 속성의 Azure 배치 계정 이름을 지정합니다. **Azure 배치 계정 블레이드**의 **URL**은 `http://accountname.region.batch.azure.com` 형식을 사용합니다. JSON의 **batchUri** 속성에 대해 URL에서 `accountname.`을 제거하고 `accountName` JSON 속성에 대해 `accountname`을 사용합니다.
-   2. **accessKey** 속성에 대한 Azure 배치 계정 키를 지정합니다.
-   3. **poolName** 속성에 대한 필수 조건의 일부로 만든 풀의 이름을 지정합니다. 풀 이름 대신 풀 ID를 지정할 수도 있습니다.
-   4. **batchUri** 속성에 대한 Azure 배치 URI를 지정합니다. 예: `https://westus.batch.azure.com`.  
-   5. **AzureStorageLinkedService** for the **linkedServiceName** 속성의 Azure 배치 계정 이름을 지정합니다.
+   1. Hello에 대 한 Azure 배치 계정 이름을 지정 **accountName** 속성입니다. hello **URL** hello에서 **Azure 배치 계정 블레이드** 형식에 따라 hello에: `http://accountname.region.batch.azure.com`합니다. Hello에 대 한 **batchUri** 속성에 hello JSON, tooremove 필요한 `accountname.` hello URL과 사용 하 여 hello에서 `accountname` hello에 대 한 `accountName` JSON 속성입니다.
+   2. Hello에 대 한 hello Azure 배치 계정 키를 지정 **accessKey** 속성입니다.
+   3. 만든 hello 풀의 hello 이름을 hello에 대 한 필수 구성 요소의 일부분으로 지정 **poolName** 속성입니다. Hello 풀의 hello 이름 대신 hello 풀의 hello ID를 지정할 수 있습니다.
+   4. Hello에 대 한 Azure 일괄 처리 URI를 지정 **batchUri** 속성입니다. 예: `https://westus.batch.azure.com`.  
+   5. Hello 지정 **AzureStorageLinkedService** hello에 대 한 **linkedServiceName** 속성입니다.
 
         ```json
         {
@@ -482,18 +482,18 @@ adftutorial\customactivityoutput 폴더에 1개 이상의 줄(입력 폴더에�
         }
         ```
 
-       **poolName** 속성의 경우 풀 이름 대신 풀 ID를 지정할 수도 있습니다.
+       Hello에 대 한 **poolName** 속성을 hello 풀의 hello 이름 대신 hello 풀의 hello ID를 지정할 수도 있습니다.
 
       > [!IMPORTANT]
-      > 데이터 팩터리 서비스는 HDInsight에 대해서와 마찬가지로 Azure Batch에 대한 주문형 옵션을 지원하지 않습니다. Azure Data Factory에서는 사용자 고유의 Azure Batch 풀만 사용할 수 있습니다.   
+      > HDInsight에 대해서와 마찬가지로 hello Data Factory 서비스가 Azure 일괄 처리에 대 한 주문형 옵션을 지원 하지 않습니다. Azure Data Factory에서는 사용자 고유의 Azure Batch 풀만 사용할 수 있습니다.   
     
 
 ### <a name="step-3-create-datasets"></a>3단계: 데이터 집합 만들기
-이 단계에서는 입력 및 출력 데이터를 나타낼 데이터 집합을 만듭니다.
+이 단계에서는 toorepresent 입력 데이터 집합 만들기 및 데이터를 출력 합니다.
 
 #### <a name="create-input-dataset"></a>입력 데이터 집합 만들기
-1. Data Factor의 **편집기**에서 **... 추가**를 클릭하고 **새 데이터 집합**을 클릭하고 **Azure Blob Storage**를 선택합니다.
-2. 오른쪽 창의 JSON을 다음 JSON 코드 조각으로 바꿉니다.
+1. Hello에 **편집기** hello Data Factory에 대 한 클릭 **중... 더 많은** hello 명령 모음에서 **새 데이터 집합**를 선택한 후 **Azure Blob 저장소** hello 드롭 다운 메뉴에서 합니다.
+2. Hello를 JSON hello 오른쪽 창에서 다음 JSON 코드 조각은 hello로 바꿉니다.
 
     ```json
     {
@@ -517,16 +517,16 @@ adftutorial\customactivityoutput 폴더에 1개 이상의 줄(입력 폴더에�
     }
     ```
 
-   이 연습에서는 시작 시간: 2016-11-16T00:00:00Z 및 종료 시간: 2016-11-16T05:00:00Z로 나중에 파이프라인을 만듭니다. 매시간 데이터를 생성하도록 예약되어 있어 5개의 입/출력 조각이 있습니다(**00**:00:00 -> **05**:00:00 범위).
+   이 연습에서는 시작 시간: 2016-11-16T00:00:00Z 및 종료 시간: 2016-11-16T05:00:00Z로 나중에 파이프라인을 만듭니다. 것 이므로 예약 된 tooproduce 데이터 매시간는 5 개의 입/출력 분할 영역 (사이 **00**: 00:00-> **05**: 00:00).
 
-   입력 데이터 집합의 **빈도** 및 **간격**은 **Hour** 및 **1**로 설정되며 이는 입력 조각이 매시간 제공됨을 의미합니다. 이 샘플에서는 intputfolder에서와 동일한 파일(file.txt)입니다.
+   hello **주파수** 및 **간격** hello 입력된 데이터 집합 너무 설정 되어**시간** 및 **1**, 즉, 해당 hello 조각 ´ ï ´ 입력 매시간 합니다. 이 샘플에서는 동일한 hello는 hello intputfolder에서 파일 (file.txt).
 
-   다음은 각 조각에 대한 시작 시간이며 위의 JSON 코드 조각에서 SliceStart 시스템 변수로 표현됩니다.
-3. 도구 모음에서 **배포**를 클릭하여 **InputDataset**을 만들고 배포합니다. 편집기의 제목 표시줄에 **테이블이 성공적으로 생성됨** 메시지가 표시되는지 확인합니다.
+   다음은 JSON 코드 조각은 위에 hello에서 시스템 변수 SliceStart로 표시 된 각 조각에 대 한 hello 시작 시간입니다.
+3. 클릭 **배포** 도구 모음 toocreate hello 되 고 hello 배포 **InputDataset**합니다. Hello 표시 되는지 확인 **테이블 만든 성공적으로** hello 편집기의 hello 제목 표시줄에 메시지가 있습니다.
 
 #### <a name="create-an-output-dataset"></a>출력 데이터 집합 만들기
-1. **데이터 팩터리 편집기**의 명령 모음에서 **... 추가**를 클릭하고 **새 데이터 집합**을 클릭한 다음 **Azure Blob Storage**를 선택합니다.
-2. 오른쪽 창의 JSON 스크립트를 다음 JSON 스크립트로 바꿉니다.
+1. Hello에 **데이터 팩터리 편집기**, 클릭 **중... 더 많은** hello 명령 모음에서 **새 데이터 집합**를 선택한 후 **Azure Blob 저장소**합니다.
+2. 다음 JSON 스크립트 hello hello 오른쪽 창에서 hello JSON 스크립트를 바꿉니다.
 
     ```JSON
     {
@@ -556,9 +556,9 @@ adftutorial\customactivityoutput 폴더에 1개 이상의 줄(입력 폴더에�
     }
     ```
 
-     출력 위치는 **adftutorial/customactivityoutput/**이고 출력 파일 이름은 yyyy-MM-dd-HH.txt입니다. 여기서 yyyy-MM-dd-HH는 조각이 생성되는 년, 월, 일 및 시입니다. 자세한 내용은 [개발자 참조][adf-developer-reference](영문)를 참조하세요.
+     출력 위치는 **adftutorial/customactivityoutput/** 및 출력 파일 이름은 여기서 yyyy MM-dd HH는 hello 연도, 월, 날짜 및 시간 생성 hello 조각의 MM dd HH.txt yyyy입니다. 자세한 내용은 [개발자 참조][adf-developer-reference](영문)를 참조하세요.
 
-    각 입력 조각에 대해 출력 BLOB/파일이 생성됩니다. 각 조각에 대해 출력 파일의 이름을 지정하는 방법은 다음과 같습니다. 출력 파일은 모두 **adftutorial\customactivityoutput**이라는 하나의 출력 폴더에 생성됩니다.
+    각 입력 조각에 대해 출력 BLOB/파일이 생성됩니다. 각 조각에 대해 출력 파일의 이름을 지정하는 방법은 다음과 같습니다. 하나의 출력 폴더에 모든 hello 출력 파일이 생성 됩니다: **adftutorial\customactivityoutput**합니다.
 
    | 조각 | 시작 시간 | 출력 파일 |
    |:--- |:--- |:--- |
@@ -568,12 +568,12 @@ adftutorial\customactivityoutput 폴더에 1개 이상의 줄(입력 폴더에�
    | 4 |2016-11-16T03:00:00 |2016-11-16-03.txt |
    | 5 |2016-11-16T04:00:00 |2016-11-16-04.txt |
 
-    입력 폴더에 있는 모든 파일은 위에 언급된 시작 시간의 조각 중 일부입니다. 이 조각을 처리할 때 사용자 지정 작업은 각 파일을 검색하고 검색 용어("Microsoft") 항목 수와 함께 출력 파일에 줄을 생성합니다. inputfolder에 세 개의 파일이 있는 경우 출력 파일에 각 시간별 조각에 해당하는 세 개의 줄이 생깁니다(예: 2016-11-16-00.txt, 2016-11-16:01:00:00.txt 등).
-3. **OutputDataset**을 배포하려면 명령 모음에서 **배포**를 클릭합니다.
+    입력된 폴더에 모든 hello 파일 위에서 언급 한 hello 시작 시간 조각에 포함 되어 있는지를 기억 합니다. 이 조각이 처리 되 면 hello 사용자 지정 활동 각 파일을 통해 검색 하 고 hello 검색 단어 ("Microsoft")의 발생 수와 hello 출력 파일의 줄을 생성 합니다. 각 시간 조각에 대 한 hello 출력 파일에 세 줄은 hello inputfolder에 세 개의 파일이 있는 경우: 2016-11-16-00.txt, 2016-11-16:01:00:00.txt, 등입니다.
+3. toodeploy hello **OutputDataset**, 클릭 **배포** hello 명령 모음에서 합니다.
 
-### <a name="create-and-run-a-pipeline-that-uses-the-custom-activity"></a>사용자 지정 작업을 사용하는 파이프라인 만들기 및 실행
-1. Data Factory Editor의 도구 모음에서 **... 추가**를 클릭한 다음 명령 모음에서 **새 파이프라인**을 클릭합니다. 
-2. 오른쪽 창의 JSON을 다음 JSON 스크립트로 바꿉니다.
+### <a name="create-and-run-a-pipeline-that-uses-hello-custom-activity"></a>만들기 및 hello 사용자 지정 활동을 사용 하는 파이프라인 실행
+1. 데이터 팩터리 편집기 hello 클릭 **중... 더 많은**를 선택한 후 **새 파이프라인** hello 명령 모음에서 합니다. 
+2. Hello를 JSON hello 오른쪽 창에서 다음 JSON 스크립트 hello 바꿉니다.
 
     ```JSON
     {
@@ -620,125 +620,125 @@ adftutorial\customactivityoutput 폴더에 1개 이상의 줄(입력 폴더에�
     }
     ```
 
-    다음 사항에 유의하세요.
+    포인트 다음 참고 hello:
 
-   * Azure 배치 풀의 VM 2대에서 2개 조각을 동시에 처리하도록 **동시성**이 **2**로 설정됩니다.
-   * activities 섹션에는 **DotNetActivity**유형의 작업 하나밖에 없습니다.
-   * **AssemblyName**은 **MyDotnetActivity.dll** DLL 이름으로 설정합니다.
-   * **EntryPoint**는 **MyDotNetActivityNS.MyDotNetActivity**로 설정합니다.
-   * **PackageLinkedService**는 사용자 지정 작업 Zip 파일을 포함하는 Blob 저장소를 가리키는 **AzureStorageLinkedService**로 설정합니다. 입/출력 파일 및 사용자 지정 작업 zip 파일에 대해 서로 다른 Azure Storage 계정을 사용하는 경우 다른 Azure Storage 연결된 서비스를 만듭니다. 이 문서에서는 동일한 Azure 저장소 계정을 사용 중이라고 가정합니다.
-   * **PackageFile**은 **customactivitycontainer/MyDotNetActivity.zip**으로 설정합니다. containerforthezip/nameofthezip.zip 형식입니다.
-   * 사용자 지정 작업은 입력으로 **InputDataset**, 출력으로 **OutputDataset**을 사용합니다.
-   * 사용자 지정 활동의 linkedServiceName 속성은 **AzureBatchLinkedService**를 가리키며 Azure Data Factory에 사용자 지정 작업을 Azure 배치 VM에서 실행해야 함을 알려줍니다.
-   * **isPaused** 속성은 기본적으로 **false**로 설정합니다. 이 예제에서는 조각이 이전에 시작되므로 파이프라인이 즉시 실행됩니다. 파이프라인을 일시 중지하려면 이 속성을 true로 설정하고 다시 시작하려면 false로 다시 설정할 수 있습니다.
-   * **start** 시간과 **end** 시간은 **5**시간 차이이며 파이프라인이 작동하면서 매시간 5개 조각이 생성됩니다.
-3. 파이프라인을 배포하려면 명령 모음에서 **배포**를 클릭합니다.
+   * **동시성** 너무 설정**2** 두 슬라이스 hello Azure 배치 풀에 2 개의 Vm에서 동시에 처리할 수 있도록 합니다.
+   * Hello 활동 섹션에서 하나의 활동 활동이 며 유형은: **DotNetActivity**합니다.
+   * **AssemblyName** 설정 않으면 hello DLL의 toohello 이름이: **MyDotnetActivity.dll**합니다.
+   * **EntryPoint** 너무 설정**MyDotNetActivityNS.MyDotNetActivity**합니다.
+   * **PackageLinkedService** 너무 설정**AzureStorageLinkedService** hello 사용자 지정 활동 zip 파일이 포함 된 toohello blob 저장소를 가리키는 합니다. 사용 하는 경우 서로 다른 Azure 저장소 계정에 대 한 입/출력 파일 하 고 hello zip 파일을 사용자 지정 활동을 만들면 다른 Azure 저장소 연결 된 서비스입니다. 이 문서에서는 사용 한다고 가정 hello Azure 저장소 계정과 동일한 계정입니다.
+   * **PackageFile** 너무 설정**customactivitycontainer/MyDotNetActivity.zip**합니다. Hello 형식: containerforthezip/nameofthezip.zip 합니다.
+   * hello 사용자 지정 활동은 **InputDataset** 입력으로 및 **OutputDataset** 출력으로 합니다.
+   * hello 사용자 지정 활동의 hello linkedServiceName 속성 가리킵니다 toohello **AzureBatchLinkedService**, 일괄 처리는 Azure Vm에서 toorun 필요한 Azure Data Factory 해당 hello 사용자 지정 활동 지시 합니다.
+   * **isPaused** 너무 속성이**false** 기본적으로 합니다. hello 파이프라인 hello 지난 hello 조각 시작 때문에이 예에서 즉시 실행 합니다. 이 속성 tootrue toopause hello 파이프라인을 설정 하 고 뒤로 toofalse toorestart를 설정할 수 있습니다.
+   * hello **시작** 시간 및 **끝** 시간은 **5** 더 많이 떨어져 있는 시간 및 분할 영역 생성 된 매시간, 되므로 5 개 조각 hello 파이프라인에 의해 생성 됩니다.
+3. toodeploy hello 파이프라인 클릭 **배포** hello 명령 모음에서 합니다.
 
-### <a name="monitor-the-pipeline"></a>파이프라인 모니터링
-1. Azure 포털의 Data Factory 블레이드에서 **다이어그램**을 클릭합니다.
+### <a name="monitor-hello-pipeline"></a>모니터 hello 파이프라인
+1. Data Factory 블레이드에서 hello hello Azure 포털에서에서 클릭 **다이어그램**합니다.
 
     ![다이어그램 타일](./media/data-factory-use-custom-activities/DataFactoryBlade.png)
-2. 다이어그램 뷰에서 OutputDataset을 클릭합니다.
+2. 다이어그램 보기 hello에서 이제 OutputDataset hello를 클릭 합니다.
 
     ![다이어그램 뷰](./media/data-factory-use-custom-activities/diagram.png)
-3. 5개의 출력 조각이 준비 상태로 표시됩니다. 준비 상태가 아닌 경우 아직 생성되지 않았습니다. 
+3. Hello 5 개의 출력 조각만 hello 준비 상태에 있는지 표시 됩니다. Hello 준비 상태에 있지 않기 경우 아직 생성 된 하지 않았습니다. 
 
    ![출력 분할](./media/data-factory-use-custom-activities/OutputSlices.png)
-4. 출력 파일이 **adftutorial** 컨테이너의 Blob 저장소에 생성되었는지 확인합니다.
+4. Hello blob 저장소에 hello hello 출력 파일이 생성 되는 확인 **adftutorial** 컨테이너입니다.
 
    ![사용자 지정 작업의 출력][image-data-factory-ouput-from-custom-activity]
-5. 출력 파일을 열면 다음과 유사한 출력이 표시됩니다.
+5. Hello 출력 파일을 열면 hello 출력 출력에 따라 유사한 toohello 나타납니다.
 
     ```
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2016-11-16-00/file.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2016-11-16-00/file.txt.
     ```
-6. [Azure 포털][azure-preview-portal] 또는 Azure PowerShell cmdlet을 사용하여 데이터 팩터리, 파이프라인 및 데이터 집합을 모니터링합니다. 포털을 통해서나 cmdlet을 사용하여 다운로드할 수 있는 로그(특히 user-0.log)에 있는 사용자 지정 활동의 코드에서 **ActivityLogger** 의 메시지를 확인할 수 있습니다.
+6. 사용 하 여 hello [Azure 포털] [ azure-preview-portal] 또는 Azure PowerShell cmdlet toomonitor 데이터 팩터리, 파이프라인 및 데이터 집합입니다. Hello 메시지를 볼 수 **ActivityLogger** hello hello 포털 또는 cmdlet을 사용 하 여 다운로드할 수 있는 hello 로그 (특히 사용자 0.log)에 사용자 지정 활동에 대 한 hello 코드입니다.
 
    ![사용자 지정 작업의 로그 다운로드][image-data-factory-download-logs-from-custom-activity]
 
 데이터 집합 및 파이프라인 모니터링에 대한 자세한 단계는 [파이프라인 모니터링 및 관리](data-factory-monitor-manage-pipelines.md) 를 참조하세요.      
 
 ## <a name="data-factory-project-in-visual-studio"></a>Visual Studio의 데이터 팩터리 프로젝트  
-Azure Portal 대신 Visual Studio를 사용하여 데이터 팩터리 엔터티를 만들고 게시할 수 있습니다. Visual Studio를 사용하여 데이터 팩터리 엔터티를 만들고 게시하는 방법에 대한 자세한 내용은 [Visual Studio를 사용하여 첫 번째 파이프라인 빌드](data-factory-build-your-first-pipeline-using-vs.md) 및 [Azure Blob에서 Azure SQL로 데이터 복사](data-factory-copy-activity-tutorial-using-visual-studio.md) 문서를 참조하세요.
+Azure Portal 대신 Visual Studio를 사용하여 데이터 팩터리 엔터티를 만들고 게시할 수 있습니다. 자세한 만들기에 대 한 정보를 Visual Studio를 사용 하 여 데이터 팩터리 엔터티를 게시, 참조에 대 한 [Visual Studio를 사용 하 여 첫 번째 파이프라인 빌드](data-factory-build-your-first-pipeline-using-vs.md) 및 [Azure Blob tooAzure SQL에서에서 데이터를 복사](data-factory-copy-activity-tutorial-using-visual-studio.md) 문서입니다.
 
-Visual Studio에서 데이터 팩터리 프로젝트를 만드는 경우 다음과 같은 추가 단계를 수행합니다.
+Visual Studio에서 데이터 팩터리 프로젝트를 만들면 다음 추가 단계를 hello 수행:
  
-1. 사용자 지정 작업 프로젝트가 포함된 Visual Studio 솔루션에 데이터 팩터리 프로젝트를 추가합니다. 
-2. 데이터 팩터리 프로젝트에서 .NET 작업 프로젝트에 대한 참조를 추가합니다. 데이터 팩터리 프로젝트를 마우스 오른쪽 단추로 클릭하고, **추가**를 가리킨 다음 **참조**를 클릭합니다. 
-3. **참조 추가** 대화 상자에서 **MyDotNetActivity** 프로젝트를 선택하고 **확인**을 클릭합니다.
-4. 솔루션을 빌드하여 게시합니다.
+1. Hello Data Factory 프로젝트 toohello hello 사용자 지정 활동 프로젝트를 포함 하는 Visual Studio 솔루션을 추가 합니다. 
+2. Hello Data Factory 프로젝트에서 참조 toohello.NET 활동 프로젝트를 추가 합니다. 데이터 팩터리 프로젝트를 마우스 오른쪽 단추로 클릭, 너무 가리킨**추가**, 클릭 하 고 **참조**합니다. 
+3. Hello에 **참조 추가** 대화 상자, 선택 hello **MyDotNetActivity** 프로젝트를 마우스 클릭 **확인**합니다.
+4. 빌드하고 hello 솔루션을 게시 합니다.
 
     > [!IMPORTANT]
-    > 데이터 팩터리 엔터티를 게시하면 zip 파일이 자동으로 생성되어 Blob 컨테이너 customactivitycontainer에 업로드됩니다. Blob 컨테이너가 없으면 자동으로 생성됩니다.  
+    > 데이터 팩터리 엔터티를 게시 하는 경우 zip 파일을 자동으로 만들어집니다 이며 toohello 업로드 된 blob 컨테이너: customactivitycontainer 합니다. Hello blob 컨테이너가 없는 경우 자동으로 만들어집니다 너무 합니다.  
 
 
 ## <a name="data-factory-and-batch-integration"></a>Data Factory 및 배치 통합
-Data Factory 서비스가 Azure Batch에 **adf-poolname:job-xxx**라는 이름으로 작업을 만듭니다. 왼쪽 메뉴에서 **작업**을 클릭합니다. 
+데이터 팩터리 서비스 hello hello 이름의 Azure 일괄 처리에서 작업을 만듭니다: **adf poolname: 작업 xxx**합니다. 클릭 **작업** hello 왼쪽된 메뉴에서 합니다. 
 
 ![Azure Data Factory - 배치 작업](media/data-factory-use-custom-activities/data-factory-batch-jobs.png)
 
-조각의 각 작업 실행에 대한 작업(task)이 만들어집니다. 처리를 위해 준비된 5개 조각이 있는 경우 이 작업(job)에 5개 작업(task)이 만들어집니다. Batch 풀에 여러 계산 노드가 있는 경우 두 개 이상의 조각을 병렬로 실행할 수 있습니다. 계산 노드당 최대 작업이 1보다 크게 설정된 경우에도 동일한 계산에 실행 중인 두 개 이상의 조각을 포함할 수 있습니다.
+조각의 각 작업 실행에 대한 작업(task)이 만들어집니다. 처리는 5 개의 분할 영역 준비 toobe가 없을 경우이 작업의 5 개 작업이 만들어집니다. Hello 배치 풀에에서 여러 계산 노드 있는 경우 두 개 이상의 분할 영역 병렬로 실행할 수 있습니다. 당 최대 작업 수 hello 계산 노드가 설정 될 경우 너무 > 1, 할 수도 있습니다 hello에서 실행 중인 둘 이상의 슬라이스 동일한 계산 합니다.
 
 ![Azure Data Factory - 배치 작업 태스크](media/data-factory-use-custom-activities/data-factory-batch-job-tasks.png)
 
-다음 다이어그램에서는 Azure Data Factory 및 배치 작업 간의 관계를 보여 줍니다.
+다이어그램을 다음 hello Azure 데이터 팩터리 및 일괄 처리 작업 간의 hello 관계를 보여 줍니다.
 
 ![데이터 팩터리 및 배치](./media/data-factory-use-custom-activities/DataFactoryAndBatch.png)
 
 ## <a name="troubleshoot-failures"></a>오류 문제 해결
 문제 해결은 몇 가지 기본적인 방법으로 구성됩니다.
 
-1. 다음과 같은 오류가 표시되면 범용 Azure Blob Storage를 사용하는 대신 핫/쿨 Blob Storage를 사용할 수 있습니다. zip 파일을 **범용 Azure Storage 계정**에 업로드합니다. 
+1. Hello 다음 오류가 표시 되는 경우 범용 Azure blob 저장소를 사용 하는 대신 핫/쿨 blob 저장소를 사용 하 될 수 있습니다. Hello zip 파일 tooa 업로드 **범용 Azure 저장소 계정**합니다. 
  
     ```
-    Error in Activity: Job encountered scheduling error. Code: BlobDownloadMiscError Category: ServerError Message: Miscellaneous error encountered while downloading one of the specified Azure Blob(s).
+    Error in Activity: Job encountered scheduling error. Code: BlobDownloadMiscError Category: ServerError Message: Miscellaneous error encountered while downloading one of hello specified Azure Blob(s).
     ``` 
-2. 다음과 같은 오류가 나타나면 CS 파일에서 클래스 이름이 파이프라인 JSON에서 **EntryPoint** 속성에 대해 지정한 이름과 일치하는지 확인합니다. 이 연습에서 클래스의 이름은 MyDotNetActivity이고 JSON의 진입점은 MyDotNetActivityNS.**MyDotNetActivity**입니다.
+2. Hello 다음 오류가 표시 되 면 확인 hello에 대 한 지정한 hello CS 파일 일치 hello 이름에서 hello 클래스의 해당 hello 이름을 **EntryPoint** hello 파이프라인 JSON의 속성입니다. Hello 연습 hello 클래스의 이름을: MyDotNetActivity, 및 JSON hello에 EntryPoint hello: MyDotNetActivityNS 합니다. **MyDotNetActivity**합니다.
 
     ```
-    MyDotNetActivity assembly does not exist or doesn't implement the type Microsoft.DataFactories.Runtime.IDotNetActivity properly
+    MyDotNetActivity assembly does not exist or doesn't implement hello type Microsoft.DataFactories.Runtime.IDotNetActivity properly
     ```
 
-   이름이 일치하는 경우 zip 파일의 **루트 폴더** 에 모든 이진 파일이 있는지 확인합니다. 즉, zip 파일을 열 때 하위 폴더가 아닌 루트 폴더에 모든 파일이 있어야 합니다.   
-3. 입력 조각이 **Ready**로 설정되지 않은 경우 입력 폴더 구조가 올바르고 **file.txt**가 입력 폴더에 있는지 확인합니다.
-3. 사용자 지정 작업의 **Execute** 메서드에서 **IActivityLogger** 개체를 사용하여 문제 해결에 도움이 되는 정보를 기록합니다. 기록된 메시지는 사용자 로그 파일(다음과 같은 이름의 파일 하나 또는 여러 개: user-0.log, user-1.log, user-2.log 등)에 표시됩니다.
+   Hello 이름이 일치 하는 경우에 있는지 확인 모든 hello 바이너리 hello **루트 폴더** hello zip 파일의 합니다. 즉, hello zip 파일을 열 때는 hello 루트 폴더에, 모든 하위 폴더에 없는 모든 hello 파일에 표시 됩니다.   
+3. Hello 입력된 조각이 너무 설정 되어 있지 않으면**준비**, hello 입력된 폴더 구조가 올바른지 확인 하 고 **file.txt** hello 입력된 폴더에 있습니다.
+3. Hello에 **Execute** 사용자 지정 활동을 사용 하 여 hello 방식의 **IActivityLogger** 때 도움이 되는 개체 toolog 정보 문제를 해결 합니다. hello 사용자 로그 파일에 기록 하는 hello 메시지 표시 (명명 된 하나 이상의 파일: 0.log 사용자, 사용자 1.log, 사용자 2.log 등.).
 
-   **OutputDataset** 블레이드에서 조각에 대한 **데이터 조각** 블레이드를 보려면 해당 조각을 클릭합니다. 해당 조각에 대한 **작업 실행** 이 표시됩니다. 해당 조각에 대한 하나의 작업 실행이 표시됩니다. 명령 모음에서 실행을 클릭하면 동일한 조각에 대해 다른 작업 실행을 시작할 수 있습니다.
+   Hello에 **OutputDataset** 블레이드에서 hello 조각 toosee hello 클릭 **데이터 조각을** 블레이드 해당 조각에 대 한 합니다. 해당 조각에 대한 **작업 실행** 이 표시됩니다. Hello 조각에 대 한 실행 하는 하나의 활동이 표시 됩니다. Hello에 대 한 실행 하는 다른 작업을 시작할 수 hello 명령 모음에서 실행을 클릭 하면 동일한 분할 영역입니다.
 
-   작업 실행을 클릭하면 로그 파일 목록과 함께 **작업 실행 세부 정보** 블레이드가 표시됩니다. 기록된 메시지는 user_0.log 파일에 표시됩니다. 오류가 발생하면 파이프라인/작업 JSON에서 재시도 횟수가 3으로 설정되므로 세 개의 작업 실행이 표시됩니다. 작업 실행을 클릭하면 문제 해결을 위해 검토할 수 있는 로그 파일이 표시됩니다.
+   Hello hello 작업 실행을 클릭할 때 표시 **작업 실행 세부 정보** 블레이드 로그 파일의 목록과 함께 합니다. Hello user_0.log 파일에 기록 된 메시지를 참조 하십시오. 오류가 발생 하면 hello 재시도 횟수는 hello 파이프라인/활동 JSON에서에서 too3 설정 되어 있으므로 세 가지 활동을 실행 표시 됩니다. Hello 작업 실행을 클릭 하면 tootroubleshoot hello 오류를 검토할 수 있도록 하는 hello 로그 파일이 표시 됩니다.
 
-   로그 파일 목록에서 **user-0.log**를 클릭합니다. 오른쪽 패널은 **IActivityLogger.Write** 메서드를 사용한 결과입니다. 일부 메시지가 보이지 않으면 user_1.log, user_2.log 등 비슷한 이름의 로그 파일이 더 있는지 확인합니다. 로그 파일이 더 없으면 마지막 메시지가 기록된 후에 코드가 실패한 것일 수 있습니다.
+   로그 파일의 hello 목록에서 클릭 hello **사용자 0.log**합니다. Hello 오른쪽 패널에서 결과인 hello hello를 사용 하 여 **IActivityLogger.Write** 메서드. 일부 메시지가 보이지 않으면 user_1.log, user_2.log 등 비슷한 이름의 로그 파일이 더 있는지 확인합니다. 그렇지 않으면 hello 메시지를 마지막 로그온 한 후 hello 코드 되지 않았습니다.
 
    또한 **system-0.log**에서 시스템 오류 메시지 및 예외를 확인합니다.
-4. Zip 파일에 **PDB** 파일을 포함하여 오류 발생 시 오류 세부 정보에 **호출 스택**과 같은 정보가 포함되도록 합니다.
-5. 사용자 지정 작업에 대한 zip 파일의 모든 파일은 하위 폴더가 없는 **최상위** 여야 합니다.
-6. **assemblyName**(MyDotNetActivity.dll), **entryPoint**(MyDotNetActivityNS.MyDotNetActivity), **packageFile**(customactivitycontainer/MyDotNetActivity.zip) 및 **packageLinkedService**(zip 파일을 포함하는 **범용** Azure Blob Storage를 가리켜야 함)가 올바른 값으로 설정되었는지 확인합니다.
-7. 오류를 해결했고 조각을 다시 처리하려면 **OutputDataset** 블레이드에서 조각을 마우스 오른쪽 단추로 클릭하고 **실행**을 클릭합니다.
-8. 다음 오류가 표시되면 4.3.0 이후 버전의 Azure Storage 패키지를 사용하고 있는 것입니다. Data Factory 서비스 시작 관리자에는 4.3 버전의 WindowsAzure.Storage가 필요합니다. 이후 버전의 Azure Storage 어셈블리를 사용해야 하는 경우 해결 방법은 [Appdomain 격리](#appdomain-isolation) 섹션을 참조하세요. 
+4. Hello 포함 **PDB** hello 오류 세부 정보와 같은 정보를 포함할 수 있도록 hello zip 파일에 파일 **호출 스택을** 오류가 발생할 경우.
+5. Hello에 hello 사용자 지정 활동 이어야 hello zip 파일의 파일을 hello 모든 **최상위** 와 하위 폴더가 없습니다.
+6. 해당 hello 확인 **assemblyName** (MyDotNetActivity.dll) **entryPoint**(MyDotNetActivityNS.MyDotNetActivity) **packageFile** (customactivitycontainer / MyDotNetActivity.zip) 및 **packageLinkedService** (toohello 가리켜야 **범용**hello zip 파일을 포함 하는 Azure blob 저장소) toocorrect 값 설정 됩니다.
+7. 오류 및 원하는 tooreprocess hello 슬라이스를 수정한 경우 hello hello 조각 마우스 오른쪽 단추로 클릭 **OutputDataset** 블레이드에 대 한 클릭 **실행**합니다.
+8. Hello 다음 오류가 표시 되 면 버전 > 4.3.0의 hello Azure 저장소 패키지를 사용 하는 합니다. 데이터 팩터리 서비스 시작 관리자에는 특히 WindowsAzure.Storage hello 4.3 버전이 필요합니다. 참조 [Appdomain 격리](#appdomain-isolation) hello를 사용 해야 할 경우 해결에 대 한 섹션 Azure 저장소 어셈블리의 이후 버전입니다. 
 
     ```
-    Error in Activity: Unknown error in module: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeLoadException: Could not load type 'Microsoft.WindowsAzure.Storage.Blob.CloudBlob' from assembly 'Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, 
+    Error in Activity: Unknown error in module: System.Reflection.TargetInvocationException: Exception has been thrown by hello target of an invocation. ---> System.TypeLoadException: Could not load type 'Microsoft.WindowsAzure.Storage.Blob.CloudBlob' from assembly 'Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, 
     ```
 
-    4.3.0 버전의 Azure Storage 패키지를 사용할 수 있는 경우 4.3.0 이후 버전의 Azure Storage 패키지에 대한 기존 참조를 제거합니다. 그런 다음 NuGet 패키지 관리자 콘솔에서 다음 명령을 실행합니다. 
+    Azure 저장소 패키지의 버전 4.3.0 hello를 사용 하려면 hello 참조 tooAzure 저장소의 기존 패키지 버전 > 4.3.0를 제거 합니다. 그런 다음 hello NuGet 패키지 관리자 콘솔에서 다음 명령을 실행 합니다. 
 
     ```PowerShell
     Install-Package WindowsAzure.Storage -Version 4.3.0
     ```
 
-    프로젝트를 빌드합니다. bin\Debug 폴더에서 4.3.0 이후 버전의 Azure.Storage 어셈블리를 삭제합니다. 이진 파일 및 PDB 파일이 포함된 zip 파일을 만듭니다. Blob 컨테이너(customactivitycontainer)에서 이전 zip 파일을 새 zip 파일로 바꿉니다. 실패한 조각을 다시 실행합니다(조각을 마우스 오른쪽 단추로 클릭하고 실행을 클릭).   
-8. 사용자 지정 작업은 패키지에서 **app.config** 파일을 사용하지 않습니다. 따라서 코드가 구성 파일에서 연결 문자열을 읽는 경우 런타임 시 작동하지 않습니다. Azure 배치를 사용할 경우 **Azure KeyVault**에 모든 암호를 저장하고, 인증서 기반 서비스 주체를 사용하여 **KeyVault**을 보호하고, 인증서를 Azure 배치 풀에 배포하는 것이 좋습니다. 그러면 .NET 사용자 지정 활동은 런타임에 주요 자격 증명 모음의 암호에 액세스할 수 있습니다. 이 솔루션은 일반 솔루션이며 연결 문자열뿐 아니라 모든 유형의 암호로 확장될 수 있습니다.
+    Hello 프로젝트를 빌드하십시오. Hello bin\Debug 폴더에서 버전 > 4.3.0의 Azure.Storage 어셈블리를 삭제 합니다. Zip 파일을 이진 파일 및 hello PDB 파일을 만듭니다. (Customactivitycontainer) hello blob 컨테이너에서이 hello 이전 zip 파일을 바꿉니다. 다시 실행 hello에 실패 한 조각이 (분할 영역을 마우스 오른쪽 단추로 클릭 하 고 실행을 차례로 클릭).   
+8. 사용자 지정 활동 hello hello를 사용 하지 않는 **app.config** 패키지에서 파일입니다. 따라서 코드 hello 구성 파일에서 모든 연결 문자열에 읽기, 하는 경우 런타임 시 작동 하지 않습니다. hello 모범 사례 toohold Azure 일괄 처리를 사용 하는 경우의 모든 암호는 **Azure KeyVault**, 인증서 기반 서비스 보안 주체 tooprotect hello를 사용 하 여 **keyvault**, hello 인증서 배포 tooAzure 배치 풀 합니다. .NET 사용자 지정 활동을 hello 다음 런타임에 KeyVault hello에서 비밀 정보에 액세스할 수 있습니다. 이 솔루션은 일반 솔루션 및 tooany 유형의 암호 뿐 아니라 연결 문자열을 확장할 수 있습니다.
 
-   최상은 아니지만 좀 더 쉬운 해결 방법이 있습니다. 즉 연결 문자열 설정을 사용하여 **Azure SQL 연결 서비스**를 만들고, 이 서비스를 사용하는 데이터 집합을 만든 다음 사용자 지정 .NET 작업에 이 데이터 집합을 더미 입력 데이터 집합으로 연결하면 됩니다. 그런 다음 사용자 지정 활동 코드에서 연결된 서비스의 연결 문자열에 액세스할 수 있습니다.  
+   보다 쉽게 해결 (있지만 최상의 방법은 아님): 만들 수는 **Azure SQL 연결 된 서비스** 를 위해 연결 문자열 설정을 사용 하 여 hello 연결 된 서비스 및 더미 입력된 데이터 집합으로 체인 hello 데이터 집합을 데이터 집합 만들기 toohello 사용자 지정.NET 작업입니다. 액세스 hello hello 사용자 지정 활동 코드에서 서비스의 연결 문자열을 연결 하는 다음 할 수 있습니다.  
 
 ## <a name="update-custom-activity"></a>사용자 지정 작업 업데이트
-사용자 지정 작업의 코드를 업데이트하는 경우 코드를 작성하고 새 이진이 포함된 zip 파일을 Blob 저장소로 업로드합니다.
+Hello 사용자 지정 활동에 대 한 hello 코드를 업데이트 하는 경우 빌드하고 새 바이너리 toohello blob 저장소를 포함 하는 hello zip 파일을 업로드 합니다.
 
 ## <a name="appdomain-isolation"></a>Appdomain 격리
-Data Factory 시작 관리자에서 사용하는 어셈블리 버전(예: WindowsAzure.Storage v4.3.0, Newtonsoft.Json v6.0.x 등)의 제약을 받지 않는 사용자 지정 작업을 만드는 방법을 보여 주는 [크로스 AppDomain 샘플](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample)을 참조하세요.
+참조 [크로스 AppDomain 샘플](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) toocreate 하지 않은 사용자 지정 활동 tooassembly 버전 hello 데이터 팩터리 시작 관리자에서 사용을 제한 하는 방법을 보여 주는 (예: WindowsAzure.Storage v4.3.0, Newtonsoft.Json v6.0.x 등.).
 
 ## <a name="access-extended-properties"></a>확장 속성 액세스
-다음 샘플과 같이 작업 JSON에서 확장 속성을 선언할 수 있습니다.
+다음 예제는 hello와 같이 hello 활동 JSON에에서 확장된 속성을 선언할 수 있습니다.
 
 ```JSON
 "typeProperties": {
@@ -754,16 +754,16 @@ Data Factory 시작 관리자에서 사용하는 어셈블리 버전(예: Window
 ```
 
 
-이 예제에는 두 가지 확장 속성, **SliceStart** 및 **DataFactoryName**이 있습니다. SliceStart의 값은 SliceStart 시스템 변수를 기반으로 합니다. 지원되는 시스템 변수 목록은 [시스템 변수](data-factory-functions-variables.md) 를 참조하세요. DataFactoryName의 값은 CustomActivityFactory로 하드 코드됩니다.
+Hello 예제에서는 두 가지 확장된 속성: **SliceStart** 및 **DataFactoryName**합니다. SliceStart에 대 한 hello 값 hello SliceStart 시스템 변수를 기반으로 합니다. 지원되는 시스템 변수 목록은 [시스템 변수](data-factory-functions-variables.md) 를 참조하세요. DataFactoryName hello 값은 하드 코딩 된 tooCustomActivityFactory입니다.
 
-**Execute** 메서드에서 이러한 확장 속성에 액세스하려면 다음 코드와 유사한 코드를 사용합니다.
+속성 hello에 이러한 확장 tooaccess **Execute** 메서드를 사용 하 여 코드와 유사한 toohello 코드 다음:
 
 ```csharp
-// to get extended properties (for example: SliceStart)
+// tooget extended properties (for example: SliceStart)
 DotNetActivity dotNetActivity = (DotNetActivity)activity.TypeProperties;
 string sliceStartString = dotNetActivity.ExtendedProperties["SliceStart"];
 
-// to log all extended properties                               
+// toolog all extended properties                               
 IDictionary<string, string> extendedProperties = dotNetActivity.ExtendedProperties;
 logger.Write("Logging extended properties if any...");
 foreach (KeyValuePair<string, string> entry in extendedProperties)
@@ -773,9 +773,9 @@ foreach (KeyValuePair<string, string> entry in extendedProperties)
 ```
 
 ## <a name="auto-scaling-of-azure-batch"></a>Azure Batch의 자동 확장
-**자동 크기 조정** 기능으로 Azure 배치 풀을 만들 수 있습니다. 예를 들어 보류 중인 작업의 수에 따라 전용 VM 0개 및 자동 크기 조정 수식을 사용하여 Azure 배치 풀을 만들 수 있습니다. 
+**자동 크기 조정** 기능으로 Azure 배치 풀을 만들 수 있습니다. 예를 들어 0 전용된 Vm 및 보류 중인 작업 수가 hello 기반으로 하는 자동 크기 조정 수식을 사용 하 여 azure 배치 풀을 만들 수 있습니다. 
 
-여기에 나오는 샘플 수식은 다음과 같은 동작을 구현합니다. 풀이 처음 만들어질 때는 VM 1개로 시작합니다. $PendingTasks 메트릭은 실행되거나 큐에 대기 중인 활성 상태의 작업 수를 정의합니다.  이 수식은 지난 180초 동안에서 보류 중인 작업의 평균 수를 찾은 후 그에 따라 TargetDedicated를 설정합니다. 또한 TargetDedicated가 25개의 VM을 초과하지 않도록 합니다. 따라서 새 작업이 제출되면 풀이 자동으로 커지고, 작업이 완료되면 VM은 하나씩 사용 가능한 상태로 해제된 후 자동 크기 조정에 따라 해당 VM이 축소됩니다. startingNumberOfVMs 및 maxNumberofVMs은 요구에 맞게 조정될 수 있습니다.
+hello 수식 여기에 동작을 수행 하는 hello 달성: hello 풀 처음 만들어질 때 1 VM으로 시작 합니다. $PendingTasks 메트릭을 실행 + 활성 (대기) hello 다양 한 작업 정의 상태입니다.  hello 수식은 지난 180 초 동안 hello에 보류 중인 작업의 hello 평균 숫자를 검색 하 고 TargetDedicated를 적절 하 게 설정 합니다. 또한 TargetDedicated가 25개의 VM을 초과하지 않도록 합니다. 따라서 새 작업이 제출 되는 대로 풀에서 자동으로 증가 및 완료 작업으로 Vm 하나씩 무료 해지고 해당 Vm을 축소 하는 hello 자동 크기 조정. startingNumberOfVMs 및 maxNumberofVMs 조정된 tooyour 요구 될 수 있습니다.
 
 자동 크기 조정 수식:
 
@@ -789,37 +789,37 @@ $TargetDedicated=min(maxNumberofVMs,pendingTaskSamples);
 
 자세한 내용은 [Azure 배치 풀에서 자동으로 계산 노드 크기 조정](../batch/batch-automatic-scaling.md) 을 참조하세요.
 
-풀에 기본 [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx)이 사용되는 경우, 배치 서비스가 사용자 지정 작업을 실행하기 전에 VM을 준비하는 데 15~30분이 소요될 수 있습니다.  풀에 다른 autoScaleEvaluationInterval이 사용되는 경우, 배치 서비스는 autoScaleEvaluationInterval +10분이 소요될 수 있습니다.
+Hello 풀 hello 기본값을 사용 하는 경우 [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx), hello 일괄 처리 서비스는 hello 사용자 지정 활동을 실행 하기 전에 tooprepare hello VM 15-30 분 걸릴 수 있습니다.  Hello 풀 다른 autoScaleEvaluationInterval를 사용 하는 경우 일괄 처리 서비스 hello autoScaleEvaluationInterval + 10 분 걸릴 수 있습니다.
 
 ## <a name="use-hdinsight-compute-service"></a>HDInsight 계산 서비스 사용
-이 연습에서는 Azure 배치 계산을 사용하여 사용자 지정 작업을 실행했습니다. 또한 사용자 고유의 Windows 기반 HDInsight 클러스터를 사용할 수도 있고, 데이터 팩터리가 주문형 Windows 기반 HDInsight 클러스터를 만들고 그 HDInsight 클러스터에서 사용자 지정 작업을 실행하게 할 수도 있습니다. 다음은 HDInsight 클러스터를 사용하는 고급 단계입니다.
+Hello 연습에서는 Azure 배치 계산 toorun hello 사용자 지정 활동을 사용 합니다. 사용자 고유의 Windows 기반 HDInsight 클러스터를 사용 하거나 데이터 팩터리에 주문형 Windows 기반 HDInsight 클러스터를 만들고 hello HDInsight 클러스터에서 실행 하는 hello 사용자 지정 활동을 포함 한 수도 있습니다. HDInsight 클러스터를 사용 하기 위한 hello 상위 수준 단계는 다음과 같습니다.
 
 > [!IMPORTANT]
-> 사용자 지정 .NET 작업은 Windows 기반 HDInsight 클러스터에서만 실행됩니다. 이 제한 사항에 대한 해결 방법은 MapReduce 작업을 사용하여 Linux 기반 HDInsight 클러스터에서 사용자 지정 Java 코드를 실행하는 것입니다. 또 다른 옵션은 VM의 Azure Batch 풀을 사용하여 HDInsight 클러스터를 사용하는 대신 사용자 지정 작업을 실행하는 것입니다.
+> 사용자 지정.NET 작업 hello Windows 기반 HDInsight 클러스터에 대해서만 실행 합니다. 이 제한에 대 한 해결 방법은 toouse hello Linux 기반 HDInsight 클러스터에서 맵 줄일 활동 toorun 사용자 지정 Java 코드입니다. 두 번째 방법은 toouse Vm toorun HDInsight 클러스터를 사용 하는 대신 사용자 지정 활동의 Azure 배치 풀 합니다.
  
 
 1. Azure HDInsight 연결된 서비스 만들기   
-2. 파이프라인 JSON에 **AzureBatchLinkedService** 대신 HDInsight 연결된 서비스를 사용합니다.
+2. 사용 하 여 HDInsight는 연결 된 서비스 대신 **AzureBatchLinkedService** hello에 JSON을 파이프라인 합니다.
 
-연습을 테스트해 보려면 Azure HDInsight 서비스를 사용하는 시나리오를 테스트할 수 있도록 파이프라인의 **start** 및 **end** 시간을 변경하는 것이 좋습니다.
+Tootest 하려는 경우 사용 하 여 hello 연습에서는 변경 **시작** 및 **끝** hello Azure HDInsight 서비스로 hello 시나리오를 테스트할 수 있도록 hello 파이프라인에 대 한 시간입니다.
 
 #### <a name="create-azure-hdinsight-linked-service"></a>Azure HDInsight 연결된 서비스 만들기
-Azure Data Factory 서비스는 주문형 클러스터 만들기를 지원하며 이 클러스터를 사용하여 입력을 처리하고 출력 데이터를 생성합니다. 또한 고유한 클러스터를 사용하여 같은 작업을 할 수도 있습니다. 주문형 HDInsight 클러스터를 사용하면 각 조각에 대해 클러스터가 생성됩니다. 반면 고유한 HDInsight 클러스터를 사용하는 경우에는 클러스터에서 조각을 즉시 처리할 수 있습니다. 따라서 주문형 클러스터를 사용하는 경우 출력 데이터가 고유한 클러스터를 사용할 때처럼 빠르게 표시되지 않을 수 있습니다.
+주문형 클러스터 만들기를 지원 하 고 tooprocess 입력된 tooproduce 출력 데이터를 사용 하는 hello Azure 데이터 팩터리 서비스 합니다. 자체 클러스터를 사용할 수도 있습니다 tooperform hello 동일 합니다. 주문형 HDInsight 클러스터를 사용하면 각 조각에 대해 클러스터가 생성됩니다. 반면 hello 클러스터 준비는 사용자 고유의 HDInsight 클러스터를 사용할 경우 tooprocess 즉시 슬라이스를 hello 합니다. 따라서 주문형 클러스터를 사용할 때는 나타나지 않을 수 있습니다 hello 출력 데이터를 즉시 자체 클러스터를 사용 하는 경우.
 
 > [!NOTE]
-> 런타임에 .NET 작업의 한 인스턴스는 HDInsight 클러스터의 작업자 노드 하나에서만 실행됩니다. 여러 노드에서 실행되도록 확장할 수 없습니다. .NET 작업의 여러 인스턴스는 HDInsight 클러스터의 서로 다른 노드에서 병렬로 실행될 수 있습니다.
+> 런타임 시.NET 활동의 인스턴스 hello HDInsight 클러스터의 작업자 노드 한 개 에서만 실행 여러 노드에 대해 크기 조정 된 toorun 수 없습니다. .NET 활동의 여러 인스턴스는 hello HDInsight 클러스터의 다른 노드에서 동시에 실행할 수 있습니다.
 >
 >
 
-##### <a name="to-use-an-on-demand-hdinsight-cluster"></a>주문형 HDInsight 클러스터를 사용하려면
-1. **Azure 배치 계정**에서 왼쪽의 **작성자 및 배포** 를 클릭합니다.
-2. Data Factory 편집기의 명령 모음에서 **새 계산**을 클릭하고 메뉴에서 **주문형 HDInsight 클러스터**를 선택합니다.
-3. JSON 스크립트를 다음과 같이 변경합니다.
+##### <a name="toouse-an-on-demand-hdinsight-cluster"></a>toouse 주문형 HDInsight 클러스터
+1. Hello에 **Azure 포털**, 클릭 **작성자 및 배포** hello Data Factory 홈 페이지에 있습니다.
+2. 데이터 팩터리 편집기 hello 클릭 **새 계산** hello 명령 모음 및 선택에서 **주문형 HDInsight 클러스터** hello 메뉴에서 합니다.
+3. Hello 다음 변경 내용을 toohello JSON 스크립트를 확인 합니다.
 
-   1. **clusterSize** 속성에 대해 HDInsight 클러스터의 크기를 지정합니다.
-   2. **timeToLive** 속성에 대해 고객이 삭제되기 전에 유휴 상태로 유지될 수 있는 기간을 지정합니다.
-   3. **version** 속성에 대해 사용할 HDInsight 버전을 지정합니다. 이 속성을 제외하면 최신 버전이 사용됩니다.  
-   4. **linkedServiceName**에 대해 **AzureStorageLinkedService**를 지정합니다.
+   1. Hello에 대 한 **clustersize는** 속성을 hello HDInsight 클러스터의 hello 크기를 지정 합니다.
+   2. Hello에 대 한 **timeToLive** 속성을 기간 hello 고객 유휴 상태일 수 있는 삭제 하기 전에 지정 합니다.
+   3. Hello에 대 한 **버전** 속성을 원하는 toouse hello HDInsight 버전을 지정 합니다. 이 속성을 제외 하면 hello 최신 버전이 사용 됩니다.  
+   4. Hello에 대 한 **linkedServiceName**, 지정 **AzureStorageLinkedService**합니다.
 
         ```JSON
         {
@@ -837,24 +837,24 @@ Azure Data Factory 서비스는 주문형 클러스터 만들기를 지원하며
         ```
 
     > [!IMPORTANT]
-    > 사용자 지정 .NET 작업은 Windows 기반 HDInsight 클러스터에서만 실행됩니다. 이 제한 사항에 대한 해결 방법은 MapReduce 작업을 사용하여 Linux 기반 HDInsight 클러스터에서 사용자 지정 Java 코드를 실행하는 것입니다. 또 다른 옵션은 VM의 Azure Batch 풀을 사용하여 HDInsight 클러스터를 사용하는 대신 사용자 지정 작업을 실행하는 것입니다.
+    > 사용자 지정.NET 작업 hello Windows 기반 HDInsight 클러스터에 대해서만 실행 합니다. 이 제한에 대 한 해결 방법은 toouse hello Linux 기반 HDInsight 클러스터에서 맵 줄일 활동 toorun 사용자 지정 Java 코드입니다. 두 번째 방법은 toouse Vm toorun HDInsight 클러스터를 사용 하는 대신 사용자 지정 활동의 Azure 배치 풀 합니다.
 
-4. 명령 모음에서 **배포**를 클릭하여 연결된 서비스를 배포합니다.
+4. 클릭 **배포** hello 명령 toodeploy hello 연결 된 서비스 모음에 있습니다.
 
-##### <a name="to-use-your-own-hdinsight-cluster"></a>고유한 HDInsight 클러스터를 사용하려면
-1. **Azure 배치 계정**에서 왼쪽의 **작성자 및 배포** 를 클릭합니다.
-2. **Data Factory 편집기**의 명령 모음에서 **새 계산**을 클릭하고 메뉴에서 **HDInsight 클러스터**를 선택합니다.
-3. JSON 스크립트를 다음과 같이 변경합니다.
+##### <a name="toouse-your-own-hdinsight-cluster"></a>toouse 고유한 HDInsight 클러스터:
+1. Hello에 **Azure 포털**, 클릭 **작성자 및 배포** hello Data Factory 홈 페이지에 있습니다.
+2. Hello에 **데이터 팩터리 편집기**, 클릭 **새 계산** hello 명령 모음 및 선택에서 **HDInsight 클러스터** hello 메뉴에서 합니다.
+3. Hello 다음 변경 내용을 toohello JSON 스크립트를 확인 합니다.
 
-   1. **clusterUri** 속성에 대해 HDInsight의 URL을 입력합니다. 예를 들어 https://<clustername>.azurehdinsight.net/을 입력합니다.     
-   2. **UserName** 속성에 대해 HDInsight 클러스터에 액세스할 수 있는 사용자 이름을 입력합니다.
-   3. **password** 속성에 대해 사용자 암호를 입력합니다.
-   4. **LinkedServiceName** 속성에 대해 **AzureStorageLinkedService**를 입력합니다.
-4. 명령 모음에서 **배포**를 클릭하여 연결된 서비스를 배포합니다.
+   1. Hello에 대 한 **clusterUri** 속성 HDInsight에 대 한 hello URL을 입력 합니다. 예를 들어 https://<clustername>.azurehdinsight.net/을 입력합니다.     
+   2. Hello에 대 한 **UserName** 속성을 액세스 toohello HDInsight 클러스터를 가진 hello 사용자 이름을 입력 합니다.
+   3. Hello에 대 한 **암호** 속성 hello 사용자 hello 암호를 입력 합니다.
+   4. Hello에 대 한 **LinkedServiceName** 속성, 입력 **AzureStorageLinkedService**합니다.
+4. 클릭 **배포** hello 명령 toodeploy hello 연결 된 서비스 모음에 있습니다.
 
 자세한 내용은 [연결된 서비스 계산](data-factory-compute-linked-services.md) 을 참조하세요.
 
-**파이프라인 JSON**에서 HDInsight(주문형 또는 사용자 고유의) 연결된 서비스를 사용합니다.
+Hello에 **JSON 파이프라인**, HDInsight를 사용 하 여 (요청 시 또는 직접) 연결 된 서비스:
 
 ```JSON
 {
@@ -902,7 +902,7 @@ Azure Data Factory 서비스는 주문형 클러스터 만들기를 지원하며
 ```
 
 ## <a name="create-a-custom-activity-by-using-net-sdk"></a>.NET SDK를 사용하여 사용자 지정 작업 만들기
-이 문서의 연습에서는 Azure Portal을 사용하여 사용자 지정 작업을 사용하는 파이프라인이 포함된 데이터 팩터리를 만듭니다. 다음 코드는 .NET SDK를 대신 사용하여 데이터 팩터리를 만드는 방법을 보여 줍니다. SDK를 사용하여 프로그래밍 방식으로 파이프라인을 만드는 방법에 대한 자세한 내용은 [.NET API를 사용하여 복사 작업이 포함된 파이프라인 만들기](data-factory-copy-activity-tutorial-using-dotnet-api.md) 문서를 참조하세요. 
+이 문서의 hello 연습에서는 hello Azure 포털을 사용 하 여 hello 사용자 지정 활동을 사용 하는 파이프라인을 사용 하 여 데이터 팩터리를 만듭니다. 코드 다음 hello toocreate 데이터 팩터리.NET SDK를 대신 사용 하 여 hello 하는 방법을 보여 줍니다. SDK tooprogrammatically 사용에 대 한 자세한 내용은 hello에서 파이프라인을 만들 것을 확인할 수 있습니다 [.NET API를 사용 하 여 복사 작업으로 파이프라인을 만들고](data-factory-copy-activity-tutorial-using-dotnet-api.md) 문서. 
 
 ```csharp
 using System;
@@ -927,7 +927,7 @@ namespace DataFactoryAPITestApp
         {
             // create data factory management client
 
-            // TODO: replace ADFTutorialResourceGroup with the name of your resource group.
+            // TODO: replace ADFTutorialResourceGroup with hello name of your resource group.
             string resourceGroupName = "ADFTutorialResourceGroup";
 
             // TODO: replace APITutorialFactory with a name that is globally unique. For example: APITutorialFactory04212017
@@ -1072,7 +1072,7 @@ namespace DataFactoryAPITestApp
                         {
                             Description = "Use custom activity",
 
-                            // Initial value for pipeline's active period. With this, you won't need to set slice status
+                            // Initial value for pipeline's active period. With this, you won't need tooset slice status
                             Start = PipelineActivePeriodStartTime,
                             End = PipelineActivePeriodEndTime,
                             IsPaused = false,
@@ -1135,23 +1135,23 @@ namespace DataFactoryAPITestApp
             if (result != null)
                 return result.AccessToken;
 
-            throw new InvalidOperationException("Failed to acquire token");
+            throw new InvalidOperationException("Failed tooacquire token");
         }
     }
 }
 ```
 
 ## <a name="debug-custom-activity-in-visual-studio"></a>Visual Studio에서 사용자 지정 작업 디버깅
-GitHub의 [Azure Data Factory - 로컬 환경](https://github.com/gbrueckl/Azure.DataFactory.LocalEnvironment) 샘플은 Visual Studio 내에서 사용자 지정 .NET 작업을 디버깅할 수 있는 도구를 포함하고 있습니다.  
+hello [Azure 데이터 팩터리-로컬 환경](https://github.com/gbrueckl/Azure.DataFactory.LocalEnvironment) GitHub에 샘플 Visual Studio 내에서 사용자 지정.NET 작업 toodebug 수 있는 도구를 포함 합니다.  
 
 
 ## <a name="sample-custom-activities-on-github"></a>GitHub의 샘플 사용자 지정 작업
 | 샘플 | 사용자 지정 작업의 기능 |
 | --- | --- |
-| [HTTP 데이터 다운로더](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample) |Data Factory의 사용자 지정 C# 작업을 사용하여 HTTP 끝점에서 Azure Blob 저장소로 데이터를 다운로드합니다. |
+| [HTTP 데이터 다운로더](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample) |HTTP 끝점 tooAzure Data Factory에 사용자 지정 C# 활동을 사용 하 여 Blob 저장소에서에서 데이터를 다운로드 합니다. |
 | [Twitter 감성 분석 샘플](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/TwitterAnalysisSample-CustomC%23Activity) |Azure ML 모델을 호출하고 감성 분석, 점수 매기기, 예측 등을 수행합니다. |
 | [R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample) |R이 이미 설치된 HDInsight 클러스터에서 RScript.exe를 실행하여 R 스크립트를 호출합니다. |
-| [크로스 AppDomain .NET 작업](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) |Data Factory 시작 관리자가 사용한 것과 다른 버전의 어셈블리를 사용합니다. |
+| [크로스 AppDomain .NET 작업](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) |Hello 데이터 팩터리 시작 관리자에서 사용 하는 것에서 다른 어셈블리 버전을 사용 하 여 |
 | [Azure Analysis Services에서 모델 다시 처리](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/AzureAnalysisServicesProcessSample) |  Azure Analysis Services에서 모델을 다시 처리합니다. |
 
 [batch-net-library]: ../batch/batch-dotnet-get-started.md

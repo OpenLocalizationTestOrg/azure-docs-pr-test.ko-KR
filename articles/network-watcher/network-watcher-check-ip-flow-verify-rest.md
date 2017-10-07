@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher IP 흐름 확인을 사용하여 트래픽 확인 - REST | Microsoft Docs"
-description: "이 문서에서는 가상 컴퓨터 간에 트래픽을 허용하는지 아니면 거부하는지를 확인하는 방법을 설명합니다."
+title: "Azure 네트워크 감시자 IP 흐름을 사용 하 여 aaaVerify 트래픽을 확인-REST | Microsoft Docs"
+description: "이 문서에서는 설명 방법을 toocheck 가상 컴퓨터에서 트래픽 tooor 허용 또는 거부 하는 경우"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 6d3ce00a7d4f9c0cd57fa8815625a1065b03b5b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 956db0d326db597c6c402a9e8d4a5522c47c02d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-if-traffic-is-allowed-or-denied-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Azure Network Watcher의 구성 요소인 IP 흐름 확인을 사용하여 트래픽을 허용하는지 아니면 거부하는지를 확인합니다.
 
@@ -30,17 +30,17 @@ ms.lasthandoff: 07/11/2017
 > - [Azure REST API](network-watcher-check-ip-flow-verify-rest.md)
 
 
-IP 흐름 확인은 가상 컴퓨터 간에 트래픽을 허용하는지를 확인할 수 있는 Network Watcher의 기능입니다. 들어오거나 나가는 트래픽에 대해 유효성 검사를 실행할 수 있습니다. 이 시나리오는 가상 컴퓨터가 외부 리소스 또는 백 엔드에 연결할 수 있는지에 대한 현재 상태를 가져올 때 유용합니다. IP 흐름 확인은 NSG(네트워크 보안 그룹) 규칙이 모두 제대로 구성되었는지 확인하고 NSG 규칙에 의해 차단되는 흐름 문제를 해결하는 데 사용될 수 있습니다. IP 흐름 확인을 사용하여 차단하려는 트래픽이 NSG에서 제대로 차단되었는지 확인할 수도 있습니다.
+IP 흐름은 tooor 가상 컴퓨터에서 트래픽을 허용 하는 경우 tooverify 수 있는 네트워크 감시자의 기능을 확인 합니다. 들어오거나 나가는 트래픽에 대 한 hello 유효성 검사를 실행할 수 있습니다. 이 시나리오는 유용한 tooget tooan 외부 리소스 또는 백 엔드 가상 컴퓨터를 서로 연결할 수 있는지 여부의 현재 상태입니다. IP 흐름 보안 그룹 NSG (네트워크) 규칙에 올바르게 구성 되어 NSG 규칙에 의해 차단 되는 흐름 문제를 해결 하는 경우 사용 되는 tooverify 수를 확인 합니다. IP를 사용 하는 또 다른 이유 흐름 tooensure 트래픽이 차단 되도록 제대로 hello NSG 차단 하 고이 확인 합니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
+ARMclient는 PowerShell을 사용 하 여 사용 되는 toocall hello REST API입니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
 
-이 시나리오에서는 사용자가 Network Watcher를 만드는 [Network Watcher 만들기](network-watcher-create.md)의 단계를 이미 수행했다고 가정합니다.
+이 시나리오에서는 hello 단계에 따라 이미 가정 [네트워크 감시자를 만들](network-watcher-create.md) toocreate 네트워크 감시자 합니다.
 
 ## <a name="scenario"></a>시나리오
 
-이 시나리오에서는 IP 흐름 확인을 사용하여 가상 컴퓨터가 포트 443을 통해 다른 컴퓨터와 통신할 수 있는지 확인합니다. 트래픽이 거부된 경우 해당 트래픽을 거부하는 보안 규칙을 반환합니다. IP 흐름 확인에 대한 자세한 내용을 보려면 [IP 흐름 확인 개요](network-watcher-ip-flow-verify-overview.md)를 방문하세요.
+이 시나리오에서는 가상 컴퓨터 포트 443 통해 tooanother 컴퓨터 수와 통신 하는 경우 IP 흐름 확인 tooverify를 사용 합니다. Hello 트래픽이 거부 되 면 해당 트래픽을 거부 하는 hello 보안 규칙을 반환 합니다. IP 흐름 확인에 대 한 더 toolearn 방문 [IP 흐름 개요를 확인 하십시오.](network-watcher-ip-flow-verify-overview.md)
 
 이 시나리오에서는 다음을 수행합니다.
 
@@ -56,10 +56,10 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>가상 컴퓨터 검색
 
-다음 스크립트를 실행하여 가상 컴퓨터를 반환합니다. 다음 코드에는 다음 변수에 대한 값이 필요합니다.
+다음 스크립트 tooreturn hello 가상 컴퓨터를 실행 합니다. hello 다음 코드에 필요한 값 hello 변수에 대 한:
 
-* **subscriptionId** - 사용할 구독 ID입니다.
-* **resourceGroupName** - 가상 컴퓨터를 포함하는 리소스 그룹의 이름입니다.
+* **subscriptionId** -구독 Id toouse hello 합니다.
+* **resourceGroupName** -hello 가상 컴퓨터를 포함 하는 리소스 그룹의 이름입니다.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -68,7 +68,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-필요한 정보는 유형 `Microsoft.Compute/virtualMachines` 아래의 ID입니다. 결과는 다음 코드 샘플과 유사합니다.
+hello 필요한 정보는 hello id hello 종류에서 `Microsoft.Compute/virtualMachines`합니다. hello 결과 아래의 코드 예제와 비슷한 toohello 됩니다.
 
 ```json
 ...,
@@ -100,15 +100,15 @@ pute/virtualMachines/ContosoVM/extensions/CustomScriptExtension"
 
 ## <a name="call-ip-flow-verify"></a>IP 흐름 확인 호출
 
-다음 예제에서는 지정된 가상 컴퓨터에 대한 트래픽을 확인하는 요청을 만듭니다. 응답은 트래픽이 허용되는 경우 또는 트래픽이 거부되는 경우를 반환합니다. 트래픽이 거부되는 경우 어떤 규칙에서 트래픽을 차단하는지 반환합니다.
+hello 다음 예제에서는 지정 된 가상 컴퓨터에 대 한 요청 tooverify hello 트래픽을 hello 응답 hello 트래픽을 허용 하는 경우 또는 hello 트래픽이 거부 된 경우에 반환 합니다. 트래픽에서 거부 된 경우 어떤 규칙 블록 hello 트래픽 반환 합니다.
 
 > [!NOTE]
-> IP 흐름 확인에서는 VM 리소스가 할당되어야 합니다.
+> IP 흐름 확인 hello VM 리소스 할당 해야 합니다.
 
-스크립트에는 가상 컴퓨터의 리소스 ID 및 가상 컴퓨터에 있는 네트워크 인터페이스 카드의 리소스 ID가 필요합니다. 위의 출력에서 이러한 값을 제공합니다.
+hello 스크립트 hello 리소스 hello 가상 컴퓨터에서 네트워크 인터페이스 카드 및 가상 컴퓨터의 Id를 필요합니다. Hello 출력 앞에서 이러한 값을 제공 합니다.
 
 > [!Important]
-> Network Watcher REST 호출의 경우 요청 URI에 있는 리소스 그룹 이름은 진단 작업을 수행하는 리소스가 아니라, Network Watcher 인스턴스를 포함하는 리소스입니다.
+> 모든 네트워크 감시자 REST에 대 한 호출 hello hello 요청 URI는 hello 진단 작업에서 수행 하는 hello 리소스가 아닌 hello 네트워크 감시자 인스턴스를 포함 하는 hello에에서 리소스 그룹 이름입니다.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -141,9 +141,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/ipFlowVerify?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="understanding-the-results"></a>결과 이해
+## <a name="understanding-hello-results"></a>Hello 결과 이해
 
-사용자가 받는 응답은 트래픽의 허용 또는 거부 여부를 알려줍니다. 응답은 다음 예제 중 하나와 같습니다.
+hello 응답 반환 hello 트래픽을 허용 또는 거부 여부를 알려줍니다. hello 응답 예제 따르는 hello 중 같습니다.
 
 **허용됨**
 
@@ -165,7 +165,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="next-steps"></a>다음 단계
 
-트래픽이 차단되지 않아야 하는데 차단된 경우 [네트워크 보안 그룹 관리](../virtual-network/virtual-network-manage-nsg-arm-portal.md)를 참조하여 네트워크 보안 그룹에 대해 자세히 알아봅니다.
+트래픽을 차단 하지 않아야 하는 경우 참조 [네트워크 보안 그룹 관리](../virtual-network/virtual-network-manage-nsg-arm-portal.md) toolearn 네트워크 보안 그룹에 대 한 자세한 합니다.
 
 
 

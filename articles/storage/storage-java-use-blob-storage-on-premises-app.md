@@ -1,6 +1,6 @@
 ---
-title: "Blob 저장소를 사용하는 온-프레미스 응용 프로그램(Java) | Microsoft Docs"
-description: "Azure에 이미지를 업로드한 다음 브라우저에 해당 이미지를 표시하는 콘솔 응용 프로그램을 만드는 방법에 대해 알아봅니다. 코드 샘플은 Java로 작성되었습니다."
+title: "blob 저장소 (Java) aaaOn 온-프레미스 응용 프로그램 | Microsoft Docs"
+description: "Toocreate 업로드 한 이미지 tooAzure 차례로 표시 하는 콘솔 응용 프로그램 브라우저에서 이미지를 hello 하는 방법에 대해 알아봅니다. 코드 샘플은 Java로 작성되었습니다."
 services: storage
 documentationcenter: java
 author: mmacy
@@ -14,29 +14,29 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 11/17/2016
 ms.author: marsma
-ms.openlocfilehash: a172b881fa38a69f4510df94f5797b7a56940c52
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed8eb4c1045691c25abe94bf6c1b18b797adc3e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="on-premises-application-with-blob-storage"></a>Blob 저장소를 사용하는 온-프레미스 응용 프로그램
 ## <a name="overview"></a>개요
-다음 예제에서는 Azure 저장소를 사용하여 이미지를 Azure에 저장할 수 있는 방법을 보여 줍니다. 이 문서의 코드는 Azure에 이미지를 업로드한 다음 그 이미지를 브라우저에 표시하는 HTML 파일을 만드는 콘솔 응용 프로그램용 코드입니다.
+hello 다음 예제에 나와 Azure 저장소를 사용 하 여 Azure에서 이미지를 저장 하는 방법을 합니다. 이 문서에 hello 코드 이미지 tooAzure를 업로드 하 고 다음 브라우저에서 hello 이미지를 표시 하는 HTML 파일을 만듭니다는 콘솔 응용 프로그램입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 * JDK(Java Developer Kit) 버전 1.6 이상이 설치되어 있어야 합니다.
-* Azure SDK가 설치되어 있어야 합니다.
-* Java용 Azure 라이브러리를 위한 JAR 및 해당하는 종속성 JAR이 설치되어 있어야 하며 Java 컴파일러가 사용하는 빌드 경로에 있어야 합니다. Java용 Azure 라이브러리 설치에 대한 자세한 내용은 [Java용 Azure SDK 다운로드](../java-download-azure-sdk.md)를 참조하세요.
-* Azure 저장소 계정이 설정되어 있어야 합니다. 이 문서의 코드에서는 저장소 계정의 계정 이름 및 계정 키를 사용합니다. 저장소 계정 만들기에 대한 자세한 내용은 [저장소 계정을 만드는 방법](storage-create-storage-account.md#create-a-storage-account)을, 계정 키 검색에 대한 자세한 내용은 [저장소 액세스 키 보기 및 복사](storage-create-storage-account.md#view-and-copy-storage-access-keys)를 참조하세요.
-* 이름을 지정한 로컬 이미지 파일을 만들어 c:\\myimages\\image1.jpg 경로에 저장해야 합니다. 또는 예제에서 **FileInputStream** 생성자를 수정하여 다른 이미지 경로 및 파일 이름을 사용합니다.
+* hello Azure SDK가 설치 되어 있습니다.
+* Java 용 Azure 라이브러리 hello JAR hello 및 모든 해당 종속성 Jar 설치 되 고 Java 컴파일러에서 사용 하는 hello 빌드 경로에 됩니다. Java 용 Azure 라이브러리 hello를 설치 하는 방법에 대 한 정보를 참조 하십시오. [다운로드 hello Azure SDK for Java](../java-download-azure-sdk.md)합니다.
+* Azure 저장소 계정이 설정되어 있어야 합니다. hello 계정 이름과 계정 키 hello 저장소 계정에 대 한 사용 됩니다이 문서의 hello 코드에서. 참조 [어떻게 tooCreate 저장소 계정을](storage-create-storage-account.md#create-a-storage-account) 저장소 계정을 만드는 방법에 대 한 내용은 및 [저장소 액세스 키 보기 및 복사](storage-create-storage-account.md#view-and-copy-storage-access-keys) hello 계정 키를 검색 하는 방법에 대 한 정보에 대 한 합니다.
+* 명명 된 로컬 이미지 파일을 만든 hello path c:에 저장 되지만\\myimages\\image1.jpg 합니다. 또는 수정할는 **FileInputStream** hello 예제 toouse 다른 이미지 경로 및 파일 이름에에서는 생성자입니다.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="to-use-azure-blob-storage-to-upload-a-file"></a>Azure Blob 저장소를 사용하여 파일을 업로드하려면
-여기서는 단계별 절차를 제공합니다. 건너뛰고 싶은 경우 이 문서의 뒷부분에 전체 코드가 제공됩니다.
+## <a name="toouse-azure-blob-storage-tooupload-a-file"></a>toouse Azure blob 저장소 tooupload 파일
+여기서는 단계별 절차를 제공합니다. Tooskip 미리, 원하는 경우 hello 전체 코드는이 문서의 뒷부분에 표시 됩니다.
 
-Azure 핵심 저장소 클래스, Azure Blob 클라이언트 클래스, Java IO 클래스, **URISyntaxException** 클래스에 대한 가져오기를 포함하여 코드를 시작합니다.
+Hello Azure 핵심 저장소 클래스, hello Azure blob 클라이언트 클래스, hello Java IO 클래스 및 hello에 대 한 가져오기를 포함 하 여 hello 코드 시작 **URISyntaxException** 클래스입니다.
 
 ```java
 import com.microsoft.azure.storage.*;
@@ -45,13 +45,13 @@ import java.io.*;
 import java.net.URISyntaxException;
 ```
 
-이름이 **StorageSample**인 클래스를 선언하고 여는 중괄호(**{**)를 포함합니다.
+이라는 클래스를 선언 **StorageSample**, hello 괄호를 포함 하 고 **{**합니다.
 
 ```java
 public class StorageSample {
 ```
 
-**StorageSample** 클래스 내에서 Azure 저장소 계정에 지정된 것과 같이 기본 끝점 프로토콜, 저장소 계정 이름, 저장소 액세스 키가 포함될 문자열 변수를 선언합니다. **your\_account\_name** 및 **your\_account\_key** 자리 표시자 값을 각각 자신의 계정 이름 및 계정 키로 바꿉니다.
+Hello 내 **StorageSample** 클래스, 기본 끝점 프로토콜 hello, 저장소 계정 이름 및 Azure 저장소 계정에 지정 된 저장소 액세스 키를 포함 될 문자열 변수를 선언 합니다. Hello 자리 표시자 값을 대체 **프로그램\_계정\_이름** 및 **프로그램\_계정\_키** 사용자 고유의 계정 이름과 계정 키를 각각.
 
 ```java
 public static final String storageConnectionString =
@@ -60,7 +60,7 @@ public static final String storageConnectionString =
     "AccountKey=your_account_name";
 ```
 
-**main** 선언을 추가하고 **try** 블록을 포함하며 필요한 여는 중괄호(**{**)를 포함합니다.
+에 대 한 선언에서 추가 **주**, 포함 한 **시도** 블록과 hello 필요한 여는 괄호를 포함 **{**합니다.
 
 ```java
     public static void main(String[] args)
@@ -69,12 +69,12 @@ public static final String storageConnectionString =
         {
 ```
 
-다음 유형의 변수를 선언합니다. 이 예제에서 변수가 어떻게 사용되는지 설명되어 있습니다.
+Hello 형식 (이 예제에서 사용 방법에 대 한 설명은 됩니다 hello) 다음의 변수를 선언 합니다.
 
-* **CloudStorageAccount**: Azure 저장소 계정 이름 및 키로 계정 개체를 초기화하고 Blob 클라이언트 개체를 만드는 데 사용됩니다.
-* **CloudBlobClient**: Blob 서비스에 액세스하는 데 사용됩니다.
-* **CloudBlobContainer**: Blob 컨테이너를 만들고, 컨테이너에서 Blob을 나열하고, 컨테이너를 삭제하는 데 사용됩니다.
-* **CloudBlockBlob**: 로컬 이미지 파일을 컨테이너에 업로드하는 데 사용됩니다.
+* **CloudStorageAccount**: 사용 되는 tooinitialize hello 계정 blob 클라이언트 개체를 Azure 저장소 계정 이름 및 키 및 toocreate 포함 개체입니다.
+* **CloudBlobClient**: tooaccess hello blob 서비스를 사용 합니다.
+* **CloudBlobContainer**: blob 컨테이너를 사용 하는 toocreate hello 컨테이너 및 delete hello 컨테이너에 blob를 나열 합니다.
+* **CloudBlockBlob**: 사용 되는 tooupload 로컬 이미지 파일 toothe 컨테이너입니다.
 
 <!-- -->
 
@@ -85,79 +85,79 @@ public static final String storageConnectionString =
     CloudBlockBlob blob;
 ```
 
-**account** 변수에 값을 할당합니다.
+할당 값 toohello **계정** 변수입니다.
 
 ```java
 account = CloudStorageAccount.parse(storageConnectionString);
 ```
 
-**serviceClient** 변수에 값을 할당합니다.
+할당 값 toohello **serviceClient** 변수입니다.
 
 ```java
 serviceClient = account.createCloudBlobClient();
 ```
 
-**container** 변수에 값을 할당합니다. **gettingstarted**라는 컨테이너에 대한 참조를 얻게 됩니다.
+할당 값 toohello **컨테이너** 변수입니다. 라는 참조 tooa 컨테이너 살펴보겠습니다 **gettingstarted**합니다.
 
 ```java
 // Container name must be lower case.
 container = serviceClient.getContainerReference("gettingstarted");
 ```
 
-컨테이너를 만듭니다. 이 메서드는 컨테이너가 없을 경우 컨테이너를 만들고 **true**를 반환합니다. 컨테이너가 있으면 **false**를 반환합니다. **createIfNotExists** 대신 **create** 메서드(컨테이너가 이미 있는 경우 오류를 반환함)를 사용할 수 있습니다.
+Hello 컨테이너를 만듭니다. 사이트 존재 하지 않는 경우이 메서드는 hello 컨테이너를 만듭니다 (다음 다시 돌아와 **true**). Hello 컨테이너가 존재 하는 경우 반환 **false**합니다. 대신 너무**경고는 createIfNotExists** 는 hello **만들** 메서드 (hello 컨테이너가 이미 존재 하는 경우 오류가 반환 됩니다).
 
 ```java
 container.createIfNotExists();
 ```
 
-컨테이너에 대해 익명 액세스를 설정합니다.
+Hello 컨테이너에 대 한 익명 액세스를 설정 합니다.
 
 ```java
-// Set anonymous access on the container.
+// Set anonymous access on hello container.
 BlobContainerPermissions containerPermissions;
 containerPermissions = new BlobContainerPermissions();
 containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
 container.uploadPermissions(containerPermissions);
 ```
 
-블록 Blob에 대한 참조를 가져오며 Azure 저장소의 Blob을 나타냅니다.
+Azure 저장소에 blob hello를 나타내는 참조 toohello 블록 blob을 가져옵니다.
 
 ```java
 blob = container.getBlockBlobReference("image1.jpg");
 ```
 
-**File** 생성자를 사용하여, 로컬로 만들어졌으며 업로드할 파일에 대한 참조를 가져옵니다. 이 파일은 코드를 실행하기 전에 만들어야 합니다.
+사용 하 여 hello **파일** 생성자 tooget 참조 toohello 로컬로 만들어진 파일을 업로드 합니다. Hello 코드를 실행 하기 전에이 파일을 만들었는지 확인 합니다.
 
 ```java
 File fileReference = new File ("c:\\myimages\\image1.jpg");
 ```
 
-**CloudBlockBlob.upload** 메서드에 대한 호출을 통해 로컬 파일을 업로드합니다. **CloudBlockBlob.upload** 메서드의 첫 번째 매개 변수는 Azure Storage에 업로드할 로컬 파일을 나타내는 **FileInputStream** 개체입니다. 두 번째 매개 변수는 파일의 크기(바이트)입니다.
+호출 toohello 통해 hello 로컬 파일을 업로드 **CloudBlockBlob.upload** 메서드. 첫 번째 매개 변수 toohello hello **CloudBlockBlob.upload** 메서드는 한 **FileInputStream** 될 해당 나타냅니다 hello 로컬 파일 업로드 tooAzure 저장소 개체입니다. hello 두 번째 매개 변수는 hello 파일의 바이트에서 hello 크기입니다.
 
 ```java
 blob.upload(new FileInputStream(fileReference), fileReference.length());
 ```
 
-**MakeHTMLPage**라는 도우미 함수를 호출하여 지금 Azure Storage 계정에 있는 Blob에 대한 원본 집합으로 **&lt;image&gt;** 요소가 포함된 기본 HTML 페이지를 만듭니다. **MakeHTMLPage** 에 대한 코드는 이 항목의 뒷부분에서 다룹니다.
+도우미 함수를 호출 **MakeHTMLPage**, toomake 기본 HTML 페이지를 포함 하는  **&lt;이미지&gt;**  이제 Azure에 있는 hello 소스 집합 toohello blob과 함께 요소 저장소 계정입니다. 에 대 한 코드 hello **MakeHTMLPage** 이 문서의 뒷부분에서 설명 됩니다.
 
 ```java
 MakeHTMLPage(container);
 ```
 
-만들어진 HTML 페이지에 대한 상태 메시지 및 정보를 출력합니다.
+상태 메시지 및 생성 된 HTML 페이지 hello에 대 한 정보를 출력 합니다.
 
 ```java
 System.out.println("Processing complete.");
-System.out.println("Open index.html to see the images stored in your storage account.");
+System.out.println("Open index.html toosee hello images stored in your storage account.");
 ```
 
-닫는 중괄호(**}**)를 삽입하여 **try** 블록을 닫습니다.
+닫기 hello **시도** 닫는 괄호를 삽입 하 여 블록: **}**
 
-다음 예외를 처리합니다.
+Hello 다음 예외를 처리 합니다.
 
-* **FileNotFoundException**: **FileInputStream** 또는 **FileOutputStream** 생성자가 throw할 수 있습니다.
-* **StorageException**: Azure 클라이언트 저장소 라이브러리가 throw할 수 있습니다.
-* **URISyntaxException**: **ListBlobItem.getUri** 메서드가 throw할 수 있습니다.
+* **FileNotFoundException**: hello throw 될 수 있는 **FileInputStream** 또는 **FileOutputStream** 생성자입니다.
+* **StorageException**: hello Azure 클라이언트 저장소 라이브러리에 의해 throw 될 수 있습니다.
+* **URISyntaxException**: hello throw 될 수 있는 **ListBlobItem.getUri** 메서드.
 * **Exception**: 일반적인 예외 처리입니다.
 
 <!-- -->
@@ -191,7 +191,7 @@ catch (Exception e)
 
 닫는 중괄호(**}**)를 삽입하여 **main**을 닫습니다.
 
-이름이 **MakeHTMLPage** 인 메서드를 만들어 기본 HTML 페이지를 만듭니다. 이 메서드는 업로드된 Blob 목록에서 반복하는 데 사용될 **CloudBlobContainer**유형의 매개 변수를 가집니다. 이 메서드는 **FileOutputStream** 생성자가 throw할 수 있는 **FileNotFoundException** 유형 및 **ListBlobItem.getUri** 메서드가 throw할 수 있는 **URISyntaxException** 유형의 예외를 throw합니다. 여는 중괄호( **{**)를 포함합니다.
+라는 메서드를 만듭니다 **MakeHTMLPage** toocreate 기본 HTML 페이지입니다. 이 메서드는 형식 매개 변수가 **CloudBlobContainer**, 업로드 된 blob의 hello 목록에서 사용 되는 tooiterate 됩니다. 이 메서드는 형식의 예외를 throw **FileNotFoundException**, hello에 의해 throw 될 수 있는 **FileOutputStream** 생성자 및 **URISyntaxException**를 수 있습니다 hello를 통해 throw 될 **ListBlobItem.getUri** 메서드. 여는 중괄호( **{**)를 포함합니다.
 
 ```java
 public static void MakeHTMLPage(CloudBlobContainer container) throws FileNotFoundException, URISyntaxException
@@ -205,7 +205,7 @@ PrintStream stream;
 stream = new PrintStream(new FileOutputStream("index.html"));
 ```
 
-**&lt;html&gt;**, **&lt;header&gt;**, **&lt;body&gt;** 요소를 포함하여 로컬 파일에 씁니다.
+Hello에 추가 하는 toohello 로컬 파일을 작성할  **&lt;html&gt;**,  **&lt;헤더&gt;**, 및  **&lt;본문&gt;**  요소입니다.
 
 ```java
 stream.println("<html>");
@@ -213,27 +213,27 @@ stream.println("<header/>");
 stream.println("<body>");
 ```
 
-업로드된 Blob 목록에서 반복합니다. Blob이 Azure Storage 계정에 있는 경우 각 Blob에 대해 HTML 페이지에 Blob의 URI에 보낸 **src** 특성이 있는 **&lt;img&gt;** 요소를 만듭니다.
+업로드 된 blob의 hello 목록을 반복 합니다. 각 blob에 대 한 만들기에 hello HTML 페이지에는  **&lt;img&gt;**  를 가진 요소가 해당 **src** 특성을 Azure 저장소 계정에 있는 hello hello blob의 URI에 전송 합니다.
 이 샘플에서는 이미지를 하나만 추가했지만 더 추가하면 이 코드는 모든 이미지를 반복합니다.
 
-간단히 하기 위해 이 예제는 업로드된 각 Blob이 이미지라고 가정합니다. 이미지가 아닌 Blob을 업데이트했거나 블록 Blob이 아닌 페이지 Blob을 업데이트했으면 필요에 따라 코드를 조정합니다.
+간단히 하기 위해 이 예제는 업로드된 각 Blob이 이미지라고 가정합니다. 이미지 이외의 blob 또는 페이지 blob 대신 블록 blob 업데이트 한 경우 필요에 따라 hello 코드를 조정 합니다.
 
 ```java
-// Enumerate the uploaded blobs.
+// Enumerate hello uploaded blobs.
 for (ListBlobItem blobItem : container.listBlobs()) {
-// List each blob as an <img> element in the HTML body.
+// List each blob as an <img> element in hello HTML body.
 stream.println("<img src='" + blobItem.getUri() + "'/><br/>");
 }
 ```
 
-**&lt;body&gt;** 요소와 **&lt;html&gt;** 요소를 닫습니다.
+닫기 hello  **&lt;본문&gt;**  요소와 hello  **&lt;html&gt;**  요소입니다.
 
 ```java
 stream.println("</body>");
 stream.println("</html>");
 ```
 
-로컬 파일을 닫습니다.
+로컬 파일을 닫기 hello입니다.
 
 ```java
 stream.close();
@@ -243,7 +243,7 @@ stream.close();
 
 닫는 중괄호(**}**)를 삽입하여 **StorageSample**을 닫습니다.
 
-다음은 이 예제의 완성 코드입니다. 계정 이름 및 계정 키를 사용하도록 **your\_account\_name** 및 **your\_account\_key** 자리 표시자 값을 각각 수정해야 합니다.
+hello 다음은이 예제에 대 한 hello 전체 코드입니다. Toomodify hello 자리 표시자 값을 기억 **프로그램\_계정\_이름** 및 **프로그램\_계정\_키** toouse 계정 이름 및 계정 키를, 각각.
 
 ```java
 import com.microsoft.azure.storage.*;
@@ -251,9 +251,9 @@ import com.microsoft.azure.storage.blob.*;
 import java.io.*;
 import java.net.URISyntaxException;
 
-// Create an image, c:\myimages\image1.jpg, prior to running this sample.
-// Alternatively, change the value used by the FileInputStream constructor
-// to use a different image path and file that you have already created.
+// Create an image, c:\myimages\image1.jpg, prior toorunning this sample.
+// Alternatively, change hello value used by hello FileInputStream constructor
+// toouse a different image path and file that you have already created.
 public class StorageSample {
 
     public static final String storageConnectionString =
@@ -274,7 +274,7 @@ public class StorageSample {
             container = serviceClient.getContainerReference("gettingstarted");
             container.createIfNotExists();
 
-            // Set anonymous access on the container.
+            // Set anonymous access on hello container.
             BlobContainerPermissions containerPermissions;
             containerPermissions = new BlobContainerPermissions();
             containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
@@ -286,12 +286,12 @@ public class StorageSample {
             File fileReference = new File("c:\\myimages\\image1.jpg");
             blob.upload(new FileInputStream(fileReference), fileReference.length());
 
-            // At this point the image is uploaded.
-            // Next, create an HTML page that lists all of the uploaded images.
+            // At this point hello image is uploaded.
+            // Next, create an HTML page that lists all of hello uploaded images.
             MakeHTMLPage(container);
 
             System.out.println("Processing complete.");
-            System.out.println("Open index.html to see the images stored in your storage account.");
+            System.out.println("Open index.html toosee hello images stored in your storage account.");
 
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.print("FileNotFoundException encountered: ");
@@ -312,46 +312,46 @@ public class StorageSample {
         }
     }
 
-    // Create an HTML page that can be used to display the uploaded images.
-    // This example assumes all of the blobs are for images.
+    // Create an HTML page that can be used toodisplay hello uploaded images.
+    // This example assumes all of hello blobs are for images.
     public static void MakeHTMLPage(CloudBlobContainer container) throws FileNotFoundException, URISyntaxException
     {
         PrintStream stream;
         stream = new PrintStream(new FileOutputStream("index.html"));
 
-        // Create the opening <html>, <header>, and <body> elements.
+        // Create hello opening <html>, <header>, and <body> elements.
         stream.println("<html>");
         stream.println("<header/>");
         stream.println("<body>");
 
-        // Enumerate the uploaded blobs.
+        // Enumerate hello uploaded blobs.
         for (ListBlobItem blobItem : container.listBlobs()) {
-            // List each blob as an <img> element in the HTML body.
+            // List each blob as an <img> element in hello HTML body.
             stream.println("<img src='" + blobItem.getUri() + "'/><br/>");
         }
 
         stream.println("</body>");
 
-        // Complete the <html> element and close the file.
+        // Complete hello <html> element and close hello file.
         stream.println("</html>");
         stream.close();
     }
 }
 ```
 
-이 예제 코드는 로컬 이미지 파일을 Azure 저장소에 업로드할 뿐만 아니라 브라우저에서 열어 업로드된 이미지를 볼 수 있는 namedindex.html 로컬 파일도 만듭니다.
+또한 toouploading 로컬 이미지 파일 tooAzure 저장소 hello 예제 코드를 만듭니다 브라우저 toosee에서 열 수 있는 한 로컬 파일 namedindex.html 업로드 된 이미지입니다.
 
-코드에 계정 이름 및 계정 키가 포함되어 있으므로 소스 코드가 안전한지 확인하십시오.
+Hello 코드 계정 이름과 계정 키에 포함 되어 있으므로 소스 코드 보안 인지 확인 합니다.
 
-## <a name="to-delete-a-container"></a>컨테이너를 삭제하려면
-저장소에 대한 요금이 부과되므로 이 예제를 테스트한 후에 **gettingstarted** 컨테이너를 삭제할 수 있습니다. 컨테이너를 삭제하려면 **CloudBlobContainer.delete** 메서드를 사용합니다.
+## <a name="toodelete-a-container"></a>toodelete 컨테이너
+저장소에 대 한 요금이 청구 되므로 toodelete 경우가 **gettingstarted** 컨테이너 완료 한 후이 예제에서는 작업할 수 있도록 합니다. toodelete 컨테이너를 사용 하 여 hello **CloudBlobContainer.delete** 메서드.
 
 ```java
 container = serviceClient.getContainerReference("gettingstarted");
 container.delete();
 ```
 
-**CloudBlobContainer.delete** 메서드를 호출하기 위해 **CloudStorageAccount**, **ClodBlobClient**, **CloudBlobContainer** 개체를 초기화하는 프로세스는 **createIfNotExist** 메서드의 경우와 동일합니다. 다음은 **gettingstarted**라는 컨테이너를 삭제하는 완성 예제입니다.
+toocall hello **CloudBlobContainer.delete** 메서드를 초기화 하는 hello 프로세스 **CloudStorageAccount**, **ClodBlobClient**, 및  **CloudBlobContainer** 개체에 대 한 표시 된 것 처럼 동일 hello는 **createIfNotExist** 메서드. hello 다음은 hello 라는 컨테이너를 삭제 하는 전체 예제 **gettingstarted**합니다.
 
 ```java
 import com.microsoft.azure.storage.*;
@@ -397,10 +397,10 @@ public class DeleteContainer {
 }
 ```
 
-기타 Blob 저장소 클래스 및 메서드에 대한 개요는 [Java에서 Blob 저장소를 사용하는 방법](storage-java-how-to-use-blob-storage.md)을 참조하세요.
+다른 blob 저장소 클래스와 메서드의 개요를 참조 하십시오. [어떻게 toouse Java에서 Blob 저장소](storage-java-how-to-use-blob-storage.md)합니다.
 
 ## <a name="next-steps"></a>다음 단계
-더 복잡 한 저장소 작업에 대한 자세한 내용을 보려면 다음 링크를 따라가세요.
+이러한 링크 toolearn 더 복잡 한 저장소 작업에 대 한 자세한를 따릅니다.
 
 * [Java용 Azure 저장소 SDK](https://github.com/azure/azure-storage-java)
 * [Azure 저장소 클라이언트 SDK 참조](http://dl.windowsazure.com/storage/javadoc/)

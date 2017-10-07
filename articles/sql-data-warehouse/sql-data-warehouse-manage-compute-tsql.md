@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Data Warehouse의 T-SQL을 사용한 일시 중지, 다시 시작, 크기 조정 | Microsoft Docs"
-description: "DWU를 조정하여 성능을 확장하는 Transact-SQL (T-SQL) 작업입니다. 사용량이 많지 않은 시간 동안 다시 조정하여 비용을 절감합니다."
+title: "aaaPause, 다시 시작 하 고 확장할 수 있는 Azure SQL 데이터 웨어하우스에서 T-SQL | Microsoft Docs"
+description: "Dwu로 조정 하 여 작업 tooscale 아웃 성능 TRANSACT-SQL (T-SQL)입니다. 사용량이 많지 않은 시간 동안 다시 조정하여 비용을 절감합니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 03/30/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 9221d72ecf8ab2ba8b04e4bc97eeef7157817cca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84c6868acb673221d8853319ac9a05bb98b2b7c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-t-sql"></a>Azure SQL Data Warehouse의 계산 능력 관리(T-SQL)
 > [!div class="op_single_selector"]
@@ -33,11 +33,11 @@ ms.lasthandoff: 07/11/2017
 <a name="current-dwu-bk"></a>
 
 ## <a name="view-current-dwu-settings"></a>현재 DWU 설정 보기
-데이터베이스의 현재 DWU 설정을 보려면
+tooview hello 현재 DWU 설정 데이터베이스에 대해:
 
 1. Visual Studio에서 SQL Server 개체 탐색기를 엽니다.
-2. 논리적 SQL 데이터베이스 서버와 연결된 마스터 데이터베이스에 연결합니다.
-3. sys.database_service_objectives 동적 관리 뷰에서 선택합니다. 다음은 예제입니다. 
+2. Hello 논리 SQL 데이터베이스 서버와 관련 된 toohello master 데이터베이스를 연결 합니다.
+3. Hello sys.database_service_objectives 동적 관리 뷰에서 선택 합니다. 다음은 예제입니다. 
 
 ```sql
 SELECT
@@ -56,10 +56,10 @@ JOIN
 ## <a name="scale-compute"></a>계산 조정
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-DWU를 변경하려면
+toochange hello dwu로:
 
-1. 논리적 SQL 데이터베이스 서버와 연결된 마스터 데이터베이스에 연결합니다.
-2. [ALTER DATABASE][ALTER DATABASE] TSQL 문을 사용합니다. 다음 예제에서는 MySQLDW 데이터베이스에 대한 서비스 수준 목표를 DW1000으로 설정합니다. 
+1. SQL 데이터베이스 논리 서버와 관련 된 toohello master 데이터베이스를 연결 합니다.
+2. 사용 하 여 hello [ALTER DATABASE] [ ALTER DATABASE] TSQL 문입니다. hello 다음 예제에서는 설정 hello 서비스 수준 목표 tooDW1000 MySQLDW hello 데이터베이스에 대 한 합니다. 
 
 ```Sql
 ALTER DATABASE MySQLDW
@@ -71,8 +71,8 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 
 ## <a name="check-database-state-and-operation-progress"></a>데이터베이스 상태 및 작업 진행 상태 확인
 
-1. 논리적 SQL 데이터베이스 서버와 연결된 마스터 데이터베이스에 연결합니다.
-2. 데이터베이스 상태를 확인하는 쿼리 제출
+1. SQL 데이터베이스 논리 서버와 관련 된 toohello master 데이터베이스를 연결 합니다.
+2. Toocheck 데이터베이스 상태 쿼리를 제출 합니다.
 
 ```sql
 SELECT *
@@ -80,7 +80,7 @@ FROM
 sys.databases
 ```
 
-3. 작업 상태를 확인하는 쿼리 제출
+3. 전송 작업의 쿼리 toocheck 상태
 
 ```sql
 SELECT *
@@ -92,7 +92,7 @@ AND
     major_resource_id = 'MySQLDW'
 ```
 
-이 DMV는 SQL Data Warehouse에 대해 작업 및 작업 상태(IN_PROGRESS 또는 COMPLETED)와 같은 다양한 관리 작업에 대한 정보를 반환합니다.
+이 DMV SQL 데이터 웨어하우스 IN_PROGRESS 중 하나가 됩니다 하거나 완료 된 hello 작업의 hello 작업과 hello 상태 등의 다양 한 관리 작업에 대 한 정보를 반환 합니다.
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: Azure AD B2C | Microsoft Docs
-description: "Azure Active Directory B2C를 사용하여 .NET Web API를 빌드하는 방법이며 인증을 위해 OAuth 2.0 액세스 토큰을 사용하여 보호됩니다."
+title: AD B2C aaaAzure | Microsoft Docs
+description: "Toobuild Azure Active Directory B2C를 사용 하 여.NET 웹 API 인증에 대 한 OAuth 2.0 액세스 토큰을 사용 하 여 보호 하는 방법"
 services: active-directory-b2c
 documentationcenter: .net
 author: parakhj
@@ -14,83 +14,83 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: parakhj
-ms.openlocfilehash: 48749bfa2ab54a0e766a4aad4f39073cc4e90818
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d45364216deda38ef44b60dd11e86d9a089ad509
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-build-a-net-web-api"></a>Azure Active Directory B2C: .NET Web API 빌드
 
-Azure AD(Azure Active Directory) B2C로 OAuth 2.0 액세스 토큰을 사용하여 Web API를 보호할 수 있습니다. 이러한 토큰을 통해 클라이언트 앱이 API에 인증할 수 있습니다. 이 문서에서는 클라이언트 응용 프로그램의 사용자에게 CRUD 태스크를 허용하는 .NET MVC "할 일 모음" API를 만드는 방법을 보여 줍니다. Web API는 Azure AD B2C를 사용하여 보호되며 사용자가 해당 할 일 목록을 관리하도록 인증할 수 있습니다.
+Azure AD(Azure Active Directory) B2C로 OAuth 2.0 액세스 토큰을 사용하여 Web API를 보호할 수 있습니다. 이러한 토큰을 사용 하 여 클라이언트 앱 tooauthenticate toohello API 있습니다. 이 문서에서는 어떻게 toocreate.NET MVC "할 일 목록" API를 허용 하 여 클라이언트의 사용자가 응용 프로그램 tooCRUD 작업 합니다. hello 웹 API는 Azure AD B2C를 사용 하 여 보안 처리 되며 toomanage 인증 된 사용자의 할 일 목록을 허용 합니다.
 
 ## <a name="create-an-azure-ad-b2c-directory"></a>Azure AD B2C 디렉터리 만들기
 
 Azure AD B2C를 사용하기 전에 디렉터리 또는 테넌트를 만들어야 합니다. 디렉터리는 모든 사용자, 앱, 그룹 등을 위한 컨테이너입니다. 아직 없는 경우 [B2C 디렉터리를 만든](active-directory-b2c-get-started.md) 후에 이 가이드를 계속 진행합니다.
 
 > [!NOTE]
-> 클라이언트 응용 프로그램 및 웹 API는 동일한 Azure AD B2C 디렉터리를 사용해야 합니다.
+> hello 클라이언트 응용 프로그램 및 web API hello 동일한 Azure AD B2C 디렉터리를 사용 해야 합니다.
 >
 
 ## <a name="create-a-web-api"></a>Web API 만들기
 
-다음으로 B2C 디렉터리에서 Web API 앱을 만들어야 합니다. 앱과 안전하게 통신하는 데 필요한 Azure AD 정보를 제공합니다. 앱을 만들려면 [다음 지침](active-directory-b2c-app-registration.md)에 따릅니다. 다음을 수행해야 합니다.
+다음으로, 웹 API 앱 toocreate B2C 디렉터리에 있어야합니다. Azure AD 정보가 필요한 toosecurely 통신할 수 있는지 응용 프로그램에 게 제공 합니다. 응용 프로그램, 프로그램 toocreate 따라 [이러한 지침](active-directory-b2c-app-registration.md)합니다. 다음을 수행해야 합니다.
 
-* 응용 프로그램에서 **웹앱** 또는 **Web API**를 포함합니다.
-* 웹앱의 **리디렉션 URI** `https://localhost:44332/`를 사용합니다. 이 코드 샘플에 대한 웹앱 클라이언트의 기본 위치입니다.
-* 앱에 할당된 **응용 프로그램 ID** 를 복사합니다. 나중에 필요합니다.
+* 포함 된 **웹 앱** 또는 **웹 API** hello 응용 프로그램에서 합니다.
+* 사용 하 여 hello **리디렉션 URI** `https://localhost:44332/` hello 웹 앱에 대 한 합니다. 이 코드 샘플에 대 한 웹 앱 클라이언트 hello의 hello 기본 위치입니다.
+* 복사 hello **응용 프로그램 ID** 할당된 tooyour 앱입니다. 나중에 필요합니다.
 * 앱 식별자를 **앱 ID URI**에 입력합니다.
-* **게시된 범위** 메뉴를 통해 사용 권한을 추가합니다.
+* Hello 통해 사용 권한을 추가 **범위 게시** 메뉴.
 
   [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>정책 만들기
 
-Azure AD B2C에서 모든 사용자 환경은 [정책](active-directory-b2c-reference-policies.md)에 의해 정의됩니다. Azure AD B2C와 통신하는 정책을 만들어야 합니다. [정책 참조 문서](active-directory-b2c-reference-policies.md)에 설명된 대로 결합된 등록/로그인 정책을 사용하는 것이 좋습니다. 정책을 만들 때 다음을 확인합니다.
+Azure AD B2C에서 모든 사용자 환경은 [정책](active-directory-b2c-reference-policies.md)에 의해 정의됩니다. Azure AD B2C와 정책 toocommunicate toocreate가 필요 합니다. 권장 로그-up/로그인 정책 결합 hello를 사용 하 여 hello에 설명 된 대로 [정책 참조 문서](active-directory-b2c-reference-policies.md)합니다. 정책을 만들 때 다음을 확인합니다.
 
 * 정책에서 **표시 이름** 및 다른 등록 특성을 선택합니다.
 * 모든 정책에 대한 응용 프로그램 클레임으로 **표시 이름** 및 **개체 ID** 클레임을 선택합니다. 물론 다른 클레임을 선택할 수 있습니다.
-* 각 정책을 만든 후에 **이름**을 복사합니다. 정책 이름이 나중에 필요합니다.
+* 복사 hello **이름** 를 만든 후 각 정책의 합니다. Hello 정책 이름을 나중에 필요 합니다.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-정책을 성공적으로 만들면 앱을 빌드할 준비가 되었습니다.
+준비 toobuild 하는 hello 정책을 성공적으로 만든 후 응용 프로그램입니다.
 
-## <a name="download-the-code"></a>코드 다운로드
+## <a name="download-hello-code"></a>Hello 코드 다운로드
 
-이 자습서에 대한 코드는 [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi)에서 유지 관리됩니다. 다음을 실행하여 샘플을 복제할 수 있습니다.
+이 자습서에 대 한 hello 코드에서 유지 관리 됩니다 [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi)합니다. 실행 하 여 hello 샘플을 복제할 수 있습니다.
 
 ```console
 git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi.git
 ```
 
-샘플 코드를 다운로드한 후 Visual Studio .sln 파일을 열어 시작합니다. 이제 솔루션에는 `TaskWebApp`과 `TaskService`, 2개의 프로젝트가 있습니다. `TaskWebApp` 은 사용자와 상호 작용하는 MVC 웹 응용 프로그램입니다. `TaskService` 는 각 사용자의 할 일 모음을 저장하는 앱의 백 엔드 Web API입니다. 이 문서에서는 `TaskService` 응용 프로그램만을 설명합니다. Azure AD B2C를 사용하여 `TaskWebApp`을 구축하는 방법을 알아보려면 [.NET 웹앱 자습서](active-directory-b2c-devquickstarts-web-dotnet-susi.md)를 참조하세요.
+Hello 샘플 코드를 다운로드 한 후 hello open Visual Studio.sln 파일 tooget 시작 합니다. hello 솔루션 파일에는 두 개의 프로젝트가 포함 되어: `TaskWebApp` 및 `TaskService`합니다. `TaskWebApp`와 상호 작용 사용자 hello MVC 웹 응용 프로그램입니다. `TaskService`각 사용자의 할 일 목록에 저장 하는 hello 앱 백 엔드 웹 API입니다. 이 문서에서는 hello 설명만 `TaskService` 응용 프로그램입니다. toolearn 어떻게 toobuild `TaskWebApp` Azure AD B2C를 사용 하 여 참조 [이.NET 웹 응용 프로그램 자습서](active-directory-b2c-devquickstarts-web-dotnet-susi.md)합니다.
 
-### <a name="update-the-azure-ad-b2c-configuration"></a>Azure AD B2C 구성 업데이트
+### <a name="update-hello-azure-ad-b2c-configuration"></a>Azure AD B2C hello 구성 업데이트
 
-샘플은 데모 테넌트의 정책 및 클라이언트 ID를 사용하도록 구성되어 있습니다. 고유한 테넌트를 사용하려는 경우 다음을 수행해야 합니다.
+이 샘플은 구성 된 toouse hello 정책 및 클라이언트 ID 우리의 데모 테 넌 트입니다. Toouse 원하는 경우 고유한 테 넌 트 다음 toodo hello 필요 합니다.
 
-1. `TaskService` 프로젝트에서 `web.config`을 열고 다음 값을 바꿉니다.
-    * `ida:Tenant`을 테넌트 이름으로 바꿉니다.
+1. 열기 `web.config` hello에 `TaskService` 프로젝트 및에 대 한 hello 값 바꾸기
+    * `ida:Tenant`를 테넌트 이름으로 바꿉니다.
     * `ida:ClientId`을 Web API 응용 프로그램 ID로 바꿉니다.
-    * `ida:SignUpSignInPolicyId`을 "등록 또는 로그인" 정책 이름으로 바꿉니다.
+    * `ida:SignUpSignInPolicyId`를 "등록 또는 로그인" 정책 이름으로 바꿉니다.
 
-2. `TaskWebApp` 프로젝트에서 `web.config`를 열고 다음 값을 바꿉니다.
+2. 열기 `web.config` hello에 `TaskWebApp` 프로젝트 및에 대 한 hello 값 바꾸기
     * `ida:Tenant`를 테넌트 이름으로 바꿉니다.
     * `ida:ClientId`를 웹앱 응용 프로그램 ID로 바꿉니다.
     * `ida:ClientSecret`을 웹앱 비밀 키로 바꿉니다.
     * `ida:SignUpSignInPolicyId`를 "등록 또는 로그인" 정책 이름으로 바꿉니다.
     * `ida:EditProfilePolicyId`를 "프로필 편집" 정책 이름으로 바꿉니다.
-    * `ida:ResetPasswordPolicyId`을 "암호 재설정" 정책 이름으로 바꿉니다.
+    * `ida:ResetPasswordPolicyId`를 "암호 재설정" 정책 이름으로 바꿉니다.
 
 
-## <a name="secure-the-api"></a>API 보호
+## <a name="secure-hello-api"></a>Hello API 보호
 
-API를 호출하는 클라이언트가 있는 경우 OAuth 2.0 전달자 토큰을 사용하여 API(예: `TaskService`)를 보호할 수 있습니다. 이렇게 하면 요청에 전달자 토큰이 있는 경우 API에 대한 각 요청이 유효해 집니다. API는 Microsoft OWIN(Open Web Interface for .NET)을 사용하여 전달자 토큰을 허용하고 유효성을 검사할 수 있습니다.
+API를 호출하는 클라이언트가 있는 경우 OAuth 2.0 전달자 토큰을 사용하여 API(예: `TaskService`)를 보호할 수 있습니다. 이렇게 하면 각 요청 tooyour API만 되도록 hello 요청은 전달자 토큰을 하는 경우에 유효 합니다. API는 Microsoft OWIN(Open Web Interface for .NET)을 사용하여 전달자 토큰을 허용하고 유효성을 검사할 수 있습니다.
 
 ### <a name="install-owin"></a>OWIN 설치
 
-OAuth OWIN 인증 파이프라인을 설치하거나 Visual Studio 패키지 관리자 콘솔을 사용하여 시작합니다.
+Hello OWIN OAuth 인증 파이프라인 hello Visual Studio 패키지 관리자 콘솔을 사용 하 여 설치 하 여 시작 합니다.
 
 ```Console
 PM> Install-Package Microsoft.Owin.Security.OAuth -ProjectName TaskService
@@ -98,23 +98,23 @@ PM> Install-Package Microsoft.Owin.Security.Jwt -ProjectName TaskService
 PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TaskService
 ```
 
-전달자 토큰을 허용하고 유효성을 검사하는 OWIN 미들웨어를 설치합니다.
+그러면 hello OWIN 미들웨어 있고 전달자 토큰의 유효성을 검사 되도록 설치 됩니다.
 
 ### <a name="add-an-owin-startup-class"></a>OWIN 시작 클래스 추가
 
-`Startup.cs`라는 API에 OWIN 시작 클래스를 추가합니다.  프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가** 및 **새 항목**을 선택한 다음 OWIN을 검색합니다. OWIN 미들웨어는 앱이 시작되면 `Configuration(…)` 메서드를 호출합니다.
+OWIN 시작 클래스 toohello API 호출 추가 `Startup.cs`합니다.  Hello 프로젝트를 마우스 오른쪽 단추로 클릭 **추가** 및 **새 항목**, 한 다음 OWIN에 대 한 검색 합니다. hello OWIN 미들웨어는 hello를 호출 하는 `Configuration(…)` 메서드 앱이 시작 되는 경우.
 
-이 샘플에서는 `public partial class Startup`에 대한 클래스 선언을 변경하고 `App_Start\Startup.Auth.cs`에서 클래스의 다른 부분을 구현했습니다. `Configuration` 메서드 내에서 `ConfigureAuth`에 호출을 추가했습니다. 이는 `Startup.Auth.cs`에서 정의됩니다. 수정 후에 `Startup.cs`는 다음과 같습니다.
+이 예제에서는 변경 했습니다 hello 클래스 선언 너무`public partial class Startup` 구현에서 hello 클래스의 다른 부분을 hello `App_Start\Startup.Auth.cs`합니다. 내부 hello `Configuration` 메서드를 호출 너무 추가`ConfigureAuth`에 정의 된 `Startup.Auth.cs`합니다. Hello 수정한 다음 `Startup.cs` hello 다음과 같습니다.
 
 ```CSharp
 // Startup.cs
 
 public partial class Startup
 {
-    // The OWIN middleware will invoke this method when the app starts
+    // hello OWIN middleware will invoke this method when hello app starts
     public void Configuration(IAppBuilder app)
     {
-        // ConfigureAuth defined in other part of the class
+        // ConfigureAuth defined in other part of hello class
         ConfigureAuth(app);
     }
 }
@@ -122,7 +122,7 @@ public partial class Startup
 
 ### <a name="configure-oauth-20-authentication"></a>OAuth 2.0 인증 구성
 
-`App_Start\Startup.Auth.cs` 파일을 열고 `ConfigureAuth(...)` 메서드를 구현합니다. 예를 들어 다음과 같아야 합니다.
+파일 열기 hello `App_Start\Startup.Auth.cs`, 고 hello 구현 `ConfigureAuth(...)` 메서드. 예를 들어 것 hello 다음과 같을 수 있습니다.
 
 ```CSharp
 // App_Start\Startup.Auth.cs
@@ -137,29 +137,29 @@ public partial class Startup
         public static string DefaultPolicy = SignUpSignInPolicy;
 
         /*
-         * Configure the authorization OWIN middleware.
+         * Configure hello authorization OWIN middleware.
          */
         public void ConfigureAuth(IAppBuilder app)
         {
             TokenValidationParameters tvps = new TokenValidationParameters
             {
-                // Accept only those tokens where the audience of the token is equal to the client ID of this app
+                // Accept only those tokens where hello audience of hello token is equal toohello client ID of this app
                 ValidAudience = ClientId,
                 AuthenticationType = Startup.DefaultPolicy
             };
 
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
             {
-                // This SecurityTokenProvider fetches the Azure AD B2C metadata & signing keys from the OpenIDConnect metadata endpoint
+                // This SecurityTokenProvider fetches hello Azure AD B2C metadata & signing keys from hello OpenIDConnect metadata endpoint
                 AccessTokenFormat = new JwtFormat(tvps, new OpenIdConnectCachingSecurityTokenProvider(String.Format(AadInstance, Tenant, DefaultPolicy)))
             });
         }
     }
 ```
 
-### <a name="secure-the-task-controller"></a>작업 컨트롤러 보호
+### <a name="secure-hello-task-controller"></a>보안 hello 작업 컨트롤러
 
-앱을 OAuth 2.0 인증을 사용하도록 구성한 후 작업 컨트롤러에 `[Authorize]` 태그를 추가하여 Web API를 보호할 수 있습니다. 할 일 모음 조작이 발생하는 컨트롤러이므로 클래스 수준에서 전체 컨트롤러를 보호해야 합니다. 보다 세분화한 제어를 위해 개별 작업에 `[Authorize]` 태그를 추가할 수도 있습니다.
+Hello 앱 구성된 toouse OAuth 2.0 인증을 추가 하 여 web API를 보호할 수 있습니다는 `[Authorize]` 태그 toohello 작업 컨트롤러입니다. 모든 할 일 목록 조작 발생, hello 전체 컨트롤러 hello 클래스 수준에서 보안을 설정 해야 하므로 hello 컨트롤러입니다. Hello를 추가할 수도 있습니다 `[Authorize]` 보다 세부적으로 제어에 대 한 tooindividual 작업 태그를 지정 합니다.
 
 ```CSharp
 // Controllers\TasksController.cs
@@ -171,9 +171,9 @@ public class TasksController : ApiController
 }
 ```
 
-### <a name="get-user-information-from-the-token"></a>토큰에서 사용자 정보 가져오기
+### <a name="get-user-information-from-hello-token"></a>사용자 정보 hello에서 토큰 가져오기
 
-`TasksController` 는 데이터베이스에 작업을 저장하며, 여기서 각 작업에는 작업을 "소유"하는 연결된 사용자가 있습니다. 소유자는 사용자의 **개체 ID**로 식별됩니다. (따라서 모든 정책에 응용 프로그램 클레임으로 개체 ID를 추가해야 했습니다.)
+`TasksController`각 작업에 "소유" hello 작업 하 고 연결된 된 사용자 데이터베이스에서 작업을 저장 합니다. hello 소유자 hello 사용자로 식별 되 **개체 ID**합니다. (이 때문에 응용 프로그램으로 tooadd hello 개체 ID를 필요한 모든 정책에서 클레임입니다.)
 
 ```CSharp
 // Controllers\TasksController.cs
@@ -186,9 +186,9 @@ public IEnumerable<Models.Task> Get()
 }
 ```
 
-### <a name="validate-the-permissions-in-the-token"></a>토큰에서 사용 권한 확인
+### <a name="validate-hello-permissions-in-hello-token"></a>Hello 권한을 hello 토큰의 유효성 검사
 
-웹 API에 대한 일반적인 요구 사항은 토큰에 있는 "범위"를 확인하는 것입니다. 이렇게 하여 사용자가 할 일 목록 서비스에 액세스하는 데 필요한 권한에 동의했음을 확인합니다.
+웹 Api에 대 한 일반적인 요구 사항은 toovalidate hello "범위" hello 토큰에 있는입니다. 이렇게 하면 해당 hello 사용자가 동의 toohello 권한이 필요한 tooaccess hello 할 일 목록 서비스.
 
 ```CSharp
 public IEnumerable<Models.Task> Get()
@@ -197,17 +197,17 @@ public IEnumerable<Models.Task> Get()
     {
         throw new HttpResponseException(new HttpResponseMessage {
             StatusCode = HttpStatusCode.Unauthorized,
-            ReasonPhrase = "The Scope claim does not contain 'read' or scope claim not found"
+            ReasonPhrase = "hello Scope claim does not contain 'read' or scope claim not found"
         });
     }
     ...
 }
 ```
 
-## <a name="run-the-sample-app"></a>샘플 앱 실행
+## <a name="run-hello-sample-app"></a>Hello 샘플 응용 프로그램 실행
 
-마지막으로 `TaskWebApp`과 `TaskService`를 모두 빌드하고 실행합니다. 사용자의 할 일 모음에 일부 작업을 만들고 클라이언트를 중지하고 다시 시작한 후에 API에서 어떻게 유지할지 확인합니다.
+마지막으로 `TaskWebApp`과 `TaskService`를 모두 빌드하고 실행합니다. Hello 사용자의 할 일 목록에서 몇 가지 작업을 만들고 어떻게 유지 하기 hello API에서에서 중지 하 고 hello 클라이언트를 다시 시작 후에 확인 합니다.
 
 ## <a name="edit-your-policies"></a>청책 편집
 
-Azure AD B2C를 사용하여 API를 보호한 후에 로그인/등록 정책을 시험해 보고 API에서 효과(또는 부족)를 확인할 수 있습니다. 정책에서 응용 프로그램 클레임을 조작하고 Web API에서 사용할 수 있는 사용자 정보를 변경할 수 있습니다. 이 문서의 앞에서 설명한 것처럼 추가한 모든 클레임은 `ClaimsPrincipal` 개체의 .NET MVC Web API에서 사용할 수 있습니다.
+Azure AD B2C를 사용 하 여 API을 확보 한 후 사용자 로그인-에/등록 정책 및 hello 효과 보기 (또는 결핍) hello API에를 테스트할 수 있습니다. Hello 정책에서 응용 프로그램 클레임 hello를 조작 하 고 hello web API에서에서 제공 하는 hello 사용자 정보를 변경할 수 있습니다. 추가 하는 모든 클레임을 사용할 수 있는 tooyour.NET MVC 웹 API hello 수 `ClaimsPrincipal` 이 문서의 앞부분에 설명 된 대로 개체입니다.

@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Database 기능 개요 | Microsoft Docs"
-description: "이 페이지에서는 Azure SQL Database 논리 서버 및 데이터베이스에 대한 개요를 제공하며 나열된 각 기능에 대한 링크가 포함된 기능 지원 매트릭스를 포함합니다."
+title: "SQL 데이터베이스 기능 개요 aaaAzure | Microsoft Docs"
+description: "이 페이지 hello Azure SQL 데이터베이스 논리 서버 및 데이터베이스에 대 한 개요를 제공 하 고 링크와 함께 기능 지원 매트릭스 나열 된 각 기능을 포함 합니다."
 services: sql-database
 documentationcenter: na
 author: CarlRabeler
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 08/25/2017
 ms.author: carlrab
-ms.openlocfilehash: 4ef119d5218c844f3949bf4fc17fb320a7cbf7b4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 463c88edcd38eabbc768cfb701bc74461836aa36
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-features"></a>Azure SQL Database 기능
 
-Azure SQL Database는 SQL Server와 공용 코드 베이스를 공유하며 데이터베이스 수준에서 대부분의 동일한 기능을 지원합니다. Azure SQL Database와 SQL Server 간의 주요 기능 차이점은 인스턴스 수준에 있습니다. 
+Azure SQL 데이터베이스와 SQL Server 공용 코드 베이스를 공유 하며, hello 데이터베이스 수준에서 대부분의 지원 hello 동일한 기능이 있습니다. Azure SQL 데이터베이스 및 SQL Server 간의 주요 기능 차이점 hello hello 인스턴스 수준에서 됩니다. 
 
-Azure SQL Database에 기능은 추가 계속됩니다. Azure에 대한 서비스 업데이트 웹 페이지를 방문하고 해당 필터를 사용해 보세요.
+Tooadd 기능 tooAzure SQL 데이터베이스를 계속 실행 합니다. 의견을 교환하실 수 toovisit 서비스 하므로 웹 페이지에 대 한 업데이트 Azure 및 toouse 필터:
 
-* [SQL 데이터베이스 서비스](https://azure.microsoft.com/updates/?service=sql-database)에 대해 필터링되었습니다.
-* SQL 데이터베이스 기능의 [GA(General Availability) 공지](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) 에 대해 필터링되었습니다.
+* 필터링 된 toohello [SQL 데이터베이스 서비스](https://azure.microsoft.com/updates/?service=sql-database)합니다.
+* 가용성 tooGeneral 필터링 [(GA) 공지](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) SQL 데이터베이스 기능에 대 한 합니다.
 
 ## <a name="sql-server-and-sql-database-feature-support"></a>SQL Server 및 SQL Database 기능 지원
 
-다음 표에서는 SQL Server의 주요 기능을 나열하고 특정 기능을 지원하는지 여부에 대한 정보 및 기능에 대한 자세한 정보로 링크를 제공합니다. 기존 데이터베이스 솔루션을 마이그레이션할 때 고려해야 할 Transact-SQL 차이점은 [SQL Database에 대한 마이그레이션 중 Transact-SQL 차이점 해결](sql-database-transact-sql-information.md)을 참조하세요.
+hello 다음 표에 SQL Server의 주요 기능 hello 목록과 각 특정 기능을 지원 하는지 여부에 대 한 정보와 hello 기능에 대 한 링크 toomore 정보를 제공 합니다. TRANSACT-SQL의 차이점 tooconsider 기존 데이터베이스 솔루션을 마이그레이션하는 경우 참조 [마이그레이션 tooSQL 데이터베이스 중 해결 TRANSACT-SQL 차이점](sql-database-transact-sql-information.md)합니다.
 
 
 | **SQL Server 기능** | **Azure SQL Database에서 지원** | 
@@ -127,5 +127,5 @@ Azure SQL Database에 기능은 추가 계속됩니다. Azure에 대한 서비�
 
 ## <a name="next-steps"></a>다음 단계
 
-- Azure SQL Database 서비스에 대한 정보는 [SQL Database 정의](sql-database-technical-overview.md)를 참조하세요.
-- Transact-SQL 지원 및 차이점에 대한 정보는 [SQL Database에 대한 마이그레이션 중 Transact-SQL 차이점 해결](sql-database-transact-sql-information.md)을 참조하세요.
+- Azure SQL 데이터베이스 서비스 hello에 대 한 정보를 참조 하십시오. [SQL 데이터베이스 란?](sql-database-technical-overview.md)
+- TRANSACT-SQL 지원 및 차이점에 대 한 정보를 참조 하십시오. [마이그레이션 tooSQL 데이터베이스 중 해결 TRANSACT-SQL 차이점](sql-database-transact-sql-information.md)합니다.

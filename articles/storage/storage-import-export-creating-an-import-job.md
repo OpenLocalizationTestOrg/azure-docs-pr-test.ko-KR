@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export에 대한 내보내기 작업 만들기 | Microsoft Docs"
-description: "Microsoft Azure Import/Export 서비스에 대해 가져오기 작업을 만드는 방법을 알아봅니다."
+title: "가져오기 작업에 대 한 Azure 가져오기/내보내기 aaaCreate | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate hello Microsoft Azure 가져오기/내보내기 서비스에 대 한 가져오기."
 author: muralikk
 manager: syadav
 editor: syadav
@@ -14,96 +14,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: d373d2a0e601f2796719fc5efb8761f276ab24d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da974c33a3688bb5e2412c8bfcbeca704096c2fc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-an-import-job-for-the-azure-importexport-service"></a>Azure Import/Export 서비스에 대한 가져오기 작업 만들기
+# <a name="creating-an-import-job-for-hello-azure-importexport-service"></a>Hello Azure 가져오기/내보내기 서비스에 대 한 가져오기 작업 만들기
 
-REST API를 사용하여 Microsoft Azure Import/Export 서비스에 대해 가져오기 작업을 만드는 단계는 다음과 같습니다.
+Hello REST API를 사용 하 여 hello Microsoft Azure 가져오기/내보내기 서비스에 대 한 가져오기 작업 만들기 단계를 수행 하는 hello 포함 됩니다.
 
--   Azure Import/Export 도구로 드라이브 준비
+-   Azure 가져오기/내보내기 도구 hello로 드라이브를 준비 합니다.
 
--   드라이브를 배송할 위치 가져오기
+-   Hello 위치 toowhich tooship hello 드라이브를 가져오세요.
 
--   가져오기 작업 만들기
+-   Hello 가져오기 작업 만들기
 
--   지원되는 운송업체 서비스를 통해 Microsoft에 드라이브 배송
+-   지원 되는 운송 업체 서비스를 통해 tooMicrosoft 드라이브 hello를 전달 합니다.
 
--   배송 정보로 가져오기 작업 업데이트
+-   세부 정보를 전달 하는 hello로 hello 가져오기 작업을 업데이트 합니다.
 
- Import/Export 서비스에 대한 개요 및 [Azure Portal](https://portal.azure.com/)을 사용하여 가져오기 및 내보내기 작업을 만들고 관리하는 방법을 보여 주는 자습서는 [Microsoft Azure Import/Export 서비스를 사용하여 데이터를 Blob Storage로 전송](storage-import-export-service.md)을 참조하세요.
+ 참조 [hello Microsoft Azure 가져오기/내보내기 서비스 tooTransfer 데이터 tooBlob 저장소를 사용 하 여](storage-import-export-service.md) hello 가져오기/내보내기 서비스 및 설명 하는 자습서에 대 한 개요 방법을 toouse hello [Azure 포털](https://portal.azure.com/) toocreate 가져오기 및 내보내기 작업 합니다.
 
-## <a name="preparing-drives-with-the-azure-importexport-tool"></a>Azure Import/Export 도구로 드라이브 준비
+## <a name="preparing-drives-with-hello-azure-importexport-tool"></a>Azure 가져오기/내보내기 도구 hello가 있는 드라이브 준비
 
-가져오기 작업을 위해 드라이브를 준비하는 단계는 포털을 통해 작업을 만들거나 REST API를 통해 작업을 만들 경우 둘 다 동일합니다.
+가져오기 작업에 대 한 hello 단계 tooprepare 드라이브는 동일한 jobvia hello 포털 hello 또는 hello REST API를 통해 만드는 지 hello 됩니다.
 
-다음은 드라이브 준비에 대한 간단한 설명입니다. 자세한 지침은 [Azure Import-Export 도구 참조](storage-import-export-tool-how-to-v1.md)를 참조하세요. [여기](http://go.microsoft.com/fwlink/?LinkID=301900)에서 Azure Import/Export 도구를 다운로드할 수 있습니다.
+다음은 드라이브 준비에 대한 간단한 설명입니다. Toohello 참조 [Azure 가져오기 ExportTool 참조](storage-import-export-tool-how-to-v1.md) 자세한 지침은 합니다. Hello Azure 가져오기/내보내기 도구를 다운로드할 수 있습니다 [여기](http://go.microsoft.com/fwlink/?LinkID=301900)합니다.
 
 드라이브를 준비하는 과정은 다음과 같습니다.
 
--   가져올 데이터 식별
+-   가져온 hello 데이터 toobe를 식별 합니다.
 
--   Microsoft Azure Storage에서 대상 blob 식별
+-   Windows Azure 저장소에 hello 대상 blob을 식별 합니다.
 
--   Azure Import/Export 도구를 사용하여 하나 이상의 하드 드라이브로 데이터 복사
+-   Azure 가져오기/내보내기 도구 toocopy hello를 사용 하 여 데이터 tooone 또는 더 많은 하드 드라이브입니다.
 
- 또한 Azure Import/Export 도구는 드라이브가 준비되면 각 드라이브에 대해 매니페스트 파일도 생성합니다. 매니페스트 파일에는 다음이 포함됩니다.
+ 준비가 된 것 처럼 각 hello 드라이브 hello Azure 가져오기/내보내기 도구를 사용 하면 매니페스트 파일 또한 생성 합니다. 매니페스트 파일에는 다음이 포함됩니다.
 
--   업로드한 모든 파일의 열거형과 이러한 파일에서 blob으로의 매핑
+-   모든 hello 파일 업로드 및 이러한 파일 tooblobs hello 매핑을 위한의 열거형입니다.
 
--   각 파일의 세그먼트 체크섬
+-   각 파일의 hello 세그먼트의 체크섬입니다.
 
--   각 blob에 연결될 속성 및 메타데이터에 대한 정보
+-   각 blob과 함께 메타 데이터 및 속성 tooassociate hello에 대 한 정보입니다.
 
--   업로드될 blob이 컨테이너의 기존 blob과 이름이 같은 경우 수행할 작업 목록 가능한 옵션: a) blob을 파일로 덮어쓰기 b) 기존 blob을 유지하고 파일 업로드 건너뛰기 c) 다른 파일과 충돌하지 않게 이름에 접미사 추가
+-   Hello 컨테이너에 있는 기존 blob 이름을 업로드 될 blob hello에는 목록 hello 동작 tootake 동일 합니다. 가능한 옵션은: a) hello blob 버전으로 덮어쓰기 hello 파일, b) hello 기존 blob 및 hello 파일 업로드 건너뛰기 유지, c) 다른 파일과 충돌 하지 않는 접미사 toohello 이름을 추가 합니다.
 
 ## <a name="obtaining-your-shipping-location"></a>배송 위치 가져오기
 
-가져오기 작업을 만들기 전에 [위치 나열](/rest/api/storageimportexport/listlocations) 연산을 호출하여 배송 위치 이름 및 주소를 가져와야 합니다. `List Locations`는 위치 목록과 해당 우편 발송 주소 목록을 반환합니다. 반환된 목록에서 위치를 선택하고 해당 주소로 하드 드라이브 배송할 수 있습니다. `Get Location` 연산을 사용하여 특정 위치에 대한 배송 주소를 직접 얻을 수도 있습니다.
+가져오기 작업을 만들기 전에 tooobtain 배송 위치 이름 및 주소에서 필요한 호출 hello [위치 나열](/rest/api/storageimportexport/listlocations) 작업 합니다. `List Locations`는 위치 목록과 해당 우편 발송 주소 목록을 반환합니다. Hello 반환 된 목록에서에서 위치를 선택 하 고 인 하드 드라이브 toothat 주소 수 있습니다. Hello를 사용할 수도 있습니다 `Get Location` 작업 tooobtain hello 특정 위치에 대 한 주소를 직접 전달 합니다.
 
- 배송 위치를 가져오려면 다음 단계를 수행합니다.
+ Tooobtain hello 배송 위치 아래에 있는 hello 단계를 수행 합니다.
 
--   저장소 계정의 위치 이름을 식별합니다. 이 값은 Azure Portal에서 저장소 계정의 **대시보드**에 있는 **위치** 필드에서 찾거나 Service Management API 연산 [저장소 계정 속성 가져오기](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties)를 사용하여 쿼리할 수 있습니다.
+-   저장소 계정의 hello 위치의 hello 이름을 식별 합니다. Hello이이 값을 확인할 수 있습니다 **위치** 필드 hello 저장소 계정에 **대시보드** hello Azure 포털 또는 hello 서비스 관리 API 작업을 사용 하 여 쿼리할에 [저장소 가져오기 계정 속성](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties)합니다.
 
--   `Get Location` 연산을 호출하여 이 저장소 계정을 처리하는 데 사용할 수 있는 위치를 검색합니다.
+-   Hello를 호출 하 여 hello 위치를 사용할 수 있는 tooprocess이 저장소 계정을 검색 `Get Location` 작업 합니다.
 
--   위치의 `AlternateLocations` 속성에 해당 위치 자체가 포함될 경우 이 위치를 사용해도 됩니다. 그렇지 않으면 대체 위치 중 하나를 사용하여 `Get Location` 연산을 다시 호출합니다. 유지 관리를 위해 원래 위치가 일시적으로 닫혀 있을 수 있습니다.
+-   경우 hello `AlternateLocations` 자체 hello 위치를 포함 하는 hello 위치의 속성을 덮어쓰려면 toouse이이 위치입니다. 그렇지 않으면 hello 호출 `Get Location` hello 대체 위치 중 하나를 사용 하 여 다시 작업 합니다. 유지 관리에 대 한 hello 원래 위치를 일시적으로 닫혔을 수 있습니다.
 
-## <a name="creating-the-import-job"></a>가져오기 작업 만들기
-가져오기 작업을 만들려면 [작업 배치](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 연산을 호출합니다. 다음 정보를 제공해야 합니다.
+## <a name="creating-hello-import-job"></a>Hello 가져오기 작업 만들기
+toocreate hello 가져오기 작업을 호출 hello [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 작업 합니다. 다음 정보는 tooprovide hello이 필요 합니다.
 
--   작업의 이름입니다.
+-   Hello 작업에 대 한 이름입니다.
 
--   저장소 계정 이름입니다.
+-   hello 저장소 계정 이름입니다.
 
--   이전 단계에서 얻은 배송 위치 이름입니다.
+-   배송 위치 이름, hello 이전 단계에서 가져온 번호입니다.
 
 -   작업 유형(가져오기)입니다.
 
--   가져오기 작업이 완료된 후 드라이브를 보낼 반환 주소입니다.
+-   hello 반송 주소는 hello 가져오기 작업이 완료 된 후 hello 드라이브를 전송 해야 합니다.
 
--   작업의 드라이브 목록입니다. 각 드라이브에 대해 드라이브 준비 단계 중에 획득한 다음 정보를 포함해야 합니다.
+-   hello hello 작업의 드라이브 목록입니다. 각 드라이브에 대 한 hello 다음 hello 드라이브 준비 단계에서 가져온 정보를 포함 해야 합니다.
 
-    -   드라이브 ID
+    -   hello 드라이브 Id
 
-    -   BitLocker 키
+    -   hello BitLocker 키
 
-    -   하드 드라이브의 매니페스트 파일 상대 경로
+    -   hello hello 하드 드라이브에 매니페스트 파일 상대 경로
 
-    -   Base16 인코딩 매니페스트 파일 MD5 해시
+    -   hello Base16 인코딩된 매니페스트 파일 MD5 해시
 
 ## <a name="shipping-your-drives"></a>드라이브 배송
-이전 단계에서 획득한 주소로 드라이브를 배송해야 하고, Import/Export 서비스에 패키지의 추적 번호를 제공해야 합니다.
+Hello 이전 단계에서 가져온 사용자 드라이브 toohello 주소를 배송 해야 하 고 hello 패키지 수를 추적 하는 hello로 hello 가져오기/내보내기 서비스를 제공 해야 합니다.
 
 > [!NOTE]
 >  패키지의 추적 번호를 제공하는 지원 운송업체 서비스를 통해 드라이브를 배송해야 합니다.
 
-## <a name="updating-the-import-job-with-your-shipping-information"></a>배송 정보로 가져오기 작업 업데이트
-추적 번호가 있으면 [작업 속성 업데이트](/api/storageimportexport/jobs#Jobs_Update) 연산을 호출하여 배송업체 이름, 작업의 추적 번호 및 반송을 위한 배송업체 계정 번호를 업데이트합니다. 경우에 따라 드라이브 개수 및 배송 날짜를 지정할 수도 있습니다.
+## <a name="updating-hello-import-job-with-your-shipping-information"></a>배송 정보 사용 hello 가져오기 작업 업데이트
+추적 번호를 사용 하는 다음 호출 hello [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update) 작업 tooupdate hello 통신 회사 이름, hello 작업에 대 한 추적 번호 hello 및 반환 전달용 hello 운송 업체 계정 번호를 전달 합니다. 필요에 따라 hello 드라이브 수 및 배송 날짜도 hello를 지정할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Import/Export 서비스 REST API 사용](storage-import-export-using-the-rest-api.md)
+* [Hello 가져오기/내보내기 서비스 REST API를 사용 하 여](storage-import-export-using-the-rest-api.md)

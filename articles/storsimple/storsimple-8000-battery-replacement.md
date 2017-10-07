@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure StorSimple 8000 시리즈 장치의 배터리 교체 | Microsoft Docs"
-description: "StorSimple 장치의 백업 배터리 모듈을 꺼내고 교체 및 유지 관리하는 방법을 설명합니다."
+title: "Microsoft Azure StorSimple 8000 시리즈 장치에 배터리 aaaReplace | Microsoft Docs"
+description: "Tooremove, 대체를 하 고 StorSimple 장치에서 백업 배터리 모듈 hello를 유지 관리 하는 방법을 설명 합니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 174a3163082594ea6a49b7f5a78857848f8f0566
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5ac767807e6c3fd817d8d522629db2aceaac9bdf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replace-the-backup-battery-module-on-your-storsimple-device"></a>StorSimple 장치의 백업 배터리 모듈 교체
+# <a name="replace-hello-backup-battery-module-on-your-storsimple-device"></a>StorSimple 장치에서 hello 백업 배터리 모듈 교체
 
 ## <a name="overview"></a>개요
-Microsoft Azure StorSimple 장치의 기본 엔클로저 PCM(전원 및 냉각 모듈)에는 추가 배터리 팩이 있습니다. 이 팩은 기본 엔클로저에 대한 AC 전원이 끊어질 경우 StorSimple 장치가 데이터를 저장할 수 있도록 전원을 공급합니다. 이 배터리 팩을 *백업 배터리 모듈*이라고 합니다. 백업 배터리 모듈은 StorSimple 장치의 기본 엔클로저에만 있습니다(EBOD 엔클로저에는 백업 배터리 모듈이 없음).
+hello 기본 인클로저 전원 및 냉각 모듈 (PCM) Microsoft Azure StorSimple 장치에는 추가적인 배터리 팩을 있습니다. 이 팩 hello StorSimple 장치 저장할 수 있도록 데이터의 기본 인클로저를 toohello AC 전원 손실이 발생 해도 power를 제공 합니다. 이 배터리 팩은 참조 tooas hello *백업 배터리 모듈*합니다. hello 백업 배터리 모듈 hello 기본 인클로저 StorSimple 장치에만 존재 하므로 (EBOD 인클로저 hello 백업 배터리 모듈을 포함 되지 않은).
 
 이 자습서에서는 다음을 수행하는 방법을 설명합니다.
 
-* 백업 배터리 모듈 꺼내기
+* Hello 백업 배터리 모듈을 제거 합니다.
 * 새 백업 배터리 모듈 설치
-* 백업 배터리 모듈 유지 관리
+* Hello 백업 배터리 모듈을 유지 관리
 
 > [!IMPORTANT]
-> 백업 배터리 모듈을 꺼내고 교체하기 전에 [StorSimple 하드웨어 구성 요소 교체 소개](storsimple-8000-hardware-component-replacement.md)에서 안전 정보를 검토하세요.
+> 분리 및 교체 백업 배터리 모듈 hello hello 보안 정보를 검토 하기 전에 [소개 tooStorSimple 하드웨어 구성 요소 교체](storsimple-8000-hardware-component-replacement.md)합니다.
 
 
-## <a name="remove-the-backup-battery-module"></a>백업 배터리 모듈 꺼내기
-StorSimple 장치에 대한 백업 배터리 모듈은 FRU(현장 교체 장치)입니다. PCM에 설치하기 전에는 원래 포장 안에 배터리 모듈을 보관해야 합니다. 백업 배터리를 꺼내려면 다음 단계를 수행합니다.
+## <a name="remove-hello-backup-battery-module"></a>Hello 백업 배터리 모듈을 제거 합니다.
+StorSimple 장치에 대 한 hello 백업 배터리 모듈은 현장 교체 장치입니다. Hello PCM에에서 설치 하기 전에 hello 배터리 모듈 원래 패키지에 저장 되어야 합니다. Hello 단계 tooremove hello 백업 배터리 다음을 수행 합니다.
 
-#### <a name="to-remove-the-backup-battery-module"></a>백업 배터리 모듈을 꺼내려면
-1. Azure Portal에서 StorSimple 장치 관리자 서비스 블레이드로 이동합니다. **장치**로 이동한 후 장치 목록에서 장치를 선택합니다. **모니터** > **하드웨어 상태**로 이동합니다. **공유 구성 요소**아래에서 배터리 상태를 확인합니다.
-2. 배터리에서 오류가 발생한 PCM을 식별합니다. 그림 1은 StorSimple 장치의 뒷면의 보여 줍니다.
+#### <a name="tooremove-hello-backup-battery-module"></a>tooremove hello 백업 배터리 모듈
+1. Azure 포털 hello tooyour StorSimple 장치 관리자 서비스 블레이드를 이동 합니다. 너무 이동**장치** hello 장치 목록에서 장치를 선택 합니다. 너무 이동**모니터** > **하드웨어 상태가**합니다. 아래 **공유 구성 요소의**, hello hello 배터리 상태를 확인 합니다.
+2. 배터리는 hello에 실패 했습니다 hello PCM을 식별 합니다. 그림 1 hello hello StorSimple 장치의 후면을 보여 줍니다.
    
     ![장치 기본 엔클로저 모듈의 백플레인](./media/storsimple-battery-replacement/IC740994.png)
    
@@ -53,11 +53,11 @@ StorSimple 장치에 대한 백업 배터리 모듈은 FRU(현장 교체 장치)
    | 3 |컨트롤러 0 |
    | 4 |컨트롤러 1 |
    
-    그림 2의 번호 3과 같이 **배터리 결함** 에 해당하는 PCM 0의 모니터링 표시기 LED가 켜져야 합니다.
+    표시기를 모니터링 하는 hello 너무 해당 하는 PCM 0에서 LED를 hello 그림 2에서에서 번호 3으로 표시 된 것과 같이**배터리 결함** 켜져야 합니다.
    
     ![장치 PCM 모니터링 표시기 LED의 백플레인](./media/storsimple-battery-replacement/IC740992.png)
    
-    **그림 2** 모니터링 표시기 LED를 표시하는 PCM 뒷면
+    **그림 2** PCM의 후면 보여 주는 hello 모니터링 표시기 Led
    
    | 레이블 | 설명 |
    |:--- |:--- |
@@ -67,43 +67,43 @@ StorSimple 장치에 대한 백업 배터리 모듈은 FRU(현장 교체 장치)
    | 4 |PCM 정상 |
    | 5 |DC 전원 오류 |
    | 6 |배터리 정상 |
-3. 오류가 발생한 배터리가 있는 PCM을 꺼내려면 [PCM 꺼내기](storsimple-power-cooling-module-replacement.md#remove-a-pcm)의 단계를 따르세요.
-4. PCM을 꺼낸 후 다음 그림과 같이 배터리 모듈 핸들을 들고 위로 회전해서 당겨 배터리를 꺼냅니다.
+3. 실패 한 배터리 tooremove hello PCM에서 다음과 같이 hello [PCM 제거](storsimple-power-cooling-module-replacement.md#remove-a-pcm)합니다.
+4. PCM 제거 hello, 리프트 및 회전 hello 배터리 모듈 hello 다음 그림에에서 표시 된 대로 위쪽으로 처리 하 고 tooremove hello 배터리 꺼내 합니다.
    
     ![PCM에서 배터리 꺼내기](./media/storsimple-battery-replacement/IC741019.png)
    
-    **그림 3** PCM에서 배터리 꺼내기
-5. FRU(현장 교체 장치) 포장 안에 모듈을 넣습니다.
-6. 적절한 서비스 및 처리를 위해 결함이 있는 장치를 Microsoft에 반환합니다.
+    **그림 3** hello PCM에서에서 배터리 hello 제거
+5. Hello 현장 교체 장치 패키지에 hello 모듈을 배치 합니다.
+6. 적절 한 수리와 처리에 대 한 hello 결함 있는 장치 tooMicrosoft를 반환 합니다.
 
 ## <a name="install-a-new-backup-battery-module"></a>새 백업 배터리 모듈 설치
-StorSimple 장치의 기본 엔클로저의 PCM에 교체 배터리 모듈을 설치하려면 다음 단계를 따르세요.
+Hello 단계 tooinstall hello 교체 배터리 모듈 hello 기본 인클로저 StorSimple 장치에 PCM hello에서 다음을 수행 합니다.
 
-#### <a name="to-install-the-battery-module"></a>배터리 모듈을 설치하려면
-1. 백업 배터리 모듈을 PCM에 올바른 방향으로 놓습니다.
-2. 배터리 모듈 핸들을 아래로 완전히 눌러 커넥터를 장착합니다.
-3. [StorSimple 장치의 전원 및 냉각 모듈 교체](storsimple-power-cooling-module-replacement.md)의 지침에 따라 기본 엔클로저의 PCM을 교체합니다.
-4. 바꾸기가 완료되면 Azure Portal에서 장치로 이동한 후 **모니터** > **하드웨어 상태**로 이동합니다. 설치가 성공적으로 수행되었는지 확인하려면 배터리 상태를 확인합니다. 녹색 상태는 배터리가 정상임을 나타냅니다.
+#### <a name="tooinstall-hello-battery-module"></a>tooinstall hello 배터리 모듈
+1. Hello PCM에서에서 적절 한 방향을 hello에 hello 백업 배터리 모듈을 배치 합니다.
+2. 케이블 hello 배터리 모듈을 눌러 모든 hello 방식으로 tooseat hello 커넥터를 처리 합니다.
+3. 대체 hello 지침에 따라 hello 기본 인클로저에서 PCM hello [StorSimple 장치에서 전원 및 냉각 모듈 교체](storsimple-power-cooling-module-replacement.md)합니다.
+4. Hello 교체가 완료 되 면 후 tooyour 장치를 이동 하 고 이동 하 여 너무**모니터** > **하드웨어 상태가** hello Azure 포털의에서. Hello 상태의 hello 배터리 toomake hello 설치가 제대로 수행 되었는지 확인 합니다. 녹색 상태 hello 배터리 정상 임을 나타냅니다.
 
-## <a name="maintain-the-backup-battery-module"></a>백업 배터리 모듈 유지 관리
-StorSimple 장치에서 백업 배터리 모듈은 전원 손실 이벤트가 발생하는 동안 컨트롤러에 전원을 공급합니다. StorSimple 장치가 종료되기 전에 제어된 방식으로 중요한 데이터를 저장할 수 있게 합니다. PCM에 완전히 충전된 두 개의 배터리가 있으면 시스템이 두 번의 연속된 손실 이벤트를 처리할 수 있습니다.
+## <a name="maintain-hello-backup-battery-module"></a>Hello 백업 배터리 모듈을 유지 관리
+StorSimple 장치 hello 백업 배터리 모듈 전원 손실 이벤트가 발생 하는 동안 전원 toohello 컨트롤러를 제공합니다. 제어 된 방식으로 hello StorSimple 장치 toosave 중요 한 데이터가 이전 tooshutting을 아래로 수 있습니다. Hello Pcm의에서 완전히 충전 된 배터리 두 hello 시스템 두 개의 연속 된 손실 이벤트를 처리할 수 있습니다.
 
-Azure Portal에서 **모니터** 블레이드의 **하드웨어 상태**는 배터리가 오작동하는지 또는 사용 기간 종료가 임박하는지 여부를 나타냅니다. 배터리 상태는 **공유 구성 요소**에서 **PCM 0의 배터리** 또는 **PCM 1의 배터리**로 표시됩니다. 이 블레이드에서 사용 기간 종료가 임박한 경우 **DEGRADED** 상태가 표시되고 사용 기간이 종료된 경우 **FAILED** 상태가 표시됩니다.
+Hello Azure 포털에서에서 hello **하드웨어 상태가** hello에서 **모니터** 블레이드 hello 배터리가 오작동 하거나 hello 수명 끝에 도달 하 고 있는지 여부를 나타냅니다. hello 배터리 상태를 나타냅니다 **PCM 0의에서 배터리** 또는 **PCM 1의 배터리** 아래 **공유 구성 요소의**합니다. 이 블레이드에서 사용 기간 종료가 임박한 경우 **DEGRADED** 상태가 표시되고 사용 기간이 종료된 경우 **FAILED** 상태가 표시됩니다.
 
 > [!NOTE]
-> 단순히 충전이 필요한 경우 배터리에서 **FAILED** 를 보고할 수 있습니다.
+> hello 배터리를 보고할 수 **실패** 단순히 청구 toobe 필요 경우.
 
 
-**DEGRADED** 상태가 표시되는 경우 다음 작업을 수행하는 것이 좋습니다.
+경우 hello **DEGRADED** 상태가 나타나면 다음 조치 hello 것이 좋습니다.
 
-* 시스템에서 최근에 전원 손실이 발생했거나 배터리 정기 유지 관리가 진행 중일 수 있습니다. 계속 진행하기 전에 12시간 동안 시스템을 관찰합니다.
+* hello 시스템 최근 전원 손실이 발생 했을 수 있습니다 또는 hello 배터리에서 정기적으로 유지 관리 모드로 전환 될 수 있습니다. 계속 하기 전에 12 시간 동안 hello 시스템을 확인 합니다.
   
-  * 컨트롤러와 PCM을 실행하여 AC 전원에 12시간 동안 연속해서 연결된 후에도 상태가 여전히 **DEGRADED** 이면 배터리를 교체해야 합니다. 교체 백업 배터리 모듈에 대해서는 [Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md) 하세요.
-  * 12시간 후 정상 상태가 되면 배터리가 작동하는 것이며 유지 관리 충전만 하면 됩니다.
-* 연결된 AC 전원 손실이 없으며 PCM이 켜져 있고 AC 전원에 연결된 경우 배터리를 교체해야 합니다. [Contact Microsoft Support](storsimple-8000-contact-microsoft-support.md) 하세요.
+  * Hello 상태가 여전히 **DEGRADED** 배터리 교체 toobe 필요한 hello 사용 하 여 지속적으로 연결 tooAC 전원 12 시간 컨트롤러와 pcm을 실행 하면서 다음 hello 후 합니다. 교체 백업 배터리 모듈에 대해서는 [Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md) 하세요.
+  * 12 시간 후 정상 hello 상태가 되 면 hello 배터리가 정상적으로 작동 하 고 유지 관리 비용이 청구만 필요 합니다.
+* 발생 되지 않은 경우는 관련된 AC 전원 손실과 hello PCM 켜져 있고 연결 tooAC 전원, hello 배터리 교체 toobe가 필요 합니다. [Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md) tooorder 교체 백업 배터리 모듈입니다.
 
 > [!IMPORTANT]
-> 국가 및 지역 규정에 따라 오류가 발생한 배터리를 폐기합니다.
+> Hello의 dispose toonational 및 지역 규정에 따라 배터리에 실패 했습니다.
 
 ## <a name="next-steps"></a>다음 단계
 [StorSimple 하드웨어 구성 요소 교체](storsimple-8000-hardware-component-replacement.md)에 대해 자세히 알아봅니다.

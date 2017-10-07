@@ -1,5 +1,5 @@
 ---
-title: "서비스 알림에 대한 활동 로그 경고 수신 | Microsoft Docs"
+title: "서비스 알림 aaaReceive 활동 로그 경고 | Microsoft Docs"
 description: "Azure 서비스가 발생할 때 SMS, 전자 메일 또는 웹후크를 통해 알림을 받습니다."
 author: johnkemnetz
 manager: orenr
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: johnkem
-ms.openlocfilehash: bf6a98fd7e7e11764bef174f9efd0635fa7efe9a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dd35e8f39d2a522efdae4dfed20779c992c1dd27
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-activity-log-alerts-on-service-notifications"></a>서비스 알림에 대한 활동 로그 경고 만들기
 ## <a name="overview"></a>개요
-이 문서에서는 Azure Portal을 사용하여 서비스 상태 알림에 대한 활동 로그 경고를 설정하는 방법을 보여 줍니다.  
+이 문서에서는 hello Azure 포털을 사용 하 여 활동 로그를 tooset 서비스 상태 알림에 대 한 경고 하는 방법을 설명 합니다.  
 
-Azure에서 Azure 구독에 서비스 상태 알림을 전송할 때 경고를 받을 수 있습니다. 다음 항목에 따라 경고를 구성할 수 있습니다.
+Azure에서 서비스 상태 알림 tooyour Azure 구독을 보낼 때 경고를 받을 수 있습니다. 에 기반 하는 hello 경고를 구성할 수 있습니다.
 
-- 서비스 상태 알림의 클래스(인시던트, 유지 관리, 정보 등)
-- 영향을 받는 서비스
-- 영향을 받는 하위 지역
-- 알림의 상태(활성 및 해결)
-- 알림 수준(정보, 경고, 오류)
+- 서비스 상태 알림 (인시던트, 유지 관리, 정보 등)의 hello 클래스입니다.
+- 영향을 받는 hello 서비스입니다.
+- 영향을 받는 hello 지역입니다.
+- hello 상태 (활성 및 해결) hello 알림입니다.
+- hello 수준의 hello 알림 (정보, 경고, 오류).
 
-다음과 같이 경고를 받는 사람도 구성할 수 있습니다.
+구성할 수도 있습니다 hello 경고를 보낼 사용자:
 
 - 기존 작업 그룹을 선택합니다.
 - 새 작업 그룹을 만듭니다(향후 경고에 사용할 수 있음).
 
-작업 그룹에 대해 자세히 알아보려면 [작업 그룹 만들기 및 관리](monitoring-action-groups.md)를 참조하세요.
+동작 그룹에 대해 자세히 toolearn 참조 [만들기 동작 그룹 및 관리](monitoring-action-groups.md)합니다.
 
-Azure 리소스 관리자 템플릿을 사용하여 서비스 상태 알림 경고를 구성하는 방법에 대한 자세한 내용은 [ 템플릿](monitoring-create-activity-log-alerts-with-resource-manager-template.md)을 참조하세요.
+Azure 리소스 관리자 템플릿을 사용 하 여 tooconfigure 서비스 상태 알림 경고 하는 방법에 대 한 정보를 참조 하십시오. [리소스 관리자 템플릿을](monitoring-create-activity-log-alerts-with-resource-manager-template.md)합니다.
 
-## <a name="create-an-alert-on-a-service-health-notification-for-a-new-action-group-by-using-the-azure-portal"></a>Azure Portal을 사용하여 새 작업 그룹에 대한 서비스 상태 알림의 경고 만들기
-1. [포털](https://portal.azure.com)에서 **모니터**를 선택합니다.
+## <a name="create-an-alert-on-a-service-health-notification-for-a-new-action-group-by-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 새 작업 그룹에 대 한 서비스 상태 알림 경고 만들기
+1. Hello에 [포털](https://portal.azure.com)선택, **모니터**합니다.
 
-    ![“모니터링” 서비스](./media/monitoring-activity-log-alerts-on-service-notifications/home-monitor.png)
+    ![hello 서비스 "모니터 임계값"](./media/monitoring-activity-log-alerts-on-service-notifications/home-monitor.png)
 
-2. **활동 로그** 섹션에서 **경고**를 선택합니다.
+2. Hello에 **활동 로그** 섹션에서 **경고**합니다.
 
-    ![“경고” 탭](./media/monitoring-activity-log-alerts-on-service-notifications/alerts-blades.png)
+    ![hello "경고" 탭](./media/monitoring-activity-log-alerts-on-service-notifications/alerts-blades.png)
 
-3. **활동 로그 경고 추가**를 선택하고 필드를 입력합니다.
+3. 선택 **추가 활동 로그 경고**, 고 hello 필드를 입력 합니다.
 
-    ![“활동 로그 경고 추가” 명령](./media/monitoring-activity-log-alerts-on-service-notifications/add-activity-log-alert.png)
+    ![hello "추가 활동 로그 경고" 명령](./media/monitoring-activity-log-alerts-on-service-notifications/add-activity-log-alert.png)
 
-4. **활동 로그 경고 이름** 상자에 이름을 입력하고 **설명**을 입력합니다.
+4. Hello에 이름을 입력 **활동 로그 경고 이름** 고 제공 된 **설명**합니다.
 
-    ![“활동 로그 경고 추가” 대화 상자](./media/monitoring-activity-log-alerts-on-service-notifications/activity-log-alert-service-notification-new-action-group.png)
+    ![hello "활동 로그 경고 추가" 대화 상자](./media/monitoring-activity-log-alerts-on-service-notifications/activity-log-alert-service-notification-new-action-group.png)
 
-5. **구독** 상자가 현재 구독으로 자동으로 채워집니다. 이 구독은 활동 로그 경고를 저장하는 데 사용됩니다. 경고 리소스가 이 구독에 배포되고 이에 대한 활동 로그에서 이벤트를 모니터링합니다.
+5. hello **구독** 현재 구독과 autofills 상자입니다. 이 구독에 사용 되는 toosave hello 활동 로그 경고입니다. hello 경고 리소스에 대 한 hello 활동 로그에서 배포 된 toothis 구독 및 모니터 이벤트입니다.
 
-6. 경고 리소스가 만들어지는 **리소스 그룹**을 선택합니다. 이는 경고에 의해 모니터링되는 리소스 그룹이 아닙니다. 대신 경고 리소스가 있는 리소스 그룹입니다.
+6. 선택 hello **리소스 그룹** 는 hello 경고 리소스가 생성 됩니다. 이것은 hello 경고에서 모니터링 하는 hello 리소스 그룹 되지 않습니다. 만으로도 hello 경고 리소스 위치한 hello 리소스 그룹입니다.
 
-7. **이벤트 범주** 상자에서 **서비스 상태**를 선택합니다. 선택적으로 수신하려는 서비스 상태 알림의 **서비스**, **하위 지역**, **형식**, **상태** 및 **수준**을 선택합니다.
+7. Hello에 **이벤트 범주** 상자 **서비스 상태**합니다. 필요에 따라 hello 선택 **서비스**, **지역**, **형식**, **상태**, 및 **수준** 서비스의 상태 알림 tooreceive 한다는 것입니다.
 
-8. **다음을 통해 경고**에서 **신규** 작업 그룹 단추를 선택합니다. **작업 그룹 이름** 상자에 이름을 입력하고 **약식 이름** 상자에 이름을 입력합니다. 약식 이름은 이 경고가 발생할 때 전송된 알림에서 참조됩니다.
+8. 아래 **를 통해 경고**선택, hello **새로 만들기** 작업 그룹 단추입니다. Hello에 이름을 입력 **동작 그룹 이름** hello에 이름을 입력 하 고 상자의 **약식 이름** 상자입니다. hello 약식 이름은이 경고가 발생할 때 보낸 hello 알림을에서 참조 됩니다.
 
-9. 받는 사람에 대한 다음 항목을 제공하여 받는 사람 목록을 정의합니다.
+9. Hello 수신기를 제공 하 여 수신기의 목록을 정의 합니다.
 
-    a. **이름**: 받는 사람의 이름, 별칭 또는 식별자를 입력합니다.
+    a. **이름**: hello 수신기의 이름, 별칭 또는 식별자를 입력 합니다.
 
     b. **작업 유형**: SMS, 전자 메일 또는 웹후크를 선택합니다.
 
-    c. **세부 정보**: 선택한 작업 유형에 따라 전화 번호, 이메일 주소 또는 웹후크 URI를 입력합니다.
+    c. **세부 정보**: 전화 번호, 전자 메일 주소 또는 URI webhook 입력 선택 hello 동작 형식을 기반으로 합니다.
 
-10. **확인**을 선택하여 경고를 만듭니다.
+10. 선택 **확인** toocreate hello 경고 합니다.
 
-몇 분 이내에 경고가 활성화되고 만들 때 지정한 조건에 따라 트리거를 시작합니다.
+몇 분 안에 hello 경고가 활성 이며 tootrigger를 만들 때 지정한 hello 조건에 따라 시작 됩니다.
 
-활동 로그 경고에 대한 웹후크 스키마 정보는 [Azure 활동 로그 경고에 대한 웹후크](monitoring-activity-log-alerts-webhook.md)를 참조하세요.
+활동 로그 경고에 대 한 webhook 스키마 hello에 대 한 자세한 내용은 참조 하십시오. [Webhook에 대 한 Azure 활동 로그 경고](monitoring-activity-log-alerts-webhook.md)합니다.
 
 >[!NOTE]
->이러한 단계에서 정의한 작업 그룹은 향후의 모든 경고 정의에 대해 기존 작업 그룹으로 다시 사용할 수 있습니다.
+>다음이 단계에 정의 된 hello 동작 그룹은 모든 이후 경고 정의 대 한 기존 작업 그룹으로 다시 사용할 수 있는입니다.
 >
 >
 
-## <a name="create-an-alert-on-a-service-health-notification-for-an-existing-action-group-by-using-the-azure-portal"></a>Azure Portal을 사용하여 기존 작업 그룹에 대한 서비스 상태 알림의 경고 만들기
+## <a name="create-an-alert-on-a-service-health-notification-for-an-existing-action-group-by-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 기존 작업 그룹에 대 한 서비스 상태 알림 경고 만들기
 
-1. 이전 섹션의 1-7단계를 수행하여 서비스 상태 알림을 만듭니다. 
+1. 서비스 상태 알림-7 이전 섹션 toocreate hello에에서 1 단계를 수행 합니다. 
 
-2. **다음을 통해 경고**에서 **기존** 작업 그룹 단추를 선택합니다. 적절한 작업 그룹을 선택합니다.
+2. 아래 **를 통해 경고**선택, hello **기존** 작업 그룹 단추입니다. Hello 적절 한 작업 그룹을 선택 합니다.
 
-3. **확인**을 선택하여 경고를 만듭니다.
+3. 선택 **확인** toocreate hello 경고 합니다.
 
-몇 분 이내에 경고가 활성화되고 만들 때 지정한 조건에 따라 트리거를 시작합니다.
+몇 분 안에 hello 경고가 활성 이며 tootrigger를 만들 때 지정한 hello 조건에 따라 시작 됩니다.
 
 ## <a name="manage-your-alerts"></a>경고 관리
 
-경고를 만들면 **모니터** 블레이드의 **경고** 섹션에 표시됩니다. 관리하려는 경고를 선택합니다.
+Hello에 표시 되는 경고를 만든 후 **경고** hello 섹션 **모니터** 블레이드입니다. toomanage hello 경고를 선택 합니다.
 
 * 편집합니다.
 * 삭제합니다.
-* 해당 경고에 대한 알림 수신을 일시적으로 중지하거나 다시 시작하려면 사용 안 함 또는 사용하도록 설정합니다.
+* 또는 tootemporarily 중지 하거나 재개 hello 경고에 대 한 알림을 수신 하는 경우, 사용 안 함.
 
 ## <a name="next-steps"></a>다음 단계
 - [서비스 상태 알림](monitoring-service-notifications.md)에 대해 자세히 알아보세요.
 - [알림 속도 제한](monitoring-alerts-rate-limiting.md)에 대해 자세히 알아보세요.
-- [활동 로그 경고 웹후크 스키마](monitoring-activity-log-alerts-webhook.md)를 검토하세요.
-- [활동 로그 경고의 개요](monitoring-overview-alerts.md)를 확인하고 경고를 받는 방법에 대해 알아보세요. 
+- 검토 hello [활동 로그 경고 webhook 스키마](monitoring-activity-log-alerts-webhook.md)합니다.
+- 가져오기는 [활동 로그 경고의 개요](monitoring-overview-alerts.md), 알아봅니다 어떻게 tooreceive 경고 합니다. 
 - [작업 그룹](monitoring-action-groups.md)에 대해 자세히 알아보세요.

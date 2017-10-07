@@ -1,5 +1,5 @@
 ---
-title: "Azure Relay 포트 설정 | Microsoft Docs"
+title: "aaaAzure 릴레이 포트 설정 | Microsoft Docs"
 description: "Azure Relay 포트 값에 대한 세부 정보입니다."
 services: service-bus-relay
 documentationcenter: na
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm
-ms.openlocfilehash: 5906495c565dad583e74a43b2e5eed57e0c68df1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e66785f786ee241c974d250f9ec29dfcc1fdc3fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-relay-port-settings"></a>Azure Relay 포트 설정
 
-다음 표에서는 Azure Relay의 포트 값에 필요한 구성을 설명합니다.
+hello 다음 표에 Azure 릴레이 대 한 포트 값에 대 한 hello 필수 구성을 있습니다.
 
 ## <a name="hybrid-connections"></a>하이브리드 연결
-하이브리드 연결은 기본 전송 메커니즘으로 **HTTPS**만 사용하는 WebSockets을 사용합니다. 
+하이브리드 연결 Websocket을 사용 하 여 기본 전송 메커니즘을 사용 하 여 hello로 **HTTPS** 만 합니다. 
 
 ## <a name="wcf-relays"></a>WCF 릴레이
   
@@ -49,6 +49,6 @@ ms.lasthandoff: 07/11/2017
 |[WS2007HttpRelayBinding 클래스](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding)(서비스)|여기서는|9351/HTTP|
 
 ## <a name="next-steps"></a>다음 단계
-Azure Relay에 대한 자세한 내용은 다음 링크를 방문하세요.
+다음이 링크를 방문 하는 Azure 릴레이 대 한 자세한 toolearn:
 * [Azure 릴레이란?](relay-what-is-it.md)
 * [릴레이 FAQ](relay-faq.md)
