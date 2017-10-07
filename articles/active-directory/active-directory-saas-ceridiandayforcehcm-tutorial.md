@@ -1,6 +1,6 @@
 ---
 title: "자습서: Ceridian Dayforce HCM과 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory와 Ceridian Dayforce HCM 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Ceridian Dayforce HCM 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,269 +14,269 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: b2ea3d92f233dab5bd6814e4875f881117eac8e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4d72f29b4e5e30ef8881806d789f6676fc541e2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-ceridian-dayforce-hcm"></a><span data-ttu-id="eb26a-103">자습서: Ceridian Dayforce HCM과 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="eb26a-103">Tutorial: Azure Active Directory integration with Ceridian Dayforce HCM</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-ceridian-dayforce-hcm"></a><span data-ttu-id="b41d4-103">자습서: Ceridian Dayforce HCM과 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="b41d4-103">Tutorial: Azure Active Directory integration with Ceridian Dayforce HCM</span></span>
 
-<span data-ttu-id="eb26a-104">이 자습서에서는 Azure AD(Azure Active Directory)와 Ceridian Dayforce HCM을 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-104">In this tutorial, you learn how to integrate Ceridian Dayforce HCM with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="b41d4-104">이 자습서에 설명 어떻게 toointegrate Ceridian Dayforce HCM Azure Active directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="b41d4-104">In this tutorial, you learn how toointegrate Ceridian Dayforce HCM with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="eb26a-105">Ceridian Dayforce HCM을 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-105">Integrating Ceridian Dayforce HCM with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="b41d4-105">다음 이점을 hello로 제공 Ceridian Dayforce HCM Azure AD와 통합:</span><span class="sxs-lookup"><span data-stu-id="b41d4-105">Integrating Ceridian Dayforce HCM with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="eb26a-106">Ceridian Dayforce HCM에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-106">You can control in Azure AD who has access to Ceridian Dayforce HCM.</span></span>
-- <span data-ttu-id="eb26a-107">사용자가 해당 Azure AD 계정으로 Ceridian Dayforce HCM에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-107">You can enable your users to automatically get signed-on to Ceridian Dayforce HCM (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="eb26a-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="b41d4-106">액세스 tooCeridian Dayforce HCM 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-106">You can control in Azure AD who has access tooCeridian Dayforce HCM.</span></span>
+- <span data-ttu-id="b41d4-107">Azure AD 계정을 사용 하면 사용자가 tooautomatically get 로그온 tooCeridian Dayforce HCM (Single Sign-on)를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-107">You can enable your users tooautomatically get signed-on tooCeridian Dayforce HCM (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="b41d4-108">하나의 중앙 위치-hello Azure 포털에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="eb26a-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="eb26a-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="b41d4-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="eb26a-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="eb26a-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="b41d4-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="b41d4-110">Prerequisites</span></span>
 
-<span data-ttu-id="eb26a-111">Ceridian Dayforce HCM과의 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-111">To configure Azure AD integration with Ceridian Dayforce HCM, you need the following items:</span></span>
+<span data-ttu-id="b41d4-111">다음 항목 hello가 필요 tooconfigure Ceridian Dayforce HCM와 Azure AD 통합 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-111">tooconfigure Azure AD integration with Ceridian Dayforce HCM, you need hello following items:</span></span>
 
-- <span data-ttu-id="eb26a-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="eb26a-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="eb26a-113">Ceridian Dayforce HCM Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="eb26a-113">A Ceridian Dayforce HCM single-sign on enabled subscription</span></span>
+- <span data-ttu-id="b41d4-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="b41d4-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="b41d4-113">Ceridian Dayforce HCM Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="b41d4-113">A Ceridian Dayforce HCM single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="eb26a-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="b41d4-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="eb26a-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="b41d4-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="eb26a-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="eb26a-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="eb26a-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="b41d4-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="b41d4-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="b41d4-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="eb26a-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="eb26a-118">Scenario description</span></span>
-<span data-ttu-id="eb26a-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="eb26a-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="b41d4-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="b41d4-118">Scenario description</span></span>
+<span data-ttu-id="b41d4-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="b41d4-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="eb26a-121">갤러리에서 Ceridian Dayforce HCM 추가</span><span class="sxs-lookup"><span data-stu-id="eb26a-121">Adding Ceridian Dayforce HCM from the gallery</span></span>
-2. <span data-ttu-id="eb26a-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="eb26a-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="b41d4-121">Ceridian Dayforce HCM hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="b41d4-121">Adding Ceridian Dayforce HCM from hello gallery</span></span>
+2. <span data-ttu-id="b41d4-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="b41d4-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-ceridian-dayforce-hcm-from-the-gallery"></a><span data-ttu-id="eb26a-123">갤러리에서 Ceridian Dayforce HCM 추가</span><span class="sxs-lookup"><span data-stu-id="eb26a-123">Adding Ceridian Dayforce HCM from the gallery</span></span>
-<span data-ttu-id="eb26a-124">Ceridian Dayforce HCM의 Azure AD 통합을 구성하려면 갤러리의 Ceridian Dayforce HCM을 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-124">To configure the integration of Ceridian Dayforce HCM into Azure AD, you need to add Ceridian Dayforce HCM from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-ceridian-dayforce-hcm-from-hello-gallery"></a><span data-ttu-id="b41d4-123">Ceridian Dayforce HCM hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="b41d4-123">Adding Ceridian Dayforce HCM from hello gallery</span></span>
+<span data-ttu-id="b41d4-124">tooconfigure hello와의 통합 Ceridian Dayforce HCM Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Ceridian Dayforce HCM tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-124">tooconfigure hello integration of Ceridian Dayforce HCM into Azure AD, you need tooadd Ceridian Dayforce HCM from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="eb26a-125">**갤러리에서 Ceridian Dayforce HCM을 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="eb26a-125">**To add Ceridian Dayforce HCM from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="b41d4-125">**tooadd hello 갤러리에서 Ceridian Dayforce HCM hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="b41d4-125">**tooadd Ceridian Dayforce HCM from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="eb26a-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="b41d4-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Azure Active Directory 단추][1]
+    ![hello Azure Active Directory 단추][1]
 
-2. <span data-ttu-id="eb26a-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="eb26a-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="b41d4-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="b41d4-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-129">Then go too**All applications**.</span></span>
 
-    ![엔터프라이즈 응용 프로그램 블레이드][2]
+    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. <span data-ttu-id="eb26a-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="b41d4-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![새 응용 프로그램 단추][3]
+    ![hello 새 응용 프로그램 단추][3]
 
-4. <span data-ttu-id="eb26a-133">검색 상자에 **Ceridian Dayforce HCM**을 입력하고 결과 패널에서 **Ceridian Dayforce HCM**을 선택한 후 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-133">In the search box, type **Ceridian Dayforce HCM**, select **Ceridian Dayforce HCM** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="b41d4-133">Hello 검색 상자에 입력 **Ceridian Dayforce HCM**선택, **Ceridian Dayforce HCM** 결과 패널에서 클릭 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-133">In hello search box, type **Ceridian Dayforce HCM**, select **Ceridian Dayforce HCM** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![결과 목록의 Ceridian Dayforce HCM](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_addfromgallery.png)
+    ![Ceridian Dayforce HCM hello 결과 목록에서](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="eb26a-135">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="eb26a-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="b41d4-135">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="b41d4-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="eb26a-136">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Ceridian Dayforce HCM에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-136">In this section, you configure and test Azure AD single sign-on with Ceridian Dayforce HCM based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="b41d4-136">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Ceridian Dayforce HCM에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-136">In this section, you configure and test Azure AD single sign-on with Ceridian Dayforce HCM based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="eb26a-137">Single Sign-On이 작동하려면 Azure AD에서 사용자에 해당하는 Ceridian Dayforce HCM의 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-137">For single sign-on to work, Azure AD needs to know what the counterpart user in Ceridian Dayforce HCM is to a user in Azure AD.</span></span> <span data-ttu-id="eb26a-138">즉, Azure AD 사용자와 Ceridian Dayforce HCM의 관련 사용자 간에 연결이 형성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-138">In other words, a link relationship between an Azure AD user and the related user in Ceridian Dayforce HCM needs to be established.</span></span>
+<span data-ttu-id="b41d4-137">Single sign on toowork에 대 한 Azure AD는 tooknow Ceridian Dayforce HCM에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Ceridian Dayforce HCM is tooa user in Azure AD.</span></span> <span data-ttu-id="b41d4-138">즉, Azure AD 사용자 및 Ceridian Dayforce HCM에 hello 관련된 사용자 간 링크 관계를 설정할 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-138">In other words, a link relationship between an Azure AD user and hello related user in Ceridian Dayforce HCM needs toobe established.</span></span>
 
-<span data-ttu-id="eb26a-139">Ceridian Dayforce HCM에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-139">In Ceridian Dayforce HCM, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="b41d4-139">Ceridian Dayforce HCM에 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-139">In Ceridian Dayforce HCM, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="eb26a-140">Ceridian Dayforce HCM에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-140">To configure and test Azure AD single sign-on with Ceridian Dayforce HCM, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="b41d4-140">tooconfigure 및 Ceridian Dayforce HCM를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-140">tooconfigure and test Azure AD single sign-on with Ceridian Dayforce HCM, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="eb26a-141">**[Azure AD Single Sign-On 구성](#configure-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="eb26a-142">**[Azure AD 테스트 사용자 만들기](#create-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="eb26a-143">**[Ceridian Dayforce HCM 테스트 사용자 만들기](#create-a-ceridian-dayforce-hcm-test-user)** - Britta Simon의 Azure AD 표현과 연결되는 해당 사용자를 Ceridian Dayforce HCM에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-143">**[Create a Ceridian Dayforce HCM test user](#create-a-ceridian-dayforce-hcm-test-user)** - to have a counterpart of Britta Simon in Ceridian Dayforce HCM that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="eb26a-144">**[Azure AD 테스트 사용자 할당](#assign-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="eb26a-145">**[Single Sign-On 테스트](#test-single-sign-on)** - 구성이 작동하는지 여부를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="b41d4-141">**[Azure AD Single Sign-on 구성](#configure-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="b41d4-142">**[Azure AD 테스트를 만들고](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="b41d4-143">**[Ceridian Dayforce HCM 테스트 사용자 만들기](#create-a-ceridian-dayforce-hcm-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 Ceridian Dayforce HCM에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-143">**[Create a Ceridian Dayforce HCM test user](#create-a-ceridian-dayforce-hcm-test-user)** - toohave a counterpart of Britta Simon in Ceridian Dayforce HCM that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="b41d4-144">**[Azure AD hello 테스트 사용자를 할당](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="b41d4-145">**[Single sign on 테스트](#test-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="b41d4-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="eb26a-146">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="eb26a-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="b41d4-146">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="b41d4-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="eb26a-147">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Ceridian Dayforce HCM 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Ceridian Dayforce HCM application.</span></span>
+<span data-ttu-id="b41d4-147">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Ceridian Dayforce HCM 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Ceridian Dayforce HCM application.</span></span>
 
-<span data-ttu-id="eb26a-148">**Ceridian Dayforce HCM에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="eb26a-148">**To configure Azure AD single sign-on with Ceridian Dayforce HCM, perform the following steps:**</span></span>
+<span data-ttu-id="b41d4-148">**Ceridian Dayforce HCM와 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="b41d4-148">**tooconfigure Azure AD single sign-on with Ceridian Dayforce HCM, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="eb26a-149">Azure Portal의 **Ceridian Dayforce HCM** 응용 프로그램 통합 페이지에서 **Single Sign-on**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-149">In the Azure portal, on the **Ceridian Dayforce HCM** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="b41d4-149">Hello hello에 Azure 포털에서에서 **Ceridian Dayforce HCM** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-149">In hello Azure portal, on hello **Ceridian Dayforce HCM** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-On 구성 링크][4]
 
-2. <span data-ttu-id="eb26a-151">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="b41d4-151">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_samlbase.png)
 
-3. <span data-ttu-id="eb26a-153">**Ceridian Dayforce HCM 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-153">On the **Ceridian Dayforce HCM Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="b41d4-153">Hello에 **Ceridian Dayforce HCM 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-153">On hello **Ceridian Dayforce HCM Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_url.png)
     
-    <span data-ttu-id="eb26a-155">a.</span><span class="sxs-lookup"><span data-stu-id="eb26a-155">a.</span></span> <span data-ttu-id="eb26a-156">**로그온 URL** 텍스트 상자에 사용자가 Ceridian Dayforce HCM 응용 프로그램에 로그온하는 데 사용할 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-156">In the **Sign On URL** textbox, type the URL used by your users to sign-on to your Ceridian Dayforce HCM application.</span></span>
+    <span data-ttu-id="b41d4-155">a.</span><span class="sxs-lookup"><span data-stu-id="b41d4-155">a.</span></span> <span data-ttu-id="b41d4-156">Hello에 **로그온 URL** 텍스트 상자에 사용자에 대 한 toosign tooyour Ceridian Dayforce HCM 응용 프로그램에서 사용 하는 hello URL 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-156">In hello **Sign On URL** textbox, type hello URL used by your users toosign-on tooyour Ceridian Dayforce HCM application.</span></span>
     
-    | <span data-ttu-id="eb26a-157">Environment</span><span class="sxs-lookup"><span data-stu-id="eb26a-157">Environment</span></span> | <span data-ttu-id="eb26a-158">URL</span><span class="sxs-lookup"><span data-stu-id="eb26a-158">URL</span></span> |
+    | <span data-ttu-id="b41d4-157">Environment</span><span class="sxs-lookup"><span data-stu-id="b41d4-157">Environment</span></span> | <span data-ttu-id="b41d4-158">URL</span><span class="sxs-lookup"><span data-stu-id="b41d4-158">URL</span></span> |
     | :-- | :-- |
-    | <span data-ttu-id="eb26a-159">프로덕션</span><span class="sxs-lookup"><span data-stu-id="eb26a-159">For production</span></span> | `https://sso.dayforcehcm.com/<DayforcehcmNamespace>` |
-    | <span data-ttu-id="eb26a-160">테스트</span><span class="sxs-lookup"><span data-stu-id="eb26a-160">For test</span></span> | `https://ssotest.dayforcehcm.com/<DayforcehcmNamespace>` |
+    | <span data-ttu-id="b41d4-159">프로덕션</span><span class="sxs-lookup"><span data-stu-id="b41d4-159">For production</span></span> | `https://sso.dayforcehcm.com/<DayforcehcmNamespace>` |
+    | <span data-ttu-id="b41d4-160">테스트</span><span class="sxs-lookup"><span data-stu-id="b41d4-160">For test</span></span> | `https://ssotest.dayforcehcm.com/<DayforcehcmNamespace>` |
     
-    <span data-ttu-id="eb26a-161">b.</span><span class="sxs-lookup"><span data-stu-id="eb26a-161">b.</span></span> <span data-ttu-id="eb26a-162">**식별자** 텍스트 상자에서 다음 패턴을 사용하여 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-162">In the **Identifier** textbox, type a URL using the following pattern:</span></span>
+    <span data-ttu-id="b41d4-161">b.</span><span class="sxs-lookup"><span data-stu-id="b41d4-161">b.</span></span> <span data-ttu-id="b41d4-162">Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:</span><span class="sxs-lookup"><span data-stu-id="b41d4-162">In hello **Identifier** textbox, type a URL using hello following pattern:</span></span>
     
-    | <span data-ttu-id="eb26a-163">Environment</span><span class="sxs-lookup"><span data-stu-id="eb26a-163">Environment</span></span> | <span data-ttu-id="eb26a-164">URL</span><span class="sxs-lookup"><span data-stu-id="eb26a-164">URL</span></span> |
+    | <span data-ttu-id="b41d4-163">Environment</span><span class="sxs-lookup"><span data-stu-id="b41d4-163">Environment</span></span> | <span data-ttu-id="b41d4-164">URL</span><span class="sxs-lookup"><span data-stu-id="b41d4-164">URL</span></span> |
     | :-- | :-- |
-    | <span data-ttu-id="eb26a-165">프로덕션</span><span class="sxs-lookup"><span data-stu-id="eb26a-165">For production</span></span> | `https://ncpingfederate.dayforcehcm.com/sp` |
-    | <span data-ttu-id="eb26a-166">테스트</span><span class="sxs-lookup"><span data-stu-id="eb26a-166">For test</span></span> | `https://fs-test.dayforcehcm.com/sp` |
+    | <span data-ttu-id="b41d4-165">프로덕션</span><span class="sxs-lookup"><span data-stu-id="b41d4-165">For production</span></span> | `https://ncpingfederate.dayforcehcm.com/sp` |
+    | <span data-ttu-id="b41d4-166">테스트</span><span class="sxs-lookup"><span data-stu-id="b41d4-166">For test</span></span> | `https://fs-test.dayforcehcm.com/sp` |
     
-    <span data-ttu-id="eb26a-167">c.</span><span class="sxs-lookup"><span data-stu-id="eb26a-167">c.</span></span> <span data-ttu-id="eb26a-168">**회신 URL** 텍스트 상자에 Azure AD가 응답을 게시해야 하는 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-168">In the **Reply URL** textbox, type the URL used by Azure AD to post the response.</span></span>
+    <span data-ttu-id="b41d4-167">c.</span><span class="sxs-lookup"><span data-stu-id="b41d4-167">c.</span></span> <span data-ttu-id="b41d4-168">Hello에 **회신 URL** textbox, Azure AD toopost hello 응답에서 사용 하는 hello URL 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-168">In hello **Reply URL** textbox, type hello URL used by Azure AD toopost hello response.</span></span>
     
-    | <span data-ttu-id="eb26a-169">Environment</span><span class="sxs-lookup"><span data-stu-id="eb26a-169">Environment</span></span> | <span data-ttu-id="eb26a-170">URL</span><span class="sxs-lookup"><span data-stu-id="eb26a-170">URL</span></span> |
+    | <span data-ttu-id="b41d4-169">Environment</span><span class="sxs-lookup"><span data-stu-id="b41d4-169">Environment</span></span> | <span data-ttu-id="b41d4-170">URL</span><span class="sxs-lookup"><span data-stu-id="b41d4-170">URL</span></span> |
     | :-- | :-- |
-    | <span data-ttu-id="eb26a-171">프로덕션</span><span class="sxs-lookup"><span data-stu-id="eb26a-171">For production</span></span> | `https://ncpingfederate.dayforcehcm.com/sp/ACS.saml2` |
-    | <span data-ttu-id="eb26a-172">테스트</span><span class="sxs-lookup"><span data-stu-id="eb26a-172">For test</span></span> | `https://fs-test.dayforcehcm.com/sp/ACS.saml2` |
+    | <span data-ttu-id="b41d4-171">프로덕션</span><span class="sxs-lookup"><span data-stu-id="b41d4-171">For production</span></span> | `https://ncpingfederate.dayforcehcm.com/sp/ACS.saml2` |
+    | <span data-ttu-id="b41d4-172">테스트</span><span class="sxs-lookup"><span data-stu-id="b41d4-172">For test</span></span> | `https://fs-test.dayforcehcm.com/sp/ACS.saml2` |
     
     > [!NOTE] 
-    > <span data-ttu-id="eb26a-173">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-173">These values are not real.</span></span> <span data-ttu-id="eb26a-174">실제 식별자, 회신 URL 및 로그온 URL을 사용하여 이러한 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-174">Update these values with the actual Identifier, Reply URL and Sign-On URL.</span></span> <span data-ttu-id="eb26a-175">이러한 값을 얻으려면 [Ceridian Dayforce HCM 클라이언트 지원팀](https://www.ceridian.com/contact-us/index.html)에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="eb26a-175">Contact [Ceridian Dayforce HCM Client support team](https://www.ceridian.com/contact-us/index.html) to get these values.</span></span>
+    > <span data-ttu-id="b41d4-173">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-173">These values are not real.</span></span> <span data-ttu-id="b41d4-174">이러한 항목을 업데이트 식별자, 회신 URL 및 로그온 URL 실제 hello로 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-174">Update these values with hello actual Identifier, Reply URL and Sign-On URL.</span></span> <span data-ttu-id="b41d4-175">연락처 [Ceridian Dayforce HCM 클라이언트 지원 팀](https://www.ceridian.com/contact-us/index.html) tooget 이러한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-175">Contact [Ceridian Dayforce HCM Client support team](https://www.ceridian.com/contact-us/index.html) tooget these values.</span></span>
 
-4. <span data-ttu-id="eb26a-176">**SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 메타데이터 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-176">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="b41d4-176">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello 메타 데이터 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-176">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
-    ![인증서 다운로드 링크](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_certificate.png) 
+    ![hello 인증서 다운로드 링크](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_certificate.png) 
 
-5. <span data-ttu-id="eb26a-178">Ceridian Dayforce HCM 응용 프로그램은 특정 형식의 SAML 어설션이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-178">Your Ceridian Dayforce HCM application expects the SAML assertions in a specific format.</span></span> <span data-ttu-id="eb26a-179">올바른 사용자 ID를 식별하려면 [Ceridian Dayforce HCM 팀](https://www.ceridian.com/contact-us/index.html)과 먼저 작업해 보세요.</span><span class="sxs-lookup"><span data-stu-id="eb26a-179">Work with [Ceridian Dayforce HCM support team](https://www.ceridian.com/contact-us/index.html) first to identify the correct user identifier.</span></span> <span data-ttu-id="eb26a-180">Microsoft는 사용자 식별자로 **"name"** 특성을 사용하도록 권장합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-180">Microsoft recommends using the **"name"** attribute as user identifier.</span></span> <span data-ttu-id="eb26a-181">응용 프로그램 통합 페이지의 **사용자 특성** 섹션에서 이러한 특성의 값을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-181">You can manage the values of these attributes from the **User Attributes** section on application integration page.</span></span> <span data-ttu-id="eb26a-182">다음 스크린샷은 이에 대한 예제를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-182">The following screenshot shows an example for this.</span></span>  
+5. <span data-ttu-id="b41d4-178">Ceridian Dayforce HCM 응용 프로그램에 특정 형식의 hello SAML 어설션 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-178">Your Ceridian Dayforce HCM application expects hello SAML assertions in a specific format.</span></span> <span data-ttu-id="b41d4-179">작업할 [Ceridian Dayforce HCM 지원 팀](https://www.ceridian.com/contact-us/index.html) 첫 번째 tooidentify hello 올바른 사용자 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-179">Work with [Ceridian Dayforce HCM support team](https://www.ceridian.com/contact-us/index.html) first tooidentify hello correct user identifier.</span></span> <span data-ttu-id="b41d4-180">Microsoft hello를 사용 하는 것이 좋습니다. **"name"** 사용자 식별자로는 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-180">Microsoft recommends using hello **"name"** attribute as user identifier.</span></span> <span data-ttu-id="b41d4-181">Hello에서 이러한 특성의 hello 값을 관리할 수 있습니다 **사용자 특성** 응용 프로그램 통합 페이지에서 섹션.</span><span class="sxs-lookup"><span data-stu-id="b41d4-181">You can manage hello values of these attributes from hello **User Attributes** section on application integration page.</span></span> <span data-ttu-id="b41d4-182">다음 스크린 샷 hello이에 대 한 예가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-182">hello following screenshot shows an example for this.</span></span>  
 
     ![Single Sign-on 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_07.png)
 
-6. <span data-ttu-id="eb26a-184">**Single sign-on** 대화 상자의 **사용자 특성** 섹션에서 위의 이미지에 표시된 것과 같이 SAML 토큰 특성을 구성하고 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-184">In the **User Attributes** section on the **Single sign-on** dialog, configure SAML token attribute as shown in the image above and perform the following steps:</span></span>
+6. <span data-ttu-id="b41d4-184">Hello에 **사용자 특성** hello 섹션 **Single sign on** 대화 상자에서 위의 hello 이미지에 나와 있는 것 처럼 SAML 토큰 특성을 구성 하 고 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-184">In hello **User Attributes** section on hello **Single sign-on** dialog, configure SAML token attribute as shown in hello image above and perform hello following steps:</span></span>
     
-    | <span data-ttu-id="eb26a-185">특성 이름</span><span class="sxs-lookup"><span data-stu-id="eb26a-185">Attribute Name</span></span>  | <span data-ttu-id="eb26a-186">특성 값</span><span class="sxs-lookup"><span data-stu-id="eb26a-186">Attribute Value</span></span> |
+    | <span data-ttu-id="b41d4-185">특성 이름</span><span class="sxs-lookup"><span data-stu-id="b41d4-185">Attribute Name</span></span>  | <span data-ttu-id="b41d4-186">특성 값</span><span class="sxs-lookup"><span data-stu-id="b41d4-186">Attribute Value</span></span> |
     | --------------- | -------------------- |    
-    | <span data-ttu-id="eb26a-187">name</span><span class="sxs-lookup"><span data-stu-id="eb26a-187">name</span></span>  | <span data-ttu-id="eb26a-188">user.extensionattribute2</span><span class="sxs-lookup"><span data-stu-id="eb26a-188">user.extensionattribute2</span></span> |    
+    | <span data-ttu-id="b41d4-187">name</span><span class="sxs-lookup"><span data-stu-id="b41d4-187">name</span></span>  | <span data-ttu-id="b41d4-188">user.extensionattribute2</span><span class="sxs-lookup"><span data-stu-id="b41d4-188">user.extensionattribute2</span></span> |    
 
-    <span data-ttu-id="eb26a-189">a.</span><span class="sxs-lookup"><span data-stu-id="eb26a-189">a.</span></span> <span data-ttu-id="eb26a-190">**특성 추가**를 클릭하여 **특성 추가** 대화 상자를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-190">Click **Add attribute** to open the **Add Attribute** dialog.</span></span>
+    <span data-ttu-id="b41d4-189">a.</span><span class="sxs-lookup"><span data-stu-id="b41d4-189">a.</span></span> <span data-ttu-id="b41d4-190">클릭 **특성 추가** tooopen hello **특성 추가** 대화 상자.</span><span class="sxs-lookup"><span data-stu-id="b41d4-190">Click **Add attribute** tooopen hello **Add Attribute** dialog.</span></span>
 
-    ![Single Sign-On 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_attribute_04.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_attribute_04.png)
 
     ![Single Sign-on 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_attribute_05.png)
     
-    <span data-ttu-id="eb26a-193">b.</span><span class="sxs-lookup"><span data-stu-id="eb26a-193">b.</span></span> <span data-ttu-id="eb26a-194">**이름** 텍스트 상자에서 해당 행에 표시된 특성 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-194">In the **Name** textbox, type the attribute name shown for that row.</span></span>
+    <span data-ttu-id="b41d4-193">b.</span><span class="sxs-lookup"><span data-stu-id="b41d4-193">b.</span></span> <span data-ttu-id="b41d4-194">Hello에 **이름** textbox, 해당 행에 대 한 표시 형식 hello 특성 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-194">In hello **Name** textbox, type hello attribute name shown for that row.</span></span>
 
-    <span data-ttu-id="eb26a-195">c.</span><span class="sxs-lookup"><span data-stu-id="eb26a-195">c.</span></span> <span data-ttu-id="eb26a-196">**값** 목록에서 구현에 사용할 사용자 특성을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-196">In the **Value** list, select the user attribute you want to use for your implementation.</span></span>
-    <span data-ttu-id="eb26a-197">예를 들어, EmployeeID를 고유한 사용자 식별자로 사용하고자 하고 ExtensionAttribute2에 특성 값을 저장했다면 **user.extensionattribute2**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-197">For example, if you want to use the EmployeeID as unique user identifier and you have stored the attribute value in the ExtensionAttribute2, then select **user.extensionattribute2**.</span></span>
+    <span data-ttu-id="b41d4-195">c.</span><span class="sxs-lookup"><span data-stu-id="b41d4-195">c.</span></span> <span data-ttu-id="b41d4-196">Hello에 **값** 목록, 선택 hello 사용자 특성을 toouse 구현 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-196">In hello **Value** list, select hello user attribute you want toouse for your implementation.</span></span>
+    <span data-ttu-id="b41d4-197">Toouse hello 고유한 사용자 식별자로 EmployeeID를 원하는 경우 ExtensionAttribute2 hello에 hello 특성 값을 저장 한 다음 선택 예를 들어 **user.extensionattribute2**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-197">For example, if you want toouse hello EmployeeID as unique user identifier and you have stored hello attribute value in hello ExtensionAttribute2, then select **user.extensionattribute2**.</span></span>
     
-    <span data-ttu-id="eb26a-198">d.</span><span class="sxs-lookup"><span data-stu-id="eb26a-198">d.</span></span> <span data-ttu-id="eb26a-199">**Ok**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-199">Click **Ok**.</span></span>
+    <span data-ttu-id="b41d4-198">d.</span><span class="sxs-lookup"><span data-stu-id="b41d4-198">d.</span></span> <span data-ttu-id="b41d4-199">**Ok**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-199">Click **Ok**.</span></span>
 
-7. <span data-ttu-id="eb26a-200">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-200">Click **Save** button.</span></span>
+7. <span data-ttu-id="b41d4-200">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-200">Click **Save** button.</span></span>
 
     ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_400.png)
     
-8. <span data-ttu-id="eb26a-202">**Ceridian Dayforce HCM 구성** 섹션에서 **Ceridian Dayforce HCM 구성**을 클릭하여 **로그인 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-202">On the **Ceridian Dayforce HCM Configuration** section, click **Configure Ceridian Dayforce HCM** to open **Configure sign-on** window.</span></span> <span data-ttu-id="eb26a-203">**빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-203">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+8. <span data-ttu-id="b41d4-202">Hello에 **Ceridian Dayforce HCM 구성** 섹션에서 클릭 **Ceridian Dayforce HCM 구성** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="b41d4-202">On hello **Ceridian Dayforce HCM Configuration** section, click **Configure Ceridian Dayforce HCM** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="b41d4-203">복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="b41d4-203">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Ceridian Dayforce HCM 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_configure.png) 
 
-9. <span data-ttu-id="eb26a-205">**Ceridian Dayforce HCM** 쪽에서 Single Sign-On을 구성하려면 다운로드한 **메타데이터 XML**, **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 [Ceridian Dayforce HCM 지원팀](https://www.ceridian.com/contact-us/index.html)으로 보내야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-205">To configure single sign-on on **Ceridian Dayforce HCM** side, you need to send the downloaded **Metadata XML** and **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** to [Ceridian Dayforce HCM support team](https://www.ceridian.com/contact-us/index.html).</span></span>
+9. <span data-ttu-id="b41d4-205">tooconfigure single sign on에서 **Ceridian Dayforce HCM** toosend hello 다운로드 해야 쪽에서는 **메타 데이터 XML** 및 **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** 너무[Ceridian Dayforce HCM 지원 팀](https://www.ceridian.com/contact-us/index.html)합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-205">tooconfigure single sign-on on **Ceridian Dayforce HCM** side, you need toosend hello downloaded **Metadata XML** and **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** too[Ceridian Dayforce HCM support team](https://www.ceridian.com/contact-us/index.html).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="eb26a-206">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-206">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="eb26a-207">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-207">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="eb26a-208">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-208">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="b41d4-206">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="b41d4-206">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="b41d4-207">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="b41d4-207">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="b41d4-208">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="b41d4-208">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="eb26a-209">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="eb26a-209">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="b41d4-209">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="b41d4-209">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="eb26a-210">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-210">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="b41d4-210">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-210">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![Azure AD 테스트 사용자 만들기][100]
 
-<span data-ttu-id="eb26a-212">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="eb26a-212">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="b41d4-212">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="b41d4-212">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="eb26a-213">Azure Portal의 왼쪽 창에서 **Azure Active Directory** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-213">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="b41d4-213">Hello hello 왼쪽된 창에서 Azure 포털에서에서 클릭 hello **Azure Active Directory** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-213">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Azure Active Directory 단추](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_01.png)
+    ![hello Azure Active Directory 단추](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="eb26a-215">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-215">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="b41d4-215">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹**, 클릭 하 고 **모든 사용자가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-215">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_02.png)
+    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="eb26a-217">**사용자** 대화 상자를 열려면 **모든 사용자** 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-217">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="b41d4-217">tooopen hello **사용자** 대화 상자를 클릭 **추가** hello hello 맨 **모든 사용자에 게** 대화 상자.</span><span class="sxs-lookup"><span data-stu-id="b41d4-217">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![추가 단추](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_03.png)
+    ![hello 추가 단추](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="eb26a-219">**사용자** 대화 상자에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-219">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="b41d4-219">Hello에 **사용자** 대화 상자를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-219">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![사용자 대화 상자](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_04.png)
+    ![hello 사용자 대화 상자](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="eb26a-221">a.</span><span class="sxs-lookup"><span data-stu-id="eb26a-221">a.</span></span> <span data-ttu-id="eb26a-222">**이름** 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-222">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="b41d4-221">a.</span><span class="sxs-lookup"><span data-stu-id="b41d4-221">a.</span></span> <span data-ttu-id="b41d4-222">Hello에 **이름** 상자에서 입력 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-222">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="eb26a-223">b.</span><span class="sxs-lookup"><span data-stu-id="eb26a-223">b.</span></span> <span data-ttu-id="eb26a-224">**사용자 이름** 상자에 사용자인 Britta Simon의 전자 메일 주소를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-224">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="b41d4-223">b.</span><span class="sxs-lookup"><span data-stu-id="b41d4-223">b.</span></span> <span data-ttu-id="b41d4-224">Hello에 **사용자 이름** 상자의 사용자 Britta Simon의 hello 전자 메일 주소를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-224">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="eb26a-225">c.</span><span class="sxs-lookup"><span data-stu-id="eb26a-225">c.</span></span> <span data-ttu-id="eb26a-226">**암호 표시** 확인란을 선택한 다음 **암호** 상자에 표시된 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-226">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="b41d4-225">c.</span><span class="sxs-lookup"><span data-stu-id="b41d4-225">c.</span></span> <span data-ttu-id="b41d4-226">선택 hello **암호 표시** 확인란을 선택한 다음 hello에 표시 되는 hello 값 기록 **암호** 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-226">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="eb26a-227">d.</span><span class="sxs-lookup"><span data-stu-id="eb26a-227">d.</span></span> <span data-ttu-id="eb26a-228">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-228">Click **Create**.</span></span>
+    <span data-ttu-id="b41d4-227">d.</span><span class="sxs-lookup"><span data-stu-id="b41d4-227">d.</span></span> <span data-ttu-id="b41d4-228">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-228">Click **Create**.</span></span>
  
-### <a name="create-a-ceridian-dayforce-hcm-test-user"></a><span data-ttu-id="eb26a-229">Ceridian Dayforce HCM 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="eb26a-229">Create a Ceridian Dayforce HCM test user</span></span>
+### <a name="create-a-ceridian-dayforce-hcm-test-user"></a><span data-ttu-id="b41d4-229">Ceridian Dayforce HCM 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="b41d4-229">Create a Ceridian Dayforce HCM test user</span></span>
 
-<span data-ttu-id="eb26a-230">이 섹션은 Ceridian Dayforce HCM에서 Britta Simon이라는 사용자를 만들기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-230">The objective of this section is to create a user called Britta Simon in Ceridian Dayforce HCM.</span></span> <span data-ttu-id="eb26a-231">Ceridian Dayforce HCM 응용 프로그램에서 사용자를 추가하려면 [Ceridian Dayforce HCM 지원팀](https://www.ceridian.com/contact-us/index.html)과 함께 작업하세요.</span><span class="sxs-lookup"><span data-stu-id="eb26a-231">Work with the [Ceridian Dayforce HCM support team](https://www.ceridian.com/contact-us/index.html) to get users added in the Ceridian Dayforce HCM application.</span></span> 
+<span data-ttu-id="b41d4-230">hello이이 섹션의 목적은 toocreate Britta Simon Ceridian Dayforce HCM에서 호출 하는 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-230">hello objective of this section is toocreate a user called Britta Simon in Ceridian Dayforce HCM.</span></span> <span data-ttu-id="b41d4-231">Hello 작업할 [Ceridian Dayforce HCM 지원 팀](https://www.ceridian.com/contact-us/index.html) tooget 사용자 hello Ceridian Dayforce HCM 응용 프로그램에에서 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-231">Work with hello [Ceridian Dayforce HCM support team](https://www.ceridian.com/contact-us/index.html) tooget users added in hello Ceridian Dayforce HCM application.</span></span> 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="eb26a-232">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="eb26a-232">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="b41d4-232">Azure AD hello 테스트 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-232">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="eb26a-233">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Ceridian Dayforce HCM에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-233">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Ceridian Dayforce HCM.</span></span>
+<span data-ttu-id="b41d4-233">이 섹션에서는 액세스 tooCeridian Dayforce HCM 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-233">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooCeridian Dayforce HCM.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="eb26a-235">**Britta Simon을 Ceridian Dayforce HCM에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="eb26a-235">**To assign Britta Simon to Ceridian Dayforce HCM, perform the following steps:**</span></span>
+<span data-ttu-id="b41d4-235">**tooassign Britta Simon tooCeridian Dayforce HCM hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="b41d4-235">**tooassign Britta Simon tooCeridian Dayforce HCM, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="eb26a-236">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-236">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="b41d4-236">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-236">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="eb26a-238">응용 프로그램 목록에서 **Ceridian Dayforce HCM**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-238">In the applications list, select **Ceridian Dayforce HCM**.</span></span>
+2. <span data-ttu-id="b41d4-238">Hello 응용 프로그램 목록에서 선택 **Ceridian Dayforce HCM**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-238">In hello applications list, select **Ceridian Dayforce HCM**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_app.png) 
 
-3. <span data-ttu-id="eb26a-240">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-240">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="b41d4-240">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-240">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="eb26a-242">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-242">Click **Add** button.</span></span> <span data-ttu-id="eb26a-243">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-243">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="b41d4-242">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-242">Click **Add** button.</span></span> <span data-ttu-id="b41d4-243">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-243">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="eb26a-245">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-245">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="b41d4-245">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-245">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="eb26a-246">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-246">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="b41d4-246">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-246">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="eb26a-247">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-247">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="b41d4-247">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-247">Click **Assign** button on **Add Assignment** dialog.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="eb26a-248">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="eb26a-248">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="b41d4-248">Azure AD hello 테스트 사용자를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-248">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="eb26a-249">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Ceridian Dayforce HCM에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-249">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Ceridian Dayforce HCM.</span></span>
+<span data-ttu-id="b41d4-249">이 섹션에서는 액세스 tooCeridian Dayforce HCM 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-249">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooCeridian Dayforce HCM.</span></span>
 
-![사용자 역할 할당][200] 
+![Hello 사용자 역할 할당][200] 
 
-<span data-ttu-id="eb26a-251">**Britta Simon을 Ceridian Dayforce HCM에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="eb26a-251">**To assign Britta Simon to Ceridian Dayforce HCM, perform the following steps:**</span></span>
+<span data-ttu-id="b41d4-251">**tooassign Britta Simon tooCeridian Dayforce HCM hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="b41d4-251">**tooassign Britta Simon tooCeridian Dayforce HCM, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="eb26a-252">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-252">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="b41d4-252">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-252">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="eb26a-254">응용 프로그램 목록에서 **Ceridian Dayforce HCM**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-254">In the applications list, select **Ceridian Dayforce HCM**.</span></span>
+2. <span data-ttu-id="b41d4-254">Hello 응용 프로그램 목록에서 선택 **Ceridian Dayforce HCM**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-254">In hello applications list, select **Ceridian Dayforce HCM**.</span></span>
 
-    ![응용 프로그램 목록의 Ceridian Dayforce HCM 링크](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_app.png)  
+    ![hello 응용 프로그램 목록에서 hello Ceridian Dayforce HCM 링크](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_app.png)  
 
-3. <span data-ttu-id="eb26a-256">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-256">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="b41d4-256">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-256">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    !["사용자 및 그룹" 링크][202]
+    ![hello "사용자 및 그룹" 링크][202]
 
-4. <span data-ttu-id="eb26a-258">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-258">Click **Add** button.</span></span> <span data-ttu-id="eb26a-259">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-259">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="b41d4-258">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-258">Click **Add** button.</span></span> <span data-ttu-id="b41d4-259">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-259">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![할당 추가 창][203]
+    ![hello 할당 추가 창][203]
 
-5. <span data-ttu-id="eb26a-261">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-261">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="b41d4-261">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-261">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="eb26a-262">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-262">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="b41d4-262">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-262">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="eb26a-263">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-263">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="b41d4-263">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-263">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="eb26a-264">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="eb26a-264">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="b41d4-264">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="b41d4-264">Test single sign-on</span></span>
 
-<span data-ttu-id="eb26a-265">이 섹션은 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트하기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-265">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>  
-<span data-ttu-id="eb26a-266">액세스 패널에서 Ceridian Dayforce HCM 타일을 클릭하면 Ceridian Dayforce HCM 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="eb26a-266">When you click the Ceridian Dayforce HCM tile in the Access Panel, you should get automatically signed-on to your Ceridian Dayforce HCM application.</span></span> 
+<span data-ttu-id="b41d4-265">이 섹션의 hello 목적은 tootest 액세스 패널을 hello 사용 하 여 Azure AD single sign-on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-265">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>  
+<span data-ttu-id="b41d4-266">Hello 액세스 패널에서에서 hello Ceridian Dayforce HCM 타일을 클릭할 때 자동으로 로그온 tooyour Ceridian Dayforce HCM 응용 프로그램을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b41d4-266">When you click hello Ceridian Dayforce HCM tile in hello Access Panel, you should get automatically signed-on tooyour Ceridian Dayforce HCM application.</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="eb26a-267">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="eb26a-267">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="b41d4-267">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="b41d4-267">Additional resources</span></span>
 
-* [<span data-ttu-id="eb26a-268">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="eb26a-268">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="eb26a-269">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="eb26a-269">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="b41d4-268">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="b41d4-268">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="b41d4-269">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="b41d4-269">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

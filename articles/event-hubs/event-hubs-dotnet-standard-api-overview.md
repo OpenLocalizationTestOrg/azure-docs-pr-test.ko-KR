@@ -1,5 +1,5 @@
 ---
-title: "Azure Event Hubs .NET Standard API 개요 | Microsoft Docs"
+title: "hello Azure 이벤트 허브.NET 표준 Api의 aaaOverview | Microsoft Docs"
 description: ".NET Standard API 개요"
 services: event-hubs
 documentationcenter: na
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: eea682c40cd415b383a8b2f0004a5f3648e2f01f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c97acecb35b69039e06ded7203c75fca41ce98f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="event-hubs-net-standard-api-overview"></a><span data-ttu-id="c933f-103">Event Hubs .NET Standard API 개요</span><span class="sxs-lookup"><span data-stu-id="c933f-103">Event Hubs .NET Standard API overview</span></span>
-<span data-ttu-id="c933f-104">이 문서는 핵심 Event Hubs .NET Standard 클라이언트 API 일부를 요약해서 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-104">This article summarizes some of the key Event Hubs .NET Standard client APIs.</span></span> <span data-ttu-id="c933f-105">현재 다음과 같은 두 개의 .NET Standard 클라이언트 라이브러리가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-105">There are currently two .NET Standard client libraries:</span></span>
-* [<span data-ttu-id="c933f-106">Microsoft.Azure.EventHubs</span><span class="sxs-lookup"><span data-stu-id="c933f-106">Microsoft.Azure.EventHubs</span></span>](/dotnet/api/microsoft.azure.eventhubs)
-  *  <span data-ttu-id="c933f-107">이 라이브러리는 모든 기본 런타임 작업을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-107">This library provides all basic runtime operations.</span></span>
-* [<span data-ttu-id="c933f-108">Microsoft.Azure.EventHubs.Processor</span><span class="sxs-lookup"><span data-stu-id="c933f-108">Microsoft.Azure.EventHubs.Processor</span></span>](/dotnet/api/microsoft.azure.eventhubs.processor)
-  * <span data-ttu-id="c933f-109">이 라이브러리는 처리된 이벤트를 추적하는 추가 기능을 추가하며 이벤트 허브에서 읽는 가장 쉬운 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-109">This library adds additional functionality that allows for keeping track of processed events, and is the easiest way to read from an event hub.</span></span>
+# <a name="event-hubs-net-standard-api-overview"></a><span data-ttu-id="62e07-103">Event Hubs .NET Standard API 개요</span><span class="sxs-lookup"><span data-stu-id="62e07-103">Event Hubs .NET Standard API overview</span></span>
+<span data-ttu-id="62e07-104">이 문서 hello 키 이벤트 허브 표준.NET 클라이언트 Api의 일부를 요약 합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-104">This article summarizes some of hello key Event Hubs .NET Standard client APIs.</span></span> <span data-ttu-id="62e07-105">현재 다음과 같은 두 개의 .NET Standard 클라이언트 라이브러리가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-105">There are currently two .NET Standard client libraries:</span></span>
+* [<span data-ttu-id="62e07-106">Microsoft.Azure.EventHubs</span><span class="sxs-lookup"><span data-stu-id="62e07-106">Microsoft.Azure.EventHubs</span></span>](/dotnet/api/microsoft.azure.eventhubs)
+  *  <span data-ttu-id="62e07-107">이 라이브러리는 모든 기본 런타임 작업을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-107">This library provides all basic runtime operations.</span></span>
+* [<span data-ttu-id="62e07-108">Microsoft.Azure.EventHubs.Processor</span><span class="sxs-lookup"><span data-stu-id="62e07-108">Microsoft.Azure.EventHubs.Processor</span></span>](/dotnet/api/microsoft.azure.eventhubs.processor)
+  * <span data-ttu-id="62e07-109">이 라이브러리는 처리 된 이벤트는 추적에 대 한 허용 하는 이벤트 허브에서 가장 쉬운 방법은 tooread hello 추가 기능을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-109">This library adds additional functionality that allows for keeping track of processed events, and is hello easiest way tooread from an event hub.</span></span>
 
-## <a name="event-hubs-client"></a><span data-ttu-id="c933f-110">Event Hubs 클라이언트</span><span class="sxs-lookup"><span data-stu-id="c933f-110">Event Hubs client</span></span>
-<span data-ttu-id="c933f-111">[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient)는 이벤트를 전송하고, 수신기를 만들고, 런타임 정보를 얻는 데 사용하는 기본 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-111">[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) is the primary object you use to send events, create receivers, and to get run-time information.</span></span> <span data-ttu-id="c933f-112">이 클라이언트는 특정 이벤트 허브에 연결되며 Event Hubs 끝점에 대한 새 연결을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-112">This client is linked to a particular event hub, and creates a new connection to the Event Hubs endpoint.</span></span>
+## <a name="event-hubs-client"></a><span data-ttu-id="62e07-110">Event Hubs 클라이언트</span><span class="sxs-lookup"><span data-stu-id="62e07-110">Event Hubs client</span></span>
+<span data-ttu-id="62e07-111">[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) hello toosend 이벤트를 사용 하는 기본 개체가 만들어져 수신자, 그리고 tooget 런타임 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-111">[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) is hello primary object you use toosend events, create receivers, and tooget run-time information.</span></span> <span data-ttu-id="62e07-112">이 클라이언트는 연결 된 tooa 특정 이벤트 허브 하 고 새 연결 toohello 이벤트 허브 끝점을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-112">This client is linked tooa particular event hub, and creates a new connection toohello Event Hubs endpoint.</span></span>
 
-### <a name="create-an-event-hubs-client"></a><span data-ttu-id="c933f-113">이벤트 허브 클라이언트 만들기</span><span class="sxs-lookup"><span data-stu-id="c933f-113">Create an Event Hubs client</span></span>
-<span data-ttu-id="c933f-114">[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) 개체는 연결 문자열에서 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-114">An [EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) object is created from a connection string.</span></span> <span data-ttu-id="c933f-115">새 클라이언트를 인스턴스화하는 가장 간단한 방법은 다음 예제에 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-115">The simplest way to instantiate a new client is shown in the following example:</span></span>
+### <a name="create-an-event-hubs-client"></a><span data-ttu-id="62e07-113">이벤트 허브 클라이언트 만들기</span><span class="sxs-lookup"><span data-stu-id="62e07-113">Create an Event Hubs client</span></span>
+<span data-ttu-id="62e07-114">[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) 개체는 연결 문자열에서 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-114">An [EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) object is created from a connection string.</span></span> <span data-ttu-id="62e07-115">다음 예제는 hello hello 가장 간단한 방법은 tooinstantiate 새 클라이언트를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-115">hello simplest way tooinstantiate a new client is shown in hello following example:</span></span>
 
 ```csharp
 var eventHubClient = EventHubClient.CreateFromConnectionString("{Event Hubs connection string}");
 ```
 
-<span data-ttu-id="c933f-116">프로그래밍 방식으로 연결 문자열을 편집하려면 [EventHubsConnectionStringBuilder](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) 클래스를 사용하고 연결 문자열을 [EventHubClient.CreateFromConnectionString](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_)에 대한 매개 변수로 전달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-116">To programmatically edit the connection string, you can use the [EventHubsConnectionStringBuilder](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) class, and pass the connection string as a parameter to [EventHubClient.CreateFromConnectionString](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_).</span></span>
+<span data-ttu-id="62e07-116">tooprogrammatically hello 연결 문자열을 편집, hello를 사용할 수 있습니다 [EventHubsConnectionStringBuilder](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) 클래스를 매개 변수로 너무 hello 연결 문자열을 전달[EventHubClient.CreateFromConnectionString ](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_).</span><span class="sxs-lookup"><span data-stu-id="62e07-116">tooprogrammatically edit hello connection string, you can use hello [EventHubsConnectionStringBuilder](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) class, and pass hello connection string as a parameter too[EventHubClient.CreateFromConnectionString](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_).</span></span>
 
 ```csharp
 var connectionStringBuilder = new EventHubsConnectionStringBuilder("{Event Hubs connection string}")
@@ -48,8 +48,8 @@ var connectionStringBuilder = new EventHubsConnectionStringBuilder("{Event Hubs 
 var eventHubClient = EventHubClient.CreateFromConnectionString(connectionStringBuilder.ToString());
 ```
 
-### <a name="send-events"></a><span data-ttu-id="c933f-117">이벤트 보내기</span><span class="sxs-lookup"><span data-stu-id="c933f-117">Send events</span></span>
-<span data-ttu-id="c933f-118">이벤트 허브에 이벤트를 전송하려면 [EventData](/dotnet/api/microsoft.azure.eventhubs.eventdata) 클래스를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-118">To send events to an event hub, use the [EventData](/dotnet/api/microsoft.azure.eventhubs.eventdata) class.</span></span> <span data-ttu-id="c933f-119">본문은 `byte` 배열 또는 `byte` 배열 세그먼트여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-119">The body must be a `byte` array, or a `byte` array segment.</span></span>
+### <a name="send-events"></a><span data-ttu-id="62e07-117">이벤트 보내기</span><span class="sxs-lookup"><span data-stu-id="62e07-117">Send events</span></span>
+<span data-ttu-id="62e07-118">toosend 이벤트 tooan 이벤트 허브를 사용 하 여 hello [EventData](/dotnet/api/microsoft.azure.eventhubs.eventdata) 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-118">toosend events tooan event hub, use hello [EventData](/dotnet/api/microsoft.azure.eventhubs.eventdata) class.</span></span> <span data-ttu-id="62e07-119">hello 본문 이어야 합니다는 `byte` 배열 또는 `byte` 배열 세그먼트입니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-119">hello body must be a `byte` array, or a `byte` array segment.</span></span>
 
 ```csharp
 // Create a new EventData object by encoding a string as a byte array
@@ -60,33 +60,33 @@ data.Properties.Add("Type", "Informational");
 await eventHubClient.SendAsync(data);
 ```
 
-### <a name="receive-events"></a><span data-ttu-id="c933f-120">이벤트 수신</span><span class="sxs-lookup"><span data-stu-id="c933f-120">Receive events</span></span>
-<span data-ttu-id="c933f-121">Event Hubs에서 이벤트를 수신하는 권장 방법은 오프셋을 자동으로 추적하는 기능과 파티션 정보를 제공하는 [Event Processor Host](#event-processor-host-apis)를 사용하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-121">The recommended way to receive events from Event Hubs is using the [Event Processor Host](#event-processor-host-apis), which provides functionality to automatically keep track of offset, and partition information.</span></span> <span data-ttu-id="c933f-122">그러나 핵심 Event Hubs 라이브러리의 유연성을 활용하여 이벤트를 수신할 수 있는 상황도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-122">However, there are certain situations in which you may want to use the flexibility of the core Event Hubs library to receive events.</span></span>
+### <a name="receive-events"></a><span data-ttu-id="62e07-120">이벤트 수신</span><span class="sxs-lookup"><span data-stu-id="62e07-120">Receive events</span></span>
+<span data-ttu-id="62e07-121">이벤트 허브에서 방식으로 tooreceive 이벤트 권장 hello hello를 사용 하는 [이벤트 프로세서 호스트](#event-processor-host-apis), tooautomatically 기능을 제공 하는 추적, 오프셋 및 파티션 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-121">hello recommended way tooreceive events from Event Hubs is using hello [Event Processor Host](#event-processor-host-apis), which provides functionality tooautomatically keep track of offset, and partition information.</span></span> <span data-ttu-id="62e07-122">그러나 hello 코어 이벤트 허브 라이브러리 tooreceive 이벤트의 toouse hello 유연성 사용할 수 있는 특정 상황이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-122">However, there are certain situations in which you may want toouse hello flexibility of hello core Event Hubs library tooreceive events.</span></span>
 
-#### <a name="create-a-receiver"></a><span data-ttu-id="c933f-123">수신기 만들기</span><span class="sxs-lookup"><span data-stu-id="c933f-123">Create a receiver</span></span>
-<span data-ttu-id="c933f-124">수신기는 특정 파티션에 연결되어 있으므로 이벤트 허브에서 모든 이벤트를 수신하려면 여러 인스턴스를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-124">Receivers are tied to specific partitions, so in order to receive all events in an event hub, you will need to create multiple instances.</span></span> <span data-ttu-id="c933f-125">일반적으로 말해서 파티션 ID를 하드 코드하는 것보다는 프로그래밍 방식으로 파티션 정보를 얻는 것이 더 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-125">Generally speaking, it is a good practice to get the partition information programatically, rather than hard-coding the partition ids.</span></span> <span data-ttu-id="c933f-126">이렇게 하기 위해 [GetRuntimeInformationAsync](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync) 메서드를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-126">In order to do so, you can use the [GetRuntimeInformationAsync](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync) method.</span></span>
+#### <a name="create-a-receiver"></a><span data-ttu-id="62e07-123">수신기 만들기</span><span class="sxs-lookup"><span data-stu-id="62e07-123">Create a receiver</span></span>
+<span data-ttu-id="62e07-124">수신기는 동 점된 toospecific 파티션, 하므로 순서 tooreceive 모든 이벤트에서 이벤트 허브, toocreate 여러 인스턴스가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-124">Receivers are tied toospecific partitions, so in order tooreceive all events in an event hub, you will need toocreate multiple instances.</span></span> <span data-ttu-id="62e07-125">일반적으로 것이 좋습니다 tooget hello 파티션 정보를 프로그래밍 방식으로 hello 파티션 id를 하드 코딩 하는 대신 합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-125">Generally speaking, it is a good practice tooget hello partition information programatically, rather than hard-coding hello partition ids.</span></span> <span data-ttu-id="62e07-126">toodo 하므로 순서, hello를 사용할 수 있습니다 [GetRuntimeInformationAsync](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync) 메서드.</span><span class="sxs-lookup"><span data-stu-id="62e07-126">In order toodo so, you can use hello [GetRuntimeInformationAsync](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync) method.</span></span>
 
 ```csharp
-// Create a list to keep track of the receivers
+// Create a list tookeep track of hello receivers
 var receivers = new List<PartitionReceiver>();
-// Use the eventHubClient created above to get the runtime information
+// Use hello eventHubClient created above tooget hello runtime information
 var runTimeInformation = await eventHubClient.GetRuntimeInformationAsync();
-// Loop over the resulting partition ids
+// Loop over hello resulting partition ids
 foreach (var partitionId in runTimeInformation.PartitionIds)
 {
-    // Create the receiver
+    // Create hello receiver
     var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, PartitionReceiver.EndOfStream);
-    // Add the receiver to the list
+    // Add hello receiver toohello list
     receivers.Add(receiver);
 }
 ```
 
-<span data-ttu-id="c933f-127">이벤트는 이벤트 허브에서 절대 제거되지 않으므로(만료되기만 함) 적절한 시작 지점을 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-127">Since events are never removed from an event hub (and only expire), you need to specify the proper starting point.</span></span> <span data-ttu-id="c933f-128">다음 예제에서는 가능한 조합을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-128">The following example shows possible combinations.</span></span>
+<span data-ttu-id="62e07-127">이벤트 이벤트 허브에서 제거 되지 않습니다 (및만 만료) 있으므로 toospecify hello 적절 한 시작 지점이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-127">Since events are never removed from an event hub (and only expire), you need toospecify hello proper starting point.</span></span> <span data-ttu-id="62e07-128">hello 다음 예제에서는 가능한 조합을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-128">hello following example shows possible combinations.</span></span>
 
 ```csharp
-// partitionId is assumed to come from GetRuntimeInformationAsync()
+// partitionId is assumed toocome from GetRuntimeInformationAsync()
 
-// Using the constant PartitionReceiver.EndOfStream only receives all messages from this point forward.
+// Using hello constant PartitionReceiver.EndOfStream only receives all messages from this point forward.
 var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, PartitionReceiver.EndOfStream);
 
 // All messages available
@@ -96,30 +96,30 @@ var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGr
 var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, DateTime.Now.AddDays(-1));
 ```
 
-#### <a name="consume-an-event"></a><span data-ttu-id="c933f-129">이벤트 소비</span><span class="sxs-lookup"><span data-stu-id="c933f-129">Consume an event</span></span>
+#### <a name="consume-an-event"></a><span data-ttu-id="62e07-129">이벤트 소비</span><span class="sxs-lookup"><span data-stu-id="62e07-129">Consume an event</span></span>
 ```csharp
-// Receive a maximum of 100 messages in this call to ReceiveAsync
+// Receive a maximum of 100 messages in this call tooReceiveAsync
 var ehEvents = await receiver.ReceiveAsync(100);
 // ReceiveAsync can return null if there are no messages
 if (ehEvents != null)
 {
-    // Since ReceiveAsync can return more than a single event you will need a loop to process
+    // Since ReceiveAsync can return more than a single event you will need a loop tooprocess
     foreach (var ehEvent in ehEvents)
     {
-        // Decode the byte array segment
+        // Decode hello byte array segment
         var message = UnicodeEncoding.UTF8.GetString(ehEvent.Body.Array);
-        // Load the custom property that we set in the send example
+        // Load hello custom property that we set in hello send example
         var customType = ehEvent.Properties["Type"];
         // Implement processing logic here
     }
 }       
 ```
 
-## <a name="event-processor-host-apis"></a><span data-ttu-id="c933f-130">이벤트 프로세서 호스트 API</span><span class="sxs-lookup"><span data-stu-id="c933f-130">Event Processor Host APIs</span></span>
-<span data-ttu-id="c933f-131">이러한 API는 사용 가능한 작업자에 걸쳐 파티션을 분산하여 사용할 수 없게 되는 작업자 프로세스에 복구 성능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-131">These APIs provide resiliency to worker processes that may become unavailable, by distributing partitions across available workers.</span></span>
+## <a name="event-processor-host-apis"></a><span data-ttu-id="62e07-130">이벤트 프로세서 호스트 API</span><span class="sxs-lookup"><span data-stu-id="62e07-130">Event Processor Host APIs</span></span>
+<span data-ttu-id="62e07-131">이러한 Api는 사용 가능한 작업자 파티션에 배포 하 여 사용할 수 없게 될 수 있는 복원 력 tooworker 프로세스를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-131">These APIs provide resiliency tooworker processes that may become unavailable, by distributing partitions across available workers.</span></span>
 
 ```csharp
-// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+// Checkpointing is done within hello SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
 
 // Read these connection strings from a secure location
 var ehConnectionString = "{Event Hubs connection string}";
@@ -137,11 +137,11 @@ var eventProcessorHost = new EventProcessorHost(
 // Start/register an EventProcessorHost
 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-// Disposes of the Event Processor Host
+// Disposes of hello Event Processor Host
 await eventProcessorHost.UnregisterEventProcessorAsync();
 ```
 
-<span data-ttu-id="c933f-132">다음은 [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor)의 구현 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-132">The following is a sample implementation of the [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor).</span></span>
+<span data-ttu-id="62e07-132">hello 다음은 샘플의 구현 hello [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor)합니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-132">hello following is a sample implementation of hello [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor).</span></span>
 
 ```csharp
 public class SimpleEventProcessor : IEventProcessor
@@ -177,13 +177,13 @@ public class SimpleEventProcessor : IEventProcessor
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="c933f-133">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c933f-133">Next steps</span></span>
-<span data-ttu-id="c933f-134">이벤트 허브 시나리오에 대한 자세한 내용은 다음 링크를 방문하십시오.</span><span class="sxs-lookup"><span data-stu-id="c933f-134">To learn more about Event Hubs scenarios, visit these links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="62e07-133">다음 단계</span><span class="sxs-lookup"><span data-stu-id="62e07-133">Next steps</span></span>
+<span data-ttu-id="62e07-134">다음이 링크를 방문 하는 이벤트 허브 시나리오에 대해 자세히 toolearn:</span><span class="sxs-lookup"><span data-stu-id="62e07-134">toolearn more about Event Hubs scenarios, visit these links:</span></span>
 
-* [<span data-ttu-id="c933f-135">Azure 이벤트 허브 정의</span><span class="sxs-lookup"><span data-stu-id="c933f-135">What is Azure Event Hubs?</span></span>](event-hubs-what-is-event-hubs.md)
-* [<span data-ttu-id="c933f-136">사용할 수 있는 Event Hubs API</span><span class="sxs-lookup"><span data-stu-id="c933f-136">Available Event Hubs apis</span></span>](event-hubs-api-overview.md)
+* [<span data-ttu-id="62e07-135">Azure 이벤트 허브 정의</span><span class="sxs-lookup"><span data-stu-id="62e07-135">What is Azure Event Hubs?</span></span>](event-hubs-what-is-event-hubs.md)
+* [<span data-ttu-id="62e07-136">사용할 수 있는 Event Hubs API</span><span class="sxs-lookup"><span data-stu-id="62e07-136">Available Event Hubs apis</span></span>](event-hubs-api-overview.md)
 
-<span data-ttu-id="c933f-137">.NET API 참조는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c933f-137">The .NET API references are here:</span></span>
+<span data-ttu-id="62e07-137">hello.NET API 참조는 여기 있습니다.</span><span class="sxs-lookup"><span data-stu-id="62e07-137">hello .NET API references are here:</span></span>
 
-* [<span data-ttu-id="c933f-138">Microsoft.Azure.EventHubs</span><span class="sxs-lookup"><span data-stu-id="c933f-138">Microsoft.Azure.EventHubs</span></span>](/dotnet/api/microsoft.azure.eventhubs)
-* [<span data-ttu-id="c933f-139">Microsoft.Azure.EventHubs.Processor</span><span class="sxs-lookup"><span data-stu-id="c933f-139">Microsoft.Azure.EventHubs.Processor</span></span>](/dotnet/api/microsoft.azure.eventhubs.processor)
+* [<span data-ttu-id="62e07-138">Microsoft.Azure.EventHubs</span><span class="sxs-lookup"><span data-stu-id="62e07-138">Microsoft.Azure.EventHubs</span></span>](/dotnet/api/microsoft.azure.eventhubs)
+* [<span data-ttu-id="62e07-139">Microsoft.Azure.EventHubs.Processor</span><span class="sxs-lookup"><span data-stu-id="62e07-139">Microsoft.Azure.EventHubs.Processor</span></span>](/dotnet/api/microsoft.azure.eventhubs.processor)

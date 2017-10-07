@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management의 응용 프로그램 템플릿 | Microsoft Docs"
-description: "Azure API Management의 개발자 포털에서 응용 프로그램 페이지의 콘텐츠를 사용자 지정하는 방법을 알아봅니다."
+title: "Azure API 관리에서 aaaApplication 템플릿 | Microsoft Docs"
+description: "Toocustomize hello Azure API 관리 개발자 포털에 hello 응용 프로그램 페이지의 내용을 hello 하는 방법에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 6d2d44465800219f16866a621d4822614ac9e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4dc078be7163b047ca2e640a9065ba9e5ba709e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="application-templates-in-azure-api-management"></a><span data-ttu-id="9d8dc-103">Azure API Management의 응용 프로그램 템플릿</span><span class="sxs-lookup"><span data-stu-id="9d8dc-103">Application templates in Azure API Management</span></span>
-<span data-ttu-id="9d8dc-104">Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사용하여 개발자 포털 페이지의 콘텐츠를 사용자 지정하는 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-104">Azure API Management provides you the ability to customize the content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="9d8dc-105">이러한 템플릿에서 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers) 및 제공된 지역화 [String 리소스](api-management-template-resources.md#strings), [Glyph 리소스](api-management-template-resources.md#glyphs) 및 [Page 컨트롤](api-management-page-controls.md)의 집합과 같은 선택한 편집기를 사용하여 필요에 따라 페이지 콘텐츠를 유연하게 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and the editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility to configure the content of the pages as you see fit using these templates.</span></span>  
+# <a name="application-templates-in-azure-api-management"></a><span data-ttu-id="d600b-103">Azure API Management의 응용 프로그램 템플릿</span><span class="sxs-lookup"><span data-stu-id="d600b-103">Application templates in Azure API Management</span></span>
+<span data-ttu-id="d600b-104">Azure API 관리 개발자 포털 페이지 콘텐츠를 구성 하는 템플릿 집합을 사용 하 여 콘텐츠의 toocustomize hello 기능 hello를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-104">Azure API Management provides you hello ability toocustomize hello content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="d600b-105">사용 하 여 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 hello 편집기의 선택한와 같은 [디자이너에 대 한 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), 제공 된 집합을 지역화 [문자열 리소스](api-management-template-resources.md#strings), [ 문자 모양 리소스](api-management-template-resources.md#glyphs), 및 [컨트롤 페이지](api-management-page-controls.md), 이러한 템플릿을 사용 하 여 나타나며 hello 페이지의 뛰어난 유연성 tooconfigure hello 내용을 백업이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and hello editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility tooconfigure hello content of hello pages as you see fit using these templates.</span></span>  
   
- <span data-ttu-id="9d8dc-106">이 섹션의 템플릿을 사용하여 개발자 포털의 응용 프로그램 페이지의 콘텐츠를 사용자 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-106">The templates in this section allow you to customize the content of the Application pages in the developer portal.</span></span>  
+ <span data-ttu-id="d600b-106">이 섹션의 hello 템플릿을 hello 개발자 포털에서 toocustomize hello 내용의 hello 응용 프로그램 페이지를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-106">hello templates in this section allow you toocustomize hello content of hello Application pages in hello developer portal.</span></span>  
   
--   [<span data-ttu-id="9d8dc-107">응용 프로그램 목록</span><span class="sxs-lookup"><span data-stu-id="9d8dc-107">Application list</span></span>](#ProductList)  
+-   [<span data-ttu-id="d600b-107">응용 프로그램 목록</span><span class="sxs-lookup"><span data-stu-id="d600b-107">Application list</span></span>](#ProductList)  
   
--   [<span data-ttu-id="9d8dc-108">응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="9d8dc-108">Application</span></span>](#Application)  
+-   [<span data-ttu-id="d600b-108">응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="d600b-108">Application</span></span>](#Application)  
   
 > [!NOTE]
->  <span data-ttu-id="9d8dc-109">다음 문서에는 샘플 기본 템플릿이 포함되어 있지만 지속적인 향상으로 인해 변경될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-109">Sample default templates are included in the following documentation, but are subject to change due to continuous improvements.</span></span> <span data-ttu-id="9d8dc-110">원하는 개별 템플릿으로 이동하여 개발자 포털에서 라이브 기본 템플릿을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-110">You can view the live default templates in the developer portal by navigating to the desired individual templates.</span></span> <span data-ttu-id="9d8dc-111">템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-111">For more information about working with templates, see [How to customize the API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
+>  <span data-ttu-id="d600b-109">예제 기본 서식 파일 설명서, hello에 포함 되었지만 이러한 toocontinuous 개선 인해 주체 toochange 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-109">Sample default templates are included in hello following documentation, but are subject toochange due toocontinuous improvements.</span></span> <span data-ttu-id="d600b-110">원하는 toohello 개별 서식 파일을 이동 하 여 hello 라이브 기본 템플릿 hello 개발자 포털에서 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-110">You can view hello live default templates in hello developer portal by navigating toohello desired individual templates.</span></span> <span data-ttu-id="d600b-111">서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-111">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
   
-##  <span data-ttu-id="9d8dc-112"><a name="ProductList"></a> 응용 프로그램 목록</span><span class="sxs-lookup"><span data-stu-id="9d8dc-112"><a name="ProductList"></a> Application list</span></span>  
- <span data-ttu-id="9d8dc-113">**응용 프로그램 목록** 템플릿을 사용하여 개발자 포털에서 응용 프로그램 목록 페이지의 본문을 사용자 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-113">The **Application list** template allows you to customize the body of the application list page in the developer portal.</span></span>  
+##  <span data-ttu-id="d600b-112"><a name="ProductList"></a> 응용 프로그램 목록</span><span class="sxs-lookup"><span data-stu-id="d600b-112"><a name="ProductList"></a> Application list</span></span>  
+ <span data-ttu-id="d600b-113">hello **응용 프로그램 목록** 템플릿을 사용 하 여 hello 응용 프로그램 목록 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-113">hello **Application list** template allows you toocustomize hello body of hello application list page in hello developer portal.</span></span>  
   
- <span data-ttu-id="9d8dc-114">![응용 프로그램 목록 페이지 개발자 포털 템플릿](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM 응용 프로그램 목록 페이지 개발자 포털 템플릿")</span><span class="sxs-lookup"><span data-stu-id="9d8dc-114">![Application List Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM Application List Page Developer Portal Templates")</span></span>  
+ <span data-ttu-id="d600b-114">![응용 프로그램 목록 페이지 개발자 포털 템플릿](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM 응용 프로그램 목록 페이지 개발자 포털 템플릿")</span><span class="sxs-lookup"><span data-stu-id="d600b-114">![Application List Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM Application List Page Developer Portal Templates")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="9d8dc-115">기본 템플릿</span><span class="sxs-lookup"><span data-stu-id="9d8dc-115">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="d600b-115">기본 템플릿</span><span class="sxs-lookup"><span data-stu-id="d600b-115">Default template</span></span>  
   
 ```xml  
 <div class="row">  
@@ -69,20 +69,20 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="9d8dc-116">컨트롤</span><span class="sxs-lookup"><span data-stu-id="9d8dc-116">Controls</span></span>  
- <span data-ttu-id="9d8dc-117">`Product list` 템플릿에서 다음 [페이지 컨트롤](api-management-page-controls.md)을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-117">The `Product list` template may use the following [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="d600b-116">컨트롤</span><span class="sxs-lookup"><span data-stu-id="d600b-116">Controls</span></span>  
+ <span data-ttu-id="d600b-117">hello `Product list` 템플릿 hello 다음을 사용할 수 있습니다 [컨트롤 페이지](api-management-page-controls.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-117">hello `Product list` template may use hello following [page controls](api-management-page-controls.md).</span></span>  
   
--   [<span data-ttu-id="9d8dc-118">paging-control</span><span class="sxs-lookup"><span data-stu-id="9d8dc-118">paging-control</span></span>](api-management-page-controls.md#paging-control)  
+-   [<span data-ttu-id="d600b-118">paging-control</span><span class="sxs-lookup"><span data-stu-id="d600b-118">paging-control</span></span>](api-management-page-controls.md#paging-control)  
   
-### <a name="data-model"></a><span data-ttu-id="9d8dc-119">데이터 모델</span><span class="sxs-lookup"><span data-stu-id="9d8dc-119">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="d600b-119">데이터 모델</span><span class="sxs-lookup"><span data-stu-id="d600b-119">Data model</span></span>  
   
-|<span data-ttu-id="9d8dc-120">속성</span><span class="sxs-lookup"><span data-stu-id="9d8dc-120">Property</span></span>|<span data-ttu-id="9d8dc-121">형식</span><span class="sxs-lookup"><span data-stu-id="9d8dc-121">Type</span></span>|<span data-ttu-id="9d8dc-122">설명</span><span class="sxs-lookup"><span data-stu-id="9d8dc-122">Description</span></span>|  
+|<span data-ttu-id="d600b-120">속성</span><span class="sxs-lookup"><span data-stu-id="d600b-120">Property</span></span>|<span data-ttu-id="d600b-121">형식</span><span class="sxs-lookup"><span data-stu-id="d600b-121">Type</span></span>|<span data-ttu-id="d600b-122">설명</span><span class="sxs-lookup"><span data-stu-id="d600b-122">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="9d8dc-123">페이징</span><span class="sxs-lookup"><span data-stu-id="9d8dc-123">Paging</span></span>|<span data-ttu-id="9d8dc-124">[페이징](api-management-template-data-model-reference.md#Paging) 엔터티입니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-124">[Paging](api-management-template-data-model-reference.md#Paging) entity.</span></span>|<span data-ttu-id="9d8dc-125">응용 프로그램 컬렉션에 대한 페이징 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-125">The paging information for the applications collection.</span></span>|  
-|<span data-ttu-id="9d8dc-126">응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="9d8dc-126">Applications</span></span>|<span data-ttu-id="9d8dc-127">[응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티의 컬렉션입니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-127">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="9d8dc-128">현재 사용자에게 표시되는 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-128">The applications visible to the current user.</span></span>|  
-|<span data-ttu-id="9d8dc-129">CategoryName</span><span class="sxs-lookup"><span data-stu-id="9d8dc-129">CategoryName</span></span>|<span data-ttu-id="9d8dc-130">string</span><span class="sxs-lookup"><span data-stu-id="9d8dc-130">string</span></span>|<span data-ttu-id="9d8dc-131">응용 프로그램의 범주입니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-131">The category of application.</span></span>|  
+|<span data-ttu-id="d600b-123">페이징</span><span class="sxs-lookup"><span data-stu-id="d600b-123">Paging</span></span>|<span data-ttu-id="d600b-124">[페이징](api-management-template-data-model-reference.md#Paging) 엔터티입니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-124">[Paging](api-management-template-data-model-reference.md#Paging) entity.</span></span>|<span data-ttu-id="d600b-125">hello hello 응용 프로그램 컬렉션에 대 한 페이징 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-125">hello paging information for hello applications collection.</span></span>|  
+|<span data-ttu-id="d600b-126">응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="d600b-126">Applications</span></span>|<span data-ttu-id="d600b-127">[응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티의 컬렉션입니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-127">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="d600b-128">hello 응용 프로그램 표시 toohello 현재 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-128">hello applications visible toohello current user.</span></span>|  
+|<span data-ttu-id="d600b-129">CategoryName</span><span class="sxs-lookup"><span data-stu-id="d600b-129">CategoryName</span></span>|<span data-ttu-id="d600b-130">string</span><span class="sxs-lookup"><span data-stu-id="d600b-130">string</span></span>|<span data-ttu-id="d600b-131">응용 프로그램의 hello 범주입니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-131">hello category of application.</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="9d8dc-132">샘플 템플릿 데이터</span><span class="sxs-lookup"><span data-stu-id="9d8dc-132">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="d600b-132">샘플 템플릿 데이터</span><span class="sxs-lookup"><span data-stu-id="d600b-132">Sample template data</span></span>  
   
 ```json  
 {  
@@ -133,12 +133,12 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="9d8dc-133"><a name="Application"></a> 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="9d8dc-133"><a name="Application"></a> Application</span></span>  
- <span data-ttu-id="9d8dc-134">**응용 프로그램** 템플릿을 사용하여 개발자 포털에서 응용 프로그램 페이지의 본문을 사용자 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-134">The **Application** template allows you to customize the body of the application page in the developer portal.</span></span>  
+##  <span data-ttu-id="d600b-133"><a name="Application"></a> 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="d600b-133"><a name="Application"></a> Application</span></span>  
+ <span data-ttu-id="d600b-134">hello **응용 프로그램** 템플릿을 사용 하 여 hello 응용 프로그램 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-134">hello **Application** template allows you toocustomize hello body of hello application page in hello developer portal.</span></span>  
   
- <span data-ttu-id="9d8dc-135">![응용 프로그램 페이지 개발자 포털 템플릿](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM 응용 프로그램 페이지 개발자 포털 템플릿")</span><span class="sxs-lookup"><span data-stu-id="9d8dc-135">![Application Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM Application Page Developer Portal Templates")</span></span>  
+ <span data-ttu-id="d600b-135">![응용 프로그램 페이지 개발자 포털 템플릿](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM 응용 프로그램 페이지 개발자 포털 템플릿")</span><span class="sxs-lookup"><span data-stu-id="d600b-135">![Application Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM Application Page Developer Portal Templates")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="9d8dc-136">기본 템플릿</span><span class="sxs-lookup"><span data-stu-id="9d8dc-136">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="d600b-136">기본 템플릿</span><span class="sxs-lookup"><span data-stu-id="d600b-136">Default template</span></span>  
   
 ```xml  
 <h2>{{title}}</h2>  
@@ -176,13 +176,13 @@ ms.lasthandoff: 07/11/2017
   
 ```  
   
-### <a name="controls"></a><span data-ttu-id="9d8dc-137">컨트롤</span><span class="sxs-lookup"><span data-stu-id="9d8dc-137">Controls</span></span>  
- <span data-ttu-id="9d8dc-138">`Application` 템플릿에서는 [컨트롤 페이지](api-management-page-controls.md) 사용을 허용하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-138">The `Application` template does not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="d600b-137">컨트롤</span><span class="sxs-lookup"><span data-stu-id="d600b-137">Controls</span></span>  
+ <span data-ttu-id="d600b-138">hello `Application` 서식 파일의 hello 사용 하지 못하도록 [컨트롤 페이지](api-management-page-controls.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-138">hello `Application` template does not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-### <a name="data-model"></a><span data-ttu-id="9d8dc-139">데이터 모델</span><span class="sxs-lookup"><span data-stu-id="9d8dc-139">Data model</span></span>  
- <span data-ttu-id="9d8dc-140">[응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티입니다.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-140">[Application](api-management-template-data-model-reference.md#Application) entity.</span></span>  
+### <a name="data-model"></a><span data-ttu-id="d600b-139">데이터 모델</span><span class="sxs-lookup"><span data-stu-id="d600b-139">Data model</span></span>  
+ <span data-ttu-id="d600b-140">[응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티입니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-140">[Application](api-management-template-data-model-reference.md#Application) entity.</span></span>  
   
-### <a name="sample-template-data"></a><span data-ttu-id="9d8dc-141">샘플 템플릿 데이터</span><span class="sxs-lookup"><span data-stu-id="9d8dc-141">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="d600b-141">샘플 템플릿 데이터</span><span class="sxs-lookup"><span data-stu-id="d600b-141">Sample template data</span></span>  
   
 ```json  
 {  
@@ -219,5 +219,5 @@ ms.lasthandoff: 07/11/2017
 }  
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="9d8dc-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9d8dc-142">Next steps</span></span>
-<span data-ttu-id="9d8dc-143">템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](api-management-developer-portal-templates.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9d8dc-143">For more information about working with templates, see [How to customize the API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d600b-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d600b-142">Next steps</span></span>
+<span data-ttu-id="d600b-143">서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](api-management-developer-portal-templates.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d600b-143">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "Ambari REST API를 사용하여 Hadoop 모니터링 및 관리 - Azure HDInsight | Microsoft Docs"
-description: "Ambari를 사용하여 Azure HDInsight에서 Hadoop 클러스터를 모니터링하고 관리하는 방법에 대해 알아봅니다. 이 문서에서는 HDInsight 클러스터에 포함된 Ambari REST API를 사용하는 방법을 배웁니다."
+title: "aaaMonitor Ambari REST api-Azure HDInsight Hadoop 관리 | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Ambari toomonitor 및 Azure HDInsight의 Hadoop 클러스터를 관리 합니다. 이 문서에서는 toouse hello Ambari REST API에 포함 된 HDInsight 클러스터 방법을 배웁니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,74 +16,74 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 7960d83bce22d4f671d61e9aaf55561bc24308f8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1866a77c8e402231bccbcfba7174253aca41339b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-hdinsight-clusters-by-using-the-ambari-rest-api"></a><span data-ttu-id="c5b51-104">Ambari REST API를 사용하여 HDInsight 클러스터 관리</span><span class="sxs-lookup"><span data-stu-id="c5b51-104">Manage HDInsight clusters by using the Ambari REST API</span></span>
+# <a name="manage-hdinsight-clusters-by-using-hello-ambari-rest-api"></a><span data-ttu-id="b8b3d-104">Hello Ambari REST API를 사용 하 여 HDInsight 클러스터를 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-104">Manage HDInsight clusters by using hello Ambari REST API</span></span>
 
 [!INCLUDE [ambari-selector](../../includes/hdinsight-ambari-selector.md)]
 
-<span data-ttu-id="c5b51-105">Ambari REST API를 사용하여 Azure HDInsight에서 Hadoop 클러스터를 관리하고 모니터링하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-105">Learn how to use the Ambari REST API to manage and monitor Hadoop clusters in Azure HDInsight.</span></span>
+<span data-ttu-id="b8b3d-105">Toouse Ambari REST API toomanage hello 하 고 Azure HDInsight의 Hadoop 클러스터를 모니터링 하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-105">Learn how toouse hello Ambari REST API toomanage and monitor Hadoop clusters in Azure HDInsight.</span></span>
 
-<span data-ttu-id="c5b51-106">Apache Ambari는 손쉬운 웹 UI 및 REST API 사용을 제공하여 Hadoop 클러스터의 관리 및 모니터링을 간소화합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-106">Apache Ambari simplifies the management and monitoring of a Hadoop cluster by providing an easy to use web UI and REST API.</span></span> <span data-ttu-id="c5b51-107">Ambari는 Linux 운영 체제를 사용하는 HDInsight 클러스터에 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-107">Ambari is included on HDInsight clusters that use the Linux operating system.</span></span> <span data-ttu-id="c5b51-108">Ambari를 사용하여 클러스터를 모니터링하고 구성을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-108">You can use Ambari to monitor the cluster and make configuration changes.</span></span>
+<span data-ttu-id="b8b3d-106">Apache Ambari hello 관리 및 쉽게 toouse 웹 UI 및 REST API를 제공 하 여 Hadoop 클러스터의 모니터링을 간소화 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-106">Apache Ambari simplifies hello management and monitoring of a Hadoop cluster by providing an easy toouse web UI and REST API.</span></span> <span data-ttu-id="b8b3d-107">Ambari는 hello Linux 운영 체제를 사용 하는 HDInsight 클러스터에 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-107">Ambari is included on HDInsight clusters that use hello Linux operating system.</span></span> <span data-ttu-id="b8b3d-108">Ambari toomonitor hello 클러스터를 사용할 수 있으며 구성을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-108">You can use Ambari toomonitor hello cluster and make configuration changes.</span></span>
 
-## <span data-ttu-id="c5b51-109"><a id="whatis"></a>Ambari 정의</span><span class="sxs-lookup"><span data-stu-id="c5b51-109"><a id="whatis"></a>What is Ambari</span></span>
+## <span data-ttu-id="b8b3d-109"><a id="whatis"></a>Ambari 정의</span><span class="sxs-lookup"><span data-stu-id="b8b3d-109"><a id="whatis"></a>What is Ambari</span></span>
 
-<span data-ttu-id="c5b51-110">[Apache Ambari](http://ambari.apache.org)는 Hadoop 클러스터를 프로비저닝, 관리 및 모니터링하는 데 사용되는 웹 UI를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-110">[Apache Ambari](http://ambari.apache.org) provides web UI that can be used to provision, manage, and monitor Hadoop clusters.</span></span> <span data-ttu-id="c5b51-111">개발자는 [Ambari REST API](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)를 사용하여 자신의 응용 프로그램에 이러한 기능을 통합할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-111">Developers can integrate these capabilities into their applications by using the [Ambari REST APIs](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).</span></span>
+<span data-ttu-id="b8b3d-110">[Apache Ambari](http://ambari.apache.org) 웹 사용된 tooprovision 수, 관리 및 Hadoop 클러스터를 모니터링할 수 있는 UI를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-110">[Apache Ambari](http://ambari.apache.org) provides web UI that can be used tooprovision, manage, and monitor Hadoop clusters.</span></span> <span data-ttu-id="b8b3d-111">개발자 hello를 사용 하 여 응용 프로그램에 이러한 기능을 통합할 수 [Ambari REST Api](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-111">Developers can integrate these capabilities into their applications by using hello [Ambari REST APIs](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).</span></span>
 
-<span data-ttu-id="c5b51-112">Ambari는 Linux 기반 HDInsight 클러스터를 기본으로 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-112">Ambari is provided by default with Linux-based HDInsight clusters.</span></span>
+<span data-ttu-id="b8b3d-112">Ambari는 Linux 기반 HDInsight 클러스터를 기본으로 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-112">Ambari is provided by default with Linux-based HDInsight clusters.</span></span>
 
-## <a name="how-to-use-the-ambari-rest-api"></a><span data-ttu-id="c5b51-113">Ambari REST API 사용 방법</span><span class="sxs-lookup"><span data-stu-id="c5b51-113">How to use the Ambari REST API</span></span>
-
-> [!IMPORTANT]
-> <span data-ttu-id="c5b51-114">이 문서의 정보 및 예제에는 Linux 운영 체제를 사용하는 HDInsight 클러스터가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-114">The information and examples in this document require an HDInsight cluster that uses Linux operating system.</span></span> <span data-ttu-id="c5b51-115">자세한 내용은 [HDInsight 시작](hdinsight-hadoop-linux-tutorial-get-started.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c5b51-115">For more information, see [Get started with HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
-
-<span data-ttu-id="c5b51-116">이 문서의 예제는 Bourne 셸(bash) 및 PowerShell 둘 다로 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-116">The examples in this document are provided for both the Bourne shell (bash) and PowerShell.</span></span> <span data-ttu-id="c5b51-117">bash 예제는 GNU bash 4.3.11로 테스트되었으나 다른 Unix 셸에서도 작동됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-117">The bash examples were tested with GNU bash 4.3.11, but should work with other Unix shells.</span></span> <span data-ttu-id="c5b51-118">PowerShell 예제는 PowerShell 5.0으로 테스트되었으나 PowerShell 3.0 이상에서 작동해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-118">The PowerShell examples were tested with PowerShell 5.0, but should work with PowerShell 3.0 or higher.</span></span>
-
-<span data-ttu-id="c5b51-119">__Bourne 셸__(Bash)을 사용하는 경우에는 다음이 설치되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-119">If using the __Bourne shell__ (Bash), you must have the following installed:</span></span>
-
-* <span data-ttu-id="c5b51-120">[cURL](http://curl.haxx.se/): cURL은 명령줄에서 REST API와 함께 작동하도록 사용할 수 있는 유틸리티입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-120">[cURL](http://curl.haxx.se/): cURL is a utility that can be used to work with REST APIs from the command line.</span></span> <span data-ttu-id="c5b51-121">이 문서에서 Ambari REST API와 통신하는데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-121">In this document, it is used to communicate with the Ambari REST API.</span></span>
-
-<span data-ttu-id="c5b51-122">Bash 또는 PowerShell을 사용할 경우 [jq](https://stedolan.github.io/jq/)도 설치되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-122">Whether using Bash or PowerShell, you must also have [jq](https://stedolan.github.io/jq/) installed.</span></span> <span data-ttu-id="c5b51-123">Jq는 JSON 문서를 사용하기 위한 유틸리티입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-123">Jq is a utility for working with JSON documents.</span></span> <span data-ttu-id="c5b51-124">이 유틸리티는 **모든** Bash 예제와 PowerShell 예제 중 **하나**에서 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-124">It is used in **all** the Bash examples, and **one** of the PowerShell examples.</span></span>
-
-### <a name="base-uri-for-ambari-rest-api"></a><span data-ttu-id="c5b51-125">Ambari REST API의 기본 URI</span><span class="sxs-lookup"><span data-stu-id="c5b51-125">Base URI for Ambari Rest API</span></span>
-
-<span data-ttu-id="c5b51-126">HDInsight에서 Ambari REST API의 기본 URI는 https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME이며, 여기서 **CLUSTERNAME**은 클러스터 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-126">The base URI for the Ambari REST API on HDInsight is https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, where **CLUSTERNAME** is the name of your cluster.</span></span>
+## <a name="how-toouse-hello-ambari-rest-api"></a><span data-ttu-id="b8b3d-113">어떻게 toouse hello Ambari REST API</span><span class="sxs-lookup"><span data-stu-id="b8b3d-113">How toouse hello Ambari REST API</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="c5b51-127">URI의 FQDN(정규화된 도메인 이름) 부분에 있는 클러스터 이름(CLUSTERNAME.azurehdinsight.net)은 대/소문자를 구분하지 않지만 URI의 다른 항목은 대/소문자를 구분합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-127">While the cluster name in the fully qualified domain name (FQDN) part of the URI (CLUSTERNAME.azurehdinsight.net) is case-insensitive, other occurrences in the URI are case-sensitive.</span></span> <span data-ttu-id="c5b51-128">예를 들어 클러스터 이름이 `MyCluster`인 경우 올바른 URI는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-128">For example, if your cluster is named `MyCluster`, the following are valid URIs:</span></span>
+> <span data-ttu-id="b8b3d-114">hello 정보 및이 설명서의 예제에는 Linux 운영 체제를 사용 하는 HDInsight 클러스터가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-114">hello information and examples in this document require an HDInsight cluster that uses Linux operating system.</span></span> <span data-ttu-id="b8b3d-115">자세한 내용은 [HDInsight 시작](hdinsight-hadoop-linux-tutorial-get-started.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-115">For more information, see [Get started with HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
+
+<span data-ttu-id="b8b3d-116">이 문서에 hello 예제는 hello Bourne 셸 (bash) 및 PowerShell 모두에 대해 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-116">hello examples in this document are provided for both hello Bourne shell (bash) and PowerShell.</span></span> <span data-ttu-id="b8b3d-117">예제 GNU를 사용 하 여 테스트 된 hello bash 4.3.11를 이용한 적 하지만 다른 Unix 셸 함께 사용할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-117">hello bash examples were tested with GNU bash 4.3.11, but should work with other Unix shells.</span></span> <span data-ttu-id="b8b3d-118">hello PowerShell 예에서는 PowerShell 5.0과 함께 테스트 된 제외한 및 PowerShell 3.0 이상이 작동 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-118">hello PowerShell examples were tested with PowerShell 5.0, but should work with PowerShell 3.0 or higher.</span></span>
+
+<span data-ttu-id="b8b3d-119">Hello를 사용 하는 경우 __Bourne 셸__ (Bash) hello 다음이 설치 되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-119">If using hello __Bourne shell__ (Bash), you must have hello following installed:</span></span>
+
+* <span data-ttu-id="b8b3d-120">[cURL](http://curl.haxx.se/): cURL는 hello 명령줄에서 REST Api를 사용 하는 toowork 일 수 있는 유틸리티입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-120">[cURL](http://curl.haxx.se/): cURL is a utility that can be used toowork with REST APIs from hello command line.</span></span> <span data-ttu-id="b8b3d-121">이 문서에서 사용 되는 toocommunicate hello Ambari REST API로입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-121">In this document, it is used toocommunicate with hello Ambari REST API.</span></span>
+
+<span data-ttu-id="b8b3d-122">Bash 또는 PowerShell을 사용할 경우 [jq](https://stedolan.github.io/jq/)도 설치되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-122">Whether using Bash or PowerShell, you must also have [jq](https://stedolan.github.io/jq/) installed.</span></span> <span data-ttu-id="b8b3d-123">Jq는 JSON 문서를 사용하기 위한 유틸리티입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-123">Jq is a utility for working with JSON documents.</span></span> <span data-ttu-id="b8b3d-124">사용 되는 **모든** Bash 예제 hello 및 **하나의** hello PowerShell 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-124">It is used in **all** hello Bash examples, and **one** of hello PowerShell examples.</span></span>
+
+### <a name="base-uri-for-ambari-rest-api"></a><span data-ttu-id="b8b3d-125">Ambari REST API의 기본 URI</span><span class="sxs-lookup"><span data-stu-id="b8b3d-125">Base URI for Ambari Rest API</span></span>
+
+<span data-ttu-id="b8b3d-126">hello hello HDInsight의 Ambari REST API에 대 한 기본 URI는 https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, 여기서 **CLUSTERNAME** hello 클러스터 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-126">hello base URI for hello Ambari REST API on HDInsight is https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, where **CLUSTERNAME** is hello name of your cluster.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="b8b3d-127">Hello에서 hello 클러스터 이름을 정규화 하는 동안 URI (CLUSTERNAME.azurehdinsight.net) hello의 도메인 이름 (FQDN) 부분은 대/소문자 구분, hello URI에서에서 발생할 수 있는 다른는 대/소문자 구분입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-127">While hello cluster name in hello fully qualified domain name (FQDN) part of hello URI (CLUSTERNAME.azurehdinsight.net) is case-insensitive, other occurrences in hello URI are case-sensitive.</span></span> <span data-ttu-id="b8b3d-128">예를 들어, 클러스터의 이름이 `MyCluster`, hello 다음은 유효한 Uri:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-128">For example, if your cluster is named `MyCluster`, hello following are valid URIs:</span></span>
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 >
 > `https://MyCluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 > 
-> <span data-ttu-id="c5b51-129">이름의 두 번째 항목에 대/소문자가 잘못되었기 때문에 다음 URI는 오류를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-129">The following URIs return an error because the second occurrence of the name is not the correct case.</span></span>
+> <span data-ttu-id="b8b3d-129">대/소문자를 수정 하는 hello 다음 Uri는 hello hello 이름의 두 번째 항목은 hello 하지 때문에 오류를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-129">hello following URIs return an error because hello second occurrence of hello name is not hello correct case.</span></span>
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/mycluster`
 >
 > `https://MyCluster.azurehdinsight.net/api/v1/clusters/mycluster`
 
-### <a name="authentication"></a><span data-ttu-id="c5b51-130">인증</span><span class="sxs-lookup"><span data-stu-id="c5b51-130">Authentication</span></span>
+### <a name="authentication"></a><span data-ttu-id="b8b3d-130">인증</span><span class="sxs-lookup"><span data-stu-id="b8b3d-130">Authentication</span></span>
 
-<span data-ttu-id="c5b51-131">HTTPS를 요구하는 HDInsight에서 Ambari로 연결</span><span class="sxs-lookup"><span data-stu-id="c5b51-131">Connecting to Ambari on HDInsight requires HTTPS.</span></span> <span data-ttu-id="c5b51-132">클러스터 만들기 중 입력한 관리자 계정 이름(기본값은 **admin**) 및 암호를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-132">Use the admin account name (the default is **admin**) and password you provided during cluster creation.</span></span>
+<span data-ttu-id="b8b3d-131">HTTPS 필요 tooAmbari HDInsight에 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-131">Connecting tooAmbari on HDInsight requires HTTPS.</span></span> <span data-ttu-id="b8b3d-132">사용 하 여 hello 관리자 계정 이름 (hello 기본값은 **admin**) 및 클러스터를 만드는 동안 지정한 암호입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-132">Use hello admin account name (hello default is **admin**) and password you provided during cluster creation.</span></span>
 
-## <a name="examples-authentication-and-parsing-json"></a><span data-ttu-id="c5b51-133">예제: 인증 및 JSON 구문 분석</span><span class="sxs-lookup"><span data-stu-id="c5b51-133">Examples: Authentication and parsing JSON</span></span>
+## <a name="examples-authentication-and-parsing-json"></a><span data-ttu-id="b8b3d-133">예제: 인증 및 JSON 구문 분석</span><span class="sxs-lookup"><span data-stu-id="b8b3d-133">Examples: Authentication and parsing JSON</span></span>
 
-<span data-ttu-id="c5b51-134">다음 예제에서는 기본 Ambari REST API에 대해 GET 요청을 수행하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-134">The following examples demonstrate how to make a GET request against the base Ambari REST API:</span></span>
+<span data-ttu-id="b8b3d-134">다음 예제는 hello toomake hello에 대 한 GET 요청의 Ambari REST API를 기반 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-134">hello following examples demonstrate how toomake a GET request against hello base Ambari REST API:</span></span>
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="c5b51-135">이 문서의 Bash 예제는 다음과 같이 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-135">The Bash examples in this document make the following assumptions:</span></span>
+> <span data-ttu-id="b8b3d-135">이 설명서의 hello Bash 예제 hello 다음 가정을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-135">hello Bash examples in this document make hello following assumptions:</span></span>
 >
-> * <span data-ttu-id="c5b51-136">클러스터의 로그인 이름 기본값은 `admin`입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-136">The login name for the cluster is the default value of `admin`.</span></span>
-> * <span data-ttu-id="c5b51-137">`$PASSWORD`에는 HDInsight 로그인 명령에 대한 암호가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-137">`$PASSWORD` contains the password for the HDInsight login command.</span></span> <span data-ttu-id="c5b51-138">`PASSWORD='mypassword'`를 사용하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-138">You can set this value by using `PASSWORD='mypassword'`.</span></span>
-> * <span data-ttu-id="c5b51-139">`$CLUSTERNAME`에는 클러스터의 이름이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-139">`$CLUSTERNAME` contains the name of the cluster.</span></span> <span data-ttu-id="c5b51-140">`set CLUSTERNAME='clustername'`을 사용하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-140">You can set this value by using `set CLUSTERNAME='clustername'`</span></span>
+> * <span data-ttu-id="b8b3d-136">hello 클러스터에 대 한 로그인 이름을 hello의 hello 기본값은 `admin`합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-136">hello login name for hello cluster is hello default value of `admin`.</span></span>
+> * <span data-ttu-id="b8b3d-137">`$PASSWORD`hello HDInsight 로그인 명령에 대 한 hello 암호를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-137">`$PASSWORD` contains hello password for hello HDInsight login command.</span></span> <span data-ttu-id="b8b3d-138">`PASSWORD='mypassword'`을 사용하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-138">You can set this value by using `PASSWORD='mypassword'`.</span></span>
+> * <span data-ttu-id="b8b3d-139">`$CLUSTERNAME`hello 클러스터의 hello 이름을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-139">`$CLUSTERNAME` contains hello name of hello cluster.</span></span> <span data-ttu-id="b8b3d-140">`set CLUSTERNAME='clustername'`을 사용하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-140">You can set this value by using `set CLUSTERNAME='clustername'`</span></span>
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -92,12 +92,12 @@ $resp.Content
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="c5b51-141">이 문서의 PowerShell 예제는 다음과 같이 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-141">The PowerShell examples in this document make the following assumptions:</span></span>
+> <span data-ttu-id="b8b3d-141">이 문서에서 PowerShell 예제를 hello hello 다음 가정을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-141">hello PowerShell examples in this document make hello following assumptions:</span></span>
 >
-> * <span data-ttu-id="c5b51-142">`$creds`는 클러스터에 대한 관리자 로그인 및 암호를 포함하는 자격 증명 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-142">`$creds` is a credential object that contains the admin login and password for the cluster.</span></span> <span data-ttu-id="c5b51-143">`$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"`을 사용하고 자격 증명을 제공하라는 메시지가 표시되면 제공하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-143">You can set this value by using `$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"` and providing the credentials when prompted.</span></span>
-> * <span data-ttu-id="c5b51-144">`$clusterName`은 클러스터의 이름을 포함하는 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-144">`$clusterName` is a string that contains the name of the cluster.</span></span> <span data-ttu-id="c5b51-145">`$clusterName="clustername"`을 사용하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-145">You can set this value by using `$clusterName="clustername"`.</span></span>
+> * <span data-ttu-id="b8b3d-142">`$creds`hello 관리자 로그인과 hello 클러스터에 대 한 암호를 포함 하는 자격 증명 개체가입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-142">`$creds` is a credential object that contains hello admin login and password for hello cluster.</span></span> <span data-ttu-id="b8b3d-143">사용 하 여이 값을 설정할 수 `$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"` 하 고 메시지가 표시 되 면 hello 자격 증명을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-143">You can set this value by using `$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"` and providing hello credentials when prompted.</span></span>
+> * <span data-ttu-id="b8b3d-144">`$clusterName`hello 클러스터의 hello 이름이 포함 된 문자열이입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-144">`$clusterName` is a string that contains hello name of hello cluster.</span></span> <span data-ttu-id="b8b3d-145">`$clusterName="clustername"`을 사용하여 이 값을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-145">You can set this value by using `$clusterName="clustername"`.</span></span>
 
-<span data-ttu-id="c5b51-146">두 예제 모두 다음과 비슷한 정보로 시작되는 JSON 문서를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-146">Both examples return a JSON document that begins with information similar to the following example:</span></span>
+<span data-ttu-id="b8b3d-146">다음 예제와 비슷한 toohello를 정보로 시작 하는 JSON 문서를 반환 하는 두 예제:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-146">Both examples return a JSON document that begins with information similar toohello following example:</span></span>
 
 ```json
 {
@@ -119,16 +119,16 @@ $resp.Content
     ...
 ```
 
-### <a name="parsing-json-data"></a><span data-ttu-id="c5b51-147">JSON 데이터 구문 분석</span><span class="sxs-lookup"><span data-stu-id="c5b51-147">Parsing JSON data</span></span>
+### <a name="parsing-json-data"></a><span data-ttu-id="b8b3d-147">JSON 데이터 구문 분석</span><span class="sxs-lookup"><span data-stu-id="b8b3d-147">Parsing JSON data</span></span>
 
-<span data-ttu-id="c5b51-148">다음 예제에서는 `jq`를 사용하여 JSON 응답 문서를 구문 분석하고 결과 중에서 `health_report` 문서만 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-148">The following example uses `jq` to parse the JSON response document and display only the `health_report` information from the results.</span></span>
+<span data-ttu-id="b8b3d-148">hello 다음 예제에서는 `jq` tooparse JSON 응답 문서 hello 및 표시만 hello `health_report` hello 결과에서 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-148">hello following example uses `jq` tooparse hello JSON response document and display only hello `health_report` information from hello results.</span></span>
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME" \
 | jq '.Clusters.health_report'
 ```
 
-<span data-ttu-id="c5b51-149">PowerShell 3.0 이상에서는 JSON 문서를 PowerShell에서 보다 쉽게 사용할 수 있는 개체로 변환하는 `ConvertFrom-Json` cmdlet을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-149">PowerShell 3.0 and higher provides the `ConvertFrom-Json` cmdlet, which converts the JSON document into an object that is easier to work with from PowerShell.</span></span> <span data-ttu-id="c5b51-150">다음 예제에서는 `ConvertFrom-Json`을 사용하여 결과 중에서 `health_report` 정보만 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-150">The following example uses `ConvertFrom-Json` to display only the `health_report` information from the results.</span></span>
+<span data-ttu-id="b8b3d-149">PowerShell 3.0 이상 제공 hello `ConvertFrom-Json` cmdlet는 PowerShell에서 보다 쉽게 toowork 사용 되는 개체가으로 hello JSON 문서를 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-149">PowerShell 3.0 and higher provides hello `ConvertFrom-Json` cmdlet, which converts hello JSON document into an object that is easier toowork with from PowerShell.</span></span> <span data-ttu-id="b8b3d-150">hello 다음 예제에서는 `ConvertFrom-Json` toodisplay만 hello `health_report` hello 결과에서 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-150">hello following example uses `ConvertFrom-Json` toodisplay only hello `health_report` information from hello results.</span></span>
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -138,15 +138,15 @@ $respObj.Clusters.health_report
 ```
 
 > [!NOTE]
-> <span data-ttu-id="c5b51-151">이 문서의 예제 대부분은 `ConvertFrom-Json`을 사용하여 응답 문서의 요소를 표시하고 [Ambari 구성 업데이트](#example-update-ambari-configuration) 예제는 jq를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-151">While most examples in this document use `ConvertFrom-Json` to display elements from the response document, the [Update Ambari configuration](#example-update-ambari-configuration) example uses jq.</span></span> <span data-ttu-id="c5b51-152">Jq는 JSON 응답 문서에서 새 템플릿을 생성하기 위해 이 예제에서 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-152">Jq is used in this example to construct a new template from the JSON response document.</span></span>
+> <span data-ttu-id="b8b3d-151">대부분의 예제가 문서에서는 동안 `ConvertFrom-Json` hello 응답 문서에서 요소를 toodisplay hello [업데이트 Ambari 구성](#example-update-ambari-configuration) jq을 사용 하 여 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-151">While most examples in this document use `ConvertFrom-Json` toodisplay elements from hello response document, hello [Update Ambari configuration](#example-update-ambari-configuration) example uses jq.</span></span> <span data-ttu-id="b8b3d-152">이 예제에서는 tooconstruct Jq는 hello JSON 응답 문서에서 새 템플릿을 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-152">Jq is used in this example tooconstruct a new template from hello JSON response document.</span></span>
 
-<span data-ttu-id="c5b51-153">REST API의 모든 참조 문서를 보려면 [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c5b51-153">For a complete reference of the REST API, see [Ambari API Reference V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).</span></span>
+<span data-ttu-id="b8b3d-153">Hello REST API의 모든 참조를 참조 하십시오. [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-153">For a complete reference of hello REST API, see [Ambari API Reference V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).</span></span>
 
-## <a name="example-get-the-fqdn-of-cluster-nodes"></a><span data-ttu-id="c5b51-154">예: 클러스터 노드의 FQDN 가져오기</span><span class="sxs-lookup"><span data-stu-id="c5b51-154">Example: Get the FQDN of cluster nodes</span></span>
+## <a name="example-get-hello-fqdn-of-cluster-nodes"></a><span data-ttu-id="b8b3d-154">예: hello 클러스터 노드의 FQDN 가져오기</span><span class="sxs-lookup"><span data-stu-id="b8b3d-154">Example: Get hello FQDN of cluster nodes</span></span>
 
-<span data-ttu-id="c5b51-155">HDInsight에서 작업할 때 클러스터 노드의 정규화된 도메인 이름(FQDN)에 대해 알아야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-155">When working with HDInsight, you may need to know the fully qualified domain name (FQDN) of a cluster node.</span></span> <span data-ttu-id="c5b51-156">다음 예제를 사용하여 클러스터의 다양한 노드에 대한 FQDN을 쉽게 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-156">You can easily retrieve the FQDN for the various nodes in the cluster using the following examples:</span></span>
+<span data-ttu-id="b8b3d-155">HDInsight를 사용할 때에 클러스터 노드의 tooknow hello 정규화 된 도메인 이름 (FQDN)를 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-155">When working with HDInsight, you may need tooknow hello fully qualified domain name (FQDN) of a cluster node.</span></span> <span data-ttu-id="b8b3d-156">쉽게 예제 따르는 hello를 사용 하 여 hello 클러스터에서 다양 한 노드 hello에 대 한 FQDN hello를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-156">You can easily retrieve hello FQDN for hello various nodes in hello cluster using hello following examples:</span></span>
 
-* <span data-ttu-id="c5b51-157">**모든 노드**</span><span class="sxs-lookup"><span data-stu-id="c5b51-157">**All nodes**</span></span>
+* <span data-ttu-id="b8b3d-157">**모든 노드**</span><span class="sxs-lookup"><span data-stu-id="b8b3d-157">**All nodes**</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/hosts" \
@@ -160,7 +160,7 @@ $respObj.Clusters.health_report
     $respObj.items.Hosts.host_name
     ```
 
-* <span data-ttu-id="c5b51-158">**헤드 노드**</span><span class="sxs-lookup"><span data-stu-id="c5b51-158">**Head nodes**</span></span>
+* <span data-ttu-id="b8b3d-158">**헤드 노드**</span><span class="sxs-lookup"><span data-stu-id="b8b3d-158">**Head nodes**</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/HDFS/components/NAMENODE" \
@@ -174,7 +174,7 @@ $respObj.Clusters.health_report
     $respObj.host_components.HostRoles.host_name
     ```
 
-* <span data-ttu-id="c5b51-159">**작업자 노드**</span><span class="sxs-lookup"><span data-stu-id="c5b51-159">**Worker nodes**</span></span>
+* <span data-ttu-id="b8b3d-159">**작업자 노드**</span><span class="sxs-lookup"><span data-stu-id="b8b3d-159">**Worker nodes**</span></span>
 
     ```bash
     curl -u admin:PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/services/HDFS/components/DATANODE" \
@@ -188,7 +188,7 @@ $respObj.Clusters.health_report
     $respObj.host_components.HostRoles.host_name
     ```
 
-* <span data-ttu-id="c5b51-160">**Zookeeper 노드**</span><span class="sxs-lookup"><span data-stu-id="c5b51-160">**Zookeeper nodes**</span></span>
+* <span data-ttu-id="b8b3d-160">**Zookeeper 노드**</span><span class="sxs-lookup"><span data-stu-id="b8b3d-160">**Zookeeper nodes**</span></span>
 
     ```bash
     curl -u admin:PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" \
@@ -202,14 +202,14 @@ $respObj.Clusters.health_report
     $respObj.host_components.HostRoles.host_name
     ```
 
-## <a name="example-get-the-internal-ip-address-of-cluster-nodes"></a><span data-ttu-id="c5b51-161">예제: 클러스터 노드의 내부 IP 주소 가져오기</span><span class="sxs-lookup"><span data-stu-id="c5b51-161">Example: Get the internal IP address of cluster nodes</span></span>
+## <a name="example-get-hello-internal-ip-address-of-cluster-nodes"></a><span data-ttu-id="b8b3d-161">예: 클러스터 노드의 hello 내부 IP 주소 가져오기</span><span class="sxs-lookup"><span data-stu-id="b8b3d-161">Example: Get hello internal IP address of cluster nodes</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="c5b51-162">이 섹션의 예제에서 반환된 IP 주소는 인터넷을 통해 직접 액세스할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-162">The IP addresses returned by the examples in this section are not directly accessible over the internet.</span></span> <span data-ttu-id="c5b51-163">HDInsight 클러스터를 포함하는 Azure Virtual Network 내에서만 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-163">They are only accessible within the Azure Virtual Network that contains the HDInsight cluster.</span></span>
+> <span data-ttu-id="b8b3d-162">이 섹션의 hello 예제에서 반환 된 hello IP 주소에는 액세스할 수 있는 조치 hello 인터넷 직접는입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-162">hello IP addresses returned by hello examples in this section are not directly accessible over hello internet.</span></span> <span data-ttu-id="b8b3d-163">Hello hello HDInsight 클러스터를 포함 하는 Azure 가상 네트워크 내에서 액세스할 수만 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-163">They are only accessible within hello Azure Virtual Network that contains hello HDInsight cluster.</span></span>
 >
-> <span data-ttu-id="c5b51-164">HDInsight 및 가상 네트워크 작업에 대한 자세한 내용은 [사용자 지정 Azure Virtual Network를 사용하여 HDInsight 기능 확장](hdinsight-extend-hadoop-virtual-network.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c5b51-164">For more information on working with HDInsight and virtual networks, see [Extend HDInsight capabilities by using a custom Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md).</span></span>
+> <span data-ttu-id="b8b3d-164">HDInsight 및 가상 네트워크 작업에 대한 자세한 내용은 [사용자 지정 Azure Virtual Network를 사용하여 HDInsight 기능 확장](hdinsight-extend-hadoop-virtual-network.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-164">For more information on working with HDInsight and virtual networks, see [Extend HDInsight capabilities by using a custom Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md).</span></span>
 
-<span data-ttu-id="c5b51-165">IP 주소를 찾으려면 클러스터 노드의 내부 FQDN(정규화된 도메인 이름)을 알아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-165">To find the IP address, you must know the internal fully qualified domain name (FQDN) of the cluster nodes.</span></span> <span data-ttu-id="c5b51-166">FQDN을 알고 있으므로 호스트의 IP 주소를 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-166">Once you have the FQDN, you can then get the IP address of the host.</span></span> <span data-ttu-id="c5b51-167">다음 예제에서는 먼저 Ambari를 쿼리하여 모든 호스트 노드의 FQDN을 알아낸 다음 다시 Ambari를 쿼리하여 각 호스트의 IP 주소를 알아냅니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-167">The following examples first query Ambari for the FQDN of all the host nodes, then query Ambari for the IP address of each host.</span></span>
+<span data-ttu-id="b8b3d-165">toofind hello IP 주소를 hello 내부 정규화 된 도메인 이름 (FQDN) hello의 클러스터 노드를 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-165">toofind hello IP address, you must know hello internal fully qualified domain name (FQDN) of hello cluster nodes.</span></span> <span data-ttu-id="b8b3d-166">FQDN hello를 만든 후에 다음 hello 호스트의 hello IP 주소를 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-166">Once you have hello FQDN, you can then get hello IP address of hello host.</span></span> <span data-ttu-id="b8b3d-167">hello 다음 예에서는 먼저 Ambari hello 모든 hello 호스트 노드 FQDN에 대 한 쿼리 다음 각 호스트의 IP 주소 hello Ambari를 쿼리 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-167">hello following examples first query Ambari for hello FQDN of all hello host nodes, then query Ambari for hello IP address of each host.</span></span>
 
 ```bash
 for HOSTNAME in $(curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/hosts" | jq -r '.items[].Hosts.host_name')
@@ -233,11 +233,11 @@ foreach($item in $respObj.items) {
 }
 ```
 
-## <a name="example-get-the-default-storage"></a><span data-ttu-id="c5b51-168">예제: 기본 저장소 가져오기</span><span class="sxs-lookup"><span data-stu-id="c5b51-168">Example: Get the default storage</span></span>
+## <a name="example-get-hello-default-storage"></a><span data-ttu-id="b8b3d-168">예: hello 기본 저장소 가져오기</span><span class="sxs-lookup"><span data-stu-id="b8b3d-168">Example: Get hello default storage</span></span>
 
-<span data-ttu-id="c5b51-169">HDInsight 클러스터를 만드는 경우 Azure Storage 계정 또는 Data Lake Store를 클러스터에 대한 기본 저장소로 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-169">When you create an HDInsight cluster, you must use an Azure Storage Account or Data Lake Store as the default storage for the cluster.</span></span> <span data-ttu-id="c5b51-170">클러스터를 만든 후 Ambari를 사용하여 이 정보를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-170">You can use Ambari to retrieve this information after the cluster has been created.</span></span> <span data-ttu-id="c5b51-171">예를 들어 HDInsight 외부 컨테이너에 데이터를 읽고 쓰려는 경우가 여기에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-171">For example, if you want to read/write data to the container outside HDInsight.</span></span>
+<span data-ttu-id="b8b3d-169">HDInsight 클러스터를 만들 때 사용 해야 Azure 저장소 계정 또는 데이터 레이크 저장소 hello 기본 저장소로 hello 클러스터에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-169">When you create an HDInsight cluster, you must use an Azure Storage Account or Data Lake Store as hello default storage for hello cluster.</span></span> <span data-ttu-id="b8b3d-170">Hello 클러스터를 만든 후이 정보 Ambari tooretrieve을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-170">You can use Ambari tooretrieve this information after hello cluster has been created.</span></span> <span data-ttu-id="b8b3d-171">예를 들어, HDInsight 외부 tooread/쓰기 데이터 toohello 컨테이너에 들어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-171">For example, if you want tooread/write data toohello container outside HDInsight.</span></span>
 
-<span data-ttu-id="c5b51-172">다음 예제에서는 클러스터에서 기본 저장소 구성을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-172">The following examples retrieve the default storage configuration from the cluster:</span></span>
+<span data-ttu-id="b8b3d-172">hello 다음 예제에서는 hello 기본 저장소 구성에서에서 검색 hello 클러스터:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-172">hello following examples retrieve hello default storage configuration from hello cluster:</span></span>
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -252,15 +252,15 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="c5b51-173">이러한 예제는 서버(`service_config_version=1`)에 적용된 첫 번째 구성을 반환하며 이 정보를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-173">These examples return the first configuration applied to the server (`service_config_version=1`) which contains this information.</span></span> <span data-ttu-id="c5b51-174">클러스터를 만든 후에 수정된 값을 검색하는 경우 구성 버전을 나열하고 최신 버전을 검색해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-174">If you retrieve a value that has been modified after cluster creation, you may need to list the configuration versions and retrieve the latest one.</span></span>
+> <span data-ttu-id="b8b3d-173">첫 번째 적용 된 구성을 toohello 서버 hello를 반환 하는 이러한 예제 (`service_config_version=1`)는이 정보를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-173">These examples return hello first configuration applied toohello server (`service_config_version=1`) which contains this information.</span></span> <span data-ttu-id="b8b3d-174">클러스터를 만든 후 수정 된 값을 검색 하는 경우에 toolist hello 구성 버전 해야 하는 수 고 hello 최신을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-174">If you retrieve a value that has been modified after cluster creation, you may need toolist hello configuration versions and retrieve hello latest one.</span></span>
 
-<span data-ttu-id="c5b51-175">반환 값은 다음 예제 중 하나와 유사합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-175">The return value is similar to one of the following examples:</span></span>
+<span data-ttu-id="b8b3d-175">hello 반환 값은 예제 따르는 hello의 유사한 tooone:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-175">hello return value is similar tooone of hello following examples:</span></span>
 
-* <span data-ttu-id="c5b51-176">`wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net` - 이 값은 클러스터에서 기본 저장소에 Azure Storage 계정을 사용하고 있음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-176">`wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net` - This value indicates that the cluster is using an Azure Storage account for default storage.</span></span> <span data-ttu-id="c5b51-177">`ACCOUNTNAME` 값은 저장소 계정의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-177">The `ACCOUNTNAME` value is the name of the storage account.</span></span> <span data-ttu-id="c5b51-178">`CONTAINER` 부분은 저장소 계정에서 blob 컨테이너의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-178">The `CONTAINER` portion is the name of the blob container in the storage account.</span></span> <span data-ttu-id="c5b51-179">이 컨테이너는 클러스터에 대한 HDFS 호환 저장소의 루트입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-179">The container is the root of the HDFS compatible storage for the cluster.</span></span>
+* <span data-ttu-id="b8b3d-176">`wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net`-이 값 해당 hello 클러스터 기본 저장소에 대 한 Azure 저장소 계정을 사용 하는 것을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-176">`wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net` - This value indicates that hello cluster is using an Azure Storage account for default storage.</span></span> <span data-ttu-id="b8b3d-177">hello `ACCOUNTNAME` 값은 hello hello 저장소 계정의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-177">hello `ACCOUNTNAME` value is hello name of hello storage account.</span></span> <span data-ttu-id="b8b3d-178">hello `CONTAINER` 부분 hello hello 저장소 계정의 blob 컨테이너의 hello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-178">hello `CONTAINER` portion is hello name of hello blob container in hello storage account.</span></span> <span data-ttu-id="b8b3d-179">hello 컨테이너는 hello hello 클러스터에 대 한 HDFS 호환 되는 저장소의 hello 루트입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-179">hello container is hello root of hello HDFS compatible storage for hello cluster.</span></span>
 
-* <span data-ttu-id="c5b51-180">`adl://home` - 이 값은 클러스터가 기본 저장소에 Azure Data Lake Store를 사용하고 있음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-180">`adl://home` - This value indicates that the cluster is using an Azure Data Lake Store for default storage.</span></span>
+* <span data-ttu-id="b8b3d-180">`adl://home`-이 값 해당 hello 클러스터에서 기본 저장소에 Azure 데이터 레이크 저장소를 사용 하는 것을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-180">`adl://home` - This value indicates that hello cluster is using an Azure Data Lake Store for default storage.</span></span>
 
-    <span data-ttu-id="c5b51-181">Data Lake Store 계정 이름을 찾으려면 다음 예제를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-181">To find the Data Lake Store account name, use the following examples:</span></span>
+    <span data-ttu-id="b8b3d-181">Data Lake 저장소 계정 이름 toofind hello 예제 따르는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-181">toofind hello Data Lake Store account name, use hello following examples:</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -274,9 +274,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.items.configurations.properties.'dfs.adls.home.hostname'
     ```
 
-    <span data-ttu-id="c5b51-182">반환 값은 `ACCOUNTNAME.azuredatalakestore.net`과 비슷합니다. 여기서 `ACCOUNTNAME`은 Data Lake Store 계정의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-182">The return value is similar to `ACCOUNTNAME.azuredatalakestore.net`, where `ACCOUNTNAME` is the name of the Data Lake Store account.</span></span>
+    <span data-ttu-id="b8b3d-182">hello 반환 값은 유사한 너무`ACCOUNTNAME.azuredatalakestore.net`여기서 `ACCOUNTNAME` hello hello Data Lake 저장소 계정 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-182">hello return value is similar too`ACCOUNTNAME.azuredatalakestore.net`, where `ACCOUNTNAME` is hello name of hello Data Lake Store account.</span></span>
 
-    <span data-ttu-id="c5b51-183">Data Lake Store 내에서 클러스터에 대한 저장소를 포함하는 디렉터리를 찾으려면 다음 예제를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-183">To find the directory within Data Lake Store that contains the storage for the cluster, use the following examples:</span></span>
+    <span data-ttu-id="b8b3d-183">사용 하 여 hello 예제 따르는 hello 클러스터용 hello 저장소를 포함 하는 데이터 레이크 저장소 내에서 toofind hello 디렉터리:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-183">toofind hello directory within Data Lake Store that contains hello storage for hello cluster, use hello following examples:</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -290,15 +290,15 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.items.configurations.properties.'dfs.adls.home.mountpoint'
     ```
 
-    <span data-ttu-id="c5b51-184">반환 값은 `/clusters/CLUSTERNAME/`과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-184">The return value is similar to `/clusters/CLUSTERNAME/`.</span></span> <span data-ttu-id="c5b51-185">이 값은 Data Lake Store 계정 내의 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-185">This value is a path within the Data Lake Store account.</span></span> <span data-ttu-id="c5b51-186">이 경로는 클러스터에 대한 HDFS 호환 파일 시스템의 루트입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-186">This path is the root of the HDFS compatible file system for the cluster.</span></span> 
+    <span data-ttu-id="b8b3d-184">hello 반환 값은 유사한 너무`/clusters/CLUSTERNAME/`합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-184">hello return value is similar too`/clusters/CLUSTERNAME/`.</span></span> <span data-ttu-id="b8b3d-185">이 값은 hello Data Lake 저장소 계정 내의 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-185">This value is a path within hello Data Lake Store account.</span></span> <span data-ttu-id="b8b3d-186">이 경로 hello hello 클러스터에 대 한 HDFS 호환 되는 파일 시스템의 hello 루트입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-186">This path is hello root of hello HDFS compatible file system for hello cluster.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="c5b51-187">[Azure PowerShell](/powershell/azure/overview)에서 제공하는 `Get-AzureRmHDInsightCluster` cmdlet 또한 클러스터에 대한 저장소 정보를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-187">The `Get-AzureRmHDInsightCluster` cmdlet provided by [Azure PowerShell](/powershell/azure/overview) also returns the storage information for the cluster.</span></span>
+> <span data-ttu-id="b8b3d-187">hello `Get-AzureRmHDInsightCluster` 에서 제공 하는 cmdlet [Azure PowerShell](/powershell/azure/overview) 도 반환 hello hello 클러스터에 대 한 저장소 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-187">hello `Get-AzureRmHDInsightCluster` cmdlet provided by [Azure PowerShell](/powershell/azure/overview) also returns hello storage information for hello cluster.</span></span>
 
 
-## <a name="example-get-configuration"></a><span data-ttu-id="c5b51-188">예제: 구성 가져오기</span><span class="sxs-lookup"><span data-stu-id="c5b51-188">Example: Get configuration</span></span>
+## <a name="example-get-configuration"></a><span data-ttu-id="b8b3d-188">예제: 구성 가져오기</span><span class="sxs-lookup"><span data-stu-id="b8b3d-188">Example: Get configuration</span></span>
 
-1. <span data-ttu-id="c5b51-189">클러스터에 사용할 수 있는 구성을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-189">Get the configurations that are available for your cluster.</span></span>
+1. <span data-ttu-id="b8b3d-189">클러스터에 대해 사용할 수 있는 hello 구성을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-189">Get hello configurations that are available for your cluster.</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -310,7 +310,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.Content
     ```
 
-    <span data-ttu-id="c5b51-190">이 예제는 클러스터에 설치된 구성 요소에 대한 현재 구성이 포함된 JSON 문서(*tag* 값으로 식별됨)를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-190">This example returns a JSON document containing the current configuration (identified by the *tag* value) for the components installed on the cluster.</span></span> <span data-ttu-id="c5b51-191">다음 예제는 Spark 클러스터 형식에서 반환된 데이터에서 발췌한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-191">The following example is an excerpt from the data returned from a Spark cluster type.</span></span>
+    <span data-ttu-id="b8b3d-190">이 예에서는 반환 hello 현재 구성이 포함 된 JSON 문서 (hello로 식별 되 *태그* 값) hello 클러스터에 설치 하는 hello 구성 요소에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-190">This example returns a JSON document containing hello current configuration (identified by hello *tag* value) for hello components installed on hello cluster.</span></span> <span data-ttu-id="b8b3d-191">hello 다음 예제는 Spark 클러스터 유형에서 반환 된 hello 데이터에서 발췌 한 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-191">hello following example is an excerpt from hello data returned from a Spark cluster type.</span></span>
    
    ```json
    "spark-metrics-properties" : {
@@ -330,7 +330,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
    }
    ```
 
-2. <span data-ttu-id="c5b51-192">관심 있는 구성 요소에 대한 구성을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-192">Get the configuration for the component that you are interested in.</span></span> <span data-ttu-id="c5b51-193">다음 예제에서는 이전 요청에서 반환된 태그 값으로 `INITIAL`을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-193">In the following example, replace `INITIAL` with the tag value returned from the previous request.</span></span>
+2. <span data-ttu-id="b8b3d-192">관심이 있는 hello 구성 요소에 대 한 hello 구성을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-192">Get hello configuration for hello component that you are interested in.</span></span> <span data-ttu-id="b8b3d-193">Hello에서 다음 예제에서는 대체 `INITIAL` hello 이전 요청에서 반환 된 hello 태그 값을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-193">In hello following example, replace `INITIAL` with hello tag value returned from hello previous request.</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=core-site&tag=INITIAL"
@@ -342,11 +342,11 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
 
-    <span data-ttu-id="c5b51-194">이 예제는 `core-site` 구성 요소에 대한 현재 구성을 포함하는 JSON 문서를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-194">This example returns a JSON document containing the current configuration for the `core-site` component.</span></span>
+    <span data-ttu-id="b8b3d-194">Hello hello에 대 한 현재 구성이 포함 된 JSON 문서를 반환 하는이 예제 `core-site` 구성 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-194">This example returns a JSON document containing hello current configuration for hello `core-site` component.</span></span>
 
-## <a name="example-update-configuration"></a><span data-ttu-id="c5b51-195">예제: 구성 업데이트</span><span class="sxs-lookup"><span data-stu-id="c5b51-195">Example: Update configuration</span></span>
+## <a name="example-update-configuration"></a><span data-ttu-id="b8b3d-195">예제: 구성 업데이트</span><span class="sxs-lookup"><span data-stu-id="b8b3d-195">Example: Update configuration</span></span>
 
-1. <span data-ttu-id="c5b51-196">Ambari에서 "필요한 구성"으로 저장하는 현재 구성을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-196">Get the current configuration, which Ambari stores as the "desired configuration":</span></span>
+1. <span data-ttu-id="b8b3d-196">Ambari hello "원하는 구성"으로 저장 하는 hello 현재 구성을 가져오려면</span><span class="sxs-lookup"><span data-stu-id="b8b3d-196">Get hello current configuration, which Ambari stores as hello "desired configuration":</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -357,7 +357,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
         -Credential $creds
     ```
 
-    <span data-ttu-id="c5b51-197">이 예제는 클러스터에 설치된 구성 요소에 대한 현재 구성이 포함된 JSON 문서(*tag* 값으로 식별됨)를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-197">This example returns a JSON document containing the current configuration (identified by the *tag* value) for the components installed on the cluster.</span></span> <span data-ttu-id="c5b51-198">다음 예제는 Spark 클러스터 형식에서 반환된 데이터에서 발췌한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-198">The following example is an excerpt from the data returned from a Spark cluster type.</span></span>
+    <span data-ttu-id="b8b3d-197">이 예에서는 반환 hello 현재 구성이 포함 된 JSON 문서 (hello로 식별 되 *태그* 값) hello 클러스터에 설치 하는 hello 구성 요소에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-197">This example returns a JSON document containing hello current configuration (identified by hello *tag* value) for hello components installed on hello cluster.</span></span> <span data-ttu-id="b8b3d-198">hello 다음 예제는 Spark 클러스터 유형에서 반환 된 hello 데이터에서 발췌 한 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-198">hello following example is an excerpt from hello data returned from a Spark cluster type.</span></span>
    
     ```json
     "spark-metrics-properties" : {
@@ -377,9 +377,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     }
     ```
    
-    <span data-ttu-id="c5b51-199">이 목록에서 구성 요소의 이름(예: **spark\_thrift\_sparkconf** 및 **tag** 값을 복사해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-199">From this list, you need to copy the name of the component (for example, **spark\_thrift\_sparkconf** and the **tag** value.</span></span>
+    <span data-ttu-id="b8b3d-199">이 목록에서 필요한 toocopy hello hello 구성 요소의 이름입니다 (예를 들어 **spark\_thrift\_sparkconf** 및 hello **태그** 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-199">From this list, you need toocopy hello name of hello component (for example, **spark\_thrift\_sparkconf** and hello **tag** value.</span></span>
 
-2. <span data-ttu-id="c5b51-200">다음 명령을 사용하여 구성 요소 및 태그의 구성을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-200">Retrieve the configuration for the component and tag by using the following commands:</span></span>
+2. <span data-ttu-id="b8b3d-200">다음 명령 hello를 사용 하 여 hello 구성 요소 및 태그에 대 한 hello 구성 검색:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-200">Retrieve hello configuration for hello component and tag by using hello following commands:</span></span>
    
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=spark-thrift-sparkconf&tag=INITIAL" \
@@ -396,21 +396,21 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="c5b51-201">**spark-thrift-sparkconf** 및 **INITIAL**을 검색할 구성 요소 및 태그로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-201">Replace **spark-thrift-sparkconf** and **INITIAL** with the component and tag that you want to retrieve the configuration for.</span></span>
+    > <span data-ttu-id="b8b3d-201">대체 **spark-thrift-sparkconf** 및 **초기** hello 구성 요소와 tooretrieve hello 구성에 대 한 원하는 태그입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-201">Replace **spark-thrift-sparkconf** and **INITIAL** with hello component and tag that you want tooretrieve hello configuration for.</span></span>
    
-    <span data-ttu-id="c5b51-202">Jq는 HDInsight에서 검색한 데이터를 새 구성 템플릿으로 반환하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-202">Jq is used to turn the data retrieved from HDInsight into a new configuration template.</span></span> <span data-ttu-id="c5b51-203">특히, 이러한 예제에서는 다음 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-203">Specifically, these examples perform the following actions:</span></span>
+    <span data-ttu-id="b8b3d-202">Jq는 HDInsight에서 검색 한 새로운 구성 템플릿을 사용 하는 tooturn hello 데이터입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-202">Jq is used tooturn hello data retrieved from HDInsight into a new configuration template.</span></span> <span data-ttu-id="b8b3d-203">특히,이 예에서는 hello 다음 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-203">Specifically, these examples perform hello following actions:</span></span>
    
-    * <span data-ttu-id="c5b51-204">문자열 "version" 및 날짜를 포함하는 고유 값을 만듭니다. 이 값은 `newtag`에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-204">Creates a unique value containing the string "version" and the date, which is stored in `newtag`.</span></span>
+    * <span data-ttu-id="b8b3d-204">Hello 문자열 "version" 및 hello 날짜에 저장 되는 포함 된 고유한 값을 만듭니다 `newtag`합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-204">Creates a unique value containing hello string "version" and hello date, which is stored in `newtag`.</span></span>
 
-    * <span data-ttu-id="c5b51-205">필요한 새 구성의 루트 문서를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-205">Creates a root document for the new desired configuration.</span></span>
+    * <span data-ttu-id="b8b3d-205">Hello 새 원하는 구성에 대 한 루트 문서를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-205">Creates a root document for hello new desired configuration.</span></span>
 
-    * <span data-ttu-id="c5b51-206">`.items[]` 배열의 내용을 가져와서 **desired_config** 요소에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-206">Gets the contents of the `.items[]` array and adds it under the **desired_config** element.</span></span>
+    * <span data-ttu-id="b8b3d-206">가져옵니다 hello hello의 내용을 `.items[]` 배열 하 고 hello에서 추가 **desired_config** 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-206">Gets hello contents of hello `.items[]` array and adds it under hello **desired_config** element.</span></span>
 
-    * <span data-ttu-id="c5b51-207">`href`, `version`, and `Config` 요소는 새 구성을 제출하는 데 필요하지 않으므로 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-207">Deletes the `href`, `version`, and `Config` elements, as these elements aren't needed to submit a new configuration.</span></span>
+    * <span data-ttu-id="b8b3d-207">삭제 hello `href`, `version`, 및 `Config` 요소를 이러한 요소로 아닌 필요한 toosubmit 새 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-207">Deletes hello `href`, `version`, and `Config` elements, as these elements aren't needed toosubmit a new configuration.</span></span>
 
-    * <span data-ttu-id="c5b51-208">값이 `version#################`인 `tag` 요소를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-208">Adds a `tag` element with a value of `version#################`.</span></span> <span data-ttu-id="c5b51-209">숫자 부분은 현재 날짜를 기반으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-209">The numeric portion is based on the current date.</span></span> <span data-ttu-id="c5b51-210">각 구성에 고유한 태그가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-210">Each configuration must have a unique tag.</span></span>
+    * <span data-ttu-id="b8b3d-208">값이 `version#################`인 `tag` 요소를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-208">Adds a `tag` element with a value of `version#################`.</span></span> <span data-ttu-id="b8b3d-209">hello 숫자 부분을 기반으로 hello 현재 날짜입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-209">hello numeric portion is based on hello current date.</span></span> <span data-ttu-id="b8b3d-210">각 구성에 고유한 태그가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-210">Each configuration must have a unique tag.</span></span>
      
-    <span data-ttu-id="c5b51-211">마지막으로 데이터가 `newconfig.json` 문서에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-211">Finally, the data is saved to the `newconfig.json` document.</span></span> <span data-ttu-id="c5b51-212">문서 구조는 다음 예제와 유사하게 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-212">The document structure should appear similar to the following example:</span></span>
+    <span data-ttu-id="b8b3d-211">마지막으로, hello 데이터 저장 toohello `newconfig.json` 문서.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-211">Finally, hello data is saved toohello `newconfig.json` document.</span></span> <span data-ttu-id="b8b3d-212">hello 문서 구조에는 다음 예제와 비슷한 toohello 같아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-212">hello document structure should appear similar toohello following example:</span></span>
      
      ```json
     {
@@ -428,14 +428,14 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     }
     ```
 
-3. <span data-ttu-id="c5b51-213">`newconfig.json` 문서를 열고 `properties` 개체의 값을 수정/추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-213">Open the `newconfig.json` document and modify/add values in the `properties` object.</span></span> <span data-ttu-id="c5b51-214">다음 예제는 `"spark.yarn.am.memory"` 값을 `"1g"`에서 `"3g"`로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-214">The following example changes the value of `"spark.yarn.am.memory"` from `"1g"` to `"3g"`.</span></span> <span data-ttu-id="c5b51-215">또한 값이 `"256m"`인 `"spark.kryoserializer.buffer.max"`를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-215">It also adds `"spark.kryoserializer.buffer.max"` with a value of `"256m"`.</span></span>
+3. <span data-ttu-id="b8b3d-213">열기 hello `newconfig.json` hello에서 문서 및 수정/추가 값 `properties` 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-213">Open hello `newconfig.json` document and modify/add values in hello `properties` object.</span></span> <span data-ttu-id="b8b3d-214">hello 다음 예제에서는 변경 내용을 hello 값 `"spark.yarn.am.memory"` 에서 `"1g"` 너무`"3g"`합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-214">hello following example changes hello value of `"spark.yarn.am.memory"` from `"1g"` too`"3g"`.</span></span> <span data-ttu-id="b8b3d-215">또한 값이 `"256m"`인 `"spark.kryoserializer.buffer.max"`를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-215">It also adds `"spark.kryoserializer.buffer.max"` with a value of `"256m"`.</span></span>
    
         "spark.yarn.am.memory": "3g",
         "spark.kyroserializer.buffer.max": "256m",
    
-    <span data-ttu-id="c5b51-216">수정을 완료했으면 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-216">Save the file once you are done making modifications.</span></span>
+    <span data-ttu-id="b8b3d-216">수정이 완료 되 면 hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-216">Save hello file once you are done making modifications.</span></span>
 
-4. <span data-ttu-id="c5b51-217">다음 명령을 사용하여 업데이트된 구성을 Ambari에 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-217">Use the following commands to submit the updated configuration to Ambari.</span></span>
+4. <span data-ttu-id="b8b3d-217">다음 명령을 toosubmit 업데이트 hello 구성 tooAmbari hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-217">Use hello following commands toosubmit hello updated configuration tooAmbari.</span></span>
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" -X PUT -d @newconfig.json "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
@@ -451,13 +451,13 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
    
-    <span data-ttu-id="c5b51-218">이러한 명령은 **newconfig.json** 파일의 내용을 새 구성으로 클러스터에 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-218">These commands submit the contents of the **newconfig.json** file to the cluster as the new desired configuration.</span></span> <span data-ttu-id="c5b51-219">이 요청은 JSON 문서를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-219">The request returns a JSON document.</span></span> <span data-ttu-id="c5b51-220">이 문서의 **versionTag** 요소는 제출한 버전과 일치해야 하며, **configs** 개체에는 요청한 구성 변경 내용이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-220">The **versionTag** element in this document should match the version you submitted, and the **configs** object contains the configuration changes you requested.</span></span>
+    <span data-ttu-id="b8b3d-218">이 명령은 제출 hello 내용의 hello **newconfig.json** hello 새로운 필요한 구성 toohello 클러스터의 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-218">These commands submit hello contents of hello **newconfig.json** file toohello cluster as hello new desired configuration.</span></span> <span data-ttu-id="b8b3d-219">hello 요청 JSON 문서를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-219">hello request returns a JSON document.</span></span> <span data-ttu-id="b8b3d-220">hello **versionTag** 이 문서에서 요소, 전송 및 hello hello 버전 일치 해야 **configs** 개체에는 요청한 hello 구성 변경 내용이 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-220">hello **versionTag** element in this document should match hello version you submitted, and hello **configs** object contains hello configuration changes you requested.</span></span>
 
-### <a name="example-restart-a-service-component"></a><span data-ttu-id="c5b51-221">예: 서비스 구성 요소 다시 시작</span><span class="sxs-lookup"><span data-stu-id="c5b51-221">Example: Restart a service component</span></span>
+### <a name="example-restart-a-service-component"></a><span data-ttu-id="b8b3d-221">예: 서비스 구성 요소 다시 시작</span><span class="sxs-lookup"><span data-stu-id="b8b3d-221">Example: Restart a service component</span></span>
 
-<span data-ttu-id="c5b51-222">이제 새 구성을 적용하려면 먼저 Spark 서비스를 다시 시작해야 한다는 메시지가 Ambari 웹 UI에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-222">At this point, if you look at the Ambari web UI, the Spark service indicates that it needs to be restarted before the new configuration can take effect.</span></span> <span data-ttu-id="c5b51-223">다음 단계를 사용하여 서비스를 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-223">Use the following steps to restart the service.</span></span>
+<span data-ttu-id="b8b3d-222">이 시점에서 hello Ambari web UI 보면 hello Spark 서비스 toobe hello 새 구성을 적용 하기 전에 다시 시작 필요 함을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-222">At this point, if you look at hello Ambari web UI, hello Spark service indicates that it needs toobe restarted before hello new configuration can take effect.</span></span> <span data-ttu-id="b8b3d-223">단계 toorestart hello 서비스는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-223">Use hello following steps toorestart hello service.</span></span>
 
-1. <span data-ttu-id="c5b51-224">다음을 사용하여 Spark 서비스에 대한 유지 관리 모드를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-224">Use the following to enable maintenance mode for the Spark service:</span></span>
+1. <span data-ttu-id="b8b3d-224">Hello Spark 서비스에 대 한 유지 관리 모드 tooenable 다음 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-224">Use hello following tooenable maintenance mode for hello Spark service:</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -474,7 +474,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
    
-    <span data-ttu-id="c5b51-225">이러한 명령은 서버에 JSON 문서를 보내 유지 관리 모드를 켭니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-225">These commands send a JSON document to the server that turns on maintenance mode.</span></span> <span data-ttu-id="c5b51-226">이제 다음 요청을 사용하여 서비스가 유지 관리 모드인지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-226">You can verify that the service is now in maintenance mode using the following request:</span></span>
+    <span data-ttu-id="b8b3d-225">이 명령은 유지 관리 모드를 설정 하는 JSON 문서 toohello 서버를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-225">These commands send a JSON document toohello server that turns on maintenance mode.</span></span> <span data-ttu-id="b8b3d-226">이제 hello 서비스 요청을 수행 하는 hello를 사용 하 여 유지 관리 모드 인지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-226">You can verify that hello service is now in maintenance mode using hello following request:</span></span>
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -489,9 +489,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.ServiceInfo.maintenance_state
     ```
    
-    <span data-ttu-id="c5b51-227">반환 값은 `ON`입니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-227">The return value is `ON`.</span></span>
+    <span data-ttu-id="b8b3d-227">hello 반환 값은 `ON`합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-227">hello return value is `ON`.</span></span>
 
-2. <span data-ttu-id="c5b51-228">그런 후 다음을 사용하여 서비스를 해제합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-228">Next, use the following to turn off the service:</span></span>
+2. <span data-ttu-id="b8b3d-228">를 사용 하 여 hello tooturn hello 서비스 해제를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-228">Next, use hello following tooturn off hello service:</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -508,7 +508,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
     
-    <span data-ttu-id="c5b51-229">응답은 다음 예제와 유사합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-229">The response is similar to the following example:</span></span>
+    <span data-ttu-id="b8b3d-229">hello 응답은 다음 예제와 비슷한 toohello입니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-229">hello response is similar toohello following example:</span></span>
    
     ```json
     {
@@ -521,9 +521,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     ```
     
     > [!IMPORTANT]
-    > <span data-ttu-id="c5b51-230">이 URI에서 반환된 `href` 값은 클러스터 노드의 내부 IP 주소를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-230">The `href` value returned by this URI is using the internal IP address of the cluster node.</span></span> <span data-ttu-id="c5b51-231">클러스터 외부에서 이를 사용하려면 '10.0.0.18:8080' 부분을 클러스터의 FQDN으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-231">To use it from outside the cluster, replace the \`10.0.0.18:8080' portion with the FQDN of the cluster.</span></span> 
+    > <span data-ttu-id="b8b3d-230">hello `href` 이 URI에서 반환 된 값 hello 클러스터 노드의 hello 내부 IP 주소를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-230">hello `href` value returned by this URI is using hello internal IP address of hello cluster node.</span></span> <span data-ttu-id="b8b3d-231">toouse hello hello 클러스터의 FQDN '10.0.0.18:8080' hello 부분 외부 hello 클러스터에서 대체 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-231">toouse it from outside hello cluster, replace hello \`10.0.0.18:8080' portion with hello FQDN of hello cluster.</span></span> 
     
-    <span data-ttu-id="c5b51-232">다음 명령은 요청의 상태를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-232">The following commands retrieve the status of the request:</span></span>
+    <span data-ttu-id="b8b3d-232">hello 요청의 hello 상태를 검색 하는 명령을 수행 하는 hello:</span><span class="sxs-lookup"><span data-stu-id="b8b3d-232">hello following commands retrieve hello status of hello request:</span></span>
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -538,9 +538,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.Requests.request_status
     ```
 
-    <span data-ttu-id="c5b51-233">응답 `COMPLETED`는 요청이 완료되었음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-233">A response of `COMPLETED` indicates that the request has finished.</span></span>
+    <span data-ttu-id="b8b3d-233">응답 `COMPLETED` 해당 hello 요청을 완료 했음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-233">A response of `COMPLETED` indicates that hello request has finished.</span></span>
 
-3. <span data-ttu-id="c5b51-234">이전 요청이 완료되면 다음을 사용하여 서비스를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-234">Once the previous request completes, use the following to start the service.</span></span>
+3. <span data-ttu-id="b8b3d-234">Hello 이전 요청이 완료 되 면 hello toostart hello 서비스를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-234">Once hello previous request completes, use hello following toostart hello service.</span></span>
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -555,9 +555,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
         -Headers @{"X-Requested-By" = "ambari"} `
         -Body '{"RequestInfo":{"context":"_PARSE_.STOP.SPARK","operation_level":{"level":"SERVICE","cluster_name":"CLUSTERNAME","service_name":"SPARK"}},"Body":{"ServiceInfo":{"state":"STARTED"}}}'
     ```
-    <span data-ttu-id="c5b51-235">이제 서비스는 새 구성을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-235">The service is now using the new configuration.</span></span>
+    <span data-ttu-id="b8b3d-235">hello 서비스는 이제 hello 새 구성을 사용 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-235">hello service is now using hello new configuration.</span></span>
 
-4. <span data-ttu-id="c5b51-236">마지막으로, 다음을 사용하여 유지 관리 모드를 해제합니다.</span><span class="sxs-lookup"><span data-stu-id="c5b51-236">Finally, use the following to turn off maintenance mode.</span></span>
+4. <span data-ttu-id="b8b3d-236">마지막으로, 다음 유지 관리 모드 tooturn hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-236">Finally, use hello following tooturn off maintenance mode.</span></span>
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -573,7 +573,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
         -Body '{"RequestInfo": {"context": "turning off maintenance mode for SPARK"},"Body": {"ServiceInfo": {"maintenance_state":"OFF"}}}'
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="c5b51-237">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c5b51-237">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b8b3d-237">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b8b3d-237">Next steps</span></span>
 
-<span data-ttu-id="c5b51-238">REST API의 모든 참조 문서를 보려면 [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c5b51-238">For a complete reference of the REST API, see [Ambari API Reference V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).</span></span>
+<span data-ttu-id="b8b3d-238">Hello REST API의 모든 참조를 참조 하십시오. [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b8b3d-238">For a complete reference of hello REST API, see [Ambari API Reference V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).</span></span>
 

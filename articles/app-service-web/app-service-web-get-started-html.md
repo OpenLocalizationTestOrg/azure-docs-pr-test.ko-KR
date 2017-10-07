@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 정적 HTML 웹앱 만들기 | Microsoft Docs"
-description: "정적 HTML 샘플 앱을 배포하여 Azure App Service에서 웹앱을 실행하는 방법을 알아봅니다."
+title: "Azure에서 웹 앱을 정적 HTML aaaCreate | Microsoft Docs"
+description: "방법: 정적 HTML을 배포 하 여 Azure 앱 서비스에서 toorun 웹 앱 샘플 앱에 알아봅니다."
 services: app-service\web
 documentationcenter: 
 author: rick-anderson
@@ -15,49 +15,49 @@ ms.topic: quickstart
 ms.date: 05/26/2017
 ms.author: riande
 ms.custom: mvc
-ms.openlocfilehash: 42af5b08b8d2ff0c75fd73dcfa61c861647fd2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: efd8c8189a3aa1ac35602b688eeb31bff6f5a373
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-static-html-web-app-in-azure"></a><span data-ttu-id="0067a-103">Azure에서 정적 HTML 웹앱 만들기</span><span class="sxs-lookup"><span data-stu-id="0067a-103">Create a static HTML web app in Azure</span></span>
+# <a name="create-a-static-html-web-app-in-azure"></a><span data-ttu-id="d2b49-103">Azure에서 정적 HTML 웹앱 만들기</span><span class="sxs-lookup"><span data-stu-id="d2b49-103">Create a static HTML web app in Azure</span></span>
 
-<span data-ttu-id="0067a-104">[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-104">[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) provides a highly scalable, self-patching web hosting service.</span></span>  <span data-ttu-id="0067a-105">이 빠른 시작에서는 기본적인 HTML+CSS 사이트를 Azure Web Apps에 배포하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-105">This quickstart shows how to deploy a basic HTML+CSS site to Azure Web Apps.</span></span> <span data-ttu-id="0067a-106">[Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)를 사용하여 웹앱을 만들고 Git을 사용하여 웹앱에 샘플 HTML 콘텐츠를 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-106">You create the web app using the [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), and you use Git to deploy sample HTML content to the web app.</span></span>
+<span data-ttu-id="d2b49-104">[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-104">[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) provides a highly scalable, self-patching web hosting service.</span></span>  <span data-ttu-id="d2b49-105">이 퀵 스타트의 toodeploy 기본 HTML + CSS tooAzure 웹 앱 사이트 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-105">This quickstart shows how toodeploy a basic HTML+CSS site tooAzure Web Apps.</span></span> <span data-ttu-id="d2b49-106">Hello를 사용 하 여 hello 웹 앱을 만드는 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), Git toodeploy 샘플 HTML 콘텐츠 toohello 웹 응용 프로그램을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-106">You create hello web app using hello [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), and you use Git toodeploy sample HTML content toohello web app.</span></span>
 
 ![샘플 앱의 홈 페이지](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-<span data-ttu-id="0067a-108">Mac, Windows 또는 Linux 컴퓨터를 사용하여 아래 단계를 따르면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-108">You can follow the steps below using a Mac, Windows, or Linux machine.</span></span> <span data-ttu-id="0067a-109">필수 구성 요소가 설치된 후 단계를 완료하는 데는 약 5분 정도 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-109">Once the prerequisites are installed, it takes about five minutes to complete the steps.</span></span>
+<span data-ttu-id="d2b49-108">Mac, Windows 또는 Linux 컴퓨터를 사용 하 여 아래 hello 단계를 따를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-108">You can follow hello steps below using a Mac, Windows, or Linux machine.</span></span> <span data-ttu-id="d2b49-109">Hello 필수 구성 요소가 설치 되 면 약 5 분 toocomplete hello 단계가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-109">Once hello prerequisites are installed, it takes about five minutes toocomplete hello steps.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="0067a-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="0067a-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d2b49-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="d2b49-110">Prerequisites</span></span>
 
-<span data-ttu-id="0067a-111">이 빠른 시작을 완료하려면 다음이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-111">To complete this quickstart:</span></span>
+<span data-ttu-id="d2b49-111">toocomplete이 빠른이 시작:</span><span class="sxs-lookup"><span data-stu-id="d2b49-111">toocomplete this quickstart:</span></span>
 
-- <span data-ttu-id="0067a-112">[Git 설치](https://git-scm.com/)
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]</span><span class="sxs-lookup"><span data-stu-id="0067a-112">[Install Git](https://git-scm.com/)
+- <span data-ttu-id="d2b49-112">[Git 설치](https://git-scm.com/)
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]</span><span class="sxs-lookup"><span data-stu-id="d2b49-112">[Install Git](https://git-scm.com/)
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]</span></span>
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="0067a-113">CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-113">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="0067a-114">`az --version`을 실행하여 버전을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-114">Run `az --version` to find the version.</span></span> <span data-ttu-id="0067a-115">설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0067a-115">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="d2b49-113">Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-113">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="d2b49-114">실행 `az --version` toofind hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-114">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="d2b49-115">Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-115">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
-## <a name="download-the-sample"></a><span data-ttu-id="0067a-116">샘플 다운로드</span><span class="sxs-lookup"><span data-stu-id="0067a-116">Download the sample</span></span>
+## <a name="download-hello-sample"></a><span data-ttu-id="d2b49-116">Hello 샘플 다운로드</span><span class="sxs-lookup"><span data-stu-id="d2b49-116">Download hello sample</span></span>
 
-<span data-ttu-id="0067a-117">터미널 창에서 다음 명령을 실행하여 로컬 컴퓨터에 샘플 앱 리포지토리를 복제합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-117">In a terminal window, run the following command to clone the sample app repository to your local machine.</span></span>
+<span data-ttu-id="d2b49-117">터미널 창에서 hello 명령 tooclone hello 샘플 응용 프로그램 저장소 tooyour 로컬 컴퓨터에 다음을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-117">In a terminal window, run hello following command tooclone hello sample app repository tooyour local machine.</span></span>
 
 ```bash
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-<span data-ttu-id="0067a-118">이 터미널 창을 사용하여 이 빠른 시작의 모든 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-118">You use this terminal window to run all the commands in this quickstart.</span></span>
+<span data-ttu-id="d2b49-118">이 퀵 스타트의이 터미널 윈도우 toorun 모든 hello 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-118">You use this terminal window toorun all hello commands in this quickstart.</span></span>
 
-## <a name="view-the-html"></a><span data-ttu-id="0067a-119">HTML 보기</span><span class="sxs-lookup"><span data-stu-id="0067a-119">View the HTML</span></span>
+## <a name="view-hello-html"></a><span data-ttu-id="d2b49-119">HTML 보기 hello</span><span class="sxs-lookup"><span data-stu-id="d2b49-119">View hello HTML</span></span>
 
-<span data-ttu-id="0067a-120">샘플 HTML을 포함하는 디렉터리로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-120">Navigate to the directory that contains the sample HTML.</span></span> <span data-ttu-id="0067a-121">브라우저에서 *index.html* 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-121">Open the *index.html* file in your browser.</span></span>
+<span data-ttu-id="d2b49-120">Hello 샘플 HTML 있는 toohello 디렉터리를 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-120">Navigate toohello directory that contains hello sample HTML.</span></span> <span data-ttu-id="d2b49-121">열기 hello *index.html* 브라우저에서 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-121">Open hello *index.html* file in your browser.</span></span>
 
 ![샘플 앱 홈 페이지](media/app-service-web-get-started-html/hello-world-in-browser.png)
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -69,15 +69,15 @@ git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 
 ![빈 웹앱 페이지](media/app-service-web-get-started-html/app-service-web-service-created.png)
 
-<span data-ttu-id="0067a-124">Azure에서 비어 있는 새 웹앱을 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-124">You’ve created an empty new web app in Azure.</span></span>
+<span data-ttu-id="d2b49-124">Azure에서 비어 있는 새 웹앱을 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-124">You’ve created an empty new web app in Azure.</span></span>
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 13, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (11/11), done.
 Writing objects: 100% (13/13), 2.07 KiB | 0 bytes/s, done.
 Total 13 (delta 2), reused 0 (delta 0)
@@ -97,56 +97,56 @@ remote: Copying file: 'README.md'
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a><span data-ttu-id="0067a-125">앱으로 이동</span><span class="sxs-lookup"><span data-stu-id="0067a-125">Browse to the app</span></span>
+## <a name="browse-toohello-app"></a><span data-ttu-id="d2b49-125">Toohello 응용 프로그램 찾아보기</span><span class="sxs-lookup"><span data-stu-id="d2b49-125">Browse toohello app</span></span>
 
-<span data-ttu-id="0067a-126">브라우저에서 Azure 웹앱 URL로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-126">In a browser, go to the Azure web app URL:</span></span>
+<span data-ttu-id="d2b49-126">브라우저에서 toohello Azure 웹 앱 URL을 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-126">In a browser, go toohello Azure web app URL:</span></span>
 
 ```
 http://<app_name>.azurewebsites.net
 ```
 
-<span data-ttu-id="0067a-127">이 페이지는 Azure App Service 웹앱으로 실행됩니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-127">The page is running as an Azure App Service web app.</span></span>
+<span data-ttu-id="d2b49-127">Azure 앱 서비스 웹 앱으로 hello 페이지 실행 중입니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-127">hello page is running as an Azure App Service web app.</span></span>
 
 ![샘플 앱 홈 페이지](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-<span data-ttu-id="0067a-129">**축하합니다.**</span><span class="sxs-lookup"><span data-stu-id="0067a-129">**Congratulations!**</span></span> <span data-ttu-id="0067a-130">App Service에 첫 번째 HTML 앱을 배포했습니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-130">You've deployed your first HTML app to App Service.</span></span>
+<span data-ttu-id="d2b49-129">**축하합니다.**</span><span class="sxs-lookup"><span data-stu-id="d2b49-129">**Congratulations!**</span></span> <span data-ttu-id="d2b49-130">배포한 프로그램 첫 번째 HTML 응용 프로그램 tooApp 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-130">You've deployed your first HTML app tooApp Service.</span></span>
 
-## <a name="update-and-redeploy-the-app"></a><span data-ttu-id="0067a-131">앱 업데이트 및 다시 배포</span><span class="sxs-lookup"><span data-stu-id="0067a-131">Update and redeploy the app</span></span>
+## <a name="update-and-redeploy-hello-app"></a><span data-ttu-id="d2b49-131">업데이트 하 고 hello 응용 프로그램을 다시 배포</span><span class="sxs-lookup"><span data-stu-id="d2b49-131">Update and redeploy hello app</span></span>
 
-<span data-ttu-id="0067a-132">텍스트 편집기에서 *index.html* 파일을 열고 태그를 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-132">Open the *index.html* file in a text editor, and make a change to the markup.</span></span> <span data-ttu-id="0067a-133">예를 들어 "Azure App Service - 샘플 정적 HTML 사이트"에서 H1 제목을 "Azure App Service'로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-133">For example, change the H1 heading from "Azure App Service - Sample Static HTML Site" to just "Azure App Service\`.</span></span>
+<span data-ttu-id="d2b49-132">열기 hello *index.html* 텍스트 편집기에서 파일을 변경 toohello 태그를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-132">Open hello *index.html* file in a text editor, and make a change toohello markup.</span></span> <span data-ttu-id="d2b49-133">예를 들어, "Azure 앱 서비스-샘플 정적 HTML 사이트" toojust에서 hello H1 제목을 변경 "Azure 앱 서비스 '.</span><span class="sxs-lookup"><span data-stu-id="d2b49-133">For example, change hello H1 heading from "Azure App Service - Sample Static HTML Site" toojust "Azure App Service\`.</span></span>
 
-<span data-ttu-id="0067a-134">Git에서 변경 내용을 커밋한 다음 Azure에 코드 변경 내용을 푸시합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-134">Commit your changes in Git, and then push the code changes to Azure.</span></span>
+<span data-ttu-id="d2b49-134">Git에서 변경 내용을 커밋하고 hello 코드 변경 내용을 tooAzure 푸시하고 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-134">Commit your changes in Git, and then push hello code changes tooAzure.</span></span>
 
 ```bash
 git commit -am "updated HTML"
 git push azure master
 ```
 
-<span data-ttu-id="0067a-135">배포가 완료되면 브라우저를 새로 고쳐 변경 내용을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-135">Once deployment has completed, refresh your browser to see the changes.</span></span>
+<span data-ttu-id="d2b49-135">배포가 완료 되 면 브라우저 toosee hello 변경을 내용을 새로 고칩니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-135">Once deployment has completed, refresh your browser toosee hello changes.</span></span>
 
 ![업데이트된 샘플 앱 홈 페이지](media/app-service-web-get-started-html/hello-azure-in-browser-az.png)
 
-## <a name="manage-your-new-azure-web-app"></a><span data-ttu-id="0067a-137">새로운 Azure 웹앱 관리</span><span class="sxs-lookup"><span data-stu-id="0067a-137">Manage your new Azure web app</span></span>
+## <a name="manage-your-new-azure-web-app"></a><span data-ttu-id="d2b49-137">새로운 Azure 웹앱 관리</span><span class="sxs-lookup"><span data-stu-id="d2b49-137">Manage your new Azure web app</span></span>
 
-<span data-ttu-id="0067a-138">만든 웹앱을 관리하려면 <a href="https://portal.azure.com" target="_blank">Azure Portal</a>로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-138">Go to the <a href="https://portal.azure.com" target="_blank">Azure portal</a> to manage the web app you created.</span></span>
+<span data-ttu-id="d2b49-138">Toohello 이동 <a href="https://portal.azure.com" target="_blank">Azure 포털</a> 만든 toomanage hello 웹 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-138">Go toohello <a href="https://portal.azure.com" target="_blank">Azure portal</a> toomanage hello web app you created.</span></span>
 
-<span data-ttu-id="0067a-139">왼쪽 메뉴에서 **App Services**를 클릭한 다음 Azure 웹앱의 이름을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-139">From the left menu, click **App Services**, and then click the name of your Azure web app.</span></span>
+<span data-ttu-id="d2b49-139">Hello 왼쪽된 메뉴에서 클릭 **응용 프로그램 서비스**, Azure 웹 앱의 hello 이름을 클릭 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-139">From hello left menu, click **App Services**, and then click hello name of your Azure web app.</span></span>
 
-![Azure 웹앱에 대한 포털 탐색](./media/app-service-web-get-started-html/portal1.png)
+![포털 탐색 tooAzure 웹 응용 프로그램](./media/app-service-web-get-started-html/portal1.png)
 
-<span data-ttu-id="0067a-141">웹앱의 개요 페이지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-141">You see your web app's Overview page.</span></span> <span data-ttu-id="0067a-142">여기에서 찾아보기, 중지, 시작, 다시 시작, 삭제와 같은 기본 관리 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-142">Here, you can perform basic management tasks like browse, stop, start, restart, and delete.</span></span> 
+<span data-ttu-id="d2b49-141">웹앱의 개요 페이지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-141">You see your web app's Overview page.</span></span> <span data-ttu-id="d2b49-142">여기에서 찾아보기, 중지, 시작, 다시 시작, 삭제와 같은 기본 관리 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-142">Here, you can perform basic management tasks like browse, stop, start, restart, and delete.</span></span> 
 
 ![Azure Portal의 App Service 블레이드](./media/app-service-web-get-started-html/portal2.png)
 
-<span data-ttu-id="0067a-144">왼쪽 메뉴는 앱 구성을 위한 서로 다른 페이지를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0067a-144">The left menu provides different pages for configuring your app.</span></span> 
+<span data-ttu-id="d2b49-144">왼쪽된 메뉴 hello 응용 프로그램을 구성 하는 서로 다른 페이지를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d2b49-144">hello left menu provides different pages for configuring your app.</span></span> 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="0067a-145">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0067a-145">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d2b49-145">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d2b49-145">Next steps</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="0067a-146">사용자 지정 도메인 매핑</span><span class="sxs-lookup"><span data-stu-id="0067a-146">Map custom domain</span></span>](app-service-web-tutorial-custom-domain.md)
+> [<span data-ttu-id="d2b49-146">사용자 지정 도메인 매핑</span><span class="sxs-lookup"><span data-stu-id="d2b49-146">Map custom domain</span></span>](app-service-web-tutorial-custom-domain.md)

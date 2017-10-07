@@ -1,6 +1,6 @@
 ---
-title: "클라우드 서비스를 구성하는 방법(포털) | Microsoft Docs"
-description: "Azure에서 Cloud Services를 구성하는 방법에 대해 알아봅니다. 또한 클라우드 서비스 구성을 업데이트하고 역할 인스턴스에 대한 원격 액세스를 구성하는 방법도 알아봅니다. 이 예제는 Azure Portal을 사용합니다."
+title: "클라우드 서비스 (포털) aaaHow tooconfigure | Microsoft Docs"
+description: "Azure에서 tooconfigure 클라우드 서비스 하는 방법에 대해 알아봅니다. Tooupdate hello 클라우드 서비스 구성 알아보고 원격 액세스 toorole 인스턴스를 구성 합니다. 이러한 예제는 hello Azure 포털을 사용합니다."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/07/2016
 ms.author: adegeo
-ms.openlocfilehash: a7e891d05ffe4cc2b4f68dce072a81499cc6de80
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 969a08558473e8c79153192942bfda587eb5ada5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-cloud-services"></a><span data-ttu-id="aae03-105">Cloud Services를 구성하는 방법</span><span class="sxs-lookup"><span data-stu-id="aae03-105">How to Configure Cloud Services</span></span>
+# <a name="how-tooconfigure-cloud-services"></a><span data-ttu-id="c12ef-105">TooConfigure 클라우드 서비스 하는 방법</span><span class="sxs-lookup"><span data-stu-id="c12ef-105">How tooConfigure Cloud Services</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="aae03-106">Azure Portal</span><span class="sxs-lookup"><span data-stu-id="aae03-106">Azure portal</span></span>](cloud-services-how-to-configure-portal.md)
-> * [<span data-ttu-id="aae03-107">Azure 클래식 포털</span><span class="sxs-lookup"><span data-stu-id="aae03-107">Azure classic portal</span></span>](cloud-services-how-to-configure.md)
+> * [<span data-ttu-id="c12ef-106">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="c12ef-106">Azure portal</span></span>](cloud-services-how-to-configure-portal.md)
+> * [<span data-ttu-id="c12ef-107">Azure 클래식 포털</span><span class="sxs-lookup"><span data-stu-id="c12ef-107">Azure classic portal</span></span>](cloud-services-how-to-configure.md)
 >
 >
 
-<span data-ttu-id="aae03-108">Azure Portal에서 클라우드 서비스에 가장 일반적으로 사용되는 설정을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-108">You can configure the most commonly used settings for a cloud service in the Azure portal.</span></span> <span data-ttu-id="aae03-109">또는 구성 파일을 직접 업데이트하려는 경우 업데이트할 서비스 구성 파일을 다운로드한 후 업데이트된 파일을 업로드하고 구성 변경 내용으로 클라우드 서비스를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-109">Or, if you like to update your configuration files directly, download a service configuration file to update, and then upload the updated file and update the cloud service with the configuration changes.</span></span> <span data-ttu-id="aae03-110">어느 방법이든 모든 역할 인스턴스에 구성 업데이트를 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-110">Either way, the configuration updates are pushed out to all role instances.</span></span>
+<span data-ttu-id="c12ef-108">Hello Azure 포털에서에서 클라우드 서비스에 대 한 가장 일반적으로 사용 하는 hello 설정을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-108">You can configure hello most commonly used settings for a cloud service in hello Azure portal.</span></span> <span data-ttu-id="c12ef-109">또는 구성 파일을 직접 서비스 구성 파일 tooupdate 다운로드 하 고 hello 구성 변경 내용으로 업데이트 하는 hello 파일 및 업데이트 hello 클라우드 서비스 업로드 tooupdate 사용 하려는 경우.</span><span class="sxs-lookup"><span data-stu-id="c12ef-109">Or, if you like tooupdate your configuration files directly, download a service configuration file tooupdate, and then upload hello updated file and update hello cloud service with hello configuration changes.</span></span> <span data-ttu-id="c12ef-110">두 가지 경우 모두 hello 구성 업데이트 tooall 역할 인스턴스에 게시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-110">Either way, hello configuration updates are pushed out tooall role instances.</span></span>
 
-<span data-ttu-id="aae03-111">클라우드 서비스 역할의 인스턴스 또는 이에 대한 원격 데스크톱을 관리할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-111">You can also manage the instances of your cloud service roles, or remote desktop into them.</span></span>
+<span data-ttu-id="c12ef-111">에 클라우드 서비스 역할 또는 원격 데스크톱의 hello 인스턴스를 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-111">You can also manage hello instances of your cloud service roles, or remote desktop into them.</span></span>
 
-<span data-ttu-id="aae03-112">Azure는 각 역할에 둘 이상의 역할 인스턴스가 있는 경우에만 구성 업데이트 중 99.95%의 서비스 가용성을 보장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-112">Azure can only ensure 99.95 percent service availability during the configuration updates if you have at least two role instances for every role.</span></span> <span data-ttu-id="aae03-113">이에 따라, 가상 컴퓨터 하나는 클라이언트 요청을 처리하고 다른 하나는 업데이트를 진행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-113">That enables one virtual machine to process client requests while the other is being updated.</span></span> <span data-ttu-id="aae03-114">자세한 내용은 [Service Level Agreements(서비스 수준 약정)](https://azure.microsoft.com/support/legal/sla/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aae03-114">For more information, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).</span></span>
+<span data-ttu-id="c12ef-112">Azure 수만 99.95% 서비스 가용성을 보장 하는 동안 hello 구성 업데이트 모든 역할에 대 한 두 개 이상의 역할 인스턴스가 있는 경우.</span><span class="sxs-lookup"><span data-stu-id="c12ef-112">Azure can only ensure 99.95 percent service availability during hello configuration updates if you have at least two role instances for every role.</span></span> <span data-ttu-id="c12ef-113">수 있도록 하나 가상 컴퓨터 tooprocess 클라이언트 요청 다른 hello를 업데이트 하는 동안 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-113">That enables one virtual machine tooprocess client requests while hello other is being updated.</span></span> <span data-ttu-id="c12ef-114">자세한 내용은 [서비스 수준 계약](https://azure.microsoft.com/support/legal/sla/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c12ef-114">For more information, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).</span></span>
 
-## <a name="change-a-cloud-service"></a><span data-ttu-id="aae03-115">클라우드 서비스 변경</span><span class="sxs-lookup"><span data-stu-id="aae03-115">Change a cloud service</span></span>
-<span data-ttu-id="aae03-116">[Azure Portal](https://portal.azure.com/)을 연 후 클라우드 서비스로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-116">After opening the [Azure portal](https://portal.azure.com/), navigate to your cloud service.</span></span> <span data-ttu-id="aae03-117">여기에서 여러 항목을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-117">From here, you manage many aspects of it.</span></span>
+## <a name="change-a-cloud-service"></a><span data-ttu-id="c12ef-115">클라우드 서비스 변경하기</span><span class="sxs-lookup"><span data-stu-id="c12ef-115">Change a cloud service</span></span>
+<span data-ttu-id="c12ef-116">Opening hello 후 [Azure 포털](https://portal.azure.com/), tooyour 클라우드 서비스를 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-116">After opening hello [Azure portal](https://portal.azure.com/), navigate tooyour cloud service.</span></span> <span data-ttu-id="c12ef-117">여기에서 여러 항목을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-117">From here, you manage many aspects of it.</span></span>
 
 ![설정 페이지](./media/cloud-services-how-to-configure-portal/cloud-service.png)
 
-<span data-ttu-id="aae03-119">**설정** 또는 **모든 설정** 링크를 클릭하면 **설정** 블레이드가 열리며 여기에서 **속성** 및 **구성**을 변경하고 **인증서**를 관리하며 **경고 규칙**을 설정하고 이 클라우드 서비스에 액세스하는 **사용자**를 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-119">The **Settings** or **All settings** links will open up the **Settings** blade where you can change the **Properties**, change the **Configuration**, manage the **Certificates**, setup **Alert rules**, and manage the **Users** who have access to this cloud service.</span></span>
+<span data-ttu-id="c12ef-119">hello **설정** 또는 **모든 설정을** 링크 hello 개방 되므로 **설정** hello를 변경할 수 있는 블레이드 **속성**, hello 변경 **구성**, hello 관리 **인증서**, 설치 **규칙 경고**, 고 hello 관리 **사용자** 대 한 액세스 권한이 toothis 클라우드 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-119">hello **Settings** or **All settings** links will open up hello **Settings** blade where you can change hello **Properties**, change hello **Configuration**, manage hello **Certificates**, setup **Alert rules**, and manage hello **Users** who have access toothis cloud service.</span></span>
 
 ![Azure 클라우드 서비스 설정 블레이드](./media/cloud-services-how-to-configure-portal/cs-settings-blade.png)
 
-### <a name="manage-guest-os-version"></a><span data-ttu-id="aae03-121">게스트 OS 버전 관리</span><span class="sxs-lookup"><span data-stu-id="aae03-121">Manage Guest OS version</span></span>
+### <a name="manage-guest-os-version"></a><span data-ttu-id="c12ef-121">게스트 OS 버전 관리</span><span class="sxs-lookup"><span data-stu-id="c12ef-121">Manage Guest OS version</span></span>
 
-<span data-ttu-id="aae03-122">기본적으로 Azure는 Windows Server 2016 같은 게스트 OS를 서비스 구성(.cscfg)에 지정한 OS 제품군 내에서 지원되는 최신 이미지로 주기적으로 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-122">By default, Azure periodically updates your guest OS to the latest supported image within the OS family that you've specified in your service configuration (.cscfg), such as Windows Server 2016.</span></span>
+<span data-ttu-id="c12ef-122">기본적으로 Azure Windows Server 2016 같은 게스트 OS toohello 최신 지원 되는 이미지, 서비스 구성 (.cscfg)에 지정 된 OS 제품군 hello 내에서 주기적으로 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-122">By default, Azure periodically updates your guest OS toohello latest supported image within hello OS family that you've specified in your service configuration (.cscfg), such as Windows Server 2016.</span></span>
 
-<span data-ttu-id="aae03-123">특정 OS 버전을 대상으로 해야 하는 경우 **구성** 블레이드에서 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-123">If you need to target a specific OS version, you can set it in the **Configuration** blade.</span></span>
+<span data-ttu-id="c12ef-123">특정 운영 체제 버전 tootarget 해야 할 경우 hello에 설정할 수 있습니다 **구성** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-123">If you need tootarget a specific OS version, you can set it in hello **Configuration** blade.</span></span>
 
 ![OS 버전 설정](./media/cloud-services-how-to-configure-portal/cs-settings-config-guestosversion.png)
 
 
 >[!IMPORTANT]
-> <span data-ttu-id="aae03-125">특정 OS 버전을 선택하면 자동 OS 업데이트가 사용되지 않도록 설정되며 패치는 사용자가 책임지고 진행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-125">Choosing a specific OS version disables automatic OS updates and makes patching your responsibility.</span></span> <span data-ttu-id="aae03-126">즉, 역할 인스턴스가 업데이트를 수신하도록 해야 합니다. 그러지 않으면 응용 프로그램이 보안 취약점에 노출될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-126">You must ensure that your role instances are receiving updates or you may expose your application to security vulnerabilities.</span></span>
+> <span data-ttu-id="c12ef-125">특정 OS 버전을 선택하면 자동 OS 업데이트가 사용되지 않도록 설정되며 패치는 사용자가 책임지고 진행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-125">Choosing a specific OS version disables automatic OS updates and makes patching your responsibility.</span></span> <span data-ttu-id="c12ef-126">업데이트를 수신 하는 역할 인스턴스 또는 응용 프로그램 toosecurity 취약점이 노출 될 수 있습니다를 확인 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-126">You must ensure that your role instances are receiving updates or you may expose your application toosecurity vulnerabilities.</span></span>
 
-## <a name="monitoring"></a><span data-ttu-id="aae03-127">모니터링</span><span class="sxs-lookup"><span data-stu-id="aae03-127">Monitoring</span></span>
-<span data-ttu-id="aae03-128">클라우드 서비스에 경고를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-128">You can add alerts to your cloud service.</span></span> <span data-ttu-id="aae03-129">**설정** > **경고 규칙** > **경고 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-129">Click **Settings** > **Alert Rules** > **Add alert**.</span></span>
+## <a name="monitoring"></a><span data-ttu-id="c12ef-127">모니터링</span><span class="sxs-lookup"><span data-stu-id="c12ef-127">Monitoring</span></span>
+<span data-ttu-id="c12ef-128">경고 tooyour 클라우드 서비스를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-128">You can add alerts tooyour cloud service.</span></span> <span data-ttu-id="c12ef-129">**설정** > **경고 규칙** > **경고 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-129">Click **Settings** > **Alert Rules** > **Add alert**.</span></span>
 
 ![](./media/cloud-services-how-to-configure-portal/cs-alerts.png)
 
-<span data-ttu-id="aae03-130">여기에서 경고를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-130">From here, you can setup an alert.</span></span> <span data-ttu-id="aae03-131">**메트릭** 드롭다운 상자에서 다음 데이터 형식에 대한 경고를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-131">With the **Metric** drop down box, you can setup an alert for the following types of data.</span></span>
+<span data-ttu-id="c12ef-130">여기에서 경고를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-130">From here, you can setup an alert.</span></span> <span data-ttu-id="c12ef-131">Hello로 **메트릭을** 드롭다운 상자, 데이터 형식에 따라 hello에 대 한 경고를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-131">With hello **Metric** drop down box, you can setup an alert for hello following types of data.</span></span>
 
-* <span data-ttu-id="aae03-132">디스크 읽기</span><span class="sxs-lookup"><span data-stu-id="aae03-132">Disk read</span></span>
-* <span data-ttu-id="aae03-133">디스크 쓰기</span><span class="sxs-lookup"><span data-stu-id="aae03-133">Disk write</span></span>
-* <span data-ttu-id="aae03-134">네트워크 입력</span><span class="sxs-lookup"><span data-stu-id="aae03-134">Network in</span></span>
-* <span data-ttu-id="aae03-135">네트워크 출력</span><span class="sxs-lookup"><span data-stu-id="aae03-135">Network out</span></span>
-* <span data-ttu-id="aae03-136">CPU 비율</span><span class="sxs-lookup"><span data-stu-id="aae03-136">CPU percentage</span></span>
+* <span data-ttu-id="c12ef-132">디스크 읽기</span><span class="sxs-lookup"><span data-stu-id="c12ef-132">Disk read</span></span>
+* <span data-ttu-id="c12ef-133">디스크 쓰기</span><span class="sxs-lookup"><span data-stu-id="c12ef-133">Disk write</span></span>
+* <span data-ttu-id="c12ef-134">네트워크 입력</span><span class="sxs-lookup"><span data-stu-id="c12ef-134">Network in</span></span>
+* <span data-ttu-id="c12ef-135">네트워크 출력</span><span class="sxs-lookup"><span data-stu-id="c12ef-135">Network out</span></span>
+* <span data-ttu-id="c12ef-136">CPU 비율</span><span class="sxs-lookup"><span data-stu-id="c12ef-136">CPU percentage</span></span>
 
 ![](./media/cloud-services-how-to-configure-portal/cs-alert-item.png)
 
-### <a name="configure-monitoring-from-a-metric-tile"></a><span data-ttu-id="aae03-137">메트릭 타일에서 모니터링 구성</span><span class="sxs-lookup"><span data-stu-id="aae03-137">Configure monitoring from a metric tile</span></span>
-<span data-ttu-id="aae03-138">**설정** > **경고 규칙**을 사용하는 대신 **클라우드 서비스** 블레이드의 **모니터링** 섹션에서 메트릭 타일 중 하나를 클릭할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-138">Instead of using **Settings** > **Alert Rules**, you can click on one of the metric tiles in the **Monitoring** section of the **Cloud service** blade.</span></span>
+### <a name="configure-monitoring-from-a-metric-tile"></a><span data-ttu-id="c12ef-137">메트릭 타일에서 모니터링 구성</span><span class="sxs-lookup"><span data-stu-id="c12ef-137">Configure monitoring from a metric tile</span></span>
+<span data-ttu-id="c12ef-138">사용 하는 대신 **설정** > **경고 규칙**, hello에 hello 메트릭 타일 중 하나를 클릭할 수 있는 **모니터링** hello 섹션 **클라우드 서비스** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-138">Instead of using **Settings** > **Alert Rules**, you can click on one of hello metric tiles in hello **Monitoring** section of hello **Cloud service** blade.</span></span>
 
 ![클라우드 서비스 모니터링](./media/cloud-services-how-to-configure-portal/cs-monitoring.png)
 
-<span data-ttu-id="aae03-140">여기에서 타일에 사용되는 차트를 사용자 지정하거나 경고 규칙을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-140">From here you can customize the chart used with the tile, or add an alert rule.</span></span>
+<span data-ttu-id="c12ef-140">여기에서 hello 타일을 함께 사용 하는 hello 차트를 사용자 지정 하거나 경고 규칙을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-140">From here you can customize hello chart used with hello tile, or add an alert rule.</span></span>
 
-## <a name="reboot-reimage-or-remote-desktop"></a><span data-ttu-id="aae03-141">다시 부팅, 이미지로 다시 설치 또는 원격 데스크톱</span><span class="sxs-lookup"><span data-stu-id="aae03-141">Reboot, reimage, or remote desktop</span></span>
-<span data-ttu-id="aae03-142">지금은 **Azure Portal**을 사용하여 원격 데스크톱을 구성할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-142">At this time you cannot configure remote desktop using the **Azure portal**.</span></span> <span data-ttu-id="aae03-143">그러나 [Azure 클래식 포털](cloud-services-role-enable-remote-desktop.md), [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md) 또는 [Visual Studio](../vs-azure-tools-remote-desktop-roles.md)를 통해 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-143">However, you can set it up through the [Azure classic portal](cloud-services-role-enable-remote-desktop.md), [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md), or through [Visual Studio](../vs-azure-tools-remote-desktop-roles.md).</span></span>
+## <a name="reboot-reimage-or-remote-desktop"></a><span data-ttu-id="c12ef-141">다시 부팅, 이미지로 다시 설치 또는 원격 데스크톱</span><span class="sxs-lookup"><span data-stu-id="c12ef-141">Reboot, reimage, or remote desktop</span></span>
+<span data-ttu-id="c12ef-142">이 이번에 hello를 사용 하 여 원격 데스크톱을 구성할 수 없습니다 **Azure 포털**합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-142">At this time you cannot configure remote desktop using hello **Azure portal**.</span></span> <span data-ttu-id="c12ef-143">그러나 설정할 수 있습니다 통해 hello [Azure 클래식 포털](cloud-services-role-enable-remote-desktop.md), [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md), 또는 [Visual Studio](../vs-azure-tools-remote-desktop-roles.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-143">However, you can set it up through hello [Azure classic portal](cloud-services-role-enable-remote-desktop.md), [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md), or through [Visual Studio](../vs-azure-tools-remote-desktop-roles.md).</span></span>
 
-<span data-ttu-id="aae03-144">먼저 클라우드 서비스 인스턴스를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-144">First, click on the cloud service instance.</span></span>
+<span data-ttu-id="c12ef-144">먼저, hello 클라우드 서비스 인스턴스에 대해을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-144">First, click on hello cloud service instance.</span></span>
 
 ![클라우드 서비스 인스턴스](./media/cloud-services-how-to-configure-portal/cs-instance.png)
 
-<span data-ttu-id="aae03-146">열리는 블레이드에서 원격 데스크톱 연결을 시작하고 인스턴스를 원격으로 다시 부팅하거나 인스턴스를 원격으로 이미지로 다시 설치(새 이미지로 시작)할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-146">From the blade that opens you can initiate a remote desktop connection, remotely reboot the instance, or remotely reimage (start with a fresh image) the instance.</span></span>
+<span data-ttu-id="c12ef-146">하면 블레이드 hello에서 원격 데스크톱 연결을 시작, hello 인스턴스 또는 원격으로 이미지로 다시 설치 (새 이미지가 포함 된 시작) hello 인스턴스를 원격으로 다시 부팅 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-146">From hello blade that opens you can initiate a remote desktop connection, remotely reboot hello instance, or remotely reimage (start with a fresh image) hello instance.</span></span>
 
 ![클라우드 서비스 인스턴스 단추](./media/cloud-services-how-to-configure-portal/cs-instance-buttons.png)
 
-## <a name="reconfigure-your-cscfg"></a><span data-ttu-id="aae03-148">.cscfg 다시 구성</span><span class="sxs-lookup"><span data-stu-id="aae03-148">Reconfigure your .cscfg</span></span>
-<span data-ttu-id="aae03-149">[서비스 구성(cscfg)](cloud-services-model-and-package.md#cscfg) 파일을 통해 클라우드 서비스를 다시 구성해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-149">You may need to reconfigure your cloud service through the [service config (cscfg)](cloud-services-model-and-package.md#cscfg) file.</span></span> <span data-ttu-id="aae03-150">먼저 .cscfg 파일을 다운로드하고 수정한 후 업로드해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-150">First you need to download your .cscfg file, modify it, then upload it.</span></span>
+## <a name="reconfigure-your-cscfg"></a><span data-ttu-id="c12ef-148">.cscfg 다시 구성</span><span class="sxs-lookup"><span data-stu-id="c12ef-148">Reconfigure your .cscfg</span></span>
+<span data-ttu-id="c12ef-149">Tooreconfigure hello 통해 클라우드 서비스를 할 수 있습니다 [서비스 구성 (cscfg)](cloud-services-model-and-package.md#cscfg) 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-149">You may need tooreconfigure your cloud service through hello [service config (cscfg)](cloud-services-model-and-package.md#cscfg) file.</span></span> <span data-ttu-id="c12ef-150">먼저 toodownload 프로그램.cscfg 파일을 수정 하십시오. 다음 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-150">First you need toodownload your .cscfg file, modify it, then upload it.</span></span>
 
-1. <span data-ttu-id="aae03-151">**설정** 아이콘 또는 **모든 설정** 링크를 클릭하여 **설정** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-151">Click on the **Settings** icon or the **All settings** link to open up the **Settings** blade.</span></span>
+1. <span data-ttu-id="c12ef-151">Hello 클릭 **설정** 아이콘 또는 hello **모든 설정** hello tooopen 연결 **설정을** 블레이드 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-151">Click on hello **Settings** icon or hello **All settings** link tooopen up hello **Settings** blade.</span></span>
 
     ![설정 페이지](./media/cloud-services-how-to-configure-portal/cloud-service.png)
-2. <span data-ttu-id="aae03-153">**구성** 항목을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-153">Click on the **Configuration** item.</span></span>
+2. <span data-ttu-id="c12ef-153">Hello 클릭 **구성** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-153">Click on hello **Configuration** item.</span></span>
 
     ![구성 블레이드](./media/cloud-services-how-to-configure-portal/cs-settings-config.png)
-3. <span data-ttu-id="aae03-155">**다운로드** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-155">Click on the **Download** button.</span></span>
+3. <span data-ttu-id="c12ef-155">Hello 클릭 **다운로드** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-155">Click on hello **Download** button.</span></span>
 
     ![다운로드](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-download.png)
-4. <span data-ttu-id="aae03-157">서비스 구성 파일을 업데이트한 후 구성 업데이트를 업로드하고 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-157">After you update the service configuration file, upload and apply the configuration updates:</span></span>
+4. <span data-ttu-id="c12ef-157">Hello 서비스 구성 파일을 업데이트 한 후 업로드 하 고 hello 구성 업데이트를 적용 합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-157">After you update hello service configuration file, upload and apply hello configuration updates:</span></span>
 
     ![업로드](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-upload.png)
-5. <span data-ttu-id="aae03-159">.cscfg 파일을 선택하고 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-159">Select the .cscfg file and click **OK**.</span></span>
+5. <span data-ttu-id="c12ef-159">Hello.cscfg 파일을 선택 하 고 클릭 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-159">Select hello .cscfg file and click **OK**.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="aae03-160">다음 단계</span><span class="sxs-lookup"><span data-stu-id="aae03-160">Next steps</span></span>
-* <span data-ttu-id="aae03-161">[클라우드 서비스를 배포](cloud-services-how-to-create-deploy-portal.md)하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-161">Learn how to [deploy a cloud service](cloud-services-how-to-create-deploy-portal.md).</span></span>
-* <span data-ttu-id="aae03-162">[사용자 지정 도메인 이름](cloud-services-custom-domain-name-portal.md)을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="aae03-162">Configure a [custom domain name](cloud-services-custom-domain-name-portal.md).</span></span>
-* <span data-ttu-id="aae03-163">[클라우드 서비스를 관리합니다](cloud-services-how-to-manage-portal.md).</span><span class="sxs-lookup"><span data-stu-id="aae03-163">[Manage your cloud service](cloud-services-how-to-manage-portal.md).</span></span>
-* <span data-ttu-id="aae03-164">[SSL 인증서](cloud-services-configure-ssl-certificate-portal.md)구성</span><span class="sxs-lookup"><span data-stu-id="aae03-164">Configure [ssl certificates](cloud-services-configure-ssl-certificate-portal.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c12ef-160">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c12ef-160">Next steps</span></span>
+* <span data-ttu-id="c12ef-161">너무 방법에 대해 알아봅니다[클라우드 서비스 배포](cloud-services-how-to-create-deploy-portal.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="c12ef-161">Learn how too[deploy a cloud service](cloud-services-how-to-create-deploy-portal.md).</span></span>
+* <span data-ttu-id="c12ef-162">[사용자 지정 도메인 이름](cloud-services-custom-domain-name-portal.md)구성</span><span class="sxs-lookup"><span data-stu-id="c12ef-162">Configure a [custom domain name](cloud-services-custom-domain-name-portal.md).</span></span>
+* <span data-ttu-id="c12ef-163">[클라우드 서비스를 관리합니다](cloud-services-how-to-manage-portal.md).</span><span class="sxs-lookup"><span data-stu-id="c12ef-163">[Manage your cloud service](cloud-services-how-to-manage-portal.md).</span></span>
+* <span data-ttu-id="c12ef-164">[SSL 인증서](cloud-services-configure-ssl-certificate-portal.md)구성</span><span class="sxs-lookup"><span data-stu-id="c12ef-164">Configure [ssl certificates](cloud-services-configure-ssl-certificate-portal.md).</span></span>

@@ -1,6 +1,6 @@
 ---
 title: "자습서: TalentLMS와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory와 TalentLMS 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 TalentLMS 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,257 +13,257 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: jeedes
-ms.openlocfilehash: f28d6fbfad9dae578a20db7218b7e3b174ed859c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 25538086602e58fbaab0fbf223f5b03908a74922
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-talentlms"></a><span data-ttu-id="4fc6b-103">자습서: TalentLMS와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="4fc6b-103">Tutorial: Azure Active Directory integration with TalentLMS</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-talentlms"></a><span data-ttu-id="8d794-103">자습서: TalentLMS와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="8d794-103">Tutorial: Azure Active Directory integration with TalentLMS</span></span>
 
-<span data-ttu-id="4fc6b-104">이 자습서에서는 Azure AD(Azure Active Directory)와 TalentLMS를 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-104">In this tutorial, you learn how to integrate TalentLMS with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="8d794-104">이 자습서에 설명 어떻게 toointegrate TalentLMS와 Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="8d794-104">In this tutorial, you learn how toointegrate TalentLMS with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="4fc6b-105">TalentLMS를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-105">Integrating TalentLMS with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="8d794-105">Azure AD와 TalentLMS 통합 이점을 다음 hello로 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-105">Integrating TalentLMS with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="4fc6b-106">TalentLMS에 액세스할 수 있는 사용자를 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-106">You can control in Azure AD who has access to TalentLMS</span></span>
-- <span data-ttu-id="4fc6b-107">사용자가 자신의 Azure AD 계정으로 TalentLMS에 자동으로 로그온(Single Sign-On)되도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-107">You can enable your users to automatically get signed-on to TalentLMS (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="4fc6b-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="8d794-106">액세스 tooTalentLMS을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-106">You can control in Azure AD who has access tooTalentLMS</span></span>
+- <span data-ttu-id="8d794-107">프로그램 사용자 tooautomatically get 로그온 tooTalentLMS (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-107">You can enable your users tooautomatically get signed-on tooTalentLMS (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="8d794-108">하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="4fc6b-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="8d794-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="4fc6b-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="4fc6b-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8d794-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="8d794-110">Prerequisites</span></span>
 
-<span data-ttu-id="4fc6b-111">TalentLMS와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-111">To configure Azure AD integration with TalentLMS, you need the following items:</span></span>
+<span data-ttu-id="8d794-111">TalentLMS와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-111">tooconfigure Azure AD integration with TalentLMS, you need hello following items:</span></span>
 
-- <span data-ttu-id="4fc6b-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="4fc6b-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="4fc6b-113">TalentLMS Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="4fc6b-113">A TalentLMS single sign-on enabled subscription</span></span>
+- <span data-ttu-id="8d794-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="8d794-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="8d794-113">TalentLMS Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="8d794-113">A TalentLMS single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="4fc6b-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="8d794-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="4fc6b-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="8d794-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="4fc6b-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="4fc6b-117">Azure AD 평가판 환경이 없으면 [평가판 제품](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-117">If you don't have an Azure AD trial environment, you can get a one-month trial here: [Trial offer](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="8d794-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="8d794-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="8d794-117">Azure AD 평가판 환경이 없으면 [평가판 제품](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-117">If you don't have an Azure AD trial environment, you can get a one-month trial here: [Trial offer](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="4fc6b-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="4fc6b-118">Scenario description</span></span>
-<span data-ttu-id="4fc6b-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="4fc6b-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="8d794-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="8d794-118">Scenario description</span></span>
+<span data-ttu-id="8d794-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="8d794-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="4fc6b-121">갤러리에서 TalentLMS 추가</span><span class="sxs-lookup"><span data-stu-id="4fc6b-121">Adding TalentLMS from the gallery</span></span>
-2. <span data-ttu-id="4fc6b-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="4fc6b-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="8d794-121">TalentLMS는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="8d794-121">Adding TalentLMS from hello gallery</span></span>
+2. <span data-ttu-id="8d794-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="8d794-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-talentlms-from-the-gallery"></a><span data-ttu-id="4fc6b-123">갤러리에서 TalentLMS 추가</span><span class="sxs-lookup"><span data-stu-id="4fc6b-123">Adding TalentLMS from the gallery</span></span>
-<span data-ttu-id="4fc6b-124">TalentLMS가 Azure AD에 통합되도록 구성하려면 갤러리의 TalentLMS를 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-124">To configure the integration of TalentLMS into Azure AD, you need to add TalentLMS from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-talentlms-from-hello-gallery"></a><span data-ttu-id="8d794-123">TalentLMS는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="8d794-123">Adding TalentLMS from hello gallery</span></span>
+<span data-ttu-id="8d794-124">tooconfigure hello와의 통합 TalentLMS Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 TalentLMS tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-124">tooconfigure hello integration of TalentLMS into Azure AD, you need tooadd TalentLMS from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="4fc6b-125">**갤러리에서 TalentLMS를 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="4fc6b-125">**To add TalentLMS from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="8d794-125">**hello 갤러리에서 TalentLMS tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="8d794-125">**tooadd TalentLMS from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4fc6b-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="8d794-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="4fc6b-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="4fc6b-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="8d794-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="8d794-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-129">Then go too**All applications**.</span></span>
 
     ![응용 프로그램][2]
     
-3. <span data-ttu-id="4fc6b-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="8d794-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![응용 프로그램][3]
 
-4. <span data-ttu-id="4fc6b-133">검색 상자에 **TalentLMS**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-133">In the search box, type **TalentLMS**.</span></span>
+4. <span data-ttu-id="8d794-133">Hello 검색 상자에 입력 **TalentLMS**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-133">In hello search box, type **TalentLMS**.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_search.png)
 
-5. <span data-ttu-id="4fc6b-135">결과 패널에서 **TalentLMS**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-135">In the results panel, select **TalentLMS**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="8d794-135">Hello 결과 패널에서 선택 **TalentLMS**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-135">In hello results panel, select **TalentLMS**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="4fc6b-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="4fc6b-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="4fc6b-138">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 사용하여 TalentLMS에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-138">In this section, you configure and test Azure AD single sign-on with TalentLMS based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="8d794-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="8d794-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="8d794-138">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 사용하여 TalentLMS에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-138">In this section, you configure and test Azure AD single sign-on with TalentLMS based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="4fc6b-139">Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 TalentLMS 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-139">For single sign-on to work, Azure AD needs to know what the counterpart user in TalentLMS is to a user in Azure AD.</span></span> <span data-ttu-id="4fc6b-140">즉, Azure AD 사용자와 TalentLMS의 관련 사용자 간에 연결 관계를 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-140">In other words, a link relationship between an Azure AD user and the related user in TalentLMS needs to be established.</span></span>
+<span data-ttu-id="8d794-139">Single sign on toowork에 대 한 Azure AD는 tooknow TalentLMS에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in TalentLMS is tooa user in Azure AD.</span></span> <span data-ttu-id="8d794-140">즉, Azure AD 사용자와 TalentLMS에 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-140">In other words, a link relationship between an Azure AD user and hello related user in TalentLMS needs toobe established.</span></span>
 
-<span data-ttu-id="4fc6b-141">TalentLMS에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 연결 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-141">In TalentLMS, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="8d794-141">TalentLMS에 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-141">In TalentLMS, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="4fc6b-142">TalentLMS에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-142">To configure and test Azure AD single sign-on with TalentLMS, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="8d794-142">tooconfigure와 TalentLMS와 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-142">tooconfigure and test Azure AD single sign-on with TalentLMS, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="4fc6b-143">**[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="4fc6b-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="4fc6b-145">**[TalentLMS 테스트 사용자 만들기](#creating-a-talentlms-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 TalentLMS에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-145">**[Creating a TalentLMS test user](#creating-a-talentlms-test-user)** - to have a counterpart of Britta Simon in TalentLMS that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="4fc6b-146">**[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="4fc6b-147">**[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="8d794-143">**[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="8d794-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="8d794-145">**[TalentLMS 테스트 사용자 만들기](#creating-a-talentlms-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 TalentLMS에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-145">**[Creating a TalentLMS test user](#creating-a-talentlms-test-user)** - toohave a counterpart of Britta Simon in TalentLMS that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="8d794-146">**[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="8d794-147">**[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="8d794-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="4fc6b-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="4fc6b-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="8d794-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="8d794-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="4fc6b-149">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 TalentLMS 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your TalentLMS application.</span></span>
+<span data-ttu-id="8d794-149">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 TalentLMS 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your TalentLMS application.</span></span>
 
-<span data-ttu-id="4fc6b-150">**TalentLMS에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="4fc6b-150">**To configure Azure AD single sign-on with TalentLMS, perform the following steps:**</span></span>
+<span data-ttu-id="8d794-150">**Azure AD tooconfigure single sign on와 TalentLMS를 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="8d794-150">**tooconfigure Azure AD single sign-on with TalentLMS, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4fc6b-151">Azure Portal의 **TalentLMS** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-151">In the Azure portal, on the **TalentLMS** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="8d794-151">Hello hello에 Azure 포털에서에서 **TalentLMS** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-151">In hello Azure portal, on hello **TalentLMS** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-on 구성][4]
 
-2. <span data-ttu-id="4fc6b-153">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="8d794-153">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_samlbase.png)
 
-3. <span data-ttu-id="4fc6b-155">**TalentLMS 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-155">On the **TalentLMS Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="8d794-155">Hello에 **TalentLMS 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-155">On hello **TalentLMS Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_url.png)
 
-    <span data-ttu-id="4fc6b-157">a.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-157">a.</span></span> <span data-ttu-id="4fc6b-158">**로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<tenant-name>.TalentLMSapp.com`</span><span class="sxs-lookup"><span data-stu-id="4fc6b-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<tenant-name>.TalentLMSapp.com`</span></span>
+    <span data-ttu-id="8d794-157">a.</span><span class="sxs-lookup"><span data-stu-id="8d794-157">a.</span></span> <span data-ttu-id="8d794-158">Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<tenant-name>.TalentLMSapp.com`</span><span class="sxs-lookup"><span data-stu-id="8d794-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<tenant-name>.TalentLMSapp.com`</span></span>
 
-    <span data-ttu-id="4fc6b-159">b.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-159">b.</span></span> <span data-ttu-id="4fc6b-160">**식별자** 텍스트 상자에서 `http://<tenant-name>.talentlms.com` 패턴을 사용하여 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-160">In the **Identifier** textbox, type a URL using the following pattern: `http://<tenant-name>.talentlms.com`</span></span>
+    <span data-ttu-id="8d794-159">b.</span><span class="sxs-lookup"><span data-stu-id="8d794-159">b.</span></span> <span data-ttu-id="8d794-160">Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`http://<tenant-name>.talentlms.com`</span><span class="sxs-lookup"><span data-stu-id="8d794-160">In hello **Identifier** textbox, type a URL using hello following pattern: `http://<tenant-name>.talentlms.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="4fc6b-161">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-161">These values are not real.</span></span> <span data-ttu-id="4fc6b-162">실제 로그온 URL 및 식별자로 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="4fc6b-163">이러한 값을 얻으려면 [TalentLMS 클라이언트 지원 팀](https://www.talentlms.com/contact)에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-163">Contact [TalentLMS Client support team](https://www.talentlms.com/contact) to get these values.</span></span> 
+    > <span data-ttu-id="8d794-161">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-161">These values are not real.</span></span> <span data-ttu-id="8d794-162">이러한 항목을 업데이트 로그온 URL과 식별자 실제 hello로 값입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="8d794-163">연락처 [TalentLMS 클라이언트 지원 팀](https://www.talentlms.com/contact) tooget 이러한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-163">Contact [TalentLMS Client support team](https://www.talentlms.com/contact) tooget these values.</span></span> 
  
-4. <span data-ttu-id="4fc6b-164">**SAML 서명 인증서** 섹션에서 인증서의 **지문** 값을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-164">On the **SAML Signing Certificate** section, copy the **THUMBPRINT** value from the certificate.</span></span>
+4. <span data-ttu-id="8d794-164">Hello에 **SAML 서명 인증서** 섹션을 복사 hello **지문** hello 인증서의 값입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-164">On hello **SAML Signing Certificate** section, copy hello **THUMBPRINT** value from hello certificate.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_certificate.png) 
 
-5. <span data-ttu-id="4fc6b-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="8d794-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-166">Click **Save** button.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="4fc6b-168">**TalentLMS 구성** 섹션에서 **TalentLMS 구성**을 클릭하여 **로그온 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-168">On the **TalentLMS Configuration** section, click **Configure TalentLMS** to open **Configure sign-on** window.</span></span> <span data-ttu-id="4fc6b-169">**빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-169">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="8d794-168">Hello에 **TalentLMS 구성** 섹션에서 클릭 **구성 TalentLMS** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="8d794-168">On hello **TalentLMS Configuration** section, click **Configure TalentLMS** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="8d794-169">복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="8d794-169">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_configure.png)  
 
-7. <span data-ttu-id="4fc6b-171">다른 웹 브라우저 창에서 TalentLMS 회사 사이트에 관리자로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-171">In a different web browser window, log in to your TalentLMS company site as an administrator.</span></span>
+7. <span data-ttu-id="8d794-171">다른 웹 브라우저 창에서 관리자 권한으로 tooyour TalentLMS 회사 사이트에 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-171">In a different web browser window, log in tooyour TalentLMS company site as an administrator.</span></span>
 
-8. <span data-ttu-id="4fc6b-172">**계정 및 설정** 섹션에서 **사용자** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-172">In the **Account & Settings** section, click the **Users** tab.</span></span>
+8. <span data-ttu-id="8d794-172">Hello에 **계정 & 설정** 섹션에서 hello **사용자** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-172">In hello **Account & Settings** section, click hello **Users** tab.</span></span>
    
-    <span data-ttu-id="4fc6b-173">![계정 & 설정](./media/active-directory-saas-talentlms-tutorial/IC777296.png "계정 & 설정")</span><span class="sxs-lookup"><span data-stu-id="4fc6b-173">![Account & Settings](./media/active-directory-saas-talentlms-tutorial/IC777296.png "Account & Settings")</span></span>
+    <span data-ttu-id="8d794-173">![계정 & 설정](./media/active-directory-saas-talentlms-tutorial/IC777296.png "계정 & 설정")</span><span class="sxs-lookup"><span data-stu-id="8d794-173">![Account & Settings](./media/active-directory-saas-talentlms-tutorial/IC777296.png "Account & Settings")</span></span>
 
-9. <span data-ttu-id="4fc6b-174">**SSO(Single Sign-On)**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-174">Click **Single Sign-On (SSO)**,</span></span>
+9. <span data-ttu-id="8d794-174">**SSO(Single Sign-On)**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-174">Click **Single Sign-On (SSO)**,</span></span>
 
-10. <span data-ttu-id="4fc6b-175">Single Sign-On 섹션에서 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-175">In the Single Sign-On section, perform the following steps:</span></span>
+10. <span data-ttu-id="8d794-175">Hello Single Sign-on 섹션에서에서 단계를 수행 하는 hello를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-175">In hello Single Sign-On section, perform hello following steps:</span></span>
    
-    <span data-ttu-id="4fc6b-176">![Single Sign-On](./media/active-directory-saas-talentlms-tutorial/IC777297.png "Single Sign-On")</span><span class="sxs-lookup"><span data-stu-id="4fc6b-176">![Single Sign-On](./media/active-directory-saas-talentlms-tutorial/IC777297.png "Single Sign-On")</span></span>   
+    <span data-ttu-id="8d794-176">![Single Sign-On](./media/active-directory-saas-talentlms-tutorial/IC777297.png "Single Sign-On")</span><span class="sxs-lookup"><span data-stu-id="8d794-176">![Single Sign-On](./media/active-directory-saas-talentlms-tutorial/IC777297.png "Single Sign-On")</span></span>   
 
-    <span data-ttu-id="4fc6b-177">a.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-177">a.</span></span> <span data-ttu-id="4fc6b-178">**SSO 통합 형식** 목록에서 **SAML 2.0**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-178">From the **SSO integration type** list, select **SAML 2.0**.</span></span>
+    <span data-ttu-id="8d794-177">a.</span><span class="sxs-lookup"><span data-stu-id="8d794-177">a.</span></span> <span data-ttu-id="8d794-178">Hello에서 **SSO 통합 형식** 목록에서 **SAML 2.0**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-178">From hello **SSO integration type** list, select **SAML 2.0**.</span></span>
 
-    <span data-ttu-id="4fc6b-179">b.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-179">b.</span></span> <span data-ttu-id="4fc6b-180">Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 **ID 공급자(IDP)** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-180">In the **Identity provider (IDP)** textbox, paste the value of **SAML Entity ID**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="8d794-179">b.</span><span class="sxs-lookup"><span data-stu-id="8d794-179">b.</span></span> <span data-ttu-id="8d794-180">Hello에 **IDP (Id 공급자)** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID**, Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-180">In hello **Identity provider (IDP)** textbox, paste hello value of **SAML Entity ID**, which you have copied from Azure portal.</span></span>
  
-    <span data-ttu-id="4fc6b-181">c.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-181">c.</span></span> <span data-ttu-id="4fc6b-182">Azure Portal의 **지문** 값을 **Certificate Fingerprint**(인증서 지문) 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-182">Paste the **Thumbprint** value from Azure portal into the **Certificate fingerprint** textbox.</span></span>    
+    <span data-ttu-id="8d794-181">c.</span><span class="sxs-lookup"><span data-stu-id="8d794-181">c.</span></span> <span data-ttu-id="8d794-182">붙여넣기 hello **지문** hello에 Azure 포털에서 값 **인증서 지문** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-182">Paste hello **Thumbprint** value from Azure portal into hello **Certificate fingerprint** textbox.</span></span>    
 
-    <span data-ttu-id="4fc6b-183">d.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-183">d.</span></span>  <span data-ttu-id="4fc6b-184">Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **Remote sign-in URL**(원격 로그인 URL) 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-184">In the **Remote sign-in URL** textbox, paste the value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="8d794-183">d.</span><span class="sxs-lookup"><span data-stu-id="8d794-183">d.</span></span>  <span data-ttu-id="8d794-184">Hello에 **원격 로그인 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL**, Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-184">In hello **Remote sign-in URL** textbox, paste hello value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
  
-    <span data-ttu-id="4fc6b-185">e.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-185">e.</span></span> <span data-ttu-id="4fc6b-186">Azure Portal에서 복사한 **로그아웃 URL** 값을 **Remote sign-out URL**(원격 로그아웃 URL) 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-186">In the **Remote sign-out URL** textbox, paste the value of **Sign-Out URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="8d794-185">e.</span><span class="sxs-lookup"><span data-stu-id="8d794-185">e.</span></span> <span data-ttu-id="8d794-186">Hello에 **원격 로그 아웃 URL** 붙여넣기 hello 값의 텍스트 상자 **Sign-Out URL**, Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-186">In hello **Remote sign-out URL** textbox, paste hello value of **Sign-Out URL**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="4fc6b-187">f.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-187">f.</span></span> <span data-ttu-id="4fc6b-188">다음을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-188">Fill in the following:</span></span> 
+    <span data-ttu-id="8d794-187">f.</span><span class="sxs-lookup"><span data-stu-id="8d794-187">f.</span></span> <span data-ttu-id="8d794-188">Hello 다음을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-188">Fill in hello following:</span></span> 
 
-    * <span data-ttu-id="4fc6b-189">**TargetedID**(대상 ID) 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-189">In the **TargetedID** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`</span></span>
+    * <span data-ttu-id="8d794-189">Hello에 **TargetedID** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`</span><span class="sxs-lookup"><span data-stu-id="8d794-189">In hello **TargetedID** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`</span></span>
      
-    * <span data-ttu-id="4fc6b-190">**이름** 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-190">In the **First name** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`</span></span>
+    * <span data-ttu-id="8d794-190">Hello에 **이름** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`</span><span class="sxs-lookup"><span data-stu-id="8d794-190">In hello **First name** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`</span></span>
     
-    * <span data-ttu-id="4fc6b-191">**성** 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-191">In the **Last name** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`</span></span>
+    * <span data-ttu-id="8d794-191">Hello에 **성** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`</span><span class="sxs-lookup"><span data-stu-id="8d794-191">In hello **Last name** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`</span></span>
     
-    * <span data-ttu-id="4fc6b-192">**메일** 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-192">In the **Email** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`</span></span>
+    * <span data-ttu-id="8d794-192">Hello에 **전자 메일** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`</span><span class="sxs-lookup"><span data-stu-id="8d794-192">In hello **Email** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`</span></span>
     
-11. <span data-ttu-id="4fc6b-193">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-193">Click **Save**.</span></span>
+11. <span data-ttu-id="8d794-193">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-193">Click **Save**.</span></span>
  
 > [!TIP]
-> <span data-ttu-id="4fc6b-194">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-194">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="4fc6b-195">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-195">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="4fc6b-196">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-196">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="8d794-194">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="8d794-194">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="8d794-195">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="8d794-195">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="8d794-196">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="8d794-196">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="4fc6b-197">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="4fc6b-197">Creating an Azure AD test user</span></span>
-<span data-ttu-id="4fc6b-198">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-198">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="8d794-197">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="8d794-197">Creating an Azure AD test user</span></span>
+<span data-ttu-id="8d794-198">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-198">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Azure AD 사용자 만들기][100]
 
-<span data-ttu-id="4fc6b-200">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="4fc6b-200">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="8d794-200">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="8d794-200">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4fc6b-201">**Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-201">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="8d794-201">Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-201">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="4fc6b-203">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-203">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="8d794-203">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-203">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="4fc6b-205">**사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-205">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="8d794-205">tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-205">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="4fc6b-207">**사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-207">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="8d794-207">Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-207">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="4fc6b-209">a.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-209">a.</span></span> <span data-ttu-id="4fc6b-210">**이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-210">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="8d794-209">a.</span><span class="sxs-lookup"><span data-stu-id="8d794-209">a.</span></span> <span data-ttu-id="8d794-210">Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-210">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="4fc6b-211">b.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-211">b.</span></span> <span data-ttu-id="4fc6b-212">**사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-212">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="8d794-211">b.</span><span class="sxs-lookup"><span data-stu-id="8d794-211">b.</span></span> <span data-ttu-id="8d794-212">Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-212">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="4fc6b-213">c.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-213">c.</span></span> <span data-ttu-id="4fc6b-214">**암호 표시**를 선택하고 **암호** 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-214">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="8d794-213">c.</span><span class="sxs-lookup"><span data-stu-id="8d794-213">c.</span></span> <span data-ttu-id="8d794-214">선택 **암호 표시** hello hello 값 기록 **암호**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-214">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="4fc6b-215">d.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-215">d.</span></span> <span data-ttu-id="4fc6b-216">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-216">Click **Create**.</span></span>
+    <span data-ttu-id="8d794-215">d.</span><span class="sxs-lookup"><span data-stu-id="8d794-215">d.</span></span> <span data-ttu-id="8d794-216">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-216">Click **Create**.</span></span>
  
-### <a name="creating-a-talentlms-test-user"></a><span data-ttu-id="4fc6b-217">TalentLMS 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="4fc6b-217">Creating a TalentLMS test user</span></span>
+### <a name="creating-a-talentlms-test-user"></a><span data-ttu-id="8d794-217">TalentLMS 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="8d794-217">Creating a TalentLMS test user</span></span>
 
-<span data-ttu-id="4fc6b-218">Azure AD 사용자가 TalentLMS에 로그인할 수 있도록 하려면 TalentLMS로 프로비전되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-218">To enable Azure AD users to log in to TalentLMS, they must be provisioned into TalentLMS.</span></span> <span data-ttu-id="4fc6b-219">TalentLMS의 경우 프로비전은 수동 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-219">In the case of TalentLMS, provisioning is a manual task.</span></span>
+<span data-ttu-id="8d794-218">tooenable Azure AD 사용자가 toolog tooTalentLMS에서 프로 비전 해야 TalentLMS에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-218">tooenable Azure AD users toolog in tooTalentLMS, they must be provisioned into TalentLMS.</span></span> <span data-ttu-id="8d794-219">Hello TalentLMS의 경우에서 프로 비전은 수동 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-219">In hello case of TalentLMS, provisioning is a manual task.</span></span>
 
-<span data-ttu-id="4fc6b-220">**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="4fc6b-220">**To provision a user account, perform the following steps:**</span></span>
+<span data-ttu-id="8d794-220">**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="8d794-220">**tooprovision a user account, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4fc6b-221">자신의 **TalentLMS** 테넌트에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-221">Log in to your **TalentLMS** tenant.</span></span>
+1. <span data-ttu-id="8d794-221">Tooyour 로그인 **TalentLMS** 테 넌 트입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-221">Log in tooyour **TalentLMS** tenant.</span></span>
 
-2. <span data-ttu-id="4fc6b-222">**사용자**를 클릭한 후 **사용자 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-222">Click **Users**, and then click **Add User**.</span></span>
+2. <span data-ttu-id="8d794-222">**사용자**를 클릭한 후 **사용자 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-222">Click **Users**, and then click **Add User**.</span></span>
 
-3. <span data-ttu-id="4fc6b-223">**사용자 추가** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-223">On the **Add user** dialog page, perform the following steps:</span></span>
+3. <span data-ttu-id="8d794-223">Hello에 **사용자 추가** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-223">On hello **Add user** dialog page, perform hello following steps:</span></span>
    
-    <span data-ttu-id="4fc6b-224">![사용자 추가](./media/active-directory-saas-talentlms-tutorial/IC777299.png "사용자 추가")</span><span class="sxs-lookup"><span data-stu-id="4fc6b-224">![Add User](./media/active-directory-saas-talentlms-tutorial/IC777299.png "Add User")</span></span>  
+    <span data-ttu-id="8d794-224">![사용자 추가](./media/active-directory-saas-talentlms-tutorial/IC777299.png "사용자 추가")</span><span class="sxs-lookup"><span data-stu-id="8d794-224">![Add User](./media/active-directory-saas-talentlms-tutorial/IC777299.png "Add User")</span></span>  
 
-    <span data-ttu-id="4fc6b-225">a.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-225">a.</span></span> <span data-ttu-id="4fc6b-226">**이름** 텍스트 상자에 사용자의 이름(예: **Britta**)을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-226">In the **First name** textbox, enter the first name of user like **Britta**.</span></span>
+    <span data-ttu-id="8d794-225">a.</span><span class="sxs-lookup"><span data-stu-id="8d794-225">a.</span></span> <span data-ttu-id="8d794-226">Hello에 **이름** textbox hello와 같은 사용자의 이름을 입력 **Britta**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-226">In hello **First name** textbox, enter hello first name of user like **Britta**.</span></span>
 
-    <span data-ttu-id="4fc6b-227">b.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-227">b.</span></span> <span data-ttu-id="4fc6b-228">**성** 텍스트 상자에 사용자의 성(예: **Simon**)을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-228">In the **Last name** textbox, enter the last name of user like **Simon**.</span></span>
+    <span data-ttu-id="8d794-227">b.</span><span class="sxs-lookup"><span data-stu-id="8d794-227">b.</span></span> <span data-ttu-id="8d794-228">Hello에 **성** textbox hello와 같은 사용자의 성을 입력 **Simon**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-228">In hello **Last name** textbox, enter hello last name of user like **Simon**.</span></span>
  
-    <span data-ttu-id="4fc6b-229">c.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-229">c.</span></span> <span data-ttu-id="4fc6b-230">**전자 메일 주소** 텍스트 상자에 **brittasimon@contoso.com**과 같은 사용자의 메일 주소를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-230">In the **Email address** textbox, enter the email of user like **brittasimon@contoso.com**.</span></span>
+    <span data-ttu-id="8d794-229">c.</span><span class="sxs-lookup"><span data-stu-id="8d794-229">c.</span></span> <span data-ttu-id="8d794-230">Hello에 **전자 메일 주소** 텍스트 상자와 같은 사용자의 전자 메일을 hello 입력  **brittasimon@contoso.com** 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-230">In hello **Email address** textbox, enter hello email of user like **brittasimon@contoso.com**.</span></span>
 
-    <span data-ttu-id="4fc6b-231">d.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-231">d.</span></span> <span data-ttu-id="4fc6b-232">**사용자 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-232">Click **Add User**.</span></span>
+    <span data-ttu-id="8d794-231">d.</span><span class="sxs-lookup"><span data-stu-id="8d794-231">d.</span></span> <span data-ttu-id="8d794-232">**사용자 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-232">Click **Add User**.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="4fc6b-233">다른 TalentLMS 사용자 계정 생성 도구 또는 TalentLMS가 제공한 API를 사용하여 AAD 사용자 계정을 프로비전할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-233">You can use any other TalentLMS user account creation tools or APIs provided by TalentLMS to provision AAD user accounts.</span></span>
+><span data-ttu-id="8d794-233">다른 TalentLMS 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 AAD 사용자 계정을 tooprovision TalentLMS에서 제공 된 Api입니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-233">You can use any other TalentLMS user account creation tools or APIs provided by TalentLMS tooprovision AAD user accounts.</span></span>
  
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="4fc6b-234">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="4fc6b-234">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="8d794-234">Azure AD hello 테스트 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-234">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="4fc6b-235">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 TalentLMS에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-235">In this section, you enable Britta Simon to use Azure single sign-on by granting access to TalentLMS.</span></span>
+<span data-ttu-id="8d794-235">이 섹션에서는 tooTalentLMS 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-235">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooTalentLMS.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="4fc6b-237">**Britta Simon을 TalentLMS에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="4fc6b-237">**To assign Britta Simon to TalentLMS, perform the following steps:**</span></span>
+<span data-ttu-id="8d794-237">**tooassign Britta Simon tooTalentLMS hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="8d794-237">**tooassign Britta Simon tooTalentLMS, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4fc6b-238">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-238">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="8d794-238">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-238">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="4fc6b-240">응용 프로그램 목록에서 **TalentLMS**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-240">In the applications list, select **TalentLMS**.</span></span>
+2. <span data-ttu-id="8d794-240">Hello 응용 프로그램 목록에서 선택 **TalentLMS**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-240">In hello applications list, select **TalentLMS**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_app.png) 
 
-3. <span data-ttu-id="4fc6b-242">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-242">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="8d794-242">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-242">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="4fc6b-244">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-244">Click **Add** button.</span></span> <span data-ttu-id="4fc6b-245">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-245">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="8d794-244">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-244">Click **Add** button.</span></span> <span data-ttu-id="8d794-245">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-245">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="4fc6b-247">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-247">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="8d794-247">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-247">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="4fc6b-248">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-248">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="8d794-248">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-248">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="4fc6b-249">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-249">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="8d794-249">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-249">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="4fc6b-250">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="4fc6b-250">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="8d794-250">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="8d794-250">Testing single sign-on</span></span>
 
-<span data-ttu-id="4fc6b-251">이 섹션은 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트하기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-251">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="8d794-251">이 섹션의 hello 목적은 tootest 액세스 패널을 hello 사용 하 여 Azure AD single sign-on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="8d794-251">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="4fc6b-252">액세스 패널에서 TalentLMS 타일을 클릭하면 TalentLMS 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="4fc6b-252">When you click the TalentLMS tile in the Access Panel, you should get automatically signed-on to your TalentLMS application</span></span>
+<span data-ttu-id="8d794-252">Hello TalentLMS hello 액세스 패널에서에서 타일을 클릭할 때 자동으로 로그온 tooyour TalentLMS 응용 프로그램을 구해야</span><span class="sxs-lookup"><span data-stu-id="8d794-252">When you click hello TalentLMS tile in hello Access Panel, you should get automatically signed-on tooyour TalentLMS application</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="4fc6b-253">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="4fc6b-253">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="8d794-253">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="8d794-253">Additional resources</span></span>
 
-* [<span data-ttu-id="4fc6b-254">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="4fc6b-254">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="4fc6b-255">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="4fc6b-255">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="8d794-254">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="8d794-254">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="8d794-255">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="8d794-255">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

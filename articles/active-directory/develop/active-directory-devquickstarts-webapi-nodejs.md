@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Node.js 시작 | Microsoft Docs"
-description: "인증을 위해 Azure AD와 통합되는 Node.js REST Web API를 빌드하는 방법."
+title: "시작 하는 AD Node.js aaaAzure | Microsoft Docs"
+description: "어떻게 toobuild Node.js REST 웹 API는 Azure AD와 통합 인증에 대 한 합니다."
 services: active-directory
 documentationcenter: nodejs
 author: navyasric
@@ -15,101 +15,101 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 4f58177f540c14172d7ece8b4bc8c8a2b9787f8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 512ae6de9acfde8b58c0447ab4a6b573fb6407c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-web-apis-for-nodejs"></a><span data-ttu-id="7f348-103">Node.js용 web API 시작</span><span class="sxs-lookup"><span data-stu-id="7f348-103">Get started with web APIs for Node.js</span></span>
+# <a name="get-started-with-web-apis-for-nodejs"></a><span data-ttu-id="c25af-103">Node.js용 web API 시작</span><span class="sxs-lookup"><span data-stu-id="c25af-103">Get started with web APIs for Node.js</span></span>
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-<span data-ttu-id="7f348-104">*Passport* 는 Node.js에 대한 인증 미들웨어입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-104">*Passport* is authentication middleware for Node.js.</span></span> <span data-ttu-id="7f348-105">유연한 모듈식 Passport는 어떤 Express 기반 또는 Resitify 웹 응용 프로그램에도 원활하게 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-105">Flexible and modular, Passport can be unobtrusively dropped in to any Express-based or Restify web application.</span></span> <span data-ttu-id="7f348-106">포괄적인 전략 모음이 사용자 이름 및 암호, Facebook, Twitter 등을 사용하는 인증을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-106">A comprehensive set of strategies support authentication with a username and password, Facebook, Twitter, and more.</span></span> <span data-ttu-id="7f348-107">Microsoft는 Microsoft Azure AD(Azure Active Directory)에 대한 전략을 개발했습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-107">We have developed a strategy for Microsoft Azure Active Directory (Azure AD).</span></span> <span data-ttu-id="7f348-108">여기서는 이 모듈을 설치하고 Microsoft Azure Active Directory `passport-azure-ad` 플러그 인을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-108">We install this module and then add the Microsoft Azure Active Directory `passport-azure-ad` plug-in.</span></span>
+<span data-ttu-id="c25af-104">*Passport* 는 Node.js에 대한 인증 미들웨어입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-104">*Passport* is authentication middleware for Node.js.</span></span> <span data-ttu-id="c25af-105">유동 및 모듈형, Passport tooany에 프로그램과 원활 하 게 삭제 될 수 있습니다 Express 기반 웹 응용 프로그램 Restify 또는 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-105">Flexible and modular, Passport can be unobtrusively dropped in tooany Express-based or Restify web application.</span></span> <span data-ttu-id="c25af-106">포괄적인 전략 모음이 사용자 이름 및 암호, Facebook, Twitter 등을 사용하는 인증을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-106">A comprehensive set of strategies support authentication with a username and password, Facebook, Twitter, and more.</span></span> <span data-ttu-id="c25af-107">Microsoft는 Microsoft Azure AD(Azure Active Directory)에 대한 전략을 개발했습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-107">We have developed a strategy for Microsoft Azure Active Directory (Azure AD).</span></span> <span data-ttu-id="c25af-108">이 모듈을 설치 하 고 다음 Microsoft Azure Active Directory hello 추가 `passport-azure-ad` 플러그 인 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-108">We install this module and then add hello Microsoft Azure Active Directory `passport-azure-ad` plug-in.</span></span>
 
-<span data-ttu-id="7f348-109">이렇게 하려면 다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-109">To do this, you need to:</span></span>
+<span data-ttu-id="c25af-109">toodo이를 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-109">toodo this, you need to:</span></span>
 
-1. <span data-ttu-id="7f348-110">Azure AD에 응용 프로그램을 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-110">Register an application with Azure AD.</span></span>
-2. <span data-ttu-id="7f348-111">Passport의 `passport-azure-ad` 플러그 인을 사용하도록 앱을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-111">Set up your app to use Passport's `passport-azure-ad` plug-in.</span></span>
-3. <span data-ttu-id="7f348-112">To Do List web API를 호출하도록 클라이언트 응용 프로그램을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-112">Configure a client application to call the To Do List web API.</span></span>
+1. <span data-ttu-id="c25af-110">Azure AD에 응용 프로그램을 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-110">Register an application with Azure AD.</span></span>
+2. <span data-ttu-id="c25af-111">사용자 응용 프로그램 toouse Passport의 설정 `passport-azure-ad` 플러그 인 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-111">Set up your app toouse Passport's `passport-azure-ad` plug-in.</span></span>
+3. <span data-ttu-id="c25af-112">클라이언트 응용 프로그램 toocall hello tooDo 목록 web API를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-112">Configure a client application toocall hello tooDo List web API.</span></span>
 
-<span data-ttu-id="7f348-113">이 자습서에 대한 코드는 [GitHub](https://github.com/Azure-Samples/active-directory-node-webapi)에서 유지 관리됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-113">The code for this tutorial is maintained [on GitHub](https://github.com/Azure-Samples/active-directory-node-webapi).</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="7f348-114">이 문서에서는 Azure AD B2C를 사용하여 로그인, 등록 및 프로필 관리를 구현하는 방법을 다루지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-114">This article doesn't cover how to implement sign-in, sign-up, or profile management with Azure AD B2C.</span></span> <span data-ttu-id="7f348-115">사용자를 인증한 후에 Web API를 호출하는 데 집중합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-115">It focuses on calling web APIs after the user is already authenticated.</span></span>  <span data-ttu-id="7f348-116">[Azure Active Directory와 통합하는 방법 문서](active-directory-how-to-integrate.md)를 시작하여 Azure Active Directory의 기본 사항에 대해 알아보시기 바랍니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-116">We recommend that you start with [How to integrate with Azure Active Directory document](active-directory-how-to-integrate.md) to learn about the basics of Azure Active Directory.</span></span>
->
->
-
-<span data-ttu-id="7f348-117">Microsoft는 이 실행 예제의 모든 소스 코드를 GitHub의 MIT 라이선스에 출시했으므로 자유롭게 복제(및 분기)하고 피드백을 제공하고 요청을 끌어올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-117">We've released all the source code for this running example in GitHub under an MIT license, so feel free to clone (or even better, fork), and provide feedback and pull requests.</span></span>
-
-## <a name="about-nodejs-modules"></a><span data-ttu-id="7f348-118">Node.js 모듈 정보</span><span class="sxs-lookup"><span data-stu-id="7f348-118">About Node.js modules</span></span>
-<span data-ttu-id="7f348-119">이 연습에서는 Node.js 모듈을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-119">We use Node.js modules in this walkthrough.</span></span> <span data-ttu-id="7f348-120">모듈은 응용 프로그램의 특정 기능을 제공하는 로드 가능한 JavaScript 패키지입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-120">Modules are loadable JavaScript packages that provide specific functionality for your application.</span></span> <span data-ttu-id="7f348-121">일반적으로 NPM 설치 디렉터리에서 Node.js NPM 명령줄 도구를 사용하여 모듈을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-121">You usually install modules by using the Node.js an NPM command-line tool in the NPM installation directory.</span></span> <span data-ttu-id="7f348-122">그러나 HTTP 모듈과 같은 일부 모듈은 코어 Node.js 패키지에 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-122">However, some modules, such as the HTTP module, are included in the core Node.js package.</span></span>
-
-<span data-ttu-id="7f348-123">설치된 모듈은 Node.js 설치 디렉터리의 루트에 있는 **node_modules** 디렉터리에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-123">Installed modules are saved in the **node_modules** directory at the root of your Node.js installation directory.</span></span> <span data-ttu-id="7f348-124">**node_modules** 디렉터리의 각 모듈은 종속되는 모듈이 포함된 고유한 **node_modules** 디렉터리를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-124">Each module in the **node_modules** directory maintains its own **node_modules** directory that contains any modules that it depends on.</span></span> <span data-ttu-id="7f348-125">또한 각 필수 모듈에는 **node_modules** 디렉터리가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-125">Also, each required module has a **node_modules** directory.</span></span> <span data-ttu-id="7f348-126">이러한 반복되는 디렉터리 구조는 종속성 체인을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-126">This recursive directory structure represents the dependency chain.</span></span>
-
-<span data-ttu-id="7f348-127">이와 같은 종속성 체인 구조로 인해 응용 프로그램 공간이 커집니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-127">This dependency chain structure results in a larger application footprint.</span></span> <span data-ttu-id="7f348-128">하지만 모든 종속성이 충족되고 개발에 사용되는 모듈 버전이 프로덕션에도 사용되도록 보장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-128">But it also guarantees that all dependencies are met and that the version of the modules that's used in development is also used in production.</span></span> <span data-ttu-id="7f348-129">따라서 프로덕션 앱 동작을 예측하기 쉬워지고 사용자에게 영향을 줄 수 있는 버전 문제도 방지됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-129">This makes the production app behavior more predictable and prevents versioning problems that might affect users.</span></span>
-
-## <a name="step-1-register-an-azure-ad-tenant"></a><span data-ttu-id="7f348-130">1단계: Azure AD 등록</span><span class="sxs-lookup"><span data-stu-id="7f348-130">Step 1: Register an Azure AD tenant</span></span>
-<span data-ttu-id="7f348-131">이 샘플을 사용하려면 Azure Active Directory 테넌트가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-131">To use this sample, you need an Azure Active Directory tenant.</span></span> <span data-ttu-id="7f348-132">테넌트가 무엇인지 또는 어떻게 가져오는지 잘 모를 경우 [Azure AD 테넌트를 가져오는 방법](active-directory-howto-tenant.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7f348-132">If you're not sure what a tenant is or how to get one, see [How to get an Azure AD tenant](active-directory-howto-tenant.md).</span></span>
-
-## <a name="step-2-create-an-application"></a><span data-ttu-id="7f348-133">2단계: 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="7f348-133">Step 2: Create an application</span></span>
-<span data-ttu-id="7f348-134">다음으로 Azure AD가 앱과 안전하게 통신해야 한다는 정보를 제공하는 앱을 디렉터리에 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-134">Next you create an app in your directory that gives Azure AD information that it needs to securely communicate with your app.</span></span>  <span data-ttu-id="7f348-135">이 경우 클라이언트 앱과 web API가 하나의 논리 앱을 구성하기 때문에 둘 다 단일 **응용 프로그램 ID**로 표현됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-135">Both the client app and web API are represented by a single **Application ID** in this case, because they comprise one logical app.</span></span>  <span data-ttu-id="7f348-136">앱을 만들려면 [다음 지침](active-directory-how-applications-are-added.md)에 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-136">To create an app, follow [these instructions](active-directory-how-applications-are-added.md).</span></span> <span data-ttu-id="7f348-137">기간 업무 앱을 빌드하는 경우 [이 추가 지침이 유용할 수 있습니다](../active-directory-applications-guiding-developers-for-lob-applications.md).</span><span class="sxs-lookup"><span data-stu-id="7f348-137">If you are building a line-of-business app, [these additional instructions might be useful](../active-directory-applications-guiding-developers-for-lob-applications.md).</span></span>
-
-<span data-ttu-id="7f348-138">응용 프로그램을 만들려면:</span><span class="sxs-lookup"><span data-stu-id="7f348-138">To create an application:</span></span>
-
-1. <span data-ttu-id="7f348-139">[Azure 포털](https://portal.azure.com)에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-139">Sign in to the [Azure portal](https://portal.azure.com).</span></span>
-
-2. <span data-ttu-id="7f348-140">상단 메뉴에서 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-140">On the top menu, select your account.</span></span> <span data-ttu-id="7f348-141">그런 다음 **디렉터리** 목록에서 응용 프로그램을 등록할 Active Directory 테넌트를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-141">Then, under the **Directory** list, choose the Active Directory tenant where you want to register your application.</span></span>
-
-3. <span data-ttu-id="7f348-142">왼쪽 메뉴에서 **추가 서비스**를 선택한 후 **Azure Active Directory**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-142">In the menu on the left, select **More Services**, and then select **Azure Active Directory**.</span></span>
-
-4. <span data-ttu-id="7f348-143">**앱 등록**을 선택하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-143">Select **App registrations**, and then select **Add**.</span></span>
-
-5. <span data-ttu-id="7f348-144">프롬프트에 따라 새 **웹 응용 프로그램 및/또는 WebAPI**를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-144">Follow the prompts to create a **Web Application and/or WebAPI**.</span></span>
-
-      * <span data-ttu-id="7f348-145">응용 프로그램의 **이름**은 최종 사용자에게 응용 프로그램을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-145">The **name** of the application describes your application to end users.</span></span>
-
-      * <span data-ttu-id="7f348-146">**로그온 URL** 은 앱의 기본 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-146">The **Sign-On URL** is the base URL of your app.</span></span>  <span data-ttu-id="7f348-147">샘플 코드의 기본 URL은 `https://localhost:8080`입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-147">The default URL of the sample code is `https://localhost:8080`.</span></span>
-
-6. <span data-ttu-id="7f348-148">등록 후에는 Azure AD가 사용자 앱에 고유한 응용 프로그램 ID를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-148">After you register, Azure AD assigns your app a unique Application ID.</span></span> <span data-ttu-id="7f348-149">이 값은 다음 섹션에서 필요하므로 응용 프로그램 페이지에서 이 값을 복사해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-149">You need this value in the next sections, so copy it from the application page.</span></span>
-
-7. <span data-ttu-id="7f348-150">응용 프로그램에 대한 **설정** -> **속성** 페이지에서 앱 ID URI를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-150">From the **Settings** -> **Properties** page for your application, update the App ID URI.</span></span> <span data-ttu-id="7f348-151">**앱 ID URI** 는 응용 프로그램의 고유 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-151">The **App ID URI** is a unique identifier for your application.</span></span> <span data-ttu-id="7f348-152">규칙은 `https://<tenant-domain>/<app-name>`(예: `https://contoso.onmicrosoft.com/my-first-aad-app`)을 사용하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-152">The convention is to use `https://<tenant-domain>/<app-name>`, for example: `https://contoso.onmicrosoft.com/my-first-aad-app`.</span></span>
-
-8. <span data-ttu-id="7f348-153">**설정** 페이지에서 응용 프로그램의 **키**를 만들고 편한 위치에 복사해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-153">Create a **Key** for your application from the **Settings** page, and then copy it somewhere.</span></span> <span data-ttu-id="7f348-154">곧 이 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-154">You'll need it shortly.</span></span>
-
-## <a name="step-3-download-nodejs-for-your-platform"></a><span data-ttu-id="7f348-155">3단계: 사용자 플랫폼을 위한 Node.js 다운로드</span><span class="sxs-lookup"><span data-stu-id="7f348-155">Step 3: Download Node.js for your platform</span></span>
-<span data-ttu-id="7f348-156">이 샘플을 사용하려면 작동하는 Node.js 설치가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-156">To successfully use this sample, you must have a working installation of Node.js.</span></span>
-
-<span data-ttu-id="7f348-157">[http://nodejs.org](http://nodejs.org)에서 Node.js를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-157">Install Node.js from [http://nodejs.org](http://nodejs.org).</span></span>
-
-## <a name="step-4-install-mongodb-on-your-platform"></a><span data-ttu-id="7f348-158">4단계: 플랫폼에 MongoDB 설치</span><span class="sxs-lookup"><span data-stu-id="7f348-158">Step 4: Install MongoDB on your platform</span></span>
-<span data-ttu-id="7f348-159">이 샘플을 사용하려면 작동하는 MongoDB 설치가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-159">To successfully use this sample, you must have a working installation of MongoDB.</span></span> <span data-ttu-id="7f348-160">MongoDB를 사용하여 REST API가 서버 인스턴스에서 지속되도록 할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-160">You use MongoDB to make the REST API persistent across server instances.</span></span>
-
-<span data-ttu-id="7f348-161">[http://mongodb.org](http://www.mongodb.org)에서 MongoDB를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-161">Install MongoDB from [http://mongodb.org](http://www.mongodb.org).</span></span>
+<span data-ttu-id="c25af-113">이 자습서에 대 한 hello 코드 유지 관리 [GitHub에서](https://github.com/Azure-Samples/active-directory-node-webapi)합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-113">hello code for this tutorial is maintained [on GitHub](https://github.com/Azure-Samples/active-directory-node-webapi).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="7f348-162">이 연습에서는 MongoDB의 기본 설치 및 mongodb://localhost 서버 끝점(현재 문성 작성 시점 기준)을 사용한다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-162">This walkthrough assumes that you use the default installation and server endpoints for MongoDB, which at the time of this writing is mongodb://localhost.</span></span>
+> <span data-ttu-id="c25af-114">어떻게 tooimplement 로그인이 문서에서 다루지 않는, 등록 하거나 Azure AD B2C를 사용 하 여 관리 프로 파일링 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-114">This article doesn't cover how tooimplement sign-in, sign-up, or profile management with Azure AD B2C.</span></span> <span data-ttu-id="c25af-115">Hello 사용자가 이미 인증 된 후 호출 웹 Api에 집중 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-115">It focuses on calling web APIs after hello user is already authenticated.</span></span>  <span data-ttu-id="c25af-116">로 시작 하는 것이 좋습니다 [어떻게 Azure Active Directory 문서와 toointegrate](active-directory-how-to-integrate.md) 에 대 한 Azure Active Directory의 hello 기본 toolearn 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-116">We recommend that you start with [How toointegrate with Azure Active Directory document](active-directory-how-to-integrate.md) toolearn about hello basics of Azure Active Directory.</span></span>
 >
 >
 
-## <a name="step-5-install-the-restify-modules-in-your-web-api"></a><span data-ttu-id="7f348-163">5단계: web API에 Restify 모듈 설치</span><span class="sxs-lookup"><span data-stu-id="7f348-163">Step 5: Install the Restify modules in your web API</span></span>
-<span data-ttu-id="7f348-164">Resitfy를 사용하여 REST API를 작성할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-164">We are using Restify to build our REST API.</span></span> <span data-ttu-id="7f348-165">Restify는 Express에서 파생된 작고 유연한 Node.js 응용 프로그램 프레임워크입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-165">Restify is a minimal and flexible Node.js application framework that's derived from Express.</span></span> <span data-ttu-id="7f348-166">Connect 위에 REST API를 구축하기 위한 강력한 기능 집합을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-166">It has a robust set of features for building REST APIs on top of Connect.</span></span>
+<span data-ttu-id="c25af-117">무료 tooclone (또는 더 좋은 포크), 그러니까 MIT 라이선스에 따라 GitHub에서 실행 중인이 예제에 대 한 모든 hello 소스 코드 공개 하 고 피드백을 제공 하 고 끌어오기 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-117">We've released all hello source code for this running example in GitHub under an MIT license, so feel free tooclone (or even better, fork), and provide feedback and pull requests.</span></span>
 
-### <a name="install-restify"></a><span data-ttu-id="7f348-167">Restify 설치</span><span class="sxs-lookup"><span data-stu-id="7f348-167">Install Restify</span></span>
-1. <span data-ttu-id="7f348-168">명령줄에서 디렉터리를 **azuread** 디렉터리로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-168">From the command line, change directories to the **azuread** directory.</span></span> <span data-ttu-id="7f348-169">**azuread** 디렉터리가 없으면 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-169">If the **azuread** directory does not exist, create it.</span></span>
+## <a name="about-nodejs-modules"></a><span data-ttu-id="c25af-118">Node.js 모듈 정보</span><span class="sxs-lookup"><span data-stu-id="c25af-118">About Node.js modules</span></span>
+<span data-ttu-id="c25af-119">이 연습에서는 Node.js 모듈을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-119">We use Node.js modules in this walkthrough.</span></span> <span data-ttu-id="c25af-120">모듈은 응용 프로그램의 특정 기능을 제공하는 로드 가능한 JavaScript 패키지입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-120">Modules are loadable JavaScript packages that provide specific functionality for your application.</span></span> <span data-ttu-id="c25af-121">일반적으로 hello NPM 설치 디렉터리에 hello Node.js NPM 명령줄 도구를 사용 하 여 모듈을 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-121">You usually install modules by using hello Node.js an NPM command-line tool in hello NPM installation directory.</span></span> <span data-ttu-id="c25af-122">그러나 hello HTTP 모듈과 같은 일부 모듈 hello 핵심 Node.js 패키지에 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-122">However, some modules, such as hello HTTP module, are included in hello core Node.js package.</span></span>
+
+<span data-ttu-id="c25af-123">Hello에 설치 된 모듈은 저장 **node_modules** Node.js 설치 디렉터리의 hello 루트 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-123">Installed modules are saved in hello **node_modules** directory at hello root of your Node.js installation directory.</span></span> <span data-ttu-id="c25af-124">각 모듈 hello에 **node_modules** 디렉터리 자체 유지 **node_modules** 의존 하는 모든 모듈을 포함 하는 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-124">Each module in hello **node_modules** directory maintains its own **node_modules** directory that contains any modules that it depends on.</span></span> <span data-ttu-id="c25af-125">또한 각 필수 모듈에는 **node_modules** 디렉터리가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-125">Also, each required module has a **node_modules** directory.</span></span> <span data-ttu-id="c25af-126">이 재귀 디렉터리 구조는 hello 종속성 체인을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-126">This recursive directory structure represents hello dependency chain.</span></span>
+
+<span data-ttu-id="c25af-127">이와 같은 종속성 체인 구조로 인해 응용 프로그램 공간이 커집니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-127">This dependency chain structure results in a larger application footprint.</span></span> <span data-ttu-id="c25af-128">하지만 모든 종속성이 충족 되 고 hello 모듈의 개발에 사용 되는 해당 hello 버전은 프로덕션 환경에서 사용도 또한 보장 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-128">But it also guarantees that all dependencies are met and that hello version of hello modules that's used in development is also used in production.</span></span> <span data-ttu-id="c25af-129">이 옵션 hello 프로덕션 응용 프로그램 동작을 예측 가능성이 더욱 뛰어난 되며 사용자가 영향을 줄 수 있는 버전 문제를 방지 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-129">This makes hello production app behavior more predictable and prevents versioning problems that might affect users.</span></span>
+
+## <a name="step-1-register-an-azure-ad-tenant"></a><span data-ttu-id="c25af-130">1단계: Azure AD 등록</span><span class="sxs-lookup"><span data-stu-id="c25af-130">Step 1: Register an Azure AD tenant</span></span>
+<span data-ttu-id="c25af-131">이 샘플 toouse, Azure Active Directory 테 넌 트가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-131">toouse this sample, you need an Azure Active Directory tenant.</span></span> <span data-ttu-id="c25af-132">확실 하지 않은 경우 어떤 테 넌 트 되었거나 tooget 하나를 확인 하려면 어떻게 해야 [tooget는 Azure AD 테 넌 트](active-directory-howto-tenant.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-132">If you're not sure what a tenant is or how tooget one, see [How tooget an Azure AD tenant](active-directory-howto-tenant.md).</span></span>
+
+## <a name="step-2-create-an-application"></a><span data-ttu-id="c25af-133">2단계: 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="c25af-133">Step 2: Create an application</span></span>
+<span data-ttu-id="c25af-134">다음 앱 통신할 필요 하다 고 toosecurely 한 정보를 제공 Azure AD 디렉터리에 응용 프로그램을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-134">Next you create an app in your directory that gives Azure AD information that it needs toosecurely communicate with your app.</span></span>  <span data-ttu-id="c25af-135">Hello 클라이언트 응용 프로그램 및 web API 둘 다 단일 나타내는 **응용 프로그램 ID** 이 경우 하나의 논리 앱 구성 되므로 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-135">Both hello client app and web API are represented by a single **Application ID** in this case, because they comprise one logical app.</span></span>  <span data-ttu-id="c25af-136">응용 프로그램, 프로그램 toocreate 따라 [이러한 지침](active-directory-how-applications-are-added.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-136">toocreate an app, follow [these instructions](active-directory-how-applications-are-added.md).</span></span> <span data-ttu-id="c25af-137">기간 업무 앱을 빌드하는 경우 [이 추가 지침이 유용할 수 있습니다](../active-directory-applications-guiding-developers-for-lob-applications.md).</span><span class="sxs-lookup"><span data-stu-id="c25af-137">If you are building a line-of-business app, [these additional instructions might be useful](../active-directory-applications-guiding-developers-for-lob-applications.md).</span></span>
+
+<span data-ttu-id="c25af-138">toocreate 응용 프로그램:</span><span class="sxs-lookup"><span data-stu-id="c25af-138">toocreate an application:</span></span>
+
+1. <span data-ttu-id="c25af-139">Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-139">Sign in toohello [Azure portal](https://portal.azure.com).</span></span>
+
+2. <span data-ttu-id="c25af-140">Hello 위쪽 메뉴에서 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-140">On hello top menu, select your account.</span></span> <span data-ttu-id="c25af-141">그런 다음 hello **디렉터리** 목록 tooregister 원하는 hello Active Directory 테 넌 트 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-141">Then, under hello **Directory** list, choose hello Active Directory tenant where you want tooregister your application.</span></span>
+
+3. <span data-ttu-id="c25af-142">Hello hello 왼쪽 메뉴에서 선택 **더 서비스**를 선택한 후 **Azure Active Directory**합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-142">In hello menu on hello left, select **More Services**, and then select **Azure Active Directory**.</span></span>
+
+4. <span data-ttu-id="c25af-143">**앱 등록**을 선택하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-143">Select **App registrations**, and then select **Add**.</span></span>
+
+5. <span data-ttu-id="c25af-144">Hello 프롬프트 toocreate에 따라 한 **웹 응용 프로그램 및/또는 WebAPI**합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-144">Follow hello prompts toocreate a **Web Application and/or WebAPI**.</span></span>
+
+      * <span data-ttu-id="c25af-145">hello **이름** 응용 프로그램의 hello 응용 프로그램 tooend 사용자에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-145">hello **name** of hello application describes your application tooend users.</span></span>
+
+      * <span data-ttu-id="c25af-146">hello **로그온 URL** hello 응용 프로그램의 기본 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-146">hello **Sign-On URL** is hello base URL of your app.</span></span>  <span data-ttu-id="c25af-147">기본 URL의 hello 샘플 코드는 hello `https://localhost:8080`합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-147">hello default URL of hello sample code is `https://localhost:8080`.</span></span>
+
+6. <span data-ttu-id="c25af-148">등록 후에는 Azure AD가 사용자 앱에 고유한 응용 프로그램 ID를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-148">After you register, Azure AD assigns your app a unique Application ID.</span></span> <span data-ttu-id="c25af-149">이 값이 필요한 hello 다음 섹션의 하므로에서 복사 hello 응용 프로그램 페이지.</span><span class="sxs-lookup"><span data-stu-id="c25af-149">You need this value in hello next sections, so copy it from hello application page.</span></span>
+
+7. <span data-ttu-id="c25af-150">Hello에서 **설정** -> **속성** 응용 프로그램에 대 한 페이지를 hello 앱 ID URI를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-150">From hello **Settings** -> **Properties** page for your application, update hello App ID URI.</span></span> <span data-ttu-id="c25af-151">hello **앱 ID URI** 응용 프로그램에 대 한 고유 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-151">hello **App ID URI** is a unique identifier for your application.</span></span> <span data-ttu-id="c25af-152">hello 규칙은 toouse `https://<tenant-domain>/<app-name>`예를 들면: `https://contoso.onmicrosoft.com/my-first-aad-app`합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-152">hello convention is toouse `https://<tenant-domain>/<app-name>`, for example: `https://contoso.onmicrosoft.com/my-first-aad-app`.</span></span>
+
+8. <span data-ttu-id="c25af-153">만들기는 **키** hello에서 응용 프로그램에 대 한 **설정** 페이지를 선택한 다음 위치에 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-153">Create a **Key** for your application from hello **Settings** page, and then copy it somewhere.</span></span> <span data-ttu-id="c25af-154">곧 이 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-154">You'll need it shortly.</span></span>
+
+## <a name="step-3-download-nodejs-for-your-platform"></a><span data-ttu-id="c25af-155">3단계: 사용자 플랫폼을 위한 Node.js 다운로드</span><span class="sxs-lookup"><span data-stu-id="c25af-155">Step 3: Download Node.js for your platform</span></span>
+<span data-ttu-id="c25af-156">이 샘플을 사용 하는 toosuccessfully Node.js 설치 중인 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-156">toosuccessfully use this sample, you must have a working installation of Node.js.</span></span>
+
+<span data-ttu-id="c25af-157">[http://nodejs.org](http://nodejs.org)에서 Node.js를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-157">Install Node.js from [http://nodejs.org](http://nodejs.org).</span></span>
+
+## <a name="step-4-install-mongodb-on-your-platform"></a><span data-ttu-id="c25af-158">4단계: 플랫폼에 MongoDB 설치</span><span class="sxs-lookup"><span data-stu-id="c25af-158">Step 4: Install MongoDB on your platform</span></span>
+<span data-ttu-id="c25af-159">이 샘플을 사용 하는 toosuccessfully MongoDB 설치 되어 작동 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-159">toosuccessfully use this sample, you must have a working installation of MongoDB.</span></span> <span data-ttu-id="c25af-160">MongoDB toomake hello 영구 REST API를 사용 하 여 여러 서버 인스턴스에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-160">You use MongoDB toomake hello REST API persistent across server instances.</span></span>
+
+<span data-ttu-id="c25af-161">[http://mongodb.org](http://www.mongodb.org)에서 MongoDB를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-161">Install MongoDB from [http://mongodb.org](http://www.mongodb.org).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="c25af-162">이 연습에서는 사용 하는 hello 기본 설치 및 서버 끝점, MongoDB에 대 한이 문서 작성 시 hello mongodb://localhost 변수인 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-162">This walkthrough assumes that you use hello default installation and server endpoints for MongoDB, which at hello time of this writing is mongodb://localhost.</span></span>
+>
+>
+
+## <a name="step-5-install-hello-restify-modules-in-your-web-api"></a><span data-ttu-id="c25af-163">5 단계: web API에에서 hello Restify 모듈을 설치</span><span class="sxs-lookup"><span data-stu-id="c25af-163">Step 5: Install hello Restify modules in your web API</span></span>
+<span data-ttu-id="c25af-164">사용 하 여 Restify toobuild REST API입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-164">We are using Restify toobuild our REST API.</span></span> <span data-ttu-id="c25af-165">Restify는 Express에서 파생된 작고 유연한 Node.js 응용 프로그램 프레임워크입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-165">Restify is a minimal and flexible Node.js application framework that's derived from Express.</span></span> <span data-ttu-id="c25af-166">Connect 위에 REST API를 구축하기 위한 강력한 기능 집합을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-166">It has a robust set of features for building REST APIs on top of Connect.</span></span>
+
+### <a name="install-restify"></a><span data-ttu-id="c25af-167">Restify 설치</span><span class="sxs-lookup"><span data-stu-id="c25af-167">Install Restify</span></span>
+1. <span data-ttu-id="c25af-168">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-168">From hello command line, change directories toohello **azuread** directory.</span></span> <span data-ttu-id="c25af-169">경우 hello **azure ad** 디렉터리 존재 하지 않거나, 만들지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-169">If hello **azuread** directory does not exist, create it.</span></span>
 
         `cd azuread - or- mkdir azuread; cd azuread`
 
-2. <span data-ttu-id="7f348-170">다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-170">Type the following command:</span></span>
+2. <span data-ttu-id="c25af-170">Hello 다음 명령을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-170">Type hello following command:</span></span>
 
     `npm install restify`
 
-    <span data-ttu-id="7f348-171">이 명령은 Restify를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-171">This command installs Restify.</span></span>
+    <span data-ttu-id="c25af-171">이 명령은 Restify를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-171">This command installs Restify.</span></span>
 
-#### <a name="did-you-get-an-error"></a><span data-ttu-id="7f348-172">오류가 발생했나요?</span><span class="sxs-lookup"><span data-stu-id="7f348-172">Did you get an error?</span></span>
-<span data-ttu-id="7f348-173">일부 운영 체제에서 NPM 매개 변수를 사용하면 **오류: EPERM, chmod '/usr/local/bin/..'** 오류 메시지와</span><span class="sxs-lookup"><span data-stu-id="7f348-173">When you use NPM on some operating systems, you might receive an error that says **Error: EPERM, chmod '/usr/local/bin/..'**</span></span> <span data-ttu-id="7f348-174">관리자 계정으로 실행하라는 제안이 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-174">and a suggestion that you try running the account as an administrator.</span></span> <span data-ttu-id="7f348-175">이런 경우 sudo 명령을 사용하여 더 높은 권한 수준으로 NPM을 실행하세요.</span><span class="sxs-lookup"><span data-stu-id="7f348-175">If this occurs, use the sudo command to run NPM at a higher privilege level.</span></span>
+#### <a name="did-you-get-an-error"></a><span data-ttu-id="c25af-172">오류가 발생했나요?</span><span class="sxs-lookup"><span data-stu-id="c25af-172">Did you get an error?</span></span>
+<span data-ttu-id="c25af-173">일부 운영 체제에서 NPM 매개 변수를 사용하면 **오류: EPERM, chmod '/usr/local/bin/..'** 오류 메시지와</span><span class="sxs-lookup"><span data-stu-id="c25af-173">When you use NPM on some operating systems, you might receive an error that says **Error: EPERM, chmod '/usr/local/bin/..'**</span></span> <span data-ttu-id="c25af-174">및 관리자 권한으로 실행 중인 hello 계정을 시도 하면 오류입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-174">and a suggestion that you try running hello account as an administrator.</span></span> <span data-ttu-id="c25af-175">이 경우 더 높은 권한 수준 hello sudo 명령 toorun NPM을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-175">If this occurs, use hello sudo command toorun NPM at a higher privilege level.</span></span>
 
-#### <a name="did-you-get-an-error-regarding-dtrace"></a><span data-ttu-id="7f348-176">DTRACE 관련 오류가 발생했나요?</span><span class="sxs-lookup"><span data-stu-id="7f348-176">Did you get an error regarding DTRACE?</span></span>
-<span data-ttu-id="7f348-177">Restify를 설치할 때 다음과 같은 오류가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-177">You might see an error like this when installing Restify:</span></span>
+#### <a name="did-you-get-an-error-regarding-dtrace"></a><span data-ttu-id="c25af-176">DTRACE 관련 오류가 발생했나요?</span><span class="sxs-lookup"><span data-stu-id="c25af-176">Did you get an error regarding DTRACE?</span></span>
+<span data-ttu-id="c25af-177">Restify를 설치할 때 다음과 같은 오류가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-177">You might see an error like this when installing Restify:</span></span>
 
 ```Shell
 clang: error: no such file or directory: 'HD/azuread/node_modules/restify/node_modules/dtrace-provider/libusdt'
@@ -127,9 +127,9 @@ gyp ERR! node-gyp -v v0.10.0
 gyp ERR! not ok
 npm WARN optional dep failed, continuing dtrace-provider@0.2.8
 ```
-<span data-ttu-id="7f348-178">Restify는 DTrace를 사용하여 REST 호출을 추적하는 강력한 메커니즘을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-178">Restify provides a powerful mechanism for tracing REST calls by using DTrace.</span></span> <span data-ttu-id="7f348-179">그러나 DTrace가 없는 운영 체제가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-179">However, many operating systems do not have DTrace.</span></span> <span data-ttu-id="7f348-180">이러한 오류는 무시해도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-180">You can safely ignore these errors.</span></span>
+<span data-ttu-id="c25af-178">Restify는 DTrace를 사용하여 REST 호출을 추적하는 강력한 메커니즘을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-178">Restify provides a powerful mechanism for tracing REST calls by using DTrace.</span></span> <span data-ttu-id="c25af-179">그러나 DTrace가 없는 운영 체제가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-179">However, many operating systems do not have DTrace.</span></span> <span data-ttu-id="c25af-180">이러한 오류는 무시해도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-180">You can safely ignore these errors.</span></span>
 
-<span data-ttu-id="7f348-181">이 명령의 출력은 다음 출력과 유사합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-181">The output of this command should look similar to the following output:</span></span>
+<span data-ttu-id="c25af-181">hello이이 명령의 출력에 출력 뒤 비슷한 toohello 같아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-181">hello output of this command should look similar toohello following output:</span></span>
 
     restify@2.6.1 node_modules/restify
     ├── assert-plus@0.1.4
@@ -153,18 +153,18 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
     └── bunyan@0.22.0 (mv@0.0.5)
 
 
-## <a name="step-6-install-passportjs-in-your-web-api"></a><span data-ttu-id="7f348-182">6단계: web API에 Passport.js 설치</span><span class="sxs-lookup"><span data-stu-id="7f348-182">Step 6: Install Passport.js in your web API</span></span>
-<span data-ttu-id="7f348-183">[Passport](http://passportjs.org/) 는 Node.js에 대한 인증 미들웨어입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-183">[Passport](http://passportjs.org/) is authentication middleware for Node.js.</span></span> <span data-ttu-id="7f348-184">유연한 모듈식 Passport는 어떤 Express 기반 또는 Resitify 웹 응용 프로그램에도 원활하게 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-184">Flexible and modular, Passport can be unobtrusively dropped in to any Express-based or Restify web application.</span></span> <span data-ttu-id="7f348-185">포괄적인 전략 모음이 사용자 이름 및 암호, Facebook, Twitter 등을 사용하는 인증을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-185">A comprehensive set of strategies support authentication with a username and password, Facebook, Twitter, and more.</span></span>
+## <a name="step-6-install-passportjs-in-your-web-api"></a><span data-ttu-id="c25af-182">6단계: web API에 Passport.js 설치</span><span class="sxs-lookup"><span data-stu-id="c25af-182">Step 6: Install Passport.js in your web API</span></span>
+<span data-ttu-id="c25af-183">[Passport](http://passportjs.org/) 는 Node.js에 대한 인증 미들웨어입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-183">[Passport](http://passportjs.org/) is authentication middleware for Node.js.</span></span> <span data-ttu-id="c25af-184">유동 및 모듈형, Passport tooany에 프로그램과 원활 하 게 삭제 될 수 있습니다 Express 기반 웹 응용 프로그램 Restify 또는 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-184">Flexible and modular, Passport can be unobtrusively dropped in tooany Express-based or Restify web application.</span></span> <span data-ttu-id="c25af-185">포괄적인 전략 모음이 사용자 이름 및 암호, Facebook, Twitter 등을 사용하는 인증을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-185">A comprehensive set of strategies support authentication with a username and password, Facebook, Twitter, and more.</span></span>
 
-<span data-ttu-id="7f348-186">Microsoft는 Azure Active Directory에 대한 전략을 개발했습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-186">We have developed a strategy for Azure Active Directory.</span></span> <span data-ttu-id="7f348-187">여기서는 이 모듈을 설치하고 Azure Active Directory 전략 플러그 인을 추가하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-187">We install this module and then add the Azure Active Directory strategy plug-in.</span></span>
+<span data-ttu-id="c25af-186">Microsoft는 Azure Active Directory에 대한 전략을 개발했습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-186">We have developed a strategy for Azure Active Directory.</span></span> <span data-ttu-id="c25af-187">이 모듈을 설치 하 고 hello Azure Active Directory 전략 플러그 인을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-187">We install this module and then add hello Azure Active Directory strategy plug-in.</span></span>
 
-1. <span data-ttu-id="7f348-188">명령줄에서 디렉터리를 **azuread** 디렉터리로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-188">From the command line, change directories to the **azuread** directory.</span></span>
+1. <span data-ttu-id="c25af-188">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-188">From hello command line, change directories toohello **azuread** directory.</span></span>
 
-2. <span data-ttu-id="7f348-189">passport.js를 설치하려면 다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-189">To install passport.js, enter the following command :</span></span>
+2. <span data-ttu-id="c25af-189">tooinstall passport.js hello 다음 명령을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-189">tooinstall passport.js, enter hello following command :</span></span>
 
     `npm install passport`
 
-    <span data-ttu-id="7f348-190">이 명령의 출력은 다음과 유사하게 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-190">The output of the command should look similar to the following:</span></span>
+    <span data-ttu-id="c25af-190">hello 명령의 hello 출력 비슷한 toohello 다음과 같아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-190">hello output of hello command should look similar toohello following:</span></span>
 
 ``
         passport@0.1.17 node_modules\passport
@@ -172,21 +172,21 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
         └── pkginfo@0.2.3
 ``
 
-## <a name="step-7-add-passport-azure-ad-to-your-web-api"></a><span data-ttu-id="7f348-191">7단계: web API에 Passport-Azure-AD 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-191">Step 7: Add Passport-Azure-AD to your web API</span></span>
-<span data-ttu-id="7f348-192">다음으로 Azure Active Directory를 Passport에 연결하는 전략 제품군인 `passport-azure-ad`를 사용하여 OAuth 전략을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-192">Next we add the OAuth strategy by using `passport-azure-ad`, a suite of strategies that connect Azure Active Directory to Passport.</span></span> <span data-ttu-id="7f348-193">이 REST API 샘플에서는 이 전략을 전달자 토큰으로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-193">We use this strategy for bearer tokens in this REST API sample.</span></span>
+## <a name="step-7-add-passport-azure-ad-tooyour-web-api"></a><span data-ttu-id="c25af-191">7 단계: Passport Azure AD tooyour 웹 API 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-191">Step 7: Add Passport-Azure-AD tooyour web API</span></span>
+<span data-ttu-id="c25af-192">다음 OAuth 전략 hello를 사용 하 여 추가 `passport-azure-ad`, Azure Active Directory tooPassport 연결 하는 전략의 모음입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-192">Next we add hello OAuth strategy by using `passport-azure-ad`, a suite of strategies that connect Azure Active Directory tooPassport.</span></span> <span data-ttu-id="c25af-193">이 REST API 샘플에서는 이 전략을 전달자 토큰으로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-193">We use this strategy for bearer tokens in this REST API sample.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="7f348-194">OAuth2는 알려진 모든 토큰 유형을 발급할 수 있는 프레임워크를 제공하지만 일반적으로 특정 토큰 유형만 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-194">Although OAuth2 provides a framework in which any known token type can be issued, only certain token types are commonly used.</span></span> <span data-ttu-id="7f348-195">전달자 토큰은 끝점 보호에 가장 일반적으로 사용되는 토큰입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-195">Bearer tokens are the most commonly used tokens for protecting endpoints.</span></span> <span data-ttu-id="7f348-196">전달자 토큰은 OAuth2에서 가장 널리 발급되는 토큰 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-196">They are the most widely issued type of token in OAuth2.</span></span> <span data-ttu-id="7f348-197">많은 구현에서 발급되는 유일한 토큰 유형이 전달자 토큰이라고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-197">Many implementations assume that bearer tokens are the only type of tokens that are issued.</span></span>
+> <span data-ttu-id="c25af-194">OAuth2는 알려진 모든 토큰 유형을 발급할 수 있는 프레임워크를 제공하지만 일반적으로 특정 토큰 유형만 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-194">Although OAuth2 provides a framework in which any known token type can be issued, only certain token types are commonly used.</span></span> <span data-ttu-id="c25af-195">전달자 토큰은 끝점을 보호 하는 데 가장 일반적으로 사용 하는 hello 토큰입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-195">Bearer tokens are hello most commonly used tokens for protecting endpoints.</span></span> <span data-ttu-id="c25af-196">OAuth2 토큰의 유형 hello 가장 광범위 하 게 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-196">They are hello most widely issued type of token in OAuth2.</span></span> <span data-ttu-id="c25af-197">여러 구현 hello 유형의 발급 된 토큰을 전달자 토큰 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-197">Many implementations assume that bearer tokens are hello only type of tokens that are issued.</span></span>
 >
 >
 
-<span data-ttu-id="7f348-198">명령줄에서 디렉터리를 **azuread** 디렉터리로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-198">From the command line, change directories to the **azuread** directory.</span></span>
+<span data-ttu-id="c25af-198">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 디렉터리입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-198">From hello command line, change directories toohello **azuread** directory.</span></span>
 
-<span data-ttu-id="7f348-199">다음 명령을 입력하여 Passport.js `passport-azure-ad module`을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-199">Type the following command to install the Passport.js `passport-azure-ad module`:</span></span>
+<span data-ttu-id="c25af-199">형식 hello 다음 명령은 tooinstall hello Passport.js `passport-azure-ad module`:</span><span class="sxs-lookup"><span data-stu-id="c25af-199">Type hello following command tooinstall hello Passport.js `passport-azure-ad module`:</span></span>
 
 `npm install passport-azure-ad`
 
-<span data-ttu-id="7f348-200">이 명령의 출력은 다음 출력과 유사하게 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-200">The output of the command should look similar to the following output:</span></span>
+<span data-ttu-id="c25af-200">hello hello 명령의 출력에 출력 뒤 비슷한 toohello 같아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-200">hello output of hello command should look similar toohello following output:</span></span>
 
 
     passport-azure-ad@1.0.0 node_modules/passport-azure-ad
@@ -204,32 +204,32 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
 
 
 
-## <a name="step-8-add-mongodb-modules-to-your-web-api"></a><span data-ttu-id="7f348-201">8단계: web API에 MongoDB 모듈 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-201">Step 8: Add MongoDB modules to your web API</span></span>
-<span data-ttu-id="7f348-202">데이터 저장소로 MongoDB를 사용하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-202">We use MongoDB as our datastore.</span></span> <span data-ttu-id="7f348-203">따라서 모델 및 스키마를 관리에 널리 사용되는 Mongoose라고 하는 플러그 인을 설치 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-203">For that reason, we need to install the widely used plug-in called Mongoose to manage models and schemas.</span></span> <span data-ttu-id="7f348-204">MongoDB용 데이터베이스 드라이버(MongoDB)도 설치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-204">We also need to install the database driver for MongoDB (which is also called MongoDB).</span></span>
+## <a name="step-8-add-mongodb-modules-tooyour-web-api"></a><span data-ttu-id="c25af-201">8 단계: MongoDB 모듈 tooyour 웹 API에 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-201">Step 8: Add MongoDB modules tooyour web API</span></span>
+<span data-ttu-id="c25af-202">데이터 저장소로 MongoDB를 사용하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-202">We use MongoDB as our datastore.</span></span> <span data-ttu-id="c25af-203">이런 이유로 tooinstall 필요 hello 널리 사용 되는 플러그 인 호출된 Mongoose toomanage 모델 및 스키마입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-203">For that reason, we need tooinstall hello widely used plug-in called Mongoose toomanage models and schemas.</span></span> <span data-ttu-id="c25af-204">또한 tooinstall hello 데이터베이스 드라이버 (라고도 하는 MongoDB) MongoDB에 대 한 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-204">We also need tooinstall hello database driver for MongoDB (which is also called MongoDB).</span></span>
 
  `npm install mongoose`
 
-## <a name="step-9-install-additional-modules"></a><span data-ttu-id="7f348-205">9단계: 추가 모듈 설치</span><span class="sxs-lookup"><span data-stu-id="7f348-205">Step 9: Install additional modules</span></span>
-<span data-ttu-id="7f348-206">다음으로 나머지 필수 모듈을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-206">Next we install the remaining required modules.</span></span>
+## <a name="step-9-install-additional-modules"></a><span data-ttu-id="c25af-205">9단계: 추가 모듈 설치</span><span class="sxs-lookup"><span data-stu-id="c25af-205">Step 9: Install additional modules</span></span>
+<span data-ttu-id="c25af-206">그런 다음 필요한 모듈을 남은 hello를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-206">Next we install hello remaining required modules.</span></span>
 
-1. <span data-ttu-id="7f348-207">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-207">From the command line, change directories to the **azuread** folder if you're not already there.</span></span>
+1. <span data-ttu-id="c25af-207">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-207">From hello command line, change directories toohello **azuread** folder if you're not already there.</span></span>
 
     `cd azuread`
 
-2. <span data-ttu-id="7f348-208">다음 명령을 입력하여 **node_modules** 디렉터리에 다음 모듈을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-208">Enter the following commands to install these modules in your **node_modules** directory:</span></span>
+2. <span data-ttu-id="c25af-208">이러한 모듈의 명령을 tooinstall 다음 hello 입력 프로그램 **node_modules** 디렉터리:</span><span class="sxs-lookup"><span data-stu-id="c25af-208">Enter hello following commands tooinstall these modules in your **node_modules** directory:</span></span>
 
     * `npm install assert-plus`
     * `npm install bunyan`
     * `npm update`
 
-## <a name="step-10-create-a-serverjs-with-your-dependencies"></a><span data-ttu-id="7f348-209">10단계: 종속성을 적용하여 server.js 만들기</span><span class="sxs-lookup"><span data-stu-id="7f348-209">Step 10: Create a server.js with your dependencies</span></span>
-<span data-ttu-id="7f348-210">server.js 파일은 web API 서버에 대한 대부분의 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-210">The server.js file provides most of the functionality for our web API server.</span></span> <span data-ttu-id="7f348-211">이 파일에 대부분의 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-211">We add most of our code to this file.</span></span> <span data-ttu-id="7f348-212">프로덕션을 위해, 기능을 별도의 경로 및 컨트롤러와 같은 좀 더 작은 파일로 리팩터링하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-212">For production purposes, we recommend that you refactor the functionality into smaller files, such as separate routes and controllers.</span></span> <span data-ttu-id="7f348-213">이 데모에서는 이 기능에 server.js를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-213">In this demo, we use server.js for this functionality.</span></span>
+## <a name="step-10-create-a-serverjs-with-your-dependencies"></a><span data-ttu-id="c25af-209">10단계: 종속성을 적용하여 server.js 만들기</span><span class="sxs-lookup"><span data-stu-id="c25af-209">Step 10: Create a server.js with your dependencies</span></span>
+<span data-ttu-id="c25af-210">hello server.js 파일 API 웹 서버에 대 한 대부분의 hello 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-210">hello server.js file provides most of hello functionality for our web API server.</span></span> <span data-ttu-id="c25af-211">대부분의 코드 toothis 파일의 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-211">We add most of our code toothis file.</span></span> <span data-ttu-id="c25af-212">프로덕션 환경에 대 한 별도 경로 및 컨트롤러와 같은 더 작은 파일로 hello 기능을 리팩터링 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-212">For production purposes, we recommend that you refactor hello functionality into smaller files, such as separate routes and controllers.</span></span> <span data-ttu-id="c25af-213">이 데모에서는 이 기능에 server.js를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-213">In this demo, we use server.js for this functionality.</span></span>
 
-1. <span data-ttu-id="7f348-214">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-214">From the command line, change directories to the **azuread** folder if you're not already there.</span></span>
+1. <span data-ttu-id="c25af-214">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-214">From hello command line, change directories toohello **azuread** folder if you're not already there.</span></span>
 
     `cd azuread`
 
-2. <span data-ttu-id="7f348-215">즐겨 사용하는 편집기에서 `server.js` 파일을 만들고 다음 정보를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-215">Create a `server.js` file in your favorite editor, and then add the following information:</span></span>
+2. <span data-ttu-id="c25af-215">만들기는 `server.js` 선호 하는 편집기에서 파일을 다음 hello 다음 정보를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-215">Create a `server.js` file in your favorite editor, and then add hello following information:</span></span>
 
     ```Javascript
         'use strict';
@@ -250,50 +250,50 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
       var BearerStrategy = require('passport-azure-ad').BearerStrategy;
     ```
 
-3. <span data-ttu-id="7f348-216">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-216">Save the file.</span></span> <span data-ttu-id="7f348-217">잠시 후에 이 파일로 다시 돌아갈 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-217">We'll return to it shortly.</span></span>
+3. <span data-ttu-id="c25af-216">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-216">Save hello file.</span></span> <span data-ttu-id="c25af-217">에서는 tooit 곧 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-217">We'll return tooit shortly.</span></span>
 
-## <a name="step-11-create-a-config-file-to-store-your-azure-ad-settings"></a><span data-ttu-id="7f348-218">11단계: Azure AD 설정을 저장하기 위한 구성 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="7f348-218">Step 11: Create a config file to store your Azure AD settings</span></span>
-<span data-ttu-id="7f348-219">이 코드 파일은 Azure Active Directory 포털의 구성 매개 변수를 Passport.js에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-219">This code file passes the configuration parameters from your Azure Active Directory portal to Passport.js.</span></span> <span data-ttu-id="7f348-220">이 연습의 첫 번째 부분에서 포털에 web API를 추가할 때 이러한 구성 값을 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-220">You created these configuration values when you added the web API to the portal in the first part of the walkthrough.</span></span> <span data-ttu-id="7f348-221">코드를 복사한 후에 이러한 매개 변수 값에 추가할 항목에 대해 설명할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-221">We explain what to put in the values of these parameters after you copy the code.</span></span>
+## <a name="step-11-create-a-config-file-toostore-your-azure-ad-settings"></a><span data-ttu-id="c25af-218">11 단계: Azure AD 설정을 구성 파일 toostore 만들</span><span class="sxs-lookup"><span data-stu-id="c25af-218">Step 11: Create a config file toostore your Azure AD settings</span></span>
+<span data-ttu-id="c25af-219">이 코드 파일에서 Azure Active Directory 포털 tooPassport.js hello 구성 매개 변수를 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-219">This code file passes hello configuration parameters from your Azure Active Directory portal tooPassport.js.</span></span> <span data-ttu-id="c25af-220">Hello 연습의 첫 번째 부분 hello hello 웹 API toohello 포털을 추가 했을 때 이러한 구성 값을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-220">You created these configuration values when you added hello web API toohello portal in hello first part of hello walkthrough.</span></span> <span data-ttu-id="c25af-221">Hello 코드를 복사한 후 hello 값이 매개이 변수 중에서 어떤 tooput을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-221">We explain what tooput in hello values of these parameters after you copy hello code.</span></span>
 
-1. <span data-ttu-id="7f348-222">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-222">From the command line, change directories to the **azuread** folder if you're not already there.</span></span>
+1. <span data-ttu-id="c25af-222">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-222">From hello command line, change directories toohello **azuread** folder if you're not already there.</span></span>
 
     `cd azuread`
 
-2. <span data-ttu-id="7f348-223">즐겨 사용하는 편집기에서 `config.js` 파일을 만들고 다음 정보를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-223">Create a `config.js` file in your favorite editor, and then add the following information:</span></span>
+2. <span data-ttu-id="c25af-223">만들기는 `config.js` 선호 하는 편집기에서 파일을 다음 hello 다음 정보를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-223">Create a `config.js` file in your favorite editor, and then add hello following information:</span></span>
 
     ```Javascript
          exports.creds = {
              mongoose_auth_local: 'mongodb://localhost/tasklist', // Your mongo auth uri goes here
              clientID: 'your client ID',
              audience: 'your application URL',
-            // you cannot have users from multiple tenants sign in to your server unless you use the common endpoint
+            // you cannot have users from multiple tenants sign in tooyour server unless you use hello common endpoint
           // example: https://login.microsoftonline.com/common/.well-known/openid-configuration
              identityMetadata: 'https://login.microsoftonline.com/<your tenant id>/.well-known/openid-configuration',
-             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in to your server
+             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in tooyour server
              passReqToCallback: false,
-             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes to stderr in Unix.
+             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes toostderr in Unix.
 
          };
     ```
-3. <span data-ttu-id="7f348-224">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-224">Save the file.</span></span>
+3. <span data-ttu-id="c25af-224">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-224">Save hello file.</span></span>
 
-## <a name="step-12-add-configuration-values-to-your-serverjs-file"></a><span data-ttu-id="7f348-225">12단계: server.js 파일에 구성 값 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-225">Step 12: Add configuration values to your server.js file</span></span>
-<span data-ttu-id="7f348-226">응용 프로그램에서 방금 만든 .config 파일로부터 이러한 값을 읽어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-226">We need to read these values from the .config file that you created across our application.</span></span> <span data-ttu-id="7f348-227">이 작업을 수행하기 위해 응용 프로그램에서 .config 파일을 필수 리소스로 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-227">To do this, we add the .config file as a required resource in our application.</span></span> <span data-ttu-id="7f348-228">그런 다음 config.js 문서의 변수와 일치하도록 전역 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-228">Then we set the global variables to match the variables in the config.js document.</span></span>
+## <a name="step-12-add-configuration-values-tooyour-serverjs-file"></a><span data-ttu-id="c25af-225">12 단계: 구성 값 tooyour server.js 파일 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-225">Step 12: Add configuration values tooyour server.js file</span></span>
+<span data-ttu-id="c25af-226">이 값이 필요 tooread 이러한 만든 hello.config 파일에서 응용 프로그램에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-226">We need tooread these values from hello .config file that you created across our application.</span></span> <span data-ttu-id="c25af-227">toodo이 응용 프로그램의 hello.config 파일을 필요한 리소스로 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-227">toodo this, we add hello .config file as a required resource in our application.</span></span> <span data-ttu-id="c25af-228">그런 다음 hello config.js 문서의 hello 전역 변수 toomatch hello 변수를 설정 했습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-228">Then we set hello global variables toomatch hello variables in hello config.js document.</span></span>
 
-1. <span data-ttu-id="7f348-229">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-229">From the command line, change directories to the **azuread** folder if you're not already there.</span></span>
+1. <span data-ttu-id="c25af-229">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-229">From hello command line, change directories toohello **azuread** folder if you're not already there.</span></span>
 
     `cd azuread`
 
-2. <span data-ttu-id="7f348-230">즐겨 사용하는 편집기에서 `server.js` 파일을 열고 다음 정보를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-230">Open your `server.js` file in your favorite editor, and then add the following information:</span></span>
+2. <span data-ttu-id="c25af-230">Open 프로그램 `server.js` 선호 하는 편집기에서 파일을 다음 hello 다음 정보를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-230">Open your `server.js` file in your favorite editor, and then add hello following information:</span></span>
 
     ```Javascript
     var config = require('./config');
     ```
-3. <span data-ttu-id="7f348-231">그 후 다음 코드를 사용하여 `server.js`에 새 섹션을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-231">Then add a new section to `server.js` with the following code:</span></span>
+3. <span data-ttu-id="c25af-231">그런 다음 새 섹션을 너무 추가`server.js` 코드 다음 hello로:</span><span class="sxs-lookup"><span data-stu-id="c25af-231">Then add a new section too`server.js` with hello following code:</span></span>
 
     ```Javascript
     var options = {
-        // The URL of the metadata document for your app. We will put the keys for token validation from the URL found in the jwks_uri tag of the in the metadata.
+        // hello URL of hello metadata document for your app. We will put hello keys for token validation from hello URL found in hello jwks_uri tag of hello in hello metadata.
         identityMetadata: config.creds.identityMetadata,
         clientID: config.creds.clientID,
         validateIssuer: config.creds.validateIssuer,
@@ -303,7 +303,7 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
 
     };
 
-    // Array to hold logged in users and the current logged in user (owner).
+    // Array toohold logged in users and hello current logged in user (owner).
     var users = [];
     var owner = null;
 
@@ -323,7 +323,7 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
             }, ]
     });
 
-      // If the logging level is specified, switch to it.
+      // If hello logging level is specified, switch tooit.
       if (config.creds.loggingLevel) { log.levels("console", config.creds.loggingLevel); }
 
     // MongoDB setup.
@@ -332,42 +332,42 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
     var serverURI = (process.env.PORT) ? config.creds.mongoose_auth_mongohq : config.creds.mongoose_auth_local;
     ```
 
-4. <span data-ttu-id="7f348-232">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-232">Save the file.</span></span>
+4. <span data-ttu-id="c25af-232">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-232">Save hello file.</span></span>
 
-## <a name="step-13-add-the-mongodb-model-and-schema-information-by-using-mongoose"></a><span data-ttu-id="7f348-233">13단계: Moongoose를 사용하여 MongoDB 모델 및 스키마 정보 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-233">Step 13: Add The MongoDB Model and schema information by using Mongoose</span></span>
-<span data-ttu-id="7f348-234">이제 이러한 세 파일을 하나의 REST API 서비스에 통합하면 모든 준비 과정이 마무리됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-234">Now all this preparation is going to start paying off as we combine these three files into a REST API service.</span></span>
+## <a name="step-13-add-hello-mongodb-model-and-schema-information-by-using-mongoose"></a><span data-ttu-id="c25af-233">13 단계: Mongoose를 사용 하 여 hello MongoDB 모델 및 스키마 정보 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-233">Step 13: Add hello MongoDB Model and schema information by using Mongoose</span></span>
+<span data-ttu-id="c25af-234">이제 이러한 모든 준비를 REST API 서비스에이 세 파일 조합으로 지불 toostart를 하려고 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-234">Now all this preparation is going toostart paying off as we combine these three files into a REST API service.</span></span>
 
-<span data-ttu-id="7f348-235">이 연습에서는 4단계에서 설명한 대로 MongoDB를 사용하여 작업을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-235">For this walkthrough, we use MongoDB to store our tasks as discussed in Step 4.</span></span>
+<span data-ttu-id="c25af-235">이 연습 4 단계에서에서 설명한 대로 작업 MongoDB toostore 사용 했습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-235">For this walkthrough, we use MongoDB toostore our tasks as discussed in Step 4.</span></span>
 
-<span data-ttu-id="7f348-236">11단계에서 만든 `config.js` 파일에서는 `tasklist` 데이터베이스를 호출했습니다. **mogoose_auth_local** 연결 URL의 마지막에 추가한 데이터베이스이기 때문입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-236">In the `config.js` file that we created in Step 11, we called our database `tasklist`, because that was what we put at the end of our **mogoose_auth_local** connection URL.</span></span> <span data-ttu-id="7f348-237">MongoDB에서 이 데이터베이스를 미리 만들 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-237">You don't need to create this database beforehand in MongoDB.</span></span> <span data-ttu-id="7f348-238">그 대신 서버 응용 프로그램이 처음으로 실행될 때 MongoDB가 이 데이터베이스를 자동으로 만듭니다(아직 데이터베이스가 없다고 가정).</span><span class="sxs-lookup"><span data-stu-id="7f348-238">Instead, MongoDB creates this for us on the first run of our server application (assuming that the database doesn't already exist).</span></span>
+<span data-ttu-id="c25af-236">Hello에 `config.js` 파일 11 단계에서에서 만든, 데이터베이스 호출 `tasklist`기 때문에 해당 hello 끝에 넣을까요, 우리의 **mogoose_auth_local** 연결 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-236">In hello `config.js` file that we created in Step 11, we called our database `tasklist`, because that was what we put at hello end of our **mogoose_auth_local** connection URL.</span></span> <span data-ttu-id="c25af-237">이 데이터베이스 MongoDB에 미리 toocreate 필요 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-237">You don't need toocreate this database beforehand in MongoDB.</span></span> <span data-ttu-id="c25af-238">대신, MongoDB이을 수행해 줍니다 hello에 먼저 만듭니다 (해당 hello 데이터베이스는 존재 하지 않는 것으로 가정) 서버 응용 프로그램의 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-238">Instead, MongoDB creates this for us on hello first run of our server application (assuming that hello database doesn't already exist).</span></span>
 
-<span data-ttu-id="7f348-239">사용하려는 MongoDB 데이터베이스를 서버에 알렸으므로 일부 추가 코드를 작성하여 서버 작업에 대한 모델 및 스키마를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-239">Now that we've told the server which MongoDB database we'd like to use, we need to write some additional code to create the model and schema for our server's tasks.</span></span>
+<span data-ttu-id="c25af-239">MongoDB 데이터베이스 hello 서버 말씀 했습니다 했으므로 toouse 같은, toowrite 몇 가지 추가 코드 toocreate hello 모델 및 스키마에 필요한 대로 서버 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-239">Now that we've told hello server which MongoDB database we'd like toouse, we need toowrite some additional code toocreate hello model and schema for our server's tasks.</span></span>
 
-### <a name="discussion-of-the-model"></a><span data-ttu-id="7f348-240">모델에 대한 논의</span><span class="sxs-lookup"><span data-stu-id="7f348-240">Discussion of the model</span></span>
-<span data-ttu-id="7f348-241">Microsoft의 스키마 모델은 간단합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-241">Our schema model is simple.</span></span> <span data-ttu-id="7f348-242">필요에 따라 확장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-242">You expand it as required.</span></span>
+### <a name="discussion-of-hello-model"></a><span data-ttu-id="c25af-240">Hello 모델에 대 한 설명</span><span class="sxs-lookup"><span data-stu-id="c25af-240">Discussion of hello model</span></span>
+<span data-ttu-id="c25af-241">Microsoft의 스키마 모델은 간단합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-241">Our schema model is simple.</span></span> <span data-ttu-id="c25af-242">필요에 따라 확장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-242">You expand it as required.</span></span>
 
-<span data-ttu-id="7f348-243">NAME: 작업에 할당된 사람의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-243">NAME: The name of the person who is assigned to the task.</span></span> <span data-ttu-id="7f348-244">**문자열**입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-244">A **String**.</span></span>
+<span data-ttu-id="c25af-243">이름: hello toohello 작업 배정 된 hello 사용자의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-243">NAME: hello name of hello person who is assigned toohello task.</span></span> <span data-ttu-id="c25af-244">**문자열**입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-244">A **String**.</span></span>
 
-<span data-ttu-id="7f348-245">TASK: 작업 자체입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-245">TASK: The task itself.</span></span> <span data-ttu-id="7f348-246">**문자열**입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-246">A **String**.</span></span>
+<span data-ttu-id="c25af-245">작업: hello 작업 자체입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-245">TASK: hello task itself.</span></span> <span data-ttu-id="c25af-246">**문자열**입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-246">A **String**.</span></span>
 
-<span data-ttu-id="7f348-247">DATE: 작업이 만료되는 날짜입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-247">DATE: The date that the task is due.</span></span> <span data-ttu-id="7f348-248">**DATETIME**입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-248">A **DATETIME**.</span></span>
+<span data-ttu-id="c25af-247">Hello 작업이 만료 되 날짜: hello 날짜입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-247">DATE: hello date that hello task is due.</span></span> <span data-ttu-id="c25af-248">**DATETIME**입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-248">A **DATETIME**.</span></span>
 
-<span data-ttu-id="7f348-249">COMPLETED: 작업의 완료 여부입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-249">COMPLETED: If the task has been completed or not.</span></span> <span data-ttu-id="7f348-250">**부울**입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-250">A **BOOLEAN**.</span></span>
+<span data-ttu-id="c25af-249">완료: hello 작업이 고 요약 작업이 완료 되었는지 여부 여부.</span><span class="sxs-lookup"><span data-stu-id="c25af-249">COMPLETED: If hello task has been completed or not.</span></span> <span data-ttu-id="c25af-250">**부울**입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-250">A **BOOLEAN**.</span></span>
 
-### <a name="creating-the-schema-in-the-code"></a><span data-ttu-id="7f348-251">코드에 스키마 만들기</span><span class="sxs-lookup"><span data-stu-id="7f348-251">Creating the schema in the code</span></span>
-1. <span data-ttu-id="7f348-252">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-252">From the command line, change directories to the **azuread** folder if you're not already there.</span></span>
+### <a name="creating-hello-schema-in-hello-code"></a><span data-ttu-id="c25af-251">Hello 코드에서 hello 스키마 만들기</span><span class="sxs-lookup"><span data-stu-id="c25af-251">Creating hello schema in hello code</span></span>
+1. <span data-ttu-id="c25af-252">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-252">From hello command line, change directories toohello **azuread** folder if you're not already there.</span></span>
 
     `cd azuread`
 
-2. <span data-ttu-id="7f348-253">즐겨 사용하는 편집기에서 `server.js` 파일을 열고 구성 항목 아래에 다음 정보를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-253">Open your `server.js` file in your favorite editor, and then add the following information below the configuration entry:</span></span>
+2. <span data-ttu-id="c25af-253">Open 프로그램 `server.js` 선호 하는 편집기에서 파일을 다음 hello 다음 hello 구성 항목 아래에 정보를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-253">Open your `server.js` file in your favorite editor, and then add hello following information below hello configuration entry:</span></span>
 
     ```Javascript
-    // Connect to MongoDB.
+    // Connect tooMongoDB.
     global.db = mongoose.connect(serverURI);
     var Schema = mongoose.Schema;
     log.info('MongoDB Schema loaded');
 
-    // Here we create a schema to store our tasks and users. It's a fairly simple schema for now.
+    // Here we create a schema toostore our tasks and users. It's a fairly simple schema for now.
     var TaskSchema = new Schema({
         owner: String,
         task: String,
@@ -375,19 +375,19 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
         date: Date
     });
 
-    // Use the schema to register a model.
+    // Use hello schema tooregister a model.
     mongoose.model('Task', TaskSchema);
     var Task = mongoose.model('Task');
     ```
-<span data-ttu-id="7f348-254">코드를 보면 알 수 있듯이, 먼저 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-254">As you can tell from the code, we create our schema first.</span></span> <span data-ttu-id="7f348-255">그런 다음 **경로**를 정의할 때 코드 전체에서 데이터를 저장하는 데 사용할 모델 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-255">Then we create a model object that we use to store our data throughout the code when we define our **Routes**.</span></span>
+<span data-ttu-id="c25af-254">Hello 코드에서 있음 스키마 먼저 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-254">As you can tell from hello code, we create our schema first.</span></span> <span data-ttu-id="c25af-255">Toostore hello 전체에서 데이터 정의 하면 코드에서 사용 하는 모델 개체를 생성 한 다음 우리의 **경로**합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-255">Then we create a model object that we use toostore our data throughout hello code when we define our **Routes**.</span></span>
 
-## <a name="step-14-add-our-routes-for-our-task-rest-api-server"></a><span data-ttu-id="7f348-256">14단계: Task REST API 서버에 대한 경로 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-256">Step 14: Add our routes for our task REST API server</span></span>
-<span data-ttu-id="7f348-257">작업할 데이터베이스 모델이 준비되었으므로 REST API 서버에 사용할 경로를 추가하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-257">Now that we have a database model to work with, let's add the routes we are going use for our REST API server.</span></span>
+## <a name="step-14-add-our-routes-for-our-task-rest-api-server"></a><span data-ttu-id="c25af-256">14단계: Task REST API 서버에 대한 경로 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-256">Step 14: Add our routes for our task REST API server</span></span>
+<span data-ttu-id="c25af-257">와 데이터베이스 모델 toowork 았는 REST API 서버 계속 사용 하는 hello 경로 추가 해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-257">Now that we have a database model toowork with, let's add hello routes we are going use for our REST API server.</span></span>
 
-### <a name="about-routes-in-restify"></a><span data-ttu-id="7f348-258">Restify의 경로 정보</span><span class="sxs-lookup"><span data-stu-id="7f348-258">About routes in Restify</span></span>
-<span data-ttu-id="7f348-259">경로는 Express 스택을 사용할 때와 동일한 방식으로 Restify에서 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-259">Routes work in Restify the same way they do in the Express stack.</span></span> <span data-ttu-id="7f348-260">클라이언트 응용 프로그램이 호출할 것으로 예상하는 URI를 사용하여 경로를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-260">You define routes by using the URI that you expect the client applications to call.</span></span> <span data-ttu-id="7f348-261">일반적으로 경로는 별도 파일에 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-261">Usually, you define your routes in a separate file.</span></span> <span data-ttu-id="7f348-262">여기서는 경로를 server.js 파일에 저장하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-262">For our purposes, we put our routes in the server.js file.</span></span> <span data-ttu-id="7f348-263">프로덕션 사용을 위해서는 자체 파일에서 이러한 경로를 팩터링하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-263">We recommend that you factor these routes into their own file for production use.</span></span>
+### <a name="about-routes-in-restify"></a><span data-ttu-id="c25af-258">Restify의 경로 정보</span><span class="sxs-lookup"><span data-stu-id="c25af-258">About routes in Restify</span></span>
+<span data-ttu-id="c25af-259">경로 동일 하 게 작동 Restify hello에 방식으로 수행 hello Express에에서 쌓입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-259">Routes work in Restify hello same way they do in hello Express stack.</span></span> <span data-ttu-id="c25af-260">Hello hello 클라이언트 응용 프로그램 toocall 예상 되는 URI를 사용 하 여 경로 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-260">You define routes by using hello URI that you expect hello client applications toocall.</span></span> <span data-ttu-id="c25af-261">일반적으로 경로는 별도 파일에 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-261">Usually, you define your routes in a separate file.</span></span> <span data-ttu-id="c25af-262">여기서 hello server.js 파일에이 경로 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-262">For our purposes, we put our routes in hello server.js file.</span></span> <span data-ttu-id="c25af-263">프로덕션 사용을 위해서는 자체 파일에서 이러한 경로를 팩터링하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-263">We recommend that you factor these routes into their own file for production use.</span></span>
 
-<span data-ttu-id="7f348-264">Restify 경로의 일반적인 패턴은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-264">A typical pattern for a Restify route is as follows:</span></span>
+<span data-ttu-id="c25af-264">Restify 경로의 일반적인 패턴은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-264">A typical pattern for a Restify route is as follows:</span></span>
 
 ```Javascript
 function createObject(req, res, next) {
@@ -398,7 +398,7 @@ function createObject(req, res, next) {
 
  ///...
 
-return next(); // Keep the server going.
+return next(); // Keep hello server going.
 }
 
 ....
@@ -408,16 +408,16 @@ server.post('/service/:add/:object', createObject); // Calls createObject on rou
 ```
 
 
-<span data-ttu-id="7f348-265">가장 기본적인 수준의 패턴입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-265">This is the pattern at its most basic level.</span></span> <span data-ttu-id="7f348-266">Resitfy(및 Express)는 응용 프로그램 유형을 정의하고, 여러 끝점에 복잡한 라우팅을 제공하는 등 훨씬 수준 높은 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-266">Restify (and Express) provide much deeper functionality, such as defining application types and providing complex routing across different endpoints.</span></span> <span data-ttu-id="7f348-267">여기서는 이러한 경로를 간단하게 유지하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-267">For our purposes, we are keeping these routes simple.</span></span>
+<span data-ttu-id="c25af-265">가장 기본적인 수준에서 hello 패턴입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-265">This is hello pattern at its most basic level.</span></span> <span data-ttu-id="c25af-266">Resitfy(및 Express)는 응용 프로그램 유형을 정의하고, 여러 끝점에 복잡한 라우팅을 제공하는 등 훨씬 수준 높은 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-266">Restify (and Express) provide much deeper functionality, such as defining application types and providing complex routing across different endpoints.</span></span> <span data-ttu-id="c25af-267">여기서는 이러한 경로를 간단하게 유지하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-267">For our purposes, we are keeping these routes simple.</span></span>
 
-### <a name="add-default-routes-to-our-server"></a><span data-ttu-id="7f348-268">서버에 기본 경로 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-268">Add default routes to our server</span></span>
-<span data-ttu-id="7f348-269">이제 만들기, 검색, 업데이트 및 삭제의 기본 CRUD 경로를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-269">We now add the basic CRUD routes of Create, Retrieve, Update, and Delete.</span></span>
+### <a name="add-default-routes-tooour-server"></a><span data-ttu-id="c25af-268">기본 경로 tooour 서버 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-268">Add default routes tooour server</span></span>
+<span data-ttu-id="c25af-269">에서는 이제 hello 만들기, 검색, 업데이트의 기본 CRUD 경로 추가 및 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-269">We now add hello basic CRUD routes of Create, Retrieve, Update, and Delete.</span></span>
 
-1. <span data-ttu-id="7f348-270">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-270">From the command line, change directories to the **azuread** folder if you're not already there:</span></span>
+1. <span data-ttu-id="c25af-270">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-270">From hello command line, change directories toohello **azuread** folder if you're not already there:</span></span>
 
     `cd azuread`
 
-2. <span data-ttu-id="7f348-271">즐겨 사용하는 편집기에서 `server.js` 파일을 열고 앞에서 만든 데이터베이스 항목 아래에 다음 정보를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-271">Open the `server.js` file in your favorite editor, and then add the following information below the previous database entries that you made:</span></span>
+2. <span data-ttu-id="c25af-271">열기 hello `server.js` 선호 하는 편집기에서 파일을 다음 hello 다음 hello 이전 데이터베이스 항목을 변경한 아래 정보를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-271">Open hello `server.js` file in your favorite editor, and then add hello following information below hello previous database entries that you made:</span></span>
 
 ```Javascript
 
@@ -430,13 +430,13 @@ server.post('/service/:add/:object', createObject); // Calls createObject on rou
 
 function createTask(req, res, next) {
 
-    // Restify currently has a bug which doesn't allow you to set default headers.
-    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
+    // Restify currently has a bug which doesn't allow you tooset default headers.
+    // These headers comply with CORS and allow us toomongodbServer our response tooany origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    // Create a new task model, fill it, and save it to Mongodb.
+    // Create a new task model, fill it, and save it tooMongodb.
     var _task = new Task();
 
     if (!req.params.task) {
@@ -451,7 +451,7 @@ function createTask(req, res, next) {
 
     _task.save(function(err) {
         if (err) {
-            req.log.warn(err, 'createTask: unable to save');
+            req.log.warn(err, 'createTask: unable toosave');
             next(err);
         } else {
             res.send(201, _task);
@@ -474,7 +474,7 @@ function removeTask(req, res, next) {
     }, function(err) {
         if (err) {
             req.log.warn(err,
-                'removeTask: unable to delete %s',
+                'removeTask: unable toodelete %s',
                 req.params.task);
             next(err);
         } else {
@@ -503,7 +503,7 @@ function getTask(req, res, next) {
         owner: owner
     }, function(err, data) {
         if (err) {
-            req.log.warn(err, 'get: unable to read %s', owner);
+            req.log.warn(err, 'get: unable tooread %s', owner);
             next(err);
             return;
         }
@@ -514,11 +514,11 @@ function getTask(req, res, next) {
     return next();
 }
 
-/// Simple returns the list of TODOs that were loaded.
+/// Simple returns hello list of TODOs that were loaded.
 
 function listTasks(req, res, next) {
-    // Restify currently has a bug which doesn't allow you to set default headers.
-    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
+    // Restify currently has a bug which doesn't allow you tooset default headers.
+    // These headers comply with CORS and allow us toomongodbServer our response tooany origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -538,7 +538,7 @@ function listTasks(req, res, next) {
         }
 
         if (!data.length) {
-            log.warn(err, "There is no tasks in the database. Did you initialize the database as stated in the README?");
+            log.warn(err, "There is no tasks in hello database. Did you initialize hello database as stated in hello README?");
         }
 
         if (!owner) {
@@ -555,10 +555,10 @@ function listTasks(req, res, next) {
 
 ```
 
-### <a name="add-error-handling-in-our-apis"></a><span data-ttu-id="7f348-272">API에서 오류 처리 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-272">Add error handling in our APIs</span></span>
+### <a name="add-error-handling-in-our-apis"></a><span data-ttu-id="c25af-272">API에서 오류 처리 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-272">Add error handling in our APIs</span></span>
 ```
 
-///--- Errors for communicating something interesting back to the client.
+///--- Errors for communicating something interesting back toohello client.
 
 function MissingTaskError() {
     restify.RestError.call(this, {
@@ -605,10 +605,10 @@ util.inherits(TaskNotFoundError, restify.RestError);
 ```
 
 
-## <a name="step-15-create-your-server"></a><span data-ttu-id="7f348-273">15단계: 서버 만들기</span><span class="sxs-lookup"><span data-stu-id="7f348-273">Step 15: Create your server</span></span>
-<span data-ttu-id="7f348-274">데이터베이스를 정의했으며 경로가 정위치에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-274">We have defined our database and our routes are in place.</span></span> <span data-ttu-id="7f348-275">마지막으로 할 일은 호출을 관리할 서버 인스턴스를 추가하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-275">The last thing to do is add the server instance that manages our calls.</span></span>
+## <a name="step-15-create-your-server"></a><span data-ttu-id="c25af-273">15단계: 서버 만들기</span><span class="sxs-lookup"><span data-stu-id="c25af-273">Step 15: Create your server</span></span>
+<span data-ttu-id="c25af-274">데이터베이스를 정의했으며 경로가 정위치에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-274">We have defined our database and our routes are in place.</span></span> <span data-ttu-id="c25af-275">마지막 일 toodo hello 대 한 호출을 관리 하는 hello 서버 인스턴스를 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-275">hello last thing toodo is add hello server instance that manages our calls.</span></span>
 
-<span data-ttu-id="7f348-276">Restify(및 Express)에서 REST API 서버에 대해 여러 사용자 지정 작업을 수행할 수 있지만 여기서는 가장 기본적인 설정만 사용할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-276">In Restify (and Express) you can do a lot of customization for a REST API server, but again we are going to use the most basic setup for our purposes.</span></span>
+<span data-ttu-id="c25af-276">Restify (및 Express) REST API 서버에 대 한 사용자 지정의 많은 할 수 있는 있지만 다시 하겠습니다 toouse hello 가장 기본적인 설치 가이드입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-276">In Restify (and Express) you can do a lot of customization for a REST API server, but again we are going toouse hello most basic setup for our purposes.</span></span>
 
 ```Javascript
 /**
@@ -633,32 +633,32 @@ server.pre(restify.pre.userAgentConnection());
 // Set a per request bunyan logger (with requestid filled in).
 server.use(restify.requestLogger());
 
-// Allow five requests per second by IP, and burst to 10.
+// Allow five requests per second by IP, and burst too10.
 server.use(restify.throttle({
     burst: 10,
     rate: 5,
     ip: true,
 }));
 
-// Use the common stuff you probably want.
+// Use hello common stuff you probably want.
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({
     mapParams: true
-})); // Allow for JSON mapping to REST.
+})); // Allow for JSON mapping tooREST.
 ```
 
-## <a name="step-16-add-the-routes-to-the-server-without-authentication-for-now"></a><span data-ttu-id="7f348-277">16단계: 서버에 경로 추가(지금은 인증 없이)</span><span class="sxs-lookup"><span data-stu-id="7f348-277">Step 16: Add the routes to the server (without authentication for now)</span></span>
+## <a name="step-16-add-hello-routes-toohello-server-without-authentication-for-now"></a><span data-ttu-id="c25af-277">16 단계: 지금은 인증) (없이 hello 경로 toohello 서버 추가</span><span class="sxs-lookup"><span data-stu-id="c25af-277">Step 16: Add hello routes toohello server (without authentication for now)</span></span>
 ```Javascript
-/// Now the real handlers. Here we just CRUD.
+/// Now hello real handlers. Here we just CRUD.
 /**
 /*
 /* Each of these handlers is protected by our OIDCBearerStrategy by invoking 'oidc-bearer'.
-/* In the pasport.authenticate() method. We set 'session: false' because REST is stateless and
-/* we don't need to maintain session state. You can experiment with removing API protection
-/* by removing the passport.authenticate() method as follows:
+/* In hello pasport.authenticate() method. We set 'session: false' because REST is stateless and
+/* we don't need toomaintain session state. You can experiment with removing API protection
+/* by removing hello passport.authenticate() method as follows:
 /*
 /* server.get('/tasks', listTasks);
 /*
@@ -694,31 +694,31 @@ server.listen(serverPort, function() {
 var consoleMessage = '\n Microsoft Azure Active Directory Tutorial';
 consoleMessage += '\n +++++++++++++++++++++++++++++++++++++++++++++++++++++';
 consoleMessage += '\n %s server is listening at %s';
-consoleMessage += '\n Open your browser to %s/tasks\n';
+consoleMessage += '\n Open your browser too%s/tasks\n';
 consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n';
-consoleMessage += '\n !!! why not try a $curl -isS %s | json to get some ideas? \n';
+consoleMessage += '\n !!! why not try a $curl -isS %s | json tooget some ideas? \n';
 consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 });
 ```
 
-## <a name="step-17-run-the-server-before-adding-oauth-support"></a><span data-ttu-id="7f348-278">17단계: 서버 실행(OAuth 지원을 추가하기 전에)</span><span class="sxs-lookup"><span data-stu-id="7f348-278">Step 17: Run the server (before adding OAuth support)</span></span>
-<span data-ttu-id="7f348-279">인증을 추가하기 전에 서버를 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-279">Test out your server before we add authentication.</span></span>
+## <a name="step-17-run-hello-server-before-adding-oauth-support"></a><span data-ttu-id="c25af-278">17 단계: OAuth 지원 추가) (이전 hello 서버 실행</span><span class="sxs-lookup"><span data-stu-id="c25af-278">Step 17: Run hello server (before adding OAuth support)</span></span>
+<span data-ttu-id="c25af-279">인증을 추가하기 전에 서버를 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-279">Test out your server before we add authentication.</span></span>
 
-<span data-ttu-id="7f348-280">서버를 테스트하는 가장 쉬운 방법은 명령줄에서 curl을 사용하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-280">The easiest way to test your server is by using curl in a command line.</span></span> <span data-ttu-id="7f348-281">이 작업을 수행하기 전에 JSON처럼 출력을 구문 분석할 수 있는 유틸리티가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-281">Before we do that, we need a utility that allows us to parse output as JSON.</span></span>
+<span data-ttu-id="c25af-280">가장 쉬운 방법은 tootest hello 서버를 명령줄에서 curl을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-280">hello easiest way tootest your server is by using curl in a command line.</span></span> <span data-ttu-id="c25af-281">그 전에 tooparse 출력 JSON 수 있는 유틸리티가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-281">Before we do that, we need a utility that allows us tooparse output as JSON.</span></span>
 
-1. <span data-ttu-id="7f348-282">다음 JSON 도구를 설치합니다(이제부터 나오는 모든 예제에서 이 도구가 사용됨).</span><span class="sxs-lookup"><span data-stu-id="7f348-282">Install the following JSON tool (all the following examples use this tool):</span></span>
+1. <span data-ttu-id="c25af-282">Hello 다음 JSON 도구 (예제 따르는 모든 hello이이 도구를 사용 하는 데 사용)를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-282">Install hello following JSON tool (all hello following examples use this tool):</span></span>
 
     `$npm install -g jsontool`
 
-    <span data-ttu-id="7f348-283">이렇게 하면 JSON 도구가 전역적으로 설치됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-283">This installs the JSON tool globally.</span></span> <span data-ttu-id="7f348-284">작업이 완료되었으니 서버 작업을 진행하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-284">Now that we’ve accomplished that, let’s play with the server:</span></span>
+    <span data-ttu-id="c25af-283">이 전역으로 hello JSON 도구를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-283">This installs hello JSON tool globally.</span></span> <span data-ttu-id="c25af-284">완료 한 것, 했으므로 hello 서버와 죠.</span><span class="sxs-lookup"><span data-stu-id="c25af-284">Now that we’ve accomplished that, let’s play with hello server:</span></span>
 
-2. <span data-ttu-id="7f348-285">먼저 mongoDB 인스턴스가 실행되고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-285">First, make sure that your mongoDB instance is running:</span></span>
+2. <span data-ttu-id="c25af-285">먼저 mongoDB 인스턴스가 실행되고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-285">First, make sure that your mongoDB instance is running:</span></span>
 
     `$sudo mongod`
 
-3. <span data-ttu-id="7f348-286">그런 다음 해당 디렉터리로 변경하고 curl을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-286">Then, change to the directory and start curling:</span></span>
+3. <span data-ttu-id="c25af-286">그런 다음 toohello 디렉터리를 변경 하 고 컬링 시작:</span><span class="sxs-lookup"><span data-stu-id="c25af-286">Then, change toohello directory and start curling:</span></span>
 
-    <span data-ttu-id="7f348-287">`$ cd azuread` `$ node server.js`</span><span class="sxs-lookup"><span data-stu-id="7f348-287">`$ cd azuread` `$ node server.js`</span></span>
+    <span data-ttu-id="c25af-287">`$ cd azuread` `$ node server.js`</span><span class="sxs-lookup"><span data-stu-id="c25af-287">`$ cd azuread` `$ node server.js`</span></span>
 
     `$ curl -isS http://127.0.0.1:8080 | json`
 
@@ -739,11 +739,11 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
     ]
     ```
 
-4. <span data-ttu-id="7f348-288">그런 다음 다음과 같은 방식으로 작업을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-288">Then, we can add a task this way:</span></span>
+4. <span data-ttu-id="c25af-288">그런 다음 다음과 같은 방식으로 작업을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-288">Then, we can add a task this way:</span></span>
 
     `$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
 
-    <span data-ttu-id="7f348-289">응답은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-289">The response should be:</span></span>
+    <span data-ttu-id="c25af-289">hello 응답 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-289">hello response should be:</span></span>
 
         ```Shell
         HTTP/1.1 201 Created
@@ -755,25 +755,25 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
         Date: Tue, 04 Feb 2014 01:02:26 GMT
         Hello
         ```
-    <span data-ttu-id="7f348-290">또한 다음 방식으로 Brandon에 대한 작업을 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-290">And we can list tasks for Brandon this way:</span></span>
+    <span data-ttu-id="c25af-290">또한 다음 방식으로 Brandon에 대한 작업을 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-290">And we can list tasks for Brandon this way:</span></span>
 
         `$ curl -isS http://127.0.0.1:8080/tasks/brandon/`
 
-<span data-ttu-id="7f348-291">이 모든 작업이 끝나면 REST API 서버에 OAuth를 추가할 준비가 완료된 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-291">If all this works, we're ready to add OAuth to the REST API server.</span></span>
+<span data-ttu-id="c25af-291">이 모든가 작동 하는 경우 여러분 준비 tooadd OAuth toohello REST API 서버.</span><span class="sxs-lookup"><span data-stu-id="c25af-291">If all this works, we're ready tooadd OAuth toohello REST API server.</span></span>
 
-<span data-ttu-id="7f348-292">MongoDB를 사용하는 REST API 서버가 완료되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-292">You have a REST API server with MongoDB!</span></span>
+<span data-ttu-id="c25af-292">MongoDB를 사용하는 REST API 서버가 완료되었습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-292">You have a REST API server with MongoDB!</span></span>
 
-## <a name="step-18-add-authentication-to-our-rest-api-server"></a><span data-ttu-id="7f348-293">18단계: REST API 서버에 인증 추가</span><span class="sxs-lookup"><span data-stu-id="7f348-293">Step 18: Add authentication to our REST API server</span></span>
-<span data-ttu-id="7f348-294">이제 REST API가 실행되고 있으니 Azure AD를 사용하여 더욱 유용하게 만들어 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-294">Now that we have a running REST API, let's start making it useful with Azure AD.</span></span>
+## <a name="step-18-add-authentication-tooour-rest-api-server"></a><span data-ttu-id="c25af-293">18 단계: 인증 tooour REST API 서버를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-293">Step 18: Add authentication tooour REST API server</span></span>
+<span data-ttu-id="c25af-294">이제 REST API가 실행되고 있으니 Azure AD를 사용하여 더욱 유용하게 만들어 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-294">Now that we have a running REST API, let's start making it useful with Azure AD.</span></span>
 
-<span data-ttu-id="7f348-295">아직 디렉터리를 변경하지 않았으면 명령줄에서 디렉터리를 **azuread** 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-295">From the command line, change directories to the **azuread** folder if you're not already there.</span></span>
+<span data-ttu-id="c25af-295">Hello 명령줄에서 디렉터리 toohello 변경 **azure ad** 폴더 수 없는 경우 이미 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-295">From hello command line, change directories toohello **azuread** folder if you're not already there.</span></span>
 
 `cd azuread`
 
-### <a name="use-the-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a><span data-ttu-id="7f348-296">passport-azure-ad에 포함된 OIDCBearerStrategy 사용</span><span class="sxs-lookup"><span data-stu-id="7f348-296">Use the OIDCBearerStrategy that is included with passport-azure-ad</span></span>
-<span data-ttu-id="7f348-297">지금까지 권한 부여 없이 일반적인 REST TODO 서버를 빌드했습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-297">So far we have built a typical REST TODO server without any kind of authorization.</span></span> <span data-ttu-id="7f348-298">이 지점에서 통합 작업을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-298">This is where we start putting that together.</span></span>
+### <a name="use-hello-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a><span data-ttu-id="c25af-296">Passport azure ad에 포함 되어 있는 OIDCBearerStrategy hello를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="c25af-296">Use hello OIDCBearerStrategy that is included with passport-azure-ad</span></span>
+<span data-ttu-id="c25af-297">지금까지 권한 부여 없이 일반적인 REST TODO 서버를 빌드했습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-297">So far we have built a typical REST TODO server without any kind of authorization.</span></span> <span data-ttu-id="c25af-298">이 지점에서 통합 작업을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-298">This is where we start putting that together.</span></span>
 
-1. <span data-ttu-id="7f348-299">먼저, Passport를 사용하도록 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-299">First, we need to indicate that we want to use Passport.</span></span> <span data-ttu-id="7f348-300">다른 서버 구성 바로 뒤에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-300">Put this right after your other server configuration:</span></span>
+1. <span data-ttu-id="c25af-299">먼저 tooindicate toouse Passport 한다고 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-299">First, we need tooindicate that we want toouse Passport.</span></span> <span data-ttu-id="c25af-300">다른 서버 구성 바로 뒤에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-300">Put this right after your other server configuration:</span></span>
 
     ```Javascript
             // Let's start using Passport.js.
@@ -782,19 +782,19 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
             server.use(passport.session()); // Provides session support.
     ```
     > [!TIP]
-    > <span data-ttu-id="7f348-301">API를 작성할 때 항상 사용자가 스푸핑할 수 없는 토큰의 고유한 항목에 데이터를 연결하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-301">When you write APIs, we recommend that you always link the data to something unique from the token that the user can’t spoof.</span></span> <span data-ttu-id="7f348-302">이 서버는 TODO 항목을 저장할 때 "owner" 필드에 넣은 토큰(token.oid를 통해 호출됨)의 사용자 개체 ID를 기준으로 항목을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-302">When this server stores TODO items, it stores them based on the object ID of the user in the token (called through token.oid), which we put in the “owner” field.</span></span> <span data-ttu-id="7f348-303">이렇게 하면 해당 사용자만 자신의 TODO 항목에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-303">This ensures that only that user can access their TODOs.</span></span> <span data-ttu-id="7f348-304">API에 "owner"가 노출되지 않으므로 외부 사용자가 인증된 경우에도 다른 사용자의 TODO 항목을 요청할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-304">There is no exposure in the API of “owner,” so an external user can request the TODOs of others even if they are authenticated.</span></span>                    
+    > <span data-ttu-id="c25af-301">작성 하는 경우, Api 사용자 hello hello 토큰에서 고유한 hello 데이터 toosomething 항상 연결 하는 것이 좋습니다 스푸핑할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-301">When you write APIs, we recommend that you always link hello data toosomething unique from hello token that hello user can’t spoof.</span></span> <span data-ttu-id="c25af-302">이 서버는 할 일 항목을 저장 하는 경우 hello "소유자" 필드에 포함 하는 hello 토큰 (token.oid 통해 라고 함)에서 hello 사용자의 hello 개체 ID에 따라 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-302">When this server stores TODO items, it stores them based on hello object ID of hello user in hello token (called through token.oid), which we put in hello “owner” field.</span></span> <span data-ttu-id="c25af-303">이렇게 하면 해당 사용자만 자신의 TODO 항목에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-303">This ensures that only that user can access their TODOs.</span></span> <span data-ttu-id="c25af-304">가 없는 노출 "소유자"의 API hello에 외부 사용자가 인증 되는 경우에 다른 TODOs hello를 요청할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-304">There is no exposure in hello API of “owner,” so an external user can request hello TODOs of others even if they are authenticated.</span></span>                    
 
-2. <span data-ttu-id="7f348-305">다음으로 `passport-azure-ad`와 함께 제공되는 전달자 전략을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-305">Next let’s use the bearer strategy that comes with `passport-azure-ad`.</span></span> <span data-ttu-id="7f348-306">지금은 코드만 살펴보고 나머지는 잠시 후에 설명하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-306">Look at the code for now and we'll explain the rest shortly.</span></span> <span data-ttu-id="7f348-307">위에서 붙여넣은 코드 뒤에 이 코드를 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-307">Put this after what you pasted above:</span></span>
+2. <span data-ttu-id="c25af-305">다음와 함께 제공 되는 hello 전달자 전략 사용 `passport-azure-ad`합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-305">Next let’s use hello bearer strategy that comes with `passport-azure-ad`.</span></span> <span data-ttu-id="c25af-306">지금은 hello 코드에서을 곧 hello 나머지에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-306">Look at hello code for now and we'll explain hello rest shortly.</span></span> <span data-ttu-id="c25af-307">위에서 붙여넣은 코드 뒤에 이 코드를 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-307">Put this after what you pasted above:</span></span>
 
 ```Javascript
     /**
     /*
-    /* Calling the OIDCBearerStrategy and managing users.
+    /* Calling hello OIDCBearerStrategy and managing users.
     /*
-    /* Passport pattern provides the need to manage users and info tokens
-    /* with a FindorCreate() method that must be provided by the implementor.
+    /* Passport pattern provides hello need toomanage users and info tokens
+    /* with a FindorCreate() method that must be provided by hello implementor.
     /* Here we just auto-register any user and implement a FindById().
-    /* You'll want to do something smarter.
+    /* You'll want toodo something smarter.
     **/
 
     var findById = function(id, fn) {
@@ -811,8 +811,8 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 
     var bearerStrategy = new BearerStrategy(options,
         function(token, done) {
-            log.info('verifying the user');
-            log.info(token, 'was the token retreived');
+            log.info('verifying hello user');
+            log.info(token, 'was hello token retreived');
             findById(token.sub, function(err, user) {
                 if (err) {
                     return done(err);
@@ -833,17 +833,17 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
     passport.use(bearerStrategy);
 ```
 
-<span data-ttu-id="7f348-308">Passport는 모든 전략 작성자가 준수하는 유사한 패턴을 모든 전략(Twitter, Facebook 등)에 대해 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-308">Passport uses a similar pattern for all its strategies (Twitter, Facebook, and so on) that all strategy writers adhere to.</span></span> <span data-ttu-id="7f348-309">전략을 보면 토큰 및 완료가 매개 변수로 포함된 함수가 전달되는 것을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-309">Looking at the strategy, you see we pass it a function that has a token and a done as the parameters.</span></span> <span data-ttu-id="7f348-310">전략은 작업을 완료한 후에 사용자에게 돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-310">The strategy comes back to us after it does its work.</span></span> <span data-ttu-id="7f348-311">전략이 돌아오면 토큰을 다시 요청할 필요가 없도록 사용자를 저장하고 토큰을 보관합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-311">After it does, we store the user and stash the token so we won’t need to ask for it again.</span></span>
+<span data-ttu-id="c25af-308">Passport는 모든 전략 작성자가 준수하는 유사한 패턴을 모든 전략(Twitter, Facebook 등)에 대해 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-308">Passport uses a similar pattern for all its strategies (Twitter, Facebook, and so on) that all strategy writers adhere to.</span></span> <span data-ttu-id="c25af-309">우리는 토큰 및 취소는 포함 된 함수를 변수로 전달할 hello 매개 변수 참조 hello 전략을 보고 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-309">Looking at hello strategy, you see we pass it a function that has a token and a done as hello parameters.</span></span> <span data-ttu-id="c25af-310">작업을 수행한 후 hello 전략 toous 다시 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-310">hello strategy comes back toous after it does its work.</span></span> <span data-ttu-id="c25af-311">이 용어가 들어 후 म 저장 hello 사용자 및 보관 hello 토큰에 대 한 tooask 다시 필요 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-311">After it does, we store hello user and stash hello token so we won’t need tooask for it again.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="7f348-312">이전 코드는 서버에 인증하는 모든 사용자를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-312">The previous code takes any user that happens to authenticate to our server.</span></span> <span data-ttu-id="7f348-313">이를 자동 등록이라고 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-313">This is known as auto-registration.</span></span> <span data-ttu-id="7f348-314">프로덕션 서버에서는 사용자가 결정한 등록 프로세스를 통과하지 않은 사람에게는 액세스를 허용하지 않는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-314">In production servers, you we recommend that you don't let anyone in without first having them go through a registration process that you decide on.</span></span> <span data-ttu-id="7f348-315">이것은 Facebook에 등록할 수 있도록 허용하지만 추가 정보를 입력하도록 요구하는 소비자 앱에서 주로 나타나는 패턴입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-315">This is usually the pattern you see in consumer apps, which allow you to register with Facebook but then ask you to fill out additional information.</span></span> <span data-ttu-id="7f348-316">명령줄 프로그램이 아니라면 반환된 토큰 개체에서 메일을 추출하고 사용자에게 추가 정보를 입력하도록 요구할 수 있었을 것입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-316">If this wasn’t a command-line program, we could have extracted the email from the token object that is returned and then asked the user to fill out additional information.</span></span> <span data-ttu-id="7f348-317">테스트 서버이므로 메모리 내 데이터베이스에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-317">Because this is a test server, we simply add them to the in-memory database.</span></span>
+> <span data-ttu-id="c25af-312">이전 코드 hello tooauthenticate tooour 서버에서 발생 하는 모든 사용자를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-312">hello previous code takes any user that happens tooauthenticate tooour server.</span></span> <span data-ttu-id="c25af-313">이를 자동 등록이라고 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-313">This is known as auto-registration.</span></span> <span data-ttu-id="c25af-314">프로덕션 서버에서는 사용자가 결정한 등록 프로세스를 통과하지 않은 사람에게는 액세스를 허용하지 않는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-314">In production servers, you we recommend that you don't let anyone in without first having them go through a registration process that you decide on.</span></span> <span data-ttu-id="c25af-315">이 일반적으로 hello 패턴을 사용 하면 Facebook과 tooregister 있지만 다음 toofill 추가 정보를 요청 하는 소비자 앱에 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-315">This is usually hello pattern you see in consumer apps, which allow you tooregister with Facebook but then ask you toofill out additional information.</span></span> <span data-ttu-id="c25af-316">명령줄 프로그램을을이 없으면 म 토큰 개체를 반환 하 고 다음 hello 사용자 toofill 추가 정보를 요청 하는 hello에서 hello 전자 메일을 추출 하 고 있을 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-316">If this wasn’t a command-line program, we could have extracted hello email from hello token object that is returned and then asked hello user toofill out additional information.</span></span> <span data-ttu-id="c25af-317">테스트 서버 이기 때문에 여기서 추가 하기만 toohello 메모리 내 데이터베이스입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-317">Because this is a test server, we simply add them toohello in-memory database.</span></span>
 >
 >
 
-### <a name="protect-some-endpoints"></a><span data-ttu-id="7f348-318">일부 끝점 보호</span><span class="sxs-lookup"><span data-stu-id="7f348-318">Protect some endpoints</span></span>
-<span data-ttu-id="7f348-319">사용하려는 프로토콜을 통해 `passport.authenticate()` 호출을 지정하여 끝점을 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-319">You protect endpoints by specifying the `passport.authenticate()` call with the protocol that you want to use.</span></span>
+### <a name="protect-some-endpoints"></a><span data-ttu-id="c25af-318">일부 끝점 보호</span><span class="sxs-lookup"><span data-stu-id="c25af-318">Protect some endpoints</span></span>
+<span data-ttu-id="c25af-319">Hello를 지정 하 여 끝점 보호 `passport.authenticate()` toouse 원하는 hello 프로토콜을 사용 하 여 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-319">You protect endpoints by specifying hello `passport.authenticate()` call with hello protocol that you want toouse.</span></span>
 
-<span data-ttu-id="7f348-320">서버 코드에서 좀 더 흥미로운 작업을 수행하도록 경로를 편집해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-320">To make our server code do something more interesting, let’s edit the route.</span></span>
+<span data-ttu-id="c25af-320">서버 코드 않는 무언가 더 흥미로운 toomake hello 경로 편집 하십시오.</span><span class="sxs-lookup"><span data-stu-id="c25af-320">toomake our server code do something more interesting, let’s edit hello route.</span></span>
 
 ```Javascript
 server.get('/tasks', passport.authenticate('oauth-bearer', {
@@ -881,18 +881,18 @@ next();
 });
 ```
 
-## <a name="step-19-run-your-server-application-again-and-ensure-it-rejects-you"></a><span data-ttu-id="7f348-321">19단계: 서버 응용 프로그램을 다시 실행하고 사용자를 거부하는지 확인</span><span class="sxs-lookup"><span data-stu-id="7f348-321">Step 19: Run your server application again and ensure it rejects you</span></span>
-<span data-ttu-id="7f348-322">`curl`을 다시 사용하여 끝점에 대해 OAuth2 보호가 적용되는지 확인해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-322">Let's use `curl` again to see if we now have OAuth2 protection against our endpoints.</span></span> <span data-ttu-id="7f348-323">이 끝점에 대해 클라이언트 SDK 중 하나를 실행하기 전에 이 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-323">We do this test before running any of our client SDKs against this endpoint.</span></span> <span data-ttu-id="7f348-324">반환되는 헤더는 현재 우리가 올바른 경로에 있는지 알려줄 만큼 충분해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-324">The headers that are returned should be enough to tell us if we're going down the right path.</span></span>
+## <a name="step-19-run-your-server-application-again-and-ensure-it-rejects-you"></a><span data-ttu-id="c25af-321">19단계: 서버 응용 프로그램을 다시 실행하고 사용자를 거부하는지 확인</span><span class="sxs-lookup"><span data-stu-id="c25af-321">Step 19: Run your server application again and ensure it rejects you</span></span>
+<span data-ttu-id="c25af-322">사용해 봅시다 `curl` 이제이 끝점에 대해 OAuth2 보호 사항이 있는 경우 다시 toosee 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-322">Let's use `curl` again toosee if we now have OAuth2 protection against our endpoints.</span></span> <span data-ttu-id="c25af-323">이 끝점에 대해 클라이언트 SDK 중 하나를 실행하기 전에 이 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-323">We do this test before running any of our client SDKs against this endpoint.</span></span> <span data-ttu-id="c25af-324">hello 반환 된 헤더에 있어야 충분 한 tootell hello 오른쪽 경로 아래의 예정 되어 있는 경우 us입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-324">hello headers that are returned should be enough tootell us if we're going down hello right path.</span></span>
 
-1. <span data-ttu-id="7f348-325">먼저 mongoDB 인스턴스가 실행되고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-325">First, make sure that your mongoDB instance is running:</span></span>
+1. <span data-ttu-id="c25af-325">먼저 mongoDB 인스턴스가 실행되고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-325">First, make sure that your mongoDB instance is running:</span></span>
 
     `$sudo mongod`
 
-2. <span data-ttu-id="7f348-326">그런 다음 해당 디렉터리로 변경하고 curl을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-326">Then, change to the directory and start curling.</span></span>
+2. <span data-ttu-id="c25af-326">그런 다음 toohello 디렉터리를 변경 하 고 컬링 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-326">Then, change toohello directory and start curling.</span></span>
 
-      <span data-ttu-id="7f348-327">`$ cd azuread` `$ node server.js`</span><span class="sxs-lookup"><span data-stu-id="7f348-327">`$ cd azuread` `$ node server.js`</span></span>
+      <span data-ttu-id="c25af-327">`$ cd azuread` `$ node server.js`</span><span class="sxs-lookup"><span data-stu-id="c25af-327">`$ cd azuread` `$ node server.js`</span></span>
 
-3. <span data-ttu-id="7f348-328">기본 POST를 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-328">Try a basic POST.</span></span>
+3. <span data-ttu-id="c25af-328">기본 POST를 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-328">Try a basic POST.</span></span>
 
     `$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
 
@@ -904,19 +904,19 @@ next();
     Transfer-Encoding: chunked
     ```
 
-<span data-ttu-id="7f348-329">여기서 우리가 찾는 응답은 401입니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-329">A 401 is the response you are looking for here.</span></span> <span data-ttu-id="7f348-330">이 응답은 Passport 계층이 인증된 끝점으로 리디렉션을 시도하고 있음을 나타냅니다. 정확하게 우리가 원하는 대로 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-330">This response indicates that the Passport layer is trying to redirect to the authorized endpoint, which is exactly what you want.</span></span>
+<span data-ttu-id="c25af-329">401은 원하는 여기 hello 응답입니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-329">A 401 is hello response you are looking for here.</span></span> <span data-ttu-id="c25af-330">이 응답 hello Passport 계층 시도 tooredirect 권한이 toohello 끝점의 경우이 수행할 것을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-330">This response indicates that hello Passport layer is trying tooredirect toohello authorized endpoint, which is exactly what you want.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="7f348-331">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7f348-331">Next steps</span></span>
-<span data-ttu-id="7f348-332">OAuth2 호환 클라이언트를 사용하지 않고 이 서버로 수행할 수 있는 작업은 모두 완료했습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-332">You've gone as far as you can with this server without using an OAuth2 compatible client.</span></span> <span data-ttu-id="7f348-333">이제 추가 연습 과정을 진행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-333">You will need to go through an additional walkthrough.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c25af-331">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c25af-331">Next steps</span></span>
+<span data-ttu-id="c25af-332">OAuth2 호환 클라이언트를 사용하지 않고 이 서버로 수행할 수 있는 작업은 모두 완료했습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-332">You've gone as far as you can with this server without using an OAuth2 compatible client.</span></span> <span data-ttu-id="c25af-333">자세한 연습을 통해 toogo가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-333">You will need toogo through an additional walkthrough.</span></span>
 
-<span data-ttu-id="7f348-334">Restify 및 OAuth2를 사용하여 REST API를 구현하는 방법을 배웠습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-334">You've now learned how to implement a REST API by using Restify and OAuth2.</span></span> <span data-ttu-id="7f348-335">또한 계속해서 서비스를 개발하고 이 예제를 바탕으로 구축하는 데 도움이 되는 코드를 충분히 제공해 드렸습니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-335">You also have more than enough code to keep developing your service and learning how to build on this example.</span></span>
+<span data-ttu-id="c25af-334">어떻게 tooimplement REST API를 사용 하 여 Restify 이제 배운 및 OAuth2 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-334">You've now learned how tooimplement a REST API by using Restify and OAuth2.</span></span> <span data-ttu-id="c25af-335">서비스를 개발 하 고 학습에 충분 한 코드 tookeep 있습니다 어떻게이 예에서 toobuild 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-335">You also have more than enough code tookeep developing your service and learning how toobuild on this example.</span></span>
 
-<span data-ttu-id="7f348-336">ADAL 과정의 다음 단계에 관심이 있는 경우 여기서 권장하는 지원되는 ADAL 클라이언트로 계속 진행하세요.</span><span class="sxs-lookup"><span data-stu-id="7f348-336">If you are interested in the next steps in your ADAL journey, here are some supported ADAL clients we recommend that you  keep working with.</span></span>
+<span data-ttu-id="c25af-336">관심이 있는 경우 hello 다음 단계에서의 ADAL 탐험,으로 계속 작업 하는 것이 좋습니다 몇 가지 지원 되는 ADAL 클라이언트는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-336">If you are interested in hello next steps in your ADAL journey, here are some supported ADAL clients we recommend that you  keep working with.</span></span>
 
-<span data-ttu-id="7f348-337">개발자 컴퓨터에 복제하고 연습에 설명된 대로 구성하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f348-337">Clone down to your developer machine and configure as described in the walkthrough.</span></span>
+<span data-ttu-id="c25af-337">Tooyour 개발자 컴퓨터를 복제 하 한 hello 연습에서 설명 된 대로 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="c25af-337">Clone down tooyour developer machine and configure as described in hello walkthrough.</span></span>
 
-[<span data-ttu-id="7f348-338">iOS용 ADAL(영문)</span><span class="sxs-lookup"><span data-stu-id="7f348-338">ADAL for iOS</span></span>](https://github.com/MSOpenTech/azure-activedirectory-library-for-ios)
+[<span data-ttu-id="c25af-338">iOS용 ADAL(영문)</span><span class="sxs-lookup"><span data-stu-id="c25af-338">ADAL for iOS</span></span>](https://github.com/MSOpenTech/azure-activedirectory-library-for-ios)
 
-[<span data-ttu-id="7f348-339">Android용 ADAL(영문)</span><span class="sxs-lookup"><span data-stu-id="7f348-339">ADAL for Android</span></span>](https://github.com/MSOpenTech/azure-activedirectory-library-for-android)
+[<span data-ttu-id="c25af-339">Android용 ADAL(영문)</span><span class="sxs-lookup"><span data-stu-id="c25af-339">ADAL for Android</span></span>](https://github.com/MSOpenTech/azure-activedirectory-library-for-android)
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

@@ -6,7 +6,7 @@
 ## [상태 모니터링](application-gateway-probe-overview.md)
 ## [URL 라우팅](application-gateway-url-route-overview.md)
 ## [다중 사이트](application-gateway-multi-site-overview.md)
-## [종단 간 SSL](application-gateway-backend-ssl.md)
+## [최종 tooend SSL](application-gateway-backend-ssl.md)
 ## [SSL 정책](application-gateway-ssl-policy-overview.md)
 ## [리디렉션](application-gateway-redirect-overview.md)
 ## [다중 테넌트 지원](application-gateway-web-app-overview.md)
@@ -37,7 +37,7 @@
 ### [PowerShell](application-gateway-ssl-arm.md)
 ### [PowerShell(클래식)](application-gateway-ssl.md)
 ### [Azure CLI 2.0](application-gateway-ssl.md)
-### [종단 간](application-gateway-end-to-end-ssl-powershell.md)
+### [최종 tooend](application-gateway-end-to-end-ssl-powershell.md)
 ### [SSL 정책](application-gateway-configure-ssl-policy-powershell.md)
 ## URL 경로 기반 라우팅 구성
 ### [포털](application-gateway-create-url-route-portal.md)

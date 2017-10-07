@@ -1,6 +1,6 @@
 ---
 title: "자습서: SAP Business ByDesign과 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 SAP Business ByDesign 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 SAP 비즈니스 ByDesign 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,253 +14,253 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: ab76a0ac1ef954efd3c66e6f565514b889ed9444
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c14714fd27f8d7fc555f25c7be83fad2b0d7f333
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-sap-business-bydesign"></a><span data-ttu-id="d540b-103">자습서: SAP Business ByDesign과 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="d540b-103">Tutorial: Azure Active Directory integration with SAP Business ByDesign</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-sap-business-bydesign"></a><span data-ttu-id="02e39-103">자습서: SAP Business ByDesign과 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="02e39-103">Tutorial: Azure Active Directory integration with SAP Business ByDesign</span></span>
 
-<span data-ttu-id="d540b-104">이 자습서에서는 Azure AD(Azure Active Directory)와 SAP Business ByDesign을 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-104">In this tutorial, you learn how to integrate SAP Business ByDesign with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="02e39-104">Toointegrate SAP 방법을 배우게이 자습서에서는 Azure Active Directory (Azure AD)와 비즈니스 ByDesign 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-104">In this tutorial, you learn how toointegrate SAP Business ByDesign with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="d540b-105">SAP Business ByDesign을 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-105">Integrating SAP Business ByDesign with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="02e39-105">SAP 비즈니스 ByDesign Azure AD와 통합 hello 다음 이점을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-105">Integrating SAP Business ByDesign with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="d540b-106">SAP Business ByDesign에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-106">You can control in Azure AD who has access to SAP Business ByDesign.</span></span>
-- <span data-ttu-id="d540b-107">사용자가 해당 Azure AD 계정으로 SAP Business ByDesign에 자동으로 로그온(Single Sign-On)되도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-107">You can enable your users to automatically get signed-on to SAP Business ByDesign (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="d540b-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="02e39-106">액세스 tooSAP 비즈니스 ByDesign을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-106">You can control in Azure AD who has access tooSAP Business ByDesign.</span></span>
+- <span data-ttu-id="02e39-107">Azure AD 계정을 사용 하면 사용자가 tooautomatically get 로그온 tooSAP 비즈니스 ByDesign (Single Sign-on)를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-107">You can enable your users tooautomatically get signed-on tooSAP Business ByDesign (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="02e39-108">하나의 중앙 위치-hello Azure 포털에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="d540b-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d540b-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="02e39-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d540b-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="d540b-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="02e39-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="02e39-110">Prerequisites</span></span>
 
-<span data-ttu-id="d540b-111">SAP Business ByDesign과 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-111">To configure Azure AD integration with SAP Business ByDesign, you need the following items:</span></span>
+<span data-ttu-id="02e39-111">SAP 비즈니스 ByDesign와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-111">tooconfigure Azure AD integration with SAP Business ByDesign, you need hello following items:</span></span>
 
-- <span data-ttu-id="d540b-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="d540b-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="d540b-113">SAP Business ByDesign Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="d540b-113">An SAP Business ByDesign single sign-on enabled subscription</span></span>
+- <span data-ttu-id="02e39-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="02e39-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="02e39-113">SAP Business ByDesign Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="02e39-113">An SAP Business ByDesign single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d540b-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="02e39-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="d540b-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="02e39-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="d540b-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="d540b-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="d540b-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="02e39-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="02e39-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="02e39-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="d540b-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="d540b-118">Scenario description</span></span>
-<span data-ttu-id="d540b-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d540b-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="02e39-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="02e39-118">Scenario description</span></span>
+<span data-ttu-id="02e39-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="02e39-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="d540b-121">갤러리에서 SAP Business ByDesign 추가</span><span class="sxs-lookup"><span data-stu-id="d540b-121">Adding SAP Business ByDesign from the gallery</span></span>
-2. <span data-ttu-id="d540b-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="d540b-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="02e39-121">SAP 비즈니스 ByDesign hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="02e39-121">Adding SAP Business ByDesign from hello gallery</span></span>
+2. <span data-ttu-id="02e39-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="02e39-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-sap-business-bydesign-from-the-gallery"></a><span data-ttu-id="d540b-123">갤러리에서 SAP Business ByDesign 추가</span><span class="sxs-lookup"><span data-stu-id="d540b-123">Adding SAP Business ByDesign from the gallery</span></span>
-<span data-ttu-id="d540b-124">SAP Business ByDesign의 Azure AD 통합을 구성하려면 갤러리의 SAP Business ByDesign을 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-124">To configure the integration of SAP Business ByDesign into Azure AD, you need to add SAP Business ByDesign from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-sap-business-bydesign-from-hello-gallery"></a><span data-ttu-id="02e39-123">SAP 비즈니스 ByDesign hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="02e39-123">Adding SAP Business ByDesign from hello gallery</span></span>
+<span data-ttu-id="02e39-124">tooconfigure hello와의 통합 SAP 비즈니스 ByDesign Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 SAP 비즈니스 ByDesign tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-124">tooconfigure hello integration of SAP Business ByDesign into Azure AD, you need tooadd SAP Business ByDesign from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="d540b-125">**갤러리에서 SAP Business ByDesign을 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="d540b-125">**To add SAP Business ByDesign from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="02e39-125">**hello 갤러리에서 SAP 비즈니스 ByDesign tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="02e39-125">**tooadd SAP Business ByDesign from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d540b-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="02e39-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Azure Active Directory 단추][1]
+    ![hello Azure Active Directory 단추][1]
 
-2. <span data-ttu-id="d540b-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="d540b-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="02e39-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="02e39-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-129">Then go too**All applications**.</span></span>
 
-    ![엔터프라이즈 응용 프로그램 블레이드][2]
+    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. <span data-ttu-id="d540b-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="02e39-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![새 응용 프로그램 단추][3]
+    ![hello 새 응용 프로그램 단추][3]
 
-4. <span data-ttu-id="d540b-133">검색 상자에 **SAP Business ByDesign**을 입력하고 결과 패널에서 **SAP Business ByDesign**을 선택한 후 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-133">In the search box, type **SAP Business ByDesign**, select **SAP Business ByDesign** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="02e39-133">Hello 검색 상자에 입력 **SAP 비즈니스 ByDesign**선택, **SAP 비즈니스 ByDesign** 결과 패널에서 클릭 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-133">In hello search box, type **SAP Business ByDesign**, select **SAP Business ByDesign** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![결과 목록의 SAP Business ByDesign](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_addfromgallery.png)
+    ![SAP 비즈니스 ByDesign hello 결과 목록에서](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="d540b-135">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="d540b-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="02e39-135">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="02e39-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="d540b-136">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 SAP Business ByDesign에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-136">In this section, you configure and test Azure AD single sign-on with SAP Business ByDesign based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="02e39-136">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 SAP Business ByDesign에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-136">In this section, you configure and test Azure AD single sign-on with SAP Business ByDesign based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="d540b-137">Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 SAP Business ByDesign 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-137">For single sign-on to work, Azure AD needs to know what the counterpart user in SAP Business ByDesign is to a user in Azure AD.</span></span> <span data-ttu-id="d540b-138">즉, Azure AD 사용자와 SAP Business ByDesign의 관련 사용자 간에 연결이 형성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-138">In other words, a link relationship between an Azure AD user and the related user in SAP Business ByDesign needs to be established.</span></span>
+<span data-ttu-id="02e39-137">Single sign on toowork에 대 한 Azure AD는 tooknow SAP 비즈니스 ByDesign에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in SAP Business ByDesign is tooa user in Azure AD.</span></span> <span data-ttu-id="02e39-138">즉, Azure AD 사용자 및 SAP 비즈니스 ByDesign에 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-138">In other words, a link relationship between an Azure AD user and hello related user in SAP Business ByDesign needs toobe established.</span></span>
 
-<span data-ttu-id="d540b-139">SAP Business ByDesign에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 연결 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-139">In SAP Business ByDesign, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="02e39-139">SAP 비즈니스 ByDesign hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-139">In SAP Business ByDesign, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="d540b-140">SAP Business ByDesign에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-140">To configure and test Azure AD single sign-on with SAP Business ByDesign, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="02e39-140">tooconfigure 및 SAP 비즈니스 ByDesign를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-140">tooconfigure and test Azure AD single sign-on with SAP Business ByDesign, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="d540b-141">**[Azure AD Single Sign-On 구성](#configure-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="d540b-142">**[Azure AD 테스트 사용자 만들기](#create-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="d540b-143">**[SAP Business ByDesign 테스트 사용자 만들기](#create-an-sap-business-bydesign-test-user)** - Azure AD를 대표하여 SAP Business ByDesign에서 Britta Simon에 해당하는 사용자가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-143">**[Create an SAP Business ByDesign test user](#create-an-sap-business-bydesign-test-user)** - to have a counterpart of Britta Simon in SAP Business ByDesign that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="d540b-144">**[Azure AD 테스트 사용자 할당](#assign-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="d540b-145">**[Single Sign-On 테스트](#test-single-sign-on)** - 구성이 작동하는지 여부를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="02e39-141">**[Azure AD Single Sign-on 구성](#configure-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="02e39-142">**[Azure AD 테스트를 만들고](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="02e39-143">**[SAP 비즈니스 ByDesign 테스트 사용자 만들기](#create-an-sap-business-bydesign-test-user)**  -toohave Britta Simon 표현인 연결 된 toohello Azure AD 사용자의 SAP 비즈니스 ByDesign에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-143">**[Create an SAP Business ByDesign test user](#create-an-sap-business-bydesign-test-user)** - toohave a counterpart of Britta Simon in SAP Business ByDesign that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="02e39-144">**[Azure AD hello 테스트 사용자를 할당](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="02e39-145">**[Single sign on 테스트](#test-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="02e39-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="d540b-146">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="d540b-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="02e39-146">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="02e39-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="d540b-147">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 SAP Business ByDesign 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your SAP Business ByDesign application.</span></span>
+<span data-ttu-id="02e39-147">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 사용 하도록 설정 및 비즈니스 ByDesign SAP 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your SAP Business ByDesign application.</span></span>
 
-<span data-ttu-id="d540b-148">**SAP Business ByDesign에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="d540b-148">**To configure Azure AD single sign-on with SAP Business ByDesign, perform the following steps:**</span></span>
+<span data-ttu-id="02e39-148">**SAP 비즈니스 ByDesign와 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="02e39-148">**tooconfigure Azure AD single sign-on with SAP Business ByDesign, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d540b-149">Azure Portal의 **SAP Business ByDesign** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-149">In the Azure portal, on the **SAP Business ByDesign** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="02e39-149">Hello hello에 Azure 포털에서에서 **SAP 비즈니스 ByDesign** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-149">In hello Azure portal, on hello **SAP Business ByDesign** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-On 구성 링크][4]
 
-2. <span data-ttu-id="d540b-151">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="02e39-151">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_samlbase.png)
 
-3. <span data-ttu-id="d540b-153">**SAP Business ByDesign 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-153">On the **SAP Business ByDesign Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="02e39-153">Hello에 **SAP 비즈니스 ByDesign 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-153">On hello **SAP Business ByDesign Domain and URLs** section, perform hello following steps:</span></span>
 
     ![SAP Business ByDesign 도메인 및 URL Single Sign-On 정보](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_url.png)
 
-    <span data-ttu-id="d540b-155">a.</span><span class="sxs-lookup"><span data-stu-id="d540b-155">a.</span></span> <span data-ttu-id="d540b-156">**로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<servername>.sapbydesign.com`</span><span class="sxs-lookup"><span data-stu-id="d540b-156">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<servername>.sapbydesign.com`</span></span>
+    <span data-ttu-id="02e39-155">a.</span><span class="sxs-lookup"><span data-stu-id="02e39-155">a.</span></span> <span data-ttu-id="02e39-156">Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<servername>.sapbydesign.com`</span><span class="sxs-lookup"><span data-stu-id="02e39-156">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<servername>.sapbydesign.com`</span></span>
 
-    <span data-ttu-id="d540b-157">b.</span><span class="sxs-lookup"><span data-stu-id="d540b-157">b.</span></span> <span data-ttu-id="d540b-158">**식별자** 텍스트 상자에서 `https://<servername>.sapbydesign.com` 패턴을 사용하여 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-158">In the **Identifier** textbox, type a URL using the following pattern: `https://<servername>.sapbydesign.com`</span></span>
+    <span data-ttu-id="02e39-157">b.</span><span class="sxs-lookup"><span data-stu-id="02e39-157">b.</span></span> <span data-ttu-id="02e39-158">Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<servername>.sapbydesign.com`</span><span class="sxs-lookup"><span data-stu-id="02e39-158">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<servername>.sapbydesign.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="d540b-159">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-159">These values are not real.</span></span> <span data-ttu-id="d540b-160">실제 로그온 URL 및 식별자로 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-160">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="d540b-161">이러한 값을 얻으려면 [SAP Business ByDesign 클라이언트 지원 팀](https://www.sap.com/products/cloud-analytics.support.html)에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="d540b-161">Contact [SAP Business ByDesign Client support team](https://www.sap.com/products/cloud-analytics.support.html) to get these values.</span></span>
+    > <span data-ttu-id="02e39-159">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-159">These values are not real.</span></span> <span data-ttu-id="02e39-160">이러한 항목을 업데이트 로그온 URL과 식별자 실제 hello로 값입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-160">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="02e39-161">연락처 [SAP 비즈니스 ByDesign 클라이언트 지원 팀](https://www.sap.com/products/cloud-analytics.support.html) tooget 이러한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-161">Contact [SAP Business ByDesign Client support team](https://www.sap.com/products/cloud-analytics.support.html) tooget these values.</span></span>
 
-4. <span data-ttu-id="d540b-162">**사용자 특성** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-162">On the **User Attributes** section, perform the following steps:</span></span>
+4. <span data-ttu-id="02e39-162">Hello에 **사용자 특성** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-162">On hello **User Attributes** section, perform hello following steps:</span></span>
 
     ![SAP Business ByDesign 특성 섹션](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_attribute.png)
     
-    <span data-ttu-id="d540b-164">a.</span><span class="sxs-lookup"><span data-stu-id="d540b-164">a.</span></span> <span data-ttu-id="d540b-165">**사용자 ID** 목록에서 **ExtractMailPrefix()** 함수를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-165">In **User Identifier** list, select the **ExtractMailPrefix()** function.</span></span>
+    <span data-ttu-id="02e39-164">a.</span><span class="sxs-lookup"><span data-stu-id="02e39-164">a.</span></span> <span data-ttu-id="02e39-165">**사용자 식별자** 목록, 선택 hello **ExtractMailPrefix()** 함수입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-165">In **User Identifier** list, select hello **ExtractMailPrefix()** function.</span></span>
     
-    <span data-ttu-id="d540b-166">b.</span><span class="sxs-lookup"><span data-stu-id="d540b-166">b.</span></span> <span data-ttu-id="d540b-167">**메일** 목록에서 구현에 사용할 사용자 특성을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-167">From the **Mail** list, select the user attribute you want to use for your implementation.</span></span> <span data-ttu-id="d540b-168">예를 들어, EmployeeID를 고유한 사용자 식별자로 사용하고자 하고 ExtensionAttribute2에 특성 값을 저장했다면 user.extensionattribute2를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-168">For example, if you want to use the EmployeeID as unique user identifier and you have stored the attribute value in the ExtensionAttribute2, then select user.extensionattribute2.</span></span>     
+    <span data-ttu-id="02e39-166">b.</span><span class="sxs-lookup"><span data-stu-id="02e39-166">b.</span></span> <span data-ttu-id="02e39-167">Hello에서 **메일** 목록, 선택 hello 사용자 특성을 toouse 구현 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-167">From hello **Mail** list, select hello user attribute you want toouse for your implementation.</span></span> <span data-ttu-id="02e39-168">예를 들어 toouse hello 고유한 사용자 식별자로 EmployeeID 원하고 ExtensionAttribute2 hello에 hello 특성 값을 저장 한 경우 user.extensionattribute2 다음 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-168">For example, if you want toouse hello EmployeeID as unique user identifier and you have stored hello attribute value in hello ExtensionAttribute2, then select user.extensionattribute2.</span></span>   
 
-5. <span data-ttu-id="d540b-169">**SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 메타데이터 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-169">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+5. <span data-ttu-id="02e39-169">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello 메타 데이터 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-169">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
-    ![인증서 다운로드 링크](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_certificate.png) 
+    ![hello 인증서 다운로드 링크](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_certificate.png) 
 
-6. <span data-ttu-id="d540b-171">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-171">Click **Save** button.</span></span>
+6. <span data-ttu-id="02e39-171">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-171">Click **Save** button.</span></span>
 
     ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_400.png)
 
-7. <span data-ttu-id="d540b-173">**SAP Business ByDesign 구성** 섹션에서 **SAP Business ByDesign 구성**을 클릭하여 **로그온 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-173">On the **SAP Business ByDesign Configuration** section, click **Configure SAP Business ByDesign** to open **Configure sign-on** window.</span></span> <span data-ttu-id="d540b-174">**빠른 참조 섹션**에서 **SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-174">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+7. <span data-ttu-id="02e39-173">Hello에 **SAP 비즈니스 ByDesign 구성** 섹션에서 클릭 **SAP 비즈니스 ByDesign 구성** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="02e39-173">On hello **SAP Business ByDesign Configuration** section, click **Configure SAP Business ByDesign** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="02e39-174">복사 hello **SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="02e39-174">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![SAP Business ByDesign 구성](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_configure.png) 
 
-8. <span data-ttu-id="d540b-176">응용 프로그램에 SSO를 구성하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-176">To get SSO configured for your application, perform the following steps:</span></span>
+8. <span data-ttu-id="02e39-176">tooget SSO 응용 프로그램에 대해 구성 된 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-176">tooget SSO configured for your application, perform hello following steps:</span></span>
    
-    <span data-ttu-id="d540b-177">a.</span><span class="sxs-lookup"><span data-stu-id="d540b-177">a.</span></span> <span data-ttu-id="d540b-178">관리자 권한으로 SAP Business ByDesign 포털에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-178">Sign on to your SAP Business ByDesign portal with administrator rights.</span></span>
+    <span data-ttu-id="02e39-177">a.</span><span class="sxs-lookup"><span data-stu-id="02e39-177">a.</span></span> <span data-ttu-id="02e39-178">관리자 권한으로 tooyour SAP 비즈니스 ByDesign 포털에 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-178">Sign on tooyour SAP Business ByDesign portal with administrator rights.</span></span>
    
-    <span data-ttu-id="d540b-179">b.</span><span class="sxs-lookup"><span data-stu-id="d540b-179">b.</span></span> <span data-ttu-id="d540b-180">**응용 프로그램 및 사용자 관리 일반 작업**으로 이동하여 **ID 공급자** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-180">Navigate to **Application and User Management Common Task** and click the **Identity Provider** tab.</span></span>
+    <span data-ttu-id="02e39-179">b.</span><span class="sxs-lookup"><span data-stu-id="02e39-179">b.</span></span> <span data-ttu-id="02e39-180">너무 이동**응용 프로그램 및 사용자 관리에 대 한 일반적인 작업** hello 클릭 **Id 공급자** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-180">Navigate too**Application and User Management Common Task** and click hello **Identity Provider** tab.</span></span>
    
-    <span data-ttu-id="d540b-181">c.</span><span class="sxs-lookup"><span data-stu-id="d540b-181">c.</span></span> <span data-ttu-id="d540b-182">**새 ID 공급자**를 클릭하고 Azure Portal에서 다운로드한 메타데이터 XML 파일을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-182">Click **New Identity Provider** and select the metadata XML file that you have downloaded from the Azure portal.</span></span> <span data-ttu-id="d540b-183">시스템은 메타데이터를 가져와서 필수 서명 인증서 및 암호화 인증서를 자동으로 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-183">By importing the metadata, the system automatically uploads the required signature certificate and encryption certificate.</span></span>
+    <span data-ttu-id="02e39-181">c.</span><span class="sxs-lookup"><span data-stu-id="02e39-181">c.</span></span> <span data-ttu-id="02e39-182">클릭 **새 Id 공급자** 및 선택 hello hello Azure 포털에서에서 다운로드 한 메타 데이터 XML 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-182">Click **New Identity Provider** and select hello metadata XML file that you have downloaded from hello Azure portal.</span></span> <span data-ttu-id="02e39-183">Hello 시스템 hello 메타 데이터를 가져와서 hello 필수 서명 인증서와 암호화 인증서를 자동으로 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-183">By importing hello metadata, hello system automatically uploads hello required signature certificate and encryption certificate.</span></span>
    
-    ![Single Sign-On 구성](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_54.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_54.png)
    
-    <span data-ttu-id="d540b-185">d.</span><span class="sxs-lookup"><span data-stu-id="d540b-185">d.</span></span> <span data-ttu-id="d540b-186">**어설션 소비자 서비스 URL**을 SAML 요청에 포함하려면 **어설션 소비자 서비스 URL 포함**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-186">To include the **Assertion Consumer Service URL** into the SAML request, select **Include Assertion Consumer Service URL**.</span></span>
+    <span data-ttu-id="02e39-185">d.</span><span class="sxs-lookup"><span data-stu-id="02e39-185">d.</span></span> <span data-ttu-id="02e39-186">tooinclude hello **어설션 소비자 서비스 URL** hello SAML 요청으로 선택 **어설션 소비자 서비스 URL 포함**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-186">tooinclude hello **Assertion Consumer Service URL** into hello SAML request, select **Include Assertion Consumer Service URL**.</span></span>
    
-    <span data-ttu-id="d540b-187">e.</span><span class="sxs-lookup"><span data-stu-id="d540b-187">e.</span></span> <span data-ttu-id="d540b-188">**Single Sign-on 활성화**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-188">Click **Activate Single Sign-On**.</span></span>
+    <span data-ttu-id="02e39-187">e.</span><span class="sxs-lookup"><span data-stu-id="02e39-187">e.</span></span> <span data-ttu-id="02e39-188">**Single Sign-on 활성화**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-188">Click **Activate Single Sign-On**.</span></span>
    
-    <span data-ttu-id="d540b-189">f.</span><span class="sxs-lookup"><span data-stu-id="d540b-189">f.</span></span> <span data-ttu-id="d540b-190">변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-190">Save your changes.</span></span>
+    <span data-ttu-id="02e39-189">f.</span><span class="sxs-lookup"><span data-stu-id="02e39-189">f.</span></span> <span data-ttu-id="02e39-190">변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-190">Save your changes.</span></span>
    
-    <span data-ttu-id="d540b-191">g.</span><span class="sxs-lookup"><span data-stu-id="d540b-191">g.</span></span> <span data-ttu-id="d540b-192">**내 시스템** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-192">Click the **My System** tab.</span></span>
+    <span data-ttu-id="02e39-191">g.</span><span class="sxs-lookup"><span data-stu-id="02e39-191">g.</span></span> <span data-ttu-id="02e39-192">Hello 클릭 **내 시스템** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-192">Click hello **My System** tab.</span></span>
    
-    ![Single Sign-On 구성](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_52.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_52.png)
    
-    <span data-ttu-id="d540b-194">h.</span><span class="sxs-lookup"><span data-stu-id="d540b-194">h.</span></span> <span data-ttu-id="d540b-195">Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL**을 **Azure AD 로그온 URL** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-195">Paste **SAML Single Sign-On Service URL**, which you have copied from the Azure portal it into the **Azure AD Sign On URL** textbox.</span></span>
+    <span data-ttu-id="02e39-194">h.</span><span class="sxs-lookup"><span data-stu-id="02e39-194">h.</span></span> <span data-ttu-id="02e39-195">붙여넣기 **SAML Single Sign-on 서비스 URL**, 복사해 넣기만 하면 hello Azure 포털에서에서 hello에 있는 **Azure AD 로그온 URL** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-195">Paste **SAML Single Sign-On Service URL**, which you have copied from hello Azure portal it into hello **Azure AD Sign On URL** textbox.</span></span>
    
     ![Single Sign-on 구성](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_53.png)
    
-    <span data-ttu-id="d540b-197">i.</span><span class="sxs-lookup"><span data-stu-id="d540b-197">i.</span></span> <span data-ttu-id="d540b-198">직원이 **수동 ID 공급자 선택**을 선택하여 사용자 ID 및 암호 또는 SSO를 사용하는 로그온 중 하나를 수동으로 선택할 수 있는지 여부를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-198">Specify whether the employee can manually choose between logging on with user ID and password or SSO by selecting **Manual Identity Provider Selection**.</span></span>
+    <span data-ttu-id="02e39-197">i.</span><span class="sxs-lookup"><span data-stu-id="02e39-197">i.</span></span> <span data-ttu-id="02e39-198">Hello 직원을 선택 하 여 사용자 ID 및 암호 또는 SSO를 사용 하 여 로그온 사이 수동으로 선택할 수 있는지 여부를 지정 **수동 Identity Provider 선택**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-198">Specify whether hello employee can manually choose between logging on with user ID and password or SSO by selecting **Manual Identity Provider Selection**.</span></span>
    
-    <span data-ttu-id="d540b-199">j.</span><span class="sxs-lookup"><span data-stu-id="d540b-199">j.</span></span> <span data-ttu-id="d540b-200">**SSO URL** 섹션에서 시스템에 로그온하려는 직원이 사용해야 하는 URL을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-200">In the **SSO URL** section, specify the URL that should be used by the employee to logon to the system.</span></span> 
-    <span data-ttu-id="d540b-201">직원에게 전송된 URL 드롭다운 목록에서 다음 옵션 중 하나를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-201">In the URL Sent to Employee dropdown list, you can choose between the following options:</span></span>
+    <span data-ttu-id="02e39-199">j.</span><span class="sxs-lookup"><span data-stu-id="02e39-199">j.</span></span> <span data-ttu-id="02e39-200">Hello에 **SSO URL** 섹션 hello 직원 toologon toohello 시스템에서 사용 해야 하는 hello URL을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-200">In hello **SSO URL** section, specify hello URL that should be used by hello employee toologon toohello system.</span></span> 
+    <span data-ttu-id="02e39-201">Hello 전송 URL tooEmployee 드롭다운 목록에서 hello 다음 옵션 중에서 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-201">In hello URL Sent tooEmployee dropdown list, you can choose between hello following options:</span></span>
    
-    <span data-ttu-id="d540b-202">**SSO가 아닌 URL**</span><span class="sxs-lookup"><span data-stu-id="d540b-202">**Non-SSO URL**</span></span>
+    <span data-ttu-id="02e39-202">**SSO가 아닌 URL**</span><span class="sxs-lookup"><span data-stu-id="02e39-202">**Non-SSO URL**</span></span>
    
-    <span data-ttu-id="d540b-203">시스템은 직원에게 정상적인 시스템 URL만을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-203">The system sends only the normal system URL to the employee.</span></span> <span data-ttu-id="d540b-204">직원은 SSO를 사용하여 로그온할 수 없고 대신 암호 또는 인증서를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-204">The employee cannot log on using SSO, and must use password or certificate instead.</span></span>
+    <span data-ttu-id="02e39-203">hello 시스템만 hello 정상적인 시스템 URL toohello 직원을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-203">hello system sends only hello normal system URL toohello employee.</span></span> <span data-ttu-id="02e39-204">hello 직원이 SSO를 사용 하 여 로그온 수 없습니다 및 암호를 사용 하거나 대신 인증서 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-204">hello employee cannot log on using SSO, and must use password or certificate instead.</span></span>
    
-    <span data-ttu-id="d540b-205">**SSO URL**</span><span class="sxs-lookup"><span data-stu-id="d540b-205">**SSO URL**</span></span> 
+    <span data-ttu-id="02e39-205">**SSO URL**</span><span class="sxs-lookup"><span data-stu-id="02e39-205">**SSO URL**</span></span> 
    
-    <span data-ttu-id="d540b-206">시스템은 직원에게 SSO URL만을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-206">The system sends only the SSO URL to the employee.</span></span> <span data-ttu-id="d540b-207">직원은 SSO를 사용하여 로그온할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-207">The employee can log on using SSO.</span></span> <span data-ttu-id="d540b-208">IdP를 통해 인증 요청이 리디렉션됩니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-208">Authentication request is redirected through the IdP.</span></span>
+    <span data-ttu-id="02e39-206">hello 시스템 hello SSO URL toohello 직원에만 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-206">hello system sends only hello SSO URL toohello employee.</span></span> <span data-ttu-id="02e39-207">hello 직원이 SSO를 사용 하 여 로그온 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-207">hello employee can log on using SSO.</span></span> <span data-ttu-id="02e39-208">Hello IdP 통해 인증 요청이 리디렉션됩니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-208">Authentication request is redirected through hello IdP.</span></span>
    
-    <span data-ttu-id="d540b-209">**자동 선택**</span><span class="sxs-lookup"><span data-stu-id="d540b-209">**Automatic Selection**</span></span>
+    <span data-ttu-id="02e39-209">**자동 선택**</span><span class="sxs-lookup"><span data-stu-id="02e39-209">**Automatic Selection**</span></span>
    
-    <span data-ttu-id="d540b-210">SSO가 활성 상태가 아닌 경우 시스템은 직원에게 정상적인 시스템 URL을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-210">If SSO is not active, the system sends the normal system URL to the employee.</span></span> <span data-ttu-id="d540b-211">SSO가 활성 상태인 경우 시스템은 직원이 암호를 가지는지 여부를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-211">If SSO is active, the system checks whether the employee has a password.</span></span> <span data-ttu-id="d540b-212">암호를 사용할 수 있는 경우 SSO URL와 SSO가 아닌 URL은 직원에게 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-212">If a password is available, both SSO URL and Non-SSO URL are sent to the employee.</span></span> <span data-ttu-id="d540b-213">그러나 직원에게 암호가 없는 경우 SSO URL만이 직원에게 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-213">However, if the employee has no password, only the SSO URL is sent to the employee.</span></span>
+    <span data-ttu-id="02e39-210">SSO 활성 상태 이면 hello 정상적인 시스템 URL toohello 직원을 hello 시스템에 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-210">If SSO is not active, hello system sends hello normal system URL toohello employee.</span></span> <span data-ttu-id="02e39-211">SSO 활성 상태 이면 hello 시스템 hello 직원에 게 암호가 있는지 여부를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-211">If SSO is active, hello system checks whether hello employee has a password.</span></span> <span data-ttu-id="02e39-212">암호를 사용할 수 있는 경우 SSO URL과 비 SSO URL 모두 toohello 직원을 전송 됩니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-212">If a password is available, both SSO URL and Non-SSO URL are sent toohello employee.</span></span> <span data-ttu-id="02e39-213">그러나 hello 직원 암호가 없는 경우 hello SSO URL toohello 직원을 전송 됩니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-213">However, if hello employee has no password, only hello SSO URL is sent toohello employee.</span></span>
    
-    <span data-ttu-id="d540b-214">k.</span><span class="sxs-lookup"><span data-stu-id="d540b-214">k.</span></span> <span data-ttu-id="d540b-215">변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-215">Save your changes.</span></span>
+    <span data-ttu-id="02e39-214">k.</span><span class="sxs-lookup"><span data-stu-id="02e39-214">k.</span></span> <span data-ttu-id="02e39-215">변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-215">Save your changes.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="d540b-216">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-216">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="d540b-217">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-217">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="d540b-218">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-218">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="02e39-216">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="02e39-216">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="02e39-217">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="02e39-217">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="02e39-218">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="02e39-218">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="d540b-219">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="d540b-219">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="02e39-219">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="02e39-219">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="d540b-220">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-220">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="02e39-220">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-220">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![Azure AD 테스트 사용자 만들기][100]
 
-<span data-ttu-id="d540b-222">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="d540b-222">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="02e39-222">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="02e39-222">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d540b-223">Azure Portal의 왼쪽 창에서 **Azure Active Directory** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-223">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="02e39-223">Hello hello 왼쪽된 창에서 Azure 포털에서에서 클릭 hello **Azure Active Directory** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-223">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Azure Active Directory 단추](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_01.png)
+    ![hello Azure Active Directory 단추](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="d540b-225">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-225">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="02e39-225">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹**, 클릭 하 고 **모든 사용자가**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-225">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_02.png)
+    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="d540b-227">**사용자** 대화 상자를 열려면 **모든 사용자** 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-227">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="02e39-227">tooopen hello **사용자** 대화 상자를 클릭 **추가** hello hello 맨 **모든 사용자에 게** 대화 상자.</span><span class="sxs-lookup"><span data-stu-id="02e39-227">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![추가 단추](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_03.png)
+    ![hello 추가 단추](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="d540b-229">**사용자** 대화 상자에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-229">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="02e39-229">Hello에 **사용자** 대화 상자를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-229">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![사용자 대화 상자](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_04.png)
+    ![hello 사용자 대화 상자](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="d540b-231">a.</span><span class="sxs-lookup"><span data-stu-id="d540b-231">a.</span></span> <span data-ttu-id="d540b-232">**이름** 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-232">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="02e39-231">a.</span><span class="sxs-lookup"><span data-stu-id="02e39-231">a.</span></span> <span data-ttu-id="02e39-232">Hello에 **이름** 상자에서 입력 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-232">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="d540b-233">b.</span><span class="sxs-lookup"><span data-stu-id="d540b-233">b.</span></span> <span data-ttu-id="d540b-234">**사용자 이름** 상자에 사용자인 Britta Simon의 전자 메일 주소를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-234">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="02e39-233">b.</span><span class="sxs-lookup"><span data-stu-id="02e39-233">b.</span></span> <span data-ttu-id="02e39-234">Hello에 **사용자 이름** 상자의 사용자 Britta Simon의 hello 전자 메일 주소를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-234">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="d540b-235">c.</span><span class="sxs-lookup"><span data-stu-id="d540b-235">c.</span></span> <span data-ttu-id="d540b-236">**암호 표시** 확인란을 선택한 다음 **암호** 상자에 표시된 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-236">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="02e39-235">c.</span><span class="sxs-lookup"><span data-stu-id="02e39-235">c.</span></span> <span data-ttu-id="02e39-236">선택 hello **암호 표시** 확인란을 선택한 다음 hello에 표시 되는 hello 값 기록 **암호** 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-236">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="d540b-237">d.</span><span class="sxs-lookup"><span data-stu-id="d540b-237">d.</span></span> <span data-ttu-id="d540b-238">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-238">Click **Create**.</span></span>
+    <span data-ttu-id="02e39-237">d.</span><span class="sxs-lookup"><span data-stu-id="02e39-237">d.</span></span> <span data-ttu-id="02e39-238">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-238">Click **Create**.</span></span>
  
-### <a name="create-an-sap-business-bydesign-test-user"></a><span data-ttu-id="d540b-239">SAP Business ByDesign 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="d540b-239">Create an SAP Business ByDesign test user</span></span>
+### <a name="create-an-sap-business-bydesign-test-user"></a><span data-ttu-id="02e39-239">SAP Business ByDesign 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="02e39-239">Create an SAP Business ByDesign test user</span></span>
 
-<span data-ttu-id="d540b-240">이 섹션에서는 SAP Business ByDesign에서 Britta Simon이라는 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-240">In this section, you create a user called Britta Simon in SAP Business ByDesign.</span></span> <span data-ttu-id="d540b-241">[SAP Business ByDesign 클라이언트 지원 팀](https://www.sap.com/products/cloud-analytics.support.html)과 협력하여 SAP Business ByDesign 플랫폼에 사용자를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-241">Please work with [SAP Business ByDesign Client support team](https://www.sap.com/products/cloud-analytics.support.html) to add the users in the SAP Business ByDesign platform.</span></span> 
+<span data-ttu-id="02e39-240">이 섹션에서는 SAP Business ByDesign에서 Britta Simon이라는 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-240">In this section, you create a user called Britta Simon in SAP Business ByDesign.</span></span> <span data-ttu-id="02e39-241">와 협력 하세요 [SAP 비즈니스 ByDesign 클라이언트 지원 팀](https://www.sap.com/products/cloud-analytics.support.html) hello SAP 비즈니스 ByDesign 플랫폼의 tooadd hello 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-241">Please work with [SAP Business ByDesign Client support team](https://www.sap.com/products/cloud-analytics.support.html) tooadd hello users in hello SAP Business ByDesign platform.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="d540b-242">NameID 값이 SAP Business ByDesign 플랫폼에서 사용자 이름 필드와 일치하는지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="d540b-242">Please make sure that NameID value should match with the username field in the SAP Business ByDesign platform.</span></span>
+> <span data-ttu-id="02e39-242">NameID 값 hello SAP 비즈니스 ByDesign 플랫폼에서 hello 사용자 이름 필드와 일치 해야 하 고 있는지 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="02e39-242">Please make sure that NameID value should match with hello username field in hello SAP Business ByDesign platform.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="d540b-243">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="d540b-243">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="02e39-243">Azure AD hello 테스트 사용자를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-243">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="d540b-244">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 SAP Business ByDesign에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-244">In this section, you enable Britta Simon to use Azure single sign-on by granting access to SAP Business ByDesign.</span></span>
+<span data-ttu-id="02e39-244">이 섹션에서는 액세스 tooSAP 비즈니스 ByDesign 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-244">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooSAP Business ByDesign.</span></span>
 
-![사용자 역할 할당][200] 
+![Hello 사용자 역할 할당][200] 
 
-<span data-ttu-id="d540b-246">**Britta Simon을 SAP Business ByDesign에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="d540b-246">**To assign Britta Simon to SAP Business ByDesign, perform the following steps:**</span></span>
+<span data-ttu-id="02e39-246">**tooassign Britta Simon tooSAP 비즈니스 ByDesign hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="02e39-246">**tooassign Britta Simon tooSAP Business ByDesign, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d540b-247">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-247">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="02e39-247">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-247">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="d540b-249">응용 프로그램 목록에서 **SAP Business ByDesign**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-249">In the applications list, select **SAP Business ByDesign**.</span></span>
+2. <span data-ttu-id="02e39-249">Hello 응용 프로그램 목록에서 선택 **SAP 비즈니스 ByDesign**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-249">In hello applications list, select **SAP Business ByDesign**.</span></span>
 
-    ![응용 프로그램 목록의 SAP Business ByDesign 연결](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_app.png)  
+    ![hello 응용 프로그램 목록에서 hello SAP 비즈니스 ByDesign 링크](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_app.png)  
 
-3. <span data-ttu-id="d540b-251">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-251">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="02e39-251">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-251">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    !["사용자 및 그룹" 링크][202]
+    ![hello "사용자 및 그룹" 링크][202]
 
-4. <span data-ttu-id="d540b-253">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-253">Click **Add** button.</span></span> <span data-ttu-id="d540b-254">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-254">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="02e39-253">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-253">Click **Add** button.</span></span> <span data-ttu-id="02e39-254">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-254">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![할당 추가 창][203]
+    ![hello 할당 추가 창][203]
 
-5. <span data-ttu-id="d540b-256">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-256">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="02e39-256">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-256">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="d540b-257">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-257">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="02e39-257">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-257">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="d540b-258">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-258">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="02e39-258">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-258">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="d540b-259">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="d540b-259">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="02e39-259">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="02e39-259">Test single sign-on</span></span>
 
-<span data-ttu-id="d540b-260">이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-260">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="02e39-260">이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-260">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="d540b-261">액세스 패널에서 SAP Business ByDesign 타일을 클릭하면 SAP Business ByDesign 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="d540b-261">When you click the SAP Business ByDesign tile in the Access Panel, you should get automatically signed-on to your SAP Business ByDesign application.</span></span>
+<span data-ttu-id="02e39-261">Hello 액세스 패널에서에서 hello SAP 비즈니스 ByDesign 타일을 클릭할 때 자동으로 로그온 tooyour SAP 비즈니스 ByDesign 응용 프로그램을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="02e39-261">When you click hello SAP Business ByDesign tile in hello Access Panel, you should get automatically signed-on tooyour SAP Business ByDesign application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="d540b-262">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="d540b-262">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="02e39-262">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="02e39-262">Additional resources</span></span>
 
-* [<span data-ttu-id="d540b-263">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="d540b-263">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="d540b-264">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="d540b-264">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="02e39-263">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="02e39-263">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="02e39-264">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="02e39-264">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

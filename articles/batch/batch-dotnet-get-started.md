@@ -1,6 +1,6 @@
 ---
-title: "자습서 - .NET용 Azure Batch 클라이언트 라이브러리 사용 | Microsoft Docs"
-description: "Azure Batch의 기본 개념을 알아보고 .NET을 사용하여 간단한 솔루션을 빌드합니다."
+title: ".NET 용 hello Azure 배치 클라이언트 라이브러리 사용-aaaTutorial | Microsoft Docs"
+description: "Hello Azure 일괄 처리의 기본 개념을 알아봅니다 하 고 간단한.NET을 사용 하 여 솔루션을 빌드하십시오."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,88 +15,88 @@ ms.workload: big-compute
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cf8fdca51a6a4ad1b7cd4fe6980543199f6b36e0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06062b3886a8081bd9a831824a981503ef55f9b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-building-solutions-with-the-batch-client-library-for-net"></a><span data-ttu-id="a66c6-103">.NET용 Batch 클라이언트 라이브러리를 사용한 솔루션 빌드 시작</span><span class="sxs-lookup"><span data-stu-id="a66c6-103">Get started building solutions with the Batch client library for .NET</span></span>
+# <a name="get-started-building-solutions-with-hello-batch-client-library-for-net"></a><span data-ttu-id="edff8-103">.NET 용 hello 배치 클라이언트 라이브러리를 사용 하 여 솔루션을 구축</span><span class="sxs-lookup"><span data-stu-id="edff8-103">Get started building solutions with hello Batch client library for .NET</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="a66c6-104">.NET</span><span class="sxs-lookup"><span data-stu-id="a66c6-104">.NET</span></span>](batch-dotnet-get-started.md)
-> * [<span data-ttu-id="a66c6-105">Python</span><span class="sxs-lookup"><span data-stu-id="a66c6-105">Python</span></span>](batch-python-tutorial.md)
-> * [<span data-ttu-id="a66c6-106">Node.JS</span><span class="sxs-lookup"><span data-stu-id="a66c6-106">Node.js</span></span>](batch-nodejs-get-started.md)
+> * [<span data-ttu-id="edff8-104">.NET</span><span class="sxs-lookup"><span data-stu-id="edff8-104">.NET</span></span>](batch-dotnet-get-started.md)
+> * [<span data-ttu-id="edff8-105">Python</span><span class="sxs-lookup"><span data-stu-id="edff8-105">Python</span></span>](batch-python-tutorial.md)
+> * [<span data-ttu-id="edff8-106">Node.JS</span><span class="sxs-lookup"><span data-stu-id="edff8-106">Node.js</span></span>](batch-nodejs-get-started.md)
 >
 >
 
-<span data-ttu-id="a66c6-107">이 문서에서는 C# 응용 프로그램 예제를 단계별로 설명하면서 [Azure Batch][azure_batch] 및 [Batch .NET][net_api] 라이브러리의 기본에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-107">Learn the basics of [Azure Batch][azure_batch] and the [Batch .NET][net_api] library in this article as we discuss a C# sample application step by step.</span></span> <span data-ttu-id="a66c6-108">샘플 응용 프로그램에서 Batch 서비스를 활용하여 클라우드에서 병렬 워크로드를 처리하는 방법과 파일 준비 및 검색을 위해 [Azure Storage](../storage/common/storage-introduction.md)와 상호 작용하는 방식을 살펴봅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-108">We look at how the sample application leverages the Batch service to process a parallel workload in the cloud, and how it interacts with [Azure Storage](../storage/common/storage-introduction.md) for file staging and retrieval.</span></span> <span data-ttu-id="a66c6-109">일반적인 Batch 응용 프로그램 워크플로를 습득하고 작업, 태스크, 풀 및 계산 노드와 같은 Batch의 주요 구성 요소에 대해 이해합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-109">You'll learn a common Batch application workflow and gain a base understanding of the major components of Batch such as jobs, tasks, pools, and compute nodes.</span></span>
+<span data-ttu-id="edff8-107">hello 기본 사항 알아보기 [Azure 배치] [ azure_batch] 및 hello [일괄 처리.NET] [ net_api] 이 문서에는 라이브러리는 C# 샘플 응용 프로그램의 단계별을 다룬 것 처럼 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-107">Learn hello basics of [Azure Batch][azure_batch] and hello [Batch .NET][net_api] library in this article as we discuss a C# sample application step by step.</span></span> <span data-ttu-id="edff8-108">의견에 귀 hello 샘플 응용 프로그램 hello 일괄 처리 서비스 tooprocess를 활용 하는 방법에 병렬 작업 hello 클라우드 및 어떻게 상호 작용 [Azure 저장소](../storage/common/storage-introduction.md) 파일 준비 및 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-108">We look at how hello sample application leverages hello Batch service tooprocess a parallel workload in hello cloud, and how it interacts with [Azure Storage](../storage/common/storage-introduction.md) for file staging and retrieval.</span></span> <span data-ttu-id="edff8-109">일반적인 일괄 처리 응용 프로그램 워크플로 자세한 및 hello의 주요 구성 요소 일괄 처리 풀, 작업, 작업 등의 기본으로 이해 하 고 계산 노드 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-109">You'll learn a common Batch application workflow and gain a base understanding of hello major components of Batch such as jobs, tasks, pools, and compute nodes.</span></span>
 
-<span data-ttu-id="a66c6-110">![Batch 솔루션 워크플로(기본)][11]</span><span class="sxs-lookup"><span data-stu-id="a66c6-110">![Batch solution workflow (basic)][11]</span></span><br/>
+<span data-ttu-id="edff8-110">![Batch 솔루션 워크플로(기본)][11]</span><span class="sxs-lookup"><span data-stu-id="edff8-110">![Batch solution workflow (basic)][11]</span></span><br/>
 
-## <a name="prerequisites"></a><span data-ttu-id="a66c6-111">필수 조건</span><span class="sxs-lookup"><span data-stu-id="a66c6-111">Prerequisites</span></span>
-<span data-ttu-id="a66c6-112">이 문서에는 사용자에게 C# 및 Visual Studio에 대한 실용적인 지식이 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-112">This article assumes that you have a working knowledge of C# and Visual Studio.</span></span> <span data-ttu-id="a66c6-113">또한 Azure와 Batch 및 Storage 서비스에 대해 아래 지정된 계정 생성 요구 사항을 충족할 수 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-113">It also assumes that you're able to satisfy the account creation requirements that are specified below for Azure and the Batch and Storage services.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="edff8-111">필수 조건</span><span class="sxs-lookup"><span data-stu-id="edff8-111">Prerequisites</span></span>
+<span data-ttu-id="edff8-112">이 문서에는 사용자에게 C# 및 Visual Studio에 대한 실용적인 지식이 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-112">This article assumes that you have a working knowledge of C# and Visual Studio.</span></span> <span data-ttu-id="edff8-113">또한 Azure hello 일괄 처리 및 저장소 서비스에 대해 아래 지정 된 수 toosatisfy hello 계정 만들기 요구 하 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-113">It also assumes that you're able toosatisfy hello account creation requirements that are specified below for Azure and hello Batch and Storage services.</span></span>
 
-### <a name="accounts"></a><span data-ttu-id="a66c6-114">계정</span><span class="sxs-lookup"><span data-stu-id="a66c6-114">Accounts</span></span>
-* <span data-ttu-id="a66c6-115">**Azure 계정**: Azure 구독이 아직 없는 경우 [무료 Azure 계정][azure_free_account]을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-115">**Azure account**: If you don't already have an Azure subscription, [create a free Azure account][azure_free_account].</span></span>
-* <span data-ttu-id="a66c6-116">**Batch 계정**: Azure 구독이 있으면 [Azure Batch 계정을 만듭니다](batch-account-create-portal.md).</span><span class="sxs-lookup"><span data-stu-id="a66c6-116">**Batch account**: Once you have an Azure subscription, [create an Azure Batch account](batch-account-create-portal.md).</span></span>
-* <span data-ttu-id="a66c6-117">**Storage 계정**: [Azure Storage 계정 정보](../storage/common/storage-create-storage-account.md)의 [저장소 계정 만들기](../storage/common/storage-create-storage-account.md#create-a-storage-account) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-117">**Storage account**: See [Create a storage account](../storage/common/storage-create-storage-account.md#create-a-storage-account) in [About Azure storage accounts](../storage/common/storage-create-storage-account.md).</span></span>
+### <a name="accounts"></a><span data-ttu-id="edff8-114">계정</span><span class="sxs-lookup"><span data-stu-id="edff8-114">Accounts</span></span>
+* <span data-ttu-id="edff8-115">**Azure 계정**: Azure 구독이 아직 없는 경우 [무료 Azure 계정][azure_free_account]을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-115">**Azure account**: If you don't already have an Azure subscription, [create a free Azure account][azure_free_account].</span></span>
+* <span data-ttu-id="edff8-116">**Batch 계정**: Azure 구독이 있으면 [Azure Batch 계정을 만듭니다](batch-account-create-portal.md).</span><span class="sxs-lookup"><span data-stu-id="edff8-116">**Batch account**: Once you have an Azure subscription, [create an Azure Batch account](batch-account-create-portal.md).</span></span>
+* <span data-ttu-id="edff8-117">**Storage 계정**: [Azure Storage 계정 정보](../storage/common/storage-create-storage-account.md)의 [저장소 계정 만들기](../storage/common/storage-create-storage-account.md#create-a-storage-account) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="edff8-117">**Storage account**: See [Create a storage account](../storage/common/storage-create-storage-account.md#create-a-storage-account) in [About Azure storage accounts](../storage/common/storage-create-storage-account.md).</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="a66c6-118">Batch는 현재 [Azure Storage 계정 정보](../storage/common/storage-create-storage-account.md)의 5단계 [저장소 계정 만들기](../storage/common/storage-create-storage-account.md#create-a-storage-account)에서 설명한 대로 **범용** 저장소 계정 유형*만* 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-118">Batch currently supports *only* the **general-purpose** storage account type, as described in step #5 [Create a storage account](../storage/common/storage-create-storage-account.md#create-a-storage-account) in [About Azure storage accounts](../storage/common/storage-create-storage-account.md).</span></span>
+> <span data-ttu-id="edff8-118">에서는 현재 일괄 처리 *만* hello **범용** 5 단계에 설명 된 대로 저장소 계정 유형을 [저장소 계정을 만드는](../storage/common/storage-create-storage-account.md#create-a-storage-account) 에 [에 대 한 Azure 저장소 계정](../storage/common/storage-create-storage-account.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-118">Batch currently supports *only* hello **general-purpose** storage account type, as described in step #5 [Create a storage account](../storage/common/storage-create-storage-account.md#create-a-storage-account) in [About Azure storage accounts](../storage/common/storage-create-storage-account.md).</span></span>
 >
 >
 
-### <a name="visual-studio"></a><span data-ttu-id="a66c6-119">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a66c6-119">Visual Studio</span></span>
-<span data-ttu-id="a66c6-120">샘플 프로젝트를 빌드하려면 **Visual Studio 2015 이상**이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-120">You must have **Visual Studio 2015 or newer** to build the sample project.</span></span> <span data-ttu-id="a66c6-121">[Visual Studio 제품 개요][visual_studio]에서 Visual Studio의 무료 및 평가판 버전을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-121">You can find free and trial versions of Visual Studio in the [overview of Visual Studio products][visual_studio].</span></span>
+### <a name="visual-studio"></a><span data-ttu-id="edff8-119">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="edff8-119">Visual Studio</span></span>
+<span data-ttu-id="edff8-120">있어야 **Visual Studio 2015 이상** toobuild hello 샘플 프로젝트입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-120">You must have **Visual Studio 2015 or newer** toobuild hello sample project.</span></span> <span data-ttu-id="edff8-121">Hello에서 무료 또는 평가판 버전의 Visual Studio를 찾을 수 있습니다 [Visual Studio 제품 개요][visual_studio]합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-121">You can find free and trial versions of Visual Studio in hello [overview of Visual Studio products][visual_studio].</span></span>
 
-### <a name="dotnettutorial-code-sample"></a><span data-ttu-id="a66c6-122">*DotNetTutorial* 코드 샘플</span><span class="sxs-lookup"><span data-stu-id="a66c6-122">*DotNetTutorial* code sample</span></span>
-<span data-ttu-id="a66c6-123">[DotNetTutorial][github_dotnettutorial] 샘플은 GitHub의 [azure-batch-samples][github_samples] 리포지토리에서 찾은 많은 Batch 코드 샘플 중 하나입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-123">The [DotNetTutorial][github_dotnettutorial] sample is one of the many Batch code samples found in the [azure-batch-samples][github_samples] repository on GitHub.</span></span> <span data-ttu-id="a66c6-124">리포지토리 홈 페이지에서 **복제 또는 다운로드 > ZIP 다운로드** 단추를 클릭하거나 [azure-batch-samples-master.zip][github_samples_zip] 직접 다운로드 링크를 클릭하여 모든 샘플을 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-124">You can download all the samples by clicking  **Clone or download > Download ZIP** on the repository home page, or by clicking the [azure-batch-samples-master.zip][github_samples_zip] direct download link.</span></span> <span data-ttu-id="a66c6-125">ZIP 파일의 내용을 추출하면 다음 폴더에서 솔루션을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-125">Once you've extracted the contents of the ZIP file, you can find the solution in the following folder:</span></span>
+### <a name="dotnettutorial-code-sample"></a><span data-ttu-id="edff8-122">*DotNetTutorial* 코드 샘플</span><span class="sxs-lookup"><span data-stu-id="edff8-122">*DotNetTutorial* code sample</span></span>
+<span data-ttu-id="edff8-123">hello [DotNetTutorial] [ github_dotnettutorial] 샘플을 사용 하면 많은 일괄 처리 코드 예제는 hello에서 발견 하는 hello 중 하나인 [azure 일괄 처리-샘플] [ github_samples] 의 리포지토리 GitHub 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-123">hello [DotNetTutorial][github_dotnettutorial] sample is one of hello many Batch code samples found in hello [azure-batch-samples][github_samples] repository on GitHub.</span></span> <span data-ttu-id="edff8-124">클릭 하 여 모든 hello 샘플을 다운로드할 수 있습니다 **클론 또는 다운로드 > zip 파일 다운로드** hello 리포지토리 홈 페이지에서 또는 hello를 클릭 하 여 [azure 일괄 처리-샘플 master.zip] [ github_samples_zip]직접 다운로드 링크입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-124">You can download all hello samples by clicking  **Clone or download > Download ZIP** on hello repository home page, or by clicking hello [azure-batch-samples-master.zip][github_samples_zip] direct download link.</span></span> <span data-ttu-id="edff8-125">Hello 내용의 hello ZIP 파일을 추출 하면 hello 솔루션 hello 다음 폴더에서에서 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-125">Once you've extracted hello contents of hello ZIP file, you can find hello solution in hello following folder:</span></span>
 
 `\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial`
 
-### <a name="azure-batch-explorer-optional"></a><span data-ttu-id="a66c6-126">Azure Batch 탐색기(선택 사항)</span><span class="sxs-lookup"><span data-stu-id="a66c6-126">Azure Batch Explorer (optional)</span></span>
-<span data-ttu-id="a66c6-127">[Azure Batch 탐색기][github_batchexplorer]는 GitHub의 [azure-batch-samples][github_samples] 리포지토리에 포함된 무료 유틸리티입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-127">The [Azure Batch Explorer][github_batchexplorer] is a free utility that is included in the [azure-batch-samples][github_samples] repository on GitHub.</span></span> <span data-ttu-id="a66c6-128">이 자습서를 완료하는 것이 필수는 아니지만 Batch 솔루션을 개발하고 디버깅하는 과정에서 유용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-128">While not required to complete this tutorial, it can be useful while developing and debugging your Batch solutions.</span></span>
+### <a name="azure-batch-explorer-optional"></a><span data-ttu-id="edff8-126">Azure Batch 탐색기(선택 사항)</span><span class="sxs-lookup"><span data-stu-id="edff8-126">Azure Batch Explorer (optional)</span></span>
+<span data-ttu-id="edff8-127">hello [Azure 일괄 처리 탐색기] [ github_batchexplorer] 는 hello에 포함 된 무료 유틸리티 [azure 일괄 처리-샘플] [ github_samples] GitHub의 리포지토리 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-127">hello [Azure Batch Explorer][github_batchexplorer] is a free utility that is included in hello [azure-batch-samples][github_samples] repository on GitHub.</span></span> <span data-ttu-id="edff8-128">필요 없음 toocomplete 하는 동안이 자습서에서는 유용할 수 있습니다 개발 및 일괄 처리 솔루션을 디버깅 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-128">While not required toocomplete this tutorial, it can be useful while developing and debugging your Batch solutions.</span></span>
 
-## <a name="dotnettutorial-sample-project-overview"></a><span data-ttu-id="a66c6-129">DotNetTutorial 샘플 프로젝트 개요</span><span class="sxs-lookup"><span data-stu-id="a66c6-129">DotNetTutorial sample project overview</span></span>
-<span data-ttu-id="a66c6-130">*DotNetTutorial* 코드 샘플은 두 프로젝트 **DotNetTutorial** 및 **TaskApplication**으로 구성된 Visual Studio 솔루션입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-130">The *DotNetTutorial* code sample is a Visual Studio solution that consists of two projects: **DotNetTutorial** and **TaskApplication**.</span></span>
+## <a name="dotnettutorial-sample-project-overview"></a><span data-ttu-id="edff8-129">DotNetTutorial 샘플 프로젝트 개요</span><span class="sxs-lookup"><span data-stu-id="edff8-129">DotNetTutorial sample project overview</span></span>
+<span data-ttu-id="edff8-130">hello *DotNetTutorial* 코드 샘플은 두 프로젝트로 구성 되어 있는 Visual Studio 솔루션은: **DotNetTutorial** 및 **TaskApplication**합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-130">hello *DotNetTutorial* code sample is a Visual Studio solution that consists of two projects: **DotNetTutorial** and **TaskApplication**.</span></span>
 
-* <span data-ttu-id="a66c6-131">**DotNetTutorial**은 계산 노드(가상 컴퓨터)에서 병렬 워크로드를 실행하기 위해 Batch 및 Storage 서비스와 상호 작용하는 클라이언트 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-131">**DotNetTutorial** is the client application that interacts with the Batch and Storage services to execute a parallel workload on compute nodes (virtual machines).</span></span> <span data-ttu-id="a66c6-132">DotNetTutorial은 로컬 워크스테이션에서 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-132">DotNetTutorial runs on your local workstation.</span></span>
-* <span data-ttu-id="a66c6-133">**TaskApplication**은 실제 작업을 수행하기 위해 Azure의 계산 노드에서 실행하는 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-133">**TaskApplication** is the program that runs on compute nodes in Azure to perform the actual work.</span></span> <span data-ttu-id="a66c6-134">이 예제에서 `TaskApplication.exe`는 Azure Storage에서 다운로드한 파일(입력 파일)의 텍스트를 구문 분석합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-134">In the sample, `TaskApplication.exe` parses the text in a file downloaded from Azure Storage (the input file).</span></span> <span data-ttu-id="a66c6-135">그 후 입력 파일에 표시되는 맨 위 단어 세 개를 포함하는 텍스트 파일(출력 파일)을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-135">Then it produces a text file (the output file) that contains a list of the top three words that appear in the input file.</span></span> <span data-ttu-id="a66c6-136">출력 파일을 만든 후에 TaskApplication이 Azure Storage에 파일을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-136">After it creates the output file, TaskApplication uploads the file to Azure Storage.</span></span> <span data-ttu-id="a66c6-137">이렇게 하면 클라이언트 응용 프로그램에서 다운로드가 가능해 집니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-137">This makes it available to the client application for download.</span></span> <span data-ttu-id="a66c6-138">TaskApplication은 Batch 서비스의 여러 계산 노드에서 병렬로 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-138">TaskApplication runs in parallel on multiple compute nodes in the Batch service.</span></span>
+* <span data-ttu-id="edff8-131">**DotNetTutorial** 은 계산 노드 (가상 컴퓨터)에 병렬 작업 일괄 처리 및 저장소 서비스 tooexecute hello와 상호 작용 하는 hello 클라이언트 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-131">**DotNetTutorial** is hello client application that interacts with hello Batch and Storage services tooexecute a parallel workload on compute nodes (virtual machines).</span></span> <span data-ttu-id="edff8-132">DotNetTutorial은 로컬 워크스테이션에서 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-132">DotNetTutorial runs on your local workstation.</span></span>
+* <span data-ttu-id="edff8-133">**TaskApplication** Azure tooperform hello 실제 작업의 계산 노드에서 실행 되는 hello 프로그램.</span><span class="sxs-lookup"><span data-stu-id="edff8-133">**TaskApplication** is hello program that runs on compute nodes in Azure tooperform hello actual work.</span></span> <span data-ttu-id="edff8-134">Hello 샘플에서 `TaskApplication.exe` 구문 분석 하 여 hello Azure 저장소 (hello 입력된 파일)에서 다운로드 한 파일의 텍스트입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-134">In hello sample, `TaskApplication.exe` parses hello text in a file downloaded from Azure Storage (hello input file).</span></span> <span data-ttu-id="edff8-135">텍스트 파일을 생성 한 다음 (hello 출력 파일) hello 상위 3 개의에 있는 단어 hello 입력된 파일의 목록이 들어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-135">Then it produces a text file (hello output file) that contains a list of hello top three words that appear in hello input file.</span></span> <span data-ttu-id="edff8-136">Hello 출력 파일을 만든 후 TaskApplication hello 파일 tooAzure 저장소에 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-136">After it creates hello output file, TaskApplication uploads hello file tooAzure Storage.</span></span> <span data-ttu-id="edff8-137">따라서이 다운로드에 대 한 클라이언트 응용 프로그램을 사용할 수 있는 toohello 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-137">This makes it available toohello client application for download.</span></span> <span data-ttu-id="edff8-138">TaskApplication은 hello 일괄 처리 서비스의에서 여러 계산 노드에서 동시에 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-138">TaskApplication runs in parallel on multiple compute nodes in hello Batch service.</span></span>
 
-<span data-ttu-id="a66c6-139">다음 다이어그램은 클라이언트 응용 프로그램, *DotNetTutorial*, 태스크에서 실행하는 응용 프로그램, *TaskApplication*에서 수행되는 기본 작업을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-139">The following diagram illustrates the primary operations that are performed by the client application, *DotNetTutorial*, and the application that is executed by the tasks, *TaskApplication*.</span></span> <span data-ttu-id="a66c6-140">이러한 기본 워크플로는 Batch를 사용하여 만드는 많은 계산 솔루션의 일반적인 형태입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-140">This basic workflow is typical of many compute solutions that are created with Batch.</span></span> <span data-ttu-id="a66c6-141">Batch 서비스에서 사용 가능한 모든 기능을 보여 주지 않지만 거의 모든 Batch 시나리오는 이 워크플로의 일부를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-141">While it does not demonstrate every feature available in the Batch service, nearly every Batch scenario includes portions of this workflow.</span></span>
+<span data-ttu-id="edff8-139">hello 다음 다이어그램에서는 hello 클라이언트 응용 프로그램에 의해 수행 된 기본 작업이 hello *DotNetTutorial*, hello 작업에서 실행 되는 hello 응용 프로그램 및 *TaskApplication*.</span><span class="sxs-lookup"><span data-stu-id="edff8-139">hello following diagram illustrates hello primary operations that are performed by hello client application, *DotNetTutorial*, and hello application that is executed by hello tasks, *TaskApplication*.</span></span> <span data-ttu-id="edff8-140">이러한 기본 워크플로는 Batch를 사용하여 만드는 많은 계산 솔루션의 일반적인 형태입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-140">This basic workflow is typical of many compute solutions that are created with Batch.</span></span> <span data-ttu-id="edff8-141">Hello 일괄 처리 서비스에서에서 사용할 수 있는 모든 기능을 보여 주지 동안 거의 모든 일괄 처리 시나리오가 워크플로의 일부를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-141">While it does not demonstrate every feature available in hello Batch service, nearly every Batch scenario includes portions of this workflow.</span></span>
 
-<span data-ttu-id="a66c6-142">![Batch 예제 워크플로][8]</span><span class="sxs-lookup"><span data-stu-id="a66c6-142">![Batch example workflow][8]</span></span><br/>
+<span data-ttu-id="edff8-142">![Batch 예제 워크플로][8]</span><span class="sxs-lookup"><span data-stu-id="edff8-142">![Batch example workflow][8]</span></span><br/>
 
-[<span data-ttu-id="a66c6-143">**1단계.**</span><span class="sxs-lookup"><span data-stu-id="a66c6-143">**Step 1.**</span></span>](#step-1-create-storage-containers) <span data-ttu-id="a66c6-144">Azure Blob Storage에 **컨테이너**를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-144">Create **containers** in Azure Blob Storage.</span></span><br/><span data-ttu-id="a66c6-145">
-[**2단계.**](#step-2-upload-task-application-and-data-files)</span><span class="sxs-lookup"><span data-stu-id="a66c6-145">
-[**Step 2.**](#step-2-upload-task-application-and-data-files)</span></span> <span data-ttu-id="a66c6-146">컨테이너에 태스크 응용 프로그램 파일 및 입력 파일을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-146">Upload task application files and input files to containers.</span></span><br/><span data-ttu-id="a66c6-147">
-[**3단계.**](#step-3-create-batch-pool)</span><span class="sxs-lookup"><span data-stu-id="a66c6-147">
-[**Step 3.**](#step-3-create-batch-pool)</span></span> <span data-ttu-id="a66c6-148">Batch **풀**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-148">Create a Batch **pool**.</span></span><br/>
-  <span data-ttu-id="a66c6-149">&nbsp;&nbsp;&nbsp;&nbsp;**3a.**</span><span class="sxs-lookup"><span data-stu-id="a66c6-149">&nbsp;&nbsp;&nbsp;&nbsp;**3a.**</span></span> <span data-ttu-id="a66c6-150">**StartTask** 풀은 노드가 풀에 연결되면 태스크 이진 파일(TaskApplication)을 노드에 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-150">The pool **StartTask** downloads the task binary files (TaskApplication) to nodes as they join the pool.</span></span><br/><span data-ttu-id="a66c6-151">
-[**4단계.**](#step-4-create-batch-job)</span><span class="sxs-lookup"><span data-stu-id="a66c6-151">
-[**Step 4.**](#step-4-create-batch-job)</span></span> <span data-ttu-id="a66c6-152">Batch **작업**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-152">Create a Batch **job**.</span></span><br/><span data-ttu-id="a66c6-153">
-[**5단계.**](#step-5-add-tasks-to-job)</span><span class="sxs-lookup"><span data-stu-id="a66c6-153">
-[**Step 5.**](#step-5-add-tasks-to-job)</span></span> <span data-ttu-id="a66c6-154">작업에 **태스크**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-154">Add **tasks** to the job.</span></span><br/>
-  <span data-ttu-id="a66c6-155">&nbsp;&nbsp;&nbsp;&nbsp;**5a.**</span><span class="sxs-lookup"><span data-stu-id="a66c6-155">&nbsp;&nbsp;&nbsp;&nbsp;**5a.**</span></span> <span data-ttu-id="a66c6-156">태스크는 노드에서 실행되도록 예약됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-156">The tasks are scheduled to execute on nodes.</span></span><br/>
-    <span data-ttu-id="a66c6-157">&nbsp;&nbsp;&nbsp;&nbsp;**5b.**</span><span class="sxs-lookup"><span data-stu-id="a66c6-157">&nbsp;&nbsp;&nbsp;&nbsp;**5b.**</span></span> <span data-ttu-id="a66c6-158">각 태스크는 Azure Storage에서 입력 데이터를 다운로드한 다음 실행을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-158">Each task downloads its input data from Azure Storage, then begins execution.</span></span><br/><span data-ttu-id="a66c6-159">
-[**6단계.**](#step-6-monitor-tasks)</span><span class="sxs-lookup"><span data-stu-id="a66c6-159">
-[**Step 6.**](#step-6-monitor-tasks)</span></span> <span data-ttu-id="a66c6-160">태스크를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-160">Monitor tasks.</span></span><br/>
-  <span data-ttu-id="a66c6-161">&nbsp;&nbsp;&nbsp;&nbsp;**6a.**</span><span class="sxs-lookup"><span data-stu-id="a66c6-161">&nbsp;&nbsp;&nbsp;&nbsp;**6a.**</span></span> <span data-ttu-id="a66c6-162">태스크가 완료되면 출력 데이터를 Azure Storage에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-162">As tasks are completed, they upload their output data to Azure Storage.</span></span><br/><span data-ttu-id="a66c6-163">
-[**7단계.**](#step-7-download-task-output)</span><span class="sxs-lookup"><span data-stu-id="a66c6-163">
-[**Step 7.**](#step-7-download-task-output)</span></span> <span data-ttu-id="a66c6-164">Storage에서 태스크 출력을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-164">Download task output from Storage.</span></span>
+[<span data-ttu-id="edff8-143">**1단계.**</span><span class="sxs-lookup"><span data-stu-id="edff8-143">**Step 1.**</span></span>](#step-1-create-storage-containers) <span data-ttu-id="edff8-144">Azure Blob Storage에 **컨테이너**를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-144">Create **containers** in Azure Blob Storage.</span></span><br/><span data-ttu-id="edff8-145">
+[**2단계.**](#step-2-upload-task-application-and-data-files)</span><span class="sxs-lookup"><span data-stu-id="edff8-145">
+[**Step 2.**](#step-2-upload-task-application-and-data-files)</span></span> <span data-ttu-id="edff8-146">업로드 작업 응용 프로그램 파일 및 입력된 파일 toocontainers 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-146">Upload task application files and input files toocontainers.</span></span><br/><span data-ttu-id="edff8-147">
+[**3단계.**](#step-3-create-batch-pool)</span><span class="sxs-lookup"><span data-stu-id="edff8-147">
+[**Step 3.**](#step-3-create-batch-pool)</span></span> <span data-ttu-id="edff8-148">Batch **풀**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-148">Create a Batch **pool**.</span></span><br/>
+  <span data-ttu-id="edff8-149">&nbsp;&nbsp;&nbsp;&nbsp;**3a.**</span><span class="sxs-lookup"><span data-stu-id="edff8-149">&nbsp;&nbsp;&nbsp;&nbsp;**3a.**</span></span> <span data-ttu-id="edff8-150">풀 hello **StartTask** 다운로드 hello 풀을 참가 작업 이진 파일 (TaskApplication) toonodes hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-150">hello pool **StartTask** downloads hello task binary files (TaskApplication) toonodes as they join hello pool.</span></span><br/><span data-ttu-id="edff8-151">
+[**4단계.**](#step-4-create-batch-job)</span><span class="sxs-lookup"><span data-stu-id="edff8-151">
+[**Step 4.**](#step-4-create-batch-job)</span></span> <span data-ttu-id="edff8-152">Batch **작업**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-152">Create a Batch **job**.</span></span><br/><span data-ttu-id="edff8-153">
+[**5단계.**](#step-5-add-tasks-to-job)</span><span class="sxs-lookup"><span data-stu-id="edff8-153">
+[**Step 5.**](#step-5-add-tasks-to-job)</span></span> <span data-ttu-id="edff8-154">추가 **작업** toohello 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-154">Add **tasks** toohello job.</span></span><br/>
+  <span data-ttu-id="edff8-155">&nbsp;&nbsp;&nbsp;&nbsp;**5a.**</span><span class="sxs-lookup"><span data-stu-id="edff8-155">&nbsp;&nbsp;&nbsp;&nbsp;**5a.**</span></span> <span data-ttu-id="edff8-156">hello 작업은 예약 된 tooexecute 노드에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-156">hello tasks are scheduled tooexecute on nodes.</span></span><br/>
+    <span data-ttu-id="edff8-157">&nbsp;&nbsp;&nbsp;&nbsp;**5b.**</span><span class="sxs-lookup"><span data-stu-id="edff8-157">&nbsp;&nbsp;&nbsp;&nbsp;**5b.**</span></span> <span data-ttu-id="edff8-158">각 태스크는 Azure Storage에서 입력 데이터를 다운로드한 다음 실행을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-158">Each task downloads its input data from Azure Storage, then begins execution.</span></span><br/><span data-ttu-id="edff8-159">
+[**6단계.**](#step-6-monitor-tasks)</span><span class="sxs-lookup"><span data-stu-id="edff8-159">
+[**Step 6.**](#step-6-monitor-tasks)</span></span> <span data-ttu-id="edff8-160">태스크를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-160">Monitor tasks.</span></span><br/>
+  <span data-ttu-id="edff8-161">&nbsp;&nbsp;&nbsp;&nbsp;**6a.**</span><span class="sxs-lookup"><span data-stu-id="edff8-161">&nbsp;&nbsp;&nbsp;&nbsp;**6a.**</span></span> <span data-ttu-id="edff8-162">작업을 완료 하는 대로 해당 출력 데이터 tooAzure 저장소 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-162">As tasks are completed, they upload their output data tooAzure Storage.</span></span><br/><span data-ttu-id="edff8-163">
+[**7단계.**](#step-7-download-task-output)</span><span class="sxs-lookup"><span data-stu-id="edff8-163">
+[**Step 7.**](#step-7-download-task-output)</span></span> <span data-ttu-id="edff8-164">Storage에서 태스크 출력을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-164">Download task output from Storage.</span></span>
 
-<span data-ttu-id="a66c6-165">언급한 바와 같이, 모든 Batch 솔루션이 정확히 이러한 단계를 수행하는 것은 아니며, 훨씬 더 많은 단계를 포함할 수 있지만, *DotNetTutorial* 샘플 응용 프로그램은 Batch 솔루션에서 찾을 수 있는 일반적인 프로세스를 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-165">As mentioned, not every Batch solution performs these exact steps, and may include many more, but the *DotNetTutorial* sample application demonstrates common processes found in a Batch solution.</span></span>
+<span data-ttu-id="edff8-165">언급 했 듯이 모든 일괄 처리 솔루션 두 정확한 단계를 수행 하 고 될 수 있습니다 더 많은 포함 하지만 hello *DotNetTutorial* 샘플 응용 프로그램 일괄 처리 솔루션에는 일반적인 프로세스를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-165">As mentioned, not every Batch solution performs these exact steps, and may include many more, but hello *DotNetTutorial* sample application demonstrates common processes found in a Batch solution.</span></span>
 
-## <a name="build-the-dotnettutorial-sample-project"></a><span data-ttu-id="a66c6-166">*DotNetTutorial* 샘플 프로젝트 빌드</span><span class="sxs-lookup"><span data-stu-id="a66c6-166">Build the *DotNetTutorial* sample project</span></span>
-<span data-ttu-id="a66c6-167">샘플을 성공적으로 실행할 수 있으려면, *DotNetTutorial* 프로젝트의 `Program.cs` 파일에 Batch 및 Storage 계정 자격 증명을 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-167">Before you can successfully run the sample, you must specify both Batch and Storage account credentials in the *DotNetTutorial* project's `Program.cs` file.</span></span> <span data-ttu-id="a66c6-168">아직 수행하지 않은 경우 `DotNetTutorial.sln` 솔루션 파일을 두 번 클릭하여 Visual Studio에서 솔루션을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-168">If you have not done so already, open the solution in Visual Studio by double-clicking the `DotNetTutorial.sln` solution file.</span></span> <span data-ttu-id="a66c6-169">또는 **파일 > 열기 > 프로젝트/솔루션** 메뉴를 사용하여 Visual Studio 내에서 솔루션을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-169">Or open it from within Visual Studio by using the **File > Open > Project/Solution** menu.</span></span>
+## <a name="build-hello-dotnettutorial-sample-project"></a><span data-ttu-id="edff8-166">Hello 빌드 *DotNetTutorial* 샘플 프로젝트</span><span class="sxs-lookup"><span data-stu-id="edff8-166">Build hello *DotNetTutorial* sample project</span></span>
+<span data-ttu-id="edff8-167">Hello에 모두 일괄 처리 및 저장소 계정 자격 증명을 지정 해야 성공적으로 hello 샘플을 실행할 수 있습니다, 전에 *DotNetTutorial* 프로젝트의 `Program.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-167">Before you can successfully run hello sample, you must specify both Batch and Storage account credentials in hello *DotNetTutorial* project's `Program.cs` file.</span></span> <span data-ttu-id="edff8-168">아직 그렇게를 수행 하지 않은 경우 hello에서에서 솔루션을 열고 Visual Studio hello를 두 번 클릭 하 여 `DotNetTutorial.sln` 솔루션 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-168">If you have not done so already, open hello solution in Visual Studio by double-clicking hello `DotNetTutorial.sln` solution file.</span></span> <span data-ttu-id="edff8-169">Hello를 사용 하 여 Visual Studio 내에서 열에서 또는 **파일 > 열기 > 프로젝트/솔루션** 메뉴.</span><span class="sxs-lookup"><span data-stu-id="edff8-169">Or open it from within Visual Studio by using hello **File > Open > Project/Solution** menu.</span></span>
 
-<span data-ttu-id="a66c6-170">*DotNetTutorial* 프로젝트 내에서 `Program.cs`를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-170">Open `Program.cs` within the *DotNetTutorial* project.</span></span> <span data-ttu-id="a66c6-171">파일의 위쪽에 지정된 대로 자격 증명을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-171">Then add your credentials as specified near the top of the file:</span></span>
+<span data-ttu-id="edff8-170">열기 `Program.cs` hello 내 *DotNetTutorial* 프로젝트.</span><span class="sxs-lookup"><span data-stu-id="edff8-170">Open `Program.cs` within hello *DotNetTutorial* project.</span></span> <span data-ttu-id="edff8-171">Hello 파일의 hello 맨 위 근처에 지정 된 자격 증명을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-171">Then add your credentials as specified near hello top of hello file:</span></span>
 
 ```csharp
-// Update the Batch and Storage account credential strings below with the values
-// unique to your accounts. These are used when constructing connection strings
-// for the Batch and Storage client objects.
+// Update hello Batch and Storage account credential strings below with hello values
+// unique tooyour accounts. These are used when constructing connection strings
+// for hello Batch and Storage client objects.
 
 // Batch account credentials
 private const string BatchAccountName = "";
@@ -109,60 +109,60 @@ private const string StorageAccountKey  = "";
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="a66c6-172">위에서 설명한 대로 현재 Azure Storage에서 **범용** 저장소 계정에 대한 자격 증명을 지정해야 입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-172">As mentioned above, you must currently specify the credentials for a **general-purpose** storage account in Azure Storage.</span></span> <span data-ttu-id="a66c6-173">Batch 응용 프로그램은 **범용** 저장소 계정 내에서 Blob Storage를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-173">Your Batch applications use blob storage within the **general-purpose** storage account.</span></span> <span data-ttu-id="a66c6-174">*Blob 저장소* 계정 유형을 선택하여 만든 Storage 계정에 대한 자격 증명을 지정하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-174">Do not specify the credentials for a Storage account that was created by selecting the *Blob storage* account type.</span></span>
+> <span data-ttu-id="edff8-172">Hello 자격 증명을 지정 하 고 현재 해야 위에서 설명 했 듯이 **범용** Azure 저장소의 저장소 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-172">As mentioned above, you must currently specify hello credentials for a **general-purpose** storage account in Azure Storage.</span></span> <span data-ttu-id="edff8-173">Hello 내에서 blob 저장소를 사용 하는 일괄 처리 응용 프로그램 **범용** 저장소 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-173">Your Batch applications use blob storage within hello **general-purpose** storage account.</span></span> <span data-ttu-id="edff8-174">Hello를 선택 하 여 생성 된 저장소 계정에 대 한 hello 자격 증명을 지정 하지 않으면 *Blob 저장소* 계정 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-174">Do not specify hello credentials for a Storage account that was created by selecting hello *Blob storage* account type.</span></span>
 >
 >
 
-<span data-ttu-id="a66c6-175">[Azure Portal][azure_portal]의 각 서비스의 계정 블레이드 내에서 Batch 및 Storage 계정 자격 증명을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-175">You can find your Batch and Storage account credentials within the account blade of each service in the [Azure portal][azure_portal]:</span></span>
+<span data-ttu-id="edff8-175">Hello에 일괄 처리 및 저장소 계정 자격 증명의 각 서비스 계정 블레이드 hello 내에서 찾을 수 있습니다 [Azure 포털][azure_portal]:</span><span class="sxs-lookup"><span data-stu-id="edff8-175">You can find your Batch and Storage account credentials within hello account blade of each service in hello [Azure portal][azure_portal]:</span></span>
 
-<span data-ttu-id="a66c6-176">![포털에서 자격 증명 일괄 처리][9]
-![포털의 Storage 자격 증명][10]</span><span class="sxs-lookup"><span data-stu-id="a66c6-176">![Batch credentials in the portal][9]
-![Storage credentials in the portal][10]</span></span><br/>
+<span data-ttu-id="edff8-176">![Hello 포털에서 자격 증명을 일괄 처리][9]
+![hello 포털에서 저장소 자격 증명][10]</span><span class="sxs-lookup"><span data-stu-id="edff8-176">![Batch credentials in hello portal][9]
+![Storage credentials in hello portal][10]</span></span><br/>
 
-<span data-ttu-id="a66c6-177">자격 증명으로 프로젝트를 업데이트했으므로 솔루션 탐색기에서 솔루션을 마우스 오른쪽 단추로 클릭하고 **솔루션 빌드**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-177">Now that you've updated the project with your credentials, right-click the solution in Solution Explorer and click **Build Solution**.</span></span> <span data-ttu-id="a66c6-178">메시지가 표시되면 모든 NuGet 패키지 복원을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-178">Confirm the restoration of any NuGet packages, if you're prompted.</span></span>
+<span data-ttu-id="edff8-177">솔루션 탐색기에서 hello 솔루션을 마우스 오른쪽 단추로 클릭 하 고 클릭을 자격 증명을 사용 하 여 hello 프로젝트를 업데이트 하 한 했으므로 **솔루션 빌드**합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-177">Now that you've updated hello project with your credentials, right-click hello solution in Solution Explorer and click **Build Solution**.</span></span> <span data-ttu-id="edff8-178">로그인할지 묻는 hello 복원 된 NuGet 패키지를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-178">Confirm hello restoration of any NuGet packages, if you're prompted.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a66c6-179">NuGet 패키지가 자동으로 복원되지 않거나 패키지 복원 실패와 관련된 오류가 표시되는 경우 [NuGet 패키지 관리자][nuget_packagemgr]가 설치되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-179">If the NuGet packages are not automatically restored, or if you see errors about a failure to restore the packages, ensure that you have the [NuGet Package Manager][nuget_packagemgr] installed.</span></span> <span data-ttu-id="a66c6-180">그런 다음 누락된 패키지의 다운로드를 활성화합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-180">Then enable the download of missing packages.</span></span> <span data-ttu-id="a66c6-181">패키지 다운로드를 활성화하려면 [빌드하는 동안 패키지 복원 활성화][nuget_restore]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-181">See [Enabling Package Restore During Build][nuget_restore] to enable package download.</span></span>
+> <span data-ttu-id="edff8-179">Hello NuGet 패키지를 자동으로 복원 되지 않습니다, 또는 실패 toorestore hello 패키지에 대 한 오류가 표시 되 면 hello 가졌는지 확인 [NuGet 패키지 관리자] [ nuget_packagemgr] 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-179">If hello NuGet packages are not automatically restored, or if you see errors about a failure toorestore hello packages, ensure that you have hello [NuGet Package Manager][nuget_packagemgr] installed.</span></span> <span data-ttu-id="edff8-180">누락 된 패키지의 hello 다운로드를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-180">Then enable hello download of missing packages.</span></span> <span data-ttu-id="edff8-181">참조 [사용 하면 패키지를 복원 하는 동안 빌드] [ nuget_restore] tooenable 패키지 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-181">See [Enabling Package Restore During Build][nuget_restore] tooenable package download.</span></span>
 >
 >
 
-<span data-ttu-id="a66c6-182">다음 섹션에서는 샘플 응용 프로그램을 Batch 서비스에서 워크로드를 처리하기 위해 수행하는 단계로 세분화하고 이러한 단계를 자세히 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-182">In the following sections, we break down the sample application into the steps that it performs to process a workload in the Batch service, and discuss those steps in detail.</span></span> <span data-ttu-id="a66c6-183">샘플에 있는 코드의 모든 줄이 설명되어 있지 않으므로 이 문서의 나머지 부분에서 작업하는 동안 Visual Studio에서 공개 솔루션을 참조하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-183">We encourage you to refer to the open solution in Visual Studio while you work your way through the rest of this article, since not every line of code in the sample is discussed.</span></span>
+<span data-ttu-id="edff8-182">다음 섹션 hello,에서는 hello 샘플 응용 프로그램으로 구분 tooprocess를 수행 하는 hello 단계 hello 일괄 처리 서비스에서에서 작업 하 고 해당 단계를 자세히 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-182">In hello following sections, we break down hello sample application into hello steps that it performs tooprocess a workload in hello Batch service, and discuss those steps in detail.</span></span> <span data-ttu-id="edff8-183">좋습니다 toorefer toohello Visual Studio에서 열린 솔루션을 hello 샘플의 코드의 모든 줄에 설명 되어 있으므로이 문서의 hello 나머지 부분에서 작업 하는 동안.</span><span class="sxs-lookup"><span data-stu-id="edff8-183">We encourage you toorefer toohello open solution in Visual Studio while you work your way through hello rest of this article, since not every line of code in hello sample is discussed.</span></span>
 
-<span data-ttu-id="a66c6-184">*DotNetTutorial* 프로젝트의 `Program.cs` 파일에서 `MainAsync` 메서드의 맨 위로 이동하여 단계1부터 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-184">Navigate to the top of the `MainAsync` method in the *DotNetTutorial* project's `Program.cs` file to start with Step 1.</span></span> <span data-ttu-id="a66c6-185">아래 각 단계 후 `MainAsync`에서 메서드 호출의 진행을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-185">Each step below then roughly follows the progression of method calls in `MainAsync`.</span></span>
+<span data-ttu-id="edff8-184">Hello toohello 위쪽 탐색 `MainAsync` hello에 대 한 메서드 *DotNetTutorial* 프로젝트의 `Program.cs` 단계 1 toostart 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-184">Navigate toohello top of hello `MainAsync` method in hello *DotNetTutorial* project's `Program.cs` file toostart with Step 1.</span></span> <span data-ttu-id="edff8-185">아래 단계 각각 다음과 같이 hello 진행 메서드의 호출 하는 약 `MainAsync`합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-185">Each step below then roughly follows hello progression of method calls in `MainAsync`.</span></span>
 
-## <a name="step-1-create-storage-containers"></a><span data-ttu-id="a66c6-186">1단계: Storage 컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="a66c6-186">Step 1: Create Storage containers</span></span>
-<span data-ttu-id="a66c6-187">![Azure Storage에 컨테이너 만들기][1]
-</span><span class="sxs-lookup"><span data-stu-id="a66c6-187">![Create containers in Azure Storage][1]
+## <a name="step-1-create-storage-containers"></a><span data-ttu-id="edff8-186">1단계: Storage 컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="edff8-186">Step 1: Create Storage containers</span></span>
+<span data-ttu-id="edff8-187">![Azure Storage에 컨테이너 만들기][1]
+</span><span class="sxs-lookup"><span data-stu-id="edff8-187">![Create containers in Azure Storage][1]
 </span></span><br/>
 
-<span data-ttu-id="a66c6-188">Batch에는 Azure Storage와의 상호 작용을 위해 기본 제공되는 지원이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-188">Batch includes built-in support for interacting with Azure Storage.</span></span> <span data-ttu-id="a66c6-189">Storage 계정 내의 컨테이너는 Batch 계정에서 실행되는 태스크에 필요한 파일을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-189">Containers in your Storage account will provide the files needed by the tasks that run in your Batch account.</span></span> <span data-ttu-id="a66c6-190">컨테이너는 태스크가 생성하는 출력 데이터를 저장할 공간도 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-190">The containers also provide a place to store the output data that the tasks produce.</span></span> <span data-ttu-id="a66c6-191">*DotNetTutorial* 클라이언트 응용 프로그램이 실행하는 첫 번째 작업은 [Azure Blob Storage](../storage/common/storage-introduction.md)에 세 개의 컨테이너를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-191">The first thing the *DotNetTutorial* client application does is create three containers in [Azure Blob Storage](../storage/common/storage-introduction.md):</span></span>
+<span data-ttu-id="edff8-188">Batch에는 Azure Storage와의 상호 작용을 위해 기본 제공되는 지원이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-188">Batch includes built-in support for interacting with Azure Storage.</span></span> <span data-ttu-id="edff8-189">저장소 계정의 컨테이너에는 일괄 처리 계정에서 실행 되는 hello 작업에서 필요한 hello 파일 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-189">Containers in your Storage account will provide hello files needed by hello tasks that run in your Batch account.</span></span> <span data-ttu-id="edff8-190">또한 hello 컨테이너 hello 작업을 생성 하는 곳 toostore hello 출력 데이터를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-190">hello containers also provide a place toostore hello output data that hello tasks produce.</span></span> <span data-ttu-id="edff8-191">hello 먼저 hello *DotNetTutorial* 클라이언트 응용 프로그램에는에 세 개의 컨테이너를 만드는 방법 [Azure Blob 저장소](../storage/common/storage-introduction.md):</span><span class="sxs-lookup"><span data-stu-id="edff8-191">hello first thing hello *DotNetTutorial* client application does is create three containers in [Azure Blob Storage](../storage/common/storage-introduction.md):</span></span>
 
-* <span data-ttu-id="a66c6-192">**응용 프로그램**: 이 컨테이너는 태스크가 실행하는 응용 프로그램은 물론 DLL과 같은 모든 종속 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-192">**application**: This container will store the application run by the tasks, as well as any of its dependencies, such as DLLs.</span></span>
-* <span data-ttu-id="a66c6-193">**입력**: 태스크가 *입력* 컨테이너에서 처리할 데이터 파일을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-193">**input**: Tasks will download the data files to process from the *input* container.</span></span>
-* <span data-ttu-id="a66c6-194">**출력**: 태스크가 입력 파일의 처리를 완료하면 그 결과를 *출력* 컨테이너에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-194">**output**: When tasks complete input file processing, they will upload the results to the *output* container.</span></span>
+* <span data-ttu-id="edff8-192">**응용 프로그램**:이 컨테이너는 hello 작업으로 Dll과 같은 종속성 중 하나에서 실행 하는 hello 응용 프로그램을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-192">**application**: This container will store hello application run by hello tasks, as well as any of its dependencies, such as DLLs.</span></span>
+* <span data-ttu-id="edff8-193">**입력**: 작업은 hello에서 데이터 파일 tooprocess hello를 다운로드 *입력* 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-193">**input**: Tasks will download hello data files tooprocess from hello *input* container.</span></span>
+* <span data-ttu-id="edff8-194">**출력**: hello 결과 toohello 업로드는 입력된 파일 처리를 완료 하는 작업 *출력* 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-194">**output**: When tasks complete input file processing, they will upload hello results toohello *output* container.</span></span>
 
-<span data-ttu-id="a66c6-195">Storage 계정과 상호 작용하고 컨테이너를 만들기 위해 [.NET용 Azure Storage 클라이언트 라이브러리][net_api_storage]를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-195">In order to interact with a Storage account and create containers, we use the [Azure Storage Client Library for .NET][net_api_storage].</span></span> <span data-ttu-id="a66c6-196">[CloudStorageAccount][net_cloudstorageaccount]로 계정에 대한 참조를 만들고, 그 참조에서 [CloudBlobClient][net_cloudblobclient]를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-196">We create a reference to the account with [CloudStorageAccount][net_cloudstorageaccount], and from that create a [CloudBlobClient][net_cloudblobclient]:</span></span>
+<span data-ttu-id="edff8-195">저장소와 순서 toointeract에서 계정 및 컨테이너를 만들 hello 사용 하 여 [.NET 용 Azure 저장소 클라이언트 라이브러리][net_api_storage]합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-195">In order toointeract with a Storage account and create containers, we use hello [Azure Storage Client Library for .NET][net_api_storage].</span></span> <span data-ttu-id="edff8-196">와 참조 toohello 계정 만듭니다 [CloudStorageAccount][net_cloudstorageaccount], 만들고 있는에서 [CloudBlobClient][net_cloudblobclient]:</span><span class="sxs-lookup"><span data-stu-id="edff8-196">We create a reference toohello account with [CloudStorageAccount][net_cloudstorageaccount], and from that create a [CloudBlobClient][net_cloudblobclient]:</span></span>
 
 ```csharp
-// Construct the Storage account connection string
+// Construct hello Storage account connection string
 string storageConnectionString = String.Format(
     "DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
     StorageAccountName,
     StorageAccountKey);
 
-// Retrieve the storage account
+// Retrieve hello storage account
 CloudStorageAccount storageAccount =
     CloudStorageAccount.Parse(storageConnectionString);
 
-// Create the blob client, for use in obtaining references to
+// Create hello blob client, for use in obtaining references to
 // blob storage containers
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 ```
 
-<span data-ttu-id="a66c6-197">응용 프로그램 전체적으로 `blobClient` 참조를 사용하여 매개 변수로 많은 메서드에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-197">We use the `blobClient` reference throughout the application and pass it as a parameter to several methods.</span></span> <span data-ttu-id="a66c6-198">이 예는 위를 즉시 따르는 코드 블록에 있으며 여기에서 `CreateContainerIfNotExistAsync`를 호출하여 실제로 컨테이너를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-198">An example of this is in the code block that immediately follows the above, where we call `CreateContainerIfNotExistAsync` to actually create the containers.</span></span>
+<span data-ttu-id="edff8-197">사용 하 여 hello `blobClient` hello 응용 프로그램 전체에서 참조 하 고 tooseveral 메서드 매개 변수로 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-197">We use hello `blobClient` reference throughout hello application and pass it as a parameter tooseveral methods.</span></span> <span data-ttu-id="edff8-198">이 예는 hello 코드 블록 바로 뒤에 오는 hello 위의 호출에서는 `CreateContainerIfNotExistAsync` tooactually hello 컨테이너를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-198">An example of this is in hello code block that immediately follows hello above, where we call `CreateContainerIfNotExistAsync` tooactually create hello containers.</span></span>
 
 ```csharp
-// Use the blob client to create the containers in Azure Storage if they don't
+// Use hello blob client toocreate hello containers in Azure Storage if they don't
 // yet exist
 const string appContainerName    = "application";
 const string inputContainerName  = "input";
@@ -192,31 +192,31 @@ private static async Task CreateContainerIfNotExistAsync(
 }
 ```
 
-<span data-ttu-id="a66c6-199">컨테이너를 만든 후 이제 응용 프로그램은 작업에 의해 사용될 파일을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-199">Once the containers have been created, the application can now upload the files that will be used by the tasks.</span></span>
+<span data-ttu-id="edff8-199">Hello 컨테이너를 만든 후에 이제 hello 응용 프로그램 hello 작업에 의해 사용 될 hello 파일을 업로드 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-199">Once hello containers have been created, hello application can now upload hello files that will be used by hello tasks.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a66c6-200">[.NET에서 Blob Storage를 사용하는 방법](../storage/blobs/storage-dotnet-how-to-use-blobs.md)에서는 Azure Storage 컨테이너 및 Blob을 사용한 작업의 개요를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-200">[How to use Blob Storage from .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md) provides a good overview of working with Azure Storage containers and blobs.</span></span> <span data-ttu-id="a66c6-201">Batch 작업 시작 단계 읽기 목록의 거의 위쪽에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-201">It should be near the top of your reading list as you start working with Batch.</span></span>
+> <span data-ttu-id="edff8-200">[어떻게 toouse.NET에서 Blob 저장소](../storage/blobs/storage-dotnet-how-to-use-blobs.md) Azure 저장소 컨테이너 및 blob 작업의 개요를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-200">[How toouse Blob Storage from .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md) provides a good overview of working with Azure Storage containers and blobs.</span></span> <span data-ttu-id="edff8-201">일괄 처리 작업을 시작할 때 hello 위쪽 읽기 목록에 있는 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-201">It should be near hello top of your reading list as you start working with Batch.</span></span>
 >
 >
 
-## <a name="step-2-upload-task-application-and-data-files"></a><span data-ttu-id="a66c6-202">2단계: 작업 응용 프로그램 및 데이터 파일 업로드</span><span class="sxs-lookup"><span data-stu-id="a66c6-202">Step 2: Upload task application and data files</span></span>
-<span data-ttu-id="a66c6-203">![컨테이너에 작업 응용 프로그램 및 입력(데이터) 파일 업로드][2]
-</span><span class="sxs-lookup"><span data-stu-id="a66c6-203">![Upload task application and input (data) files to containers][2]
+## <a name="step-2-upload-task-application-and-data-files"></a><span data-ttu-id="edff8-202">2단계: 작업 응용 프로그램 및 데이터 파일 업로드</span><span class="sxs-lookup"><span data-stu-id="edff8-202">Step 2: Upload task application and data files</span></span>
+<span data-ttu-id="edff8-203">![업로드 작업 응용 프로그램에 대 한 입력 (데이터) toocontainers 파일][2]
+</span><span class="sxs-lookup"><span data-stu-id="edff8-203">![Upload task application and input (data) files toocontainers][2]
 </span></span><br/>
 
-<span data-ttu-id="a66c6-204">파일 업로드 작업에서 *DotNetTutorial*은 먼저 로컬 컴퓨터에 있는 **응용 프로그램**의 컬렉션 및 **입력** 파일 경로를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-204">In the file upload operation, *DotNetTutorial* first defines collections of **application** and **input** file paths as they exist on the local machine.</span></span> <span data-ttu-id="a66c6-205">그런 다음 이전 단계에서 만든 컨테이너에 이러한 파일을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-205">Then it uploads these files to the containers that you created in the previous step.</span></span>
+<span data-ttu-id="edff8-204">Hello 파일에서 작업을 업로드 *DotNetTutorial* 먼저의 컬렉션을 정의 **응용 프로그램** 및 **입력** hello 로컬 컴퓨터에 있는 대로 파일 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-204">In hello file upload operation, *DotNetTutorial* first defines collections of **application** and **input** file paths as they exist on hello local machine.</span></span> <span data-ttu-id="edff8-205">그런 다음 이러한 파일 toohello 컨테이너 hello 이전 단계에서 만든를 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-205">Then it uploads these files toohello containers that you created in hello previous step.</span></span>
 
 ```csharp
-// Paths to the executable and its dependencies that will be executed by the tasks
+// Paths toohello executable and its dependencies that will be executed by hello tasks
 List<string> applicationFilePaths = new List<string>
 {
-    // The DotNetTutorial project includes a project reference to TaskApplication,
-    // allowing us to determine the path of the task application binary dynamically
+    // hello DotNetTutorial project includes a project reference tooTaskApplication,
+    // allowing us toodetermine hello path of hello task application binary dynamically
     typeof(TaskApplication.Program).Assembly.Location,
     "Microsoft.WindowsAzure.Storage.dll"
 };
 
-// The collection of data files that are to be processed by the tasks
+// hello collection of data files that are toobe processed by hello tasks
 List<string> inputFilePaths = new List<string>
 {
     @"..\..\taskdata1.txt",
@@ -224,26 +224,26 @@ List<string> inputFilePaths = new List<string>
     @"..\..\taskdata3.txt"
 };
 
-// Upload the application and its dependencies to Azure Storage. This is the
-// application that will process the data files, and will be executed by each
-// of the tasks on the compute nodes.
+// Upload hello application and its dependencies tooAzure Storage. This is the
+// application that will process hello data files, and will be executed by each
+// of hello tasks on hello compute nodes.
 List<ResourceFile> applicationFiles = await UploadFilesToContainerAsync(
     blobClient,
     appContainerName,
     applicationFilePaths);
 
-// Upload the data files. This is the data that will be processed by each of
-// the tasks that are executed on the compute nodes within the pool.
+// Upload hello data files. This is hello data that will be processed by each of
+// hello tasks that are executed on hello compute nodes within hello pool.
 List<ResourceFile> inputFiles = await UploadFilesToContainerAsync(
     blobClient,
     inputContainerName,
     inputFilePaths);
 ```
 
-<span data-ttu-id="a66c6-206">업로드 프로세스에 관련된 `Program.cs` 에는 두 가지 메서드가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-206">There are two methods in `Program.cs` that are involved in the upload process:</span></span>
+<span data-ttu-id="edff8-206">두 가지가 `Program.cs` hello 업로드 프로세스에 관련 된입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-206">There are two methods in `Program.cs` that are involved in hello upload process:</span></span>
 
-* <span data-ttu-id="a66c6-207">`UploadFilesToContainerAsync`: 이 메서드는 [ResourceFile][net_resourcefile] 개체(아래 설명 참조)의 컬렉션을 반환하고 내부적으로 `UploadFileToContainerAsync`을 호출하여 *filePaths* 매개 변수에 전달된 각 파일을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-207">`UploadFilesToContainerAsync`: This method returns a collection of [ResourceFile][net_resourcefile] objects (discussed below) and internally calls `UploadFileToContainerAsync` to upload each file that is passed in the *filePaths* parameter.</span></span>
-* <span data-ttu-id="a66c6-208">`UploadFileToContainerAsync`: 실제로 파일 업로드를 수행하고 [ResourceFile][net_resourcefile] 개체를 만드는 메서드입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-208">`UploadFileToContainerAsync`: This is the method that actually performs the file upload and creates the [ResourceFile][net_resourcefile] objects.</span></span> <span data-ttu-id="a66c6-209">파일 업로드 후 파일에 대한 SAS(공유 액세스 서명)을 가져오고 이를 나타내는 ResourceFile 개체를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-209">After uploading the file, it obtains a shared access signature (SAS) for the file and returns a ResourceFile object that represents it.</span></span> <span data-ttu-id="a66c6-210">공유 액세스 서명도 아래에 설명되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-210">Shared access signatures are also discussed below.</span></span>
+* <span data-ttu-id="edff8-207">`UploadFilesToContainerAsync`:이 메서드는 컬렉션을 반환 [ResourceFile] [ net_resourcefile] (아래 설명 참조) 개체를 내부적으로 호출 `UploadFileToContainerAsync` hello에 전달 된 각 파일을 즉 tooupload *filePaths* 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-207">`UploadFilesToContainerAsync`: This method returns a collection of [ResourceFile][net_resourcefile] objects (discussed below) and internally calls `UploadFileToContainerAsync` tooupload each file that is passed in hello *filePaths* parameter.</span></span>
+* <span data-ttu-id="edff8-208">`UploadFileToContainerAsync`:이 실제로 hello 파일 업로드를 수행 하 고 hello 만듭니다는 hello 방법과 [ResourceFile] [ net_resourcefile] 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-208">`UploadFileToContainerAsync`: This is hello method that actually performs hello file upload and creates hello [ResourceFile][net_resourcefile] objects.</span></span> <span data-ttu-id="edff8-209">Hello 파일을 업로드 한 후 hello 파일에 대 한 공유 액세스 서명 (SAS)를 얻어서를 점을 나타내는 ResourceFile 개체를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-209">After uploading hello file, it obtains a shared access signature (SAS) for hello file and returns a ResourceFile object that represents it.</span></span> <span data-ttu-id="edff8-210">공유 액세스 서명도 아래에 설명되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-210">Shared access signatures are also discussed below.</span></span>
 
 ```csharp
 private static async Task<ResourceFile> UploadFileToContainerAsync(
@@ -252,7 +252,7 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
     string filePath)
 {
         Console.WriteLine(
-            "Uploading file {0} to container [{1}]...", filePath, containerName);
+            "Uploading file {0} toocontainer [{1}]...", filePath, containerName);
 
         string blobName = Path.GetFileName(filePath);
 
@@ -260,8 +260,8 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
         CloudBlockBlob blobData = container.GetBlockBlobReference(blobName);
         await blobData.UploadFromFileAsync(filePath);
 
-        // Set the expiry time and permissions for the blob shared access signature.
-        // In this case, no start time is specified, so the shared access signature
+        // Set hello expiry time and permissions for hello blob shared access signature.
+        // In this case, no start time is specified, so hello shared access signature
         // becomes valid immediately
         SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy
         {
@@ -269,7 +269,7 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
                 Permissions = SharedAccessBlobPermissions.Read
         };
 
-        // Construct the SAS URL for blob
+        // Construct hello SAS URL for blob
         string sasBlobToken = blobData.GetSharedAccessSignature(sasConstraints);
         string blobSasUri = String.Format("{0}{1}", blobData.Uri, sasBlobToken);
 
@@ -277,35 +277,35 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
 }
 ```
 
-### <a name="resourcefiles"></a><span data-ttu-id="a66c6-211">ResourceFiles</span><span class="sxs-lookup"><span data-stu-id="a66c6-211">ResourceFiles</span></span>
-<span data-ttu-id="a66c6-212">[ResourceFile][net_resourcefile]은 해당 작업을 실행하기 전에 계산 노드에 다운로드되는 Azure Storage의 파일에 대한 URL로 Batch 작업을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-212">A [ResourceFile][net_resourcefile] provides tasks in Batch with the URL to a file in Azure Storage that is downloaded to a compute node before that task is run.</span></span> <span data-ttu-id="a66c6-213">[ResourceFile.BlobSource][net_resourcefile_blobsource] 속성은 Azure Storage에 있는 파일의 전체 URL을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-213">The [ResourceFile.BlobSource][net_resourcefile_blobsource] property specifies the full URL of the file as it exists in Azure Storage.</span></span> <span data-ttu-id="a66c6-214">URL에는 파일에 대한 보안 액세스를 제공하는 SAS(공유 액세스 서명)가 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-214">The URL may also include a shared access signature (SAS) that provides secure access to the file.</span></span> <span data-ttu-id="a66c6-215">Batch .NET 내에서 대부분의 작업 형식은 다음을 포함하는 *ResourceFiles* 속성을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-215">Most tasks types within Batch .NET include a *ResourceFiles* property, including:</span></span>
+### <a name="resourcefiles"></a><span data-ttu-id="edff8-211">ResourceFiles</span><span class="sxs-lookup"><span data-stu-id="edff8-211">ResourceFiles</span></span>
+<span data-ttu-id="edff8-212">A [ResourceFile] [ net_resourcefile] 해당 태스크를 실행 하기 전에 hello URL tooa 파일 다운로드 한 tooa은 Azure 저장소에 있는 일괄 처리의 작업 계산 노드를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-212">A [ResourceFile][net_resourcefile] provides tasks in Batch with hello URL tooa file in Azure Storage that is downloaded tooa compute node before that task is run.</span></span> <span data-ttu-id="edff8-213">hello [ResourceFile.BlobSource] [ net_resourcefile_blobsource] Azure 저장소에 있는 속성 hello hello 파일의 전체 URL을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-213">hello [ResourceFile.BlobSource][net_resourcefile_blobsource] property specifies hello full URL of hello file as it exists in Azure Storage.</span></span> <span data-ttu-id="edff8-214">hello URL toohello 파일 보안 액세스를 제공 하는 공유 액세스 서명 (SAS)을 포함할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-214">hello URL may also include a shared access signature (SAS) that provides secure access toohello file.</span></span> <span data-ttu-id="edff8-215">Batch .NET 내에서 대부분의 작업 형식은 다음을 포함하는 *ResourceFiles* 속성을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-215">Most tasks types within Batch .NET include a *ResourceFiles* property, including:</span></span>
 
-* <span data-ttu-id="a66c6-216">[CloudTask][net_task]</span><span class="sxs-lookup"><span data-stu-id="a66c6-216">[CloudTask][net_task]</span></span>
-* <span data-ttu-id="a66c6-217">[StartTask][net_pool_starttask]</span><span class="sxs-lookup"><span data-stu-id="a66c6-217">[StartTask][net_pool_starttask]</span></span>
-* <span data-ttu-id="a66c6-218">[JobPreparationTask][net_jobpreptask]</span><span class="sxs-lookup"><span data-stu-id="a66c6-218">[JobPreparationTask][net_jobpreptask]</span></span>
-* <span data-ttu-id="a66c6-219">[JobReleaseTask][net_jobreltask]</span><span class="sxs-lookup"><span data-stu-id="a66c6-219">[JobReleaseTask][net_jobreltask]</span></span>
+* <span data-ttu-id="edff8-216">[CloudTask][net_task]</span><span class="sxs-lookup"><span data-stu-id="edff8-216">[CloudTask][net_task]</span></span>
+* <span data-ttu-id="edff8-217">[StartTask][net_pool_starttask]</span><span class="sxs-lookup"><span data-stu-id="edff8-217">[StartTask][net_pool_starttask]</span></span>
+* <span data-ttu-id="edff8-218">[JobPreparationTask][net_jobpreptask]</span><span class="sxs-lookup"><span data-stu-id="edff8-218">[JobPreparationTask][net_jobpreptask]</span></span>
+* <span data-ttu-id="edff8-219">[JobReleaseTask][net_jobreltask]</span><span class="sxs-lookup"><span data-stu-id="edff8-219">[JobReleaseTask][net_jobreltask]</span></span>
 
-<span data-ttu-id="a66c6-220">DotNetTutorial 샘플 응용 프로그램은 JobPreparationTask 또는 JobReleaseTask 태스크 유형을 사용하지 않지만 [Azure Batch 계산 노드에서 작업 준비와 완료 태스크 실행](batch-job-prep-release.md)에서 이에 대해 자세히 알아볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-220">The DotNetTutorial sample application does not use the JobPreparationTask or JobReleaseTask task types, but you can read more about them in [Run job preparation and completion tasks on Azure Batch compute nodes](batch-job-prep-release.md).</span></span>
+<span data-ttu-id="edff8-220">hello DotNetTutorial 샘플 응용 프로그램에서는 hello JobPreparationTask 또는 JobReleaseTask 작업 종류를 사용 하지 않지만 자세히 알아볼 수 있습니다에 대 한 [Azure 일괄 처리에서 실행 작업 준비 및 완료 작업 하는 계산 노드](batch-job-prep-release.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-220">hello DotNetTutorial sample application does not use hello JobPreparationTask or JobReleaseTask task types, but you can read more about them in [Run job preparation and completion tasks on Azure Batch compute nodes](batch-job-prep-release.md).</span></span>
 
-### <a name="shared-access-signature-sas"></a><span data-ttu-id="a66c6-221">공유 액세스 서명(SAS)</span><span class="sxs-lookup"><span data-stu-id="a66c6-221">Shared access signature (SAS)</span></span>
-<span data-ttu-id="a66c6-222">공유 액세스 서명은 URL의 일부분으로 포함되는 경우 Azure Storage의 컨테이너 및 Blob에 대한 보안 액세스를 제공하는 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-222">Shared access signatures are strings which—when included as part of a URL—provide secure access to containers and blobs in Azure Storage.</span></span> <span data-ttu-id="a66c6-223">DotNetTutorial 응용 프로그램은 Blob 및 컨테이너 공유 액세스 서명 URL 모두를 사용하고 Storage 서비스에서 이러한 공유 액세스 서명 문자열을 가져오는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-223">The DotNetTutorial application uses both blob and container shared access signature URLs, and demonstrates how to obtain these shared access signature strings from the Storage service.</span></span>
+### <a name="shared-access-signature-sas"></a><span data-ttu-id="edff8-221">공유 액세스 서명(SAS)</span><span class="sxs-lookup"><span data-stu-id="edff8-221">Shared access signature (SAS)</span></span>
+<span data-ttu-id="edff8-222">공유 액세스 서명이 있는 문자열-URL의 일부분으로 포함 하는 경우-보안 액세스 toocontainers 및 Azure 저장소에서 blob를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-222">Shared access signatures are strings which—when included as part of a URL—provide secure access toocontainers and blobs in Azure Storage.</span></span> <span data-ttu-id="edff8-223">두 blob을 사용 하 여 hello DotNetTutorial 응용 프로그램 및 컨테이너 공유 액세스 서명 Url 및 이러한 공유 tooobtain 서명 문자열 hello 저장소 서비스에서에서 액세스 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-223">hello DotNetTutorial application uses both blob and container shared access signature URLs, and demonstrates how tooobtain these shared access signature strings from hello Storage service.</span></span>
 
-* <span data-ttu-id="a66c6-224">**Blob 공유 액세스 서명**: DotNetTutorial에서 풀의 StartTask는 Storage에서 응용 프로그램 이진 및 입력 데이터 파일을 다운로드하는 경우 Blob 공유 액세스 서명을 사용합니다(아래 #3단계 참조).</span><span class="sxs-lookup"><span data-stu-id="a66c6-224">**Blob shared access signatures**: The pool's StartTask in DotNetTutorial uses blob shared access signatures when it downloads the application binaries and input data files from Storage (see Step #3 below).</span></span> <span data-ttu-id="a66c6-225">DotNetTutorial의 `Program.cs`에서 `UploadFileToContainerAsync` 메서드는 각 Blob의 공유 액세스 서명을 가져오는 코드를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-225">The `UploadFileToContainerAsync` method in DotNetTutorial's `Program.cs` contains the code that obtains each blob's shared access signature.</span></span> <span data-ttu-id="a66c6-226">[CloudBlob.GetSharedAccessSignature][net_sas_blob]를 호출하여 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-226">It does so by calling [CloudBlob.GetSharedAccessSignature][net_sas_blob].</span></span>
-* <span data-ttu-id="a66c6-227">**컨테이너 공유 액세스 서명**: 각 태스크는 계산 노드에서 작업을 완료하면 해당 출력 파일을 Azure Storage의 *출력* 컨테이너에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-227">**Container shared access signatures**: As each task finishes its work on the compute node, it uploads its output file to the *output* container in Azure Storage.</span></span> <span data-ttu-id="a66c6-228">이렇게 하려면 TaskApplication은 파일을 업로드하는 경우 경로의 일부로 컨테이너에 쓰기 액세스를 제공하는 컨테이너 공유 액세스 서명을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-228">To do so, TaskApplication uses a container shared access signature that provides write access to the container as part of the path when it uploads the file.</span></span> <span data-ttu-id="a66c6-229">컨테이너 공유 액세스 서명 가져오기는 BLOB 공유 액세스 서명을 가져올 때와 유사한 방식으로 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-229">Obtaining the container shared access signature is done in a similar fashion as when obtaining the blob shared access signature.</span></span> <span data-ttu-id="a66c6-230">DotNetTutorial에서 이렇게 하기 위해 `GetContainerSasUrl` 도우미 메서드가 [CloudBlobContainer.GetSharedAccessSignature][net_sas_container]를 호출하는 것을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-230">In DotNetTutorial, you will find that the `GetContainerSasUrl` helper method calls [CloudBlobContainer.GetSharedAccessSignature][net_sas_container] to do so.</span></span> <span data-ttu-id="a66c6-231">“6단계: 작업 모니터링"에서 TaskApplication이 컨테이너 공유 액세스 서명을 사용하는 방법에 대해 자세히 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-231">You'll read more about how TaskApplication uses the container shared access signature in "Step 6: Monitor Tasks."</span></span>
+* <span data-ttu-id="edff8-224">**공유 액세스 서명은 blob**: DotNetTutorial에 hello 풀 StartTask hello 응용 프로그램 이진 파일 및 입력된 데이터 파일 저장소에서 다운로드할 때 blob 공유 액세스 서명을 사용 하 여 (아래 #3 단계 참조).</span><span class="sxs-lookup"><span data-stu-id="edff8-224">**Blob shared access signatures**: hello pool's StartTask in DotNetTutorial uses blob shared access signatures when it downloads hello application binaries and input data files from Storage (see Step #3 below).</span></span> <span data-ttu-id="edff8-225">hello `UploadFileToContainerAsync` DotNetTutorial의 메서드에서 `Program.cs` hello 코드가 포함 된 각 blob의 공유 액세스 서명을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-225">hello `UploadFileToContainerAsync` method in DotNetTutorial's `Program.cs` contains hello code that obtains each blob's shared access signature.</span></span> <span data-ttu-id="edff8-226">[CloudBlob.GetSharedAccessSignature][net_sas_blob]를 호출하여 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-226">It does so by calling [CloudBlob.GetSharedAccessSignature][net_sas_blob].</span></span>
+* <span data-ttu-id="edff8-227">**컨테이너 공유 액세스 서명을**: 각 작업 hello 계산 노드에서 작업을 마치면 대로 해당 출력 파일 toohello 업로드 *출력* Azure 저장소의 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-227">**Container shared access signatures**: As each task finishes its work on hello compute node, it uploads its output file toohello *output* container in Azure Storage.</span></span> <span data-ttu-id="edff8-228">toodo TaskApplication hello 파일을 업로드 하는 경우 hello 경로의 일부로 toohello 컨테이너 쓰기 액세스를 제공 하는 컨테이너 공유 액세스 서명을 사용 하 여, 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-228">toodo so, TaskApplication uses a container shared access signature that provides write access toohello container as part of hello path when it uploads hello file.</span></span> <span data-ttu-id="edff8-229">가져오는 hello 컨테이너 공유 액세스 서명은 때 가져오는 hello blob 공유 액세스 서명으로 유사한 방식으로 수행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-229">Obtaining hello container shared access signature is done in a similar fashion as when obtaining hello blob shared access signature.</span></span> <span data-ttu-id="edff8-230">DotNetTutorial, 해당 hello 확인할 `GetContainerSasUrl` 도우미 메서드를 호출 [CloudBlobContainer.GetSharedAccessSignature] [ net_sas_container] toodo 하도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-230">In DotNetTutorial, you will find that hello `GetContainerSasUrl` helper method calls [CloudBlobContainer.GetSharedAccessSignature][net_sas_container] toodo so.</span></span> <span data-ttu-id="edff8-231">읽게 TaskApplication hello 컨테이너를 사용 하는 방법에 대 한 자세한 공유 액세스 서명에서 "6 단계: 작업 모니터링 합니다."</span><span class="sxs-lookup"><span data-stu-id="edff8-231">You'll read more about how TaskApplication uses hello container shared access signature in "Step 6: Monitor Tasks."</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a66c6-232">공유 액세스 서명에 대해 두 부분으로 이루어진 시리즈, [1부: 공유 액세스 서명(SAS) 모델 이해](../storage/common/storage-dotnet-shared-access-signature-part-1.md) 및 [2부: Blob Storage를 통해 공유 액세스 서명(SAS) 만들기 및 사용](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md)을 확인하여 Storage 계정의 데이터에 대한 보안 액세스 제공에 대한 자세한 내용을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-232">Check out the two-part series on shared access signatures, [Part 1: Understanding the shared access signature (SAS) model](../storage/common/storage-dotnet-shared-access-signature-part-1.md) and [Part 2: Create and use a shared access signature (SAS) with Blob storage](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md), to learn more about providing secure access to data in your Storage account.</span></span>
+> <span data-ttu-id="edff8-232">공유 액세스 서명에 대 hello 두 부분으로 구성 시리즈 체크아웃 [1 부: 이해 hello 공유 액세스 서명 (SAS) 모델](../storage/common/storage-dotnet-shared-access-signature-part-1.md) 및 [2 부: 만들기 및 공유 액세스 서명 (SAS)를 사용 하 여 Blob 저장소](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md), 저장소 계정에 대 한 보안 액세스 toodata 제공 하는 방법에 대 한 자세한 toolearn 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-232">Check out hello two-part series on shared access signatures, [Part 1: Understanding hello shared access signature (SAS) model](../storage/common/storage-dotnet-shared-access-signature-part-1.md) and [Part 2: Create and use a shared access signature (SAS) with Blob storage](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md), toolearn more about providing secure access toodata in your Storage account.</span></span>
 >
 >
 
-## <a name="step-3-create-batch-pool"></a><span data-ttu-id="a66c6-233">3단계: Batch 풀 만들기</span><span class="sxs-lookup"><span data-stu-id="a66c6-233">Step 3: Create Batch pool</span></span>
-<span data-ttu-id="a66c6-234">![Batch 풀 만들기][3]
-</span><span class="sxs-lookup"><span data-stu-id="a66c6-234">![Create a Batch pool][3]
+## <a name="step-3-create-batch-pool"></a><span data-ttu-id="edff8-233">3단계: Batch 풀 만들기</span><span class="sxs-lookup"><span data-stu-id="edff8-233">Step 3: Create Batch pool</span></span>
+<span data-ttu-id="edff8-234">![Batch 풀 만들기][3]
+</span><span class="sxs-lookup"><span data-stu-id="edff8-234">![Create a Batch pool][3]
 </span></span><br/>
 
-<span data-ttu-id="a66c6-235">Batch **풀**은 Batch가 작업의 태스크를 실행하는 계산 노드(가상 컴퓨터)의 컬렉션입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-235">A Batch **pool** is a collection of compute nodes (virtual machines) on which Batch executes a job's tasks.</span></span>
+<span data-ttu-id="edff8-235">Batch **풀**은 Batch가 작업의 태스크를 실행하는 계산 노드(가상 컴퓨터)의 컬렉션입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-235">A Batch **pool** is a collection of compute nodes (virtual machines) on which Batch executes a job's tasks.</span></span>
 
-<span data-ttu-id="a66c6-236">Azure Storage API를 사용하여 응용 프로그램 및 데이터 파일을 Storage 계정에 업로드하면 *DotNetTutorial*이 Batch .NET 라이브러리에서 제공한 API를 사용하여 Batch 서비스에 대한 호출을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-236">After uploading the application and data files to the Storage account with Azure Storage APIs, *DotNetTutorial* begins making calls to the Batch service with APIs provided by the Batch .NET library.</span></span> <span data-ttu-id="a66c6-237">이 코드는 먼저 [BatchClient][net_batchclient]를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-237">The code first creates a [BatchClient][net_batchclient]:</span></span>
+<span data-ttu-id="edff8-236">Hello 응용 프로그램 및 데이터 파일 toohello Azure 저장소 Api와 저장소 계정에 업로드 한 후 *DotNetTutorial* hello 일괄 처리.NET 라이브러리에서 제공 하는 api 호출 toohello 일괄 처리 서비스를 만들기 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-236">After uploading hello application and data files toohello Storage account with Azure Storage APIs, *DotNetTutorial* begins making calls toohello Batch service with APIs provided by hello Batch .NET library.</span></span> <span data-ttu-id="edff8-237">hello 코드 먼저 만듭니다는 [BatchClient][net_batchclient]:</span><span class="sxs-lookup"><span data-stu-id="edff8-237">hello code first creates a [BatchClient][net_batchclient]:</span></span>
 
 ```csharp
 BatchSharedKeyCredentials cred = new BatchSharedKeyCredentials(
@@ -318,7 +318,7 @@ using (BatchClient batchClient = BatchClient.Open(cred))
     ...
 ```
 
-<span data-ttu-id="a66c6-238">그런 다음, 샘플이 `CreatePoolIfNotExistsAsync`에 대한 호출을 통해 Batch 계정에 계산 노드의 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-238">Next, the sample creates a pool of compute nodes in the Batch account with a call to `CreatePoolIfNotExistsAsync`.</span></span> <span data-ttu-id="a66c6-239">`CreatePoolIfNotExistsAsync`는 [BatchClient.PoolOperations.CreatePool][net_pool_create] 메서드를 사용하여 Batch 서비스에 새로운 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-239">`CreatePoolIfNotExistsAsync` uses the [BatchClient.PoolOperations.CreatePool][net_pool_create] method to create a new pool in the Batch service:</span></span>
+<span data-ttu-id="edff8-238">다음으로 hello 샘플에서에서 풀을 만듭니다 계산 노드 호출 하 여 hello 일괄 처리 계정을 너무`CreatePoolIfNotExistsAsync`합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-238">Next, hello sample creates a pool of compute nodes in hello Batch account with a call too`CreatePoolIfNotExistsAsync`.</span></span> <span data-ttu-id="edff8-239">`CreatePoolIfNotExistsAsync`사용 하 여 hello [BatchClient.PoolOperations.CreatePool] [ net_pool_create] 메서드 toocreate hello 일괄 처리 서비스에서에서 새 풀:</span><span class="sxs-lookup"><span data-stu-id="edff8-239">`CreatePoolIfNotExistsAsync` uses hello [BatchClient.PoolOperations.CreatePool][net_pool_create] method toocreate a new pool in hello Batch service:</span></span>
 
 ```csharp
 private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, string poolId, IList<ResourceFile> resourceFiles)
@@ -328,7 +328,7 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
     {
         Console.WriteLine("Creating pool [{0}]...", poolId);
 
-        // Create the unbound pool. Until we call CloudPool.Commit() or CommitAsync(), no pool is actually created in the
+        // Create hello unbound pool. Until we call CloudPool.Commit() or CommitAsync(), no pool is actually created in the
         // Batch service. This CloudPool instance is therefore considered "unbound," and we can modify its properties.
         pool = batchClient.PoolOperations.CreatePool(
             poolId: poolId,
@@ -336,18 +336,18 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
             virtualMachineSize: "small",                                                // single-core, 1.75 GB memory, 225 GB disk
             cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));   // Windows Server 2012 R2
 
-        // Create and assign the StartTask that will be executed when compute nodes join the pool.
-        // In this case, we copy the StartTask's resource files (that will be automatically downloaded
-        // to the node by the StartTask) into the shared directory that all tasks will have access to.
+        // Create and assign hello StartTask that will be executed when compute nodes join hello pool.
+        // In this case, we copy hello StartTask's resource files (that will be automatically downloaded
+        // toohello node by hello StartTask) into hello shared directory that all tasks will have access to.
         pool.StartTask = new StartTask
         {
-            // Specify a command line for the StartTask that copies the task application files to the
+            // Specify a command line for hello StartTask that copies hello task application files toothe
             // node's shared directory. Every compute node in a Batch pool is configured with a number
             // of pre-defined environment variables that can be referenced by commands or applications
             // run by tasks.
 
             // Since a successful execution of robocopy can return a non-zero exit code (e.g. 1 when one or
-            // more files were successfully copied) we need to manually exit with a 0 for Batch to recognize
+            // more files were successfully copied) we need toomanually exit with a 0 for Batch toorecognize
             // StartTask execution success.
             CommandLine = "cmd /c (robocopy %AZ_BATCH_TASK_WORKING_DIR% %AZ_BATCH_NODE_SHARED_DIR%) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
             ResourceFiles = resourceFiles,
@@ -358,10 +358,10 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
     }
     catch (BatchException be)
     {
-        // Swallow the specific error code PoolExists since that is expected if the pool already exists
+        // Swallow hello specific error code PoolExists since that is expected if hello pool already exists
         if (be.RequestInformation?.BatchError != null && be.RequestInformation.BatchError.Code == BatchErrorCodeStrings.PoolExists)
         {
-            Console.WriteLine("The pool {0} already existed when we tried to create it", poolId);
+            Console.WriteLine("hello pool {0} already existed when we tried toocreate it", poolId);
         }
         else
         {
@@ -371,42 +371,42 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
 }
 ```
 
-<span data-ttu-id="a66c6-240">[CreatePool][net_pool_create]을 사용하여 풀을 만들 때 계산 노드 수, [노드의 크기](../cloud-services/cloud-services-sizes-specs.md), 노드의 운영 체제와 같은 매개 변수를 몇 가지 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-240">When you create a pool with [CreatePool][net_pool_create], you specify several parameters such as the number of compute nodes, the [size of the nodes](../cloud-services/cloud-services-sizes-specs.md), and the nodes' operating system.</span></span> <span data-ttu-id="a66c6-241">*DotNetTutorial*에서 [CloudServiceConfiguration][net_cloudserviceconfiguration]을 사용하여 [Cloud Services](../cloud-services/cloud-services-guestos-update-matrix.md)의 Windows Server 2012 R2를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-241">In *DotNetTutorial*, we use [CloudServiceConfiguration][net_cloudserviceconfiguration] to specify Windows Server 2012 R2 from [Cloud Services](../cloud-services/cloud-services-guestos-update-matrix.md).</span></span> 
+<span data-ttu-id="edff8-240">풀을 만들 때 [CreatePool][net_pool_create], 여러 매개 변수 지정 hello 계산 노드 수와 같이 hello [hello 노드의 크기가](../cloud-services/cloud-services-sizes-specs.md)를 작동 하는 노드 hello 및 시스템입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-240">When you create a pool with [CreatePool][net_pool_create], you specify several parameters such as hello number of compute nodes, hello [size of hello nodes](../cloud-services/cloud-services-sizes-specs.md), and hello nodes' operating system.</span></span> <span data-ttu-id="edff8-241">*DotNetTutorial*를 사용 하 여 [CloudServiceConfiguration] [ net_cloudserviceconfiguration] toospecify Windows Server 2012 r 2에서 [클라우드 서비스](../cloud-services/cloud-services-guestos-update-matrix.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-241">In *DotNetTutorial*, we use [CloudServiceConfiguration][net_cloudserviceconfiguration] toospecify Windows Server 2012 R2 from [Cloud Services](../cloud-services/cloud-services-guestos-update-matrix.md).</span></span> 
 
-<span data-ttu-id="a66c6-242">풀에 대한 [VirtualMachineConfiguration][net_virtualmachineconfiguration]을 지정하여 Azure VM(Virtual Machines)인 계산 노드의 풀을 만들 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-242">You can also create pools of compute nodes that are Azure Virtual Machines (VMs) by specifying the [VirtualMachineConfiguration][net_virtualmachineconfiguration] for your pool.</span></span> <span data-ttu-id="a66c6-243">Windows 또는 [Linux 이미지](batch-linux-nodes.md)에서 VM 계산 노드의 풀을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-243">You can create a pool of VM compute nodes from either Windows or [Linux images](batch-linux-nodes.md).</span></span> <span data-ttu-id="a66c6-244">VM 이미지에 대한 소스는 다음 중 하나일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-244">The source for your VM images can be either:</span></span>
+<span data-ttu-id="edff8-242">Hello를 지정 하 여 계산 노드를 Azure 가상 컴퓨터 (Vm)의 풀을 만들 수도 있습니다 [VirtualMachineConfiguration] [ net_virtualmachineconfiguration] 풀에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-242">You can also create pools of compute nodes that are Azure Virtual Machines (VMs) by specifying hello [VirtualMachineConfiguration][net_virtualmachineconfiguration] for your pool.</span></span> <span data-ttu-id="edff8-243">Windows 또는 [Linux 이미지](batch-linux-nodes.md)에서 VM 계산 노드의 풀을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-243">You can create a pool of VM compute nodes from either Windows or [Linux images](batch-linux-nodes.md).</span></span> <span data-ttu-id="edff8-244">VM 이미지에 대 한 hello 소스는 다음 중 하나일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-244">hello source for your VM images can be either:</span></span>
 
-- <span data-ttu-id="a66c6-245">[Azure Virtual Machines Marketplace][vm_marketplace]: 즉시 사용할 수 있는 Windows 및 Linux 이미지를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-245">The [Azure Virtual Machines Marketplace][vm_marketplace], which provides both Windows and Linux images that are ready-to-use.</span></span> 
-- <span data-ttu-id="a66c6-246">사용자가 준비하고 제공하는 사용자 지정 이미지입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-246">A custom image that you prepare and provide.</span></span> <span data-ttu-id="a66c6-247">사용자 지정 이미지에 대한 자세한 내용은 [Batch를 사용하여 대규모 병렬 계산 솔루션 개발](batch-api-basics.md#pool)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-247">For more details about custom images, see [Develop large-scale parallel compute solutions with Batch](batch-api-basics.md#pool).</span></span>
+- <span data-ttu-id="edff8-245">hello [Azure 가상 컴퓨터 마켓플레이스][vm_marketplace], 즉시 사용 되는 Windows 및 Linux 이미지를 제공 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-245">hello [Azure Virtual Machines Marketplace][vm_marketplace], which provides both Windows and Linux images that are ready-to-use.</span></span> 
+- <span data-ttu-id="edff8-246">사용자가 준비하고 제공하는 사용자 지정 이미지입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-246">A custom image that you prepare and provide.</span></span> <span data-ttu-id="edff8-247">사용자 지정 이미지에 대한 자세한 내용은 [Batch를 사용하여 대규모 병렬 계산 솔루션 개발](batch-api-basics.md#pool)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="edff8-247">For more details about custom images, see [Develop large-scale parallel compute solutions with Batch](batch-api-basics.md#pool).</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="a66c6-248">Batch의 계산 리소스에 대한 요금이 부과됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-248">You are charged for compute resources in Batch.</span></span> <span data-ttu-id="a66c6-249">비용을 최소화하려면 샘플을 실행하기 전에 `targetDedicatedComputeNodes`를 1로 낮출 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-249">To minimize costs, you can lower `targetDedicatedComputeNodes` to 1 before you run the sample.</span></span>
+> <span data-ttu-id="edff8-248">Batch의 계산 리소스에 대한 요금이 부과됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-248">You are charged for compute resources in Batch.</span></span> <span data-ttu-id="edff8-249">toominimize 비용을 낮출 수는 있습니다 `targetDedicatedComputeNodes` too1 hello 샘플을 실행 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="edff8-249">toominimize costs, you can lower `targetDedicatedComputeNodes` too1 before you run hello sample.</span></span>
 >
 >
 
-<span data-ttu-id="a66c6-250">이러한 실제 노드 속성과 함께 풀에 대해 [StartTask][net_pool_starttask]를 지정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-250">Along with these physical node properties, you may also specify a [StartTask][net_pool_starttask] for the pool.</span></span> <span data-ttu-id="a66c6-251">StartTask는 해당 노드가 풀을 연결할 때 각 노드에서 실행하고 이 때마다 노드가 다시 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-251">The StartTask executes on each node as that node joins the pool, and each time a node is restarted.</span></span> <span data-ttu-id="a66c6-252">StartTask는 작업을 실행하기 전에 계산 노드에서 응용 프로그램을 설치하는 데 특히 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-252">The StartTask is especially useful for installing applications on compute nodes prior to the execution of tasks.</span></span> <span data-ttu-id="a66c6-253">예를 들어 태스크에서 Python 스크립트를 사용하여 데이터를 처리하는 경우 계산 노드에서 Python을 설치하는 데 StartTask를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-253">For example, if your tasks process data by using Python scripts, you could use a StartTask to install Python on the compute nodes.</span></span>
+<span data-ttu-id="edff8-250">이러한 물리적 노드 속성과 함께 지정할 수도 있습니다는 [StartTask] [ net_pool_starttask] hello 풀에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-250">Along with these physical node properties, you may also specify a [StartTask][net_pool_starttask] for hello pool.</span></span> <span data-ttu-id="edff8-251">StartTask hello 해당 노드의 hello 풀에 참가 하 고 노드를 다시 시작 될 때마다 각 노드에서 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-251">hello StartTask executes on each node as that node joins hello pool, and each time a node is restarted.</span></span> <span data-ttu-id="edff8-252">StartTask hello 작업의 계산 노드 이전 toohello 실행 응용 프로그램을 설치 하는 데 특히 유용 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-252">hello StartTask is especially useful for installing applications on compute nodes prior toohello execution of tasks.</span></span> <span data-ttu-id="edff8-253">예를 들어 Python 스크립트를 사용 하 여 데이터를 처리 하는 작업을 하는 경우 StartTask tooinstall Python hello 계산 노드에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-253">For example, if your tasks process data by using Python scripts, you could use a StartTask tooinstall Python on hello compute nodes.</span></span>
 
-<span data-ttu-id="a66c6-254">이 샘플 응용 프로그램에서 StartTask는 Storage([StartTask][net_starttask].[ResourceFiles][net_starttask_resourcefiles] 속성을 사용하여 지정됨)에서 다운로드하는 파일을 StartTask 작업 디렉터리에서 노드에서 실행되는 *모든* 태스크를 액세스할 수 있는 공유 디렉터리에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-254">In this sample application, the StartTask copies the files that it downloads from Storage (which are specified by using the [StartTask][net_starttask].[ResourceFiles][net_starttask_resourcefiles] property) from the StartTask working directory to the shared directory that *all* tasks running on the node can access.</span></span> <span data-ttu-id="a66c6-255">기본적으로 노드가 풀에 조인하면 `TaskApplication.exe` 및 해당 종속성이 각 노드의 공유 디렉터리에 복사되므로 노드에서 실행되는 모든 작업이 공유 디렉터리에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-255">Essentially, this copies `TaskApplication.exe` and its dependencies to the shared directory on each node as the node joins the pool, so that any tasks that run on the node can access it.</span></span>
+<span data-ttu-id="edff8-254">이 샘플 응용 프로그램에서는 hello StartTask 저장소에서 다운로드 하는 hello 파일에 복사 (hello를 사용 하 여 지정 되는 [StartTask][net_starttask].[ ResourceFiles] [ net_starttask_resourcefiles] 속성) hello StartTask 작업 디렉터리 toohello 공유 디렉터리에서는 *모든* hello 노드에서 실행 되는 작업에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-254">In this sample application, hello StartTask copies hello files that it downloads from Storage (which are specified by using hello [StartTask][net_starttask].[ResourceFiles][net_starttask_resourcefiles] property) from hello StartTask working directory toohello shared directory that *all* tasks running on hello node can access.</span></span> <span data-ttu-id="edff8-255">기본적으로,이 복사 `TaskApplication.exe` 및 해당 종속성 toohello 공유 디렉터리에 각 노드에 hello 노드 hello 풀에 참가 하는 대로 hello 노드에서 실행 되는 모든 작업에 액세스할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-255">Essentially, this copies `TaskApplication.exe` and its dependencies toohello shared directory on each node as hello node joins hello pool, so that any tasks that run on hello node can access it.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a66c6-256">Azure Batch의 **응용 프로그램 패키지** 기능은 풀의 계산 노드로 응용 프로그램을 가져올 수 있는 또 다른 방법을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-256">The **application packages** feature of Azure Batch provides another way to get your application onto the compute nodes in a pool.</span></span> <span data-ttu-id="a66c6-257">자세한 내용은 [Batch 응용 프로그램 패키지를 사용하여 계산 노드에 응용 프로그램 배포](batch-application-packages.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-257">See [Deploy applications to compute nodes with Batch application packages](batch-application-packages.md) for details.</span></span>
+> <span data-ttu-id="edff8-256">hello **응용 프로그램 패키지** Azure 일괄 처리의 기능은 다른 방식으로 tooget hello 계산 노드는 풀의 응용 프로그램을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-256">hello **application packages** feature of Azure Batch provides another way tooget your application onto hello compute nodes in a pool.</span></span> <span data-ttu-id="edff8-257">참조 [일괄 처리 응용 프로그램 패키지와 응용 프로그램 toocompute 노드를 배포할](batch-application-packages.md) 대 한 자세한 내용은 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-257">See [Deploy applications toocompute nodes with Batch application packages](batch-application-packages.md) for details.</span></span>
 >
 >
 
-<span data-ttu-id="a66c6-258">위의 코드 조각에서 주목할 만한 것은 StartTask의 *CommandLine* 속성에서 두 개의 환경 변수(`%AZ_BATCH_TASK_WORKING_DIR%` 및 `%AZ_BATCH_NODE_SHARED_DIR%`) 사용입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-258">Also notable in the code snippet above is the use of two environment variables in the *CommandLine* property of the StartTask: `%AZ_BATCH_TASK_WORKING_DIR%` and `%AZ_BATCH_NODE_SHARED_DIR%`.</span></span> <span data-ttu-id="a66c6-259">Batch 풀 내의 각 계산 노드는 Batch에 해당하는 몇 가지 환경 변수를 사용하여 자동으로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-259">Each compute node within a Batch pool is automatically configured with several environment variables that are specific to Batch.</span></span> <span data-ttu-id="a66c6-260">태스크에 의해 실행되는 모든 프로세스는 이러한 환경 변수에 대한 액세스를 갖습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-260">Any process that is executed by a task has access to these environment variables.</span></span>
+<span data-ttu-id="edff8-258">또한 위의 코드 조각 hello에에서 주목할 만한은 hello를 사용 하 여 hello에 두 환경 변수의 *CommandLine* hello StartTask의 속성: `%AZ_BATCH_TASK_WORKING_DIR%` 및 `%AZ_BATCH_NODE_SHARED_DIR%`합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-258">Also notable in hello code snippet above is hello use of two environment variables in hello *CommandLine* property of hello StartTask: `%AZ_BATCH_TASK_WORKING_DIR%` and `%AZ_BATCH_NODE_SHARED_DIR%`.</span></span> <span data-ttu-id="edff8-259">일괄 처리 풀 내에서 각 계산 노드가 특정 tooBatch 있는 여러 환경 변수가 자동으로 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-259">Each compute node within a Batch pool is automatically configured with several environment variables that are specific tooBatch.</span></span> <span data-ttu-id="edff8-260">작업에 의해 실행 되는 모든 프로세스는 액세스 toothese 환경 변수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-260">Any process that is executed by a task has access toothese environment variables.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a66c6-261">태스크 작업 디렉터리에 대한 정보뿐만 아니라 Batch 풀의 계산 노드에 사용할 수 있는 환경 변수에 대한 자세한 내용은 [개발자를 위한 Batch 기능 개요](batch-api-basics.md)에서 [태스크에 대한 환경 설정](batch-api-basics.md#environment-settings-for-tasks) 및 [파일 및 디렉터리](batch-api-basics.md#files-and-directories) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-261">To find out more about the environment variables that are available on compute nodes in a Batch pool, and information on task working directories, see the [Environment settings for tasks](batch-api-basics.md#environment-settings-for-tasks) and [Files and directories](batch-api-basics.md#files-and-directories) sections in the [Batch feature overview for developers](batch-api-basics.md).</span></span>
+> <span data-ttu-id="edff8-261">일괄 처리 풀 및 작업 작업 디렉터리에 대 한 정보에 대 한 계산 노드에서 사용할 수 있는 hello 환경 변수에 대 한 자세한 내용을 toofind 참조 hello [작업에 대 한 환경 설정을](batch-api-basics.md#environment-settings-for-tasks) 및 [파일 및 디렉터리 ](batch-api-basics.md#files-and-directories) hello의 섹션에서는 [개발자를 위한 일괄 처리 기능 개요](batch-api-basics.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-261">toofind out more about hello environment variables that are available on compute nodes in a Batch pool, and information on task working directories, see hello [Environment settings for tasks](batch-api-basics.md#environment-settings-for-tasks) and [Files and directories](batch-api-basics.md#files-and-directories) sections in hello [Batch feature overview for developers](batch-api-basics.md).</span></span>
 >
 >
 
-## <a name="step-4-create-batch-job"></a><span data-ttu-id="a66c6-262">4단계: Batch 작업 만들기</span><span class="sxs-lookup"><span data-stu-id="a66c6-262">Step 4: Create Batch job</span></span>
-<span data-ttu-id="a66c6-263">![Batch 작업 만들기][4]</span><span class="sxs-lookup"><span data-stu-id="a66c6-263">![Create Batch job][4]</span></span><br/>
+## <a name="step-4-create-batch-job"></a><span data-ttu-id="edff8-262">4단계: Batch 작업 만들기</span><span class="sxs-lookup"><span data-stu-id="edff8-262">Step 4: Create Batch job</span></span>
+<span data-ttu-id="edff8-263">![Batch 작업 만들기][4]</span><span class="sxs-lookup"><span data-stu-id="edff8-263">![Create Batch job][4]</span></span><br/>
 
-<span data-ttu-id="a66c6-264">Batch **작업**은 태스크의 컬렉션이며 계산 노드의 풀과 관련됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-264">A Batch **job** is a collection of tasks, and is associated with a pool of compute nodes.</span></span> <span data-ttu-id="a66c6-265">작업의 태스크는 연결된 풀의 계산 노드에서 실행됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-265">The tasks in a job execute on the associated pool's compute nodes.</span></span>
+<span data-ttu-id="edff8-264">Batch **작업**은 태스크의 컬렉션이며 계산 노드의 풀과 관련됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-264">A Batch **job** is a collection of tasks, and is associated with a pool of compute nodes.</span></span> <span data-ttu-id="edff8-265">작업의 hello 작업 관련 hello 풀 계산 노드에서 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-265">hello tasks in a job execute on hello associated pool's compute nodes.</span></span>
 
-<span data-ttu-id="a66c6-266">워크로드와 관련된 태스크를 구성하고 추적하는 것뿐만 아니라, 작업(더 나아가, 태스크)에 대한 최대 실행 시간은 물론 Batch 계정 내 다른 작업 대비 작업 우선 순위와 같은 제약 조건을 부과하는 데도 작업을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-266">You can use a job not only for organizing and tracking tasks in related workloads, but also for imposing certain constraints--such as the maximum runtime for the job (and by extension, its tasks) as well as job priority in relation to other jobs in the Batch account.</span></span> <span data-ttu-id="a66c6-267">하지만 이 예제에서 작업은 3단계에서 만든 풀에만 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-267">In this example, however, the job is associated only with the pool that was created in step #3.</span></span> <span data-ttu-id="a66c6-268">추가적으로 구성되는 다른 속성은 없습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-268">No additional properties are configured.</span></span>
+<span data-ttu-id="edff8-266">구성 하 고 관련된 작업에서 작업을 추적 뿐만 아니라 hello 일괄 처리에 있는 관계 tooother 작업에서 작업 우선 순위 뿐만 아니라-hello 최대 runtime hello 작업에 대 한 (및 확장 하면 해당 작업)와 같은 특정 제약 조건을 부과 하는 것에 대 한 작업을 사용할 수 있습니다. 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-266">You can use a job not only for organizing and tracking tasks in related workloads, but also for imposing certain constraints--such as hello maximum runtime for hello job (and by extension, its tasks) as well as job priority in relation tooother jobs in hello Batch account.</span></span> <span data-ttu-id="edff8-267">그러나이 예제에서는 hello 작업 3 단계에서 생성 된 hello 풀 연관 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-267">In this example, however, hello job is associated only with hello pool that was created in step #3.</span></span> <span data-ttu-id="edff8-268">추가적으로 구성되는 다른 속성은 없습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-268">No additional properties are configured.</span></span>
 
-<span data-ttu-id="a66c6-269">모든 Batch 작업은 특정 풀에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-269">All Batch jobs are associated with a specific pool.</span></span> <span data-ttu-id="a66c6-270">연결은 작업의 태스크가 실행되는 노드를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-270">This association indicates which nodes the job's tasks will execute on.</span></span> <span data-ttu-id="a66c6-271">이것은 아래 코드 조각에 표시된 것처럼 [CloudJob.PoolInformation][net_job_poolinfo] 속성을 사용하여 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-271">You specify this by using the [CloudJob.PoolInformation][net_job_poolinfo] property, as shown in the code snippet below.</span></span>
+<span data-ttu-id="edff8-269">모든 Batch 작업은 특정 풀에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-269">All Batch jobs are associated with a specific pool.</span></span> <span data-ttu-id="edff8-270">이 연결은 hello 작업의 작업에서 실행 될 노드를 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-270">This association indicates which nodes hello job's tasks will execute on.</span></span> <span data-ttu-id="edff8-271">Hello를 사용 하 여이 지정할 [CloudJob.PoolInformation] [ net_job_poolinfo] hello 아래 코드 조각에 나와 있는 것 처럼 속성입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-271">You specify this by using hello [CloudJob.PoolInformation][net_job_poolinfo] property, as shown in hello code snippet below.</span></span>
 
 ```csharp
 private static async Task CreateJobAsync(
@@ -424,16 +424,16 @@ private static async Task CreateJobAsync(
 }
 ```
 
-<span data-ttu-id="a66c6-272">이제 작업이 만들어졌으므로 작업은 작업 수행에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-272">Now that a job has been created, tasks are added to perform the work.</span></span>
+<span data-ttu-id="edff8-272">작업을 만든 후, tooperform hello 작업 작업에 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-272">Now that a job has been created, tasks are added tooperform hello work.</span></span>
 
-## <a name="step-5-add-tasks-to-job"></a><span data-ttu-id="a66c6-273">5단계: 작업에 태스크 추가</span><span class="sxs-lookup"><span data-stu-id="a66c6-273">Step 5: Add tasks to job</span></span>
-<span data-ttu-id="a66c6-274">![작업에 태스크 추가][5]</span><span class="sxs-lookup"><span data-stu-id="a66c6-274">![Add tasks to job][5]</span></span><br/><span data-ttu-id="a66c6-275">
-*(1) 태스크가 작업에 추가됨, (2) 태스크가 노드에서 실행되도록 예약됨, (3) 태스크가 처리할 데이터 파일을 다운로드함*</span><span class="sxs-lookup"><span data-stu-id="a66c6-275">
-*(1) Tasks are added to the job, (2) the tasks are scheduled to run on nodes, and (3) the tasks download the data files to process*</span></span>
+## <a name="step-5-add-tasks-toojob"></a><span data-ttu-id="edff8-273">5 단계: 추가 작업 toojob</span><span class="sxs-lookup"><span data-stu-id="edff8-273">Step 5: Add tasks toojob</span></span>
+<span data-ttu-id="edff8-274">![작업 toojob 추가][5]</span><span class="sxs-lookup"><span data-stu-id="edff8-274">![Add tasks toojob][5]</span></span><br/><span data-ttu-id="edff8-275">
+*(1) 작업 toohello 작업 추가 되 고 (2) hello 작업은 노드에서 예약 된 toorun (3) hello 작업 hello 데이터 파일 tooprocess 다운로드*</span><span class="sxs-lookup"><span data-stu-id="edff8-275">
+*(1) Tasks are added toohello job, (2) hello tasks are scheduled toorun on nodes, and (3) hello tasks download hello data files tooprocess*</span></span>
 
-<span data-ttu-id="a66c6-276">Batch **태스크**는 계산 노드에서 실행되는 개별 작업 단위입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-276">Batch **tasks** are the individual units of work that execute on the compute nodes.</span></span> <span data-ttu-id="a66c6-277">작업에는 명령줄이 있으며 해당 명령줄에서 지정한 스크립트 또는 실행 파일을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-277">A task has a command line and runs the scripts or executables that you specify in that command line.</span></span>
+<span data-ttu-id="edff8-276">일괄 처리 **작업** hello 개별 작업 단위 hello를 실행 하는 계산 노드는 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-276">Batch **tasks** are hello individual units of work that execute on hello compute nodes.</span></span> <span data-ttu-id="edff8-277">작업 명령줄 개이고 hello 스크립트 또는 명령줄에서 지정 하는 실행 파일을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-277">A task has a command line and runs hello scripts or executables that you specify in that command line.</span></span>
 
-<span data-ttu-id="a66c6-278">실제로 작업을 수행하려면 태스크가 작업에 추가되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-278">To actually perform work, tasks must be added to a job.</span></span> <span data-ttu-id="a66c6-279">각 [CloudTask][net_task]는 명령줄 속성 및 명령줄이 자동으로 실행되기 전에 태스크가 노드에 다운로드하는 [ResourceFiles][net_task_resourcefiles](풀의 StartTask와 마찬가지로)를 사용하여 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-279">Each [CloudTask][net_task] is configured by using a command-line property and [ResourceFiles][net_task_resourcefiles] (as with the pool's StartTask) that the task downloads to the node before its command line is automatically executed.</span></span> <span data-ttu-id="a66c6-280">*DotNetTutorial* 샘플 프로젝트에서 각 태스크는 파일을 하나만 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-280">In the *DotNetTutorial* sample project, each task processes only one file.</span></span> <span data-ttu-id="a66c6-281">따라서 ResourceFiles 컬렉션은 단일 요소를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-281">Thus, its ResourceFiles collection contains a single element.</span></span>
+<span data-ttu-id="edff8-278">작업을 수행 하는 tooactually, 작업 tooa 작업을 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-278">tooactually perform work, tasks must be added tooa job.</span></span> <span data-ttu-id="edff8-279">각 [CloudTask] [ net_task] 명령줄 속성을 사용 하 여 구성 및 [ResourceFiles] [ net_task_resourcefiles] (hello 풀 StartTask와 마찬가지로)를 해당 명령줄이 자동으로 실행 하기 전에 hello 작업 toohello 노드를 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-279">Each [CloudTask][net_task] is configured by using a command-line property and [ResourceFiles][net_task_resourcefiles] (as with hello pool's StartTask) that hello task downloads toohello node before its command line is automatically executed.</span></span> <span data-ttu-id="edff8-280">Hello에 *DotNetTutorial* 샘플 프로젝트를 각 작업에서는 하나의 파일을 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-280">In hello *DotNetTutorial* sample project, each task processes only one file.</span></span> <span data-ttu-id="edff8-281">따라서 ResourceFiles 컬렉션은 단일 요소를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-281">Thus, its ResourceFiles collection contains a single element.</span></span>
 
 ```csharp
 private static async Task<List<CloudTask>> AddTasksAsync(
@@ -442,14 +442,14 @@ private static async Task<List<CloudTask>> AddTasksAsync(
     List<ResourceFile> inputFiles,
     string outputContainerSasUrl)
 {
-    Console.WriteLine("Adding {0} tasks to job [{1}]...", inputFiles.Count, jobId);
+    Console.WriteLine("Adding {0} tasks toojob [{1}]...", inputFiles.Count, jobId);
 
-    // Create a collection to hold the tasks that we'll be adding to the job
+    // Create a collection toohold hello tasks that we'll be adding toohello job
     List<CloudTask> tasks = new List<CloudTask>();
 
-    // Create each of the tasks. Because we copied the task application to the
-    // node's shared directory with the pool's StartTask, we can access it via
-    // the shared directory on the node that the task runs on.
+    // Create each of hello tasks. Because we copied hello task application toothe
+    // node's shared directory with hello pool's StartTask, we can access it via
+    // hello shared directory on hello node that hello task runs on.
     foreach (ResourceFile inputFile in inputFiles)
     {
         string taskId = "topNtask" + inputFiles.IndexOf(inputFile);
@@ -463,9 +463,9 @@ private static async Task<List<CloudTask>> AddTasksAsync(
         tasks.Add(task);
     }
 
-    // Add the tasks as a collection, as opposed to issuing a separate AddTask call
-    // for each. Bulk task submission helps to ensure efficient underlying API calls
-    // to the Batch service.
+    // Add hello tasks as a collection, as opposed tooissuing a separate AddTask call
+    // for each. Bulk task submission helps tooensure efficient underlying API calls
+    // toohello Batch service.
     await batchClient.JobOperations.AddTaskAsync(jobId, tasks);
 
     return tasks;
@@ -473,15 +473,15 @@ private static async Task<List<CloudTask>> AddTasksAsync(
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="a66c6-282">`%AZ_BATCH_NODE_SHARED_DIR%` 같은 환경 변수에 액세스하거나 노드의 `PATH`에서 찾을 수 없는 응용 프로그램을 실행하는 경우, 태스크 명령줄에 `cmd /c`를 접두사로 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-282">When they access environment variables such as `%AZ_BATCH_NODE_SHARED_DIR%` or execute an application not found in the node's `PATH`, task command lines must be prefixed with `cmd /c`.</span></span> <span data-ttu-id="a66c6-283">이렇게 하면 명령 인터프린터를 명시적으로 실행하고 명령을 수행한 후에 종료하도록 지시합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-283">This will explicitly execute the command interpreter and instruct it to terminate after carrying out your command.</span></span> <span data-ttu-id="a66c6-284">이 요구 사항은 태스크가 노드의 `PATH`(예: *robocopy.exe* 또는 *powershell.exe*)에서 응용 프로그램을 실행하고 환경 변수가 사용되지 않는 경우 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-284">This requirement is unnecessary if your tasks execute an application in the node's `PATH` (such as *robocopy.exe* or *powershell.exe*) and no environment variables are used.</span></span>
+> <span data-ttu-id="edff8-282">와 같은 환경 변수에 액세스 하면 `%AZ_BATCH_NODE_SHARED_DIR%` hello 노드에 없는 응용 프로그램을 실행 또는 `PATH`, 작업 명령줄 ज ा य `cmd /c`합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-282">When they access environment variables such as `%AZ_BATCH_NODE_SHARED_DIR%` or execute an application not found in hello node's `PATH`, task command lines must be prefixed with `cmd /c`.</span></span> <span data-ttu-id="edff8-283">명시적으로 hello 명령 인터프리터 실행 되 고 tooterminate 명령을 수행한 후 지시 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-283">This will explicitly execute hello command interpreter and instruct it tooterminate after carrying out your command.</span></span> <span data-ttu-id="edff8-284">이 요구 사항을 작업 hello 노드의 응용 프로그램을 실행 하는 경우에 필요 하지 않습니다. `PATH` (같은 *robocopy.exe* 또는 *powershell.exe*) 및 환경 변수 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-284">This requirement is unnecessary if your tasks execute an application in hello node's `PATH` (such as *robocopy.exe* or *powershell.exe*) and no environment variables are used.</span></span>
 >
 >
 
-<span data-ttu-id="a66c6-285">위의 코드 조각의 `foreach` 루프 내에서 태스크에 대한 명령줄이 *TaskApplication.exe*에 전달되는 세 개의 명령줄 인수로 구성되어 있는 것을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-285">Within the `foreach` loop in the code snippet above, you can see that the command line for the task is constructed such that three command-line arguments are passed to *TaskApplication.exe*:</span></span>
+<span data-ttu-id="edff8-285">Hello 내 `foreach` hello 위의 코드 조각에서 루프를 3 개의 명령줄 인수는 너무 전달 되도록 hello 작업에 대 한 hello 명령줄 생성을 확인할 수 있습니다*TaskApplication.exe*:</span><span class="sxs-lookup"><span data-stu-id="edff8-285">Within hello `foreach` loop in hello code snippet above, you can see that hello command line for hello task is constructed such that three command-line arguments are passed too*TaskApplication.exe*:</span></span>
 
-1. <span data-ttu-id="a66c6-286">**첫 번째 인수**는 처리할 파일의 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-286">The **first argument** is the path of the file to process.</span></span> <span data-ttu-id="a66c6-287">노드에 있는 것과 같은 파일에 대한 로컬 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-287">This is the local path to the file as it exists on the node.</span></span> <span data-ttu-id="a66c6-288">위의 `UploadFileToContainerAsync`에 ResourceFile 개체를 처음으로 만드는 경우 이 속성(ResourceFile 생성자에 대한 매개 변수로)에 대해 파일 이름이 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-288">When the ResourceFile object in `UploadFileToContainerAsync` was first created above, the file name was used for this property (as a parameter to the ResourceFile constructor).</span></span> <span data-ttu-id="a66c6-289">따라서 *TaskApplication.exe*와 동일한 디렉터리에서 파일을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-289">This indicates that the file can be found in the same directory as *TaskApplication.exe*.</span></span>
-2. <span data-ttu-id="a66c6-290">**두 번째 인수**는 상위 *N* 단어를 출력 파일에 써야 한다는 것을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-290">The **second argument** specifies that the top *N* words should be written to the output file.</span></span> <span data-ttu-id="a66c6-291">샘플에서 상위 세 개 단어를 출력 파일에 쓸 수 있도록 하드 코드됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-291">In the sample, this is hard-coded so that the top three words are written to the output file.</span></span>
-3. <span data-ttu-id="a66c6-292">**세 번째 인수**는 Azure Storage의 **출력** 컨테이너에 쓰기 액세스를 제공하는 공유 액세스 서명(SAS)입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-292">The **third argument** is the shared access signature (SAS) that provides write access to the **output** container in Azure Storage.</span></span> <span data-ttu-id="a66c6-293">*TaskApplication.exe*는 Azure Storage에 출력 파일을 업로드할 때 공유 액세스 서명 URL을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-293">*TaskApplication.exe* uses this shared access signature URL when it uploads the output file to Azure Storage.</span></span> <span data-ttu-id="a66c6-294">TaskApplication 프로젝트의 `Program.cs` 파일에 포함된 `UploadFileToContainer` 메서드에서 이를 위한 코드를 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-294">You can find the code for this in the `UploadFileToContainer` method in the TaskApplication project's `Program.cs` file:</span></span>
+1. <span data-ttu-id="edff8-286">hello **첫 번째 인수** hello 파일 tooprocess hello 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-286">hello **first argument** is hello path of hello file tooprocess.</span></span> <span data-ttu-id="edff8-287">Hello 노드에 있는 것 처럼 hello 로컬 경로 toohello 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-287">This is hello local path toohello file as it exists on hello node.</span></span> <span data-ttu-id="edff8-288">때 ResourceFile 개체에 hello `UploadFileToContainerAsync` 처음 만들어진 위, hello 파일 이름이 (매개 변수 toohello ResourceFile 생성자)으로이 속성에 사용 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-288">When hello ResourceFile object in `UploadFileToContainerAsync` was first created above, hello file name was used for this property (as a parameter toohello ResourceFile constructor).</span></span> <span data-ttu-id="edff8-289">해당 hello 파일이 hello에 동일한 나타냅니다으로 디렉터리 *TaskApplication.exe*합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-289">This indicates that hello file can be found in hello same directory as *TaskApplication.exe*.</span></span>
+2. <span data-ttu-id="edff8-290">hello **의 두 번째 인수** 해당 hello 위쪽 *N* 단어 toohello 출력 파일이 작성 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-290">hello **second argument** specifies that hello top *N* words should be written toohello output file.</span></span> <span data-ttu-id="edff8-291">Hello 예제에서이 하드 코드 된 상위 세 단어 hello toohello 출력 파일 기록 되도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-291">In hello sample, this is hard-coded so that hello top three words are written toohello output file.</span></span>
+3. <span data-ttu-id="edff8-292">hello **세 번째 인수** toohello 쓰기 액세스를 제공 하는 hello 공유 액세스 서명 (SAS)은 **출력** Azure 저장소의 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-292">hello **third argument** is hello shared access signature (SAS) that provides write access toohello **output** container in Azure Storage.</span></span> <span data-ttu-id="edff8-293">*TaskApplication.exe* hello 출력 파일 tooAzure 저장소에 업로드 하는 경우 사용 하 여가 공유 액세스 서명 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-293">*TaskApplication.exe* uses this shared access signature URL when it uploads hello output file tooAzure Storage.</span></span> <span data-ttu-id="edff8-294">Hello에서이 대 한 hello 코드를 찾을 수 있습니다 `UploadFileToContainer` hello TaskApplication 프로젝트에서 메서드 `Program.cs` 파일:</span><span class="sxs-lookup"><span data-stu-id="edff8-294">You can find hello code for this in hello `UploadFileToContainer` method in hello TaskApplication project's `Program.cs` file:</span></span>
 
 ```csharp
 // NOTE: From project TaskApplication Program.cs
@@ -490,10 +490,10 @@ private static void UploadFileToContainer(string filePath, string containerSas)
 {
         string blobName = Path.GetFileName(filePath);
 
-        // Obtain a reference to the container using the SAS URI.
+        // Obtain a reference toohello container using hello SAS URI.
         CloudBlobContainer container = new CloudBlobContainer(new Uri(containerSas));
 
-        // Upload the file (as a new blob) to the container
+        // Upload hello file (as a new blob) toohello container
         try
         {
                 CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
@@ -509,29 +509,29 @@ private static void UploadFileToContainer(string filePath, string containerSas)
                 Console.WriteLine("Additional error information: " + e.Message);
                 Console.WriteLine();
 
-                // Indicate that a failure has occurred so that when the Batch service
-                // sets the CloudTask.ExecutionInformation.ExitCode for the task that
+                // Indicate that a failure has occurred so that when hello Batch service
+                // sets hello CloudTask.ExecutionInformation.ExitCode for hello task that
                 // executed this application, it properly indicates that there was a
-                // problem with the task.
+                // problem with hello task.
                 Environment.ExitCode = -1;
         }
 }
 ```
 
-## <a name="step-6-monitor-tasks"></a><span data-ttu-id="a66c6-295">6단계: 작업 모니터링</span><span class="sxs-lookup"><span data-stu-id="a66c6-295">Step 6: Monitor tasks</span></span>
-<span data-ttu-id="a66c6-296">![작업 모니터링][6]</span><span class="sxs-lookup"><span data-stu-id="a66c6-296">![Monitor tasks][6]</span></span><br/><span data-ttu-id="a66c6-297">
-*클라이언트 응용 프로그램이 (1) 태스크의 완료 및 성공 상태를 모니터링하고 (2) 태스크는 결과 데이터를 Azure Storage에 업로드합니다.*</span><span class="sxs-lookup"><span data-stu-id="a66c6-297">
-*The client application (1) monitors the tasks for completion and success status, and (2) the tasks upload result data to Azure Storage*</span></span>
+## <a name="step-6-monitor-tasks"></a><span data-ttu-id="edff8-295">6단계: 작업 모니터링</span><span class="sxs-lookup"><span data-stu-id="edff8-295">Step 6: Monitor tasks</span></span>
+<span data-ttu-id="edff8-296">![작업 모니터링][6]</span><span class="sxs-lookup"><span data-stu-id="edff8-296">![Monitor tasks][6]</span></span><br/><span data-ttu-id="edff8-297">
+*hello 클라이언트 응용 프로그램 (1) 모니터 hello 완성 및 성공 상태에 대 한 작업 및 (2) 작업 업로드 결과 데이터 tooAzure 저장소 hello*</span><span class="sxs-lookup"><span data-stu-id="edff8-297">
+*hello client application (1) monitors hello tasks for completion and success status, and (2) hello tasks upload result data tooAzure Storage*</span></span>
 
-<span data-ttu-id="a66c6-298">태스크가 작업에 추가되면 작업에 연결된 풀 내에서 계산 노드에서 실행되도록 자동으로 큐에 대기 및 예약됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-298">When tasks are added to a job, they are automatically queued and scheduled for execution on compute nodes within the pool associated with the job.</span></span> <span data-ttu-id="a66c6-299">지정한 설정에 따라 Batch는 대기, 예약, 다시 시도하는 모든 작업 및 기타 담당 작업 관리 업무를 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-299">Based on the settings you specify, Batch handles all task queuing, scheduling, retrying, and other task administration duties for you.</span></span>
+<span data-ttu-id="edff8-298">작업 tooa 작업 추가 되 면 자동으로 큐에 대기 되며 hello 작업과 연결 된 hello 풀 내에서 계산 노드에서 실행 되도록 예약 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-298">When tasks are added tooa job, they are automatically queued and scheduled for execution on compute nodes within hello pool associated with hello job.</span></span> <span data-ttu-id="edff8-299">지정 된 hello 설정에 따라, 일괄 처리 모든 작업 큐, 예약, 다시 시도 및 기타 작업 관리 업무에 대 한 처리 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-299">Based on hello settings you specify, Batch handles all task queuing, scheduling, retrying, and other task administration duties for you.</span></span>
 
-<span data-ttu-id="a66c6-300">태스크 실행을 모니터링하는 방법은 여러 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-300">There are many approaches to monitoring task execution.</span></span> <span data-ttu-id="a66c6-301">DotNetTutorial은 완료 및 태스크 실패 또는 성공 상태에 대해서만 보고하는 간단한 예제를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-301">DotNetTutorial shows a simple example that reports only on completion and task failure or success states.</span></span> <span data-ttu-id="a66c6-302">DotNetTutorial의 `Program.cs`에 있는 `MonitorTasks` 메서드 내에 설명의 근거가 되는 세 가지 Batch .NET 개념이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-302">Within the `MonitorTasks` method in DotNetTutorial's `Program.cs`, there are three Batch .NET concepts that warrant discussion.</span></span> <span data-ttu-id="a66c6-303">표시된 순서에 따라 아래 나열되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-303">They are listed below in their order of appearance:</span></span>
+<span data-ttu-id="edff8-300">가지 많은 작업 실행이 toomonitoring입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-300">There are many approaches toomonitoring task execution.</span></span> <span data-ttu-id="edff8-301">DotNetTutorial은 완료 및 태스크 실패 또는 성공 상태에 대해서만 보고하는 간단한 예제를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-301">DotNetTutorial shows a simple example that reports only on completion and task failure or success states.</span></span> <span data-ttu-id="edff8-302">Hello 내 `MonitorTasks` DotNetTutorial의 메서드에서 `Program.cs`는 토론을 보증 하는 세 가지 일괄 처리.NET 개념이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-302">Within hello `MonitorTasks` method in DotNetTutorial's `Program.cs`, there are three Batch .NET concepts that warrant discussion.</span></span> <span data-ttu-id="edff8-303">표시된 순서에 따라 아래 나열되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-303">They are listed below in their order of appearance:</span></span>
 
-1. <span data-ttu-id="a66c6-304">**ODATADetailLevel**: 목록 작업에서 [ODATADetailLevel][net_odatadetaillevel] 지정(작업의 태스크 목록을 가져오는 것과 같은)은 Batch 응용 프로그램 성능을 보장하는 데 반드시 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-304">**ODATADetailLevel**: Specifying [ODATADetailLevel][net_odatadetaillevel] in list operations (such as obtaining a list of a job's tasks) is essential in ensuring Batch application performance.</span></span> <span data-ttu-id="a66c6-305">Batch 응용 프로그램 내에서 상태 모니터링을 수행하려는 경우 [효율적인 Azure Batch 서비스 쿼리](batch-efficient-list-queries.md)를 읽기 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-305">Add [Query the Azure Batch service efficiently](batch-efficient-list-queries.md) to your reading list if you plan on doing any sort of status monitoring within your Batch applications.</span></span>
-2. <span data-ttu-id="a66c6-306">**TaskStateMonitor**: [TaskStateMonitor][net_taskstatemonitor]는 태스크 상태를 모니터링하기 위한 도우미 유틸리티를 사용하여 Batch .NET 응용 프로그램을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-306">**TaskStateMonitor**: [TaskStateMonitor][net_taskstatemonitor] provides Batch .NET applications with helper utilities for monitoring task states.</span></span> <span data-ttu-id="a66c6-307">`MonitorTasks`에서 *DotNetTutorial*은 제한 시간 내에서 모든 태스크가 [TaskState.Completed][net_taskstate]에 도달할 때까지 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-307">In `MonitorTasks`, *DotNetTutorial* waits for all tasks to reach [TaskState.Completed][net_taskstate] within a time limit.</span></span> <span data-ttu-id="a66c6-308">그 후 작업을 종료합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-308">Then it terminates the job.</span></span>
-3. <span data-ttu-id="a66c6-309">**TerminateJobAsync**: [JobOperations.TerminateJobAsync][net_joboperations_terminatejob]로 작업 종료(또는 JobOperations.TerminateJob 차단)는 해당 작업을 완료로 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-309">**TerminateJobAsync**: Terminating a job with [JobOperations.TerminateJobAsync][net_joboperations_terminatejob] (or the blocking JobOperations.TerminateJob) marks that job as completed.</span></span> <span data-ttu-id="a66c6-310">Batch 솔루션에서 [JobReleaseTask][net_jobreltask]를 사용하는 경우 반드시 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-310">It is essential to do so if your Batch solution uses a [JobReleaseTask][net_jobreltask].</span></span> <span data-ttu-id="a66c6-311">이것은 특수한 유형의 태스크이며, [작업 준비 및 완료 태스크](batch-job-prep-release.md)에 설명이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-311">This is a special type of task, which is described in [Job preparation and completion tasks](batch-job-prep-release.md).</span></span>
+1. <span data-ttu-id="edff8-304">**ODATADetailLevel**: 목록 작업에서 [ODATADetailLevel][net_odatadetaillevel] 지정(작업의 태스크 목록을 가져오는 것과 같은)은 Batch 응용 프로그램 성능을 보장하는 데 반드시 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-304">**ODATADetailLevel**: Specifying [ODATADetailLevel][net_odatadetaillevel] in list operations (such as obtaining a list of a job's tasks) is essential in ensuring Batch application performance.</span></span> <span data-ttu-id="edff8-305">추가 [hello Azure 배치 서비스를 효율적으로 쿼리](batch-efficient-list-queries.md) 모든 종류의 일괄 처리 응용 프로그램 내에서 상태 모니터링을 수행 하려는 경우 목록을 읽는 tooyour 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-305">Add [Query hello Azure Batch service efficiently](batch-efficient-list-queries.md) tooyour reading list if you plan on doing any sort of status monitoring within your Batch applications.</span></span>
+2. <span data-ttu-id="edff8-306">**TaskStateMonitor**: [TaskStateMonitor][net_taskstatemonitor]는 태스크 상태를 모니터링하기 위한 도우미 유틸리티를 사용하여 Batch .NET 응용 프로그램을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-306">**TaskStateMonitor**: [TaskStateMonitor][net_taskstatemonitor] provides Batch .NET applications with helper utilities for monitoring task states.</span></span> <span data-ttu-id="edff8-307">`MonitorTasks`, *DotNetTutorial* 모든 작업 tooreach 될 때까지 대기 [TaskState.Completed] [ net_taskstate] 제한 시간 내에서.</span><span class="sxs-lookup"><span data-stu-id="edff8-307">In `MonitorTasks`, *DotNetTutorial* waits for all tasks tooreach [TaskState.Completed][net_taskstate] within a time limit.</span></span> <span data-ttu-id="edff8-308">그런 다음 hello 작업을 종료 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-308">Then it terminates hello job.</span></span>
+3. <span data-ttu-id="edff8-309">**TerminateJobAsync**: 작업이 종료 [JobOperations.TerminateJobAsync] [ net_joboperations_terminatejob] (또는 hello JobOperations.TerminateJob 차단) 해당 작업을 완료로 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-309">**TerminateJobAsync**: Terminating a job with [JobOperations.TerminateJobAsync][net_joboperations_terminatejob] (or hello blocking JobOperations.TerminateJob) marks that job as completed.</span></span> <span data-ttu-id="edff8-310">필수 toodo는 일괄 처리 솔루션에서 사용 하는 경우는 [JobReleaseTask][net_jobreltask]합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-310">It is essential toodo so if your Batch solution uses a [JobReleaseTask][net_jobreltask].</span></span> <span data-ttu-id="edff8-311">이것은 특수한 유형의 태스크이며, [작업 준비 및 완료 태스크](batch-job-prep-release.md)에 설명이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-311">This is a special type of task, which is described in [Job preparation and completion tasks](batch-job-prep-release.md).</span></span>
 
-<span data-ttu-id="a66c6-312">*DotNetTutorial*에서 `Program.cs`의 `MonitorTasks` 메서드는 아래와 같이 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-312">The `MonitorTasks` method from *DotNetTutorial*'s `Program.cs` appears below:</span></span>
+<span data-ttu-id="edff8-312">hello `MonitorTasks` 메서드에서 *DotNetTutorial*의 `Program.cs` 아래에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-312">hello `MonitorTasks` method from *DotNetTutorial*'s `Program.cs` appears below:</span></span>
 
 ```csharp
 private static async Task<bool> MonitorTasks(
@@ -541,12 +541,12 @@ private static async Task<bool> MonitorTasks(
 {
     bool allTasksSuccessful = true;
     const string successMessage = "All tasks reached state Completed.";
-    const string failureMessage = "One or more tasks failed to reach the Completed state within the timeout period.";
+    const string failureMessage = "One or more tasks failed tooreach hello Completed state within hello timeout period.";
 
-    // Obtain the collection of tasks currently managed by the job. Note that we use
-    // a detail level to  specify that only the "id" property of each task should be
-    // populated. Using a detail level for all list operations helps to lower
-    // response time from the Batch service.
+    // Obtain hello collection of tasks currently managed by hello job. Note that we use
+    // a detail level too specify that only hello "id" property of each task should be
+    // populated. Using a detail level for all list operations helps toolower
+    // response time from hello Batch service.
     ODATADetailLevel detail = new ODATADetailLevel(selectClause: "id");
     List<CloudTask> tasks =
         await batchClient.JobOperations.ListTasks(JobId, detail).ToListAsync();
@@ -554,8 +554,8 @@ private static async Task<bool> MonitorTasks(
     Console.WriteLine("Awaiting task completion, timeout in {0}...",
         timeout.ToString());
 
-    // We use a TaskStateMonitor to monitor the state of our tasks. In this case, we
-    // will wait for all tasks to reach the Completed state.
+    // We use a TaskStateMonitor toomonitor hello state of our tasks. In this case, we
+    // will wait for all tasks tooreach hello Completed state.
     TaskStateMonitor taskStateMonitor
         = batchClient.Utilities.CreateTaskStateMonitor();
 
@@ -572,32 +572,32 @@ private static async Task<bool> MonitorTasks(
 
     await batchClient.JobOperations.TerminateJobAsync(jobId, successMessage);
 
-    // All tasks have reached the "Completed" state, however, this does not
+    // All tasks have reached hello "Completed" state, however, this does not
     // guarantee all tasks completed successfully. Here we further check each task's
-    // ExecutionInfo property to ensure that it did not encounter a failure
+    // ExecutionInfo property tooensure that it did not encounter a failure
     // or return a non-zero exit code.
 
-    // Update the detail level to populate only the task id and executionInfo
-    // properties. We refresh the tasks below, and need only this information for
+    // Update hello detail level toopopulate only hello task id and executionInfo
+    // properties. We refresh hello tasks below, and need only this information for
     // each task.
     detail.SelectClause = "id, executionInfo";
 
     foreach (CloudTask task in tasks)
     {
-        // Populate the task's properties with the latest info from the Batch service
+        // Populate hello task's properties with hello latest info from hello Batch service
         await task.RefreshAsync(detail);
 
         if (task.ExecutionInformation.Result == TaskExecutionResult.Failure)
         {
-            // A task with failure information set indicates there was a problem with the task. It is important to note that
-            // the task's state can be "Completed," yet still have encountered a failure.
+            // A task with failure information set indicates there was a problem with hello task. It is important toonote that
+            // hello task's state can be "Completed," yet still have encountered a failure.
 
             allTasksSuccessful = false;
 
             Console.WriteLine("WARNING: Task [{0}] encountered a failure: {1}", task.Id, task.ExecutionInformation.FailureInformation.Message);
             if (task.ExecutionInformation.ExitCode != 0)
             {
-                // A non-zero exit code may indicate that the application executed by the task encountered an error
+                // A non-zero exit code may indicate that hello application executed by hello task encountered an error
                 // during execution. As not every application returns non-zero on failure by default (e.g. robocopy),
                 // your implementation of error checking may differ from this example.
 
@@ -608,17 +608,17 @@ private static async Task<bool> MonitorTasks(
 
     if (allTasksSuccessful)
     {
-        Console.WriteLine("Success! All tasks completed successfully within the specified timeout period.");
+        Console.WriteLine("Success! All tasks completed successfully within hello specified timeout period.");
     }
 
     return allTasksSuccessful;
 }
 ```
 
-## <a name="step-7-download-task-output"></a><span data-ttu-id="a66c6-313">7단계: 작업 출력 다운로드</span><span class="sxs-lookup"><span data-stu-id="a66c6-313">Step 7: Download task output</span></span>
-<span data-ttu-id="a66c6-314">![Storage에서 작업 출력 다운로드][7]</span><span class="sxs-lookup"><span data-stu-id="a66c6-314">![Download task output from Storage][7]</span></span><br/>
+## <a name="step-7-download-task-output"></a><span data-ttu-id="edff8-313">7단계: 작업 출력 다운로드</span><span class="sxs-lookup"><span data-stu-id="edff8-313">Step 7: Download task output</span></span>
+<span data-ttu-id="edff8-314">![Storage에서 작업 출력 다운로드][7]</span><span class="sxs-lookup"><span data-stu-id="edff8-314">![Download task output from Storage][7]</span></span><br/>
 
-<span data-ttu-id="a66c6-315">이제 작업이 완료되었으므로 태스크의 출력을 Azure Storage에서 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-315">Now that the job is completed, the output from the tasks can be downloaded from Azure Storage.</span></span> <span data-ttu-id="a66c6-316">이 작업은 *DotNetTutorial*의 `Program.cs`에서 `DownloadBlobsFromContainerAsync`에 대한 호출로 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-316">This is done with a call to `DownloadBlobsFromContainerAsync` in *DotNetTutorial*'s `Program.cs`:</span></span>
+<span data-ttu-id="edff8-315">Hello 작업이 완료 되 면 했으므로 hello 작업의에서 출력을 hello Azure 저장소에서 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-315">Now that hello job is completed, hello output from hello tasks can be downloaded from Azure Storage.</span></span> <span data-ttu-id="edff8-316">이렇게 호출 하 여 너무`DownloadBlobsFromContainerAsync` 에 *DotNetTutorial*의 `Program.cs`:</span><span class="sxs-lookup"><span data-stu-id="edff8-316">This is done with a call too`DownloadBlobsFromContainerAsync` in *DotNetTutorial*'s `Program.cs`:</span></span>
 
 ```csharp
 private static async Task DownloadBlobsFromContainerAsync(
@@ -628,33 +628,33 @@ private static async Task DownloadBlobsFromContainerAsync(
 {
         Console.WriteLine("Downloading all files from container [{0}]...", containerName);
 
-        // Retrieve a reference to a previously created container
+        // Retrieve a reference tooa previously created container
         CloudBlobContainer container = blobClient.GetContainerReference(containerName);
 
-        // Get a flat listing of all the block blobs in the specified container
+        // Get a flat listing of all hello block blobs in hello specified container
         foreach (IListBlobItem item in container.ListBlobs(
                     prefix: null,
                     useFlatBlobListing: true))
         {
-                // Retrieve reference to the current blob
+                // Retrieve reference toohello current blob
                 CloudBlob blob = (CloudBlob)item;
 
-                // Save blob contents to a file in the specified folder
+                // Save blob contents tooa file in hello specified folder
                 string localOutputFile = Path.Combine(directoryPath, blob.Name);
                 await blob.DownloadToFileAsync(localOutputFile, FileMode.Create);
         }
 
-        Console.WriteLine("All files downloaded to {0}", directoryPath);
+        Console.WriteLine("All files downloaded too{0}", directoryPath);
 }
 ```
 
 > [!NOTE]
-> <span data-ttu-id="a66c6-317">*DotNetTutorial* 응용 프로그램에서 `DownloadBlobsFromContainerAsync`에 대한 호출은 파일을 `%TEMP%` 폴더에 다운로드해야 하는 것을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-317">The call to `DownloadBlobsFromContainerAsync` in the *DotNetTutorial* application specifies that the files should be downloaded to your `%TEMP%` folder.</span></span> <span data-ttu-id="a66c6-318">이 출력 위치를 수정해도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-318">Feel free to modify this output location.</span></span>
+> <span data-ttu-id="edff8-317">호출을 너무 hello`DownloadBlobsFromContainerAsync` hello에 *DotNetTutorial* 응용 프로그램 파일을 지정 하 hello 다운로드 한 tooyour `%TEMP%` 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-317">hello call too`DownloadBlobsFromContainerAsync` in hello *DotNetTutorial* application specifies that hello files should be downloaded tooyour `%TEMP%` folder.</span></span> <span data-ttu-id="edff8-318">무료 toomodify 느껴집니다이 위치를 출력 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-318">Feel free toomodify this output location.</span></span>
 >
 >
 
-## <a name="step-8-delete-containers"></a><span data-ttu-id="a66c6-319">8단계: 컨테이너 삭제</span><span class="sxs-lookup"><span data-stu-id="a66c6-319">Step 8: Delete containers</span></span>
-<span data-ttu-id="a66c6-320">Azure Storage에 있는 데이터에 대한 요금이 부과되므로 Batch 작업에 더 이상 필요 없는 모든 Blob을 제거하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-320">Because you are charged for data that resides in Azure Storage, it's always a good idea to remove blobs that are no longer needed for your Batch jobs.</span></span> <span data-ttu-id="a66c6-321">DotNetTutorial의 `Program.cs`에서 도우미 메서드 `DeleteContainerAsync`에 대한 세 번의 호출로 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-321">In DotNetTutorial's `Program.cs`, this is done with three calls to the helper method `DeleteContainerAsync`:</span></span>
+## <a name="step-8-delete-containers"></a><span data-ttu-id="edff8-319">8단계: 컨테이너 삭제</span><span class="sxs-lookup"><span data-stu-id="edff8-319">Step 8: Delete containers</span></span>
+<span data-ttu-id="edff8-320">Azure 저장소에 있는 데이터에 대 한 요금이 청구 되므로 항상 이므로 일괄 처리 작업에 대해 더 이상 필요 없는 것이 좋습니다 tooremove blob입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-320">Because you are charged for data that resides in Azure Storage, it's always a good idea tooremove blobs that are no longer needed for your Batch jobs.</span></span> <span data-ttu-id="edff8-321">DotNetTutorial의에서 `Program.cs`, 이렇게 3 개의 호출이 toohello 도우미 메서드로 `DeleteContainerAsync`:</span><span class="sxs-lookup"><span data-stu-id="edff8-321">In DotNetTutorial's `Program.cs`, this is done with three calls toohello helper method `DeleteContainerAsync`:</span></span>
 
 ```csharp
 // Clean up Storage resources
@@ -663,7 +663,7 @@ await DeleteContainerAsync(blobClient, inputContainerName);
 await DeleteContainerAsync(blobClient, outputContainerName);
 ```
 
-<span data-ttu-id="a66c6-322">메서드 자체는 단순히 컨테이너에 대한 참조를 가져온 다음 [CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-322">The method itself merely obtains a reference to the container, and then calls [CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]:</span></span>
+<span data-ttu-id="edff8-322">hello 메서드 자체 단순히 참조 toohello 컨테이너를 가져오고 다음 호출 [CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]:</span><span class="sxs-lookup"><span data-stu-id="edff8-322">hello method itself merely obtains a reference toohello container, and then calls [CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]:</span></span>
 
 ```csharp
 private static async Task DeleteContainerAsync(
@@ -684,13 +684,13 @@ private static async Task DeleteContainerAsync(
 }
 ```
 
-## <a name="step-9-delete-the-job-and-the-pool"></a><span data-ttu-id="a66c6-323">9단계: 작업 및 풀 삭제</span><span class="sxs-lookup"><span data-stu-id="a66c6-323">Step 9: Delete the job and the pool</span></span>
-<span data-ttu-id="a66c6-324">마지막 단계로, DotNetTutorial 응용 프로그램에서 만든 작업 및 풀을 삭제하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-324">In the final step, you're prompted to delete the job and the pool that were created by the DotNetTutorial application.</span></span> <span data-ttu-id="a66c6-325">작업 및 태스크 자체에 대한 요금이 부과되지 않지만 계산 노드에 대한 요금이 청구 *됩니다*.</span><span class="sxs-lookup"><span data-stu-id="a66c6-325">Although you're not charged for jobs and tasks themselves, you *are* charged for compute nodes.</span></span> <span data-ttu-id="a66c6-326">따라서 노드를 필요할 때만 할당하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-326">Thus, we recommend that you allocate nodes only as needed.</span></span> <span data-ttu-id="a66c6-327">사용하지 않는 풀을 삭제하는 것이 유지 관리 프로세스의 일부가 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-327">Deleting unused pools can be part of your maintenance process.</span></span>
+## <a name="step-9-delete-hello-job-and-hello-pool"></a><span data-ttu-id="edff8-323">9 단계: hello 작업과 hello 풀 삭제</span><span class="sxs-lookup"><span data-stu-id="edff8-323">Step 9: Delete hello job and hello pool</span></span>
+<span data-ttu-id="edff8-324">이제 마지막 단계인 hello 메시지 표시 toodelete hello 작업과 hello 풀 hello DotNetTutorial 응용 프로그램에서 생성 된 것입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-324">In hello final step, you're prompted toodelete hello job and hello pool that were created by hello DotNetTutorial application.</span></span> <span data-ttu-id="edff8-325">작업 및 태스크 자체에 대한 요금이 부과되지 않지만 계산 노드에 대한 요금이 청구 *됩니다*.</span><span class="sxs-lookup"><span data-stu-id="edff8-325">Although you're not charged for jobs and tasks themselves, you *are* charged for compute nodes.</span></span> <span data-ttu-id="edff8-326">따라서 노드를 필요할 때만 할당하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-326">Thus, we recommend that you allocate nodes only as needed.</span></span> <span data-ttu-id="edff8-327">사용하지 않는 풀을 삭제하는 것이 유지 관리 프로세스의 일부가 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-327">Deleting unused pools can be part of your maintenance process.</span></span>
 
-<span data-ttu-id="a66c6-328">BatchClient의 [JobOperations][net_joboperations] 및 [PoolOperations][net_pooloperations]에는 사용자가 삭제를 확인하는 경우 호출되는 것에 해당하는 삭제 메서드가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-328">The BatchClient's [JobOperations][net_joboperations] and [PoolOperations][net_pooloperations] both have corresponding deletion methods, which are called if the user confirms deletion:</span></span>
+<span data-ttu-id="edff8-328">hello BatchClient의 [JobOperations] [ net_joboperations] 및 [PoolOperations] [ net_pooloperations] 경우 이라고 하는 해당 삭제 방법을 둘 다 hello 사용자 삭제를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-328">hello BatchClient's [JobOperations][net_joboperations] and [PoolOperations][net_pooloperations] both have corresponding deletion methods, which are called if hello user confirms deletion:</span></span>
 
 ```csharp
-// Clean up the resources we've created in the Batch account if the user so chooses
+// Clean up hello resources we've created in hello Batch account if hello user so chooses
 Console.WriteLine();
 Console.WriteLine("Delete job? [yes] no");
 string response = Console.ReadLine().ToLower();
@@ -708,14 +708,14 @@ if (response != "n" && response != "no")
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="a66c6-329">계산 리소스에 대해 요금이 부과되고 사용하지 않는 풀 삭제는 비용을 최소화한다는 점을 유의하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-329">Keep in mind that you are charged for compute resources—deleting unused pools will minimize cost.</span></span> <span data-ttu-id="a66c6-330">풀 삭제는 해당 풀 내의 모든 계산 노드를 삭제하고 노드의 모든 데이터는 풀이 삭제되면 복구할 수 없게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-330">Also, be aware that deleting a pool deletes all compute nodes within that pool, and that any data on the nodes will be unrecoverable after the pool is deleted.</span></span>
+> <span data-ttu-id="edff8-329">계산 리소스에 대해 요금이 부과되고 사용하지 않는 풀 삭제는 비용을 최소화한다는 점을 유의하세요.</span><span class="sxs-lookup"><span data-stu-id="edff8-329">Keep in mind that you are charged for compute resources—deleting unused pools will minimize cost.</span></span> <span data-ttu-id="edff8-330">또한,을 해당 풀에서 모든 계산 노드를 삭제할 풀을 삭제 하 고는 hello 노드에서 모든 데이터를 복구할 수 없습니까 hello 풀이 삭제 된 후 주의 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-330">Also, be aware that deleting a pool deletes all compute nodes within that pool, and that any data on hello nodes will be unrecoverable after hello pool is deleted.</span></span>
 >
 >
 
-## <a name="run-the-dotnettutorial-sample"></a><span data-ttu-id="a66c6-331">*DotNetTutorial* 샘플 실행</span><span class="sxs-lookup"><span data-stu-id="a66c6-331">Run the *DotNetTutorial* sample</span></span>
-<span data-ttu-id="a66c6-332">샘플 응용 프로그램을 실행하는 경우 콘솔 출력은 다음과 유사하게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-332">When you run the sample application, the console output will be similar to the following.</span></span> <span data-ttu-id="a66c6-333">실행 중에 풀의 계산 노드가 시작되는 동안 `Awaiting task completion, timeout in 00:30:00...`에서 일시 중지가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-333">During execution, you will experience a pause at `Awaiting task completion, timeout in 00:30:00...` while the pool's compute nodes are started.</span></span> <span data-ttu-id="a66c6-334">[Azure Portal][azure_portal]을 사용하여 실행 중 및 실행 후에 풀, 계산 노드, 작업 및 태스크를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-334">Use the [Azure portal][azure_portal] to monitor your pool, compute nodes, job, and tasks during and after execution.</span></span> <span data-ttu-id="a66c6-335">[Azure portal][azure_portal] 또는 [Azure Storage 탐색기][storage_explorers]를 사용하여 응용 프로그램에서 만든 Storage 리소스(컨테이너 및 Blob)를 봅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-335">Use the [Azure portal][azure_portal] or the [Azure Storage Explorer][storage_explorers] to view the Storage resources (containers and blobs) that are created by the application.</span></span>
+## <a name="run-hello-dotnettutorial-sample"></a><span data-ttu-id="edff8-331">Hello 실행 *DotNetTutorial* 샘플</span><span class="sxs-lookup"><span data-stu-id="edff8-331">Run hello *DotNetTutorial* sample</span></span>
+<span data-ttu-id="edff8-332">Hello 샘플 응용 프로그램을 실행 하면 비슷한 toohello 다음 hello 콘솔 출력이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-332">When you run hello sample application, hello console output will be similar toohello following.</span></span> <span data-ttu-id="edff8-333">실행 중에 일시 중지 길어집니다 `Awaiting task completion, timeout in 00:30:00...` hello 풀 계산 노드에서 시작 됩니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-333">During execution, you will experience a pause at `Awaiting task completion, timeout in 00:30:00...` while hello pool's compute nodes are started.</span></span> <span data-ttu-id="edff8-334">사용 하 여 hello [Azure 포털] [ azure_portal] toomonitor 풀, 계산 노드, 작업 및 작업 동안과 그 후 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-334">Use hello [Azure portal][azure_portal] toomonitor your pool, compute nodes, job, and tasks during and after execution.</span></span> <span data-ttu-id="edff8-335">사용 하 여 hello [Azure 포털] [ azure_portal] 또는 hello [Azure 저장소 탐색기] [ storage_explorers] tooview hello 저장소 리소스 (컨테이너 및 blob)를 hello 응용 프로그램에 의해 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-335">Use hello [Azure portal][azure_portal] or hello [Azure Storage Explorer][storage_explorers] tooview hello Storage resources (containers and blobs) that are created by hello application.</span></span>
 
-<span data-ttu-id="a66c6-336">기본 구성에서 응용 프로그램을 실행하는 경우 일반적인 실행 시간은 **약 5분** 입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-336">Typical execution time is **approximately 5 minutes** when you run the application in its default configuration.</span></span>
+<span data-ttu-id="edff8-336">일반적인 실행 시간은 **약 5 분** hello 응용 프로그램 기본 구성에서 실행할 때.</span><span class="sxs-lookup"><span data-stu-id="edff8-336">Typical execution time is **approximately 5 minutes** when you run hello application in its default configuration.</span></span>
 
 ```
 Sample start: 1/8/2016 09:42:58 AM
@@ -723,18 +723,18 @@ Sample start: 1/8/2016 09:42:58 AM
 Container [application] created.
 Container [input] created.
 Container [output] created.
-Uploading file C:\repos\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial\bin\Debug\TaskApplication.exe to container [application]...
-Uploading file Microsoft.WindowsAzure.Storage.dll to container [application]...
-Uploading file ..\..\taskdata1.txt to container [input]...
-Uploading file ..\..\taskdata2.txt to container [input]...
-Uploading file ..\..\taskdata3.txt to container [input]...
+Uploading file C:\repos\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial\bin\Debug\TaskApplication.exe toocontainer [application]...
+Uploading file Microsoft.WindowsAzure.Storage.dll toocontainer [application]...
+Uploading file ..\..\taskdata1.txt toocontainer [input]...
+Uploading file ..\..\taskdata2.txt toocontainer [input]...
+Uploading file ..\..\taskdata3.txt toocontainer [input]...
 Creating pool [DotNetTutorialPool]...
 Creating job [DotNetTutorialJob]...
-Adding 3 tasks to job [DotNetTutorialJob]...
+Adding 3 tasks toojob [DotNetTutorialJob]...
 Awaiting task completion, timeout in 00:30:00...
-Success! All tasks completed successfully within the specified timeout period.
+Success! All tasks completed successfully within hello specified timeout period.
 Downloading all files from container [output]...
-All files downloaded to C:\Users\USERNAME\AppData\Local\Temp
+All files downloaded tooC:\Users\USERNAME\AppData\Local\Temp
 Container [application] deleted.
 Container [input] deleted.
 Container [output] deleted.
@@ -745,18 +745,18 @@ Elapsed time: 00:04:48.5358142
 Delete job? [yes] no: yes
 Delete pool? [yes] no: yes
 
-Sample complete, hit ENTER to exit...
+Sample complete, hit ENTER tooexit...
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="a66c6-337">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a66c6-337">Next steps</span></span>
-<span data-ttu-id="a66c6-338">다른 계산 시나리오를 실험하려면 *DotNetTutorial* 및 *TaskApplication*을 자유롭게 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-338">Feel free to make changes to *DotNetTutorial* and *TaskApplication* to experiment with different compute scenarios.</span></span> <span data-ttu-id="a66c6-339">예를 들어, 포털에서 장기 실행 태스크를 시뮬레이션하고 이를 모니터링하려면 [Thread.Sleep][net_thread_sleep] 등을 사용하여 *TaskApplication*에 실행 지연을 추가해 봅니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-339">For example, try adding an execution delay to *TaskApplication*, such as with [Thread.Sleep][net_thread_sleep], to simulate long-running tasks and monitor them in the portal.</span></span> <span data-ttu-id="a66c6-340">더 많은 태스크를 추가하거나 계산 노드 수를 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-340">Try adding more tasks or adjusting the number of compute nodes.</span></span> <span data-ttu-id="a66c6-341">실행 시간을 줄이기 위해 기존 풀의 사용을 검사 및 허용하도록 논리를 추가합니다(*힌트*: [azure-batch-samples][github_samples]의 [Microsoft.Azure.Batch.Samples.Common][github_samples_common] 프로젝트에서 `ArticleHelpers.cs`을 확인).</span><span class="sxs-lookup"><span data-stu-id="a66c6-341">Add logic to check for and allow the use of an existing pool to speed execution time (*hint*: check out `ArticleHelpers.cs` in the [Microsoft.Azure.Batch.Samples.Common][github_samples_common] project in [azure-batch-samples][github_samples]).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="edff8-337">다음 단계</span><span class="sxs-lookup"><span data-stu-id="edff8-337">Next steps</span></span>
+<span data-ttu-id="edff8-338">무료 toomake 변경 너무 느껴집니다*DotNetTutorial* 및 *TaskApplication* tooexperiment 서로 다른 시나리오를 계산 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-338">Feel free toomake changes too*DotNetTutorial* and *TaskApplication* tooexperiment with different compute scenarios.</span></span> <span data-ttu-id="edff8-339">예를 들어 너무 실행 지연을 추가 해 보십시오*TaskApplication*등와 마찬가지로 [Thread.Sleep][net_thread_sleep], toosimulate 장기 실행 작업 및 hello 포털에서이 모니터링 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-339">For example, try adding an execution delay too*TaskApplication*, such as with [Thread.Sleep][net_thread_sleep], toosimulate long-running tasks and monitor them in hello portal.</span></span> <span data-ttu-id="edff8-340">시도 더 많은 작업을 추가 하거나 hello 계산 노드 수를 조정 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-340">Try adding more tasks or adjusting hello number of compute nodes.</span></span> <span data-ttu-id="edff8-341">에 대 한 논리 toocheck를 추가 하 고 기존 풀 toospeed 실행 시간이 hello 사용 허용 (*힌트*: 체크 아웃 `ArticleHelpers.cs` hello에 [Microsoft.Azure.Batch.Samples.Common] [ github_samples_common] 프로젝트에서 [azure 일괄 처리-샘플][github_samples]).</span><span class="sxs-lookup"><span data-stu-id="edff8-341">Add logic toocheck for and allow hello use of an existing pool toospeed execution time (*hint*: check out `ArticleHelpers.cs` in hello [Microsoft.Azure.Batch.Samples.Common][github_samples_common] project in [azure-batch-samples][github_samples]).</span></span>
 
-<span data-ttu-id="a66c6-342">이제 Batch 솔루션의 기본 워크플로에 익숙하다면 Batch 서비스의 추가 기능을 살펴볼 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-342">Now that you're familiar with the basic workflow of a Batch solution, it's time to dig in to the additional features of the Batch service.</span></span>
+<span data-ttu-id="edff8-342">이제 일괄 처리 솔루션의 기본 워크플로 hello에 익숙하다면 toohello hello 일괄 처리 서비스의 추가 기능에서 toodig 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-342">Now that you're familiar with hello basic workflow of a Batch solution, it's time toodig in toohello additional features of hello Batch service.</span></span>
 
-* <span data-ttu-id="a66c6-343">이 서비스를 처음 사용하는 경우 [Azure Batch 기능 개요](batch-api-basics.md) 문서를 검토하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-343">Review the [Overview of Azure Batch features](batch-api-basics.md) article, which we recommend if you're new to the service.</span></span>
-* <span data-ttu-id="a66c6-344">[Batch 학습 경로][batch_learning_path]의 **개발 세부 정보** 아래에서 다른 Batch 개발 문서를 시작하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-344">Start on the other Batch development articles under **Development in-depth** in the [Batch learning path][batch_learning_path].</span></span>
-* <span data-ttu-id="a66c6-345">[TopNWords][github_topnwords] 샘플의 Batch를 사용하여 "상위 n개 단어" 워크로드 처리의 다른 구현을 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="a66c6-345">Check out a different implementation of processing the "top N words" workload by using Batch in the [TopNWords][github_topnwords] sample.</span></span>
-* <span data-ttu-id="a66c6-346">라이브러리의 최신 변경 사항은 Batch .NET [릴리스 정보](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/Batch/DataPlane/changelog.md#azurebatch-release-notes)를 검토합니다.</span><span class="sxs-lookup"><span data-stu-id="a66c6-346">Review the Batch .NET [release notes](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/Batch/DataPlane/changelog.md#azurebatch-release-notes) for the latest changes in the library.</span></span>
+* <span data-ttu-id="edff8-343">검토 hello [Azure 배치 개요 기능](batch-api-basics.md) 아티클의 새 toohello 서비스 하는 경우는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-343">Review hello [Overview of Azure Batch features](batch-api-basics.md) article, which we recommend if you're new toohello service.</span></span>
+* <span data-ttu-id="edff8-344">시작 hello에서 다른 일괄 처리 개발 문서 **개발 심층 분석** hello에 [일괄 학습 경로][batch_learning_path]합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-344">Start on hello other Batch development articles under **Development in-depth** in hello [Batch learning path][batch_learning_path].</span></span>
+* <span data-ttu-id="edff8-345">체크 아웃의 hello에서 일괄 처리를 사용 하 여 "상위 n 개 단어" hello 작업 부하를 처리 한 다른 구현을 [TopNWords] [ github_topnwords] 샘플.</span><span class="sxs-lookup"><span data-stu-id="edff8-345">Check out a different implementation of processing hello "top N words" workload by using Batch in hello [TopNWords][github_topnwords] sample.</span></span>
+* <span data-ttu-id="edff8-346">검토 hello 일괄 처리.NET [릴리스 정보](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/Batch/DataPlane/changelog.md#azurebatch-release-notes) hello 라이브러리에 최신 변경 내용을 hello에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="edff8-346">Review hello Batch .NET [release notes](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/Batch/DataPlane/changelog.md#azurebatch-release-notes) for hello latest changes in hello library.</span></span>
 
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
@@ -807,10 +807,10 @@ Sample complete, hit ENTER to exit...
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
 [1]: ./media/batch-dotnet-get-started/batch_workflow_01_sm.png "Azure Storage에 컨테이너 만들기"
-[2]: ./media/batch-dotnet-get-started/batch_workflow_02_sm.png "컨테이너에 작업 응용 프로그램 및 입력(데이터) 파일 업로드"
+[2]: ./media/batch-dotnet-get-started/batch_workflow_02_sm.png "업로드 작업 응용 프로그램에 대 한 입력 (데이터) toocontainers 파일"
 [3]: ./media/batch-dotnet-get-started/batch_workflow_03_sm.png "Batch 풀 만들기"
 [4]: ./media/batch-dotnet-get-started/batch_workflow_04_sm.png "Batch 작업 만들기"
-[5]: ./media/batch-dotnet-get-started/batch_workflow_05_sm.png "작업에 태스크 추가"
+[5]: ./media/batch-dotnet-get-started/batch_workflow_05_sm.png "작업 toojob 추가"
 [6]: ./media/batch-dotnet-get-started/batch_workflow_06_sm.png "작업 모니터링"
 [7]: ./media/batch-dotnet-get-started/batch_workflow_07_sm.png "Storage에서 작업 출력 다운로드"
 [8]: ./media/batch-dotnet-get-started/batch_workflow_sm.png "Batch 솔루션 워크플로(전체 다이어그램)"

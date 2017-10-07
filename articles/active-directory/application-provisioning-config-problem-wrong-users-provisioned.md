@@ -1,6 +1,6 @@
 ---
-title: "Azure AD 갤러리 응용 프로그램에 잘못된 사용자 집합이 프로비전됨 | Microsoft Docs"
-description: "예상한 것과 다른 사용자 집합이 응용 프로그램에 프로비전되는 이유를 파악하는 방법 알아보기"
+title: "aaaWrong 일련의 사용자를 프로 비전 된 Azure AD tooan 갤러리 응용 프로그램 | Microsoft Docs"
+description: "예상한 것 보다 응용 프로그램 tooan 아웃 명의 다른 집합 되는 이유는 toofind 프로 비전 하는 방법을 알아봅니다"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,100 +13,100 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 85b533584c8ec15a23be32e20db7de583fced6a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: adb90b12a53fb3160ce2b73b2559df92b283438e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="wrong-set-of-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a><span data-ttu-id="1f71e-103">Azure AD 갤러리 응용 프로그램에 잘못된 사용자 집합이 프로비전됨</span><span class="sxs-lookup"><span data-stu-id="1f71e-103">Wrong set of users are being provisioned to an Azure AD Gallery application</span></span>
+# <a name="wrong-set-of-users-are-being-provisioned-tooan-azure-ad-gallery-application"></a><span data-ttu-id="a88a0-103">잘못 된 일련의 사용자를 프로 비전 된 Azure AD tooan 갤러리 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="a88a0-103">Wrong set of users are being provisioned tooan Azure AD Gallery application</span></span>
 
-<span data-ttu-id="1f71e-104">앱에 프로비전되는 사용자는 주로 응용 프로그램에 **할당**된 사용자 및 그룹에 따라 결정됩니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-104">Which users are provisioned to the app is primarily driven by which users and groups have been **assigned** to the application.</span></span>
+<span data-ttu-id="a88a0-104">어떤 사용자가 프로 비전 된 toohello 앱은 기본적으로 있는 사용자 및 그룹 된 **할당** toohello 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-104">Which users are provisioned toohello app is primarily driven by which users and groups have been **assigned** toohello application.</span></span>
 
-<span data-ttu-id="1f71e-105">아래 리소스를 사용하여 Azure Active Directory 내에서 응용 프로그램에 할당된 사용자 및 그룹을 확인하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-105">Use the resources below to learn how to check which users and groups have been assigned to an application within Azure Active Directory.</span></span>
+<span data-ttu-id="a88a0-105">어떻게 toolearn 아래 hello 리소스를 사용 하 여 사용자와 그룹을 Azure Active Directory 내에서 tooan 응용 프로그램 할당 된 toocheck 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-105">Use hello resources below toolearn how toocheck which users and groups have been assigned tooan application within Azure Active Directory.</span></span>
 
-## <a name="assign-a-user-directly-as-an-administrator"></a><span data-ttu-id="1f71e-106">관리자 권한으로 직접 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="1f71e-106">Assign a user directly as an administrator</span></span>
+## <a name="assign-a-user-directly-as-an-administrator"></a><span data-ttu-id="a88a0-106">관리자 권한으로 직접 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="a88a0-106">Assign a user directly as an administrator</span></span>
 
-<span data-ttu-id="1f71e-107">응용 프로그램에 하나 이상의 사용자를 직접 할당하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-107">To assign one or more users to an application directly, follow the steps below:</span></span>
+<span data-ttu-id="a88a0-107">tooassign 아래의 hello 단계를 직접 수행 하는 하나 이상의 사용자가 tooan 응용 프로그램:</span><span class="sxs-lookup"><span data-stu-id="a88a0-107">tooassign one or more users tooan application directly, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="1f71e-108">[**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-108">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="a88a0-108">열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**</span><span class="sxs-lookup"><span data-stu-id="a88a0-108">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="1f71e-109">왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-109">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="a88a0-109">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-109">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="1f71e-110">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-110">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="a88a0-110">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-110">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="1f71e-111">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-111">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="a88a0-111">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-111">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="1f71e-112">**모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-112">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="a88a0-112">클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-112">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="1f71e-113">여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-113">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="a88a0-113">여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**</span><span class="sxs-lookup"><span data-stu-id="a88a0-113">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="1f71e-114">목록에서 사용자를 할당하려는 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-114">Select the application you want to assign a user to from the list.</span></span>
+6.  <span data-ttu-id="a88a0-114">원하는 사용자 toofrom hello 목록 tooassign hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-114">Select hello application you want tooassign a user toofrom hello list.</span></span>
 
-7.  <span data-ttu-id="1f71e-115">응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-115">Once the application loads, click **Users and Groups** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="a88a0-115">Hello 응용 프로그램 로드 되 면 클릭 **사용자 및 그룹** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-115">Once hello application loads, click **Users and Groups** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="1f71e-116">**사용자 및 그룹** 목록의 맨 위에서 **추가** 단추를 클릭하여 **할당 추가** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-116">Click the **Add** button on top of the **Users and Groups** list to open the **Add Assignment** blade.</span></span>
+8.  <span data-ttu-id="a88a0-116">Hello 클릭 **추가** hello 위로 단추 **사용자 및 그룹** 목록 tooopen hello **할당 추가** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-116">Click hello **Add** button on top of hello **Users and Groups** list tooopen hello **Add Assignment** blade.</span></span>
 
-9.  <span data-ttu-id="1f71e-117">**할당 추가** 블레이드에서 **사용자 및 그룹** 선택기를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-117">click the **Users and groups** selector from the **Add Assignment** blade.</span></span>
+9.  <span data-ttu-id="a88a0-117">hello 클릭 **사용자 및 그룹** hello에서 선택기 **할당 추가** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-117">click hello **Users and groups** selector from hello **Add Assignment** blade.</span></span>
 
-10. <span data-ttu-id="1f71e-118">**이름 또는 전자 메일 주소로 검색** 검색 상자에 할당하려는 사용자의 **전체 이름** 또는 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-118">Type in the **full name** or **email address** of the user you are interested in assigning into the **Search by name or email address** search box.</span></span>
+10. <span data-ttu-id="a88a0-118">Hello 입력 **전체 이름** 또는 **전자 메일 주소** hello에 할당 하려는 hello 사용자의 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-118">Type in hello **full name** or **email address** of hello user you are interested in assigning into hello **Search by name or email address** search box.</span></span>
 
-11. <span data-ttu-id="1f71e-119">목록의 **사용자** 위로 마우스를 이동하여 **확인란**을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-119">Hover over the **user** in the list to reveal a **checkbox**.</span></span> <span data-ttu-id="1f71e-120">사용자의 프로필 사진이나 로고 옆의 확인란을 클릭하여 사용자를 **선택됨** 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-120">Click the checkbox next to the user’s profile photo or logo to add your user to the **Selected** list.</span></span>
+11. <span data-ttu-id="a88a0-119">Hello 위로 마우스를 가져가고 **사용자** hello 목록 tooreveal에는 **확인란**합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-119">Hover over hello **user** in hello list tooreveal a **checkbox**.</span></span> <span data-ttu-id="a88a0-120">Hello 확인란 다음 toohello 사용자의 프로필 사진 또는 로고 tooadd 사용자 toohello 클릭 **선택한** 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-120">Click hello checkbox next toohello user’s profile photo or logo tooadd your user toohello **Selected** list.</span></span>
 
-12. <span data-ttu-id="1f71e-121">**선택 사항:** **둘 이상의 사용자를 추가**하려는 경우 **이름 또는 전자 메일 주소로 검색** 검색 상자에 다른 **전체 이름** 또는 **전자 메일 주소**를 입력하고 확인란을 클릭하여 이 사용자를 **선택됨** 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-121">**Optional:** If you would like to **add more than one user**, type in another **full name** or **email address** into the **Search by name or email address** search box, and click the checkbox to add this user to the **Selected** list.</span></span>
+12. <span data-ttu-id="a88a0-121">**선택 사항:** 너무 원하는 경우**둘 이상의 사용자를 추가**, 다른 유형 **전체 이름** 또는 **전자 메일 주소** hello에 **이름으로 검색 전자 메일 주소 또는** 상자에서 검색 하 고이 사용자 toohello hello 확인란 tooadd 클릭 **선택한** 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-121">**Optional:** If you would like too**add more than one user**, type in another **full name** or **email address** into hello **Search by name or email address** search box, and click hello checkbox tooadd this user toohello **Selected** list.</span></span>
 
-13. <span data-ttu-id="1f71e-122">사용자 선택이 완료되면 **선택** 단추를 클릭하여 응용 프로그램에 할당되도록 사용자 및 그룹의 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-122">When you are finished selecting users, click the **Select** button to add them to the list of users and groups to be assigned to the application.</span></span>
+13. <span data-ttu-id="a88a0-122">사용자 선택을 완료 했으면 클릭 hello **선택** 단추 tooadd 해당 사용자 및 그룹 toobe toohello 목록이 toohello 응용 프로그램을 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-122">When you are finished selecting users, click hello **Select** button tooadd them toohello list of users and groups toobe assigned toohello application.</span></span>
 
-14. <span data-ttu-id="1f71e-123">**선택 사항:** **할당 추가** 블레이드에서 **역할 선택** 선택기를 클릭하여 선택한 사용자에게 할당할 역할을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-123">**Optional:** click the **Select Role** selector in the **Add Assignment** blade to select a role to assign to the users you have selected.</span></span>
+14. <span data-ttu-id="a88a0-123">**선택 사항:** hello 클릭 **역할 선택** hello에 선택 기가 **할당 추가** 블레이드 tooselect 역할 tooassign toohello 사용자가 선택한 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-123">**Optional:** click hello **Select Role** selector in hello **Add Assignment** blade tooselect a role tooassign toohello users you have selected.</span></span>
 
-15. <span data-ttu-id="1f71e-124">**할당** 단추를 클릭하여 선택한 사용자에게 응용 프로그램을 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-124">Click the **Assign** button to assign the application to the selected users.</span></span>
+15. <span data-ttu-id="a88a0-124">Hello 클릭 **할당** 단추 tooassign hello 응용 프로그램 toohello 사용자를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-124">Click hello **Assign** button tooassign hello application toohello selected users.</span></span>
 
-<span data-ttu-id="1f71e-125">앱에 대해 프로비저닝이 구성되어 있고 이미 실행되고 있으면 새 사용자는 약 10분 후에 응용 프로그램에 프로비전되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-125">If provisioning is configured and already running for an app, new users should be provisioned to an application in approximately 10 minutes.</span></span> <span data-ttu-id="1f71e-126">자세한 내용은 **감사 로그**를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-126">Check the **Audit Logs** for details.</span></span>
+<span data-ttu-id="a88a0-125">이면 프로 비전 응용 프로그램에 대해 이미 실행 되 고 구성 된 새 사용자는 약 10 분 내에 프로 비전 된 tooan 응용 프로그램 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-125">If provisioning is configured and already running for an app, new users should be provisioned tooan application in approximately 10 minutes.</span></span> <span data-ttu-id="a88a0-126">Hello 확인 **감사 로그** 대 한 자세한 내용은 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-126">Check hello **Audit Logs** for details.</span></span>
 
-## <a name="assign-a-group-directly-to-an-application-as-an-administrator"></a><span data-ttu-id="1f71e-127">관리자 권한으로 응용 프로그램에 직접 그룹 할당</span><span class="sxs-lookup"><span data-stu-id="1f71e-127">Assign a group directly to an application as an administrator</span></span>
+## <a name="assign-a-group-directly-tooan-application-as-an-administrator"></a><span data-ttu-id="a88a0-127">그룹 할당 관리자 권한으로 직접 tooan 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="a88a0-127">Assign a group directly tooan application as an administrator</span></span>
 
-<span data-ttu-id="1f71e-128">응용 프로그램에 하나 이상의 그룹을 직접 할당하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-128">To assign one or more groups to an application directly, follow the steps below:</span></span>
+<span data-ttu-id="a88a0-128">하나 이상의 tooassign 그룹 tooan 응용 프로그램을 직접 아래 hello 단계 수행:</span><span class="sxs-lookup"><span data-stu-id="a88a0-128">tooassign one or more groups tooan application directly, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="1f71e-129">[**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-129">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="a88a0-129">열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**</span><span class="sxs-lookup"><span data-stu-id="a88a0-129">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="1f71e-130">왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-130">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="a88a0-130">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-130">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="1f71e-131">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-131">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="a88a0-131">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-131">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="1f71e-132">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-132">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="a88a0-132">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-132">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="1f71e-133">**모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-133">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="a88a0-133">클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-133">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="1f71e-134">여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-134">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="a88a0-134">여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**</span><span class="sxs-lookup"><span data-stu-id="a88a0-134">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="1f71e-135">목록에서 사용자를 할당하려는 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-135">Select the application you want to assign a user to from the list.</span></span>
+6.  <span data-ttu-id="a88a0-135">원하는 사용자 toofrom hello 목록 tooassign hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-135">Select hello application you want tooassign a user toofrom hello list.</span></span>
 
-7.  <span data-ttu-id="1f71e-136">응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-136">Once the application loads, click **Users and Groups** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="a88a0-136">Hello 응용 프로그램 로드 되 면 클릭 **사용자 및 그룹** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-136">Once hello application loads, click **Users and Groups** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="1f71e-137">**사용자 및 그룹** 목록의 맨 위에서 **추가** 단추를 클릭하여 **할당 추가** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-137">Click the **Add** button on top of the **Users and Groups** list to open the **Add Assignment** blade.</span></span>
+8.  <span data-ttu-id="a88a0-137">Hello 클릭 **추가** hello 위로 단추 **사용자 및 그룹** 목록 tooopen hello **할당 추가** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-137">Click hello **Add** button on top of hello **Users and Groups** list tooopen hello **Add Assignment** blade.</span></span>
 
-9.  <span data-ttu-id="1f71e-138">**할당 추가** 블레이드에서 **사용자 및 그룹** 선택기를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-138">click the **Users and groups** selector from the **Add Assignment** blade.</span></span>
+9.  <span data-ttu-id="a88a0-138">hello 클릭 **사용자 및 그룹** hello에서 선택기 **할당 추가** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-138">click hello **Users and groups** selector from hello **Add Assignment** blade.</span></span>
 
-10. <span data-ttu-id="1f71e-139">**이름 또는 메일 주소로 검색** 검색 상자에 할당하려는 그룹의 **전체 그룹 이름**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-139">Type in the **full group name** of the group you are interested in assigning into the **Search by name or email address** search box.</span></span>
+10. <span data-ttu-id="a88a0-139">Hello 입력 **전체 그룹 이름** hello에 할당 하려는 hello 그룹의 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-139">Type in hello **full group name** of hello group you are interested in assigning into hello **Search by name or email address** search box.</span></span>
 
-11. <span data-ttu-id="1f71e-140">목록의 **그룹** 위로 마우스를 이동하여 **확인란**을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-140">Hover over the **group** in the list to reveal a **checkbox**.</span></span> <span data-ttu-id="1f71e-141">그룹의 프로필 사진이나 로고 옆의 확인란을 클릭하여 사용자를 **선택됨** 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-141">Click the checkbox next to the group’s profile photo or logo to add your user to the **Selected** list.</span></span>
+11. <span data-ttu-id="a88a0-140">Hello 위로 마우스를 가져가고 **그룹** hello 목록 tooreveal에는 **확인란**합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-140">Hover over hello **group** in hello list tooreveal a **checkbox**.</span></span> <span data-ttu-id="a88a0-141">Hello 확인란 다음 toohello 그룹의 프로필 사진 또는 로고 tooadd 사용자 toohello 클릭 **선택한** 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-141">Click hello checkbox next toohello group’s profile photo or logo tooadd your user toohello **Selected** list.</span></span>
 
-12. <span data-ttu-id="1f71e-142">**선택 사항:** **둘 이상의 그룹을 추가**하려는 경우 **이름 또는 메일 주소로 검색** 검색 상자에 다른 **전체 그룹 이름**을 입력하고 확인란을 클릭하여 이 그룹을 **선택됨** 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-142">**Optional:** If you would like to **add more than one group**, type in another **full group name** into the **Search by name or email address** search box, and click the checkbox to add this group to the **Selected** list.</span></span>
+12. <span data-ttu-id="a88a0-142">**선택 사항:** 너무 원하는 경우**둘 이상의 그룹을 추가**, 다른 유형 **전체 그룹 이름** hello에 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자 이 그룹 toohello hello 확인란 tooadd 클릭 **선택한** 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-142">**Optional:** If you would like too**add more than one group**, type in another **full group name** into hello **Search by name or email address** search box, and click hello checkbox tooadd this group toohello **Selected** list.</span></span>
 
-13. <span data-ttu-id="1f71e-143">그룹 선택이 완료되면 **선택** 단추를 클릭하여 응용 프로그램에 할당되도록 사용자 및 그룹의 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-143">When you are finished selecting groups, click the **Select** button to add them to the list of users and groups to be assigned to the application.</span></span>
+13. <span data-ttu-id="a88a0-143">그룹을 선택 하면 완료 했으면 클릭 hello **선택** 단추 tooadd 해당 사용자 및 그룹 toobe toohello 목록이 toohello 응용 프로그램을 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-143">When you are finished selecting groups, click hello **Select** button tooadd them toohello list of users and groups toobe assigned toohello application.</span></span>
 
-14. <span data-ttu-id="1f71e-144">**선택 사항:** **할당 추가** 블레이드에서 **역할 선택** 선택기를 클릭하여 선택한 그룹에 할당할 역할을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-144">**Optional:** click the **Select Role** selector in the **Add Assignment** blade to select a role to assign to the groups you have selected.</span></span>
+14. <span data-ttu-id="a88a0-144">**선택 사항:** hello 클릭 **역할 선택** hello에 선택 기가 **할당 추가** 블레이드 tooselect 역할 tooassign toohello 그룹 선택 했습니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-144">**Optional:** click hello **Select Role** selector in hello **Add Assignment** blade tooselect a role tooassign toohello groups you have selected.</span></span>
 
-15. <span data-ttu-id="1f71e-145">**할당** 단추를 클릭하여 선택한 그룹에 응용 프로그램을 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-145">Click the **Assign** button to assign the application to the selected groups.</span></span>
+15. <span data-ttu-id="a88a0-145">Hello 클릭 **할당** 단추 tooassign hello 응용 프로그램 toohello 선택 된 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-145">Click hello **Assign** button tooassign hello application toohello selected groups.</span></span>
 
-<span data-ttu-id="1f71e-146">앱에 대해 프로비저닝이 구성되어 있고 이미 실행되고 있으면 그룹 내에 포함된 새 사용자는 약 10분 후에 응용 프로그램에 프로비전되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-146">If provisioning is configured and already running for an app, new users contained within the group should be provisioned to an application in approximately 10 minutes.</span></span> <span data-ttu-id="1f71e-147">자세한 내용은 **감사 로그**를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-147">Check the **Audit Logs** for details.</span></span>
+<span data-ttu-id="a88a0-146">프로 비전 하는 것은 응용 프로그램에 대해 이미 실행 되 고 구성 된, 하는 경우 hello 그룹 내에 포함 된 새 사용자는 약 10 분 내에 프로 비전 된 tooan 응용 프로그램 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-146">If provisioning is configured and already running for an app, new users contained within hello group should be provisioned tooan application in approximately 10 minutes.</span></span> <span data-ttu-id="a88a0-147">Hello 확인 **감사 로그** 대 한 자세한 내용은 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-147">Check hello **Audit Logs** for details.</span></span>
 
 >[!IMPORTANT]
-><span data-ttu-id="1f71e-148">일부 응용 프로그램에 대해 지원되는 경우, 구성원 외에 그룹 이름 및 그룹 세부 정보 프로비전.</span><span class="sxs-lookup"><span data-stu-id="1f71e-148">Provisioning of the group name and group details, in addition to the members, if supported for some applications.</span></span> <span data-ttu-id="1f71e-149">**프로비전** 탭에 표시된 그룹 개체의 **Mapping**(매핑)을 사용하거나 사용하지 않도록 설정하여 이 기능을 사용하거나 사용하지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-149">You can enable or disable this functionality by enabling or disabling the **Mapping** for group objects shown in the **Provisioning** tab.</span></span> 
+><span data-ttu-id="a88a0-148">프로 비전 하 고 그룹 이름을 hello 일부 응용 프로그램에 대 한 지원 되는 경우 추가 toohello 멤버에서 세부 정보를 그룹화 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-148">Provisioning of hello group name and group details, in addition toohello members, if supported for some applications.</span></span> <span data-ttu-id="a88a0-149">Hello를 사용 하지 않도록 설정 하거나 설정 하 여이 기능을 해제 하거나 설정할 수 있습니다 **매핑** hello에 표시 된 그룹 개체에 대 한 **프로 비전** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-149">You can enable or disable this functionality by enabling or disabling hello **Mapping** for group objects shown in hello **Provisioning** tab.</span></span> 
 >
 >
 
-<span data-ttu-id="1f71e-150">그룹 프로비전을 사용하는 경우 특성 매핑을 검토하여 “일치하는 ID”에 적절한 필드를 사용하는지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="1f71e-150">If provisioning groups is enabled, be sure to review the attribute mappings to ensure an appropriate field is being used for the “matching ID”.</span></span> <span data-ttu-id="1f71e-151">이는 표시 이름이나 메일 별칭일 수 있습니다. Azure AD에 일치하는 속성이 비어 있거나 그룹에 대해 입력되어 있지 않은 경우 그룹 및 구성원이 프로비전되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="1f71e-151">This can be the display name or email alias, as the group and its members not be provisioned if the matching property is empty or not populated for a group in Azure AD.</span></span>
+<span data-ttu-id="a88a0-150">그룹을 프로 비전을 사용 하는 경우 tooreview hello 특성 매핑을 tooensure를 적절 한 필드 "일치 하는 ID" hello에 사용 되 고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-150">If provisioning groups is enabled, be sure tooreview hello attribute mappings tooensure an appropriate field is being used for hello “matching ID”.</span></span> <span data-ttu-id="a88a0-151">이 hello 표시 이름 또는 전자 메일 별칭, hello 그룹 및 해당 멤버를 프로 비전 할 여부 hello 일치 하는 속성이 비어 있으면으로 채워진 그룹에 대 한 Azure AD에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="a88a0-151">This can be hello display name or email alias, as hello group and its members not be provisioned if hello matching property is empty or not populated for a group in Azure AD.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="1f71e-152">다음 단계</span><span class="sxs-lookup"><span data-stu-id="1f71e-152">Next steps</span></span>
-[<span data-ttu-id="1f71e-153">Azure Active Directory를 사용하여 SaaS 응용 프로그램의 사용자를 자동으로 프로비저닝 및 프로비저닝 해제</span><span class="sxs-lookup"><span data-stu-id="1f71e-153">Automate User Provisioning and Deprovisioning to SaaS Applications with Azure Active Directory</span></span>](active-directory-saas-app-provisioning.md)
+## <a name="next-steps"></a><span data-ttu-id="a88a0-152">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a88a0-152">Next steps</span></span>
+[<span data-ttu-id="a88a0-153">사용자 프로 비전 및 프로 비전 해제 tooSaaS Azure Active Directory와 응용 프로그램 자동화</span><span class="sxs-lookup"><span data-stu-id="a88a0-153">Automate User Provisioning and Deprovisioning tooSaaS Applications with Azure Active Directory</span></span>](active-directory-saas-app-provisioning.md)

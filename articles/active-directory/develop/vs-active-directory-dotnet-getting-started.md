@@ -1,6 +1,6 @@
 ---
-title: "Visual Studio MVC 프로젝트에서 Azure AD 시작 | Microsoft Docs"
-description: "Visual Studio 연결 서비스를 사용하여 Azure AD를 만들거나 연결한 후에 MVC 프로젝트에 Azure Active Directory를 사용하여 시작하는 방법입니다."
+title: "Visual Studio MVC 프로젝트에서 Azure AD와 시작 됨 aaaGet | Microsoft Docs"
+description: "연결 된 서비스 MVC 프로젝트에서 Azure Active Directory를 사용 하 여 Visual Studio를 사용 하 여 Azure AD를 만드는 tooor 연결한 후 tooget을 시작 하는 방법"
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: c4d49cfc9887e422b3eaed2b96348c99eca48881
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 807824dd6e4e57e443f8a7322cf2e5326384316d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="getting-started-with-azure-active-directory-and-visual-studio-connected-services-mvc-projects"></a><span data-ttu-id="068c0-103">Azure Active Directory 및 Visual Studio 연결 서비스 시작(MVC 프로젝트)</span><span class="sxs-lookup"><span data-stu-id="068c0-103">Getting Started with Azure Active Directory and Visual Studio connected services (MVC Projects)</span></span>
+# <a name="getting-started-with-azure-active-directory-and-visual-studio-connected-services-mvc-projects"></a><span data-ttu-id="80a3f-103">Azure Active Directory 및 Visual Studio 연결 서비스 시작(MVC 프로젝트)</span><span class="sxs-lookup"><span data-stu-id="80a3f-103">Getting Started with Azure Active Directory and Visual Studio connected services (MVC Projects)</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="068c0-104">시작</span><span class="sxs-lookup"><span data-stu-id="068c0-104">Getting Started</span></span>](vs-active-directory-dotnet-getting-started.md)
-> * [<span data-ttu-id="068c0-105">변경된 내용</span><span class="sxs-lookup"><span data-stu-id="068c0-105">What Happened</span></span>](vs-active-directory-dotnet-what-happened.md)
+> * [<span data-ttu-id="80a3f-104">시작</span><span class="sxs-lookup"><span data-stu-id="80a3f-104">Getting Started</span></span>](vs-active-directory-dotnet-getting-started.md)
+> * [<span data-ttu-id="80a3f-105">변경된 내용</span><span class="sxs-lookup"><span data-stu-id="80a3f-105">What Happened</span></span>](vs-active-directory-dotnet-what-happened.md)
 > 
 > 
 
-## <a name="requiring-authentication-to-access-controllers"></a><span data-ttu-id="068c0-106">컨트롤러에 액세스하려면 인증 필요</span><span class="sxs-lookup"><span data-stu-id="068c0-106">Requiring authentication to access controllers</span></span>
-<span data-ttu-id="068c0-107">프로젝트의 모든 컨트롤러는 **Authorize** 특성으로 표시되었습니다.</span><span class="sxs-lookup"><span data-stu-id="068c0-107">All controllers in your project were adorned with the **Authorize** attribute.</span></span> <span data-ttu-id="068c0-108">이 특성으로 인해 사용자가 인증해야만 이러한 컨트롤러에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="068c0-108">This attribute requires the user to be authenticated before accessing these controllers.</span></span> <span data-ttu-id="068c0-109">컨트롤러에 익명으로 액세스할 수 있도록 하려면 컨트롤러에서 이 특성을 제거하세요.</span><span class="sxs-lookup"><span data-stu-id="068c0-109">To allow the controller to be accessed anonymously, remove this attribute from the controller.</span></span> <span data-ttu-id="068c0-110">더 세부적인 수준에서 권한을 설정하려면 특성을 컨트롤러 클래스에 적용하는 대신 인증이 필요한 각 메서드에 적용하세요.</span><span class="sxs-lookup"><span data-stu-id="068c0-110">If you want to set the permissions at a more granular level, apply the attribute to each method that requires authorization instead of applying it to the controller class.</span></span>
+## <a name="requiring-authentication-tooaccess-controllers"></a><span data-ttu-id="80a3f-106">인증 tooaccess 컨트롤러 필요</span><span class="sxs-lookup"><span data-stu-id="80a3f-106">Requiring authentication tooaccess controllers</span></span>
+<span data-ttu-id="80a3f-107">프로젝트의 모든 컨트롤러 hello로 표시 된 **Authorize** 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="80a3f-107">All controllers in your project were adorned with hello **Authorize** attribute.</span></span> <span data-ttu-id="80a3f-108">이 특성에는 이러한 컨트롤러에 액세스 하기 전에 인증 하는 hello 사용자 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="80a3f-108">This attribute requires hello user toobe authenticated before accessing these controllers.</span></span> <span data-ttu-id="80a3f-109">익명으로 액세스할 tooallow hello 컨트롤러 toobe hello 컨트롤러에서이 특성을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="80a3f-109">tooallow hello controller toobe accessed anonymously, remove this attribute from hello controller.</span></span> <span data-ttu-id="80a3f-110">보다 세부적인 수준에서 tooset hello 사용 하려는 경우 toohello 컨트롤러 클래스를 적용 하는 대신 권한 부여를 사용 하는 hello 특성 tooeach 메서드에 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="80a3f-110">If you want tooset hello permissions at a more granular level, apply hello attribute tooeach method that requires authorization instead of applying it toohello controller class.</span></span>
 
-## <a name="adding-signin--signout-controls"></a><span data-ttu-id="068c0-111">SignIn/SignOut 컨트롤 추가</span><span class="sxs-lookup"><span data-stu-id="068c0-111">Adding SignIn / SignOut Controls</span></span>
-<span data-ttu-id="068c0-112">뷰에 SignIn/SignOut 컨트롤을 추가하려면 **_LoginPartial.cshtml** 부분 뷰를 사용하여 뷰 중 하나에 기능을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="068c0-112">To add the SignIn/SignOut controls to your view, you can use the **_LoginPartial.cshtml** partial view to add the functionality to one of your views.</span></span> <span data-ttu-id="068c0-113">다음은 표준 **_Layout.cshtml** 뷰에 추가한 기능의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="068c0-113">Here is an example of the functionality added to the standard **_Layout.cshtml** view.</span></span> <span data-ttu-id="068c0-114">(navbar-collapse 클래스가 포함된 div의 마지막 요소를 확인):</span><span class="sxs-lookup"><span data-stu-id="068c0-114">(Note the last element in the div with class navbar-collapse):</span></span>
+## <a name="adding-signin--signout-controls"></a><span data-ttu-id="80a3f-111">SignIn/SignOut 컨트롤 추가</span><span class="sxs-lookup"><span data-stu-id="80a3f-111">Adding SignIn / SignOut Controls</span></span>
+<span data-ttu-id="80a3f-112">tooadd hello SignIn/SignOut tooyour 보기를 제어, hello를 사용할 수 있습니다 **_LoginPartial.cshtml** 부분 뷰 tooadd hello 기능 tooone 보기.</span><span class="sxs-lookup"><span data-stu-id="80a3f-112">tooadd hello SignIn/SignOut controls tooyour view, you can use hello **_LoginPartial.cshtml** partial view tooadd hello functionality tooone of your views.</span></span> <span data-ttu-id="80a3f-113">Hello 기능 추가 toohello 표준의 예로 **_Layout.cshtml** 보기.</span><span class="sxs-lookup"><span data-stu-id="80a3f-113">Here is an example of hello functionality added toohello standard **_Layout.cshtml** view.</span></span> <span data-ttu-id="80a3f-114">(참고 hello에서에서 마지막 요소 hello div 클래스 navbar 축소 포함):</span><span class="sxs-lookup"><span data-stu-id="80a3f-114">(Note hello last element in hello div with class navbar-collapse):</span></span>
 
 <pre>
     &lt;!DOCTYPE html&gt; 
@@ -79,6 +79,6 @@ ms.lasthandoff: 08/29/2017
     &lt;/html&gt;
 </pre>
 
-## <a name="next-steps"></a><span data-ttu-id="068c0-115">다음 단계</span><span class="sxs-lookup"><span data-stu-id="068c0-115">Next steps</span></span>
-- [<span data-ttu-id="068c0-116">Azure Active Directory에 대한 자세한 정보</span><span class="sxs-lookup"><span data-stu-id="068c0-116">Learn more about Azure Active Directory</span></span>](https://azure.microsoft.com/services/active-directory/) 
+## <a name="next-steps"></a><span data-ttu-id="80a3f-115">다음 단계</span><span class="sxs-lookup"><span data-stu-id="80a3f-115">Next steps</span></span>
+- [<span data-ttu-id="80a3f-116">Azure Active Directory에 대한 자세한 정보</span><span class="sxs-lookup"><span data-stu-id="80a3f-116">Learn more about Azure Active Directory</span></span>](https://azure.microsoft.com/services/active-directory/) 
 

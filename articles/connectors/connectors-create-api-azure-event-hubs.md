@@ -1,6 +1,6 @@
 ---
-title: "Azure Logic Apps용 Azure Event Hubs로 이벤트 모니터 설정 | Microsoft Docs"
-description: "Azure Event Hubs로 Azure Logic Apps에 대한 이벤트를 수신 및 전송하는 데이터 스트림 모니터"
+title: "Azure 논리 앱에 대 한 Azure 이벤트 허브 이벤트 모니터를 aaaSet | Microsoft Docs"
+description: "데이터 스트림을 tooreceive 이벤트를 모니터링 하 고 Azure 이벤트 허브를 사용 하 여 Azure 논리 앱에 대 한 이벤트를 전송 합니다."
 services: logic-apps
 keywords: "데이터 스트림, 이벤트 모니터, 이벤트 허브"
 author: ecfan
@@ -16,121 +16,121 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: estfan; LADocs
-ms.openlocfilehash: 2ca27fb8269d1796fb1181fc4d0a8744a592d548
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4aad2c2ac1134b4d4d440019b4773559e49be122
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-receive-and-send-events-with-the-event-hubs-connector"></a><span data-ttu-id="4e540-104">Event Hubs 커넥터로 이벤트 모니터, 수신 및 전송</span><span class="sxs-lookup"><span data-stu-id="4e540-104">Monitor, receive, and send events with the Event Hubs connector</span></span>
+# <a name="monitor-receive-and-send-events-with-hello-event-hubs-connector"></a><span data-ttu-id="ce3df-104">모니터링, 수신, 및 hello 이벤트 허브 커넥터와 함께 이벤트 보내기</span><span class="sxs-lookup"><span data-stu-id="ce3df-104">Monitor, receive, and send events with hello Event Hubs connector</span></span>
 
-<span data-ttu-id="4e540-105">논리 앱이 이벤트를 감지하고 이벤트를 수신 및 전송할 수 있도록 이벤트 모니터를 설정하려면 논리 앱에서 [Azure Event Hub](https://azure.microsoft.com/services/event-hubs)에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-105">To set up an event monitor so that your logic app can detect events, receive events, and send events, connect to an [Azure Event Hub](https://azure.microsoft.com/services/event-hubs) from your logic app.</span></span> <span data-ttu-id="4e540-106">[Azure 이벤트 허브](../event-hubs/event-hubs-what-is-event-hubs.md)에 대해 자세히 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-106">Learn more about [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
+<span data-ttu-id="ce3df-105">이벤트 모니터를 tooset 논리 앱 이벤트 검색, 이벤트를 수신 고, 이벤트를 보낼 수 있도록 연결 tooan [Azure 이벤트 허브](https://azure.microsoft.com/services/event-hubs) 논리 앱에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-105">tooset up an event monitor so that your logic app can detect events, receive events, and send events, connect tooan [Azure Event Hub](https://azure.microsoft.com/services/event-hubs) from your logic app.</span></span> <span data-ttu-id="ce3df-106">[Azure 이벤트 허브](../event-hubs/event-hubs-what-is-event-hubs.md)에 대해 자세히 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-106">Learn more about [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
 
-## <a name="requirements"></a><span data-ttu-id="4e540-107">요구 사항</span><span class="sxs-lookup"><span data-stu-id="4e540-107">Requirements</span></span>
+## <a name="requirements"></a><span data-ttu-id="ce3df-107">요구 사항</span><span class="sxs-lookup"><span data-stu-id="ce3df-107">Requirements</span></span>
 
-* <span data-ttu-id="4e540-108">Azure에 [Event Hubs 네임스페이스 및 Event Hub](../event-hubs/event-hubs-create.md)가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-108">You have to have an [Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md) in Azure.</span></span> <span data-ttu-id="4e540-109">[Event Hubs 네임스페이스 및 Event Hub를 만드는 방법](../event-hubs/event-hubs-create.md)에 대해 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="4e540-109">Learn [how to create an Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md).</span></span> 
+* <span data-ttu-id="ce3df-108">Toohave 있는 [이벤트 허브 네임 스페이스 및 이벤트 허브](../event-hubs/event-hubs-create.md) Azure에서.</span><span class="sxs-lookup"><span data-stu-id="ce3df-108">You have toohave an [Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md) in Azure.</span></span> <span data-ttu-id="ce3df-109">자세한 내용은 [어떻게 toocreate 이벤트 허브 네임 스페이스 및 이벤트 허브](../event-hubs/event-hubs-create.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-109">Learn [how toocreate an Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md).</span></span> 
 
-* <span data-ttu-id="4e540-110">논리 앱에서 [커넥터](https://docs.microsoft.com/azure/connectors/apis-list)를 사용하려면 먼저 논리 앱을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-110">To use [any connector](https://docs.microsoft.com/azure/connectors/apis-list) in your logic app, you have to create a logic app first.</span></span> <span data-ttu-id="4e540-111">[논리 앱을 만드는 방법](../logic-apps/logic-apps-create-a-logic-app.md)을 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="4e540-111">Learn [how to create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+* <span data-ttu-id="ce3df-110">toouse [커넥터](https://docs.microsoft.com/azure/connectors/apis-list) 논리 앱에서 앱이 있는 toocreate 논리 먼저 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-110">toouse [any connector](https://docs.microsoft.com/azure/connectors/apis-list) in your logic app, you have toocreate a logic app first.</span></span> <span data-ttu-id="ce3df-111">자세한 내용은 [어떻게 toocreate 논리 앱](../logic-apps/logic-apps-create-a-logic-app.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-111">Learn [how toocreate a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
 <a name="permissions-connection-string"></a>
-## <a name="check-event-hubs-namespace-permissions-and-find-the-connection-string"></a><span data-ttu-id="4e540-112">Event Hubs 네임스페이스 권한 확인 및 연결 문자열 찾기</span><span class="sxs-lookup"><span data-stu-id="4e540-112">Check Event Hubs namespace permissions and find the connection string</span></span>
+## <a name="check-event-hubs-namespace-permissions-and-find-hello-connection-string"></a><span data-ttu-id="ce3df-112">이벤트 허브 네임 스페이스 사용 권한을 확인 하 고 hello 연결 문자열을 찾을</span><span class="sxs-lookup"><span data-stu-id="ce3df-112">Check Event Hubs namespace permissions and find hello connection string</span></span>
 
-<span data-ttu-id="4e540-113">논리 앱에서 모든 서비스에 액세스하려면 논리 앱과 서비스 사이에 [*연결*](./connectors-overview.md)을 만들어야 합니다(아직 없는 경우).</span><span class="sxs-lookup"><span data-stu-id="4e540-113">For your logic app to access any service, you have to create a [*connection*](./connectors-overview.md) between your logic app and the service, if you haven't already.</span></span> <span data-ttu-id="4e540-114">이렇게 연결되면 논리 앱에서 데이터에 액세스할 수 있는 권한이 부여됩니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-114">This connection authorizes your logic app to access data.</span></span>
-<span data-ttu-id="4e540-115">Event Hub에 액세스하는 논리 앱의 경우 Event Hubs 네임스페이스에 대한 **관리** 권한과 연결 문자열이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-115">For your logic app to access your Event Hub, you have to have **Manage** permissions and the connection string for your Event Hubs namespace.</span></span>
+<span data-ttu-id="ce3df-113">모든 서비스에 대 한 논리 앱 tooaccess toocreate 있는 [ *연결* ](./connectors-overview.md) 논리 앱 및 hello 서비스에 아직 없는 경우 사이입니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-113">For your logic app tooaccess any service, you have toocreate a [*connection*](./connectors-overview.md) between your logic app and hello service, if you haven't already.</span></span> <span data-ttu-id="ce3df-114">이 연결에는 논리 앱 tooaccess 데이터 권한도 부여 됩니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-114">This connection authorizes your logic app tooaccess data.</span></span>
+<span data-ttu-id="ce3df-115">논리 앱 tooaccess에 대 한 이벤트 허브에 있는 toohave **관리** 사용 권한 및 이벤트 허브 네임 스페이스에 대 한 hello 연결 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-115">For your logic app tooaccess your Event Hub, you have toohave **Manage** permissions and hello connection string for your Event Hubs namespace.</span></span>
 
-<span data-ttu-id="4e540-116">사용 권한을 확인하고 연결 문자열을 가져오려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-116">To check your permissions and get the connection string, follow these steps.</span></span>
+<span data-ttu-id="ce3df-116">toocheck 권한과 get hello 연결 문자열에서 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-116">toocheck your permissions and get hello connection string, follow these steps.</span></span>
 
-1.  <span data-ttu-id="4e540-117">[Azure Portal](https://portal.azure.com "Azure Portal")에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-117">Sign in to the [Azure portal](https://portal.azure.com "Azure portal").</span></span> 
+1.  <span data-ttu-id="ce3df-117">Toohello 로그인 [Azure 포털](https://portal.azure.com "Azure 포털")합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-117">Sign in toohello [Azure portal](https://portal.azure.com "Azure portal").</span></span> 
 
-2.  <span data-ttu-id="4e540-118">특정 Event Hub가 아닌 Event Hubs *네임스페이스*로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-118">Go to your Event Hubs *namespace*, not the specific Event Hub.</span></span> <span data-ttu-id="4e540-119">네임스페이스 블레이드의 **설정** 아래에서 **공유 액세스 정책**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-119">On the namespace blade, under **Settings**, choose **Shared access policies**.</span></span> <span data-ttu-id="4e540-120">**클레임** 아래에서 해당 네임스페이스에 대한 **관리** 권한이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-120">Under **Claims**, check that you have **Manage** permissions for that namespace.</span></span>
+2.  <span data-ttu-id="ce3df-118">Tooyour 이벤트 허브로 이동 *네임 스페이스*, 특정 이벤트 허브를 hello 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-118">Go tooyour Event Hubs *namespace*, not hello specific Event Hub.</span></span> <span data-ttu-id="ce3df-119">Hello 네임 스페이스 블레이드에서 아래 **설정**, 선택 **공유 액세스 정책을**합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-119">On hello namespace blade, under **Settings**, choose **Shared access policies**.</span></span> <span data-ttu-id="ce3df-120">**클레임** 아래에서 해당 네임스페이스에 대한 **관리** 권한이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-120">Under **Claims**, check that you have **Manage** permissions for that namespace.</span></span>
 
     ![Event Hub 네임스페이스에 대한 관리 권한](./media/connectors-create-api-azure-event-hubs/event-hubs-namespace.png)
 
-3.  <span data-ttu-id="4e540-122">Event Hubs 네임스페이스에 대한 연결 문자열을 복사하려면 **RootManageSharedAccessKey**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-122">To copy the connection string for the Event Hubs namespace, choose **RootManageSharedAccessKey**.</span></span> <span data-ttu-id="4e540-123">기본 키 연결 문자열 옆에 있는 복사 단추를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-123">Next to your primary key connection string, choose the copy button.</span></span>
+3.  <span data-ttu-id="ce3df-122">toocopy hello 연결 문자열 hello 이벤트 허브 네임 스페이스에 대 한 선택 **RootManageSharedAccessKey**합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-122">toocopy hello connection string for hello Event Hubs namespace, choose **RootManageSharedAccessKey**.</span></span> <span data-ttu-id="ce3df-123">다음 tooyour 기본 연결 문자열 키를 hello 복사 단추를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-123">Next tooyour primary key connection string, choose hello copy button.</span></span>
 
     ![Event Hubs 네임스페이스 연결 문자열 복사](media/connectors-create-api-azure-event-hubs/find-event-hub-namespace-connection-string.png)
 
     > [!TIP]
-    > <span data-ttu-id="4e540-125">연결 문자열이 Event Hubs 네임스페이스 또는 특정 Event Hub와 연결되어 있는지 확인하려면 `EntityPath` 매개 변수에 대한 연결 문자열을 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="4e540-125">To confirm whether your connection string is associated with your Event Hubs namespace or with a specific Event Hub, check the connection string for the `EntityPath` parameter.</span></span> <span data-ttu-id="4e540-126">이 매개 변수를 찾으면 연결 문자열은 특정 Event Hub “엔터티”에 대한 것이고 논리 앱에 사용할 올바른 문자열이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-126">If you find this parameter, the connection string is for a specific Event Hub "entity", and is not the correct string to use with your logic app.</span></span>
+    > <span data-ttu-id="ce3df-125">tooconfirm 연결 문자열은 특정 이벤트 허브 또는 이벤트 허브 네임 스페이스와 연결 되어 있는지 여부를 확인 hello에 대 한 연결 문자열 hello `EntityPath` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-125">tooconfirm whether your connection string is associated with your Event Hubs namespace or with a specific Event Hub, check hello connection string for hello `EntityPath` parameter.</span></span> <span data-ttu-id="ce3df-126">이 매개 변수를 찾을 경우 hello 연결 문자열 "엔터티"은 특정 이벤트 허브에 대 한 이며 논리 앱과 함께 hello 올바른 문자열로 toouse 않습니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-126">If you find this parameter, hello connection string is for a specific Event Hub "entity", and is not hello correct string toouse with your logic app.</span></span>
 
-4.  <span data-ttu-id="4e540-127">이제 Event Hubs 트리거 또는 작업을 논리 앱에 추가한 후 자격 증명을 묻는 메시지가 표시되면 Event Hubs 네임스페이스에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-127">Now when you're prompted for credentials after adding an Event Hubs trigger or action to your logic app, you can connect to your Event Hubs namespace.</span></span> <span data-ttu-id="4e540-128">연결에 이름을 지정하고 복사한 연결 문자열을 입력하고 **만들기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-128">Give your connection a name, enter the connection string that you copied, and choose **Create**.</span></span>
+4.  <span data-ttu-id="ce3df-127">이제 이벤트 허브 트리거나 작업 tooyour 논리 앱을 추가한 후 자격 증명에 대 한 메시지가 나타나면, tooyour 이벤트 허브 네임 스페이스를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-127">Now when you're prompted for credentials after adding an Event Hubs trigger or action tooyour logic app, you can connect tooyour Event Hubs namespace.</span></span> <span data-ttu-id="ce3df-128">연결 이름을 지정, 복사 하 고 선택 하는 hello 연결 문자열을 입력 **만들기**합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-128">Give your connection a name, enter hello connection string that you copied, and choose **Create**.</span></span>
 
     ![Event Hubs 네임스페이스에 대한 연결 문자열 입력](./media/connectors-create-api-azure-event-hubs/event-hubs-connection.png)
 
-    <span data-ttu-id="4e540-130">연결을 만들면 연결 이름이 Event Hubs 트리거 또는 작업에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-130">After you create your connection, the connection name should appear in the Event Hubs trigger or action.</span></span> 
-    <span data-ttu-id="4e540-131">그런 다음 논리 앱에서 다른 단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-131">You can then continue with the other steps in your logic app.</span></span>
+    <span data-ttu-id="ce3df-130">연결을 만들 hello 연결 이름 hello 이벤트 허브 트리거 또는 작업에 표시 되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-130">After you create your connection, hello connection name should appear in hello Event Hubs trigger or action.</span></span> 
+    <span data-ttu-id="ce3df-131">그런 다음 계속 진행할 수 있습니다 hello 논리 앱의 다른 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-131">You can then continue with hello other steps in your logic app.</span></span>
 
     ![Event Hubs 네임스페이스 연결 생성됨](./media/connectors-create-api-azure-event-hubs/event-hubs-connection-created.png)
 
-## <a name="start-workflow-when-your-event-hub-receives-new-events"></a><span data-ttu-id="4e540-133">Event Hub에서 새 이벤트를 수신하면 워크플로 시작</span><span class="sxs-lookup"><span data-stu-id="4e540-133">Start workflow when your Event Hub receives new events</span></span>
+## <a name="start-workflow-when-your-event-hub-receives-new-events"></a><span data-ttu-id="ce3df-133">Event Hub에서 새 이벤트를 수신하면 워크플로 시작</span><span class="sxs-lookup"><span data-stu-id="ce3df-133">Start workflow when your Event Hub receives new events</span></span>
 
-<span data-ttu-id="4e540-134">[*트리거*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)는 논리 앱에서 워크플로를 시작하는 이벤트입니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-134">A [*trigger*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is an event that starts a workflow in your logic app.</span></span> <span data-ttu-id="4e540-135">새 이벤트가 Event Hub에 전송되었을 때 워크플로를 시작하려면 이 이벤트를 감지하는 트리거를 추가하는 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-135">To start a workflow when new events are sent to your Event Hub, follow these steps for adding the trigger that detects this event.</span></span>
+<span data-ttu-id="ce3df-134">[*트리거*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)는 논리 앱에서 워크플로를 시작하는 이벤트입니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-134">A [*trigger*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is an event that starts a workflow in your logic app.</span></span> <span data-ttu-id="ce3df-135">새 이벤트는 tooyour 이벤트 허브를 전송 하는 경우 워크플로 시작 하려면이 이벤트를 검색 하는 hello 트리거를 추가 하기 위한 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-135">To start a workflow when new events are sent tooyour Event Hub, follow these steps for adding hello trigger that detects this event.</span></span>
 
-1.  <span data-ttu-id="4e540-136">[Azure Portal](https://portal.azure.com "Azure Portal")에서 기존 논리 앱으로 이동하거나 비어 있는 논리 앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-136">In the [Azure portal](https://portal.azure.com "Azure portal"), go to your existing logic app or create a blank logic app.</span></span>
+1.  <span data-ttu-id="ce3df-136">Hello에 [Azure 포털](https://portal.azure.com "Azure 포털"), tooyour 기존 논리 앱을 이동 하거나 빈 논리 앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-136">In hello [Azure portal](https://portal.azure.com "Azure portal"), go tooyour existing logic app or create a blank logic app.</span></span>
 
-2.  <span data-ttu-id="4e540-137">논리 앱 디자이너의 검색 상자에 필터에 대한 `event hubs`를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-137">In the search box for the Logic App Designer, enter `event hubs` for your filter.</span></span> <span data-ttu-id="4e540-138">이 트리거 선택: **이벤트가 Event Hub에서 사용 가능한 경우**</span><span class="sxs-lookup"><span data-stu-id="4e540-138">Select this trigger: **When events are available in Event Hub**</span></span>
+2.  <span data-ttu-id="ce3df-137">Hello 논리가 응용 프로그램 디자이너에 대 한 hello 검색 상자에 입력 `event hubs` 필터에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-137">In hello search box for hello Logic App Designer, enter `event hubs` for your filter.</span></span> <span data-ttu-id="ce3df-138">이 트리거 선택: **이벤트가 Event Hub에서 사용 가능한 경우**</span><span class="sxs-lookup"><span data-stu-id="ce3df-138">Select this trigger: **When events are available in Event Hub**</span></span>
 
     ![Event Hub에서 새 이벤트를 수신하는 경우에 대한 트리거 선택](./media/connectors-create-api-azure-event-hubs/find-event-hubs-trigger.png)
 
-    <span data-ttu-id="4e540-140">Event Hubs 네임스페이스에 대한 연결이 아직 없는 경우 이 연결을 생성할지 묻는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-140">If you don't already have a connection to your Event Hubs namespace, you're prompted to create this connection now.</span></span> <span data-ttu-id="4e540-141">연결에 이름을 지정하고 Event Hubs 네임스페이스에 대한 연결 문자열을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-141">Give your connection a name, and enter the connection string for your Event Hubs namespace.</span></span> 
-    <span data-ttu-id="4e540-142">필요한 경우 [연결 문자열을 찾는 방법](#permissions-connection-string)에 대해 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="4e540-142">If necessary, learn [how to find your connection string](#permissions-connection-string).</span></span>
+    <span data-ttu-id="ce3df-140">연결 tooyour 이벤트 허브 네임 스페이스를 아직 없는 경우 메시지가 toocreate이 지금이 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-140">If you don't already have a connection tooyour Event Hubs namespace, you're prompted toocreate this connection now.</span></span> <span data-ttu-id="ce3df-141">사용자 연결에 이름을 지정 하 고 사용자 이벤트 허브 네임 스페이스에 대 한 hello 연결 문자열을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-141">Give your connection a name, and enter hello connection string for your Event Hubs namespace.</span></span> 
+    <span data-ttu-id="ce3df-142">필요한 경우에 대해 배울 [어떻게 toofind 연결 문자열](#permissions-connection-string)합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-142">If necessary, learn [how toofind your connection string](#permissions-connection-string).</span></span>
 
     ![Event Hubs 네임스페이스에 대한 연결 문자열 입력](./media/connectors-create-api-azure-event-hubs/event-hubs-connection.png)
 
-    <span data-ttu-id="4e540-144">연결을 생성한 후에는 **이벤트가 Event Hub에서 사용 가능한 경우** 트리거에 대한 설정이 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-144">After you create the connection, the settings for the **When an event in available in an Event Hub** trigger appear.</span></span>
+    <span data-ttu-id="ce3df-144">Hello 연결을 만든 후 hello hello에 대 한 설정을 **때 이벤트에 이벤트 허브에서 사용할 수 있는** 트리거 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-144">After you create hello connection, hello settings for hello **When an event in available in an Event Hub** trigger appear.</span></span>
 
     ![Event Hub에서 새 이벤트를 수신하는 경우에 대한 트리거 설정](./media/connectors-create-api-azure-event-hubs/event-hubs-trigger.png)
 
-3.  <span data-ttu-id="4e540-146">모니터할 Event Hub에 대한 이름을 입력 또는 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-146">Enter or select the name for the Event Hub that you want to monitor.</span></span> <span data-ttu-id="4e540-147">Event Hub를 얼마나 자주 확인할지 빈도와 간격을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-147">Select the frequency and interval for how often you want to check the Event Hub.</span></span>
+3.  <span data-ttu-id="ce3df-146">입력 하거나 hello toomonitor 이벤트 허브에 대 한 hello 이름을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-146">Enter or select hello name for hello Event Hub that you want toomonitor.</span></span> <span data-ttu-id="ce3df-147">Hello 빈도 및 빈도 toocheck hello 이벤트 허브에 대 한 간격을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-147">Select hello frequency and interval for how often you want toocheck hello Event Hub.</span></span>
 
     > [!TIP]
-    > <span data-ttu-id="4e540-148">필요할 경우 이벤트를 읽기 위한 소비자 그룹을 선택하고 **고급 옵션 표시**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-148">To optionally select a consumer group for reading events, choose **Show advanced options**.</span></span> 
+    > <span data-ttu-id="ce3df-148">toooptionally 이벤트 읽기에 대 한 소비자 그룹을 선택, 선택 **고급 옵션 표시**합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-148">toooptionally select a consumer group for reading events, choose **Show advanced options**.</span></span> 
 
     ![Event Hub 또는 소비자 그룹 지정](./media/connectors-create-api-azure-event-hubs/event-hubs-trigger-details.png)
 
-    <span data-ttu-id="4e540-150">이제 논리 앱에 대한 워크플로를 시작할 트리거를 설정했습니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-150">You've now set up a trigger to start a workflow for your logic app.</span></span> 
-    <span data-ttu-id="4e540-151">논리 앱에서 설정한 일정에 따라 지정된 Event Hub를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-151">Your logic app checks the specified Event Hub based on the schedule that you set.</span></span> 
-    <span data-ttu-id="4e540-152">앱이 Event Hub에서 새 이벤트를 찾으면 트리거가 논리 앱의 다른 작업 또는 트리거를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-152">If your app finds new events in the Event Hub, the trigger runs other actions or triggers in your logic app.</span></span>
+    <span data-ttu-id="ce3df-150">이제 설정한 트리거 toostart 워크플로 논리 앱에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-150">You've now set up a trigger toostart a workflow for your logic app.</span></span> 
+    <span data-ttu-id="ce3df-151">논리 앱 hello 이벤트 허브 설정 하는 hello 일정에 따라 지정 된 것을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-151">Your logic app checks hello specified Event Hub based on hello schedule that you set.</span></span> 
+    <span data-ttu-id="ce3df-152">Hello 이벤트 허브에서에서 새 이벤트를 발견 하는 응용 프로그램, hello 트리거 논리 앱에서 다른 작업 또는 트리거 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-152">If your app finds new events in hello Event Hub, hello trigger runs other actions or triggers in your logic app.</span></span>
 
-## <a name="send-events-to-your-event-hub-from-your-logic-app"></a><span data-ttu-id="4e540-153">논리 앱에서 Event Hub로 이벤트 보내기</span><span class="sxs-lookup"><span data-stu-id="4e540-153">Send events to your Event Hub from your logic app</span></span>
+## <a name="send-events-tooyour-event-hub-from-your-logic-app"></a><span data-ttu-id="ce3df-153">논리 앱에서 이벤트 허브 이벤트 tooyour 보내기</span><span class="sxs-lookup"><span data-stu-id="ce3df-153">Send events tooyour Event Hub from your logic app</span></span>
 
-<span data-ttu-id="4e540-154">[*작업*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)은 논리 앱 워크플로에서 수행하는 태스크입니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-154">An [*action*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is a task performed by your logic app workflow.</span></span> <span data-ttu-id="4e540-155">논리 앱에 트리거를 추가한 후에 해당 트리거에 의해 생성된 데이터를 사용하여 작업을 수행하는 작업을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-155">After you add a trigger to your logic app, you can add an action to perform operations with data generated by that trigger.</span></span> <span data-ttu-id="4e540-156">논리 앱에서 Event Hub로 이벤트를 보내려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-156">To send an event to your Event Hub from your logic app, follow these steps.</span></span>
+<span data-ttu-id="ce3df-154">[*작업*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)은 논리 앱 워크플로에서 수행하는 태스크입니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-154">An [*action*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is a task performed by your logic app workflow.</span></span> <span data-ttu-id="ce3df-155">트리거 tooyour 논리 앱을 추가 하면 해당 트리거에 의해 생성 된 데이터와 작업 tooperform 작업을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-155">After you add a trigger tooyour logic app, you can add an action tooperform operations with data generated by that trigger.</span></span> <span data-ttu-id="ce3df-156">toosend 이벤트 tooyour 이벤트 허브 논리 앱에서 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-156">toosend an event tooyour Event Hub from your logic app, follow these steps.</span></span>
 
-1.  <span data-ttu-id="4e540-157">논리 앱 디자이너의 논리 앱 트리거 아래에서 **새 단계** > **작업 추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-157">In Logic App Designer, under your logic app trigger, choose **New step** > **Add an action**.</span></span>
+1.  <span data-ttu-id="ce3df-157">논리 앱 디자이너의 논리 앱 트리거 아래에서 **새 단계** > **작업 추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-157">In Logic App Designer, under your logic app trigger, choose **New step** > **Add an action**.</span></span>
 
     ![[새 단계]를 선택한 후 [작업 추가]를 선택합니다.](./media/connectors-create-api-azure-event-hubs/add-action.png)
 
-    <span data-ttu-id="4e540-159">이제 수행할 작업을 찾아 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-159">Now you can find and select an action to perform.</span></span> 
-    <span data-ttu-id="4e540-160">어떤 작업이라도 선택할 수 있지만 이 예에서는 이벤트를 보내는 Event Hubs 작업을 선택하고자 합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-160">Although you can select any action, for this example, we want the Event Hubs action to send events.</span></span>
+    <span data-ttu-id="ce3df-159">이제 작업 tooperform를 선택 하 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-159">Now you can find and select an action tooperform.</span></span> 
+    <span data-ttu-id="ce3df-160">이 예제에 대 한 작업을 선택할 수 있지만 hello 이벤트 허브 작업 toosend 이벤트 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-160">Although you can select any action, for this example, we want hello Event Hubs action toosend events.</span></span>
 
-2.  <span data-ttu-id="4e540-161">검색 상자에서 필터에 `event hubs`를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-161">In the search box, enter `event hubs` for your filter.</span></span>
-<span data-ttu-id="4e540-162">이 작업 선택: **이벤트 보내기**</span><span class="sxs-lookup"><span data-stu-id="4e540-162">Select this action: **Send event**</span></span>
+2.  <span data-ttu-id="ce3df-161">Hello 검색 상자에 입력 `event hubs` 필터에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-161">In hello search box, enter `event hubs` for your filter.</span></span>
+<span data-ttu-id="ce3df-162">이 작업 선택: **이벤트 보내기**</span><span class="sxs-lookup"><span data-stu-id="ce3df-162">Select this action: **Send event**</span></span>
 
     ![[Event Hubs - 이벤트 보내기] 작업을 선택합니다.](./media/connectors-create-api-azure-event-hubs/find-event-hubs-action.png)
 
-3.  <span data-ttu-id="4e540-164">이벤트에 필요한 정보(예: 이벤트를 보낼 Event Hub 이름)를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-164">Enter the required details for the event, such as the name for the Event Hub where you want to send the event.</span></span> <span data-ttu-id="4e540-165">이벤트에 대한 다른 선택적 정보(예: 이벤트에 대한 콘텐츠)를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-165">Enter any other optional details about the event, such as content for that event.</span></span>
+3.  <span data-ttu-id="ce3df-164">Hello toosend hello 이벤트를 원하는 이벤트 허브에 대 한 hello 이름과 같은 hello 이벤트에 대 한 hello 필요한 세부 정보를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-164">Enter hello required details for hello event, such as hello name for hello Event Hub where you want toosend hello event.</span></span> <span data-ttu-id="ce3df-165">예: 해당 이벤트에 대 한 콘텐츠 hello 이벤트에 대 한 다른 선택적 정보를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-165">Enter any other optional details about hello event, such as content for that event.</span></span>
 
     > [!TIP]
-    > <span data-ttu-id="4e540-166">이벤트를 보낼 Event Hub 파티션을 필요에 따라 지정하려면 **고급 옵션 표시**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-166">To optionally specify the Event Hub partition where to send the event, choose **Show advanced options**.</span></span> 
+    > <span data-ttu-id="ce3df-166">toooptionally 지정 여기서 toosend hello 이벤트 hello 이벤트 허브 파티션 선택 **고급 옵션 표시**합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-166">toooptionally specify hello Event Hub partition where toosend hello event, choose **Show advanced options**.</span></span> 
 
     ![Event Hub 이름 및 선택적 이벤트 정보 입력](./media/connectors-create-api-azure-event-hubs/event-hubs-send-event-action.png)
 
-6.  <span data-ttu-id="4e540-168">변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-168">Save your changes.</span></span>
+6.  <span data-ttu-id="ce3df-168">변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-168">Save your changes.</span></span>
 
     ![논리 앱 저장](./media/connectors-create-api-azure-event-hubs/save-logic-app.png)
 
-    <span data-ttu-id="4e540-170">이제 논리 앱에서 이벤트를 보내는 작업을 설정했습니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-170">You've now set up an action to send events from your logic app.</span></span> 
+    <span data-ttu-id="ce3df-170">이제 논리 앱에서 동작 toosend 이벤트를 설정 했습니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-170">You've now set up an action toosend events from your logic app.</span></span> 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="4e540-171">커넥터 관련 세부 정보</span><span class="sxs-lookup"><span data-stu-id="4e540-171">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="ce3df-171">커넥터 관련 세부 정보</span><span class="sxs-lookup"><span data-stu-id="ce3df-171">Connector-specific details</span></span>
 
-<span data-ttu-id="4e540-172">[커넥터 세부 정보](/connectors/eventhubs/)에서 swagger에 정의된 모든 트리거 및 작업과 제한 사항도 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4e540-172">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/eventhubs/).</span></span> 
+<span data-ttu-id="ce3df-172">모든 트리거 및 hello swagger에 정의 된 작업을 확인 하 고 hello에 어떠한 제한도 볼 [connector 세부 정보](/connectors/eventhubs/)합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-172">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/eventhubs/).</span></span> 
 
-## <a name="get-help"></a><span data-ttu-id="4e540-173">도움말 보기</span><span class="sxs-lookup"><span data-stu-id="4e540-173">Get help</span></span>
+## <a name="get-help"></a><span data-ttu-id="ce3df-173">도움말 보기</span><span class="sxs-lookup"><span data-stu-id="ce3df-173">Get help</span></span>
 
-<span data-ttu-id="4e540-174">질문하고, 질문에 답변하고, 다른 Azure Logic Apps 사용자가 어떤 일을 하는지 확인하려면 [Azure Logic Apps 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)을 방문하세요.</span><span class="sxs-lookup"><span data-stu-id="4e540-174">To ask questions, answer questions, and see what other Azure Logic Apps users are doing, visit the [Azure Logic Apps forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).</span></span>
+<span data-ttu-id="ce3df-174">tooask 질문과 대답 질문 참조를 수행 하는 다른 Azure 논리 앱 사용자가 방문 hello [Azure 논리 앱 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-174">tooask questions, answer questions, and see what other Azure Logic Apps users are doing, visit hello [Azure Logic Apps forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).</span></span>
 
-<span data-ttu-id="4e540-175">Logic Apps 및 커넥터 개선에 도움을 주려면 [Logic Apps 사용자 의견 사이트](http://aka.ms/logicapps-wish)에서 투표하고 아이디어를 제출하세요.</span><span class="sxs-lookup"><span data-stu-id="4e540-175">To help improve Logic Apps and connectors, vote on or submit ideas at the [Logic Apps user feedback site](http://aka.ms/logicapps-wish).</span></span>
+<span data-ttu-id="ce3df-175">논리 앱 및 커넥터 향상, 투표 하거나 hello에서 아이디어 제출 toohelp [논리 앱 사용자 의견 사이트](http://aka.ms/logicapps-wish)합니다.</span><span class="sxs-lookup"><span data-stu-id="ce3df-175">toohelp improve Logic Apps and connectors, vote on or submit ideas at hello [Logic Apps user feedback site](http://aka.ms/logicapps-wish).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="4e540-176">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4e540-176">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ce3df-176">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ce3df-176">Next steps</span></span>
 
-*  [<span data-ttu-id="4e540-177">Azure Logic Apps용 다른 커넥터 찾기</span><span class="sxs-lookup"><span data-stu-id="4e540-177">Find other connectors for Azure Logic apps</span></span>](./apis-list.md)
+*  [<span data-ttu-id="ce3df-177">Azure Logic Apps용 다른 커넥터 찾기</span><span class="sxs-lookup"><span data-stu-id="ce3df-177">Find other connectors for Azure Logic apps</span></span>](./apis-list.md)

@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory Domain Services: Azure 가상 네트워크에 대한 DNS 설정 업데이트 | Microsoft Docs"
+title: "Azure Active Directory 도메인 서비스: 업데이트 hello Azure 가상 네트워크에 대 한 DNS 설정을 | Microsoft Docs"
 description: "Azure Active Directory Domain Services 시작"
 services: active-directory-ds
 documentationcenter: 
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/27/2017
 ms.author: maheshu
-ms.openlocfilehash: c704ee189072ce8ed196d1ef0a23edd528a10025
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6eaff555cb9b7bb89ab7581d8de0b8cfc844529
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-preview"></a><span data-ttu-id="6e424-103">Azure Active Directory Domain Services 활성화(미리 보기)</span><span class="sxs-lookup"><span data-stu-id="6e424-103">Enable Azure Active Directory Domain Services (Preview)</span></span>
+# <a name="enable-azure-active-directory-domain-services-preview"></a><span data-ttu-id="b2525-103">Azure Active Directory Domain Services 활성화(미리 보기)</span><span class="sxs-lookup"><span data-stu-id="b2525-103">Enable Azure Active Directory Domain Services (Preview)</span></span>
 
-## <a name="task-4-update-dns-settings-for-the-azure-virtual-network"></a><span data-ttu-id="6e424-104">작업 4: Azure 가상 네트워크에 대한 DNS 설정 업데이트</span><span class="sxs-lookup"><span data-stu-id="6e424-104">Task 4: update DNS settings for the Azure virtual network</span></span>
-<span data-ttu-id="6e424-105">이전 구성 작업에서 디렉터리에 Azure Active Directory Domain Services를 사용하도록 성공적으로 설정했습니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-105">In the preceding configuration tasks, you have successfully enabled Azure Active Directory Domain Services for your directory.</span></span> <span data-ttu-id="6e424-106">다음 작업은 가상 네트워크 내의 컴퓨터가 이러한 서비스에 연결되고 해당 서비스를 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-106">The next task is to ensure that computers within the virtual network can connect and consume these services.</span></span> <span data-ttu-id="6e424-107">이 문서에서는 가상 네트워크에서 Azure Active Directory Domain Services를 사용할 수 있는 두 개의 IP 주소를 가리키도록 가상 네트워크에 대한 DNS 서버 설정을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-107">In this article, you update the DNS server settings for your virtual network to point to the two IP addresses where Azure Active Directory Domain Services is available on the virtual network.</span></span>
+## <a name="task-4-update-dns-settings-for-hello-azure-virtual-network"></a><span data-ttu-id="b2525-104">작업 4: hello Azure 가상 네트워크에 대 한 DNS 설정을 업데이트합니다</span><span class="sxs-lookup"><span data-stu-id="b2525-104">Task 4: update DNS settings for hello Azure virtual network</span></span>
+<span data-ttu-id="b2525-105">Hello 구성 작업 앞에에서 성공적으로 사용 하도록 설정한 디렉터리에 대 한 Azure Active Directory 도메인 서비스.</span><span class="sxs-lookup"><span data-stu-id="b2525-105">In hello preceding configuration tasks, you have successfully enabled Azure Active Directory Domain Services for your directory.</span></span> <span data-ttu-id="b2525-106">hello 다음 작업은 tooensure hello 가상 네트워크 내에서 컴퓨터 연결 하 고 이러한 서비스를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-106">hello next task is tooensure that computers within hello virtual network can connect and consume these services.</span></span> <span data-ttu-id="b2525-107">이 문서에서는 사용자 가상 네트워크 toopoint toohello 두 IP 주소에 대해 Azure Active Directory 도메인 서비스를 hello 가상 네트워크에서 사용할 수 있는 hello DNS 서버 설정을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-107">In this article, you update hello DNS server settings for your virtual network toopoint toohello two IP addresses where Azure Active Directory Domain Services is available on hello virtual network.</span></span>
 
-<span data-ttu-id="6e424-108">Azure Active Directory Domain Services를 사용하도록 설정한 가상 네트워크에 대한 DNS 서버 설정을 업데이트하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-108">To update the DNS server setting for the virtual network in which you have enabled Azure Active Directory Domain Services, complete the following steps:</span></span>
+<span data-ttu-id="b2525-108">tooupdate hello DNS 서버 설정을 hello 가상 네트워크를 사용 하도록 설정한 Azure Active Directory 도메인 서비스, 단계를 수행 하는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="b2525-108">tooupdate hello DNS server setting for hello virtual network in which you have enabled Azure Active Directory Domain Services, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="6e424-109">**개요** 탭에는 관리되는 도메인을 완전히 프로비전한 후 수행할 일련의 **필수 구성 단계**가 나열되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-109">The **Overview** tab lists a set of **Required configuration steps** to be performed after your managed domain is fully provisioned.</span></span> <span data-ttu-id="6e424-110">첫 번째 구성 단계는 **가상 네트워크를 위한 DNS 서버 설정 업데이트**입니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-110">The first configuration step is **Update DNS server settings for your virtual network**.</span></span>
+1. <span data-ttu-id="b2525-109">hello **개요** 탭 집합을 나열 **구성 단계를 필요한** toobe 관리 되는 도메인 완전히 프로 비전 한 후 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-109">hello **Overview** tab lists a set of **Required configuration steps** toobe performed after your managed domain is fully provisioned.</span></span> <span data-ttu-id="b2525-110">hello 첫 번째 구성 단계는 **가상 네트워크에 대 한 업데이트 DNS 서버 설정을**합니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-110">hello first configuration step is **Update DNS server settings for your virtual network**.</span></span>
 
     ![Domain Services - 완전히 프로비전한 후 개요 탭](./media/getting-started/domain-services-provisioned-overview.png)
 
-2. <span data-ttu-id="6e424-112">도메인이 완전히 프로비전되면 두 개의 IP 주소가 이 타일에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-112">When your domain is fully provisioned, two IP addresses are displayed in this tile.</span></span> <span data-ttu-id="6e424-113">이들 IP 주소 각각은 관리되는 도메인에 대한 도메인 컨트롤러를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-113">Each of these IP addresses represents a domain controller for your managed domain.</span></span>
+2. <span data-ttu-id="b2525-112">도메인이 완전히 프로비전되면 두 개의 IP 주소가 이 타일에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-112">When your domain is fully provisioned, two IP addresses are displayed in this tile.</span></span> <span data-ttu-id="b2525-113">이들 IP 주소 각각은 관리되는 도메인에 대한 도메인 컨트롤러를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-113">Each of these IP addresses represents a domain controller for your managed domain.</span></span>
 
-3. <span data-ttu-id="6e424-114">첫 번째 IP 주소를 클립보드에 복사하려면 옆에 있는 복사 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-114">To copy the first IP address to clipboard, click the copy button next to it.</span></span> <span data-ttu-id="6e424-115">그런 다음 **DNS 구성 서버** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-115">Then click the **Configure DNS servers** button.</span></span>
+3. <span data-ttu-id="b2525-114">toocopy hello 첫 번째 IP 주소 tooclipboard를 hello 복사 다음 tooit 단추를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-114">toocopy hello first IP address tooclipboard, click hello copy button next tooit.</span></span> <span data-ttu-id="b2525-115">Hello 클릭 **DNS 구성 서버** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-115">Then click hello **Configure DNS servers** button.</span></span>
 
-4. <span data-ttu-id="6e424-116">첫 번째 IP 주소를 **DNS 서버** 블레이드에 있는 **DNS 서버 추가** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-116">Paste the first IP address into the **Add DNS server** textbox in the **DNS servers** blade.</span></span> <span data-ttu-id="6e424-117">왼쪽으로 스크롤 하여 두 번째 IP 주소를 복사하여 **DNS 서버 추가** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-117">Scroll horizontally to the left to copy the second IP address and paste it into the **Add DNS server** textbox.</span></span>
+4. <span data-ttu-id="b2525-116">Hello에 hello 첫 번째 IP 주소를 붙여 **추가 DNS 서버** hello 텍스트 상자로 **DNS 서버** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-116">Paste hello first IP address into hello **Add DNS server** textbox in hello **DNS servers** blade.</span></span> <span data-ttu-id="b2525-117">Toocopy hello 두 번째 IP 주소를 왼쪽 toohello 가로로 스크롤될를 hello에 붙여 넣습니다 **추가 DNS 서버** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-117">Scroll horizontally toohello left toocopy hello second IP address and paste it into hello **Add DNS server** textbox.</span></span>
 
     ![Domain Services - DNS 업데이트](./media/getting-started/domain-services-update-dns.png)
 
-5. <span data-ttu-id="6e424-119">가상 네트워크에 대한 DNS 서버를 업데이트를 완료하면 **저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-119">Click **Save** when you are done to update the DNS servers for the virtual network.</span></span>
+5. <span data-ttu-id="b2525-119">클릭 **저장** tooupdate hello DNS 서버 hello 가상 네트워크를 완료 합니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-119">Click **Save** when you are done tooupdate hello DNS servers for hello virtual network.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="6e424-120">다시 시작하고 나면 네트워크 상의 가상 컴퓨터만 새 DNS 설정을 얻습니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-120">Virtual machines in the network only get the new DNS settings after a restart.</span></span> <span data-ttu-id="6e424-121">업데이트된 DNS 설정을 즉시 얻어야 하는 경우 포털, PowerShell 또는 CLI로 다시 시작을 트리거합니다.</span><span class="sxs-lookup"><span data-stu-id="6e424-121">If you need them to get the updated DNS settings right away, trigger a restart either by the portal, PowerShell, or the CLI.</span></span>
+> <span data-ttu-id="b2525-120">Hello 네트워크의 가상 컴퓨터만 다시 시작한 후에 새로운 DNS 설정을 hello를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b2525-120">Virtual machines in hello network only get hello new DNS settings after a restart.</span></span> <span data-ttu-id="b2525-121">필요할 경우 tooget 업데이트 hello DNS 설정을 바로, hello 포털, PowerShell 또는 CLI hello에 의해 다시 시작을 트리거하십시오.</span><span class="sxs-lookup"><span data-stu-id="b2525-121">If you need them tooget hello updated DNS settings right away, trigger a restart either by hello portal, PowerShell, or hello CLI.</span></span>
 >
 >
 
-## <a name="next-step"></a><span data-ttu-id="6e424-122">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6e424-122">Next step</span></span>
-[<span data-ttu-id="6e424-123">작업 5: Azure Active Directory Domain Services에 대한 암호 동기화 활성화</span><span class="sxs-lookup"><span data-stu-id="6e424-123">Task 5: enable password synchronization to Azure Active Directory Domain Services</span></span>](active-directory-ds-getting-started-password-sync.md)
+## <a name="next-step"></a><span data-ttu-id="b2525-122">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b2525-122">Next step</span></span>
+[<span data-ttu-id="b2525-123">태스크 5: 암호 동기화 tooAzure Active Directory 도메인 서비스를 사용 하도록 설정</span><span class="sxs-lookup"><span data-stu-id="b2525-123">Task 5: enable password synchronization tooAzure Active Directory Domain Services</span></span>](active-directory-ds-getting-started-password-sync.md)

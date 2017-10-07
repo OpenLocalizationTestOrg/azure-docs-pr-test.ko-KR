@@ -1,6 +1,6 @@
 ---
-title: "템플릿의 Azure 리소스 위치 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿의 리소스에 대한 위치 설정 방법을 보여 줍니다."
+title: "서식 파일에 리소스 위치 aaaAzure | Microsoft Docs"
+description: "표시 방법을 tooset Azure Resource Manager 템플릿의 리소스에 대 한 위치"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: tomfitz
-ms.openlocfilehash: 73e50a593c41e841dcaf184abb895406ff5001e9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f2ad6ca6ac5f34484a2e5e57dd8d67c77dacc41a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="set-resource-location-in-azure-resource-manager-templates"></a><span data-ttu-id="c8003-103">Azure Resource Manager 템플릿에서 리소스 위치 설정</span><span class="sxs-lookup"><span data-stu-id="c8003-103">Set resource location in Azure Resource Manager templates</span></span>
-<span data-ttu-id="c8003-104">템플릿을 배포할 때는 각 리소스의 위치를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-104">When deploying a template, you must provide a location for each resource.</span></span> <span data-ttu-id="c8003-105">이 항목에서는 각 리소스 유형에 대한 구독에서 사용할 수 있는 위치를 확인하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-105">This topic shows how to determine the locations that are available to your subscription for each resource type.</span></span>
+# <a name="set-resource-location-in-azure-resource-manager-templates"></a><span data-ttu-id="71e77-103">Azure Resource Manager 템플릿에서 리소스 위치 설정</span><span class="sxs-lookup"><span data-stu-id="71e77-103">Set resource location in Azure Resource Manager templates</span></span>
+<span data-ttu-id="71e77-104">템플릿을 배포할 때는 각 리소스의 위치를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-104">When deploying a template, you must provide a location for each resource.</span></span> <span data-ttu-id="71e77-105">이 항목에서는 각 리소스에 대 한 사용 가능한 tooyour 구독 않은 toodetermine hello 위치 입력 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-105">This topic shows how toodetermine hello locations that are available tooyour subscription for each resource type.</span></span>
 
-## <a name="determine-supported-locations"></a><span data-ttu-id="c8003-106">지원되는 위치 확인</span><span class="sxs-lookup"><span data-stu-id="c8003-106">Determine supported locations</span></span>
+## <a name="determine-supported-locations"></a><span data-ttu-id="71e77-106">지원되는 위치 확인</span><span class="sxs-lookup"><span data-stu-id="71e77-106">Determine supported locations</span></span>
 
-<span data-ttu-id="c8003-107">각 리소스 유형에 대해 지원되는 위치의 전체 목록은 [지역별 사용 가능한 제품](https://azure.microsoft.com/regions/services/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c8003-107">For a complete list of supported locations for each resource type, see [Products available by region](https://azure.microsoft.com/regions/services/).</span></span> <span data-ttu-id="c8003-108">그러나 구독에 해당 목록의 모든 위치에 대한 액세스 권한이 없을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-108">However, your subscription might not have access to all the locations in that list.</span></span> <span data-ttu-id="c8003-109">구독에서 사용할 수 있는 위치의 사용자 지정된 목록을 보려면 Azure PowerShell 또는 Azure CLI를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-109">To see a customized list of locations that are available to your subscription, use Azure PowerShell or Azure CLI.</span></span> 
+<span data-ttu-id="71e77-107">각 리소스 유형에 대해 지원되는 위치의 전체 목록은 [지역별 사용 가능한 제품](https://azure.microsoft.com/regions/services/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="71e77-107">For a complete list of supported locations for each resource type, see [Products available by region](https://azure.microsoft.com/regions/services/).</span></span> <span data-ttu-id="71e77-108">그러나 구독 액세스 tooall hello 위치 해당 목록에 없을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-108">However, your subscription might not have access tooall hello locations in that list.</span></span> <span data-ttu-id="71e77-109">사용자 지정된 위치를 사용할 수 있는 tooyour 구독 목록을 toosee Azure PowerShell 또는 Azure CLI를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-109">toosee a customized list of locations that are available tooyour subscription, use Azure PowerShell or Azure CLI.</span></span> 
 
-<span data-ttu-id="c8003-110">다음 예제에서는 PowerShell을 사용하여 `Microsoft.Web\sites` 리소스 유형에 대한 위치를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-110">The following example uses PowerShell to get the locations for the `Microsoft.Web\sites` resource type:</span></span>
+<span data-ttu-id="71e77-110">hello 다음 예제에서는 PowerShell tooget hello 위치 hello에 대 한 `Microsoft.Web\sites` 리소스 종류:</span><span class="sxs-lookup"><span data-stu-id="71e77-110">hello following example uses PowerShell tooget hello locations for hello `Microsoft.Web\sites` resource type:</span></span>
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
 ```
 
-<span data-ttu-id="c8003-111">다음 예제에서는 Azure CLI 2.0을 사용하여 `Microsoft.Web\sites` 리소스 유형에 대한 위치를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-111">The following example uses Azure CLI 2.0 to get the locations for the `Microsoft.Web\sites` resource type:</span></span>
+<span data-ttu-id="71e77-111">hello 다음 예제에서는 Azure CLI 2.0 tooget hello 위치 hello에 대 한 `Microsoft.Web\sites` 리소스 종류:</span><span class="sxs-lookup"><span data-stu-id="71e77-111">hello following example uses Azure CLI 2.0 tooget hello locations for hello `Microsoft.Web\sites` resource type:</span></span>
 
 ```azurecli
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
 ```
 
-## <a name="set-location-in-template"></a><span data-ttu-id="c8003-112">템플릿에서 위치 설정</span><span class="sxs-lookup"><span data-stu-id="c8003-112">Set location in template</span></span>
+## <a name="set-location-in-template"></a><span data-ttu-id="71e77-112">템플릿에서 위치 설정</span><span class="sxs-lookup"><span data-stu-id="71e77-112">Set location in template</span></span>
 
-<span data-ttu-id="c8003-113">리소스에 대해 지원되는 위치를 확인한 후 템플릿에서 해당 위치를 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-113">After determining the supported locations for your resources, you need to set that location in your template.</span></span> <span data-ttu-id="c8003-114">이 값을 설정하는 가장 쉬운 방법은 리소스 유형을 지원하는 위치에 리소스 그룹을 만들고 해당 위치를 `[resourceGroup().location]`으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-114">The easiest way to set this value is to create a resource group in a location that supports the resource types, and set each location to `[resourceGroup().location]`.</span></span> <span data-ttu-id="c8003-115">여러 다른 위치의 리소스 그룹에 템플릿을 다시 배포하고 템플릿 또는 매개 변수의 값을 변경하지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-115">You can redeploy the template to resource groups in different locations, and not change any values in the template or parameters.</span></span> 
+<span data-ttu-id="71e77-113">리소스에 대 한 지원 hello 위치를 결정 했으면 tooset 해당 위치에에서 필요한 서식 파일에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-113">After determining hello supported locations for your resources, you need tooset that location in your template.</span></span> <span data-ttu-id="71e77-114">이 값은 toocreate hello 리소스 종류를 지 원하는 위치에 리소스를 그룹화 하는 가장 쉬운 방법은 tooset hello와 각 위치를 너무 설정`[resourceGroup().location]`합니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-114">hello easiest way tooset this value is toocreate a resource group in a location that supports hello resource types, and set each location too`[resourceGroup().location]`.</span></span> <span data-ttu-id="71e77-115">서로 다른 위치에 템플릿 tooresource 그룹 hello를 다시 배포할 수 있으며 hello 템플릿 또는 매개 변수 값을 변경 하지 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-115">You can redeploy hello template tooresource groups in different locations, and not change any values in hello template or parameters.</span></span> 
 
-<span data-ttu-id="c8003-116">다음 예제에서는 리소스 그룹과 같은 위치에 배포되는 저장소 계정을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-116">The following example shows a storage account that is deployed to the same location as the resource group:</span></span>
+<span data-ttu-id="71e77-116">hello 다음 예제에서는 배포 된 toohello 저장소 계정을 같은 hello 리소스 그룹 위치:</span><span class="sxs-lookup"><span data-stu-id="71e77-116">hello following example shows a storage account that is deployed toohello same location as hello resource group:</span></span>
 
 ```json
 {
@@ -72,7 +72,7 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 }
 ```
 
-<span data-ttu-id="c8003-117">템플릿에서 해당 위치를 하드 코드해야 할 경우 지원되는 하위 지역 중 하나의 이름을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-117">If you need to hardcode the location in your template, provide the name of one of the supported regions.</span></span> <span data-ttu-id="c8003-118">다음 예제에서는 항상 미국 중북부에 배포되는 저장소 계정을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c8003-118">The following example shows a storage account that is always deployed to North Central US:</span></span>
+<span data-ttu-id="71e77-117">서식 파일에서 toohardcode hello 위치 해야 할 경우 hello 이름 hello 지원 영역 중 하나를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-117">If you need toohardcode hello location in your template, provide hello name of one of hello supported regions.</span></span> <span data-ttu-id="71e77-118">다음 예제는 hello 항상 저장소 계정을 tooNorth 중앙 미국 배포를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-118">hello following example shows a storage account that is always deployed tooNorth Central US:</span></span>
 
 ```json
 {
@@ -98,6 +98,6 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="c8003-119">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c8003-119">Next steps</span></span>
-* <span data-ttu-id="c8003-120">템플릿 작성 방법에 대한 권장 사항은 [Azure Resource Manager 템플릿 생성 모범 사례](resource-manager-template-best-practices.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c8003-120">For recommendations about how to create templates, see [Best practices for creating Azure Resource Manager templates](resource-manager-template-best-practices.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="71e77-119">다음 단계</span><span class="sxs-lookup"><span data-stu-id="71e77-119">Next steps</span></span>
+* <span data-ttu-id="71e77-120">방법에 대 한 권장 사항에 대 한 toocreate 템플릿 참조 [Azure 리소스 관리자 템플릿 만들기에 대 한 유용한](resource-manager-template-best-practices.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="71e77-120">For recommendations about how toocreate templates, see [Best practices for creating Azure Resource Manager templates](resource-manager-template-best-practices.md).</span></span>
 

@@ -1,6 +1,6 @@
 ---
-title: "Application Gateway 만들기, 시작 또는 삭제 | Microsoft Docs"
-description: "이 페이지에서는 Azure 응용 프로그램 게이트웨이를 만들고, 구성하고, 시작하고 삭제하기 위한 지침을 제공합니다."
+title: "aaaCreate, 시작 또는 응용 프로그램 게이트웨이 삭제 합니다. | Microsoft Docs"
+description: "이 페이지에서는 toocreate, 구성, 시작 및 Azure 응용 프로그램 게이트웨이 삭제 하는 지침을 제공 합니다."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -15,70 +15,70 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: c4932096229b1941e0966e7f3e97de39c6931392
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3efef5b49880c9efdafad8b88d4bce5b749b82af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-start-or-delete-an-application-gateway-with-powershell"></a><span data-ttu-id="54307-103">PowerShell을 사용하여 Application Gateway 만들기, 시작 또는 삭제</span><span class="sxs-lookup"><span data-stu-id="54307-103">Create, start, or delete an application gateway with PowerShell</span></span> 
+# <a name="create-start-or-delete-an-application-gateway-with-powershell"></a><span data-ttu-id="73bcb-103">PowerShell을 사용하여 Application Gateway 만들기, 시작 또는 삭제</span><span class="sxs-lookup"><span data-stu-id="73bcb-103">Create, start, or delete an application gateway with PowerShell</span></span> 
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="54307-104">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="54307-104">Azure portal</span></span>](application-gateway-create-gateway-portal.md)
-> * [<span data-ttu-id="54307-105">Azure Resource Manager PowerShell</span><span class="sxs-lookup"><span data-stu-id="54307-105">Azure Resource Manager PowerShell</span></span>](application-gateway-create-gateway-arm.md)
-> * [<span data-ttu-id="54307-106">Azure 클래식 PowerShell</span><span class="sxs-lookup"><span data-stu-id="54307-106">Azure Classic PowerShell</span></span>](application-gateway-create-gateway.md)
-> * [<span data-ttu-id="54307-107">Azure Resource Manager 템플릿</span><span class="sxs-lookup"><span data-stu-id="54307-107">Azure Resource Manager template</span></span>](application-gateway-create-gateway-arm-template.md)
-> * [<span data-ttu-id="54307-108">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="54307-108">Azure CLI</span></span>](application-gateway-create-gateway-cli.md)
+> * [<span data-ttu-id="73bcb-104">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="73bcb-104">Azure portal</span></span>](application-gateway-create-gateway-portal.md)
+> * [<span data-ttu-id="73bcb-105">Azure Resource Manager PowerShell</span><span class="sxs-lookup"><span data-stu-id="73bcb-105">Azure Resource Manager PowerShell</span></span>](application-gateway-create-gateway-arm.md)
+> * [<span data-ttu-id="73bcb-106">Azure 클래식 PowerShell</span><span class="sxs-lookup"><span data-stu-id="73bcb-106">Azure Classic PowerShell</span></span>](application-gateway-create-gateway.md)
+> * [<span data-ttu-id="73bcb-107">Azure Resource Manager 템플릿</span><span class="sxs-lookup"><span data-stu-id="73bcb-107">Azure Resource Manager template</span></span>](application-gateway-create-gateway-arm-template.md)
+> * [<span data-ttu-id="73bcb-108">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="73bcb-108">Azure CLI</span></span>](application-gateway-create-gateway-cli.md)
 
-<span data-ttu-id="54307-109">Azure 응용 프로그램 게이트웨이는 계층 7 부하 분산 장치입니다.</span><span class="sxs-lookup"><span data-stu-id="54307-109">Azure Application Gateway is a layer-7 load balancer.</span></span> <span data-ttu-id="54307-110">클라우드 또는 온-프레미스이든 상관없이 서로 다른 서버 간에 장애 조치(Failover), 성능 라우팅 HTTP 요청을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-110">It provides failover, performance-routing HTTP requests between different servers, whether they are on the cloud or on-premises.</span></span> <span data-ttu-id="54307-111">응용 프로그램 게이트웨이는 HTTP 부하 분산, 쿠키 기반 세션 선호도, SSL(Secure Sockets Layer) 오프로드, 사용자 지정 상태 프로브, 다중 사이트 지원 및 기타를 포함하여 많은 ADC(Application Delivery Controller)를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-111">Application Gateway provides many Application Delivery Controller (ADC) features including HTTP load balancing, cookie-based session affinity, Secure Sockets Layer (SSL) offload, custom health probes, support for multi-site, and many others.</span></span> <span data-ttu-id="54307-112">지원되는 기능의 전체 목록을 찾으려면 [Application Gateway 개요](application-gateway-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="54307-112">To find a complete list of supported features, visit [Application Gateway Overview](application-gateway-introduction.md)</span></span>
+<span data-ttu-id="73bcb-109">Azure Application Gateway는 계층 7 부하 분산 장치입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-109">Azure Application Gateway is a layer-7 load balancer.</span></span> <span data-ttu-id="73bcb-110">장애 조치의 경우 서로 다른 서버 간에 HTTP 요청 성능 라우팅 hello 클라우드 또는 온-프레미스에 있는지 여부를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-110">It provides failover, performance-routing HTTP requests between different servers, whether they are on hello cloud or on-premises.</span></span> <span data-ttu-id="73bcb-111">응용 프로그램 게이트웨이는 HTTP 부하 분산, 쿠키 기반 세션 선호도, SSL(Secure Sockets Layer) 오프로드, 사용자 지정 상태 프로브, 다중 사이트 지원 및 기타를 포함하여 많은 ADC(Application Delivery Controller)를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-111">Application Gateway provides many Application Delivery Controller (ADC) features including HTTP load balancing, cookie-based session affinity, Secure Sockets Layer (SSL) offload, custom health probes, support for multi-site, and many others.</span></span> <span data-ttu-id="73bcb-112">지원 되는 기능의 전체 목록은 toofind 방문 [응용 프로그램 게이트웨이 개요](application-gateway-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="73bcb-112">toofind a complete list of supported features, visit [Application Gateway Overview](application-gateway-introduction.md)</span></span>
 
-<span data-ttu-id="54307-113">이 문서는 응용 프로그램 게이트웨이를 생성, 구성, 시작 및 삭제하는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-113">This article walks you through the steps to create, configure, start, and delete an application gateway.</span></span>
+<span data-ttu-id="73bcb-113">이 문서 단계별로 hello 단계 toocreate, 구성, 시작 및 응용 프로그램 게이트웨이 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-113">This article walks you through hello steps toocreate, configure, start, and delete an application gateway.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="54307-114">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="54307-114">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="73bcb-114">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="73bcb-114">Before you begin</span></span>
 
-1. <span data-ttu-id="54307-115">웹 플랫폼 설치 관리자를 사용하는 Azure PowerShell cmdlet의 최신 버전을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-115">Install the latest version of the Azure PowerShell cmdlets by using the Web Platform Installer.</span></span> <span data-ttu-id="54307-116">**다운로드 페이지** 의 [Windows PowerShell](https://azure.microsoft.com/downloads/)섹션에서 최신 버전을 다운로드하여 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-116">You can download and install the latest version from the **Windows PowerShell** section of the [Downloads page](https://azure.microsoft.com/downloads/).</span></span>
-2. <span data-ttu-id="54307-117">기존 가상 네트워크가 있는 경우 기존의 빈 서브넷을 선택하거나 응용 프로그램 게이트웨이에서 사용할 기존 가상 네트워크에만 새 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-117">If you have an existing virtual network, either select an existing empty subnet or create a new subnet in your existing virtual network solely for use by the application gateway.</span></span> <span data-ttu-id="54307-118">Vnet 피어링을 사용하지 않으면 응용 프로그램 게이트웨이 뒤에 배포하려는 리소스가 아닌 다른 가상 네트워크에 응용 프로그램 게이트웨이를 배포할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-118">You cannot deploy the application gateway to a different virtual network than the resources you intend to deploy behind the application gateway unless vnet peering is used.</span></span> <span data-ttu-id="54307-119">더 자세히 알아보려면 [Vnet 피어링](../virtual-network/virtual-network-peering-overview.md)을 방문하세요.</span><span class="sxs-lookup"><span data-stu-id="54307-119">To learn more visit [Vnet Peering](../virtual-network/virtual-network-peering-overview.md)</span></span>
-3. <span data-ttu-id="54307-120">유효한 서브넷과 작업 가상 네트워크가 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-120">Verify that you have a working virtual network with a valid subnet.</span></span> <span data-ttu-id="54307-121">서브넷을 사용 중인 가상 컴퓨터 또는 클라우드 배포가 없는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-121">Make sure that no virtual machines or cloud deployments are using the subnet.</span></span> <span data-ttu-id="54307-122">응용 프로그램 게이트웨이는 가상 네트워크 서브넷에서 단독이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-122">The application gateway must be by itself in a virtual network subnet.</span></span>
-4. <span data-ttu-id="54307-123">응용 프로그램 게이트웨이를 사용하도록 구성된 서버가 존재하거나 가상 네트워크나 공용 IP/VIP가 할당된 해당 끝점이 만들어져야 합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-123">The servers that you configure to use the application gateway must exist or have their endpoints created either in the virtual network or with a public IP/VIP assigned.</span></span>
+1. <span data-ttu-id="73bcb-115">Hello 웹 플랫폼 설치 관리자를 사용 하 여 hello 최신 버전의 hello Azure PowerShell cmdlet 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-115">Install hello latest version of hello Azure PowerShell cmdlets by using hello Web Platform Installer.</span></span> <span data-ttu-id="73bcb-116">다운로드 하 고 hello에서 hello 최신 버전을 설치할 수 **Windows PowerShell** hello 섹션 [다운로드 페이지](https://azure.microsoft.com/downloads/)합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-116">You can download and install hello latest version from hello **Windows PowerShell** section of hello [Downloads page](https://azure.microsoft.com/downloads/).</span></span>
+2. <span data-ttu-id="73bcb-117">기존 가상 네트워크를 사용 하도록 설정한 경우 기존 빈 서브넷을 선택 하거나 hello 응용 프로그램 게이트웨이에서 사용 하기 위해서만 하려면 기존 가상 네트워크에서 새 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-117">If you have an existing virtual network, either select an existing empty subnet or create a new subnet in your existing virtual network solely for use by hello application gateway.</span></span> <span data-ttu-id="73bcb-118">Hello 응용 프로그램 게이트웨이 tooa 다른 가상 네트워크를 배포할 수 없습니다 hello 리소스 보다 하려는 hello 응용 프로그램 게이트웨이 뒤 toodeploy vnet 피어 링을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-118">You cannot deploy hello application gateway tooa different virtual network than hello resources you intend toodeploy behind hello application gateway unless vnet peering is used.</span></span> <span data-ttu-id="73bcb-119">toolearn 더 방문 [Vnet 피어 링](../virtual-network/virtual-network-peering-overview.md)</span><span class="sxs-lookup"><span data-stu-id="73bcb-119">toolearn more visit [Vnet Peering](../virtual-network/virtual-network-peering-overview.md)</span></span>
+3. <span data-ttu-id="73bcb-120">유효한 서브넷과 작업 가상 네트워크가 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-120">Verify that you have a working virtual network with a valid subnet.</span></span> <span data-ttu-id="73bcb-121">가상 컴퓨터 또는 클라우드 배포 없습니다 hello 서브넷 사용 하 고 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-121">Make sure that no virtual machines or cloud deployments are using hello subnet.</span></span> <span data-ttu-id="73bcb-122">hello 응용 프로그램 게이트웨이 자체 가상 네트워크 서브넷에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-122">hello application gateway must be by itself in a virtual network subnet.</span></span>
+4. <span data-ttu-id="73bcb-123">toouse hello 응용 프로그램 게이트웨이 구성 하는 hello 서버에 존재 해야 하거나 또는 hello 가상 네트워크에서 공용 IP/VIP와 만든 끝점을 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-123">hello servers that you configure toouse hello application gateway must exist or have their endpoints created either in hello virtual network or with a public IP/VIP assigned.</span></span>
 
-## <a name="what-is-required-to-create-an-application-gateway"></a><span data-ttu-id="54307-124">응용 프로그램 게이트웨이를 만드는 데 필요한 것은 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="54307-124">What is required to create an application gateway?</span></span>
+## <a name="what-is-required-toocreate-an-application-gateway"></a><span data-ttu-id="73bcb-124">필요한 toocreate 응용 프로그램 게이트웨이 란?</span><span class="sxs-lookup"><span data-stu-id="73bcb-124">What is required toocreate an application gateway?</span></span>
 
-<span data-ttu-id="54307-125">`New-AzureApplicationGateway` 명령을 사용하여 응용 프로그램 게이트웨이를 만드는 경우, 이 시점에 설정된 구성은 없으며 새로 만든 리소스는 XML 또는 구성 개체를 사용하여 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-125">When you use the `New-AzureApplicationGateway` command to create the application gateway, no configuration is set at this point and the newly created resource are configured either by using XML or a configuration object.</span></span>
+<span data-ttu-id="73bcb-125">Hello를 사용 하는 경우 `New-AzureApplicationGateway` 명령 toocreate hello 응용 프로그램 게이트웨이 구성 없이 시점에서 설정 되 고 hello 새로 만든 리소스 구성 된 XML 또는 구성 개체를 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-125">When you use hello `New-AzureApplicationGateway` command toocreate hello application gateway, no configuration is set at this point and hello newly created resource are configured either by using XML or a configuration object.</span></span>
 
-<span data-ttu-id="54307-126">값은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-126">The values are:</span></span>
+<span data-ttu-id="73bcb-126">hello 값은 같습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-126">hello values are:</span></span>
 
-* <span data-ttu-id="54307-127">**백 엔드 서버 풀:** 백 엔드 서버의 IP 주소 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="54307-127">**Back-end server pool:** The list of IP addresses of the back-end servers.</span></span> <span data-ttu-id="54307-128">나열된 IP 주소는 가상 네트워크 서브넷에 속하거나 공용 IP/VIP이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-128">The IP addresses listed should either belong to the virtual network subnet or should be a public IP/VIP.</span></span>
-* <span data-ttu-id="54307-129">**백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-129">**Back-end server pool settings:** Every pool has settings like port, protocol, and cookie-based affinity.</span></span> <span data-ttu-id="54307-130">이러한 설정은 풀에 연결 및 풀 내의 모든 서버에 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-130">These settings are tied to a pool and are applied to all servers within the pool.</span></span>
-* <span data-ttu-id="54307-131">**프런트 엔드 포트:** 이 포트는 응용 프로그램 게이트웨이에 열려 있는 공용 포트입니다.</span><span class="sxs-lookup"><span data-stu-id="54307-131">**Front-end port:** This port is the public port that is opened on the application gateway.</span></span> <span data-ttu-id="54307-132">트래픽이 이 포트에 도달하면, 백 엔드 서버 중의 하나로 리디렉트됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-132">Traffic hits this port, and then gets redirected to one of the back-end servers.</span></span>
-* <span data-ttu-id="54307-133">**수신기:** 수신기에는 프런트 엔드 포트, 프로토콜(Http 또는 Https, 이 값은 대/소문자 구분) 및 SSL 인증서 이름(SSL 오프로드를 구성하는 경우)이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-133">**Listener:** The listener has a front-end port, a protocol (Http or Https, these values are case-sensitive), and the SSL certificate name (if configuring SSL offload).</span></span>
-* <span data-ttu-id="54307-134">**규칙:** 규칙은 수신기와 백 엔드 서버 풀을 바인딩하고 특정 수신기에 도달했을 때 트래픽이 이동되는 백 엔드 서버 풀을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-134">**Rule:** The rule binds the listener and the back-end server pool and defines which back-end server pool the traffic should be directed to when it hits a particular listener.</span></span>
+* <span data-ttu-id="73bcb-127">**백 엔드 서버 풀:** hello hello 백 엔드 서버의 IP 주소 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-127">**Back-end server pool:** hello list of IP addresses of hello back-end servers.</span></span> <span data-ttu-id="73bcb-128">나열 된 hello IP 주소 하거나 toohello 가상 네트워크 서브넷에 속해야 하거나 공용 IP/VIP가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-128">hello IP addresses listed should either belong toohello virtual network subnet or should be a public IP/VIP.</span></span>
+* <span data-ttu-id="73bcb-129">**백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-129">**Back-end server pool settings:** Every pool has settings like port, protocol, and cookie-based affinity.</span></span> <span data-ttu-id="73bcb-130">이러한 설정은 동률된 tooa 풀 및 hello 풀 내에서 적용 된 tooall 서버입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-130">These settings are tied tooa pool and are applied tooall servers within hello pool.</span></span>
+* <span data-ttu-id="73bcb-131">**프런트 엔드 포트:** 이 포트는 hello 응용 프로그램 게이트웨이에 열려 있는 hello 공용 포트입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-131">**Front-end port:** This port is hello public port that is opened on hello application gateway.</span></span> <span data-ttu-id="73bcb-132">트래픽이이 포트에 도달 하 고 가져옵니다 hello 백 엔드 서버의 tooone 리디렉션됩니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-132">Traffic hits this port, and then gets redirected tooone of hello back-end servers.</span></span>
+* <span data-ttu-id="73bcb-133">**수신기:** hello 수신기에는 프런트 엔드 포트 프로토콜 (Http 또는 Https의 경우, 이러한 값은 대/소문자 구분), 및 hello SSL 인증서 이름 (오프 로드 SSL 구성) 하는 경우.</span><span class="sxs-lookup"><span data-stu-id="73bcb-133">**Listener:** hello listener has a front-end port, a protocol (Http or Https, these values are case-sensitive), and hello SSL certificate name (if configuring SSL offload).</span></span>
+* <span data-ttu-id="73bcb-134">**규칙:** hello 규칙 hello 수신기 및 hello 백 엔드 서버 풀 바인딩하고 정의 백 엔드 서버 풀 hello 트래픽을 특정 수신기 페이로드만 directed toowhen 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-134">**Rule:** hello rule binds hello listener and hello back-end server pool and defines which back-end server pool hello traffic should be directed toowhen it hits a particular listener.</span></span>
 
-## <a name="create-an-application-gateway"></a><span data-ttu-id="54307-135">응용 프로그램 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="54307-135">Create an application gateway</span></span>
+## <a name="create-an-application-gateway"></a><span data-ttu-id="73bcb-135">응용 프로그램 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="73bcb-135">Create an application gateway</span></span>
 
-<span data-ttu-id="54307-136">응용 프로그램 게이트웨이를 만들려면</span><span class="sxs-lookup"><span data-stu-id="54307-136">To create an application gateway:</span></span>
+<span data-ttu-id="73bcb-136">응용 프로그램 게이트웨이 toocreate:</span><span class="sxs-lookup"><span data-stu-id="73bcb-136">toocreate an application gateway:</span></span>
 
-1. <span data-ttu-id="54307-137">응용 프로그램 게이트웨이 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-137">Create an application gateway resource.</span></span>
-2. <span data-ttu-id="54307-138">구성 XML 파일 또는 구성 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-138">Create a configuration XML file or a configuration object.</span></span>
-3. <span data-ttu-id="54307-139">구성을 새로 만든 응용 프로그램 게이트웨이 리소스에 커밋합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-139">Commit the configuration to the newly created application gateway resource.</span></span>
+1. <span data-ttu-id="73bcb-137">응용 프로그램 게이트웨이 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-137">Create an application gateway resource.</span></span>
+2. <span data-ttu-id="73bcb-138">구성 XML 파일 또는 구성 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-138">Create a configuration XML file or a configuration object.</span></span>
+3. <span data-ttu-id="73bcb-139">새로 만든 응용 프로그램 게이트웨이 리소스 hello 구성 toohello를 커밋하십시오.</span><span class="sxs-lookup"><span data-stu-id="73bcb-139">Commit hello configuration toohello newly created application gateway resource.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="54307-140">응용 프로그램 게이트웨이에 사용자 지정 프로브를 구성해야 하는 경우 [PowerShell을 사용하여 사용자 지정 프로브로 응용 프로그램 게이트웨이 만들기](application-gateway-create-probe-classic-ps.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="54307-140">If you need to configure a custom probe for your application gateway, see [Create an application gateway with custom probes by using PowerShell](application-gateway-create-probe-classic-ps.md).</span></span> <span data-ttu-id="54307-141">자세한 내용은 [사용자 지정 프로브 및 상태 모니터링](application-gateway-probe-overview.md) 을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-141">Check out [custom probes and health monitoring](application-gateway-probe-overview.md) for more information.</span></span>
+> <span data-ttu-id="73bcb-140">응용 프로그램 게이트웨이에 대 한 사용자 지정 프로브 tooconfigure 해야 할 경우 참조 [PowerShell을 사용 하 여 사용자 지정 프로브 사용 하 여 응용 프로그램 게이트웨이 만들](application-gateway-create-probe-classic-ps.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-140">If you need tooconfigure a custom probe for your application gateway, see [Create an application gateway with custom probes by using PowerShell](application-gateway-create-probe-classic-ps.md).</span></span> <span data-ttu-id="73bcb-141">자세한 내용은 [사용자 지정 프로브 및 상태 모니터링](application-gateway-probe-overview.md) 을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-141">Check out [custom probes and health monitoring](application-gateway-probe-overview.md) for more information.</span></span>
 
 ![예제 시나리오][scenario]
 
-### <a name="create-an-application-gateway-resource"></a><span data-ttu-id="54307-143">응용 프로그램 게이트웨이 리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="54307-143">Create an application gateway resource</span></span>
+### <a name="create-an-application-gateway-resource"></a><span data-ttu-id="73bcb-143">응용 프로그램 게이트웨이 리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="73bcb-143">Create an application gateway resource</span></span>
 
-<span data-ttu-id="54307-144">게이트웨이를 생성하려면 `New-AzureApplicationGateway` cmdlet을 사용하여 해당 값을 원하는 값으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="54307-144">To create the gateway, use the `New-AzureApplicationGateway` cmdlet, replacing the values with your own.</span></span> <span data-ttu-id="54307-145">게이트웨이에 대한 청구는 이 시점에서 시작되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-145">Billing for the gateway does not start at this point.</span></span> <span data-ttu-id="54307-146">게이트웨이가 성공적으로 작동되면, 요금청구가 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-146">Billing begins in a later step, when the gateway is successfully started.</span></span>
+<span data-ttu-id="73bcb-144">toocreate hello 게이트웨이 사용 하 여 hello `New-AzureApplicationGateway` cmdlet, 사용자의 정보로 hello 값을 대체 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-144">toocreate hello gateway, use hello `New-AzureApplicationGateway` cmdlet, replacing hello values with your own.</span></span> <span data-ttu-id="73bcb-145">게이트웨이 hello에 대 한 청구가 시점에서 시작 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-145">Billing for hello gateway does not start at this point.</span></span> <span data-ttu-id="73bcb-146">청구는 hello 게이트웨이 성공적으로 시작 하는 경우 이후 단계에서 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-146">Billing begins in a later step, when hello gateway is successfully started.</span></span>
 
-<span data-ttu-id="54307-147">다음 예제에서는 "testvnet1"이라는 가상 네트워크 및 "subnet-1"이라는 서브넷을 사용하여 응용 프로그램 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-147">The following example creates an application gateway by using a virtual network called "testvnet1" and a subnet called "subnet-1":</span></span>
+<span data-ttu-id="73bcb-147">hello 다음 만드는 예제 응용 프로그램 게이트웨이 "testvnet1"과 "서브넷-1" 이라는 서브넷 이라는 가상 네트워크를 사용 하 여:</span><span class="sxs-lookup"><span data-stu-id="73bcb-147">hello following example creates an application gateway by using a virtual network called "testvnet1" and a subnet called "subnet-1":</span></span>
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 ```
 
-<span data-ttu-id="54307-148">*Description*, *InstanceCount* 및 *GatewaySize*는 선택적 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="54307-148">*Description*, *InstanceCount*, and *GatewaySize* are optional parameters.</span></span>
+<span data-ttu-id="73bcb-148">*Description*, *InstanceCount* 및 *GatewaySize*는 선택적 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-148">*Description*, *InstanceCount*, and *GatewaySize* are optional parameters.</span></span>
 
-<span data-ttu-id="54307-149">생성된 게이트웨이의 유효성을 검사하려면 `Get-AzureApplicationGateway` cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-149">To validate that the gateway was created, you can use the `Get-AzureApplicationGateway` cmdlet.</span></span>
+<span data-ttu-id="73bcb-149">게이트웨이 hello toovalidate 만들어진 hello를 사용할 수 있습니다, `Get-AzureApplicationGateway` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="73bcb-149">toovalidate that hello gateway was created, you can use hello `Get-AzureApplicationGateway` cmdlet.</span></span>
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -97,21 +97,21 @@ DnsName       :
 ```
 
 > [!NOTE]
-> <span data-ttu-id="54307-150">*InstanceCount* 의 기본값은 2이고, 최대값은 10입니다.</span><span class="sxs-lookup"><span data-stu-id="54307-150">The default value for *InstanceCount* is 2, with a maximum value of 10.</span></span> <span data-ttu-id="54307-151">*GatewaySize* 의 기본값은 보통입니다.</span><span class="sxs-lookup"><span data-stu-id="54307-151">The default value for *GatewaySize* is Medium.</span></span> <span data-ttu-id="54307-152">작게, 보통 및 크게를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-152">You can choose between Small, Medium and Large.</span></span>
+> <span data-ttu-id="73bcb-150">기본값에 대 한 hello *InstanceCount* 최대 값이 10 인 2입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-150">hello default value for *InstanceCount* is 2, with a maximum value of 10.</span></span> <span data-ttu-id="73bcb-151">에 대 한 기본값을 hello *GatewaySize* 보통입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-151">hello default value for *GatewaySize* is Medium.</span></span> <span data-ttu-id="73bcb-152">작게, 보통 및 크게를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-152">You can choose between Small, Medium and Large.</span></span>
 
-<span data-ttu-id="54307-153">게이트웨이가 아직 시작되지 않았으므로 *VirtualIPs* 및 *DnsName*이 빈 값으로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-153">*VirtualIPs* and *DnsName* are shown as blank because the gateway has not started yet.</span></span> <span data-ttu-id="54307-154">이 값들은 게이트웨이가 실행 상태가 되면 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-154">These are created once the gateway is in the running state.</span></span>
+<span data-ttu-id="73bcb-153">*Virtualip* 및 *DnsName* hello 게이트웨이가 아직 시작 되지 않았습니다. 때문에 출력이 빈 값으로 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-153">*VirtualIPs* and *DnsName* are shown as blank because hello gateway has not started yet.</span></span> <span data-ttu-id="73bcb-154">Hello 게이트웨이 hello 실행 중 상태에에서 있으면 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-154">These are created once hello gateway is in hello running state.</span></span>
 
-## <a name="configure-the-application-gateway"></a><span data-ttu-id="54307-155">응용 프로그램 게이트웨이 구성</span><span class="sxs-lookup"><span data-stu-id="54307-155">Configure the application gateway</span></span>
+## <a name="configure-hello-application-gateway"></a><span data-ttu-id="73bcb-155">Hello 응용 프로그램 게이트웨이 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-155">Configure hello application gateway</span></span>
 
-<span data-ttu-id="54307-156">XML 또는 구성 개체를 사용하여 응용 프로그램 게이트웨이를 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-156">You can configure the application gateway by using XML or a configuration object.</span></span>
+<span data-ttu-id="73bcb-156">XML 또는 구성 개체를 사용 하 여 hello 응용 프로그램 게이트웨이 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-156">You can configure hello application gateway by using XML or a configuration object.</span></span>
 
-### <a name="configure-the-application-gateway-by-using-xml"></a><span data-ttu-id="54307-157">XML을 사용하여 응용 프로그램 게이트웨이 구성</span><span class="sxs-lookup"><span data-stu-id="54307-157">Configure the application gateway by using XML</span></span>
+### <a name="configure-hello-application-gateway-by-using-xml"></a><span data-ttu-id="73bcb-157">XML을 사용 하 여 hello 응용 프로그램 게이트웨이 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-157">Configure hello application gateway by using XML</span></span>
 
-<span data-ttu-id="54307-158">다음 예제에서는 XML 파일을 사용하여 모든 응용 프로그램 게이트웨이 설정을 구성하고 응용 프로그램 게이트웨이 리소스에 커밋합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-158">In the following example, you use an XML file to configure all application gateway settings and commit them to the application gateway resource.</span></span>  
+<span data-ttu-id="73bcb-158">다음 예제는 hello, 모든 응용 프로그램 게이트웨이 설정 XML 파일 tooconfigure를 사용 하 고 응용 프로그램 게이트웨이 리소스 toohello 커밋하기 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-158">In hello following example, you use an XML file tooconfigure all application gateway settings and commit them toohello application gateway resource.</span></span>  
 
-#### <a name="step-1"></a><span data-ttu-id="54307-159">1단계:</span><span class="sxs-lookup"><span data-stu-id="54307-159">Step 1</span></span>
+#### <a name="step-1"></a><span data-ttu-id="73bcb-159">1단계</span><span class="sxs-lookup"><span data-stu-id="73bcb-159">Step 1</span></span>
 
-<span data-ttu-id="54307-160">다음 텍스트를 메모장에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-160">Copy the following text to Notepad.</span></span>
+<span data-ttu-id="73bcb-160">다음 텍스트 tooNotepad hello를 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-160">Copy hello following text tooNotepad.</span></span>
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -158,12 +158,12 @@ DnsName       :
 </ApplicationGatewayConfiguration>
 ```
 
-<span data-ttu-id="54307-161">구성 항목에 대한 괄호 사이의 값을 편집합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-161">Edit the values between the parentheses for the configuration items.</span></span> <span data-ttu-id="54307-162">.xml 확장명으로 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-162">Save the file with extension .xml.</span></span>
+<span data-ttu-id="73bcb-161">Hello hello 구성 항목에 대 한 hello 괄호 사이 값을 편집 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-161">Edit hello values between hello parentheses for hello configuration items.</span></span> <span data-ttu-id="73bcb-162">Hello 파일 확장명이.xml으로 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-162">Save hello file with extension .xml.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="54307-163">Http 또는 Https 프로토콜 항목은 대 소문자를 구분합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-163">The protocol item Http or Https is case-sensitive.</span></span>
+> <span data-ttu-id="73bcb-163">Http 또는 Https hello 프로토콜 항목은 대/소문자 구분입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-163">hello protocol item Http or Https is case-sensitive.</span></span>
 
-<span data-ttu-id="54307-164">다음 예제에서는 구성 파일을 사용하여 응용 프로그램 게이트웨이를 설정하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="54307-164">The following example shows how to use a configuration file to set up the application gateway.</span></span> <span data-ttu-id="54307-165">예제에서는 공용 포트 80에서 HTTP 트래픽의 부하를 분산하고 두 IP 주소 사이의 백 엔드 포트 80에 네트워크 트래픽을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="54307-165">The example load balances HTTP traffic on public port 80 and sends network traffic to back-end port 80 between two IP addresses.</span></span>
+<span data-ttu-id="73bcb-164">다음 예제는 hello toouse 구성 파일 tooset hello 응용 프로그램 게이트웨이를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-164">hello following example shows how toouse a configuration file tooset up hello application gateway.</span></span> <span data-ttu-id="73bcb-165">hello 예제에서는 로드 된 공용 포트 80의 HTTP 트래픽을 분산 시키고 후 tooback 끝 포트 80에서 두 개의 IP 주소 간의 네트워크 트래픽을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-165">hello example load balances HTTP traffic on public port 80 and sends network traffic tooback-end port 80 between two IP addresses.</span></span>
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -210,26 +210,26 @@ DnsName       :
 </ApplicationGatewayConfiguration>
 ```
 
-#### <a name="step-2"></a><span data-ttu-id="54307-166">2단계:</span><span class="sxs-lookup"><span data-stu-id="54307-166">Step 2</span></span>
+#### <a name="step-2"></a><span data-ttu-id="73bcb-166">2단계</span><span class="sxs-lookup"><span data-stu-id="73bcb-166">Step 2</span></span>
 
-<span data-ttu-id="54307-167">다음으로 응용 프로그램 게이트웨이를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-167">Next, set the application gateway.</span></span> <span data-ttu-id="54307-168">구성 XML 파일에 `Set-AzureApplicationGatewayConfig` cmdlet를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-168">Use the `Set-AzureApplicationGatewayConfig` cmdlet with a configuration XML file.</span></span>
+<span data-ttu-id="73bcb-167">다음으로 hello 응용 프로그램 게이트웨이 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-167">Next, set hello application gateway.</span></span> <span data-ttu-id="73bcb-168">사용 하 여 hello `Set-AzureApplicationGatewayConfig` 구성 XML 파일을 사용 하 여 cmdlet.</span><span class="sxs-lookup"><span data-stu-id="73bcb-168">Use hello `Set-AzureApplicationGatewayConfig` cmdlet with a configuration XML file.</span></span>
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 ```
 
-### <a name="configure-the-application-gateway-by-using-a-configuration-object"></a><span data-ttu-id="54307-169">구성 개체를 사용하여 응용 프로그램 게이트웨이 구성</span><span class="sxs-lookup"><span data-stu-id="54307-169">Configure the application gateway by using a configuration object</span></span>
+### <a name="configure-hello-application-gateway-by-using-a-configuration-object"></a><span data-ttu-id="73bcb-169">구성 개체를 사용 하 여 hello 응용 프로그램 게이트웨이 구성</span><span class="sxs-lookup"><span data-stu-id="73bcb-169">Configure hello application gateway by using a configuration object</span></span>
 
-<span data-ttu-id="54307-170">다음 예제에서는 구성 개체를 사용하여 응용 프로그램 게이트웨이를 구성하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="54307-170">The following example shows how to configure the application gateway by using configuration objects.</span></span> <span data-ttu-id="54307-171">모든 구성 항목은 개별적으로 구성된 다음 Application Gateway 구성 개체에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-171">All configuration items must be configured individually and then added to an application gateway configuration object.</span></span> <span data-ttu-id="54307-172">구성 개체를 만든 후 `Set-AzureApplicationGateway` 명령을 사용하여 이전에 만든 응용 프로그램 게이트웨이 리소스에 대한 구성을 커밋합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-172">After creating the configuration object, you use the `Set-AzureApplicationGateway` command to commit the configuration to the previously created application gateway resource.</span></span>
+<span data-ttu-id="73bcb-170">다음 예제는 hello tooconfigure 구성 개체를 사용 하 여 응용 프로그램 게이트웨이 hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-170">hello following example shows how tooconfigure hello application gateway by using configuration objects.</span></span> <span data-ttu-id="73bcb-171">모든 구성 항목을 개별적으로 구성 되며 다음 추가 해야 tooan 응용 프로그램 게이트웨이 구성 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-171">All configuration items must be configured individually and then added tooan application gateway configuration object.</span></span> <span data-ttu-id="73bcb-172">Hello를 사용 하면 hello 구성 개체를 만든 후 `Set-AzureApplicationGateway` 명령 toocommit hello 구성 toohello 이전에 응용 프로그램 게이트웨이 리소스를 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-172">After creating hello configuration object, you use hello `Set-AzureApplicationGateway` command toocommit hello configuration toohello previously created application gateway resource.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="54307-173">각 구성 개체에 값을 할당하기 전에 PowerShell에서 저장소에 사용할 개체 종류를 선언해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-173">Before assigning a value to each configuration object, you need to declare what kind of object PowerShell uses for storage.</span></span> <span data-ttu-id="54307-174">개별 항목을 만드는 첫 줄은 어떤 `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)`이 사용되는지 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-174">The first line to create the individual items defines what `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` are used.</span></span>
+> <span data-ttu-id="73bcb-173">값 tooeach 구성 개체를 할당 하기 전에 필요한 toodeclare PowerShell가 어떤 종류의 개체 저장을 위해 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-173">Before assigning a value tooeach configuration object, you need toodeclare what kind of object PowerShell uses for storage.</span></span> <span data-ttu-id="73bcb-174">hello 첫 번째 toocreate hello 개별 품목 대상을 정의 `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-174">hello first line toocreate hello individual items defines what `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` are used.</span></span>
 
-#### <a name="step-1"></a><span data-ttu-id="54307-175">1단계:</span><span class="sxs-lookup"><span data-stu-id="54307-175">Step 1</span></span>
+#### <a name="step-1"></a><span data-ttu-id="73bcb-175">1단계</span><span class="sxs-lookup"><span data-stu-id="73bcb-175">Step 1</span></span>
 
-<span data-ttu-id="54307-176">모든 개별 구성 항목을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-176">Create all individual configuration items.</span></span>
+<span data-ttu-id="73bcb-176">모든 개별 구성 항목을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-176">Create all individual configuration items.</span></span>
 
-<span data-ttu-id="54307-177">다음 예제와 같이 프런트 엔드 IP를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-177">Create the front-end IP as shown in the following example.</span></span>
+<span data-ttu-id="73bcb-177">다음 예제는 hello와 같이 hello 프런트 엔드 IP를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-177">Create hello front-end IP as shown in hello following example.</span></span>
 
 ```powershell
 $fip = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration
@@ -238,7 +238,7 @@ $fip.Type = "Private"
 $fip.StaticIPAddress = "10.0.0.5"
 ```
 
-<span data-ttu-id="54307-178">다음 예제와 같이 프런트 엔드 포트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-178">Create the front-end port as shown in the following example.</span></span>
+<span data-ttu-id="73bcb-178">다음 예제는 hello와 같이 hello 프런트 엔드 포트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-178">Create hello front-end port as shown in hello following example.</span></span>
 
 ```powershell
 $fep = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort
@@ -246,9 +246,9 @@ $fep.Name = "fep1"
 $fep.Port = 80
 ```
 
-<span data-ttu-id="54307-179">백 엔드 서버 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-179">Create the back-end server pool.</span></span>
+<span data-ttu-id="73bcb-179">Hello 백 엔드 서버 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-179">Create hello back-end server pool.</span></span>
 
-<span data-ttu-id="54307-180">다음 예제와 같이 백 엔드 서버 풀에 추가될 IP 주소를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-180">Define the IP addresses that are added to the back-end server pool as shown in the next example.</span></span>
+<span data-ttu-id="73bcb-180">Hello 다음 예제와 같이 toohello 백 엔드 서버 풀에 추가 된 hello IP 주소를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-180">Define hello IP addresses that are added toohello back-end server pool as shown in hello next example.</span></span>
 
 ```powershell
 $servers = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendServerCollection
@@ -256,7 +256,7 @@ $servers.Add("10.0.0.1")
 $servers.Add("10.0.0.2")
 ```
 
-<span data-ttu-id="54307-181">$server 개체를 사용하여 값을 백 엔드 풀 개체($pool)에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-181">Use the $server object to add the values to the back-end pool object ($pool).</span></span>
+<span data-ttu-id="73bcb-181">Hello $server 개체 tooadd hello 값 toohello 백 엔드 풀 개체 ($pool)를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-181">Use hello $server object tooadd hello values toohello back-end pool object ($pool).</span></span>
 
 ```powershell
 $pool = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool
@@ -264,7 +264,7 @@ $pool.BackendServers = $servers
 $pool.Name = "pool1"
 ```
 
-<span data-ttu-id="54307-182">백 엔드 서버 풀 설정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-182">Create the back-end server pool setting.</span></span>
+<span data-ttu-id="73bcb-182">Hello 백 엔드 서버 풀 설정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-182">Create hello back-end server pool setting.</span></span>
 
 ```powershell
 $setting = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings
@@ -274,7 +274,7 @@ $setting.Port = 80
 $setting.Protocol = "http"
 ```
 
-<span data-ttu-id="54307-183">수신기를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-183">Create the listener.</span></span>
+<span data-ttu-id="73bcb-183">Hello 수신기를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-183">Create hello listener.</span></span>
 
 ```powershell
 $listener = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener
@@ -285,7 +285,7 @@ $listener.Protocol = "http"
 $listener.SslCert = ""
 ```
 
-<span data-ttu-id="54307-184">규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="54307-184">Create the rule.</span></span>
+<span data-ttu-id="73bcb-184">Hello 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-184">Create hello rule.</span></span>
 
 ```powershell
 $rule = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule
@@ -296,11 +296,11 @@ $rule.Listener = "listener1"
 $rule.BackendAddressPool = "pool1"
 ```
 
-#### <a name="step-2"></a><span data-ttu-id="54307-185">2단계:</span><span class="sxs-lookup"><span data-stu-id="54307-185">Step 2</span></span>
+#### <a name="step-2"></a><span data-ttu-id="73bcb-185">2단계</span><span class="sxs-lookup"><span data-stu-id="73bcb-185">Step 2</span></span>
 
-<span data-ttu-id="54307-186">응용 프로그램 게이트웨이 구성 개체 ($appgwconfig)에 모든 개별 구성 항목을 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-186">Assign all individual configuration items to an application gateway configuration object ($appgwconfig).</span></span>
+<span data-ttu-id="73bcb-186">모든 개별 구성 항목 tooan 응용 프로그램 게이트웨이 구성 개체 ($appgwconfig)를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-186">Assign all individual configuration items tooan application gateway configuration object ($appgwconfig).</span></span>
 
-<span data-ttu-id="54307-187">프런트 엔드 IP를 구성에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-187">Add the front-end IP to the configuration.</span></span>
+<span data-ttu-id="73bcb-187">Hello 프런트 엔드 IP toohello 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-187">Add hello front-end IP toohello configuration.</span></span>
 
 ```powershell
 $appgwconfig = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.ApplicationGatewayConfiguration
@@ -308,63 +308,63 @@ $appgwconfig.FrontendIPConfigurations = New-Object "System.Collections.Generic.L
 $appgwconfig.FrontendIPConfigurations.Add($fip)
 ```
 
-<span data-ttu-id="54307-188">프런트 엔드 포트를 구성에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-188">Add the front-end port to the configuration.</span></span>
+<span data-ttu-id="73bcb-188">Hello 프런트 엔드 포트 toohello 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-188">Add hello front-end port toohello configuration.</span></span>
 
 ```powershell
 $appgwconfig.FrontendPorts = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort]"
 $appgwconfig.FrontendPorts.Add($fep)
 ```
-<span data-ttu-id="54307-189">백 엔드 서버 풀을 구성에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-189">Add the back-end server pool to the configuration.</span></span>
+<span data-ttu-id="73bcb-189">Hello 백 엔드 서버 풀 toohello 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-189">Add hello back-end server pool toohello configuration.</span></span>
 
 ```powershell
 $appgwconfig.BackendAddressPools = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool]"
 $appgwconfig.BackendAddressPools.Add($pool)
 ```
 
-<span data-ttu-id="54307-190">백 엔드 풀 설정을 구성에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-190">Add the back-end pool setting to the configuration.</span></span>
+<span data-ttu-id="73bcb-190">Hello 백 엔드 풀 설정을 toohello 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-190">Add hello back-end pool setting toohello configuration.</span></span>
 
 ```powershell
 $appgwconfig.BackendHttpSettingsList = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings]"
 $appgwconfig.BackendHttpSettingsList.Add($setting)
 ```
 
-<span data-ttu-id="54307-191">수신기를 구성에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-191">Add the listener to the configuration.</span></span>
+<span data-ttu-id="73bcb-191">Hello 수신기 toohello 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-191">Add hello listener toohello configuration.</span></span>
 
 ```powershell
 $appgwconfig.HttpListeners = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener]"
 $appgwconfig.HttpListeners.Add($listener)
 ```
 
-<span data-ttu-id="54307-192">규칙을 구성에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-192">Add the rule to the configuration.</span></span>
+<span data-ttu-id="73bcb-192">Hello 규칙 toohello 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-192">Add hello rule toohello configuration.</span></span>
 
 ```powershell
 $appgwconfig.HttpLoadBalancingRules = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule]"
 $appgwconfig.HttpLoadBalancingRules.Add($rule)
 ```
 
-### <a name="step-3"></a><span data-ttu-id="54307-193">3단계:</span><span class="sxs-lookup"><span data-stu-id="54307-193">Step 3</span></span>
-<span data-ttu-id="54307-194">`Set-AzureApplicationGatewayConfig`를 사용하여 구성 개체를 응용 프로그램 게이트웨이 리소스에 커밋합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-194">Commit the configuration object to the application gateway resource by using `Set-AzureApplicationGatewayConfig`.</span></span>
+### <a name="step-3"></a><span data-ttu-id="73bcb-193">3단계</span><span class="sxs-lookup"><span data-stu-id="73bcb-193">Step 3</span></span>
+<span data-ttu-id="73bcb-194">Hello 구성 개체 toohello 응용 프로그램 게이트웨이 리소스를 사용 하 여 커밋 `Set-AzureApplicationGatewayConfig`합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-194">Commit hello configuration object toohello application gateway resource by using `Set-AzureApplicationGatewayConfig`.</span></span>
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -Config $appgwconfig
 ```
 
-## <a name="start-the-gateway"></a><span data-ttu-id="54307-195">게이트웨이 시작</span><span class="sxs-lookup"><span data-stu-id="54307-195">Start the gateway</span></span>
+## <a name="start-hello-gateway"></a><span data-ttu-id="73bcb-195">Hello 게이트웨이 시작</span><span class="sxs-lookup"><span data-stu-id="73bcb-195">Start hello gateway</span></span>
 
-<span data-ttu-id="54307-196">게이트웨이가 구성되면, `Start-AzureApplicationGateway` cmdlet을 사용하여 게이트웨이를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-196">Once the gateway has been configured, use the `Start-AzureApplicationGateway` cmdlet to start the gateway.</span></span> <span data-ttu-id="54307-197">응용 프로그램 게이트웨이에 대한 청구는 게이트웨이가 성공적으로 작동된 후 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-197">Billing for an application gateway begins after the gateway has been successfully started.</span></span>
+<span data-ttu-id="73bcb-196">Hello를 사용 하 여 hello 게이트웨이 구성한 후 `Start-AzureApplicationGateway` cmdlet toostart hello 게이트웨이 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-196">Once hello gateway has been configured, use hello `Start-AzureApplicationGateway` cmdlet toostart hello gateway.</span></span> <span data-ttu-id="73bcb-197">응용 프로그램 게이트웨이 대 한 청구 hello 게이트웨이 성공적으로 시작 된 후 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-197">Billing for an application gateway begins after hello gateway has been successfully started.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="54307-198">`Start-AzureApplicationGateway` cmdlet을 완료하려면 최대 15-20분까지 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-198">The `Start-AzureApplicationGateway` cmdlet might take up to 15-20 minutes to finish.</span></span>
+> <span data-ttu-id="73bcb-198">hello `Start-AzureApplicationGateway` cmdlet toofinish too15 20 분이 걸릴 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-198">hello `Start-AzureApplicationGateway` cmdlet might take up too15-20 minutes toofinish.</span></span>
 
 ```powershell
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-the-gateway-status"></a><span data-ttu-id="54307-199">게이트웨이 상태를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-199">Verify the gateway status</span></span>
+## <a name="verify-hello-gateway-status"></a><span data-ttu-id="73bcb-199">Hello 게이트웨이 상태를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-199">Verify hello gateway status</span></span>
 
-<span data-ttu-id="54307-200">`Get-AzureApplicationGateway` cmdlet을 사용하여 게이트웨이의 상태를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-200">Use the `Get-AzureApplicationGateway` cmdlet to check the status of the gateway.</span></span> <span data-ttu-id="54307-201">`Start-AzureApplicationGateway`가 이전 단계에서 성공한 경우 *상태*가 실행 중이어야 하고, *Vip*와 *DnsName*에 유효한 항목이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-201">If `Start-AzureApplicationGateway` succeeded in the previous step, *State* should be Running, and *Vip* and *DnsName* should have valid entries.</span></span>
+<span data-ttu-id="73bcb-200">사용 하 여 hello `Get-AzureApplicationGateway` hello 게이트웨이의 cmdlet toocheck hello 상태입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-200">Use hello `Get-AzureApplicationGateway` cmdlet toocheck hello status of hello gateway.</span></span> <span data-ttu-id="73bcb-201">경우 `Start-AzureApplicationGateway` hello 이전 단계에서 성공한 *상태* 실행 해야 하 고 *Vip* 및 *DnsName* 유효한 항목 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-201">If `Start-AzureApplicationGateway` succeeded in hello previous step, *State* should be Running, and *Vip* and *DnsName* should have valid entries.</span></span>
 
-<span data-ttu-id="54307-202">다음 샘플은 응용 프로그램 게이트웨이가 시작되고 실행 중이며 `http://<generated-dns-name>.cloudapp.net`으로 보낸 트래픽을 사용할 준비가 되었음을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="54307-202">The following example shows an application gateway that is up, running, and ready to take traffic destined for `http://<generated-dns-name>.cloudapp.net`.</span></span>
+<span data-ttu-id="73bcb-202">hello 다음 예제에서는 최대, 실행 되는 응용 프로그램 게이트웨이 및 대상이 지정 되었으며 준비 tootake 트래픽 `http://<generated-dns-name>.cloudapp.net`합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-202">hello following example shows an application gateway that is up, running, and ready tootake traffic destined for `http://<generated-dns-name>.cloudapp.net`.</span></span>
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -384,15 +384,15 @@ Vip           : 138.91.170.26
 DnsName       : appgw-1b8402e8-3e0d-428d-b661-289c16c82101.cloudapp.net
 ```
 
-## <a name="delete-the-application-gateway"></a><span data-ttu-id="54307-203">응용 프로그램 게이트웨이 삭제</span><span class="sxs-lookup"><span data-stu-id="54307-203">Delete the application gateway</span></span>
+## <a name="delete-hello-application-gateway"></a><span data-ttu-id="73bcb-203">Hello 응용 프로그램 게이트웨이 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-203">Delete hello application gateway</span></span>
 
-<span data-ttu-id="54307-204">응용 프로그램 게이트웨이를 삭제하려면:</span><span class="sxs-lookup"><span data-stu-id="54307-204">To delete the application gateway:</span></span>
+<span data-ttu-id="73bcb-204">toodelete hello 응용 프로그램 게이트웨이:</span><span class="sxs-lookup"><span data-stu-id="73bcb-204">toodelete hello application gateway:</span></span>
 
-1. <span data-ttu-id="54307-205">`Stop-AzureApplicationGateway` cmdlet을 사용하여 게이트웨이를 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-205">Use the `Stop-AzureApplicationGateway` cmdlet to stop the gateway.</span></span>
-2. <span data-ttu-id="54307-206">`Remove-AzureApplicationGateway` cmdlet을 사용하여 게이트웨이를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-206">Use the `Remove-AzureApplicationGateway` cmdlet to remove the gateway.</span></span>
-3. <span data-ttu-id="54307-207">`Get-AzureApplicationGateway` cmdlet을 사용하여 게이트웨이가 제거되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-207">Verify that the gateway has been removed by using the `Get-AzureApplicationGateway` cmdlet.</span></span>
+1. <span data-ttu-id="73bcb-205">사용 하 여 hello `Stop-AzureApplicationGateway` cmdlet toostop hello 게이트웨이 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-205">Use hello `Stop-AzureApplicationGateway` cmdlet toostop hello gateway.</span></span>
+2. <span data-ttu-id="73bcb-206">사용 하 여 hello `Remove-AzureApplicationGateway` cmdlet tooremove hello 게이트웨이 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-206">Use hello `Remove-AzureApplicationGateway` cmdlet tooremove hello gateway.</span></span>
+3. <span data-ttu-id="73bcb-207">Hello를 사용 하 여 해당 hello 게이트웨이에 제거 되었는지 확인 `Get-AzureApplicationGateway` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="73bcb-207">Verify that hello gateway has been removed by using hello `Get-AzureApplicationGateway` cmdlet.</span></span>
 
-<span data-ttu-id="54307-208">다음 예의 첫째 줄에는 `Stop-AzureApplicationGateway` cmdlet이 먼저 표시되고 그 다음에 출력이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="54307-208">The following example shows the `Stop-AzureApplicationGateway` cmdlet on the first line, followed by the output.</span></span>
+<span data-ttu-id="73bcb-208">hello 다음 예제에서는 hello `Stop-AzureApplicationGateway` hello 첫 번째 줄에는 cmdlet hello 출력이 차례로 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-208">hello following example shows hello `Stop-AzureApplicationGateway` cmdlet on hello first line, followed by hello output.</span></span>
 
 ```powershell
 Stop-AzureApplicationGateway AppGwTest
@@ -406,7 +406,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   ce6c6c95-77b4-2118-9d65-e29defadffb8
 ```
 
-<span data-ttu-id="54307-209">응용 프로그램 게이트웨이가 중지됨 상태가 되면 `Remove-AzureApplicationGateway` cmdlet을 사용하여 서비스를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-209">Once the application gateway is in a stopped state, use the `Remove-AzureApplicationGateway` cmdlet to remove the service.</span></span>
+<span data-ttu-id="73bcb-209">중지 된 상태에 hello 응용 프로그램 게이트웨이 사용 하 여 hello `Remove-AzureApplicationGateway` cmdlet tooremove hello 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-209">Once hello application gateway is in a stopped state, use hello `Remove-AzureApplicationGateway` cmdlet tooremove hello service.</span></span>
 
 ```powershell
 Remove-AzureApplicationGateway AppGwTest
@@ -420,7 +420,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   055f3a96-8681-2094-a304-8d9a11ad8301
 ```
 
-<span data-ttu-id="54307-210">서비스가 제거되었는지 확인하려면 `Get-AzureApplicationGateway` cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="54307-210">To verify that the service has been removed, you can use the `Get-AzureApplicationGateway` cmdlet.</span></span> <span data-ttu-id="54307-211">이 단계는 필요 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="54307-211">This step is not required.</span></span>
+<span data-ttu-id="73bcb-210">서비스 hello tooverify 제거 된 hello를 사용할 수 있습니다, `Get-AzureApplicationGateway` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="73bcb-210">tooverify that hello service has been removed, you can use hello `Get-AzureApplicationGateway` cmdlet.</span></span> <span data-ttu-id="73bcb-211">이 단계는 필요 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-211">This step is not required.</span></span>
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -429,19 +429,19 @@ Get-AzureApplicationGateway AppGwTest
 ```
 VERBOSE: 10:52:46 PM - Begin Operation: Get-AzureApplicationGateway
 
-Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
+Get-AzureApplicationGateway : ResourceNotFound: hello gateway does not exist.
 .....
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="54307-212">다음 단계</span><span class="sxs-lookup"><span data-stu-id="54307-212">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="73bcb-212">다음 단계</span><span class="sxs-lookup"><span data-stu-id="73bcb-212">Next steps</span></span>
 
-<span data-ttu-id="54307-213">SSL 오프로드를 구성하려는 경우 [SSL 오프로드에 대해 응용 프로그램 게이트웨이 구성](application-gateway-ssl.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="54307-213">If you want to configure SSL offload, see [Configure an application gateway for SSL offload](application-gateway-ssl.md).</span></span>
+<span data-ttu-id="73bcb-213">SSL 오프 로드 tooconfigure 참조 [SSL 오프 로드에 대 한 응용 프로그램 게이트웨이 구성](application-gateway-ssl.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-213">If you want tooconfigure SSL offload, see [Configure an application gateway for SSL offload](application-gateway-ssl.md).</span></span>
 
-<span data-ttu-id="54307-214">내부 부하 분산 장치에서 사용되도록 응용 프로그램 게이트웨이를 구성하려면 [ILB(내부 부하 분산 장치)를 사용하여 응용 프로그램 게이트웨이 만들기](application-gateway-ilb.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="54307-214">If you want to configure an application gateway to use with an internal load balancer, see [Create an application gateway with an internal load balancer (ILB)](application-gateway-ilb.md).</span></span>
+<span data-ttu-id="73bcb-214">내부 부하 분산 장치는 응용 프로그램 게이트웨이 toouse tooconfigure 참조 [내부 부하 분산 장치 (ILB) 응용 프로그램 게이트웨이 만들](application-gateway-ilb.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="73bcb-214">If you want tooconfigure an application gateway toouse with an internal load balancer, see [Create an application gateway with an internal load balancer (ILB)](application-gateway-ilb.md).</span></span>
 
-<span data-ttu-id="54307-215">보다 자세한 내용을 원한다면 일반적 부하 분산 옵션을 참조:</span><span class="sxs-lookup"><span data-stu-id="54307-215">If you want more information about load balancing options in general, see:</span></span>
+<span data-ttu-id="73bcb-215">보다 자세한 내용을 원한다면 일반적 부하 분산 옵션을 참조:</span><span class="sxs-lookup"><span data-stu-id="73bcb-215">If you want more information about load balancing options in general, see:</span></span>
 
-* [<span data-ttu-id="54307-216">Azure 부하 분산 장치</span><span class="sxs-lookup"><span data-stu-id="54307-216">Azure Load Balancer</span></span>](https://azure.microsoft.com/documentation/services/load-balancer/)
-* [<span data-ttu-id="54307-217">Azure Traffic Manager</span><span class="sxs-lookup"><span data-stu-id="54307-217">Azure Traffic Manager</span></span>](https://azure.microsoft.com/documentation/services/traffic-manager/)
+* [<span data-ttu-id="73bcb-216">Azure 부하 분산 장치</span><span class="sxs-lookup"><span data-stu-id="73bcb-216">Azure Load Balancer</span></span>](https://azure.microsoft.com/documentation/services/load-balancer/)
+* [<span data-ttu-id="73bcb-217">Azure Traffic Manager</span><span class="sxs-lookup"><span data-stu-id="73bcb-217">Azure Traffic Manager</span></span>](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
 [scenario]: ./media/application-gateway-create-gateway/scenario.png

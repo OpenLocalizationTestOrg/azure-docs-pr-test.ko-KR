@@ -1,6 +1,6 @@
 ---
-title: "Azure Storage에 연결하는 Azure Function 만들기 | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - Azure Storage에 연결하는 Azure Function 만들기"
+title: "aaaCreate tooan Azure 저장소를 연결 하는 Azure 함수 | Microsoft Docs"
+description: "Azure CLI 스크립트 샘플-tooan Azure 저장소를 연결 하는 Azure 함수 만들기"
 services: functions
 documentationcenter: functions
 author: rachelappel
@@ -16,49 +16,49 @@ ms.workload:
 ms.date: 04/20/2017
 ms.author: rachelap
 ms.custom: mvc
-ms.openlocfilehash: 36dbc2c181c9991a27163e3194800f63c6c0e01e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a51a2c17149478eb2d3d0d4034400ed00cd8416c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="integrate-function-app-into-azure-storage-account"></a><span data-ttu-id="ac5ac-103">Azure Storage 계정에 함수 앱 통합</span><span class="sxs-lookup"><span data-stu-id="ac5ac-103">Integrate Function App into Azure Storage Account</span></span>
+# <a name="integrate-function-app-into-azure-storage-account"></a><span data-ttu-id="379f9-103">Azure Storage 계정에 함수 앱 통합</span><span class="sxs-lookup"><span data-stu-id="379f9-103">Integrate Function App into Azure Storage Account</span></span>
 
-<span data-ttu-id="ac5ac-104">이 샘플 스크립트는 함수 앱 및 저장소 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-104">This sample script creates a Function App and Storage Account.</span></span>
+<span data-ttu-id="379f9-104">이 샘플 스크립트는 함수 앱 및 저장소 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-104">This sample script creates a Function App and Storage Account.</span></span>
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="ac5ac-105">CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-105">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="ac5ac-106">`az --version`을 실행하여 버전을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-106">Run `az --version` to find the version.</span></span> <span data-ttu-id="ac5ac-107">설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-107">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="379f9-105">Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-105">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="379f9-106">실행 `az --version` toofind hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-106">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="379f9-107">Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-107">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
-## <a name="sample-script"></a><span data-ttu-id="ac5ac-108">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="ac5ac-108">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="379f9-108">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="379f9-108">Sample script</span></span>
 
-<span data-ttu-id="ac5ac-109">이 샘플은 Azure 함수 앱을 만들고 앱 설정에 저장소 연결 문자열을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-109">This sample creates an Azure Function app and adds the storage connection string to an app setting.</span></span>
+<span data-ttu-id="379f9-109">이 샘플 함수 Azure 응용 프로그램을 만들고 hello 저장소 연결 문자열 tooan 응용 프로그램 설정을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-109">This sample creates an Azure Function app and adds hello storage connection string tooan app setting.</span></span>
 
-<span data-ttu-id="ac5ac-110">[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-storage/create-function-app-connect-to-storage-account.sh "Azure Storage 계정에 함수 앱 통합")]</span><span class="sxs-lookup"><span data-stu-id="ac5ac-110">[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-storage/create-function-app-connect-to-storage-account.sh "Integrate Function App into Azure Storage Account")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-storage/create-function-app-connect-to-storage-account.sh "Integrate Function App into Azure Storage Account")]
 
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="ac5ac-111">배포 정리</span><span class="sxs-lookup"><span data-stu-id="ac5ac-111">Clean up deployment</span></span>
+## <a name="clean-up-deployment"></a><span data-ttu-id="379f9-110">배포 정리</span><span class="sxs-lookup"><span data-stu-id="379f9-110">Clean up deployment</span></span>
 
-<span data-ttu-id="ac5ac-112">스크립트 샘플을 실행한 후에는 다음 명령을 사용하여 리소스 그룹, App Service 앱 및 모든 관련된 리소스를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-112">After the script sample has been run, the following command can be used to remove the resource group, App Service app, and all related resources:</span></span>
+<span data-ttu-id="379f9-111">Hello 스크립트 예제를 실행 한 후 다음 명령을 hello 사용된 tooremove hello 리소스 그룹, 앱 서비스 앱 및 모든 관련된 리소스 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-111">After hello script sample has been run, hello following command can be used tooremove hello resource group, App Service app, and all related resources:</span></span>
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
-## <a name="script-explanation"></a><span data-ttu-id="ac5ac-113">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="ac5ac-113">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="379f9-112">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="379f9-112">Script explanation</span></span>
 
-<span data-ttu-id="ac5ac-114">이 스크립트는 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-114">This script uses the following commands.</span></span> <span data-ttu-id="ac5ac-115">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-115">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="379f9-113">이 스크립트 명령 뒤 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-113">This script uses hello following commands.</span></span> <span data-ttu-id="379f9-114">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-114">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="ac5ac-116">명령</span><span class="sxs-lookup"><span data-stu-id="ac5ac-116">Command</span></span> | <span data-ttu-id="ac5ac-117">참고 사항</span><span class="sxs-lookup"><span data-stu-id="ac5ac-117">Notes</span></span> |
+| <span data-ttu-id="379f9-115">명령</span><span class="sxs-lookup"><span data-stu-id="379f9-115">Command</span></span> | <span data-ttu-id="379f9-116">참고 사항</span><span class="sxs-lookup"><span data-stu-id="379f9-116">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="ac5ac-118">az login</span><span class="sxs-lookup"><span data-stu-id="ac5ac-118">az login</span></span>](https://docs.microsoft.com/cli/azure/#login) | <span data-ttu-id="ac5ac-119">Azure에 로그인</span><span class="sxs-lookup"><span data-stu-id="ac5ac-119">Login to Azure.</span></span> |
-| [<span data-ttu-id="ac5ac-120">az group create</span><span class="sxs-lookup"><span data-stu-id="ac5ac-120">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="ac5ac-121">위치와 함께 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="ac5ac-121">Create a resource group with location</span></span> |
-| [<span data-ttu-id="ac5ac-122">az storage account create</span><span class="sxs-lookup"><span data-stu-id="ac5ac-122">az storage account create</span></span>](https://docs.microsoft.com/cli/azure/storage/account) | <span data-ttu-id="ac5ac-123">저장소 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="ac5ac-123">Create a storage account</span></span> |
-| [<span data-ttu-id="ac5ac-124">az functionapp create</span><span class="sxs-lookup"><span data-stu-id="ac5ac-124">az functionapp create</span></span>](https://docs.microsoft.com/cli/azure/functionapp#create) | <span data-ttu-id="ac5ac-125">새로운 함수 앱 만들기</span><span class="sxs-lookup"><span data-stu-id="ac5ac-125">Create a new function app</span></span> |
-| [<span data-ttu-id="ac5ac-126">az group delete</span><span class="sxs-lookup"><span data-stu-id="ac5ac-126">az group delete</span></span>](https://docs.microsoft.com/cli/azure/group#delete) | <span data-ttu-id="ac5ac-127">정리</span><span class="sxs-lookup"><span data-stu-id="ac5ac-127">Clean up</span></span> |
+| [<span data-ttu-id="379f9-117">az login</span><span class="sxs-lookup"><span data-stu-id="379f9-117">az login</span></span>](https://docs.microsoft.com/cli/azure/#login) | <span data-ttu-id="379f9-118">로그인 tooAzure 합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-118">Login tooAzure.</span></span> |
+| [<span data-ttu-id="379f9-119">az group create</span><span class="sxs-lookup"><span data-stu-id="379f9-119">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="379f9-120">위치와 함께 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="379f9-120">Create a resource group with location</span></span> |
+| [<span data-ttu-id="379f9-121">az storage account create</span><span class="sxs-lookup"><span data-stu-id="379f9-121">az storage account create</span></span>](https://docs.microsoft.com/cli/azure/storage/account) | <span data-ttu-id="379f9-122">저장소 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="379f9-122">Create a storage account</span></span> |
+| [<span data-ttu-id="379f9-123">az functionapp create</span><span class="sxs-lookup"><span data-stu-id="379f9-123">az functionapp create</span></span>](https://docs.microsoft.com/cli/azure/functionapp#create) | <span data-ttu-id="379f9-124">새로운 함수 앱 만들기</span><span class="sxs-lookup"><span data-stu-id="379f9-124">Create a new function app</span></span> |
+| [<span data-ttu-id="379f9-125">az group delete</span><span class="sxs-lookup"><span data-stu-id="379f9-125">az group delete</span></span>](https://docs.microsoft.com/cli/azure/group#delete) | <span data-ttu-id="379f9-126">정리</span><span class="sxs-lookup"><span data-stu-id="379f9-126">Clean up</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="ac5ac-128">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ac5ac-128">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="379f9-127">다음 단계</span><span class="sxs-lookup"><span data-stu-id="379f9-127">Next steps</span></span>
 
-<span data-ttu-id="ac5ac-129">Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-129">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="379f9-128">Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-128">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="ac5ac-130">추가 Azure Functions CLI 스크립트 샘플은 [Azure Functions 설명서](../functions-cli-samples.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ac5ac-130">Additional Azure Functions CLI script samples can be found in the [Azure Functions documentation](../functions-cli-samples.md).</span></span>
+<span data-ttu-id="379f9-129">추가 Azure 함수 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 함수 설명서](../functions-cli-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="379f9-129">Additional Azure Functions CLI script samples can be found in hello [Azure Functions documentation](../functions-cli-samples.md).</span></span>

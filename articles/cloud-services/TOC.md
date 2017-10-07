@@ -25,13 +25,13 @@
 ### [역할에 대한 트래픽 규칙 구성](cloud-services-enable-communication-role-instances.md)
 ### [클라우드 서비스 수명 주기 이벤트 처리](cloud-services-role-lifecycle-dotnet.md)
 ### [Socket.io(Node.js)](cloud-services-nodejs-chat-app-socketio.md)
-### [Twilio를 사용하여 전화 걸기(.NET)](../partner-twilio-cloud-services-dotnet-phone-call-web-role.md)
+### [Twilio toomake 전화 통화 (.NET)를 사용 하 여](../partner-twilio-cloud-services-dotnet-phone-call-web-role.md)
 ### [New Relic](../store-new-relic-cloud-services-dotnet-application-performance-management.md)
 
 ### 시작 작업 구성
 #### [시작 작업 만들기](cloud-services-startup-tasks.md)
 #### [일반적인 시작 작업](cloud-services-startup-tasks-common.md)
-#### [클라우드 서비스 역할에서 작업을 사용하여 .NET 설치](cloud-services-dotnet-install-dotnet.md)
+#### [클라우드 서비스 역할에 태스크가 tooInstall.NET을 사용 하 여](cloud-services-dotnet-install-dotnet.md)
 
 ### 원격 데스크톱 구성
 #### [포털](cloud-services-role-enable-remote-desktop-new-portal.md)
@@ -47,7 +47,7 @@
 #### [포털](cloud-services-custom-domain-name-portal.md)
 #### [클래식 포털](cloud-services-custom-domain-name.md)
 ### [클라우드 서비스 배포 스테이징(Node.js)](cloud-services-nodejs-stage-application.md)
-### [사용자 지정 도메인 컨트롤러에 연결](cloud-services-connect-to-custom-domain.md)
+### [연결 tooa 사용자 지정 도메인 컨트롤러](cloud-services-connect-to-custom-domain.md)
 
 ## 서비스 관리
 ### 일반적인 관리 작업
@@ -60,7 +60,7 @@
 ### 자동 크기 조정 구성
 #### [포털](cloud-services-how-to-scale-portal.md)
 #### [클래식 포털](cloud-services-how-to-scale.md)
-### [Python으로 Azure 리소스 관리](cloud-services-python-how-to-use-service-management.md)
+### [Python toomanage Azure 리소스를 사용 하 여](cloud-services-python-how-to-use-service-management.md)
 
 ### [게스트 OS 패치](cloud-services-guestos-msrc-releases.md)
 ### 게스트 OS 사용 중지
@@ -86,7 +86,7 @@
 ### [Azure 진단에서 성능 카운터 사용](cloud-services-dotnet-diagnostics-performance-counters.md)
 ### [Azure Storage에서 진단 데이터 저장 및 보기](cloud-services-dotnet-diagnostics-storage.md)
 ### [진단을 사용하여 클라우드 서비스 추적](cloud-services-dotnet-diagnostics-trace-flow.md)
-### [App Insights로 진단 데이터 보내기](cloud-services-dotnet-diagnostics-applicationinsights.md)
+### [진단 데이터 tooApp Insights 보내기](cloud-services-dotnet-diagnostics-applicationinsights.md)
 
 ## 문제 해결
 ### 디버그 
@@ -98,7 +98,7 @@
 ### [일반적인 클라우드 서비스 역할 재활용 원인](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)
 ### [기본 TEMP 폴더 크기가 역할에 비해 너무 작음](cloud-services-troubleshoot-default-temp-folder-size-too-small-web-worker-role.md)
 ### [일반적인 배포 문제](cloud-services-troubleshoot-deployment-problems.md)
-### [역할 시작 실패](cloud-services-troubleshoot-roles-that-fail-start.md)
+### [역할 toostart를 실패 했습니다.](cloud-services-troubleshoot-roles-that-fail-start.md)
 ### [복구 지침](cloud-services-disaster-recovery-guidance.md)
 ### 클라우드 서비스 FAQ
 #### [응용 프로그램 및 서비스 가용성 FAQ](cloud-services-application-and-service-availability-faq.md)

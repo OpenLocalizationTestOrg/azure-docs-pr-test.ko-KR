@@ -6,8 +6,8 @@
 ## [Jenkins 및 Kubernetes 통합](/azure/container-service/container-service-kubernetes-jenkins)
 ## [Jenkins 및 Azure CLI](/azure/jenkins/execute-cli-jenkins-pipeline)
 ## [Docker, GitHub 및 Jenkins](/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd)
-## [App Service에 배포](/azure/jenkins/deploy-Jenkins-app-service-plugin)
-# 방법 가이드
+## [TooApp 서비스 배포](/azure/jenkins/deploy-Jenkins-app-service-plugin)
+# Tooguides 방법
 ## [Azure에서 Jenkins 보안](https://jenkins.io/blog/2017/04/20/secure-jenkins-on-azure/)
 # 리소스
 ## [Azure 로드맵](https://azure.microsoft.com/roadmap/)

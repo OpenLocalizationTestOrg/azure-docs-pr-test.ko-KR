@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory의 사용자 지정 도메인에 사용자 할당 | Microsoft Docs"
-description: "사용자 계정으로 Azure Active Directory의 사용자 지정 도메인을 채우는 방법"
+title: "aaaAssign 사용자 tooa Azure Active Directory에서 사용자 지정 도메인 | Microsoft Docs"
+description: "어떻게 toopopulate 사용자 계정으로 Azure Active Directory에서 사용자 지정 도메인입니다."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,42 +16,42 @@ ms.date: 07/13/2017
 ms.author: curtand
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: 39cb54a6637088c35c6aef864a804c24803f48ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 23c338a361a90fddf42d4df90db94c9774305886
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-users-to-a-custom-domain"></a><span data-ttu-id="e45fe-103">사용자 지정 도메인에 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="e45fe-103">Assign users to a custom domain</span></span>
-<span data-ttu-id="e45fe-104">Azure Active Directory에 사용자 지정 도메인을 추가한 후에 인증을 시작할 수 있도록 이 도메인에 대한 사용자 계정을 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-104">After you have added your custom domain to Azure Active Directory, you must add the user accounts for this domain so that you can begin authenticating them.</span></span>
+# <a name="assign-users-tooa-custom-domain"></a><span data-ttu-id="9bbae-103">사용자가 사용자 지정 도메인을 tooa 할당</span><span class="sxs-lookup"><span data-stu-id="9bbae-103">Assign users tooa custom domain</span></span>
+<span data-ttu-id="9bbae-104">사용자 지정 도메인 tooAzure Active Directory 사용자를 추가한 후에 인증을 시작할 수 있도록이 도메인에 대 한 hello 사용자 계정을 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-104">After you have added your custom domain tooAzure Active Directory, you must add hello user accounts for this domain so that you can begin authenticating them.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="e45fe-105">이 문서에서 참조되는 Azure 클래식 포털을 사용하는 대신 Azure Portal에서 [Azure AD 관리 센터](https://aad.portal.azure.com)를 사용하여 Azure AD를 관리하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-105">Microsoft recommends that you manage Azure AD using the [Azure AD admin center](https://aad.portal.azure.com) in the Azure portal instead of using the Azure classic portal referenced in this article.</span></span> <span data-ttu-id="e45fe-106">Azure AD 관리 센터에서 도메인 이름을 관리하는 방법은 [Azure Active Directory에서 사용자 지정 도메인 이름 관리](active-directory-domains-manage-azure-portal.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e45fe-106">For how to manage your domain names in the Azure AD admin center, see [Managing custom domain names in your Azure Active Directory](active-directory-domains-manage-azure-portal.md).</span></span>
+> <span data-ttu-id="9bbae-105">Hello를 사용 하 여 Azure AD를 관리 하는 것이 좋습니다 [Azure AD 관리 센터](https://aad.portal.azure.com) hello에서 사용 하는 대신 Azure 포털 hello Azure 클래식 포털이이 문서에서 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-105">Microsoft recommends that you manage Azure AD using hello [Azure AD admin center](https://aad.portal.azure.com) in hello Azure portal instead of using hello Azure classic portal referenced in this article.</span></span> <span data-ttu-id="9bbae-106">어떻게 toomanage 도메인 이름 hello Azure AD 관리 센터에서 참조 [Azure Active Directory에서 사용자 지정 도메인 이름을 관리](active-directory-domains-manage-azure-portal.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-106">For how toomanage your domain names in hello Azure AD admin center, see [Managing custom domain names in your Azure Active Directory](active-directory-domains-manage-azure-portal.md).</span></span>
 
-## <a name="users-synced-from-a-on-premises-directory"></a><span data-ttu-id="e45fe-107">온-프레미스 디렉터리에서 동기화된 사용자</span><span class="sxs-lookup"><span data-stu-id="e45fe-107">Users synced from a on-premises directory</span></span>
-<span data-ttu-id="e45fe-108">온-프레미스 Active Directory와 Azure Active Directory 간의 연결을 이미 설정한 경우 동기화로 계정을 채울 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-108">If you have already set up a connection between your on-premises Active Directory and Azure Active Directory, synchronization can populate the accounts.</span></span> <span data-ttu-id="e45fe-109">Azure Active Directory를 온-프레미스 Active Directory와 동기화하는 방법에 대한 자세한 내용은 [Azure Active Directory와 온-프레미스 ID 통합](active-directory-aadconnect.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e45fe-109">For more information on how to synchronize Azure Active Directory with your on-premises Active Directory, see [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>
+## <a name="users-synced-from-a-on-premises-directory"></a><span data-ttu-id="9bbae-107">온-프레미스 디렉터리에서 동기화된 사용자</span><span class="sxs-lookup"><span data-stu-id="9bbae-107">Users synced from a on-premises directory</span></span>
+<span data-ttu-id="9bbae-108">이미 설정한 경우 한 연결을 온-프레미스 간의 Active Directory와 Azure Active Directory를 동기화 hello 계정을 채울 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-108">If you have already set up a connection between your on-premises Active Directory and Azure Active Directory, synchronization can populate hello accounts.</span></span> <span data-ttu-id="9bbae-109">Toosynchronize 온-프레미스 Active Directory와 Azure Active Directory 확인 하려면 어떻게 해야 대 한 자세한 내용은 [Azure Active Directory와 온-프레미스 id 통합](active-directory-aadconnect.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-109">For more information on how toosynchronize Azure Active Directory with your on-premises Active Directory, see [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>
 
-## <a name="users-added-and-managed-in-the-cloud"></a><span data-ttu-id="e45fe-110">클라우드에 추가되고 관리되는 사용자</span><span class="sxs-lookup"><span data-stu-id="e45fe-110">Users added and managed in the cloud</span></span>
-<span data-ttu-id="e45fe-111">기존 사용자 계정에 대한 도메인을 변경하려면</span><span class="sxs-lookup"><span data-stu-id="e45fe-111">To change the domain for an existing user account:</span></span>
+## <a name="users-added-and-managed-in-hello-cloud"></a><span data-ttu-id="9bbae-110">사용자 추가 하 고 hello 클라우드에서 관리</span><span class="sxs-lookup"><span data-stu-id="9bbae-110">Users added and managed in hello cloud</span></span>
+<span data-ttu-id="9bbae-111">기존 사용자 계정에 대 한 toochange hello 도메인:</span><span class="sxs-lookup"><span data-stu-id="9bbae-111">toochange hello domain for an existing user account:</span></span>
 
-1. <span data-ttu-id="e45fe-112">전역 관리자 또는 사용자 관리자인 계정을 사용하여 Azure 클래식 포털을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-112">Open the Azure classic portal using an account that is a global admin or a user admin.</span></span>
-2. <span data-ttu-id="e45fe-113">디렉터리를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-113">Open your directory.</span></span>
-3. <span data-ttu-id="e45fe-114">**사용자** 탭을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-114">Select the **Users** tab.</span></span>
-4. <span data-ttu-id="e45fe-115">목록에서 사용자를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-115">Select the user from the list.</span></span>
-5. <span data-ttu-id="e45fe-116">사용자에 대한 도메인을 변경한 다음 **저장**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-116">Change the domain for the user, and then select **Save**.</span></span>
+1. <span data-ttu-id="9bbae-112">열기 hello 전역 관리자 또는 사용자 관리자 인 계정을 사용 하 여 Azure 클래식 포털</span><span class="sxs-lookup"><span data-stu-id="9bbae-112">Open hello Azure classic portal using an account that is a global admin or a user admin.</span></span>
+2. <span data-ttu-id="9bbae-113">디렉터리를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-113">Open your directory.</span></span>
+3. <span data-ttu-id="9bbae-114">선택 hello **사용자** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-114">Select hello **Users** tab.</span></span>
+4. <span data-ttu-id="9bbae-115">Hello 사용자 hello 목록에서 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-115">Select hello user from hello list.</span></span>
+5. <span data-ttu-id="9bbae-116">Hello 사용자에 대 한 hello 도메인을 변경 하 고 다음 선택 **저장**합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-116">Change hello domain for hello user, and then select **Save**.</span></span>
 
-<span data-ttu-id="e45fe-117">이 작업은 [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) 또는 [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)를 사용하여 수행할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-117">This can also be done using [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) or the [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations).</span></span>
+<span data-ttu-id="9bbae-117">또한 이렇게 사용 하 여 [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) 또는 hello [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-117">This can also be done using [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) or hello [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations).</span></span>
 
-## <a name="select-a-custom-domain-when-creating-a-new-user"></a><span data-ttu-id="e45fe-118">새 사용자를 만들 때 사용자 지정 도메인 선택</span><span class="sxs-lookup"><span data-stu-id="e45fe-118">Select a custom domain when creating a new user</span></span>
-1. <span data-ttu-id="e45fe-119">전역 관리자 또는 사용자 관리자인 계정을 사용하여 Azure 클래식 포털을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-119">Open the Azure classic portal using an account that is a global admin or a user admin.</span></span>
-2. <span data-ttu-id="e45fe-120">디렉터리를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-120">Open your directory.</span></span>
-3. <span data-ttu-id="e45fe-121">**사용자** 탭을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-121">Select the **Users** tab.</span></span>
-4. <span data-ttu-id="e45fe-122">명령 모음에서 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-122">In the command bar, select **Add**.</span></span>
-5. <span data-ttu-id="e45fe-123">사용자 이름에 추가할 때 도메인 목록에서 사용자 지정 도메인을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-123">When you add the user name, choose the custom domain from the domain list.</span></span>
-6. <span data-ttu-id="e45fe-124">**저장**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e45fe-124">Select **Save**.</span></span>
+## <a name="select-a-custom-domain-when-creating-a-new-user"></a><span data-ttu-id="9bbae-118">새 사용자를 만들 때 사용자 지정 도메인 선택</span><span class="sxs-lookup"><span data-stu-id="9bbae-118">Select a custom domain when creating a new user</span></span>
+1. <span data-ttu-id="9bbae-119">열기 hello 전역 관리자 또는 사용자 관리자 인 계정을 사용 하 여 Azure 클래식 포털</span><span class="sxs-lookup"><span data-stu-id="9bbae-119">Open hello Azure classic portal using an account that is a global admin or a user admin.</span></span>
+2. <span data-ttu-id="9bbae-120">디렉터리를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-120">Open your directory.</span></span>
+3. <span data-ttu-id="9bbae-121">선택 hello **사용자** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-121">Select hello **Users** tab.</span></span>
+4. <span data-ttu-id="9bbae-122">Hello 명령 모음에서 선택 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-122">In hello command bar, select **Add**.</span></span>
+5. <span data-ttu-id="9bbae-123">Hello 사용자 이름을 추가 하면 사용자 지정 도메인 hello hello 도메인 목록에서 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-123">When you add hello user name, choose hello custom domain from hello domain list.</span></span>
+6. <span data-ttu-id="9bbae-124">**저장**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9bbae-124">Select **Save**.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="e45fe-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e45fe-125">Next steps</span></span>
-* [<span data-ttu-id="e45fe-126">사용자 지정 도메인 이름을 사용하여 사용자의 로그인 환경 간소화</span><span class="sxs-lookup"><span data-stu-id="e45fe-126">Using custom domain names to simplify the sign-in experience for your users</span></span>](active-directory-add-domain.md)
-* [<span data-ttu-id="e45fe-127">사용자 지정 도메인 이름 관리</span><span class="sxs-lookup"><span data-stu-id="e45fe-127">Manage custom domain names</span></span>](active-directory-add-manage-domain-names.md)
-* [<span data-ttu-id="e45fe-128">Azure AD에서 도메인 관리 개념 알아보기</span><span class="sxs-lookup"><span data-stu-id="e45fe-128">Learn about domain management concepts in Azure AD</span></span>](active-directory-add-domain-concepts.md)
+## <a name="next-steps"></a><span data-ttu-id="9bbae-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9bbae-125">Next steps</span></span>
+* [<span data-ttu-id="9bbae-126">사용자에 대 한 사용자 지정 도메인 이름을 toosimplify hello 로그인 환경을 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="9bbae-126">Using custom domain names toosimplify hello sign-in experience for your users</span></span>](active-directory-add-domain.md)
+* [<span data-ttu-id="9bbae-127">사용자 지정 도메인 이름 관리</span><span class="sxs-lookup"><span data-stu-id="9bbae-127">Manage custom domain names</span></span>](active-directory-add-manage-domain-names.md)
+* [<span data-ttu-id="9bbae-128">Azure AD에서 도메인 관리 개념 알아보기</span><span class="sxs-lookup"><span data-stu-id="9bbae-128">Learn about domain management concepts in Azure AD</span></span>](active-directory-add-domain-concepts.md)
 

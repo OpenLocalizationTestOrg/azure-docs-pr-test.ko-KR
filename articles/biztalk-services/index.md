@@ -1,6 +1,6 @@
 ---
-title: "Azure Biztalk Services 설명서 - 자습서 | Microsoft Docs"
-description: "BizTalk Services를 사용하여 SAP, Oracle EBS, SQL Server 및 PeopleSoft용 온-프레미스 및 LOB(기간 업무) 응용 프로그램 통합에 클라우드를 제공하는 방법을 알아봅니다."
+title: "Biztalk 서비스 설명서-aaaAzure 자습서 | Microsoft Docs"
+description: "Toouse BizTalk tooprovide 클라우드 tooon 온-프레미스 및 SAP, Oracle EBS, SQL Server 및 PeopleSoft에 대 한 기간 업무 응용 프로그램 통합을 서비스 하는 방법에 대해 알아봅니다."
 services: biztalk-services
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 80b381d59e95297cf8d7616e6a2eb3186ab26a05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 06411e211b987a96d4b79a93871e66157f7ecdb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="biztalk-services-documentation"></a>BizTalk Services 설명서
 
-BizTalk Services를 사용하여 SAP, Oracle EBS, SQL Server 및 PeopleSoft용 온-프레미스 및 LOB(기간 업무) 응용 프로그램 통합에 클라우드를 제공하는 방법을 알아봅니다. 자습서 및 기타 설명서에서는 엔터프라이즈 및 클라우드를 통합하는 방법을 보여 줍니다.
+Toouse BizTalk tooprovide 클라우드 tooon 온-프레미스 및 SAP, Oracle EBS, SQL Server 및 PeopleSoft에 대 한 기간 업무 응용 프로그램 통합을 서비스 하는 방법에 대해 알아봅니다. 자습서 및 기타 문서 설명 toointegrate hello enterprise 및 hello의 클라우드 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ BizTalk Services를 사용하여 SAP, Oracle EBS, SQL Server 및 PeopleSoft용 �
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Portal을 사용하여 BizTalk Services 시작</h3>
+                        <h3>Hello Azure 포털을 사용 하 여 BizTalk 서비스 시작</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
 title: "자습서: IBM Kenexa Survey Enterprise와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 IBM Kenexa Survey Enterprise 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법에 대해 알아봅니다 Azure Active Directory와 IBM Kenexa 설문 조사 엔터프라이즈 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,205 +13,205 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2017
 ms.author: jeedes
-ms.openlocfilehash: 5c276c23288292a1c54dd9d57177d5072b90c9e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cf7ed886b4418ac396ca7056827ee10fd7a19ef1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-ibm-kenexa-survey-enterprise"></a><span data-ttu-id="91c11-103">자습서: IBM Kenexa Survey Enterprise와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="91c11-103">Tutorial: Azure Active Directory integration with IBM Kenexa Survey Enterprise</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-ibm-kenexa-survey-enterprise"></a><span data-ttu-id="4de1d-103">자습서: IBM Kenexa Survey Enterprise와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="4de1d-103">Tutorial: Azure Active Directory integration with IBM Kenexa Survey Enterprise</span></span>
 
-<span data-ttu-id="91c11-104">이 자습서에서는 Azure AD(Azure Active Directory)와 IBM Kenexa Survey Enterprise을 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-104">In this tutorial, you learn how to integrate IBM Kenexa Survey Enterprise with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="4de1d-104">이 자습서에 설명 어떻게 toointegrate IBM Kenexa 설문 조사 Enterprise와 Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="4de1d-104">In this tutorial, you learn how toointegrate IBM Kenexa Survey Enterprise with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="91c11-105">IBM Kenexa Survey Enterprise를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-105">Integrating IBM Kenexa Survey Enterprise with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="4de1d-105">Azure AD와 IBM Kenexa 설문 조사 엔터프라이즈 통합 이점을 다음 hello로 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-105">Integrating IBM Kenexa Survey Enterprise with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="91c11-106">Azure AD에서 사용자의 IBM Kenexa Survey Enterprise에 대한 액세스 권한을 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-106">You can control in Azure AD who has access to IBM Kenexa Survey Enterprise.</span></span>
-- <span data-ttu-id="91c11-107">사용자가 해당 Azure AD 계정에서 SSO(Single Sign-on)를 사용하여 IBM Kenexa Survey Enterprise에 자동으로 로그인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-107">You can enable your users to automatically sign in to IBM Kenexa Survey Enterprise by using single sign-on (SSO) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="91c11-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-108">You can manage your accounts in one central location: the Azure portal.</span></span>
+- <span data-ttu-id="4de1d-106">액세스 tooIBM Kenexa 설문 조사 엔터프라이즈를 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-106">You can control in Azure AD who has access tooIBM Kenexa Survey Enterprise.</span></span>
+- <span data-ttu-id="4de1d-107">Single sign on (SSO)는 Azure AD 계정을 사용 하 여 tooIBM Kenexa 설문 조사 엔터프라이즈에에서 대 한 사용자가 tooautomatically 로그인을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-107">You can enable your users tooautomatically sign in tooIBM Kenexa Survey Enterprise by using single sign-on (SSO) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="4de1d-108">하나의 중앙 위치에 사용자 계정을 관리할 수 있습니다: Azure 포털 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-108">You can manage your accounts in one central location: hello Azure portal.</span></span>
 
-<span data-ttu-id="91c11-109">Azure AD와의 SaaS(Software as a Service) 앱 통합에 대한 자세한 내용은 [Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="91c11-109">If you want to know more about software as a service (SaaS) app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="4de1d-109">소프트웨어에 대 한 자세한 tooknow로 Azure AD와 saas () 응용 프로그램 통합 하려는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란?](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-109">If you want tooknow more about software as a service (SaaS) app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="91c11-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="91c11-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="4de1d-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="4de1d-110">Prerequisites</span></span>
 
-<span data-ttu-id="91c11-111">IBM Kenexa Survey Enterprise와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-111">To configure Azure AD integration with IBM Kenexa Survey Enterprise, you need the following items:</span></span>
+<span data-ttu-id="4de1d-111">IBM Kenexa 설문 조사 Enterprise와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-111">tooconfigure Azure AD integration with IBM Kenexa Survey Enterprise, you need hello following items:</span></span>
 
-- <span data-ttu-id="91c11-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="91c11-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="91c11-113">IBM Kenexa Survey Enterprise SSO가 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="91c11-113">An IBM Kenexa Survey Enterprise SSO-enabled subscription</span></span>
+- <span data-ttu-id="4de1d-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="4de1d-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="4de1d-113">IBM Kenexa Survey Enterprise SSO가 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="4de1d-113">An IBM Kenexa Survey Enterprise SSO-enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="91c11-114">이 자습서의 단계를 테스트하는 경우 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-114">When you test the steps in this tutorial, we recommend that you do not use a production environment.</span></span>
+> <span data-ttu-id="4de1d-114">이 자습서에서는 hello 단계를 테스트할 때에 프로덕션 환경 사용 하지 않는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-114">When you test hello steps in this tutorial, we recommend that you do not use a production environment.</span></span>
 
-<span data-ttu-id="91c11-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-115">To test the steps in this tutorial, follow these recommendations:</span></span>
+<span data-ttu-id="4de1d-115">이 자습서의 tootest hello 단계에는 이러한 권장 사항을 따르십시오.</span><span class="sxs-lookup"><span data-stu-id="4de1d-115">tootest hello steps in this tutorial, follow these recommendations:</span></span>
 
-- <span data-ttu-id="91c11-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="91c11-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="91c11-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="4de1d-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="4de1d-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="4de1d-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="91c11-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="91c11-118">Scenario description</span></span>
-<span data-ttu-id="91c11-119">이 자습서에서는 테스트 환경에서 Azure AD SSO를 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-119">In this tutorial, you test Azure AD SSO in a test environment.</span></span> <span data-ttu-id="91c11-120">자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-120">The scenario outlined in the tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="4de1d-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="4de1d-118">Scenario description</span></span>
+<span data-ttu-id="4de1d-119">이 자습서에서는 테스트 환경에서 Azure AD SSO를 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-119">In this tutorial, you test Azure AD SSO in a test environment.</span></span> <span data-ttu-id="4de1d-120">hello 시나리오 hello 자습서에 설명 된 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-120">hello scenario outlined in hello tutorial consists of two main building blocks:</span></span>
 
-* <span data-ttu-id="91c11-121">갤러리에서 IBM Kenexa Survey Enterprise 추가</span><span class="sxs-lookup"><span data-stu-id="91c11-121">Adding IBM Kenexa Survey Enterprise from the gallery</span></span>
-* <span data-ttu-id="91c11-122">Azure AD SSO 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="91c11-122">Configuring and testing Azure AD SSO</span></span>
+* <span data-ttu-id="4de1d-121">IBM Kenexa 설문 조사 엔터프라이즈 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="4de1d-121">Adding IBM Kenexa Survey Enterprise from hello gallery</span></span>
+* <span data-ttu-id="4de1d-122">Azure AD SSO 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="4de1d-122">Configuring and testing Azure AD SSO</span></span>
 
-## <a name="add-ibm-kenexa-survey-enterprise-from-the-gallery"></a><span data-ttu-id="91c11-123">갤러리에서 IBM Kenexa Survey Enterprise 추가</span><span class="sxs-lookup"><span data-stu-id="91c11-123">Add IBM Kenexa Survey Enterprise from the gallery</span></span>
-<span data-ttu-id="91c11-124">Azure AD에 IBM Kenexa Survey Enterprise의 통합을 구성하려면 갤러리의 IBM Kenexa Survey Enterprise를 관리되는 SaaS 앱 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-124">To configure the integration of IBM Kenexa Survey Enterprise into Azure AD, add IBM Kenexa Survey Enterprise from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="add-ibm-kenexa-survey-enterprise-from-hello-gallery"></a><span data-ttu-id="4de1d-123">Hello 갤러리에서 IBM Kenexa 설문 조사 엔터프라이즈를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-123">Add IBM Kenexa Survey Enterprise from hello gallery</span></span>
+<span data-ttu-id="4de1d-124">Azure AD로의 IBM Kenexa 설문 조사 Enterprise tooconfigure hello 통합 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 IBM Kenexa 설문 조사 엔터프라이즈를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-124">tooconfigure hello integration of IBM Kenexa Survey Enterprise into Azure AD, add IBM Kenexa Survey Enterprise from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="91c11-125">갤러리의 IBM Kenexa Survey Enterprise를 추가하려면 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-125">To add IBM Kenexa Survey Enterprise from the gallery, do the following:</span></span>
+<span data-ttu-id="4de1d-125">tooadd IBM Kenexa 설문 조사 엔터프라이즈 hello 갤러리에서 다음 hello지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-125">tooadd IBM Kenexa Survey Enterprise from hello gallery, do hello following:</span></span>
 
-1. <span data-ttu-id="91c11-126">[Azure Portal](https://portal.azure.com)의 왼쪽 창에서 **Azure Active Directory** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-126">In the [Azure portal](https://portal.azure.com), in the left pane, click the **Azure Active Directory** button.</span></span> 
+1. <span data-ttu-id="4de1d-126">Hello에 [Azure 포털](https://portal.azure.com)hello 왼쪽된 창에서 클릭 hello **Azure Active Directory** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-126">In hello [Azure portal](https://portal.azure.com), in hello left pane, click hello **Azure Active Directory** button.</span></span> 
 
-    ![Azure Active Directory 단추][1]
+    ![hello Azure Active Directory 단추][1]
 
-2. <span data-ttu-id="91c11-128">**엔터프라이즈 응용 프로그램**을 선택한 다음 **모든 응용 프로그램**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-128">Select **Enterprise applications**, and then select **All applications**.</span></span>
+2. <span data-ttu-id="4de1d-128">**엔터프라이즈 응용 프로그램**을 선택한 다음 **모든 응용 프로그램**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-128">Select **Enterprise applications**, and then select **All applications**.</span></span>
 
-    ![엔터프라이즈 응용 프로그램 블레이드][2]
+    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. <span data-ttu-id="91c11-130">응용 프로그램을 추가하려면 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-130">To add an application, click the **New application** button.</span></span>
+3. <span data-ttu-id="4de1d-130">응용 프로그램, 프로그램 tooadd hello 클릭 **새 응용 프로그램** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-130">tooadd an application, click hello **New application** button.</span></span>
 
-    ![새 응용 프로그램 단추][3]
+    ![hello 새 응용 프로그램 단추][3]
 
-4. <span data-ttu-id="91c11-132">검색 상자에 **IBM Kenexa Survey Enterprise**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-132">In the search box, type **IBM Kenexa Survey Enterprise**.</span></span>
+4. <span data-ttu-id="4de1d-132">Hello 검색 상자에 입력 **IBM Kenexa 설문 조사 엔터프라이즈**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-132">In hello search box, type **IBM Kenexa Survey Enterprise**.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_search.png)
 
-5. <span data-ttu-id="91c11-134">결과 목록에서 **IBM Kenexa Survey Enterprise**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-134">In the results list, select **IBM Kenexa Survey Enterprise**, and then click the **Add** button to add the application.</span></span>
+5. <span data-ttu-id="4de1d-134">Hello 결과 목록에서 선택 **IBM Kenexa 설문 조사 엔터프라이즈**, hello를 클릭 한 다음 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-134">In hello results list, select **IBM Kenexa Survey Enterprise**, and then click hello **Add** button tooadd hello application.</span></span>
 
-    ![결과 목록의 IBM Kenexa Survey Enterprise](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_addfromgallery.png)
+    ![Hello 결과 목록에서 IBM Kenexa 설문 조사 Enterprise](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_addfromgallery.png)
 
-##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="91c11-136">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="91c11-136">Configure and test Azure AD single sign-on</span></span>
-<span data-ttu-id="91c11-137">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 IBM Kenexa Survey Enterprise에서 Azure AD SSO를 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-137">In this section, you configure and test Azure AD SSO with IBM Kenexa Survey Enterprise based on a test user called "Britta Simon."</span></span>
+##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="4de1d-136">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="4de1d-136">Configure and test Azure AD single sign-on</span></span>
+<span data-ttu-id="4de1d-137">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 IBM Kenexa Survey Enterprise에서 Azure AD SSO를 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-137">In this section, you configure and test Azure AD SSO with IBM Kenexa Survey Enterprise based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="91c11-138">SSO가 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 IBM Kenexa Survey Enterprise 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-138">For SSO to work, Azure AD needs to identify the IBM Kenexa Survey Enterprise user counterpart in Azure AD.</span></span> <span data-ttu-id="91c11-139">즉, Azure AD에서는 Azure AD 사용자와 IBM Kenexa Survey Enterprise의 관련 사용자 간에 연결을 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-139">In other words, Azure AD must establish a link relationship between an Azure AD user and a related user in IBM Kenexa Survey Enterprise.</span></span>
+<span data-ttu-id="4de1d-138">SSO toowork에 대 한 Azure AD는 tooidentify hello IBM Kenexa 설문 조사 엔터프라이즈 사용자 테이블에 해당 Azure AD에서 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-138">For SSO toowork, Azure AD needs tooidentify hello IBM Kenexa Survey Enterprise user counterpart in Azure AD.</span></span> <span data-ttu-id="4de1d-139">즉, Azure AD에서는 Azure AD 사용자와 IBM Kenexa Survey Enterprise의 관련 사용자 간에 연결을 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-139">In other words, Azure AD must establish a link relationship between an Azure AD user and a related user in IBM Kenexa Survey Enterprise.</span></span>
 
-<span data-ttu-id="91c11-140">링크 관계를 설정하려면 IBM Kenexa Survey Enterprise의 **사용자 이름** 값을 Azure AD의 **Username** 값으로 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-140">To establish the link relationship, assign the value of the **user name** in IBM Kenexa Survey Enterprise as the value of the **Username** in Azure AD.</span></span>
+<span data-ttu-id="4de1d-140">tooestablish hello 링크 관계의 hello 할당 hello 값 **사용자 이름** hello의 hello 값으로 IBM Kenexa 설문 조사 기업에서 **Username** Azure AD에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-140">tooestablish hello link relationship, assign hello value of hello **user name** in IBM Kenexa Survey Enterprise as hello value of hello **Username** in Azure AD.</span></span>
 
-<span data-ttu-id="91c11-141">IBM Kenexa Survey Enterprise에서 Azure AD SSO를 구성하고 테스트하려면 다음 두 개의 섹션에서 구성 요소를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-141">To configure and test Azure AD SSO with IBM Kenexa Survey Enterprise, complete the building blocks in the next two sections.</span></span>
+<span data-ttu-id="4de1d-141">hello 다음 두 섹션에서 문서 블록을 완료 hello tooconfigure 및 IBM Kenexa 설문 조사 Enterprise와 Azure AD SSO 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-141">tooconfigure and test Azure AD SSO with IBM Kenexa Survey Enterprise, complete hello building blocks in hello next two sections.</span></span>
 
-### <a name="configure-azure-ad-sso"></a><span data-ttu-id="91c11-142">Azure AD SSO 구성</span><span class="sxs-lookup"><span data-stu-id="91c11-142">Configure Azure AD SSO</span></span>
+### <a name="configure-azure-ad-sso"></a><span data-ttu-id="4de1d-142">Azure AD SSO 구성</span><span class="sxs-lookup"><span data-stu-id="4de1d-142">Configure Azure AD SSO</span></span>
 
-<span data-ttu-id="91c11-143">이 섹션에서는 Azure Portal에서 Azure AD SSO를 사용하도록 설정하고 다음을 수행하여 IBM Kenexa Survey Enterprise 응용 프로그램에서 SSO를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-143">In this section, you enable Azure AD SSO in the Azure portal and configure SSO in your IBM Kenexa Survey Enterprise application by doing the following:</span></span>
+<span data-ttu-id="4de1d-143">이 섹션에서는 hello Azure 포털에서에서 Azure AD SSO를 사용 하도록 설정 및 hello 다음을 수행 하 여 IBM Kenexa 설문 조사 엔터프라이즈 응용 프로그램에서 SSO를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-143">In this section, you enable Azure AD SSO in hello Azure portal and configure SSO in your IBM Kenexa Survey Enterprise application by doing hello following:</span></span>
 
-1. <span data-ttu-id="91c11-144">Azure Portal의 **IBM Kenexa Survey Enterprise** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-144">In the Azure portal, on the **IBM Kenexa Survey Enterprise** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="4de1d-144">Hello hello에 Azure 포털에서에서 **IBM Kenexa 설문 조사 엔터프라이즈** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-144">In hello Azure portal, on hello **IBM Kenexa Survey Enterprise** application integration page, click **Single sign-on**.</span></span>
 
     ![IBM Kenexa Survey Enterprise 구성 Single Sign-On 링크][4]
 
-2. <span data-ttu-id="91c11-146">**Single Sign-On** 대화 상자의 **모드** 상자에서 **SAML 기반 로그온**을 선택하여 SSO를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-146">In the **Single sign-on** dialog box, in the **Mode** box, select **SAML-based Sign-on** to enable SSO.</span></span>
+2. <span data-ttu-id="4de1d-146">Hello에 **Single sign on** 대화 상자의 hello **모드** 상자 **SAML 기반 로그온** tooenable SSO 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-146">In hello **Single sign-on** dialog box, in hello **Mode** box, select **SAML-based Sign-on** tooenable SSO.</span></span>
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_samlbase.png)
 
-3. <span data-ttu-id="91c11-148">**IBM Kenexa Survey Enterprise 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-148">In the **IBM Kenexa Survey Enterprise Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="4de1d-148">Hello에 **IBM Kenexa 설문 조사 엔터프라이즈 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-148">In hello **IBM Kenexa Survey Enterprise Domain and URLs** section, perform hello following steps:</span></span>
 
     ![IBM Kenexa Survey Enterprise 도메인 및 URL Single Sign-On 정보](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_url.png)
 
-    <span data-ttu-id="91c11-150">a.</span><span class="sxs-lookup"><span data-stu-id="91c11-150">a.</span></span> <span data-ttu-id="91c11-151">**식별자** 텍스트 상자에서 `https://surveys.kenexa.com/<companycode>` 패턴으로 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-151">In the **Identifier** textbox, type a URL with the following pattern: `https://surveys.kenexa.com/<companycode>`</span></span>
+    <span data-ttu-id="4de1d-150">a.</span><span class="sxs-lookup"><span data-stu-id="4de1d-150">a.</span></span> <span data-ttu-id="4de1d-151">Hello에 **식별자** 텍스트 상자에 URL 패턴 hello로:`https://surveys.kenexa.com/<companycode>`</span><span class="sxs-lookup"><span data-stu-id="4de1d-151">In hello **Identifier** textbox, type a URL with hello following pattern: `https://surveys.kenexa.com/<companycode>`</span></span>
 
-    <span data-ttu-id="91c11-152">b.</span><span class="sxs-lookup"><span data-stu-id="91c11-152">b.</span></span> <span data-ttu-id="91c11-153">**회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다. `https://surveys.kenexa.com/<companycode>/tools/sso.asp`</span><span class="sxs-lookup"><span data-stu-id="91c11-153">In the **Reply URL** textbox, type a URL with the following pattern: `https://surveys.kenexa.com/<companycode>/tools/sso.asp`</span></span>
+    <span data-ttu-id="4de1d-152">b.</span><span class="sxs-lookup"><span data-stu-id="4de1d-152">b.</span></span> <span data-ttu-id="4de1d-153">Hello에 **회신 URL** 텍스트 상자에 URL 패턴 hello로:`https://surveys.kenexa.com/<companycode>/tools/sso.asp`</span><span class="sxs-lookup"><span data-stu-id="4de1d-153">In hello **Reply URL** textbox, type a URL with hello following pattern: `https://surveys.kenexa.com/<companycode>/tools/sso.asp`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="91c11-154">위의 값은 실제가 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-154">The preceding values are not real.</span></span> <span data-ttu-id="91c11-155">실제 식별자 및 회신 URL로 해당 항목을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-155">Update them with the actual identifier and reply URL.</span></span> <span data-ttu-id="91c11-156">실제 값을 가져오려면 [IBM Kenexa Survey Enterprise 지원팀](https://www.ibm.com/support/home/?lnk=fcw)에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="91c11-156">To obtain the actual values, contact the [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span>
+    > <span data-ttu-id="4de1d-154">hello 이전 값이 실제.</span><span class="sxs-lookup"><span data-stu-id="4de1d-154">hello preceding values are not real.</span></span> <span data-ttu-id="4de1d-155">실제 hello 식별자로 업데이트 하 고 회신 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-155">Update them with hello actual identifier and reply URL.</span></span> <span data-ttu-id="4de1d-156">tooobtain hello 실제 값, 연락처 hello [IBM Kenexa 설문 조사 엔터프라이즈 지원 팀](https://www.ibm.com/support/home/?lnk=fcw)합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-156">tooobtain hello actual values, contact hello [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span>
 
-4. <span data-ttu-id="91c11-157">**SAML 서명 인증서** 아래에서 **인증서(Base64)**를 클릭한 후 사용자의 컴퓨터에 인증서 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-157">Under **SAML Signing Certificate**, click **Certificate (Base64)**, and then save the certificate file to your computer.</span></span>
+4. <span data-ttu-id="4de1d-157">아래 **SAML 서명 인증서**, 클릭 **인증서 (Base64)**, hello 인증서 파일 tooyour 컴퓨터를 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-157">Under **SAML Signing Certificate**, click **Certificate (Base64)**, and then save hello certificate file tooyour computer.</span></span>
 
-    ![인증서(Base64) 다운로드 링크](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_certificate.png) 
+    ![hello 인증서 (Base64) 다운로드 링크](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_certificate.png) 
 
-    <span data-ttu-id="91c11-159">IBM Kenexa Survey Enterprise 응용 프로그램은 특정 형식인 SAML(Security Assertions Markup Language) 어설션을 수신하므로, SAML 토큰 특성 구성에 사용자 지정 특성 매핑을 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-159">The IBM Kenexa Survey Enterprise application expects to receive the Security Assertions Markup Language (SAML) assertions in a specific format, which requires you to add custom attribute mappings to the configuration of your SAML token attributes.</span></span> <span data-ttu-id="91c11-160">응답에서 사용자 ID 클레임의 값은 Kenexa 시스템에서 구성된 SSO ID와 일치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-160">The value of the user-identifier claim in the response must match the SSO ID that's configured in the Kenexa system.</span></span> <span data-ttu-id="91c11-161">조직에서 적절한 사용자 ID를 SSO IDP(Internet Datagram Protocol)로 매핑하려면 [IBM Kenexa Survey Enterprise 지원팀](https://www.ibm.com/support/home/?lnk=fcw)과 함께 작업하세요.</span><span class="sxs-lookup"><span data-stu-id="91c11-161">To map the appropriate user identifier in your organization as SSO Internet Datagram Protocol (IDP), work with the [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span> 
+    <span data-ttu-id="4de1d-159">hello IBM Kenexa 설문 조사 엔터프라이즈 응용 프로그램 tooreceive hello SAML Security Assertions Markup Language () 어설션을 있습니다 tooadd 사용자 지정 특성 매핑을 toohello 구성이 필요한 SAML 토큰 특성의 특정 형식으로 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-159">hello IBM Kenexa Survey Enterprise application expects tooreceive hello Security Assertions Markup Language (SAML) assertions in a specific format, which requires you tooadd custom attribute mappings toohello configuration of your SAML token attributes.</span></span> <span data-ttu-id="4de1d-160">hello hello에 대 한 응답 hello 식별자가 사용자 클레임의 값 일치 해야 hello hello Kenexa 시스템에 구성 된 SSO ID입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-160">hello value of hello user-identifier claim in hello response must match hello SSO ID that's configured in hello Kenexa system.</span></span> <span data-ttu-id="4de1d-161">toomap hello 조직으로 SSO 인터넷 데이터 그램 프로토콜 IDP ()에서 적절 한 사용자 식별자, hello 작동 [IBM Kenexa 설문 조사 엔터프라이즈 지원 팀](https://www.ibm.com/support/home/?lnk=fcw)합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-161">toomap hello appropriate user identifier in your organization as SSO Internet Datagram Protocol (IDP), work with hello [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span> 
 
-    <span data-ttu-id="91c11-162">기본적으로 Azure AD는 사용자 ID를 UPN(사용자 계정 이름) 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-162">By default, Azure AD sets the user identifier as the user principal name (UPN) value.</span></span> <span data-ttu-id="91c11-163">아래 스크린샷에 표시된 것처럼 **특성** 탭에서 이 값을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-163">You can change this value on the **Attribute** tab, as shown in the following screenshot.</span></span> <span data-ttu-id="91c11-164">통합은 매핑을 완료한 후에만 정확하게 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-164">The integration works only after you've completed the mapping correctly.</span></span>
+    <span data-ttu-id="4de1d-162">기본적으로 Azure AD는 hello 사용자 식별자를 hello 사용자 계정 이름 (UPN) 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-162">By default, Azure AD sets hello user identifier as hello user principal name (UPN) value.</span></span> <span data-ttu-id="4de1d-163">Hello에이 값을 변경할 수 있습니다 **특성** hello 스크린 샷 뒤에 나와 있는 것 처럼 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-163">You can change this value on hello **Attribute** tab, as shown in hello following screenshot.</span></span> <span data-ttu-id="4de1d-164">hello 통합 올바르게 매핑 hello를 완료 한 후에 작동 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-164">hello integration works only after you've completed hello mapping correctly.</span></span>
     
-    ![사용자 특성 대화 상자](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_attribute.png)   
+    ![hello 사용자 특성 대화 상자](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_attribute.png) 
 
-5. <span data-ttu-id="91c11-166">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-166">Click **Save**.</span></span>
+5. <span data-ttu-id="4de1d-166">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-166">Click **Save**.</span></span>
 
-    ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_general_400.png)
+    ![hello 단추 저장에서 single sign-on 구성](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="91c11-168">**로그온 구성** 창을 열려면 **IBM Kenexa Survey Enterprise 구성** 섹션에서 **IBM Kenexa Survey Enterprise 구성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-168">To open the **Configure sign-on** window, under **IBM Kenexa Survey Enterprise Configuration**, click **Configure IBM Kenexa Survey Enterprise**.</span></span> 
+6. <span data-ttu-id="4de1d-168">tooopen hello **sign on 구성** 창 아래에서 **IBM Kenexa 설문 조사 엔터프라이즈 구성**, 클릭 **IBM Kenexa 설문 조사 엔터프라이즈 구성**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-168">tooopen hello **Configure sign-on** window, under **IBM Kenexa Survey Enterprise Configuration**, click **Configure IBM Kenexa Survey Enterprise**.</span></span> 
  
-    ![IBM Kenexa Survey Enterprise 구성 링크](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_configure.png)
+    ![hello IBM Kenexa 설문 조사 엔터프라이즈 구성 링크](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_configure.png)
 
-7. <span data-ttu-id="91c11-170">**빠른 참조** 섹션에서 **로그아웃 URL**, **SAML 엔터티 ID** 및 **SAML Single Sign-On 서비스 URL** 값을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-170">Copy the **Sign-Out URL**, **SAML Entity ID**, and **SAML single sign-on Service URL** values from the **Quick Reference** section.</span></span>
+7. <span data-ttu-id="4de1d-170">복사 hello **Sign-Out URL**, **SAML 엔터티 ID**, 및 **SAML single sign on 서비스 URL** hello 값 **빠른 참조** 섹션.</span><span class="sxs-lookup"><span data-stu-id="4de1d-170">Copy hello **Sign-Out URL**, **SAML Entity ID**, and **SAML single sign-on Service URL** values from hello **Quick Reference** section.</span></span>
 
-8. <span data-ttu-id="91c11-171">**로그온 구성** 창의 **빠른 참조**에서 **로그아웃 URL**, **SAML 엔터티 ID** 및 **SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-171">In the **Configure sign-on** window, under **Quick Reference**, copy the **Sign-Out URL**, **SAML Entity ID**, and **SAML single sign-on Service URL** values.</span></span>
+8. <span data-ttu-id="4de1d-171">Hello에 **sign on 구성** 창 아래에서 **빠른 참조**, 복사 hello **Sign-Out URL**, **SAML 엔터티 ID**, 및  **SAML single sign on 서비스 URL** 값입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-171">In hello **Configure sign-on** window, under **Quick Reference**, copy hello **Sign-Out URL**, **SAML Entity ID**, and **SAML single sign-on Service URL** values.</span></span>
 
-9. <span data-ttu-id="91c11-172">**IBM Kenexa Survey Enterprise** 쪽에서 SSO를 구성하려면 다운로드한 **인증서(Base64)**, **로그아웃 URL**, **SAML 엔터티 ID** 및 **SAML Single Sign-On 서비스 URL** 값을 [IBM Kenexa Survey Enterprise 지원팀](https://www.ibm.com/support/home/?lnk=fcw)에 보내야 합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-172">To configure SSO on the **IBM Kenexa Survey Enterprise** side, send the downloaded **Certificate (Base64)**, **Sign-Out URL**, **SAML Entity ID**, and **SAML single sign-on Service URL** values to the [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span>
+9. <span data-ttu-id="4de1d-172">hello에 SSO tooconfigure **IBM Kenexa 설문 조사 엔터프라이즈** 쪽, 다운로드 한 hello 송신 **인증서 (Base64)**, **Sign-Out URL**, **SAML엔터티ID**, 및 **SAML single sign on 서비스 URL** toohello 값 [IBM Kenexa 설문 조사 엔터프라이즈 지원 팀](https://www.ibm.com/support/home/?lnk=fcw)합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-172">tooconfigure SSO on hello **IBM Kenexa Survey Enterprise** side, send hello downloaded **Certificate (Base64)**, **Sign-Out URL**, **SAML Entity ID**, and **SAML single sign-on Service URL** values toohello [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="91c11-173">앱을 설정하는 동안 [Azure Portal](https://portal.azure.com)에서 이러한 지침의 간결한 버전을 참조할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-173">You can refer to a concise version of these instructions in the [Azure portal](https://portal.azure.com) while you are setting up the app.</span></span> <span data-ttu-id="91c11-174">**Active Directory** > **엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-174">After you add the app from the **Active Directory** > **Enterprise Applications** section, simply click the **single sign-on** tab, and then access the embedded documentation through the **Configuration** section at the end.</span></span> <span data-ttu-id="91c11-175">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서](https://go.microsoft.com/fwlink/?linkid=845985)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="91c11-175">To learn more about the embedded documentation feature, see [Azure AD embedded documentation](https://go.microsoft.com/fwlink/?linkid=845985).</span></span>
+> <span data-ttu-id="4de1d-173">Hello에이 지침의 tooa 간결한 버전을 참조할 수 있습니다 [Azure 포털](https://portal.azure.com) hello 앱을 설정 하는 동안 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-173">You can refer tooa concise version of these instructions in hello [Azure portal](https://portal.azure.com) while you are setting up hello app.</span></span> <span data-ttu-id="4de1d-174">Hello에서 hello 앱을 추가한 다음 **Active Directory** > **엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **단일 로그온** 탭을 클릭 한 다음에 액세스 hello 포함 hello 통해 설명서 **구성** hello 끝 섹션.</span><span class="sxs-lookup"><span data-stu-id="4de1d-174">After you add hello app from hello **Active Directory** > **Enterprise Applications** section, simply click hello **single sign-on** tab, and then access hello embedded documentation through hello **Configuration** section at hello end.</span></span> <span data-ttu-id="4de1d-175">hello 포함 된 설명서 기능에 대해 자세히 toolearn 참조 [Azure AD 설명서 포함](https://go.microsoft.com/fwlink/?linkid=845985)합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-175">toolearn more about hello embedded documentation feature, see [Azure AD embedded documentation](https://go.microsoft.com/fwlink/?linkid=845985).</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="91c11-176">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="91c11-176">Create an Azure AD test user</span></span>
-<span data-ttu-id="91c11-177">이 섹션에서는 다음을 수행하여 Azure Portal에서 테스트 사용자인 Britta Simon을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-177">In this section, you create test user Britta Simon in the Azure portal by doing the following:</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="4de1d-176">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="4de1d-176">Create an Azure AD test user</span></span>
+<span data-ttu-id="4de1d-177">이 섹션에서는 hello 다음을 수행 하 여 hello Azure 포털에서에서 Britta Simon 테스트 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-177">In this section, you create test user Britta Simon in hello Azure portal by doing hello following:</span></span>
 
 ![Azure AD 테스트 사용자 만들기][100]
 
-1. <span data-ttu-id="91c11-179">Azure Portal의 왼쪽 창에서 **Azure Active Directory** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-179">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="4de1d-179">Hello hello 왼쪽된 창에서 Azure 포털에서에서 클릭 hello **Azure Active Directory** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-179">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Azure Active Directory 단추](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory 단추](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="91c11-181">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-181">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="4de1d-181">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹**, 클릭 하 고 **모든 사용자가**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-181">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
     
-    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_02.png) 
+    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="91c11-183">**사용자** 대화 상자를 열려면 **모든 사용자** 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-183">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="4de1d-183">tooopen hello **사용자** 대화 상자를 클릭 **추가** hello hello 맨 **모든 사용자에 게** 대화 상자.</span><span class="sxs-lookup"><span data-stu-id="4de1d-183">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
  
-    ![추가 단추](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_03.png) 
+    ![hello 추가 단추](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="91c11-185">**사용자** 대화 상자에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-185">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="4de1d-185">Hello에 **사용자** 대화 상자를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-185">In hello **User** dialog box, perform hello following steps:</span></span>
  
-    ![사용자 대화 상자](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_04.png) 
+    ![hello 사용자 대화 상자](./media/active-directory-saas-kenexasurvey-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="91c11-187">a.</span><span class="sxs-lookup"><span data-stu-id="91c11-187">a.</span></span> <span data-ttu-id="91c11-188">**이름** 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-188">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="4de1d-187">a.</span><span class="sxs-lookup"><span data-stu-id="4de1d-187">a.</span></span> <span data-ttu-id="4de1d-188">Hello에 **이름** 상자에서 입력 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-188">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="91c11-189">b.</span><span class="sxs-lookup"><span data-stu-id="91c11-189">b.</span></span> <span data-ttu-id="91c11-190">**사용자 이름** 상자에 사용자인 Britta Simon의 전자 메일 주소를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-190">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="4de1d-189">b.</span><span class="sxs-lookup"><span data-stu-id="4de1d-189">b.</span></span> <span data-ttu-id="4de1d-190">Hello에 **사용자 이름** 상자의 사용자 Britta Simon의 hello 전자 메일 주소를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-190">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="91c11-191">c.</span><span class="sxs-lookup"><span data-stu-id="91c11-191">c.</span></span> <span data-ttu-id="91c11-192">**암호 표시** 확인란을 선택한 다음 **암호** 상자에 표시된 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-192">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="4de1d-191">c.</span><span class="sxs-lookup"><span data-stu-id="4de1d-191">c.</span></span> <span data-ttu-id="4de1d-192">선택 hello **암호 표시** 확인란을 선택한 다음 hello에 표시 되는 hello 값 기록 **암호** 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-192">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="91c11-193">d.</span><span class="sxs-lookup"><span data-stu-id="91c11-193">d.</span></span> <span data-ttu-id="91c11-194">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-194">Click **Create**.</span></span>
+    <span data-ttu-id="4de1d-193">d.</span><span class="sxs-lookup"><span data-stu-id="4de1d-193">d.</span></span> <span data-ttu-id="4de1d-194">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-194">Click **Create**.</span></span>
  
-### <a name="create-an-ibm-kenexa-survey-enterprise-test-user"></a><span data-ttu-id="91c11-195">IBM Kenexa Survey Enterprise 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="91c11-195">Create an IBM Kenexa Survey Enterprise test user</span></span>
+### <a name="create-an-ibm-kenexa-survey-enterprise-test-user"></a><span data-ttu-id="4de1d-195">IBM Kenexa Survey Enterprise 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="4de1d-195">Create an IBM Kenexa Survey Enterprise test user</span></span>
 
-<span data-ttu-id="91c11-196">이 섹션에서는 IBM Kenexa Survey Enterprise에서 Britta Simon이라는 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-196">In this section, you create a user called Britta Simon in IBM Kenexa Survey Enterprise.</span></span> 
+<span data-ttu-id="4de1d-196">이 섹션에서는 IBM Kenexa Survey Enterprise에서 Britta Simon이라는 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-196">In this section, you create a user called Britta Simon in IBM Kenexa Survey Enterprise.</span></span> 
 
-<span data-ttu-id="91c11-197">IBM Kenexa Survey Enterprise 시스템에서 사용자를 만들고 여기에 SSO ID를 매핑하려면 [IBM Kenexa Survey Enterprise 지원팀](https://www.ibm.com/support/home/?lnk=fcw)과 함께 작업하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-197">To create users in the IBM Kenexa Survey Enterprise system and map the SSO ID for them, you can work with the [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span> <span data-ttu-id="91c11-198">또한 이 SSO ID 값을 Azure AD의 사용자 ID 값에 매핑해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-198">This SSO ID value should also be mapped to the user identifier value from Azure AD.</span></span> <span data-ttu-id="91c11-199">**특성** 탭에서 이 기본 설정을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-199">You can change this default setting on the **Attribute** tab.</span></span>
+<span data-ttu-id="4de1d-197">hello IBM Kenexa 설문 조사 엔터프라이즈 시스템 및 지도 hello SSO ID 하에서 toocreate 사용자 작업할 수 있는 hello [IBM Kenexa 설문 조사 엔터프라이즈 지원 팀](https://www.ibm.com/support/home/?lnk=fcw)합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-197">toocreate users in hello IBM Kenexa Survey Enterprise system and map hello SSO ID for them, you can work with hello [IBM Kenexa Survey Enterprise support team](https://www.ibm.com/support/home/?lnk=fcw).</span></span> <span data-ttu-id="4de1d-198">이 SSO ID 값도 있어야 Azure AD에서 toohello 사용자 식별자 값에 매핑됩니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-198">This SSO ID value should also be mapped toohello user identifier value from Azure AD.</span></span> <span data-ttu-id="4de1d-199">Hello에서이 기본 설정을 변경할 수 있습니다 **특성** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-199">You can change this default setting on hello **Attribute** tab.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="91c11-200">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="91c11-200">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="4de1d-200">Azure AD hello 테스트 사용자를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-200">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="91c11-201">이 섹션에서는 Azure SSO을 사용할 수 있도록 사용자인 Britta Simon에게 IBM Kenexa Survey Enterprise에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-201">In this section, you enable user Britta Simon to use Azure SSO by granting access to IBM Kenexa Survey Enterprise.</span></span>
+<span data-ttu-id="4de1d-201">이 섹션에서는 액세스 tooIBM Kenexa 설문 조사 엔터프라이즈에 권한을 부여 하 여 사용자 Britta Simon toouse Azure SSO를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-201">In this section, you enable user Britta Simon toouse Azure SSO by granting access tooIBM Kenexa Survey Enterprise.</span></span>
 
-![사용자 역할 할당][200] 
+![Hello 사용자 역할 할당][200] 
 
-<span data-ttu-id="91c11-203">IBM Kenexa Survey Enterprise에 사용자인 Britta Simon을 할당하려면 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-203">To assign user Britta Simon to IBM Kenexa Survey Enterprise, do the following:</span></span>
+<span data-ttu-id="4de1d-203">tooassign 사용자 Britta Simon tooIBM Kenexa 설문 조사 엔터프라이즈 다음 hello지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-203">tooassign user Britta Simon tooIBM Kenexa Survey Enterprise, do hello following:</span></span>
 
-1. <span data-ttu-id="91c11-204">Azure Portal에서 **응용 프로그램** 보기를 열고 **디렉터리** 보기로 이동한 후 **엔터프라이즈 응용 프로그램**을 선택하고 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-204">In the Azure portal, open the **Applications** view, go to the **Directory** view, select **Enterprise applications**, and then click **All applications**.</span></span>
+1. <span data-ttu-id="4de1d-204">Hello Azure 포털을 열고 hello **응용 프로그램** 보기, toohello 이동 **디렉터리** 뷰의 **엔터프라이즈 응용 프로그램**, 클릭 하 고 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-204">In hello Azure portal, open hello **Applications** view, go toohello **Directory** view, select **Enterprise applications**, and then click **All applications**.</span></span>
 
-    !["엔터프라이즈 응용 프로그램" 및 "모든 응용 프로그램" 링크][201] 
+    ![hello "엔터프라이즈 응용 프로그램"과 "모든 응용 프로그램" 링크][201] 
 
-2. <span data-ttu-id="91c11-206">**응용 프로그램** 목록에서 **IBM Kenexa Survey Enterprise**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-206">In the **Applications** list, select **IBM Kenexa Survey Enterprise**.</span></span>
+2. <span data-ttu-id="4de1d-206">Hello에 **응용 프로그램** 목록에서 **IBM Kenexa 설문 조사 엔터프라이즈**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-206">In hello **Applications** list, select **IBM Kenexa Survey Enterprise**.</span></span>
 
-    ![응용 프로그램 목록의 IBM Kenexa Survey Enterprise 링크](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_app.png) 
+    ![hello 응용 프로그램 목록에서 hello IBM Kenexa 설문 조사 Enterprise 링크](./media/active-directory-saas-kenexasurvey-tutorial/tutorial_kenexasurvey_app.png) 
 
-3. <span data-ttu-id="91c11-208">왼쪽 창에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-208">In the left pane, click **Users and groups**.</span></span>
+3. <span data-ttu-id="4de1d-208">Hello 왼쪽된 창에서 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-208">In hello left pane, click **Users and groups**.</span></span>
 
-    ![“사용자 및 그룹” 링크][202] 
+    ![hello "사용자 및 그룹" 링크][202] 
 
-4. <span data-ttu-id="91c11-210">**추가** 단추를 클릭한 다음 **할당 추가** 창에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-210">Click the **Add** button and then, in the **Add Assignment** pane, select **Users and groups**.</span></span>
+4. <span data-ttu-id="4de1d-210">Hello 클릭 **추가** 단추를 선택한 후 hello **할당 추가** 창 선택 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-210">Click hello **Add** button and then, in hello **Add Assignment** pane, select **Users and groups**.</span></span>
 
-    ![할당 추가 창][203]
+    ![hello 할당 추가 창][203]
 
-5. <span data-ttu-id="91c11-212">**사용자 및 그룹** 대화 상자의 **사용자 목록**에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-212">In the **Users and groups** dialog box, in the **Users** list, select **Britta Simon**.</span></span>
+5. <span data-ttu-id="4de1d-212">Hello에 **사용자 및 그룹** 대화 상자의 hello **사용자** 목록에서 **Britta Simon**합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-212">In hello **Users and groups** dialog box, in hello **Users** list, select **Britta Simon**.</span></span>
 
-6. <span data-ttu-id="91c11-213">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-213">In the **Users and groups** dialog box, click the **Select** button.</span></span>
+6. <span data-ttu-id="4de1d-213">Hello에 **사용자 및 그룹** 대화 상자를 클릭 hello **선택** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-213">In hello **Users and groups** dialog box, click hello **Select** button.</span></span>
 
-7. <span data-ttu-id="91c11-214">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-214">In the **Add Assignment** dialog box, click the **Assign** button.</span></span>
+7. <span data-ttu-id="4de1d-214">Hello에 **할당 추가** 대화 상자를 클릭 hello **할당** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-214">In hello **Add Assignment** dialog box, click hello **Assign** button.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="91c11-215">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="91c11-215">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="4de1d-215">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="4de1d-215">Test single sign-on</span></span>
 
-<span data-ttu-id="91c11-216">이 섹션에서는 액세스 패널을 사용하여 Azure AD SSO 구성을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-216">In this section, you test your Azure AD SSO configuration by using the Access Panel.</span></span>
+<span data-ttu-id="4de1d-216">이 섹션에서는 hello 액세스 패널을 사용 하 여 Azure AD SSO 구성을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-216">In this section, you test your Azure AD SSO configuration by using hello Access Panel.</span></span>
 
-<span data-ttu-id="91c11-217">액세스 패널에서 **IBM Kenexa Survey Enterprise** 타일을 클릭하면 IBM Kenexa Survey Enterprise 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="91c11-217">When you click the **IBM Kenexa Survey Enterprise** tile in the Access Panel, you should be automatically signed in to your IBM Kenexa Survey Enterprise application.</span></span>
+<span data-ttu-id="4de1d-217">Hello를 클릭할 때 **IBM Kenexa 설문 조사 엔터프라이즈** 타일에 액세스 패널 hello, tooyour IBM Kenexa 설문 조사 엔터프라이즈 응용 프로그램에서에서 자동으로 서명할 해야 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4de1d-217">When you click hello **IBM Kenexa Survey Enterprise** tile in hello Access Panel, you should be automatically signed in tooyour IBM Kenexa Survey Enterprise application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="91c11-218">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="91c11-218">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="4de1d-218">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="4de1d-218">Additional resources</span></span>
 
-* [<span data-ttu-id="91c11-219">Azure Active Directory를 사용하여 SaaS 앱을 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="91c11-219">List of tutorials on how to integrate SaaS apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="91c11-220">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="91c11-220">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="4de1d-219">방법에 대 한 자습서 목록 toointegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="4de1d-219">List of tutorials on how toointegrate SaaS apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="4de1d-220">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="4de1d-220">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

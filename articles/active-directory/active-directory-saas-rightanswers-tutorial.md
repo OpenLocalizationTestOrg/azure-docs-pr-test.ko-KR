@@ -1,6 +1,6 @@
 ---
 title: "자습서: RightAnswers와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 RightAnswers 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 RightAnswers 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,204 +13,204 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jeedes
-ms.openlocfilehash: e5985831598a0e5b1277d2c6cd02b03c919aad4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 745e7ed5a13291afeed8f48a595e95b27d4b0e58
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-rightanswers"></a><span data-ttu-id="92f63-103">자습서: RightAnswers와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="92f63-103">Tutorial: Azure Active Directory integration with RightAnswers</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-rightanswers"></a><span data-ttu-id="71136-103">자습서: RightAnswers와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="71136-103">Tutorial: Azure Active Directory integration with RightAnswers</span></span>
 
-<span data-ttu-id="92f63-104">이 자습서에서는 Azure AD(Azure Active Directory)와 RightAnswers를 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-104">In this tutorial, you learn how to integrate RightAnswers with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="71136-104">이 자습서에 설명 어떻게 toointegrate RightAnswers Azure Active directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="71136-104">In this tutorial, you learn how toointegrate RightAnswers with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="92f63-105">RightAnswers를 Azure AD와 통합하면 다음과 같은 이점이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-105">Integrating RightAnswers with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="71136-105">다음 이점을 hello로 제공 RightAnswers Azure AD와 통합:</span><span class="sxs-lookup"><span data-stu-id="71136-105">Integrating RightAnswers with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="92f63-106">RightAnswers에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-106">You can control in Azure AD who has access to RightAnswers</span></span>
-- <span data-ttu-id="92f63-107">사용자가 해당 Azure AD 계정으로 RightAnswers에 자동으로 로그온(Single Sign-On)되도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-107">You can enable your users to automatically get signed-on to RightAnswers (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="92f63-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="71136-106">액세스 tooRightAnswers을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-106">You can control in Azure AD who has access tooRightAnswers</span></span>
+- <span data-ttu-id="71136-107">프로그램 사용자 tooautomatically get 로그온 tooRightAnswers (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-107">You can enable your users tooautomatically get signed-on tooRightAnswers (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="71136-108">하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="92f63-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92f63-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="71136-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="92f63-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="92f63-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="71136-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="71136-110">Prerequisites</span></span>
 
-<span data-ttu-id="92f63-111">RightAnswers와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-111">To configure Azure AD integration with RightAnswers, you need the following items:</span></span>
+<span data-ttu-id="71136-111">다음 항목 hello가 필요 tooconfigure RightAnswers와 Azure AD 통합 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-111">tooconfigure Azure AD integration with RightAnswers, you need hello following items:</span></span>
 
-- <span data-ttu-id="92f63-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="92f63-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="92f63-113">RightAnswers Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="92f63-113">A RightAnswers single-sign on enabled subscription</span></span>
+- <span data-ttu-id="71136-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="71136-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="71136-113">RightAnswers Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="71136-113">A RightAnswers single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="92f63-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="71136-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="92f63-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="71136-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="92f63-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="92f63-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="92f63-117">Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="71136-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="71136-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="71136-117">Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="92f63-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="92f63-118">Scenario description</span></span>
-<span data-ttu-id="92f63-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="92f63-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="71136-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="71136-118">Scenario description</span></span>
+<span data-ttu-id="71136-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="71136-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="92f63-121">갤러리에서 RightAnswers 추가</span><span class="sxs-lookup"><span data-stu-id="92f63-121">Adding RightAnswers from the gallery</span></span>
-2. <span data-ttu-id="92f63-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="92f63-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="71136-121">RightAnswers는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="71136-121">Adding RightAnswers from hello gallery</span></span>
+2. <span data-ttu-id="71136-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="71136-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-rightanswers-from-the-gallery"></a><span data-ttu-id="92f63-123">갤러리에서 RightAnswers 추가</span><span class="sxs-lookup"><span data-stu-id="92f63-123">Adding RightAnswers from the gallery</span></span>
-<span data-ttu-id="92f63-124">RightAnswers의 Azure AD 통합을 구성하려면 갤러리의 RightAnswers를 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-124">To configure the integration of RightAnswers into Azure AD, you need to add RightAnswers from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-rightanswers-from-hello-gallery"></a><span data-ttu-id="71136-123">RightAnswers는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="71136-123">Adding RightAnswers from hello gallery</span></span>
+<span data-ttu-id="71136-124">tooconfigure hello와의 통합 RightAnswers Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 RightAnswers tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-124">tooconfigure hello integration of RightAnswers into Azure AD, you need tooadd RightAnswers from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="92f63-125">**갤러리에서 RightAnswers를 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="92f63-125">**To add RightAnswers from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="71136-125">**hello 갤러리에서 RightAnswers tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="71136-125">**tooadd RightAnswers from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="92f63-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="71136-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="92f63-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="92f63-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="71136-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="71136-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-129">Then go too**All applications**.</span></span>
 
     ![응용 프로그램][2]
     
-3. <span data-ttu-id="92f63-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="71136-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![응용 프로그램][3]
 
-4. <span data-ttu-id="92f63-133">검색 상자에 **RightAnswers**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-133">In the search box, type **RightAnswers**.</span></span>
+4. <span data-ttu-id="71136-133">Hello 검색 상자에 입력 **RightAnswers**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-133">In hello search box, type **RightAnswers**.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-rightanswers-tutorial/tutorial_rightanswers_search.png)
 
-5. <span data-ttu-id="92f63-135">결과 창에서 **RightAnswers**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-135">In the results panel, select **RightAnswers**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="71136-135">Hello 결과 패널에서 선택 **RightAnswers**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-135">In hello results panel, select **RightAnswers**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-rightanswers-tutorial/tutorial_rightanswers_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="92f63-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="92f63-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="92f63-138">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 RightAnswers에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-138">In this section, you configure and test Azure AD single sign-on with RightAnswers based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="71136-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="71136-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="71136-138">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 RightAnswers에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-138">In this section, you configure and test Azure AD single sign-on with RightAnswers based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="92f63-139">Single Sign-On이 작동하려면 Azure AD 사용자에 해당하는 RightAnswers 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-139">For single sign-on to work, Azure AD needs to know what the counterpart user in RightAnswers is to a user in Azure AD.</span></span> <span data-ttu-id="92f63-140">즉, Azure AD 사용자와 RightAnswers의 관련 사용자 간에 연결 관계가 형성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-140">In other words, a link relationship between an Azure AD user and the related user in RightAnswers needs to be established.</span></span>
+<span data-ttu-id="71136-139">Single sign on toowork에 대 한 Azure AD는 tooknow RightAnswers에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in RightAnswers is tooa user in Azure AD.</span></span> <span data-ttu-id="71136-140">즉, Azure AD 사용자 및 RightAnswers에 hello 관련된 사용자 간 링크 관계를 설정할 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-140">In other words, a link relationship between an Azure AD user and hello related user in RightAnswers needs toobe established.</span></span>
 
-<span data-ttu-id="92f63-141">RightAnswers에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 연결 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-141">In RightAnswers, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="71136-141">RightAnswers에서 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-141">In RightAnswers, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="92f63-142">RightAnswers에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-142">To configure and test Azure AD single sign-on with RightAnswers, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="71136-142">tooconfigure 및 RightAnswers 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-142">tooconfigure and test Azure AD single sign-on with RightAnswers, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="92f63-143">**[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="92f63-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="92f63-145">**[RightAnswers 테스트 사용자 만들기](#creating-a-rightanswers-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 RightAnswers에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-145">**[Creating a RightAnswers test user](#creating-a-rightanswers-test-user)** - to have a counterpart of Britta Simon in RightAnswers that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="92f63-146">**[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="92f63-147">**[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="71136-143">**[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="71136-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="71136-145">**[RightAnswers 테스트 사용자 만들기](#creating-a-rightanswers-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 RightAnswers에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-145">**[Creating a RightAnswers test user](#creating-a-rightanswers-test-user)** - toohave a counterpart of Britta Simon in RightAnswers that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="71136-146">**[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="71136-147">**[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="71136-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="92f63-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="92f63-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="71136-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="71136-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="92f63-149">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 RightAnswers 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your RightAnswers application.</span></span>
+<span data-ttu-id="71136-149">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 RightAnswers 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your RightAnswers application.</span></span>
 
-<span data-ttu-id="92f63-150">**RightAnswers에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="92f63-150">**To configure Azure AD single sign-on with RightAnswers, perform the following steps:**</span></span>
+<span data-ttu-id="71136-150">**tooconfigure Azure AD single sign on, RightAnswers와 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="71136-150">**tooconfigure Azure AD single sign-on with RightAnswers, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="92f63-151">Azure Portal의 **RightAnswers** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-151">In the Azure portal, on the **RightAnswers** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="71136-151">Hello hello에 Azure 포털에서에서 **RightAnswers** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-151">In hello Azure portal, on hello **RightAnswers** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-on 구성][4]
 
-2. <span data-ttu-id="92f63-153">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="71136-153">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-on 구성](./media/active-directory-saas-rightanswers-tutorial/tutorial_rightanswers_samlbase.png)
 
-3. <span data-ttu-id="92f63-155">**RightAnswers 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-155">On the **RightAnswers Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="71136-155">Hello에 **RightAnswers 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-155">On hello **RightAnswers Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-rightanswers-tutorial/tutorial_rightanswers_url.png)
 
-    <span data-ttu-id="92f63-157">a.</span><span class="sxs-lookup"><span data-stu-id="92f63-157">a.</span></span> <span data-ttu-id="92f63-158">**로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<subdomain>.rightanswers.com/portal/ss/`</span><span class="sxs-lookup"><span data-stu-id="92f63-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<subdomain>.rightanswers.com/portal/ss/`</span></span>
+    <span data-ttu-id="71136-157">a.</span><span class="sxs-lookup"><span data-stu-id="71136-157">a.</span></span> <span data-ttu-id="71136-158">Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<subdomain>.rightanswers.com/portal/ss/`</span><span class="sxs-lookup"><span data-stu-id="71136-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<subdomain>.rightanswers.com/portal/ss/`</span></span>
 
-    <span data-ttu-id="92f63-159">b.</span><span class="sxs-lookup"><span data-stu-id="92f63-159">b.</span></span> <span data-ttu-id="92f63-160">**식별자** 텍스트 상자에서 `https://<subdomain>.rightanswers.com:<identifier>/portal` 패턴을 사용하여 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<subdomain>.rightanswers.com:<identifier>/portal`</span></span>
+    <span data-ttu-id="71136-159">b.</span><span class="sxs-lookup"><span data-stu-id="71136-159">b.</span></span> <span data-ttu-id="71136-160">Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<subdomain>.rightanswers.com:<identifier>/portal`</span><span class="sxs-lookup"><span data-stu-id="71136-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<subdomain>.rightanswers.com:<identifier>/portal`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="92f63-161">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-161">These values are not real.</span></span> <span data-ttu-id="92f63-162">실제 로그온 URL 및 식별자로 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="92f63-163">이러한 값을 얻으려면 [RightAnswers 클라이언트 지원 팀](https://www.rightanswers.com/contact-us/)에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="92f63-163">Contact [RightAnswers Client support team](https://www.rightanswers.com/contact-us/) to get these values.</span></span> 
+    > <span data-ttu-id="71136-161">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="71136-161">These values are not real.</span></span> <span data-ttu-id="71136-162">이러한 항목을 업데이트 로그온 URL과 식별자 실제 hello로 값입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="71136-163">연락처 [RightAnswers 클라이언트 지원 팀](https://www.rightanswers.com/contact-us/) tooget 이러한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-163">Contact [RightAnswers Client support team](https://www.rightanswers.com/contact-us/) tooget these values.</span></span> 
  
-4. <span data-ttu-id="92f63-164">**SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 메타데이터 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-164">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="71136-164">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello 메타 데이터 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-164">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-rightanswers-tutorial/tutorial_rightanswers_certificate.png) 
 
-5. <span data-ttu-id="92f63-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="71136-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-166">Click **Save** button.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-rightanswers-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="92f63-168">**RightAnswers** 쪽에서 Single Sign-On을 구성하려면 다운로드한 **메타데이터 XML**을 [RightAnswers 지원 팀](https://www.rightanswers.com/contact-us/)에 보내야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-168">To configure single sign-on on **RightAnswers** side, you need to send the downloaded **Metadata XML** to [RightAnswers support team](https://www.rightanswers.com/contact-us/).</span></span>
+6. <span data-ttu-id="71136-168">tooconfigure single sign on에서 **RightAnswers** toosend hello 다운로드 해야 쪽에서는 **메타 데이터 XML** 너무[RightAnswers 지원 팀](https://www.rightanswers.com/contact-us/)합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-168">tooconfigure single sign-on on **RightAnswers** side, you need toosend hello downloaded **Metadata XML** too[RightAnswers support team](https://www.rightanswers.com/contact-us/).</span></span>
 
     >[!NOTE]
-    ><span data-ttu-id="92f63-169">RightAnswers 지원팀은 실제 SSO 구성을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-169">Your RightAnswers support team has to do the actual SSO configuration.</span></span>
-    ><span data-ttu-id="92f63-170">구독에 SSO를 사용하도록 설정하면 알림을 받을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-170">You will get a notification when SSO has been enabled for your subscription.</span></span>
+    ><span data-ttu-id="71136-169">RightAnswers 지원 팀에 toodo hello 실제 SSO 구성을 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-169">Your RightAnswers support team has toodo hello actual SSO configuration.</span></span>
+    ><span data-ttu-id="71136-170">구독에 SSO를 사용하도록 설정하면 알림을 받을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-170">You will get a notification when SSO has been enabled for your subscription.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="92f63-171">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-171">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="92f63-172">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-172">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="92f63-173">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-173">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="71136-171">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="71136-171">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="71136-172">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="71136-172">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="71136-173">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="71136-173">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="92f63-174">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="92f63-174">Creating an Azure AD test user</span></span>
-<span data-ttu-id="92f63-175">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-175">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="71136-174">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="71136-174">Creating an Azure AD test user</span></span>
+<span data-ttu-id="71136-175">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-175">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Azure AD 사용자 만들기][100]
 
-<span data-ttu-id="92f63-177">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="92f63-177">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="71136-177">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="71136-177">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="92f63-178">**Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-178">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="71136-178">Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-178">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-rightanswers-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="92f63-180">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-180">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="71136-180">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-180">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-rightanswers-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="92f63-182">**사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-182">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="71136-182">tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-182">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-rightanswers-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="92f63-184">**사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-184">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="71136-184">Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-184">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-rightanswers-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="92f63-186">a.</span><span class="sxs-lookup"><span data-stu-id="92f63-186">a.</span></span> <span data-ttu-id="92f63-187">**이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-187">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="71136-186">a.</span><span class="sxs-lookup"><span data-stu-id="71136-186">a.</span></span> <span data-ttu-id="71136-187">Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-187">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="92f63-188">b.</span><span class="sxs-lookup"><span data-stu-id="92f63-188">b.</span></span> <span data-ttu-id="92f63-189">**사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-189">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="71136-188">b.</span><span class="sxs-lookup"><span data-stu-id="71136-188">b.</span></span> <span data-ttu-id="71136-189">Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-189">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="92f63-190">c.</span><span class="sxs-lookup"><span data-stu-id="92f63-190">c.</span></span> <span data-ttu-id="92f63-191">**암호 표시**를 선택하고 **암호** 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-191">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="71136-190">c.</span><span class="sxs-lookup"><span data-stu-id="71136-190">c.</span></span> <span data-ttu-id="71136-191">선택 **암호 표시** hello hello 값 기록 **암호**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-191">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="92f63-192">d.</span><span class="sxs-lookup"><span data-stu-id="92f63-192">d.</span></span> <span data-ttu-id="92f63-193">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-193">Click **Create**.</span></span>
+    <span data-ttu-id="71136-192">d.</span><span class="sxs-lookup"><span data-stu-id="71136-192">d.</span></span> <span data-ttu-id="71136-193">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-193">Click **Create**.</span></span>
  
-### <a name="creating-a-rightanswers-test-user"></a><span data-ttu-id="92f63-194">RightAnswers 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="92f63-194">Creating a RightAnswers test user</span></span>
+### <a name="creating-a-rightanswers-test-user"></a><span data-ttu-id="71136-194">RightAnswers 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="71136-194">Creating a RightAnswers test user</span></span>
 
-<span data-ttu-id="92f63-195">Azure AD 사용자가 RightAnswers에 로그인할 수 있도록 하려면 RightAnswers로 프로비전되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-195">To enable Azure AD users to log in to RightAnswers, they must be provisioned into RightAnswers.</span></span> <span data-ttu-id="92f63-196">RightAnswers의 경우 프로비전은 자동 작업이므로 수행할 작업 항목이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-196">When RightAnswers, provisioning is an automated task so there is no action item for you.</span></span>
+<span data-ttu-id="71136-195">tooenable Azure AD 사용자가 toolog tooRightAnswers에서 이러한 해야에 프로 비전 RightAnswers 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-195">tooenable Azure AD users toolog in tooRightAnswers, they must be provisioned into RightAnswers.</span></span> <span data-ttu-id="71136-196">RightAnswers의 경우 프로비전은 자동 작업이므로 수행할 작업 항목이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-196">When RightAnswers, provisioning is an automated task so there is no action item for you.</span></span>
 
-<span data-ttu-id="92f63-197">필요한 경우 첫 번째 Single Sign-On 시도에서 사용자가 자동으로 생성될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-197">Users are automatically created if necessary during the first single sign-on attempt.</span></span>
+<span data-ttu-id="71136-197">사용자가 필요한 경우 hello 첫 번째 single sign on 시도 하는 동안 자동으로 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="71136-197">Users are automatically created if necessary during hello first single sign-on attempt.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="92f63-198">다른 RightAnswers 사용자 계정 생성 도구 또는 RightAnswers가 제공한 API를 사용하여 AAD 사용자 계정을 프로비전할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-198">You can use any other RightAnswers user account creation tools or APIs provided by RightAnswers to provision AAD user accounts.</span></span>
+><span data-ttu-id="71136-198">다른 RightAnswers 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 AAD 사용자 계정을 RightAnswers tooprovision에서 제공 된 Api입니다.</span><span class="sxs-lookup"><span data-stu-id="71136-198">You can use any other RightAnswers user account creation tools or APIs provided by RightAnswers tooprovision AAD user accounts.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="92f63-199">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="92f63-199">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="71136-199">Azure AD hello 테스트 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-199">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="92f63-200">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 RightAnswers에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-200">In this section, you enable Britta Simon to use Azure single sign-on by granting access to RightAnswers.</span></span>
+<span data-ttu-id="71136-200">이 섹션에서는 tooRightAnswers 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-200">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooRightAnswers.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="92f63-202">**Britta Simon을 RightAnswers에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="92f63-202">**To assign Britta Simon to RightAnswers, perform the following steps:**</span></span>
+<span data-ttu-id="71136-202">**tooassign Britta Simon tooRightAnswers hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="71136-202">**tooassign Britta Simon tooRightAnswers, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="92f63-203">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-203">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="71136-203">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-203">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="92f63-205">응용 프로그램 목록에서 **RightAnswers**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-205">In the applications list, select **RightAnswers**.</span></span>
+2. <span data-ttu-id="71136-205">Hello 응용 프로그램 목록에서 선택 **RightAnswers**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-205">In hello applications list, select **RightAnswers**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-rightanswers-tutorial/tutorial_rightanswers_app.png) 
 
-3. <span data-ttu-id="92f63-207">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-207">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="71136-207">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-207">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="92f63-209">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-209">Click **Add** button.</span></span> <span data-ttu-id="92f63-210">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-210">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="71136-209">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-209">Click **Add** button.</span></span> <span data-ttu-id="71136-210">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-210">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="92f63-212">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-212">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="71136-212">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="71136-212">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="92f63-213">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-213">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="71136-213">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-213">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="92f63-214">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-214">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="71136-214">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-214">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="92f63-215">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="92f63-215">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="71136-215">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="71136-215">Testing single sign-on</span></span>
 
-<span data-ttu-id="92f63-216">SSO 설정을 테스트하려면 액세스 패널을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="92f63-216">If you want to test your SSO settings, open the Access Panel.</span></span> <span data-ttu-id="92f63-217">액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="92f63-217">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
-## <a name="additional-resources"></a><span data-ttu-id="92f63-218">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="92f63-218">Additional resources</span></span>
+<span data-ttu-id="71136-216">SSO 설정 tootest 원하는 hello 액세스 패널을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="71136-216">If you want tootest your SSO settings, open hello Access Panel.</span></span> <span data-ttu-id="71136-217">액세스 패널 hello에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="71136-217">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="71136-218">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="71136-218">Additional resources</span></span>
 
-* [<span data-ttu-id="92f63-219">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="92f63-219">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="92f63-220">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="92f63-220">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="71136-219">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="71136-219">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="71136-220">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="71136-220">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

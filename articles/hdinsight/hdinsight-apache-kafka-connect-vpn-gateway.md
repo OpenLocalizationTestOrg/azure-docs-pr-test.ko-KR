@@ -1,6 +1,6 @@
 ---
-title: "가상 네트워크를 사용하여 Kafka에 연결 - Azure HDInsight | Microsoft Docs"
-description: "Azure Virtual Network를 통해 HDInsight에서 Kafka에 직접 연결하는 방법을 알아봅니다. VPN Gateway를 사용하여 개발 클라이언트에서 또는 VPN 게이트웨이 장치를 사용하여 온-프레미스 네트워크의 클라이언트에서 Kafka에 연결하는 방법을 알아봅니다."
+title: "가상 네트워크-Azure HDInsight를 사용 하 여 aaaConnect tooKafka | Microsoft Docs"
+description: "Azure 가상 네트워크를 통해 toodirectly tooKafka HDInsight에 연결 하는 방법에 대해 알아봅니다. Tooconnect tooKafka 또는 온-프레미스에서 클라이언트는 VPN 게이트웨이 사용 하 여 개발 클라이언트에서 VPN 게이트웨이 장치를 사용 하 여 네트워크 하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationCenter: 
 author: Blackmist
@@ -15,100 +15,100 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/01/2017
 ms.author: larryfr
-ms.openlocfilehash: 245bee7c1dbb0236afdc2506e7ab84b5573cbc85
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 03542fe14b9a1d010dffa22a8f8d96b098a1576e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-kafka-on-hdinsight-preview-through-an-azure-virtual-network"></a><span data-ttu-id="169a0-104">Azure Virtual Network를 통해 HDInsight(미리 보기)의 Kafka에 연결</span><span class="sxs-lookup"><span data-stu-id="169a0-104">Connect to Kafka on HDInsight (preview) through an Azure Virtual Network</span></span>
+# <a name="connect-tookafka-on-hdinsight-preview-through-an-azure-virtual-network"></a><span data-ttu-id="0cc42-104">Azure 가상 네트워크를 통해 tooKafka HDInsight (미리 보기)에 연결</span><span class="sxs-lookup"><span data-stu-id="0cc42-104">Connect tooKafka on HDInsight (preview) through an Azure Virtual Network</span></span>
 
-<span data-ttu-id="169a0-105">Azure Virtual Network를 사용하여 HDInsight의 Kafka에 직접 연결하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-105">Learn how to directly connect to Kafka on HDInsight using Azure Virtual Networks.</span></span> <span data-ttu-id="169a0-106">이 문서는 다음 구성을 사용하여 Kafka에 연결하는 것에 관한 정보를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-106">This document provides information on connecting to Kafka using the following configurations:</span></span>
+<span data-ttu-id="0cc42-105">Toodirectly tooKafka Azure 가상 네트워크를 사용 하 여 HDInsight에 연결 하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-105">Learn how toodirectly connect tooKafka on HDInsight using Azure Virtual Networks.</span></span> <span data-ttu-id="0cc42-106">이 문서에서는 설명 하는 구성을 따르고 hello를 사용 하 여 tooKafka 연결에:</span><span class="sxs-lookup"><span data-stu-id="0cc42-106">This document provides information on connecting tooKafka using hello following configurations:</span></span>
 
-* <span data-ttu-id="169a0-107">온-프레미스 네트워크 리소스에서.</span><span class="sxs-lookup"><span data-stu-id="169a0-107">From resources in an on-premises network.</span></span> <span data-ttu-id="169a0-108">이 연결은 로컬 네트워크에서 VPN 장치(소프트웨어 또는 하드웨어)를 사용하여 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-108">This connection is established by using a VPN device (software or hardware) on your local network.</span></span>
-* <span data-ttu-id="169a0-109">VPN 소프트웨어 클라이언트를 사용한 개발 환경에서.</span><span class="sxs-lookup"><span data-stu-id="169a0-109">From a development environment using a VPN software client.</span></span>
+* <span data-ttu-id="0cc42-107">온-프레미스 네트워크 리소스에서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-107">From resources in an on-premises network.</span></span> <span data-ttu-id="0cc42-108">이 연결은 로컬 네트워크에서 VPN 장치(소프트웨어 또는 하드웨어)를 사용하여 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-108">This connection is established by using a VPN device (software or hardware) on your local network.</span></span>
+* <span data-ttu-id="0cc42-109">VPN 소프트웨어 클라이언트를 사용한 개발 환경에서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-109">From a development environment using a VPN software client.</span></span>
 
-## <a name="architecture-and-planning"></a><span data-ttu-id="169a0-110">아키텍처 및 계획</span><span class="sxs-lookup"><span data-stu-id="169a0-110">Architecture and planning</span></span>
+## <a name="architecture-and-planning"></a><span data-ttu-id="0cc42-110">아키텍처 및 계획</span><span class="sxs-lookup"><span data-stu-id="0cc42-110">Architecture and planning</span></span>
 
-<span data-ttu-id="169a0-111">HDInsight는 공용 인터넷을 통해 Kafka에 직접 연결하는 것을 허용하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-111">HDInsight does not allow direct connection to Kafka over the public internet.</span></span> <span data-ttu-id="169a0-112">대신, Kafka 클라이언트(생산자와 소비자)는 다음 연결 방법 중 하나를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-112">Instead, Kafka clients (producers and consumers) must use one of the following connection methods:</span></span>
+<span data-ttu-id="0cc42-111">HDInsight hello를 통해 직접 연결 tooKafka를 허용 하지 않습니다 공용 인터넷 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-111">HDInsight does not allow direct connection tooKafka over hello public internet.</span></span> <span data-ttu-id="0cc42-112">대신, Kafka 클라이언트 (생산자와 소비자) hello 연결 방법을 다음 중 하나를 사용 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-112">Instead, Kafka clients (producers and consumers) must use one of hello following connection methods:</span></span>
 
-* <span data-ttu-id="169a0-113">클라이언트를 동일한 가상 네트워크에서 Kafka로 HDInsight 상에서 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-113">Run the client in the same virtual network as Kafka on HDInsight.</span></span> <span data-ttu-id="169a0-114">이 구성은 [HDInsight의 Apache Kafka(미리 보기)에서 시작](hdinsight-apache-kafka-get-started.md) 문서에서 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-114">This configuration is used in the [Start with Apache Kafka (preview) on HDInsight](hdinsight-apache-kafka-get-started.md) document.</span></span> <span data-ttu-id="169a0-115">클라이언트는 동일한 네트워크 내의 HDInsight 클러스터 노드나 또 다른 가상 컴퓨터에서 직접 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-115">The client runs directly on the HDInsight cluster nodes or on another virtual machine in the same network.</span></span>
+* <span data-ttu-id="0cc42-113">Hello 클라이언트 hello에 실행 Kafka HDInsight에서와 동일한 가상 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-113">Run hello client in hello same virtual network as Kafka on HDInsight.</span></span> <span data-ttu-id="0cc42-114">Hello에이 구성은 사용 [HDInsight의 Apache Kafka (미리 보기)로 시작](hdinsight-apache-kafka-get-started.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-114">This configuration is used in hello [Start with Apache Kafka (preview) on HDInsight](hdinsight-apache-kafka-get-started.md) document.</span></span> <span data-ttu-id="0cc42-115">hello 클라이언트 실행 직접 hello HDInsight 클러스터 노드 또는 다른 가상 컴퓨터에서 동일한 hello 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-115">hello client runs directly on hello HDInsight cluster nodes or on another virtual machine in hello same network.</span></span>
 
-* <span data-ttu-id="169a0-116">온-프레미스 네트워크와 같은 개인 네트워크를 가상 네트워크에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-116">Connect a private network, such as your on-premises network, to the virtual network.</span></span> <span data-ttu-id="169a0-117">이 구성을 통해 온-프레미스 네트워크의 클라이언트들은 직접 Kafka를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-117">This configuration allows clients in your on-premises network to directly work with Kafka.</span></span> <span data-ttu-id="169a0-118">이 구성을 사용하도록 설정하려면 다음 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-118">To enable this configuration, perform the following tasks:</span></span>
+* <span data-ttu-id="0cc42-116">예: toohello 가상 네트워크는 온-프레미스 네트워크의 개인 네트워크를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-116">Connect a private network, such as your on-premises network, toohello virtual network.</span></span> <span data-ttu-id="0cc42-117">이 구성은 Kafka와 온-프레미스 네트워크 toodirectly 작업에서 클라이언트를 허용합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-117">This configuration allows clients in your on-premises network toodirectly work with Kafka.</span></span> <span data-ttu-id="0cc42-118">tooenable이이 구성에서는 hello 다음 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-118">tooenable this configuration, perform hello following tasks:</span></span>
 
-    1. <span data-ttu-id="169a0-119">가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-119">Create a virtual network.</span></span>
-    2. <span data-ttu-id="169a0-120">사이트 간 구성을 사용하는 VPN 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-120">Create a VPN gateway that uses a site-to-site configuration.</span></span> <span data-ttu-id="169a0-121">이 문서에 사용된 구성을 통해 온-프레미스 네트워크의 VPN 게이트웨이 장치에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-121">The configuration used in this document connects to a VPN gateway device in your on-premises network.</span></span>
-    3. <span data-ttu-id="169a0-122">가상 네트워크에 DNS 서버를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-122">Create a DNS server in the virtual network.</span></span>
-    4. <span data-ttu-id="169a0-123">각 네트워크의 DNS 서버 간에 전달을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-123">Configure forwarding between the DNS server in each network.</span></span>
-    5. <span data-ttu-id="169a0-124">HDInsight의 Kafka를 가상 네트워크에 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-124">Install Kafka on HDInsight into the virtual network.</span></span>
+    1. <span data-ttu-id="0cc42-119">가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-119">Create a virtual network.</span></span>
+    2. <span data-ttu-id="0cc42-120">사이트 간 구성을 사용하는 VPN 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-120">Create a VPN gateway that uses a site-to-site configuration.</span></span> <span data-ttu-id="0cc42-121">이 문서에 사용 되는 hello 구성 tooa VPN 게이트웨이 장치 온-프레미스 네트워크에 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-121">hello configuration used in this document connects tooa VPN gateway device in your on-premises network.</span></span>
+    3. <span data-ttu-id="0cc42-122">Hello 가상 네트워크에 DNS 서버를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-122">Create a DNS server in hello virtual network.</span></span>
+    4. <span data-ttu-id="0cc42-123">각 네트워크의 DNS 서버 hello 사이 전달을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-123">Configure forwarding between hello DNS server in each network.</span></span>
+    5. <span data-ttu-id="0cc42-124">HDInsight에 hello 가상 네트워크로 Kafka를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-124">Install Kafka on HDInsight into hello virtual network.</span></span>
 
-    <span data-ttu-id="169a0-125">자세한 내용은 [온-프레미스 네트워크에서 Kafka에 연결](#on-premises) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="169a0-125">For more information, see the [Connect to Kafka from an on-premises network](#on-premises) section.</span></span> 
+    <span data-ttu-id="0cc42-125">자세한 내용은 참조 hello [tooKafka 온-프레미스 네트워크에서 연결](#on-premises) 섹션.</span><span class="sxs-lookup"><span data-stu-id="0cc42-125">For more information, see hello [Connect tooKafka from an on-premises network](#on-premises) section.</span></span> 
 
-* <span data-ttu-id="169a0-126">VPN 게이트웨이와 VPN 클라이언트를 사용하여 개별 컴퓨터를 가상 네트워크에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-126">Connect individual machines to the virtual network using a VPN gateway and VPN client.</span></span> <span data-ttu-id="169a0-127">이 구성을 사용하도록 설정하려면 다음 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-127">To enable this configuration, perform the following tasks:</span></span>
+* <span data-ttu-id="0cc42-126">VPN 게이트웨이 및 VPN 클라이언트를 사용 하 여 개별 컴퓨터 toohello 가상 네트워크를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-126">Connect individual machines toohello virtual network using a VPN gateway and VPN client.</span></span> <span data-ttu-id="0cc42-127">tooenable이이 구성에서는 hello 다음 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-127">tooenable this configuration, perform hello following tasks:</span></span>
 
-    1. <span data-ttu-id="169a0-128">가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-128">Create a virtual network.</span></span>
-    2. <span data-ttu-id="169a0-129">지점-사이트 간 구성을 사용하는 VPN 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-129">Create a VPN gateway that uses a point-to-site configuration.</span></span> <span data-ttu-id="169a0-130">이 구성은 Windows 클라이언트에 설치할 수 있는 VPN 클라이언트를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-130">This configuration provides a VPN client that can be installed on Windows clients.</span></span>
-    3. <span data-ttu-id="169a0-131">HDInsight의 Kafka를 가상 네트워크에 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-131">Install Kafka on HDInsight into the virtual network.</span></span>
-    4. <span data-ttu-id="169a0-132">IP 보급을 위한 Kafka 구성.</span><span class="sxs-lookup"><span data-stu-id="169a0-132">Configure Kafka for IP advertising.</span></span> <span data-ttu-id="169a0-133">이 구성은 클라이언트가 도메인 이름 대신 IP 주소 지정을 사용하여 연결하도록 허용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-133">This configuration allows the client to connect using IP addressing instead of domain names.</span></span>
-    5. <span data-ttu-id="169a0-134">VPN 클라이언트를 개발 시스템에 다운로드하여 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-134">Download and use the VPN client on the development system.</span></span>
+    1. <span data-ttu-id="0cc42-128">가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-128">Create a virtual network.</span></span>
+    2. <span data-ttu-id="0cc42-129">지점-사이트 간 구성을 사용하는 VPN 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-129">Create a VPN gateway that uses a point-to-site configuration.</span></span> <span data-ttu-id="0cc42-130">이 구성은 Windows 클라이언트에 설치할 수 있는 VPN 클라이언트를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-130">This configuration provides a VPN client that can be installed on Windows clients.</span></span>
+    3. <span data-ttu-id="0cc42-131">HDInsight에 hello 가상 네트워크로 Kafka를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-131">Install Kafka on HDInsight into hello virtual network.</span></span>
+    4. <span data-ttu-id="0cc42-132">IP 보급을 위한 Kafka 구성.</span><span class="sxs-lookup"><span data-stu-id="0cc42-132">Configure Kafka for IP advertising.</span></span> <span data-ttu-id="0cc42-133">이 구성은 도메인 이름 대신 주소를 지정 하는 IP를 사용 하 여 hello 클라이언트 tooconnect을 허용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-133">This configuration allows hello client tooconnect using IP addressing instead of domain names.</span></span>
+    5. <span data-ttu-id="0cc42-134">다운로드 하 여 hello 개발 시스템에서 VPN 클라이언트 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-134">Download and use hello VPN client on hello development system.</span></span>
 
-    <span data-ttu-id="169a0-135">자세한 내용은 [VPN 클라이언트와 함께 Kafka 연결](#vpnclient) 섹션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="169a0-135">For more information, see the [Connect to Kafka with a VPN client](#vpnclient) section.</span></span>
+    <span data-ttu-id="0cc42-135">자세한 내용은 참조 hello [tooKafka VPN 클라이언트를 사용 하 여 연결](#vpnclient) 섹션.</span><span class="sxs-lookup"><span data-stu-id="0cc42-135">For more information, see hello [Connect tooKafka with a VPN client](#vpnclient) section.</span></span>
 
     > [!WARNING]
-    > <span data-ttu-id="169a0-136">이 구성은 다음과 같은 제한 사항 때문에 개발 용도로만 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-136">This configuration is only recommended for development purposes because of the following limitations:</span></span>
+    > <span data-ttu-id="0cc42-136">이 구성은 다음과 같은 제한을 hello 인해 개발 용도로 권장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-136">This configuration is only recommended for development purposes because of hello following limitations:</span></span>
     >
-    > * <span data-ttu-id="169a0-137">각 클라이언트는 VPN 소프트웨어 클라이언트를 사용하여 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-137">Each client must connect using a VPN software client.</span></span> <span data-ttu-id="169a0-138">Azure는 Windows 기반 클라이언트만 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-138">Azure only provides a Windows-based client.</span></span>
-    > * <span data-ttu-id="169a0-139">클라이언트는 가상 네트워크에 이름 확인 요청을 전달 하지 않으므로, Kafka와 통신하기 위해 IP 주소 지정을 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-139">The client does not pass name resolution requests to the virtual network, so you must use IP addressing to communicate with Kafka.</span></span> <span data-ttu-id="169a0-140">IP 통신을 하려면 Kafka 클러스터에 추가 구성을 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-140">IP communication requires additional configuration on the Kafka cluster.</span></span>
+    > * <span data-ttu-id="0cc42-137">각 클라이언트는 VPN 소프트웨어 클라이언트를 사용하여 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-137">Each client must connect using a VPN software client.</span></span> <span data-ttu-id="0cc42-138">Azure는 Windows 기반 클라이언트만 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-138">Azure only provides a Windows-based client.</span></span>
+    > * <span data-ttu-id="0cc42-139">클라이언트 hello 사용한 IP 주소 지정 toocommunicate Kafka 사용 해야 하므로 이름 확인 요청 toohello 가상 네트워크를 전달 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-139">hello client does not pass name resolution requests toohello virtual network, so you must use IP addressing toocommunicate with Kafka.</span></span> <span data-ttu-id="0cc42-140">IP 통신에는 hello Kafka 클러스터에 추가 구성이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-140">IP communication requires additional configuration on hello Kafka cluster.</span></span>
 
-<span data-ttu-id="169a0-141">가상 네트워크에서 HDInsight를 사용하는 방법에 대한 자세한 내용은 [Azure Virtual Network를 사용하여 HDInsight 확장](./hdinsight-extend-hadoop-virtual-network.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="169a0-141">For more information on using HDInsight in a virtual network, see [Extend HDInsight by using Azure Virtual Networks](./hdinsight-extend-hadoop-virtual-network.md).</span></span>
+<span data-ttu-id="0cc42-141">가상 네트워크에서 HDInsight를 사용하는 방법에 대한 자세한 내용은 [Azure Virtual Network를 사용하여 HDInsight 확장](./hdinsight-extend-hadoop-virtual-network.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0cc42-141">For more information on using HDInsight in a virtual network, see [Extend HDInsight by using Azure Virtual Networks](./hdinsight-extend-hadoop-virtual-network.md).</span></span>
 
-## <span data-ttu-id="169a0-142"><a id="on-premises"></a>온-프레미스 네트워크에서 Kafka에 연결</span><span class="sxs-lookup"><span data-stu-id="169a0-142"><a id="on-premises"></a> Connect to Kafka from an on-premises network</span></span>
+## <span data-ttu-id="0cc42-142"><a id="on-premises"></a>TooKafka 온-프레미스 네트워크에서 연결</span><span class="sxs-lookup"><span data-stu-id="0cc42-142"><a id="on-premises"></a> Connect tooKafka from an on-premises network</span></span>
 
-<span data-ttu-id="169a0-143">온-프레미스 네트워크와 통신하는 Kafka 클러스터를 만들려면 [온-프레미스 네트워크에 HDInsight 연결](./connect-on-premises-network.md) 문서에 나오는 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-143">To create a Kafka cluster that communicates with your on-premises network, follow the steps in the [Connect HDInsight to your on-premises network](./connect-on-premises-network.md) document.</span></span>
+<span data-ttu-id="0cc42-143">toocreate 온-프레미스 네트워크와 통신 하는 Kafka 클러스터에서에서 다음과 같이 hello hello [HDInsight 연결 tooyour 온-프레미스 네트워크](./connect-on-premises-network.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-143">toocreate a Kafka cluster that communicates with your on-premises network, follow hello steps in hello [Connect HDInsight tooyour on-premises network](./connect-on-premises-network.md) document.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="169a0-144">HDInsight 클러스터를 만들 때 __Kafka__ 클러스터 유형을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-144">When creating the HDInsight cluster, select the __Kafka__ cluster type.</span></span>
+> <span data-ttu-id="0cc42-144">Hello HDInsight 클러스터를 만들 때 선택 hello __Kafka__ 클러스터 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-144">When creating hello HDInsight cluster, select hello __Kafka__ cluster type.</span></span>
 
-<span data-ttu-id="169a0-145">이러한 단계를 거쳐 다음 구성이 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-145">These steps create the following configuration:</span></span>
+<span data-ttu-id="0cc42-145">이러한 단계는 같은 구성이 hello를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-145">These steps create hello following configuration:</span></span>
 
-* <span data-ttu-id="169a0-146">Azure 가상 네트워크</span><span class="sxs-lookup"><span data-stu-id="169a0-146">Azure Virtual Network</span></span>
-* <span data-ttu-id="169a0-147">사이트 간 VPN 게이트웨이</span><span class="sxs-lookup"><span data-stu-id="169a0-147">Site-to-site VPN gateway</span></span>
-* <span data-ttu-id="169a0-148">Azure Storage 계정(HDInsight에서 사용)</span><span class="sxs-lookup"><span data-stu-id="169a0-148">Azure Storage account (used by HDInsight)</span></span>
-* <span data-ttu-id="169a0-149">HDInsight의 Kafka</span><span class="sxs-lookup"><span data-stu-id="169a0-149">Kafka on HDInsight</span></span>
+* <span data-ttu-id="0cc42-146">Azure Virtual Network</span><span class="sxs-lookup"><span data-stu-id="0cc42-146">Azure Virtual Network</span></span>
+* <span data-ttu-id="0cc42-147">사이트 간 VPN 게이트웨이</span><span class="sxs-lookup"><span data-stu-id="0cc42-147">Site-to-site VPN gateway</span></span>
+* <span data-ttu-id="0cc42-148">Azure Storage 계정(HDInsight에서 사용)</span><span class="sxs-lookup"><span data-stu-id="0cc42-148">Azure Storage account (used by HDInsight)</span></span>
+* <span data-ttu-id="0cc42-149">HDInsight의 Kafka</span><span class="sxs-lookup"><span data-stu-id="0cc42-149">Kafka on HDInsight</span></span>
 
-<span data-ttu-id="169a0-150">Kafka 클라이언트가 온-프레미스에서 클러스터로 연결할 수 있는지 확인하려면 [예: Python 클라이언트](#python-client) 섹션에 나오는 단계를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-150">To verify that a Kafka client can connect to the cluster from on-premises, use the steps in the [Example: Python client](#python-client) section.</span></span>
+<span data-ttu-id="0cc42-150">Kafka 클라이언트를 온-프레미스를 사용 하 여 hello 단계 hello toohello 클러스터를 연결할 수 있는지 tooverify [예제: Python 클라이언트](#python-client) 섹션.</span><span class="sxs-lookup"><span data-stu-id="0cc42-150">tooverify that a Kafka client can connect toohello cluster from on-premises, use hello steps in hello [Example: Python client](#python-client) section.</span></span>
 
-## <span data-ttu-id="169a0-151"><a id="vpnclient"></a>VPN 클라이언트와 함께 Kafka에 연결</span><span class="sxs-lookup"><span data-stu-id="169a0-151"><a id="vpnclient"></a> Connect to Kafka with a VPN client</span></span>
+## <span data-ttu-id="0cc42-151"><a id="vpnclient"></a>TooKafka VPN 클라이언트를 사용 하 여 연결</span><span class="sxs-lookup"><span data-stu-id="0cc42-151"><a id="vpnclient"></a> Connect tooKafka with a VPN client</span></span>
 
-<span data-ttu-id="169a0-152">다음 구성을 만들려면 이 섹션에 나오는 단계를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-152">Use the steps in this section to create the following configuration:</span></span>
+<span data-ttu-id="0cc42-152">이 섹션 toocreate hello 같은 구성이의 단계를 사용 하 여 hello:</span><span class="sxs-lookup"><span data-stu-id="0cc42-152">Use hello steps in this section toocreate hello following configuration:</span></span>
 
-* <span data-ttu-id="169a0-153">Azure 가상 네트워크</span><span class="sxs-lookup"><span data-stu-id="169a0-153">Azure Virtual Network</span></span>
-* <span data-ttu-id="169a0-154">지점-사이트 간 VPN Gateway</span><span class="sxs-lookup"><span data-stu-id="169a0-154">Point-to-site VPN gateway</span></span>
-* <span data-ttu-id="169a0-155">Azure Storage 계정(HDInsight에서 사용)</span><span class="sxs-lookup"><span data-stu-id="169a0-155">Azure Storage Account (used by HDInsight)</span></span>
-* <span data-ttu-id="169a0-156">HDInsight의 Kafka</span><span class="sxs-lookup"><span data-stu-id="169a0-156">Kafka on HDInsight</span></span>
+* <span data-ttu-id="0cc42-153">Azure Virtual Network</span><span class="sxs-lookup"><span data-stu-id="0cc42-153">Azure Virtual Network</span></span>
+* <span data-ttu-id="0cc42-154">지점-사이트 간 VPN Gateway</span><span class="sxs-lookup"><span data-stu-id="0cc42-154">Point-to-site VPN gateway</span></span>
+* <span data-ttu-id="0cc42-155">Azure Storage 계정(HDInsight에서 사용)</span><span class="sxs-lookup"><span data-stu-id="0cc42-155">Azure Storage Account (used by HDInsight)</span></span>
+* <span data-ttu-id="0cc42-156">HDInsight의 Kafka</span><span class="sxs-lookup"><span data-stu-id="0cc42-156">Kafka on HDInsight</span></span>
 
-1. <span data-ttu-id="169a0-157">[지점 및 사이트 간 연결에 대한 자체 서명된 인증서로 작업](../vpn-gateway/vpn-gateway-certificates-point-to-site.md) 문서에 나오는 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-157">Follow the steps in the [Working with self-signed certificates for Point-to-site connections](../vpn-gateway/vpn-gateway-certificates-point-to-site.md) document.</span></span> <span data-ttu-id="169a0-158">이 문서는 게이트웨이에 필요한 인증서를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-158">This document creates the certificates needed for the gateway.</span></span>
+1. <span data-ttu-id="0cc42-157">Hello에 hello 단계를 따라 [지점 및 사이트 간 연결에 대 한 자체 서명 된 인증서 작업](../vpn-gateway/vpn-gateway-certificates-point-to-site.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-157">Follow hello steps in hello [Working with self-signed certificates for Point-to-site connections](../vpn-gateway/vpn-gateway-certificates-point-to-site.md) document.</span></span> <span data-ttu-id="0cc42-158">이 문서는 hello 게이트웨이에 대 한 필요한 hello 인증서를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-158">This document creates hello certificates needed for hello gateway.</span></span>
 
-2. <span data-ttu-id="169a0-159">PowerShell 프롬프트를 열고 다음 코드를 사용하여 Azure 구독에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-159">Open a PowerShell prompt and use the following code to log in to your Azure subscription:</span></span>
+2. <span data-ttu-id="0cc42-159">PowerShell 프롬프트를 열고 코드 toolog tooyour Azure 구독에에서 따라 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-159">Open a PowerShell prompt and use hello following code toolog in tooyour Azure subscription:</span></span>
 
     ```powershell
     Add-AzureRmAccount
-    # If you have multiple subscriptions, uncomment to set the subscription
+    # If you have multiple subscriptions, uncomment tooset hello subscription
     #Select-AzureRmSubscription -SubscriptionName "name of your subscription"
     ```
 
-3. <span data-ttu-id="169a0-160">다음 코드를 사용하여 구성 정보를 포함하는 변수를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-160">Use the following code to create variables that contain configuration information:</span></span>
+3. <span data-ttu-id="0cc42-160">다음 구성 정보를 포함 하는 코드 toocreate 변수 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-160">Use hello following code toocreate variables that contain configuration information:</span></span>
 
     ```powershell
     # Prompt for generic information
-    $resourceGroupName = Read-Host "What is the resource group name?"
-    $baseName = Read-Host "What is the base name? It is used to create names for resources, such as 'net-basename' and 'kafka-basename':"
-    $location = Read-Host "What Azure Region do you want to create the resources in?"
-    $rootCert = Read-Host "What is the file path to the root certificate? It is used to secure the VPN gateway."
+    $resourceGroupName = Read-Host "What is hello resource group name?"
+    $baseName = Read-Host "What is hello base name? It is used toocreate names for resources, such as 'net-basename' and 'kafka-basename':"
+    $location = Read-Host "What Azure Region do you want toocreate hello resources in?"
+    $rootCert = Read-Host "What is hello file path toohello root certificate? It is used toosecure hello VPN gateway."
 
     # Prompt for HDInsight credentials
-    $adminCreds = Get-Credential -Message "Enter the HTTPS user name and password for the HDInsight cluster" -UserName "admin"
-    $sshCreds = Get-Credential -Message "Enter the SSH user name and password for the HDInsight cluster" -UserName "sshuser"
+    $adminCreds = Get-Credential -Message "Enter hello HTTPS user name and password for hello HDInsight cluster" -UserName "admin"
+    $sshCreds = Get-Credential -Message "Enter hello SSH user name and password for hello HDInsight cluster" -UserName "sshuser"
 
     # Names for Azure resources
     $networkName = "net-$baseName"
@@ -134,26 +134,26 @@ ms.lasthandoff: 08/18/2017
     $hdiType = "Kafka"
     ```
 
-4. <span data-ttu-id="169a0-161">다음 코드를 사용하여 Azure 리소스 그룹 및 가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-161">Use the following code to create the Azure resource group and virtual network:</span></span>
+4. <span data-ttu-id="0cc42-161">사용 하 여 hello 다음 코드 toocreate hello Azure 리소스 그룹 및 가상 네트워크:</span><span class="sxs-lookup"><span data-stu-id="0cc42-161">Use hello following code toocreate hello Azure resource group and virtual network:</span></span>
 
     ```powershell
-    # Create the resource group that contains everything
+    # Create hello resource group that contains everything
     New-AzureRmResourceGroup -Name $resourceGroupName -Location $location
 
-    # Create the subnet configuration
+    # Create hello subnet configuration
     $defaultSubnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name $defaultSubnetName `
         -AddressPrefix $defaultSubnetPrefix
     $gatewaySubnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name $gatewaySubnetName `
         -AddressPrefix $gatewaySubnetPrefix
 
-    # Create the subnet
+    # Create hello subnet
     New-AzureRmVirtualNetwork -Name $networkName `
         -ResourceGroupName $resourceGroupName `
         -Location $location `
         -AddressPrefix $networkAddressPrefix `
         -Subnet $defaultSubnetConfig, $gatewaySubnetConfig
 
-    # Get the network & subnet that were created
+    # Get hello network & subnet that were created
     $network = Get-AzureRmVirtualNetwork -Name $networkName `
         -ResourceGroupName $resourceGroupName
     $gatewaySubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name $gatewaySubnetName `
@@ -161,7 +161,7 @@ ms.lasthandoff: 08/18/2017
     $defaultSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name $defaultSubnetName `
         -VirtualNetwork $network
 
-    # Set a dynamic public IP address for the gateway subnet
+    # Set a dynamic public IP address for hello gateway subnet
     $gatewayPublicIp = New-AzureRmPublicIpAddress -Name $gatewayPublicIpName `
         -ResourceGroupName $resourceGroupName `
         -Location $location `
@@ -170,15 +170,15 @@ ms.lasthandoff: 08/18/2017
         -Subnet $gatewaySubnet `
         -PublicIpAddress $gatewayPublicIp
 
-    # Get the certificate info
-    # Get the full path in case a relative path was passed
+    # Get hello certificate info
+    # Get hello full path in case a relative path was passed
     $rootCertFile = Get-ChildItem $rootCert
     $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($rootCertFile)
     $certBase64 = [System.Convert]::ToBase64String($cert.RawData)
     $p2sRootCert = New-AzureRmVpnClientRootCertificate -Name $vpnRootCertName `
         -PublicCertData $certBase64
 
-    # Create the VPN gateway
+    # Create hello VPN gateway
     New-AzureRmVirtualNetworkGateway -Name $vpnName `
         -ResourceGroupName $resourceGroupName `
         -Location $location `
@@ -192,33 +192,33 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!WARNING]
-    > <span data-ttu-id="169a0-162">이 프로세스는 완료하는 데 몇 분 정도 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-162">It can take several minutes for this process to complete.</span></span>
+    > <span data-ttu-id="0cc42-162">이 프로세스 toocomplete에 대 일 분 정도 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-162">It can take several minutes for this process toocomplete.</span></span>
 
-5. <span data-ttu-id="169a0-163">다음 코드를 사용하여 Azure Storage 계정 및 Blob 컨테이너를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-163">Use the following code to create the Azure Storage Account and blob container:</span></span>
+5. <span data-ttu-id="0cc42-163">다음 코드는 hello Azure 저장소 계정과 blob 컨테이너를 toocreate hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-163">Use hello following code toocreate hello Azure Storage Account and blob container:</span></span>
 
     ```powershell
-    # Create the storage account
+    # Create hello storage account
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $storageName `
         -Type Standard_GRS `
         -Location $location
 
-    # Get the storage account keys and create a context
+    # Get hello storage account keys and create a context
     $defaultStorageKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName `
         -Name $storageName)[0].Value
     $storageContext = New-AzureStorageContext -StorageAccountName $storageName `
         -StorageAccountKey $defaultStorageKey
 
-    # Create the default storage container
+    # Create hello default storage container
     New-AzureStorageContainer -Name $defaultContainerName `
         -Context $storageContext
     ```
 
-6. <span data-ttu-id="169a0-164">다음 코드를 사용하여 HDInsight 클러스터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-164">Use the following code to create the HDInsight cluster:</span></span>
+6. <span data-ttu-id="0cc42-164">다음 코드 toocreate hello HDInsight 클러스터 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-164">Use hello following code toocreate hello HDInsight cluster:</span></span>
 
     ```powershell
-    # Create the HDInsight cluster
+    # Create hello HDInsight cluster
     New-AzureRmHDInsightCluster `
         -ResourceGroupName $resourceGroupName `
         -ClusterName $clusterName `
@@ -237,9 +237,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
   > [!WARNING]
-  > <span data-ttu-id="169a0-165">이 프로세스를 완료하는 데 약 20분이 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-165">This process takes around 20 minutes to complete.</span></span>
+  > <span data-ttu-id="0cc42-165">이 프로세스는 약 20 분 toocomplete를 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-165">This process takes around 20 minutes toocomplete.</span></span>
 
-8. <span data-ttu-id="169a0-166">다음 cmdlet을 사용하여 가상 네트워크에서 Windows VPN 클라이언트의 URL을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-166">Use the following cmdlet to retrieve the URL for the Windows VPN client for the virtual network:</span></span>
+8. <span data-ttu-id="0cc42-166">Hello 가상 네트워크에 대 한 Windows VPN 클라이언트 hello에 대 한 cmdlet tooretrieve hello url hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-166">Use hello following cmdlet tooretrieve hello URL for hello Windows VPN client for hello virtual network:</span></span>
 
     ```powershell
     Get-AzureRmVpnClientPackage -ResourceGroupName $resourceGroupName `
@@ -247,68 +247,68 @@ ms.lasthandoff: 08/18/2017
         -ProcessorArchitecture Amd64
     ```
 
-    <span data-ttu-id="169a0-167">Windows VPN 클라이언트를 다운로드하려면 웹 브라우저에서 반환된 URI를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-167">To download the Windows VPN client, use the returned URI in your web browser.</span></span>
+    <span data-ttu-id="0cc42-167">toodownload hello Windows VPN 클라이언트를 사용 하 여 hello 웹 브라우저에서 URI를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-167">toodownload hello Windows VPN client, use hello returned URI in your web browser.</span></span>
 
-### <a name="configure-kafka-for-ip-advertising"></a><span data-ttu-id="169a0-168">IP 보급을 위해 Kafka 구성</span><span class="sxs-lookup"><span data-stu-id="169a0-168">Configure Kafka for IP advertising</span></span>
+### <a name="configure-kafka-for-ip-advertising"></a><span data-ttu-id="0cc42-168">IP 보급을 위해 Kafka 구성</span><span class="sxs-lookup"><span data-stu-id="0cc42-168">Configure Kafka for IP advertising</span></span>
 
-<span data-ttu-id="169a0-169">기본적으로 Zookeeper는 Kafka 브로커의 도메인 이름을 클라이언트에 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-169">By default, Zookeeper returns the domain name of the Kafka brokers to clients.</span></span> <span data-ttu-id="169a0-170">이 구성은 가상 네트워크의 엔터티에 대해 이름 확인을 사용할 수 없으므로 VPN 소프트웨어 클라이언트에 작동하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-170">This configuration does not work with the VPN software client, as it cannot use name resolution for entities in the virtual network.</span></span> <span data-ttu-id="169a0-171">이 구성의 경우, 다음 단계에 따라 도메인 이름 대신 IP 주소를 보급하도록 Kafka를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-171">For this configuration, use the following steps to configure Kafka to advertise IP addresses instead of domain names:</span></span>
+<span data-ttu-id="0cc42-169">기본적으로 사육 hello Kafka 브로커 tooclients의 hello 도메인 이름을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-169">By default, Zookeeper returns hello domain name of hello Kafka brokers tooclients.</span></span> <span data-ttu-id="0cc42-170">이 구성은 대로 되지 않을 hello로 VPN 소프트웨어 클라이언트 hello 가상 네트워크의 엔터티에 대 한 이름 확인을 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-170">This configuration does not work with hello VPN software client, as it cannot use name resolution for entities in hello virtual network.</span></span> <span data-ttu-id="0cc42-171">이 구성에 대 한 hello 다음 이름을 사용해 서 도메인 이름 대신 단계 tooconfigure Kafka tooadvertise IP 주소:</span><span class="sxs-lookup"><span data-stu-id="0cc42-171">For this configuration, use hello following steps tooconfigure Kafka tooadvertise IP addresses instead of domain names:</span></span>
 
-1. <span data-ttu-id="169a0-172">웹 브라우저를 사용하여 https://CLUSTERNAME.azurehdinsight.net으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-172">Using a web browser, go to https://CLUSTERNAME.azurehdinsight.net.</span></span> <span data-ttu-id="169a0-173">__CLUSTERNAME__을 HDInsight 클러스터의 Kafka 이름으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-173">Replace __CLUSTERNAME__ with the name of the Kafka on HDInsight cluster.</span></span>
+1. <span data-ttu-id="0cc42-172">웹 브라우저를 사용 하 여, toohttps://CLUSTERNAME.azurehdinsight.net 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-172">Using a web browser, go toohttps://CLUSTERNAME.azurehdinsight.net.</span></span> <span data-ttu-id="0cc42-173">대체 __CLUSTERNAME__ hello Kafka HDInsight 클러스터에서의 hello 이름으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-173">Replace __CLUSTERNAME__ with hello name of hello Kafka on HDInsight cluster.</span></span>
 
-    <span data-ttu-id="169a0-174">메시지가 표시되면, 클러스터의 HTTPS 사용자 이름 및 암호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-174">When prompted, use the HTTPS user name and password for the cluster.</span></span> <span data-ttu-id="169a0-175">클러스터에 대한 Ambari Web UI가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-175">The Ambari Web UI for the cluster is displayed.</span></span>
+    <span data-ttu-id="0cc42-174">메시지가 표시 되 면 hello 클러스터에 대 한 hello HTTPS 사용자 이름 및 암호를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-174">When prompted, use hello HTTPS user name and password for hello cluster.</span></span> <span data-ttu-id="0cc42-175">hello 클러스터에 대 한 hello Ambari 웹 UI에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-175">hello Ambari Web UI for hello cluster is displayed.</span></span>
 
-2. <span data-ttu-id="169a0-176">Kafka에 대한 정보를 보려면 왼쪽 목록에서 __Kafka__를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-176">To view information on Kafka, select __Kafka__ from the list on the left.</span></span>
+2. <span data-ttu-id="0cc42-176">tooview 알아보려면 Kafka, 선택 __Kafka__ hello hello 왼쪽 목록에서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-176">tooview information on Kafka, select __Kafka__ from hello list on hello left.</span></span>
 
     ![Kafka가 강조 표시된 서비스 목록](./media/hdinsight-apache-kafka-connect-vpn-gateway/select-kafka-service.png)
 
-3. <span data-ttu-id="169a0-178">Kafka 구성을 보려면 위쪽 가운데에서 __Configs__를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-178">To view Kafka configuration, select __Configs__ from the top middle.</span></span>
+3. <span data-ttu-id="0cc42-178">tooview Kafka 구성 선택 __Configs__ hello 위쪽 가운데에서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-178">tooview Kafka configuration, select __Configs__ from hello top middle.</span></span>
 
     ![Kafka에 대한 링크 구성](./media/hdinsight-apache-kafka-connect-vpn-gateway/select-kafka-config.png)
 
-4. <span data-ttu-id="169a0-180">__kafka-env__ 구성을 찾으려면 오른쪽 위에 있는 __필터__ 필드에 `kafka-env`를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-180">To find the __kafka-env__ configuration, enter `kafka-env` in the __Filter__ field on the upper right.</span></span>
+4. <span data-ttu-id="0cc42-180">toofind hello __kafka env__ 구성을 입력 `kafka-env` hello에 __필터__ 필드 hello 오른쪽 상단에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-180">toofind hello __kafka-env__ configuration, enter `kafka-env` in hello __Filter__ field on hello upper right.</span></span>
 
     ![kafka-env의 Kafka 구성](./media/hdinsight-apache-kafka-connect-vpn-gateway/search-for-kafka-env.png)
 
-5. <span data-ttu-id="169a0-182">IP 주소를 보급하도록 Kafka를 구성하려면 __kafka-env-template__ 맨 아래에 다음 텍스트를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-182">To configure Kafka to advertise IP addresses, add the following text to the bottom of the __kafka-env-template__ field:</span></span>
+5. <span data-ttu-id="0cc42-182">tooconfigure Kafka tooadvertise IP 주소, hello 텍스트 toohello 아래쪽을 따라 hello 추가 __kafka env 템플릿__ 필드:</span><span class="sxs-lookup"><span data-stu-id="0cc42-182">tooconfigure Kafka tooadvertise IP addresses, add hello following text toohello bottom of hello __kafka-env-template__ field:</span></span>
 
     ```
-    # Configure Kafka to advertise IP addresses instead of FQDN
+    # Configure Kafka tooadvertise IP addresses instead of FQDN
     IP_ADDRESS=$(hostname -i)
     echo advertised.listeners=$IP_ADDRESS
     sed -i.bak -e '/advertised/{/advertised@/!d;}' /usr/hdp/current/kafka-broker/conf/server.properties
     echo "advertised.listeners=PLAINTEXT://$IP_ADDRESS:9092" >> /usr/hdp/current/kafka-broker/conf/server.properties
     ```
 
-6. <span data-ttu-id="169a0-183">Kafka에서 수신 대기하는 인터페이스를 구성하려면 오른쪽 위의 __필터__ 필드에 `listeners`를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-183">To configure the interface that Kafka listens on, enter `listeners` in the __Filter__ field on the upper right.</span></span>
+6. <span data-ttu-id="0cc42-183">Kafka 수신 tooconfigure hello 인터페이스 입력 `listeners` hello에 __필터__ 필드 hello 오른쪽 상단에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-183">tooconfigure hello interface that Kafka listens on, enter `listeners` in hello __Filter__ field on hello upper right.</span></span>
 
-7. <span data-ttu-id="169a0-184">모든 네트워크 인터페이스에서 수신 대기하도록 Kafka를 구성하려면 __수신기__ 필드의 값을 `PLAINTEXT://0.0.0.0:9092`로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-184">To configure Kafka to listen on all network interfaces, change the value in the __listeners__ field to `PLAINTEXT://0.0.0.0:9092`.</span></span>
+7. <span data-ttu-id="0cc42-184">tooconfigure 변경 hello 값 hello에서 모든 네트워크 인터페이스에서 Kafka toolisten __수신기__ 너무 필드`PLAINTEXT://0.0.0.0:9092`합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-184">tooconfigure Kafka toolisten on all network interfaces, change hello value in hello __listeners__ field too`PLAINTEXT://0.0.0.0:9092`.</span></span>
 
-8. <span data-ttu-id="169a0-185">구성 변경 내용을 저장하려면 __저장__ 단추를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-185">To save the configuration changes, use the __Save__ button.</span></span> <span data-ttu-id="169a0-186">변경 내용을 설명하는 텍스트 메시지를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-186">Enter a text message describing the changes.</span></span> <span data-ttu-id="169a0-187">변경 내용이 저장되면 __확인__을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-187">Select __OK__ once the changes have been saved.</span></span>
+8. <span data-ttu-id="0cc42-185">toosave hello 구성 변경 내용을 사용 하 여 hello __저장__ 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-185">toosave hello configuration changes, use hello __Save__ button.</span></span> <span data-ttu-id="0cc42-186">Hello 변경 내용을 설명 하는 문자 메시지를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-186">Enter a text message describing hello changes.</span></span> <span data-ttu-id="0cc42-187">선택 __확인__ 면 hello 변경 내용이 저장 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-187">Select __OK__ once hello changes have been saved.</span></span>
 
     ![구성 저장 단추](./media/hdinsight-apache-kafka-connect-vpn-gateway/save-button.png)
 
-9. <span data-ttu-id="169a0-189">Kafka를 다시 시작할 때 오류를 방지하려면 __서비스 작업__ 단추를 사용하여 __유지 관리 모드 켜기__를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-189">To prevent errors when restarting Kafka, use the __Service Actions__ button and select __Turn On Maintenance Mode__.</span></span> <span data-ttu-id="169a0-190">확인을 선택하여 이 작업을 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-190">Select OK to complete this operation.</span></span>
+9. <span data-ttu-id="0cc42-189">tooprevent 오류 Kafka를 다시 시작할 때 hello를 사용 하 여 __서비스 작업__ 선택한 단추 __유지 관리 모드에서 설정__합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-189">tooprevent errors when restarting Kafka, use hello __Service Actions__ button and select __Turn On Maintenance Mode__.</span></span> <span data-ttu-id="0cc42-190">확인 toocomplete이이 작업을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-190">Select OK toocomplete this operation.</span></span>
 
     ![유지 관리 모드 켜기가 강조 표시된 서비스 작업](./media/hdinsight-apache-kafka-connect-vpn-gateway/turn-on-maintenance-mode.png)
 
-10. <span data-ttu-id="169a0-192">Kafka를 다시 시작하려면 __다시 시작__ 단추를 사용하고 __영향 받은 모든 항목 다시 시작__을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-192">To restart Kafka, use the __Restart__ button and select __Restart All Affected__.</span></span> <span data-ttu-id="169a0-193">다시 시작을 확인하고 작업이 완료되면 __확인__ 단추를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-193">Confirm the restart, and then use the __OK__ button after the operation has completed.</span></span>
+10. <span data-ttu-id="0cc42-192">toorestart Kafka를 사용 하 여 hello __다시 시작__ 선택한 단추 __모든 영향을 다시 시작__합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-192">toorestart Kafka, use hello __Restart__ button and select __Restart All Affected__.</span></span> <span data-ttu-id="0cc42-193">Hello 다시 시작을 확인 하 고 다음 hello를 사용 하 여 __확인__ hello 작업이 완료 된 후 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-193">Confirm hello restart, and then use hello __OK__ button after hello operation has completed.</span></span>
 
     ![영향 받은 모든 항목 다시 시작이 강조 표시된 다시 시작 단추](./media/hdinsight-apache-kafka-connect-vpn-gateway/restart-button.png)
 
-11. <span data-ttu-id="169a0-195">유지 관리 모드를 사용하지 않도록 설정하려면 __서비스 작업__ 단추를 사용하고 __유지 관리 모드 끄기__를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-195">To disable maintenance mode, use the __Service Actions__ button and select __Turn Off Maintenance Mode__.</span></span> <span data-ttu-id="169a0-196">**확인**을 선택하여 이 작업을 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-196">Select **OK** to complete this operation.</span></span>
+11. <span data-ttu-id="0cc42-195">toodisable 유지 관리 모드를 사용 하 여 hello __서비스 작업__ 선택한 단추 __유지 관리 모드 해제 기능__합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-195">toodisable maintenance mode, use hello __Service Actions__ button and select __Turn Off Maintenance Mode__.</span></span> <span data-ttu-id="0cc42-196">선택 **확인** toocomplete이이 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-196">Select **OK** toocomplete this operation.</span></span>
 
-### <a name="connect-to-the-vpn-gateway"></a><span data-ttu-id="169a0-197">VPN Gateway에 연결</span><span class="sxs-lookup"><span data-stu-id="169a0-197">Connect to the VPN gateway</span></span>
+### <a name="connect-toohello-vpn-gateway"></a><span data-ttu-id="0cc42-197">Toohello VPN 게이트웨이 연결</span><span class="sxs-lookup"><span data-stu-id="0cc42-197">Connect toohello VPN gateway</span></span>
 
-<span data-ttu-id="169a0-198">__Windows 클라이언트__에서 VPN Gateway에 연결하려면 [지점- 사이트 간 연결 구성](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md#clientcertificate) 문서의 __Azure에 연결__ 섹션을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-198">To connect to the VPN gateway from a __Windows client__, use the __Connect to Azure__ section of the [Configure a Point-to-Site connection](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md#clientcertificate) document.</span></span>
+<span data-ttu-id="0cc42-198">tooconnect toohello VPN 게이트웨이 __Windows 클라이언트__, hello를 사용 하 여 __tooAzure 연결__ hello 섹션 [지점 및 사이트 간 연결 구성](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md#clientcertificate) 문서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-198">tooconnect toohello VPN gateway from a __Windows client__, use hello __Connect tooAzure__ section of hello [Configure a Point-to-Site connection](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md#clientcertificate) document.</span></span>
 
-## <span data-ttu-id="169a0-199"><a id="python-client"></a>예: Python 클라이언트</span><span class="sxs-lookup"><span data-stu-id="169a0-199"><a id="python-client"></a> Example: Python client</span></span>
+## <span data-ttu-id="0cc42-199"><a id="python-client"></a>예: Python 클라이언트</span><span class="sxs-lookup"><span data-stu-id="0cc42-199"><a id="python-client"></a> Example: Python client</span></span>
 
-<span data-ttu-id="169a0-200">Kafka에 대한 연결 유효성 검사를 하려면, 다음 단계를 사용하여 Python 생산자와 소비자를 만들고 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-200">To validate connectivity to Kafka, use the following steps to create and run a Python producer and consumer:</span></span>
+<span data-ttu-id="0cc42-200">다음 단계 toocreate hello를 사용 하 고 Python 생산자와 소비자를 실행 하는 toovalidate 연결 tooKafka:</span><span class="sxs-lookup"><span data-stu-id="0cc42-200">toovalidate connectivity tooKafka, use hello following steps toocreate and run a Python producer and consumer:</span></span>
 
-1. <span data-ttu-id="169a0-201">다음 방법 중 하나를 사용하여 Kafka 클러스터에서 정규화된 도메인 이름(FQDN) 및 노드 IP 주소를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-201">Use one of the following methods to retrieve the fully qualified domain name (FQDN) and IP addresses of the nodes in the Kafka cluster:</span></span>
+1. <span data-ttu-id="0cc42-201">정규화 된 도메인 이름 (FQDN) 및 IP 주소 hello Kafka 클러스터에 있는 hello 노드의 경우 hello 메서드 tooretrieve hello를 완벽 하 게 다음 중 하나를 사용:</span><span class="sxs-lookup"><span data-stu-id="0cc42-201">Use one of hello following methods tooretrieve hello fully qualified domain name (FQDN) and IP addresses of hello nodes in hello Kafka cluster:</span></span>
 
     ```powershell
-    $resourceGroupName = "The resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = "hello resource group that contains hello virtual network used with HDInsight"
 
     $clusterNICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName | where-object {$_.Name -like "*node*"}
 
@@ -327,65 +327,65 @@ ms.lasthandoff: 08/18/2017
     az network nic list --resource-group <resourcegroupname> --output table --query "[?contains(name,'node')].{NICname:name,InternalIP:ipConfigurations[0].privateIpAddress,InternalFQDN:dnsSettings.internalFqdn}"
     ```
 
-    <span data-ttu-id="169a0-202">이 스크립트에서는 `$resourceGroupName`을 가상 네트워크가 포함된 Azure 리소스 그룹의 이름으로 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-202">This script assumes that `$resourceGroupName` is the name of the Azure resource group that contains the virtual network.</span></span>
+    <span data-ttu-id="0cc42-202">이 스크립트는 있다고 가정 `$resourceGroupName` hello hello 가상 네트워크를 포함 하는 hello Azure 리소스 그룹 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-202">This script assumes that `$resourceGroupName` is hello name of hello Azure resource group that contains hello virtual network.</span></span>
 
-    <span data-ttu-id="169a0-203">다음 단계에서의 사용을 위해 반환된 정보를 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-203">Save the returned information for use in the next steps.</span></span>
+    <span data-ttu-id="0cc42-203">Hello 다음 단계에 사용 하기 위해 정보를 반환 하는 hello를 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-203">Save hello returned information for use in hello next steps.</span></span>
 
-2. <span data-ttu-id="169a0-204">다음을 사용하여 [kafka-python](http://kafka-python.readthedocs.io/) 클라이언트를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-204">Use the following to install the [kafka-python](http://kafka-python.readthedocs.io/) client:</span></span>
+2. <span data-ttu-id="0cc42-204">사용 하 여 hello tooinstall hello 다음 [kafka python](http://kafka-python.readthedocs.io/) 클라이언트:</span><span class="sxs-lookup"><span data-stu-id="0cc42-204">Use hello following tooinstall hello [kafka-python](http://kafka-python.readthedocs.io/) client:</span></span>
 
         pip install kafka-python
 
-3. <span data-ttu-id="169a0-205">Kafka로 데이터를 전송하려면 다음 Python 코드를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-205">To send data to Kafka, use the following Python code:</span></span>
+3. <span data-ttu-id="0cc42-205">Python 코드 다음 사용 하 여 hello toosend 데이터 tooKafka:</span><span class="sxs-lookup"><span data-stu-id="0cc42-205">toosend data tooKafka, use hello following Python code:</span></span>
 
   ```python
   from kafka import KafkaProducer
-  # Replace the `ip_address` entries with the IP address of your worker nodes
-  # NOTE: you don't need the full list of worker nodes, just one or two.
+  # Replace hello `ip_address` entries with hello IP address of your worker nodes
+  # NOTE: you don't need hello full list of worker nodes, just one or two.
   producer = KafkaProducer(bootstrap_servers=['kafka_broker_1','kafka_broker_2'])
   for _ in range(50):
       producer.send('testtopic', b'test message')
   ```
 
-    <span data-ttu-id="169a0-206">`'kafka_broker'` 항목을 이 섹션의 1단계에서 반환된 주소로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-206">Replace the `'kafka_broker'` entries with the addresses returned from step 1 in this section:</span></span>
+    <span data-ttu-id="0cc42-206">Hello 대체 `'kafka_broker'` hello 주소를 가진 항목이이 섹션의 1 단계에서 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-206">Replace hello `'kafka_broker'` entries with hello addresses returned from step 1 in this section:</span></span>
 
-    * <span data-ttu-id="169a0-207">__소프트웨어 VPN 클라이언트__를 사용하는 경우, `kafka_broker` 항목을 작업자 노드의 IP 주소와 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-207">If you are using a __Software VPN client__, replace the `kafka_broker` entries with the IP address of your worker nodes.</span></span>
+    * <span data-ttu-id="0cc42-207">사용 하는 경우는 __소프트웨어 VPN 클라이언트__, 대체 hello `kafka_broker` 작업자 노드 hello IP 주소를 가진 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-207">If you are using a __Software VPN client__, replace hello `kafka_broker` entries with hello IP address of your worker nodes.</span></span>
 
-    * <span data-ttu-id="169a0-208">__사용자 지정 DNS 서버를 통해 이름 확인을 할 수 있게__ 한 경우, `kafka_broker` 항목을 작업자 노드의 FQDN과 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-208">If you have __enabled name resolution through a custom DNS server__, replace the `kafka_broker` entries with the FQDN of the worker nodes.</span></span>
+    * <span data-ttu-id="0cc42-208">있는 경우 __사용자 지정 DNS 서버를 통해 이름 확인을 사용__, 대체 hello `kafka_broker` hello hello 작업자 노드 FQDN 가진 항목이 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-208">If you have __enabled name resolution through a custom DNS server__, replace hello `kafka_broker` entries with hello FQDN of hello worker nodes.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="169a0-209">이 코드는 문자열 `test message`를 토픽 `testtopic`으로 전송합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-209">This code sends the string `test message` to the topic `testtopic`.</span></span> <span data-ttu-id="169a0-210">HDInsight에서 Kafka의 기본 구성은 토픽이 없을 때 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-210">The default configuration of Kafka on HDInsight is to create the topic if it does not exist.</span></span>
+    > <span data-ttu-id="0cc42-209">이 코드는 hello 문자열 보냅니다 `test message` toohello 항목 `testtopic`합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-209">This code sends hello string `test message` toohello topic `testtopic`.</span></span> <span data-ttu-id="0cc42-210">HDInsight의 Kafka의 hello 기본 구성은 존재 하지 않는 경우 toocreate hello 항목을입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-210">hello default configuration of Kafka on HDInsight is toocreate hello topic if it does not exist.</span></span>
 
-4. <span data-ttu-id="169a0-211">Kafka에서 메시지를 검색하려면 다음 Python 코드를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-211">To retrieve the messages from Kafka, use the following Python code:</span></span>
+4. <span data-ttu-id="0cc42-211">Kafka 사용 하 여 hello Python 코드 다음 tooretrieve hello 메시지:</span><span class="sxs-lookup"><span data-stu-id="0cc42-211">tooretrieve hello messages from Kafka, use hello following Python code:</span></span>
 
    ```python
    from kafka import KafkaConsumer
-   # Replace the `ip_address` entries with the IP address of your worker nodes
-   # Again, you only need one or two, not the full list.
-   # Note: auto_offset_reset='earliest' resets the starting offset to the beginning
-   #       of the topic
+   # Replace hello `ip_address` entries with hello IP address of your worker nodes
+   # Again, you only need one or two, not hello full list.
+   # Note: auto_offset_reset='earliest' resets hello starting offset toohello beginning
+   #       of hello topic
    consumer = KafkaConsumer(bootstrap_servers=['kafka_broker_1','kafka_broker_2'],auto_offset_reset='earliest')
    consumer.subscribe(['testtopic'])
    for msg in consumer:
      print (msg)
    ```
 
-    <span data-ttu-id="169a0-212">`'kafka_broker'` 항목을 이 섹션의 1단계에서 반환된 주소로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-212">Replace the `'kafka_broker'` entries with the addresses returned from step 1 in this section:</span></span>
+    <span data-ttu-id="0cc42-212">Hello 대체 `'kafka_broker'` hello 주소를 가진 항목이이 섹션의 1 단계에서 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-212">Replace hello `'kafka_broker'` entries with hello addresses returned from step 1 in this section:</span></span>
 
-    * <span data-ttu-id="169a0-213">__소프트웨어 VPN 클라이언트__를 사용하는 경우, `kafka_broker` 항목을 작업자 노드의 IP 주소와 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-213">If you are using a __Software VPN client__, replace the `kafka_broker` entries with the IP address of your worker nodes.</span></span>
+    * <span data-ttu-id="0cc42-213">사용 하는 경우는 __소프트웨어 VPN 클라이언트__, 대체 hello `kafka_broker` 작업자 노드 hello IP 주소를 가진 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-213">If you are using a __Software VPN client__, replace hello `kafka_broker` entries with hello IP address of your worker nodes.</span></span>
 
-    * <span data-ttu-id="169a0-214">__사용자 지정 DNS 서버를 통해 이름 확인을 할 수 있게__ 한 경우, `kafka_broker` 항목을 작업자 노드의 FQDN과 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="169a0-214">If you have __enabled name resolution through a custom DNS server__, replace the `kafka_broker` entries with the FQDN of the worker nodes.</span></span>
+    * <span data-ttu-id="0cc42-214">있는 경우 __사용자 지정 DNS 서버를 통해 이름 확인을 사용__, 대체 hello `kafka_broker` hello hello 작업자 노드 FQDN 가진 항목이 합니다.</span><span class="sxs-lookup"><span data-stu-id="0cc42-214">If you have __enabled name resolution through a custom DNS server__, replace hello `kafka_broker` entries with hello FQDN of hello worker nodes.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="169a0-215">다음 단계</span><span class="sxs-lookup"><span data-stu-id="169a0-215">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0cc42-215">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0cc42-215">Next steps</span></span>
 
-<span data-ttu-id="169a0-216">HDInsight와 함께 가상 네트워크를 사용하는 방법에 대한 자세한 내용은 [Azure Virtual Network를 사용하여 Azure HDInsight 확장](hdinsight-extend-hadoop-virtual-network.md) 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="169a0-216">For more information on using HDInsight with a virtual network, see the [Extend Azure HDInsight using an Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md) document.</span></span>
+<span data-ttu-id="0cc42-216">HDInsight를 사용 하 여 가상 네트워크에 대 한 자세한 내용은 참조 hello [Azure 가상 네트워크를 사용 하 여 Azure HDInsight 확장](hdinsight-extend-hadoop-virtual-network.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="0cc42-216">For more information on using HDInsight with a virtual network, see hello [Extend Azure HDInsight using an Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md) document.</span></span>
 
-<span data-ttu-id="169a0-217">지점-사이트 간 VPN Gateway를 사용하여 Azure Virtual Network를 만드는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="169a0-217">For more information on creating an Azure Virtual Network with Point-to-Site VPN gateway, see the following documents:</span></span>
+<span data-ttu-id="0cc42-217">지점-사이트 VPN 게이트웨이와 Azure 가상 네트워크를 만드는 방법에 대 한 자세한 내용은 다음 문서는 hello를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="0cc42-217">For more information on creating an Azure Virtual Network with Point-to-Site VPN gateway, see hello following documents:</span></span>
 
-* [<span data-ttu-id="169a0-218">Azure Portal을 사용하여 지점 및 사이트 간 연결 구성</span><span class="sxs-lookup"><span data-stu-id="169a0-218">Configure a Point-to-Site connection using the Azure portal</span></span>](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md)
+* [<span data-ttu-id="0cc42-218">Hello Azure 포털을 사용 하는 지점 및 사이트 간 연결 구성</span><span class="sxs-lookup"><span data-stu-id="0cc42-218">Configure a Point-to-Site connection using hello Azure portal</span></span>](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md)
 
-* [<span data-ttu-id="169a0-219">Azure PowerShell을 사용하여 지점 및 사이트 간 연결 구성</span><span class="sxs-lookup"><span data-stu-id="169a0-219">Configure a Point-to-Site connection using Azure PowerShell</span></span>](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
+* [<span data-ttu-id="0cc42-219">Azure PowerShell을 사용하여 지점 및 사이트 간 연결 구성</span><span class="sxs-lookup"><span data-stu-id="0cc42-219">Configure a Point-to-Site connection using Azure PowerShell</span></span>](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
 
-<span data-ttu-id="169a0-220">HDInsight에서 Kafka를 사용하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="169a0-220">For more information on working with Kafka on HDInsight, see the following documents:</span></span>
+<span data-ttu-id="0cc42-220">HDInsight의 Kafka와 작업에 자세한 내용은 다음 문서는 hello 참조:</span><span class="sxs-lookup"><span data-stu-id="0cc42-220">For more information on working with Kafka on HDInsight, see hello following documents:</span></span>
 
-* [<span data-ttu-id="169a0-221">HDInsight에서 Apache Kafka 시작</span><span class="sxs-lookup"><span data-stu-id="169a0-221">Get started with Kafka on HDInsight</span></span>](hdinsight-apache-kafka-get-started.md)
-* [<span data-ttu-id="169a0-222">HDInsight에서 Kafka에 미러링 사용</span><span class="sxs-lookup"><span data-stu-id="169a0-222">Use mirroring with Kafka on HDInsight</span></span>](hdinsight-apache-kafka-mirroring.md)
+* [<span data-ttu-id="0cc42-221">HDInsight에서 Apache Kafka 시작</span><span class="sxs-lookup"><span data-stu-id="0cc42-221">Get started with Kafka on HDInsight</span></span>](hdinsight-apache-kafka-get-started.md)
+* [<span data-ttu-id="0cc42-222">HDInsight에서 Kafka에 미러링 사용</span><span class="sxs-lookup"><span data-stu-id="0cc42-222">Use mirroring with Kafka on HDInsight</span></span>](hdinsight-apache-kafka-mirroring.md)

@@ -1,6 +1,6 @@
 ---
-title: "논리 앱에 Google 드라이브 커넥터 추가 | Microsoft Docs"
-description: "REST API 매개 변수를 사용하는 Google 드라이브 커넥터 개요"
+title: "논리 앱에서 aaaAdd hello Google 드라이브 커넥터 | Microsoft Docs"
+description: "REST API 매개 변수를 사용 하는 hello Google 드라이브 커넥터 개요"
 services: 
 suite: 
 documentationcenter: 
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: c066a10b33e172eb5f16eede43ec407794000c90
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d572cc07462713c3496e2cc3081e1758828bdcde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-google-drive-connector"></a><span data-ttu-id="9c12b-103">Google 드라이브 커넥터 시작</span><span class="sxs-lookup"><span data-stu-id="9c12b-103">Get started with the Google Drive connector</span></span>
-<span data-ttu-id="9c12b-104">Google 드라이브에 연결하여 파일 만들기, 행 가져오기 등의 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-104">Connect to Google Drive to create files, get rows, and more.</span></span> <span data-ttu-id="9c12b-105">Google 드라이브를 사용하면 다음과 같은 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-105">With Google Drive, you can:</span></span> 
+# <a name="get-started-with-hello-google-drive-connector"></a><span data-ttu-id="e7dd3-103">Hello Google Drive 연결선으로 시작</span><span class="sxs-lookup"><span data-stu-id="e7dd3-103">Get started with hello Google Drive connector</span></span>
+<span data-ttu-id="e7dd3-104">행, 및을 가져올을 tooGoogle 드라이브 toocreate 파일을 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-104">Connect tooGoogle Drive toocreate files, get rows, and more.</span></span> <span data-ttu-id="e7dd3-105">Google 드라이브를 사용하면 다음과 같은 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-105">With Google Drive, you can:</span></span> 
 
-* <span data-ttu-id="9c12b-106">검색에서 가져온 데이터를 기반으로 비즈니스 흐름을 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-106">Build your business flow based on the data you get from your search.</span></span> 
-* <span data-ttu-id="9c12b-107">이미지 검색, 뉴스 검색 등의 작업을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-107">Use actions to search images, search the news, and more.</span></span> <span data-ttu-id="9c12b-108">이러한 작업을 사용하여 응답을 가져오고 출력을 다른 작업에 사용할 수 있도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-108">These actions get a response, and then make the output available for other actions.</span></span> <span data-ttu-id="9c12b-109">예를 들어 비디오를 검색한 다음 Twitter를 사용하여 Twitter 피드에 해당 비디오를 게시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-109">For example, you can search for a video, and then use Twitter to post that video to a Twitter feed.</span></span>
+* <span data-ttu-id="e7dd3-106">검색에서 받아야 하는 hello 데이터를 기반으로 비즈니스 흐름을 작성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-106">Build your business flow based on hello data you get from your search.</span></span> 
+* <span data-ttu-id="e7dd3-107">동작 toosearch 이미지, 검색 hello 뉴스 등을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-107">Use actions toosearch images, search hello news, and more.</span></span> <span data-ttu-id="e7dd3-108">이러한 작업 응답을 가져오고 다른 작업에 사용할 수 있는 hello 출력을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-108">These actions get a response, and then make hello output available for other actions.</span></span> <span data-ttu-id="e7dd3-109">예를 들어, 비디오를 검색 하 고 사용 하 여 Twitter toopost Twitter 피드 비디오 tooa 해당 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-109">For example, you can search for a video, and then use Twitter toopost that video tooa Twitter feed.</span></span>
 
-<span data-ttu-id="9c12b-110">이제 논리 앱을 만들어 시작할 수 있습니다. [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9c12b-110">You can get started by creating a logic app now, see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="e7dd3-110">이제 논리 앱을 만들어 시작할 수 있습니다. [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-110">You can get started by creating a logic app now, see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="create-the-connection-to-google-drive"></a><span data-ttu-id="9c12b-111">Google 드라이브에 대한 연결 만들기</span><span class="sxs-lookup"><span data-stu-id="9c12b-111">Create the connection to Google Drive</span></span>
-<span data-ttu-id="9c12b-112">논리 앱에 이 커넥터를 추가할 때 Google 드라이브에 연결할 권한을 논리 앱에 부여해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-112">When you add this connector to your logic apps, you must authorize logic apps to connect to your Google Drive.</span></span>
+## <a name="create-hello-connection-toogoogle-drive"></a><span data-ttu-id="e7dd3-111">Hello 연결 tooGoogle 드라이브 만들기</span><span class="sxs-lookup"><span data-stu-id="e7dd3-111">Create hello connection tooGoogle Drive</span></span>
+<span data-ttu-id="e7dd3-112">이 커넥터 tooyour 논리 앱을 추가 하면 논리 앱 tooconnect tooyour Google 드라이브에 권한을 부여 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-112">When you add this connector tooyour logic apps, you must authorize logic apps tooconnect tooyour Google Drive.</span></span>
 
-> [!INCLUDE [Steps to create a connection to googledrive](../../includes/connectors-create-api-googledrive.md)]
+> [!INCLUDE [Steps toocreate a connection toogoogledrive](../../includes/connectors-create-api-googledrive.md)]
 > 
 > 
 
-<span data-ttu-id="9c12b-113">연결을 만든 후에 폴더 경로 또는 파일 이름 등의 Google 드라이브 속성을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-113">After you create the connection, you enter the Google Drive properties, like the folder path or file name.</span></span> 
+<span data-ttu-id="e7dd3-113">Hello 연결을 만든 후 hello 폴더 경로 또는 파일 이름 처럼 hello Google 드라이브 속성을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-113">After you create hello connection, you enter hello Google Drive properties, like hello folder path or file name.</span></span> 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="9c12b-114">커넥터 관련 세부 정보</span><span class="sxs-lookup"><span data-stu-id="9c12b-114">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="e7dd3-114">커넥터 관련 세부 정보</span><span class="sxs-lookup"><span data-stu-id="e7dd3-114">Connector-specific details</span></span>
 
-<span data-ttu-id="9c12b-115">[커넥터 세부 정보](/connectors/googledrive/)에서 swagger에 정의된 모든 트리거 및 작업과 제한 사항도 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-115">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/googledrive/).</span></span>
+<span data-ttu-id="e7dd3-115">모든 트리거 및 hello swagger에 정의 된 작업을 확인 하 고 hello에 어떠한 제한도 볼 [connector 세부 정보](/connectors/googledrive/)합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-115">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/googledrive/).</span></span>
 
-## <a name="more-connectors"></a><span data-ttu-id="9c12b-116">추가 커넥터</span><span class="sxs-lookup"><span data-stu-id="9c12b-116">More connectors</span></span>
-<span data-ttu-id="9c12b-117">[API 목록](apis-list.md)으로 돌아갑니다.</span><span class="sxs-lookup"><span data-stu-id="9c12b-117">Go back to the [APIs list](apis-list.md).</span></span>
+## <a name="more-connectors"></a><span data-ttu-id="e7dd3-116">추가 커넥터</span><span class="sxs-lookup"><span data-stu-id="e7dd3-116">More connectors</span></span>
+<span data-ttu-id="e7dd3-117">Toohello 돌아가서 [Api 목록](apis-list.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="e7dd3-117">Go back toohello [APIs list](apis-list.md).</span></span>

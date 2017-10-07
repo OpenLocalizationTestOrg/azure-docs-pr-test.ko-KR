@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: aabe845e806eb99176f89695751023bb57353d41
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61617ca49685f294c2aaa58e2334c3ec0dfbb42f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-domain-services---supported-regions"></a><span data-ttu-id="65262-103">Azure AD Domain Services - 지원되는 지역</span><span class="sxs-lookup"><span data-stu-id="65262-103">Azure AD Domain Services - Supported regions</span></span>
-<span data-ttu-id="65262-104">Azure AD Domain Services를 사용할 수 있는 지역을 알아보려면 [지역별 Azure 서비스](https://azure.microsoft.com/regions/#services/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="65262-104">To learn where Azure AD Domain Services is available, see [Azure Services by region](https://azure.microsoft.com/regions/#services/).</span></span>
+# <a name="azure-ad-domain-services---supported-regions"></a><span data-ttu-id="97219-103">Azure AD Domain Services - 지원되는 지역</span><span class="sxs-lookup"><span data-stu-id="97219-103">Azure AD Domain Services - Supported regions</span></span>
+<span data-ttu-id="97219-104">Azure AD 도메인 서비스를 사용할 수 toolearn 참조 [지역별 Azure 서비스](https://azure.microsoft.com/regions/#services/)합니다.</span><span class="sxs-lookup"><span data-stu-id="97219-104">toolearn where Azure AD Domain Services is available, see [Azure Services by region](https://azure.microsoft.com/regions/#services/).</span></span>

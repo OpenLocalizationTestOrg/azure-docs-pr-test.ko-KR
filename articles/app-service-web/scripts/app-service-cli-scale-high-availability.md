@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 스크립트 샘플 - 전세계에 고가용성 아키텍처를 가진 웹앱 확장 | Microsoft Docs"
+title: "aaaAzure CLI 스크립트 샘플-웹 응용 프로그램을 높은 availabilty 아키텍처를 통해 전 세계 확장 | Microsoft Docs"
 description: "Azure CLI 스크립트 샘플 - 전세계에 고가용성 아키텍처를 가진 웹앱 확장"
 services: appservice
 documentationcenter: appservice
@@ -16,43 +16,43 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: c368bdc48f197ff5b491d1796d85abfd339051a6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b72fbccd7f2aaab58e4b4721e14dca14146c7c72
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="scale-a-web-app-worldwide-with-a-high-availability-architecture"></a><span data-ttu-id="a5c7f-103">전세계에 고가용성 아키텍처를 가진 웹앱 확장</span><span class="sxs-lookup"><span data-stu-id="a5c7f-103">Scale a web app worldwide with a high-availability architecture</span></span>
+# <a name="scale-a-web-app-worldwide-with-a-high-availability-architecture"></a><span data-ttu-id="c9ff3-103">전세계에 고가용성 아키텍처를 가진 웹앱 확장</span><span class="sxs-lookup"><span data-stu-id="c9ff3-103">Scale a web app worldwide with a high-availability architecture</span></span>
 
-<span data-ttu-id="a5c7f-104">이 시나리오에서는 리소스 그룹, 두 개의 App Service 계획, 두 개의 웹앱, Traffic Manager 프로필 및 두 개의 Traffic Manager 끝점을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-104">In this scenario you will create a resource group, two app service plans, two web apps, a traffic manager profile, and two traffic manager endpoints.</span></span> <span data-ttu-id="a5c7f-105">실행이 완료되면 가장 낮은 네트워크 대기 시간에 따라 웹앱의 전역적 가용성을 제공하는 가용성이 좋은 아키텍처를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-105">Once the exercise is complete you will have a high-available architecture which allows provides global availability of your web app based on the lowest network latency.</span></span>
+<span data-ttu-id="c9ff3-104">이 시나리오에서는 리소스 그룹, 두 개의 App Service 계획, 두 개의 웹앱, Traffic Manager 프로필 및 두 개의 Traffic Manager 끝점을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-104">In this scenario you will create a resource group, two app service plans, two web apps, a traffic manager profile, and two traffic manager endpoints.</span></span> <span data-ttu-id="c9ff3-105">우선을 사용할 수 있는 나면 hello 실습 완료 되 면 수 있는 아키텍처는 hello 가장 낮은 네트워크 대기 시간에 따라 웹 응용 프로그램의 글로벌 가용성을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-105">Once hello exercise is complete you will have a high-available architecture which allows provides global availability of your web app based on hello lowest network latency.</span></span>
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="a5c7f-106">CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-106">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="a5c7f-107">`az --version`을 실행하여 버전을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-107">Run `az --version` to find the version.</span></span> <span data-ttu-id="a5c7f-108">설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-108">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="c9ff3-106">Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-106">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="c9ff3-107">실행 `az --version` toofind hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-107">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="c9ff3-108">Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-108">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
 
-## <a name="sample-script"></a><span data-ttu-id="a5c7f-109">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="a5c7f-109">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="c9ff3-109">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="c9ff3-109">Sample script</span></span>
 
-<span data-ttu-id="a5c7f-110">[!code-azurecli-interactive[기본](../../../cli_scripts/app-service/scale-geographic/scale-geographic.sh "지리적 크기 조정")]</span><span class="sxs-lookup"><span data-stu-id="a5c7f-110">[!code-azurecli-interactive[main](../../../cli_scripts/app-service/scale-geographic/scale-geographic.sh "Geographic Scale")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/scale-geographic/scale-geographic.sh "Geographic Scale")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
-## <a name="script-explanation"></a><span data-ttu-id="a5c7f-111">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="a5c7f-111">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="c9ff3-110">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="c9ff3-110">Script explanation</span></span>
 
-<span data-ttu-id="a5c7f-112">이 스크립트는 다음 명령을 사용하여 리소스 그룹, 웹앱, Traffic Manager 프로필 및 모든 관련된 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-112">This script uses the following commands to create a resource group, web app, traffic manager profile, and all related resources.</span></span> <span data-ttu-id="a5c7f-113">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-113">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="c9ff3-111">이 스크립트 명령 toocreate 리소스 그룹, 웹 응용 프로그램, 트래픽 관리자 프로필 뒤 hello를 사용 하 고 모든 관련 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-111">This script uses hello following commands toocreate a resource group, web app, traffic manager profile, and all related resources.</span></span> <span data-ttu-id="c9ff3-112">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-112">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="a5c7f-114">명령</span><span class="sxs-lookup"><span data-stu-id="a5c7f-114">Command</span></span> | <span data-ttu-id="a5c7f-115">참고 사항</span><span class="sxs-lookup"><span data-stu-id="a5c7f-115">Notes</span></span> |
+| <span data-ttu-id="c9ff3-113">명령</span><span class="sxs-lookup"><span data-stu-id="c9ff3-113">Command</span></span> | <span data-ttu-id="c9ff3-114">참고 사항</span><span class="sxs-lookup"><span data-stu-id="c9ff3-114">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="a5c7f-116">az group create</span><span class="sxs-lookup"><span data-stu-id="a5c7f-116">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="a5c7f-117">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-117">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="a5c7f-118">az appservice plan create</span><span class="sxs-lookup"><span data-stu-id="a5c7f-118">az appservice plan create</span></span>](https://docs.microsoft.com/cli/azure/appservice/plan#create) | <span data-ttu-id="a5c7f-119">App Service 계획을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-119">Creates an App Service plan.</span></span> <span data-ttu-id="a5c7f-120">Azure 웹앱에 대한 서버 팜과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-120">This is like a server farm for your Azure web app.</span></span> |
-| [<span data-ttu-id="a5c7f-121">az webapp create</span><span class="sxs-lookup"><span data-stu-id="a5c7f-121">az webapp create</span></span>](https://docs.microsoft.com/cli/azure/webapp#create) | <span data-ttu-id="a5c7f-122">Azure 웹앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-122">Creates an Azure web app.</span></span> |
-| [<span data-ttu-id="a5c7f-123">az network traffic-manager profile create</span><span class="sxs-lookup"><span data-stu-id="a5c7f-123">az network traffic-manager profile create</span></span>](https://docs.microsoft.com/cli/azure/network/traffic-manager/profile#create) | <span data-ttu-id="a5c7f-124">Azure Traffic Manager 프로필을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-124">Creates an Azure Traffic Manager profile.</span></span> |
-| [<span data-ttu-id="a5c7f-125">az network traffic-manager endpoint create</span><span class="sxs-lookup"><span data-stu-id="a5c7f-125">az network traffic-manager endpoint create</span></span>](https://docs.microsoft.com/cli/azure/network/traffic-manager/endpoint#create) | <span data-ttu-id="a5c7f-126">Azure Traffic Manager 프로필에 끝점을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-126">Adds a endpoint to an Azure Traffic Manager Profile.</span></span> |
+| [<span data-ttu-id="c9ff3-115">az group create</span><span class="sxs-lookup"><span data-stu-id="c9ff3-115">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="c9ff3-116">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-116">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="c9ff3-117">az appservice plan create</span><span class="sxs-lookup"><span data-stu-id="c9ff3-117">az appservice plan create</span></span>](https://docs.microsoft.com/cli/azure/appservice/plan#create) | <span data-ttu-id="c9ff3-118">App Service 계획을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-118">Creates an App Service plan.</span></span> <span data-ttu-id="c9ff3-119">Azure 웹앱에 대한 서버 팜과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-119">This is like a server farm for your Azure web app.</span></span> |
+| [<span data-ttu-id="c9ff3-120">az webapp create</span><span class="sxs-lookup"><span data-stu-id="c9ff3-120">az webapp create</span></span>](https://docs.microsoft.com/cli/azure/webapp#create) | <span data-ttu-id="c9ff3-121">Azure 웹앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-121">Creates an Azure web app.</span></span> |
+| [<span data-ttu-id="c9ff3-122">az network traffic-manager profile create</span><span class="sxs-lookup"><span data-stu-id="c9ff3-122">az network traffic-manager profile create</span></span>](https://docs.microsoft.com/cli/azure/network/traffic-manager/profile#create) | <span data-ttu-id="c9ff3-123">Azure Traffic Manager 프로필을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-123">Creates an Azure Traffic Manager profile.</span></span> |
+| [<span data-ttu-id="c9ff3-124">az network traffic-manager endpoint create</span><span class="sxs-lookup"><span data-stu-id="c9ff3-124">az network traffic-manager endpoint create</span></span>](https://docs.microsoft.com/cli/azure/network/traffic-manager/endpoint#create) | <span data-ttu-id="c9ff3-125">끝점 tooan Azure 트래픽 관리자 프로필을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-125">Adds a endpoint tooan Azure Traffic Manager Profile.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="a5c7f-127">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a5c7f-127">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c9ff3-126">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c9ff3-126">Next steps</span></span>
 
-<span data-ttu-id="a5c7f-128">Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-128">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="c9ff3-127">Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-127">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="a5c7f-129">추가 App Service CLI 스크립트 샘플은 [Azure App Service 설명서](../app-service-cli-samples.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5c7f-129">Additional App Service CLI script samples can be found in the [Azure App Service documentation](../app-service-cli-samples.md).</span></span>
+<span data-ttu-id="c9ff3-128">추가 응용 프로그램 서비스 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 앱 서비스 설명서](../app-service-cli-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="c9ff3-128">Additional App Service CLI script samples can be found in hello [Azure App Service documentation](../app-service-cli-samples.md).</span></span>

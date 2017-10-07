@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 .NET AngularJS 단일 페이지 앱 시작하기 | Microsoft Docs"
-description: "개인 Microsoft 계정과 회사 또는 학교 계정이 있는 사용자로 로그인하는 Angular JS 단일 페이지 앱을 빌드하는 방법입니다."
+title: "AD aaaAzure v2.0.NET AngularJS 단일 페이지 응용 프로그램 시작 | Microsoft Docs"
+description: "Toobuild 두 개인 Microsoft와 사용자가 로그인 하는 각도 JS 단일 페이지 응용 프로그램 계정 및 작동 방법 또는 학교 계정입니다."
 services: active-directory
 documentationcenter: 
 author: jmprieur
@@ -15,54 +15,54 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: c68180c0ecabf5c0732f0db77ef1f3cc93be965b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bd3fc8dce91eb0bedcbfed47a9b3ef52c5568c6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-angularjs-single-page-app---net"></a><span data-ttu-id="64efb-103">AngularJS 단일 페이지 앱에 로그인 추가 - .NET</span><span class="sxs-lookup"><span data-stu-id="64efb-103">Add sign-in to an AngularJS single page app - .NET</span></span>
-<span data-ttu-id="64efb-104">이 문서에서는 Azure Active Directory v2.0 끝점을 사용하여 Microsoft 지원 계정을 사용한 로그인을 AngularJS 앱에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-104">In this article we'll add sign in with Microsoft powered accounts to an AngularJS app using the Azure Active Directory v2.0 endpoint.</span></span>  <span data-ttu-id="64efb-105">v2.0 끝점을 사용하면 앱 내에서 단일 통합을 수행할 수 있고 개인 및 회사/학교 계정을 사용하여 사용자를 인증할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-105">The v2.0 endpoint enables you to perform a single integration in your app and authenticate users with both personal and work/school accounts.</span></span>
+# <a name="add-sign-in-tooan-angularjs-single-page-app---net"></a><span data-ttu-id="0ff1f-103">로그인 tooan AngularJS 단일 페이지 앱 추가-.NET</span><span class="sxs-lookup"><span data-stu-id="0ff1f-103">Add sign-in tooan AngularJS single page app - .NET</span></span>
+<span data-ttu-id="0ff1f-104">이 문서의 hello Azure Active Directory v2.0 endpoint를 사용 하 여 전원이 Microsoft 계정 tooan AngularJS 앱을 사용 하 여 로그인을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-104">In this article we'll add sign in with Microsoft powered accounts tooan AngularJS app using hello Azure Active Directory v2.0 endpoint.</span></span>  <span data-ttu-id="0ff1f-105">hello v2.0 끝점 tooperform 단일 통합 앱에 있으며 사용자 개인 정보와 작업/학교 계정으로 인증 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-105">hello v2.0 endpoint enables you tooperform a single integration in your app and authenticate users with both personal and work/school accounts.</span></span>
 
-<span data-ttu-id="64efb-106">이 샘플은 Azure AD의 OAuth 전달자 토큰을 사용하여 보안이 유지되고 .NET 4.5 MVC 프레임워크를 사용하여 작성된, 백 엔드 REST API에 작업을 저장하는 간단한 할 일 모음 단일 페이지 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-106">This sample is a simple To-Do List single page app that stores tasks in a backend REST API, written using the .NET 4.5 MVC framework and secured using OAuth bearer tokens from Azure AD.</span></span>  <span data-ttu-id="64efb-107">AngularJS 앱은 오픈 소스 JavaScript 인증 라이브러리 [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) 를 사용하여 전반적인 로그인 프로세스를 처리하고 REST API 호출용 토큰을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-107">The AngularJS app will use our open source JavaScript authentication library [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) to handle the entire sign in process and acquire tokens for calling the REST API.</span></span>  <span data-ttu-id="64efb-108">동일한 패턴이 [Microsoft Graph](https://graph.microsoft.com)와 같은 다른 REST API에 대한 인증에 적용될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-108">The same pattern can be applied to authenticate to other REST APIs, like the [Microsoft Graph](https://graph.microsoft.com).</span></span>
+<span data-ttu-id="0ff1f-106">이 샘플은 백 엔드 hello.NET 4.5 MVC 프레임 워크를 사용 하 여 작성 하 고 Azure AD에서 OAuth 전달자 토큰을 사용 하 여 보안 REST API 작업을 저장 하는 간단한 할 일 목록 단일 페이지 앱.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-106">This sample is a simple To-Do List single page app that stores tasks in a backend REST API, written using hello .NET 4.5 MVC framework and secured using OAuth bearer tokens from Azure AD.</span></span>  <span data-ttu-id="0ff1f-107">hello AngularJS 응용 프로그램은 사용이 오픈 소스 JavaScript 인증 라이브러리 [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) toohandle 전체 로그인 프로세스를 hello 및 REST API 호출 hello에 대 한 토큰을 획득 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-107">hello AngularJS app will use our open source JavaScript authentication library [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) toohandle hello entire sign in process and acquire tokens for calling hello REST API.</span></span>  <span data-ttu-id="0ff1f-108">hello 동일한 패턴 수 hello와 같은 적용된 tooauthenticate tooother REST Api [Microsoft Graph](https://graph.microsoft.com)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-108">hello same pattern can be applied tooauthenticate tooother REST APIs, like hello [Microsoft Graph](https://graph.microsoft.com).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="64efb-109">일부 Azure Active Directory 시나리오 및 기능만 v2.0 끝점에서 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-109">Not all Azure Active Directory scenarios & features are supported by the v2.0 endpoint.</span></span>  <span data-ttu-id="64efb-110">v2.0 끝점을 사용해야 하는지 확인하려면 [v2.0 제한 사항](active-directory-v2-limitations.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="64efb-110">To determine if you should use the v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
+> <span data-ttu-id="0ff1f-109">모든 Azure Active Directory 시나리오 및 기능 hello v2.0 끝점에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-109">Not all Azure Active Directory scenarios & features are supported by hello v2.0 endpoint.</span></span>  <span data-ttu-id="0ff1f-110">에 대해 알아보세요 hello v2.0 끝점을 사용 해야 하는 경우 toodetermine [v2.0 제한](active-directory-v2-limitations.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-110">toodetermine if you should use hello v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
 > 
 > 
 
-## <a name="download"></a><span data-ttu-id="64efb-111">다운로드</span><span class="sxs-lookup"><span data-stu-id="64efb-111">Download</span></span>
-<span data-ttu-id="64efb-112">시작하려면 Visual Studio를 다운로드해서 설치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-112">To get started, you'll need to download & install Visual Studio.</span></span>  <span data-ttu-id="64efb-113">그 후 골격 앱을 복제하거나 [다운로드](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) 합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-113">Then you can clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) a skeleton app:</span></span>
+## <a name="download"></a><span data-ttu-id="0ff1f-111">다운로드</span><span class="sxs-lookup"><span data-stu-id="0ff1f-111">Download</span></span>
+<span data-ttu-id="0ff1f-112">시작 tooget toodownload 필요한 및 Visual Studio를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-112">tooget started, you'll need toodownload & install Visual Studio.</span></span>  <span data-ttu-id="0ff1f-113">그 후 골격 앱을 복제하거나 [다운로드](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-113">Then you can clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) a skeleton app:</span></span>
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet.git
 ```
 
-<span data-ttu-id="64efb-114">골격 앱은 간단한 AngularJS 앱에 대한 모든 상용구 코드를 포함하지만 ID 관련 부분은 전혀 포함하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-114">The skeleton app includes all the boilerplate code for a simple AngularJS app, but is missing all of the identity-related pieces.</span></span>  <span data-ttu-id="64efb-115">따라서 진행하지 않으려면 전체 샘플을 대신 복제하거나 [다운로드](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) 합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-115">If you don't want to follow along, you can instead clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) the completed sample.</span></span>
+<span data-ttu-id="0ff1f-114">hello 기본 응용 프로그램에는 간단한 AngularJS 앱에 대 한 모든 hello 상용구 코드가 포함 되어 있지만 모든 hello id 관련 조각이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-114">hello skeleton app includes all hello boilerplate code for a simple AngularJS app, but is missing all of hello identity-related pieces.</span></span>  <span data-ttu-id="0ff1f-115">대신 복제할 수 toofollow와 함께 사용 하지 않으려는 경우 또는 [다운로드](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) 완료 hello 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-115">If you don't want toofollow along, you can instead clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) hello completed sample.</span></span>
 
 ```
 git clone https://github.com/AzureADSamples/SinglePageApp-AngularJS-DotNet.git
 ```
 
-## <a name="register-an-app"></a><span data-ttu-id="64efb-116">앱 등록</span><span class="sxs-lookup"><span data-stu-id="64efb-116">Register an app</span></span>
-<span data-ttu-id="64efb-117">우선 [앱 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)에서 앱을 만들거나 [자세한 단계](active-directory-v2-app-registration.md)에 따라서 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-117">First, create an app in the [App Registration Portal](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow these [detailed steps](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="64efb-118">다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-118">Make sure to:</span></span>
+## <a name="register-an-app"></a><span data-ttu-id="0ff1f-116">앱 등록</span><span class="sxs-lookup"><span data-stu-id="0ff1f-116">Register an app</span></span>
+<span data-ttu-id="0ff1f-117">첫째, hello에서 앱을 만들 [응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), 있고이 따라 [자세한 단계는](active-directory-v2-app-registration.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-117">First, create an app in hello [App Registration Portal](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow these [detailed steps](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="0ff1f-118">다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-118">Make sure to:</span></span>
 
-* <span data-ttu-id="64efb-119">앱에 대한 **웹** 플랫폼을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-119">Add the **Web** platform for your app.</span></span>
-* <span data-ttu-id="64efb-120">올바른 **리디렉션 URI**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-120">Enter the correct **Redirect URI**.</span></span> <span data-ttu-id="64efb-121">이 샘플에 대한 기본값은 `https://localhost:44326/`입니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-121">The default for this sample is `https://localhost:44326/`.</span></span>
-* <span data-ttu-id="64efb-122">**암시적 흐름 허용** 확인란을 선택한 채로 둡니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-122">Leave the **Allow Implicit Flow** checkbox enabled.</span></span> 
+* <span data-ttu-id="0ff1f-119">Hello 추가 **웹** 응용 프로그램을 위한 플랫폼입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-119">Add hello **Web** platform for your app.</span></span>
+* <span data-ttu-id="0ff1f-120">올바른 hello 입력 **리디렉션 URI**합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-120">Enter hello correct **Redirect URI**.</span></span> <span data-ttu-id="0ff1f-121">이 샘플에 대 한 hello 기본값은 `https://localhost:44326/`합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-121">hello default for this sample is `https://localhost:44326/`.</span></span>
+* <span data-ttu-id="0ff1f-122">Hello 둡니다 **암시적 흐름 허용** 사용 하도록 설정 하는 확인란을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-122">Leave hello **Allow Implicit Flow** checkbox enabled.</span></span> 
 
-<span data-ttu-id="64efb-123">앱에 할당된 **응용 프로그램 ID**를 적어둡니다. 곧 이 정보가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-123">Copy down the **Application ID** that is assigned to your app, you'll need it shortly.</span></span> 
+<span data-ttu-id="0ff1f-123">Hello 아래로 복사 **응용 프로그램 ID** 할당된 tooyour 응용 프로그램을 잠시 후에 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-123">Copy down hello **Application ID** that is assigned tooyour app, you'll need it shortly.</span></span> 
 
-## <a name="install-adaljs"></a><span data-ttu-id="64efb-124">adal.js 설치</span><span class="sxs-lookup"><span data-stu-id="64efb-124">Install adal.js</span></span>
-<span data-ttu-id="64efb-125">시작하려면 다운로드한 프로젝트로 이동하여 adal.js를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-125">To start, navigate to project you downloaded and install adal.js.</span></span>  <span data-ttu-id="64efb-126">[bower](http://bower.io/) 가 설치되어 있는 경우 이 명령을 실행하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-126">If you have [bower](http://bower.io/) installed, you can just run this command.</span></span>  <span data-ttu-id="64efb-127">종속성 버전 불일치가 있는 경우 높은 버전을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-127">For any dependency version mismatches, just choose the higher version.</span></span>
+## <a name="install-adaljs"></a><span data-ttu-id="0ff1f-124">adal.js 설치</span><span class="sxs-lookup"><span data-stu-id="0ff1f-124">Install adal.js</span></span>
+<span data-ttu-id="0ff1f-125">toostart, 다운로드 한 tooproject 이동한 adal.js를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-125">toostart, navigate tooproject you downloaded and install adal.js.</span></span>  <span data-ttu-id="0ff1f-126">[bower](http://bower.io/) 가 설치되어 있는 경우 이 명령을 실행하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-126">If you have [bower](http://bower.io/) installed, you can just run this command.</span></span>  <span data-ttu-id="0ff1f-127">모든 종속성 버전 불일치 hello 더 높은 버전을 선택 하기만 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-127">For any dependency version mismatches, just choose hello higher version.</span></span>
 
 ```
 bower install adal-angular#experimental
 ```
 
-<span data-ttu-id="64efb-128">또는 [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js)와 [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js)를 수동으로 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-128">Alternatively, you can manually download [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) and [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).</span></span>  <span data-ttu-id="64efb-129">두 파일을 `TodoSPA` 프로젝트의 `app/lib/adal-angular-experimental/dist` 디렉터리에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-129">Add both files to the `app/lib/adal-angular-experimental/dist` directory of the `TodoSPA` project.</span></span>
+<span data-ttu-id="0ff1f-128">또는 [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js)와 [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js)를 수동으로 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-128">Alternatively, you can manually download [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) and [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).</span></span>  <span data-ttu-id="0ff1f-129">두 파일 toohello 추가 `app/lib/adal-angular-experimental/dist` hello 디렉터리로 `TodoSPA` 프로젝트.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-129">Add both files toohello `app/lib/adal-angular-experimental/dist` directory of hello `TodoSPA` project.</span></span>
 
-<span data-ttu-id="64efb-130">이제 Visual Studio에서 프로젝트를 열고 기본 페이지의 본문 끝에 adal.js를 로드합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-130">Now open the project in Visual Studio, and load adal.js at the end of the main page's body:</span></span>
+<span data-ttu-id="0ff1f-130">Visual Studio에서 hello 프로젝트를 열고 hello 기본 페이지 본문의 hello 끝에 adal.js 로드 이제 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-130">Now open hello project in Visual Studio, and load adal.js at hello end of hello main page's body:</span></span>
 
 ```html
 <!--index.html-->
@@ -75,8 +75,8 @@ bower install adal-angular#experimental
 ...
 ```
 
-## <a name="set-up-the-rest-api"></a><span data-ttu-id="64efb-131">REST API 설정</span><span class="sxs-lookup"><span data-stu-id="64efb-131">Set up the REST API</span></span>
-<span data-ttu-id="64efb-132">설정을 진행하면서, 백 엔드 REST API가 작동하도록 하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-132">While we're setting things up, let's get the backend REST API working.</span></span>  <span data-ttu-id="64efb-133">프로젝트의 루트에서 `web.config`를 열고 `audience` 값을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-133">In the root of the project, open `web.config` and replace the `audience` value.</span></span>  <span data-ttu-id="64efb-134">REST API는 이 값을 사용하여 AJAX 요청에 대해 Angular 앱으로부터 수신하는 토큰의 유효성을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-134">The REST API will use this value to validate tokens it receives from the Angular app on AJAX requests.</span></span>
+## <a name="set-up-hello-rest-api"></a><span data-ttu-id="0ff1f-131">REST API hello 설정</span><span class="sxs-lookup"><span data-stu-id="0ff1f-131">Set up hello REST API</span></span>
+<span data-ttu-id="0ff1f-132">에서는 설정 중, 있지만 hello 백 엔드 REST API 작업을 볼 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-132">While we're setting things up, let's get hello backend REST API working.</span></span>  <span data-ttu-id="0ff1f-133">Hello hello 프로젝트의 루트에서 열고 `web.config` hello 바꾸고 `audience` 값입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-133">In hello root of hello project, open `web.config` and replace hello `audience` value.</span></span>  <span data-ttu-id="0ff1f-134">hello REST API는 hello 각도 앱 AJAX 요청에서 받은이 값 toovalidate 토큰을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-134">hello REST API will use this value toovalidate tokens it receives from hello Angular app on AJAX requests.</span></span>
 
 ```xml
 <!--web.config-->
@@ -90,10 +90,10 @@ bower install adal-angular#experimental
 ...
 ```
 
-<span data-ttu-id="64efb-135">REST API 작동 방식에 대해서는 항상 많은 논의가 이뤄지고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-135">That's all the time we're going to spend discussing how the REST API works.</span></span>  <span data-ttu-id="64efb-136">코드를 자유롭게 살펴보고, Azure AD를 사용한 웹 API 보안 설정에 대해 자세히 알아보려면 [이 문서](active-directory-v2-devquickstarts-dotnet-api.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="64efb-136">Feel free to poke around in the code, but if you want to learn more about securing web APIs with Azure AD, check out [this article](active-directory-v2-devquickstarts-dotnet-api.md).</span></span> 
+<span data-ttu-id="0ff1f-135">그 hello 시간 toospend hello REST API의 작동 방식에 대해 논의 가져오겠습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-135">That's all hello time we're going toospend discussing how hello REST API works.</span></span>  <span data-ttu-id="0ff1f-136">웹 Api와 Azure AD 보안에 대 한 자세한 toolearn 원한다 면 체크 아웃 않고 hello 코드에서 가능한 toopoke 생각 될 [이 여기서](active-directory-v2-devquickstarts-dotnet-api.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-136">Feel free toopoke around in hello code, but if you want toolearn more about securing web APIs with Azure AD, check out [this article](active-directory-v2-devquickstarts-dotnet-api.md).</span></span> 
 
-## <a name="sign-users-in"></a><span data-ttu-id="64efb-137">사용자 로그인</span><span class="sxs-lookup"><span data-stu-id="64efb-137">Sign users in</span></span>
-<span data-ttu-id="64efb-138">이제 ID 코드를 작성해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-138">Time to write some identity code.</span></span>  <span data-ttu-id="64efb-139">이미 눈치채셨겠지만, adal.js는 AngularJS 공급자를 포함하며, 이것은 Angular 라우팅 메커니즘을 잘 활용합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-139">You might have already noticed that adal.js contains an AngularJS provider, which plays nicely with Angular routing mechanisms.</span></span>  <span data-ttu-id="64efb-140">먼저 adal 모듈을 앱에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-140">Start by adding the adal module to the app:</span></span>
+## <a name="sign-users-in"></a><span data-ttu-id="0ff1f-137">사용자 로그인</span><span class="sxs-lookup"><span data-stu-id="0ff1f-137">Sign users in</span></span>
+<span data-ttu-id="0ff1f-138">Toowrite 일부 identity 코드를 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-138">Time toowrite some identity code.</span></span>  <span data-ttu-id="0ff1f-139">이미 눈치채셨겠지만, adal.js는 AngularJS 공급자를 포함하며, 이것은 Angular 라우팅 메커니즘을 잘 활용합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-139">You might have already noticed that adal.js contains an AngularJS provider, which plays nicely with Angular routing mechanisms.</span></span>  <span data-ttu-id="0ff1f-140">Hello adal 모듈 toohello 앱을 추가 하 여 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-140">Start by adding hello adal module toohello app:</span></span>
 
 ```js
 // app/scripts/app.js
@@ -105,7 +105,7 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 ...
 ```
 
-<span data-ttu-id="64efb-141">이제 응용 프로그램 ID로 `adalProvider` 를 초기화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-141">You can now initialize the `adalProvider` with your Application ID:</span></span>
+<span data-ttu-id="0ff1f-141">이제 hello를 초기화할 수 `adalProvider` 응용 프로그램 id:</span><span class="sxs-lookup"><span data-stu-id="0ff1f-141">You can now initialize hello `adalProvider` with your Application ID:</span></span>
 
 ```js
 // app/scripts/app.js
@@ -114,22 +114,22 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 
 adalProvider.init({
 
-        // Use this value for the public instance of Azure AD
+        // Use this value for hello public instance of Azure AD
         instance: 'https://login.microsoftonline.com/', 
 
-        // The 'common' endpoint is used for multi-tenant applications like this one
+        // hello 'common' endpoint is used for multi-tenant applications like this one
         tenant: 'common',
 
-        // Your application id from the registration portal
+        // Your application id from hello registration portal
         clientId: '<Your-application-id>',
 
-        // If you're using IE, uncommment this line - the default HTML5 sessionStorage does not work for localhost.
+        // If you're using IE, uncommment this line - hello default HTML5 sessionStorage does not work for localhost.
         //cacheLocation: 'localStorage',
 
     }, $httpProvider);
 ```
 
-<span data-ttu-id="64efb-142">adal.js에 앱 보안과 사용자 로그인에 필요한 모든 정보가 준비되었습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-142">Great, now adal.js has all the information it needs to secure your app and sign users in.</span></span>  <span data-ttu-id="64efb-143">앱의 특정 경로에 대해 강제 로그인을 설정하려면 코드 한 줄만 추가하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-143">To force sign in for a particular route in the app, all it takes is one line of code:</span></span>
+<span data-ttu-id="0ff1f-142">이제 adal.js에 모든 hello 정보 크지 필요한 toosecure에 있는 앱과 로그인 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-142">Great, now adal.js has all hello information it needs toosecure your app and sign users in.</span></span>  <span data-ttu-id="0ff1f-143">걸리는 모든 hello 응용 프로그램에서 특정 경로 대 한 로그인 tooforce은 한 줄의 코드.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-143">tooforce sign in for a particular route in hello app, all it takes is one line of code:</span></span>
 
 ```js
 // app/scripts/app.js
@@ -139,37 +139,37 @@ adalProvider.init({
 }).when("/TodoList", {
     controller: "todoListCtrl",
     templateUrl: "/static/views/TodoList.html",
-    requireADLogin: true, // Ensures that the user must be logged in to access the route
+    requireADLogin: true, // Ensures that hello user must be logged in tooaccess hello route
 })
 
 ...
 ```
 
-<span data-ttu-id="64efb-144">이제 사용자가 `TodoList` 링크를 클릭하면 adal.js는 필요한 경우 로그인을 위해 Azure AD에 자동으로 리디렉션합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-144">Now when a user clicks the `TodoList` link, adal.js will automatically redirect to Azure AD for sign-in if necessary.</span></span>  <span data-ttu-id="64efb-145">컨트롤러에서 adal.js를 호출하여 명시적으로 로그인 및 로그아웃 요청을 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-145">You can also explicitly send sign-in and sign-out requests by invoking adal.js in your controllers:</span></span>
+<span data-ttu-id="0ff1f-144">이제 사용자가 클릭할 때 hello `TodoList` 링크, adal.js는 로그인에 대해 필요한 경우 AD tooAzure 리디렉션합니다 자동으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-144">Now when a user clicks hello `TodoList` link, adal.js will automatically redirect tooAzure AD for sign-in if necessary.</span></span>  <span data-ttu-id="0ff1f-145">컨트롤러에서 adal.js를 호출하여 명시적으로 로그인 및 로그아웃 요청을 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-145">You can also explicitly send sign-in and sign-out requests by invoking adal.js in your controllers:</span></span>
 
 ```js
 // app/scripts/homeCtrl.js
 
 angular.module('todoApp')
-// Load adal.js the same way for use in controllers and views   
+// Load adal.js hello same way for use in controllers and views   
 .controller('homeCtrl', ['$scope', 'adalAuthenticationService','$location', function ($scope, adalService, $location) {
     $scope.login = function () {
 
-        // Redirect the user to sign in
+        // Redirect hello user toosign in
         adalService.login();
 
     };
     $scope.logout = function () {
 
-        // Redirect the user to log out    
+        // Redirect hello user toolog out    
         adalService.logOut();
 
     };
 ...
 ```
 
-## <a name="display-user-info"></a><span data-ttu-id="64efb-146">사용자 정보 표시</span><span class="sxs-lookup"><span data-stu-id="64efb-146">Display user info</span></span>
-<span data-ttu-id="64efb-147">사용자가 로그인 했으니, 응용 프로그램에서 로그인한 사용자의 인증 데이터에 대한 액세스가 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-147">Now that the user is signed in, you'll probably need to access the signed-in user's authentication data in your application.</span></span>  <span data-ttu-id="64efb-148">Adal.js는 이 정보를 `userInfo` 개체에 노출합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-148">Adal.js exposes this information for you in the `userInfo` object.</span></span>  <span data-ttu-id="64efb-149">보기에서 이 개체에 액세스하려면 우선 adal.js를 해당 컨트롤러의 루트 범위에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-149">To access this object in a view, first add adal.js to the root scope of the corresponding controller:</span></span>
+## <a name="display-user-info"></a><span data-ttu-id="0ff1f-146">사용자 정보 표시</span><span class="sxs-lookup"><span data-stu-id="0ff1f-146">Display user info</span></span>
+<span data-ttu-id="0ff1f-147">Hello 사용자가 로그인 했으므로 응용 프로그램에 tooaccess hello 로그인 한 사용자의 인증 데이터를 아마도 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-147">Now that hello user is signed in, you'll probably need tooaccess hello signed-in user's authentication data in your application.</span></span>  <span data-ttu-id="0ff1f-148">Adal.js hello에이 정보를 노출 `userInfo` 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-148">Adal.js exposes this information for you in hello `userInfo` object.</span></span>  <span data-ttu-id="0ff1f-149">tooaccess 뷰에서이 개체에는 먼저 hello 해당 컨트롤러의 adal.js toohello 루트 범위 추가:</span><span class="sxs-lookup"><span data-stu-id="0ff1f-149">tooaccess this object in a view, first add adal.js toohello root scope of hello corresponding controller:</span></span>
 
 ```js
 // app/scripts/userDataCtrl.js
@@ -179,14 +179,14 @@ angular.module('todoApp')
 .controller('userDataCtrl', ['$scope', 'adalAuthenticationService', function ($scope, adalService) {}]);
 ```
 
-<span data-ttu-id="64efb-150">그런 다음 보기에서 `userInfo` 개체를 직접 처리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-150">Then you can directly address the `userInfo` object in your view:</span></span> 
+<span data-ttu-id="0ff1f-150">Hello를 직접 처리 한 다음 `userInfo` 보기에서 개체:</span><span class="sxs-lookup"><span data-stu-id="0ff1f-150">Then you can directly address hello `userInfo` object in your view:</span></span> 
 
 ```html
 <!--app/views/UserData.html-->
 
 ...
 
-    <!--Get the user's profile information from the ADAL userInfo object-->
+    <!--Get hello user's profile information from hello ADAL userInfo object-->
     <tr ng-repeat="(key, value) in userInfo.profile">
         <td>{{key}}</td>
         <td>{{value}}</td>
@@ -194,14 +194,14 @@ angular.module('todoApp')
 ...
 ```
 
-<span data-ttu-id="64efb-151">`userInfo` 개체를 사용하여 사용자가 로그인 상태인지 또는 로그아웃 상태인지를 판단할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-151">You can also use the `userInfo` object to determine if the user is signed in or not.</span></span>
+<span data-ttu-id="0ff1f-151">Hello를 사용할 수도 있습니다 `userInfo` hello 사용자의 로그인 한 경우 toodetermine 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-151">You can also use hello `userInfo` object toodetermine if hello user is signed in or not.</span></span>
 
 ```html
 <!--index.html-->
 
 ...
 
-    <!--Use the ADAL userInfo object to show the right login/logout button-->
+    <!--Use hello ADAL userInfo object tooshow hello right login/logout button-->
     <ul class="nav navbar-nav navbar-right">
         <li><a class="btn btn-link" ng-show="userInfo.isAuthenticated" ng-click="logout()">Logout</a></li>
         <li><a class="btn btn-link" ng-hide="userInfo.isAuthenticated" ng-click="login()">Login</a></li>
@@ -209,12 +209,12 @@ angular.module('todoApp')
 ...
 ```
 
-## <a name="call-the-rest-api"></a><span data-ttu-id="64efb-152">REST API 호출</span><span class="sxs-lookup"><span data-stu-id="64efb-152">Call the REST API</span></span>
-<span data-ttu-id="64efb-153">마지막으로 작업에 대한 생성, 읽기, 업데이트, 삭제를 위해 토큰을 가져오고 REST API를 호출하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-153">Finally, it's time to get some tokens and call the REST API to create, read, update, and delete tasks.</span></span>  <span data-ttu-id="64efb-154">무엇이 필요할까요?</span><span class="sxs-lookup"><span data-stu-id="64efb-154">Well guess what?</span></span>  <span data-ttu-id="64efb-155">*아무것도*할 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-155">You don't have to do *a thing*.</span></span>  <span data-ttu-id="64efb-156">Adal.js에서 토큰 가져오기, 캐싱, 새로 고침 작업을 자동으로 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-156">Adal.js will automatically take care of getting, caching, and refreshing tokens.</span></span>  <span data-ttu-id="64efb-157">REST API에 보내는 AJAX 요청에 토큰을 연결하는 작업도 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-157">It will also take care of attaching those tokens to outgoing AJAX requests that you send to the REST API.</span></span>  
+## <a name="call-hello-rest-api"></a><span data-ttu-id="0ff1f-152">Hello REST API를 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-152">Call hello REST API</span></span>
+<span data-ttu-id="0ff1f-153">마지막으로 일부 토큰 및 호출 REST API toocreate hello, 읽기, 업데이트 및 삭제 작업의 시간 tooget를입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-153">Finally, it's time tooget some tokens and call hello REST API toocreate, read, update, and delete tasks.</span></span>  <span data-ttu-id="0ff1f-154">무엇이 필요할까요?</span><span class="sxs-lookup"><span data-stu-id="0ff1f-154">Well guess what?</span></span>  <span data-ttu-id="0ff1f-155">Toodo 없는 *사물*합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-155">You don't have toodo *a thing*.</span></span>  <span data-ttu-id="0ff1f-156">Adal.js에서 토큰 가져오기, 캐싱, 새로 고침 작업을 자동으로 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-156">Adal.js will automatically take care of getting, caching, and refreshing tokens.</span></span>  <span data-ttu-id="0ff1f-157">또한 자동으로 수행 됩니다 toooutgoing AJAX 요청 toohello REST API를 보내 해당 토큰을 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-157">It will also take care of attaching those tokens toooutgoing AJAX requests that you send toohello REST API.</span></span>  
 
-<span data-ttu-id="64efb-158">작동 원리는 바로 이렇습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-158">How exactly does this work?</span></span> <span data-ttu-id="64efb-159">모두 [AngularJS 인터셉터](https://docs.angularjs.org/api/ng/service/$http)덕분으로, adal.js에서 나가고 들어오는 http 메시지를 변환할 수 있게 해줍니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-159">It's all thanks to the magic of [AngularJS interceptors](https://docs.angularjs.org/api/ng/service/$http), which allows adal.js to transform outgoing and incoming http messages.</span></span>  <span data-ttu-id="64efb-160">또한 adal.js에서는 창과 동일한 도메인에 보내는 모든 요청이 AngularJS 앱과 동일한 응용 프로그램 ID용 토큰을 사용하는 것으로 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-160">Furthermore, adal.js assumes that any requests send to the same domain as the window should use tokens intended for the same Application ID as the AngularJS app.</span></span>  <span data-ttu-id="64efb-161">이런 이유 때문에 Angular 앱과 NodeJS REST API에서 동일한 응용 프로그램 ID를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-161">This is why we used the same Application ID in both the Angular app and in the NodeJS REST API.</span></span>  <span data-ttu-id="64efb-162">물론, 필요한 경우 이러한 동작을 무시하고 adal.js에서 다른 REST API용 토큰을 가져오도록 작성할 수 있지만 이 샘플 시나리오에서는 기본 사항대로 진행하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-162">Of course, you can override this behavior and tell adal.js to get tokens for other REST APIs if necessary - but for this simple scenario the defaults will do.</span></span>
+<span data-ttu-id="0ff1f-158">작동 원리는 바로 이렇습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-158">How exactly does this work?</span></span> <span data-ttu-id="0ff1f-159">모든 감사 toohello 매직은 [AngularJS 인터셉터](https://docs.angularjs.org/api/ng/service/$http), adal.js tootransform 들어오고 나가는 http 메시지 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-159">It's all thanks toohello magic of [AngularJS interceptors](https://docs.angularjs.org/api/ng/service/$http), which allows adal.js tootransform outgoing and incoming http messages.</span></span>  <span data-ttu-id="0ff1f-160">또한 adal.js 가정는 모든 요청 toohello를 전송 하는 동일한 도메인 hello 창을 위한 토큰을 사용 해야 하는 대로 hello 응용 프로그램 ID 같은 hello AngularJS 앱으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-160">Furthermore, adal.js assumes that any requests send toohello same domain as hello window should use tokens intended for hello same Application ID as hello AngularJS app.</span></span>  <span data-ttu-id="0ff1f-161">이 때문에 hello 사용 hello NodeJS REST API 및 hello 각도 앱 모두에 동일한 응용 프로그램 ID입니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-161">This is why we used hello same Application ID in both hello Angular app and in hello NodeJS REST API.</span></span>  <span data-ttu-id="0ff1f-162">물론,이 동작을 재정의 하 고 adal.js tooget 토큰-필요한 경우 다른 REST Api에 대 한 알 수 있지만이 간단한 시나리오 hello 기본값 작업으로 충분 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-162">Of course, you can override this behavior and tell adal.js tooget tokens for other REST APIs if necessary - but for this simple scenario hello defaults will do.</span></span>
 
-<span data-ttu-id="64efb-163">아래 코드 조각은 Azure AD의 전달자 토큰을 사용하여 손쉽게 요청을 보낼 수 있는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-163">Here's a snippet that shows how easy it is to send requests with bearer tokens from Azure AD:</span></span>
+<span data-ttu-id="0ff1f-163">얼마나 쉬운지 Azure AD에서 전달자 토큰을 사용 하 여 toosend 요청을 보여 주는 코드 조각은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-163">Here's a snippet that shows how easy it is toosend requests with bearer tokens from Azure AD:</span></span>
 
 ```js
 // app/scripts/todoListSvc.js
@@ -224,14 +224,14 @@ return $http.get('/api/tasks');
 ...
 ```
 
-<span data-ttu-id="64efb-164">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-164">Congratulations!</span></span>  <span data-ttu-id="64efb-165">Azure AD 통합 단일 페이지 앱이 완성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-165">Your Azure AD integrated single page app is now complete.</span></span>  <span data-ttu-id="64efb-166">수고 많으셨습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-166">Go ahead, take a bow.</span></span>  <span data-ttu-id="64efb-167">이제 앱에서 사용자를 인증하고, OpenID Connect를 사용하여 백 엔드 REST API를 안전하게 호출하고, 사용자에 대한 기본 정보를 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-167">It can authenticate users, securely call its backend REST API using OpenID Connect, and get basic information about the user.</span></span>  <span data-ttu-id="64efb-168">기본적으로, 개인 Microsoft 계정이나 Azure AD의 회사/학교 계정이 있는 모든 사용자를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-168">Out of the box, it supports any user with a personal Microsoft Account or a work/school account from Azure AD.</span></span>  <span data-ttu-id="64efb-169">앱을 실행하고 브라우저에서 `https://localhost:44326/`으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-169">Run the app, and in a browser navigate to `https://localhost:44326/`.</span></span>  <span data-ttu-id="64efb-170">개인 Microsoft 계정 또는 회사/학교 계정을 사용하여 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-170">Sign in using either a personal Microsoft account or a work/school account.</span></span>  <span data-ttu-id="64efb-171">사용자의 할 일 모음에 작업을 추가하고 로그아웃합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-171">Add tasks to the user's to-do list, and sign out.</span></span>  <span data-ttu-id="64efb-172">다른 유형의 계정으로 로그인을 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-172">Try signing in with the other type of account.</span></span> <span data-ttu-id="64efb-173">Azure AD 테넌트에서 회사/학교 사용자를 만들어야 하는 경우에는 [여기에서 만드는 방법을 알아봅니다(무료)](active-directory-howto-tenant.md) .</span><span class="sxs-lookup"><span data-stu-id="64efb-173">If you need an Azure AD tenant to create work/school users, [learn how to get one here](active-directory-howto-tenant.md) (it's free).</span></span>
+<span data-ttu-id="0ff1f-164">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-164">Congratulations!</span></span>  <span data-ttu-id="0ff1f-165">Azure AD 통합 단일 페이지 앱이 완성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-165">Your Azure AD integrated single page app is now complete.</span></span>  <span data-ttu-id="0ff1f-166">수고 많으셨습니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-166">Go ahead, take a bow.</span></span>  <span data-ttu-id="0ff1f-167">수 사용자 인증, 안전 하 게 해당 백 엔드 OpenID Connect를 사용 하 여 REST API를 호출 하 고 hello 사용자에 대 한 기본 정보를 얻을 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-167">It can authenticate users, securely call its backend REST API using OpenID Connect, and get basic information about hello user.</span></span>  <span data-ttu-id="0ff1f-168">Hello 초기 개인 Microsoft 계정 또는 Azure AD에서 작업/학교 계정이 있는 모든 사용자를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-168">Out of hello box, it supports any user with a personal Microsoft Account or a work/school account from Azure AD.</span></span>  <span data-ttu-id="0ff1f-169">Hello 응용 프로그램을 실행 하 고 브라우저에서 탐색 너무`https://localhost:44326/`합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-169">Run hello app, and in a browser navigate too`https://localhost:44326/`.</span></span>  <span data-ttu-id="0ff1f-170">개인 Microsoft 계정 또는 회사/학교 계정을 사용하여 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-170">Sign in using either a personal Microsoft account or a work/school account.</span></span>  <span data-ttu-id="0ff1f-171">작업 toohello 사용자의 할 일 목록에 추가 하 고 로그 아웃 합니다.  다른 유형의 계정 hello 시도 된에 서명 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-171">Add tasks toohello user's to-do list, and sign out.  Try signing in with hello other type of account.</span></span> <span data-ttu-id="0ff1f-172">Azure AD 테 넌 트 toocreate 작업/학교 사용자 해야 할 경우 [자세한 방법을 tooget 한 여기](active-directory-howto-tenant.md) (가능한 경우).</span><span class="sxs-lookup"><span data-stu-id="0ff1f-172">If you need an Azure AD tenant toocreate work/school users, [learn how tooget one here](active-directory-howto-tenant.md) (it's free).</span></span>
 
-<span data-ttu-id="64efb-174">v2.0 끝점에 대해 계속 알아보려면, [v2.0 개발자 가이드](active-directory-appmodel-v2-overview.md)로 돌아가세요.</span><span class="sxs-lookup"><span data-stu-id="64efb-174">To continue learning about the v2.0 endpoint, head back to our [v2.0 developer guide](active-directory-appmodel-v2-overview.md).</span></span>  <span data-ttu-id="64efb-175">추가 리소스는 다음을 확인해보세요.</span><span class="sxs-lookup"><span data-stu-id="64efb-175">For additional resources, check out:</span></span>
+<span data-ttu-id="0ff1f-173">헤드 백 tooour hello v2.0 끝점에 대해 알아보기 toocontinue [v2.0 개발자 가이드](active-directory-appmodel-v2-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-173">toocontinue learning about hello v2.0 endpoint, head back tooour [v2.0 developer guide](active-directory-appmodel-v2-overview.md).</span></span>  <span data-ttu-id="0ff1f-174">추가 리소스는 다음을 확인해보세요.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-174">For additional resources, check out:</span></span>
 
-* [<span data-ttu-id="64efb-176">GitHub의 Azure 샘플(영문) >></span><span class="sxs-lookup"><span data-stu-id="64efb-176">Azure-Samples on GitHub >></span></span>](https://github.com/Azure-Samples)
-* [<span data-ttu-id="64efb-177">스택 오버플로의 Azure AD(영문) >></span><span class="sxs-lookup"><span data-stu-id="64efb-177">Azure AD on Stack Overflow >></span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
-* <span data-ttu-id="64efb-178">[Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)의 Azure AD 설명서</span><span class="sxs-lookup"><span data-stu-id="64efb-178">Azure AD documentation on [Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)</span></span>
+* [<span data-ttu-id="0ff1f-175">GitHub의 Azure 샘플(영문) >></span><span class="sxs-lookup"><span data-stu-id="0ff1f-175">Azure-Samples on GitHub >></span></span>](https://github.com/Azure-Samples)
+* [<span data-ttu-id="0ff1f-176">스택 오버플로의 Azure AD(영문) >></span><span class="sxs-lookup"><span data-stu-id="0ff1f-176">Azure AD on Stack Overflow >></span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+* <span data-ttu-id="0ff1f-177">[Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)의 Azure AD 설명서</span><span class="sxs-lookup"><span data-stu-id="0ff1f-177">Azure AD documentation on [Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)</span></span>
 
-## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="64efb-179">당사 제품에 대한 보안 업데이트 가져오기</span><span class="sxs-lookup"><span data-stu-id="64efb-179">Get security updates for our products</span></span>
-<span data-ttu-id="64efb-180">[이 페이지](https://technet.microsoft.com/security/dd252948) 를 방문해서 보안 공지 경고를 구독하여 보안 사건이 발생할 때 알림을 받는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="64efb-180">We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.</span></span>
+## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="0ff1f-178">당사 제품에 대한 보안 업데이트 가져오기</span><span class="sxs-lookup"><span data-stu-id="0ff1f-178">Get security updates for our products</span></span>
+<span data-ttu-id="0ff1f-179">보안 사고를 방문 하 여 발생 하는 경우의 알림 tooget 좋습니다 [이 페이지](https://technet.microsoft.com/security/dd252948) 및 tooSecurity 자문 경고를 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ff1f-179">We encourage you tooget notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing tooSecurity Advisory Alerts.</span></span>
 

@@ -1,6 +1,6 @@
 ---
 title: "자습서: Kiteworks와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 Kiteworks 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Kiteworks 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,235 +13,235 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 2fd9b346cb6d838069ef94ee9c2a8d113f22779c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 406417dd7f58cc3f1fa0d9e86b5cad0c1d7be750
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-kiteworks"></a><span data-ttu-id="dde1f-103">자습서: Kiteworks와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="dde1f-103">Tutorial: Azure Active Directory integration with Kiteworks</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-kiteworks"></a><span data-ttu-id="06a20-103">자습서: Kiteworks와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="06a20-103">Tutorial: Azure Active Directory integration with Kiteworks</span></span>
 
-<span data-ttu-id="dde1f-104">이 자습서에서는 Azure AD(Azure Active Directory)와 Kiteworks를 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-104">In this tutorial, you learn how to integrate Kiteworks with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="06a20-104">이 자습서에 설명 어떻게 toointegrate Kiteworks Azure Active directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="06a20-104">In this tutorial, you learn how toointegrate Kiteworks with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="dde1f-105">Kiteworks를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-105">Integrating Kiteworks with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="06a20-105">다음 이점을 hello로 제공 Kiteworks Azure AD와 통합:</span><span class="sxs-lookup"><span data-stu-id="06a20-105">Integrating Kiteworks with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="dde1f-106">Kiteworks에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-106">You can control in Azure AD who has access to Kiteworks</span></span>
-- <span data-ttu-id="dde1f-107">사용자가 해당 Azure AD 계정으로 Kiteworks에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-107">You can enable your users to automatically get signed-on to Kiteworks (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="dde1f-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="06a20-106">액세스 tooKiteworks을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-106">You can control in Azure AD who has access tooKiteworks</span></span>
+- <span data-ttu-id="06a20-107">프로그램 사용자 tooautomatically get 로그온 tooKiteworks (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-107">You can enable your users tooautomatically get signed-on tooKiteworks (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="06a20-108">하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="dde1f-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="dde1f-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="06a20-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="dde1f-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="dde1f-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="06a20-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="06a20-110">Prerequisites</span></span>
 
-<span data-ttu-id="dde1f-111">Kiteworks와의 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-111">To configure Azure AD integration with Kiteworks, you need the following items:</span></span>
+<span data-ttu-id="06a20-111">다음 항목 hello가 필요 tooconfigure Kiteworks와 Azure AD 통합 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-111">tooconfigure Azure AD integration with Kiteworks, you need hello following items:</span></span>
 
-- <span data-ttu-id="dde1f-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="dde1f-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="dde1f-113">Kiteworks Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="dde1f-113">A Kiteworks single sign-on enabled subscription</span></span>
+- <span data-ttu-id="06a20-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="06a20-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="06a20-113">Kiteworks Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="06a20-113">A Kiteworks single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="dde1f-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="06a20-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="dde1f-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="06a20-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="dde1f-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="dde1f-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="dde1f-117">Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="06a20-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="06a20-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="06a20-117">Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="dde1f-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="dde1f-118">Scenario description</span></span>
-<span data-ttu-id="dde1f-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="dde1f-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="06a20-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="06a20-118">Scenario description</span></span>
+<span data-ttu-id="06a20-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="06a20-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="dde1f-121">갤러리에서 Kiteworks 추가</span><span class="sxs-lookup"><span data-stu-id="dde1f-121">Adding Kiteworks from the gallery</span></span>
-2. <span data-ttu-id="dde1f-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="dde1f-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="06a20-121">Kiteworks는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="06a20-121">Adding Kiteworks from hello gallery</span></span>
+2. <span data-ttu-id="06a20-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="06a20-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-kiteworks-from-the-gallery"></a><span data-ttu-id="dde1f-123">갤러리에서 Kiteworks 추가</span><span class="sxs-lookup"><span data-stu-id="dde1f-123">Adding Kiteworks from the gallery</span></span>
-<span data-ttu-id="dde1f-124">Kiteworks의 Azure AD 통합을 구성하려면 갤러리의 Kiteworks를 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-124">To configure the integration of Kiteworks into Azure AD, you need to add Kiteworks from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-kiteworks-from-hello-gallery"></a><span data-ttu-id="06a20-123">Kiteworks는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="06a20-123">Adding Kiteworks from hello gallery</span></span>
+<span data-ttu-id="06a20-124">tooconfigure hello와의 통합 Kiteworks Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Kiteworks tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-124">tooconfigure hello integration of Kiteworks into Azure AD, you need tooadd Kiteworks from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="dde1f-125">**갤러리에서 Kiteworks를 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="dde1f-125">**To add Kiteworks from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="06a20-125">**hello 갤러리에서 Kiteworks tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="06a20-125">**tooadd Kiteworks from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dde1f-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="06a20-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="dde1f-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="dde1f-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="06a20-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="06a20-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-129">Then go too**All applications**.</span></span>
 
     ![응용 프로그램][2]
     
-3. <span data-ttu-id="dde1f-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="06a20-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![응용 프로그램][3]
 
-4. <span data-ttu-id="dde1f-133">검색 상자에 **Kiteworks**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-133">In the search box, type **Kiteworks**.</span></span>
+4. <span data-ttu-id="06a20-133">Hello 검색 상자에 입력 **Kiteworks**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-133">In hello search box, type **Kiteworks**.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_search.png)
 
-5. <span data-ttu-id="dde1f-135">결과 패널에서 **Kiteworks**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-135">In the results panel, select **Kiteworks**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="06a20-135">Hello 결과 패널에서 선택 **Kiteworks**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-135">In hello results panel, select **Kiteworks**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="dde1f-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="dde1f-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="dde1f-138">이 섹션에서는 “Britta Simon”이라는 테스트 사용자를 기반으로 Kiteworks에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-138">In this section, you configure and test Azure AD single sign-on with Kiteworks based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="06a20-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="06a20-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="06a20-138">이 섹션에서는 “Britta Simon”이라는 테스트 사용자를 기반으로 Kiteworks에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-138">In this section, you configure and test Azure AD single sign-on with Kiteworks based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="dde1f-139">Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 Kiteworks 사용자가 누군지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Kiteworks is to a user in Azure AD.</span></span> <span data-ttu-id="dde1f-140">즉, Azure AD 사용자와 Kiteworks의 관련 사용자 간에 연결이 형성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-140">In other words, a link relationship between an Azure AD user and the related user in Kiteworks needs to be established.</span></span>
+<span data-ttu-id="06a20-139">Single sign on toowork에 대 한 Azure AD는 tooknow Kiteworks에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Kiteworks is tooa user in Azure AD.</span></span> <span data-ttu-id="06a20-140">즉, Azure AD 사용자 및 Kiteworks에 hello 관련된 사용자 간 링크 관계를 설정할 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-140">In other words, a link relationship between an Azure AD user and hello related user in Kiteworks needs toobe established.</span></span>
 
-<span data-ttu-id="dde1f-141">Kiteworks에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-141">In Kiteworks, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="06a20-141">Kiteworks에서 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-141">In Kiteworks, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="dde1f-142">Kiteworks에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-142">To configure and test Azure AD single sign-on with Kiteworks, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="06a20-142">tooconfigure 및 Kiteworks 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-142">tooconfigure and test Azure AD single sign-on with Kiteworks, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="dde1f-143">**[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="dde1f-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="dde1f-145">**[Kiteworks 테스트 사용자 만들기](#creating-a-kiteworks-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Kiteworks에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-145">**[Creating a Kiteworks test user](#creating-a-kiteworks-test-user)** - to have a counterpart of Britta Simon in Kiteworks that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="dde1f-146">**[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="dde1f-147">**[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="06a20-143">**[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="06a20-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="06a20-145">**[Kiteworks 테스트 사용자 만들기](#creating-a-kiteworks-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 Kiteworks에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-145">**[Creating a Kiteworks test user](#creating-a-kiteworks-test-user)** - toohave a counterpart of Britta Simon in Kiteworks that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="06a20-146">**[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="06a20-147">**[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="06a20-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="dde1f-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="dde1f-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="06a20-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="06a20-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="dde1f-149">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Kiteworks 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Kiteworks application.</span></span>
+<span data-ttu-id="06a20-149">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Kiteworks 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Kiteworks application.</span></span>
 
-<span data-ttu-id="dde1f-150">**Kiteworks에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="dde1f-150">**To configure Azure AD single sign-on with Kiteworks, perform the following steps:**</span></span>
+<span data-ttu-id="06a20-150">**tooconfigure Azure AD single sign on, Kiteworks와 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="06a20-150">**tooconfigure Azure AD single sign-on with Kiteworks, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dde1f-151">Azure Portal의 **Kiteworks** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-151">In the Azure portal, on the **Kiteworks** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="06a20-151">Hello hello에 Azure 포털에서에서 **Kiteworks** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-151">In hello Azure portal, on hello **Kiteworks** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-on 구성][4]
 
-2. <span data-ttu-id="dde1f-153">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="06a20-153">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_samlbase.png)
 
-3. <span data-ttu-id="dde1f-155">**Kiteworks 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-155">On the **Kiteworks Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="06a20-155">Hello에 **Kiteworks 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-155">On hello **Kiteworks Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_url.png)
 
-    <span data-ttu-id="dde1f-157">a.</span><span class="sxs-lookup"><span data-stu-id="dde1f-157">a.</span></span> <span data-ttu-id="dde1f-158">**로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<subdomain>.kiteworks.com`</span><span class="sxs-lookup"><span data-stu-id="dde1f-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<subdomain>.kiteworks.com`</span></span>
+    <span data-ttu-id="06a20-157">a.</span><span class="sxs-lookup"><span data-stu-id="06a20-157">a.</span></span> <span data-ttu-id="06a20-158">Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<subdomain>.kiteworks.com`</span><span class="sxs-lookup"><span data-stu-id="06a20-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<subdomain>.kiteworks.com`</span></span>
 
-    <span data-ttu-id="dde1f-159">b.</span><span class="sxs-lookup"><span data-stu-id="dde1f-159">b.</span></span> <span data-ttu-id="dde1f-160">**식별자** 텍스트 상자에서 `https://<subdomain>.kiteworks.com/sp/module.php/saml/sp/saml2-acs.php/sp-sso` 패턴을 사용하여 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<subdomain>.kiteworks.com/sp/module.php/saml/sp/saml2-acs.php/sp-sso`</span></span>
+    <span data-ttu-id="06a20-159">b.</span><span class="sxs-lookup"><span data-stu-id="06a20-159">b.</span></span> <span data-ttu-id="06a20-160">Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<subdomain>.kiteworks.com/sp/module.php/saml/sp/saml2-acs.php/sp-sso`</span><span class="sxs-lookup"><span data-stu-id="06a20-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<subdomain>.kiteworks.com/sp/module.php/saml/sp/saml2-acs.php/sp-sso`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="dde1f-161">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-161">These values are not real.</span></span> <span data-ttu-id="dde1f-162">실제 로그온 URL 및 식별자로 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="dde1f-163">이러한 값을 얻으려면 [Kiteworks 클라이언트 지원 팀](http://accellion.com/support)에 문의하세요.</span><span class="sxs-lookup"><span data-stu-id="dde1f-163">Contact [Kiteworks Client support team](http://accellion.com/support) to get these values.</span></span> 
+    > <span data-ttu-id="06a20-161">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-161">These values are not real.</span></span> <span data-ttu-id="06a20-162">이러한 항목을 업데이트 로그온 URL과 식별자 실제 hello로 값입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="06a20-163">연락처 [Kiteworks 클라이언트 지원 팀](http://accellion.com/support) tooget 이러한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-163">Contact [Kiteworks Client support team](http://accellion.com/support) tooget these values.</span></span> 
  
-4. <span data-ttu-id="dde1f-164">**SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-164">On the **SAML Signing Certificate** section, click **Certificate (Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="06a20-164">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **인증서 (Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-164">On hello **SAML Signing Certificate** section, click **Certificate (Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_certificate.png) 
 
-5. <span data-ttu-id="dde1f-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="06a20-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-166">Click **Save** button.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="dde1f-168">**Kiteworks 구성** 섹션에서 **Kiteworks 구성**을 클릭하여 **로그온 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-168">On the **Kiteworks Configuration** section, click **Configure Kiteworks** to open **Configure sign-on** window.</span></span> <span data-ttu-id="dde1f-169">**빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-169">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="06a20-168">Hello에 **Kiteworks 구성** 섹션에서 클릭 **구성 Kiteworks** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="06a20-168">On hello **Kiteworks Configuration** section, click **Configure Kiteworks** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="06a20-169">복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="06a20-169">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_configure.png) 
 
-7. <span data-ttu-id="dde1f-171">Kiteworks 회사 사이트에 관리자 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-171">Sign on to your Kiteworks company site as an administrator.</span></span>
+7. <span data-ttu-id="06a20-171">관리자 권한으로 Kiteworks 회사 사이트 tooyour에 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-171">Sign on tooyour Kiteworks company site as an administrator.</span></span>
 
-8. <span data-ttu-id="dde1f-172">위쪽에 도구 모음에서 **설정**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-172">In the toolbar on the top, click **Settings**.</span></span>
+8. <span data-ttu-id="06a20-172">도구 모음의 hello hello 위쪽에 클릭 **설정을**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-172">In hello toolbar on hello top, click **Settings**.</span></span>
    
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_06.png) 
 
-9. <span data-ttu-id="dde1f-174">**인증 및 권한 부여** 섹션에서 **SSO 설치**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-174">In the **Authentication and Authorization** section, click **SSO Setup**.</span></span> 
+9. <span data-ttu-id="06a20-174">Hello에 **인증 및 권한 부여** 섹션에서 클릭 **SSO 설치**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-174">In hello **Authentication and Authorization** section, click **SSO Setup**.</span></span> 
    
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_07.png)
  
-10. <span data-ttu-id="dde1f-176">SSO 설정 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-176">On the SSO Setup page, perform the following steps:</span></span>
+10. <span data-ttu-id="06a20-176">Hello SSO 설치 페이지에서 다음 단계는 hello를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-176">On hello SSO Setup page, perform hello following steps:</span></span>
    
-    ![Single Sign-On 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_09.png)   
+    ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_09.png)   
 
-    <span data-ttu-id="dde1f-178">a.</span><span class="sxs-lookup"><span data-stu-id="dde1f-178">a.</span></span> <span data-ttu-id="dde1f-179">**SSO를 통해 인증**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-179">Select **Authenticate via SSO**.</span></span>
+    <span data-ttu-id="06a20-178">a.</span><span class="sxs-lookup"><span data-stu-id="06a20-178">a.</span></span> <span data-ttu-id="06a20-179">**SSO를 통해 인증**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-179">Select **Authenticate via SSO**.</span></span>
 
-    <span data-ttu-id="dde1f-180">b.</span><span class="sxs-lookup"><span data-stu-id="dde1f-180">b.</span></span> <span data-ttu-id="dde1f-181">**AuthnRequest 시작**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-181">Select **Initiate AuthnRequest**.</span></span>
+    <span data-ttu-id="06a20-180">b.</span><span class="sxs-lookup"><span data-stu-id="06a20-180">b.</span></span> <span data-ttu-id="06a20-181">**AuthnRequest 시작**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-181">Select **Initiate AuthnRequest**.</span></span>
 
-    <span data-ttu-id="dde1f-182">c.</span><span class="sxs-lookup"><span data-stu-id="dde1f-182">c.</span></span> <span data-ttu-id="dde1f-183">Azure Portal에서 복사한 **SAML 엔터티 ID**를 **IDP 엔터티 ID** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-183">In the **IDP Entity ID** textbox, paste the value of **SAML Entity ID**, which you have copied from Azure portal.</span></span> 
+    <span data-ttu-id="06a20-182">c.</span><span class="sxs-lookup"><span data-stu-id="06a20-182">c.</span></span> <span data-ttu-id="06a20-183">Hello에 **IDP 엔터티 ID** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID**, Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-183">In hello **IDP Entity ID** textbox, paste hello value of **SAML Entity ID**, which you have copied from Azure portal.</span></span> 
 
-    <span data-ttu-id="dde1f-184">d.</span><span class="sxs-lookup"><span data-stu-id="dde1f-184">d.</span></span> <span data-ttu-id="dde1f-185">Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL**을 **Single Sign-On 서비스 URL** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-185">In the **Single Sign-On Service URL** textbox, paste the value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="06a20-184">d.</span><span class="sxs-lookup"><span data-stu-id="06a20-184">d.</span></span> <span data-ttu-id="06a20-185">Hello에 **Single Sign-on 서비스 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL**, Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-185">In hello **Single Sign-On Service URL** textbox, paste hello value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="dde1f-186">e.</span><span class="sxs-lookup"><span data-stu-id="dde1f-186">e.</span></span> <span data-ttu-id="dde1f-187">Azure Portal에서 복사한 **로그아웃 URL** 값을 **단일 로그아웃 서비스 URL** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-187">In the **Single Logout Service URL** textbox, paste the value of **Sign-Out URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="06a20-186">e.</span><span class="sxs-lookup"><span data-stu-id="06a20-186">e.</span></span> <span data-ttu-id="06a20-187">Hello에 **단일 로그 아웃 서비스 URL** 붙여넣기 hello 값의 텍스트 상자 **Sign-Out URL**, Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-187">In hello **Single Logout Service URL** textbox, paste hello value of **Sign-Out URL**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="dde1f-188">f.</span><span class="sxs-lookup"><span data-stu-id="dde1f-188">f.</span></span> <span data-ttu-id="dde1f-189">다운로드된 인증서를 메모장에서 열고, 내용을 복사한 다음 전체 인증서를 **RSA 공용 키 인증서** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-189">Open your downloaded certificate in Notepad, copy the content, and then paste it into the **RSA Public Key Certificate** textbox.</span></span>
+    <span data-ttu-id="06a20-188">f.</span><span class="sxs-lookup"><span data-stu-id="06a20-188">f.</span></span> <span data-ttu-id="06a20-189">콘텐츠 복사 hello 메모장에서 다운로드 한 인증서를 열고 hello에 붙여 넣습니다 **RSA 공개 키 인증서** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-189">Open your downloaded certificate in Notepad, copy hello content, and then paste it into hello **RSA Public Key Certificate** textbox.</span></span>
  
-    <span data-ttu-id="dde1f-190">g.</span><span class="sxs-lookup"><span data-stu-id="dde1f-190">g.</span></span> <span data-ttu-id="dde1f-191">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-191">Click **Save**.</span></span>
+    <span data-ttu-id="06a20-190">g.</span><span class="sxs-lookup"><span data-stu-id="06a20-190">g.</span></span> <span data-ttu-id="06a20-191">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-191">Click **Save**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="dde1f-192">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-192">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="dde1f-193">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-193">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="dde1f-194">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-194">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="06a20-192">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="06a20-192">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="06a20-193">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="06a20-193">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="06a20-194">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="06a20-194">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="dde1f-195">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="dde1f-195">Creating an Azure AD test user</span></span>
-<span data-ttu-id="dde1f-196">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-196">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="06a20-195">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="06a20-195">Creating an Azure AD test user</span></span>
+<span data-ttu-id="06a20-196">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-196">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Azure AD 사용자 만들기][100]
 
-<span data-ttu-id="dde1f-198">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="dde1f-198">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="06a20-198">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="06a20-198">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dde1f-199">**Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-199">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="06a20-199">Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-199">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kiteworks-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="dde1f-201">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-201">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="06a20-201">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-201">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kiteworks-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="dde1f-203">**사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-203">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="06a20-203">tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-203">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kiteworks-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="dde1f-205">**사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-205">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="06a20-205">Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-205">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kiteworks-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="dde1f-207">a.</span><span class="sxs-lookup"><span data-stu-id="dde1f-207">a.</span></span> <span data-ttu-id="dde1f-208">**이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-208">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="06a20-207">a.</span><span class="sxs-lookup"><span data-stu-id="06a20-207">a.</span></span> <span data-ttu-id="06a20-208">Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-208">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="dde1f-209">b.</span><span class="sxs-lookup"><span data-stu-id="dde1f-209">b.</span></span> <span data-ttu-id="dde1f-210">**사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-210">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="06a20-209">b.</span><span class="sxs-lookup"><span data-stu-id="06a20-209">b.</span></span> <span data-ttu-id="06a20-210">Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-210">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="dde1f-211">c.</span><span class="sxs-lookup"><span data-stu-id="dde1f-211">c.</span></span> <span data-ttu-id="dde1f-212">**암호 표시**를 선택하고 **암호** 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-212">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="06a20-211">c.</span><span class="sxs-lookup"><span data-stu-id="06a20-211">c.</span></span> <span data-ttu-id="06a20-212">선택 **암호 표시** hello hello 값 기록 **암호**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-212">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="dde1f-213">d.</span><span class="sxs-lookup"><span data-stu-id="dde1f-213">d.</span></span> <span data-ttu-id="dde1f-214">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-214">Click **Create**.</span></span>
+    <span data-ttu-id="06a20-213">d.</span><span class="sxs-lookup"><span data-stu-id="06a20-213">d.</span></span> <span data-ttu-id="06a20-214">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-214">Click **Create**.</span></span>
  
-### <a name="creating-a-kiteworks-test-user"></a><span data-ttu-id="dde1f-215">Kiteworks 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="dde1f-215">Creating a Kiteworks test user</span></span>
+### <a name="creating-a-kiteworks-test-user"></a><span data-ttu-id="06a20-215">Kiteworks 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="06a20-215">Creating a Kiteworks test user</span></span>
 
-<span data-ttu-id="dde1f-216">이 섹션은 Kiteworks에서 Britta Simon이라는 사용자를 만들기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-216">The objective of this section is to create a user called Britta Simon in Kiteworks.</span></span>
+<span data-ttu-id="06a20-216">hello이이 섹션의 목적은 toocreate Britta Simon Kiteworks에서 호출 하는 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-216">hello objective of this section is toocreate a user called Britta Simon in Kiteworks.</span></span>
 
-<span data-ttu-id="dde1f-217">Kiteworks는 적시에 프로비전을 지원하며 기본적으로 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-217">Kiteworks supports just-in-time provisioning, which is by default enabled.</span></span> <span data-ttu-id="dde1f-218">이 섹션에 작업 항목이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-218">There is no action item for you in this section.</span></span> <span data-ttu-id="dde1f-219">새 사용자가 아직 존재하지 않는 경우 Kiteworks에 액세스하는 동안 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-219">A new user is created during an attempt to access Kitewors if it doesn't exist yet.</span></span>
+<span data-ttu-id="06a20-217">Kiteworks는 적시에 프로비전을 지원하며 기본적으로 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-217">Kiteworks supports just-in-time provisioning, which is by default enabled.</span></span> <span data-ttu-id="06a20-218">이 섹션에 작업 항목이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-218">There is no action item for you in this section.</span></span> <span data-ttu-id="06a20-219">새 사용자는 아직 존재 하지 않는 경우 시도 tooaccess Kitewors 중 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-219">A new user is created during an attempt tooaccess Kitewors if it doesn't exist yet.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="dde1f-220">사용자를 수동으로 만들어야 하는 경우 [Kiteworks 지원 팀](http://accellion.com/support)에 문의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-220">If you need to create a user manually, you need to contact the [Kiteworks support team](http://accellion.com/support).</span></span>
+><span data-ttu-id="06a20-220">Toocontact hello toocreate 사용자를 수동으로 필요한 경우 필요한 [Kiteworks 지원 팀](http://accellion.com/support)합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-220">If you need toocreate a user manually, you need toocontact hello [Kiteworks support team](http://accellion.com/support).</span></span>
  
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="dde1f-221">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="dde1f-221">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="06a20-221">Azure AD hello 테스트 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-221">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="dde1f-222">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Kiteworks에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-222">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Kiteworks.</span></span>
+<span data-ttu-id="06a20-222">이 섹션에서는 tooKiteworks 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-222">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooKiteworks.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="dde1f-224">**Britta Simon을 Kiteworks에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="dde1f-224">**To assign Britta Simon to Kiteworks, perform the following steps:**</span></span>
+<span data-ttu-id="06a20-224">**tooassign Britta Simon tooKiteworks hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="06a20-224">**tooassign Britta Simon tooKiteworks, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dde1f-225">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-225">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="06a20-225">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-225">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="dde1f-227">응용 프로그램 목록에서 **Kiteworks**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-227">In the applications list, select **Kiteworks**.</span></span>
+2. <span data-ttu-id="06a20-227">Hello 응용 프로그램 목록에서 선택 **Kiteworks**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-227">In hello applications list, select **Kiteworks**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-kiteworks-tutorial/tutorial_kiteworks_app.png) 
 
-3. <span data-ttu-id="dde1f-229">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-229">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="06a20-229">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-229">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="dde1f-231">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-231">Click **Add** button.</span></span> <span data-ttu-id="dde1f-232">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-232">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="06a20-231">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-231">Click **Add** button.</span></span> <span data-ttu-id="06a20-232">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-232">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="dde1f-234">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-234">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="06a20-234">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-234">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="dde1f-235">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-235">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="06a20-235">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-235">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="dde1f-236">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-236">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="06a20-236">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-236">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="dde1f-237">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="dde1f-237">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="06a20-237">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="06a20-237">Testing single sign-on</span></span>
 
-<span data-ttu-id="dde1f-238">이 섹션은 액세스 패널을 사용하여 Azure AD SSO 구성을 테스트하기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-238">The objective of this section is to test your Azure AD SSO configuration using the Access Panel.</span></span>  
+<span data-ttu-id="06a20-238">이 섹션의 hello 목적은 tootest 액세스 패널을 hello 사용 하 여 Azure AD SSO 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-238">hello objective of this section is tootest your Azure AD SSO configuration using hello Access Panel.</span></span>  
 
-<span data-ttu-id="dde1f-239">액세스 패널에서 Kiteworks 타일을 클릭하면 Kiteworks 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="dde1f-239">When you click the Kiteworks tile in the Access Panel, you should get automatically signed-on to your Kiteworks application.</span></span>
+<span data-ttu-id="06a20-239">Hello Kiteworks hello 액세스 패널에서에서 타일을 클릭할 때 자동으로 로그온 tooyour Kiteworks 응용 프로그램을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="06a20-239">When you click hello Kiteworks tile in hello Access Panel, you should get automatically signed-on tooyour Kiteworks application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="dde1f-240">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="dde1f-240">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="06a20-240">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="06a20-240">Additional resources</span></span>
 
-* [<span data-ttu-id="dde1f-241">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="dde1f-241">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="dde1f-242">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="dde1f-242">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="06a20-241">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="06a20-241">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="06a20-242">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="06a20-242">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 
