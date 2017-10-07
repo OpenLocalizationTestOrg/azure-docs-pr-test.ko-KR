@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights 원격 분석 상관 관계 | Microsoft 문서"
+title: "응용 프로그램 Insights 원격 분석 상관 관계 aaaAzure | Microsoft Docs"
 description: "Application Insights 원격 분석 상관 관계"
 services: application-insights
 documentationcenter: .net
@@ -12,36 +12,36 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 747c00842f4df9c7fbd816c99771ba8a267106a4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3ed8c589d237cac5daceac939ca893b7d81a2967
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="telemetry-correlation-in-application-insights"></a>Application Insights의 원격 분석 상관 관계
 
-마이크로 서비스의 세상에서 모든 논리 작업에는 다양한 서비스 구성 요소로 이루어지는 작업이 필요합니다. 이러한 각 구성 요소는 [Application Insights](app-insights-overview.md)에서 개별적으로 모니터링할 수 있습니다. 웹앱 구성 요소는 인증 공급자 구성 요소와 통신하여 사용자 자격 증명의 유효성을 검사하고, API 구성 요소를 사용하여 시각화할 데이터를 가져옵니다. 이에 따라 API 구성 요소는 다른 서비스의 데이터를 쿼리하고, 캐시 공급자 구성 요소를 사용하고, 이 호출에 대해 청구 구성 요소에 알릴 수 있습니다. Application Insights는 분산 원격 분석 상관 관계를 지원합니다. 이를 통해 실패하거나 성능 저하된 구성 요소를 검색할 수 있습니다.
+마이크로 서비스의 hello world, 모든 논리 작업에는 hello 서비스의 다양 한 구성 요소에서 작업을 수행 해야 합니다. 이러한 각 구성 요소는 [Application Insights](app-insights-overview.md)에서 개별적으로 모니터링할 수 있습니다. hello 웹 응용 프로그램 구성 요소에는 시각화에 대 한 hello API 구성 요소 tooget 데이터 및 인증 공급자 구성 요소 toovalidate 사용자 자격 증명을와 통신 합니다. 차례로 hello API 구성 요소 캐시 공급자 구성 요소를 사용 및 알림 hello 청구 구성 요소에서이 통화에 대 한 다른 서비스에서 데이터를 쿼리할 수 있습니다. Application Insights는 분산 원격 분석 상관 관계를 지원합니다. 어떤 구성 요소는 성능 저하 또는 실패에 대 한 toodetect이 있습니다.
 
-이 문서에서는 여러 구성 요소에서 보낸 원격 분석의 상관 관계를 지정하기 위해 Application Insights에서 사용되는 데이터 모델에 대해 설명합니다. 컨텍스트 전파 기술 및 프로토콜을 다룹니다. 다양한 언어와 플랫폼에 대한 상관 관계 개념 구현도 다룹니다.
+이 문서는 여러 구성 요소에서 보낸 Application Insights toocorrelate 원격 분석에서 사용 하는 hello 데이터 모델을 설명 합니다. Hello 컨텍스트 전파 기술 및 프로토콜을 포함합니다. 또한 hello 구현을 서로 다른 언어 및 플랫폼에 hello 상관 관계 개념을 다룹니다.
 
 ## <a name="telemetry-correlation-data-model"></a>원격 분석 상관 관계 데이터 모델
 
-Application Insights는 분산 원격 분석 상관 관계에 대한 [데이터 모델](application-insights-data-model.md)을 정의합니다. 원격 분석을 논리 작업과 연결하기 위해 모든 원격 분석 항목에 `operation_Id`라는 컨텍스트 필드가 있습니다. 이 식별자는 분산 추적의 모든 원격 분석 항목에서 공유됩니다. 따라서 단일 계층에서 원격 분석이 손실되더라도 다른 구성 요소에서 보고한 원격 분석을 연결할 수 있습니다.
+Application Insights는 분산 원격 분석 상관 관계에 대한 [데이터 모델](application-insights-data-model.md)을 정의합니다. 원격 분석 tooassociate hello 논리 작업과 모든 원격 분석 항목에 라는 컨텍스트 필드가 `operation_Id`합니다. 이 식별자는 분산 hello 추적에서 모든 원격 분석 항목에서 공유 됩니다. 따라서 단일 계층에서 원격 분석이 손실되더라도 다른 구성 요소에서 보고한 원격 분석을 연결할 수 있습니다.
 
-일반적으로 분산 논리 작업은 구성 요소 중 하나에서 처리되는 요청인 더 작은 작업의 집합으로 구성됩니다. 이러한 작업은 [요청 원격 분석](application-insights-data-model-request-telemetry.md)을 통해 정의됩니다. 모든 요청 원격 분석에는 전체적으로 고유하게 식별되는 자체 `id`가 있습니다. 또한 이 요청과 연결된 모든 원격 분석(추적, 예외 등)은 `operation_parentId`를 요청 `id`의 값으로 설정해야 합니다.
+분산된 논리 연산 집합 더 작은 작업-hello 구성 요소 중 하나에서 처리 요청을 일반적으로 구성 됩니다. 이러한 작업은 [요청 원격 분석](application-insights-data-model-request-telemetry.md)을 통해 정의됩니다. 모든 요청 원격 분석에는 전체적으로 고유하게 식별되는 자체 `id`가 있습니다. 모든 원격 분석-추적, 예외 등이 요청과 관련 된 hello 설정할 `operation_parentId` toohello 요청 값의 hello `id`합니다.
 
-다른 구성 요소에 대한 HTTP 호출 같은 모든 나가는 작업은 [종속성 원격 분석](application-insights-data-model-dependency-telemetry.md)을 통해 표시됩니다. 종속성 원격 분석은 전체적으로 고유한 자체 `id`도 정의합니다. 이 종속성 호출을 통해 시작된 요청 원격 분석은 이를 `operation_parentId`로 사용합니다.
+모든 송신 작업 예: http 호출 tooanother 구성 요소를 나타내는 [종속성 원격 분석](application-insights-data-model-dependency-telemetry.md)합니다. 종속성 원격 분석은 전체적으로 고유한 자체 `id`도 정의합니다. 이 종속성 호출을 통해 시작된 요청 원격 분석은 이를 `operation_parentId`로 사용합니다.
 
-`operation_Id`, `operation_parentId` 및 `request.id`를 `dependency.id`와 함께 사용하여 분산 논리 작업의 보기를 빌드할 수 있습니다. 해당 필드는 원격 분석 호출의 인과 관계 순서를 정의합니다.
+Hello 보기의 분산된 논리 연산을 사용 하 여 빌드할 수 `operation_Id`, `operation_parentId`, 및 `request.id` 와 `dependency.id`합니다. 이러한 필드는 또한 원격 분석 호출 hello 인과 관계 순서를 정의합니다.
 
-마이크로 서비스 환경에서 구성 요소의 추적은 다른 저장소로 이동할 수 있습니다. 모든 구성 요소는 Application Insights에 자체 계측 키가 있을 수 있습니다. 논리 작업에 대한 원격 분석을 가져오려면 모든 저장소에서 데이터를 쿼리해야 합니다. 저장소 수가 너무 큰 경우에는 다음 찾을 위치에 대한 힌트를 포함해야 합니다.
+마이크로 서비스 환경에서 구성 요소에서 추적 toohello 다른 저장소를 진행할 수 있습니다. 모든 구성 요소는 Application Insights에 자체 계측 키가 있을 수 있습니다. 원격 분석 tooget hello 논리 연산에 대 한 모든 저장소 tooquery 데이터가 필요 합니다. 위치에서 toohave 힌트가 필요한 수의 저장소 이면 거 대 한 toolook 다음 합니다.
 
-Application Insights 데이터 모델에서는 이 문제를 해결하기 위해 두 가지 필드, 즉 `request.source` 및 `dependency.target` 필드를 정의합니다. 첫 번째 필드는 종속성 요청을 시작한 구성 요소를 식별하고, 두 번째 필드는 종속성 호출의 응답을 반환한 구성 요소를 식별합니다.
+Application Insights 데이터 모델 두 개를 정의 합니다.이 문제를 toosolve 필드: `request.source` 및 `dependency.target`합니다. 첫 번째 필드에 hello hello 종속성 요청을 시작한 hello 구성 요소를 식별 하 고 hello에는 두 번째 hello 종속성 호출의 hello 응답이 반환 되었습니다. 구성 요소를 식별 합니다.
 
 
 ## <a name="example"></a>예제
 
-STOCKS API라는 외부 API를 사용하여 주식의 현재 시가를 보여 주는 응용 프로그램 STOCK PRICES의 예제를 살펴보겠습니다. STOCK PRICES 응용 프로그램에는 `GET /Home/Stock`를 사용하여 클라이언트 웹 브라우저에서 연 `Stock page` 페이지가 있습니다. 응용 프로그램에서 `GET /api/stock/value` HTTP 호출을 사용하여 STOCK API를 조회합니다.
+Hello 현재 시장 가격 주식 API를 호출 하는 hello 외부 API를 사용 하는 주가 표시 하는 응용 프로그램 주식 가격의 예를 들어를 보겠습니다. hello 주식 가격 응용 프로그램에는 페이지가 `Stock page` hello 클라이언트 웹 브라우저를 사용 하 여 열린 `GET /Home/Stock`합니다. hello 응용 프로그램 쿼리 HTTP 호출을 사용 하 여 재고 API hello `GET /api/stock/value`합니다.
 
 쿼리를 실행하여 결과 원격 분석을 분석할 수 있습니다.
 
@@ -51,7 +51,7 @@ STOCKS API라는 외부 API를 사용하여 주식의 현재 시가를 보여 �
 | project timestamp, itemType, name, id, operation_ParentId, operation_Id
 ```
 
-결과 보기에서 모든 원격 분석 항목은 루트 `operation_Id`를 공유합니다. Ajax 호출이 페이지에서 실행된 경우 새로운 고유 ID `qJSXU`가 종속성 원격 분석에 할당되고 pageView의 ID가 `operation_ParentId`로 사용됩니다. 따라서 서버 요청은 Ajax의 ID를 `operation_ParentId`로 사용합니다.
+모든 원격 분석 항목 hello 루트를 공유 하는 hello 결과 보기 note에서 `operation_Id`합니다. Hello 페이지-새로운 고유 id에서에서 만든 ajax 호출 하는 경우 `qJSXU` 할당된 toohello 종속성 원격 분석은 및 페이지 보기의 id로 사용 됩니다 `operation_ParentId`합니다. 따라서 서버 요청은 Ajax의 ID를 `operation_ParentId`로 사용합니다.
 
 | itemType   | name                      | id           | operation_ParentId | operation_Id |
 |------------|---------------------------|--------------|--------------------|--------------|
@@ -60,28 +60,28 @@ STOCKS API라는 외부 API를 사용하여 주식의 현재 시가를 보여 �
 | request    | GET Home/Stock            | KqKwlrSt9PA= | qJSXU              | STYz         |
 | dependency | GET /api/stock/value      | bBrf2L7mm2g= | KqKwlrSt9PA=       | STYz         |
 
-이제 호출 `GET /api/stock/value`가 외부 서비스에 대해 실행될 경우 해당 서버의 ID를 알아야 합니다. 따라서 `dependency.target` 필드를 적절하게 설정할 수 있습니다. 외부 서비스가 모니터링을 지원하지 않을 경우 `target`은 서비스의 호스트 이름으로 설정됩니다(예: `stock-prices-api.com`). 하지만 해당 서비스가 미리 정의된 HTTP 헤더를 반환하는 방식으로 자신을 식별하면 `target`에는 Application Insights가 해당 서비스에서 원격 분석을 쿼리하여 분산 추적을 빌드하는 데 사용되는 서비스 ID가 포함됩니다. 
+이제 호출 때 hello `GET /api/stock/value` 해당 서버의 tooknow hello id 원하는 tooan 외부 서비스를 수행 합니다. 따라서 `dependency.target` 필드를 적절하게 설정할 수 있습니다. Hello 외부 서비스-모니터링을 지원 하지 않을 때 `target` 같은 hello 서비스의 호스트 이름을 toohello 설정 되어 `stock-prices-api.com`합니다. 그러나 해당 서비스는 미리 정의 된 반환 하 여 자신을 식별 하는 경우 HTTP 헤더- `target` 해당 서비스의 원격 분석을 쿼리하여 Application Insights distributed toobuild 추적을 허용 하는 hello 서비스 id를 포함 합니다. 
 
 ## <a name="correlation-headers"></a>상관 관계 헤더
 
-현재 [correlation HTTP protocol](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v1.md)(상관 관계 HTTP 프로토콜)에 대한 RFC 제안 작업을 진행하고 있습니다. 이 제안은 다음 두 가지 헤더를 정의합니다.
+Hello에 대 한 RFC 제안 작업 [HTTP 프로토콜 상관 관계](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v1.md)합니다. 이 제안은 다음 두 가지 헤더를 정의합니다.
 
-- `Request-Id`는 호출의 전체적으로 고유한 ID를 전달합니다.
-- `Correlation-Context` - 분산 추적 속성의 이름-값 쌍 컬렉션을 전달합니다.
+- `Request-Id`hello 호출의 hello 전역적으로 고유 id를 전달 합니다.
+- `Correlation-Context`-hello distributed hello 추적 속성의 이름 값 쌍 컬렉션을 수행 합니다.
 
-표준은 `Request-Id` 생성의 두 가지 스키마인 플랫 및 계층 구조를 정의합니다. 플랫 스키마의 경우 `Correlation-Context` 컬렉션에 대한 잘 알려진 `Id` 키가 있습니다.
+hello 표준의 두 개의 스키마 정의 `Request-Id` 세대-플랫 및 계층적입니다. Hello 플랫 스키마는 잘 알려진 `Id` hello에 대해 정의 된 키 `Correlation-Context` 컬렉션입니다.
 
-Application Insights에서는 상관 관계 HTTP 프로토콜에 대한 [extension](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v2.md)(확장)을 정의합니다. `Request-Context` 이름-값 쌍을 사용하여 즉각적인 호출자 또는 호출 수신자에서 사용된 속성 컬렉션을 전파합니다. Application Insights SDK는 이 헤더를 사용하여 `dependency.target` 및 `request.source` 필드를 설정합니다.
+Application Insights 정의 hello [확장](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v2.md) hello 상관 관계 HTTP 프로토콜에 대 한 합니다. 사용 하 여 `Request-Context` toopropagate hello 컬렉션 hello 직접 실행 호출자 또는 호출 수신자에 의해 사용 되는 속성의 이름-값 쌍입니다. Application Insights SDK 사용이 헤더 tooset `dependency.target` 및 `request.source` 필드입니다.
 
 ## <a name="open-tracing-and-application-insights"></a>Open Tracing 및 Application Insights
 
 [Open Tracing](http://opentracing.io/) 및 Application Insights 데이터 모델은 다음과 같이 표시됩니다. 
 
-- `request`, `pageView`가 **Span**으로 매핑되고 `span.kind = server`입니다.
-- `dependency`가 **Span**을 매핑되고 `span.kind = client`입니다.
-- `request` 및 `dependency`의 `id`가 **Span.Id**로 매핑됩니다.
-- `operation_Id`가 **TraceId**로 매핑됩니다.
-- `operation_ParentId`가 `ChileOf` 형식의 **Reference**로 매핑됩니다.
+- `request``pageView` 너무 매핑합니다**범위** 와`span.kind = server`
+- `dependency`너무 매핑합니다**범위** 와`span.kind = client`
+- `id``request` 및 `dependency` 너무 매핑합니다**Span.Id**
+- `operation_Id`너무 매핑합니다**traceid가**
+- `operation_ParentId`너무 매핑합니다**참조** 형식의`ChileOf`
 
 Application Insights 형식 및 데이터 모델에 대한 자세한 내용은 [데이터 모델](application-insights-data-model.md)을 참조하세요.
 
@@ -90,23 +90,23 @@ Open Tracing 개념의 정의는 [specification](https://github.com/opentracing/
 
 ## <a name="telemetry-correlation-in-net"></a>.NET의 원격 분석 상관 관계
 
-시간이 지나면서 .NET에서는 원격 분석과 진단 로그를 상호 연결하는 수많은 방법을 정의했습니다. [LogicalOperationStack and ActivityId](https://msdn.microsoft.com/library/system.diagnostics.correlationmanager.aspx)(LogicalOperationStack 및 ActivityId)를 추적할 수 있는 `System.Diagnostics.CorrelationManager`가 있습니다. `System.Diagnostics.Tracing.EventSource` 및 Windows ETW는 [SetCurrentThreadActivityId](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.setcurrentthreadactivityid.aspx) 메서드를 정의합니다. `ILogger`는 [Log Scopes](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes)(로그 범위)를 사용합니다. WCF 및 HTTP는 "현재" 컨텍스트 전파를 연결합니다.
+시간이 지남에 따라.NET 정의 다양 한 방법으로 toocorrelate 원격 분석 및 진단 로그 합니다. `System.Diagnostics.CorrelationManager` tootrack 허용 [LogicalOperationStack 및 ActivityId](https://msdn.microsoft.com/library/system.diagnostics.correlationmanager.aspx)합니다. `System.Diagnostics.Tracing.EventSource`ETW Windows hello 메서드를 정의 하 고 [SetCurrentThreadActivityId](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.setcurrentthreadactivityid.aspx)합니다. `ILogger`는 [Log Scopes](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes)(로그 범위)를 사용합니다. WCF 및 HTTP는 "현재" 컨텍스트 전파를 연결합니다.
 
-하지만 해당 메서드는 자동 분산 추적 지원을 사용하지 않았습니다. `DiagnosticsSource`는 자동 컴퓨터 간 상관 관계를 지원하는 한 가지 방법입니다. .NET 라이브러리는 Diagnostics Source를 지원하고 HTTP 같은 전송을 통해 상관 관계 컨텍스트의 자동 컴퓨터 간 전파를 허용합니다.
+하지만 해당 메서드는 자동 분산 추적 지원을 사용하지 않았습니다. `DiagnosticsSource`컴퓨터 상관 관계 교차 자동 방식으로 toosupport 수행 됩니다. .NET 라이브러리는 진단 소스를 지원 하 고 http 같은 hello 전송을 통해 hello 상관 관계 컨텍스트의 자동 컴퓨터 간 전파를 허용 합니다.
 
-Diagnostics Source의 [guide to Activities](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md)(활동 가이드)에서는 활동 추적의 기본 사항을 설명합니다. 
+hello [tooActivities 안내](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) 진단 소스 활동 추적의 hello 기본 사항을 설명 합니다. 
 
-ASP.NET Core 2.0에서는 HTTP 헤더 추출 및 새 활동 시작을 지원합니다. 
+새 활동 hello 시작 및 ASP.NET 코어 2.0 지원 Http 헤더를 추출 합니다. 
 
-`System.Net.HttpClient` 시작 버전 `<fill in>`에서는 상관 관계 Http 헤더의 자동 삽입 및 http 호출을 활동으로 추적하는 기능을 지원합니다.
+`System.Net.HttpClient`시작 버전 `<fill in>` hello 상관 관계 Http 헤더 및 활동으로 hello http 호출 추적의 자동 삽입을 지원 합니다.
 
-ASP.NET 클래식에 대한 새로운 HTTP 모듈 [Microsoft.AspNet.TelemetryCorrelation](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation/)이 있습니다. 이 모듈은 DiagnosticsSource를 사용하여 원격 분석 상관 관계를 구현합니다. 들어오는 요청 헤더를 기반으로 활동을 시작합니다. 또한 서로 다른 요청 처리 단계의 원격 분석을 상호 연결합니다. IIS 처리의 모든 단계가 서로 다른 관리 스레드에서 실행되는 경우에도 마찬가지입니다.
+새 Http 모듈 [Microsoft.AspNet.TelemetryCorrelation](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation/) ASP.NET 클래식 hello에 대 한 합니다. 이 모듈은 DiagnosticsSource를 사용하여 원격 분석 상관 관계를 구현합니다. 들어오는 요청 헤더를 기반으로 활동을 시작합니다. 또한 hello 요청 처리의 여러 단계에서 원격 분석을 연관 시킵니다. Hello 경우 IIS 처리의 모든 단계는 다른 관리 스레드에서 실행 될 때에
 
-Application Insights SDK 시작 버전 `2.4.0-beta1`에서는 DiagnosticsSource 및 활동을 사용하여 원격 분석을 수집하고 이를 현재 활동과 연결합니다. 
+응용 프로그램 Insights SDK 시작 버전 `2.4.0-beta1` DiagnosticsSource 및 활동 toocollect 원격 분석을 사용 하 고 hello 현재 활동에 연결 합니다. 
 
 ## <a name="next-steps"></a>다음 단계
 
 - [사용자 지정 원격 분석을 작성합니다](app-insights-api-custom-events-metrics.md).
 - Application Insights에서 마이크로 서비스의 모든 구성 요소를 등록합니다. [지원되는 플랫폼](app-insights-platforms.md)을 확인합니다.
 - Application Insights 형식 및 데이터 모델에 대한 자세한 내용은 [데이터 모델](application-insights-data-model.md)을 참조하세요.
-- [원격 분석을 확장 및 필터링](app-insights-api-filtering-sampling.md)하는 방법을 알아봅니다.
+- 너무 방법에 대해 알아봅니다[확장 하 고 원격 분석 필터링](app-insights-api-filtering-sampling.md)합니다.

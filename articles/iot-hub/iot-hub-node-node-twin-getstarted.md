@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 장치 쌍 시작(노드) | Microsoft Docs"
-description: "Azure IoT Hub 장치 쌍을 사용하여 태그를 추가한 다음 IoT Hub 쿼리를 사용하는 방법입니다. Node.js용 Azure IoT SDK를 사용하여 시뮬레이션된 장치 앱 및 태그를 추가하고 IoT Hub 쿼리를 실행하는 서비스 앱을 구현합니다."
+title: "Azure IoT Hub 장치 트윈스 (노드) aaaGet 시작 | Microsoft Docs"
+description: "어떻게 toouse Azure IoT Hub 장치 트윈스 tooadd 태그를 삽입 하 고 IoT Hub 쿼리를 사용 합니다. Node.js tooimplement hello 시뮬레이션 된 장치 앱에 대 한 Azure IoT Sdk hello와 hello 태그를 추가 하 고 hello IoT Hub 쿼리를 실행 하는 서비스 응용 프로그램 사용 합니다."
 services: iot-hub
 documentationcenter: node
 author: fsautomata
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: elioda
-ms.openlocfilehash: 633c9fd4f8a1d017d93148f8c2e860ccba14238c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d60b8c3de85e9285e496b86e27d4ee31a0554a1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-twins-node"></a>장치 쌍 시작(노드)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-이 자습서의 끝 부분에 다음 두 개의 Node.js 콘솔 앱이 제공됩니다.
+이 자습서의 hello 끝 두 Node.js 콘솔 응용 프로그램 해야 합니다.
 
 * **AddTagsAndQuery.js**, 태그를 추가하고 장치 쌍을 쿼리하는 Node.js 백 엔드 앱입니다.
-* **TwinSimulatedDevice.js** - 앞에서 만든 장치 ID와 IoT Hub를 연결하고 연결 상태를 보고하는 장치를 시뮬레이션하는 Node.js 앱.
+* **TwinSimulatedDevice.js**, 이전에 만든 hello 장치 id를 가진 tooyour IoT 허브를 연결 하는 장치를 시뮬레이션 하 고 해당 연결 상태를 보고 하는 Node.js 응용 프로그램입니다.
 
 > [!NOTE]
-> [Azure IoT SDK][lnk-hub-sdks] 문서는 장치 및 백 엔드 앱을 빌드하는 데 사용할 수 있는 Azure IoT SDK에 대한 정보를 제공합니다.
+> hello 문서 [Azure IoT Sdk] [ lnk-hub-sdks] toobuild를 사용할 수 있는, Azure IoT Sdk hello에 대 한 정보를 제공 장치와 백 엔드 응용 프로그램입니다.
 > 
 > 
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete hello 다음 해야이 자습서:
 
 * Node.js 버전 0.10.x 이상
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 안에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.
@@ -42,21 +42,21 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-the-service-app"></a>서비스 응용 프로그램 만들기
-이 섹션에서는 **myDeviceId**와 연결된 장치 쌍에 위치 메타데이터를 추가하는 Node.js 콘솔 앱을 만듭니다. 그런 다음 IoT Hub에 저장된 장치 쌍을 쿼리하여 미국에 있는 장치를 선택한 다음 셀룰러 연결을 보고하는 장치를 선택합니다.
+## <a name="create-hello-service-app"></a>Hello 서비스 앱 만들기
+이 섹션에서는 위치 메타 데이터 toohello 장치로 이중와 관련 된 추가 하 여 Node.js 콘솔 응용 프로그램을 만들면 **myDeviceId**합니다. Hello 장치 트윈스 US, hello에 있는 hello 장치를 선택 하는 hello IoT 허브에 저장 하 고 셀룰러 연결을 보고 하는 스토리를 hello 쿼리 합니다.
 
-1. **addtagsandqueryapp**라는 빈 폴더를 새로 만듭니다. **addtagsandqueryapp** 폴더의 명령 프롬프트에 다음 명령을 사용하여 package.json 파일을 만듭니다. 모든 기본값을 수락합니다.
+1. **addtagsandqueryapp**라는 빈 폴더를 새로 만듭니다. Hello에 **addtagsandqueryapp** 폴더를 다음 명령 프롬프트에서 명령을 hello를 사용 하 여 새로운 package.json 파일을 만듭니다. 모든 hello 기본값을 적용 합니다.
    
     ```
     npm init
     ```
-2. **addtagsandqueryapp** 폴더의 명령 프롬프트에서 다음 명령을 실행하여 **azure-iothub** 패키지를 설치합니다.
+2. Hello에 명령 프롬프트에 **addtagsandqueryapp** hello 명령 tooinstall hello 다음를 실행 하는 폴더 **azure iothub** 패키지:
    
     ```
     npm install azure-iothub --save
     ```
-3. 텍스트 편집기를 사용하여 **addtagsandqueryapp** 폴더에 새 **AddTagsAndQuery.js** 파일을 만듭니다.
-4. 다음 코드를 **AddTagsAndQuery.js** 파일에 추가하고 허브를 만들 때 복사한 IoT Hub 연결 문자열을 사용해 **{iot hub 연결 문자열}** 자리 표시자를 대체합니다.
+3. 텍스트 편집기를 사용 하 여 만드는 새 **AddTagsAndQuery.js** hello에 대 한 파일 **addtagsandqueryapp** 폴더입니다.
+4. 다음 코드 toohello hello 추가 **AddTagsAndQuery.js** 파일을 찾아 hello 대체 **{iot 허브 연결 문자열을 (를)** 허브를 만들 때 복사한 IoT 허브 연결 문자열 hello로 자리 표시자:
    
         'use strict';
         var iothub = require('azure-iothub');
@@ -87,16 +87,16 @@ ms.lasthandoff: 08/29/2017
             }
         });
    
-    **레지스트리** 개체는 서비스의 장치 쌍을 조작하는 데 필요한 모든 메서드를 표시합니다. 이전 코드는 **Registry** 개체를 초기화한 다음 **myDeviceId**에 대한 장치 쌍을 검색하고, 마지막으로 원하는 위치 정보를 사용해 태그를 업데이트합니다.
+    hello **레지스트리** 개체 hello 서비스에서 장치 트윈스와 모든 hello 메서드에 필요한 toointeract을 제공 합니다. hello 이전 코드는 먼저 hello 초기화 **레지스트리** 개체를 검색에 대 한 장치로 이중 hello **myDeviceId**, 원하는 hello 위치 정보를 사용 하 여 해당 태그를 마지막으로 업데이트 합니다.
    
-    태그를 업데이트한 후 **queryTwins** 함수를 호출합니다.
-5. 다음 코드를 **queryTwins** 함수를 구현할 **AddTagsAndQuery.js** 끝 부분에 추가합니다.
+    Hello 후 hello 업데이트 태그를 삽입 하기 호출 hello **queryTwins** 함수입니다.
+5. 코드의 hello 끝에 다음 hello 추가 **AddTagsAndQuery.js** tooimplement hello **queryTwins** 함수:
    
         var queryTwins = function() {
             var query = registry.createQuery("SELECT * FROM devices WHERE tags.location.plant = 'Redmond43'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed to fetch the results: ' + err.message);
+                    console.error('Failed toofetch hello results: ' + err.message);
                 } else {
                     console.log("Devices in Redmond43: " + results.map(function(twin) {return twin.deviceId}).join(','));
                 }
@@ -105,46 +105,46 @@ ms.lasthandoff: 08/29/2017
             query = registry.createQuery("SELECT * FROM devices WHERE tags.location.plant = 'Redmond43' AND properties.reported.connectivity.type = 'cellular'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed to fetch the results: ' + err.message);
+                    console.error('Failed toofetch hello results: ' + err.message);
                 } else {
                     console.log("Devices in Redmond43 using cellular network: " + results.map(function(twin) {return twin.deviceId}).join(','));
                 }
             });
         };
    
-    이전 코드는 두 개의 쿼리를 실행합니다. 첫 번째는 **Redmond43** 공장에 위치한 장치의 장치 쌍만을 선택하고, 두 번째는 또한 셀룰러 네트워크를 통해서 연결된 장치만을 선택하기 위해 쿼리를 구체화합니다.
+    두 개의 쿼리를 실행 하는 이전 코드 hello: hello에 있는 장치의 장치 트윈스만 hello를 먼저 선택 하는 hello **Redmond43** 공장 별, 및 hello 두 번째 구체화 hello 쿼리 tooselect hello 장치만 또한 통해 연결 된 셀룰러 네트워크입니다.
    
-    이전 코드는 **쿼리** 개체를 만들 때 반환되는 최대 문서 수를 지정한다는 점에 유의합니다. **query** 개체에는 모든 결과를 검색하기 위해 여러번 **nextAsTwin** 메서드를 호출하는 데 사용할 수 있는 **hasMoreResults** 부울 속성이 들어 있습니다. **next**라는 메서드는 장치 쌍이 아닌 결과(예: 집계 쿼리의 결과)에 대해 사용할 수 있습니다.
-6. 키를 눌러 응용 프로그램을 실행합니다.
+    Hello를 만들 때 해당 hello 이전 코드 참고 **쿼리** 개체, 반환 된 문서의 최대 수를 지정 합니다. hello **쿼리** 개체에 포함 되어는 **hasMoreResults** tooinvoke hello를 사용할 수 있는 부울 속성 **nextAsTwin** 메서드를 여러 번 tooretrieve 모든 결과입니다. **next**라는 메서드는 장치 쌍이 아닌 결과(예: 집계 쿼리의 결과)에 대해 사용할 수 있습니다.
+6. Hello 응용 프로그램을 실행 합니다.
    
         node AddTagsAndQuery.js
    
-    **Redmond43**에 위치한 모든 장치를 요청하는 쿼리에 대한 결과로는 하나의 장치를 보고 셀룰러 네트워크를 사용하는 장치에 대해서는 결과를 제한하는 쿼리에 대한 결과로는 아무 장치도 볼 수 없어야 합니다.
+    Hello 쿼리 요청에 있는 모든 장치에 대 한 하나의 장치 hello 결과에 표시 되어야 **Redmond43** toodevices 셀룰러 네트워크를 사용 하는 결과 none hello를 제한 하는 hello 쿼리 합니다.
    
     ![][1]
 
-다음 섹션에서는 연결 정보를 보고하고 이전 섹션의 쿼리 결과를 변경하는 장치 앱을 만듭니다.
+변경 내용을 hello hello 이전 단원의 hello 쿼리의 결과 한 hello 연결 정보를 보고 하는 장치 앱 hello 다음 섹션에 만듭니다.
 
-## <a name="create-the-device-app"></a>장치 앱 만들기
-이 섹션에서는 **myDeviceId**로 허브에 연결하는 Node.js 콘솔 앱을 만들고 셀룰러 네트워크를 사용하여 연결된 정보를 포함하도록 장치 쌍의 reported 속성을 업데이트합니다.
+## <a name="create-hello-device-app"></a>Hello 장치 응용 프로그램 만들기
+Tooyour 허브를 연결 하는 Node.js 콘솔 앱을 만들면이 섹션에서는 **myDeviceId**, 및 해당 장치로 이중 셀룰러 네트워크를 사용 하 여 연결 된 속성 toocontain hello 정보를 보고의 업데이트 합니다.
 
 > [!NOTE]
-> 현재 장치 쌍은 MQTT 프로토콜을 사용하여 IoT Hub에 연결하는 장치에서만 액세스할 수 있습니다. 기존 장치 앱이 MQTT를 사용하도록 변환하는 방법에 관한 설명은 [MQTT 지원][lnk-devguide-mqtt] 문서를 참조하세요.
+> 이때 장치 트윈스는 tooIoT 허브를 연결 하는 장치 에서만에서 액세스할 수 hello MQTT 프로토콜을 사용 합니다. Toohello를 참조 하십시오 [MQTT 지원] [ lnk-devguide-mqtt] 방법에 대 한 문서 tooconvert 기존 장치 앱 toouse MQTT 합니다.
 > 
 > 
 
-1. **reportconnectivity**라는 빈 폴더를 새로 만듭니다. **reportconnectivity** 폴더의 명령 프롬프트에서 다음 명령을 사용하여 package.json 파일을 만듭니다. 모든 기본값을 수락합니다.
+1. **reportconnectivity**라는 빈 폴더를 새로 만듭니다. Hello에 **reportconnectivity** 폴더를 다음 명령 프롬프트에서 명령을 hello를 사용 하 여 새로운 package.json 파일을 만듭니다. 모든 hello 기본값을 적용 합니다.
    
     ```
     npm init
     ```
-2. **reportconnectivity** 폴더의 명령 프롬프트에서 다음 명령을 실행하여 **azure-iot-device** 및 **azure-iot-device-mqtt** 패키지를 설치합니다.
+2. Hello에 명령 프롬프트에 **reportconnectivity** hello 명령 tooinstall hello 다음를 실행 하는 폴더 **azure iot 장치**, 및 **azure iot-장치 mqtt** 패키지 :
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 텍스트 편집기를 사용하여 **reportconnectivity** 폴더에 새 **ReportConnectivity.js** 파일을 만듭니다.
-4. 다음 코드를 **ReportConnectivity.js** 파일에 추가하고 **myDeviceId** 장치 ID를 만들 때 복사한 장치 연결 문자열을 사용해 **{장치 연결 문자열}** 자리 표시자를 대체합니다.
+3. 텍스트 편집기를 사용 하 여 만드는 새 **ReportConnectivity.js** hello에 대 한 파일 **reportconnectivity** 폴더입니다.
+4. 다음 코드 toohello hello 추가 **ReportConnectivity.js** 파일을 찾아 hello 대체 **{장치 연결 문자열을 (를)** hello를 만들 때 복사한 hello 장치 연결 문자열과 함께 자리 표시자 **myDeviceId** 장치 id가 없음:
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -182,13 +182,13 @@ ms.lasthandoff: 08/29/2017
         }
         });
    
-    **Client** 개체는 서비스의 장치 쌍을 조작하는 데 필요한 모든 메서드를 표시합니다. 이전 코드에서는 **Client** 개체를 초기화한 다음 **myDeviceId**에 대한 장치 쌍을 검색하고, 연결 정보로 reported 속성을 업데이트합니다.
-5. 장치 앱 실행
+    hello **클라이언트** 개체가 toointeract hello 장치에서 장치 트윈스과 필요한 모든 hello 메서드를 노출 합니다. hello를 초기화 한 후 이전 코드 hello **클라이언트** 개체를 검색에 대 한 장치로 이중 hello **myDeviceId** 를 hello 연결 정보와 함께 보고 된 해당 속성을 업데이트 합니다.
+5. Hello 장치 앱 실행
    
         node ReportConnectivity.js
    
-    메시지 `twin state reported`이 표시되어야 합니다.
-6. 장치가 연결 정보를 보고했으므로 두 쿼리 모두에 나타나야 합니다. **addtagsandqueryapp** 폴더로 돌아가 쿼리를 다시 실행합니다.
+    Hello 메시지를 확인 해야 `twin state reported`합니다.
+6. 이제는 hello 장치 보고 자신의 연결 정보를 두 쿼리 모두에 표시 됩니다. Hello에 다시 이동 **addtagsandqueryapp** 폴더를 열고 hello를 다시 쿼리 합니다.
    
         node AddTagsAndQuery.js
    
@@ -197,13 +197,13 @@ ms.lasthandoff: 08/29/2017
     ![][3]
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 Azure Portal에서 새 IoT Hub를 구성한 다음, IoT Hub의 ID 레지스트리에서 장치 ID를 만들었습니다. 백 엔드 앱에서 tags로 장치 메타데이터를 추가하고, 장치 쌍에서 장치 연결 정보를 보고하는 시뮬레이션된 장치 앱을 작성했습니다. 또한 SQL과 유사한 IoT Hub 쿼리 언어를 사용하여 이 정보를 쿼리하는 방법도 살펴보았습니다.
+이 자습서에서는 hello Azure 포털에서에서 새 IoT 허브를 구성 하 고 id 레지스트리에 hello IoT hub에서 장치 id를 만든 다음 합니다. 백 엔드 앱에서 태그로 장치 메타 데이터를 추가 하 고 hello 장치로 이중의 시뮬레이션 된 장치 앱 tooreport 장치 연결 정보를 작성 합니다. 방법에 대해 배웠습니다 tooquery hello IoT Hub SQL 방식 쿼리 언어를 사용 하 여이 정보입니다.
 
-아래와 같이 실행할 방법을 알아보려면 다음 리소스를 참조하세요.
+사용 하 여 hello 리소스 toolearn을 어떻게 수행 하려면:
 
-* [IoT Hub 시작][lnk-iothub-getstarted] 자습서를 참조하여 장치에서 원격 분석을 보냅니다.
-* [desired 속성을 사용하여 장치 구성][lnk-twin-how-to-configure] 자습서를 참조하여 장치 쌍의 desired 속성을 사용하여 장치를 구성합니다.
-* [직접 메서드 사용][lnk-methods-tutorial] 자습서를 참조하여 대화형으로(예: 사용자가 제어하는 앱에서 팬을 켬) 장치를 제어합니다.
+* hello 사용 하 여 장치에서 원격 분석 전송 [IoT 허브 시작] [ lnk-iothub-getstarted] 자습서
+* hello로 장치로 이중 원하는 속성을 사용 하 여 장치 구성 [속성 tooconfigure 장치 원하는 사용할] [ lnk-twin-how-to-configure] 자습서
+* 대화형으로 (예: 사용자 제어 응용 프로그램에서 팬)를 설정 하는 장치 hello로 제어 [직접 메서드를 사용 하 여] [ lnk-methods-tutorial] 자습서입니다.
 
 <!-- images -->
 [1]: media/iot-hub-node-node-twin-getstarted/service1.png

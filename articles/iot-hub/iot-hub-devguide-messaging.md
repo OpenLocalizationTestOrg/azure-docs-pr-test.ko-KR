@@ -1,5 +1,5 @@
 ---
-title: "Azure IoT Hub 메시징 이해 | Microsoft 문서"
+title: "aaaUnderstand Azure IoT Hub 메시징 | Microsoft Docs"
 description: "개발자 가이드 - IoT Hub를 사용한 장치-클라우드 및 클라우드-장치 메시징 메시지 형식 및 지원되는 통신 프로토콜에 대한 정보가 포함됩니다."
 services: iot-hub
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: f54398d7ac46bf178d2bb603669b399d25370736
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a610741e23e243f392f1c042f9ab4a00d42f734f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="device-to-cloud-and-cloud-to-device-messaging-with-iot-hub"></a>IoT Hub를 사용한 장치-클라우드 및 클라우드-장치 메시징
 
-IoT Hub 메시징을 사용하여 다음과 같은 방법으로 장치와 통신합니다.
+IoT Hub에서 장치에서 toocommunicate 메시징 사용 합니다.
 
-* 장치에서 솔루션 백 엔드로 [장치-클라우드][lnk-d2c] 메시지를 보냅니다.
-* 솔루션 백 엔드에서 장치로 [클라우드-장치][lnk-c2d] 메시지를 보냅니다.
+* 보내는 [장치-클라우드] [ lnk-d2c] 메시지 장치 tooyour 솔루션에서 백 엔드 합니다.
+* 보내는 [클라우드-장치] [ lnk-c2d] hello 솔루션 다시에서 메시지 tooyour 장치를 종료 합니다.
 
-IoT Hub 메시징 기능의 핵심 속성은 메시지의 안정성 및 내구성입니다. 이 속성을 사용하여 장치 쪽에서 일시적인 연결 및 클라우드 쪽에서 이벤트 처리에 급증한 부하를 복원합니다. IoT Hub는 장치-클라우드 및 클라우드-장치 메시징 모두에 대해 *한 번 이상* 전달 보증을 구현합니다.
+IoT Hub 메시징 기능의 핵심 속성은 hello 안정성 및 지 속성 메시지입니다. 복원 력 toointermittent 연결 hello 장치 쪽에서 이러한 속성을 사용 하 고 tooload hello 클라우드 쪽에서 처리 하는 이벤트의 급증 합니다. IoT Hub는 장치-클라우드 및 클라우드-장치 메시징 모두에 대해 *한 번 이상* 전달 보증을 구현합니다.
 
-IoT Hub 기능에 대한 소개는 [Azure 및 사물 인터넷][lnk-azure-iot]과 [Azure IoT Hub 서비스 개요][lnk-iot-hub-overview] 문서를 참조하세요.
+IoT Hub의 소개 toohello 기능 hello 문서를 참조 하십시오. [Azure 및 사물 인터넷] [ lnk-azure-iot] 및 [hello Azure IoT 허브 서비스의 개요] [lnk-iot-hub-overview].
 
-## <a name="when-to-use-iot-hub-messaging"></a>IoT Hub 메시징을 사용하는 경우
+## <a name="when-toouse-iot-hub-messaging"></a>때 toouse IoT Hub 메시징
 
-장치 앱에서 시계열 원격 분석 및 경고를 보내려면 장치-클라우드 메시지를 사용하고 장치 앱에 단방향 알림을 보내려면 클라우드-장치 메시지를 사용합니다.
+단방향 알림 tooyour 장치 응용 프로그램에 대 한 장치 앱에서 시간 시계열 원격 분석 및 경고를 보내기 위한 장치-클라우드 메시지와 클라우드-장치 메시지를 사용 합니다.
 
-* 장치-클라우드 메시지, reported 속성 또는 파일 업로드 사용에 대해 궁금한 점이 있으면 [장치-클라우드 통신 지침][lnk-d2c-guidance]을 참조하세요.
-* 클라우드-장치 메시지, desired 속성 또는 직접 메서드 사용에 대해 궁금한 점이 있으면 [클라우드-장치 통신 지침][lnk-c2d-guidance]을 참조하세요.
+* 너무 참조[장치-클라우드 통신 지침] [ lnk-d2c-guidance] 장치-클라우드 메시지, 보고 된 속성 또는 파일을 업로드 하 여 확실 하지 않은 경우.
+* 너무 참조[클라우드-장치 통신 지침] [ lnk-c2d-guidance] 클라우드-장치 메시지, 원하는 속성 또는 메서드를 직접 사용할지 확실 하지 않은 경우.
 
 ## <a name="next-steps"></a>다음 단계
 

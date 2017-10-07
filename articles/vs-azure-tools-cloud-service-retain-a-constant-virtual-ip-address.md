@@ -1,6 +1,6 @@
 ---
-title: "Azure 클라우드 서비스에 대한 일정한 가상 IP 주소를 유지하는 방법 | Microsoft Docs"
-description: "Azure 클라우드 서비스의 가상 IP 주소(VIP)가 변경되지 않도록 하는 방법에 대해 알아봅니다."
+title: "aaaHow tooretain Azure 클라우드 서비스에 대 한 일정 한 가상 IP 주소 | Microsoft Docs"
+description: "Azure 클라우드 서비스의 가상 IP 주소 (VIP) hello tooensure 하지 않는 변경 하는 방법에 대해 알아봅니다."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/21/2017
 ms.author: kraigb
-ms.openlocfilehash: a76bcba5ab4ca8e1a4899e4aa28f734c09af2aa9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9e27121797ffb61517b8d2c2661ec44ff7298968
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="retain-a-constant-virtual-ip-address-for-an-azure-cloud-service"></a>Azure 클라우드 서비스의 가상 IP 주소를 일정하게 유지
-Azure에서 호스팅되는 클라우드 서비스를 업데이트하는 경우 서비스의 가상 IP 주소(VIP)가 변경되지 않는지 확인해야 할 수 있습니다. 많은 도메인 관리 서비스에서 도메인 이름을 등록하는 데 도메인 이름 시스템(DNS)을 사용합니다. DNS는 VIP가 동일하게 유지되는 경우에만 작동합니다. Azure 도구에서 **게시 마법사** 를 사용하여 클라우드 서비스를 업데이트할 때 VIP가 변경되지 않는지 확인할 수 있습니다. 클라우드 서비스에 대한 DNS 도메인 관리를 사용하는 방법에 대한 자세한 내용은 [Azure 클라우드 서비스에 대한 사용자 지정 도메인 이름 구성](cloud-services/cloud-services-custom-domain-name.md)을 참조하세요.
+Azure에서 호스트 되는 클라우드 서비스를 업데이트 하면 tooensure hello 가상 IP 주소 (VIP) hello 서비스의 변경 되지 않게 할 수 있습니다. 많은 도메인 관리 서비스 도메인 이름 등록에 대 한 hello DNS 도메인 이름 ()를 사용 합니다. DNS는 hello VIP 남아 hello 동일한 경우에 작동 합니다. Hello를 사용할 수 있습니다 **게시 마법사** 업데이트에 클라우드 서비스의 VIP는 경우 변경 되지 않습니다 hello Azure Tools tooensure 합니다. 방법에 대 한 자세한 내용은 클라우드 서비스에 대 한 DNS 도메인 관리 toouse 참조 [Azure 클라우드 서비스에 대 한 사용자 지정 도메인 이름 구성](cloud-services/cloud-services-custom-domain-name.md)합니다.
 
 ## <a name="publish-a-cloud-service-without-changing-its-vip"></a>VIP를 변경하지 않고 클라우드 서비스 게시
-클라우드 서비스의 VIP는 프로덕션 환경과 같은 특정 환경에서 Azure에 처음 배포할 때 할당됩니다. VIP는 배포를 명시적으로 삭제하거나 배포 업데이트 프로세스에 의해 암시적으로 삭제된 경우에만 변경됩니다. VIP를 유지하려면 배포를 삭제해서는 안되며 Visual Studio에서 배포를 자동으로 삭제하지 않는지 확인해야 합니다. 
+클라우드 서비스의 VIP hello tooAzure hello 프로덕션 환경과 같은 특정 환경에서 배포할 먼저 때 할당 됩니다. hello 배포를 명시적으로 삭제 하거나 hello 배포는 hello 배포에 의해 암시적으로 삭제 하는 경우에 hello VIP 변경 프로세스를 업데이트 합니다. tooretain hello VIP를 삭제 하면 안, 배포 하 고 Visual Studio 배포를 자동으로 삭제 되지는 않습니다 있는지 확인 해야 합니다. 
 
-여러 배포 옵션을 지원하는 **게시 마법사**에서 배포 설정을 지정할 수 있습니다. 새로 배포 또는 업데이트 배포를 증분 또는 동시에 진행하도록 지정할 수 있습니다. 두 종류의 업데이트 배포 모두 VIP를 유지합니다. 이러한 다양한 유형의 배포에 대한 정의는 [Azure 응용 프로그램 게시 마법사](vs-azure-tools-publish-azure-application-wizard.md)를 참조하세요. 또한 오류가 발생하는 경우 클라우드 서비스의 이전 배포를 삭제할지 제어할 수 있습니다. 해당 옵션을 바르게 설정하지 않은 경우 VIP가 예기치 않게 변경될 수 있습니다.
+Hello에서 배포 설정을 지정할 수 있습니다 **게시 마법사**를 지 원하는 여러 가지 배포 옵션입니다. 새로 배포 또는 업데이트 배포를 증분 또는 동시에 진행하도록 지정할 수 있습니다. 업데이트 배포의 두 종류 hello VIP를 유지합니다. 이러한 다양한 유형의 배포에 대한 정의는 [Azure 응용 프로그램 게시 마법사](vs-azure-tools-publish-azure-application-wizard.md)를 참조하세요. 또한 클라우드 서비스의 hello 이전 배포 되어 오류가 발생 한 경우의 삭제 여부를 제어할 수 있습니다. 해당 옵션을 올바르게 설정 하지 hello VIP가 예기치 않게 변경 될 수 있습니다.
 
 ## <a name="update-a-cloud-service-without-changing-its-vip"></a>VIP를 변경하지 않고 클라우드 서비스 업데이트
 1. Visual Studio에서 Azure 클라우드 서비스 프로젝트를 만들거나 엽니다. 
 
-2. **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭합니다. 바로 가기 메뉴에서 **게시**를 선택합니다.
+2. **솔루션 탐색기**, hello 프로젝트를 마우스 오른쪽 단추로 클릭 합니다. Hello 바로 가기 메뉴에서 선택 **게시**합니다.
 
     ![게시 메뉴](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/solution-explorer-publish-menu.png)
 
-3. **Azure 응용 프로그램 게시** 대화 상자에서 배포할 구독을 선택하고 필요합니다. 필요한 경우 로그인하고 **다음**을 선택합니다.
+3. Hello에 **Azure 응용 프로그램 게시** 대화 상자, 선택 hello Azure 구독 toowhich toodeploy 원하는 합니다. 필요한 경우 로그인하고 **다음**을 선택합니다.
 
     ![Azure 응용 프로그램 게시 로그인 페이지](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-signin.png)
 
-4. **일반 설정** 탭에서 배포 중인 클라우드 서비스 이름을 확인하고 **환경**, **빌드 구성** 및 **서비스 구성**이 모두 올바른지 확인합니다.
+4. Hello에 **일반 설정** 탭에서 배포 하는, hello hello 클라우드 서비스 toowhich의 hello 이름이 확인 **환경**, hello **빌드 구성을**, 및 hello **서비스 구성** 모두 정확 합니다.
 
     ![Azure 응용 프로그램 게시 일반 설정 탭](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-common-settings.png)
 
-5. **고급 설정** 탭에서 **배포 레이블** 및 **저장소 계정**이 올바른지 확인합니다. **실패 시 배포 삭제** 확인란의 선택을 취소했는지 확인하고, **배포 업데이트** 확인란을 선택했는지 확인합니다. **실패 시 배포 삭제** 확인란을 선택 취소하면 배포 중에 오류가 발생할 경우 VIP가 손실되지 않았는지 확인할 수 있습니다. **배포 업데이트** 확인란을 선택하면 응용 프로그램을 다시 게시할 때 배포가 삭제되지 않고 VIP가 손실되지 않았는지 확인할 수 있습니다. 
+5. Hello에 **고급 설정** 탭에서 해당 hello 확인 **배포 레이블** 및 hello **저장소 계정** 올바른지 합니다. 해당 hello 확인 **실패 시 배포 삭제** 확인란의 선택을 취소 하 고 해당 hello 확인 **배포 업데이트** 확인란을 선택 합니다. Hello 선택을 취소 하 여 **실패 시 배포 삭제** VIP 배포 하는 동안 오류가 발생 하면 손실 되지 되도록 확인란을 있습니다. Hello를 선택 하 여 **배포 업데이트** 배포는 삭제 되지 않습니다 및 VIP는 손실 되지 않습니다 응용 프로그램을 다시 게시할 때 확인 확인란을 합니다. 
 
     ![Azure 응용 프로그램 게시 고급 설정 탭](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-advanced-settings.png)
 
-6. 역할을 업데이트하는 방법을 자세히 지정하려면 **배포 업데이트** 옆의 **설정**을 선택합니다. **증분 업데이트** 또는 **동시 업데이트**를 선택한 다음 **확인**을 선택합니다. **증분 업데이트**를 선택하면 응용 프로그램의 각 인스턴스를 하나씩 차례로 업데이트하므로 해당 응용 프로그램을 항상 사용할 수 있습니다. **동시 업데이트**를 선택하면 응용 프로그램의 모든 인스턴스를 동시에 업데이트합니다. 동시 업데이트는 신속하게 진행되지만 업데이트 과정 중에 서비스를 사용할 수 없습니다. 작업을 마쳤으면 **다음**을 선택합니다.
+6. toofurther hello 역할 toobe 업데이트 되는 방법을 지정, 선택 **설정** 다음 너무**배포 업데이트**합니다. **증분 업데이트** 또는 **동시 업데이트**를 선택한 다음 **확인**을 선택합니다. 선택 **증분 업데이트** tooupdate 응용 프로그램의 각 인스턴스가 차례로 하므로 응용 프로그램을 hello 하는 항상 사용할 수 있습니다. 선택 **동시 업데이트** tooupdate hello에서의 응용 프로그램의 모든 인스턴스가 동시 합니다. 동시 업데이트는 속도가 더 있지만 hello 업데이트 과정 인해 서비스를 사용할 수 있습니다. 작업을 마쳤으면 **다음**을 선택합니다.
 
     ![Azure 응용 프로그램 게시 배포 설정 페이지](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-deployment-update-settings.png)
 
-7. **Azure 응용 프로그램 게시** 대화 상자에서 **요약** 페이지가 표시될 때까지 **다음**을 선택합니다. 설정을 확인한 다음 **게시**를 선택합니다.
+7. Hello에 **Azure 응용 프로그램 게시** 대화 상자에서 **다음** hello까지 **요약** 페이지가 표시 됩니다. 설정을 확인한 다음 **게시**를 선택합니다.
    
     ![Azure 응용 프로그램 게시 요약 페이지](./media/vs-azure-tools-cloud-service-retain-a-constant-virtual-ip-address/azure-publish-summary.png)
 
 ## <a name="next-steps"></a>다음 단계
-- [Visual Studio Azure 응용 프로그램 게시 마법사 사용](vs-azure-tools-publish-azure-application-wizard.md)
+- [Hello Visual Studio Azure 응용 프로그램 게시 마법사를 사용 하 여](vs-azure-tools-publish-azure-application-wizard.md)
 

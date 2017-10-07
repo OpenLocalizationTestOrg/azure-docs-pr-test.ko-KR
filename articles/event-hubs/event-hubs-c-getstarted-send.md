@@ -1,6 +1,6 @@
 ---
-title: "C를 사용하여 Azure Event Hubs로 이벤트 전송 | Microsoft Docs"
-description: "C를 사용하여 Azure Event Hubs로 이벤트 전송"
+title: "이벤트 허브 aaaSend 이벤트 tooAzure C를 사용 하 여 | Microsoft Docs"
+description: "C를 사용 하 여 tooAzure 이벤트 허브 이벤트를 전송 합니다."
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,37 +14,37 @@ ms.devlang: csharp
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a615ee39b6c3731cc7df366e9fabeed5219a71b4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bb53300c070debb4a3658a38df9d3966f08e81ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-events-to-azure-event-hubs-using-c"></a>C를 사용하여 Azure Event Hubs로 이벤트 전송
+# <a name="send-events-tooazure-event-hubs-using-c"></a>C를 사용 하 여 tooAzure 이벤트 허브 이벤트를 전송 합니다.
 
 ## <a name="introduction"></a>소개
-Event Hubs는 연결된 장치와 응용 프로그램에서 생성되는 엄청난 양의 데이터를 처리 및 분석할 수 있도록 초당 수백만 개의 이벤트를 수용할 수 있는 확장성이 뛰어난 수집 시스템입니다. 이벤트 허브로 수집된 데이터는 실시간 분석 공급자나 저장소 클러스터를 사용하여 변환하고 저장할 수 있습니다.
+이벤트 허브는 수백만 개의 초당 응용 프로그램 tooprocess 활성화 이벤트를 수집 하 고 연결 된 장치 및 응용 프로그램에서 생성 되는 데이터의 양이 hello를 분석할 수 있는 확장성이 높은 수집 시스템. 이벤트 허브로 수집된 데이터는 실시간 분석 공급자나 저장소 클러스터를 사용하여 변환하고 저장할 수 있습니다.
 
-자세한 내용은 [Event Hubs 개요][Event Hubs 개요]를 참조하세요.
+자세한 내용은 참조 하십시오. [이벤트 허브 개요] hello [이벤트 허브 개요].
 
-이 자습서에서는 C 언어의 콘솔 응용 프로그램을 사용하여 이벤트를 이벤트 허브로 전송하는 방법을 배웁니다. 이벤트를 수신하려면 왼쪽의 목차에서 해당 수신 언어를 클릭합니다.
+이 자습서에서는 살펴보겠습니다 toosend 이벤트 tooan 이벤트 허브 C. tooreceive 이벤트에는 콘솔 응용 프로그램을 사용 하 여 hello 왼쪽 목차에서 hello 적절 한 받는 언어를 선택 하는 방법입니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요 합니다.
 
-* C 개발 환경. 이 자습서에서는 Ubuntu 14.04를 사용하는 Azure Linux VM에 gcc 스택이 있다고 가정합니다.
+* C 개발 환경. 이 자습서에서는 Ubuntu 14.04는 Azure Linux VM에 대 한 hello gcc 스택을 가정 합니다.
 * [Microsoft Visual Studio](https://www.visualstudio.com/).
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
 
-## <a name="send-messages-to-event-hubs"></a>이벤트 허브에 메시지 보내기
-이 섹션에서는 이벤트 허브로 이벤트를 보내는 C 앱을 작성합니다. 코드는 [Apache Qpid 프로젝트](http://qpid.apache.org/)의 Proton AMQP 라이브러리를 사용합니다. 이는 [여기](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504)(영문)에 나온 C에서 AMQP와 함께 서비스 버스 큐와 토픽을 사용하는 방법과 유사합니다. 자세한 내용은 [Qpid Proton 설명서](http://qpid.apache.org/proton/index.html)(영문)를 참조하세요.
+## <a name="send-messages-tooevent-hubs"></a>TooEvent 허브 메시지 보내기
+이 섹션에서는 C 앱 toosend 이벤트 tooyour 이벤트 허브를 작성할 수 있습니다. hello 코드 hello에서 hello Proton AMQP 라이브러리를 사용 하 여 [Apache Qpid 프로젝트](http://qpid.apache.org/)합니다. 이것이 유사 toousing 서비스 버스 큐 및 항목 C에서 AMQP 표시 된 것 처럼 [여기](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504)합니다. 자세한 내용은 [Qpid Proton 설명서](http://qpid.apache.org/proton/index.html)(영문)를 참조하세요.
 
-1. [Qpid AMQP Messenger 페이지](https://qpid.apache.org/proton/messenger.html)에서 환경에 맞는 Qpid Proton 설치에 대한 지침을 따릅니다.
-2. Proton 라이브러리를 컴파일하려면 다음 패키지를 설치합니다.
+1. Hello에서 [Qpid AMQP 메신저 페이지](https://qpid.apache.org/proton/messenger.html), 사용자 환경에 따라 hello 지침 tooinstall Qpid Proton를 수행 합니다.
+2. toocompile는 Proton 라이브러리 hello, hello 다음 패키지를 설치 합니다.
    
     ```shell
     sudo apt-get install build-essential cmake uuid-dev openssl libssl-dev
     ```
-3. [Qpid Proton 라이브러리](http://qpid.apache.org/proton/index.html)(영문)를 다운로드하고 다음과 같이 압축을 풉니다.
+3. Hello 다운로드 [Qpid Proton 라이브러리](http://qpid.apache.org/proton/index.html), 예를 들어 압축을 풀고 및:
    
     ```shell
     wget http://archive.apache.org/dist/qpid/proton/0.7/qpid-proton-0.7.tar.gz
@@ -59,7 +59,7 @@ Event Hubs는 연결된 장치와 응용 프로그램에서 생성되는 엄청�
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
     sudo make install
     ```
-5. 작업 디렉터리에서 다음 코드가 포함된 **sender.c** 라는 새 파일을 만듭니다. 이벤트 허브 이름 및 네임스페이스 이름 값을 대체해야 합니다. 또한 이전에 만든 **SendRule** 도 URL로 인코드된 버전의 키로 대체합니다. [여기](http://www.w3schools.com/tags/ref_urlencode.asp)(영문)에서 URL로 인코드할 수 있습니다.
+5. 작업 디렉터리에 새 파일을 만들 **sender.c** 코드 다음 hello로 합니다. 이벤트 허브 이름 및 네임 스페이스 이름에 대 한 toosubstitute hello 값을 기억 합니다. 또한 hello에 대 한 hello 키의 URL로 인코딩된 버전으로 대체 해야 **SendRule** 앞에서 만든 합니다. [여기](http://www.w3schools.com/tags/ref_urlencode.asp)(영문)에서 URL로 인코드할 수 있습니다.
    
     ```c
     #include "proton/message.h"
@@ -121,7 +121,7 @@ Event Hubs는 연결된 장치와 응용 프로그램에서 생성되는 엄청�
     }
    
     int main(int argc, char** argv) {
-        printf("Press Ctrl-C to stop the sender process\n");
+        printf("Press Ctrl-C toostop hello sender process\n");
    
         pn_messenger_t *messenger = pn_messenger(NULL);
         pn_messenger_set_outgoing_window(messenger, 1);
@@ -140,18 +140,18 @@ Event Hubs는 연결된 장치와 응용 프로그램에서 생성되는 엄청�
         return 0;
     }
     ```
-6. 파일을 컴파일합니다. **gcc**를 사용하면 다음과 같습니다.
+6. Hello 파일을 컴파일하여 가정 **gcc**:
    
     ```
     gcc sender.c -o sender -lqpid-proton
     ```
 
     > [!NOTE]
-    > 이 코드에서 발신 창 1을 사용하여 메시지가 최대한 빨리 출력되게 합니다. 일반적으로 응용 프로그램에서는 메시지를 일괄 처리하여 처리량을 늘려야 합니다. 이 환경과 다른 환경 및 바인딩이 제공되는 플랫폼(현재 Perl, PHP, Python 및 Ruby)에서 Qpid Proton 라이브러리를 사용하는 방법에 대한 자세한 내용은 [Qpid AMQP Messenger 페이지](https://qpid.apache.org/proton/messenger.html)를 참조하세요.
+    > 이 코드에서는 아웃 1 tooforce hello 메시지는 보내는 창을 최대한 빨리 사용. 일반적으로 응용 프로그램 toobatch 메시지 tooincrease 처리량을 시도해 야 합니다. Hello 참조 [Qpid AMQP 메신저 페이지](https://qpid.apache.org/proton/messenger.html) toouse Qpid Proton 라이브러리가 예제와 다른 환경 및 바인딩이 제공 되는 플랫폼에서 hello 하는 방법에 대 한 정보에 대 한 (현재 Perl, PHP, Python 및 Ruby).
 
 
 ## <a name="next-steps"></a>다음 단계
-Event Hubs에 대한 자세한 내용은 다음 링크를 참조하세요.
+Hello 다음 링크를 방문 하 여 이벤트 허브에 대 한 자세히 알아볼 수 있습니다.
 
 * [이벤트 허브 개요](event-hubs-what-is-event-hubs.md
 )

@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Factory를 사용하여 예측 데이터 파이프라인 만들기 | Microsoft Docs"
-description: "Azure Data Factory 및 Azure 기계 학습을 사용하여 예측 파이프라인을 만드는 방법을 설명합니다."
+title: "Azure 데이터 팩터리를 사용 하 여 aaaCreate 예측 데이터 파이프라인 | Microsoft Docs"
+description: "Toocreate Azure 데이터 팩터리 및 Azure 기계 학습을 사용 하 여 예측 파이프라인을 생성 하는 방법을 설명 합니다."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: d8e2c9583fc909e4e015e2d40473d2754529d8ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 943210c28b1696e299ff9b7cc96369b95f182354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-predictive-pipelines-using-azure-machine-learning-and-azure-data-factory"></a>Azure Machine Learning 및 Azure Data Factory를 사용하여 예측 파이프라인 만들기
 
@@ -37,51 +37,51 @@ ms.lasthandoff: 07/11/2017
 ## <a name="introduction"></a>소개
 
 ### <a name="azure-machine-learning"></a>Azure 기계 학습
-[Azure 기계 학습](https://azure.microsoft.com/documentation/services/machine-learning/) 을 사용하여 예측 분석 솔루션을 빌드, 테스트 및 배포할 수 있습니다. 대략적인 관점에서 이 작업은 다음 세 단계로 수행됩니다.
+[Azure 기계 학습](https://azure.microsoft.com/documentation/services/machine-learning/) toobuild, 테스트 및 예측 분석 솔루션을 배포할 수 있습니다. 대략적인 관점에서 이 작업은 다음 세 단계로 수행됩니다.
 
-1. **학습 실험 만들기**. Azure ML Studio를 사용하여 이 단계를 수행합니다. ML Studio는 학습 데이터를 사용하여 예측 분석 모델을 학습하고 테스트하는 데 사용하는 시각적 공동 개발 환경입니다.
-2. **예측 실험으로 변환**. 기존 데이터로 모델을 학습시키고 새 데이터의 점수를 매기는 데 사용할 준비가 되면, 점수 매기기를 위해 실험을 준비하고 간소화합니다.
-3. **웹 서비스로 배포**. 점수 매기기 실험을 Azure 웹 서비스로 게시할 수 있습니다. 이 웹 서비스 끝점을 통해 데이터를 모델로 전송하고 모델로부터 결과 예측을 받을 수 있습니다.  
+1. **학습 실험 만들기**. Hello Azure 기계 학습 스튜디오를 사용 하 여이 단계를 수행 합니다. hello 기계 학습 스튜디오는 tootrain를 사용 하 여 학습 데이터를 사용 하 여 예측 분석 모델을 테스트 하는 시각적 공동 개발 환경입니다.
+2. **Tooa 예측 실험으로 변환**합니다. 기존 데이터와 모델의 학습 및 준비 toouse 되 면 그 tooscore 새 데이터를 준비 하 고 점수 매기기 실험을 간소화 합니다.
+3. **웹 서비스로 배포**. 점수 매기기 실험을 Azure 웹 서비스로 게시할 수 있습니다. 이 웹 서비스 끝점을 통해 데이터 tooyour 모델을 보내고 결과 예측을 hello 모델에서 받을 수 있습니다.  
 
 ### <a name="azure-data-factory"></a>Azure 데이터 팩터리
-Data Factory는 데이터의 **이동**과 **변환**을 조율하고 자동화하는 클라우드 기반의 데이터 통합 서비스입니다. 다양한 데이터 저장소에서 데이터를 수집하고 변환/처리하며 데이터 저장소에 결과 데이터를 게시할 수 있는 Azure Data Factory를 사용하여 데이터 통합 솔루션을 만들 수 있습니다.
+데이터 팩터리는 오케스트레이션 하 고 hello를 자동화 하는 클라우드 기반 데이터 통합 서비스 **이동** 및 **변환** 데이터입니다. 데이터 통합 솔루션 Azure 데이터 팩터리를 사용 하 고 수 있는 다양 한 데이터 저장소에서 데이터를 수집, hello 데이터 변환/프로세스가 hello 결과 데이터 toohello 데이터 저장소에 게시를 만들 수 있습니다.
 
-Data Factory 서비스를 통해 데이터를 이동하고 변환하는 파이프라인을 실행한 다음 데이터 파이프라인을 지정된 일정(매시간, 매일, 매주 등)으로 만들 수 있습니다. 또한 데이터 파이프라인 간의 종속성과 계보를 표시하는 다양한 시각화를 제공하며 문제를 쉽고 정확하게 파악하고 모니터링 경고를 설정하는 통합된 단일 보기에서 모든 데이터 파이프라인을 모니터링합니다.
+데이터 팩터리 서비스 이동 하 고 데이터를 변환 하는 toocreate 데이터 파이프라인을 허용 하 고 (시간별, 일별, 주별 등). 지정된 된 일정에 hello 파이프라인을 실행 하십시오. 또한 다양 한 시각화 기능 toodisplay hello 계보 및 데이터 파이프라인, 간의 종속성을 제공 하 고 모든 데이터 파이프라인에서 단일 통합된 뷰 tooeasily 정확 하 게 문제를 모니터링 하 고 모니터링 경고 설정.
 
-[Azure Data Factory 소개](data-factory-introduction.md) 및 [첫 번째 파이프라인 빌드](data-factory-build-your-first-pipeline.md) 문서를 참조하여 Azure Data Factory 서비스를 빠르게 시작합니다.
+참조 [소개 tooAzure Data Factory](data-factory-introduction.md) 및 [첫 번째 파이프라인 빌드](data-factory-build-your-first-pipeline.md) 문서 tooquickly hello Azure 데이터 팩터리 서비스를 시작 합니다.
 
 ### <a name="data-factory-and-machine-learning-together"></a>Data Factory 및 Machine Learning
-Azure Data Factory를 사용하면 예측 분석을 위해 게시된 [Azure Machine Learning][azure-machine-learning] 웹 서비스를 사용하는 파이프라인을 쉽게 만들 수 있습니다. Azure 데이터 팩터리 파이프라인에서 **배치 실행 작업** 을 사용하여 Azure ML 웹 서비스를 호출하고 배치에 있는 데이터에 대한 예측을 할 수 있습니다. 자세한 내용은 [배치 실행 작업을 사용하여 Azure ML 웹 서비스 호출](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) 섹션을 참조하세요.
+Azure Data Factory 수 있도록 tooeasily 하면 게시 된 보고서를 사용 하는 파이프라인을 만들 [Azure 기계 학습] [ azure-machine-learning] 웹 서비스에 대 한 예측 분석 합니다. Hello를 사용 하 여 **일괄 처리 실행 작업** 는 Azure 데이터 팩터리 파이프라인에서 일괄 처리의 hello 데이터에는 Azure ML 웹 서비스 toomake 예측을 호출할 수 있습니다. 참조 [일괄 처리 실행 작업 hello 웹 서비스를 사용 하 여 Azure 기계 학습 호출](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) 자세한 내용은 섹션.
 
-시간이 지남에 따라 Azure ML 점수 매기기 실험의 예측 모델은 새 입력 데이터 집합을 사용하여 다시 학습되어야 합니다. 다음 단계를 수행하여 데이터 팩터리 파이프라인에서 Azure ML 모델을 다시 학습할 수 있습니다.
+시간이 지남에 따라 hello hello Azure 기계 학습 점수 매기기 실험에 예측 모델에 새 입력된 데이터 집합을 통해 유지 toobe가 필요 합니다. 데이터 팩토리 파이프라인에서는 Azure ML 모델을 보존 하기 위해 hello 다음 단계를 수행 하 여 수 있습니다.
 
-1. 웹 서비스로 학습 실험(예측 실험 아님)을 게시합니다. 이전 시나리오에서 웹 서비스로 예측 실험을 노출했으므로 Azure ML Studio에서 이 단계를 수행합니다.
-2. Azure ML 배치 실행 작업을 사용하여 학습 실험을 위한 웹 서비스를 호출합니다. 기본적으로, Azure ML 배치 실행 작업을 사용하여 학습 웹 서비스와 점수 매기기 웹 서비스를 모두 호출할 수 있습니다.
+1. Hello 학습 실험 (예측 하지 실험) 웹 서비스로 게시 합니다. Hello 이전 시나리오에서 웹 서비스로 tooexpose 예측 실험을 수행한 것 처럼 hello Azure 기계 학습 스튜디오에서에서이 단계를 수행 합니다.
+2. Hello 학습 실험에 대 한 hello Azure ML 일괄 처리 실행 작업 tooinvoke hello 웹 서비스를 사용 합니다. 기본적으로, hello Azure ML 일괄 처리 실행 활동 tooinvoke 학습 웹 서비스 및 웹 서비스 점수 매기기를 사용할 수 있습니다.
 
-재학습으로 완료한 후에는 **Azure ML 업데이트 리소스 작업**을 사용하여 새로 학습한 모델로 점수 매기기 웹 서비스(웹 서비스로 노출된 예측 실험)를 업데이트합니다. 자세한 내용은 [업데이트 리소스 작업을 사용하여 모델 업데이트](data-factory-azure-ml-update-resource-activity.md) 문서를 참조하세요.
+재교육를 완료 한 후 업데이트 hello를 사용 하 여 웹 서비스 (웹 서비스로 노출 된 예측 실험) hello 새로 학습 된 모델 점수 매기기 hello **Azure ML 업데이트 리소스 작업**합니다. 자세한 내용은 [업데이트 리소스 작업을 사용하여 모델 업데이트](data-factory-azure-ml-update-resource-activity.md) 문서를 참조하세요.
 
 ## <a name="invoking-a-web-service-using-batch-execution-activity"></a>배치 실행 작업을 사용하여 웹 서비스 호출
-Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케스트레이션한 다음 Azure 기계 학습을 사용하는 배치 실행을 수행할 수 있습니다. 최상위 단계는 다음과 같습니다.
+Azure Data Factory tooorchestrate 데이터 이동 및 처리를 사용 하 고이 정보를 Azure 기계 학습을 사용 하 여 일괄 처리 실행을 수행 합니다. Hello 최상위 단계는 다음과 같습니다.
 
-1. Azure 기계 학습 연결된 서비스를 만듭니다. 다음 값이 필요합니다.
+1. Azure 기계 학습 연결된 서비스를 만듭니다. 다음 값에는 hello가 필요 합니다.
 
-   1. **요청 URI** . 웹 서비스 페이지에서 **배치 실행** 링크를 클릭하여 요청 URI를 찾을 수 있습니다.
-   2. **API 키** . 게시한 웹 서비스를 클릭하여 API 키를 찾을 수 있습니다.
-   3. **AzureMLBatchExecution** 작업을 사용합니다.
+   1. **요청 URI** hello 일괄 처리 실행 API에 대 한 합니다. Hello를 클릭 하 여 hello 요청 URI를 찾을 수 있습니다 **일괄 처리 실행** hello 웹 서비스 페이지에 링크 합니다.
+   2. **API 키** hello Azure 기계 학습 웹 서비스를 게시 합니다. Hello 웹 서비스 게시를 클릭 하 여 hello API 키를 찾을 수 있습니다.
+   3. 사용 하 여 hello **AzureMLBatchExecution** 활동입니다.
 
       ![기계 학습 대시보드](./media/data-factory-azure-ml-batch-execution-activity/AzureMLDashboard.png)
 
       ![배치 URI](./media/data-factory-azure-ml-batch-execution-activity/batch-uri.png)
 
-### <a name="scenario-experiments-using-web-service-inputsoutputs-that-refer-to-data-in-azure-blob-storage"></a>시나리오: Azure Blob 저장소의 데이터를 참조하는 웹 서비스 입력/출력을 사용하여 실험
-이 시나리오에서는 Azure 기계 학습 웹 서비스는 Azure Blob 저장소의 파일에서 데이터를 사용하여 예측을 만들고 Blob 저장소에 예측 결과를 저장합니다. 다음 JSON은 AzureMLBatchExecution 작업이 포함된 Data Factory 파이프라인을 정의합니다. 작업에는 입력으로 **DecisionTreeInputBlob** 데이터 집합, 출력으로 **DecisionTreeResultBlob** 데이터 집합이 있습니다. **DecisionTreeInputBlob**은 **webServiceInput** JSON 속성을 사용하여 웹 서비스에 입력으로 전달됩니다. **DecisionTreeResultBlob**은 **webServiceOutputs** JSON 속성을 사용하여 웹 서비스에 출력으로 전달됩니다.  
+### <a name="scenario-experiments-using-web-service-inputsoutputs-that-refer-toodata-in-azure-blob-storage"></a>시나리오: 웹 서비스 입력/출력 toodata Azure Blob 저장소에 참조를 사용 하 여 실험
+이 시나리오에서는 hello Azure 컴퓨터 학습 웹 서비스에서 Azure blob 저장소의 파일에서 데이터를 사용 하 여 예측을 수행 하 고 hello blob 저장소에 hello 예측 결과 저장 합니다. hello 다음 JSON 정의 AzureMLBatchExecution 작업과 함께 데이터 팩터리 파이프라인 합니다. hello 활동에 데이터 집합이 두 hello **DecisionTreeInputBlob** 입력으로 및 **DecisionTreeResultBlob** hello 출력으로 합니다. hello **DecisionTreeInputBlob** hello를 사용 하 여 입력된 toohello 웹 서비스로 전달 되 **webServiceInput** JSON 속성입니다. hello **DecisionTreeResultBlob** hello를 사용 하 여 출력 toohello 웹 서비스로 전달 되 **webServiceOutputs** JSON 속성입니다.  
 
 > [!IMPORTANT]
-> 웹 서비스에서 다중 입력을 받을 경우 **webServiceInput**를 사용하는 대신에 **webServiceInputs** 속성을 사용합니다. webServiceInputs 속성을 사용하는 예제는 [웹 서비스에는 다중 입력이 필요합니다](#web-service-requires-multiple-inputs) 섹션을 참조합니다.
+> Hello를 사용 하 여 hello 웹 서비스 변수를 사용할 경우 여러 개의 입력 **webServiceInputs** 사용 하는 대신 속성 **webServiceInput**합니다. Hello 참조 [웹 서비스 작업에 여러 개의 입력](#web-service-requires-multiple-inputs) hello webServiceInputs 속성을 사용 하는 예제에 대 한 섹션.
 >
-> **webServiceInput**/**webServiceInputs** 및 **webServiceOutputs** 속성(**typeProperties** 내)에서 참조하는 데이터 집합은 **inputs** 및 **outputs** 작업에 포함되어야 합니다.
+> Hello에서 참조 되는 데이터 집합 **webServiceInput**/**webServiceInputs** 및 **webServiceOutputs** 속성 (에서  **typeProperties**) hello 활동에에서도 포함 해야 **입력** 및 **출력**합니다.
 >
-> Azure ML 실험에서 웹 서비스 입력 및 출력 포트와 전역 매개 변수에는 사용자 지정할 수 있는 기본 이름("input1", "input2")이 붙어있습니다. WebServiceInputs, webServiceOutputs 및 globalParameters 설정에 대해 사용하는 이름은 실험에서의 이름과 정확히 일치해야 합니다. 예상된 매핑을 확인하기 위해 일괄 처리 실행 도움말 페이지에서 Azure ML 끝점에 대한 샘플 요청 페이로드를 볼 수 있습니다.
+> Azure ML 실험에서 웹 서비스 입력 및 출력 포트와 전역 매개 변수에는 사용자 지정할 수 있는 기본 이름("input1", "input2")이 붙어있습니다. webServiceInputs, webServiceOutputs, 및 globalParameters 설정에 사용할 수는 hello 이름에는 hello 실험에서 hello 이름과 정확히 일치 해야 합니다. Azure 기계 학습 끝점 tooverify 예상 hello 매핑을 대 한 hello 일괄 처리 실행 도움말 페이지에 hello 샘플 요청 페이로드를 볼 수 있습니다.
 >
 >
 
@@ -127,16 +127,16 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
 }
 ```
 > [!NOTE]
-> AzureMLBatchExecution 작업의 입력 및 출력만 웹 서비스에 매개 변수로 전달될 수 있습니다. 예를 들어 위의 JSON 조각에서 DecisionTreeInputBlob은 webServiceInput 매개 변수를 통해 웹 서비스에 입력으로 전달되는 AzureMLBatchExecution 작업에 대한 입력입니다.   
+> 유일한 입 / 출력 hello AzureMLBatchExecution 활동의 매개 변수 toohello 웹 서비스 변수로 전달할 수 있습니다. 예를 들어 JSON 코드 조각은 위에 hello, DecisionTreeInputBlob은 입력된 toohello webServiceInput 매개 변수를 통해 웹 서비스는 입력된 toohello 변수로 전달 되는 AzureMLBatchExecution 활동에는 사용 합니다.   
 >
 >
 
-### <a name="example"></a>예
-이 예제에서는 Azure 저장소를 사용하여 입력 및 출력 데이터를 저장합니다.
+### <a name="example"></a>예제
+이 예에서는 사용 하 여 Azure 저장소 toohold 입력 및 출력 데이터 hello 둘 다 있습니다.
 
-이 예제를 진행하기 전에 [Data Factory를 사용하여 첫 번째 파이프라인 빌드][adf-build-1st-pipeline] 자습서를 살펴보는 것이 좋습니다. 이 예제에서는 Data Factory Editor를 사용하여 Data Factory 아티팩트(연결된 서비스, 데이터 집합, 파이프라인)를 만듭니다.   
+Hello를 통과 하는 것이 좋습니다 [데이터 팩터리와 첫 번째 파이프라인 빌드] [ adf-build-1st-pipeline] 자습서이 예제를 진행 하십시오. 이 예에서 hello 데이터 팩터리 편집기 toocreate 데이터 팩터리 아티팩트의 (연결 된 서비스, 데이터 집합, 파이프라인)를 사용 합니다.   
 
-1. **Azure Storage**에 대한 **연결된 서비스**를 만듭니다. 입력 및 출력 파일이 서로 다른 저장소 계정에 있는 경우 연결된 서비스가 두 개 필요합니다. 다음은 JSON 예제입니다.
+1. **Azure Storage**에 대한 **연결된 서비스**를 만듭니다. Hello 입력 및 출력 파일에 있는 경우 다른 저장소 계정에는 두 개의 연결 된 서비스가 필요 합니다. 다음은 JSON 예제입니다.
 
     ```JSON
     {
@@ -149,7 +149,7 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
       }
     }
     ```
-2. **입력** Azure Data Factory **데이터 집합**을 만듭니다. 다른 Data Factory 데이터 집합과 달리 이러한 데이터 집합은 **folderPath** 및 **fileName** 값을 둘 다 포함해야 합니다. 분할을 사용하여 각 배치 실행(각 데이터 조각)이 고유한 입력 및 출력 파일을 처리하거나 생성하도록 할 수 있습니다. 입력을 CSV 파일 형식으로 변환하여 각 조각의 저장소 계정에 배치하는 업스트림 작업을 포함해야 할 수 있습니다. 이 경우 다음 예제에 표시된 **external** 및 **externalData** 설정을 포함하지 않으며, DecisionTreeInputBlob은 다른 작업의 출력 데이터 집합이 됩니다.
+2. Hello 만들기 **입력** Azure Data Factory **dataset**합니다. 다른 Data Factory 데이터 집합과 달리 이러한 데이터 집합은 **folderPath** 및 **fileName** 값을 둘 다 포함해야 합니다. 각 일괄 처리 실행 (각 데이터 조각) tooprocess toocause 분할을 사용 하 여 또는 고유한 입력을 생성 한 출력 파일 수 있습니다. Tooinclude 일부 업스트림 작업 tootransform hello hello CSV 파일 형식으로 입력 하 고 각 조각에 대 한 hello 저장소 계정에 배치 해야 합니다. Hello 하지 포함 경우 **외부** 및 **externalData** hello 뒤에 표시 된 예제에서는 하 여 DecisionTreeInputBlob 것은 다른 활동의 hello 출력 데이터 집합 설정 합니다.
 
     ```JSON
     {
@@ -181,7 +181,7 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
     }
     ```
 
-    입력 csv 파일에는 열 머리글 행이 있어야 합니다. **복사 작업**을 사용하여 csv를 만들고 Blob 저장소로 이동하는 경우 싱크 속성 **blobWriterAddHeader**를 **true**로 설정해야 합니다. 예:
+    입력된 csv 파일 hello 열 머리글 행에 있어야 합니다. Hello를 사용 하는 경우 **복사 작업** hello blob 저장소로 toocreate/이동 hello csv hello 싱크 속성을 설정 해야 **blobWriterAddHeader** 너무**true**합니다. 예:
 
     ```JSON
     sink:
@@ -191,8 +191,8 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
     }
     ```
 
-    csv 파일에 머리글 행이 없는 경우 다음과 같은 오류가 표시될 수 있습니다. **Error in Activity: Error reading string. Unexpected token: StartObject. Path '', line 1, position 1**.
-3. **출력** Azure Data Factory **데이터 집합**을 만듭니다. 이 예제에서는 분할을 사용하여 각 조각 실행의 고유한 출력 경로를 만듭니다. 분할하지 않으면 작업에서 파일을 덮어씁니다.
+    Hello csv 파일 hello 머리글 행이 없는 경우 hello 다음 오류가 표시 될 수 있습니다: **활동에서 오류가: 문자열을 읽는 동안 오류가 발생 합니다. Unexpected token: StartObject. Path '', line 1, position 1**.
+3. Hello 만들기 **출력** Azure Data Factory **dataset**합니다. 이 예제에서는 각 조각 실행에 대 한 분할 toocreate 고유한 출력 경로 사용 합니다. Hello 활동 hello 분할 수 없이 hello 파일을 덮어씁니다.
 
     ```JSON
     {
@@ -233,7 +233,7 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
       }
     }
     ```
-4. **AzureMLLinkedService** 형식의 **연결된 서비스**를 만들고 API 키 및 모델 배치 실행 URL을 제공합니다.
+4. 만들기는 **연결 된 서비스** 형식의: **AzureMLLinkedService**, hello API 키를 제공 하 및 일괄 처리 실행 URL을 모델링 합니다.
 
     ```JSON
     {
@@ -247,11 +247,11 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
       }
     }
     ```
-5. 끝으로, **AzureMLBatchExecution** 작업이 포함된 파이프라인을 작성합니다. 런타임에 파이프라인은 다음 단계를 수행합니다.
+5. 끝으로, **AzureMLBatchExecution** 작업이 포함된 파이프라인을 작성합니다. 런타임 시, 파이프라인 단계를 수행 하는 hello를 수행 합니다.
 
-   1. 입력 데이터 집합에서 입력 파일의 위치를 가져옵니다.
-   2. Azure Machine Learning 배치 실행 API 호출
-   3. 배치 실행 출력을 출력 데이터 집합에 지정된 Blob에 복사합니다.
+   1. 입력된 데이터 집합에서 hello 입력된 파일의 hello 위치를 가져옵니다.
+   2. Hello Azure 기계 학습 일괄 처리 실행 API를 호출합니다.
+   3. 복사는 출력 데이터 집합에 지정 된 일괄 처리 실행 출력 toohello blob을 hello 합니다.
 
       > [!NOTE]
       > AzureMLBatchExecution 작업에는 0개 이상의 입력 및 1개 이상의 출력이 있을 수 있습니다.
@@ -300,24 +300,24 @@ Azure 데이터 팩터리를 사용하여 데이터 이동 및 처리를 오케�
     }
     ```
 
-      **start** 및 **end** 날짜/시간은 둘 다 [ISO 형식](http://en.wikipedia.org/wiki/ISO_8601)(영문)이어야 합니다. 예: 2014-10-14T16:32:41Z. **end** 시간은 선택 사항입니다. **end** 속성 값을 지정하지 않는 경우 "**start + 48시간**"으로 계산됩니다. 파이프라인을 무기한 실행하려면 **종료** 속성 값으로 **9999-09-09**를 지정합니다. JSON 속성에 대한 자세한 내용은 [JSON 스크립트 참조](https://msdn.microsoft.com/library/dn835050.aspx) 를 참조하세요.
+      **start** 및 **end** 날짜/시간은 둘 다 [ISO 형식](http://en.wikipedia.org/wiki/ISO_8601)(영문)이어야 합니다. 예: 2014-10-14T16:32:41Z. hello **끝** 으로 선택 사항입니다. Hello에 대 한 값을 지정 하지 않으면 **끝** 로 계산 됩니다 속성을 "**start + 48 시간입니다.**" toorun hello 파이프라인 무제한으로 지정 **9999-09-09** hello에 대 한 hello 값으로 **끝** 속성입니다. JSON 속성에 대한 자세한 내용은 [JSON 스크립트 참조](https://msdn.microsoft.com/library/dn835050.aspx) 를 참조하세요.
 
       > [!NOTE]
-      > AzureMLBatchExecution 작업에 대한 입력 지정은 선택 사항입니다.
+      > Hello AzureMLBatchExecution 활동에 대 한 입력을 지정 하는 것은 선택 사항입니다.
       >
       >
 
-### <a name="scenario-experiments-using-readerwriter-modules-to-refer-to-data-in-various-storages"></a>시나리오: 다양한 저장소의 데이터를 참조하는 판독기/기록기 모듈을 사용하여 실험
-Azure ML 실험을 만들 때 다른 일반적인 시나리오는 판독기 및 기록기기 모듈을 사용하는 것입니다. 판독기 모듈은 실험으로 데이터를 로드할 때 사용되고 기록기 모듈은 실험에서 데이터를 저장할 때 사용됩니다. 판독기 및 기록기 모듈에 대한 자세한 내용은 MSDN 라이브러리의 [판독기](https://msdn.microsoft.com/library/azure/dn905997.aspx) 및 [기록기](https://msdn.microsoft.com/library/azure/dn905984.aspx) 항목을 참조하세요.     
+### <a name="scenario-experiments-using-readerwriter-modules-toorefer-toodata-in-various-storages"></a>시나리오: toorefer toodata 판독기/작성기 모듈을 사용 하 여 다양 한 저장소에서 실험
+Azure 기계 학습 실험을 만들 때 또 다른 일반적인 시나리오는 toouse 판독기 및 작성기 모듈입니다. hello 판독기는 실험에 사용 되는 tooload 데이터 고 hello 기록기 모듈은 실험에서 toosave 데이터입니다. 판독기 및 기록기 모듈에 대한 자세한 내용은 MSDN 라이브러리의 [판독기](https://msdn.microsoft.com/library/azure/dn905997.aspx) 및 [기록기](https://msdn.microsoft.com/library/azure/dn905984.aspx) 항목을 참조하세요.     
 
-판독기 및 작성기 모듈을 사용하는 경우 해당 판독기/기록기 모듈의 각 속성에 대해 웹 서비스 매개 변수를 사용하는 것이 좋습니다. 이러한 웹 매개 변수를 통해 런타임 중 값을 구성할 수 있습니다. 예를 들어 Azure SQL 데이터베이스: XXX.database.windows.net을 사용하는 판독기 모듈을 사용하여 실험을 만들 수 있습니다. 웹 서비스를 배포한 후 웹 서비스의 소비자가 YYY.database.windows.net이라는 다른 Azure SQL Server를 지정할 수 있도록 하려고 합니다. 웹 서비스 매개 변수를 사용하여 이 값을 구성할 수 있습니다.
+Hello 판독기 및 작성기 모듈을 사용할 경우 좋습니다 toouse 이러한 판독기/작성기 모듈의 각 속성에 대 한 웹 서비스 매개 변수는 합니다. 이러한 웹 매개 변수 런타임 동안 tooconfigure hello 값을 사용 합니다. 예를 들어 Azure SQL 데이터베이스: XXX.database.windows.net을 사용하는 판독기 모듈을 사용하여 실험을 만들 수 있습니다. Hello 웹 서비스가 배포 된 후 원하는 hello 웹 서비스 toospecify의 tooenable hello 소비자 YYY.database.windows.net 라는 다른 Azure SQL Server. 이 값 toobe 구성 된 웹 서비스 매개 변수 tooallow를 사용할 수 있습니다.
 
 > [!NOTE]
-> 웹 서비스 입력 및 출력은 웹 서비스 매개 변수와 다릅니다. 첫 번째 시나리오에서 Azure ML 웹 서비스에 대해 입력 및 출력을 지정할 수 있는 방법을 살펴보았습니다. 이 시나리오에서는 판독기/기록기 모듈의 속성에 해당하는 웹 서비스에 대한 매개 변수를 전달합니다.
+> 웹 서비스 입력 및 출력은 웹 서비스 매개 변수와 다릅니다. Hello 첫 번째 시나리오에서는 Azure 기계 학습 웹 서비스에 대 한 입력 및 출력 수 지정 하는 방법을 설명 했습니다. 이 시나리오에서는 tooproperties 판독기/작성기 모듈의 해당 하는 웹 서비스에 대 한 매개 변수를 전달 합니다.
 >
 >
 
-웹 서비스 매개 변수를 사용하는 시나리오를 살펴보겠습니다. Azure Machine Learning에서 지원하는 데이터 원본(예: Azure SQL Database) 중 하나에서 데이터를 읽는 판독기 모듈을 사용하는 Azure Machine Learning 웹 서비스를 배포했습니다. 배치 실행이 수행된 후 기록기 모듈(Azure SQL 데이터베이스)을 사용하여 결과가 기록됩니다.  웹 서비스 입력 및 출력이 실험에서 정의되지 않습니다. 이 경우 판독기 및 기록기 모듈에 대한 관련 웹 서비스 매개 변수를 구성하는 것이 좋습니다. 이 구성을 통해 AzureMLBatchExecution 작업을 사용하는 경우 판독기/기록기 모듈을 구성할 수 있습니다. 다음과 같이 작업 JSON의 **globalParameters** 섹션에서 웹 서비스 매개 변수를 지정합니다.
+웹 서비스 매개 변수를 사용하는 시나리오를 살펴보겠습니다. 판독기 모듈 tooread 데이터를 Azure 기계 학습에서 지 원하는 hello 데이터 원본 중 하나를 사용 하는 배포 된 Azure 기계 학습 웹 서비스 (예: Azure SQL 데이터베이스). Hello 일괄 처리 실행이 수행 된 후 기록기 모듈 (Azure SQL 데이터베이스)를 사용 하 여 hello 결과가 기록 됩니다.  웹 서비스 입력 및 출력 없음 hello 실험에서 정의 됩니다. 이 경우 hello 판독기 및 작성기 모듈에 대 한 관련 웹 서비스 매개 변수를 구성 하는 것이 좋습니다. 이 구성은 hello AzureMLBatchExecution 활동을 사용 하는 경우 구성 모듈 toobe hello 읽기/쓰기를 허용 합니다. Hello에 웹 서비스 매개 변수를 지정 하면 **globalParameters** 다음과 같이 hello 활동 JSON 섹션.
 
 ```JSON
 "typeProperties": {
@@ -328,7 +328,7 @@ Azure ML 실험을 만들 때 다른 일반적인 시나리오는 판독기 및 
 }
 ```
 
-다음 예제와 같이 웹 서비스 매개 변수 값을 전달하는 데 [데이터 팩터리 함수](data-factory-functions-variables.md) 를 사용할 수도 있습니다.
+사용할 수도 있습니다 [데이터 팩터리 함수](data-factory-functions-variables.md) hello에 대 한 값 hello 다음 예제와 같이 웹 서비스 매개 변수를 전달 합니다.
 
 ```JSON
 "typeProperties": {
@@ -339,14 +339,14 @@ Azure ML 실험을 만들 때 다른 일반적인 시나리오는 판독기 및 
 ```
 
 > [!NOTE]
-> 웹 서비스 매개 변수는 대/소문자를 구분하므로 작업 JSON에서 지정한 이름이 웹 서비스에 의해 노출된 이름과 일치해야 합니다.
+> hello 웹 서비스 매개 변수가 대/소문자를 구분 하므로 hello 활동에서 지정 하는 hello 이름을 JSON과 일치 하는지 hello hello 웹 서비스에서 노출 하는 것입니다.
 >
 >
 
-### <a name="using-a-reader-module-to-read-data-from-multiple-files-in-azure-blob"></a>Azure Blob에서 여러 파일의 데이터를 읽는 판독기 모듈 사용
-Pig, Hive와 같은 작업이 있는 빅 데이터 파이프라인은 확장명 없이 하나 이상의 출력 파일을 만들 수 있습니다. 예를 들어 외부 Hive 테이블을 지정하는 경우 외부 Hive 테이블에 대한 데이터는 다음 이름 000000_0으로 Azure Blob 저장소에 저장될 수 있습니다. 실험에서 판독기 모듈을 사용하여 여러 파일을 읽고 예측에 사용할 수 있습니다.
+### <a name="using-a-reader-module-tooread-data-from-multiple-files-in-azure-blob"></a>판독기 모듈 tooread 데이터를 사용 하 여 Azure Blob에 여러 파일에서
+Pig, Hive와 같은 작업이 있는 빅 데이터 파이프라인은 확장명 없이 하나 이상의 출력 파일을 만들 수 있습니다. 예를 들어 외부 하이브 테이블을 지정 하면 hello 외부 Hive 테이블에 대 한 hello 데이터 저장할 수 있습니다 Azure blob 저장소에 이름 000000_0 다음 hello로. 여러 개의 파일을 실험 tooread에 hello 판독기 모듈을 사용할 수 있으며 예측에 대 한 사용.
 
-Azure 기계 학습 실험에서 판독기 모듈을 사용하는 경우 입력으로 Azure Blob를 지정할 수 있습니다. Azure Blob 저장소에 있는 파일은 HDInsight에서 실행되는 Pig 및 Hive 스크립트에서 생성되는 출력 파일(예: 000000_0)일 수 있습니다. 판독기 모듈을 통해 **컨테이너, 디렉터리/blob에 대한 경로**를 구성하여 파일(확장명 없음)을 읽을 수 있습니다. **컨테이너에 대한 경로**는 컨테이너를 가리키고 **디렉터리/blob**은 다음 이미지에 표시된 파일이 들어 있는 폴더를 가리킵니다. **컨테이너/폴더에 있는 모든 파일을 지정하는(즉, data/aggregateddata/year=2014/month-6/\*)** 별표, 즉 \*)는 실험의 일부로 읽습니다.
+Azure 기계 학습 실험에서 hello 판독기 모듈을 사용할 때 Azure Blob을 입력으로 지정할 수 있습니다. hello Azure blob 저장소의에서 hello 파일 hello 출력 파일 일 수 있습니다 (예: 000000_0) HDInsight에서 실행 되는 Pig 및 Hive 스크립트에 의해 생성 된입니다. hello 판독기 모듈 있습니다 tooread 파일 (확장명이 없는) hello를 구성 하 여 **경로 toocontainer, 디렉터리/blob**합니다. hello **경로 toocontainer** 포인트 toohello 컨테이너 및 **디렉터리/blob** hello 다음 이미지와 같이 hello 파일이 포함 된 toofolder를 가리킵니다. hello, 즉 별표 \*) **hello 컨테이너/폴더에 파일을 hello 모두 지정 (즉, 데이터/aggregateddata/년 = 2014/월-6 /\*)** hello 실험의 일환으로 읽혀집니다.
 
 ![Azure Blob 속성](./media/data-factory-create-predictive-pipelines/azure-blob-properties.png)
 
@@ -401,16 +401,16 @@ Azure 기계 학습 실험에서 판독기 모듈을 사용하는 경우 입력�
 }
 ```
 
-위 JSON 예제에서
+위 예제 JSON hello에서:
 
-* 배포된 Azure 기계 학습 웹 서비스는 판독기 및 기록기 모듈을 사용하여 Azure SQL 데이터베이스에서/로 데이터를 읽고/쓸 수 있습니다. 이 웹 서비스는 네 개의 매개 변수, 즉 데이터베이스 서버 이름, 데이터베이스 이름, 서버 사용자 계정 이름 및 서버 사용자 계정 암호를 공개합니다.  
-* **start** 및 **end** 날짜/시간은 둘 다 [ISO 형식](http://en.wikipedia.org/wiki/ISO_8601)(영문)이어야 합니다. 예: 2014-10-14T16:32:41Z. **end** 시간은 선택 사항입니다. **end** 속성 값을 지정하지 않는 경우 "**start + 48시간**"으로 계산됩니다. 파이프라인을 무기한 실행하려면 **종료** 속성 값으로 **9999-09-09**를 지정합니다. JSON 속성에 대한 자세한 내용은 [JSON 스크립트 참조](https://msdn.microsoft.com/library/dn835050.aspx) 를 참조하세요.
+* hello Azure 컴퓨터 학습 웹 서비스에는 판독기와 기록기 모듈 tooread/쓰기 데이터를 사용 하 여 배포 / tooan Azure SQL 데이터베이스입니다. 이 웹 서비스는 hello 다음 4 개의 매개 변수가 노출: 데이터베이스 서버 이름, 데이터베이스 이름, 서버 사용자 계정 이름 및 서버 사용자 계정 암호입니다.  
+* **start** 및 **end** 날짜/시간은 둘 다 [ISO 형식](http://en.wikipedia.org/wiki/ISO_8601)(영문)이어야 합니다. 예: 2014-10-14T16:32:41Z. hello **끝** 으로 선택 사항입니다. Hello에 대 한 값을 지정 하지 않으면 **끝** 로 계산 됩니다 속성을 "**start + 48 시간입니다.**" toorun hello 파이프라인 무제한으로 지정 **9999-09-09** hello에 대 한 hello 값으로 **끝** 속성입니다. JSON 속성에 대한 자세한 내용은 [JSON 스크립트 참조](https://msdn.microsoft.com/library/dn835050.aspx) 를 참조하세요.
 
 ### <a name="other-scenarios"></a>기타 시나리오
 #### <a name="web-service-requires-multiple-inputs"></a>웹 서비스에는 다중 입력이 필요합니다
-웹 서비스에서 다중 입력을 받을 경우 **webServiceInput**를 사용하는 대신에 **webServiceInputs** 속성을 사용합니다. **webServiceInputs**에서 참조하는 데이터 집합은 또한 **입력** 작업에 포함되어야 합니다.
+Hello를 사용 하 여 hello 웹 서비스 변수를 사용할 경우 여러 개의 입력 **webServiceInputs** 사용 하는 대신 속성 **webServiceInput**합니다. Hello에서 참조 되는 데이터 집합 **webServiceInputs** hello 활동에에서도 포함 해야 **입력**합니다.
 
-Azure ML 실험에서 웹 서비스 입력 및 출력 포트와 전역 매개 변수에는 사용자 지정할 수 있는 기본 이름("input1", "input2")이 붙어있습니다. WebServiceInputs, webServiceOutputs 및 globalParameters 설정에 대해 사용하는 이름은 실험에서의 이름과 정확히 일치해야 합니다. 예상된 매핑을 확인하기 위해 일괄 처리 실행 도움말 페이지에서 Azure ML 끝점에 대한 샘플 요청 페이로드를 볼 수 있습니다.
+Azure ML 실험에서 웹 서비스 입력 및 출력 포트와 전역 매개 변수에는 사용자 지정할 수 있는 기본 이름("input1", "input2")이 붙어있습니다. webServiceInputs, webServiceOutputs, 및 globalParameters 설정에 사용할 수는 hello 이름에는 hello 실험에서 hello 이름과 정확히 일치 해야 합니다. Azure 기계 학습 끝점 tooverify 예상 hello 매핑을 대 한 hello 일괄 처리 실행 도움말 페이지에 hello 샘플 요청 페이로드를 볼 수 있습니다.
 
 ```JSON
 {
@@ -453,7 +453,7 @@ Azure ML 실험에서 웹 서비스 입력 및 출력 포트와 전역 매개 �
 ```
 
 #### <a name="web-service-does-not-require-an-input"></a>웹 서비스에는 입력이 필요하지 않습니다.
-Azure ML 배치 실행 웹 서비스는 입력이 필요하지 않는 모든 워크플로(예: R 또는 Python 스크립트)를 실행하는 데 사용할 수 있습니다.  또는 어떠한 GlobalParameters도 노출하지 않는 판독기 모듈로 실험을 구성할 수 있습니다. 이 경우 AzureMLBatchExecution 작업은 다음과 같이 구성합니다.
+Azure ML 일괄 처리 실행 웹 서비스 사용된 toorun 모든 워크플로 수 있으며, 예: R 또는 Python 스크립트에는 필요 하지 않을 수 어떤 입력도 합니다. 또는 모든 GlobalParameters를 노출 하지 않는 판독기 모듈 hello 실험 구성할 수 있습니다. 이 경우 hello AzureMLBatchExecution 활동 다음과 같이 구성 합니다.
 
 ```JSON
 {
@@ -480,7 +480,7 @@ Azure ML 배치 실행 웹 서비스는 입력이 필요하지 않는 모든 워
 ```
 
 #### <a name="web-service-does-not-require-an-inputoutput"></a>웹 서비스에는 입력/출력이 필요하지 않습니다.
-Azure ML 배치 실행 웹 서비스에는 웹 서비스 출력이 구성되어 있지 않을 수 있습니다. 이 예제에서는 웹 서비스 입력 또는 출력이 없으며 GlobalParameters도 구성되어 있지 않습니다. 작업 자체에 여전히 출력이 구성되어 있지만 webServiceOutput으로 제공된 것이 아닙니다.
+hello Azure ML 일괄 처리 실행 웹 서비스에 구성 된 웹 서비스 출력이 없을 수 있습니다. 이 예제에서는 웹 서비스 입력 또는 출력이 없으며 GlobalParameters도 구성되어 있지 않습니다. Hello 활동 자체에 구성 된 출력 하지만 webServiceOutput으로 제공 되지 않습니다.
 
 ```JSON
 {
@@ -503,8 +503,8 @@ Azure ML 배치 실행 웹 서비스에는 웹 서비스 출력이 구성되어 
 },
 ```
 
-#### <a name="web-service-uses-readers-and-writers-and-the-activity-runs-only-when-other-activities-have-succeeded"></a>웹 서비스는 판독기 및 기록기를 사용하며 작업은 다른 작업이 성공한 경우에만 실행됩니다.
-Azure ML 웹 서비스의 판독기 및 기록기 모듈은 GlobalParameters를 포함 또는 포함하지 않고 실행하도록 구성될 수 있습니다. 하지만 일부 업스트림 처리가 완료될 때만 서비스를 호출하도록 데이터 집합 종속성을 사용하는 파이프라인에 서비스 호출을 포함하려 할 수 있습니다. 또한 이 방법을 사용하여 배치 실행이 완료된 후 다른 작업을 트리거할 수도 있습니다. 이 경우 웹 서비스 입력 또는 출력으로 이름을 지정하지 않고 입력 및 출력 작업을 사용하여 종속성을 표현할 수 있습니다.
+#### <a name="web-service-uses-readers-and-writers-and-hello-activity-runs-only-when-other-activities-have-succeeded"></a>웹 서비스 사용 하 여 판독기 및 기록기 및 다른 작업이 성공한 경우에 hello 활동을 실행
+hello는 Azure ML 웹 서비스 판독기 및 작성기 모듈 구성된 toorun 상관 없이 모든 GlobalParameters 수도 있습니다. 그러나 일부 업스트림 처리가 완료 된 경우에 데이터 집합 종속성 tooinvoke hello 서비스를 사용 하는 파이프라인에서 tooembed 서비스를 호출 하는 것이 좋습니다. 이 방식을 사용 하 여 hello 일괄 처리 실행이 완료 한 후에 다른 작업을 트리거할 수 있습니다. 이 경우 그 중 하나를 웹 서비스 입력 또는 출력으로 이름을 지정 하지 않고 작업 입력 및 출력을 사용 하 여 hello 종속성을 표현할 수 있습니다.
 
 ```JSON
 {
@@ -535,33 +535,33 @@ Azure ML 웹 서비스의 판독기 및 기록기 모듈은 GlobalParameters를 
 },
 ```
 
-**내용** 은 다음과 같습니다.
+hello **자** 됩니다.
 
-* 실험 끝점에서 webServiceInput을 사용하면 Blob 데이터 집합으로 표시되고 작업 입력 및 webServiceInput 속성에 포함됩니다. 그렇지 않은 경우 webServiceInput 속성은 생략됩니다.
-* 실험 끝점에서 webServiceOutput을 사용하면 Blob 데이터 집합으로 표시되고 작업 출력 및 webServiceOutputs 속성에 포함됩니다. 작업 출력 및 webServiceOutputs는 실험에서 각 출력의 이름으로 매핑됩니다. 그렇지 않은 경우 webServiceOutputs 속성은 생략됩니다.
-* 실험 끝점에서 globalParameter를 노출하는 경우 키, 값 쌍으로 작업 globalParameters 속성에 지정됩니다. 그렇지 않은 경우 globalParameters 속성은 생략됩니다. 키는 대/소문자를 구분합니다. [Azure Data Factory 함수](data-factory-functions-variables.md) 를 사용할 수 있습니다.
-* 작업 typeProperties 속성에 참조되지 않고도 추가 데이터 집합이 작업 입력 및 출력 속성에 포함될 수 있습니다. 이러한 데이터 집합은 조각 종속성을 사용한 실행에 적용되지만 그렇지 않은 경우 AzureMLBatchExecution 작업에서 무시됩니다.
+* 실험 끝점은 webServiceInput를 사용 하는 경우: 그 blob 데이터 집합 표시 되 고 hello 작업의 입력 및 hello webServiceInput 속성에 포함 되어 있습니다. 그렇지 않으면 hello webServiceInput 속성을 생략 합니다.
+* 실험 끝점 webServiceOutput(s)를 사용 하는 경우: blob 데이터 집합으로 표시 되 고 hello webServiceOutputs 속성 및 hello 활동 출력에 포함 되어 있습니다. hello 활동 출력 하 고 webServiceOutputs hello 실험에서 각 출력의 hello 이름별으로 매핑됩니다. 그렇지 않으면 hello webServiceOutputs 속성을 생략 합니다.
+* 실험 끝점 globalParameter(s)을 노출할 경우 hello 활동 globalParameters 속성의 키 값 쌍으로 제공 됩니다. 그렇지 않으면 hello globalParameters 속성을 생략 합니다. hello 키 대/소문자를 구분 하지 않습니다. [Azure 데이터 팩터리 함수](data-factory-functions-variables.md) hello 값에 사용할 수 있습니다.
+* 추가 데이터 집합 hello 활동 typeproperties에서 참조 하지 않고 hello 활동 입 / 출력 속성에 포함 될 수 있습니다. 이러한 데이터 집합 조각 종속성을 사용 하 여 실행을 제어 합니다. 하지만 hello AzureMLBatchExecution 활동에서 무시 됩니다.
 
 
 ## <a name="updating-models-using-update-resource-activity"></a>업데이트 리소스 작업을 사용하여 모델 업데이트
-재학습으로 완료한 후에는 **Azure ML 업데이트 리소스 작업**을 사용하여 새로 학습한 모델로 점수 매기기 웹 서비스(웹 서비스로 노출된 예측 실험)를 업데이트합니다. 자세한 내용은 [업데이트 리소스 작업을 사용하여 모델 업데이트](data-factory-azure-ml-update-resource-activity.md) 문서를 참조하세요.
+재교육를 완료 한 후 업데이트 hello를 사용 하 여 웹 서비스 (웹 서비스로 노출 된 예측 실험) hello 새로 학습 된 모델 점수 매기기 hello **Azure ML 업데이트 리소스 작업**합니다. 자세한 내용은 [업데이트 리소스 작업을 사용하여 모델 업데이트](data-factory-azure-ml-update-resource-activity.md) 문서를 참조하세요.
 
 ### <a name="reader-and-writer-modules"></a>판독기 및 작성기 모듈
-웹 서비스 매개 변수를 사용하는 일반적인 시나리오는 Azure SQL 판독기 및 기록기 사용입니다. 판독기 모듈은 Azure Machine Learning Studio 외부 데이터 관리 서비스에서 실험으로 데이터를 로드하는 데 사용됩니다. 작성기 모듈은 사용자 실험에서 Azure Machine Learning Studio 외부 데이터 관리 서비스로 데이터를 저장합니다.  
+웹 서비스 매개 변수를 사용 하기 위한 일반적인 시나리오에는 hello를 사용 하 여 Azure SQL 판독기 및 작성기입니다. hello 판독기 모듈은 Azure 기계 학습 스튜디오 외부의 데이터 관리 서비스에서 실험에 사용 되는 tooload 데이터입니다. hello 기록기 모듈은 Azure 기계 학습 스튜디오 외부의 데이터 관리 서비스에 실험에서 toosave 데이터입니다.  
 
-Azure Blob/Azure SQL 판독기/기록기에 대한 자세한 내용은 MSDN 라이브러리의 [판독기](https://msdn.microsoft.com/library/azure/dn905997.aspx) 및 [기록기](https://msdn.microsoft.com/library/azure/dn905984.aspx) 항목을 참조하세요. 이전 섹션의 예제에서는 Azure Blob 판독기 및 Azure Blob 기록기를 사용했습니다. 이 섹션에서는 Azure SQL 판독기 및 Azure SQL 기록기를 사용하는 방법을 설명합니다.
+Azure Blob/Azure SQL 판독기/기록기에 대한 자세한 내용은 MSDN 라이브러리의 [판독기](https://msdn.microsoft.com/library/azure/dn905997.aspx) 및 [기록기](https://msdn.microsoft.com/library/azure/dn905984.aspx) 항목을 참조하세요. hello 이전 단원의 hello 예제 hello Azure Blob 판독기 및 작성기 Azure Blob을 사용 합니다. 이 섹션에서는 Azure SQL 판독기 및 Azure SQL 기록기를 사용하는 방법을 설명합니다.
 
 ## <a name="frequently-asked-questions"></a>질문과 대답
-**Q:** 빅 데이터 파이프라인에서 생성된 여러 파일이 있습니다. 모든 파일에서 작동하도록 AzureMLBatchExecution 작업을 사용할 수 있습니까?
+**Q:** 빅 데이터 파이프라인에서 생성된 여러 파일이 있습니다. Hello AzureMLBatchExecution 활동 toowork 모든 hello 파일에 사용할 수 있습니까?
 
-**A:** 예. 자세한 내용은 **Azure Blob에서 여러 파일의 데이터를 읽는 판독기 모듈 사용** 섹션을 참조하세요.
+**A:** 예. Hello 참조 **판독기 모듈 tooread 데이터를 사용 하 여 Azure Blob에 여러 파일의** 자세한 내용은 섹션.
 
 ## <a name="azure-ml-batch-scoring-activity"></a>Azure ML 일괄 처리 점수 매기기 작업
-**AzureMLBatchScoring** 작업을 사용하여 Azure Machine Learning과 통합하는 경우 최신 **AzureMLBatchExecution** 작업을 사용하는 것이 좋습니다.
+Hello를 사용 하는 경우 **AzureMLBatchScoring** 와 Azure 기계 학습 작업 toointegrate, 권장 메서드 최신 hello를 사용 하는 **AzureMLBatchExecution** 활동입니다.
 
-AzureMLBatchExecution 작업은2015년 8월 Azure SDK 및 Azure PowerShell 릴리스에서 도입되었습니다.
+hello AzureMLBatchExecution 활동은 2015 년 8 월 릴리스의 Azure SDK 및 Azure PowerShell hello에 도입 되었습니다.
 
-AzureMLBatchScoring 작업을 사용하여 계속하려면 이 섹션을 계속 읽어보세요.  
+Toocontinue hello AzureMLBatchScoring 활동을 사용 하 여 원하는 경우이 섹션 전체를 읽고 계속 합니다.  
 
 ### <a name="azure-ml-batch-scoring-activity-using-azure-storage-for-inputoutput"></a>입/출력에 대해 Azure 저장소를 사용하는 Azure ML 일괄 처리 점수 매기기 작업
 
@@ -601,7 +601,7 @@ AzureMLBatchScoring 작업을 사용하여 계속하려면 이 섹션을 계속 
 ```
 
 ### <a name="web-service-parameters"></a>웹 서비스 매개 변수
-웹 서비스 매개 변수에 대한 값을 지정하려면 다음 예제와 같이 파이프라인 JSON의 **AzureMLBatchScoringActivty** 섹션에 **typeProperties** 섹션을 추가합니다.
+웹 서비스 매개 변수에 대 한 toospecify 값 추가 **typeProperties** 섹션 toohello **AzureMLBatchScoringActivty** hello 파이프라인 hello 다음 예제와 같이 JSON의 섹션:
 
 ```JSON
 "typeProperties": {
@@ -611,7 +611,7 @@ AzureMLBatchScoring 작업을 사용하여 계속하려면 이 섹션을 계속 
     }
 }
 ```
-다음 예제와 같이 웹 서비스 매개 변수 값을 전달하는 데 [데이터 팩터리 함수](data-factory-functions-variables.md) 를 사용할 수도 있습니다.
+사용할 수도 있습니다 [데이터 팩터리 함수](data-factory-functions-variables.md) hello에 대 한 값 hello 다음 예제와 같이 웹 서비스 매개 변수를 전달 합니다.
 
 ```JSON
 "typeProperties": {
@@ -622,7 +622,7 @@ AzureMLBatchScoring 작업을 사용하여 계속하려면 이 섹션을 계속 
 ```
 
 > [!NOTE]
-> 웹 서비스 매개 변수는 대/소문자를 구분하므로 작업 JSON에서 지정한 이름이 웹 서비스에 의해 노출된 이름과 일치해야 합니다.
+> hello 웹 서비스 매개 변수가 대/소문자를 구분 하므로 hello 활동에서 지정 하는 hello 이름을 JSON과 일치 하는지 hello hello 웹 서비스에서 노출 하는 것입니다.
 >
 >
 

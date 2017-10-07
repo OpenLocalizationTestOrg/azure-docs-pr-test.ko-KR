@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 템플릿 함수 - 배열 및 개체 | Microsoft Docs"
-description: "배열 및 개체 작업을 위해 Azure Resource Manager 템플릿에서 사용할 수 있는 함수에 대해 설명합니다."
+title: "리소스 관리자 템플릿 aaaAzure 함수-배열 및 개체가 | Microsoft Docs"
+description: "Hello 함수 toouse 배열 및 개체 사용에 대 한 Azure 리소스 관리자 템플릿에 설명 합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0bd9ec41761c9ce575f3bcf4d1f8e8578b83e01c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e5f1a9b2a71039562eae7e48c2474a1fa59a7bea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="array-and-object-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿에 대한 배열 및 개체 함수 
 
@@ -42,20 +42,20 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 * [take](#take)
 * [union](#union)
 
-값으로 구분되는 문자열 값의 배열을 가져오려면 [split](resource-group-template-functions-string.md#split)을 참조하세요.
+tooget 값으로 구분 된 문자열 값의 배열을 참조 [분할](resource-group-template-functions-string.md#split)합니다.
 
 <a id="array" />
 
 ## <a name="array"></a>array
 `array(convertToArray)`
 
-값을 배열로 변환합니다.
+Hello, tooan 배열 값으로 변환합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| convertToArray |예 |int, 문자열, 배열 또는 개체 |배열로 변환할 값입니다. |
+| convertToArray |예 |int, 문자열, 배열 또는 개체 |hello tooconvert tooan 배열 값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -63,7 +63,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 여러 다른 형식의 배열 함수를 사용하는 방법을 보여 줍니다.
+hello 다음 예제에서는 어떻게 toouse hello 여러 형식으로 배열 함수
 
 ```json
 {
@@ -102,7 +102,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -115,22 +115,22 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 ## <a name="coalesce"></a>coalesce
 `coalesce(arg1, arg2, arg3, ...)`
 
-매개 변수에서 첫 번째 null이 아닌 값을 반환합니다. 빈 문자열, 빈 배열 및 빈 개체는 null이 아닙니다.
+Hello 매개 변수에서 첫 번째 null이 아닌 값을 반환합니다. 빈 문자열, 빈 배열 및 빈 개체는 null이 아닙니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |int, 문자열, 배열 또는 개체 |null인지 테스트할 첫 번째 값입니다. |
-| 추가 인수 |아니요 |int, 문자열, 배열 또는 개체 |null인지 테스트할 추가 값입니다. |
+| arg1 |예 |int, 문자열, 배열 또는 개체 |null에 대 한 첫 번째 값 tootest을 hello 합니다. |
+| 추가 인수 |아니요 |int, 문자열, 배열 또는 개체 |Null에 대 한 추가 값 tootest 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
-문자열, int, 배열 또는 개체일 수 있는 첫 번째 null이 아닌 매개 변수의 값입니다. 모든 매개 변수가 null이면 null입니다. 
+hello hello 첫 번째 null이 아닌 매개 변수 값, 문자열, int, 배열 또는 개체 일 수 있습니다. 모든 매개 변수가 null이면 null입니다. 
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 coalesce의 다른 사용에서 출력된 결과를 보여 줍니다.
+hello 다음 예제에서는 hello 출력을에서 보여 줍니다 coalesce의 서로 다른 사용 합니다.
 
 ```json
 {
@@ -176,7 +176,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -191,23 +191,23 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 ## <a name="concat"></a>concat
 `concat(arg1, arg2, arg3, ...)`
 
-여러 배열을 결합하고 연결된 배열을 반환하거나 여러 문자열 값을 결합하고 연결된 문자열을 반환합니다. 
+여러 배열 및 연결 하는 hello 배열을 반환을 결합 또는 여러 개의 문자열 값을 결합 하 고 hello 연결 문자열을 반환 합니다. 
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |배열 또는 문자열 |연결을 위한 첫 번째 배열 또는 문자열입니다. |
+| arg1 |예 |배열 또는 문자열 |첫 번째 배열 또는 문자열 연결에 대 한 hello 합니다. |
 | 추가 인수 |아니요 |배열 또는 문자열 |연결 순서로 나타낸 추가 배열 또는 문자열입니다. |
 
-이 함수는 인수를 개수에 관계없이 사용할 수 있으며 매개 변수에 대한 문자열이나 배열 중 하나를 사용할 수 있습니다.
+이 함수는 변수 인수 수에 제한이 하며 문자열 또는 배열 hello 매개 변수에 대해 사용할 수 있습니다.
 
 ### <a name="return-value"></a>반환 값
 연결된 값의 문자열 또는 배열입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 두 개의 배열을 결합하는 방법을 보여 줍니다.
+다음 예제는 hello toocombine 두 배열 하는 방법을 보여 줍니다.
 
 ```json
 {
@@ -242,13 +242,13 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
 | return | 배열 | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
 
-다음 예제에서는 2개의 문자열 값을 결합하고 연결된 문자열을 반환하는 방법을 보여 줍니다.
+다음 예제는 hello toocombine 두 문자열 값 하 고 연결 된 문자열을 반환 하는 방법을 보여 줍니다.
 
 ```json
 {
@@ -270,7 +270,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -287,16 +287,16 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| container |예 |배열, 개체 또는 문자열 |찾을 값을 포함하는 값입니다. |
-| itemToFind |예 |문자열 또는 int |찾을 값입니다. |
+| container |예 |배열, 개체 또는 문자열 |hello 값 toofind를 포함 하는 hello 값입니다. |
+| itemToFind |예 |문자열 또는 int |hello 값 toofind 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
-항목이 있으면 **True**이고, 항목이 없으면 **False**입니다.
+**True 이면** hello 항목이 검색 되지 않으면 이면 **False**합니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 여러 다른 형식의 contains를 사용하는 방법을 보여 줍니다.
+hello 다음 예제는 toouse 여러 형식으로 포함 하는 방법.
 
 ```json
 {
@@ -347,7 +347,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -363,14 +363,14 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 ## <a name="createarray"></a>createarray
 `createArray (arg1, arg2, arg3, ...)`
 
-매개 변수에서 배열을 만듭니다.
+Hello 매개 변수에서 배열을 만듭니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |문자열, 정수, 배열 또는 개체 |배열의 첫 번째 값입니다. |
-| 추가 인수 |아니요 |문자열, 정수, 배열 또는 개체 |배열의 추가 값입니다. |
+| arg1 |예 |문자열, 정수, 배열 또는 개체 |hello hello 배열의 첫 번째 값입니다. |
+| 추가 인수 |아니요 |문자열, 정수, 배열 또는 개체 |Hello 배열에 추가 값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -378,7 +378,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 여러 다른 형식의 createArray를 사용하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 여러 형식으로 toouse createArray:
 
 ```json
 {
@@ -417,7 +417,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -438,15 +438,15 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| itemToTest |예 |배열, 개체 또는 문자열 |비어 있는지 확인할 값입니다. |
+| itemToTest |예 |배열, 개체 또는 문자열 |비어 있는 경우 값 toocheck을 hello 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
-값이 비어 있으면 **True**를 반환하고 비어 있지 않으면 **False**를 반환합니다.
+반환 **True** hello 값, 비어 있지 않으면이 **False**합니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열, 개체 및 문자열이 비어 있는지 여부를 확인합니다.
+다음 예제는 hello는 배열, 개체 및 문자열 비어 있는지 여부를 확인 합니다.
 
 ```json
 {
@@ -485,7 +485,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -498,21 +498,21 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 ## <a name="first"></a>first
 `first(arg1)`
 
-배열의 첫 번째 요소 또는 문자열의 첫 번째 문자를 반환합니다.
+반환은 hello 배열의 첫 번째 요소 또는 hello 문자열의 첫 번째 문자 hello 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |배열 또는 문자열 |첫 번째 요소 또는 문자를 검색할 값입니다. |
+| arg1 |예 |배열 또는 문자열 |문자 또는 hello 값 tooretrieve hello 첫 번째 요소입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-배열의 첫 번째 요소 또는 문자열의 첫 번째 문자에 대한 형식(문자열, int, 배열 또는 개체)입니다.
+hello 형식 (string, int, 배열 또는 개체)의 배열 또는 문자열의 첫 번째 문자 hello hello 첫 번째 요소입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 문자열에 첫 번째 함수를 사용하는 방법을 보여 줍니다.
+hello 다음 예제에서는 어떻게 toouse hello 배열 및 문자열을 사용 하는 첫 번째 함수
 
 ```json
 {
@@ -539,7 +539,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -551,23 +551,23 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 ## <a name="intersection"></a>교집합
 `intersection(arg1, arg2, arg3, ...)`
 
-매개 변수에서 공통 요소를 갖는 단일 배열 또는 개체를 반환합니다.
+Hello 매개 변수에서 단일 배열 또는 개체 hello 공통 요소를 반환합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |배열 또는 개체 |공통 요소를 찾는 데 사용할 첫 번째 값입니다. |
-| arg2 |예 |배열 또는 개체 |공통 요소를 찾는 데 사용할 두 번째 값입니다. |
-| 추가 인수 |아니요 |배열 또는 개체 |공통 요소를 찾는 데 사용할 추가 값입니다. |
+| arg1 |예 |배열 또는 개체 |공통 요소를 찾기 위한 첫 번째 값 toouse를 hello 합니다. |
+| arg2 |예 |배열 또는 개체 |공통 요소를 찾기 위한 두 번째 값 toouse를 hello 합니다. |
+| 추가 인수 |아니요 |배열 또는 개체 |공통 요소를 찾기 위한 toouse 추가 값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-공통 요소가 있는 배열 또는 개체입니다.
+배열 또는 hello 공통 요소를 가진 개체입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 개체에 intersection을 사용하는 방법을 보여 줍니다.
+다음 예제는 hello toouse 교집합 배열 하는 방법을 보여 줍니다. 및 개체:
 
 ```json
 {
@@ -606,7 +606,7 @@ Resource Manager는 배열 및 개체 작업을 위한 여러 함수를 제공�
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -623,16 +623,16 @@ JSON 개체를 반환합니다.
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |string |JSON으로 변환할 값입니다. |
+| arg1 |예 |string |hello 값 tooconvert tooJSON 합니다. |
 
 
 ### <a name="return-value"></a>반환 값
 
-지정된 문자열의 JSON 개체이거나, **null**을 지정한 경우 빈 개체입니다.
+문자열 또는 빈 개체 hello JSON 개체 hello에서 지정 된 경우 **null** 지정 됩니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 개체에 intersection을 사용하는 방법을 보여 줍니다.
+다음 예제는 hello toouse 교집합 배열 하는 방법을 보여 줍니다. 및 개체:
 
 ```json
 {
@@ -653,7 +653,7 @@ JSON 개체를 반환합니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -665,21 +665,21 @@ JSON 개체를 반환합니다.
 ## <a name="last"></a>last
 `last (arg1)`
 
-배열의 마지막 요소 또는 문자열의 마지막 문자를 반환합니다.
+반환은 hello 배열의 마지막 요소 또는 hello 문자열의 마지막 문자 hello 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |배열 또는 문자열 |마지막 요소 또는 문자를 검색할 값입니다. |
+| arg1 |예 |배열 또는 문자열 |문자 또는 hello 값 tooretrieve hello 마지막 요소입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-배열의 마지막 요소 또는 문자열의 마지막 문자에 대한 형식(문자열, int, 배열 또는 개체)입니다.
+hello 형식 (string, int, 배열 또는 개체)에 배열 또는 문자열의 마지막 문자 hello hello 마지막 요소의입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 문자열에 마지막 함수를 사용하는 방법을 보여 줍니다.
+hello 다음 예제에서는 어떻게 toouse hello 수 있는 배열 및 문자열 last 함수
 
 ```json
 {
@@ -706,7 +706,7 @@ JSON 개체를 반환합니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -718,13 +718,13 @@ JSON 개체를 반환합니다.
 ## <a name="length"></a>length
 `length(arg1)`
 
-배열의 요소 수 또는 문자열의 문자 수를 반환합니다.
+배열 또는 문자열의 문자에 hello 수의 요소를 반환 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |배열 또는 문자열 |요소 수를 가져오는 데 사용할 배열 또는 문자 수를 가져오는 데 사용할 문자열입니다. |
+| arg1 |예 |배열 또는 문자열 |hello 수의 요소를 가져오기 위한 배열 toouse hello 또는 hello 개수의 문자를 가져오기 위한 문자열 toouse hello 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -732,7 +732,7 @@ int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 문자열에 length를 사용하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toouse 배열 및 문자열 길이:
 
 ```json
 {
@@ -766,14 +766,14 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
 | arrayLength | int | 3 |
 | stringLength | int | 13 |
 
-배열과 함께 이 함수를 사용하면 리소스를 만들 때 반복 횟수를 지정할 수 있습니다. 다음 예제에서 매개 변수 **siteNames** 는 웹 사이트를 만들 때 사용할 이름 배열을 나타냅니다.
+리소스를 만들 때 배열 toospecify hello 수의 반복으로이 함수를 사용할 수 있습니다. 다음 예제는 hello에서 매개 변수를 hello **siteNames** hello 웹 사이트를 만들 때 이름 toouse tooan 배열을 참조 합니다.
 
 ```json
 "copy": {
@@ -786,24 +786,24 @@ int입니다.
 
 <a id="min" />
 
-## <a name="min"></a>min
+## <a name="min"></a>Min
 `min(arg1)`
 
-정수 배열 또는 쉼표로 구분된 정수 목록 중에서 최소값을 반환합니다.
+반환 hello 정수 배열 또는 정수 쉼표로 구분 된 목록에서 최소 값입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |최소값을 가져올 컬렉션입니다. |
+| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |hello 컬렉션 tooget hello 최소값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-최소값을 나타내는 int입니다.
+Hello에 대 한 최소값 정보를 나타내는 int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 정소 목록에 min을 사용하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toouse min 배열 및 정수 목록:
 
 ```json
 {
@@ -829,7 +829,7 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -841,21 +841,21 @@ int입니다.
 ## <a name="max"></a>max
 `max(arg1)`
 
-정수 배열 또는 쉼표로 구분된 정수 목록 중에서 최대값을 반환합니다.
+반환 hello 정수 배열 또는 정수 쉼표로 구분 된 목록에서 최대 값입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |최대값을 가져올 컬렉션입니다. |
+| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |hello 컬렉션 tooget hello 최대값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-최대값을 나타내는 int입니다.
+Hello 최 댓 값을 나타내는 int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 정소 목록에 max를 사용하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toouse 배열 및 정수 목록이 사용 하 여 최대:
 
 ```json
 {
@@ -881,7 +881,7 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -899,8 +899,8 @@ int입니다.
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| startingInteger |예 |int |배열에서 첫 번째 정수입니다. |
-| numberofElements |예 |int |배열에 있는 정수의 수입니다. |
+| startingInteger |예 |int |hello hello 배열의 첫 번째 정수입니다. |
+| numberofElements |예 |int |hello 수 hello 배열에 있는 정수입니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -908,7 +908,7 @@ int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 range 함수를 사용하는 방법을 보여 줍니다.
+다음 예제는 hello toouse 범위 함수 hello 하는 방법을 보여 줍니다.
 
 ```json
 {
@@ -934,7 +934,7 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -945,14 +945,14 @@ int입니다.
 ## <a name="skip"></a>skip
 `skip(originalValue, numberToSkip)`
 
-배열에서 지정된 숫자 이후의 모든 요소를 포함하는 배열을 반환하거나 문자열에서 지정된 숫자 이후의 모든 숫자를 포함하는 문자열을 반환합니다.
+Hello hello 배열에 지정 된 번호 또는 hello hello 문자열에 숫자를 지정 된 후 모든 hello 문자로 이루어진 문자열을 반환 하는 후 모든 hello 요소가 있는 배열을 반환 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| originalValue |예 |배열 또는 문자열 |건너뛰는 데 사용할 배열 또는 문자열입니다. |
-| numberToSkip |예 |int |건너뛸 요소 또는 문자 수입니다. 이 값이 0 이하이면 값의 모든 요소 또는 문자가 반환됩니다. 이 값이 배열 또는 문자열의 길이보다 크면 빈 배열 또는 문자열이 반환됩니다. |
+| originalValue |예 |배열 또는 문자열 |건너뛰기 위한 hello 배열 또는 문자열 toouse 합니다. |
+| numberToSkip |예 |int |요소 또는 문자 tooskip hello 수입니다. 이 값이 0, 모든 요소를 hello 또는 hello 값의 문자 반환 됩니다. Hello 배열 또는 문자열의 hello 길이 보다 큰 경우 빈 배열 또는 문자열 반환 됩니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -960,7 +960,7 @@ int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열에서 지정된 요소 수 및 문자열에서 지정된 수의 문자를 건너뜁니다.
+다음 예에서는 건너뜁니다 hello hello hello 배열에서 요소 수를 지정 된 한 hello 문자열에 문자 수를 지정 합니다.
 
 ```json
 {
@@ -1002,7 +1002,7 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -1014,14 +1014,14 @@ int입니다.
 ## <a name="take"></a>take
 `take(originalValue, numberToTake)`
 
-배열 시작부터 지정된 수의 요소를 포함하는 배열 또는 문자열 시작부터 지정된 수의 문자를 포함하는 문자열을 반환합니다.
+Hello로 배열에서 요소 수를 지정 된 반환 hello hello 배열의 시작 또는 hello로 문자열 hello hello 문자열 시작에서 문자 수를 지정 하십시오.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| originalValue |예 |배열 또는 문자열 |요소를 가져올 배열 또는 문자열입니다. |
-| numberToTake |예 |int |수락할 요소 또는 문자의 수입니다. 이 값이 0 이하이면 빈 배열 또는 문자열이 반환됩니다. 지정된 배열 또는 문자열의 길이보다 크면 배열 또는 문자열의 모든 요소가 반환됩니다. |
+| originalValue |예 |배열 또는 문자열 |배열 또는 문자열 tootake hello 요소를 hello 합니다. |
+| numberToTake |예 |int |요소 또는 문자 tootake hello 수입니다. 이 값이 0 이하이면 빈 배열 또는 문자열이 반환됩니다. 지정 된 배열 또는 문자열 hello의 hello 길이 보다 큰 경우 hello 배열 또는 문자열의 모든 hello 요소가 반환 됩니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -1029,7 +1029,7 @@ int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열에서 지정된 수의 요소 및 문자열의 문자를 가져옵니다.
+다음 예제는 hello hello hello 배열에서 요소 및 문자열에서 문자 수를 지정 합니다.
 
 ```json
 {
@@ -1071,7 +1071,7 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -1083,15 +1083,15 @@ int입니다.
 ## <a name="union"></a>union
 `union(arg1, arg2, arg3, ...)`
 
-매개 변수의 모든 요소를 포함하는 단일 배열 또는 개체를 반환합니다. 중복된 값 또는 키는 한 번만 포함됩니다.
+Hello 매개 변수에서 단일 배열 또는 모든 요소 개체를 반환합니다. 중복된 값 또는 키는 한 번만 포함됩니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |배열 또는 개체 |요소를 조인하는 데 사용할 첫 번째 값입니다. |
-| arg2 |예 |배열 또는 개체 |요소를 조인하는 데 사용할 두 번째 값입니다. |
-| 추가 인수 |아니요 |배열 또는 개체 |요소를 조인하는 데 사용할 추가 값입니다. |
+| arg1 |예 |배열 또는 개체 |hello 첫 번째 값 toouse 요소를 연결 합니다. |
+| arg2 |예 |배열 또는 개체 |요소에 추가 하기 위해 두 번째 값 toouse를 hello 합니다. |
+| 추가 인수 |아니요 |배열 또는 개체 |요소에 추가 하기 위해 추가 값 toouse 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
@@ -1099,7 +1099,7 @@ int입니다.
 
 ### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 개체에 union을 사용하는 방법을 보여 줍니다.
+다음 예제는 hello toouse 공용 구조체 배열 하는 방법을 보여 줍니다. 및 개체:
 
 ```json
 {
@@ -1138,7 +1138,7 @@ int입니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -1146,8 +1146,8 @@ int입니다.
 | arrayOutput | 배열 | ["one", "two", "three", "four"] |
 
 ## <a name="next-steps"></a>다음 단계
-* Azure Resource Manager 템플릿의 섹션에 대한 설명은 [Azure Resource Manager 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.
-* 여러 템플릿을 병합하려면 [Azure Resource Manager에서 연결된 템플릿 사용](resource-group-linked-templates.md)을 참조하세요.
-* 리소스 유형을 만들 때 지정된 횟수만큼 반복하려면 [Azure 리소스 관리자에서 리소스의 여러 인스턴스 만들기](resource-group-create-multiple.md)를 참조하세요.
-* 만든 템플릿을 배포하는 방법을 보려면 [Azure Resource Manager 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.
+* Azure 리소스 관리자 템플릿의 hello 섹션에 대 한 참조 [제작 Azure 리소스 관리자 템플릿을](resource-group-authoring-templates.md)합니다.
+* toomerge 템플릿이 여러 개 참조 [Azure 리소스 관리자와 연결 된 템플릿을 사용 하 여](resource-group-linked-templates.md)합니다.
+* 지정 된 횟수 만큼 tooiterate 리소스의 종류를 만들 때 참조 [Azure 리소스 관리자 리소스의 여러 인스턴스를 만들](resource-group-create-multiple.md)합니다.
+* toosee toodeploy hello 서식 파일을 만든 참조 [Azure 리소스 관리자 템플릿 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.
 

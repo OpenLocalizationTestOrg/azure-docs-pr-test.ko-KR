@@ -13,7 +13,7 @@
 ## [워크플로](expressroute-workflows.md)
 ## [라우팅 요구 사항](expressroute-routing.md)
 ## [QoS 요구 사항](expressroute-qos.md)
-## [클래식에서 Resource Manager로의 회로 이동 정보](expressroute-move.md)
+## [클래식 tooResource 관리자에서에서 회로 이동 하는 방법에 대 한](expressroute-move.md)
 
 # 방법
 ## 회로 만들기 및 수정
@@ -24,8 +24,8 @@
 ### [Azure 포털](expressroute-howto-routing-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-routing-arm.md)
 ### [Azure CLI](howto-routing-cli.md)
-## 가상 네트워크를 Express 경로 회로에 연결합니다.
-### [Azure Portal](expressroute-howto-linkvnet-portal-resource-manager.md)
+## 가상 네트워크 tooan ExpressRoute 회로 연결
+### [Azure 포털](expressroute-howto-linkvnet-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-linkvnet-arm.md)
 ### [Azure CLI](howto-linkvnet-cli.md)
 ## ExpressRoute에 대한 가상 네트워크 게이트웨이 구성
@@ -35,8 +35,8 @@
 ## Microsoft 피어링에 대한 경로 필터 구성
 ### [Azure 포털](how-to-routefilter-portal.md)
 ### [PowerShell](how-to-routefilter-powershell.md)
-## [클래식에서 Resource Manager로 회로 이동](expressroute-howto-move-arm.md)
-## [클래식에서 Resource Manager로 연결된 가상 네트워크 마이그레이션](expressroute-migration-classic-resource-manager.md)
+## [클래식 tooResource 관리자에서에서 회로 이동 합니다.](expressroute-howto-move-arm.md)
+## [클래식 tooResource 관리자에서에서 연결 된 가상 네트워크 마이그레이션](expressroute-migration-classic-resource-manager.md)
 ## ExpressRoute에 대해 라우터 구성
 ### [라우터 구성](expressroute-config-samples-routing.md)
 ### [NAT에 대한 라우터 구성 샘플](expressroute-config-samples-nat.md)
@@ -75,12 +75,12 @@
 ## [SLA](https://azure.microsoft.com/support/legal/sla/)
 ## [구독 및 서비스 한도](../azure-subscription-service-limits.md?toc=%2fazure%2fexpressroute%2ftoc.json)
 ## [비디오](https://azure.microsoft.com/documentation/videos/index/?services=expressroute)
-### [가상 네트워크 게이트웨이를 서킷에 연결](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit/)
+### [가상 네트워크 게이트웨이 tooa 회로 연결](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit/)
 ### [ExpressRoute에 대해 가상 네트워크 만들기](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-virtual-network/)
 ### [ExpressRoute에 대해 가상 네트워크 게이트웨이 만들기](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network/)
 ### [ExpressRoute 회로 만들기](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit/)
 ### [연결성을 위한 네트워크 인프라 발전](https://go.microsoft.com/fwlink/p/?LinkId=615124)
-### [회로에 대해 개인 피어링을 설정하는 방법](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
+### [어떻게 하면 회로 대 한 개인 피어 링을 tooset](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
 ### [하이브리드 파트너: 온-프레미스 시나리오 사용](https://go.microsoft.com/fwlink/p/?LinkId=615125)
 ### [회로에 대해 Microsoft 피어링 설정](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-microsoft-peering-for-your-expressroute-circuit/)
 ### [회로에 대해 공용 피어링 설정](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-public-peering-for-your-expressroute-circuit/)

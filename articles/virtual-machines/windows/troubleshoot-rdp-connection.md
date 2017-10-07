@@ -1,7 +1,7 @@
 ---
-title: "Azure에서 RDP를 사용하여 Windows VM에 연결할 수 없음 | Microsoft Docs"
-description: "원격 데스크톱을 사용하여 Azure의 Windows 가상 컴퓨터에 연결할 수 없을 때의 문제 해결"
-keywords: "원격 데스크톱 오류,원격 데스크톱 연결 오류,VM에 연결할 수 없습니다,원격 데스크톱 문제 해결"
+title: "aaaCannot RDP tooa Azure에서 Windows VM에 연결 | Microsoft Docs"
+description: "원격 데스크톱을 사용 하 여 Azure에서 tooyour Windows 가상 컴퓨터를 연결할 수 없을 때 문제를 해결 합니다."
+keywords: "원격 데스크톱 오류, 원격 데스크톱 연결 오류 tooVM, 연결할 수 없습니다. 원격 데스크톱 문제 해결"
 services: virtual-machines-windows
 documentationcenter: 
 author: genlin
@@ -16,27 +16,27 @@ ms.devlang: na
 ms.topic: support-article
 ms.date: 07/25/2017
 ms.author: genli
-ms.openlocfilehash: 87b6c99c28a95c9be37486717e689baa22804882
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bbb36136e7a4b187fe8deea621d2b8d46d8aa102
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-remote-desktop-connections-to-an-azure-virtual-machine"></a>Azure 가상 컴퓨터에 대한 원격 데스크톱 연결 문제 해결
-Windows 기반 Azure VM(가상 컴퓨터)에 RDP(원격 데스크톱 프로토콜) 연결은 여러 이유로 실패하여 VM에 액세스하지 못할 수 있습니다. 이러한 문제는 VM의 원격 데스크톱 서비스, 네트워크 연결 또는 호스트 컴퓨터의 원격 데스크톱 클라이언트에서 발생할 수 있습니다. 이 문서는 RDP 연결 문제를 해결하기 위한 가장 일반적인 방법 중 일부를 안내합니다. 
+# <a name="troubleshoot-remote-desktop-connections-tooan-azure-virtual-machine"></a>원격 데스크톱 연결 tooan Azure 가상 컴퓨터 문제 해결
+hello 프로토콜 RDP (원격 데스크톱) 연결 tooyour Windows 기반 Azure 가상 컴퓨터 (VM)는 VM 수 없습니다 tooaccess 남게 다양 한 이유로 실패할 수 있습니다. hello VM, hello 네트워크 연결 또는 호스트 컴퓨터에서 원격 데스크톱 클라이언트 hello에 대 한 원격 데스크톱 서비스를 hello로 hello 문제가 될 수 있습니다. 이 문서는 hello 가장 일반적인 메서드 tooresolve RDP 연결 문제 중 일부를 안내합니다. 
 
-이 문서의 어디에서든 도움이 필요한 경우 [MSDN Azure 및 Stack Overflow 포럼](https://azure.microsoft.com/support/forums/)에서 Azure 전문가에게 문의할 수 있습니다. 또는 Azure 기술 지원 인시던트를 제출할 수 있습니다. [Azure 지원 사이트](https://azure.microsoft.com/support/options/) 로 가서 **지원 받기**를 선택합니다.
+이 문서에서 언제 든 지 자세한 도움말을 보려는 경우 문의할 수 있습니다에 Azure 전문가 hello [MSDN Azure 및 스택 오버플로 포럼 hello](https://azure.microsoft.com/support/forums/)합니다. 또는 Azure 기술 지원 인시던트를 제출할 수 있습니다. Toohello 이동 [Azure 지원 사이트](https://azure.microsoft.com/support/options/) 선택 **Get Support**합니다.
 
 <a id="quickfixrdp"></a>
 
 ## <a name="quick-troubleshooting-steps"></a>빠른 문제 해결 단계
-각 문제 해결 단계 후 VM에 다시 연결을 시도합니다.
+각 문제 해결 단계를 수행한 후 toohello VM 다시 연결을 시도 합니다.
 
 1. 원격 데스크톱 구성을 다시 설정합니다.
 2. 네트워크 보안 그룹 규칙/Cloud Services 끝점을 확인합니다.
 3. VM 콘솔 로그를 검토합니다.
-4. VM에서 NIC를 다시 설정합니다.
-5. VM 리소스 상태를 확인합니다.
+4. Hello VM에 대 한 NIC hello를 다시 설정 합니다.
+5. Hello VM 리소스 상태를 확인 합니다.
 6. VM 암호를 다시 설정합니다.
 7. VM이 다시 시작됩니다.
 8. VM을 다시 배포 합니다.
@@ -44,93 +44,93 @@ Windows 기반 Azure VM(가상 컴퓨터)에 RDP(원격 데스크톱 프로토�
 자세한 단계와 설명이 필요한 경우 계속 읽어보세요. [자세한 RDP 문제 해결 시나리오](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에서 설명한 대로 라우터 및 방화벽과 같은 로컬 네트워크 장비가 아웃바운드 TCP 포트 3389를 차단하지 않는지 확인합니다.
 
 > [!TIP]
-> 포털에서 VM의 **연결** 단추가 회색으로 표시되고 [Express 경로](../../expressroute/expressroute-introduction.md) 또는 [사이트 간 VPN](../../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 연결을 통해 Azure에 연결되지 않는 경우 RDP를 사용하려면 먼저 공용 IP 주소를 만들고 VM에 할당해야 합니다. 자세한 내용은 [Azure의 공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)에서 확인할 수 있습니다.
+> 경우 hello **연결** VM hello 포털에서 동시에 회색를 통해 연결 된 tooAzure 됩니다에 대 한 단추는 [Express 경로](../../expressroute/expressroute-introduction.md) 또는 [사이트 간 VPN](../../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 해야 연결을 toocreate 및 하기 전에 VM 공용 IP 주소 할당 RDP를 사용할 수 있습니다. 자세한 내용은 [Azure의 공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)에서 확인할 수 있습니다.
 
 
-## <a name="ways-to-troubleshoot-rdp-issues"></a>RDP 문제를 해결하는 방법
-Resource Manager 배포 모델을 사용하여 만든 VM 문제를 다음 방법 중 하나로 해결할 수 있습니다.
+## <a name="ways-tootroubleshoot-rdp-issues"></a>같은 방법으로 tootroubleshoot RDP 문제
+다음과 같이 hello 메서드를 다음 중 하나를 사용 하 여 hello 리소스 관리자 배포 모델을 사용 하 여 만든 Vm 해결할 수 있습니다.
 
-* [Azure Portal](#using-the-azure-portal) - RDP 구성 또는 사용자 자격 증명을 신속하게 다시 설정해야 하는데 Azure 도구가 설치되지 않은 경우에 매우 유용합니다.
-* [Azure PowerShell](#using-azure-powershell) - PowerShell 프롬프트에 익숙한 경우 Azure PowerShell cmdlet을 사용하여 RDP 구성 또는 사용자 자격을 신속하게 다시 설정합니다.
+* [Azure 포털](#using-the-azure-portal) -tooquickly 해야 할 경우 좋은 hello RDP 구성 이나 사용자 자격 증명 다시 설정 하 고 설치 된 Azure 도구를 hello 하지 않습니다.
+* [Azure PowerShell](#using-azure-powershell) -익숙한 PowerShell 프롬프트를 신속 하 게 재설정 hello RDP 구성 또는 사용자 자격 증명 hello Azure PowerShell cmdlet을 사용 하는 경우.
 
-[클래식 배포 모델](#troubleshoot-vms-created-using-the-classic-deployment-model)을 사용하여 만든 VM 문제를 해결하는 단계도 찾을 수 있습니다.
+Hello를 사용 하 여 만든 Vm 문제를 해결 하는 단계를 찾을 수도 있습니다 [클래식 배포 모델](#troubleshoot-vms-created-using-the-classic-deployment-model)합니다.
 
 <a id="fix-common-remote-desktop-errors"></a>
 
-## <a name="troubleshoot-using-the-azure-portal"></a>Azure Portal을 사용하여 문제 해결
-각 문제 해결 단계 후 VM에 다시 연결을 시도합니다. 그래도 연결할 수 없으면 다음 단계를 시도합니다.
+## <a name="troubleshoot-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 문제 해결
+각 문제 해결 단계 후 tooyour VM을 다시 연결 하십시오. 여전히 연결할 수 없는 경우 hello 다음 단계를 시도 합니다.
 
-1. **RDP 연결 다시 설정**. 이 문제 해결 단계에서는 원격 연결을 사용할 수 없거나 Windows 방화벽 규칙이 RDP를 차단하는 경우에 RDP 구성을 다시 설정합니다.
+1. **RDP 연결 다시 설정**. 이 문제 해결 단계에 원격 연결을 사용할 수 없습니다. 또는 예를 들어 Windows 방화벽 규칙 RDP를 차단 하는 경우 hello RDP 구성을 다시 설정 합니다.
    
-    Azure Portal에서 VM을 선택합니다. 목록 맨 아래 근처에 있는 **지원 + 문제 해결** 섹션이 나올 때까지 설정 창을 아래로 스크롤합니다. **암호 다시 설정** 단추를 클릭합니다. **모드**를 **구성만 재설정**으로 설정한 다음 **업데이트** 단추를 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 설정 창 toohello 아래로 스크롤하여 **지원 + 문제 해결** hello 목록의 아래쪽 근처 섹션. Hello 클릭 **암호 재설정** 단추입니다. 집합 hello **모드** 너무**구성만 재설정** hello를 클릭 한 다음 **업데이트** 단추:
    
-    ![Azure Portal에서 RDP 구성 다시 설정](./media/troubleshoot-rdp-connection/reset-rdp.png)
-2. **네트워크 보안 그룹 규칙 확인**. [IP 흐름 확인](../../network-watcher/network-watcher-check-ip-flow-verify-portal.md)을 사용하여 네트워크 보안 그룹의 규칙이 가상 컴퓨터 간에 트래픽을 차단하는지를 확인합니다. 효과적인 보안 그룹 규칙을 검토하여 인바운드 "허용" NSG 규칙이 있는지와 해당 규칙이 RDP 포트(기본값: 3389)에 우선적으로 사용되도록 설정되어 있는지 확인합니다. 자세한 내용은 [효과적인 보안 규칙을 사용하여 VM 트래픽 흐름 문제 해결](../../virtual-network/virtual-network-nsg-troubleshoot-portal.md#using-effective-security-rules-to-troubleshoot-vm-traffic-flow)을 참조하세요.
+    ![Hello Azure 포털에서에서 hello RDP 구성을 다시 설정](./media/troubleshoot-rdp-connection/reset-rdp.png)
+2. **네트워크 보안 그룹 규칙 확인**. 사용 하 여 [IP 흐름 확인](../../network-watcher/network-watcher-check-ip-flow-verify-portal.md) tooconfirm 네트워크 보안 그룹의 규칙은 가상 컴퓨터에서 트래픽을 tooor를 차단 하는 경우. 또한 tooensure 인바운드 "허용" NSG 규칙 규칙 존재 및 RDP 포트 (기본값 3389)에 대 한 우선 순위를 가지도록 효과적인 보안 그룹을 검토할 수 있습니다. 자세한 내용은 참조 [효과적인 보안 규칙을 사용 하 여 tootroubleshoot VM 트래픽 흐름](../../virtual-network/virtual-network-nsg-troubleshoot-portal.md#using-effective-security-rules-to-troubleshoot-vm-traffic-flow)합니다.
 
-3. **VM 부트 진단 검토**. 이 문제 해결 단계에서는 VM 콘솔 로그를 검토하여 VM이 문제를 보고하는지 확인합니다. 모든 VM에서 부팅 진단이 지원되는 것은 아니므로 이 문제 해결 단계는 선택 사항입니다.
+3. **VM 부트 진단 검토**. 이 문제 해결 단계는 hello VM 문제를 보고 하는 경우 hello VM 콘솔 로그 toodetermine를 검토 합니다. 모든 VM에서 부팅 진단이 지원되는 것은 아니므로 이 문제 해결 단계는 선택 사항입니다.
    
-    구체적인 문제 해결 단계는 이 문서의 범위를 벗어나지만, RDP 연결에 영향을 주는 더 넓은 문제를 나타낼 수 있습니다. 콘솔 로그 및 VM 스크린샷 검토에 대한 자세한 내용은 [VM 부팅 진단](boot-diagnostics.md)을 참조하세요.
+    특정 문제 해결 단계 hello이이 문서에서는 다루지 않지만 하지만 RDP 연결에 영향을 주지는 광범위 한 문제를 나타낼 수 있습니다. Hello 콘솔 로그 및 VM 스크린샷을 검토에 대 한 자세한 내용은 참조 하십시오. [Vm에 대 한 부트 진단](boot-diagnostics.md)합니다.
 
-4. **VM에서 NIC를 다시 설정합니다**. 자세한 내용은 [Azure Windows VM에서 NIC를 다시 설정하는 방법](reset-network-interface.md)을 참조하세요.
-5. **VM 리소스 상태 확인**. 이 문제 해결 단계에서는 Azure 플랫폼에 VM 연결에 영향을 줄 수 있는 알려진 문제가 없는지 확인합니다.
+4. **Hello VM에 대 한 재설정 hello NIC**합니다. 자세한 내용은 참조 [어떻게 tooreset Azure Windows VM에 대 한 NIC](reset-network-interface.md)합니다.
+5. **Hello VM 리소스 상태 확인**합니다. 이 문제 해결 단계는 연결 toohello VM에 영향을 줄 수 있는 Azure 플랫폼 hello로 알려진된 문제가 없는지 확인 합니다.
    
-    Azure Portal에서 VM을 선택합니다. 목록 맨 아래 근처에 있는 **지원 + 문제 해결** 섹션이 나올 때까지 설정 창을 아래로 스크롤합니다. **리소스 상태** 단추를 클릭합니다. 정상 VM은 **사용 가능**으로 보고합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 설정 창 toohello 아래로 스크롤하여 **지원 + 문제 해결** hello 목록의 아래쪽 근처 섹션. Hello 클릭 **리소스 상태** 단추입니다. 정상 VM은 **사용 가능**으로 보고합니다.
    
-    ![Azure Portal에서 VM 리소스 상태 확인](./media/troubleshoot-rdp-connection/check-resource-health.png)
-6. **사용자 자격 증명 다시 설정**. 이 문제 해결 단계에서는 자격 증명이 확실하지 않거나 잊어버린 경우 로컬 관리자 계정에서 암호를 다시 설정합니다.
+    ![Hello Azure 포털에서에서 VM 리소스 상태를 확인 합니다.](./media/troubleshoot-rdp-connection/check-resource-health.png)
+6. **사용자 자격 증명 다시 설정**. 이 문제 해결 단계 확실 하지 않거나 hello 자격 증명을 잊은 경우 hello 로컬 관리자 계정의 암호를 다시 설정 합니다.
    
-    Azure Portal에서 VM을 선택합니다. 목록 맨 아래 근처에 있는 **지원 + 문제 해결** 섹션이 나올 때까지 설정 창을 아래로 스크롤합니다. **암호 다시 설정** 단추를 클릭합니다. **모드**를 **암호 다시 설정**으로 지정한 다음 사용자 이름 및 새 암호를 입력합니다. 마지막으로 **업데이트** 단추를 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 설정 창 toohello 아래로 스크롤하여 **지원 + 문제 해결** hello 목록의 아래쪽 근처 섹션. Hello 클릭 **암호 재설정** 단추입니다. 있는지 hello 확인 **모드** 너무 설정**암호 재설정** 사용자 이름 및 새 암호를 입력 합니다. 마지막으로 hello 클릭 **업데이트** 단추:
    
-    ![Azure Portal에서 사용자 자격 증명 다시 설정](./media/troubleshoot-rdp-connection/reset-password.png)
-7. **VM 다시 시작**. 이 문제 해결 단계에서는 VM 자체의 기본 문제를 해결할 수 있습니다.
+    ![Hello Azure 포털에서에서 hello 사용자 자격 증명 다시 설정](./media/troubleshoot-rdp-connection/reset-password.png)
+7. **VM 다시 시작**. 이 문제 해결 단계는 근본적인 문제를 해결할 수 hello VM 자체는 것입니다.
    
-    Azure Portal에서 VM을 선택하고 **개요** 탭을 클릭합니다. **다시 시작** 단추를 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 하 고 hello 클릭 **개요** 탭 합니다. Hello 클릭 **다시 시작** 단추:
    
-    ![Azure Portal에서 VM을 다시 시작합니다.](./media/troubleshoot-rdp-connection/restart-vm.png)
-8. **VM 다시 배포**. 이 문제 해결 단계에서는 Azure 내의 다른 호스트에 VM을 다시 배포하여 기본 플랫폼 또는 네트워킹 문제를 해결합니다.
+    ![Hello Azure 포털에서에서 VM hello를 다시 시작](./media/troubleshoot-rdp-connection/restart-vm.png)
+8. **VM 다시 배포**. 이 문제 해결 단계 VM tooanother 호스트 Azure toocorrect 내 모든 기본 플랫폼 또는 네트워킹 문제를 다시 배포합니다.
    
-    Azure Portal에서 VM을 선택합니다. 목록 맨 아래 근처에 있는 **지원 + 문제 해결** 섹션이 나올 때까지 설정 창을 아래로 스크롤합니다. **다시 배포** 단추를 클릭한 다음 **다시 배포**를 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 설정 창 toohello 아래로 스크롤하여 **지원 + 문제 해결** hello 목록의 아래쪽 근처 섹션. Hello 클릭 **재배포** 단추를 선택한 다음 클릭 **재배포**:
    
-    ![Azure Portal에서 VM 다시 배포](./media/troubleshoot-rdp-connection/redeploy-vm.png)
+    ![Hello Azure 포털에서에서 VM hello를 다시 배포](./media/troubleshoot-rdp-connection/redeploy-vm.png)
    
-    이 작업이 완료되면 임시 디스크 데이터가 손실되고 VM과 연결된 동적 IP 주소가 업데이트됩니다.
+    이 작업이 완료 되 면 임시 디스크 데이터는 손실 및 동적 IP 주소는 VM을 업데이트 하는 hello와 연결 된입니다.
 
 RDP 문제가 계속 발생하는 경우 [지원 요청을 열거나](https://azure.microsoft.com/support/options/) [좀 더 자세한 RDP 문제 해결 개념 및 단계](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 읽어볼 수 있습니다.
 
 ## <a name="troubleshoot-using-azure-powershell"></a>Azure PowerShell을 사용하여 문제 해결
-아직 작업 전이면 [최신 Azure PowerShell을 설치하고 구성](/powershell/azure/overview)합니다.
+아직 없는 경우, [설치 및 구성 최신 Azure PowerShell hello](/powershell/azure/overview)합니다.
 
-다음 예제에서는 `myResourceGroup`, `myVM`, `myVMAccessExtension` 등의 변수를 사용합니다. 이러한 변수 이름 및 위치를 사용자 고유의 값으로 바꿉니다.
+hello 다음 예에서는 변수를 사용 같은 `myResourceGroup`, `myVM`, 및 `myVMAccessExtension`합니다. 이러한 변수 이름 및 위치를 사용자 고유의 값으로 바꿉니다.
 
 > [!NOTE]
-> [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet을 사용하여 사용자 자격 증명 및 RDP 구성을 다시 설정합니다. 다음 예제에서 `myVMAccessExtension`은 프로세스의 일부로 지정하는 이름입니다. VMAccessAgent로 이전에 작업한 경우 `Get-AzureRmVM -ResourceGroupName "myResourceGroup" -Name "myVM"`을 사용하여 기존 확장의 이름을 가져와서 VM의 속성을 확인할 수 있습니다. 이름을 보려면 출력의 'Extensions' 섹션에서 이름을 확인합니다.
+> Hello를 사용 하 여 hello 사용자 자격 증명 및 hello RDP 구성을 다시 [집합 AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet. 예제를 따르는 hello에 `myVMAccessExtension` hello 프로세스의 일부로 지정 하는 이름입니다. VMAccessAgent hello로 이전에 작업 하는 경우에 사용 하 여 기존 확장 hello의 hello 이름을 가져올 수 있습니다 `Get-AzureRmVM -ResourceGroupName "myResourceGroup" -Name "myVM"` hello VM의 toocheck hello 속성입니다. hello 출력의 hello 'Extensions' 섹션에서 모양 tooview hello 이름입니다.
 
-각 문제 해결 단계 후 VM에 다시 연결을 시도합니다. 그래도 연결할 수 없으면 다음 단계를 시도합니다.
+각 문제 해결 단계 후 tooyour VM을 다시 연결 하십시오. 여전히 연결할 수 없는 경우 hello 다음 단계를 시도 합니다.
 
-1. **RDP 연결 다시 설정**. 이 문제 해결 단계에서는 원격 연결을 사용할 수 없거나 Windows 방화벽 규칙이 RDP를 차단하는 경우에 RDP 구성을 다시 설정합니다.
+1. **RDP 연결 다시 설정**. 이 문제 해결 단계에 원격 연결을 사용할 수 없습니다. 또는 예를 들어 Windows 방화벽 규칙 RDP를 차단 하는 경우 hello RDP 구성을 다시 설정 합니다.
    
-    다음 예제에서는 `WestUS` 위치에 있는 `myVM`이라는 VM과 `myResourceGroup`이라는 리소스 그룹에서 RDP 연결을 다시 설정합니다.
+    라는 VM에서 hello RDP 연결을 재설정 하는 hello에 따라 예제 `myVM` hello에 `WestUS` 위치 및 이라는 hello 리소스 그룹에 `myResourceGroup`:
    
     ```powershell
     Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" `
         -VMName "myVM" -Location Westus -Name "myVMAccessExtension"
     ```
-2. **네트워크 보안 그룹 규칙 확인**. 이 문제 해결 단계에서는 네트워크 보안 그룹에 RDP 트래픽을 허용하는 규칙이 있는지 확인합니다. RDP의 기본 포트는 TCP 포트 3389입니다. VM을 만들 때 RDP 트래픽을 허용하는 규칙이 자동으로 생성되지 않을 수도 있습니다.
+2. **네트워크 보안 그룹 규칙 확인**. 이 문제 해결 단계는 네트워크 보안 그룹 toopermit RDP 트래픽의에 규칙이 있는지 확인 합니다. RDP에 대 한 hello 기본 포트는 TCP 포트 3389입니다. VM을 만들 때 규칙 toopermit RDP 트래픽이 자동으로 생성 되지 않을 수 있습니다.
    
-    첫째, 네트워크 보안 그룹의 모든 구성 데이터를 `$rules` 변수에 할당합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 네트워크 보안 그룹 `myNetworkSecurityGroup`에 대한 정보를 가져옵니다.
+    먼저, 네트워크 보안 그룹 toohello에 대 한 모든 hello 구성 데이터를 할당 `$rules` 변수입니다. hello 다음 예제에서는 정보를 가져오고 hello 라는 네트워크 보안 그룹에 대 한 `myNetworkSecurityGroup` 이라는 hello 리소스 그룹에 `myResourceGroup`:
    
     ```powershell
     $rules = Get-AzureRmNetworkSecurityGroup -ResourceGroupName "myResourceGroup" `
         -Name "myNetworkSecurityGroup"
     ```
    
-    이제 이 네트워크 보안 그룹에 대해 구성된 규칙을 봅니다. 다음과 같이 인바운드 연결에 TCP 포트 3389를 허용하는 규칙이 있는지 확인합니다.
+    이제이 네트워크 보안 그룹에 대해 구성 된 hello 규칙 보기 규칙 tooallow 인바운드 연결에 대 한 TCP 포트 3389를 다음과 같이 존재 하는지 확인 하십시오.
    
     ```powershell
     $rules.SecurityRules
     ```
    
-    다음 예제에서는 RDP 트래픽을 허용하는 유효한 보안 규칙을 보여 줍니다. `Protocol`, `DestinationPortRange`, `Access` 및 `Direction`이 올바르게 구성된 것을 볼 수 있습니다.
+    hello 다음 예제에서는 RDP 트래픽을 허용 하는 유효한 보안 규칙 `Protocol`, `DestinationPortRange`, `Access` 및 `Direction`이 올바르게 구성된 것을 볼 수 있습니다.
    
     ```powershell
     Name                     : default-allow-rdp
@@ -149,15 +149,15 @@ RDP 문제가 계속 발생하는 경우 [지원 요청을 열거나](https://az
     ```
    
     RDP 트래픽을 허용하는 규칙이 없는 경우 [네트워크 보안 그룹 규칙을 만듭니다](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). TCP 포트 3389를 허용합니다.
-3. **사용자 자격 증명 다시 설정**. 이 문제 해결 단계에서는 자격 증명이 확실하지 않거나 잊어버린 경우 사용자가 지정하는 로컬 관리자 계정에서 암호를 다시 설정합니다.
+3. **사용자 자격 증명 다시 설정**. 이 문제 해결 단계에는 hello, 확실 하지 않은 하거나 잊어버린, hello 자격 증명을 지정 하는 hello 로컬 관리자 계정의 암호 다시 설정 합니다.
    
-    먼저 다음과 같이 `$cred` 변수에 자격 증명을 할당하여 사용자 이름과 새 암호를 지정합니다.
+    첫째, 사용자 이름 hello 및 toohello 자격 증명을 할당 하 여 새 암호를 지정 `$cred` 다음과 같이 변수:
    
     ```powershell
     $cred=Get-Credential
     ```
    
-    이제 VM의 자격 증명을 업데이트합니다. 다음 예제에서는 `WestUS` 위치에 있는 `myVM`이라는 VM과 `myResourceGroup`이라는 리소스 그룹에서 자격 증명을 업데이트합니다.
+    이제 VM에서 hello 자격 증명을 업데이트 합니다. hello 다음 예제에서는 업데이트 라는 VM에서 hello 자격 증명 `myVM` hello에 `WestUS` 위치 및 이라는 hello 리소스 그룹에 `myResourceGroup`:
    
     ```powershell
     Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" `
@@ -165,16 +165,16 @@ RDP 문제가 계속 발생하는 경우 [지원 요청을 열거나](https://az
         -UserName $cred.GetNetworkCredential().Username `
         -Password $cred.GetNetworkCredential().Password
     ```
-4. **VM 다시 시작**. 이 문제 해결 단계에서는 VM 자체의 기본 문제를 해결할 수 있습니다.
+4. **VM 다시 시작**. 이 문제 해결 단계는 근본적인 문제를 해결할 수 hello VM 자체는 것입니다.
    
-    다음 예제에서는 리소스 그룹 `myResourceGroup`의 VM `myVM`을 다시 시작합니다.
+    다음 예제에서는 다시 시작 하는 hello hello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`:
    
     ```powershell
     Restart-AzureRmVM -ResourceGroup "myResourceGroup" -Name "myVM"
     ```
-5. **VM 다시 배포**. 이 문제 해결 단계에서는 Azure 내의 다른 호스트에 VM을 다시 배포하여 기본 플랫폼 또는 네트워킹 문제를 해결합니다.
+5. **VM 다시 배포**. 이 문제 해결 단계 VM tooanother 호스트 Azure toocorrect 내 모든 기본 플랫폼 또는 네트워킹 문제를 다시 배포합니다.
    
-    다음 예제에서는 `WestUS` 위치에 있는 `myVM`이라는 VM과 `myResourceGroup`이라는 리소스 그룹을 다시 배포합니다.
+    다음 예에서는 재배포 시 hello hello 라는 VM `myVM` hello에 `WestUS` 위치 및 이라는 hello 리소스 그룹에 `myResourceGroup`:
    
     ```powershell
     Set-AzureRmVM -Redeploy -ResourceGroupName "myResourceGroup" -Name "myVM"
@@ -182,55 +182,55 @@ RDP 문제가 계속 발생하는 경우 [지원 요청을 열거나](https://az
 
 RDP 문제가 계속 발생하는 경우 [지원 요청을 열거나](https://azure.microsoft.com/support/options/) [좀 더 자세한 RDP 문제 해결 개념 및 단계](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 읽어볼 수 있습니다.
 
-## <a name="troubleshoot-vms-created-using-the-classic-deployment-model"></a>클래식 배포 모델을 사용하여 만든 VM 문제 해결
-각 문제 해결 단계 후 VM에 다시 연결을 시도합니다.
+## <a name="troubleshoot-vms-created-using-hello-classic-deployment-model"></a>Hello 클래식 배포 모델을 사용 하 여 만든 Vm 문제 해결
+각 문제 해결 단계를 수행한 후 toohello VM을 다시 연결을 시도 합니다.
 
-1. **RDP 연결 다시 설정**. 이 문제 해결 단계에서는 원격 연결을 사용할 수 없거나 Windows 방화벽 규칙이 RDP를 차단하는 경우에 RDP 구성을 다시 설정합니다.
+1. **RDP 연결 다시 설정**. 이 문제 해결 단계에 원격 연결을 사용할 수 없습니다. 또는 예를 들어 Windows 방화벽 규칙 RDP를 차단 하는 경우 hello RDP 구성을 다시 설정 합니다.
    
-    Azure Portal에서 VM을 선택합니다. **...더 보기** 단추를 클릭한 다음 **원격 액세스 다시 설정**을 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 클릭 **... 더 많은** 단추를 클릭 **원격 액세스를 다시 설정**:
    
-    ![Azure Portal에서 RDP 구성 다시 설정](./media/troubleshoot-rdp-connection/classic-reset-rdp.png)
-2. **Cloud Services 끝점 확인**. 이 문제 해결 단계에서는 Cloud Services에 RDP 트래픽을 허용하는 규칙이 있는지 확인합니다. RDP의 기본 포트는 TCP 포트 3389입니다. VM을 만들 때 RDP 트래픽을 허용하는 규칙이 자동으로 생성되지 않을 수도 있습니다.
+    ![Hello Azure 포털에서에서 hello RDP 구성을 다시 설정](./media/troubleshoot-rdp-connection/classic-reset-rdp.png)
+2. **Cloud Services 끝점 확인**. 이 문제 해결 단계에 클라우드 서비스 toopermit RDP 트래픽의 끝점이 있는지 확인 합니다. RDP에 대 한 hello 기본 포트는 TCP 포트 3389입니다. VM을 만들 때 규칙 toopermit RDP 트래픽이 자동으로 생성 되지 않을 수 있습니다.
    
-   Azure Portal에서 VM을 선택합니다. **끝점** 단추를 클릭하여 현재 VM에 대해 구성된 끝점을 표시합니다. TCP 포트 3389에서 RDP 트래픽을 허용하는 끝점이 있는지 확인합니다.
+   Hello Azure 포털에서에서 VM을 선택 합니다. Hello 클릭 **끝점** VM에 대 한 현재 구성 된 tooview hello 끝점 단추입니다. TCP 포트 3389에서 RDP 트래픽을 허용하는 끝점이 있는지 확인합니다.
    
-   다음 예제에서는 RDP 트래픽을 허용하는 유효한 끝점을 보여줍니다.
+   다음 예제는 hello RDP 트래픽을 허용 하는 올바른 끝점을 보여 줍니다.
    
-   ![Azure Portal에서 Cloud Services 끝점 확인](./media/troubleshoot-rdp-connection/classic-verify-cloud-services-endpoints.png)
+   ![Hello Azure 포털에서에서 클라우드 서비스 끝점 확인](./media/troubleshoot-rdp-connection/classic-verify-cloud-services-endpoints.png)
    
-   RDP 트래픽을 허용하는 끝점이 없는 경우 [Cloud Services 끝점을 만듭니다](classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). 개인 포트 3389에 TCP를 허용합니다.
-3. **VM 부트 진단 검토**. 이 문제 해결 단계에서는 VM 콘솔 로그를 검토하여 VM이 문제를 보고하는지 확인합니다. 모든 VM에서 부팅 진단이 지원되는 것은 아니므로 이 문제 해결 단계는 선택 사항입니다.
+   RDP 트래픽을 허용하는 끝점이 없는 경우 [Cloud Services 끝점을 만듭니다](classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Tooprivate 포트 3389 TCP를 허용 합니다.
+3. **VM 부트 진단 검토**. 이 문제 해결 단계는 hello VM 문제를 보고 하는 경우 hello VM 콘솔 로그 toodetermine를 검토 합니다. 모든 VM에서 부팅 진단이 지원되는 것은 아니므로 이 문제 해결 단계는 선택 사항입니다.
    
-    구체적인 문제 해결 단계는 이 문서의 범위를 벗어나지만, RDP 연결에 영향을 주는 더 넓은 문제를 나타낼 수 있습니다. 콘솔 로그 및 VM 스크린샷 검토에 대한 자세한 내용은 [VM 부팅 진단](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)을 참조하세요.
-4. **VM 리소스 상태 확인**. 이 문제 해결 단계에서는 Azure 플랫폼에 VM 연결에 영향을 줄 수 있는 알려진 문제가 없는지 확인합니다.
+    특정 문제 해결 단계 hello이이 문서에서는 다루지 않지만 하지만 RDP 연결에 영향을 주지는 광범위 한 문제를 나타낼 수 있습니다. Hello 콘솔 로그 및 VM 스크린샷을 검토에 대 한 자세한 내용은 참조 하십시오. [Vm에 대 한 부트 진단](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)합니다.
+4. **Hello VM 리소스 상태 확인**합니다. 이 문제 해결 단계는 연결 toohello VM에 영향을 줄 수 있는 Azure 플랫폼 hello로 알려진된 문제가 없는지 확인 합니다.
    
-    Azure Portal에서 VM을 선택합니다. 목록 맨 아래 근처에 있는 **지원 + 문제 해결** 섹션이 나올 때까지 설정 창을 아래로 스크롤합니다. **리소스 상태** 단추를 클릭합니다. 정상 VM은 **사용 가능**으로 보고합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 설정 창 toohello 아래로 스크롤하여 **지원 + 문제 해결** hello 목록의 아래쪽 근처 섹션. Hello 클릭 **리소스 상태** 단추입니다. 정상 VM은 **사용 가능**으로 보고합니다.
    
-    ![Azure Portal에서 VM 리소스 상태 확인](./media/troubleshoot-rdp-connection/classic-check-resource-health.png)
-5. **사용자 자격 증명 다시 설정**. 이 문제 해결 단계에서는 자격 증명이 확실하지 않거나 잊어버린 경우 사용자가 지정하는 로컬 관리자 계정에서 암호를 다시 설정합니다.
+    ![Hello Azure 포털에서에서 VM 리소스 상태를 확인 합니다.](./media/troubleshoot-rdp-connection/classic-check-resource-health.png)
+5. **사용자 자격 증명 다시 설정**. 이 문제 해결 단계에는 hello 확실 하지 않거나 잊어버려 hello 자격 증명을 지정 하는 hello 로컬 관리자 계정의 암호 다시 설정 합니다.
    
-    Azure Portal에서 VM을 선택합니다. 목록 맨 아래 근처에 있는 **지원 + 문제 해결** 섹션이 나올 때까지 설정 창을 아래로 스크롤합니다. **암호 다시 설정** 단추를 클릭합니다. 사용자 이름 및 새 암호를 입력합니다. 마지막으로 **저장** 단추를 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 합니다. Hello 설정 창 toohello 아래로 스크롤하여 **지원 + 문제 해결** hello 목록의 아래쪽 근처 섹션. Hello 클릭 **암호 재설정** 단추입니다. 사용자 이름 및 새 암호를 입력합니다. 마지막으로 hello 클릭 **저장** 단추:
    
-    ![Azure Portal에서 사용자 자격 증명 다시 설정](./media/troubleshoot-rdp-connection/classic-reset-password.png)
-6. **VM 다시 시작**. 이 문제 해결 단계에서는 VM 자체의 기본 문제를 해결할 수 있습니다.
+    ![Hello Azure 포털에서에서 hello 사용자 자격 증명 다시 설정](./media/troubleshoot-rdp-connection/classic-reset-password.png)
+6. **VM 다시 시작**. 이 문제 해결 단계는 근본적인 문제를 해결할 수 hello VM 자체는 것입니다.
    
-    Azure Portal에서 VM을 선택하고 **개요** 탭을 클릭합니다. **다시 시작** 단추를 클릭합니다.
+    Hello Azure 포털에서에서 VM을 선택 하 고 hello 클릭 **개요** 탭 합니다. Hello 클릭 **다시 시작** 단추:
    
-    ![Azure Portal에서 VM을 다시 시작합니다.](./media/troubleshoot-rdp-connection/classic-restart-vm.png)
+    ![Hello Azure 포털에서에서 VM hello를 다시 시작](./media/troubleshoot-rdp-connection/classic-restart-vm.png)
 
 RDP 문제가 계속 발생하는 경우 [지원 요청을 열거나](https://azure.microsoft.com/support/options/) [좀 더 자세한 RDP 문제 해결 개념 및 단계](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 읽어볼 수 있습니다.
 
 ## <a name="troubleshoot-specific-rdp-errors"></a>특정 RDP 오류 해결
-RDP를 통해 VM에 연결하려고 할 때 특정 오류 메시지가 나타날 수 있습니다. 다음은 가장 일반적인 오류 메시지입니다.
+RDP 통해 VM tooconnect tooyour 하려고 할 때 특정 오류 메시지가 발생할 수 있습니다. hello 다음은 hello 가장 일반적인 오류 메시지입니다.
 
-* [라이선스를 제공할 수 있는 원격 데스크톱 라이선스 서버가 없으므로 원격 세션이 끊겼습니다](troubleshoot-specific-rdp-errors.md#rdplicense).
-* [원격 데스크톱에서 컴퓨터 "이름"을 찾을 수 없습니다](troubleshoot-specific-rdp-errors.md#rdpname).
-* [인증 오류가 발생했습니다. 로컬 보안 기관에 연결할 수 없습니다.](troubleshoot-specific-rdp-errors.md#rdpauth)
+* [원격 데스크톱 라이선스 서버 사용 가능한 tooprovide 없습니다 라이선스 있기 때문에 hello 원격 연결이 끊어졌습니다](troubleshoot-specific-rdp-errors.md#rdplicense)합니다.
+* [원격 데스크톱 hello 컴퓨터 "이름"에서 찾을 수 없는](troubleshoot-specific-rdp-errors.md#rdpname)합니다.
+* [인증 오류가 발생 했습니다. hello 로컬 보안 기관에 연결할 수 없는](troubleshoot-specific-rdp-errors.md#rdpauth)합니다.
 * [Windows 보안 오류: 자격 증명이 작동하지 않습니다](troubleshoot-specific-rdp-errors.md#wincred).
-* [이 컴퓨터에서 원격 컴퓨터에 연결할 수 없습니다](troubleshoot-specific-rdp-errors.md#rdpconnect).
+* [이 컴퓨터 toohello 원격 컴퓨터에 연결할 수 없는](troubleshoot-specific-rdp-errors.md#rdpconnect)합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
-이러한 오류가 발생하지 않았는데도 여전히 원격 데스크톱을 통해 VM에 연결할 수 없는 경우 [원격 데스크톱에 대한 자세한 문제 해결 가이드](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 읽어보세요.
-* VM에서 실행 중인 응용 프로그램에 액세스하는 문제 해결 단계는 [Azure VM에서 실행 중인 응용 프로그램에 대한 액세스 문제 해결](../linux/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
-* SSH(Secure Shell)를 사용하여 Azur에서 Linux VM에 연결하는 데 문제가 있는 경우 [Azure에서 Linux VM에 SSH 연결 문제 해결](../linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
+이러한 오류 중에 발생 한 경우 여전히 toohello VM 원격 데스크톱을 통해 연결할 수 없는 읽기 세부 hello [문제 해결 가이드에 대 한 원격 데스크톱](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
+* VM에서 실행 중인 응용 프로그램에 액세스 하는 단계를 문제 해결을 위해 참조 [문제 해결 액세스 tooan 응용 프로그램이 Azure VM에서 실행 중인](../linux/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
+* Azure에서 SSH (보안 셸) tooconnect tooa Linux VM을 사용 하는 데 문제가 있는 경우 참조 [해결 SSH 연결 tooa Azure에서 Linux VM](../linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 

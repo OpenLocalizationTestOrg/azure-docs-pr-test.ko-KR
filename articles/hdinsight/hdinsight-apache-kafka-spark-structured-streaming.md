@@ -1,6 +1,6 @@
 ---
-title: "Kafka에서 Apache Spark 구조적 스트림 - Azure HDInsight | Microsoft Docs"
-description: "Apache Spark 스트림(DStream)을 사용하여 Apache Kafka 간에 데이터를 이동하는 방법을 알아봅니다. 이 예제에서는 HDInsight의 Spark에서 Jupyter Notebook을 사용하여 데이터를 스트리밍합니다."
+title: "로 Kafka-Azure HDInsight Spark 구조적 스트리밍을 aaaApache | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Apache Spark 스트리밍 (DStream) tooget 데이터 Apache Kafka 안팎으로 합니다. 이 예제에서는 HDInsight의 Spark에서 Jupyter Notebook을 사용하여 데이터를 스트리밍합니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,87 +14,87 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/09/2017
 ms.author: larryfr
-ms.openlocfilehash: 02b49e13e8f54c3d55310f4d2b21c7e09c91fe81
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0837e8fc5ea314e644daed029d596feeb2b02c68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-spark-structured-streaming-with-kafka-preview-on-hdinsight"></a>HDInsight의 Kafka(미리 보기)에서 Spark 구조적 스트림 사용
 
-Azure HDInsight의 Apache Kafka에서 데이터를 읽는 Spark 구조적 스트림을 사용하는 방법을 알아봅니다.
+자세한 내용은 방법 toouse Azure HDInsight의 Apache Kafka에서 Spark 구조적 스트리밍 tooread 데이터입니다.
 
-Spark 구조적 스트림은 Spark SQL에서 작성된 스트림 처리 엔진입니다. 정적 데이터에 대한 일괄 처리 계산과 동일하게 스트리밍 계산을 표현할 수 있습니다. 구조적 스트림에 대한 자세한 내용은 Apache.org에서 [구조적 스트림 프로그래밍 가이드[알파]](http://spark.apache.org/docs/2.1.0/structured-streaming-programming-guide.html)를 참조하세요.
+Spark 구조적 스트림은 Spark SQL에서 작성된 스트림 처리 엔진입니다. 에 수 있습니다 hello tooexpress 스트리밍 계산 하면 일괄 처리 계산와 동일 정적 데이터입니다. 구조적 스트리밍에 대 한 자세한 내용은 참조 hello [구조적 스트리밍 프로그래밍 가이드 [알파]](http://spark.apache.org/docs/2.1.0/structured-streaming-programming-guide.html) Apache.org에서 합니다.
 
 > [!IMPORTANT]
 > 이 예제에서는 HDInsight 3.6에서 Spark 2.1을 사용했습니다. 구조적 스트림은 Spark 2.1에서 __알파__로 간주합니다.
 >
-> 이 문서의 단계는 HDInsight의 Spark와 HDInsight의 Kafka 클러스터를 모두 포함하는 Azure 리소스 그룹을 만듭니다. 이러한 클러스터는 모두 Azure Virtual Network에 있으며, 여기서는 Spark 클러스터와 Kafka 클러스터 간에 직접 통신할 수 있습니다.
+> 이 문서의 단계 hello HDInsight의 Spark와 HDInsight 클러스터에서 Kafka 모두 포함 된 Azure 리소스 그룹을 만듭니다. 이 클러스터는 Spark 클러스터 toodirectly hello를는 Azure 가상 네트워크 내에 위치한 둘 다 hello Kafka 클러스터와 통신 합니다.
 >
-> 이 문서의 단계를 완료하는 경우 과도한 요금이 청구되지 않도록 클러스터를 삭제해야 합니다.
+> Hello이이 문서의 단계를 완료 하는 경우 toodelete hello 클러스터 tooavoid 초과 요금을 기억 합니다.
 
-## <a name="create-the-clusters"></a>클러스터 만들기
+## <a name="create-hello-clusters"></a>Hello 클러스터를 만들려면
 
-HDInsight의 Apache Kafka는 공용 인터넷을 통한 액세스를 Kafka broker에 제공하지 않습니다. Kafka와 통신하는 대상은 Kafka 클러스터의 노드와 동일한 Azure 가상 네트워크에 있어야 합니다. 여기서는 Kafka 클러스터와 Spark 클러스터가 모두 Azure 가상 네트워크에 있습니다. 클러스터 간의 통신 흐름을 보여 주는 다이어그램은 다음과 같습니다.
+HDInsight의 Apache Kafka에서는 액세스 toohello Kafka 브로커를 통해 공용 인터넷 hello 합니다. 토론에 tooKafka 있어야 hello hello 노드로 동일한 Azure 가상 네트워크는 모든 작업이 hello Kafka 클러스터입니다. 예를 들어 hello Kafka 및 Spark 클러스터를 모두 Azure 가상 네트워크에 있는 합니다. hello 다음 그림에 hello 클러스터 간의 통신 흐름 방식을:
 
 ![Azure 가상 네트워크에 있는 Spark 및 Kafka 클러스터 다이어그램](./media/hdinsight-apache-spark-with-kafka/spark-kafka-vnet.png)
 
 > [!NOTE]
-> Kafka 서비스는 가상 네트워크 내에서 통신으로 제한됩니다. SSH 및 Ambari와 같은 클러스터의 다른 서비스는 인터넷을 통해 액세스할 수 있습니다. HDInsight에서 사용할 수 있는 공용 포트에 대한 자세한 내용은 [HDInsight에서 사용하는 포트 및 URI](hdinsight-hadoop-port-settings-for-services.md)를 참조하세요.
+> hello Kafka 서비스는 hello 가상 네트워크 내에서 제한 된 toocommunication입니다. Hello 클러스터에 있는 다른 서비스 Ambar 및 SSH를 통해 액세스할 수와 같은 인터넷 hello 합니다. HDInsight와 사용할 수 있는 공용 포트 hello에 대 한 자세한 내용은 참조 하십시오. [포트 및 HDInsight에서 사용 하는 Uri](hdinsight-hadoop-port-settings-for-services.md)합니다.
 
-Azure 가상 네트워크, Kafka 클러스터 및 Spark 클러스터를 수동으로 만들 수 있지만 Azure Resource Manager 템플릿을 사용하는 것이 더 쉽습니다. 다음 단계에 따라 Azure 가상 네트워크, Kafka 클러스터 및 Spark 클러스터를 Azure 구독에 배포합니다.
+수동으로 만들 수 있습니다는 Azure 가상 네트워크에서 Kafka, 및 Spark 클러스터를 보다 쉽게 Azure 리소스 관리자 템플릿 toouse는. 사용 하 여 hello 다음 단계는 Azure 가상 네트워크, Kafka toodeploy 및 Spark 클러스터 tooyour Azure 구독.
 
-1. Azure에 로그인하고 Azure Portal에서 템플릿을 열려면 다음 단추를 사용합니다.
+1. Hello tooAzure에서 단추 toosign 및 hello Azure 포털에서에서 열기 hello 서식 파일을 사용 합니다.
     
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-spark-cluster-in-vnet-v4.1.json" target="_blank"><img src="./media/hdinsight-apache-spark-with-kafka/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-spark-cluster-in-vnet-v4.1.json" target="_blank"><img src="./media/hdinsight-apache-spark-with-kafka/deploy-to-azure.png" alt="Deploy tooAzure"></a>
     
-    Azure Resource Manager 템플릿은 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-spark-cluster-in-vnet-v4.1.json**에 있습니다.
+    hello Azure 리소스 관리자 템플릿에 위치한 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-spark-cluster-in-vnet-v4.1.json**합니다.
 
-    이 템플릿은 다음과 같은 리소스를 만듭니다.
+    이 템플릿은 hello 다음 리소스를 만듭니다.
 
     * HDInsight 3.5 클러스터의 Kafka
     * HDInsight 3.6 클러스터의 Spark
-    * HDInsight 클러스터를 포함하는 Azure Virtual Network
+    * Azure 가상 네트워크를 hello HDInsight 클러스터를 포함 합니다.
 
     > [!IMPORTANT]
-    > 이 예에서 사용된 구조적 스트림 Notebook은 HDInsight 3.6의 Spark가 필요합니다. HDInsight에서 이전 버전의 Spark를 사용하면 Notebook을 사용하는 경우 발생하는 오류가 발생합니다.
+    > 이 예에서 사용 된 hello 구조적된 스트리밍 노트북 3.6 HDInsight의 Spark 필요 합니다. HDInsight의 Spark의 이전 버전을 사용 하는 경우 hello 노트북을 사용 하는 경우 오류가 발생 합니다.
 
-2. 다음 정보를 사용하여 **사용자 지정 배포** 블레이드의 항목을 채웁니다.
+2. 정보 toopopulate hello 항목에 나오는 hello에 사용 하 여 hello **사용자 지정 배포** 블레이드:
    
     ![HDInsight 사용자 지정 배포](./media/hdinsight-apache-spark-with-kafka/parameters.png)
    
-    * **리소스 그룹**: 그룹을 만들거나 기존 그룹을 선택합니다. 이 그룹에는 HDInsight 클러스터가 포함됩니다.
+    * **리소스 그룹**: 그룹을 만들거나 기존 그룹을 선택합니다. 이 그룹 hello HDInsight 클러스터를 포함합니다.
 
-    * **위치**: 지리적으로 가까운 위치를 선택합니다.
+    * **위치**: 위치 지리적으로 닫기 tooyou를 선택 합니다.
 
-    * **기본 클러스터 이름**: 이 값은 Spark 및 Kafka 클러스터의 기본 이름으로 사용됩니다. 예를 들어, **hdi**를 입력하면 spark-hdi__라는 Spark 클러스터와 **kafka-hdi**라는 Kafka 클러스터가 만들어집니다.
+    * **기본 클러스터 이름을**:이 값 hello hello Kafka 및 Spark 클러스터에 대 한 기본 이름으로 사용 됩니다. 예를 들어, **hdi**를 입력하면 spark-hdi__라는 Spark 클러스터와 **kafka-hdi**라는 Kafka 클러스터가 만들어집니다.
 
-    * **클러스터 로그인 사용자 이름**: Spark 및 Kafka 클러스터의 관리자 이름입니다.
+    * **클러스터 로그인 사용자 이름**: hello Kafka 및 Spark 클러스터에 대 한 hello 관리자 사용자 이름입니다.
 
-    * **클러스터 로그인 암호**: Spark 및 Kafka 클러스터의 관리자 사용자 암호입니다.
+    * **로그인 암호 클러스터**: hello Kafka 및 Spark 클러스터에 대 한 hello 관리자 사용자 암호입니다.
 
-    * **SSH 사용자 이름**: Spark 및 Kafka 클러스터에 만들 SSH 사용자입니다.
+    * **SSH 사용자 이름이**: hello Kafka 및 Spark 클러스터에 대 한 SSH 사용자 toocreate hello 합니다.
 
-    * **SSH 암호**: Spark 및 Kafka 클러스터에 대한 SSH 사용자의 암호입니다.
+    * **SSH 암호**: hello Kafka 및 Spark 클러스터에 대 한 SSH 사용자 hello에 대 한 hello 암호입니다.
 
-3. **사용 약관**을 읽은 다음 **위에 명시된 사용 약관에 동의함**을 선택합니다.
+3. 읽기 hello **약관**를 선택한 후 **toohello 약관 위에서 설명한 동의**합니다.
 
-4. 마지막으로 **대시보드에 고정**을 선택한 다음 **구매**를 선택합니다. 클러스터를 만드는 데 약 20분이 걸립니다.
+4. 마지막으로 확인 **Pin toodashboard** 선택한 후 **구매**합니다. Hello 클러스터 toocreate 약 20 분이 필요합니다.
 
-리소스를 만들면 리소스 그룹 블레이드로 리디렉션됩니다.
+Hello 리소스를 만든 리디렉션된 toohello 리소스 그룹 블레이드 됩니다.
 
-![vnet 및 클러스터에 대한 리소스 그룹 블레이드](./media/hdinsight-apache-spark-with-kafka/groupblade.png)
+![Hello vnet 및 클러스터 리소스 그룹 블레이드](./media/hdinsight-apache-spark-with-kafka/groupblade.png)
 
 > [!IMPORTANT]
-> HDInsight 클러스터의 이름은 **spark-BASENAME** 및 **kafka-BASENAME**이며, 여기서 BASENAME은 템플릿에 제공된 이름입니다. 이후 단계에서 클러스터에 연결할 때 이러한 이름을 사용합니다.
+> Hello HDInsight 클러스터의 이름이 hello **spark BASENAME** 및 **kafka BASENAME**, 여기서 BASENAME는 hello 이름이 toohello 서식 파일을 제공 합니다. Toohello 클러스터를 연결 하는 경우 이후 단계에서 이러한 이름을 사용 합니다.
 
-## <a name="get-the-kafka-brokers"></a>Kafka broker를 가져옵니다.
+## <a name="get-hello-kafka-brokers"></a>Hello Kafka 브로커 가져오기
 
-이 예제의 코드는 Kafka 클러스터에 있는 Kafka broker 호스트에 연결합니다. Kafka broker 호스트를 찾으려면 다음 PowerShell 또는 Bash 예제를 사용합니다.
+hello이 예제 코드에서는 연결 toohello Kafka broker hello Kafka 클러스터의에서 호스트입니다. toofind는 Kafka 브로커 호스트 hello, 다음 PowerShell 또는 Bash 예제 hello를 사용 하 여:
 
 ```powershell
-$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"
-$clusterName = Read-Host -Prompt "Enter the Kafka cluster name"
+$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"
+$clusterName = Read-Host -Prompt "Enter hello Kafka cluster name"
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/services/KAFKA/components/KAFKA_BROKER" `
     -Credential $creds
 $respObj = ConvertFrom-Json $resp.Content
@@ -107,53 +107,53 @@ curl -u admin:$PASSWORD -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clust
 ```
 
 > [!NOTE]
-> 이 예에서 `$PASSWORD`는 클러스터 로그인 암호를 포함하고 `$CLUSTERNAME`은 Kafka 클러스터의 이름을 포함합니다.
+> 이 예에서는 `$PASSWORD` hello 클러스터 로그인에 대 한 toocontain hello 암호 및 `$CLUSTERNAME` toocontain hello 이름 hello Kafka 클러스터입니다.
 >
-> 이 예제에서는 [jq](https://stedolan.github.io/jq/) 유틸리티를 사용하여 JSON 문서에서 데이터를 구문 분석합니다.
+> 이 예에서는 hello [jq](https://stedolan.github.io/jq/) hello JSON 문서에서 유틸리티 tooparse 데이터입니다.
 
-다음 텍스트와 유사하게 출력됩니다.
+hello는 텍스트 다음 비슷한 toohello 출력:
 
 `wn0-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092,wn1-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092,wn2-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092,wn3-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092`
 
-이 문서의 다음 단계에서 사용되기 때문에 이 정보를 저장합니다.
+Hello 다음이 문서의 섹션에서에서 사용 중 이므로이 정보를 저장 합니다.
 
-## <a name="get-the-notebooks"></a>Notebooks 가져오기
+## <a name="get-hello-notebooks"></a>Hello 전자 필기장 가져오기
 
-이 문서에서 설명한 예제의 코드는 [https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming](https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming)에서 제공됩니다.
+이 문서에서 설명 하는 hello 예제에 대 한 hello 코드에서 사용할 수는 [https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming](https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming)합니다.
 
-## <a name="upload-the-notebooks"></a>Notebooks 업로드
+## <a name="upload-hello-notebooks"></a>Hello 전자 필기장 업로드
 
-프로젝트에서 HDInsight 클러스터의 Spark로 Notebooks을 업로드하려면 다음 단계를 사용합니다.
+HDInsight 클러스터에서 단계 tooupload hello 전자 필기장 hello 프로젝트 tooyour Spark에서에서 다음 hello를 사용 합니다.
 
-1. 웹 브라우저의 Spark 클러스터에 있는 Jupyter Notebook에 연결합니다. 다음 URL에서 `CLUSTERNAME`을 Kafka 클러스터의 이름으로 바꿉니다.
+1. 웹 브라우저에서 toohello Jupyter 노트북 Spark 클러스터에 연결 합니다. Hello에서 url을 대체 `CLUSTERNAME` Kafka 클러스터의 hello 이름의:
 
         https://CLUSTERNAME.azurehdinsight.net/jupyter
 
-    메시지가 표시되면 클러스터를 만들 때 사용한 클러스터 로그인(관리자) 이름과 암호를 입력합니다.
+    메시지가 표시 되 면 hello 클러스터 로그인 (관리자)과 hello 클러스터를 만들 때 사용한 암호를 입력 합니다.
 
-2. 페이지의 오른쪽 위에서 __업로드__ 단추를 사용하여 __Stream-Tweets-To_Kafka.ipynb__ 파일을 클러스터에 업로드합니다. __열기__를 선택하여 업로드를 시작합니다.
+2. Hello의 오른쪽 상단 hello 페이지에서 hello를 사용 하 여 __업로드__ 단추 tooupload hello __스트림 트 윗 To_Kafka.ipynb__ 파일 toohello 클러스터입니다. 선택 __열려__ toostart hello 업로드 합니다.
 
-    ![업로드 단추를 사용하여 Notebook을 선택하고 업로드](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-button.png)
+    ![업로드 단추 tooselect hello를 사용 하 여 및 노트북 업로드](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-button.png)
 
-    ![KafkaStreaming.ipynb 파일 선택](./media/hdinsight-apache-kafka-spark-structured-streaming/select-notebook.png)
+    ![Hello KafkaStreaming.ipynb 파일 선택](./media/hdinsight-apache-kafka-spark-structured-streaming/select-notebook.png)
 
-3. Notebook 목록에서 __Stream-Tweets-To_Kafka.ipynb__ 항목을 찾아 그 옆에 있는 __업로드__ 단추를 선택합니다.
+3. Hello __스트림 트 윗 To_Kafka.ipynb__ hello 전자 필기장 및 선택 목록에 항목 __업로드__ 단추가 있습니다.
 
-    ![KafkaStreaming.ipynb 항목 옆의 업로드 단추를 사용하여 Notebook 서버에 업로드](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-notebook.png)
+    ![사용 하 여 hello 업로드 단추 hello KafkaStreaming.ipynb 항목 tooupload 것 toohello 노트북 서버](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-notebook.png)
 
-4. 1~3 단계를 반복하여 __Spark-Structured-Streaming-From-Kafka.ipynb__ Notebook을 로드합니다.
+4. 1-3 tooload hello 단계를 반복 __Spark-구성-스트리밍 액세스에서-Kafka.ipynb__ 노트북 합니다.
 
 ## <a name="load-tweets-into-kafka"></a>Kafka로 트윗 로드
 
-파일이 업로드되면 __Stream-Tweets-To_Kafka.ipynb__ 항목을 선택하여 Notebook을 엽니다. Notebook의 단계를 따라 Kafka로 트윗을 로드합니다.
+Hello 파일 업로드 되었지만 되 면 선택 hello __스트림 트 윗 To_Kafka.ipynb__ 항목 tooopen hello 노트북 합니다. Kafka에 hello 노트북 tooload 트 윗의 hello 단계를 수행 합니다.
 
 ## <a name="process-tweets-using-spark-structured-streaming"></a>Spark 구조적 스트림을 사용하여 트윗 프로세스
 
-Jupyter Notebook 홈페이지에서 __Spark-Structured-Streaming-From-Kafka.ipynb__ 항목을 선택합니다. Notebook의 단계를 따라 Spark 구조적 스트림을 사용하여 트윗을 로드합니다.
+Hello Jupyter 노트북 홈 페이지에서에서 선택 hello __Spark-구성-스트리밍 액세스에서-Kafka.ipynb__ 항목입니다. Spark 구조적 스트리밍을 사용 하 여 Kafka에서 hello 노트북 tooload 트 윗의 hello 단계를 수행 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이제 Spark 구조적 스트림을 사용하는 방법을 배웠으므로 Spark 및 Kafka에서 작업하는 방법에 대한 자세한 내용을 보려면 다음 문서를 참조하세요.
+배웠습니다 했으므로 Spark 구조적 스트리밍 toouse hello Kafka Spark와 작업 하는 방법에 대 한 자세한 문서 toolearn 다음을 확인 하는 방법:
 
-* [Kafka에서 Spark 스트림(DStream)을 사용하는 방법](hdinsight-apache-spark-with-kafka.md)
+* [어떻게 toouse 멤버 Kafka와 스트리밍 (DStream)](hdinsight-apache-spark-with-kafka.md)합니다.
 * [Jupyter Notebook 및 HDInsight의 Spark 시작](hdinsight-apache-spark-jupyter-spark-sql.md)

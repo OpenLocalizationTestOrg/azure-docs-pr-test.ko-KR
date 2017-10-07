@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용하여 Azure 클라우드 서비스에 진단 사용 | Microsoft Docs"
-description: "PowerShell을 사용하여 클라우드 서비스에 진단을 사용하도록 설정하는 방법을 알아봅니다."
+title: "PowerShell을 사용 하 여 Azure 클라우드 서비스에서 aaaEnable 진단 | Microsoft Docs"
+description: "PowerShell을 사용 하 여 클라우드에 대 한 tooenable 진단을 서비스 하는 방법에 대해 알아봅니다"
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: adegeo
-ms.openlocfilehash: 8dd9724981860c9cd4ccc443cc2bfdc465811e7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7c7444df13edc8d7f5663e20ec7558d36aac45d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-diagnostics-in-azure-cloud-services-using-powershell"></a>PowerShell을 사용하여 Azure 클라우드 서비스에 진단 사용
-Azure 진단 확장을 사용하여 클라우드 서비스로부터 응용 프로그램 로그, 성능 카운터 등과 같은 진단 데이터를 수집할 수 있습니다. 이 문서는 PowerShell을 사용하여 클라우드 서비스에 대해 Azure 진단 확장을 사용하도록 설정하는 방법을 설명합니다.  이 문서에 요구되는 필수 조건은 [Azure PowerShell 설치 및 구성하는 방법](/powershell/azure/overview) 을 참조하세요.
+응용 프로그램 로그와 같은 진단 데이터를 수집할 수 있습니다, 성능 카운터 사용 하 여 클라우드 서비스 등 hello Azure 진단 확장 합니다. 이 문서에서는 tooenable PowerShell을 사용 하 여 클라우드 서비스에 대 한 Azure 진단 확장을 hello 하는 방법을 설명 합니다.  참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview) hello이이 문서에 필요한 필수 구성 요소에 대 한 합니다.
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>클라우드 서비스 배포의 일부로 진단 확장을 사용하도록 설정
-이 접근 방식은 진단 확장이 클라우드 서비스의 배포 중 일부로 사용될 수 있는 연속 통합 형식의 시나리오에 적용됩니다. 새 클라우드 서비스 배포를 만들 경우 *ExtensionConfiguration* 매개 변수에서 [New-AzureDeployment](/powershell/module/azure/new-azuredeployment?view=azuresmps-3.7.0) cmdlet으로 전달하여 진단 확장을 사용할 수 있습니다. *ExtensionConfiguration* 매개 변수는 [New-AzureServiceDiagnosticsExtensionConfig](/powershell/module/azure/new-azureservicediagnosticsextensionconfig?view=azuresmps-3.7.0) cmdlet을 사용하여 만들 수 있는 진단 구성 배열을 사용합니다.
+이 방법은 시나리오, 여기서 hello 진단 확장을 배포의 일부로 사용할 수 있습니다 hello 클라우드 서비스의 적용 가능한 toocontinuous 통합 형식에 설명 합니다. 새 클라우드 서비스 배포를 만들 때 hello 전달 하 여 hello 진단 확장을 사용할 수 있습니다 *ExtensionConfiguration* 매개 변수 toohello [새로 AzureDeployment](/powershell/module/azure/new-azuredeployment?view=azuresmps-3.7.0) cmdlet. hello *ExtensionConfiguration* 매개 변수는 hello를 사용 하 여 만들 수 있는 진단 구성의 배열을 [새로 AzureServiceDiagnosticsExtensionConfig](/powershell/module/azure/new-azureservicediagnosticsextensionconfig?view=azuresmps-3.7.0) cmdlet.
 
-다음 예제는 각각 진단 구성이 다른 WebRole 및 WorkerRole을 사용하여 클라우드 서비스에 대해 진단을 사용하도록 설정하는 방법을 보여줍니다.
+hello 다음 예제에서는 WebRole 및 WorkerRole 각 더 여러 진단 구성을 사용 하 여 클라우드 서비스에 대 한 진단을 설정 하는 방법
 
 ```powershell
 $service_name = "MyService"
@@ -41,23 +41,23 @@ $workerrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "Worke
 New-AzureDeployment -ServiceName $service_name -Slot Production -Package $service_package -Configuration $service_config -ExtensionConfiguration @($webrole_diagconfig,$workerrole_diagconfig)
 ```
 
-진단 구성 파일이 저장소 계정 이름으로 `StorageAccount` 요소를 지정할 경우 `New-AzureServiceDiagnosticsExtensionConfig` cmdlet에서 해당 저장소 계정을 자동으로 사용합니다. 이렇게 작동하려면, 저장소 계정이 배포된 클라우드 서비스와 동일한 구독에 있어야 합니다.
+Hello 진단 구성 파일을 지정 하는 경우는 `StorageAccount` 저장소 계정 이름 가진 요소가 다음 hello `New-AzureServiceDiagnosticsExtensionConfig` cmdlet에는 해당 저장소 계정을 자동으로 사용 됩니다. 이 toowork hello 저장소 계정이 필요 합니다. toobe에 클라우드 서비스가 배포 되 고 hello으로 동일한 구독 hello 합니다.
 
-Azure SDK 2.6 이후부터 MSBuild 게시 대상 출력에 의해 생성된 확장 구성 파일은 서비스 구성 파일(.cscfg)에 지정된 진단 구성 문자열에 기반한 저장소 계정 이름을 포함합니다. 아래의 스크립트에서는 게시 대상 출력에서 확장 구성 파일을 구문 분석하고 클라우드 서비스를 배포할 때 각 역할에 대한 진단 확장을 구성하는 방법을 보여줍니다.
+Hello MSBuild에 의해 생성 된 향후 hello 확장 구성 파일을 게시 하는 Azure SDK 2.6에서 대상 출력 hello 서비스 구성 파일 (.cscfg)에 지정 된 hello 진단 구성 문자열을 기반으로 hello 저장소 계정 이름이 포함 됩니다. 아래의 hello 스크립트 hello에서 tooparse hello 확장 구성 파일 대상 출력을 게시 하 고 hello 클라우드 서비스를 배포 하는 경우 각 역할에 대해 진단 확장을 구성 하는 방법을 보여줍니다.
 
 ```powershell
 $service_name = "MyService"
 $service_package = "C:\build\output\CloudService.cspkg"
 $service_config = "C:\build\output\ServiceConfiguration.Cloud.cscfg"
 
-#Find the Extensions path based on service configuration file
+#Find hello Extensions path based on service configuration file
 $extensionsSearchPath = Join-Path -Path (Split-Path -Parent $service_config) -ChildPath "Extensions"
 
 $diagnosticsExtensions = Get-ChildItem -Path $extensionsSearchPath -Filter "PaaSDiagnostics.*.PubConfig.xml"
 $diagnosticsConfigurations = @()
 foreach ($extPath in $diagnosticsExtensions)
 {
-    #Find the RoleName based on file naming convention PaaSDiagnostics.<RoleName>.PubConfig.xml
+    #Find hello RoleName based on file naming convention PaaSDiagnostics.<RoleName>.PubConfig.xml
     $roleName = ""
     $roles = $extPath -split ".",0,"simplematch"
     if ($roles -is [system.array] -and $roles.Length -gt 1)
@@ -84,11 +84,11 @@ foreach ($extPath in $diagnosticsExtensions)
 New-AzureDeployment -ServiceName $service_name -Slot Production -Package $service_package -Configuration $service_config -ExtensionConfiguration $diagnosticsConfigurations
 ```
 
-Visual Studio Online은 진단 확장으로 클라우드 서비스의 자동화된 배포에 대해 유사한 접근 방식을 사용합니다. 전체 예제는 [Publish-AzureCloudDeployment.ps1](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/AzureCloudPowerShellDeployment/Publish-AzureCloudDeployment.ps1) 을 참조하세요.
+Visual Studio Online hello 진단 확장이 적용 된 클라우드 서비스의 자동화 된 배포 유사한 방법을 사용합니다. 전체 예제는 [Publish-AzureCloudDeployment.ps1](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/AzureCloudPowerShellDeployment/Publish-AzureCloudDeployment.ps1) 을 참조하세요.
 
-진단 구성에 `StorageAccount`가 지정되지 않은 경우 cmdlet에 *StorageAccountName* 매개 변수를 전달해야 합니다. *StorageAccountName* 매개 변수가 지정된 경우 cmdlet은 항상 진단 구성 파일에 지정된 저장소 계정이 아닌 매개 변수에 지정된 저장소 계정을 사용합니다.
+없는 경우 `StorageAccount` hello에 toopass 필요 hello 진단 구성에 지정 된 *StorageAccountName* toohello cmdlet 매개 변수입니다. 경우 hello *StorageAccountName* hello cmdlet은 항상 hello 매개 변수에서 지정 된 hello 저장소 계정을 사용 하 여를 하지 hello 하나 hello 진단 구성 파일에 지정 된 다음 매개 변수를 지정 합니다.
 
-진단 저장소 계정이 클라우드 서비스와 다른 구독에 있는 경우 *StorageAccountName* 및 *StorageAccountKey* 매개 변수를 cmdlet에 명시적으로 전달해야 합니다. 진단 저장소 계정이 동일한 구독에 있는 경우 진단 확장을 사용하도록 설정하면 cmdlet이 키 값을 자동으로 쿼리하고 설정할 수 있으므로 *StorageAccountKey* 매개 변수가 필요하지 않습니다. 하지만 진단 저장소 계정이 다른 구독에 있는 경우에는 cmdlet이 자동으로 키를 얻지 못할 수 있으며, 사용자가 *StorageAccountKey* 매개 변수를 통해 키를 명시적으로 지정해야 합니다.
+Hello의 hello 진단 저장소 계정 tooexplicitly 필요 hello 클라우드 서비스에서에서 다른 구독에는 통과 하면 *StorageAccountName* 및 *StorageAccountKey* 매개 변수 toohello cmdlet을 사용 합니다. hello *StorageAccountKey* 자동으로 쿼리 하 고 hello 진단 확장을 사용 하도록 설정할 때 hello 키 값을 설정할 수 hello cmdlet으로 hello 진단 저장소 계정이 동일한 구독을 hello 매개 변수가 필요 하지 않습니다. 그러나 hello 진단 저장소 계정이 다른 구독에는 hello cmdlet 하지 못할 수 tooget hello 키 자동으로 고 tooexplicitly 필요한 hello 통해 hello 키 지정 *StorageAccountKey* 매개 변수입니다.
 
 ```powershell
 $webrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "WebRole" -DiagnosticsConfigurationPath $webrole_diagconfigpath -StorageAccountName $diagnosticsstorage_name -StorageAccountKey $diagnosticsstorage_key
@@ -96,7 +96,7 @@ $workerrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "Worke
 ```
 
 ## <a name="enable-diagnostics-extension-on-an-existing-cloud-service"></a>기존 클라우드 서비스에 진단 확장을 사용하도록 설정
-[Set-AzureServiceDiagnosticsExtension](/powershell/module/azure/set-azureservicediagnosticsextension?view=azuresmps-3.7.0) cmdlet을 사용하여 이미 실행 중인 클라우드 서비스에 진단 구성을 사용하거나 업데이트할 수 있습니다.
+Hello를 사용할 수 있습니다 [집합 AzureServiceDiagnosticsExtension](/powershell/module/azure/set-azureservicediagnosticsextension?view=azuresmps-3.7.0) 이미 실행 중인 클라우드 서비스에서 cmdlet tooenable 또는 업데이트 진단 구성 합니다.
 
 [!INCLUDE [cloud-services-wad-warning](../../includes/cloud-services-wad-warning.md)]
 
@@ -112,28 +112,28 @@ Set-AzureServiceDiagnosticsExtension -DiagnosticsConfiguration @($webrole_diagco
 ```
 
 ## <a name="get-current-diagnostics-extension-configuration"></a>현재 진단 확장 구성 가져오기
-[Get-AzureServiceDiagnosticsExtension](/powershell/module/azure/get-azureservicediagnosticsextension?view=azuresmps-3.7.0) cmdlet을 사용하여 클라우드 서비스에 대한 현재 진단 구성을 가져올 수 있습니다.
+사용 하 여 hello [Get AzureServiceDiagnosticsExtension](/powershell/module/azure/get-azureservicediagnosticsextension?view=azuresmps-3.7.0) 클라우드 서비스에 대 한 cmdlet tooget hello 현재 진단 구성을 합니다.
 
 ```powershell
 Get-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
 ## <a name="remove-diagnostics-extension"></a>진단 확장 제거
-클라우드 서비스에서 진단을 해제하려면 [Remove-AzureServiceDiagnosticsExtension](/powershell/module/azure/remove-azureservicediagnosticsextension?view=azuresmps-3.7.0) cmdlet을 사용합니다.
+서비스는 클라우드에 대 한 진단 유틸리티 오프 tooturn hello צ ְ ײ [제거 AzureServiceDiagnosticsExtension](/powershell/module/azure/remove-azureservicediagnosticsextension?view=azuresmps-3.7.0) cmdlet.
 
 ```powershell
 Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
-*Role* 매개 변수 없이 *Set-AzureServiceDiagnosticsExtension* 또는 *New-AzureServiceDiagnosticsExtensionConfig*를 사용하여 진단 확장을 사용하도록 설정한 경우에는 *Role* 매개 변수 없이 *Remove-AzureServiceDiagnosticsExtension*을 사용하여 확장을 제거할 수 있습니다. *Role* 매개 변수가 확장을 사용하도록 설정할 때 사용되었으면, 확장을 제거할 때도 사용되어야 합니다.
+중 하나를 사용 하 여 hello 진단 확장을 사용 하는 경우 *집합 AzureServiceDiagnosticsExtension* 또는 hello *새로 AzureServiceDiagnosticsExtensionConfig* hello 없이 *역할* 다음 매개 변수 사용 하 여 hello 확장을 제거할 수 *제거 AzureServiceDiagnosticsExtension* hello 없이 *역할* 매개 변수입니다. 경우 hello *역할* 이면 hello 확장을 사용 하도록 설정 해야 경우에 사용할 hello 확장명을 제거 하는 경우 매개 변수가 사용 되었습니다.
 
-각각의 개별 역할에서 진단 확장을 제거하려면:
+각 개별 역할에서 tooremove hello 진단 확장:
 
 ```powershell
 Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService" -Role "WebRole"
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* 문제 해결을 위한 Azure 진단 및 기타 기법 사용에 대한 추가 지침은 [Azure 클라우드 서비스 및 가상 컴퓨터에서 진단 사용](cloud-services-dotnet-diagnostics.md)을 참조하세요.
-* [진단 구성 스키마](https://msdn.microsoft.com/library/azure/dn782207.aspx) 는 진단 확장에 대한 다양한 XML 구성 옵션을 설명합니다.
-* 가상 컴퓨터에 대해 진단 확장을 사용하도록 설정하는 방법을 알아보려면 [Azure 리소스 관리자 템플릿을 사용한 모니터링 및 진단으로 Windows 가상 컴퓨터 만들기(영문)](../virtual-machines/windows/extensions-diagnostics-template.md)
+* Azure 진단 및 기타 기술 tootroubleshoot 문제 사용에 대 한 추가 지침을 참조 하십시오. [Azure 클라우드 서비스 및 가상 컴퓨터에서 진단 사용](cloud-services-dotnet-diagnostics.md)합니다.
+* hello [진단 구성 스키마](https://msdn.microsoft.com/library/azure/dn782207.aspx) hello hello 진단 확장에 대 한 다양 한 xml 구성 옵션에 대해 설명 합니다.
+* tooenable hello 진단 확장 가상 컴퓨터에 대 한 참조 toolearn [모니터링 및 Azure 리소스 관리자 템플릿을 사용 하 여 진단을 사용 하 여 Windows 가상 컴퓨터 만들기](../virtual-machines/windows/extensions-diagnostics-template.md)

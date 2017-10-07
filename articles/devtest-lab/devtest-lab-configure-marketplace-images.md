@@ -1,5 +1,5 @@
 ---
-title: "Azure DevTest Labs에서 Azure Marketplace 이미지 설정 구성 | Microsoft 문서"
+title: "DevTest Labs Azure에서에서 Azure 마켓플레이스 이미지 설정 aaaConfigure | Microsoft Docs"
 description: "Azure DevTest Labs에서 VM을 만들 때 사용할 수 있는 Azure 마켓플레이스 이미지 구성"
 services: devtest-lab,virtual-machines
 documentationcenter: na
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
-ms.openlocfilehash: 5f888c9d92a9164cc7d3d1aed66c29a724b365d7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bb4b7f1c0cbe967bee724f7ee20f64f8c4ea58ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-azure-marketplace-image-settings-in-azure-devtest-labs"></a>Azure DevTest Labs에서 Azure 마켓플레이스 이미지 설정 구성
-DevTest Lab에서는 Azure 마켓플레이스 이미지를 랩에서 사용하도록 구성한 방법에 따라 Azure 마켓플레이스 이미지를 기준으로 VM을 만들 수 있습니다. 이 문서에서는 랩에서 VM을 만들 때 사용할 수 있는 Azure 마켓플레이스 이미지(있는 경우)를 지정하는 방법을 보여 줍니다. 이 경우 팀은 필요한 Marketplace 이미지에만 액세스할 수 있습니다. 
+DevTest Labs 랩에서 사용 되는 Azure 마켓플레이스 이미지 toobe을 어떻게 구성 했는지에 따라 Azure 마켓플레이스 이미지를 기반으로 만드는 Vm을 지원 합니다. 이 문서에서는 Azure 마켓플레이스 이미지 될 수 있는 경우 있는 toospecify 랩에서 Vm을 만들 때 사용 합니다. 이렇게 하면 팀에만 필요한 액세스 toohello 마켓플레이스 이미지에 있습니다. 
 
 ## <a name="select-which-azure-marketplace-images-are-allowed-when-creating-a-vm"></a>VM을 만들 때 허용되는 Azure 마켓플레이스 이미지를 선택합니다.
-1. [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)에 로그인합니다.
-2. **추가 서비스**를 선택한 후 목록에서 **DevTest Labs**을 선택합니다.
-3. 랩 목록에서 원하는 랩을 탭합니다. 
-4. 랩의 블레이드에서 **구성 및 정책**을 선택합니다.
+1. Toohello 로그인 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)합니다.
+2. 선택 **더 서비스**를 선택한 후 **DevTest Labs** hello 목록에서 합니다.
+3. 랩의 hello 목록에서 원하는 랩 hello를 선택 합니다. 
+4. Hello 랩 블레이드에서 선택 **구성 및 정책**합니다.
 5. 랩의 **구성 및 정책** 블레이드에 있는 **가상 컴퓨터 기본**에서 **Marketplace 이미지**를 선택합니다.
-6. 모든 정규화된 Azure 마켓플레이스 이미지를 새 VM의 기반으로 사용할 수 있게 할지 여부를 지정합니다. **예**를 선택하는 경우 다음 조건을 모두 충족하는 모든 Azure 마켓플레이스 이미지가 랩에서 허용됩니다.
+6. 새 VM의 기본으로 사용 하기 위해 사용할 수 있는 정규화 된 Azure 마켓플레이스 이미지 toobe hello 모두 사용할지를 지정 합니다. 선택 하는 경우 **예**, 다음 모든 hello Azure 마켓플레이스 이미지 모든 hello 다음 조건을 충족 하는 랩에서 허용 hello:
    
-   * 이 이미지는 단일 VM을 만듭니다. **그리고**
-   * 이 이미지는 Azure Resource Manager를 사용하여 VM을 프로비전합니다. **그리고**
-   * 이 이미지는 추가 라이선스 계획을 구입하지 않아도 사용할 수 있습니다.
+   * hello 이미지 만듭니다는 단일 VM **및**
+   * Azure 리소스 관리자 tooprovision Vm을 사용 하 여 hello 이미지 **및**
+   * 추가 라이선스 계획 구입 hello 이미지 필요 하지 않습니다.
      
-    이미지를 허용하지 않거나 사용할 수 있는 이미지를 지정하려면 **아니요**를 선택합니다.
+    를 사용할 수 없는 이미지 toobe 싶거나 toospecify 선택, 사용할 수 있는 이미지를 원하는 **아니요**합니다.
      
-     ![모든 마켓플레이스 이미지를 VM에 대한 기본 이미지로 사용할 수 있도록 허용하는 옵션](./media/devtest-lab-configure-marketplace-images/allow-all-marketplace-images.png)
-7. 이전 단계에서 **아니요**를 선택하는 경우 **허용된 이미지/모두 선택** 확인란이 활성화됩니다. 
-   검색 상자와 함께 이 옵션을 사용하면 목록에 표시된 모든 항목을 빠르게 선택하거나 선택 취소할 수 있습니다.
-   * 각 이미지의 해당 확인란을 선택하여 VM 만들기를 개별적으로 허용하려는 Azure Marketplace 이미지를 선택합니다.
-   * 랩에서 Azure 마켓플레이스 이미지를 사용하도록 허용하지 않으려면 목록에서 아무 것도 선택하지 않습니다.
+     ![Vm에 대 한 기본 이미지로 옵션 tooallow 모든 마켓플레이스 이미지 toobe 사용](./media/devtest-lab-configure-marketplace-images/allow-all-marketplace-images.png)
+7. 선택 하는 경우 **아니요** toohello 이전 단계 hello **허용 이미지/선택 모든** 확인란을 사용할 수 있습니다. 
+   검색 상자 tooquickly 선택 hello와 함께이 옵션을 사용 하거나 hello 목록에 표시 되는 모든 hello 항목은 선택 취소 수 있습니다.
+   * 원하는 tooallow VM 만들기에 개별적으로 각 이미지의 해당 확인란을 선택 하 여 hello Azure 마켓플레이스 이미지를 선택 합니다.
+   * Tooallow hello 랩에서 사용 되는 모든 Azure 마켓플레이스 이미지 toobe 않으려는 경우 아무 hello 목록에서 선택 합니다.
    
     ![VM에 대한 기본 이미지로 사용할 수 있는 Azure 마켓플레이스 이미지를 지정할 수 있습니다.](./media/devtest-lab-configure-marketplace-images/select-marketplace-images.png)
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="next-steps"></a>다음 단계
-VM을 만들 때 Azure Marketplace 이미지를 허용하는 방법을 구성했으면 다음 단계는 [VM을 랩에 추가](devtest-lab-add-vm-with-artifacts.md)하는 것입니다.
+VM을 만들 때 Azure 마켓플레이스 이미지는 허용 하는 방법을 구성 되 면 hello 다음 단계는 너무[추가 VM tooyour 랩](devtest-lab-add-vm-with-artifacts.md)합니다.
 

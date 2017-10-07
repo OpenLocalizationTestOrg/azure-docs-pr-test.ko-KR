@@ -1,6 +1,6 @@
 ---
-title: "HDInsight의 Hive 및 Java UDF(사용자 정의 함수) - Azure | Microsoft Docs"
-description: "Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 방법을 알아봅니다. 이 예제 UDF는 텍스트 문자열 테이블을 소문자로 변환합니다."
+title: "aaaJava 사용자 정의 함수 (UDF)와 Azure HDInsight의 Hive | Microsoft Docs"
+description: "어떻게 toocreate Java 기반 사용자 정의 알아봅니다 하이브를 사용 하는 함수 (UDF). 이 예에서는 UDF 텍스트 문자열 toolowercase의 테이블을 변환합니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.openlocfilehash: 481d234eaf88bdb210821084ee4154159470eda0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 392b4cfb73299d2f6c1e8e825a4201b48d501388
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-a-java-udf-with-hive-in-hdinsight"></a>HDInsight에서 Hive와 함께 Java UDF 사용
 
-Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 방법을 알아봅니다. 이 예제의 Java UDF는 텍스트 문자열 테이블을 모두 소문자로 변환합니다.
+어떻게 toocreate Java 기반 사용자 정의 알아봅니다 하이브를 사용 하는 함수 (UDF). 이 예제에서 Java UDF hello 텍스트 문자열 tooall 소문자 문자의 테이블을 변환합니다.
 
 ## <a name="requirements"></a>요구 사항
 
 * HDInsight 클러스터 
 
     > [!IMPORTANT]
-    > Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+    > Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
-    이 문서의 단계는 대부분 Windows 및 Linux 기반 클러스터 둘 다에서 작동합니다. 그러나 클러스터에 컴파일된 UDF를 업로드하고 실행하는 데 사용하는 단계는 Linux 기반 클러스터와 관련이 있습니다. Windows 기반 클러스터와 함께 사용할 수 있는 정보에 대한 링크가 제공됩니다.
+    이 문서의 단계는 대부분 Windows 및 Linux 기반 클러스터 둘 다에서 작동합니다. 그러나 hello는 데 필요한 단계 tooupload hello 컴파일된 UDF toohello 클러스터 및 특정 tooLinux 기반 클러스터 되어 실행 됩니다. 링크에는 Windows 기반 클러스터와 함께 사용할 수 있는 tooinformation을 제공 됩니다.
 
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/) 8 이상(또는 OpenJDK와 같은 이와 동등한 프로그램)
 
@@ -41,24 +41,24 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
 * 텍스트 편집기 또는 Java IDE
 
     > [!IMPORTANT]
-    > Windows 클라이언트에서 Python 파일을 만드는 경우 LF를 줄 끝으로 사용하는 편집기를 이용해야 합니다. 편집기에서 LF 또는 CRLF를 사용하는지 여부가 확실하지 않은 경우 CR 문자를 제거하는 단계는 [문제 해결](#troubleshooting) 섹션을 참조하세요.
+    > Hello Windows 클라이언트에서 Python 파일을 생성 하는 경우에 줄 끝으로 LF를 사용 하는 편집기를 사용 해야 합니다. 편집기를 사용 하는지 여부 LF 또는 CRLF 확실 하지 않은 경우 참조 hello [문제 해결](#troubleshooting) 제거에 대 한 단계 hello CR 문자에 대 한 섹션.
 
 ## <a name="create-an-example-java-udf"></a>예제 Java UDF 만들기 
 
-1. 명령줄에서 새 Maven을 만들려면 다음을 참조하세요.
+1. 명령줄에서 다음 새 Maven 프로젝트 toocreate hello를 사용 합니다.
 
     ```bash
     mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=ExampleUDF -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
    > [!NOTE]
-   > PowerShell을 사용하는 경우 매개 변수를 묶는 따옴표를 배치해야 합니다. 예: `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=ExampleUDF" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`
+   > PowerShell을 사용 하는 경우에 hello 매개 변수 주위에 따옴표를 넣어야 합니다. 예: `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=ExampleUDF" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`.
 
-    이 명령은 Maven 프로젝트를 포함하는 **exampleudf**라는 디렉터리를 만듭니다.
+    이 명령은 라는 디렉터리를 만듭니다. **exampleudf**, hello Maven 프로젝트가 들어 있는입니다.
 
-2. 프로젝트를 만들면 프로젝트의 일부로 작성된 **exampleudf/src/test** 디렉터리를 삭제합니다.
+2. Hello 프로젝트를 만든 후 삭제 hello **exampleudf/src/test** hello 프로젝트의 일부로 만든 디렉터리에 있습니다.
 
-3. **exampleudf/pom.xml**을 열고 기존 `<dependencies>` 항목을 다음 XML로 바꿉니다.
+3. 열기 hello **exampleudf/pom.xml**, hello 기존 항목 바꾸기 및 `<dependencies>` hello 다음과 같은 XML로 입력 합니다.
 
     ```xml
     <dependencies>
@@ -77,9 +77,9 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
     </dependencies>
     ```
 
-    이러한 항목은 HDInsight 3.5와 함께 포함된 Hadoop 및 Hive의 버전을 지정합니다. [HDInsight 구성 요소 버전 관리](hdinsight-component-versioning.md) 문서에서 HDInsight를 제공하는 Hadoop 및 Hive의 버전에 대한 정보를 찾을 수 있습니다.
+    이러한 항목의 Hadoop 및 Hive HDInsight 3.5에 포함 된 hello 버전을 지정 합니다. Hadoop 및 HDInsight hello에서 제공 하는 하이브 hello 버전에서 정보를 찾을 수 [HDInsight 구성 요소 버전 관리](hdinsight-component-versioning.md) 문서.
 
-    파일 끝의 `</project>` 줄 앞에 `<build>` 섹션을 추가합니다. 이 섹션에는 다음 XML이 포함되어야 합니다.
+    추가 `<build>` hello 앞 섹션 `</project>` hello hello 파일 끝에 줄. 이 섹션에는 다음과 같은 XML hello를 포함 되어야 합니다.
 
     ```xml
     <build>
@@ -133,13 +133,13 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
     </build>
     ```
 
-    이러한 항목은 프로젝트를 빌드하는 방법을 정의합니다. 특히, 프로젝트에서 사용하는 Java 버전과 클러스터로의 배포를 위한 uberjar를 빌드하는 방법이 유용합니다.
+    이러한 항목 toobuild 프로젝트 hello 하는 방법을 정의 합니다. 특히, hello Java 버전을 사용 하는 hello 하는 방법과 toobuild toohello 클러스터 배포에 대 한 uberjar 합니다.
 
-    변경이 완료되면 파일을 저장합니다.
+    Hello 변경이 이루어진 후 hello 파일을 저장 합니다.
 
-4. **exampleudf/src/main/java/com/microsoft/examples/App.java**라는 이름을 **ExampleUDF.java**로 바꾸고 편집기에서 파일을 엽니다.
+4. 이름 바꾸기 **exampleudf/src/main/java/com/microsoft/examples/App.java** 너무**ExampleUDF.java**, 편집기에서 hello 파일을 엽니다.
 
-5. **ExampleUDF.java** 파일의 내용을 다음 코드로 바꾼 다음 파일을 저장합니다.
+5. Hello hello 내용 바꾸기 **ExampleUDF.java** hello 다음과 같이 파일 다음 hello 파일을 저장 합니다.
 
     ```java
     package com.microsoft.examples;
@@ -148,45 +148,45 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
     import org.apache.hadoop.hive.ql.exec.UDF;
     import org.apache.hadoop.io.*;
 
-    // Description of the UDF
+    // Description of hello UDF
     @Description(
         name="ExampleUDF",
-        value="returns a lower case version of the input string.",
+        value="returns a lower case version of hello input string.",
         extended="select ExampleUDF(deviceplatform) from hivesampletable limit 10;"
     )
     public class ExampleUDF extends UDF {
         // Accept a string input
         public String evaluate(String input) {
-            // If the value is null, return a null
+            // If hello value is null, return a null
             if(input == null)
                 return null;
-            // Lowercase the input string and return it
+            // Lowercase hello input string and return it
             return input.toLowerCase();
         }
     }
     ```
 
-    이 코드는 문자열 값을 허용하고 문자열의 소문자 버전을 반환하는 UDF를 구현합니다.
+    이 코드는 문자열 값을 허용 하 고 hello 문자열의 소문자 버전을 반환 하는 UDF를 구현 합니다.
 
-## <a name="build-and-install-the-udf"></a>UDF 빌드 및 설치
+## <a name="build-and-install-hello-udf"></a>빌드 및 hello UDF를 설치 합니다.
 
-1. 다음 명령을 실행하여 UDF를 컴파일하고 패키징합니다.
+1. 다음 명령은 toocompile hello를 사용 하 여 및 UDF hello 패키지:
 
     ```bash
     mvn compile package
     ```
 
-    이 명령은 `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar` 파일에 UDF를 빌드하고 패키지합니다.
+    이 명령은 빌드하고 패키지 hello에 UDF hello `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar` 파일입니다.
 
-2. `scp` 명령을 사용하여 파일을 HDInsight 클러스터에 복사합니다.
+2. 사용 하 여 hello `scp` 명령 toocopy hello 파일 toohello HDInsight 클러스터입니다.
 
     ```bash
     scp ./target/ExampleUDF-1.0-SNAPSHOT.jar myuser@mycluster-ssh.azurehdinsight
     ```
 
-    `myuser`를 클러스터의 SSH 사용자 계정으로 바꿉니다. `mycluster`를 클러스터 이름으로 바꿉니다. 암호를 사용하여 SSH 계정을 보호할 경우 암호를 입력하라는 메시지가 나타납니다. 인증서를 사용하는 경우, `-i` 매개 변수를 사용하여 개인 키를 지정해야 합니다.
+    대체 `myuser` hello 클러스터에 대 한 SSH 사용자 계정 사용 합니다. 대체 `mycluster` hello 클러스터 이름을 사용 합니다. 암호 toosecure hello SSH 계정을 사용 하는 경우 메시지 표시 tooenter hello 암호입니다. 인증서를 사용한 toouse hello를 할 수 있습니다 `-i` 매개 변수 toospecify hello 개인 키 파일입니다.
 
-3. SSH를 사용하여 클러스터에 연결합니다.
+3. SSH를 사용 하 여 toohello 클러스터를 연결 합니다.
 
     ```bash
     ssh myuser@mycluster-ssh.azurehdinsight.net
@@ -194,23 +194,23 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
 
     자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-4. SSH 세션에서 HDInsight 저장소에 jar 파일을 복사합니다.
+4. Hello SSH 세션에서 hello jar 파일 tooHDInsight 저장소를 복사 합니다.
 
     ```bash
     hdfs dfs -put ExampleUDF-1.0-SNAPSHOT.jar /example/jars
     ```
 
-## <a name="use-the-udf-from-hive"></a>Hive에서 UDF 사용
+## <a name="use-hello-udf-from-hive"></a>하이브에서 hello UDF를 사용 하 여
 
-1. 다음을 사용하여 SSH 세션에서 Beeline 클라이언트를 시작합니다.
+1. Hello toostart hello Beeline 클라이언트 hello SSH 세션에서 다음을 사용 합니다.
 
     ```bash
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
     ```
 
-    이 명령에서는 클러스터에 대한 로그인 계정에 **admin** 의 기본값을 사용했다고 가정합니다.
+    기본값은 hello를 사용 하 여이 명령에서는 **admin** 클러스터에 대 한 hello 로그인 계정에 대 한 합니다.
 
-2. `jdbc:hive2://localhost:10001/>` 프롬프트가 표시되면 다음을 입력하여 Hive에 UDF를 추가하고 함수로 노출합니다.
+2. Hello에 도달 하 게 되 면 `jdbc:hive2://localhost:10001/>` 프롬프트 hello tooadd hello UDF tooHive 다음을 입력 하 고 함수로 노출 합니다.
 
     ```hiveql
     ADD JAR wasb:///example/jars/ExampleUDF-1.0-SNAPSHOT.jar;
@@ -218,15 +218,15 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
     ```
 
     > [!NOTE]
-    > 이 예제에서는 Azure Storage가 클러스터에 대한 기본 저장소라고 가정합니다. 클러스터가 Data Lake Store를 대신 사용하는 경우 `wasb:///` 값을 `adl:///`로 변경합니다.
+    > 이 예제에서는 Azure 저장소 hello 클러스터에 대 한 기본 저장소 있다고 가정 합니다. 클러스터에 데이터 레이크 저장소를 대신 사용 하는 경우 변경 hello `wasb:///` 너무 값`adl:///`합니다.
 
-3. UDF를 사용하여 검색한 값을 테이블에서 소문자 문자열로 변환합니다.
+3. 테이블 toolower 소문자 문자열에서 검색 된 hello UDF tooconvert 값을 사용 합니다.
 
     ```hiveql
     SELECT tolower(deviceplatform) FROM hivesampletable LIMIT 10;
     ```
 
-    이 쿼리는 테이블에서 장치 플랫폼(Android, Windows, iOS 등)을 선택하고 문자열을 소문자로 변환한 다음 표시하게 됩니다. 출력은 다음 텍스트와 유사합니다.
+    선택 hello hello 테이블에서 장치 플랫폼 (Android, Windows, iOS 등)이이 쿼리 hello 문자열 toolower 대/소문자를 변환한 다음이 표시 합니다. hello 출력 텍스트 다음 유사한 toohello 나타납니다.
 
         +----------+--+
         |   _c0    |
@@ -245,6 +245,6 @@ Hive에서 작동하는 Java 기반 UDF(사용자 정의 함수)를 만드는 �
 
 ## <a name="next-steps"></a>다음 단계
 
-Hive로 작업하는 다른 방법은 [HDInsight와 함께 Hive 사용](hdinsight-use-hive.md)을 참조하세요.
+하이브와 다른 방법으로 toowork, 참조 [HDInsight를 사용 하 여 하이브](hdinsight-use-hive.md)합니다.
 
-Hive 사용자 정의 함수에 대한 자세한 내용은 apache.org의 Hive wiki에서 [Hive 연산자 및 사용자 정의 함수](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) 섹션을 참조하세요.
+Hive User-Defined 함수에 대 한 자세한 내용은 참조 하십시오. [하이브 연산자 및 사용자 정의 함수](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) hello 하이브 wiki apache.org에서의 섹션입니다.

@@ -1,6 +1,6 @@
 ---
-title: "클라우드 서비스를 업데이트하는 방법 | Microsoft Docs"
-description: "Azure에서 클라우드 서비스를 업데이트하는 방법에 대해 알아봅니다. 가용성을 보장하도록 클라우드 서비스에서 업데이트가 진행되는 방법에 대해 알아봅니다."
+title: "aaaHow tooupdate 클라우드 서비스 | Microsoft Docs"
+description: "Azure에서 tooupdate 클라우드 서비스 하는 방법에 대해 알아봅니다. 클라우드 서비스에 대 한 업데이트 tooensure 가용성을 진행 하는 방법에 대해 알아봅니다."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: adegeo
-ms.openlocfilehash: 2ba9676ed2afce7f18446642527971f5001b5ca7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7e4c8bd46e51a555b4309ea8927d120e8efcf0ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-update-a-cloud-service"></a>클라우드 서비스를 업데이트하는 방법
+# <a name="how-tooupdate-a-cloud-service"></a>어떻게 tooupdate 클라우드 서비스
 
-해당 역할 및 게스트 OS를 포함한 클라우드 서비스 업데이트는 3단계 프로세스입니다. 먼저 새 클라우드 서비스 또는 OS 버전에 대한 이진 및 구성 파일을 업로드해야 합니다. 다음으로 Azure는 새 클라우드 서비스 버전의 요구 사항에 따라 클라우드 서비스에 대한 계산 및 네트워크 리소스를 예약합니다. 마지막으로 Azure는 가용성을 유지하면서 새 버전 또는 게스트 OS로 테넌트를 증분 방식으로 업데이트하도록 롤링 업그레이드를 수행합니다. 이 문서에서는 롤링 업그레이드 마지막 단계에 대한 세부 정보를 설명합니다.
+해당 역할 및 게스트 OS를 포함한 클라우드 서비스 업데이트는 3단계 프로세스입니다. 첫째, hello 이진 파일 및 새 hello에 대 한 구성 파일에 대 한 클라우드 서비스 또는 OS 버전을 업로드 해야 합니다. 그런 다음 Azure hello 새 클라우드 서비스 버전의 hello 요구 사항에 따라 hello 클라우드 서비스에 대 한 계산 및 네트워크 리소스를 예약 합니다. 마지막으로, Azure 하 여 가용성을 유지 하면서 롤링 업그레이드 tooincrementally 업데이트 hello 테 넌 트 toohello 새 버전 또는 게스트 OS 수행 합니다. 이 마지막 단계 – hello 롤링 업그레이드의 hello 세부 정보에 설명 합니다.
 
 ## <a name="update-an-azure-service"></a>Azure 서비스 업데이트
-Azure는 업그레이드 도메인(UD)이라는 논리적 그룹으로 역할 인스턴스를 구성합니다. 업그레이드 도메인(UD)은 그룹으로 업데이트되는 역할 인스턴스의 논리적 집합입니다.  Azure는 클라우드 서비스를 한 번에 하나의 UD로 업데이트하며 이는 다른 UD의 인스턴스를 계속해서 트래픽을 제공하도록 합니다.
+Azure는 업그레이드 도메인(UD)이라는 논리적 그룹으로 역할 인스턴스를 구성합니다. 업그레이드 도메인(UD)은 그룹으로 업데이트되는 역할 인스턴스의 논리적 집합입니다.  다른 Ud toocontinue 트래픽 처리에 인스턴스를 허용 하 여 한 번에 하나의 UD를 서비스 하는 클라우드는 azure 업데이트 합니다.
 
-업그레이드 도메인의 기본값은 5입니다. 서비스 정의 파일(.csdef)의 upgradeDomainCount 특성을 포함하여 다른 수의 업그레이드 도메인을 지정할 수 있습니다. upgradeDomainCount 특성에 대한 자세한 내용은 [WebRole 스키마](https://msdn.microsoft.com/library/azure/gg557553.aspx) 또는 [WorkerRole 스키마](https://msdn.microsoft.com/library/azure/gg557552.aspx)를 참조하세요.
+hello 기본 업그레이드 도메인 수는 5입니다. Hello 서비스 정의 파일 (.csdef)에 hello upgradeDomainCount 특성을 포함 하 여 서로 다른 업그레이드 도메인 수를 지정할 수 있습니다. Hello upgradeDomainCount 특성에 대 한 자세한 내용은 참조 [WebRole 스키마](https://msdn.microsoft.com/library/azure/gg557553.aspx) 또는 [WorkerRole 스키마](https://msdn.microsoft.com/library/azure/gg557552.aspx)합니다.
 
-서비스에서 하나 이상의 역할에 대한 전체 업데이트를 수행하면 Azure는 자신이 속한 업그레이드 도메인에 따라 역할 인스턴스의 집합을 업데이트합니다. Azure는 주어진 업그레이드 도메인 - 중지, 업데이트, 다시 온라인으로 전환 - 으로 모든 인스턴스를 업데이트하고 다음 도메인으로 이동합니다. 현재 업그레이드 도메인에서 실행 중인 인스턴스만 중지하여 Azure는 실행 중인 서비스에 가능한 한 최소한의 영향으로 업데이트를 발생하도록 합니다. 자세한 내용은 이 문서의 뒷부분에 나오는 [업데이트 진행 방법](#howanupgradeproceeds) 을 참조하세요.
+서비스에 하나 이상의 역할의 내부 업데이트를 수행 하는 경우 Azure toohello 업그레이드 도메인 toowhich 속하는지에 따라 역할 인스턴스의 조합을 업데이트 합니다. Azure 업데이트 중지 상태로, 업데이트, 지정 된 업그레이드 도메인-hello 인스턴스를 모두 다시 온라인 hello 다음 도메인으로 이동 합니다. 현재 hello에서 실행 되는 유일한 hello 인스턴스를 중지 하 여 업그레이드 도메인에서는 Azure와 hello 서비스가 실행 되는 가능한 한 최소한 영향 toohello 업데이트가 발생 하는지 합니다. 자세한 내용은 참조 [hello 업데이트를 처리할 방법을](#howanupgradeproceeds) 이 문서의 뒷부분에 나오는 합니다.
 
 > [!NOTE]
-> 용어 **업데이트** 및 **업그레이드**는 Azure 컨텍스트에서 의미가 약간 다르지만 이 문서의 기능 프로세스 및 설명에 대해 같은 의미로 사용될 수 있습니다.
+> Hello 용어 동안 **업데이트** 및 **업그레이드** Azure hello 컨텍스트에서 의미가 약간 다르지만, hello 프로세스와이 문서에 hello 기능 설명은 같은 의미로 사용 될 수 있습니다.
 >
 >
 
-서비스는 해당 역할이 가동 중지 시간 없이 전체 업데이트되도록 적어도 두 개의 역할 인스턴스를 정의해야 합니다. 서비스가 하나의 역할의 하나의 인스턴스만으로 구성된 경우 서비스는 전체 업데이트가 끝날 때까지 사용할 수 없습니다.
+서비스는 해당 역할 업데이트 toobe 내부 가동 중지 시간 없이 대 한 역할의 인스턴스가 둘 이상 정의 해야 합니다. Hello 서비스 역할의 인스턴스가 하나만으로 구성 된 경우 서비스에 사용할 수 없게 됩니다 hello 내부 업데이트가 끝날 때까지 합니다.
 
-이 항목에서는 Azure 업데이트에 대한 다음 정보를 다룹니다.
+이 항목에서는 hello 다음 Azure 업데이트에 대 한 정보를 다룹니다.
 
 * [업데이트 중 허용된 서비스 변경 내용](#AllowedChanges)
 * [업그레이드 진행 방법](#howanupgradeproceeds)
@@ -49,9 +49,9 @@ Azure는 업그레이드 도메인(UD)이라는 논리적 그룹으로 역할 �
 <a name="AllowedChanges"></a>
 
 ## <a name="allowed-service-changes-during-an-update"></a>업데이트 중 허용된 서비스 변경 내용
-다음 표에서 업데이트 중 서비스에 허용된 변경 내용을 보여 줍니다.
+hello 아래 표에 나와 hello 허용 된 변경 내용을 tooa 서비스 업데이트 하는 동안.
 
-| 호스팅, 서비스 및 역할에 허용된 변경 사항 | 전체 업데이트 | 스테이징(VIP 교체) | 삭제 및 다시 배포 |
+| Toohosting, 서비스 및 역할을 허용 하는 변경 | 전체 업데이트 | 스테이징(VIP 교체) | 삭제 및 다시 배포 |
 | --- | --- | --- | --- |
 | 운영 체제 버전 |예 |예 |예 |
 | .NET 신뢰 수준 |예 |예 |예 |
@@ -66,44 +66,44 @@ Azure는 업그레이드 도메인(UD)이라는 논리적 그룹으로 역할 �
 | 기존 인증서 변경 |예 |예 |예 |
 | 새 코드 배포 |예 |예 |예 |
 
-<sup>1</sup> 크기 변경이 클라우드 서비스에 대해 사용할 수 있는 크기의 일부로 제한되었습니다.
+<sup>1</sup> 크기 변경 hello 클라우드 서비스에 대해 사용할 수 있는 크기의 toohello 하위 집합을 제한 합니다.
 
 <sup>2</sup> Azure SDK 1.5 이상 버전이 필요합니다.
 
 > [!WARNING]
-> 가상 컴퓨터 크기를 변경하면 로컬 데이터가 소멸됩니다.
+> Hello 가상 컴퓨터 크기를 변경 하면 로컬 데이터가 소멸 됩니다.
 >
 >
 
-업데이트 중 다음과 같은 항목이 지원되지 않습니다.
+다음 항목 hello 업데이트 하는 동안 지원 되지 않습니다.
 
-* 역할 이름 변경. 제거한 다음 새 이름으로 역할을 추가합니다.
-* 업그레이드 도메인 수 변경
-* 로컬 리소스의 크기 줄이기.
+* 역할의 hello 이름을 변경 합니다. 제거 하 고 hello 새 이름으로 hello 역할을 추가 합니다.
+* Hello 업그레이드 도메인 수의 변경입니다.
+* Hello 로컬 리소스 감소 hello 크기입니다.
 
-서비스 정의에 로컬 리소스의 크기 줄이기와 같은 다른 업데이트를 하는 경우 대신 VIP 교환 업데이트를 수행해야 합니다. 자세한 내용은 [교환 배포](https://msdn.microsoft.com/library/azure/ee460814.aspx)를 참조하세요.
+로컬 리소스의 hello 크기 줄이기와 같은 tooyour 서비스의 정의 다른 업데이트 하는 경우 대신 VIP swap 업데이트를 수행 해야 합니다. 자세한 내용은 [교환 배포](https://msdn.microsoft.com/library/azure/ee460814.aspx)를 참조하세요.
 
 <a name="howanupgradeproceeds"></a>
 
 ## <a name="how-an-upgrade-proceeds"></a>업그레이드 진행 방법
-서비스에서 모든 역할 또는 단일 역할을 업데이트할 것인지 여부를 결정할 수 있습니다. 두 경우 모두 업그레이드되고 첫 번째 업그레이드 도메인에 속해 있는 각 역할의 모든 인스턴스는 중지, 업그레이드 및 다시 온라인으로 전환됩니다. 다시 온라인 상태가 되면 두 번째 업그레이드 도메인의 인스턴스는 중지, 업그레이드 및 다시 온라인으로 전환됩니다. 클라우드 서비스는 한 번에 하나의 업그레이드를 활성화할 수 있습니다. 업그레이드는 클라우드 서비스의 최신 버전에 대해 항상 수행됩니다.
+Tooupdate 사용할지 결정할 수의 모든 서비스에 대 한 hello 역할 또는 hello 서비스에서 단일 역할입니다. 두 경우 모두 업그레이드 하는 중 및 toohello 첫 번째 업그레이드 도메인에 속해 있는 각 역할의 모든 인스턴스는 중지, 업그레이드 및 다시 온라인 상태로 전환 합니다. 다시 온라인 상태로 전환 된 hello hello 두 번째 업그레이드 도메인의 인스턴스 중지, 업그레이드 되며 다시 온라인 상태로 만듭니다. 클라우드 서비스는 한 번에 하나의 업그레이드를 활성화할 수 있습니다. hello 업그레이드는 hello hello 클라우드 서비스의 최신 버전에 대해 수행 됩니다.
 
-다음 다이어그램에서는 서비스에서 모든 역할을 업그레이드하는 경우 업그레이드 진행 방법을 보여 줍니다.
+hello 다음 다이어그램에서는 모든 hello 역할 hello 서비스에서 업그레이드 하는 경우 hello 업그레이드를 처리할 방법을 수행 합니다.
 
 ![서비스 업그레이드](media/cloud-services-update-azure-service/IC345879.png "서비스 업그레이드")
 
-다음 다이어그램에서는 단일 역할만 업그레이드하는 경우 업데이트 진행 방법을 보여 줍니다.
+다음 다이어그램에서는 단일 역할만 업그레이드 하는 경우 hello 업데이트를 처리할 방법을 보여 줍니다.
 
 ![역할 업그레이드](media/cloud-services-update-azure-service/IC345880.png "역할 업그레이드")  
 
-자동 업데이트 중 Azure 패브릭 컨트롤러는 다음 UD로 이동하는 안전한 시기를 결정하도록 클라우드 서비스의 상태를 주기적으로 평가합니다. 이 상태 평가는 역할별로 수행되며 최신 버전의 인스턴스만 고려합니다(즉, 이미 이동된 UD에서 인스턴스). 각 역할에 대해 최소 수의 역할 인스턴스가 만족스러운 터미널 상태로 수행됐는지 확인합니다.
+자동 업데이트를 사용 하는 동안 Azure 패브릭 컨트롤러 hello 주기적으로 평가 hello 클라우드 서비스 toodetermine의 hello 상태 안전 toowalk hello 다음 UD 됩니다. 이 상태 평가에 역할 단위로 수행 되 고 hello 최신 버전 (즉, 워크 이미 있는 Ud에서 인스턴스)의 인스턴스만 고려 합니다. 각 역할에 대해 최소 수의 역할 인스턴스가 만족스러운 터미널 상태로 수행됐는지 확인합니다.
 
 ### <a name="role-instance-start-timeout"></a>역할 인스턴스 시작 시간 제한
-패브릭 컨트롤러는 각 역할 인스턴스가 시작됨 상태에 도달할 때까지 30분 동안 기다립니다. 시간 제한 기간이 경과하면 패브릭 컨트롤러는 다음 역할 인스턴스로 계속 이동합니다.
+hello 패브릭 컨트롤러는 각 역할 인스턴스 tooreach 시작 됨 상태에 대 일 분 동안 대기 합니다. Hello 시간 제한 기간이 경과 하면 hello 패브릭 컨트롤러 toohello 다음 역할 인스턴스를 순환 계속 됩니다.
 
-### <a name="impact-to-drive-data-during-cloud-service-upgrades"></a>클라우드 서비스 업그레이드 동안 드라이브 데이터에 미치는 영향
+### <a name="impact-toodrive-data-during-cloud-service-upgrades"></a>클라우드 서비스 업그레이드 하는 동안 영향 toodrive 데이터
 
-단일 인스턴스에서 여러 인스턴스로 서비스를 업그레이드하는 경우 업그레이드가 Azure 업그레이드 서비스 방식으로 인해 수행되는 동안 서비스는 중단됩니다. 서비스 수준 계약 보장 서비스 가용성은 두 개 이상의 인스턴스로 배포된 서비스에만 적용됩니다. 다음 목록에서는 각 Azure 서비스 업그레이드 시나리오에 따라 각 드라이브의 데이터에 미치는 영향을 설명합니다.
+단일 인스턴스 toomultiple 인스턴스에서 서비스를 업그레이드 하는 경우 Azure 서비스 업그레이드 toohello 방식으로 인해 hello 업그레이드가 수행 될 동안 서비스 이동 됩니다. hello 서비스 수준 계약 서비스 가용성을 보장에 둘 이상의 인스턴스를 함께 배포 되는 tooservices만 적용 됩니다. hello 다음 목록은 각 Azure 서비스 업그레이드 시나리오에 따라 각 드라이브에 hello 데이터 영향:
 
 |시나리오|C 드라이브|D 드라이브|E 드라이브|
 |--------|-------|-------|-------|
@@ -113,79 +113,79 @@ Azure는 업그레이드 도메인(UD)이라는 논리적 그룹으로 역할 �
 |전체 업그레이드|유지됨|유지됨|제거됨|
 |노드 마이그레이션:|제거됨|제거됨|제거됨|
 
-위 목록에서 E: 드라이브는 역할의 루트 드라이브를 나타내며 하드 코드되면 안됩니다. 대신 **%RoleRoot%** 환경 변수를 사용하여 드라이브를 표시합니다.
+Note, 목록 위의 hello, hello e: 드라이브 hello 역할 루트 드라이브를 나타내고 하드 코딩 되지 않아야 합니다. 대신, hello를 사용 하 여 **% RoleRoot %** 환경 변수 toorepresent hello 드라이브입니다.
 
-단일 인스턴스 서비스를 업그레이드할 때 가동 중지 시간을 최소화하려면 스테이징 서버에 새로운 다중 인스턴스 서비스를 배포하고 VIP 교환을 수행합니다.
+단일 인스턴스 서비스를 업그레이드할 때 toominimize hello 가동 중지 시간 새 다중 인스턴스 서비스 toohello 준비 서버를 배포 및 VIP 교체를 수행 합니다.
 
 <a name="RollbackofanUpdate"></a>
 
 ## <a name="rollback-of-an-update"></a>업데이트 롤백
-Azure는 Azure 패브릭 컨트롤러에 의해 초기 업데이트 요청이 수락된 후 서비스에 추가 작업을 시작할 수 있도록 하여 업데이트하는 동안 서비스 관리에 유연성을 제공합니다. 배포에서 업데이트(구성 변경) 또는 업그레이드가 **진행 중** 상태일 때 롤백을 수행할 수 있습니다. 업데이트 또는 업그레이드는 아직 새 버전으로 업데이트되지 않은 서비스의 인스턴스가 하나 이상 있는 한 진행 중인 것으로 간주됩니다. 롤백이 허용되는지 여부를 테스트하려면 [배포 가져오기](https://msdn.microsoft.com/library/azure/ee460804.aspx) 및 [클라우드 서비스 속성 가져오기](https://msdn.microsoft.com/library/azure/ee460806.aspx) 작업으로 반환되는 RollbackAllowed 플래그의 값이 true로 설정되었는지 확인합니다.
+Azure는 hello Azure 패브릭 컨트롤러 하 여 hello 초기 업데이트 요청이 수락 되는 서비스에서 추가 작업을 시작할 수 있도록 하 여 업데이트 하는 동안 서비스를 관리에 유연성을 제공 합니다. 롤백을 수행할 수 있습니다만 업데이트 (구성 변경) 또는 업그레이드가 hello **진행에서** hello 배포의 상태입니다. 업데이트 또는 업그레이드 아직 새 버전을 업데이트 된 toohello hello 서비스의 인스턴스가 두 개 이상으로 진행 중인 toobe 간주 됩니다. tootest 롤백이 허용 되는지 여부를 확인 하 여 반환 된 hello RollbackAllowed 플래그의 hello 값 [배포 가져오기](https://msdn.microsoft.com/library/azure/ee460804.aspx) 및 [클라우드 서비스 속성 가져오기](https://msdn.microsoft.com/library/azure/ee460806.aspx) 작업 tootrue 설정 됩니다.
 
 > [!NOTE]
-> VIP 교환 업그레이드는 실행 중인 서비스의 전체 인스턴스를 다른 것으로 교체하는 것을 포함하므로 **전체** 업데이트 또는 업그레이드의 롤백을 호출하는 것이 적합합니다.
+> 만 의미 toocall 롤백에 사용 하면는 **내부** 업데이트 또는 업그레이드를 다른 서비스의 전체 하나의 실행 중인 인스턴스를 대체 VIP 스왑 업그레이드를 포함 하기 때문입니다.
 >
 >
 
-진행 중인 업데이트 롤백에는 배포에 대해 다음과 같은 효과가 있습니다.
+진행 중인 업데이트 롤백 hello hello 배포에 영향을 뒤에 있습니다.
 
-* 이러한 인스턴스는 서비스의 대상 버전을 이미 실행 중이기 때문에 새 버전으로 업데이트 또는 업그레이드되지 않은 모든 역할 인스턴스는 업데이트되거나 업그레이드되지 않습니다.
-* 서비스 패키지(\*.cspkg) 파일 또는 서비스 구성(\*.cscfg) 파일(또는 두 파일)의 새 버전으로 업데이트 또는 업그레이드된 모든 역할 인스턴스는 해당 파일의 업그레이드 전 버전으로 되돌려집니다.
+* 역할 인스턴스는 업데이트 또는 업그레이드 된 toohello 새 버전을 아직 되지 않은 업데이트 되거나 이러한 인스턴스는 이미 실행 되 고 hello 대상 버전의 hello 서비스 업그레이드 되지 않습니다.
+* 모든 역할 인스턴스가 이미 업데이트는 또는 업그레이드 된 toohello 새 버전의 hello 서비스 패키지 (\*.cspkg) 파일 또는 hello 서비스 구성 (\*.cscfg) 파일 (또는 두 파일)은 되돌린된 toohello 업그레이드 이전 버전의 이러한 파일입니다.
 
-다음과 같은 기능으로 이 기능이 제공됩니다.
+이 기능적으로 제공한 hello 같은 기능:
 
-* 아직 새 버전으로 업데이트되지 않은 서비스에 하나 이상의 인스턴스가 있는 한 구성 업데이트([배포 구성 변경](https://msdn.microsoft.com/library/azure/ee460809.aspx)을 호출하여 트리거됨) 또는 업그레이드([업그레이드 배포](https://msdn.microsoft.com/library/azure/ee460793.aspx)를 호출하여 트리거됨)에서 호출될 수 있는 [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx) 작업.
-* [배포 가져오기](https://msdn.microsoft.com/library/azure/ee460804.aspx) 및 [클라우드 서비스 속성 가져오기](https://msdn.microsoft.com/library/azure/ee460806.aspx) 작업의 응답 본문의 일부로 반환되는 Locked 요소 및 RollbackAllowed 요소
+* hello [롤백 업데이트 또는 업그레이드](https://msdn.microsoft.com/library/azure/hh403977.aspx) 구성 업데이트에서 호출 될 수 있는 작업 (호출에 의해 트리거됨 [배포 구성 변경](https://msdn.microsoft.com/library/azure/ee460809.aspx)) 또는 업그레이드 (호출에 의해 트리거됨 [ 업그레이드 배포](https://msdn.microsoft.com/library/azure/ee460793.aspx)) hello 서비스 중인 인스턴스를 하나 이상으로 toohello 새 버전을 업데이트는 아직 되지 않았습니다.
+* hello의 hello 응답 본문의 일부로 반환 되는 잠금 요소와 hello RollbackAllowed 요소 hello [배포 가져오기](https://msdn.microsoft.com/library/azure/ee460804.aspx) 및 [클라우드 서비스 속성 가져오기](https://msdn.microsoft.com/library/azure/ee460806.aspx) 작업:
 
-  1. Locked 요소를 사용하면 지정된 배포에서 변경 작업을 호출할 수 있는 시기를 찾아낼 수 있습니다.
-  2. RollbackAllowed 요소를 사용하면 지정된 배포에서 [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx) 작업을 호출할 수 있는 시기를 찾아낼 수 있습니다.
+  1. hello 잠금 요소가 있습니다 toodetect을 때 지정된 된 배포에서 변경 작업을 호출할 수 있습니다.
+  2. hello RollbackAllowed 요소를 있습니다 때 hello toodetect [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx) 지정된 된 배포에서 작업을 호출할 수 있습니다.
 
-  롤백을 수행하려면 Locked 및 RollbackAllowed 요소를 모두 확인할 필요가 없습니다. RollbackAllowed가 true로 설정되어 있는지 확인하는 것으로 충분합니다. "x-ms-버전: 2011-10-01" 이상 버전으로 설정된 요청 헤더를 사용하여 해당 메서드가 호출되는 경우 해당 요소는 반환됩니다. 버전 관리 헤더에 대한 자세한 내용은 [서비스 관리 버전 관리](https://msdn.microsoft.com/library/azure/gg592580.aspx)를 참조하세요.
+  순서 tooperform 롤백에에서 없는 toocheck hello Locked 및 RollbackAllowed 요소 hello 모두 합니다. 그 RollbackAllowed tootrue 설정 되어 있는지 tooconfirm을 충분 합니다. 이러한 요소는도 hello 요청 헤더를 사용 하 여 두이 메서드는 호출 하는 경우에 반환 됩니다 "x ms 버전: 2011-10-01" 이상 버전입니다. 버전 관리 헤더에 대한 자세한 내용은 [서비스 관리 버전 관리](https://msdn.microsoft.com/library/azure/gg592580.aspx)를 참조하세요.
 
 업데이트 또는 업그레이드의 롤백이 지원되지 않는 경우는 다음과 같습니다.
 
-* 로컬 리소스 감소 - 업데이트에서 역할에 대한 로컬 리소스를 증가시키는 경우 Azure 플랫폼은 롤백을 허용하지 않습니다.
-* 할당량 제한 - 업데이트가 규모 축소 작업이었던 경우 롤백 작업을 완료할 충분한 계산 할당량이 없게 됩니다. 각 Azure 구독에는 해당 구독에 속하는 모든 호스팅된 서비스에서 사용할 수 있는 코어의 최대 수를 지정하는 연결된 할당량이 있습니다. 특정 업데이트의 롤백 수행으로 구독이 할당량을 초과하게 되는 경우 해당 롤백을 사용할 수 없습니다.
-* 경합 상태 - 초기 업데이트가 완료된 경우 롤백할 수 없습니다.
+* -로컬 리소스 감소 hello 업데이트 증가 hello 로컬 리소스는 역할에 대 한 hello Azure 플랫폼에서 허용 하지 않습니다 롤백 합니다.
+* 할당량 한도-전보다 hello 업데이트를 축소 작업을 더 이상 수 없으면 toocomplete hello 롤백 작업에 대 한 충분 한의 계산 할당량. 각 Azure 구독에 연결 된 hello toothat 구독에 속하는 모든 호스팅된 서비스에서 사용할 수 있는 코어의 최대 수를 지정 하는 할당량입니다. 특정 업데이트의 롤백 수행으로 구독이 할당량을 초과하게 되는 경우 해당 롤백을 사용할 수 없습니다.
+* 경합 상태-초기 업데이트가 hello 완료, 롤백 수는 없습니다.
 
-업데이트 롤백이 유용한 경우의 예는 Azure 호스티드 서비스로 주요 전체 업그레이드가 롤아웃되는 속도를 제어하도록 수동 모드에서 [업그레이드 배포](https://msdn.microsoft.com/library/azure/ee460793.aspx) 작업을 수행하는 경우입니다.
+업데이트 롤백 hello 유용할 수의 예로 hello를 사용 하는 경우 [업그레이드 배포](https://msdn.microsoft.com/library/azure/ee460793.aspx) 수동 모드 toocontrol hello 속도 주요 내부 업그레이드 tooyour Azure 호스팅 서비스에서 작업에 전달 합니다.
 
-업그레이드를 롤아웃하는 동안 수동 모드에서 [배포 업그레이드](https://msdn.microsoft.com/library/azure/ee460793.aspx)를 호출하고 업그레이드 도메인을 시작합니다. 어느 시점에서 업그레이드를 모니터링할 때 검사하는 첫 번째 업그레이드 도메인의 일부 역할 인스턴스가 응답하지 않게 되는 경우 배포에서 [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx) 작업을 호출할 수 있습니다. 이 작업은 업그레이드되지 않은 인스턴스 및 이전 서비스 패키지 및 구성으로 업그레이드된 롤백 인스턴스를 그대로 유지합니다.
+Hello 업그레이드의 롤아웃 hello 동안 호출 [업그레이드 배포](https://msdn.microsoft.com/library/azure/ee460793.aspx) 수동 모드에서 toowalk 업그레이드 도메인을 시작 합니다. Hello를 호출할 수 있으면 어느 시점 부터는 hello 업그레이드를 모니터링 하면서 hello 첫 번째 업그레이드 도메인 살펴보면의 일부 역할 인스턴스가 응답 하지 않는 했으면, [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx) hello 배포에 대 한 작업이 있는 아직 업그레이드 되지에 그대로 hello 인스턴스 두고 이었던 롤백 인스턴스 업그레이드 toohello 이전 서비스 패키지 및 구성 합니다.
 
 <a name="multiplemutatingoperations"></a>
 
 ## <a name="initiating-multiple-mutating-operations-on-an-ongoing-deployment"></a>진행 중인 배포에 여러 변경 작업 시작
-일부 경우에서 진행 중인 배포에 여러 동시 변경 작업을 시작할 수 있습니다. 예를 들어 서비스 업데이트를 수행할 수 있으며 해당 업데이트가 서비스에서 롤아웃되는 동안 업데이트 롤백, 다른 업데이트 적용 또는 배포 삭제와 같은 다른 변경을 수행하려고 합니다. 이러한 작업이 필요한 경우는 서비스 업그레이드가 업그레이드된 역할 인스턴스를 반복적으로 충돌을 일으키는 버그가 있는 코드를 포함 하는 경우입니다. 이 경우 업그레이드된 도메인의 부족한 인스턴스 수가 정상이므로 Azure 패브릭 컨트롤러는 해당 업그레이드 적용 절차를 진행할 수 없습니다. 이 상태를 *배포 중단*이라고 합니다. 업데이트를 롤백하거나 새 업데이트를 실패한 배포의 위쪽에 적용하여 배포 중단을 해결할 수 있습니다
+일부 경우에 tooinitiate 진행 중인 배포에서 여러 동시 변경 작업을 할 수 있습니다. 예를 들어 서비스 업데이트를 수행할 수 있습니다 하 고, 해당 업데이트는 여러 서비스 롤아웃 되는 동안 toomake 일부 변경 5d; 예: tooroll 업데이트 다시 hello, 다른 업데이트를 적용 하거나 삭제할 수 hello 배포 합니다. 필요할 수 있습니다 하는 경우 서비스 업그레이드 하는 업그레이드 된 역할 인스턴스 toorepeatedly 손상 시키는 버그가 있는 코드를 포함 하는 경우입니다. 이 경우 Azure 패브릭 컨트롤러 hello 수 toomake 계속 적용할 하 여 hello 업그레이드 도메인에 인스턴스 수가 부족 비정상 상태는 업그레이드 되지 않습니다. 이 상태는 참조 된 tooas는 *배포 중단*합니다. Hello 업데이트 롤백 또는 hello 하나 실패 맨 위에 새 업데이트를 적용 하 여 hello 배포 중단을 해결할 수 있습니다.
 
-Azure 패브릭 컨트롤러에서 서비스 업데이트 또는 업그레이드에 대한 초기 요청을 받으면 후속 변경 작업을 시작할 수 있습니다. 즉, 다른 변경 작업을 시작할 수 있기 전에 초기 작업이 완료될 때까지 기다릴 필요가 없습니다.
+Hello 초기 요청 tooupdate 또는 업그레이드 hello 서비스는 hello Azure 패브릭 컨트롤러에서 받은, 되 면 후속 변경 작업을 시작할 수 있습니다. 즉, 않아도 toowait 초기 작업 toocomplete hello에 대 한 다른 변경 작업을 시작 하기 전에.
 
-첫 번째 업데이트가 진행 중일 동안 두 번째 업데이트 작업을 시작하는 것은 롤백 작업과 유사하게 수행됩니다. 두 번째 업데이트가 자동 모드에 있는 경우 첫 번째 업그레이드 도메인은 동일한 지점에서 오프라인되는 여러 업그레이드 도메인에서 인스턴스를 이끌도록 즉시 업그레이드됩니다.
+Hello 첫 번째 업데이트가 진행 중일 동안 두 번째 업데이트 작업을 시작 하는 비슷한 toohello 롤백 작업이 수행 합니다. Hello 두 번째 업데이트 자동 모드에 있으면 hello 첫 번째 업그레이드 도메인을 즉시 업그레이드 됩니다, 그리고 hello에 오프 라인 상태로 유지 하는 여러 업그레이드 도메인의 tooinstances 라인이 같은 지정 시간입니다.
 
-변경 작업은 다음과 같습니다. [배포 구성 변경](https://msdn.microsoft.com/library/azure/ee460809.aspx), [배포 업그레이드](https://msdn.microsoft.com/library/azure/ee460793.aspx), [배포 상태 업데이트](https://msdn.microsoft.com/library/azure/ee460808.aspx), [배포 삭제](https://msdn.microsoft.com/library/azure/ee460815.aspx) 및 [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx).
+hello 변경 작업은 다음과 같습니다: [배포 구성 변경](https://msdn.microsoft.com/library/azure/ee460809.aspx), [업그레이드 배포](https://msdn.microsoft.com/library/azure/ee460793.aspx), [업데이트 배포 상태](https://msdn.microsoft.com/library/azure/ee460808.aspx), [삭제 배포](https://msdn.microsoft.com/library/azure/ee460815.aspx), 및 [업데이트 또는 업그레이드 롤백](https://msdn.microsoft.com/library/azure/hh403977.aspx)합니다.
 
-두 작업 [배포 가져오기](https://msdn.microsoft.com/library/azure/ee460804.aspx) 및 [클라우드 서비스 속성 가져오기](https://msdn.microsoft.com/library/azure/ee460806.aspx)는 지정된 배포에서 변경 작업을 호출할 수 있는지 여부를 확인하도록 검사할 수 있는 Locked 플래그를 반환합니다.
+두 개의 작업 [배포 가져오기](https://msdn.microsoft.com/library/azure/ee460804.aspx) 및 [클라우드 서비스 속성 가져오기](https://msdn.microsoft.com/library/azure/ee460806.aspx), 지정된 된 배포에서 변경 작업을 호출할 수 있는지 여부를 검사 toodetermine 될 수 있는 hello 잠금 플래그를 반환 합니다.
 
-Locked 플래그를 반환하는 이러한 메서드의 버전을 호출하려면 요청 헤더를 "x-ms-버전: 2011-10-01" 이상으로 설정해야 합니다. 버전 관리 헤더에 대한 자세한 내용은 [서비스 관리 버전 관리](https://msdn.microsoft.com/library/azure/gg592580.aspx)를 참조하세요.
+순서 toocall hello 버전에서 이러한 메서드의 hello 잠금 플래그를 반환 하는 설정 해야 요청 헤더가 너무 "x ms 버전: 2011-10-01" 이상. 버전 관리 헤더에 대한 자세한 내용은 [서비스 관리 버전 관리](https://msdn.microsoft.com/library/azure/gg592580.aspx)를 참조하세요.
 
 <a name="distributiondfroles"></a>
 
 ## <a name="distribution-of-roles-across-upgrade-domains"></a>업그레이드 도메인 간 역할의 배포
-Azure는 서비스 정의(.csdef) 파일의 일부로 구성될 수 있는 업그레이드 도메인의 수에 대해 역할의 인스턴스를 균등하게 배포합니다. 업그레이드 도메인의 최대값은 20이며 기본값은 5입니다. 서비스 정의 파일을 수정하는 방법에 대한 자세한 내용은 [Azure 서비스 정의 스키마(.csdef 파일)](cloud-services-model-and-package.md#csdef)를 참조하세요.
+Azure는 역할의 인스턴스를 여러 hello 서비스 정의 (.csdef) 파일의 일부로 구성 될 수 있는 업그레이드 도메인 수에 대해 균등 하 게 배포 합니다. hello 최대 업그레이드 도메인 수는 20 개이고, hello 기본값은 5입니다. 어떻게 toomodify hello 서비스 정의 파일에 대 한 자세한 내용은 참조 [Azure Service 정의 스키마 (.csdef 파일)](cloud-services-model-and-package.md#csdef)합니다.
 
-예를 들어 역할에 10개의 인스턴스가 있는 경우 기본적으로 각 업그레이드 도메인에는 두 개의 인스턴스가 포함됩니다. 역할에 14개의 인스턴스가 있는 경우 4개의 업그레이드 도메인은 3개의 인스턴스를 포함하고 5번째 도메인은 2개의 인스턴스를 포함합니다.
+예를 들어 역할에 10개의 인스턴스가 있는 경우 기본적으로 각 업그레이드 도메인에는 두 개의 인스턴스가 포함됩니다. 사용자의 역할 인스턴스가 14 세 인스턴스를 포함할 hello 업그레이드 도메인의 4 개는 다음 및 두 개의 도메인에 있습니다.
 
-업그레이드 도메인은 0부터 시작하는 인덱스로 식별됩니다. 첫 번째 업그레이드 도메인의 ID가 0이면 두 번째 업그레이드 도메인은 ID가 1입니다.
+업그레이드 도메인 0 기반 인덱스로 식별 됩니다: hello 첫 번째 업그레이드 도메인은 0, ID 및 hello 두 번째 업그레이드 도메인은 ID가 1, 및 기타 등등.
 
-다음 다이어그램에서는 서비스가 두 개의 업그레이드 도메인을 정의하는 경우 두 개의 역할을 포함하는 서비스가 배포되는 방법을 보여 줍니다. 서비스는 8개의 웹 역할 인스턴스 및 9개의 작업자 역할 인스턴스를 실행하고 있습니다.
+hello 다음 다이어그램에서는 두 개의 업그레이드 도메인을 정의 하는 hello 서비스는 서비스를 두 개의 역할을 포함 하는 보다 어떻게 분포 되어 합니다. hello 웹 역할 인스턴스가 8 개인 및 hello 작업자 역할 인스턴스 9 개 hello 서비스가 실행 되 고 있습니다.
 
 ![업그레이드 도메인 배포](media/cloud-services-update-azure-service/IC345533.png "업그레이드 도메인 배포")
 
 > [!NOTE]
-> Azure는 업그레이드 도메인에 인스턴스가 할당되는 방식을 제어합니다. 어떤 도메인에 어떤 인스턴스를 할당할지를 지정하는 것은 불가능합니다.
+> Azure는 업그레이드 도메인에 인스턴스가 할당되는 방식을 제어합니다. 가능한 toospecify 인스턴스 toowhich 도메인에 할당 되는 없습니다.
 >
 >
 
 ## <a name="next-steps"></a>다음 단계
-[클라우드 서비스를 관리하는 방법](cloud-services-how-to-manage.md)  
-[클라우드 서비스를 모니터링하는 방법](cloud-services-how-to-monitor.md)  
-[클라우드 서비스를 구성하는 방법](cloud-services-how-to-configure.md)  
+[TooManage 클라우드 서비스 하는 방법](cloud-services-how-to-manage.md)  
+[TooMonitor 클라우드 서비스 하는 방법](cloud-services-how-to-monitor.md)  
+[TooConfigure 클라우드 서비스 하는 방법](cloud-services-how-to-configure.md)  

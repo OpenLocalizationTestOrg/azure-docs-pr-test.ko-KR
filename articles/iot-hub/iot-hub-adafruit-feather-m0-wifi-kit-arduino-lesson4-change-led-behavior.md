@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT에 Arduino(C) 연결 - 단원 4: 앱 수정 | Microsoft Docs"
-description: "LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정합니다."
+title: "Connect Arduino (C) tooAzure IoT-4 단원: 응용 프로그램 수정 | Microsoft Docs"
+description: "Hello 메시지 toochange hello 켜고 동작 LED가 사용자 지정 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 5009a0466f2c5689b8ab426049f4c4f02272512b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8cc438650f01ae4335d91c94df6a29e0ffbdc508
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a>LED 켜기 및 끄기 동작 변경
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a>Hello 켜고 hello LED의 동작 변경
 ## <a name="what-you-will-do"></a>수행할 사항
-LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정합니다. 문제가 발생하면 [문제 해결 페이지](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md)에서 Adafruit Feather M0 WiFi Arduino 보드에 대한 솔루션을 찾으세요.
+Hello 메시지 toochange hello 켜고 동작 LED가 사용자 지정 합니다. 문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md) Adafruit 페더 M0 WiFi Arduino 보드에 대 한 합니다.
 
 ## <a name="what-you-will-learn"></a>알아볼 내용
-추가적인 Arduino 함수를 사용하여 LED 켜기 및 끄기 동작 변경.
+켜고 동작 LED가 추가 Arduino 함수 toochange hello를 사용 합니다.
 
 ## <a name="what-you-need"></a>필요한 항목
-[Arduino 보드에서 샘플 응용 프로그램을 실행하여 클라우드-장치 메시지 받기][receive-cloud-to-device-messages]를 완료해야 합니다.
+성공적으로 완료 해야 [toodevice 메시지 Arduino 보드 tooreceive 클라우드에서 샘플 응용 프로그램을 실행][receive-cloud-to-device-messages]합니다.
 
-## <a name="add-functions-to-mainc-and-gulpfilejs"></a>main.c 및 gulpfile.js에 기능 추가
-1. 다음 명령을 실행하여 Visual Studio Code에서 샘플 응용 프로그램을 엽니다.
+## <a name="add-functions-toomainc-and-gulpfilejs"></a>함수 toomain.c 및 gulpfile.js 추가
+1. Hello 다음 명령을 실행 하 여 Visual Studio code에서 hello 샘플 응용 프로그램을 엽니다.
 
    ```bash
    cd Lesson4
    code .
    ```
-2. `app.ino` 파일을 연 후, 다음 함수를 blinkLED() 함수 뒤에 추가합니다.
+2. 열기 hello `app.ino` 파일을 선택한 다음 hello 함수 blinkLED() 함수 뒤에 다음을 추가 합니다.
 
    ```arduino
    static void turnOnLED()
@@ -55,7 +55,7 @@ LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정
    ```
 
    ![함수가 추가된 app.ino 파일][app-ino-file]
-3. `receiveMessageCallback` 함수의 `else if` 블록 앞에 다음 조건을 추가합니다.
+3. 추가 조건 hello 하기 전에 다음 hello `else if` hello 블록 `receiveMessageCallback` 함수:
 
    ```arduino
    else if (strcmp((const char*)value, "\"on\"") == 0)
@@ -68,8 +68,8 @@ LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정
    }
    ```
 
-   이제 샘플 응용 프로그램이 메시지를 통해 더 많은 명령에 응답하도록 구성되었습니다. "on" 명령은 LED를 켜고 "off" 명령은 LED를 끕니다.
-4. gulpfile.js file 파일을 연 다음 `sendMessage` 함수 앞에 새 함수를 추가합니다.
+   이제 메시지를 통해 hello 샘플 응용 프로그램 toorespond toomore 지침을 구성 했습니다. "명령 에" hello hello LED 설정 하 고 "off" 명령은 hello hello LED 끕니다.
+4. 다음 hello 함수 앞에 새 함수를 추가 하 고 hello gulpfile.js 파일을 열고 `sendMessage`:
 
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -84,33 +84,33 @@ LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정
    ```
 
    ![함수가 추가된 Gulpfile.js 파일][gulp-file-js]
-5. `sendMessage` 함수에서 `var message = buildMessage(sentMessageCount);`를 다음 코드 조각에 있는 새 줄로 바꿉니다.
+5. Hello에 `sendMessage` 함수, hello 줄 `var message = buildMessage(sentMessageCount);` hello 다음 코드 조각에에서 표시 된 hello 새 줄으로:
 
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. 모든 변경 사항을 저장합니다.
+6. 모든 hello 변경 내용을 저장 합니다.
 
-### <a name="deploy-and-run-the-sample-application"></a>샘플 응용 프로그램 배포 및 실행
-다음 명령을 실행하여 Arduino 보드에서 샘플 응용 프로그램을 배포하고 실행합니다.
+### <a name="deploy-and-run-hello-sample-application"></a>배포 하 고 hello 샘플 응용 프로그램 실행
+배포 하 고 hello 다음 명령을 실행 하 여 Arduino 보드에 hello 샘플 응용 프로그램을 실행 합니다.
 
 ```bash
 gulp run
-# You can monitor the serial port by running listen task:
+# You can monitor hello serial port by running listen task:
 gulp listen
 
 # Or you can combine above two gulp tasks into one:
 gulp run --listen
 ```
 
-LED가 2초간 켜졌다가 다음 2초간 꺼지는 것을 볼 수 있습니다. 마지막 "stop" 메시지는 샘플 응용 프로그램이 실행되는 것을 막습니다.
+2 초에 대 한 hello LED 설정 및 다른 2 초에 대 한 다음 선택을 취소 나타납니다. hello 마지막 "중지" 메시지 hello 샘플 응용 프로그램의 실행을 중지합니다.
 
 ![켜기 및 끄기][on-and-off]
 
-축하합니다. IoT Hub에서 Arduino 보드로 보내는 메시지에 대한 사용자 지정이 완료되었습니다.
+축하합니다. Tooyour Arduino 보드 IoT 허브에서 보낸 hello 메시지를 사용자 지정한 했습니다.
 
 ### <a name="summary"></a>요약
-이 선택적인 섹션은 샘플 응용 프로그램이 다른 방식으로 LED를 켜고 끄는 동작을 제어할 수 있도록 메시지를 사용자 지정하는 방법을 보여줍니다.
+이 선택적 섹션이 toocustomize hello 샘플 응용 프로그램을 다른 방식으로 hello 켜고 hello LED의 동작을 제어할 수 있도록 메시지 하는 방법을 보여 줍니다.
 
 <!-- Images and links -->
 

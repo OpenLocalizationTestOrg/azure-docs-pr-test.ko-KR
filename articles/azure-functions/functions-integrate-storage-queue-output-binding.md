@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 큐 메시지에 의해 트리거되는 함수 만들기 | Microsoft Docs"
-description: "Azure Functions를 사용하여 Azure Storage 큐에 제출된 메시지에 의해 호출되는 서버를 사용하지 않는 함수를 만듭니다."
+title: "azure 큐 메시지에 의해 트리거되는 함수 aaaCreate | Microsoft Docs"
+description: "메시지에서 호출 하는 서버가 없는 함수를 사용 하 여 Azure 함수 toocreate tooan Azure 저장소 큐를 제출 합니다."
 services: azure-functions
 documentationcenter: na
 author: ggailey777
@@ -16,23 +16,23 @@ ms.workload: na
 ms.date: 08/17/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 57c59273a9da55f3e357764c522b444ae2d73cb5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44db90fa80bf77e31bf53dddabd7136de5800b11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-messages-to-an-azure-storage-queue-using-functions"></a>Functions를 사용하여 Azure Storage 큐에 메시지 추가
+# <a name="add-messages-tooan-azure-storage-queue-using-functions"></a>함수를 사용 하 여 메시지 tooan Azure 저장소 큐를 추가 합니다.
 
-Azure Functions에서 입력 및 출력 바인딩은 함수에서 외부 서비스 데이터로 연결하기 위한 선언적 방식을 제공합니다. 이 항목에서는 메시지를 Azure Queue Storage로 보내는 출력 바인딩을 추가하여 기존 함수를 업데이트하는 방법을 알아봅니다.  
+Azure 기능 입력 및 출력 바인딩은 함수에서 선언적으로 tooconnect tooexternal 서비스 데이터를 제공합니다. 이 항목에서는 tooupdate 바인딩에 출력을 추가 하 여 기존 함수에서 보내는 방법을 메시지 tooAzure 큐 저장소를 설명 합니다.  
 
-![로그에서 메시지 보기.](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
+![Hello 로그 보기 메시지입니다.](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
 
 ## <a name="prerequisites"></a>필수 조건 
 
 [!INCLUDE [Previous topics](../../includes/functions-quickstart-previous-topics.md)]
 
-* [Microsoft Azure Storage Explorer](http://storageexplorer.com/)를 설치합니다.
+* Hello 설치 [Microsoft Azure 저장소 탐색기](http://storageexplorer.com/)합니다.
 
 ## <a name="add-binding"></a>출력 바인딩 추가
  
@@ -40,27 +40,27 @@ Azure Functions에서 입력 및 출력 바인딩은 함수에서 외부 서비�
 
 2. **통합** 및 **+ 새 출력**을 선택한 다음 **Azure Queue Storage**, **선택**을 차례로 선택합니다.
     
-    ![Queue Storage 출력 바인딩을 Azure Portal의 함수에 추가합니다.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
+    ![큐 저장소 출력 바인딩 tooa 함수 hello Azure 포털에에서 추가 합니다.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
 
-3. 표에 지정된 대로 설정을 사용합니다. 
+3. Hello 테이블에 지정 된 hello 설정을 사용 합니다. 
 
-    ![Queue Storage 출력 바인딩을 Azure Portal의 함수에 추가합니다.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
+    ![큐 저장소 출력 바인딩 tooa 함수 hello Azure 포털에에서 추가 합니다.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
 
     | 설정      |  제안 값   | 설명                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **큐 이름**   | myqueue-items    | Storage 계정에서 연결할 큐의 이름입니다. |
-    | **Storage 계정 연결** | AzureWebJobStorage | 함수 앱에 이미 사용된 저장소 계정 연결을 사용하거나 새로 만들 수 있습니다.  |
-    | **메시지 매개 변수 이름** | outputQueueItem | 출력 바인딩 매개 변수의 이름입니다. | 
+    | **큐 이름**   | myqueue-items    | hello의 hello 이름 tooconnect tooin을 저장소 계정의 큐입니다. |
+    | **Storage 계정 연결** | AzureWebJobStorage | Hello 함수 응용 프로그램에서 이미 사용 되는 저장소 계정 연결을 사용 하거나 새로 만들 수 있습니다.  |
+    | **메시지 매개 변수 이름** | outputQueueItem | 바인딩 매개 변수를 출력 하는 hello 이름 hello입니다. | 
 
-4. **저장**을 클릭하여 바인딩을 추가합니다.
+4. 클릭 **저장** tooadd hello 바인딩.
  
-이제 출력 바인딩이 정의되었고 큐에 메시지를 추가할 바인딩을 사용하도록 코드를 업데이트해야 합니다.  
+출력 바인딩 정의가지고 tooupdate hello 코드 toouse hello 바인딩 tooadd 메시지 tooa 큐가 있어야 합니다.  
 
-## <a name="update-the-function-code"></a>함수 코드 업데이트
+## <a name="update-hello-function-code"></a>Hello 함수 코드를 업데이트 합니다.
 
-1. 편집기에서 함수 코드를 표시할 함수를 선택합니다. 
+1. Hello 편집기 함수 toodisplay hello 함수 코드를 선택 합니다. 
 
-2. C# 함수의 경우 **outputQueueItem** 저장소 바인딩 매개 변수를 추가하기 위해 함수 정의를 다음과 같이 업데이트합니다. JavaScript 함수에 대해서는 이 단계를 건너뜁니다.
+2. C# 함수에 대 한 업데이트 tooadd hello를 다음과 같이 함수 정의 **outputQueueItem** 저장소 바인딩 매개 변수입니다. JavaScript 함수에 대해서는 이 단계를 건너뜁니다.
 
     ```cs   
     public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, 
@@ -70,48 +70,48 @@ Azure Functions에서 입력 및 출력 바인딩은 함수에서 외부 서비�
     }
     ```
 
-3. 메서드가 반환하기 직전에 함수에 다음 코드를 추가합니다. 함수의 언어에 대해 적절한 코드 조각을 사용합니다.
+3. Hello hello 메서드 반환 전에 코드 toohello 함수를 다음을 추가 합니다. 함수의 hello 언어에 대 한 적절 한 코드 조각을 hello를 사용 합니다.
 
     ```javascript
-    context.bindings.outputQueueItem = "Name passed to the function: " + 
+    context.bindings.outputQueueItem = "Name passed toohello function: " + 
                 (req.query.name || req.body.name);
     ```
 
     ```cs
-    outputQueueItem.Add("Name passed to the function: " + name);     
+    outputQueueItem.Add("Name passed toohello function: " + name);     
     ```
 
-4. **저장**을 선택하여 변경 내용을 저장합니다.
+4. 선택 **저장** toosave 변경 합니다.
 
-HTTP 트리거에 전달된 값은 큐에 추가된 메시지에 포함됩니다.
+toohello HTTP 트리거 전달 된 값이 hello 메시지 추가 toohello 큐에 포함 됩니다.
  
-## <a name="test-the-function"></a>함수 테스트 
+## <a name="test-hello-function"></a>테스트 hello 함수 
 
-1. 코드 변경 내용이 저장된 후 **실행**을 선택합니다. 
+1. Hello 코드 변경 내용이 저장 된 후 선택 **실행**합니다. 
 
-    ![Queue Storage 출력 바인딩을 Azure Portal의 함수에 추가합니다.](./media/functions-integrate-storage-queue-output-binding/functions-test-run-function.png)
+    ![큐 저장소 출력 바인딩 tooa 함수 hello Azure 포털에에서 추가 합니다.](./media/functions-integrate-storage-queue-output-binding/functions-test-run-function.png)
 
-2. 로그에서 함수가 성공했는지 확인합니다. **outqueue**라는 새 큐는 출력 바인딩이 처음 사용될 때 함수 런타임에 의해 Storage 계정에 만들어집니다.
+2. Hello 로그 toomake hello 함수 성공 확인을 확인 합니다. 명명 된 새 큐 **outqueue** hello 함수 런타임 hello 출력 바인딩이 때 처음으로 사용 하 여 저장소 계정에 만들어집니다.
 
-다음으로 새 큐와 여기에 추가한 메시지를 확인하기 위해 저장소 계정에 연결할 수 있습니다. 
+다음으로 tooyour 저장소 계정 tooverify hello 새 큐와 tooit 추가한 hello 메시지를 연결할 수 있습니다. 
 
-## <a name="connect-to-the-queue"></a>큐에 연결
+## <a name="connect-toohello-queue"></a>Toohello 큐 연결
 
-Storage 탐색기를 이미 설치했고 저장소 계정에 연결한 경우 처음 세 단계를 건너뜁니다.    
+Skip 이미 저장소 탐색기를 설치 하 고 tooyour 저장소 계정을 연결 하는 경우 처음 3 단계를 hello 합니다.    
 
-1. 함수에서 **통합** 및 새 **Azure Queue Storage** 출력 바인딩을 선택한 후 **설명서**를 확장합니다. **계정 이름** 및 **계정 키**를 모두 복사합니다. 이러한 자격 증명을 사용하여 저장소 계정에 연결합니다.
+1. 함수에서 선택 **통합** 및 새 hello **Azure 큐 저장소** 바인딩 출력 한 다음 확장 **설명서**합니다. **계정 이름** 및 **계정 키**를 모두 복사합니다. 이러한 자격 증명 tooconnect toohello 저장소 계정을 사용합니다.
  
-    ![Storage 계정 연결 자격 증명 가져오기.](./media/functions-integrate-storage-queue-output-binding/function-get-storage-account-credentials.png)
+    ![Hello 저장소 계정 연결 자격 증명을 가져옵니다.](./media/functions-integrate-storage-queue-output-binding/function-get-storage-account-credentials.png)
 
-2. [Microsoft Azure Storage Explorer](http://storageexplorer.com/) 도구를 실행하고 왼쪽의 연결 아이콘을 선택하고 **저장소 계정 이름 및 키 사용**을 선택하고 **다음**을 선택합니다.
+2. Hello 실행 [Microsoft Azure 저장소 탐색기](http://storageexplorer.com/) 도구, 선택 hello 연결 hello 왼쪽에 있는 아이콘을 선택 **저장소 계정 이름과 키를 사용 하 여**를 선택 하 고 **다음**합니다.
 
-    ![Storage 계정 탐색기 도구 실행.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-1.png)
+    ![Hello 저장소 계정 탐색기 도구를 실행 합니다.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-1.png)
     
-3. 1단계에서 복사한 **계정 이름** 및 **계정 키**를 해당 필드에 붙여 넣은 다음, **다음**, **연결**을 차례로 선택합니다. 
+3. 붙여넣기 hello **계정 이름** 및 **계정 키** 의 해당 필드에 1 단계에서 선택한 다음 선택 **다음**, 및 **연결**합니다. 
   
-    ![저장소 자격 증명을 붙여 넣고 연결합니다.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-2.png)
+    ![붙여 hello 저장소 자격 증명을 연결 합니다.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-2.png)
 
-4. 연결된 저장소 계정을 확장하고 **큐**를 확장하고 **myqueue-items**라는 큐가 존재하는지 확인합니다. 큐에 이미 있는 메시지도 표시됩니다.  
+4. Hello 연결 된 저장소 계정, **큐** 큐 이름이 있는지 확인 하 고 **myqueue 항목** 존재 합니다. 또한 메시지 hello 큐에 이미 나타납니다.  
  
     ![저장소 큐 만들기.](./media/functions-integrate-storage-queue-output-binding/function-queue-storage-output-view-queue.png)
  
@@ -122,11 +122,11 @@ Storage 탐색기를 이미 설치했고 저장소 계정에 연결한 경우 �
 
 ## <a name="next-steps"></a>다음 단계
 
-기존 함수에 출력 바인딩을 추가했습니다. 
+출력 바인딩 tooan 기존 함수를 추가 했습니다. 
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-Queue Storage에 바인딩에 대한 자세한 내용은 [Azure Functions Storage 큐 바인딩](functions-bindings-storage-queue.md)을 참조하세요. 
+바인딩 tooQueue 저장소에 대 한 자세한 내용은 참조 [Azure 함수 저장소 큐 바인딩](functions-bindings-storage-queue.md)합니다. 
 
 
 

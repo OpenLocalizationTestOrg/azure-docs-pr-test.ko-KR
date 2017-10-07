@@ -1,6 +1,6 @@
 ---
-title: "스키마 버전 2015-08-01-미리 보기에 논리 앱을 마이그레이션하는 방법 | Microsoft 문서"
-description: "논리 앱을 쉽게 최신 스키마 버전에 마이그레이션할 수 있습니다. 다음 단계를 수행합니다."
+title: "aaaHow toomigrate 논리 앱 tooschema 버전 2015-08-01-미리 보기 | Microsoft Docs"
+description: "논리 앱 toohello 최신 스키마 버전을 쉽게 마이그레이션할 수 있습니다. 다음 단계를 수행합니다."
 services: logic-apps
 documentationcenter: 
 author: MSFTMAN
@@ -15,33 +15,33 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/23/2016
 ms.author: deonhe
-ms.openlocfilehash: a5a73a9f124e5339b61dbc49021444a208a471f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c7b42aaec547eddd28b0c649a3c0625047f9f805
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-migrate-logic-apps-to-schema-version-2015-08-01-preview"></a>스키마 버전 2015-08-01-미리 보기에 논리 앱을 마이그레이션하는 방법
-기존 논리 앱을 새 스키마로 이동하려면 다음을 수행합니다.  
+# <a name="how-toomigrate-logic-apps-tooschema-version-2015-08-01-preview"></a>어떻게 toomigrate 논리 앱 tooschema 버전 2015-08-01-미리 보기
+toomove 기존 논리 앱 toohello 새 스키마를 따르는 hello지 않습니다.  
 
-1. Azure 포털에서 논리 앱을 엽니다.  
+1. Hello Azure 포털에서에서 논리 앱을 열으십시오  
 2. 스키마 업데이트를 클릭합니다.
    
    ![API 아이콘][step1]   
-   스키마 업데이트 페이지에서 새 스키마의 개선 사항에 대한 세부 정보를 제공하는 문서에 대한 링크를 표시하여 제공합니다. ![API 아이콘][step2]
+   hello 스키마 업데이트 페이지에 표시 되며 hello 새 스키마에 hello 향상 된 기능에 세부 정보를 제공 하는 링크 tooa 문서를: ![API 아이콘][step2]
 
 > [!NOTE]
-> **스키마 업데이트**를 선택하면 마이그레이션 단계를 자동으로 실행하고 코드 출력을 제공합니다. 정의를 업데이트하기 위해 이 기능을 사용할 수 있지만 아래의 **모범 사례** 섹션에 설명된 것처럼 좋은 코딩 방법을 따르도록 합니다.
+> 선택 하는 경우 **스키마 업데이트**,에서는 자동으로 hello 마이그레이션 단계를 실행 하 고 hello 코드 출력을 제공 합니다. 그러나이 tooupdate 정의 사용, hello에 설명 된 같은 좋은 코딩 방법에 따라 수 **모범 사례** 아래 섹션.
 > 
 > 
 
-## <a name="best-practices-when-migrating-your-logic-apps-to-the-latest-schema-version"></a>논리 앱을 최신 스키마 버전에 마이그레이션할 경우 모범 사례는 다음과 같습니다.
-* 새 논리 앱에 마이그레이션된 스크립트 복사 - 테스트를 완성하고 예상대로 마이그레이션된 앱이 작동하는지 확인될 때까지 이전 앱을 덮어쓰지 마십시오.
+## <a name="best-practices-when-migrating-your-logic-apps-toohello-latest-schema-version"></a>논리 앱 toohello 최신 스키마 버전을 마이그레이션할 때 모범 사례:
+* 복사 hello 마이그레이션 스크립트 tooa 새로운 논리 앱-hello 이전 테스트 및 확인 된 hello 마이그레이션된 응용 프로그램을 완료 한이 예상 대로 작동을 덮어쓰지 않습니다.
 * 프로덕션에 배치하기 **전에** 논리 앱을 테스트합니다.
-* 마이그레이션이 완료되면 논리 앱을 업데이트하기 시작하여 가능한 경우 [관리된 API](apis-list.md) 를 사용합니다. 예를 들어 DropBox v1을 사용하는 경우 Dropbox v2를 사용하기 시작할 수 있습니다.
+* 마이그레이션을 완료 한 후 업데이트 하 여 논리 앱 toouse hello 시작 [관리 되는 Api](apis-list.md) 가능 합니다. 예를 들어 DropBox v1을 사용하는 경우 Dropbox v2를 사용하기 시작할 수 있습니다.
 
 ## <a name="whats-next"></a>다음 단계
-* [논리 앱을 수동으로 마이그레이션하는 방법을 알아봅니다.](../logic-apps/logic-apps-schema-2015-08-01.md)
+* [Toomanually 논리 앱을 마이그레이션 하는 방법에 대해 알아봅니다](../logic-apps/logic-apps-schema-2015-08-01.md)
 
 <!--Icon references-->
 [step1]: ./media/connectors-schema-migration/migrateschema1.png

@@ -1,6 +1,6 @@
 ---
-title: "Azure 서비스 끝점"
-description: "Eclipse용 Azure 도구 키트에서 Azure 서비스 끝점 설정을 설명합니다."
+title: "aaaAzure 서비스 끝점"
+description: "Hello Azure 서비스 끝점 설정 hello Eclipse 용 Azure 도구 키트에에서 설명 합니다."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,57 +14,57 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 6059c292c2687f1bf3d9be04c03aaaaf6adde945
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 357aa56409a894719077f2c8f302575c8ebb6883
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-endpoints"></a>Azure 서비스 끝점
-Azure 서비스 끝점은 응용 프로그램이 글로벌 Azure 플랫폼에서 배포되고 관리되는지, 중국의 21Vianet에서 운영하는 Azure인지, 개인 Azure 플랫폼인지 확인합니다. **서비스 끝점** 대화 상자를 통해 사용하려는 서비스 끝점을 지정할 수 있습니다. **서비스 끝점** 대화 상자를 열려면 Eclipse 내에서 **창**, **기본 설정**을 차례로 클릭하고 **Azure**를 확장한 다음 **서비스 끝점**을 클릭합니다. **Active Set** (활성 설정) 필드를 설정하여 Azure 서비스 끝점을 현재 작업 영역에서 Azure 프로젝트에 사용할지 결정합니다.
+Azure 서비스 끝점 응용 프로그램이 hello 전역 Azure 플랫폼에서 관리 하는 배포 된 tooand 인지 Azure 21Vianet에서 운영 중국 또는 개인 Azure 플랫폼을 결정 합니다. hello **서비스 끝점** 대화 상자에서는 toospecify 서비스 toouse 원하는 끝점입니다. tooopen hello **서비스 끝점** Eclipse 내에서 대화 상자에서 클릭 **창**, 클릭 **기본 설정**, 확장 **Azure**, 클릭 하 고 **서비스 끝점**합니다. 설정 hello **활성 집합** 필드 현재 작업 영역에 있는 Azure 서비스 끝점 hello에 사용할 Azure 프로젝트를 확인 합니다.
 
-다음은 **서비스 끝점** 대화 상자입니다.
+hello 다음 표시 되어 hello **서비스 끝점** 대화 상자.
 
 ![][ic719493]
 
-## <a name="to-set-the-service-endpoints"></a>서비스 끝점을 설정하려면
-**서비스 끝점** 대화 상자에서 다음 작업 중 하나를 수행합니다.
+## <a name="tooset-hello-service-endpoints"></a>tooset hello 서비스 끝점
+Hello에 **서비스 끝점** 대화 상자에서 hello 다음 동작 중 하나를 수행 합니다.
 
-* 글로벌 Azure 플랫폼을 사용하려는 경우 **활성 설정** 드롭다운 목록에서 **windowsazure.com**을 선택하고 **확인**을 클릭합니다.
+* Toouse hello 전역 Azure 플랫폼을 hello에서 원하는 **활성 집합** 드롭다운 목록에서 선택 **windowsazure.com** 클릭 **확인**합니다.
 
-* 중국의 21Vianet에서 운영하는 Azure를 사용하려는 경우 **Active Set**(활성 설정) 드롭다운 목록에서 **windowsazure.cn(중국)**을 선택하고 **확인**을 클릭합니다.
+* Azure hello에서 중국의 21vianet이 운영 toouse 원하면 **활성 집합** 드롭다운 목록에서 선택 **windowsazure.cn (중국)** 클릭 **확인**합니다.
 
-* 개인 Azure 플랫폼을 사용하려면:
+* 개인 Azure 플랫폼 toouse 하려는 경우:
 
   1. **편집**을 클릭합니다.
 
-  2. 대화 상자가 열리면서 **서비스 끝점** 대화 상자가 닫히고 기본 설정 집합 파일이 열린다고 알려줍니다. **확인**을 클릭합니다.
+  2. 대화 상자가 열리고 해당 hello 알리는 **서비스 끝점** hello 기본 설정 집합 파일을 열 및 대화 상자가 닫힙니다. **확인**을 클릭합니다.
 
-  3. Preferencesets.xml 파일에 새 `preferenceset` 요소를 만듭니다. 이 새 요소에 대해 `name`, `blob`, `management`, `portalURL` 및 `publishsettings` 특성을 만들고 개인 Azure 플랫폼에 해당하는 특성 값을 추가합니다. 기존 `preferenceset` 요소에 대해 제공되는 값을 템플릿으로 사용할 수 있습니다. **참고**: `blob` 특성에 사용되는 값에는 URL에 "blob" 텍스트가 포함되어야 합니다.
+  3. Hello preferencesets.xml 파일에서 만들 새 `preferenceset` 요소입니다. 이 새 요소에 대 한 만들기 `name`, `blob`, `management`, `portalURL` 및 `publishsettings` 특성 및 tooyour 개인 Azure 플랫폼에 해당 하는 값을 추가 합니다. Hello 기존 제공 hello 값을 사용 하려면 `preferenceset` 템플릿으로 요소입니다. **참고**: hello에 사용 되는 값을 hello `blob` 특성 hello 텍스트 "blob" hello URL에 포함 되어야 합니다.
 
   4. preferencesets.xml을 저장하고 닫습니다.
 
-  5. **서비스 끝점** 대화 상자를 다시 엽니다.
+  5. Hello를 다시 열고 **서비스 끝점** 대화 상자.
 
-  6. **활성 설정** 드롭다운 목록에서 만들어진 활성 설정을 선택하고 **확인**을 클릭합니다.
+  6. Hello에서 **활성 집합** 드롭다운 목록에서 선택 hello 활성 집합 생성 하 고 클릭 **확인**합니다.
 
-  7. 개인 Azure 플랫폼 `preferenceset` 요소를 만들면 **서비스 끝점** 대화 상자의 **편집** 단추를 클릭하여 요소에 할당된 값을 변경할 수 있습니다. 또한 원하는 경우 여러 개인 Azure 플랫폼 `preferenceset` 요소를 만들 수 있습니다.
+  7. 개인 Azure 플랫폼을 만든 후 `preferenceset` 요소인 hello 할당 된 값 tooit hello를 클릭 하 여 변경할 수 있습니다 **편집** hello 단추 **서비스 끝점** 대화 상자. 또한 원하는 경우 여러 개인 Azure 플랫폼 `preferenceset` 요소를 만들 수 있습니다.
 
 ## <a name="see-also"></a>참고 항목
 [Eclipse용 Azure 도구 키트][Azure Toolkit for Eclipse]
 
-[Eclipse용 Azure 도구 키트 설치][Installing the Azure Toolkit for Eclipse] 
+[Hello Eclipse 용 Azure 도구 키트 설치][Installing hello Azure Toolkit for Eclipse] 
 
 [Eclipse에서 Azure용 Hello World 응용 프로그램 만들기][Creating a Hello World Application for Azure in Eclipse]
 
-Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터][Azure Java Developer Center]를 참조하세요.
+Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터][Azure Java Developer Center]합니다.
 
 <!-- URL List -->
 
 [Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

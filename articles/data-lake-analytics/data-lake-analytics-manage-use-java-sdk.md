@@ -1,6 +1,6 @@
 ---
-title: "Azure Java SDK를 사용하여 Azure Data Lake Analytics 관리 | Microsoft Docs"
-description: "Azure Data Lake 분석 Java SDK를 사용하여 응용 프로그램 개발"
+title: "Azure Java SDK를 사용 하 여 Azure Data Lake 분석 aaaManage | Microsoft Docs"
+description: "Azure 데이터 레이크 분석 Java SDK toodevelop 응용 프로그램을 사용 하 여"
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 8a0c1c7aab89f3bb62d0eb9f42e8ac65309d617e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 79e5fa1bacd5fd65072a1c3c480482a8e51d94b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage--azure-data-lake-analytics-using-java-sdk"></a>Java SDK를 사용하여 Azure Data Lake Analytics 관리
 
@@ -26,17 +26,17 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="prerequisites"></a>필수 조건
 * **JDK(Java Development Kit) 8**(Java 버전 1.8 사용)
-* **IntelliJ** 또는 다른 적절한 Java 개발 환경. 이 문서의 지침에서는 IntelliJ를 사용합니다.
-* AAD(Azure Active Directory) 응용 프로그램을 만들고 **클라이언트 ID**, **테넌트 ID** 및 **키**를 검색합니다. AAD 응용 프로그램에 대한 자세한 내용 및 클라이언트 ID를 가져오는 방법에 대한 지침은 [포털을 사용하여 Active Directory 응용 프로그램 및 서비스 주체 만들기](../azure-resource-manager/resource-group-create-service-principal-portal.md)를 참조하세요. 응용 프로그램을 만들고 키를 생성했다면 회신 URI 및 키를 포털에서 사용할 수 있습니다.
+* **IntelliJ** 또는 다른 적절한 Java 개발 환경. 이 문서에 hello 지침은 IntelliJ를 사용합니다.
+* AAD(Azure Active Directory) 응용 프로그램을 만들고 **클라이언트 ID**, **테넌트 ID** 및 **키**를 검색합니다. AAD 응용 프로그램 및 지침에 대 한 자세한 내용은 방법에 대 한 tooget 클라이언트 ID 참조 [만드는 Active Directory 응용 프로그램 및 서비스 사용자 포털을 사용 하 여](../azure-resource-manager/resource-group-create-service-principal-portal.md)합니다. hello 회신 URI 및 키가 만든 hello 응용 프로그램 및 생성 된 키를 설정한 후 hello 포털에서 사용할 수 있습니다.
 
 ## <a name="authenticating-using-azure-active-directory"></a>Azure Active Directory를 사용하여 인증
 
-다음 코드 조각은 응용 프로그램이 자체 자격 증명을 제공하는 **비대화형** 인증에 대한 코드를 제공합니다.
+다음 코드 조각에 대 한 코드를 제공 하는 코드를 hello **비 대화형** hello 응용 프로그램 자체 자격 증명을 제공 하는 인증 합니다.
 
 ## <a name="create-a-java-application"></a>Java 응용 프로그램 만들기
-1. **명령줄 앱** 템플릿을 사용하여 IntelliJ를 열고 Java 프로젝트를 만듭니다.
-2. 화면의 왼쪽에 있는 프로젝트를 마우스 오른쪽 단추로 클릭하고 **프레임워크 지원 추가**를 클릭합니다. **Maven**을 선택하고 **확인**을 클릭합니다.
-3. 새로 만든 **"pom.xml"** 파일을 열고 **\</version>** 태그 및 **\</project>** 태그 사이에 다음 텍스트의 코드 조각을 추가합니다.
+1. IntelliJ 열고 hello를 사용 하 여 Java 프로젝트를 만들 **명령줄 앱** 템플릿.
+2. Hello 화면 왼쪽에 hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 클릭 **프레임 워크 지원 추가**합니다. **Maven**을 선택하고 **확인**을 클릭합니다.
+3. 새로 만든 열기 hello **"pom.xml"** 파일을 hello 텍스트 조각을 hello 사이 다음 추가  **\</version >** 태그 및 hello  **\< /프로젝트 >** 태그:
 
 ```
 <repositories>
@@ -89,9 +89,9 @@ ms.lasthandoff: 08/03/2017
 </dependencies>
 ```
 
-**파일 > 설정 > 빌드 > 실행 > 배포**로 이동합니다. **빌드 도구 > Maven > 가져오기**를 선택합니다. **Maven 프로젝트 자동으로 가져오기**를 선택합니다.
+너무 이동**파일 > 설정 > 빌드 > 실행 > 배포**합니다. **빌드 도구 > Maven > 가져오기**를 선택합니다. **Maven 프로젝트 자동으로 가져오기**를 선택합니다.
 
-`Main.java`를 열고 기존 코드 블록을 다음 코드 조각으로 바꿉니다.
+열기 `Main.java` hello로 바꾸기 hello 기존 코드 블록 다음 코드 조각 및.
 
 ```
 package com.company;
@@ -175,10 +175,10 @@ public class Main {
         WaitForNewline("File created.", "Submitting a job.");
 
         // ----------------------------------------
-        // Submit a job to Data Lake Analytics
+        // Submit a job tooData Lake Analytics
         // ----------------------------------------
 
-string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input TO @\"/output1.csv\" USING Outputters.Csv();", "testJob";
+string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input too@\"/output1.csv\" USING Outputters.Csv();", "testJob";
         UUID jobId = SubmitJobByScript(script);
         WaitForNewline("Job submitted.", "Getting job status.");
 
@@ -201,13 +201,13 @@ string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extrac
 }
 ```
 
-코드 조각에서 호출되는 매개 변수 값을 제공합니다.
+Hello 코드 조각에서 호출 하는 매개 변수에 대 한 hello 값을 제공 합니다.
 * `localFolderPath`
 * `_adlaAccountName`
 * `_adlsAccountName`
 * `_resourceGroupName`
 
-다음의 자리 표시자를 바꿉니다.
+에 대 한 hello 자리 표시자를 바꿉니다.
 * `CLIENT-ID`,
 * `CLIENT-SECRET`,
 * `TENANT-ID`
@@ -239,7 +239,7 @@ public static void WaitForNewline(String reason, String nextAction)
     if (nextAction == null)
         nextAction = "";
 
-    System.out.println(reason + "\r\nPress ENTER to continue...");
+    System.out.println(reason + "\r\nPress ENTER toocontinue...");
     try{System.in.read();}
     catch(Exception e){}
 
@@ -379,6 +379,6 @@ public static String GetJobStatus(UUID jobId) throws IOException, CloudException
 
 ## <a name="next-steps"></a>다음 단계
 
-* U-SQL에 대해 알아보려면 [Azure Data Lake Analytics U-SQL 언어 시작](data-lake-analytics-u-sql-get-started.md) 및 [U-SQL 언어 참조](http://go.microsoft.com/fwlink/?LinkId=691348)를 참조하세요.
+* toolearn U SQL 참조 [Azure 데이터 레이크 분석 U-SQL 언어 시작](data-lake-analytics-u-sql-get-started.md), 및 [U SQL 언어 참조](http://go.microsoft.com/fwlink/?LinkId=691348)합니다.
 * 관리 작업을 보려면 [Azure Portal을 사용하여 Azure Data Lake Analytics 관리](data-lake-analytics-manage-use-portal.md)를 참조하세요.
-* 데이터 레이크 분석에 대한 개요를 보려면 [Azure 데이터 레이크 분석 개요](data-lake-analytics-overview.md)를 참조하세요.
+* 데이터 레이크 분석의 개요는 tooget 참조 [Azure 데이터 레이크 분석 개요](data-lake-analytics-overview.md)합니다.

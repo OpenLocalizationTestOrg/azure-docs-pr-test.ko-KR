@@ -1,6 +1,6 @@
 ---
-title: "템플릿의 Azure 리소스 위치 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿의 리소스에 대한 위치 설정 방법을 보여 줍니다."
+title: "서식 파일에 리소스 위치 aaaAzure | Microsoft Docs"
+description: "표시 방법을 tooset Azure Resource Manager 템플릿의 리소스에 대 한 위치"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: tomfitz
-ms.openlocfilehash: 73e50a593c41e841dcaf184abb895406ff5001e9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f2ad6ca6ac5f34484a2e5e57dd8d67c77dacc41a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-resource-location-in-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿에서 리소스 위치 설정
-템플릿을 배포할 때는 각 리소스의 위치를 지정해야 합니다. 이 항목에서는 각 리소스 유형에 대한 구독에서 사용할 수 있는 위치를 확인하는 방법을 보여 줍니다.
+템플릿을 배포할 때는 각 리소스의 위치를 지정해야 합니다. 이 항목에서는 각 리소스에 대 한 사용 가능한 tooyour 구독 않은 toodetermine hello 위치 입력 하는 방법을 보여 줍니다.
 
 ## <a name="determine-supported-locations"></a>지원되는 위치 확인
 
-각 리소스 유형에 대해 지원되는 위치의 전체 목록은 [지역별 사용 가능한 제품](https://azure.microsoft.com/regions/services/)을 참조하세요. 그러나 구독에 해당 목록의 모든 위치에 대한 액세스 권한이 없을 수도 있습니다. 구독에서 사용할 수 있는 위치의 사용자 지정된 목록을 보려면 Azure PowerShell 또는 Azure CLI를 사용합니다. 
+각 리소스 유형에 대해 지원되는 위치의 전체 목록은 [지역별 사용 가능한 제품](https://azure.microsoft.com/regions/services/)을 참조하세요. 그러나 구독 액세스 tooall hello 위치 해당 목록에 없을 수 있습니다. 사용자 지정된 위치를 사용할 수 있는 tooyour 구독 목록을 toosee Azure PowerShell 또는 Azure CLI를 사용 합니다. 
 
-다음 예제에서는 PowerShell을 사용하여 `Microsoft.Web\sites` 리소스 유형에 대한 위치를 가져옵니다.
+hello 다음 예제에서는 PowerShell tooget hello 위치 hello에 대 한 `Microsoft.Web\sites` 리소스 종류:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
 ```
 
-다음 예제에서는 Azure CLI 2.0을 사용하여 `Microsoft.Web\sites` 리소스 유형에 대한 위치를 가져옵니다.
+hello 다음 예제에서는 Azure CLI 2.0 tooget hello 위치 hello에 대 한 `Microsoft.Web\sites` 리소스 종류:
 
 ```azurecli
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
@@ -41,9 +41,9 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 
 ## <a name="set-location-in-template"></a>템플릿에서 위치 설정
 
-리소스에 대해 지원되는 위치를 확인한 후 템플릿에서 해당 위치를 설정해야 합니다. 이 값을 설정하는 가장 쉬운 방법은 리소스 유형을 지원하는 위치에 리소스 그룹을 만들고 해당 위치를 `[resourceGroup().location]`으로 설정합니다. 여러 다른 위치의 리소스 그룹에 템플릿을 다시 배포하고 템플릿 또는 매개 변수의 값을 변경하지 않을 수 있습니다. 
+리소스에 대 한 지원 hello 위치를 결정 했으면 tooset 해당 위치에에서 필요한 서식 파일에 있습니다. 이 값은 toocreate hello 리소스 종류를 지 원하는 위치에 리소스를 그룹화 하는 가장 쉬운 방법은 tooset hello와 각 위치를 너무 설정`[resourceGroup().location]`합니다. 서로 다른 위치에 템플릿 tooresource 그룹 hello를 다시 배포할 수 있으며 hello 템플릿 또는 매개 변수 값을 변경 하지 수도 있습니다. 
 
-다음 예제에서는 리소스 그룹과 같은 위치에 배포되는 저장소 계정을 보여 줍니다.
+hello 다음 예제에서는 배포 된 toohello 저장소 계정을 같은 hello 리소스 그룹 위치:
 
 ```json
 {
@@ -72,7 +72,7 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 }
 ```
 
-템플릿에서 해당 위치를 하드 코드해야 할 경우 지원되는 하위 지역 중 하나의 이름을 제공합니다. 다음 예제에서는 항상 미국 중북부에 배포되는 저장소 계정을 보여 줍니다.
+서식 파일에서 toohardcode hello 위치 해야 할 경우 hello 이름 hello 지원 영역 중 하나를 제공 합니다. 다음 예제는 hello 항상 저장소 계정을 tooNorth 중앙 미국 배포를 보여 줍니다.
 
 ```json
 {
@@ -99,5 +99,5 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* 템플릿 작성 방법에 대한 권장 사항은 [Azure Resource Manager 템플릿 생성 모범 사례](resource-manager-template-best-practices.md)를 참조하세요.
+* 방법에 대 한 권장 사항에 대 한 toocreate 템플릿 참조 [Azure 리소스 관리자 템플릿 만들기에 대 한 유용한](resource-manager-template-best-practices.md)합니다.
 

@@ -1,13 +1,13 @@
 ---
 layout: HubPage
 hide_bc: True
-title: "Microsoft Azure 설명서"
-description: "Microsoft Azure 클라우드 서비스를 사용하여 강력한 응용 프로그램을 관리하는 방법을 알아봅니다. 설명서, 샘플 코드, 자습서 등을 가져옵니다."
-ms.openlocfilehash: 282e1da4a5ec8ccb3c6119c6de6fd37b83bbb71e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+title: "aaaMicrosoft Azure 설명서"
+description: "자세한 내용은 방법 toobuild 및 Microsoft Azure 클라우드 서비스를 사용 하 여 강력한 응용 프로그램을 관리 합니다. 설명서, 샘플 코드, 자습서 등을 가져옵니다."
+ms.openlocfilehash: a844a7c29be3e0f61c50eb0e89b8677029ee97dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -1081,7 +1081,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>가상 컴퓨터 확장 집합</h3>
-                                                    <p>수십 개에서 수천 개에 이르는 Linux 및 Windows 가상 컴퓨터 관리 및 규모 조정</p>
+                                                    <p>관리 및 확장 단위: 10 Windows 및 Linux 가상 컴퓨터의 too1000s</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1099,7 +1099,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Web Apps</h3>
+                                                    <h3>웹앱</h3>
                                                     <p>대규모로 중요 업무용 웹앱을 빠르게 만들고 배포</p>
                                                 </div>
                                             </div>
@@ -1218,7 +1218,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>네트워킹 개요</h3>
-                                                    <p>Azure에서 네트워킹 서비스의 통합 보기</p>
+                                                    <p>네트워킹 서비스를 Azure의 hello 종합적</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1237,7 +1237,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>가상 네트워크</h3>
-                                                    <p>사설 네트워크 프로비전, 온-프레미스 데이터 센터에 선택적으로 연결</p>
+                                                    <p>개인 네트워크를 프로 비전, 필요에 따라 tooon 온-프레미스 데이터 센터를 연결</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1256,7 +1256,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>부하 분산 장치</h3>
-                                                    <p>응용 프로그램에 고가용성 및 네트워크 성능 제공</p>
+                                                    <p>높은 가용성 및 네트워크 성능 tooyour 응용 프로그램 제공</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1274,7 +1274,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Application Gateway</h3>
+                                                    <h3>응용 프로그램 게이트웨이</h3>
                                                     <p>기본 제공 HTTP 부하 분산 및 배달 제어를 사용하는 계층 7 부하 분산 장치</p>
                                                 </div>
                                             </div>
@@ -1332,7 +1332,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>CDN</h3>
-                                                    <p>글로벌 데이터 센터의 강력한 네트워크를 통해 최종 사용자에게 콘텐츠 제공 </p>
+                                                    <p>글로벌 데이터 센터의 강력한 네트워크를 통해 tooend 사용자 콘텐츠를 제공 합니다. </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1369,8 +1369,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>ExpressRoute</h3>
-                                                    <p>Azure로 전용 사설 네트워크 파이버 연결</p>
+                                                    <h3>Express 경로</h3>
+                                                    <p>파이버 연결 tooAzure 전용된 개인 네트워크</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1469,8 +1469,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Backup</h3>
-                                                    <p>간단하고 안전하게 클라우드에 서버 백업</p>
+                                                    <h3>백업</h3>
+                                                    <p>간단 하 고 신뢰할 수 있는 서버 백업 toohello 클라우드</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1532,7 +1532,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Mobile Apps</h3>
-                                                    <p>모든 모바일 앱용 백 엔드 빌드 및 호스팅</p>
+                                                    <p>모든 모바일 앱에 대 한 빌드 및 호스트 hello 백 엔드</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1570,7 +1570,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Logic Apps</h3>
-                                                    <p>코드를 작성하지 않고 클라우드에서 데이터 액세스 및 사용 자동화</p>
+                                                    <p>코드를 작성 하지 않고도 클라우드에서 hello 액세스 및 사용 데이터의 자동화</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1589,7 +1589,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>CDN</h3>
-                                                    <p>글로벌 데이터 센터의 강력한 네트워크를 통해 최종 사용자에게 콘텐츠 제공 </p>
+                                                    <p>글로벌 데이터 센터의 강력한 네트워크를 통해 tooend 사용자 콘텐츠를 제공 합니다. </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1607,7 +1607,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Media Services</h3>
+                                                    <h3>미디어 서비스</h3>
                                                     <p>대규모 비디오 및 오디오 인코딩, 저장 및 스트리밍</p>
                                                 </div>
                                             </div>
@@ -1826,8 +1826,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>SQL Server Stretch Database</h3>
-                                                    <p>온-프레미스 SQL Server 데이터베이스를 Azure로 동적으로 확장</p>
+                                                    <h3>SQL Server 스트레치 데이터베이스</h3>
+                                                    <p>온-프레미스 SQL Server 데이터베이스 tooAzure를 동적으로 확장</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1903,7 +1903,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Redis 캐시</h3>
-                                                    <p>높은 처리량과 대기 시간이 짧은 데이터 액세스로 빠르고 확장 가능한 응용 프로그램 빌드</p>
+                                                    <p>높은 처리량, 짧은 대기 시간 데이터 액세스 toobuild fast/확장 가능한 응용 프로그램</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1984,7 +1984,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bing 웹 검색</h3>
-                                                    <p>강력한 웹 검색을 앱에 연결</p>
+                                                    <p>강력한 웹 검색 tooyour 앱 연결</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2022,7 +2022,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>사용자 지정 시각 서비스</h3>
-                                                    <p>이미지에서 특정 콘텐츠를 인식하도록 학습하는 사용자 지정 가능한 웹 서비스</p>
+                                                    <p>이미지에서 특정 콘텐츠 toorecognize 학습 하는 사용자 지정 가능한 웹 서비스</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2060,7 +2060,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>LUIS(Language Understanding Intelligent Services)</h3>
-                                                    <p>앱이 사용자의 명령을 인식하도록 학습</p>
+                                                    <p>앱 사용자가 포함 된 toounderstand 명령을 설명합니다</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2079,7 +2079,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bing 사용자 지정 검색</h3>
-                                                    <p>찾으려는 검색 결과 작성</p>
+                                                    <p>빌드에 대 한 원하는 hello 검색 결과</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2122,7 +2122,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Machine Learning</h3>
-                                                    <p>예측 유지 관리를 실현하는 강력한 클라우드 기반 예측 분석 도구</p>
+                                                    <p>클라우드 기반 강력한 예측 분석 도구 tooenable 예측 유지 관리</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2140,7 +2140,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Stream Analytics</h3>
+                                                    <h3>스트림 분석</h3>
                                                     <p>수백만 개의 IoT 장치에서 실시간 데이터 스트림 처리</p>
                                                 </div>
                                             </div>
@@ -2160,7 +2160,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>데이터 카탈로그</h3>
-                                                    <p>기업 전체에서 셀프 서비스 데이터 원본 검색 사용</p>
+                                                    <p>Hello 기업 전체에 걸쳐 셀프 서비스 데이터 원본 검색을 사용 하도록 설정</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2178,7 +2178,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Data Lake Analytics</h3>
+                                                    <h3>데이터 레이크 분석</h3>
                                                     <p>빅 데이터 사용을 용이하게 하는 분산 분석 서비스</p>
                                                 </div>
                                             </div>
@@ -2255,7 +2255,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Analysis Services</h3>
-                                                    <p>클라우드에서 엔터프라이즈급 데이터 모델링</p>
+                                                    <p>엔터프라이즈급 데이터 hello 클라우드에서 모델링</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2336,7 +2336,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure IoT Suite</h3>
-                                                    <p>손댄 적 없는 데이터를 수집하고 분석하여 비즈니스 결과 개선</p>
+                                                    <p>캡처 및 손 댄 적 없는 데이터 tooimprove 비즈니스 결과 분석 합니다.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2393,7 +2393,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Machine Learning</h3>
-                                                    <p>예측 유지 관리를 실현하는 강력한 클라우드 기반 예측 분석 도구</p>
+                                                    <p>클라우드 기반 강력한 예측 분석 도구 tooenable 예측 유지 관리</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2411,7 +2411,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Notification Hubs</h3>
+                                                    <h3>알림 허브</h3>
                                                     <p>수백만 개의 메시지를 신속하게 보내기 위한 확장 가능한 푸시 알림 엔진</p>
                                                 </div>
                                             </div>
@@ -2455,7 +2455,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Logic Apps</h3>
-                                                    <p>코드를 작성하지 않고 클라우드에서 데이터 액세스 및 사용 자동화</p>
+                                                    <p>코드를 작성 하지 않고도 클라우드에서 hello 액세스 및 사용 데이터의 자동화</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2473,7 +2473,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Service Bus</h3>
+                                                    <h3>서비스 버스</h3>
                                                     <p>사설 및 공용 클라우드 환경 간 연결</p>
                                                 </div>
                                             </div>
@@ -2492,8 +2492,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>API Management</h3>
-                                                    <p>API를 개발자, 파트너 및 직원에게 안전하게 대규모로 게시</p>
+                                                    <h3>API 관리</h3>
+                                                    <p>안전 하 고 대규모 Api toodevelopers, 파트너 및 직원이 게시</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2530,8 +2530,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>SQL Server Stretch Database</h3>
-                                                    <p>온-프레미스 SQL Server 데이터베이스를 Azure로 동적으로 확장</p>
+                                                    <h3>SQL Server 스트레치 데이터베이스</h3>
+                                                    <p>온-프레미스 SQL Server 데이터베이스 tooAzure를 동적으로 확장</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2569,7 +2569,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Biztalk Services</h3>
-                                                    <p>엔터프라이즈 및 클라우드의 원활한 통합</p>
+                                                    <p>Hello 엔터프라이즈 및 클라우드 hello 원활 하 게 통합</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2592,8 +2592,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Security Center</h3>
-                                                    <p>향상된 가시성을 통해 위협 예방, 감지 및 대응</p>
+                                                    <h3>보안 센터</h3>
+                                                    <p>방지 하 고 검색 향상 된 가시성으로 toothreats 응답</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2611,8 +2611,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Key Vault</h3>
-                                                    <p>암호화 키 및 비밀을 관리하는 방법 알아보기</p>
+                                                    <h3>키 자격 증명 모음</h3>
+                                                    <p>자세한 내용은 방법 toomanage 암호화 키 및 암호</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2650,7 +2650,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Active Directory B2C</h3>
-                                                    <p>클라우드에서 소비자 ID 및 액세스 관리</p>
+                                                    <p>Hello 클라우드의 소비자 id 및 액세스 관리</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2669,7 +2669,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Active Directory Domain Services</h3>
-                                                    <p>도메인 컨트롤러가 없는 도메인에 Azure 가상 컴퓨터 연결</p>
+                                                    <p>도메인 컨트롤러 없이 Azure 가상 컴퓨터 tooa 도메인에 가입</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2688,7 +2688,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Multi-Factor Authentication</h3>
-                                                    <p>추가 인증 수준을 통해 데이터 및 앱에 대한 액세스 보호</p>
+                                                    <p>액세스 tooyour 데이터를 보호 하 고 추가 수준의 인증을 사용 하 여 앱</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2707,7 +2707,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>보안 정보</h3>
-                                                    <p>Azure가 클라우드 솔루션을 빌드하기 위해 보안 인프라를 제공하는 방법 알아보기</p>
+                                                    <p>어떻게 Azure 제공 보안 인프라 toobuild 클라우드 솔루션에 알아봅니다</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2731,7 +2731,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Visual Studio Team Services</h3>
-                                                    <p>팀에서 서비스를 통해 코드 공유, 작업 추적 및 소프트웨어 릴리스 가능</p>
+                                                    <p>팀 tooshare 코드에 대 한 서비스 작업을 추적 하 여 소프트웨어를 제공 합니다.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2787,8 +2787,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>API Management</h3>
-                                                    <p>API를 개발자, 파트너 및 직원에게 안전하게 대규모로 게시</p>
+                                                    <h3>API 관리</h3>
+                                                    <p>안전 하 고 대규모 Api toodevelopers, 파트너 및 직원이 게시</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2850,7 +2850,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Log Analytics</h3>
-                                                    <p>컴퓨터 데이터를 운영 인텔리전스로 변환하는 방법 알아보기</p>
+                                                    <p>Tootransform를 운영 인텔리전스로 데이터를 컴퓨터 하는 방법에 대해 알아봅니다</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2887,8 +2887,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Backup</h3>
-                                                    <p>간단하고 안전하게 클라우드에 서버 백업</p>
+                                                    <h3>백업</h3>
+                                                    <p>간단 하 고 신뢰할 수 있는 서버 백업 toohello 클라우드</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2964,7 +2964,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>결제</h3>
-                                                    <p>Azure 구독에 대한 사용량 및 청구를 읽고 이해하는 방법 알아보기</p>
+                                                    <p>사용 및 Azure 구독에 대 한 방법을 hello tooread/이해에 대해 알아봅니다</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2983,7 +2983,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Advisor</h3>
-                                                    <p>비용 효율성, 성능, 고가용성 및 Azure 리소스의 보안 향상</p>
+                                                    <p>Hello 비용 효율성, 성능, 고가용성 및 Azure 리소스의 보안을 향상 시킵니다.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3116,7 +3116,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">.NET용 Azure 라이브러리 가져오기</a>
+                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">Hello Azure libraries for.NET 가져오기</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/develop/net/">시작</a>
@@ -3140,7 +3140,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://pypi.python.org/pypi/azure">Python SDK 가져오기</a>
+                                                    <a href="https://pypi.python.org/pypi/azure">Hello Python SDK 가져오기</a>
                                                 </h3>
                                                 <p>
                                                     <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">시작</a>
@@ -3170,7 +3170,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://www.npmjs.com/package/azure">Node.js SDK 가져오기</a>
+                                                    <a href="https://www.npmjs.com/package/azure">Hello Node.js SDK 가져오기</a>
                                                 </h3>
                                                 <p>
                                                     <a href="http://azure.github.io/azure-sdk-for-node/">시작</a>
@@ -3200,7 +3200,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/java/azure/java-sdk-azure-install">Java용 Azure 라이브러리 가져오기</a>
+                                                    <a href="/java/azure/java-sdk-azure-install">Hello Azure libraries for Java 가져오기</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/develop/java/">시작</a>
@@ -3224,7 +3224,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://rubygems.org/gems/azure">Ruby SDK 가져오기</a>
+                                                    <a href="https://rubygems.org/gems/azure">Hello Ruby SDK 가져오기</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md">시작</a>
@@ -3496,7 +3496,7 @@ ms.lasthandoff: 08/03/2017
                         <ul id="architecture1" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>클라우드 응용 프로그램에 대한 권장되는 아키텍처의 집합입니다. 각 아키텍처는 권장되는 사례, 조치 단계 및 권장 사항을 구현하는 실행 가능한 구성 요소를 포함합니다.</p>
+                                    <p>클라우드 응용 프로그램에 대한 권장되는 아키텍처의 집합입니다. 각 아키텍처에 권장 되는 방법, 조치 단계 및 hello 권장 사항을 구현 하는 실행 파일 구성 요소에 포함 됩니다.</p>
                                 </div>
                             </li>
                             <li>
@@ -3511,7 +3511,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>클라우드 기본 사항</h3>
-                                                    <p>클라우드에서 성공하기 위한 기본 정보입니다. 클라우드 또는 Azure를 처음 사용하는 경우 여기에서 시작합니다.</p>
+                                                    <p>Hello 클라우드에서 성공적으로 한 기본 지식 toobe 합니다. 새로운 toohello 클라우드 또는 새 tooAzure 경우 여기에서 시작 합니다.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3530,7 +3530,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>참조 아키텍처</h3>
-                                                    <p>클라우드에 대한 권장되는 아키텍처의 집합입니다. 각 아키텍처는 모범 사례, 조치 단계 및 배포 가능한 솔루션을 포함합니다.</p>
+                                                    <p>집합 hello 클라우드에 대 한 권장된 아키텍처입니다. 각 아키텍처는 모범 사례, 조치 단계 및 배포 가능한 솔루션을 포함합니다.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3549,7 +3549,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>클라우드 디자인 패턴</h3>
-                                                    <p>클라우드에 대한 디자인 패턴입니다. 각 패턴은 문제, 문제를 해결하는 패턴 및 Azure를 기반으로 하는 예를 설명합니다.</p>
+                                                    <p>Hello 클라우드에 대 한 패턴을 디자인 합니다. 각 패턴 문제 및 Azure에 따라 예제 주소 hello 패턴 문제를 설명 합니다.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3587,7 +3587,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Scenario Guides</h3>
-                                                    <p>Guidance for various end-to-end application scenarios in the cloud. Includes
+                                                    <p>Guidance for various end-to-end application scenarios in hello cloud. Includes
                                                         written guidance and reference implementations.</p>
                                                 </div>
                                             </div>

@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 규모 및 성능 테스트 | Microsoft Docs"
-description: "Azure Cosmos DB를 사용하여 규모 및 성능 테스트를 수행하는 방법을 알아봅니다."
+title: "Cosmos DB aaaAzure 확장성 및 성능 테스트 | Microsoft Docs"
+description: "Tooperform 확장 하는 방법을 알아보고 Azure Cosmos DB와 함께 성능 테스트"
 keywords: "성능 테스트"
 services: cosmos-db
 author: arramac
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: arramac
-ms.openlocfilehash: b5a1edd08819e82437c5b22d8eb131665d7c9645
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46d1217e11a39ee970a868de9a5c5dfcf52cedf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-and-scale-testing-with-azure-cosmos-db"></a>Azure Cosmos DB를 사용한 성능 및 규모 테스트
-성능 및 규모 테스트는 응용 프로그램 개발의 핵심 단계입니다. 대부분의 응용 프로그램에서 데이터베이스 계층은 전반적인 성능 및 확장성에 큰 영향을 미치므로 성능 테스트의 주요 구성 요소입니다. [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)는 탄력적인 규모 및 예측 가능한 성능을 위해 작성되었으므로 고성능 데이터베이스 계층을 필요로 하는 응용 프로그램에 가장 적합합니다. 
+성능 및 규모 테스트는 응용 프로그램 개발의 핵심 단계입니다. 대부분의 응용 프로그램에 대 한 hello 데이터베이스 계층에 상당한 영향을 전반적인 성능 및 확장성에 hello 및 따라서 성능의 주요 구성 요소 테스트 하는 것입니다. [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)는 탄력적인 규모 및 예측 가능한 성능을 위해 작성되었으므로 고성능 데이터베이스 계층을 필요로 하는 응용 프로그램에 가장 적합합니다. 
 
-이 문서는 개발자가 자신의 Cosmos DB 작업에 대한 성능 테스트 모음을 구현하거나 Cosmos DB에서 고성능 응용 프로그램 시나리오를 평가할 때 참조로 사용됩니다. 또한 이 문서는 데이터베이스의 격리된 성능 테스트에 중점을 두지만 프로덕션 응용 프로그램에 대한 모범 사례도 제공합니다.
+이 문서는 개발자가 자신의 Cosmos DB 작업에 대한 성능 테스트 모음을 구현하거나 Cosmos DB에서 고성능 응용 프로그램 시나리오를 평가할 때 참조로 사용됩니다. 이 hello 데이터베이스의 격리 된 성능 테스트에 주로 초점을 하지만 또한 프로덕션 응용 프로그램에 대 한 유용한 정보를 포함 합니다.
 
-이 문서를 읽은 다음에는 다음과 같은 질문에 답할 수 있습니다.   
+이 문서를 읽은 후 다음 질문 수 tooanswer hello 수 있습니다.   
 
 * Cosmos DB의 성능 테스트를 위한 샘플 .NET 클라이언트 응용 프로그램은 어디에서 찾을 수 있나요? 
 * 클라이언트 응용 프로그램에서 Cosmos DB를 사용하여 높은 처리량 수준을 달성하려면 어떻게 하나요?
 
-코드를 시작하려면 [Azure Cosmos DB 성능 테스트 샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)에서 프로젝트를 다운로드하세요. 
+코드로 시작 tooget hello 프로젝트를 다운로드 하세요 [Azure Cosmos DB 성능 테스트 샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)합니다. 
 
 > [!NOTE]
-> 이 응용 프로그램의 목표는 적은 수의 클라이언트 컴퓨터를 사용하여 Cosmos DB에서 더 나은 성능을 얻기 위한 모범 사례를 제시하는 것입니다. 제한 없이 확장할 수 있는 서비스의 최대 용량을 보여 주려는 것은 아닙니다.
+> 이 응용 프로그램의 hello 목표에는 적은 수의 클라이언트 컴퓨터와 더 나은 성능을 극대화 Cosmos DB을 추출 하기 위한 toodemonstrate 모범 사례입니다. Limitlessly 확장 될 수 있는 hello 서비스의 toodemonstrate hello 최대 용량을 이루어지지 않았습니다.
 > 
 > 
 
-Cosmos DB의 성능 향상을 위한 클라이언트 쪽 구성 옵션에 대한 자세한 내용은 [Azure Cosmos DB 성능 팁](performance-tips.md)을 참조하세요.
+클라이언트 쪽 구성 옵션 tooimprove Cosmos DB 성능에 대 한 찾고 있는 경우 참조 [Azure Cosmos DB 성능 팁](performance-tips.md)합니다.
 
-## <a name="run-the-performance-testing-application"></a>성능 테스트 응용 프로그램 실행
-가장 빠른 시작 방법은 아래 단계에 설명된 대로 아래의 .NET 샘플을 컴파일하고 실행하는 것입니다. 소스 코드를 검토하고 자체 클라이언트 응용 프로그램에 대해 비슷한 구성을 구현할 수도 있습니다.
+## <a name="run-hello-performance-testing-application"></a>Hello 성능 응용 프로그램 테스트를 실행 합니다.
+가장 빠른 방법은 tooget hello hello 단계 아래에 설명 된 대로 toocompile 및 아래 실행된 hello.NET 예제는 시작 합니다. Hello 소스 코드를 검토 하 고 유사한 구성 tooyour 자체 클라이언트 응용 프로그램을 구현할 수도 있습니다.
 
-**1단계:** [Azure Cosmos DB 성능 테스트 샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)에서 프로젝트를 다운로드하거나 GitHub 리포지토리를 분기합니다.
+**1 단계:** 다운로드 hello 프로젝트에서 [Azure Cosmos DB 성능 테스트 샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark), 또는 fork hello GitHub 리포지토리에 합니다.
 
-**2단계:** App.config에서 EndpointUrl, AuthorizationKey, CollectionThroughput 및 DocumentTemplate(옵션)에 대한 설정을 수정합니다.
+**2 단계:** EndpointUrl, AuthorizationKey, CollectionThroughput 및 DocumentTemplate (선택 사항) App.config에 대 한 hello 설정을 수정 합니다.
 
 > [!NOTE]
-> 높은 처리량의 컬렉션을 프로비전하기 전에 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/cosmos-db/)를 참조하여 컬렉션당 비용을 추정합니다. Azure Cosmos DB는 시간 단위로 저장소 및 처리량의 비용을 별도로 청구하므로 테스트 후에 Azure Cosmos DB 컬렉션을 삭제하거나 처리량을 줄여 비용을 절감할 수 있습니다.
+> 높은 처리량을 사용 하 여 컬렉션을 프로 비전 하기 전에 toohello를 참조 하십시오 [가격 페이지](https://azure.microsoft.com/pricing/details/cosmos-db/) 컬렉션당 tooestimate hello 비용입니다. Azure Cosmos DB 삭제 하거나 테스트 한 후 Azure Cosmos DB 컬렉션의 hello 처리량을 낮추면 하 여 비용을 저장할 수 있도록 저장소 및는 시간 단위로에서 독립적으로 처리량을 청구 합니다.
 > 
 > 
 
-**3단계:** 명령줄에서 콘솔 앱을 컴파일하고 실행합니다. 다음과 유사한 출력이 표시됩니다.
+**3 단계:** 컴파일하고 hello 명령줄에서 hello 콘솔 응용 프로그램을 실행 합니다. Hello 다음과 같은 출력이 표시 되어야 합니다.
 
     Summary:
     ---------------------------------------------------------------------
@@ -98,15 +98,15 @@ Cosmos DB의 성능 향상을 위한 클라이언트 쪽 구성 옵션에 대한
     DocumentDBBenchmark completed successfully.
 
 
-**4단계(필요한 경우):** 도구에서 보고된 처리량(RU/s)은 컬렉션의 프로비전된 처리량과 같거나 많아야 합니다. 그렇지 않은 경우 DegreeOfParallelism을 조금씩 늘리면 제한에 도달하는 데 도움이 될 수 있습니다. 클라이언트 앱의 처리량이 안정화될 경우 같거나 다른 컴퓨터에서 앱의 여러 인스턴스를 시작하면 여러 다른 인스턴스 간에 프로비전된 제한에 도달하는 데 도움이 됩니다. 이 단계에 대해 도움이 필요한 경우 askcosmosdb@microsoft.com에 전자 메일을 보내거나 [Azure Portal](https://portal.azure.com)에서 지원 티켓을 작성하세요.
+**필요한 경우 4 단계:** hello 처리량 보고 (000RU/s) hello 도구에서 hello hello 컬렉션의 프로 비전 된 처리량 보다 높거나 같은 hello 이어야 합니다. 그렇지 않은 경우 작은 단위로 증가 hello DegreeOfParallelism hello 제한에 도달 하는 데 도움이 될 수 있습니다. 클라이언트 앱에서 hello 처리량 언덕이에 hello 응용 프로그램의 여러 인스턴스를 시작할 hello 동일 하거나 서로 다른 컴퓨터 서로 다른 인스턴스 간에 hello hello를 프로 비전 한도 도달 하는 데 도움이 됩니다. 이 단계에서 도움이 필요한 경우 전자 메일을 작성해 주세요, tooaskcosmosdb@microsoft.com hello에서 지원 티켓을 보관 또는 [Azure 포털](https://portal.azure.com)합니다.
 
-실행 중인 앱이 있는 경우 다양한 [인덱싱 정책](indexing-policies.md) 및 [일관성 수준](consistency-levels.md)을 시도하면서 처리량 및 대기 시간에 미치는 영향을 이해할 수 있습니다. 소스 코드를 검토하고 자체 테스트 제품군 또는 프로덕션 응용 프로그램에 대해 비슷한 구성을 구현할 수도 있습니다.
+Hello 앱이 실행 중인를 만든 후 다른 시도할 수 [인덱싱 정책을](indexing-policies.md) 및 [일관성 수준](consistency-levels.md) toounderstand 처리량 및 대기 시간에 대 한 영향입니다. Hello 소스 코드를 검토 하 고 유사한 구성 tooyour 자체 테스트 도구 모음 또는 프로덕션 응용 프로그램을 구현할 수도 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 .NET 콘솔 앱을 사용하여 Cosmos DB로 성능 및 규모 테스트를 수행하는 방법을 살펴보았습니다. Azure Cosmos DB 사용 방법에 대한 자세한 내용은 아래 링크를 참조하세요.
+이 문서에서는 .NET 콘솔 앱을 사용하여 Cosmos DB로 성능 및 규모 테스트를 수행하는 방법을 살펴보았습니다. Cosmos DB Azure 사용에 대 한 자세한 내용은 아래 toohello 링크를 참조 하십시오.
 
 * [Azure Cosmos DB 성능 테스트 샘플](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
-* [Azure Cosmos DB 성능 향상을 위한 클라이언트 구성 옵션](performance-tips.md)
+* [클라이언트 구성 옵션 tooimprove Azure Cosmos DB 성능](performance-tips.md)
 * [Azure Cosmos DB의 서버 쪽 분할](partition-data.md)
 
 

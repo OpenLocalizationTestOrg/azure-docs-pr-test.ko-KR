@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell을 사용하여 Azure Data Lake Analytics 시작 | Microsoft Docs"
-description: "Azure PowerShell을 사용하여 Data Lake Analytics 계정을 만들고, U-SQL을 사용하여 Data Lake Analytics 작업을 만들고, 작업을 제출하는 방법에 대해 알아봅니다. "
+title: "Azure PowerShell을 사용 하 여 Azure Data Lake 분석 aaaGet 시작 | Microsoft Docs"
+description: "Azure PowerShell toocreate Data Lake 분석 계정을 사용 하 고, U SQL을 사용 하 여 데이터 레이크 분석 작업 만들기 하 고 및 hello 작업을 제출 합니다. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/04/2017
 ms.author: edmaca
-ms.openlocfilehash: 4f73e27c733edae658d1ea3bdabe48076328279b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb9b35352d1cc9a78337448b1d6835875a212e08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>Azure PowerShell을 사용하여 Azure Data Lake Analytics 시작
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-Azure PowerShell을 사용하여 Azure Data Lake Analytics 계정을 만든 다음 U-SQL 작업을 제출하고 실행하는 방법에 대해 알아봅니다. 데이터 레이크 분석에 대한 자세한 내용은 [Azure 데이터 레이크 분석 개요](data-lake-analytics-overview.md)를 참조하세요.
+어떻게 toouse Azure PowerShell toocreate Azure Data Lake 분석 계정 제출 고 U-SQL 작업 실행에 대해 알아봅니다. 데이터 레이크 분석에 대한 자세한 내용은 [Azure 데이터 레이크 분석 개요](data-lake-analytics-overview.md)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 시작하기 전에 다음 정보가 있어야 합니다.
+이 자습서를 시작 하기 전에 다음 정보는 hello가 있어야 합니다.
 
 * **Azure 데이터 레이크 분석 계정**. [Data Lake Analytics 시작](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal)을 참조하세요.
-* **Azure PowerShell이 포함된 워크스테이션**. [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview)을 참조하세요.
+* **Azure PowerShell이 포함된 워크스테이션**. 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
 
-## <a name="log-in-to-azure"></a>Azure에 로그인
+## <a name="log-in-tooazure"></a>TooAzure 로그인
 
-이 자습서에서는 Azure PowerShell을 사용하는 것에 이미 익숙하다고 가정합니다. 특히, Azure에 로그인하는 방법을 알아야 합니다. 도움이 필요한 경우 [Azure PowerShell 시작](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps)을 참조하세요.
+이 자습서에서는 Azure PowerShell을 사용하는 것에 이미 익숙하다고 가정합니다. 특히, 해야 tooknow 어떻게 toolog tooAzure에 있습니다. Hello 참조 [Azure PowerShell 시작](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps) 도움이 필요 합니다.
 
-구독 이름을 사용하여 로그인하려면
+구독 이름 사용 하 여 toolog:
 
 ```
 Login-AzureRmAccount -SubscriptionName "ContosoSubscription"
 ```
 
-구독 이름 대신 구독 ID를 사용하여 로그인할 수도 있습니다.
+Hello 구독 이름 대신에 구독 id toolog를 사용할 수 있습니다.
 
 ```
 Login-AzureRmAccount -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
-성공하면 이 명령의 출력은 다음 텍스트와 유사합니다.
+성공 하면 hello이이 명령의 출력을 텍스트 다음 hello 같습니다.
 
 ```
 Environment           : AzureCloud
@@ -59,9 +59,9 @@ SubscriptionName      : ContosoSubscription
 CurrentStorageAccount :
 ```
 
-## <a name="preparing-for-the-tutorial"></a>자습서 준비
+## <a name="preparing-for-hello-tutorial"></a>Hello 자습서 준비
 
-이 자습서의 PowerShell 코드 조각은 이러한 변수를 사용하여 이 정보를 저장합니다.
+이 자습서에서는 PowerShell 조각 hello 이러한 변수 toostore이이 정보를 사용합니다.
 
 ```
 $rg = "<ResourceGroupName>"
@@ -78,7 +78,7 @@ Get-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla
 
 ## <a name="submit-a-u-sql-job"></a>U-SQL 작업 제출
 
-U-SQL 스크립트를 보유할 PowerShell 변수를 만듭니다.
+PowerShell 변수 toohold hello U-SQL 스크립트를 만듭니다.
 
 ```
 $script = @"
@@ -90,19 +90,19 @@ $script = @"
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 
 "@
 ```
 
-스크립트를 제출합니다.
+Hello 스크립트를 제출 합니다.
 
 ```
 $job = Submit-AdlJob -AccountName $adla –Script $script
 ```
 
-또는 스크립트를 파일로 저장한 후 다음 명령으로 제출할 수 있습니다.
+Hello 스크립트를 파일로 저장 한 다음 명령을 hello로 제출할 수 있습니다.
 
 ```
 $filename = "d:\test.usql"
@@ -111,25 +111,25 @@ $job = Submit-AdlJob -AccountName $adla –ScriptPath $filename
 ```
 
 
-특정 작업의 상태를 가져옵니다. 작업이 완료되는 것으로 표시될 때까지 이 cmdlet을 계속 사용합니다.
+특정 작업의 hello 상태를 가져옵니다. Hello 작업이 완료 되어 표시 될 때까지이 cmdlet을 사용 하 여 계속 합니다.
 
 ```
 $job = Get-AdlJob -AccountName $adla -JobId $job.JobId
 ```
 
-작업이 완료될 때까지 Get-AdlAnalyticsJob을 호출하지 않고 Wait-AdlJob cmdlet을 사용할 수 있습니다.
+작업이 완료 될 때까지 Get AdlAnalyticsJob를 반복 호출을 하는 대신 hello 대기 AdlJob cmdlet을 사용할 수 있습니다.
 
 ```
 Wait-AdlJob -Account $adla -JobId $job.JobId
 ```
 
-출력 파일을 다운로드합니다.
+Hello 출력 파일을 다운로드 합니다.
 
 ```
 Export-AdlStoreItem -AccountName $adls -Path "/data.csv" -Destination "C:\data.csv"
 ```
 
 ## <a name="see-also"></a>참고 항목
-* 다른 도구를 사용하여 같은 자습서를 보려면 페이지 맨 위의 탭 선택기를 클릭합니다.
-* U-SQL을 알아보려면 [Azure Data Lake Analytics U-SQL 언어 시작](data-lake-analytics-u-sql-get-started.md)을 참조하세요.
+* toosee hello 같은 다른 도구를 사용 하 여 자습서 hello hello 페이지 위쪽에 hello 탭 선택기를 클릭 합니다.
+* toolearn U SQL 참조 [Azure 데이터 레이크 분석 U-SQL 언어 시작](data-lake-analytics-u-sql-get-started.md)합니다.
 * 관리 작업을 보려면 [Azure Portal을 사용하여 Azure Data Lake Analytics 관리](data-lake-analytics-manage-use-portal.md)를 참조하세요.

@@ -1,6 +1,6 @@
 ---
-title: "Azure 구독 제한 및 할당량 | Microsoft Docs"
-description: "일반적인 Azure 구독 및 서비스 제한, 할당량 및 제약 조건 목록을 제공합니다. 여기에는 최대값과 함께 제한을 늘리는 방법에 대한 정보가 포함됩니다."
+title: "aaaAzure 구독 제한 및 할당량 | Microsoft Docs"
+description: "일반적인 Azure 구독 및 서비스 제한, 할당량 및 제약 조건 목록을 제공합니다. 최대 값과 함께 tooincrease 제한 하는 방법에 대 한 정보가 포함 됩니다."
 services: 
 documentationcenter: 
 author: rothja
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: byvinyal
-ms.openlocfilehash: a76acd67e9ba7822f2837b3c08e2ede389047f11
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a754d56124520791254ab8f1729808f0750ff222
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 구독 및 서비스 제한, 할당량 및 제약 조건
-이 문서는 때때로 할당량이라고도 하는 가장 일반적인 Microsoft Azure 제한의 일부를 나열합니다. 현재 이 문서에서는 일부 Azure 서비스에 대해 다룹니다. 시간 경과에 따라 이 목록은 더 많은 플랫폼에 적용되도록 확장 및 업데이트됩니다.
+이 문서 라고도 할당량 hello 가장 일반적인 Microsoft Azure 제한을 보여 줍니다. 현재 이 문서에서는 일부 Azure 서비스에 대해 다룹니다. 시간이 지남에 따라 hello 목록 확장 될 것이 고 hello 플랫폼의 자세한 toocover를 업데이트 합니다.
 
-Azure 가격에 대한 자세한 정보는 [Azure 가격 책정 개요](https://azure.microsoft.com/pricing/)를 참조하세요. 여기에서 [가격 계산기](https://azure.microsoft.com/pricing/calculator/)를 사용하거나 서비스에 대한 가격 정보 페이지를 방문하여 비용을 예측할 수 있습니다(예: [Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)). 비용 관리에 대한 팁은 [Azure 청구 및 비용 관리를 사용하여 예상치 못한 비용 방지](billing/billing-getting-started.md)를 참조하세요.
-
-> [!NOTE]
-> **기본 제한**이상으로 제한 또는 할당량을 높이려는 경우 [무료로 온라인 고객 지원 요청을 개설](azure-supportability/resource-manager-core-quotas-request.md)합니다. 다음 표에 나오는 **최대 제한** 값 이상으로 제한을 높일 수 없습니다. **최대 제한** 열이 없는 경우는 리소스에 조정 가능한 제한이 없습니다. 
-> 
-> 무료 평가판 구독을 제한하거나 할당량을 증가할 수 없습니다. 무료 평가판을 사용하는 경우 [종량제](https://azure.microsoft.com/offers/ms-azr-0003p/) 구독으로 업그레이드할 수 있습니다. 자세한 내용은 [Azure 무료 평가판에서 종량제로 업그레이드](billing/billing-upgrade-azure-subscription.md)를 참조하세요.
-> 
-
-## <a name="limits-and-the-azure-resource-manager"></a>제한 및 Azure 리소스 관리자
-이제 단일 Azure 리소스 그룹에 여러 Azure 리소스를 결합할 수 있습니다. 리소스 그룹을 사용하는 경우 전역이었던 제한이 Azure 리소스 관리자에서 지역 수준으로 관리됩니다. Azure 리소스 그룹에 대한 자세한 내용은 [Azure Resource Manager 개요](azure-resource-manager/resource-group-overview.md)를 참조하세요.
-
-아래 제한에서는 Azure 리소스 관리자를 사용할 때 제한에 차이를 반영할 수 있도록 새로운 테이블이 추가되었습니다. 예를 들어, **구독 제한** 테이블 및 **구독 제한 - Azure Resource Manager** 테이블이 있습니다. 두 시나리오에 모두 제한이 적용되면 첫 번째 테이블에서만 표시됩니다. 별도로 지정하지 않으면 제한은 모든 지역에 걸쳐 전역으로 적용됩니다.
+방문 하세요 [Azure 가격 책정 개요](https://azure.microsoft.com/pricing/) toolearn Azure 가격에 대 한 자세한 합니다. Hello를 사용 하 여 비용을 예측할 수, [가격 계산기](https://azure.microsoft.com/pricing/calculator/) 또는 hello 가격 책정 서비스에 대 한 세부 정보 페이지를 방문 하 여 (예를 들어 [Windows Vm](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)). 팁 toohelp에 대 한 비용을 관리, 참조 [Azure 청구 및 비용 관리를 사용 하 여 예기치 않은 비용을 방지](billing/billing-getting-started.md)합니다.
 
 > [!NOTE]
-> Azure 리소스 그룹의 리소스에 대한 할당량은 구독을 통해 지역별로 액세스할 수 있으며, 구독별로는 액세스할 수 없는데 서비스 관리 할당량이 구독별로 액세스되기 때문입니다. 코어 할당량을 한 예로 살펴보겠습니다. 코어를 지원하는 할당량 증가를 요청해야 하는 경우 어떤 지역에서 얼마나 많은 코어를 사용할 것인지 결정한 다음, 원하는 금액 및 지역에 대한 Azure 리소스 그룹 코어 할당량에 대해 특정 요청을 만들어야 합니다. 따라서 서유럽 지역에서 응용 프로그램을 실행하려면 30개의 코어를 사용해야 하는 경우, 확실하게 서유럽에서 30개의 코어를 요청해야 합니다. 하지만 다른 지역에는 코어 할당량 증가가 없고 서유럽만 30개의 코어 할당량이 있게 됩니다.
+> Tooraise hello 제한 또는 hello 위에 할당량 원하면 **기본 제한**, [비용 없이 온라인 고객 지원 요청을 개시](azure-supportability/resource-manager-core-quotas-request.md)합니다. hello 제한 수준을 올릴 수 없습니다 hello 위에 **최대 한도** 다음 표에서 hello에 표시 된 값입니다. 없는 경우 없는 **최대 한도** 열에서 다음 hello 리소스 제한을 조정할 수 없는 경우. 
+> 
+> 무료 평가판 구독을 제한하거나 할당량을 증가할 수 없습니다. 무료 평가판을 설정한 경우 업그레이드할 수 tooa [종 량 제](https://azure.microsoft.com/offers/ms-azr-0003p/) 구독 합니다. 자세한 내용은 참조 [Azure 무료 평가판 업그레이드 tooPay-으로--제](billing/billing-upgrade-azure-subscription.md)합니다.
+> 
+
+## <a name="limits-and-hello-azure-resource-manager"></a>제한 및 hello Azure 리소스 관리자
+가능한 toocombine은 이제 여러 Azure 리소스 tooa에서 단일 Azure 리소스 그룹입니다. 리소스 그룹을 사용할 때 전역 졌 제한 될 hello Azure 리소스 관리자가 있는 지역 수준에서 관리 됩니다. Azure 리소스 그룹에 대한 자세한 내용은 [Azure Resource Manager 개요](azure-resource-manager/resource-group-overview.md)를 참조하세요.
+
+새 테이블 아래의 hello 제한 되었습니다 추가 tooreflect 제한에서 모든 차이점 hello Azure 리소스 관리자를 사용 하는 경우. 예를 들어, **구독 제한** 테이블 및 **구독 제한 - Azure Resource Manager** 테이블이 있습니다. 제한 tooboth 시나리오에 적용 되 hello 첫 번째 테이블에만 표시 됩니다. 별도로 지정하지 않으면 제한은 모든 지역에 걸쳐 전역으로 적용됩니다.
+
+> [!NOTE]
+> Hello 서비스 관리 할당량은 Azure 리소스 그룹의 리소스에 대 한 할당량 지역 구독에 액세스할 수 있으며이 아닌 구독 당 중요 tooemphasize 상태가. 코어 할당량을 한 예로 살펴보겠습니다. Toodecide 어떻게 필요한 toorequest 코어를 지 원하는 할당량 증가 해야 할 경우 어떤 지역에서 toouse을 다음 Azure 리소스 그룹에 대 한 특정 요청을 확인 하는 많은 코어 할당량을 hello 금액 및 원하는 지역에 대 한 핵심입니다. 따라서 toouse 30 해야 할 경우 코어가 서 부 유럽 toorun에서 응용 프로그램에 있습니다. 특히 서 부 유럽에서 30 개 코어를 요청 해야 합니다. 하지만 다른 지역에 코어 할당량 없을 것-hello 30 코어 할당량을 갖는 서 부 유럽만 합니다.
 > <!-- -->
-> 따라서 어떤 한 지역에서 워크로드에 필요한 Azure 리소스 그룹 할당량을 결정하고 배포를 고려 중인 각 지역에서 해당 금액을 요청하는 것이 유용할 수 있습니다. 특정 지역의 현재 할당량 검색에 대한 자세한 내용은 [배포 문제 해결](resource-manager-common-deployment-errors.md) 을 참조하세요.
+> 결과적으로, Azure 리소스 그룹 할당량 필요한 toobe 금액을 고려 하 고 배포 하는 각 지역에는 하나의 영역 및 요청 작업에 대 한 결정 하는 유용한 tooconsider 것 것을 알 수 있습니다. 특정 지역의 현재 할당량 검색에 대한 자세한 내용은 [배포 문제 해결](resource-manager-common-deployment-errors.md) 을 참조하세요.
 > 
 > 
 
@@ -96,7 +96,7 @@ Azure 가격에 대한 자세한 정보는 [Azure 가격 책정 개요](https://
 [!INCLUDE [azure-subscription-limits](../includes/azure-subscription-limits.md)]
 
 #### <a name="subscription-limits---azure-resource-manager"></a>구독 제한 - Azure Resource Manager
-Azure 리소스 관리자 및 Azure 리소스 그룹을 사용하는 경우 다음과 같은 제한이 적용됩니다. Azure 리소스 관리자에서 변경되지 않는 제한은 아래에 나열되지 않습니다. 이러한 제한에 대해서는 이전 테이블을 참조하세요.
+다음 제한 hello hello Azure 리소스 관리자 및 Azure 리소스 그룹을 사용할 때 적용 됩니다. Azure 리소스 관리자 hello로 변경 되지 않은 제한 사항은 다음과 같습니다. 이러한 제한에 대 한 toohello 이전 표를 참조 하십시오.
 
 리소스 관리자 요청의 제한 처리에 대한 정보는 [리소스 관리자 요청 제한](resource-manager-request-limits.md)을 참조하세요.
 
@@ -110,7 +110,7 @@ Azure 리소스 관리자 및 Azure 리소스 그룹을 사용하는 경우 다�
 [!INCLUDE [azure-virtual-machines-limits](../includes/azure-virtual-machines-limits.md)]
 
 #### <a name="virtual-machines-limits---azure-resource-manager"></a>가상 컴퓨터 제한 - Azure 리소스 관리자
-Azure 리소스 관리자 및 Azure 리소스 그룹을 사용하는 경우 다음과 같은 제한이 적용됩니다. Azure 리소스 관리자에서 변경되지 않는 제한은 아래에 나열되지 않습니다. 이러한 제한에 대해서는 이전 테이블을 참조하세요.
+다음 제한 hello hello Azure 리소스 관리자 및 Azure 리소스 그룹을 사용할 때 적용 됩니다. Azure 리소스 관리자 hello로 변경 되지 않은 제한 사항은 다음과 같습니다. 이러한 제한에 대 한 toohello 이전 표를 참조 하십시오.
 
 [!INCLUDE [azure-virtual-machines-limits-azure-resource-manager](../includes/azure-virtual-machines-limits-azure-resource-manager.md)]
 
@@ -144,7 +144,7 @@ Azure 리소스 관리자 및 Azure 리소스 그룹을 사용하는 경우 다�
 #### <a name="storage-service-limits"></a>저장소 서비스 제한
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
-<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
+<!-- conceptual info about disk limits -- applies toounmanaged and managed -->
 #### <a name="virtual-machine-disk-limits"></a>가상 컴퓨터 디스크 제한 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
@@ -167,7 +167,7 @@ Azure 리소스 관리자 및 Azure 리소스 그룹을 사용하는 경우 다�
 [!INCLUDE [azure-cloud-services-limits](../includes/azure-cloud-services-limits.md)]
 
 ### <a name="app-service-limits"></a>앱 서비스 제한
-다음 앱 서비스 제한에는 웹앱, 모바일 앱, API 앱 및 논리 앱에 대한 제한이 포함됩니다.
+앱 서비스 제한 hello 다음 웹 앱, 모바일 앱, API 앱 및 논리 앱에 대 한 제한을 포함 합니다.
 
 [!INCLUDE [azure-websites-limits](../includes/azure-websites-limits.md)]
 
@@ -178,22 +178,22 @@ Azure 리소스 관리자 및 Azure 리소스 그룹을 사용하는 경우 다�
 [!INCLUDE [azure-batch-limits](../includes/azure-batch-limits.md)]
 
 ### <a name="biztalk-services-limits"></a>BizTalk 서비스 제한
-다음 표에서는 Azure Biztalk 서비스에 대한 제한을 보여 줍니다.
+hello 다음 표에 hello 제한을 Azure Biztalk 서비스에 대 한 있습니다.
 
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="azure-cosmos-db-limits"></a>Azure Cosmos DB 제한
-Azure Cosmos DB는 어떠한 응용 프로그램의 요구도 처리하도록 처리량과 저장소 크기를 조정할 수 있는 뛰어난 확장성의 데이터베이스입니다. Azure Cosmos DB가 제공하는 규모에 대한 궁금한 사항은 askcosmosdb@microsoft.com에 메일을 보내 주세요.
+Azure Cosmos DB에는 처리량 및 저장소 수 크기 조정 된 toohandle 응용 프로그램에 필요한 대로 지정 세계적인 규모 데이터베이스입니다. Azure Cosmos DB에는 hello 눈금에 대 한 질문이 있으면 전자 메일을 보내 주십시오 tooaskcosmosdb@microsoft.com합니다.
 
 ### <a name="mobile-engagement-limits"></a>모바일 참여 제한
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
 
 ### <a name="search-limits"></a>검색 제한
-가격 책정 계층은 검색 서비스의 용량 및 제한을 결정합니다. 계층은 다음을 포함합니다.
+가격 책정 hello 용량 및 검색 서비스의 한계를 결정 합니다. 계층은 다음을 포함합니다.
 
 * *무료* 다중 테넌트 서비스는 다른 Azure 구독자와 공유되며 평가 및 소규모 개발 프로젝트용으로 사용하기 위한 것입니다.
-* *기본* 은 높은 가용성의 쿼리 작업에 대한 최대 3개의 복제본과 함께 프로덕션 워크로드 전용 컴퓨팅 리소스를 더 작은 규모로 제공합니다.
-* *표준(S1, S2, S3, S3 고밀도)* 은 더 큰 프로덕션 작업용입니다. 표준 계층 내에는 여러 수준이 있으므로 워크로드 프로필에 가장 적합한 리소스 구성을 선택할 수 있습니다.
+* *기본* 를 항상 사용 가능한 쿼리 워크 로드에 대 한 toothree 복제본에 더 작은 규모로 프로덕션 작업에 대 한 전용된 컴퓨팅 리소스 제공.
+* *표준(S1, S2, S3, S3 고밀도)* 은 더 큰 프로덕션 작업용입니다. 여러 수준 작업 부하 프로필에 가장 적합 한 리소스 구성을 선택할 수 있도록 hello 표준 계층 내에 존재 합니다.
 
 **구독당 제한**
 
@@ -203,7 +203,7 @@ Azure Cosmos DB는 어떠한 응용 프로그램의 요구도 처리하도록 �
 
 [!INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-문서 크기, 초당 쿼리, 키, 요청 및 응답을 비롯한 좀 더 자세한 수준의 제한 사항에 대한 자세한 내용은 [Azure Search의 서비스 제한 사항](search/search-limits-quotas-capacity.md)을 참조하세요.
+문서 크기, 초, 키, 요청 및 응답을 당 쿼리 등의 보다 세부적인 수준에 대 한 제한에 대해 자세히 toolearn 참조 [서비스에서 Azure 검색의 제한](search/search-limits-quotas-capacity.md)합니다.
 
 ### <a name="media-services-limits"></a>미디어 서비스 제한
 [!INCLUDE [azure-mediaservices-limits](../includes/azure-mediaservices-limits.md)]

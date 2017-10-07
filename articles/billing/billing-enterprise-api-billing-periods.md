@@ -1,6 +1,6 @@
 ---
-title: "Azure 청구 엔터프라이즈 API - 청구 기간 | Microsoft Docs"
-description: "Azure 기업 고객이 사용량 데이터를 프로그래밍 방식으로 끌어올 수 있게 하는 보고 API에 대해 알아봅니다."
+title: "청구 기간 청구 엔터프라이즈 Api aaaAzure | Microsoft Docs"
+description: "Hello Enterprise Azure 고객 toopull 소비 데이터에 프로그래밍 방식으로 사용할 수 있는 보고 Api에 알아봅니다."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: c6880b79189e0683387a7aafbd6fa4805b3b42ef
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4e17f25b22729a7f213306fb019ee0dbeca87ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---billing-periods"></a>기업 고객을 위한 보고 API - 청구 기간
 
-청구 기간 API는 지정된 등록에 대한 사용량 데이터를 역방향 시간 순서로 표시한 청구 기간 목록을 반환합니다. 각 기간에는 4개의 데이터 집합(잔액 요약, 사용량 세부 정보, Marktplace 요금 및 가격표)에 대한 API 경로를 가리키는 속성이 포함되어 있습니다. 기간에 데이터가 없으면 해당 속성은 null입니다. 
+대금 청구 기간 API hello 시간 순서에 등록에 대 한 hello에 대 한 데이터를 소비 하는 기간을 청구의 목록이 지정을 반환 합니다. 각 기간에는 4 개의 집합이 데이터 요금-BalanceSummary, UsageDetails, Marktplace 요금 및 가격표를 hello에 대 한 toohello API 경로 가리키는 속성을 포함 합니다. Hello 기간에 데이터가 없는 hello 해당 하는 속성은 null입니다. 
 
 
 ##<a name="request"></a>요청 
-추가해야 할 공통 헤더 속성은 [여기](billing-enterprise-api.md)에 지정되어 있습니다. 
+Toobe 추가 해야 하는 공통 헤더 속성이 지정 되어 [여기](billing-enterprise-api.md)합니다. 
 
 |메서드 | 요청 URI|
 |-|-|
 |GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingperiods|
 
 > [!Note]
-> API의 미리 보기 버전을 사용하려면 위 URL에서 v2를 v1로 바꿉니다.
+> toouse hello 미리 보기 버전의 API, URL 위에 hello v1 v2를 대체 합니다.
 >
 
 ## <a name="response"></a>응답
@@ -59,13 +59,13 @@ ms.lasthandoff: 08/03/2017
 
 |속성 이름| 형식| 설명
 |-|-|-|
-|billingPeriodId| string| 특정 청구 기간을 나타내는 고유 ID|
-|billingStart| datetime| 기간 시작 날짜는 나타내는 ISO 8601 문자열|
-|billingEnd| datetime| 기간 종료 날짜는 나타내는 ISO 8601 문자열|
-|balanceSummary| string| 이 기간의 잔액 요약 데이터에 라우팅하는 URL 경로|
-|usageDetails| string| 이 기간의 사용량 세부 정보 데이터에 라우팅하는 URL 경로|
-|marketplaceCharges| string| 이 기간의 Marketplace 요금 데이터에 라우팅하는 URL 경로|
-|priceSheet| string| 이 기간의 가격표 데이터에 라우팅하는 URL 경로|
+|billingPeriodId| string| hello 특정 요금 청구 기간을 나타내는 고유 Id|
+|billingStart| datetime| Hello 기간 시작 날짜를 나타내는 ISO 8601 문자열입니다.|
+|billingEnd| datetime| Hello 기간 종료 날짜를 나타내는 ISO 8601 문자열입니다.|
+|balanceSummary| string| hello URL 경로입니다.이 기간에 대 한 toohello 균형 요약 데이터의 경로|
+|usageDetails| string| hello URL 경로입니다.이 기간에 대 한 toohello 사용 정보 데이터의 경로|
+|marketplaceCharges| string| hello URL 경로입니다.이 기간에 대 한 toohello 마켓플레이스 요금 데이터의 경로|
+|priceSheet| string| hello URL 경로입니다.이 기간에 대 한 toohello 가격표 데이터의 경로|
 
 <br/>
 ## <a name="see-also"></a>참고 항목

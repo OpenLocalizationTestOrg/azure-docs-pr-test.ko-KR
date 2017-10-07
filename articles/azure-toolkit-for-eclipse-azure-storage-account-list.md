@@ -1,6 +1,6 @@
 ---
-title: "Azure 저장소 계정 목록"
-description: "Eclipse용 Azure 도구 키트를 사용하여 저장소 계정 설정 관리"
+title: "저장소 계정 목록을 aaaAzure"
+description: "저장소 계정 설정을 Eclipse 용 Azure 도구 키트 hello를 사용 하 여 관리"
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: f859efa389d3fe0b4b7b16255d57f1aa13123319
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35e25881ca95ae4050a26283e4726d9549b37f46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-account-list"></a>Azure 저장소 계정 목록
-Azure 저장소 계정은 JDK, 응용 프로그램 서버, 임의 구성 요소뿐만 아니라 캐싱을 사용하는 경우 상태 저장을 위해 다운로드 위치를 사용할 수 있도록 합니다. Eclipse는 프로젝트에 사용할 수 있는 알려진 저장소 계정 목록을 사용자의 Eclipse 작업 공간에 유지 관리합니다. 목록을 관리하는 데 사용되는 **저장소 계정** 대화 상자를 열려면, Eclipse에서 **창**, **기본 설정**을 차례로 클릭하고 **Azure**를 확장한 다음 **저장소 계정**을 클릭합니다.
+Azure 저장소 계정을 사용 하는 JDK, 응용 프로그램 서버 및 임의 구성 요소는 물론 캐싱을 사용할 때 상태를 저장 하는 데 사용 되는 위치 toobe를 다운로드 합니다. Eclipse는 Eclipse 작업 영역에서 사용할 수 있는 tooyour 프로젝트는 알려진된 저장소 계정 목록을 유지 관리 합니다. tooopen hello **저장소 계정은** 대화 상자를 사용 하는 toomanage Eclipse 내에서 나열 하는 클릭 **창**, 클릭 **기본 설정**, 확장 **Azure** , 클릭 하 고 **저장소 계정은**합니다.
 
-다음은 **Storage Accounts** 대화 상자입니다.
+hello 다음 표시 되어 hello **저장소 계정은** 대화 상자.
 
 ![][ic719496]
 
-이 대화 상자는 다음과 같이 저장소 계정을 사용하는 대화 상자의 **Accounts** 링크를 통해 열 수도 있습니다.
+이 대화 상자에서 열 수도 있습니다는 **계정** hello 다음과 같은 저장소 계정을 사용 하는 대화 상자에서 링크:
 
-* **서버 구성** 대화 상자의 **JDK** 탭
-* **서버 구성** 대화 상자의 **서버** 탭
-* **Add Component** 대화 상자
-* **Caching** 속성 대화 상자
+* hello **JDK** hello 탭 **서버 구성** 대화 상자.
+* hello **서버** hello 탭 **서버 구성** 대화 상자.
+* hello **구성 요소 추가** 대화 상자.
+* hello **캐싱** 속성 대화 상자.
 
-## <a name="to-import-your-storage-accounts-using-a-publish-settings-file"></a>게시 설정 파일을 사용하여 저장소 계정 가져오기
-1. **저장소 계정** 대화 상자에서 **PUBLISH-SETTINGS 파일에서 가져오기**을 클릭합니다.
+## <a name="tooimport-your-storage-accounts-using-a-publish-settings-file"></a>저장소를 사용 하 여 계정을 tooimport 게시 설정 파일
+1. Hello 내 **저장소 계정은** 대화 상자에서 클릭 **게시 설정 파일에서 가져오기**합니다.
 
-2. (게시 설정 파일을 로컬 컴퓨터에 이미 저장한 경우에는 이 단계를 건너뜁니다.) **구독 정보 가져오기** 대화 상자에서 **PUBLISH-SETTINGS 파일 다운로드**을 클릭합니다. Azure 계정에 로그인하지 않은 경우에는 로그인을 요청하는 메시지가 표시됩니다. 그 후 Azure 게시 설정 파일을 저장하도록 요청하는 메시지가 표시됩니다. (로그인 페이지에 이렇게 표시되는 지침은 무시할 수 있습니다. 이러한 지침은 Azure 포털에 의해 제공되며 Visual Studio 사용자를 위한 것입니다.) 로컬 컴퓨터에 저장합니다.
+2. (이 단계는 이미 게시 설정 파일 tooyour 로컬 컴퓨터를 저장 하는 경우.) Hello에 **구독 정보 가져오기** 대화 상자를 클릭 하 여 **게시 설정 파일 다운로드**합니다. 아직 Azure 계정에 로그인 하지 않은 경우에 증명된 toolog 됩니다. 다음 메시지가 표시 됩니다 toosave Azure 게시 설정 파일입니다. (Hello hello 로그온 페이지에 표시 되는 결과 지침을 무시할 수 hello Azure 포털에서 제공 하며 Visual Studio 사용자를 대상으로 합니다.) Tooyour 로컬 시스템으로 저장 합니다.
 
-3. **구독 정보 가져오기** 대화 상자에서 **찾아보기** 단추를 클릭하고 이전에 로컬에 저장해 놓은 게시 설정 파일을 선택한 다음 **열기**를 클릭합니다.
+3. Hello에 여전히 **구독 정보 가져오기** 대화 상자에서 hello 클릭 **찾아보기** 단추, 선택 hello 설정을 저장 한 파일을 로컬에서 이전에 게시 하 고 클릭 **열**.
 
-4. **확인**을 클릭하여 **구독 정보 가져오기** 대화 상자를 닫습니다.
+4. 클릭 **확인** tooclose hello **구독 정보 가져오기** 대화 상자.
 
-## <a name="to-create-a-new-storage-account"></a>새 저장소 계정 만들기
-1. **저장소 계정** 대화 상자에서 **추가**를 클릭합니다.
+## <a name="toocreate-a-new-storage-account"></a>toocreate 새 저장소 계정
+1. Hello 내 **저장소 계정은** 대화 상자에서 클릭 **추가**합니다.
 
-2. **저장소 계정 추가** 대화 상자에서 **새로 만들기**를 클릭합니다.
+2. Hello 내 **저장소 계정 추가** 대화 상자를 클릭 하 여 **새로**합니다.
 
-3. **New Storage Account** 대화 상자에서 다음 항목에 대한 값을 지정합니다.
+3. Hello 내 **새 저장소 계정** 대화 상자에서 다음 hello에 대 한 값을 지정 합니다.
 
    * 저장소 계정 이름
 
-   * 저장소 계정의 위치
+   * Hello 저장소 계정의 위치입니다.
 
-   * 저장소 계정에 대한 설명
+   * Hello 저장소 계정에 대 한 설명입니다.
 
-   * 저장소 계정이 속해 있는 구독
+   * hello 구독 toowhich hello 저장소 계정에 속해 있습니다.
 
-4. **확인**를 클릭하여 **새 저장소 계정** 대화 상자를 닫습니다.
+4. 클릭 **확인** tooclose hello **새 저장소 계정** 대화 상자.
 
-저장소 계정을 만드는 데 몇 분 정도 걸릴 수 있습니다. 계정이 생성된 후에 **확인**를 클릭하여 **저장소 계정 추가** 대화 상자를 닫으면, 새 저장소 계정이 사용 가능한 저장소 계정 목록에 추가됩니다.
+만든 저장소 계정 toobe 프로그램에 대 일 분 정도 걸릴 수 있습니다. 를 만든 후 클릭 **확인** tooclose hello **저장소 계정 추가** 대화 상자에서 및 새로운 저장소 계정이 사용 가능한 저장소 계정 목록이 toohello 추가 될 합니다.
 
-## <a name="to-add-an-existing-storage-account-to-the-list"></a>기존 저장소 계정을 목록에 추가
-1. Azure 저장소 계정이 없는 경우에는 위의 **새 저장소 계정 만들기 섹션** 에 나열된 단계에 따라서 계정을 만듭니다. (또는 [Azure Management Portal][Azure Management Portal]에서 새 저장소 계정을 만들 수 있습니다.)
+## <a name="tooadd-an-existing-storage-account-toohello-list"></a>기존 저장소 계정 toohello 목록 tooadd
+1. Hello에 나열 된 hello 단계를 수행 하면 아직 없는 Azure 저장소 계정, 만들 경우 **toocreate 새 저장소 계정 섹션** 위에 있습니다. (새 저장소 계정을 hello에서 만들 수 있습니다 또는 [Azure 관리 포털][Azure Management Portal].)
 
-2. **저장소 계정** 대화 상자에서 **추가**를 클릭합니다.
+2. Hello 내 **저장소 계정은** 대화 상자에서 클릭 **추가**합니다.
 
-3. **저장소 계정 추가** 대화 상자에서 **이름** 및 **선택키**의 값을 입력합니다. 계정 이름 및 액세스 키는 기존 Azure 저장소 계정에 대한 값이어야 합니다. 저장소 계정 이름 및 키를 보려면 [Azure Management Portal][Azure Management Portal]의 **저장소** 섹션을 사용합니다. **Add Storage Account** 대화 상자는 다음과 유사한 모양입니다.
+3. Hello 내 **저장소 계정 추가** 대화 상자에서 값을 입력 **이름** 및 **선택 키**합니다. 기존 Azure 저장소 계정에 대 한 hello 계정 이름과 액세스 키 여야 합니다. 사용 하 여 hello **저장소** hello 섹션 [Azure 관리 포털] [ Azure Management Portal] tooview 저장소 계정의 이름을 지정 하 고 키입니다. 프로그램 **저장소 계정 추가** 대화 상자가 유사 toohello 다음에 표시 됩니다.
    
    ![][ic719497]
 
-4. **확인**을 클릭하여 **저장소 계정 추가** 대화 상자를 닫습니다.
+4. 클릭 **확인** tooclose hello **저장소 계정 추가** 대화 상자.
 
-## <a name="to-modify-a-storage-account-to-use-a-new-access-key"></a>새 액세스 키를 사용하도록 저장소 계정 수정
-1. **저장소 계정** 대화 상자에서 편집할 저장소 계정을 클릭한 후 **편집**을 클릭합니다.
+## <a name="toomodify-a-storage-account-toouse-a-new-access-key"></a>toomodify 저장소 계정 toouse 새 액세스 키
+1. Hello 내 **저장소 계정은** 대화 상자에서 tooedit 원하고 클릭 hello 저장소 계정을 클릭 **편집**합니다.
 
-2. **저장소 계정 선택기 편집** 대화 상자에서 **선택키** 값을 수정합니다.
+2. Hello 내 **저장소 계정 액세스 키 편집** 대화 상자에서 hello 수정 **선택 키** 값입니다.
 
-3. **확인**을 클릭하고 **저장소 계정 선택기 편집** 대화 상자를 닫습니다.
+3. 클릭 **확인** tooclose hello **저장소 계정 액세스 키 편집** 대화 상자.
 
-## <a name="to-remove-a-storage-account-from-the-list-maintained-in-eclipse"></a>Eclipse에 유지 관리되는 목록에서 저장소 계정 제거
-1. **저장소 계정** 대화 상자에서 편집할 저장소 계정을 클릭한 후 **제거**를 클릭합니다.
+## <a name="tooremove-a-storage-account-from-hello-list-maintained-in-eclipse"></a>tooremove hello 목록에서 저장소 계정을 Eclipse에서 유지 관리
+1. Hello 내 **저장소 계정은** 대화 상자에서 tooedit 원하고 클릭 hello 저장소 계정을 클릭 **제거**합니다.
 
-2. 저장소 계정을 제거한다는 메시지가 표시되면 **OK** 를 클릭합니다.
+2. 클릭 **확인** 때 메시지 표시 tooremove hello 저장소 계정입니다.
 
 > [!NOTE]
-> **Storage Accounts** 대화 상자를 통해 저장소 계정을 제거하면, 계정은 Eclipse 내에서 볼 수 있는 저장소 계정 목록에서만 제거됩니다. Azure 구독에서 저장소 계정을 제거하는 것은 아닙니다. 아울러 Eclipse에서 구독 세부 정보를 다시 로드한 후에 저장소 계정이 다시 표시될 수 있습니다.
+> Hello 통해 hello 저장소 계정을 제거 하는 **저장소 계정은** 대화만이 목록에서 제거 hello Eclipse 내에서 볼 수 있는 저장소 계정입니다. Azure 구독에서 저장소 계정을 hello를 제거 하지 않습니다. 또한 hello 저장소 계정 수 다시 목록에 표시 Eclipse 구독 hello 세부 정보를 다시 로드 한 후 합니다.
 > 
 > 
 
 ## <a name="see-also"></a>참고 항목
 [Eclipse용 Azure 도구 키트][Azure Toolkit for Eclipse]
 
-[Eclipse용 Azure 도구 키트 설치][Installing the Azure Toolkit for Eclipse] 
+[Hello Eclipse 용 Azure 도구 키트 설치][Installing hello Azure Toolkit for Eclipse] 
 
 [Eclipse에서 Azure용 Hello World 응용 프로그램 만들기][Creating a Hello World Application for Azure in Eclipse]
 
-Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터][Azure Java Developer Center]를 참조하세요.
+Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터][Azure Java Developer Center]합니다.
 
 <!-- URL List -->
 
@@ -105,8 +105,8 @@ Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[What's New in hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 

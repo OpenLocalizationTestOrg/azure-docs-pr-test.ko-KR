@@ -1,6 +1,6 @@
 ---
-title: "Ambari REST API를 사용하여 Hadoop 모니터링 및 관리 - Azure HDInsight | Microsoft Docs"
-description: "Ambari를 사용하여 Azure HDInsight에서 Hadoop 클러스터를 모니터링하고 관리하는 방법에 대해 알아봅니다. 이 문서에서는 HDInsight 클러스터에 포함된 Ambari REST API를 사용하는 방법을 배웁니다."
+title: "aaaMonitor Ambari REST api-Azure HDInsight Hadoop 관리 | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Ambari toomonitor 및 Azure HDInsight의 Hadoop 클러스터를 관리 합니다. 이 문서에서는 toouse hello Ambari REST API에 포함 된 HDInsight 클러스터 방법을 배웁니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,51 +16,51 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 7960d83bce22d4f671d61e9aaf55561bc24308f8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1866a77c8e402231bccbcfba7174253aca41339b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-hdinsight-clusters-by-using-the-ambari-rest-api"></a>Ambari REST API를 사용하여 HDInsight 클러스터 관리
+# <a name="manage-hdinsight-clusters-by-using-hello-ambari-rest-api"></a>Hello Ambari REST API를 사용 하 여 HDInsight 클러스터를 관리 합니다.
 
 [!INCLUDE [ambari-selector](../../includes/hdinsight-ambari-selector.md)]
 
-Ambari REST API를 사용하여 Azure HDInsight에서 Hadoop 클러스터를 관리하고 모니터링하는 방법에 대해 알아봅니다.
+Toouse Ambari REST API toomanage hello 하 고 Azure HDInsight의 Hadoop 클러스터를 모니터링 하는 방법에 대해 알아봅니다.
 
-Apache Ambari는 손쉬운 웹 UI 및 REST API 사용을 제공하여 Hadoop 클러스터의 관리 및 모니터링을 간소화합니다. Ambari는 Linux 운영 체제를 사용하는 HDInsight 클러스터에 포함됩니다. Ambari를 사용하여 클러스터를 모니터링하고 구성을 변경할 수 있습니다.
+Apache Ambari hello 관리 및 쉽게 toouse 웹 UI 및 REST API를 제공 하 여 Hadoop 클러스터의 모니터링을 간소화 합니다. Ambari는 hello Linux 운영 체제를 사용 하는 HDInsight 클러스터에 포함 됩니다. Ambari toomonitor hello 클러스터를 사용할 수 있으며 구성을 변경할 수 있습니다.
 
 ## <a id="whatis"></a>Ambari 정의
 
-[Apache Ambari](http://ambari.apache.org)는 Hadoop 클러스터를 프로비저닝, 관리 및 모니터링하는 데 사용되는 웹 UI를 제공합니다. 개발자는 [Ambari REST API](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)를 사용하여 자신의 응용 프로그램에 이러한 기능을 통합할 수 있습니다.
+[Apache Ambari](http://ambari.apache.org) 웹 사용된 tooprovision 수, 관리 및 Hadoop 클러스터를 모니터링할 수 있는 UI를 제공 합니다. 개발자 hello를 사용 하 여 응용 프로그램에 이러한 기능을 통합할 수 [Ambari REST Api](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)합니다.
 
 Ambari는 Linux 기반 HDInsight 클러스터를 기본으로 제공합니다.
 
-## <a name="how-to-use-the-ambari-rest-api"></a>Ambari REST API 사용 방법
+## <a name="how-toouse-hello-ambari-rest-api"></a>어떻게 toouse hello Ambari REST API
 
 > [!IMPORTANT]
-> 이 문서의 정보 및 예제에는 Linux 운영 체제를 사용하는 HDInsight 클러스터가 필요합니다. 자세한 내용은 [HDInsight 시작](hdinsight-hadoop-linux-tutorial-get-started.md)을 참조하세요.
+> hello 정보 및이 설명서의 예제에는 Linux 운영 체제를 사용 하는 HDInsight 클러스터가 필요 합니다. 자세한 내용은 [HDInsight 시작](hdinsight-hadoop-linux-tutorial-get-started.md)을 참조하세요.
 
-이 문서의 예제는 Bourne 셸(bash) 및 PowerShell 둘 다로 제공됩니다. bash 예제는 GNU bash 4.3.11로 테스트되었으나 다른 Unix 셸에서도 작동됩니다. PowerShell 예제는 PowerShell 5.0으로 테스트되었으나 PowerShell 3.0 이상에서 작동해야 합니다.
+이 문서에 hello 예제는 hello Bourne 셸 (bash) 및 PowerShell 모두에 대해 제공 됩니다. 예제 GNU를 사용 하 여 테스트 된 hello bash 4.3.11를 이용한 적 하지만 다른 Unix 셸 함께 사용할 수 있어야 합니다. hello PowerShell 예에서는 PowerShell 5.0과 함께 테스트 된 제외한 및 PowerShell 3.0 이상이 작동 해야 합니다.
 
-__Bourne 셸__(Bash)을 사용하는 경우에는 다음이 설치되어 있어야 합니다.
+Hello를 사용 하는 경우 __Bourne 셸__ (Bash) hello 다음이 설치 되어 있어야 합니다.
 
-* [cURL](http://curl.haxx.se/): cURL은 명령줄에서 REST API와 함께 작동하도록 사용할 수 있는 유틸리티입니다. 이 문서에서 Ambari REST API와 통신하는데 사용됩니다.
+* [cURL](http://curl.haxx.se/): cURL는 hello 명령줄에서 REST Api를 사용 하는 toowork 일 수 있는 유틸리티입니다. 이 문서에서 사용 되는 toocommunicate hello Ambari REST API로입니다.
 
-Bash 또는 PowerShell을 사용할 경우 [jq](https://stedolan.github.io/jq/)도 설치되어 있어야 합니다. Jq는 JSON 문서를 사용하기 위한 유틸리티입니다. 이 유틸리티는 **모든** Bash 예제와 PowerShell 예제 중 **하나**에서 사용됩니다.
+Bash 또는 PowerShell을 사용할 경우 [jq](https://stedolan.github.io/jq/)도 설치되어 있어야 합니다. Jq는 JSON 문서를 사용하기 위한 유틸리티입니다. 사용 되는 **모든** Bash 예제 hello 및 **하나의** hello PowerShell 예제입니다.
 
 ### <a name="base-uri-for-ambari-rest-api"></a>Ambari REST API의 기본 URI
 
-HDInsight에서 Ambari REST API의 기본 URI는 https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME이며, 여기서 **CLUSTERNAME**은 클러스터 이름입니다.
+hello hello HDInsight의 Ambari REST API에 대 한 기본 URI는 https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, 여기서 **CLUSTERNAME** hello 클러스터 이름입니다.
 
 > [!IMPORTANT]
-> URI의 FQDN(정규화된 도메인 이름) 부분에 있는 클러스터 이름(CLUSTERNAME.azurehdinsight.net)은 대/소문자를 구분하지 않지만 URI의 다른 항목은 대/소문자를 구분합니다. 예를 들어 클러스터 이름이 `MyCluster`인 경우 올바른 URI는 다음과 같습니다.
+> Hello에서 hello 클러스터 이름을 정규화 하는 동안 URI (CLUSTERNAME.azurehdinsight.net) hello의 도메인 이름 (FQDN) 부분은 대/소문자 구분, hello URI에서에서 발생할 수 있는 다른는 대/소문자 구분입니다. 예를 들어, 클러스터의 이름이 `MyCluster`, hello 다음은 유효한 Uri:
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 >
 > `https://MyCluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 > 
-> 이름의 두 번째 항목에 대/소문자가 잘못되었기 때문에 다음 URI는 오류를 반환합니다.
+> 대/소문자를 수정 하는 hello 다음 Uri는 hello hello 이름의 두 번째 항목은 hello 하지 때문에 오류를 반환 합니다.
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/mycluster`
 >
@@ -68,22 +68,22 @@ HDInsight에서 Ambari REST API의 기본 URI는 https://CLUSTERNAME.azurehdinsi
 
 ### <a name="authentication"></a>인증
 
-HTTPS를 요구하는 HDInsight에서 Ambari로 연결 클러스터 만들기 중 입력한 관리자 계정 이름(기본값은 **admin**) 및 암호를 사용합니다.
+HTTPS 필요 tooAmbari HDInsight에 연결 합니다. 사용 하 여 hello 관리자 계정 이름 (hello 기본값은 **admin**) 및 클러스터를 만드는 동안 지정한 암호입니다.
 
 ## <a name="examples-authentication-and-parsing-json"></a>예제: 인증 및 JSON 구문 분석
 
-다음 예제에서는 기본 Ambari REST API에 대해 GET 요청을 수행하는 방법을 보여 줍니다.
+다음 예제는 hello toomake hello에 대 한 GET 요청의 Ambari REST API를 기반 하는 방법을 보여 줍니다.
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
 ```
 
 > [!IMPORTANT]
-> 이 문서의 Bash 예제는 다음과 같이 가정합니다.
+> 이 설명서의 hello Bash 예제 hello 다음 가정을 확인 합니다.
 >
-> * 클러스터의 로그인 이름 기본값은 `admin`입니다.
-> * `$PASSWORD`에는 HDInsight 로그인 명령에 대한 암호가 포함됩니다. `PASSWORD='mypassword'`를 사용하여 이 값을 설정할 수 있습니다.
-> * `$CLUSTERNAME`에는 클러스터의 이름이 포함됩니다. `set CLUSTERNAME='clustername'`을 사용하여 이 값을 설정할 수 있습니다.
+> * hello 클러스터에 대 한 로그인 이름을 hello의 hello 기본값은 `admin`합니다.
+> * `$PASSWORD`hello HDInsight 로그인 명령에 대 한 hello 암호를 포함합니다. `PASSWORD='mypassword'`을 사용하여 이 값을 설정할 수 있습니다.
+> * `$CLUSTERNAME`hello 클러스터의 hello 이름을 포함합니다. `set CLUSTERNAME='clustername'`을 사용하여 이 값을 설정할 수 있습니다.
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -92,12 +92,12 @@ $resp.Content
 ```
 
 > [!IMPORTANT]
-> 이 문서의 PowerShell 예제는 다음과 같이 가정합니다.
+> 이 문서에서 PowerShell 예제를 hello hello 다음 가정을 확인 합니다.
 >
-> * `$creds`는 클러스터에 대한 관리자 로그인 및 암호를 포함하는 자격 증명 개체입니다. `$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"`을 사용하고 자격 증명을 제공하라는 메시지가 표시되면 제공하여 이 값을 설정할 수 있습니다.
-> * `$clusterName`은 클러스터의 이름을 포함하는 문자열입니다. `$clusterName="clustername"`을 사용하여 이 값을 설정할 수 있습니다.
+> * `$creds`hello 관리자 로그인과 hello 클러스터에 대 한 암호를 포함 하는 자격 증명 개체가입니다. 사용 하 여이 값을 설정할 수 `$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"` 하 고 메시지가 표시 되 면 hello 자격 증명을 제공 합니다.
+> * `$clusterName`hello 클러스터의 hello 이름이 포함 된 문자열이입니다. `$clusterName="clustername"`을 사용하여 이 값을 설정할 수 있습니다.
 
-두 예제 모두 다음과 비슷한 정보로 시작되는 JSON 문서를 반환합니다.
+다음 예제와 비슷한 toohello를 정보로 시작 하는 JSON 문서를 반환 하는 두 예제:
 
 ```json
 {
@@ -121,14 +121,14 @@ $resp.Content
 
 ### <a name="parsing-json-data"></a>JSON 데이터 구문 분석
 
-다음 예제에서는 `jq`를 사용하여 JSON 응답 문서를 구문 분석하고 결과 중에서 `health_report` 문서만 표시합니다.
+hello 다음 예제에서는 `jq` tooparse JSON 응답 문서 hello 및 표시만 hello `health_report` hello 결과에서 정보입니다.
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME" \
 | jq '.Clusters.health_report'
 ```
 
-PowerShell 3.0 이상에서는 JSON 문서를 PowerShell에서 보다 쉽게 사용할 수 있는 개체로 변환하는 `ConvertFrom-Json` cmdlet을 제공합니다. 다음 예제에서는 `ConvertFrom-Json`을 사용하여 결과 중에서 `health_report` 정보만 표시합니다.
+PowerShell 3.0 이상 제공 hello `ConvertFrom-Json` cmdlet는 PowerShell에서 보다 쉽게 toowork 사용 되는 개체가으로 hello JSON 문서를 변환 합니다. hello 다음 예제에서는 `ConvertFrom-Json` toodisplay만 hello `health_report` hello 결과에서 정보입니다.
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -138,13 +138,13 @@ $respObj.Clusters.health_report
 ```
 
 > [!NOTE]
-> 이 문서의 예제 대부분은 `ConvertFrom-Json`을 사용하여 응답 문서의 요소를 표시하고 [Ambari 구성 업데이트](#example-update-ambari-configuration) 예제는 jq를 사용합니다. Jq는 JSON 응답 문서에서 새 템플릿을 생성하기 위해 이 예제에서 사용됩니다.
+> 대부분의 예제가 문서에서는 동안 `ConvertFrom-Json` hello 응답 문서에서 요소를 toodisplay hello [업데이트 Ambari 구성](#example-update-ambari-configuration) jq을 사용 하 여 예제입니다. 이 예제에서는 tooconstruct Jq는 hello JSON 응답 문서에서 새 템플릿을 합니다.
 
-REST API의 모든 참조 문서를 보려면 [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)을 참조하세요.
+Hello REST API의 모든 참조를 참조 하십시오. [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)합니다.
 
-## <a name="example-get-the-fqdn-of-cluster-nodes"></a>예: 클러스터 노드의 FQDN 가져오기
+## <a name="example-get-hello-fqdn-of-cluster-nodes"></a>예: hello 클러스터 노드의 FQDN 가져오기
 
-HDInsight에서 작업할 때 클러스터 노드의 정규화된 도메인 이름(FQDN)에 대해 알아야 할 수도 있습니다. 다음 예제를 사용하여 클러스터의 다양한 노드에 대한 FQDN을 쉽게 검색할 수 있습니다.
+HDInsight를 사용할 때에 클러스터 노드의 tooknow hello 정규화 된 도메인 이름 (FQDN)를 할 수 있습니다. 쉽게 예제 따르는 hello를 사용 하 여 hello 클러스터에서 다양 한 노드 hello에 대 한 FQDN hello를 검색할 수 있습니다.
 
 * **모든 노드**
 
@@ -202,14 +202,14 @@ HDInsight에서 작업할 때 클러스터 노드의 정규화된 도메인 이�
     $respObj.host_components.HostRoles.host_name
     ```
 
-## <a name="example-get-the-internal-ip-address-of-cluster-nodes"></a>예제: 클러스터 노드의 내부 IP 주소 가져오기
+## <a name="example-get-hello-internal-ip-address-of-cluster-nodes"></a>예: 클러스터 노드의 hello 내부 IP 주소 가져오기
 
 > [!IMPORTANT]
-> 이 섹션의 예제에서 반환된 IP 주소는 인터넷을 통해 직접 액세스할 수 없습니다. HDInsight 클러스터를 포함하는 Azure Virtual Network 내에서만 액세스할 수 있습니다.
+> 이 섹션의 hello 예제에서 반환 된 hello IP 주소에는 액세스할 수 있는 조치 hello 인터넷 직접는입니다. Hello hello HDInsight 클러스터를 포함 하는 Azure 가상 네트워크 내에서 액세스할 수만 됩니다.
 >
 > HDInsight 및 가상 네트워크 작업에 대한 자세한 내용은 [사용자 지정 Azure Virtual Network를 사용하여 HDInsight 기능 확장](hdinsight-extend-hadoop-virtual-network.md)을 참조하세요.
 
-IP 주소를 찾으려면 클러스터 노드의 내부 FQDN(정규화된 도메인 이름)을 알아야 합니다. FQDN을 알고 있으므로 호스트의 IP 주소를 얻을 수 있습니다. 다음 예제에서는 먼저 Ambari를 쿼리하여 모든 호스트 노드의 FQDN을 알아낸 다음 다시 Ambari를 쿼리하여 각 호스트의 IP 주소를 알아냅니다.
+toofind hello IP 주소를 hello 내부 정규화 된 도메인 이름 (FQDN) hello의 클러스터 노드를 알고 있어야 합니다. FQDN hello를 만든 후에 다음 hello 호스트의 hello IP 주소를 가져올 수 있습니다. hello 다음 예에서는 먼저 Ambari hello 모든 hello 호스트 노드 FQDN에 대 한 쿼리 다음 각 호스트의 IP 주소 hello Ambari를 쿼리 합니다.
 
 ```bash
 for HOSTNAME in $(curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/hosts" | jq -r '.items[].Hosts.host_name')
@@ -233,11 +233,11 @@ foreach($item in $respObj.items) {
 }
 ```
 
-## <a name="example-get-the-default-storage"></a>예제: 기본 저장소 가져오기
+## <a name="example-get-hello-default-storage"></a>예: hello 기본 저장소 가져오기
 
-HDInsight 클러스터를 만드는 경우 Azure Storage 계정 또는 Data Lake Store를 클러스터에 대한 기본 저장소로 사용해야 합니다. 클러스터를 만든 후 Ambari를 사용하여 이 정보를 검색할 수 있습니다. 예를 들어 HDInsight 외부 컨테이너에 데이터를 읽고 쓰려는 경우가 여기에 해당합니다.
+HDInsight 클러스터를 만들 때 사용 해야 Azure 저장소 계정 또는 데이터 레이크 저장소 hello 기본 저장소로 hello 클러스터에 대 한 합니다. Hello 클러스터를 만든 후이 정보 Ambari tooretrieve을 사용할 수 있습니다. 예를 들어, HDInsight 외부 tooread/쓰기 데이터 toohello 컨테이너에 들어 있습니다.
 
-다음 예제에서는 클러스터에서 기본 저장소 구성을 검색합니다.
+hello 다음 예제에서는 hello 기본 저장소 구성에서에서 검색 hello 클러스터:
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -252,15 +252,15 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 ```
 
 > [!IMPORTANT]
-> 이러한 예제는 서버(`service_config_version=1`)에 적용된 첫 번째 구성을 반환하며 이 정보를 포함합니다. 클러스터를 만든 후에 수정된 값을 검색하는 경우 구성 버전을 나열하고 최신 버전을 검색해야 합니다.
+> 첫 번째 적용 된 구성을 toohello 서버 hello를 반환 하는 이러한 예제 (`service_config_version=1`)는이 정보를 포함 합니다. 클러스터를 만든 후 수정 된 값을 검색 하는 경우에 toolist hello 구성 버전 해야 하는 수 고 hello 최신을 검색할 수 있습니다.
 
-반환 값은 다음 예제 중 하나와 유사합니다.
+hello 반환 값은 예제 따르는 hello의 유사한 tooone:
 
-* `wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net` - 이 값은 클러스터에서 기본 저장소에 Azure Storage 계정을 사용하고 있음을 나타냅니다. `ACCOUNTNAME` 값은 저장소 계정의 이름입니다. `CONTAINER` 부분은 저장소 계정에서 blob 컨테이너의 이름입니다. 이 컨테이너는 클러스터에 대한 HDFS 호환 저장소의 루트입니다.
+* `wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net`-이 값 해당 hello 클러스터 기본 저장소에 대 한 Azure 저장소 계정을 사용 하는 것을 나타냅니다. hello `ACCOUNTNAME` 값은 hello hello 저장소 계정의 이름입니다. hello `CONTAINER` 부분 hello hello 저장소 계정의 blob 컨테이너의 hello 이름입니다. hello 컨테이너는 hello hello 클러스터에 대 한 HDFS 호환 되는 저장소의 hello 루트입니다.
 
-* `adl://home` - 이 값은 클러스터가 기본 저장소에 Azure Data Lake Store를 사용하고 있음을 나타냅니다.
+* `adl://home`-이 값 해당 hello 클러스터에서 기본 저장소에 Azure 데이터 레이크 저장소를 사용 하는 것을 나타냅니다.
 
-    Data Lake Store 계정 이름을 찾으려면 다음 예제를 사용합니다.
+    Data Lake 저장소 계정 이름 toofind hello 예제 따르는 hello를 사용 합니다.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -274,9 +274,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.items.configurations.properties.'dfs.adls.home.hostname'
     ```
 
-    반환 값은 `ACCOUNTNAME.azuredatalakestore.net`과 비슷합니다. 여기서 `ACCOUNTNAME`은 Data Lake Store 계정의 이름입니다.
+    hello 반환 값은 유사한 너무`ACCOUNTNAME.azuredatalakestore.net`여기서 `ACCOUNTNAME` hello hello Data Lake 저장소 계정 이름입니다.
 
-    Data Lake Store 내에서 클러스터에 대한 저장소를 포함하는 디렉터리를 찾으려면 다음 예제를 사용합니다.
+    사용 하 여 hello 예제 따르는 hello 클러스터용 hello 저장소를 포함 하는 데이터 레이크 저장소 내에서 toofind hello 디렉터리:
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -290,15 +290,15 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.items.configurations.properties.'dfs.adls.home.mountpoint'
     ```
 
-    반환 값은 `/clusters/CLUSTERNAME/`과 비슷합니다. 이 값은 Data Lake Store 계정 내의 경로입니다. 이 경로는 클러스터에 대한 HDFS 호환 파일 시스템의 루트입니다. 
+    hello 반환 값은 유사한 너무`/clusters/CLUSTERNAME/`합니다. 이 값은 hello Data Lake 저장소 계정 내의 경로입니다. 이 경로 hello hello 클러스터에 대 한 HDFS 호환 되는 파일 시스템의 hello 루트입니다. 
 
 > [!NOTE]
-> [Azure PowerShell](/powershell/azure/overview)에서 제공하는 `Get-AzureRmHDInsightCluster` cmdlet 또한 클러스터에 대한 저장소 정보를 반환합니다.
+> hello `Get-AzureRmHDInsightCluster` 에서 제공 하는 cmdlet [Azure PowerShell](/powershell/azure/overview) 도 반환 hello hello 클러스터에 대 한 저장소 정보입니다.
 
 
 ## <a name="example-get-configuration"></a>예제: 구성 가져오기
 
-1. 클러스터에 사용할 수 있는 구성을 가져옵니다.
+1. 클러스터에 대해 사용할 수 있는 hello 구성을 가져옵니다.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -310,7 +310,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.Content
     ```
 
-    이 예제는 클러스터에 설치된 구성 요소에 대한 현재 구성이 포함된 JSON 문서(*tag* 값으로 식별됨)를 반환합니다. 다음 예제는 Spark 클러스터 형식에서 반환된 데이터에서 발췌한 것입니다.
+    이 예에서는 반환 hello 현재 구성이 포함 된 JSON 문서 (hello로 식별 되 *태그* 값) hello 클러스터에 설치 하는 hello 구성 요소에 대 한 합니다. hello 다음 예제는 Spark 클러스터 유형에서 반환 된 hello 데이터에서 발췌 한 내용입니다.
    
    ```json
    "spark-metrics-properties" : {
@@ -330,7 +330,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
    }
    ```
 
-2. 관심 있는 구성 요소에 대한 구성을 가져옵니다. 다음 예제에서는 이전 요청에서 반환된 태그 값으로 `INITIAL`을 바꿉니다.
+2. 관심이 있는 hello 구성 요소에 대 한 hello 구성을 가져옵니다. Hello에서 다음 예제에서는 대체 `INITIAL` hello 이전 요청에서 반환 된 hello 태그 값을 사용 합니다.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=core-site&tag=INITIAL"
@@ -342,11 +342,11 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
 
-    이 예제는 `core-site` 구성 요소에 대한 현재 구성을 포함하는 JSON 문서를 반환합니다.
+    Hello hello에 대 한 현재 구성이 포함 된 JSON 문서를 반환 하는이 예제 `core-site` 구성 요소입니다.
 
 ## <a name="example-update-configuration"></a>예제: 구성 업데이트
 
-1. Ambari에서 "필요한 구성"으로 저장하는 현재 구성을 가져옵니다.
+1. Ambari hello "원하는 구성"으로 저장 하는 hello 현재 구성을 가져오려면
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -357,7 +357,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
         -Credential $creds
     ```
 
-    이 예제는 클러스터에 설치된 구성 요소에 대한 현재 구성이 포함된 JSON 문서(*tag* 값으로 식별됨)를 반환합니다. 다음 예제는 Spark 클러스터 형식에서 반환된 데이터에서 발췌한 것입니다.
+    이 예에서는 반환 hello 현재 구성이 포함 된 JSON 문서 (hello로 식별 되 *태그* 값) hello 클러스터에 설치 하는 hello 구성 요소에 대 한 합니다. hello 다음 예제는 Spark 클러스터 유형에서 반환 된 hello 데이터에서 발췌 한 내용입니다.
    
     ```json
     "spark-metrics-properties" : {
@@ -377,9 +377,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     }
     ```
    
-    이 목록에서 구성 요소의 이름(예: **spark\_thrift\_sparkconf** 및 **tag** 값을 복사해야 합니다.
+    이 목록에서 필요한 toocopy hello hello 구성 요소의 이름입니다 (예를 들어 **spark\_thrift\_sparkconf** 및 hello **태그** 값입니다.
 
-2. 다음 명령을 사용하여 구성 요소 및 태그의 구성을 검색합니다.
+2. 다음 명령 hello를 사용 하 여 hello 구성 요소 및 태그에 대 한 hello 구성 검색:
    
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=spark-thrift-sparkconf&tag=INITIAL" \
@@ -396,21 +396,21 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     ```
 
     > [!NOTE]
-    > **spark-thrift-sparkconf** 및 **INITIAL**을 검색할 구성 요소 및 태그로 바꿉니다.
+    > 대체 **spark-thrift-sparkconf** 및 **초기** hello 구성 요소와 tooretrieve hello 구성에 대 한 원하는 태그입니다.
    
-    Jq는 HDInsight에서 검색한 데이터를 새 구성 템플릿으로 반환하는 데 사용됩니다. 특히, 이러한 예제에서는 다음 작업을 수행합니다.
+    Jq는 HDInsight에서 검색 한 새로운 구성 템플릿을 사용 하는 tooturn hello 데이터입니다. 특히,이 예에서는 hello 다음 작업을 수행 합니다.
    
-    * 문자열 "version" 및 날짜를 포함하는 고유 값을 만듭니다. 이 값은 `newtag`에 저장됩니다.
+    * Hello 문자열 "version" 및 hello 날짜에 저장 되는 포함 된 고유한 값을 만듭니다 `newtag`합니다.
 
-    * 필요한 새 구성의 루트 문서를 만듭니다.
+    * Hello 새 원하는 구성에 대 한 루트 문서를 만듭니다.
 
-    * `.items[]` 배열의 내용을 가져와서 **desired_config** 요소에 추가합니다.
+    * 가져옵니다 hello hello의 내용을 `.items[]` 배열 하 고 hello에서 추가 **desired_config** 요소입니다.
 
-    * `href`, `version`, and `Config` 요소는 새 구성을 제출하는 데 필요하지 않으므로 삭제합니다.
+    * 삭제 hello `href`, `version`, 및 `Config` 요소를 이러한 요소로 아닌 필요한 toosubmit 새 구성 합니다.
 
-    * 값이 `version#################`인 `tag` 요소를 추가합니다. 숫자 부분은 현재 날짜를 기반으로 합니다. 각 구성에 고유한 태그가 있어야 합니다.
+    * 값이 `version#################`인 `tag` 요소를 추가합니다. hello 숫자 부분을 기반으로 hello 현재 날짜입니다. 각 구성에 고유한 태그가 있어야 합니다.
      
-    마지막으로 데이터가 `newconfig.json` 문서에 저장됩니다. 문서 구조는 다음 예제와 유사하게 표시되어야 합니다.
+    마지막으로, hello 데이터 저장 toohello `newconfig.json` 문서. hello 문서 구조에는 다음 예제와 비슷한 toohello 같아야 합니다.
      
      ```json
     {
@@ -428,14 +428,14 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     }
     ```
 
-3. `newconfig.json` 문서를 열고 `properties` 개체의 값을 수정/추가합니다. 다음 예제는 `"spark.yarn.am.memory"` 값을 `"1g"`에서 `"3g"`로 변경합니다. 또한 값이 `"256m"`인 `"spark.kryoserializer.buffer.max"`를 추가합니다.
+3. 열기 hello `newconfig.json` hello에서 문서 및 수정/추가 값 `properties` 개체입니다. hello 다음 예제에서는 변경 내용을 hello 값 `"spark.yarn.am.memory"` 에서 `"1g"` 너무`"3g"`합니다. 또한 값이 `"256m"`인 `"spark.kryoserializer.buffer.max"`를 추가합니다.
    
         "spark.yarn.am.memory": "3g",
         "spark.kyroserializer.buffer.max": "256m",
    
-    수정을 완료했으면 파일을 저장합니다.
+    수정이 완료 되 면 hello 파일을 저장 합니다.
 
-4. 다음 명령을 사용하여 업데이트된 구성을 Ambari에 제출합니다.
+4. 다음 명령을 toosubmit 업데이트 hello 구성 tooAmbari hello를 사용 합니다.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" -X PUT -d @newconfig.json "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
@@ -451,13 +451,13 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
    
-    이러한 명령은 **newconfig.json** 파일의 내용을 새 구성으로 클러스터에 제출합니다. 이 요청은 JSON 문서를 반환합니다. 이 문서의 **versionTag** 요소는 제출한 버전과 일치해야 하며, **configs** 개체에는 요청한 구성 변경 내용이 포함됩니다.
+    이 명령은 제출 hello 내용의 hello **newconfig.json** hello 새로운 필요한 구성 toohello 클러스터의 파일입니다. hello 요청 JSON 문서를 반환합니다. hello **versionTag** 이 문서에서 요소, 전송 및 hello hello 버전 일치 해야 **configs** 개체에는 요청한 hello 구성 변경 내용이 포함 되어 있습니다.
 
 ### <a name="example-restart-a-service-component"></a>예: 서비스 구성 요소 다시 시작
 
-이제 새 구성을 적용하려면 먼저 Spark 서비스를 다시 시작해야 한다는 메시지가 Ambari 웹 UI에 표시됩니다. 다음 단계를 사용하여 서비스를 다시 시작합니다.
+이 시점에서 hello Ambari web UI 보면 hello Spark 서비스 toobe hello 새 구성을 적용 하기 전에 다시 시작 필요 함을 나타냅니다. 단계 toorestart hello 서비스는 hello를 사용 합니다.
 
-1. 다음을 사용하여 Spark 서비스에 대한 유지 관리 모드를 사용하도록 설정합니다.
+1. Hello Spark 서비스에 대 한 유지 관리 모드 tooenable 다음 hello를 사용 합니다.
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -474,7 +474,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
    
-    이러한 명령은 서버에 JSON 문서를 보내 유지 관리 모드를 켭니다. 이제 다음 요청을 사용하여 서비스가 유지 관리 모드인지 확인할 수 있습니다.
+    이 명령은 유지 관리 모드를 설정 하는 JSON 문서 toohello 서버를 보냅니다. 이제 hello 서비스 요청을 수행 하는 hello를 사용 하 여 유지 관리 모드 인지 확인할 수 있습니다.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -489,9 +489,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.ServiceInfo.maintenance_state
     ```
    
-    반환 값은 `ON`입니다.
+    hello 반환 값은 `ON`합니다.
 
-2. 그런 후 다음을 사용하여 서비스를 해제합니다.
+2. 를 사용 하 여 hello tooturn hello 서비스 해제를 수행 합니다.
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -508,7 +508,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $resp.Content
     ```
     
-    응답은 다음 예제와 유사합니다.
+    hello 응답은 다음 예제와 비슷한 toohello입니다.
    
     ```json
     {
@@ -521,9 +521,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     ```
     
     > [!IMPORTANT]
-    > 이 URI에서 반환된 `href` 값은 클러스터 노드의 내부 IP 주소를 사용합니다. 클러스터 외부에서 이를 사용하려면 '10.0.0.18:8080' 부분을 클러스터의 FQDN으로 바꿉니다. 
+    > hello `href` 이 URI에서 반환 된 값 hello 클러스터 노드의 hello 내부 IP 주소를 사용 합니다. toouse hello hello 클러스터의 FQDN '10.0.0.18:8080' hello 부분 외부 hello 클러스터에서 대체 합니다. 
     
-    다음 명령은 요청의 상태를 검색합니다.
+    hello 요청의 hello 상태를 검색 하는 명령을 수행 하는 hello:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -538,9 +538,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
     $respObj.Requests.request_status
     ```
 
-    응답 `COMPLETED`는 요청이 완료되었음을 나타냅니다.
+    응답 `COMPLETED` 해당 hello 요청을 완료 했음을 나타냅니다.
 
-3. 이전 요청이 완료되면 다음을 사용하여 서비스를 시작합니다.
+3. Hello 이전 요청이 완료 되 면 hello toostart hello 서비스를 사용 합니다.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -555,9 +555,9 @@ $respObj.items.configurations.properties.'fs.defaultFS'
         -Headers @{"X-Requested-By" = "ambari"} `
         -Body '{"RequestInfo":{"context":"_PARSE_.STOP.SPARK","operation_level":{"level":"SERVICE","cluster_name":"CLUSTERNAME","service_name":"SPARK"}},"Body":{"ServiceInfo":{"state":"STARTED"}}}'
     ```
-    이제 서비스는 새 구성을 사용합니다.
+    hello 서비스는 이제 hello 새 구성을 사용 해야 합니다.
 
-4. 마지막으로, 다음을 사용하여 유지 관리 모드를 해제합니다.
+4. 마지막으로, 다음 유지 관리 모드 tooturn hello를 사용 합니다.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -575,5 +575,5 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 
 ## <a name="next-steps"></a>다음 단계
 
-REST API의 모든 참조 문서를 보려면 [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)을 참조하세요.
+Hello REST API의 모든 참조를 참조 하십시오. [Ambari API 참조 V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)합니다.
 

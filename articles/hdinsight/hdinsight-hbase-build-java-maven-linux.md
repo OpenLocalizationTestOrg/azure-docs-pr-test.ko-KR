@@ -1,6 +1,6 @@
 ---
-title: "Java HBase 클라이언트 - Azure HDInsight | Microsoft Docs"
-description: "Apache Maven을 사용하여 Java 기반 Apache HBase 응용 프로그램을 빌드한 다음 Azure HDInsight의 HBase에 배포하는 방법에 대해 알아봅니다."
+title: "aaaJava HBase 클라이언트-Azure HDInsight | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Apache Maven Java 기반 toobuild Apache HBase 응용 프로그램에 배포 tooHBase Azure HDInsight의 합니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 03c88397e36c0fc7f19410e49f6b6f1a607659f8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 41ef92b2900280dd59089c4fa40686c44133b337
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-java-applications-for-apache-hbase"></a>Apache HBase에 대한 Java 응용 프로그램 빌드
 
-Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만드는 방법을 알아봅니다. 그런 다음 Azure HDInsight의 HBase에서 응용 프로그램을 사용합니다.
+자세한 내용은 방법 toocreate는 [Apache HBase](http://hbase.apache.org/) java에서 응용 프로그램입니다. 다음 hello 응용 프로그램을 사용 하 여 Azure HDInsight에서 HBase를 사용 합니다.
 
-이 문서에 나온 단계는 [Maven](http://maven.apache.org/)을 사용하여 프로젝트를 만들고 빌드합니다. Maven은 Java 프로젝트용 소프트웨어, 문서화 및 보고를 빌드할 수 있는 소프트웨어 프로젝트 관리 및 종합 도구입니다.
+이 문서 사용의 단계를 hello [Maven](http://maven.apache.org/) toocreate 및 빌드 hello 프로젝트. Maven는 소프트웨어 프로젝트 관리 및 이해 도구 toobuild 소프트웨어, 설명서 및 Java 프로젝트에 대 한 보고서입니다.
 
 > [!NOTE]
-> 이 문서의 단계는 HDInsight 3.6에서 가장 최근에 테스트되었습니다.
+> hello이 문서의 단계에서는 가장 최근에 테스트 HDInsight 3.6 사용 합니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계에는 Linux를 사용하는 HDInsight 클러스터가 필요합니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> 이 문서의 단계 hello Linux를 사용 하는 HDInsight 클러스터를 필요 합니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 ## <a name="requirements"></a>요구 사항
 
@@ -45,33 +45,33 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 * [Linux 기반 Azure HDInsight 클러스터 및 HBase](hdinsight-hbase-tutorial-get-started-linux.md#create-hbase-cluster)
 
   > [!NOTE]
-  > 이 문서의 단계는 HDInsight 클러스터 버전 3.4 및 3.5에서 테스트되었습니다. 예제에 제공되는 기본값은 HDInsight 3.5 클러스터에 대한 것입니다.
+  > 이 문서의 단계 hello HDInsight 클러스터 버전 3.4 및 3.5와 테스트 되었습니다. 예제에 제공 된 hello 기본값 3.5 HDInsight 클러스터에 대 한 됩니다.
 
-## <a name="create-the-project"></a>프로젝트 만들기
+## <a name="create-hello-project"></a>Hello 프로젝트 만들기
 
-1. 개발 환경의 명령줄에서 프로젝트를 만들 위치(예: `cd code\hbase`)로 디렉터리를 변경합니다.
+1. Hello 명령줄에서 개발 환경에서 디렉터리 toohello 저장할 위치 toocreate hello 프로젝트 예를 들어 변경 `cd code\hbase`합니다.
 
-2. Maven과 함께 설치되는 **mvn** 명령을 사용하여 프로젝트용 스캐폴딩을 생성합니다.
+2. 사용 하 여 hello **mvn** Maven에서 hello 프로젝트에 대 한 스 캐 폴딩 toogenerate hello 함께 설치 된 명령입니다.
 
     ```bash
     mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=hbaseapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
     > [!NOTE]
-    > PowerShell을 사용하는 경우 큰 따옴표로 `-D` 매개 변수를 묶어야 합니다.
+    > PowerShell을 사용 하는 경우 hello 묶어야 `-D` 큰따옴표로 매개 변수입니다.
     >
     > `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=hbaseapp" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`
 
-    이 명령은 **artifactID** 매개 변수와 동일한 이름으로 디렉터리를 만듭니다(이 예제에서는 **hbaseapp**). 이 디렉터리에는 다음과 같은 항목이 포함됩니다.
+    이 명령은 이름이 hello hello로 디렉터리를 만듭니다 **의 artifactID** 매개 변수 (**hbaseapp** 이 예에서.) 이 디렉터리는 다음 항목 hello를 포함 되어 있습니다.
 
-   * **pom.xml**: [프로젝트 개체 모델(POM)](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)은 프로젝트를 빌드하는 데 사용된 정보 및 구성 세부 정보를 포함합니다.
-   * **src**: **main/java/com/microsoft/examples** 디렉터리를 포함하는 디렉터리이며 여기서 응용 프로그램을 작성합니다.
+   * **pom.xml**: hello Project 개체 모델 ([POM](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)) 정보 및 구성 사용 세부 정보 toobuild hello 프로젝트를 포함 합니다.
+   * **src**: hello를 포함 하는 hello 디렉터리 **main/java/com/microsoft/예제** hello 응용 프로그램을 작성할 수 있는 디렉터리입니다.
 
-3. `src/test/java/com/microsoft/examples/apptest.java` 파일을 삭제합니다. 이 예제에서는 사용되지 않았습니다.
+3. Hello 삭제 `src/test/java/com/microsoft/examples/apptest.java` 파일입니다. 이 예제에서는 사용되지 않았습니다.
 
-## <a name="update-the-project-object-model"></a>프로젝트 개체 모델 업데이트
+## <a name="update-hello-project-object-model"></a>업데이트 hello Project 개체 모델
 
-1. `pom.xml` 파일을 편집하고 다음 코드를 `<dependencies>` 섹션에 추가합니다.
+1. Hello 편집 `pom.xml` 파일을 hello hello 내부에서 코드를 다음 추가 `<dependencies>` 섹션:
 
    ```xml
     <dependency>
@@ -86,19 +86,19 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
     </dependency>
    ```
 
-    이 섹션에서는 프로젝트에 **hbase-client** 및 **phoenix-core** 구성 요소가 필요하다는 점을 나타냅니다. 컴파일 시 이러한 종속성이 기본 Maven 리포지토리에서 다운로드됩니다. [Maven 중앙 리포지토리 검색](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)을 사용하여 이 종속성에 대한 자세한 정보를 확인할 수 있습니다.
+    이 섹션 나타냅니다 해당 hello 프로젝트 **hbase 클라이언트** 및 **피닉스 코어** 구성 요소입니다. 컴파일 타임에 이러한 종속성은 hello 기본 Maven 저장소에서 다운로드 됩니다. Hello를 사용할 수 있습니다 [Maven 중앙 리포지토리 검색](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar) toolearn이이 종속성에 대 한 자세한 합니다.
 
    > [!IMPORTANT]
-   > hbase-client의 버전 번호는 HDInsight 클러스터와 함께 제공되는 HBase 버전과 일치해야 합니다. 다음 표를 사용하여 올바른 버전 번호를 찾으세요.
+   > hello hbase 클라이언트의 버전 번호 hello hello 버전의 HDInsight 클러스터와 함께 제공 되는 HBase 일치 해야 합니다. 다음 테이블 toofind hello 올바른 버전 번호는 hello를 사용 합니다.
 
-   | HDInsight 클러스터 버전 | 사용할 HBase 버전 |
+   | HDInsight 클러스터 버전 | HBase 버전 toouse |
    | --- | --- |
    | 3.2 |0.98.4-hadoop2 |
    | 3.3, 3.4, 3.5 및 3.6 |1.1.2 |
 
-    HDInsight 버전 및 구성 요소에 대한 자세한 내용은 [HDInsight에서 사용할 수 있는 다양한 Hadoop 구성 요소](hdinsight-component-versioning.md)를 참조하세요.
+    HDInsight 버전 및 구성 요소에 대 한 자세한 내용은 참조 하십시오. [hello 다른 Hadoop 구성 요소 HDInsight를 사용할 수 있는](hdinsight-component-versioning.md)합니다.
 
-3. **pom.xml** 파일에 다음 코드를 추가합니다. 이 텍스트는 파일의 `<project>...</project>` 태그 내에 있어야 합니다. 예를 들어 `</dependencies>`와 `</project>` 사이에 있어야 합니다.
+3. 다음 코드 toohello hello 추가 **pom.xml** 파일입니다. 이 텍스트는 hello 내부에 있어야 합니다. `<project>...</project>` 사이 hello에 태그 파일 예를 들어, `</dependencies>` 및 `</project>`합니다.
 
    ```xml
     <build>
@@ -148,17 +148,17 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
     이 섹션은 HBase에 대한 구성 정보를 포함하는 리소스(`conf/hbase-site.xml`)를 구성합니다.
 
    > [!NOTE]
-   > 또한 코드를 통해 구성 값을 설정할 수도 있습니다. `CreateTable` 예제에서 주석을 참조하세요.
+   > 또한 코드를 통해 구성 값을 설정할 수도 있습니다. Hello에 hello 메모를 참조 하십시오. `CreateTable` 예제입니다.
 
-    또한 이 섹션에서는 [Maven 컴파일러 플러그 인](http://maven.apache.org/plugins/maven-compiler-plugin/) 및 [Maven 음영 플러그 인](http://maven.apache.org/plugins/maven-shade-plugin/)도 구성합니다. 컴파일러 플러그 인은 토폴로지를 컴파일하는 데 사용됩니다. 음영 플러그 인은 Maven으로 빌드된 JAR 패키지에서 라이선스 중복을 방지하는 데 사용됩니다. 이 플러그 인은 HDInsight 클러스터에서 런타임에 "중복 라이선스 파일" 오류가 발생하지 않도록 하는 데 사용됩니다. `ApacheLicenseResourceTransformer` 구현에서 maven-shade-plugin을 사용하면 이 오류가 방지됩니다.
+    이 섹션에는 또한 hello 구성 [Maven 컴파일러 플러그 인](http://maven.apache.org/plugins/maven-compiler-plugin/) 및 [Maven 음영 플러그 인](http://maven.apache.org/plugins/maven-shade-plugin/)합니다. hello 컴파일러 플러그 인에 사용 되는 toocompile hello 토폴로지 됩니다. 플러그 인 hello 음영 Maven에 의해 빌드되는 hello JAR 패키지에서 사용 되는 tooprevent 라이선스 중복입니다. 이 플러그 인 hello HDInsight 클러스터에서 실행 시 사용 되는 tooprevent "라이선스 파일 중복" 오류입니다. Maven-음영-플러그 인을 사용 하 여 hello로 `ApacheLicenseResourceTransformer` 구현 hello 오류를 방지 합니다.
 
-    또한 maven-shade-plugin은 응용 프로그램에 필요한 모든 종속성을 포함하는 uber jar도 생성합니다.
+    hello maven 음영 플러그인도 hello 응용 프로그램에 필요한 모든 hello 종속성을 포함 하는 uber jar를 생성 합니다.
 
-4. `pom.xml` 파일을 저장합니다.
+4. Hello 저장 `pom.xml` 파일입니다.
 
-5. `hbaseapp` 디렉터리에 `conf`라는 디렉터리를 만듭니다. 이 디렉터리는 HBase에 연결하기 위한 구성 정보를 저장하는 데 사용됩니다.
+5. 라는 디렉터리를 만들고 `conf` hello에 `hbaseapp` 디렉터리입니다. 이 디렉터리는 tooHBase 연결 하는 데 사용 되는 toohold 구성 정보입니다.
 
-6. 다음 명령을 사용하여 HBase 클러스터에서 `conf` 디렉터리로 HBase 구성을 복사합니다. `USERNAME`을 SSH 로그인 이름으로 바꿉니다. `CLUSTERNAME`을 HDInsight 클러스터 이름으로 바꿉니다.
+6. 사용 하 여 hello 다음 명령은 hello HBase 클러스터 toohello에서 toocopy hello HBase 구성을 `conf` 디렉터리입니다. 대체 `USERNAME` SSH 로그인의 hello 이름으로 합니다. `CLUSTERNAME`을 HDInsight 클러스터 이름으로 바꿉니다.
 
     ```bash
     scp USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:/etc/hbase/conf/hbase-site.xml ./conf/hbase-site.xml
@@ -166,11 +166,11 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 
    `ssh` 및 `scp` 사용에 관한 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-## <a name="create-the-application"></a>응용 프로그램 만들기
+## <a name="create-hello-application"></a>Hello 응용 프로그램 만들기
 
-1. `hbaseapp/src/main/java/com/microsoft/examples` 디렉터리로 이동하여 app.java 파일 이름을 `CreateTable.java`로 변경합니다.
+1. Toohello 이동 `hbaseapp/src/main/java/com/microsoft/examples` 디렉터리 및 이름 바꾸기 hello app.java 파일 너무`CreateTable.java`합니다.
 
-2. `CreateTable.java` 파일을 열고 기존 콘텐츠를 다음 텍스트로 바꿉니다.
+2. 열기 hello `CreateTable.java` 파일 및 텍스트 다음 hello hello 기존 내용을 바꿉니다.
 
    ```java
     package com.microsoft.examples;
@@ -201,13 +201,13 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
         //NOTE: Actual zookeeper host names can be found using Ambari:
         //curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/hosts"
 
-        //Linux-based HDInsight clusters use /hbase-unsecure as the znode parent
+        //Linux-based HDInsight clusters use /hbase-unsecure as hello znode parent
         config.set("zookeeper.znode.parent","/hbase-unsecure");
 
-        // create an admin object using the config
+        // create an admin object using hello config
         HBaseAdmin admin = new HBaseAdmin(config);
 
-        // create the table...
+        // create hello table...
         HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf("people"));
         // ... with two column families
         tableDescriptor.addFamily(new HColumnDescriptor("name"));
@@ -225,9 +225,9 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 
         HTable table = new HTable(config, "people");
 
-        // Add each person to the table
-        //   Use the `name` column family for the name
-        //   Use the `contactinfo` column family for the email
+        // Add each person toohello table
+        //   Use hello `name` column family for hello name
+        //   Use hello `contactinfo` column family for hello email
         for (int i = 0; i< people.length; i++) {
             Put person = new Put(Bytes.toBytes(people[i][0]));
             person.add(Bytes.toBytes("name"), Bytes.toBytes("first"), Bytes.toBytes(people[i][1]));
@@ -235,18 +235,18 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
             person.add(Bytes.toBytes("contactinfo"), Bytes.toBytes("email"), Bytes.toBytes(people[i][3]));
             table.put(person);
         }
-        // flush commits and close the table
+        // flush commits and close hello table
         table.flushCommits();
         table.close();
         }
     }
    ```
 
-    이 코드는 **CreateTable** 클래스이며, **people**이라는 테이블을 만들고 미리 정의된 사용자로 채웁니다.
+    이 코드는 hello **CreateTable** 라는 테이블을 만듭니다는 클래스 **사람** 미리 정의 된 사용자로 구성 된 채웁니다.
 
-3. `CreateTable.java` 파일을 저장합니다.
+3. Hello 저장 `CreateTable.java` 파일입니다.
 
-4. `hbaseapp/src/main/java/com/microsoft/examples` 디렉터리에서 `SearchByEmail.java`라는 파일을 만듭니다. 이 파일의 내용으로 다음 텍스트를 사용합니다.
+4. Hello에 `hbaseapp/src/main/java/com/microsoft/examples` 디렉터리 라는 파일을 만들어 `SearchByEmail.java`합니다. 이 파일의 내용에 hello 텍스트를 다음 hello를 사용 합니다.
 
    ```java
     package com.microsoft.examples;
@@ -268,18 +268,18 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
         public static void main(String[] args) throws IOException {
         Configuration config = HBaseConfiguration.create();
 
-        // Use GenericOptionsParser to get only the parameters to the class
-        // and not all the parameters passed (when using WebHCat for example)
+        // Use GenericOptionsParser tooget only hello parameters toohello class
+        // and not all hello parameters passed (when using WebHCat for example)
         String[] otherArgs = new GenericOptionsParser(config, args).getRemainingArgs();
         if (otherArgs.length != 1) {
             System.out.println("usage: [regular expression]");
             System.exit(-1);
         }
 
-        // Open the table
+        // Open hello table
         HTable table = new HTable(config, "people");
 
-        // Define the family and qualifiers to be used
+        // Define hello family and qualifiers toobe used
         byte[] contactFamily = Bytes.toBytes("contactinfo");
         byte[] emailQualifier = Bytes.toBytes("email");
         byte[] nameFamily = Bytes.toBytes("name");
@@ -288,8 +288,8 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 
         // Create a regex filter
         RegexStringComparator emailFilter = new RegexStringComparator(otherArgs[0]);
-        // Attach the regex filter to a filter
-        //   for the email column
+        // Attach hello regex filter tooa filter
+        //   for hello email column
         SingleColumnValueFilter filter = new SingleColumnValueFilter(
             contactFamily,
             emailQualifier,
@@ -297,11 +297,11 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
             emailFilter
         );
 
-        // Create a scan and set the filter
+        // Create a scan and set hello filter
         Scan scan = new Scan();
         scan.setFilter(filter);
 
-        // Get the results
+        // Get hello results
         ResultScanner results = table.getScanner(scan);
         // Iterate over results and print  values
         for (Result result : results ) {
@@ -321,11 +321,11 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
     }
    ```
 
-    **SearchByEmail** 클래스를 사용하여 메일 주소로 행을 쿼리할 수 있습니다. 정규식 필터를 사용하므로, 이 클래스를 사용할 때 문자열 또는 정규식을 제공할 수 있습니다.
+    hello **SearchByEmail** 클래스에는 전자 메일 주소로 행에 대 한 사용된 tooquery 될 수 있습니다. 정규식 필터를 사용 하기 때문에 hello 클래스를 사용 하는 경우 문자열이 나 정규식을 제공할 수 있습니다.
 
-5. `SearchByEmail.java` 파일을 저장합니다.
+5. Hello 저장 `SearchByEmail.java` 파일입니다.
 
-6. `hbaseapp/src/main/hava/com/microsoft/examples` 디렉터리에서 `DeleteTable.java`라는 파일을 만듭니다. 이 파일의 내용으로 다음 텍스트를 사용합니다.
+6. Hello에 `hbaseapp/src/main/hava/com/microsoft/examples` 디렉터리 라는 파일을 만들어 `DeleteTable.java`합니다. 이 파일의 내용에 hello 텍스트를 다음 hello를 사용 합니다.
 
    ```java
     package com.microsoft.examples;
@@ -339,57 +339,57 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
         public static void main(String[] args) throws IOException {
         Configuration config = HBaseConfiguration.create();
 
-        // Create an admin object using the config
+        // Create an admin object using hello config
         HBaseAdmin admin = new HBaseAdmin(config);
 
-        // Disable, and then delete the table
+        // Disable, and then delete hello table
         admin.disableTable("people");
         admin.deleteTable("people");
         }
     }
    ```
 
-    이 클래스는 `CreateTable` 클래스에서 생성된 테이블을 비활성화하고 제거하여 이 예제에서 만든 HBase 테이블을 정리합니다.
+    이 클래스 정리 hello HBase 테이블을 사용 하지 않도록 설정 하 여이 예제에서 만든 하 고 hello에서 만든 hello 테이블 삭제 `CreateTable` 클래스입니다.
 
-7. `DeleteTable.java` 파일을 저장합니다.
+7. Hello 저장 `DeleteTable.java` 파일입니다.
 
-## <a name="build-and-package-the-application"></a>응용 프로그램 빌드 및 패키지화
+## <a name="build-and-package-hello-application"></a>Hello 응용 프로그램을 빌드 및 패키지
 
-1. `hbaseapp` 디렉터리에서 다음 명령을 사용하여 응용 프로그램을 포함하는 JAR 파일을 빌드합니다.
+1. Hello에서 `hbaseapp` 디렉터리를 사용 하 여 hello 다음 명령은 toobuild hello 응용 프로그램을 포함 하는 JAR 파일:
 
     ```bash
     mvn clean package
     ```
 
-    이 명령은 .jar 파일에 응용 프로그램을 빌드하고 패키지합니다.
+    이 명령은 빌드하고 패키지 hello.jar 파일에 응용 프로그램.
 
-2. 명령이 완료되면 `hbaseapp/target` 디렉터리는 `hbaseapp-1.0-SNAPSHOT.jar`라는 파일을 포함합니다.
+2. Hello 명령이 완료 되 면 hello `hbaseapp/target` 라는 파일을 포함 하는 디렉터리 `hbaseapp-1.0-SNAPSHOT.jar`합니다.
 
    > [!NOTE]
-   > `hbaseapp-1.0-SNAPSHOT.jar` 파일은 uber jar입니다. 응용 프로그램을 실행 는 데 필요한 모든 종속성을 포함합니다.
+   > hello `hbaseapp-1.0-SNAPSHOT.jar` uber jar 파일이 있습니다. 모든 hello 종속성 필요한 toorun hello 응용 프로그램을 포함합니다.
 
 
-## <a name="upload-the-jar-and-run-jobs-ssh"></a>JAR 업로드 및 작업 실행(SSH)
+## <a name="upload-hello-jar-and-run-jobs-ssh"></a>Hello JAR를 업로드 하 고 (SSH) 작업 실행
 
-다음 단계에서는 `scp`를 사용하여 HDInsight 클러스터에 있는 HBase의 기본 헤드 노드에 JAR을 복사합니다. 그런 후 `ssh` 명령은 클러스터에 연결하고 헤드 노드에서 직접 예제를 실행하는 데 사용됩니다.
+다음 단계 사용 하 여 hello `scp` toocopy hello JAR toohello 기본의 헤드 노드 HDInsight 클러스터에서 HBase 프로그램. hello `ssh` tooconnect toohello 클러스터를 사용 하 고 hello 예제 hello 헤드 노드에서 직접 실행 명령입니다.
 
-1. jar을 클러스터에 업로드하려면 다음 명령을 사용합니다.
+1. tooupload hello jar toohello 클러스터에서 다음 명령을 사용 하 여 hello:
 
     ```bash
     scp ./target/hbaseapp-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:hbaseapp-1.0-SNAPSHOT.jar
     ```
 
-    `USERNAME`을 SSH 로그인 이름으로 바꿉니다. `CLUSTERNAME`을 HDInsight 클러스터 이름으로 바꿉니다.
+    대체 `USERNAME` SSH 로그인의 hello 이름으로 합니다. `CLUSTERNAME`을 HDInsight 클러스터 이름으로 바꿉니다.
 
-2. HBase 클러스터에 연결하려면 다음 명령을 사용합니다.
+2. tooconnect toohello HBase 클러스터 hello 다음 명령을 사용 합니다.
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
     ```
 
-    `USERNAME`을 SSH 로그인 이름으로 바꿉니다. `CLUSTERNAME`을 HDInsight 클러스터 이름으로 바꿉니다.
+    대체 `USERNAME` hello 이름 SSH 로그인입니다. `CLUSTERNAME`을 HDInsight 클러스터 이름으로 바꿉니다.
 
-3. Java 응용 프로그램을 사용하는 HBase 테이블을 만들려면 다음 명령을 사용합니다.
+3. 사용 하 여 HBase 테이블 toocreate hello Java 응용 프로그램, 다음 명령을 사용 하 여 hello:
 
     ```bash
     yarn jar hbaseapp-1.0-SNAPSHOT.jar com.microsoft.examples.CreateTable
@@ -397,13 +397,13 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 
     이 명령은 **people**이라는 HBase 테이블을 만들고 데이터로 채웁니다.
 
-4. 테이블에 저장된 이메일 주소를 검색하려면 다음 명령을 사용합니다.
+4. 다음 명령을 사용 하 여 hello hello 테이블에 저장 하는 전자 메일 주소에 대 한 toosearch:
 
     ```bash
     yarn jar hbaseapp-1.0-SNAPSHOT.jar com.microsoft.examples.SearchByEmail contoso.com
     ```
 
-    다음과 같은 결과가 표시됩니다.
+    결과 다음 hello를 나타납니다.
 
         Franklin Holtz - ID: 2
         Franklin Holtz - franklin@contoso.com - ID: 2
@@ -412,23 +412,23 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
         Gabriela Ingram - ID: 6
         Gabriela Ingram - gabriela@contoso.com - ID: 6
 
-5. 테이블을 삭제하려면 다음 명령을 사용합니다.
+5. 다음 명령을 사용 하 여 hello toodelete hello 표:
 
     
 
-## <a name="upload-the-jar-and-run-jobs-powershell"></a>JAR 업로드 및 작업 실행(PowerShell)
+## <a name="upload-hello-jar-and-run-jobs-powershell"></a>Hello JAR를 업로드 하 고 작업 (PowerShell)을 실행
 
-다음 단계는 Azure PowerShell을 사용하여 HBase 클러스터용 기본 저장소에 JAR을 업로드합니다. HDInsight cmdlet은 예제를 원격으로 실행하는 데 사용됩니다.
+단계를 수행 하는 hello HBase 클러스터에 대 한 Azure PowerShell tooupload hello JAR toohello 기본 저장소를 사용 합니다. HDInsight cmdlet은 사용 되는 toorun 예제를 원격으로 hello 다음입니다.
 
-1. Azure PowerShell을 설치 및 구성한 후 `hbase-runner.psm1`이라는 파일을 만듭니다. 이 파일의 내용으로 다음 텍스트를 사용합니다.
+1. Azure PowerShell을 설치 및 구성한 후 `hbase-runner.psm1`이라는 파일을 만듭니다. 이 파일의 내용에 hello 텍스트를 다음 hello를 사용 합니다.
 
    ```powershell
     <#
     .SYNOPSIS
-    Copies a file to the primary storage of an HDInsight cluster.
+    Copies a file toohello primary storage of an HDInsight cluster.
     .DESCRIPTION
-    Copies a file from a local directory to the blob container for
-    the HDInsight cluster.
+    Copies a file from a local directory toohello blob container for
+    hello HDInsight cluster.
     .EXAMPLE
     Start-HBaseExample -className "com.microsoft.examples.CreateTable"
     -clusterName "MyHDInsightCluster"
@@ -447,11 +447,11 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
     function Start-HBaseExample {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param(
-    #The class to run
+    #hello class toorun
     [Parameter(Mandatory = $true)]
     [String]$className,
 
-    #The name of the HDInsight cluster
+    #hello name of hello HDInsight cluster
     [Parameter(Mandatory = $true)]
     [String]$clusterName,
 
@@ -459,34 +459,34 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
     [Parameter(Mandatory = $false)]
     [String]$emailRegex,
 
-    #Use if you want to see stderr output
+    #Use if you want toosee stderr output
     [Parameter(Mandatory = $false)]
     [Switch]$showErr
     )
 
     Set-StrictMode -Version 3
 
-    # Is the Azure module installed?
+    # Is hello Azure module installed?
     FindAzure
 
-    # Get the login for the HDInsight cluster
-    $creds=Get-Credential -Message "Enter the login for the cluster" -UserName "admin"
+    # Get hello login for hello HDInsight cluster
+    $creds=Get-Credential -Message "Enter hello login for hello cluster" -UserName "admin"
 
-    # The JAR
+    # hello JAR
     $jarFile = "wasb:///example/jars/hbaseapp-1.0-SNAPSHOT.jar"
 
-    # The job definition
+    # hello job definition
     $jobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
         -JarFile $jarFile `
         -ClassName $className `
         -Arguments $emailRegex
 
-    # Get the job output
+    # Get hello job output
     $job = Start-AzureRmHDInsightJob `
         -ClusterName $clusterName `
         -JobDefinition $jobDefinition `
         -HttpCredential $creds
-    Write-Host "Wait for the job to complete ..." -ForegroundColor Green
+    Write-Host "Wait for hello job toocomplete ..." -ForegroundColor Green
     Wait-AzureRmHDInsightJob `
         -ClusterName $clusterName `
         -JobId $job.JobId `
@@ -500,7 +500,7 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
                 -HttpCredential $creds `
                 -DisplayOutputType StandardError
     }
-    Write-Host "Display the standard output ..." -ForegroundColor Green
+    Write-Host "Display hello standard output ..." -ForegroundColor Green
     Get-AzureRmHDInsightJobOutput `
                 -Clustername $clusterName `
                 -JobId $job.JobId `
@@ -509,10 +509,10 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 
     <#
     .SYNOPSIS
-    Copies a file to the primary storage of an HDInsight cluster.
+    Copies a file toohello primary storage of an HDInsight cluster.
     .DESCRIPTION
-    Copies a file from a local directory to the blob container for
-    the HDInsight cluster.
+    Copies a file from a local directory toohello blob container for
+    hello HDInsight cluster.
     .EXAMPLE
     Add-HDInsightFile -localPath "C:\temp\data.txt"
     -destinationPath "example/data/data.txt"
@@ -527,15 +527,15 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
     function Add-HDInsightFile {
         [CmdletBinding(SupportsShouldProcess = $true)]
         param(
-            #The path to the local file.
+            #hello path toohello local file.
             [Parameter(Mandatory = $true)]
             [String]$localPath,
 
-            #The destination path and file name, relative to the root of the container.
+            #hello destination path and file name, relative toohello root of hello container.
             [Parameter(Mandatory = $true)]
             [String]$destinationPath,
 
-            #The name of the HDInsight cluster
+            #hello name of hello HDInsight cluster
             [Parameter(Mandatory = $true)]
             [String]$clusterName,
 
@@ -546,22 +546,22 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
 
         Set-StrictMode -Version 3
 
-        # Is the Azure module installed?
+        # Is hello Azure module installed?
         FindAzure
 
-        # Get authentication for the cluster
+        # Get authentication for hello cluster
         $creds=Get-Credential
 
-        # Does the local path exist?
+        # Does hello local path exist?
         if (-not (Test-Path $localPath))
         {
             throw "Source path '$localPath' does not exist."
         }
 
-        # Get the primary storage container
+        # Get hello primary storage container
         $storage = GetStorage -clusterName $clusterName
 
-        # Upload file to storage, overwriting existing files if -force was used.
+        # Upload file toostorage, overwriting existing files if -force was used.
         Set-AzureStorageBlobContent -File $localPath `
             -Blob $destinationPath `
             -force:$force `
@@ -574,7 +574,7 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
         $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
         if(-not($sub))
         {
-            throw "No active Azure subscription found! If you have a subscription, use the Login-AzureRmAccount cmdlet to login to your subscription."
+            throw "No active Azure subscription found! If you have a subscription, use hello Login-AzureRmAccount cmdlet toologin tooyour subscription."
         }
     }
 
@@ -584,7 +584,7 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
             [String]$clusterName
         )
         $hdi = Get-AzureRmHDInsightCluster -ClusterName $clusterName
-        # Does the cluster exist?
+        # Does hello cluster exist?
         if (!$hdi)
         {
             throw "HDInsight cluster '$clusterName' does not exist."
@@ -600,67 +600,67 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
         $storageAccountKey=(Get-AzureRmStorageAccountKey `
             -Name $storageAccountName `
         -ResourceGroupName $resourceGroup)[0].Value
-        # Get the resource group, in case we need that
+        # Get hello resource group, in case we need that
         $return.resourceGroup = $resourceGroup
-        # Get the storage context, as we can't depend
-        # on using the default storage context
+        # Get hello storage context, as we can't depend
+        # on using hello default storage context
         $return.context = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
-        # Get the container, so we know where to
+        # Get hello container, so we know where to
         # find/store blobs
         $return.container = $container
-        # Return storage accounts to support finding all accounts for
+        # Return storage accounts toosupport finding all accounts for
         # a cluster
         $return.storageAccount = $storageAccountName
         $return.storageAccountKey = $storageAccountKey
 
         return $return
     }
-    # Only export the verb-phrase things
+    # Only export hello verb-phrase things
     export-modulemember *-*
    ```
 
     이 파일에는 다음 두 모듈이 포함됩니다.
 
-   * **Add-HDInsightFile** - 클러스터에 파일을 업로드하는 데 사용합니다.
-   * **Start-HBaseExample** - 이전에 생성한 클래스를 실행하는 데 사용합니다.
+   * **추가 HDInsightFile** -사용 tooupload 파일 toohello 클러스터
+   * **시작 HBaseExample** -사용 되는 이전에 만든 toorun hello 클래스
 
-2. `hbase-runner.psm1` 파일을 저장합니다.
+2. Hello 저장 `hbase-runner.psm1` 파일입니다.
 
-3. 새 Azure PowerShell 창을 열고, 디렉터리를 `hbaseapp` 디렉터리로 변경한 후 다음 명령을 실행합니다.
+3. 새 Azure PowerShell 창을 열고, 디렉터리 toohello 변경 `hbaseapp` 디렉터리 누른 실행된 hello 다음 명령:
 
     ```powershell
     PS C:\ Import-Module c:\path\to\hbase-runner.psm1
     ```
 
-    이전에 만든 `hbase-runner.psm1` 파일의 위치로 경로를 변경합니다. 이 명령은 Azure PowerShell에 모듈을 등록합니다.
+    Hello의 hello 경로 toohello 위치 변경 `hbase-runner.psm1` 앞에서 만든 파일입니다. 이 명령은 Azure PowerShell을 사용한 hello 모듈을 등록합니다.
 
-4. 다음 명령을 사용하여 클러스터에 `hbaseapp-1.0-SNAPSHOT.jar`을 업로드합니다.
+4. 사용 하 여 hello 다음 명령은 tooupload hello `hbaseapp-1.0-SNAPSHOT.jar` tooyour 클러스터입니다.
 
     ```powershell
     Add-HDInsightFile -localPath target\hbaseapp-1.0-SNAPSHOT.jar -destinationPath example/jars/hbaseapp-1.0-SNAPSHOT.jar -clusterName hdinsightclustername
     ```
 
-    `hdinsightclustername`을 클러스터의 이름으로 바꿉니다. 이 명령은 `hbaseapp-1.0-SNAPSHOT.jar`을 클러스터용 기본 저장소에서 `example/jars` 위치에 업로드합니다.
+    대체 `hdinsightclustername` 클러스터의 hello 이름을 사용 합니다. hello 명령 업로드 hello `hbaseapp-1.0-SNAPSHOT.jar` toohello `example/jars` hello 클러스터에 대 한 기본 저장소에 위치 합니다.
 
-5. `hbaseapp`을 사용하는 테이블을 만들려면 다음 명령을 사용합니다.
+5. 사용 하 여 테이블 toocreate hello `hbaseapp`, hello 다음 명령을 사용 하 여:
 
     ```powershell
     Start-HBaseExample -className com.microsoft.examples.CreateTable -clusterName hdinsightclustername
     ```
 
-    `hdinsightclustername`을 클러스터의 이름으로 바꿉니다.
+    대체 `hdinsightclustername` 클러스터의 hello 이름을 사용 합니다.
 
-    이 명령은 HDInsight 클러스터에 HBase의 **people**이라는 테이블을 만듭니다. 이 명령은 콘솔 창에 출력을 표시하지 않습니다.
+    이 명령은 HDInsight 클러스터에 HBase의 **people**이라는 테이블을 만듭니다. 이 명령은 hello 콘솔 창에서 어떠한 출력도 표시 되지 않습니다.
 
-6. 테이블에서 항목을 검색하려면 다음 명령을 사용합니다.
+6. 다음 명령을 사용 하 여 hello hello 테이블의 엔터티에 대 한 toosearch:
 
     ```powershell
     Start-HBaseExample -className com.microsoft.examples.SearchByEmail -clusterName hdinsightclustername -emailRegex contoso.com
     ```
 
-    `hdinsightclustername`을 클러스터의 이름으로 바꿉니다.
+    대체 `hdinsightclustername` 클러스터의 hello 이름을 사용 합니다.
 
-    이 명령은 `SearchByEmail` 클래스를 사용하여 `contactinformation` 열 패밀리 및 `email` 열에 `contoso.com` 문자열이 포함된 모든 행을 검색합니다. 다음과 같은 결과가 표시됩니다.
+    이 명령은 hello를 사용 하 여 `SearchByEmail` 여기서 hello toosearch 모든 행에 대 한 클래스 `contactinformation` 열 제품군 및 hello `email` hello 문자열을 포함 하는 열, `contoso.com`합니다. 결과 다음 hello을 받게 됩니다.
 
           Franklin Holtz - ID: 2
           Franklin Holtz - franklin@contoso.com - ID: 2
@@ -669,15 +669,15 @@ Java에서 [Apache HBase](http://hbase.apache.org/) 응용 프로그램을 만�
           Gabriela Ingram - ID: 6
           Gabriela Ingram - gabriela@contoso.com - ID: 6
 
-    `-emailRegex` 값에 **fabrikam.com**을 사용하면 메일 필드에 **fabrikam.com**을 포함하는 사용자가 반환됩니다. 검색 용어로 정규식을 사용할 수도 있습니다. 예를 들어, **^r**은 'r' 문자로 시작하는 전자 메일 주소를 반환합니다.
+    사용 하 여 **fabrikam.com** hello에 대 한 `-emailRegex` 값이 있는 hello 사용자가 반환 **fabrikam.com** hello 전자 메일 필드에 있습니다. Hello 검색 용어로 정규식을 사용할 수도 있습니다. 예를 들어 **^ r** 반환 전자 메일 hello 문자 'r'로 시작 하는 주소입니다.
 
 ### <a name="no-results-or-unexpected-results-when-using-start-hbaseexample"></a>Start-HBaseExample을 사용할 경우 결과가 없거나 예기치 않은 결과가 표시됨
 
-`-showErr` 매개 변수를 사용하여 작업을 실행하는 동안 생성된 표준 오류(STDERR)을 확인합니다.
+사용 하 여 hello `-showErr` 매개 변수 tooview hello 표준 오류 (STDERR) 실행 중인 hello 작업 하는 동안 생성 되는 합니다.
 
-## <a name="delete-the-table"></a>테이블 삭제
+## <a name="delete-hello-table"></a>Hello 테이블 삭제
 
-예제를 완료하면 Azure PowerShell 세션에서 다음을 사용하여 이 예제에 사용된 **people** 테이블을 삭제합니다.
+Hello 예제를 완료 하는 경우 다음 toodelete hello hello를 사용 하 여 **사람** 이 예에서 사용 된 테이블:
 
 __`ssh` 세션에서__:
 
@@ -689,4 +689,4 @@ __Azure PowerShell에서__:
 
 ## <a name="next-steps"></a>다음 단계
 
-[HBase를 통해 SQuirreL SQL 사용 방법 알아보기](hdinsight-hbase-phoenix-squirrel-linux.md)
+[자세한 내용은 방법 toouse 스 쿼 럴 SQL HBase로](hdinsight-hbase-phoenix-squirrel-linux.md)

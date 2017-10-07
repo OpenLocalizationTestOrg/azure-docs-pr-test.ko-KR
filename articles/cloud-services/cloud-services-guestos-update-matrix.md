@@ -1,6 +1,6 @@
 ---
-title: "최신 Azure 게스트 OS 릴리스에 대해 알아보기 | Microsoft Docs"
-description: "Azure  Cloud Services 게스트 OS에 대한 최신 릴리스 뉴스 및 SDK 호환성."
+title: "에 대 한 aaaLearn hello 최신 Azure 게스트 OS 릴리스 | Microsoft Docs"
+description: "Azure 클라우드 서비스 게스트 OS에 대 한 최신 릴리스 뉴스 및 SDK 호환성 hello 합니다."
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 8/24/2017
 ms.author: raiye
-ms.openlocfilehash: a4439346817df9223c032abc1405a7cf9cbe780b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7274f5a68a32ce91bdede77e1443cdb8053c07ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Azure 게스트 OS 릴리스 및 SDK 호환성 매트릭스
-Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 제공합니다. 이 정보는 게스트 OS를 사용하지 않도록 설정하기 전에 업그레이드 경로를 계획하는 데 도움이 됩니다. [Azure 게스트 OS 업데이트 설정][Azure Guest OS Update Settings]의 설명에 따라 *자동* 게스트 OS 업데이트를 사용하도록 역할을 구성하는 경우, 이 페이지를 읽지 않아도 됩니다.
+클라우드 서비스에 대 한 최신 Azure 게스트 OS 릴리스 hello에 대 한 최신 정보를 제공 합니다. 이 정보는 게스트 OS를 사용하지 않도록 설정하기 전에 업그레이드 경로를 계획하는 데 도움이 됩니다. 역할 toouse를 구성 하는 경우 *자동* 에 설명 된 대로 게스트 OS 업데이트 [Azure 게스트 OS 업데이트 설정][Azure Guest OS Update Settings],이 페이지를 참조 하는 않습니다.
 
 > [!IMPORTANT]
-> 이 페이지는 게스트 OS를 기반으로 실행하는 Cloud Services 웹 및 작업자 역할에 적용됩니다. IaaS Virtual Machines에 **적용되지 않습니다** .
+> 이 페이지는 tooCloud 서비스 웹 및 작업자 역할을 게스트 OS 위에서 실행을 적용 합니다. 그렇게 **적용 되지** tooIaaS 가상 컴퓨터.
 >
 >
 
 
 > [!NOTE]
-> RSS 피드는 최근에 사용되지 않습니다. 곧 제공될 새 피드에 대한 업데이트에 대해 알아봅니다.
+> RSS 피드 hello 최근에 사용 되지 않았습니다. 곧 제공될 새 피드에 대한 업데이트에 대해 알아봅니다.
 >
 >
 
-게스트 OS가 무엇인지 또는 게스트 OS 릴리스가 어떻게 작동하는지 잘 모르시나요? [이](#how-it-works) 섹션을 읽어보세요.
+게스트 OS 릴리스 작업을 어떤 hello 게스트 OS는 또는 환영 어떻게 알 수 없는? [이](#how-it-works) 섹션을 읽어보세요.
 
 ## <a name="news-updates"></a>새 업데이트
 
@@ -57,7 +57,7 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 게스트 OS 5월이 릴리스되었습니다.
 
 ###### <a name="may-17-2017"></a>**2017년 5월 17일**
-보안 버그로 인해 포털에서 [수정 사항]이 없는 2016년 12월 및 2017년 1월 OS 릴리스를 사용하지 않습니다. WA-GUEST-OS-5.4_201612-01, WA-GUEST-OS-4.39_201612-01, WA-GUEST-OS-3.46_201612-01, WA-GUEST-OS-2.59_201701-01
+Tooa 보안 버그 인해 우리 해제 하는 2016 년 12 월과 2017 년 1 월 hello hello를 갖지 않는 OS 릴리스 [해결] hello 포털에서: WA-게스트-OS-5.4_201612-01, WA-게스트-OS-4.39_201612-01, WA-게스트-OS-3.46_ WA 201612-01-게스트-OS-2.59_201701-01
 
 ###### <a name="may-12-2017"></a>**2017년 5월 12일**
 게스트 OS 5월 롤아웃은 5월 12일에 시작되며 6월 13일에 출시될 예정입니다.
@@ -69,7 +69,7 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 게스트 OS 3월 롤아웃은 2017년 3월 14일에 시작되었으며 2017년 4월 10일에 출시되었습니다.
 
 ###### <a name="january-10-2017"></a>**2017년 1월 10일**
-1월 게스트 OS에는 OS 제품군 2(Windows 2008 Server R2)에만 영향을 미치는 패치가 포함되어 있습니다. 따라서 이번 달에는 OS 제품군 2 이미지(WA-GUEST-OS-2.59_201701-01)만 릴리스했습니다. 모든 다른 OS 제품군의 경우 12월 OS(201612-01)는 최신 상태를 유지합니다.
+hello 1 월 게스트 OS는 OS 제품군 2 (Windows 2008 Server R2)에 영향을 주는 패치를 포함 합니다. 따라서 hello OS 제품군 2 이미지만 출시 했습니다 (WA-게스트-OS-2.59_201701-01) 이번 달에 대 한 합니다. 다른 모든 OS 제품군에 대 한 12 월 OS hello (201612-01)은 유지 최신 hello 합니다.
 
 
 ## <a name="releases"></a>릴리스
@@ -79,9 +79,9 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 설치된 .NET Framework: 4.0, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2
 
 > [!NOTE]
-> 별표(*)가 표시된 날짜는 변경될 수 있음
+> 사용 날짜는 * 주체 toochange 됩니다.
 >
-> OS 제품군 5의 RDP 암호는 10자 이상이어야 합니다.
+> hello OS 제품군 5에 대 한 RDP 암호는 최소 10 자 이상 이어야 합니다.
 >
 
 | 구성 문자열 | 릴리스 날짜 | 비활성화 날짜 | 만료 날짜 |
@@ -102,7 +102,7 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 .NET 4.0, 4.5, 4.5.1, 4.5.2 지원
 
 > [!NOTE]
-> *가 표시된 날짜는 변경될 수 있음
+> 사용 날짜는 * 주체 toochange 됩니다
 >
 >
 
@@ -128,7 +128,7 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 .NET 4.0, 4.5, 4.5.1, 4.5.2 지원
 
 > [!NOTE]
-> *가 표시된 날짜는 변경될 수 있음
+> 사용 날짜는 * 주체 toochange 됩니다
 >
 >
 
@@ -154,7 +154,7 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 .NET 3.5, 4.0, 4.5, 4.5.1, 4.5.2 지원
 
 > [!NOTE]
-> *가 표시된 날짜는 변경될 수 있음
+> 사용 날짜는 * 주체 toochange 됩니다
 >
 >
 
@@ -177,10 +177,10 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 
 
 ## <a name="msrc-patch-updates"></a>MSRC 패치 업데이트
-매달 각 게스트 OS 릴리스에 포함된 패치 목록은 [여기][patches]에서 사용 가능합니다.
+hello 각 월 게스트 OS 릴리스에 포함 된 패치 목록 ´ ï ´ [여기][patches]합니다.
 
 ## <a name="sdk-support"></a>SDK 지원
-[Azure SDK에 대한 사용 중지 정책][retire policy sdk]에 2.2 이후 버전만 지원된다고 나와 있더라도 특정 게스트 OS 제품군을 통해 이전 버전을 사용할 수 있습니다. 항상 지원되는 최신 SDK를 사용해야 합니다.
+경우에 hello [hello Azure SDK에 대 한 사용 중지 정책] [ retire policy sdk] 만 위의 2.2 버전은 지원 되는, 특정 게스트 OS 제품군 수 있다는 toouse 나타냅니다 이전 버전입니다. 항상 hello를 사용 해야 최신 SDK를 지원 합니다.
 
 | 게스트 OS 제품군 | 호환되는 SDK 버전 |
 | --- | --- |
@@ -191,45 +191,45 @@ Cloud Services용 최신 Azure 게스트 OS릴리스에 대한 최신 정보를 
 | 1 |버전 1.0 이상 |
 
 ## <a name="guest-os-release-information"></a>게스트 OS 릴리스 정보
-게스트 OS 릴리스에 있어서 중요한 날짜 세 개는 **릴리스** 날짜, **비활성화** 날짜 및 **만료** 날짜입니다. 포털에 있고 대상 게스트 OS로 선택할 수 있는 게스트 OS는 사용 가능한 것으로 간주됩니다. 게스트 OS가 **비활성화** 날짜에 도달하면 Azure에서 제거됩니다. 그러나 해당 게스트 OS를 대상으로 하는 모든 클라우드 서비스는 계속 정상적으로 작동합니다.
+TooGuest OS를 해제 하는 중요 한 세 가지 날짜가: **릴리스** 날짜, **비활성화** 날짜 및 **만료** 날짜입니다. 게스트 OS hello 포털에에서는 게스트 OS hello 대상으로 선택할 수 있습니다 때 사용할 수 있게 됩니다. 게스트 OS에 hello를 도달 하면 **비활성화** 날짜를 Azure에서 제거 됩니다. 그러나 해당 게스트 OS를 대상으로 하는 모든 클라우드 서비스는 계속 정상적으로 작동합니다.
 
-**비활성화** 날짜와 **만료** 날짜 사이의 기간 동안 한 게스트 OS에서 다른 게스트 OS로 간편하게 전환할 수 있습니다. 게스트 OS로 *자동* 을 사용하는 경우 항상 최신 버전이 유지되므로 만료에 대해 걱정할 필요가 없습니다.
+hello 간에 hello 창을 **비활성화** 날짜 및 hello **만료** 날짜 최신 한 게스트 OS tooone에서의 버퍼 tooeasily 전환을 제공 합니다. 사용 중인 경우 *자동* 게스트 OS를으로 항상 수 hello 최신 버전을 항목에 대 한 만료 tooworry 없는 합니다.
 
-**만료** 날짜가 지났는데 여전히 해당 게스트 OS를 사용 중인 Cloud Service는 중지, 삭제 또는 강제 업그레이드됩니다. 사용 중지 정책에 대한 자세한 내용은 [여기][retirepolicy]서 확인할 수 있습니다.
+Hello 때 **만료** 과정을 계속 해당 게스트 OS 사용 중지 되는 클라우드 서비스 삭제 되거나 강제 tooupgrade 날짜입니다. 자세한 내용은 hello 사용 중지 정책에 대 한 [여기][retirepolicy]합니다.
 
 ## <a name="guest-os-family-version-explanation"></a>게스트 OS 제품군 버전 설명
-게스트 OS 제품군은 출시된 Microsoft Windows Server 버전을 기반으로 합니다. 게스트 OS는 Azure Cloud Services가 실행되는 기본 운영 체제입니다. 각 게스트 OS에는 제품군, 버전 및 릴리스 번호가 있습니다.
+hello 게스트 OS 제품군은 Microsoft Windows Server의 릴리스 버전을 기반으로 합니다. hello 게스트 OS는 Azure 클라우드 서비스에서 실행 되는 hello 원본으로 사용 하는 운영 체제. 각 게스트 OS에는 제품군, 버전 및 릴리스 번호가 있습니다.
 
 * **Guest OS family**  
   은 게스트 OS가 기반으로 하는 Windows Server 운영 체제 릴리스입니다. 예를 들어 *제품군 3* 은 Windows Server 2012를 기반으로 합니다.
 * **게스트 OS 버전**  
-  새 게스트 OS 버전이 생성되는 날짜에 사용 가능한 게스트 OS 제품군 이미지 및 관련 MSRC([Microsoft 보안 대응 센터)][msrc] 패치로 한정됩니다. 일부 패치는 포함될 수 있습니다.
+  특정 tooa 게스트 OS 제품군과 관련 된 이미지 [Microsoft 보안 대응 센터 (MSRC)] [ msrc] 패치 hello 날짜 hello 새 게스트 OS 버전에서 사용할 수 있는 생성 됩니다. 일부 패치는 포함될 수 있습니다.
 
     0에서 시작하고 새 업데이트 집합이 추가 될 때마다 1씩 증가하는 숫자입니다. 중요한 경우.후행 0만 표시됩니다. 즉, 버전 2.10은 다르며, 버전 2.1 버전보다 더 한참 후의 버전입니다.
 * **게스트 OS 릴리스**  
-  게스트 OS 버전의 릴리스입니다. 필요한 변경 내용을 테스트하는 동안 Microsoft가 문제를 발견하는 경우에 릴리스가 발생합니다. 최신 릴리스는 항상 이전의 모든 릴리스를 공개이든 또는 비공개이든 대체합니다. Azure Portal에서 사용자는 지정된 버전에 대한 최신 릴리스를 선택할 수만 있습니다. 이전 릴리스에서 실행 중인 배포는 일반적으로 버그의 심각도 따라 강제 업그레이드되지 않습니다.
+  게스트 OS 버전의 릴리스입니다. 필요한 변경 내용을 테스트하는 동안 Microsoft가 문제를 발견하는 경우에 릴리스가 발생합니다. hello 최신 릴리스 항상 이전의 모든 해제, 공용 여부. hello Azure 포털 사용자 지정 된 버전 toopick hello 최신 릴리스를 수만 있습니다. 이전 릴리스에서 실행 중인 배포는 일반적으로 hello 버그의 hello 심각도 따라 강제 업그레이드 되지 않습니다.
 
-아래 예제에서 2는 제품군이며, 12는 버전이고 "rel2"는 릴리스입니다.
+Hello 아래 예에서 2는 hello 제품군, 12는 hello 버전 및 "rel2"는 hello 릴리스 합니다.
 
 **게스트 OS 릴리스** -2.12 rel2
 
 **이 릴리스에 대한 구성 문자열** -WA-GUEST-OS-2.12_201208-02
 
-게스트 OS에 대한 구성에는 문자열에서 보여주는 MSRC 패치가 해당 릴리스에 대한 것으로 간주된 날짜와 함께 여기에 포함된 동일한 정보가 있습니다. 이 예에서는 Windows Server 2008 R2에 대한 MSRC 패치가 생성되며 2012년 8월포함이 고려되었습니다. 특히 해당 버전의 Windows Server에 적용되는 패치만 포함됩니다. 예를 들어 MSRC 패치가 Microsoft office에 적용되는 경우, 해당 제품이 Windows Server 기본 이미지의 일부가 아니므로 포함되지 않습니다.
+게스트 OS에 대 한 hello 구성 문자열에서 해당 릴리스에서 MSRC 패치 고려 되었으며 보여 주는 날짜,에 포함 된이 동일한 정보입니다. 이 예제에서는 2012 년 8 월을 포함 하 여 tooand를 Windows Server 2008 r 2 용으로 제작 MSRC 패치가 포함에 대 한 고려 되었습니다. 특히 toothat 버전의 Windows Server를 적용 되는 패치만 포함 됩니다. 예를 들어 MSRC 패치 tooMicrosoft Office을 적용 하는 경우 것은 포함 되지 해당 제품 hello Windows Server 기본 이미지의 일부가 아니므로.
 
 ## <a name="guest-os-system-update-process"></a>게스트 OS 시스템 업데이트 프로세스
-이 페이지에 예정된 게스트 OS 릴리스에 대한 정보가 포함됩니다. "자동" 업데이트로 설정된 경우 해당 클라우드 서비스 역할이 다시 부팅되기때문에 릴리스가 발생하는 시기를 알고 싶어하는지 표시합니다. 게스트 OS 릴리스는 매달 두째 주 화요일에 발생하는 MSRC 업데이트 릴리스 5일 후에 발생합니다. 새 릴리스는 각 게스트 OS 제품군에 대한 모든 관련 MSRC 패치를 포함합니다.
+이 페이지에 예정된 게스트 OS 릴리스에 대한 정보가 포함됩니다. 고객은 릴리스 너무 "자동" 업데이트로 설정 된 경우 클라우드 서비스 역할이 다시 부팅 때문에 발생 하는 경우 tooknow 원하는 것으로 표시 했습니다. 최소한 5 일이 지나면 hello MSRC 업데이트가 출시 hello에서 매월 두 번째 화요일에 발생 하 일반적으로 발생 하는 게스트 OS 릴리스 합니다. 새 릴리스 모든 hello 관련 MSRC 패치가 각 게스트 OS 제품군에 포함합니다.
 
-Microsoft Azure는 지속적으로 업데이트를 릴리스하고 있습니다. 이러한 업데이트로 게스트 OS가 파이프라인에서 유일합니다. 릴리스는 다양한 요인에 의해 영향을 받을 수 있어 나열할 수 없습니다. 또한 Azure는 수백 대의 컴퓨터에서 실행 됩니다. 역할이 다시 부팅 되는 정확한 날짜와 시간을 제공할 수 있다는 것을 의미합니다. 제한 또는 시간 재부팅에 대한 계획을 설정하고 있습니다.
+Microsoft Azure는 지속적으로 업데이트를 릴리스하고 있습니다. hello 게스트 OS는 hello 파이프라인에서 이러한 하나만 업데이트 합니다. 릴리스는 많은 요인에 의해 영향을 받을 수 없는 수많은 toolist 여기 합니다. 또한 Azure는 수백 대의 컴퓨터에서 실행 됩니다. 이 정확한 날짜와 시간에 역할이 다시 부팅 되 면 불가능 한 toogive 임을 의미 합니다. 우리는 계획 toolimit에서 작업 하는 또는 재부팅 시간입니다.
 
-게스트 OS의 새 릴리스를 게시하는 경우 Azure에 완전히 전파하는데 시간이 걸릴 수 있습니다. 서비스가 새 게스트 OS에 대해 업데이트되므로 업데이트 도메인을 구분하지 않고 다시 부팅됩니다. "자동" 업데이트를 사용하도록 설정된 서비스가 처음 릴리스됩니다. 업데이트 후 Azure Portal에서 서비스에 대해 나열된 새 게스트 OS 버전을 볼 수 있습니다. 이 기간 동안 다시 릴리스할 수 있습니다. 일부 버전은 오랜 시간을 통해 배포할 수 있으며 공식 릴리스 날짜 이후 수 주 동안 자동 업그레이드 재부팅이 발생하지 않을 수 있습니다. 게스트 OS를 사용할 수 있으면, 구성 파일이나 포털에서 해당 버전을 명시적으로 찾을 수 있습니다.
+때 hello 게시 된 게스트 OS의 새 릴리스, toofully Azure에 전파 하는 시간을 걸릴 수 있습니다. 서비스는 업데이트 된 toohello 구분 하지 않고 다시 부팅 된 업데이트 도메인은 새 게스트 OS 합니다. 서비스 집합 toouse "자동" 업데이트 릴리스를 처음으로 발생 합니다. Hello 업데이트 후 Azure 포털 hello에서 서비스에 대해 나열 된 hello 새 게스트 OS 버전이 표시 됩니다. 이 기간 동안 다시 릴리스할 수 있습니다. 일부 버전 오랜 시간을 통해 배포할 수 있습니다 및 hello 공식 릴리스 날짜 이후 수 주 동안 자동 업그레이드 재부팅이 발생 하지 않을 수 있습니다. 게스트 OS를 사용할 수 있는 선택할 수 있습니다 다음 명시적으로 해당 버전 hello 포털 또는 구성 파일에 있습니다.
 
-게스트 및 호스트 OS 업데이트의 기술 세부 정보에 대한 포인터 및 시작에 관한 중요 정보 처리는 [OS 업그레이드로 인한 역할 인스턴스 다시 시작][restarts]이라는 MSDN 블로그 게시물을 참조하세요.
+다시 시작 및 포인터 toomore 기술 세부 정보 게스트 및 호스트 OS 업데이트의 중요 정보를 좀 더 보기 상당 hello MSDN 블로그 게시물을 참조 하십시오. [역할 인 인스턴스 다시 시작 tooOS 업그레이드] [ restarts].
 
-게스트 OS를 수동으로 업데이트하는 경우 추가 정보는 [게스트 OS 사용 중지 정책][retirepolicy]을 참조하세요.
+게스트 OS를 수동으로 업데이트 하는 경우 참조 hello [게스트 OS 사용 중지 정책] [ retirepolicy] 추가 정보에 대 한 합니다.
 
 ## <a name="guest-os-supportability-and-retirement-policy"></a>게스트 OS 지원 가능성 및 사용 중지 정책
-게스트 OS 지원 가능성 및 사용 중지 정책은 [여기][retirepolicy]에 설명됩니다.
+게스트 OS 지원 및 사용 중지 정책 hello 설명 [여기][retirepolicy]합니다.
 
 [Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure Guest OS Update Settings]: cloud-services-how-to-configure.md
@@ -249,4 +249,4 @@ Microsoft Azure는 지속적으로 업데이트를 릴리스하고 있습니다.
 [patches]: cloud-services-guestos-msrc-releases.md
 [retirepolicy]: cloud-services-guestos-retirement-policy.md
 [fam1retire]: cloud-services-guestos-family1-retirement.md
-[수정 사항]: https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+[해결]: https://technet.microsoft.com/en-us/library/security/ms17-010.aspx

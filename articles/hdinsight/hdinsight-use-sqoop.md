@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight(Hadoop)를 사용하여 Apache Sqoop 작업 실행 | Microsoft Docs"
-description: "워크스테이션에서 Azure PowerShell을 사용하여 Hadoop 클러스터와 Azure SQL 데이터베이스 간에 Sqoop 가져오기 및 내보내기를 실행하는 방법에 대해 알아봅니다."
+title: "Azure HDInsight (Hadoop)와 aaaRun Apache Sqoop 작업 | Microsoft Docs"
+description: "워크스테이션 toorun Sqoop에서에서 Azure PowerShell toouse 가져오고 Hadoop 클러스터와 Azure SQL 데이터베이스 내보내기에 대해 알아봅니다."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -17,34 +17,34 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 8e77153493b6f37f5f48116b86bad6b25a50d1a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bdac507704937d77921c9c13d70aa2434c7e3be4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-sqoop-with-hadoop-in-hdinsight"></a>HDInsight에서 Hadoop과 Sqoop 사용
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-HDInsight에서 Sqoop을 사용하여 HDInsight 클러스터와 Azure SQL 데이터베이스 또는 SQL Server 데이터베이스 사이에서 가져오기 및 내보내는 방법을 알아봅니다.
+자세한 내용은 방법 HDInsight tooimport 및 HDInsight 클러스터와 Azure SQL 데이터베이스 또는 SQL Server 데이터베이스 간에 내보내기에서 Sqoop toouse 합니다.
 
-비구조적 및 반구조적 데이터(예: 로그 및 파일)를 처리하기 위해 당연히 Hadoop을 선택하지만 관계형 데이터베이스에 저장된 구조적 데이터를 처리해야 할 경우도 있습니다.
+Hadoop 로그 파일과 같은 구조화 되지 않은 작업과 구조화 된 데이터를 처리 하기 위한 자연 스러운 선택 되어도 수도 있습니다 관계형 데이터베이스에 저장 된 필요 tooprocess 구조화 된 데이터입니다.
 
-[Sqoop][sqoop-user-guide-1.4.4]은 Hadoop 클러스터와 관계형 데이터베이스 간 데이터 전송을 위해 설계된 도구입니다. 이 도구를 사용하면 SQL Server, MySQL, Oracle 등의 RDBMS(관계형 데이터베이스 관리 시스템)에서 HDFS(Hadoop Distributed File System)로 데이터를 가져오고, MapReduce 또는 Hive로 Hadoop의 데이터를 변환한 후 데이터를 RDBMS로 다시 내보낼 수 있습니다. 이 자습서에서는 관계형 데이터베이스에 SQL Server 데이터베이스를 사용합니다.
+[Sqoop] [ sqoop-user-guide-1.4.4] 은 설계 된 도구 tootransfer Hadoop 클러스터 및 관계형 데이터베이스 간에 데이터입니다. 사용할 수 있습니다 (RDBMS) 관계형 데이터베이스 관리 시스템에서 tooimport 데이터와 같은 SQL Server, MySQL 또는 hello distributed Hadoop 파일 시스템 (HDFS)에 Oracle에서 Hadoop MapReduce 또는 하이브를 hello 데이터 변환한 다음에 다시 hello 데이터를 내보낼는 RDBMS 합니다. 이 자습서에서는 관계형 데이터베이스에 SQL Server 데이터베이스를 사용합니다.
 
-HDInsight 클러스터에서 지원되는 Sqoop 버전을 보려면 [HDInsight에서 제공하는 클러스터 버전의 새로운 기능][hdinsight-versions]을 참조하세요.
+HDInsight 클러스터에서 지원 되는 Sqoop 버전에서는 참조 [HDInsight에서 제공 하는 hello 클러스터 버전의 새로운 기능?][hdinsight-versions]
 
-## <a name="understand-the-scenario"></a>시나리오 이해
+## <a name="understand-hello-scenario"></a>Hello 시나리오를 이해합니다
 
-HDInsight 클러스터는 일부 샘플 데이터와 함께 제공됩니다. 다음 두 샘플을 사용합니다.
+HDInsight 클러스터는 일부 샘플 데이터와 함께 제공됩니다. 다음 두 개의 샘플 hello 사용:
 
-* */example/data/sample.log*에 있는 log4j 로그 파일. 이 파일에서 다음 로그가 추출됩니다.
+* */example/data/sample.log*에 있는 log4j 로그 파일. 다음 로그 hello hello 파일에서 추출 된:
   
         2012-02-03 18:35:34 SampleClass6 [INFO] everything normal for id 577725851
         2012-02-03 18:35:34 SampleClass4 [FATAL] system problem at id 1991281254
         2012-02-03 18:35:34 SampleClass3 [DEBUG] detail for id 1304807656
         ...
-* */hive/warehouse/hivesampletable*에 있는 데이터 파일을 참조하는 *hivesampletable*이라는 이름의 Hive 테이블. 이 테이블에는 일부 모바일 장치 데이터가 포함되어 있습니다. 
+* 명명 된 Hive 테이블 *hivesampletable*, 참조 데이터 파일에 있는 hello는 */hive/warehouse/hivesampletable*합니다. hello 테이블 일부 모바일 장치 데이터를 포함 합니다. 
   
   | 필드 | 데이터 형식 |
   | --- | --- |
@@ -60,86 +60,86 @@ HDInsight 클러스터는 일부 샘플 데이터와 함께 제공됩니다. 다
   | sessionid |bigint |
   | sessionpagevieworder |bigint |
 
-먼저 *sample.log*와 *hivesampletable*을 Azure SQL Database 또는 SQL Server에 내보낸 후 모바일 장치 데이터를 포함하는 테이블을 다음 경로를 통해 HDInsight에 다시 가져옵니다.
+먼저, 내보낸 *sample.log* 및 *hivesampletable* toohello Azure SQL 데이터베이스 또는 서버 tooSQL 및 hello 모바일 장치 데이터를 포함 하는 가져오기 hello 테이블 tooHDInsight hello를 사용 하 여 백업 다음 경로:
 
     /tutorials/usesqoop/importeddata
 
 ## <a name="create-cluster-and-sql-database"></a>클러스터 및 SQL 데이터베이스 만들기
-이 섹션에서는 Azure Portal 및 Azure Resource Manager 템플릿을 사용하는 자습서를 실행하기 위해 클러스터 및 SQL Database 스키마를 만드는 방법을 보여 줍니다. 템플릿은 [Azure 빠른 시작 템플릿](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/)에서 찾을 수 있습니다. Resource Manager 템플릿은 SQL Database에 테이블 스키마를 배포하는 bacpac 패키지를 호출합니다.  bacpac 패키지는 공용 Blob 컨테이너 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac에 있습니다. Bacpac 파일에 대한 개인 컨테이너를 사용하려는 경우 템플릿에 다음 값을 사용합니다.
+이 섹션에서는 클러스터 toocreate, SQL 데이터베이스 및 hello SQL 데이터베이스 스키마가 실행 중인 hello 자습서를 사용 하 여에 대 한 Azure 포털 및 Azure 리소스 관리자 템플릿 hello 하는 방법을 보여 줍니다. hello 서식 파일에서 확인할 수 있습니다 [Azure 빠른 시작 템플릿](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/)합니다. 리소스 관리자 템플릿 hello bacpac 패키지 toodeploy hello 테이블 스키마 tooSQL 데이터베이스를 호출합니다.  hello bacpac 패키지 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac 공용 blob 컨테이너에 배치 됩니다. Hello bacpac 파일에 대 한 toouse 개인 컨테이너를 원하는 경우 다음 hello 서식 파일의 값에는 hello를 사용 합니다.
    
         "storageKeyType": "Primary",
         "storageKey": "<TheAzureStorageAccountKey>",
 
-Azure PowerShell을 사용하여 클러스터 및 SQL Database를 만들려면 [부록 A](#appendix-a---a-powershell-sample)를 참조하세요.
+Toouse Azure PowerShell toocreate hello 클러스터와 SQL 데이터베이스 hello를 선호 하는 경우 참조 [부록 A](#appendix-a---a-powershell-sample)합니다.
 
-1. Azure Portal에서 Resource Manager 템플릿을 열려면 다음 이미지를 클릭합니다.         
+1. 다음 이미지 tooopen hello Azure 포털에서에서 리소스 관리자 템플릿으로 hello를 클릭 합니다.         
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-use-sqoop/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-use-sqoop/deploy-to-azure.png" alt="Deploy tooAzure"></a>
    
 
-2. 다음과 같은 속성을 입력합니다.
+2. Hello 다음과 같은 속성을 입력 합니다.
 
     - **구독**: Azure 구독을 입력합니다.
     - **리소스 그룹**: 새 Azure 리소스 그룹을 만들거나 기존 Azure 리소스 그룹을 선택합니다.  리소스 그룹은 관리 목적으로 사용됩니다.  개체에 대한 컨테이너입니다.
     - **위치**: 지역을 선택합니다.
-    - **클러스터 이름**: Hadoop 클러스터의 이름을 입력합니다.
-    - **클러스터 로그인 이름 및 암호**: 기본 로그인 이름은 admin입니다.
+    - **ClusterName**: hello Hadoop 클러스터에 대 한 이름을 입력 합니다.
+    - **로그인 이름 및 암호를 클러스터**: hello 기본 로그인 이름은 관리자입니다.
     - **SSH 사용자 이름 및 암호**.
     - **SQL 데이터베이스 서버 로그인 이름 및 암호**.
-    - **_artifacts 위치**: 다른 위치에 직접 backpac 파일을 사용하려는 경우가 아니면 기본값을 그대로 사용합니다.
+    - **위치 _artifacts**: toouse 고유한 backpac 파일을 다른 위치에 사용 하려는 경우가 아니면 hello 기본값을 사용 합니다.
     - **_artifacts 위치 Sas 토큰**: 비워 둡니다.
-    - **Bacpac 파일 이름**: 자체 backpac 파일을 사용하려는 경우가 아니면 기본값을 그대로 사용합니다.
+    - **Bacpac 파일 이름**: toouse backpac 파일을 직접 사용 하려는 경우가 아니면 hello 기본값을 사용 합니다.
      
-     다음 값은 변수 섹션에서 하드 코드합니다.
+     다음 값에는 hello는 hello 변수 섹션에서 하드 코드 됨.
      
      | 기본 저장소 계정 이름 | <CluterName>store |
      | --- | --- |
      | Azure SQL 데이터베이스 서버 이름 |<ClusterName>dbserver |
      | Azure SQL 데이터베이스 이름 |<ClusterName>db |
      
-     이러한 값을 기록해 두십시오.  이 정보는 자습서의 뒷부분에서 필요합니다.
+     이러한 값을 기록해 두십시오.  Hello 자습서의 뒷부분에 나오는 필요 합니다.
 
-3.**확인**을 클릭하여 매개 변수를 저장합니다.
+3. 클릭 **확인** toosave hello 매개 변수입니다.
 
-4.**사용자 지정 배포** 블레이드에서 **리소스 그룹** 드롭다운 상자를 클릭한 다음 **새로 만들기**를 클릭하여 새 리소스 그룹을 만듭니다. 리소스 그룹은 클러스터, 종속 저장소 계정 및 기타 연결된 리소스를 그룹화하는 컨테이너입니다.
+4. hello에서 **사용자 지정 배포** 블레이드에서 클릭 **리소스 그룹** 드롭다운 상자를 선택한 다음 클릭 **새로** toocreate 새 리소스 그룹입니다. hello 리소스 그룹은 hello 클러스터, hello 종속 저장소 계정 및 다른 링크 된 리소스를 그룹화 하는 컨테이너입니다.
 
 5.**약관**을 클릭한 다음 **만들기**를 클릭합니다.
 
-6.**만들기**를 클릭합니다. 템플릿 배포에 배포 제출 중이라는 제목의 새 타일이 표시됩니다. 클러스터 및 SQL 데이터베이스를 만들려면 20분 정도가 걸립니다.
+6.**만들기**를 클릭합니다. 템플릿 배포에 배포 제출 중이라는 제목의 새 타일이 표시됩니다. 약 20 분 toocreate hello 클러스터 및 SQL 데이터베이스에 대 한 필요합니다.
 
-기존 Azure SQL 데이터베이스 또는 Microsoft SQL Server를 사용하기로 선택하는 경우
+Toouse 기존 Azure SQL 데이터베이스 또는 Microsoft SQL Server를 선택 하는 경우
 
-* **Azure SQL 데이터베이스**: 워크스테이션에서 액세스할 수 있도록 Azure SQL 데이터베이스 서버의 방화벽 규칙을 구성해야 합니다. Azure SQL Database 만들기 및 방화벽 구성에 대한 자세한 내용은 [Azure SQL Database 사용 시작][sqldatabase-get-started]을 참조하세요. 
+* **Azure SQL 데이터베이스**: 워크스테이션에서 Azure SQL 데이터베이스 서버 tooallow 액세스 hello에 대 한 방화벽 규칙을 구성 해야 합니다. Azure SQL 데이터베이스를 만들고 hello 방화벽을 구성 하는 방법에 대 한 지침은 [Azure SQL 데이터베이스를 사용 하 여 시작][sqldatabase-get-started]합니다. 
   
   > [!NOTE]
-  > 기본적으로 Azure SQL 데이터베이스는 Azure HDInsight 같은 Azure 서비스로부터의 연결을 허용합니다. 이 방화벽 설정을 사용하지 않도록 설정한 경우 Azure Portal에서 사용하도록 설정해야 합니다. Azure SQL Database 만들기 및 방화벽 규칙 구성에 대한 지침은 [SQL Database 만들기 및 구성][sqldatabase-create-configue]을 참조하세요.
+  > 기본적으로 Azure SQL 데이터베이스는 Azure HDInsight 같은 Azure 서비스로부터의 연결을 허용합니다. 이 방화벽 설정을 비활성화 해야 tooenable hello Azure 포털에서 합니다. Azure SQL Database 만들기 및 방화벽 규칙 구성에 대한 지침은 [SQL Database 만들기 및 구성][sqldatabase-create-configue]을 참조하세요.
   > 
   > 
-* **SQL Server**: HDInsight 클러스터가 SQL Server와 같은 Azure의 가상 네트워크에 있으면 이 문서의 단계를 사용하여 SQL Server 데이터베이스에 대해 데이터 가져오기 및 내보내기를 수행할 수 있습니다.
+* **SQL Server**: hello에 HDInsight 클러스터에 있으면 동일한 가상 네트워크 SQL Server와 Azure의 hello 단계가 문서 tooimport 및 내보내기 데이터 tooa SQL Server 데이터베이스에 사용할 수 있습니다.
   
   > [!NOTE]
   > HDInsight는 위치 기반 가상 네트워크만 지원하며 현재 선호도 그룹 기반 가상 네트워크와는 연동되지 않습니다.
   > 
   > 
   
-  * 가상 네트워크를 만들고 구성하려면 [Azure Portal을 사용하여 가상 네트워크 만들기](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)를 참조하세요
+  * toocreate 가상 네트워크 구성, 참조 및 [hello Azure 포털을 사용 하 여 가상 네트워크 만들기](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)합니다.
     
-    * 데이터 센터에서 SQL Server를 사용할 때는 가상 네트워크를 *사이트 간* 또는 *지점 및 사이트 간*으로 구성해야 합니다.
+    * SQL Server 데이터 센터를 사용 하는 경우에 hello와 가상 네트워크 구성 해야 *사이트 간* 또는 *지점 및 사이트*합니다.
       
       > [!NOTE]
-      > **지점 및 사이트 간** 가상 네트워크의 경우 SQL Server가 VPN 클라이언트 구성 응용 프로그램을 실행해야 합니다. 이 응용 프로그램은 Azure 가상 네트워크 구성의 **대시보드**에서 사용 가능합니다.
+      > 에 대 한 **지점-사이트** 가상 네트워크, SQL Server를 실행 해야 hello VPN 클라이언트 hello에서 사용할 수 있는 구성 응용 프로그램 **대시보드** Azure 가상 네트워크 구성 합니다.
       > 
       > 
-    * Azure 가상 컴퓨터에서 SQL Server를 사용할 때는 SQL Server를 호스트하는 가상 컴퓨터가 HDInsight와 같은 가상 네트워크의 멤버이면 모든 가상 네트워크 구성을 사용할 수 있습니다.
-  * 가상 네트워크에 HDInsight 클러스터를 만들려면 [사용자 지정 옵션을 사용하여 HDInsight의 Hadoop 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)
+    * SQL Server를 호스트 하는 hello 가상 컴퓨터가 hello의 멤버인 경우 모든 가상 네트워크 구성을 사용할 수 있습니다는 Azure 가상 컴퓨터에서 SQL 서버를 사용 하는 경우 HDInsight와 동일한 가상 네트워크입니다.
+  * 가상 네트워크에는 HDInsight 클러스터 toocreate 참조 [만들기 Hadoop 사용자 지정 옵션을 사용 하 여 HDInsight 클러스터를](hdinsight-hadoop-provision-linux-clusters.md)
     
     > [!NOTE]
-    > SQL Server는 인증도 허용해야 합니다. 이 문서의 단계를 완료하려면 SQL 서버 로그인을 사용해야 합니다.
+    > SQL Server는 인증도 허용해야 합니다. SQL Server 로그인 toocomplete hello이 문서의 단계를 사용 해야 합니다.
     > 
     > 
 
 ## <a name="run-sqoop-jobs"></a>Sqoop 작업 실행
-HDInsight는 다양한 메서드를 사용하여 Sqoop 작업을 실행할 수 있습니다. 어떤 메서드가 적합한지 결정하는 다음 테이블을 사용하여 연습할 수 있는 링크를 따르세요.
+HDInsight는 다양한 메서드를 사용하여 Sqoop 작업을 실행할 수 있습니다. 어느 방법이 적합 한, 테이블 toodecide 다음 hello를 사용 하 여 다음 연습은 hello 링크를 따라 이동 합니다.
 
 | **이것을 사용** 하세요... | ... **대화형** 셸 | ...**배치** 처리 | ... **클러스터 운영 체제** | ... **클라이언트 운영 체제** |
 |:--- |:---:|:---:|:--- |:--- |
@@ -148,26 +148,26 @@ HDInsight는 다양한 메서드를 사용하여 Sqoop 작업을 실행할 수 �
 | [Azure PowerShell](hdinsight-hadoop-use-sqoop-powershell.md) |&nbsp; |✔ |Linux 또는or Windows |Windows |
 
 ## <a name="limitations"></a>제한 사항
-* 대량 내보내기 - Linux 기반 HDInsight와 함께 Microsoft SQL Server 또는 Azure SQL 데이터베이스에 데이터를 내보내는 데 사용된 Sqoop 커넥터도 현재 대량 삽입을 지원하지 않습니다.
-* 배치 - Linux 기반 HDInsight에서 삽입을 수행할 때 `-batch` 스위치를 사용하는 경우 Sqoop는 삽입 작업을 일괄 처리하는 대신 여러 번의 삽입 작업을 수행합니다.
+* 대량 내보내기-와 Linux 기반 HDInsight, hello Sqoop 사용 커넥터 tooexport 데이터 tooMicrosoft SQL Server 또는 Azure SQL 데이터베이스 현재 대량 삽입을 지원 하지 않습니다.
+* 일괄 처리-Linux 기반 HDInsight와 hello를 사용 하는 경우 `-batch` 삽입 수행 시 전환, Sqoop hello 삽입 작업을 일괄 처리 하는 대신 여러 개의 삽입이 수행 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이제 Sqoop을 사용하는 방법에 대해 알아봤습니다. 자세한 내용은 다음을 참조하세요.
+파악 했으므로 이제 어떻게 toouse Sqoop 합니다. toolearn 더 참조 하십시오.
 
 * [HDInsight에서 Hive 사용](hdinsight-use-hive.md)
 * [HDInsight에서 Pig 사용](hdinsight-use-pig.md)
 * [HDInsight와 함께 Oozie 사용][hdinsight-use-oozie]: Oozie 워크플로에서 Sqoop 작업을 사용합니다.
-* [HDInsight를 사용하여 비행 지연 데이터 분석][hdinsight-analyze-flight-data]: Hive를 사용하여 비행 지연 데이터를 분석한 후 Sqoop을 사용하여 데이터를 Azure SQL Database로 내보냅니다.
-* [HDInsight에 데이터 업로드][hdinsight-upload-data]: HDInsight/Azure Blob Storage에 데이터를 업로드하는 다른 방법을 찾습니다.
+* [HDInsight를 사용 하 여 비행 연착 데이터를 분석][hdinsight-analyze-flight-data]: tooanalyze 비행 하이브 사용 하 여 데이터를 지연 하 고 다음 Sqoop tooexport 데이터 tooan Azure SQL 데이터베이스를 사용 합니다.
+* [데이터 tooHDInsight 업로드][hdinsight-upload-data]: 데이터 tooHDInsight/Azure Blob 저장소에 업로드 하기 위한 다른 방법을 찾아야 합니다.
 
 ## <a name="appendix-a---a-powershell-sample"></a>부록 A - PowerShell 샘플
-PowerShell 샘플은 다음 단계를 수행합니다.
+hello PowerShell 샘플 hello 다음 단계를 수행 합니다.
 
-1. Azure에 연결
+1. TooAzure를 연결 합니다.
 2. Azure 리소스 그룹 만들기 자세한 내용은 [Azure 리소스 관리자로 Azure PowerShell 사용](../powershell-azure-resource-manager.md)
 3. Azure SQL 데이터베이스 서버, Azure SQL 데이터베이스 및 두 개의 테이블을 만듭니다. 
    
-    SQL Server를 대신 사용하는 경우에는 다음 문을 사용하여 테이블을 만듭니다.
+    SQL Server를 대신 사용 하는 경우 다음 문은 toocreate hello 표 hello를 사용 합니다.
    
         CREATE TABLE [dbo].[log4jlogs](
          [t1] [nvarchar](50),
@@ -191,41 +191,41 @@ PowerShell 샘플은 다음 단계를 수행합니다.
          [sessionid] [bigint],
          [sessionpagevieworder][bigint])
    
-    데이터베이스 및 테이블을 검사하는 가장 쉬운 방법은 Visual Studio를 사용하는 것입니다. Azure 포털을 사용하여 데이터베이스 서버와 데이터베이스를 검사할 수 있습니다.
+    hello 가장 쉬운 방법은 tooexamine hello 데이터베이스 및 테이블에는 Visual Studio toouse입니다. hello 데이터베이스 서버 및 데이터베이스 hello hello Azure 포털을 사용 하 여 검사할 수 있습니다.
 4. HDInsight 클러스터 만들기
    
-    클러스터를 검사하려면 Azure 포털 또는 Azure PowerShell을 사용하면 됩니다.
-5. 원본 데이터 파일을 전처리합니다.
+    tooexamine hello 클러스터 hello Azure 포털 또는 Azure PowerShell을 사용할 수 있습니다.
+5. Hello 원본 데이터 파일을 전처리 합니다.
    
-    이 자습서에서는 log4j 로그 파일(구분된 파일) 및 Hive 테이블을 Azure SQL Database로 내보냅니다. 구분된 파일의 이름은 */example/data/sample.log*입니다. 자습서의 앞부분에 log4j 로그 샘플이 몇 개 있습니다. 로그 파일에는 일부 빈 줄과 일부 다음과 유사한 줄이 있습니다.
+    이 자습서에서는 log4j 로그 파일 (구분 기호로 분리 된 파일) 및 Hive 테이블 tooan Azure SQL 데이터베이스를 내보냅니다. hello 구분 기호로 분리 된 파일 이라고 */example/data/sample.log*합니다. Hello 자습서의 앞부분에 나오는 준다는 사실을 알았습니다 log4j 로그의 몇 가지 샘플. Hello 로그 파일에는 일부 빈 줄 및 줄 비슷한 toothese 일부:
    
         java.lang.Exception: 2012-02-03 20:11:35 SampleClass2 [FATAL] unrecoverable system problem at id 609774657
             at com.osa.mocklogger.MockLogger$2.run(MockLogger.java:83)
    
-    이 데이터를 사용하는 다른 예제에서는 이 줄이 있어도 관계없지만 데이터를 Azure SQL 데이터베이스 또는 SQL Server로 가져오려면 이러한 예외를 제거해야 합니다. 빈 문자열이 있거나 Azure SQL Database 테이블에 정의된 필드 수보다 요소 수가 더 적은 경우 Sqoop 내보내기는 실패합니다. log4jlogs 테이블에는 7가지 문자열 형식 필드가 있습니다.
+    이 데이터를 사용 하는 다른 예에 대 한 문제가 있지만 전에 hello Azure SQL 데이터베이스 또는 SQL Server로 가져올 수 있습니다 이러한 예외를 제거 해야 했습니다. 빈 문자열이 나 더 적은 있는 선 경우 Sqoop 내보내기 실패 함 hello Azure SQL 데이터베이스 테이블에 정의 된 필드의 hello 수보다 요소입니다. hello log4jlogs 테이블 7 문자열 형식 필드에 있습니다.
    
-    이 절차를 통해 클러스터에서 새 파일(tutorials/usesqoop/data/sample.log)을 만듭니다. 수정한 데이터 파일을 검사하려면 Azure 포털, Azure 저장소 탐색기 도구 또는 Azure PowerShell을 사용할 수 있습니다. [HDInsight 시작][hdinsight-get-started]에는 파일을 다운로드하고 그 파일의 내용을 표시하는 Azure PowerShell 사용에 관한 코드 샘플이 있습니다.
-6. 데이터 파일을 Azure SQL 데이터베이스로 내보냅니다.
+    이 절차에서는 hello 클러스터에서 새 파일을 만듭니다: tutorials/usesqoop/data/sample.log 합니다. tooexamine hello 수정 된 데이터 파일을 hello Azure 포털, Azure 저장소 탐색기 도구를 사용 하는 또는 Azure PowerShell을 사용할 수 있습니다. [HDInsight 시작] [ hdinsight-get-started] 코드는 Azure PowerShell toodownload 파일 사용에 대 한 샘플링 하 여 hello 파일 콘텐츠를 표시 합니다.
+6. 데이터 파일 toohello Azure SQL 데이터베이스를 내보냅니다.
    
-    원본 파일은 tutorials/usesqoop/data/sample.log입니다. 데이터를 내보낸 테이블은 log4jlogs라고 합니다.
+    hello 소스 파일은 tutorials/usesqoop/data/sample.log입니다. hello 데이터를 내보낸된 toois hello 테이블 log4jlogs를 호출 됩니다.
    
    > [!NOTE]
-   > 연결 문자열 정보를 제외하면 이 섹션의 단계는 Azure SQL 데이터베이스 또는 SQL Server에 대해 작동합니다. 이러한 단계는 다음 구성을 사용하여 테스트했습니다.
+   > 연결 문자열 정보를 이외의 SQL Server 또는 Azure SQL 데이터베이스에 대 한이 섹션의 단계 hello 작동 해야 합니다. 다음이 단계를 같은 구성이 hello를 사용 하 여 테스트 합니다.
    > 
-   > * **Azure 가상 네트워크 지점 및 사이트 간 구성**: 개인 데이터 센터에서 HDInsight 클러스터를 SQL Server에 연결하는 가상 네트워크입니다. 자세한 내용은 [관리 포털에서 지점 및 사이트 간 VPN 구성](../vpn-gateway/vpn-gateway-point-to-site-create.md) 을 참조하세요.
+   > * **Azure 가상 네트워크 지점-사이트 구성**: 가상 네트워크 hello HDInsight 클러스터 tooa SQL Server 개인 데이터 센터에 연결 합니다. 참조 [hello 관리 포털에서에서 지점 및 사이트 간 VPN 구성](../vpn-gateway/vpn-gateway-point-to-site-create.md) 자세한 정보에 대 한 합니다.
    > * **Azure HDInsight 3.1**: 가상 네트워크에서 클러스터를 만드는 방법에 대한 자세한 내용은 [사용자 지정 옵션을 사용하여 HDInsight의 Hadoop 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md) 를 참조하세요.
-   > * **SQL Server 2014**: 인증을 허용하고 VPN 클라이언트 구성 패키지를 실행하여 가상 네트워크에 안전하게 연결할 수 있도록 구성됩니다.
+   > * **SQL Server 2014**: tooallow 인증 및 실행 중인 hello VPN 클라이언트 구성 패키지 tooconnect를 안전 하 게 구성 toohello 가상 네트워크입니다.
    > 
    > 
-7. Hive 테이블을 Azure SQL 데이터베이스로 내보냅니다.
-8. mobiledata 테이블을 HDInsight 클러스터로 가져옵니다.
+7. 하이브 테이블 toohello Azure SQL 데이터베이스를 내보냅니다.
+8. Hello mobiledata 테이블 toohello HDInsight 클러스터를 가져옵니다.
    
-    수정한 데이터 파일을 검사하려면 Azure 포털, Azure 저장소 탐색기 도구 또는 Azure PowerShell을 사용할 수 있습니다.  [HDInsight 시작][hdinsight-get-started]에는 파일을 다운로드하고 그 파일의 내용을 표시하는 Azure PowerShell 사용에 관한 코드 샘플이 있습니다.
+    tooexamine hello 수정 된 데이터 파일을 hello Azure 포털, Azure 저장소 탐색기 도구를 사용 하는 또는 Azure PowerShell을 사용할 수 있습니다.  [HDInsight 시작] [ hdinsight-get-started] 코드는 Azure PowerShell toodownload 파일 사용에 대 한 샘플링 하 여 hello 파일 콘텐츠를 표시 합니다.
 
-### <a name="the-powershell-sample"></a>PowerShell 샘플
-    # Prepare an Azure SQL database to be used by the Sqoop tutorial
+### <a name="hello-powershell-sample"></a>hello PowerShell 샘플
+    # Prepare an Azure SQL database toobe used by hello Sqoop tutorial
 
-    #region - provide the following values
+    #region - provide hello following values
 
     $subscriptionID = "<Enter your Azure Subscription ID>"
 
@@ -292,8 +292,8 @@ PowerShell 샘플은 다음 단계를 수행합니다.
     # Treat all errors as terminating
     $ErrorActionPreference = "Stop"
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
@@ -334,8 +334,8 @@ PowerShell 샘플은 다음 단계를 수행합니다.
             -StartIpAddress $workstationIPAddress `
             -EndIpAddress $workstationIPAddress
 
-        #To allow other Azure services to access the server add a firewall rule and set both the StartIpAddress and EndIpAddress to 0.0.0.0. 
-        #Note that this allows Azure traffic from any Azure subscription to access the server.
+        #tooallow other Azure services tooaccess hello server add a firewall rule and set both hello StartIpAddress and EndIpAddress too0.0.0.0. 
+        #Note that this allows Azure traffic from any Azure subscription tooaccess hello server.
         New-AzureRmSqlServerFirewallRule `
             -ResourceGroupName $resourceGroupName `
             -ServerName $sqlDatabaseServerName `
@@ -368,13 +368,13 @@ PowerShell 샘플은 다음 단계를 수행합니다.
     #endregion
 
     #region - Create tables
-    Write-Host "Creating the log4jlogs table and the mobiledata table ..." -ForegroundColor Green
+    Write-Host "Creating hello log4jlogs table and hello mobiledata table ..." -ForegroundColor Green
 
     $conn = New-Object System.Data.SqlClient.SqlConnection
     $conn.ConnectionString = $sqlDatabaseConnectionString
     $conn.Open()
 
-    # Create the log4jlogs table and index
+    # Create hello log4jlogs table and index
     $cmd = New-Object System.Data.SqlClient.SqlCommand
     $cmd.Connection = $conn
     $cmd.CommandText = $cmdCreateLog4jTable
@@ -382,7 +382,7 @@ PowerShell 샘플은 다음 단계를 수행합니다.
     $cmd.CommandText = $cmdCreateLog4jClusteredIndex
     $cmd.ExecuteNonQuery()
 
-    # Create the mobiledata table and index
+    # Create hello mobiledata table and index
     $cmd.CommandText = $cmdCreateMobileTable
     $cmd.ExecuteNonQuery()
     $cmd.CommandText = $cmdCreateMobileDataClusteredIndex
@@ -395,16 +395,16 @@ PowerShell 샘플은 다음 단계를 수행합니다.
 
     #region - Create HDInsight cluster
 
-    Write-Host "Creating the HDInsight cluster and the dependent services ..." -ForegroundColor Green
+    Write-Host "Creating hello HDInsight cluster and hello dependent services ..." -ForegroundColor Green
 
-    # Create the default storage account
+    # Create hello default storage account
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
         -Location $location `
         -Type Standard_LRS
 
-    # Create the default Blob container
+    # Create hello default Blob container
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                     -ResourceGroupName $resourceGroupName `
                                     -Name $defaultStorageAccountName)[0].Value
@@ -415,7 +415,7 @@ PowerShell 샘플은 다음 단계를 수행합니다.
         -Name $defaultBlobContainerName `
         -Context $defaultStorageAccountContext 
 
-    # Create the HDInsight cluster
+    # Create hello HDInsight cluster
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
 
@@ -431,47 +431,47 @@ PowerShell 샘플은 다음 단계를 수행합니다.
         -DefaultStorageAccountKey $defaultStorageAccountKey `
         -DefaultStorageContainer $defaultBlobContainerName 
 
-    # Validate the cluster
+    # Validate hello cluster
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
     #endregion
 
-    #region - pre-process the source file
+    #region - pre-process hello source file
 
-    Write-Host "Preprocessing the source file ..." -ForegroundColor Green
+    Write-Host "Preprocessing hello source file ..." -ForegroundColor Green
 
     # This procedure creates a new file with $destBlobName
     $sourceBlobName = "example/data/sample.log"
     $destBlobName = "tutorials/usesqoop/data/sample.log"
 
-    # Define the connection string
+    # Define hello connection string
     $storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$defaultStorageAccountName;AccountKey=$defaultStorageAccountKey"
 
-    # Create block blob objects referencing the source and destination blob.
+    # Create block blob objects referencing hello source and destination blob.
     $storageAccount = [Microsoft.WindowsAzure.Storage.CloudStorageAccount]::Parse($storageConnectionString)
     $storageClient = $storageAccount.CreateCloudBlobClient();
     $storageContainer = $storageClient.GetContainerReference($defaultBlobContainerName)
     $sourceBlob = $storageContainer.GetBlockBlobReference($sourceBlobName)
     $destBlob = $storageContainer.GetBlockBlobReference($destBlobName)
 
-    # Define a MemoryStream and a StreamReader for reading from the source file
+    # Define a MemoryStream and a StreamReader for reading from hello source file
     $stream = New-Object System.IO.MemoryStream
     $stream = $sourceBlob.OpenRead()
     $sReader = New-Object System.IO.StreamReader($stream)
 
-    # Define a MemoryStream and a StreamWriter for writing into the destination file
+    # Define a MemoryStream and a StreamWriter for writing into hello destination file
     $memStream = New-Object System.IO.MemoryStream
     $writeStream = New-Object System.IO.StreamWriter $memStream
 
-    # Pre-process the source blob
+    # Pre-process hello source blob
     $exString = "java.lang.Exception:"
     while(-Not $sReader.EndOfStream){
         $line = $sReader.ReadLine()
         $split = $line.Split(" ")
 
-        # remove the "java.lang.Exception" from the first element of the array
+        # remove hello "java.lang.Exception" from hello first element of hello array
         # for example: java.lang.Exception: 2012-02-03 19:11:02 SampleClass8 [WARN] problem finding id 153454612
         if ($split[0] -eq $exString){
-            #create a new ArrayList to remove $split[0]
+            #create a new ArrayList tooremove $split[0]
             $newArray = [System.Collections.ArrayList] $split
             $newArray.Remove($exString)
 
@@ -480,23 +480,23 @@ PowerShell 샘플은 다음 단계를 수행합니다.
             $line = $newArray -join(" ")
         }
 
-        # remove the lines that has less than 7 elements
+        # remove hello lines that has less than 7 elements
         if ($split.count -ge 7){
             write-host $line
             $writeStream.WriteLine($line)
         }
     }
 
-    # Write to the destination blob
+    # Write toohello destination blob
     $writeStream.Flush()
     $memStream.Seek(0, "Begin")
     $destBlob.UploadFromStream($memStream)
 
     #endregion
 
-    #region - export a log file from the cluster to the SQL database
+    #region - export a log file from hello cluster toohello SQL database
 
-    Write-Host "Preprocessing the source file ..." -ForegroundColor Green
+    Write-Host "Preprocessing hello source file ..." -ForegroundColor Green
 
     $tableName_log4j = "log4jlogs"
 

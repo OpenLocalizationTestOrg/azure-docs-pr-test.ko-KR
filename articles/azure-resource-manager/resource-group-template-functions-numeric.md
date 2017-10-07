@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 템플릿 함수 - 숫자 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿에서 숫자 작업을 수행하는 데 사용할 수 있는 함수에 대해 설명합니다."
+title: "aaaAzure 리소스 관리자 템플릿 함수-숫자 | Microsoft Docs"
+description: "번호가 있는 hello 함수 toouse Azure 리소스 관리자 템플릿 toowork에 설명합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ae0261134b8d4a934048f58d6c679a48a904950b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 855d5b354d094b9815edc160e3d72efbfd36ba77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="numeric-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿용 숫자 함수
 
-Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
+리소스 관리자 hello를 뒤 정수가 포함 된 작업에 대 한 함수를 제공 합니다.
 
 * [추가](#add)
 * [copyIndex](#copyindex)
@@ -40,22 +40,22 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="add"></a>추가
 `add(operand1, operand2)`
 
-제공된 두 정수의 합을 반환합니다.
+반환 hello hello 두 제공 된 정수의 합입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- | 
-|operand1 |예 |int |더할 첫 번째 숫자입니다. |
-|operand2 |예 |int |더할 두 번째 숫자입니다. |
+|operand1 |예 |int |첫 번째 숫자 tooadd 합니다. |
+|operand2 |예 |int |두 번째 숫자 tooadd 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
-매개 변수의 합계를 포함하는 정수입니다.
+Hello 매개 변수의 hello 합계를 포함 하는 정수입니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 두 개의 매개 변수를 추가합니다.
+다음 예제는 hello 두 개의 매개 변수를 추가 합니다.
 
 ```json
 {
@@ -66,14 +66,14 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to add"
+                "description": "First integer tooadd"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to add"
+                "description": "Second integer tooadd"
             }
         }
     },
@@ -88,7 +88,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -99,26 +99,26 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="copyindex"></a>copyIndex
 `copyIndex(loopName, offset)`
 
-반복 루프의 인덱스를 반환합니다. 
+반환 hello 반복 루프의 인덱스입니다. 
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| loopName | 아니요 | string | 반복을 가져오기 위한 루프의 이름입니다. |
-| offset |아니요 |int |0부터 시작하는 반복 값에 더할 숫자입니다. |
+| loopName | 아니요 | string | hello 반복을 가져오기 위한 hello 루프의 hello 이름입니다. |
+| offset |아니요 |int |hello 숫자 tooadd toohello 0부터 시작 하는 반복 값입니다. |
 
 ### <a name="remarks"></a>설명
 
-이 함수는 항상 **copy** 개체에 사용됩니다. **offset** 값을 제공하지 않으면 현재 반복 값이 반환됩니다. 반복 값은 0부터 시작합니다.
+이 함수는 항상 **copy** 개체에 사용됩니다. 에 값이 제공 하는 경우 **오프셋**, hello 현재 반복 값이 반환 됩니다. hello 반복 값이 0에서 시작 합니다.
 
-**loopName** 속성을 사용하면 copyIndex에서 리소스 반복 또는 속성 반복을 참조하는지 여부를 지정할 수 있습니다. **loopName**에 값을 제공하지 않으면 현재 리소스 종류 반복이 사용됩니다. 속성에서 반복하는 경우 **loopName**의 값을 제공합니다. 
+hello **loopName** 속성 하면 toospecify copyIndex 참조 tooa 리소스 반복 또는 속성 반복 여부. 에 값이 제공 하는 경우 **loopName**, hello 현재 리소스 형식을 반복 사용 됩니다. 속성에서 반복하는 경우 **loopName**의 값을 제공합니다. 
  
 **copyIndex**를 사용하는 방법의 설명은 [Azure Resource Manager에서 리소스의 여러 인스턴스 만들기](resource-group-create-multiple.md)를 참조하세요.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 복사 루프 및 이름에 포함되는 인덱스 값을 보여 줍니다. 
+hello 다음 예제에서는 hello 이름에 포함 된 복사 루프 및 hello 인덱스 값 
 
 ```json
 "resources": [ 
@@ -136,29 +136,29 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 
 ### <a name="return-value"></a>반환 값
 
-반복의 현재 인덱스를 나타내는 정수입니다.
+Hello 반복의 hello 현재 인덱스를 나타내는 정수입니다.
 
 <a id="div" />
 
 ## <a name="div"></a>div
 `div(operand1, operand2)`
 
-제공된 두 정수의 나누기를 반환합니다.
+반환 hello hello 두 제공 된 정수의 정수 나누기입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| operand1 |예 |int |나누어지는 수입니다. |
-| operand2 |예 |int |나누는 데 사용되는 정수입니다. 0일 수 없습니다. |
+| operand1 |예 |int |나누어 사용 하는 hello 수입니다. |
+| operand2 |예 |int |hello 숫자 사용된 toodivide입니다. 0일 수 없습니다. |
 
 ### <a name="return-value"></a>반환 값
 
-나누기를 나타내는 정수입니다.
+정수 나타내는 hello 나누기입니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 다른 매개 변수로 매개 변수 하나를 나눕니다.
+다음 예제는 hello 다른 매개 변수에서 매개 변수 하나를 나눕니다.
 
 ```json
 {
@@ -176,7 +176,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -191,7 +191,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -202,20 +202,20 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="float"></a>float
 `float(arg1)`
 
-값을 부동 소수점 숫자로 변환합니다. 논리 앱과 같은 응용 프로그램에 사용자 지정 매개 변수를 전달할 때만 이 함수를 사용합니다.
+Hello 값 tooa 부동 소수점 숫자로 변환 합니다. 논리 앱 같은 tooan 응용 프로그램을 사용자 지정 매개 변수를 전달할 때만이 함수를 사용 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |문자열 또는 int |부동 소수점 숫자로 변환할 값입니다. |
+| arg1 |예 |문자열 또는 int |hello 값 tooconvert tooa 부동 소수점 수입니다. |
 
 ### <a name="return-value"></a>반환 값
 부동 소수점 수입니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 float를 사용해서 매개 변수를 논리 앱에 전달하는 방법을 보여 줍니다.
+다음 예제는 hello toouse toopass 매개 변수 tooa 논리 앱을 배치 하는 방법을 보여 줍니다.
 
 ```json
 {
@@ -236,21 +236,21 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="int"></a>int
 `int(valueToConvert)`
 
-지정된 값을 정수로 변환합니다.
+지정 된 값 tooan 정수 hello 변환합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| valueToConvert |예 |문자열 또는 int |정수로 변환할 값입니다. |
+| valueToConvert |예 |문자열 또는 int |hello tooconvert tooan 정수 값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-변환된 값의 정수입니다.
+Hello의 정수 값을 변환 합니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제는 사용자가 제공한 매개 변수 값을 정수로 변환합니다.
+hello 다음 예제에서는 변환 hello 사용자가 제공한 매개 변수 값 toointeger 합니다.
 
 ```json
 {
@@ -273,7 +273,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -282,24 +282,24 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 
 <a id="min" />
 
-## <a name="min"></a>min
+## <a name="min"></a>Min
 `min (arg1)`
 
-정수 배열 또는 쉼표로 구분된 정수 목록 중에서 최소값을 반환합니다.
+반환 hello 정수 배열 또는 정수 쉼표로 구분 된 목록에서 최소 값입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |최소값을 가져올 컬렉션입니다. |
+| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |hello 컬렉션 tooget hello 최소값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-컬렉션의 최소값을 나타내는 정수입니다.
+Hello 컬렉션에서 최소 값을 나타내는 정수입니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 정소 목록에 min을 사용하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toouse min 배열 및 정수 목록:
 
 ```json
 {
@@ -325,7 +325,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -337,21 +337,21 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="max"></a>max
 `max (arg1)`
 
-정수 배열 또는 쉼표로 구분된 정수 목록 중에서 최대값을 반환합니다.
+반환 hello 정수 배열 또는 정수 쉼표로 구분 된 목록에서 최대 값입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |최대값을 가져올 컬렉션입니다. |
+| arg1 |예 |정수 배열 또는 쉼표로 구분된 정수 목록 |hello 컬렉션 tooget hello 최대값입니다. |
 
 ### <a name="return-value"></a>반환 값
 
-컬렉션의 최대값을 나타내는 정수입니다.
+Hello 컬렉션에서 hello 최 댓 값을 나타내는 정수입니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 배열 및 정소 목록에 max를 사용하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toouse 배열 및 정수 목록이 사용 하 여 최대:
 
 ```json
 {
@@ -377,7 +377,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -389,21 +389,21 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="mod"></a>mod
 `mod(operand1, operand2)`
 
-제공된 두 정수를 사용하여 나누기한 나머지를 반환합니다.
+제공 된 정수 두 개 hello를 사용 하 여 hello 정수 나누기의 hello 나머지를 반환 합니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| operand1 |예 |int |나누어지는 수입니다. |
-| operand2 |예 |int |나누는 데 사용되는 정수로, 0일 수 없습니다. |
+| operand1 |예 |int |나누어 사용 하는 hello 수입니다. |
+| operand2 |예 |int |hello를 사용 하는 toodivide 0 일 수 없습니다. |
 
 ### <a name="return-value"></a>반환 값
-나머지를 나타내는 정수입니다.
+정수 나타내는 hello 나머지입니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 다른 매개 변수로 매개 변수 하나를 나눈 나머지를 반환합니다.
+hello 다음 예제에서는 반환 hello 나눈 나머지를 다른 매개 변수는 하나의 매개 변수입니다.
 
 ```json
 {
@@ -421,7 +421,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer used to divide"
+                "description": "Integer used toodivide"
             }
         }
     },
@@ -436,7 +436,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -447,22 +447,22 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="mul"></a>mul
 `mul(operand1, operand2)`
 
-제공된 두 정수의 곱하기를 반환합니다.
+반환 hello hello 두 제공 된 정수의 곱입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| operand1 |예 |int |곱할 첫 번째 숫자입니다. |
-| operand2 |예 |int |곱할 두 번째 숫자입니다. |
+| operand1 |예 |int |첫 번째 숫자 toomultiply 합니다. |
+| operand2 |예 |int |두 번째 숫자 toomultiply 합니다. |
 
 ### <a name="return-value"></a>반환 값
 
-곱하기를 나타내는 정수입니다.
+정수 나타내는 hello 곱하기.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 다른 매개 변수로 매개 변수 하나를 곱합니다.
+다음 예제는 hello 다른 매개 변수에서 매개 변수 하나를 곱합니다.
 
 ```json
 {
@@ -473,14 +473,14 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
             "type": "int",
             "defaultValue": 5,
             "metadata": {
-                "description": "First integer to multiply"
+                "description": "First integer toomultiply"
             }
         },
         "second": {
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Second integer to multiply"
+                "description": "Second integer toomultiply"
             }
         }
     },
@@ -495,7 +495,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
@@ -506,21 +506,21 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 ## <a name="sub"></a>sub
 `sub(operand1, operand2)`
 
-제공된 두 정수의 빼기를 반환합니다.
+반환 hello 빼기 hello 두 개의 제공 된 정수입니다.
 
 ### <a name="parameters"></a>매개 변수
 
 | 매개 변수를 포함해야 합니다. | 필수 | 형식 | 설명 |
 |:--- |:--- |:--- |:--- |
-| operand1 |예 |int |빼는 피감수입니다. |
-| operand2 |예 |int |빼는 감수입니다. |
+| operand1 |예 |int |hello 숫자에서 뺀입니다. |
+| operand2 |예 |int |hello 숫자를 뺀입니다. |
 
 ### <a name="return-value"></a>반환 값
-빼기를 나타내는 정수입니다.
+정수 나타내는 hello 빼기 합니다.
 
-### <a name="example"></a>예
+### <a name="example"></a>예제
 
-다음 예제에서는 다른 매개 변수에서 매개 변수 하나를 뺍니다.
+다음 예제는 hello 다른 매개 변수에서 매개 변수를 하나를 뺍니다.
 
 ```json
 {
@@ -538,7 +538,7 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
             "type": "int",
             "defaultValue": 3,
             "metadata": {
-                "description": "Integer to subtract"
+                "description": "Integer toosubtract"
             }
         }
     },
@@ -553,15 +553,15 @@ Resource Manager는 정수 작업을 위한 다음 함수를 제공합니다.
 }
 ```
 
-기본 값을 사용한 이전 예제의 출력은 다음과 같습니다.
+hello는 hello 기본값을 사용 하는 예제는 hello 앞에서 출력:
 
 | 이름 | 형식 | 값 |
 | ---- | ---- | ----- |
 | subResult | int | 4 |
 
 ## <a name="next-steps"></a>다음 단계
-* Azure Resource Manager 템플릿의 섹션에 대한 설명은 [Azure Resource Manager 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.
-* 여러 템플릿을 병합하려면 [Azure Resource Manager에서 연결된 템플릿 사용](resource-group-linked-templates.md)을 참조하세요.
-* 리소스 유형을 만들 때 지정된 횟수만큼 반복하려면 [Azure 리소스 관리자에서 리소스의 여러 인스턴스 만들기](resource-group-create-multiple.md)를 참조하세요.
-* 만든 템플릿을 배포하는 방법을 보려면 [Azure Resource Manager 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.
+* Azure 리소스 관리자 템플릿의 hello 섹션에 대 한 참조 [제작 Azure 리소스 관리자 템플릿을](resource-group-authoring-templates.md)합니다.
+* toomerge 템플릿이 여러 개 참조 [Azure 리소스 관리자와 연결 된 템플릿을 사용 하 여](resource-group-linked-templates.md)합니다.
+* 지정 된 횟수 만큼 tooiterate 리소스의 종류를 만들 때 참조 [Azure 리소스 관리자 리소스의 여러 인스턴스를 만들](resource-group-create-multiple.md)합니다.
+* toosee toodeploy hello 서식 파일을 만든 참조 [Azure 리소스 관리자 템플릿 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.
 

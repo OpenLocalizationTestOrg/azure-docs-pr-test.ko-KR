@@ -22,7 +22,7 @@
 ## 템플릿 만들기
 ### [템플릿 모범 사례](resource-manager-template-best-practices.md)
 ### [템플릿 섹션](resource-group-authoring-templates.md)
-### [다른 템플릿에 대한 연결](resource-group-linked-templates.md)
+### [링크 tooother 템플릿](resource-group-linked-templates.md)
 ### [리소스 간 종속성 정의](resource-group-define-dependencies.md)
 ### [여러 인스턴스 만들기](resource-group-create-multiple.md)
 ### [위치 설정](resource-manager-template-location.md)
@@ -53,8 +53,8 @@
 ### [Azure CLI](xplat-cli-azure-resource-manager.md)
 ### [포털](resource-group-portal.md)
 ### [REST API](resource-manager-rest-api.md)
-### [태그를 사용하여 리소스 구성](resource-group-using-tags.md)
-### [새 그룹 또는 구독으로 리소스 이동](resource-group-move-resources.md)
+### [태그 tooorganize 리소스를 사용 하 여](resource-group-using-tags.md)
+### [구독 또는 리소스 toonew 그룹 이동](resource-group-move-resources.md)
 ### [거버넌스 예제](resource-manager-subscription-examples.md)
 
 ## 액세스 제어
@@ -63,13 +63,13 @@
 #### [Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 #### [Azure CLI 1.0](resource-group-authenticate-service-principal-cli.md)
 #### [포털](resource-group-create-service-principal-portal.md)
-### [구독에 액세스하는 인증 API](resource-manager-api-authentication.md)
+### [인증 API tooaccess 구독](resource-manager-api-authentication.md)
 ### [리소스 잠금](resource-group-lock-resources.md)
 
 ## 리소스 정책 설정
 ### [리소스 정책이란?](resource-manager-policy.md)
-### [포털을 사용하여 정책 할당](resource-manager-policy-portal.md)
-### [스크립트를 사용하여 정책 할당](resource-manager-policy-create-assign.md)
+### [포털 tooassign 정책을 사용 하 여](resource-manager-policy-portal.md)
+### [스크립트 tooassign 정책을 사용 하 여](resource-manager-policy-create-assign.md)
 ### 예
 #### [태그](resource-manager-policy-tags.md)
 #### [명명 규칙](resource-manager-policy-naming-convention.md)

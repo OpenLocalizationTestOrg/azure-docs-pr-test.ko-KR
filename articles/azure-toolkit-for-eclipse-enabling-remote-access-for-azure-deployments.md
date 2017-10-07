@@ -1,6 +1,6 @@
 ---
-title: "Eclipse에서 Azure 배포에 대한 원격 액세스를 사용하도록 설정"
-description: "Eclipse용 Azure 도구 키트를 사용하여 Azure 배포에 대한 원격 액세스를 사용하도록 설정하는 방법에 알아봅니다."
+title: "aaaEnabling Eclipse에서 Azure 배포에 대 한 원격 액세스"
+description: "Eclipse 용 Azure 도구 키트 hello를 사용 하 여 Azure 배포에 대 한 tooenable 원격 액세스 하는 방법을 알아봅니다."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,112 +14,112 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 654d511bd5a62341f87569317e97360c94a6f26c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00c2bf22c1f3ec792098f154f771c87506e87881
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enabling-remote-access-for-azure-deployments-in-eclipse"></a>Eclipse에서 Azure 배포에 대한 원격 액세스를 사용하도록 설정
-배포를 해결하기 위해 원격 액세스를 활성화하고 사용하여 배포를 호스팅하는 가상 컴퓨터에 연결합니다. 원격 액세스 기능은 원격 데스크톱 프로토콜(RDP)에 의존합니다. Azure에 게시한 후 배포에 대한 원격 액세스를 구성할 수 있거나 Windows 운영 체제와 Eclipse를 사용하는 경우 Azure에 게시하기 전에 원격 액세스를 구성할 수 있습니다. Azure에서 배포의 가상 컴퓨터에 연결하기 위해 운영 체제와 호환되는 원격 데스크톱 클라이언트가 필요합니다.
+toohelp 배포 문제 해결, 사용 하도록 설정 하 고 배포를 호스트 하는 원격 액세스 tooconnect toohello 가상 컴퓨터를 사용할 수 있습니다. 원격 액세스 기능 hello hello 프로토콜 RDP (원격 데스크톱)에 의존합니다. TooAzure를 게시 하기 전에 원격 액세스를 구성할 수 Eclipse와 Windows 운영 체제를 사용 하는 경우 또는 tooAzure, 게시 한 후 배포에 대 한 원격 액세스를 구성할 수 있습니다. 참고가 Azure에서 순서 tooconnect tooyour 배포의 가상 컴퓨터의 운영 체제와 호환 되는 원격 데스크톱 클라이언트 필요 합니다.
 
-## <a name="how-to-enable-remote-access-before-you-deploy-to-azure"></a>Azure에 배포하기 전에 원격 액세스를 사용하도록 설정하는 방법
+## <a name="how-tooenable-remote-access-before-you-deploy-tooazure"></a>원격 액세스 하기 전에 tooenable tooAzure를 배포 하는 방법
 > [!NOTE]
-> Azure에 응용 프로그램을 배포하기 전에 원격 액세스를 사용하도록 설정하려면 Windows에서 Eclipse를 실행해야 합니다.
+> 응용 프로그램 tooAzure를 배포 하기 전에 원격 액세스 tooenable toobe Windows에서 Eclipse를 실행 해야 합니다.
 > 
 > 
 
-다음 이미지는 원격 액세스를 활성화하는 데 사용되는 **원격 액세스** 속성 대화 상자를 보여 줍니다.
+hello 다음 그림에 나와 hello **원격 액세스** 속성 대화 상자 tooenable 원격 액세스를 사용 합니다.
 
 ![][ic719494]
 
-**원격 액세스** 속성 대화 상자를 표시하는 두 가지 방법이 있습니다.
+두 가지 방법으로 toodisplay hello **원격 액세스** 속성 대화 상자:
 
-* **Azure에 게시** 대화 상자의 **원격 액세스** 섹션에서 **고급** 링크를 클릭합니다.
+* Hello 클릭 **고급** hello에 대 한 링크 **원격 액세스** hello 섹션 **tooAzure 게시** 대화 상자.
 
-* Azure 프로젝트의 **속성** 대화 상자를 엽니다.
+* 열기 hello **속성** Azure 프로젝트의 대화 상자.
 
-새 Azure 배포 프로젝트를 만드는 경우 프로젝트는 기본적으로 활성화된 원격 액세스가 없습니다. 그러나 **Azure에 게시** 대화 상자에서 사용자 이름 및 암호를 지정하여 쉽게 원격 액세스를 활성화할 수 있습니다. 원격 액세스 암호는 X.509 인증서를 사용하여 암호화됩니다. 사용자 인증서를 제공하지 않는 경우 암호화는 Eclipse용 Azure 플러그 인과 함께 제공되는 자체 서명된 인증서를 사용합니다. 이 자체 서명된 인증서는 Azure 프로젝트의 **cert** 폴더에 있으며 공용 인증서 파일(SampleRemoteAccessPublic.cer) 및 개인 정보 교환(PFX) 인증서 파일(SampleRemoteAccessPrivate.pfx) 모두로 저장됩니다. 후자는 인증서에 대한 개인 키를 포함하고 기본 암호, **Password1**을 갖습니다. 그러나 이 암호는 공공 정보이므로 기본 인증서는 프로덕션 배포용이 아닌 학습 용도로만 사용되어야 합니다. 따라서 학습 목적 이외로 배포를 위한 원격 세션을 사용하도록 설정하려는 경우 **Azure에 게시** 대화 상자에서 **고급** 링크를 클릭하여 고유 인증서를 지정해야 합니다. Azure에서 사용자 암호를 해독할 수 있도록 Azure 관리 포털 내의 호스티드 서비스에 인증서의 PFX 버전을 업로드해야 합니다.
+새 Azure 배포 프로젝트를 만들면 hello 프로젝트는 기본적으로 사용 하는 원격 액세스 않아도 됩니다. 그러나 있습니다 사용 하 여 쉽게 원격 액세스 hello에 hello 사용자 이름 및 암호를 지정 하 여 **tooAzure 게시** 대화 상자. hello 원격 액세스 암호는 X.509 인증서를 사용 하 여 암호화 됩니다. 사용 하지 않는 경우, 사용자 고유의 인증서를 제공 hello 암호화는 hello Eclipse 용 Azure 플러그 인과 함께 제공 된 자체 서명 된 인증서를 사용 합니다. Hello에이 자체 서명 된 인증서가 **cert** Azure 프로젝트의 폴더를 저장 된 공용 인증서 파일 (SampleRemoteAccessPublic.cer)로 모두 및 개인 정보 교환 (PFX)으로 인증서 파일 ( SampleRemoteAccessPrivate.pfx)입니다. 후자의 hello hello hello 인증서에 대 한 개인 키가 포함 되어 있고 기본 암호 인 **Password1**합니다. 그러나이 암호는 누구나 알 이후 학습 목적으로 프로덕션 배포에 대 한 하지에 대해서만 hello 기본 인증서를 사용 해야 합니다. 따라서 이외의 학습 목적으로 배포를 위한 tooenabled 원격 세션을 원하는 경우 클릭 하 여 해야 hello **고급** hello에 대 한 링크 **tooAzure 게시** 대화 toospecify 직접 인증서입니다. 해당 Azure hello 사용자 암호를 해독할 수 있으므로 hello Azure 관리 포털 내에서 서비스를 호스트 하는 참고 hello 인증서 tooyour tooupload hello PFX 버전이 필요 합니다.
 
-이 자습서의 나머지 부분에서는 사용하지 않도록 설정된 원격 액세스를 사용하여 처음에 만든 Azure 배포 프로젝트에 대한 원격 액세스를 사용하도록 설정하는 방법을 보여 줍니다. 이 자습서의 목적을 위해 새 자체 서명된 인증서를 만들 예정이며 해당 .pfx 파일은 사용자가 선택한 암호를 갖게 됩니다. 인증 기관에서 발급한 인증서를 사용할 수도 있습니다.
+hello 자습서의 나머지 부분에서는 hello tooenable 원격 사용 하지 않도록 설정 하는 원격 액세스를 사용 하 여 처음에 만든 Azure 배포 프로젝트에 대 한 액세스 하는 방법을 보여 줍니다. 이 자습서의 목적을 위해 새 자체 서명된 인증서를 만들 예정이며 해당 .pfx 파일은 사용자가 선택한 암호를 갖게 됩니다. 인증 기관에서 발급 한 인증서를 사용 하 여 hello 옵션이 있습니다.
 
-## <a name="how-to-enable-remote-access-after-you-have-deployed-to-azure"></a>Azure에 배포한 후에 원격 액세스를 사용하도록 설정하는 방법
-Azure에 배포한 후 원격 액세스를 사용하도록 설정하려면 다음 단계를 사용합니다.
+## <a name="how-tooenable-remote-access-after-you-have-deployed-tooazure"></a>원격 액세스 한 후 tooenable tooAzure 구축 하는 방법을
+tooenable 원격 액세스 배포 tooAzure를 사용 하 여 hello 단계를 수행 하면:
 
-1. Azure 계정을 사용하여 Azure 관리 포털에 로그인합니다.
+1. Azure 계정을 사용 하 여 hello Azure 관리 포털에 로그인
 
 2. **클라우드 서비스**목록에서 배포된 클라우드 서비스를 선택합니다.
 
-3. 클라우드 서비스 웹 페이지에서 **구성** 링크를 클릭합니다.
+3. Hello 클라우드 서비스 웹 페이지에서 클릭 hello **구성** 링크
 
-4. 구성 페이지의 맨 아래에서 **원격** 링크를 클릭합니다.
+4. Hello 구성 페이지의 아래쪽 hello 클릭 hello **원격** 링크
 
-5. 팝업 대화 상자가 나타나는 경우:
+5. Hello 팝업 대화 상자가 나타나는 경우:
    
-   * 원격 액세스를 사용하도록 설정하려는 역할을 지정합니다.
+   * Hello 역할을 지정 하면 tooenable 원격 액세스 하려는
 
-   * 클릭하여 **원격 데스크톱 사용** 확인란을 선택합니다.
+   * Tooselect hello 클릭 **원격 데스크톱 사용** 확인란
    
-   * 원격 액세스에 대해 사용하려는 사용자 이름 및 암호를 지정합니다.
+   * 사용자 이름 및 원격 액세스를 위한 toouse 원하는 암호를 지정 합니다.
    
-   * 사용할 인증서를 선택합니다.
+   * Hello 인증서 toouse 선택
 
 6. **확인** 
 
-구성 변경이 진행 중임을 나타내는 메시지가 표시되며 완료하려면 몇 분 정도 소요될 수 있습니다. 구성 변경이 완료된 후 이 문서의 뒷부분에 나오는 **원격으로 로그인하려면** 섹션의 단계를 따릅니다.
+구성 변경 진행 중 몇 분 toocomplete 소요 될 수 있는 않다는 메시지가 표시 됩니다. Hello 구성 변경이 완료 되 면에서 다음과 같이 hello hello **toolog에 원격으로** 이 문서의 뒷부분에 나오는 섹션.
 
-## <a name="how-to-enable-remote-access-in-your-package"></a>패키지에서 원격 액세스를 사용하도록 설정하는 방법
+## <a name="how-tooenable-remote-access-in-your-package"></a>Tooenable 원격 패키지에 액세스 하는 방법
 1. Eclipse의 Project Explorer 창에서 Azure 프로젝트를 마우스 오른쪽 단추로 클릭하고 **Properties**를 클릭합니다.
 
-2. **속성** 대화 상자에서 왼쪽 창의 **Azure**를 확장하고 **원격 액세스**를 클릭합니다.
+2. Hello에 **속성** 대화 상자를 확장 하 고 **Azure** hello 왼쪽 창에서 **원격 액세스**합니다.
 
-3. **원격 액세스** 대화 상자에서 **모든 역할이 다음 로그인 자격 증명을 사용하는 원격 데스크톱 연결을 수락하도록 허용**이 선택되었는지 확인합니다.
+3. Hello에 **원격 액세스** 대화 상자에서 확인 **이 로그인 자격 증명으로 모든 역할 tooaccept 원격 데스크톱 연결을 사용 하도록 설정** 을 선택 합니다.
 
-4. 원격 데스크톱 연결에 대한 사용자 이름을 지정합니다.
+4. Hello 원격 데스크톱 연결에 대 한 사용자 이름을 지정 합니다.
 
-5. 사용자에 대한 암호를 지정하고 확인합니다. 이 대화 상자에 설정된 사용자 이름 및 암호 값은 원격 데스크톱 연결을 설정할 때 사용됩니다. (이것은 PFX 암호와 다른 별도 암호입니다.)
+5. 지정 하 고 hello 사용자에 대 한 hello 암호를 확인 합니다. hello 사용자 이름 및 암호 설정 된 값이 대화이 상자에 원격 데스크톱 연결을 설정할 때 사용 됩니다. (이것은 PFX 암호와 다른 별도 암호입니다.)
 
-6. 사용자 계정에 대한 만료 날짜를 지정합니다.
+6. Hello 사용자 계정에 대 한 hello 만료 날짜를 지정 합니다.
 
-7. **New** 를 클릭하여 자체 서명된 새로운 인증서를 만듭니다. (또는 **작업 영역** 또는 **파일 시스템** 단추를 통해 각각 작업 영역이나 파일 시스템에서 인증서를 선택할 수 있지만 이 자습서의 목적을 위해 새 인증서를 만듭니다.)
+7. 클릭 **새로** toocreate 새 자체 서명 된 인증서입니다. (또는 hello 통해 작업 영역이 나 파일 시스템에서 인증서를 선택할 수 **작업 영역** 또는 **FileSystem** 각각 하지만이 자습서에서는 새 만듭니다 단추 인증서입니다.)
 
-   * **New Certificate** 대화 상자에서 PFX 파일에서 사용할 암호를 지정하고 확인합니다.
+   * Hello에 **새 인증서** 대화 상자에서 지정 하 고 PFX 파일을 사용 하는 hello 암호를 확인 합니다.
 
-   * **Name (CN)**에서 제공된 값을 사용하거나 사용자 지정 이름을 사용합니다.
+   * 에 대해 제공 된 값과 hello 허용 **이름 (CN)**, 하거나 사용자 지정 이름을 사용 합니다.
 
-   * .cer 형식으로 새 인증서가 저장될 경로 및 파일 이름을 지정합니다. 이 단계와 다음 단계의 경우 Azure 프로젝트의 **cert** 폴더를 사용할 수 있지만 다른 위치를 선택할 수도 있습니다. 이 자습서의 목적을 위해 **c:\mycert\mycert.cer**을 사용합니다. (계속하기 전에 **c:\mycert** 폴더를 만들거나 원하는 경우 기존 폴더를 사용합니다.)
+   * Hello 새 인증서를.cer 형식으로 저장 될 hello 경로 파일 이름을 지정 합니다. 이 단계와 hello 다음 단계에 대 한 hello를 사용할 수 있습니다 **cert** 수 있지만 Azure 프로젝트의 폴더는 무료 toochoose 다른 위치입니다. 이 자습서의 목적을 위해 **c:\mycert\mycert.cer**을 사용합니다. (Hello 만들 **c:\mycert** 폴더 이전 tooproceeding 또는 원하는 경우 기존 폴더를 사용 합니다.)
 
-   * .cer 형식으로 새 인증서 및 해당 개인 키가 저장될 경로 및 파일 이름을 지정합니다. 이 자습서의 목적을 위해 **c:\mycert\mycert.pfx**를 사용합니다. **새 인증서** 대화 상자는 다음과 유사합니다(**c:\mycert**를 사용하지 않은 경우 폴더 경로 업데이트).
+   * Hello 새 인증서와 개인 키를.pfx 형식으로 저장할 수 hello 경로 파일 이름을 지정 합니다. 이 자습서의 목적을 위해 **c:\mycert\mycert.pfx**를 사용합니다. 프로그램 **새 인증서** 대화 비슷한 toohello 다음과 같아야 합니다. (사용 하지 않은 경우 hello 폴더 경로 업데이트 **c:\mycert**):
      
       ![][ic712275]
 
-   * **확인**을 클릭하여 **새 인증서** 대화 상자를 닫습니다.
+   * 클릭 **확인** tooclose hello **새 인증서** 대화 상자.
 
-8. **원격 액세스** 대화 상자는 다음과 유사합니다.</p>
+8. 프로그램 **원격 액세스** 대화 비슷한 toohello 다음과 같아야 합니다.</p>
    
    ![][ic719495]
 
-9. **확인**을 클릭하여 **원격 액세스** 대화 상자를 닫습니다.
+9. 클릭 **확인** tooclose hello **원격 액세스** 대화 상자.
 
-클라우드 배포용으로 설정된 빌드로 응용 프로그램을 다시 빌드합니다.
+응용 프로그램을 다시 작성, hello로 toocloud 배포에 대 한 집합을 작성 합니다.
 
-## <a name="to-log-in-remotely"></a>원격으로 로그인하려면
-역할 인스턴스가 준비되면 응용 프로그램을 호스팅하는 가상 컴퓨터에 원격으로 로그인할 수 있습니다.
+## <a name="toolog-in-remotely"></a>toolog에 원격으로
+역할 인스턴스가 준비 되 면 원격 응용 프로그램을 호스팅하는 toohello 가상 컴퓨터에 로그온 할 수 있습니다.
 
-* Azure에 배포하는 동안 Windows에서 Eclipse를 사용하고 **Start remote desktop on deploy** 옵션을 선택한 경우 배포를 시작할 때 원격 데스크톱 연결 로그온 화면이 나타납니다. 사용자 이름 및 암호를 묻는 메시지가 나타나면 원격 사용자에 대해 지정한 값을 입력하고 로그인할 수 있게 됩니다.
+* Windows 및 선택한 hello에서 Eclipse를 사용 하는 경우 **배포 시 원격 데스크톱 시작** 옵션 중에 배포 tooAzure 나타납니다 원격 데스크톱 연결 로그온 화면이 배포를 시작할 때입니다. Hello 사용자 이름 및 암호를 묻는 메시지가 나타나면 hello 원격 사용자에 대해 지정한 hello 값을 입력 하 고에 수 toolog 됩니다.
 
-* 원격으로 로그인하는 또 다른 방법은 <a href="http://go.microsoft.com/fwlink/?LinkID=512959">Azure 관리 포털</a>을 통해서 입니다.
+* 또 다른 방법은 toolog hello를 통해 원격으로 <a href="http://go.microsoft.com/fwlink/?LinkID=512959">Azure 관리 포털</a>:
   
-  * Azure 관리 포털의 **클라우드 서비스** 보기 내에서 **인스턴스**를 클릭하고 특정 인스턴스를 클릭한 다음 **연결** 단추를 클릭합니다. **연결** 단추가 명령 모음에서 다음과 같이 나타납니다.
+  * Hello 내 **클라우드 서비스** hello Azure 관리 포털의 보기 클라우드 서비스를 클릭 하 고 **인스턴스**, 특정 인스턴스를 클릭 하 고 클릭 다음 hello **연결**단추입니다. hello **연결** 단추가 hello 명령 모음에서 hello 다음과 같이 나타납니다.
     
       ![][ic659273]
 
-  * **연결** 단추를 클릭한 후 RDP 파일을 열라는 메시지가 나타납니다 파일을 열고 프롬프트를 따릅니다. (이 파일을 로컬 컴퓨터에 저장한 다음 두 번 클릭하여 파일을 실행하여 관리 포털로 먼저 이동하지 않고도 가상 컴퓨터에 원격으로 로그인할 수도 있습니다.)
+  * Hello를 클릭 한 후 **연결** 단추를 증명된 tooopen RDP 파일을 사용할 수 있습니다. Hello 파일을 열고 hello 프롬프트를 따릅니다. (있습니다 수이 파일 tooyour 로컬 컴퓨터를 저장할 수도 한 다음 hello 파일 두 번 클릭 하 여 tooremote 로그에서에서 실행 tooyour toofirst 필요 없이 가상 컴퓨터 이동 hello 관리 포털.)
 
-  * 사용자 이름 및 암호를 묻는 메시지가 나타나면 원격 사용자에 대해 지정한 값을 입력하고 로그인할 수 있게 됩니다.
+  * Hello 사용자 이름 및 암호를 묻는 메시지가 나타나면 hello 원격 사용자에 대해 지정한 hello 값을 입력 하 고에 수 toolog 됩니다.
 
 > [!NOTE]
-> 비 Windows 운영 체제에 있는 경우 운영 체제와 호환되는 원격 데스크톱 클라이언트를 사용하고 다운로드한 RDP 파일의 설정을 사용하여 해당 클라이언트를 구성하는 단계를 수행해야 합니다.
+> Windows 이외의 운영 체제에 있는 toouse 운영 체제와 호환 되는 원격 데스크톱 클라이언트를 해야 hello 단계 tooconfigure hello 다운로드 한 RDP 파일의 hello 설정 사용 하 여 해당 클라이언트를 수행 합니다.
 > 
 > 
 
@@ -128,9 +128,9 @@ Azure에 배포한 후 원격 액세스를 사용하도록 설정하려면 다�
 
 [Eclipse에서 Azure용 Hello World 응용 프로그램 만들기][Creating a Hello World Application for Azure in Eclipse]
 
-[Eclipse용 Azure 도구 키트 설치][Installing the Azure Toolkit for Eclipse] 
+[Hello Eclipse 용 Azure 도구 키트 설치][Installing hello Azure Toolkit for Eclipse] 
 
-Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터][Azure Java Developer Center]를 참조하세요.
+Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터][Azure Java Developer Center]합니다.
 
 <!-- URL List -->
 
@@ -138,7 +138,7 @@ Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure
 [Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

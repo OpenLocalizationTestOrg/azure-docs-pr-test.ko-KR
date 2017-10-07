@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 1.0 설치 | Microsoft Docs"
-description: "Mac, Linux 및 Windows용 Azure CLI 1.0을 설치하여 Azure 서비스 사용 시작"
+title: aaaInstall hello Azure CLI 1.0 | Microsoft Docs
+description: "Azure 서비스를 사용 하 여 Mac, Linux 및 Windows toostart에 대 한 hello Azure CLI 1.0 설치"
 editor: 
 manager: timlt
 documentationcenter: 
@@ -15,96 +15,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: rasquill
-ms.openlocfilehash: 63b35ed25b809a16b61b685fd35aa67474b0a369
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a8cd4e38fde6e4b17a768a7caecd280cd91a70f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-the-azure-cli-10"></a>Azure CLI 1.0 설치
+# <a name="install-hello-azure-cli-10"></a>Hello Azure CLI 1.0 설치
 > [!div class="op_single_selector"]
 > * [PowerShell](/powershell/azure/overview)
 > * [Azure CLI 1.0](cli-install-nodejs.md)
 > * [Azure CLI 2.0](/cli/azure/install-azure-cli)
 
 > [!IMPORTANT]
-> 이 항목에서는 nodeJs를 기반으로 작성되고 모든 클래식 배포 API 호출은 물론 다수의 Resource Manager 배포 작업을 지원하는 Azure CLI 1.0을 설치하는 방법을 설명합니다. 새롭거나 앞으로 있을 CLI 배포 및 관리에는 [Azure CLI 2.0](/cli/azure/overview)을 사용해야 합니다.
+> 이 항목에서는 많은 수의 리소스 관리자 배포 활동 뿐 아니라 tooinstall hello Azure CLI 1.0 nodeJs에서 빌드하고 지 원하는 모든 클래식 배포 API를 호출 하는 방법에 대해 설명 합니다. Hello를 사용 해야 [Azure CLI 2.0](/cli/azure/overview) 새롭거나 특정 CLI 배포 및 관리 합니다.
 
-신속하게 Azure CLI 1.0(Azure 명령줄 인터페이스)을 설치하여 Microsoft Azure에서 리소스를 만들고 관리하기 위한 오픈 소스 셸 기반 명령 집합을 사용합니다. 컴퓨터에 크로스 플랫폼 도구를 설치하는 몇 가지 옵션이 있습니다.
+Hello Azure 명령줄 인터페이스 (Azure CLI 1.0) toouse 만들고 Microsoft Azure의에서 리소스를 관리 하기 위한 오픈 소스 셸 기반 명령 집합을 신속 하 게 설치 합니다. 몇 가지 옵션 tooinstall 이러한 플랫폼 간 도구에 있는 컴퓨터:
 
-* **npm 패키지** - npm(JavaScript용 패키지 관리자)을 실행하여 Linux 배포 또는 OS에 최신 Azure CLI 1.0 패키지를 설치합니다. node.js 및 npm이 컴퓨터에 필요합니다.
+* **npm 패키지** 실행-Linux 배포 또는 운영 체제에서 (JavaScript 용 hello 패키지 관리자) npm tooinstall hello 최신 Azure CLI 1.0 패키지 합니다. node.js 및 npm이 컴퓨터에 필요합니다.
 * **설치 관리자** - 설치 관리자를 다운로드하여 Mac 또는 Windows에서 손쉽게 설치합니다.
-* **Docker 컨테이너** - 즉시 실행 가능한 Docker 컨테이너에서 최신 CLI를 사용하기 시작합니다. Docker 호스트가 컴퓨터에 필요합니다.
+* **Docker 컨테이너** -시작 hello를 사용 하 여 최신 CLI 실행 방식 Docker 컨테이너에 있습니다. Docker 호스트가 컴퓨터에 필요합니다.
 
-추가 옵션 및 배경 정보는 [GitHub](https://github.com/azure/azure-xplat-cli)에서 프로젝트 리포지토리를 참조하세요.
+많은 옵션과 배경 hello 프로젝트 저장소에서 참조 [GitHub](https://github.com/azure/azure-xplat-cli)합니다.
 
-Azure CLI 1.0이 설치되면 [Azure 구독을 사용하여 연결](xplat-cli-connect.md)하고 명령줄 인터페이스(Bash, 터미널, 명령 프롬프트 등)에서 **azure** 명령을 실행하여 Azure 리소스 작업을 수행할 수 있습니다.
+Hello Azure CLI 1.0 설치 되 면 [Azure 구독과 연결](xplat-cli-connect.md) 및 실행된 hello **azure** 프로그램 명령줄 인터페이스 (예: Bash, 터미널, 명령 프롬프트 및 등)에서 명령으로 toowork Azure 리소스입니다.
 
 ## <a name="option-1-install-an-npm-package"></a>옵션 1: npm 패키지 설치
-npm 패키지에서 CLI를 설치하려면 [최신 Node.js 및 npm](https://nodejs.org/en/download/package-manager/)을 다운로드하고 설치했는지 확인합니다. 그런 다음 **npm install** azure-cli 패키지를 설치합니다.
+tooinstall hello CLI npm 패키지를 다운로드 하 고 hello 설치 되어 있는지 확인 [최신 Node.js 및 npm](https://nodejs.org/en/download/package-manager/)합니다. 그런 다음 실행 **npm 설치** tooinstall hello azure cli 패키지:
 
 ```bash
 npm install -g azure-cli
 ```
 
-Linux 배포에서는 **npm** 명령을 정상적으로 실행하기 위해 다음과 같이 **sudo**를 사용해야 할 수도 있습니다.
+Linux 배포판의 toouse 할 수 있습니다 **sudo** 실행 toosuccessfully hello **npm** 명령, 다음과 같습니다.
 
 ```bash
 sudo npm install -g azure-cli
 ```
 
 > [!NOTE]
-> Linux 배포 또는 OS에 Node.js 및 npm을 설치하거나 업데이트해야 하는 경우 최신 Node.js LTS 버전(4.x)을 설치하는 것이 좋습니다. 이전 버전을 사용하는 경우 설치 오류가 발생할 수 있습니다.
+> 를 tooinstall 필요 하거나 Node.js 및 npm Linux 배포 또는 운영 체제를 업데이트 하는 경우에 hello 가장 최근의 Node.js LTS 버전 (4.x) 설치 하는 것이 좋습니다. 이전 버전을 사용하는 경우 설치 오류가 발생할 수 있습니다.
 
-원한다면 npm 패키지용 최신 Linux [tar 파일][linux-installer]을 로컬에 다운로드하세요. 그런 다음, 다운로드한 npm 패키지를 다음과 같이 설치합니다.(Linux 배포에서는 **sudo**를 사용해야 할 수 있습니다.)
+원하는 경우 다운로드 최신 Linux hello [tar 파일] [ linux-installer] 로컬로 hello npm 패키지 합니다. 그런 다음 다음과 같이 hello 다운로드 한 npm 패키지를 설치 (Linux 배포판의 해야 toouse **sudo**):
 
 ```bash
-npm install -g <path to downloaded tar file>
+npm install -g <path toodownloaded tar file>
 ```
 
 ## <a name="option-2-use-an-installer"></a>옵션 2: 설치 관리자 사용
-Mac 또는 Windows 컴퓨터를 사용한다면, 다음과 같은 CLI 설치 관리자를 다운로드할 수 있습니다.
+Mac 또는 Windows 컴퓨터를 사용 하는 경우 hello CLI 설치 관리자가 다음 다운로드할 수 있습니다.
 
 * [Mac OS X 설치 관리자][mac-installer]
 * [Windows MSI][windows-installer]
 
 > [!TIP]
-> Windows에서 [웹 플랫폼 설치 관리자](https://go.microsoft.com/?linkid=9828653) 를 다운로드하여 CLI를 설치할 수도 있습니다. 이 설치 관리자를 사용하면 CLI를 설치한 후에 추가적인 Azure SDK 및 명령줄 도구를 설치하는 옵션이 제공됩니다.
+> Windows에서 다운로드할 수도 있습니다 hello [웹 플랫폼 설치 관리자](https://go.microsoft.com/?linkid=9828653) tooinstall hello CLI 합니다. 이 설치 관리자에서는 옵션 tooinstall hello 추가 Azure SDK 및 명령줄 도구를 설치한 후 hello CLI 합니다.
 
 ## <a name="option-3-use-a-docker-container"></a>옵션 3: Docker 컨테이너 사용
-컴퓨터를 [Docker](https://docs.docker.com/engine/understanding-docker/) 호스트로 설정한 경우 Docker 컨테이너에서 최신 Azure CLI 1.0을 실행할 수 있습니다. 다음 명령을 실행합니다. Linux 배포에서는 **sudo**를 사용해야 할 수도 있습니다.
+로 컴퓨터를 설정한 경우는 [Docker](https://docs.docker.com/engine/understanding-docker/) 호스트를 실행할 수 있습니다 최신 Azure CLI 1.0 Docker 컨테이너에서 hello 합니다. 실행 hello 다음 명령을 (Linux 배포판의 해야 toouse **sudo**):
 
 ```bash
 docker run -it microsoft/azure-cli
 ```
 
 ## <a name="run-azure-cli-10-commands"></a>Azure CLI 1.0 명령 실행
-Azure CLI 1.0이 설치되면 명령줄 사용자 인터페이스(Bash, 터미널, 명령 프롬프트 등)에서 **azure** 명령을 실행합니다. 예를 들어 help 명령을 실행하려면 다음을 입력합니다.
+Hello Azure CLI 1.0 설치 된 후 실행 hello **azure** 명령줄 사용자 인터페이스 (예: Bash, 터미널, 명령 프롬프트 및 등)에서 명령을 합니다. 예를 들어, toorun hello 도움말 명령 hello 다음을 입력 합니다.
 
 ```azurecli
 azure help
 ```
 
 > [!NOTE]
-> 일부 Linux 배포에서 `/usr/bin/env: ‘node’: No such file or directory`과 비슷한 오류가 나타날 수 있습니다. 이 오류는 최근에 Node.js를 /usr/bin/nodejs에 설치할 때 비롯되었습니다. 해결하려면 이 명령을 실행하여 /Usr/bin/node에 바로 가기 링크를 만듭니다.
+> 일부 Linux 배포판에 나타날 수 있습니다 유사한 오류가 너무`/usr/bin/env: ‘node’: No such file or directory`합니다. 이 오류는 최근에 Node.js를 /usr/bin/nodejs에 설치할 때 비롯되었습니다. toofix,이 명령을 실행 하 여 기호화 된 링크 너무/usr/bin/노드를 만듭니다.
 
 ```bash
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 ```
 
-설치한 Azure CLI 1.0의 버전을 보려면 다음을 입력합니다.
+hello Azure CLI 1.0를 설치한 다음 형식 hello toosee hello 버전:
 
 ```azurecli
 azure --version
 ```
 
-이제 준비가 되었습니다! 사용자 고유의 리소스 작업을 수행하기 위해 모든 CLI 명령 액세스 권한을 얻으려면 [Azure CLI에서 Azure 구독에 연결](xplat-cli-connect.md)합니다.
+이제 준비가 되었습니다! 모든 tooaccess hello로 리소스, CLI 명령을 toowork [hello Azure CLI에서에서 tooyour Azure 구독 연결](xplat-cli-connect.md)합니다.
 
 > [!NOTE]
-> Azure CLI를 처음 사용할 때, 사용 정보를 Microsoft가 수집하도록 허용할 것인지 묻는 메시지가 표시됩니다. 참여는 자발적입니다. 참여하기로 선택한 경우, `azure telemetry --disable`을 실행하여 언제든지 중지할 수 있습니다. 언제라도 참여를 활성화하려면, `azure telemetry --enable`을 실행합니다.
+> 먼저 Azure CLI를 사용 하는 경우 Microsoft toocollect 사용 정보 tooallow 설정할지 묻는 메시지가 표시 됩니다. 참여는 자발적입니다. 실행 하 여 언제 든 지 중지할 수 tooparticipate을 선택 하면 `azure telemetry --disable`합니다. 언제 든 지 참여 tooenable 실행 `azure telemetry --enable`합니다.
 
-## <a name="update-the-cli"></a>CLI 업데이트
-Microsoft는 업데이트된 Azure CLI 버전을 자주 발표합니다. 사용 중인 운영 체제에 대 한 설치 관리자를 사용하여 CLI를 다시 설치하거나 최신 Docker 컨테이너를 실행합니다. 또는 최신 Node.js 및 npm이 설치된 경우 다음을 입력하여 업데이트합니다.(Linux 배포에서는 **sudo**를 사용해야 할 수 있습니다)
+## <a name="update-hello-cli"></a>Hello CLI를 업데이트 합니다.
+Microsoft은 업데이트 된 버전의 hello Azure CLI를 자주 공개합니다. 다시 설치 중인 운영 체제에 대 한 hello 설치 관리자를 사용 하 여 CLI hello 또는 hello 최신 Docker 컨테이너를 실행 합니다. Hello 다음을 입력 하 여 최신 Node.js 및 npm 설치를 hello 있는, 하는 경우 업데이트 또는 (Linux 배포판의 해야 toouse **sudo**).
 
 ```bash
 npm update -g azure-cli
@@ -113,13 +113,13 @@ npm update -g azure-cli
 ## <a name="enable-tab-completion"></a>탭 완성 기능 사용
 CLI 명령의 탭 완성 기능이 Mac 및 Linux에서 지원됩니다.
 
-zsh에서 사용하도록 설정하려면 다음을 실행합니다.
+tooenable zsh에서 실행 합니다.
 
 ```bash
 echo '. <(azure --completion)' >> .zshrc
 ```
 
-bash에서 사용하도록 설정하려면 다음을 실행합니다.
+tooenable bash에서 실행 합니다.
 
 ```bash
 azure --completion >> ~/azure.completion.sh
@@ -128,9 +128,9 @@ echo 'source ~/azure.completion.sh' >> ~/.bash_profile
 
 
 ## <a name="next-steps"></a>다음 단계
-* [CLI에서 Azure 구독에 연결](xplat-cli-connect.md) 하여 Azure 리소스를 만들고 관리합니다.
-* Azure CLI에 대한 자세한 내용을 보거나, 소스 코드를 다운로드하거나, 문제를 보고하거나, 프로젝트에 기여하려면 [Azure CLI에 대한 GitHub 리포지토리](https://github.com/azure/azure-xplat-cli)를 방문하세요.
-* Azure CLI 또는 Azure 사용에 대한 질문이 있는 경우 [Azure 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting)을 방문하세요.
+* [Hello CLI tooyour Azure 구독에서에서 연결](xplat-cli-connect.md) toocreate 및 Azure 리소스를 관리 합니다.
+* hello Azure CLI에 대해 자세히 toolearn 소스 코드를 다운로드, 문제를 보고 또는 toohello 프로젝트 참가, hello 방문 [Azure CLI hello에 대 한 GitHub 리포지토리](https://github.com/azure/azure-xplat-cli)합니다.
+* Hello Azure CLI 또는 Azure를 사용 하는 방법에 대 한 질문이 있으면 방문 hello [의 Azure 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting)합니다.
 
 
 [mac-installer]: http://aka.ms/mac-azure-cli

@@ -1,6 +1,6 @@
 ---
-title: "C용 Azure IoT 장치 SDK | Microsoft Docs"
-description: "C용 Azure IoT 장치 SDK를 시작하고 IoT Hub로 통신하는 장치 앱을 만드는 방법에 대해 알아봅니다."
+title: "C 언어용 aaaThe Azure IoT 장치 SDK | Microsoft Docs"
+description: "C에 대 한 hello Azure IoT 장치와 SDK 시작 하 고 자세한 방법을 toocreate 장치 앱 통신 하는 IoT 허브를 사용 합니다."
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -14,108 +14,108 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: obloch
-ms.openlocfilehash: 459b630f28fe48064f4ba280974f3fdbdb82f0a6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9e20742e6ea513c124bfaf28f02f6fba86170daf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-device-sdk-for-c"></a>C용 Azure IoT 장치 SDK
 
-**Azure IoT 장치 SDK**는 **Azure IoT Hub** 서비스와 메시지를 보내고 받는 프로세스를 간소화하도록 설계된 라이브러리 집합입니다. 각각 특정 플랫폼을 대상으로 하는 다양하게 변형된 SDK가 제공되지만 이 문서에서는 **C용 Azure IoT 장치 SDK**를 설명합니다.
+hello **Azure IoT 장치 SDK** 라이브러리의 집합을 설계 hello에서 메시지 받기를 tooand 메시지를 보내는 toosimplify hello 과정은 **Azure IoT Hub** 서비스입니다. Hello에 설명 하지만 hello SDK, 각 특정 플랫폼을 대상으로 이름의 다른 변형이 **C에 대 한 Azure IoT 장치 SDK**합니다.
 
-C용 Azure IoT 장치 SDK는 이식성을 최대화하기 위해 ANSI C(C99)로 작성됩니다. 이 기능은 다양한 플랫폼과 장치에서 작동하기에 적합한 라이브러리를 만들며, 특히 디스크 및 메모리 사용 공간을 최소화하는 것을 우선적으로 처리합니다.
+ANSI C (C99) toomaximize 이식성 C에 대 한 hello Azure IoT 장치 SDK로 작성 됩니다. 이 기능은 hello 라이브러리 잘 맞는 toooperate 여러 플랫폼 및 장치에 디스크를 최소화 하는 경우에 특히 만들고 메모리 사용량은 우선 순위를 합니다.
 
-이 SDK는 광범위한 플랫폼에서 테스트되었습니다(자세한 내용은 [IoT용 Azure Certified 장치 카탈로그](https://catalog.azureiotsuite.com/) 참조). 이 문서에는 Windows 플랫폼에서 실행되는 샘플 코드 연습이 포함되어 있지만, 여기서 설명하는 코드는 지원되는 플랫폼 범위 전반에 걸쳐 정확히 동일합니다.
+광범위 한 다양 한 플랫폼 SDK는 hello에서 테스트 되었습니다 (hello 참조 [Azure IoT 장치 카탈로그에 대 한 인증](https://catalog.azureiotsuite.com/) 세부 정보에 대 한). 이 문서 hello Windows 플랫폼에서 실행 되는 샘플 코드의 연습을 포함 하지만 hello 다양 한 지원 되는 플랫폼에서이 문서에서 설명 하는 hello 코드는 동일 합니다.
 
-이 문서에서는 C용 Azure IoT 장치 SDK의 아키텍처를 소개하며, 장치 라이브러리를 초기화하고 IoT Hub와 데이터를 보내고 메시지를 받는 방법을 보여 줍니다. 이 문서의 정보로 SDK 사용을 시작하기에 충분하지만 라이브러리에 대한 추가 정보에 대한 포인터도 제공합니다.
+이 문서 hello Azure IoT 장치 SDK의 toohello 아키텍처의 소개 3. 방법을 tooinitialize hello 장치 라이브러리 데이터 tooIoT 허브에 메시지 보내기 및 받기 여기에서 보여 줍니다. 이 문서의 정보 hello hello SDK를 사용 하 여 시작 하는 데 충분 한 tooget 수도 있지만 또한 hello 라이브러리에 대 한 포인터 tooadditional 정보를 제공 합니다.
 
 ## <a name="sdk-architecture"></a>SDK 아키텍처
 
-GitHub 리포지토리에서 [**C용 Azure IoT 장치 SDK**](https://github.com/Azure/azure-iot-sdk-c)를 찾고 [C API 참조](https://azure.github.io/azure-iot-sdk-c/index.html)에서 API의 세부 정보를 볼 수 있습니다.
+Hello를 찾을 수 있습니다 [ **C에 대 한 Azure IoT 장치 SDK** ](https://github.com/Azure/azure-iot-sdk-c) hello에 hello API의 GitHub 리포지토리 및 뷰 세부 정보 [C API 참조](https://azure.github.io/azure-iot-sdk-c/index.html)합니다.
 
-최신 버전의 라이브러리는 이 리포지토리의 **master** 분기에서 찾을 수 있습니다.
+hello에 최신 버전의 hello 라이브러리 hello 있습니다 **마스터** hello 리포지토리의 분기:
 
   ![](media/iot-hub-device-sdk-c-intro/01-MasterBranch.PNG)
 
-* SDK의 핵심 구현은 SDK의 최하위 API 계층인 **IoTHubClient** 라이브러리의 구현을 포함하고 있는 **iothub\_client** 폴더에 있습니다. **IoTHubClient** 라이브러리에는 IoT Hub와 메시지를 보내고 받기 위한 원시 메시징을 구현하는 API가 포함되어 있습니다. 이 라이브러리를 사용할 때 메시지 직렬화를 구현해야 하며 IoT Hub와 통신하기 위한 기타 세부 사항도 직접 처리해야 합니다.
-* **serializer** 폴더에는 클라이언트 라이브러리를 사용하여 데이터를 Azure IoT Hub로 보내기 전에 직렬화하는 방법을 보여 주는 도우미 함수와 샘플이 있습니다. serializer(직렬 변환기)는 반드시 사용할 필요가 없으며, 편의상 제공되는 것입니다. **serializer** 라이브러리를 사용하려면 IoT Hub로 보낼 데이터와 IoT Hub에서 받으려는 메시지를 지정하는 모델을 정의합니다. 모델이 정의되면 SDK에서 API 표면을 제공하므로 직렬화 세부 정보에 대해 고민하지 않고도 장치-클라우드 및 클라우드-장치 메시지 작업을 쉽게 수행할 수 있습니다. 라이브러리는 프로토콜(예: MQTT, AMQP)을 사용하여 전송을 구현하는 다른 오픈 소스 라이브러리를 기반으로 합니다.
-* **IoTHubClient** 라이브러리는 다른 오픈 소스 라이브러리에 따라 달라집니다.
-  * [Azure C 공유 유틸리티](https://github.com/Azure/azure-c-shared-utility) 라이브러리 - 여러 Azure 관련 C SDK에서 필요한 기본 작업(예: 문자열, 목록 조작, IO 등)에 공통 기능을 제공합니다.
-  * [Azure uAMQP](https://github.com/Azure/azure-uamqp-c) 라이브러리 - 리소스가 제한된 장치에 맞게 최적화된 AMQP의 클라이언트 쪽 구현입니다.
-  * [Azure uMQTT](https://github.com/Azure/azure-umqtt-c) 라이브러리 - 리소스가 제한된 장치에 맞게 최적화되고 MQTT 프로토콜을 구현하는 범용 라이브러리입니다.
+* hello hello SDK의 핵심 구현 중인 hello **iothub\_클라이언트** hello 구현의 hello 가장 낮은 API 계층 hello SDK에에서 포함 된 폴더: hello **IoTHubClient** 라이브러리입니다. hello **IoTHubClient** 라이브러리 메시지 tooIoT 허브 송수신 IoT 허브에서 메시지에 대 한 원시 메시징을 구현 하는 Api가 포함 되어 있습니다. 이 라이브러리를 사용할 때 메시지 직렬화를 구현해야 하며 IoT Hub와 통신하기 위한 기타 세부 사항도 직접 처리해야 합니다.
+* hello **serializer** 폴더 도우미 함수 및 tooserialize 데이터 tooAzure IoT 허브를 사용 하 여 보내기 전에 클라이언트 라이브러리를 hello 하는 방법을 보여 주는 샘플이 포함 되어 있습니다. hello 사용 하 여 hello serializer의 필수 이며 편의 위해 제공 됩니다. toouse hello **serializer** hello 데이터 toosend tooIoT 허브 및 hello 메시지에서 tooreceive 예상를 지정 하는 모델을 정의할 라이브러리에 있습니다. Hello 모델에서 정의 되 면 hello SDK 한를 사용 하면 하는 API 화면으로 tooeasily 작업 장치-클라우드 하 고에 대 한 걱정 없이 클라우드-장치 메시지 hello serialization 정보입니다. hello 라이브러리와 같은 MQTT 및 AMQP 프로토콜을 사용 하 여 전송을 구현 하는 다른 오픈 소스 라이브러리에 따라 달라 집니다.
+* hello **IoTHubClient** 라이브러리 다른 오픈 소스 라이브러리에 따라 달라 집니다.
+  * hello [Azure C 공유 유틸리티](https://github.com/Azure/azure-c-shared-utility) 몇몇 Azure 관련 C Sdk에 필요한 기본 작업 (예: 문자열, 목록 조작 및 IO)에 대 한 공통 기능을 제공 하는 라이브러리입니다.
+  * hello [Azure uAMQP](https://github.com/Azure/azure-uamqp-c) AMQP 리소스 제한 된 장치에 대해 최적화를 구현 하는 클라이언트 쪽 라이브러리에 있습니다.
+  * hello [Azure uMQTT](https://github.com/Azure/azure-umqtt-c) hello MQTT 프로토콜을 구현 하는 일반적인 용도의 라이브러리 및 리소스 제한 된 장치에 대해 최적화 하는 라이브러리입니다.
 
-예제 코드를 살펴보면 이러한 라이브러리를 더 쉽게 이해하여 사용할 수 있습니다. 다음 섹션에서는 SDK에 포함된 몇 가지 샘플 응용 프로그램을 단계별로 안내합니다. 이 연습을 통해 SDK 아키텍처 계층의 다양한 기능에 대해 쉽게 설명하고 API 작동 방식을 소개합니다.
+이러한 라이브러리의 용도는 예제 코드를 살펴보면 쉽게 toounderstand입니다. 다음 섹션 hello hello SDK에에서 포함 된 hello 예제 응용 프로그램의 여러 과정을 안내 합니다. 이 연습에서는 좋은 회원님 hello에 대 한 SDK hello 및 Api 작동 하는 소개 toohow hello의 hello 아키텍처 계층의 다양 한 기능을 제공 해야 합니다.
 
-## <a name="before-you-run-the-samples"></a>샘플을 실행하기 전에
+## <a name="before-you-run-hello-samples"></a>Hello 샘플을 실행 하기 전에
 
-C 용 Azure IoT 장치 SDK에서 샘플을 실행하려면 먼저 Azure 구독에서 [IoT Hub 서비스의 인스턴스를 만들어야](iot-hub-create-through-portal.md) 합니다. 그리고 나서 다음 작업을 완료합니다.
+C에 대 한 hello Azure IoT 장치 SDK에서에서 hello 샘플을 실행할 수 있습니다, 전에 해야 [hello IoT 허브 서비스의 인스턴스를 만들고](iot-hub-create-through-portal.md) Azure 구독에 있습니다. 그런 다음 작업을 수행 하는 hello를 완료 합니다.
 
 * 개발 환경 준비
 * 장치 자격 증명 가져오기
 
 ### <a name="prepare-your-development-environment"></a>개발 환경 준비
 
-패키지는 일반적인 플랫폼(예: Windows용 NuGet 또는 Debian 및 Ubuntu용 apt_get)을 위해 제공되며, 샘플에서는 사용 가능한 경우 이러한 패키지를 사용합니다. 경우에 따라 SDK를 장치용으로 또는 장치에서 컴파일해야 합니다. SDK를 컴파일해야 하는 경우 GitHub 리포지토리에 있는 [개발 환경 준비](https://github.com/Azure/azure-iot-sdk-c/blob/master/doc/devbox_setup.md)(영문)를 참조하세요.
+패키지는 일반적인 플랫폼 (예: Windows 용 NuGet 또는 apt_get Debian 및 Ubuntu)에 대 한 제공 됩니다 및 hello 샘플 사용 가능한 경우 이러한 패키지를 사용 합니다. 일부 경우에 또는 장치에 대 한 toocompile hello SDK 해야 합니다. Toocompile hello SDK 필요한 경우 참조 [개발 환경을 준비](https://github.com/Azure/azure-iot-sdk-c/blob/master/doc/devbox_setup.md) hello GitHub 리포지토리에 합니다.
 
-샘플 응용 프로그램 코드를 얻으려면 GitHub에서 SDK 복사본을 다운로드합니다. **GitHub 리포지토리**의 [master](https://github.com/Azure/azure-iot-sdk-c)분기에서 원본의 복사본을 가져옵니다.
+tooobtain hello 샘플 응용 프로그램 코드를 다운로드 hello GitHub에서 SDK의 복사본입니다. Hello에서 hello 소스의 사본을 가져옵니다 **마스터** hello의 분기 [GitHub 리포지토리](https://github.com/Azure/azure-iot-sdk-c)합니다.
 
 
-### <a name="obtain-the-device-credentials"></a>장치 자격 증명 가져오기
+### <a name="obtain-hello-device-credentials"></a>Hello 장치 자격 증명을 가져옵니다
 
-이제 샘플 원본 코드가 있으므로 다음으로 수행할 작업은 장치 자격 증명 집합을 가져오는 것입니다. IoT Hub에 액세스할 수 있는 장치의 경우 장치를 IoT Hub ID 레지스트리에 먼저 추가해야 합니다. 장치를 추가하면 장치를 IoT Hub에 연결하는 데 필요한 장치 자격 증명 집합을 얻게 됩니다. 다음 섹션에서 살펴볼 샘플 응용 프로그램에서는 이러한 자격 증명에 대해 **장치 연결 문자열** 형식을 필요로 합니다.
+Hello 샘플 소스 코드를가지고 hello 다음 일 toodo tooget 장치 자격 증명 집합은 합니다. 장치 toobe 수 tooaccess IoT hub 먼저 hello 장치 toohello IoT Hub id 레지스트리에 추가 해야 합니다. 장치를 추가할 때 필요한 hello 장치 toobe 수 tooconnect toohello IoT 허브에 대 한 장치 자격 증명 집합을 가져옵니다. hello 다음 섹션에서 설명 하는 hello 샘플 응용 프로그램의 hello 형태로 이러한 자격 증명을 예상는 **장치 연결 문자열**합니다.
 
-IoT Hub를 관리하는 데 도움이 되는 몇 가지 오픈 소스 도구가 있습니다.
+IoT hub를 관리 하는 여러 오픈 소스 도구 toohelp 가지가 있습니다.
 
 * [장치 탐색기](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer)라는 Windows 응용 프로그램
 * [iothub-explorer](https://github.com/azure/iothub-explorer)라는 플랫폼 간 node.js CLI 도구
 
-이 자습서에서는 그래픽 *장치 탐색기* 도구를 사용합니다. 또한 CLI 도구를 사용하려면 *iothub-explorer* 도구를 사용하면 됩니다.
+이 자습서에서는 그래픽 hello *장치 탐색기* 도구입니다. Hello를 사용할 수도 있습니다 *iothub 탐색기* toouse CLI 도구를 선호 하는 경우 도구입니다.
 
-장치 탐색기 도구는 Azure IoT 서비스 라이브러리를 사용하여 IoT Hub에서 장치 추가를 포함하여 다양한 기능을 수행합니다. 장치 탐색기 도구를 사용하여 장치를 추가하면 장치에 대한 연결 문자열을 얻습니다. 이 연결 문자열은 샘플 응용 프로그램을 실행하는 데 필요합니다.
+hello 장치 탐색기 도구 IoT 허브에 장치를 추가 하는 등에서 hello Azure IoT 서비스 라이브러리 tooperform 다양 한 함수를 사용 합니다. Hello 장치 탐색기 도구 tooadd 장치를 사용 하는 경우 장치에 대 한 연결 문자열을 가져옵니다. 이 연결 문자열 toorun hello 예제 응용 프로그램에 필요합니다.
 
-장치 탐색기 도구에 익숙하지 않은 경우 다음 절차에서 이 도구를 사용하여 장치를 추가하고 장치 연결 문자열을 얻는 방법에 대해 설명합니다.
+Hello 장치 탐색기 도구로 잘 모르는 경우에 절차를 수행 하는 hello 설명 어떻게 toouse 것 tooadd 장치 및 장치 연결 문자열을 가져옵니다.
 
-장치 탐색기 도구를 설치하려면 [IoT Hub 장치용 장치 탐색기를 사용하는 방법](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer)(영문)을 참조하세요.
+tooinstall hello 장치 탐색기 도구 참조 [IoT Hub 장치에 대 한 toouse 장치 탐색기 hello 어떻게](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer)합니다.
 
-프로그램을 실행하면 다음 인터페이스가 표시됩니다.
+Hello 프로그램을 실행 하면이 인터페이스를 볼 수 있습니다.
 
   ![](media/iot-hub-device-sdk-c-intro/03-DeviceExplorer.PNG)
 
-첫 번째 필드에 **IoT Hub 연결 문자열**을 입력하고 **업데이트**를 클릭합니다. 이 단계에서는 IoT Hub와 통신할 수 있도록 도구를 구성합니다.
+입력 프로그램 **IoT 허브 연결 문자열** hello에 먼저 필드를 클릭 **업데이트**합니다. 이 단계에서는 IoT Hub와 통신할 수 있도록 hello 도구를 구성 합니다.
 
-IoT Hub 연결 문자열이 구성되었으면 **관리** 탭을 클릭합니다.
+Hello IoT 허브 연결 문자열이 구성 된 경우 클릭 hello **관리** 탭:
 
   ![](media/iot-hub-device-sdk-c-intro/04-ManagementTab.PNG)
 
-이 탭에서는 IoT Hub에 등록된 장치를 관리할 수 있습니다.
+이 탭은 IoT 허브에 등록 된 hello 장치를 관리할 수 있습니다.
 
-**만들기** 단추를 클릭하여 장치를 만듭니다. 미리 채워진 키 집합(기본 및 보조)을 포함한 대화 상자가 표시됩니다. **장치 ID**를 입력한 다음 **만들기**를 클릭합니다.
+Hello를 클릭 하 여 장치를 만들면 **만들기** 단추입니다. 미리 채워진 키 집합(기본 및 보조)을 포함한 대화 상자가 표시됩니다. **장치 ID**를 입력한 다음 **만들기**를 클릭합니다.
 
   ![](media/iot-hub-device-sdk-c-intro/05-CreateDevice.PNG)
 
-장치를 만들었으면 방금 만든 장치를 포함하여 등록된 모든 장치로 [장치] 목록이 업데이트됩니다. 새 장치를 마우스 오른쪽 단추로 클릭하면 다음 메뉴가 표시됩니다.
+Hello 장치를 만들면 hello 장치 하나 방금 만든 hello를 포함 하 여 모든 hello 등록 된 장치와 업데이트를 나열 합니다. 새 장치를 마우스 오른쪽 단추로 클릭하면 다음 메뉴가 표시됩니다.
 
   ![](media/iot-hub-device-sdk-c-intro/06-RightClickDevice.PNG)
 
-**선택한 장치에 대한 연결 문자열 복사**를 선택하면 장치 연결 문자열이 클립보드에 복사됩니다. 장치 연결 문자열의 복사본을 보관하세요. 다음 섹션에서 설명하는 샘플 응용 프로그램을 실행할 때 필요합니다.
+선택 하면 **선택한 장치에 대 한 연결 문자열을 복사**, hello 장치 연결 문자열은 복사한 toohello 클립보드 합니다. Hello 장치 연결 문자열의 복사본을 유지 합니다. 경우에 필요한 hello 다음 섹션에에서 설명 된 hello 샘플 응용 프로그램을 실행 합니다.
 
-위 단계를 완료하면 일부 코드를 실행할 준비가 된 것입니다. 두 샘플에는 주요 원본 파일의 맨 위에 연결 문자열을 입력할 수 있는 상수가 포함되어 있습니다. 예를 들어 **iothub\_client\_sample\_amqp** 응용 프로그램의 해당 줄은 다음과 같습니다.
+위의 hello 단계를 완료 하면 일부 코드를 실행 하는 준비 toostart 것입니다. 두 샘플 tooenter 연결 문자열 수 있도록 하는 hello 주 소스 파일의 hello top에 상수를 포함 합니다. 예를 들어 hello에서 해당 줄을 hello **iothub\_클라이언트\_샘플\_mqtt** 응용 프로그램에는 다음과 같이 표시 됩니다.
 
 ```c
 static const char* connectionString = "[device connection string]";
 ```
 
-## <a name="use-the-iothubclient-library"></a>IoTHubClient 라이브러리 사용
+## <a name="use-hello-iothubclient-library"></a>Hello IoTHubClient 라이브러리 사용
 
-[azure-iot-sdk-c](https://github.com/azure/azure-iot-sdk-c) 리포지토리의 **iothub\_client** 폴더 내에는 **iothub\_client\_sample\_mqtt**라는 응용 프로그램이 포함된 **samples** 폴더가 있습니다.
+Hello 내 **iothub\_클라이언트** 폴더 hello에 [azure iot-sdk c](https://github.com/azure/azure-iot-sdk-c) 저장소는는 **샘플** 를호출하는응용프로그램이포함된폴더**iothub\_클라이언트\_샘플\_mqtt**합니다.
 
-**iothub\_client\_sample\_mqtt** 응용 프로그램의 Windows 버전에는 다음과 같은 Visual Studio 솔루션이 포함되어 있습니다.
+Windows 버전의 hello hello **iothub\_클라이언트\_샘플\_mqtt** 응용 프로그램에 따라 Visual Studio 솔루션 hello:
 
   ![](media/iot-hub-device-sdk-c-intro/12-iothub-client-sample-mqtt.PNG)
 
 > [!NOTE]
-> Visual Studio 2017에서 이 프로젝트를 열면 프롬프트를 수락하여 프로젝트를 최신 버전으로 변경합니다.
+> Visual Studio 2017에서이 프로젝트를 열면 hello 프롬프트 tooretarget hello 프로젝트 toohello 최신 버전을 수락 합니다.
 
 이 솔루션에는 다음의 단일 프로젝트가 포함됩니다. 이 솔루션에 설치되어 있는 4개의 NuGet 패키지는 다음과 같습니다.
 
@@ -124,18 +124,18 @@ static const char* connectionString = "[device connection string]";
 * Microsoft.Azure.IoTHub.IoTHubClient
 * Microsoft.Azure.umqtt
 
-SDK를 사용하여 작업하는 경우 항상 **Microsoft.Azure.C.SharedUtility** 패키지가 필요합니다. 이 샘플은 MQTT 프로토콜을 사용하므로 **Microsoft.Azure.umqtt** 및 **Microsoft.Azure.IoTHub.MqttTransport** 패키지(AMQP 및 HTTP에 해당하는 패키지가 있음)도 포함해야 합니다. 이 샘플에서는 **IoTHubClient** 라이브러리를 사용하므로 솔루션에 **Microsoft.Azure.IoTHub.IoTHubClient** 패키지도 포함해야 합니다.
+Hello 항상 필요한 **Microsoft.Azure.C.SharedUtility** 패키지 hello SDK 사용 하 여 작업할 때. 이 샘플에서는 hello MQTT 프로토콜, 따라서 hello를 포함 해야 **Microsoft.Azure.umqtt** 및 **Microsoft.Azure.IoTHub.MqttTransport** (해당 하는 패키지가 있습니다 AMQP 및 HTTP에 대 한 패키지 ). Hello 샘플 hello를 사용 하기 때문에 **IoTHubClient** 라이브러리 hello 포함 해야 **Microsoft.Azure.IoTHub.IoTHubClient** 솔루션의 패키지를 합니다.
 
-**iothub\_client\_sample\_amqp.c** 원본 파일에서 샘플 응용 프로그램의 구현을 찾을 수 있습니다.
+Hello hello 샘플 응용 프로그램에 대 한 hello 구현을 찾을 수 있습니다 **iothub\_클라이언트\_샘플\_mqtt.c** 소스 파일입니다.
 
-다음 단계에서는 이 샘플 응용 프로그램을 사용하여 **IoTHubClient** 라이브러리를 사용하는 데 필요한 내용을 안내합니다.
+hello 다음 단계 사용 하 여이 샘플 응용 프로그램 toowalk toouse hello는 데 필요한 작업을 통해 있습니다 **IoTHubClient** 라이브러리입니다.
 
-### <a name="initialize-the-library"></a>라이브러리 초기화
+### <a name="initialize-hello-library"></a>Hello 라이브러리를 초기화 합니다.
 
 > [!NOTE]
-> 라이브러리 작업을 시작하기 전에 일부 플랫폼별 초기화를 수행해야 할 수도 있습니다. 예를 들어 Linux에서 AMQP를 사용할 계획인 경우 OpenSSL 라이브러리를 초기화해야 합니다. [GitHub 리포지토리](https://github.com/Azure/azure-iot-sdk-c)의 샘플은 클라이언트가 시작될 때 **platform\_init** 유틸리티 함수를 호출하고, 종료하기 전에 **platform\_deinit** 함수를 호출합니다. 이러한 함수는 "platform.h" 헤더 파일에 선언되어 있습니다. [리포지토리](https://github.com/Azure/azure-iot-sdk-c)에서 대상 플랫폼에 대해 이러한 함수의 정의를 확인하여 클라이언트에 플랫폼별 초기화 코드를 포함해야 하는지 여부를 결정합니다.
+> Hello 라이브러리와 함께 작업을 시작 하기 전에 일부 플랫폼 특정 초기화 tooperform를 할 수 있습니다. 예를 들어 linux toouse AMQP를 사용 하려는 경우 hello OpenSSL 라이브러리를 초기화 해야 합니다. hello에 대 한 샘플 hello [GitHub 리포지토리](https://github.com/Azure/azure-iot-sdk-c) hello 유틸리티 함수를 호출 **플랫폼\_init** 클라이언트 시작 hello 시점과 hello 호출 **플랫폼\_deinit**  종료 하기 전에 함수입니다. 이러한 함수는 hello platform.h 헤더 파일에 선언 됩니다. Hello에 대상 플랫폼에 대 한 이러한 함수의 hello 정의 검사할 [리포지토리](https://github.com/Azure/azure-iot-sdk-c) toodetermine 해야 하는지 여부 tooinclude 모든 플랫폼 관련 초기화 코드가 클라이언트에서.
 
-라이브러리 작업을 시작하려면 먼저 IoT Hub 클라이언트 핸들을 할당합니다.
+먼저 toostart hello 라이브러리 작업 IoT 허브 클라이언트 핸들을 할당 합니다.
 
 ```c
 if ((iotHubClientHandle = IoTHubClient_LL_CreateFromConnectionString(connectionString, MQTT_Protocol)) == NULL)
@@ -147,16 +147,16 @@ else
     ...
 ```
 
-장치 탐색기 도구에서 얻은 장치 연결 문자열의 복사본을 이 함수에 전달합니다. 또한 사용할 통신 프로토콜도 지정합니다. 이 예제에서는 MQTT를 사용하지만 AMQP와 HTTP도 옵션입니다.
+Hello 장치 탐색기 도구 toothis 함수에서 얻을 hello 장치 연결 문자열의 복사본을 전달 합니다. Hello 통신 프로토콜 toouse를 지정할 수도 있습니다. 이 예제에서는 MQTT를 사용하지만 AMQP와 HTTP도 옵션입니다.
 
-유효한 **IOTHUB\_CLIENT\_HANDLE**이 있으면 API 호출을 시작하여 IoT Hub와 메시지를 보내고 받을 수 있습니다.
+유효한 설치한 경우 **IOTHUB\_클라이언트\_처리**, hello Api toosend 호출을 시작 하 고 메시지 tooand IoT 허브에서 받을 수 있습니다.
 
 ### <a name="send-messages"></a>메시지 보내기
 
-샘플 응용 프로그램은 IoT Hub에 메시지를 보내도록 루프를 설정합니다. 코드 조각은 다음과 같습니다.
+hello 샘플 응용 프로그램 루프 toosend 메시지 tooyour IoT 허브를 설정합니다. 다음 코드 조각 hello:
 
 - 메시지를 만듭니다.
-- 메시지에 속성을 추가합니다.
+- 속성 toohello 메시지를 추가합니다.
 - 메시지를 보냅니다.
 
 먼저, 메시지를 만듭니다.
@@ -188,7 +188,7 @@ do
             }
             else
             {
-                (void)printf("IoTHubClient_LL_SendEventAsync accepted message [%d] for transmission to IoT Hub.\r\n", (int)iterator);
+                (void)printf("IoTHubClient_LL_SendEventAsync accepted message [%d] for transmission tooIoT Hub.\r\n", (int)iterator);
             }
         }
     }
@@ -199,7 +199,7 @@ do
 } while (g_continueRunning);
 ```
 
-메시지를 보낼 때마다 데이터를 보낼 때 호출되는 콜백 함수에 대한 참조를 지정합니다. 이 예제에서 콜백 함수는 **SendConfirmationCallback**이라고 합니다. 다음 코드 조각은 이 콜백 함수를 보여 줍니다.
+메시지를 보낼 때마다 hello 데이터를 보낼 때 호출 되는 참조 tooa 콜백 함수를 지정 합니다. 이 예제에서는 hello 콜백 함수가 호출 될 **SendConfirmationCallback**합니다. 다음 코드 조각 hello이 콜백 함수를 보여 줍니다.
 
 ```c
 static void SendConfirmationCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCallback)
@@ -212,11 +212,11 @@ static void SendConfirmationCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, v
 }
 ```
 
-메시지 작업을 완료했으면 **IoTHubMessage\_Destroy** 함수에 대한 호출에 유의하세요. 이 함수는 메시지를 만들 때 할당된 리소스를 해제합니다.
+Hello 호출 toohello 참고 **IoTHubMessage\_Destroy** hello 메시지와 함께 완료 되 면 작동 합니다. 이 함수는 hello 메시지를 만들 때 할당 된 hello 리소스를 해제 합니다.
 
 ### <a name="receive-messages"></a>메시지 받기
 
-메시지 수신은 비동기 작업입니다. 먼저 장치에서 메시지를 받을 때 호출할 콜백을 등록합니다.
+메시지 수신은 비동기 작업입니다. 첫째, hello 장치 메시지를 받을 때 hello 콜백 tooinvoke를 등록 합니다.
 
 ```c
 if (IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext) != IOTHUB_CLIENT_OK)
@@ -229,13 +229,13 @@ else
 ...
 ```
 
-마지막 매개 변수는 원하는 항목에 대한 void 포인터입니다. 이 샘플에서는 정수에 대한 포인터이지만 더 복잡한 데이터 구조에 대한 포인터일 수 있습니다. 이 매개 변수는 콜백 함수의 호출자와 공유된 상태에서 해당 콜백 함수가 작동할 수 있게 합니다.
+hello 마지막 매개 변수는 void 포인터 toowhatever 원하는입니다. Hello 샘플에서은 포인터 tooan 정수 이지만 포인터 tooa 수도 더 복잡 한 데이터 구조입니다. 이 매개 변수는이 함수의 호출자 hello와 공유 상태에 콜백 함수 toooperate hello를 사용 합니다.
 
-장치에서 메시지를 받으면 등록된 콜백 함수가 호출됩니다. 이 콜백 함수에서 검색하는 항목은 다음과 같습니다.
+Hello 장치는 메시지를 받으면 hello 등록 된 콜백 함수가 호출 됩니다. 이 콜백 함수에서 검색하는 항목은 다음과 같습니다.
 
-* 메시지 ID 및 해당 메시지의 상관 관계 ID
-* 메시지 내용
-* 메시지의 모든 사용자 지정 속성
+* hello 메시지 id와 hello 메시지에서 상관 관계 id.
+* hello 메시지 내용입니다.
+* Hello 메시지에서 모든 사용자 지정 속성이 있습니다.
 
 ```c
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -261,19 +261,19 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
     // Message content
     if (IoTHubMessage_GetByteArray(message, (const unsigned char**)&buffer, &size) != IOTHUB_MESSAGE_OK)
     {
-        (void)printf("unable to retrieve the message data\r\n");
+        (void)printf("unable tooretrieve hello message data\r\n");
     }
     else
     {
         (void)printf("Received Message [%d]\r\n Message ID: %s\r\n Correlation ID: %s\r\n Data: <<<%.*s>>> & Size=%d\r\n", *counter, messageId, correlationId, (int)size, buffer, (int)size);
-        // If we receive the work 'quit' then we stop running
+        // If we receive hello work 'quit' then we stop running
         if (size == (strlen("quit") * sizeof(char)) && memcmp(buffer, "quit", size) == 0)
         {
             g_continueRunning = false;
         }
     }
 
-    // Retrieve properties from the message
+    // Retrieve properties from hello message
     mapProperties = IoTHubMessage_Properties(message);
     if (mapProperties != NULL)
     {
@@ -302,34 +302,34 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-**IoTHubMessage\_GetByteArray** 함수를 사용하여 메시지를 검색합니다. 이 예제에서는 문자열입니다.
+사용 하 여 hello **IoTHubMessage\_GetByteArray** 함수 tooretrieve hello 메시지를이 예제는 문자열입니다.
 
-### <a name="uninitialize-the-library"></a>라이브러리 초기화 취소
+### <a name="uninitialize-hello-library"></a>Hello 라이브러리를 초기화 합니다.
 
-이벤트 보내기 및 메시지 받기를 완료했으면 IoT 라이브러리 초기화를 취소할 수 있습니다. 이렇게 하려면 다음 함수 호출을 실행합니다.
+때 이벤트 전송을 완료 되 고 메시지를 받을 hello IoT 라이브러리 초기화 수 있습니다. 따라서 toodo hello 함수 호출을 실행 합니다.
 
 ```
 IoTHubClient_LL_Destroy(iotHubClientHandle);
 ```
 
-이 호출은 **IoTHubClient\_CreateFromConnectionString** 함수로 이전에 할당된 리소스를 해제합니다.
+이 호출은 hello에서 이전에 할당 하는 hello 리소스를 확보 **IoTHubClient\_CreateFromConnectionString** 함수입니다.
 
-여기서 볼 수 있듯이 **IoTHubClient** 라이브러리를 사용하여 메시지를 보내고 받는 것이 쉽습니다. 라이브러리가 사용할 프로토콜 등 IoT Hub와의 통신에 대한 세부 사항을 처리합니다(개발자 관점에서는 간단한 구성 옵션).
+볼 수 있듯이 쉽게 toosend 이며 hello로 메시지를 받을 **IoTHubClient** 라이브러리입니다. hello 라이브러리 hello 세부 사항을 처리 어떤 프로토콜 toouse를 포함 하 여 IoT 허브와의 통신 (hello hello 개발자의 관점에서 보면이 간단한 구성 옵션).
 
-또한 **IoTHubClient** 라이브러리는 장치에서 IoT Hub로 보내는 데이터를 직렬화하는 방법도 정밀하게 제어합니다. 어떤 경우에는 이러한 수준의 제어가 장점이지만, 다른 경우에는 사용자가 관계하지 않으려는 구현 세부 사항입니다. 이 경우 다음 섹션에서 설명하는 **serializer** 라이브러리를 사용하는 것이 좋습니다.
+hello **IoTHubClient** 라이브러리도 tooserialize hello 데이터 장치에서 보내는 방법을 tooIoT 허브 정밀 하 게 제어를 제공 합니다. 경우에 따라 이러한 제어 수준은 장점이 이지만 있고 다른 toobe에 염려 하지 않도록 하는 구현 정보입니다. 경우에 해당 되는 hello 경우 hello를 사용 하 여 고려할 수 있습니다 **serializer** 라이브러리 hello 다음 섹션에 설명 되어 있습니다.
 
-## <a name="use-the-serializer-library"></a>serializer(직렬 변환기) 사용
+## <a name="use-hello-serializer-library"></a>Hello serializer 라이브러리 사용
 
-개념적으로 **serializer** 라이브러리는 SDK의 **IoTHubClient** 라이브러리 위쪽에 있습니다. IoT Hub와의 기본 통신에 **IoTHubClient** 를 사용하지만 개발자가 메시지 직렬화를 처리하는 부담을 없애주는 모델링 기능을 추가합니다. 이 라이브러리가 동작하는 방식은 예제를 통해 가장 잘 이해할 수 있습니다.
+개념적으로 hello **serializer** 라이브러리는 hello 상단 **IoTHubClient** hello SDK에에서는 라이브러리입니다. Hello를 사용 하 여 **IoTHubClient** 하지만 IoT Hub와의 통신을 내부 hello에 대 한 라이브러리 hello 개발자에서 메시지 serialization 처리 하는 hello 부담을 제거 하는 모델링 기능을 추가 합니다. 이 라이브러리가 동작하는 방식은 예제를 통해 가장 잘 이해할 수 있습니다.
 
-[azure-iot-sdk-c 리포지토리](https://github.com/Azure/azure-iot-sdk-c)의 **serializer** 폴더 내에는 **simplesample\_mqtt**라는 응용 프로그램이 포함된 **samples** 폴더가 있습니다. Windows 버전의 이 샘플은 다음과 같은 Visual Studio 솔루션을 포함합니다.
+내부 hello **serializer** hello에서 폴더 [azure iot-sdk c 리포지토리](https://github.com/Azure/azure-iot-sdk-c),이 **샘플** 호출 응용 프로그램이 들어 있는 폴더 **simplesample \_mqtt**합니다. 이 샘플의 hello Windows 버전 hello 다음 Visual Studio 솔루션에 포함 됩니다.
 
   ![](media/iot-hub-device-sdk-c-intro/14-simplesample_mqtt.PNG)
 
 > [!NOTE]
-> Visual Studio 2017에서 이 프로젝트를 열면 프롬프트를 수락하여 프로젝트를 최신 버전으로 변경합니다.
+> Visual Studio 2017에서이 프로젝트를 열면 hello 프롬프트 tooretarget hello 프로젝트 toohello 최신 버전을 수락 합니다.
 
-이전 샘플과 마찬가지로 이 하나에는 여러 NuGet 패키지가 포함됩니다.
+Hello 앞의 예제에서와 마찬가지로이 중 하나에 여러 NuGet 패키지가 포함 됩니다.
 
 * Microsoft.Azure.C.SharedUtility
 * Microsoft.Azure.IoTHub.MqttTransport
@@ -337,15 +337,15 @@ IoTHubClient_LL_Destroy(iotHubClientHandle);
 * Microsoft.Azure.IoTHub.Serializer
 * Microsoft.Azure.umqtt
 
-이전 샘플에서 대부분의 패키지를 살펴보았지만 **Microsoft.Azure.IoTHub.Serializer**는 새로운 패키지입니다. 이 패키지는 **serializer** 라이브러리를 사용할 때 필요합니다.
+대부분의 hello 이전 샘플에서 이러한 패키지를 살펴 보았으며 하지만 **Microsoft.Azure.IoTHub.Serializer** 새로운 합니다. 이 패키지는 hello를 사용 하는 경우 필요한 **serializer** 라이브러리입니다.
 
-**simplesample\_amqp.c** 파일에서 샘플 응용 프로그램의 구현을 찾을 수 있습니다.
+Hello에서 hello 구현의 hello 샘플 응용 프로그램을 찾을 수 있습니다 **simplesample\_mqtt.c** 파일입니다.
 
-다음 섹션에서는 이 샘플의 주요 부분을 안내합니다.
+hello 다음 섹션에서는 단계별로 hello이이 샘플의 주요 부분입니다.
 
-### <a name="initialize-the-library"></a>라이브러리 초기화
+### <a name="initialize-hello-library"></a>Hello 라이브러리를 초기화 합니다.
 
-**serializer** 라이브러리 작업을 시작하려면 초기화 API를 호출합니다.
+hello로 작업 toostart **serializer** 라이브러리, Api 호출 hello 초기화:
 
 ```c
 if (serializer_init(NULL) != SERIALIZER_OK)
@@ -374,13 +374,13 @@ else
 ...
 ```
 
-**serializer\_init** 함수에 대한 호출은 일회성 호출이며, 기본 라이브러리를 초기화합니다. 그런 다음 **IoTHubClient** 샘플과 동일한 API인 **IoTHubClient\_LL\_CreateFromConnectionString** 함수를 호출합니다. 이 호출은 장치 연결 문자열을 설정하며, 사용하려는 프로토콜을 선택하는 위치이기도 합니다. 이 샘플은 MQTT를 전송으로 사용하지만, AMQP 또는 HTTP를 사용할 수도 있습니다.
+hello 호출 toohello **serializer\_init** 초기화 hello 기본 라이브러리 및 함수는 한 번만 호출 합니다. Hello를 호출 하는 다음 **IoTHubClient\_LL\_CreateFromConnectionString** 함수 hello와 같이 동일한 API는 hello를 **IoTHubClient** 샘플. 장치 연결 문자열을 설정 하는이 호출 (hello 프로토콜을 선택 하면이 호출 또한은 toouse 원하는). 이 샘플 MQTT hello 전송으로 사용 하 여 하지만 AMQP 나 HTTP 중 사용할 수 없습니다.
 
-마지막으로 **CREATE\_MODEL\_INSTANCE** 함수를 호출합니다. **WeatherStation**은 모델의 네임스페이스이며, **ContosoAnemometer**는 모델의 이름입니다. 모델 인스턴스가 만들어지면 이를 사용하여 메시지 보내기 및 받기를 시작할 수 있습니다. 하지만 모델을 이해하는 것이 중요합니다.
+마지막으로 hello 호출 **만들기\_모델\_인스턴스** 함수입니다. **WeatherStation** hello 모델의 hello 네임 스페이스 및 **ContosoAnemometer** hello hello 모델 이름입니다. Hello 모델 인스턴스를 만든 후 toostart 메시지 송수신 사용할 수 있습니다. 그러나 어떤 모델은 중요 한 toounderstand 되기 합니다.
 
-### <a name="define-the-model"></a>모델 정의
+### <a name="define-hello-model"></a>Hello 모델 정의
 
-**serializer** 라이브러리의 모델은 장치에서 IoT Hub로 보낼 수 있는 이벤트와 모델링 언어로 *작업*(action)이라고 하는 받을 수 있는 메시지를 정의합니다. **simplesample\_amqp** 샘플 응용 프로그램에서와 같이 C 매크로 집합을 사용하여 모델을 정의합니다.
+Hello에서 모델 **serializer** 장치 tooIoT 이라는 허브 및 hello 메시지를 보낼 수 있는 hello 메시지를 정의 하는 라이브러리 *동작* hello를 받을 수 있는 언어에서 모델링에 있습니다. Hello와 같이 C 매크로 집합을 사용 하 여 모델을 정의 **simplesample\_mqtt** 샘플 응용 프로그램:
 
 ```c
 BEGIN_NAMESPACE(WeatherStation);
@@ -396,29 +396,29 @@ WITH_ACTION(SetAirResistance, int, Position)
 END_NAMESPACE(WeatherStation);
 ```
 
-**BEGIN\_NAMESPACE** 및 **END\_NAMESPACE** 매크로 모두 인수로 모델의 네임스페이스를 사용합니다. 이러한 매크로에는 모델의 정의와 모델에서 사용하는 데이터 구조가 필요합니다.
+hello **시작\_네임 스페이스** 및 **끝\_네임 스페이스** 매크로 모두를 인수로 hello 모델의 hello 네임 스페이스를 사용 합니다. 모델 또는 모델 및 모델 hello를 사용 하는 hello 데이터 구조의 hello 정의 임을 이러한 매크로 사이 아무 것도 사용할 수 있습니다.
 
-이 예에서는 **ContosoAnemometer**라는 단일 모델이 있습니다. 이 모델은 장치에서 IoT Hub로 보낼 수 있는 두 가지 데이터, 즉 **DeviceId** 및 **WindSpeed**를 정의합니다. 또한 장치에서 수신할 수 있는 세 가지 동작(메시지)으로 **TurnFanOn**, **TurnFanOff** 및 **SetAirResistance**를 정의합니다. 각 데이터 요소에는 형식이 있고, 각 작업에는 이름(필요에 따라 매개 변수 집합)이 있습니다.
+이 예에서는 **ContosoAnemometer**라는 단일 모델이 있습니다. 이 모델은 두 가지 장치 tooIoT 허브를 보낼 수 있음을 데이터 정의: **DeviceId** 및 **WindSpeed**합니다. 또한 장치에서 수신할 수 있는 세 가지 동작(메시지)으로 **TurnFanOn**, **TurnFanOff** 및 **SetAirResistance**를 정의합니다. 각 데이터 요소에는 형식이 있고, 각 작업에는 이름(필요에 따라 매개 변수 집합)이 있습니다.
 
-모델에 정의된 이벤트 및 작업은 메시지를 IoT Hub로 보내고 장치로 보낸 메시지에 응답하는 데 사용할 수 있는 API 표면을 정의합니다. 이 모델의 사용은 예제를 통해 가장 잘 이해할 수 있습니다.
+hello 데이터와 hello 모델에 정의 된 작업 toosend 메시지 tooIoT 허브를 사용할 수 있으며 전송 toomessages toohello 장치 응답 하는 API 화면을 정의 합니다. 이 모델의 사용은 예제를 통해 가장 잘 이해할 수 있습니다.
 
 ### <a name="send-messages"></a>메시지 보내기
 
-모델은 IoT Hub로 보낼 수 있는 데이터를 정의합니다. 이 예제에서는 **WITH_DATA** 매크로를 사용하여 정의된 두 데이터 항목 중 하나입니다. **DeviceId** 및 **WindSpeed** 값을 IoT Hub에 보내려면 여러 단계가 필요합니다. 먼저 다음과 같이 보내려는 데이터를 설정합니다.
+hello 모델 정의 hello 데이터 tooIoT 허브를 보낼 수 있습니다. 이 예제에서는 하는 중 하나를 의미 hello hello를 사용 하 여 정의 하는 두 데이터 항목이 **WITH_DATA** 매크로입니다. 여러 단계가 필요한 toosend **DeviceId** 및 **WindSpeed** 값 tooan IoT 허브입니다. hello는 toosend 원하는 tooset hello 데이터를 먼저가:
 
 ```c
 myWeather->DeviceId = "myFirstDevice";
 myWeather->WindSpeed = avgWindSpeed + (rand() % 4 + 2);
 ```
 
-앞에서 정의한 모델을 사용하면 **구조체**의 멤버를 설정하여 값을 설정할 수 있습니다. 다음으로 보내려는 메시지를 직렬화합니다.
+hello 앞에서 정의한 모델 하면 tooset hello 값의 멤버를 설정 하 여 한 **구조체**합니다. 다음으로 직렬화 toosend hello 메시지:
 
 ```c
 unsigned char* destination;
 size_t destinationSize;
 if (SERIALIZE(&destination, &destinationSize, myWeather->DeviceId, myWeather->WindSpeed) != CODEFIRST_OK)
 {
-    (void)printf("Failed to serialize\r\n");
+    (void)printf("Failed tooserialize\r\n");
 }
 else
 {
@@ -427,7 +427,7 @@ else
 }
 ```
 
-다음 코드는 장치-클라우드 메시지를 버퍼에 직렬화합니다( **대상** 기준으로 참조됨). 그런 다음 코드에서 **sendMessage** 함수를 호출하여 해당 메시지를 IoT Hub로 보냅니다.
+이 코드는 hello 장치-클라우드 tooa 버퍼를 serialize (참조 **대상**). hello 코드에는 다음 hello 호출 **sendMessage** toosend hello 메시지 tooIoT 허브 함수:
 
 ```c
 static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
@@ -436,17 +436,17 @@ static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const unsign
     IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromByteArray(buffer, size);
     if (messageHandle == NULL)
     {
-        printf("unable to create a new IoTHubMessage\r\n");
+        printf("unable toocreate a new IoTHubMessage\r\n");
     }
     else
     {
         if (IoTHubClient_LL_SendEventAsync(iotHubClientHandle, messageHandle, sendCallback, (void*)(uintptr_t)messageTrackingId) != IOTHUB_CLIENT_OK)
         {
-            printf("failed to hand over the message to IoTHubClient");
+            printf("failed toohand over hello message tooIoTHubClient");
         }
         else
         {
-            printf("IoTHubClient accepted the message for delivery\r\n");
+            printf("IoTHubClient accepted hello message for delivery\r\n");
         }
         IoTHubMessage_Destroy(messageHandle);
     }
@@ -455,7 +455,7 @@ static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const unsign
 ```
 
 
-**IoTHubClient\_LL\_SendEventAsync**의 끝에서 두 번째 매개 변수는 데이터를 성공적으로 보낼 때 호출되는 콜백 함수에 대한 참조입니다. 다음은 샘플의 콜백 함수입니다.
+두 번째 toolast 매개 hello **IoTHubClient\_LL\_SendEventAsync** 은 hello 데이터 성공적으로 전송 될 때 호출 되는 참조 tooa 콜백 함수입니다. 다음은 hello 샘플에서 hello 콜백 함수가입니다.
 
 ```c
 void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCallback)
@@ -468,25 +468,25 @@ void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCal
 }
 ```
 
-두 번째 매개 변수는 사용자 컨텍스트에 대한 포인터이며, **IoTHubClient\_LL\_SendEventAsync**로 전달된 포인터와 동일합니다. 이 경우 컨텍스트는 간단한 카운터이지만, 사용자가 원하는 모든 것일 수 있습니다.
+hello 두 번째 매개 변수는 포인터 toouser 컨텍스트입니다. 동일한 포인터가 너무 전달 hello**IoTHubClient\_LL\_SendEventAsync**합니다. 이 경우 hello 컨텍스트는 단순한 카운터 있지만 원하는 대로 수 있습니다.
 
-즉 장치-클라우드 메시지를 보내는 것입니다. 이제 메시지를 수신하는 방법을 알아보겠습니다.
+그 toosending 장치-클라우드 메시지는 합니다. hello만 남았습니다 toocover은 어떻게 tooreceive 메시지입니다.
 
 ### <a name="receive-messages"></a>메시지 받기
 
-메시지 수신은 **IoTHubClient** 라이브러리에서 메시지가 작동하는 방식과 유사하게 작동합니다. 먼저 메시지 호출 함수를 등록합니다.
+메시지를 받는 메시지 hello에서 작동 하는 toohello 방식 유사 하 게 작동 **IoTHubClient** 라이브러리입니다. 먼저 메시지 호출 함수를 등록합니다.
 
 ```c
 if (IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, IoTHubMessage, myWeather) != IOTHUB_CLIENT_OK)
 {
-    printf("unable to IoTHubClient_SetMessageCallback\r\n");
+    printf("unable tooIoTHubClient_SetMessageCallback\r\n");
 }
 else
 {
 ...
 ```
 
-그런 다음 메시지를 수신할 때 호출되는 호출 함수를 작성합니다.
+그런 다음 메시지를 받을 때 호출 되는 hello 콜백 함수를 작성 합니다.
 
 ```c
 static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -496,7 +496,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
     size_t size;
     if (IoTHubMessage_GetByteArray(message, &buffer, &size) != IOTHUB_MESSAGE_OK)
     {
-        printf("unable to IoTHubMessage_GetByteArray\r\n");
+        printf("unable tooIoTHubMessage_GetByteArray\r\n");
         result = IOTHUBMESSAGE_ABANDONED;
     }
     else
@@ -505,7 +505,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
         char* temp = malloc(size + 1);
         if (temp == NULL)
         {
-            printf("failed to malloc\r\n");
+            printf("failed toomalloc\r\n");
             result = IOTHUBMESSAGE_ABANDONED;
         }
         else
@@ -524,9 +524,9 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
 }
 ```
 
-다음 코드는 상용구로 모든 솔루션에 대해 동일합니다. 이 함수는 메시지를 수신하고 **EXECUTE\_COMMAND** 호출을 통해 적절한 함수로 라우팅합니다. 이 시점에서 호출되는 함수는 모델의 작업 정의에 따라 다릅니다.
+이 코드는 상용구--모든 솔루션에 대 한 동일 hello 했습니다. 이 함수 hello 메시지를 수신 및 라우팅하기 hello 호출을 통해 적절 한 함수 toohello 너무 담당**EXECUTE\_명령**합니다. 이 시점에서 호출 하는 hello 함수 모델의 hello 함수 hello 정의에 따라 달라 집니다.
 
-모델에서 동작을 정의할 때 장치에서 해당 메시지를 수신할 때 호출되는 함수를 구현해야 합니다. 예를 들어 모델에서 다음 동작을 정의하는 경우:
+필요 하면 모델에서 동작을 정의할 때 tooimplement 장치 hello 해당 메시지를 받을 때 호출 되는 함수입니다. 예를 들어 모델에서 다음 동작을 정의하는 경우:
 
 ```c
 WITH_ACTION(SetAirResistance, int, Position)
@@ -538,18 +538,18 @@ WITH_ACTION(SetAirResistance, int, Position)
 EXECUTE_COMMAND_RESULT SetAirResistance(ContosoAnemometer* device, int Position)
 {
     (void)device;
-    (void)printf("Setting Air Resistance Position to %d.\r\n", Position);
+    (void)printf("Setting Air Resistance Position too%d.\r\n", Position);
     return EXECUTE_COMMAND_SUCCESS;
 }
 ```
 
-함수의 이름이 모델의 작업 이름과 일치하고, 함수의 매개 변수가 작업에 대해 지정된 매개 변수와 일치하는지 확인합니다. 첫 번째 매개 변수는 항상 필수이며, 모델 인스턴스에 대한 포인터를 포함합니다.
+Note hello 함수 hello 이름을 hello 모델의 액션에 hello의 hello 이름 일치 방법을 아니며 hello 함수의 hello 매개 변수 hello 동작에 대 한 지정 된 hello 매개 변수과 일치 합니다. hello 첫 번째 매개 변수는 항상 있어야 및 모델의 포인터 toohello 인스턴스를 포함 합니다.
 
-장치에서 이 서명과 일치하는 메시지를 수신하면 해당 함수가 호출됩니다. 따라서 **IoTHubMessage**의 상용구 코드를 포함해야 하는 것 외에도 메시지 수신은 모델에 정의된 각 작업에 대한 간단한 함수를 정의하는 정도의 문제입니다.
+Hello 장치가이 시그니처와 일치 하는 메시지를 받을 때 hello 해당 함수가 호출 됩니다. tooinclude hello 상용구 코드 외에도 따라서 **IoTHubMessage**, 메시지를 받는 과정은 모델에 정의 된 각 동작에 대 한 간단한 함수를 정의 합니다.
 
-### <a name="uninitialize-the-library"></a>라이브러리 초기화 취소
+### <a name="uninitialize-hello-library"></a>Hello 라이브러리를 초기화 합니다.
 
-데이터 보내기 및 메시지 받기를 완료했으면 IoT 라이브러리 초기화를 취소할 수 있습니다.
+데이터를 전송 하 고 맞아 고 때는 메시지를 받을 hello IoT 라이브러리 초기화 수 있습니다.
 
 ```c
 ...
@@ -560,15 +560,15 @@ EXECUTE_COMMAND_RESULT SetAirResistance(ContosoAnemometer* device, int Position)
 serializer_deinit();
 ```
 
-이러한 세 함수 각각은 앞에서 설명한 세 초기화 함수에 맞춰집니다. 이러한 API를 호출하면 이전에 할당된 리소스를 해제합니다.
+이러한 세 가지 함수는 각각 hello 세 초기화 함수 앞에서 설명한으로 맞춥니다. 이러한 API를 호출하면 이전에 할당된 리소스를 해제합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 문서에서는 **C용 Azure IoT 장치 SDK**에서 라이브러리 사용에 대한 기본 사항을 다룹니다. SDK에 포함된 내용, 아키텍처 및 Windows 샘플 작업을 시작하는 방법을 이해하기에 충분한 정보를 제공했습니다. 다음 문서에서는 [IoTHubClient 라이브러리에 대한 자세한 정보](iot-hub-device-sdk-c-iothubclient.md)를 설명하여 SDK를 계속 설명합니다.
+이 문서에서는 hello에서 hello 라이브러리를 사용 하 여 hello 기본적인 **C에 대 한 Azure IoT 장치 SDK**합니다. 충분 한 정보 toounderstand hello SDK의 아키텍처 및 tooget 시작 샘플 Windows hello를 사용 하는 방법에 포함 된 항목을 집니까 있습니다. hello 다음 기사를 설명 하 여 hello SDK에 대 한 hello 설명을 계속 [hello IoTHubClient 라이브러리에 대 한 자세한](iot-hub-device-sdk-c-iothubclient.md)합니다.
 
-IoT Hub를 개발하는 방법에 대한 자세한 내용은 [Azure IoT SDK][lnk-sdks]를 참조하세요.
+IoT 허브에 대 한 개발에 대 한 더 toolearn 참조 hello [Azure IoT Sdk][lnk-sdks]합니다.
 
-IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.
+toofurther는 IoT Hub의 hello 기능을 참조 하십시오.
 
 * [Azure IoT Edge에서 장치 시뮬레이션][lnk-iotedge]
 

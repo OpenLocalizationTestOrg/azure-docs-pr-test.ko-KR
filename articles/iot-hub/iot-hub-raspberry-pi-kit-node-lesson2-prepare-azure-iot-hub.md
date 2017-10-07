@@ -1,7 +1,7 @@
 ---
 featureFlags: usabilla
-title: "Azure IoT에 Raspberry Pi(노드) 연결 - 단원 2: 장치 등록 | Microsoft Docs"
-description: "리소스 그룹을 만들고, Azure IoT Hub를 만들고, Azure CLI를 사용하여 IoT Hub ID 레지스트리에 Pi를 등록합니다."
+title: "연결 라스베리 Pi (노드) tooAzure IoT-2 단원: 장치를 등록 | Microsoft Docs"
+description: "리소스 그룹의 이름을 만들고 Azure IoT hub를 만들 Azure CLI를 사용 하 여 IoT Hub id 레지스트리에 hello에 Pi를 등록 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -18,33 +18,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 774f9356d7a11b2c61905ada75bed92d44e5fc0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 97533298d52d1187c49a4c35ddda922d6e45c87d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-iot-hub-and-register-raspberry-pi-3"></a>IoT Hub 만들기 및 Raspberry Pi 3 등록
 ## <a name="what-you-will-do"></a>수행할 사항
 * 리소스 그룹을 만듭니다.
-* 리소스 그룹에 Azure IoT hub를 만듭니다.
-* Azure 명령줄 인터페이스(Azure CLI)를 사용하여 Raspberry Pi 3을 the Azure IoT Hub에 추가합니다.
+* Hello 리소스 그룹에 Azure IoT 허브를 만듭니다.
+* Hello Azure CLI (명령줄 인터페이스 Azure)를 사용 하 여 라스베리 Pi 3 toohello Azure IoT 허브를 추가 합니다.
 
-Azure CLI를 사용하여 Pi를 IoT Hub에 추가하는 경우 서비스는 Pi에 대한 키를 생성하여 서비스로 인증합니다. 문제가 있으면 [문제 해결 페이지](iot-hub-raspberry-pi-kit-node-troubleshooting.md)에서 솔루션을 검색하세요.
+Azure CLI tooadd Pi tooyour IoT 허브를 사용 하는 경우 hello 서비스는 hello 서비스와 tooauthenticate Pi에 대 한 키를 생성 합니다. 문제가 있는 경우 솔루션 hello에 seek [문제 해결 페이지](iot-hub-raspberry-pi-kit-node-troubleshooting.md)합니다.
 
 ## <a name="what-you-will-learn"></a>알아볼 내용
 이 문서에서는 다음에 대해 알아봅니다.
-* Azure CLI를 사용하여 IoT Hub를 만드는 방법
-* IoT Hub에서 Pi에 대한 장치 ID를 만드는 방법
+* 어떻게 toouse Azure CLI toocreate IoT hub
+* 어떻게 toocreate Pi에 대 한 IoT hub에서 장치 id
 
 ## <a name="what-you-need"></a>필요한 항목
 * Azure 계정.
-* Azure CLI가 설치된 Mac 또는 Windows 컴퓨터
+* Mac 또는 hello Azure CLI 설치 된 Windows 컴퓨터
 
 ## <a name="create-your-iot-hub"></a>IoT Hub 만들기
-Azure IoT Hub를 사용하면 수백만 개의 IoT 자산을 연결, 모니터링 및 관리할 수 있습니다. IoT Hub를 만들려면 다음 단계를 따르세요.
+Azure IoT Hub를 사용하면 수백만 개의 IoT 자산을 연결, 모니터링 및 관리할 수 있습니다. toocreate IoT 허브를 다음이 단계를 수행 합니다.
 
-1. 다음 명령을 실행하여 Azure 계정에 로그인합니다.
+1. Hello 다음 명령을 실행 하 여 Azure 계정 tooyour에 로그인 합니다.
 
    ```bash
    az login
@@ -52,42 +52,42 @@ Azure IoT Hub를 사용하면 수백만 개의 IoT 자산을 연결, 모니터�
 
    로그인이 완료되면 사용 가능한 구독이 모두 나열됩니다.
 
-2. 다음 명령을 실행하여 사용할 기본 구독을 설정합니다.
+2. Hello 기본 구독 hello 다음 명령을 실행 하 여 toouse 되도록 설정 합니다.
 
    ```bash
    az account set --subscription {subscription id or name}
    ```
 
-   `subscription ID or name`은 `az login` 또는 `az account list` 명령의 출력에서 찾을 수 있습니다.
+   `subscription ID or name`hello의 hello 출력에서 찾을 수 `az login` 또는 hello `az account list` 명령입니다.
 
-3. 다음 명령을 실행하여 공급자를 등록합니다. 리소스 공급자는 응용 프로그램에 대한 리소스를 제공하는 서비스입니다. 공급자를 등록해야만 공급자가 제공하는 Azure 리소스를 배포할 수 있습니다.
+3. Hello 다음 명령을 실행 하 여 hello 공급자를 등록 합니다. 리소스 공급자는 응용 프로그램에 대한 리소스를 제공하는 서비스입니다. Hello 공급자 제공 hello Azure 리소스를 배포 하기 전에 hello 공급자를 등록 해야 합니다.
 
    ```bash
    az provider register -n "Microsoft.Devices"
    ```
-4. 다음 명령을 실행하여 미국 서부 하위 지역에 이름이 iot-sample인 리소스 그룹을 만듭니다.
+4. 리소스 그룹 만들기 라는 iot 샘플 hello 미국 서 부 지역에 hello 다음 명령을 실행 하 여:
 
    ```bash
    az group create --name iot-sample --location westus
    ```
 
-   `westus`는 리소스 그룹을 만드는 위치입니다. 다른 위치를 사용하려는 경우 `az account list-locations -o table`을 실행하면 Azure가 지원하는 모든 위치를 볼 수 있습니다.
+   `westus`리소스 그룹을 만들면 hello 위치가입니다. 다른 위치 toouse을 원하는 경우 실행할 수 있습니다 `az account list-locations -o table` toosee 모든 hello Azure에서는 지원 되는 위치입니다.
  
-5. 다음 명령을 실행하여 iot-sample 리소스 그룹에서 IoT hub를 만듭니다.
+5. Hello 다음 명령을 실행 하 여 hello iot 샘플 리소스 그룹에는 IoT 허브를 만듭니다.
 
    ```bash
    az iot hub create --name {my hub name} --resource-group iot-sample
    ```
 
-   기본적으로 도구는 IoT Hub를 무료 가격 책정 계층에 만듭니다. 자세한 내용은 [Azure IoT Hub 가격 책정](https://azure.microsoft.com/pricing/details/iot-hub/)을 참조하세요.
+   기본적으로 hello 도구 hello 무료 가격 책정 계층에는 IoT 허브를 만듭니다. 자세한 내용은 [Azure IoT Hub 가격 책정](https://azure.microsoft.com/pricing/details/iot-hub/)을 참조하세요.
 
 > [!NOTE] 
-> IoT hub의 이름은 전역적으로 고유해야 합니다. Azure IoT Hub의 F1 버전은 사용자의 Azure 구독에서 하나만 만들 수 있습니다.
+> IoT hub의 hello 이름 전역적으로 고유 해야 합니다. Azure IoT Hub의 F1 버전은 사용자의 Azure 구독에서 하나만 만들 수 있습니다.
 
 ## <a name="register-pi-in-your-iot-hub"></a>IoT Hub에 Pi 등록
-IoT Hub와 메시지를 주고 받는 각 장치는 고유한 ID로 등록되어야 합니다. Azure CLI를 사용하여 Pi를 등록하고 장치 인증을 위해 자체 서명된 X.509 인증서를 만듭니다.
+메시지 tooyour IoT hub를 보내고 IoT 허브에서 메시지를 수신 하는 각 장치는 고유 ID에 등록 되어야 합니다. 장치 인증에 대 한 자체 서명 된 X.509 인증서를 만들기 및 Azure CLI tooregister 프로그램 Pi를 사용 합니다.
 
-다음 명령을 실행합니다.
+Hello 다음 명령을 실행 합니다.
 
 ```bash
 # For Windows command prompt
@@ -98,8 +98,8 @@ az iot device create --device-id myraspberrypi --hub-name {my hub name} --x509 -
 ```
 
 ## <a name="summary"></a>요약
-IoT Hub를 만들고 IoT Hub에 장치 ID로 Pi를 등록했습니다. Pi에서 IoT Hub로 메시지를 보내는 방법을 알아볼 준비가 되었습니다.
+IoT Hub를 만들고 IoT Hub에 장치 ID로 Pi를 등록했습니다. Toosend Pi tooyour IoT 허브에서 메시지를 어떻게 준비 toolearn 것입니다.
 
 ## <a name="next-steps"></a>다음 단계
-[IoT Hub 메시지를 처리하고 저장하기 위해 Azure 함수 앱 및 Azure Storage 계정 만들기](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md)
+[Azure 저장소 계정 tooprocess 및 Azure 함수 응용 프로그램 작성 및 IoT 허브 메시지 저장](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md)
 

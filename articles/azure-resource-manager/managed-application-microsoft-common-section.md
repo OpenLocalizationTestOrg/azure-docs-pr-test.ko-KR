@@ -1,6 +1,6 @@
 ---
-title: "Azure Managed Application Section UI 요소 | Microsoft Docs"
-description: "Azure Managed Applications의 Microsoft.Common.Section UI 요소에 대해 설명합니다."
+title: "관리 되는 응용 프로그램 섹션 UI 요소 aaaAzure | Microsoft Docs"
+description: "Azure 관리 되는 응용 프로그램에 대 한 hello Microsoft.Common.Section UI 요소를 설명합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 34c0f2f88e6af5a0f822ec116e7e2334e4e29e8d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d20b365b12fab66177e1a12db2ebbeefe507212e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcommonsection-ui-element"></a>Microsoft.Common.Section UI 요소
 제목 아래에 하나 이상의 요소를 그룹화하는 컨트롤입니다. [Azure 관리되는 응용 프로그램을 만드는](managed-application-publishing.md) 경우 이 요소를 사용합니다.
@@ -49,10 +49,10 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="remarks"></a>설명
 - `elements`는 하나 이상의 요소를 포함해야 하며, `Microsoft.Common.Section`을 제외한 모든 요소 형식을 포함할 수 있습니다.
-- 이 요소는 `toolTip` 속성을 지원하지 않습니다.
+- 이 요소는 hello를 지원 하지 않는 `toolTip` 속성입니다.
 
 ## <a name="sample-output"></a>샘플 출력
-`elements`에 있는 요소의 출력 값에 액세스하려면 [basics()](managed-application-createuidefinition-functions.md#basics) 또는 [steps()](managed-application-createuidefinition-functions.md#steps) 함수와 점 표기법을 사용합니다.
+출력에 있는 요소의 값을 tooaccess hello `elements`, hello를 사용 하 여 [basics()](managed-application-createuidefinition-functions.md#basics) 또는 [steps()](managed-application-createuidefinition-functions.md#steps) 함수와 점 표기법:
 
 ```json
 basics('section1').element1
@@ -61,6 +61,6 @@ basics('section1').element1
 `Microsoft.Common.Section` 형식의 요소에는 출력 값 자체가 없습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 관리되는 응용 프로그램에 대한 소개는 [Azure Managed Application 개요](managed-application-overview.md)를 참조하세요.
-* UI 정의 만들기에 대한 소개는 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)을 참조하세요.
+* 소개 toomanaged 응용 프로그램에 대 한 참조 [Azure 관리 되는 응용 프로그램 개요](managed-application-overview.md)합니다.
+* 소개 toocreating UI 정의 대 한 참조 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)합니다.
 * UI 요소의 공용 속성에 대한 설명은 [CreateUiDefinition 요소](managed-application-createuidefinition-elements.md)를 참조하세요.
