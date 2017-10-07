@@ -1,6 +1,6 @@
 ---
-title: "Linux용 AAD에서 회사 또는 학교 ID 만들기 | Microsoft Docs"
-description: "Azure Active Directory에서 Linux 가상 컴퓨터로 사용할 회사 또는 학교 ID를 만드는 방법을 알아봅니다."
+title: "Linux 용 AAD에서 회사 또는 학교 id aaaCreate | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate Linux 가상 컴퓨터와 Azure Active Directory toouse에 회사 또는 학교 id입니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 4fdb72e3eec41d66f8561baf1755aa425ac278af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54c3d0b0e89fe1b2d6a9b58a46776fe446ed72b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-a-work-or-school-identity-in-azure-active-directory-to-use-with-linux-vms"></a>Azure Active Directory에서 Linux VM으로 사용할 회사 또는 학교 ID 만들기
-개인 Azure 계정을 생성하거나 개인 MSDN 구독이 있고 MSDN Azure 크레딧을 활용하기 위해 Azure 계정을 만든 경우는 *Microsoft 계정* ID를 사용하여 만든 것입니다. Azure의 많은 훌륭한 기능(예: [리소스 그룹 템플릿](../../azure-resource-manager/resource-group-overview.md) )을 사용하기 위해서는 회사 또는 학교 계정(Azure Active Directory에서 관리하는 ID)이 필요합니다. 아래 지침을 따라 새로운 회사 또는 학교 계정을 만들 수 있는데 그 이유는 다행히 개인 Azure 계정이 제공하는 최고의 이점 중 하나는, 계정을 필요로 하는 Azure 기능과 함께 사용할 수 있는 새로운 회사 또는 학교 계정을 만드는 데 사용할 수 있는 기본 Azure Active Directory 도메인으로 제공된다는 점 때문입니다.
+# <a name="creating-a-work-or-school-identity-in-azure-active-directory-toouse-with-linux-vms"></a>회사 또는 학교 id를 Azure Active Directory toouse Linux vm에서 만들기
+있고 사용 hello MSDN Azure 크레딧-활용 Azure 계정 tootake hello를 만든 개인 Azure 계정 키를 만들거나 개인 MSDN 구독이 있는 경우는 *Microsoft 계정* identity toocreate 것입니다. -Azure의 많은 뛰어난 기능 [리소스 그룹 템플릿](../../azure-resource-manager/resource-group-overview.md) -한 가지 예는 회사 또는 학교 계정 (Azure Active Directory에서 관리 하는 id)를 필요한 toowork 합니다. 다행히 새 회사 또는 학교 toocreate를 사용할 수 있는 기본 Azure Active Directory 도메인으로 제공 되 hello 개인 Azure 계정에 대 한 가장 큰 이점 중 하나 때문에, 새 회사 또는 학교 계정 toocreate 아래 hello 지침을 따를 수 있습니다. 필요로 하는 Azure 기능과 함께 사용할 수 있는 계정입니다.
 
-그러나 [여기](../../xplat-cli-connect.md)에서 설명된 `azure login` 대화형 로그인 메서드를 사용하여 모든 형식의 Azure 계정으로 구독을 관리할 수 있도록 최근 변경되었습니다. 이 메커니즘을 사용하거나 또는 다음 지침을 따를 수 있습니다. [Azure Active Directory에서 Windows VM으로 사용할 회사 또는 학교 ID를 만들](../windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)수도 있습니다.
+그러나 최근 변경 내용을 쉽게 가능한 toomanage hello를 사용 하 여 Azure 계정 유형으로 구독 `azure login` 설명 하는 대화형 로그인 방법을 [여기](../../xplat-cli-connect.md)합니다. 해당 메커니즘을 사용할 수 있습니다 또는 hello 설명 하는 지침을 따라야 합니다. 수도 있습니다 [Windows Vm과 Azure Active Directory toouse에 회사 또는 학교 id를 만들](../windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 

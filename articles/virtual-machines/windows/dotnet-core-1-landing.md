@@ -1,5 +1,5 @@
 ---
-title: "Azure Windows 가상 컴퓨터 DotNet Core 자습서 1 | Microsoft Docs"
+title: "Windows 가상 컴퓨터 DotNet 코어 자습서 1 aaaAzure | Microsoft Docs"
 description: "Azure 가상 컴퓨터 DotNet Core 자습서"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,48 +16,48 @@ ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bfb3a27d20e8cdcff8dff75e4dfb2685e2781d45
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8df69c496f44acb02d8afc45695349ec1f558f99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="automating-application-deployments-to-windows-virtual-machines"></a>Windows 가상 컴퓨터에 대한 응용 프로그램 배포 자동화
+# <a name="automating-application-deployments-toowindows-virtual-machines"></a>응용 프로그램 배포 tooWindows 가상 컴퓨터를 자동화합니다.
 
-네 부분으로 구성된 이 시리즈에서는 Azure Resource Manager 템플릿을 사용하여 Azure 리소스 및 응용 프로그램을 배포 및 구성하는 과정을 자세히 설명합니다. 이 시리즈에서는 샘플 템플릿이 배포되고 배포 템플릿이 검사됩니다. 이 시리즈의 목적은 Azure 리소스 간 관계를 익히고 완전히 통합된 Azure Resource Manager 템플릿을 배포하는 과정을 경험해보는 것입니다. 이 문서에서는 Azure Resource Manager에 대한 기본적인 지식이 있다고 가정하므로 이 자습서를 시작하기 전에 기본적인 Azure Resource Manager 개념을 숙지하시기 바랍니다.
+네 부분으로 구성된 이 시리즈에서는 Azure Resource Manager 템플릿을 사용하여 Azure 리소스 및 응용 프로그램을 배포 및 구성하는 과정을 자세히 설명합니다. 이 시리즈의 샘플 템플릿은 배포 되 고 hello 배포 템플릿을 검사. 이 시리즈의 hello 목표는 Azure 리소스 간의 hello 관계에 tooeducate 및 tooprovide 직접 경험 완전히 통합 된 Azure 리소스 관리자 템플릿을 배포 합니다. 이 문서에서는 Azure Resource Manager에 대한 기본적인 지식이 있다고 가정하므로 이 자습서를 시작하기 전에 기본적인 Azure Resource Manager 개념을 숙지하시기 바랍니다.
 
 ## <a name="music-store-application"></a>Music Store 응용 프로그램
-이 시리즈에 사용된 샘플은 Music Store 쇼핑 환경을 시뮬레이트하는 .Net Core 응용 프로그램입니다. 이 응용 프로그램은 Linux 또는 Windows 가상 시스템에 배포할 수 있으며 둘 다에 대해 샘플 배포가 만들어져 있습니다. 이 응용 프로그램에는 웹 응용 프로그램 및 SQL Database가 포함되어 있습니다. 이 시리즈의 문서를 읽기 전에 이 페이지에 있는 배포 단추를 사용하여 응용 프로그램을 배포합니다. 완전히 배포하면 응용 프로그램/Azure 아키텍처가 다음 다이어그램과 같이 표시됩니다. 
+hello이 시리즈에 사용 된 샘플은.Net Core 응용 프로그램 쇼핑 음악 스토어를 시뮬레이션 합니다. 이 응용 프로그램에 배포 된 tooeither Linux 또는 Windows 가상 시스템에서 배포 둘 다에 대해 생성 된 샘플 수 있습니다. hello 응용 프로그램에 웹 응용 프로그램과 SQL 데이터베이스에 포함 됩니다. 이 시리즈의 hello 기사를 읽기 전에이 페이지에 있는 hello 배포 단추를 사용 하 여 hello 응용 프로그램을 배포 합니다. 완전히 배포 되 면 hello 응용 프로그램 / Azure 아키텍처 유사 다이어그램을 다음 hello 합니다. 
 
-Music Store Resource Manager 템플릿은 [Music Store Linux 템플릿](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows)에서 확인할 수 있습니다.
+hello 음악 스토어 리소스 관리자 템플릿을 찾을 수 있습니다, [음악 스토어 Windows 템플릿](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows)
 
 ![Music Store 응용 프로그램](./media/dotnet-core-1-landing/music-store.png)
 
-관련된 템플릿 JSON을 포함하여 이러한 각 구성 요소는 다음 네 가지 문서에서 검토됩니다.
+Hello를 포함 하 여 이러한 구성 요소 각각 hello 다음 4 개의 문서에서에서 JSON를 검사 하는 서식 파일을 연결 합니다.
 
-* [**응용 프로그램 아키텍처**](dotnet-core-2-architecture.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) – 웹 사이트 및 데이터베이스와 같은 응용 프로그램 구성 요소는 가상 컴퓨터 및 Azure SQL Database와 같은 Azure 컴퓨터 리소스에 호스트되어야 합니다. 이 문서에서는 계산 요구를 Azure 리소스에 매핑하고 이러한 리소스를 Azure Resource Manager 템플릿을 통해 배포하는 과정을 안내합니다. 
-* [**액세스 및 보안**](dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) – Azure에서 응용 프로그램을 호스트할 때 응용 프로그램에 액세스되는 방법과 응용 프로그램 구성 요소가 서로 액세스하는 방법을 고려해야 합니다. 이 문서에서는 응용 프로그램에 대한 인터넷 액세스와 응용 프로그램 구성 요소 간 액세스를 제공하고 보안을 유지하는 방법을 자세히 설명합니다.
-* [**가용성 및 크기 조정**](dotnet-core-4-availability-scale.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) – 가용성 및 크기 조정은 인프라 가동 중지 시간 동안 응용 프로그램이 실행 상태를 유지하는 능력과 응용 프로그램 요구에 맞게 계산 리소스의 규모를 조정하는 기능을 나타냅니다. 이 문서에서는 부하 분산되고 가용성이 높은 응용 프로그램을 배포하는 데 필요한 구성 요소에 대해 자세히 설명합니다.
-* [**응용 프로그램 배포**](dotnet-core-5-app-deployment.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) -Azure 가상 컴퓨터에 응용 프로그램을 배포할 때 응용 프로그램 이진 파일이 가상 컴퓨터에 설치되는 방법을 고려해야 합니다. 이 문서에서는 Azure 가상 컴퓨터 사용자 지정 스크립트 확장을 사용하여 응용 프로그램 설치를 자동화하는 방법을 자세히 설명합니다.
+* [**응용 프로그램 아키텍처** ](dotnet-core-2-architecture.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) – 웹 사이트와 같은 응용 프로그램 구성 요소 및 데이터베이스 가상 컴퓨터 및 Azure SQL 데이터베이스와 같은 Azure 컴퓨터 리소스에서 호스팅되는 toobe 필요 합니다. 이 문서 매핑 계산 필요, tooAzure 리소스 및 Azure 리소스 관리자 템플릿 사용 하 여 이러한 리소스 배포를 안내 합니다. 
+* [**액세스 및 보안** ](dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) – Azure에서 응용 프로그램 호스팅, 경우에 필요한 tooconsider hello 응용 프로그램에 액세스 하는 방법 및 다른 응용 프로그램 구성 요소는 서로 액세스 하는 방법입니다. 이 문서를 제공 하 고 인터넷 액세스 tooan 응용 프로그램 및 응용 프로그램 구성 요소 간의 액세스 보안을 자세히 설명 합니다.
+* [**가용성과 규모** ](dotnet-core-4-availability-scale.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) – 가용성과 규모 참조 toohello 응용 프로그램 기능 toostay 인프라 가동 중지 시간 중에 실행 하 고 hello 기능 tooscale 리소스 toomeet 응용 프로그램의 요구를 계산 합니다. 이 문서 정보 hello 구성 요소는 부하 분산 된 toodeploy 및 항상 사용 가능한 응용 프로그램에 필요 합니다.
+* [**응용 프로그램 배포** ](dotnet-core-5-app-deployment.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) -이 응용 프로그램에 Azure 가상 컴퓨터, hello 메서드는 hello 하 여 응용 프로그램 이진 파일 hello 가상 컴퓨터에 설치 된 배포를 고려해 야 합니다. 이 문서에서는 Azure 가상 컴퓨터 사용자 지정 스크립트 확장을 사용하여 응용 프로그램 설치를 자동화하는 방법을 자세히 설명합니다.
 
-Azure Resource Manager 템플릿을 개발할 때의 목표는 Azure 인프라의 배포와 이 Azure 인프라에 호스트되는 응용 프로그램의 설치 및 구성을 자동화하는 것입니다. 이러한 문서를 따라 작업하면서 이러한 작업의 예제를 볼 수 있습니다.
+hello 목표 Azure 리소스 관리자 템플릿을 개발 하는 경우에 Azure 인프라 및 hello 설치의 tooautomate hello 배포 하 고이 Azure 인프라에서 호스트 되는 모든 응용 프로그램의 구성입니다. 이러한 문서를 따라 작업하면서 이러한 작업의 예제를 볼 수 있습니다.
 
-## <a name="deploy-the-music-store-application"></a>Music Store 응용 프로그램 배포
-이 단추를 사용하여 Music Store 응용 프로그램을 배포할 수 있습니다.
+## <a name="deploy-hello-music-store-application"></a>Hello 음악 스토어 응용 프로그램 배포
+이 단추를 사용 하 여 hello 음악 스토어 응용 프로그램을 배포할 수 있습니다.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Fdotnet-core-sample-templates%2Fmaster%2Fdotnet-core-music-windows%2Fazuredeploy.json" target="_blank"> <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-Azure Resource Manager 템플릿에는 다음 매개 변수 값을 지정해야 합니다.
+hello Azure Resource Manager 템플릿에 다음 매개 변수 값에는 hello가 필요 합니다.
 
 | 매개 변수 이름 | 설명 |
 | --- | --- |
-| ADMINUSERNAME |가상 컴퓨터와 Azure SQL Database에 사용되는 관리자 사용자 이름입니다. |
-| ADMINPASSWORD |Azure Virtual Machine과 SQL Database에 사용되는 암호입니다. |
-| NUMBEROFINSTANCES |만들 가상 컴퓨터의 수입니다. 이러한 각 가상 컴퓨터는 Music Store 웹 응용 프로그램을 호스트하며 모든 트래픽의 부하가 분산됩니다. |
-| PUBLICIPADDRESSDNSNAME |공용 IP 주소와 연결된 전역 고유 DNS 이름입니다. |
+| ADMINUSERNAME |Hello 가상 컴퓨터와 hello Azure SQL 데이터베이스에 사용 되는 관리 사용자 이름입니다. |
+| ADMINPASSWORD |Hello Azure 가상 컴퓨터와 SQL 데이터베이스에 사용 되는 암호입니다. |
+| NUMBEROFINSTANCES |만든 가상 컴퓨터 toobe hello 수입니다. 이러한 가상 컴퓨터 호스트 hello 음악 스토어 웹 응용 프로그램의 각 및 모든 트래픽의 부하 균형을입니다. |
+| PUBLICIPADDRESSDNSNAME |Hello 공용 IP 주소와 연결 된 전역 고유 DNS 이름입니다. |
 
-템플릿 배포가 완료되면 인터넷 브라우저를 사용하여 이 공용 IP 주소로 이동됩니다. .NET Core Music 사이트가 나타납니다.
+Hello 템플릿 배포 완료 되 면 toohello 인터넷 브라우저를 사용 하 여 공용 IP 주소를 찾습니다. hello.Net Core 음악 사이트 나타납니다.
 
 ## <a name="next-steps"></a>다음 단계
 <hr>

@@ -1,6 +1,6 @@
 ---
-title: "SAP NetWeaver에 대한 Azure Virtual Machines 배포 | Microsoft Docs"
-description: "Azure의 Linux 가상 컴퓨터에 SAP 소프트웨어를 배포하는 방법을 알아봅니다."
+title: "SAP NetWeaver 용 가상 컴퓨터 배포 aaaAzure | Microsoft Docs"
+description: "Toodeploy SAP 하는 방법을 알아보려면 Azure에서 Linux 가상 컴퓨터에서 소프트웨어입니다."
 services: virtual-machines-linux,virtual-machines-windows
 documentationcenter: 
 author: MSSedusch
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
-ms.openlocfilehash: 7d0400c834767736f63bc30a7bc2495dc6ee6e36
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 42f1d8a3eff51e113729dbfe2848b67deaf06936
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-virtual-machines-deployment-for-sap-netweaver"></a>SAP NetWeaver에 대한 Azure Virtual Machines 배포
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -86,9 +86,9 @@ ms.lasthandoff: 08/29/2017
 [dbms-guide-3]:dbms-guide.md#871dfc27-e509-4222-9370-ab1de77021c3 (High availability and disaster recovery with Azure VMs)
 [dbms-guide-5.5.1]:dbms-guide.md#0fef0e79-d3fe-4ae2-85af-73666a6f7268 (SQL Server 2012 SP1 CU4 and later)
 [dbms-guide-5.5.2]:dbms-guide.md#f9071eff-9d72-4f47-9da4-1852d782087b (SQL Server 2012 SP1 CU3 and earlier releases)
-[dbms-guide-5.6]:dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (Using a SQL Server image from the Azure Marketplace)
+[dbms-guide-5.6]:dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (Using a SQL Server image from hello Azure Marketplace)
 [dbms-guide-5.8]:dbms-guide.md#9053f720-6f3b-4483-904d-15dc54141e30 (General SQL Server for SAP on Azure summary)
-[dbms-guide-5]:dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 (Specifics to SQL Server RDBMS)
+[dbms-guide-5]:dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 (Specifics tooSQL Server RDBMS)
 [dbms-guide-8.4.1]:dbms-guide.md#b48cfe3b-48e9-4f5b-a783-1d29155bd573 (Storage configuration)
 [dbms-guide-8.4.2]:dbms-guide.md#23c78d3b-ca5a-4e72-8a24-645d141a3f5d (Backup and restore)
 [dbms-guide-8.4.3]:dbms-guide.md#77cd2fbb-307e-4cbf-a65f-745553f72d2c (Performance considerations for backup and restore)
@@ -108,24 +108,24 @@ ms.lasthandoff: 08/29/2017
 [deployment-guide]:deployment-guide.md (Azure Virtual Machines deployment for SAP)
 [deployment-guide-2.2]:deployment-guide.md#42ee2bdb-1efc-4ec7-ab31-fe4c22769b94 (SAP resources)
 [deployment-guide-3.1.2]:deployment-guide.md#3688666f-281f-425b-a312-a77e7db2dfab (Deploying a VM by using a custom image)
-[deployment-guide-3.2]:deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (Scenario 1: Deploying a VM from the Azure Marketplace for SAP)
+[deployment-guide-3.2]:deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (Scenario 1: Deploying a VM from hello Azure Marketplace for SAP)
 [deployment-guide-3.3]:deployment-guide.md#54a1fc6d-24fd-4feb-9c57-ac588a55dff2 (Scenario 2: Deploying a VM with a custom image for SAP)
 [deployment-guide-3.4]:deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1 (Scenario 3: Moving a VM from on-premises using a non-generalized Azure VHD with SAP)
 [deployment-guide-3]:deployment-guide.md#b3253ee3-d63b-4d74-a49b-185e76c4088e (Deployment scenarios of VMs for SAP on Microsoft Azure)
 [deployment-guide-4.1]:deployment-guide.md#604bcec2-8b6e-48d2-a944-61b0f5dee2f7 (Deploying Azure PowerShell cmdlets)
 [deployment-guide-4.2]:deployment-guide.md#7ccf6c3e-97ae-4a7a-9c75-e82c37beb18e (Download and import SAP-relevant PowerShell cmdlets)
-[deployment-guide-4.3]:deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (Join a VM to an on-premises domain - Windows only)
+[deployment-guide-4.3]:deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (Join a VM tooan on-premises domain - Windows only)
 [deployment-guide-4.4.2]:deployment-guide.md#6889ff12-eaaf-4f3c-97e1-7c9edc7f7542 (Linux)
-[deployment-guide-4.4]:deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (Download, install, and enable the Azure VM Agent)
+[deployment-guide-4.4]:deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (Download, install, and enable hello Azure VM Agent)
 [deployment-guide-4.5.1]:deployment-guide.md#987cf279-d713-4b4c-8143-6b11589bb9d4 (Azure PowerShell)
 [deployment-guide-4.5.2]:deployment-guide.md#408f3779-f422-4413-82f8-c57a23b4fc2f (Azure CLI)
-[deployment-guide-4.5]:deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (Configure the Azure Enhanced Monitoring Extension for SAP)
+[deployment-guide-4.5]:deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (Configure hello Azure Enhanced Monitoring Extension for SAP)
 [deployment-guide-5.1]:deployment-guide.md#bb61ce92-8c5c-461f-8c53-39f5e5ed91f2 (Readiness check for Azure Enhanced Monitoring for SAP)
-[deployment-guide-5.2]:deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for the Azure monitoring infrastructure)
+[deployment-guide-5.2]:deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for hello Azure monitoring infrastructure)
 [deployment-guide-5.3]:deployment-guide.md#fe25a7da-4e4e-4388-8907-8abc2d33cfd8 (Troubleshooting Azure monitoring for SAP)
 
 [deployment-guide-configure-monitoring-scenario-1]:deployment-guide.md#ec323ac3-1de9-4c3a-b770-4ff701def65b (Configure monitoring)
-[deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure the proxy)
+[deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure hello proxy)
 [deployment-guide-figure-100]:media/virtual-machines-shared-sap-deployment-guide/100-deploy-vm-image.png
 [deployment-guide-figure-1000]:media/virtual-machines-shared-sap-deployment-guide/1000-service-properties.png
 [deployment-guide-figure-11]:deployment-guide.md#figure-11
@@ -182,21 +182,21 @@ ms.lasthandoff: 08/29/2017
 [planning-guide-11]:planning-guide.md#7cf991a1-badd-40a9-944e-7baae842a058 (High availability and disaster recovery for SAP NetWeaver running on Azure Virtual Machines)
 [planning-guide-11.4.1]:planning-guide.md#5d9d36f9-9058-435d-8367-5ad05f00de77 (High availability for SAP Application Servers)
 [planning-guide-11.5]:planning-guide.md#4e165b58-74ca-474f-a7f4-5e695a93204f (Using Autostart for SAP instances)
-[planning-guide-2.1]:planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (Cloud-only - Virtual Machine deployments in Azure without dependencies on the on-premises customer network)
-[planning-guide-2.2]:planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (Cross-premises - Deployment of single or multiple SAP VMs in Azure fully integrated with the on-premises network)
+[planning-guide-2.1]:planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (Cloud-only - Virtual Machine deployments in Azure without dependencies on hello on-premises customer network)
+[planning-guide-2.2]:planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (Cross-premises - Deployment of single or multiple SAP VMs in Azure fully integrated with hello on-premises network)
 [planning-guide-3.1]:planning-guide.md#be80d1b9-a463-4845-bd35-f4cebdb5424a (Azure regions)
 [planning-guide-3.2.1]:planning-guide.md#df49dc09-141b-4f34-a4a2-990913b30358 (Fault domains)
 [planning-guide-3.2.2]:planning-guide.md#fc1ac8b2-e54a-487c-8581-d3cc6625e560 (Upgrade domains)
 [planning-guide-3.2.3]:planning-guide.md#18810088-f9be-4c97-958a-27996255c665 (Azure availability sets)
 [planning-guide-3.2]:planning-guide.md#8d8ad4b8-6093-4b91-ac36-ea56d80dbf77 (Microsoft Azure virtual machines concept)
 [planning-guide-3.3.2]:planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 (Azure Premium Storage)
-[planning-guide-5.1.1]:planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (Moving a VM from on-premises to Azure with a non-generalized disk)
+[planning-guide-5.1.1]:planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (Moving a VM from on-premises tooAzure with a non-generalized disk)
 [planning-guide-5.1.2]:planning-guide.md#e18f7839-c0e2-4385-b1e6-4538453a285c (Deploying a VM with a customer specific image)
-[planning-guide-5.2.1]:planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (Preparation for moving a VM from on-premises to Azure with a non-generalized disk)
+[planning-guide-5.2.1]:planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (Preparation for moving a VM from on-premises tooAzure with a non-generalized disk)
 [planning-guide-5.2.2]:planning-guide.md#57f32b1c-0cba-4e57-ab6e-c39fe22b6ec3 (Preparation for deploying a VM with a customer specific image for SAP)
 [planning-guide-5.2]:planning-guide.md#6ffb9f41-a292-40bf-9e70-8204448559e7 (Preparing VMs with SAP for Azure)
 [planning-guide-5.3.1]:planning-guide.md#6e835de8-40b1-4b71-9f18-d45b20959b79 (Difference between an Azure disk and an Azure image)
-[planning-guide-5.3.2]:planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (Uploading a VHD from on-premises to Azure)
+[planning-guide-5.3.2]:planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (Uploading a VHD from on-premises tooAzure)
 [planning-guide-5.4.2]:planning-guide.md#9789b076-2011-4afa-b2fe-b07a8aba58a1 (Copying disks between Azure Storage accounts)
 [planning-guide-5.5.1]:planning-guide.md#4efec401-91e0-40c0-8e64-f2dceadff646 (VM/VHD structure for SAP deployments)
 [planning-guide-5.5.3]:planning-guide.md#17e0d543-7e8c-4160-a7da-dd7117a1ad9d (Setting automount for attached disks)
@@ -261,7 +261,7 @@ ms.lasthandoff: 08/29/2017
 [virtual-machines-azure-resource-manager-architecture]:../../../resource-manager-deployment-model.md
 [virtual-machines-azurerm-versus-azuresm]:virtual-machines-linux-compare-deployment-models.md
 [virtual-machines-windows-classic-configure-oracle-data-guard]:../../virtual-machines-windows-classic-configure-oracle-data-guard.md
-[virtual-machines-linux-cli-deploy-templates]:../../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI)
+[virtual-machines-linux-cli-deploy-templates]:../../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI)
 [virtual-machines-deploy-rmtemplates-powershell]:../../virtual-machines-windows-ps-manage.md (Manage virtual machines by using Azure Resource Manager and PowerShell)
 [virtual-machines-windows-agent-user-guide]:../../windows/agent-user-guide.md
 [virtual-machines-linux-agent-user-guide]:../../linux/agent-user-guide.md
@@ -310,67 +310,67 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-Azure Virtual Machines는 긴 조달 주기 없이 최소한의 시간 안에 계산 및 저장소 리소스를 필요로 하는 조직을 위한 솔루션입니다. Azure Virtual Machines를 사용하여 Azure에서 SAP NetWeaver 기반 응용 프로그램 같은 기존 응용 프로그램을 배포할 수 있습니다. 추가 온-프레미스 리소스 없이도 응용 프로그램의 안정성과 가용성을 확장할 수 있습니다. Azure Virtual Machines는 크로스-프레미스 연결을 지원하므로 Azure Virtual Machines를 조직의 온-프레미스 도메인, 사설 클라우드 및 SAP 시스템 지형에 통합할 수 있습니다.
+Azure 가상 컴퓨터에는 최소한의 시간 및 긴 조달 주기 하지 않고 계산 및 저장소 리소스를 필요로 하는 조직 위한 hello 솔루션입니다. Azure에서 Azure 가상 컴퓨터 toodeploy 고전 같은 응용 프로그램, SAP NetWeaver 기반 응용 프로그램을 사용할 수 있습니다. 추가 온-프레미스 리소스 없이도 응용 프로그램의 안정성과 가용성을 확장할 수 있습니다. Azure Virtual Machines는 크로스-프레미스 연결을 지원하므로 Azure Virtual Machines를 조직의 온-프레미스 도메인, 사설 클라우드 및 SAP 시스템 지형에 통합할 수 있습니다.
 
-이 문서에서는 대체 배포 옵션과 문제 해결 등 Azure에서 VM(가상 컴퓨터)에 SAP 응용 프로그램을 배포하는 단계를 설명합니다. 이 문서는 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 정보를 기반으로 합니다. 또한 SAP 소프트웨어를 설치 및 배포하기 위한 기본 리소스인 SAP 설치 설명서 및 SAP Note를 보완합니다.
+이 문서에서는 hello 단계 toodeploy SAP 응용 프로그램 문제 해결 및 대체 배포 옵션을 포함 하 여 Azure에서 가상 컴퓨터 (Vm)에서 다룹니다. 이 문서에 hello 정보에 빌드 [Azure 가상 컴퓨터 계획 및 구현에 대 한 SAP NetWeaver][planning-guide]합니다. 또한 SAP 설치 설명서 및 설치 하 고 SAP 소프트웨어 배포에 대 한 기본 리소스 hello SAP Note를 보완 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-SAP 소프트웨어 배포를 위해 Azure 가상 컴퓨터를 설정하려면 여러 단계와 리소스가 필요합니다. 시작하기 전에 Azure에서 가상 컴퓨터에 SAP 소프트웨어를 설치하기 위한 필수 구성 요소를 충족하는지 확인합니다.
+SAP 소프트웨어 배포를 위해 Azure 가상 컴퓨터를 설정하려면 여러 단계와 리소스가 필요합니다. 시작 하기 전에 Azure에서 가상 컴퓨터에 SAP 소프트웨어를 설치 하기 위한 hello 필수 구성 요소를 충족 하는지 확인 합니다.
 
 ### <a name="local-computer"></a>수집
-Windows 또는 Linux VM을 관리하려면 PowerShell 스크립트와 Azure Portal을 사용해야 합니다. 두 가지 도구 모두 Windows 7 또는 이후 버전의 Windows 실행하는 로컬 컴퓨터가 필요합니다. Linux VM만 관리하려는 경우 이 작업에 Linux 컴퓨터를 사용하려면 Azure CLI를 사용할 수 있습니다.
+Windows 또는 Linux Vm toomanage, PowerShell 스크립트를 hello Azure 포털을 사용할 수 있습니다. 두 가지 도구 모두 Windows 7 또는 이후 버전의 Windows 실행하는 로컬 컴퓨터가 필요합니다. Linux Vm을 toouse Linux 컴퓨터에이 작업을 하려면만 toomanage 하려는 경우 Azure CLI를 사용할 수 있습니다.
 
 ### <a name="internet-connection"></a>인터넷 연결
-SAP 소프트웨어 배포에 필요한 도구와 스크립트를 다운로드하고 실행하려면 인터넷에 연결해야 합니다. 또한 SAP용 Azure 고급 모니터링 확장을 실행하는 Azure VM에서 인터넷에 액세스해야 합니다. Azure VM이 Azure Virtual Network 또는 온-프레미스 도메인에 포함된 경우 관련 프록시 설정이 [프록시 구성][deployment-guide-configure-proxy]에서 설명한 대로 설정되어 있는지 확인합니다.
+여야 toodownload 및 실행된 hello 도구 및 SAP 소프트웨어 배포에 필요한 스크립트를 toohello 인터넷에 연결 합니다. hello Azure 고급 모니터링 확장의 SAP 용 hello를 실행 하는 Azure VM 인터넷 액세스 toohello를도 필요 합니다. Hello Azure VM에 Azure 가상 네트워크 또는 온-프레미스 도메인의 일부 이면 확인 hello 관련 프록시 설정을 설정 되어 있는지에 설명 된 대로 [hello 프록시 구성][deployment-guide-configure-proxy]합니다.
 
 ### <a name="microsoft-azure-subscription"></a>Microsoft Azure 구독
 활성 Azure 계정이 필요합니다.
 
 ### <a name="topology-and-networking"></a>토폴로지 및 네트워킹
-Azure에서 SAP 배포의 토폴로지 및 아키텍처를 정의해야 합니다.
+Hello Azure에서 SAP 배포의 toodefine hello 토폴로지 및 아키텍처가 필요합니다.
 
-* 사용할 Azure Storage 계정
-* SAP 시스템을 배포할 가상 네트워크
-* SAP 시스템을 배포할 리소스 그룹
-* SAP 시스템을 배포할 Azure 영역
+* Azure 저장소 계정 toobe 사용
+* 가상 네트워크를 toodeploy hello SAP 시스템
+* 리소스 그룹 toowhich toodeploy hello SAP 시스템
+* Toodeploy hello SAP 시스템을 원하는 azure 지역
 * SAP 구성(2계층 또는 3계층)
-* VM 크기 및 VM에 탑재할 추가 데이터 디스크 수
+* VM 크기 및 추가 데이터 디스크 toobe hello 개수의 toohello Vm 탑재
 * SAP 수정과 전송 시스템(CTS) 구성
 
-SAP 소프트웨어 배포 프로세스를 시작하기 전에 Azure Storage 계정(필요한 경우) 또는 Azure 가상 네트워크를 만들고 구성합니다. 이러한 리소스를 만들고 구성하는 방법에 대한 정보는 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]을 참조하세요.
+만들고 hello SAP 소프트웨어 배포 프로세스를 시작 하기 전에 Azure 저장소 계정 (필요한 경우) 또는 Azure 가상 네트워크를 구성 합니다. 방법에 대 한 내용은 toocreate 이러한 리소스를 구성 하 고, 참조 [Azure 가상 컴퓨터 계획 및 구현에 대 한 SAP NetWeaver][planning-guide]합니다.
 
 ### <a name="sap-sizing"></a>SAP 크기 조정
-SAP 크기 조정을 위해 다음 정보를 알고 있어야 합니다.
+Hello 다음 SAP 크기 조정에 대 한 정보를 알고:
 
-* 예상되는 SAP 워크로드(예: SAP Quick Sizer 도구 사용의 경우) 및 SAPS(SAP Application Performance Standard) 번호
-* SAP 시스템의 필요한 CPU 리소스 및 메모리 소비
+* 예를 들어 hello SAP 빠른 조절기 도구 및 hello SAP 응용 프로그램 성능 표준 (SAPS) 번호를 사용 하 여 SAP 작업 부하를 프로젝션
+* Hello SAP 시스템의 필요한 CPU 리소스 및 메모리 사용
 * 필요한 초당 입력/출력(I/O) 작업 수
 * Azure에서 서로 다른 VM 간의 결과적 통신에 필요한 네트워크 대역폭
-* 온-프레미스 자산과 Azure가 배포된 SAP 시스템 간에 필요한 네트워크 대역폭
+* 온-프레미스 자산과 Azure 배포 SAP 시스템 hello 간에 필요한 네트워크 대역폭
 
 ### <a name="resource-groups"></a>리소스 그룹
-Azure Resource Manager에서 리소스 그룹을 사용하여 Azure 구독에서 모든 응용 프로그램 리소스를 관리할 수 있습니다. 자세한 내용은 [Azure Resource Manager 개요][resource-group-overview]를 참조하세요.
+Azure 리소스 관리자를 사용할 수 있습니다 리소스 그룹 toomanage hello 응용 프로그램 리소스를 모두 Azure 구독에서. 자세한 내용은 [Azure Resource Manager 개요][resource-group-overview]를 참조하세요.
 
 ## <a name="resources"></a>리소스
 
 ### <a name="42ee2bdb-1efc-4ec7-ab31-fe4c22769b94"></a>SAP 리소스
-SAP 소프트웨어 배포를 설정하는 경우 다음과 같은 SAP 리소스가 필요합니다.
+SAP 소프트웨어 배포를 설정 하는 경우 다음 SAP 리소스 hello가 필요 합니다.
 
 * SAP Note [1928533], 다음 항목을 포함합니다.
-  * SAP 소프트웨어 배포에 지원되는 Azure VM 크기 목록
+  * Hello SAP 소프트웨어 배포에 지원 되는 Azure VM 크기의 목록
   * Azure VM 크기에 대한 중요한 용량 정보
   * 지원되는 SAP 소프트웨어 및 운영 체제(OS)와 데이터베이스 조합
   * Microsoft Azure에서 Windows 및 Linux에 필요한 SAP 커널 버전
 
 * SAP Note [2015553]는 Azure에서 SAP을 지원하는 SAP 소프트웨어 배포에 대한 필수 구성 요소를 나열합니다.
 * SAP Note [2178632]는 Azure에서 SAP에 대해 보고된 모든 모니터링 메트릭에 대한 자세한 정보를 포함하고 있습니다.
-* SAP Note [1409604]는 Azure에서 Windows에 필요한 SAP Host Agent 버전을 포함하고 있습니다.
-* SAP Note [2191498]는 Azure에서 Linux에 필요한 SAP Host Agent 버전을 포함하고 있습니다.
+* SAP Note [1409604] hello 필요한 SAP 호스트 에이전트 버전 Azure에서 Windows에 대 한 합니다.
+* SAP Note [2191498] hello 필요한 SAP 호스트 에이전트 버전 Azure에서 Linux에 대 한 합니다.
 * SAP Note [2243692]는 Azure에서 Linux의 SAP 라이선스에 대한 정보를 포함하고 있습니다.
 * SAP Note [1984787]은 SUSE LINUX Enterprise Server 12에 대한 일반 정보를 포함하고 있습니다.
 * SAP Note [2002167]는 Red Hat Enterprise Linux 7.x에 대한 일반 정보를 포함하고 있습니다.
 * SAP Note [2069760]은 Oracle Linux 7.x에 대한 일반 정보를 포함하고 있습니다.
-* SAP Note [1999351]은 SAP용 Azure 고급 모니터링 확장을 위한 추가 문제 해결 정보를 포함하고 있습니다.
+* SAP Note [1999351] Azure 고급 모니터링 확장의 SAP 용 hello에 대 한 추가 문제 해결 정보입니다.
 * SAP Note [1597355]는 Linux의 스왑 공간에 대한 일반 정보를 포함하고 있습니다.
 * [Azure의 SAP SCN 페이지](https://wiki.scn.sap.com/wiki/x/Pia7Gg)에는 뉴스 및 유용한 리소스의 컬렉션을 포함하고 있습니다.
 * [SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes)는 Linux에 필요한 모든 SAP Note를 포함하고 있습니다.
@@ -385,48 +385,48 @@ SAP 소프트웨어 배포를 설정하는 경우 다음과 같은 SAP 리소스
 * [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]
 
 ## <a name="b3253ee3-d63b-4d74-a49b-185e76c4088e"></a>Azure VM에서 SAP 소프트웨어에 대한 배포 시나리오
-Azure에서 VM 및 연결된 디스크를 배포하기 위한 여러 옵션이 있습니다. 선택하는 배포 유형에 따라 배포를 위해 VM을 준비하는 단계가 다를 수 있으므로 배포 옵션 간의 차이점을 이해해야 합니다.
+Azure에서 VM 및 연결된 디스크를 배포하기 위한 여러 옵션이 있습니다. 되므로 중요 toounderstand hello 차이점 배포 옵션 다른 단계가 tooprepare hello 배포 유형을 선택 하면에 따른 배포에 대 한 Vm을 걸릴 수 있습니다.
 
-### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>시나리오 1: SAP용 Azure Marketplace에서 VM 배포
-Azure Marketplace에서 Microsoft 또는 타사에서 제공하는 이미지를 사용하여 VM을 배포할 수 있습니다. Marketplace는 Windows Server 및 서로 다른 Linux 배포의 일부 표준 OS 이미지를 제공합니다. 또한 데이터베이스 관리 시스템(DMBS) SKU, 예를 들어 Microsoft SQL Server를 포함하고 있는 이미지를 배포할 수도 있습니다. DBMS SKU가 포함된 이미지 사용에 관한 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]를 참조하세요.
+### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>시나리오 1: hello SAP 용 Azure Marketplace에서에서 VM 배포
+Microsoft에서 제공 하는 이미지를 사용 하거나으로 제 3 자 hello Azure 마켓플레이스 toodeploy에서 VM 수 있습니다. hello 마켓플레이스는 Windows Server와 다른 Linux 배포판의 표준 OS 이미지 일부를 제공합니다. 또한 데이터베이스 관리 시스템(DMBS) SKU, 예를 들어 Microsoft SQL Server를 포함하고 있는 이미지를 배포할 수도 있습니다. DBMS SKU가 포함된 이미지 사용에 관한 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]를 참조하세요.
 
-다음 순서도는 Azure Marketplace에서 VM을 배포하기 위한 SAP 관련 단계 순서를 보여 줍니다.
+hello 다음 순서도 hello SAP 관련 Azure 마켓플레이스 hello에서 VM을 배포 하기 위한 단계를 순서 대로
 
-![Azure Marketplace에서 VM 이미지를 사용하여 SAP 시스템용 VM 배포 순서도][deployment-guide-figure-100]
+![hello Azure Marketplace에서에서 VM 이미지를 사용 하 여 SAP 시스템에 대 한 VM 배포 순서도][deployment-guide-figure-100]
 
-#### <a name="create-a-virtual-machine-by-using-the-azure-portal"></a>Azure Portal을 사용하여 가상 컴퓨터 만들기
-Azure Marketplace에서 이미지를 사용하여 새 가상 컴퓨터를 만드는 가장 쉬운 방법은 Azure Portal을 사용하는 것입니다.
+#### <a name="create-a-virtual-machine-by-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 가상 컴퓨터 만들기
+hello 가장 쉬운 방법은 toocreate hello Azure Marketplace에서에서 이미지가 있는 새 가상 컴퓨터를 hello Azure 포털을 사용 하는 것입니다.
 
-1.  <https://portal.azure.com/#create/hub>로 이동합니다.  또는 Azure Portal 메뉴에서 **+새로 만들기**를 선택합니다.
-2.  **계산**을 선택한 다음 배포할 운영 체제 유형을 선택합니다. 예를 들어, Windows Server 2012 R2, SUSE Linux Enterprise Server 12(SLES 12), Red Hat Enterprise Linux 7.2(RHEL 7.2) 또는 Oracle Linux 7.2입니다. 기본 목록 보기에는 지원되는 일부 운영 체제가 표시되지 않을 수도 있습니다. 전체 목록을 보려면 **모두 보기**를 선택합니다. SAP 소프트웨어 배포를 위한 지원되는 운영 체제에 대한 자세한 내용은 SAP Note [1928533]을 참조하세요.
-3.  다음 페이지에서 약관을 검토합니다.
-4.  **배포 모델 선택** 목록에서 **Resource Manager**를 선택합니다.
+1.  너무 이동<https://portal.azure.com/#create/hub>합니다.  Hello Azure 포털 메뉴에서에서 선택 하거나 **+ 새로 만들기**합니다.
+2.  선택 **계산**, 한 다음 운영 체제 toodeploy 원하는의 hello 유형을 선택 합니다. 예를 들어, Windows Server 2012 R2, SUSE Linux Enterprise Server 12(SLES 12), Red Hat Enterprise Linux 7.2(RHEL 7.2) 또는 Oracle Linux 7.2입니다. hello 기본 목록 보기는 지원 되는 모든 운영 체제를 표시 하지 않습니다. 전체 목록을 보려면 **모두 보기**를 선택합니다. SAP 소프트웨어 배포를 위한 지원되는 운영 체제에 대한 자세한 내용은 SAP Note [1928533]을 참조하세요.
+3.  Hello 다음 페이지에서 약관을 검토 합니다.
+4.  Hello에 **배포 모델 선택** 상자 **리소스 관리자**합니다.
 5.  **만들기**를 선택합니다.
 
-마법사의 필수 매개 변수 설정을 통해 네트워크 인터페이스 및 저장소 계정과 같은 모든 필요한 리소스와 함께 가상 컴퓨터를 만들 수 있습니다. 다음은 일부 매개 변수입니다.
+tooall에서 네트워크 인터페이스 및 저장소 계정과 같은 리소스를 필요로 하는 또한을 hello 마법사를 통해 필요한 hello 매개 변수 toocreate hello 가상 컴퓨터를 설정 합니다. 다음은 일부 매개 변수입니다.
 
 1. **기본 사항**:
- * **이름**: 리소스 이름(가상 컴퓨터 이름)입니다.
- * **VM 디스크 유형**: OS 디스크의 디스크 유형을 선택합니다. 데이터 디스크로 Premium Storage를 사용하려는 경우 OS 디스크에도 Premium Storage를 사용하는 것이 좋습니다.
- * **사용자 이름 및 암호** 또는 **SSH 공개 키**: 프로비전 중에 만든 사용자의 사용자 이름과 암호를 입력합니다. Linux 가상 컴퓨터의 경우 컴퓨터에 로그인하는 데 사용하는 공용 SSH(Secure Shell) 키를 입력할 수 있습니다.
- * **구독**: 새 가상 컴퓨터를 프로비전하는 데 사용할 구독을 선택합니다.
- * **리소스 그룹**: VM에 대한 리소스 그룹의 이름입니다. 새 리소스 그룹의 이름 또는 기존 리소스 그룹의 이름을 입력할 수 있습니다.
- * **위치**: 새 가상 컴퓨터를 배포할 위치입니다. 온-프레미스 네트워크에 가상 컴퓨터를 연결하려는 경우 온-프레미스 네트워크에 Azure를 연결하는 가상 네트워크의 위치를 선택해야 합니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Microsoft Azure 네트워킹][planning-guide-microsoft-azure-networking]을 참조하세요.
+ * **이름**: hello 리소스 (hello 가상 컴퓨터 이름)의 hello 이름입니다.
+ * **VM 디스크 유형**: hello OS 디스크의 hello 디스크 유형을 선택 합니다. 데이터 디스크에 대 한 toouse 프리미엄 저장소를 원하는 경우도 hello OS 디스크에 대 한 프리미엄 저장소를 사용 하는 것이 좋습니다.
+ * **사용자 이름 및 암호** 또는 **SSH 공개 키**: hello 이름과 hello를 프로 비전 하는 동안 만들어진 hello 사용자의 암호를 입력 합니다. Linux 가상 컴퓨터에 대 한 toosign toohello 컴퓨터에서 사용 하는 hello 공용 SSH (보안 셸) 키를 입력할 수 있습니다.
+ * **구독**: toouse tooprovision hello 새 가상 컴퓨터를 원하는 hello 구독을 선택 합니다.
+ * **리소스 그룹**: hello VM에 대 한 hello 리소스 그룹의 hello 이름입니다. 새 리소스 그룹 또는 hello 이름 이미 있는 리소스 그룹의의 hello 이름 중 하나를 입력할 수 있습니다.
+ * **위치**: 여기서 toodeploy hello 새 가상 컴퓨터. Tooconnect hello 가상 컴퓨터 tooyour 온-프레미스 네트워크를 사용 하도록 하려는 경우 Azure tooyour 온-프레미스 네트워크를 연결 하는 hello 가상 네트워크의 hello 위치를 선택 했는지 확인 합니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Microsoft Azure 네트워킹][planning-guide-microsoft-azure-networking]을 참조하세요.
 2. **크기**:
 
-     지원되는 VM 유형 목록은 SAP Note [1928533]을 참조하세요. Azure Premium Storage를 사용하려면 올바른 VM 유형을 선택해야 합니다. 모든 VM 유형이 Premium Storage를 지원하지는 않습니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Storage: Microsoft Azure Storage 및 데이터 링크][planning-guide-storage-microsoft-azure-storage-and-data-disks] 및 [Azure Premium Storage][planning-guide-azure-premium-storage]를 참조하세요.
+     지원되는 VM 유형 목록은 SAP Note [1928533]을 참조하세요. Azure 프리미엄 저장소 toouse를 하려는 경우 hello 올바른 VM 유형을 선택 해야 합니다. 모든 VM 유형이 Premium Storage를 지원하지는 않습니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Storage: Microsoft Azure Storage 및 데이터 링크][planning-guide-storage-microsoft-azure-storage-and-data-disks] 및 [Azure Premium Storage][planning-guide-azure-premium-storage]를 참조하세요.
 
 3. **설정**:
   * **저장소**
-    * **디스크 유형**: OS 디스크의 디스크 유형을 선택합니다. 데이터 디스크로 Premium Storage를 사용하려는 경우 OS 디스크에도 Premium Storage를 사용하는 것이 좋습니다.
-    * **관리 디스크 사용**: Managed Disks를 사용하려는 경우 [예]를 선택합니다. Managed Disks에 대한 자세한 내용은 이 계획 가이드의 [Managed Disks][planning-guide-managed-disks] 챕터를 참조하세요.
+    * **디스크 유형**: hello OS 디스크의 hello 디스크 유형을 선택 합니다. 데이터 디스크에 대 한 toouse 프리미엄 저장소를 원하는 경우도 hello OS 디스크에 대 한 프리미엄 저장소를 사용 하는 것이 좋습니다.
+    * **관리 되는 디스크를 사용 하 여**: toouse 관리 하는 디스크 예를 선택 합니다. 관리 되는 디스크에 대 한 자세한 내용은 장을 참조 [관리 하는 디스크] [ planning-guide-managed-disks] hello 계획 가이드에서입니다.
     * **저장소 계정**: 기존 저장소 계정을 선택하거나 새 저장소 계정을 만듭니다. 모든 저장소 유형이 SAP 응용 프로그램 실행을 위해 작동하지는 않습니다. 저장소 유형에 대한 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]의 [Microsoft Azure Storage][dbms-guide-2.3]를 참조하세요.
   * **네트워크**
-    * **가상 네트워크** 및 **서브넷**: 인트라넷에 가상 컴퓨터를 통합하려면 온-프레미스 네트워크에 연결된 가상 네트워크를 선택합니다.
-    * **공용 IP 주소**: 사용하려는 공용 IP 주소를 선택하거나 매개 변수를 입력하여 새 공용 IP 주소를 만듭니다. 인터넷에서 가상 컴퓨터에 액세스하는 공용 IP 주소를 사용할 수 있습니다. 또한 가상 컴퓨터에 안전하게 액세스하려면 네트워크 보안 그룹을 만들어야 합니다.
+    * **가상 네트워크** 및 **서브넷**: 인트라넷에 연결 된 tooyour 온-프레미스 네트워크를 가상 네트워크를 선택 hello와 toointegrate hello 가상 컴퓨터.
+    * **공용 IP 주소**: hello 공용 IP 주소 매개 변수 toocreate 새 공용 IP 주소를 입력 하거나 toouse, 원하는 선택 합니다. Hello 인터넷을 통해 공용 IP 주소 tooaccess 가상 컴퓨터를 사용할 수 있습니다. 네트워크 보안 그룹 toohelp 보안 액세스 tooyour 가상 컴퓨터를 만들 수도 있는지 확인 합니다.
     * **네트워크 보안 그룹**: 자세한 내용은 [네트워크 보안 그룹으로 네트워크 트래픽 흐름 제어][virtual-networks-nsg]를 참조하세요.
-  * **확장**: 확장을 배포에 추가하여 가상 컴퓨터 확장을 설치할 수 있습니다. 이 단계에서는 확장을 추가할 필요가 없습니다. SAP 지원에 필요한 확장은 나중에 설치됩니다. 이 가이드의 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5] 챕터를 참조하세요.
-  * **고가용성**: 가용성 집합을 선택하거나 매개 변수를 입력하여 새 가용성 집합을 만듭니다. 자세한 내용은 [Azure 가용성 집합][planning-guide-3.2.3]을 참조하세요.
+  * **확장**: toohello 배포에 추가 하 여 가상 컴퓨터 확장을 설치할 수 있습니다. 이 단계에서는 tooadd 확장 필요가 없습니다. SAP 지원에 필요한 hello 확장은 나중에 설치 됩니다. 장을 참조 [구성 hello Azure 고급 모니터링 확장의 SAP 용] [ deployment-guide-4.5] 이 가이드의 합니다.
+  * **고가용성**: 가용성 집합을 선택 하거나 입력 hello 매개 변수 toocreate 새 가용성 집합입니다. 자세한 내용은 [Azure 가용성 집합][planning-guide-3.2.3]을 참조하세요.
   * **모니터링**
     * **부팅 진단**: 부팅 진단을 **사용 안 함**으로 선택할 수 있습니다.
     * **게스트 OS 진단**: 모니터링 진단을 **사용 안 함**으로 선택할 수 있습니다.
@@ -435,129 +435,129 @@ Azure Marketplace에서 이미지를 사용하여 새 가상 컴퓨터를 만드
 
   선택 내용을 검토한 다음 **확인**을 선택합니다.
 
-선택한 리소스 그룹에서 가상 컴퓨터가 배포됩니다.
+가상 컴퓨터가 선택한 hello 리소스 그룹에 배포 됩니다.
 
 #### <a name="create-a-virtual-machine-by-using-a-template"></a>템플릿을 사용하여 가상 컴퓨터 만들기
-[azure-quickstart-templates GitHub 리포지토리][azure-quickstart-templates-github]에 게시된 SAP 템플릿 중 하나를 사용하여 가상 컴퓨터를 만들 수 있습니다. 또한 [Azure Portal][virtual-machines-windows-tutorial], [PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] 또는 [Azure CLI][virtual-machines-linux-tutorial]를 사용하여 가상 컴퓨터를 수동으로 만들 수도 있습니다.
+Hello에 게시 하는 hello SAP 템플릿 중 하나를 사용 하 여 가상 컴퓨터를 만들 수 [azure-빠른 시작-템플릿 GitHub 리포지토리][azure-quickstart-templates-github]합니다. 또한 수동으로 만들려면 가상 컴퓨터 hello를 사용 하 여 [Azure 포털][virtual-machines-windows-tutorial], [PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms], 또는 [Azure CLI ][virtual-machines-linux-tutorial].
 
 * [**2계층 구성(단일 가상 컴퓨터) 템플릿**(sap-2-tier-marketplace-image)][sap-templates-2-tier-marketplace-image]
 
-  한 대의 가상 컴퓨터를 사용하여 2계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  하나의 가상 컴퓨터를 사용 하 여 2 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**2계층 구성(단일 가상 컴퓨터) 템플릿 - Managed Disks**(sap-2-tier-marketplace-image-md)][sap-templates-2-tier-marketplace-image-md]
 
-  한 대의 가상 컴퓨터와 Managed Disks를 사용하여 2계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  하나의 가상 컴퓨터 및 관리 하는 디스크를 사용 하 여 2 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**3계층 구성(여러 가상 컴퓨터) 템플릿**(sap-3-tier-marketplace-image)][sap-templates-3-tier-marketplace-image]
 
-  여러 대의 가상 컴퓨터를 사용하여 3계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  여러 가상 컴퓨터를 사용 하 여 3 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**3계층 구성(여러 가상 컴퓨터) 템플릿 - Managed Disks**(sap-3-tier-marketplace-image-md)][sap-templates-3-tier-marketplace-image-md]
 
-  여러 대의 가상 컴퓨터와 Managed Disks를 사용하여 3계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  여러 가상 컴퓨터 및 관리 하는 디스크를 사용 하 여 3 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 
-Azure Portal에서 템플릿에 대한 다음 매개 변수를 입력합니다.
+Azure 포털 hello hello 서식 파일에 대 한 매개 변수 뒤 hello를 입력 합니다.
 
 1. **기본 사항**:
-  * **구독**: 템플릿을 배포하는 데 사용하는 구독입니다.
-  * **리소스 그룹**: 템플릿을 배포하는 데 사용하는 리소스 그룹입니다. 새 리소스 그룹을 만들거나 구독에서 기존 리소스 그룹을 선택할 수 있습니다.
-  * **위치**: 템플릿을 배포할 위치입니다. 기존 리소스 그룹을 선택한 경우 해당 리소스 그룹의 위치가 사용됩니다.
+  * **구독**: hello 구독 toouse toodeploy hello 템플릿.
+  * **리소스 그룹**: hello 리소스 그룹 toouse toodeploy hello 템플릿. 새 리소스 그룹을 만들거나 hello 구독에 기존 리소스 그룹을 선택할 수 있습니다.
+  * **위치**: 여기서 toodeploy hello 서식 파일입니다. 기존 리소스 그룹을 선택한 경우 해당 리소스 그룹의 hello 위치가 사용 됩니다.
 
 2. **설정**:
-  * **SAP 시스템 ID**: SAP 시스템 ID(SID)입니다.
-  * **OS 형식**: 배포할 운영 체제, 예를 들어 Windows Server 2012 R2, SUSE Linux Enterprise Server 12(SLES 12) 또는 Red Hat Enterprise Linux 7.2(RHEL 7.2) 또는 Oracle Linux 7.2입니다.
+  * **SAP 시스템 ID**: hello SAP 시스템 ID (SID)입니다.
+  * **OS 유형**: hello 운영 체제 toodeploy, 예를 들어, Windows Server 2012 R2, SUSE Linux Enterprise Server 12 (SLES 12), Red Hat Enterprise Linux 7.2 (RHEL 7.2) 또는 Oracle Linux 7.2 합니다.
 
-    목록 보기에는 지원되는 일부 운영 체제가 표시되지 않을 수도 있습니다. SAP 소프트웨어 배포를 위한 지원되는 운영 체제에 대한 자세한 내용은 SAP Note [1928533]을 참조하세요.
-  * **SAP 시스템 크기**: SAP 시스템의 크기입니다.
+    hello 목록 보기는 지원 되는 모든 운영 체제를 표시 하지 않습니다. SAP 소프트웨어 배포를 위한 지원되는 운영 체제에 대한 자세한 내용은 SAP Note [1928533]을 참조하세요.
+  * **SAP 시스템 크기**: hello hello SAP 시스템의 크기입니다.
 
-    새 시스템에서 제공하는 SAP의 수입니다. 시스템에 필요한 SAP의 수를 모를 경우 SAP 기술 파트너 또는 시스템 통합자에 문의하세요.
-  * **시스템 가용성**(3계층 템플릿만 해당): 시스템 가용성입니다.
+    hello 수 SAPS hello 새로운 시스템 제공합니다. 개수 SAPS hello 시스템을 사용 하려면 확실 하지 않은 경우 SAP 기술 파트너 또는 시스템 통합자에 게 요청 합니다.
+  * **시스템 가용성** (3 계층 템플릿에만 해당): 시스템 가용성 hello 합니다.
 
     고가용성 설치에 적합한 구성의 경우 **HA**를 선택합니다. 두 데이터베이스 서버와 ABAP SAP 중앙 서비스(ASCS)에 대한 두 서버가 만들어집니다.
-  * **저장소 유형**(2계층 템플릿에만 해당): 사용하는 저장소 유형입니다.
+  * **저장소 유형** (2 계층 템플릿에만 해당): 저장소 toouse 유형의 hello 합니다.
 
     더 큰 시스템의 경우 Azure Premium Storage를 사용하는 것이 좋습니다. 저장소 유형에 대한 자세한 내용은 다음 리소스를 참조하세요.
       * [SAP DBMS 인스턴스에 Azure Premium SSD Storage 사용][2367194]
       * [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]의 [Microsoft Azure Storage][dbms-guide-2.3]
       * [Premium Storage: Azure Virtual Machine 워크로드를 위한 고성능 저장소][storage-premium-storage-preview-portal]
-      * [Microsoft Azure Storage 소개][storage-introduction]
+      * [Azure 저장소 소개 tooMicrosoft][storage-introduction]
   * **관리 사용자 이름** 및 **관리 암호**: 사용자 이름 및 암호입니다.
-    가상 컴퓨터에 로그인하기 위한 새 사용자가 만들어집니다.
-  * **새로운 또는 기존 서브넷**: 새 가상 네트워크 및 서브넷을 만들어야 하는지 또는 기존 서브넷을 사용해야 하는지 결정합니다. 온-프레미스 네트워크에 연결되어 있는 가상 네트워크가 이미 있는 경우 **기존**을 선택합니다.
-  * **서브넷 ID**: 가상 컴퓨터를 연결할 서브넷의 ID입니다. 온-프레미스 네트워크에 가상 컴퓨터를 연결하는 데 사용할 VPN(가상 사설망) 또는 Azure ExpressRoute 가상 네트워크의 서브넷을 선택합니다. ID는 일반적으로 다음과 같이 표시합니다. /subscriptions/&lt;구독 id>/resourceGroups/&lt;리소스 그룹 이름>/providers/Microsoft.Network/virtualNetworks/&lt;가상 네트워크 이름>/subnets/&lt;서브넷 이름>
+    로그인 toohello 가상 컴퓨터에 사용할 새 사용자가 만들어집니다.
+  * **새로운 또는 기존 서브넷**: 새 가상 네트워크 및 서브넷을 만들어야 하는지 또는 기존 서브넷을 사용해야 하는지 결정합니다. 가상 네트워크는 연결 된 tooyour 온-프레미스 네트워크를 이미 있는 경우 선택 **기존**합니다.
+  * **서브넷 ID**: hello 서브넷 hello 가상 컴퓨터의 hello ID에 연결 됩니다. 가상 사설망 (VPN) 또는 Azure ExpressRoute 가상 네트워크 toouse tooconnect hello 가상 컴퓨터 tooyour 온-프레미스 네트워크의 서브넷을 hello를 선택 합니다. hello ID 일반적으로 다음과 같은: /subscriptions/&lt;구독 id > /resourceGroups/&lt;리소스 그룹 이름 > /providers/Microsoft.Network/virtualNetworks/&lt;가상 네트워크 이름 > /subnets/&lt;서브넷 이름 >
 
 3. **사용 약관**:  
-    약관을 검토하고 동의합니다.
+    검토 하 고 hello 약관에 동의 합니다.
 
 4.  **구매**를 선택합니다.
 
-Azure Marketplace에서 이미지를 사용하는 경우 Azure VM 에이전트가 기본적으로 배포됩니다.
+hello Azure VM 에이전트는 hello Azure Marketplace에서에서 이미지를 사용 하는 경우 기본적으로 배포 됩니다.
 
 #### <a name="configure-proxy-settings"></a>프록시 설정 구성
-온-프레미스 네트워크가 구성된 방법에 따라 VM에 프록시를 설정해야 할 수 있습니다. VM이 VPN 또는 ExpressRoute를 통해 온-프레미스 네트워크에 연결된 경우 인터넷에 액세스하지 못할 수도 있으며 필수 확장을 다운로드하거나 모니터링 데이터를 수집할 수 없습니다. 자세한 내용은 [프록시 구성][deployment-guide-configure-proxy]을 참조하세요.
+온-프레미스 네트워크 구성 방법에 따라 VM에 tooset hello 프록시를 할 수 있습니다. 연결 된 tooyour 온-프레미스 네트워크 VPN 또는 express 경로 통해 VM을 사용 하는 경우 hello VM 수 있습니다 수 tooaccess hello 인터넷 및 않습니다 수 toodownload hello 필요한 확장 수 또는 수 모니터링 데이터를 수집. 자세한 내용은 참조 [hello 프록시 구성][deployment-guide-configure-proxy]합니다.
 
 #### <a name="join-a-domain-windows-only"></a>도메인 가입(Windows에만 해당)
-Azure 배포가 Azure 사이트 간 VPN 연결 또는 ExpressRoute를 통해 온-프레미스 Active Directory 또는 DNS 인스턴스에 연결된 경우(이 상태를 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]에서는 *cross-premises*라 함) VM이 온-프레미스 도메인에 가입할 것으로 예상됩니다. 이 작업에 대한 고려사항에 대한 자세한 내용은 [온-프레미스 도메인에 VM 가입(Windows에만 해당)][deployment-guide-4.3]을 참조하세요.
+Azure 배포는 Azure 사이트 간 VPN 연결 또는 express 경로 통해 연결 된 tooan 온-프레미스 Active Directory 또는 DNS 인스턴스인 경우 (이 라고 *크로스-프레미스* 에 [Azure 가상 컴퓨터 계획 및 SAP NetWeaver 용 구현][planning-guide]), 해당 hello VM는 온-프레미스 도메인에 가입 하는 것으로 예상 합니다. 이 작업에 대 한 고려 사항에 대 한 자세한 내용은 참조 [(Windows에만 해당) VM tooan 온-프레미스 도메인에 가입][deployment-guide-4.3]합니다.
 
 #### <a name="ec323ac3-1de9-4c3a-b770-4ff701def65b"></a>모니터링 구성
-SAP가 사용자 환경을 지원하도록 하려면 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5]에서 설명한 대로 SAP용 Azure 모니터링 확장을 설정합니다. [SAP 리소스][deployment-guide-2.2]에 나열된 리소스에서 SAP 모니터링 필수 조건 및 SAP 커널과 SAP 호스트 에이전트의 필수 최소 버전을 확인합니다.
+SAP에 설명 된 대로 SAP 용 Azure 모니터링 확장 hello 설정, 사용자 환경에서 지원 되는지 toobe [구성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-4.5]합니다. SAP 모니터링 및에 나열 된 hello 리소스에서 SAP 커널 및 SAP 호스트 에이전트의 최소 필수 버전에 대 한 hello 필수 구성 요소 확인 [SAP 리소스][deployment-guide-2.2]합니다.
 
 #### <a name="monitoring-check"></a>모니터링 확인
 [종단 간 모니터링 설정 확인 및 문제 해결][deployment-guide-troubleshooting-chapter]에서 설명한 대로 모니터링이 작동하는지 여부를 확인합니다.
 
 #### <a name="post-deployment-steps"></a>배포 후 단계
-VM을 만들고 VM이 배포된 후 VM에 필수 소프트웨어 구성 요소를 설치 해야 합니다. 이 유형의 VM 배포에서 배포/소프트웨어 설치 순서 때문에 설치할 소프트웨어가 Azure 내에, 다른 VM 상에 또는 연결할 수 있는 디스크로 이미 사용할 수 있어야 합니다. 또는 온-프레미스 자산에 연결되는(설치 공유) 프레미스 간 시나리오 사용을 고려합니다.
+만든 후 배포 하는 hello VM 및 VM hello, hello VM에서에서 tooinstall hello 필요한 소프트웨어 구성 요소가 필요 합니다. 이 유형의 VM 배포에 배포/소프트웨어 설치 시퀀스 hello 때문에 hello 소프트웨어 toobe 설치 하거나 Azure에 연결할 수 있는 디스크 또는 다른 VM에서 사용할 수 이미 있어야 합니다. 또는 제공할지 크로스-프레미스 시나리오는 연결의 toohello 온-프레미스 자산 (공유 설치)를 사용 하는 것이 좋습니다.
 
-Azure에서 VM을 배포한 후 온-프레미스 환경에서와 동일한 지침 및 도구를 사용하여 VM에 SAP 소프트웨어를 설치합니다. Azure VM에 SAP 소프트웨어를 설치할 때는 SAP 설치 미디어를 Azure VHD 또는 Managed Disks에 업로드 및 저장하거나 필요한 SAP 설치 미디어를 모두 포함하고 있는 파일 서버로 사용할 Azure VM을 만드는 것이 좋습니다.
+다음과 같은 hello Azure에서 VM을 배포한 후 온-프레미스 환경에서 사용 하는 때 VM에서 지침 및 도구 tooinstall hello SAP 소프트웨어. 또는 모든 hello 파일 서버로 작동 하는 Azure VM을 만드는 tooinstall Azure VM에서 SAP 소프트웨어를 모두 SAP 및 Microsoft 업로드 Azure Vhd 또는 관리 하는 디스크에 hello SAP 설치 미디어를 저장 하는 것이 좋습니다 SAP 설치 미디어가 필요 합니다.
 
 ### <a name="54a1fc6d-24fd-4feb-9c57-ac588a55dff2"></a>시나리오 2: SAP용 사용자 지정 이미지를 사용하여 VM 배포
-다른 버전의 운영 체제 또는 DBMS는 패치 요구 사항이 다르므로 Azure Marketplace에서 찾을 수 있는 이미지가 요구에 맞지 않을 수 있습니다. 그 대신에 나중에 다시 배포할 수 있는 고유한 OS/DBMS VM 이미지를 사용하여 VM을 만드는 것이 좋습니다.
-Linux에 대한 개인 이미지를 만들려면 Windows에 대해 개인 이미지를 만드는 방법과 다른 단계를 사용합니다.
+서로 다른 버전의 운영 체제 또는 DBMS의 서로 다른 패치 요구 사항 때문에 hello Azure Marketplace에서에서 찾을 hello 이미지 요구를 충족 하지 수도 있습니다. 대신 나중에 다시 배포할 수 있는 사용자 고유의 OS/DBMS VM 이미지를 사용 하 여 toocreate VM을 할 수 있습니다.
+Linux 용 다른 단계가 toocreate 개인 이미지를 사용 하 여 Windows 용 toocreate 하나 보다 합니다.
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> 여러 가상 컴퓨터를 배포하는 데 사용할 수 있는 Windows 이미지를 준비하려면 Windows 설정(예: Windows SID 및 호스트 이름)을 온-프레미스 VM에서 추상화 또는 일반화해야 합니다. [sysprep](https://msdn.microsoft.com/library/hh825084.aspx)을 사용하여 이 작업을 수행할 수 있습니다.
+> 여러 가상 컴퓨터, Windows 설정 (예: Windows SID 및 호스트 이름) hello 추상화 이거나 일반화 toodeploy hello에 사용할 수 있는 Windows 이미지 tooprepare 온-프레미스 VM입니다. 사용할 수 있습니다 [sysprep](https://msdn.microsoft.com/library/hh825084.aspx) toodo이 있습니다.
 >
 > ![Linux][Logo_Linux] Linux
 >
-> 여러 가상 컴퓨터를 배포하는 데 사용할 수 있는 Linux 이미지를 준비하려면 일부 Linux 설정을 온-프레미스 VM에서 추상화 또는 일반화해야 합니다. `waagent -deprovision`을 사용하여 이 작업을 수행할 수 있습니다. 자세한 내용은 [Azure에서 실행 중인 Linux 가상 컴퓨터 캡처][virtual-machines-linux-capture-image] 및 [Azure Linux 에이전트 사용자 가이드][virtual-machines-linux-agent-user-guide-command-line-options]를 참조하세요.
+> Linux 이미지를 사용할 수 있는 toodeploy 여러 가상 컴퓨터를 tooprepare 일부 Linux 설정이 해야 추상화 된 또는에 일반화 된 hello 온-프레미스 VM입니다. 사용할 수 있습니다 `waagent -deprovision` toodo이 있습니다. 자세한 내용은 참조 [Azure에서 실행 중인 Linux 가상 컴퓨터를 캡처] [ virtual-machines-linux-capture-image] 및 hello [Azure Linux 에이전트 사용자 가이드][virtual-machines-linux-agent-user-guide-command-line-options]합니다.
 >
 >
 
 - - -
-사용자 지정 이미지를 준비하고 만든 다음 해당 이미지를 사용하여 여러 새 VM을 만들 수 있습니다. 이 방법을 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]에서 설명합니다. SAP Software Provisioning Manager를 사용하여 새 SAP 시스템을 설치하거나(가상 컴퓨터에 연결된 디스크에서 데이터베이스 백업을 복원) DBMS에서 지원하는 경우 Azure Storage에서 데이터베이스 백업을 직접 복원하여 데이터베이스 콘텐츠를 설치합니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]를 참조하세요. 온-프레미스 VM(특히 2계층 시스템)에 SAP 시스템을 이미 설치한 경우 Azure VM을 배포한 후에 SAP Software Provisioning Manager에서 지원하는 시스템 이름 변경 절차를 사용하여 SAP 시스템 설정을 조정할 수 있습니다(SAP Note [1619720]). 그렇지 않은 경우 Azure VM 배포 후 SAP 소프트웨어를 설치할 수 있습니다.
+준비 및 사용자 지정 이미지 만들기 및 toocreate 사용 여러 새 Vm입니다. 이 방법을 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]에서 설명합니다. SAP Software Provisioning Manager tooinstall 새 SAP 시스템을 사용 하 여 데이터베이스의 설정 내용 (연결 된 toohello 가상 컴퓨터가 있는 디스크에서 데이터베이스 백업을 복원) 또는 직접 하는 경우 Azure 저장소에서 데이터베이스 백업을 복원 하 여 DBMS 지원합니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]를 참조하세요. 이미 온-프레미스 VM (특히 2 계층 시스템) 용에 SAP 시스템을 설치한 경우 조정할 수 있습니다 hello SAP 시스템 설정을 hello Azure VM의 hello 배포 후 SAP 소프트웨어 구축에서 지 원하는 hello 이름 바꾸기 절차를 사용 하 여 관리자 (SAP Note [1619720]). 그렇지 않으면 hello Azure VM을 배포한 후 hello SAP 소프트웨어를 설치할 수 있습니다.
 
-다음 순서도는 사용자 지정 이미지에서 VM을 배포하기 위한 SAP 관련 단계 순서를 보여 줍니다.
+hello 다음 순서도 hello SAP 관련 사용자 지정 이미지에서 VM을 배포 하기 위한 단계를 순서 대로
 
 ![개인 Marketplace에서 VM 이미지를 사용하여 SAP 시스템용 VM 배포 순서도][deployment-guide-figure-300]
 
-#### <a name="create-a-virtual-machine-by-using-the-azure-portal"></a>Azure Portal을 사용하여 가상 컴퓨터 만들기
-Managed Disk 이미지에서 새 가상 컴퓨터를 만드는 가장 쉬운 방법은 Azure Portal을 사용하는 것입니다. Manage Disk 이미지를 만드는 방법에 대한 자세한 내용은 [Azure에서 일반화된 VM의 관리되는 이미지 캡처](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource)를 읽어보세요.
+#### <a name="create-a-virtual-machine-by-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 가상 컴퓨터 만들기
+hello 가장 쉬운 방법은 toocreate 관리 되는 디스크 이미지에서 새 가상 컴퓨터를 hello Azure 포털을 사용 하는 것입니다. 어떻게 toocreate 관리 디스크 이미지를 읽을 대 한 자세한 내용은 [Azure에서 일반화 된 VM의 관리 되는 이미지 캡처](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource)
 
-1.  <https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Compute%2Fimages>로 이동합니다. 또는 Azure Portal 메뉴에서 **이미지**를 선택합니다.
-2.  배포하려는 Managed Disk 이미지를 선택하고 **VM 만들기**를 클릭합니다.
+1.  너무 이동<https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Compute%2Fimages>합니다. Hello Azure 포털 메뉴에서에서 선택 하거나 **이미지**합니다.
+2.  Select hello 관리 되는 디스크 이미지 toodeploy을 클릭할 **VM 만들기**
 
-마법사의 필수 매개 변수 설정을 통해 네트워크 인터페이스 및 저장소 계정과 같은 모든 필요한 리소스와 함께 가상 컴퓨터를 만들 수 있습니다. 다음은 일부 매개 변수입니다.
+tooall에서 네트워크 인터페이스 및 저장소 계정과 같은 리소스를 필요로 하는 또한을 hello 마법사를 통해 필요한 hello 매개 변수 toocreate hello 가상 컴퓨터를 설정 합니다. 다음은 일부 매개 변수입니다.
 
 1. **기본 사항**:
- * **이름**: 리소스 이름(가상 컴퓨터 이름)입니다.
- * **VM 디스크 유형**: OS 디스크의 디스크 유형을 선택합니다. 데이터 디스크로 Premium Storage를 사용하려는 경우 OS 디스크에도 Premium Storage를 사용하는 것이 좋습니다.
- * **사용자 이름 및 암호** 또는 **SSH 공개 키**: 프로비전 중에 만든 사용자의 사용자 이름과 암호를 입력합니다. Linux 가상 컴퓨터의 경우 컴퓨터에 로그인하는 데 사용하는 공용 SSH(Secure Shell) 키를 입력할 수 있습니다.
- * **구독**: 새 가상 컴퓨터를 프로비전하는 데 사용할 구독을 선택합니다.
- * **리소스 그룹**: VM에 대한 리소스 그룹의 이름입니다. 새 리소스 그룹의 이름 또는 기존 리소스 그룹의 이름을 입력할 수 있습니다.
- * **위치**: 새 가상 컴퓨터를 배포할 위치입니다. 온-프레미스 네트워크에 가상 컴퓨터를 연결하려는 경우 온-프레미스 네트워크에 Azure를 연결하는 가상 네트워크의 위치를 선택해야 합니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Microsoft Azure 네트워킹][planning-guide-microsoft-azure-networking]을 참조하세요.
+ * **이름**: hello 리소스 (hello 가상 컴퓨터 이름)의 hello 이름입니다.
+ * **VM 디스크 유형**: hello OS 디스크의 hello 디스크 유형을 선택 합니다. 데이터 디스크에 대 한 toouse 프리미엄 저장소를 원하는 경우도 hello OS 디스크에 대 한 프리미엄 저장소를 사용 하는 것이 좋습니다.
+ * **사용자 이름 및 암호** 또는 **SSH 공개 키**: hello 이름과 hello를 프로 비전 하는 동안 만들어진 hello 사용자의 암호를 입력 합니다. Linux 가상 컴퓨터에 대 한 toosign toohello 컴퓨터에서 사용 하는 hello 공용 SSH (보안 셸) 키를 입력할 수 있습니다.
+ * **구독**: toouse tooprovision hello 새 가상 컴퓨터를 원하는 hello 구독을 선택 합니다.
+ * **리소스 그룹**: hello VM에 대 한 hello 리소스 그룹의 hello 이름입니다. 새 리소스 그룹 또는 hello 이름 이미 있는 리소스 그룹의의 hello 이름 중 하나를 입력할 수 있습니다.
+ * **위치**: 여기서 toodeploy hello 새 가상 컴퓨터. Tooconnect hello 가상 컴퓨터 tooyour 온-프레미스 네트워크를 사용 하도록 하려는 경우 Azure tooyour 온-프레미스 네트워크를 연결 하는 hello 가상 네트워크의 hello 위치를 선택 했는지 확인 합니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Microsoft Azure 네트워킹][planning-guide-microsoft-azure-networking]을 참조하세요.
 2. **크기**:
 
-     지원되는 VM 유형 목록은 SAP Note [1928533]을 참조하세요. Azure Premium Storage를 사용하려면 올바른 VM 유형을 선택해야 합니다. 모든 VM 유형이 Premium Storage를 지원하지는 않습니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Storage: Microsoft Azure Storage 및 데이터 링크][planning-guide-storage-microsoft-azure-storage-and-data-disks] 및 [Azure Premium Storage][planning-guide-azure-premium-storage]를 참조하세요.
+     지원되는 VM 유형 목록은 SAP Note [1928533]을 참조하세요. Azure 프리미엄 저장소 toouse를 하려는 경우 hello 올바른 VM 유형을 선택 해야 합니다. 모든 VM 유형이 Premium Storage를 지원하지는 않습니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]의 [Storage: Microsoft Azure Storage 및 데이터 링크][planning-guide-storage-microsoft-azure-storage-and-data-disks] 및 [Azure Premium Storage][planning-guide-azure-premium-storage]를 참조하세요.
 
 3. **설정**:
   * **저장소**
-    * **디스크 유형**: OS 디스크의 디스크 유형을 선택합니다. 데이터 디스크로 Premium Storage를 사용하려는 경우 OS 디스크에도 Premium Storage를 사용하는 것이 좋습니다.
-    * **관리 디스크 사용**: Managed Disks를 사용하려는 경우 [예]를 선택합니다. Managed Disks에 대한 자세한 내용은 이 계획 가이드의 [Managed Disks][planning-guide-managed-disks] 챕터를 참조하세요.
+    * **디스크 유형**: hello OS 디스크의 hello 디스크 유형을 선택 합니다. 데이터 디스크에 대 한 toouse 프리미엄 저장소를 원하는 경우도 hello OS 디스크에 대 한 프리미엄 저장소를 사용 하는 것이 좋습니다.
+    * **관리 되는 디스크를 사용 하 여**: toouse 관리 하는 디스크 예를 선택 합니다. 관리 되는 디스크에 대 한 자세한 내용은 장을 참조 [관리 하는 디스크] [ planning-guide-managed-disks] hello 계획 가이드에서입니다.
   * **네트워크**
-    * **가상 네트워크** 및 **서브넷**: 인트라넷에 가상 컴퓨터를 통합하려면 온-프레미스 네트워크에 연결된 가상 네트워크를 선택합니다.
-    * **공용 IP 주소**: 사용하려는 공용 IP 주소를 선택하거나 매개 변수를 입력하여 새 공용 IP 주소를 만듭니다. 인터넷에서 가상 컴퓨터에 액세스하는 공용 IP 주소를 사용할 수 있습니다. 또한 가상 컴퓨터에 안전하게 액세스하려면 네트워크 보안 그룹을 만들어야 합니다.
+    * **가상 네트워크** 및 **서브넷**: 인트라넷에 연결 된 tooyour 온-프레미스 네트워크를 가상 네트워크를 선택 hello와 toointegrate hello 가상 컴퓨터.
+    * **공용 IP 주소**: hello 공용 IP 주소 매개 변수 toocreate 새 공용 IP 주소를 입력 하거나 toouse, 원하는 선택 합니다. Hello 인터넷을 통해 공용 IP 주소 tooaccess 가상 컴퓨터를 사용할 수 있습니다. 네트워크 보안 그룹 toohelp 보안 액세스 tooyour 가상 컴퓨터를 만들 수도 있는지 확인 합니다.
     * **네트워크 보안 그룹**: 자세한 내용은 [네트워크 보안 그룹으로 네트워크 트래픽 흐름 제어][virtual-networks-nsg]를 참조하세요.
-  * **확장**: 확장을 배포에 추가하여 가상 컴퓨터 확장을 설치할 수 있습니다. 이 단계에서는 확장을 추가할 필요가 없습니다. SAP 지원에 필요한 확장은 나중에 설치됩니다. 이 가이드의 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5] 챕터를 참조하세요.
-  * **고가용성**: 가용성 집합을 선택하거나 매개 변수를 입력하여 새 가용성 집합을 만듭니다. 자세한 내용은 [Azure 가용성 집합][planning-guide-3.2.3]을 참조하세요.
+  * **확장**: toohello 배포에 추가 하 여 가상 컴퓨터 확장을 설치할 수 있습니다. 이 단계에서는 tooadd 확장이 필요가 없습니다. SAP 지원에 필요한 hello 확장은 나중에 설치 됩니다. 장을 참조 [구성 hello Azure 고급 모니터링 확장의 SAP 용] [ deployment-guide-4.5] 이 가이드의 합니다.
+  * **고가용성**: 가용성 집합을 선택 하거나 입력 hello 매개 변수 toocreate 새 가용성 집합입니다. 자세한 내용은 [Azure 가용성 집합][planning-guide-3.2.3]을 참조하세요.
   * **모니터링**
     * **부팅 진단**: 부팅 진단을 **사용 안 함**으로 선택할 수 있습니다.
     * **게스트 OS 진단**: 모니터링 진단을 **사용 안 함**으로 선택할 수 있습니다.
@@ -566,83 +566,83 @@ Managed Disk 이미지에서 새 가상 컴퓨터를 만드는 가장 쉬운 방
 
   선택 내용을 검토한 다음 **확인**을 선택합니다.
 
-선택한 리소스 그룹에서 가상 컴퓨터가 배포됩니다.
+가상 컴퓨터가 선택한 hello 리소스 그룹에 배포 됩니다.
 #### <a name="create-a-virtual-machine-by-using-a-template"></a>템플릿을 사용하여 가상 컴퓨터 만들기
-Azure Portal에서 개인 OS 이미지를 사용하여 배포를 만들려면 다음 SAP 템플릿 중 하나를 사용합니다. 이러한 템플릿은 [azure-quickstart-templates GitHub 리포지토리][azure-quickstart-templates-github]에 게시되어 있습니다. 또한 [PowerShell][virtual-machines-upload-image-windows-resource-manager]을 사용하여 가상 컴퓨터를 수동으로 만들 수도 있습니다.
+hello Azure 포털에서에서 개인 OS 이미지를 사용 하 여 배포 toocreate hello SAP 서식 파일을 다음 중 하나를 사용 합니다. 이러한 템플릿은 hello에 게시 된 [azure-빠른 시작-템플릿 GitHub 리포지토리][azure-quickstart-templates-github]합니다. 또한 [PowerShell][virtual-machines-upload-image-windows-resource-manager]을 사용하여 가상 컴퓨터를 수동으로 만들 수도 있습니다.
 
 * [**2계층 구성(단일 가상 컴퓨터) 템플릿**(sap-2-tier-user-image)][sap-templates-2-tier-user-image]
 
-  한 대의 가상 컴퓨터를 사용하여 2계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  하나의 가상 컴퓨터를 사용 하 여 2 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**2계층 구성(단일 가상 컴퓨터) 템플릿 - Managed Disk 이미지**(sap-2-tier-user-image-md)][sap-templates-2-tier-user-image-md]
 
-  한 대의 가상 컴퓨터와 Managed Disk 이미지를 사용하여 2계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  하나의 가상 컴퓨터와 관리 되는 디스크 이미지를 사용 하 여 2 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**3계층 구성(여러 가상 컴퓨터) 템플릿**(sap-3-tier-user-image)][sap-templates-3-tier-user-image]
 
-  여러 대의 가상 컴퓨터 또는 고유한 OS 이미지를 사용하여 3계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  여러 가상 컴퓨터 또는 운영 체제 이미지를 직접 사용 하 여 3 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**3계층 구성(여러 가상 컴퓨터) 템플릿 - Managed Disk 이미지**(sap-3-tier-user-image-md)][sap-templates-3-tier-user-image-md]
 
-  여러 대의 가상 컴퓨터, 고유한 OS 이미지 및 Managed Disk 이미지를 사용하여 3계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  여러 가상 컴퓨터 또는 사용자 고유의 운영 체제 이미지 및 관리 되는 디스크 이미지를 사용 하 여 3 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 
-Azure Portal에서 템플릿에 대한 다음 매개 변수를 입력합니다.
+Azure 포털 hello hello 서식 파일에 대 한 매개 변수 뒤 hello를 입력 합니다.
 
 1. **기본 사항**:
-  * **구독**: 템플릿을 배포하는 데 사용하는 구독입니다.
-  * **리소스 그룹**: 템플릿을 배포하는 데 사용하는 리소스 그룹입니다. 새 리소스 그룹을 만들거나 구독에서 기존 리소스 그룹을 선택할 수 있습니다.
-  * **위치**: 템플릿을 배포할 위치입니다. 기존 리소스 그룹을 선택한 경우 해당 리소스 그룹의 위치가 사용됩니다.
+  * **구독**: hello 구독 toouse toodeploy hello 템플릿.
+  * **리소스 그룹**: hello 리소스 그룹 toouse toodeploy hello 템플릿. Hello 구독에 기존 리소스 그룹을 선택 하거나 새 리소스 그룹을 만들 수 있습니다.
+  * **위치**: 여기서 toodeploy hello 서식 파일입니다. 기존 리소스 그룹을 선택한 경우 해당 리소스 그룹의 hello 위치가 사용 됩니다.
 2. **설정**:
-  * **SAP 시스템 ID**: SAP 시스템 ID입니다.
-  * **OS 형식**: 배포하려는 운영 체제 형식(예: Windows 또는 Linux)입니다.
-  * **SAP 시스템 크기**: SAP 시스템의 크기입니다.
+  * **SAP 시스템 ID**: hello SAP 시스템 id입니다.
+  * **OS 유형**: hello 운영 체제 유형을 toodeploy (Windows 또는 Linux)를 클릭 합니다.
+  * **SAP 시스템 크기**: hello hello SAP 시스템의 크기입니다.
 
-    새 시스템에서 제공하는 SAP의 수입니다. 시스템에 필요한 SAP의 수를 모를 경우 SAP 기술 파트너 또는 시스템 통합자에 문의하세요.
-  * **시스템 가용성**(3계층 템플릿만 해당): 시스템 가용성입니다.
+    hello 수 SAPS hello 새로운 시스템 제공합니다. 개수 SAPS hello 시스템을 사용 하려면 확실 하지 않은 경우 SAP 기술 파트너 또는 시스템 통합자에 게 요청 합니다.
+  * **시스템 가용성** (3 계층 템플릿에만 해당): 시스템 가용성 hello 합니다.
 
     고가용성 설치에 적합한 구성의 경우 **HA**를 선택합니다. ASCS용 2개의 데이터베이스 서버 및 2개의 서버가 생성됩니다.
-  * **저장소 유형**(2계층 템플릿에만 해당): 사용하는 저장소 유형입니다.
+  * **저장소 유형** (2 계층 템플릿에만 해당): 저장소 toouse 유형의 hello 합니다.
 
-    더 큰 시스템의 경우 Azure Premium Storage를 사용하는 것이 좋습니다. 저장소 유형에 대한 자세한 내용은 다음 리소스를 참조하세요.
+    더 큰 시스템의 경우 Azure Premium Storage를 사용하는 것이 좋습니다. 저장소 형식에 대 한 자세한 내용은 다음 리소스는 hello 참조:
       * [SAP DBMS 인스턴스에 Azure Premium SSD Storage 사용][2367194]
       * [SAP NetWeaver에 대한 Azure Virtual Machines DBMS 배포][dbms-guide]의 [Microsoft Azure Storage][dbms-guide-2.3]
       * [Premium Storage: Azure Virtual Machine 워크로드를 위한 고성능 저장소][storage-premium-storage-preview-portal]
-      * [Microsoft Azure Storage 소개][storage-introduction]
-  * **사용자 이미지 VHD URI(관리되지 않는 디스크 이미지 템플릿만)**: 개인 OS 이미지 VHD의 URI(예: https://&lt;accountname>.blob.core.windows.net/vhds/userimage.vhd)입니다.
-  * **사용자 이미지 저장소 계정(관리되지 않는 디스크 이미지 템플릿만)**: 개인 OS 이미지가 저장된 저장소 계정의 이름(예: https://&lt;accountname>.blob.core.windows.net/vhds/userimage.vhd의 &lt;accountname>)입니다.
-  * **userImageId**(관리 디스크 이미지 템플릿만): 사용하려는 Managed Disk 이미지의 ID
-  * **관리 사용자 이름** 및 **관리 암호**: 사용자 이름 및 암호입니다.
+      * [Azure 저장소 소개 tooMicrosoft][storage-introduction]
+  * **사용자 이미지 VHD URI** (관리 되지 않는 디스크 이미지 템플릿에만 해당): hello 개인 OS 이미지, 예를 들어 https:// VHD URI hello&lt;accountname >.blob.core.windows.net/vhds/userimage.vhd 합니다.
+  * **사용자 이미지 저장소 계정이** (관리 되지 않는 디스크 이미지 템플릿에만 해당): hello 개인 OS 이미지가 저장 된 예를 들어 hello 저장소 계정의 hello 이름을 &lt;accountname > https://에서&lt;accountname > 합니다. blob.core.windows.net/vhds/userimage.vhd 합니다.
+  * **userImageId** (관리 되는 디스크 이미지 템플릿에만 해당): hello toouse 원하는 관리 되는 디스크 이미지의 Id
+  * **관리자 사용자 이름** 및 **관리자 암호**: hello 사용자 이름 및 암호.
 
-    가상 컴퓨터에 로그인하기 위한 새 사용자가 만들어집니다.
-  * **새로운 또는 기존 서브넷**: 새 가상 네트워크 및 서브넷을 만들어야 하는지 또는 기존 서브넷을 사용해야 하는지 결정합니다. 온-프레미스 네트워크에 연결되어 있는 가상 네트워크가 이미 있는 경우 **기존**을 선택합니다.
-  * **서브넷 ID**: 가상 컴퓨터를 연결할 서브넷의 ID입니다. 온-프레미스 네트워크에 가상 컴퓨터를 연결하는 데 사용할 ExpressRoute 가상 네트워크의 서브넷 또는 VPN을 선택합니다. ID는 일반적으로 다음과 같이 나타납니다.
+    로그인 toohello 가상 컴퓨터에 사용할 새 사용자가 만들어집니다.
+  * **새로운 또는 기존 서브넷**: 새 가상 네트워크 및 서브넷을 만들어야 하는지 또는 기존 서브넷을 사용해야 하는지 결정합니다. 가상 네트워크는 연결 된 tooyour 온-프레미스 네트워크를 이미 있는 경우 선택 **기존**합니다.
+  * **서브넷 ID**: hello 서브넷 toowhich hello 가상 컴퓨터의 hello ID에 연결 됩니다. VPN 또는 express 경로 가상 네트워크 toouse tooconnect hello 가상 컴퓨터 tooyour 온-프레미스 네트워크의 서브넷을 hello를 선택 합니다. hello ID는 일반적으로 다음과 같이 보입니다.
 
     /subscriptions/&lt;구독 id>/resourceGroups/&lt;리소스 그룹 이름>/providers/Microsoft.Network/virtualNetworks/&lt;가상 네트워크 이름>/subnets/&lt;서브넷 이름>
 
 3. **사용 약관**:  
-    약관을 검토하고 동의합니다.
+    검토 하 고 hello 약관에 동의 합니다.
 
 4.  **구매**를 선택합니다.
 
-#### <a name="install-the-vm-agent-linux-only"></a>VM 에이전트 설치(Linux에만 해당)
-이전 섹션에서 설명한 템플릿을 사용하려면 Linux 에이전트가 사용자 이미지에 이미 설치되어 있어야 하며, 그렇지 않으면 배포에 실패합니다. [Azure VM 에이전트 다운로드, 설치 및 사용][deployment-guide-4.4]에 설명된 대로 VM 에이전트를 다운로드하고 사용자 이미지에 설치합니다. 템플릿을 사용하지 않는 경우 나중에 VM 에이전트를 설치할 수도 있습니다.
+#### <a name="install-hello-vm-agent-linux-only"></a>Hello VM 에이전트 (Linux에만 해당) 설치
+toouse hello 템플릿 hello 이전 섹션에에서 설명 된 Linux 에이전트는 hello 사용자 이미지 또는 hello 배포에 이미 설치 되어 있어야 하는 hello 실패 합니다. 다운로드 하 여에 설명 된 대로 hello 사용자 이미지의 hello VM 에이전트 설치 [다운로드, 설치 및 hello Azure VM 에이전트를 사용 하도록 설정][deployment-guide-4.4]합니다. 템플릿 hello를 사용 하지 않는 경우 나중에 VM 에이전트 hello도 설치할 수 있습니다.
 
 #### <a name="join-a-domain-windows-only"></a>도메인 가입(Windows에만 해당)
-Azure 배포가 Azure 사이트 간 VPN 연결 또는 Azure ExpressRoute를 통해 온-프레미스 Active Directory 또는 DNS 인스턴스에 연결된 경우(이 상태를 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]에서는 *cross-premises*라 함) VM이 온-프레미스 도메인에 가입할 것으로 예상됩니다. 이 단계에 대한 고려사항에 대한 자세한 내용은 [온-프레미스 도메인에 VM 가입(Windows에만 해당)][deployment-guide-4.3]을 참조하세요.
+Azure 배포는 Azure 사이트 간 VPN 연결 또는 Azure ExpressRoute를 통해 연결 된 tooan 온-프레미스 Active Directory 또는 DNS 인스턴스인 경우 (이 라고 *크로스-프레미스* 에 [Azure 가상 컴퓨터 계획 및 구현에 대 한 SAP NetWeaver][planning-guide]), 해당 hello VM는 온-프레미스 도메인에 가입 하는 것으로 예상 합니다. 이 단계에 대 한 고려 사항에 대 한 자세한 내용은 참조 [(Windows에만 해당) VM tooan 온-프레미스 도메인에 가입][deployment-guide-4.3]합니다.
 
 #### <a name="configure-proxy-settings"></a>프록시 설정 구성
-온-프레미스 네트워크가 구성된 방법에 따라 VM에 프록시를 설정해야 할 수 있습니다. VM이 VPN 또는 ExpressRoute를 통해 온-프레미스 네트워크에 연결된 경우 인터넷에 액세스하지 못할 수도 있으며 필수 확장을 다운로드하거나 모니터링 데이터를 수집할 수 없습니다. 자세한 내용은 [프록시 구성][deployment-guide-configure-proxy]을 참조하세요.
+온-프레미스 네트워크 구성 방법에 따라 VM에 tooset hello 프록시를 할 수 있습니다. 연결 된 tooyour 온-프레미스 네트워크 VPN 또는 express 경로 통해 VM을 사용 하는 경우 hello VM 수 있습니다 수 tooaccess hello 인터넷 및 않습니다 수 toodownload hello 필요한 확장 수 또는 수 모니터링 데이터를 수집. 자세한 내용은 참조 [hello 프록시 구성][deployment-guide-configure-proxy]합니다.
 
 #### <a name="configure-monitoring"></a>모니터링 구성
-SAP가 사용자 환경을 지원하도록 하려면 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5]에서 설명한 대로 SAP용 Azure 모니터링 확장을 설정합니다. [SAP 리소스][deployment-guide-2.2]에 나열된 리소스에서 SAP 모니터링 필수 조건 및 SAP 커널과 SAP 호스트 에이전트의 필수 최소 버전을 확인합니다.
+SAP에 설명 된 대로 SAP 용 Azure 모니터링 확장 hello 설정, 사용자 환경에서 지원 되는지 toobe [구성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-4.5]합니다. SAP 모니터링 및에 나열 된 hello 리소스에서 SAP 커널 및 SAP 호스트 에이전트의 최소 필수 버전에 대 한 hello 필수 구성 요소 확인 [SAP 리소스][deployment-guide-2.2]합니다.
 
 #### <a name="monitoring-check"></a>모니터링 확인
 [종단 간 모니터링 설정 확인 및 문제 해결][deployment-guide-troubleshooting-chapter]에서 설명한 대로 모니터링이 작동하는지 여부를 확인합니다.
 
 
 ### <a name="a9a60133-a763-4de8-8986-ac0fa33aa8c1"></a>시나리오 3: SAP에서 일반화되지 않은 Azure VHD를 사용하여 온-프레미스 VM 이동
-이 시나리오에서는 온-프레미스 환경에서 특정 SAP 시스템을 Azure로 이동하려고 합니다. OS, SAP 이진 파일 및 결과적 DBMS 이진 파일을 포함하고 있는 VHD와 함께 DBMS 데이터와 로그 파일이 있는 VHD를 Azure에 업로드하여 이 작업을 수행할 수 있습니다. [시나리오 2: SAP용 사용자 지정 이미지로 VM 배포][deployment-guide-3.3]에서 설명한 시나리오와는 달리 이 경우 Azure VM의 호스트 이름, SAP SID 및 SAP 사용자 계정을 온-프레미스 환경에서 구성했으므로 그대로 유지합니다. OS를 일반화할 필요가 없습니다. 이 시나리오는 SAP 지형의 일부는 온-프레미스를 실행하고 일부는 Azure에서 실행하는 프레미스 간 시나리오에 가장 자주 적용됩니다.
+이 시나리오에서는 온-프레미스 환경 tooAzure에서 특정 SAP 시스템 toomove를 계획합니다. 있습니다 수 hello hello OS, SAP 바이너리 hello, VHD를 업로드 하 여이 작업을 수행할 결국 DBMS 바이너리 및 hello 데이터로 hello Vhd hello 및 로그 파일의 DBMS tooAzure hello 합니다. 에 설명 된 hello 시나리오와 달리 [시나리오 2: SAP 용 사용자 지정 이미지를 사용 하 여 VM 배포][deployment-guide-3.3],이 경우 hello 호스트 이름, SAP SID 유지 및 없기 때문에 hello Azure VM에서에서 SAP 사용자 계정 hello 온-프레미스 환경에서 구성합니다. Toogeneralize hello OS 필요가 없습니다. 이 시나리오는 가장 자주 toocross 온-프레미스 SAP 지형 hello의 일부는 온-프레미스를 실행 하 고 시나리오의 일부는 Azure에서 실행을 적용 합니다.
 
-이 시나리오에서 VM 에이전트는 배포하는 동안 자동으로 설치되지 **않습니다.** Azure에서 SAP NetWeaver을 실행하려면 VM 에이전트 및 SAP용 Azure 고급 모니터링 확장이 필요하므로 가상 컴퓨터를 만든 후에 두 구성 요소를 모두 수동으로 다운로드하여 설치하고 사용하도록 설정해야 합니다.
+이 시나리오에서는 hello VM 에이전트는 **하지** 배포 하는 동안 자동으로 설치 합니다. Toodownload, 설치 및 활성화는 모두 필요한 이기 때문에 hello VM 에이전트 및 hello Azure 고급 모니터링 확장의 SAP 용 Azure에서 SAP NetWeaver 필요한 toorun hello 가상 컴퓨터를 만든 후에 수동으로 구성 요소입니다.
 
-Azure VM 에이전트에 대한 자세한 내용은 다음 리소스를 참조하세요.
+Hello Azure VM 에이전트에 대 한 자세한 내용은 다음 리소스는 hello를 참조 하세요.
 
 - - -
 > ![Windows][Logo_Windows] Windows
@@ -657,160 +657,160 @@ Azure VM 에이전트에 대한 자세한 내용은 다음 리소스를 참조�
 
 - - -
 
-다음 순서도는 일반화되지 않은 Azure VHD를 사용하여 온-프레미스 VM을 이동하기 위한 단계의 순서를 보여 줍니다.
+다음 순서도 hello 단계는 온-프레미스 VM 일반화 되지 않은 Azure VHD를 사용 하 여 이동에 대 한 hello 시퀀스를 나타냅니다.
 
 ![VM 디스크를 사용하여 SAP 시스템용 VM 배포 순서도][deployment-guide-figure-400]
 
-디스크가 Azure에 이미 업로드되고 정의되어 있는 경우([SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide] 참조) 다음 몇 섹션에서 설명하는 작업을 수행합니다.
+Hello 디스크 이미 업로드 되 고 Azure에 정의 된 경우 (참조 [Azure 가상 컴퓨터 계획 및 구현에 대 한 SAP NetWeaver][planning-guide]), hello 작업에에서 설명 된 수행 hello 다음 몇 개 섹션.
 
 #### <a name="create-a-virtual-machine"></a>가상 컴퓨터 만들기
-Azure Portal을 통해 개인 OS 디스크를 사용하여 배포를 만들려면 [azure-quickstart-templates GitHub 리포지토리][azure-quickstart-templates-github]에 게시된 SAP 템플릿을 사용합니다. 또한 PowerShell을 사용하여 가상 컴퓨터를 직접 만들 수도 있습니다.
+hello에 게시 된 hello SAP 서식 파일을 사용 하는 hello Azure 포털을 통해 개인 OS 디스크를 사용 하 여 배포 toocreate [azure-빠른 시작-템플릿 GitHub 리포지토리][azure-quickstart-templates-github]합니다. 또한 PowerShell을 사용하여 가상 컴퓨터를 직접 만들 수도 있습니다.
 
 * [**2계층 구성(단일 가상 컴퓨터) 템플릿**(sap-2-tier-user-disk)][sap-templates-2-tier-os-disk]
 
-  한 대의 가상 컴퓨터를 사용하여 2계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  하나의 가상 컴퓨터를 사용 하 여 2 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 * [**2계층 구성(단일 가상 컴퓨터) 템플릿 - Managed Disk** (sap-2-tier-user-disk-md)][sap-templates-2-tier-os-disk-md]
 
-  한 대의 가상 컴퓨터와 Managed Disk를 사용하여 2계층 시스템을 만들려면 이 템플릿을 사용합니다.
+  하나의 가상 컴퓨터와 관리 되는 디스크를 사용 하 여 2 계층 시스템 toocreate이이 템플릿을 사용 합니다.
 
-Azure Portal에서 템플릿에 대한 다음 매개 변수를 입력합니다.
+Azure 포털 hello hello 서식 파일에 대 한 매개 변수 뒤 hello를 입력 합니다.
 
 1. **기본 사항**:
-  * **구독**: 템플릿을 배포하는 데 사용하는 구독입니다.
-  * **리소스 그룹**: 템플릿을 배포하는 데 사용하는 리소스 그룹입니다. 새 리소스 그룹을 만들거나 구독에서 기존 리소스 그룹을 선택할 수 있습니다.
-  * **위치**: 템플릿을 배포할 위치입니다. 기존 리소스 그룹을 선택한 경우 해당 리소스 그룹의 위치가 사용됩니다.
+  * **구독**: hello 구독 toouse toodeploy hello 템플릿.
+  * **리소스 그룹**: hello 리소스 그룹 toouse toodeploy hello 템플릿. Hello 구독에 기존 리소스 그룹을 선택 하거나 새 리소스 그룹을 만들 수 있습니다.
+  * **위치**: 여기서 toodeploy hello 서식 파일입니다. 기존 리소스 그룹을 선택한 경우 해당 리소스 그룹의 hello 위치가 사용 됩니다.
 2. **설정**:
-  * **SAP 시스템 ID**: SAP 시스템 ID입니다.
-  * **OS 형식**: 배포하려는 운영 체제 형식(예: Windows 또는 Linux)입니다.
-  * **SAP 시스템 크기**: SAP 시스템의 크기입니다.
+  * **SAP 시스템 ID**: hello SAP 시스템 id입니다.
+  * **OS 유형**: hello 운영 체제 유형을 toodeploy (Windows 또는 Linux)를 클릭 합니다.
+  * **SAP 시스템 크기**: hello hello SAP 시스템의 크기입니다.
 
-    새 시스템에서 제공하는 SAP의 수입니다. 시스템에 필요한 SAP의 수를 모를 경우 SAP 기술 파트너 또는 시스템 통합자에 문의하세요.
-  * **저장소 유형**(2계층 템플릿에만 해당): 사용하는 저장소 유형입니다.
+    hello 수 SAPS hello 새로운 시스템 제공합니다. 개수 SAPS hello 시스템을 사용 하려면 확실 하지 않은 경우 SAP 기술 파트너 또는 시스템 통합자에 게 요청 합니다.
+  * **저장소 유형** (2 계층 템플릿에만 해당): 저장소 toouse 유형의 hello 합니다.
 
-    더 큰 시스템의 경우 Azure Premium Storage를 사용하는 것이 좋습니다. 저장소 유형에 대한 자세한 내용은 다음 리소스를 참조하세요.
+    더 큰 시스템의 경우 Azure Premium Storage를 사용하는 것이 좋습니다. 저장소 형식에 대 한 자세한 내용은 다음 리소스는 hello 참조:
       * [SAP DBMS 인스턴스에 Azure Premium SSD Storage 사용][2367194]
       * [SAP NetWeaver에 대한 Azure Virtual Machine DBMS 배포][dbms-guide]의 [Microsoft Azure Storage][dbms-guide-2.3]
       * [Premium Storage: Azure Virtual Machine 워크로드를 위한 고성능 저장소][storage-premium-storage-preview-portal]
-      * [Microsoft Azure Storage 소개][storage-introduction]
-  * **OS 디스크 VHD URI(관리되지 않는 디스크 템플릿만)**: 개인 OS 디스크의 URI(예: https://&lt;accountname>.blob.core.windows.net/vhds/osdisk.vhd)입니다.
-  * **OS 디스크 Managed Disk ID(관리 디스크 템플릿만)**: Managed Disk OS 디스크의 ID, /subscriptions/92d102f7-81a5-4df7-9877-54987ba97dd9/resourceGroups/group/providers/Microsoft.Compute/disks/WIN
-  * **새로운 또는 기존 서브넷**: 새 가상 네트워크 및 서브넷을 만들어야 하는지 또는 기존 서브넷을 사용해야 하는지 결정합니다. 온-프레미스 네트워크에 연결되어 있는 가상 네트워크가 이미 있는 경우 **기존**을 선택합니다.
-  * **서브넷 ID**: 가상 컴퓨터를 연결할 서브넷의 ID입니다. 온-프레미스 네트워크에 가상 컴퓨터를 연결하는 데 사용할 Azure ExpressRoute 가상 네트워크의 서브넷 또는 VPN을 선택합니다. ID는 일반적으로 다음과 같이 나타납니다.
+      * [Azure 저장소 소개 tooMicrosoft][storage-introduction]
+  * **OS 디스크 VHD URI** (관리 되지 않는 디스크 템플릿에만 해당): hello 개인 OS 디스크의 예를 들어 https:// URI hello&lt;accountname >.blob.core.windows.net/vhds/osdisk.vhd 합니다.
+  * **OS 디스크 관리 되는 디스크 Id** (관리 되는 디스크 템플릿에만 해당): hello hello 디스크 관리 되는 OS 디스크의 Id, /subscriptions/92d102f7-81a5-4df7-9877-54987ba97dd9/resourceGroups/group/providers/Microsoft.Compute/disks/WIN
+  * **새로운 또는 기존 서브넷**: 새 가상 네트워크 및 서브넷을 만들어야 하는지 또는 기존 서브넷을 사용해야 하는지 결정합니다. 가상 네트워크는 연결 된 tooyour 온-프레미스 네트워크를 이미 있는 경우 선택 **기존**합니다.
+  * **서브넷 ID**: hello 서브넷 toowhich hello 가상 컴퓨터의 hello ID에 연결 됩니다. VPN 이나 Azure express 경로 가상 네트워크 toouse tooconnect hello 가상 컴퓨터 tooyour 온-프레미스 네트워크의 서브넷을 hello를 선택 합니다. hello ID는 일반적으로 다음과 같이 보입니다.
 
     /subscriptions/&lt;구독 id>/resourceGroups/&lt;리소스 그룹 이름>/providers/Microsoft.Network/virtualNetworks/&lt;가상 네트워크 이름>/subnets/&lt;서브넷 이름>
 
 3. **사용 약관**:  
-    약관을 검토하고 동의합니다.
+    검토 하 고 hello 약관에 동의 합니다.
 
 4.  **구매**를 선택합니다.
 
-#### <a name="install-the-vm-agent"></a>VM 에이전트 설치
-이전 섹션에서 설명한 템플릿을 사용하려면 VM 에이전트가 OS 디스크에 설치되어 있어야 하며, 그렇지 않으면 배포에 실패합니다. [Azure VM 에이전트 다운로드, 설치 및 사용][deployment-guide-4.4]에 설명된 대로 VM 에이전트를 다운로드하고 VM에 설치합니다.
+#### <a name="install-hello-vm-agent"></a>Hello VM 에이전트를 설치 합니다.
+서식 파일에 설명 된 toouse hello hello 이전 섹션, hello VM 에이전트를 설치 해야 hello 운영 체제 디스크 또는 hello 배포가 실패 합니다. 다운로드 하 여에 설명 된 대로 VM hello에 hello VM 에이전트 설치 [다운로드, 설치 및 hello Azure VM 에이전트를 사용 하도록 설정][deployment-guide-4.4]합니다.
 
-이전 섹션에서 설명한 템플릿을 사용하지 않는 경우 나중에 VM 에이전트를 설치할 수도 있습니다.
+Hello 이전 섹션에에서 설명 된 대로 hello 템플릿을 사용 하지 않는 경우 나중에 hello VM 에이전트를 설치할 수도 있습니다.
 
 #### <a name="join-a-domain-windows-only"></a>도메인 가입(Windows에만 해당)
-Azure 배포가 Azure 사이트 간 VPN 연결 또는 ExpressRoute를 통해 온-프레미스 Active Directory 또는 DNS 인스턴스에 연결된 경우(이 상태를 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide]에서는 *cross-premises*라 함) VM이 온-프레미스 도메인에 가입할 것으로 예상됩니다. 이 작업에 대한 고려사항에 대한 자세한 내용은 [온-프레미스 도메인에 VM 가입(Windows에만 해당)][deployment-guide-4.3]을 참조하세요.
+Azure 배포는 Azure 사이트 간 VPN 연결 또는 express 경로 통해 연결 된 tooan 온-프레미스 Active Directory 또는 DNS 인스턴스인 경우 (이 라고 *크로스-프레미스* 에 [Azure 가상 컴퓨터 계획 및 SAP NetWeaver 용 구현][planning-guide]), 해당 hello VM는 온-프레미스 도메인에 가입 하는 것으로 예상 합니다. 이 작업에 대 한 고려 사항에 대 한 자세한 내용은 참조 [(Windows에만 해당) VM tooan 온-프레미스 도메인에 가입][deployment-guide-4.3]합니다.
 
 #### <a name="configure-proxy-settings"></a>프록시 설정 구성
-온-프레미스 네트워크가 구성된 방법에 따라 VM에 프록시를 설정해야 할 수 있습니다. VM이 VPN 또는 ExpressRoute를 통해 온-프레미스 네트워크에 연결된 경우 인터넷에 액세스하지 못할 수도 있으며 필수 확장을 다운로드하거나 모니터링 데이터를 수집할 수 없습니다. 자세한 내용은 [프록시 구성][deployment-guide-configure-proxy]을 참조하세요.
+온-프레미스 네트워크 구성 방법에 따라 VM에 tooset hello 프록시를 할 수 있습니다. 연결 된 tooyour 온-프레미스 네트워크 VPN 또는 express 경로 통해 VM을 사용 하는 경우 hello VM 수 있습니다 수 tooaccess hello 인터넷 및 않습니다 수 toodownload hello 필요한 확장 수 또는 수 모니터링 데이터를 수집. 자세한 내용은 참조 [hello 프록시 구성][deployment-guide-configure-proxy]합니다.
 
 #### <a name="configure-monitoring"></a>모니터링 구성
-SAP가 사용자 환경을 지원하도록 하려면 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5]에서 설명한 대로 SAP용 Azure 모니터링 확장을 설정합니다. [SAP 리소스][deployment-guide-2.2]에 나열된 리소스에서 SAP 모니터링 필수 조건 및 SAP 커널과 SAP 호스트 에이전트의 필수 최소 버전을 확인합니다.
+SAP에 설명 된 대로 SAP 용 Azure 모니터링 확장 hello 설정, 사용자 환경에서 지원 되는지 toobe [구성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-4.5]합니다. SAP 모니터링 및에 나열 된 hello 리소스에서 SAP 커널 및 SAP 호스트 에이전트의 최소 필수 버전에 대 한 hello 필수 구성 요소 확인 [SAP 리소스][deployment-guide-2.2]합니다.
 
 #### <a name="monitoring-check"></a>모니터링 확인
 [종단 간 모니터링 설정 확인 및 문제 해결][deployment-guide-troubleshooting-chapter]에서 설명한 대로 모니터링이 작동하는지 여부를 확인합니다.
 
-## <a name="update-the-monitoring-configuration-for-sap"></a>SAP용 모니터링 구성 업데이트
-다음과 시나리오에서 SAP 모니터링 구성을 업데이트합니다.
-* Microsoft/SAP 공동 팀은 모니터링 기능을 확장했으며 더 많거나 적은 카운터를 요청하고 있습니다.
-* Microsoft는 모니터링 데이터를 제공하는 새 버전의 기본 Azure 인프라를 도입했으며, SAP용 Azure 고급 모니터링 확장은 이러한 변화에 적응해야 합니다.
-* Azure VM에서 데이터 디스크를 추가로 탑재하거나 제거합니다. 이 시나리오에서 저장소 관련 데이터의 컬렉션을 업데이트합니다. 끝점을 추가 또는 삭제하거나 VM에 IP 주소를 할당하여 구성을 변경해도 모니터링 구성에 영향을 주지 않습니다.
-* Azure VM의 크기를 변경합니다(예: 크기 A5에서 다른 VM 크기로).
-* Azure VM에 새 네트워크 인터페이스를 추가합니다.
+## <a name="update-hello-monitoring-configuration-for-sap"></a>SAP 용 hello 모니터링 구성 업데이트
+Hello hello 다음 시나리오 중 하나에서 SAP 모니터링 구성을 업데이트 합니다.
+* hello 공동 Microsoft/SAP 팀 hello 모니터링 기능을 확장 하 고 더 많거나 적은 카운터를 요청 합니다.
+* Microsoft hello 기본 Azure 인프라의 hello 모니터링 데이터를 제공 하는 새 버전을 도입 하 고 SAP 요구 toobe에 대 한 Azure 고급 모니터링 확장 hello toothose 변경을 채택 합니다.
+* 추가 데이터 디스크 tooyour Azure VM을 탑재 하거나 데이터 디스크를 제거 합니다. 이 시나리오에서는 저장소 관련 데이터의 hello 컬렉션을 업데이트 합니다. 끝점을 삭제 하거나, IP를 할당 하 여 구성 변경 주소 tooa VM hello 모니터링 구성을 적용 되지 않습니다.
+* Azure VM의 hello 크기 예를 들어에서 변경한 크기 A5 tooany 다른 VM 크기입니다.
+* 새 네트워크 인터페이스 tooyour Azure VM을 추가 합니다.
 
-모니터링 설정을 업데이트하려면 [SAP 용 Azure 고급 모니터링 확장][deployment-guide-4.5]의 절차에 따라 모니터링 인프라를 업데이트합니다.
+단계를 모니터링 설정을 업데이트 hello hello를 수행 하 여 모니터링 인프라 tooupdate [구성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-4.5]합니다.
 
 ## <a name="detailed-tasks-for-sap-software-deployment"></a>SAP 소프트웨어 배포에 대한 세부 작업
-이 섹션에서는 구성 및 배포 프로세스에서 특정 작업을 수행하기 위한 세부 단계를 설명합니다.
+이 섹션에 hello 구성 및 배포 프로세스에서 특정 작업을 수행 하는 단계를 설명 합니다.
 
 ### <a name="604bcec2-8b6e-48d2-a944-61b0f5dee2f7"></a>Azure PowerShell cmdlet 배포
-1.  [Microsoft Azure 다운로드](https://azure.microsoft.com/downloads/)로 이동합니다.
+1.  너무 이동[Microsoft Azure 다운로드](https://azure.microsoft.com/downloads/)합니다.
 2.  **명령줄 도구** 아래의 **PowerShell** 아래에서 **Windows 설치**를 선택합니다.
-3.  Microsoft Download Manager 대화 상자에서 다운로드한 파일(예: WindowsAzurePowershellGet.3f.3f.3fnew.exe)에 대해 **실행**을 선택합니다.
-4.  Microsoft 웹 플랫폼 설치 관리자(Microsoft Web PI)를 실행하려면 **예**를 선택합니다.
+3.  다운로드 한 hello 파일 (예를 들어 WindowsAzurePowershellGet.3f.3f.3fnew.exe)에 대 한 hello Microsoft 다운로드 관리자 대화 상자에서 선택 **실행**합니다.
+4.  Microsoft 웹 플랫폼 설치 관리자 (Microsoft 웹 PI) toorun 선택 **예**합니다.
 5.  다음과 같은 페이지가 나타납니다.
 
   ![Azure PowerShell cmdlet 설치 페이지][deployment-guide-figure-500]<a name="figure-5"></a>
 
-6.  **설치**를 선택한 다음 Microsoft 소프트웨어 사용 조건에 동의합니다.
-7.  PowerShell이 설치됩니다. **마침**을 선택하여 설치 마법사를 닫습니다.
+6.  선택 **설치**, 다음 hello Microsoft 소프트웨어 사용 조건에 동의 하 고 있습니다.
+7.  PowerShell이 설치됩니다. 선택 **마침** tooclose hello 설치 마법사.
 
-일반적으로 매월 업데이트되는 PowerShell cmdlet에 대한 업데이트를 자주 확인하십시오. 업데이트를 확인하는 가장 쉬운 방법은 앞의 설치 단계를 5단계에 표시되는 설치 페이지까지 수행하는 것입니다. cmdlet의 릴리스 날짜 및 릴리스 번호는 5단계에 표시되는 페이지에 포함되어 있습니다. SAP Note [1928533] 또는 SAP Note [2015553]에 달리 명시되지 않은 한 Azure PowerShell cmdlet의 최신 버전을 사용하는 것이 좋습니다.
+일반적으로 매월 업데이트 되며 업데이트 toohello PowerShell cmdlet에 대 한 자주 확인 합니다. 업데이트에 대 한 가장 쉬운 방법은 toocheck hello는 toodo hello 이전 toohello 설치 페이지 5 단계에 표시 된 설치 단계입니다. hello 릴리스 날짜 및 릴리스 번호 hello cmdlet의 5 단계에 표시 된 hello 페이지에 포함 됩니다. SAP Note에서 달리 명시 하지 않는 한 [1928533] 또는 SAP Note [2015553], hello 최신 버전의 Azure PowerShell cmdlet 사용 하는 것이 좋습니다.
 
-컴퓨터에 설치된 Azure PowerShell cmdlet의 버전을 확인하려면 다음 PowerShell 명령을 실행합니다.
+toocheck hello 버전의 hello 사용자 컴퓨터에 설치 된 Azure PowerShell cmdlet이 PowerShell 명령을 실행 합니다.
 ```powershell
 (Get-Module AzureRm.Compute).Version
 ```
-결과는 다음과 유사하게 표시됩니다.
+hello 결과 다음과 같습니다.
 
 ![Azure PowerShell cmdlet 버전 검사의 결과][deployment-guide-figure-600]
 <a name="figure-6"></a>
 
-컴퓨터에 설치된 Azure cmdlet 버전이 현재 버전인 경우 설치 마법사의 첫 페이지의 제품 제목에 **(설치됨)**을 추가하여 이 사실을 표시합니다(다음 스크린샷 참조). 사용자의 PowerShell Azure cmdlet은 최신 상태입니다. 설치 마법사를 닫으려면 **종료**를 선택합니다.
+Hello Azure cmdlet 버전이 컴퓨터에 설치 되어 현재 버전 hello 이면 hello 설치 마법사의 첫 번째 페이지 hello 나타냅니다 추가 하 여 **(설치)** toohello 제품명 (hello 다음 스크린샷 참조). 사용자의 PowerShell Azure cmdlet은 최신 상태입니다. tooclose hello 설치 마법사, 선택 **종료**합니다.
 
-![Azure PowerShell cmdlet의 최신 버전이 설치되었음을 나타내는 Azure PowerShell cmdlet 설치 페이지][deployment-guide-figure-700]
+![설치 된 Azure PowerShell cmdlet의 해당 hello 가장 최신 버전을 나타내는 Azure PowerShell cmdlet에 대 한 설치 페이지][deployment-guide-figure-700]
 <a name="figure-7"></a>
 
 ### <a name="1ded9453-1330-442a-86ea-e0fd8ae8cab3"></a>Azure CLI 배포
-1.  [Microsoft Azure 다운로드](https://azure.microsoft.com/downloads/)로 이동합니다.
-2.  **명령줄 도구** 아래의 **Azure 명령줄 인터페이스** 아래에서 운영 체제에 대한 **설치** 링크를 선택합니다.
-3.  Microsoft Download Manager 대화 상자에서 다운로드한 파일(예: WindowsAzureXPlatCLI.3f.3f.3fnew.exe)에 대해 **실행**을 선택합니다.
-4.  Microsoft 웹 플랫폼 설치 관리자(Microsoft Web PI)를 실행하려면 **예**를 선택합니다.
+1.  너무 이동[Microsoft Azure 다운로드](https://azure.microsoft.com/downloads/)합니다.
+2.  아래 **명령줄 도구**아래 **Azure 명령줄 인터페이스**선택, hello **설치** 운영 체제에 대 한 링크입니다.
+3.  다운로드 한 hello 파일 (예를 들어 WindowsAzureXPlatCLI.3f.3f.3fnew.exe)에 대 한 hello Microsoft 다운로드 관리자 대화 상자에서 선택 **실행**합니다.
+4.  Microsoft 웹 플랫폼 설치 관리자 (Microsoft 웹 PI) toorun 선택 **예**합니다.
 5.  다음과 같은 페이지가 나타납니다.
 
   ![Azure PowerShell cmdlet 설치 페이지][deployment-guide-figure-500]<a name="figure-5"></a>
 
-6.  **설치**를 선택한 다음 Microsoft 소프트웨어 사용 조건에 동의합니다.
-7.  Azure CLI가 설치되어 있습니다. **마침**을 선택하여 설치 마법사를 닫습니다.
+6.  선택 **설치**, 다음 hello Microsoft 소프트웨어 사용 조건에 동의 하 고 있습니다.
+7.  Azure CLI가 설치되어 있습니다. 선택 **마침** tooclose hello 설치 마법사.
 
-일반적으로 매월 업데이트 되는 Azure CLI에 대한 업데이트를 자주 확인하십시오. 업데이트를 확인하는 가장 쉬운 방법은 앞의 설치 단계를 5단계에 표시되는 설치 페이지까지 수행하는 것입니다.
+업데이트 tooAzure CLI 일반적으로 매월 업데이트 됩니다에 대 한 자주 확인 합니다. 업데이트에 대 한 가장 쉬운 방법은 toocheck hello는 toodo hello 이전 toohello 설치 페이지 5 단계에 표시 된 설치 단계입니다.
 
-컴퓨터에 설치된 Azure CLI의 버전을 확인하려면 다음 명령을 실행합니다.
+toocheck hello 버전의 컴퓨터에 설치 된 Azure CLI이 명령을 실행 합니다.
 ```
 azure --version
 ```
 
-결과는 다음과 유사하게 표시됩니다.
+hello 결과 다음과 같습니다.
 
 ![Azure CLI 버전 검사의 결과][deployment-guide-figure-760]
 <a name="0ad010e6-f9b5-4c21-9c09-bb2e5efb3fda"></a>
 
-### <a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>온-프레미스 도메인에 VM 가입(Windows에만 해당)
-온-프레미스 Active Directory 및 DNS가 Azure로 확장되는 프레미스 간 시나리오에서 SAP VM을 배포하는 경우 VM은 온-프레미스 도메인에 가입될 것으로 예상됩니다. 온-프레미스 도메인에 VM을 가입하는 세부 단계 및 온-프레미스 도메인의 멤버가 되기 위해 필요한 추가 소프트웨어는 고객마다 다릅니다. 일반적으로 VM을 온-프레미스 도메인에 가입하려면 맬웨어 방지 소프트웨어와 같은 추가 소프트웨어 및 백업 또는 모니터링 소프트웨어를 설치해야 합니다.
+### <a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>(Windows에만 해당) VM tooan 온-프레미스 도메인에 가입
+크로스-프레미스 시나리오에서 SAP Vm을 배포 하는 경우 온-프레미스 Active Directory 및 DNS를 Azure에서 확장 된 것 hello Vm 온-프레미스 도메인에 가입 됩니다. hello toojoin VM tooan 온-프레미스 도메인을 사용 하는 자세한 단계 및 hello 필요한 추가 소프트웨어 toobe는 온-프레미스 도메인의 구성원에 따라 고객 합니다. 일반적으로, VM tooan toojoin 온-프레미스 도메인, 맬웨어 방지 프로그램 소프트웨어 및 백업 또는 모니터링 소프트웨어와 같은 tooinstall 추가 소프트웨어가 필요 합니다.
 
-이 시나리오에서 VM이 환경의 도메인에 가입할 때 인터넷 프록시 설정이 강제로 적용된 경우 게스트 VM의 Windows 로컬 시스템 계정(S-1-5-18)이 동일한 프록시 설정을 포함하고 있는지 확인해야 합니다. 가장 쉬운 방법은 도메인 내 시스템에 적용하는 도메인 그룹 정책을 사용하여 프록시를 강제 설정하는 것입니다.
+이 시나리오에서 VM 환경에서 도메인에 연결할 때 인터넷 프록시 설정을 강제 hello Windows hello 게스트 VM에서에서 로컬 시스템 계정 (S-1-5-18)에 같은 프록시 설정을 hello 있는지 toomake가 필요 합니다. hello 가장 쉬운 방법은 tooforce hello 프록시 도메인 toosystems hello 도메인에 적용 되는 그룹 정책을 사용 하 여입니다.
 
-### <a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>Azure VM 에이전트 다운로드, 설치 및 사용
-일반화되지 않은 OS 이미지(예: Windows 시스템 준비 도구 또는 sysprep)에서 배포된 가상 컴퓨터의 경우 Azure VM 에이전트를 수동으로 다운로드, 설치 및 사용하도록 설정해야 합니다.
+### <a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>다운로드, 설치 및 hello Azure VM 에이전트를 사용 하도록 설정
+(예: 하지 않는 hello sysprep 나 Windows 시스템 준비 도구에서 생성 되는 이미지)이 생성 되어 있지는 OS 이미지에서 배포 되는 가상 컴퓨터를 toomanually 다운로드, 설치 및 사용 hello Azure VM 에이전트가 필요 합니다.
 
-Azure Marketplace에서 VM을 배포하는 경우 이 단계가 필요 없습니다. Azure Marketplace의 이미지는 Azure VM 에이전트를 이미 포함하고 있습니다.
+Hello Azure Marketplace에서에서 VM을 배포 하는 경우에이 단계가 필요 하지 않습니다. Hello Azure Marketplace에서에서 이미지 hello Azure VM 에이전트는 이미 있습니다.
 
 #### <a name="b2db5c9a-a076-42c6-9835-16945868e866"></a>Windows
-1.  Azure VM 에이전트 다운로드:
-  1.  [Azure VM 에이전트 설치 관리자 패키지](https://go.microsoft.com/fwlink/?LinkId=394789)를 다운로드합니다.
-  2.  VM 에이전트 MSI 패키지를 PC 또는 서버에 로컬로 저장합니다.
-2.  Azure VM 에이전트 설치:
-  1.  RDP(원격 데스크톱 프로토콜)를 사용하여 배포된 Azure VM에 연결합니다.
-  2.  VM에서 [Windows 탐색기] 창을 열고 VM 에이전트의 MSI 파일에 대한 대상 디렉터리를 선택합니다.
-  3.  로컬 컴퓨터/서버에서 VM의 VM 에이전트 대상 디렉터리로 Azure VM 에이전트 설치 관리자 MSI 파일을 끕니다.
-  4.  VM에서 MSI 파일을 두 번 클릭합니다.
-3.  온-프레미스 도메인에 가입된 VM의 경우 [프록시 구성][deployment-guide-configure-proxy]에서 설명한 대로 최종 인터넷 프록시 설정이 VM의 Windows 로컬 시스템 계정(S-1-5-18)에도 적용되는지 확인합니다. VM 에이전트를 이 컨텍스트에서 실행하고 Azure에 연결할 수 있어야 합니다.
+1.  Hello Azure VM 에이전트를 다운로드 합니다.
+  1.  Hello 다운로드 [Azure VM 에이전트 설치 관리자 패키지](https://go.microsoft.com/fwlink/?LinkId=394789)합니다.
+  2.  개인용 컴퓨터 또는 서버 hello VM 에이전트 MSI 패키지를 로컬로 저장 합니다.
+2.  Hello Azure VM 에이전트를 설치 합니다.
+  1.  연결 toohello 프로토콜 RDP (원격 데스크톱)를 사용 하 여 Azure VM을 배포 합니다.
+  2.  Hello VM 에이전트의 MSI 파일 hello에 대 한 대상 디렉터리 선택 hello 및 hello VM에서 Windows 탐색기 창을 엽니다.
+  3.  Hello VM에서 VM 에이전트 hello의 로컬 컴퓨터/서버 toohello 대상 디렉터리에서 hello Azure VM 에이전트 설치 프로그램 MSI 파일을 끕니다.
+  4.  Hello VM에 hello MSI 파일을 두 번 클릭 합니다.
+3.  Vm는 조인 된 tooon 온-프레미스 도메인에 대해 확인 결과적 인터넷 프록시 설정이 적용 toohello Windows 로컬 시스템 계정 (S-1-5-18)에서 VM hello에 설명 된 대로 [hello 프록시 구성] [ deployment-guide-configure-proxy]. hello VM 에이전트는이 컨텍스트에서 실행 되며 toobe 수 tooconnect tooAzure 필요 합니다.
 
-사용자 개입 없이 Azure VM 에이전트를 업데이트해야 합니다. VM 에이전트가 자동으로 업데이트되며 VM을 다시 시작할 필요가 없습니다.
+사용자 개입 없이 필요한 tooupdate hello Azure VM 에이전트입니다. hello VM 에이전트가 자동으로 업데이트 및 VM 다시 시작할 필요가 없습니다.
 
 #### <a name="6889ff12-eaaf-4f3c-97e1-7c9edc7f7542"></a>Linux
-다음 명령을 사용하여 Linux용 VM 에이전트를 설치하세요.
+사용 하 여 hello 다음 Linux 용 tooinstall hello VM 에이전트를 명령:
 
 * **SELS(SUSE Linux Enterprise Server)**
 
@@ -824,111 +824,111 @@ Azure Marketplace에서 VM을 배포하는 경우 이 단계가 필요 없습니
   sudo yum install WALinuxAgent
   ```
 
-에이전트가 이미 설치된 경우 Azure Linux 에이전트를 업데이트하려면 [GitHub에서 VM의 Azure Linux 에이전트를 최신 버전으로 업데이트][virtual-machines-linux-update-agent]에서 설명한 단계를 수행합니다.
+Tooupdate hello Azure Linux 에이전트에 설명 된 단계를 hello 수행 hello 에이전트가 이미 설치 되어 있으면 [GitHub에서 VM toohello 최신 버전에서 업데이트 hello Azure Linux 에이전트][virtual-machines-linux-update-agent]합니다.
 
-### <a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>프록시 구성
-Windows에서 프록시를 구성하기 위해 거치는 단계는 Linux에서 프록시를 구성하는 방법과 다릅니다.
+### <a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>Hello 프록시 구성
+Windows에서 tooconfigure hello 프록시를 수행 하는 hello 단계는 Linux에서 hello 프록시를 구성 하는 hello 방법은 다릅니다.
 
 #### <a name="windows"></a>Windows
-로컬 시스템 계정이 인터넷에 액세스하려면 프록시 설정을 올바르게 설정해야 합니다. 그룹 정책으로 프록시 설정을 지정하지 않은 경우 로컬 시스템 계정에 대해 프록시 설정을 구성할 수 있습니다.
+프록시 설정이 올바르게 설정 해야 hello tooaccess hello 인터넷 로컬 시스템 계정에 대 한 합니다. 프록시 설정이 그룹 정책에 의해을 설정 하지는 hello 로컬 시스템 계정에 대 한 hello 설정을 구성할 수 있습니다.
 
-1. **시작**으로 이동하고 **gpedit.msc**를 입력한 다음 **Enter**를 선택합니다.
-2. **컴퓨터 구성** > **관리 템플릿** > **Windows 구성 요소** > **Internet Explorer**를 선택합니다. **사용자 단위보다는 컴퓨터 단위로 프록시 설정 만들기**가 사용하지 않도록 설정되거나 구성되지 않았는지 확인합니다.
-3. **제어판**에서 **네트워크 및 공유 센터** > **인터넷 옵션**으로 이동합니다.
-4. **연결** 탭에서 **LAN 설정** 버튼을 선택합니다.
-5. **자동으로 설정 검색**을 확인란을 지웁니다.
-6. **LAN에 프록시 서버 사용**을 선택한 다음 프록시 주소 및 포트를 입력합니다.
-7. **고급** 단추를 선택합니다.
-8. **예외** 상자에 IP 주소 **168.63.129.16**을 입력합니다. **확인**을 선택합니다.
+1. 너무 이동**시작**, 입력 **gpedit.msc**를 선택한 후 **Enter**합니다.
+2. **컴퓨터 구성** > **관리 템플릿** > **Windows 구성 요소** > **Internet Explorer**를 선택합니다. 해당 hello 설정 되었는지 확인 **프록시 설정을 컴퓨터별 (보다는 만들기 사용자 단위)** 비활성화 되었거나 구성 되어 있지 않습니다.
+3. **제어판**, 너무 이동**네트워크 및 공유 센터** > **인터넷 옵션**합니다.
+4. Hello에 **연결** 탭, 선택 hello **LAN 설정** 단추입니다.
+5. 지우기 hello **자동으로 설정 검색** 확인란 합니다.
+6. 선택 hello **사용자 LAN에 프록시 서버를 사용 하 여** 확인란을 선택한 다음 hello 프록시 주소와 포트를 입력 합니다.
+7. 선택 hello **고급** 단추입니다.
+8. Hello에 **예외** 상자 hello IP 주소를 입력 **168.63.129.16**합니다. **확인**을 선택합니다.
 
 #### <a name="linux"></a>Linux
-\\etc\\waagent.conf에 있는 Microsoft Azure 게스트 에이전트의 구성 파일에서 올바른 프록시를 구성합니다.
+Hello에 있는 Microsoft Azure 게스트 에이전트의 hello 구성 파일에서 올바른 프록시 hello 구성 \\등\\waagent.conf 합니다.
 
-다음 매개 변수를 설정합니다.
+Hello 매개 변수 뒤를 설정 합니다.
 
-1.  **HTTP 프록시 호스트** 예를 들어 **proxy.corp.local**로 설정합니다.
+1.  **HTTP 프록시 호스트** 예를 들어 너무 설정**proxy.corp.local**합니다.
   ```
   HttpProxy.Host=<proxy host>
 
   ```
-2.  **HTTP 프록시 포트** 예를 들어 **80**으로 설정합니다.
+2.  **HTTP 프록시 포트** 예를 들어 너무 설정**80**합니다.
   ```
-  HttpProxy.Port=<port of the proxy host>
+  HttpProxy.Port=<port of hello proxy host>
 
   ```
-3.  에이전트를 다시 시작합니다.
+3.  Hello 에이전트를 다시 시작 합니다.
 
   ```
   sudo service waagent restart
   ```
 
-\\etc\\waagent.conf의 프록시 설정은 필요한 VM 확장에도 적용됩니다. Azure 리포지토리를 사용하려는 경우 이러한 리포지토리에 대한 트래픽이 온-프레미스 인트라넷을 통해 전달되지 않는지 확인합니다. 강제 터널링을 사용하도록 사용자 정의 경로를 만든 경우 사이트 간 VPN 연결을 통해서가 아니라 인터넷에 직접 리포지토리로 트래픽을 라우트하는 경로를 추가해야 합니다.
+프록시 설정이 hello \\등\\waagent.conf도 필요한 toohello VM 확장을 적용 합니다. Toouse 하려는 경우 Azure 저장소 hello hello 트래픽 toothese 저장소는 온-프레미스 인트라넷을 통해 잘못 되어 있는지 확인 합니다. 사용자 정의 만든 경우 경로 tooenable 강제 터널링, toohello 저장소 트래픽을 라우팅하는 경로 추가 해야 toohello 인터넷에 직접를 사용 하 여 사이트 간 VPN 연결 합니다.
 
 * **SLES**
 
-  \\etc\\regionserverclnt.cfg에 나열된 IP 주소에 대한 경로도 추가해야 합니다. 다음 그림은 예를 보여 줍니다.
+  에 나열 된 hello IP 주소에도 tooadd 경로 필요 \\등\\regionserverclnt.cfg 합니다. hello 다음 그림은 예:
 
   ![강제 터널링][deployment-guide-figure-50]
 
 
 * **RHEL**
 
-  \\etc\\yum.repos.d\\rhui-load-balancers에 나열된 호스트의 IP 주소에 대한 경로도 추가해야 합니다. 예는 앞의 그림을 참조하세요.
+  에 나열 된 hello 호스트의 IP 주소 hello에도 tooadd 경로 필요 \\등\\yum.repos.d\\rhui-부하 분산 장치입니다. 예를 들어 hello 앞에 그림을 참조 하세요.
 
 * **Oracle Linux**
 
-  Azure에서 Oracle Linux에 대한 리포지토리가 없습니다. Oracle Linux에 대한 사용자 고유의 리포지토리를 구성하거나 공용 리포지토리를 사용해야 합니다.
+  Azure에서 Oracle Linux에 대한 리포지토리가 없습니다. Tooconfigure 사용자 고유의 저장소 Oracle Linux에 대 한 또는 hello 공용 저장소를 사용 합니다.
 
 사용자 정의 경로에 대한 자세한 내용은 [사용자 정의 경로 및 IP 전달][virtual-networks-udr-overview]을 참조하세요.
 
-### <a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>SAP용 Azure 고급 모니터링 확장 구성
-[Azure에서 SAP용 VM 배포 시나리오][deployment-guide-3]에서 설명한 대로 VM을 준비한 경우 Azure VM 에이전트가 가상 컴퓨터에 설치됩니다. 다음 단계는 글로벌 Azure 데이터 센터에 있는 Azure 확장 리포지토리에서 사용할 수 있는 SAP용 Azure 고급 모니터링 확장을 배포하는 것입니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide-9.1]을 참조하세요.
+### <a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>Azure 고급 모니터링 확장의 SAP 용 hello 구성
+에 설명 된 대로 hello VM 준비 했으므로 때 [Azure에서의 SAP 용 Vm 배포 시나리오][deployment-guide-3], hello hello 가상 컴퓨터에 Azure VM 에이전트가 설치 되어 있습니다. hello 다음 단계는 toodeploy hello Azure 고급 모니터링 확장 hello 글로벌 Azure 데이터 센터에서 Azure 확장 리포지토리에서 hello에서 사용할 수 있는 SAP 용입니다. 자세한 내용은 [SAP NetWeaver에 대한 Azure Virtual Machines 계획 및 구현][planning-guide-9.1]을 참조하세요.
 
-PowerShell 또는 Azure CLI를 사용하여 SAP용 Azure 고급 모니터링 확장을 사용할 수 있습니다. Windows 컴퓨터를 사용하여 Windows 또는 Linux VM에 확장을 설치하려는 경우 [Azure PowerShell][deployment-guide-4.5.1]을 참조하세요. Linux 데스크톱을 사용하여 Linux VM에 확장을 설치하려면 [Azure CLI][deployment-guide-4.5.2]를 참조하세요.
+PowerShell 또는 Azure CLI tooinstall를 사용할 수 있으며 Azure 고급 모니터링 확장의 SAP 용 hello 구성. Windows 컴퓨터를 사용 하 여 Windows 또는 Linux VM에서 tooinstall hello 확장 참조 [Azure PowerShell][deployment-guide-4.5.1]합니다. Linux 데스크톱을 사용 하 여 Linux VM의 tooinstall hello 확장 참조 [Azure CLI][deployment-guide-4.5.2]합니다.
 
 #### <a name="987cf279-d713-4b4c-8143-6b11589bb9d4"></a>Linux 및 Windows VM용 Azure PowerShell
-PowerShell을 사용하여 SAP용 Azure 고급 모니터링 확장을 설치하려면:
+PowerShell을 사용 하 여 tooinstall hello Azure 고급 모니터링 확장의 SAP 용:
 
-1. 최신 버전의 Azure PowerShell cmdlet을 설치했는지 확인합니다. 자세한 내용은 [Azure PowerShell cmdlet 배포][deployment-guide-4.1]를 참조하세요.  
-2. 다음 PowerShell cmdlet을 실행합니다.
-    사용 가능한 환경 목록을 보려면 `commandlet Get-AzureRmEnvironment`을 실행합니다. 전역 Azure를 사용하려는 경우 환경은 **AzureCloud**입니다. 중국의 Azure인 경우 **AzureChinaCloud**를 선택합니다.
+1. Hello hello Azure PowerShell cmdlet의 최신 버전을 설치 했는지 확인 합니다. 자세한 내용은 [Azure PowerShell cmdlet 배포][deployment-guide-4.1]를 참조하세요.  
+2. Hello 다음 PowerShell cmdlet을 실행 합니다.
+    사용 가능한 환경 목록을 보려면 `commandlet Get-AzureRmEnvironment`을 실행합니다. Toouse 글로벌 Azure 환경은 **azure 클라우드**합니다. 중국의 Azure인 경우 **AzureChinaCloud**를 선택합니다.
 
     ```powershell
-    $env = Get-AzureRmEnvironment -Name <name of the environment>
+    $env = Get-AzureRmEnvironment -Name <name of hello environment>
     Login-AzureRmAccount -Environment $env
     Set-AzureRmContext -SubscriptionName <subscription name>
 
     Set-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <virtual machine name>
     ```
 
-계정 데이터 및 Azure Virtual Machine을 입력한 후 스크립트가 필수 확장을 배포하고 필요한 기능을 사용하도록 설정합니다. 이 작업은 몇 분 정도 걸릴 수 있습니다.
+계정 데이터를 입력 하 고 hello Azure 가상 컴퓨터를 식별 한 후 hello 스크립트 hello 필수 확장명을 배포 하 고 hello 필요한 기능을 사용할 수 있습니다. 이 작업은 몇 분 정도 걸릴 수 있습니다.
 `Set-AzureRmVMAEMExtension`에 대한 자세한 내용은[Set-AzureRmVMAEMExtension][msdn-set-azurermvmaemextension]을 참조하세요.
 
 ![SAP 관련 Azure cmdlet Set-AzureRmVMAEMExtension의 성공적인 실행][deployment-guide-figure-900]
 
-`Set-AzureRmVMAEMExtension` 구성은 SAP을 위해 호스트 모니터링을 구성하는 모든 단계를 수행합니다.
+hello `Set-AzureRmVMAEMExtension` 구성과 모든 hello 단계 tooconfigure 호스트 SAP 용 모니터링 합니다.
 
-스크립트 출력에는 다음 정보가 포함됩니다.
+hello 다음 정보를 포함 하는 hello 스크립트 출력:
 
-* OS 디스크 및 모든 추가 데이터 디스크에 대한 모니터링이 구성되었다는 확인이 표시됩니다.
-* 다음 두 개의 메시지는 특정 저장소 계정에 대한 저장소 메트릭의 구성을 확인합니다.
-* 출력 한 줄에는 모니터링 구성의 실제 업데이트 상태가 표시됩니다.
-* 출력의 또 다른 줄은 구성이 배포되거나 업데이트되었음을 확인해 줍니다.
-* 출력의 마지막 줄은 정보 제공용이며, 모니터링 구성을 테스트 하는 옵션을 표시합니다.
-* Azure 고급 모니터링의 모든 단계가 성공적으로 실행되고 Azure 인프라가 필요한 데이터를 제공하는지 확인하려면 [SAP용 Azure 고급 모니터링에 대한 준비 검사][deployment-guide-5.1]에 설명된 대로 SAP용 Azure 고급 모니터링 확장에 대한 준비 검사를 진행합니다.
-* Azure 진단이 관련 데이터를 수집하도록 15-30 분 동안 기다립니다.
+* Hello OS 디스크 및 모든 추가 데이터 디스크에 대 한 모니터링이 구성 되어 있는지 확인 합니다.
+* hello 다음 두 메시지는 특정 저장소 계정에 대 한 저장소 메트릭의 hello 구성을 확인합니다.
+* 출력 한 줄에 hello hello 모니터링 구성의 실제 업데이트의 hello 상태를 제공합니다.
+* 다른 출력 줄이 해당 hello 구성이 배포 또는 업데이트 되었는지 확인 합니다.
+* 출력의 마지막 줄 hello는 알림입니다. 테스트 hello 모니터링 구성에 대 한 옵션을 보여 줍니다.
+* 에 설명 된 대로 Azure 고급 모니터링의 모든 단계가 성공적으로 실행 하 고 hello 필요한 데이터를 제공 하는 Azure 인프라 해당 hello toocheck 계속 hello Azure 고급 모니터링 확장 SAP 용 hello 준비 확인 [SAP 용 Azure 고급 모니터링에 대 한 준비 상태 검사가][deployment-guide-5.1]합니다.
+* Azure 진단 toocollect hello 관련 데이터 15-30 분 동안 기다립니다.
 
 #### <a name="408f3779-f422-4413-82f8-c57a23b4fc2f"></a>Linux VM용 Azure CLI
-Azure CLI를 사용하여 SAP용 Azure 고급 모니터링 확장을 설치하려면:
+tooinstall hello Azure 고급 모니터링 확장의 SAP 용 Azure CLI를 사용 하 여:
 
-1. [Azure CLI 1.0설치][azure-cli]에 설명한 대로 Azure CLI 1.0을 설치합니다.
+1. 에 설명 된 대로 Azure CLI 1.0 설치 [설치 hello Azure CLI 1.0][azure-cli]합니다.
 2. Azure 계정으로 로그인합니다.
 
   ```
   azure login
   ```
 
-3. Azure Resource Manager 모드로 전환합니다.
+3. TooAzure Resource Manager 모드로 전환 합니다.
 
   ```
   azure config mode arm
@@ -940,12 +940,12 @@ Azure CLI를 사용하여 SAP용 Azure 고급 모니터링 확장을 설치하�
   azure vm enable-aem <resource-group-name> <vm-name>
   ```
 
-5. Azure 고급 모니터링 확장이 Azure Linux VM에서 활성 상태인지 확인합니다. \\var\\lib\\AzureEnhancedMonitor\\PerfCounters 파일이 있는지 여부를 확인합니다. 존재하면 명령 프롬프트에서 이 명령을 실행하여 Azure 고급 모니터가 수집한 정보를 표시합니다.
+5. Hello Azure Linux VM에 활성화 되어 해당 hello Azure 고급 모니터링 확장을 확인 합니다. 검사 파일을 여부 hello \\var\\lib\\AzureEnhancedMonitor\\PerfCounters 존재 합니다. 이 특성이 있으면 명령 프롬프트에서이 명령을 toodisplay 정보 hello Azure 향상 된 모니터에 의해 수집 된를 실행 합니다.
 ```
 cat /var/lib/AzureEnhancedMonitor/PerfCounters
 ```
 
-출력은 다음과 같이 표시됩니다.
+hello 출력은 다음과 같습니다.
 ```
 2;cpu;Current Hw Frequency;;0;2194.659;MHz;60;1444036656;saplnxmon;
 2;cpu;Max Hw Frequency;;0;2194.659;MHz;0;1444036656;saplnxmon;
@@ -954,180 +954,180 @@ cat /var/lib/AzureEnhancedMonitor/PerfCounters
 ```
 
 ## <a name="564adb4f-5c95-4041-9616-6635e83a810b"></a>종단 간 모니터링 확인 및 문제 해결
-Azure VM을 배포하고 관련 Azure 모니터링 인프라를 설정한 후 Azure 고급 모니터링 확장의 모든 구성 요소가 예상한 대로 작동하는지 확인합니다.
+Azure VM을 배포 하면 관련 Azure 모니터링 인프라 hello 설정한 후 hello Azure 고급 모니터링 확장의 모든 hello 구성 요소가 예상 대로 작동 하는지 확인 합니다.
 
-[SAP용 Azure 고급 모니터링 확장에 대한 준비 검사][deployment-guide-5.1]에 설명된 대로 SAP용 Azure 고급 모니터링 확장에 대한 준비 검사를 실행합니다. 모든 준비 검사 결과가 긍정적이고 모든 관련 성능 카운터가 정상으로 나타나면 Azure 모니터링이 성공적으로 설정된 것입니다. [SAP 리소스][deployment-guide-2.2]의 SAP Notes에 설명된 대로 SAP 호스트 에이전트 설치를 진행할 수 있습니다. 준비 검사에서 카운터가 누락된 것으로 나타나는 경우 [Azure 모니터링 인프라 구성에 대한 상태 검사][deployment-guide-5.2]에 설명된 대로 Azure 모니터링 인프라에 대한 상태 검사를 실행합니다. 자세한 문제 해결 옵션은 [SAP용 Azure 모니터링 문제 해결][deployment-guide-5.3]을 참조하세요.
+에 설명 된 대로 Azure 고급 모니터링 확장의 SAP 용 hello에 대 한 hello 준비 검사를 실행 [Azure 고급 모니터링 확장의 SAP 용 hello에 대 한 준비 상태 검사가][deployment-guide-5.1]합니다. 모든 준비 검사 결과가 긍정적이고 모든 관련 성능 카운터가 정상으로 나타나면 Azure 모니터링이 성공적으로 설정된 것입니다. 에 hello SAP Note에서 설명 된 대로 SAP 호스트 에이전트의 hello 설치를 계속할 수 있게 [SAP 리소스][deployment-guide-2.2]합니다. Hello 준비 확인 되는 것 카운터가 누락 되었거나에 설명 된 대로 Azure 모니터링 인프라 hello에 대 한 hello 상태 검사를 실행 하는 경우 [Azure 모니터링 인프라 구성에 대 한 상태 검사] [ deployment-guide-5.2]. 자세한 문제 해결 옵션은 [SAP용 Azure 모니터링 문제 해결][deployment-guide-5.3]을 참조하세요.
 
-### <a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>SAP용 Azure 고급 모니터링 확장에 대한 준비 검사
-이 검사에서는 SAP 응용 프로그램 내부에 나타나는 모든 성능 메트릭이 기반 Azure 모니터링 인프라에서 제공되는지 확인합니다.
+### <a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>Azure 고급 모니터링 확장의 SAP 용 hello에 대 한 준비 확인
+이 검사 하면 SAP 응용 프로그램 내에 표시 되는 모든 성능 메트릭을 hello 기본 Azure 모니터링 인프라에서 제공 됩니다.
 
-#### <a name="run-the-readiness-check-on-a-windows-vm"></a>Windows VM에서 준비 검사 실행
+#### <a name="run-hello-readiness-check-on-a-windows-vm"></a>Windows VM에서 hello 준비 검사를 실행 합니다.
 
-1.  Azure Virtual Machine에 로그인합니다(관리자 계정 사용은 필요하지 않음).
+1.  Toohello Azure 가상 컴퓨터에에서 로그인 (관리자 계정을 사용 하 여 필요 하지 않음).
 2.  명령 프롬프트 창을 엽니다.
-3.  명령 프롬프트에서 디렉터리를 SAP용 Azure 모니터링 확장의 설치 폴더: C:\\Packages\\Plugins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;version>\\drop으로 변경합니다.
+3.  Hello 명령 프롬프트에서 hello 디렉터리 toohello 설치 폴더의 hello Azure 고급 모니터링 확장 SAP에 대 한 변경: c:\\패키지\\플러그 인\\ Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;버전 >\\삭제
 
-  모니터링 확장에 대한 경로의 *버전*이 다를 수 있습니다. 설치 폴더에 여러 모니터링 확장 버전의 폴더가 표시되는 경우 AzureEnhancedMonitoring Windows 서비스의 구성을 확인한 다음 *실행 파일 경로*로 나타난 폴더로 전환합니다.
+  hello *버전* hello 경로 toohello에 모니터링 확장 다를 수 있습니다. 여러 버전의 hello 설치 폴더, hello AzureEnhancedMonitoring Windows 서비스의 hello 구성 확인 화면에 확장을 모니터링 하는 hello에 대 한 폴더를 표시 하 고 스위치 toohello 폴더도 표시 되는 다음 경우 *경로 tooexecutable* .
 
-  ![SAP용 Azure 고급 모니터링 확장을 실행하는 서비스 속성][deployment-guide-figure-1000]
+  ![서비스 실행 중의 속성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-figure-1000]
 
-4.  명령 프롬프트에서 매개 변수 없이 **azperflib.exe**를 실행합니다.
+4.  Hello 명령 프롬프트에서 실행 **azperflib.exe** 매개 변수 없이 합니다.
 
   > [!NOTE]
-  > Azperflib.exe는 루프에서 실행되고 60초마다 수집한 카운터를 업데이트합니다. 루프를 종료하려면 명령 프롬프트 창을 닫습니다.
+  > Azperflib.exe는 루프에서 실행 되며 60 초 마다 hello 수집 된 카운터를 업데이트 합니다. 명령 프롬프트 창 닫기 hello tooend hello 루프입니다.
   >
   >
 
-Azure 고급 모니터링 확장이 설치되어 있지 않거나 AzureEnhancedMonitoring 서비스가 실행되고 있지 않으면 확장이 올바르게 구성되지 않은 것입니다. 확장을 배포하는 방법에 대한 자세한 내용은 [SAP용 Azure 모니터링 인프라 문제 해결][deployment-guide-5.3]을 참조하세요.
+Azure 고급 모니터링 확장 설치 되지 않은 hello 또는 hello AzureEnhancedMonitoring 서비스를 실행 하지 않는 경우 hello 확장이 올바르게 구성 되지 않았습니다. Toodeploy 확장 hello 하는 방법에 대 한 자세한 내용은 참조 [문제 해결 SAP 용 Azure 모니터링 인프라 hello][deployment-guide-5.3]합니다.
 
-##### <a name="check-the-output-of-azperflibexe"></a>azperflib.exe의 출력 확인
-Azperflib.exe 출력은 SAP용 Azure 성능 카운터가 모두 채워진 상태로 표시됩니다. 수집된 카운터 목록의 맨 아래에 있는 요약 및 상태 표시기가 Azure 모니터링의 상태를 보여 줍니다.
+##### <a name="check-hello-output-of-azperflibexe"></a>Azperflib.exe의 hello 출력 확인
+Azperflib.exe 출력은 SAP용 Azure 성능 카운터가 모두 채워진 상태로 표시됩니다. 수집 된 카운터 목록의 hello의 hello 맨 아래에 요약 및 상태 표시기 Azure 모니터링의 hello 상태를 표시 합니다.
 
 ![문제가 없음을 나타내는 azperflib.exe를 실행하여 표시된 상태 검사 출력][deployment-guide-figure-1100]
 <a name="figure-11"></a>
 
-빈 상태로 보고되는 **카운터 합계** 출력 및 이전 그림에 표시된 **상태 정보**에 대해 반환되는 결과를 확인합니다.
+Hello에 대 한 반환 하는 hello 결과 확인 **카운터 합계** 및 비어 있는 것으로 보고 되는 출력 **상태**hello 앞 그림에에서 표시 합니다.
 
-결과 값을 다음과 같이 해석합니다.
+Hello 결과 값을 다음과 같이 해석 합니다.
 
 | Azperflib.exe 결과 값 | Azure 모니터링 상태 정보 |
 | --- | --- |
-| **API 호출 - 사용할 수 없음** | 사용할 수 없는 카운터는 가상 컴퓨터 구성에 적용할 수 없거나 오류입니다. **상태 정보**를 참조하세요. |
-| **카운터 합계 - 비어 있음** |다음 두 Azure 저장소 카운터는 비어 있을 수 있습니다. <ul><li>저장소 읽기 작업 대기 시간 서버 밀리초</li><li>저장소 읽기 작업 대기 시간 E2E 밀리초</li></ul>그 외의 카운터는 값이 있어야 합니다. |
+| **API 호출 - 사용할 수 없음** | 사용할 수 없는 카운터 중 하나는 적용 되지 않음 toohello 가상 컴퓨터 구성 될 수 있습니다 또는 오류가 발생 합니다. **상태 정보**를 참조하세요. |
+| **카운터 합계 - 비어 있음** |다음 두 개의 Azure 저장소 카운터 hello 비어 있을 수 있습니다. <ul><li>저장소 읽기 작업 대기 시간 서버 밀리초</li><li>저장소 읽기 작업 대기 시간 E2E 밀리초</li></ul>그 외의 카운터는 값이 있어야 합니다. |
 | **상태 정보** |반환 상태가 **OK**를 표시하는 경우에만 OK입니다. |
 | **진단** |상태 정보에 대한 자세한 정보입니다. |
 
-**상태 정보** 값이 **OK**가 아닌 경우 [Azure 모니터링 인프라 상태 검사][deployment-guide-5.2]의 지침을 따릅니다.
+경우 hello **상태** 값이 **확인**, hello 지침에 따라 [Azure 모니터링 인프라 구성에 대 한 상태 검사] [ deployment-guide-5.2].
 
-#### <a name="run-the-readiness-check-on-a-linux-vm"></a>Linux VM에서 준비 검사 실행
+#### <a name="run-hello-readiness-check-on-a-linux-vm"></a>Linux VM의 hello 준비 검사를 실행 합니다.
 
-1.  SSH를 사용하여 Azure Virtual Machine에 연결합니다.
+1.  SSH를 사용 하 여 toohello Azure 가상 컴퓨터를 연결 합니다.
 
-2.  Azure 고급 모니터링 확장의 출력을 확인합니다.
+2.  Hello Azure 고급 모니터링 확장의 hello 출력을 확인 합니다.
 
   a.  `more /var/lib/AzureEnhancedMonitor/PerfCounters` 실행
 
-   **예상 결과**: 성능 카운터 목록을 반환합니다. 파일은 비어 있으면 안 됩니다.
+   **예상 결과**: 성능 카운터 목록을 반환합니다. hello 파일은 비워둘 수 없습니다.
 
  b. `cat /var/lib/AzureEnhancedMonitor/PerfCounters | grep Error` 실행
 
-   **예상 결과**: 오류가 **없는** 한 줄을 반환합니다. 예: **3;config;Error;;0;0;none;0;1456416792;tst-servercs;**
+   **예상 결과**: 여기서는 hello 오류 반환 한 줄 **none**, 예를 들어 **3; 구성 합니다. 오류 발생; 0, 0; none, 0, 1456416792, tst servercs;**
 
   c. `more /var/lib/AzureEnhancedMonitor/LatestErrorRecord` 실행
 
     **예상 결과**: 빈 상태로 반환하거나 존재하지 않습니다.
 
-이전 검사가 성공하지 못한 경우 다음 추가 검사를 실행합니다.
+Hello 위의 확인 하지 못한 경우, 이러한 추가 검사를 실행 합니다.
 
-1.  waagent가 설치되고 사용하도록 설정되었는지 확인합니다.
+1.  해당 hello waagent 설치 및 활성화 되어 있는지 확인 합니다.
 
   a.  `sudo ls -al /var/lib/waagent/` 실행
 
-      **예상 결과**: waagent 디렉터리의 내용을 나열합니다.
+      **예상 결과**: hello waagent 디렉터리의 hello 콘텐츠를 나열 합니다.
 
   b.  `ps -ax | grep waagent` 실행
 
    **예상 결과**: 다음과 유사한 한 항목을 표시합니다. `python /usr/sbin/waagent -daemon`
 
-3.   Azure 고급 모니터링 확장이 설치되고 실행되고 있는지 확인합니다.
+3.   해당 hello Azure 고급 모니터링 확장 설치 되어 실행 중인지 확인 합니다.
 
   a.  `sudo sh -c 'ls -al /var/lib/waagent/Microsoft.OSTCExtensions.AzureEnhancedMonitorForLinux-*/'` 실행
 
-    **예상 결과**: Azure 고급 모니터링 확장 디렉터리의 내용을 나열합니다.
+    **예상 결과**: hello Azure 고급 모니터링 확장 디렉터리의 hello 콘텐츠를 나열 합니다.
 
   b. `ps -ax | grep AzureEnhanced` 실행
 
      **예상 결과**: 다음과 유사한 한 항목을 표시합니다. `python /var/lib/waagent/Microsoft.OSTCExtensions.AzureEnhancedMonitorForLinux-2.0.0.2/handler.py daemon`
 
-3. SAP Note [1031096] 에 설명된 대로 SAP 호스트 에이전트를 설치하고 `saposcol`의 출력을 확인합니다.
+3. SAP Note에서 설명 된 대로 SAP 호스트 에이전트를 설치 [1031096]의 hello 출력을 확인 하 고 `saposcol`합니다.
 
   a.  `/usr/sap/hostctrl/exe/saposcol -d` 실행
 
   b.  `dump ccm` 실행
 
-  c.  **Virtualization_Configuration\Enhanced Monitoring Access** 메트릭이 **true**인지 여부를 확인합니다.
+  c.  확인 여부 hello **Virtualization_Configuration\Enhanced 모니터링 액세스** 메트릭은 **true**합니다.
 
 SAP NetWeaver ABAP 응용 프로그램 서버가 이미 설치된 경우 트랜잭션 ST06을 열고 고급 모니터링이 사용하도록 설정되어 있는지 여부를 확인합니다.
 
-이 검사 중 하나 이상에 실패한 경우 확장을 배포하는 방법에 대한 자세한 내용은 [SAP용 Azure 모니터링 인프라 문제 해결][deployment-guide-5.3]을 참조하세요.
+하나라도 이러한 검사 중 실패 하 고 tooredeploy 확장 hello 하는 방법에 대 한 자세한 내용은 참조 하는 경우 [문제 해결 SAP 용 Azure 모니터링 인프라 hello][deployment-guide-5.3]합니다.
 
-### <a name="e2d592ff-b4ea-4a53-a91a-e5521edb6cd1"></a>Azure 모니터링 인프라 구성에 대한 상태 검사
-모니터링 데이터의 일부가 [SAP용 Azure 고급 모니터링에 대한 준비 검사][deployment-guide-5.1]에서 설명한 테스트에 표시된 대로 올바르게 전달되지 않는 경우 `Test-AzureRmVMAEMExtension` cmdlet을 실행하여 Azure 모니터링 인프라 및 SAP용 모니터링 확장이 올바르게 구성되었는지 확인합니다.
+### <a name="e2d592ff-b4ea-4a53-a91a-e5521edb6cd1"></a>Azure 모니터링 인프라 구성 hello에 대 한 상태 확인
+Hello 테스트에 설명 된 일부 데이터를 모니터링 하는 hello 제대로 전달 되지 않으면 [SAP 용 Azure 고급 모니터링에 대 한 준비 상태 검사가][deployment-guide-5.1]실행 hello `Test-AzureRmVMAEMExtension` cmdlet toocheck 여부 hello Azure 모니터링 인프라 및 SAP에 대 한 확장을 모니터링 하는 hello 올바르게 구성 되어 있습니다.
 
-1.  [Azure PowerShell cmdlet 배포][deployment-guide-4.1]에 설명된 대로 최신 버전의 Azure PowerShell cmdlet을 설치했는지 확인합니다.
-2.  다음 PowerShell cmdlet을 실행합니다. 사용 가능한 환경 목록을 보려면 `Get-AzureRmEnvironment` cmdlet을 실행합니다. 전역 Azure를 사용하려면**AzureCloud** 환경을 선택합니다. 중국의 Azure인 경우 **AzureChinaCloud**를 선택합니다.
+1.  에 설명 된 대로 hello hello Azure PowerShell cmdlet의 최신 버전을 설치 했는지 확인 [배포 Azure PowerShell cmdlet][deployment-guide-4.1]합니다.
+2.  Hello 다음 PowerShell cmdlet을 실행 합니다. 사용 가능한 환경 목록이 hello cmdlet를 실행 합니다. `Get-AzureRmEnvironment`합니다. 전역, 선택 toouse hello **azure 클라우드** 환경입니다. 중국의 Azure인 경우 **AzureChinaCloud**를 선택합니다.
   ```powershell
-  $env = Get-AzureRmEnvironment -Name <name of the environment>
+  $env = Get-AzureRmEnvironment -Name <name of hello environment>
   Login-AzureRmAccount -Environment $env
   Set-AzureRmContext -SubscriptionName <subscription name>
   Test-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <virtual machine name>
   ```
 
-3.  계정 데이터를 입력하고 Azure Virtual Machine을 식별합니다.
+3.  계정 데이터를 입력 하 고 hello Azure 가상 컴퓨터를 식별 합니다.
 
   ![SAP 관련 Azure cmdlet Test-VMConfigForSAP_GUI의 입력 페이지][deployment-guide-figure-1200]
 
-4. 선택한 가상 컴퓨터의 구성을 테스트하는 스크립트입니다.
+4. 선택 hello hello 가상 컴퓨터의 테스트 hello 구성을 스크립팅 합니다.
 
-  ![SAP용 Azure 모니터링 인프라의 성공적인 테스트 출력][deployment-guide-figure-1300]
+  ![SAP 용 Azure 모니터링 인프라 hello의 성공적인 테스트 출력][deployment-guide-figure-1300]
 
-모든 상태 검사 결과가 **OK**인지 확인합니다. 일부 검사가 **OK**를 표시하지 않는 경우 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5]에서 설명한 대로 업데이트 cmdlet을 실행합니다. 15분 기다린 다음 [SAP용 Azure 고급 모니터링에 대한 준비 검사][deployment-guide-5.1] 및 [Azure 모니터링 인프라 구성에 대한 상태 검사][deployment-guide-5.2]에 설명된 검사를 반복합니다. 검사에서 여전히 일부 또는 모든 카운터에 문제가 있다고 표시하는 경우 [SAP용 Azure 모니터링 인프라 문제 해결][deployment-guide-5.3]을 참조하세요.
+모든 상태 검사 결과가 **OK**인지 확인합니다. 일부 검사 표시 되지 않는 경우 **확인**, hello 업데이트 cmdlet을 실행 하에 설명 된 대로 [구성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-4.5]합니다. 15 분 정도 기다린 후에 설명 된 반복 hello 검사 [SAP 용 Azure 고급 모니터링에 대 한 준비 상태 검사가] [ deployment-guide-5.1] 및 [Azure 모니터링 인프라 구성상태확인] [deployment-guide-5.2]. Hello 검사에는 여전히 일부 또는 전체 카운터에 문제가 있음을 나타낼, 참조 [문제 해결 SAP 용 Azure 모니터링 인프라 hello][deployment-guide-5.3]합니다.
 
-### <a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>SAP용 Azure 모니터링 인프라 문제 해결
+### <a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>SAP 용 Azure 모니터링 인프라 hello 문제 해결
 
 #### <a name="windowslogowindows-azure-performance-counters-do-not-show-up-at-all"></a>![Windows][Logo_Windows] Azure 성능 카운터가 전혀 표시되지 않습니다.
-AzureEnhancedMonitoring Windows 서비스에서 Azure의 성능 메트릭을 수집합니다. 서비스가 올바르게 설치되지 않은 경우 또는 VM에서 실행되지 않는 경우 성능 메트릭을 수집할 수 없습니다.
+hello AzureEnhancedMonitoring Windows 서비스를 Azure의 성능 메트릭을 수집합니다. Hello 서비스를 올바르게 설치 되지 않은 경우 또는 VM에서 실행 되지 않는 경우 없음 성능 메트릭을 수집할 수 있습니다.
 
-##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Azure 고급 모니터링 확장의 설치 디렉터리가 비어 있습니다.
+##### <a name="hello-installation-directory-of-hello-azure-enhanced-monitoring-extension-is-empty"></a>hello Azure 고급 모니터링 확장의 설치 디렉터리 hello 비어 있습니다.
 
 ###### <a name="issue"></a>문제
-설치 디렉터리 C:\\Packages\\Plugins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;version>\\drop이 비어 있습니다.
+hello 설치 디렉터리: c:\\패키지\\플러그 인\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;버전 >\\놓기 비어 있습니다.
 
 ###### <a name="solution"></a>해결 방법
-확장이 설치되지 않았습니다. (앞에서 설명한) 프록시 문제인지 여부를 결정합니다. 컴퓨터를 다시 시작하거나 `Set-AzureRmVMAEMExtension` 구성 스크립트를 다시 실행해야 할 수 있습니다.
+hello 확장이 설치 되지 않았습니다. (앞에서 설명한) 프록시 문제인지 여부를 결정합니다. Toorestart hello 컴퓨터나 hello를 다시 실행된 해야 `Set-AzureRmVMAEMExtension` 구성 스크립트입니다.
 
 ##### <a name="service-for-azure-enhanced-monitoring-does-not-exist"></a>Azure 고급 모니터링 서비스가 없습니다.
 
 ###### <a name="issue"></a>문제
-AzureEnhancedMonitoring Windows 서비스가 존재하지 않습니다.
+hello AzureEnhancedMonitoring Windows 서비스가 존재 하지 않습니다.
 
 Azperflib.exe 출력에 오류가 발생합니다.
 
-![SAP용 Azure 고급 모니터링 확장의 서비스가 실행되고 있지 않음을 나타내는 Azperflib.exe의 실행][deployment-guide-figure-1400]
+![Azperflib.exe의 실행 SAP 용 Azure 고급 모니터링 확장 hello의 hello 서비스가 실행 되지 않습니다 나타냅니다.][deployment-guide-figure-1400]
 <a name="figure-14"></a>
 
 ###### <a name="solution"></a>해결 방법
-서비스가 없으면 SAP용 Azure 고급 모니터링 확장이 제대로 설치되지 않았습니다. [Azure에서 SAP용 VM 배포 시나리오][deployment-guide-3]에서 배포 시나리오에 대해 설명된 단계에 따라 확장을 다시 배포합니다.
+Hello 서비스가 없는 경우 Azure 고급 모니터링 확장의 SAP 용 hello 올바르게 설치 되지 않았습니다. 배포 시나리오에 대 한 설명 하는 hello 단계를 사용 하 여 hello 확장을 다시 배포 [Azure의 SAP 용 Vm 배포 시나리오][deployment-guide-3]합니다.
 
-확장을 배포하고 1시간 후 Azure VM 내에서 Azure 성능 카운터가 제공되는지 여부를 다시 확인합니다.
+Hello Azure 성능 카운터가 hello Azure VM에서에서 제공 되는지 여부를 1 시간 후 hello 확장 프로그램을 배포한 후 다시 확인 합니다.
 
-##### <a name="service-for-azure-enhanced-monitoring-exists-but-fails-to-start"></a>Azure 고급 모니터링에 대한 서비스가 있지만 시작하지 못합니다.
+##### <a name="service-for-azure-enhanced-monitoring-exists-but-fails-toostart"></a>Azure 고급 모니터링 서비스가 존재 하지만 toostart 실패
 
 ###### <a name="issue"></a>문제
-AzureEnhancedMonitoring Windows 서비스가 존재하고 사용하도록 설정되었지만 시작할 수 없습니다. 자세한 내용은 응용 프로그램 이벤트 로그를 확인합니다.
+hello AzureEnhancedMonitoring Windows 서비스 및를 사용 하는 있지만 toostart 실패 합니다. 자세한 내용은 hello 응용 프로그램 이벤트 로그를 확인 합니다.
 
 ###### <a name="solution"></a>해결 방법
-구성이 올바르지 않습니다. [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5]에 설명된 대로 VM에 대한 모니터링 확장을 다시 시작합니다.
+hello 구성이 올바르지 않습니다. 에 설명 된 대로 VM hello에 대 한 확장을 모니터링 하는 hello를 다시 시작 [구성 hello Azure 고급 모니터링 확장의 SAP 용][deployment-guide-4.5]합니다.
 
 #### <a name="windowslogowindows-some-azure-performance-counters-are-missing"></a>![Windows][Logo_Windows] 일부 Azure 성능 카운터가 없습니다.
-AzureEnhancedMonitoring Windows 서비스에서 Azure의 성능 메트릭을 수집합니다. 이 서비스는 여러 원본에서 데이터를 가져옵니다. 일부 구성 데이터는 로컬로 수집되고 일부 성능 메트릭은 Azure 진단에서 읽습니다. 저장소 카운터는 저장소 구독 수준에 대한 로깅에서 사용됩니다.
+hello AzureEnhancedMonitoring Windows 서비스를 Azure의 성능 메트릭을 수집합니다. hello 서비스는 여러 원본에서 데이터를 가져옵니다. 일부 구성 데이터는 로컬로 수집되고 일부 성능 메트릭은 Azure 진단에서 읽습니다. 저장소 카운터는 사용자가 로그온 hello 저장소 구독 수준에서에서 사용 됩니다.
 
-SAP Note [1999351]을 사용한 문제 해결로 문제가 해결되지 않으면 `Set-AzureRmVMAEMExtension` 구성 스크립트를 다시 실행합니다. 사용하도록 설정한 후 바로 저장소 분석 또는 진단 카운터가 생성되지 않을 수 있으므로 1시간 동안 기다려야 할 수 있습니다. 문제가 지속되면 Windows용 BC-OP-NT-AZR 또는 Linux 가상 컴퓨터용 BC-OP-LNX-AZR 구성 요소에 대한 SAP 고객 지원 메시지를 엽니다.
+SAP Note를 사용 하 여 문제를 해결 하는 경우 [1999351] hello 문제 해결, hello를 다시 실행 하지 않는 `Set-AzureRmVMAEMExtension` 구성 스크립트입니다. 설정 된 후에 즉시 저장소 분석 또는 진단 카운터를 만들 수 수 없으므로 toowait 한 시간을 할 수 있습니다. Hello 문제가 계속 되 면 hello Windows에 대 한 구성 요소 OP NT AZR BC 또는 BC-OP-LNX-AZR Linux 가상 컴퓨터에 SAP 고객 지원 메시지를 엽니다.
 
 #### <a name="linuxlogolinux-azure-performance-counters-do-not-show-up-at-all"></a>![Linux][Logo_Linux] Azure 성능 카운터가 전혀 표시되지 않습니다.
-Azure의 성능 메트릭은 데몬에 의해 수집됩니다. 데몬이 실행되지 않는 경우 성능 메트릭은 전혀 수집할 수 없습니다.
+Azure의 성능 메트릭은 데몬에 의해 수집됩니다. Hello 디먼이 실행 되지 않는 경우 없음 성능 메트릭을 수집할 수 있습니다.
 
-##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Azure 고급 모니터링 확장의 설치 디렉터리가 비어 있습니다.
+##### <a name="hello-installation-directory-of-hello-azure-enhanced-monitoring-extension-is-empty"></a>hello Azure 고급 모니터링 확장의 설치 디렉터리 hello 비어 있습니다.
 
 ###### <a name="issue"></a>문제
-디렉터리 \\var\\lib\\waagent\\에 Azure 고급 모니터링 확장에 대한 하위 디렉터리가 없습니다.
+hello 디렉터리 \\var\\lib\\waagent\\ hello Azure 고급 모니터링 확장에 대 한 하위 디렉터리는 없습니다.
 
 ###### <a name="solution"></a>해결 방법
-확장이 설치되지 않았습니다. (앞에서 설명한) 프록시 문제인지 여부를 결정합니다. 컴퓨터를 다시 시작하거나 `Set-AzureRmVMAEMExtension` 구성 스크립트를 다시 실행해야 할 수 있습니다.
+hello 확장이 설치 되지 않았습니다. (앞에서 설명한) 프록시 문제인지 여부를 결정합니다. Toorestart hello 컴퓨터 및/또는 다시 실행된 hello 해야 `Set-AzureRmVMAEMExtension` 구성 스크립트입니다.
 
 #### <a name="linuxlogolinux-some-azure-performance-counters-are-missing"></a>![Linux][Logo_Linux] 일부 Azure 성능 카운터가 없습니다.
-Azure에서 성능 메트릭은 여러 원본에서 데이터를 가져오는 데몬에 의해 수집됩니다. 일부 구성 데이터는 로컬로 수집되고 일부 성능 메트릭은 Azure 진단에서 읽습니다. 저장소 카운터는 저장소 구독의 로그에서 제공됩니다.
+Azure에서 성능 메트릭은 여러 원본에서 데이터를 가져오는 데몬에 의해 수집됩니다. 일부 구성 데이터는 로컬로 수집되고 일부 성능 메트릭은 Azure 진단에서 읽습니다. 저장소 카운터 저장소 구독에서 hello 로그에서 제공 됩니다.
 
 알려진 문제의 전체 최신 목록은 SAP용 고급 Azure 모니터링에 대한 추가 문제 해결 정보를 포함하고 있는 SAP Note [1999351]을 참조하세요.
 
-SAP Note [1999351]을 사용한 문제 해결로 문제가 해결되지 않는 경우 [SAP용 Azure 고급 모니터링 확장 구성][deployment-guide-4.5]에 설명된 대로 `Set-AzureRmVMAEMExtension` 구성 스크립트를 다시 실행합니다. 사용하도록 설정한 후 바로 저장소 분석 또는 진단 카운터가 생성되지 않을 수 있으므로 1시간 동안 기다려야 할 수 있습니다. 문제가 지속되면 Windows용 BC-OP-NT-AZR 또는 Linux 가상 컴퓨터용 BC-OP-LNX-AZR 구성 요소에 대한 SAP 고객 지원 메시지를 엽니다.
+SAP Note를 사용 하 여 문제를 해결 하는 경우 [1999351] hello 문제를 해결, hello를 다시 실행 하지 않는 `Set-AzureRmVMAEMExtension` 구성 스크립트에 설명 된 대로 [구성 hello Azure 고급 모니터링 확장SAP용][deployment-guide-4.5]. 설정 된 후에 즉시 저장소 분석 또는 진단 카운터를 만들 수 수 없으므로 한 시간에 대 한 toowait를 할 수 있습니다. Hello 문제가 계속 되 면 hello Windows에 대 한 구성 요소 OP NT AZR BC 또는 BC-OP-LNX-AZR Linux 가상 컴퓨터에 SAP 고객 지원 메시지를 엽니다.

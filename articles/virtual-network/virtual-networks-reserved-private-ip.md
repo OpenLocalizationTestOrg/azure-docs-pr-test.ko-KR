@@ -1,6 +1,6 @@
 ---
-title: "고정 내부 개인 IP - Azure VM - 클래식"
-description: "고정 내부 개인 IP(DIP) 및 관리 방법 이해"
+title: "aaaStatic 내부 개인 IP-Azure VM-클래식"
+description: "고정 내부 Ip (Dip)를 이해 하 고 어떻게 toomanage에"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
-ms.openlocfilehash: cf9ee59ca4e44ed01836c2efb1f4df5f073bf6e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5abe1c59f2f3ed19bcf56c269dfe57ac32d4f601
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-set-a-static-internal-private-ip-address-using-powershell-classic"></a>PowerShell을 사용하여 고정 내부 개인 IP를 설정하는 방법(기본)
-대부분의 경우 가상 컴퓨터에 고정 내부 IP 주소를 지정할 필요가 없습니다. 가상 네트워크의 VM은 사용자가 지정한 범위의 내부 IP 주소를 자동으로 받습니다. 그러나 특정한 상황에서는 특정 VM에 고정 IP 주소를 지정하는 것이 적합한 경우도 있습니다. 예를 들어 VM에서 DNS를 실행하거나 VM을 도메인 컨트롤러로 구성하는 경우입니다. 고정 내부 IP 주소는 중지 상태 및 프로비전 해제 상태에서도 VM에 유지됩니다. 
+# <a name="how-tooset-a-static-internal-private-ip-address-using-powershell-classic"></a>PowerShell (클래식)를 사용 하 여 고정 내부 개인 IP tooset을 처리 하는 방법
+대부분의 경우에서 가상 컴퓨터에 대 한 고정 내부 IP 주소 toospecify가 필요 하지는 않습니다. 가상 네트워크의 VM은 사용자가 지정한 범위의 내부 IP 주소를 자동으로 받습니다. 그러나 특정한 상황에서는 특정 VM에 고정 IP 주소를 지정하는 것이 적합한 경우도 있습니다. 예를 들어 VM은 진행 중인 toorun DNS 또는 도메인 컨트롤러가 될 경우. 고정 내부 IP 주소에 hello VM 중지/프로 비전 해제 상태 통한 경우에 유지 됩니다. 
 
 > [!IMPORTANT]
-> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 [Resource Manager 배포 모델](virtual-networks-static-private-ip-arm-ps.md)을 사용하는 것이 좋습니다.
+> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello를 사용 하는 것이 좋습니다 [리소스 관리자 배포 모델](virtual-networks-static-private-ip-arm-ps.md)합니다.
 > 
 > 
 
-## <a name="how-to-verify-if-a-specific-ip-address-is-available"></a>특정 IP 주소를 사용할 수 있는지 확인하는 방법
-IP 주소 *10.0.0.7*을 *TestVnet*이라는 이름의 VNet에서 사용할 수 있는지 확인하려면 다음 PowerShell 명령을 실행하고 *IsAvailable* 값을 확인합니다.
+## <a name="how-tooverify-if-a-specific-ip-address-is-available"></a>어떻게 tooverify 특정 IP 주소를 사용할 수 있는 경우
+tooverify 경우 hello IP 주소 *10.0.0.7* 라는 vnet에 사용할 수 *TestVnet*, hello 다음 PowerShell 명령을 실행 하 고 확인에 대 한 hello 값 *IsAvailable*:
 
     Test-AzureStaticVNetIP –VNetName TestVNet –IPAddress 10.0.0.7 
 
@@ -40,12 +40,12 @@ IP 주소 *10.0.0.7*을 *TestVnet*이라는 이름의 VNet에서 사용할 수 �
     OperationStatus      : Succeeded
 
 > [!NOTE]
-> 안전한 환경에서 위 명령을 테스트하려는 경우 [가상 네트워크 만들기(클래식)](virtual-networks-create-vnet-classic-pportal.md)의 지침에 따라 *TestVnet*이라는 이름의 VNet을 만들어 *10.0.0.0/8* 주소 공간을 사용하도록 합니다.
+> Tootest hello 명령을 위에 안전한 환경에서 원하는 경우 hello 지침에 따라 [가상 네트워크 (클래식)를 만들고](virtual-networks-create-vnet-classic-pportal.md) toocreate 라는 vnet *TestVnet* hello를 사용 하 여 확인  *10.0.0.0/8* 주소 공간입니다.
 > 
 > 
 
-## <a name="how-to-specify-a-static-internal-ip-when-creating-a-vm"></a>VM을 만들 때 고정 내부 IP를 지정하는 방법
-아래의 PowerShell 스크립트는 *TestService*라는 새 클라우드 서비스를 만들고 Azure에서 이미지를 검색합니다. 그다음에 이 이미지를 사용하여 새 클라우드 서비스에 *TestVM*이라는 VM을 만들고 이 VM을 *Subnet-1*이라는 서브넷에 속하도록 설정하고 VM의 고정 내부 IP로 *10.0.0.7*을 설정합니다.
+## <a name="how-toospecify-a-static-internal-ip-when-creating-a-vm"></a>어떻게 toospecify VM을 만들 때 고정 내부 IP
+hello 아래의 PowerShell 스크립트 라는 새 클라우드 서비스를 만듭니다. *TestService*다음 Azure에서 이미지를 검색 합니다 V 만듭니다 *TestVM* hello hello 검색 이미지를 사용 하는 새 클라우드 서비스 집합 이라는 서브넷에 VM toobe hello *서브넷-1*, 설정 및 *10.0.0.7* hello VM에 대 한 정적 내부 ip:
 
     New-AzureService -ServiceName TestService -Location "Central US"
     $image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
@@ -55,8 +55,8 @@ IP 주소 *10.0.0.7*을 *TestVnet*이라는 이름의 VNet에서 사용할 수 �
     | Set-AzureStaticVNetIP -IPAddress 10.0.0.7 `
     | New-AzureVM -ServiceName "TestService" –VNetName TestVnet
 
-## <a name="how-to-retrieve-static-internal-ip-information-for-a-vm"></a>VM의 고정 내부 IP 정보를 검색하는 방법
-위의 스크립트를 사용하여 만든 VM의 고정 내부 IP 정보를 보려면 다음 PowerShell 명령을 실행하고 *IpAddress*의 값을 확인합니다.
+## <a name="how-tooretrieve-static-internal-ip-information-for-a-vm"></a>어떻게 tooretrieve 정적 내부 IP에 대 한 정보는 VM
+tooview hello 고정 내부 IP 정보 hello에 대 한 위의 hello 스크립트를 사용 하 여 만든 VM hello 다음 PowerShell 명령을 실행 하 고 hello에 대 한 값이 확인 *IpAddress*:
 
     Get-AzureVM -Name TestVM -ServiceName TestService
 
@@ -87,15 +87,15 @@ IP 주소 *10.0.0.7*을 *TestVnet*이라는 이름의 VNet에서 사용할 수 �
     OperationId                 : 34c1560a62f0901ab75cde4fed8e8bd1
     OperationStatus             : OK
 
-## <a name="how-to-remove-a-static-internal-ip-from-a-vm"></a>VM에서 고정 내부 IP를 제거하는 방법
-위의 스크립트에서 VM에 추가된 고정 내부 IP를 제거하려면 다음 PowerShell 명령을 실행합니다.
+## <a name="how-tooremove-a-static-internal-ip-from-a-vm"></a>어떻게 tooremove VM에서 고정 내부 ip 주소
+tooremove hello 고정 내부 IP hello 다음 PowerShell 명령을 실행 toohello VM 위의 hello 스크립트에 추가 합니다.
 
     Get-AzureVM -ServiceName TestService -Name TestVM `
     | Remove-AzureStaticVNetIP `
     | Update-AzureVM
 
-## <a name="how-to-add-a-static-internal-ip-to-an-existing-vm"></a>기존 VM에 고정 내부 IP를 추가하는 방법
-위의 스크립트를 사용하여 만든 VM에 고정 내부 IP를 추가하려면 다음 명령을 실행합니다.
+## <a name="how-tooadd-a-static-internal-ip-tooan-existing-vm"></a>어떻게 tooadd 정적 내부 IP tooan 기존 VM
+tooadd 정적 내부 IP toohello 사용 하 여 만든 녀석 위의 hello 스크립트 명령을 다음 VM:
 
     Get-AzureVM -ServiceName TestService000 -Name TestVM `
     | Set-AzureStaticVNetIP -IPAddress 10.10.0.7 `

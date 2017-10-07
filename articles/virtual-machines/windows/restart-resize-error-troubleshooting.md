@@ -1,5 +1,5 @@
 ---
-title: "Azure의 VM 재시작 또는 크기 조정 문제 | Microsoft Docs"
+title: "Azure에서 다시 시작 하거나 크기를 조정할 aaaVM 발급 | Microsoft Docs"
 description: "Azure의 기존 Windows 가상 컴퓨터 재시작 또는 크기 조정 관련 Resource Manager 배포 문제 해결"
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: 
@@ -16,52 +16,52 @@ ms.workload: required
 ms.date: 06/13/2017
 ms.author: delhan
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 078c4666f047604b1732e828d27e7e26383aa616
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2cf7c2d19bf5f79fab4ffc0eff9ccc1182d601c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-deployment-issues-with-restarting-or-resizing-an-existing-windows-vm-in-azure"></a>Azure에서 기존 Windows VM 재시작 또는 크기 조정 관련 배포 문제 해결
-중지된 Azure 가상 컴퓨터(VM)를 시작하거나, 기존 Azure AM의 크기를 조정하려다 접하는 일반적인 오류는 할당 오류입니다. 이런 오류는 클러스터나 지역에 사용할 수 있는 리소스가 없거나 요청한 VM 크기를 지원할 수 없을 때 발생합니다.
+Toostart 중지 된 Azure 가상 컴퓨터 (VM)를 시도 하거나 기존 Azure VM의 크기를 조정할 때 발생 하는 hello 일반적인 오류는 할당 오류입니다. 이 오류는 hello 클러스터 또는 지역 중 하나에 없는 사용 가능한 리소스 또는 없습니다 지원 hello v M 크기를 요청 하는 경우에 발생 합니다.
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
 
 ## <a name="collect-activity-logs"></a>활동 로그 선택
-문제 해결을 시작하려면 문제와 관련된 오류를 파악하기 위해 활동 로그를 수집합니다. 다음 링크에는 프로세스에 대한 자세한 내용이 포함되어 있습니다.
+문제 해결, toostart 수집 hello 활동 hello 문제와 연결 된 tooidentify hello 오류를 기록 합니다. hello 프로세스에 대 한 자세한 정보를 포함 하는 링크를 따라 hello:
 
 [배포 작업 보기](../../azure-resource-manager/resource-manager-deployment-operations.md)
 
-[활동 로그를 보고 Azure 리소스 관리](../../resource-group-audit.md)
+[Azure 활동 로그 toomanage 보기 리소스](../../resource-group-audit.md)
 
 ## <a name="issue-error-when-starting-a-stopped-vm"></a>문제: 중지된 VM 시작 시 오류
-중지된 VM을 시작하려는데 할당 오류가 발생했습니다.
+Toostart 중지 된 VM을 시도 하지만 할당에 실패 합니다.
 
 ### <a name="cause"></a>원인
-중지된 VM을 시작하기 위한 요청은 클라우드 서비스를 호스트하는 원본 클러스터에서 시도되어야 합니다. 하지만, 클러스터에 요청을 수행하는 데 사용할 여유 공간이 없습니다.
+toostart hello VM을 중지 하는 hello 요청에 toobe hello 클라우드 서비스를 호스팅하는 hello 원본 클러스터에 시도 되었습니다. 그러나 hello 클러스터 여유 공간이 사용 가능한 toofulfill hello 요청은 없습니다.
 
 ### <a name="resolution"></a>해결 방법
-* 가용성 집합의 VM을 모두 중지하고 각각의 VM을 다시 시작합니다.
+* 모든 hello hello 가용성의 Vm을 설정 하 고 각 VM을 다시 중지 합니다.
   
   1. **리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.
-  2. VM을 모두 중지한 후에, 중지된 각각의 VM을 선택하고 시작을 클릭합니다.
-* 나중에 다시 시작 요청을 다시 시도합니다.
+  2. 모든 Vm 중지 hello 중지 hello Vm의 각 선택 하 고 시작을 클릭 합니다.
+* 나중에 hello를 다시 시작 요청을 다시 시도 합니다.
 
 ## <a name="issue-error-when-resizing-an-existing-vm"></a>문제: 기존 VM 재시작 시 오류
-기존 VM의 크기를 조정하려는데 할당 오류가 발생했습니다.
+Tooresize 기존 VM을 시도 하지만 할당에 실패 합니다.
 
 ### <a name="cause"></a>원인
-VM 크기를 조정하기 위한 요청은 클라우드 서비스를 호스트하는 원본 클러스터에서 시도되어야 합니다. 하지만, 클러스터가 요청한 VM 크기를 지원하지 않습니다.
+tooresize hello VM에 toobe hello 요청 했으나 hello 원본 클러스터에서 해당 호스트 hello 클라우드 서비스 그러나 hello 클러스터를 지원 하지 않는 요청 된 VM 크기 hello 합니다.
 
 ### <a name="resolution"></a>해결 방법
-* 더 작은 VM 크기를 사용하여 요청을 다시 시도합니다.
-* 요청한 VM의 크기를 변경할 수 없으면:
+* 더 작은 VM 크기를 사용 하 여 hello 요청을 다시 시도 하십시오.
+* Hello 크기인 요청한 경우 hello VM을 변경할 수 없습니다.
   
-  1. 가용성 집합의 VM을 모두 중지합니다.
+  1. Hello 가용성 집합에 있는 모든 hello Vm을 중지 합니다.
      
      * **리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.
-  2. VM을 모두 중지한 후에, 원하는 VM을 더 크게 조정합니다.
-  3. 크기가 조정된 VM을 선택하고 **시작**을 클릭한 다음 중지된 각각의 VM을 시작합니다.
+  2. 결국 hello 가상 컴퓨터를 중지, 원하는 hello VM tooa 더 큰 크기의 크기를 조정 합니다.
+  3. Select hello 크기를 조정 VM 및 클릭 **시작**, 각 시작의 hello Vm 중지 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 Azure에서 새 Windows VM을 만들 때 문제가 발생하면 [Azure에서 새 Windows 가상 컴퓨터 생성 관련 배포 문제 해결](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요.

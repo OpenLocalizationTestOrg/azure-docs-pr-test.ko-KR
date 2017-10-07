@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 여러 NIC를 사용하는 Windows VM 만들기 및 관리 | Microsoft Docs"
-description: "Azure PowerShell 또는 Resource Manager 템플릿을 사용하여 여러 NIC가 연결된 Windows VM을 만들고 관리하는 방법을 알아봅니다."
+title: "aaaCreate 여러 Nic를 사용 하는 Azure에서 Windows Vm 관리 및 | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate 및 Azure PowerShell 또는 리소스 관리자 템플릿을 사용 하 여 여러 Nic 연결 된 tooit가 있는 Windows VM을 관리 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 07/05/2017
 ms.author: iainfou
-ms.openlocfilehash: 3bd99a67dae41de3533d7f6e244eb7ee3ecc4049
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3c7d7569aca6f047238146d84b2ffccf05d4079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-a-windows-virtual-machine-that-has-multiple-nics"></a>여러 NIC가 있는 Windows 가상 컴퓨터 만들기 및 관리
-Azure의 VM(가상 컴퓨터)에는 여러 가상 NIC(네트워크 인터페이스 카드)가 연결될 수 있습니다. 일반적인 시나리오는 프런트 엔드 및 백 엔드 연결에 다른 서브넷을 사용하거나 모니터링 또는 백업 솔루션 전용 네트워크를 두는 것입니다. 이 문서에서는 여러 NIC가 연결된 VM을 만드는 방법을 설명합니다. 또한 기존 VM에서 NIC를 추가하거나 제거하는 방법을 알아봅니다. [VM 크기](sizes.md) 가 다르면 다양한 NIC가 지원되므로 그에 따라 VM 크기를 지정하도록 합니다.
+Azure의 가상 컴퓨터 (Vm)에 여러 가상 네트워크 인터페이스 카드 (Nic) 연결 된 toothem이 있을 수 있습니다. 일반적인 시나리오는 toohave 프런트 엔드 및 백 엔드 연결에 대 한 서로 다른 서브넷 또는 네트워크를 전용 tooa 모니터링 또는 백업 솔루션입니다. 이 문서는 여러 Nic가 있는 VM으로 toocreate tooit를 연결 하는 방법을 설명 합니다. 또한 학습 방법을 기존 VM에서 Nic tooadd 또는 제거 합니다. [VM 크기](sizes.md) 가 다르면 다양한 NIC가 지원되므로 그에 따라 VM 크기를 지정하도록 합니다.
 
-자체 PowerShell 스크립트 내에서 여러 NIC를 만드는 방법을 비롯한 자세한 내용은 [다중 NIC VM 배포](../../virtual-network/virtual-network-deploy-multinic-arm-ps.md)를 참조하세요.
+자세한 내용은 toocreate 사용자만 PowerShell 스크립트 내에서 여러 Nic를 확인 하려면 어떻게 비롯 한 [다중 NIC Vm을 배포](../../virtual-network/virtual-network-deploy-multinic-arm-ps.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-먼저 [최신 버전의 Azure PowerShell을 설치 및 구성](/powershell/azure/overview)했는지 확인합니다.
+Hello 갖도록 [최신 Azure PowerShell 버전 설치 및 구성](/powershell/azure/overview)합니다.
 
-다음 예제에서 매개 변수 이름을 고유한 값으로 바꿉니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myVnet*, *myVM*이 포함됩니다.
+Hello 다음 예제에서는 고유한 값으로 매개 변수 이름 예를 대체 합니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myVnet*, *myVM*이 포함됩니다.
 
 
 ## <a name="create-a-vm-with-multiple-nics"></a>여러 NIC를 사용하여 VM 만들기
-먼저 리소스 그룹을 만듭니다. 다음 예제에서는 *EastUs* 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
+먼저 리소스 그룹을 만듭니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroup* hello에 *EastUs* 위치:
 
 ```powershell
 New-AzureRmResourceGroup -Name "myResourceGroup" -Location "EastUS"
 ```
 
 ### <a name="create-virtual-network-and-subnets"></a>가상 네트워크 및 서브넷 만들기
-일반적인 시나리오는 가상 네트워크에 두 개 이상의 서브넷이 있는 것입니다. 하나의 서브넷은 프런트 엔드 트래픽용이고, 다른 서브넷은 백 엔드 트래픽용일 수 있습니다. 두 서브넷 모두에 연결하려면 VM에서 여러 NIC를 사용합니다.
+가상 네트워크 toohave에 대 한 일반적인 시나리오는 두 개 이상의 서브넷입니다. 백 엔드 트래픽에 대 한 다른 hello 프런트 엔드 트래픽용 서브넷 1 개 수도 있습니다. tooconnect tooboth 서브넷 있습니다 다음 사용 하 여 여러 Nic VM에 있습니다.
 
-1. [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig)를 사용하여 두 개의 가상 네트워크 서브넷을 정의합니다. 다음 예제에서는 *mySubnetFrontEnd* 및 *mySubnetBackEnd*에 대한 서브넷을 정의합니다.
+1. [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig)를 사용하여 두 개의 가상 네트워크 서브넷을 정의합니다. hello 다음 예제에서는 정의 대 한 hello 서브넷 *mySubnetFrontEnd* 및 *mySubnetBackEnd*:
 
     ```powershell
     $mySubnetFrontEnd = New-AzureRmVirtualNetworkSubnetConfig -Name "mySubnetFrontEnd" `
@@ -50,7 +50,7 @@ New-AzureRmResourceGroup -Name "myResourceGroup" -Location "EastUS"
         -AddressPrefix "192.168.2.0/24"
     ```
 
-2. [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork)를 사용하여 가상 네트워크 및 서브넷을 만듭니다. 다음 예제에서는 *myVnet*이라는 가상 네트워크를 만듭니다.
+2. [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork)를 사용하여 가상 네트워크 및 서브넷을 만듭니다. hello 다음 예제에서는 가상 네트워크를 만들어 명명 된 *myVnet*:
 
     ```powershell
     $myVnet = New-AzureRmVirtualNetwork -ResourceGroupName "myResourceGroup" `
@@ -62,7 +62,7 @@ New-AzureRmResourceGroup -Name "myResourceGroup" -Location "EastUS"
 
 
 ### <a name="create-multiple-nics"></a>여러 NIC 만들기
-[New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface)를 사용하여 두 개의 NIC를 만듭니다. 하나의 NIC를 프런트 엔드 서브넷에, 다른 NIC를 백 엔드 서브넷에 연결합니다. 다음 예제에서는 *myNIC1* 및 *myNIC2*라는 NIC를 만듭니다.
+[New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface)를 사용하여 두 개의 NIC를 만듭니다. NIC toohello 프런트 엔드 서브넷과 NIC toohello 백 엔드 서브넷이 둘을 연결 합니다. hello 다음 예제에서는 명명 된 Nic *myNic1* 및 *myNic2*:
 
 ```powershell
 $frontEnd = $myVnet.Subnets|?{$_.Name -eq 'mySubnetFrontEnd'}
@@ -78,24 +78,24 @@ $myNic2 = New-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" `
     -SubnetId $backEnd.Id
 ```
 
-또한 일반적으로 [네트워크 보안 그룹](../../virtual-network/virtual-networks-nsg.md) 또는 [부하 분산 장치](../../load-balancer/load-balancer-overview.md)를 만들어 VM에서 트래픽을 관리하고 분산합니다. [좀 더 자세한 다중 NIC VM](../../virtual-network/virtual-network-deploy-multinic-arm-ps.md) 문서에서 네트워크 보안 그룹 생성 및 NIC 할당에 대해 안내합니다.
+또한 만들 일반적으로 [네트워크 보안 그룹](../../virtual-network/virtual-networks-nsg.md) 또는 [부하 분산 장치](../../load-balancer/load-balancer-overview.md) toohelp 관리 하 고 Vm에 트래픽을 분산 합니다. hello [다중 NIC VM 상세](../../virtual-network/virtual-network-deploy-multinic-arm-ps.md) 문서를 안내 하는 네트워크 보안 그룹을 만들고 Nic에 할당 합니다.
 
-### <a name="create-the-virtual-machine"></a>가상 컴퓨터 만들기
-이제 VM 구성 빌드를 시작합니다. VM 크기마다 VM에 추가할 수 있는 NIC의 총수가 제한되어 있습니다. 자세한 내용은 [Windows VM 크기](sizes.md)를 참조하세요.
+### <a name="create-hello-virtual-machine"></a>Hello 가상 컴퓨터 만들기
+이제 toobuild VM 구성을 시작 합니다. 각 VM 크기 hello tooa VM을 추가할 수 있는 Nic의 총 수에 대 한 제한이 있습니다. 자세한 내용은 [Windows VM 크기](sizes.md)를 참조하세요.
 
-1. 다음과 같이 `$cred` 변수에 VM 자격 증명을 설정합니다.
+1. VM 자격 증명 toohello 설정 `$cred` 다음과 같이 변수:
 
     ```powershell
     $cred = Get-Credential
     ```
 
-2. [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig)를 사용하여 VM을 정의합니다. 다음 예제에서는 *myVM*이라는 VM을 정의하고 2개 이상의 NIC를 지원하는 VM 크기(*Standard_DS3_v2*)를 사용합니다.
+2. [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig)를 사용하여 VM을 정의합니다. hello 다음 예제에서는 정의 라는 VM *myVM* 지 원하는 Nic 두 개 이상의 VM 크기를 사용 하 여 (*Standard_DS3_v2*):
 
     ```powershell
     $vmConfig = New-AzureRmVMConfig -VMName "myVM" -VMSize "Standard_DS3_v2"
     ```
 
-3. [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) 및 [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage)를 사용하여 나머지 VM 구성을 만듭니다. 다음 예제에서는 Windows Server 2016 VM을 만듭니다.
+3. 사용 하 여 VM 구성의 hello 나머지 만들기 [집합 AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) 및 [집합 AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage)합니다. 다음 예제는 hello는 Windows Server 2016 VM을 만듭니다.
 
     ```powershell
     $vmConfig = Set-AzureRmVMOperatingSystem -VM $vmConfig `
@@ -111,7 +111,7 @@ $myNic2 = New-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" `
         -Version "latest"
    ```
 
-4. [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface)를 사용하여 이전에 만든 두 NIC를 추가합니다.
+4. 사용 하 여 이전에 만든 hello 두 Nic 연결 [추가 AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface):
 
     ```powershell
     $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $myNic1.Id -Primary
@@ -124,25 +124,25 @@ $myNic2 = New-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" `
     New-AzureRmVM -VM $vmConfig -ResourceGroupName "myResourceGroup" -Location "EastUs"
     ```
 
-## <a name="add-a-nic-to-an-existing-vm"></a>기존 VM에 NIC 추가
-기존 VM에 가상 NIC를 추가하고 VM을 할당 취소하고 가상 NIC를 추가한 다음 VM을 시작합니다.
+## <a name="add-a-nic-tooan-existing-vm"></a>기존 VM NIC tooan 추가
+VM을 hello deallocate VM 기존 가상 NIC tooan, tooadd 추가 hello 가상 NIC를 다음 hello VM을 시작 합니다.
 
-1. [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm)을 사용하여 VM을 할당 취소합니다. 다음 예제에서는 *myResourceGroup*에서 *myVM*이라는 VM의 할당을 취소합니다.
+1. Deallocate의 VM hello [중지 AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm)합니다. hello 다음 예제에서는 할당 취소 hello 라는 VM *myVM* 에 *myResourceGroup*:
 
     ```powershell
     Stop-AzureRmVM -Name "myVM" -ResourceGroupName "myResourceGroup"
     ```
 
-2. [Get-AzureRmVm](/powershell/module/azurerm.compute/get-azurermvm)을 사용하여 VM의 기존 구성을 가져옵니다. 다음 예제에서는 *myResourceGroup*에서 *myVM*이라는 VM에 대한 정보를 가져옵니다.
+2. Hello hello VM의 기존 구성을 가져올와 [Get AzureRmVm](/powershell/module/azurerm.compute/get-azurermvm)합니다. hello 다음 예제에서는 가져옵니다 hello 라는 VM에 대 한 정보 *myVM* 에 *myResourceGroup*:
 
     ```powershell
     $vm = Get-AzureRmVm -Name "myVM" -ResourceGroupName "myResourceGroup"
     ```
 
-3. 다음 예제에서는 *mySubnetBackEnd*에 연결된 *myNIC3*이라는 [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface)를 사용하여 가상 NIC를 만듭니다. 그런 다음 [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface)를 사용하여 *myResourceGroup*에서 *myVM*이라는 VM에 가상 NIC를 연결합니다.
+3. hello 다음 예제에서는 가상 NIC와 [새로 AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) 라는 *myNic3* 너무 연결 된*mySubnetBackEnd*합니다. 가상 NIC가 다음 hello toohello 라는 VM 연결 *myVM* 에 *myResourceGroup* 와 [추가 AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface):
 
     ```powershell
-    # Get info for the back end subnet
+    # Get info for hello back end subnet
     $myVnet = Get-AzureRmVirtualNetwork -Name "myVnet" -ResourceGroupName "myResourceGroup"
     $backEnd = $myVnet.Subnets|?{$_.Name -eq 'mySubnetBackEnd'}
 
@@ -152,71 +152,71 @@ $myNic2 = New-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" `
         -Location "EastUs" `
         -SubnetId $backEnd.Id
 
-    # Get the ID of the new virtual NIC and add to VM
+    # Get hello ID of hello new virtual NIC and add tooVM
     $nicId = (Get-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" -Name "MyNic3").Id
     Add-AzureRmVMNetworkInterface -VM $vm -Id $nicId | Update-AzureRmVm -ResourceGroupName "myResourceGroup"
     ```
 
     ### <a name="primary-virtual-nics"></a>기본 가상 NIC
-    다중 NIC VM의 NIC 중 하나는 기본 NIC여야 합니다. VM의 기존 가상 NIC 중 하나가 이미 기본 NIC로 설정되어 있는 경우 이 단계를 건너뛸 수 있습니다. 다음 예제에서는 VM에 두 개의 가상 NIC가 있고 첫 번째 NIC(`[0]`)를 기본 NIC로 추가하려고 하는 것으로 가정합니다.
+    다중 NIC VM에서 Nic hello 중 toobe 주가 필요합니다. 기존 가상 Nic를 hello 중 하나에 hello VM 이미 설정 되어 기본으로,이 단계를 건너뛸 수 있습니다. hello 다음 예에서는 가정 두 개의 가상 Nic가 VM에 있으면 이제 및 tooadd 원하는 첫 번째 NIC hello (`[0]`) 기본 hello로:
         
     ```powershell
-    # List existing NICs on the VM and find which one is primary
+    # List existing NICs on hello VM and find which one is primary
     $vm.NetworkProfile.NetworkInterfaces
     
-    # Set NIC 0 to be primary
+    # Set NIC 0 toobe primary
     $vm.NetworkProfile.NetworkInterfaces[0].Primary = $true
     $vm.NetworkProfile.NetworkInterfaces[1].Primary = $false
     
-    # Update the VM state in Azure
+    # Update hello VM state in Azure
     Update-AzureRmVM -VM $vm -ResourceGroupName "myResourceGroup"
     ```
 
-4. [Start-AzureRmVm](/powershell/module/azurerm.compute/start-azurermvm)을 사용하여 VM을 시작합니다.
+4. 시작의 VM hello [시작 AzureRmVm](/powershell/module/azurerm.compute/start-azurermvm):
 
     ```powershell
     Start-AzureRmVM -ResourceGroupName "myResourceGroup" -Name "myVM"
     ```
 
 ## <a name="remove-a-nic-from-an-existing-vm"></a>기존 VM에서 NIC 제거
-기존 VM에서 가상 NIC를 제거하고 VM을 할당 취소하고 가상 NIC를 제거한 다음 VM을 시작합니다.
+가상 NIC tooremove 기존 VM에서 VM hello 할당을 취소 하면,이 hello 제거 가상 NIC를 다음 시작 hello VM입니다.
 
-1. [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm)을 사용하여 VM을 할당 취소합니다. 다음 예제에서는 *myResourceGroup*에서 *myVM*이라는 VM의 할당을 취소합니다.
+1. Deallocate의 VM hello [중지 AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm)합니다. hello 다음 예제에서는 할당 취소 hello 라는 VM *myVM* 에 *myResourceGroup*:
 
     ```powershell
     Stop-AzureRmVM -Name "myVM" -ResourceGroupName "myResourceGroup"
     ```
 
-2. [Get-AzureRmVm](/powershell/module/azurerm.compute/get-azurermvm)을 사용하여 VM의 기존 구성을 가져옵니다. 다음 예제에서는 *myResourceGroup*에서 *myVM*이라는 VM에 대한 정보를 가져옵니다.
+2. Hello hello VM의 기존 구성을 가져올와 [Get AzureRmVm](/powershell/module/azurerm.compute/get-azurermvm)합니다. hello 다음 예제에서는 가져옵니다 hello 라는 VM에 대 한 정보 *myVM* 에 *myResourceGroup*:
 
     ```powershell
     $vm = Get-AzureRmVm -Name "myVM" -ResourceGroupName "myResourceGroup"
     ```
 
-3. [Get-AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface)를 사용하여 NIC에 대한 정보를 가져옵니다. 다음 예제에서는 *myNic3*에 대한 정보를 가져옵니다.
+3. Hello와 NIC를 제거 하는 방법에 대 한 정보를 가져올 [Get AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface)합니다. hello 다음 정보를 가져오는 예제에 대 한 *myNic3*:
 
     ```powershell
-    # List existing NICs on the VM if you need to determine NIC name
+    # List existing NICs on hello VM if you need toodetermine NIC name
     $vm.NetworkProfile.NetworkInterfaces
 
     $nicId = (Get-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" -Name "myNic3").Id   
     ```
 
-4. [Remove-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/remove-azurermvmnetworkinterface)를 사용하여 NIC를 제거하고 [Update-AzureRmVm](/powershell/module/azurerm.compute/update-azurermvm)을 사용하여 VM을 업데이트합니다. 다음 예제에서는 이전 단계에서 `$nicId`를 사용하여 가져온 *myNic3*을 제거합니다.
+4. 제거 인 NIC와 hello [제거 AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/remove-azurermvmnetworkinterface) 및 hello 사용 하 여 VM을 업데이트 합니다 [업데이트 AzureRmVm](/powershell/module/azurerm.compute/update-azurermvm)합니다. hello 다음 예제에서는 제거 *myNic3* 여 얻어지는 `$nicId` hello 앞 단계에서에서:
 
     ```powershell
     Remove-AzureRmVMNetworkInterface -VM $vm -NetworkInterfaceIDs $nicId | `
         Update-AzureRmVm -ResourceGroupName "myResourceGroup"
     ```   
 
-5. [Start-AzureRmVm](/powershell/module/azurerm.compute/start-azurermvm)을 사용하여 VM을 시작합니다.
+5. 시작의 VM hello [시작 AzureRmVm](/powershell/module/azurerm.compute/start-azurermvm):
 
     ```powershell
     Start-AzureRmVM -Name "myVM" -ResourceGroupName "myResourceGroup"
     ```   
 
 ## <a name="create-multiple-nics-with-templates"></a>템플릿을 사용하여 여러 NIC 만들기
-Azure Resource Manager 템플릿은 여러 NIC를 만드는 것과 같이 배포하는 동안 리소스의 여러 인스턴스를 만드는 방법을 제공합니다. Resource Manager 템플릿은 선언적 JSON 파일을 사용하여 환경을 정의합니다. 자세한 내용은 [Azure Resource Manager 개요](../../azure-resource-manager/resource-group-overview.md)를 참조하세요. *복사* 를 사용하여 만들 인스턴스 수를 지정할 수 있습니다.
+Azure 리소스 관리자 템플릿 방식으로 toocreate 리소스의 여러 인스턴스가 여러 Nic를 만들 때 처럼 배포 하는 동안 제공 합니다. 리소스 관리자 템플릿을 선언적 JSON 파일 toodefine 환경의 사용 합니다. 자세한 내용은 [Azure Resource Manager 개요](../../azure-resource-manager/resource-group-overview.md)를 참조하세요. 사용할 수 있습니다 *복사* 인스턴스 toocreate toospecify hello 수:
 
 ```json
 "copy": {
@@ -227,7 +227,7 @@ Azure Resource Manager 템플릿은 여러 NIC를 만드는 것과 같이 배포
 
 자세한 내용은 [*copy*를 사용하여 여러 인스턴스 만들기](../../resource-group-create-multiple.md)를 참조하세요. 
 
-`copyIndex()`를 사용하여 리소스 이름에 숫자를 추가할 수도 있습니다. 그런 다음 *myNic1*, *MyNic2* 등을 만들 수 있습니다. 다음 코드는 인덱스 값을 추가하는 예를 보여 줍니다.
+사용할 수도 있습니다 `copyIndex()` tooappend 번호 tooa 리소스 이름입니다. 그런 다음 *myNic1*, *MyNic2* 등을 만들 수 있습니다. hello 다음 코드 예제를 hello 인덱스 값을 추가 합니다.
 
 ```json
 "name": "[concat('myNic', copyIndex())]", 
@@ -236,6 +236,6 @@ Azure Resource Manager 템플릿은 여러 NIC를 만드는 것과 같이 배포
 [Resource Manager 템플릿을 사용하여 여러 NIC 만들기](../../virtual-network/virtual-network-deploy-multinic-arm-template.md)의 전체 예제를 읽어볼 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-여러 NIC가 있는 VM을 만들 때 [Windows VM 크기](sizes.md)를 검토합니다. 각 VM 크기가 지원하는 NIC의 최대 수에 유의합니다. 
+검토 [Windows VM 크기](sizes.md) toocreate 여러 Nic가 VM을 시도 하는 경우. 주의 기울여야 toohello 최대 있는 Nic 수가 각 VM 크기를 지원 해야 합니다. 
 
 

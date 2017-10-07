@@ -1,6 +1,6 @@
 ---
-title: "Windows HPC 클러스터를 배포하기 위한 PowerShell 스크립트 | Microsoft Docs"
-description: "PowerShell 스크립트를 실행하여 Azure 가상 컴퓨터에 Windows HPC Pack 2012 R2 클러스터 배포"
+title: "aaaPowerShell 스크립트 toodeploy Windows HPC 클러스터 | Microsoft Docs"
+description: "Azure 가상 컴퓨터에서 PowerShell 스크립트 toodeploy Windows HPC Pack 2012 R2 클러스터를 실행 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
-ms.openlocfilehash: 85b125ab19671b61d2541af6378c95feb88bf952
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 10ce1e9bc4e98954b955549bd72aaaf6106c69fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-the-hpc-pack-iaas-deployment-script"></a>HPC Pack IaaS 배포 스크립트를 사용하여 Windows HPC(고성능 컴퓨팅) 클러스터 만들기
-HPC Pack IaaS 배포 PowerShell 스크립트를 실행하여 Azure 가상 컴퓨터에 완전한 Windows 워크로드용 HPC Pack 2012 R2 클러스터를 배포합니다. 클러스터는 Windows Server, Microsoft HPC 팩 및 지정한 추가 Windows 계산 리소스를 실행하는 Active Directory 가입 헤드 노드로 구성됩니다. Azure에서 Linux 워크로드용 HPC Pack 클러스터를 배포하려면 [HPC Pack IaaS 배포 스크립트를 사용하여 Linux HPC 클러스터 만들기](../../linux/classic/hpcpack-cluster-powershell-script.md)를 참조하세요. Azure 리소스 관리자 템플릿을 사용하여 HPC 팩 클러스터를 배포할 수도 있습니다. 예제는 [HPC 클러스터 만들기](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/) 및 [사용자 지정 계산 노드 이미지로 HPC 클러스터 만들기](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)를 참조하세요.
+# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-hello-hpc-pack-iaas-deployment-script"></a>Hello HPC Pack IaaS 배포 스크립트와 함께 Windows 고성능 HPC (컴퓨팅) 클러스터 만들기
+Azure 가상 컴퓨터의 hello HPC Pack IaaS 배포 PowerShell 스크립트 toodeploy Windows 작업에 대 한 전체 HPC Pack 2012 R2 클러스터를 실행 합니다. 추가 창 계산 지정한 리소스 및 Windows Server 및 Microsoft HPC Pack을 실행 하는 Active Directory에 가입 된 헤드 노드 hello 클러스터 구성 됩니다. Azure에서 HPC Pack 클러스터 toodeploy Linux 작업에 대 한 경우 참조 [HPC Pack IaaS 배포 스크립트 hello로 Linux HPC 클러스터 만들기](../../linux/classic/hpcpack-cluster-powershell-script.md)합니다. Azure 리소스 관리자 템플릿 toodeploy HPC Pack 클러스터를 사용할 수 있습니다. 예제는 [HPC 클러스터 만들기](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/) 및 [사용자 지정 계산 노드 이미지로 HPC 클러스터 만들기](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)를 참조하세요.
 
 > [!IMPORTANT] 
-> 이 문서에 설명된 PowerShell 스크립트는 클래식 배포 모델을 사용하여 Azure에 Microsoft HPC Pack 2012 R2 클러스터를 만듭니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다.
-> 또한 이 문서에 설명된 스크립트는 HPC Pack 2016을 지원하지 않습니다.
+> 이 문서에 설명 된 PowerShell 스크립트 hello hello 클래식 배포 모델을 사용 하 여 Azure에 Microsoft HPC Pack 2012 R2 클러스터를 만듭니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.
+> 또한이 문서에 설명 된 hello 스크립트는 HPC 팩 2016을 지원 하지 않습니다.
 
 [!INCLUDE [virtual-machines-common-classic-hpcpack-cluster-powershell-script](../../../../includes/virtual-machines-common-classic-hpcpack-cluster-powershell-script.md)]
 
 ## <a name="example-configuration-files"></a>예제 구성 파일
-다음 예제에서 구독 이름과 계정 및 서비스 이름을 고유한 값으로 대체합니다.
+Hello 다음 예제에서는 사용자 고유의 구독 Id에 대 한 값 또는 이름 및 hello 계정 및 서비스 이름을 대체 합니다.
 
 ### <a name="example-1"></a>예 1
-다음 구성 파일은 로컬 데이터베이스를 사용하는 1개 헤드 노드와 Windows Server 2012 R2 운영 체제를 실행하는 5개 계산 노드가 있는 HPC 팩 클러스터를 배포합니다. 모든 클라우드 서비스는 미국 서부 위치에서 직접 생성됩니다. 헤드 노드는 도메인 포리스트의 도메인 컨트롤러의 역할을 합니다.
+hello 다음 구성 파일 배포 로컬 데이터베이스가 있는 헤드 노드 및 hello Windows Server 2012 R2 운영 체제를 실행 하는 5 개의 계산 노드가 있는 HPC Pack 클러스터 됩니다. 모든 hello 클라우드 서비스는 hello West US 위치에 직접 생성 됩니다. 헤드 노드 hello hello 도메인 포리스트의 도메인 컨트롤러 역할을 합니다.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -71,8 +71,8 @@ HPC Pack IaaS 배포 PowerShell 스크립트를 실행하여 Azure 가상 컴퓨
 ```
 
 ### <a name="example-2"></a>예 2
-다음 구성 파일은 기존 도메인 포리스트에 HPC 팩 클러스터를 배포합니다. 클러스터에는 로컬 데이터베이스가 포함된 1개 헤드와 BGInfo VM 확장이 적용된 12개 계산 노드가 있습니다.
-도메인 포리스트의 모든 VM에 대해 Windows 업데이트 자동 설치를 사용하지 않습니다. 모든 클라우드 서비스는 동아시아 위치에서 직접 생성됩니다. 계산 노드는 3개 클라우드 서비스와 3개 저장소 계정에 생성됩니다(*MyHPCCNService01* 및 *mycnstorage01*에서 *MyHPCCN-0001* - *MyHPCCN-0005*, *MyHPCCNService02* 및 *mycnstorage02*에서 *MyHPCCN-0006* - *MyHPCCN0010*, *MyHPCCNService03* 및 *mycnstorage03*에서 *MyHPCCN-0011* - *MyHPCCN-0012*). 계산 노드는 계산 노드에서 캡처된 기존 개인 이미지에서 만들어집니다. 자동 증가 및 축소 서비스를 사용하며 기본 증가 및 축소 간격이 적용됩니다.
+다음 구성 파일 hello 기존 도메인 포리스트에 HPC Pack 클러스터를 배포 합니다. hello 클러스터에 로컬 데이터베이스가 있는 헤드 노드 1 및 계산 노드 VM BGInfo 확장이 적용 hello로 12입니다.
+Windows 업데이트 자동 설치는 모든 hello hello 도메인 포리스트에 Vm에 대 한 비활성화 됩니다. 모든 hello 클라우드 서비스는 동아시아 지역에 직접 생성 됩니다. hello 계산 노드는 3 개의 클라우드 서비스 및 3 개 저장소 계정에서 생성 됩니다: *MyHPCCN 0001* 너무*MyHPCCN 0005* 에 *MyHPCCNService01* 및  *mycnstorage01*; *MyHPCCN 0006* 너무*MyHPCCN0010* 에 *MyHPCCNService02* 및 *mycnstorage02*; 및  *MyHPCCN-0011* 너무*MyHPCCN 0012* 에 *MyHPCCNService03* 및 *mycnstorage03*). hello 계산 노드가 계산 노드에서 캡처된 기존 개인 이미지에서 만들어집니다. hello 자동 확장 및 축소 이며 기본값은 서비스를 사용 하는 확장 및 간격을 축소 합니다.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -135,7 +135,7 @@ HPC Pack IaaS 배포 PowerShell 스크립트를 실행하여 Azure 가상 컴퓨
 ```
 
 ### <a name="example-3"></a>예 3
-다음 구성 파일은 기존 도메인 포리스트에 HPC 팩 클러스터를 배포합니다. 클러스터에는 1개 헤드 노드, 500GB의 데이터 디스크가 포함된 1개 데이터베이스 서버, Windows Server 2012 R2 운영 체제를 실행하는 2개 broker 노드, Windows Server 2012 R2 운영 체제를 실행하는 5개 계산 노드가 포함되어 있습니다. 클라우드 서비스인 MyHPCCNService는 선호도 그룹 *MyIBAffinityGroup*에 만들어지며 기타 클라우드 서비스는 선호도 그룹 *MyAffinityGroup*에 만들어집니다. 헤드 노드에서 HPC 작업 스케줄러 REST API 및 HPC 웹 포털을 사용합니다.
+다음 구성 파일 hello 기존 도메인 포리스트에 HPC Pack 클러스터를 배포 합니다. hello 클러스터 hello Windows Server 2012 R2 운영 체제 및 hello Windows Server 2012 R2 운영 체제를 실행 하는 5 개의 계산 노드를 실행 하는 두 개의 브로커 노드 하나 헤드 노드, 500GB 데이터 디스크와 데이터베이스 서버를 하나 포함 됩니다. 클라우드 서비스 MyHPCCNService hello 선호도 그룹에서 생성 된 hello *MyIBAffinityGroup*, hello 다른 클라우드 서비스에서에서 만들어진 hello 선호도 그룹 및 *MyAffinityGroup*합니다. hello HPC 작업 스케줄러 REST API 및 HPC 웹 포털은 헤드 노드 hello에 활성화 됩니다.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -190,7 +190,7 @@ HPC Pack IaaS 배포 PowerShell 스크립트를 실행하여 Azure 가상 컴퓨
 
 
 ### <a name="example-4"></a>예제 4
-다음 구성 파일은 기존 도메인 포리스트에 HPC 팩 클러스터를 배포합니다. 클러스터에는 로컬 데이터베이스를 사용하는 2개 헤드 노드가 포함되어 있으며, 2개 Azure 노드 템플릿이 만들어지고, Azure 노드 템플릿 *AzureTemplate1*에 대해 3개 중간 크기 Azure 노드가 만들어집니다. 헤드 노드가 구성된 다음 헤드 노드에 스크립트 파일이 실행됩니다.
+다음 구성 파일 hello 기존 도메인 포리스트에 HPC Pack 클러스터를 배포 합니다. hello 클러스터에 로컬 데이터베이스가 있는 헤드 노드를 두 개, 두 개의 Azure 노드 템플릿을 만들고 Azure 노드 템플릿에 대 한 세 가지 크기 보통 Azure 노드가 만들어집니다 *AzureTemplate1*합니다. Hello 헤드 노드를 구성한 후 hello 헤드 노드에서 스크립트 파일을 실행 합니다.
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -257,19 +257,19 @@ HPC Pack IaaS 배포 PowerShell 스크립트를 실행하여 Azure 가상 컴퓨
 ```
 
 ## <a name="troubleshooting"></a>문제 해결
-* **"VNet이 없음" 오류** - 스크립트를 실행하여 하나의 구독으로 Azure에 여러 클러스터를 배포할 경우 하나 이상의 배포가 실패하고 "VNet *VNet\_Name* 없음" 오류가 표시됩니다.
-  이 오류가 발생할 경우 실패한 배포에 대해 스크립트를 다시 실행합니다.
-* **Azure 가상 네트워크에서 인터넷에 액세스할 수 없는 문제** - 배포 스크립트를 사용하여 새 도메인 컨트롤러로 클러스터를 만들거나 헤드 노드 VM을 도메인 컨트롤러로 수동으로 승격할 경우 VM에서 인터넷으로 연결할 때 문제가 발생할 수 있습니다. 이러한 문제는 전달자 DNS 서버가 도메인 컨트롤러에 자동으로 구성되어 있고 이 전달자 DNS 서버가 올바르게 확인되지 않을 경우 발생할 수 있습니다.
+* **"VNet 존재 하지 않습니다." 오류** -하나 이상의 배포를 실행 하면 hello 스크립트 toodeploy 여러 클러스터 Azure에서 동시에 하나의 구독으로 hello 오류가 발생할 수 있습니다 "VNet *VNet\_이름* 하지 않습니다 "존재 합니다.
+  이 오류가 발생 하면 실패 하는 hello 배포에 대 한 다시 hello 스크립트를 실행 합니다.
+* **Hello Azure 가상 네트워크에서에서 인터넷 hello 문제 액세스** -hello 배포 스크립트를 사용 하 여 새 도메인 컨트롤러를 가진 클러스터를 만들 또는 수동으로 헤드 노드 VM toodomain 컨트롤러를 승격 하 고, 문제가 발생할 수 있습니다 하는 경우 hello Vm toohello 인터넷 연결을 연결합니다. 이 문제는 전달자 DNS 서버가 hello 도메인 컨트롤러에서 자동으로 구성 되 고이 전달자 DNS 서버가 제대로 확인 되지 않습니다 발생할 수 있습니다.
   
-    이 문제를 해결하려면 도메인 컨트롤러에 로그인하고 전달자 구성 설정을 제거하거나 유효한 전달자 DNS 서버를 구성합니다. 이 설정을 구성하려면 서버 관리자에서 **도구** >
-    **DNS**를 클릭하여 DNS 관리자를 연 다음 **전달자**를 두 번 클릭합니다.
-* **계산 집약적 VM에서 RDMA 네트워크에 액세스하지 못하는 문제** - RDMA 지원 크기(예: A8 또는 A9)를 사용하여 Windows Server 계산 노드 또는 broker 노드 VM를 추가할 경우 이러한 VM에서 RDMA 응용 프로그램 네트워크에 연결하지 못하는 문제가 발생할 수 있습니다. 이러한 문제가 발생하는 원인 중 하나는 클러스터에 VM을 추가할 때 HpcVmDrivers 확장이 올바르게 설치되지 않았기 때문일 수 있습니다. 예를 들어 확장이 설치 상태에서 정지할 수 있습니다.
+    이 문제를 해결 toowork toohello 도메인 컨트롤러와 제거 hello 전달자 구성 설정 하거나 로그온 하거나 유효한 전달자 DNS 서버를 구성 합니다. 서버 관리자에서이 설정을 클릭 tooconfigure **도구** >
+    **DNS** tooopen DNS 관리자를 두 번 클릭 하 고 **전달자**합니다.
+* **계산 집약적인 Vm에서 RDMA 네트워크에 액세스 하는 문제** -Windows Server 계산을 추가 또는 A8 또는 A9 등 브로커 노드는 RDMA 가능을 사용 하 여 Vm 크기, 이러한 Vm toohello RDMA 응용 프로그램 네트워크 연결 문제가 발생할 수 있습니다 하는 경우. 이 문제가 발생 하는 한 가지 이유는 경우 hello HpcVmDrivers 확장이 제대로 설치 되지 않았습니다 hello Vm이 toohello 클러스터를 추가 하는 경우. 예를 들어 확장 상태를 설치 하는 hello 멈춰 있을 수 있습니다.
   
-    이 문제를 해결하려면 가장 먼저 VM에서 확장 상태를 확인합니다. 확장이 올바르게 설치되지 않은 경우 HPC 클러스터에서 노드를 제거한 다음 노드를 다시 추가해 보십시오. 예를 들어 헤드 노드에서 Add-HpcIaaSNode.ps1 스크립트를 실행하여 계산 노드 VM을 추가할 수 있습니다.
+    toowork 첫 번째 hello Vm에서 hello 확장의 hello 상태 확인이이 문제를 해결 합니다. Hello 확장이 제대로 설치 되지 않은 경우 hello 노드 hello HPC 클러스터에서 제거를 시도 하 고 hello 노드를 다시 추가 하십시오. 예를 들어 hello 헤드 노드에서 hello Add-hpciaasnode.ps1 스크립트를 실행 하 여 계산 노드 Vm을 추가할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 클러스터에서 테스트 워크로드를 실행합니다. 예를 보려면 HPC 팩 [시작하기 가이드](https://technet.microsoft.com/library/jj884144)를 참조하세요.
-* 클러스터 배포를 스크립트로 작성하고 HPC 워크로드를 실행하는 자습서를 보려면 [Azure에서 Excel 및 SOA 워크로드를 실행할 HPC Pack 클러스터 시작하기](../../virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요.
-* 사용자가 만든 클러스터에서 계산 노드를 시작, 중지, 추가, 제거하는 HPC 팩의 도구. [Azure에서 HPC Pack 클러스터의 계산 노드 관리](hpcpack-cluster-node-manage.md)를 참조하세요.
-* 로컬 컴퓨터에서 클러스터에 작업 제출을 시작하려면 [온-프레미스 컴퓨터에서 Azure의 HPC 팩 클러스터로 HPC 작업 제출](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조합니다.
+* Hello 클러스터에서 테스트 작업을 실행 해 보십시오. 예를 들어 hello HPC Pack을 참조 하십시오. [시작 가이드](https://technet.microsoft.com/library/jj884144)합니다.
+* 자습서 tooscript hello 클러스터 배포를 실행 하는 HPC 작업에 대 한 참조 [Azure toorun Excel 및 SOA 작업에서 HPC Pack 클러스터 시작](../../virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
+* HPC Pack 도구 toostart 시도, 중지, 추가 및 만들면 클러스터에서 계산 노드를 제거 합니다. [Azure에서 HPC Pack 클러스터의 계산 노드 관리](hpcpack-cluster-node-manage.md)를 참조하세요.
+* 로컬 컴퓨터에서 toosubmit 작업 toohello 클러스터를 설정 하는 tooget 참조 [제출 HPC 작업은 온-프레미스 컴퓨터 tooan HPC Pack에서에서 Azure에 있는 클러스터](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
 

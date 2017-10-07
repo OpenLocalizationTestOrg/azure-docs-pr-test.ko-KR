@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 확장 집합 템플릿을 변환하여 관리되는 디스크 사용 | Microsoft Docs"
-description: "확장 집합 템플릿을 변환하여 관리되는 디스크 확장 집합 템플릿을 사용합니다."
+title: "Azure 리소스 관리자 범위로 aaaConvert 설정 템플릿 toouse 관리 되는 디스크 | Microsoft Docs"
+description: "눈금 집합 템플릿 tooa 관리 되는 디스크 크기 조정 집합 서식 파일의 변환 합니다."
 keywords: "가상 컴퓨터 확장 집합"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -16,19 +16,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 5/18/2017
 ms.author: negat
-ms.openlocfilehash: 2f5cb85703888c5056611d466f508547ee72e44b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 66c2217647e57ed2cfa39660c0175710ae2e63be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-a-scale-set-template-to-a-managed-disk-scale-set-template"></a>확장 집합 템플릿을 변환하여 관리되는 디스크 확장 집합 템플릿 사용
+# <a name="convert-a-scale-set-template-tooa-managed-disk-scale-set-template"></a>눈금 집합 템플릿 tooa 관리 되는 디스크 크기 조정 설정 서식 파일의 변환
 
-확장 집합을 만드는 데 관리되는 디스크를 사용하지 않고 Resource Manager 템플릿을 사용하는 고객은 관리되는 디스크를 사용하도록 수정하려고 할 수 있습니다. 이 문서에서는 샘플 Resource Manager 템플릿용 커뮤니티 중심 리포지토리 [Azure 빠른 시작 템플릿](https://github.com/Azure/azure-quickstart-templates)에서 끌어오기 요청을 예로 사용하여 이를 수행하는 방법을 보여 줍니다. 전체 끌어오기 요청은 [https://github.com/Azure/azure-quickstart-templates/pull/2998](https://github.com/Azure/azure-quickstart-templates/pull/2998)에서 찾을 수 있으며 diff의 관련 부분은 설명과 함께 아래에 있습니다.
+크기는 관리 되는 디스크를 사용 하지 집합을 만들기 위한 리소스 관리자 템플릿 사용 하 여 고객 toomodify 것이 좋을 것 toouse 디스크를 관리 합니다. 이 문서에서는 어떻게 toodo를 사용 하 여이 예를 들어 hello에서 끌어오기 요청을 [Azure 빠른 시작 템플릿](https://github.com/Azure/azure-quickstart-templates), 리소스 관리자 템플릿 샘플에 대 한 커뮤니티 기반 리 포 합니다. hello 전체 끌어오기 요청이 여기에 표시 될 수 있습니다: [https://github.com/Azure/azure-quickstart-templates/pull/2998](https://github.com/Azure/azure-quickstart-templates/pull/2998), 되며 hello 차이의 관련 부분 hello 아래 설명과 함께:
 
-## <a name="making-the-os-disks-managed"></a>관리되는 OS 디스크 만들기
+## <a name="making-hello-os-disks-managed"></a>관리 되는 hello OS 디스크 만들기
 
-아래 diff에서 저장소 계정 및 디스크 속성에 관련된 몇 가지 변수를 제거한 것을 볼 수 있습니다. 저장소 계정 유형은 더 이상 필요하지 않지만(Standard_LRS가 기본값) 원하는 경우 여전히 지정할 수 있었습니다. Standard_LRS 및 Premium_LRS는 관리되는 디스크로만 지원됩니다. 새 저장소 계정 접미사, 고유 문자열 배열 및 sa 수는 저장소 계정 이름을 생성하는 기존 템플릿에 사용되었습니다. 관리되는 디스크는 고객을 대신하여 저장소 계정을 자동으로 만들기 때문에 이러한 변수는 새 템플릿에 더 이상 필요하지 않습니다. 마찬가지로 관리되는 디스크는 기본 저장소 Blob 컨테이너 및 디스크의 이름을 자동으로 지정하므로 vhd 컨테이너 이름 및 os 디스크 이름은 더 이상 필요하지 않습니다.
+Hello diff 아래, 몇 가지 변수 관련된 toostorage 계정 및 디스크 속성 제거는 알 수 있습니다. 저장소 계정 유형은 필요 하지 않습니다 (Standard_LRS는 hello 기본값)에서는 여전히 지정 하기 위해 경우 수 없습니다. Standard_LRS 및 Premium_LRS는 관리되는 디스크로만 지원됩니다. 새 저장소 계정 접미사, 고유 문자열 배열 및 sa 수는 hello 이전 템플릿 toogenerate 저장소 계정 이름에 사용 되었습니다. 이러한 변수는 관리 되는 디스크 hello 고객의를 대신 하 여 저장소 계정을 자동으로 만들기 때문에 더 이상 hello 새 서식 파일에 필요 합니다. 마찬가지로, vhd 컨테이너 이름 및 os 디스크 이름은 더 이상 필요 하므로 저장소 blob 컨테이너를 원본으로 사용 하는 hello 및 디스크에 자동으로 관리 되는 디스크 이름을 합니다.
 
 ```diff
    "variables": {
@@ -52,7 +52,7 @@ ms.lasthandoff: 07/11/2017
 ```
 
 
-아래 diff에서 계산 api 버전을 확장 집합이 지원되는 관리되는 디스크에 필요한 가장 오래된 버전인 2016-04-30-미리 보기로 업데이트한 것을 볼 수 있습니다. 원하는 경우 기존 구문을 사용하여 새 api 버전에서 관리되지 않는 디스크를 여전히 사용할 수 있었습니다. 즉, 계산 api 버전만을 업데이트하고 다른 내용을 변경하지 않는 경우 템플릿은 이전처럼 계속해서 작동해야 합니다.
+에서는 아래 hello diff 참조 hello로 업데이트 되었습니다을 계산할 수 api 버전 too2016-04-30-미리 보기, hello 가장 먼저 필요한 버전 크기 집합을 사용 하 여 관리 되는 디스크 지원 합니다. 에서는 사용할 수 있다는 여전히 관리 되지 않는 디스크 hello hello 오래 된 구문 사용 하 여 새 api 버전에 필요한 경우 note 합니다. 즉,만 업데이트 하는 경우 hello api 버전을 계산 하 고 어떤 항목도 변경 하지 않습니다, 그리고 hello 템플릿 앞으로 toowork 계속 해야 합니다.
 
 ```diff
 @@ -86,7 +74,7 @@
@@ -66,7 +66,7 @@ ms.lasthandoff: 07/11/2017
    },
 ```
 
-아래 diff에서 저장소 계정 리소스를 리소스 배열에서 완전히 제거하고 있는 것을 볼 수 있습니다. 관리되는 디스크는 대신해서 이를 자동으로 만들기 때문에 저장소 계정 리소스는 더 이상 필요하지 않습니다.
+Hello diff 아래, 있는지 제거 hello 저장소 계정 리소스 hello 리소스 배열에서 완전히 알 수 있습니다. 관리되는 디스크는 대신해서 이를 자동으로 만들기 때문에 저장소 계정 리소스는 더 이상 필요하지 않습니다.
 
 ```diff
 @@ -113,19 +101,6 @@
@@ -91,7 +91,7 @@ ms.lasthandoff: 07/11/2017
        "location": "[resourceGroup().location]",
 ```
 
-아래 diff에서 확장 집합에서 저장소 계정을 만들고 있던 루프까지를 참조하는 절에 따라 제거하고 있는 것을 볼 수 있습니다. 기존 템플릿에서 확장 집합이 만들기를 시작하기 전에 저장소 계정이 만들어졌던 것을 보장했지만 이 절은 관리되는 디스크에서 더 이상 필요하지 않습니다. 또한 vhd 컨테이너 속성 및 os 디스크 이름 속성은 관리되는 디스크에 의해 내부에서 자동으로 처리되므로 해당 속성을 제거합니다. 원하는 경우 프리미엄 OS 디스크를 원하면 "osDisk" 구성에 `"managedDisk": { "storageAccountType": "Premium_LRS" }`를 추가할 수 있었습니다. VM sku의 대문자 또는 소문자 ‘s’를 사용하는 VM만 프리미엄 디스크를 사용할 수 있습니다.
+에서는 아래 hello diff 수 참조 hello 제거 하는 것에 비례 저장소 계정 만들기가 하는 hello 눈금 집합 toohello 루프에서 참조 하는 절. Hello 이전 템플릿을 hello 크기 집합 만들기를 시작 하지만이 절은 더 이상 필요 없으며 관리 되는 디스크 전에 hello 저장소 계정이 생성 된 확인 된이입니다. 또한 hello vhd 컨테이너 속성을 제거 하 고 관리 되는 디스크에 의해 hello 내부적 이러한 속성은 자동으로 처리 하는 대로 os 디스크 이름 속성을 hello 합니다. 추가할 수 있으면 म 싶 었 거 나, `"managedDisk": { "storageAccountType": "Premium_LRS" }` hello "osDisk" 구성 프리미엄 OS 디스크 려 하는 경우에 합니다. Vm을 대문자 또는 소문자의 ' hello VM sku 프리미엄 디스크를 사용할 수 있습니다.
 
 ```diff
 @@ -183,7 +158,6 @@
@@ -120,12 +120,12 @@ ms.lasthandoff: 07/11/2017
 
 ```
 
-확장 집합 구성에는 관리되거나 관리되지 않는 디스크를 사용할 것인지에 대한 명시적 속성이 없습니다. 확장 집합은 저장소 프로필에 있는 속성에 따라 사용할 것을 파악합니다. 따라서 올바른 속성이 확장 집합의 저장소 프로필에 있도록 템플릿을 수정하는 경우 중요합니다.
+Hello 눈금 toouse 관리 여부 또는 관리 되지 않는 디스크에 대 한 구성 설정에에서 명시적 속성이 없습니다. hello 크기 집합 hello 저장소 프로필에 있는 hello 속성에 따라 어떤 toouse를 알고 있습니다. 즉, 중요 한 hello 템플릿 tooensure hello 크기 집합의 hello 저장소 프로필에 있는 hello 권한 속성을 수정 하는 경우.
 
 
 ## <a name="data-disks"></a>데이터 디스크
 
-위의 변경 내용으로 확장 집합은 OS 디스크에 관리되는 디스크를 사용하지만 데이터 디스크의 경우는 어떻습니까? 데이터 디스크를 추가하려면 "osDisk"와 같은 수준인 "storageProfile" 아래에 "dataDisks" 속성을 추가합니다. 속성의 값은 다음 예제와 같이 개체의 JSON 목록이며 각각에는 "lun"(VM에서 데이터 디스크마다 고유해야 함), "createOption"("empty"는 현재 지원되는 유일한 옵션임) 및 "diskSizeGB"(기가바이트 단위의 디스크 크기, 0보다 크고 1024보다 작아야 함) 속성이 있습니다. 
+위의 hello 변화를 통해 hello 눈금 집합 사용 하 여 관리 하는 디스크 hello 운영 체제에 대 한 디스크에 데이터 디스크에 대 한 제공 하기는 하지만? tooadd 데이터 디스크 "osDisk"로 수준 동일 hello에 "storageProfile" hello "dataDisks" 속성을 추가 합니다. hello hello 속성의 값은 JSON 목록 개체의 속성 "lun" (VM에 데이터 디스크 마다 고유 해야 함)에 각각 "createOption" ("empty"는 현재 hello 지원 되는 옵션에만), 및 "diskSizeGB" ((기가바이트)에서 hello 디스크의 크기를 hello 여야 합니다. 0 보다 크고 1024 미만의) hello 다음 예제 에서처럼에서: 
 
 ```
 "dataDisks": [
@@ -137,13 +137,13 @@ ms.lasthandoff: 07/11/2017
 ]
 ```
 
-이 배열에 `n`개의 디스크를 지정하는 경우 확장 집합의 각 VM은 `n`개의 데이터 디스크를 가져옵니다. 그러나 이러한 데이터 디스크는 원시 장치입니다. 포맷되지 않습니다. 사용하기 전에 디스크를 연결, 파티션 및 포맷하는 고객에게 달려 있습니다. 필요에 따라 각 데이터 디스크 개체에 `"managedDisk": { "storageAccountType": "Premium_LRS" }`를 지정하여 프리미엄 데이터 디스크가 되어야 하도록 지정할 수도 있습니다. VM sku의 대문자 또는 소문자 ‘s’를 사용하는 VM만 프리미엄 디스크를 사용할 수 있습니다.
+지정 하는 경우 `n` 이 배열에 있는 디스크 hello 규모에 맞게 각 VM 집합 가져옵니다 `n` 데이터 디스크가 있습니다. 그러나 이러한 데이터 디스크는 원시 장치입니다. 포맷되지 않습니다. 사용 하기 전에 이러한 toohello 고객 tooattach, paritition, 및 형식 hello 디스크를 됩니다. 필요에 따라 우리 지정할 수도 `"managedDisk": { "storageAccountType": "Premium_LRS" }` 데이터 디스크를 프리미엄 되도록 각 데이터 디스크 개체 toospecify에 있습니다. Vm을 대문자 또는 소문자의 ' hello VM sku 프리미엄 디스크를 사용할 수 있습니다.
 
-확장 집합으로 데이터 디스크 사용에 대한 자세한 내용은 [이 문서](./virtual-machine-scale-sets-attached-disks.md)를 참조하세요.
+크기 집합에 데이터 디스크 사용에 대 한 더 toolearn 참조 [이 여기서](./virtual-machine-scale-sets-attached-disks.md)합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
-확장 집합을 사용하는 예제 리소스 관리자 템플릿은 [Azure 빠른 시작 템플릿 github 리포지토리](https://github.com/Azure/azure-quickstart-templates)에서 "vmss"를 검색하세요.
+Hello에 크기 집합을 사용 하 여 리소스 관리자 템플릿을 "vmss"에 대 한 예를 들어 검색 [Azure 빠른 시작 템플릿 github 리포지토리](https://github.com/Azure/azure-quickstart-templates)합니다.
 
-일반적인 정보는 [확장 집합에 대한 주 방문 페이지](https://azure.microsoft.com/services/virtual-machine-scale-sets/)를 확인하세요.
+일반 정보에 대 한 체크 아웃 hello [크기 집합에 대 한 기본 방문 페이지](https://azure.microsoft.com/services/virtual-machine-scale-sets/)합니다.
 
