@@ -7,8 +7,8 @@
 ## [컨테이너](../../virtual-machines-windows-containers.md)
 
 # 시작
-## [포털을 사용하여 VM 만들기](tutorial.md)
-## [VM에 로그온](connect-logon.md)
+## [Hello 포털을 사용 하 여 VM 만들기](tutorial.md)
+## [Tooa VM에 로그온](connect-logon.md)
 ## [Azure PowerShell 설치](/powershell/azure/overview)
 ## [Azure CLI 설치](../../../cli-install-nodejs.md)
 
@@ -20,9 +20,9 @@
 ### [D:를 데이터 디스크로 사용](../../virtual-machines-windows-change-drive-letter.md)
 
 ## 네트워크
-### [끝점을 설정하는 방법](setup-endpoints.md)
+### [어떻게 tooset 끝점을](setup-endpoints.md)
 ### [VM을 VNet 또는 클라우드 서비스와 연결](connect-vms.md)
-### [리소스 관리자 VNet에 클래식 VNet 연결](../../../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
+### [클래식 Vnet tooResource 관리자 Vnet 연결](../../../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
 ### [부하 분산 장치 만들기](../../../load-balancer/load-balancer-get-started-internet-classic-portal.md)
 ### [Azure PowerShell을 사용하여 NSG 관리](../../../virtual-network/virtual-networks-create-nsg-classic-ps.md)
 
@@ -38,17 +38,17 @@
 ### [Django Hello World 웹 응용 프로그램](python-django-web-app.md)
 
 ## 구성
-### [암호 또는 원격 데스크톱 서비스 다시 설정](../../virtual-machines-windows-reset-rdp.md)
+### [암호 또는 hello 원격 데스크톱 서비스를 다시 설정](../../virtual-machines-windows-reset-rdp.md)
 ### [Symantec Endpoint Protection 설치 및 구성](install-symantec.md)
 ### [Trend Micro Deep Security를 서비스로 설치 및 구성](install-trend.md)
 ### [가용성 집합 구성](configure-availability.md)
-### [클래식 배포 모델에서 만든 Windows VM 크기 조정](resize-vm.md)
+### [Hello 클래식 배포 모델에서 만든 Windows VM의 크기를 조정합니다](resize-vm.md)
 ### [유지 관리](planned-maintenance-schedule.md)
 
 ## 관리
-### [클래식에서 Resource Manager로 마이그레이션](../../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
+### [클래식 tooResource 관리자에서 마이그레이션](../../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 ### [Azure PowerShell을 사용하여 VM 관리](manage-psh.md)
-### [VM 에이전트 및 확장 정보](agents-and-extensions.md)
+### [Hello VM 에이전트 및 확장에 대 한](agents-and-extensions.md)
 ### [VM 확장 관리](manage-extensions.md)
 ### [VM용 사용자 지정 스크립트 확장](extensions-customscript.md)
 ### [Azure VM에 사용자 지정 데이터 삽입](inject-custom-data.md)
@@ -64,10 +64,10 @@
 #### [리소스 자동 확장](hpcpack-cluster-node-autogrowshrink.md)
 #### [계산 노드 관리](hpcpack-cluster-node-manage.md)
 #### [클러스터 만들기](hpcpack-cluster-powershell-script.md)
-#### [MPI 응용 프로그램을 실행하도록 클러스터 설정](hpcpack-rdma-cluster.md)
+#### [클러스터 toorun MPI 응용 프로그램 설정](hpcpack-rdma-cluster.md)
 #### [Excel 및 SOA 작업 실행](../../virtual-machines-windows-excel-cluster-hpcpack.md)
-#### [마켓플레이스 이미지로 헤드 노드 만들기](../../virtual-machines-windows-hpcpack-cluster-headnode.md)
-#### [온-프레미스에서 Azure로 작업 제출](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
+#### [마켓플레이스 이미지 hello 헤드 노드 만들기](../../virtual-machines-windows-hpcpack-cluster-headnode.md)
+#### [온-프레미스 tooAzure에서 작업 제출](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
 ### [MongoDB](install-mongodb.md)
 ### [MySQL](mysql-2008r2.md)
 ### [Oracle](../../workloads/oracle/oracle-considerations.md)
@@ -78,11 +78,11 @@
 ## 문제 해결
 ### [원격 데스크톱 연결](../../virtual-machines-windows-troubleshoot-rdp-connection.md)
 ####[원격 데스크톱 연결 문제의 자세한 문제 해결 단계](../../virtual-machines-windows-detailed-troubleshoot-rdp.md)
-### [응용 프로그램에 액세스](../../virtual-machines-windows-troubleshoot-app-connection.md)
+### [Access tooan 응용 프로그램](../../virtual-machines-windows-troubleshoot-app-connection.md)
 ### [새 VM 생성 관련 클래식 배포 문제](troubleshoot-deployment-new-vm.md)
 ### [기존 VM 재시작 또는 크기 조정 관련 클래식 배포 문제](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 ### [RDP 암호 재설정](reset-rdp.md)
-### [VM 문제 해결에 가상 하드 디스크 연결](troubleshoot-recovery-disks-portal.md)
+### [가상 하드 디스크 tootroubleshooting VM 연결](troubleshoot-recovery-disks-portal.md)
 
 # 참조
 ## [PowerShell](/powershell/azure/overview)

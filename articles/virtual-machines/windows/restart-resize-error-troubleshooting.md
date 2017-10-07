@@ -1,5 +1,5 @@
 ---
-title: "Azure의 VM 재시작 또는 크기 조정 문제 | Microsoft Docs"
+title: "Azure에서 다시 시작 하거나 크기를 조정할 aaaVM 발급 | Microsoft Docs"
 description: "Azure의 기존 Windows 가상 컴퓨터 재시작 또는 크기 조정 관련 Resource Manager 배포 문제 해결"
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: 
@@ -16,53 +16,53 @@ ms.workload: required
 ms.date: 06/13/2017
 ms.author: delhan
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 078c4666f047604b1732e828d27e7e26383aa616
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2cf7c2d19bf5f79fab4ffc0eff9ccc1182d601c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-deployment-issues-with-restarting-or-resizing-an-existing-windows-vm-in-azure"></a><span data-ttu-id="55799-103">Azure에서 기존 Windows VM 재시작 또는 크기 조정 관련 배포 문제 해결</span><span class="sxs-lookup"><span data-stu-id="55799-103">Troubleshoot deployment issues with restarting or resizing an existing Windows VM in Azure</span></span>
-<span data-ttu-id="55799-104">중지된 Azure 가상 컴퓨터(VM)를 시작하거나, 기존 Azure AM의 크기를 조정하려다 접하는 일반적인 오류는 할당 오류입니다.</span><span class="sxs-lookup"><span data-stu-id="55799-104">When you try to start a stopped Azure Virtual Machine (VM), or resize an existing Azure VM, the common error you encounter is an allocation failure.</span></span> <span data-ttu-id="55799-105">이런 오류는 클러스터나 지역에 사용할 수 있는 리소스가 없거나 요청한 VM 크기를 지원할 수 없을 때 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-105">This error results when the cluster or region either does not have resources available or cannot support the requested VM size.</span></span>
+# <a name="troubleshoot-deployment-issues-with-restarting-or-resizing-an-existing-windows-vm-in-azure"></a><span data-ttu-id="e0175-103">Azure에서 기존 Windows VM 재시작 또는 크기 조정 관련 배포 문제 해결</span><span class="sxs-lookup"><span data-stu-id="e0175-103">Troubleshoot deployment issues with restarting or resizing an existing Windows VM in Azure</span></span>
+<span data-ttu-id="e0175-104">Toostart 중지 된 Azure 가상 컴퓨터 (VM)를 시도 하거나 기존 Azure VM의 크기를 조정할 때 발생 하는 hello 일반적인 오류는 할당 오류입니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-104">When you try toostart a stopped Azure Virtual Machine (VM), or resize an existing Azure VM, hello common error you encounter is an allocation failure.</span></span> <span data-ttu-id="e0175-105">이 오류는 hello 클러스터 또는 지역 중 하나에 없는 사용 가능한 리소스 또는 없습니다 지원 hello v M 크기를 요청 하는 경우에 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-105">This error results when hello cluster or region either does not have resources available or cannot support hello requested VM size.</span></span>
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
 
-## <a name="collect-activity-logs"></a><span data-ttu-id="55799-106">활동 로그 선택</span><span class="sxs-lookup"><span data-stu-id="55799-106">Collect activity logs</span></span>
-<span data-ttu-id="55799-107">문제 해결을 시작하려면 문제와 관련된 오류를 파악하기 위해 활동 로그를 수집합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-107">To start troubleshooting, collect the activity logs to identify the error associated with the issue.</span></span> <span data-ttu-id="55799-108">다음 링크에는 프로세스에 대한 자세한 내용이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55799-108">The following links contain detailed information on the process:</span></span>
+## <a name="collect-activity-logs"></a><span data-ttu-id="e0175-106">활동 로그 선택</span><span class="sxs-lookup"><span data-stu-id="e0175-106">Collect activity logs</span></span>
+<span data-ttu-id="e0175-107">문제 해결, toostart 수집 hello 활동 hello 문제와 연결 된 tooidentify hello 오류를 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-107">toostart troubleshooting, collect hello activity logs tooidentify hello error associated with hello issue.</span></span> <span data-ttu-id="e0175-108">hello 프로세스에 대 한 자세한 정보를 포함 하는 링크를 따라 hello:</span><span class="sxs-lookup"><span data-stu-id="e0175-108">hello following links contain detailed information on hello process:</span></span>
 
-[<span data-ttu-id="55799-109">배포 작업 보기</span><span class="sxs-lookup"><span data-stu-id="55799-109">View deployment operations</span></span>](../../azure-resource-manager/resource-manager-deployment-operations.md)
+[<span data-ttu-id="e0175-109">배포 작업 보기</span><span class="sxs-lookup"><span data-stu-id="e0175-109">View deployment operations</span></span>](../../azure-resource-manager/resource-manager-deployment-operations.md)
 
-[<span data-ttu-id="55799-110">활동 로그를 보고 Azure 리소스 관리</span><span class="sxs-lookup"><span data-stu-id="55799-110">View activity logs to manage Azure resources</span></span>](../../resource-group-audit.md)
+[<span data-ttu-id="e0175-110">Azure 활동 로그 toomanage 보기 리소스</span><span class="sxs-lookup"><span data-stu-id="e0175-110">View activity logs toomanage Azure resources</span></span>](../../resource-group-audit.md)
 
-## <a name="issue-error-when-starting-a-stopped-vm"></a><span data-ttu-id="55799-111">문제: 중지된 VM 시작 시 오류</span><span class="sxs-lookup"><span data-stu-id="55799-111">Issue: Error when starting a stopped VM</span></span>
-<span data-ttu-id="55799-112">중지된 VM을 시작하려는데 할당 오류가 발생했습니다.</span><span class="sxs-lookup"><span data-stu-id="55799-112">You try to start a stopped VM but get an allocation failure.</span></span>
+## <a name="issue-error-when-starting-a-stopped-vm"></a><span data-ttu-id="e0175-111">문제: 중지된 VM 시작 시 오류</span><span class="sxs-lookup"><span data-stu-id="e0175-111">Issue: Error when starting a stopped VM</span></span>
+<span data-ttu-id="e0175-112">Toostart 중지 된 VM을 시도 하지만 할당에 실패 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-112">You try toostart a stopped VM but get an allocation failure.</span></span>
 
-### <a name="cause"></a><span data-ttu-id="55799-113">원인</span><span class="sxs-lookup"><span data-stu-id="55799-113">Cause</span></span>
-<span data-ttu-id="55799-114">중지된 VM을 시작하기 위한 요청은 클라우드 서비스를 호스트하는 원본 클러스터에서 시도되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-114">The request to start the stopped VM has to be attempted at the original cluster that hosts the cloud service.</span></span> <span data-ttu-id="55799-115">하지만, 클러스터에 요청을 수행하는 데 사용할 여유 공간이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="55799-115">However, the cluster does not have free space available to fulfill the request.</span></span>
+### <a name="cause"></a><span data-ttu-id="e0175-113">원인</span><span class="sxs-lookup"><span data-stu-id="e0175-113">Cause</span></span>
+<span data-ttu-id="e0175-114">toostart hello VM을 중지 하는 hello 요청에 toobe hello 클라우드 서비스를 호스팅하는 hello 원본 클러스터에 시도 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-114">hello request toostart hello stopped VM has toobe attempted at hello original cluster that hosts hello cloud service.</span></span> <span data-ttu-id="e0175-115">그러나 hello 클러스터 여유 공간이 사용 가능한 toofulfill hello 요청은 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-115">However, hello cluster does not have free space available toofulfill hello request.</span></span>
 
-### <a name="resolution"></a><span data-ttu-id="55799-116">해결 방법</span><span class="sxs-lookup"><span data-stu-id="55799-116">Resolution</span></span>
-* <span data-ttu-id="55799-117">가용성 집합의 VM을 모두 중지하고 각각의 VM을 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-117">Stop all the VMs in the availability set, and then restart each VM.</span></span>
+### <a name="resolution"></a><span data-ttu-id="e0175-116">해결 방법</span><span class="sxs-lookup"><span data-stu-id="e0175-116">Resolution</span></span>
+* <span data-ttu-id="e0175-117">모든 hello hello 가용성의 Vm을 설정 하 고 각 VM을 다시 중지 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-117">Stop all hello VMs in hello availability set, and then restart each VM.</span></span>
   
-  1. <span data-ttu-id="55799-118">**리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-118">Click **Resource groups** > *your resource group* > **Resources** > *your availability set* > **Virtual Machines** > *your virtual machine* > **Stop**.</span></span>
-  2. <span data-ttu-id="55799-119">VM을 모두 중지한 후에, 중지된 각각의 VM을 선택하고 시작을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-119">After all the VMs stop, select each of the stopped VMs and click Start.</span></span>
-* <span data-ttu-id="55799-120">나중에 다시 시작 요청을 다시 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-120">Retry the restart request at a later time.</span></span>
+  1. <span data-ttu-id="e0175-118">**리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-118">Click **Resource groups** > *your resource group* > **Resources** > *your availability set* > **Virtual Machines** > *your virtual machine* > **Stop**.</span></span>
+  2. <span data-ttu-id="e0175-119">모든 Vm 중지 hello 중지 hello Vm의 각 선택 하 고 시작을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-119">After all hello VMs stop, select each of hello stopped VMs and click Start.</span></span>
+* <span data-ttu-id="e0175-120">나중에 hello를 다시 시작 요청을 다시 시도 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-120">Retry hello restart request at a later time.</span></span>
 
-## <a name="issue-error-when-resizing-an-existing-vm"></a><span data-ttu-id="55799-121">문제: 기존 VM 재시작 시 오류</span><span class="sxs-lookup"><span data-stu-id="55799-121">Issue: Error when resizing an existing VM</span></span>
-<span data-ttu-id="55799-122">기존 VM의 크기를 조정하려는데 할당 오류가 발생했습니다.</span><span class="sxs-lookup"><span data-stu-id="55799-122">You try to resize an existing VM but get an allocation failure.</span></span>
+## <a name="issue-error-when-resizing-an-existing-vm"></a><span data-ttu-id="e0175-121">문제: 기존 VM 재시작 시 오류</span><span class="sxs-lookup"><span data-stu-id="e0175-121">Issue: Error when resizing an existing VM</span></span>
+<span data-ttu-id="e0175-122">Tooresize 기존 VM을 시도 하지만 할당에 실패 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-122">You try tooresize an existing VM but get an allocation failure.</span></span>
 
-### <a name="cause"></a><span data-ttu-id="55799-123">원인</span><span class="sxs-lookup"><span data-stu-id="55799-123">Cause</span></span>
-<span data-ttu-id="55799-124">VM 크기를 조정하기 위한 요청은 클라우드 서비스를 호스트하는 원본 클러스터에서 시도되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-124">The request to resize the VM has to be attempted at the original cluster that hosts the cloud service.</span></span> <span data-ttu-id="55799-125">하지만, 클러스터가 요청한 VM 크기를 지원하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="55799-125">However, the cluster does not support the requested VM size.</span></span>
+### <a name="cause"></a><span data-ttu-id="e0175-123">원인</span><span class="sxs-lookup"><span data-stu-id="e0175-123">Cause</span></span>
+<span data-ttu-id="e0175-124">tooresize hello VM에 toobe hello 요청 했으나 hello 원본 클러스터에서 해당 호스트 hello 클라우드 서비스</span><span class="sxs-lookup"><span data-stu-id="e0175-124">hello request tooresize hello VM has toobe attempted at hello original cluster that hosts hello cloud service.</span></span> <span data-ttu-id="e0175-125">그러나 hello 클러스터를 지원 하지 않는 요청 된 VM 크기 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-125">However, hello cluster does not support hello requested VM size.</span></span>
 
-### <a name="resolution"></a><span data-ttu-id="55799-126">해결 방법</span><span class="sxs-lookup"><span data-stu-id="55799-126">Resolution</span></span>
-* <span data-ttu-id="55799-127">더 작은 VM 크기를 사용하여 요청을 다시 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-127">Retry the request using a smaller VM size.</span></span>
-* <span data-ttu-id="55799-128">요청한 VM의 크기를 변경할 수 없으면:</span><span class="sxs-lookup"><span data-stu-id="55799-128">If the size of the requested VM cannot be changed：</span></span>
+### <a name="resolution"></a><span data-ttu-id="e0175-126">해결 방법</span><span class="sxs-lookup"><span data-stu-id="e0175-126">Resolution</span></span>
+* <span data-ttu-id="e0175-127">더 작은 VM 크기를 사용 하 여 hello 요청을 다시 시도 하십시오.</span><span class="sxs-lookup"><span data-stu-id="e0175-127">Retry hello request using a smaller VM size.</span></span>
+* <span data-ttu-id="e0175-128">Hello 크기인 요청한 경우 hello VM을 변경할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-128">If hello size of hello requested VM cannot be changed：</span></span>
   
-  1. <span data-ttu-id="55799-129">가용성 집합의 VM을 모두 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-129">Stop all the VMs in the availability set.</span></span>
+  1. <span data-ttu-id="e0175-129">Hello 가용성 집합에 있는 모든 hello Vm을 중지 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-129">Stop all hello VMs in hello availability set.</span></span>
      
-     * <span data-ttu-id="55799-130">**리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-130">Click **Resource groups** > *your resource group* > **Resources** > *your availability set* > **Virtual Machines** > *your virtual machine* > **Stop**.</span></span>
-  2. <span data-ttu-id="55799-131">VM을 모두 중지한 후에, 원하는 VM을 더 크게 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-131">After all the VMs stop, resize the desired VM to a larger size.</span></span>
-  3. <span data-ttu-id="55799-132">크기가 조정된 VM을 선택하고 **시작**을 클릭한 다음 중지된 각각의 VM을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="55799-132">Select the resized VM and click **Start**, and then start each of the stopped VMs.</span></span>
+     * <span data-ttu-id="e0175-130">**리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-130">Click **Resource groups** > *your resource group* > **Resources** > *your availability set* > **Virtual Machines** > *your virtual machine* > **Stop**.</span></span>
+  2. <span data-ttu-id="e0175-131">결국 hello 가상 컴퓨터를 중지, 원하는 hello VM tooa 더 큰 크기의 크기를 조정 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-131">After all hello VMs stop, resize hello desired VM tooa larger size.</span></span>
+  3. <span data-ttu-id="e0175-132">Select hello 크기를 조정 VM 및 클릭 **시작**, 각 시작의 hello Vm 중지 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0175-132">Select hello resized VM and click **Start**, and then start each of hello stopped VMs.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="55799-133">다음 단계</span><span class="sxs-lookup"><span data-stu-id="55799-133">Next steps</span></span>
-<span data-ttu-id="55799-134">Azure에서 새 Windows VM을 만들 때 문제가 발생하면 [Azure에서 새 Windows 가상 컴퓨터 생성 관련 배포 문제 해결](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="55799-134">If you encounter issues when you create a new Windows VM in Azure, see [Troubleshoot deployment issues with creating a new Windows virtual machine in Azure](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e0175-133">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e0175-133">Next steps</span></span>
+<span data-ttu-id="e0175-134">Azure에서 새 Windows VM을 만들 때 문제가 발생하면 [Azure에서 새 Windows 가상 컴퓨터 생성 관련 배포 문제 해결](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0175-134">If you encounter issues when you create a new Windows VM in Azure, see [Troubleshoot deployment issues with creating a new Windows virtual machine in Azure](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 

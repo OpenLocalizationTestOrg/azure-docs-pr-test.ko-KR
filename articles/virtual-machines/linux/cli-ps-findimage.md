@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI를 사용하여 Linux VM 이미지 선택 | Microsoft Docs"
-description: "Azure CLI를 사용하여 Marketplace VM 이미지의 게시자, 제품, SKU 및 버전을 확인하는 방법을 알아봅니다."
+title: "hello Azure CLI로 aaaSelect Linux VM 이미지 | Microsoft Docs"
+description: "Azure CLI toodetermine hello 게시자, 제품, SKU 및 마켓플레이스 VM 이미지에 대 한 버전 toouse hello 하는 방법에 대해 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -16,41 +16,41 @@ ms.workload: infrastructure
 ms.date: 08/24/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e0c27a7ee9e9a7ab1a3b004e070fa556b56a36a5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0b115b8654bc156b5bfadba53a6b002a105acb68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-find-linux-vm-images-in-the-azure-marketplace-with-the-azure-cli"></a><span data-ttu-id="8bf96-103">Azure CLI를 사용하여 Azure Marketplace에서 Linux VM 이미지를 찾는 방법</span><span class="sxs-lookup"><span data-stu-id="8bf96-103">How to find Linux VM images in the Azure Marketplace with the Azure CLI</span></span>
-<span data-ttu-id="8bf96-104">이 항목에서는 Azure CLI 2.0을 사용하여 Azure Marketplace에서 VM 이미지를 찾는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-104">This topic describes how to use the Azure CLI 2.0 to find VM images in the Azure Marketplace.</span></span> <span data-ttu-id="8bf96-105">이 정보를 사용하여 Linux VM을 만들 때 Marketplace 이미지를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-105">Use this information to specify a Marketplace image when you create a Linux VM.</span></span>
+# <a name="how-toofind-linux-vm-images-in-hello-azure-marketplace-with-hello-azure-cli"></a><span data-ttu-id="d7164-103">Linux VM toofind hello Azure CLI로 hello Azure 마켓플레이스 이미지 방법</span><span class="sxs-lookup"><span data-stu-id="d7164-103">How toofind Linux VM images in hello Azure Marketplace with hello Azure CLI</span></span>
+<span data-ttu-id="d7164-104">이 항목에서는 toouse hello Azure Marketplace에서에서 Azure CLI 2.0 toofind VM 이미지를 hello 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-104">This topic describes how toouse hello Azure CLI 2.0 toofind VM images in hello Azure Marketplace.</span></span> <span data-ttu-id="d7164-105">Linux VM을 만들 때이 정보 toospecify 마켓플레이스 이미지를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-105">Use this information toospecify a Marketplace image when you create a Linux VM.</span></span>
 
-<span data-ttu-id="8bf96-106">최신 Azure CLI 2.0을 [설치](/cli/azure/install-az-cli2)하고 Azure 계정(`az login`)에 로그인했는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-106">Make sure that you installed the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and are logged in to an Azure account (`az login`).</span></span>
+<span data-ttu-id="d7164-106">Hello를 최신 버전 설치 되었는지 확인 [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 계정에에서 기록 됩니다 (`az login`).</span><span class="sxs-lookup"><span data-stu-id="d7164-106">Make sure that you installed hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and are logged in tooan Azure account (`az login`).</span></span>
 
-## <a name="terminology"></a><span data-ttu-id="8bf96-107">용어</span><span class="sxs-lookup"><span data-stu-id="8bf96-107">Terminology</span></span>
+## <a name="terminology"></a><span data-ttu-id="d7164-107">용어</span><span class="sxs-lookup"><span data-stu-id="d7164-107">Terminology</span></span>
 
-<span data-ttu-id="8bf96-108">Marketplace 이미지는 CLI 및 다른 Azure 도구에서 계층 구조에 따라 식별됩니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-108">Marketplace images are identified in the CLI and other Azure tools according to a hierarchy:</span></span>
+<span data-ttu-id="d7164-108">마켓플레이스 이미지 hello CLI 및 tooa 계층 구조에 따라 다른 Azure 도구에서 식별 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-108">Marketplace images are identified in hello CLI and other Azure tools according tooa hierarchy:</span></span>
 
-* <span data-ttu-id="8bf96-109">**Publisher** - 이미지를 만든 조직입니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-109">**Publisher** - The organization that created the image.</span></span> <span data-ttu-id="8bf96-110">예제: Canonical</span><span class="sxs-lookup"><span data-stu-id="8bf96-110">Example: Canonical</span></span>
-* <span data-ttu-id="8bf96-111">**Offer** - 게시자에 의해 생성 되는 관련 이미지 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-111">**Offer** - A group of related images created by a publisher.</span></span> <span data-ttu-id="8bf96-112">예제: Ubuntu Server</span><span class="sxs-lookup"><span data-stu-id="8bf96-112">Example: Ubuntu Server</span></span>
-* <span data-ttu-id="8bf96-113">**SKU** - 제공의 인스턴스(예: 배포의 주 릴리스)입니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-113">**SKU** - An instance of an offer, such as a major release of a distribution.</span></span> <span data-ttu-id="8bf96-114">예제: 16.04-LTS</span><span class="sxs-lookup"><span data-stu-id="8bf96-114">Example: 16.04-LTS</span></span>
-* <span data-ttu-id="8bf96-115">**Version** - 이미지 SKU의 버전 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-115">**Version** - The version number of an image SKU.</span></span> <span data-ttu-id="8bf96-116">이미지를 지정하면 버전 번호를 “최신”으로 바꿀 수 있습니다. 그러면 배포의 최신 버전이 선택됩니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-116">When specifying the image, you can replace the version number with "latest", which selects the latest version of the distribution.</span></span>
+* <span data-ttu-id="d7164-109">**게시자** -hello hello 이미지를 만든 조직입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-109">**Publisher** - hello organization that created hello image.</span></span> <span data-ttu-id="d7164-110">예제: Canonical</span><span class="sxs-lookup"><span data-stu-id="d7164-110">Example: Canonical</span></span>
+* <span data-ttu-id="d7164-111">**Offer** - 게시자에 의해 생성 되는 관련 이미지 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-111">**Offer** - A group of related images created by a publisher.</span></span> <span data-ttu-id="d7164-112">예제: Ubuntu Server</span><span class="sxs-lookup"><span data-stu-id="d7164-112">Example: Ubuntu Server</span></span>
+* <span data-ttu-id="d7164-113">**SKU** - 제공의 인스턴스(예: 배포의 주 릴리스)입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-113">**SKU** - An instance of an offer, such as a major release of a distribution.</span></span> <span data-ttu-id="d7164-114">예제: 16.04-LTS</span><span class="sxs-lookup"><span data-stu-id="d7164-114">Example: 16.04-LTS</span></span>
+* <span data-ttu-id="d7164-115">**버전** -hello SKU 이미지의 버전 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-115">**Version** - hello version number of an image SKU.</span></span> <span data-ttu-id="d7164-116">Hello 이미지를 지정할 때는 바꿀 수 있습니다 hello 버전 번호 "최신" hello hello 분포의 최신 버전을 선택 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-116">When specifying hello image, you can replace hello version number with "latest", which selects hello latest version of hello distribution.</span></span>
 
-<span data-ttu-id="8bf96-117">Marketplace 이미지를 지정하려면 일반적으로 이미지 *URN*을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-117">To specify a Marketplace image, you typically use the image *URN*.</span></span> <span data-ttu-id="8bf96-118">URN은 다음 값을 콜론(:) 문자로 구분해서 조합합니다. *Publisher*:*Offer*:*Sku*:*Version*</span><span class="sxs-lookup"><span data-stu-id="8bf96-118">The URN combines these values, separated by the colon (:) character: *Publisher*:*Offer*:*Sku*:*Version*.</span></span> 
+<span data-ttu-id="d7164-117">마켓플레이스 이미지 toospecify 일반적으로 사용 hello 이미지 *URN*합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-117">toospecify a Marketplace image, you typically use hello image *URN*.</span></span> <span data-ttu-id="d7164-118">hello 콜론 (:) 문자로 구분 된 이러한 값을 결합 하는 hello URN: *게시자*:*제공*:*Sku*:*버전*합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-118">hello URN combines these values, separated by hello colon (:) character: *Publisher*:*Offer*:*Sku*:*Version*.</span></span> 
 
 
-## <a name="list-popular-images"></a><span data-ttu-id="8bf96-119">인기 있는 이미지 나열</span><span class="sxs-lookup"><span data-stu-id="8bf96-119">List popular images</span></span>
+## <a name="list-popular-images"></a><span data-ttu-id="d7164-119">인기 있는 이미지 나열</span><span class="sxs-lookup"><span data-stu-id="d7164-119">List popular images</span></span>
 
-<span data-ttu-id="8bf96-120">`--all` 옵션을 사용하지 않고 [az vm image list](/cli/azure/vm/image#list) 명령을 실행하여 Azure Marketplace에서 인기있는 VM 이미지의 목록을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-120">Run the [az vm image list](/cli/azure/vm/image#list) command, without the `--all` option, to see a list of popular VM images in the Azure Marketplace.</span></span> <span data-ttu-id="8bf96-121">예를 들어, 다음 명령을 실행하여 테이블 형식으로 캐시된 인기있는 이미지 목록을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-121">For example, run the following command to display a cached list of popular images in table format:</span></span>
+<span data-ttu-id="d7164-120">Hello 실행 [az vm 이미지 목록을](/cli/azure/vm/image#list) hello 없이 명령을 `--all` 옵션, toosee hello Azure 마켓플레이스 이미지 인기 있는 VM의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-120">Run hello [az vm image list](/cli/azure/vm/image#list) command, without hello `--all` option, toosee a list of popular VM images in hello Azure Marketplace.</span></span> <span data-ttu-id="d7164-121">예를 들어 실행 hello 명령 toodisplay 다음 캐시 된 인기 있는 이미지 목록을 표 형태로 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-121">For example, run hello following command toodisplay a cached list of popular images in table format:</span></span>
 
 ```azurecli
 az vm image list --output table
 ```
 
-<span data-ttu-id="8bf96-122">출력에는 이미지를 지정하는 데 사용할 수 있는 URN(*Urn* 열의 값)이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-122">The output includes the URN (the value in the *Urn* column), which you use to specify the image.</span></span> <span data-ttu-id="8bf96-123">또한 인기있는 마켓플레이스 이미지 중 하나를 사용하여 VM을 만드는 경우 *UbuntuLTS*와 같은 URN 별칭을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-123">When creating a VM with one of these popular Marketplace images, you can alternatively specify the URN alias, such as *UbuntuLTS*.</span></span>
+<span data-ttu-id="d7164-122">hello 출력 hello URN을 포함 (hello에 대 한 값을 hello *Urn* 열)과 toospecify hello 이미지를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-122">hello output includes hello URN (hello value in hello *Urn* column), which you use toospecify hello image.</span></span> <span data-ttu-id="d7164-123">이러한 인기 있는 마켓플레이스 이미지 중 하나가 지정 된 VM을 만들 때 지정할 수 있습니다 hello URN 별칭 같은 *UbuntuLTS*합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-123">When creating a VM with one of these popular Marketplace images, you can alternatively specify hello URN alias, such as *UbuntuLTS*.</span></span>
 
 ```
-You are viewing an offline list of images, use --all to retrieve an up-to-date list
+You are viewing an offline list of images, use --all tooretrieve an up-to-date list
 Offer          Publisher               Sku                 Urn                                                             UrnAlias             Version
 -------------  ----------------------  ------------------  --------------------------------------------------------------  -------------------  ---------
 CentOS         OpenLogic               7.3                 OpenLogic:CentOS:7.3:latest                                     CentOS               latest
@@ -63,18 +63,18 @@ UbuntuServer   Canonical               16.04-LTS           Canonical:UbuntuServe
 ...
 ```
 
-## <a name="find-specific-images"></a><span data-ttu-id="8bf96-124">특정 이미지 찾기</span><span class="sxs-lookup"><span data-stu-id="8bf96-124">Find specific images</span></span>
+## <a name="find-specific-images"></a><span data-ttu-id="d7164-124">특정 이미지 찾기</span><span class="sxs-lookup"><span data-stu-id="d7164-124">Find specific images</span></span>
 
-<span data-ttu-id="8bf96-125">Marketplace에서 특정 VM 이미지를 찾으려면 `az vm image list` 명령에 `--all` 옵션을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-125">To find a specific VM image in the Marketplace, use the `az vm image list` command with the `--all` option.</span></span> <span data-ttu-id="8bf96-126">명령의 이 버전은 완료하는 데 다소 시간이 걸리며 긴 출력을 생성할 수 있으므로 일반적으로 `--publisher` 또는 다른 매개 변수를 기준으로 목록을 필터링합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-126">This version of the command takes some time to complete and can return lengthy output, so you usually filter the list by `--publisher` or another parameter.</span></span> 
+<span data-ttu-id="d7164-125">toofind hello Marketplace에서에서 특정 VM 이미지를 사용 하 여 hello `az vm image list` hello로 명령을 `--all` 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-125">toofind a specific VM image in hello Marketplace, use hello `az vm image list` command with hello `--all` option.</span></span> <span data-ttu-id="d7164-126">이 버전의 hello 명령 일부 시간 toocomplete 걸리고 긴 출력을 반환할 수 있으므로 하면 일반적으로 hello 목록 필터 기준 `--publisher` 또는 다른 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-126">This version of hello command takes some time toocomplete and can return lengthy output, so you usually filter hello list by `--publisher` or another parameter.</span></span> 
 
-<span data-ttu-id="8bf96-127">예를 들어, 다음 명령은 모든 Debian 제품을 표시합니다(`--all` 스위치 없이는 공용 이미지의 로컬 캐시만을 검색함).</span><span class="sxs-lookup"><span data-stu-id="8bf96-127">For example, the following command displays all Debian offers (remember that without the `--all` switch, it only searches the local cache of common images):</span></span>
+<span data-ttu-id="d7164-127">예를 들어 다음 명령을 hello 표시 모든 Debian 제안 (hello 없이 사항에 유의 `--all` 스위치와 공용 이미지의 로컬 캐시 hello 데이터만 검색):</span><span class="sxs-lookup"><span data-stu-id="d7164-127">For example, hello following command displays all Debian offers (remember that without hello `--all` switch, it only searches hello local cache of common images):</span></span>
 
 ```azurecli
 az vm image list --offer Debian --all --output table 
 
 ```
 
-<span data-ttu-id="8bf96-128">부분 출력:</span><span class="sxs-lookup"><span data-stu-id="8bf96-128">Partial output:</span></span> 
+<span data-ttu-id="d7164-128">부분 출력:</span><span class="sxs-lookup"><span data-stu-id="d7164-128">Partial output:</span></span> 
 ```
 Offer    Publisher    Sku                Urn                                              Version
 -------  -----------  -----------------  -----------------------------------------------  --------------
@@ -102,17 +102,17 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201708040        
 ...
 ```
 
-<span data-ttu-id="8bf96-129">`--location`, `--publisher` 및 `--sku` 옵션을 사용하여 비슷한 필터를 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-129">Apply similar filters with the `--location`, `--publisher`, and `--sku` options.</span></span> <span data-ttu-id="8bf96-130">모든 Debian 이미지를 찾는 `--offer Deb`을 검색하는 등 필터에서 부분적 일치도 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-130">You can even perform partial matches on a filter, such as searching for `--offer Deb` to find all Debian images.</span></span>
+<span data-ttu-id="d7164-129">Hello 사용 하 여 비슷한 필터 적용 `--location`, `--publisher`, 및 `--sku` 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-129">Apply similar filters with hello `--location`, `--publisher`, and `--sku` options.</span></span> <span data-ttu-id="d7164-130">에 대 한 검색 하는 등의 필터에서 부분적으로 일치도 수행할 수 있습니다 `--offer Deb` toofind 모든 Debian 이미지입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-130">You can even perform partial matches on a filter, such as searching for `--offer Deb` toofind all Debian images.</span></span>
 
-<span data-ttu-id="8bf96-131">`--location` 옵션을 사용하여 특정 위치를 지정하지 않는 경우 기본적으로 `westus`에 대한 값이 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-131">If you don't specify a particular location with the `--location` option, the values for `westus` are returned by default.</span></span> <span data-ttu-id="8bf96-132">(`az configure --defaults location=<location>`을 실행하여 다른 기본 위치를 설정합니다.)</span><span class="sxs-lookup"><span data-stu-id="8bf96-132">(Set a different default location by running `az configure --defaults location=<location>`.)</span></span>
+<span data-ttu-id="d7164-131">Hello로 특정 위치를 지정 하지 않으면 `--location` 옵션에 대 한 hello 값 `westus` 기본적으로 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-131">If you don't specify a particular location with hello `--location` option, hello values for `westus` are returned by default.</span></span> <span data-ttu-id="d7164-132">(`az configure --defaults location=<location>`을 실행하여 다른 기본 위치를 설정합니다.)</span><span class="sxs-lookup"><span data-stu-id="d7164-132">(Set a different default location by running `az configure --defaults location=<location>`.)</span></span>
 
-<span data-ttu-id="8bf96-133">예를 들어 다음 명령은 `westeurope`에 있는 모든 Debian 8개의 SKU를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-133">For example, the following command lists all Debian 8 SKUs in `westeurope`:</span></span>
+<span data-ttu-id="d7164-133">다음 명령을 hello에서 모든 Debian 8 Sku를 나열 하는 예를 들어 `westeurope`:</span><span class="sxs-lookup"><span data-stu-id="d7164-133">For example, hello following command lists all Debian 8 SKUs in `westeurope`:</span></span>
 
 ```azurecli
 az vm image list --location westeurope --offer Deb --publisher credativ --sku 8 --all --output table
 ```
 
-<span data-ttu-id="8bf96-134">부분 출력:</span><span class="sxs-lookup"><span data-stu-id="8bf96-134">Partial output:</span></span>
+<span data-ttu-id="d7164-134">부분 출력:</span><span class="sxs-lookup"><span data-stu-id="d7164-134">Partial output:</span></span>
 
 ```
 Offer    Publisher    Sku                Urn                                              Version
@@ -133,21 +133,21 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201706210        
 ...
 ```
 
-## <a name="navigate-the-images"></a><span data-ttu-id="8bf96-135">이미지 이동</span><span class="sxs-lookup"><span data-stu-id="8bf96-135">Navigate the images</span></span> 
-<span data-ttu-id="8bf96-136">위치에서 이미지를 찾는 또 다른 방법은 [az vm image list-publishers](/cli/azure/vm/image#list-publishers), [az vm image list-offers](/cli/azure/vm/image#list-offers) 및 [az vm image list-skus](/cli/azure/vm/image#list-skus)의 순서로 명령을 실행하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-136">Another way to find an image in a location is to run the [az vm image list-publishers](/cli/azure/vm/image#list-publishers), [az vm image list-offers](/cli/azure/vm/image#list-offers), and [az vm image list-skus](/cli/azure/vm/image#list-skus) commands in sequence.</span></span> <span data-ttu-id="8bf96-137">이러한 명령을 사용하여 값을 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-137">With these commands, you determine these values:</span></span>
+## <a name="navigate-hello-images"></a><span data-ttu-id="d7164-135">Hello 이미지를 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-135">Navigate hello images</span></span> 
+<span data-ttu-id="d7164-136">또 다른 방법은 toofind 위치에 이미지는 toorun hello [az vm 이미지 목록을 게시자](/cli/azure/vm/image#list-publishers), [az vm 이미지 목록을 제공](/cli/azure/vm/image#list-offers), 및 [az vm 이미지 목록을 sku](/cli/azure/vm/image#list-skus) 순서로 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-136">Another way toofind an image in a location is toorun hello [az vm image list-publishers](/cli/azure/vm/image#list-publishers), [az vm image list-offers](/cli/azure/vm/image#list-offers), and [az vm image list-skus](/cli/azure/vm/image#list-skus) commands in sequence.</span></span> <span data-ttu-id="d7164-137">이러한 명령을 사용하여 값을 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-137">With these commands, you determine these values:</span></span>
 
-1. <span data-ttu-id="8bf96-138">이미지 게시자를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-138">List the image publishers.</span></span>
-2. <span data-ttu-id="8bf96-139">지정된 게시자에 제안을 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-139">For a given publisher, list their offers.</span></span>
-3. <span data-ttu-id="8bf96-140">지정된 제안에 SKU를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-140">For a given offer, list their SKUs.</span></span>
+1. <span data-ttu-id="d7164-138">Hello 이미지 게시자 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-138">List hello image publishers.</span></span>
+2. <span data-ttu-id="d7164-139">지정된 게시자에 제안을 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-139">For a given publisher, list their offers.</span></span>
+3. <span data-ttu-id="d7164-140">지정된 제안에 SKU를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-140">For a given offer, list their SKUs.</span></span>
 
 
-<span data-ttu-id="8bf96-141">예를 들어 다음 명령은 미국 서부에 있는 이미지 게시자를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-141">For example, the following command lists the image publishers in the West US location:</span></span>
+<span data-ttu-id="d7164-141">예를 들어 hello 다음 명령은 나열 hello West US 위치의에서 hello 이미지 게시자.</span><span class="sxs-lookup"><span data-stu-id="d7164-141">For example, hello following command lists hello image publishers in hello West US location:</span></span>
 
 ```azurecli
 az vm image list-publishers --location westus --output table
 ```
 
-<span data-ttu-id="8bf96-142">부분 출력:</span><span class="sxs-lookup"><span data-stu-id="8bf96-142">Partial output:</span></span>
+<span data-ttu-id="d7164-142">부분 출력:</span><span class="sxs-lookup"><span data-stu-id="d7164-142">Partial output:</span></span>
 
 ```
 Location    Name
@@ -166,13 +166,13 @@ westus      activeeon
 westus      adatao
 ...
 ```
-<span data-ttu-id="8bf96-143">이 정보를 사용하여 특정 게시자의 제안을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-143">Use this information to find offers from a specific publisher.</span></span> <span data-ttu-id="8bf96-144">예를 들어 Canonical이 미국 서부에 있는 이미지 게시자인 경우 `azure vm image list-offers`을 실행하여 해당 제품을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-144">For example, if Canonical is an image publisher in the West US location, find their offers by running `azure vm image list-offers`.</span></span> <span data-ttu-id="8bf96-145">다음 예제와 같이 위치 및 게시자를 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-145">Pass the location and the publisher as in the following example:</span></span>
+<span data-ttu-id="d7164-143">이 정보 toofind 특정 게시자에서 제공 하는 데 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-143">Use this information toofind offers from a specific publisher.</span></span> <span data-ttu-id="d7164-144">예를 들어 Canonical가 hello West US 위치에서에서 이미지 게시자를 찾을 해당 서비스를 실행 하 여 `azure vm image list-offers`합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-144">For example, if Canonical is an image publisher in hello West US location, find their offers by running `azure vm image list-offers`.</span></span> <span data-ttu-id="d7164-145">Hello 위치와 hello 다음 예제와 같이 hello 게시자를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-145">Pass hello location and hello publisher as in hello following example:</span></span>
 
 ```azurecli
 az vm image list-offers --location westus --publisher Canonical --output table
 ```
 
-<span data-ttu-id="8bf96-146">출력:</span><span class="sxs-lookup"><span data-stu-id="8bf96-146">Output:</span></span>
+<span data-ttu-id="d7164-146">출력:</span><span class="sxs-lookup"><span data-stu-id="d7164-146">Output:</span></span>
 
 ```
 Location    Name
@@ -185,13 +185,13 @@ westus      Ubuntu_Core
 westus      Ubuntu_Snappy_Core
 westus      Ubuntu_Snappy_Core_Docker
 ```
-<span data-ttu-id="8bf96-147">미국 서부 지역에서 Canonical이 Azure에 **UbuntuServer** 제품을 게시한다는 것을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-147">You see that in the West US region, Canonical publishes the **UbuntuServer** offer on Azure.</span></span> <span data-ttu-id="8bf96-148">하지만 SKU는 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="8bf96-148">But what SKUs?</span></span> <span data-ttu-id="8bf96-149">이런 값을 가져오려면 `azure vm image list-skus`을 실행하고 검색한 위치, 게시자 및 제품을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-149">To get those values, run `azure vm image list-skus` and set the location, publisher, and offer that you have discovered:</span></span>
+<span data-ttu-id="d7164-147">미국 서 부 지역 hello에 Canonical 게시 hello 참조 **UbuntuServer** Azure에서 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-147">You see that in hello West US region, Canonical publishes hello **UbuntuServer** offer on Azure.</span></span> <span data-ttu-id="d7164-148">하지만 어떤 Sku? 이러한 값을 실행 하는 tooget `azure vm image list-skus` hello 위치, 게시자 및 검색 한 제안 설정:</span><span class="sxs-lookup"><span data-stu-id="d7164-148">But what SKUs? tooget those values, run `azure vm image list-skus` and set hello location, publisher, and offer that you have discovered:</span></span>
 
 ```azurecli
 az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
 ```
 
-<span data-ttu-id="8bf96-150">출력:</span><span class="sxs-lookup"><span data-stu-id="8bf96-150">Output:</span></span>
+<span data-ttu-id="d7164-149">출력:</span><span class="sxs-lookup"><span data-stu-id="d7164-149">Output:</span></span>
 
 ```
 Location    Name
@@ -219,13 +219,13 @@ westus      17.04-DAILY
 westus      17.10-DAILY
 ```
 
-<span data-ttu-id="8bf96-151">마지막으로 `az vm image list` 명령을 사용하여 원하는 SKU의 특정 버전을 찾습니다(예: **16.04-LTS**).</span><span class="sxs-lookup"><span data-stu-id="8bf96-151">Finally, use the `az vm image list` command to find a specific version of the SKU you want, for example, **16.04-LTS**:</span></span>
+<span data-ttu-id="d7164-150">마지막으로 hello를 사용 하 여 `az vm image list` 명령 toofind hello 예를 들어 원하는 SKU의 특정 버전 **16.04 LTS**:</span><span class="sxs-lookup"><span data-stu-id="d7164-150">Finally, use hello `az vm image list` command toofind a specific version of hello SKU you want, for example, **16.04-LTS**:</span></span>
 
 ```azurecli
 az vm image list --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --all --output table
 ```
 
-<span data-ttu-id="8bf96-152">출력:</span><span class="sxs-lookup"><span data-stu-id="8bf96-152">Output:</span></span>
+<span data-ttu-id="d7164-151">출력:</span><span class="sxs-lookup"><span data-stu-id="d7164-151">Output:</span></span>
 
 ```
 Offer         Publisher    Sku        Urn                                               Version
@@ -256,5 +256,5 @@ UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201
 UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201708110  16.04.201708110
 UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201708151  16.04.201708151
 ```
-## <a name="next-steps"></a><span data-ttu-id="8bf96-153">다음 단계</span><span class="sxs-lookup"><span data-stu-id="8bf96-153">Next steps</span></span>
-<span data-ttu-id="8bf96-154">이제 URN 값을 기록하여 사용할 이미지를 정밀하게 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-154">Now you can choose precisely the image you want to use by taking note of the URN value.</span></span> <span data-ttu-id="8bf96-155">[az vm create](/cli/azure/vm#create) 명령을 사용하여 VM을 만들 때 이 값을 `--image` 매개 변수와 함께 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-155">Pass this value with the `--image` parameter when you create a VM with the [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="8bf96-156">필요에 따라 "최신"을 사용하여 URN에서 버전 번호를 바꿀 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-156">Remember that you can optionally replace the version number in the URN with "latest".</span></span> <span data-ttu-id="8bf96-157">이 버전은 항상 최신 버전의 배포입니다.</span><span class="sxs-lookup"><span data-stu-id="8bf96-157">This version is always the latest version of the distribution.</span></span> <span data-ttu-id="8bf96-158">URN 정보를 사용하여 가상 컴퓨터를 빠르게 만들려면 [Azure CLI로 Linux VM 만들기 및 관리](tutorial-manage-vm.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8bf96-158">To create a virtual machine quickly by using the URN information, see [Create and Manage Linux VMs with the Azure CLI](tutorial-manage-vm.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d7164-152">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d7164-152">Next steps</span></span>
+<span data-ttu-id="d7164-153">이제 hello 이미지 정확 하 게 선택할 수 있습니다 toouse 하 여 원하는 hello URN 값을 기록 라인으로 전환 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-153">Now you can choose precisely hello image you want toouse by taking note of hello URN value.</span></span> <span data-ttu-id="d7164-154">Hello로이 값을 전달 `--image` hello로 VM을 만들 때 매개 변수 [az vm 만들기](/cli/azure/vm#create) 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-154">Pass this value with hello `--image` parameter when you create a VM with hello [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="d7164-155">"최신"으로 hello URN에서에서 hello 버전 번호를 바꿀 필요에 따라 수를 기억 합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-155">Remember that you can optionally replace hello version number in hello URN with "latest".</span></span> <span data-ttu-id="d7164-156">이 버전은 항상 hello hello 분포의 최신 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-156">This version is always hello latest version of hello distribution.</span></span> <span data-ttu-id="d7164-157">hello URN 정보를 사용 하 여 신속 하 게 가상 컴퓨터 toocreate 참조 [만들기 및 Azure CLI hello로 Linux Vm 관리](tutorial-manage-vm.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d7164-157">toocreate a virtual machine quickly by using hello URN information, see [Create and Manage Linux VMs with hello Azure CLI](tutorial-manage-vm.md).</span></span>

@@ -1,5 +1,5 @@
 ---
-title: "Azure에서 VM 이름 확인을 위해 내부 DNS 사용 | Microsoft Docs"
+title: "aaaUsing VM에 대 한 내부 DNS 이름 확인을 Azure에서 | Microsoft Docs"
 description: "Azure에서 VM 이름 확인을 위해 내부 DNS 사용"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,38 +15,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/05/2016
 ms.author: v-livech
-ms.openlocfilehash: bfba2cf38a0624e8480a32bf153f391d820da5a1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 94fd6577aa51ce5db4dc26649b415ddeeb410eb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-internal-dns-for-vm-name-resolution-on-azure"></a><span data-ttu-id="12156-103">Azure에서 VM 이름 확인을 위해 내부 DNS 사용</span><span class="sxs-lookup"><span data-stu-id="12156-103">Using internal DNS for VM name resolution on Azure</span></span>
+# <a name="using-internal-dns-for-vm-name-resolution-on-azure"></a><span data-ttu-id="28e03-103">Azure에서 VM 이름 확인을 위해 내부 DNS 사용</span><span class="sxs-lookup"><span data-stu-id="28e03-103">Using internal DNS for VM name resolution on Azure</span></span>
 
-<span data-ttu-id="12156-104">이 문서에서는 가상 NIC 카드(VNic) 및 DNS 레이블 이름을 사용하여 Linux VM에 대해 정적 내부 DNS 이름을 설정하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="12156-104">This article shows how to set static internal DNS names for Linux VMs using Virtual NIC cards (VNic) and DNS label names.</span></span> <span data-ttu-id="12156-105">정적 DNS 이름은 이 문서에서 사용되는 Jenkins 빌드 서버 또는 Git 서버와 같은 영구 인프라 서비스에 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="12156-105">Static DNS names are used for permanent infrastructure services like a Jenkins build server, which is used for this document, or a Git server.</span></span>
+<span data-ttu-id="28e03-104">이 문서에서는 어떻게 tooset 정적 내부 DNS 이름을 지정 Linux Vm에 대 한 가상 NIC 카드 (VNic) 및 DNS 레이블 이름을 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-104">This article shows how tooset static internal DNS names for Linux VMs using Virtual NIC cards (VNic) and DNS label names.</span></span> <span data-ttu-id="28e03-105">정적 DNS 이름은 이 문서에서 사용되는 Jenkins 빌드 서버 또는 Git 서버와 같은 영구 인프라 서비스에 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-105">Static DNS names are used for permanent infrastructure services like a Jenkins build server, which is used for this document, or a Git server.</span></span>
 
-<span data-ttu-id="12156-106">요구 사항은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-106">The requirements are:</span></span>
+<span data-ttu-id="28e03-106">hello 요구 사항은 같습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-106">hello requirements are:</span></span>
 
-* [<span data-ttu-id="12156-107">Azure 계정</span><span class="sxs-lookup"><span data-stu-id="12156-107">an Azure account</span></span>](https://azure.microsoft.com/pricing/free-trial/)
-* [<span data-ttu-id="12156-108">SSH 공용 및 개인 키 파일</span><span class="sxs-lookup"><span data-stu-id="12156-108">SSH public and private key files</span></span>](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="12156-109">태스크를 완료하기 위한 CLI 버전</span><span class="sxs-lookup"><span data-stu-id="12156-109">CLI versions to complete the task</span></span>
-<span data-ttu-id="12156-110">다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-110">You can complete the task using one of the following CLI versions:</span></span>
-
-- <span data-ttu-id="12156-111">[Azure CLI 1.0](#quick-commands) - 클래식 및 리소스 관리 배포 모델용 CLI(이 문서)</span><span class="sxs-lookup"><span data-stu-id="12156-111">[Azure CLI 1.0](#quick-commands) – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="12156-112">[Azure CLI 2.0](static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 리소스 관리 배포 모델용 차세대 CLI</span><span class="sxs-lookup"><span data-stu-id="12156-112">[Azure CLI 2.0](static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for the resource management deployment model</span></span>
+* [<span data-ttu-id="28e03-107">Azure 계정</span><span class="sxs-lookup"><span data-stu-id="28e03-107">an Azure account</span></span>](https://azure.microsoft.com/pricing/free-trial/)
+* [<span data-ttu-id="28e03-108">SSH 공용 및 개인 키 파일</span><span class="sxs-lookup"><span data-stu-id="28e03-108">SSH public and private key files</span></span>](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 
-## <a name="quick-commands"></a><span data-ttu-id="12156-113">빠른 명령</span><span class="sxs-lookup"><span data-stu-id="12156-113">Quick commands</span></span>
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="28e03-109">CLI 버전 toocomplete hello 작업</span><span class="sxs-lookup"><span data-stu-id="28e03-109">CLI versions toocomplete hello task</span></span>
+<span data-ttu-id="28e03-110">Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-110">You can complete hello task using one of hello following CLI versions:</span></span>
 
-<span data-ttu-id="12156-114">태스크를 빠르게 완료해야 하는 경우 다음 섹션에서 필요한 명령에 대해 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="12156-114">If you need to quickly accomplish the task, the following section details the commands needed.</span></span> <span data-ttu-id="12156-115">각 단계에 대한 보다 자세한 내용 및 상황 설명은 [여기서부터](#detailed-walkthrough) 문서 끝까지 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12156-115">More detailed information and context for each step can be found the rest of the document, [starting here](#detailed-walkthrough).</span></span>  
+- <span data-ttu-id="28e03-111">[Azure CLI 1.0](#quick-commands) – 우리의 CLI 모델에 대 한 hello 클래식 및 리소스 관리 배포 (이 문서)</span><span class="sxs-lookup"><span data-stu-id="28e03-111">[Azure CLI 1.0](#quick-commands) – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="28e03-112">[Azure CLI 2.0](static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -우리의 차세대 CLI hello 리소스 관리 배포 모델에 대 한</span><span class="sxs-lookup"><span data-stu-id="28e03-112">[Azure CLI 2.0](static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for hello resource management deployment model</span></span>
 
-<span data-ttu-id="12156-116">사전 요구 사항: SSH 인바운드를 사용하는 NSG, 리소스 그룹, VNet, 서브넷입니다.</span><span class="sxs-lookup"><span data-stu-id="12156-116">Pre-Requirements: Resource Group, VNet, NSG with SSH inbound, Subnet.</span></span>
 
-### <a name="create-a-vnic-with-a-static-internal-dns-name"></a><span data-ttu-id="12156-117">정적 내부 DNS 이름으로 VNic 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-117">Create a VNic with a static internal DNS name</span></span>
+## <a name="quick-commands"></a><span data-ttu-id="28e03-113">빠른 명령</span><span class="sxs-lookup"><span data-stu-id="28e03-113">Quick commands</span></span>
 
-<span data-ttu-id="12156-118">`-r` cli 플래그는 VNic에 대한 정적 DNS 이름을 제공하는 DNS 레이블을 설정하기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="12156-118">The `-r` cli flag is for setting the DNS label, which provides the static DNS name for the VNic.</span></span>
+<span data-ttu-id="28e03-114">Hello 작업을 수행를 tooquickly가 필요한 경우 다음 단원을 hello 필요한 hello 명령에 자세히 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-114">If you need tooquickly accomplish hello task, hello following section details hello commands needed.</span></span> <span data-ttu-id="28e03-115">각 단계를 찾을 수 있습니다 hello 나머지 hello 문서에 대 한 정보와 컨텍스트 상세 [여기 시작](#detailed-walkthrough)합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-115">More detailed information and context for each step can be found hello rest of hello document, [starting here](#detailed-walkthrough).</span></span>  
+
+<span data-ttu-id="28e03-116">사전 요구 사항: SSH 인바운드를 사용하는 NSG, 리소스 그룹, VNet, 서브넷입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-116">Pre-Requirements: Resource Group, VNet, NSG with SSH inbound, Subnet.</span></span>
+
+### <a name="create-a-vnic-with-a-static-internal-dns-name"></a><span data-ttu-id="28e03-117">정적 내부 DNS 이름으로 VNic 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-117">Create a VNic with a static internal DNS name</span></span>
+
+<span data-ttu-id="28e03-118">hello `-r` cli 플래그는 hello VNic hello에 대 한 정적 DNS 이름을 제공 하는 설정 hello DNS 레이블에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-118">hello `-r` cli flag is for setting hello DNS label, which provides hello static DNS name for hello VNic.</span></span>
 
 ```azurecli
 azure network nic create jenkinsVNic \
@@ -57,9 +57,9 @@ azure network nic create jenkinsVNic \
 -r jenkins
 ```
 
-### <a name="deploy-the-vm-into-the-vnet-nsg-and-connect-the-vnic"></a><span data-ttu-id="12156-119">VNet, NSG에 VM 배포 및 VNic 연결</span><span class="sxs-lookup"><span data-stu-id="12156-119">Deploy the VM into the VNet, NSG and, connect the VNic</span></span>
+### <a name="deploy-hello-vm-into-hello-vnet-nsg-and-connect-hello-vnic"></a><span data-ttu-id="28e03-119">Hello VNet NSG VM hello를 배포 하 고 hello VNic 연결</span><span class="sxs-lookup"><span data-stu-id="28e03-119">Deploy hello VM into hello VNet, NSG and, connect hello VNic</span></span>
 
-<span data-ttu-id="12156-120">`-N`은 Azure에 배포하는 동안 새 VM에 VNic를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-120">The `-N` connects the VNic to the new VM during the deployment to Azure.</span></span>
+<span data-ttu-id="28e03-120">hello `-N` hello VNic toohello 연결 hello 배포 tooAzure 하는 동안 새 VM입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-120">hello `-N` connects hello VNic toohello new VM during hello deployment tooAzure.</span></span>
 
 ```azurecli
 azure vm create jenkins \
@@ -75,26 +75,26 @@ azure vm create jenkins \
 -N jenkinsVNic
 ```
 
-## <a name="detailed-walkthrough"></a><span data-ttu-id="12156-121">자세한 연습</span><span class="sxs-lookup"><span data-stu-id="12156-121">Detailed walkthrough</span></span>
+## <a name="detailed-walkthrough"></a><span data-ttu-id="28e03-121">자세한 연습</span><span class="sxs-lookup"><span data-stu-id="28e03-121">Detailed walkthrough</span></span>
 
-<span data-ttu-id="12156-122">Azure에서 전체 CiCd(지속적인 통합 및 지속적인 배포) 인프라는 특정 서버가 정적이거나 서버의 수명이 길어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-122">A full continuous integration and continuous deployment (CiCd) infrastructure on Azure requires certain servers to be static or long-lived servers.</span></span>  <span data-ttu-id="12156-123">VNet(Virtual Network) 및 NSG(네트워크 보안 그룹)와 같은 Azure 자산이 정적이고 거의 배포되지 않은 수명이 긴 리소스인 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-123">It is recommended that Azure assets like the Virtual Networks (VNets) and Network Security Groups (NSGs), should be static and long lived resources that are rarely deployed.</span></span>  <span data-ttu-id="12156-124">VNet을 배포하면 인프라에 어떤 부정적인 영향을 주지 않고 새 배포에서 다시 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-124">Once a VNet has been deployed, it can be reused by new deployments without any adverse affects to the infrastructure.</span></span>  <span data-ttu-id="12156-125">이 정적 네트워크에 Git 리포지토리 서버 및 Jenkins 자동화 서버를 추가하면 개발 또는 테스트 환경에 CiCd를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-125">Adding to this static network a Git repository server and a Jenkins automation server delivers CiCd to your development or test environments.</span></span>  
+<span data-ttu-id="28e03-122">전체 연속 통합 및 연속 배포 (CiCd) 인프라를 Azure에서 특정 서버 toobe 정적 또는 수명이 긴 서버가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-122">A full continuous integration and continuous deployment (CiCd) infrastructure on Azure requires certain servers toobe static or long-lived servers.</span></span>  <span data-ttu-id="28e03-123">Hello 가상 네트워크 (Vnet) 및 네트워크 보안 그룹 (Nsg)와 같은 Azure 자산 정적 이어야 하 고 거의 배포 되는 리소스를 수명이 긴 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-123">It is recommended that Azure assets like hello Virtual Networks (VNets) and Network Security Groups (NSGs), should be static and long lived resources that are rarely deployed.</span></span>  <span data-ttu-id="28e03-124">VNet에 배포한 후에 부정적인 영향을 줌 toohello 인프라 없이 새 배포 재사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-124">Once a VNet has been deployed, it can be reused by new deployments without any adverse affects toohello infrastructure.</span></span>  <span data-ttu-id="28e03-125">추가 toothis 정적 네트워크는 Git 리포지토리 서버 및 Jenkins 자동화 서버 배달 CiCd tooyour 개발 또는 테스트 환경 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-125">Adding toothis static network a Git repository server and a Jenkins automation server delivers CiCd tooyour development or test environments.</span></span>  
 
-<span data-ttu-id="12156-126">내부 DNS 이름은 Azure Virtual Network 내에서만 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-126">Internal DNS names are only resolvable inside an Azure virtual network.</span></span>  <span data-ttu-id="12156-127">DNS 이름은 내부용이므로 외부 인터넷에서 확인할 수 없으며 인프라에 대한 추가 보안을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-127">Because the DNS names are internal, they are not resolvable to the outside internet, providing additional security to the infrastructure.</span></span>
+<span data-ttu-id="28e03-126">내부 DNS 이름은 Azure Virtual Network 내에서만 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-126">Internal DNS names are only resolvable inside an Azure virtual network.</span></span>  <span data-ttu-id="28e03-127">Hello DNS 이름은 내부에 있으므로 추가 보안 toohello 인프라를 제공 하는 인터넷 외부 확인할 toohello 않습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-127">Because hello DNS names are internal, they are not resolvable toohello outside internet, providing additional security toohello infrastructure.</span></span>
 
-<span data-ttu-id="12156-128">_모든 예제를 고유한 이름으로 바꿉니다._</span><span class="sxs-lookup"><span data-stu-id="12156-128">_Replace any examples with your own naming._</span></span>
+<span data-ttu-id="28e03-128">_모든 예제를 고유한 이름으로 바꿉니다._</span><span class="sxs-lookup"><span data-stu-id="28e03-128">_Replace any examples with your own naming._</span></span>
 
-## <a name="create-the-resource-group"></a><span data-ttu-id="12156-129">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-129">Create the Resource group</span></span>
+## <a name="create-hello-resource-group"></a><span data-ttu-id="28e03-129">Hello 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-129">Create hello Resource group</span></span>
 
-<span data-ttu-id="12156-130">리소스 그룹은 이 연습에서 만드는 모든 항목을 구성하는 데 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-130">A Resource Group is needed to organize everything we create in this walkthrough.</span></span>  <span data-ttu-id="12156-131">Azure 리소스 그룹에 대한 자세한 내용은 [Azure Resource Manager 개요](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12156-131">For more information on Azure Resource Groups, see [Azure Resource Manager overview](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+<span data-ttu-id="28e03-130">리소스 그룹 필요한 tooorganize을에서는이 연습에서 만드는 모든 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-130">A Resource Group is needed tooorganize everything we create in this walkthrough.</span></span>  <span data-ttu-id="28e03-131">Azure 리소스 그룹에 대한 자세한 내용은 [Azure Resource Manager 개요](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="28e03-131">For more information on Azure Resource Groups, see [Azure Resource Manager overview](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
 
 ```azurecli
 azure group create myResourceGroup \
 --location westus
 ```
 
-## <a name="create-the-vnet"></a><span data-ttu-id="12156-132">VNet 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-132">Create the VNet</span></span>
+## <a name="create-hello-vnet"></a><span data-ttu-id="28e03-132">Hello VNet 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-132">Create hello VNet</span></span>
 
-<span data-ttu-id="12156-133">첫 번째 단계는 VM을 시작할 VNet을 빌드하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="12156-133">The first step is to build a VNet to launch the VMs into.</span></span>  <span data-ttu-id="12156-134">VNet은 이 연습을 위한 서브넷을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-134">The VNet contains one subnet for this walkthrough.</span></span>  <span data-ttu-id="12156-135">Azure VNet에 대한 자세한 내용은 [Azure CLI를 사용하여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12156-135">For more information on Azure VNets, see [Create a virtual network by using the Azure CLI](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+<span data-ttu-id="28e03-133">hello 첫 번째 단계는 VNet toolaunch hello에 대 한 Vm toobuild입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-133">hello first step is toobuild a VNet toolaunch hello VMs into.</span></span>  <span data-ttu-id="28e03-134">hello VNet이 연습에서는 한 서브넷을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-134">hello VNet contains one subnet for this walkthrough.</span></span>  <span data-ttu-id="28e03-135">Azure Vnet에 대 한 자세한 내용은 참조 하세요. [hello Azure CLI를 사용 하 여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="28e03-135">For more information on Azure VNets, see [Create a virtual network by using hello Azure CLI](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
 
 ```azurecli
 azure network vnet create myVNet \
@@ -103,9 +103,9 @@ azure network vnet create myVNet \
 --location westus
 ```
 
-## <a name="create-the-nsg"></a><span data-ttu-id="12156-136">NSG 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-136">Create the NSG</span></span>
+## <a name="create-hello-nsg"></a><span data-ttu-id="28e03-136">Hello NSG 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-136">Create hello NSG</span></span>
 
-<span data-ttu-id="12156-137">서브넷은 기존 네트워크 보안 그룹을 기초로 빌드되므로 서브넷 전에 NSG를 구축합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-137">The Subnet is built behind an existing Network Security Group so we build the NSG before the Subnet.</span></span>  <span data-ttu-id="12156-138">Azure NSG는 네트워크 계층에서 방화벽과 동일합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-138">Azure NSGs are equivalent to a firewall at the network layer.</span></span>  <span data-ttu-id="12156-139">Azure NSG에 대한 자세한 내용은 [Azure CLI에서 NSG를 만드는 방법](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12156-139">For more information on Azure NSGs, see [How to create NSGs in the Azure CLI](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+<span data-ttu-id="28e03-137">hello 서브넷 기존 네트워크 보안 그룹 뒤에 있는 기본 제공 되므로 hello 서브넷 하기 전에 hello NSG를 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-137">hello Subnet is built behind an existing Network Security Group so we build hello NSG before hello Subnet.</span></span>  <span data-ttu-id="28e03-138">Azure Nsg는 hello 네트워크 계층에서 해당 tooa 방화벽.</span><span class="sxs-lookup"><span data-stu-id="28e03-138">Azure NSGs are equivalent tooa firewall at hello network layer.</span></span>  <span data-ttu-id="28e03-139">Azure Nsg에 대 한 자세한 내용은 참조 하십시오. [toocreate Nsg에 Azure CLI hello 하는 방법](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="28e03-139">For more information on Azure NSGs, see [How toocreate NSGs in hello Azure CLI](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
 
 ```azurecli
 azure network nsg create myNSG \
@@ -113,9 +113,9 @@ azure network nsg create myNSG \
 --location westus
 ```
 
-## <a name="add-an-inbound-ssh-allow-rule"></a><span data-ttu-id="12156-140">인바운드 SSH 허용 규칙 추가</span><span class="sxs-lookup"><span data-stu-id="12156-140">Add an inbound SSH allow rule</span></span>
+## <a name="add-an-inbound-ssh-allow-rule"></a><span data-ttu-id="28e03-140">인바운드 SSH 허용 규칙 추가</span><span class="sxs-lookup"><span data-stu-id="28e03-140">Add an inbound SSH allow rule</span></span>
 
-<span data-ttu-id="12156-141">Linux VM은 인터넷에서 액세스를 해야 하므로 인바운드 포트 22 트래픽이 Linux VM의 포트 22에 대한 네트워크를 통해 전달되도록 허용하는 규칙이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-141">The Linux VM needs access from the internet so a rule allowing inbound port 22 traffic to be passed through the network to port 22 on the Linux VM is needed.</span></span>
+<span data-ttu-id="28e03-141">Linux VM hello hello 필요한 hello Linux VM에서 인바운드 포트 22 트래픽 toobe 허용 하는 규칙 hello 네트워크 tooport 22 전달 하도록 인터넷에서에서 액세스를 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-141">hello Linux VM needs access from hello internet so a rule allowing inbound port 22 traffic toobe passed through hello network tooport 22 on hello Linux VM is needed.</span></span>
 
 ```azurecli
 azure network nsg rule create inboundSSH \
@@ -131,9 +131,9 @@ azure network nsg rule create inboundSSH \
 --destination-port-range 22
 ```
 
-## <a name="add-a-subnet-to-the-vnet"></a><span data-ttu-id="12156-142">VNet에 서브넷 추가</span><span class="sxs-lookup"><span data-stu-id="12156-142">Add a subnet to the VNet</span></span>
+## <a name="add-a-subnet-toohello-vnet"></a><span data-ttu-id="28e03-142">서브넷 toohello VNet 추가</span><span class="sxs-lookup"><span data-stu-id="28e03-142">Add a subnet toohello VNet</span></span>
 
-<span data-ttu-id="12156-143">VNet 내의 VM은 서브넷에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-143">VMs within the VNet must be located in a subnet.</span></span>  <span data-ttu-id="12156-144">각 VNet에는 여러 개의 서브넷이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-144">Each VNet can have multiple subnets.</span></span>  <span data-ttu-id="12156-145">서브넷을 만들고 서브넷을 NSG와 연결하여 서브넷에 방화벽을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-145">Create the subnet and associate the subnet with the NSG to add a firewall to the subnet.</span></span>
+<span data-ttu-id="28e03-143">Hello VNet 내에서 Vm 서브넷에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-143">VMs within hello VNet must be located in a subnet.</span></span>  <span data-ttu-id="28e03-144">각 VNet에는 여러 개의 서브넷이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-144">Each VNet can have multiple subnets.</span></span>  <span data-ttu-id="28e03-145">Hello 서브넷을 만들고 hello 서브넷 hello NSG tooadd 방화벽 toohello 서브넷을 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-145">Create hello subnet and associate hello subnet with hello NSG tooadd a firewall toohello subnet.</span></span>
 
 ```azurecli
 azure network vnet subnet create mySubNet \
@@ -143,11 +143,11 @@ azure network vnet subnet create mySubNet \
 --network-security-group-name myNSG
 ```
 
-<span data-ttu-id="12156-146">이제 서브넷은 VNet 내에 추가되고 NSG와 NSG 규칙과 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="12156-146">The Subnet is now added inside the VNet and associated with the NSG and the NSG rule.</span></span>
+<span data-ttu-id="28e03-146">이제 hello 서브넷 hello VNet 내 추가 되 고 연결 된 NSG hello 및 hello NSG 규칙입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-146">hello Subnet is now added inside hello VNet and associated with hello NSG and hello NSG rule.</span></span>
 
-## <a name="creating-static-dns-names"></a><span data-ttu-id="12156-147">정적 DNS 이름 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-147">Creating static DNS names</span></span>
+## <a name="creating-static-dns-names"></a><span data-ttu-id="28e03-147">정적 DNS 이름 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-147">Creating static DNS names</span></span>
 
-<span data-ttu-id="12156-148">Azure는 매우 유연하지만 VM 이름 확인을 위해 DNS 이름을 사용하려면 DNS 레이블 지정을 사용하여 VNic(가상 네트워크 카드)로 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-148">Azure is very flexible, but to use DNS names for VMs name resolution, you need to create them as Virtual network cards (VNics) using DNS labeling.</span></span>  <span data-ttu-id="12156-149">VNic는 다른 VM에 연결하여 다시 사용할 수 있으므로 중요합니다. 그렇기 때문에 VM이 임시일 수 있는 반면 VNic는 고정 리소스로 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="12156-149">VNics are important as you can reuse them by connecting them to different VMs, which keeps the VNic as a static resource while the VMs can be temporary.</span></span>  <span data-ttu-id="12156-150">VNic에 DNS 레이블 지정을 사용하여 VNet의 다른 VM에서 간단한 이름 확인을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-150">By using DNS labeling on the VNic, we are able to enable simple name resolution from other VMs in the VNet.</span></span>  <span data-ttu-id="12156-151">확인 가능한 이름을 사용하면 다른 VM에서 DNS 이름 `Jenkins`로 자동화 서버에 액세스하거나 `gitrepo`로 Git 서버에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-151">Using resolvable names enables other VMs to access the automation server by the DNS name `Jenkins` or the Git server as `gitrepo`.</span></span>  <span data-ttu-id="12156-152">VNic를 만들고 이전 단계에서 만든 서브넷에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-152">Create a VNic and associate it with the Subnet created in the previous step.</span></span>
+<span data-ttu-id="28e03-148">Azure는 매우 유연한 방법 이지만 toocreate로 가상 네트워크 카드 (VNics)에 레이블을 지정 하는 DNS를 사용 하 여 필요한 Vm 이름 확인에 대 한 DNS 이름을 toouse 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-148">Azure is very flexible, but toouse DNS names for VMs name resolution, you need toocreate them as Virtual network cards (VNics) using DNS labeling.</span></span>  <span data-ttu-id="28e03-149">VNics은 다시 사용할 수 있습니다에 연결 하 여 toodifferent Vm hello Vm 임시 수 있지만 정적 리소스로 hello VNic 되므로 중요 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-149">VNics are important as you can reuse them by connecting them toodifferent VMs, which keeps hello VNic as a static resource while hello VMs can be temporary.</span></span>  <span data-ttu-id="28e03-150">Hello VNic에 레이블을 지정 하는 DNS를 사용 하 여 hello VNet의에서 다른 Vm에서 간단한 이름 확인을 tooenable 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-150">By using DNS labeling on hello VNic, we are able tooenable simple name resolution from other VMs in hello VNet.</span></span>  <span data-ttu-id="28e03-151">Hello DNS 이름으로 다른 Vm tooaccess hello 자동화 서버를 사용 하면 확인할 수 있는 이름을 사용 하 여 `Jenkins` 또는 Git 서버 hello `gitrepo`합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-151">Using resolvable names enables other VMs tooaccess hello automation server by hello DNS name `Jenkins` or hello Git server as `gitrepo`.</span></span>  <span data-ttu-id="28e03-152">VNic 만들고 서브넷 hello 이전 단계에서 만든 hello와 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-152">Create a VNic and associate it with hello Subnet created in hello previous step.</span></span>
 
 ```azurecli
 azure network nic create jenkinsVNic \
@@ -158,11 +158,11 @@ azure network nic create jenkinsVNic \
 -r jenkins
 ```
 
-## <a name="deploy-the-vm-into-the-vnet-and-nsg"></a><span data-ttu-id="12156-153">VNet 및 NSG에 VM 배포</span><span class="sxs-lookup"><span data-stu-id="12156-153">Deploy the VM into the VNet and NSG</span></span>
+## <a name="deploy-hello-vm-into-hello-vnet-and-nsg"></a><span data-ttu-id="28e03-153">Hello VNet에 VM hello 및 NSG를 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-153">Deploy hello VM into hello VNet and NSG</span></span>
 
-<span data-ttu-id="12156-154">이제 VNet, 해당 VNet 내부의 서브넷 및 NSG가 SSH에 대한 포트 22를 제외한 모든 인바운드 트래픽을 차단하여 서브넷을 보호하는 방화벽의 역할을 하게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="12156-154">We now have a VNet, a subnet inside that VNet, and an NSG acting as a firewall to protect our subnet by blocking all inbound traffic except port 22 for SSH.</span></span>  <span data-ttu-id="12156-155">이제 이 기존 네트워크 인프라 내에 VM을 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-155">The VM can now be deployed inside this existing network infrastructure.</span></span>
+<span data-ttu-id="28e03-154">해당 VNet 및 역할을 하는 방화벽 tooprotect 우리의 서브넷 SSH에 대 한 포트 22 제외한 모든 인바운드 트래픽 차단 하 여 NSG 내부 서브넷 VNet 했습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-154">We now have a VNet, a subnet inside that VNet, and an NSG acting as a firewall tooprotect our subnet by blocking all inbound traffic except port 22 for SSH.</span></span>  <span data-ttu-id="28e03-155">이제이 기존 네트워크 인프라 내 hello VM을 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-155">hello VM can now be deployed inside this existing network infrastructure.</span></span>
 
-<span data-ttu-id="12156-156">Azure CLI 및 `azure vm create` 명령을 사용하여 기존 Azure 리소스 그룹, VNet, 서브넷 및 VNic에 Linux VM을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-156">Using the Azure CLI, and the `azure vm create` command, the Linux VM is deployed to the existing Azure Resource Group, VNet, Subnet, and VNic.</span></span>  <span data-ttu-id="12156-157">전체 VM을 배포하기 위해 CLI를 사용하는 방법에 대한 자세한 내용은 [Azure CLI를 사용하여 전체 Linux 환경 만들기](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="12156-157">For more information on using the CLI to deploy a complete VM, see [Create a complete Linux environment by using the Azure CLI](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+<span data-ttu-id="28e03-156">Hello Azure CLI 및 hello를 사용 하 여 `azure vm create` hello Linux VM은 Azure 리소스 그룹, VNet, 서브넷 및 VNic 기존 배포 toohello 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-156">Using hello Azure CLI, and hello `azure vm create` command, hello Linux VM is deployed toohello existing Azure Resource Group, VNet, Subnet, and VNic.</span></span>  <span data-ttu-id="28e03-157">Hello CLI toodeploy 전체 VM 사용에 대 한 자세한 내용은 참조 하세요. [hello Azure CLI를 사용 하 여 완벽 한 Linux 환경을 만들](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="28e03-157">For more information on using hello CLI toodeploy a complete VM, see [Create a complete Linux environment by using hello Azure CLI](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
 
 ```azurecli
 azure vm create jenkins \
@@ -178,8 +178,8 @@ azure vm create jenkins \
 --nic-name jenkinsVNic
 ```
 
-<span data-ttu-id="12156-158">기존 리소스를 호출하기 위해 CLI 플래그를 사용하여 Azure에서 기존 네트워크 내에 VM을 배포하도록 지시합니다.</span><span class="sxs-lookup"><span data-stu-id="12156-158">By using the CLI flags to call out existing resources, we instruct Azure to deploy the VM inside the existing network.</span></span>  <span data-ttu-id="12156-159">다시 말해, VNet 및 서브넷이 배포되면 Azure 지역 내에서 정적 또는 영구적으로 리소스로 유지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="12156-159">To reiterate, once a VNet and subnet have been deployed, they can be left as static or permanent resources inside your Azure region.</span></span>  
+<span data-ttu-id="28e03-158">CLI 플래그는 hello를 사용 하 여 기존 리소스를 toocall hello 기존 네트워크 내부 Azure toodeploy hello VM 하도록 지시 합니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-158">By using hello CLI flags toocall out existing resources, we instruct Azure toodeploy hello VM inside hello existing network.</span></span>  <span data-ttu-id="28e03-159">tooreiterate, VNet 및 서브넷에 배포 된 후 있습니다 수로 유지 되 Azure 지역이 내부 정적 지, 영구적인 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="28e03-159">tooreiterate, once a VNet and subnet have been deployed, they can be left as static or permanent resources inside your Azure region.</span></span>  
 
-## <a name="next-steps"></a><span data-ttu-id="12156-160">다음 단계</span><span class="sxs-lookup"><span data-stu-id="12156-160">Next steps</span></span>
-* [<span data-ttu-id="12156-161">Azure CLI 명령을 직접 사용하여 Linux VM에 대한 고유한 사용자 지정 환경 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-161">Create your own custom environment for a Linux VM using Azure CLI commands directly</span></span>](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [<span data-ttu-id="12156-162">템플릿을 사용하여 Azure에서 Linux VM 만들기</span><span class="sxs-lookup"><span data-stu-id="12156-162">Create a Linux VM on Azure using templates</span></span>](create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+## <a name="next-steps"></a><span data-ttu-id="28e03-160">다음 단계</span><span class="sxs-lookup"><span data-stu-id="28e03-160">Next steps</span></span>
+* [<span data-ttu-id="28e03-161">Azure CLI 명령을 직접 사용하여 Linux VM에 대한 고유한 사용자 지정 환경 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-161">Create your own custom environment for a Linux VM using Azure CLI commands directly</span></span>](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [<span data-ttu-id="28e03-162">템플릿을 사용하여 Azure에서 Linux VM 만들기</span><span class="sxs-lookup"><span data-stu-id="28e03-162">Create a Linux VM on Azure using templates</span></span>](create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
