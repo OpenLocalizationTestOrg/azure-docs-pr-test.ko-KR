@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher를 사용하여 네트워크 보안 그룹 흐름 로그 관리 - REST API | Microsoft Docs"
-description: "이 페이지에서는 REST API를 사용하여 Azure Network Watcher의 네트워크 보안 그룹 흐름 로그를 관리하는 방법을 설명합니다."
+title: "Azure 네트워크 감시자-REST API를 사용 하 여 기록 네트워크 보안 그룹 흐름 aaaManage | Microsoft Docs"
+description: "이 페이지에서는 toomanage 네트워크 보안 그룹 흐름 REST API와 Azure 네트워크 감시자 로그인 하는 방법을 설명 합니다."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: c89a2ab4c39978771c940a819493b4e2283d5f9f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: be81e35f4d01c67efef99773e9b4e2ae4b8e209e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-network-security-group-flow-logs-using-rest-api"></a><span data-ttu-id="75917-103">REST API를 사용하여 네트워크 보안 그룹 흐름 로그 구성</span><span class="sxs-lookup"><span data-stu-id="75917-103">Configuring Network Security Group flow logs using REST API</span></span>
+# <a name="configuring-network-security-group-flow-logs-using-rest-api"></a><span data-ttu-id="0d584-103">REST API를 사용하여 네트워크 보안 그룹 흐름 로그 구성</span><span class="sxs-lookup"><span data-stu-id="0d584-103">Configuring Network Security Group flow logs using REST API</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="75917-104">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="75917-104">Azure portal</span></span>](network-watcher-nsg-flow-logging-portal.md)
-> - [<span data-ttu-id="75917-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="75917-105">PowerShell</span></span>](network-watcher-nsg-flow-logging-powershell.md)
-> - [<span data-ttu-id="75917-106">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="75917-106">CLI 1.0</span></span>](network-watcher-nsg-flow-logging-cli-nodejs.md)
-> - [<span data-ttu-id="75917-107">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="75917-107">CLI 2.0</span></span>](network-watcher-nsg-flow-logging-cli.md)
-> - [<span data-ttu-id="75917-108">REST API</span><span class="sxs-lookup"><span data-stu-id="75917-108">REST API</span></span>](network-watcher-nsg-flow-logging-rest.md)
+> - [<span data-ttu-id="0d584-104">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="0d584-104">Azure portal</span></span>](network-watcher-nsg-flow-logging-portal.md)
+> - [<span data-ttu-id="0d584-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="0d584-105">PowerShell</span></span>](network-watcher-nsg-flow-logging-powershell.md)
+> - [<span data-ttu-id="0d584-106">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="0d584-106">CLI 1.0</span></span>](network-watcher-nsg-flow-logging-cli-nodejs.md)
+> - [<span data-ttu-id="0d584-107">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="0d584-107">CLI 2.0</span></span>](network-watcher-nsg-flow-logging-cli.md)
+> - [<span data-ttu-id="0d584-108">REST API</span><span class="sxs-lookup"><span data-stu-id="0d584-108">REST API</span></span>](network-watcher-nsg-flow-logging-rest.md)
 
-<span data-ttu-id="75917-109">네트워크 보안 그룹 흐름 로그는 네트워크 보안 그룹을 통해 수신 및 송신 IP 트래픽에 대한 정보를 볼 수 있는 Network Watcher의 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="75917-109">Network Security Group flow logs are a feature of Network Watcher that allows you to view information about ingress and egress IP traffic through a Network Security Group.</span></span> <span data-ttu-id="75917-110">이러한 흐름 로그는 json 형식으로 작성되고 트래픽이 허용되거나 거부된 경우 각 규칙을 기준으로 아웃바운드 및 인바운드 흐름, 흐름이 적용되는 NIC, 흐름에 대한 5개의 튜플 정보(원본/대상 IP, 원본/대상 포트, 프로토콜)를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="75917-110">These flow logs are written in json format and show outbound and inbound flows on a per rule basis, the NIC the flow applies to, 5-tuple information about the flow (Source/Destination IP, Source/Destination Port, Protocol), and if the traffic was allowed or denied.</span></span>
+<span data-ttu-id="0d584-109">네트워크 보안 그룹 흐름 로그는 네트워크 보안 그룹을 통해 IP 트래픽 ingress 및 egress에 대 한 tooview 정보 수 있는 네트워크 감시자의 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-109">Network Security Group flow logs are a feature of Network Watcher that allows you tooview information about ingress and egress IP traffic through a Network Security Group.</span></span> <span data-ttu-id="0d584-110">이러한 흐름 로그 json 형식으로 작성 되 고 아웃 바운드 표시 및 hello 흐름 (소스/대상 IP, 소스/대상 포트, 프로토콜)에 대 한 5-튜플 정보에 각 규칙 별로 인바운드 흐름 hello NIC hello 흐름 적용 하 고 트래픽이 허용 된 경우 hello 또는 거부 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-110">These flow logs are written in json format and show outbound and inbound flows on a per rule basis, hello NIC hello flow applies to, 5-tuple information about hello flow (Source/Destination IP, Source/Destination Port, Protocol), and if hello traffic was allowed or denied.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="75917-111">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="75917-111">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="0d584-111">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="0d584-111">Before you begin</span></span>
 
-<span data-ttu-id="75917-112">PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="75917-112">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="75917-113">ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75917-113">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
+<span data-ttu-id="0d584-112">ARMclient는 PowerShell을 사용 하 여 사용 되는 toocall hello REST API입니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-112">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="0d584-113">ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-113">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
 
-<span data-ttu-id="75917-114">이 시나리오에서는 사용자가 Network Watcher를 만드는 [Network Watcher 만들기](network-watcher-create.md)의 단계를 이미 수행했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-114">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span>
+<span data-ttu-id="0d584-114">이 시나리오에서는 hello 단계에 따라 이미 가정 [네트워크 감시자를 만들](network-watcher-create.md) toocreate 네트워크 감시자 합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-114">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span>
 
 > [!Important]
-> <span data-ttu-id="75917-115">Network Watcher REST API 호출의 경우 요청 URI에 있는 리소스 그룹 이름은 진단 작업이 수행되는 리소스가 아니라, Network Watcher를 포함하는 리소스 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="75917-115">For Network Watcher REST API calls the resource group name in the request URI is the resource group that contains the Network Watcher, not the resources you are performing the diagnostic actions on.</span></span>
+> <span data-ttu-id="0d584-115">네트워크 감시자 REST API에 대 한 호출 hello hello 요청 URI는 hello 진단 작업에서 수행 하는 hello 리소스가 아닌 hello 네트워크 감시자를 포함 하는 hello 리소스 그룹에에서 리소스 그룹 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-115">For Network Watcher REST API calls hello resource group name in hello request URI is hello resource group that contains hello Network Watcher, not hello resources you are performing hello diagnostic actions on.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="75917-116">시나리오</span><span class="sxs-lookup"><span data-stu-id="75917-116">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="0d584-116">시나리오</span><span class="sxs-lookup"><span data-stu-id="0d584-116">Scenario</span></span>
 
-<span data-ttu-id="75917-117">이 문서에서 다루는 시나리오는 REST API를 사용하여 흐름 로그를 사용하거나 사용하지 않도록 설정하고 쿼리하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="75917-117">The scenario covered in this article shows you how to enable, disable, and query flow logs using the REST API.</span></span> <span data-ttu-id="75917-118">네트워크 보안 그룹 흐름 로깅에 대한 자세한 내용은 [네트워크 보안 그룹 흐름 로깅 - 개요](network-watcher-nsg-flow-logging-overview.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="75917-118">To learn more about Network Security Group flow loggings, visit [Network Security Group flow logging - Overview](network-watcher-nsg-flow-logging-overview.md).</span></span>
+<span data-ttu-id="0d584-117">이 문서에서 다루는 hello 시나리오 tooenable, 사용 안 함, 및 쿼리 hello REST API를 사용 하 여 로그의 흐름 방식 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-117">hello scenario covered in this article shows you how tooenable, disable, and query flow logs using hello REST API.</span></span> <span data-ttu-id="0d584-118">네트워크 보안 그룹 흐름 loggings에 대 한 자세한 toolearn 방문 [네트워크 보안 그룹 흐름 로깅-개요](network-watcher-nsg-flow-logging-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-118">toolearn more about Network Security Group flow loggings, visit [Network Security Group flow logging - Overview](network-watcher-nsg-flow-logging-overview.md).</span></span>
 
-<span data-ttu-id="75917-119">이 시나리오에서는 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-119">In this scenario, you will:</span></span>
+<span data-ttu-id="0d584-119">이 시나리오에서는 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-119">In this scenario, you will:</span></span>
 
-* <span data-ttu-id="75917-120">흐름 로그를 사용하도록 설정</span><span class="sxs-lookup"><span data-stu-id="75917-120">Enable flow logs</span></span>
-* <span data-ttu-id="75917-121">흐름 로그를 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="75917-121">Disable flow logs</span></span>
-* <span data-ttu-id="75917-122">흐름 로그 상태 쿼리</span><span class="sxs-lookup"><span data-stu-id="75917-122">Query flow logs status</span></span>
+* <span data-ttu-id="0d584-120">흐름 로그를 사용하도록 설정</span><span class="sxs-lookup"><span data-stu-id="0d584-120">Enable flow logs</span></span>
+* <span data-ttu-id="0d584-121">흐름 로그를 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="0d584-121">Disable flow logs</span></span>
+* <span data-ttu-id="0d584-122">흐름 로그 상태 쿼리</span><span class="sxs-lookup"><span data-stu-id="0d584-122">Query flow logs status</span></span>
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="75917-123">ARMClient에 로그인</span><span class="sxs-lookup"><span data-stu-id="75917-123">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="0d584-123">ARMClient에 로그인</span><span class="sxs-lookup"><span data-stu-id="0d584-123">Log in with ARMClient</span></span>
 
-<span data-ttu-id="75917-124">Azure 자격 증명으로 armclient에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-124">Log in to armclient with your Azure credentials.</span></span>
+<span data-ttu-id="0d584-124">Tooarmclient Azure 자격 증명으로 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-124">Log in tooarmclient with your Azure credentials.</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="register-insights-provider"></a><span data-ttu-id="75917-125">Insights 공급자 등록</span><span class="sxs-lookup"><span data-stu-id="75917-125">Register Insights provider</span></span>
+## <a name="register-insights-provider"></a><span data-ttu-id="0d584-125">Insights 공급자 등록</span><span class="sxs-lookup"><span data-stu-id="0d584-125">Register Insights provider</span></span>
 
-<span data-ttu-id="75917-126">흐름 로깅이 성공적으로 작동하기 위해서 **Microsoft.Insights** 공급자를 등록해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-126">In order for flow logging to work successfully, the **Microsoft.Insights** provider must be registered.</span></span> <span data-ttu-id="75917-127">**Microsoft.Insights** 공급자가 등록되어 있는지 확실하지 않은 경우 다음 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-127">If you are not sure if the **Microsoft.Insights** provider is registered, run the following script.</span></span>
+<span data-ttu-id="0d584-126">흐름에 대 한 순서 대로 로깅 toowork 성공적으로 hello **Microsoft.Insights** 공급자를 등록 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-126">In order for flow logging toowork successfully, hello **Microsoft.Insights** provider must be registered.</span></span> <span data-ttu-id="0d584-127">경우 hello 확실 하지 않은 경우 **Microsoft.Insights** 공급자가 등록 된, 실행 hello 다음 스크립트입니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-127">If you are not sure if hello **Microsoft.Insights** provider is registered, run hello following script.</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
 armclient post "https://management.azure.com//subscriptions/${subscriptionId}/providers/Microsoft.Insights/register?api-version=2016-09-01"
 ```
 
-## <a name="enable-network-security-group-flow-logs"></a><span data-ttu-id="75917-128">네트워크 보안 그룹 흐름 로그 사용</span><span class="sxs-lookup"><span data-stu-id="75917-128">Enable Network Security Group flow logs</span></span>
+## <a name="enable-network-security-group-flow-logs"></a><span data-ttu-id="0d584-128">네트워크 보안 그룹 흐름 로그 사용</span><span class="sxs-lookup"><span data-stu-id="0d584-128">Enable Network Security Group flow logs</span></span>
 
-<span data-ttu-id="75917-129">다음 예제에서는 흐름 로그를 사용하도록 설정하는 명령이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="75917-129">The command to enable flow logs is shown in the following example:</span></span>
+<span data-ttu-id="0d584-129">다음 예제는 hello hello 명령 tooenable 흐름 로그를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-129">hello command tooenable flow logs is shown in hello following example:</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -94,7 +94,7 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/configureFlowLog?api-version=2016-12-01" $requestBody
 ```
 
-<span data-ttu-id="75917-130">이전 예제에서 반환한 응답은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="75917-130">The response returned from the preceding example is as follows:</span></span>
+<span data-ttu-id="0d584-130">hello에서 응답이 반환 되었습니다 hello 위의 예는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-130">hello response returned from hello preceding example is as follows:</span></span>
 
 ```json
 {
@@ -110,9 +110,9 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="disable-network-security-group-flow-logs"></a><span data-ttu-id="75917-131">네트워크 보안 그룹 흐름 로그를 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="75917-131">Disable Network Security Group flow logs</span></span>
+## <a name="disable-network-security-group-flow-logs"></a><span data-ttu-id="0d584-131">네트워크 보안 그룹 흐름 로그를 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="0d584-131">Disable Network Security Group flow logs</span></span>
 
-<span data-ttu-id="75917-132">다음 예제를 사용하여 흐름 로그를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-132">Use the following example to disable flow logs.</span></span> <span data-ttu-id="75917-133">호출은 흐름 로그를 사용하도록 설정하는 것과 같습니다(단, 활성화된 속성에 대해 **false**가 설정된 경우 제외).</span><span class="sxs-lookup"><span data-stu-id="75917-133">The call is the same as enabling flow logs, except **false** is set for the enabled property.</span></span>
+<span data-ttu-id="0d584-132">다음 예에서는 toodisable 흐름 사용 하 여 hello를 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-132">Use hello following example toodisable flow logs.</span></span> <span data-ttu-id="0d584-133">hello 호출은 제외 하 고 흐름 로그를 활성화할 때와 동일한 hello **false** 사용 하도록 설정 하는 hello 속성에 설정 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-133">hello call is hello same as enabling flow logs, except **false** is set for hello enabled property.</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -137,7 +137,7 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/configureFlowLog?api-version=2016-12-01" $requestBody
 ```
 
-<span data-ttu-id="75917-134">이전 예제에서 반환한 응답은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="75917-134">The response returned from the preceding example is as follows:</span></span>
+<span data-ttu-id="0d584-134">hello에서 응답이 반환 되었습니다 hello 위의 예는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-134">hello response returned from hello preceding example is as follows:</span></span>
 
 ```json
 {
@@ -153,9 +153,9 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="query-flow-logs"></a><span data-ttu-id="75917-135">흐름 로그 쿼리</span><span class="sxs-lookup"><span data-stu-id="75917-135">Query flow logs</span></span>
+## <a name="query-flow-logs"></a><span data-ttu-id="0d584-135">흐름 로그 쿼리</span><span class="sxs-lookup"><span data-stu-id="0d584-135">Query flow logs</span></span>
 
-<span data-ttu-id="75917-136">다음 REST 호출은 네트워크 보안 그룹에서 흐름 로그의 상태를 쿼리합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-136">The following REST call queries the status of flow logs on a Network Security Group.</span></span>
+<span data-ttu-id="0d584-136">쿼리 hello 흐름의 상태는 REST 호출 다음 hello를 네트워크 보안 그룹에 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-136">hello following REST call queries hello status of flow logs on a Network Security Group.</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -171,7 +171,7 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/queryFlowLogStatus?api-version=2016-12-01" $requestBody
 ```
 
-<span data-ttu-id="75917-137">다음은 반환된 응답의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="75917-137">The following is an example of the response returned:</span></span>
+<span data-ttu-id="0d584-137">hello 다음은 반환 하는 hello 응답의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-137">hello following is an example of hello response returned:</span></span>
 
 ```json
 {
@@ -187,18 +187,18 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="download-a-flow-log"></a><span data-ttu-id="75917-138">흐름 로그 다운로드</span><span class="sxs-lookup"><span data-stu-id="75917-138">Download a flow log</span></span>
+## <a name="download-a-flow-log"></a><span data-ttu-id="0d584-138">흐름 로그 다운로드</span><span class="sxs-lookup"><span data-stu-id="0d584-138">Download a flow log</span></span>
 
-<span data-ttu-id="75917-139">흐름 로그의 저장소 위치를 만들 때 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="75917-139">The storage location of a flow log is defined at creation.</span></span> <span data-ttu-id="75917-140">저장소 계정에 저장되는 이러한 흐름 로그에 액세스하는 편리한 도구는 Microsoft Azure Storage 탐색기이며 http://storageexplorer.com/에서 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75917-140">A convenient tool to access these flow logs saved to a storage account is Microsoft Azure Storage Explorer, which can be downloaded here:  http://storageexplorer.com/</span></span>
+<span data-ttu-id="0d584-139">흐름 로그의 hello 저장소 위치를 만들 때 정의 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-139">hello storage location of a flow log is defined at creation.</span></span> <span data-ttu-id="0d584-140">이러한 흐름 저장 된 로그 tooa 저장소 계정이 여기에서 다운로드할 수 있는 Microsoft Azure 저장소 탐색기는 편리한 도구 tooaccess: http://storageexplorer.com/</span><span class="sxs-lookup"><span data-stu-id="0d584-140">A convenient tool tooaccess these flow logs saved tooa storage account is Microsoft Azure Storage Explorer, which can be downloaded here:  http://storageexplorer.com/</span></span>
 
-<span data-ttu-id="75917-141">저장소 계정이 지정되어 있으면 패킷 캡처 파일은 다음 위치에서 저장소 계정에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="75917-141">If a storage account is specified, packet capture files are saved to a storage account at the following location:</span></span>
+<span data-ttu-id="0d584-141">저장소 계정이 지정 되어 있으면 hello 수정할 수 있는 위치에서 저장소 계정은 tooa 패킷 캡처 파일에 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0d584-141">If a storage account is specified, packet capture files are saved tooa storage account at hello following location:</span></span>
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="75917-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="75917-142">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0d584-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0d584-142">Next steps</span></span>
 
-<span data-ttu-id="75917-143">[PowerBI를 사용하여 NSG 흐름 로그를 시각화](network-watcher-visualize-nsg-flow-logs-power-bi.md)하는 방법 알아보기</span><span class="sxs-lookup"><span data-stu-id="75917-143">Learn how to [Visualize your NSG flow logs with PowerBI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
+<span data-ttu-id="0d584-143">너무 방법에 대해 알아봅니다[PowerBI와 NSG 흐름 로그를 시각화 합니다.](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span><span class="sxs-lookup"><span data-stu-id="0d584-143">Learn how too[Visualize your NSG flow logs with PowerBI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
 
-<span data-ttu-id="75917-144">[오픈 소스 도구를 사용하여 NSG 흐름 로그를 시각화](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)하는 방법 알아보기</span><span class="sxs-lookup"><span data-stu-id="75917-144">Learn how to [Visualize your NSG flow logs with open source tools](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)</span></span>
+<span data-ttu-id="0d584-144">너무 방법에 대해 알아봅니다[오픈 소스 도구와 함께 NSG 흐름 로그를 시각화 합니다.](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)</span><span class="sxs-lookup"><span data-stu-id="0d584-144">Learn how too[Visualize your NSG flow logs with open source tools](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)</span></span>

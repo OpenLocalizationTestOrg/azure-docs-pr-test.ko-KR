@@ -1,6 +1,6 @@
 ---
-title: "Marketplace용 데이터 서비스 만들기 가이드 | Microsoft Docs"
-description: "Azure 마켓플레이스에서 구매하기 위한 데이터 서비스를 만들고 인증하고 배포하는 방법에 대한 자세한 지침입니다."
+title: "aaaGuide toocreating 마켓플레이스 hello에 대 한 데이터 서비스 | Microsoft Docs"
+description: "Toocreate, 인증 하 고에 대 한 데이터 서비스를 배포 하는 방법의 자세한 지침은 hello Azure Marketplace에서 구입 합니다."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 2ab624941fc385f14b62bb5d743927f157955845
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8917a43959834d15f70866297f98d24bb83e217f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="examples-of-mapping-an-existing-web-service-to-odata-through-csdls"></a><span data-ttu-id="6b2b1-103">CSDL을 통해 기존 웹 서비스를 Odata에 매핑하는 예</span><span class="sxs-lookup"><span data-stu-id="6b2b1-103">Examples of mapping an existing web service to OData through CSDLs</span></span>
+# <a name="examples-of-mapping-an-existing-web-service-tooodata-through-csdls"></a><span data-ttu-id="5e603-103">기존 매핑의 예 웹 서비스 tooOData CSDLs 통해</span><span class="sxs-lookup"><span data-stu-id="5e603-103">Examples of mapping an existing web service tooOData through CSDLs</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="6b2b1-104">**현재는 새 데이터 서비스 게시자 등록을 더 이상 받지 않고 있습니다. 따라서 새 데이터 서비스 등재 승인을 받을 수 없습니다.**</span><span class="sxs-lookup"><span data-stu-id="6b2b1-104">**At this time we are no longer onboarding any new Data Service publishers. New dataservices will not get approved for listing.**</span></span> <span data-ttu-id="6b2b1-105">SaaS 비즈니스 응용 프로그램을 AppSource에 게시하려는 경우 [여기](https://appsource.microsoft.com/partners)에서 자세한 내용을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-105">If you have a SaaS business application you would like to publish on AppSource you can find more information [here](https://appsource.microsoft.com/partners).</span></span> <span data-ttu-id="6b2b1-106">IaaS 응용 프로그램 또는 개발자 서비스를 Azure Marketplace에 게시하려는 경우에는 [여기](https://azure.microsoft.com/marketplace/programs/certified/)에서 자세한 내용을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-106">If you have an IaaS applications or developer service you would like to publish on Azure Marketplace you can find more information [here](https://azure.microsoft.com/marketplace/programs/certified/).</span></span>
+> <span data-ttu-id="5e603-104">**현재는 새 데이터 서비스 게시자 등록을 더 이상 받지 않고 있습니다. 따라서 새 데이터 서비스 등재 승인을 받을 수 없습니다.**</span><span class="sxs-lookup"><span data-stu-id="5e603-104">**At this time we are no longer onboarding any new Data Service publishers. New dataservices will not get approved for listing.**</span></span> <span data-ttu-id="5e603-105">SaaS 비즈니스 응용 프로그램의 경우 원하는 toopublish AppSource에 자세한 정보를 찾을 수 [여기](https://appsource.microsoft.com/partners)합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-105">If you have a SaaS business application you would like toopublish on AppSource you can find more information [here](https://appsource.microsoft.com/partners).</span></span> <span data-ttu-id="5e603-106">IaaS 응용 프로그램 또는 서비스 개발자 경우는 Azure 마켓플레이스에서 toopublish 같은 자세한 정보를 찾을 수 [여기](https://azure.microsoft.com/marketplace/programs/certified/)합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-106">If you have an IaaS applications or developer service you would like toopublish on Azure Marketplace you can find more information [here](https://azure.microsoft.com/marketplace/programs/certified/).</span></span>
 > 
 > 
 
-## <a name="example-functionimport-for-raw-data-returned-using-post"></a><span data-ttu-id="6b2b1-107">예: "POST"를 사용하여 반환된 "원시" 데이터에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-107">Example: FunctionImport for "Raw" data returned using "POST"</span></span>
-<span data-ttu-id="6b2b1-108">원시 데이터 POST를 사용하여 새 하위를 만들고 해당 서버의 정의된 URL(위치)을 반환하거나 서버의 정의된 URL에서 하위 일부를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-108">Use POST Raw data to create a new subordinate and return its server defined URL(location) or to update part of the subordinate at the server defined URL.</span></span>  <span data-ttu-id="6b2b1-109">여기서는 하위 항목은 스트림, 즉</span><span class="sxs-lookup"><span data-stu-id="6b2b1-109">Where the subordinate is a stream, i.e.</span></span> <span data-ttu-id="6b2b1-110">구조화 되지 않은 경우, 예:</span><span class="sxs-lookup"><span data-stu-id="6b2b1-110">unstructured, ex.</span></span> <span data-ttu-id="6b2b1-111">텍스트 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-111">a text file.</span></span>  <span data-ttu-id="6b2b1-112">POST는 위치 없는 idempotent가 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-112">Beware POST in not idempotent without a location.</span></span>
+## <a name="example-functionimport-for-raw-data-returned-using-post"></a><span data-ttu-id="5e603-107">예: "POST"를 사용하여 반환된 "원시" 데이터에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-107">Example: FunctionImport for "Raw" data returned using "POST"</span></span>
+<span data-ttu-id="5e603-108">새 하위 POST 원시 데이터 toocreate를 사용 하 고 해당 서버 URL(location) 또는 tooupdate hello hello 서버에서 하위 부분에서는 정의한 URL을 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-108">Use POST Raw data toocreate a new subordinate and return its server defined URL(location) or tooupdate part of hello subordinate at hello server defined URL.</span></span>  <span data-ttu-id="5e603-109">여기서 hello 하위 항목은 스트림, ex, 즉 구조화 되지 않은입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-109">Where hello subordinate is a stream, i.e. unstructured, ex.</span></span> <span data-ttu-id="5e603-110">텍스트 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-110">a text file.</span></span>  <span data-ttu-id="5e603-111">POST는 위치 없는 idempotent가 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-111">Beware POST in not idempotent without a location.</span></span>
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="AddUsageEvent" ReturnType="Raw(text/plain)" d:EncodeParameterValues="true" d:AllowedHttpMethods="POST" d:BaseUri="http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -44,8 +44,8 @@ ms.lasthandoff: 07/11/2017
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="example-functionimport-using-delete"></a><span data-ttu-id="6b2b1-113">예: "DELETE"를 사용하는 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-113">Example: FunctionImport using "DELETE"</span></span>
-<span data-ttu-id="6b2b1-114">DELETE를 사용하여 지정된 URI를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-114">Use DELETE to remove a specified URI.</span></span>
+## <a name="example-functionimport-using-delete"></a><span data-ttu-id="5e603-112">예: "DELETE"를 사용하는 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-112">Example: FunctionImport using "DELETE"</span></span>
+<span data-ttu-id="5e603-113">DELETE tooremove 지정된 된 URI를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-113">Use DELETE tooremove a specified URI.</span></span>
 
         <EntitySet Name="DeleteUsageFileEntitySet" EntityType="MyOffer.DeleteUsageFileEntity" />
         <FunctionImport Name="DeleteUsageFile" EntitySet="DeleteUsageFileEntitySet" ReturnType="Collection(MyOffer.DeleteUsageFileEntity)"  d:AllowedHttpMethods="DELETE" d:EncodeParameterValues="true” d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643" >
@@ -65,8 +65,8 @@ ms.lasthandoff: 07/11/2017
         <Property Name="boolean" Type="String" Nullable="true" d:Map="./boolean" />
         </EntityType>
 
-## <a name="example-functionimport-using-post"></a><span data-ttu-id="6b2b1-115">예: "POST"를 사용하는 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-115">Example: FunctionImport using "POST"</span></span>
-<span data-ttu-id="6b2b1-116">원시 데이터 POST를 사용하여 새 하위를 만들고 해당 서버의 정의된 URL(위치)을 반환하거나 서버의 정의된 URL에서 하위 일부를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-116">Use POST Raw data to create a new subordinate and return its server defined URL(location) or to update part of the subordinate at the server defined URL.</span></span>  <span data-ttu-id="6b2b1-117">여기서 하위는 구조입니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-117">Where the subordinate is a structure.</span></span> <span data-ttu-id="6b2b1-118">POST는 위치 없는 idempotent가 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-118">Beware POST is not idempotent without a location.</span></span>
+## <a name="example-functionimport-using-post"></a><span data-ttu-id="5e603-114">예: "POST"를 사용하는 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-114">Example: FunctionImport using "POST"</span></span>
+<span data-ttu-id="5e603-115">새 하위 POST 원시 데이터 toocreate를 사용 하 고 해당 서버 URL(location) 또는 tooupdate hello hello 서버에서 하위 부분에서는 정의한 URL을 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-115">Use POST Raw data toocreate a new subordinate and return its server defined URL(location) or tooupdate part of hello subordinate at hello server defined URL.</span></span>  <span data-ttu-id="5e603-116">여기서 hello 하위 구조입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-116">Where hello subordinate is a structure.</span></span> <span data-ttu-id="5e603-117">POST는 위치 없는 idempotent가 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-117">Beware POST is not idempotent without a location.</span></span>
 
         <EntitySet Name="CreateANewModelEntitySet2" EntityType=" MyOffer.CreateANewModelEntity2" />
         <FunctionImport Name="CreateModel" EntitySet="CreateANewModelEntitySet2" ReturnType="Collection(MyOffer.CreateANewModelEntity2)" d:EncodeParameterValues="true" d:AllowedHttpMethods="POST" d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -83,8 +83,8 @@ ms.lasthandoff: 07/11/2017
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="example-functionimport-using-put"></a><span data-ttu-id="6b2b1-119">예: "PUT"을 사용하는 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-119">Example: FunctionImport using "PUT"</span></span>
-<span data-ttu-id="6b2b1-120">PUT을 사용하여 새 하위를 만들거나 서버의 정의된 URL에서 전체 하위를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-120">Use PUT to create a new subordinate or to update the entire subordinate at a server defined URL.</span></span>  <span data-ttu-id="6b2b1-121">PUT 없으므로 동일한 상태를 여러 번 실행 발생 idempotent은 하위 구조가 두 즉,</span><span class="sxs-lookup"><span data-stu-id="6b2b1-121">Where the subordinate is a structure, PUT is idempotent so multiple occurrences will result in the same state, i.e</span></span> <span data-ttu-id="6b2b1-122">x = 5.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-122">x=5.</span></span>  <span data-ttu-id="6b2b1-123">PUT은 지정된 리소스의 전체 콘텐츠에서 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-123">Put should be used with the full content of the specified resource.</span></span>
+## <a name="example-functionimport-using-put"></a><span data-ttu-id="5e603-118">예: "PUT"을 사용하는 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-118">Example: FunctionImport using "PUT"</span></span>
+<span data-ttu-id="5e603-119">새 하위 toocreate PUT을 사용 하 여 또는 tooupdate hello 전체 하위 수준 서버에서 URL을 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-119">Use PUT toocreate a new subordinate or tooupdate hello entire subordinate at a server defined URL.</span></span>  <span data-ttu-id="5e603-120">PUT 없으므로 여러 번 실행 발생 hello 동일 idempotent은 여기서 hello 하위 구조는, 상태, 즉,</span><span class="sxs-lookup"><span data-stu-id="5e603-120">Where hello subordinate is a structure, PUT is idempotent so multiple occurrences will result in hello same state, i.e</span></span> <span data-ttu-id="5e603-121">x = 5.</span><span class="sxs-lookup"><span data-stu-id="5e603-121">x=5.</span></span>  <span data-ttu-id="5e603-122">지정 된 hello의 전체 콘텐츠 hello로 put을 사용 해야 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-122">Put should be used with hello full content of hello specified resource.</span></span>
 
         <EntitySet Name="UpdateAnExistingModelEntitySet" EntityType="MyOffer.UpdateAnExistingModelEntity" />
         <FunctionImport Name="UpdateModel" EntitySet="UpdateAnExistingModelEntitySet" ReturnType="Collection(MyOffer.UpdateAnExistingModelEntity)" d:EncodeParameterValues="true" d:AllowedHttpMethods="PUT" d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -105,8 +105,8 @@ ms.lasthandoff: 07/11/2017
         </EntityType>
 
 
-## <a name="example-functionimport-for-raw-data-returned-using-put"></a><span data-ttu-id="6b2b1-124">예: "PUT"을 사용하여 반환된 "원시" 데이터에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-124">Example: FunctionImport for "Raw" data returned using "PUT"</span></span>
-<span data-ttu-id="6b2b1-125">원시 데이터 PUT을 사용하여 새 하위를 만들거나 서버의 정의된 URL에서 전체 하위를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-125">Use PUT Raw data to create a new subordinate or to update the entire subordinate at a server defined URL.</span></span>  <span data-ttu-id="6b2b1-126">여기서는 하위 항목은 스트림, 즉</span><span class="sxs-lookup"><span data-stu-id="6b2b1-126">Where the subordinate is a stream, i.e.</span></span> <span data-ttu-id="6b2b1-127">구조화 되지 않은 경우, 예:</span><span class="sxs-lookup"><span data-stu-id="6b2b1-127">unstructured, ex.</span></span> <span data-ttu-id="6b2b1-128">텍스트 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-128">a text file.</span></span>  <span data-ttu-id="6b2b1-129">없으므로 동일한 상태를 여러 번 실행 발생 PUT은 idempotent 방식 이므로 즉,</span><span class="sxs-lookup"><span data-stu-id="6b2b1-129">PUT is idempotent so multiple occurrences will result in the same state, i.e</span></span> <span data-ttu-id="6b2b1-130">x = 5.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-130">x=5.</span></span>  <span data-ttu-id="6b2b1-131">PUT은 지정된 리소스의 전체 콘텐츠에서 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-131">Put should be used with the full content of the specified resource.</span></span>
+## <a name="example-functionimport-for-raw-data-returned-using-put"></a><span data-ttu-id="5e603-123">예: "PUT"을 사용하여 반환된 "원시" 데이터에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-123">Example: FunctionImport for "Raw" data returned using "PUT"</span></span>
+<span data-ttu-id="5e603-124">정의 된 서버 URL에 넣을 원시 데이터 toocreate 새 하위 또는 tooupdate hello 전체 하위 항목을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-124">Use PUT Raw data toocreate a new subordinate or tooupdate hello entire subordinate at a server defined URL.</span></span>  <span data-ttu-id="5e603-125">여기서 hello 하위 항목은 스트림, ex, 즉 구조화 되지 않은입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-125">Where hello subordinate is a stream, i.e. unstructured, ex.</span></span> <span data-ttu-id="5e603-126">텍스트 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-126">a text file.</span></span>  <span data-ttu-id="5e603-127">PUT은 idempotent 방식 이므로 없으므로 여러 번 실행 발생 hello 동일한 상태, 즉,</span><span class="sxs-lookup"><span data-stu-id="5e603-127">PUT is idempotent so multiple occurrences will result in hello same state, i.e</span></span> <span data-ttu-id="5e603-128">x = 5.</span><span class="sxs-lookup"><span data-stu-id="5e603-128">x=5.</span></span>  <span data-ttu-id="5e603-129">지정 된 hello의 전체 콘텐츠 hello로 put을 사용 해야 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-129">Put should be used with hello full content of hello specified resource.</span></span>
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="CancelBuild” ReturnType="Raw(text/plain)" d:AllowedHttpMethods="PUT" d:EncodeParameterValues="true" d:BaseUri=” http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -124,8 +124,8 @@ ms.lasthandoff: 07/11/2017
         </FunctionImport>
 
 
-## <a name="example-functionimport-for-raw-data-returned-using-get"></a><span data-ttu-id="6b2b1-132">예: "GET"을 사용하여 반환된 "원시" 데이터에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-132">Example: FunctionImport for "Raw" data returned using "GET"</span></span>
-<span data-ttu-id="6b2b1-133">원시 데이터 GET을 사용하여 구조화되지 않은 하위, 즉 텍스트를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-133">Use GET Raw data to return a subordinate that is unstructured, i.e. text.</span></span>
+## <a name="example-functionimport-for-raw-data-returned-using-get"></a><span data-ttu-id="5e603-130">예: "GET"을 사용하여 반환된 "원시" 데이터에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-130">Example: FunctionImport for "Raw" data returned using "GET"</span></span>
+<span data-ttu-id="5e603-131">원시 가져올 데이터 tooreturn 구조화 되지 않은 하위 항목 즉, 텍스트를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-131">Use GET Raw data tooreturn a subordinate that is unstructured, i.e. text.</span></span>
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="GetModelUsageFile" ReturnType="Raw(text/plain)" d:EncodeParameterValues="true" d:AllowedHttpMethods="GET" d:BaseUri="https://cmla.cloudapp.net/api2/model/builder/build?buildId={buildId}&amp;apiVersion={apiVersion}">
@@ -143,8 +143,8 @@ ms.lasthandoff: 07/11/2017
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="example-functionimport-for-paging-through-returned-data"></a><span data-ttu-id="6b2b1-134">예: 반환된 데이터를 통해 "페이징"에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="6b2b1-134">Example: FunctionImport for "Paging" through returned data</span></span>
-<span data-ttu-id="6b2b1-135">GET을 사용한 데이터를 통해 RESTful 페이징 구현을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-135">Use implement RESTful paging through your data with GET.</span></span>  <span data-ttu-id="6b2b1-136">기본 페이징은 데이터 페이지당 100행으로 설정되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-136">Default paging is set to 100 row per page of data.</span></span>
+## <a name="example-functionimport-for-paging-through-returned-data"></a><span data-ttu-id="5e603-132">예: 반환된 데이터를 통해 "페이징"에 대한 FunctionImport</span><span class="sxs-lookup"><span data-stu-id="5e603-132">Example: FunctionImport for "Paging" through returned data</span></span>
+<span data-ttu-id="5e603-133">GET을 사용한 데이터를 통해 RESTful 페이징 구현을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-133">Use implement RESTful paging through your data with GET.</span></span>  <span data-ttu-id="5e603-134">기본 페이징 데이터의 각 페이지 마다 행을 too100 설정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-134">Default paging is set too100 row per page of data.</span></span>
 
         <EntitySet Name=”CropEntitySet" EntityType="MyOffer.CropEntity" />
         <FunctionImport    Name="GetCropReport" EntitySet="CropEntitySet” ReturnType="Collection(MyOffer.CropEntity)" d:EmitSelfLink="false" d:EncodeParameterValues="true" d:Paging="SkipTake" d:MaxPageSize="100" d:BaseUri="http://api.mydata.org/Crop? report={report}&amp;series={series}&amp;start={$skip}&amp;size=100">
@@ -158,8 +158,8 @@ ms.lasthandoff: 07/11/2017
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="see-also"></a><span data-ttu-id="6b2b1-137">참고 항목</span><span class="sxs-lookup"><span data-stu-id="6b2b1-137">See Also</span></span>
-* <span data-ttu-id="6b2b1-138">전체 OData 매핑 프로세스와 목적을 이해하려는 경우 문서 [데이터 서비스 OData 매핑](marketplace-publishing-data-service-creation-odata-mapping.md) 을 읽고 정의, 구조 및 지침을 검토하세요.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-138">If you are interested in understanding the overall OData mapping process and purpose, read this article [Data Service OData Mapping](marketplace-publishing-data-service-creation-odata-mapping.md) to review definitions, structures, and instructions.</span></span>
-* <span data-ttu-id="6b2b1-139">특정 노드 및 해당 매개 변수를 학습하고 이해하려면 문서 [데이터 서비스 OData 매핑 노드](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) 에서 정의 및 설명, 예제, 사용 사례 컨텍스트를 살펴보세요.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-139">If you are interested in learning and understanding the specific nodes and their parameters, read this article [Data Service OData Mapping Nodes](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) for definitions and explanations, examples, and use case context.</span></span>
-* <span data-ttu-id="6b2b1-140">Azure 마켓플레이스에 데이터 서비스를 게시하기 위한 규정된 경로로 반환하려면 문서 [데이터 서비스 게시 가이드](marketplace-publishing-data-service-creation.md)를 읽어 보세요.</span><span class="sxs-lookup"><span data-stu-id="6b2b1-140">To return to the prescribed path for publishing a Data Service to the Azure Marketplace, read this article [Data Service Publishing Guide](marketplace-publishing-data-service-creation.md).</span></span>
+## <a name="see-also"></a><span data-ttu-id="5e603-135">참고 항목</span><span class="sxs-lookup"><span data-stu-id="5e603-135">See Also</span></span>
+* <span data-ttu-id="5e603-136">이 문서를 읽을 전반적인 OData 매핑 프로세스 및 목적을 이해에서 하려는 경우 hello [데이터 서비스 OData 매핑](marketplace-publishing-data-service-creation-odata-mapping.md) tooreview 정의 구조체 및 지침입니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-136">If you are interested in understanding hello overall OData mapping process and purpose, read this article [Data Service OData Mapping](marketplace-publishing-data-service-creation-odata-mapping.md) tooreview definitions, structures, and instructions.</span></span>
+* <span data-ttu-id="5e603-137">학습 및 이해 hello 특정 노드 및 해당 매개 변수의 하려는 경우이 문서를 읽어 보세요. [데이터 서비스 OData 매핑 노드](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) 정의 및 설명을, 예제 및 사례 컨텍스트 사용에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-137">If you are interested in learning and understanding hello specific nodes and their parameters, read this article [Data Service OData Mapping Nodes](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) for definitions and explanations, examples, and use case context.</span></span>
+* <span data-ttu-id="5e603-138">이 문서를 참조 데이터 서비스 toohello Azure 마켓플레이스에서 게시에 대 한 경로 지정 하는 tooreturn toohello [데이터 서비스에 대 한 게시 가이드](marketplace-publishing-data-service-creation.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="5e603-138">tooreturn toohello prescribed path for publishing a Data Service toohello Azure Marketplace, read this article [Data Service Publishing Guide](marketplace-publishing-data-service-creation.md).</span></span>
 

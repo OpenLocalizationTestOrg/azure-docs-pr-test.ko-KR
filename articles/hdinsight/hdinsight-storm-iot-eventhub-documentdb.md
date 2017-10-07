@@ -1,6 +1,6 @@
 ---
-title: "HDInsight의 Apache Storm을 사용하여 차량 센서 데이터 처리 | Microsoft Docs"
-description: "HDInsight의 Apache Storm을 사용하여 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다. Azure Cosmos DB에서 모델 데이터를 추가하고 저장소에 출력을 저장합니다."
+title: "HDInsight의 Apache Storm를 사용 하 여 aaaProcess 차량 센서 데이터 | Microsoft Docs"
+description: "자세한 내용은 방법 HDInsight의 Apache Storm를 사용 하 여 이벤트 허브에서 tooprocess 자동차 센서 데이터입니다. Azure Cosmos DB에서 모델 데이터를 추가 하 고 출력 toostorage를 저장 합니다."
 services: hdinsight,documentdb,notification-hubs
 documentationcenter: 
 author: Blackmist
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 8e8ebc724e1c70e8fcd56312adef5da2342373ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7b1dbb9072e095ea32160bb731bedd071288af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a><span data-ttu-id="77c66-104">HDInsight의 Apache Storm을 사용하여 Azure 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-104">Process vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight</span></span>
+# <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a><span data-ttu-id="857c2-104">HDInsight의 Apache Storm을 사용하여 Azure 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-104">Process vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight</span></span>
 
-<span data-ttu-id="77c66-105">HDInsight의 Apache Storm을 사용하여 Azure 이벤트 허브에서 차량 센서 데이터를 처리하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-105">Learn how to process vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight.</span></span> <span data-ttu-id="77c66-106">이 예제에서는 Azure Event Hub에서 센서 데이터를 읽고, Azure Cosmos DB에 저장된 데이터를 참조하여 데이터를 보강합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-106">This example reads sensor data from Azure Event Hubs, enriches the data by referencing data stored in Azure Cosmos DB.</span></span> <span data-ttu-id="77c66-107">데이터는 HDFS(Hadoop 파일 시스템)를 사용하여 Azure Storage에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-107">The data is stored into Azure Storage using the Hadoop File System (HDFS).</span></span>
+<span data-ttu-id="857c2-105">자세한 내용은 방법 HDInsight의 Apache Storm를 사용 하 여 Azure 이벤트 허브에서 tooprocess 자동차 센서 데이터입니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-105">Learn how tooprocess vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight.</span></span> <span data-ttu-id="857c2-106">이 예제에서는 Azure 이벤트 허브에서 센서 데이터를 읽고, Azure Cosmos DB에 저장 된 데이터를 참조 하 여 hello 데이터를 강화 합니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-106">This example reads sensor data from Azure Event Hubs, enriches hello data by referencing data stored in Azure Cosmos DB.</span></span> <span data-ttu-id="857c2-107">hello 데이터는 Hadoop 파일 시스템 (HDFS) hello를 사용 하 여 Azure 저장소에 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-107">hello data is stored into Azure Storage using hello Hadoop File System (HDFS).</span></span>
 
-![HDInsight 및 IoT(사물 인터넷) 아키텍처 다이어그램](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
+![HDInsight 및 hello 인터넷 IoT (사물) 아키텍처 다이어그램](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
 
-## <a name="overview"></a><span data-ttu-id="77c66-109">개요</span><span class="sxs-lookup"><span data-stu-id="77c66-109">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="857c2-109">개요</span><span class="sxs-lookup"><span data-stu-id="857c2-109">Overview</span></span>
 
-<span data-ttu-id="77c66-110">차량에 센서를 추가하면 과거 데이터 추세를 기반으로 장비 문제를 예측할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-110">Adding sensors to vehicles allows you to predict equipment problems based on historical data trends.</span></span> <span data-ttu-id="77c66-111">또한 사용 패턴 분석에 따라 향후 버전을 개선할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-111">It also allows you to make improvements to future versions based on usage pattern analysis.</span></span> <span data-ttu-id="77c66-112">MapReduce 처리가 가능하기 위해서는 모든 차량의 데이터를 Hadoop으로 빠르고 효율적으로 로드할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-112">You must be able to quickly and efficiently load the data from all vehicles into Hadoop before MapReduce processing can occur.</span></span> <span data-ttu-id="77c66-113">또한 중요한 고장 경로(엔진 온도, 브레이크 등)에 대한 분석을 실시간으로 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-113">Additionally, you may wish to do analysis for critical failure paths (engine temperature, brakes, etc.) in real time.</span></span>
+<span data-ttu-id="857c2-110">센서 toovehicles 추가 기록 데이터 추세를 기반으로 toopredict 장비 문제가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-110">Adding sensors toovehicles allows you toopredict equipment problems based on historical data trends.</span></span> <span data-ttu-id="857c2-111">Toomake 개선 사용량 패턴 분석에 따라 toofuture 버전을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-111">It also allows you toomake improvements toofuture versions based on usage pattern analysis.</span></span> <span data-ttu-id="857c2-112">수 tooquickly를 여야 하며 효율적으로 hello 데이터 로드 모든 차량에서 Hadoop MapReduce 처리가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-112">You must be able tooquickly and efficiently load hello data from all vehicles into Hadoop before MapReduce processing can occur.</span></span> <span data-ttu-id="857c2-113">또한 중요 한 경로 (엔진 온도, brakes, 등)에 대 한 toodo 분석 실시간으로 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-113">Additionally, you may wish toodo analysis for critical failure paths (engine temperature, brakes, etc.) in real time.</span></span>
 
-<span data-ttu-id="77c66-114">Azure Event Hub는 센서에서 생성된 방대한 데이터 볼륨을 처리하기 위해 개발되었습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-114">Azure Event Hubs is built to handle the massive volume of data generated by sensors.</span></span> <span data-ttu-id="77c66-115">Apache Storm은 HDFS에 데이터를 저장하기 전에 데이터를 로드해 처리하는 데 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-115">Apache Storm can be used to load and process the data before storing it into HDFS.</span></span>
+<span data-ttu-id="857c2-114">Azure 이벤트 허브는 센서에 의해 생성 된 데이터의 toohandle hello 대규모 볼륨을 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-114">Azure Event Hubs is built toohandle hello massive volume of data generated by sensors.</span></span> <span data-ttu-id="857c2-115">Apache Storm HDFS에 저장 되기 전에 사용 되는 tooload 및 hello 데이터 처리를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-115">Apache Storm can be used tooload and process hello data before storing it into HDFS.</span></span>
 
-## <a name="solution"></a><span data-ttu-id="77c66-116">해결 방법</span><span class="sxs-lookup"><span data-stu-id="77c66-116">Solution</span></span>
+## <a name="solution"></a><span data-ttu-id="857c2-116">해결 방법</span><span class="sxs-lookup"><span data-stu-id="857c2-116">Solution</span></span>
 
-<span data-ttu-id="77c66-117">엔진 온도, 주변 온도 및 차량 속도에 대한 원격 분석 데이터는 센서에서 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-117">Telemetry data for engine temperature, ambient temperature, and vehicle speed is recorded by sensors.</span></span> <span data-ttu-id="77c66-118">그런 다음 데이터는 VIN(차량 식별 번호) 및 타임스탬프와 함께 Event Hub로 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-118">Data is then sent to Event Hubs along with the car's Vehicle Identification Number (VIN) and a time stamp.</span></span> <span data-ttu-id="77c66-119">그러면 HDInsight의 Apache Storm에서 실행되는 Storm 토폴로지가 데이터를 읽고 처리한 후 HDFS에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-119">From there, a Storm Topology running on an Apache Storm on HDInsight cluster reads the data, processes it, and stores it into HDFS.</span></span>
+<span data-ttu-id="857c2-117">엔진 온도, 주변 온도 및 차량 속도에 대한 원격 분석 데이터는 센서에서 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-117">Telemetry data for engine temperature, ambient temperature, and vehicle speed is recorded by sensors.</span></span> <span data-ttu-id="857c2-118">데이터는 tooEvent 허브 hello 자동차의 자동차를 움직일 식별 번호 (VIN) 및 타임 스탬프와 함께 전송 됩니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-118">Data is then sent tooEvent Hubs along with hello car's Vehicle Identification Number (VIN) and a time stamp.</span></span> <span data-ttu-id="857c2-119">여기에서 HDInsight 클러스터에는 Apache Storm에서 실행 되는 스톰 토폴로지 hello 데이터를 읽고, 처리 한 HDFS에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-119">From there, a Storm Topology running on an Apache Storm on HDInsight cluster reads hello data, processes it, and stores it into HDFS.</span></span>
 
-<span data-ttu-id="77c66-120">처리하는 동안 VIN은 Cosmos DB에서 모델 정보를 검색하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-120">During processing, the VIN is used to retrieve model information from Cosmos DB.</span></span> <span data-ttu-id="77c66-121">이 데이터는 저장되기 전에 데이터 스트림에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-121">This data is added to the data stream before it is stored.</span></span>
+<span data-ttu-id="857c2-120">처리 하는 동안 hello VIN Cosmos DB에서 사용 되는 tooretrieve 모델 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-120">During processing, hello VIN is used tooretrieve model information from Cosmos DB.</span></span> <span data-ttu-id="857c2-121">이 데이터는 저장 되기 전에 toohello 데이터 스트림을 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-121">This data is added toohello data stream before it is stored.</span></span>
 
-<span data-ttu-id="77c66-122">Storm 토폴로지에서 사용되는 구성 요소는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-122">The components used in the Storm Topology are:</span></span>
+<span data-ttu-id="857c2-122">Storm 토폴로지 hello에 사용 된 hello 구성 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-122">hello components used in hello Storm Topology are:</span></span>
 
-* <span data-ttu-id="77c66-123">**EventHubSpout** - Azure 이벤트 허브에서 데이터를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-123">**EventHubSpout** - reads data from Azure Event Hubs</span></span>
-* <span data-ttu-id="77c66-124">**TypeConversionBolt** - JSON 문자열을 Event Hub에서 다음 센서 데이터가 포함된 튜블로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-124">**TypeConversionBolt** - converts the JSON string from Event Hubs into a tuple containing the following sensor data:</span></span>
-    * <span data-ttu-id="77c66-125">엔진 온도</span><span class="sxs-lookup"><span data-stu-id="77c66-125">Engine temperature</span></span>
-    * <span data-ttu-id="77c66-126">주변 온도</span><span class="sxs-lookup"><span data-stu-id="77c66-126">Ambient temperature</span></span>
-    * <span data-ttu-id="77c66-127">속도</span><span class="sxs-lookup"><span data-stu-id="77c66-127">Speed</span></span>
-    * <span data-ttu-id="77c66-128">VIN</span><span class="sxs-lookup"><span data-stu-id="77c66-128">VIN</span></span>
-    * <span data-ttu-id="77c66-129">Timestamp</span><span class="sxs-lookup"><span data-stu-id="77c66-129">Timestamp</span></span>
-* <span data-ttu-id="77c66-130">**DataReferencBolt** - VIN을 사용하여 Cosmos DB에서 차량 모델을 조회합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-130">**DataReferencBolt** - looks up the vehicle model from Cosmos DB using the VIN</span></span>
-* <span data-ttu-id="77c66-131">**WasbStoreBolt** - HDFS(Azure 저장소)에 데이터를 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-131">**WasbStoreBolt** - stores the data to HDFS (Azure Storage)</span></span>
+* <span data-ttu-id="857c2-123">**EventHubSpout** - Azure 이벤트 허브에서 데이터를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-123">**EventHubSpout** - reads data from Azure Event Hubs</span></span>
+* <span data-ttu-id="857c2-124">**TypeConversionBolt** -변환 hello 같은 센서 데이터가 포함 된 튜플로 이벤트 허브에서 JSON 문자열 hello:</span><span class="sxs-lookup"><span data-stu-id="857c2-124">**TypeConversionBolt** - converts hello JSON string from Event Hubs into a tuple containing hello following sensor data:</span></span>
+    * <span data-ttu-id="857c2-125">엔진 온도</span><span class="sxs-lookup"><span data-stu-id="857c2-125">Engine temperature</span></span>
+    * <span data-ttu-id="857c2-126">주변 온도</span><span class="sxs-lookup"><span data-stu-id="857c2-126">Ambient temperature</span></span>
+    * <span data-ttu-id="857c2-127">속도</span><span class="sxs-lookup"><span data-stu-id="857c2-127">Speed</span></span>
+    * <span data-ttu-id="857c2-128">VIN</span><span class="sxs-lookup"><span data-stu-id="857c2-128">VIN</span></span>
+    * <span data-ttu-id="857c2-129">Timestamp</span><span class="sxs-lookup"><span data-stu-id="857c2-129">Timestamp</span></span>
+* <span data-ttu-id="857c2-130">**DataReferencBolt** -hello VIN를 사용 하 여 Cosmos DB에서 hello 차량 모델을 조회 합니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-130">**DataReferencBolt** - looks up hello vehicle model from Cosmos DB using hello VIN</span></span>
+* <span data-ttu-id="857c2-131">**WasbStoreBolt** -저장소 hello 데이터 tooHDFS (Azure 저장소)</span><span class="sxs-lookup"><span data-stu-id="857c2-131">**WasbStoreBolt** - stores hello data tooHDFS (Azure Storage)</span></span>
 
-<span data-ttu-id="77c66-132">다음 이미지는 이 솔루션의 다이어그램입니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-132">The following image is a diagram of this solution:</span></span>
+<span data-ttu-id="857c2-132">hello 다음 이미지는이 솔루션의 다이어그램:</span><span class="sxs-lookup"><span data-stu-id="857c2-132">hello following image is a diagram of this solution:</span></span>
 
 ![Storm 토폴로지](./media/hdinsight-storm-iot-eventhub-documentdb/iottopology.png)
 
-## <a name="implementation"></a><span data-ttu-id="77c66-134">구현</span><span class="sxs-lookup"><span data-stu-id="77c66-134">Implementation</span></span>
+## <a name="implementation"></a><span data-ttu-id="857c2-134">구현</span><span class="sxs-lookup"><span data-stu-id="857c2-134">Implementation</span></span>
 
-<span data-ttu-id="77c66-135">이 시나리오에 대한 전체 자동화된 솔루션은 GitHub에서 [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) 리포지토리의 일부로 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="77c66-135">A complete, automated solution for this scenario is available as part of the [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) repository on GitHub.</span></span> <span data-ttu-id="77c66-136">이 예제를 사용하려면 [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md)의 단계를 따르세요.</span><span class="sxs-lookup"><span data-stu-id="77c66-136">To use this example, follow the steps in the [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).</span></span>
+<span data-ttu-id="857c2-135">완전 한 자동화 된 방법으로이 시나리오를 사용할 수 없으면 hello의 일부로 [예제-스톰-HDInsight](https://github.com/hdinsight/hdinsight-storm-examples) GitHub의 리포지토리 합니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-135">A complete, automated solution for this scenario is available as part of hello [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) repository on GitHub.</span></span> <span data-ttu-id="857c2-136">toouse hello에 hello 단계 수행이이 예제에서는 [IoTExample 추가 정보입니다. MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="857c2-136">toouse this example, follow hello steps in hello [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="77c66-137">다음 단계</span><span class="sxs-lookup"><span data-stu-id="77c66-137">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="857c2-137">다음 단계</span><span class="sxs-lookup"><span data-stu-id="857c2-137">Next Steps</span></span>
 
-<span data-ttu-id="77c66-138">Storm 토폴로지에 대한 자세한 내용은 [HDInsight의 Storm에 대한 예제 토폴로지](hdinsight-storm-example-topology.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="77c66-138">For more example Storm topologies, see [Example topologies for Storm on HDInsight](hdinsight-storm-example-topology.md).</span></span>
+<span data-ttu-id="857c2-138">Storm 토폴로지에 대한 자세한 내용은 [HDInsight의 Storm에 대한 예제 토폴로지](hdinsight-storm-example-topology.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="857c2-138">For more example Storm topologies, see [Example topologies for Storm on HDInsight](hdinsight-storm-example-topology.md).</span></span>
 

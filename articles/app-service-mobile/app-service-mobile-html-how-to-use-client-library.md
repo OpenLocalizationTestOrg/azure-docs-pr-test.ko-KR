@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Apps용 JavaScript SDK를 사용하는 방법"
-description: "Azure Mobile Apps에 v를 사용하는 방법"
+title: "aaaHow tooUse hello Azure 모바일 앱 용 JavaScript SDK"
+description: "어떻게 Azure 모바일 앱에 대 한 tooUse v"
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -14,32 +14,32 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 0c4b4de560d70592f5bbdee28b56a7686b5689f4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3fcbb0c5bd6918a285bdafa1946ba0bd47bb21b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-javascript-client-library-for-azure-mobile-apps"></a><span data-ttu-id="c035f-103">Azure Mobile Apps용 JavaScript 클라이언트 라이브러리를 사용하는 방법</span><span class="sxs-lookup"><span data-stu-id="c035f-103">How to Use the JavaScript client library for Azure Mobile Apps</span></span>
+# <a name="how-toouse-hello-javascript-client-library-for-azure-mobile-apps"></a><span data-ttu-id="520e3-103">TooUse는 Azure 모바일 앱 용 JavaScript 클라이언트 라이브러리를 hello 하는 방법</span><span class="sxs-lookup"><span data-stu-id="520e3-103">How tooUse hello JavaScript client library for Azure Mobile Apps</span></span>
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-<span data-ttu-id="c035f-104">이 가이드에서는 최신 [Azure Mobile Apps용 JavaScript SDK]를 사용하여 일반적인 시나리오를 수행하는 방법을 알려줍니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-104">This guide teaches you to perform common scenarios using the latest [JavaScript SDK for Azure Mobile Apps].</span></span> <span data-ttu-id="c035f-105">Azure Mobile Apps를 처음 접하는 경우 먼저 [Azure Mobile Apps 빠른 시작]을 완료하여 백 엔드를 만들고 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-105">If you are new to Azure Mobile Apps, first complete [Azure Mobile Apps Quick Start] to create a backend and create a table.</span></span> <span data-ttu-id="c035f-106">이 가이드에서는 HTML/JavaScript 웹 응용 프로그램에서 모바일 백 엔드를 사용하는 데 초점을 둡니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-106">In this guide, we focus on using the mobile backend in HTML/JavaScript Web applications.</span></span>
+<span data-ttu-id="520e3-104">이 가이드 최신 버전의 hello를 사용 하 여 tooperform 일반적인 시나리오에 설명 [Azure 모바일 앱 용 JavaScript SDK]합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-104">This guide teaches you tooperform common scenarios using hello latest [JavaScript SDK for Azure Mobile Apps].</span></span> <span data-ttu-id="520e3-105">새로운 tooAzure 모바일 앱의 경우 먼저 완료 [Azure 모바일 앱 빠른 시작] toocreate 백 엔드 고 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-105">If you are new tooAzure Mobile Apps, first complete [Azure Mobile Apps Quick Start] toocreate a backend and create a table.</span></span> <span data-ttu-id="520e3-106">이 가이드에서는 hello 모바일 백 엔드를 사용 하 여 HTML/JavaScript 웹 응용 프로그램에 집중 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-106">In this guide, we focus on using hello mobile backend in HTML/JavaScript Web applications.</span></span>
 
-## <a name="supported-platforms"></a><span data-ttu-id="c035f-107">지원되는 플랫폼</span><span class="sxs-lookup"><span data-stu-id="c035f-107">Supported platforms</span></span>
-<span data-ttu-id="c035f-108">브라우저 지원은 주요 브라우저인 Google Chrome, Microsoft Edge, Microsoft Internet Explorer 및 Mozilla Firefox의 최신 버전으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-108">We limit browser support to the current and last versions of the major browsers:  Google Chrome, Microsoft Edge, Microsoft Internet Explorer, and Mozilla Firefox.</span></span>  <span data-ttu-id="c035f-109">SDK가 비교적 최신 브라우저와는 호환될 것으로 예상됩니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-109">We expect the SDK to function with any relatively modern browser.</span></span>
+## <a name="supported-platforms"></a><span data-ttu-id="520e3-107">지원되는 플랫폼</span><span class="sxs-lookup"><span data-stu-id="520e3-107">Supported platforms</span></span>
+<span data-ttu-id="520e3-108">브라우저 지원 toohello 현재 제한 하 고 마지막 버전의 hello 주요 브라우저: Google Chrome, Microsoft Edge, Microsoft Internet Explorer 및 Mozilla Firefox 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-108">We limit browser support toohello current and last versions of hello major browsers:  Google Chrome, Microsoft Edge, Microsoft Internet Explorer, and Mozilla Firefox.</span></span>  <span data-ttu-id="520e3-109">상대적으로 최신 브라우저와 SDK toofunction hello 라고 생각 됩니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-109">We expect hello SDK toofunction with any relatively modern browser.</span></span>
 
-<span data-ttu-id="c035f-110">패키지는 범용 JavaScript 모듈로 배포되므로 전역, AMD 및 CommonJS 서식을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-110">The package is distributed as a Universal JavaScript Module, so it supports globals, AMD, and CommonJS formats.</span></span>
+<span data-ttu-id="520e3-110">hello 패키지는 전역, AMD 지원 하 고 CommonJS 형식을 지정 하므로 유니버설 JavaScript 모듈로 배포 됩니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-110">hello package is distributed as a Universal JavaScript Module, so it supports globals, AMD, and CommonJS formats.</span></span>
 
-## <span data-ttu-id="c035f-111"><a name="Setup"></a>설정 및 필수 조건</span><span class="sxs-lookup"><span data-stu-id="c035f-111"><a name="Setup"></a>Setup and prerequisites</span></span>
-<span data-ttu-id="c035f-112">이 가이드에서는 테이블과 함께 백 엔드를 만들었다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-112">This guide assumes that you have created a backend with a table.</span></span> <span data-ttu-id="c035f-113">이 가이드에서는 해당 테이블에 이러한 자습서의 테이블과 동일한 스키마가 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-113">This guide assumes that the table has the same schema as the tables in those tutorials.</span></span>
+## <span data-ttu-id="520e3-111"><a name="Setup"></a>설정 및 필수 조건</span><span class="sxs-lookup"><span data-stu-id="520e3-111"><a name="Setup"></a>Setup and prerequisites</span></span>
+<span data-ttu-id="520e3-112">이 가이드에서는 테이블과 함께 백 엔드를 만들었다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-112">This guide assumes that you have created a backend with a table.</span></span> <span data-ttu-id="520e3-113">이 가이드에서는 해당 hello 테이블에 hello 가정 해당 자습서의 hello 테이블이 동일한 스키마입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-113">This guide assumes that hello table has hello same schema as hello tables in those tutorials.</span></span>
 
-<span data-ttu-id="c035f-114">`npm` 명령을 통해 Azure Mobile Apps JavaScript SDK를 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-114">Installing the Azure Mobile Apps JavaScript SDK can be done via the `npm` command:</span></span>
+<span data-ttu-id="520e3-114">Hello Azure 모바일 앱의 JavaScript SDK 설치 hello를 통해 수행할 수 있습니다 `npm` 명령:</span><span class="sxs-lookup"><span data-stu-id="520e3-114">Installing hello Azure Mobile Apps JavaScript SDK can be done via hello `npm` command:</span></span>
 
 ```
 npm install azure-mobile-apps-client --save
 ```
 
-<span data-ttu-id="c035f-115">또한 라이브러리는 Browserify 및 Webpack과 같은 CommonJS 환경 내에서 ES2015 모듈로 사용할 수 있으며 AMD 라이브러리로 사용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-115">The library can also be used as an ES2015 module, within CommonJS environments such as Browserify and Webpack and as an AMD library.</span></span>  <span data-ttu-id="c035f-116">예:</span><span class="sxs-lookup"><span data-stu-id="c035f-116">For example:</span></span>
+<span data-ttu-id="520e3-115">hello 라이브러리를 ES2015 모듈로 Browserify 등 시스템용 및 AMD 라이브러리로 CommonJS 환경 내에서 사용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-115">hello library can also be used as an ES2015 module, within CommonJS environments such as Browserify and Webpack and as an AMD library.</span></span>  <span data-ttu-id="520e3-116">예:</span><span class="sxs-lookup"><span data-stu-id="520e3-116">For example:</span></span>
 
 ```
 # For ECMAScript 5.1 CommonJS
@@ -48,7 +48,7 @@ var WindowsAzure = require('azure-mobile-apps-client');
 import * as WindowsAzure from 'azure-mobile-apps-client';
 ```
 
-<span data-ttu-id="c035f-117">또한 우리의 CDN에서 직접 다운로드 하 여 미리 작성 된 버전의 SDK 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-117">You can also use a pre-built version of the SDK by downloading directly from our CDN:</span></span>
+<span data-ttu-id="520e3-117">또한 우리의 CDN에서 직접 다운로드 하 여 미리 작성 된 버전의 hello SDK 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-117">You can also use a pre-built version of hello SDK by downloading directly from our CDN:</span></span>
 
 ```html
 <script src="https://zumo.blob.core.windows.net/sdk/azure-mobile-apps-client.min.js"></script>
@@ -56,53 +56,53 @@ import * as WindowsAzure from 'azure-mobile-apps-client';
 
 [!INCLUDE [app-service-mobile-html-js-library](../../includes/app-service-mobile-html-js-library.md)]
 
-## <span data-ttu-id="c035f-118"><a name="auth"></a>방법: 사용자 인증</span><span class="sxs-lookup"><span data-stu-id="c035f-118"><a name="auth"></a>How to: Authenticate users</span></span>
-<span data-ttu-id="c035f-119">Azure App Service는 Facebook, Google, Microsoft 계정 및 Twitter와 같이 다양한 외부 ID 공급자를 사용하여 앱 사용자의 인증 및 권한 부여를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-119">Azure App Service supports authenticating and authorizing app users using various external identity providers: Facebook, Google, Microsoft Account, and Twitter.</span></span> <span data-ttu-id="c035f-120">테이블에 대해 사용 권한을 설정하여 특정 작업을 위한 액세스를 인증된 사용자로만 제한할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-120">You can set permissions on tables to restrict access for specific operations to only authenticated users.</span></span> <span data-ttu-id="c035f-121">인증된 사용자의 ID를 사용하여 서버 스크립트에 인증 규칙을 구현할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-121">You can also use the identity of authenticated users to implement authorization rules in server scripts.</span></span> <span data-ttu-id="c035f-122">자세한 내용은 [인증 시작] 자습서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c035f-122">For more information, see the [Get started with authentication] tutorial.</span></span>
+## <span data-ttu-id="520e3-118"><a name="auth"></a>방법: 사용자 인증</span><span class="sxs-lookup"><span data-stu-id="520e3-118"><a name="auth"></a>How to: Authenticate users</span></span>
+<span data-ttu-id="520e3-119">Azure App Service는 Facebook, Google, Microsoft 계정 및 Twitter와 같이 다양한 외부 ID 공급자를 사용하여 앱 사용자의 인증 및 권한 부여를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-119">Azure App Service supports authenticating and authorizing app users using various external identity providers: Facebook, Google, Microsoft Account, and Twitter.</span></span> <span data-ttu-id="520e3-120">권한을 설정할 수 있습니다에 특정 작업에 대 한 테이블 toorestrict 액세스 tooonly 인증 된 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-120">You can set permissions on tables toorestrict access for specific operations tooonly authenticated users.</span></span> <span data-ttu-id="520e3-121">서버 스크립트에 인증 된 사용자 tooimplement 권한 부여 규칙의 hello id를도 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-121">You can also use hello identity of authenticated users tooimplement authorization rules in server scripts.</span></span> <span data-ttu-id="520e3-122">자세한 내용은 참조 hello [인증 시작] 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-122">For more information, see hello [Get started with authentication] tutorial.</span></span>
 
-<span data-ttu-id="c035f-123">두 가지의 인증 흐름, 즉 서버 흐름과 클라이언트 흐름이 지원됩니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-123">Two authentication flows are supported: a server flow and a client flow.</span></span>  <span data-ttu-id="c035f-124">서버 흐름의 경우 공급자의 웹 인증 인터페이스를 사용하므로 인증 경험이 가장 단순합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-124">The server flow provides the simplest authentication experience, as it relies on the provider's web authentication interface.</span></span> <span data-ttu-id="c035f-125">클라이언트 흐름의 경우 공급자별 SDK를 사용하므로 Single Sign-On과 같은 장치 특정 기능을 통해 심도 깊은 통합이 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-125">The client flow allows for deeper integration with device-specific capabilities such as single-sign-on as it relies on provider-specific SDKs.</span></span>
+<span data-ttu-id="520e3-123">두 가지의 인증 흐름, 즉 서버 흐름과 클라이언트 흐름이 지원됩니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-123">Two authentication flows are supported: a server flow and a client flow.</span></span>  <span data-ttu-id="520e3-124">hello 서버 흐름 hello 공급자의 웹 인증 인터페이스를 사용 hello 가장 간단한 인증 경험을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-124">hello server flow provides hello simplest authentication experience, as it relies on hello provider's web authentication interface.</span></span> <span data-ttu-id="520e3-125">hello 클라이언트 흐름 고려한 장치 전용 기능이 있는 밀접 하 게 통합와 같은 단일 로그온 공급자별 Sdk를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-125">hello client flow allows for deeper integration with device-specific capabilities such as single-sign-on as it relies on provider-specific SDKs.</span></span>
 
 [!INCLUDE [app-service-mobile-html-js-auth-library](../../includes/app-service-mobile-html-js-auth-library.md)]
 
-### <span data-ttu-id="c035f-126"><a name="configure-external-redirect-urls"></a>방법: 외부 리디렉션 URL에 대해 모바일 App Service 구성</span><span class="sxs-lookup"><span data-stu-id="c035f-126"><a name="configure-external-redirect-urls"></a>How to: Configure your Mobile App Service for external redirect URLs.</span></span>
-<span data-ttu-id="c035f-127">여러 가지 유형의 JavaScript 응용 프로그램은 루프백 기능을 사용하여 OAuth UI 흐름을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-127">Several types of JavaScript applications use a loopback capability to handle OAuth UI flows.</span></span>  <span data-ttu-id="c035f-128">이러한 기능은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-128">These capabilities include:</span></span>
+### <span data-ttu-id="520e3-126"><a name="configure-external-redirect-urls"></a>방법: 외부 리디렉션 URL에 대해 모바일 App Service 구성</span><span class="sxs-lookup"><span data-stu-id="520e3-126"><a name="configure-external-redirect-urls"></a>How to: Configure your Mobile App Service for external redirect URLs.</span></span>
+<span data-ttu-id="520e3-127">여러 유형의 JavaScript 응용 프로그램 UI OAuth 흐름 루프백 기능 toohandle를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-127">Several types of JavaScript applications use a loopback capability toohandle OAuth UI flows.</span></span>  <span data-ttu-id="520e3-128">이러한 기능은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-128">These capabilities include:</span></span>
 
-* <span data-ttu-id="c035f-129">로컬로 서비스 실행</span><span class="sxs-lookup"><span data-stu-id="c035f-129">Running your service locally</span></span>
-* <span data-ttu-id="c035f-130">Ionic Framework와 라이브 다시 로드 사용</span><span class="sxs-lookup"><span data-stu-id="c035f-130">Using Live Reload with the Ionic Framework</span></span>
-* <span data-ttu-id="c035f-131">인증을 위해 App Service로 리디렉션</span><span class="sxs-lookup"><span data-stu-id="c035f-131">Redirecting to App Service for authentication.</span></span>
+* <span data-ttu-id="520e3-129">로컬로 서비스 실행</span><span class="sxs-lookup"><span data-stu-id="520e3-129">Running your service locally</span></span>
+* <span data-ttu-id="520e3-130">라이브 다시 로드를 사용 하 여 Ionic 프레임 워크 hello로</span><span class="sxs-lookup"><span data-stu-id="520e3-130">Using Live Reload with hello Ionic Framework</span></span>
+* <span data-ttu-id="520e3-131">인증에 대 한 서비스 tooApp을 리디렉션합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-131">Redirecting tooApp Service for authentication.</span></span>
 
-<span data-ttu-id="c035f-132">로컬로 실행하면 기본적으로 App Service 인증이 모바일 앱 백 엔드에서 액세스만 허용하도록 구성되므로 문제가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-132">Running locally can cause problems because, by default, App Service authentication is only configured to allow access from your Mobile App backend.</span></span> <span data-ttu-id="c035f-133">다음 단계에 따라 App Service 설정을 변경하여 서버를 로컬로 실행할 때 인증을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-133">Use the following steps to change the App Service settings to enable authentication when running the server locally:</span></span>
+<span data-ttu-id="520e3-132">로컬로 실행 중 앱 서비스 인증은 기본적으로 모바일 앱 백 엔드에서 tooallow 액세스를 구성 하기 때문에 문제가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-132">Running locally can cause problems because, by default, App Service authentication is only configured tooallow access from your Mobile App backend.</span></span> <span data-ttu-id="520e3-133">Hello 단계 toochange hello 응용 프로그램 서비스 설정 tooenable 인증 hello 서버를 로컬로 실행 하는 경우 다음을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-133">Use hello following steps toochange hello App Service settings tooenable authentication when running hello server locally:</span></span>
 
-1. <span data-ttu-id="c035f-134">[Azure Portal]에 로그인</span><span class="sxs-lookup"><span data-stu-id="c035f-134">Log in to the [Azure portal]</span></span>
-2. <span data-ttu-id="c035f-135">모바일 앱 백 엔드로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-135">Navigate to your Mobile App backend.</span></span>
-3. <span data-ttu-id="c035f-136">**개발 도구** 메뉴에서 **리소스 Explorer**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-136">Select **Resource explorer** in the **DEVELOPMENT TOOLS** menu.</span></span>
-4. <span data-ttu-id="c035f-137">**이동** 을 클릭하여 새 탭 또는 창에서 모바일 앱 백 엔드에 대한 리소스 Explorer를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-137">Click **Go** to open the resource explorer for your Mobile App backend in a new tab or window.</span></span>
-5. <span data-ttu-id="c035f-138">앱에 대한 **config** > **authsettings** 노드를 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-138">Expand the **config** > **authsettings** node for your app.</span></span>
-6. <span data-ttu-id="c035f-139">**편집** 단추를 클릭하여 리소스의 편집을 활성화합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-139">Click the **Edit** button to enable editing of the resource.</span></span>
-7. <span data-ttu-id="c035f-140">null이어야 하는 **allowedExternalRedirectUrls** 요소를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-140">Find the **allowedExternalRedirectUrls** element, which should be null.</span></span> <span data-ttu-id="c035f-141">배열에 URL을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-141">Add your URLs in an array:</span></span>
+1. <span data-ttu-id="520e3-134">Toohello 로그인 [Azure 포털]</span><span class="sxs-lookup"><span data-stu-id="520e3-134">Log in toohello [Azure portal]</span></span>
+2. <span data-ttu-id="520e3-135">모바일 앱 백 엔드에서 tooyour 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-135">Navigate tooyour Mobile App backend.</span></span>
+3. <span data-ttu-id="520e3-136">선택 **리소스 탐색기** hello에 **개발 도구** 메뉴.</span><span class="sxs-lookup"><span data-stu-id="520e3-136">Select **Resource explorer** in hello **DEVELOPMENT TOOLS** menu.</span></span>
+4. <span data-ttu-id="520e3-137">클릭 **이동** 새 탭 또는 창에서 모바일 앱 백 엔드에 대 한 tooopen hello 리소스 탐색기입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-137">Click **Go** tooopen hello resource explorer for your Mobile App backend in a new tab or window.</span></span>
+5. <span data-ttu-id="520e3-138">Hello 확장 **config** > **authsettings** 응용 프로그램에 대 한 노드입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-138">Expand hello **config** > **authsettings** node for your app.</span></span>
+6. <span data-ttu-id="520e3-139">Hello 클릭 **편집** tooenable hello 리소스의 편집 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-139">Click hello **Edit** button tooenable editing of hello resource.</span></span>
+7. <span data-ttu-id="520e3-140">Hello **allowedExternalRedirectUrls** 요소는 null 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-140">Find hello **allowedExternalRedirectUrls** element, which should be null.</span></span> <span data-ttu-id="520e3-141">배열에 URL을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-141">Add your URLs in an array:</span></span>
 
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
 
-    <span data-ttu-id="c035f-142">배열의 URL을 서비스 URL로 바꿉니다. 이 예에서 로컬 Node.js 샘플 서비스의 경우 `http://localhost:3000`입니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-142">Replace the URLs in the array with the URLs of your service, which in this example is `http://localhost:3000` for the local Node.js sample service.</span></span> <span data-ttu-id="c035f-143">또한 앱이 구성된 방식에 따라 Ripple 서비스 또는 기타 URL에 대해 `http://localhost:4400`을 사용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-143">You could also use `http://localhost:4400` for the Ripple service or some other URL, depending on how your app is configured.</span></span>
-8. <span data-ttu-id="c035f-144">페이지 맨 위에서 **읽기/쓰기**를 클릭한 후 **PUT**을 클릭하여 업데이트를 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-144">At the top of the page, click **Read/Write**, then click **PUT** to save your updates.</span></span>
+    <span data-ttu-id="520e3-142">이 예제는 서비스의 url이 hello hello 배열의 hello Url 바꾸기 `http://localhost:3000` hello 로컬 Node.js 샘플 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-142">Replace hello URLs in hello array with hello URLs of your service, which in this example is `http://localhost:3000` for hello local Node.js sample service.</span></span> <span data-ttu-id="520e3-143">사용 해도 `http://localhost:4400` hello Ripple 서비스 또는 응용 프로그램 구성 된 방식에 따라 다른 URL에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-143">You could also use `http://localhost:4400` for hello Ripple service or some other URL, depending on how your app is configured.</span></span>
+8. <span data-ttu-id="520e3-144">Hello hello 페이지의 위쪽에 클릭 **읽기/쓰기**, 클릭 **배치** toosave 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-144">At hello top of hello page, click **Read/Write**, then click **PUT** toosave your updates.</span></span>
 
-<span data-ttu-id="c035f-145">또한 CORS 허용 목록 설정에 동일한 루프백 URL을 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-145">You also need to add the same loopback URLs to the CORS whitelist settings:</span></span>
+<span data-ttu-id="520e3-145">또한 tooadd 해야 hello toohello CORS 허용 목록 설정에 대 한 동일한의 루프백 Url:</span><span class="sxs-lookup"><span data-stu-id="520e3-145">You also need tooadd hello same loopback URLs toohello CORS whitelist settings:</span></span>
 
-1. <span data-ttu-id="c035f-146">[Azure Portal]로 다시 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-146">Navigate back to the [Azure portal].</span></span>
-2. <span data-ttu-id="c035f-147">모바일 앱 백 엔드로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-147">Navigate to your Mobile App backend.</span></span>
-3. <span data-ttu-id="c035f-148">**API** 메뉴에서 **CORS**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-148">Click **CORS** in the **API** menu.</span></span>
-4. <span data-ttu-id="c035f-149">빈 **허용된 원본** 텍스트 상자에 각 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-149">Enter each URL in the empty **Allowed Origins** text box.</span></span>  <span data-ttu-id="c035f-150">새 텍스트 상자가 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-150">A new text box is created.</span></span>
-5. <span data-ttu-id="c035f-151">**저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-151">Click **SAVE**</span></span>
+1. <span data-ttu-id="520e3-146">뒤로 toohello 이동 [Azure 포털]합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-146">Navigate back toohello [Azure portal].</span></span>
+2. <span data-ttu-id="520e3-147">모바일 앱 백 엔드에서 tooyour 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-147">Navigate tooyour Mobile App backend.</span></span>
+3. <span data-ttu-id="520e3-148">클릭 **CORS** hello에 **API** 메뉴.</span><span class="sxs-lookup"><span data-stu-id="520e3-148">Click **CORS** in hello **API** menu.</span></span>
+4. <span data-ttu-id="520e3-149">빈 hello에 각 URL을 입력 **허용 된 원본을** 입력란.</span><span class="sxs-lookup"><span data-stu-id="520e3-149">Enter each URL in hello empty **Allowed Origins** text box.</span></span>  <span data-ttu-id="520e3-150">새 텍스트 상자가 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-150">A new text box is created.</span></span>
+5. <span data-ttu-id="520e3-151">**저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-151">Click **SAVE**</span></span>
 
-<span data-ttu-id="c035f-152">백 엔드가 업데이트되면 앱에서 새 루프백 URL을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c035f-152">After the backend updates, you will be able to use the new loopback URLs in your app.</span></span>
+<span data-ttu-id="520e3-152">Hello 백 엔드 업데이트 후에 응용 프로그램에서 수 toouse hello 새 루프백 Url 됩니다.</span><span class="sxs-lookup"><span data-stu-id="520e3-152">After hello backend updates, you will be able toouse hello new loopback URLs in your app.</span></span>
 
 <!-- URLs. -->
-<span data-ttu-id="c035f-153">[Azure Mobile Apps 빠른 시작]: app-service-mobile-cordova-get-started.md</span><span class="sxs-lookup"><span data-stu-id="c035f-153">[Azure Mobile Apps Quick Start]: app-service-mobile-cordova-get-started.md</span></span>
-<span data-ttu-id="c035f-154">[인증 시작]: app-service-mobile-cordova-get-started-users.md</span><span class="sxs-lookup"><span data-stu-id="c035f-154">[Get started with authentication]: app-service-mobile-cordova-get-started-users.md</span></span>
-[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
+[Azure 모바일 앱 빠른 시작]: app-service-mobile-cordova-get-started.md
+[인증 시작]: app-service-mobile-cordova-get-started-users.md
+[Add authentication tooyour app]: app-service-mobile-cordova-get-started-users.md
 
-<span data-ttu-id="c035f-155">[Azure Portal]: https://portal.azure.com/</span><span class="sxs-lookup"><span data-stu-id="c035f-155">[Azure portal]: https://portal.azure.com/</span></span>
-<span data-ttu-id="c035f-156">[Azure Mobile Apps용 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client</span><span class="sxs-lookup"><span data-stu-id="c035f-156">[JavaScript SDK for Azure Mobile Apps]: https://www.npmjs.com/package/azure-mobile-apps-client</span></span>
+[Azure 포털]: https://portal.azure.com/
+[Azure 모바일 앱 용 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
 [Query object documentation]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx

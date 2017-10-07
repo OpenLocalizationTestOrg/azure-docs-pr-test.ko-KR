@@ -1,6 +1,6 @@
 ---
-title: "Linux Azure Virtual Machines의 컨테이너 | Microsoft Docs"
-description: "가상 컴퓨터, Docker, Linux 컨테이너 및 Azure에서 함께 사용할 때 각각의 활용 방법에 대해 설명합니다. 이 활용 방법에는 각각의 장점과 각 접근 방법을 사용하기에 가장 좋은 시나리오가 포함되어 있습니다."
+title: "Linux Azure 가상 컴퓨터에서 aaaContainers | Microsoft Docs"
+description: "Docker 가상 컴퓨터에 설명 및 Linux 컨테이너 및 Azure의 각 그룹의 용도 등 각 hello 이점 및 시나리오는 각 접근 방식이 잘 작동 합니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: squillace
@@ -14,12 +14,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 3ca47d67e513c73fde040461be9c403a085503ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7e41e424e44359f0b17e5ee42b6798cac32e52f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="virtual-machines-vs-containers-in-azure"></a><span data-ttu-id="5b094-103">Azure의 Virtual Machines 및 컨테이너</span><span class="sxs-lookup"><span data-stu-id="5b094-103">Virtual Machines vs. Containers in Azure</span></span>
+# <a name="virtual-machines-vs-containers-in-azure"></a><span data-ttu-id="f8e2a-103">Azure의 Virtual Machines 및 컨테이너</span><span class="sxs-lookup"><span data-stu-id="f8e2a-103">Virtual Machines vs. Containers in Azure</span></span>
 [!INCLUDE [virtual-machines-common-and-containers](../../../includes/virtual-machines-common-containers.md)]
 

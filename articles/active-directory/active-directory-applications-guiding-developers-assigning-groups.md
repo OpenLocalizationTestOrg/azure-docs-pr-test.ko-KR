@@ -1,6 +1,6 @@
 ---
-title: "Azure AD 앱에 그룹 할당 | Microsoft Docs'"
-description: "Azure 응용 프로그램에 대해 그룹 할당을 구현하는 방법."
+title: "aaaAssign 그룹화 tooAzure AD 앱 | Microsoft Docs"
+description: "어떻게 tooimplement Azure 응용 프로그램에 대 한 할당을 그룹화 합니다."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -16,28 +16,28 @@ ms.date: 05/07/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 robots: noindex
-ms.openlocfilehash: e0b0b87a454db96747f024e81882fe83d62fdbe2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 086619df09c13bf259afc3128d45ed804b99e519
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-azure-active-directory-groups-to-an-application"></a><span data-ttu-id="44ceb-103">응용 프로그램에 Azure Active Directory 그룹 할당</span><span class="sxs-lookup"><span data-stu-id="44ceb-103">Assign Azure Active Directory groups to an application</span></span>
-<span data-ttu-id="44ceb-104">응용 프로그램에 사용자 및 그룹을 할당하기 전에 사용자 할당을 요구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-104">Before you can assign users and groups to an application, you must require user assignment.</span></span> <span data-ttu-id="44ceb-105">사용자 할당을 요구하는 방법에 대한 내용은 [사용자 할당 요구](active-directory-applications-guiding-developers-requiring-user-assignment.md) 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="44ceb-105">To learn how to require user assignment, see the [Requiring User Assignment](active-directory-applications-guiding-developers-requiring-user-assignment.md) article.</span></span>
+# <a name="assign-azure-active-directory-groups-tooan-application"></a><span data-ttu-id="5aaf3-103">Azure Active Directory 그룹 tooan 응용 프로그램 할당</span><span class="sxs-lookup"><span data-stu-id="5aaf3-103">Assign Azure Active Directory groups tooan application</span></span>
+<span data-ttu-id="5aaf3-104">사용자 및 그룹 tooan 응용 프로그램을 할당할 수 있습니다, 전에 사용자 할당을 요구 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-104">Before you can assign users and groups tooan application, you must require user assignment.</span></span> <span data-ttu-id="5aaf3-105">toolearn 어떻게 toorequire 사용자 할당 hello 참조 [사용자 할당 필요](active-directory-applications-guiding-developers-requiring-user-assignment.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-105">toolearn how toorequire user assignment, see hello [Requiring User Assignment](active-directory-applications-guiding-developers-requiring-user-assignment.md) article.</span></span>
 
-<span data-ttu-id="44ceb-106">이 문서에서는 이 응용 프로그램에 대해 사용하는 Active Directory에서 그룹을 이미 만들었다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-106">This article assumes that you have already created groups in the active directory you are using for this application.</span></span>
+<span data-ttu-id="5aaf3-106">이 문서에서는이 응용 프로그램에 사용 하는 hello active directory에서 그룹을 이미 생성 했다고 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-106">This article assumes that you have already created groups in hello active directory you are using for this application.</span></span>
 
-## <a name="assigning-groups-to-an-application"></a><span data-ttu-id="44ceb-107">응용 프로그램에 그룹 지정</span><span class="sxs-lookup"><span data-stu-id="44ceb-107">Assigning Groups to an Application</span></span>
-1. <span data-ttu-id="44ceb-108">관리자 계정으로 Azure 포털에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-108">Log in to the Azure portal with an administrator account.</span></span>
-2. <span data-ttu-id="44ceb-109">주 메뉴에서 **모든 항목** 항목을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-109">Click on the **All Items** item in the main menu.</span></span>
-3. <span data-ttu-id="44ceb-110">응용 프로그램에 대해 사용하는 디렉터리를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-110">Choose the directory you are using for the application.</span></span>
-4. <span data-ttu-id="44ceb-111">**응용 프로그램** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-111">Click on the **APPLICATIONS** tab.</span></span>
-5. <span data-ttu-id="44ceb-112">이 디렉터리와 연결된 응용 프로그램 목록에서 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-112">Select the application from the list of applications associated with this directory.</span></span>
-6. <span data-ttu-id="44ceb-113">**사용자 및 그룹** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-113">Click the **USERS AND GROUPS** tab.</span></span>
-7. <span data-ttu-id="44ceb-114">**그룹** 드롭다운 목록을 사용하여 Active Directory에서 그룹 목록을 필터링합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-114">Filter the list of groups in your active directory by using the **Groups** dropdown list.</span></span>
-8. <span data-ttu-id="44ceb-115">그룹을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-115">Select the group.</span></span>
-9. <span data-ttu-id="44ceb-116">**할당**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-116">Click **ASSIGN**.</span></span>
-10. <span data-ttu-id="44ceb-117">메시지가 표시되면 **예** 를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="44ceb-117">Click **yes** when prompted.</span></span>
+## <a name="assigning-groups-tooan-application"></a><span data-ttu-id="5aaf3-107">그룹 tooan 응용 프로그램 할당</span><span class="sxs-lookup"><span data-stu-id="5aaf3-107">Assigning Groups tooan Application</span></span>
+1. <span data-ttu-id="5aaf3-108">관리자 계정으로 Azure 포털 toohello에 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-108">Log in toohello Azure portal with an administrator account.</span></span>
+2. <span data-ttu-id="5aaf3-109">Hello 클릭 **모든 항목** hello 주 메뉴의 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-109">Click on hello **All Items** item in hello main menu.</span></span>
+3. <span data-ttu-id="5aaf3-110">Hello 응용 프로그램에 대 한 사용 하는 hello 디렉터리를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-110">Choose hello directory you are using for hello application.</span></span>
+4. <span data-ttu-id="5aaf3-111">Hello 클릭 **응용 프로그램** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-111">Click on hello **APPLICATIONS** tab.</span></span>
+5. <span data-ttu-id="5aaf3-112">이 디렉터리와 연결 된 응용 프로그램의 hello 목록에서 hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-112">Select hello application from hello list of applications associated with this directory.</span></span>
+6. <span data-ttu-id="5aaf3-113">Hello 클릭 **사용자 및 그룹** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-113">Click hello **USERS AND GROUPS** tab.</span></span>
+7. <span data-ttu-id="5aaf3-114">Hello를 사용 하 여 active directory에서 그룹의 필터 hello 목록 **그룹** 드롭다운 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-114">Filter hello list of groups in your active directory by using hello **Groups** dropdown list.</span></span>
+8. <span data-ttu-id="5aaf3-115">Hello 그룹을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-115">Select hello group.</span></span>
+9. <span data-ttu-id="5aaf3-116">**할당**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-116">Click **ASSIGN**.</span></span>
+10. <span data-ttu-id="5aaf3-117">메시지가 표시되면 **예** 를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5aaf3-117">Click **yes** when prompted.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="44ceb-118">다음 단계</span><span class="sxs-lookup"><span data-stu-id="44ceb-118">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5aaf3-118">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5aaf3-118">Next Steps</span></span>
 [!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]

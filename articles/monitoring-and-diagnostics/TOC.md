@@ -32,14 +32,14 @@
 ### [Resource Manager 템플릿을 사용하여 VM 확장 집합 자동 크기 조정](insights-advanced-autoscale-virtual-machine-scale-sets.md)
 ### [VM 확장 집합에서 자동으로 컴퓨터 크기 조정](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [자동 크기 조정의 웹후크 및 메일 알림 구성](insights-autoscale-to-webhook-email.md)
-## 활동 로그 관리
+## Hello 활동 로그를 사용 하 여
 ### [활동 로그의 이벤트 보기](../azure-resource-manager/resource-group-audit.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [활동 로그 이벤트에 대한 경고 구성](monitoring-activity-log-alerts.md)
 ### [활동 로그 보관](monitoring-archive-activity-log.md)
-### [활동 로그를 Event Hubs로 스트림](monitoring-stream-activity-logs-event-hubs.md)
+### [스트림 작업 로그 tooEvent 허브](monitoring-stream-activity-logs-event-hubs.md)
 ### [리소스 관리자로 작업 감사](../azure-resource-manager/resource-group-audit.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [리소스 관리자로 활동 로그 경고 만들기](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
-### [활동 로그 경고로 마이그레이션](monitoring-migrate-management-alerts.md)
+### [TooActivity 로그 경고 마이그레이션](monitoring-migrate-management-alerts.md)
 ## 서비스 알림 사용
 ### [서비스 알림 보기](monitoring-service-notifications.md)
 ### [서비스 알림에 대한 경고 구성](monitoring-activity-log-alerts-on-service-notifications.md)
@@ -50,13 +50,13 @@
 ### [Resource Manager로 작업 그룹 만들기](monitoring-create-action-group-with-resource-manager-template.md)
 ## 진단 로그 관리
 ### [보관](monitoring-archive-diagnostic-logs.md)
-### [Event Hubs로 스트림](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+### [스트림 tooEvent 허브](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 ### [Resource Manager 템플릿을 사용하여 진단 설정 사용](monitoring-enable-diagnostic-logs-using-template.md)
-## REST API 사용
+## Hello REST API를 사용 하 여
 ### [REST API를 사용하여 연습](monitoring-rest-api-walkthrough.md)
 ## Azure 진단 확장 사용
-### [Application Insights로 보내기](azure-diagnostics-configure-application-insights.md)
-### [Event Hubs로 보내기](azure-diagnostics-streaming-event-hubs.md)
+### [TooApplication Insights 보내기](azure-diagnostics-configure-application-insights.md)
+### [TooEvent 허브 보내기](azure-diagnostics-streaming-event-hubs.md)
 ### [문제 해결](azure-diagnostics-troubleshooting.md)
 
 # 참조

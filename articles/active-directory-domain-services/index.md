@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory Domain Services 설명서 - 자습서 | Microsoft Docs"
-description: "Active Directory Domain Services를 사용하여 도메인 컨트롤러를 사용하지 않고 Azure 가상 컴퓨터를 도메인에 조인하고 그룹 정책으로 관리하는 방법에 대해 알아봅니다."
+title: "Active Directory 도메인 서비스 설명서-aaaAzure 자습서 | Microsoft Docs"
+description: "Toouse Active Directory 도메인 서비스 toojoin Azure 가상 도메인 컨트롤러를 사용 하지 않고 tooa 도메인에 컴퓨터 하는 방법을 알아보고 그룹 정책을 사용 하 여이 관리 합니다."
 services: active-directory-ds
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9654ec8791de56c33e4973e8ba20ef6e52780955
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5f1dcc57d92e1e950662c1f0cc1d00252e2fab50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="active-directory-domain-services-documentation"></a>Active Directory Domain Services 설명서
 
-Active Directory Domain Services를 사용하여 도메인 컨트롤러를 사용하지 않고 Azure 가상 컴퓨터를 도메인에 조인하는 방법에 대해 알아봅니다. 자습서 및 기타 설명서에서는 그룹 정책을 사용하여 가상 컴퓨터를 관리하는 방법을 보여 줍니다.
+Toouse Active Directory 도메인 서비스 toojoin Azure 가상 도메인 컨트롤러를 사용 하지 않고 tooa 도메인에 컴퓨터 하는 방법에 대해 알아봅니다. 자습서 및 기타 문서 설명 어떻게 toomanage 가상 컴퓨터를 사용 하 여 그룹 정책을 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

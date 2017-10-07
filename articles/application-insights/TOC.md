@@ -42,7 +42,7 @@
 ## 구성
 ### Azure
 #### [프로파일러](app-insights-profiler.md)
-#### [프로파일러 활성화](enable-profiler-cloud-services.md)
+#### [Hello 프로파일러를 사용 하도록 설정](enable-profiler-cloud-services.md)
 #### [진단](app-insights-azure-diagnostics.md)
 #### [미리 보기](app-insights-previews.md)
 
@@ -130,7 +130,7 @@
 ## 내보내기
 ### [연속 내보내기](app-insights-export-telemetry.md)
 ### [데이터 모델 내보내기](app-insights-export-data-model.md)
-### [Power BI에 내보내기](app-insights-export-power-bi.md)
+### [내보내기 tooPower BI](app-insights-export-power-bi.md)
 
 ## 보안
 ### [데이터 수집, 보존 및 저장](app-insights-data-retention-privacy.md)

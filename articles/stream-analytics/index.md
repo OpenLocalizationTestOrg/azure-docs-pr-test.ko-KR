@@ -1,6 +1,6 @@
 ---
-title: "Azure Stream Analytics 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "완전히 관리되는 이벤트 처리를 사용하여 클라우드에서 IoT 분석을 실행하는 방법에 대해 알아봅니다. 응용 프로그램, 센서, 장치 등에서 실시간으로 데이터를 분석합니다."
+title: "스트림 분석 설명서 자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "어떻게 hello에서 toorun IoT 분석 하 여 클라우드로 완전히 관리 되는 이벤트 처리에 알아봅니다. 응용 프로그램, 센서, 장치 등에서 실시간으로 데이터를 분석합니다."
 services: stream-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/23/2017
 ms.author: carolz
-ms.openlocfilehash: f82be4ff7bd0839be4f826f9a04ba0876f4ec91d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4015137b0f39f86ada69d92e77e72b77b799d2d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-analytics-documentation"></a>Stream Analytics 설명서
 
-완전히 관리되는 이벤트 처리 엔진인 Stream Analytics를 사용하여 클라우드에서 사물 인터넷(IoT) 분석을 실행하는 방법에 대해 알아봅니다. 자습서 및 기타 설명서에서는 응용 프로그램, 센서, 장치, 소셜 미디어 등에서 실시간으로 데이터를 분석하는 방법을 보여 줍니다. 
+스트림 분석을 완전히 관리 되는 이벤트 처리 엔진에 hello에서 toorun 인터넷 IoT (사물) 분석 클라우드 하는 방법에 대해 알아봅니다. 자습서 및 기타 문서 방법을 보여 줍니다 tooanalyze 데이터를 실시간으로 응용 프로그램, 센서, 장치, 소셜 미디어 등의 합니다. 
 
 <ul class="panelContent cardsFTitle">
      <li>

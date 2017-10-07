@@ -1,6 +1,6 @@
 ---
-title: "일반적인 자동 크기 조정 패턴 개요 | Microsoft Docs"
-description: "Azure에서 리소스의 크기를 자동으로 조정하는 일반적인 패턴 중 일부에 대해 알아봅니다."
+title: "자동 크기 조정의 일반 패턴의 aaaOverview | Microsoft Docs"
+description: "Azure의 리소스 크기를 조정 hello 일반적인 패턴 tooauto 중 일부에 대해 알아봅니다."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: ancav
-ms.openlocfilehash: fce51546e041c8989d813c3935e058c52b38ba77
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fc5bd97852e0af01aa32940c99721ab8e21033ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="overview-of-common-autoscale-patterns"></a><span data-ttu-id="f9f28-103">일반적인 자동 크기 조정 패턴 개요</span><span class="sxs-lookup"><span data-stu-id="f9f28-103">Overview of common autoscale patterns</span></span>
-<span data-ttu-id="f9f28-104">이 문서에서는 Azure에서 리소스의 크기를 조정하는 몇 가지 일반적인 패턴에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-104">This article describes some of the common patterns to scale your resource in Azure.</span></span>
+# <a name="overview-of-common-autoscale-patterns"></a><span data-ttu-id="1ffe5-103">일반적인 자동 크기 조정 패턴 개요</span><span class="sxs-lookup"><span data-stu-id="1ffe5-103">Overview of common autoscale patterns</span></span>
+<span data-ttu-id="1ffe5-104">이 문서에서는 Azure의 리소스에 몇 가지 일반적인 패턴 tooscale hello 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-104">This article describes some of hello common patterns tooscale your resource in Azure.</span></span>
 
-<span data-ttu-id="f9f28-105">Azure Monitor 자동 크기 조정은 VMSS(Virtual Machine Scale Sets), 클라우드 서비스 및 앱 서비스 계획 및 앱 서비스 환경에만 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-105">Azure Monitor auto scale applies only to Virtual Machine Scale Sets (VMSS), cloud services, app service plans and app service environments.</span></span> 
+<span data-ttu-id="1ffe5-105">모니터 자동 크기 조정 azure tooVirtual 컴퓨터 눈금 집합 (VMSS), 클라우드 서비스, 앱 서비스 계획 및 앱 서비스 환경에 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-105">Azure Monitor auto scale applies only tooVirtual Machine Scale Sets (VMSS), cloud services, app service plans and app service environments.</span></span> 
 
-# <a name="lets-get-started"></a><span data-ttu-id="f9f28-106">시작</span><span class="sxs-lookup"><span data-stu-id="f9f28-106">Lets get started</span></span>
+# <a name="lets-get-started"></a><span data-ttu-id="1ffe5-106">시작</span><span class="sxs-lookup"><span data-stu-id="1ffe5-106">Lets get started</span></span>
 
-<span data-ttu-id="f9f28-107">이 문서에서는 사용자가 자동 크기 조정에 대해 잘 알고 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-107">This article assumes that you are familiar with auto scale.</span></span> <span data-ttu-id="f9f28-108">[리소스 크기를 조정하려면 여기서 시작][1]할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-108">You can [get started here to scale your resource][1].</span></span> <span data-ttu-id="f9f28-109">다음은 몇 가지 일반적인 크기 조정 패턴입니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-109">The following are some of the common scale patterns.</span></span>
+<span data-ttu-id="1ffe5-107">이 문서에서는 사용자가 자동 크기 조정에 대해 잘 알고 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-107">This article assumes that you are familiar with auto scale.</span></span> <span data-ttu-id="1ffe5-108">있습니다 수 [시작된 여기 tooscale 리소스 가져오기][1]합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-108">You can [get started here tooscale your resource][1].</span></span> <span data-ttu-id="1ffe5-109">일반 배율 패턴 hello hello 다음과가 같습니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-109">hello following are some of hello common scale patterns.</span></span>
 
-## <a name="scale-based-on-cpu"></a><span data-ttu-id="f9f28-110">CPU 기준 크기 조정</span><span class="sxs-lookup"><span data-stu-id="f9f28-110">Scale based on CPU</span></span>
+## <a name="scale-based-on-cpu"></a><span data-ttu-id="1ffe5-110">CPU 기준 크기 조정</span><span class="sxs-lookup"><span data-stu-id="1ffe5-110">Scale based on CPU</span></span>
 
-<span data-ttu-id="f9f28-111">웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고</span><span class="sxs-lookup"><span data-stu-id="f9f28-111">You have a web app (/VMSS/cloud service role) and</span></span> 
+<span data-ttu-id="1ffe5-111">웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고</span><span class="sxs-lookup"><span data-stu-id="1ffe5-111">You have a web app (/VMSS/cloud service role) and</span></span> 
 
-- <span data-ttu-id="f9f28-112">CPU를 기준으로 규모를 확장/축소하려고 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-112">You want to scale out/scale in based on CPU.</span></span>
-- <span data-ttu-id="f9f28-113">최소 개수의 인스턴스가 있는지 확인하려고도 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-113">Additionally, you want to ensure there is a minimum number of instances.</span></span> 
-- <span data-ttu-id="f9f28-114">또한 확장할 수 있는 인스턴스 수의 최대 한도를 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-114">Also, you want to ensure that you set a maximum limit to the number of instances you can scale to.</span></span>
+- <span data-ttu-id="1ffe5-112">원하는 tooscale 아웃/배율에 따라 CPU에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-112">You want tooscale out/scale in based on CPU.</span></span>
+- <span data-ttu-id="1ffe5-113">또한 tooensure 합니다 인스턴스의 최소 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-113">Additionally, you want tooensure there is a minimum number of instances.</span></span> 
+- <span data-ttu-id="1ffe5-114">또한 원하는 tooensure 인스턴스를 확장할 수는 최대 한도 toohello 수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-114">Also, you want tooensure that you set a maximum limit toohello number of instances you can scale to.</span></span>
 
 ![CPU 기준 크기 조정][2]
 
-## <a name="scale-differently-on-weekdays-vs-weekends"></a><span data-ttu-id="f9f28-116">평일과 주말에 대해 다르게 크기 조정</span><span class="sxs-lookup"><span data-stu-id="f9f28-116">Scale differently on weekdays vs weekends</span></span>
+## <a name="scale-differently-on-weekdays-vs-weekends"></a><span data-ttu-id="1ffe5-116">평일과 주말에 대해 다르게 크기 조정</span><span class="sxs-lookup"><span data-stu-id="1ffe5-116">Scale differently on weekdays vs weekends</span></span>
 
-<span data-ttu-id="f9f28-117">웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고</span><span class="sxs-lookup"><span data-stu-id="f9f28-117">You have a web app (/VMSS/cloud service role) and</span></span>
+<span data-ttu-id="1ffe5-117">웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고</span><span class="sxs-lookup"><span data-stu-id="1ffe5-117">You have a web app (/VMSS/cloud service role) and</span></span>
 
-- <span data-ttu-id="f9f28-118">기본적으로 3개의 인스턴스를 원합니다(평일)</span><span class="sxs-lookup"><span data-stu-id="f9f28-118">You want 3 instances by default (on weekdays)</span></span>
-- <span data-ttu-id="f9f28-119">주말에 트래픽이 걸리지 않을 것으로 예상하므로 주말에는 1개 인스턴스로 축소할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-119">You don't expect traffic on weekends and hence you want to scale down to 1 instance on weekends.</span></span>
+- <span data-ttu-id="1ffe5-118">기본적으로 3개의 인스턴스를 원합니다(평일)</span><span class="sxs-lookup"><span data-stu-id="1ffe5-118">You want 3 instances by default (on weekdays)</span></span>
+- <span data-ttu-id="1ffe5-119">트래픽 주말에 감염 되지 않은 고 따라서 too1 인스턴스 아래로 tooscale 주말에 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-119">You don't expect traffic on weekends and hence you want tooscale down too1 instance on weekends.</span></span>
 
 ![평일과 주말에 대해 다르게 크기 조정][3]
 
-## <a name="scale-differently-during-holidays"></a><span data-ttu-id="f9f28-121">휴일 동안에 대해 다르게 크기 조정</span><span class="sxs-lookup"><span data-stu-id="f9f28-121">Scale differently during holidays</span></span>
+## <a name="scale-differently-during-holidays"></a><span data-ttu-id="1ffe5-121">휴일 동안에 대해 다르게 크기 조정</span><span class="sxs-lookup"><span data-stu-id="1ffe5-121">Scale differently during holidays</span></span>
 
-<span data-ttu-id="f9f28-122">웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고</span><span class="sxs-lookup"><span data-stu-id="f9f28-122">You have a web app (/VMSS/cloud service role) and</span></span> 
+<span data-ttu-id="1ffe5-122">웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고</span><span class="sxs-lookup"><span data-stu-id="1ffe5-122">You have a web app (/VMSS/cloud service role) and</span></span> 
 
-- <span data-ttu-id="f9f28-123">기본적으로 CPU 사용량을 기준으로 확장/축소하려고 합니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-123">You want to scale up/down based on CPU usage by default</span></span>
-- <span data-ttu-id="f9f28-124">그러나 연말 연시(또는 비즈니스에 중요한 특정 요일)에는 기본값을 무시하고 더 많은 용량을 원하는 경우가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-124">However, during holiday season (or specific days that are important for your business) you want to override the defaults and have more capacity at your disposal.</span></span>
+- <span data-ttu-id="1ffe5-123">위/아래로 기본적으로 CPU 사용량 기반 tooscale 원합니다</span><span class="sxs-lookup"><span data-stu-id="1ffe5-123">You want tooscale up/down based on CPU usage by default</span></span>
+- <span data-ttu-id="1ffe5-124">그러나 휴일 기간 (또는 비즈니스에 대 한 중요 한 일) 동안 toooverride hello 기본값을 사용할 더 많은 용량을 확보 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-124">However, during holiday season (or specific days that are important for your business) you want toooverride hello defaults and have more capacity at your disposal.</span></span>
 
 ![휴일에 대해 다르게 크기 조정][4]
 
-## <a name="scale-based-on-custom-metric"></a><span data-ttu-id="f9f28-126">사용자 지정 메트릭 기준 크기 조정</span><span class="sxs-lookup"><span data-stu-id="f9f28-126">Scale based on custom metric</span></span>
+## <a name="scale-based-on-custom-metric"></a><span data-ttu-id="1ffe5-126">사용자 지정 메트릭 기준 크기 조정</span><span class="sxs-lookup"><span data-stu-id="1ffe5-126">Scale based on custom metric</span></span>
 
-<span data-ttu-id="f9f28-127">웹 프런트 엔드 및 백 엔드와 통신하는 API 계층이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f9f28-127">You have a web front end and a API tier that communicates with the backend.</span></span> 
+<span data-ttu-id="1ffe5-127">웹 프런트 엔드 및 백 엔드 hello와 통신 하는 API 계층 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ffe5-127">You have a web front end and a API tier that communicates with hello backend.</span></span> 
 
-- <span data-ttu-id="f9f28-128">프런트 엔드의 사용자 지정 이벤트에 따라 API 계층의 크기를 조정하려고 합니다(예: 장바구니의 항목 수에 따라 체크아웃 프로세스를 조정하려는 경우).</span><span class="sxs-lookup"><span data-stu-id="f9f28-128">You want to scale the API tier based on custom events in the front end (example: You want to scale your checkout process based on the number of items in the shopping cart)</span></span>
+- <span data-ttu-id="1ffe5-128">Hello 프런트 엔드에서는 사용자 지정 이벤트에 따라 tooscale hello API 계층을 원하는 (예: 쇼핑 카트 hello에 있는 항목의 hello 수에 따라 체크 아웃 프로세스 tooscale 원하는)</span><span class="sxs-lookup"><span data-stu-id="1ffe5-128">You want tooscale hello API tier based on custom events in hello front end (example: You want tooscale your checkout process based on hello number of items in hello shopping cart)</span></span>
 
 ![사용자 지정 메트릭 기준 크기 조정][5]
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Linux Virtual Machines에서 SSHD 구성 | Microsoft Docs"
-description: "보안 모범 사례에 대해 SSHD를 구성하여 Azure Linux Virtual Machines에 대한 SSH를 잠급니다."
+title: "Azure Linux 가상 컴퓨터에서 SSHD aaaConfigure | Microsoft Docs"
+description: "보안 모범 사례 및 toolockdown SSH tooAzure Linux 가상 컴퓨터에 대 한 SSHD를 구성 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -15,149 +15,149 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/21/2016
 ms.author: v-livech
-ms.openlocfilehash: 0195c385b00ab92b2b92ce8ff00983a0d91bf3a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2361be7199a24b129c06acfc899dd32f6e1d6fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-sshd-on-azure-linux-vms"></a><span data-ttu-id="5ab88-103">Azure Linux VM에서 SSHD 구성</span><span class="sxs-lookup"><span data-stu-id="5ab88-103">Configure SSHD on Azure Linux VMs</span></span>
+# <a name="configure-sshd-on-azure-linux-vms"></a><span data-ttu-id="828e4-103">Azure Linux VM에서 SSHD 구성</span><span class="sxs-lookup"><span data-stu-id="828e4-103">Configure SSHD on Azure Linux VMs</span></span>
 
-<span data-ttu-id="5ab88-104">이 문서에서는 암호 대신 SSH 키를 사용하여 Linux에서 SSH 서버를 잠그고 모범 사례 보안을 제공하며 SSH 로그인 프로세스를 가속화하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-104">This article shows how to lockdown the SSH Server on Linux, to provide best practices security and also to speed up the SSH login process by using SSH keys instead of passwords.</span></span>  <span data-ttu-id="5ab88-105">추가로 SSHD를 잠그려면 루트 사용자를 로그인하는 작업에서 사용하지 않도록 설정하고 승인된 그룹 목록을 통해 로그인할 수 있는 사용자를 제한하게 되며 SSH 프로토콜 버전 1을 사용하지 않도록 설정하고 최소 키 비트를 설정하고 유휴 사용자의 자동 로그아웃을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-105">To further lockdown SSHD we are going to disable the root user from being able to login, limit the users that are allowed to login via an approved group list, disabling SSH protocol version 1, set a minimum key bit, and configure auto-logout of idle users.</span></span>  <span data-ttu-id="5ab88-106">이 문서에 대한 요구 사항은 Azure 계정([무료 평가판 가져오기](https://azure.microsoft.com/pricing/free-trial/)) 및 [SSH 공용 및 개인 키 파일](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-106">The requirements for this article are: an Azure account ([get a free trial](https://azure.microsoft.com/pricing/free-trial/)) and [SSH public and private key files](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="828e4-104">이 문서에서는 toolockdown 암호 대신 SSH 키를 사용 하 여 Linux, tooprovide 모범 사례 보안 및 hello SSH 로그인 프로세스를 toospeed SSH 서버를 hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-104">This article shows how toolockdown hello SSH Server on Linux, tooprovide best practices security and also toospeed up hello SSH login process by using SSH keys instead of passwords.</span></span>  <span data-ttu-id="828e4-105">toofurther 잠금 수 toologin 없도록 toodisable hello 루트 사용자를 하겠습니다 SSHD 제한 hello 수 있는 사용자는 승인 된 그룹 목록을 통해 toologin SSH 프로토콜 버전 1을 사용 하지 않도록 설정 하 고, 최소 비트 키를 설정, 유휴 사용자의 자동 로그 아웃을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-105">toofurther lockdown SSHD we are going toodisable hello root user from being able toologin, limit hello users that are allowed toologin via an approved group list, disabling SSH protocol version 1, set a minimum key bit, and configure auto-logout of idle users.</span></span>  <span data-ttu-id="828e4-106">이 문서에 대 한 hello 요구 사항은: Azure 계정 ([무료 평가판 받기](https://azure.microsoft.com/pricing/free-trial/)) 및 [SSH 공용 및 개인 키 파일](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-106">hello requirements for this article are: an Azure account ([get a free trial](https://azure.microsoft.com/pricing/free-trial/)) and [SSH public and private key files](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-## <a name="quick-commands"></a><span data-ttu-id="5ab88-107">빠른 명령</span><span class="sxs-lookup"><span data-stu-id="5ab88-107">Quick Commands</span></span>
+## <a name="quick-commands"></a><span data-ttu-id="828e4-107">빠른 명령</span><span class="sxs-lookup"><span data-stu-id="828e4-107">Quick Commands</span></span>
 
-<span data-ttu-id="5ab88-108">다음 설정을 사용하여 `/etc/ssh/sshd_config`을(를) 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-108">Configure `/etc/ssh/sshd_config` with the following settings:</span></span>
+<span data-ttu-id="828e4-108">구성 `/etc/ssh/sshd_config` 설정 다음 hello로:</span><span class="sxs-lookup"><span data-stu-id="828e4-108">Configure `/etc/ssh/sshd_config` with hello following settings:</span></span>
 
-### <a name="disable-password-logins"></a><span data-ttu-id="5ab88-109">암호 로그인 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="5ab88-109">Disable password logins</span></span>
+### <a name="disable-password-logins"></a><span data-ttu-id="828e4-109">암호 로그인 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="828e4-109">Disable password logins</span></span>
 
 ```bash
 PasswordAuthentication no
 ```
 
-### <a name="disable-login-by-the-root-user"></a><span data-ttu-id="5ab88-110">루트 사용자가 로그인을 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="5ab88-110">Disable login by the root user</span></span>
+### <a name="disable-login-by-hello-root-user"></a><span data-ttu-id="828e4-110">Hello 루트 사용자가 로그인을 사용 하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="828e4-110">Disable login by hello root user</span></span>
 
 ```bash
 PermitRootLogin no
 ```
 
-### <a name="allowed-groups-list"></a><span data-ttu-id="5ab88-111">그룹 목록 허용</span><span class="sxs-lookup"><span data-stu-id="5ab88-111">Allowed groups list</span></span>
+### <a name="allowed-groups-list"></a><span data-ttu-id="828e4-111">그룹 목록 허용</span><span class="sxs-lookup"><span data-stu-id="828e4-111">Allowed groups list</span></span>
 
 ```bash
 AllowGroups wheel
 ```
 
-### <a name="allowed-users-list"></a><span data-ttu-id="5ab88-112">사용자 목록 허용</span><span class="sxs-lookup"><span data-stu-id="5ab88-112">Allowed users list</span></span>
+### <a name="allowed-users-list"></a><span data-ttu-id="828e4-112">사용자 목록 허용</span><span class="sxs-lookup"><span data-stu-id="828e4-112">Allowed users list</span></span>
 
 ```bash
 AllowUsers ahmet ralph
 ```
 
-### <a name="disable-ssh-protocol-version-1"></a><span data-ttu-id="5ab88-113">SSH 프로토콜 버전 1을 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="5ab88-113">Disable SSH protocol version 1</span></span>
+### <a name="disable-ssh-protocol-version-1"></a><span data-ttu-id="828e4-113">SSH 프로토콜 버전 1을 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="828e4-113">Disable SSH protocol version 1</span></span>
 
 ```bash
 Protocol 2
 ```
 
-### <a name="minimum-key-bits"></a><span data-ttu-id="5ab88-114">최소 키 비트</span><span class="sxs-lookup"><span data-stu-id="5ab88-114">Minimum key bits</span></span>
+### <a name="minimum-key-bits"></a><span data-ttu-id="828e4-114">최소 키 비트</span><span class="sxs-lookup"><span data-stu-id="828e4-114">Minimum key bits</span></span>
 
 ```bash
 ServerKeyBits 2048
 ```
 
-### <a name="disconnect-idle-users"></a><span data-ttu-id="5ab88-115">유휴 사용자 연결 끊기</span><span class="sxs-lookup"><span data-stu-id="5ab88-115">Disconnect idle users</span></span>
+### <a name="disconnect-idle-users"></a><span data-ttu-id="828e4-115">유휴 사용자 연결 끊기</span><span class="sxs-lookup"><span data-stu-id="828e4-115">Disconnect idle users</span></span>
 
 ```bash
 ClientAliveInterval 300
 ClientAliveCountMax 0
 ```
 
-## <a name="detailed-walkthrough"></a><span data-ttu-id="5ab88-116">자세한 연습</span><span class="sxs-lookup"><span data-stu-id="5ab88-116">Detailed Walkthrough</span></span>
+## <a name="detailed-walkthrough"></a><span data-ttu-id="828e4-116">자세한 연습</span><span class="sxs-lookup"><span data-stu-id="828e4-116">Detailed Walkthrough</span></span>
 
-<span data-ttu-id="5ab88-117">SSHD는 Linux VM에서 실행되는 SSH 서버입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-117">SSHD is the SSH Server that runs on the Linux VM.</span></span>  <span data-ttu-id="5ab88-118">SSH는 MacBook의 셸, Linux 워크스테이션 또는 Windows의 Bash에서 실행되는 클라이언트입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-118">SSH is a client that runs from a shell on your MacBook, Linux workstation, or from a Bash on Windows.</span></span>  <span data-ttu-id="5ab88-119">또한 SSH는 워크스테이션과 Linux VM 간의 통신을 보호하고 암호화하는 데 사용되는 프로토콜이며 SSH를 VPN(사설 가상 네트워크)으로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-119">SSH is also the protocol used to secure and encrypt the communication between your workstation and the Linux VM making SSH also a VPN (Virtual Private Network).</span></span>
+<span data-ttu-id="828e4-117">SSHD는 hello hello Linux VM에서 실행 되는 SSH 서버입니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-117">SSHD is hello SSH Server that runs on hello Linux VM.</span></span>  <span data-ttu-id="828e4-118">SSH는 MacBook의 셸, Linux 워크스테이션 또는 Windows의 Bash에서 실행되는 클라이언트입니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-118">SSH is a client that runs from a shell on your MacBook, Linux workstation, or from a Bash on Windows.</span></span>  <span data-ttu-id="828e4-119">SSH는 hello toosecure 사용 되는 프로토콜과 워크스테이션 및 hello SSH VPN (가상 사설망)도 수행 하는 Linux VM 간의 hello 통신을 암호화 이기도 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-119">SSH is also hello protocol used toosecure and encrypt hello communication between your workstation and hello Linux VM making SSH also a VPN (Virtual Private Network).</span></span>
 
-<span data-ttu-id="5ab88-120">이 문서의 경우 전체 연습에 열려 있도록 Linux VM에 대한 로그인을 유지하는 것이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-120">For this article, it is very important to keep one login to your Linux VM open for the entire walk-through.</span></span>  <span data-ttu-id="5ab88-121">SSH 연결이 설정되면 창이 닫히지 않는 한 세션을 열어 둡니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-121">Once an SSH connection is established, it remains as an open session as long as the window is not closed.</span></span>  <span data-ttu-id="5ab88-122">하나의 터미널에 로그인해 있다면 주요 변경 내용이 적용되는 경우 잠그지 않고 SSHD 서비스를 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-122">Having one terminal logged in, allows for changes to be made to the SSHD service without being locked out if a breaking change is made.</span></span>  <span data-ttu-id="5ab88-123">손상된 SSHD 구성을 사용하는 Linux VM이 잠긴 경우 Azure에서는 [Azure VM 액세스 확장](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 사용하여 손상된 SSHD 구성을 다시 설정하는 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-123">If you do get locked out of your Linux VM with a broken SSHD configuration, Azure offers the ability to reset a broken SSHD configuration with the [Azure VM Access Extension](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="828e4-120">이 문서는 매우 중요 한 tookeep 하나의 로그인 tooyour hello 전체 연습에 대 한 Linux VM 엽니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-120">For this article, it is very important tookeep one login tooyour Linux VM open for hello entire walk-through.</span></span>  <span data-ttu-id="828e4-121">SSH 연결 설정 되 면로 그대로 남아 세션이 열린으로 hello 창이 닫혀 있지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-121">Once an SSH connection is established, it remains as an open session as long as hello window is not closed.</span></span>  <span data-ttu-id="828e4-122">로그인 한 터미널에 대해 있습니다 변경 내용을 toobe toohello SSHD 서비스를 없이 주요 변경 내용이 경우 잠깁니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-122">Having one terminal logged in, allows for changes toobe made toohello SSHD service without being locked out if a breaking change is made.</span></span>  <span data-ttu-id="828e4-123">끊어진된 SSHD 구성 사용 하 여 Linux VM 수행 잠기는, Azure 기능을 제공 hello 기능 tooreset hello로 손상된 된 SSHD 구성 [Azure VM 액세스 확장](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-123">If you do get locked out of your Linux VM with a broken SSHD configuration, Azure offers hello ability tooreset a broken SSHD configuration with hello [Azure VM Access Extension](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-<span data-ttu-id="5ab88-124">이러한 이유로 두 개의 터미널과 SSH을 양 쪽 모두에서 Linux VM에 대해 열어 둡니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-124">For this reason we open two terminals and SSH to the Linux VM from both of them.</span></span>  <span data-ttu-id="5ab88-125">첫 번째 터미널을 사용하여 SSHD 구성 파일을 변경하고 SSHD 서비스를 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-125">We use the first terminal to make the changes to SSHDs configuration file and restart the SSHD service.</span></span>  <span data-ttu-id="5ab88-126">서비스가 다시 시작되면 두 번째 터미널을 사용하여 해당 변경 내용을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-126">We use the second terminal to test those changes once the service is restarted.</span></span>  <span data-ttu-id="5ab88-127">SSH 암호를 사용하지 않고 SSH 키에 엄격하게 의존하기 때문에 SSH가 올바르지 않고 VM에 대한 연결을 닫을 경우 VM은 영구적으로 잠기며 VM을 삭제하고 다시 요청하기 위해 아무도 로그인할 수 없게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-127">Because we are disabling SSH passwords and relying strictly on SSH keys, if your SSH keys are not correct and you close the connection to the VM, the VM will be permanently locked and no one will be able to login to it requiring it to be deleted and recreated.</span></span>
+<span data-ttu-id="828e4-124">이러한 이유로 म 열고 두 터미널 SSH toohello Linux VM에서 둘 모두.</span><span class="sxs-lookup"><span data-stu-id="828e4-124">For this reason we open two terminals and SSH toohello Linux VM from both of them.</span></span>  <span data-ttu-id="828e4-125">Hello 첫 번째 터미널 toomake hello 변경 tooSSHDs 구성 파일을 사용 하 고 hello SSHD 서비스를 다시 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-125">We use hello first terminal toomake hello changes tooSSHDs configuration file and restart hello SSHD service.</span></span>  <span data-ttu-id="828e4-126">이러한 변경 사항이 hello 서비스 다시 시작 되 면 터미널 tootest 두 번째 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-126">We use hello second terminal tootest those changes once hello service is restarted.</span></span>  <span data-ttu-id="828e4-127">SSH 암호를 해제 하는 것 이므로 엄격 하 게 SSH 키, SSH 키에 잘못 된 하 고 hello 연결 toohello VM을 닫으면에 의존 hello VM 영구적으로 됩니다 잠기고 아무도 수 toologin tooit 삭제 하 고 다시 toobe 요구 됩니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-127">Because we are disabling SSH passwords and relying strictly on SSH keys, if your SSH keys are not correct and you close hello connection toohello VM, hello VM will be permanently locked and no one will be able toologin tooit requiring it toobe deleted and recreated.</span></span>
 
-## <a name="disable-password-logins"></a><span data-ttu-id="5ab88-128">암호 로그인 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="5ab88-128">Disable password logins</span></span>
+## <a name="disable-password-logins"></a><span data-ttu-id="828e4-128">암호 로그인 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="828e4-128">Disable password logins</span></span>
 
-<span data-ttu-id="5ab88-129">Linux VM의 보안을 유지하는 가장 빠른 방법은 암호 로그인을 사용하지 않도록 설정하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-129">The quickest way to secure you Linux VM is to disable password logins.</span></span>  <span data-ttu-id="5ab88-130">암호 로그인을 사용하는 경우 웹을 크롤링하는 보트는 즉시 SSH를 사용하여 Linux VM에 대한 암호를 무차별 암호 대입 추측하기 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-130">When password logins are enabled, bots crawling the web will immediately start attempting to brute force guess the password for your Linux VM using SSH.</span></span>  <span data-ttu-id="5ab88-131">암호 로그인을 완전히 사용하지 않도록 설정하면 SSH 서버가 모든 암호 로그인 시도를 무시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-131">Disabling password logins completely, enables the SSH server to ignore all password login attempts.</span></span>
+<span data-ttu-id="828e4-129">가장 빠른 방법은 toosecure hello Linux VM는 toodisable 암호 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-129">hello quickest way toosecure you Linux VM is toodisable password logins.</span></span>  <span data-ttu-id="828e4-130">암호 로그인을 사용할 수 없는 hello 암호 SSH를 사용 하 여 Linux VM에 대 한 강제로 봇 크롤링 hello 웹 toobrute 시도 즉시 시작 됩니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-130">When password logins are enabled, bots crawling hello web will immediately start attempting toobrute force guess hello password for your Linux VM using SSH.</span></span>  <span data-ttu-id="828e4-131">로그인 암호를 완전히 해제, 모든 암호 로그인 시도 hello SSH 서버 tooignore 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-131">Disabling password logins completely, enables hello SSH server tooignore all password login attempts.</span></span>
 
 ```bash
 PasswordAuthentication no
 ```
 
-## <a name="disable-login-by-the-root-user"></a><span data-ttu-id="5ab88-132">루트 사용자가 로그인을 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="5ab88-132">Disable login by the root user</span></span>
+## <a name="disable-login-by-hello-root-user"></a><span data-ttu-id="828e4-132">Hello 루트 사용자가 로그인을 사용 하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="828e4-132">Disable login by hello root user</span></span>
 
-<span data-ttu-id="5ab88-133">Linux 모범 사례에 따르면 `root` 사용자는 SSH에 로그인되지 않고 `sudo su`를 사용하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-133">Following Linux best practices, the `root` user should never be logged into over SSH or using `sudo su`.</span></span>  <span data-ttu-id="5ab88-134">루트 수준 사용 권한을 필요로 하는 모든 명령은 항상 `sudo` 명령을 통해 실행되어야 하며 여기서는 후속 감사에 대한 모든 작업을 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-134">All commands needing root level permissions should always be run through the `sudo` command, which logs all actions for future auditing.</span></span>  <span data-ttu-id="5ab88-135">`root` 사용자가 SSH를 통한 로그인을 사용하지 않도록 설정하는 작업은 권한이 있는 사용자만 SSH에 로그인하도록 허용하는 보안 모범 사례 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-135">Disabling the `root` user from logging in via SSH is a security best practices step that ensures only authorized users are allowed to SSH.</span></span>
+<span data-ttu-id="828e4-133">다음 Linux 모범 사례를 hello `root` 사용자 되지에 사용 하 여 또는 SSH를 통해 기록 되도록 `sudo su`합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-133">Following Linux best practices, hello `root` user should never be logged into over SSH or using `sudo su`.</span></span>  <span data-ttu-id="828e4-134">루트 수준의 권한이 필요한 모든 명령을 hello를 통해 항상 실행 해야 `sudo` 모든 작업을 나중에 감사를 기록 하는 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-134">All commands needing root level permissions should always be run through hello `sudo` command, which logs all actions for future auditing.</span></span>  <span data-ttu-id="828e4-135">사용 하지 않도록 설정 hello `root` SSH를 통한 로그인에서 사용자는 권한이 있는 사용자만 tooSSH 허용지 않습니다 보장 하는 보안 모범 사례 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-135">Disabling hello `root` user from logging in via SSH is a security best practices step that ensures only authorized users are allowed tooSSH.</span></span>
 
 ```bash
 PermitRootLogin no
 ```
 
-## <a name="allowed-groups-list"></a><span data-ttu-id="5ab88-136">그룹 목록 허용</span><span class="sxs-lookup"><span data-stu-id="5ab88-136">Allowed groups list</span></span>
+## <a name="allowed-groups-list"></a><span data-ttu-id="828e4-136">그룹 목록 허용</span><span class="sxs-lookup"><span data-stu-id="828e4-136">Allowed groups list</span></span>
 
-<span data-ttu-id="5ab88-137">SSH는 사용자 및 그룹에 SSH를 통한 로그인을 허용하거나 허용하지 않도록 제한하는 메서드를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-137">SSH offers a method of restricting users and group that are allowed or disallowed from logging in over SSH.</span></span>  <span data-ttu-id="5ab88-138">이 기능은 목록을 사용하여 특정 사용자 및 그룹이 로그인하도록 승인하거나 거부합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-138">This feature uses lists to approve or deny specific users and groups from logging in.</span></span>  <span data-ttu-id="5ab88-139">휠 그룹을 `AllowGroups` 목록으로 설정하면 SSH를 통해 승인된 휠 그룹에 있는 사용자 계정에 대한 로그인을 제한합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-139">Setting the wheel group to the `AllowGroups` list restricts approved logins over SSH to just user accounts that are in the wheel group.</span></span>
+<span data-ttu-id="828e4-137">SSH는 사용자 및 그룹에 SSH를 통한 로그인을 허용하거나 허용하지 않도록 제한하는 메서드를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-137">SSH offers a method of restricting users and group that are allowed or disallowed from logging in over SSH.</span></span>  <span data-ttu-id="828e4-138">이 기능은 목록 tooapprove를 사용 하거나 특정 사용자 및 그룹에 로그인 하지 못하도록 거부 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-138">This feature uses lists tooapprove or deny specific users and groups from logging in.</span></span>  <span data-ttu-id="828e4-139">Hello 휠 그룹 toohello 설정 `AllowGroups` 목록 hello 휠 그룹에 있는 SSH toojust 사용자 계정을 통해 승인 된 로그인을 제한 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-139">Setting hello wheel group toohello `AllowGroups` list restricts approved logins over SSH toojust user accounts that are in hello wheel group.</span></span>
 
 ```bash
 AllowGroups wheel
 ```
 
-## <a name="allowed-users-list"></a><span data-ttu-id="5ab88-140">사용자 목록 허용</span><span class="sxs-lookup"><span data-stu-id="5ab88-140">Allowed users list</span></span>
+## <a name="allowed-users-list"></a><span data-ttu-id="828e4-140">사용자 목록 허용</span><span class="sxs-lookup"><span data-stu-id="828e4-140">Allowed users list</span></span>
 
-<span data-ttu-id="5ab88-141">사용자에 대한 SSH 로그인을 제한하는 것은 `AllowGroups`인 동일한 태스크를 수행하는 보다 구체적인 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-141">Restricting SSH logins to just users is a more specific way to accomplish the same task that `AllowGroups` is.</span></span>  
+<span data-ttu-id="828e4-141">Tooaccomplish hello 같은 보다 구체적인 방식으로 작업 하는 SSH 로그인 toojust 사용자 제한 `AllowGroups` 됩니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-141">Restricting SSH logins toojust users is a more specific way tooaccomplish hello same task that `AllowGroups` is.</span></span>  
 
 ```bash
 AllowUsers ahmet ralph
 ```
 
-## <a name="disable-ssh-protocol-version-1"></a><span data-ttu-id="5ab88-142">SSH 프로토콜 버전 1을 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="5ab88-142">Disable SSH protocol version 1</span></span>
+## <a name="disable-ssh-protocol-version-1"></a><span data-ttu-id="828e4-142">SSH 프로토콜 버전 1을 사용하지 않도록 설정</span><span class="sxs-lookup"><span data-stu-id="828e4-142">Disable SSH protocol version 1</span></span>
 
-<span data-ttu-id="5ab88-143">SSH 프로토콜 버전 1은 안전하지 않고 비활성화되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-143">SSH protocol version 1 is insecure and should be disabled.</span></span>  <span data-ttu-id="5ab88-144">SSH 프로토콜 버전 2는 서버에 SSH하는 안전한 방법을 제공하는 현재 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-144">SSH protocol version 2 is the current version that offers a secure way to SSH to your server.</span></span>  <span data-ttu-id="5ab88-145">SSH 버전 1을 사용하지 않도록 설정하면 SSH 버전 1을 사용하여 SSH 서버와의 연결을 설정하려고 시도하는 모든 SSH 클라이언트를 거부합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-145">Disabling SSH version 1 denies any SSH clients that are attempting to establish a connection with the SSH server using SSH version 1.</span></span>  <span data-ttu-id="5ab88-146">SSH 버전 2 연결을 통해서만 SSH 서버와의 연결이 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-146">Only SSH version 2 connections are allowed to negotiate a connection with the SSH server.</span></span>
+<span data-ttu-id="828e4-143">SSH 프로토콜 버전 1은 안전하지 않고 비활성화되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-143">SSH protocol version 1 is insecure and should be disabled.</span></span>  <span data-ttu-id="828e4-144">SSH 프로토콜 버전 2는 안전 하 게 tooSSH tooyour 서버에서 제공 하는 hello 현재 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-144">SSH protocol version 2 is hello current version that offers a secure way tooSSH tooyour server.</span></span>  <span data-ttu-id="828e4-145">SSH 버전 1 사용 하 여 hello SSH 서버와 tooestablish를 시도 하는 모든 SSH 클라이언트 연결을 거부 SSH 버전 1 사용 하지 않도록 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-145">Disabling SSH version 1 denies any SSH clients that are attempting tooestablish a connection with hello SSH server using SSH version 1.</span></span>  <span data-ttu-id="828e4-146">SSH 버전 2 연결 toonegotiate 허용 되며 hello SSH 서버와 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-146">Only SSH version 2 connections are allowed toonegotiate a connection with hello SSH server.</span></span>
 
 ```bash
 Protocol 2
 ```
 
-## <a name="minimum-key-bits"></a><span data-ttu-id="5ab88-147">최소 키 비트</span><span class="sxs-lookup"><span data-stu-id="5ab88-147">Minimum key bits</span></span>
+## <a name="minimum-key-bits"></a><span data-ttu-id="828e4-147">최소 키 비트</span><span class="sxs-lookup"><span data-stu-id="828e4-147">Minimum key bits</span></span>
 
-<span data-ttu-id="5ab88-148">보안 모범 사례에 따라 암호 SSH 로그인을 사용하지 않도록 설정하고 SSH 서버에서 인증하는 데 SSH 키를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-148">Following security best practices, password SSH logins are disabled and only SSH keys are allowed to be used to authenticate with the SSH server.</span></span>  <span data-ttu-id="5ab88-149">비트 단위로 측정된 길이가 다른 키를 사용하여 이러한 SSH 키를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-149">These SSH keys can be created using different length keys, measured in bits.</span></span>  <span data-ttu-id="5ab88-150">모범 사례에 따르면 키 길이가 2048비트인 경우 허용 가능한 최소 키 길이입니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-150">Best practices states that keys of 2048 bits in length are the minimum acceptable key strength.</span></span>  <span data-ttu-id="5ab88-151">2048비트 미만의 키는 이론적으로 손상되었을 가능성이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-151">Keys of less than 2048 bits could theoretically be broken.</span></span>  <span data-ttu-id="5ab88-152">`ServerKeyBits`를 `2048`로 설정하면 2048비트 이상의 키를 사용하는 모든 연결을 허용하고 2048비트 미만의 연결을 거부하게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-152">Setting the `ServerKeyBits` to `2048` allows any connections using keys of 2048 bits or greater and deny connections of less than 2048 bits.</span></span>
+<span data-ttu-id="828e4-148">보안 모범 사례 암호 SSH 로그인을 사용할 수 없습니다 및 SSH 키만 toobe tooauthenticate hello SSH 서버에 사용 되는 허용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-148">Following security best practices, password SSH logins are disabled and only SSH keys are allowed toobe used tooauthenticate with hello SSH server.</span></span>  <span data-ttu-id="828e4-149">비트 단위로 측정된 길이가 다른 키를 사용하여 이러한 SSH 키를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-149">These SSH keys can be created using different length keys, measured in bits.</span></span>  <span data-ttu-id="828e4-150">모범 사례 키 길이가 2048 비트의 hello 최소 허용 가능한 키 길이 상태.</span><span class="sxs-lookup"><span data-stu-id="828e4-150">Best practices states that keys of 2048 bits in length are hello minimum acceptable key strength.</span></span>  <span data-ttu-id="828e4-151">2048비트 미만의 키는 이론적으로 손상되었을 가능성이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-151">Keys of less than 2048 bits could theoretically be broken.</span></span>  <span data-ttu-id="828e4-152">설정 hello `ServerKeyBits` 너무`2048` 2048 비트 이상 키를 사용 하 여 모든 연결을 허용 하 고 보다 작은 2048 비트의 연결을 거부 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-152">Setting hello `ServerKeyBits` too`2048` allows any connections using keys of 2048 bits or greater and deny connections of less than 2048 bits.</span></span>
 
 ```bash
 ServerKeyBits 2048
 ```
 
-## <a name="disconnect-idle-users"></a><span data-ttu-id="5ab88-153">유휴 사용자 연결 끊기</span><span class="sxs-lookup"><span data-stu-id="5ab88-153">Disconnect idle users</span></span>
+## <a name="disconnect-idle-users"></a><span data-ttu-id="828e4-153">유휴 사용자 연결 끊기</span><span class="sxs-lookup"><span data-stu-id="828e4-153">Disconnect idle users</span></span>
 
-<span data-ttu-id="5ab88-154">SSH에는 열린 연결이 설정 시간(초) 이상 유휴 상태로 유지되는 사용자 연결을 끊을 수 있는 기능이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-154">SSH has the ability to disconnect users that have open connections that have remained idle for more than a set period of seconds.</span></span>  <span data-ttu-id="5ab88-155">활성화된 해당 사용자에게 열려 있는 세션을 유지하면 Linux VM의 노출을 제한합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-155">Keeping open sessions to only those users who are active limits the exposure of the Linux VM.</span></span>
+<span data-ttu-id="828e4-154">SSH에 대 한 유휴 시간 (초) 정해진된 기간 보다 그 이상 전문적 열린 연결이 있는 hello 기능 toodisconnect 사용자.</span><span class="sxs-lookup"><span data-stu-id="828e4-154">SSH has hello ability toodisconnect users that have open connections that have remained idle for more than a set period of seconds.</span></span>  <span data-ttu-id="828e4-155">열려 있는 세션 tooonly hello Linux VM의 활성 제한 hello 노출을 인 사용자를 유지 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-155">Keeping open sessions tooonly those users who are active limits hello exposure of hello Linux VM.</span></span>
 
 ```bash
 ClientAliveInterval 300
 ClientAliveCountMax 0
 ```
 
-## <a name="restart-sshd"></a><span data-ttu-id="5ab88-156">SSHD 다시 시작</span><span class="sxs-lookup"><span data-stu-id="5ab88-156">Restart SSHD</span></span>
+## <a name="restart-sshd"></a><span data-ttu-id="828e4-156">SSHD 다시 시작</span><span class="sxs-lookup"><span data-stu-id="828e4-156">Restart SSHD</span></span>
 
-<span data-ttu-id="5ab88-157">`/etc/ssh/sshd_config`에서 설정을 사용하려면 SSH 서버를 다시 시작하는 SSHD 프로세스를 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-157">To enable the settings in `/etc/ssh/sshd_config` restart the SSHD process which restarts the SSH server.</span></span>  <span data-ttu-id="5ab88-158">SSH 서버를 다시 시작하는 데 사용하는 터미널 창은 열린 SSH 세션을 손실하지 않고 열려 있게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-158">The terminal window you use to restart the SSH server remain open without losing the open SSH session.</span></span>  <span data-ttu-id="5ab88-159">새 SSH 서버 설정을 테스트하려면 두 번째 터미널 창 또는 탭을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-159">To test the new SSH server settings use a second terminal window or tab.</span></span>  <span data-ttu-id="5ab88-160">SSH 연결을 테스트하기 위해 별도 터미널을 사용하면 SSHD 주요 변경 내용으로 잠그지 않고 뒤로 돌아가서 첫 번째 터미널에 있는 `/etc/ssh/sshd_config`을 추가로 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-160">Using a separate terminal to test the SSH connection allows you to go back and make additional changes to the `/etc/ssh/sshd_config` in the first terminal, without being locked out by a breaking SSHD change.</span></span>  
+<span data-ttu-id="828e4-157">tooenable hello 설정을 `/etc/ssh/sshd_config` hello SSH 서버를 다시 시작 하는 hello SSHD 프로세스를 다시 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-157">tooenable hello settings in `/etc/ssh/sshd_config` restart hello SSHD process which restarts hello SSH server.</span></span>  <span data-ttu-id="828e4-158">hello open SSH 세션을 손실 하지 않고 toorestart hello SSH 서버를 사용 하는 hello 터미널 창을 열려 있게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-158">hello terminal window you use toorestart hello SSH server remain open without losing hello open SSH session.</span></span>  <span data-ttu-id="828e4-159">두 번째 터미널 창이 나 탭을 사용 하는 tootest hello 새 SSH 서버 설정 합니다.  별도 터미널 tootest hello SSH 연결을 사용 하 여 다시 toogo 하 고 있습니다 확인 추가 변경 toohello `/etc/ssh/sshd_config` SSHD 주요 변경 내용에 의해 잠기지 않고 hello 첫 번째 터미널에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-159">tootest hello new SSH server settings use a second terminal window or tab.  Using a separate terminal tootest hello SSH connection allows you toogo back and make additional changes toohello `/etc/ssh/sshd_config` in hello first terminal, without being locked out by a breaking SSHD change.</span></span>  
 
-### <a name="on-redhat-centos-and-fedora"></a><span data-ttu-id="5ab88-161">Redhat, Centos 및 Fedora에서</span><span class="sxs-lookup"><span data-stu-id="5ab88-161">On Redhat, Centos and Fedora</span></span>
+### <a name="on-redhat-centos-and-fedora"></a><span data-ttu-id="828e4-160">Redhat, Centos 및 Fedora에서</span><span class="sxs-lookup"><span data-stu-id="828e4-160">On Redhat, Centos and Fedora</span></span>
 
 ```bash
 service sshd restart
 ```
 
-### <a name="on-debian--ubuntu"></a><span data-ttu-id="5ab88-162">Debian 및 Ubuntu에서</span><span class="sxs-lookup"><span data-stu-id="5ab88-162">On Debian & Ubuntu</span></span>
+### <a name="on-debian--ubuntu"></a><span data-ttu-id="828e4-161">Debian 및 Ubuntu에서</span><span class="sxs-lookup"><span data-stu-id="828e4-161">On Debian & Ubuntu</span></span>
 
 ```bash
 service ssh restart
 ```
 
-## <a name="reset-sshd-using-azure-reset-access"></a><span data-ttu-id="5ab88-163">Azure 재설정 액세스를 사용하여 SSHD 다시 설정</span><span class="sxs-lookup"><span data-stu-id="5ab88-163">Reset SSHD using Azure reset-access</span></span>
+## <a name="reset-sshd-using-azure-reset-access"></a><span data-ttu-id="828e4-162">Azure 재설정 액세스를 사용하여 SSHD 다시 설정</span><span class="sxs-lookup"><span data-stu-id="828e4-162">Reset SSHD using Azure reset-access</span></span>
 
-<span data-ttu-id="5ab88-164">SSHD 구성에 주요 변경 내용이 잠겨진 경우 Azure VM 액세스 확장을 사용하여 SSHD 구성을 원래 구성으로 다시 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-164">If you are locked out from a breaking change to the SSHD configuration you can use the Azure VM access-extension to reset the SSHD configuration back to the original configuration.</span></span>
+<span data-ttu-id="828e4-163">주요 변경 toohello SSHD 구성에서 잠긴 경우 hello Azure VM 액세스 확장 tooreset hello SSHD 구성 뒤로 toohello 원래 구성을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-163">If you are locked out from a breaking change toohello SSHD configuration you can use hello Azure VM access-extension tooreset hello SSHD configuration back toohello original configuration.</span></span>
 
-<span data-ttu-id="5ab88-165">모든 예제 이름을 고유한 설정으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-165">Replace any example names with your own.</span></span>
+<span data-ttu-id="828e4-164">모든 예제 이름을 고유한 설정으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-164">Replace any example names with your own.</span></span>
 
 ```azurecli
 azure vm reset-access \
@@ -166,18 +166,18 @@ azure vm reset-access \
 --reset-ssh
 ```
 
-## <a name="install-fail2ban"></a><span data-ttu-id="5ab88-166">Fail2ban 설치</span><span class="sxs-lookup"><span data-stu-id="5ab88-166">Install Fail2ban</span></span>
+## <a name="install-fail2ban"></a><span data-ttu-id="828e4-165">Fail2ban 설치</span><span class="sxs-lookup"><span data-stu-id="828e4-165">Install Fail2ban</span></span>
 
-<span data-ttu-id="5ab88-167">오픈 소스 앱 Fail2ban을 설치하고 설정하는 것이 가장 좋습니다. 그러면 무차별 암호 대입을 사용하여 SSH를 통해 Linux VM에 로그인하려는 반복적인 시도를 차단합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-167">It is strongly recommended to install and setup the open source app Fail2ban, which blocks repeated attempts to login to your Linux VM over SSH using brute force.</span></span>  <span data-ttu-id="5ab88-168">Fail2ban에서는 반복된 실패 시도를 기록하여 SSH를 통해 로그인한 다음 방화벽 규칙을 만들어서 시도가 시작된 IP 주소를 차단합니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-168">Fail2ban logs repeated failed attempts to login over SSH and then creates firewall rules to block the IP address that the attempts are originating from.</span></span>
+<span data-ttu-id="828e4-166">Tooinstall 및 설정 hello 오픈 소스 응용 프로그램 Fail2ban, 블록 무차별 암호 대입을 사용 하 여 SSH를 통해 시도 toologin tooyour Linux VM 반복 가장 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-166">It is strongly recommended tooinstall and setup hello open source app Fail2ban, which blocks repeated attempts toologin tooyour Linux VM over SSH using brute force.</span></span>  <span data-ttu-id="828e4-167">반복 Fail2ban 로그 시도 toologin SSH를 통해 실패 한 다음 방화벽 규칙을 tooblock hello IP 주소에서 비롯 되는지 hello 시도 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-167">Fail2ban logs repeated failed attempts toologin over SSH and then creates firewall rules tooblock hello IP address that hello attempts are originating from.</span></span>
 
-* [<span data-ttu-id="5ab88-169">Fail2ban 홈페이지</span><span class="sxs-lookup"><span data-stu-id="5ab88-169">Fail2ban homepage</span></span>](http://www.fail2ban.org/wiki/index.php/Main_Page)
+* [<span data-ttu-id="828e4-168">Fail2ban 홈페이지</span><span class="sxs-lookup"><span data-stu-id="828e4-168">Fail2ban homepage</span></span>](http://www.fail2ban.org/wiki/index.php/Main_Page)
 
-## <a name="next-steps"></a><span data-ttu-id="5ab88-170">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5ab88-170">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="828e4-169">다음 단계</span><span class="sxs-lookup"><span data-stu-id="828e4-169">Next Steps</span></span>
 
-<span data-ttu-id="5ab88-171">이제 Linux VM에서 SSH 서버를 구성하고 잠갔으므로 추가 보안 모범 사례를 따를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ab88-171">Now that you have configured and locked down the SSH server on your Linux VM there are additional security best practices you can follow.</span></span>  
+<span data-ttu-id="828e4-170">구성 하 고 hello SSH 서버 잠겨 있으며 Linux VM에서 추가 보안 모범 사례를 따를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-170">Now that you have configured and locked down hello SSH server on your Linux VM there are additional security best practices you can follow.</span></span>  
 
-* [<span data-ttu-id="5ab88-172">VMAccess 확장을 사용하여 사용자, SSH 관리 및 Azure Linux VM의 디스크 검사 또는 복구</span><span class="sxs-lookup"><span data-stu-id="5ab88-172">Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension</span></span>](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [<span data-ttu-id="828e4-171">사용자, SSH, 및 확인 또는 복구 디스크를 사용 하 여 Azure Linux Vm에서 VMAccess 확장을 환영</span><span class="sxs-lookup"><span data-stu-id="828e4-171">Manage users, SSH, and check or repair disks on Azure Linux VMs using hello VMAccess Extension</span></span>](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-* [<span data-ttu-id="5ab88-173">Azure CLI를 사용하여 Linux VM에서 디스크 암호화</span><span class="sxs-lookup"><span data-stu-id="5ab88-173">Encrypt disks on a Linux VM using the Azure CLI</span></span>](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [<span data-ttu-id="828e4-172">Hello Azure CLI를 사용 하 여 Linux VM에서 디스크를 암호화 합니다.</span><span class="sxs-lookup"><span data-stu-id="828e4-172">Encrypt disks on a Linux VM using hello Azure CLI</span></span>](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-* [<span data-ttu-id="5ab88-174">Azure Resource Manager 템플릿의 액세스 및 보안</span><span class="sxs-lookup"><span data-stu-id="5ab88-174">Access and security in Azure Resource Manager templates</span></span>](dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [<span data-ttu-id="828e4-173">Azure Resource Manager 템플릿의 액세스 및 보안</span><span class="sxs-lookup"><span data-stu-id="828e4-173">Access and security in Azure Resource Manager templates</span></span>](dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

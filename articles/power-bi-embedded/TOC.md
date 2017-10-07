@@ -12,7 +12,7 @@
 ### [일반적인 시나리오](power-bi-embedded-scenarios.md)
 
 ## 관리
-### [데이터 원본에 연결](power-bi-embedded-connect-datasource.md)
+### [Tooa 데이터 원본에 연결](power-bi-embedded-connect-datasource.md)
 ### [Power BI 보고서 포함](power-bi-embedded-embed-report.md)
 ### [보고서 사용](power-bi-embedded-interact-with-reports.md)
 ### [데이터 집합에서 새 보고서 만들기](power-bi-embedded-create-report-from-dataset.md)

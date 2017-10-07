@@ -1,6 +1,6 @@
 ---
-title: "PowerShell 예제 - 활성 지역 복제 - 풀된 Azure SQL Database | Microsoft Docs"
-description: "풀된 Azure SQL Database에 활성 지역 복제를 설정하는 Azure PowerShell 예제 스크립트"
+title: "aaaPowerShell 예제-활성 지리적 복제 풀링되지 Azure SQL 데이터베이스 | Microsoft Docs"
+description: "Azure PowerShell 예제 스크립트 tooset 풀링된 Azure SQL 데이터베이스에 대 한 활성 지리적 복제를"
 services: sql-database
 documentationcenter: sql-database
 author: CarlRabeler
@@ -16,51 +16,51 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 07/25/2017
 ms.author: carlrab
-ms.openlocfilehash: c1a495a8f9960ed60d8589dee9615e075f80c77b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9d183f08dcc07ba864e42fe70a562fef8bd572f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-powershell-to-configure-active-geo-replication-for-a-pooled-azure-sql-database"></a><span data-ttu-id="435de-103">PowerShell을 사용하여 풀된 Azure SQL Database에 대한 활성 지역 복제 구성</span><span class="sxs-lookup"><span data-stu-id="435de-103">Use PowerShell to configure active geo-replication for a pooled Azure SQL database</span></span>
+# <a name="use-powershell-tooconfigure-active-geo-replication-for-a-pooled-azure-sql-database"></a><span data-ttu-id="51489-103">풀링된 Azure SQL 데이터베이스에 대 한 PowerShell tooconfigure 활성 지리적 복제를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="51489-103">Use PowerShell tooconfigure active geo-replication for a pooled Azure SQL database</span></span>
 
-<span data-ttu-id="435de-104">이 PowerShell 스크립트 예제는 탄력적 풀에서 Azure SQL Database에 대해 활성 지역 복제를 구성하고 Azure SQL Database의 보조 복제본으로 장애 조치(failover)합니다.</span><span class="sxs-lookup"><span data-stu-id="435de-104">This PowerShell script example configures active geo-replication for an Azure SQL database in an elastic pool and fails it over to the secondary replica of the Azure SQL database.</span></span>
+<span data-ttu-id="51489-104">탄력적 풀의 Azure SQL 데이터베이스에 대 한 활성 지리적 복제를 구성 하 고 toohello hello Azure SQL 데이터베이스의 보조 복제본으로 장애 조치 하는 PowerShell 스크립트 예제.</span><span class="sxs-lookup"><span data-stu-id="51489-104">This PowerShell script example configures active geo-replication for an Azure SQL database in an elastic pool and fails it over toohello secondary replica of hello Azure SQL database.</span></span>
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
-## <a name="sample-scripts"></a><span data-ttu-id="435de-105">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="435de-105">Sample scripts</span></span>
+## <a name="sample-scripts"></a><span data-ttu-id="51489-105">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="51489-105">Sample scripts</span></span>
 
-<span data-ttu-id="435de-106">[!code-powershell[주](../../../powershell_scripts/sql-database/setup-geodr-and-failover-pool/setup-geodr-and-failover-pool.ps1?highlight=16-19 "탄력적 풀에 대한 활성 지역 복제 설정")]</span><span class="sxs-lookup"><span data-stu-id="435de-106">[!code-powershell[main](../../../powershell_scripts/sql-database/setup-geodr-and-failover-pool/setup-geodr-and-failover-pool.ps1?highlight=16-19 "Set up active geo-replication for elastic pool")]</span></span>
+[!code-powershell[main](../../../powershell_scripts/sql-database/setup-geodr-and-failover-pool/setup-geodr-and-failover-pool.ps1?highlight=16-19 "Set up active geo-replication for elastic pool")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="435de-107">배포 정리</span><span class="sxs-lookup"><span data-stu-id="435de-107">Clean up deployment</span></span>
+## <a name="clean-up-deployment"></a><span data-ttu-id="51489-106">배포 정리</span><span class="sxs-lookup"><span data-stu-id="51489-106">Clean up deployment</span></span>
 
-<span data-ttu-id="435de-108">스크립트 샘플을 실행한 후에 다음 명령을 사용하여 리소스 그룹 및 관련된 모든 리소스를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="435de-108">After the script sample has been run, the following command can be used to remove the resource group and all resources associated with it.</span></span>
+<span data-ttu-id="51489-107">Hello 스크립트 예제를 실행 한 후 다음 명령을 hello 사용된 tooremove hello 리소스 그룹과 연결 된 모든 리소스가 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="51489-107">After hello script sample has been run, hello following command can be used tooremove hello resource group and all resources associated with it.</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myPrimaryResourceGroup"
 Remove-AzureRmResourceGroup -ResourceGroupName "mySecondaryResourceGroup"
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="435de-109">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="435de-109">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="51489-108">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="51489-108">Script explanation</span></span>
 
-<span data-ttu-id="435de-110">이 스크립트는 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="435de-110">This script uses the following commands.</span></span> <span data-ttu-id="435de-111">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="435de-111">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="51489-109">이 스크립트 명령 뒤 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-109">This script uses hello following commands.</span></span> <span data-ttu-id="51489-110">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-110">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="435de-112">명령</span><span class="sxs-lookup"><span data-stu-id="435de-112">Command</span></span> | <span data-ttu-id="435de-113">참고 사항</span><span class="sxs-lookup"><span data-stu-id="435de-113">Notes</span></span> |
+| <span data-ttu-id="51489-111">명령</span><span class="sxs-lookup"><span data-stu-id="51489-111">Command</span></span> | <span data-ttu-id="51489-112">참고 사항</span><span class="sxs-lookup"><span data-stu-id="51489-112">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="435de-114">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="435de-114">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="435de-115">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="435de-115">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="435de-116">New-AzureRmSqlServer</span><span class="sxs-lookup"><span data-stu-id="435de-116">New-AzureRmSqlServer</span></span>](/powershell/module/azurerm.sql/new-azurermsqlserver) | <span data-ttu-id="435de-117">데이터베이스 또는 탄력적 풀을 호스트하는 논리 서버를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="435de-117">Creates a logical server that hosts a database or elastic pool.</span></span> |
-| [<span data-ttu-id="435de-118">New-AzureRmSqlElasticPool</span><span class="sxs-lookup"><span data-stu-id="435de-118">New-AzureRmSqlElasticPool</span></span>](/powershell/module/azurerm.sql/new-azurermsqlelasticpool) | <span data-ttu-id="435de-119">논리 서버 내에 탄력적 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="435de-119">Creates an elastic pool within a logical server.</span></span> |
-| [<span data-ttu-id="435de-120">New-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="435de-120">New-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/new-azurermsqldatabase) | <span data-ttu-id="435de-121">논리 서버에 데이터베이스를 단일 데이터베이스 또는 풀링된 데이터베이스로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="435de-121">Creates a database in a logical server as a single or a pooled database.</span></span> |
-| [<span data-ttu-id="435de-122">Set-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="435de-122">Set-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/set-azurermsqldatabase) | <span data-ttu-id="435de-123">데이터베이스 속성을 업데이트하거나 탄력적 풀 내부, 외부 또는 내외부 상호 간에 데이터베이스를 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="435de-123">Updates database properties or moves a database into, out of, or between elastic pools.</span></span> |
-| [<span data-ttu-id="435de-124">New-AzureRmSqlDatabaseSecondary</span><span class="sxs-lookup"><span data-stu-id="435de-124">New-AzureRmSqlDatabaseSecondary</span></span>](/powershell/module/azurerm.sql/new-azurermsqldatabasesecondary)| <span data-ttu-id="435de-125">기존 데이터베이스에 대한 보조 데이터베이스를 만들고 데이터 복제를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="435de-125">Creates a secondary database for an existing database and starts data replication.</span></span> |
-| [<span data-ttu-id="435de-126">Get-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="435de-126">Get-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/get-azurermsqldatabase)| <span data-ttu-id="435de-127">하나 이상의 데이터베이스를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="435de-127">Gets one or more databases.</span></span> |
-| [<span data-ttu-id="435de-128">Set-AzureRmSqlDatabaseSecondary</span><span class="sxs-lookup"><span data-stu-id="435de-128">Set-AzureRmSqlDatabaseSecondary</span></span>](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary)| <span data-ttu-id="435de-129">장애 조치를 시작하기 위해 보조 데이터베이스로 전환합니다.</span><span class="sxs-lookup"><span data-stu-id="435de-129">Switches a secondary database to be primary in order to initiate failover.</span></span>|
-| [<span data-ttu-id="435de-130">Get-AzureRmSqlDatabaseReplicationLink</span><span class="sxs-lookup"><span data-stu-id="435de-130">Get-AzureRmSqlDatabaseReplicationLink</span></span>](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) | <span data-ttu-id="435de-131">Azure SQL 데이터베이스와 리소스 그룹 또는 SQL Server 간의 지역에서 복제 링크를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="435de-131">Gets the geo-replication links between an Azure SQL Database and a resource group or SQL Server.</span></span> |
-| [<span data-ttu-id="435de-132">Remove-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="435de-132">Remove-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/remove-azurermresourcegroup) | <span data-ttu-id="435de-133">모든 중첩 리소스를 포함한 리소스 그룹을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="435de-133">Deletes a resource group including all nested resources.</span></span> |
+| [<span data-ttu-id="51489-113">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="51489-113">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="51489-114">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="51489-114">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="51489-115">New-AzureRmSqlServer</span><span class="sxs-lookup"><span data-stu-id="51489-115">New-AzureRmSqlServer</span></span>](/powershell/module/azurerm.sql/new-azurermsqlserver) | <span data-ttu-id="51489-116">데이터베이스 또는 탄력적 풀을 호스트하는 논리 서버를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="51489-116">Creates a logical server that hosts a database or elastic pool.</span></span> |
+| [<span data-ttu-id="51489-117">New-AzureRmSqlElasticPool</span><span class="sxs-lookup"><span data-stu-id="51489-117">New-AzureRmSqlElasticPool</span></span>](/powershell/module/azurerm.sql/new-azurermsqlelasticpool) | <span data-ttu-id="51489-118">논리 서버 내에 탄력적 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="51489-118">Creates an elastic pool within a logical server.</span></span> |
+| [<span data-ttu-id="51489-119">New-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="51489-119">New-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/new-azurermsqldatabase) | <span data-ttu-id="51489-120">논리 서버에 데이터베이스를 단일 데이터베이스 또는 풀링된 데이터베이스로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="51489-120">Creates a database in a logical server as a single or a pooled database.</span></span> |
+| [<span data-ttu-id="51489-121">Set-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="51489-121">Set-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/set-azurermsqldatabase) | <span data-ttu-id="51489-122">데이터베이스 속성을 업데이트하거나 탄력적 풀 내부, 외부 또는 내외부 상호 간에 데이터베이스를 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-122">Updates database properties or moves a database into, out of, or between elastic pools.</span></span> |
+| [<span data-ttu-id="51489-123">New-AzureRmSqlDatabaseSecondary</span><span class="sxs-lookup"><span data-stu-id="51489-123">New-AzureRmSqlDatabaseSecondary</span></span>](/powershell/module/azurerm.sql/new-azurermsqldatabasesecondary)| <span data-ttu-id="51489-124">기존 데이터베이스에 대한 보조 데이터베이스를 만들고 데이터 복제를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-124">Creates a secondary database for an existing database and starts data replication.</span></span> |
+| [<span data-ttu-id="51489-125">Get-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="51489-125">Get-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/get-azurermsqldatabase)| <span data-ttu-id="51489-126">하나 이상의 데이터베이스를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="51489-126">Gets one or more databases.</span></span> |
+| [<span data-ttu-id="51489-127">Set-AzureRmSqlDatabaseSecondary</span><span class="sxs-lookup"><span data-stu-id="51489-127">Set-AzureRmSqlDatabaseSecondary</span></span>](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary)| <span data-ttu-id="51489-128">보조 데이터베이스 toobe 기본 순서 tooinitiate 장애 조치에서 전환합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-128">Switches a secondary database toobe primary in order tooinitiate failover.</span></span>|
+| [<span data-ttu-id="51489-129">Get-AzureRmSqlDatabaseReplicationLink</span><span class="sxs-lookup"><span data-stu-id="51489-129">Get-AzureRmSqlDatabaseReplicationLink</span></span>](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) | <span data-ttu-id="51489-130">Azure SQL 데이터베이스와 리소스 그룹 또는 SQL Server 간의 hello 지역 간 복제 링크를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="51489-130">Gets hello geo-replication links between an Azure SQL Database and a resource group or SQL Server.</span></span> |
+| [<span data-ttu-id="51489-131">Remove-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="51489-131">Remove-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/remove-azurermresourcegroup) | <span data-ttu-id="51489-132">모든 중첩 리소스를 포함한 리소스 그룹을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-132">Deletes a resource group including all nested resources.</span></span> |
 |||
 
-## <a name="next-steps"></a><span data-ttu-id="435de-134">다음 단계</span><span class="sxs-lookup"><span data-stu-id="435de-134">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="51489-133">다음 단계</span><span class="sxs-lookup"><span data-stu-id="51489-133">Next steps</span></span>
 
-<span data-ttu-id="435de-135">Azure PowerShell에 대한 자세한 내용은 [Azure PowerShell 설명서](/powershell/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="435de-135">For more information on the Azure PowerShell, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+<span data-ttu-id="51489-134">Azure PowerShell hello에 대 한 자세한 내용은 참조 하십시오. [Azure PowerShell 설명서](/powershell/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-134">For more information on hello Azure PowerShell, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="435de-136">추가 SQL Database PowerShell 스크립트 샘플은 [Azure SQL Database PowerShell 스크립트](../sql-database-powershell-samples.md)에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="435de-136">Additional SQL Database PowerShell script samples can be found in the [Azure SQL Database PowerShell scripts](../sql-database-powershell-samples.md).</span></span>
+<span data-ttu-id="51489-135">추가 SQL 데이터베이스 PowerShell 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure SQL 데이터베이스 PowerShell 스크립트를](../sql-database-powershell-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="51489-135">Additional SQL Database PowerShell script samples can be found in hello [Azure SQL Database PowerShell scripts](../sql-database-powershell-samples.md).</span></span>

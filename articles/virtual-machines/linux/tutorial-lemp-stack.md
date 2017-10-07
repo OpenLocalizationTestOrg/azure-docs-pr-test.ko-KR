@@ -1,6 +1,6 @@
 ---
-title: "Azure의 Linux 가상 컴퓨터에 LEMP 배포 | Microsoft Docs"
-description: "자습서 - Azure에서 Linux VM에 LEMP 스택 설치"
+title: "Azure에서 Linux 가상 컴퓨터에서 LEMP aaaDeploy | Microsoft Docs"
+description: "자습서-Azure에서 Linux VM에 대 한 설치 hello LEMP 스택"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: dlepow
@@ -15,89 +15,89 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: danlep
-ms.openlocfilehash: 653af144eb12cacf955f96a5442efd73add38e88
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d8f9d84c5e9c0df4e9e985c10fe10f63a2f88214
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-a-lemp-web-server-on-an-azure-vm"></a><span data-ttu-id="e0d24-103">Azure VM에 LEMP 웹 서버 설치</span><span class="sxs-lookup"><span data-stu-id="e0d24-103">Install a LEMP web server on an Azure VM</span></span>
-<span data-ttu-id="e0d24-104">이 문서에서는 Azure의 Ubuntu VM에 NGINX 웹 서버, MySQL 및 PHP(LEMP 스택)를 배포하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-104">This article walks you through how to deploy an NGINX web server, MySQL, and PHP (the LEMP stack) on an Ubuntu VM in Azure.</span></span> <span data-ttu-id="e0d24-105">LEMP 스택은 인기 있는 [LAMP 스택](tutorial-lamp-stack.md) 대신 사용할 수 있으며 Azure에도 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-105">The LEMP stack is an alternative to the popular [LAMP stack](tutorial-lamp-stack.md), which you can also install in Azure.</span></span> <span data-ttu-id="e0d24-106">작동 중인 LEMP 서버를 보려면 필요에 따라 WordPress 사이트를 설치하고 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-106">To see the LEMP server in action, you can optionally install and configure a WordPress site.</span></span> <span data-ttu-id="e0d24-107">이 자습서에서는 다음 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-107">In this tutorial you learn how to:</span></span>
+# <a name="install-a-lemp-web-server-on-an-azure-vm"></a><span data-ttu-id="3f8f6-103">Azure VM에 LEMP 웹 서버 설치</span><span class="sxs-lookup"><span data-stu-id="3f8f6-103">Install a LEMP web server on an Azure VM</span></span>
+<span data-ttu-id="3f8f6-104">이 문서 toodeploy는 NGINX 웹 서버, MySQL 및 Azure의 Ubuntu VM에서 PHP (hello LEMP 스택) 방법을 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-104">This article walks you through how toodeploy an NGINX web server, MySQL, and PHP (hello LEMP stack) on an Ubuntu VM in Azure.</span></span> <span data-ttu-id="3f8f6-105">hello LEMP 스택은 널리 사용 되는 대체 toohello [LAMP 스택](tutorial-lamp-stack.md)는 Azure에서 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-105">hello LEMP stack is an alternative toohello popular [LAMP stack](tutorial-lamp-stack.md), which you can also install in Azure.</span></span> <span data-ttu-id="3f8f6-106">toosee hello LEMP 서버 작업을 필요에 따라 설치 하 고 수 WordPress 사이트를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-106">toosee hello LEMP server in action, you can optionally install and configure a WordPress site.</span></span> <span data-ttu-id="3f8f6-107">이 자습서에서는 다음 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-107">In this tutorial you learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="e0d24-108">Ubuntu VM(LEMP 스택에서 'L') 만들기</span><span class="sxs-lookup"><span data-stu-id="e0d24-108">Create an Ubuntu VM (the 'L' in the LEMP stack)</span></span>
-> * <span data-ttu-id="e0d24-109">웹 트래픽에 대해 포트 80 열기</span><span class="sxs-lookup"><span data-stu-id="e0d24-109">Open port 80 for web traffic</span></span>
-> * <span data-ttu-id="e0d24-110">NGINX, MySQL 및 PHP 설치</span><span class="sxs-lookup"><span data-stu-id="e0d24-110">Install NGINX, MySQL, and PHP</span></span>
-> * <span data-ttu-id="e0d24-111">설치 및 구성 확인</span><span class="sxs-lookup"><span data-stu-id="e0d24-111">Verify installation and configuration</span></span>
-> * <span data-ttu-id="e0d24-112">LEMP 서버에 WordPress 설치</span><span class="sxs-lookup"><span data-stu-id="e0d24-112">Install WordPress on the LEMP server</span></span>
+> * <span data-ttu-id="3f8f6-108">Ubuntu VM (hello 'L' hello LEMP 스택의) 만들기</span><span class="sxs-lookup"><span data-stu-id="3f8f6-108">Create an Ubuntu VM (hello 'L' in hello LEMP stack)</span></span>
+> * <span data-ttu-id="3f8f6-109">웹 트래픽에 대해 포트 80 열기</span><span class="sxs-lookup"><span data-stu-id="3f8f6-109">Open port 80 for web traffic</span></span>
+> * <span data-ttu-id="3f8f6-110">NGINX, MySQL 및 PHP 설치</span><span class="sxs-lookup"><span data-stu-id="3f8f6-110">Install NGINX, MySQL, and PHP</span></span>
+> * <span data-ttu-id="3f8f6-111">설치 및 구성 확인</span><span class="sxs-lookup"><span data-stu-id="3f8f6-111">Verify installation and configuration</span></span>
+> * <span data-ttu-id="3f8f6-112">WordPress hello LEMP 서버에 설치</span><span class="sxs-lookup"><span data-stu-id="3f8f6-112">Install WordPress on hello LEMP server</span></span>
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="e0d24-113">CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 자습서에서 Azure CLI 버전 2.0.4 이상을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-113">If you choose to install and use the CLI locally, this tutorial requires that you are running the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="e0d24-114">`az --version`을 실행하여 버전을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-114">Run `az --version` to find the version.</span></span> <span data-ttu-id="e0d24-115">설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0d24-115">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="3f8f6-113">Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 자습서를 사용 하려면 2.0.4 hello Azure CLI 버전을 실행 되 고 있는지 이상.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-113">If you choose tooinstall and use hello CLI locally, this tutorial requires that you are running hello Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="3f8f6-114">실행 `az --version` toofind hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-114">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="3f8f6-115">Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-115">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
 [!INCLUDE [virtual-machines-linux-tutorial-stack-intro.md](../../../includes/virtual-machines-linux-tutorial-stack-intro.md)]
 
-## <a name="install-nginx-mysql-and-php"></a><span data-ttu-id="e0d24-116">NGINX, MySQL 및 PHP 설치</span><span class="sxs-lookup"><span data-stu-id="e0d24-116">Install NGINX, MySQL, and PHP</span></span>
+## <a name="install-nginx-mysql-and-php"></a><span data-ttu-id="3f8f6-116">NGINX, MySQL 및 PHP 설치</span><span class="sxs-lookup"><span data-stu-id="3f8f6-116">Install NGINX, MySQL, and PHP</span></span>
 
-<span data-ttu-id="e0d24-117">다음 명령을 실행하여 Ubuntu 패키지 원본을 업데이트하고 NGINX, MySQL 및 PHP를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-117">Run the following command to update Ubuntu package sources and install NGINX, MySQL, and PHP.</span></span> 
+<span data-ttu-id="3f8f6-117">Hello 명령 tooupdate Ubuntu 패키지 원본 실행 NGINX, MySQL 및 PHP를 설치 하십시오.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-117">Run hello following command tooupdate Ubuntu package sources and install NGINX, MySQL, and PHP.</span></span> 
 
 ```bash
 sudo apt update && sudo apt install nginx mysql-server php-mysql php php-fpm
 ```
 
-<span data-ttu-id="e0d24-118">패키지 및 기타 종속성을 설치하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-118">You are prompted to install the packages and other dependencies.</span></span> <span data-ttu-id="e0d24-119">메시지가 표시되면 MySQL에 대한 루트 암호를 설정한 다음 [Enter] 키를 눌러 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-119">When prompted, set a root password for MySQL, and then [Enter] to continue.</span></span> <span data-ttu-id="e0d24-120">나머지 지시를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-120">Follow the remaining prompts.</span></span> <span data-ttu-id="e0d24-121">이 프로세스에서는 PHP와 MySQL을 함께 사용하는 데 필요한 최소한의 PHP 확장을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-121">This process installs the minimum required PHP extensions needed to use PHP with MySQL.</span></span> 
+<span data-ttu-id="3f8f6-118">모르는 증명된 tooinstall hello 패키지 및 기타 종속성입니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-118">You are prompted tooinstall hello packages and other dependencies.</span></span> <span data-ttu-id="3f8f6-119">메시지가 표시 되 면 MySQL을 선택한 다음 [Enter] toocontinue 루트 암호를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-119">When prompted, set a root password for MySQL, and then [Enter] toocontinue.</span></span> <span data-ttu-id="3f8f6-120">Hello 남아 있는 프롬프트를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-120">Follow hello remaining prompts.</span></span> <span data-ttu-id="3f8f6-121">이 프로세스는 MySQL 가진 hello 최소 필요한 PHP 확장 필요한 toouse PHP를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-121">This process installs hello minimum required PHP extensions needed toouse PHP with MySQL.</span></span> 
 
 ![MySQL 루트 암호 페이지][1]
 
-## <a name="verify-installation-and-configuration"></a><span data-ttu-id="e0d24-123">설치 및 구성 확인</span><span class="sxs-lookup"><span data-stu-id="e0d24-123">Verify installation and configuration</span></span>
+## <a name="verify-installation-and-configuration"></a><span data-ttu-id="3f8f6-123">설치 및 구성 확인</span><span class="sxs-lookup"><span data-stu-id="3f8f6-123">Verify installation and configuration</span></span>
 
 
-### <a name="nginx"></a><span data-ttu-id="e0d24-124">NGINX</span><span class="sxs-lookup"><span data-stu-id="e0d24-124">NGINX</span></span>
+### <a name="nginx"></a><span data-ttu-id="3f8f6-124">NGINX</span><span class="sxs-lookup"><span data-stu-id="3f8f6-124">NGINX</span></span>
 
-<span data-ttu-id="e0d24-125">다음 명령으로 PHP의 버전을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-125">Check the version of NGINX with the following command:</span></span>
+<span data-ttu-id="3f8f6-125">다음 명령을 hello로 NGINX의 hello 버전을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-125">Check hello version of NGINX with hello following command:</span></span>
 ```bash
 nginx -v
 ```
 
-<span data-ttu-id="e0d24-126">NGINX를 설치하고 VM에 포트 80을 열어서 인터넷에서 웹 서버에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-126">With NGINX installed, and port 80 open to your VM, the web server can now be accessed from the internet.</span></span> <span data-ttu-id="e0d24-127">NGINX 시작 페이지를 보려면 웹 브라우저를 열고 VM의 공용 IP 주소를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-127">To view the NGINX welcome page, open a web browser, and enter the public IP address of the VM.</span></span> <span data-ttu-id="e0d24-128">VM에 SSH하는 데 사용한 공용 IP 주소를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-128">Use the public IP address you used to SSH to the VM:</span></span>
+<span data-ttu-id="3f8f6-126">NGINX 설치 되어 있으며 포트 80 엽니다 tooyour VM hello 웹 서버 hello에서 액세스할 수 있습니다, 인터넷 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-126">With NGINX installed, and port 80 open tooyour VM, hello web server can now be accessed from hello internet.</span></span> <span data-ttu-id="3f8f6-127">tooview hello NGINX 시작 페이지에서 웹 브라우저를 열고 hello hello VM의 공용 IP 주소를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-127">tooview hello NGINX welcome page, open a web browser, and enter hello public IP address of hello VM.</span></span> <span data-ttu-id="3f8f6-128">Hello tooSSH toohello VM을 사용 하는 공용 IP 주소를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-128">Use hello public IP address you used tooSSH toohello VM:</span></span>
 
 ![NGINX 기본 페이지][3]
 
 
-### <a name="mysql"></a><span data-ttu-id="e0d24-130">MySQL</span><span class="sxs-lookup"><span data-stu-id="e0d24-130">MySQL</span></span>
+### <a name="mysql"></a><span data-ttu-id="3f8f6-130">MySQL</span><span class="sxs-lookup"><span data-stu-id="3f8f6-130">MySQL</span></span>
 
-<span data-ttu-id="e0d24-131">다음 명령을 사용하여 MySQL의 버전을 확인합니다(대문자 `V` 매개 변수 주의).</span><span class="sxs-lookup"><span data-stu-id="e0d24-131">Check the version of MySQL with the following command (note the capital `V` parameter):</span></span>
+<span data-ttu-id="3f8f6-131">다음 명령을 hello로 MySQL의 hello 버전을 확인 (참고 hello 자본 `V` 매개 변수):</span><span class="sxs-lookup"><span data-stu-id="3f8f6-131">Check hello version of MySQL with hello following command (note hello capital `V` parameter):</span></span>
 
 ```bash
 msql -V
 ```
 
-<span data-ttu-id="e0d24-132">MySQL의 설치를 보호하기 위해 다음 스크립트를 실행하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-132">We recommend running the following script to help secure the installation of MySQL:</span></span>
+<span data-ttu-id="3f8f6-132">Hello MySQL의 toohelp 보안 hello 설치 스크립트를 실행 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-132">We recommend running hello following script toohelp secure hello installation of MySQL:</span></span>
 
 ```bash
 mysql_secure_installation
 ```
 
-<span data-ttu-id="e0d24-133">MySQL 루트 암호를 입력하고 사용자 환경에 대한 보안 설정을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-133">Enter your MySQL root password, and configure the security settings for your environment.</span></span>
+<span data-ttu-id="3f8f6-133">MySQL 루트 암호를 입력 하 고 사용자 환경에 대 한 hello 보안 설정을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-133">Enter your MySQL root password, and configure hello security settings for your environment.</span></span>
 
-<span data-ttu-id="e0d24-134">MySQL 데이터베이스를 만들려면 사용자를 추가하거나 구성 설정을 변경하고 MySQL에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-134">If you want to create a MySQL database, add users, or change configuration settings, login to MySQL:</span></span>
+<span data-ttu-id="3f8f6-134">Toocreate MySQL 데이터베이스 사용자를 추가 하거나 로그인 tooMySQL 구성 설정을 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-134">If you want toocreate a MySQL database, add users, or change configuration settings, login tooMySQL:</span></span>
 
 ```bash
 mysql -u root -p
 ```
 
-<span data-ttu-id="e0d24-135">완료한 후 `\q`를 입력하여 mysql 프롬프트를 종료합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-135">When done, exit the mysql prompt by typing `\q`.</span></span>
+<span data-ttu-id="3f8f6-135">을 완료 한 후를 입력 하 여 hello mysql 프롬프트를 종료 `\q`합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-135">When done, exit hello mysql prompt by typing `\q`.</span></span>
 
-### <a name="php"></a><span data-ttu-id="e0d24-136">PHP</span><span class="sxs-lookup"><span data-stu-id="e0d24-136">PHP</span></span>
+### <a name="php"></a><span data-ttu-id="3f8f6-136">PHP</span><span class="sxs-lookup"><span data-stu-id="3f8f6-136">PHP</span></span>
 
-<span data-ttu-id="e0d24-137">다음 명령으로 PHP의 버전을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-137">Check the version of PHP with the following command:</span></span>
+<span data-ttu-id="3f8f6-137">다음 명령을 hello로 hello PHP 버전을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-137">Check hello version of PHP with hello following command:</span></span>
 
 ```bash
 php -v
 ```
 
-<span data-ttu-id="e0d24-138">PHP-FPM(PHP FastCGI Process Manager)를 사용하도록 NGINX를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-138">Configure NGINX to use the PHP FastCGI Process Manager (PHP-FPM).</span></span> <span data-ttu-id="e0d24-139">다음 명령을 실행하여 원래 NGINX 서버 블록 구성 파일을 백업하고 원하는 편집기에 원본 파일을 편집합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-139">Run the following commands to back up the original NGINX server block config file and then edit the original file in an editor of your choice:</span></span>
+<span data-ttu-id="3f8f6-138">NGINX toouse hello PHP FastCGI 프로세스 관리자 (PHP FPM)를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-138">Configure NGINX toouse hello PHP FastCGI Process Manager (PHP-FPM).</span></span> <span data-ttu-id="3f8f6-139">다음 명령은 tooback hello 원래 NGINX 서버를 구성 파일을 차단 하 고 다음 hello 원하는 편집기에 원본 파일을 편집 하는 hello를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-139">Run hello following commands tooback up hello original NGINX server block config file and then edit hello original file in an editor of your choice:</span></span>
 
 ```bash
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_backup
@@ -105,7 +105,7 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_ba
 sudo sensible-editor /etc/nginx/sites-available/default
 ```
 
-<span data-ttu-id="e0d24-140">편집기에서 `/etc/nginx/sites-available/default`의 내용을 다음으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-140">In the editor, replace the contents of `/etc/nginx/sites-available/default` with the following.</span></span> <span data-ttu-id="e0d24-141">설정에 대한 설명을 보려면 주석을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0d24-141">See the comments for explanation of the settings.</span></span> <span data-ttu-id="e0d24-142">VM의 공용 IP 주소를 *yourPublicIPAddress*로 바꾸고 나머지 설정은 그대로 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-142">Substitute the public IP address of your VM for *yourPublicIPAddress*, and leave the remaining settings.</span></span> <span data-ttu-id="e0d24-143">그런 다음 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-143">Then save the file.</span></span>
+<span data-ttu-id="3f8f6-140">Hello 편집기에서의 hello 내용을 대체 `/etc/nginx/sites-available/default` hello 다음과 같이 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-140">In hello editor, replace hello contents of `/etc/nginx/sites-available/default` with hello following.</span></span> <span data-ttu-id="3f8f6-141">에 대 한 설명은 hello 설정의 hello 주석을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-141">See hello comments for explanation of hello settings.</span></span> <span data-ttu-id="3f8f6-142">Hello에 대 한 VM의 공용 IP 주소 대체 *yourPublicIPAddress*, hello 남은 설정을 유지 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-142">Substitute hello public IP address of your VM for *yourPublicIPAddress*, and leave hello remaining settings.</span></span> <span data-ttu-id="3f8f6-143">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-143">Then save hello file.</span></span>
 
 ```
 server {
@@ -130,19 +130,19 @@ server {
 }
 ```
 
-<span data-ttu-id="e0d24-144">NGINX 구성의 구문 오류를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-144">Check the NGINX configuration for syntax errors:</span></span>
+<span data-ttu-id="3f8f6-144">구문 오류에 대 한 hello NGINX 구성을 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-144">Check hello NGINX configuration for syntax errors:</span></span>
 
 ```bash
 sudo nginx -t
 ```
 
-<span data-ttu-id="e0d24-145">구문이 올바른 경우 다음 명령을 사용하여 NGINX를 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-145">If the syntax is correct, restart NGINX with the following command:</span></span>
+<span data-ttu-id="3f8f6-145">Hello 구문이 올바른 경우 다음 명령을 hello로 NGINX 다시 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-145">If hello syntax is correct, restart NGINX with hello following command:</span></span>
 
 ```bash
 sudo service nginx restart
 ```
 
-<span data-ttu-id="e0d24-146">추가로 테스트하려는 경우 빠른 PHP 정보 페이지를 만들어 브라우저에서 봅니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-146">If you want to test further, create a quick PHP info page to view in a browser.</span></span> <span data-ttu-id="e0d24-147">다음 명령은 PHP 정보 페이지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-147">The following command creates the PHP info page:</span></span>
+<span data-ttu-id="3f8f6-146">Tootest 추가 하려는 경우 브라우저에서 빠른 PHP 정보 페이지 tooview를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-146">If you want tootest further, create a quick PHP info page tooview in a browser.</span></span> <span data-ttu-id="3f8f6-147">다음 명령을 hello hello PHP 정보 페이지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-147">hello following command creates hello PHP info page:</span></span>
 
 ```bash
 sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
@@ -150,28 +150,28 @@ sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
 
 
 
-<span data-ttu-id="e0d24-148">이제 만든 PHP 정보 페이지를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-148">Now you can check the PHP info page you created.</span></span> <span data-ttu-id="e0d24-149">웹 브라우저를 열고 `http://yourPublicIPAddress/info.php`로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-149">Open a browser and go to `http://yourPublicIPAddress/info.php`.</span></span> <span data-ttu-id="e0d24-150">VM의 공용 IP 주소를 대체합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-150">Substitute the public IP address of your VM.</span></span> <span data-ttu-id="e0d24-151">이 이미지와 유사하게 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-151">It should look similar to this image.</span></span>
+<span data-ttu-id="3f8f6-148">이제 만든 hello PHP 정보 페이지를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-148">Now you can check hello PHP info page you created.</span></span> <span data-ttu-id="3f8f6-149">브라우저를 열고 너무 이동`http://yourPublicIPAddress/info.php`합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-149">Open a browser and go too`http://yourPublicIPAddress/info.php`.</span></span> <span data-ttu-id="3f8f6-150">VM의 hello 공용 IP 주소를 대체 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-150">Substitute hello public IP address of your VM.</span></span> <span data-ttu-id="3f8f6-151">이와 유사한 toothis 이미지 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-151">It should look similar toothis image.</span></span>
 
 ![PHP 정보 페이지][2]
 
 
 [!INCLUDE [virtual-machines-linux-tutorial-wordpress.md](../../../includes/virtual-machines-linux-tutorial-wordpress.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="e0d24-153">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e0d24-153">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3f8f6-153">다음 단계</span><span class="sxs-lookup"><span data-stu-id="3f8f6-153">Next steps</span></span>
 
-<span data-ttu-id="e0d24-154">이 자습서에서는 Azure에서 LEMP 서버를 배포했습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-154">In this tutorial, you deployed a LEMP server in Azure.</span></span> <span data-ttu-id="e0d24-155">다음 방법에 대해 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-155">You learned how to:</span></span>
+<span data-ttu-id="3f8f6-154">이 자습서에서는 Azure에서 LEMP 서버를 배포했습니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-154">In this tutorial, you deployed a LEMP server in Azure.</span></span> <span data-ttu-id="3f8f6-155">다음 방법에 대해 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-155">You learned how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="e0d24-156">Ubuntu VM 만들기</span><span class="sxs-lookup"><span data-stu-id="e0d24-156">Create an Ubuntu VM</span></span>
-> * <span data-ttu-id="e0d24-157">웹 트래픽에 대해 포트 80 열기</span><span class="sxs-lookup"><span data-stu-id="e0d24-157">Open port 80 for web traffic</span></span>
-> * <span data-ttu-id="e0d24-158">NGINX, MySQL 및 PHP 설치</span><span class="sxs-lookup"><span data-stu-id="e0d24-158">Install NGINX, MySQL, and PHP</span></span>
-> * <span data-ttu-id="e0d24-159">설치 및 구성 확인</span><span class="sxs-lookup"><span data-stu-id="e0d24-159">Verify installation and configuration</span></span>
-> * <span data-ttu-id="e0d24-160">LEMP 스택에 WordPress 설치</span><span class="sxs-lookup"><span data-stu-id="e0d24-160">Install WordPress on the LEMP stack</span></span>
+> * <span data-ttu-id="3f8f6-156">Ubuntu VM 만들기</span><span class="sxs-lookup"><span data-stu-id="3f8f6-156">Create an Ubuntu VM</span></span>
+> * <span data-ttu-id="3f8f6-157">웹 트래픽에 대해 포트 80 열기</span><span class="sxs-lookup"><span data-stu-id="3f8f6-157">Open port 80 for web traffic</span></span>
+> * <span data-ttu-id="3f8f6-158">NGINX, MySQL 및 PHP 설치</span><span class="sxs-lookup"><span data-stu-id="3f8f6-158">Install NGINX, MySQL, and PHP</span></span>
+> * <span data-ttu-id="3f8f6-159">설치 및 구성 확인</span><span class="sxs-lookup"><span data-stu-id="3f8f6-159">Verify installation and configuration</span></span>
+> * <span data-ttu-id="3f8f6-160">Hello LEMP 스택에 WordPress 설치</span><span class="sxs-lookup"><span data-stu-id="3f8f6-160">Install WordPress on hello LEMP stack</span></span>
 
-<span data-ttu-id="e0d24-161">SSL 인증서로 웹 서버를 보호하는 방법에 대해 알아보려면 다음 자습서로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="e0d24-161">Advance to the next tutorial to learn how to secure web servers with SSL certificates.</span></span>
+<span data-ttu-id="3f8f6-161">다음 자습서 toolearn toohello 어떻게 발전 toosecure 웹 서버 SSL 인증서를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f8f6-161">Advance toohello next tutorial toolearn how toosecure web servers with SSL certificates.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="e0d24-162">SSL로 웹 서버 보안</span><span class="sxs-lookup"><span data-stu-id="e0d24-162">Secure web server with SSL</span></span>](tutorial-secure-web-server.md)
+> [<span data-ttu-id="3f8f6-162">SSL로 웹 서버 보안</span><span class="sxs-lookup"><span data-stu-id="3f8f6-162">Secure web server with SSL</span></span>](tutorial-secure-web-server.md)
 
 [1]: ./media/tutorial-lemp-stack/configmysqlpassword-small.png
 [2]: ./media/tutorial-lemp-stack/phpsuccesspage.png

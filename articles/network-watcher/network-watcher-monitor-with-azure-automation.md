@@ -1,5 +1,5 @@
 ---
-title: "Azure Network Watcher 문제 해결로 VPN Gateway 모니터링 | Microsoft Docs"
+title: "Azure 네트워크 감시자 문제 해결에 aaaMonitor VPN 게이트웨이 | Microsoft Docs"
 description: "이 문서에서는 Azure Automation 및 Network Watcher로 온-프레미스 연결을 진단하는 방법을 설명합니다."
 services: network-watcher
 documentationcenter: na
@@ -13,81 +13,81 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 55ec52dd0d94a0347cc67a8785b89611da955111
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a607d0c862ea1be63c687717f0c5dc137db58a43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-vpn-gateways-with-network-watcher-troubleshooting"></a><span data-ttu-id="14f2d-103">Azure Network Watcher 문제 해결로 VPN Gateway 모니터링</span><span class="sxs-lookup"><span data-stu-id="14f2d-103">Monitor VPN gateways with Network Watcher troubleshooting</span></span>
+# <a name="monitor-vpn-gateways-with-network-watcher-troubleshooting"></a><span data-ttu-id="a33ce-103">Azure Network Watcher 문제 해결로 VPN Gateway 모니터링</span><span class="sxs-lookup"><span data-stu-id="a33ce-103">Monitor VPN gateways with Network Watcher troubleshooting</span></span>
 
-<span data-ttu-id="14f2d-104">고객에게 안정적인 서비스를 제공하기 위해서는 네트워크 성능에 대해 깊은 통찰력을 얻는 것이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-104">Gaining deep insights on your network performance is critical to provide reliable services to customers.</span></span> <span data-ttu-id="14f2d-105">따라서 네트워크 중단 상태를 신속하게 검색하고 수정 작업을 수행하여 중단 조건을 완화하는 것이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-105">It is therefore critical to detect network outage conditions quickly and take corrective action to mitigate the outage condition.</span></span> <span data-ttu-id="14f2d-106">Azure Automation을 사용하면 Runbook을 통해 프로그래밍 방식으로 작업을 구현 및 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-106">Azure Automation enables you to implement and run a task in a programmatic fashion through runbooks.</span></span> <span data-ttu-id="14f2d-107">Azure Automation을 사용하면 지속적인 자동 관리 네트워크 모니터링 및 경고를 수행하는 완벽한 작성법이 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-107">Using Azure Automation creates a perfect recipe for performing continuous and proactive network monitoring and alerting.</span></span>
+<span data-ttu-id="a33ce-104">중요 한 tooprovide 신뢰할 수 있는 서비스 toocustomers는 네트워크 성능에 대 한 깊은 통찰력을 얻는입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-104">Gaining deep insights on your network performance is critical tooprovide reliable services toocustomers.</span></span> <span data-ttu-id="a33ce-105">따라서 중요 한 toodetect 네트워크 중단 조건 신속 하 게 사용 되며 toomitigate hello 중단 조건 수정 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-105">It is therefore critical toodetect network outage conditions quickly and take corrective action toomitigate hello outage condition.</span></span> <span data-ttu-id="a33ce-106">Azure 자동화 tooimplement 있으며 runbook을 통해 프로그래밍 방식으로 작업을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-106">Azure Automation enables you tooimplement and run a task in a programmatic fashion through runbooks.</span></span> <span data-ttu-id="a33ce-107">Azure Automation을 사용하면 지속적인 자동 관리 네트워크 모니터링 및 경고를 수행하는 완벽한 작성법이 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-107">Using Azure Automation creates a perfect recipe for performing continuous and proactive network monitoring and alerting.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="14f2d-108">시나리오</span><span class="sxs-lookup"><span data-stu-id="14f2d-108">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="a33ce-108">시나리오</span><span class="sxs-lookup"><span data-stu-id="a33ce-108">Scenario</span></span>
 
-<span data-ttu-id="14f2d-109">다음 이미지의 시나리오는 VPN Gateway 및 터널을 사용하여 온-프레미스 연결이 설정된 여러 계층의 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-109">The scenario in the following image is a multi-tiered application, with on premises connectivity established using a VPN Gateway and tunnel.</span></span> <span data-ttu-id="14f2d-110">응용 프로그램 성능을 위해서는 VPN Gateway가 작동되어 실행 중인지 확인하는 것이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-110">Ensuring the VPN Gateway is up and running is critical to the applications performance.</span></span>
+<span data-ttu-id="a33ce-109">hello hello 이미지를 수행 하는 시나리오는 다중 계층 응용 프로그램와 VPN 게이트웨이와 터널을 사용 하 여 설정 프레미스 연결에 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-109">hello scenario in hello following image is a multi-tiered application, with on premises connectivity established using a VPN Gateway and tunnel.</span></span> <span data-ttu-id="a33ce-110">Hello VPN Gateway가 가동 되 고 실행 되는 중요 한 toohello 응용 프로그램 성능입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-110">Ensuring hello VPN Gateway is up and running is critical toohello applications performance.</span></span>
 
-<span data-ttu-id="14f2d-111">Runbook은 VPN 터널의 연결 상태를 확인하는 스크립트를 사용하여 생성되며 리소스 문제 해결 API를 사용하여 연결 터널 상태를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-111">A runbook is created with a script to check for connection status of the VPN tunnel, using the Resource Troubleshooting API to check for connection tunnel status.</span></span> <span data-ttu-id="14f2d-112">상태가 정상적이지 않은 경우 전자 메일 트리거가 관리자에게 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-112">If the status is not healthy, an email trigger is sent to administrators.</span></span>
+<span data-ttu-id="a33ce-111">Runbook의 hello VPN 터널을 리소스 문제 해결 API toocheck hello를 사용 하 여 연결 터널 상태에 대 한 연결 상태에 대 한 스크립트 toocheck 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-111">A runbook is created with a script toocheck for connection status of hello VPN tunnel, using hello Resource Troubleshooting API toocheck for connection tunnel status.</span></span> <span data-ttu-id="a33ce-112">Hello 상태가 비정상, 전자 메일 트리거 tooadministrators를 전송 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-112">If hello status is not healthy, an email trigger is sent tooadministrators.</span></span>
 
 ![예제 시나리오][scenario]
 
-<span data-ttu-id="14f2d-114">이 시나리오에서는 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-114">This scenario will:</span></span>
+<span data-ttu-id="a33ce-114">이 시나리오에서는 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-114">This scenario will:</span></span>
 
-- <span data-ttu-id="14f2d-115">`Start-AzureRmNetworkWatcherResourceTroubleshooting` cmdlet을 호출하여 Runbook을 만들고 연결 상태 문제 해결</span><span class="sxs-lookup"><span data-stu-id="14f2d-115">Create a runbook calling the `Start-AzureRmNetworkWatcherResourceTroubleshooting` cmdlet to troubleshoot connection status</span></span>
-- <span data-ttu-id="14f2d-116">Runbook에 일정 연결</span><span class="sxs-lookup"><span data-stu-id="14f2d-116">Link a schedule to the runbook</span></span>
+- <span data-ttu-id="a33ce-115">Runbook 호출 hello 만들기 `Start-AzureRmNetworkWatcherResourceTroubleshooting` tootroubleshoot 연결 상태 cmdlet</span><span class="sxs-lookup"><span data-stu-id="a33ce-115">Create a runbook calling hello `Start-AzureRmNetworkWatcherResourceTroubleshooting` cmdlet tootroubleshoot connection status</span></span>
+- <span data-ttu-id="a33ce-116">일정 toohello runbook을 연결</span><span class="sxs-lookup"><span data-stu-id="a33ce-116">Link a schedule toohello runbook</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="14f2d-117">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="14f2d-117">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="a33ce-117">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="a33ce-117">Before you begin</span></span>
 
-<span data-ttu-id="14f2d-118">이 시나리오를 시작하기 전에 다음과 같은 필수 구성 요소가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-118">Before you start this scenario, you must have the following pre-requisites:</span></span>
+<span data-ttu-id="a33ce-118">이 시나리오를 시작 하기 전에 다음 필수 구성 요소는 hello가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-118">Before you start this scenario, you must have hello following pre-requisites:</span></span>
 
-- <span data-ttu-id="14f2d-119">Azure에서 Azure Automation 계정.</span><span class="sxs-lookup"><span data-stu-id="14f2d-119">An Azure automation account in Azure.</span></span> <span data-ttu-id="14f2d-120">Automation 계정에 최신 모듈 및 AzureRM.Network 모듈이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-120">Ensure that the automation account has the latest modules and also has the AzureRM.Network module.</span></span> <span data-ttu-id="14f2d-121">AzureRM.Network 모듈을 Automation 계정에 추가해야 하는 경우 모듈 갤러리에서 해당 모듈을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-121">The AzureRM.Network module is available in the module gallery if you need to add it to your automation account.</span></span>
-- <span data-ttu-id="14f2d-122">Azure Automation에 구성된 자격 증명 집합이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-122">You must have a set of credentials configure in Azure Automation.</span></span> <span data-ttu-id="14f2d-123">[Azure Automation 보안](../automation/automation-security-overview.md)에서 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="14f2d-123">Learn more at [Azure Automation security](../automation/automation-security-overview.md)</span></span>
-- <span data-ttu-id="14f2d-124">Azure Automation에 정의된 유효한 SMTP 서버(Office 365, 온-프레미스 전자 메일 또는 기타) 및 자격 증명</span><span class="sxs-lookup"><span data-stu-id="14f2d-124">A valid SMTP server (Office 365, your on-premises email or another) and credentials defined in Azure Automation</span></span>
-- <span data-ttu-id="14f2d-125">Azure에 구성된 Virtual Network 게이트웨이입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-125">A configured Virtual Network Gateway in Azure.</span></span>
-- <span data-ttu-id="14f2d-126">로그를 저장할 기존 컨테이너가 포함된 기존 저장소 계정</span><span class="sxs-lookup"><span data-stu-id="14f2d-126">An existing storage account with an existing container to store the logs in.</span></span>
+- <span data-ttu-id="a33ce-119">Azure에서 Azure Automation 계정.</span><span class="sxs-lookup"><span data-stu-id="a33ce-119">An Azure automation account in Azure.</span></span> <span data-ttu-id="a33ce-120">Hello 자동화 계정에는 hello 최신 모듈이 역시 hello AzureRM.Network 모듈 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="a33ce-120">Ensure that hello automation account has hello latest modules and also has hello AzureRM.Network module.</span></span> <span data-ttu-id="a33ce-121">tooadd 해야 할 경우 hello 모듈 갤러리 hello AzureRM.Network 모듈은 사용할 수 있는 것 tooyour 자동화 계정.</span><span class="sxs-lookup"><span data-stu-id="a33ce-121">hello AzureRM.Network module is available in hello module gallery if you need tooadd it tooyour automation account.</span></span>
+- <span data-ttu-id="a33ce-122">Azure Automation에 구성된 자격 증명 집합이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-122">You must have a set of credentials configure in Azure Automation.</span></span> <span data-ttu-id="a33ce-123">[Azure Automation 보안](../automation/automation-security-overview.md)에서 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="a33ce-123">Learn more at [Azure Automation security](../automation/automation-security-overview.md)</span></span>
+- <span data-ttu-id="a33ce-124">Azure Automation에 정의된 유효한 SMTP 서버(Office 365, 온-프레미스 전자 메일 또는 기타) 및 자격 증명</span><span class="sxs-lookup"><span data-stu-id="a33ce-124">A valid SMTP server (Office 365, your on-premises email or another) and credentials defined in Azure Automation</span></span>
+- <span data-ttu-id="a33ce-125">Azure에 구성된 Virtual Network 게이트웨이입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-125">A configured Virtual Network Gateway in Azure.</span></span>
+- <span data-ttu-id="a33ce-126">기존 컨테이너 toostore hello로 기존 저장소 계정에 기록 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-126">An existing storage account with an existing container toostore hello logs in.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="14f2d-127">이전 이미지에 나와 있는 인프라는 설명을 위한 것이며 이 문서에 포함된 단계로는 만들어지지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-127">The infrastructure depicted in the preceding image is for illustration purposes and are not created with the steps contained in this article.</span></span>
+> <span data-ttu-id="a33ce-127">hello 이미지 앞에 표시 된 hello 인프라도 제공 되며이 문서에 포함 된 hello 단계를 통해 생성 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-127">hello infrastructure depicted in hello preceding image is for illustration purposes and are not created with hello steps contained in this article.</span></span>
 
-### <a name="create-the-runbook"></a><span data-ttu-id="14f2d-128">Runbook 만들기</span><span class="sxs-lookup"><span data-stu-id="14f2d-128">Create the runbook</span></span>
+### <a name="create-hello-runbook"></a><span data-ttu-id="a33ce-128">Hello runbook 만들기</span><span class="sxs-lookup"><span data-stu-id="a33ce-128">Create hello runbook</span></span>
 
-<span data-ttu-id="14f2d-129">예제를 구성하는 첫 번째 단계는 Runbook을 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-129">The first step to configuring the example is to create the runbook.</span></span> <span data-ttu-id="14f2d-130">이 예제에서는 실행 계정을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-130">This example uses a run-as account.</span></span> <span data-ttu-id="14f2d-131">실행 계정에 대해 자세히 알아보려면 [Azure 실행 계정으로 Runbook 인증](../automation/automation-sec-configure-azure-runas-account.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="14f2d-131">To learn about run-as accounts, visit [Authenticate Runbooks with Azure Run As account](../automation/automation-sec-configure-azure-runas-account.md)</span></span>
+<span data-ttu-id="a33ce-129">hello 첫 번째 단계 tooconfiguring hello 예제 toocreate hello runbook입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-129">hello first step tooconfiguring hello example is toocreate hello runbook.</span></span> <span data-ttu-id="a33ce-130">이 예제에서는 실행 계정을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-130">This example uses a run-as account.</span></span> <span data-ttu-id="a33ce-131">실행 계정에 대 한 toolearn 방문 [Azure 실행 계정 사용 하 여 Runbook 인증](../automation/automation-sec-configure-azure-runas-account.md)</span><span class="sxs-lookup"><span data-stu-id="a33ce-131">toolearn about run-as accounts, visit [Authenticate Runbooks with Azure Run As account](../automation/automation-sec-configure-azure-runas-account.md)</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="14f2d-132">1단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-132">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="a33ce-132">1단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-132">Step 1</span></span>
 
-<span data-ttu-id="14f2d-133">[Azure Portal](https://portal.azure.com)에서 Azure Automation으로 이동하고 **Runbook**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-133">Navigate to Azure Automation in the [Azure portal](https://portal.azure.com) and click **Runbooks**</span></span>
+<span data-ttu-id="a33ce-133">Hello에 자동화 tooAzure 이동 [Azure 포털](https://portal.azure.com) 클릭 **Runbook**</span><span class="sxs-lookup"><span data-stu-id="a33ce-133">Navigate tooAzure Automation in hello [Azure portal](https://portal.azure.com) and click **Runbooks**</span></span>
 
 ![자동화 계정 개요][1]
 
-### <a name="step-2"></a><span data-ttu-id="14f2d-135">2단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-135">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="a33ce-135">2단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-135">Step 2</span></span>
 
-<span data-ttu-id="14f2d-136">**Runbook 추가**를 클릭하여 Runbook 만들기 과정을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-136">Click **Add a runbook** to start the creation process of the runbook.</span></span>
+<span data-ttu-id="a33ce-136">클릭 **runbook을 추가할** hello runbook의 toostart hello 생성 프로세스입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-136">Click **Add a runbook** toostart hello creation process of hello runbook.</span></span>
 
 ![Runbook 블레이드][2]
 
-### <a name="step-3"></a><span data-ttu-id="14f2d-138">3단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-138">Step 3</span></span>
+### <a name="step-3"></a><span data-ttu-id="a33ce-138">3단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-138">Step 3</span></span>
 
-<span data-ttu-id="14f2d-139">**빨리 만들기**에서 **새 Runbook 만들기**를 클릭하여 Runbook을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-139">Under **Quick Create**, click **Create a new runbook** to create the runbook.</span></span>
+<span data-ttu-id="a33ce-139">아래 **빠른 생성**, 클릭 **새 runbook을 만들** toocreate hello runbook입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-139">Under **Quick Create**, click **Create a new runbook** toocreate hello runbook.</span></span>
 
 ![Runbook 추가 블레이드][3]
 
-### <a name="step-4"></a><span data-ttu-id="14f2d-141">4단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-141">Step 4</span></span>
+### <a name="step-4"></a><span data-ttu-id="a33ce-141">4단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-141">Step 4</span></span>
 
-<span data-ttu-id="14f2d-142">이 단계에서는 Runbook에 이름을 부여하는데, 예제에서 이를 **Get-VPNGatewayStatus**라고 합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-142">In this step, we give the runbook a name, in the example it is called **Get-VPNGatewayStatus**.</span></span> <span data-ttu-id="14f2d-143">Runbook에 설명이 포함된 이름을 부여하는 것이 중요하며 다음 표준 PowerShell 이름 지정 기준에 따라 이름을 지정하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-143">It is important to give the runbook a descriptive name, and recommended giving it a name that follows standard PowerShell naming standards.</span></span> <span data-ttu-id="14f2d-144">이 예제에 대한 Runbook 형식은 **PowerShell**이고, 다른 옵션은 그래픽, PowerShell 워크플로 및 그래픽 PowerShell 워크플로입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-144">The runbook type for this example is **PowerShell**, the other options are Graphical, PowerShell workflow, and Graphical PowerShell workflow.</span></span>
+<span data-ttu-id="a33ce-142">이 단계에서는 받을 hello runbook 이름, hello 예제에서 호출 **Get VPNGatewayStatus**합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-142">In this step, we give hello runbook a name, in hello example it is called **Get-VPNGatewayStatus**.</span></span> <span data-ttu-id="a33ce-143">중요 한 toogive hello runbook 설명이 포함 된 이름이 되며 표준 PowerShell 명명 표준을 따르기 된 이름을 지정 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-143">It is important toogive hello runbook a descriptive name, and recommended giving it a name that follows standard PowerShell naming standards.</span></span> <span data-ttu-id="a33ce-144">이 예제에 대 한 hello runbook 유형을 **PowerShell**, hello 다른 옵션은 PowerShell 워크플로, 그래픽 및 그래픽 PowerShell 워크플로 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-144">hello runbook type for this example is **PowerShell**, hello other options are Graphical, PowerShell workflow, and Graphical PowerShell workflow.</span></span>
 
 ![Runbook 블레이드][4]
 
-### <a name="step-5"></a><span data-ttu-id="14f2d-146">5단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-146">Step 5</span></span>
+### <a name="step-5"></a><span data-ttu-id="a33ce-146">5단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-146">Step 5</span></span>
 
-<span data-ttu-id="14f2d-147">이 단계에서는 Runbook이 생성되고 다음 코드 예제는 예제에 필요한 모든 코드를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-147">In this step the runbook is created, the following code example provides all the code needed for the example.</span></span> <span data-ttu-id="14f2d-148">\<value\>를 포함하는 코드의 항목은 구독의 값으로 대체해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-148">The items in the code that contain \<value\> need to be replaced with the values from your subscription.</span></span>
+<span data-ttu-id="a33ce-147">이 단계에서는 hello runbook 만들어지고, 다음 코드 예제는 hello 모든 hello hello 예제에 필요한 코드를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-147">In this step hello runbook is created, hello following code example provides all hello code needed for hello example.</span></span> <span data-ttu-id="a33ce-148">hello 코드에 포함 된 항목 hello \<값\> toobe 구독에서 hello 값으로 대체 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-148">hello items in hello code that contain \<value\> need toobe replaced with hello values from your subscription.</span></span>
 
-<span data-ttu-id="14f2d-149">다음 코드를 사용하고 **저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-149">Use the following code as click **Save**</span></span>
+<span data-ttu-id="a33ce-149">클릭으로 사용 하 여 hello 다음 코드 **저장**</span><span class="sxs-lookup"><span data-stu-id="a33ce-149">Use hello following code as click **Save**</span></span>
 
 ```PowerShell
-# Set these variables to the proper values for your environment
+# Set these variables toohello proper values for your environment
 $o365AutomationCredential = "<Office 365 account>"
 $fromEmail = "<from email address>"
-$toEmail = "<to email address>"
+$toEmail = "<tooemail address>"
 $smtpServer = "<smtp.office365.com>"
 $smtpPort = 587
 $runAsConnectionName = "<AzureRunAsConnection>"
@@ -102,16 +102,16 @@ $storageAccountContainer = "<container name>"
 # Get credentials for Office 365 account
 $cred = Get-AutomationPSCredential -Name $o365AutomationCredential
 
-# Get the connection "AzureRunAsConnection "
+# Get hello connection "AzureRunAsConnection "
 $servicePrincipalConnection=Get-AutomationConnection -Name $runAsConnectionName
 
-"Logging in to Azure..."
+"Logging in tooAzure..."
 Add-AzureRmAccount `
     -ServicePrincipal `
     -TenantId $servicePrincipalConnection.TenantId `
     -ApplicationId $servicePrincipalConnection.ApplicationId `
     -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint
-"Setting context to a specific subscription"
+"Setting context tooa specific subscription"
 Set-AzureRmContext -SubscriptionId $subscriptionId
 
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq $region }
@@ -123,11 +123,11 @@ $result = Start-AzureRmNetworkWatcherResourceTroubleshooting -NetworkWatcher $ne
 
 if($result.code -ne "Healthy")
     {
-        $body = "Connection for $($connection.name) is: $($result.code) `n$($result.results[0].summary) `nView the logs at $($storagePath) to learn more."
+        $body = "Connection for $($connection.name) is: $($result.code) `n$($result.results[0].summary) `nView hello logs at $($storagePath) toolearn more."
         Write-Output $body
         $subject = "$($connection.name) Status"
         Send-MailMessage `
-        -To $toEmail `
+        -too$toEmail `
         -Subject $subject `
         -Body $body `
         -UseSsl `
@@ -143,49 +143,49 @@ else
     }
 ```
 
-### <a name="step-6"></a><span data-ttu-id="14f2d-150">6단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-150">Step 6</span></span>
+### <a name="step-6"></a><span data-ttu-id="a33ce-150">6단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-150">Step 6</span></span>
 
-<span data-ttu-id="14f2d-151">Runbook을 저장했으면 일정을 연결하여 Runbook의 실행을 자동화해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-151">Once the runbook is saved, a schedule must be linked to it to automate the start of the runbook.</span></span> <span data-ttu-id="14f2d-152">프로세스를 시작하려면 **일정**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-152">To start the process, click **Schedule**.</span></span>
+<span data-ttu-id="a33ce-151">일정에 따라 해야 hello runbook을 저장 한 후 tooit tooautomate hello runbook의 시작 부분 hello를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-151">Once hello runbook is saved, a schedule must be linked tooit tooautomate hello start of hello runbook.</span></span> <span data-ttu-id="a33ce-152">toostart hello 프로세스 클릭 **일정**합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-152">toostart hello process, click **Schedule**.</span></span>
 
 ![6단계][6]
 
-## <a name="link-a-schedule-to-the-runbook"></a><span data-ttu-id="14f2d-154">Runbook에 일정 연결</span><span class="sxs-lookup"><span data-stu-id="14f2d-154">Link a schedule to the runbook</span></span>
+## <a name="link-a-schedule-toohello-runbook"></a><span data-ttu-id="a33ce-154">일정 toohello runbook을 연결</span><span class="sxs-lookup"><span data-stu-id="a33ce-154">Link a schedule toohello runbook</span></span>
 
-<span data-ttu-id="14f2d-155">새 일정이 생성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-155">A new schedule must be created.</span></span> <span data-ttu-id="14f2d-156">**Runbook에 일정 연결**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-156">Click **Link a schedule to your runbook**.</span></span>
+<span data-ttu-id="a33ce-155">새 일정이 생성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-155">A new schedule must be created.</span></span> <span data-ttu-id="a33ce-156">클릭 **일정 tooyour runbook을 연결**합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-156">Click **Link a schedule tooyour runbook**.</span></span>
 
 ![7단계][7]
 
-### <a name="step-1"></a><span data-ttu-id="14f2d-158">1단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-158">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="a33ce-158">1단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-158">Step 1</span></span>
 
-<span data-ttu-id="14f2d-159">**일정** 블레이드에서 **새 일정 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-159">On the **Schedule** blade, click **Create a new schedule**</span></span>
+<span data-ttu-id="a33ce-159">Hello에 **일정** 블레이드에서 클릭 **새 일정을 만들려면**</span><span class="sxs-lookup"><span data-stu-id="a33ce-159">On hello **Schedule** blade, click **Create a new schedule**</span></span>
 
 ![8단계][8]
 
-### <a name="step-2"></a><span data-ttu-id="14f2d-161">2단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-161">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="a33ce-161">2단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-161">Step 2</span></span>
 
-<span data-ttu-id="14f2d-162">**새 일정** 블레이드에서 일정 정보를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-162">On the **New Schedule** blade fill out the schedule information.</span></span> <span data-ttu-id="14f2d-163">설정할 수 있는 값은 다음 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-163">The values that can be set are in the following list:</span></span>
+<span data-ttu-id="a33ce-162">Hello에 **새 일정** 블레이드 채우기 hello 일정 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-162">On hello **New Schedule** blade fill out hello schedule information.</span></span> <span data-ttu-id="a33ce-163">설정할 수 있는 hello 값 hello 목록 뒤에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-163">hello values that can be set are in hello following list:</span></span>
 
-- <span data-ttu-id="14f2d-164">**이름** - 일정의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-164">**Name** - The friendly name of the schedule.</span></span>
-- <span data-ttu-id="14f2d-165">**설명** - 일정에 대한 설명입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-165">**Description** - A description of the schedule.</span></span>
-- <span data-ttu-id="14f2d-166">**시작** - 이 값은 일정이 트리거된 시간을 구성하는 날짜, 시간 및 표준 시간대의 조합입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-166">**Starts** - This value is a combination of date, time, and time zone that make up the time the schedule triggers.</span></span>
-- <span data-ttu-id="14f2d-167">**되풀이** - 이 값에 따라 일정 되풀이가 결정됩니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-167">**Recurrence** - This value determines the schedules repetition.</span></span>  <span data-ttu-id="14f2d-168">유효한 값은 **한 번** 또는 **되풀이**입니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-168">Valid values are **Once** or **Recurring**.</span></span>
-- <span data-ttu-id="14f2d-169">**되풀이 간격** - 일정의 되풀이 간격을 시간, 일, 주 또는 달로 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-169">**Recur every** - The recurrence interval of the schedule in hours, days, weeks, or months.</span></span>
-- <span data-ttu-id="14f2d-170">**만료 설정** - 이 값은 일정이 만료되는지 여부를 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-170">**Set Expiration** - The value determines if the schedule should expire or not.</span></span> <span data-ttu-id="14f2d-171">**예** 또는 **아니요**로 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-171">Can be set to **Yes** or **No**.</span></span> <span data-ttu-id="14f2d-172">예를 선택한 경우 유효한 날짜 및 시간이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-172">A valid date and time are to be provided if yes is chosen.</span></span>
+- <span data-ttu-id="a33ce-164">**이름** -hello hello 일정의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-164">**Name** - hello friendly name of hello schedule.</span></span>
+- <span data-ttu-id="a33ce-165">**설명** -hello 일정에 대 한 설명을 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-165">**Description** - A description of hello schedule.</span></span>
+- <span data-ttu-id="a33ce-166">**시작** -이 값은 날짜, 시간 및 hello 시간 hello 일정 트리거를 구성 하는 표준 시간대의 조합입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-166">**Starts** - This value is a combination of date, time, and time zone that make up hello time hello schedule triggers.</span></span>
+- <span data-ttu-id="a33ce-167">**되풀이** -hello 일정 반복이이 값을 결정 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-167">**Recurrence** - This value determines hello schedules repetition.</span></span>  <span data-ttu-id="a33ce-168">유효한 값은 **한 번** 또는 **되풀이**입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-168">Valid values are **Once** or **Recurring**.</span></span>
+- <span data-ttu-id="a33ce-169">**되풀이 모든** -hello 시간, 일, 주 또는 월의 hello 일정 되풀이 간격입니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-169">**Recur every** - hello recurrence interval of hello schedule in hours, days, weeks, or months.</span></span>
+- <span data-ttu-id="a33ce-170">**만료 설정** -hello 값 hello 일정 또는 만료 되어야 하는 경우를 결정 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-170">**Set Expiration** - hello value determines if hello schedule should expire or not.</span></span> <span data-ttu-id="a33ce-171">너무 설정할 수 있습니다**예** 또는 **아니요**합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-171">Can be set too**Yes** or **No**.</span></span> <span data-ttu-id="a33ce-172">유효한 날짜 및 시간 toobe 예 선택 하면 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-172">A valid date and time are toobe provided if yes is chosen.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="14f2d-173">매시간보다 더 자주 Runbook을 실행하도록 해야 하는 경우 서로 다른 간격으로 여러 일정을 만들어야 합니다(즉, 한 시간 후 15, 30, 45분).</span><span class="sxs-lookup"><span data-stu-id="14f2d-173">If you need to have a runbook run more often than every hour, multiple schedules must be created at different intervals (that is, 15, 30, 45 minutes after the hour)</span></span>
+> <span data-ttu-id="a33ce-173">다른 간격으로 (즉, 15, 30, hello 시간 후 45 분) 여러 일정을 만들어야 합니다 toohave 매시간 보다 더 자주 실행 하는 runbook, 필요한 경우</span><span class="sxs-lookup"><span data-stu-id="a33ce-173">If you need toohave a runbook run more often than every hour, multiple schedules must be created at different intervals (that is, 15, 30, 45 minutes after hello hour)</span></span>
 
 ![9단계][9]
 
-### <a name="step-3"></a><span data-ttu-id="14f2d-175">3단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-175">Step 3</span></span>
+### <a name="step-3"></a><span data-ttu-id="a33ce-175">3단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-175">Step 3</span></span>
 
-<span data-ttu-id="14f2d-176">저장을 클릭하여 일정을 Runbook에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-176">Click Save to save the schedule to the runbook.</span></span>
+<span data-ttu-id="a33ce-176">Toosave hello 일정 toohello runbook 저장을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="a33ce-176">Click Save toosave hello schedule toohello runbook.</span></span>
 
 ![10단계][10]
 
-## <a name="next-steps"></a><span data-ttu-id="14f2d-178">다음 단계</span><span class="sxs-lookup"><span data-stu-id="14f2d-178">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a33ce-178">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a33ce-178">Next steps</span></span>
 
-<span data-ttu-id="14f2d-179">이제 Network Watcher 문제 해결을 Azure Automation과 통합하는 방법을 이해하고 [Azure Network Watcher에서 경고로 트리거된 패킷 캡처 만들기](network-watcher-alert-triggered-packet-capture.md)를 방문하여 VM 경고에서 패킷 캡처를 트리거하는 방법을 알아볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14f2d-179">Now that you have an understanding on how to integrate Network Watcher troubleshooting with Azure Automation, learn how to trigger packet captures on VM alerts by visiting [Create an alert triggered packet capture with Azure Network Watcher](network-watcher-alert-triggered-packet-capture.md).</span></span>
+<span data-ttu-id="a33ce-179">사용자가 이해 하는 방법에 했으므로 tootrigger 패킷 VM 경고에 방문 하 여 캡처 하는 방법을 알아보려면 Azure 자동화 된 toointegrate 네트워크 감시자 해결 [Azure 네트워크 감시자경고트리거된패킷캡처만들기](network-watcher-alert-triggered-packet-capture.md).</span><span class="sxs-lookup"><span data-stu-id="a33ce-179">Now that you have an understanding on how toointegrate Network Watcher troubleshooting with Azure Automation, learn how tootrigger packet captures on VM alerts by visiting [Create an alert triggered packet capture with Azure Network Watcher](network-watcher-alert-triggered-packet-capture.md).</span></span>
 
 <!-- images -->
 [scenario]: ./media/network-watcher-monitor-with-azure-automation/scenario.png

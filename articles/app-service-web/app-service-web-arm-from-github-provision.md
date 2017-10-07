@@ -1,6 +1,6 @@
 ---
-title: "GitHub 리포지토리에 연결된 웹앱 배포 | Microsoft Docs"
-description: "Azure 리소스 관리자 템플릿을 사용하여 GitHub 리포지토리에서 프로젝트가 포함된 웹앱을 배포합니다."
+title: "웹 응용 프로그램이 aaaDeploy tooa GitHub 리포지토리 연결 | Microsoft Docs"
+description: "Azure 리소스 관리자 템플릿 toodeploy GitHub 리포지토리에서 프로젝트를 포함 하는 웹 앱을 사용 합니다."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: 77064802814296d0c21f004534e4264d2f97252e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b23416c4c06a60991517e6ee4cd82bebc5a9d73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-web-app-linked-to-a-github-repository"></a><span data-ttu-id="8e43f-103">GitHub 리포지토리에 연결된 웹앱 배포</span><span class="sxs-lookup"><span data-stu-id="8e43f-103">Deploy a web app linked to a GitHub repository</span></span>
-<span data-ttu-id="8e43f-104">이 항목에서는 GitHub 리포지토리의 프로젝트에 연결된 웹앱을 배포하는 Azure 리소스 관리자 템플릿을 만드는 방법을 배웁니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-104">In this topic, you will learn how to create an Azure Resource Manager template that deploys a web app that is linked to a project in a GitHub repository.</span></span> <span data-ttu-id="8e43f-105">어떤 리소스를 배포할지 정의하는 방법 및 배포를 실행할 때 매개 변수를 지정하는 방법을 알게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-105">You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed.</span></span> <span data-ttu-id="8e43f-106">배포를 위해 이 템플릿을 사용하거나 요구 사항에 맞게 사용자 지정을 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-106">You can use this template for your own deployments, or customize it to meet your requirements.</span></span>
+# <a name="deploy-a-web-app-linked-tooa-github-repository"></a><span data-ttu-id="bd780-103">웹 응용 프로그램 연결 tooa GitHub 리포지토리를 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-103">Deploy a web app linked tooa GitHub repository</span></span>
+<span data-ttu-id="bd780-104">이 항목은 웹 앱을 배포 하는 Azure 리소스 관리자 템플릿을 toocreate GitHub 리포지토리에 tooa 프로젝트를 연결 하는 방법을 배웁니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-104">In this topic, you will learn how toocreate an Azure Resource Manager template that deploys a web app that is linked tooa project in a GitHub repository.</span></span> <span data-ttu-id="bd780-105">에 대해 설명 합니다 방법을 toodefine 리소스 배포 되 고 toodefine 매개 변수를 hello 배포를 실행 하는 경우 지정 된 합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-105">You will learn how toodefine which resources are deployed and how toodefine parameters that are specified when hello deployment is executed.</span></span> <span data-ttu-id="bd780-106">배포를 위한이 서식 파일을 사용 하거나 toomeet 사용자 지정할 수 있습니다 프로그램 요구 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-106">You can use this template for your own deployments, or customize it toomeet your requirements.</span></span>
 
-<span data-ttu-id="8e43f-107">템플릿을 만드는 더 자세한 내용은 [Azure 리소스 관리자 템플릿 작성하기](../azure-resource-manager/resource-group-authoring-templates.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8e43f-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
+<span data-ttu-id="bd780-107">템플릿을 만드는 더 자세한 내용은 [Azure 리소스 관리자 템플릿 작성하기](../azure-resource-manager/resource-group-authoring-templates.md)를 참조하십시오.</span><span class="sxs-lookup"><span data-stu-id="bd780-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
 
-<span data-ttu-id="8e43f-108">전체 서식 파일을 보려면 [GitHub 템플릿에 연결된 웹앱](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8e43f-108">For the complete template, see [Web App Linked to GitHub template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json).</span></span>
+<span data-ttu-id="bd780-108">Hello 전체 서식 파일을 참조 하십시오. [응용 프로그램에 연결 된 웹 tooGitHub 템플릿](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-108">For hello complete template, see [Web App Linked tooGitHub template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json).</span></span>
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a name="what-you-will-deploy"></a><span data-ttu-id="8e43f-109">배포할 내용</span><span class="sxs-lookup"><span data-stu-id="8e43f-109">What you will deploy</span></span>
-<span data-ttu-id="8e43f-110">이 템플릿을 사용하여 GitHub의 프로젝트에서 코드를 포함하는 웹앱을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-110">With this template, you will deploy a web app that contains the code from a project in GitHub.</span></span>
+## <a name="what-you-will-deploy"></a><span data-ttu-id="bd780-109">배포할 내용</span><span class="sxs-lookup"><span data-stu-id="bd780-109">What you will deploy</span></span>
+<span data-ttu-id="bd780-110">이 템플릿을 사용 하 여 GitHub의 프로젝트에서 hello 코드를 포함 하는 웹 앱을 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-110">With this template, you will deploy a web app that contains hello code from a project in GitHub.</span></span>
 
-<span data-ttu-id="8e43f-111">배포를 자동으로 실행하려면 다음 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-111">To run the deployment automatically, click the following button:</span></span>
+<span data-ttu-id="bd780-111">toorun 배포를 자동으로 hello, hello 다음 단추를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-111">toorun hello deployment automatically, click hello following button:</span></span>
 
-<span data-ttu-id="8e43f-112">[![Azure에 배포](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="8e43f-112">[![Deploy to Azure](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)</span></span>
+<span data-ttu-id="bd780-112">[![TooAzure 배포](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="bd780-112">[![Deploy tooAzure](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)</span></span>
 
-## <a name="parameters"></a><span data-ttu-id="8e43f-113">매개 변수</span><span class="sxs-lookup"><span data-stu-id="8e43f-113">Parameters</span></span>
+## <a name="parameters"></a><span data-ttu-id="bd780-113">매개 변수</span><span class="sxs-lookup"><span data-stu-id="bd780-113">Parameters</span></span>
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
-### <a name="repourl"></a><span data-ttu-id="8e43f-114">repoURL</span><span class="sxs-lookup"><span data-stu-id="8e43f-114">repoURL</span></span>
-<span data-ttu-id="8e43f-115">배포하는 프로젝트를 포함하는 GitHub 리포지토리에 대한 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-115">The URL for GitHub repository that contains the project to deploy.</span></span> <span data-ttu-id="8e43f-116">이 매개 변수는 기본값을 포함하지만 이 값은 어떻게 저장소에 대한 URL을 제공하는지 보여주기 위해 의도적으로 지정되었습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-116">This parameter contains a default value but this value is only intended to show you how to provide the URL for repository.</span></span> <span data-ttu-id="8e43f-117">템플릿을 테스트할 때 이 값을 사용할 수 있지만, 템플릿을 사용하여 작업하는 경우 사용자 고유 저장소에 UIRL을 제공할 때도 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-117">You can use this value when testing the template but you will want to provide the URL your own repository when working with the template.</span></span>
+### <a name="repourl"></a><span data-ttu-id="bd780-114">repoURL</span><span class="sxs-lookup"><span data-stu-id="bd780-114">repoURL</span></span>
+<span data-ttu-id="bd780-115">hello 프로젝트 toodeploy 포함 된 GitHub 리포지토리에 대 한 hello URL입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-115">hello URL for GitHub repository that contains hello project toodeploy.</span></span> <span data-ttu-id="bd780-116">이 매개 변수에 기본값을 포함 하지만이 값은 의도 한 tooshow만 하면 tooprovide 저장소에 대 한 URL을 hello 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-116">This parameter contains a default value but this value is only intended tooshow you how tooprovide hello URL for repository.</span></span> <span data-ttu-id="bd780-117">Hello 템플릿 있지만 테스트는 하려면 tooprovide hello URL 사용자 고유의 저장소 hello 템플릿을 사용 하 여 작업 하는 경우이 값을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-117">You can use this value when testing hello template but you will want tooprovide hello URL your own repository when working with hello template.</span></span>
 
     "repoURL": {
         "type": "string",
         "defaultValue": "https://github.com/davidebbo-test/Mvc52Application.git"
     }
 
-### <a name="branch"></a><span data-ttu-id="8e43f-118">분기</span><span class="sxs-lookup"><span data-stu-id="8e43f-118">branch</span></span>
-<span data-ttu-id="8e43f-119">응용 프로그램을 배포할 때 사용하는 저장소의 분기입니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-119">The branch of the repository to use when deploying the application.</span></span> <span data-ttu-id="8e43f-120">기본값은 master, 하지만 배포 하고자 하는 저장소의 모든 분기의 이름을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-120">The default value is master, but you can provide the name of any branch in the repository that you wish to deploy.</span></span>
+### <a name="branch"></a><span data-ttu-id="bd780-118">분기</span><span class="sxs-lookup"><span data-stu-id="bd780-118">branch</span></span>
+<span data-ttu-id="bd780-119">hello 분기 hello 리포지토리 toouse hello 응용 프로그램을 배포 하는 경우입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-119">hello branch of hello repository toouse when deploying hello application.</span></span> <span data-ttu-id="bd780-120">hello 기본값은 master, 하지만 toodeploy 한다고 hello 리포지토리의 모든 분기의 hello 이름을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-120">hello default value is master, but you can provide hello name of any branch in hello repository that you wish toodeploy.</span></span>
 
     "branch": {
         "type": "string",
         "defaultValue": "master"
     }
 
-## <a name="resources-to-deploy"></a><span data-ttu-id="8e43f-121">배포할 리소스</span><span class="sxs-lookup"><span data-stu-id="8e43f-121">Resources to deploy</span></span>
+## <a name="resources-toodeploy"></a><span data-ttu-id="bd780-121">리소스 toodeploy</span><span class="sxs-lookup"><span data-stu-id="bd780-121">Resources toodeploy</span></span>
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### <a name="web-app"></a><span data-ttu-id="8e43f-122">웹앱</span><span class="sxs-lookup"><span data-stu-id="8e43f-122">Web app</span></span>
-<span data-ttu-id="8e43f-123">GitHub의 프로젝트에 연결된 웹앱 만들기</span><span class="sxs-lookup"><span data-stu-id="8e43f-123">Creates the web app that is linked to the project in GitHub.</span></span> 
+### <a name="web-app"></a><span data-ttu-id="bd780-122">웹앱</span><span class="sxs-lookup"><span data-stu-id="bd780-122">Web app</span></span>
+<span data-ttu-id="bd780-123">GitHub에 연결 된 toohello 프로젝트가 hello 웹 앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-123">Creates hello web app that is linked toohello project in GitHub.</span></span> 
 
-<span data-ttu-id="8e43f-124">**siteName** 매개 변수를 통해 웹앱의 이름을 지정하고 웹앱의 위치는 **siteLocation** 매개 변수를 통해 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-124">You specify the name of the web app through the **siteName** parameter, and the location of the web app through the **siteLocation** parameter.</span></span> <span data-ttu-id="8e43f-125">**dependsOn** 요소에서 템플릿은 서비스 호스팅 계획에 따라 웹앱을 달리 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-125">In the **dependsOn** element, the template defines the web app as dependent on the service hosting plan.</span></span> <span data-ttu-id="8e43f-126">이것은 호스팅 계획에 따라 달라지기 때문에 호스팅 계획 만들기가 끝날 때까지 웹앱이 생성되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-126">Because it is dependent on the hosting plan, the web app is not created until the hosting plan has finished being created.</span></span> <span data-ttu-id="8e43f-127">**dependsOn** 요소는 배포 순서를 지정하는 데만 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-127">The **dependsOn** element is only used to specify deployment order.</span></span> <span data-ttu-id="8e43f-128">호스팅을 계획하기 전에 웹앱을 만드는 경우 호스팅 계획에 따라 달라지는 웹앱을 표시하지 않으면 Azure 리소스 관리자가 동시에 두 리소스를 만들려 해서 오류가 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-128">If you do not mark the web app as dependent on the hosting plan, Azure Resource Mananger will attempt to create both resources at the same time and you may receive an error if the web app is created before the hosting plan.</span></span>
+<span data-ttu-id="bd780-124">Hello 통해 hello 웹 응용 프로그램의 hello 이름을 지정 하면 **siteName** 매개 변수 및 hello 통해 hello 웹 응용 프로그램의 hello 위치 **siteLocation** 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-124">You specify hello name of hello web app through hello **siteName** parameter, and hello location of hello web app through hello **siteLocation** parameter.</span></span> <span data-ttu-id="bd780-125">Hello에 **dependsOn** 요소 hello 템플릿 hello 웹 응용 프로그램 호스팅 계획 hello 서비스에 종속로 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-125">In hello **dependsOn** element, hello template defines hello web app as dependent on hello service hosting plan.</span></span> <span data-ttu-id="bd780-126">호스팅 계획 hello에 의존 하므로 hello 웹 앱 호스팅 계획 hello 생성이 완료 될 때까지 생성 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-126">Because it is dependent on hello hosting plan, hello web app is not created until hello hosting plan has finished being created.</span></span> <span data-ttu-id="bd780-127">hello **dependsOn** 요소는 사용 되는 toospecify 배포 순서일 뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-127">hello **dependsOn** element is only used toospecify deployment order.</span></span> <span data-ttu-id="bd780-128">Hello 호스팅 계획에 종속으로 hello 웹 앱으로 표시 하면 Azure 리소스 관리자는 시도 toocreate 리소스가 모두 hello에서 동일한 시간 및 오류 메시지가 나타날 수 hello 호스팅 계획 하기 전에 hello 웹 응용 프로그램을 만들면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-128">If you do not mark hello web app as dependent on hello hosting plan, Azure Resource Mananger will attempt toocreate both resources at hello same time and you may receive an error if hello web app is created before hello hosting plan.</span></span>
 
-<span data-ttu-id="8e43f-129">또한 웹앱에는 아래 **리소스** 섹션에 정의된 자식 리소스가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-129">The web app also has a child resource which is defined in **resources** section below.</span></span> <span data-ttu-id="8e43f-130">이 자식 리소스는 웹앱과 함께 배포된 프로젝트에 대한 소스 제어를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-130">This child resource defines source control for the project deployed with the web app.</span></span> <span data-ttu-id="8e43f-131">이 템플릿에서 소스 제어는 특정 GitHub 리포지토리에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-131">In this template, the source control is linked to a particular GitHub repository.</span></span> <span data-ttu-id="8e43f-132">GitHub 리포지토리에 코드 **"RepoUrl":"https://github.com/davidebbo-test/Mvc52Application.git"**로 정의됩니다. 최소한의 매개 변수를 필요로 하는 동안 반복해서 단일 프로젝트를 배포하는 템플릿을 만드는 경우 리포지토리 URL를 하드 코딩할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-132">The GitHub repository is defined with the code **"RepoUrl":"https://github.com/davidebbo-test/Mvc52Application.git"** You might hard-code the repository URL when you want to create a template that repeatedly deploys a single project while requiring the minimum number of parameters.</span></span>
-<span data-ttu-id="8e43f-133">하드 코드한 리포지토리 URL 대신에 리포지토리 URL에 대한 매개 변수를 추가하고 해당 값을 **RepoUrl** 속성에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8e43f-133">Instead of hard-coding the repository URL, you can add a parameter for the repository URL and use that value for the **RepoUrl** property.</span></span>
+<span data-ttu-id="bd780-129">hello 웹 응용 프로그램에 정의 된 자식 리소스에 **리소스** 아래 섹션.</span><span class="sxs-lookup"><span data-stu-id="bd780-129">hello web app also has a child resource which is defined in **resources** section below.</span></span> <span data-ttu-id="bd780-130">이 자식 리소스 hello 웹 앱을 사용 하 여 배포 된 hello 프로젝트에 대 한 소스 제어를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-130">This child resource defines source control for hello project deployed with hello web app.</span></span> <span data-ttu-id="bd780-131">이 서식 파일에서 hello 소스 제어 연결된 tooa 특정 GitHub 리포지토리 됩니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-131">In this template, hello source control is linked tooa particular GitHub repository.</span></span> <span data-ttu-id="bd780-132">hello GitHub 리포지토리 hello 코드를 사용 하 여 정의 **"RepoUrl": "https://github.com/davidebbo-test/Mvc52Application.git"** toocreate 반복적으로 배포 하는 템플릿을 원하는 경우에 하드 코딩 hello 리포지토리 URL을 수 있습니다는 hello 최소 매개 변수 개수를 요구 하는 동안 단일 프로젝트입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-132">hello GitHub repository is defined with hello code **"RepoUrl":"https://github.com/davidebbo-test/Mvc52Application.git"** You might hard-code hello repository URL when you want toocreate a template that repeatedly deploys a single project while requiring hello minimum number of parameters.</span></span>
+<span data-ttu-id="bd780-133">리포지토리 URL을 hello 하드 코딩 하는 대신, hello 리포지토리 URL에 대 한 매개 변수를 추가 하 고 해당 값을 사용 하 여 hello에 대 한 **RepoUrl** 속성입니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-133">Instead of hard-coding hello repository URL, you can add a parameter for hello repository URL and use that value for hello **RepoUrl** property.</span></span>
 
     {
       "apiVersion": "2015-08-01",
@@ -94,22 +94,22 @@ ms.lasthandoff: 07/11/2017
       ]
     }
 
-## <a name="commands-to-run-deployment"></a><span data-ttu-id="8e43f-134">배포 실행 명령</span><span class="sxs-lookup"><span data-stu-id="8e43f-134">Commands to run deployment</span></span>
+## <a name="commands-toorun-deployment"></a><span data-ttu-id="bd780-134">명령 toorun 배포</span><span class="sxs-lookup"><span data-stu-id="bd780-134">Commands toorun deployment</span></span>
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### <a name="powershell"></a><span data-ttu-id="8e43f-135">PowerShell</span><span class="sxs-lookup"><span data-stu-id="8e43f-135">PowerShell</span></span>
+### <a name="powershell"></a><span data-ttu-id="bd780-135">PowerShell</span><span class="sxs-lookup"><span data-stu-id="bd780-135">PowerShell</span></span>
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json -siteName ExampleSite -hostingPlanName ExamplePlan -ResourceGroupName ExampleDeployGroup
 
-### <a name="azure-cli"></a><span data-ttu-id="8e43f-136">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="8e43f-136">Azure CLI</span></span>
+### <a name="azure-cli"></a><span data-ttu-id="bd780-136">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="bd780-136">Azure CLI</span></span>
 
     azure group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json
 
-### <a name="azure-cli-20"></a><span data-ttu-id="8e43f-137">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="8e43f-137">Azure CLI 2.0</span></span>
+### <a name="azure-cli-20"></a><span data-ttu-id="bd780-137">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="bd780-137">Azure CLI 2.0</span></span>
 
     az group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE] 
-> <span data-ttu-id="8e43f-138">JSON 파일의 매개 변수의 내용은 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8e43f-138">For content of the parameters JSON file, see [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json).</span></span>
+> <span data-ttu-id="bd780-138">Hello 매개 변수에 JSON 파일의 콘텐츠에 대 한 참조 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="bd780-138">For content of hello parameters JSON file, see [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json).</span></span>
 >
 >
 

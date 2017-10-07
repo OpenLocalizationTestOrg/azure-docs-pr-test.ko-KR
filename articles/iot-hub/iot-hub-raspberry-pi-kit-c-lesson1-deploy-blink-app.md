@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT에 Raspberry Pi(C) 연결 - 단원 1: 앱 배포 | Microsoft Docs"
-description: "GitHub에서 샘플 C 응용 프로그램과, Raspberry Pi 3 보드에 이 응용 프로그램을 배포하기 위한 gulp를 복제합니다. 이 샘플 응용 프로그램은 보드에 연결된 LED를 2초마다 깜박이게 합니다."
+title: "Connect Raspberry Pi (C) tooAzure IoT-1 단원: 앱 배포 | Microsoft Docs"
+description: "GitHub에서 hello C 샘플 응용 프로그램을 복제 하 고이 응용 프로그램 tooyour 라스베리 Pi 3 보드 toodeploy gulp 합니다. 이 샘플 응용 프로그램 2 초 마다 hello 연결 LED toohello 보드를 깜박입니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,54 +17,54 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 2ae409c6a39521711777ec329d2507a2801cc985
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e90c3360c4de1873313db19561c781eb21dbf1d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-deploy-the-blink-application"></a><span data-ttu-id="1344a-105">깜박임 응용 프로그램 만들기 및 배포</span><span class="sxs-lookup"><span data-stu-id="1344a-105">Create and deploy the blink application</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="1344a-106">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="1344a-106">What you will do</span></span>
-<span data-ttu-id="1344a-107">GitHub에서 샘플 C 응용 프로그램을 복제하고 gulp 도구를 사용하여 Raspberry Pi 3에 샘플 응용 프로그램을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-107">Clone the sample C application from GitHub, and use the gulp tool to deploy the sample application to Raspberry Pi 3.</span></span> <span data-ttu-id="1344a-108">샘플 응용 프로그램은 보드에 연결된 LED를 2초마다 깜박이게 합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-108">The sample application blinks the LED connected to the board every two seconds.</span></span> <span data-ttu-id="1344a-109">문제가 있으면 [문제 해결 페이지](iot-hub-raspberry-pi-kit-c-troubleshooting.md)에서 솔루션을 검색하세요.</span><span class="sxs-lookup"><span data-stu-id="1344a-109">If you have any problems, look for solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
+# <a name="create-and-deploy-hello-blink-application"></a><span data-ttu-id="0dbdc-105">만들기 및 hello 깜박임 응용 프로그램 배포</span><span class="sxs-lookup"><span data-stu-id="0dbdc-105">Create and deploy hello blink application</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="0dbdc-106">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="0dbdc-106">What you will do</span></span>
+<span data-ttu-id="0dbdc-107">Hello 샘플 GitHub에서 응용 프로그램 C를 복제 하 고 hello gulp 도구 toodeploy hello 샘플 응용 프로그램 tooRaspberry Pi 3을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-107">Clone hello sample C application from GitHub, and use hello gulp tool toodeploy hello sample application tooRaspberry Pi 3.</span></span> <span data-ttu-id="0dbdc-108">hello 샘플 응용 프로그램 2 초 마다 hello 연결 LED toohello 보드를 깜박입니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-108">hello sample application blinks hello LED connected toohello board every two seconds.</span></span> <span data-ttu-id="0dbdc-109">문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지](iot-hub-raspberry-pi-kit-c-troubleshooting.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-109">If you have any problems, look for solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="1344a-110">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="1344a-110">What you will learn</span></span>
-<span data-ttu-id="1344a-111">이 문서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-111">In this article, you will learn:</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="0dbdc-110">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="0dbdc-110">What you will learn</span></span>
+<span data-ttu-id="0dbdc-111">이 문서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-111">In this article, you will learn:</span></span>
 
-* <span data-ttu-id="1344a-112">Pi에 관한 네트워킹 정보를 검색하기 위해 `device-discover-cli` 도구 사용 방법.</span><span class="sxs-lookup"><span data-stu-id="1344a-112">How to use the `device-discover-cli` tool to retrieve networking information about Pi.</span></span>
-* <span data-ttu-id="1344a-113">Pi에서 샘플 응용 프로그램을 배포하고 실행하는 방법.</span><span class="sxs-lookup"><span data-stu-id="1344a-113">How to deploy and run the sample application on Pi.</span></span>
-* <span data-ttu-id="1344a-114">Pi에서 원격으로 실행되는 응용 프로그램을 배포하고 디버깅하는 방법.</span><span class="sxs-lookup"><span data-stu-id="1344a-114">How to deploy and debug applications running remotely on Pi.</span></span>
+* <span data-ttu-id="0dbdc-112">어떻게 toouse hello `device-discover-cli` 도구 tooretrieve 네트워킹 Pi에 대 한 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-112">How toouse hello `device-discover-cli` tool tooretrieve networking information about Pi.</span></span>
+* <span data-ttu-id="0dbdc-113">어떻게 toodeploy 및 실행된 hello 샘플 원주율 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-113">How toodeploy and run hello sample application on Pi.</span></span>
+* <span data-ttu-id="0dbdc-114">어떻게 toodeploy 및 디버그 응용 프로그램 플랫폼에서 원격으로 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-114">How toodeploy and debug applications running remotely on Pi.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="1344a-115">필요한 항목</span><span class="sxs-lookup"><span data-stu-id="1344a-115">What you need</span></span>
-<span data-ttu-id="1344a-116">다음 작업을 성공적으로 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-116">You must have successfully completed the following operations:</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="0dbdc-115">필요한 항목</span><span class="sxs-lookup"><span data-stu-id="0dbdc-115">What you need</span></span>
+<span data-ttu-id="0dbdc-116">성공적으로 완료 해야 다음 작업 hello:</span><span class="sxs-lookup"><span data-stu-id="0dbdc-116">You must have successfully completed hello following operations:</span></span>
 
-* [<span data-ttu-id="1344a-117">장치 구성</span><span class="sxs-lookup"><span data-stu-id="1344a-117">Configure your device</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-configure-your-device.md)
-* [<span data-ttu-id="1344a-118">도구 얻기</span><span class="sxs-lookup"><span data-stu-id="1344a-118">Get the tools</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
+* [<span data-ttu-id="0dbdc-117">장치 구성</span><span class="sxs-lookup"><span data-stu-id="0dbdc-117">Configure your device</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-configure-your-device.md)
+* [<span data-ttu-id="0dbdc-118">Hello 도구 가져오기</span><span class="sxs-lookup"><span data-stu-id="0dbdc-118">Get hello tools</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
 
-## <a name="obtain-the-ip-address-and-host-name-of-pi"></a><span data-ttu-id="1344a-119">Pi의 IP 주소 및 호스트 이름 가져오기</span><span class="sxs-lookup"><span data-stu-id="1344a-119">Obtain the IP address and host name of Pi</span></span>
-<span data-ttu-id="1344a-120">macOS 또는 Ubuntu의 터미널이나 Windows에서 명령 프롬프트를 열고 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-120">Open a command prompt in Windows or a terminal in macOS or Ubuntu, and then run the following command:</span></span>
+## <a name="obtain-hello-ip-address-and-host-name-of-pi"></a><span data-ttu-id="0dbdc-119">Pi의 hello IP 주소 및 호스트 이름 가져오기</span><span class="sxs-lookup"><span data-stu-id="0dbdc-119">Obtain hello IP address and host name of Pi</span></span>
+<span data-ttu-id="0dbdc-120">Windows 또는 macOS 또는 Ubuntu, 터미널 명령 프롬프트를 열고 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-120">Open a command prompt in Windows or a terminal in macOS or Ubuntu, and then run hello following command:</span></span>
 
 ```bash
 devdisco list --eth
 ```
 
-<span data-ttu-id="1344a-121">출력은 다음과 유사해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-121">You should see an output that is similar to the following:</span></span>
+<span data-ttu-id="0dbdc-121">Toohello 다음과 유사한 출력을 표시 되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-121">You should see an output that is similar toohello following:</span></span>
 
 ![장치 검색](media/iot-hub-raspberry-pi-lessons/lesson1/device_discovery.png)
 
-<span data-ttu-id="1344a-123">Pi의 `IP address` 및 `hostname`을 기록해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-123">Take note of the `IP address` and `hostname` of Pi.</span></span> <span data-ttu-id="1344a-124">이 정보는 이 문서의 뒤 부분에서 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-124">You need this information later in this article.</span></span>
+<span data-ttu-id="0dbdc-123">Hello를 메모해 `IP address` 및 `hostname` Pi의 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-123">Take note of hello `IP address` and `hostname` of Pi.</span></span> <span data-ttu-id="0dbdc-124">이 정보는 이 문서의 뒤 부분에서 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-124">You need this information later in this article.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="1344a-125">Pi가 컴퓨터와 같은 네트워크에 연결되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-125">Make sure that Pi is connected to the same network as your computer.</span></span> <span data-ttu-id="1344a-126">예를 들어 컴퓨터는 무선 네트워크, Pi는 유선 네트워크에 연결되었다면 devdisco 출력에 IP 주소가 표시되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-126">For example, if your computer is connected to a wireless network while Pi is connected to a wired network, you might not see the IP address in the devdisco output.</span></span>
+> <span data-ttu-id="0dbdc-125">Pi 사용자 컴퓨터와 동일한 네트워크 연결된 toohello 인지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-125">Make sure that Pi is connected toohello same network as your computer.</span></span> <span data-ttu-id="0dbdc-126">예를 들어 컴퓨터는 연결 된 tooa 무선 네트워크 Pi는 유선 네트워크 연결된 tooa를 동안 표시 될 수 없습니다 hello IP hello devdisco 출력에는 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-126">For example, if your computer is connected tooa wireless network while Pi is connected tooa wired network, you might not see hello IP address in hello devdisco output.</span></span>
 
-## <a name="open-the-sample-application"></a><span data-ttu-id="1344a-127">샘플 응용 프로그램 열기</span><span class="sxs-lookup"><span data-stu-id="1344a-127">Open the sample application</span></span>
-<span data-ttu-id="1344a-128">샘플 응용 프로그램을 열려면 다음 단계를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-128">To open the sample application, follow these steps:</span></span>
+## <a name="open-hello-sample-application"></a><span data-ttu-id="0dbdc-127">열기 hello 샘플 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="0dbdc-127">Open hello sample application</span></span>
+<span data-ttu-id="0dbdc-128">tooopen hello 샘플 응용 프로그램, 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-128">tooopen hello sample application, follow these steps:</span></span>
 
-1. <span data-ttu-id="1344a-129">다음 명령을 실행하여 GitHub에서 샘플 리포지토리를 복제합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-129">Clone the sample repository from GitHub by running the following command:</span></span>
+1. <span data-ttu-id="0dbdc-129">Hello 다음 명령을 실행 하 여 GitHub에서 hello 샘플 리포지토리를 복제 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-129">Clone hello sample repository from GitHub by running hello following command:</span></span>
    
     ```bash
     git clone https://github.com/Azure-Samples/iot-hub-c-raspberrypi-getting-started.git
     ```
-2. <span data-ttu-id="1344a-130">다음 명령을 실행하여 Visual Studio Code에서 샘플 응용 프로그램을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-130">Open the sample application in Visual Studio Code by running the following commands:</span></span>
+2. <span data-ttu-id="0dbdc-130">Hello 다음 명령을 실행 하 여 Visual Studio Code에서 hello 샘플 응용 프로그램을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-130">Open hello sample application in Visual Studio Code by running hello following commands:</span></span>
    
     ```bash
     cd iot-hub-c-raspberrypi-getting-started
@@ -74,27 +74,27 @@ devdisco list --eth
 
 ![Repo 구조](media/iot-hub-raspberry-pi-lessons/lesson1/vscode-blink-c-mac.png)
 
-<span data-ttu-id="1344a-132">`app` 하위 폴더의 `main.c` 파일은 LED 제어 코드가 담긴 핵심 원본 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-132">The `main.c` file in the `app` subfolder is the key source file that contains the code to control the LED.</span></span>
+<span data-ttu-id="0dbdc-132">hello `main.c` hello에 대 한 파일 `app` 하위 폴더는 hello 코드 toocontrol hello LED가 있는 hello 키 원본 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-132">hello `main.c` file in hello `app` subfolder is hello key source file that contains hello code toocontrol hello LED.</span></span>
 
-### <a name="install-application-dependencies"></a><span data-ttu-id="1344a-133">응용 프로그램 종속성 설치</span><span class="sxs-lookup"><span data-stu-id="1344a-133">Install application dependencies</span></span>
-<span data-ttu-id="1344a-134">다음 명령을 실행하여 샘플 응용 프로그램에 필요한 라이브러리 및 기타 모듈을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-134">Install the libraries and other modules you need for the sample application by running the following command:</span></span>
+### <a name="install-application-dependencies"></a><span data-ttu-id="0dbdc-133">응용 프로그램 종속성 설치</span><span class="sxs-lookup"><span data-stu-id="0dbdc-133">Install application dependencies</span></span>
+<span data-ttu-id="0dbdc-134">Hello 라이브러리 및 hello 다음 명령을 실행 하 여 hello 샘플 응용 프로그램에 필요한 다른 모듈을 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-134">Install hello libraries and other modules you need for hello sample application by running hello following command:</span></span>
 
 ```bash
 npm install
 ```
 
-## <a name="configure-the-device-connection"></a><span data-ttu-id="1344a-135">장치 연결 구성</span><span class="sxs-lookup"><span data-stu-id="1344a-135">Configure the device connection</span></span>
-<span data-ttu-id="1344a-136">장치 연결을 구성하려면 다음 단계를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-136">To configure the device connection, follow these steps:</span></span>
+## <a name="configure-hello-device-connection"></a><span data-ttu-id="0dbdc-135">Hello 장치 연결 구성</span><span class="sxs-lookup"><span data-stu-id="0dbdc-135">Configure hello device connection</span></span>
+<span data-ttu-id="0dbdc-136">tooconfigure 장치 연결 hello, 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-136">tooconfigure hello device connection, follow these steps:</span></span>
 
-1. <span data-ttu-id="1344a-137">다음 명령을 실행하여 장치 구성 파일을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-137">Generate the device configuration file by running the following command:</span></span>
+1. <span data-ttu-id="0dbdc-137">Hello 다음 명령을 실행 하 여 hello 장치 구성 파일을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-137">Generate hello device configuration file by running hello following command:</span></span>
    
    ```bash
    gulp init
    ```
    
-   <span data-ttu-id="1344a-138">구성 파일 `config-raspberrypi.json`에는 Pi에 로그인하는 데 사용하는 사용자 자격 증명이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-138">The configuration file `config-raspberrypi.json` contains the user credentials you use to log in to Pi.</span></span> <span data-ttu-id="1344a-139">사용자 자격 증명의 유출을 방지하기 위해 구성 파일은 컴퓨터 홈 폴더의 `.iot-hub-getting-started` 하위 폴더에 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-139">To avoid the leak of user credentials, the configuration file is generated in the subfolder `.iot-hub-getting-started` of the home folder on your computer.</span></span>
+   <span data-ttu-id="0dbdc-138">hello 구성 파일 `config-raspberrypi.json` toolog tooPi에서 사용 하 여 hello 사용자 자격 증명을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-138">hello configuration file `config-raspberrypi.json` contains hello user credentials you use toolog in tooPi.</span></span> <span data-ttu-id="0dbdc-139">tooavoid hello 누수 hello 하위 폴더에 사용자 자격 증명의 hello 구성 파일이 생성 됩니다 `.iot-hub-getting-started` hello 컴퓨터에서 홈 폴더의 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-139">tooavoid hello leak of user credentials, hello configuration file is generated in hello subfolder `.iot-hub-getting-started` of hello home folder on your computer.</span></span>
 
-2. <span data-ttu-id="1344a-140">다음 명령을 실행하여 Visual Studio Code에서 장치 구성 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-140">Open the device configuration file in Visual Studio Code by running the following command:</span></span>
+2. <span data-ttu-id="0dbdc-140">Hello 다음 명령을 실행 하 여 Visual Studio Code에서 hello 장치 구성 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-140">Open hello device configuration file in Visual Studio Code by running hello following command:</span></span>
    
    ```bash
    # For Windows command prompt
@@ -104,51 +104,51 @@ npm install
    code ~/.iot-hub-getting-started/config-raspberrypi.json
    ```
 
-3. <span data-ttu-id="1344a-141">자리 표시자 `[device hostname or IP address]`를 앞서 "Pi의 IP 주소 및 호스트 이름 가져오기"에서 확보한 IP 주소 또는 호스트 이름과 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-141">Replace the placeholder `[device hostname or IP address]` with the IP address or the host name that you got previously in "Obtain the IP address and host name of Pi."</span></span>
+3. <span data-ttu-id="0dbdc-141">Hello 자리 표시자 대체 `[device hostname or IP address]` hello IP 주소 또는 "얻기 hello IP 주소 및 호스트 이름 Pi의"에서 이전에 가져온 hello 호스트 이름</span><span class="sxs-lookup"><span data-stu-id="0dbdc-141">Replace hello placeholder `[device hostname or IP address]` with hello IP address or hello host name that you got previously in "Obtain hello IP address and host name of Pi."</span></span>
    
    ![Config.json](media/iot-hub-raspberry-pi-lessons/lesson1/vscode-config-mac.png)
 
 > [!NOTE]
-> <span data-ttu-id="1344a-143">Raspberry Pi에 연결할 때 사용자 이름과 암호 대신 SSH 키를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-143">You can use SSH key instead of user name and password when connecting to Raspberry Pi.</span></span> <span data-ttu-id="1344a-144">사용 하 여 키를 생성 해야 하며이 작업을 수행 하기 위해 **붙여넣으세요** 및 **@ ssh-복사-id pi\<장치 주소\>**합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-144">In order to do this you will have to generate the key using **ssh-keygen** and **ssh-copy-id pi@\<device address\>**.</span></span>
+> <span data-ttu-id="0dbdc-143">Pi tooRaspberry 연결할 때 사용자 이름 및 암호 대신 SSH 키를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-143">You can use SSH key instead of user name and password when connecting tooRaspberry Pi.</span></span> <span data-ttu-id="0dbdc-144">순서로 toodo toogenerate hello 사용 하 여 키 해야이 **붙여넣으세요** 및 **@ ssh-복사-id pi\<장치 주소\>**합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-144">In order toodo this you will have toogenerate hello key using **ssh-keygen** and **ssh-copy-id pi@\<device address\>**.</span></span>
 >
-> <span data-ttu-id="1344a-145">Windows의 경우 이러한 명령은 **Git Bash**에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-145">On Windows these commands are available in **Git Bash**.</span></span>
+> <span data-ttu-id="0dbdc-145">Windows의 경우 이러한 명령은 **Git Bash**에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-145">On Windows these commands are available in **Git Bash**.</span></span>
 >
-> <span data-ttu-id="1344a-146">MacOS의 경우 **brew install ssh-copy-id**를 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-146">On MacOS you need to run **brew install ssh-copy-id**.</span></span>
+> <span data-ttu-id="0dbdc-146">Toorun MacOS에서 필요한 **brew 설치 ssh-복사-id**합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-146">On MacOS you need toorun **brew install ssh-copy-id**.</span></span>
 >
-> <span data-ttu-id="1344a-147">키를 Raspberry Pi에 업로드한 후, **config-raspberrypi.json**에서 **device_password**를 **device_key_path** 속성으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-147">After successfully uploading the key to the Raspberry Pi, replace **device_password** with **device_key_path** property in **config-raspberrypi.json**.</span></span>
+> <span data-ttu-id="0dbdc-147">Hello 키 toohello 라스베리 Pi을 성공적으로 업로드 한 후 교체 **device_password** 와 **device_key_path** 속성 **config raspberrypi.json**합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-147">After successfully uploading hello key toohello Raspberry Pi, replace **device_password** with **device_key_path** property in **config-raspberrypi.json**.</span></span>
 >
-> <span data-ttu-id="1344a-148">업데이트된 줄은 다음과 같이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-148">Updated lines should look as below:</span></span>
+> <span data-ttu-id="0dbdc-148">업데이트된 줄은 다음과 같이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-148">Updated lines should look as below:</span></span>
 > ```javascript
 > "device_user_name": "pi",
 > "device_key_path": "id_rsa",
 > ```
 
-<span data-ttu-id="1344a-149">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-149">Congratulations!</span></span> <span data-ttu-id="1344a-150">Pi의 첫 번째 샘플 응용 프로그램을 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-150">You've successfully created the first sample application for Pi.</span></span>
+<span data-ttu-id="0dbdc-149">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-149">Congratulations!</span></span> <span data-ttu-id="0dbdc-150">Hello 첫 번째 Pi에 대 한 샘플 응용 프로그램을 성공적으로 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-150">You've successfully created hello first sample application for Pi.</span></span>
 
-## <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="1344a-151">샘플 응용 프로그램 배포 및 실행</span><span class="sxs-lookup"><span data-stu-id="1344a-151">Deploy and run the sample application</span></span>
-### <a name="install-the-azure-iot-hub-sdk-on-pi"></a><span data-ttu-id="1344a-152">Pi에 Azure IoT Hub SDK를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-152">Install the Azure IoT Hub SDK on Pi</span></span>
-<span data-ttu-id="1344a-153">다음 명령을 실행하여 Azure Linux Hub SDK를 Pi에 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-153">Install the Azure IoT Hub SDK on Pi by running the following command:</span></span>
+## <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="0dbdc-151">배포 하 고 hello 샘플 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="0dbdc-151">Deploy and run hello sample application</span></span>
+### <a name="install-hello-azure-iot-hub-sdk-on-pi"></a><span data-ttu-id="0dbdc-152">Pi에 hello Azure IoT 허브 SDK를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-152">Install hello Azure IoT Hub SDK on Pi</span></span>
+<span data-ttu-id="0dbdc-153">원주율 hello 다음 명령을 실행 하 여 hello Azure IoT 허브 SDK를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-153">Install hello Azure IoT Hub SDK on Pi by running hello following command:</span></span>
 
 ```bash
 gulp install-tools
 ```
 
-<span data-ttu-id="1344a-154">이 태스크를 처음 실행 시 완료하려면 몇 분의 시간이 소요될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-154">This task might take a few minutes to complete the first time you run it.</span></span>
+<span data-ttu-id="0dbdc-154">이 태스크는 처음 실행 하면 몇 분 toocomplete hello를 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-154">This task might take a few minutes toocomplete hello first time you run it.</span></span>
 
-### <a name="deploy-and-run-the-sample-app"></a><span data-ttu-id="1344a-155">샘플 앱 배포 및 실행</span><span class="sxs-lookup"><span data-stu-id="1344a-155">Deploy and run the sample app</span></span>
-<span data-ttu-id="1344a-156">다음 명령을 실행하여 샘플 응용 프로그램을 배포하고 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-156">Deploy and run the sample application by running the following command:</span></span>
+### <a name="deploy-and-run-hello-sample-app"></a><span data-ttu-id="0dbdc-155">배포 하 고 hello 샘플 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="0dbdc-155">Deploy and run hello sample app</span></span>
+<span data-ttu-id="0dbdc-156">배포 하 고 hello 다음 명령을 실행 하 여 hello 샘플 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-156">Deploy and run hello sample application by running hello following command:</span></span>
 
 ```bash
 gulp deploy && gulp run
 ```
 
-### <a name="verify-the-app-works"></a><span data-ttu-id="1344a-157">앱 작동 확인</span><span class="sxs-lookup"><span data-stu-id="1344a-157">Verify the app works</span></span>
-<span data-ttu-id="1344a-158">샘플 응용 프로그램은 LED를 20번 깜박인 후 자동으로 종료됩니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-158">The sample application terminates automatically after the LED blinks for 20 times.</span></span> <span data-ttu-id="1344a-159">Led가 깜박이지 않으면 [문제 해결 가이드](iot-hub-raspberry-pi-kit-c-troubleshooting.md)에서 일반적인 문제에 대한솔루션을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1344a-159">If you don’t see the LED blinking, see the [troubleshooting guide](iot-hub-raspberry-pi-kit-c-troubleshooting.md) for solutions to common problems.</span></span>
-<span data-ttu-id="1344a-160">![LED 깜박임](media/iot-hub-raspberry-pi-lessons/lesson1/led_blinking.jpg)</span><span class="sxs-lookup"><span data-stu-id="1344a-160">![LED blinking](media/iot-hub-raspberry-pi-lessons/lesson1/led_blinking.jpg)</span></span>
+### <a name="verify-hello-app-works"></a><span data-ttu-id="0dbdc-157">Hello 앱 작동 확인</span><span class="sxs-lookup"><span data-stu-id="0dbdc-157">Verify hello app works</span></span>
+<span data-ttu-id="0dbdc-158">hello 샘플 응용 프로그램 hello led가 깜박입니다 20 배에 대 한 후 자동으로 종료 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-158">hello sample application terminates automatically after hello LED blinks for 20 times.</span></span> <span data-ttu-id="0dbdc-159">Hello led가 깜박입니다.이 표시 되지 않으면 참조 hello [문제 해결 가이드](iot-hub-raspberry-pi-kit-c-troubleshooting.md) toocommon 문제 해결 방법에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-159">If you don’t see hello LED blinking, see hello [troubleshooting guide](iot-hub-raspberry-pi-kit-c-troubleshooting.md) for solutions toocommon problems.</span></span>
+<span data-ttu-id="0dbdc-160">![LED 깜박임](media/iot-hub-raspberry-pi-lessons/lesson1/led_blinking.jpg)</span><span class="sxs-lookup"><span data-stu-id="0dbdc-160">![LED blinking](media/iot-hub-raspberry-pi-lessons/lesson1/led_blinking.jpg)</span></span>
 
-## <a name="summary"></a><span data-ttu-id="1344a-161">요약</span><span class="sxs-lookup"><span data-stu-id="1344a-161">Summary</span></span>
-<span data-ttu-id="1344a-162">Pi 작동에 필요한 도구를 설치했으며 LED를 깜박이게 하는 샘플 응용 프로그램을 Pi에 배포했습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-162">You've installed the required tools to work with Pi and deployed a sample application to Pi to blink the LED.</span></span> <span data-ttu-id="1344a-163">이제 메시지 송수신을 위해 Azure IoT Hub에 Pi를 연결하는 다른 샘플 응용 프로그램을 만들고, 배포하고, 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1344a-163">You can now create, deploy, and run another sample application that connects Pi to Azure IoT Hub to send and receive messages.</span></span>
+## <a name="summary"></a><span data-ttu-id="0dbdc-161">요약</span><span class="sxs-lookup"><span data-stu-id="0dbdc-161">Summary</span></span>
+<span data-ttu-id="0dbdc-162">필요한 hello 도구 toowork Pi와 함께 설치 하 고 샘플 응용 프로그램 tooPi tooblink hello LED를 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-162">You've installed hello required tools toowork with Pi and deployed a sample application tooPi tooblink hello LED.</span></span> <span data-ttu-id="0dbdc-163">있습니다 수 이제 만들고, 배포, 및 Pi tooAzure toosend IoT 허브를 연결 하는 또 다른 샘플 응용 프로그램을 실행 하 고 메시지를 수신 합니다.</span><span class="sxs-lookup"><span data-stu-id="0dbdc-163">You can now create, deploy, and run another sample application that connects Pi tooAzure IoT Hub toosend and receive messages.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="1344a-164">다음 단계</span><span class="sxs-lookup"><span data-stu-id="1344a-164">Next steps</span></span>
-[<span data-ttu-id="1344a-165">Azure 도구 얻기</span><span class="sxs-lookup"><span data-stu-id="1344a-165">Get Azure tools</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)
+## <a name="next-steps"></a><span data-ttu-id="0dbdc-164">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0dbdc-164">Next steps</span></span>
+[<span data-ttu-id="0dbdc-165">Azure 도구 얻기</span><span class="sxs-lookup"><span data-stu-id="0dbdc-165">Get Azure tools</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)
 

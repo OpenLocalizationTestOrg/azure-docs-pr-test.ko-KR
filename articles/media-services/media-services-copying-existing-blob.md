@@ -1,6 +1,6 @@
 ---
-title: "저장소 계정에서 Azure Media Services 자산으로 Blob 복사 | Microsoft Docs"
-description: "이 토픽에서는 기존 Blob을 Media Services 자산에 복사하는 방법을 보여 줍니다. 이 예제에서는 Azure Media Services .NET SDK Extensions를 사용합니다."
+title: "Azure 미디어 서비스 자산으로 저장소 계정에서 blob aaaCopying | Microsoft Docs"
+description: "이 항목에서는 미디어 서비스 자산에 기존 toocopy blob 하는 방법을 보여 줍니다. hello 예제는 Azure 미디어 서비스.NET SDK Extensions를 사용합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,44 +14,44 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: juliako
-ms.openlocfilehash: 2bc1f0114a096920d4a7c9cb57e44c9b3612bf86
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40660e5cbb3698fb2b0bdf414751e47d367794da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copying-existing-blobs-into-a-media-services-asset"></a><span data-ttu-id="a382f-104">기존 Blob을 Media Services 자산으로 복사</span><span class="sxs-lookup"><span data-stu-id="a382f-104">Copying existing blobs into a Media Services Asset</span></span>
-<span data-ttu-id="a382f-105">이 토픽에서는 [Azure Media Services .NET SDK Extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions/)를 사용하여 저장소 계정에서 새로운 AMS(Azure Media Services) 자산으로 Blob을 복사하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-105">This topic shows how to copy blobs from a storage account into a new Azure Media Services (AMS) asset using [Azure Media Services .NET SDK Extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions/).</span></span>
+# <a name="copying-existing-blobs-into-a-media-services-asset"></a><span data-ttu-id="075fe-104">기존 Blob을 Media Services 자산으로 복사</span><span class="sxs-lookup"><span data-stu-id="075fe-104">Copying existing blobs into a Media Services Asset</span></span>
+<span data-ttu-id="075fe-105">이 항목에서는 toocopy 저장소 계정에서 사용 하 여 새 Azure 미디어 서비스 (AMS) 자산으로 blob 하는 방법을 보여 줍니다. [Azure 미디어 서비스.NET SDK Extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions/)합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-105">This topic shows how toocopy blobs from a storage account into a new Azure Media Services (AMS) asset using [Azure Media Services .NET SDK Extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions/).</span></span>
 
-<span data-ttu-id="a382f-106">확장 메서드는 다음에서 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-106">The extension methods works with:</span></span>
+<span data-ttu-id="075fe-106">hello 확장 메서드에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-106">hello extension methods works with:</span></span>
 
-- <span data-ttu-id="a382f-107">일반 자산</span><span class="sxs-lookup"><span data-stu-id="a382f-107">Regular assets.</span></span>
-- <span data-ttu-id="a382f-108">라이브 보관 자산(FragBlob 형식)</span><span class="sxs-lookup"><span data-stu-id="a382f-108">Live archive assets (FragBlob format).</span></span>
-- <span data-ttu-id="a382f-109">다른 Media Services 계정에 속하는 원본 및 대상 자산(다른 데이터 센터 사이인 경우 포함)</span><span class="sxs-lookup"><span data-stu-id="a382f-109">Source and destination assets belonging to different Media Services accounts (even across different data centers).</span></span> <span data-ttu-id="a382f-110">하지만 이 경우 요금이 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-110">However, there may be charges incurred by doing so.</span></span> <span data-ttu-id="a382f-111">가격 책정에 대한 자세한 내용은 [데이터 전송](https://azure.microsoft.com/pricing/#header-11)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a382f-111">For more information about pricing, see [Data Transfers](https://azure.microsoft.com/pricing/#header-11).</span></span>
+- <span data-ttu-id="075fe-107">일반 자산</span><span class="sxs-lookup"><span data-stu-id="075fe-107">Regular assets.</span></span>
+- <span data-ttu-id="075fe-108">라이브 보관 자산(FragBlob 형식)</span><span class="sxs-lookup"><span data-stu-id="075fe-108">Live archive assets (FragBlob format).</span></span>
+- <span data-ttu-id="075fe-109">원본 및 대상 자산 toodifferent 미디어 서비스 계정 (여러 데이터 센터) 간에 속하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-109">Source and destination assets belonging toodifferent Media Services accounts (even across different data centers).</span></span> <span data-ttu-id="075fe-110">하지만 이 경우 요금이 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-110">However, there may be charges incurred by doing so.</span></span> <span data-ttu-id="075fe-111">가격 책정에 대한 자세한 내용은 [데이터 전송](https://azure.microsoft.com/pricing/#header-11)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="075fe-111">For more information about pricing, see [Data Transfers](https://azure.microsoft.com/pricing/#header-11).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a382f-112">Media Service API를 사용하지 않고 미디어 서비스에서 생성된 Blob 컨테이너의 콘텐츠를 변경하려고 하면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-112">You should not attempt to change the contents of blob containers that were generated by Media Services without using Media Service APIs.</span></span>
+> <span data-ttu-id="075fe-112">미디어 서비스 Api를 사용 하지 않고 미디어 서비스에 의해 생성 된 blob 컨테이너의 toochange hello 내용을 하지 않아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-112">You should not attempt toochange hello contents of blob containers that were generated by Media Services without using Media Service APIs.</span></span>
 > 
 
-<span data-ttu-id="a382f-113">이 토픽에서는 두 가지 코드 샘플을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-113">The topic shows two code samples:</span></span>
+<span data-ttu-id="075fe-113">hello 항목에서는 두 개의 코드 예제를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-113">hello topic shows two code samples:</span></span>
 
-1. <span data-ttu-id="a382f-114">한 AMS 계정의 자산에 있는 Blob을 다른 AMS 계정의 새 자산으로 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-114">Copy blobs from an asset in one AMS account into a new asset in another AMS account.</span></span>
-2. <span data-ttu-id="a382f-115">일부 저장소 계정에서 AMS 계정의 새 자산으로 Blob을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-115">Copy blobs from some storage account into a new asset in an AMS account.</span></span>
+1. <span data-ttu-id="075fe-114">한 AMS 계정의 자산에 있는 Blob을 다른 AMS 계정의 새 자산으로 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-114">Copy blobs from an asset in one AMS account into a new asset in another AMS account.</span></span>
+2. <span data-ttu-id="075fe-115">일부 저장소 계정에서 AMS 계정의 새 자산으로 Blob을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-115">Copy blobs from some storage account into a new asset in an AMS account.</span></span>
 
-## <a name="copy-blobs-between-two-ams-accounts"></a><span data-ttu-id="a382f-116">두 AMS 계정 간에 Blob 복사</span><span class="sxs-lookup"><span data-stu-id="a382f-116">Copy blobs between two AMS accounts</span></span>  
+## <a name="copy-blobs-between-two-ams-accounts"></a><span data-ttu-id="075fe-116">두 AMS 계정 간에 Blob 복사</span><span class="sxs-lookup"><span data-stu-id="075fe-116">Copy blobs between two AMS accounts</span></span>  
 
-### <a name="prerequisites"></a><span data-ttu-id="a382f-117">필수 조건</span><span class="sxs-lookup"><span data-stu-id="a382f-117">Prerequisites</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="075fe-117">필수 조건</span><span class="sxs-lookup"><span data-stu-id="075fe-117">Prerequisites</span></span>
 
-<span data-ttu-id="a382f-118">두 개의 Media Services 계정이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-118">Two Media Services accounts.</span></span> <span data-ttu-id="a382f-119">[Media Services 계정을 만드는 방법](media-services-portal-create-account.md) 토픽을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a382f-119">See the topic [How to Create a Media Services Account](media-services-portal-create-account.md).</span></span>
+<span data-ttu-id="075fe-118">두 개의 Media Services 계정이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-118">Two Media Services accounts.</span></span> <span data-ttu-id="075fe-119">Hello에 대 한 지침은 [어떻게 tooCreate Media Services 계정을](media-services-portal-create-account.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-119">See hello topic [How tooCreate a Media Services Account](media-services-portal-create-account.md).</span></span>
 
-### <a name="download-sample"></a><span data-ttu-id="a382f-120">샘플 다운로드</span><span class="sxs-lookup"><span data-stu-id="a382f-120">Download sample</span></span>
-<span data-ttu-id="a382f-121">이 문서의 단계를 수행하거나 [여기](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/)에서 이 문서에 설명된 코드가 포함된 샘플을 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-121">You can follow the steps in this article or you can download a sample that contains the code described in this article from [here](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/).</span></span>
+### <a name="download-sample"></a><span data-ttu-id="075fe-120">샘플 다운로드</span><span class="sxs-lookup"><span data-stu-id="075fe-120">Download sample</span></span>
+<span data-ttu-id="075fe-121">이 문서의 hello 단계를 수행 하거나에서이 문서에서 설명 하는 hello 코드를 포함 하는 샘플을 다운로드할 수 있습니다 [여기](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/)합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-121">You can follow hello steps in this article or you can download a sample that contains hello code described in this article from [here](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/).</span></span>
 
-### <a name="set-up-your-project"></a><span data-ttu-id="a382f-122">프로젝트 설정</span><span class="sxs-lookup"><span data-stu-id="a382f-122">Set up your project</span></span>
+### <a name="set-up-your-project"></a><span data-ttu-id="075fe-122">프로젝트 설정</span><span class="sxs-lookup"><span data-stu-id="075fe-122">Set up your project</span></span>
 
-1. <span data-ttu-id="a382f-123">[.NET을 사용한 Media Services 개발](media-services-dotnet-how-to-use.md)에 설명된 대로 개발 환경을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-123">Set up your development environment as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
-2. <span data-ttu-id="a382f-124">이 프로젝트에 필요한 다른 참조를 추가합니다: System.Configuration.</span><span class="sxs-lookup"><span data-stu-id="a382f-124">Add other references that are required for this project: System.Configuration.</span></span>
-3. <span data-ttu-id="a382f-125">appSettings 섹션을 .config 파일에 추가하고 Media Services 계정, 대상 저장소 계정 및 원본 자산 ID에 따라 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-125">Add the appSettings section to the .config file and update the values based on your Media Services accounts, the destination storage account and the source asset ID.</span></span>  
+1. <span data-ttu-id="075fe-123">[.NET을 사용한 Media Services 개발](media-services-dotnet-how-to-use.md)에 설명된 대로 개발 환경을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-123">Set up your development environment as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+2. <span data-ttu-id="075fe-124">이 프로젝트에 필요한 다른 참조를 추가합니다: System.Configuration.</span><span class="sxs-lookup"><span data-stu-id="075fe-124">Add other references that are required for this project: System.Configuration.</span></span>
+3. <span data-ttu-id="075fe-125">Hello appSettings 섹션 toohello.config 파일 및 업데이트 hello 값 미디어 서비스 계정에 따라, hello 대상 저장소 계정 및 원본 자산 id입니다. hello 추가</span><span class="sxs-lookup"><span data-stu-id="075fe-125">Add hello appSettings section toohello .config file and update hello values based on your Media Services accounts, hello destination storage account and hello source asset ID.</span></span>  
 
 ```   
 <appSettings>
@@ -65,9 +65,9 @@ ms.lasthandoff: 08/29/2017
 </appSettings>
 ```
 
-### <a name="copy-blobs-from-an-asset-in-one-ams-account-into-an-asset-in-another-ams-account"></a><span data-ttu-id="a382f-126">한 AMS 계정의 자산에 있는 Blob을 다른 AMS 계정의 자산으로 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-126">Copy blobs from an asset in one AMS account into an asset in another AMS account</span></span>
+### <a name="copy-blobs-from-an-asset-in-one-ams-account-into-an-asset-in-another-ams-account"></a><span data-ttu-id="075fe-126">한 AMS 계정의 자산에 있는 Blob을 다른 AMS 계정의 자산으로 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-126">Copy blobs from an asset in one AMS account into an asset in another AMS account</span></span>
 
-<span data-ttu-id="a382f-127">다음 코드에서는 확장 **IAsset.Copy** 메서드를 사용하여 단일 확장을 통해 원본 자산의 모든 파일을 대상 자산으로 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-127">The following code uses extension **IAsset.Copy** method to copy all files in the source asset into the destination asset using a single extension.</span></span>
+<span data-ttu-id="075fe-127">hello 다음 코드에서는 확장 **IAsset.Copy** 메서드 toocopy 모두 단일 확장을 사용 하 여 hello 대상 자산으로 hello 소스 자산에 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-127">hello following code uses extension **IAsset.Copy** method toocopy all files in hello source asset into hello destination asset using a single extension.</span></span>
 
 ```
 using System;
@@ -98,23 +98,23 @@ namespace CopyExistingBlobsIntoAsset
             var tokenCredentials2 = new AzureAdTokenCredentials(_destAADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider2 = new AzureAdTokenProvider(tokenCredentials2);
 
-            // Create the context for your source Media Services account.
+            // Create hello context for your source Media Services account.
             _sourceContext = new CloudMediaContext(new Uri(_sourceRESTAPIEndpoint), tokenProvider1);
 
-            // Create the context for your destination Media Services account.
+            // Create hello context for your destination Media Services account.
             _destContext = new CloudMediaContext(new Uri(_destRESTAPIEndpoint), tokenProvider2);
 
-            // Get the credentials of the default Storage account bound to your destination Media Services account.
+            // Get hello credentials of hello default Storage account bound tooyour destination Media Services account.
             StorageCredentials destinationStorageCredentials =
                 new StorageCredentials(_destStorageAccountName, _destStorageAccountKey);
 
-            // Get a reference to the source asset in the source context.
+            // Get a reference toohello source asset in hello source context.
             IAsset sourceAsset = _sourceContext.Assets.Where(a => a.Id == _sourceAssetID).First();
 
-            // Create an empty destination asset in the destination context.
+            // Create an empty destination asset in hello destination context.
             IAsset destinationAsset = _destContext.Assets.Create(sourceAsset.Name, AssetCreationOptions.None);
 
-            // Copy the files in the source asset instance into the destination asset instance.
+            // Copy hello files in hello source asset instance into hello destination asset instance.
             sourceAsset.Copy(destinationAsset, destinationStorageCredentials);
 
             Console.WriteLine("Done");
@@ -123,18 +123,18 @@ namespace CopyExistingBlobsIntoAsset
 }
 ```
 
-## <a name="copy-blobs-from-a-storage-account-into-an-ams-account"></a><span data-ttu-id="a382f-128">저장소 계정의 Blob을 AMS 계정으로 복사</span><span class="sxs-lookup"><span data-stu-id="a382f-128">Copy blobs from a storage account into an AMS account</span></span> 
+## <a name="copy-blobs-from-a-storage-account-into-an-ams-account"></a><span data-ttu-id="075fe-128">저장소 계정의 Blob을 AMS 계정으로 복사</span><span class="sxs-lookup"><span data-stu-id="075fe-128">Copy blobs from a storage account into an AMS account</span></span> 
 
-### <a name="prerequisites"></a><span data-ttu-id="a382f-129">필수 조건</span><span class="sxs-lookup"><span data-stu-id="a382f-129">Prerequisites</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="075fe-129">필수 조건</span><span class="sxs-lookup"><span data-stu-id="075fe-129">Prerequisites</span></span>
 
-- <span data-ttu-id="a382f-130">Blob를 복사할 저장소 계정 한 개가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-130">One Storage account from which you want to copy blobs.</span></span>
-- <span data-ttu-id="a382f-131">Blob를 복사해 넣을 AMS 계정 한 개가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-131">One AMS account into which you want to copy blobs.</span></span>
+- <span data-ttu-id="075fe-130">Toocopy blob 하려는 저장소 계정을 하나 있습니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-130">One Storage account from which you want toocopy blobs.</span></span>
+- <span data-ttu-id="075fe-131">Toocopy blob에 가져오려는 하나 AMS 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-131">One AMS account into which you want toocopy blobs.</span></span>
 
-### <a name="set-up-your-project"></a><span data-ttu-id="a382f-132">프로젝트 설정</span><span class="sxs-lookup"><span data-stu-id="a382f-132">Set up your project</span></span>
+### <a name="set-up-your-project"></a><span data-ttu-id="075fe-132">프로젝트 설정</span><span class="sxs-lookup"><span data-stu-id="075fe-132">Set up your project</span></span>
 
-1. <span data-ttu-id="a382f-133">[.NET을 사용한 Media Services 개발](media-services-dotnet-how-to-use.md)에 설명된 대로 개발 환경을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-133">Set up your development environment as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
-2. <span data-ttu-id="a382f-134">이 프로젝트에 필요한 다른 참조를 추가합니다: System.Configuration.</span><span class="sxs-lookup"><span data-stu-id="a382f-134">Add other references that are required for this project: System.Configuration.</span></span>
-3. <span data-ttu-id="a382f-135">appSettings 섹션을 .config 파일에 추가하고 원본 저장소 및 대상 AMS 계정에 기반한 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-135">Add the appSettings section to the .config file and update the values based on your source storage and destination AMS accounts.</span></span>
+1. <span data-ttu-id="075fe-133">[.NET을 사용한 Media Services 개발](media-services-dotnet-how-to-use.md)에 설명된 대로 개발 환경을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-133">Set up your development environment as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+2. <span data-ttu-id="075fe-134">이 프로젝트에 필요한 다른 참조를 추가합니다: System.Configuration.</span><span class="sxs-lookup"><span data-stu-id="075fe-134">Add other references that are required for this project: System.Configuration.</span></span>
+3. <span data-ttu-id="075fe-135">Hello appSettings 섹션 toohello.config 파일 및 저장소 원본 및 대상에 따라 업데이트 hello 값 AMS 계정을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-135">Add hello appSettings section toohello .config file and update hello values based on your source storage and destination AMS accounts.</span></span>
 
 ```
 <appSettings>
@@ -147,12 +147,12 @@ namespace CopyExistingBlobsIntoAsset
 </appSettings>
 ```
 
-### <a name="copy-blobs-from-some-storage-account-into-a-new-asset-in-a-ams-account"></a><span data-ttu-id="a382f-136">일부 저장소 계정에서 AMS 계정의 새 자산으로 Blob 복사</span><span class="sxs-lookup"><span data-stu-id="a382f-136">Copy blobs from some storage account into a new asset in a AMS account</span></span>
+### <a name="copy-blobs-from-some-storage-account-into-a-new-asset-in-a-ams-account"></a><span data-ttu-id="075fe-136">일부 저장소 계정에서 AMS 계정의 새 자산으로 Blob 복사</span><span class="sxs-lookup"><span data-stu-id="075fe-136">Copy blobs from some storage account into a new asset in a AMS account</span></span>
 
-<span data-ttu-id="a382f-137">다음 코드는 저장소 계정에서 Media Services 자산으로 Blob을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-137">The following code copies blobs from a storage account into a Media Services asset.</span></span> 
+<span data-ttu-id="075fe-137">미디어 서비스 자산으로 코드 복사본 blob 저장소 계정에서 다음 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-137">hello following code copies blobs from a storage account into a Media Services asset.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="a382f-138">다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-138">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="a382f-139">항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-139">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="a382f-140">자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a382f-140">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+><span data-ttu-id="075fe-138">다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-138">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="075fe-139">Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한.</span><span class="sxs-lookup"><span data-stu-id="075fe-139">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="075fe-140">자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="075fe-140">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
 ```
 using System;
@@ -167,7 +167,7 @@ namespace CopyExistingBlobsIntoAsset
 {
     class Program
     {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AMSAADTenantDomain =
             ConfigurationManager.AppSettings["AMSAADTenantDomain"];
         private static readonly string _AMSRESTAPIEndpoint =
@@ -192,7 +192,7 @@ namespace CopyExistingBlobsIntoAsset
                 AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-            // Create the context for your source Media Services account.
+            // Create hello context for your source Media Services account.
             _context = new CloudMediaContext(new Uri(_AMSRESTAPIEndpoint), tokenProvider);
             
             _sourceStorageAccount =
@@ -226,7 +226,7 @@ namespace CopyExistingBlobsIntoAsset
             ILocator destinationLocator =
                 _context.Locators.CreateLocator(LocatorType.Sas, asset, writePolicy);
 
-            // Get the asset container URI and Blob copy from mediaContainer to assetContainer. 
+            // Get hello asset container URI and Blob copy from mediaContainer tooassetContainer. 
             CloudBlobContainer destAssetContainer =
                 destBlobStorage.GetContainerReference((new Uri(destinationLocator.Path)).Segments[1]);
 
@@ -258,14 +258,14 @@ namespace CopyExistingBlobsIntoAsset
             destinationLocator.Delete();
             writePolicy.Delete();
 
-            // Set the primary asset file.
+            // Set hello primary asset file.
             // If, for example, we copied a set of Smooth Streaming files, 
-            // set the .ism file to be the primary file. 
-            // If we, for example, copied an .mp4, then the mp4 would be the primary file. 
+            // set hello .ism file toobe hello primary file. 
+            // If we, for example, copied an .mp4, then hello mp4 would be hello primary file. 
             var ismAssetFile = asset.AssetFiles.ToList().
                 Where(f => f.Name.EndsWith(".ism", StringComparison.OrdinalIgnoreCase)).ToArray().FirstOrDefault();
 
-            // The following code assigns the first .ism file as the primary file in the asset.
+            // hello following code assigns hello first .ism file as hello primary file in hello asset.
             // An asset should have one .ism file.  
             if (ismAssetFile != null)
             {
@@ -277,10 +277,10 @@ namespace CopyExistingBlobsIntoAsset
         }
 
         /// <summary>
-        /// Copies the specified blob into the specified container.
+        /// Copies hello specified blob into hello specified container.
         /// </summary>
-        /// <param name="sourceBlob">The source container.</param>
-        /// <param name="destinationContainer">The destination container.</param>
+        /// <param name="sourceBlob">hello source container.</param>
+        /// <param name="destinationContainer">hello destination container.</param>
         static private void CopyBlob(ICloudBlob sourceBlob, CloudBlobContainer destinationContainer)
         {
             var signature = sourceBlob.GetSharedAccessSignature(new SharedAccessBlobPolicy
@@ -298,17 +298,17 @@ namespace CopyExistingBlobsIntoAsset
             else
             {
 
-                // Display the size of the source blob.
+                // Display hello size of hello source blob.
                 Console.WriteLine(sourceBlob.Properties.Length);
 
-                Console.WriteLine(string.Format("Copy blob '{0}' to '{1}'", sourceBlob.Uri, destinationBlob.Uri));
+                Console.WriteLine(string.Format("Copy blob '{0}' too'{1}'", sourceBlob.Uri, destinationBlob.Uri));
                 destinationBlob.StartCopyFromBlob(new Uri(sourceBlob.Uri.AbsoluteUri + signature));
 
                 while (true)
                 {
-                    // The StartCopyFromBlob is an async operation, 
-                    // so we want to check if the copy operation is completed before proceeding. 
-                    // To do that, we call FetchAttributes on the blob and check the CopyStatus. 
+                    // hello StartCopyFromBlob is an async operation, 
+                    // so we want toocheck if hello copy operation is completed before proceeding. 
+                    // toodo that, we call FetchAttributes on hello blob and check hello CopyStatus. 
                     destinationBlob.FetchAttributes();
                     if (destinationBlob.CopyState.Status != CopyStatus.Pending)
                     {
@@ -318,7 +318,7 @@ namespace CopyExistingBlobsIntoAsset
                     System.Threading.Thread.Sleep(1000);
                 }
 
-                // Display the size of the destination blob.
+                // Display hello size of hello destination blob.
                 Console.WriteLine(destinationBlob.Properties.Length);
 
             }
@@ -326,15 +326,15 @@ namespace CopyExistingBlobsIntoAsset
     }
 }
 ```
-## <a name="next-steps"></a><span data-ttu-id="a382f-141">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a382f-141">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="075fe-141">다음 단계</span><span class="sxs-lookup"><span data-stu-id="075fe-141">Next steps</span></span>
 
-<span data-ttu-id="a382f-142">이제 업로드된 자산을 인코딩할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-142">You can now encode your uploaded assets.</span></span> <span data-ttu-id="a382f-143">자세한 내용은 [자산 인코딩](media-services-portal-encode.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a382f-143">For more information, see [Encode assets](media-services-portal-encode.md).</span></span>
+<span data-ttu-id="075fe-142">이제 업로드된 자산을 인코딩할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-142">You can now encode your uploaded assets.</span></span> <span data-ttu-id="075fe-143">자세한 내용은 [자산 인코딩](media-services-portal-encode.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="075fe-143">For more information, see [Encode assets](media-services-portal-encode.md).</span></span>
 
-<span data-ttu-id="a382f-144">또한 Azure Functions를 사용하여 구성된 컨테이너에 도착하는 파일에 따라 인코딩 작업을 트리거할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a382f-144">You can also use Azure Functions to trigger an encoding job based on a file arriving in the configured container.</span></span> <span data-ttu-id="a382f-145">자세한 내용은 [이 샘플](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a382f-145">For more information, see [this sample](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).</span></span>
+<span data-ttu-id="075fe-144">또한 Azure 함수 tootrigger hello 구성 컨테이너에 도착 하는 파일을 기반으로 하는 인코딩 작업을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="075fe-144">You can also use Azure Functions tootrigger an encoding job based on a file arriving in hello configured container.</span></span> <span data-ttu-id="075fe-145">자세한 내용은 [이 샘플](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="075fe-145">For more information, see [this sample](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).</span></span>
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="a382f-146">Media Services 학습 경로</span><span class="sxs-lookup"><span data-stu-id="a382f-146">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="075fe-146">Media Services 학습 경로</span><span class="sxs-lookup"><span data-stu-id="075fe-146">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="a382f-147">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="a382f-147">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="075fe-147">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="075fe-147">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

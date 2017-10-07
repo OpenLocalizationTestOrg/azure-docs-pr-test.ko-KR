@@ -1,5 +1,5 @@
 ---
-title: "Azure IoT Suite 설명서 - 자습서, API 참조 | Microsoft Docs"
+title: "aaaAzure IoT Suite 설명서-자습서, API 참조 | Microsoft Docs"
 description: 
 services: iot-suite
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 4d78758b718cb98a84a9ed8aed4c1b92db4ea59e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 83b006447e0d06d49ed7feace16b0db7d04d56f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iot-suite-documentation"></a>IoT Suite 설명서
 
-Microsoft Azure IoT Suite를 빨리 시작해 보세요. 미리 구성된 솔루션을 사용하고 IoT(사물 인터넷) 솔루션 개발을 가속화하세요. Linux, Windows 및 실시간 운영 체제를 포함한 여러 플랫폼에 대해 장치 SDK를 사용하여 새로운 장치를 추가하고 기존 장치를 연결하세요. 단 몇 개의 센서에서 동시에 연결된 수백만 개의 장치들로 쉽게 확장하고, 프로젝트의 규모가 어떻든 Azure의 세계적 가용성을 믿어 보세요.
+Microsoft Azure IoT Suite를 빨리 시작해 보세요. 미리 구성 된 솔루션을 사용 하 고 인터넷의 IoT (사물) 솔루션의 hello 개발을 신속 하 합니다. Linux, Windows 및 실시간 운영 체제를 포함한 여러 플랫폼에 대해 장치 SDK를 사용하여 새로운 장치를 추가하고 기존 장치를 연결하세요. 쉽게의 동시에 연결 된 장치에 몇 개의 센서 toomillions에서 규모 확장 하 고 Azure의 hello 글로벌 가용성 의존&mdash;크기에 관계 없이 프로젝트입니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -92,7 +92,7 @@ Microsoft Azure IoT Suite를 빨리 시작해 보세요. 미리 구성된 솔루
                         <p><a href="/azure/iot-suite/iot-security-architecture">보안 아키텍처</a></p>
                         <p><a href="/azure/iot-suite/iot-security-best-practices">보안 모범 사례</a></p>
                         <p><a href="/azure/iot-suite/iot-suite-security-deployment">IoT 배포 보안 유지</a></p>
-                        <p><a href="/azure/iot-suite/securing-iot-ground-up">처음부터 보안을 고려</a></p>
+                        <p><a href="/azure/iot-suite/securing-iot-ground-up">Hello 접지에서 보안</a></p>
                    </div>
                 </div>
             </div>

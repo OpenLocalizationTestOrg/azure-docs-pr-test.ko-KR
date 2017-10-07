@@ -1,6 +1,6 @@
 ---
-title: ".NET을 사용하여 Azure Blob 저장소(개체 저장소) 시작 | Microsoft Docs"
-description: "Azure Blob 저장소(개체 저장소)를 사용하여 클라우드에 구조화되지 않은 데이터를 저장합니다."
+title: ".NET을 사용 하 여 Azure Blob 저장소 (개체 저장소) aaaGet 시작 | Microsoft Docs"
+description: "Azure Blob 저장소 (개체 저장소)를 사용 하는 hello 클라우드에 구조화 되지 않은 데이터를 저장 합니다."
 services: storage
 documentationcenter: .net
 author: mmacy
@@ -14,34 +14,34 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: marsma
-ms.openlocfilehash: 8393b2dc32f01cac301c713c2ae9f0ab7226ea37
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b675ac073e7e901fe1afe54f7bfea12eefbf3ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-blob-storage-using-net"></a><span data-ttu-id="7d6a0-103">.NET을 사용하여 Azure Blob 저장소 시작</span><span class="sxs-lookup"><span data-stu-id="7d6a0-103">Get started with Azure Blob storage using .NET</span></span>
+# <a name="get-started-with-azure-blob-storage-using-net"></a><span data-ttu-id="6df34-103">.NET을 사용하여 Azure Blob 저장소 시작</span><span class="sxs-lookup"><span data-stu-id="6df34-103">Get started with Azure Blob storage using .NET</span></span>
 
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-check-out-samples-dotnet](../../includes/storage-check-out-samples-dotnet.md)]
 
-<span data-ttu-id="7d6a0-104">Azure Blob 저장소는 클라우드에 구조화되지 않은 데이터를 개체/Blob로 저장하는 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-104">Azure Blob storage is a service that stores unstructured data in the cloud as objects/blobs.</span></span> <span data-ttu-id="7d6a0-105">Blob 저장소는 문서, 미디어 파일 또는 응용 프로그램 설치 프로그램과 같은 모든 종류의 텍스트 또는 이진 데이터를 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-105">Blob storage can store any type of text or binary data, such as a document, media file, or application installer.</span></span> <span data-ttu-id="7d6a0-106">또한 Blob 저장소를 개체 저장소라고 합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-106">Blob storage is also referred to as object storage.</span></span>
+<span data-ttu-id="6df34-104">Azure Blob 저장소는 hello 클라우드에서 개체/blob으로 구조화 되지 않은 데이터를 저장 하는 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-104">Azure Blob storage is a service that stores unstructured data in hello cloud as objects/blobs.</span></span> <span data-ttu-id="6df34-105">Blob storage는 문서, 미디어 파일 또는 응용 프로그램 설치 프로그램과 같은 모든 종류의 텍스트 또는 이진 데이터를 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-105">Blob storage can store any type of text or binary data, such as a document, media file, or application installer.</span></span> <span data-ttu-id="6df34-106">Blob 저장소 참조 tooas 개체 저장소 이기도합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-106">Blob storage is also referred tooas object storage.</span></span>
 
-### <a name="about-this-tutorial"></a><span data-ttu-id="7d6a0-107">이 자습서 정보</span><span class="sxs-lookup"><span data-stu-id="7d6a0-107">About this tutorial</span></span>
-<span data-ttu-id="7d6a0-108">이 자습서에서는 Azure Blob 저장소를 사용하여 몇 가지 일반적인 시나리오에 대한 .NET 코드를 작성하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-108">This tutorial shows how to write .NET code for some common scenarios using Azure Blob storage.</span></span> <span data-ttu-id="7d6a0-109">Blob 업로드, 나열, 다운로드 및 삭제 시나리오를 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-109">Scenarios covered include uploading, listing, downloading, and deleting blobs.</span></span>
+### <a name="about-this-tutorial"></a><span data-ttu-id="6df34-107">이 자습서 정보</span><span class="sxs-lookup"><span data-stu-id="6df34-107">About this tutorial</span></span>
+<span data-ttu-id="6df34-108">이 자습서에서는 Azure Blob 저장소를 사용 하 여 몇 가지 일반적인 시나리오에 대 한.NET toowrite 코드 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-108">This tutorial shows how toowrite .NET code for some common scenarios using Azure Blob storage.</span></span> <span data-ttu-id="6df34-109">Blob 업로드, 나열, 다운로드 및 삭제 시나리오를 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-109">Scenarios covered include uploading, listing, downloading, and deleting blobs.</span></span>
 
-<span data-ttu-id="7d6a0-110">**필수 조건:**</span><span class="sxs-lookup"><span data-stu-id="7d6a0-110">**Prerequisites:**</span></span>
+<span data-ttu-id="6df34-110">**필수 조건:**</span><span class="sxs-lookup"><span data-stu-id="6df34-110">**Prerequisites:**</span></span>
 
-* [<span data-ttu-id="7d6a0-111">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="7d6a0-111">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/)
-* [<span data-ttu-id="7d6a0-112">.NET용 Azure 저장소 클라이언트 라이브러리</span><span class="sxs-lookup"><span data-stu-id="7d6a0-112">Azure Storage Client Library for .NET</span></span>](https://www.nuget.org/packages/WindowsAzure.Storage/)
-* [<span data-ttu-id="7d6a0-113">.NET용 Azure 구성 관리자</span><span class="sxs-lookup"><span data-stu-id="7d6a0-113">Azure Configuration Manager for .NET</span></span>](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
-* <span data-ttu-id="7d6a0-114">[Azure 저장소 계정](storage-create-storage-account.md#create-a-storage-account)</span><span class="sxs-lookup"><span data-stu-id="7d6a0-114">An [Azure storage account](storage-create-storage-account.md#create-a-storage-account)</span></span>
+* [<span data-ttu-id="6df34-111">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6df34-111">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/)
+* [<span data-ttu-id="6df34-112">.NET용 Azure 저장소 클라이언트 라이브러리</span><span class="sxs-lookup"><span data-stu-id="6df34-112">Azure Storage Client Library for .NET</span></span>](https://www.nuget.org/packages/WindowsAzure.Storage/)
+* [<span data-ttu-id="6df34-113">.NET용 Azure 구성 관리자</span><span class="sxs-lookup"><span data-stu-id="6df34-113">Azure Configuration Manager for .NET</span></span>](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
+* <span data-ttu-id="6df34-114">[Azure 저장소 계정](storage-create-storage-account.md#create-a-storage-account)</span><span class="sxs-lookup"><span data-stu-id="6df34-114">An [Azure storage account](storage-create-storage-account.md#create-a-storage-account)</span></span>
 
 [!INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
 
-### <a name="more-samples"></a><span data-ttu-id="7d6a0-115">추가 샘플</span><span class="sxs-lookup"><span data-stu-id="7d6a0-115">More samples</span></span>
-<span data-ttu-id="7d6a0-116">Blob 저장소를 사용하는 추가 예제는 [.NET에서 Azure Blob 저장소 시작](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-116">For additional examples using Blob storage, see [Getting Started with Azure Blob Storage in .NET](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/).</span></span> <span data-ttu-id="7d6a0-117">GitHub에서 샘플 응용 프로그램을 다운로드하고 실행하거나 코드를 탐색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-117">You can download the sample application and run it, or browse the code on GitHub.</span></span>
+### <a name="more-samples"></a><span data-ttu-id="6df34-115">추가 샘플</span><span class="sxs-lookup"><span data-stu-id="6df34-115">More samples</span></span>
+<span data-ttu-id="6df34-116">Blob 저장소를 사용하는 추가 예제는 [.NET에서 Azure Blob 저장소 시작](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6df34-116">For additional examples using Blob storage, see [Getting Started with Azure Blob Storage in .NET](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/).</span></span> <span data-ttu-id="6df34-117">Hello 샘플 응용 프로그램을 다운로드 하 고 실행 하거나 GitHub에서 hello 코드를 찾아보려면 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-117">You can download hello sample application and run it, or browse hello code on GitHub.</span></span>
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
@@ -49,8 +49,8 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [storage-development-environment-include](../../includes/storage-development-environment-include.md)]
 
-### <a name="add-using-directives"></a><span data-ttu-id="7d6a0-118">지시문을 사용하여 추가</span><span class="sxs-lookup"><span data-stu-id="7d6a0-118">Add using directives</span></span>
-<span data-ttu-id="7d6a0-119">다음 **using** 지시문을 `Program.cs` 파일 맨 위에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-119">Add the following **using** directives to the top of the `Program.cs` file:</span></span>
+### <a name="add-using-directives"></a><span data-ttu-id="6df34-118">지시문을 사용하여 추가</span><span class="sxs-lookup"><span data-stu-id="6df34-118">Add using directives</span></span>
+<span data-ttu-id="6df34-119">Hello 다음 추가 **를 사용 하 여** 지시문 toohello 맨 hello `Program.cs` 파일:</span><span class="sxs-lookup"><span data-stu-id="6df34-119">Add hello following **using** directives toohello top of hello `Program.cs` file:</span></span>
 
 ```csharp
 using Microsoft.WindowsAzure; // Namespace for CloudConfigurationManager
@@ -58,89 +58,89 @@ using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
 using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 ```
 
-### <a name="parse-the-connection-string"></a><span data-ttu-id="7d6a0-120">연결 문자열 구문 분석</span><span class="sxs-lookup"><span data-stu-id="7d6a0-120">Parse the connection string</span></span>
+### <a name="parse-hello-connection-string"></a><span data-ttu-id="6df34-120">Hello 연결 문자열을 구문 분석</span><span class="sxs-lookup"><span data-stu-id="6df34-120">Parse hello connection string</span></span>
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
-### <a name="create-the-blob-service-client"></a><span data-ttu-id="7d6a0-121">Blob 서비스 클라이언트 만들기</span><span class="sxs-lookup"><span data-stu-id="7d6a0-121">Create the Blob service client</span></span>
-<span data-ttu-id="7d6a0-122">**CloudBlobClient** 클래스를 통해 Blob 저장소에 저장된 컨테이너 및 Blob을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-122">The **CloudBlobClient** class enables you to retrieve containers and blobs stored in Blob storage.</span></span> <span data-ttu-id="7d6a0-123">서비스 클라이언트를 만드는 한 가지 방법은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-123">Here's one way to create the service client:</span></span>
+### <a name="create-hello-blob-service-client"></a><span data-ttu-id="6df34-121">Hello Blob 서비스 클라이언트 만들기</span><span class="sxs-lookup"><span data-stu-id="6df34-121">Create hello Blob service client</span></span>
+<span data-ttu-id="6df34-122">hello **CloudBlobClient** 클래스를 사용 하면 tooretrieve 컨테이너 및 blob를 Blob 저장소에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-122">hello **CloudBlobClient** class enables you tooretrieve containers and blobs stored in Blob storage.</span></span> <span data-ttu-id="6df34-123">한 가지 방법은 toocreate hello 서비스 클라이언트는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-123">Here's one way toocreate hello service client:</span></span>
 
 ```csharp
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 ```
-<span data-ttu-id="7d6a0-124">이제 데이터를 읽어 오고 Blob 저장소에 데이터를 기록하는 코드를 작성할 준비가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-124">Now you are ready to write code that reads data from and writes data to Blob storage.</span></span>
+<span data-ttu-id="6df34-124">이제 준비 toowrite 코드에서 데이터를 읽고 tooBlob 저장소 데이터를 기록 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-124">Now you are ready toowrite code that reads data from and writes data tooBlob storage.</span></span>
 
-## <a name="create-a-container"></a><span data-ttu-id="7d6a0-125">컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="7d6a0-125">Create a container</span></span>
+## <a name="create-a-container"></a><span data-ttu-id="6df34-125">컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="6df34-125">Create a container</span></span>
 [!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
-<span data-ttu-id="7d6a0-126">이 예제에서는 컨테이너가 없는 경우 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-126">This example shows how to create a container if it does not already exist:</span></span>
+<span data-ttu-id="6df34-126">이 예에서는 어떻게 toocreate 아직 없는 경우 컨테이너:</span><span class="sxs-lookup"><span data-stu-id="6df34-126">This example shows how toocreate a container if it does not already exist:</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the blob client.
+// Create hello blob client.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve a reference to a container.
+// Retrieve a reference tooa container.
 CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-// Create the container if it doesn't already exist.
+// Create hello container if it doesn't already exist.
 container.CreateIfNotExists();
 ```
 
-<span data-ttu-id="7d6a0-127">기본적으로 새 컨테이너는 전용입니다. 즉, 이 컨테이너에서 Blob을 다운로드하려면 저장소 액세스 키를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-127">By default, the new container is private, meaning that you must specify your storage access key to download blobs from this container.</span></span> <span data-ttu-id="7d6a0-128">컨테이너 내의 파일을 모든 사용자가 사용할 수 있게 하려는 경우 다음 코드를 사용하여 컨테이너를 공용으로 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-128">If you want to make the files within the container available to everyone, you can set the container to be public using the following code:</span></span>
+<span data-ttu-id="6df34-127">기본적으로 hello 새 컨테이너는 private,이 컨테이너에서 저장소 액세스 키 toodownload blob를 지정 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-127">By default, hello new container is private, meaning that you must specify your storage access key toodownload blobs from this container.</span></span> <span data-ttu-id="6df34-128">Hello 컨테이너 사용 가능한 tooeveryone 내의 toomake hello 파일을 사용 하도록 하려는 경우 hello 컨테이너 toobe 공용 코드 다음 hello를 사용 하 여 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-128">If you want toomake hello files within hello container available tooeveryone, you can set hello container toobe public using hello following code:</span></span>
 
 ```csharp
 container.SetPermissions(
     new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 ```
 
-<span data-ttu-id="7d6a0-129">인터넷상의 누구든지 공용 컨테이너의 Blob을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-129">Anyone on the Internet can see blobs in a public container.</span></span> <span data-ttu-id="7d6a0-130">하지만 적절한 계정 선택키 또는 공유 액세스 서명이 있는 경우에만 수정하거나 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-130">However, you can modify or delete them only if you have the appropriate account access key or a shared access signature.</span></span>
+<span data-ttu-id="6df34-129">Hello 인터넷에서 모든 공용 컨테이너의 blob를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-129">Anyone on hello Internet can see blobs in a public container.</span></span> <span data-ttu-id="6df34-130">그러나 수정 하거나 hello 적절 한 계정 액세스 키 또는 공유 액세스 서명이 있는 경우에 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-130">However, you can modify or delete them only if you have hello appropriate account access key or a shared access signature.</span></span>
 
-## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="7d6a0-131">컨테이너에 Blob 업로드</span><span class="sxs-lookup"><span data-stu-id="7d6a0-131">Upload a blob into a container</span></span>
-<span data-ttu-id="7d6a0-132">Azure Blob 저장소는 블록 Blob 및 페이지 Blob을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-132">Azure Blob Storage supports block blobs and page blobs.</span></span>  <span data-ttu-id="7d6a0-133">대부분의 경우에는 블록 Blob을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-133">In most cases, block blob is the recommended type to use.</span></span>
+## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="6df34-131">컨테이너에 Blob 업로드</span><span class="sxs-lookup"><span data-stu-id="6df34-131">Upload a blob into a container</span></span>
+<span data-ttu-id="6df34-132">Azure Blob Storage는 블록 Blob 및 페이지 Blob을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-132">Azure Blob Storage supports block blobs and page blobs.</span></span>  <span data-ttu-id="6df34-133">대부분의 경우에서 블록 blob는 형식 toouse 권장 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-133">In most cases, block blob is hello recommended type toouse.</span></span>
 
-<span data-ttu-id="7d6a0-134">블록 Blob에 파일을 업로드하려면 컨테이너 참조를 가져온 다음 이 참조를 사용하여 블록 Blob 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-134">To upload a file to a block blob, get a container reference and use it to get a block blob reference.</span></span> <span data-ttu-id="7d6a0-135">Blob 참조가 있는 경우 **UploadFromStream** 메서드를 호출하여 데이터 스트림을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-135">Once you have a blob reference, you can upload any stream of data to it by calling the **UploadFromStream** method.</span></span> <span data-ttu-id="7d6a0-136">이 작업은 Blob이 없는 경우 새로 만들고, Blob이 있는 경우 덮어씁니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-136">This operation creates the blob if it didn't previously exist, or overwrites it if it does exist.</span></span>
+<span data-ttu-id="6df34-134">tooupload 파일 tooa 블록 blob 컨테이너 참조를 가져오고 tooget 블록 blob 참조를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-134">tooupload a file tooa block blob, get a container reference and use it tooget a block blob reference.</span></span> <span data-ttu-id="6df34-135">Hello를 호출 하 여 모든 스트림 데이터 tooit의 blob 참조를 만든 후 업로드할 수 있습니다 **UploadFromStream** 메서드.</span><span class="sxs-lookup"><span data-stu-id="6df34-135">Once you have a blob reference, you can upload any stream of data tooit by calling hello **UploadFromStream** method.</span></span> <span data-ttu-id="6df34-136">이 작업은 이전에 없던 되거나 파일이 있으면 덮어씁니다 hello blob을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-136">This operation creates hello blob if it didn't previously exist, or overwrites it if it does exist.</span></span>
 
-<span data-ttu-id="7d6a0-137">다음 예제에서는 컨테이너에 Blob을 업로드하는 방법을 보여 주며, 컨테이너가 이미 만들어져 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-137">The following example shows how to upload a blob into a container and assumes that the container was already created.</span></span>
+<span data-ttu-id="6df34-137">hello 방법을 예제와 다음 tooupload blob 컨테이너에 이미 해당 hello 컨테이너를 만든 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-137">hello following example shows how tooupload a blob into a container and assumes that hello container was already created.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the blob client.
+// Create hello blob client.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve reference to a previously created container.
+// Retrieve reference tooa previously created container.
 CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-// Retrieve reference to a blob named "myblob".
+// Retrieve reference tooa blob named "myblob".
 CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
 
-// Create or overwrite the "myblob" blob with contents from a local file.
+// Create or overwrite hello "myblob" blob with contents from a local file.
 using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
 {
     blockBlob.UploadFromStream(fileStream);
 }
 ```
 
-## <a name="list-the-blobs-in-a-container"></a><span data-ttu-id="7d6a0-138">컨테이너의 Blob 나열</span><span class="sxs-lookup"><span data-stu-id="7d6a0-138">List the blobs in a container</span></span>
-<span data-ttu-id="7d6a0-139">컨테이너의 Blob을 나열하려면 먼저 컨테이너 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-139">To list the blobs in a container, first get a container reference.</span></span> <span data-ttu-id="7d6a0-140">컨테이너의 **ListBlobs** 메서드를 사용하여 컨테이너 내의 Blob 및/또는 디렉터리를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-140">You can then use the container's **ListBlobs** method to retrieve the blobs and/or directories within it.</span></span> <span data-ttu-id="7d6a0-141">반환된 **IListBlobItem**에 대한 풍부한 속성 및 메서드 집합에 액세스하려면 **CloudBlockBlob**, **CloudPageBlob** 또는 **CloudBlobDirectory** 개체로 캐스트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-141">To access the  rich set of properties and methods for a returned **IListBlobItem**, you must cast it to a **CloudBlockBlob**, **CloudPageBlob**, or **CloudBlobDirectory** object.</span></span> <span data-ttu-id="7d6a0-142">형식을 알 수 없는 경우 형식 검사를 사용하여 캐스트할 형식을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-142">If the type is unknown, you can use a type check to determine which to cast it to.</span></span> <span data-ttu-id="7d6a0-143">다음 코드에서는 _photos_ 컨테이너에 있는 각 항목의 URI를 검색하고 출력하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-143">The following code demonstrates how to retrieve and output the URI of each item in the _photos_ container:</span></span>
+## <a name="list-hello-blobs-in-a-container"></a><span data-ttu-id="6df34-138">컨테이너에서 hello blob 나열</span><span class="sxs-lookup"><span data-stu-id="6df34-138">List hello blobs in a container</span></span>
+<span data-ttu-id="6df34-139">먼저 toolist hello에서에서 컨테이너의 blob를 컨테이너 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-139">toolist hello blobs in a container, first get a container reference.</span></span> <span data-ttu-id="6df34-140">Hello 컨테이너를 사용 하 여 있습니다 **ListBlobs** tooretrieve hello blob 메서드 및/또는 디렉터리에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-140">You can then use hello container's **ListBlobs** method tooretrieve hello blobs and/or directories within it.</span></span> <span data-ttu-id="6df34-141">tooaccess 다양 한 속성 및 메서드는 반환 된 작업에 대 한 hello **IListBlobItem**, tooa 캐스팅 해야 **CloudBlockBlob**, **CloudPageBlob**, 또는  **CloudBlobDirectory** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-141">tooaccess hello  rich set of properties and methods for a returned **IListBlobItem**, you must cast it tooa **CloudBlockBlob**, **CloudPageBlob**, or **CloudBlobDirectory** object.</span></span> <span data-ttu-id="6df34-142">Hello 종류를 알 수 없는 경우 사용할 수 있습니다 형식 검사 toodetermine 어떤 toocast 되 게 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-142">If hello type is unknown, you can use a type check toodetermine which toocast it to.</span></span> <span data-ttu-id="6df34-143">hello 다음 코드에서는 방법을 tooretrieve 및 출력 hello hello의 각 항목의 URI _사진_ 컨테이너:</span><span class="sxs-lookup"><span data-stu-id="6df34-143">hello following code demonstrates how tooretrieve and output hello URI of each item in hello _photos_ container:</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the blob client.
+// Create hello blob client.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve reference to a previously created container.
+// Retrieve reference tooa previously created container.
 CloudBlobContainer container = blobClient.GetContainerReference("photos");
 
-// Loop over items within the container and output the length and URI.
+// Loop over items within hello container and output hello length and URI.
 foreach (IListBlobItem item in container.ListBlobs(null, false))
 {
     if (item.GetType() == typeof(CloudBlockBlob))
@@ -166,9 +166,9 @@ foreach (IListBlobItem item in container.ListBlobs(null, false))
 }
 ```
 
-<span data-ttu-id="7d6a0-144">Blob 이름에서 경로 정보를 포함하여 기존 파일 시스템과 같이 구성하고 트래버스할 수 있는 가상 디렉터리 구조를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-144">By including path information in blob names, you can create a virtual directory structure you can organize and traverse as you would a traditional file system.</span></span> <span data-ttu-id="7d6a0-145">디렉터리 구조는 가상만 해당됩니다. 컨테이너 및 Blob만이 Blob Storage에서 사용할 수 있는 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-145">The directory structure is virtual only--the only resources available in Blob storage are containers and blobs.</span></span> <span data-ttu-id="7d6a0-146">하지만 저장소 클라이언트 라이브러리는 **CloudBlobDirectory** 개체를 제공하여 가상 디렉터리를 참조하며 이렇게 함으로써 구성된 Blob으로 작업하는 과정을 단순화합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-146">However, the storage client library offers a **CloudBlobDirectory** object to refer to a virtual directory and simplify the process of working with blobs that are organized in this way.</span></span>
+<span data-ttu-id="6df34-144">Blob 이름에서 경로 정보를 포함하여 기존 파일 시스템과 같이 구성하고 트래버스할 수 있는 가상 디렉터리 구조를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-144">By including path information in blob names, you can create a virtual directory structure you can organize and traverse as you would a traditional file system.</span></span> <span data-ttu-id="6df34-145">hello 디렉터리 구조는 가상 Blob 저장소에 사용할 수 있는 리소스 컨테이너 및 blob에만-hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-145">hello directory structure is virtual only--hello only resources available in Blob storage are containers and blobs.</span></span> <span data-ttu-id="6df34-146">그러나 제공 hello 저장소 클라이언트 라이브러리는 **CloudBlobDirectory** toorefer tooa 가상 디렉터리 개체를 이러한 방식으로 구성 된 blob을 사용 하 여 처리 hello 프로세스를 간소화 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-146">However, hello storage client library offers a **CloudBlobDirectory** object toorefer tooa virtual directory and simplify hello process of working with blobs that are organized in this way.</span></span>
 
-<span data-ttu-id="7d6a0-147">예를 들어 *photos*라는 컨테이너에 있는 다음 블록 Blob 집합을 고려합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-147">For example, consider the following set of block blobs in a container named *photos*:</span></span>
+<span data-ttu-id="6df34-147">예를 들어 라는 컨테이너에 블록 blob의 집합을 추적 하는 hello *사진*:</span><span class="sxs-lookup"><span data-stu-id="6df34-147">For example, consider hello following set of block blobs in a container named *photos*:</span></span>
 
 ```
 photo1.jpg
@@ -181,7 +181,7 @@ photo1.jpg
 2011/photo7.jpg
 ```
 
-<span data-ttu-id="7d6a0-148">이전 코드 조각과 같이 *photos* 컨테이너에서 **ListBlobs**를 호출하면 계층적 목록이 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-148">When you call **ListBlobs** on the *photos* container (as in the preceding code snippet), a hierarchical listing is returned.</span></span> <span data-ttu-id="7d6a0-149">컨테이너에서 각각 디렉터리와 Blob을 나타내는 **CloudBlobDirectory** 및 **CloudBlockBlob** 개체가 모두 이 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-149">It contains both **CloudBlobDirectory** and **CloudBlockBlob** objects, representing the directories and blobs in the container, respectively.</span></span> <span data-ttu-id="7d6a0-150">결과 출력은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-150">The resulting output looks like:</span></span>
+<span data-ttu-id="6df34-148">호출 하는 경우 **ListBlobs** hello에 *사진* 컨테이너 (예: hello 코드 조각 앞), 계층적 목록을 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-148">When you call **ListBlobs** on hello *photos* container (as in hello preceding code snippet), a hierarchical listing is returned.</span></span> <span data-ttu-id="6df34-149">둘 다 포함 되어 **CloudBlobDirectory** 및 **CloudBlockBlob** hello 디렉터리 및 hello 컨테이너의 blob를 각각 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-149">It contains both **CloudBlobDirectory** and **CloudBlockBlob** objects, representing hello directories and blobs in hello container, respectively.</span></span> <span data-ttu-id="6df34-150">hello 결과 출력은 같습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-150">hello resulting output looks like:</span></span>
 
 ```
 Directory: https://<accountname>.blob.core.windows.net/photos/2010/
@@ -189,17 +189,17 @@ Directory: https://<accountname>.blob.core.windows.net/photos/2011/
 Block blob of length 505623: https://<accountname>.blob.core.windows.net/photos/photo1.jpg
 ```
 
-<span data-ttu-id="7d6a0-151">선택적으로 **ListBlobs** 메서드의 **UseFlatBlobListing** 매개 변수를 **true**로 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-151">Optionally, you can set the **UseFlatBlobListing** parameter of the **ListBlobs** method to **true**.</span></span> <span data-ttu-id="7d6a0-152">이 경우에 컨테이너의 모든 Blob은 **CloudBlockBlob** 개체로 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-152">In this case, every blob in the container is returned as a **CloudBlockBlob** object.</span></span> <span data-ttu-id="7d6a0-153">플랫 목록을 반환하는 **ListBlobs** 에 대한 호출은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-153">The call to **ListBlobs** to return a flat listing looks like this:</span></span>
+<span data-ttu-id="6df34-151">필요에 따라 hello를 설정할 수 있습니다 **UseFlatBlobListing** hello의 매개 변수 **ListBlobs** 메서드를 **true**합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-151">Optionally, you can set hello **UseFlatBlobListing** parameter of hello **ListBlobs** method to **true**.</span></span> <span data-ttu-id="6df34-152">Hello 컨테이너의 모든 blob로 반환 되는 경우에 **CloudBlockBlob** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-152">In this case, every blob in hello container is returned as a **CloudBlockBlob** object.</span></span> <span data-ttu-id="6df34-153">호출을 너무 hello**ListBlobs** tooreturn 플랫 목록은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-153">hello call too**ListBlobs** tooreturn a flat listing looks like this:</span></span>
 
 ```csharp
-// Loop over items within the container and output the length and URI.
+// Loop over items within hello container and output hello length and URI.
 foreach (IListBlobItem item in container.ListBlobs(null, true))
 {
     ...
 }
 ```
 
-<span data-ttu-id="7d6a0-154">결과는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-154">and the results look like this:</span></span>
+<span data-ttu-id="6df34-154">및 hello 결과 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-154">and hello results look like this:</span></span>
 
 ```
 Block blob of length 4: https://<accountname>.blob.core.windows.net/photos/2010/architecture/description.txt
@@ -212,44 +212,44 @@ Block blob of length 399751: https://<accountname>.blob.core.windows.net/photos/
 Block blob of length 505623: https://<accountname>.blob.core.windows.net/photos/photo1.jpg
 ```
 
-## <a name="download-blobs"></a><span data-ttu-id="7d6a0-155">Blob 다운로드</span><span class="sxs-lookup"><span data-stu-id="7d6a0-155">Download blobs</span></span>
-<span data-ttu-id="7d6a0-156">Blob을 다운로드하려면 먼저 Blob 참조를 검색한 다음 **DownloadToStream** 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-156">To download blobs, first retrieve a blob reference and then call the **DownloadToStream** method.</span></span> <span data-ttu-id="7d6a0-157">다음 예제에서는 **DownloadToStream** 메서드를 사용하여 Blob 콘텐츠를 스트림 개체로 전송한 다음 이 개체를 로컬 파일에 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-157">The following example uses the **DownloadToStream** method to transfer the blob contents to a stream object that you can then persist to a local file.</span></span>
+## <a name="download-blobs"></a><span data-ttu-id="6df34-155">Blob 다운로드</span><span class="sxs-lookup"><span data-stu-id="6df34-155">Download blobs</span></span>
+<span data-ttu-id="6df34-156">toodownload blob을 먼저 blob 참조를 검색 하 고 hello 호출 **DownloadToStream** 메서드.</span><span class="sxs-lookup"><span data-stu-id="6df34-156">toodownload blobs, first retrieve a blob reference and then call hello **DownloadToStream** method.</span></span> <span data-ttu-id="6df34-157">hello 다음 예제에서는 hello **DownloadToStream** 메서드 tootransfer hello blob 내용 tooa stream 개체 다음 tooa 로컬 파일 유지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-157">hello following example uses hello **DownloadToStream** method tootransfer hello blob contents tooa stream object that you can then persist tooa local file.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the blob client.
+// Create hello blob client.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve reference to a previously created container.
+// Retrieve reference tooa previously created container.
 CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-// Retrieve reference to a blob named "photo1.jpg".
+// Retrieve reference tooa blob named "photo1.jpg".
 CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
 
-// Save blob contents to a file.
+// Save blob contents tooa file.
 using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
 {
     blockBlob.DownloadToStream(fileStream);
 }
 ```
 
-<span data-ttu-id="7d6a0-158">**DownloadToStream** 메서드를 사용하여 Blob 콘텐츠를 텍스트 문자열로 다운로드할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-158">You can also use the **DownloadToStream** method to download the contents of a blob as a text string.</span></span>
+<span data-ttu-id="6df34-158">Hello를 사용할 수도 있습니다 **DownloadToStream** 텍스트 문자열로 blob 내용의 toodownload hello 메서드.</span><span class="sxs-lookup"><span data-stu-id="6df34-158">You can also use hello **DownloadToStream** method toodownload hello contents of a blob as a text string.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the blob client.
+// Create hello blob client.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve reference to a previously created container.
+// Retrieve reference tooa previously created container.
 CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-// Retrieve reference to a blob named "myblob.txt"
+// Retrieve reference tooa blob named "myblob.txt"
 CloudBlockBlob blockBlob2 = container.GetBlockBlobReference("myblob.txt");
 
 string text;
@@ -260,49 +260,49 @@ using (var memoryStream = new MemoryStream())
 }
 ```
 
-## <a name="delete-blobs"></a><span data-ttu-id="7d6a0-159">Blob 삭제</span><span class="sxs-lookup"><span data-stu-id="7d6a0-159">Delete blobs</span></span>
-<span data-ttu-id="7d6a0-160">Blob을 삭제하려면 먼저 Blob 참조를 가져온 다음 **Delete** 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-160">To delete a blob, first get a blob reference and then call the **Delete** method on it.</span></span>
+## <a name="delete-blobs"></a><span data-ttu-id="6df34-159">Blob 삭제</span><span class="sxs-lookup"><span data-stu-id="6df34-159">Delete blobs</span></span>
+<span data-ttu-id="6df34-160">toodelete blob blob 참조를 먼저 가져온 고 호출 하 여 **삭제** 메서드를 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-160">toodelete a blob, first get a blob reference and then call the **Delete** method on it.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the blob client.
+// Create hello blob client.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve reference to a previously created container.
+// Retrieve reference tooa previously created container.
 CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-// Retrieve reference to a blob named "myblob.txt".
+// Retrieve reference tooa blob named "myblob.txt".
 CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
 
-// Delete the blob.
+// Delete hello blob.
 blockBlob.Delete();
 ```
 
-## <a name="list-blobs-in-pages-asynchronously"></a><span data-ttu-id="7d6a0-161">여러 페이지에서 비동기식으로 Blob 나열</span><span class="sxs-lookup"><span data-stu-id="7d6a0-161">List blobs in pages asynchronously</span></span>
-<span data-ttu-id="7d6a0-162">많은 수의 Blob을 나열하거나 한 번의 나열 작업에서 반환되는 결과 수를 제어하려는 경우에는 여러 결과 페이지에 Blob을 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-162">If you are listing a large number of blobs, or you want to control the number of results you return in one listing operation, you can list blobs in pages of results.</span></span> <span data-ttu-id="7d6a0-163">이 예제에서는 여러 페이지에서 비동기식으로 결과를 반환하는 방법을 보여 주므로 큰 결과 집합이 반환되도록 기다리는 동안 실행이 차단되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-163">This example shows how to return results in pages asynchronously, so that execution is not blocked while waiting to return a large set of results.</span></span>
+## <a name="list-blobs-in-pages-asynchronously"></a><span data-ttu-id="6df34-161">여러 페이지에서 비동기식으로 Blob 나열</span><span class="sxs-lookup"><span data-stu-id="6df34-161">List blobs in pages asynchronously</span></span>
+<span data-ttu-id="6df34-162">많은 수의 blob 나열 하거나 하나의 나열 작업에서 반환 하는 결과 toocontrol hello 수, 결과의 페이지 blob을 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-162">If you are listing a large number of blobs, or you want toocontrol hello number of results you return in one listing operation, you can list blobs in pages of results.</span></span> <span data-ttu-id="6df34-163">이 예제에서는 표시 방법을 tooreturn 결과 페이지에서 비동기적으로 하 여 실행 tooreturn 다양 한 결과 기다리는 동안 차단 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-163">This example shows how tooreturn results in pages asynchronously, so that execution is not blocked while waiting tooreturn a large set of results.</span></span>
 
-<span data-ttu-id="7d6a0-164">이 예제에서는 플랫 Blob 나열을 보여 주지만 **ListBlobsSegmentedAsync** 메서드의 _useFlatBlobListing_ 매개 변수를 _false_로 설정하여 계층적 나열을 수행할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-164">This example shows a flat blob listing, but you can also perform a hierarchical listing, by setting the _useFlatBlobListing_ parameter of the **ListBlobsSegmentedAsync** method to _false_.</span></span>
+<span data-ttu-id="6df34-164">이 예에서는 플랫 blob을 나열 하지만 hello 설정 하 여 계층적 목록을 수행할 수도 있습니다 _useFlatBlobListing_ hello의 매개 변수 **ListBlobsSegmentedAsync** 메서드 too_false_ 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-164">This example shows a flat blob listing, but you can also perform a hierarchical listing, by setting hello _useFlatBlobListing_ parameter of hello **ListBlobsSegmentedAsync** method too_false_.</span></span>
 
-<span data-ttu-id="7d6a0-165">샘플 메서드는 비동기 메서드를 호출하므로 앞에 _async_ 키워드를 추가해야 하며 **Task** 개체를 반환해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-165">Because the sample method calls an asynchronous method, it must be prefaced with the _async_ keyword, and it must return a **Task** object.</span></span> <span data-ttu-id="7d6a0-166">**ListBlobsSegmentedAsync** 메서드에 대해 지정된 await 키워드는 나열 작업이 완료될 때까지 샘플 메서드의 실행을 일시 중단합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-166">The await keyword specified for the **ListBlobsSegmentedAsync** method suspends execution of the sample method until the listing task completes.</span></span>
+<span data-ttu-id="6df34-165">앞 hello로 해야 hello 예제 메서드는 비동기 메서드를 호출 하기 때문에 _비동기_ 키워드 및이 반환 해야 합니다는 **작업** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-165">Because hello sample method calls an asynchronous method, it must be prefaced with hello _async_ keyword, and it must return a **Task** object.</span></span> <span data-ttu-id="6df34-166">hello await 키워드 hello에 대 한 지정 **ListBlobsSegmentedAsync** 메서드 hello 목록 작업이 완료 될 때까지 hello 샘플 메서드의 실행을 일시 중단 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-166">hello await keyword specified for hello **ListBlobsSegmentedAsync** method suspends execution of hello sample method until hello listing task completes.</span></span>
 
 ```csharp
 async public static Task ListBlobsSegmentedInFlatListing(CloudBlobContainer container)
 {
-    //List blobs to the console window, with paging.
+    //List blobs toohello console window, with paging.
     Console.WriteLine("List blobs in pages:");
 
     int i = 0;
     BlobContinuationToken continuationToken = null;
     BlobResultSegment resultSegment = null;
 
-    //Call ListBlobsSegmentedAsync and enumerate the result segment returned, while the continuation token is non-null.
-    //When the continuation token is null, the last page has been returned and execution can exit the loop.
+    //Call ListBlobsSegmentedAsync and enumerate hello result segment returned, while hello continuation token is non-null.
+    //When hello continuation token is null, hello last page has been returned and execution can exit hello loop.
     do
     {
-        //This overload allows control of the page size. You can return all remaining results by passing null for the maxResults parameter,
+        //This overload allows control of hello page size. You can return all remaining results by passing null for hello maxResults parameter,
         //or by calling a different overload.
         resultSegment = await container.ListBlobsSegmentedAsync("", true, BlobListingDetails.All, 10, continuationToken, null, null);
         if (resultSegment.Results.Count<IListBlobItem>() > 0) { Console.WriteLine("Page {0}:", ++i); }
@@ -312,39 +312,39 @@ async public static Task ListBlobsSegmentedInFlatListing(CloudBlobContainer cont
         }
         Console.WriteLine();
 
-        //Get the continuation token.
+        //Get hello continuation token.
         continuationToken = resultSegment.ContinuationToken;
     }
     while (continuationToken != null);
 }
 ```
 
-## <a name="writing-to-an-append-blob"></a><span data-ttu-id="7d6a0-167">추가 Blob에 쓰기</span><span class="sxs-lookup"><span data-stu-id="7d6a0-167">Writing to an append blob</span></span>
-<span data-ttu-id="7d6a0-168">추가 Blob은 로깅 등의 추가 작업에 최적화되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-168">An append blob is optimized for append operations, such as logging.</span></span> <span data-ttu-id="7d6a0-169">블록 Blob과 마찬가지로 추가 Blob은 블록으로 구성되지만 추가 Blob에 새 블록을 추가할 때 항상 Blob 끝에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-169">Like a block blob, an append blob is comprised of blocks, but when you add a new block to an append blob, it is always appended to the end of the blob.</span></span> <span data-ttu-id="7d6a0-170">추가 Blob의 기존 블록을 업데이트하거나 삭제할 수는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-170">You cannot update or delete an existing block in an append blob.</span></span> <span data-ttu-id="7d6a0-171">블록 Blob과 달리 추가 Blob의 블록 ID는 노출되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-171">The block IDs for an append blob are not exposed as they are for a block blob.</span></span>
+## <a name="writing-tooan-append-blob"></a><span data-ttu-id="6df34-167">쓰기 tooan 추가 blob</span><span class="sxs-lookup"><span data-stu-id="6df34-167">Writing tooan append blob</span></span>
+<span data-ttu-id="6df34-168">추가 Blob은 로깅 등의 추가 작업에 최적화되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-168">An append blob is optimized for append operations, such as logging.</span></span> <span data-ttu-id="6df34-169">블록 blob와 같은 추가 blob는 블록으로 구성 됩니다 이지만 새 블록 tooan 추가 blob에 추가 하면 항상 hello blob의 추가 toohello 종료 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-169">Like a block blob, an append blob is comprised of blocks, but when you add a new block tooan append blob, it is always appended toohello end of hello blob.</span></span> <span data-ttu-id="6df34-170">추가 Blob의 기존 블록을 업데이트하거나 삭제할 수는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-170">You cannot update or delete an existing block in an append blob.</span></span> <span data-ttu-id="6df34-171">추가 blob에 대 한 hello 블록 Id에는 블록 blob으로 노출 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-171">hello block IDs for an append blob are not exposed as they are for a block blob.</span></span>
 
-<span data-ttu-id="7d6a0-172">추가 Blob의 각 블록은 최대 4MB까지 다양한 크기일 수 있으며, 추가 Blob 하나에 최대 50,000개의 블록이 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-172">Each block in an append blob can be a different size, up to a maximum of 4 MB, and an append blob can include a maximum of 50,000 blocks.</span></span> <span data-ttu-id="7d6a0-173">따라서 추가 Blob의 최대 크기는 195GB(4MB X 50,000개 블록)보다 약간 더 큽니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-173">The maximum size of an append blob is therefore slightly more than 195 GB (4 MB X 50,000 blocks).</span></span>
+<span data-ttu-id="6df34-172">추가 blob의 각 블록 tooa 최대 4MB, 위로 크기가 다양할 수 있습니다 및 추가 blob는 최대 50, 000 블록을 포함할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-172">Each block in an append blob can be a different size, up tooa maximum of 4 MB, and an append blob can include a maximum of 50,000 blocks.</span></span> <span data-ttu-id="6df34-173">hello 추가 blob의 최대 크기 (4 MB X 50, 000 블록) 195 GB 보다 조금 더 큰 되므로 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-173">hello maximum size of an append blob is therefore slightly more than 195 GB (4 MB X 50,000 blocks).</span></span>
 
-<span data-ttu-id="7d6a0-174">아래 예제에서는 새 추가 Blob을 만들고 간단한 로깅 작업을 시뮬레이트하여 일부 데이터를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-174">The example below creates a new append blob and appends some data to it, simulating a simple logging operation.</span></span>
+<span data-ttu-id="6df34-174">hello 감시할 새 blob를 만들고 간단한 로깅 작업을 시뮬레이션 일부 데이터 tooit 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-174">hello example below creates a new append blob and appends some data tooit, simulating a simple logging operation.</span></span>
 
 ```csharp
-//Parse the connection string for the storage account.
+//Parse hello connection string for hello storage account.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-//Create service client for credentialed access to the Blob service.
+//Create service client for credentialed access toohello Blob service.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-//Get a reference to a container.
+//Get a reference tooa container.
 CloudBlobContainer container = blobClient.GetContainerReference("my-append-blobs");
 
-//Create the container if it does not already exist.
+//Create hello container if it does not already exist.
 container.CreateIfNotExists();
 
-//Get a reference to an append blob.
+//Get a reference tooan append blob.
 CloudAppendBlob appendBlob = container.GetAppendBlobReference("append-blob.log");
 
-//Create the append blob. Note that if the blob already exists, the CreateOrReplace() method will overwrite it.
-//You can check whether the blob exists to avoid overwriting it by using CloudAppendBlob.Exists().
+//Create hello append blob. Note that if hello blob already exists, hello CreateOrReplace() method will overwrite it.
+//You can check whether hello blob exists tooavoid overwriting it by using CloudAppendBlob.Exists().
 appendBlob.CreateOrReplace();
 
 int numBlocks = 10;
@@ -354,50 +354,50 @@ Random rnd = new Random();
 byte[] bytes = new byte[numBlocks];
 rnd.NextBytes(bytes);
 
-//Simulate a logging operation by writing text data and byte data to the end of the append blob.
+//Simulate a logging operation by writing text data and byte data toohello end of hello append blob.
 for (int i = 0; i < numBlocks; i++)
 {
     appendBlob.AppendText(String.Format("Timestamp: {0:u} \tLog Entry: {1}{2}",
         DateTime.UtcNow, bytes[i], Environment.NewLine));
 }
 
-//Read the append blob to the console window.
+//Read hello append blob toohello console window.
 Console.WriteLine(appendBlob.DownloadText());
 ```
 
-<span data-ttu-id="7d6a0-175">세 가지 Blob 유형의 차이점에 대한 자세한 내용은 [블록 Blob, 페이지 Blob 및 추가 Blob 이해](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-175">See [Understanding Block Blobs, Page Blobs, and Append Blobs](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) for more information about the differences between the three types of blobs.</span></span>
+<span data-ttu-id="6df34-175">참조 [이해 블록 Blob, 페이지 Blob 및 Blob 추가](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) hello 차이 hello 세 가지 유형의 blob에 대 한 자세한 내용은 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-175">See [Understanding Block Blobs, Page Blobs, and Append Blobs](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) for more information about hello differences between hello three types of blobs.</span></span>
 
-## <a name="managing-security-for-blobs"></a><span data-ttu-id="7d6a0-176">Blob 보안 관리</span><span class="sxs-lookup"><span data-stu-id="7d6a0-176">Managing security for blobs</span></span>
-<span data-ttu-id="7d6a0-177">기본적으로 Azure 저장소는 데이터 액세스를 계정 액세스 키를 보유한 계정 소유자로 제한하여 데이터를 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-177">By default, Azure Storage keeps your data secure by limiting access to the account owner, who is in possession of the account access keys.</span></span> <span data-ttu-id="7d6a0-178">저장소 계정의 Blob 데이터를 공유해야 할 경우 계정 액세스 키의 보안을 손상시키지 않고 공유하는 것이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-178">When you need to share blob data in your storage account, it is important to do so without compromising the security of your account access keys.</span></span> <span data-ttu-id="7d6a0-179">또한 Blob 데이터를 암호화하여 유선 및 Azure 저장소에서 데이터가 안전하게 이동하게 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-179">Additionally, you can encrypt blob data to ensure that it is secure going over the wire and in Azure Storage.</span></span>
+## <a name="managing-security-for-blobs"></a><span data-ttu-id="6df34-176">Blob 보안 관리</span><span class="sxs-lookup"><span data-stu-id="6df34-176">Managing security for blobs</span></span>
+<span data-ttu-id="6df34-177">기본적으로 Azure 저장소 데이터 보안 유지 hello 계정 액세스 키를 소유한 인 액세스 toohello 계정 소유자를 제한 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-177">By default, Azure Storage keeps your data secure by limiting access toohello account owner, who is in possession of hello account access keys.</span></span> <span data-ttu-id="6df34-178">저장소 계정에 tooshare blob 데이터를 필요한 경우에 중요 한 toodo 계정 액세스 키의 hello 보안을 유지 하면서 너무 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-178">When you need tooshare blob data in your storage account, it is important toodo so without compromising hello security of your account access keys.</span></span> <span data-ttu-id="6df34-179">또한 보안 hello 유선으로 및 Azure 저장소에 이동 하는 blob 데이터 tooensure를 암호화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-179">Additionally, you can encrypt blob data tooensure that it is secure going over hello wire and in Azure Storage.</span></span>
 
 [!INCLUDE [storage-account-key-note-include](../../includes/storage-account-key-note-include.md)]
 
-### <a name="controlling-access-to-blob-data"></a><span data-ttu-id="7d6a0-180">Blob 데이터에 대한 액세스 제어</span><span class="sxs-lookup"><span data-stu-id="7d6a0-180">Controlling access to blob data</span></span>
-<span data-ttu-id="7d6a0-181">기본적으로 저장소 계정의 Blob 데이터는 저장소 계정 소유자만 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-181">By default, the blob data in your storage account is accessible only to storage account owner.</span></span> <span data-ttu-id="7d6a0-182">기본적으로 Blob 저장소에 대한 요청을 인증할 때는 계정 액세스 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-182">Authenticating requests against Blob storage requires the account access key by default.</span></span> <span data-ttu-id="7d6a0-183">그러나 다른 사용자에게 특정 Blob 데이터를 사용 가능하게 제공하고자 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-183">However, you may wish to make certain blob data available to other users.</span></span> <span data-ttu-id="7d6a0-184">다음 두 가지 옵션을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-184">You have two options:</span></span>
+### <a name="controlling-access-tooblob-data"></a><span data-ttu-id="6df34-180">Tooblob 데이터 액세스를 제어합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-180">Controlling access tooblob data</span></span>
+<span data-ttu-id="6df34-181">기본적으로 hello blob 데이터 저장소 계정에 액세스할 수 있는 유일한 toostorage 계정 소유자는 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-181">By default, hello blob data in your storage account is accessible only toostorage account owner.</span></span> <span data-ttu-id="6df34-182">기본적으로 hello 계정 액세스 키를 필요 Blob 저장소에 대 한 요청을 인증 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-182">Authenticating requests against Blob storage requires hello account access key by default.</span></span> <span data-ttu-id="6df34-183">그러나 toomake 수도 특정 blob 데이터 tooother 사용할 수 있는 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-183">However, you may wish toomake certain blob data available tooother users.</span></span> <span data-ttu-id="6df34-184">다음 두 가지 옵션을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-184">You have two options:</span></span>
 
-* <span data-ttu-id="7d6a0-185">**익명 액세스:** 컨테이너나 Blob를 공개 제공하여 익명 액세스를 구현할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-185">**Anonymous access:** You can make a container or its blobs publicly available for anonymous access.</span></span> <span data-ttu-id="7d6a0-186">자세한 내용은 [컨테이너 및 Blob에 대한 익명읽기 권한 관리](storage-manage-access-to-resources.md) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-186">See [Manage anonymous read access to containers and blobs](storage-manage-access-to-resources.md) for more information.</span></span>
-* <span data-ttu-id="7d6a0-187">**공유 액세스 서명:** 공유 액세스 서명(SAS)을 클라이언트에 제공할 수 있습니다. 여기서는 저장소 계정의 리소스에 대해 사용자가 지정한 권한과 간격으로 위임된 액세스를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-187">**Shared access signatures:** You can provide clients with a shared access signature (SAS), which provides delegated access to a resource in your storage account, with permissions that you specify and over an interval that you specify.</span></span> <span data-ttu-id="7d6a0-188">자세한 내용은 [SAS(공유 액세스 서명) 사용](storage-dotnet-shared-access-signature-part-1.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-188">See [Using Shared Access Signatures (SAS)](storage-dotnet-shared-access-signature-part-1.md) for more information.</span></span>
+* <span data-ttu-id="6df34-185">**익명 액세스:** 컨테이너나 Blob를 공개 제공하여 익명 액세스를 구현할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-185">**Anonymous access:** You can make a container or its blobs publicly available for anonymous access.</span></span> <span data-ttu-id="6df34-186">참조 [익명 읽기 권한을 toocontainers 및 blob 관리](storage-manage-access-to-resources.md) 자세한 정보에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-186">See [Manage anonymous read access toocontainers and blobs](storage-manage-access-to-resources.md) for more information.</span></span>
+* <span data-ttu-id="6df34-187">**공유 액세스 서명:** 지정 하는 권한으로 및 지정 된 간격으로 저장소 계정의 위임 된 액세스 tooa 리소스를 제공 하는 공유 액세스 서명 (SAS)으로 클라이언트를 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-187">**Shared access signatures:** You can provide clients with a shared access signature (SAS), which provides delegated access tooa resource in your storage account, with permissions that you specify and over an interval that you specify.</span></span> <span data-ttu-id="6df34-188">자세한 내용은 [SAS(공유 액세스 서명) 사용](storage-dotnet-shared-access-signature-part-1.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6df34-188">See [Using Shared Access Signatures (SAS)](storage-dotnet-shared-access-signature-part-1.md) for more information.</span></span>
 
-### <a name="encrypting-blob-data"></a><span data-ttu-id="7d6a0-189">Blob 데이터 암호화 </span><span class="sxs-lookup"><span data-stu-id="7d6a0-189">Encrypting blob data</span></span>
-<span data-ttu-id="7d6a0-190">Azure 저장소는 클라이언트와 서버 모두에서 Blob 데이터를 암호화합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-190">Azure Storage supports encrypting blob data both at the client and on the server:</span></span>
+### <a name="encrypting-blob-data"></a><span data-ttu-id="6df34-189">Blob 데이터 암호화 </span><span class="sxs-lookup"><span data-stu-id="6df34-189">Encrypting blob data</span></span>
+<span data-ttu-id="6df34-190">Azure 저장소 blob 데이터 hello 클라이언트와 서버 hello에 암호화를 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-190">Azure Storage supports encrypting blob data both at hello client and on hello server:</span></span>
 
-* <span data-ttu-id="7d6a0-191">**클라이언트 쪽 암호화:** NET용 Azure 저장소 클라이언트 라이브러리는 Azure 저장소에 업로드하기 전에 클라이언트 응용 프로그램 내부에서 데이터를 암호화하고 클라이언트로 다운로드하는 동안 데이터 암호를 해독하는 기능을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-191">**Client-side encryption:** The Storage Client Library for .NET supports encrypting data within client applications before uploading to Azure Storage, and decrypting data while downloading to the client.</span></span> <span data-ttu-id="7d6a0-192">라이브러리 또한 저장소 계정 키 관리를 위해 Azure 키 자격 증명 모음과의 통합을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-192">The library also supports integration with Azure Key Vault for storage account key management.</span></span> <span data-ttu-id="7d6a0-193">자세한 내용은 [Microsoft Azure 저장소용 .NET을 사용하는 클라이언트 쪽 암호화](storage-client-side-encryption.md) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-193">See [Client-Side Encryption with .NET for Microsoft Azure Storage](storage-client-side-encryption.md) for more information.</span></span> <span data-ttu-id="7d6a0-194">또한 [자습서: Microsoft Azure 저장소에서 Azure 주요 자격 증명 모음을 사용하여 Blob 암호화 및 해독](storage-encrypt-decrypt-blobs-key-vault.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-194">Also see [Tutorial: Encrypt and decrypt blobs in Microsoft Azure Storage using Azure Key Vault](storage-encrypt-decrypt-blobs-key-vault.md).</span></span>
-* <span data-ttu-id="7d6a0-195">**서버 쪽 암호화**: 이제 Azure 저장소에서는 서버 쪽 암호화를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-195">**Server-side encryption**: Azure Storage now supports server-side encryption.</span></span> <span data-ttu-id="7d6a0-196">[미사용 데이터에 대한 Azure 저장소 서비스 암호화(미리 보기)](storage-service-encryption.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-196">See [Azure Storage Service Encryption for Data at Rest (Preview)](storage-service-encryption.md).</span></span>
+* <span data-ttu-id="6df34-191">**클라이언트 쪽 암호화:** .NET tooAzure 저장소에 업로드 하 고 toohello 클라이언트를 다운로드 하는 동안 데이터를 해독 하기 전에 클라이언트 응용 프로그램 내에서 데이터를 암호화 지원에 대 한 저장소 클라이언트 라이브러리를 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-191">**Client-side encryption:** hello Storage Client Library for .NET supports encrypting data within client applications before uploading tooAzure Storage, and decrypting data while downloading toohello client.</span></span> <span data-ttu-id="6df34-192">hello 라이브러리는 또한 저장소 계정 키 관리에 대 한 Azure 키 자격 증명 모음 통합을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-192">hello library also supports integration with Azure Key Vault for storage account key management.</span></span> <span data-ttu-id="6df34-193">자세한 내용은 [Microsoft Azure 저장소용 .NET을 사용하는 클라이언트 쪽 암호화](storage-client-side-encryption.md) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6df34-193">See [Client-Side Encryption with .NET for Microsoft Azure Storage](storage-client-side-encryption.md) for more information.</span></span> <span data-ttu-id="6df34-194">또한 [자습서: Microsoft Azure 저장소에서 Azure 주요 자격 증명 모음을 사용하여 Blob 암호화 및 해독](storage-encrypt-decrypt-blobs-key-vault.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6df34-194">Also see [Tutorial: Encrypt and decrypt blobs in Microsoft Azure Storage using Azure Key Vault](storage-encrypt-decrypt-blobs-key-vault.md).</span></span>
+* <span data-ttu-id="6df34-195">**서버 쪽 암호화**: 이제 Azure 저장소에서는 서버 쪽 암호화를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-195">**Server-side encryption**: Azure Storage now supports server-side encryption.</span></span> <span data-ttu-id="6df34-196">[미사용 데이터에 대한 Azure 저장소 서비스 암호화(미리 보기)](storage-service-encryption.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6df34-196">See [Azure Storage Service Encryption for Data at Rest (Preview)](storage-service-encryption.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="7d6a0-197">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7d6a0-197">Next steps</span></span>
-<span data-ttu-id="7d6a0-198">이제 Blob 저장소의 기본 사항을 배웠으므로 다음 링크를 따라 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-198">Now that you've learned the basics of Blob storage, follow these links to learn more.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6df34-197">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6df34-197">Next steps</span></span>
+<span data-ttu-id="6df34-198">Blob 저장소의 기본 사항 hello를 알아보았습니다 했으므로 이러한 링크 toolearn 자세한 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-198">Now that you've learned hello basics of Blob storage, follow these links toolearn more.</span></span>
 
-### <a name="microsoft-azure-storage-explorer"></a><span data-ttu-id="7d6a0-199">Microsoft Azure 저장소 탐색기</span><span class="sxs-lookup"><span data-stu-id="7d6a0-199">Microsoft Azure Storage Explorer</span></span>
-* <span data-ttu-id="7d6a0-200">[Microsoft Azure Storage 탐색기(MASE)](../vs-azure-tools-storage-manage-with-storage-explorer.md)는 Windows, MacOS 및 Linux에서 Azure Storage 데이터로 시각적으로 작업할 수 있도록 해주는 Microsoft의 독립 실행형 무료 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="7d6a0-200">[Microsoft Azure Storage Explorer (MASE)](../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.</span></span>
+### <a name="microsoft-azure-storage-explorer"></a><span data-ttu-id="6df34-199">Microsoft Azure 저장소 탐색기</span><span class="sxs-lookup"><span data-stu-id="6df34-199">Microsoft Azure Storage Explorer</span></span>
+* <span data-ttu-id="6df34-200">[Microsoft Azure 저장소 탐색기 (MASE)](../vs-azure-tools-storage-manage-with-storage-explorer.md) toowork 시각적으로 Windows, macOS 등 및 Linux에서 Azure 저장소 데이터로 사용 하면 Microsoft에서 가능한 독립 실행형 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-200">[Microsoft Azure Storage Explorer (MASE)](../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you toowork visually with Azure Storage data on Windows, macOS, and Linux.</span></span>
 
-### <a name="blob-storage-samples"></a><span data-ttu-id="7d6a0-201">Blob 저장소 샘플</span><span class="sxs-lookup"><span data-stu-id="7d6a0-201">Blob storage samples</span></span>
-* [<span data-ttu-id="7d6a0-202">.NET에서 Azure Blob 저장소 시작</span><span class="sxs-lookup"><span data-stu-id="7d6a0-202">Getting Started with Azure Blob Storage in .NET</span></span>](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)
+### <a name="blob-storage-samples"></a><span data-ttu-id="6df34-201">Blob 저장소 샘플</span><span class="sxs-lookup"><span data-stu-id="6df34-201">Blob storage samples</span></span>
+* [<span data-ttu-id="6df34-202">.NET에서 Azure Blob 저장소 시작</span><span class="sxs-lookup"><span data-stu-id="6df34-202">Getting Started with Azure Blob Storage in .NET</span></span>](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)
 
-### <a name="blob-storage-reference"></a><span data-ttu-id="7d6a0-203">Blob 저장소 참조</span><span class="sxs-lookup"><span data-stu-id="7d6a0-203">Blob storage reference</span></span>
-* [<span data-ttu-id="7d6a0-204">Storage Client Library for .NET 참조</span><span class="sxs-lookup"><span data-stu-id="7d6a0-204">Storage Client Library for .NET reference</span></span>](https://msdn.microsoft.com/library/azure/mt347887.aspx)
-* [<span data-ttu-id="7d6a0-205">REST API 참조</span><span class="sxs-lookup"><span data-stu-id="7d6a0-205">REST API reference</span></span>](/rest/api/storageservices/azure-storage-services-rest-api-reference)
+### <a name="blob-storage-reference"></a><span data-ttu-id="6df34-203">Blob 저장소 참조</span><span class="sxs-lookup"><span data-stu-id="6df34-203">Blob storage reference</span></span>
+* [<span data-ttu-id="6df34-204">Storage Client Library for .NET 참조</span><span class="sxs-lookup"><span data-stu-id="6df34-204">Storage Client Library for .NET reference</span></span>](https://msdn.microsoft.com/library/azure/mt347887.aspx)
+* [<span data-ttu-id="6df34-205">REST API 참조</span><span class="sxs-lookup"><span data-stu-id="6df34-205">REST API reference</span></span>](/rest/api/storageservices/azure-storage-services-rest-api-reference)
 
-### <a name="conceptual-guides"></a><span data-ttu-id="7d6a0-206">개념적 지침</span><span class="sxs-lookup"><span data-stu-id="7d6a0-206">Conceptual guides</span></span>
-* [<span data-ttu-id="7d6a0-207">AzCopy 명령줄 유틸리티로 데이터 전송</span><span class="sxs-lookup"><span data-stu-id="7d6a0-207">Transfer data with the AzCopy command-line utility</span></span>](storage-use-azcopy.md)
-* [<span data-ttu-id="7d6a0-208">.NET용 파일 저장소 시작</span><span class="sxs-lookup"><span data-stu-id="7d6a0-208">Get started with File storage for .NET</span></span>](storage-dotnet-how-to-use-files.md)
-* [<span data-ttu-id="7d6a0-209">WebJob SDK를 사용하여 Azure Blob 저장소로 작업하는 방법</span><span class="sxs-lookup"><span data-stu-id="7d6a0-209">How to use Azure blob storage with the WebJobs SDK</span></span>](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
+### <a name="conceptual-guides"></a><span data-ttu-id="6df34-206">개념적 지침</span><span class="sxs-lookup"><span data-stu-id="6df34-206">Conceptual guides</span></span>
+* [<span data-ttu-id="6df34-207">Hello AzCopy 명령줄 유틸리티를 사용 하 여 데이터를 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="6df34-207">Transfer data with hello AzCopy command-line utility</span></span>](storage-use-azcopy.md)
+* [<span data-ttu-id="6df34-208">.NET용 파일 저장소 시작</span><span class="sxs-lookup"><span data-stu-id="6df34-208">Get started with File storage for .NET</span></span>](storage-dotnet-how-to-use-files.md)
+* [<span data-ttu-id="6df34-209">Toouse Azure blob 저장소 hello WebJobs SDK로 하는 방법</span><span class="sxs-lookup"><span data-stu-id="6df34-209">How toouse Azure blob storage with hello WebJobs SDK</span></span>](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)

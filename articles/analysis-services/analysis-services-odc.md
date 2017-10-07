@@ -1,6 +1,6 @@
 ---
-title: "Azure Analysis Services 서버에 연결할 .odc 파일 만들기 | Microsoft Docs"
-description: "Azure의 Analysis Services 서버에서 데이터에 연결하고 가져오기 위한 Office 데이터 연결 파일을 만드는 방법에 대해 알아봅니다."
+title: ".odc 파일 tooconnect tooan Azure Analysis Services 서버 aaaCreate | Microsoft Docs"
+description: "Office 데이터 연결 파일 tooconnect tooand toocreate Azure에서 Analysis Services 서버에서 데이터를 가져오기 하는 방법에 대해 알아봅니다."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: owend
-ms.openlocfilehash: 530f3b5c9e90cb45ffb6e12d0d08a35f8d687471
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9c8c8df23b17f19905d7ec51af4eb63eb995045e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-office-data-connection-file"></a><span data-ttu-id="dba79-103">Office 데이터 연결 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="dba79-103">Create an Office Data Connection file</span></span>
+# <a name="create-an-office-data-connection-file"></a><span data-ttu-id="67a56-103">Office 데이터 연결 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="67a56-103">Create an Office Data Connection file</span></span>
 
-<span data-ttu-id="dba79-104">이 문서의 정보는 Excel 2016 버전 번호 16.0.7369.2117 이하 또는 Excel 2013에서 Azure Analysis Services 서버에 연결하기 위한 Office 데이터 연결 파일을 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-104">Information in this article describes how you can create an Office Data Connection file to connect to an Azure Analysis Services server from Excel 2016 version number 16.0.7369.2117 or earlier, or Excel 2013.</span></span> <span data-ttu-id="dba79-105">업데이트된 [MSOLAP.7 공급자](analysis-services-data-providers.md)도 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-105">An updated [MSOLAP.7 provider](analysis-services-data-providers.md) is also required.</span></span>
-
-
-1. <span data-ttu-id="dba79-106">아래 샘플 연결 파일을 복사하여 텍스트 편집기에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-106">Copy the sample connection file below and paste into a text editor.</span></span> 
-
-2. <span data-ttu-id="dba79-107">`odc:ConnectionString`에서 다음 속성을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-107">In `odc:ConnectionString`, change the following properties:</span></span>
-
-    *   <span data-ttu-id="dba79-108">`Data Source=asazure://<region>.asazure.windows.net/<servername>;`에서 `<region>`을 Analysis Services 서버의 지역으로, `<servername>`을 서버의 이름으로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-108">In `Data Source=asazure://<region>.asazure.windows.net/<servername>;` change `<region>` to the region of your Analysis Services server and `<servername>` to the name of your  server.</span></span>
-
-    *   <span data-ttu-id="dba79-109">`Initial Catalog=<database>;`에서 `<database>`를 데이터베이스의 이름으로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-109">In `Initial Catalog=<database>;` change `<database>` to the name of your database.</span></span>
-
-3. <span data-ttu-id="dba79-110">`<odc:CommandText>Model</odc:CommandText>`에서 `Model`을 모델 또는 큐브 뷰의 이름으로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-110">In `<odc:CommandText>Model</odc:CommandText>` change `Model` to the name of your model or perspective.</span></span> 
-
-4. <span data-ttu-id="dba79-111">`.odc` 확장명의 파일을 C:\Users\\*username*\Documents\My Data Sources 폴더에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-111">Save the file with an `.odc` extension to the C:\Users\\*username*\Documents\My Data Sources folder.</span></span>
-
-5. <span data-ttu-id="dba79-112">파일을 마우스 오른쪽 단추로 클릭한 후 **Excel에서 열기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-112">Right-click the file, and then click **Open in Excel**.</span></span> <span data-ttu-id="dba79-113">또는 Excel의 **데이터** 리본 메뉴에서 **기존 연결**을 클릭하고 파일을 선택한 후 **열기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dba79-113">Or in Excel, on the **Data** ribbon, click **Existing Connections**, select your file, and then click **Open**.</span></span>
+<span data-ttu-id="67a56-104">이 문서에서는 버전 번호 16.0.7369.2117 Excel 2016에서 Office 데이터 연결 파일 tooconnect tooan Azure Analysis Services 서버를 만드는 방법을 설명 또는 이전 버전에서는 또는 Excel 2013.</span><span class="sxs-lookup"><span data-stu-id="67a56-104">Information in this article describes how you can create an Office Data Connection file tooconnect tooan Azure Analysis Services server from Excel 2016 version number 16.0.7369.2117 or earlier, or Excel 2013.</span></span> <span data-ttu-id="67a56-105">업데이트된 [MSOLAP.7 공급자](analysis-services-data-providers.md)도 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-105">An updated [MSOLAP.7 provider](analysis-services-data-providers.md) is also required.</span></span>
 
 
+1. <span data-ttu-id="67a56-106">아래의 hello 샘플 연결 파일을 복사 하 고 텍스트 편집기에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-106">Copy hello sample connection file below and paste into a text editor.</span></span> 
 
-<span data-ttu-id="dba79-114">**샘플 연결 파일**</span><span class="sxs-lookup"><span data-stu-id="dba79-114">**Sample connection file**</span></span>
+2. <span data-ttu-id="67a56-107">`odc:ConnectionString`, hello 다음과 같은 속성을 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-107">In `odc:ConnectionString`, change hello following properties:</span></span>
+
+    *   <span data-ttu-id="67a56-108">`Data Source=asazure://<region>.asazure.windows.net/<servername>;` 변경 `<region>` Analysis Services 서버의 toohello 영역 및 `<servername>` toohello 서버 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-108">In `Data Source=asazure://<region>.asazure.windows.net/<servername>;` change `<region>` toohello region of your Analysis Services server and `<servername>` toohello name of your  server.</span></span>
+
+    *   <span data-ttu-id="67a56-109">`Initial Catalog=<database>;` 변경 `<database>` toohello 데이터베이스 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-109">In `Initial Catalog=<database>;` change `<database>` toohello name of your database.</span></span>
+
+3. <span data-ttu-id="67a56-110">`<odc:CommandText>Model</odc:CommandText>` 변경 `Model` 모델이 나 큐브 뷰의의 toohello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-110">In `<odc:CommandText>Model</odc:CommandText>` change `Model` toohello name of your model or perspective.</span></span> 
+
+4. <span data-ttu-id="67a56-111">Hello 파일을 저장 한 `.odc` 확장 toohello C:\Users\\*username*\Documents\My 데이터 원본 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-111">Save hello file with an `.odc` extension toohello C:\Users\\*username*\Documents\My Data Sources folder.</span></span>
+
+5. <span data-ttu-id="67a56-112">Hello 파일을 마우스 오른쪽 단추로 누른 **Excel에서 열기**합니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-112">Right-click hello file, and then click **Open in Excel**.</span></span> <span data-ttu-id="67a56-113">또는 Excel hello에 **데이터** 리본에서 클릭 **기존 연결**프로그램 파일을 선택한 다음 클릭 **열려**합니다.</span><span class="sxs-lookup"><span data-stu-id="67a56-113">Or in Excel, on hello **Data** ribbon, click **Existing Connections**, select your file, and then click **Open**.</span></span>
+
+
+
+<span data-ttu-id="67a56-114">**샘플 연결 파일**</span><span class="sxs-lookup"><span data-stu-id="67a56-114">**Sample connection file**</span></span>
 ```
 <html xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns="http://www.w3.org/TR/REC-html40">

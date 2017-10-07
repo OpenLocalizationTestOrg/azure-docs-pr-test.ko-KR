@@ -1,6 +1,6 @@
 ---
 title: "자습서: TimeOffManager와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 TimeOffManager 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "단일 로그온 tooconfigure 방법을 알아보려면 Azure Active Directory와 TimeOffManager 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,254 +14,254 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 3f944ffbf704694b293b4b1e5bdb4f2c93ae35a1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c871257bfb49883e31b1c4860a9d7faa70e9ab48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-timeoffmanager"></a><span data-ttu-id="5ef6e-103">자습서: TimeOffManager와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="5ef6e-103">Tutorial: Azure Active Directory integration with TimeOffManager</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-timeoffmanager"></a><span data-ttu-id="68ac7-103">자습서: TimeOffManager와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="68ac7-103">Tutorial: Azure Active Directory integration with TimeOffManager</span></span>
 
-<span data-ttu-id="5ef6e-104">이 자습서에서는 Azure AD(Azure Active Directory)와 TimeOffManager를 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-104">In this tutorial, you learn how to integrate TimeOffManager with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="68ac7-104">이 자습서에 설명 어떻게 toointegrate Azure Active Directory (Azure AD)와 TimeOffManager 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-104">In this tutorial, you learn how toointegrate TimeOffManager with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="5ef6e-105">TimeOffManager를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-105">Integrating TimeOffManager with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="68ac7-105">Azure AD와 TimeOffManager 통합 이점을 다음 hello로 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-105">Integrating TimeOffManager with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="5ef6e-106">TimeOffManager에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-106">You can control in Azure AD who has access to TimeOffManager</span></span>
-- <span data-ttu-id="5ef6e-107">사용자가 해당 Azure AD 계정으로 TimeOffManager에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-107">You can enable your users to automatically get signed-on to TimeOffManager (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="5ef6e-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="68ac7-106">액세스 tooTimeOffManager을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-106">You can control in Azure AD who has access tooTimeOffManager</span></span>
+- <span data-ttu-id="68ac7-107">프로그램 사용자 tooautomatically get 로그온 tooTimeOffManager (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-107">You can enable your users tooautomatically get signed-on tooTimeOffManager (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="68ac7-108">하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="5ef6e-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="68ac7-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="5ef6e-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="5ef6e-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="68ac7-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="68ac7-110">Prerequisites</span></span>
 
-<span data-ttu-id="5ef6e-111">TimeOffManager와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-111">To configure Azure AD integration with TimeOffManager, you need the following items:</span></span>
+<span data-ttu-id="68ac7-111">TimeOffManager와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-111">tooconfigure Azure AD integration with TimeOffManager, you need hello following items:</span></span>
 
-- <span data-ttu-id="5ef6e-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="5ef6e-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="5ef6e-113">TimeOffManager Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="5ef6e-113">A TimeOffManager single sign-on enabled subscription</span></span>
+- <span data-ttu-id="68ac7-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="68ac7-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="68ac7-113">TimeOffManager Single Sign-On이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="68ac7-113">A TimeOffManager single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5ef6e-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="68ac7-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="5ef6e-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="68ac7-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="5ef6e-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="5ef6e-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="68ac7-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="68ac7-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="68ac7-117">Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="5ef6e-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="5ef6e-118">Scenario description</span></span>
-<span data-ttu-id="5ef6e-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="5ef6e-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="68ac7-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="68ac7-118">Scenario description</span></span>
+<span data-ttu-id="68ac7-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="68ac7-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="5ef6e-121">갤러리에서 TimeOffManager 추가</span><span class="sxs-lookup"><span data-stu-id="5ef6e-121">Add TimeOffManager from the gallery</span></span>
-2. <span data-ttu-id="5ef6e-122">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="5ef6e-122">Configure and test Azure AD single sign-on</span></span>
+1. <span data-ttu-id="68ac7-121">TimeOffManager hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="68ac7-121">Add TimeOffManager from hello gallery</span></span>
+2. <span data-ttu-id="68ac7-122">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="68ac7-122">Configure and test Azure AD single sign-on</span></span>
 
-## <a name="add-timeoffmanager-from-the-gallery"></a><span data-ttu-id="5ef6e-123">갤러리에서 TimeOffManager 추가</span><span class="sxs-lookup"><span data-stu-id="5ef6e-123">Add TimeOffManager from the gallery</span></span>
-<span data-ttu-id="5ef6e-124">TimeOffManager의 Azure AD 통합을 구성하려면 갤러리의 TimeOffManager를 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-124">To configure the integration of TimeOffManager into Azure AD, you need to add TimeOffManager from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="add-timeoffmanager-from-hello-gallery"></a><span data-ttu-id="68ac7-123">TimeOffManager hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="68ac7-123">Add TimeOffManager from hello gallery</span></span>
+<span data-ttu-id="68ac7-124">tooconfigure hello와의 통합 TimeOffManager Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 TimeOffManager tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-124">tooconfigure hello integration of TimeOffManager into Azure AD, you need tooadd TimeOffManager from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="5ef6e-125">**갤러리에서 TimeOffManager를 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="5ef6e-125">**To add TimeOffManager from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="68ac7-125">**hello 갤러리에서 TimeOffManager tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="68ac7-125">**tooadd TimeOffManager from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5ef6e-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="68ac7-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="5ef6e-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="5ef6e-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="68ac7-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="68ac7-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-129">Then go too**All applications**.</span></span>
 
     ![응용 프로그램][2]
     
-3. <span data-ttu-id="5ef6e-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="68ac7-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![응용 프로그램][3]
 
-4. <span data-ttu-id="5ef6e-133">검색 상자에 **TimeOffManager**를 입력하고 결과 패널에서 **TimeOffManager**를 선택한 후 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-133">In the search box, type **TimeOffManager**, select **TimeOffManager** from result panel and then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="68ac7-133">Hello 검색 상자에 입력 **TimeOffManager**선택, **TimeOffManager** 결과 패널에서 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-133">In hello search box, type **TimeOffManager**, select **TimeOffManager** from result panel and then click **Add** button tooadd hello application.</span></span>
 
     ![갤러리에서 추가](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addfromgallery.png)
 
-##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="5ef6e-135">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="5ef6e-135">Configure and test Azure AD single sign-on</span></span>
-<span data-ttu-id="5ef6e-136">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 TimeOffManager에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-136">In this section, you configure and test Azure AD single sign-on with TimeOffManager based on a test user called "Britta Simon".</span></span>
+##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="68ac7-135">Azure AD Single Sign-On 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="68ac7-135">Configure and test Azure AD single sign-on</span></span>
+<span data-ttu-id="68ac7-136">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 TimeOffManager에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-136">In this section, you configure and test Azure AD single sign-on with TimeOffManager based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="5ef6e-137">Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 TimeOffManager 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-137">For single sign-on to work, Azure AD needs to know what the counterpart user in TimeOffManager is to a user in Azure AD.</span></span> <span data-ttu-id="5ef6e-138">즉, Azure AD 사용자와 TimeOffManager의 관련 사용자 간에 연결이 형성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-138">In other words, a link relationship between an Azure AD user and the related user in TimeOffManager needs to be established.</span></span>
+<span data-ttu-id="68ac7-137">Single sign on toowork에 대 한 Azure AD는 tooknow TimeOffManager에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in TimeOffManager is tooa user in Azure AD.</span></span> <span data-ttu-id="68ac7-138">즉, Azure AD 사용자와 TimeOffManager에 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-138">In other words, a link relationship between an Azure AD user and hello related user in TimeOffManager needs toobe established.</span></span>
 
-<span data-ttu-id="5ef6e-139">TimeOffManager에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 연결 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-139">In TimeOffManager, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="68ac7-139">Hello hello 값을 할당, TimeOffManager에 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-139">In TimeOffManager, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="5ef6e-140">TimeOffManager에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-140">To configure and test Azure AD single sign-on with TimeOffManager, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="68ac7-140">tooconfigure와 TimeOffManager 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-140">tooconfigure and test Azure AD single sign-on with TimeOffManager, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="5ef6e-141">**[Azure AD Single Sign-On 구성](#configure-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="5ef6e-142">**[Azure AD 테스트 사용자 만들기](#create-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="5ef6e-143">**[TimeOffManager 테스트 사용자 만들기](#create-a-timeoffmanager-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 TimeOffManager에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-143">**[Create a TimeOffManager test user](#create-a-timeoffmanager-test-user)** - to have a counterpart of Britta Simon in TimeOffManager that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="5ef6e-144">**[Azure AD 테스트 사용자 할당](#assign-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="5ef6e-145">**[Single Sign-on 테스트](#test-single-sign-on)** - 구성이 작동하는지 여부를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-145">**[Test Single Sign-On](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="68ac7-141">**[Azure AD Single Sign-on 구성](#configure-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="68ac7-142">**[Azure AD 테스트를 만들고](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="68ac7-143">**[TimeOffManager 테스트 사용자 만들기](#create-a-timeoffmanager-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 TimeOffManager에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-143">**[Create a TimeOffManager test user](#create-a-timeoffmanager-test-user)** - toohave a counterpart of Britta Simon in TimeOffManager that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="68ac7-144">**[Azure AD hello 테스트 사용자를 할당](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="68ac7-145">**[Single Sign-on 테스트](#test-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="68ac7-145">**[Test Single Sign-On](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="5ef6e-146">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="5ef6e-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="68ac7-146">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="68ac7-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="5ef6e-147">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 TimeOffManager 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your TimeOffManager application.</span></span>
+<span data-ttu-id="68ac7-147">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 TimeOffManager 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your TimeOffManager application.</span></span>
 
-<span data-ttu-id="5ef6e-148">**TimeOffManager에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="5ef6e-148">**To configure Azure AD single sign-on with TimeOffManager, perform the following steps:**</span></span>
+<span data-ttu-id="68ac7-148">**Azure AD tooconfigure single sign on와 TimeOffManager를 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="68ac7-148">**tooconfigure Azure AD single sign-on with TimeOffManager, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5ef6e-149">Azure Portal의 **TimeOffManager** 응용 프로그램 통합 페이지에서 **Single sign-on**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-149">In the Azure portal, on the **TimeOffManager** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="68ac7-149">Hello hello에 Azure 포털에서에서 **TimeOffManager** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-149">In hello Azure portal, on hello **TimeOffManager** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-on 구성][4]
 
-2. <span data-ttu-id="5ef6e-151">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="68ac7-151">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![SAML 기반 로그온](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_samlbase.png)
 
-3. <span data-ttu-id="5ef6e-153">**TimeOffManager 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-153">On the **TimeOffManager Domain and URLs** section, perform the following:</span></span>
+3. <span data-ttu-id="68ac7-153">Hello에 **TimeOffManager 도메인 및 Url** 섹션에서 hello 다음을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-153">On hello **TimeOffManager Domain and URLs** section, perform hello following:</span></span>
 
      ![TimeOffManager 도메인 및 URL 섹션](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_url.png)
 
-    <span data-ttu-id="5ef6e-155">**회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다.`https://www.timeoffmanager.com/cpanel/sso/consume.aspx?company_id=<companyid>`</span><span class="sxs-lookup"><span data-stu-id="5ef6e-155">In the **Reply URL** textbox, type a URL using the following pattern: `https://www.timeoffmanager.com/cpanel/sso/consume.aspx?company_id=<companyid>`</span></span>
+    <span data-ttu-id="68ac7-155">Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://www.timeoffmanager.com/cpanel/sso/consume.aspx?company_id=<companyid>`</span><span class="sxs-lookup"><span data-stu-id="68ac7-155">In hello **Reply URL** textbox, type a URL using hello following pattern: `https://www.timeoffmanager.com/cpanel/sso/consume.aspx?company_id=<companyid>`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="5ef6e-156">이 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-156">This value is not real.</span></span> <span data-ttu-id="5ef6e-157">실제 회신 URL로 이 값을 업데이트하세요.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-157">Update this value with the actual Reply URL.</span></span> <span data-ttu-id="5ef6e-158">자습서의 뒷부분에 설명되어 있는 **Single Sign-On 설정 페이지**에서 이 값을 얻거나 [TimeOffManager 지원 팀](http://www.timeoffmanager.com/contact-us.aspx)에 문의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-158">You can get this value from **Single Sign on settings page** which is explained later in the tutorial or Contact [TimeOffManager support team](http://www.timeoffmanager.com/contact-us.aspx).</span></span>
+    > <span data-ttu-id="68ac7-156">이 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-156">This value is not real.</span></span> <span data-ttu-id="68ac7-157">Hello 실제 회신 URL로이 값을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-157">Update this value with hello actual Reply URL.</span></span> <span data-ttu-id="68ac7-158">이 값을 얻을 수 **Single Sign on 설정 페이지** hello 자습서 또는 연락처의 뒷부분에 설명 되어 있는 [TimeOffManager 지원 팀](http://www.timeoffmanager.com/contact-us.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-158">You can get this value from **Single Sign on settings page** which is explained later in hello tutorial or Contact [TimeOffManager support team](http://www.timeoffmanager.com/contact-us.aspx).</span></span>
  
-4. <span data-ttu-id="5ef6e-159">**SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-159">On the **SAML Signing Certificate** section, click **Certificate (Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="68ac7-159">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **인증서 (Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-159">On hello **SAML Signing Certificate** section, click **Certificate (Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![SAML 서명 인증서 섹션](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_certificate.png) 
 
-5. <span data-ttu-id="5ef6e-161">이 섹션은 사용자가 SAML 프로토콜 기반 페더레이션을 사용하여 Azure AD의 계정으로 TimeOffManager에 인증할 수 있게 하는 방법을 간략하게 설명하기 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-161">The objective of this section is to outline how to enable users to authenticate to TimeOffManger with their account in Azure AD using federation based on the SAML protocol.</span></span>
+5. <span data-ttu-id="68ac7-161">hello이이 섹션의 목적은 toooutline 페더레이션을 사용 하 여 Azure AD에서 자신의 계정으로 tooenable 사용자 tooauthenticate tooTimeOffManger hello SAML 프로토콜에 따라 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-161">hello objective of this section is toooutline how tooenable users tooauthenticate tooTimeOffManger with their account in Azure AD using federation based on hello SAML protocol.</span></span>
     
-    <span data-ttu-id="5ef6e-162">TimeOffManager 응용 프로그램은 특정 서식에서 SAML 어설션을 예상하며, SAML 토큰 특성 구성에 사용자 지정 특성 매핑을 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-162">Your TimeOffManger application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your SAML token attributes configuration.</span></span> <span data-ttu-id="5ef6e-163">다음 스크린샷은 이에 대한 예제를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-163">The following screenshot shows an example for this.</span></span>
+    <span data-ttu-id="68ac7-162">TimeOffManger 응용 프로그램의 구성을 수행 해야 하면 tooadd 사용자 지정 특성 매핑을 tooyour SAML 토큰 특성을 특정 형식에서 hello SAML 어설션이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-162">Your TimeOffManger application expects hello SAML assertions in a specific format, which requires you tooadd custom attribute mappings tooyour SAML token attributes configuration.</span></span> <span data-ttu-id="68ac7-163">다음 스크린 샷 hello이에 대 한 예가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-163">hello following screenshot shows an example for this.</span></span>
 
-    <span data-ttu-id="5ef6e-164">![SAML 토큰 특성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_attrb.png "SAML 토큰 특성")</span><span class="sxs-lookup"><span data-stu-id="5ef6e-164">![saml token attributes](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_attrb.png "saml token attributes")</span></span>
+    <span data-ttu-id="68ac7-164">![SAML 토큰 특성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_attrb.png "SAML 토큰 특성")</span><span class="sxs-lookup"><span data-stu-id="68ac7-164">![saml token attributes](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_attrb.png "saml token attributes")</span></span>
     
-    | <span data-ttu-id="5ef6e-165">특성 이름</span><span class="sxs-lookup"><span data-stu-id="5ef6e-165">Attribute Name</span></span> | <span data-ttu-id="5ef6e-166">특성 값</span><span class="sxs-lookup"><span data-stu-id="5ef6e-166">Attribute Value</span></span> |
+    | <span data-ttu-id="68ac7-165">특성 이름</span><span class="sxs-lookup"><span data-stu-id="68ac7-165">Attribute Name</span></span> | <span data-ttu-id="68ac7-166">특성 값</span><span class="sxs-lookup"><span data-stu-id="68ac7-166">Attribute Value</span></span> |
     | --- | --- |
-    | <span data-ttu-id="5ef6e-167">firstname</span><span class="sxs-lookup"><span data-stu-id="5ef6e-167">Firstname</span></span> |<span data-ttu-id="5ef6e-168">User.givenname</span><span class="sxs-lookup"><span data-stu-id="5ef6e-168">User.givenname</span></span> |
-    | <span data-ttu-id="5ef6e-169">Lastname</span><span class="sxs-lookup"><span data-stu-id="5ef6e-169">Lastname</span></span> |<span data-ttu-id="5ef6e-170">User.surname</span><span class="sxs-lookup"><span data-stu-id="5ef6e-170">User.surname</span></span> |
-    | <span data-ttu-id="5ef6e-171">Email</span><span class="sxs-lookup"><span data-stu-id="5ef6e-171">Email</span></span> |<span data-ttu-id="5ef6e-172">User.mail</span><span class="sxs-lookup"><span data-stu-id="5ef6e-172">User.mail</span></span> |
+    | <span data-ttu-id="68ac7-167">firstname</span><span class="sxs-lookup"><span data-stu-id="68ac7-167">Firstname</span></span> |<span data-ttu-id="68ac7-168">User.givenname</span><span class="sxs-lookup"><span data-stu-id="68ac7-168">User.givenname</span></span> |
+    | <span data-ttu-id="68ac7-169">Lastname</span><span class="sxs-lookup"><span data-stu-id="68ac7-169">Lastname</span></span> |<span data-ttu-id="68ac7-170">User.surname</span><span class="sxs-lookup"><span data-stu-id="68ac7-170">User.surname</span></span> |
+    | <span data-ttu-id="68ac7-171">Email</span><span class="sxs-lookup"><span data-stu-id="68ac7-171">Email</span></span> |<span data-ttu-id="68ac7-172">User.mail</span><span class="sxs-lookup"><span data-stu-id="68ac7-172">User.mail</span></span> |
     
-    <span data-ttu-id="5ef6e-173">a.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-173">a.</span></span>  <span data-ttu-id="5ef6e-174">위의 테이블의 각 데이터 행에서 **사용자 특성 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-174">For each data row in the table above, click **add user attribute**.</span></span>
+    <span data-ttu-id="68ac7-173">a.</span><span class="sxs-lookup"><span data-stu-id="68ac7-173">a.</span></span>  <span data-ttu-id="68ac7-174">위의 hello 테이블의 각 데이터 행에 대 한 클릭 **사용자 특성 추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-174">For each data row in hello table above, click **add user attribute**.</span></span>
     
-    <span data-ttu-id="5ef6e-175">![SAML 토큰 특성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb.png "SAML 토큰 특성")</span><span class="sxs-lookup"><span data-stu-id="5ef6e-175">![saml token attributes](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb.png "saml token attributes")</span></span>
+    <span data-ttu-id="68ac7-175">![SAML 토큰 특성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb.png "SAML 토큰 특성")</span><span class="sxs-lookup"><span data-stu-id="68ac7-175">![saml token attributes](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb.png "saml token attributes")</span></span>
     
-    <span data-ttu-id="5ef6e-176">![SAML 토큰 특성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb1.png "SAML 토큰 특성")</span><span class="sxs-lookup"><span data-stu-id="5ef6e-176">![saml token attributes](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb1.png "saml token attributes")</span></span>
+    <span data-ttu-id="68ac7-176">![SAML 토큰 특성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb1.png "SAML 토큰 특성")</span><span class="sxs-lookup"><span data-stu-id="68ac7-176">![saml token attributes](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_addattrb1.png "saml token attributes")</span></span>
     
-    <span data-ttu-id="5ef6e-177">b.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-177">b.</span></span>  <span data-ttu-id="5ef6e-178">**특성 이름** 텍스트 상자에서 해당 행에 표시된 특성 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-178">In the **Attribute Name** textbox, type the attribute name shown for that row.</span></span>
+    <span data-ttu-id="68ac7-177">b.</span><span class="sxs-lookup"><span data-stu-id="68ac7-177">b.</span></span>  <span data-ttu-id="68ac7-178">Hello에 **특성 이름** textbox, 해당 행에 대 한 표시 형식 hello 특성 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-178">In hello **Attribute Name** textbox, type hello attribute name shown for that row.</span></span>
     
-    <span data-ttu-id="5ef6e-179">c.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-179">c.</span></span>  <span data-ttu-id="5ef6e-180">**특성 값** 텍스트 상자에서 해당 행에 표시된 특성 값을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-180">In the **Attribute Value** textbox, select the attribute  value shown for that row.</span></span>
+    <span data-ttu-id="68ac7-179">c.</span><span class="sxs-lookup"><span data-stu-id="68ac7-179">c.</span></span>  <span data-ttu-id="68ac7-180">Hello에 **특성 값** textbox, 해당 행에 대해 표시 된 선택 hello 특성 값입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-180">In hello **Attribute Value** textbox, select hello attribute  value shown for that row.</span></span>
     
-    <span data-ttu-id="5ef6e-181">d.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-181">d.</span></span>  <span data-ttu-id="5ef6e-182">**Ok**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-182">Click **Ok**.</span></span>
+    <span data-ttu-id="68ac7-181">d.</span><span class="sxs-lookup"><span data-stu-id="68ac7-181">d.</span></span>  <span data-ttu-id="68ac7-182">**Ok**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-182">Click **Ok**.</span></span>
     
-6. <span data-ttu-id="5ef6e-183">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-183">Click **Save** button.</span></span>
+6. <span data-ttu-id="68ac7-183">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-183">Click **Save** button.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_general_400.png)
 
-7. <span data-ttu-id="5ef6e-185">**TimeOffManager 구성** 섹션에서 **TimeOffManager 구성**을 클릭하여 **로그온 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-185">On the **TimeOffManager Configuration** section, click **Configure TimeOffManager** to open **Configure sign-on** window.</span></span> <span data-ttu-id="5ef6e-186">**빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-186">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+7. <span data-ttu-id="68ac7-185">Hello에 **TimeOffManager 구성** 섹션에서 클릭 **구성 TimeOffManager** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="68ac7-185">On hello **TimeOffManager Configuration** section, click **Configure TimeOffManager** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="68ac7-186">복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="68ac7-186">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![TimeOffManager 구성 섹션](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_configure.png) 
 
-8. <span data-ttu-id="5ef6e-188">다른 웹 브라우저 창에서 TimeOffManager 회사 사이트에 관리자로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-188">In a different web browser window, log into your TimeOffManager company site as an administrator.</span></span>
+8. <span data-ttu-id="68ac7-188">다른 웹 브라우저 창에서 TimeOffManager 회사 사이트에 관리자로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-188">In a different web browser window, log into your TimeOffManager company site as an administrator.</span></span>
 
-9. <span data-ttu-id="5ef6e-189">**계정 \> 계정 옵션 \>Single Sign-On 설정**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-189">Go to **Account \> Account Options \> Single Sign-On Settings**.</span></span>
+9. <span data-ttu-id="68ac7-189">너무 이동**계정 \> 계정 옵션 \> Single Sign On 설정**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-189">Go too**Account \> Account Options \> Single Sign-On Settings**.</span></span>
    
-   <span data-ttu-id="5ef6e-190">![Single Sign-On 설정](./media/active-directory-saas-timeoffmanager-tutorial/ic795917.png "Single Sign-On 설정")</span><span class="sxs-lookup"><span data-stu-id="5ef6e-190">![Single Sign-On Settings](./media/active-directory-saas-timeoffmanager-tutorial/ic795917.png "Single Sign-On Settings")</span></span>
-7. <span data-ttu-id="5ef6e-191">**Single Sign-On 설정** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-191">In the **Single Sign-On Settings** section, perform the following steps:</span></span>
+   <span data-ttu-id="68ac7-190">![Single Sign-On 설정](./media/active-directory-saas-timeoffmanager-tutorial/ic795917.png "Single Sign-On 설정")</span><span class="sxs-lookup"><span data-stu-id="68ac7-190">![Single Sign-On Settings](./media/active-directory-saas-timeoffmanager-tutorial/ic795917.png "Single Sign-On Settings")</span></span>
+7. <span data-ttu-id="68ac7-191">Hello에 **Single Sign On 설정** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-191">In hello **Single Sign-On Settings** section, perform hello following steps:</span></span>
    
-   <span data-ttu-id="5ef6e-192">![Single Sign-On 설정](./media/active-directory-saas-timeoffmanager-tutorial/ic795918.png "Single Sign-On 설정")</span><span class="sxs-lookup"><span data-stu-id="5ef6e-192">![Single Sign-On Settings](./media/active-directory-saas-timeoffmanager-tutorial/ic795918.png "Single Sign-On Settings")</span></span>
+   <span data-ttu-id="68ac7-192">![Single Sign-On 설정](./media/active-directory-saas-timeoffmanager-tutorial/ic795918.png "Single Sign-On 설정")</span><span class="sxs-lookup"><span data-stu-id="68ac7-192">![Single Sign-On Settings](./media/active-directory-saas-timeoffmanager-tutorial/ic795918.png "Single Sign-On Settings")</span></span>
    
-   <span data-ttu-id="5ef6e-193">a.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-193">a.</span></span> <span data-ttu-id="5ef6e-194">Base 64로 인코딩된 인증서를 메모장에서 열고, 내용을 클립보드에 복사한 다음 전체 인증서를 **X.509 인증서** 텍스트 상자에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-194">Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste the entire Certificate into **X.509 Certificate** textbox.</span></span>
+   <span data-ttu-id="68ac7-193">a.</span><span class="sxs-lookup"><span data-stu-id="68ac7-193">a.</span></span> <span data-ttu-id="68ac7-194">E-64로 인코딩된 인증서 내용을 클립보드의 콘텐츠 복사 hello 메모장에서 열고 후 전체 인증서를 hello **X.509 인증서** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-194">Open your base-64 encoded certificate in notepad, copy hello content of it into your clipboard, and then paste hello entire Certificate into **X.509 Certificate** textbox.</span></span>
    
-   <span data-ttu-id="5ef6e-195">b.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-195">b.</span></span> <span data-ttu-id="5ef6e-196">Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 **IdP 발급자** 텍스트 상자에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-196">In **Idp Issuer** textbox, paste the value of **SAML Entity ID** which you have copied from Azure portal.</span></span>
+   <span data-ttu-id="68ac7-195">b.</span><span class="sxs-lookup"><span data-stu-id="68ac7-195">b.</span></span> <span data-ttu-id="68ac7-196">**Idp 발급자** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID** Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-196">In **Idp Issuer** textbox, paste hello value of **SAML Entity ID** which you have copied from Azure portal.</span></span>
    
-   <span data-ttu-id="5ef6e-197">c.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-197">c.</span></span> <span data-ttu-id="5ef6e-198">Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **IdP 끝점 URL** 텍스트 상자에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-198">In **IdP Endpoint URL** textbox, paste the value of **SAML Single Sign-On Service URL** which you have copied from Azure portal.</span></span>
+   <span data-ttu-id="68ac7-197">c.</span><span class="sxs-lookup"><span data-stu-id="68ac7-197">c.</span></span> <span data-ttu-id="68ac7-198">**IdP 끝점 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL** Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-198">In **IdP Endpoint URL** textbox, paste hello value of **SAML Single Sign-On Service URL** which you have copied from Azure portal.</span></span>
    
-   <span data-ttu-id="5ef6e-199">d.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-199">d.</span></span> <span data-ttu-id="5ef6e-200">**SAML 적용**에서는 **아니요**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-200">As **Enforce SAML**, select **No**.</span></span>
+   <span data-ttu-id="68ac7-199">d.</span><span class="sxs-lookup"><span data-stu-id="68ac7-199">d.</span></span> <span data-ttu-id="68ac7-200">**SAML 적용**에서는 **아니요**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-200">As **Enforce SAML**, select **No**.</span></span>
    
-   <span data-ttu-id="5ef6e-201">e.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-201">e.</span></span> <span data-ttu-id="5ef6e-202">**사용자 자동 생성**의 경우 **예**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-202">As **Auto-Create Users**, select **Yes**.</span></span>
+   <span data-ttu-id="68ac7-201">e.</span><span class="sxs-lookup"><span data-stu-id="68ac7-201">e.</span></span> <span data-ttu-id="68ac7-202">**사용자 자동 생성**의 경우 **예**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-202">As **Auto-Create Users**, select **Yes**.</span></span>
    
-   <span data-ttu-id="5ef6e-203">f.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-203">f.</span></span> <span data-ttu-id="5ef6e-204">Azure Portal에서 복사한 **로그아웃 URL** 값을 **로그아웃 URL** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-204">In **Logout URL** textbox, paste the value of **Sign-Out URL** which you have copied from Azure portal.</span></span>
+   <span data-ttu-id="68ac7-203">f.</span><span class="sxs-lookup"><span data-stu-id="68ac7-203">f.</span></span> <span data-ttu-id="68ac7-204">**로그 아웃 URL** 붙여넣기 hello 값의 텍스트 상자 **Sign-Out URL** Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-204">In **Logout URL** textbox, paste hello value of **Sign-Out URL** which you have copied from Azure portal.</span></span>
    
-   <span data-ttu-id="5ef6e-205">g.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-205">g.</span></span> <span data-ttu-id="5ef6e-206">**변경 내용 저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-206">click **Save Changes**.</span></span>
+   <span data-ttu-id="68ac7-205">g.</span><span class="sxs-lookup"><span data-stu-id="68ac7-205">g.</span></span> <span data-ttu-id="68ac7-206">**변경 내용 저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-206">click **Save Changes**.</span></span>
 
-11. <span data-ttu-id="5ef6e-207">**Single Sign-On 설정** 페이지에서 **Assertion Consumer Service URL** 값을 복사하고 Azure Portal의 **TimeOffManager 도메인 및 URL** 섹션 아래의 **회신 URL** 텍스트 상자에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-207">In **Single Sign on settings** page, copy the value of **Assertion Consumer Service URL** and paste it in the **Reply URL** text box under **TimeOffManager Domain and URLs** section in Azure portal.</span></span> 
+11. <span data-ttu-id="68ac7-207">**Single Sign on 설정** 페이지의 hello 값 복사 **어설션 소비자 서비스 URL** hello에 붙여 넣을 **회신 URL** 아래 텍스트 상자 **TimeOffManager 도메인 및 Url** Azure 포털에서 섹션.</span><span class="sxs-lookup"><span data-stu-id="68ac7-207">In **Single Sign on settings** page, copy hello value of **Assertion Consumer Service URL** and paste it in hello **Reply URL** text box under **TimeOffManager Domain and URLs** section in Azure portal.</span></span> 
 
-      <span data-ttu-id="5ef6e-208">![Single Sign-On 설정](./media/active-directory-saas-timeoffmanager-tutorial/ic795915.png "Single Sign-On 설정")</span><span class="sxs-lookup"><span data-stu-id="5ef6e-208">![Single Sign-On Settings](./media/active-directory-saas-timeoffmanager-tutorial/ic795915.png "Single Sign-On Settings")</span></span>
+      <span data-ttu-id="68ac7-208">![Single Sign-On 설정](./media/active-directory-saas-timeoffmanager-tutorial/ic795915.png "Single Sign-On 설정")</span><span class="sxs-lookup"><span data-stu-id="68ac7-208">![Single Sign-On Settings](./media/active-directory-saas-timeoffmanager-tutorial/ic795915.png "Single Sign-On Settings")</span></span>
 
 > [!TIP]
-> <span data-ttu-id="5ef6e-209">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-209">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="5ef6e-210">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-210">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="5ef6e-211">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-211">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="68ac7-209">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="68ac7-209">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="68ac7-210">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="68ac7-210">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="68ac7-211">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="68ac7-211">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="5ef6e-212">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="5ef6e-212">Create an Azure AD test user</span></span>
-<span data-ttu-id="5ef6e-213">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-213">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="68ac7-212">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="68ac7-212">Create an Azure AD test user</span></span>
+<span data-ttu-id="68ac7-213">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-213">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Azure AD 사용자 만들기][100]
 
-<span data-ttu-id="5ef6e-215">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="5ef6e-215">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="68ac7-215">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="68ac7-215">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5ef6e-216">**Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-216">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="68ac7-216">Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-216">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-timeoffmanager-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="5ef6e-218">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-218">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="68ac7-218">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-218">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![사용자 및 그룹 --> 모든 사용자](./media/active-directory-saas-timeoffmanager-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="5ef6e-220">**사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-220">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="68ac7-220">tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-220">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![추가 단추](./media/active-directory-saas-timeoffmanager-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="5ef6e-222">**사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-222">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="68ac7-222">Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-222">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![사용자 대화 상자 페이지](./media/active-directory-saas-timeoffmanager-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="5ef6e-224">a.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-224">a.</span></span> <span data-ttu-id="5ef6e-225">**이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-225">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="68ac7-224">a.</span><span class="sxs-lookup"><span data-stu-id="68ac7-224">a.</span></span> <span data-ttu-id="68ac7-225">Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-225">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="5ef6e-226">b.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-226">b.</span></span> <span data-ttu-id="5ef6e-227">**사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-227">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="68ac7-226">b.</span><span class="sxs-lookup"><span data-stu-id="68ac7-226">b.</span></span> <span data-ttu-id="68ac7-227">Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-227">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="5ef6e-228">c.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-228">c.</span></span> <span data-ttu-id="5ef6e-229">**암호 표시**를 선택하고 **암호** 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-229">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="68ac7-228">c.</span><span class="sxs-lookup"><span data-stu-id="68ac7-228">c.</span></span> <span data-ttu-id="68ac7-229">선택 **암호 표시** hello hello 값 기록 **암호**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-229">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="5ef6e-230">d.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-230">d.</span></span> <span data-ttu-id="5ef6e-231">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-231">Click **Create**.</span></span>
+    <span data-ttu-id="68ac7-230">d.</span><span class="sxs-lookup"><span data-stu-id="68ac7-230">d.</span></span> <span data-ttu-id="68ac7-231">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-231">Click **Create**.</span></span>
  
-### <a name="create-a-timeoffmanager-test-user"></a><span data-ttu-id="5ef6e-232">TimeOffManager 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="5ef6e-232">Create a TimeOffManager test user</span></span>
+### <a name="create-a-timeoffmanager-test-user"></a><span data-ttu-id="68ac7-232">TimeOffManager 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="68ac7-232">Create a TimeOffManager test user</span></span>
 
-<span data-ttu-id="5ef6e-233">Azure AD 사용자가 TimeOffManager에 로그인할 수 있도록 하려면 TimeOffManager로 프로비전되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-233">In order to enable Azure AD users to log into TimeOffManager, they must be provisioned to TimeOffManager.</span></span>  
+<span data-ttu-id="68ac7-233">Tooenable Azure AD 사용자가 toolog TimeOffManager에 주문 하 고에 프로 비전 된 tooTimeOffManager 되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-233">In order tooenable Azure AD users toolog into TimeOffManager, they must be provisioned tooTimeOffManager.</span></span>  
 
-<span data-ttu-id="5ef6e-234">TimeOffManager는 사용자 프로비전 시간에만 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-234">TimeOffManager supports just in time user provisioning.</span></span> <span data-ttu-id="5ef6e-235">작업 항목이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-235">There is no action item for you.</span></span>  
+<span data-ttu-id="68ac7-234">TimeOffManager는 사용자 프로비전 시간에만 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-234">TimeOffManager supports just in time user provisioning.</span></span> <span data-ttu-id="68ac7-235">작업 항목이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-235">There is no action item for you.</span></span>  
 
-<span data-ttu-id="5ef6e-236">처음으로 Single Sign On을 사용하여 로그인할 때 사용자가 자동으로 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-236">The users are added automatically during the first login using single sign on.</span></span>
+<span data-ttu-id="68ac7-236">hello 사용자에 단일 로그인을 사용 하 여 hello 첫 번째 로그인 시 자동으로 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-236">hello users are added automatically during hello first login using single sign on.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="5ef6e-237">다른 TimeOffManager 사용자 계정 생성 도구 또는 TimeOffManager가 제공한 API를 사용하여 Azure AD 사용자 계정을 프로비전할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-237">You can use any other TimeOffManager user account creation tools or APIs provided by TimeOffManager to provision Azure AD user accounts.</span></span>
+><span data-ttu-id="68ac7-237">다른 TimeOffManager 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 Azure AD 사용자 계정을 tooprovision TimeOffManager에서 제공 된 Api입니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-237">You can use any other TimeOffManager user account creation tools or APIs provided by TimeOffManager tooprovision Azure AD user accounts.</span></span>
 > 
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="5ef6e-238">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="5ef6e-238">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="68ac7-238">Azure AD hello 테스트 사용자를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-238">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="5ef6e-239">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 TimeOffManager에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-239">In this section, you enable Britta Simon to use Azure single sign-on by granting access to TimeOffManager.</span></span>
+<span data-ttu-id="68ac7-239">이 섹션에서는 tooTimeOffManager 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-239">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooTimeOffManager.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="5ef6e-241">**Britta Simon을 TimeOffManager에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="5ef6e-241">**To assign Britta Simon to TimeOffManager, perform the following steps:**</span></span>
+<span data-ttu-id="68ac7-241">**tooassign Britta Simon tooTimeOffManager hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="68ac7-241">**tooassign Britta Simon tooTimeOffManager, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5ef6e-242">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-242">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="68ac7-242">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-242">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="5ef6e-244">응용 프로그램 목록에서 **TimeOffManager**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-244">In the applications list, select **TimeOffManager**.</span></span>
+2. <span data-ttu-id="68ac7-244">Hello 응용 프로그램 목록에서 선택 **TimeOffManager**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-244">In hello applications list, select **TimeOffManager**.</span></span>
 
     ![앱 목록의 TimeOffManager](./media/active-directory-saas-timeoffmanager-tutorial/tutorial_timeoffmanager_app.png) 
 
-3. <span data-ttu-id="5ef6e-246">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-246">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="68ac7-246">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-246">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="5ef6e-248">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-248">Click **Add** button.</span></span> <span data-ttu-id="5ef6e-249">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-249">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="68ac7-248">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-248">Click **Add** button.</span></span> <span data-ttu-id="68ac7-249">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-249">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="5ef6e-251">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-251">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="68ac7-251">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-251">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="5ef6e-252">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-252">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="68ac7-252">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-252">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="5ef6e-253">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-253">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="68ac7-253">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-253">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="5ef6e-254">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="5ef6e-254">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="68ac7-254">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="68ac7-254">Test single sign-on</span></span>
 
-<span data-ttu-id="5ef6e-255">이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-255">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="68ac7-255">이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-255">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="5ef6e-256">액세스 패널에서 TimeOffManager 타일을 클릭하면 TimeOffManager 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-256">When you click the TimeOffManager tile in the Access Panel, you should get automatically signed-on to your TimeOffManager application.</span></span> <span data-ttu-id="5ef6e-257">액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5ef6e-257">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="68ac7-256">Hello 액세스 패널에서에서 hello TimeOffManager 타일을 클릭할 때 자동으로 로그온 tooyour TimeOffManager 응용 프로그램을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-256">When you click hello TimeOffManager tile in hello Access Panel, you should get automatically signed-on tooyour TimeOffManager application.</span></span> <span data-ttu-id="68ac7-257">액세스 패널에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="68ac7-257">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="5ef6e-258">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="5ef6e-258">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="68ac7-258">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="68ac7-258">Additional resources</span></span>
 
-* [<span data-ttu-id="5ef6e-259">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="5ef6e-259">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="5ef6e-260">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="5ef6e-260">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="68ac7-259">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="68ac7-259">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="68ac7-260">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="68ac7-260">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

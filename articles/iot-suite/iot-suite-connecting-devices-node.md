@@ -1,6 +1,6 @@
 ---
-title: "Node.js를 사용하여 장치 연결 | Microsoft Docs"
-description: "Node.js에 작성된 응용 프로그램을 사용하여 미리 구성된 Azure IoT Suite 원격 모니터링 솔루션에 장치를 연결하는 방법을 설명합니다."
+title: "Node.js를 사용 하 여 장치 aaaConnect | Microsoft Docs"
+description: "어떻게 tooconnect 장치 toohello Azure IoT Suite 미리 구성 된 Node.js에서 작성 된 응용 프로그램을 사용 하 여 원격 모니터링 솔루션에 설명 합니다."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6459b6196eb7f4a083b67e5a421bcc0d51d39e5c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 80bf2b70f15f539bfce4f135d533c46dd2b3f5a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="312f2-103">미리 구성된 원격 모니터링 솔루션에 장치 연결(Node.js)</span><span class="sxs-lookup"><span data-stu-id="312f2-103">Connect your device to the remote monitoring preconfigured solution (Node.js)</span></span>
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="d1f2a-103">사용자 장치 toohello 모니터링 미리 구성 된 솔루션 (Node.js) 원격 연결</span><span class="sxs-lookup"><span data-stu-id="d1f2a-103">Connect your device toohello remote monitoring preconfigured solution (Node.js)</span></span>
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="312f2-104">node.js 샘플 솔루션 만들기</span><span class="sxs-lookup"><span data-stu-id="312f2-104">Create a node.js sample solution</span></span>
+## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="d1f2a-104">node.js 샘플 솔루션 만들기</span><span class="sxs-lookup"><span data-stu-id="d1f2a-104">Create a node.js sample solution</span></span>
 
-<span data-ttu-id="312f2-105">Node.js 버전 0.11.5 이상이 개발 컴퓨터에 설치되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="312f2-106">명령줄에서 `node --version`을 실행하여 버전을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-106">You can run `node --version` at the command line to check the version.</span></span>
+<span data-ttu-id="d1f2a-105">Node.js 버전 0.11.5 이상이 개발 컴퓨터에 설치되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="d1f2a-106">실행할 수 있습니다 `node --version` hello 명령줄 toocheck hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-106">You can run `node --version` at hello command line toocheck hello version.</span></span>
 
-1. <span data-ttu-id="312f2-107">개발 컴퓨터에서 **RemoteMonitoring**이라는 폴더를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="312f2-108">명령줄 환경에서 이 폴더로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-108">Navigate to this folder in your command-line environment.</span></span>
+1. <span data-ttu-id="d1f2a-107">개발 컴퓨터에서 **RemoteMonitoring**이라는 폴더를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="d1f2a-108">명령줄 사용자 환경에서 toothis 폴더를 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-108">Navigate toothis folder in your command-line environment.</span></span>
 
-1. <span data-ttu-id="312f2-109">다음 명령을 실행하여 샘플 앱을 완료해야 하는 패키지를 다운로드하고 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-109">Run the following commands to download and install the packages you need to complete the sample app:</span></span>
+1. <span data-ttu-id="d1f2a-109">다음 실행된 hello toodownload 및 설치 hello 필요한 패키지를 toocomplete hello 샘플 응용 프로그램 명령:</span><span class="sxs-lookup"><span data-stu-id="d1f2a-109">Run hello following commands toodownload and install hello packages you need toocomplete hello sample app:</span></span>
 
     ```
     npm init
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. <span data-ttu-id="312f2-110">**RemoteMonitoring** 폴더에서 **remote_monitoring.js**라는 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-110">In the **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="312f2-111">텍스트 편집기에서 이 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-111">Open this file in a text editor.</span></span>
+1. <span data-ttu-id="d1f2a-110">Hello에 **RemoteMonitoring** 폴더에서 파일을 만들 **remote_monitoring.js**합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-110">In hello **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="d1f2a-111">텍스트 편집기에서 이 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-111">Open this file in a text editor.</span></span>
 
-1. <span data-ttu-id="312f2-112">**remote_monitoring.js** 파일에서 다음 `require` 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-112">In the **remote_monitoring.js** file, add the following `require` statements:</span></span>
+1. <span data-ttu-id="d1f2a-112">Hello에 **remote_monitoring.js** 파일, hello 다음 추가 `require` 문:</span><span class="sxs-lookup"><span data-stu-id="d1f2a-112">In hello **remote_monitoring.js** file, add hello following `require` statements:</span></span>
 
     ```nodejs
     'use strict';
@@ -50,14 +50,14 @@ ms.lasthandoff: 08/29/2017
     var Message = require('azure-iot-device').Message;
     ```
 
-1. <span data-ttu-id="312f2-113">다음 변수 선언을 `require` 문 뒤에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-113">Add the following variable declarations after the `require` statements.</span></span> <span data-ttu-id="312f2-114">원격 모니터링 솔루션 대시보드에서 자리 표시자 값 [Device Id] 및 [Device Key]를 장치에 대해 기록한 값으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-114">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="312f2-115">솔루션 대시보드에서 IoT Hub 호스트 이름을 사용하여 [IoTHub Name]을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-115">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="312f2-116">예를 들어 IoT Hub 호스트 이름이 **contoso.azure-devices.net**인 경우 [IoTHub Name]을 **contoso**로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
+1. <span data-ttu-id="d1f2a-113">변수 선언 hello 후 다음 hello 추가 `require` 문.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-113">Add hello following variable declarations after hello `require` statements.</span></span> <span data-ttu-id="d1f2a-114">대체 hello 자리 표시자 값 [장치 Id] 및 [장치 Key] hello 원격 모니터링 솔루션 대시보드에서 장치에서 기록한 값으로.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-114">Replace hello placeholder values [Device Id] and [Device Key] with values you noted for your device in hello remote monitoring solution dashboard.</span></span> <span data-ttu-id="d1f2a-115">Hello 솔루션 대시보드 tooreplace [IoTHub Name]에서 hello IoT 허브 호스트 이름을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-115">Use hello IoT Hub Hostname from hello solution dashboard tooreplace [IoTHub Name].</span></span> <span data-ttu-id="d1f2a-116">예를 들어 IoT Hub 호스트 이름이 **contoso.azure-devices.net**인 경우 [IoTHub Name]을 **contoso**로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
 
     ```nodejs
     var connectionString = 'HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]';
     var deviceId = ConnectionString.parse(connectionString).DeviceId;
     ```
 
-1. <span data-ttu-id="312f2-117">다음 변수를 추가하여 일부 기본 원격 분석 데이터를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-117">Add the following variables to define some base telemetry data:</span></span>
+1. <span data-ttu-id="d1f2a-117">다음 변수 toodefine hello 몇 가지 기본 원격 분석 데이터를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-117">Add hello following variables toodefine some base telemetry data:</span></span>
 
     ```nodejs
     var temperature = 50;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     var externalTemperature = 55;
     ```
 
-1. <span data-ttu-id="312f2-118">다음 도우미 함수를 추가하여 작업 결과를 출력합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-118">Add the following helper function to print operation results:</span></span>
+1. <span data-ttu-id="d1f2a-118">도우미 함수 tooprint 작업 결과 다음 hello를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-118">Add hello following helper function tooprint operation results:</span></span>
 
     ```nodejs
     function printErrorFor(op) {
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="312f2-119">다음 도우미 함수를 추가하여 원격 분석 값을 임의로 지정하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-119">Add the following helper function to use to randomize the telemetry values:</span></span>
+1. <span data-ttu-id="d1f2a-119">Hello 다음 도우미 함수 toouse toorandomize hello 원격 분석 값에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-119">Add hello following helper function toouse toorandomize hello telemetry values:</span></span>
 
     ```nodejs
     function generateRandomIncrement() {
@@ -83,7 +83,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="312f2-120">장치가 시작 시 전송하는 **DeviceInfo** 개체에 대해 다음 정의를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-120">Add the following definition for the **DeviceInfo** object the device sends on startup:</span></span>
+1. <span data-ttu-id="d1f2a-120">Hello hello에 대 한 정의 다음 추가 **DeviceInfo** 시작할 때 전송 하는 개체 hello 장치:</span><span class="sxs-lookup"><span data-stu-id="d1f2a-120">Add hello following definition for hello **DeviceInfo** object hello device sends on startup:</span></span>
 
     ```nodejs
     var deviceMetaData = {
@@ -97,7 +97,7 @@ ms.lasthandoff: 08/29/2017
     };
     ```
 
-1. <span data-ttu-id="312f2-121">장치 쌍 reported 값에 대해 다음 정의를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-121">Add the following definition for the device twin reported values.</span></span> <span data-ttu-id="312f2-122">이 정의는 장치가 지원하는 직접 메서드의 설명을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-122">This definition includes descriptions of the direct methods the device supports:</span></span>
+1. <span data-ttu-id="d1f2a-121">Hello 다음 추가 장치로 이중 hello에 대 한 정의 값을 보고 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-121">Add hello following definition for hello device twin reported values.</span></span> <span data-ttu-id="d1f2a-122">이 정의 대 한 설명은 hello 직접 메서드 hello 장치에서 지원:</span><span class="sxs-lookup"><span data-stu-id="d1f2a-122">This definition includes descriptions of hello direct methods hello device supports:</span></span>
 
     ```nodejs
     var reportedProperties = {
@@ -126,63 +126,63 @@ ms.lasthandoff: 08/29/2017
             "Longitude": -122.125497
         },
         "SupportedMethods": {
-            "Reboot": "Reboot the device",
-            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file"
+            "Reboot": "Reboot hello device",
+            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file"
         },
     }
     ```
 
-1. <span data-ttu-id="312f2-123">다음 함수를 추가하여 **Reboot** 직접 메서드 호출을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-123">Add the following function to handle the **Reboot** direct method call:</span></span>
+1. <span data-ttu-id="d1f2a-123">다음 함수 toohandle hello hello 추가 **재부팅** 직접 메서드 호출:</span><span class="sxs-lookup"><span data-stu-id="d1f2a-123">Add hello following function toohandle hello **Reboot** direct method call:</span></span>
 
     ```nodejs
     function onReboot(request, response) {
         // Implement actual logic here.
         console.log('Simulated reboot...');
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Rebooting device", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
 
-1. <span data-ttu-id="312f2-124">다음 함수를 추가하여 **InitiateFirmwareUpdate** 직접 메서드 호출을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-124">Add the following function to handle the **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="312f2-125">이 직접 메서드는 매개 변수를 사용하여 다운로드할 펌웨어 이미지의 위치를 지정하고 장치에서 비동기적으로 펌웨어 업데이트를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-125">This direct method uses a parameter to specify the location of the firmware image to download, and initiates the firmware update on the device asynchronously:</span></span>
+1. <span data-ttu-id="d1f2a-124">다음 함수 toohandle hello hello 추가 **InitiateFirmwareUpdate** 직접 메서드 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-124">Add hello following function toohandle hello **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="d1f2a-125">직접이 메서드는 hello 펌웨어 이미지 toodownload의 매개 변수 toospecify hello 위치를 사용 하 고 시작 hello 장치에 펌웨어 업데이트를 비동기적으로 hello:</span><span class="sxs-lookup"><span data-stu-id="d1f2a-125">This direct method uses a parameter toospecify hello location of hello firmware image toodownload, and initiates hello firmware update on hello device asynchronously:</span></span>
 
     ```nodejs
     function onInitiateFirmwareUpdate(request, response) {
         console.log('Simulated firmware update initiated, using: ' + request.payload.FwPackageURI);
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Firmware update initiated", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
 
-        // Add logic here to perform the firmware update asynchronously
+        // Add logic here tooperform hello firmware update asynchronously
     }
     ```
 
-1. <span data-ttu-id="312f2-126">다음 코드를 추가하여 클라이언트 인스턴스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-126">Add the following code to create a client instance:</span></span>
+1. <span data-ttu-id="d1f2a-126">다음 코드는 클라이언트 인스턴스 toocreate hello를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-126">Add hello following code toocreate a client instance:</span></span>
 
     ```nodejs
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. <span data-ttu-id="312f2-127">다음 코드를 추가하여:</span><span class="sxs-lookup"><span data-stu-id="312f2-127">Add the following code to:</span></span>
+1. <span data-ttu-id="d1f2a-127">코드를 다음 hello를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-127">Add hello following code to:</span></span>
 
-    * <span data-ttu-id="312f2-128">연결을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-128">Open the connection.</span></span>
-    * <span data-ttu-id="312f2-129">**DeviceInfo** 개체를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-129">Send the **DeviceInfo** object.</span></span>
-    * <span data-ttu-id="312f2-130">desired 속성에 대한 처리기를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-130">Set up a handler for desired properties.</span></span>
-    * <span data-ttu-id="312f2-131">reported 속성을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-131">Send reported properties.</span></span>
-    * <span data-ttu-id="312f2-132">직접 메서드에 대한 처리기를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-132">Register handlers for the direct methods.</span></span>
-    * <span data-ttu-id="312f2-133">원격 분석 보내기를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-133">Start sending telemetry.</span></span>
+    * <span data-ttu-id="d1f2a-128">Hello 연결을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-128">Open hello connection.</span></span>
+    * <span data-ttu-id="d1f2a-129">Hello 보내기 **DeviceInfo** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-129">Send hello **DeviceInfo** object.</span></span>
+    * <span data-ttu-id="d1f2a-130">desired 속성에 대한 처리기를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-130">Set up a handler for desired properties.</span></span>
+    * <span data-ttu-id="d1f2a-131">reported 속성을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-131">Send reported properties.</span></span>
+    * <span data-ttu-id="d1f2a-132">Hello 직접 방법에 대 한 처리기를 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-132">Register handlers for hello direct methods.</span></span>
+    * <span data-ttu-id="d1f2a-133">원격 분석 보내기를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-133">Start sending telemetry.</span></span>
 
     ```nodejs
     client.open(function (err) {
@@ -242,9 +242,9 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-1. <span data-ttu-id="312f2-134">**remote_monitoring.js** 파일에 변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-134">Save the changes to the **remote_monitoring.js** file.</span></span>
+1. <span data-ttu-id="d1f2a-134">Hello 변경 toohello 저장 **remote_monitoring.js** 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-134">Save hello changes toohello **remote_monitoring.js** file.</span></span>
 
-1. <span data-ttu-id="312f2-135">명령 프롬프트에서 다음 명령을 실행하여 샘플 응용 프로그램을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="312f2-135">Run the following command at a command prompt to launch the sample application:</span></span>
+1. <span data-ttu-id="d1f2a-135">Hello 다음 명령 프롬프트 toolaunch hello 샘플 응용 프로그램에서 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="d1f2a-135">Run hello following command at a command prompt toolaunch hello sample application:</span></span>
    
     ```
     node remote_monitoring.js

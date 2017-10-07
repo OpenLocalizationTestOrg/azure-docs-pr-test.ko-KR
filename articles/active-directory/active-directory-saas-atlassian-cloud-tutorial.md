@@ -1,6 +1,6 @@
 ---
 title: "자습서: Atlassian Cloud와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory와 Atlassian Cloud 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "단일 로그온 tooconfigure 방법을 알아보려면 Azure Active Directory와 Atlassian 클라우드 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,272 +13,272 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: jeedes
-ms.openlocfilehash: 2891838b56dd15cb5f97dcae391770143a80c781
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f679e8b3306bf0efb9373d8baa0cfe095b760aaf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-atlassian-cloud"></a><span data-ttu-id="2ca06-103">자습서: Atlassian Cloud와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="2ca06-103">Tutorial: Azure Active Directory integration with Atlassian Cloud</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-atlassian-cloud"></a><span data-ttu-id="d54f5-103">자습서: Atlassian Cloud와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="d54f5-103">Tutorial: Azure Active Directory integration with Atlassian Cloud</span></span>
 
-<span data-ttu-id="2ca06-104">이 자습서에서는 Atlassian Cloud와 Azure AD(Azure Active Directory)를 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-104">In this tutorial, you learn how to integrate Atlassian Cloud with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="d54f5-104">이 자습서에 설명 toointegrate Atlassian 하 여 클라우드로 Azure Active Directory (Azure AD) 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-104">In this tutorial, you learn how toointegrate Atlassian Cloud with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="2ca06-105">Atlassian Cloud를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-105">Integrating Atlassian Cloud with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="d54f5-105">다음 이점을 hello로 제공 Atlassian 클라우드 Azure AD와 통합:</span><span class="sxs-lookup"><span data-stu-id="d54f5-105">Integrating Atlassian Cloud with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="2ca06-106">Azure AD에서는 Atlassian Cloud에 대한 액세스 권한이 있는 사용자를 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-106">You can control in Azure AD who has access to Atlassian Cloud</span></span>
-- <span data-ttu-id="2ca06-107">사용자가 Azure AD 계정으로 Atlassian Cloud에 자동으로 로그인(Single Sign-on)할 수 있도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-107">You can enable your users to automatically get signed-on to Atlassian Cloud (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="2ca06-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="d54f5-106">클라우드 액세스 tooAtlassian을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-106">You can control in Azure AD who has access tooAtlassian Cloud</span></span>
+- <span data-ttu-id="d54f5-107">에 사용자가 tooautomatically get 로그온 tooAtlassian (Single Sign-on)는 클라우드는 Azure AD 계정 사용을 활성화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-107">You can enable your users tooautomatically get signed-on tooAtlassian Cloud (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="d54f5-108">하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="2ca06-109">Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2ca06-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="d54f5-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="2ca06-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="2ca06-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d54f5-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="d54f5-110">Prerequisites</span></span>
 
-<span data-ttu-id="2ca06-111">Atlassian Cloud와 Azure AD를 통합하도록 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-111">To configure Azure AD integration with Atlassian Cloud, you need the following items:</span></span>
+<span data-ttu-id="d54f5-111">Atlassian 클라우드와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-111">tooconfigure Azure AD integration with Atlassian Cloud, you need hello following items:</span></span>
 
-- <span data-ttu-id="2ca06-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="2ca06-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="2ca06-113">Atlassian Cloud Single Sign-On 사용이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="2ca06-113">An Atlassian Cloud single sign-on enabled subscription</span></span>
+- <span data-ttu-id="d54f5-112">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="d54f5-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="d54f5-113">Atlassian Cloud Single Sign-On 사용이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="d54f5-113">An Atlassian Cloud single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="2ca06-114">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="d54f5-114">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="2ca06-115">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="d54f5-115">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="2ca06-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="2ca06-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="2ca06-117">Azure AD 평가판 환경이 없으면 [평가판 제품](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-117">If you don't have an Azure AD trial environment, you can get a one-month trial here: [Trial offer](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="d54f5-116">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="d54f5-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="d54f5-117">Azure AD 평가판 환경이 없으면 [평가판 제품](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-117">If you don't have an Azure AD trial environment, you can get a one-month trial here: [Trial offer](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="2ca06-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="2ca06-118">Scenario description</span></span>
-<span data-ttu-id="2ca06-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="2ca06-120">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="d54f5-118">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="d54f5-118">Scenario description</span></span>
+<span data-ttu-id="d54f5-119">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d54f5-120">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="2ca06-121">갤러리에서 Atlassian Cloud 추가</span><span class="sxs-lookup"><span data-stu-id="2ca06-121">Adding Atlassian Cloud from the gallery</span></span>
-2. <span data-ttu-id="2ca06-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="2ca06-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="d54f5-121">Atlassian 클라우드 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="d54f5-121">Adding Atlassian Cloud from hello gallery</span></span>
+2. <span data-ttu-id="d54f5-122">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="d54f5-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-atlassian-cloud-from-the-gallery"></a><span data-ttu-id="2ca06-123">갤러리에서 Atlassian Cloud 추가</span><span class="sxs-lookup"><span data-stu-id="2ca06-123">Adding Atlassian Cloud from the gallery</span></span>
-<span data-ttu-id="2ca06-124">Azure AD에 Atlassian Cloud와 Azure AD를 통합하도록 구성하려면 갤러리의 Atlassian Cloud를 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-124">To configure the integration of Atlassian Cloud into Azure AD, you need to add Atlassian Cloud from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-atlassian-cloud-from-hello-gallery"></a><span data-ttu-id="d54f5-123">Atlassian 클라우드 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="d54f5-123">Adding Atlassian Cloud from hello gallery</span></span>
+<span data-ttu-id="d54f5-124">tooconfigure hello와의 통합 Atlassian 클라우드 Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Atlassian 클라우드 tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-124">tooconfigure hello integration of Atlassian Cloud into Azure AD, you need tooadd Atlassian Cloud from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="2ca06-125">**갤러리에서 Atlassian Cloud를 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="2ca06-125">**To add Atlassian Cloud from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="d54f5-125">**hello 갤러리에서 Atlassian 클라우드 tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="d54f5-125">**tooadd Atlassian Cloud from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="2ca06-126">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="d54f5-126">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="2ca06-128">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="2ca06-129">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="d54f5-128">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="d54f5-129">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-129">Then go too**All applications**.</span></span>
 
     ![응용 프로그램][2]
     
-3. <span data-ttu-id="2ca06-131">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="d54f5-131">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![응용 프로그램][3]
 
-4. <span data-ttu-id="2ca06-133">검색 상자에서 **Atlassian Cloud**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-133">In the search box, type **Atlassian Cloud**.</span></span>
+4. <span data-ttu-id="d54f5-133">Hello 검색 상자에 입력 **Atlassian 클라우드**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-133">In hello search box, type **Atlassian Cloud**.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_search.png)
 
-5. <span data-ttu-id="2ca06-135">결과 패널에서 **Atlassian Cloud**를 선택하고 **추가** 단추를 클릭하여 해당 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-135">In the results panel, select **Atlassian Cloud**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="d54f5-135">Hello 결과 패널에서 선택 **Atlassian 클라우드**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-135">In hello results panel, select **Atlassian Cloud**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="2ca06-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="2ca06-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="2ca06-138">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 하여 Atlassian Cloud에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-138">In this section, you configure and test Azure AD single sign-on with Atlassian Cloud based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="d54f5-137">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="d54f5-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="d54f5-138">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 하여 Atlassian Cloud에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-138">In this section, you configure and test Azure AD single sign-on with Atlassian Cloud based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="2ca06-139">Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 대응하는 Atlassian Cloud 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Atlassian Cloud is to a user in Azure AD.</span></span> <span data-ttu-id="2ca06-140">즉 Azure AD 사용자와 Atlassian Cloud의 관련 사용자 간에 연결 관계가 설정되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-140">In other words, a link relationship between an Azure AD user and the related user in Atlassian Cloud needs to be established.</span></span>
+<span data-ttu-id="d54f5-139">Single sign on toowork에 대 한 Azure AD는 tooknow Atlassian 클라우드에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Atlassian Cloud is tooa user in Azure AD.</span></span> <span data-ttu-id="d54f5-140">즉, Azure AD 사용자 및 Atlassian 클라우드에서 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-140">In other words, a link relationship between an Azure AD user and hello related user in Atlassian Cloud needs toobe established.</span></span>
 
-<span data-ttu-id="2ca06-141">이 연결 관계는 Azure AD의 **사용자 이름** 값을 Atlassian Cloud의 **Username** 값으로 할당하여 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Atlassian Cloud.</span></span>
+<span data-ttu-id="d54f5-141">Hello hello 값을 할당 하 여이 링크 관계가 설정 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** Atlassian 클라우드에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in Atlassian Cloud.</span></span>
 
-<span data-ttu-id="2ca06-142">Atlassian Cloud에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-142">To configure and test Azure AD single sign-on with Atlassian Cloud, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="d54f5-142">tooconfigure 및 Atlassian 클라우드를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-142">tooconfigure and test Azure AD single sign-on with Atlassian Cloud, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="2ca06-143">**[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="2ca06-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="2ca06-145">**[Atlassian Cloud 테스트 사용자 만들기](#creating-an-atlassian-cloud-test-user)** - Britta Simon의 Azure AD 표현과 연결되는 대응 사용자를 Atlassian Cloud에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-145">**[Creating an Atlassian Cloud test user](#creating-an-atlassian-cloud-test-user)** - to have a counterpart of Britta Simon in Atlassian Cloud that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="2ca06-146">**[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="2ca06-147">**[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="d54f5-143">**[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="d54f5-144">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="d54f5-145">**[Atlassian 클라우드 테스트 사용자 만들기](#creating-an-atlassian-cloud-test-user)**  -toohave Atlassian 클라우드에서 사용자의 연결 된 Azure AD toohello 표현인 Britta Simon의 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-145">**[Creating an Atlassian Cloud test user](#creating-an-atlassian-cloud-test-user)** - toohave a counterpart of Britta Simon in Atlassian Cloud that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="d54f5-146">**[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="d54f5-147">**[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="d54f5-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="2ca06-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="2ca06-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="d54f5-148">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="d54f5-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="2ca06-149">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Atlassian Cloud 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Atlassian Cloud application.</span></span>
+<span data-ttu-id="d54f5-149">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Atlassian 클라우드 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Atlassian Cloud application.</span></span>
 
-<span data-ttu-id="2ca06-150">**Atlassian Cloud에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="2ca06-150">**To configure Azure AD single sign-on with Atlassian Cloud, perform the following steps:**</span></span>
+<span data-ttu-id="d54f5-150">**Azure AD tooconfigure single sign on Atlassian 클라우드와 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="d54f5-150">**tooconfigure Azure AD single sign-on with Atlassian Cloud, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="2ca06-151">Azure Portal의 **Atlassian Cloud** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-151">In the Azure portal, on the **Atlassian Cloud** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="d54f5-151">Hello hello에 Azure 포털에서에서 **Atlassian 클라우드** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-151">In hello Azure portal, on hello **Atlassian Cloud** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-on 구성][4]
 
-2. <span data-ttu-id="2ca06-153">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="d54f5-153">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_samlbase.png)
 
-3. <span data-ttu-id="2ca06-155">**Atlassian Cloud 도메인 및 URL** 섹션에서 **IDP** 시작 모드로 응용 프로그램을 구성하려는 경우 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-155">On the **Atlassian Cloud Domain and URLs** section, perform the following steps if you wish to configure the application in **IDP** initiated mode:</span></span>
+3. <span data-ttu-id="d54f5-155">Hello에 **Atlassian 클라우드 도메인 및 Url** 섹션를 hello tooconfigure hello 응용 프로그램에 필요한 경우 다음 단계를 수행 **IDP** 시작 모드:</span><span class="sxs-lookup"><span data-stu-id="d54f5-155">On hello **Atlassian Cloud Domain and URLs** section, perform hello following steps if you wish tooconfigure hello application in **IDP** initiated mode:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_url.png)
 
-    <span data-ttu-id="2ca06-157">a.</span><span class="sxs-lookup"><span data-stu-id="2ca06-157">a.</span></span> <span data-ttu-id="2ca06-158">**식별자** 텍스트 상자에서 `https://<instancename>.atlassian.net/admin/saml/edit` 패턴을 사용하여 URL을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-158">In the **Identifier** textbox, type a URL using the following pattern: `https://<instancename>.atlassian.net/admin/saml/edit`</span></span>
+    <span data-ttu-id="d54f5-157">a.</span><span class="sxs-lookup"><span data-stu-id="d54f5-157">a.</span></span> <span data-ttu-id="d54f5-158">Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<instancename>.atlassian.net/admin/saml/edit`</span><span class="sxs-lookup"><span data-stu-id="d54f5-158">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<instancename>.atlassian.net/admin/saml/edit`</span></span>
 
-    <span data-ttu-id="2ca06-159">b.</span><span class="sxs-lookup"><span data-stu-id="2ca06-159">b.</span></span> <span data-ttu-id="2ca06-160">**회신 URL** 텍스트 상자에서 URL을 `https://id.atlassian.com/login/saml/acs`로 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-160">In the **Reply URL** textbox, type a URL as: `https://id.atlassian.com/login/saml/acs`</span></span>
+    <span data-ttu-id="d54f5-159">b.</span><span class="sxs-lookup"><span data-stu-id="d54f5-159">b.</span></span> <span data-ttu-id="d54f5-160">Hello에 **회신 URL** 텍스트 상자에 다음 URL로:`https://id.atlassian.com/login/saml/acs`</span><span class="sxs-lookup"><span data-stu-id="d54f5-160">In hello **Reply URL** textbox, type a URL as: `https://id.atlassian.com/login/saml/acs`</span></span>
 
-4. <span data-ttu-id="2ca06-161">**SP** 시작 모드에서 응용 프로그램을 구성하려면 **고급 URL 설정 표시**를 확인하고 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-161">Check **Show advanced URL settings** and perform the following step if you wish to configure the application in **SP** initiated mode:</span></span>
+4. <span data-ttu-id="d54f5-161">확인 **고급 URL 설정 표시** hello tooconfigure hello 응용 프로그램에 필요한 경우 단계를 다음을 수행 하 고 **SP** 시작 모드:</span><span class="sxs-lookup"><span data-stu-id="d54f5-161">Check **Show advanced URL settings** and perform hello following step if you wish tooconfigure hello application in **SP** initiated mode:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_url1.png)
 
-    <span data-ttu-id="2ca06-163">**로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<instancename>.atlassian.net`</span><span class="sxs-lookup"><span data-stu-id="2ca06-163">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<instancename>.atlassian.net`</span></span>
+    <span data-ttu-id="d54f5-163">Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<instancename>.atlassian.net`</span><span class="sxs-lookup"><span data-stu-id="d54f5-163">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<instancename>.atlassian.net`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="2ca06-164">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-164">These values are not real.</span></span> <span data-ttu-id="2ca06-165">실제 식별자 및 로그온 URL로 해당 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-165">Update these values with the actual Identifier and Sign-On URL.</span></span> <span data-ttu-id="2ca06-166">Atlassian Cloud SAML 구성 화면에서 정확한 값을 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-166">You can get the exact values from Atlassian Cloud SAML Configuration screen.</span></span>
+    > <span data-ttu-id="d54f5-164">이러한 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-164">These values are not real.</span></span> <span data-ttu-id="d54f5-165">이러한 항목을 업데이트 실제 hello로 값 식별자 및 로그온 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-165">Update these values with hello actual Identifier and Sign-On URL.</span></span> <span data-ttu-id="d54f5-166">Atlassian 클라우드 SAML 구성 화면에서 hello 정확한 값을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-166">You can get hello exact values from Atlassian Cloud SAML Configuration screen.</span></span>
  
-5. <span data-ttu-id="2ca06-167">**SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-167">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+5. <span data-ttu-id="d54f5-167">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **Certificate(Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-167">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_certificate.png) 
 
-6. <span data-ttu-id="2ca06-169">**Atlassian Cloud 구성** 섹션에서 **Atlassian Cloud 구성**을 클릭하여 **로그온 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-169">On the **Atlassian Cloud Configuration** section, click **Configure Atlassian Cloud** to open **Configure sign-on** window.</span></span> <span data-ttu-id="2ca06-170">**빠른 참조 섹션**에서 **SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-170">Copy the **SAML Entity ID and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="d54f5-169">Hello에 **Atlassian 클라우드 구성** 섹션에서 클릭 **Atlassian 클라우드 구성** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="d54f5-169">On hello **Atlassian Cloud Configuration** section, click **Configure Atlassian Cloud** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="d54f5-170">복사 hello **SAML Single Sign-on 서비스 URL 및 엔터티 ID가 SAML** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="d54f5-170">Copy hello **SAML Entity ID and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_configure.png) 
 
-7. <span data-ttu-id="2ca06-172">응용 프로그램에 SSO를 구성하려면 관리자 권한으로 Atlassian Portal에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-172">To get SSO configured for your application, login to the Atlassian Portal using the administrator rights.</span></span>
+7. <span data-ttu-id="d54f5-172">tooget SSO Atlassian 포털 hello 관리자 권한을 사용 하 여 로그인 toohello 응용 프로그램에 대해 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-172">tooget SSO configured for your application, login toohello Atlassian Portal using hello administrator rights.</span></span>
 
-8. <span data-ttu-id="2ca06-173">왼쪽 탐색 모음의 [인증] 섹션에서 **도메인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-173">In the Authentication section of the left navigation click **Domains**.</span></span>
+8. <span data-ttu-id="d54f5-173">왼쪽 탐색 hello hello 인증 섹션에서 클릭 **도메인**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-173">In hello Authentication section of hello left navigation click **Domains**.</span></span>
 
-    ![Single Sign-On 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_06.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_06.png)
 
-    <span data-ttu-id="2ca06-175">a.</span><span class="sxs-lookup"><span data-stu-id="2ca06-175">a.</span></span> <span data-ttu-id="2ca06-176">텍스트 상자에서 도메인 이름을 입력한 다음 **도메인 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-176">In the textbox, type your domain name, and then click **Add domain**.</span></span>
+    <span data-ttu-id="d54f5-175">a.</span><span class="sxs-lookup"><span data-stu-id="d54f5-175">a.</span></span> <span data-ttu-id="d54f5-176">Hello 텍스트 상자에 도메인 이름을 입력 한 다음 클릭 **도메인 추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-176">In hello textbox, type your domain name, and then click **Add domain**.</span></span>
         
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_07.png)
 
-    <span data-ttu-id="2ca06-178">b.</span><span class="sxs-lookup"><span data-stu-id="2ca06-178">b.</span></span> <span data-ttu-id="2ca06-179">도메인을 확인하려면 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-179">To verify the domain, click **Verify**.</span></span> 
+    <span data-ttu-id="d54f5-178">b.</span><span class="sxs-lookup"><span data-stu-id="d54f5-178">b.</span></span> <span data-ttu-id="d54f5-179">tooverify hello 도메인 클릭 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-179">tooverify hello domain, click **Verify**.</span></span> 
 
-    ![Single Sign-On 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_08.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_08.png)
 
-    <span data-ttu-id="2ca06-181">c.</span><span class="sxs-lookup"><span data-stu-id="2ca06-181">c.</span></span> <span data-ttu-id="2ca06-182">도메인 확인 HTML 파일을 다운로드하여 도메인 웹 사이트의 루트 폴더에 업로드한 다음 **도메인 확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-182">Download the domain verification html file, upload it to the root folder of your domain's website, and then click **Verify domain**.</span></span>
+    <span data-ttu-id="d54f5-181">c.</span><span class="sxs-lookup"><span data-stu-id="d54f5-181">c.</span></span> <span data-ttu-id="d54f5-182">Hello 도메인 확인 html 파일을 다운로드 하 고 도메인의 웹 사이트의 루트 폴더 toohello 업로드 한 클릭 **도메인 확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-182">Download hello domain verification html file, upload it toohello root folder of your domain's website, and then click **Verify domain**.</span></span>
     
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_09.png)
 
-    <span data-ttu-id="2ca06-184">d.</span><span class="sxs-lookup"><span data-stu-id="2ca06-184">d.</span></span> <span data-ttu-id="2ca06-185">도메인이 확인되면 **상태** 필드 값이 **확인됨**이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-185">Once the domain is verified, the value of the **Status** field is **Verified**.</span></span>
+    <span data-ttu-id="d54f5-184">d.</span><span class="sxs-lookup"><span data-stu-id="d54f5-184">d.</span></span> <span data-ttu-id="d54f5-185">Hello 도메인이 확인 되 면 hello hello 값 **상태** 필드는 **확인 됨**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-185">Once hello domain is verified, hello value of hello **Status** field is **Verified**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_10.png)
 
-9. <span data-ttu-id="2ca06-187">왼쪽 탐색 모음에서 **SAML**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-187">In the left navigation bar, click **SAML**.</span></span>
+9. <span data-ttu-id="d54f5-187">Hello 왼쪽된 탐색 모음에서 **SAML**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-187">In hello left navigation bar, click **SAML**.</span></span>
  
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_11.png)
 
-10. <span data-ttu-id="2ca06-189">SAML 구성을 만들고 ID 공급자 구성을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-189">Create a SAML Configuration and add the Identity provider configuration.</span></span>
+10. <span data-ttu-id="d54f5-189">SAML 구성 만들고 hello Id 공급자 구성을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-189">Create a SAML Configuration and add hello Identity provider configuration.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_12.png)
 
-    <span data-ttu-id="2ca06-191">a.</span><span class="sxs-lookup"><span data-stu-id="2ca06-191">a.</span></span> <span data-ttu-id="2ca06-192">Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 **Identity provider Entity ID**(ID 공급자 엔터티 ID) 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-192">In the **Identity provider Entity ID** text box, paste the value of  **SAML Entity ID** which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="d54f5-191">a.</span><span class="sxs-lookup"><span data-stu-id="d54f5-191">a.</span></span> <span data-ttu-id="d54f5-192">Hello에 **Id 공급자 엔터티 ID** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID** Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-192">In hello **Identity provider Entity ID** text box, paste hello value of  **SAML Entity ID** which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="2ca06-193">b.</span><span class="sxs-lookup"><span data-stu-id="2ca06-193">b.</span></span> <span data-ttu-id="2ca06-194">Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **ID 공급자 SSO URL** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-194">In the **Identity provider SSO URL** text box, paste the value of **SAML Single Sign-On Service URL** which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="d54f5-193">b.</span><span class="sxs-lookup"><span data-stu-id="d54f5-193">b.</span></span> <span data-ttu-id="d54f5-194">Hello에 **Id 공급자 SSO URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL** Azure 포털에서 복사한입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-194">In hello **Identity provider SSO URL** text box, paste hello value of **SAML Single Sign-On Service URL** which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="2ca06-195">c.</span><span class="sxs-lookup"><span data-stu-id="2ca06-195">c.</span></span> <span data-ttu-id="2ca06-196">Azure Portal에서 다운로드한 인증서를 열고 시작 및 끝 행을 제외한 값을 복사하여 **공용 X509 인증서** 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-196">Open the downloaded certificate from Azure portal and copy the values without the Begin and End lines and paste it in the **Public X509 certificate** box.</span></span>
+    <span data-ttu-id="d54f5-195">c.</span><span class="sxs-lookup"><span data-stu-id="d54f5-195">c.</span></span> <span data-ttu-id="d54f5-196">Hello Begin 없이 Azure 포털 및 복사 hello 값에서 인증서를 다운로드 하는 hello 및 끝 줄 열고 hello에 붙여 **공용 X509 인증서** 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-196">Open hello downloaded certificate from Azure portal and copy hello values without hello Begin and End lines and paste it in hello **Public X509 certificate** box.</span></span>
     
-    <span data-ttu-id="2ca06-197">d.</span><span class="sxs-lookup"><span data-stu-id="2ca06-197">d.</span></span> <span data-ttu-id="2ca06-198">**구성 저장**을 클릭하여 설정을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-198">Click **Save Configuration**  to Save the settings.</span></span>
+    <span data-ttu-id="d54f5-197">d.</span><span class="sxs-lookup"><span data-stu-id="d54f5-197">d.</span></span> <span data-ttu-id="d54f5-198">클릭 **구성 저장** tooSave hello 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-198">Click **Save Configuration**  tooSave hello settings.</span></span>
      
-11. <span data-ttu-id="2ca06-199">Azure AD 설정을 업데이트하여 올바른 식별자 URL을 설정했는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-199">Update the Azure AD settings to make sure that you have setup the correct Identifier URL.</span></span>
+11. <span data-ttu-id="d54f5-199">Hello Azure AD 설정 toomake 설치 hello 식별자 URL을 수정 했는지를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-199">Update hello Azure AD settings toomake sure that you have setup hello correct Identifier URL.</span></span>
   
-    <span data-ttu-id="2ca06-200">a.</span><span class="sxs-lookup"><span data-stu-id="2ca06-200">a.</span></span> <span data-ttu-id="2ca06-201">SAML 화면에서 **SP Identity ID**(SP ID)를 복사하여 Azure AD에 **식별자** 값으로 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-201">Copy the **SP Identity ID** from the SAML screen and paste it in Azure AD as the **Identifier** value.</span></span>
+    <span data-ttu-id="d54f5-200">a.</span><span class="sxs-lookup"><span data-stu-id="d54f5-200">a.</span></span> <span data-ttu-id="d54f5-201">복사 hello **SP Id ID** 화면에서 SAML hello를 hello로 Azure AD에 붙여넣으면 **식별자** 값입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-201">Copy hello **SP Identity ID** from hello SAML screen and paste it in Azure AD as hello **Identifier** value.</span></span>
 
-    <span data-ttu-id="2ca06-202">b.</span><span class="sxs-lookup"><span data-stu-id="2ca06-202">b.</span></span> <span data-ttu-id="2ca06-203">[로그인 URL]은 Atlassian Cloud의 테넌트 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-203">Sign On URL is the tenant URL of your Atlassian Cloud.</span></span>   
+    <span data-ttu-id="d54f5-202">b.</span><span class="sxs-lookup"><span data-stu-id="d54f5-202">b.</span></span> <span data-ttu-id="d54f5-203">로그온 URL은 Atlassian 클라우드 hello 테 넌 트 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-203">Sign On URL is hello tenant URL of your Atlassian Cloud.</span></span>     
 
      ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_13.png)
     
-12. <span data-ttu-id="2ca06-205">Azure Portal에서 **저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-205">In the Azure portal, Click **Save** button.</span></span>
+12. <span data-ttu-id="d54f5-205">Hello Azure 포털에서에서 클릭 **저장** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-205">In hello Azure portal, Click **Save** button.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_general_400.png)
 
 > [!TIP]
-> <span data-ttu-id="2ca06-207">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-207">You can now read a concise version of these instructions inside the [Azure  portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="2ca06-208">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-208">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="2ca06-209">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-209">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="d54f5-207">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="d54f5-207">You can now read a concise version of these instructions inside hello [Azure  portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="d54f5-208">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="d54f5-208">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="d54f5-209">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="d54f5-209">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="2ca06-210">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="2ca06-210">Creating an Azure AD test user</span></span>
-<span data-ttu-id="2ca06-211">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-211">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="d54f5-210">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="d54f5-210">Creating an Azure AD test user</span></span>
+<span data-ttu-id="d54f5-211">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-211">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Azure AD 사용자 만들기][100]
 
-<span data-ttu-id="2ca06-213">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="2ca06-213">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="d54f5-213">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="d54f5-213">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="2ca06-214">**Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-214">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="d54f5-214">Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-214">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="2ca06-216">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-216">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="d54f5-216">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-216">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="2ca06-218">**사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-218">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="d54f5-218">tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-218">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="2ca06-220">**사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-220">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="d54f5-220">Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-220">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="2ca06-222">a.</span><span class="sxs-lookup"><span data-stu-id="2ca06-222">a.</span></span> <span data-ttu-id="2ca06-223">**이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-223">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="d54f5-222">a.</span><span class="sxs-lookup"><span data-stu-id="d54f5-222">a.</span></span> <span data-ttu-id="d54f5-223">Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-223">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="2ca06-224">b.</span><span class="sxs-lookup"><span data-stu-id="2ca06-224">b.</span></span> <span data-ttu-id="2ca06-225">**사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-225">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="d54f5-224">b.</span><span class="sxs-lookup"><span data-stu-id="d54f5-224">b.</span></span> <span data-ttu-id="d54f5-225">Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-225">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="2ca06-226">c.</span><span class="sxs-lookup"><span data-stu-id="2ca06-226">c.</span></span> <span data-ttu-id="2ca06-227">**암호 표시**를 선택하고 **암호** 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-227">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="d54f5-226">c.</span><span class="sxs-lookup"><span data-stu-id="d54f5-226">c.</span></span> <span data-ttu-id="d54f5-227">선택 **암호 표시** hello hello 값 기록 **암호**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-227">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="2ca06-228">d.</span><span class="sxs-lookup"><span data-stu-id="2ca06-228">d.</span></span> <span data-ttu-id="2ca06-229">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-229">Click **Create**.</span></span>
+    <span data-ttu-id="d54f5-228">d.</span><span class="sxs-lookup"><span data-stu-id="d54f5-228">d.</span></span> <span data-ttu-id="d54f5-229">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-229">Click **Create**.</span></span>
  
-### <a name="creating-an-atlassian-cloud-test-user"></a><span data-ttu-id="2ca06-230">Atlassian Cloud 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="2ca06-230">Creating an Atlassian Cloud test user</span></span>
+### <a name="creating-an-atlassian-cloud-test-user"></a><span data-ttu-id="d54f5-230">Atlassian Cloud 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="d54f5-230">Creating an Atlassian Cloud test user</span></span>
 
-<span data-ttu-id="2ca06-231">Azure AD 사용자가 Atlassian Cloud에 로그인할 수 있도록 하려면 Atlassian Cloud로 프로비전되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-231">To enable Azure AD users to log in to Atlassian Cloud, they must be provisioned into Atlassian Cloud.</span></span>  
-<span data-ttu-id="2ca06-232">Atlassian Cloud의 경우 프로비전이 수동 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-232">In case of Atlassian Cloud, provisioning is a manual task.</span></span>
+<span data-ttu-id="d54f5-231">tooenable Azure AD 사용자가 toolog Atlassian 클라우드로 제공 되어야은 클라우드 tooAtlassian에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-231">tooenable Azure AD users toolog in tooAtlassian Cloud, they must be provisioned into Atlassian Cloud.</span></span>  
+<span data-ttu-id="d54f5-232">Atlassian Cloud의 경우 프로비전이 수동 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-232">In case of Atlassian Cloud, provisioning is a manual task.</span></span>
 
-<span data-ttu-id="2ca06-233">**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="2ca06-233">**To provision a user account, perform the following steps:**</span></span>
+<span data-ttu-id="d54f5-233">**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="d54f5-233">**tooprovision a user account, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="2ca06-234">[사이트 관리] 섹션에서 **사용자** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-234">In the Site administration section, click the **Users** button</span></span>
+1. <span data-ttu-id="d54f5-234">Hello 사이트 관리 섹션에서에서 클릭 hello **사용자** 단추</span><span class="sxs-lookup"><span data-stu-id="d54f5-234">In hello Site administration section, click hello **Users** button</span></span>
 
     ![Atlassian Cloud 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_14.png) 
 
-2. <span data-ttu-id="2ca06-236">Atlassian Cloud에서 사용자를 만들기 위해 **사용자 만들기** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-236">Click the **Create User** button to create a user in the Atlassian Cloud</span></span>
+2. <span data-ttu-id="d54f5-236">Hello 클릭 **Create User** 단추 toocreate hello 클라우드 Atlassian의에서 사용자</span><span class="sxs-lookup"><span data-stu-id="d54f5-236">Click hello **Create User** button toocreate a user in hello Atlassian Cloud</span></span>
 
     ![Atlassian Cloud 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_15.png) 
 
-3. <span data-ttu-id="2ca06-238">사용자의 **메일 주소**, **사용자 이름** 및 **전체 이름**을 입력하고 응용 프로그램 액세스 권한을 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-238">Enter the user's **Email address**, **Username**, and **Full Name** and assign the application access.</span></span> 
+3. <span data-ttu-id="d54f5-238">Hello 사용자의 입력 **전자 메일 주소**, **Username**, 및 **전체 이름을** hello 응용 프로그램에 대 한 액세스 권한을 할당 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-238">Enter hello user's **Email address**, **Username**, and **Full Name** and assign hello application access.</span></span> 
 
     ![Atlassian Cloud 사용자 만들기](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_16.png)
  
-4. <span data-ttu-id="2ca06-240">**사용자 만들기** 단추를 클릭하면 사용자에게 메일 초대장을 보내고 이 초대를 수락하면 해당 사용자가 시스템에서 활성화됩니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-240">Click **Create user** button, it will send the email invitation to the user and after accepting the invitation the user will be active in the system.</span></span> 
+4. <span data-ttu-id="d54f5-240">클릭 **사용자 만들기** hello 전자 메일 초대 toohello 사용자 보냅니다 단추를 수락한 후 및 hello 초대 hello 사용자 hello 시스템에서 활성화 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-240">Click **Create user** button, it will send hello email invitation toohello user and after accepting hello invitation hello user will be active in hello system.</span></span> 
 
 >[!NOTE] 
-><span data-ttu-id="2ca06-241">[사용자] 섹션에서 **대량 만들기** 단추를 클릭하여 대량으로 사용자를 만들 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-241">You can also create the bulk users by clicking the **Bulk Create** button in the Users section.</span></span>
+><span data-ttu-id="d54f5-241">만들 수도 있습니다 hello 대량 사용자 hello를 클릭 하 여 **대량 만들** hello 사용자 섹션에에서는 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-241">You can also create hello bulk users by clicking hello **Bulk Create** button in hello Users section.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="2ca06-242">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="2ca06-242">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="d54f5-242">Azure AD hello 테스트 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-242">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="2ca06-243">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Atlassian Cloud에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-243">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Atlassian Cloud.</span></span>
+<span data-ttu-id="d54f5-243">이 섹션에서는 액세스 tooAtlassian 클라우드를 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-243">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooAtlassian Cloud.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="2ca06-245">**Britta Simon을 Atlassian Cloud에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="2ca06-245">**To assign Britta Simon to Atlassian Cloud, perform the following steps:**</span></span>
+<span data-ttu-id="d54f5-245">**tooassign Britta Simon tooAtlassian 클라우드에 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="d54f5-245">**tooassign Britta Simon tooAtlassian Cloud, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="2ca06-246">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-246">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="d54f5-246">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-246">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="2ca06-248">응용 프로그램 목록에서 **Atlassian Cloud**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-248">In the applications list, select **Atlassian Cloud**.</span></span>
+2. <span data-ttu-id="d54f5-248">Hello 응용 프로그램 목록에서 선택 **Atlassian 클라우드**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-248">In hello applications list, select **Atlassian Cloud**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_app.png) 
 
-3. <span data-ttu-id="2ca06-250">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-250">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="d54f5-250">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-250">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="2ca06-252">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-252">Click **Add** button.</span></span> <span data-ttu-id="2ca06-253">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-253">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="d54f5-252">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-252">Click **Add** button.</span></span> <span data-ttu-id="d54f5-253">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-253">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="2ca06-255">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-255">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="d54f5-255">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-255">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="2ca06-256">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-256">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="d54f5-256">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-256">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="2ca06-257">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-257">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="d54f5-257">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-257">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="2ca06-258">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="2ca06-258">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="d54f5-258">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="d54f5-258">Testing single sign-on</span></span>
 
-<span data-ttu-id="2ca06-259">이 섹션에서는 액세스 패널을 사용하여 Azure AD SSO 구성을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-259">In this section, you test your Azure AD SSO configuration using the Access Panel.</span></span>
+<span data-ttu-id="d54f5-259">이 섹션에서는 hello 액세스 패널을 사용 하 여 Azure AD SSO 구성을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-259">In this section, you test your Azure AD SSO configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="2ca06-260">[액세스 패널]에서 [Atlassian Cloud] 타일을 클릭하면 Atlassian Cloud 응용 프로그램에 자동으로 로그인됩니다.</span><span class="sxs-lookup"><span data-stu-id="2ca06-260">When you click the Atlassian Cloud tile in the Access Panel, you should get automatically signed-on to your Atlassian Cloud application.</span></span> <span data-ttu-id="2ca06-261">액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2ca06-261">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="d54f5-260">Hello Atlassian 클라우드 hello 액세스 패널에서에서 타일을 클릭할 때 자동으로 로그온 tooyour Atlassian 클라우드 응용 프로그램을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-260">When you click hello Atlassian Cloud tile in hello Access Panel, you should get automatically signed-on tooyour Atlassian Cloud application.</span></span> <span data-ttu-id="d54f5-261">액세스 패널 hello에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d54f5-261">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="2ca06-262">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="2ca06-262">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="d54f5-262">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="d54f5-262">Additional resources</span></span>
 
-* [<span data-ttu-id="2ca06-263">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="2ca06-263">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="2ca06-264">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="2ca06-264">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="d54f5-263">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="d54f5-263">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="d54f5-264">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="d54f5-264">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

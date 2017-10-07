@@ -1,6 +1,6 @@
 ---
-title: "StorSimple Snapshot Manager 백업 정책 | Microsoft Docs"
-description: "StorSimple 스냅숏 관리자 MMC 스냅인을 사용하여 예약된 백업을 제어하는 백업 정책을 만들고 관리하는 방법을 설명합니다."
+title: "aaaStorSimple 스냅숏 관리자에 대 한 백업 정책 | Microsoft Docs"
+description: "Toouse StorSimple 스냅숏 관리자 MMC 스냅인 toocreate hello 하 및 예약 된 백업 제어 하는 hello 백업 정책을 관리 하는 방법을 설명 합니다."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,82 +14,82 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: 218c89e403673c16c72da95aa2c1d685bbed5a86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2ae75a8d0568090add6018da18de73eb56e6590
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-to-create-and-manage-backup-policies"></a><span data-ttu-id="47b1a-103">StorSimple 스냅숏 관리자를 사용하여 백업 정책 만들기 및 관리</span><span class="sxs-lookup"><span data-stu-id="47b1a-103">Use StorSimple Snapshot Manager to create and manage backup policies</span></span>
-## <a name="overview"></a><span data-ttu-id="47b1a-104">개요</span><span class="sxs-lookup"><span data-stu-id="47b1a-104">Overview</span></span>
-<span data-ttu-id="47b1a-105">백업 정책은 로컬로 또는 클라우드에 볼륨 데이터를 백업하기 위한 일정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-105">A backup policy creates a schedule for backing up volume data locally or in the cloud.</span></span> <span data-ttu-id="47b1a-106">백업 정책을 만들 때 보존 정책을 지정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-106">When you create a backup policy, you can also specify a retention policy.</span></span> <span data-ttu-id="47b1a-107">(최대 64개의 스냅숏을 유지할 수 있습니다.) 백업 정책에 대한 자세한 내용은 [StorSimple 8000 시리즈: 하이브리드 클라우드 솔루션](storsimple-overview.md)에서 [백업 형식](storsimple-what-is-snapshot-manager.md#backup-types-and-backup-policies)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="47b1a-107">(You can retain a maximum of 64 snapshots.) For more information about backup policies, see [Backup types](storsimple-what-is-snapshot-manager.md#backup-types-and-backup-policies) in [StorSimple 8000 series: a hybrid cloud solution](storsimple-overview.md).</span></span>
+# <a name="use-storsimple-snapshot-manager-toocreate-and-manage-backup-policies"></a><span data-ttu-id="94ec5-103">StorSimple 스냅숏 관리자 toocreate를 사용 하 고 백업 정책 관리</span><span class="sxs-lookup"><span data-stu-id="94ec5-103">Use StorSimple Snapshot Manager toocreate and manage backup policies</span></span>
+## <a name="overview"></a><span data-ttu-id="94ec5-104">개요</span><span class="sxs-lookup"><span data-stu-id="94ec5-104">Overview</span></span>
+<span data-ttu-id="94ec5-105">백업 정책을 로컬로 또는 hello 클라우드에 볼륨 데이터를 백업 하기 위한 일정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-105">A backup policy creates a schedule for backing up volume data locally or in hello cloud.</span></span> <span data-ttu-id="94ec5-106">백업 정책을 만들 때 보존 정책을 지정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-106">When you create a backup policy, you can also specify a retention policy.</span></span> <span data-ttu-id="94ec5-107">(최대 64개의 스냅숏을 유지할 수 있습니다.) 백업 정책에 대한 자세한 내용은 [StorSimple 8000 시리즈: 하이브리드 클라우드 솔루션](storsimple-overview.md)에서 [백업 형식](storsimple-what-is-snapshot-manager.md#backup-types-and-backup-policies)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="94ec5-107">(You can retain a maximum of 64 snapshots.) For more information about backup policies, see [Backup types](storsimple-what-is-snapshot-manager.md#backup-types-and-backup-policies) in [StorSimple 8000 series: a hybrid cloud solution](storsimple-overview.md).</span></span>
 
-<span data-ttu-id="47b1a-108">이 자습서에서는 다음을 수행하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-108">This tutorial explains how to:</span></span>
+<span data-ttu-id="94ec5-108">이 자습서에서는 다음을 수행하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-108">This tutorial explains how to:</span></span>
 
-* <span data-ttu-id="47b1a-109">백업 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="47b1a-109">Create a backup policy</span></span>
-* <span data-ttu-id="47b1a-110">백업 정책 편집</span><span class="sxs-lookup"><span data-stu-id="47b1a-110">Edit a backup policy</span></span>
-* <span data-ttu-id="47b1a-111">백업 정책 삭제</span><span class="sxs-lookup"><span data-stu-id="47b1a-111">Delete a backup policy</span></span>
+* <span data-ttu-id="94ec5-109">백업 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="94ec5-109">Create a backup policy</span></span>
+* <span data-ttu-id="94ec5-110">백업 정책 편집</span><span class="sxs-lookup"><span data-stu-id="94ec5-110">Edit a backup policy</span></span>
+* <span data-ttu-id="94ec5-111">백업 정책 삭제</span><span class="sxs-lookup"><span data-stu-id="94ec5-111">Delete a backup policy</span></span>
 
-## <a name="create-a-backup-policy"></a><span data-ttu-id="47b1a-112">백업 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="47b1a-112">Create a backup policy</span></span>
-<span data-ttu-id="47b1a-113">다음 절차에 따라 새 백업 정책을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-113">Use the following procedure to create a new backup policy.</span></span>
+## <a name="create-a-backup-policy"></a><span data-ttu-id="94ec5-112">백업 정책 만들기</span><span class="sxs-lookup"><span data-stu-id="94ec5-112">Create a backup policy</span></span>
+<span data-ttu-id="94ec5-113">다음 프로시저 toocreate 새 백업 정책을 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-113">Use hello following procedure toocreate a new backup policy.</span></span>
 
-#### <a name="to-create-a-backup-policy"></a><span data-ttu-id="47b1a-114">백업 정책을 만들려면</span><span class="sxs-lookup"><span data-stu-id="47b1a-114">To create a backup policy</span></span>
-1. <span data-ttu-id="47b1a-115">바탕 화면 아이콘을 클릭하여 StorSimple 스냅숏 관리자를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-115">Click the desktop icon to start StorSimple Snapshot Manager.</span></span>
-2. <span data-ttu-id="47b1a-116">**범위** 창에서 **백업 정책**을 마우스 오른쪽 단추로 클릭하고 **백업 정책 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-116">In the **Scope** pane, right-click **Backup Policies**, and click **Create Backup Policy**.</span></span>
+#### <a name="toocreate-a-backup-policy"></a><span data-ttu-id="94ec5-114">백업 정책 toocreate</span><span class="sxs-lookup"><span data-stu-id="94ec5-114">toocreate a backup policy</span></span>
+1. <span data-ttu-id="94ec5-115">Hello 바탕 화면 아이콘 toostart StorSimple 스냅숏 관리자를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-115">Click hello desktop icon toostart StorSimple Snapshot Manager.</span></span>
+2. <span data-ttu-id="94ec5-116">Hello에 **범위** 창에서 마우스 오른쪽 단추로 클릭 **백업 정책**를 클릭 하 고 **백업 정책 만들기**합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-116">In hello **Scope** pane, right-click **Backup Policies**, and click **Create Backup Policy**.</span></span>
 
     ![백업 정책 만들기](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_BU_policy.png)
 
-    <span data-ttu-id="47b1a-118">**정책 만들기** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-118">The **Create a Policy** dialog box appears.</span></span>
+    <span data-ttu-id="94ec5-118">hello **정책 만들기** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-118">hello **Create a Policy** dialog box appears.</span></span>
 
     ![정책 만들기 - 일반 탭](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_general.png)
-3. <span data-ttu-id="47b1a-120">**일반** 탭에서 다음 정보를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-120">On the **General** tab, complete the following information:</span></span>
+3. <span data-ttu-id="94ec5-120">Hello에 **일반** 탭, 다음 정보는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="94ec5-120">On hello **General** tab, complete hello following information:</span></span>
 
-   1. <span data-ttu-id="47b1a-121">**이름** 텍스트 상자에 정책 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-121">In the **Name** text box, type a name for the policy.</span></span>
-   2. <span data-ttu-id="47b1a-122">**볼륨 그룹** 텍스트 상자에 정책과 연결된 볼륨 그룹의 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-122">In the **Volume group** text box, type the name of the volume group associated with the policy.</span></span>
-   3. <span data-ttu-id="47b1a-123">**로컬 스냅숏** 또는 **클라우드 스냅숏** 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-123">Select either **Local Snapshot** or **Cloud Snapshot**.</span></span>
-   4. <span data-ttu-id="47b1a-124">보존할 스냅숏 수를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-124">Select the number of snapshots to retain.</span></span> <span data-ttu-id="47b1a-125">**모두**를 선택하면 64개의 스냅숏이 보존됩니다(최대값).</span><span class="sxs-lookup"><span data-stu-id="47b1a-125">If you select **All**, 64 snapshots will be retained (the maximum).</span></span>
-4. <span data-ttu-id="47b1a-126">**일정** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-126">Click the **Schedule** tab.</span></span>
+   1. <span data-ttu-id="94ec5-121">Hello에 **이름** 입력란 hello 정책에 대 한 이름을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-121">In hello **Name** text box, type a name for hello policy.</span></span>
+   2. <span data-ttu-id="94ec5-122">Hello에 **볼륨 그룹** 텍스트 상자 hello 정책과 연결 된 hello 볼륨 그룹의 hello 이름을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-122">In hello **Volume group** text box, type hello name of hello volume group associated with hello policy.</span></span>
+   3. <span data-ttu-id="94ec5-123">**로컬 스냅숏** 또는 **클라우드 스냅숏** 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-123">Select either **Local Snapshot** or **Cloud Snapshot**.</span></span>
+   4. <span data-ttu-id="94ec5-124">스냅숏 tooretain hello 수를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-124">Select hello number of snapshots tooretain.</span></span> <span data-ttu-id="94ec5-125">선택 하는 경우 **모든**, 64 개의 스냅숏을 유지 됩니다 (최대 hello).</span><span class="sxs-lookup"><span data-stu-id="94ec5-125">If you select **All**, 64 snapshots will be retained (hello maximum).</span></span>
+4. <span data-ttu-id="94ec5-126">Hello 클릭 **일정** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-126">Click hello **Schedule** tab.</span></span>
 
     ![정책 만들기 - 일정 탭](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_schedule.png)
-5. <span data-ttu-id="47b1a-128">**일정** 탭에서 다음 정보를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-128">On the **Schedule** tab, complete the following information:</span></span>
+5. <span data-ttu-id="94ec5-128">Hello에 **일정** 탭, 다음 정보는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="94ec5-128">On hello **Schedule** tab, complete hello following information:</span></span>
 
-   1. <span data-ttu-id="47b1a-129">**사용** 확인란을 클릭하여 다음 백업 일정을 정합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-129">Click the **Enable** check box to schedule the next backup.</span></span>
-   2. <span data-ttu-id="47b1a-130">**설정** 아래에서 **한 번**, **매일**, **매주** 또는 **매월**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-130">Under **Settings**, select **One time**, **Daily**, **Weekly**, or **Monthly**.</span></span>
-   3. <span data-ttu-id="47b1a-131">**시작** 텍스트 상자에서 달력 아이콘을 클릭하고 시작 날짜를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-131">In the **Start** text box, click the calendar icon and select a start date.</span></span>
-   4. <span data-ttu-id="47b1a-132">**고급 설정**아래에서 선택적 반복 일정과 종료 날짜를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-132">Under **Advanced Settings**, you can set optional repeat schedules and an end date.</span></span>
-   5. <span data-ttu-id="47b1a-133">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-133">Click **OK**.</span></span>
+   1. <span data-ttu-id="94ec5-129">Hello 클릭 **사용** 확인란 tooschedule hello에 대 한 다음 백업 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-129">Click hello **Enable** check box tooschedule hello next backup.</span></span>
+   2. <span data-ttu-id="94ec5-130">**설정** 아래에서 **한 번**, **매일**, **매주** 또는 **매월**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-130">Under **Settings**, select **One time**, **Daily**, **Weekly**, or **Monthly**.</span></span>
+   3. <span data-ttu-id="94ec5-131">Hello에 **시작** 텍스트 상자 hello 달력 아이콘을 클릭 하 고 시작 날짜를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-131">In hello **Start** text box, click hello calendar icon and select a start date.</span></span>
+   4. <span data-ttu-id="94ec5-132">**고급 설정**아래에서 선택적 반복 일정과 종료 날짜를 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-132">Under **Advanced Settings**, you can set optional repeat schedules and an end date.</span></span>
+   5. <span data-ttu-id="94ec5-133">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-133">Click **OK**.</span></span>
 
-<span data-ttu-id="47b1a-134">백업 정책을 만든 후 **결과** 창에 다음 정보가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-134">After you create a backup policy, the following information appears in the **Results** pane:</span></span>
+<span data-ttu-id="94ec5-134">다음 정보는 hello hello에 표시 되는 백업 정책을 만든 후 **결과** 창:</span><span class="sxs-lookup"><span data-stu-id="94ec5-134">After you create a backup policy, hello following information appears in hello **Results** pane:</span></span>
 
-* <span data-ttu-id="47b1a-135">**이름** – 백업 정책의 이름</span><span class="sxs-lookup"><span data-stu-id="47b1a-135">**Name** – the name of backup policy.</span></span>
-* <span data-ttu-id="47b1a-136">**유형** – 로컬 스냅숏 또는 클라우드 스냅숏</span><span class="sxs-lookup"><span data-stu-id="47b1a-136">**Type** – local snapshot or cloud snapshot.</span></span>
-* <span data-ttu-id="47b1a-137">**볼륨 그룹** – 정책과 연결된 볼륨 그룹</span><span class="sxs-lookup"><span data-stu-id="47b1a-137">**Volume Group** – the volume group associated with the policy.</span></span>
-* <span data-ttu-id="47b1a-138">**보존** - 보존되는 스냅숏 개수로, 최대 64개</span><span class="sxs-lookup"><span data-stu-id="47b1a-138">**Retention** – the number of snapshots retained; the maximum is 64.</span></span>
-* <span data-ttu-id="47b1a-139">**만든 날짜** - 이 정책을 만든 날짜</span><span class="sxs-lookup"><span data-stu-id="47b1a-139">**Created** – the date that this policy was created.</span></span>
-* <span data-ttu-id="47b1a-140">**사용** - 정책이 현재 적용되는지 여부. **True**는 적용되고 있음을 나타냅니다. **False**는 적용되지 않음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-140">**Enabled** – whether the policy is currently in effect: **True** indicates that it is in effect; **False** indicates that it is not in effect.</span></span>
+* <span data-ttu-id="94ec5-135">**이름** – hello 백업 정책의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-135">**Name** – hello name of backup policy.</span></span>
+* <span data-ttu-id="94ec5-136">**유형** – 로컬 스냅숏 또는 클라우드 스냅숏</span><span class="sxs-lookup"><span data-stu-id="94ec5-136">**Type** – local snapshot or cloud snapshot.</span></span>
+* <span data-ttu-id="94ec5-137">**볼륨 그룹** – hello hello 정책과 연결 된 볼륨 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-137">**Volume Group** – hello volume group associated with hello policy.</span></span>
+* <span data-ttu-id="94ec5-138">**보존** – hello 보유 스냅숏 개수; hello 최대 64입니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-138">**Retention** – hello number of snapshots retained; hello maximum is 64.</span></span>
+* <span data-ttu-id="94ec5-139">**만든** – hello이이 정책이 생성 된 날짜입니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-139">**Created** – hello date that this policy was created.</span></span>
+* <span data-ttu-id="94ec5-140">**활성화** hello 정책 현재 적용 되는지 여부를 –: **True** 있음을 나타냅니다. **False** 적용에서 하지 임을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-140">**Enabled** – whether hello policy is currently in effect: **True** indicates that it is in effect; **False** indicates that it is not in effect.</span></span>
 
-## <a name="edit-a-backup-policy"></a><span data-ttu-id="47b1a-141">백업 정책 편집</span><span class="sxs-lookup"><span data-stu-id="47b1a-141">Edit a backup policy</span></span>
-<span data-ttu-id="47b1a-142">다음 절차에 따라 기존 백업 정책을 편집합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-142">Use the following procedure to edit an existing backup policy.</span></span>
+## <a name="edit-a-backup-policy"></a><span data-ttu-id="94ec5-141">백업 정책 편집</span><span class="sxs-lookup"><span data-stu-id="94ec5-141">Edit a backup policy</span></span>
+<span data-ttu-id="94ec5-142">다음 프로시저 tooedit 기존 백업 정책이 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-142">Use hello following procedure tooedit an existing backup policy.</span></span>
 
-#### <a name="to-edit-a-backup-policy"></a><span data-ttu-id="47b1a-143">백업 정책을 편집하려면</span><span class="sxs-lookup"><span data-stu-id="47b1a-143">To edit a backup policy</span></span>
-1. <span data-ttu-id="47b1a-144">바탕 화면 아이콘을 클릭하여 StorSimple 스냅숏 관리자를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-144">Click the desktop icon to start StorSimple Snapshot Manager.</span></span>
-2. <span data-ttu-id="47b1a-145">**범위** 창에서 **백업 정책** 노드를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-145">In the **Scope** pane, click the **Backup Policies** node.</span></span> <span data-ttu-id="47b1a-146">모든 백업 정책이 **결과** 창에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-146">All the backup policies appear in the **Results** pane.</span></span>
-3. <span data-ttu-id="47b1a-147">편집할 정책을 마우스 오른쪽 단추로 클릭하고 **편집**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-147">Right-click the policy that you want to edit, and then click **Edit**.</span></span>
+#### <a name="tooedit-a-backup-policy"></a><span data-ttu-id="94ec5-143">백업 정책 tooedit</span><span class="sxs-lookup"><span data-stu-id="94ec5-143">tooedit a backup policy</span></span>
+1. <span data-ttu-id="94ec5-144">Hello 바탕 화면 아이콘 toostart StorSimple 스냅숏 관리자를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-144">Click hello desktop icon toostart StorSimple Snapshot Manager.</span></span>
+2. <span data-ttu-id="94ec5-145">Hello에 **범위** 창의 hello 클릭 **백업 정책** 노드.</span><span class="sxs-lookup"><span data-stu-id="94ec5-145">In hello **Scope** pane, click hello **Backup Policies** node.</span></span> <span data-ttu-id="94ec5-146">Hello에 모든 hello 백업 정책 표시 **결과** 창.</span><span class="sxs-lookup"><span data-stu-id="94ec5-146">All hello backup policies appear in hello **Results** pane.</span></span>
+3. <span data-ttu-id="94ec5-147">Hello 정책 tooedit를 원하고 클릭을 마우스 오른쪽 단추로 클릭 **편집**합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-147">Right-click hello policy that you want tooedit, and then click **Edit**.</span></span>
 
     ![백업 정책 편집](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Edit_BU_policy.png)
-4. <span data-ttu-id="47b1a-149">**정책 만들기** 창이 나타나면 변경 내용을 입력한 다음 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-149">When the **Create a Policy** window appears, enter your changes, and then click **OK**.</span></span>
+4. <span data-ttu-id="94ec5-149">Hello 때 **정책 만들기** 창이 나타나면 변경 내용을 입력 한 다음 클릭 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-149">When hello **Create a Policy** window appears, enter your changes, and then click **OK**.</span></span>
 
-## <a name="delete-a-backup-policy"></a><span data-ttu-id="47b1a-150">백업 정책 삭제</span><span class="sxs-lookup"><span data-stu-id="47b1a-150">Delete a backup policy</span></span>
-<span data-ttu-id="47b1a-151">다음 절차에 따라 백업 정책을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-151">Use the following procedure to delete a backup policy.</span></span>
+## <a name="delete-a-backup-policy"></a><span data-ttu-id="94ec5-150">백업 정책 삭제</span><span class="sxs-lookup"><span data-stu-id="94ec5-150">Delete a backup policy</span></span>
+<span data-ttu-id="94ec5-151">다음 프로시저 toodelete 백업 정책을 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-151">Use hello following procedure toodelete a backup policy.</span></span>
 
-#### <a name="to-delete-a-backup-policy"></a><span data-ttu-id="47b1a-152">백업 정책을 삭제하려면</span><span class="sxs-lookup"><span data-stu-id="47b1a-152">To delete a backup policy</span></span>
-1. <span data-ttu-id="47b1a-153">바탕 화면 아이콘을 클릭하여 StorSimple 스냅숏 관리자를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-153">Click the desktop icon to start StorSimple Snapshot Manager.</span></span>
-2. <span data-ttu-id="47b1a-154">**범위** 창에서 **백업 정책** 노드를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-154">In the **Scope** pane, click the **Backup Policies** node.</span></span> <span data-ttu-id="47b1a-155">모든 백업 정책이 **결과** 창에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-155">All the backup policies appear in the **Results** pane.</span></span>
-3. <span data-ttu-id="47b1a-156">삭제할 백업 정책을 마우스 오른쪽 단추로 클릭하고 **삭제**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-156">Right-click the backup policy that you want to delete, and then click **Delete**.</span></span>
-4. <span data-ttu-id="47b1a-157">확인 메시지가 나타나면 **예**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-157">When the confirmation message appears, click **Yes**.</span></span>
+#### <a name="toodelete-a-backup-policy"></a><span data-ttu-id="94ec5-152">백업 정책 toodelete</span><span class="sxs-lookup"><span data-stu-id="94ec5-152">toodelete a backup policy</span></span>
+1. <span data-ttu-id="94ec5-153">Hello 바탕 화면 아이콘 toostart StorSimple 스냅숏 관리자를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-153">Click hello desktop icon toostart StorSimple Snapshot Manager.</span></span>
+2. <span data-ttu-id="94ec5-154">Hello에 **범위** 창의 hello 클릭 **백업 정책** 노드.</span><span class="sxs-lookup"><span data-stu-id="94ec5-154">In hello **Scope** pane, click hello **Backup Policies** node.</span></span> <span data-ttu-id="94ec5-155">Hello에 모든 hello 백업 정책 표시 **결과** 창.</span><span class="sxs-lookup"><span data-stu-id="94ec5-155">All hello backup policies appear in hello **Results** pane.</span></span>
+3. <span data-ttu-id="94ec5-156">Hello toodelete를 원하고 클릭 한 다음 백업 정책을 마우스 오른쪽 단추로 **삭제**합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-156">Right-click hello backup policy that you want toodelete, and then click **Delete**.</span></span>
+4. <span data-ttu-id="94ec5-157">Hello 확인 메시지가 나타나면 클릭 **예**합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-157">When hello confirmation message appears, click **Yes**.</span></span>
 
     ![백업 정책 삭제 확인](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Delete_BU_policy.png)
 
-## <a name="next-steps"></a><span data-ttu-id="47b1a-159">다음 단계</span><span class="sxs-lookup"><span data-stu-id="47b1a-159">Next steps</span></span>
-* <span data-ttu-id="47b1a-160">[StorSimple 스냅숏 관리자를 사용하여 StorSimple 솔루션을 관리](storsimple-snapshot-manager-admin.md)하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-160">Learn how to [use StorSimple Snapshot Manager to administer your StorSimple solution](storsimple-snapshot-manager-admin.md).</span></span>
-* <span data-ttu-id="47b1a-161">[StorSimple 스냅숏 관리자를 사용하여 백업 작업을 보고 관리](storsimple-snapshot-manager-manage-backup-jobs.md)하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="47b1a-161">Learn how to [use StorSimple Snapshot Manager to view and manage backup jobs](storsimple-snapshot-manager-manage-backup-jobs.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="94ec5-159">다음 단계</span><span class="sxs-lookup"><span data-stu-id="94ec5-159">Next steps</span></span>
+* <span data-ttu-id="94ec5-160">너무 방법에 대해 알아봅니다[StorSimple 솔루션 tooadminister StorSimple 스냅숏 관리자를 사용 하 여](storsimple-snapshot-manager-admin.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-160">Learn how too[use StorSimple Snapshot Manager tooadminister your StorSimple solution](storsimple-snapshot-manager-admin.md).</span></span>
+* <span data-ttu-id="94ec5-161">너무 방법에 대해 알아봅니다[tooview StorSimple 스냅숏 관리자를 사용 하 고 백업 작업을 관리](storsimple-snapshot-manager-manage-backup-jobs.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="94ec5-161">Learn how too[use StorSimple Snapshot Manager tooview and manage backup jobs](storsimple-snapshot-manager-manage-backup-jobs.md).</span></span>

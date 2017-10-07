@@ -1,6 +1,6 @@
 ---
-title: "웹앱 리소스를 다른 리소스 그룹으로 이동"
-description: "하나의 리소스 그룹에서 다른 리소스 그룹으로 웹앱 및 앱 서비스를 이동할 수 있는 시나리오를 설명합니다."
+title: "웹 응용 프로그램 리소스 tooanother aaaMove 리소스 그룹"
+description: "하나의 리소스 그룹 tooanother에서 웹 앱 및 서비스 응용 프로그램을 이동할 수 있는 hello 시나리오를 설명 합니다."
 services: app-service
 documentationcenter: 
 author: ZainRizvi
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/21/2016
 ms.author: zarizvi
-ms.openlocfilehash: 1b5059dc052005b6079f70ecf6771a3771df8d87
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 931012fee656b7f8a4b2c225c38739a9171d3b2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="supported-move-configurations"></a><span data-ttu-id="eeef5-103">지원되는 이동 구성</span><span class="sxs-lookup"><span data-stu-id="eeef5-103">Supported Move Configurations</span></span>
-<span data-ttu-id="eeef5-104">[Resource Manager Move Resources API](../azure-resource-manager/resource-group-move-resources.md)를 사용하여 Azure Web App 리소스를 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eeef5-104">You can move Azure Web App resources using the [Resource Manager Move Resources API](../azure-resource-manager/resource-group-move-resources.md).</span></span>
+# <a name="supported-move-configurations"></a><span data-ttu-id="a4ca0-103">지원되는 이동 구성</span><span class="sxs-lookup"><span data-stu-id="a4ca0-103">Supported Move Configurations</span></span>
+<span data-ttu-id="a4ca0-104">Hello를 사용 하 여 Azure 웹 앱 리소스를 이동할 수 [리소스 관리자 리소스 이동 API](../azure-resource-manager/resource-group-move-resources.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="a4ca0-104">You can move Azure Web App resources using hello [Resource Manager Move Resources API](../azure-resource-manager/resource-group-move-resources.md).</span></span>
 
-<span data-ttu-id="eeef5-105">Azure 웹앱은 현재 다음 이동 시나리오를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="eeef5-105">Azure Web Apps currently supports the following move scenarios:</span></span>
+<span data-ttu-id="a4ca0-105">현재 azure 웹 앱 hello 다음 이동 시나리오를 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="a4ca0-105">Azure Web Apps currently supports hello following move scenarios:</span></span>
 
-* <span data-ttu-id="eeef5-106">리소스 그룹(웹앱, 앱 서비스 계획 및 인증서)의 전체 내용을 다른 리소스 그룹으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="eeef5-106">Move the entire contents of a resource group (web apps, app service plans, and certificates) to another resource group.</span></span> 
+* <span data-ttu-id="a4ca0-106">Hello 전체 콘텐츠 (웹 앱, 앱 서비스 계획 및 인증서) 리소스 그룹의 이동 tooanother 리소스 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="a4ca0-106">Move hello entire contents of a resource group (web apps, app service plans, and certificates) tooanother resource group.</span></span> 
    > [!Note]
-   > <span data-ttu-id="eeef5-107">대상 리소스 그룹은 이 시나리오에서 모든 Microsoft.Web 리소스를 포함할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="eeef5-107">The destination resource group can not contain any Microsoft.Web resources in this scenario.</span></span>
+   > <span data-ttu-id="a4ca0-107">hello 대상 리소스 그룹에는이 시나리오에서는 Microsoft.Web 리소스를 포함할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="a4ca0-107">hello destination resource group can not contain any Microsoft.Web resources in this scenario.</span></span>
 
-* <span data-ttu-id="eeef5-108">여전히 자신의 현재 앱 서비스 계획(앱 서비스 계획은 이전 리소스 그룹에 유지)에서 호스트하는 동안 다른 리소스 그룹으로 개별 웹앱을 이동</span><span class="sxs-lookup"><span data-stu-id="eeef5-108">Move individual web apps to a different resource group, while still hosting them in their current app service plan (the app service plan stays in the old resource group).</span></span>
+* <span data-ttu-id="a4ca0-108">여전히 자신의 현재 앱 서비스 계획 (hello 앱 서비스 계획에에서 유지 되며 hello 이전 리소스 그룹)에 호스트 하는 동안 개별 웹 응용 프로그램 tooa 다른 리소스 그룹을 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="a4ca0-108">Move individual web apps tooa different resource group, while still hosting them in their current app service plan (hello app service plan stays in hello old resource group).</span></span>
 
 
