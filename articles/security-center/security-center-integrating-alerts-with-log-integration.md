@@ -1,5 +1,5 @@
 ---
-title: "Azure 로그 통합에 Azure Security Center 알림 통합 | Microsoft Docs"
+title: "Azure와 함께 Azure 보안 센터 알림을 aaaIntegrating 로그 통합 | Microsoft Docs"
 description: "이 문서는 Azure 로그 통합에 보안 센터 알림을 통합하는 데 도움을 줍니다."
 services: security-center
 documentationcenter: na
@@ -14,78 +14,78 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/23/2017
 ms.author: terrylan
-ms.openlocfilehash: d13e5b87c446e587091551b22d80fe568d5d8093
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2649036ee990bf0f48fa0cb35c7495ac932c29ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a><span data-ttu-id="cec6a-103">Azure 로그 통합에 Azure Security Center 알림 통합</span><span class="sxs-lookup"><span data-stu-id="cec6a-103">Integrating Azure Security Center alerts with Azure log integration</span></span>
-<span data-ttu-id="cec6a-104">많은 보안 작업 및 사고 대응 팀은 보안 경고를 조사하고 심사하기 위한 시작점으로 SIEM(보안 정보 및 이벤트 관리) 솔루션을 활용합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-104">Many security operations and incident response teams rely on a Security Information and Event Management (SIEM) solution as the starting point for triaging and investigating security alerts.</span></span> <span data-ttu-id="cec6a-105">Azure 로그 통합을 사용하여 Azure Security Center 알림을 SIEM 솔루션에 통합할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-105">With Azure Log Integration, you can integrate Azure Security Center alerts with your SIEM solution.</span></span>
+# <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a><span data-ttu-id="167b3-103">Azure 로그 통합에 Azure Security Center 알림 통합</span><span class="sxs-lookup"><span data-stu-id="167b3-103">Integrating Azure Security Center alerts with Azure log integration</span></span>
+<span data-ttu-id="167b3-104">많은 보안 작업 및 사고 대응 팀은 시작 지점에 대 한 심사 및 보안 경고를 조사 하는 hello를 보안 정보 및 이벤트 관리 (SIEM) 솔루션으로 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-104">Many security operations and incident response teams rely on a Security Information and Event Management (SIEM) solution as hello starting point for triaging and investigating security alerts.</span></span> <span data-ttu-id="167b3-105">Azure 로그 통합을 사용하여 Azure Security Center 알림을 SIEM 솔루션에 통합할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-105">With Azure Log Integration, you can integrate Azure Security Center alerts with your SIEM solution.</span></span>
 
-<span data-ttu-id="cec6a-106">Azure 로그 통합은 현재 HP ArcSight, Splunk 및 IBM QRadar를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-106">Azure log integration currently supports HP ArcSight, Splunk, and IBM QRadar.</span></span>
+<span data-ttu-id="167b3-106">Azure 로그 통합은 현재 HP ArcSight, Splunk 및 IBM QRadar를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-106">Azure log integration currently supports HP ArcSight, Splunk, and IBM QRadar.</span></span>
 
-## <a name="what-logs-can-i-integrate"></a><span data-ttu-id="cec6a-107">어떤 로그와 통합할 수 있나요?</span><span class="sxs-lookup"><span data-stu-id="cec6a-107">What logs can I integrate?</span></span>
-<span data-ttu-id="cec6a-108">Azure에서는 모든 서비스에 대해 광범위한 로깅을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-108">Azure produces extensive logging for every service.</span></span> <span data-ttu-id="cec6a-109">이러한 로그는 다음과 같이 분류됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-109">These logs are categorized as:</span></span>
+## <a name="what-logs-can-i-integrate"></a><span data-ttu-id="167b3-107">어떤 로그와 통합할 수 있나요?</span><span class="sxs-lookup"><span data-stu-id="167b3-107">What logs can I integrate?</span></span>
+<span data-ttu-id="167b3-108">Azure에서는 모든 서비스에 대해 광범위한 로깅을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-108">Azure produces extensive logging for every service.</span></span> <span data-ttu-id="167b3-109">이러한 로그는 다음과 같이 분류됩니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-109">These logs are categorized as:</span></span>
 
-* <span data-ttu-id="cec6a-110">**컨트롤/관리 로그**- Azure Resource Manager CREATE, UPDATE 및 DELETE 작업에 대한 가시성을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-110">**Control/Management logs** that give visibility into the Azure Resource Manager CREATE, UPDATE, and DELETE operations.</span></span> <span data-ttu-id="cec6a-111">이러한 제어 평면 이벤트는 Azure 활동 로그에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-111">These control plane events are surfaced in the Azure Activity Logs</span></span>
-* <span data-ttu-id="cec6a-112">**데이터 평면 로그** - Azure 리소스를 사용할 때 발생하는 이벤트에 대한 가시성을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-112">**Data Plane logs** that give visibility into the events raised when using an Azure resource.</span></span> <span data-ttu-id="cec6a-113">이벤트 뷰어의 보안 채널에서 보안 이벤트 정보를 얻을 수 있는 Windows 이벤트 로그를 예로 들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-113">An example is the Windows Event log, where you can get security event information from the Event Viewer's Security Channel.</span></span> <span data-ttu-id="cec6a-114">데이터 평면 이벤트(가상 컴퓨터 또는 Azure 서비스에서 생성)는 Azure 진단 로그에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-114">Data plane events (which are generated by a virtual machine or an Azure service) are surfaced by Azure Diagnostic Logs.</span></span>
+* <span data-ttu-id="167b3-110">**컨트롤/관리 로그** hello에 대 한 가시성을 제공 하는 Azure 리소스 관리자 만들기, 업데이트 및 삭제 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-110">**Control/Management logs** that give visibility into hello Azure Resource Manager CREATE, UPDATE, and DELETE operations.</span></span> <span data-ttu-id="167b3-111">이러한 제어 평면 이벤트 hello Azure 활동 로그에 표시</span><span class="sxs-lookup"><span data-stu-id="167b3-111">These control plane events are surfaced in hello Azure Activity Logs</span></span>
+* <span data-ttu-id="167b3-112">**데이터 평면 로그** 하는 Azure 리소스를 사용 하는 경우 발생 하는 hello 이벤트에 대 한 가시성을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-112">**Data Plane logs** that give visibility into hello events raised when using an Azure resource.</span></span> <span data-ttu-id="167b3-113">예를 들어 hello Windows 이벤트 로그에 있는 hello 이벤트 뷰어 보안 채널에서 보안 이벤트 정보를 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-113">An example is hello Windows Event log, where you can get security event information from hello Event Viewer's Security Channel.</span></span> <span data-ttu-id="167b3-114">데이터 평면 이벤트(가상 컴퓨터 또는 Azure 서비스에서 생성)는 Azure 진단 로그에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-114">Data plane events (which are generated by a virtual machine or an Azure service) are surfaced by Azure Diagnostic Logs.</span></span>
 
-<span data-ttu-id="cec6a-115">현재 Azure 로그 통합에서는 다음에 대한 통합을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-115">Azure log integration currently supports the integration of:</span></span>
+<span data-ttu-id="167b3-115">현재 azure 로그 통합의 hello 통합을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-115">Azure log integration currently supports hello integration of:</span></span>
 
-* <span data-ttu-id="cec6a-116">Azure VM 로그</span><span class="sxs-lookup"><span data-stu-id="cec6a-116">Azure VM logs</span></span>
-* <span data-ttu-id="cec6a-117">Azure 감사 로그</span><span class="sxs-lookup"><span data-stu-id="cec6a-117">Azure Audit Logs</span></span>
-* <span data-ttu-id="cec6a-118">Azure 보안 센터 경고</span><span class="sxs-lookup"><span data-stu-id="cec6a-118">Azure Security Center alerts</span></span>
+* <span data-ttu-id="167b3-116">Azure VM 로그</span><span class="sxs-lookup"><span data-stu-id="167b3-116">Azure VM logs</span></span>
+* <span data-ttu-id="167b3-117">Azure 감사 로그</span><span class="sxs-lookup"><span data-stu-id="167b3-117">Azure Audit Logs</span></span>
+* <span data-ttu-id="167b3-118">Azure 보안 센터 경고</span><span class="sxs-lookup"><span data-stu-id="167b3-118">Azure Security Center alerts</span></span>
 
-## <a name="install-azure-log-integration"></a><span data-ttu-id="cec6a-119">Azure 로그 통합 설치</span><span class="sxs-lookup"><span data-stu-id="cec6a-119">Install Azure log integration</span></span>
-<span data-ttu-id="cec6a-120">[Azure 로그 통합](https://www.microsoft.com/download/details.aspx?id=53324)을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-120">Download [Azure log integration](https://www.microsoft.com/download/details.aspx?id=53324).</span></span>
+## <a name="install-azure-log-integration"></a><span data-ttu-id="167b3-119">Azure 로그 통합 설치</span><span class="sxs-lookup"><span data-stu-id="167b3-119">Install Azure log integration</span></span>
+<span data-ttu-id="167b3-120">[Azure 로그 통합](https://www.microsoft.com/download/details.aspx?id=53324)을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-120">Download [Azure log integration](https://www.microsoft.com/download/details.aspx?id=53324).</span></span>
 
-<span data-ttu-id="cec6a-121">Azure 로그 통합 서비스는 서비스가 설치된 컴퓨터에서 원격 분석 데이터를 수집합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-121">The Azure log integration service collects telemetry data from the machine on which it is installed.</span></span>  <span data-ttu-id="cec6a-122">수집된 원격 분석 데이터는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-122">Telemetry data collected is:</span></span>
+<span data-ttu-id="167b3-121">hello Azure 로그 통합 서비스가 설치 되어 있는 hello 컴퓨터에서 원격 분석 데이터를 수집 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-121">hello Azure log integration service collects telemetry data from hello machine on which it is installed.</span></span>  <span data-ttu-id="167b3-122">수집된 원격 분석 데이터는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-122">Telemetry data collected is:</span></span>
 
-* <span data-ttu-id="cec6a-123">Azure 로그 통합 실행 중에 발생하는 예외</span><span class="sxs-lookup"><span data-stu-id="cec6a-123">Exceptions that occur during execution of Azure log integration</span></span>
-* <span data-ttu-id="cec6a-124">처리된 쿼리 및 이벤트 수에 대한 메트릭</span><span class="sxs-lookup"><span data-stu-id="cec6a-124">Metrics about the number of queries and events processed</span></span>
-* <span data-ttu-id="cec6a-125">어떤 Azlog.exe 명령줄 옵션이 사용되었는지에 대한 통계</span><span class="sxs-lookup"><span data-stu-id="cec6a-125">Statistics about which Azlog.exe command line options are being used</span></span>
+* <span data-ttu-id="167b3-123">Azure 로그 통합 실행 중에 발생하는 예외</span><span class="sxs-lookup"><span data-stu-id="167b3-123">Exceptions that occur during execution of Azure log integration</span></span>
+* <span data-ttu-id="167b3-124">쿼리 및 처리 된 이벤트의 hello 수에 대 한 메트릭</span><span class="sxs-lookup"><span data-stu-id="167b3-124">Metrics about hello number of queries and events processed</span></span>
+* <span data-ttu-id="167b3-125">어떤 Azlog.exe 명령줄 옵션이 사용되었는지에 대한 통계</span><span class="sxs-lookup"><span data-stu-id="167b3-125">Statistics about which Azlog.exe command line options are being used</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="cec6a-126">이 옵션을 선택 취소하여 원격 분석 데이터의 컬렉션을 해제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-126">You can turn off collection of telemetry data by unchecking this option.</span></span>
+> <span data-ttu-id="167b3-126">이 옵션을 선택 취소하여 원격 분석 데이터의 컬렉션을 해제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-126">You can turn off collection of telemetry data by unchecking this option.</span></span>
 >
 >
 
-## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a><span data-ttu-id="cec6a-127">Azure 감사 로그 및 보안 센터 경고 통합</span><span class="sxs-lookup"><span data-stu-id="cec6a-127">Integrate Azure Audit Logs and Security Center alerts</span></span>
-1. <span data-ttu-id="cec6a-128">명령 프롬프트를 열고 **c:\Program Files\Microsoft Azure Log Integration**으로 **cd**합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-128">Open the command prompt and **cd** into **c:\Program Files\Microsoft Azure Log Integration**.</span></span>
-2. <span data-ttu-id="cec6a-129">**azlog createazureid** 명령을 실행하여 Azure 구독을 호스트하는 Azure AD(Active Directory) 테넌트에서 [Azure Active Directory 서비스 주체](../active-directory/active-directory-application-objects.md)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-129">Run the **azlog createazureid** command to create an [Azure Active Directory Service Principal](../active-directory/active-directory-application-objects.md) in the Azure Active Directory (AD) tenants that host the Azure subscriptions.</span></span>
+## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a><span data-ttu-id="167b3-127">Azure 감사 로그 및 보안 센터 경고 통합</span><span class="sxs-lookup"><span data-stu-id="167b3-127">Integrate Azure Audit Logs and Security Center alerts</span></span>
+1. <span data-ttu-id="167b3-128">명령 프롬프트 열기 hello 및 **cd** 에 **c:\Program Files\Microsoft Azure 로그 통합**합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-128">Open hello command prompt and **cd** into **c:\Program Files\Microsoft Azure Log Integration**.</span></span>
+2. <span data-ttu-id="167b3-129">Hello 실행 **azlog createazureid** 명령 toocreate는 [Azure Active Directory 서비스 사용자](../active-directory/active-directory-application-objects.md) hello Azure AD (Active Directory)에서 호스트 하는 테 넌 트 hello Azure 구독.</span><span class="sxs-lookup"><span data-stu-id="167b3-129">Run hello **azlog createazureid** command toocreate an [Azure Active Directory Service Principal](../active-directory/active-directory-application-objects.md) in hello Azure Active Directory (AD) tenants that host hello Azure subscriptions.</span></span>
 
-    <span data-ttu-id="cec6a-130">Azure 로그인을 묻는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-130">You are prompted for your Azure login.</span></span>
-
-   > [!NOTE]
-   > <span data-ttu-id="cec6a-131">구독의 소유자 또는 서비스 관리자여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-131">You must be the subscription Owner or a Co-Administrator of the subscription.</span></span>
-   >
-   >
-
-    <span data-ttu-id="cec6a-132">Azure에 대한 인증은 Azure AD를 통해 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-132">Authentication to Azure is done through Azure AD.</span></span>  <span data-ttu-id="cec6a-133">Azure 로그 통합에 대한 서비스 주체를 만들면 Azure 구독을 읽을 수 있는 Azure AD ID가 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-133">Creating a service principal for Azure log integration creates the Azure AD identity that is given access to read from Azure subscriptions.</span></span>
-3. <span data-ttu-id="cec6a-134">**azlog authorize <SubscriptionID>** 명령을 실행하여 2단계에서 만든 서비스 주체에 구독에 대한 읽기 관리자 액세스를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-134">Run the **azlog authorize <SubscriptionID>** command to assign Reader access on the subscription to the service principal created in step 2.</span></span> <span data-ttu-id="cec6a-135">**SubscriptionID**를 지정하지 않으면 서비스 주체에 액세스 권한이 있는 모든 구독에 대한 읽기 관리자 역할이 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-135">If you don’t specify a **SubscriptionID**, then the service principal is assigned the Reader role to all subscriptions to which you have access.</span></span>
+    <span data-ttu-id="167b3-130">Azure 로그인을 묻는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-130">You are prompted for your Azure login.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="cec6a-136">**createazureid** 명령을 실행한 직후 **authorize** 명령을 실행하면 경고가 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-136">You may see warnings if you run the **authorize** command immediately after the **createazureid** command.</span></span> <span data-ttu-id="cec6a-137">Azure AD 계정이 생성되는 시점과 계정이 사용 가능하게 되는 시점 사이에 약간의 대기 시간에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-137">There is some latency between when the Azure AD account is created and when the account is available for use.</span></span> <span data-ttu-id="cec6a-138">**createazureid** 명령을 실행하고 약 10초 대기한 후 **authorize** 명령을 실행하면 이러한 경고가 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-138">If you wait about 10 seconds after running the **createazureid** command to run the **authorize** command, then you should not see these warnings.</span></span>
+   > <span data-ttu-id="167b3-131">Hello 구독 소유자 또는 hello 구독의 공동 관리자 여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-131">You must be hello subscription Owner or a Co-Administrator of hello subscription.</span></span>
    >
    >
-4. <span data-ttu-id="cec6a-139">다음 폴더에서 감사 로그 JSON 파일이 있는지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="cec6a-139">Check the following folders to confirm that the Audit log JSON files are there:</span></span>
 
-   * <span data-ttu-id="cec6a-140">**c:\Users\azlog\AzureResourceManagerJson**</span><span class="sxs-lookup"><span data-stu-id="cec6a-140">**c:\Users\azlog\AzureResourceManagerJson**</span></span>
-   * <span data-ttu-id="cec6a-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span><span class="sxs-lookup"><span data-stu-id="cec6a-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span></span>
-5. <span data-ttu-id="cec6a-142">다음 폴더에서 보안 센터 경고가 있는지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="cec6a-142">Check the following folders to confirm that Security Center alerts exist in them:</span></span>
+    <span data-ttu-id="167b3-132">인증 tooAzure Azure AD를 통해 수행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-132">Authentication tooAzure is done through Azure AD.</span></span>  <span data-ttu-id="167b3-133">Azure 로그 통합에 대 한 서비스 사용자를 만들면 액세스 tooread Azure 구독에서 지정 된 hello Azure AD id를 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-133">Creating a service principal for Azure log integration creates hello Azure AD identity that is given access tooread from Azure subscriptions.</span></span>
+3. <span data-ttu-id="167b3-134">Hello 실행 **azlog 권한을 부여 <SubscriptionID>**  hello 구독 toohello 서비스 보안 주체에 2 단계에서 만든 tooassign 판독기 액세스 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-134">Run hello **azlog authorize <SubscriptionID>** command tooassign Reader access on hello subscription toohello service principal created in step 2.</span></span> <span data-ttu-id="167b3-135">지정 하지 않으면는 **SubscriptionID**, hello 서비스 사용자는 할당 된 hello 판독기 역할 tooall 구독 toowhich 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-135">If you don’t specify a **SubscriptionID**, then hello service principal is assigned hello Reader role tooall subscriptions toowhich you have access.</span></span>
 
-   * <span data-ttu-id="cec6a-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span><span class="sxs-lookup"><span data-stu-id="cec6a-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span></span>
-   * <span data-ttu-id="cec6a-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span><span class="sxs-lookup"><span data-stu-id="cec6a-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span></span>
-6. <span data-ttu-id="cec6a-145">적절한 폴더에 대한 SIEM 파일 전달자 커넥터를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-145">Configure the SIEM file forwarder connector to the appropriate folder.</span></span> <span data-ttu-id="cec6a-146">절차는 사용하는 SIEM에 따라 달라집니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-146">The procedure will vary based on the SIEM you are using.</span></span>
+   > [!NOTE]
+   > <span data-ttu-id="167b3-136">Hello를 실행 하는 경우 경고를 표시 될 수 있습니다 **권한을 부여** hello 직후 명령을 **createazureid** 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-136">You may see warnings if you run hello **authorize** command immediately after hello **createazureid** command.</span></span> <span data-ttu-id="167b3-137">Hello Azure AD 계정이 만들어질 때와 hello 계정에 사용 하기 위해 제공 된 경우 간에 약간의 대기 시간이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-137">There is some latency between when hello Azure AD account is created and when hello account is available for use.</span></span> <span data-ttu-id="167b3-138">Hello를 실행 한 후까지 10 초 정도 대기 하는 경우 **createazureid** 명령 toorun hello **권한을 부여** 명령, 다음 이러한 경고가 표시 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-138">If you wait about 10 seconds after running hello **createazureid** command toorun hello **authorize** command, then you should not see these warnings.</span></span>
+   >
+   >
+4. <span data-ttu-id="167b3-139">감사 로그 JSON 파일 hello 폴더 tooconfirm 다음 hello 사항이 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-139">Check hello following folders tooconfirm that hello Audit log JSON files are there:</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="cec6a-147">다음 단계</span><span class="sxs-lookup"><span data-stu-id="cec6a-147">Next steps</span></span>
-<span data-ttu-id="cec6a-148">Azure 활동 로그 및 속성 정의에 대해 자세히 알아보려면 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cec6a-148">To learn more about Azure Activity Logs and property definitions, see:</span></span>
+   * <span data-ttu-id="167b3-140">**c:\Users\azlog\AzureResourceManagerJson**</span><span class="sxs-lookup"><span data-stu-id="167b3-140">**c:\Users\azlog\AzureResourceManagerJson**</span></span>
+   * <span data-ttu-id="167b3-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span><span class="sxs-lookup"><span data-stu-id="167b3-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span></span>
+5. <span data-ttu-id="167b3-142">보안 센터 알림을에 존재 하는 폴더 tooconfirm 다음 hello를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-142">Check hello following folders tooconfirm that Security Center alerts exist in them:</span></span>
 
-* [<span data-ttu-id="cec6a-149">리소스 관리자로 작업 감사</span><span class="sxs-lookup"><span data-stu-id="cec6a-149">Audit operations with Resource Manager</span></span>](../azure-resource-manager/resource-group-audit.md)
+   * <span data-ttu-id="167b3-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span><span class="sxs-lookup"><span data-stu-id="167b3-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span></span>
+   * <span data-ttu-id="167b3-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span><span class="sxs-lookup"><span data-stu-id="167b3-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span></span>
+6. <span data-ttu-id="167b3-145">Hello SIEM 파일 전달자 커넥터 toohello 적절 한 폴더를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-145">Configure hello SIEM file forwarder connector toohello appropriate folder.</span></span> <span data-ttu-id="167b3-146">hello 프로시저를 사용 하는 SIEM hello에 따라 달라 집니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-146">hello procedure will vary based on hello SIEM you are using.</span></span>
 
-<span data-ttu-id="cec6a-150">보안 센터에 대한 자세한 내용은 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cec6a-150">To learn more about Security Center, see the following:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="167b3-147">다음 단계</span><span class="sxs-lookup"><span data-stu-id="167b3-147">Next steps</span></span>
+<span data-ttu-id="167b3-148">Azure 활동 로그 및 속성 정의 대해 자세히 toolearn 참조:</span><span class="sxs-lookup"><span data-stu-id="167b3-148">toolearn more about Azure Activity Logs and property definitions, see:</span></span>
 
-* <span data-ttu-id="cec6a-151">[Azure 보안 센터에서 보안 경고 관리 및 대응](security-center-managing-and-responding-alerts.md) - 보안 경고를 관리하고 대응하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-151">[Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) — Learn how to manage and respond to security alerts.</span></span>
-* <span data-ttu-id="cec6a-152">[Azure 보안 센터 FAQ](security-center-faq.md) - 서비스 사용에 관한 질문과 대답을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-152">[Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using the service.</span></span>
-* <span data-ttu-id="cec6a-153">[Azure 보안 블로그](http://blogs.msdn.com/b/azuresecurity/) - 최신 Azure 보안 뉴스 및 정보를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="cec6a-153">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Get the latest Azure security news and information.</span></span>
+* [<span data-ttu-id="167b3-149">리소스 관리자로 작업 감사</span><span class="sxs-lookup"><span data-stu-id="167b3-149">Audit operations with Resource Manager</span></span>](../azure-resource-manager/resource-group-audit.md)
+
+<span data-ttu-id="167b3-150">보안 센터에 대해 자세히 toolearn hello 다음을 참조 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-150">toolearn more about Security Center, see hello following:</span></span>
+
+* <span data-ttu-id="167b3-151">[Azure 보안 센터에서 경고를 관리 하 고 응답 toosecurity](security-center-managing-and-responding-alerts.md) -학습 방법을 toomanage 및 응답 toosecurity 경고 합니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-151">[Managing and responding toosecurity alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) — Learn how toomanage and respond toosecurity alerts.</span></span>
+* <span data-ttu-id="167b3-152">[Azure 보안 센터 FAQ](security-center-faq.md) -찾기 hello 서비스를 사용 하는 방법에 대 한 질문과 대답입니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-152">[Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using hello service.</span></span>
+* <span data-ttu-id="167b3-153">[Azure 보안 블로그](http://blogs.msdn.com/b/azuresecurity/) -hello 최신 Azure 보안 뉴스 및 정보를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="167b3-153">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Get hello latest Azure security news and information.</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 스크립트 샘플 - Azure Redis Cache의 호스트 이름, 포트 및 키 가져오기 | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - Azure Redis Cache 인스턴스의 호스트 이름, 포트 및 키 가져오기"
+title: "CLI 스크립트 샘플-Get hello 호스트 이름, 포트 및 Azure Redis Cache에 대 한 키 aaaAzure | Microsoft Docs"
+description: "Azure CLI 스크립트 샘플-Get hello 호스트 이름, 포트 및 Azure Redis 캐시 인스턴스에 대 한 키"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 04/14/2017
 ms.author: sdanie
-ms.openlocfilehash: cd9adc784bceb0fff5e7c2bbee2be0950c51c8f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6e794558087d6568438c439e2bf99fc46eeb8bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-hostname-ports-and-keys-for-azure-redis-cache"></a><span data-ttu-id="009a7-103">Azure Redis Cache의 호스트 이름, 포트 및 키 가져오기</span><span class="sxs-lookup"><span data-stu-id="009a7-103">Get the hostname, ports, and keys for Azure Redis Cache</span></span>
+# <a name="get-hello-hostname-ports-and-keys-for-azure-redis-cache"></a><span data-ttu-id="3e230-103">Azure Redis Cache에 대 한 hello 호스트 이름, 포트 및 키 가져오기</span><span class="sxs-lookup"><span data-stu-id="3e230-103">Get hello hostname, ports, and keys for Azure Redis Cache</span></span>
 
-<span data-ttu-id="009a7-104">이 시나리오에서는 Azure Redis Cache 인스턴스에 연결하는 데 사용되는 호스트 이름, 포트 및 키를 검색하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="009a7-104">In this scenario, you learn how to retrieve the hostname, ports, and keys used to connect to an Azure Redis Cache instance.</span></span>
+<span data-ttu-id="3e230-104">이 시나리오에서는 tooretrieve hello 호스트 이름, 포트 및 키 tooconnect tooan Azure Redis 캐시 인스턴스에 사용 되는 방법을 배웁니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-104">In this scenario, you learn how tooretrieve hello hostname, ports, and keys used tooconnect tooan Azure Redis Cache instance.</span></span>
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
-## <a name="sample-script"></a><span data-ttu-id="009a7-105">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="009a7-105">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="3e230-105">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="3e230-105">Sample script</span></span>
 
-<span data-ttu-id="009a7-106">[!code-azurecli[main](../../../cli_scripts/redis-cache/cache-keys-ports/cache-keys-ports.sh "Azure Redis Cache")]</span><span class="sxs-lookup"><span data-stu-id="009a7-106">[!code-azurecli[main](../../../cli_scripts/redis-cache/cache-keys-ports/cache-keys-ports.sh "Azure Redis Cache")]</span></span>
+[!code-azurecli[main](../../../cli_scripts/redis-cache/cache-keys-ports/cache-keys-ports.sh "Azure Redis Cache")]
 
 
-## <a name="script-explanation"></a><span data-ttu-id="009a7-107">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="009a7-107">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="3e230-106">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="3e230-106">Script explanation</span></span>
 
-<span data-ttu-id="009a7-108">이 스크립트는 다음 명령을 사용하여 Azure Redis Cache 인스턴스의 호스트 이름, 포트 및 키를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="009a7-108">This script uses the following commands to retrieve the hostname, keys, and ports of an Azure Redis Cache instance.</span></span> <span data-ttu-id="009a7-109">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="009a7-109">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="3e230-107">이 스크립트 명령 tooretrieve hello 호스트 이름, 키 및 Azure Redis Cache 인스턴스 포트를 수행 하는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-107">This script uses hello following commands tooretrieve hello hostname, keys, and ports of an Azure Redis Cache instance.</span></span> <span data-ttu-id="3e230-108">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-108">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="009a7-110">명령</span><span class="sxs-lookup"><span data-stu-id="009a7-110">Command</span></span> | <span data-ttu-id="009a7-111">참고 사항</span><span class="sxs-lookup"><span data-stu-id="009a7-111">Notes</span></span> |
+| <span data-ttu-id="3e230-109">명령</span><span class="sxs-lookup"><span data-stu-id="3e230-109">Command</span></span> | <span data-ttu-id="3e230-110">참고 사항</span><span class="sxs-lookup"><span data-stu-id="3e230-110">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="009a7-112">az redis show</span><span class="sxs-lookup"><span data-stu-id="009a7-112">az redis show</span></span>](https://docs.microsoft.com/cli/azure/redis#show) | <span data-ttu-id="009a7-113">Azure Redis Cache 인스턴스에 대한 세부 정보를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="009a7-113">Retrieve details of an Azure Redis Cache instance.</span></span> |
-| [<span data-ttu-id="009a7-114">az redis list-keys</span><span class="sxs-lookup"><span data-stu-id="009a7-114">az redis list-keys</span></span>](https://docs.microsoft.com/cli/azure/redis#list-keys) | <span data-ttu-id="009a7-115">Azure Redis Cache 인스턴스에 대한 액세스 키를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="009a7-115">Retrieve access keys for an Azure Redis Cache instance.</span></span> |
+| [<span data-ttu-id="3e230-111">az redis show</span><span class="sxs-lookup"><span data-stu-id="3e230-111">az redis show</span></span>](https://docs.microsoft.com/cli/azure/redis#show) | <span data-ttu-id="3e230-112">Azure Redis Cache 인스턴스에 대한 세부 정보를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-112">Retrieve details of an Azure Redis Cache instance.</span></span> |
+| [<span data-ttu-id="3e230-113">az redis list-keys</span><span class="sxs-lookup"><span data-stu-id="3e230-113">az redis list-keys</span></span>](https://docs.microsoft.com/cli/azure/redis#list-keys) | <span data-ttu-id="3e230-114">Azure Redis Cache 인스턴스에 대한 액세스 키를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-114">Retrieve access keys for an Azure Redis Cache instance.</span></span> |
 
 
-## <a name="next-steps"></a><span data-ttu-id="009a7-116">다음 단계</span><span class="sxs-lookup"><span data-stu-id="009a7-116">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3e230-115">다음 단계</span><span class="sxs-lookup"><span data-stu-id="3e230-115">Next steps</span></span>
 
-<span data-ttu-id="009a7-117">Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="009a7-117">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="3e230-116">Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-116">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="009a7-118">추가 Azure Redis Cache CLI 스크립트 샘플은 [Azure Redis Cache 설명서](../cli-samples.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="009a7-118">Additional Azure Redis Cache CLI script samples can be found in the [Azure Redis Cache documentation](../cli-samples.md).</span></span>
+<span data-ttu-id="3e230-117">추가 Azure Redis 캐시 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure Redis Cache 설명서](../cli-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="3e230-117">Additional Azure Redis Cache CLI script samples can be found in hello [Azure Redis Cache documentation](../cli-samples.md).</span></span>

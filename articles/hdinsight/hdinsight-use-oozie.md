@@ -1,6 +1,6 @@
 ---
-title: "HDInsight에서 Hadoop Oozie 사용 | Microsoft Docs"
-description: "빅데이터 서비스인 HDInsight에서 Hadoop Oozie를 사용하는 방법을 알아봅니다. 또한 Oozie 워크플로를 정의하고 Oozie 작업을 제출하는 방법에 대해서도 살펴봅니다."
+title: "HDInsight의 Hadoop Oozie aaaUse | Microsoft Docs"
+description: "빅데이터 서비스인 HDInsight에서 Hadoop Oozie를 사용하는 방법을 알아봅니다. 에 대해 알아봅니다 어떻게 toodefine Oozie 워크플로, Oozie 작업을 제출 하 고 있습니다."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -17,31 +17,31 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 36fe3e4220ec92699b6d52cba47cd6b83f361d66
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 12d0cf1a01838ab0f4e699c384ce2fb18f85cbad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-in-hdinsight"></a><span data-ttu-id="5c163-104">Hadoop과 함께 Oozie를 사용하여 HDInsight에서 워크플로 정의 및 실행</span><span class="sxs-lookup"><span data-stu-id="5c163-104">Use Oozie with Hadoop to define and run a workflow in HDInsight</span></span>
+# <a name="use-oozie-with-hadoop-toodefine-and-run-a-workflow-in-hdinsight"></a><span data-ttu-id="5a484-104">Hadoop toodefine 함께 Oozie를 사용 하 고 HDInsight에 워크플로 실행</span><span class="sxs-lookup"><span data-stu-id="5a484-104">Use Oozie with Hadoop toodefine and run a workflow in HDInsight</span></span>
 [!INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
-<span data-ttu-id="5c163-105">워크플로를 정의하고 HDInsight에서 워크플로를 실행하기 위해 Apache Oozie를 사용하는 방법을 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-105">Learn how to use Apache Oozie to define a workflow and run the workflow on HDInsight.</span></span> <span data-ttu-id="5c163-106">Oozie 코디네이터에 대해 알아보려면 [HDInsight에서 시간 기반 Hadoop Oozie 코디네이터 사용][hdinsight-oozie-coordinator-time]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-106">To learn about the Oozie coordinator, see [Use time-based Hadoop Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time].</span></span> <span data-ttu-id="5c163-107">Azure Data Factory를 알아보려면 [데이터 팩터리에서 Pig 및 Hive 사용][azure-data-factory-pig-hive]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-107">To learn Azure Data Factory, see [Use Pig and Hive with Data Factory][azure-data-factory-pig-hive].</span></span>
+<span data-ttu-id="5a484-105">Toouse Apache Oozie toodefine 워크플로 및 실행 방법을 HDInsight에서 워크플로 hello에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-105">Learn how toouse Apache Oozie toodefine a workflow and run hello workflow on HDInsight.</span></span> <span data-ttu-id="5a484-106">toolearn hello Oozie 코디네이터에 대 한 참조 [HDInsight Hadoop Oozie 코디네이터 시간 기반 사용][hdinsight-oozie-coordinator-time]합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-106">toolearn about hello Oozie coordinator, see [Use time-based Hadoop Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time].</span></span> <span data-ttu-id="5a484-107">Azure Data Factory toolearn 참조 [Data Factory와 사용 하 여 Pig 및 Hive][azure-data-factory-pig-hive]합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-107">toolearn Azure Data Factory, see [Use Pig and Hive with Data Factory][azure-data-factory-pig-hive].</span></span>
 
-<span data-ttu-id="5c163-108">Apache Oozie는 Hadoop 작업을 관리하는 워크플로/코디네이션 시스템입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-108">Apache Oozie is a workflow/coordination system that manages Hadoop jobs.</span></span> <span data-ttu-id="5c163-109">Hadoop 스택과 통합되며 Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop에 Hadoop 작업을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-109">It is integrated with the Hadoop stack, and it supports Hadoop jobs for Apache MapReduce, Apache Pig, Apache Hive, and Apache Sqoop.</span></span> <span data-ttu-id="5c163-110">또한 Java 프로그램이나 셸 스크립트와 같이 시스템에 고유한 작업을 예약하는 데 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-110">It can also be used to schedule jobs that are specific to a system, like Java programs or shell scripts.</span></span>
+<span data-ttu-id="5a484-108">Apache Oozie는 Hadoop 작업을 관리하는 워크플로/코디네이션 시스템입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-108">Apache Oozie is a workflow/coordination system that manages Hadoop jobs.</span></span> <span data-ttu-id="5a484-109">Hello Hadoop 스택와도 통합 되어 하 고 Apache MapReduce Apache Pig, Apache Hive, Sqoop Apache Hadoop 작업을 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-109">It is integrated with hello Hadoop stack, and it supports Hadoop jobs for Apache MapReduce, Apache Pig, Apache Hive, and Apache Sqoop.</span></span> <span data-ttu-id="5a484-110">사용 되는 tooschedule 작업은 Java 프로그램 또는 셸 스크립트와 같은 특정 tooa 시스템 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-110">It can also be used tooschedule jobs that are specific tooa system, like Java programs or shell scripts.</span></span>
 
-<span data-ttu-id="5c163-111">두 동작을 포함하는 해당 자습서의 지침에 따라 사용자가 구현할 워크플로입니다:</span><span class="sxs-lookup"><span data-stu-id="5c163-111">The workflow you implement by following the instructions in this tutorial contains two actions:</span></span>
+<span data-ttu-id="5a484-111">이 자습서의 hello 지침에 따라 구현 hello 워크플로 두 개의 작업이 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-111">hello workflow you implement by following hello instructions in this tutorial contains two actions:</span></span>
 
 ![워크플로 다이어그램][img-workflow-diagram]
 
-1. <span data-ttu-id="5c163-113">log4j 파일에서 각 로그 수준 유형의 수를 계산하는 HiveQL 스크립트를 실행하는 Hive 작업.</span><span class="sxs-lookup"><span data-stu-id="5c163-113">A Hive action runs a HiveQL script to count the occurrences of each log-level type in a log4j file.</span></span> <span data-ttu-id="5c163-114">각 log4j 파일은 유형과 심각도를 표시하는 [LOG LEVEL] 필드가 포함된 필드의 줄로 구성되어 있습니다. 예를 들어 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-114">Each log4j file consists of a line of fields that contains a [LOG LEVEL] field that shows the type and the severity, for example:</span></span>
+1. <span data-ttu-id="5a484-113">하이브 작업 log4j 파일에 HiveQL 스크립트 toocount hello 로그 수준 유형의 각 항목을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-113">A Hive action runs a HiveQL script toocount hello occurrences of each log-level type in a log4j file.</span></span> <span data-ttu-id="5a484-114">예를 들어 hello 유형과 hello 심각도 표시 하는 [로그 수준] 필드를 포함 하는 필드의 줄에 각 log4j 파일 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-114">Each log4j file consists of a line of fields that contains a [LOG LEVEL] field that shows hello type and hello severity, for example:</span></span>
    
         2012-02-03 18:35:34 SampleClass6 [INFO] everything normal for id 577725851
         2012-02-03 18:35:34 SampleClass4 [FATAL] system problem at id 1991281254
         2012-02-03 18:35:34 SampleClass3 [DEBUG] detail for id 1304807656
         ...
    
-    <span data-ttu-id="5c163-115">Hive 스크립트 출력은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-115">The Hive script output is similar to:</span></span>
+    <span data-ttu-id="5a484-115">hello 하이브 스크립트 출력은 유사 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-115">hello Hive script output is similar to:</span></span>
    
         [DEBUG] 434
         [ERROR] 3
@@ -50,28 +50,28 @@ ms.lasthandoff: 08/29/2017
         [TRACE] 816
         [WARN]  4
    
-    <span data-ttu-id="5c163-116">Hive에 대한 자세한 내용은 [HDInsight와 함께 Hive 사용][hdinsight-use-hive]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-116">For more information about Hive, see [Use Hive with HDInsight][hdinsight-use-hive].</span></span>
-2. <span data-ttu-id="5c163-117">HiveQL 출력을 Azure SQL 데이터베이스의 테이블에 내보내는 Sqoop 작업.</span><span class="sxs-lookup"><span data-stu-id="5c163-117">A Sqoop action exports the HiveQL output to a table in an Azure SQL database.</span></span> <span data-ttu-id="5c163-118">Sqoop에 대한 자세한 내용은 [HDInsight에서 Hadoop Sqoop 사용][hdinsight-use-sqoop]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-118">For more information about Sqoop, see [Use Hadoop Sqoop with HDInsight][hdinsight-use-sqoop].</span></span>
+    <span data-ttu-id="5a484-116">Hive에 대한 자세한 내용은 [HDInsight와 함께 Hive 사용][hdinsight-use-hive]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5a484-116">For more information about Hive, see [Use Hive with HDInsight][hdinsight-use-hive].</span></span>
+2. <span data-ttu-id="5a484-117">Sqoop 작업 hello HiveQL 출력 tooa 테이블을 Azure SQL 데이터베이스에서 내보냅니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-117">A Sqoop action exports hello HiveQL output tooa table in an Azure SQL database.</span></span> <span data-ttu-id="5a484-118">Sqoop에 대한 자세한 내용은 [HDInsight에서 Hadoop Sqoop 사용][hdinsight-use-sqoop]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5a484-118">For more information about Sqoop, see [Use Hadoop Sqoop with HDInsight][hdinsight-use-sqoop].</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5c163-119">HDInsight 클러스터에서 지원되는 Oozie 버전에 대해서는 [HDInsight에서 제공하는 Hadoop 클러스터 버전의 새로운 기능][hdinsight-versions]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-119">For supported Oozie versions on HDInsight clusters, see [What's new in the Hadoop cluster versions provided by HDInsight?][hdinsight-versions].</span></span>
+> <span data-ttu-id="5a484-119">HDInsight 클러스터에서 지원 되 Oozie 버전에 대 한 참조 [HDInsight에서 제공 하는 hello Hadoop 클러스터 버전의 새로운 기능?] [hdinsight-versions].</span><span class="sxs-lookup"><span data-stu-id="5a484-119">For supported Oozie versions on HDInsight clusters, see [What's new in hello Hadoop cluster versions provided by HDInsight?][hdinsight-versions].</span></span>
 > 
 > 
 
-### <a name="prerequisites"></a><span data-ttu-id="5c163-120">필수 조건</span><span class="sxs-lookup"><span data-stu-id="5c163-120">Prerequisites</span></span>
-<span data-ttu-id="5c163-121">이 자습서를 시작하기 전에 다음 항목이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-121">Before you begin this tutorial, you must have the following item:</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="5a484-120">필수 조건</span><span class="sxs-lookup"><span data-stu-id="5a484-120">Prerequisites</span></span>
+<span data-ttu-id="5a484-121">이 자습서를 시작 하기 전에 hello 아래 항목 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-121">Before you begin this tutorial, you must have hello following item:</span></span>
 
-* <span data-ttu-id="5c163-122">**Azure PowerShell이 포함된 워크스테이션**.</span><span class="sxs-lookup"><span data-stu-id="5c163-122">**A workstation with Azure PowerShell**.</span></span> 
+* <span data-ttu-id="5a484-122">**Azure PowerShell이 포함된 워크스테이션**.</span><span class="sxs-lookup"><span data-stu-id="5a484-122">**A workstation with Azure PowerShell**.</span></span> 
   
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
   
 
-## <a name="define-oozie-workflow-and-the-related-hiveql-script"></a><span data-ttu-id="5c163-123">Oozie 워크플로 및 관련 HiveQL 스크립트 정의</span><span class="sxs-lookup"><span data-stu-id="5c163-123">Define Oozie workflow and the related HiveQL script</span></span>
-<span data-ttu-id="5c163-124">Oozie 워크플로 정의는 hPDL(XML 프로세스 정의 언어)로 작성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-124">Oozie workflows definitions are written in hPDL (a XML Process Definition Language).</span></span> <span data-ttu-id="5c163-125">기본 워크플로 파일 이름은 *workflow.xml*입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-125">The default workflow file name is *workflow.xml*.</span></span> <span data-ttu-id="5c163-126">다음은 이 자습서에서 사용할 워크플로 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-126">The following is the workflow file you use in this tutorial.</span></span>
+## <a name="define-oozie-workflow-and-hello-related-hiveql-script"></a><span data-ttu-id="5a484-123">Oozie 워크플로 정의 및 hello 관련 HiveQL 스크립트</span><span class="sxs-lookup"><span data-stu-id="5a484-123">Define Oozie workflow and hello related HiveQL script</span></span>
+<span data-ttu-id="5a484-124">Oozie 워크플로 정의는 hPDL(XML 프로세스 정의 언어)로 작성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-124">Oozie workflows definitions are written in hPDL (a XML Process Definition Language).</span></span> <span data-ttu-id="5a484-125">hello 기본 워크플로 파일 이름은 *workflow.xml*합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-125">hello default workflow file name is *workflow.xml*.</span></span> <span data-ttu-id="5a484-126">hello 다음은이 자습서에서 사용 하는 hello 워크플로 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-126">hello following is hello workflow file you use in this tutorial.</span></span>
 
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start to = "RunHiveScript"/>
+        <start too= "RunHiveScript"/>
 
         <action name="RunHiveScript">
             <hive xmlns="uri:oozie:hive-action:0.2">
@@ -125,80 +125,80 @@ ms.lasthandoff: 08/29/2017
         <end name="end"/>
     </workflow-app>
 
-<span data-ttu-id="5c163-127">워크플로에 2가지 작업이 정의되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-127">There are two actions defined in the workflow.</span></span> <span data-ttu-id="5c163-128">시작 작업은 *RunHiveScript*입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-128">The start-to action is *RunHiveScript*.</span></span> <span data-ttu-id="5c163-129">작업이 성공적으로 실행되면 다음 작업은 *RunSqoopExport*입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-129">If the action runs successfully, the next action is *RunSqoopExport*.</span></span>
+<span data-ttu-id="5a484-127">Hello 워크플로에 정의 된 두 가지 작업이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-127">There are two actions defined in hello workflow.</span></span> <span data-ttu-id="5a484-128">hello 시작 tooaction은 *RunHiveScript*합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-128">hello start-tooaction is *RunHiveScript*.</span></span> <span data-ttu-id="5a484-129">Hello 다음 동작은 hello 작업이 성공적으로 실행 되는 경우에 *RunSqoopExport*합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-129">If hello action runs successfully, hello next action is *RunSqoopExport*.</span></span>
 
-<span data-ttu-id="5c163-130">RunHiveScript에는 몇 개의 변수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-130">The RunHiveScript has several variables.</span></span> <span data-ttu-id="5c163-131">Azure PowerShell을 사용하여 워크스테이션에서 Oozie 작업을 제출할 때 이러한 값을 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-131">You pass the values when you submit the Oozie job from your workstation by using Azure PowerShell.</span></span>
+<span data-ttu-id="5a484-130">hello RunHiveScript는 여러 변수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-130">hello RunHiveScript has several variables.</span></span> <span data-ttu-id="5a484-131">Azure PowerShell을 사용 하 여 워크스테이션에서 hello Oozie 작업을 제출 하는 경우 hello 값을 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-131">You pass hello values when you submit hello Oozie job from your workstation by using Azure PowerShell.</span></span>
 
 <table border = "1">
-<tr><th><span data-ttu-id="5c163-132">워크플로 변수</span><span class="sxs-lookup"><span data-stu-id="5c163-132">Workflow variables</span></span></th><th><span data-ttu-id="5c163-133">설명</span><span class="sxs-lookup"><span data-stu-id="5c163-133">Description</span></span></th></tr>
-<tr><td><span data-ttu-id="5c163-134">${jobTracker}</span><span class="sxs-lookup"><span data-stu-id="5c163-134">${jobTracker}</span></span></td><td><span data-ttu-id="5c163-135">Hadoop 작업 추적기의 URL을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-135">Specifies the URL of the Hadoop job tracker.</span></span> <span data-ttu-id="5c163-136">HDInsight 버전 2.1 및 3.0에서 <strong>jobtrackerhost:9010</strong>를 사용하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-136">Use <strong>jobtrackerhost:9010</strong> in HDInsight version 3.0 and 2.1.</span></span></td></tr>
-<tr><td><span data-ttu-id="5c163-137">${nameNode}</span><span class="sxs-lookup"><span data-stu-id="5c163-137">${nameNode}</span></span></td><td><span data-ttu-id="5c163-138">Hadoop 이름 노드의 URL을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-138">Specifies the URL of the Hadoop name node.</span></span> <span data-ttu-id="5c163-139"><i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>과 같은 기본 파일 시스템 주소를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-139">Use the default file system address, for example, <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>.</span></span></td></tr>
-<tr><td><span data-ttu-id="5c163-140">${queueName}</span><span class="sxs-lookup"><span data-stu-id="5c163-140">${queueName}</span></span></td><td><span data-ttu-id="5c163-141">작업을 제출할 큐 이름을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-141">Specifies the queue name that the job is submitted to.</span></span> <span data-ttu-id="5c163-142"><strong>기본</strong>을 사용하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-142">Use the <strong>default</strong>.</span></span></td></tr>
+<tr><th><span data-ttu-id="5a484-132">워크플로 변수</span><span class="sxs-lookup"><span data-stu-id="5a484-132">Workflow variables</span></span></th><th><span data-ttu-id="5a484-133">설명</span><span class="sxs-lookup"><span data-stu-id="5a484-133">Description</span></span></th></tr>
+<tr><td><span data-ttu-id="5a484-134">${jobTracker}</span><span class="sxs-lookup"><span data-stu-id="5a484-134">${jobTracker}</span></span></td><td><span data-ttu-id="5a484-135">Hello Hadoop 작업 트래커의 hello URL을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-135">Specifies hello URL of hello Hadoop job tracker.</span></span> <span data-ttu-id="5a484-136">HDInsight 버전 2.1 및 3.0에서 <strong>jobtrackerhost:9010</strong>를 사용하세요.</span><span class="sxs-lookup"><span data-stu-id="5a484-136">Use <strong>jobtrackerhost:9010</strong> in HDInsight version 3.0 and 2.1.</span></span></td></tr>
+<tr><td><span data-ttu-id="5a484-137">${nameNode}</span><span class="sxs-lookup"><span data-stu-id="5a484-137">${nameNode}</span></span></td><td><span data-ttu-id="5a484-138">Hello Hadoop 이름 노드의 hello URL을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-138">Specifies hello URL of hello Hadoop name node.</span></span> <span data-ttu-id="5a484-139">예를 들어 hello 기본 파일 시스템 주소를 사용 하 여 <i>wasb: / /&lt;containerName&gt;@&lt;storageAccountName&gt;. blob.core.windows.net</i>합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-139">Use hello default file system address, for example, <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>.</span></span></td></tr>
+<tr><td><span data-ttu-id="5a484-140">${queueName}</span><span class="sxs-lookup"><span data-stu-id="5a484-140">${queueName}</span></span></td><td><span data-ttu-id="5a484-141">으로 제출 되었습니다. 작업 hello hello 큐 이름을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-141">Specifies hello queue name that hello job is submitted to.</span></span> <span data-ttu-id="5a484-142">사용 하 여 hello <strong>기본</strong>합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-142">Use hello <strong>default</strong>.</span></span></td></tr>
 </table>
 
 <table border = "1">
-<tr><th><span data-ttu-id="5c163-143">Hive 작업 변수</span><span class="sxs-lookup"><span data-stu-id="5c163-143">Hive action variable</span></span></th><th><span data-ttu-id="5c163-144">설명</span><span class="sxs-lookup"><span data-stu-id="5c163-144">Description</span></span></th></tr>
-<tr><td><span data-ttu-id="5c163-145">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="5c163-145">${hiveDataFolder}</span></span></td><td><span data-ttu-id="5c163-146">Hive Create Table 명령의 소스 디렉터리를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-146">Specifies the source directory for the Hive Create Table command.</span></span></td></tr>
-<tr><td><span data-ttu-id="5c163-147">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="5c163-147">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="5c163-148">INSERT OVERWRITE 문의 출력 폴더를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-148">Specifies the output folder for the INSERT OVERWRITE statement.</span></span></td></tr>
-<tr><td><span data-ttu-id="5c163-149">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="5c163-149">${hiveTableName}</span></span></td><td><span data-ttu-id="5c163-150">log4j 데이터 파일을 참조하는 Hive 테이블의 이름을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-150">Specifies the name of the Hive table that references the log4j data files.</span></span></td></tr>
+<tr><th><span data-ttu-id="5a484-143">Hive 작업 변수</span><span class="sxs-lookup"><span data-stu-id="5a484-143">Hive action variable</span></span></th><th><span data-ttu-id="5a484-144">설명</span><span class="sxs-lookup"><span data-stu-id="5a484-144">Description</span></span></th></tr>
+<tr><td><span data-ttu-id="5a484-145">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="5a484-145">${hiveDataFolder}</span></span></td><td><span data-ttu-id="5a484-146">Create Table 하이브 명령 hello에 대 한 hello 소스 디렉터리를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-146">Specifies hello source directory for hello Hive Create Table command.</span></span></td></tr>
+<tr><td><span data-ttu-id="5a484-147">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="5a484-147">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="5a484-148">덮어쓰기 삽입 문 hello에 대 한 hello 출력 폴더를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-148">Specifies hello output folder for hello INSERT OVERWRITE statement.</span></span></td></tr>
+<tr><td><span data-ttu-id="5a484-149">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="5a484-149">${hiveTableName}</span></span></td><td><span data-ttu-id="5a484-150">Hello hello log4j 데이터 파일을 참조 하는 hello Hive 테이블 이름을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-150">Specifies hello name of hello Hive table that references hello log4j data files.</span></span></td></tr>
 </table>
 
 <table border = "1">
-<tr><th><span data-ttu-id="5c163-151">Sqoop 작업 변수</span><span class="sxs-lookup"><span data-stu-id="5c163-151">Sqoop action variable</span></span></th><th><span data-ttu-id="5c163-152">설명</span><span class="sxs-lookup"><span data-stu-id="5c163-152">Description</span></span></th></tr>
-<tr><td><span data-ttu-id="5c163-153">${sqlDatabaseConnectionString}</span><span class="sxs-lookup"><span data-stu-id="5c163-153">${sqlDatabaseConnectionString}</span></span></td><td><span data-ttu-id="5c163-154">SQL 데이터베이스 연결 문자열을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-154">Specifies the Azure SQL database connection string.</span></span></td></tr>
-<tr><td><span data-ttu-id="5c163-155">${sqlDatabaseTableName}</span><span class="sxs-lookup"><span data-stu-id="5c163-155">${sqlDatabaseTableName}</span></span></td><td><span data-ttu-id="5c163-156">데이터를 내보낼 Azure SQL Database 테이블을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-156">Specifies the Azure SQL database table where the data is exported to.</span></span></td></tr>
-<tr><td><span data-ttu-id="5c163-157">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="5c163-157">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="5c163-158">Hive INSERT OVERWRITE 문의 출력 폴더를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-158">Specifies the output folder for the Hive INSERT OVERWRITE statement.</span></span> <span data-ttu-id="5c163-159">이 폴더는 Sqoop 내보내기(내보내기 디렉터리)와 동일한 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-159">This is the same folder for the Sqoop export (export-dir).</span></span></td></tr>
+<tr><th><span data-ttu-id="5a484-151">Sqoop 작업 변수</span><span class="sxs-lookup"><span data-stu-id="5a484-151">Sqoop action variable</span></span></th><th><span data-ttu-id="5a484-152">설명</span><span class="sxs-lookup"><span data-stu-id="5a484-152">Description</span></span></th></tr>
+<tr><td><span data-ttu-id="5a484-153">${sqlDatabaseConnectionString}</span><span class="sxs-lookup"><span data-stu-id="5a484-153">${sqlDatabaseConnectionString}</span></span></td><td><span data-ttu-id="5a484-154">Hello Azure SQL 데이터베이스 연결 문자열을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-154">Specifies hello Azure SQL database connection string.</span></span></td></tr>
+<tr><td><span data-ttu-id="5a484-155">${sqlDatabaseTableName}</span><span class="sxs-lookup"><span data-stu-id="5a484-155">${sqlDatabaseTableName}</span></span></td><td><span data-ttu-id="5a484-156">Hello Azure SQL 데이터베이스 테이블 hello 데이터 내보낼 위치를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-156">Specifies hello Azure SQL database table where hello data is exported to.</span></span></td></tr>
+<tr><td><span data-ttu-id="5a484-157">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="5a484-157">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="5a484-158">하이브 덮어쓰기 삽입 문 hello에 대 한 hello 출력 폴더를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-158">Specifies hello output folder for hello Hive INSERT OVERWRITE statement.</span></span> <span data-ttu-id="5a484-159">이 hello hello Sqoop 내보내기 (내보내기-dir)에 대 한 같은 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-159">This is hello same folder for hello Sqoop export (export-dir).</span></span></td></tr>
 </table>
 
-<span data-ttu-id="5c163-160">Oozie 워크플로 및 워크플로 작업 사용에 대한 자세한 내용은 [Apache Oozie 4.0 설명서][apache-oozie-400](HDInsight 버전 3.0의 경우) 또는 [Apache Oozie 3.3.2 설명서][apache-oozie-332](HDInsight 버전 2.1의 경우)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-160">For more information about Oozie workflow and using workflow actions, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
+<span data-ttu-id="5a484-160">Oozie 워크플로 및 워크플로 작업 사용에 대한 자세한 내용은 [Apache Oozie 4.0 설명서][apache-oozie-400](HDInsight 버전 3.0의 경우) 또는 [Apache Oozie 3.3.2 설명서][apache-oozie-332](HDInsight 버전 2.1의 경우)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5a484-160">For more information about Oozie workflow and using workflow actions, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
 
-<span data-ttu-id="5c163-161">워크플로의 Hive 작업은 HiveQL 스크립트 파일을 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-161">The Hive action in the workflow calls a HiveQL script file.</span></span> <span data-ttu-id="5c163-162">이 스크립트 파일에는 세 개의 HiveQL 문이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-162">This script file contains three HiveQL statements:</span></span>
+<span data-ttu-id="5a484-161">HiveQL 스크립트 파일을 호출 하는 hello hello 워크플로에서 하이브 동작 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-161">hello Hive action in hello workflow calls a HiveQL script file.</span></span> <span data-ttu-id="5a484-162">이 스크립트 파일에는 세 개의 HiveQL 문이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-162">This script file contains three HiveQL statements:</span></span>
 
     DROP TABLE ${hiveTableName};
     CREATE EXTERNAL TABLE ${hiveTableName}(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ' STORED AS TEXTFILE LOCATION '${hiveDataFolder}';
     INSERT OVERWRITE DIRECTORY '${hiveOutputFolder}' SELECT t4 AS sev, COUNT(*) AS cnt FROM ${hiveTableName} WHERE t4 LIKE '[%' GROUP BY t4;
 
-1. <span data-ttu-id="5c163-163">**DROP TABLE 문** 은 log4j Hive 테이블이 있는 경우 이 테이블을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-163">**The DROP TABLE statement** deletes the log4j Hive table if it exists.</span></span>
-2. <span data-ttu-id="5c163-164">**CREATE TABLE 문** 은 log4j 로그 파일 위치를 가리키는 log4j Hive 외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-164">**The CREATE TABLE statement** creates a log4j Hive external table that points to the location of the log4j log file.</span></span> <span data-ttu-id="5c163-165">필드 구분 기호는 ","입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-165">The field delimiter is ",".</span></span> <span data-ttu-id="5c163-166">기본 줄 구분 기호는 "\n"입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-166">The default line delimiter is "\n".</span></span> <span data-ttu-id="5c163-167">Oozie 워크플로를 여러 번 실행하려는 경우 데이터 파일이 원래 위치에서 제거되지 않도록 하는 데 Hive 외부 테이블이 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-167">A Hive external table is used to avoid the data file being removed from the original location if you want to run the Oozie workflow multiple times.</span></span>
-3. <span data-ttu-id="5c163-168">**INSERT OVERWRITE 문** 은 log4j Hive 테이블에서 각 로그 수준 유형의 수를 계산하고 그 출력 결과를 Azure 저장소의 blob에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-168">**The INSERT OVERWRITE statement** counts the occurrences of each log-level type from the log4j Hive table, and saves the output to a blob in Azure Storage.</span></span>
+1. <span data-ttu-id="5a484-163">**DROP TABLE 문 hello** 있는 경우 삭제 hello log4j Hive 테이블입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-163">**hello DROP TABLE statement** deletes hello log4j Hive table if it exists.</span></span>
+2. <span data-ttu-id="5a484-164">**CREATE TABLE 문 hello** hello log4j 로그 파일의 toohello 위치를 가리키는 log4j 하이브 외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-164">**hello CREATE TABLE statement** creates a log4j Hive external table that points toohello location of hello log4j log file.</span></span> <span data-ttu-id="5a484-165">hello 필드 구분 기호는 ",".</span><span class="sxs-lookup"><span data-stu-id="5a484-165">hello field delimiter is ",".</span></span> <span data-ttu-id="5a484-166">hello 기본 줄 구분은 "\n"입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-166">hello default line delimiter is "\n".</span></span> <span data-ttu-id="5a484-167">하이브 외부 테이블은 여러 번 toorun hello Oozie 워크플로에서 하려면 hello 원래 위치에서 제거 되 고 사용 되는 tooavoid hello 데이터 파일.</span><span class="sxs-lookup"><span data-stu-id="5a484-167">A Hive external table is used tooavoid hello data file being removed from hello original location if you want toorun hello Oozie workflow multiple times.</span></span>
+3. <span data-ttu-id="5a484-168">**hello 덮어쓰기 삽입 문** hello log4j Hive 테이블에서 각 로그 수준 형식의 hello 발생 수를 세 고 hello 출력 tooa blob Azure 저장소에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-168">**hello INSERT OVERWRITE statement** counts hello occurrences of each log-level type from hello log4j Hive table, and saves hello output tooa blob in Azure Storage.</span></span>
 
-<span data-ttu-id="5c163-169">스크립트에서 사용되는 3개의 변수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-169">There are three variables used in the script:</span></span>
+<span data-ttu-id="5a484-169">Hello 스크립트에 사용 되는 세 개의 변수 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-169">There are three variables used in hello script:</span></span>
 
-* <span data-ttu-id="5c163-170">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="5c163-170">${hiveTableName}</span></span>
-* <span data-ttu-id="5c163-171">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="5c163-171">${hiveDataFolder}</span></span>
-* <span data-ttu-id="5c163-172">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="5c163-172">${hiveOutputFolder}</span></span>
+* <span data-ttu-id="5a484-170">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="5a484-170">${hiveTableName}</span></span>
+* <span data-ttu-id="5a484-171">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="5a484-171">${hiveDataFolder}</span></span>
+* <span data-ttu-id="5a484-172">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="5a484-172">${hiveOutputFolder}</span></span>
 
-<span data-ttu-id="5c163-173">워크플로 정의 파일(이 자습서에서는 workflow.xml)은 런타임 시 이러한 값을 이 HiveQL 스크립트에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-173">The workflow definition file (workflow.xml in this tutorial) passes these values to this HiveQL script at run time.</span></span>
+<span data-ttu-id="5a484-173">hello 워크플로 정의 파일 (이 자습서에서는 workflow.xml) 런타임 시 이러한 값 toothis HiveQL 스크립트를 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-173">hello workflow definition file (workflow.xml in this tutorial) passes these values toothis HiveQL script at run time.</span></span>
 
-<span data-ttu-id="5c163-174">워크플로 파일과 HiveQL 파일은 모두 Blob 컨테이너에 저장되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-174">Both the workflow file and the HiveQL file are stored in a blob container.</span></span>  <span data-ttu-id="5c163-175">이 자습서의 뒷부분에서 사용할 PowerShell 스크립트는 이 두 파일을 기본 저장소 계정에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-175">The PowerShell script you use later in this tutorial copies both files to the default Storage account.</span></span> 
+<span data-ttu-id="5a484-174">Hello 워크플로 파일과 hello HiveQL 파일 모두 blob 컨테이너에 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-174">Both hello workflow file and hello HiveQL file are stored in a blob container.</span></span>  <span data-ttu-id="5a484-175">이 자습서의 뒷부분에서 사용 하는 PowerShell 스크립트 hello 두 파일 toohello 기본 저장소 계정에 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-175">hello PowerShell script you use later in this tutorial copies both files toohello default Storage account.</span></span> 
 
-## <a name="submit-oozie-jobs-using-powershell"></a><span data-ttu-id="5c163-176">PowerShell을 사용하여 Oozie 작업 제출</span><span class="sxs-lookup"><span data-stu-id="5c163-176">Submit Oozie jobs using PowerShell</span></span>
-<span data-ttu-id="5c163-177">Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제공하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-177">Azure PowerShell currently doesn't provide any cmdlets for defining Oozie jobs.</span></span> <span data-ttu-id="5c163-178">**Invoke-RestMethod** cmdlet을 사용하여 Oozie 웹 서비스를 불러올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-178">You can use the **Invoke-RestMethod** cmdlet to invoke Oozie web services.</span></span> <span data-ttu-id="5c163-179">Oozie 웹 서비스 API는 HTTP REST JSON API입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-179">The Oozie web services API is a HTTP REST JSON API.</span></span> <span data-ttu-id="5c163-180">Oozie 웹 서비스 API에 대한 자세한 내용은 [Apache Oozie 4.0 설명서][apache-oozie-400](HDInsight 버전 3.0용) 또는 [Apache Oozie 3.3.2 설명서][apache-oozie-332](HDInsight 버전 2.1용)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-180">For more information about the Oozie web services API, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
+## <a name="submit-oozie-jobs-using-powershell"></a><span data-ttu-id="5a484-176">PowerShell을 사용하여 Oozie 작업 제출</span><span class="sxs-lookup"><span data-stu-id="5a484-176">Submit Oozie jobs using PowerShell</span></span>
+<span data-ttu-id="5a484-177">Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제공하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-177">Azure PowerShell currently doesn't provide any cmdlets for defining Oozie jobs.</span></span> <span data-ttu-id="5a484-178">Hello를 사용할 수 있습니다 **Invoke-restmethod** cmdlet tooinvoke Oozie 웹 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-178">You can use hello **Invoke-RestMethod** cmdlet tooinvoke Oozie web services.</span></span> <span data-ttu-id="5a484-179">hello Oozie 웹 서비스 API는 HTTP 나머지 JSON API.</span><span class="sxs-lookup"><span data-stu-id="5a484-179">hello Oozie web services API is a HTTP REST JSON API.</span></span> <span data-ttu-id="5a484-180">Hello Oozie 웹 서비스 API에 대 한 자세한 내용은 참조 [Apache Oozie 4.0 설명서] [ apache-oozie-400] (용 HDInsight 버전 3.0) 또는 [Apache Oozie 3.3.2 설명서] [ apache-oozie-332] (HDInsight 버전 2.1)에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-180">For more information about hello Oozie web services API, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
 
-<span data-ttu-id="5c163-181">이 섹션의 PowerShell 스크립트는 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-181">The PowerShell script in this section performs the following steps:</span></span>
+<span data-ttu-id="5a484-181">이 섹션의 PowerShell 스크립트 hello hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-181">hello PowerShell script in this section performs hello following steps:</span></span>
 
-1. <span data-ttu-id="5c163-182">Azure에 연결</span><span class="sxs-lookup"><span data-stu-id="5c163-182">Connect to Azure.</span></span>
-2. <span data-ttu-id="5c163-183">Azure 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="5c163-183">Create an Azure resource group.</span></span> <span data-ttu-id="5c163-184">자세한 내용은 [Azure 리소스 관리자에서 Azure PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-184">For more information, see [Use Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).</span></span>
-3. <span data-ttu-id="5c163-185">Azure SQL 데이터베이스 서버, Azure SQL 데이터베이스 및 두 개의 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-185">Create an Azure SQL Database server, an Azure SQL database, and two tables.</span></span> <span data-ttu-id="5c163-186">이러한 작업은 워크플로의 Sqoop 작업에서 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-186">These are used by the Sqoop action in the workflow.</span></span>
+1. <span data-ttu-id="5a484-182">TooAzure를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-182">Connect tooAzure.</span></span>
+2. <span data-ttu-id="5a484-183">Azure 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="5a484-183">Create an Azure resource group.</span></span> <span data-ttu-id="5a484-184">자세한 내용은 [Azure 리소스 관리자에서 Azure PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5a484-184">For more information, see [Use Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).</span></span>
+3. <span data-ttu-id="5a484-185">Azure SQL 데이터베이스 서버, Azure SQL 데이터베이스 및 두 개의 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-185">Create an Azure SQL Database server, an Azure SQL database, and two tables.</span></span> <span data-ttu-id="5a484-186">이러한 hello hello 워크플로에서 Sqoop 작업에서 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-186">These are used by hello Sqoop action in hello workflow.</span></span>
    
-    <span data-ttu-id="5c163-187">테이블 이름은 *log4jLogCount*입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-187">The table name is *log4jLogCount*.</span></span>
-4. <span data-ttu-id="5c163-188">Oozie 작업을 실행하는 데 사용되는 HDInsight 클러스터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-188">Create an HDInsight cluster used to run Oozie jobs.</span></span>
+    <span data-ttu-id="5a484-187">hello 테이블 이름이 *log4jLogCount*합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-187">hello table name is *log4jLogCount*.</span></span>
+4. <span data-ttu-id="5a484-188">HDInsight 사용 되는 클러스터 toorun Oozie 작업을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-188">Create an HDInsight cluster used toorun Oozie jobs.</span></span>
    
-    <span data-ttu-id="5c163-189">클러스터를 검사하려면 Azure 포털 또는 Azure PowerShell을 사용하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-189">To examine the cluster, you can use the Azure portal or Azure PowerShell.</span></span>
-5. <span data-ttu-id="5c163-190">Oozie 워크플로 파일 및 HiveQL 스크립트 파일을 기본 파일 시스템에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-190">Copy the oozie workflow file and the HiveQL script file to the default file system.</span></span>
+    <span data-ttu-id="5a484-189">tooexamine hello 클러스터 hello Azure 포털 또는 Azure PowerShell을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-189">tooexamine hello cluster, you can use hello Azure portal or Azure PowerShell.</span></span>
+5. <span data-ttu-id="5a484-190">Hello oozie 워크플로 파일과 hello HiveQL 스크립트 파일 toohello 기본 파일 시스템에 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-190">Copy hello oozie workflow file and hello HiveQL script file toohello default file system.</span></span>
    
-    <span data-ttu-id="5c163-191">두 파일은 공용 Blob 컨테이너에 저장되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-191">Both files are stored in a public Blob container.</span></span>
+    <span data-ttu-id="5a484-191">두 파일은 공용 Blob 컨테이너에 저장되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-191">Both files are stored in a public Blob container.</span></span>
    
-   * <span data-ttu-id="5c163-192">HiveQL 스크립트(useoozie.hql)를 Azure Storage(wasb:///tutorials/useoozie/useoozie.hql)에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-192">Copy the HiveQL script (useoozie.hql) to Azure Storage (wasb:///tutorials/useoozie/useoozie.hql).</span></span>
-   * <span data-ttu-id="5c163-193">workflow.xml을 wasb:///tutorials/useoozie/workflow.xml에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-193">Copy workflow.xml to wasb:///tutorials/useoozie/workflow.xml.</span></span>
-   * <span data-ttu-id="5c163-194">데이터 파일(/example/data/sample.log)을 wasb:///tutorials/useoozie/data/sample.log에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-194">Copy the data file (/example/data/sample.log) to wasb:///tutorials/useoozie/data/sample.log.</span></span>
-6. <span data-ttu-id="5c163-195">Oozie 작업을 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-195">Submit an Oozie job.</span></span>
+   * <span data-ttu-id="5a484-192">Hello HiveQL 스크립트 (useoozie.hql) tooAzure (wasb:///tutorials/useoozie/useoozie.hql) 저장소에 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-192">Copy hello HiveQL script (useoozie.hql) tooAzure Storage (wasb:///tutorials/useoozie/useoozie.hql).</span></span>
+   * <span data-ttu-id="5a484-193">Workflow.xml toowasb:///tutorials/useoozie/workflow.xml를 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-193">Copy workflow.xml toowasb:///tutorials/useoozie/workflow.xml.</span></span>
+   * <span data-ttu-id="5a484-194">복사 hello 데이터 파일 (/ example/data/sample.log) toowasb:///tutorials/useoozie/data/sample.log 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-194">Copy hello data file (/example/data/sample.log) toowasb:///tutorials/useoozie/data/sample.log.</span></span>
+6. <span data-ttu-id="5a484-195">Oozie 작업을 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-195">Submit an Oozie job.</span></span>
    
-    <span data-ttu-id="5c163-196">Oozie 작업 결과를 검사하려면 Visual Studio 또는 다른 도구를 사용하여 Azure SQL 데이터베이스에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-196">To examine the OOzie job results, use Visual Studio or other tools to connect to the Azure SQL Database.</span></span>
+    <span data-ttu-id="5a484-196">tooexamine hello OOzie 작업 결과 Visual Studio 또는 다른 도구 tooconnect toohello Azure SQL 데이터베이스를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-196">tooexamine hello OOzie job results, use Visual Studio or other tools tooconnect toohello Azure SQL Database.</span></span>
 
-<span data-ttu-id="5c163-197">스크립트는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-197">Here is the script.</span></span>  <span data-ttu-id="5c163-198">Windows PowerShell ISE에서 스크립트를 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-198">You can run the script from Windows PowerShell ISE.</span></span> <span data-ttu-id="5c163-199">처음 7개의 변수를 구성하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-199">You only need to configure the first 7 variables.</span></span>
+<span data-ttu-id="5a484-197">Hello 스크립트는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-197">Here is hello script.</span></span>  <span data-ttu-id="5a484-198">Windows PowerShell ISE에서 hello 스크립트를 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-198">You can run hello script from Windows PowerShell ISE.</span></span> <span data-ttu-id="5a484-199">Tooconfigure 하기만 하면 처음 7 변수 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-199">You only need tooconfigure hello first 7 variables.</span></span>
 
-    #region - provide the following values
+    #region - provide hello following values
 
     $subscriptionID = "<Enter your Azure subscription ID>"
 
@@ -207,7 +207,7 @@ ms.lasthandoff: 08/29/2017
     $sqlDatabasePassword = "<Enter SQL Database Login Password>"
 
     # HDInsight cluster HTTP user credential used for creating and connectin
-    $httpUserName = "admin"  # The default name is "admin"
+    $httpUserName = "admin"  # hello default name is "admin"
     $httpPassword = "<Enter HDInsight Cluster HTTP User Password>"
 
     # Used for creating Azure service names
@@ -240,8 +240,8 @@ ms.lasthandoff: 08/29/2017
     # Treat all errors as terminating
     $ErrorActionPreference = "Stop"
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{
         Login-AzureRmAccount
@@ -285,8 +285,8 @@ ms.lasthandoff: 08/29/2017
             -StartIpAddress $workstationIPAddress `
             -EndIpAddress $workstationIPAddress
 
-        #To allow other Azure services to access the server add a firewall rule and set both the StartIpAddress and EndIpAddress to 0.0.0.0. 
-        #Note that this allows Azure traffic from any Azure subscription to access the server.
+        #tooallow other Azure services tooaccess hello server add a firewall rule and set both hello StartIpAddress and EndIpAddress too0.0.0.0. 
+        #Note that this allows Azure traffic from any Azure subscription tooaccess hello server.
         New-AzureRmSqlServerFirewallRule `
             -ResourceGroupName $resourceGroupName `
             -ServerName $sqlDatabaseServerName `
@@ -316,7 +316,7 @@ ms.lasthandoff: 08/29/2017
     #endregion
 
     #region - Create SQL database tables
-    Write-Host "Creating the log4jlogs table  ..." -ForegroundColor Green
+    Write-Host "Creating hello log4jlogs table  ..." -ForegroundColor Green
 
     $sqlDatabaseTableName = "log4jLogsCount"
     $cmdCreateLog4jCountTable = " CREATE TABLE [dbo].[$sqlDatabaseTableName](
@@ -332,7 +332,7 @@ ms.lasthandoff: 08/29/2017
     $conn.ConnectionString = $sqlDatabaseConnectionString
     $conn.Open()
 
-    # Create the log4jlogs table and index
+    # Create hello log4jlogs table and index
     $cmd = New-Object System.Data.SqlClient.SqlCommand
     $cmd.Connection = $conn
     $cmd.CommandText = $cmdCreateLog4jCountTable
@@ -343,16 +343,16 @@ ms.lasthandoff: 08/29/2017
 
     #region - Create HDInsight cluster
 
-    Write-Host "Creating the HDInsight cluster and the dependent services ..." -ForegroundColor Green
+    Write-Host "Creating hello HDInsight cluster and hello dependent services ..." -ForegroundColor Green
 
-    # Create the default storage account
+    # Create hello default storage account
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
         -Location $location `
         -Type Standard_LRS
 
-    # Create the default Blob container
+    # Create hello default Blob container
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                     -ResourceGroupName $resourceGroupName `
                                     -Name $defaultStorageAccountName)[0].Value
@@ -363,7 +363,7 @@ ms.lasthandoff: 08/29/2017
         -Name $defaultBlobContainerName `
         -Context $defaultStorageAccountContext 
 
-    # Create the HDInsight cluster
+    # Create hello HDInsight cluster
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
 
@@ -379,7 +379,7 @@ ms.lasthandoff: 08/29/2017
         -DefaultStorageAccountKey $defaultStorageAccountKey `
         -DefaultStorageContainer $defaultBlobContainerName 
 
-    # Validate the cluster
+    # Validate hello cluster
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
     #endregion
 
@@ -390,8 +390,8 @@ ms.lasthandoff: 08/29/2017
     # Both files are stored in a public Blob
     $publicBlobContext = New-AzureStorageContext -StorageAccountName "hditutorialdata" -Anonymous
 
-    # WASB folder for storing the Oozie tutorial files.
-    $destFolder = "tutorials/useoozie"  # Do NOT use the long path here
+    # WASB folder for storing hello Oozie tutorial files.
+    $destFolder = "tutorials/useoozie"  # Do NOT use hello long path here
 
     Start-CopyAzureStorageBlob `
         -Context $publicBlobContext `
@@ -411,7 +411,7 @@ ms.lasthandoff: 08/29/2017
         -DestBlob "$destFolder/workflow.xml" `
         -Force
 
-    #validate the copy
+    #validate hello copy
     Get-AzureStorageBlob `
         -Context $defaultStorageAccountContext `
         -Container $defaultBlobContainerName `
@@ -424,9 +424,9 @@ ms.lasthandoff: 08/29/2017
 
     #endregion
 
-    #region - copy the sample.log file
+    #region - copy hello sample.log file
 
-    Write-Host "Make a copy of the sample.log file ... " -ForegroundColor Green
+    Write-Host "Make a copy of hello sample.log file ... " -ForegroundColor Green
 
     Start-CopyAzureStorageBlob `
         -Context $defaultStorageAccountContext `
@@ -436,7 +436,7 @@ ms.lasthandoff: 08/29/2017
         -DestContainer $defaultBlobContainerName `
         -destBlob "$destFolder/data/sample.log" 
 
-    #validate the copy
+    #validate hello copy
     Get-AzureStorageBlob `
         -Context $defaultStorageAccountContext `
         -Container $defaultBlobContainerName `
@@ -451,7 +451,7 @@ ms.lasthandoff: 08/29/2017
     $oozieJobName = $namePrefix + "OozieJob"
 
     #Oozie WF variables
-    $oozieWFPath="$storageUri/tutorials/useoozie"  # The default name is workflow.xml. And you don't need to specify the file name.
+    $oozieWFPath="$storageUri/tutorials/useoozie"  # hello default name is workflow.xml. And you don't need toospecify hello file name.
     $waitTimeBetweenOozieJobStatusCheck=10
 
     #Hive action variables
@@ -539,7 +539,7 @@ ms.lasthandoff: 08/29/2017
     Write-Host "Oozie server status is $oozieServerSatus."
 
     # create Oozie job
-    Write-Host "Sending the following Payload to the cluster:" -ForegroundColor Green
+    Write-Host "Sending hello following Payload toohello cluster:" -ForegroundColor Green
     Write-Host "`n--------`n$OoziePayload`n--------"
     $clusterUriCreateJob = "https://$hdinsightClusterName.azurehdinsight.net:443/oozie/v2/jobs"
     $response = Invoke-RestMethod -Method Post -Uri $clusterUriCreateJob -Credential $httpCredential -Body $OoziePayload -ContentType "application/xml" -OutVariable $OozieJobName #-debug
@@ -549,15 +549,15 @@ ms.lasthandoff: 08/29/2017
     Write-Host "Oozie job id is $oozieJobId..."
 
     # start Oozie job
-    Write-Host "Starting the Oozie job $oozieJobId..." -ForegroundColor Green
+    Write-Host "Starting hello Oozie job $oozieJobId..." -ForegroundColor Green
     $clusterUriStartJob = "https://$hdinsightClusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?action=start"
     $response = Invoke-RestMethod -Method Put -Uri $clusterUriStartJob -Credential $httpCredential | Format-Table -HideTableHeaders #-debug
 
     # get job status
-    Write-Host "Sleeping for $waitTimeBetweenOozieJobStatusCheck seconds until the job metadata is populated in the Oozie metastore..." -ForegroundColor Green
+    Write-Host "Sleeping for $waitTimeBetweenOozieJobStatusCheck seconds until hello job metadata is populated in hello Oozie metastore..." -ForegroundColor Green
     Start-Sleep -Seconds $waitTimeBetweenOozieJobStatusCheck
 
-    Write-Host "Getting job status and waiting for the job to complete..." -ForegroundColor Green
+    Write-Host "Getting job status and waiting for hello job toocomplete..." -ForegroundColor Green
     $clusterUriGetJobStatus = "https://$hdinsightClusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?show=info"
     $response = Invoke-RestMethod -Method Get -Uri $clusterUriGetJobStatus -Credential $httpCredential
     $jsonResponse = ConvertFrom-Json (ConvertTo-Json -InputObject $response)
@@ -565,7 +565,7 @@ ms.lasthandoff: 08/29/2017
 
     while($JobStatus -notmatch "SUCCEEDED|KILLED")
     {
-        Write-Host "$(Get-Date -format 'G'): $oozieJobId is in $JobStatus state...waiting $waitTimeBetweenOozieJobStatusCheck seconds for the job to complete..."
+        Write-Host "$(Get-Date -format 'G'): $oozieJobId is in $JobStatus state...waiting $waitTimeBetweenOozieJobStatusCheck seconds for hello job toocomplete..."
         Start-Sleep -Seconds $waitTimeBetweenOozieJobStatusCheck
         $response = Invoke-RestMethod -Method Get -Uri $clusterUriGetJobStatus -Credential $httpCredential
         $jsonResponse = ConvertFrom-Json (ConvertTo-Json -InputObject $response)
@@ -578,14 +578,14 @@ ms.lasthandoff: 08/29/2017
     #endregion
 
 
-<span data-ttu-id="5c163-200">**자습서를 다시 실행하려면**</span><span class="sxs-lookup"><span data-stu-id="5c163-200">**To re-run the tutorial**</span></span>
+<span data-ttu-id="5a484-200">**toore 실행 hello 자습서**</span><span class="sxs-lookup"><span data-stu-id="5a484-200">**toore-run hello tutorial**</span></span>
 
-<span data-ttu-id="5c163-201">워크플로를 다시 실행하려면 다음 항목을 삭제해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-201">To re-run the workflow, you must delete the following items:</span></span>
+<span data-ttu-id="5a484-201">toore 실행 hello 워크플로 hello 다음 항목을 삭제 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-201">toore-run hello workflow, you must delete hello following items:</span></span>
 
-* <span data-ttu-id="5c163-202">Hive 스크립트 출력 파일</span><span class="sxs-lookup"><span data-stu-id="5c163-202">The Hive script output file</span></span>
-* <span data-ttu-id="5c163-203">log4jLogsCount 테이블의 데이터</span><span class="sxs-lookup"><span data-stu-id="5c163-203">The data in the log4jLogsCount table</span></span>
+* <span data-ttu-id="5a484-202">hello Hive 스크립트 출력 파일</span><span class="sxs-lookup"><span data-stu-id="5a484-202">hello Hive script output file</span></span>
+* <span data-ttu-id="5a484-203">hello 테이블의에서 데이터를 hello log4jLogsCount</span><span class="sxs-lookup"><span data-stu-id="5a484-203">hello data in hello log4jLogsCount table</span></span>
 
-<span data-ttu-id="5c163-204">다음은 사용할 수 있는 PowerShell 스크립트 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-204">Here is a sample PowerShell script that you can use:</span></span>
+<span data-ttu-id="5a484-204">다음은 사용할 수 있는 PowerShell 스크립트 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-204">Here is a sample PowerShell script that you can use:</span></span>
 
     $resourceGroupName = "<AzureResourceGroupName>"
 
@@ -599,14 +599,14 @@ ms.lasthandoff: 08/29/2017
     $sqlDatabaseName = "<SQLDatabaseName>"
     $sqlDatabaseTableName = "log4jLogsCount"
 
-    Write-host "Delete the Hive script output file ..." -ForegroundColor Green
+    Write-host "Delete hello Hive script output file ..." -ForegroundColor Green
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                 -ResourceGroupName $resourceGroupName `
                                 -Name $defaultStorageAccountName)[0].Value
     $destContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey
     Remove-AzureStorageBlob -Context $destContext -Blob "tutorials/useoozie/output/000000_0" -Container $defaultBlobContainerName
 
-    Write-host "Delete all the records from the log4jLogsCount table ..." -ForegroundColor Green
+    Write-host "Delete all hello records from hello log4jLogsCount table ..." -ForegroundColor Green
     $conn = New-Object System.Data.SqlClient.SqlConnection
     $conn.ConnectionString = "Data Source=$sqlDatabaseServerName.database.windows.net;Initial Catalog=$sqlDatabaseName;User ID=$sqlDatabaseLogin;Password=$sqlDatabasePassword;Encrypt=true;Trusted_Connection=false;"
     $conn.open()
@@ -617,18 +617,18 @@ ms.lasthandoff: 08/29/2017
 
     $conn.close()
 
-## <a name="next-steps"></a><span data-ttu-id="5c163-205">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5c163-205">Next steps</span></span>
-<span data-ttu-id="5c163-206">이 자습서에서는 Oozie 워크플로를 정의하는 방법 및 PowerShell을 사용하여 Oozie 작업을 실행하는 방법을 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="5c163-206">In this tutorial, you learned how to define an Oozie workflow and how to run an Oozie job by using PowerShell.</span></span> <span data-ttu-id="5c163-207">자세한 내용은 다음 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5c163-207">To learn more, see the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5a484-205">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5a484-205">Next steps</span></span>
+<span data-ttu-id="5a484-206">이 자습서에서는 방법에 대해 배웠습니다 toodefine는 Oozie 워크플로와 toorun는 Oozie PowerShell을 사용 하 여 작업 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="5a484-206">In this tutorial, you learned how toodefine an Oozie workflow and how toorun an Oozie job by using PowerShell.</span></span> <span data-ttu-id="5a484-207">더 toolearn hello 다음 문서를 참조:</span><span class="sxs-lookup"><span data-stu-id="5a484-207">toolearn more, see hello following articles:</span></span>
 
-* <span data-ttu-id="5c163-208">[HDInsight에서 시간 기준의 Oozie 코디네이터 사용][hdinsight-oozie-coordinator-time]</span><span class="sxs-lookup"><span data-stu-id="5c163-208">[Use time-based Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time]</span></span>
-* <span data-ttu-id="5c163-209">[휴대폰 사용을 분석하기 위해 HDInsight에서 Hive와 함께 Hadoop 사용 시작][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="5c163-209">[Get started using Hadoop with Hive in HDInsight to analyze mobile handset use][hdinsight-get-started]</span></span>
-* <span data-ttu-id="5c163-210">[HDInsight에서 Azure Blob Storage 사용][hdinsight-storage]</span><span class="sxs-lookup"><span data-stu-id="5c163-210">[Use Azure Blob storage with HDInsight][hdinsight-storage]</span></span>
-* <span data-ttu-id="5c163-211">[PowerShell을 사용하여 HDInsight 관리][hdinsight-admin-powershell]</span><span class="sxs-lookup"><span data-stu-id="5c163-211">[Administer HDInsight using PowerShell][hdinsight-admin-powershell]</span></span>
-* <span data-ttu-id="5c163-212">[HDInsight에서 Hadoop 작업용 데이터 업로드][hdinsight-upload-data]</span><span class="sxs-lookup"><span data-stu-id="5c163-212">[Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data]</span></span>
-* <span data-ttu-id="5c163-213">[HDInsight에서 Hadoop과 Sqoop 사용][hdinsight-use-sqoop]</span><span class="sxs-lookup"><span data-stu-id="5c163-213">[Use Sqoop with Hadoop in HDInsight][hdinsight-use-sqoop]</span></span>
-* <span data-ttu-id="5c163-214">[HDInsight에서 Hadoop과 Hive 사용][hdinsight-use-hive]</span><span class="sxs-lookup"><span data-stu-id="5c163-214">[Use Hive with Hadoop on HDInsight][hdinsight-use-hive]</span></span>
-* <span data-ttu-id="5c163-215">[HDInsight에서 Hadoop과 Pig 사용][hdinsight-use-pig]</span><span class="sxs-lookup"><span data-stu-id="5c163-215">[Use Pig with Hadoop on HDInsight][hdinsight-use-pig]</span></span>
-* <span data-ttu-id="5c163-216">[HDInsight용 Java MapReduce 프로그램 개발][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="5c163-216">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
+* <span data-ttu-id="5a484-208">[HDInsight에서 시간 기준의 Oozie 코디네이터 사용][hdinsight-oozie-coordinator-time]</span><span class="sxs-lookup"><span data-stu-id="5a484-208">[Use time-based Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time]</span></span>
+* <span data-ttu-id="5a484-209">[HDInsight tooanalyze 모바일 송수화기 사용 중인 Hadoop 하이브 사용을 시작.][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="5a484-209">[Get started using Hadoop with Hive in HDInsight tooanalyze mobile handset use][hdinsight-get-started]</span></span>
+* <span data-ttu-id="5a484-210">[HDInsight에서 Azure Blob Storage 사용][hdinsight-storage]</span><span class="sxs-lookup"><span data-stu-id="5a484-210">[Use Azure Blob storage with HDInsight][hdinsight-storage]</span></span>
+* <span data-ttu-id="5a484-211">[PowerShell을 사용하여 HDInsight 관리][hdinsight-admin-powershell]</span><span class="sxs-lookup"><span data-stu-id="5a484-211">[Administer HDInsight using PowerShell][hdinsight-admin-powershell]</span></span>
+* <span data-ttu-id="5a484-212">[HDInsight에서 Hadoop 작업용 데이터 업로드][hdinsight-upload-data]</span><span class="sxs-lookup"><span data-stu-id="5a484-212">[Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data]</span></span>
+* <span data-ttu-id="5a484-213">[HDInsight에서 Hadoop과 Sqoop 사용][hdinsight-use-sqoop]</span><span class="sxs-lookup"><span data-stu-id="5a484-213">[Use Sqoop with Hadoop in HDInsight][hdinsight-use-sqoop]</span></span>
+* <span data-ttu-id="5a484-214">[HDInsight에서 Hadoop과 Hive 사용][hdinsight-use-hive]</span><span class="sxs-lookup"><span data-stu-id="5a484-214">[Use Hive with Hadoop on HDInsight][hdinsight-use-hive]</span></span>
+* <span data-ttu-id="5a484-215">[HDInsight에서 Hadoop과 Pig 사용][hdinsight-use-pig]</span><span class="sxs-lookup"><span data-stu-id="5a484-215">[Use Pig with Hadoop on HDInsight][hdinsight-use-pig]</span></span>
+* <span data-ttu-id="5a484-216">[HDInsight용 Java MapReduce 프로그램 개발][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="5a484-216">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
 
 [hdinsight-cmdlets-download]: http://go.microsoft.com/fwlink/?LinkID=325563
 

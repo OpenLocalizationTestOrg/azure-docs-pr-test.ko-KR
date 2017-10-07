@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Data Warehouse - 시작 자습서 | Microsoft Docs"
-description: "이 자습서에서는 데이터를 프로비전하고 Azure SQL Data Warehouse로 로드하는 방법을 배웁니다. 또한 크기 조정, 일시 중지 및 튜닝에 대한 기본 사항을 알아봅니다."
+title: "aaaAzure SQL 데이터 웨어하우스-시작 자습서 | Microsoft Docs"
+description: "이 자습서 방식에서는 Azure SQL 데이터 웨어하우스로 데이터 tooprovision 및 로드 합니다. 또한 배율, 일시 중지 및 튜닝 하는 방법에 대 한 hello 기본 사항을 알아봅니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,184 +15,184 @@ ms.workload: data-services
 ms.custom: quickstart
 ms.date: 01/26/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 95e14824ba3b705bb909ec983652dd3305b98805
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: edd2a21b0fe49ca8e9792c7c512310339a822c55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-sql-data-warehouse"></a><span data-ttu-id="e0dd6-104">SQL Data Warehouse 시작</span><span class="sxs-lookup"><span data-stu-id="e0dd6-104">Get started with SQL Data Warehouse</span></span>
+# <a name="get-started-with-sql-data-warehouse"></a><span data-ttu-id="68283-104">SQL Data Warehouse 시작</span><span class="sxs-lookup"><span data-stu-id="68283-104">Get started with SQL Data Warehouse</span></span>
 
-<span data-ttu-id="e0dd6-105">이 자습서에서는 데이터를 프로비전하고 Azure SQL Data Warehouse로 로드하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-105">This tutorial shows how to provision and load data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="e0dd6-106">또한 크기 조정, 일시 중지 및 튜닝에 대한 기본 사항을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-106">You’ll also learn the basics about scaling, pausing, and tuning.</span></span> <span data-ttu-id="e0dd6-107">작업이 끝나면 데이터 웨어하우스를 쿼리 및 탐색할 준비가 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-107">When you’re finished, you’ll be ready to query and explore your data warehouse.</span></span>
+<span data-ttu-id="68283-105">이 자습서에서는 어떻게 tooprovision 및 로드 데이터를 Azure SQL 데이터 웨어하우스에 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-105">This tutorial shows how tooprovision and load data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="68283-106">또한 배율, 일시 중지 및 튜닝 하는 방법에 대 한 hello 기본 사항을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="68283-106">You’ll also learn hello basics about scaling, pausing, and tuning.</span></span> <span data-ttu-id="68283-107">완료 되 면 준비 tooquery 수 하 고 데이터 웨어하우스를 탐색 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-107">When you’re finished, you’ll be ready tooquery and explore your data warehouse.</span></span>
 
-<span data-ttu-id="e0dd6-108">**예상 완료 시간:** 예제 코드가 포함된 종단 간 자습서로, 필수 조건을 충족한 후 완료하는 데 약 30분 정도 소요됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-108">**Estimated time to complete:** This is an end-to-end tutorial with example code that takes about 30 minutes to complete once you have met the prerequisites.</span></span> 
+<span data-ttu-id="68283-108">**예상 시간 toocomplete:** hello 필수 구성 요소를 충족 되 면 약 30 분 toocomplete를 사용 하는 예제 코드를 있는 종단 간 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-108">**Estimated time toocomplete:** This is an end-to-end tutorial with example code that takes about 30 minutes toocomplete once you have met hello prerequisites.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="e0dd6-109">필수 조건</span><span class="sxs-lookup"><span data-stu-id="e0dd6-109">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="68283-109">필수 조건</span><span class="sxs-lookup"><span data-stu-id="68283-109">Prerequisites</span></span>
 
-<span data-ttu-id="e0dd6-110">이 자습서에서는 SQL Data Warehouse 기본 개념에 대해 알고 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-110">The tutorial assumes you are familiar with SQL Data Warehouse basic concepts.</span></span> <span data-ttu-id="e0dd6-111">소개가 필요한 경우 [SQL Data Warehouse란 무엇입니까?](sql-data-warehouse-overview-what-is.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-111">If you need an introduction, see [What is SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md)</span></span> 
+<span data-ttu-id="68283-110">hello 자습서에서는 SQL 데이터 웨어하우스 기본 개념에 익숙한 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-110">hello tutorial assumes you are familiar with SQL Data Warehouse basic concepts.</span></span> <span data-ttu-id="68283-111">소개가 필요한 경우 [SQL Data Warehouse란 무엇입니까?](sql-data-warehouse-overview-what-is.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="68283-111">If you need an introduction, see [What is SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md)</span></span> 
 
-### <a name="sign-up-for-microsoft-azure"></a><span data-ttu-id="e0dd6-112">Microsoft Azure에 등록</span><span class="sxs-lookup"><span data-stu-id="e0dd6-112">Sign up for Microsoft Azure</span></span>
-<span data-ttu-id="e0dd6-113">Microsoft Azure 계정이 없는 아직 경우 이 서비스를 사용하려면 Microsoft Azure에 등록해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-113">If you don't already have a Microsoft Azure account, you need to sign up for one to use this service.</span></span> <span data-ttu-id="e0dd6-114">계정이 이미 있는 경우 이 단계를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-114">If you already have an account, you may skip this step.</span></span> 
+### <a name="sign-up-for-microsoft-azure"></a><span data-ttu-id="68283-112">Microsoft Azure에 등록</span><span class="sxs-lookup"><span data-stu-id="68283-112">Sign up for Microsoft Azure</span></span>
+<span data-ttu-id="68283-113">Microsoft Azure 계정이 없는 경우이 서비스가 toosign toouse 하나에 대해 필요한 경우.</span><span class="sxs-lookup"><span data-stu-id="68283-113">If you don't already have a Microsoft Azure account, you need toosign up for one toouse this service.</span></span> <span data-ttu-id="68283-114">계정이 이미 있는 경우 이 단계를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-114">If you already have an account, you may skip this step.</span></span> 
 
-1. <span data-ttu-id="e0dd6-115">계정 페이지([https://azure.microsoft.com/account/](https://azure.microsoft.com/account/))로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-115">Navigate to the account pages [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span></span>
-2. <span data-ttu-id="e0dd6-116">무료 Azure 계정을 만들거나 계정을 구입합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-116">Create a free Azure account, or purchase an account.</span></span>
-3. <span data-ttu-id="e0dd6-117">지침을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-117">Follow the instructions</span></span>
+1. <span data-ttu-id="68283-115">Toohello 계정 페이지를 탐색 [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span><span class="sxs-lookup"><span data-stu-id="68283-115">Navigate toohello account pages [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span></span>
+2. <span data-ttu-id="68283-116">무료 Azure 계정을 만들거나 계정을 구입합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-116">Create a free Azure account, or purchase an account.</span></span>
+3. <span data-ttu-id="68283-117">Hello 지침에 따라</span><span class="sxs-lookup"><span data-stu-id="68283-117">Follow hello instructions</span></span>
 
-### <a name="install-appropriate-sql-client-drivers-and-tools"></a><span data-ttu-id="e0dd6-118">적절한 SQL 클라이언트 드라이버 및 도구 설치</span><span class="sxs-lookup"><span data-stu-id="e0dd6-118">Install appropriate SQL client drivers and tools</span></span>
+### <a name="install-appropriate-sql-client-drivers-and-tools"></a><span data-ttu-id="68283-118">적절한 SQL 클라이언트 드라이버 및 도구 설치</span><span class="sxs-lookup"><span data-stu-id="68283-118">Install appropriate SQL client drivers and tools</span></span>
 
-<span data-ttu-id="e0dd6-119">대부분의 SQL 클라이언트 도구는 JDBC, ODBC 또는 ADO.NET을 사용하여 SQL Data Warehouse에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-119">Most SQL client tools can connect to SQL Data Warehouse by using JDBC, ODBC, or ADO.NET.</span></span> <span data-ttu-id="e0dd6-120">SQL Data Warehouse에서 지원하는 많은 T-SQL 기능으로 인해 일부 클라이언트 응용 프로그램은 SQL Data Warehouse와 완벽하게 호환되는 것은 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-120">Due to the large number of T-SQL features that SQL Data Warehouse supports, some client applications are not fully compatible with SQL Data Warehouse.</span></span>
+<span data-ttu-id="68283-119">대부분의 SQL 클라이언트 도구는 데이터 웨어하우스 tooSQL JDBC, ODBC 또는 ADO.NET을 사용 하 여 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-119">Most SQL client tools can connect tooSQL Data Warehouse by using JDBC, ODBC, or ADO.NET.</span></span> <span data-ttu-id="68283-120">Toohello 많은 T-SQL 기능을 지 원하는 SQL 데이터 웨어하우스, 인해 일부 클라이언트 응용 프로그램 SQL 데이터 웨어하우스에 완전히 호환 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-120">Due toohello large number of T-SQL features that SQL Data Warehouse supports, some client applications are not fully compatible with SQL Data Warehouse.</span></span>
 
-<span data-ttu-id="e0dd6-121">Windows 운영 체제를 실행하는 경우 [Visual Studio] 또는 [SQL Server Management Studio]를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-121">If you are running a Windows operating system, we recommend using either [Visual Studio] or [SQL Server Management Studio].</span></span>
+<span data-ttu-id="68283-121">Windows 운영 체제를 실행하는 경우 [Visual Studio] 또는 [SQL Server Management Studio]를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-121">If you are running a Windows operating system, we recommend using either [Visual Studio] or [SQL Server Management Studio].</span></span>
 
 [!INCLUDE [Create a new logical server](../../includes/sql-data-warehouse-create-logical-server.md)] 
 
 [!INCLUDE [SQL Database create server](../../includes/sql-database-create-new-server-firewall-portal.md)]
 
-## <a name="create-a-sql-data-warehouse"></a><span data-ttu-id="e0dd6-122">SQL Data Warehouse 만들기</span><span class="sxs-lookup"><span data-stu-id="e0dd6-122">Create a SQL Data Warehouse</span></span>
+## <a name="create-a-sql-data-warehouse"></a><span data-ttu-id="68283-122">SQL Data Warehouse 만들기</span><span class="sxs-lookup"><span data-stu-id="68283-122">Create a SQL Data Warehouse</span></span>
 
-<span data-ttu-id="e0dd6-123">SQL Data Warehouse는 방대한 병렬 처리를 위해 설계된 데이터베이스의 특수한 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-123">A SQL Data Warehouse is a special type of database that is designed for massively parallel processing.</span></span> <span data-ttu-id="e0dd6-124">데이터베이스는 여러 노드에 배포되고 쿼리를 병렬로 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-124">The database is distributed across multiple nodes and processes queries in parallel.</span></span> <span data-ttu-id="e0dd6-125">SQL Data Warehouse에는 모든 노드의 활동을 조정하는 제어 노드가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-125">SQL Data Warehouse has a control node that orchestrates the activities of all the nodes.</span></span> <span data-ttu-id="e0dd6-126">노드 자체가 SQL Database를 사용하여 데이터를 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-126">The nodes themselves use SQL Database to manage your data.</span></span>  
+<span data-ttu-id="68283-123">SQL Data Warehouse는 방대한 병렬 처리를 위해 설계된 데이터베이스의 특수한 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-123">A SQL Data Warehouse is a special type of database that is designed for massively parallel processing.</span></span> <span data-ttu-id="68283-124">hello 데이터베이스 여러 노드에 분산 하 고 동시에 쿼리를 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-124">hello database is distributed across multiple nodes and processes queries in parallel.</span></span> <span data-ttu-id="68283-125">SQL 데이터 웨어하우스에 모든 hello 노드의 hello 활동을 오케스트레이션 하는 제어.</span><span class="sxs-lookup"><span data-stu-id="68283-125">SQL Data Warehouse has a control node that orchestrates hello activities of all hello nodes.</span></span> <span data-ttu-id="68283-126">hello 노드 자체 SQL 데이터베이스 toomanage 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-126">hello nodes themselves use SQL Database toomanage your data.</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="e0dd6-127">SQL Data Warehouse를 만들면 새로운 유료 서비스가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-127">Creating a SQL Data Warehouse might result in a new billable service.</span></span>  <span data-ttu-id="e0dd6-128">자세한 내용은 [SQL Data Warehouse 가격](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-128">For more information, see [SQL Data Warehouse pricing](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).</span></span>
+> <span data-ttu-id="68283-127">SQL 데이터 웨어하우스를 만들면 새로운 유료 서비스가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-127">Creating a SQL Data Warehouse might result in a new billable service.</span></span>  <span data-ttu-id="68283-128">자세한 내용은 [SQL Data Warehouse 가격](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="68283-128">For more information, see [SQL Data Warehouse pricing](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).</span></span>
 >
 
-### <a name="create-a-data-warehouse"></a><span data-ttu-id="e0dd6-129">데이터 웨어하우스 만들기</span><span class="sxs-lookup"><span data-stu-id="e0dd6-129">Create a data warehouse</span></span>
+### <a name="create-a-data-warehouse"></a><span data-ttu-id="68283-129">데이터 웨어하우스 만들기</span><span class="sxs-lookup"><span data-stu-id="68283-129">Create a data warehouse</span></span>
 
-1. <span data-ttu-id="e0dd6-130">[Azure 포털](https://portal.azure.com)에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-130">Sign into the [Azure portal](https://portal.azure.com).</span></span>
-2. <span data-ttu-id="e0dd6-131">**새로 만들기** > **데이터베이스** > **SQL Data Warehouse**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-131">Click **New** > **Databases** > **SQL Data Warehouse**.</span></span>
+1. <span data-ttu-id="68283-130">Hello에 로그인 [Azure 포털](https://portal.azure.com)합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-130">Sign into hello [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="68283-131">**새로 만들기** > **데이터베이스** > **SQL Data Warehouse**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-131">Click **New** > **Databases** > **SQL Data Warehouse**.</span></span>
 
-    <span data-ttu-id="e0dd6-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span><span class="sxs-lookup"><span data-stu-id="e0dd6-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span></span>
+    <span data-ttu-id="68283-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span><span class="sxs-lookup"><span data-stu-id="68283-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span></span>
 
-3. <span data-ttu-id="e0dd6-133">배포 세부 정보 작성</span><span class="sxs-lookup"><span data-stu-id="e0dd6-133">Fill out deployment details</span></span>
+3. <span data-ttu-id="68283-133">배포 세부 정보 작성</span><span class="sxs-lookup"><span data-stu-id="68283-133">Fill out deployment details</span></span>
 
-    <span data-ttu-id="e0dd6-134">**데이터베이스 이름**: 원하는 모든 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-134">**Database Name**: Pick anything you'd like.</span></span> <span data-ttu-id="e0dd6-135">데이터 웨어하우스가 여러 개 있는 경우, 지역, 환경 등과 같은 자세한 정보를 포함하는 것이 좋습니다(예: *mydw-westus-1-test*).</span><span class="sxs-lookup"><span data-stu-id="e0dd6-135">If you have multiple data warehouses, we recommend your names include details such as the region, environment, for example *mydw-westus-1-test*.</span></span>
+    <span data-ttu-id="68283-134">**데이터베이스 이름**: 원하는 모든 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-134">**Database Name**: Pick anything you'd like.</span></span> <span data-ttu-id="68283-135">여러 데이터 웨어하우스를 설정한 경우 사용자 이름은 포함 hello 지역, 환경, 예를 들어 같은 세부 정보는 것이 좋습니다 *westus 1 테스트 mydw*합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-135">If you have multiple data warehouses, we recommend your names include details such as hello region, environment, for example *mydw-westus-1-test*.</span></span>
 
-    <span data-ttu-id="e0dd6-136">**구독:** 사용자의 Azure 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-136">**Subscription**: Your Azure subscription</span></span>
+    <span data-ttu-id="68283-136">**구독:** 사용자의 Azure 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-136">**Subscription**: Your Azure subscription</span></span>
 
-    <span data-ttu-id="e0dd6-137">**리소스 그룹**: 리소스 그룹을 만들거나 기존 리소스 그룹을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-137">**Resource Group**: Create a resource group or use an existing resource group.</span></span>
+    <span data-ttu-id="68283-137">**리소스 그룹**: 리소스 그룹을 만들거나 기존 리소스 그룹을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-137">**Resource Group**: Create a resource group or use an existing resource group.</span></span>
     > [!NOTE]
-    > <span data-ttu-id="e0dd6-138">리소스 그룹은 범위 지정 액세스 제어 및 템플릿 배포와 같은 리소스 관리에 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-138">Resource groups are useful for resource administration such as scoping access control and templated deployment.</span></span> <span data-ttu-id="e0dd6-139">Azure 리소스 그룹 및 모범 사례에 대한 자세한 내용은 [여기](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-139">Read more about Azure resource groups and best practices [here](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)</span></span>
+    > <span data-ttu-id="68283-138">리소스 그룹은 범위 지정 액세스 제어 및 템플릿 배포와 같은 리소스 관리에 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-138">Resource groups are useful for resource administration such as scoping access control and templated deployment.</span></span> <span data-ttu-id="68283-139">Azure 리소스 그룹 및 모범 사례에 대한 자세한 내용은 [여기](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="68283-139">Read more about Azure resource groups and best practices [here](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)</span></span>
 
-    <span data-ttu-id="e0dd6-140">**원본**: 빈 데이터베이스</span><span class="sxs-lookup"><span data-stu-id="e0dd6-140">**Source**: Blank Database</span></span>
+    <span data-ttu-id="68283-140">**원본**: 빈 데이터베이스</span><span class="sxs-lookup"><span data-stu-id="68283-140">**Source**: Blank Database</span></span>
 
-    <span data-ttu-id="e0dd6-141">**서버**: [필수 조건]에서 만든 서버를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-141">**Server**: Select the server you created in [Prerequisites].</span></span>
+    <span data-ttu-id="68283-141">**서버**: 선택 hello 서버에서 만든 [필수 구성 요소]합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-141">**Server**: Select hello server you created in [Prerequisites].</span></span>
 
-    <span data-ttu-id="e0dd6-142">**데이터 정렬**: 기본 데이터 정렬(SQL_Latin1_General_CP1_CI_AS)을 그대로 둡니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-142">**Collation**: Leave the default collation SQL_Latin1_General_CP1_CI_AS.</span></span>
+    <span data-ttu-id="68283-142">**데이터 정렬**: hello 기본 데이터 정렬 SQL_Latin1_General_CP1_CI_AS를 둡니다.</span><span class="sxs-lookup"><span data-stu-id="68283-142">**Collation**: Leave hello default collation SQL_Latin1_General_CP1_CI_AS.</span></span>
 
-    <span data-ttu-id="e0dd6-143">**성능 선택**: 표준 400DWU로 시작하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-143">**Select performance**: We recommend starting with the standard 400DWU.</span></span>
+    <span data-ttu-id="68283-143">**성능 선택**: 표준 400DWU hello로 시작 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-143">**Select performance**: We recommend starting with hello standard 400DWU.</span></span>
 
-4. <span data-ttu-id="e0dd6-144">**대시보드에 고정** ![대시보드에 고정](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-144">Choose **Pin to dashboard** ![Pin To Dashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span></span>
+4. <span data-ttu-id="68283-144">선택 **Pin toodashboard** ![Pin tooDashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span><span class="sxs-lookup"><span data-stu-id="68283-144">Choose **Pin toodashboard** ![Pin tooDashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span></span>
 
-5. <span data-ttu-id="e0dd6-145">데이터 웨어하우스가 배포될 때까지 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-145">Sit back and wait for your data warehouse to deploy!</span></span> <span data-ttu-id="e0dd6-146">일반적으로 이 프로세스는 몇 분 정도 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-146">It's normal for this process to take several minutes.</span></span> <span data-ttu-id="e0dd6-147">포털은 데이터 웨어하우스를 사용할 준비가 되면 알려줍니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-147">The portal notifies you when your data warehouse is ready to use.</span></span> 
+5. <span data-ttu-id="68283-145">데이터 웨어하우스 toodeploy 될 때까지 기다리는!</span><span class="sxs-lookup"><span data-stu-id="68283-145">Sit back and wait for your data warehouse toodeploy!</span></span> <span data-ttu-id="68283-146">일반적이 프로세스 tootake 몇 분 정도입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-146">It's normal for this process tootake several minutes.</span></span> <span data-ttu-id="68283-147">hello 포털 데이터 웨어하우스 준비 toouse 때이 알려 줍니다.</span><span class="sxs-lookup"><span data-stu-id="68283-147">hello portal notifies you when your data warehouse is ready toouse.</span></span> 
 
-## <a name="connect-to-sql-data-warehouse"></a><span data-ttu-id="e0dd6-148">SQL Data Warehouse에 연결</span><span class="sxs-lookup"><span data-stu-id="e0dd6-148">Connect to SQL Data Warehouse</span></span>
+## <a name="connect-toosql-data-warehouse"></a><span data-ttu-id="68283-148">데이터 웨어하우스 tooSQL 연결</span><span class="sxs-lookup"><span data-stu-id="68283-148">Connect tooSQL Data Warehouse</span></span>
 
-<span data-ttu-id="e0dd6-149">이 자습서에서는 SSMS(SQL Server Management Studio)를 사용하여 데이터 웨어하우스에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-149">This tutorial uses SQL Server Management Studio (SSMS) to connect to the data warehouse.</span></span> <span data-ttu-id="e0dd6-150">지원되는 커넥터인 ADO.NET, JDBC, ODBC 및 PHP를 통해 SQL Data Warehouse에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-150">You can connect to SQL Data Warehouse through these supported connectors: ADO.NET, JDBC, ODBC, and PHP.</span></span> <span data-ttu-id="e0dd6-151">Microsoft에서 지원하지 않는 도구의 경우 기능이 제한될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-151">Remember, functionality might be limited for tools that are not supported by Microsoft.</span></span>
+<span data-ttu-id="68283-149">이 자습서에서는 SQL Server Management Studio (SSMS) tooconnect toohello 데이터 웨어하우스를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-149">This tutorial uses SQL Server Management Studio (SSMS) tooconnect toohello data warehouse.</span></span> <span data-ttu-id="68283-150">이러한 지원 되는 커넥터를 통해 tooSQL 데이터 웨어하우스에 연결할 수 있습니다: ADO.NET, JDBC, ODBC 및 PHP 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-150">You can connect tooSQL Data Warehouse through these supported connectors: ADO.NET, JDBC, ODBC, and PHP.</span></span> <span data-ttu-id="68283-151">Microsoft에서 지원하지 않는 도구의 경우 기능이 제한될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-151">Remember, functionality might be limited for tools that are not supported by Microsoft.</span></span>
 
 
-### <a name="get-connection-information"></a><span data-ttu-id="e0dd6-152">연결 정보 가져오기</span><span class="sxs-lookup"><span data-stu-id="e0dd6-152">Get connection information</span></span>
+### <a name="get-connection-information"></a><span data-ttu-id="68283-152">연결 정보 가져오기</span><span class="sxs-lookup"><span data-stu-id="68283-152">Get connection information</span></span>
 
-<span data-ttu-id="e0dd6-153">데이터 웨어하우스에 연결하려면 [필수 조건]에서 만든 논리 SQL Server를 통해 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-153">To connect to your data warehouse, you need to connect through the logical SQL server you created in [Prerequisites].</span></span>
+<span data-ttu-id="68283-153">만든 hello 논리 SQL server 통해 tooconnect 해야 tooconnect tooyour 데이터 웨어하우스 [필수 구성 요소]합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-153">tooconnect tooyour data warehouse, you need tooconnect through hello logical SQL server you created in [Prerequisites].</span></span>
 
-1. <span data-ttu-id="e0dd6-154">대시보드에서 데이터 웨어하우스를 선택하거나 리소스에서 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-154">Select your data warehouse from the dashboard or search for it in your resources.</span></span>
+1. <span data-ttu-id="68283-154">Hello 대시보드 또는 리소스에 대 한 검색에서 데이터 웨어하우스를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-154">Select your data warehouse from hello dashboard or search for it in your resources.</span></span>
 
     ![SQL Data Warehouse 대시보드](./media/sql-data-warehouse-get-started-tutorial/sql-dw-dashboard.png)
 
-2. <span data-ttu-id="e0dd6-156">논리 SQL 서버의 전체 이름을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-156">Find the full name for the logical SQL server.</span></span>
+2. <span data-ttu-id="68283-156">Hello hello 논리 SQL server에 대 한 전체 이름을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-156">Find hello full name for hello logical SQL server.</span></span>
 
     ![서버 이름 선택](./media/sql-data-warehouse-get-started-tutorial/select-server.png)
 
-3. <span data-ttu-id="e0dd6-158">SSMS를 열고 개체 탐색기를 사용하여 [필수 조건]에서 만든 서버 관리 자격 증명을 사용하여 이 서버에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-158">Open SSMS and use object explorer to connect to this server using the server admin credentials you created in [Prerequisites]</span></span>
+3. <span data-ttu-id="68283-158">SSMS를 열고 개체 탐색기 tooconnect toothis 서버 hello 서버 관리자 자격 증명에서 만든를 사용 하 여 사용 하 여 [필수 구성 요소]</span><span class="sxs-lookup"><span data-stu-id="68283-158">Open SSMS and use object explorer tooconnect toothis server using hello server admin credentials you created in [Prerequisites]</span></span>
 
     ![SSMS로 연결](./media/sql-data-warehouse-get-started-tutorial/ssms-connect.png)
 
-<span data-ttu-id="e0dd6-160">모든 것이 제대로 수행되었으면 이제 논리 SQL 서버에 연결되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-160">If all goes correctly, you should now be connected to your logical SQL server.</span></span> <span data-ttu-id="e0dd6-161">서버 관리자로서 로그인했기 때문에 마스터 데이터베이스와 같은 서버에 의해 호스팅되는 모든 데이터베이스에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-161">Since you logged in as the server admin, you can connect to any database hosted by the server, including the master database.</span></span> 
+<span data-ttu-id="68283-160">모두 올바르게 되 면 이제 연결된 tooyour 논리 SQL server을 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-160">If all goes correctly, you should now be connected tooyour logical SQL server.</span></span> <span data-ttu-id="68283-161">로그온 한 hello 서버 관리자도 이후 hello master 데이터베이스를 포함 하 여 hello 서버에서 호스트 되는 tooany 데이터베이스를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-161">Since you logged in as hello server admin, you can connect tooany database hosted by hello server, including hello master database.</span></span> 
 
-<span data-ttu-id="e0dd6-162">서버 관리자 계정은 하나만 있으며 대부분의 사용자 권한을 가집니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-162">There is only one server admin account and it has the most privileges of any user.</span></span> <span data-ttu-id="e0dd6-163">조직의 너무 많은 사람들이 관리자 암호를 알지 않도록 주의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-163">Be careful not to allow too many people in your organization to know the admin password.</span></span> 
+<span data-ttu-id="68283-162">하나의 서버 관리자 계정은 않으며 권한이 hello 대부분의 모든 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-162">There is only one server admin account and it has hello most privileges of any user.</span></span> <span data-ttu-id="68283-163">주의 하지 tooallow 조직 tooknow hello 관리자 암호에 사용자가 너무 많습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-163">Be careful not tooallow too many people in your organization tooknow hello admin password.</span></span> 
 
-<span data-ttu-id="e0dd6-164">Azure Active Directory 관리자 계정도 가질 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-164">You can also have an Azure active directory admin account.</span></span> <span data-ttu-id="e0dd6-165">여기에는 세부 정보를 제공하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-165">We don't provide the details here.</span></span> <span data-ttu-id="e0dd6-166">Azure Active Directory 인증을 사용하는 방법에 대한 자세한 내용은 [Azure AD 인증](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-166">If you want to learn more about using Azure Active Directory authentication, see [Azure AD authentication](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication).</span></span>
+<span data-ttu-id="68283-164">Azure Active Directory 관리자 계정도 가질 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-164">You can also have an Azure active directory admin account.</span></span> <span data-ttu-id="68283-165">여기에 hello 세부 정보 제공 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-165">We don't provide hello details here.</span></span> <span data-ttu-id="68283-166">Azure Active Directory 인증을 사용 하는 방법에 대 한 자세한 toolearn 참조 [Azure AD 인증](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication)합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-166">If you want toolearn more about using Azure Active Directory authentication, see [Azure AD authentication](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication).</span></span>
 
-<span data-ttu-id="e0dd6-167">다음으로, 로그인 및 사용자를 추가로 만드는 방법을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-167">Next, we explore creating additional logins and users.</span></span>
+<span data-ttu-id="68283-167">다음으로, 로그인 및 사용자를 추가로 만드는 방법을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-167">Next, we explore creating additional logins and users.</span></span>
 
 
-## <a name="create-a-database-user"></a><span data-ttu-id="e0dd6-168">데이터베이스 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="e0dd6-168">Create a database user</span></span>
+## <a name="create-a-database-user"></a><span data-ttu-id="68283-168">데이터베이스 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="68283-168">Create a database user</span></span>
 
-<span data-ttu-id="e0dd6-169">이 단계에서는 데이터 웨어하우스에 액세스할 수 있는 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-169">In this step, you create a user account to access your data warehouse.</span></span> <span data-ttu-id="e0dd6-170">또한 해당 사용자에게 많은 양의 메모리 및 CPU 리소스를 사용하는 쿼리를 실행하는 권한을 제공하는 방법도 알아보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-170">We also show you how to give that user the ability to run queries with a large amount of memory and CPU resources.</span></span>
+<span data-ttu-id="68283-169">이 단계에서는 사용자 계정 tooaccess 데이터 웨어하우스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="68283-169">In this step, you create a user account tooaccess your data warehouse.</span></span> <span data-ttu-id="68283-170">또한 보여줍니다 어떻게 toogive 해당 사용자 hello 기능 toorun는 다량의 메모리 및 CPU 리소스 사용을 쿼리 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-170">We also show you how toogive that user hello ability toorun queries with a large amount of memory and CPU resources.</span></span>
 
-### <a name="notes-about-resource-classes-for-allocating-resources-to-queries"></a><span data-ttu-id="e0dd6-171">리소스를 쿼리에 할당하는 리소스 클래스에 대한 참고 사항</span><span class="sxs-lookup"><span data-stu-id="e0dd6-171">Notes about resource classes for allocating resources to queries</span></span>
+### <a name="notes-about-resource-classes-for-allocating-resources-tooqueries"></a><span data-ttu-id="68283-171">리소스 tooqueries를 할당 하기 위한 리소스 클래스에 대 한 참고 사항</span><span class="sxs-lookup"><span data-stu-id="68283-171">Notes about resource classes for allocating resources tooqueries</span></span>
 
-- <span data-ttu-id="e0dd6-172">데이터를 안전하게 유지하려면 프로덕션 데이터베이스에서 서버 관리자를 사용하여 쿼리를 실행하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-172">To keep your data safe, don't use the server admin to run queries on your production databases.</span></span> <span data-ttu-id="e0dd6-173">대부분의 사용자 권한을 가지며 사용자 데이터에 대해 작업을 수행하기 사용하면 사용자 데이터가 위험해집니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-173">It has the most privileges of any user and using it to perform operations on user data puts your data at risk.</span></span> <span data-ttu-id="e0dd6-174">또한 서버 관리자는 관리 작업을 수행하기 위한 것이기 때문에, 메모리 및 CPU 리소스가 적게 할당된 작업만 실행됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-174">Also, since the server admin is meant to perform management operations, it runs operations with only a small allocation of memory and CPU resources.</span></span> 
+- <span data-ttu-id="68283-172">tookeep 프로덕션 데이터베이스에 안전 하 고, 데이터 hello 서버 관리자 toorun 쿼리를 사용 하지 마십시오.</span><span class="sxs-lookup"><span data-stu-id="68283-172">tookeep your data safe, don't use hello server admin toorun queries on your production databases.</span></span> <span data-ttu-id="68283-173">권한이 hello 대부분의 모든 사용자 및 tooperform 하기를 사용 하 여 사용자 데이터에 대 한 작업 데이터 위험에 놓이게 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-173">It has hello most privileges of any user and using it tooperform operations on user data puts your data at risk.</span></span> <span data-ttu-id="68283-174">또한 서버 admin 님 안녕하세요 tooperform 관리 작업은 제공 하 고, 이후 작업 메모리 및 CPU 리소스의 작은 할당만 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68283-174">Also, since hello server admin is meant tooperform management operations, it runs operations with only a small allocation of memory and CPU resources.</span></span> 
 
-- <span data-ttu-id="e0dd6-175">SQL Data Warehouse는 리소스 클래스라고 하는 미리 정의된 데이터베이스 역할을 사용하여 서로 다른 양의 메모리, CPU 리소스, 동시성 슬롯을 사용자에게 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-175">SQL Data Warehouse uses pre-defined database roles, called resource classes, to allocate different amounts of memory, CPU resources, and concurrency slots to users.</span></span> <span data-ttu-id="e0dd6-176">각 사용자는 소형, 중형, 대형 또는 초대형 리소스 클래스에 속할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-176">Each user can belong to a small, medium, large, or extra-large resource class.</span></span> <span data-ttu-id="e0dd6-177">사용자의 리소스 클래스는 사용자가 쿼리를 실행하고 작업을 로드해야 하는 리소스를 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-177">The user's resource class determines the resources the user has to run queries and load operations.</span></span>
+- <span data-ttu-id="68283-175">SQL 데이터 웨어하우스 리소스 클래스, 메모리, CPU 리소스 및 동시성 슬롯 toousers tooallocate 다른 금액을 호출 하는 미리 정의 된 데이터베이스 역할을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-175">SQL Data Warehouse uses pre-defined database roles, called resource classes, tooallocate different amounts of memory, CPU resources, and concurrency slots toousers.</span></span> <span data-ttu-id="68283-176">각 사용자 tooa 소형, 중형, 대형 또는 초대형 리소스 클래스에 속할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-176">Each user can belong tooa small, medium, large, or extra-large resource class.</span></span> <span data-ttu-id="68283-177">hello 사용자의 리소스 클래스 hello 리소스 hello 사용자에 게 확인 toorun 쿼리 및 로드 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-177">hello user's resource class determines hello resources hello user has toorun queries and load operations.</span></span>
 
-- <span data-ttu-id="e0dd6-178">데이터 압축을 최적화하기 위해 사용자는 대형 또는 초대형 리소스 할당을 사용하여 로드해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-178">For optimal data compression, the user may need to load with large or extra large resource allocations.</span></span> <span data-ttu-id="e0dd6-179">리소스 클래스에 대한 자세한 내용은 [여기](./sql-data-warehouse-develop-concurrency.md#resource-classes)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-179">Read more about resource classes [here](./sql-data-warehouse-develop-concurrency.md#resource-classes):</span></span>
+- <span data-ttu-id="68283-178">최적의 데이터 압축에 대 한 hello 사용자 tooload와 대형 또는 초대형 리소스 할당 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-178">For optimal data compression, hello user may need tooload with large or extra large resource allocations.</span></span> <span data-ttu-id="68283-179">리소스 클래스에 대한 자세한 내용은 [여기](./sql-data-warehouse-develop-concurrency.md#resource-classes)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="68283-179">Read more about resource classes [here](./sql-data-warehouse-develop-concurrency.md#resource-classes):</span></span>
 
-### <a name="create-an-account-that-can-control-a-database"></a><span data-ttu-id="e0dd6-180">데이터베이스를 제어할 수 있는 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="e0dd6-180">Create an account that can control a database</span></span>
+### <a name="create-an-account-that-can-control-a-database"></a><span data-ttu-id="68283-180">데이터베이스를 제어할 수 있는 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="68283-180">Create an account that can control a database</span></span>
 
-<span data-ttu-id="e0dd6-181">현재 서버 관리자로서 로그인되어 있으므로 로그인 및 사용자를 만들 수 있는 권한이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-181">Since you are currently logged in as the server admin you have permissions to create logins and users.</span></span>
+<span data-ttu-id="68283-181">Hello 서버 관리자에 현재 로그온 되어 권한 toocreate 로그인 및 사용자가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-181">Since you are currently logged in as hello server admin you have permissions toocreate logins and users.</span></span>
 
-1. <span data-ttu-id="e0dd6-182">SSMS 또는 또 하나의 쿼리 클라이언트를 사용하여 **master**에 대한 새 쿼리를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-182">Using SSMS or another query client, open a new query for **master**.</span></span>
+1. <span data-ttu-id="68283-182">SSMS 또는 또 하나의 쿼리 클라이언트를 사용하여 **master**에 대한 새 쿼리를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="68283-182">Using SSMS or another query client, open a new query for **master**.</span></span>
 
     ![master에서의 새 쿼리](./media/sql-data-warehouse-get-started-tutorial/query-on-server.png)
 
     ![master1에서의 새 쿼리](./media/sql-data-warehouse-get-started-tutorial/query-on-master.png)
 
-2. <span data-ttu-id="e0dd6-185">쿼리 창에서 MedRCLogin라는 로그인과 LoadingUser라는 사용자를 만들려면 이 T-SQL 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-185">In the query window, run this T-SQL command to create a login named MedRCLogin and user named LoadingUser.</span></span> <span data-ttu-id="e0dd6-186">이 로그인은 논리적 SQL 서버에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-186">This login can connect to the logical SQL server.</span></span>
+2. <span data-ttu-id="68283-185">Hello 쿼리 창에서 한 MedRCLogin 라는 로그인 및 사용자 라는 LoadingUser T-SQL 명령 toocreate이를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-185">In hello query window, run this T-SQL command toocreate a login named MedRCLogin and user named LoadingUser.</span></span> <span data-ttu-id="68283-186">이 로그인 toohello 논리 SQL server에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-186">This login can connect toohello logical SQL server.</span></span>
 
     ```sql
     CREATE LOGIN MedRCLogin WITH PASSWORD = 'a123reallySTRONGpassword!';
     CREATE USER LoadingUser FOR LOGIN MedRCLogin;
     ```
 
-3. <span data-ttu-id="e0dd6-187">이제 *SQL Data Warehouse 데이터베이스*를 쿼리하여 데이터베이스에서 액세스하고 작업을 수행하기 위해 만든 로그인을 기반으로 하는 데이터베이스 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-187">Now querying the *SQL Data Warehouse database*, create a database user based on the login you created to access and perform operations on the database.</span></span>
+3. <span data-ttu-id="68283-187">이제 쿼리 하는 hello *SQL 데이터 웨어하우스 데이터베이스*, 기반 데이터베이스 사용자 만들기 hello tooaccess를 만든 로그인 되 고 hello 데이터베이스에 대 한 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-187">Now querying hello *SQL Data Warehouse database*, create a database user based on hello login you created tooaccess and perform operations on hello database.</span></span>
 
     ```sql
     CREATE USER LoadingUser FOR LOGIN MedRCLogin;
     ```
 
-4. <span data-ttu-id="e0dd6-188">데이터베이스 사용자에게 NYT라고 하는 데이터베이스에 대한 제어 권한을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-188">Give the database user control permissions to the database called NYT.</span></span> 
+4. <span data-ttu-id="68283-188">NYT 라는 hello 데이터베이스 사용자 제어 권한을 toohello 데이터베이스를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-188">Give hello database user control permissions toohello database called NYT.</span></span> 
 
     ```sql
-    GRANT CONTROL ON DATABASE::[NYT] to LoadingUser;
+    GRANT CONTROL ON DATABASE::[NYT] tooLoadingUser;
     ```
     > [!NOTE]
-    > <span data-ttu-id="e0dd6-189">데이터베이스 이름에 하이픈(-)이 있으면 대괄호로 묶어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-189">If your database name has hyphens in it, be sure to wrap it in brackets!</span></span> 
+    > <span data-ttu-id="68283-189">데이터베이스 이름에 하이픈 인 경우 수 있는지 toowrap 대괄호에!</span><span class="sxs-lookup"><span data-stu-id="68283-189">If your database name has hyphens in it, be sure toowrap it in brackets!</span></span> 
     >
 
-### <a name="give-the-user-medium-resource-allocations"></a><span data-ttu-id="e0dd6-190">사용자에게 중간 리소스 할당 제공</span><span class="sxs-lookup"><span data-stu-id="e0dd6-190">Give the user medium resource allocations</span></span>
+### <a name="give-hello-user-medium-resource-allocations"></a><span data-ttu-id="68283-190">Hello 사용자 중간 리소스 할당을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-190">Give hello user medium resource allocations</span></span>
 
-1. <span data-ttu-id="e0dd6-191">이 T-SQL 명령을 실행하여 사용자를 mediumrc라고 하는 중간 리소스 클래스의 멤버로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-191">Run this T-SQL command to make it a member of the medium resource class, which is called mediumrc.</span></span> 
+1. <span data-ttu-id="68283-191">이 T-SQL 명령 toomake 실행 it mediumrc 라는 hello 중간 리소스 클래스의 멤버입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-191">Run this T-SQL command toomake it a member of hello medium resource class, which is called mediumrc.</span></span> 
 
     ```sql
     EXEC sp_addrolemember 'mediumrc', 'LoadingUser';
     ```
     > [!NOTE]
-    > <span data-ttu-id="e0dd6-192">동시성 및 리소스 클래스에 대한 자세한 내용을 보려면 [여기](sql-data-warehouse-develop-concurrency.md#resource-classes)를 클릭하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-192">Click [here](sql-data-warehouse-develop-concurrency.md#resource-classes) to learn more about concurrency and resource classes!</span></span> 
+    > <span data-ttu-id="68283-192">클릭 [여기](sql-data-warehouse-develop-concurrency.md#resource-classes) toolearn 동시성 및 리소스 클래스에 대 한 자세한!</span><span class="sxs-lookup"><span data-stu-id="68283-192">Click [here](sql-data-warehouse-develop-concurrency.md#resource-classes) toolearn more about concurrency and resource classes!</span></span> 
     >
 
-2. <span data-ttu-id="e0dd6-193">새 자격 증명으로 논리 서버에 연결</span><span class="sxs-lookup"><span data-stu-id="e0dd6-193">Connect to the logical server with the new credentials</span></span>
+2. <span data-ttu-id="68283-193">Hello 새 자격 증명으로 toohello 논리 서버에 연결</span><span class="sxs-lookup"><span data-stu-id="68283-193">Connect toohello logical server with hello new credentials</span></span>
 
     ![새 로그인으로 로그인](./media/sql-data-warehouse-get-started-tutorial/new-login.png)
 
 
-## <a name="load-data-from-azure-blob-storage"></a><span data-ttu-id="e0dd6-195">Azure Blob 저장소에서 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="e0dd6-195">Load data from Azure blob storage</span></span>
+## <a name="load-data-from-azure-blob-storage"></a><span data-ttu-id="68283-195">Azure Blob 저장소에서 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="68283-195">Load data from Azure blob storage</span></span>
 
-<span data-ttu-id="e0dd6-196">이제 데이터를 데이터 웨어하우스에 로드할 준비가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-196">You are now ready to load data into your data warehouse.</span></span> <span data-ttu-id="e0dd6-197">이 단계에서는 공용 Azure Storage Blob에서 뉴욕시 택시 데이터를 로드하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-197">This step shows you how to load New York City taxi cab data from a public Azure storage blob.</span></span> 
+<span data-ttu-id="68283-196">이제 준비 tooload 데이터를 데이터 웨어하우스에.</span><span class="sxs-lookup"><span data-stu-id="68283-196">You are now ready tooload data into your data warehouse.</span></span> <span data-ttu-id="68283-197">이 단계에서는 tooload 뉴욕시 택시 cab 데이터를 공용 Azure 저장소에서에서 blob 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="68283-197">This step shows you how tooload New York City taxi cab data from a public Azure storage blob.</span></span> 
 
-- <span data-ttu-id="e0dd6-198">데이터를 SQL Data Warehouse로 로드하는 일반적인 방법은 먼저 Azure Blob Storage로 데이터를 이동한 다음 사용자의 데이터 웨어하우스를 로드하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-198">A common way to load data into SQL Data Warehouse is to first move the data to Azure blob storage, and then load it into your data warehouse.</span></span> <span data-ttu-id="e0dd6-199">로드하는 방법을 쉽게 이해하기 위해 공용 Azure Storage Blob에서 이미 호스팅된 뉴욕 택시 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-199">To make it easier to understand how to load, we have New York taxi cab data already hosted in a public Azure storage blob.</span></span> 
+- <span data-ttu-id="68283-198">SQL 데이터 웨어하우스로 tooload 데이터 toofirst는 일반적으로 hello 데이터 tooAzure blob 저장소를 이동한 다음 데이터 웨어하우스에 로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-198">A common way tooload data into SQL Data Warehouse is toofirst move hello data tooAzure blob storage, and then load it into your data warehouse.</span></span> <span data-ttu-id="68283-199">toomake 것 보다 쉽게 toounderstand 어떻게 tooload, 우리 뉴욕 택시 cab 데이터 될 공용 Azure 저장소 blob에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-199">toomake it easier toounderstand how tooload, we have New York taxi cab data already hosted in a public Azure storage blob.</span></span> 
 
-- <span data-ttu-id="e0dd6-200">나중에 참조하기 위해 데이터를 Azure Blob Storage로 가져오거나 원본에서 SQL Data Warehouse로 직접 로드하는 방법에 대해 알아보려면 [로드 개요](sql-data-warehouse-overview-load.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-200">For future reference, to learn how to get your data to Azure blob storage or to load it directly from your source into SQL Data Warehouse, see the [loading overview](sql-data-warehouse-overview-load.md).</span></span>
+- <span data-ttu-id="68283-200">나중에 참조할 수, toolearn 어떻게 tooget 데이터 tooAzure blob 저장소 또는 tooload 것 직접 SQL 데이터 웨어하우스로 원본의 참조 hello [개요 로드](sql-data-warehouse-overview-load.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-200">For future reference, toolearn how tooget your data tooAzure blob storage or tooload it directly from your source into SQL Data Warehouse, see hello [loading overview](sql-data-warehouse-overview-load.md).</span></span>
 
 
-### <a name="define-external-data"></a><span data-ttu-id="e0dd6-201">외부 데이터 정의</span><span class="sxs-lookup"><span data-stu-id="e0dd6-201">Define external data</span></span>
+### <a name="define-external-data"></a><span data-ttu-id="68283-201">외부 데이터 정의</span><span class="sxs-lookup"><span data-stu-id="68283-201">Define external data</span></span>
 
-1. <span data-ttu-id="e0dd6-202">마스터 키를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-202">Create a master key.</span></span> <span data-ttu-id="e0dd6-203">데이터베이스마다 한 번씩 마스터 키를 만들기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-203">You only need to create a master key once per database.</span></span> 
+1. <span data-ttu-id="68283-202">마스터 키를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="68283-202">Create a master key.</span></span> <span data-ttu-id="68283-203">마스터 키가 데이터베이스에 한 번씩 toocreate를 하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68283-203">You only need toocreate a master key once per database.</span></span> 
 
     ```sql
     CREATE MASTER KEY;
     ```
 
-2. <span data-ttu-id="e0dd6-204">택시 데이터를 포함하는 Azure Blob의 위치를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-204">Define the location of the Azure blob that contains the taxi cab data.</span></span>  
+2. <span data-ttu-id="68283-204">Hello hello 택시 cab 데이터를 포함 하는 Azure blob의 hello 위치를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-204">Define hello location of hello Azure blob that contains hello taxi cab data.</span></span>  
 
     ```sql
     CREATE EXTERNAL DATA SOURCE NYTPublic
@@ -203,11 +203,11 @@ ms.lasthandoff: 08/29/2017
     );
     ```
 
-3. <span data-ttu-id="e0dd6-205">외부 파일 형식을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-205">Define the external file formats</span></span>
+3. <span data-ttu-id="68283-205">Hello 외부 파일 형식 정의</span><span class="sxs-lookup"><span data-stu-id="68283-205">Define hello external file formats</span></span>
 
-    <span data-ttu-id="e0dd6-206">```CREATE EXTERNAL FILE FORMAT``` 명령은 외부 데이터를 포함하는 파일 형식을 지정하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-206">The ```CREATE EXTERNAL FILE FORMAT``` command is used to specify the format of files that contain the external data.</span></span> <span data-ttu-id="e0dd6-207">여기에는 구분 기호라고 하는 하나 이상의 문자로 구분된 텍스트가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-207">They contain text separated by one or more characters called delimiters.</span></span> <span data-ttu-id="e0dd6-208">데모용으로 택시 데이터는 압축되지 않은 데이터와 gzip 형식의 압축 데이터로 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-208">For demonstration purposes, the taxi cab data is stored both as uncompressed data and as gzip compressed data.</span></span>
+    <span data-ttu-id="68283-206">hello ```CREATE EXTERNAL FILE FORMAT``` 명령에 사용 되는 toospecify hello 외부 데이터를 포함 하는 파일의 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-206">hello ```CREATE EXTERNAL FILE FORMAT``` command is used toospecify the format of files that contain hello external data.</span></span> <span data-ttu-id="68283-207">여기에는 구분 기호라고 하는 하나 이상의 문자로 구분된 텍스트가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-207">They contain text separated by one or more characters called delimiters.</span></span> <span data-ttu-id="68283-208">데모용으로 hello 택시 cab 데이터 압축 되지 않은 데이터 및 gzip 압축 된 데이터로 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68283-208">For demonstration purposes, hello taxi cab data is stored both as uncompressed data and as gzip compressed data.</span></span>
 
-    <span data-ttu-id="e0dd6-209">이들 T-SQL 명령을 실행하여 비압축 및 압축 등 두 가지 형식을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-209">Run these T-SQL commands to define two different formats: uncompressed and compressed.</span></span>
+    <span data-ttu-id="68283-209">이러한 실행 T-SQL 명령을 toodefine는 두 가지 형식: 압축을 풀고 압축 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-209">Run these T-SQL commands toodefine two different formats: uncompressed and compressed.</span></span>
 
     ```sql
     CREATE EXTERNAL FILE FORMAT uncompressedcsv
@@ -233,12 +233,12 @@ ms.lasthandoff: 08/29/2017
     );
     ```
 
-4.  <span data-ttu-id="e0dd6-210">외부 파일 형식에 대한 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-210">Create a schema for your external file format.</span></span> 
+4.  <span data-ttu-id="68283-210">외부 파일 형식에 대한 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="68283-210">Create a schema for your external file format.</span></span> 
 
     ```sql
     CREATE SCHEMA ext;
     ```
-5. <span data-ttu-id="e0dd6-211">외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-211">Create the external tables.</span></span> <span data-ttu-id="e0dd6-212">이 테이블은 Azure Blob Storage에 저장된 데이터를 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-212">These tables reference data stored in Azure blob storage.</span></span> <span data-ttu-id="e0dd6-213">다음 T-SQL 명령을 실행하여 외부 데이터 원본에서 이전에 정의한 Azure Blob을 모두 가리키는 다수의 외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-213">Run the following T-SQL commands to create several external tables that all point to the Azure blob we defined previously in our external data source.</span></span>
+5. <span data-ttu-id="68283-211">Hello 외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="68283-211">Create hello external tables.</span></span> <span data-ttu-id="68283-212">이 테이블은 Azure Blob Storage에 저장된 데이터를 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-212">These tables reference data stored in Azure blob storage.</span></span> <span data-ttu-id="68283-213">다음 T-SQL 명령을 toocreate hello는 모든 지점 toohello Azure blob에서는 이전에 정의 된 외부 데이터 원본에 여러 외부 테이블을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-213">Run hello following T-SQL commands toocreate several external tables that all point toohello Azure blob we defined previously in our external data source.</span></span>
 
 ```sql
     CREATE EXTERNAL TABLE [ext].[Date] 
@@ -415,11 +415,11 @@ ms.lasthandoff: 08/29/2017
     ;
 ```
 
-### <a name="import-the-data-from-azure-blob-storage"></a><span data-ttu-id="e0dd6-214">Azure Blob Storage에서 데이터를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-214">Import the data from Azure blob storage.</span></span>
+### <a name="import-hello-data-from-azure-blob-storage"></a><span data-ttu-id="68283-214">Azure blob 저장소의 hello 데이터를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="68283-214">Import hello data from Azure blob storage.</span></span>
 
-<span data-ttu-id="e0dd6-215">SQL Data Warehouse는 CTAS(CREATE TABLE AS SELECT)라는 핵심 문을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-215">SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS).</span></span> <span data-ttu-id="e0dd6-216">이 문은 select 문의 결과에 따라 새 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-216">This statement creates a new table based on the results of a select statement.</span></span> <span data-ttu-id="e0dd6-217">새 테이블은 select 문의 결과에 부합하는 동일한 열과 데이터 형식을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-217">The new table has the same columns and data types as the results of the select statement.</span></span>  <span data-ttu-id="e0dd6-218">Azure Blob Storage에서 SQL Data Warehouse로 데이터를 가져오는 효과적인 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-218">This is an elegant way to import data from Azure blob storage into SQL Data Warehouse.</span></span>
+<span data-ttu-id="68283-215">SQL Data Warehouse는 CTAS(CREATE TABLE AS SELECT)라는 핵심 문을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-215">SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS).</span></span> <span data-ttu-id="68283-216">이 문은 select 문의 hello 결과에 따라 새 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="68283-216">This statement creates a new table based on hello results of a select statement.</span></span> <span data-ttu-id="68283-217">hello 새 테이블에 hello 결과 hello의 select 문 처럼 동일한 열과 데이터 형식을 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-217">hello new table has hello same columns and data types as hello results of hello select statement.</span></span>  <span data-ttu-id="68283-218">이 세련 된 방법 tooimport 데이터를 사용 하 여 SQL 데이터 웨어하우스로 Azure blob 저장소입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-218">This is an elegant way tooimport data from Azure blob storage into SQL Data Warehouse.</span></span>
 
-1. <span data-ttu-id="e0dd6-219">이 스크립트를 실행하여 데이터를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-219">Run this script to import your data.</span></span>
+1. <span data-ttu-id="68283-219">이 스크립트 tooimport 데이터를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-219">Run this script tooimport your data.</span></span>
 
     ```sql
     CREATE TABLE [dbo].[Date]
@@ -494,9 +494,9 @@ ms.lasthandoff: 08/29/2017
     ;
     ```
 
-2. <span data-ttu-id="e0dd6-220">로드되는 데이터를 봅니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-220">View your data as it loads.</span></span>
+2. <span data-ttu-id="68283-220">로드되는 데이터를 봅니다.</span><span class="sxs-lookup"><span data-stu-id="68283-220">View your data as it loads.</span></span>
 
-   <span data-ttu-id="e0dd6-221">몇 GB의 데이터를 로드하고 고성능 클러스터형 columnstore 인덱스에 압축합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-221">You’re loading several GBs of data and compressing it into highly performant clustered columnstore indexes.</span></span> <span data-ttu-id="e0dd6-222">DMV(동적 관리 보기)를 사용하는 다음과 같은 쿼리를 실행하여 로드 상태를 봅니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-222">Run the following query that uses a dynamic management views (DMVs) to show the status of the load.</span></span> <span data-ttu-id="e0dd6-223">쿼리를 시작한 후 SQL Data Warehouse에서 몇 가지 주요 작업을 수행하는 동안 커피 또는 스낵을 즐기세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-223">After starting the query, grab a coffee and a snack while SQL Data Warehouse does some heavy lifting.</span></span>
+   <span data-ttu-id="68283-221">몇 GB의 데이터를 로드하고 고성능 클러스터형 columnstore 인덱스에 압축합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-221">You’re loading several GBs of data and compressing it into highly performant clustered columnstore indexes.</span></span> <span data-ttu-id="68283-222">Hello 다음 동적 관리 뷰 (Dmv) tooshow hello 상태의 hello 부하를 사용 하 여 쿼리를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-222">Run hello following query that uses a dynamic management views (DMVs) tooshow hello status of hello load.</span></span> <span data-ttu-id="68283-223">Hello 쿼리를 시작한 후 SQL 데이터 웨어하우스는 몇 가지 중요 한 역할을 커피 및는 스낵을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="68283-223">After starting hello query, grab a coffee and a snack while SQL Data Warehouse does some heavy lifting.</span></span>
     
     ```sql
     SELECT
@@ -526,64 +526,64 @@ ms.lasthandoff: 08/29/2017
         gb_processed desc;
     ```
 
-3. <span data-ttu-id="e0dd6-224">모든 시스템 쿼리를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-224">View all system queries.</span></span>
+3. <span data-ttu-id="68283-224">모든 시스템 쿼리를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-224">View all system queries.</span></span>
 
     ```sql
     SELECT * FROM sys.dm_pdw_exec_requests;
     ```
 
-4. <span data-ttu-id="e0dd6-225">Azure SQL Data Warehouse에 로드된 데이터를 즐깁니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-225">Enjoy seeing your data nicely loaded into your Azure SQL Data Warehouse.</span></span>
+4. <span data-ttu-id="68283-225">Azure SQL Data Warehouse에 로드된 데이터를 즐깁니다.</span><span class="sxs-lookup"><span data-stu-id="68283-225">Enjoy seeing your data nicely loaded into your Azure SQL Data Warehouse.</span></span>
 
     ![로드된 데이터 보기](./media/sql-data-warehouse-get-started-tutorial/see-data-loaded.png)
 
 
-## <a name="improve-query-performance"></a><span data-ttu-id="e0dd6-227">쿼리 성능 향상</span><span class="sxs-lookup"><span data-stu-id="e0dd6-227">Improve query performance</span></span>
+## <a name="improve-query-performance"></a><span data-ttu-id="68283-227">쿼리 성능 향상</span><span class="sxs-lookup"><span data-stu-id="68283-227">Improve query performance</span></span>
 
-<span data-ttu-id="e0dd6-228">SQL Data Warehouse가 개선시켜야 하는 쿼리 성능 향상과 고속 성능을 달성하기 위한 여러 가지 방법이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-228">There are several ways to improve query performance and to achieve the high-speed performance that SQL Data Warehouse is designed to provide.</span></span>  
+<span data-ttu-id="68283-228">여러 가지 방법으로 tooimprove 쿼리 성능 및 SQL 데이터 웨어하우스 않는 tooachieve hello 고속 성능을 tooprovide 설계 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-228">There are several ways tooimprove query performance and tooachieve hello high-speed performance that SQL Data Warehouse is designed tooprovide.</span></span>  
 
-### <a name="see-the-effect-of-scaling-on-query-performance"></a><span data-ttu-id="e0dd6-229">쿼리 성능에 대한 크기 조정 효과 참조</span><span class="sxs-lookup"><span data-stu-id="e0dd6-229">See the effect of scaling on query performance</span></span> 
+### <a name="see-hello-effect-of-scaling-on-query-performance"></a><span data-ttu-id="68283-229">쿼리 성능에 크기 조정의 hello 효과를 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="68283-229">See hello effect of scaling on query performance</span></span> 
 
-<span data-ttu-id="e0dd6-230">쿼리 성능을 개선하는 한 가지 방법은 데이터 웨어하우스에 대한 DWU 서비스 수준을 변경하여 리소스의 크기를 조정하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-230">One way to improve query performance is to scale resources by changing the DWU service level for your data warehouse.</span></span> <span data-ttu-id="e0dd6-231">각 서비스 수준은 더 많은 비용을 소요하지만 언제든지 리소스를 축소하거나 일시 중지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-231">Each service level costs more, but you can scale back or pause resources at any time.</span></span> 
+<span data-ttu-id="68283-230">한 가지 방법은 tooimprove 쿼리 성능이 데이터 웨어하우스에 대 한 hello DWU 서비스 수준을 변경 하 여 tooscale 리소스 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68283-230">One way tooimprove query performance is tooscale resources by changing hello DWU service level for your data warehouse.</span></span> <span data-ttu-id="68283-231">각 서비스 수준은 더 많은 비용을 소요하지만 언제든지 리소스를 축소하거나 일시 중지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-231">Each service level costs more, but you can scale back or pause resources at any time.</span></span> 
 
-<span data-ttu-id="e0dd6-232">이 단계에서는 두 가지 서로 다른 DWU 설정에서 성능을 비교합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-232">In this step, you compare performance at two different DWU settings.</span></span>
+<span data-ttu-id="68283-232">이 단계에서는 두 가지 서로 다른 DWU 설정에서 성능을 비교합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-232">In this step, you compare performance at two different DWU settings.</span></span>
 
-<span data-ttu-id="e0dd6-233">먼저, 작업을 100DWU로 축소하여 하나의 계산 노드에서 자체적으로 수행할 수 있는 방법에 대한 아이디어를 얻을 수 있도록 하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-233">First, let's scale the sizing down to 100 DWU so we can get an idea of how one compute node might perform on its own.</span></span>
+<span data-ttu-id="68283-233">첫째, 보겠습니다 too100 DWU 하므로 방법을 한 계산 노드의 아이디어를 얻을 수 있습니다는 자체적으로 수행할 수 아래로 hello 크기 조정의 크기를 조정 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-233">First, let's scale hello sizing down too100 DWU so we can get an idea of how one compute node might perform on its own.</span></span>
 
-1. <span data-ttu-id="e0dd6-234">포털로 이동하여 SQL Data Warehouse를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-234">Go to the portal and select your SQL Data Warehouse.</span></span>
+1. <span data-ttu-id="68283-234">Toohello 포털 이동 하 고 SQL 데이터 웨어하우스를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-234">Go toohello portal and select your SQL Data Warehouse.</span></span>
 
-2. <span data-ttu-id="e0dd6-235">SQL Data Warehouse 블레이드에서 [크기 조정]을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-235">Select scale in the SQL Data Warehouse blade.</span></span> 
+2. <span data-ttu-id="68283-235">SQL 데이터 웨어하우스 블레이드에서 hello 표시줄을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-235">Select scale in hello SQL Data Warehouse blade.</span></span> 
 
     ![포털에서 DW 크기 조정](./media/sql-data-warehouse-get-started-tutorial/scale-dw.png)
 
-3. <span data-ttu-id="e0dd6-237">성능 막대를 100DWU로 낮추고 [저장]을 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-237">Scale down the performance bar to 100 DWU and hit save.</span></span>
+3. <span data-ttu-id="68283-237">Too100 DWU 막대 hello 성능이 저하 비율과 저장 적중 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-237">Scale down hello performance bar too100 DWU and hit save.</span></span>
 
     ![크기 조정 및 저장](./media/sql-data-warehouse-get-started-tutorial/scale-and-save.png)
 
-4. <span data-ttu-id="e0dd6-239">크기 조정 작업이 끝날 때까지 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-239">Wait for your scale operation to finish.</span></span>
+4. <span data-ttu-id="68283-239">크기 조정 작업 toofinish 될 때까지 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="68283-239">Wait for your scale operation toofinish.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="e0dd6-240">크기를 조정하는 동안에는 쿼리를 실행할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-240">Queries cannot run while changing the scale.</span></span> <span data-ttu-id="e0dd6-241">크기 조정 시 현재 실행 중인 쿼리를 **종료**합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-241">Scaling **kills** your currently running queries.</span></span> <span data-ttu-id="e0dd6-242">작업이 완료되면 다시 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-242">You can restart them when the operation is finished.</span></span>
+    > <span data-ttu-id="68283-240">Hello 눈금을 변경 하는 동안 쿼리를 실행할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-240">Queries cannot run while changing hello scale.</span></span> <span data-ttu-id="68283-241">크기 조정 시 현재 실행 중인 쿼리를 **종료**합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-241">Scaling **kills** your currently running queries.</span></span> <span data-ttu-id="68283-242">이러한 다시 hello 작업이 완료 되 면 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-242">You can restart them when hello operation is finished.</span></span>
     >
     
-5. <span data-ttu-id="e0dd6-243">모든 열에 대해 상위 1백만 개 항목을 선택하여 여행 데이터에서 스캔 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-243">Do a scan operation on the trip data, selecting the top million entries for all the columns.</span></span> <span data-ttu-id="e0dd6-244">신속하게 넘어가려면 더 적은 수의 열을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-244">If you're eager to move on quickly, feel free to select fewer rows.</span></span> <span data-ttu-id="e0dd6-245">이 작업을 실행하는 데 걸린 시간을 기록해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-245">Take note of the time it takes to run this operation.</span></span>
+5. <span data-ttu-id="68283-243">모든 hello 열에 대 한 hello 상위 백만 항목을 선택 하면 hello 여행 데이터에서 검색 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-243">Do a scan operation on hello trip data, selecting hello top million entries for all hello columns.</span></span> <span data-ttu-id="68283-244">에 신속 하 게 eager toomove 인 경우 행 수를 줄여 무료 tooselect 느낍니다.</span><span class="sxs-lookup"><span data-stu-id="68283-244">If you're eager toomove on quickly, feel free tooselect fewer rows.</span></span> <span data-ttu-id="68283-245">Hello 시간이 toorun이이 작업을 기록해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="68283-245">Take note of hello time it takes toorun this operation.</span></span>
 
     ```sql
     SELECT TOP(1000000) * FROM dbo.[Trip]
     ```
-6. <span data-ttu-id="e0dd6-246">데이터 웨어하우스를 400DWU로 다시 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-246">Scale your data warehouse back to 400 DWU.</span></span> <span data-ttu-id="e0dd6-247">각각의 100DWU는 Azure SQL Data Warehouse에 또 다른 계산 노드를 추가한다는 것을 기억하세요.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-247">Remember, each 100 DWU is adding another compute node to your Azure SQL Data Warehouse.</span></span>
+6. <span data-ttu-id="68283-246">데이터 웨어하우스 확장 too400 DWU를 백업 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-246">Scale your data warehouse back too400 DWU.</span></span> <span data-ttu-id="68283-247">다른 계산 노드 tooyour Azure SQL 데이터 웨어하우스를 추가 하는 각 100 DWU를 기억 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-247">Remember, each 100 DWU is adding another compute node tooyour Azure SQL Data Warehouse.</span></span>
 
-7. <span data-ttu-id="e0dd6-248">쿼리를 다시 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-248">Run the query again!</span></span> <span data-ttu-id="e0dd6-249">상당한 차이에 주목해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-249">You should notice a significant difference.</span></span> 
+7. <span data-ttu-id="68283-248">Hello 쿼리를 다시 실행!</span><span class="sxs-lookup"><span data-stu-id="68283-248">Run hello query again!</span></span> <span data-ttu-id="68283-249">상당한 차이에 주목해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-249">You should notice a significant difference.</span></span> 
 
     > [!NOTE]
-    > <span data-ttu-id="e0dd6-250">쿼리가 많은 데이터를 반환하기 때문에 SSMS를 실행하는 컴퓨터의 대역폭 가용성에 성능 병목 상태가 발생할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-250">Because the query returns a lot of data, the bandwidth availability of the machine running SSMS may be a performance bottleneck.</span></span> <span data-ttu-id="e0dd6-251">따라서 성능이 하나도 개선되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-251">This can result in you not seeing any performance improvements!</span></span>
+    > <span data-ttu-id="68283-250">Hello 쿼리가 많은 데이터를 반환 하기 때문에 성능 병목 현상 hello 대역폭 가용성 SSMS를 실행 하는 hello 컴퓨터의 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-250">Because hello query returns a lot of data, hello bandwidth availability of hello machine running SSMS may be a performance bottleneck.</span></span> <span data-ttu-id="68283-251">따라서 성능이 하나도 개선되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-251">This can result in you not seeing any performance improvements!</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="e0dd6-252">SQL Data Warehouse는 대규모 병렬 처리를 사용하기 때문입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-252">Since SQL Data Warehouse uses massively parallel processing.</span></span> <span data-ttu-id="e0dd6-253">수백만 개의 행에서 검색 또는 분석 기능을 수행하는 쿼리를 통해 Azure SQL Data Warehouse의 진정한 능력을 경험할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-253">Queries that scan or perform analytic functions on millions of rows experience the true power of Azure SQL Data Warehouse.</span></span>
+> <span data-ttu-id="68283-252">SQL Data Warehouse는 대규모 병렬 처리를 사용하기 때문입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-252">Since SQL Data Warehouse uses massively parallel processing.</span></span> <span data-ttu-id="68283-253">Azure SQL 데이터 웨어하우스의 hello 진정한 강점은 경험 하는 검사 또는 수백만 행에서 분석 기능을 수행 하는 쿼리.</span><span class="sxs-lookup"><span data-stu-id="68283-253">Queries that scan or perform analytic functions on millions of rows experience hello true power of Azure SQL Data Warehouse.</span></span>
 >
 
-### <a name="see-the-effect-of-statistics-on-query-performance"></a><span data-ttu-id="e0dd6-254">쿼리 성능에 대한 통계 효과 참조</span><span class="sxs-lookup"><span data-stu-id="e0dd6-254">See the effect of statistics on query performance</span></span>
+### <a name="see-hello-effect-of-statistics-on-query-performance"></a><span data-ttu-id="68283-254">쿼리 성능에 통계의 hello 효과를 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="68283-254">See hello effect of statistics on query performance</span></span>
 
-1. <span data-ttu-id="e0dd6-255">Date 테이블과 Trip 테이블을 조인하는 쿼리를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-255">Run a query that joins the Date table with the Trip table</span></span>
+1. <span data-ttu-id="68283-255">조인 hello hello 여행 테이블과 날짜 테이블을 쿼리 실행</span><span class="sxs-lookup"><span data-stu-id="68283-255">Run a query that joins hello Date table with hello Trip table</span></span>
 
     ```sql
     SELECT TOP (1000000) 
@@ -615,10 +615,10 @@ ms.lasthandoff: 08/29/2017
         ON  tr.DateID = dt.DateID
     ```
 
-    <span data-ttu-id="e0dd6-256">SQL Data Warehouse는 조인을 수행하기 전에 데이터 순서를 섞어야 하므로 이 쿼리는 다소 시간이 소요됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-256">This query takes a while because SQL Data Warehouse has to shuffle data before it can perform the join.</span></span> <span data-ttu-id="e0dd6-257">배포된 방식과 같게 데이터를 조인하도록 설계된 경우에는 조인 시 데이터를 섞지 않아도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-257">Joins do not have to shuffle data if they are designed to join data in the same way it is distributed.</span></span> <span data-ttu-id="e0dd6-258">이는 보다 심층적인 주제입니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-258">That's a deeper subject.</span></span> 
+    <span data-ttu-id="68283-256">SQL 데이터 웨어하우스 hello 조인을 수행 하기 전에 tooshuffle 데이터에 있기 때문에이 쿼리 약간의 시간이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68283-256">This query takes a while because SQL Data Warehouse has tooshuffle data before it can perform hello join.</span></span> <span data-ttu-id="68283-257">조인 하지 않은 tooshuffle 데이터 디자인 된 toojoin 데이터 hello에 있더라도 동일한 방식으로 배포 됩니다.</span><span class="sxs-lookup"><span data-stu-id="68283-257">Joins do not have tooshuffle data if they are designed toojoin data in hello same way it is distributed.</span></span> <span data-ttu-id="68283-258">이는 보다 심층적인 주제입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-258">That's a deeper subject.</span></span> 
 
-2. <span data-ttu-id="e0dd6-259">통계를 통해 차이를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-259">Statistics make a difference.</span></span> 
-3. <span data-ttu-id="e0dd6-260">이 문을 실행하여 조인 열에 통계를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-260">Run this statement to create statistics on the join columns.</span></span>
+2. <span data-ttu-id="68283-259">통계를 통해 차이를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-259">Statistics make a difference.</span></span> 
+3. <span data-ttu-id="68283-260">Hello 조인 열에서이 문 toocreate 통계를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-260">Run this statement toocreate statistics on hello join columns.</span></span>
 
     ```sql
     CREATE STATISTICS [dbo.Date DateID stats] ON dbo.Date (DateID);
@@ -626,45 +626,45 @@ ms.lasthandoff: 08/29/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="e0dd6-261">SQL DW에서는 통계를 자동으로 관리하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-261">SQL DW does not automatically manage statistics for you.</span></span> <span data-ttu-id="e0dd6-262">통계는 쿼리 성능에 중요하며, 통계를 만들고 업데이트하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-262">Statistics are important for query performance and it is highly recommended you create and update statistics.</span></span>
+    > <span data-ttu-id="68283-261">SQL DW에서는 통계를 자동으로 관리하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-261">SQL DW does not automatically manage statistics for you.</span></span> <span data-ttu-id="68283-262">통계는 쿼리 성능에 중요하며, 통계를 만들고 업데이트하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="68283-262">Statistics are important for query performance and it is highly recommended you create and update statistics.</span></span>
     > 
-    > <span data-ttu-id="e0dd6-263">**조인에 포함된 열, WHERE 절에 사용된 열 및 GROUP BY에 있는 열에서 통계를 유지하면 가장 많은 이득을 획득할 수 있습니다.**</span><span class="sxs-lookup"><span data-stu-id="e0dd6-263">**You gain the most benefit by having statistics on columns involved in joins, columns used in the WHERE clause and columns found in GROUP BY.**</span></span>
+    > <span data-ttu-id="68283-263">**이점이 hello 대부분 조인, GROUP by 절 및 열을 찾을 위치 hello에 사용 되는 열에 포함 된 열에서 통계를 포함 하면 됩니다.**</span><span class="sxs-lookup"><span data-stu-id="68283-263">**You gain hello most benefit by having statistics on columns involved in joins, columns used in hello WHERE clause and columns found in GROUP BY.**</span></span>
     >
 
-3. <span data-ttu-id="e0dd6-264">필수 조건에서 쿼리를 다시 실행하고 성능 차이를 관찰합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-264">Run the query from Prerequisites again and observe any performance differences.</span></span> <span data-ttu-id="e0dd6-265">쿼리 성능의 차이는 확장하는 만큼 급격한 것은 아니지만 속도 향상에 주목해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-265">While the differences in query performance will not be as drastic as scaling up, you should notice a  speed-up.</span></span> 
+3. <span data-ttu-id="68283-264">필수 구성 요소에서 hello 쿼리를 다시 실행 하 고 성능 차이 관찰 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-264">Run hello query from Prerequisites again and observe any performance differences.</span></span> <span data-ttu-id="68283-265">쿼리 성능 면에서 차이가 hello로 수직 확장으로 급격 한 됩니다 하는 동안는 속도 높이고를 알게 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-265">While hello differences in query performance will not be as drastic as scaling up, you should notice a  speed-up.</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="e0dd6-266">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e0dd6-266">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="68283-266">다음 단계</span><span class="sxs-lookup"><span data-stu-id="68283-266">Next steps</span></span>
 
-<span data-ttu-id="e0dd6-267">이제 쿼리하고 탐색할 준비가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-267">You're now ready to query and explore.</span></span> <span data-ttu-id="e0dd6-268">모범 사례 또는 팁을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-268">Check out our best practices or tips.</span></span>
+<span data-ttu-id="68283-267">이제 tooquery 준비 하 고 탐색 합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-267">You're now ready tooquery and explore.</span></span> <span data-ttu-id="68283-268">모범 사례 또는 팁을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="68283-268">Check out our best practices or tips.</span></span>
 
-<span data-ttu-id="e0dd6-269">하루 종일 탐색하는 경우 인스턴스를 일시 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-269">If you're done exploring for the day, make sure to pause your instance!</span></span> <span data-ttu-id="e0dd6-270">프로덕션 환경에서는 비즈니스 요구에 맞게 일시 중지 및 크기 조정하여 상당한 비용을 절감할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0dd6-270">In production, you can experience enormous savings by pausing and scaling to meet your business needs.</span></span>
+<span data-ttu-id="68283-269">완료 되 면 hello 날에 대 한 탐색 확인 되었는지 toopause 인스턴스에!</span><span class="sxs-lookup"><span data-stu-id="68283-269">If you're done exploring for hello day, make sure toopause your instance!</span></span> <span data-ttu-id="68283-270">프로덕션 환경에서 일시 중지 및 toomeet 크기 조정 하 여 상당한 절감 발생할 수 있는 비즈니스 요구 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="68283-270">In production, you can experience enormous savings by pausing and scaling toomeet your business needs.</span></span>
 
 ![일시 중지](./media/sql-data-warehouse-get-started-tutorial/pause.png)
 
-## <a name="useful-readings"></a><span data-ttu-id="e0dd6-272">유용한 정보</span><span class="sxs-lookup"><span data-stu-id="e0dd6-272">Useful readings</span></span>
+## <a name="useful-readings"></a><span data-ttu-id="68283-272">유용한 정보</span><span class="sxs-lookup"><span data-stu-id="68283-272">Useful readings</span></span>
 
-<span data-ttu-id="e0dd6-273">[동시성 및 워크로드 관리][]</span><span class="sxs-lookup"><span data-stu-id="e0dd6-273">[Concurrency and Workload Management][]</span></span>
+<span data-ttu-id="68283-273">[동시성 및 워크로드 관리][]</span><span class="sxs-lookup"><span data-stu-id="68283-273">[Concurrency and Workload Management][]</span></span>
 
-<span data-ttu-id="e0dd6-274">[Azure SQL 데이터 웨어하우스에 대한 모범 사례][]</span><span class="sxs-lookup"><span data-stu-id="e0dd6-274">[Best practices for Azure SQL Data Warehouse][]</span></span>
+<span data-ttu-id="68283-274">[Azure SQL 데이터 웨어하우스에 대한 모범 사례][]</span><span class="sxs-lookup"><span data-stu-id="68283-274">[Best practices for Azure SQL Data Warehouse][]</span></span>
 
-<span data-ttu-id="e0dd6-275">[쿼리 모니터링][]</span><span class="sxs-lookup"><span data-stu-id="e0dd6-275">[Query Monitoring][]</span></span>
+<span data-ttu-id="68283-275">[쿼리 모니터링][]</span><span class="sxs-lookup"><span data-stu-id="68283-275">[Query Monitoring][]</span></span>
 
-<span data-ttu-id="e0dd6-276">[대규모 관계형 데이터 웨어하우스를 구축하기 위한 상위 10가지 모범 사례][](영문)</span><span class="sxs-lookup"><span data-stu-id="e0dd6-276">[Top 10 Best Practices for Building a Large Scale Relational Data Warehouse][]</span></span>
+<span data-ttu-id="68283-276">[대규모 관계형 데이터 웨어하우스를 구축하기 위한 상위 10가지 모범 사례][](영문)</span><span class="sxs-lookup"><span data-stu-id="68283-276">[Top 10 Best Practices for Building a Large Scale Relational Data Warehouse][]</span></span>
 
-<span data-ttu-id="e0dd6-277">[Azure SQL Data Warehouse로 데이터 마이그레이션][](영문)</span><span class="sxs-lookup"><span data-stu-id="e0dd6-277">[Migrating Data to Azure SQL Data Warehouse][]</span></span>
+<span data-ttu-id="68283-277">[마이그레이션 데이터 tooAzure SQL 데이터 웨어하우스][]</span><span class="sxs-lookup"><span data-stu-id="68283-277">[Migrating Data tooAzure SQL Data Warehouse][]</span></span>
 
 [동시성 및 워크로드 관리]: sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example
 [Azure SQL 데이터 웨어하우스에 대한 모범 사례]: sql-data-warehouse-best-practices.md#hash-distribute-large-tables
 [쿼리 모니터링]: sql-data-warehouse-manage-monitor.md
 [대규모 관계형 데이터 웨어하우스를 구축하기 위한 상위 10가지 모범 사례]: https://blogs.msdn.microsoft.com/sqlcat/2013/09/16/top-10-best-practices-for-building-a-large-scale-relational-data-warehouse/(영문)
-[Azure SQL Data Warehouse로 데이터 마이그레이션]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/(영문)
+[마이그레이션 데이터 tooAzure SQL 데이터 웨어하우스]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
 
 
 
 [!INCLUDE [Additional Resources](../../includes/sql-data-warehouse-article-footer.md)]
 
 <!-- Internal Links -->
-[필수 조건]: sql-data-warehouse-get-started-tutorial.md#prerequisites
+[필수 구성 요소]: sql-data-warehouse-get-started-tutorial.md#prerequisites
 
 <!--Other Web references-->
 [Visual Studio]: https://www.visualstudio.com/

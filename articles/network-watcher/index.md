@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-description: "Network Watcher를 사용하여 네트워크 수준에서 상태를 모니터링하고 진단하는 방법에 대해 알아봅니다."
-ms.openlocfilehash: 3c390494f5e86eb82a3011b962217798feff5ca2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+description: "자세한 내용은 방법 toouse 네트워크 감시자 toomonitor 네트워크 수준에서 상태를 진단 하 고 있습니다."
+ms.openlocfilehash: 6c5fcdb2e5095eaceb759e45ae3d35875a0c3fc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-network-watcher-documentation"></a>Azure Network Watcher 설명서
 
-네트워크 시나리오 수준에서 상태를 모니터링 및 진단할 수 있는 서비스인 Network Watcher를 사용하는 방법에 대해 알아봅니다. 자습서, API 참조 및 기타 설명서에서는 패킷 캡처, 토폴로지 등과 같은 도구를 사용하여 Azure 네트워크에 대한 통찰력을 얻는 방법을 보여 줍니다.
+자세한 내용은 방법 toouse 네트워크 감시자에서 toomonitor 수 있으며 특정 네트워크 시나리오 수준에서 상태를 진단 하는 서비스입니다. 자습서, API 참조, 및 기타 문서 설명 너무 어떻게 이득 도구와 Azure 네트워크에 대 한 정보와 같은 패킷 캡처 토폴로지를 더 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

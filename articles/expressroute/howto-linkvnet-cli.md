@@ -1,6 +1,6 @@
 ---
-title: "ExpressRoute 회로에 가상 네트워크 연결: CLI: Azure | Microsoft Docs"
-description: "이 문서는 Resource Manager 배포 모델 및 CLI를 사용하여 VNet(가상 네트워크)을 ExpressRoute 회로에 연결하는 방법에 대한 개요를 제공합니다."
+title: "가상 네트워크 tooan ExpressRoute 회로 연결: CLI: Azure | Microsoft Docs"
+description: "이 문서는 가상 toolink (Vnet) tooExpressRoute 회로 hello 리소스 관리자 배포 모델 및 CLI를 사용 하 여 네트워크 하는 방법의 개요를 제공 합니다."
 services: expressroute
 documentationcenter: na
 author: cherylmc
@@ -15,78 +15,78 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/25/2017
 ms.author: anzaman,cherylmc
-ms.openlocfilehash: 0ea696e796ec3a943bc028f56da417978b728b82
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 1251f016d9b94d3fee81de1df164cb085cbe9d78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-virtual-network-to-an-expressroute-circuit-using-cli"></a><span data-ttu-id="cb84b-103">CLI를 사용하여 가상 네트워크를 ExpressRoute 회로에 연결</span><span class="sxs-lookup"><span data-stu-id="cb84b-103">Connect a virtual network to an ExpressRoute circuit using CLI</span></span>
+# <a name="connect-a-virtual-network-tooan-expressroute-circuit-using-cli"></a><span data-ttu-id="f0372-103">CLI를 사용 하 여 가상 네트워크 tooan ExpressRoute 회로 연결</span><span class="sxs-lookup"><span data-stu-id="f0372-103">Connect a virtual network tooan ExpressRoute circuit using CLI</span></span>
 
-<span data-ttu-id="cb84b-104">이 문서는 CLI를 사용하여 VNet(가상 네트워크)을 Azure ExpressRoute 회로에 연결하는 데 도움이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-104">This article helps you link virtual networks (VNets) to Azure ExpressRoute circuits using CLI.</span></span> <span data-ttu-id="cb84b-105">Azure CLI를 사용하여 연결하려면 Resource Manager 배포 모델을 사용하여 가상 네트워크를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-105">To link using Azure CLI, the virtual networks must be created using the Resource Manager deployment model.</span></span> <span data-ttu-id="cb84b-106">해당 항목은 같은 구독에 있을 수도 있고 다른 구독의 일부일 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-106">They can either be in the same subscription, or part of another subscription.</span></span> <span data-ttu-id="cb84b-107">VNet을 ExpressRoute 회로에 연결하는 다른 방법을 사용하려는 경우 다음 목록에서 문서를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-107">If you want to use a different method to connect your VNet to an ExpressRoute circuit, you can select an article from the following list:</span></span>
+<span data-ttu-id="f0372-104">이 문서를 사용 하면 CLI를 사용 하 여 가상 네트워크 (Vnet) tooAzure ExpressRoute 회로 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-104">This article helps you link virtual networks (VNets) tooAzure ExpressRoute circuits using CLI.</span></span> <span data-ttu-id="f0372-105">Azure CLI를 사용 하 여 toolink hello 리소스 관리자 배포 모델을 사용 하 여 hello 가상 네트워크를 만들 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-105">toolink using Azure CLI, hello virtual networks must be created using hello Resource Manager deployment model.</span></span> <span data-ttu-id="f0372-106">Hello에 있어야 하거나 수 동일한 구독 또는 다른 구독에 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-106">They can either be in hello same subscription, or part of another subscription.</span></span> <span data-ttu-id="f0372-107">프로그램 VNet tooan ExpressRoute 회로 다른 방법 tooconnect toouse을 원하는 경우 아티클을 hello 다음 목록에서에서 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-107">If you want toouse a different method tooconnect your VNet tooan ExpressRoute circuit, you can select an article from hello following list:</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="cb84b-108">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="cb84b-108">Azure portal</span></span>](expressroute-howto-linkvnet-portal-resource-manager.md)
-> * [<span data-ttu-id="cb84b-109">PowerShell</span><span class="sxs-lookup"><span data-stu-id="cb84b-109">PowerShell</span></span>](expressroute-howto-linkvnet-arm.md)
-> * [<span data-ttu-id="cb84b-110">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="cb84b-110">Azure CLI</span></span>](howto-linkvnet-cli.md)
-> * [<span data-ttu-id="cb84b-111">비디오 - Azure Portal</span><span class="sxs-lookup"><span data-stu-id="cb84b-111">Video - Azure portal</span></span>](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit)
-> * [<span data-ttu-id="cb84b-112">PowerShell(클래식)</span><span class="sxs-lookup"><span data-stu-id="cb84b-112">PowerShell (classic)</span></span>](expressroute-howto-linkvnet-classic.md)
+> * [<span data-ttu-id="f0372-108">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="f0372-108">Azure portal</span></span>](expressroute-howto-linkvnet-portal-resource-manager.md)
+> * [<span data-ttu-id="f0372-109">PowerShell</span><span class="sxs-lookup"><span data-stu-id="f0372-109">PowerShell</span></span>](expressroute-howto-linkvnet-arm.md)
+> * [<span data-ttu-id="f0372-110">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="f0372-110">Azure CLI</span></span>](howto-linkvnet-cli.md)
+> * [<span data-ttu-id="f0372-111">비디오 - Azure Portal</span><span class="sxs-lookup"><span data-stu-id="f0372-111">Video - Azure portal</span></span>](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit)
+> * [<span data-ttu-id="f0372-112">PowerShell(클래식)</span><span class="sxs-lookup"><span data-stu-id="f0372-112">PowerShell (classic)</span></span>](expressroute-howto-linkvnet-classic.md)
 > 
 
-## <a name="configuration-prerequisites"></a><span data-ttu-id="cb84b-113">필수 구성 요소</span><span class="sxs-lookup"><span data-stu-id="cb84b-113">Configuration prerequisites</span></span>
+## <a name="configuration-prerequisites"></a><span data-ttu-id="f0372-113">필수 구성 요소</span><span class="sxs-lookup"><span data-stu-id="f0372-113">Configuration prerequisites</span></span>
 
-* <span data-ttu-id="cb84b-114">최신 버전의 CLI(명령줄 인터페이스)가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-114">You need the latest version of the command-line interface (CLI).</span></span> <span data-ttu-id="cb84b-115">자세한 내용은 [Azure CLI 2.0 설치](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb84b-115">For more information, see [Install Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).</span></span>
-* <span data-ttu-id="cb84b-116">구성을 시작하기 전에 [필수 조건](expressroute-prerequisites.md), [라우팅 요구 사항](expressroute-routing.md) 및 [워크플로](expressroute-workflows.md)를 검토해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-116">You need to review the [prerequisites](expressroute-prerequisites.md), [routing requirements](expressroute-routing.md), and [workflows](expressroute-workflows.md) before you begin configuration.</span></span>
-* <span data-ttu-id="cb84b-117">활성화된 Express 경로 회로가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-117">You must have an active ExpressRoute circuit.</span></span> 
-  * <span data-ttu-id="cb84b-118">지침을 수행하여 [Express 경로 회로를 만들고](howto-circuit-cli.md) 연결 공급자를 통해 회로를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-118">Follow the instructions to [create an ExpressRoute circuit](howto-circuit-cli.md) and have the circuit enabled by your connectivity provider.</span></span> 
-  * <span data-ttu-id="cb84b-119">회로에 구성된 Azure 개인 피어링이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-119">Ensure that you have Azure private peering configured for your circuit.</span></span> <span data-ttu-id="cb84b-120">라우팅 지침에 대한 문서는 [라우팅 구성](howto-routing-cli.md) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb84b-120">See the [configure routing](howto-routing-cli.md) article for routing instructions.</span></span> 
-  * <span data-ttu-id="cb84b-121">Azure 개인 피어이링 구성되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-121">Ensure that Azure private peering is configured.</span></span> <span data-ttu-id="cb84b-122">네트워크와 Microsoft 간의 BGP 피어링이 종단 간 연결을 사용하도록 작동 중이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-122">The BGP peering between your network and Microsoft must be up so that you can enable end-to-end connectivity.</span></span>
-  * <span data-ttu-id="cb84b-123">가상 네트워크 및 가상 네트워크 게이트웨이를 만들어서 완전히 프로비전해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-123">Ensure that you have a virtual network and a virtual network gateway created and fully provisioned.</span></span> <span data-ttu-id="cb84b-124">지침에 따라 [ExpressRoute에 대한 가상 네트워크 게이트웨이를 구성합니다](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli).</span><span class="sxs-lookup"><span data-stu-id="cb84b-124">Follow the instructions to [Configure a virtual network gateway for ExpressRoute](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli).</span></span> <span data-ttu-id="cb84b-125">`--gateway-type ExpressRoute`를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-125">Be sure to use `--gateway-type ExpressRoute`.</span></span>
+* <span data-ttu-id="f0372-114">Hello hello CLI (명령줄 인터페이스)의 최신 버전이 있어야합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-114">You need hello latest version of hello command-line interface (CLI).</span></span> <span data-ttu-id="f0372-115">자세한 내용은 [Azure CLI 2.0 설치](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f0372-115">For more information, see [Install Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).</span></span>
+* <span data-ttu-id="f0372-116">Tooreview hello 필요한 [필수 구성 요소](expressroute-prerequisites.md), [라우팅 요구 사항](expressroute-routing.md), 및 [워크플로](expressroute-workflows.md) 구성을 시작 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="f0372-116">You need tooreview hello [prerequisites](expressroute-prerequisites.md), [routing requirements](expressroute-routing.md), and [workflows](expressroute-workflows.md) before you begin configuration.</span></span>
+* <span data-ttu-id="f0372-117">활성화된 Express 경로 회로가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-117">You must have an active ExpressRoute circuit.</span></span> 
+  * <span data-ttu-id="f0372-118">너무 hello 지침에 따라[ExpressRoute 회로 만들기](howto-circuit-cli.md) 있고 hello 회로 연결 공급자가 사용 하도록 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-118">Follow hello instructions too[create an ExpressRoute circuit](howto-circuit-cli.md) and have hello circuit enabled by your connectivity provider.</span></span> 
+  * <span data-ttu-id="f0372-119">회로에 구성된 Azure 개인 피어링이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-119">Ensure that you have Azure private peering configured for your circuit.</span></span> <span data-ttu-id="f0372-120">Hello 참조 [라우팅 구성](howto-routing-cli.md) 라우팅 지침에 대 한 문서입니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-120">See hello [configure routing](howto-routing-cli.md) article for routing instructions.</span></span> 
+  * <span data-ttu-id="f0372-121">Azure 개인 피어이링 구성되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-121">Ensure that Azure private peering is configured.</span></span> <span data-ttu-id="f0372-122">종단 간 연결을 사용 하도록 설정할 수 있도록를 hello BGP 피어 링 네트워크와 Microsoft 사이 여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-122">hello BGP peering between your network and Microsoft must be up so that you can enable end-to-end connectivity.</span></span>
+  * <span data-ttu-id="f0372-123">가상 네트워크 및 가상 네트워크 게이트웨이를 만들어서 완전히 프로비전해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-123">Ensure that you have a virtual network and a virtual network gateway created and fully provisioned.</span></span> <span data-ttu-id="f0372-124">너무 hello 지침에 따라[ExpressRoute에 대 한 가상 네트워크 게이트웨이 구성](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-124">Follow hello instructions too[Configure a virtual network gateway for ExpressRoute](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli).</span></span> <span data-ttu-id="f0372-125">수 있는지 toouse `--gateway-type ExpressRoute`합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-125">Be sure toouse `--gateway-type ExpressRoute`.</span></span>
 
-* <span data-ttu-id="cb84b-126">최대 10개의 가상 네트워크를 표준 Express 경로 회로에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-126">You can link up to 10 virtual networks to a standard ExpressRoute circuit.</span></span> <span data-ttu-id="cb84b-127">표준 Express 경로 회로를 사용하는 경우 모든 가상 네트워크는 동일한 지역에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-127">All virtual networks must be in the same geopolitical region when using a standard ExpressRoute circuit.</span></span> 
+* <span data-ttu-id="f0372-126">Too10 가상 네트워크 tooa 표준 ExpressRoute 회로를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-126">You can link up too10 virtual networks tooa standard ExpressRoute circuit.</span></span> <span data-ttu-id="f0372-127">모든 가상 네트워크 hello에 있어야 합니다. 동일한 지리적 지역 표준 ExpressRoute 회로 사용 하는 경우.</span><span class="sxs-lookup"><span data-stu-id="f0372-127">All virtual networks must be in hello same geopolitical region when using a standard ExpressRoute circuit.</span></span> 
 
-* <span data-ttu-id="cb84b-128">ExpressRoute 프리미엄 추가 기능을 사용하도록 설정하면 ExpressRoute 회로의 지역 외부에서 가상 네트워크를 연결하거나 ExpressRoute 회로에 많은 수의 가상 네트워크를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-128">If you enable the ExpressRoute premium add-on, you can link a virtual network outside of the geopolitical region of the ExpressRoute circuit, or connect a larger number of virtual networks to your ExpressRoute circuit.</span></span> <span data-ttu-id="cb84b-129">Premium 추가 기능에 대한 자세한 내용은 [FAQ](expressroute-faqs.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb84b-129">For more information about the premium add-on, see the [FAQ](expressroute-faqs.md).</span></span>
+* <span data-ttu-id="f0372-128">Hello ExpressRoute premium 추가 기능을 사용 하도록 설정 하면 hello ExpressRoute 회로의 hello 지리적 영역 외부의 가상 네트워크 연결 또는 많은 수의 가상 네트워크 tooyour ExpressRoute 회로 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-128">If you enable hello ExpressRoute premium add-on, you can link a virtual network outside of hello geopolitical region of hello ExpressRoute circuit, or connect a larger number of virtual networks tooyour ExpressRoute circuit.</span></span> <span data-ttu-id="f0372-129">Hello premium 추가 기능에 대 한 자세한 내용은 참조 hello [FAQ](expressroute-faqs.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-129">For more information about hello premium add-on, see hello [FAQ](expressroute-faqs.md).</span></span>
 
-## <a name="connect-a-virtual-network-in-the-same-subscription-to-a-circuit"></a><span data-ttu-id="cb84b-130">동일한 구독에 있는 가상 네트워크를 회로에 연결</span><span class="sxs-lookup"><span data-stu-id="cb84b-130">Connect a virtual network in the same subscription to a circuit</span></span>
+## <a name="connect-a-virtual-network-in-hello-same-subscription-tooa-circuit"></a><span data-ttu-id="f0372-130">Hello의 가상 네트워크 연결 동일한 구독 tooa 회로</span><span class="sxs-lookup"><span data-stu-id="f0372-130">Connect a virtual network in hello same subscription tooa circuit</span></span>
 
-<span data-ttu-id="cb84b-131">다음 예제를 사용하여 ExpressRoute 회로에 가상 네트워크 게이트웨이를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-131">You can connect a virtual network gateway to an ExpressRoute circuit by using the example.</span></span> <span data-ttu-id="cb84b-132">명령을 실행하기 전에 가상 네트워크 게이트웨이가 연결을 위해 생성되고 준비되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-132">Make sure that the virtual network gateway is created and is ready for linking before you run the command.</span></span>
+<span data-ttu-id="f0372-131">Hello 예제를 사용 하 여 가상 네트워크 게이트웨이 tooan ExpressRoute 회로 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-131">You can connect a virtual network gateway tooan ExpressRoute circuit by using hello example.</span></span> <span data-ttu-id="f0372-132">해당 hello 가상 네트워크 게이트웨이 만들어지고 hello 명령을 실행 하기 전에 연결을 위한 준비 되어 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-132">Make sure that hello virtual network gateway is created and is ready for linking before you run hello command.</span></span>
 
 ```azurecli
 az network vpn-connection create --name ERConnection --resource-group ExpressRouteResourceGroup --vnet-gateway1 VNet1GW --express-route-circuit2 MyCircuit
 ```
 
-## <a name="connect-a-virtual-network-in-a-different-subscription-to-a-circuit"></a><span data-ttu-id="cb84b-133">다른 구독에 있는 가상 네트워크를 회로에 연결</span><span class="sxs-lookup"><span data-stu-id="cb84b-133">Connect a virtual network in a different subscription to a circuit</span></span>
+## <a name="connect-a-virtual-network-in-a-different-subscription-tooa-circuit"></a><span data-ttu-id="f0372-133">다른 구독 tooa 회로에 가상 네트워크에 연결</span><span class="sxs-lookup"><span data-stu-id="f0372-133">Connect a virtual network in a different subscription tooa circuit</span></span>
 
-<span data-ttu-id="cb84b-134">여러 구독에서 Express 경로 회로를 공유할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-134">You can share an ExpressRoute circuit across multiple subscriptions.</span></span> <span data-ttu-id="cb84b-135">아래 그림에는 여러 구독에서 ExpressRoute 회로에 대한 작업을 공유하는 방법의 간단한 계통도가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-135">The figure below shows a simple schematic of how sharing works for ExpressRoute circuits across multiple subscriptions.</span></span>
+<span data-ttu-id="f0372-134">여러 구독에서 Express 경로 회로를 공유할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-134">You can share an ExpressRoute circuit across multiple subscriptions.</span></span> <span data-ttu-id="f0372-135">아래 hello 그림 간단한 계통도 나와의 ExpressRoute 회로 대 한 일정 공유 works 여러 구독에서.</span><span class="sxs-lookup"><span data-stu-id="f0372-135">hello figure below shows a simple schematic of how sharing works for ExpressRoute circuits across multiple subscriptions.</span></span>
 
-<span data-ttu-id="cb84b-136">큰 구름 안에 있는 각각의 작은 구름은 한 조직 내의 여러 부서에 속하는 구독을 나타내는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-136">Each of the smaller clouds within the large cloud is used to represent subscriptions that belong to different departments within an organization.</span></span> <span data-ttu-id="cb84b-137">조직 내의 각 부서는 자체 구독을 사용하여 서비스를 배포하되, 단일 Express 경로 회로를 공유하여 온-프레미스 네트워크로 다시 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-137">Each of the departments within the organization can use their own subscription for deploying their services--but they can share a single ExpressRoute circuit to connect back to your on-premises network.</span></span> <span data-ttu-id="cb84b-138">단일 부서(이 예제에서는 IT)가 Express 경로 회로를 소유할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-138">A single department (in this example: IT) can own the ExpressRoute circuit.</span></span> <span data-ttu-id="cb84b-139">조직 내의 기타 구독도 Express 경로 회로를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-139">Other subscriptions within the organization can use the ExpressRoute circuit.</span></span>
+<span data-ttu-id="f0372-136">사용 되는 toorepresent 속하는 구독에 조직 내의 toodifferent 부서는 각각 hello 작은 구름 hello 큰 구름 안에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-136">Each of hello smaller clouds within hello large cloud is used toorepresent subscriptions that belong toodifferent departments within an organization.</span></span> <span data-ttu-id="f0372-137">가 자신의 구독을 사용할 수 각각 hello 부서 hello 조직 내에서 배포를 위한 서비스-있지만 공유할 수 단일 express 경로 회로 tooconnect 백 tooyour 온-프레미스 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-137">Each of hello departments within hello organization can use their own subscription for deploying their services--but they can share a single ExpressRoute circuit tooconnect back tooyour on-premises network.</span></span> <span data-ttu-id="f0372-138">단일 부서 (이 예제의: IT) hello ExpressRoute 회로 소유할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-138">A single department (in this example: IT) can own hello ExpressRoute circuit.</span></span> <span data-ttu-id="f0372-139">Hello 조직 내에서 다른 구독 hello ExpressRoute 회로 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-139">Other subscriptions within hello organization can use hello ExpressRoute circuit.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="cb84b-140">전용 회로에 대한 연결 및 대역폭 요금은 ExpressRoute 회로 소유자에게 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-140">Connectivity and bandwidth charges for the dedicated circuit will be applied to the ExpressRoute Circuit Owner.</span></span> <span data-ttu-id="cb84b-141">모든 가상 네트워크는 동일한 대역폭을 공유합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-141">All virtual networks share the same bandwidth.</span></span>
+> <span data-ttu-id="f0372-140">Hello 전용 회로 대 한 연결 및 대역폭 요금은 적용된 toohello ExpressRoute 회로 소유자 됩니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-140">Connectivity and bandwidth charges for hello dedicated circuit will be applied toohello ExpressRoute Circuit Owner.</span></span> <span data-ttu-id="f0372-141">Hello를 공유 하는 모든 가상 네트워크 대역폭이 동일 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-141">All virtual networks share hello same bandwidth.</span></span>
 > 
 > 
 
 ![구독 간 연결](./media/expressroute-howto-linkvnet-classic/cross-subscription.png)
 
-### <a name="administration---circuit-owners-and-circuit-users"></a><span data-ttu-id="cb84b-143">관리 - 회로 소유자 및 회로 사용자</span><span class="sxs-lookup"><span data-stu-id="cb84b-143">Administration - Circuit Owners and Circuit Users</span></span>
+### <a name="administration---circuit-owners-and-circuit-users"></a><span data-ttu-id="f0372-143">관리 - 회로 소유자 및 회로 사용자</span><span class="sxs-lookup"><span data-stu-id="f0372-143">Administration - Circuit Owners and Circuit Users</span></span>
 
-<span data-ttu-id="cb84b-144">'회로 소유자'는 ExpressRoute 회로 리소스의 인증된 고급 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-144">The 'Circuit Owner' is an authorized Power User of the ExpressRoute circuit resource.</span></span> <span data-ttu-id="cb84b-145">회로 소유자는 '회로 사용자'가 사용할 수 있는 권한 부여를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-145">The Circuit Owner can create authorizations that can be redeemed by 'Circuit Users'.</span></span> <span data-ttu-id="cb84b-146">회로 사용자는 ExpressRoute 회로와 동일한 구독 내에 있지 않은 가상 네트워크 게이트웨이의 소유자입니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-146">Circuit Users are owners of virtual network gateways that are not within the same subscription as the ExpressRoute circuit.</span></span> <span data-ttu-id="cb84b-147">회로 사용자는 가상 네트워크당 하나의 권한 부여를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-147">Circuit Users can redeem authorizations (one authorization per virtual network).</span></span>
+<span data-ttu-id="f0372-144">' 회로 소유자 ' hello는 hello ExpressRoute 회로 리소스의 인증된 된 전원 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-144">hello 'Circuit Owner' is an authorized Power User of hello ExpressRoute circuit resource.</span></span> <span data-ttu-id="f0372-145">hello 회로 소유자는 ' 회로 사용자 '가 교환할 수 있는 권한 부여를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-145">hello Circuit Owner can create authorizations that can be redeemed by 'Circuit Users'.</span></span> <span data-ttu-id="f0372-146">회로 사용자 가상 네트워크의 소유자가 없는 내 게이트웨이 ExpressRoute 회로 hello으로 동일한 구독 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-146">Circuit Users are owners of virtual network gateways that are not within hello same subscription as hello ExpressRoute circuit.</span></span> <span data-ttu-id="f0372-147">회로 사용자는 가상 네트워크당 하나의 권한 부여를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-147">Circuit Users can redeem authorizations (one authorization per virtual network).</span></span>
 
-<span data-ttu-id="cb84b-148">회로 소유자는 언제든지 부여된 권한을 수정하고 해지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-148">The Circuit Owner has the power to modify and revoke authorizations at any time.</span></span> <span data-ttu-id="cb84b-149">권한 부여를 해지하면 액세스가 해지된 구독에서 모든 링크 연결이 삭제됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-149">When an authorization is revoked, all link connections are deleted from the subscription whose access was revoked.</span></span>
+<span data-ttu-id="f0372-148">hello 회로 소유자는 언제 든 지 hello 전원 toomodify 및 revoke 권한 부여에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-148">hello Circuit Owner has hello power toomodify and revoke authorizations at any time.</span></span> <span data-ttu-id="f0372-149">권한 부여를 취소 하는 경우 모든 링크 연결 액세스가 해지 된 hello 구독에서 삭제 됩니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-149">When an authorization is revoked, all link connections are deleted from hello subscription whose access was revoked.</span></span>
 
-### <a name="circuit-owner-operations"></a><span data-ttu-id="cb84b-150">회로 소유자 작업</span><span class="sxs-lookup"><span data-stu-id="cb84b-150">Circuit Owner operations</span></span>
+### <a name="circuit-owner-operations"></a><span data-ttu-id="f0372-150">회로 소유자 작업</span><span class="sxs-lookup"><span data-stu-id="f0372-150">Circuit Owner operations</span></span>
 
-<span data-ttu-id="cb84b-151">**권한 부여를 만들려면**</span><span class="sxs-lookup"><span data-stu-id="cb84b-151">**To create an authorization**</span></span>
+<span data-ttu-id="f0372-151">**toocreate 권한 부여**</span><span class="sxs-lookup"><span data-stu-id="f0372-151">**toocreate an authorization**</span></span>
 
-<span data-ttu-id="cb84b-152">회로 소유자가 권한 부여를 만들면 ExpressRoute 회로에 해당 가상 네트워크 게이트웨이를 연결하는 회로 사용자에 의해 사용할 수 있는 권한 부여 키가 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-152">The Circuit Owner creates an authorization, which creates an authorization key that can be used by a Circuit User to connect their virtual network gateways to the ExpressRoute circuit.</span></span> <span data-ttu-id="cb84b-153">권한 부여는 하나의 연결에만 유효합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-153">An authorization is valid for only one connection.</span></span>
+<span data-ttu-id="f0372-152">hello 회로 소유자는 권한 부여 될 수 있는 인증 키를 만드는 만듭니다 해당 가상 네트워크 게이트웨이 toohello ExpressRoute 회로 회로 사용자 tooconnect에서 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-152">hello Circuit Owner creates an authorization, which creates an authorization key that can be used by a Circuit User tooconnect their virtual network gateways toohello ExpressRoute circuit.</span></span> <span data-ttu-id="f0372-153">권한 부여는 하나의 연결에만 유효합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-153">An authorization is valid for only one connection.</span></span>
 
-<span data-ttu-id="cb84b-154">다음 예제에서는 권한 부여를 만드는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-154">The following example shows how to create an authorization:</span></span>
+<span data-ttu-id="f0372-154">hello 방법을 예제와 다음 toocreate 권한 부여:</span><span class="sxs-lookup"><span data-stu-id="f0372-154">hello following example shows how toocreate an authorization:</span></span>
 
 ```azurecli
 az network express-route auth create --circuit-name MyCircuit -g ExpressRouteResourceGroup -n MyAuthorization
 ```
 
-<span data-ttu-id="cb84b-155">응답에는 권한 부여 키와 상태가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-155">The response contains the authorization key and status:</span></span>
+<span data-ttu-id="f0372-155">hello 응답 hello 인증 키 및 상태에 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-155">hello response contains hello authorization key and status:</span></span>
 
 ```azurecli
 "authorizationKey": "0a7f3020-541f-4b4b-844a-5fb43472e3d7",
@@ -98,50 +98,50 @@ az network express-route auth create --circuit-name MyCircuit -g ExpressRouteRes
 "resourceGroup": "ExpressRouteResourceGroup"
 ```
 
-<span data-ttu-id="cb84b-156">**권한 부여를 검토하려면**</span><span class="sxs-lookup"><span data-stu-id="cb84b-156">**To review authorizations**</span></span>
+<span data-ttu-id="f0372-156">**tooreview 권한 부여**</span><span class="sxs-lookup"><span data-stu-id="f0372-156">**tooreview authorizations**</span></span>
 
-<span data-ttu-id="cb84b-157">회로 소유자는 다음 예제를 실행하여 특정 회로에 발급한 모든 권한 부여를 검토할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-157">The Circuit Owner can review all authorizations that are issued on a particular circuit by running the following example:</span></span>
+<span data-ttu-id="f0372-157">hello 회로 소유자는 다음 예제는 hello를 실행 하 여 특정 회로에 발급 한 모든 권한 부여를 검토할 수 있습니다.:</span><span class="sxs-lookup"><span data-stu-id="f0372-157">hello Circuit Owner can review all authorizations that are issued on a particular circuit by running hello following example:</span></span>
 
 ```azurecli
 az network express-route auth list --circuit-name MyCircuit -g ExpressRouteResourceGroup
 ```
 
-<span data-ttu-id="cb84b-158">**권한 부여를 추가하려면**</span><span class="sxs-lookup"><span data-stu-id="cb84b-158">**To add authorizations**</span></span>
+<span data-ttu-id="f0372-158">**tooadd 권한 부여**</span><span class="sxs-lookup"><span data-stu-id="f0372-158">**tooadd authorizations**</span></span>
 
-<span data-ttu-id="cb84b-159">회로 소유자는 다음 예제를 사용하여 권한 부여를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-159">The Circuit Owner can add authorizations by using the following example:</span></span>
+<span data-ttu-id="f0372-159">hello 회로 소유자는 다음 예제는 hello를 사용 하 여 권한 부여를 추가할 수 있습니다.:</span><span class="sxs-lookup"><span data-stu-id="f0372-159">hello Circuit Owner can add authorizations by using hello following example:</span></span>
 
 ```azurecli
 az network express-route auth create --circuit-name MyCircuit -g ExpressRouteResourceGroup -n MyAuthorization1
 ```
 
-<span data-ttu-id="cb84b-160">**권한 부여를 삭제하려면**</span><span class="sxs-lookup"><span data-stu-id="cb84b-160">**To delete authorizations**</span></span>
+<span data-ttu-id="f0372-160">**toodelete 권한 부여**</span><span class="sxs-lookup"><span data-stu-id="f0372-160">**toodelete authorizations**</span></span>
 
-<span data-ttu-id="cb84b-161">회로 소유자는 다음 예제를 실행하여 권한 부여를 취소/삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-161">The Circuit Owner can revoke/delete authorizations to the user by running the following example:</span></span>
+<span data-ttu-id="f0372-161">회로 소유자 hello 수 revoke/삭제 권한 부여 toohello 사용자 hello 다음 예제를 실행 하 여:</span><span class="sxs-lookup"><span data-stu-id="f0372-161">hello Circuit Owner can revoke/delete authorizations toohello user by running hello following example:</span></span>
 
 ```azurecli
 az network express-route auth delete --circuit-name MyCircuit -g ExpressRouteResourceGroup -n MyAuthorization1
 ```
 
-### <a name="circuit-user-operations"></a><span data-ttu-id="cb84b-162">회로 사용자 작업</span><span class="sxs-lookup"><span data-stu-id="cb84b-162">Circuit User operations</span></span>
+### <a name="circuit-user-operations"></a><span data-ttu-id="f0372-162">회로 사용자 작업</span><span class="sxs-lookup"><span data-stu-id="f0372-162">Circuit User operations</span></span>
 
-<span data-ttu-id="cb84b-163">회로 사용자는 회로 소유자의 피어 ID 및 권한 부여 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-163">The Circuit User needs the peer ID and an authorization key from the Circuit Owner.</span></span> <span data-ttu-id="cb84b-164">권한 부여 키는 GUID입니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-164">The authorization key is a GUID.</span></span>
+<span data-ttu-id="f0372-163">hello 회로 사용자 hello 피어 ID 및 hello 회로 소유자에서에서 권한 부여 키가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-163">hello Circuit User needs hello peer ID and an authorization key from hello Circuit Owner.</span></span> <span data-ttu-id="f0372-164">hello 인증 키 GUID입니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-164">hello authorization key is a GUID.</span></span>
 
 ```azurecli
 Get-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 ```
 
-<span data-ttu-id="cb84b-165">**연결 권한 부여를 사용하려면**</span><span class="sxs-lookup"><span data-stu-id="cb84b-165">**To redeem a connection authorization**</span></span>
+<span data-ttu-id="f0372-165">**tooredeem 연결 권한 부여**</span><span class="sxs-lookup"><span data-stu-id="f0372-165">**tooredeem a connection authorization**</span></span>
 
-<span data-ttu-id="cb84b-166">회로 사용자는 다음 예제를 실행하여 링크 권한 부여를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-166">The Circuit User can run the following example to redeem a link authorization:</span></span>
+<span data-ttu-id="f0372-166">hello 회로 사용자 다음 예제에서는 tooredeem hello 링크 권한 부여를 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-166">hello Circuit User can run hello following example tooredeem a link authorization:</span></span>
 
 ```azurecli
 az network vpn-connection create --name ERConnection --resource-group ExpressRouteResourceGroup --vnet-gateway1 VNet1GW --express-route-circuit2 MyCircuit --authorization-key "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
 ```
 
-<span data-ttu-id="cb84b-167">**연결 권한 부여를 해제하려면**</span><span class="sxs-lookup"><span data-stu-id="cb84b-167">**To release a connection authorization**</span></span>
+<span data-ttu-id="f0372-167">**toorelease 연결 권한 부여**</span><span class="sxs-lookup"><span data-stu-id="f0372-167">**toorelease a connection authorization**</span></span>
 
-<span data-ttu-id="cb84b-168">Express 경로 회로와 가상 네트워크의 연결을 삭제하여 권한 부여를 해제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb84b-168">You can release an authorization by deleting the connection that links the ExpressRoute circuit to the virtual network.</span></span>
+<span data-ttu-id="f0372-168">Hello ExpressRoute 회로 toohello 가상 네트워크를 연결 하는 hello 연결을 삭제 하 여 권한 부여를 해제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-168">You can release an authorization by deleting hello connection that links hello ExpressRoute circuit toohello virtual network.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="cb84b-169">다음 단계</span><span class="sxs-lookup"><span data-stu-id="cb84b-169">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f0372-169">다음 단계</span><span class="sxs-lookup"><span data-stu-id="f0372-169">Next steps</span></span>
 
-<span data-ttu-id="cb84b-170">ExpressRoute에 대한 자세한 내용은 [ExpressRoute FAQ](expressroute-faqs.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb84b-170">For more information about ExpressRoute, see the [ExpressRoute FAQ](expressroute-faqs.md).</span></span>
+<span data-ttu-id="f0372-170">ExpressRoute에 대 한 자세한 내용은 참조 hello [express 경로 FAQ](expressroute-faqs.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="f0372-170">For more information about ExpressRoute, see hello [ExpressRoute FAQ](expressroute-faqs.md).</span></span>

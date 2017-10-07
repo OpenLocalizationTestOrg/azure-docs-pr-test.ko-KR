@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher 보안 그룹 보기를 사용하여 네트워크 보안 분석 - REST API | Microsoft Docs"
-description: "이 문서에서는 보안 그룹 보기를 사용하여 가상 컴퓨터 보안을 분석하기 위해 PowerShell을 사용하는 방법을 설명합니다."
+title: "Azure 네트워크 감시자 보안 그룹 보기-REST API를 사용 하는 aaaAnalyze 네트워크 보안 | Microsoft Docs"
+description: "이 문서는 어떻게 toouse PowerShell tooanalyze a 가상 컴퓨터 보안 보안 그룹을 설명 합니다."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: afced52b3ae6f3b7f400364f5ec7d049aa166590
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0858a64a9454816e05f06dadb9536ad0c755e90e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-your-virtual-machine-security-with-security-group-view-using-rest-api"></a><span data-ttu-id="5fdb4-103">REST API를 사용하는 보안 그룹 보기에서 Virtual Machine 보안 분석</span><span class="sxs-lookup"><span data-stu-id="5fdb4-103">Analyze your Virtual Machine security with Security Group View using REST API</span></span>
+# <a name="analyze-your-virtual-machine-security-with-security-group-view-using-rest-api"></a><span data-ttu-id="26e36-103">REST API를 사용하는 보안 그룹 보기에서 Virtual Machine 보안 분석</span><span class="sxs-lookup"><span data-stu-id="26e36-103">Analyze your Virtual Machine security with Security Group View using REST API</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="5fdb4-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="5fdb4-104">PowerShell</span></span>](network-watcher-security-group-view-powershell.md)
-> - [<span data-ttu-id="5fdb4-105">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="5fdb4-105">CLI 1.0</span></span>](network-watcher-security-group-view-cli-nodejs.md)
-> - [<span data-ttu-id="5fdb4-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="5fdb4-106">CLI 2.0</span></span>](network-watcher-security-group-view-cli.md)
-> - [<span data-ttu-id="5fdb4-107">REST API</span><span class="sxs-lookup"><span data-stu-id="5fdb4-107">REST API</span></span>](network-watcher-security-group-view-rest.md)
+> - [<span data-ttu-id="26e36-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="26e36-104">PowerShell</span></span>](network-watcher-security-group-view-powershell.md)
+> - [<span data-ttu-id="26e36-105">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="26e36-105">CLI 1.0</span></span>](network-watcher-security-group-view-cli-nodejs.md)
+> - [<span data-ttu-id="26e36-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="26e36-106">CLI 2.0</span></span>](network-watcher-security-group-view-cli.md)
+> - [<span data-ttu-id="26e36-107">REST API</span><span class="sxs-lookup"><span data-stu-id="26e36-107">REST API</span></span>](network-watcher-security-group-view-rest.md)
 
-<span data-ttu-id="5fdb4-108">보안 그룹 보기는 가상 컴퓨터에 적용되는 효과적으로 구성된 네트워크 보안 규칙을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-108">Security group view returns configured and effective network security rules that are applied to a virtual machine.</span></span> <span data-ttu-id="5fdb4-109">이 기능은 VM에 구성된 네트워크 보안 그룹 및 규칙을 감사하고 진단하여 트래픽을 올바르게 허용하거나 거부하는 데 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-109">This capability is useful to audit and diagnose Network Security Groups and rules that are configured on a VM to ensure traffic is being correctly allowed or denied.</span></span> <span data-ttu-id="5fdb4-110">이 문서에서는 REST API를 사용하여 가상 컴퓨터에 효과적으로 적용된 보안 규칙을 검색하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-110">In this article, we show you how to retrieve the effective and applied security rules to a virtual machine using REST API</span></span>
+<span data-ttu-id="26e36-108">보안 그룹 보기 구성 하 고 효과적인 네트워크 보안 규칙을 적용된 tooa 가상 컴퓨터를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-108">Security group view returns configured and effective network security rules that are applied tooa virtual machine.</span></span> <span data-ttu-id="26e36-109">이 기능은 유용 tooaudit은 네트워크 보안 그룹 진단 및 VM tooensure 트래픽이에 구성 되어 있는 규칙은 올바르게 허용 또는 거부 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-109">This capability is useful tooaudit and diagnose Network Security Groups and rules that are configured on a VM tooensure traffic is being correctly allowed or denied.</span></span> <span data-ttu-id="26e36-110">이 문서에서는 보여줍니다 tooretrieve hello 효과적이 고 적용 된 보안 규칙의 tooa 가상 컴퓨터 REST API를 사용 하 여 방식</span><span class="sxs-lookup"><span data-stu-id="26e36-110">In this article, we show you how tooretrieve hello effective and applied security rules tooa virtual machine using REST API</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="5fdb4-111">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="5fdb4-111">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="26e36-111">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="26e36-111">Before you begin</span></span>
 
-<span data-ttu-id="5fdb4-112">이 시나리오에서는 Network Watcher Rest API를 호출하여 가상 컴퓨터에 대한 보안 그룹 보기를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-112">In this scenario, you call the Network Watcher Rest API to get the security group view for a virtual machine.</span></span> <span data-ttu-id="5fdb4-113">PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-113">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="5fdb4-114">ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
+<span data-ttu-id="26e36-112">이 시나리오에서는 가상 컴퓨터에 대 한 hello 네트워크 감시자 Rest API tooget hello 보안 그룹 보기를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-112">In this scenario, you call hello Network Watcher Rest API tooget hello security group view for a virtual machine.</span></span> <span data-ttu-id="26e36-113">ARMclient는 PowerShell을 사용 하 여 사용 되는 toocall hello REST API입니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-113">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="26e36-114">ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
 
-<span data-ttu-id="5fdb4-115">이 시나리오에서는 사용자가 Network Watcher를 만드는 [Network Watcher 만들기](network-watcher-create.md)의 단계를 이미 수행했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-115">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span> <span data-ttu-id="5fdb4-116">또한 시나리오에서는 유효한 가상 컴퓨터를 포함한 리소스 그룹을 사용할 수 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-116">The scenario also assumes that a Resource Group with a valid virtual machine exists to be used.</span></span>
+<span data-ttu-id="26e36-115">이 시나리오에서는 hello 단계에 따라 이미 가정 [네트워크 감시자를 만들](network-watcher-create.md) toocreate 네트워크 감시자 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-115">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span> <span data-ttu-id="26e36-116">hello 시나리오는 또한 적합 한 가상 컴퓨터가 리소스 그룹 사용 toobe 있다고 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-116">hello scenario also assumes that a Resource Group with a valid virtual machine exists toobe used.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="5fdb4-117">시나리오</span><span class="sxs-lookup"><span data-stu-id="5fdb4-117">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="26e36-117">시나리오</span><span class="sxs-lookup"><span data-stu-id="26e36-117">Scenario</span></span>
 
-<span data-ttu-id="5fdb4-118">이 문서에서 다루는 시나리오는 지정된 가상 컴퓨터에 대한 효과적으로 적용된 보안 규칙을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-118">The scenario covered in this article retrieves the effective and applied security rules for a given virtual machine.</span></span>
+<span data-ttu-id="26e36-118">이 문서에서 다루는 hello 시나리오는 지정된 된 가상 컴퓨터에 대 한 hello 효과적이 고 적용 된 보안 규칙을 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-118">hello scenario covered in this article retrieves hello effective and applied security rules for a given virtual machine.</span></span>
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="5fdb4-119">ARMClient에 로그인</span><span class="sxs-lookup"><span data-stu-id="5fdb4-119">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="26e36-119">ARMClient에 로그인</span><span class="sxs-lookup"><span data-stu-id="26e36-119">Log in with ARMClient</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="5fdb4-120">가상 컴퓨터 검색</span><span class="sxs-lookup"><span data-stu-id="5fdb4-120">Retrieve a virtual machine</span></span>
+## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="26e36-120">가상 컴퓨터 검색</span><span class="sxs-lookup"><span data-stu-id="26e36-120">Retrieve a virtual machine</span></span>
 
-<span data-ttu-id="5fdb4-121">다음 스크립트를 실행하여 가상 컴퓨터를 반환합니다. 다음 코드에는 변수가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-121">Run the following script to return a virtual machineThe following code needs variables:</span></span>
+<span data-ttu-id="26e36-121">다음 스크립트 tooreturn 가상 machineThe hello 실행 코드 다음 변수를 항목이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-121">Run hello following script tooreturn a virtual machineThe following code needs variables:</span></span>
 
-- <span data-ttu-id="5fdb4-122">**subscriptionId** - **Get-AzureRMSubscription** cmdlet으로 구독 ID도 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-122">**subscriptionId** - The subscription id can also be retrieved with the **Get-AzureRMSubscription** cmdlet.</span></span>
-- <span data-ttu-id="5fdb4-123">**resourceGroupName** - 가상 컴퓨터를 포함하는 리소스 그룹의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-123">**resourceGroupName** - The name of a resource group that contains virtual machines.</span></span>
+- <span data-ttu-id="26e36-122">**subscriptionId** -hello로도 hello 구독 id를 검색할 수 **Get AzureRMSubscription** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="26e36-122">**subscriptionId** - hello subscription id can also be retrieved with hello **Get-AzureRMSubscription** cmdlet.</span></span>
+- <span data-ttu-id="26e36-123">**resourceGroupName** -hello 가상 컴퓨터를 포함 하는 리소스 그룹의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-123">**resourceGroupName** - hello name of a resource group that contains virtual machines.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -60,7 +60,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-<span data-ttu-id="5fdb4-124">필요한 정보는 다음 예제에 볼 수 있는 것처럼 응답에서 `Microsoft.Compute/virtualMachines` 형식 아래의 **id**입니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-124">The information that is needed is the **id** under the type `Microsoft.Compute/virtualMachines` in response, as seen in the following example:</span></span>
+<span data-ttu-id="26e36-124">hello 필요한 정보는 hello **id** hello 유형에 `Microsoft.Compute/virtualMachines` 응답으로 hello 다음 예제와 같이:</span><span class="sxs-lookup"><span data-stu-id="26e36-124">hello information that is needed is hello **id** under hello type `Microsoft.Compute/virtualMachines` in response, as seen in hello following example:</span></span>
 
 ```json
 ...,
@@ -90,9 +90,9 @@ pute/virtualMachines/{vmName}/extensions/CustomScriptExtension"
 }
 ```
 
-## <a name="get-security-group-view-for-virtual-machine"></a><span data-ttu-id="5fdb4-125">가상 컴퓨터에 대한 보안 그룹 보기 가져오기</span><span class="sxs-lookup"><span data-stu-id="5fdb4-125">Get security group view for virtual machine</span></span>
+## <a name="get-security-group-view-for-virtual-machine"></a><span data-ttu-id="26e36-125">가상 컴퓨터에 대한 보안 그룹 보기 가져오기</span><span class="sxs-lookup"><span data-stu-id="26e36-125">Get security group view for virtual machine</span></span>
 
-<span data-ttu-id="5fdb4-126">다음 예제에서는 대상 지정된 가상 컴퓨터의 보안 그룹 보기를 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-126">The following example requests the security group view of a targeted virtual machine.</span></span> <span data-ttu-id="5fdb4-127">구성 편차를 검색하기 위해 원본에서 정의한 규칙 및 보안을 비교하는 데 이 예제의 결과를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-127">The results from this example can be used to compare to the rules and security defined by the origination to look for configuration drift.</span></span>
+<span data-ttu-id="26e36-126">다음 예제는 hello 대상된 가상 컴퓨터의 hello 보안 그룹 보기를 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-126">hello following example requests hello security group view of a targeted virtual machine.</span></span> <span data-ttu-id="26e36-127">이 예제의 결과 hello 사용된 toocompare toohello 규칙 및 보안에 대 한 구성 드리프트의 발생 위치 toolook hello에 정의 된 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-127">hello results from this example can be used toocompare toohello rules and security defined by hello origination toolook for configuration drift.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -109,9 +109,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/securityGroupView?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="view-the-response"></a><span data-ttu-id="5fdb4-128">응답 보기</span><span class="sxs-lookup"><span data-stu-id="5fdb4-128">View the response</span></span>
+## <a name="view-hello-response"></a><span data-ttu-id="26e36-128">Hello 응답 보기</span><span class="sxs-lookup"><span data-stu-id="26e36-128">View hello response</span></span>
 
-<span data-ttu-id="5fdb4-129">다음 샘플은 이전 명령에서 반환한 응답입니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-129">The following sample is the response returned from the preceding command.</span></span> <span data-ttu-id="5fdb4-130">결과는 **NetworkInterfaceSecurityRules**, **DefaultSecurityRules** 및 **EffectiveSecurityRules**라는 그룹으로 구분되는 가상 컴퓨터에서 효과적으로 적용된 보안 규칙을 모두 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-130">The results show all the effective and applied security rules on the virtual machine broken down in groups of **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, and **EffectiveSecurityRules**.</span></span>
+<span data-ttu-id="26e36-129">다음 예제는 hello은 hello 명령 앞에서 반환 된 hello 응답입니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-129">hello following sample is hello response returned from hello preceding command.</span></span> <span data-ttu-id="26e36-130">hello 결과 표시 모든 hello 효과적이 고 적용 된 보안 규칙의 그룹에 세분화 hello 가상 컴퓨터에서 **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, 및  **EffectiveSecurityRules**합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-130">hello results show all hello effective and applied security rules on hello virtual machine broken down in groups of **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, and **EffectiveSecurityRules**.</span></span>
 
 ```json
 
@@ -179,8 +179,8 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="5fdb4-131">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5fdb4-131">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="26e36-131">다음 단계</span><span class="sxs-lookup"><span data-stu-id="26e36-131">Next steps</span></span>
 
-<span data-ttu-id="5fdb4-132">[Network Watcher를 사용하여 NSG(네트워크 보안 그룹) 감사](network-watcher-security-group-view-powershell.md)를 방문하여 네트워크 보안 그룹의 유효성 검사를 자동화하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="5fdb4-132">Visit [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-security-group-view-powershell.md) to learn how to automate validation of Network Security Groups.</span></span>
+<span data-ttu-id="26e36-132">방문 [감사 보안 그룹 NSG (네트워크)와 네트워크 감시자](network-watcher-security-group-view-powershell.md) toolearn 방법을 네트워크 보안 그룹의 tooautomate 유효성 검사 합니다.</span><span class="sxs-lookup"><span data-stu-id="26e36-132">Visit [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-security-group-view-powershell.md) toolearn how tooautomate validation of Network Security Groups.</span></span>
 
 

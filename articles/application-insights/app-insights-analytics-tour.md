@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 내 Analytics 둘러보기 | Microsoft Docs"
-description: "Application Insights의 강력한 검색 도구인 Analytics의 모든 주요 쿼리에 대한 간단한 샘플"
+title: "Azure Application Insights에서 분석을 통해 aaaA 둘러보기 | Microsoft Docs"
+description: "모든 쿼리의 hello 주 분석에서 Application Insights의 hello 강력한 검색 도구 간단한 샘플입니다."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,80 +13,80 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/06/2017
 ms.author: bwren
-ms.openlocfilehash: f5650d212eb2f8c460f062b3c11ae14c1e026ba6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c268e26c6bf93ac2ee2a9d5e83613150dcf90b04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="a-tour-of-analytics-in-application-insights"></a><span data-ttu-id="77efa-103">Application Insights의 Analytics 둘러보기</span><span class="sxs-lookup"><span data-stu-id="77efa-103">A tour of Analytics in Application Insights</span></span>
-<span data-ttu-id="77efa-104">[분석](app-insights-analytics.md)은 [Application Insights](app-insights-overview.md)의 강력한 검색 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-104">[Analytics](app-insights-analytics.md) is the powerful search feature of [Application Insights](app-insights-overview.md).</span></span> <span data-ttu-id="77efa-105">다음 페이지에서는 Log Analytics 쿼리 언어에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-105">These pages describe the Log Analytics query language.</span></span>
+# <a name="a-tour-of-analytics-in-application-insights"></a><span data-ttu-id="89b5a-103">Application Insights의 Analytics 둘러보기</span><span class="sxs-lookup"><span data-stu-id="89b5a-103">A tour of Analytics in Application Insights</span></span>
+<span data-ttu-id="89b5a-104">[분석](app-insights-analytics.md) 의 hello 강력한 검색 기능은 [Application Insights](app-insights-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-104">[Analytics](app-insights-analytics.md) is hello powerful search feature of [Application Insights](app-insights-overview.md).</span></span> <span data-ttu-id="89b5a-105">다음 페이지에서는 Log Analytics 쿼리 언어에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-105">These pages describe the Log Analytics query language.</span></span>
 
-* <span data-ttu-id="77efa-106">**[소개 비디오 보기](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**</span><span class="sxs-lookup"><span data-stu-id="77efa-106">**[Watch the introductory video](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**.</span></span>
-* <span data-ttu-id="77efa-107">앱이 아직 데이터를 Application Insights로 전송하지 않은 경우, **[시뮬레이션된 데이터에 대한 분석을 테스트](https://analytics.applicationinsights.io/demo)**합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-107">**[Test drive Analytics on our simulated data](https://analytics.applicationinsights.io/demo)** if your app isn't sending data to Application Insights yet.</span></span>
-* <span data-ttu-id="77efa-108">**[SQL 사용자 치트 시트](https://aka.ms/sql-analytics)**에서는 가장 일반적인 코드를 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-108">**[SQL-users' cheat sheet](https://aka.ms/sql-analytics)** translates the most common idioms.</span></span>
+* <span data-ttu-id="89b5a-106">**[Hello 소개 비디오를 시청](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-106">**[Watch hello introductory video](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**.</span></span>
+* <span data-ttu-id="89b5a-107">**[시뮬레이션된 데이터에 분석 드라이브를 테스트](https://analytics.applicationinsights.io/demo)**  경우 응용 프로그램 데이터 tooApplication Insights를 아직 전송 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-107">**[Test drive Analytics on our simulated data](https://analytics.applicationinsights.io/demo)** if your app isn't sending data tooApplication Insights yet.</span></span>
+* <span data-ttu-id="89b5a-108">**[SQL-사용자의 치트 시트](https://aka.ms/sql-analytics)**  hello 가장 일반적인 구문으로 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-108">**[SQL-users' cheat sheet](https://aka.ms/sql-analytics)** translates hello most common idioms.</span></span>
 
-<span data-ttu-id="77efa-109">시작하기 위해 몇 가지 기본적인 쿼리를 연습해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-109">Let's take a walk through some basic queries to get you started.</span></span>
+<span data-ttu-id="89b5a-109">몇 가지 기본적인 쿼리 tooget 시작한 단계별로 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-109">Let's take a walk through some basic queries tooget you started.</span></span>
 
-## <a name="connect-to-your-application-insights-data"></a><span data-ttu-id="77efa-110">Application Insights 데이터에 연결</span><span class="sxs-lookup"><span data-stu-id="77efa-110">Connect to your Application Insights data</span></span>
-<span data-ttu-id="77efa-111">Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) 에서 분석을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-111">Open Analytics from your app's [overview blade](app-insights-dashboards.md) in Application Insights:</span></span>
+## <a name="connect-tooyour-application-insights-data"></a><span data-ttu-id="89b5a-110">Tooyour Application Insights 데이터에 연결</span><span class="sxs-lookup"><span data-stu-id="89b5a-110">Connect tooyour Application Insights data</span></span>
+<span data-ttu-id="89b5a-111">Application Insights의 앱 [개요 블레이드](app-insights-dashboards.md) 에서 분석을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-111">Open Analytics from your app's [overview blade](app-insights-dashboards.md) in Application Insights:</span></span>
 
 ![portal.azure.com을 열고 Application Insights 리소스를 열고 Analytics를 클릭합니다.](./media/app-insights-analytics-tour/001.png)
 
-## <a name="takehttpsdocsloganalyticsioquerylanguagequerylanguagetakeoperatorhtml-show-me-n-rows"></a><span data-ttu-id="77efa-113">[Take](https://docs.loganalytics.io/queryLanguage/query_language_takeoperator.html): n개의 행 표시</span><span class="sxs-lookup"><span data-stu-id="77efa-113">[Take](https://docs.loganalytics.io/queryLanguage/query_language_takeoperator.html): show me n rows</span></span>
-<span data-ttu-id="77efa-114">사용자 작업(일반적으로 웹앱에서 받는 HTTP 요청)을 기록하는 데이터 요소는 `requests`라는 테이블에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-114">Data points that log user operations (typically HTTP requests received by your web app) are stored in a table called `requests`.</span></span> <span data-ttu-id="77efa-115">각 행은 앱의 Application Insights SDK에서 수신된 원격 분석 데이터 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-115">Each row is a telemetry data point received from the Application Insights SDK in your app.</span></span>
+## <a name="takehttpsdocsloganalyticsioquerylanguagequerylanguagetakeoperatorhtml-show-me-n-rows"></a><span data-ttu-id="89b5a-113">[Take](https://docs.loganalytics.io/queryLanguage/query_language_takeoperator.html): n개의 행 표시</span><span class="sxs-lookup"><span data-stu-id="89b5a-113">[Take](https://docs.loganalytics.io/queryLanguage/query_language_takeoperator.html): show me n rows</span></span>
+<span data-ttu-id="89b5a-114">사용자 작업(일반적으로 웹앱에서 받는 HTTP 요청)을 기록하는 데이터 요소는 `requests`라는 테이블에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-114">Data points that log user operations (typically HTTP requests received by your web app) are stored in a table called `requests`.</span></span> <span data-ttu-id="89b5a-115">각 행에는 응용 프로그램에 Application Insights SDK hello에서 받은 원격 분석 데이터 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-115">Each row is a telemetry data point received from hello Application Insights SDK in your app.</span></span>
 
-<span data-ttu-id="77efa-116">테이블의 몇 가지 샘플 행을 검사하는 것으로 시작해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-116">Let's start by examining a few sample rows of the table:</span></span>
+<span data-ttu-id="89b5a-116">Hello 테이블의 몇 가지 샘플 행을 검사 하 여 시작 하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-116">Let's start by examining a few sample rows of hello table:</span></span>
 
 ![결과](./media/app-insights-analytics-tour/010.png)
 
 > [!NOTE]
-> <span data-ttu-id="77efa-118">이동을 클릭하기 전에 커서를 문의 어딘가에 둡니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-118">Put the cursor somewhere in the statement before you click Go.</span></span> <span data-ttu-id="77efa-119">문을 둘 이상의 행으로 분할할 수 있지만 문에 빈 줄을 넣으면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-119">You can split a statement over more than one line, but don't put blank lines in a statement.</span></span> <span data-ttu-id="77efa-120">빈 줄은 창에서 여러 개의 별도 쿼리를 유지하는 편리한 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-120">Blank lines are a convenient way to keep several separate queries in the window.</span></span>
+> <span data-ttu-id="89b5a-118">Hello 커서 위치에 배치 hello 문의 이동을 클릭 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="89b5a-118">Put hello cursor somewhere in hello statement before you click Go.</span></span> <span data-ttu-id="89b5a-119">문을 둘 이상의 행으로 분할할 수 있지만 문에 빈 줄을 넣으면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-119">You can split a statement over more than one line, but don't put blank lines in a statement.</span></span> <span data-ttu-id="89b5a-120">빈 줄은 편리 tookeep 여러 hello 창에서 쿼리를 구분 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-120">Blank lines are a convenient way tookeep several separate queries in hello window.</span></span>
 >
 >
 
-<span data-ttu-id="77efa-121">열을 선택하고 끌어서 놓고 열로 그룹화하고 필터링합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-121">Choose columns, drag them, group by columns, and filter:</span></span>
+<span data-ttu-id="89b5a-121">열을 선택하고 끌어서 놓고 열로 그룹화하고 필터링합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-121">Choose columns, drag them, group by columns, and filter:</span></span>
 
 ![결과의 오른쪽 위에 있는 열 선택을 클릭](./media/app-insights-analytics-tour/030.png)
 
-<span data-ttu-id="77efa-123">세부 정보를 보려면 모든 항목을 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-123">Expand any item to see the detail:</span></span>
+<span data-ttu-id="89b5a-123">모든 항목 toosee hello 세부 정보를 확장 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-123">Expand any item toosee hello detail:</span></span>
 
 ![테이블을 선택하고 열을 구성](./media/app-insights-analytics-tour/040.png)
 
 > [!NOTE]
-> <span data-ttu-id="77efa-125">웹 브라우저에서 사용할 수 있는 결과의 순서를 변경하려면 열 머리글을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-125">Click the head of a column to re-order the results available in the web browser.</span></span> <span data-ttu-id="77efa-126">단, 큰 결과 집합의 경우에는 브라우저에 다운로드되는 행의 수가 제한된다는 점을 고려해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-126">But be aware that for a large result set, the number of rows downloaded to the browser is limited.</span></span> <span data-ttu-id="77efa-127">이 방식으로 정렬한다고 해서 항상 최상위 항목이나 최하위 항목이 표시되지는 않습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-127">Sorting this way doesn't always show you the actual highest or lowest items.</span></span> <span data-ttu-id="77efa-128">항목을 안정적으로 정렬하려면 `top` 또는 `sort` 연산자를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-128">To sort items reliably, use the `top` or `sort` operator.</span></span>
+> <span data-ttu-id="89b5a-125">열 순서 toore hello 결과 hello 웹 브라우저에서 사용할 수 있는의 hello 헤드를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-125">Click hello head of a column toore-order hello results available in hello web browser.</span></span> <span data-ttu-id="89b5a-126">하지만 큰 결과 집합에 대 한 행 다운로드 한 toohello 브라우저의 hello 번호 제한 된다는 점에 유의 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-126">But be aware that for a large result set, hello number of rows downloaded toohello browser is limited.</span></span> <span data-ttu-id="89b5a-127">이러한 방식으로 정렬 실제 최고 hello 또는 가장 낮은 항목을 항상 표시 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-127">Sorting this way doesn't always show you hello actual highest or lowest items.</span></span> <span data-ttu-id="89b5a-128">안전 하 게 사용 하 여 hello toosort 항목 `top` 또는 `sort` 연산자입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-128">toosort items reliably, use hello `top` or `sort` operator.</span></span>
 >
 >
 
-## <a name="tophttpsdocsloganalyticsioquerylanguagequerylanguagetopoperatorhtml-and-sorthttpsdocsloganalyticsioquerylanguagequerylanguagesortoperatorhtml"></a><span data-ttu-id="77efa-129">[Top](https://docs.loganalytics.io/queryLanguage/query_language_topoperator.html) 및 [sort](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html)</span><span class="sxs-lookup"><span data-stu-id="77efa-129">[Top](https://docs.loganalytics.io/queryLanguage/query_language_topoperator.html) and [sort](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html)</span></span>
-<span data-ttu-id="77efa-130">`take` 은(는) 빨리 확인할 결과 샘플을 가져오는 데 유용하지만 테이블의 행을 특정 순서 없이 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-130">`take` is useful to get a quick sample of a result, but it shows rows from the table in no particular order.</span></span> <span data-ttu-id="77efa-131">순서가 지정된 보기를 가져오려면 `top`(샘플의 경우) 또는 `sort`(전체 테이블에 대해)을(를) 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-131">To get an ordered view, use `top` (for a sample) or `sort` (over the whole table).</span></span>
+## <a name="tophttpsdocsloganalyticsioquerylanguagequerylanguagetopoperatorhtml-and-sorthttpsdocsloganalyticsioquerylanguagequerylanguagesortoperatorhtml"></a><span data-ttu-id="89b5a-129">[Top](https://docs.loganalytics.io/queryLanguage/query_language_topoperator.html) 및 [sort](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html)</span><span class="sxs-lookup"><span data-stu-id="89b5a-129">[Top](https://docs.loganalytics.io/queryLanguage/query_language_topoperator.html) and [sort](https://docs.loganalytics.io/queryLanguage/query_language_sortoperator.html)</span></span>
+<span data-ttu-id="89b5a-130">`take`유용한 tooget 결과의 빠른 샘플 않으며 임의의 순서로 hello 테이블에서 행을 표시 하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-130">`take` is useful tooget a quick sample of a result, but it shows rows from hello table in no particular order.</span></span> <span data-ttu-id="89b5a-131">tooget 순서가 지정 된 뷰를 사용 하 여 `top` (예) 또는 `sort` (hello 전체 테이블)를 통해 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-131">tooget an ordered view, use `top` (for a sample) or `sort` (over hello whole table).</span></span>
 
-<span data-ttu-id="77efa-132">특정 열을 기준으로 순서가 정해진 처음 n 행 표시:</span><span class="sxs-lookup"><span data-stu-id="77efa-132">Show me the first n rows, ordered by a particular column:</span></span>
+<span data-ttu-id="89b5a-132">Hello 처음 n 개의 행을 특정 열으로 정렬 표시:</span><span class="sxs-lookup"><span data-stu-id="89b5a-132">Show me hello first n rows, ordered by a particular column:</span></span>
 
 ```AIQL
 
     requests | top 10 by timestamp desc
 ```
 
-* <span data-ttu-id="77efa-133">*구문:* 대부분의 연산자에는 `by`와(과) 같은 키워드 매개 변수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-133">*Syntax:* Most operators have keyword parameters such as `by`.</span></span>
-* <span data-ttu-id="77efa-134">`desc`은(는) 내림차순을 의미하고 `asc`은(는) 오름차순을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-134">`desc` = descending order, `asc` = ascending.</span></span>
+* <span data-ttu-id="89b5a-133">*구문:* 대부분의 연산자에는 `by`와(과) 같은 키워드 매개 변수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-133">*Syntax:* Most operators have keyword parameters such as `by`.</span></span>
+* <span data-ttu-id="89b5a-134">`desc`은(는) 내림차순을 의미하고 `asc`은(는) 오름차순을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-134">`desc` = descending order, `asc` = ascending.</span></span>
 
 ![](./media/app-insights-analytics-tour/260.png)
 
-<span data-ttu-id="77efa-135">`top...`을(를) 사용하면 `sort ... | take...`을(를) 보다 효율적으로 설명할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-135">`top...` is a more performant way of saying `sort ... | take...`.</span></span> <span data-ttu-id="77efa-136">다음과 같이 작성했을 수도 있음:</span><span class="sxs-lookup"><span data-stu-id="77efa-136">We could have written:</span></span>
+<span data-ttu-id="89b5a-135">`top...`을(를) 사용하면 `sort ... | take...`을(를) 보다 효율적으로 설명할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-135">`top...` is a more performant way of saying `sort ... | take...`.</span></span> <span data-ttu-id="89b5a-136">다음과 같이 작성했을 수도 있음:</span><span class="sxs-lookup"><span data-stu-id="89b5a-136">We could have written:</span></span>
 
 ```AIQL
 
     requests | sort by timestamp desc | take 10
 ```
 
-<span data-ttu-id="77efa-137">결과는 같지만 조금 더 느리게 실행될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-137">The result would be the same, but it would run a bit more slowly.</span></span> <span data-ttu-id="77efa-138">`sort`의 별칭인 `order`을(를) 작성할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-138">(You could also write `order`, which is an alias of `sort`.)</span></span>
+<span data-ttu-id="89b5a-137">hello 라고 할 때 결과 hello 동일 하지만 약간 더 느리게 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-137">hello result would be hello same, but it would run a bit more slowly.</span></span> <span data-ttu-id="89b5a-138">`sort`의 별칭인 `order`을(를) 작성할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-138">(You could also write `order`, which is an alias of `sort`.)</span></span>
 
-<span data-ttu-id="77efa-139">테이블 보기의 열 머리글을 사용하여 화면에서 결과를 정렬할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-139">The column headers in the table view can also be used to sort the results on the screen.</span></span> <span data-ttu-id="77efa-140">하지만 물론 `take` 또는 `top`을(를) 사용하여 테이블의 일부만 검색했다면 검색한 레코드의 순서만 변경될 것입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-140">But of course, if you've used `take` or `top` to retrieve just part of a table, you'll only re-order the records you've retrieved.</span></span>
+<span data-ttu-id="89b5a-139">hello 표 보기에서 열 머리글에 hello hello 결과 hello 화면에 사용 되는 toosort 될 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-139">hello column headers in hello table view can also be used toosort hello results on hello screen.</span></span> <span data-ttu-id="89b5a-140">하지만 물론 사용한 적이 있다면 `take` 또는 `top` tooretrieve 테이블의 한 부분일 뿐, 순서를 변경할 hello 레코드만 검색 한 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-140">But of course, if you've used `take` or `top` tooretrieve just part of a table, you'll only re-order hello records you've retrieved.</span></span>
 
-## <a name="wherehttpsdocsloganalyticsioquerylanguagequerylanguagewhereoperatorhtml-filtering-on-a-condition"></a><span data-ttu-id="77efa-141">[Where](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html): 조건에 대한 필터링</span><span class="sxs-lookup"><span data-stu-id="77efa-141">[Where](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html): filtering on a condition</span></span>
+## <a name="wherehttpsdocsloganalyticsioquerylanguagequerylanguagewhereoperatorhtml-filtering-on-a-condition"></a><span data-ttu-id="89b5a-141">[Where](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html): 조건에 대한 필터링</span><span class="sxs-lookup"><span data-stu-id="89b5a-141">[Where](https://docs.loganalytics.io/queryLanguage/query_language_whereoperator.html): filtering on a condition</span></span>
 
-<span data-ttu-id="77efa-142">특정 결과 코드를 반환하는 요청만 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-142">Let's see just requests that returned a particular result code:</span></span>
+<span data-ttu-id="89b5a-142">특정 결과 코드를 반환하는 요청만 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-142">Let's see just requests that returned a particular result code:</span></span>
 
 ```AIQL
 
@@ -97,16 +97,16 @@ ms.lasthandoff: 08/18/2017
 
 ![](./media/app-insights-analytics-tour/250.png)
 
-<span data-ttu-id="77efa-143">`where` 연산자는 부울 식을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-143">The `where` operator takes a Boolean expression.</span></span> <span data-ttu-id="77efa-144">여기서 이에 관한 몇 가지 중요한 사항이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-144">Here are some key points about them:</span></span>
+<span data-ttu-id="89b5a-143">hello `where` 연산자는 부울 식을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-143">hello `where` operator takes a Boolean expression.</span></span> <span data-ttu-id="89b5a-144">여기서 이에 관한 몇 가지 중요한 사항이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-144">Here are some key points about them:</span></span>
 
-* <span data-ttu-id="77efa-145">`and`, `or`: 부울 연산자</span><span class="sxs-lookup"><span data-stu-id="77efa-145">`and`, `or`: Boolean operators</span></span>
-* <span data-ttu-id="77efa-146">`==`, `<>`, `!=`: 같음 및 같지 않음</span><span class="sxs-lookup"><span data-stu-id="77efa-146">`==`, `<>`, `!=` : equal and not equal</span></span>
-* <span data-ttu-id="77efa-147">`=~`, `!~`: 대/소문자 구분 없는 문자열 같음 및 같지 않음</span><span class="sxs-lookup"><span data-stu-id="77efa-147">`=~`, `!~` : case-insensitive string equal and not equal.</span></span> <span data-ttu-id="77efa-148">더 많은 문자열 비교 연산자가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-148">There are lots more string comparison operators.</span></span>
+* <span data-ttu-id="89b5a-145">`and`, `or`: 부울 연산자</span><span class="sxs-lookup"><span data-stu-id="89b5a-145">`and`, `or`: Boolean operators</span></span>
+* <span data-ttu-id="89b5a-146">`==`, `<>`, `!=`: 같음 및 같지 않음</span><span class="sxs-lookup"><span data-stu-id="89b5a-146">`==`, `<>`, `!=` : equal and not equal</span></span>
+* <span data-ttu-id="89b5a-147">`=~`, `!~`: 대/소문자 구분 없는 문자열 같음 및 같지 않음</span><span class="sxs-lookup"><span data-stu-id="89b5a-147">`=~`, `!~` : case-insensitive string equal and not equal.</span></span> <span data-ttu-id="89b5a-148">더 많은 문자열 비교 연산자가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-148">There are lots more string comparison operators.</span></span>
 
 <!---Read all about [scalar expressions]().--->
 
-### <a name="getting-the-right-type"></a><span data-ttu-id="77efa-149">올바른 형식 가져오기</span><span class="sxs-lookup"><span data-stu-id="77efa-149">Getting the right type</span></span>
-<span data-ttu-id="77efa-150">성공하지 못한 요청 찾기</span><span class="sxs-lookup"><span data-stu-id="77efa-150">Find unsuccessful requests:</span></span>
+### <a name="getting-hello-right-type"></a><span data-ttu-id="89b5a-149">Hello 오른쪽 유형이 나타났다</span><span class="sxs-lookup"><span data-stu-id="89b5a-149">Getting hello right type</span></span>
+<span data-ttu-id="89b5a-150">성공하지 못한 요청 찾기</span><span class="sxs-lookup"><span data-stu-id="89b5a-150">Find unsuccessful requests:</span></span>
 
 ```AIQL
 
@@ -117,27 +117,27 @@ ms.lasthandoff: 08/18/2017
 `resultCode` has type string, so we must cast it app-insights-analytics-reference.md#casts for a numeric comparison.
 --->
 
-## <a name="time"></a><span data-ttu-id="77efa-151">Time</span><span class="sxs-lookup"><span data-stu-id="77efa-151">Time</span></span>
+## <a name="time"></a><span data-ttu-id="89b5a-151">Time</span><span class="sxs-lookup"><span data-stu-id="89b5a-151">Time</span></span>
 
-<span data-ttu-id="77efa-152">기본적으로 쿼리는 마지막 24시간으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-152">By default, your queries are restricted to the last 24 hours.</span></span> <span data-ttu-id="77efa-153">그러나 이 값을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-153">But you can change this range:</span></span>
+<span data-ttu-id="89b5a-152">기본적으로 쿼리 지난 24 시간 동안 제한 된 toohello을 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-152">By default, your queries are restricted toohello last 24 hours.</span></span> <span data-ttu-id="89b5a-153">그러나 이 값을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-153">But you can change this range:</span></span>
 
 ![](./media/app-insights-analytics-tour/change-time-range.png)
 
-<span data-ttu-id="77efa-154">where 절에서 `timestamp`를 언급하는 쿼리를 작성하여 시간 범위를 재정의합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-154">Override the time range by writing any query that mentions `timestamp` in a where-clause.</span></span> <span data-ttu-id="77efa-155">예:</span><span class="sxs-lookup"><span data-stu-id="77efa-155">For example:</span></span>
+<span data-ttu-id="89b5a-154">Hello 시간 범위를 언급 하는 쿼리를 작성 하 여 재정의 `timestamp` where 절에서.</span><span class="sxs-lookup"><span data-stu-id="89b5a-154">Override hello time range by writing any query that mentions `timestamp` in a where-clause.</span></span> <span data-ttu-id="89b5a-155">예:</span><span class="sxs-lookup"><span data-stu-id="89b5a-155">For example:</span></span>
 
 ```AIQL
 
-    // What were the slowest requests over the past 3 days?
+    // What were hello slowest requests over hello past 3 days?
     requests
-    | where timestamp > ago(3d)  // Override the time range
+    | where timestamp > ago(3d)  // Override hello time range
     | top 5 by duration
 ```
 
-<span data-ttu-id="77efa-156">시간 범위 기능은 원본 테이블 중 하나를 언급할 때마다 그 다음에 나오는 'where' 절에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-156">The time range feature is equivalent to a 'where' clause inserted after each mention of one of the source tables.</span></span>
+<span data-ttu-id="89b5a-156">hello 시간 범위 기능은 해당 tooa hello 원본 테이블 중 하나에 대 한 각 언급이 다음 절을 삽입 하는 'where' 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-156">hello time range feature is equivalent tooa 'where' clause inserted after each mention of one of hello source tables.</span></span>
 
-<span data-ttu-id="77efa-157">`ago(3d)`는 '3일 전'을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-157">`ago(3d)` means 'three days ago'.</span></span> <span data-ttu-id="77efa-158">기타 시간 단위에는 시간(`2h`, `2.5h`), 분(`25m`) 및 초(`10s`)가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-158">Other units of time include hours (`2h`, `2.5h`), minutes (`25m`), and seconds (`10s`).</span></span>
+<span data-ttu-id="89b5a-157">`ago(3d)`는 '3일 전'을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-157">`ago(3d)` means 'three days ago'.</span></span> <span data-ttu-id="89b5a-158">기타 시간 단위에는 시간(`2h`, `2.5h`), 분(`25m`) 및 초(`10s`)가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-158">Other units of time include hours (`2h`, `2.5h`), minutes (`25m`), and seconds (`10s`).</span></span>
 
-<span data-ttu-id="77efa-159">기타 예제:</span><span class="sxs-lookup"><span data-stu-id="77efa-159">Other examples:</span></span>
+<span data-ttu-id="89b5a-159">기타 예제:</span><span class="sxs-lookup"><span data-stu-id="89b5a-159">Other examples:</span></span>
 
 ```AIQL
 
@@ -159,11 +159,11 @@ ms.lasthandoff: 08/18/2017
 
 ```
 
-<span data-ttu-id="77efa-160">[날짜 및 시간 참조](https://docs.loganalytics.io/concepts/concepts_datatypes_datetime.html)</span><span class="sxs-lookup"><span data-stu-id="77efa-160">[Dates and times reference](https://docs.loganalytics.io/concepts/concepts_datatypes_datetime.html).</span></span>
+<span data-ttu-id="89b5a-160">[날짜 및 시간 참조](https://docs.loganalytics.io/concepts/concepts_datatypes_datetime.html)</span><span class="sxs-lookup"><span data-stu-id="89b5a-160">[Dates and times reference](https://docs.loganalytics.io/concepts/concepts_datatypes_datetime.html).</span></span>
 
 
-## <a name="projecthttpsdocsloganalyticsioquerylanguagequerylanguageprojectoperatorhtml-select-rename-and-compute-columns"></a><span data-ttu-id="77efa-161">[Project](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html): 열 선택, 이름 바꾸기 및 계산</span><span class="sxs-lookup"><span data-stu-id="77efa-161">[Project](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html): select, rename, and compute columns</span></span>
-<span data-ttu-id="77efa-162">원하는 열만 선택하려면 [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html)을(를) 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-162">Use [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) to pick out just the columns you want:</span></span>
+## <a name="projecthttpsdocsloganalyticsioquerylanguagequerylanguageprojectoperatorhtml-select-rename-and-compute-columns"></a><span data-ttu-id="89b5a-161">[Project](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html): 열 선택, 이름 바꾸기 및 계산</span><span class="sxs-lookup"><span data-stu-id="89b5a-161">[Project](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html): select, rename, and compute columns</span></span>
+<span data-ttu-id="89b5a-162">사용 하 여 [ `project` ](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) hello 열만 원하는 아웃 toopick:</span><span class="sxs-lookup"><span data-stu-id="89b5a-162">Use [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) toopick out just hello columns you want:</span></span>
 
 ```AIQL
 
@@ -173,7 +173,7 @@ ms.lasthandoff: 08/18/2017
 
 ![](./media/app-insights-analytics-tour/240.png)
 
-<span data-ttu-id="77efa-163">열 이름을 바꾸고 새 열을 정의할 수도 있음:</span><span class="sxs-lookup"><span data-stu-id="77efa-163">You can also rename columns and define new ones:</span></span>
+<span data-ttu-id="89b5a-163">열 이름을 바꾸고 새 열을 정의할 수도 있음:</span><span class="sxs-lookup"><span data-stu-id="89b5a-163">You can also rename columns and define new ones:</span></span>
 
 ```AIQL
 
@@ -188,15 +188,15 @@ ms.lasthandoff: 08/18/2017
 
 ![result](./media/app-insights-analytics-tour/270.png)
 
-* <span data-ttu-id="77efa-165">열 이름은 `['...']` 또는 `["..."]`와 같이 대괄호로 묶은 경우 공백이나 기호를 포함할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-165">Column names can include spaces or symbols if they are bracketed like this: `['...']` or `["..."]`</span></span>
-* <span data-ttu-id="77efa-166">`%` 은(는) 일반적인 모듈로 연산자입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-166">`%` is the usual modulo operator.</span></span>
-* <span data-ttu-id="77efa-167">`1d` (한 자릿수, 'd' 한 개)은(는) 하루를 의미하는 시간 간격 리터럴입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-167">`1d` (that's a digit one, then a 'd') is a timespan literal meaning one day.</span></span> <span data-ttu-id="77efa-168">기타 시간 간격 리터럴에는 `12h`, `30m`, `10s`, `0.01s` 등이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-168">Here are some more timespan literals: `12h`, `30m`, `10s`, `0.01s`.</span></span>
-* <span data-ttu-id="77efa-169">`floor`(별칭 `bin`)은(는) 값을 사용자가 입력하는 기준 값에 가장 가까운 낮은 배수로 반올림합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-169">`floor` (alias `bin`) rounds a value down to the nearest multiple of the base value you provide.</span></span> <span data-ttu-id="77efa-170">따라서 `floor(aTime, 1s)` 은(는) 시간을 가장 가까운 초로 반올림합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-170">So `floor(aTime, 1s)` rounds a time down to the nearest second.</span></span>
+* <span data-ttu-id="89b5a-165">열 이름은 `['...']` 또는 `["..."]`와 같이 대괄호로 묶은 경우 공백이나 기호를 포함할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-165">Column names can include spaces or symbols if they are bracketed like this: `['...']` or `["..."]`</span></span>
+* <span data-ttu-id="89b5a-166">`%`모듈로 연산자는 일반적인는 hello입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-166">`%` is hello usual modulo operator.</span></span>
+* <span data-ttu-id="89b5a-167">`1d` (한 자릿수, 'd' 한 개)은(는) 하루를 의미하는 시간 간격 리터럴입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-167">`1d` (that's a digit one, then a 'd') is a timespan literal meaning one day.</span></span> <span data-ttu-id="89b5a-168">기타 시간 간격 리터럴에는 `12h`, `30m`, `10s`, `0.01s` 등이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-168">Here are some more timespan literals: `12h`, `30m`, `10s`, `0.01s`.</span></span>
+* <span data-ttu-id="89b5a-169">`floor`(별칭 `bin`) 값 아래로 toohello hello 제공 하는 기준 값의 가장 가까운 배수로 반올림 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-169">`floor` (alias `bin`) rounds a value down toohello nearest multiple of hello base value you provide.</span></span> <span data-ttu-id="89b5a-170">따라서 `floor(aTime, 1s)` 초 가장 가까운 toohello 다운 시간을 반올림 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-170">So `floor(aTime, 1s)` rounds a time down toohello nearest second.</span></span>
 
-<span data-ttu-id="77efa-171">식은 일반적인 연산자(`+`,`-`, ...)를 모두 포함할 수 있으며, 유용한 함수가 다양하게 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-171">Expressions can include all the usual operators (`+`, `-`, ...), and there's a range of useful functions.</span></span>
+<span data-ttu-id="89b5a-171">식은 모든 hello 일반적인 연산자를 포함할 수 있습니다 (`+`, `-`,...)를 다양 한 유용한 함수가 이며 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-171">Expressions can include all hello usual operators (`+`, `-`, ...), and there's a range of useful functions.</span></span>
 
-## <a name="extend"></a><span data-ttu-id="77efa-172">Extend</span><span class="sxs-lookup"><span data-stu-id="77efa-172">Extend</span></span>
-<span data-ttu-id="77efa-173">기존 열에 열을 추가하기만 하려면 [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html)을(를) 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-173">If you just want to add columns to the existing ones, use [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html):</span></span>
+## <a name="extend"></a><span data-ttu-id="89b5a-172">Extend</span><span class="sxs-lookup"><span data-stu-id="89b5a-172">Extend</span></span>
+<span data-ttu-id="89b5a-173">사용 하 여 려는 스토리를 기존 tooadd 열 toohello 경우 [ `extend` ](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html):</span><span class="sxs-lookup"><span data-stu-id="89b5a-173">If you just want tooadd columns toohello existing ones, use [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html):</span></span>
 
 ```AIQL
 
@@ -205,11 +205,11 @@ ms.lasthandoff: 08/18/2017
     | extend timeOfDay = floor(timestamp % 1d, 1s)
 ```
 
-<span data-ttu-id="77efa-174">기존 열을 모두 유지하려는 경우 [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html)을(를) 사용하면 [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html)에 비해 표시되는 정보가 상세하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-174">Using [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html) is less verbose than [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) if you want to keep all the existing columns.</span></span>
+<span data-ttu-id="89b5a-174">사용 하 여 [ `extend` ](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html) 보다 덜 자세 [ `project` ](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) 모든 기존 열을 hello tookeep 하려는 경우.</span><span class="sxs-lookup"><span data-stu-id="89b5a-174">Using [`extend`](https://docs.loganalytics.io/queryLanguage/query_language_extendoperator.html) is less verbose than [`project`](https://docs.loganalytics.io/queryLanguage/query_language_projectoperator.html) if you want tookeep all hello existing columns.</span></span>
 
-### <a name="convert-to-local-time"></a><span data-ttu-id="77efa-175">현지 시간으로 변환</span><span class="sxs-lookup"><span data-stu-id="77efa-175">Convert to local time</span></span>
+### <a name="convert-toolocal-time"></a><span data-ttu-id="89b5a-175">Toolocal 시간으로 변환</span><span class="sxs-lookup"><span data-stu-id="89b5a-175">Convert toolocal time</span></span>
 
-<span data-ttu-id="77efa-176">타임스탬프는 항상 UTC 기준입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-176">Timestamps are always in UTC.</span></span> <span data-ttu-id="77efa-177">따라서 미국 태평양 연안에 있으며 계절이 겨울이면 다음과 같이 나타낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-177">So if you're on the US Pacific coast and it's winter, you might like this:</span></span>
+<span data-ttu-id="89b5a-176">타임스탬프는 항상 UTC 기준입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-176">Timestamps are always in UTC.</span></span> <span data-ttu-id="89b5a-177">따라서 hello 미국 태평양 coast에 속하고 겨울 인 경우 사용자가 좋아할 만한이:</span><span class="sxs-lookup"><span data-stu-id="89b5a-177">So if you're on hello US Pacific coast and it's winter, you might like this:</span></span>
 
 ```AIQL
 
@@ -219,47 +219,47 @@ ms.lasthandoff: 08/18/2017
 ```
 
 
-## <a name="summarizehttpsdocsloganalyticsioquerylanguagequerylanguagesummarizeoperatorhtml-aggregate-groups-of-rows"></a><span data-ttu-id="77efa-178">[요약](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html): 행 그룹 집계</span><span class="sxs-lookup"><span data-stu-id="77efa-178">[Summarize](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html): aggregate groups of rows</span></span>
-<span data-ttu-id="77efa-179">`Summarize` 은(는) 행 그룹에서 지정된 *집계 함수* 를 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-179">`Summarize` applies a specified *aggregation function* over groups of rows.</span></span>
+## <a name="summarizehttpsdocsloganalyticsioquerylanguagequerylanguagesummarizeoperatorhtml-aggregate-groups-of-rows"></a><span data-ttu-id="89b5a-178">[요약](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html): 행 그룹 집계</span><span class="sxs-lookup"><span data-stu-id="89b5a-178">[Summarize](https://docs.loganalytics.io/queryLanguage/query_language_summarizeoperator.html): aggregate groups of rows</span></span>
+<span data-ttu-id="89b5a-179">`Summarize` 은(는) 행 그룹에서 지정된 *집계 함수* 를 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-179">`Summarize` applies a specified *aggregation function* over groups of rows.</span></span>
 
-<span data-ttu-id="77efa-180">예를 들어 웹앱이 요청에 응답하는 데 걸리는 시간은 `duration`필드에 보고됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-180">For example, the time your web app takes to respond to a request is reported in the field `duration`.</span></span> <span data-ttu-id="77efa-181">모든 요청에 대한 평균 응답 시간을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-181">Let's see the average response time to all requests:</span></span>
+<span data-ttu-id="89b5a-180">예를 들어 hello 웹 앱은 toorespond tooa 요청은 보고 된 시간 hello 필드에 `duration`합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-180">For example, hello time your web app takes toorespond tooa request is reported in hello field `duration`.</span></span> <span data-ttu-id="89b5a-181">살펴보겠습니다 hello 평균 응답 시간 tooall 요청:</span><span class="sxs-lookup"><span data-stu-id="89b5a-181">Let's see hello average response time tooall requests:</span></span>
 
 ![](./media/app-insights-analytics-tour/410.png)
 
-<span data-ttu-id="77efa-182">또는 결과를 다양한 이름의 요청으로 분리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-182">Or we could separate the result into requests of different names:</span></span>
+<span data-ttu-id="89b5a-182">또는 서로 다른 이름의 요청으로 hello 결과 분리 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-182">Or we could separate hello result into requests of different names:</span></span>
 
 ![](./media/app-insights-analytics-tour/420.png)
 
-<span data-ttu-id="77efa-183">`Summarize`은(는) 스트림의 데이터 요소를 `by` 절에서 동일하게 평가하는 그룹으로 수집합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-183">`Summarize` collects the data points in the stream into groups for which the `by` clause evaluates equally.</span></span> <span data-ttu-id="77efa-184">`by` 식의 각 값(예: 위 예제의 경우 각 작업 이름)은 결과 테이블의 행이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-184">Each value in the `by` expression - each operation name in the above example - results in a row in the result table.</span></span>
+<span data-ttu-id="89b5a-183">`Summarize`수집은 hello에 대 한 그룹으로 hello 스트림의 데이터 요소 hello `by` 절이 동일 하 게 평가 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-183">`Summarize` collects hello data points in hello stream into groups for which hello `by` clause evaluates equally.</span></span> <span data-ttu-id="89b5a-184">द क र hello `by` 식을-hello 위 예제에서에서 각 작업 이름-hello 결과 테이블의 행에 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-184">Each value in hello `by` expression - each operation name in hello above example - results in a row in hello result table.</span></span>
 
-<span data-ttu-id="77efa-185">또는 하루 중 시간으로 결과를 그룹화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-185">Or we could group results by time of day:</span></span>
+<span data-ttu-id="89b5a-185">또는 하루 중 시간으로 결과를 그룹화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-185">Or we could group results by time of day:</span></span>
 
 ![](./media/app-insights-analytics-tour/430.png)
 
-<span data-ttu-id="77efa-186">`bin` 함수(즉, `floor`)를 사용하는 방법을 알아보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-186">Notice how we're using the `bin` function (aka `floor`).</span></span> <span data-ttu-id="77efa-187">`by timestamp`을(를) 사용하면 모든 입력 행이 고유한 작은 그룹이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-187">If we just used `by timestamp`, every input row would end up in its own little group.</span></span> <span data-ttu-id="77efa-188">시간 또는 숫자와 같은 임의 연속 스칼라의 경우 연속되는 범위를 관리할 수 있는 불연속 값의 수로 나누어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-188">For any continuous scalar like times or numbers, we have to break the continuous range into a manageable number of discrete values.</span></span> <span data-ttu-id="77efa-189">익숙한 자리 내림 `floor` 함수인 `bin`은 이 작업을 수행하는 가장 쉬운 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-189">`bin` - which is just the familiar rounding-down `floor` function - is the easiest way to do that.</span></span>
+<span data-ttu-id="89b5a-186">Hello 사용 하는지 어떻게 알 `bin` 함수 (즉, `floor`).</span><span class="sxs-lookup"><span data-stu-id="89b5a-186">Notice how we're using hello `bin` function (aka `floor`).</span></span> <span data-ttu-id="89b5a-187">`by timestamp`을(를) 사용하면 모든 입력 행이 고유한 작은 그룹이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-187">If we just used `by timestamp`, every input row would end up in its own little group.</span></span> <span data-ttu-id="89b5a-188">모든 연속 스칼라 숫자 like 시간이 나 서로 다른 관리 가능한 수의 불연속 값으로 toobreak hello 연속 범위에 있다고 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-188">For any continuous scalar like times or numbers, we have toobreak hello continuous range into a manageable number of discrete values.</span></span> <span data-ttu-id="89b5a-189">`bin`-방금 hello 친숙 한 반올림 다운은 `floor` 함수-hello 가장 쉬운 방법은 toodo은입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-189">`bin` - which is just hello familiar rounding-down `floor` function - is hello easiest way toodo that.</span></span>
 
-<span data-ttu-id="77efa-190">동일한 기술을 사용하여 문자열의 범위를 줄일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-190">We can use the same technique to reduce ranges of strings:</span></span>
+<span data-ttu-id="89b5a-190">사용 하는 문자열의 동일한 기술을 tooreduce 범위 hello:</span><span class="sxs-lookup"><span data-stu-id="89b5a-190">We can use hello same technique tooreduce ranges of strings:</span></span>
 
 ![](./media/app-insights-analytics-tour/440.png)
 
-<span data-ttu-id="77efa-191">`name=`을(를) 사용하여 집계 식 또는 by 절에서 결과 열의 이름을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-191">Notice that you can use `name=` to set the name of a result column, either in the aggregation expressions or the by-clause.</span></span>
+<span data-ttu-id="89b5a-191">사용할 수 있는 알림 `name=` tooset hello 이름 hello 집계 식 또는 hello by-절에 결과 열입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-191">Notice that you can use `name=` tooset hello name of a result column, either in hello aggregation expressions or hello by-clause.</span></span>
 
-## <a name="counting-sampled-data"></a><span data-ttu-id="77efa-192">샘플링된 데이터 수 계산</span><span class="sxs-lookup"><span data-stu-id="77efa-192">Counting sampled data</span></span>
-<span data-ttu-id="77efa-193">`sum(itemCount)` 이벤트 수에 대한 권장 집계입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-193">`sum(itemCount)` is the recommended aggregation to count events.</span></span> <span data-ttu-id="77efa-194">대부분의 경우 itemCount=1이므로 함수는 단순히 그룹의 행 수를 계산합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-194">In many cases, itemCount==1, so the function simply counts up the number of rows in the group.</span></span> <span data-ttu-id="77efa-195">하지만 [샘플링](app-insights-sampling.md)이 작동 중인 경우에는 Application Insights에서 원래 이벤트의 일부만 데이터 요소로 유지되므로 각 데이터 요소에 `itemCount`개의 이벤트가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-195">But when [sampling](app-insights-sampling.md) is in operation, only a fraction of the original events are retained as data points in Application Insights, so that for each data point you see, there are `itemCount` events.</span></span>
+## <a name="counting-sampled-data"></a><span data-ttu-id="89b5a-192">샘플링된 데이터 수 계산</span><span class="sxs-lookup"><span data-stu-id="89b5a-192">Counting sampled data</span></span>
+<span data-ttu-id="89b5a-193">`sum(itemCount)`hello 권장 집계 toocount 이벤트입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-193">`sum(itemCount)` is hello recommended aggregation toocount events.</span></span> <span data-ttu-id="89b5a-194">대부분의 경우 itemCount 목록을 = = 1 이면 hello 함수를 단순히 hello hello 그룹의 행 수를 계산 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-194">In many cases, itemCount==1, so hello function simply counts up hello number of rows in hello group.</span></span> <span data-ttu-id="89b5a-195">되지만 [샘플링](app-insights-sampling.md) 은 작업에서 hello 원래 이벤트의 일부만 변수로 유지 됩니다 Application Insights에서 데이터 요소 참조 하면 각 데이터 요소에 대 한 개가 되도록 `itemCount` 이벤트입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-195">But when [sampling](app-insights-sampling.md) is in operation, only a fraction of hello original events are retained as data points in Application Insights, so that for each data point you see, there are `itemCount` events.</span></span>
 
-<span data-ttu-id="77efa-196">예를 들어 샘플링에서 원래 이벤트의 75%를 삭제하는 경우 유지되는 레코드에서 itemCount==4가 됩니다. 즉, 유지된 모든 레코드마다 4개의 원본 레코드가 있게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-196">For example, if sampling discards 75% of the original events, then itemCount==4 in the retained records - that is, for every retained record, there were four original records.</span></span>
+<span data-ttu-id="89b5a-196">예를 들어 샘플링 hello 원래 이벤트가 다음 itemCount의 75%를 삭제 하는 경우 = = 4 hello 유지 레코드-즉, 보존 된 모든 레코드에 대해 있었습니다 4 개의 원래 레코드입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-196">For example, if sampling discards 75% of hello original events, then itemCount==4 in hello retained records - that is, for every retained record, there were four original records.</span></span>
 
-<span data-ttu-id="77efa-197">적응 샘플링을 사용하면 응용 프로그램이 과도하게 사용되는 기간 동안 itemCount가 더 높아집니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-197">Adaptive sampling causes itemCount to be higher during periods when your application is being heavily used.</span></span>
+<span data-ttu-id="89b5a-197">적응 샘플링 itemCount toobe 높은 경우 응용 프로그램 사용이 기간 동안 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-197">Adaptive sampling causes itemCount toobe higher during periods when your application is being heavily used.</span></span>
 
-<span data-ttu-id="77efa-198">따라서 itemCount를 합하면 원래 이벤트 수에 대한 적절한 추정치가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-198">Summing up itemCount therefore gives a good estimate of the original number of events.</span></span>
+<span data-ttu-id="89b5a-198">이벤트의 hello 원래 수의 적절 한 예측 데이터를 제공 따라서 itemCount를 요약 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-198">Summing up itemCount therefore gives a good estimate of hello original number of events.</span></span>
 
 ![](./media/app-insights-analytics-tour/510.png)
 
-<span data-ttu-id="77efa-199">그룹의 행 수를 계산하려는 경우 `count()` 집계(및 개수 계산 작업)도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-199">There's also a `count()` aggregation (and a count operation), for cases where you really do want to count the number of rows in a group.</span></span>
+<span data-ttu-id="89b5a-199">또한 한 `count()` 집계 (및 count 연산)을 실제로 수행 하려는 경우 toocount hello 그룹의 행 수에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-199">There's also a `count()` aggregation (and a count operation), for cases where you really do want toocount hello number of rows in a group.</span></span>
 
-<span data-ttu-id="77efa-200">[집계 함수](https://docs.loganalytics.io/learn/tutorials/aggregations.html)의 범위가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-200">There's a range of [aggregation functions](https://docs.loganalytics.io/learn/tutorials/aggregations.html).</span></span>
+<span data-ttu-id="89b5a-200">[집계 함수](https://docs.loganalytics.io/learn/tutorials/aggregations.html)의 범위가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-200">There's a range of [aggregation functions](https://docs.loganalytics.io/learn/tutorials/aggregations.html).</span></span>
 
-## <a name="charting-the-results"></a><span data-ttu-id="77efa-201">결과 차트로 작성</span><span class="sxs-lookup"><span data-stu-id="77efa-201">Charting the results</span></span>
+## <a name="charting-hello-results"></a><span data-ttu-id="89b5a-201">Hello 결과 차트</span><span class="sxs-lookup"><span data-stu-id="89b5a-201">Charting hello results</span></span>
 ```AIQL
 
     exceptions
@@ -267,19 +267,19 @@ ms.lasthandoff: 08/18/2017
          by bin(timestamp, 1h)
 ```
 
-<span data-ttu-id="77efa-202">기본적으로 결과는 테이블로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-202">By default, results display as a table:</span></span>
+<span data-ttu-id="89b5a-202">기본적으로 결과는 테이블로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-202">By default, results display as a table:</span></span>
 
 ![](./media/app-insights-analytics-tour/225.png)
 
-<span data-ttu-id="77efa-203">테이블 보기보다 더 효과적인 보기가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-203">We can do better than the table view.</span></span> <span data-ttu-id="77efa-204">세로 막대 옵션을 사용하여 차트 보기에서 결과를 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-204">Let's look at the results in the chart view with the vertical bar option:</span></span>
+<span data-ttu-id="89b5a-203">Hello 표 보기 보다 더 잘 수행 수입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-203">We can do better than hello table view.</span></span> <span data-ttu-id="89b5a-204">Hello 세로 막대 옵션으로 hello 차트 뷰에서 hello 결과에 대해 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-204">Let's look at hello results in hello chart view with hello vertical bar option:</span></span>
 
 ![차트를 클릭한 다음 세로 막대 차트를 선택하고 x 및 y축을 할당](./media/app-insights-analytics-tour/230.png)
 
-<span data-ttu-id="77efa-206">참고로 결과를 시간에 의해 정렬하지 않았지만(테이블 표시에서 확인 가능) 차트 표시는 언제나 날짜 및 시간을 정확한 순서로 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-206">Notice that although we didn't sort the results by time (as you can see in the table display), the chart display always shows datetimes in correct order.</span></span>
+<span data-ttu-id="89b5a-206">되지만 (보시 hello 테이블 디스플레이에서) 시간별 hello 결과 정렬 하지 않은, hello 차트 표시에는 항상 올바른 순서로 datetime 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-206">Notice that although we didn't sort hello results by time (as you can see in hello table display), hello chart display always shows datetimes in correct order.</span></span>
 
 
-## <a name="timecharts"></a><span data-ttu-id="77efa-207">시간 차트</span><span class="sxs-lookup"><span data-stu-id="77efa-207">Timecharts</span></span>
-<span data-ttu-id="77efa-208">각 시간에 발생한 이벤트 수 표시:</span><span class="sxs-lookup"><span data-stu-id="77efa-208">Show how many events there are each hour:</span></span>
+## <a name="timecharts"></a><span data-ttu-id="89b5a-207">시간 차트</span><span class="sxs-lookup"><span data-stu-id="89b5a-207">Timecharts</span></span>
+<span data-ttu-id="89b5a-208">각 시간에 발생한 이벤트 수 표시:</span><span class="sxs-lookup"><span data-stu-id="89b5a-208">Show how many events there are each hour:</span></span>
 
 ```AIQL
 
@@ -288,14 +288,14 @@ ms.lasthandoff: 08/18/2017
         by bin(timestamp, 1h)
 ```
 
-<span data-ttu-id="77efa-209">차트 표시 옵션 선택:</span><span class="sxs-lookup"><span data-stu-id="77efa-209">Select the Chart display option:</span></span>
+<span data-ttu-id="89b5a-209">Hello 차트 표시 옵션을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-209">Select hello Chart display option:</span></span>
 
 ![시간 차트](./media/app-insights-analytics-tour/080.png)
 
-## <a name="multiple-series"></a><span data-ttu-id="77efa-211">여러 계열</span><span class="sxs-lookup"><span data-stu-id="77efa-211">Multiple series</span></span>
-<span data-ttu-id="77efa-212">`summarize` 절의 여러 식은 여러 열을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-212">Multiple expressions in the `summarize` clause creates multiple columns.</span></span>
+## <a name="multiple-series"></a><span data-ttu-id="89b5a-211">여러 계열</span><span class="sxs-lookup"><span data-stu-id="89b5a-211">Multiple series</span></span>
+<span data-ttu-id="89b5a-212">Hello에서 여러 개의 식을 `summarize` 절 여러 열을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-212">Multiple expressions in hello `summarize` clause creates multiple columns.</span></span>
 
-<span data-ttu-id="77efa-213">`by` 절의 여러 식은 값의 각 조합에 대해 하나씩 여러 행을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-213">Multiple expressions in the `by` clause creates multiple rows, one for each combination of values.</span></span>
+<span data-ttu-id="89b5a-213">Hello에서 여러 개의 식을 `by` 절 값의 각 조합에 대해 하나씩 여러 개의 행을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-213">Multiple expressions in hello `by` clause creates multiple rows, one for each combination of values.</span></span>
 
 ```AIQL
 
@@ -307,14 +307,14 @@ ms.lasthandoff: 08/18/2017
 
 ![시간 및 위치별 요청 테이블](./media/app-insights-analytics-tour/090.png)
 
-### <a name="segment-a-chart-by-dimensions"></a><span data-ttu-id="77efa-215">차원으로 차트를 분할</span><span class="sxs-lookup"><span data-stu-id="77efa-215">Segment a chart by dimensions</span></span>
-<span data-ttu-id="77efa-216">문자열 열과 숫자 열이 있는 테이블을 차트화할 경우 숫자 데이터를 별도 계열 요소로 분할하는 데 문자열을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-216">If you chart a table that has a string column and a numeric column, the string can be used to split the numeric data into separate series of points.</span></span> <span data-ttu-id="77efa-217">둘 이상의 문자열 열이 있는 경우 판별자로 사용할 열을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-217">If there's more than one string column, you can choose which column to use as the discriminator.</span></span>
+### <a name="segment-a-chart-by-dimensions"></a><span data-ttu-id="89b5a-215">차원으로 차트를 분할</span><span class="sxs-lookup"><span data-stu-id="89b5a-215">Segment a chart by dimensions</span></span>
+<span data-ttu-id="89b5a-216">문자열 열과 hello 문자열에 숫자 열이 있는 테이블 차트 수 있으면 사용된 toosplit hello 숫자 데이터를 별도 일련의 점입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-216">If you chart a table that has a string column and a numeric column, hello string can be used toosplit hello numeric data into separate series of points.</span></span> <span data-ttu-id="89b5a-217">여러 개의 문자열 열 이면 hello 판별자로 어떤 열 toouse를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-217">If there's more than one string column, you can choose which column toouse as hello discriminator.</span></span>
 
 ![분석 차트 분할](./media/app-insights-analytics-tour/100.png)
 
-#### <a name="bounce-rate"></a><span data-ttu-id="77efa-219">반송률</span><span class="sxs-lookup"><span data-stu-id="77efa-219">Bounce rate</span></span>
+#### <a name="bounce-rate"></a><span data-ttu-id="89b5a-219">반송률</span><span class="sxs-lookup"><span data-stu-id="89b5a-219">Bounce rate</span></span>
 
-<span data-ttu-id="77efa-220">부울을 문자열로 변환하여 판별자로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-220">Convert a boolean to a string to use it as a discriminator:</span></span>
+<span data-ttu-id="89b5a-220">부울 tooa 문자열 toouse 변환 판별자로:</span><span class="sxs-lookup"><span data-stu-id="89b5a-220">Convert a boolean tooa string toouse it as a discriminator:</span></span>
 
 ```AIQL
 
@@ -330,17 +330,17 @@ ms.lasthandoff: 08/18/2017
     | render timechart
 ```
 
-### <a name="display-multiple-metrics"></a><span data-ttu-id="77efa-221">여러 메트릭 표시</span><span class="sxs-lookup"><span data-stu-id="77efa-221">Display multiple metrics</span></span>
-<span data-ttu-id="77efa-222">둘 이상의 숫자 열이 있는 테이블을 차트화할 경우 타임스탬프 외에도 모든 조합을 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-222">If you chart a table that has more than one numeric column, in addition to the timestamp, you can display any combination of them.</span></span>
+### <a name="display-multiple-metrics"></a><span data-ttu-id="89b5a-221">여러 메트릭 표시</span><span class="sxs-lookup"><span data-stu-id="89b5a-221">Display multiple metrics</span></span>
+<span data-ttu-id="89b5a-222">또한 toohello 타임 스탬프에 둘 이상의 숫자 열이 있는 테이블, 차트 어떠한 조합의 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-222">If you chart a table that has more than one numeric column, in addition toohello timestamp, you can display any combination of them.</span></span>
 
 ![분석 차트 분할](./media/app-insights-analytics-tour/110.png)
 
-<span data-ttu-id="77efa-224">**분할하지 않음**을 선택해야 여러 숫자 열을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-224">You must select **Don't Split** before you can select multiple numeric columns.</span></span> <span data-ttu-id="77efa-225">둘 이상의 숫자 열을 표시하면서 동시에 문자열 열로 분할할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-225">You can't split by a string column at the same time as displaying more than one numeric column.</span></span>
+<span data-ttu-id="89b5a-224">**분할하지 않음**을 선택해야 여러 숫자 열을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-224">You must select **Don't Split** before you can select multiple numeric columns.</span></span> <span data-ttu-id="89b5a-225">분할할 수 없습니다 hello에서 문자열 열에 따라 같은 시간으로 여러 개의 숫자 열을 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-225">You can't split by a string column at hello same time as displaying more than one numeric column.</span></span>
 
-## <a name="daily-average-cycle"></a><span data-ttu-id="77efa-226">일일 평균 주기</span><span class="sxs-lookup"><span data-stu-id="77efa-226">Daily average cycle</span></span>
-<span data-ttu-id="77efa-227">사용량은 평균 일에 대해 얼마나 변화합니까?</span><span class="sxs-lookup"><span data-stu-id="77efa-227">How does usage vary over the average day?</span></span>
+## <a name="daily-average-cycle"></a><span data-ttu-id="89b5a-226">일일 평균 주기</span><span class="sxs-lookup"><span data-stu-id="89b5a-226">Daily average cycle</span></span>
+<span data-ttu-id="89b5a-227">Hello 평균 하루를 통해 사용량 달라질?</span><span class="sxs-lookup"><span data-stu-id="89b5a-227">How does usage vary over hello average day?</span></span>
 
-<span data-ttu-id="77efa-228">시간으로 범주화된 시간 모듈로 하루 기준 계산 요청:</span><span class="sxs-lookup"><span data-stu-id="77efa-228">Count requests by the time modulo one day, binned into hours:</span></span>
+<span data-ttu-id="89b5a-228">개수 요청 1 일, 모듈로 hello 시간별 시간으로 범주화 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-228">Count requests by hello time modulo one day, binned into hours:</span></span>
 
 ```AIQL
 
@@ -355,12 +355,12 @@ ms.lasthandoff: 08/18/2017
 ![평균 일의 시간에 대한 꺾은선형 차트](./media/app-insights-analytics-tour/120.png)
 
 > [!NOTE]
-> <span data-ttu-id="77efa-230">참고로 현재 우리는 꺾은선형 차트에 표시하기 위해 기간을 날짜 및 시간으로 변환해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-230">Notice that we currently have to convert time durations to datetimes in order to display on a line chart.</span></span>
+> <span data-ttu-id="89b5a-230">현재 있는지 tooconvert 시간 기간 toodatetimes 순서 toodisplay에서 꺾은선형 차트를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-230">Notice that we currently have tooconvert time durations toodatetimes in order toodisplay on a line chart.</span></span>
 >
 >
 
-## <a name="compare-multiple-daily-series"></a><span data-ttu-id="77efa-231">여러 개의 일일 계열 비교</span><span class="sxs-lookup"><span data-stu-id="77efa-231">Compare multiple daily series</span></span>
-<span data-ttu-id="77efa-232">서로 다른 국가에서 시각에 따라 사용량은 어떻게 변화합니까?</span><span class="sxs-lookup"><span data-stu-id="77efa-232">How does usage vary over the time of day in different countries?</span></span>
+## <a name="compare-multiple-daily-series"></a><span data-ttu-id="89b5a-231">여러 개의 일일 계열 비교</span><span class="sxs-lookup"><span data-stu-id="89b5a-231">Compare multiple daily series</span></span>
+<span data-ttu-id="89b5a-232">어떻게는 사용 시간의 경과 따라 hello 하루 중 다른 국가에서?</span><span class="sxs-lookup"><span data-stu-id="89b5a-232">How does usage vary over hello time of day in different countries?</span></span>
 
 ```AIQL
 
@@ -376,8 +376,8 @@ ms.lasthandoff: 08/18/2017
 
 ![client_CountryOrRegion별로 분할](./media/app-insights-analytics-tour/130.png)
 
-## <a name="plot-a-distribution"></a><span data-ttu-id="77efa-234">분포 출력</span><span class="sxs-lookup"><span data-stu-id="77efa-234">Plot a distribution</span></span>
-<span data-ttu-id="77efa-235">서로 다른 길이의 세션이 몇 개 있습니까?</span><span class="sxs-lookup"><span data-stu-id="77efa-235">How many sessions are there of different lengths?</span></span>
+## <a name="plot-a-distribution"></a><span data-ttu-id="89b5a-234">분포 출력</span><span class="sxs-lookup"><span data-stu-id="89b5a-234">Plot a distribution</span></span>
+<span data-ttu-id="89b5a-235">서로 다른 길이의 세션이 몇 개 있습니까?</span><span class="sxs-lookup"><span data-stu-id="89b5a-235">How many sessions are there of different lengths?</span></span>
 
 ```AIQL
 
@@ -392,16 +392,16 @@ ms.lasthandoff: 08/18/2017
     | project d = sessionDuration + datetime("2016-01-01"), count_
 ```
 
-<span data-ttu-id="77efa-236">마지막 줄은 날짜/시간으로 변환해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-236">The last line is required to convert to datetime.</span></span> <span data-ttu-id="77efa-237">현재 차트의 x축은 날짜/시간인 경우에만 스칼라로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-237">Currently the x axis of a chart is displayed as a scalar only if it is a datetime.</span></span>
+<span data-ttu-id="89b5a-236">hello 마지막 줄은 필요한 tooconvert toodatetime입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-236">hello last line is required tooconvert toodatetime.</span></span> <span data-ttu-id="89b5a-237">현재는 차트의 hello x 축 날짜/시간 경우에 스칼라도 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-237">Currently hello x axis of a chart is displayed as a scalar only if it is a datetime.</span></span>
 
-<span data-ttu-id="77efa-238">`where` 절은 단발 세션(sessionDuration==0)을 제외하고 x축의 길이를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-238">The `where` clause excludes one-shot sessions (sessionDuration==0) and sets the length of the x-axis.</span></span>
+<span data-ttu-id="89b5a-238">hello `where` 절 제외 원 샷 세션 (sessionDuration = = 0) 및 집합 hello hello x 축의 길이입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-238">hello `where` clause excludes one-shot sessions (sessionDuration==0) and sets hello length of hello x-axis.</span></span>
 
 ![](./media/app-insights-analytics-tour/290.png)
 
-## <a name="percentileshttpsdocsloganalyticsioquerylanguagequerylanguagepercentilesaggfunctionhtml"></a>[<span data-ttu-id="77efa-239">백분위수</span><span class="sxs-lookup"><span data-stu-id="77efa-239">Percentiles</span></span>](https://docs.loganalytics.io/queryLanguage/query_language_percentiles_aggfunction.html)
-<span data-ttu-id="77efa-240">서로 다른 세션 백분위수를 다루는 기간 범위는 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="77efa-240">What ranges of durations cover different percentages of sessions?</span></span>
+## <a name="percentileshttpsdocsloganalyticsioquerylanguagequerylanguagepercentilesaggfunctionhtml"></a>[<span data-ttu-id="89b5a-239">백분위수</span><span class="sxs-lookup"><span data-stu-id="89b5a-239">Percentiles</span></span>](https://docs.loganalytics.io/queryLanguage/query_language_percentiles_aggfunction.html)
+<span data-ttu-id="89b5a-240">서로 다른 세션 백분위수를 다루는 기간 범위는 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="89b5a-240">What ranges of durations cover different percentages of sessions?</span></span>
 
-<span data-ttu-id="77efa-241">위의 쿼리를 사용하되 마지막 줄을 다음으로 바꿈:</span><span class="sxs-lookup"><span data-stu-id="77efa-241">Use the above query, but replace the last line:</span></span>
+<span data-ttu-id="89b5a-241">쿼리를 위에 hello를 사용 하 여 하지만 hello 마지막 줄을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-241">Use hello above query, but replace hello last line:</span></span>
 
 ```AIQL
 
@@ -415,17 +415,17 @@ ms.lasthandoff: 08/18/2017
     | summarize percentiles(sesh, 5, 20, 50, 80, 95)
 ```
 
-<span data-ttu-id="77efa-242">또한 둘 이상의 요청을 포함하고 있는 모든 세션을 비롯하여 정확한 그림을 가져오기 위해 where 절에서 상한을 제거했습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-242">We also removed the upper limit in the where clause, in order to get correct figures including all sessions with more than one request:</span></span>
+<span data-ttu-id="89b5a-242">또한 hello 상한값 hello 절 순서 tooget 수치 요청이 둘 이상 있는 모든 세션을 포함 하 여 해결 하는 위치에서 제거:</span><span class="sxs-lookup"><span data-stu-id="89b5a-242">We also removed hello upper limit in hello where clause, in order tooget correct figures including all sessions with more than one request:</span></span>
 
 ![result](./media/app-insights-analytics-tour/180.png)
 
-<span data-ttu-id="77efa-244">확인할 수 있는 사항:</span><span class="sxs-lookup"><span data-stu-id="77efa-244">From which we can see that:</span></span>
+<span data-ttu-id="89b5a-244">확인할 수 있는 사항:</span><span class="sxs-lookup"><span data-stu-id="89b5a-244">From which we can see that:</span></span>
 
-* <span data-ttu-id="77efa-245">세션의 5%가 3분 34초 미만의 기간을 가지고 있음;</span><span class="sxs-lookup"><span data-stu-id="77efa-245">5% of sessions have a duration of less than 3 minutes 34s;</span></span>
-* <span data-ttu-id="77efa-246">세션의 50%가 36분 미만 동안 지속</span><span class="sxs-lookup"><span data-stu-id="77efa-246">50% of sessions last less than 36 minutes;</span></span>
-* <span data-ttu-id="77efa-247">세션의 5%가 7일보다 오래 지속</span><span class="sxs-lookup"><span data-stu-id="77efa-247">5% of sessions last more than 7 days</span></span>
+* <span data-ttu-id="89b5a-245">세션의 5%가 3분 34초 미만의 기간을 가지고 있음;</span><span class="sxs-lookup"><span data-stu-id="89b5a-245">5% of sessions have a duration of less than 3 minutes 34s;</span></span>
+* <span data-ttu-id="89b5a-246">세션의 50%가 36분 미만 동안 지속</span><span class="sxs-lookup"><span data-stu-id="89b5a-246">50% of sessions last less than 36 minutes;</span></span>
+* <span data-ttu-id="89b5a-247">세션의 5%가 7일보다 오래 지속</span><span class="sxs-lookup"><span data-stu-id="89b5a-247">5% of sessions last more than 7 days</span></span>
 
-<span data-ttu-id="77efa-248">각 국가에 대해 별도의 분석을 가져오기 위해 summarize 연산자 둘 다를 통해 client_CountryOrRegion 열을 따로 가져와야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-248">To get a separate breakdown for each country, we just have to bring the client_CountryOrRegion column separately through both summarize operators:</span></span>
+<span data-ttu-id="89b5a-248">각 국가 대 한 별도 분석 tooget 연산자 요약 둘 다를 통해 개별적으로 toobring hello client_CountryOrRegion 열은:</span><span class="sxs-lookup"><span data-stu-id="89b5a-248">tooget a separate breakdown for each country, we just have toobring hello client_CountryOrRegion column separately through both summarize operators:</span></span>
 
 ```AIQL
 
@@ -442,10 +442,10 @@ ms.lasthandoff: 08/18/2017
 
 ![](./media/app-insights-analytics-tour/190.png)
 
-## <a name="join"></a><span data-ttu-id="77efa-249">Join</span><span class="sxs-lookup"><span data-stu-id="77efa-249">Join</span></span>
-<span data-ttu-id="77efa-250">요청 및 예외를 비롯한 일부 테이블에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-250">We have access to several tables, including requests and exceptions.</span></span>
+## <a name="join"></a><span data-ttu-id="89b5a-249">Join</span><span class="sxs-lookup"><span data-stu-id="89b5a-249">Join</span></span>
+<span data-ttu-id="89b5a-250">요청 및 예외를 비롯 하 여 액세스 tooseveral 테이블 했습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-250">We have access tooseveral tables, including requests and exceptions.</span></span>
 
-<span data-ttu-id="77efa-251">실패 응답을 반환하는 요청과 관련된 예외를 찾으려면 `session_Id`에 대해 테이블을 조인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-251">To find the exceptions related to a request that returned a failure response, we can join the tables on `session_Id`:</span></span>
+<span data-ttu-id="89b5a-251">toofind hello 예외 관련된 tooa 요청 실패 응답을 반환 하는 hello 테이블에 참여할 수 있습니다 `session_Id`:</span><span class="sxs-lookup"><span data-stu-id="89b5a-251">toofind hello exceptions related tooa request that returned a failure response, we can join hello tables on `session_Id`:</span></span>
 
 ```AIQL
 
@@ -456,12 +456,12 @@ ms.lasthandoff: 08/18/2017
 ```
 
 
-<span data-ttu-id="77efa-252">조인을 수행하기 전에 `project`을(를) 사용하여 필요한 열만 선택하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-252">It's good practice to use `project` to select just the columns we need before performing the join.</span></span>
-<span data-ttu-id="77efa-253">동일한 절에서 타임스탬프 열의 이름을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-253">In the same clauses, we rename the timestamp column.</span></span>
+<span data-ttu-id="89b5a-252">것이 좋습니다 toouse `project` tooselect 정당한 hello 열을 수행 하기 전에 필요한 hello 조인 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-252">It's good practice toouse `project` tooselect just hello columns we need before performing hello join.</span></span>
+<span data-ttu-id="89b5a-253">Hello에 동일한 절 hello 타임 스탬프 열의 이름을 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-253">In hello same clauses, we rename hello timestamp column.</span></span>
 
-## <a name="lethttpsdocsloganalyticsioquerylanguagequerylanguageletstatementhtml-assign-a-result-to-a-variable"></a><span data-ttu-id="77efa-254">[Let](https://docs.loganalytics.io/queryLanguage/query_language_letstatement.html): 변수에 결과 할당</span><span class="sxs-lookup"><span data-stu-id="77efa-254">[Let](https://docs.loganalytics.io/queryLanguage/query_language_letstatement.html): Assign a result to a variable</span></span>
+## <a name="lethttpsdocsloganalyticsioquerylanguagequerylanguageletstatementhtml-assign-a-result-tooa-variable"></a><span data-ttu-id="89b5a-254">[Let](https://docs.loganalytics.io/queryLanguage/query_language_letstatement.html): 결과 tooa 변수 할당</span><span class="sxs-lookup"><span data-stu-id="89b5a-254">[Let](https://docs.loganalytics.io/queryLanguage/query_language_letstatement.html): Assign a result tooa variable</span></span>
 
-<span data-ttu-id="77efa-255">`let`을 사용하여 이전 식의 일부를 분리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-255">Use `let` to separate out the parts of the previous expression.</span></span> <span data-ttu-id="77efa-256">결과는 변하지 않음:</span><span class="sxs-lookup"><span data-stu-id="77efa-256">The results are unchanged:</span></span>
+<span data-ttu-id="89b5a-255">사용 하 여 `let` tooseparate hello 이전 식의 hello 부분입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-255">Use `let` tooseparate out hello parts of hello previous expression.</span></span> <span data-ttu-id="89b5a-256">hello 결과가 변경 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-256">hello results are unchanged:</span></span>
 
 ```AIQL
 
@@ -474,10 +474,10 @@ ms.lasthandoff: 08/18/2017
 ```
 
 > [!Tip] 
-> <span data-ttu-id="77efa-257">Analytics 클라이언트에서 쿼리 부분 사이에 공백 줄을 넣지 마세요.</span><span class="sxs-lookup"><span data-stu-id="77efa-257">In the Analytics client, don't put blank lines between the parts of the query.</span></span> <span data-ttu-id="77efa-258">이 부분을 모두 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-258">Make sure to execute all of it.</span></span>
+> <span data-ttu-id="89b5a-257">Hello 분석 클라이언트에서 hello 쿼리의 hello 부분 사이 빈 줄을 넣지 마세요.</span><span class="sxs-lookup"><span data-stu-id="89b5a-257">In hello Analytics client, don't put blank lines between hello parts of hello query.</span></span> <span data-ttu-id="89b5a-258">해당 내용을 모두 tooexecute 있는지를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-258">Make sure tooexecute all of it.</span></span>
 >
 
-<span data-ttu-id="77efa-259">`toscalar`를 사용하여 단일 표 셀을 값으로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-259">Use `toscalar` to convert a single table cell to a value:</span></span>
+<span data-ttu-id="89b5a-259">사용 하 여 `toscalar` tooconvert 단일 테이블 셀 tooa 값:</span><span class="sxs-lookup"><span data-stu-id="89b5a-259">Use `toscalar` tooconvert a single table cell tooa value:</span></span>
 
 ```AIQL
 let topCities =  toscalar (
@@ -491,9 +491,9 @@ requests
 ```
 
 
-### <a name="functions"></a><span data-ttu-id="77efa-260">함수</span><span class="sxs-lookup"><span data-stu-id="77efa-260">Functions</span></span>
+### <a name="functions"></a><span data-ttu-id="89b5a-260">함수</span><span class="sxs-lookup"><span data-stu-id="89b5a-260">Functions</span></span>
 
-<span data-ttu-id="77efa-261">*Let*을 사용하여 함수를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-261">Use *Let* to define a function:</span></span>
+<span data-ttu-id="89b5a-261">사용 하 여 *Let* toodefine 함수:</span><span class="sxs-lookup"><span data-stu-id="89b5a-261">Use *Let* toodefine a function:</span></span>
 
 ```AIQL
 
@@ -506,12 +506,12 @@ requests
     | extend PST = usdate(timestamp-8h)
 ```
 
-## <a name="accessing-nested-objects"></a><span data-ttu-id="77efa-262">중첩된 개체에 액세스</span><span class="sxs-lookup"><span data-stu-id="77efa-262">Accessing nested objects</span></span>
-<span data-ttu-id="77efa-263">중첩된 개체에 쉽게 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-263">Nested objects can be accessed easily.</span></span> <span data-ttu-id="77efa-264">예를 들어 예외 스트림에서 다음과 같이 구조화된 개체가 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-264">For example, in the exceptions stream you can see structured objects like this:</span></span>
+## <a name="accessing-nested-objects"></a><span data-ttu-id="89b5a-262">중첩된 개체에 액세스</span><span class="sxs-lookup"><span data-stu-id="89b5a-262">Accessing nested objects</span></span>
+<span data-ttu-id="89b5a-263">중첩된 개체에 쉽게 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-263">Nested objects can be accessed easily.</span></span> <span data-ttu-id="89b5a-264">예를 들어 hello 예외 스트림 다음과 같이 구조화 된 개체를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-264">For example, in hello exceptions stream you can see structured objects like this:</span></span>
 
 ![result](./media/app-insights-analytics-tour/520.png)
 
-<span data-ttu-id="77efa-266">관심이 있는 속성을 선택하여 평면화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-266">You can flatten it by choosing the properties you're interested in:</span></span>
+<span data-ttu-id="89b5a-266">에 관심이 hello 속성을 선택 하 여 평면화를 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-266">You can flatten it by choosing hello properties you're interested in:</span></span>
 
 ```AIQL
 
@@ -519,13 +519,13 @@ requests
     | extend method1 = tostring(details[0].parsedStack[1].method)
 ```
 
-<span data-ttu-id="77efa-267">결과를 적절한 형식으로 캐스트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-267">Note that you need to cast the result to the appropriate type.</span></span>
+<span data-ttu-id="89b5a-267">Toocast hello 결과 toohello 적절 한 형식을 사용 해야 하는 참고 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-267">Note that you need toocast hello result toohello appropriate type.</span></span>
 
 
-## <a name="custom-properties-and-measurements"></a><span data-ttu-id="77efa-268">사용자 지정 속성 및 측정</span><span class="sxs-lookup"><span data-stu-id="77efa-268">Custom properties and measurements</span></span>
-<span data-ttu-id="77efa-269">응용 프로그램이 이벤트에 대한 [사용자 지정 차원(속성) 및 사용자 지정 측정](app-insights-api-custom-events-metrics.md#properties)에 연결되면 `customDimensions` 및 `customMeasurements` 개체에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-269">If your application attaches [custom dimensions (properties) and custom measurements](app-insights-api-custom-events-metrics.md#properties) to events, then you will see them in the `customDimensions` and `customMeasurements` objects.</span></span>
+## <a name="custom-properties-and-measurements"></a><span data-ttu-id="89b5a-268">사용자 지정 속성 및 측정</span><span class="sxs-lookup"><span data-stu-id="89b5a-268">Custom properties and measurements</span></span>
+<span data-ttu-id="89b5a-269">응용 프로그램에 연결 되 면 [사용자 지정 차원 (속성) 및 사용자 지정 측정](app-insights-api-custom-events-metrics.md#properties) tooevents, 다음에 해당 오류가 표시 hello `customDimensions` 및 `customMeasurements` 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-269">If your application attaches [custom dimensions (properties) and custom measurements](app-insights-api-custom-events-metrics.md#properties) tooevents, then you will see them in hello `customDimensions` and `customMeasurements` objects.</span></span>
 
-<span data-ttu-id="77efa-270">예를 들어 앱이 다음을 포함한 경우입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-270">For example, if your app includes:</span></span>
+<span data-ttu-id="89b5a-270">예를 들어 앱이 다음을 포함한 경우입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-270">For example, if your app includes:</span></span>
 
 ```C#
 
@@ -536,17 +536,17 @@ requests
     telemetryClient.TrackEvent("myEvent", dimensions, measurements);
 ```
 
-<span data-ttu-id="77efa-271">분석에서 이러한 값을 추출하려면:</span><span class="sxs-lookup"><span data-stu-id="77efa-271">To extract these values in Analytics:</span></span>
+<span data-ttu-id="89b5a-271">tooextract 분석에서 이러한 값:</span><span class="sxs-lookup"><span data-stu-id="89b5a-271">tooextract these values in Analytics:</span></span>
 
 ```AIQL
 
     customEvents
     | extend p1 = customDimensions.p1,
-      m1 = todouble(customMeasurements.m1) // cast to expected type
+      m1 = todouble(customMeasurements.m1) // cast tooexpected type
 
 ```
 
-<span data-ttu-id="77efa-272">사용자 지정 차원이 특정 형식인지 여부를 확인하려면</span><span class="sxs-lookup"><span data-stu-id="77efa-272">To verify whether a custom dimension is of a particular type:</span></span>
+<span data-ttu-id="89b5a-272">tooverify 특정 유형의 사용자 지정 차원 인지 여부.</span><span class="sxs-lookup"><span data-stu-id="89b5a-272">tooverify whether a custom dimension is of a particular type:</span></span>
 
 ```AIQL
 
@@ -555,50 +555,50 @@ requests
       iff(notnull(todouble(customMeasurements.m1)), ...
 ```
 
-## <a name="dashboards"></a><span data-ttu-id="77efa-273">대시보드</span><span class="sxs-lookup"><span data-stu-id="77efa-273">Dashboards</span></span>
-<span data-ttu-id="77efa-274">가장 중요한 모든 차트와 테이블을 결합하기 위해 결과를 대시보드에 고정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-274">You can pin your results to a dashboard in order to bring together all your most important charts and tables.</span></span>
+## <a name="dashboards"></a><span data-ttu-id="89b5a-273">대시보드</span><span class="sxs-lookup"><span data-stu-id="89b5a-273">Dashboards</span></span>
+<span data-ttu-id="89b5a-274">모든 가장 중요 한 차트와 테이블 함께 순서 toobring에서 결과 tooa 대시보드를 고정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-274">You can pin your results tooa dashboard in order toobring together all your most important charts and tables.</span></span>
 
-* <span data-ttu-id="77efa-275">[Azure 공유 대시보드](app-insights-dashboards.md#share-dashboards): 고정 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-275">[Azure shared dashboard](app-insights-dashboards.md#share-dashboards): Click the pin icon.</span></span> <span data-ttu-id="77efa-276">이렇게 하려면 공유 대시보드가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-276">Before you do this, you must have a shared dashboard.</span></span> <span data-ttu-id="77efa-277">Azure Portal에서 대시보드를 열거나 만들고 공유를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-277">In the Azure portal, open or create a dashboard and click Share.</span></span>
-* <span data-ttu-id="77efa-278">[Power BI 대시보드](app-insights-export-power-bi.md): 내보내기, Power BI 쿼리를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-278">[Power BI dashboard](app-insights-export-power-bi.md): Click Export, Power BI Query.</span></span> <span data-ttu-id="77efa-279">이 대체의 장점은 광범위한 원본의 다른 결과와 함께 쿼리를 표시할 수 있다는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-279">An advantage of this alternative is that you can display your query alongside other results from a wide range of sources.</span></span>
+* <span data-ttu-id="89b5a-275">[Azure 공유 대시보드](app-insights-dashboards.md#share-dashboards): hello 고정 아이콘을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-275">[Azure shared dashboard](app-insights-dashboards.md#share-dashboards): Click hello pin icon.</span></span> <span data-ttu-id="89b5a-276">이렇게 하려면 공유 대시보드가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-276">Before you do this, you must have a shared dashboard.</span></span> <span data-ttu-id="89b5a-277">Hello Azure 포털에서에서 열기 또는 대시보드를 만들 하 고 공유를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-277">In hello Azure portal, open or create a dashboard and click Share.</span></span>
+* <span data-ttu-id="89b5a-278">[Power BI 대시보드](app-insights-export-power-bi.md): 내보내기, Power BI 쿼리를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-278">[Power BI dashboard](app-insights-export-power-bi.md): Click Export, Power BI Query.</span></span> <span data-ttu-id="89b5a-279">이 대체의 장점은 광범위한 원본의 다른 결과와 함께 쿼리를 표시할 수 있다는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-279">An advantage of this alternative is that you can display your query alongside other results from a wide range of sources.</span></span>
 
-## <a name="combine-with-imported-data"></a><span data-ttu-id="77efa-280">가져온 데이터와 결합</span><span class="sxs-lookup"><span data-stu-id="77efa-280">Combine with imported data</span></span>
+## <a name="combine-with-imported-data"></a><span data-ttu-id="89b5a-280">가져온 데이터와 결합</span><span class="sxs-lookup"><span data-stu-id="89b5a-280">Combine with imported data</span></span>
 
-<span data-ttu-id="77efa-281">분석 보고서는 대시보드에서 보기 좋게 표시되지만 좀 더 이해하기 쉬운 형태로 데이터를 변환하고 싶을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-281">Analytics reports look great on the dashboard, but sometimes you want to translate the data to a more digestible form.</span></span> <span data-ttu-id="77efa-282">예를 들어 인증된 사용자는 원격 분석에서 별칭으로 식별됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-282">For example, suppose your authenticated users are identified in the telemetry by an alias.</span></span> <span data-ttu-id="77efa-283">결과에 실제 이름을 표시하고 싶을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-283">You'd like to show their real names in your results.</span></span> <span data-ttu-id="77efa-284">이렇게 하려면 별칭을 실제 이름에 매핑하는 CSV 파일이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-284">To do this, you need a CSV file that maps from the aliases to the real names.</span></span>
+<span data-ttu-id="89b5a-281">분석 보고서 hello 대시보드에서 멋진 보이지만 tootranslate hello 데이터 tooa를 원하는 경우에 따라 더 많은 양이 양식입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-281">Analytics reports look great on hello dashboard, but sometimes you want tootranslate hello data tooa more digestible form.</span></span> <span data-ttu-id="89b5a-282">예를 들어, 인증 된 사용자가 별칭으로 hello 원격 분석에서 식별 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-282">For example, suppose your authenticated users are identified in hello telemetry by an alias.</span></span> <span data-ttu-id="89b5a-283">결과에 자신의 실제 이름을 tooshow를 원할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-283">You'd like tooshow their real names in your results.</span></span> <span data-ttu-id="89b5a-284">toodo이 hello 별칭 toohello 실제 이름에서 매핑하는 CSV 파일이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-284">toodo this, you need a CSV file that maps from hello aliases toohello real names.</span></span>
 
-<span data-ttu-id="77efa-285">데이터 파일을 가져오고 표준 테이블(요청, 예외 등)처럼 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-285">You can import a data file and use it just like any of the standard tables (requests, exceptions, and so on).</span></span> <span data-ttu-id="77efa-286">자체적으로 쿼리하거나 다른 테이블과 조인합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-286">Either query it on its own, or join it with other tables.</span></span> <span data-ttu-id="77efa-287">예를 들어 usermap이라는 테이블이 있고 `realName` 및 `userId` 열이 있으면 요청 원격 분석에서 `user_AuthenticatedId` 필드를 변환하는 데 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-287">For example, if you have a table named usermap, and it has columns `realName` and `userId`, then you can use it to translate the `user_AuthenticatedId` field in the request telemetry:</span></span>
+<span data-ttu-id="89b5a-285">데이터 파일을 가져오고 (요청, 예외 및 등) hello 표준 테이블 처럼 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-285">You can import a data file and use it just like any of hello standard tables (requests, exceptions, and so on).</span></span> <span data-ttu-id="89b5a-286">자체적으로 쿼리하거나 다른 테이블과 조인합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-286">Either query it on its own, or join it with other tables.</span></span> <span data-ttu-id="89b5a-287">예를 들어 usermap, 라는 테이블이 있고에 열 `realName` 및 `userId`, tootranslate hello를 사용할 수 있습니다 `user_AuthenticatedId` hello 요청 원격 분석에서 필드:</span><span class="sxs-lookup"><span data-stu-id="89b5a-287">For example, if you have a table named usermap, and it has columns `realName` and `userId`, then you can use it tootranslate hello `user_AuthenticatedId` field in hello request telemetry:</span></span>
 
 ```AIQL
 
     requests
     | where notempty(user_AuthenticatedId)
     | project userId = user_AuthenticatedId
-      // get the realName field from the usermap table:
+      // get hello realName field from hello usermap table:
     | join kind=leftouter ( usermap ) on userId
       // count transactions by name:
     | summarize count() by realName
 ```
 
-<span data-ttu-id="77efa-288">테이블을 가져오려면 스키마 블레이드의 **기타 데이터 원본** 아래에서 지침에 따라 데이터 샘플을 업로드하여 새 데이터 원본을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-288">To import a table, in the Schema blade, under **Other Data Sources**, follow the instructions to add a new data source, by uploading a sample of your data.</span></span> <span data-ttu-id="77efa-289">그런 다음 이 정의를 사용하여 테이블을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-289">Then you can use this definition to upload tables.</span></span>
+<span data-ttu-id="89b5a-288">tooimport hello 스키마 블레이드에서 테이블에서 **기타 데이터 소스**, hello 지침 tooadd 새 데이터 원본을 데이터의 샘플을 업로드 하 여 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-288">tooimport a table, in hello Schema blade, under **Other Data Sources**, follow hello instructions tooadd a new data source, by uploading a sample of your data.</span></span> <span data-ttu-id="89b5a-289">그런 다음이 정의 tooupload 테이블을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-289">Then you can use this definition tooupload tables.</span></span>
 
-<span data-ttu-id="77efa-290">가져오기 기능은 현재 미리 보기 상태이므로 처음에 "기타 데이터 원본" 아래 "문의처" 링크가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-290">The import feature is currently in preview, so you will initially see a "Contact us" link under "Other data sources."</span></span> <span data-ttu-id="77efa-291">이 링크를 사용하여 미리 보기 프로그램에 등록하고 나면 링크가 "새 데이터 원본 추가" 단추로 바뀝니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-291">Use this to sign up to the preview program, and the link will then be replaced by an "Add new data source" button.</span></span>
+<span data-ttu-id="89b5a-290">hello 가져오기 기능은 현재 미리 보기에서 다른 데이터 원본"."에서 "사용자 의견" 링크 처음 되므로</span><span class="sxs-lookup"><span data-stu-id="89b5a-290">hello import feature is currently in preview, so you will initially see a "Contact us" link under "Other data sources."</span></span> <span data-ttu-id="89b5a-291">이 toosign toohello 미리 보기 프로그램을 사용 하 고 hello 링크 "새 데이터 소스 추가" 단추는으로 대체 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-291">Use this toosign up toohello preview program, and hello link will then be replaced by an "Add new data source" button.</span></span>
 
 
-## <a name="tables"></a><span data-ttu-id="77efa-292">테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-292">Tables</span></span>
-<span data-ttu-id="77efa-293">앱에서 수신하는 원격 분석의 스트림이 여러 테이블을 통해 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-293">The stream of telemetry received from your app is accessible through several tables.</span></span> <span data-ttu-id="77efa-294">각 테이블에 대해 사용할 수 있는 속성의 스키마는 창의 왼쪽에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-294">The schema of properties available for each table is visible at the left of the window.</span></span>
+## <a name="tables"></a><span data-ttu-id="89b5a-292">테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-292">Tables</span></span>
+<span data-ttu-id="89b5a-293">응용 프로그램에서 수신 하는 원격 분석의 hello 스트림이 여러 테이블을 통해 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-293">hello stream of telemetry received from your app is accessible through several tables.</span></span> <span data-ttu-id="89b5a-294">각 테이블에 대해 사용할 수 있는 속성의 hello 스키마 hello 창의 hello 왼쪽에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-294">hello schema of properties available for each table is visible at hello left of hello window.</span></span>
 
-### <a name="requests-table"></a><span data-ttu-id="77efa-295">요청 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-295">Requests table</span></span>
-<span data-ttu-id="77efa-296">웹 앱 및 페이지 이름별 세그먼트에 대 한 HTTP 요청 수 계산:</span><span class="sxs-lookup"><span data-stu-id="77efa-296">Count HTTP requests to your web app and segment by page name:</span></span>
+### <a name="requests-table"></a><span data-ttu-id="89b5a-295">요청 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-295">Requests table</span></span>
+<span data-ttu-id="89b5a-296">Count HTTP 요청 tooyour web app 및 페이지 이름으로 세그먼트:</span><span class="sxs-lookup"><span data-stu-id="89b5a-296">Count HTTP requests tooyour web app and segment by page name:</span></span>
 
 ![이름별로 분할된 요청 수 계산](./media/app-insights-analytics-tour/analytics-count-requests.png)
 
-<span data-ttu-id="77efa-298">가장 많이 실패하는 요청 찾기:</span><span class="sxs-lookup"><span data-stu-id="77efa-298">Find the requests that fail most:</span></span>
+<span data-ttu-id="89b5a-298">가장에 실패 하는 hello 요청을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-298">Find hello requests that fail most:</span></span>
 
 ![이름별로 분할된 요청 수 계산](./media/app-insights-analytics-tour/analytics-failed-requests.png)
 
-### <a name="custom-events-table"></a><span data-ttu-id="77efa-300">사용자 지정 이벤트 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-300">Custom events table</span></span>
-<span data-ttu-id="77efa-301">사용자 고유의 이벤트를 보내기 위해 [Trackevent()](app-insights-api-custom-events-metrics.md#trackevent)를 사용하면 이 테이블에서 이벤트를 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-301">If you use [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) to send your own events, you can read them from this table.</span></span>
+### <a name="custom-events-table"></a><span data-ttu-id="89b5a-300">사용자 지정 이벤트 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-300">Custom events table</span></span>
+<span data-ttu-id="89b5a-301">사용 하는 경우 [의 trackevent ()](app-insights-api-custom-events-metrics.md#trackevent) toosend 사용자 고유의 이벤트를 읽을 수 있습니다이 테이블에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-301">If you use [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) toosend your own events, you can read them from this table.</span></span>
 
-<span data-ttu-id="77efa-302">응용 프로그램 코드에 이러한 줄을 포함하는 사례:</span><span class="sxs-lookup"><span data-stu-id="77efa-302">Let's take an example where your app code contains these lines:</span></span>
+<span data-ttu-id="89b5a-302">응용 프로그램 코드에 이러한 줄을 포함하는 사례:</span><span class="sxs-lookup"><span data-stu-id="89b5a-302">Let's take an example where your app code contains these lines:</span></span>
 
 ```C#
 
@@ -609,66 +609,66 @@ requests
            {"querytime", totalTime}})
 ```
 
-<span data-ttu-id="77efa-303">이러한 이벤트의 빈도 표시:</span><span class="sxs-lookup"><span data-stu-id="77efa-303">Display the frequency of these events:</span></span>
+<span data-ttu-id="89b5a-303">이러한 이벤트의 hello 빈도 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-303">Display hello frequency of these events:</span></span>
 
 ![사용자 지정 이벤트의 표시 속도](./media/app-insights-analytics-tour/analytics-custom-events-rate.png)
 
-<span data-ttu-id="77efa-305">측정값 및 차원을 이벤트에서 추출:</span><span class="sxs-lookup"><span data-stu-id="77efa-305">Extract measurements and dimensions from the events:</span></span>
+<span data-ttu-id="89b5a-305">측정값 및 차원을 hello 이벤트에서 추출:</span><span class="sxs-lookup"><span data-stu-id="89b5a-305">Extract measurements and dimensions from hello events:</span></span>
 
 ![사용자 지정 이벤트의 표시 속도](./media/app-insights-analytics-tour/analytics-custom-events-dimensions.png)
 
-### <a name="custom-metrics-table"></a><span data-ttu-id="77efa-307">사용자 지정 메트릭 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-307">Custom metrics table</span></span>
-<span data-ttu-id="77efa-308">사용자 지정 메트릭 값을 보내기 위해 [TrackMetric()](app-insights-api-custom-events-metrics.md#trackmetric)을 사용하면 **customMetrics** 스트림에 결과가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-308">If you are using [TrackMetric()](app-insights-api-custom-events-metrics.md#trackmetric) to send your own metric values, you’ll find its results in the **customMetrics** stream.</span></span> <span data-ttu-id="77efa-309">예:</span><span class="sxs-lookup"><span data-stu-id="77efa-309">For example:</span></span>  
+### <a name="custom-metrics-table"></a><span data-ttu-id="89b5a-307">사용자 지정 메트릭 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-307">Custom metrics table</span></span>
+<span data-ttu-id="89b5a-308">사용 중인 경우 [trackmetric ()](app-insights-api-custom-events-metrics.md#trackmetric) toosend 메트릭 값을 직접 hello에서 그 결과 확인할 수 있습니다 **customMetrics** 스트림 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-308">If you are using [TrackMetric()](app-insights-api-custom-events-metrics.md#trackmetric) toosend your own metric values, you’ll find its results in hello **customMetrics** stream.</span></span> <span data-ttu-id="89b5a-309">예:</span><span class="sxs-lookup"><span data-stu-id="89b5a-309">For example:</span></span>  
 
 ![Application Insights 분석의 사용자 지정 메트릭](./media/app-insights-analytics-tour/analytics-custom-metrics.png)
 
 > [!NOTE]
-> <span data-ttu-id="77efa-311">[메트릭 탐색기](app-insights-metrics-explorer.md)에서 원격 분석의 모든 형식에 연결된 모든 사용자 지정 측정값은 `TrackMetric()`을(를) 사용하여 전송되는 메트릭과 함께 메트릭 블레이드에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-311">In [Metrics Explorer](app-insights-metrics-explorer.md), all custom measurements attached to any type of telemetry appear together in the metrics blade along with metrics sent using `TrackMetric()`.</span></span> <span data-ttu-id="77efa-312">하지만 분석에서 사용자 지정 측정은 이벤트, 요청 등 수행된 형식의 원격 분석에 연결되고 TrackMetric에 의해 전송된 메트릭은 해당 스트림에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-312">But in Analytics, custom measurements are still attached to whichever type of telemetry they were carried on - events or requests, and so on - while metrics sent by TrackMetric appear in their own stream.</span></span>
+> <span data-ttu-id="89b5a-311">[메트릭 탐색기](app-insights-metrics-explorer.md), 연결 된 tooany 유형의 원격 분석 메트릭 사용 하 여 보낸 함께 hello 메트릭 블레이드에 함께 표시 하는 모든 사용자 지정 측정 `TrackMetric()`합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-311">In [Metrics Explorer](app-insights-metrics-explorer.md), all custom measurements attached tooany type of telemetry appear together in hello metrics blade along with metrics sent using `TrackMetric()`.</span></span> <span data-ttu-id="89b5a-312">분석에서 사용자 지정 측정은 여전히 하지만 연결 toowhichever 유형의 원격 분석 자신의 스트림의 TrackMetric 전송한 메트릭을 표시 하는 동안 (이벤트 또는 요청, 및 등)에 수행 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-312">But in Analytics, custom measurements are still attached toowhichever type of telemetry they were carried on - events or requests, and so on - while metrics sent by TrackMetric appear in their own stream.</span></span>
 >
 >
 
-### <a name="performance-counters-table"></a><span data-ttu-id="77efa-313">성능 카운터 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-313">Performance counters table</span></span>
-<span data-ttu-id="77efa-314">[성능 카운터](app-insights-performance-counters.md)는 CPU, 메모리, 네트워크 사용률 등 앱에 대한 기본 시스템 메트릭을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-314">[Performance counters](app-insights-performance-counters.md) show you basic system metrics for your app, such as CPU, memory, and network utilization.</span></span> <span data-ttu-id="77efa-315">사용자 지정 카운터를 포함하여 추가 카운터를 보내도록 SDK를 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-315">You can configure the SDK to send additional counters, including your own custom counters.</span></span>
+### <a name="performance-counters-table"></a><span data-ttu-id="89b5a-313">성능 카운터 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-313">Performance counters table</span></span>
+<span data-ttu-id="89b5a-314">[성능 카운터](app-insights-performance-counters.md)는 CPU, 메모리, 네트워크 사용률 등 앱에 대한 기본 시스템 메트릭을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-314">[Performance counters](app-insights-performance-counters.md) show you basic system metrics for your app, such as CPU, memory, and network utilization.</span></span> <span data-ttu-id="89b5a-315">Hello SDK toosend 추가 카운터를 사용자 지정 카운터를 포함 하 여 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-315">You can configure hello SDK toosend additional counters, including your own custom counters.</span></span>
 
-<span data-ttu-id="77efa-316">**performanceCounters** 스키마는 `category`, `counter` 이름 및 각 성능 카운터의 `instance` 이름을 노출합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-316">The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter.</span></span> <span data-ttu-id="77efa-317">카운터 인스턴스 이름은 일부 성능 카운터에만 적용할 수 있으며 일반적으로 개수와 관련된 프로세스의 이름을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-317">Counter instance names are only applicable to some performance counters, and typically indicate the name of the process to which the count relates.</span></span> <span data-ttu-id="77efa-318">각 응용 프로그램에 대한 원격 분석 데이터에는 해당 응용 프로그램에 대한 카운터에만 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-318">In the telemetry for each application, you’ll see only the counters for that application.</span></span> <span data-ttu-id="77efa-319">예를 들면 어떤 카운터를 사용할 수 있는지 알아보기:</span><span class="sxs-lookup"><span data-stu-id="77efa-319">For example, to see what counters are available:</span></span>
+<span data-ttu-id="89b5a-316">hello **performanceCounters** 스키마는 hello 노출 `category`, `counter` 이름 및 `instance` 각 성능 카운터의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-316">hello **performanceCounters** schema exposes hello `category`, `counter` name, and `instance` name of each performance counter.</span></span> <span data-ttu-id="89b5a-317">카운터 인스턴스 이름이 해당 toosome 성능 카운터만 되며 일반적으로 hello 프로세스 toowhich hello 수의 hello 이름을 연결 됨을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-317">Counter instance names are only applicable toosome performance counters, and typically indicate hello name of hello process toowhich hello count relates.</span></span> <span data-ttu-id="89b5a-318">각 응용 프로그램에 대 한 hello 원격 분석에서 해당 응용 프로그램에 대 한 hello 카운터에만 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-318">In hello telemetry for each application, you’ll see only hello counters for that application.</span></span> <span data-ttu-id="89b5a-319">예를 들어 toosee 어떤 카운터를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-319">For example, toosee what counters are available:</span></span>
 
 ![Application Insights 분석의 성능 카운터](./media/app-insights-analytics-tour/analytics-performance-counters.png)
 
-<span data-ttu-id="77efa-321">선택한 기간 동안 사용 가능한 메모리의 차트를 가져오려면:</span><span class="sxs-lookup"><span data-stu-id="77efa-321">To get a chart of available memory over the selected period:</span></span>
+<span data-ttu-id="89b5a-321">hello 통해 사용 가능한 메모리의 차트 tooget 기간 선택:</span><span class="sxs-lookup"><span data-stu-id="89b5a-321">tooget a chart of available memory over hello selected period:</span></span>
 
 ![Application Insights 분석의 메모리 시간 차트](./media/app-insights-analytics-tour/analytics-available-memory.png)
 
-<span data-ttu-id="77efa-323">다른 원격 분석과 마찬가지로, **performanceCounters**에도 앱이 실행되는 호스트 컴퓨터의 id를 나타내는 열 `cloud_RoleInstance`이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-323">Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates the identity of the host machine on which your app is running.</span></span> <span data-ttu-id="77efa-324">예를 들어, 서로 다른 컴퓨터에서 앱의 성능을 비교하려면:</span><span class="sxs-lookup"><span data-stu-id="77efa-324">For example, to compare the performance of your app on the different machines:</span></span>
+<span data-ttu-id="89b5a-323">마찬가지로 다른 원격 분석 **performanceCounters** 열도 `cloud_RoleInstance` 앱 실행 되 고 있는 hello 호스트 컴퓨터의 hello id를 나타내는입니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-323">Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates hello identity of hello host machine on which your app is running.</span></span> <span data-ttu-id="89b5a-324">예를 들어 toocompare hello 응용 프로그램의 성능을 hello 서로 다른 컴퓨터에서:</span><span class="sxs-lookup"><span data-stu-id="89b5a-324">For example, toocompare hello performance of your app on hello different machines:</span></span>
 
 ![Application Insights 분석에서 역할 인스턴스에 의해 분할된 성능](./media/app-insights-analytics-tour/analytics-metrics-role-instance.png)
 
-### <a name="exceptions-table"></a><span data-ttu-id="77efa-326">예외 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-326">Exceptions table</span></span>
-<span data-ttu-id="77efa-327">[앱에서 보고된 예외](app-insights-asp-net-exceptions.md)는 이 테이블에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-327">[Exceptions reported by your app](app-insights-asp-net-exceptions.md) are available in this table.</span></span>
+### <a name="exceptions-table"></a><span data-ttu-id="89b5a-326">예외 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-326">Exceptions table</span></span>
+<span data-ttu-id="89b5a-327">[앱에서 보고된 예외](app-insights-asp-net-exceptions.md)는 이 테이블에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-327">[Exceptions reported by your app](app-insights-asp-net-exceptions.md) are available in this table.</span></span>
 
-<span data-ttu-id="77efa-328">예외가 발생하는 경우 앱이 처리하는 HTTP 요청을 찾으려면 operation_Id에 참여합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-328">To find the HTTP request that your app was handling when the exception was raised, join on operation_Id:</span></span>
+<span data-ttu-id="89b5a-328">toofind hello hello 예외가 발생 했을 때 앱을 처리 하는 HTTP 요청, operation_Id에 조인 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-328">toofind hello HTTP request that your app was handling when hello exception was raised, join on operation_Id:</span></span>
 
 ![Operation_Id에 요청을 사용하여 예외를 조인](./media/app-insights-analytics-tour/analytics-exception-request.png)
 
-### <a name="browser-timings-table"></a><span data-ttu-id="77efa-330">브라우저 타이밍 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-330">Browser timings table</span></span>
-<span data-ttu-id="77efa-331">`browserTimings`은 사용자의 브라우저에서 수집된 페이지 로드 데이터를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-331">`browserTimings` shows page load data collected in your users' browsers.</span></span>
+### <a name="browser-timings-table"></a><span data-ttu-id="89b5a-330">브라우저 타이밍 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-330">Browser timings table</span></span>
+<span data-ttu-id="89b5a-331">`browserTimings`은 사용자의 브라우저에서 수집된 페이지 로드 데이터를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-331">`browserTimings` shows page load data collected in your users' browsers.</span></span>
 
-<span data-ttu-id="77efa-332">이러한 메트릭을 보려면 [클라이언트쪽 원격 분석을 위해 앱을 설정](app-insights-javascript.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-332">[Set up your app for client-side telemetry](app-insights-javascript.md) in order to see these metrics.</span></span>
+<span data-ttu-id="89b5a-332">[클라이언트 쪽 원격 분석을 위한 응용 프로그램 설정](app-insights-javascript.md) 의 순서로 toosee 이러한 메트릭을 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-332">[Set up your app for client-side telemetry](app-insights-javascript.md) in order toosee these metrics.</span></span>
 
-<span data-ttu-id="77efa-333">스키마에 [페이지 로드 프로세스의 여러 단계의 길이를 나타내는 메트릭](app-insights-javascript.md#page-load-performance)이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-333">The schema includes [metrics indicating the lengths of different stages of the page loading process](app-insights-javascript.md#page-load-performance).</span></span> <span data-ttu-id="77efa-334">(사용자가 한 페이지를 읽는 시간의 길이 나타내지 않습니다.)</span><span class="sxs-lookup"><span data-stu-id="77efa-334">(They don’t indicate the length of time your users read a page.)</span></span>  
+<span data-ttu-id="89b5a-333">hello 스키마에는 [hello 길이의 hello 페이지 로드 프로세스의 여러 단계를 나타내는 메트릭](app-insights-javascript.md#page-load-performance)합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-333">hello schema includes [metrics indicating hello lengths of different stages of hello page loading process](app-insights-javascript.md#page-load-performance).</span></span> <span data-ttu-id="89b5a-334">(사용자가 페이지를 읽을 시간의 hello 길이 나타냅니다 하지 않습니다.)</span><span class="sxs-lookup"><span data-stu-id="89b5a-334">(They don’t indicate hello length of time your users read a page.)</span></span>  
 
-<span data-ttu-id="77efa-335">서로 다른 페이지의 popularities 표시하고 각 페이지에 대한 시간을 로드:</span><span class="sxs-lookup"><span data-stu-id="77efa-335">Show the popularities of different pages, and load times for each page:</span></span>
+<span data-ttu-id="89b5a-335">서로 다른 페이지의 hello popularities를 표시 하 고 각 페이지에 대 한 시간 로드:</span><span class="sxs-lookup"><span data-stu-id="89b5a-335">Show hello popularities of different pages, and load times for each page:</span></span>
 
 ![Analytics에서 페이지 로드 시간](./media/app-insights-analytics-tour/analytics-page-load.png)
 
-### <a name="availability-results-table"></a><span data-ttu-id="77efa-337">가용성 결과 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-337">Availability results table</span></span>
-<span data-ttu-id="77efa-338">`availabilityResults`은 [웹 테스트](app-insights-monitor-web-app-availability.md) 결과를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-338">`availabilityResults` shows the results of your [web tests](app-insights-monitor-web-app-availability.md).</span></span> <span data-ttu-id="77efa-339">각 테스트 위치에서 테스트가 실행될 때마다 개별적으로 보고됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-339">Each run of your tests from each test location is reported separately.</span></span>
+### <a name="availability-results-table"></a><span data-ttu-id="89b5a-337">가용성 결과 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-337">Availability results table</span></span>
+<span data-ttu-id="89b5a-338">`availabilityResults`표시의 결과 hello 프로그램 [웹 테스트](app-insights-monitor-web-app-availability.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-338">`availabilityResults` shows hello results of your [web tests](app-insights-monitor-web-app-availability.md).</span></span> <span data-ttu-id="89b5a-339">각 테스트 위치에서 테스트가 실행될 때마다 개별적으로 보고됩니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-339">Each run of your tests from each test location is reported separately.</span></span>
 
 ![Analytics에서 페이지 로드 시간](./media/app-insights-analytics-tour/analytics-availability.png)
 
-### <a name="dependencies-table"></a><span data-ttu-id="77efa-341">종속성 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-341">Dependencies table</span></span>
-<span data-ttu-id="77efa-342">앱이 데이터베이스 및 REST Api에 대해 수행한 호출과 TrackDependency()에 대한 다른 호출의 결과가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-342">Contains results of calls that your app makes to databases and REST APIs, and other calls to TrackDependency().</span></span> <span data-ttu-id="77efa-343">또한 브라우저에서 생성된 AJAX 호출을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-343">Also includes AJAX calls made from the browser.</span></span>
+### <a name="dependencies-table"></a><span data-ttu-id="89b5a-341">종속성 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-341">Dependencies table</span></span>
+<span data-ttu-id="89b5a-342">호출의 결과 포함 tooTrackDependency() 호출 toodatabases 및 REST Api 및 기타 앱이 한다고 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-342">Contains results of calls that your app makes toodatabases and REST APIs, and other calls tooTrackDependency().</span></span> <span data-ttu-id="89b5a-343">또한 hello 브라우저에서 AJAX 호출을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-343">Also includes AJAX calls made from hello browser.</span></span>
 
-<span data-ttu-id="77efa-344">브라우저의 AJAX 호출:</span><span class="sxs-lookup"><span data-stu-id="77efa-344">AJAX calls from the browser:</span></span>
+<span data-ttu-id="89b5a-344">Hello 브라우저에서 AJAX 호출:</span><span class="sxs-lookup"><span data-stu-id="89b5a-344">AJAX calls from hello browser:</span></span>
 
 ```AIQL
 
@@ -676,7 +676,7 @@ requests
     | take 10
 ```
 
-<span data-ttu-id="77efa-345">서버의 종속성 호출:</span><span class="sxs-lookup"><span data-stu-id="77efa-345">Dependency calls from the server:</span></span>
+<span data-ttu-id="89b5a-345">종속성 호출 hello 서버에서:</span><span class="sxs-lookup"><span data-stu-id="89b5a-345">Dependency calls from hello server:</span></span>
 
 ```AIQL
 
@@ -684,22 +684,22 @@ requests
     | take 10
 ```
 
-<span data-ttu-id="77efa-346">Application Insights 에이전트가 설치되지 않은 경우 서버 쪽 종속성 결과에는 항상 `success==False`가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-346">Server-side dependency results always show `success==False` if the Application Insights Agent is not installed.</span></span> <span data-ttu-id="77efa-347">그러나 다른 데이터는 올바릅니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-347">However, the other data are correct.</span></span>
+<span data-ttu-id="89b5a-346">서버 쪽 종속성 결과 항상 표시 `success==False` hello Application Insights 에이전트는 설치 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-346">Server-side dependency results always show `success==False` if hello Application Insights Agent is not installed.</span></span> <span data-ttu-id="89b5a-347">그러나 hello 다른 데이터 올바릅니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-347">However, hello other data are correct.</span></span>
 
-### <a name="traces-table"></a><span data-ttu-id="77efa-348">추적 테이블</span><span class="sxs-lookup"><span data-stu-id="77efa-348">Traces table</span></span>
-<span data-ttu-id="77efa-349">Tracktrace()를 사용하여 앱에서 보낸 원격 분석 데이터나 [다른 로깅 프레임워크](app-insights-asp-net-trace-logs.md)가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-349">Contains the telemetry sent by your app using TrackTrace(), or [other logging frameworks](app-insights-asp-net-trace-logs.md).</span></span>
+### <a name="traces-table"></a><span data-ttu-id="89b5a-348">추적 테이블</span><span class="sxs-lookup"><span data-stu-id="89b5a-348">Traces table</span></span>
+<span data-ttu-id="89b5a-349">Tracktrace ()를 사용 하 여 앱에서 보낸 hello 원격 분석을 포함 또는 [다른 로깅 프레임 워크](app-insights-asp-net-trace-logs.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-349">Contains hello telemetry sent by your app using TrackTrace(), or [other logging frameworks](app-insights-asp-net-trace-logs.md).</span></span>
 
-## <a name="video"></a><span data-ttu-id="77efa-350">비디오</span><span class="sxs-lookup"><span data-stu-id="77efa-350">Video</span></span> 
+## <a name="video"></a><span data-ttu-id="89b5a-350">비디오</span><span class="sxs-lookup"><span data-stu-id="89b5a-350">Video</span></span> 
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/123/player] 
 
-<span data-ttu-id="77efa-351">고급 쿼리:</span><span class="sxs-lookup"><span data-stu-id="77efa-351">Advanced queries:</span></span>
+<span data-ttu-id="89b5a-351">고급 쿼리:</span><span class="sxs-lookup"><span data-stu-id="89b5a-351">Advanced queries:</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Events/Build/2016/P591/player]
 
 
-## <a name="next-steps"></a><span data-ttu-id="77efa-352">다음 단계</span><span class="sxs-lookup"><span data-stu-id="77efa-352">Next steps</span></span>
-* [<span data-ttu-id="77efa-353">분석 언어 참조</span><span class="sxs-lookup"><span data-stu-id="77efa-353">Analytics language reference</span></span>](app-insights-analytics-reference.md)
-* <span data-ttu-id="77efa-354">[SQL 사용자 치트 시트](https://aka.ms/sql-analytics)에서는 가장 일반적인 코드를 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="77efa-354">[SQL-users' cheat sheet](https://aka.ms/sql-analytics) translates the most common idioms.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="89b5a-352">다음 단계</span><span class="sxs-lookup"><span data-stu-id="89b5a-352">Next steps</span></span>
+* [<span data-ttu-id="89b5a-353">분석 언어 참조</span><span class="sxs-lookup"><span data-stu-id="89b5a-353">Analytics language reference</span></span>](app-insights-analytics-reference.md)
+* <span data-ttu-id="89b5a-354">[SQL-사용자의 치트 시트](https://aka.ms/sql-analytics) hello 가장 일반적인 구문으로 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="89b5a-354">[SQL-users' cheat sheet](https://aka.ms/sql-analytics) translates hello most common idioms.</span></span>
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
