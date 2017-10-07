@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C: 셀프 서비스 암호 재설정 | Microsoft Docs"
-description: "Azure Active Directory B2C 미리 보기에서 소비자를 위해 셀프 서비스 암호 재설정을 설정하는 방법을 보여주는 항목"
+description: "Azure Active Directory B2C에 소비자에 대 한 tooset 셀프 서비스 암호를 다시 설정 하는 방법을 보여 주는 항목"
 services: active-directory-b2c
 documentationcenter: 
 author: swkrish
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 0508868e3b00c5771cc26038a3dd71fde6625a84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ff87eea42259b610702da73af35d0a38eb7dd33d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-set-up-self-service-password-reset-for-your-consumers"></a>Azure Active Directory B2C: 소비자를 위해 셀프 서비스 암호 재설정 설정
-셀프 서비스 암호 재설정 기능을 사용하면 (로컬 계정에 등록된)소비자는 자체적으로 암호를 재설정할 수 있습니다. 특히 정기적으로 응용 프로그램을 사용하는 수 백만 명의 소비자가 있는 경우 지원 담당자의 부담을 크게 줄여줍니다. 현재 검증된 전자 메일 주소를 지원 복구 방법으로 사용하여 지원합니다. 추가 복구 방법을 나중에 추가합니다.(확인된 전화번호, 보안 질문 등)
+Hello로 셀프 서비스 암호 재설정 기능, 소비자 (로컬 계정에 등록 한)가 자체적으로 암호를 재설정할 수 있습니다. 특히 응용 프로그램에 수백만 정기적으로 사용 하는 소비자의 경우 지원 담당자의 부담을 hello 상당히 감소 합니다. 현재 검증된 전자 메일 주소를 지원 복구 방법으로 사용하여 지원합니다. 추가 복구 방법 (예: 확인 된 전화 번호, 보안 질문, 등) hello 미래에 추가 합니다.
 
 > [!NOTE]
-> 이 문서는 로그인 정책의 컨텍스트에서 사용되는 셀프 서비스 암호 재설정에 적용됩니다. 완전히 사용자 지정 가능한 암호 재설정 정책이 앱에서 호출되어야 하는 경우 [이 문서](active-directory-b2c-reference-policies.md#create-a-password-reset-policy)를 참조하세요.
+> 이 문서 적용 tooself 서비스 암호 재설정 로그인 정책 hello 축을 사용 합니다. 완전히 사용자 지정 가능한 암호 재설정 정책이 앱에서 호출되어야 하는 경우 [이 문서](active-directory-b2c-reference-policies.md#create-a-password-reset-policy)를 참조하세요.
 > 
 > 
 
-기본적으로 디렉터리는 셀프 서비스 암호 재설정을 설정하지 않습니다. 설정하려면 다음 단계를 사용합니다.
+기본적으로 디렉터리는 셀프 서비스 암호 재설정을 설정하지 않습니다. 사용 하 여 hello 단계 tooturn 다음 그에:
 
-1. [Azure 클래식 포털](https://manage.windowsazure.com/) 에 구독 관리자로 로그인합니다. 이는 동일한 직장이나 학교 계정 또는 디렉터리를 만드는 데 사용한 동일한 Microsoft 계정입니다.
-2. 왼쪽의 탐색 모음에서 Active Directory 확장으로 이동합니다.
-3. **디렉터리** 탭에서 디렉터리를 찾고 클릭합니다.
-4. **구성** 탭을 클릭합니다.
-5. **사용자 암호 재설정 정책** 섹션으로 스크롤하여 **사용자 암호 재설정 활성화됨** 옵션을 **예**로 토글합니다. **대체 메일 주소** 옵션을 선택하고 그대로 둡니다.
+1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com/) 구독 관리자 hello으로 합니다. 이 hello 회사 또는 학교 계정 또는 같은 Microsoft 계정을 사용 하 여 toocreate 디렉터리 hello 동일 합니다.
+2. Hello 왼쪽에 표시 되는 hello 탐색 모음의 toohello Active Directory 확장을 이동 합니다.
+3. Hello에서 디렉터리 찾기 **디렉터리** 탭을 클릭 합니다.
+4. Hello 클릭 **구성** 탭 합니다.
+5. Toohello 아래로 스크롤하여 **사용자 암호 재설정 정책** 섹션, 토글 hello **암호 재설정을 위해 사용할 수 있는 사용자** 옵션**예**합니다. 해당 hello 확인 **대체 전자 메일 주소** 그대로 둡니다; 옵션을 선택 합니다.
    
     ![셀프 서비스 암호 재설정](./media/active-directory-b2c-reference-sspr/sspr.png)
-6. 페이지 맨 아래에서 **저장**을 클릭합니다. 완료되었습니다!
+6. 클릭 **저장** hello hello 페이지 맨 아래에 있습니다. 완료되었습니다!
 
-테스트하려면 (로컬 계정을 ID 공급자로 가진)로그인 정책에서 "지금 실행" 기능을 사용합니다. 메일 주소 및 암호 또는 사용자 이름 및 암호를 입력하는 로컬 계정 로그인 페이지에서 **계정에 액세스할 수 없나요?** 를 클릭하여 소비자 환경을 확인합니다.
+tootest에 로컬 계정이 id 공급자로 모든 로그인 정책에서 사용 하 여 hello "지금 실행" 기능입니다. Hello 로컬 계정 로그인 페이지 (입력할 수 있는 전자 메일 주소 및 암호 또는 사용자 이름 및 암호)를 클릭 하 여 **계정에 액세스할 수 있습니까?** tooverify hello 소비자 경험 합니다.
 
 > [!NOTE]
-> 셀프 서비스 암호 재설정 페이지는 [회사 브랜딩 기능](../active-directory/active-directory-add-company-branding.md)을 사용하여 사용자 지정할 수 있습니다.
+> hello 셀프 서비스 암호 재설정 페이지 사용자 지정 하는 hello를 사용 하 여 [회사 브랜딩 기능](../active-directory/active-directory-add-company-branding.md)합니다.
 > 
 > 
 

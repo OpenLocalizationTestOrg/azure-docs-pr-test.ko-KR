@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 ASP.NET 웹앱 만들기 | Microsoft Docs"
-description: "기본 ASP.NET 웹앱을 배포하여 Azure App Service에서 웹앱을 실행하는 방법을 알아봅니다."
+title: "aaaCreate ASP.NET 웹 앱에 Azure | Microsoft Docs"
+description: "어떻게 hello 기본 ASP.NET 배포 하 여 Azure 앱 서비스에서 웹 앱 toorun 웹 앱에 알아봅니다."
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,25 +15,25 @@ ms.topic: quickstart
 ms.date: 06/14/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 0f0035f6fef03ddcbb500b78f3445ced5b749808
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: eec916b3c32b6c8b68083177938c5c822a9782b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-aspnet-web-app-in-azure"></a>Azure에서 ASP.NET 웹앱 만들기
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.  이 빠른 시작은 첫 번째 ASP.NET 웹앱을 Azure Web Apps에 배포하는 방법을 보여 줍니다. 완료되면 배포된 웹 응용 프로그램으로 App Service 계획 및 Azure 웹앱으로 구성된 리소스 그룹을 갖습니다.
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.  이 퀵 스타트의 표시 방법을 toodeploy 첫 번째 ASP.NET 웹 응용 프로그램 tooAzure 웹 앱입니다. 완료되면 배포된 웹 응용 프로그램으로 App Service 계획 및 Azure 웹앱으로 구성된 리소스 그룹을 갖습니다.
 
-비디오를 시청하여 이 빠른 시작이 실제로 작동하는 모습을 살펴본 후 단계에 따라 직접 첫 번째 .NET 앱을 Azure에 게시해 보세요.
+작업에서이 퀵 스타트의 hello 비디오 toosee를 감시 하 고 다음 따라 hello 직접 toopublish 첫.NET 응용 프로그램에서 단계 Azure입니다.
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-for-NET-Developers/Create-a-NET-app-in-Azure-Quickstart/player]
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서:
 
-* 다음 워크로드와 함께 [Visual Studio 2017](https://www.visualstudio.com/downloads/)을 설치합니다.
+* 설치 [Visual Studio 2017](https://www.visualstudio.com/downloads/) 워크 로드를 수행 하는 hello로:
     - **ASP.NET 및 웹 배포**
     - **Azure 개발**
 
@@ -45,25 +45,25 @@ ms.lasthandoff: 08/18/2017
 
 Visual Studio에서 **파일 > 새로 만들기 > 프로젝트**를 선택하여 프로젝트를 만듭니다. 
 
-**새 프로젝트** 대화 상자에서 **Visual C# > 웹 > ASP.NET 웹 응용 프로그램(.NET Framework)**을 선택합니다.
+Hello에 **새 프로젝트** 대화 상자에서 **Visual C# > 웹 > ASP.NET 웹 응용 프로그램 (.NET Framework)**합니다.
 
-응용 프로그램 이름을 _myFirstAzureWebApp_으로 지정한 다음 **확인**을 선택합니다.
+Hello 응용 프로그램 이름을 _myFirstAzureWebApp_를 선택한 후 **확인**합니다.
    
 ![새 프로젝트 대화 상자](./media/app-service-web-get-started-dotnet/new-project.png)
 
-모든 종류의 ASP.NET 웹앱을 Azure에 배포할 수 있습니다. 이 빠른 시작의 경우 **MVC** 템플릿을 선택하고 인증이 **인증 없음**으로 설정되어 있는지 확인합니다.
+모든 종류의 ASP.NET 웹 응용 프로그램 tooAzure 배포할 수 있습니다. 이 빠른 시작에 대 한 선택 hello **MVC** 템플릿을 인증 너무 설정 되어 있는지 확인 하 고**인증 안 함**합니다.
       
 **확인**을 선택합니다.
 
 ![새 ASP.NET 프로젝트 대화 상자](./media/app-service-web-get-started-dotnet/select-mvc-template.png)
 
-메뉴에서 **디버그 > 디버깅하지 않고 시작**을 선택하여 웹앱을 로컬로 실행합니다.
+Hello 메뉴에서 선택 **디버그 > 디버깅 하지 않고 시작** toorun hello 웹 앱을 로컬로 합니다.
 
 ![로컬에서 앱 실행](./media/app-service-web-get-started-dotnet/local-web-app.png)
 
-## <a name="publish-to-azure"></a>Azure에 게시
+## <a name="publish-tooazure"></a>TooAzure 게시
 
-**솔루션 탐색기**에서 **myFirstAzureWebApp** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 선택합니다.
+Hello에 **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **myFirstAzureWebApp** 프로젝트를 마우스 선택 **게시**합니다.
 
 ![솔루션 탐색기에서 게시](./media/app-service-web-get-started-dotnet/solution-explorer-publish.png)
 
@@ -71,95 +71,95 @@ Visual Studio에서 **파일 > 새로 만들기 > 프로젝트**를 선택하여
 
 ![프로젝트 개요 페이지에서 게시](./media/app-service-web-get-started-dotnet/publish-to-app-service.png)
 
-그러면 **App Service 만들기** 대화 상자가 열리고 Azure에서 ASP.NET 웹앱을 실행하는 데 필요한 모든 Azure 리소스를 만들 수 있습니다.
+Hello 열립니다 **응용 프로그램 서비스 만들기** 대화 상자를 사용 하면 Azure에서 모든 hello 필요한 Azure 리소스 toorun hello ASP.NET 웹 앱을 만들 수 있습니다.
 
-## <a name="sign-in-to-azure"></a>Azure에 로그인
+## <a name="sign-in-tooazure"></a>TooAzure에 로그인
 
-**App Service 만들기** 대화 상자에서 **계정 추가**를 선택하고 Azure 구독에 로그인합니다. 이미 로그인한 경우 드롭다운에서 원하는 구독이 포함된 계정을 선택합니다.
+Hello에 **응용 프로그램 서비스 만들기** 대화 상자에서 **계정 추가**, tooyour Azure 구독에에서 로그인 합니다. 이미 등록 했으므로, 구독 hello 드롭다운에서 원하는 선택 hello 계정 hello 포함.
 
 > [!NOTE]
 > 이미 로그인한 경우 **만들기**를 선택하지 마십시오.
 >
 >
    
-![Azure에 로그인](./media/app-service-web-get-started-dotnet/sign-in-azure.png)
+![TooAzure에 로그인](./media/app-service-web-get-started-dotnet/sign-in-azure.png)
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
 [!INCLUDE [resource group intro text](../../includes/resource-group.md)]
 
-**리소스 그룹** 옆에 있는 **새로 만들기**를 선택합니다.
+다음 너무**리소스 그룹**선택, **새로**합니다.
 
-리소스 그룹의 이름을 **myResourceGroup**으로 지정하고 **확인**을 선택합니다.
+Hello 리소스 그룹 이름 **myResourceGroup** 선택 **확인**합니다.
 
 ## <a name="create-an-app-service-plan"></a>App Service 계획 만들기
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-**App Service 계획** 옆에 있는 **새로 만들기**를 선택합니다. 
+다음 너무**앱 서비스 계획**선택, **새로**합니다. 
 
-**App Service 계획 구성** 대화 상자에서 스크린샷 다음에 나오는 테이블의 설정을 사용합니다.
+Hello에 **앱 서비스 계획 구성** 대화 상자에서 다음에 나오는 hello 스크린 샷 hello 테이블에서 사용 하 여 hello 설정 합니다.
 
 ![App Service 계획 만들기](./media/app-service-web-get-started-dotnet/configure-app-service-plan.png)
 
 | 설정 | 제안 값 | 설명 |
 |-|-|-|
-|App Service 계획| myAppServicePlan | App Service 계획의 이름입니다. |
-| 위치 | 서유럽 | 웹앱이 호스팅된 데이터 센터입니다. |
+|App Service 계획| myAppServicePlan | Hello 앱 서비스 계획의 이름입니다. |
+| 위치 | 서유럽 | hello 데이터 센터 hello 웹 응용 프로그램이 호스팅된 곳입니다. |
 | 크기 | 무료 | [가격 책정 계층](https://azure.microsoft.com/pricing/details/app-service/)은 호스팅 기능을 결정합니다. |
 
 **확인**을 선택합니다.
 
-## <a name="create-and-publish-the-web-app"></a>웹앱 만들기 및 게시
+## <a name="create-and-publish-hello-web-app"></a>만들기 및 hello 웹 응용 프로그램 게시
 
-**웹앱 이름**에서 고유한 앱 이름(유효한 문자는 `a-z`, `0-9` 및 `-`)을 입력하거나 자동으로 생성된 고유한 이름을 적용합니다. 웹앱의 URL은 `http://<app_name>.azurewebsites.net`이며, 여기서 `<app_name>`은 웹앱 이름입니다.
+**웹 앱 이름은**, 고유한 응용 프로그램 이름 입력 (유효한 문자는 `a-z`, `0-9`, 및 `-`), 하거나 자동으로 생성 한 고유 이름 hello 적용 합니다. hello 웹 앱의 hello URL은 `http://<app_name>.azurewebsites.net`여기서 `<app_name>` 웹 응용 프로그램 이름입니다.
 
-**만들기**를 선택하여 Azure 리소스 만들기를 시작합니다.
+선택 **만들기** toostart hello Azure 리소스를 작성 합니다.
 
 ![웹앱 이름 구성](./media/app-service-web-get-started-dotnet/web-app-name.png)
 
-마법사가 완료되면 Azure에 ASP.NET 웹앱을 게시한 다음 기본 브라우저에서 앱을 시작합니다.
+Hello 마법사가 완료 되 면 hello ASP.NET 웹 응용 프로그램 tooAzure 게시 하 고 실행 하는 경우 hello hello 기본 브라우저에서 응용 프로그램입니다.
 
 ![Azure에서 게시된 ASP.NET 웹앱](./media/app-service-web-get-started-dotnet/published-azure-web-app.png)
 
-[작성 및 게시 단계](#create-and-publish-the-web-app)에서 지정한 웹앱 이름이 `http://<app_name>.azurewebsites.net` 형식의 URL 접두사로 사용됩니다.
+hello에 지정 된 hello 웹 앱 이름은 [만들기 및 게시 단계](#create-and-publish-the-web-app) hello 형태로 표시 URL 접두사 hello로 사용 되 `http://<app_name>.azurewebsites.net`합니다.
 
 축하합니다. ASP.NET 웹앱이 Azure App Service에서 실시간으로 실행 중입니다.
 
-## <a name="update-the-app-and-redeploy"></a>앱 업데이트 및 다시 배포
+## <a name="update-hello-app-and-redeploy"></a>Hello 앱 업데이트 및 다시 배포
 
-**솔루션 탐색기**에서 _Views\Home\Index.cshtml_을 엽니다.
+Hello에서 **솔루션 탐색기**개방형 _Views\Home\Index.cshtml_합니다.
 
-위쪽 가까이에 `<div class="jumbotron">` HTML 태그를 찾아서 전체 요소를 다음 코드로 바꿉니다.
+Hello `<div class="jumbotron">` HTML hello 맨 위 근처에 태그 및 코드 다음 hello hello 전체 요소를 바꿉니다.
 
 ```HTML
 <div class="jumbotron">
     <h1>ASP.NET in Azure!</h1>
-    <p class="lead">This is a simple app that we’ve built that demonstrates how to deploy a .NET app to Azure App Service.</p>
+    <p class="lead">This is a simple app that we’ve built that demonstrates how toodeploy a .NET app tooAzure App Service.</p>
 </div>
 ```
 
-Azure에 다시 배포하려면 **솔루션 탐색기**에서 **myFirstAzureWebApp** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 선택합니다.
+tooredeploy tooAzure를 마우스 오른쪽 단추로 클릭 hello **myFirstAzureWebApp** 프로젝트에서 **솔루션 탐색기** 선택 **게시**합니다.
 
-게시 페이지에서 **게시**를 선택합니다.
+Hello 게시 페이지, 선택 **게시**합니다.
 
-게시가 완료되면 Visual Studio가 웹앱의 URL로 브라우저를 시작합니다.
+게시에는 다음이 완료 되 면 Visual Studio hello 웹 앱의 브라우저 toohello URL을 시작 합니다.
 
 ![Azure에서 업데이트된 ASP.NET 웹앱](./media/app-service-web-get-started-dotnet/updated-azure-web-app.png)
 
-## <a name="manage-the-azure-web-app"></a>Azure 웹앱 관리
+## <a name="manage-hello-azure-web-app"></a>Hello Azure 웹 앱 관리
 
-웹앱을 관리하려면 <a href="https://portal.azure.com" target="_blank">Azure Portal</a>로 이동합니다.
+Toohello 이동 <a href="https://portal.azure.com" target="_blank">Azure 포털</a> toomanage hello 웹 앱입니다.
 
-왼쪽 메뉴에서 **App Services**를 클릭한 다음 Azure 웹앱의 이름을 클릭합니다.
+Hello 왼쪽된 메뉴에서 선택 **응용 프로그램 서비스**, Azure 웹 앱의 hello 이름을 선택 합니다.
 
-![Azure 웹앱에 대한 포털 탐색](./media/app-service-web-get-started-dotnet/access-portal.png)
+![포털 탐색 tooAzure 웹 응용 프로그램](./media/app-service-web-get-started-dotnet/access-portal.png)
 
 웹앱의 개요 페이지가 표시됩니다. 여기에서 찾아보기, 중지, 시작, 다시 시작, 삭제와 같은 기본 관리 작업을 수행할 수 있습니다. 
 
 ![Azure Portal의 App Service 블레이드](./media/app-service-web-get-started-dotnet/web-app-blade.png)
 
-왼쪽 메뉴는 앱 구성을 위한 서로 다른 페이지를 제공합니다. 
+왼쪽된 메뉴 hello 응용 프로그램을 구성 하는 서로 다른 페이지를 제공 합니다. 
 
 [!INCLUDE [Clean-up section](../../includes/clean-up-section-portal.md)]
 

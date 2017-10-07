@@ -1,6 +1,6 @@
 ---
-title: "Azure 지출 한도 이해 | Microsoft Docs"
-description: "Azure 지출 한도의 작동 방식 및 제거 방법을 설명합니다."
+title: "Azure 지출 aaaUnderstand 제한 | Microsoft Docs"
+description: "Azure 지출 한도 작동 하는 방법 및 방법에 대해 설명 tooremove 것"
 services: 
 documentationcenter: 
 author: genlin
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: genli
-ms.openlocfilehash: a2743ef34bde0faabb3afd2ace27acddd59d3d70
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ed01401a07c3d0e7edebe42fb1482b7b60b1df51
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-azure-spending-limit-and-how-to-remove-it"></a>Azure 지출 한도의 작동 방식 및 제거 방법 이해
+# <a name="understand-azure-spending-limit-and-how-tooremove-it"></a>Azure 지출 한도 이해 하 고 어떻게 tooremove 것
 
-Azure 지출 한도는 Azure 구독이 소비할 수 있는 지출을 제한합니다. 평가판 제안이나 여러 달의 크레딧을 포함하는 제안에 등록하는 모든 신규 고객은 기본적으로 지출 한도가 설정됩니다. 지출 한도는 $0입니다. 이 값은 변경할 수 없습니다. 종량제 구독 및 약정 플랜과 같은 구독 유형에는 지출 한도를 사용할 수 없습니다. [전체 Azure 제품 목록 및 지출 한도 가용성](https://azure.microsoft.com/support/legal/offer-details/)를 참조하세요.
+Azure 지출 한도는 Azure 구독이 소비할 수 있는 지출을 제한합니다. Hello 체험 제품입니다. 또는 여러 달 동안 크레딧을 포함 하는 제공 서비스에 등록 하는 모든 새 고객 hello 지출 한도 기본적으로 설정 되어 있어야 합니다. 지출 한도 hello은 $0입니다. 이 값은 변경할 수 없습니다. 지출 한도 hello 종 량 제 구독 및 약정 계획과 같은 구독 형식에 사용할 수 없습니다. Hello 참조 [전체 목록은 Azure 혜택 및 hello 지출 한도의 가용성을 hello](https://azure.microsoft.com/support/legal/offer-details/)합니다.
 
-## <a name="what-happens-when-i-reach-the-spending-limit"></a>지출 한도에 도달하면 어떻게 되나요?
+## <a name="what-happens-when-i-reach-hello-spending-limit"></a>I hello 지출 한도 도달 하면 어떻게 되나요?
 
-제안에 포함된 월별 할당량을 모두 사용할 경우 해당 청구월의 나머지 기간 동안 배포한 서비스가 비활성화됩니다. 예를 들어 배포한 Cloud Services가 프로덕션에서 제거되고 Azure Virtual Machines가 중지되고 할당 최소됩니다. 서비스 비활성화를 방지하려면 지출 한도를 제거할 수 있습니다. 서비스가 비활성화되면 저장소 계정 및 데이터베이스의 데이터는 관리자가 읽기 전용으로 사용할 수 있습니다. 다음 청구 달이 시작하면 제품에 여러 달에 대한 크레딧이 포함될 경우 구독이 다시 사용하도록 설정됩니다. 그런 다음 Cloud Services를 다시 배포하고 저장소 계정 및 데이터베이스에 대한 모든 권한을 가질 수 있습니다.
+사용량이 해당 제품에 포함 된 hello 월간 총액을 빠른 속도로 소모 될 요금에 결과가 해당 청구 월의 hello 나머지 부분에 대 한 배포 된 hello 서비스 비활성화 됩니다. 예를 들어 배포한 Cloud Services가 프로덕션에서 제거되고 Azure Virtual Machines가 중지되고 할당 최소됩니다. tooprevent 해제 되지 않도록 하 여 서비스를 선택할 수 있습니다 tooremove 지출 한도입니다. 사용자 서비스를 해제 hello 및 데이터를 저장소 계정 데이터베이스 관리자에 대 한 읽기 전용 방식으로 사용할 수 있습니다. Hello 시작 시 hello 다음 청구 월, 제안을 통해 여러 달, 크레딧을 포함 하는 경우 구독이 다시 활성화 됩니다. 그런 다음 클라우드 서비스를 다시 배포할 수 있으며 전체 액세스 tooyour 저장소 계정 및 데이터베이스 수 있습니다.
 
-무료 평가판 구독이 지출 한도에 도달한 후에는 90일 이내에 구독을 다시 사용하도록 설정하고 자동으로 [표준 종량제 제품으로 업그레이드](billing-upgrade-azure-subscription.md)할 수 있습니다.
+Hello 구독을 다시 사용 하도록 설정 하 고 자동으로 수 hello 무료 평가판 구독 hello 지출 한도 도달 하면 후 [업그레이드 tooour 표준 종 량 제 제안](billing-upgrade-azure-subscription.md) 90 일 이내입니다.
 
-제품에 포함된 지출 한도에 도달할 경우 알림을 받게 됩니다. [Azure 계정 센터](https://account.windowsazure.com)에 로그인하고 **계정**을 선택한 다음 **구독**을 선택합니다. 지출 한도에 도달한 구독에 대한 알림이 표시됩니다.
+Hello 자신의 구독에 대 한 지출 한도 도달 하면 알림을 받게 됩니다. Toohello 로그온 [Azure 계정 센터](https://account.windowsazure.com)선택, **계정**를 선택한 후 **구독**합니다. Hello 지출 한도 도달 하는 구독에 대 한 알림을 표시 합니다.
 
 ## <a name="things-you-are-charged-for-even-if-you-have-a-spending-limit-enabled"></a>이 경우 지출 한도를 사용하도록 설정한 경우에도 요금이 부과됩니다.
 
-일부 Azure 서비스 및 [Marketplace 구매 제품](https://azure.microsoft.com/marketplace/)의 경우 지출 한도가 설정되어 있어도 CC(결제 방법)에 따라 요금이 발생할 수 있습니다. Visual Studio 라이선스, Azure Active Directory Premium, 지원 플랜 및 Marketplace에서 판매되는 대부분의 타사 브랜드 서비스를 예로 들 수 있습니다.
+일부 Azure 서비스 및 [마켓플레이스 구매](https://azure.microsoft.com/marketplace/) 지출 한도 설정한 경우에 hello 지불 방법 (CC)에서 요금을 초래할 수 있습니다. 예로 Visual studio 라이선스, Azure Active Directory premium, 지원 플랜 및 서비스 hello 마켓플레이스를 통해 판매의 브랜드 대부분 제 3 자는 있습니다.
 
 
-## <a name="when-not-to-use-the-spending-limit"></a>지출 한도를 사용하지 않아야 하는 경우
+## <a name="when-not-toouse-hello-spending-limit"></a>하지 toouse 지출 한도 hello 하는 경우
 
-지출 한도에 도달하면 특정 마켓플레이스 및 Microsoft 서비스를 배포 또는 사용할 수 없게 됩니다. 다음은 구독에 대한 지출 한도를 제거해야 하는 시나리오입니다.
+지출 한도 hello 배포 또는 특정 marketplace 및 Microsoft 서비스를 사용 하 여 하지 못할 수 없습니다. 다음은 hello 구독에 지출 한도 제거 해야 하는 hello 시나리오입니다.
 
-- Oracle, Visual Studio Team Services 등의 서비스와 같은 자사 이미지를 배포할 계획인 경우. 이 경우 지출 한도가 거의 순식간에 초과되어 구독이 비활성화됩니다.
+- Oracle 및 Visual Studio Team Services 등의 서비스와 같은 toodeploy 첫 번째 파티 이미지를 계획 합니다. 이 시나리오에 지출 한도 거의 즉시 tooexceed로 인해 고 사용 하지 않도록 설정 하 여 구독 toobe.
 
 - 중단하면 안 되는 서비스가 있는 경우
 
-- 손실되지 않아야 하는 가상 IP 주소와 같은 설정을 사용하는 서비스 및 리소스가 있는 경우. 서비스 및 리소스의 할당이 취소되면 이러한 설정이 손실됩니다.
+- 서비스가 있으며 있는 가상 IP 주소와 같은 설정 사용 하 여 리소스 toolose 않도록 합니다. Hello 서비스 및 리소스 할당 취소 하는 경우 이러한 설정이 손실 됩니다.
 
 
-## <a name="remove-the-spending-limit"></a>지출 한도 제거
+## <a name="remove-hello-spending-limit"></a>Hello 지출 한도 제거 합니다.
 
-유효한 결제 방법이 구독과 연결되어 있는 경우 언제든 지출 한도를 제거할 수 있습니다. 여러 달의 크렛딧을 포함하는 제안의 경우 다음 청구 주기가 시작할 때 지출 한도를 다시 사용하도록 설정할 수도 있습니다.
+필드를 구독에 연결 된 유효한 지불 방법 때만 지출 한도 언제 든 지 hello를 제거할 수 있습니다. 신용 여러 달에 대 한 제품에도 다시 활성화할 수 있습니다 다음 청구 주기에의 hello 시작 부분에서 지출 한도 hello 합니다.
 
-지출 한도를 제거하려면 다음 단계를 수행합니다.
+tooremove 제한 지출, 다음이 단계를 수행 합니다.
 
-1. [Azure 계정 센터](https://account.windowsazure.com)에 로그인합니다.
+1. Toohello 로그온 [Azure 계정 센터](https://account.windowsazure.com)합니다.
 
 2. 구독을 선택합니다.
 
-3. 지출 한도에 도달하여 구독이 비활성화된 경우 "구독이 지출 한도에 도달하여 요금이 부과되지 않도록 비활성화되었습니다."라는 알림을 클릭합니다. 그렇지 않으면 **구독 상태** 영역에서 **지출 한도 제거**를 클릭합니다.
+3. Toohello 지출 한도 도달 hello 구독 due 비활성화 된 경우,이 알림을 클릭: "구독 hello 지출 한도 도달 및 사용할 수 없는 tooprevent 요금 되었습니다." 그렇지 않으면 클릭 **지출 한도 제거** hello에 **구독 상태** 영역입니다.
 
 4. 적절한 옵션을 선택합니다.
 
 |옵션|결과|
 |-------|-----|
-|지출 한도 무기한 제거|다음 청구 기간 시작 시 자동으로 설정되지 않도록 지출 한도를 제거합니다.|
-|현재 청구 기간에 대한 지출 한도 제거|다음 청구 기간 시작 시 자동으로 다시 설정되도록 지출 한도를 제거합니다.|
+|지출 한도 무기한 제거|Hello 자동으로 설정 hello의 hello 시작 부분에 다음 청구 기간이 하지 않고 지출 한도 제거 합니다.|
+|현재 청구 기간 hello에 대 한 지출 한도 제거|Hello 다시 자동으로 설정 hello의 hello 시작 부분에 다음 청구 기간이 되도록 지출 한도 제거 합니다.|
 
 ## <a name="need-help-contact-support"></a>도움이 필요하세요? 지원에 문의하세요.
-다른 도움이 필요한 경우 [지원에 문의](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)하여 문제를 신속하게 해결하세요.
+도움이 필요 하면 여전히 필요 하면 [지원에 문의](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget 문제가 해결 신속 하 게 합니다.

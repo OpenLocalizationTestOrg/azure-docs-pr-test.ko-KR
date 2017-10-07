@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights 원격 분석 데이터 모델 - 종속성 원격 분석 | Microsoft Docs"
+title: "응용 프로그램 Insights 원격 분석 데이터 모델-aaaAzure 종속성 원격 분석 | Microsoft Docs"
 description: "종속성 원격 분석을 위한 Azure Application Insights 데이터 모델"
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: bwren
-ms.openlocfilehash: 2e97c3f951f46c32802aea543b93d5ab1bb76228
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cd5ab7c61d3498e4aa2a0aa0c8b0d106a92912e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dependency-telemetry-application-insights-data-model"></a>종속성 원격 분석: Application Insights 데이터 모델
 
-[Application Insights](app-insights-overview.md)에서 종속성 원격 분석은 모니터링되는 구성 요소와 원격 구성 요소(예: SQL 또는 HTTP 끝점)의 상호 작용을 나타냅니다.
+종속성 원격 분석 (에서 [Application Insights](app-insights-overview.md)) SQL 또는 HTTP 끝점 같은 원격 구성 요소를 사용 하는 hello 모니터링 구성 요소의 상호 작용을 나타냅니다.
 
 ## <a name="name"></a>이름
 
-이 종속성 호출을 사용하여 시작된 명령의 이름입니다. 낮은 카디널리티 값입니다. 예로는 저장 프로시저 이름 및 URL 경로 템플릿이 있습니다.
+이 종속성 호출을 사용 하 여 시작 하는 hello 명령의 이름입니다. 낮은 카디널리티 값입니다. 예로는 저장 프로시저 이름 및 URL 경로 템플릿이 있습니다.
 
 ## <a name="id"></a>ID
 
-종속성 호출 인스턴스의 식별자입니다. 이 종속성 호출에 해당하는 요청 원격 분석 항목과의 상관 관계에 사용됩니다. 자세한 내용은 [상관 관계](application-insights-correlation.md) 페이지를 참조하세요.
+종속성 호출 인스턴스의 식별자입니다. Toothis 종속성 호출에 해당 하는 hello 요청 원격 분석 항목으로 상관 관계에 사용 합니다. 자세한 내용은 [상관 관계](application-insights-correlation.md) 페이지를 참조하세요.
 
 ## <a name="data"></a>Data
 

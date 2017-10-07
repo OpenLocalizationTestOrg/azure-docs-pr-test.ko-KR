@@ -8,9 +8,9 @@
 
 # 방법
 ## [저장소 유지](persisting-shell-storage.md)
-## [창 사용](using-the-shell-window.md)
+## [Hello 창을 사용 하 여](using-the-shell-window.md)
 
-# [가격 책정](pricing.md)
+# [가격](pricing.md)
 
 # 참조
 ## [Azure CLI 2.0](/cli/azure) 

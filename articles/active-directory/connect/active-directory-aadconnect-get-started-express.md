@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect: 기본 설정을 사용하여 시작 | Microsoft Docs"
-description: "Azure AD Connect용 설치 마법사를 다운로드, 설치 및 실행하는 방법을 알아봅니다."
+description: "Toodownload를 설치 하 고 Azure AD Connect에 대 한 hello 설치 마법사를 실행 하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 8a08f6e441a856a06bf7870747ca20af45a0364e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 79f796fa7738b85e9236e856bddb529379f60390
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-ad-connect-using-express-settings"></a>기본 설정을 사용하여 Azure AD Connect 시작
-인증을 위한 단일 포리스트 토폴로지 및 **암호 동기화**가 있는 경우 Azure AD Connect [Express 설정](active-directory-aadconnectsync-implement-password-synchronization.md)을 사용합니다. **Express 설정** 은 기본 옵션이며 가장 일반적으로 배포된 시나리오에 사용됩니다. 몇 번의 클릭만으로 온-프레미스 디렉터리를 클라우드로 확장할 수 있습니다.
+인증을 위한 단일 포리스트 토폴로지 및 **암호 동기화**가 있는 경우 Azure AD Connect [Express 설정](active-directory-aadconnectsync-implement-password-synchronization.md)을 사용합니다. **고속 설정** hello 기본 옵션이 며 가장 일반적으로 배포 된 hello 시나리오에 사용 됩니다. 하면 온-프레미스 디렉터리 toohello 클라우드만 몇 번의 클릭 짧은 트래버스하여 tooextend 됩니다.
 
-Azure AD Connect 설치를 시작하기 전에 [Azure AD Connect를 다운로드](http://go.microsoft.com/fwlink/?LinkId=615771)하고 [Azure AD Connect: 하드웨어 및 필수 구성 요소](active-directory-aadconnect-prerequisites.md)의 필수 구성 요소 단계를 완료하도록 합니다.
+Azure AD Connect 설치를 시작 하기 전에 있어야 너무[Azure AD Connect 다운로드](http://go.microsoft.com/fwlink/?LinkId=615771) 및 전체 hello 필수 단계를 [Azure AD Connect: 하드웨어 및 필수 구성 요소](active-directory-aadconnect-prerequisites.md)합니다.
 
 Express 설정이 토폴로지와 일치하지 않는 경우 다른 시나리오는 [관련 설명서](#related-documentation) 를 참조하세요.
 
 ## <a name="express-installation-of-azure-ad-connect"></a>Azure AD Connect의 빠른 설치
-[비디오](#videos) 섹션에서 실행 중인 다음 단계를 확인할 수 있습니다.
+Hello에 대 한 작업에서 다음이 단계를 확인할 수 있습니다 [비디오](#videos) 섹션.
 
-1. Azure AD Connect를 설치하려는 서버에 로컬 관리자로 로그인합니다. 동기화 서버로 설정할 서버에서 수행해야 합니다.
-2. **AzureADConnect.msi**를 찾아서 두 번 클릭합니다.
-3. 시작 화면에서 사용권 계약에 동의하는 상자를 선택하고 **계속**을 클릭합니다.  
-4. 기본 설정 화면에서 **Use express settings**(기본 설정 사용)를 클릭합니다.  
-   ![Azure AD Connect 시작](./media/active-directory-aadconnect-get-started-express/express.png)
-5. Azure AD에 연결 화면에서 Azure AD에 대한 전역 관리자의 사용자 이름 및 암호를 입력합니다. **다음**을 누릅니다.  
-   ![Azure AD에 연결](./media/active-directory-aadconnect-get-started-express/connectaad.png) 오류가 발생하고 연결에 문제가 있는 경우 [연결 문제 해결](active-directory-aadconnect-troubleshoot-connectivity.md)의 필수 구성 요소 단계를 완료하도록 합니다.
-6. AD DS에 연결 화면에서 엔터프라이즈 관리자 계정의 사용자 이름 및 암호를 입력합니다. NetBios 또는 FQDN 형식으로 도메인 부분을 입력할 수 있습니다(예: FABRIKAM\administrator 또는 fabrikam.com\administrator). **다음**을 누릅니다.  
-   ![AD DS에 연결](./media/active-directory-aadconnect-get-started-express/connectad.png)
-7. [필수 구성 요소](active-directory-aadconnect-prerequisites.md)에서 [도메인 확인](../active-directory-add-domain.md)을 완료하지 않은 경우 [**Azure AD 로그인 구성**](active-directory-aadconnect-user-signin.md#azure-ad-sign-in-configuration) 페이지가 표시됩니다.
+1. Azure AD Connect tooinstall에 원하는 로컬 관리자 toohello 서버에 로그인 합니다. Hello 서버에서이 작업을 수행 해야 toobe hello 동기화 서버를 선택 합니다.
+2. Tooand 두 번 클릭 탐색 **AzureADConnect.msi**합니다.
+3. Hello 시작 화면에 hello 상자 합의 toohello 라이선스 조건을 선택 하 고 클릭 **계속**합니다.  
+4. Hello Express 설정 화면에서 클릭 **기본 설정 사용**합니다.  
+   ![시작 tooAzure AD 연결](./media/active-directory-aadconnect-get-started-express/express.png)
+5. Hello 연결 tooAzure AD 화면에서 Azure AD에 대 한 hello 사용자 이름 및 전역 관리자의 암호를 입력 합니다. **다음**을 누릅니다.  
+   ![TooAzure AD 연결](./media/active-directory-aadconnect-get-started-express/connectaad.png) 오류가 발생 하 고 연결에 문제가 있을 경우 다음 참조 [연결 문제를 해결](active-directory-aadconnect-troubleshoot-connectivity.md)합니다.
+6. Hello 연결 tooAD DS 화면에는 엔터프라이즈 관리자 계정에 대 한 hello 사용자 이름 및 암호를 입력 합니다. Hello 도메인 부분, 즉 FABRIKAM\administrator 또는 fabrikam.com\administrator NetBios 또는 FQDN 형식으로 입력할 수 있습니다. **다음**을 누릅니다.  
+   ![DS tooAD 연결](./media/active-directory-aadconnect-get-started-express/connectad.png)
+7. hello [ **Azure AD 로그인 구성** ](active-directory-aadconnect-user-signin.md#azure-ad-sign-in-configuration) 페이지 완료 하지 않은 경우 표시 [도메인 확인](../active-directory-add-domain.md) hello에 [필수 구성 요소](active-directory-aadconnect-prerequisites.md)합니다.
    ![확인되지 않은 도메인](./media/active-directory-aadconnect-get-started-express/unverifieddomain.png)  
-   이 페이지를 표시하는 경우 **추가되지 않음** 및 **확인되지 않음**으로 표시된 모든 도메인을 검토합니다. 사용한 해당 도메인을 Azure AD에서 확인하도록 합니다. 도메인을 확인한 경우 새로 고침 기호를 클릭합니다.
-8. 구성 준비 화면에서 **설치**를 클릭합니다.
-   * 선택적으로 구성 준비 완료 페이지에서 **구성이 완료되자마자 동기화 프로세스를 시작합니다.** 확인란의 선택을 취소할 수 있습니다. [필터링](active-directory-aadconnectsync-configure-filtering.md)같은 추가적인 구성을 수행하려면 이 확인란을 선택하지 말아야 합니다. 이 옵션에 대한 선택을 취소하면, 마법사가 동기화를 구성하지만 스케줄러는 비활성 상태로 유지합니다. [설치 마법사를 다시 실행](active-directory-aadconnectsync-installation-wizard.md)하여 사용자가 수동으로 활성화할 때까지 실행되지 않습니다.
-   * 온-프레미스 Active Directory에 Exchange가 있는 경우 [**Exchange 하이브리드 배포**](https://technet.microsoft.com/library/jj200581.aspx)를 사용하는 옵션도 있습니다. Exchange 사서함을 클라우드와 온-프레미스에 동시에 두려면 이 옵션을 활성화합니다.
-     ![Azure AD Connect 구성 준비 완료](./media/active-directory-aadconnect-get-started-express/readytoconfigure.png)
-9. 설치가 완료되면 **끝내기**를 클릭합니다.
-10. 설치가 완료된 후 로그아웃하고 동기화 서비스 관리자 또는 동기화 규칙 편집기를 사용하기 전에 다시 로그인합니다.
+   이 페이지를 표시하는 경우 **추가되지 않음** 및 **확인되지 않음**으로 표시된 모든 도메인을 검토합니다. 사용한 해당 도메인을 Azure AD에서 확인하도록 합니다. 도메인을 확인 한 경우 hello 새로 고침 기호를 클릭 합니다.
+8. Hello 준비 tooconfigure 화면 클릭 **설치**합니다.
+   * 필요에 따라 hello 준비 tooconfigure 페이지에서 선택 취소할 수 있습니다 hello **구성이 완료 되는 즉시 hello 동기화 프로세스를 시작** 확인란을 선택 합니다. 와 같은 toodo의 추가 구성을 사용 하려는 경우이 확인란 선택을 취소 해야 [필터링](active-directory-aadconnectsync-configure-filtering.md)합니다. 이 옵션의 선택을 취소 하면 hello 마법사 동기화 구성 되지만 hello 스케줄러를 사용 하지 않도록 설정 합니다. 수동으로 설정할 때까지 실행 되지 않습니다 [hello 설치 마법사를 다시 실행](active-directory-aadconnectsync-installation-wizard.md)합니다.
+   * Exchange 온-프레미스 Active Directory에 있는 경우 옵션 tooenable 있습니다 [ **Exchange 하이브리드 배포**](https://technet.microsoft.com/library/jj200581.aspx)합니다. 계획 toohave Exchange 사서함 모두 hello 클라우드 및 온-프레미스 hello에 동일 하는 경우이 옵션을 사용 하도록 설정 시간입니다.
+     ![Azure AD Connect tooconfigure 준비 됨](./media/active-directory-aadconnect-get-started-express/readytoconfigure.png)
+9. Hello 설치가 완료 되 면 클릭 **종료**합니다.
+10. Hello 설치가 완료 된 후 로그 오프 하 고 동기화 서비스 관리자 또는 동기화 규칙 편집기를 사용 하기 전에 다시 로그인 합니다.
 
 ## <a name="videos"></a>비디오
-빠른 설치 사용에 대한 비디오는 다음을 참조하세요.
+Hello 빠른 설치를 사용 하 여 관련 한 비디오를 참조 하세요.
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-Active-Directory-Connect-Express-Settings/player]
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
-Azure AD Connect를 설치했으므로 [설치를 확인하고 라이선스를 할당](active-directory-aadconnect-whats-next.md)할 수 있습니다.
+Azure AD Connect를 설치 했으므로 다음을 할 수 있습니다 [hello 설치 되었는지 확인 하 고 라이선스를 할당](active-directory-aadconnect-whats-next.md)합니다.
 
-[자동 업그레이드](active-directory-aadconnect-feature-automatic-upgrade.md), [실수로 인한 삭제 방지](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) 및 [Azure AD Connect Health](../connect-health/active-directory-aadconnect-health-sync.md)를 설치하여 사용할 수 있는 이러한 기능에 대해 자세히 알아봅니다.
+Hello 설치를 사용 하도록 설정 된 이러한 기능에 대 한 자세한 정보: [자동 업그레이드](active-directory-aadconnect-feature-automatic-upgrade.md), [실수로 삭제 금지](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md), 및 [Azure AD Connect Health](../connect-health/active-directory-aadconnect-health-sync.md)합니다.
 
-공통 항목인 [스케줄러 및 동기화를 트리거하는 방법](active-directory-aadconnectsync-feature-scheduler.md)에 대해 자세히 알아봅니다.
+이러한 공통 항목에 대 한 자세한 정보: [스케줄러와 tootrigger 동기화 방법을](active-directory-aadconnectsync-feature-scheduler.md)합니다.
 
 [Azure Active Directory와 온-프레미스 ID 통합](active-directory-aadconnect.md)에 대해 자세히 알아봅니다.
 

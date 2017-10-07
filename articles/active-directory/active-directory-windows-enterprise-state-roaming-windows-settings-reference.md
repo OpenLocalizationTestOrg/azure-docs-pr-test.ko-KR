@@ -1,6 +1,6 @@
 ---
-title: "Windows 10 로밍 설정 참조 | Microsoft Docs"
-description: "Windows 10에서 로밍 또는 백업되는 모든 설정의 전체 목록입니다."
+title: "aaaWindows 10 로밍 설정 참조 | Microsoft Docs"
+description: "전체 목록은 로밍 되거나 Windows 10에서 백업 될 모든 hello 설정 합니다."
 services: active-directory
 keywords: "엔터프라이즈 상태 로밍, windows 클라우드"
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: markvi
-ms.openlocfilehash: 5082ed8d2f41e72fa979b978e2ac0b0840fdcdac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 381e2220b698bb0e477c207984ff96c03ed132ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-10-roaming-settings-reference"></a>Windows 10 로밍 설정 참조
-다음은 Windows 10에서 로밍 또는 백업되는 모든 설정의 전체 목록입니다. 
+hello 다음은 로밍 되거나 Windows 10에서 백업 될 모든 hello 설정의 전체 목록입니다. 
 
 ## <a name="devices-and-endpoints"></a>장치 및 끝점
-Windows 10의 동기화, 백업 및 복원 프레임워크에서 지원되는 장치 및 계정 유형에 대한 요약 정보는 다음 테이블을 참조하세요.
+Windows 10에서 프레임 워크를 복원 및 hello 다음에 대 한 hello 장치 및 백업, 동기화 hello에서 지원 되는 계정 유형 요약 표를 참조 하십시오.
 
 | 계정 유형 및 작업 | 데스크톱 | 모바일 |
 | --- | --- | --- |
@@ -35,10 +35,10 @@ Windows 10의 동기화, 백업 및 복원 프레임워크에서 지원되는 �
 | Microsoft 계정: 백업/복원 |아니요 |예 |
 
 ## <a name="what-is-backup"></a>백업이란?
-Windows 설정은 동기화가 기본이지만 장치에 설치된 응용 프로그램 목록 같은 일부 설정은 백업되기만 합니다. 백업은 모바일 장치에 대해서만 사용할 수 있으며 현재 엔터프라이즈 상태 로밍 사용자를 위해서는 사용할 수 없습니다. 백업은 Microsoft 계정을 사용하고 설정 및 응용 프로그램 데이터를 OneDrive에 저장합니다. 사용자가 설정 앱을 사용하여 장치의 동기화를 비활성화하면 평소에는 동기화되는 응용 프로그램 데이터가 백업되기만 합니다. 백업 데이터는 새 장치를 처음으로 실행하는 동안 복원 작업을 통해서만 액세스할 수 있습니다. 백업은 장치 설정을 통해 비활성화할 수 있으며 사용자의 OneDrive 계정을 통해 관리 및 삭제됩니다.
+기본적으로 Windows 설정 일반적으로 동기화 하지만 일부 설정은 백업 장치에 설치 된 응용 프로그램의 hello 목록 등. 백업은 모바일 장치에 대해서만 사용할 수 있으며 현재 엔터프라이즈 상태 로밍 사용자를 위해서는 사용할 수 없습니다. Microsoft 계정을 사용 하 여 백업과 OneDrive에 hello 설정 및 응용 프로그램 데이터를 저장 합니다. 사용자는 hello 설정 앱을 사용 하 여 hello 장치에 동기화를 비활성화, 일반적으로 동기화 되는 응용 프로그램 데이터만 백업 됩니다. 백업 데이터는 hello 먼저 새 장치 경험을 실행 하는 동안 hello 복원 작업을 통해 액세스할 수만 있습니다. 백업을은 hello 장치 설정을 통해 비활성화할 수 있습니다 및 관리 하 고 hello 사용자의 OneDrive 계정 통해 삭제 합니다.
 
 ## <a name="windows-settings-overview"></a>Windows 설정 개요
-다음 설정 그룹은 Windows 10 장치에서 최종 사용자가 설정 동기화를 활성화/비활성화하는 데 사용할 수 있습니다.
+hello 다음 설정 그룹은 Windows 10 장치에서 최종 사용자에 게 tooenable/사용 안 함 설정 동기화에 사용할 수 있습니다.
 
 * 테마: 바탕 화면 배경, 사용자 타일, 작업 표시줄 위치 등 
 * Internet Explorer 설정: 검색 기록, 입력한 URL, 즐겨찾기 등 
@@ -54,10 +54,10 @@ Edge 브라우저 설정 그룹(즐겨찾기, 읽기 목록) 동기화는 Edge �
 ![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-sync-content.png)
 
 ## <a name="windows-settings-details"></a>Windows 설정 세부 정보
-다음 테이블에서 설정 그룹 열의 기타 항목이 참조하는 설정은 설정 > 계정 > 설정 동기화 > 기타 Windows 설정으로 이동하여 비활성화할 수 있습니다. 
+다음 표에 hello, hello 설정 그룹 열에 있는 다른 항목이 toosettings tooSettings 이동 하 여 사용할 수 있는 참조 > 계정 > 설정을 동기화 하 고 > 기타 Windows 설정 합니다. 
 
-설정 그룹 열의 내부 항목이 참조하는 설정 및 앱은 앱 자체 내부에서 동기화를 비활성화하거나 MDM(모바일 장치 관리) 또는 그룹 정책 설정을 사용하여 장치 전체의 동기화를 비활성하는 방법으로만 비활성화할 수 있습니다.
-로밍 또는 동기화하지 않는 설정은 그룹에 소속되지 않습니다.
+Hello 설정 그룹 열의 내부 항목 toosettings 및 hello 앱 자체 내에서 또는 모바일 장치 관리 (MDM) 또는 그룹 정책 설정을 사용 하 여 hello 전체 장치에 대 한 동기화를 비활성화 하 여 동기화 할 수 없도록만 사용할 수 있는 앱을 참조 하십시오.
+로밍되지 않는다는 설정 또는 동기화 tooa 그룹에 속해 있지 않습니다.
 
 | 설정 | 데스크톱 | 모바일 | 그룹 |
 | --- | --- | --- | --- |
@@ -85,16 +85,16 @@ Edge 브라우저 설정 그룹(즐겨찾기, 읽기 목록) 동기화는 Edge �
 | **바탕 화면 개인 설정**: 슬라이드 쇼 배경 화면 |sync |X |테마 |
 | **바탕 화면 개인 설정**: 작업 표시줄 설정(위치, 자동 숨김 등) |sync |X |테마 |
 | **바탕 화면 개인 설정**: 시작 화면 레이아웃 |X |backup | |
-| **장치**: 연결된 공유 프린터 |X |X |기타 |
+| **장치**: 너무 연결한 프린터 공유|X |X |기타 |
 | **Edge 브라우저**: 읽기 목록 |sync |sync |내부 |
 | **Edge 브라우저**: 즐겨찾기 |sync |sync |내부 |
 | **Edge 브라우저**: 상위 사이트 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
 | **Edge 브라우저**: 형식이 지정된 URL <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
 | **Edge 브라우저**: 즐겨찾기 표시줄 설정 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
-| **Edge 브라우저**: 홈 단추 표시 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
+| **Edge 브라우저**: hello 홈 단추 표시 <sup> [[1]](#footnote-1)</sup> |sync |sync |내부 |
 | **Edge 브라우저**: 팝업 차단 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
-| **Edge 브라우저**: 각 다운로드에서 수행할 작업 확인 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
-| **Edge 브라우저**: 암호 저장 제안 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
+| **Edge 브라우저**: 각 다운로드에 어떤 toodo 묻지 <sup> [[1]](#footnote-1)</sup> |sync |sync |내부 |
+| **Edge 브라우저**: toosave 암호 제공 <sup> [[1]](#footnote-1)</sup> |sync |sync |내부 |
 | **Edge 브라우저**: 보내기 시 요청 추적 안 함 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
 | **Edge 브라우저**: 양식 항목 저장 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
 | **Edge 브라우저**: 입력할 때 검색 및 사이트 추천 단어 표시 <sup>[[1]](#footnote-1)</sup> |sync |sync |내부 |
@@ -126,8 +126,8 @@ Edge 브라우저 설정 그룹(즐겨찾기, 읽기 목록) 동기화는 Edge �
 | **언어**: CHS QWERTY - 읽기 자동 교정 |sync |X |language |
 | **언어**: CHS QWERTY - C/E 전환 키, Shift |sync |X |language |
 | **언어**: CHS QWERTY - C/E 전환 키, Ctrl |sync |X |language |
-| **언어**: CHS WUBI - 단일 문자 입력 모드 |sync |X |language |
-| **언어**: CHS WUBI - 나머지 후보 코딩 표시 |sync |X |language |
+| **언어**: CHS WUBI - 단일 문자 입력 모드 |sync |X |언어 |
+| **언어**: CHS WUBI-hello hello 후보의 코딩 남은 표시 |sync |X |language |
 | **언어**: CHS WUBI - 4 코딩이 유효하지 않을 때 경고음 |sync |X |언어 |
 | **언어**: CHS 보포모포 - CJK Ext-A 포함 |sync |X |language |
 | **언어**: 일본어 IME - 예측 입력 및 사용자 지정 단어 |sync |sync |language |
@@ -139,11 +139,11 @@ Edge 브라우저 설정 그룹(즐겨찾기, 읽기 목록) 동기화는 Edge �
 | **잠금 화면**: 모든 잠금 화면 설정 |X |X | |
 | **돋보기**: 켜기 또는 끄기(마스터 토글) |X |X |간편한 액세스 |
 | **돋보기**: 반전 색 켜기 또는 끄기(기본적으로 꺼져 있음) |sync |X |간편한 액세스 |
-| **돋보기**: 추적 - 키보드 포커스 추적 |sync |X |간편한 액세스 |
-| **돋보기**: 추적 - 마우스 커서 추적 |sync |X |간편한 액세스 |
+| **돋보기**: 추적-따라 hello 키보드 포커스 |sync |X |간편한 액세스 |
+| **돋보기**: 추적-따라 hello 마우스 커서 |sync |X |간편한 액세스 |
 | **돋보기**: 사용자가 로그인하면 시작(기본적으로 꺼져 있음) |sync |X |간편한 액세스 |
-| **마우스**: 마우스 커서의 크기 변경 |sync |X |기타 |
-| **마우스**: 마우스 커서의 색상 변경 |sync |X |기타 |
+| **마우스**: 마우스 커서의 hello 크기 변경 |sync |X |기타 |
+| **마우스**: 마우스 커서의 hello 색 변경 |sync |X |기타 |
 | **마우스**: 모든 기타 설정 |X |X | |
 | **내레이터**: 빠른 실행 |sync |X |간편한 액세스 |
 | **내레이터**: 사용자가 내레이터 말하는 속도를 변경할 수 있음 |sync |X |간편한 액세스 |
@@ -153,8 +153,8 @@ Edge 브라우저 설정 그룹(즐겨찾기, 읽기 목록) 동기화는 Edge �
 | **내레이터**: 내레이터 뒤에 커서 삽입(기본적으로 켜져 있음) |sync |X |간편한 액세스 |
 | **내레이터**: 내레이터 커서의 시각적 강조 표시 활성화(기본적으로 켜져 있음) |sync |X |간편한 액세스 |
 | **내레이터**: 오디오 재생 큐(기본적으로 켜져 있음) |sync |X |간편한 액세스 |
-| **내레이터**: 사용자가 손가락을 떼면 터치 키보드의 키 활성화(기본적으로 꺼져 있음) |sync |X |간편한 액세스 |
-| **간편한 액세스**: 깜박이 커서의 두께 설정 |sync |X |간편한 액세스 |
+| **내레이터**: 손가락을 떼면 hello 터치 키보드의 키를 활성화 (기본적으로 해제 됨) |sync |X |간편한 액세스 |
+| **편리한 액세스**: hello 깜박이 커서가의 hello 두께 설정 합니다. |sync |X |간편한 액세스 |
 | **간편한 액세스**: 배경 이미지 제거(기본적으로 꺼져 있음) |sync |X |간편한 액세스 |
 | **전원 및 절전**: 모든 설정 |X |X | |
 | **시작 화면 개인 설정**: 강조 색(phone 전용) |X |sync |테마 |
@@ -162,9 +162,9 @@ Edge 브라우저 설정 그룹(즐겨찾기, 읽기 목록) 동기화는 Edge �
 | **입력**: 맞춤법이 틀린 단어 자동 교정 |sync |backup |language |
 | **입력**: 맞춤법이 틀린 단어에 강조 표시 |sync |backup |language |
 | **입력**: 입력할 때 텍스트 제안 표시 |sync |backup |language |
-| **입력할 때**: 텍스트 제안 선택 후에 공백을 추가 |sync |backup |language |
-| **입력**: 스페이스바를 두 번 탭하면 마침표 추가 |sync |backup |language |
-| **입력**: 각 문장의 첫 번째 문자를 대문자로 표기 |sync |backup |language |
+| **입력할 때**: 텍스트 제안 선택 후에 공백을 추가 |sync |backup |언어 |
+| **입력**: 후 I 두번 hello 스페이스바 마침표를 추가 |sync |backup |언어 |
+| **입력**: hello 각 문장의 첫 글자를 대문자로 |sync |backup |language |
 | **입력**: Shift 키를 두 번 탭하면 모든 문자를 대문자로 표기 |sync |backup |language |
 | **입력**: 입력할 때 키 소리 재생 |sync |backup |language |
 | **입력**: 터치 키보드의 개인 설정 데이터 |sync |backup |language |

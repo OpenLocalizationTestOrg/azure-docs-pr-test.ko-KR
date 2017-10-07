@@ -1,5 +1,5 @@
 ---
-title: "Linux에서 실행되는 Azure Web App 만들기 | Microsoft Docs"
+title: "aaaCreate Azure 웹 앱 Linux에서 실행 중인 | Microsoft Docs"
 description: "Linux의 Azure Web App용 웹앱 만들기 워크플로"
 keywords: "azure app service, 웹앱, linux, oss"
 services: app-service
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 49091d4a85bed23927850f9c0bbc5ea8b6e8c9e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de1bd030345d5e2a8024012067b5bcaa2cca09dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-web-app-running-on-linux"></a>Linux에서 실행되는 Azure Web App 만들기
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-## <a name="use-the-azure-portal-to-create-your-web-app"></a>Azure Portal을 사용하여 웹앱 만들기
-다음 그림에 나와 있는 것처럼 [Azure Portal](https://portal.azure.com)에서 Linux의 웹앱을 만들 수 있습니다.
+## <a name="use-hello-azure-portal-toocreate-your-web-app"></a>Azure 포털 toocreate hello 웹 응용 프로그램 사용
+Hello에서 Linux에서 웹 앱을 만들기 시작할 수 있습니다 [Azure 포털](https://portal.azure.com) hello 다음 이미지와 같이:
 
-![Azure Portal에서 웹앱 만들기][1]
+![Hello Azure 포털에서 웹 앱을 만들기 시작][1]
 
-그러면 다음 그림과 같이 **만들기** 블레이드가 열립니다.
+다음으로 hello **만들기 블레이드** hello 다음 이미지와 같이 열립니다.
 
-![만들기 블레이드][2]
+![hello 만들기 블레이드][2]
 
 1. 웹앱에 이름을 지정합니다.
-2. 기존 리소스 그룹을 선택하거나 새 리소스 그룹을 만듭니다. ([제한 사항 섹션](app-service-linux-intro.md)에서 사용 가능한 지역 참조)
-3. 기존 Azure App Service 계획을 선택하거나 새 App Service 계획을 만듭니다. ([제한 사항 섹션](app-service-linux-intro.md)에서 App Service 정보 참조)
-4. 사용하려는 응용 프로그램 스택을 선택합니다. 여러 버전의 Node.js, PHP, .Net Core, Ruby 중에 선택할 수 있습니다.
+2. 기존 리소스 그룹을 선택하거나 새 리소스 그룹을 만듭니다. (사용 가능한 지역이 hello에 [제한 사항 섹션](app-service-linux-intro.md).)
+3. 기존 Azure App Service 계획을 선택하거나 새 App Service 계획을 만듭니다. (Hello에 앱 서비스 계획을 참조 하십시오 [제한 사항 섹션](app-service-linux-intro.md).)
+4. Hello 응용 프로그램을 선택 하려는 toouse 스택 합니다. 여러 버전의 Node.js, PHP, .Net Core, Ruby 중에 선택할 수 있습니다.
 
-앱을 만든 후 다음 그림에 나와 있는 것처럼 응용 프로그램 설정에서 응용 프로그램 스택을 변경할 수 있습니다.
+Hello 응용 프로그램 스택 hello 다음 이미지와 같이 hello 응용 프로그램을 만든 후 hello 응용 프로그램 설정에서 변경할 수 있습니다.
 
 ![응용 프로그램 설정][3]
 
 ## <a name="deploy-your-web-app"></a>웹앱 배포
-관리 포털에서 **배포 옵션**을 선택하면 로컬 Git 또는 GitHub 리포지토리를 사용하여 응용 프로그램을 배포하기 위한 옵션이 제공됩니다. 나머지 설명은 비 Linux 웹앱과 유사합니다. [로컬 Git 배포](app-service-deploy-local-git.md) 또는 [연속 배포](app-service-continuous-deployment.md)의 지침에 따라 앱을 배포할 수 있습니다.
+선택 **배포 옵션** hello 관리 포털에서는에서 있습니다 hello 옵션 toouse 로컬 Git 또는 GitHub 리포지토리 toodeploy 응용 프로그램입니다. hello 지침 hello 나머지는 Linux 비 웹 앱에 대 한 유사한 toothose 합니다. Hello 지침에 따르면 [로컬 Git 배포](app-service-deploy-local-git.md) 또는 [연속 배포](app-service-continuous-deployment.md) toodeploy 앱.
 
-또한 FTP를 사용하여 사이트에 응용 프로그램을 업로드할 수도 있습니다. 다음 그림에 나와 있는 것처럼 진단 로그 섹션에서 웹앱에 대한 FTP 끝점을 가져올 수 있습니다.
+또한 응용 프로그램 tooyour 사이트 FTP tooupload를 사용할 수 있습니다. 에서 가져올 수 있습니다 hello FTP 끝점 웹 앱에 대 한 hello 진단 로그 섹션 hello 다음 이미지와 같이:
 
 ![진단 로그][4]
 

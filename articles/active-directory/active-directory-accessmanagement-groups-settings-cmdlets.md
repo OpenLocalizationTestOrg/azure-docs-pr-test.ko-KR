@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory cmdlet을 사용하여 그룹 설정 구성 | Microsoft Docs"
-description: "Azure Active Directory cmdlet을 사용하여 그룹 설정을 관리하는 방법"
+title: "Azure Active Directory cmdlet을 사용 하 여 aaaConfigure 그룹 설정을 | Microsoft Docs"
+description: "Azure Active Directory cmdlet을 사용 하 여 그룹에 대 한 hello 설정을 어떻게 관리"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,32 +16,32 @@ ms.date: 08/09/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: it-pro;
-ms.openlocfilehash: 0d89f12955b90c7e1a8301b7c3a1a92e7f62d085
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 46db49d9dec3eaa41c97ca74c57854189eddc16d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>그룹 설정을 구성하는 Azure Active Directory cmdlets
 
 > [!IMPORTANT]
-> 이 콘텐츠는 Office 365 그룹에만 적용됩니다. 사용자가 보안 그룹을 만들 수 있도록 하는 방법에 대한 자세한 내용은 [Set-MSOLCompanySettings](https://docs.microsoft.com/en-us/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)에 설명된 대로 `Set-MSOLCompanySettings -UsersPermissionToCreateGroupsEnabled $True`를 설정하세요. 
+> 이 콘텐츠는 365 그룹에 tooOffice만 적용 됩니다. 방법에 대 한 자세한 내용은 tooallow 사용자 toocreate 보안 그룹을 설정할 `Set-MSOLCompanySettings -UsersPermissionToCreateGroupsEnabled $True` 에 설명 된 대로 [Set-msolcompanysettings](https://docs.microsoft.com/en-us/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)합니다. 
 
-Office 365 그룹 설정은 설정 개체와 SettingsTemplate 개체를 사용하여 구성됩니다. 처음에는 디렉터리가 기본 설정으로 구성되어 있으므로 디렉터리에 설정 개체가 표시되지 않습니다. 기본 설정을 변경하려면 설정 템플릿을 사용하여 새 설정 개체를 만들어야 합니다. 설정 템플릿은 Microsoft가 정의합니다. 여러 종류의 설정 템플릿이 있습니다. 디렉터리에 대한 Office 365 그룹 설정을 구성하려면 "Group.Unified" 템플릿을 사용하세요. 단일 그룹의 Office 365 그룹 설정을 구성하려면 "Group.Unified.Guest" 템플릿을 사용하세요. 이 템플릿은 Office 365 그룹에 대한 게스트 액세스 관리에 사용됩니다. 
+Office 365 그룹 설정은 설정 개체와 SettingsTemplate 개체를 사용하여 구성됩니다. 처음에 보이지 않으면 설정 개체에 모든 디렉터리의 디렉터리 hello 기본 설정으로 구성 되어 있으므로 합니다. toochange hello 기본 설정을 설정 템플릿을 사용 하 여 새 설정 개체를 만들어야 합니다. 설정 템플릿은 Microsoft가 정의합니다. 여러 종류의 설정 템플릿이 있습니다. "Group.Unified" hello 템플릿이 사용할 tooconfigure Office 365 그룹에 대 한 설정 디렉터리에 있습니다. 단일 그룹에 tooconfigure Office 365 그룹 설정 "Group.Unified.Guest" 라는 hello 서식 파일을 사용 합니다. 이 서식 파일은 사용 되는 toomanage 게스트 액세스 tooan Office 365 그룹입니다. 
 
-cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨터에 모듈을 다운로드하여 설치하는 방법에 대한 지침은 [Azure Active Directory PowerShell 버전 2](https://docs.microsoft.com/powershell/azuread/)를 참조하세요. 모듈의 버전 2 릴리스를 [PowerShell 갤러리](https://www.powershellgallery.com/packages/AzureAD/)에서 설치할 수 있습니다.
+hello cmdlet은 hello Azure Active Directory PowerShell V2 모듈의 일부입니다. 어떻게 toodownload 및 컴퓨터에 설치 hello 모듈 참조 hello 문서 [Azure Active Directory PowerShell 버전 2](https://docs.microsoft.com/powershell/azuread/)합니다. hello 모듈의 hello 버전 2 릴리스를 설치할 수 [hello PowerShell 갤러리](https://www.powershellgallery.com/packages/AzureAD/)합니다.
 
 ## <a name="retrieve-a-specific-settings-value"></a>특정 설정 값 검색
-검색할 설정의 이름을 알고 있는 경우 아래 cmdlet을 사용하여 현재 설정 값을 검색할 수 있습니다. 이 예제에서는 "UsageGuidelinesUrl"이라는 설정의 값을 검색합니다. 향후 이 문서에서 디렉터리 설정 및 해당 이름에 대해 자세히 살펴볼 수 있습니다.
+hello 이름을 알고 있는 이벤트를 설정 하는 hello 시킬 tooretrieve hello 아래 cmdlet tooretrieve hello 현재 설정 값을 사용할 수 있습니다. 이 예제에서는 "UsageGuidelinesUrl." 라는 설정에 대 한 hello 값을 검색 하는 것 향후 이 문서에서 디렉터리 설정 및 해당 이름에 대해 자세히 살펴볼 수 있습니다.
 
 ```powershell
 (Get-AzureADDirectorySetting).Values | Where-Object -Property Name -Value UsageGuidelinesUrl -EQ
 ```
 
-## <a name="create-settings-at-the-directory-level"></a>디렉터리 수준에서 설정 만들기
-다음 단계는 디렉터리 수준에서 설정을 만드는 것입니다. 이 설정은 디렉터리에 있는 모든 Office 365 그룹(통합 그룹)에 적용됩니다.
+## <a name="create-settings-at-hello-directory-level"></a>Hello 디렉터리 수준에서 설정 만들기
+다음이 단계 설정 만들기 디렉터리 수준에서 tooall hello 디렉터리에 Office 365 그룹 (통합 그룹)를 적용 합니다.
 
-1. DirectorySettings cmdlet에서 사용하려는 SettingsTemplate의 ID를 지정해야 합니다. 이 ID를 모르면 cmdlet이 모든 설정 템플릿 목록을 반환합니다.
+1. Hello DirectorySettings cmdlet, hello toouse 원하는 SettingsTemplate의 hello ID를 지정 해야 합니다. 이 ID를 모르는 경우이 cmdlet에는 모든 설정 템플릿의 hello 목록을 반환 합니다.
   
   ```
   PS C:> Get-AzureADDirectorySettingTemplate
@@ -53,12 +53,12 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
   --                                   -----------         -----------
   62375ab9-6b52-47ed-826b-58e47e0e304b Group.Unified       ...
   08d542b9-071f-4e16-94b0-74abb372e3d9 Group.Unified.Guest Settings for a specific Unified Group
-  16933506-8a8d-4f0d-ad58-e1db05a5b929 Company.BuiltIn     Setting templates define the different settings that can be used for the associ...
+  16933506-8a8d-4f0d-ad58-e1db05a5b929 Company.BuiltIn     Setting templates define hello different settings that can be used for hello associ...
   4bc7f740-180e-4586-adb6-38b2e9024e6b Application...
   898f1161-d651-43d1-805c-3b0b388a9fc2 Custom Policy       Settings ...
   5cf42378-d67d-4f36-ba46-e8b86229381d Password Rule       Settings ...
   ```
-2. 사용 지침 URL을 추가하려면 사용 지침 URL 값을 정의하는 SettingsTemplate 개체를 가져와야 합니다. 즉, Group.Unified 템플릿입니다.
+2. 사용 지침 URL tooadd 먼저 hello 사용 지침 URL 값; 정의 하는 tooget hello SettingsTemplate 개체 즉, hello Group.Unified 템플릿:
   
   ```
   $Template = Get-AzureADDirectorySettingTemplate -Id 62375ab9-6b52-47ed-826b-58e47e0e304b
@@ -68,43 +68,43 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
   ```
   $Setting = $template.CreateDirectorySetting()
   ```  
-4. 그런 다음 사용 지침 값을 업데이트합니다.
+4. 그런 다음 hello 사용 지침 값을 업데이트 합니다.
   
   ```
   $setting["UsageGuidelinesUrl"] = "<https://guideline.com>"
   ```  
-5. 마지막으로 설정을 적용합니다.
+5. 마지막으로 hello 설정을 적용 합니다.
   
   ```
   New-AzureADDirectorySetting -DirectorySetting $setting
   ```
 
-성공적으로 완료되면 cmdlet이 새 설정 개체의 ID를 반환합니다.
+성공적으로 완료 되 면 hello cmdlet hello 새 설정 개체의 hello ID를 반환합니다.
   ```
   Id                                   DisplayName TemplateId                           Values
   --                                   ----------- ----------                           ------
   c391b57d-5783-4c53-9236-cefb5c6ef323             62375ab9-6b52-47ed-826b-58e47e0e304b {class SettingValue {...
   ```
-다음은 Group.Unified 설정 템플릿에서 정의된 설정입니다.
+다음은 Group.Unified SettingsTemplate hello에 정의 된 hello 설정을입니다.
 
 | **설정** | **설명** |
 | --- | --- |
-|  <ul><li>EnableGroupCreation<li>형식: Boolean<li>기본값: True |디렉터리에서 통합 그룹 만들기가 허용되는지 나타내는 플래그입니다. |
-|  <ul><li>GroupCreationAllowedGroupId<li>형식: String<li>기본값: “” |EnableGroupCreation == false일 때도 구성원이 통합 그룹을 만들도록 허용된 보안 그룹의 GUID입니다. |
-|  <ul><li>UsageGuidelinesUrl<li>형식: String<li>기본값: “” |그룹 사용 지침 링크입니다. |
+|  <ul><li>EnableGroupCreation<li>형식: Boolean<li>기본값: True |hello 디렉터리에 통합 그룹 만들기가 허용 되는지 여부를 나타내는 hello 플래그입니다. |
+|  <ul><li>GroupCreationAllowedGroupId<li>형식: String<li>기본값: “” |경우에 멤버는 toocreate 통합 그룹을 허용 하는 데는 hello에 대 한 hello 보안 그룹의 GUID EnableGroupCreation = = false. |
+|  <ul><li>UsageGuidelinesUrl<li>형식: String<li>기본값: “” |링크 toohello 그룹 사용 지침 |
 |  <ul><li>ClassificationDescriptions<li>형식: String<li>기본값: “” | 쉼표로 구분된 분류 설명 목록입니다. |
-|  <ul><li>DefaultClassification<li>형식: String<li>기본값: “” | 설정이 지정되지 않은 경우에 그룹의 기본 분류로 사용되는 분류입니다.|
+|  <ul><li>DefaultClassification<li>형식: String<li>기본값: “” | toobe에 지정 된 경우 그룹에 대 한 기본 분류 hello로 사용 되는 hello 분류 합니다.|
 |  <ul><li>PrefixSuffixNamingRequirement<li>형식: String<li>기본값: “” |아직 구현되지 않았습니다.
 |  <ul><li>AllowGuestsToBeGroupOwner<li>형식: Boolean<li>기본값: False | 게스트 사용자가 그룹의 소유자일 수 있는지 여부를 나타내는 부울 값입니다. |
-|  <ul><li>AllowGuestsToAccessGroups<li>형식: Boolean<li>기본값: True | 게스트 사용자가 통합 그룹의 콘텐츠에 액세스할 수 있는지 여부를 나타내는 부울 값입니다. |
-|  <ul><li>GuestUsageGuidelinesUrl<li>형식: String<li>기본값: “” | 게스트 사용 지침의 링크 url입니다. |
-|  <ul><li>AllowToAddGuests<li>형식: Boolean<li>기본값: True | 이 디렉터리에 게스트를 추가하는 것이 허용되는지 여부를 나타내는 부울 값입니다.|
-|  <ul><li>ClassificationList<li>형식: String<li>기본값: “” |통합 그룹에 적용할 수 있는 유효한 분류 값을 쉼표로 구분한 목록입니다. |
+|  <ul><li>AllowGuestsToAccessGroups<li>형식: Boolean<li>기본값: True | 게스트 사용자 액세스 tooUnified 그룹 콘텐츠를 가질 수 있는지 여부를 나타내는 부울입니다. |
+|  <ul><li>GuestUsageGuidelinesUrl<li>형식: String<li>기본값: “” | 링크 toohello 게스트 사용 지침의 hello url입니다. |
+|  <ul><li>AllowToAddGuests<li>형식: Boolean<li>기본값: True | 허용 된 tooadd 게스트 toothis 디렉터리 인지 여부를 나타내는 부울 값입니다.|
+|  <ul><li>ClassificationList<li>형식: String<li>기본값: “” |적용 된 tooUnified 그룹 일 수 있는 유효한 분류 값을 쉼표로 구분 된 목록입니다. |
 |  <ul><li>EnableGroupCreation<li>형식: Boolean<li>기본값: True | 관리자가 아닌 사용자가 새 통합 그룹을 만들 수 있는지 여부를 나타내는 부울 값입니다. |
 
 
-## <a name="read-settings-at-the-directory-level"></a>디렉터리 수준에서 설정 읽기
-다음 단계는 디렉터리 수준에서 설정을 읽는 것입니다. 이 설정은 디렉터리에 있는 모든 Office 그룹에 적용됩니다.
+## <a name="read-settings-at-hello-directory-level"></a>Hello 디렉터리 수준에서 설정 읽기
+다음이 단계 읽기 tooall Office 그룹 hello 디렉터리에 적용 되는 디렉터리 수준에서 설정 합니다.
 
 1. 모든 기존 디렉터리 설정 읽기:
   ```
@@ -126,7 +126,7 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
   ```
   (Get-AzureADDirectorySetting -Id c391b57d-5783-4c53-9236-cefb5c6ef323).values
   ```
-  이 cmdlet은 이 특정 그룹에 대한 이 설정 개체의 이름과 값을 반환합니다.
+  이 cmdlet이 특정 그룹에 대 한이 설정 개체에 hello 이름 및 값을 반환합니다.
   ```
   Name                          Value
   ----                          -----
@@ -145,7 +145,7 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
 
 ## <a name="update-settings-for-a-specific-group"></a>특정 그룹의 설정 업데이트
 
-1. "Groups.Unified.Guest"라는 설정 템플릿 검색
+1. "Groups.Unified.Guest" 라는 hello 설정 서식 파일을 검색
   ```
   Get-AzureADDirectorySettingTemplate
   
@@ -157,20 +157,20 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
   898f1161-d651-43d1-805c-3b0b388a9fc2 Custom Policy Settings ...
   5cf42378-d67d-4f36-ba46-e8b86229381d Password Rule Settings ...
   ```
-2. Groups.Unified.Guest 템플릿에 대한 템플릿 개체를 검색합니다.
+2. Hello Groups.Unified.Guest 템플릿에 대 한 hello 템플릿 개체를 검색 합니다.
   ```
   $Template = Get-AzureADDirectorySettingTemplate -Id 08d542b9-071f-4e16-94b0-74abb372e3d9
   ```
-3. 템플릿으로 새로운 설정 개체를 만듭니다.
+3. Hello 템플릿에서 새 설정 개체를 만듭니다.
   ```
   $Setting = $Template.CreateDirectorySetting()
   ```
 
-4. 필요한 값의 설정을 지정합니다.
+4. Hello 설정 toohello 필요한 값을 설정 합니다.
   ```
   $Setting["AllowToAddGuests"]=$False
   ```
-5. 디렉터리에 필요한 그룹의 새로운 설정을 만듭니다.
+5. Hello 디렉터리에 hello hello 필수 그룹에 대 한 새 설정 만들기:
   ```
   New-AzureADObjectSetting -TargetType Groups -TargetObjectId ab6a3887-776a-4db7-9da4-ea2b0d63c504 -DirectorySetting $Setting
   
@@ -179,11 +179,11 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
   25651479-a26e-4181-afce-ce24111b2cb5             08d542b9-071f-4e16-94b0-74abb372e3d9 {class SettingValue {...
   ```
 
-## <a name="update-settings-at-the-directory-level"></a>디렉터리 수준에서 설정 업데이트
+## <a name="update-settings-at-hello-directory-level"></a>Hello 디렉터리 수준에서 설정 업데이트
 
-다음 단계는 디렉터리 수준에서 설정을 업데이트합니다. 이 설정은 디렉터리에 있는 모든 통합 그룹에 적용됩니다. 다음 예에서는 이미 디렉터리에 설정 개체가 있는 것으로 가정합니다.
+다음이 단계에는 tooall 통합 그룹 hello 디렉터리에 적용 되는 디렉터리 수준에서 설정을 업데이트 합니다. 다음 예에서는 이미 디렉터리에 설정 개체가 있는 것으로 가정합니다.
 
-1. 기존 설정 개체를 찾습니다.
+1. Hello 기존 설정 개체를 찾습니다.
   ```
   Get-AzureADDirectorySetting | Where-object -Property Displayname -Value "Group.Unified" -EQ
   
@@ -193,19 +193,19 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
   
   $setting = Get-AzureADDirectorySetting –Id c391b57d-5783-4c53-9236-cefb5c6ef323
   ```
-2. 값을 업데이트합니다.
+2. Hello 값을 업데이트 합니다.
   
   ```
   $Setting["AllowToAddGuests"] = "false"
   ```
-3. 설정을 업데이트합니다.
+3. Hello 설정을 업데이트 합니다.
   
   ```
   Set-AzureADDirectorySetting -Id c391b57d-5783-4c53-9236-cefb5c6ef323 -DirectorySetting $Setting
   ```
 
-## <a name="remove-settings-at-the-directory-level"></a>디렉터리 수준에서 설정 제거
-다음 단계는 디렉터리 수준에서 설정을 제거하는 것입니다. 이 설정은 디렉터리에 있는 모든 Office 그룹에 적용됩니다.
+## <a name="remove-settings-at-hello-directory-level"></a>Hello 디렉터리 수준에서 설정 제거
+이 단계는 tooall Office 그룹 hello 디렉터리에 적용 되는 디렉터리 수준에서 설정을 제거 합니다.
   ```
   Remove-AzureADDirectorySetting –Id c391b57d-5783-4c53-9236-cefb5c6ef323c
   ```
@@ -215,5 +215,5 @@ cmdlet은 Azure Active Directory PowerShell V2 모듈의 일부입니다. 컴퓨
 
 ## <a name="additional-reading"></a>추가 참조 자료
 
-* [Azure Active Directory 그룹을 사용하여 리소스에 대한 액세스 관리](active-directory-manage-groups.md)
+* [Azure Active Directory 그룹을 사용 하 여 액세스 tooresources 관리](active-directory-manage-groups.md)
 * [Azure Active Directory와 온-프레미스 ID 통합](active-directory-aadconnect.md)

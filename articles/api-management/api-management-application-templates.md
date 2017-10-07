@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management의 응용 프로그램 템플릿 | Microsoft Docs"
-description: "Azure API Management의 개발자 포털에서 응용 프로그램 페이지의 콘텐츠를 사용자 지정하는 방법을 알아봅니다."
+title: "Azure API 관리에서 aaaApplication 템플릿 | Microsoft Docs"
+description: "Toocustomize hello Azure API 관리 개발자 포털에 hello 응용 프로그램 페이지의 내용을 hello 하는 방법에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 6d2d44465800219f16866a621d4822614ac9e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4dc078be7163b047ca2e640a9065ba9e5ba709e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-templates-in-azure-api-management"></a>Azure API Management의 응용 프로그램 템플릿
-Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사용하여 개발자 포털 페이지의 콘텐츠를 사용자 지정하는 기능을 제공합니다. 이러한 템플릿에서 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers) 및 제공된 지역화 [String 리소스](api-management-template-resources.md#strings), [Glyph 리소스](api-management-template-resources.md#glyphs) 및 [Page 컨트롤](api-management-page-controls.md)의 집합과 같은 선택한 편집기를 사용하여 필요에 따라 페이지 콘텐츠를 유연하게 구성할 수 있습니다.  
+Azure API 관리 개발자 포털 페이지 콘텐츠를 구성 하는 템플릿 집합을 사용 하 여 콘텐츠의 toocustomize hello 기능 hello를 제공 합니다. 사용 하 여 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 hello 편집기의 선택한와 같은 [디자이너에 대 한 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), 제공 된 집합을 지역화 [문자열 리소스](api-management-template-resources.md#strings), [ 문자 모양 리소스](api-management-template-resources.md#glyphs), 및 [컨트롤 페이지](api-management-page-controls.md), 이러한 템플릿을 사용 하 여 나타나며 hello 페이지의 뛰어난 유연성 tooconfigure hello 내용을 백업이 있어야 합니다.  
   
- 이 섹션의 템플릿을 사용하여 개발자 포털의 응용 프로그램 페이지의 콘텐츠를 사용자 지정할 수 있습니다.  
+ 이 섹션의 hello 템플릿을 hello 개발자 포털에서 toocustomize hello 내용의 hello 응용 프로그램 페이지를 사용 합니다.  
   
 -   [응용 프로그램 목록](#ProductList)  
   
 -   [응용 프로그램](#Application)  
   
 > [!NOTE]
->  다음 문서에는 샘플 기본 템플릿이 포함되어 있지만 지속적인 향상으로 인해 변경될 수 있습니다. 원하는 개별 템플릿으로 이동하여 개발자 포털에서 라이브 기본 템플릿을 볼 수 있습니다. 템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)을 참조하세요.  
+>  예제 기본 서식 파일 설명서, hello에 포함 되었지만 이러한 toocontinuous 개선 인해 주체 toochange 됩니다. 원하는 toohello 개별 서식 파일을 이동 하 여 hello 라이브 기본 템플릿 hello 개발자 포털에서 볼 수 있습니다. 서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)합니다.  
   
 ##  <a name="ProductList"></a> 응용 프로그램 목록  
- **응용 프로그램 목록** 템플릿을 사용하여 개발자 포털에서 응용 프로그램 목록 페이지의 본문을 사용자 지정할 수 있습니다.  
+ hello **응용 프로그램 목록** 템플릿을 사용 하 여 hello 응용 프로그램 목록 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.  
   
  ![응용 프로그램 목록 페이지 개발자 포털 템플릿](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM 응용 프로그램 목록 페이지 개발자 포털 템플릿")  
   
@@ -70,7 +70,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ### <a name="controls"></a>컨트롤  
- `Product list` 템플릿에서 다음 [페이지 컨트롤](api-management-page-controls.md)을 사용할 수 있습니다.  
+ hello `Product list` 템플릿 hello 다음을 사용할 수 있습니다 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 -   [paging-control](api-management-page-controls.md#paging-control)  
   
@@ -78,9 +78,9 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
   
 |속성|형식|설명|  
 |--------------|----------|-----------------|  
-|페이징|[페이징](api-management-template-data-model-reference.md#Paging) 엔터티입니다.|응용 프로그램 컬렉션에 대한 페이징 정보입니다.|  
-|응용 프로그램|[응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티의 컬렉션입니다.|현재 사용자에게 표시되는 응용 프로그램입니다.|  
-|CategoryName|string|응용 프로그램의 범주입니다.|  
+|페이징|[페이징](api-management-template-data-model-reference.md#Paging) 엔터티입니다.|hello hello 응용 프로그램 컬렉션에 대 한 페이징 정보입니다.|  
+|응용 프로그램|[응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티의 컬렉션입니다.|hello 응용 프로그램 표시 toohello 현재 사용자입니다.|  
+|CategoryName|string|응용 프로그램의 hello 범주입니다.|  
   
 ### <a name="sample-template-data"></a>샘플 템플릿 데이터  
   
@@ -134,7 +134,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ##  <a name="Application"></a> 응용 프로그램  
- **응용 프로그램** 템플릿을 사용하여 개발자 포털에서 응용 프로그램 페이지의 본문을 사용자 지정할 수 있습니다.  
+ hello **응용 프로그램** 템플릿을 사용 하 여 hello 응용 프로그램 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.  
   
  ![응용 프로그램 페이지 개발자 포털 템플릿](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM 응용 프로그램 페이지 개발자 포털 템플릿")  
   
@@ -177,7 +177,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ### <a name="controls"></a>컨트롤  
- `Application` 템플릿에서는 [컨트롤 페이지](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello `Application` 서식 파일의 hello 사용 하지 못하도록 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 ### <a name="data-model"></a>데이터 모델  
  [응용 프로그램](api-management-template-data-model-reference.md#Application) 엔터티입니다.  
@@ -220,4 +220,4 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```
 
 ## <a name="next-steps"></a>다음 단계
-템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](api-management-developer-portal-templates.md)을 참조하세요.
+서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](api-management-developer-portal-templates.md)합니다.

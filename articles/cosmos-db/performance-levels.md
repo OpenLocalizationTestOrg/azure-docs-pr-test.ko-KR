@@ -1,6 +1,6 @@
 ---
-title: "DocumentDB API 성능 수준 | Microsoft Docs"
-description: "DocumentDB API 성능 수준을 통해 컨테이너별 기준에 따라 처리량을 예약하는 방법을 알아봅니다."
+title: "API aaaDocumentDB 성능 수준 | Microsoft Docs"
+description: "어떻게 DocumentDB API 성능 수준을 사용 하면 컨테이너 당 기준 tooreserve 처리량에 알아봅니다."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -15,42 +15,42 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d4733e57eb760dbb8e8ca96f6ba55671d1742f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 716bc11ae238dbb0feebf004ed8d5f8a7515ec6f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retiring-the-s1-s2-and-s3-performance-levels"></a>S1, S2 및 S3 성능 수준 사용 중지
+# <a name="retiring-hello-s1-s2-and-s3-performance-levels"></a>Hello S1, S2, S3 성능 수준에 사용 중지
 
 > [!IMPORTANT] 
-> 이 문서에서 설명하는 S1, S2 및 S3 성능 수준은 이제 사용 중지되어 새 DocumentDB API 계정에 더 이상 사용할 수 없습니다.
+> hello S1, S2, S3 성능 수준이이 문서에 설명 된 사용이 중지 되는 및 새 DocumentDB API 계정에 대해 사용할 수 없게 됩니다.
 >
 
-이 문서에서는 S1, S2 및 S3 성능 수준에 대한 개요를 간략히 설명하고, 이러한 성능 수준을 사용하는 컬렉션을 2017년 8월 1일부터 단일 파티션 컬렉션으로 마이그레이션하는 방법에 대해 설명합니다. 이 문서를 읽은 다음에는 다음과 같은 질문에 답할 수 있습니다.
+이 문서에서는 S1, S2, S3 성능 수준에 대해 간략하게 설명 하 고 이러한 성능 수준을 사용 하는 hello 컬렉션 되는 방식이 마이그레이션된 toosingle 파티션 컬렉션 2017 년 8 월 1 일에서 설명 합니다. 이 문서를 읽은 후 다음 질문 수 tooanswer hello 수 있습니다.
 
-- [S1, S2 및 S3 성능 수준의 사용이 중지되는 이유는?](#why-retired)
-- [단일 파티션 컬렉션 및 분할된 컬렉션을 S1, S2, S3 성능 수준과 비교하면 어떻습니까?](#compare)
-- [내 데이터에 중단 없이 액세스하려면 어떻게 해야 합니까?](#uninterrupted-access)
-- [마이그레이션하면 내 컬렉션이 어떻게 변경됩니까?](#collection-change)
-- [단일 파티션 컬렉션으로 마이그레이션하면 요금 청구는 어떻게 변경됩니까?](#billing-change)
+- [이유는 hello S1, S2, S3 성능 수준을 사용이 중지 되 고 있습니까?](#why-retired)
+- [단일 파티션 컬렉션 및 분할 된 컬렉션 비교 하면 어떻게 toohello S1, S2, S3 성능 수준을?](#compare)
+- [작업 중단 없이 toodo tooensure toomy 데이터에 액세스할 필요?](#uninterrupted-access)
+- [Hello 마이그레이션 후 내 컬렉션은 어떻게 변경 됩니까?](#collection-change)
+- [어떻게 청구 내 변경 마이그레이션된 toosingle 파티션 컬렉션 난 후?](#billing-change)
 - [저장 용량이 10GB 이상 필요한 경우 어떻게 해야 합니까?](#more-storage-needed)
-- [2017년 8월 1일 이전의 S1, S2 및 S3 성능 수준을 변경할 수 있습니까?](#change-before)
+- [2017 년 8 월 1 하기 전에 hello S1, S2, S3 성능 수준 간에 변경할 수 있나요?](#change-before)
 - [내 컬렉션이 마이그레이션된 시기는 어떻게 알 수 있습니까?](#when-migrated)
-- [S1, S2, S3 성능 수준에서 단일 파티션 컬렉션으로 마이그레이션하려면 어떻게 해야 합니까?](#migrate-diy)
+- [Hello S1, S2, S3 성능 수준 toosingle 파티션 컬렉션 직접에서 마이그레이션하려면 어떻게 해야 합니까?](#migrate-diy)
 - [EA 고객에게 미치는 영향은?](#ea-customer)
 
 <a name="why-retired"></a>
 
-## <a name="why-are-the-s1-s2-and-s3-performance-levels-being-retired"></a>S1, S2 및 S3 성능 수준의 사용이 중지되는 이유는?
+## <a name="why-are-hello-s1-s2-and-s3-performance-levels-being-retired"></a>이유는 hello S1, S2, S3 성능 수준을 사용이 중지 되 고 있습니까?
 
-S1, S2 및 S3 성능 수준은 DocumentDB API 컬렉션에서 제공하는 유연성을 제공하지 않습니다. S1, S2, S3 성능 수준에서는 처리량과 저장소 용량이 둘 다 미리 설정되었으며 탄력성을 제공하지 않았습니다. 이제 Azure Cosmos DB는 처리량과 저장소를 사용자 지정할 수 있는 기능을 제공하므로 크기 조정 기능을 필요에 따라 훨씬 더 유연하게 제공할 수 있습니다.
+hello S1, S2, S3 성능 수준 하지 제공 hello 유연성을 DocumentDB API 컬렉션에서 제공 하는 않습니다. Hello S1, S2, S3 성능 수준으로 두 hello 처리량 및 저장소 용량 미리 설정한 및 탄력성을 제공 하지 않습니다. Azure Cosmos DB 이제 제공 hello 기능 toocustomize 처리량 및 저장소를 필요에 따라 기능 tooscale에 훨씬 더 많은 유연성을 제공 합니다.
 
 <a name="compare"></a>
 
-## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-to-the-s1-s2-s3-performance-levels"></a>단일 파티션 컬렉션 및 분할된 컬렉션을 S1, S2, S3 성능 수준과 비교하면 어떻습니까?
+## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-toohello-s1-s2-s3-performance-levels"></a>단일 파티션 컬렉션 및 분할 된 컬렉션 비교 하면 어떻게 toohello S1, S2, S3 성능 수준을?
 
-다음 표에서는 단일 파티션 컬렉션, 분할된 컬렉션 및 S1, S2, S3 성능 수준에서 사용할 수 있는 처리량 및 저장소 옵션을 비교합니다. 다음은 미국 동부 2 지역의 예입니다.
+다음 표에서 hello 단일 파티션 컬렉션, 분할 된 컬렉션 및 S1, S2, S3 성능 수준에서 제공 하는 hello 처리량 및 저장소 옵션을 비교 합니다. 다음은 미국 동부 2 지역의 예입니다.
 
 |   |분할된 컬렉션|단일 파티션 컬렉션|S1|S2|S3|
 |---|---|---|---|---|---|
@@ -63,103 +63,103 @@ EA 고객입니까? 그렇다면 [EA 고객에게 미치는 영향은?](#ea-cust
 
 <a name="uninterrupted-access"></a>
 
-## <a name="what-do-i-need-to-do-to-ensure-uninterrupted-access-to-my-data"></a>내 데이터에 중단 없이 액세스하려면 어떻게 해야 합니까?
+## <a name="what-do-i-need-toodo-tooensure-uninterrupted-access-toomy-data"></a>작업 중단 없이 toodo tooensure toomy 데이터에 액세스할 필요?
 
-아무 작업도 수행할 필요 없이 Cosmos DB에서 전적으로 마이그레이션을 처리합니다. S1, S2 또는 S3 컬렉션이 있는 경우 현재 컬렉션은 2017년 7월 31일부터 단일 파티션 컬렉션으로 마이그레이션됩니다. 
+Nothing 이면 Cosmos DB 수에 대 한 hello 마이그레이션 처리 합니다. S1, S2 또는 S3 컬렉션을 설정한 경우 사용자의 현재 컬렉션 마이그레이션된 tooa 단일 파티션 컬렉션에 2017 년 7 월 31 됩니다. 
 
 <a name="collection-change"></a>
 
-## <a name="how-will-my-collection-change-after-the-migration"></a>마이그레이션하면 내 컬렉션이 어떻게 변경됩니까?
+## <a name="how-will-my-collection-change-after-hello-migration"></a>Hello 마이그레이션 후 내 컬렉션은 어떻게 변경 됩니까?
 
-S1 컬렉션이 있는 경우 400RU/s 처리량의 단일 파티션 컬렉션으로 마이그레이션됩니다. 400RU/s는 단일 파티션 컬렉션에서 사용할 수 있는 최소 처리량입니다. 그러나 400RU/s 단일 파티션 컬렉션에 대한 비용은 250RU/s S1 컬렉션에 지불한 비용과 거의 동일하며, 사용 가능한 여분의 150RU/s에 대해 지불하지 않습니다.
+S1 컬렉션을 사용 하는 경우 400 000RU/s 처리량을 사용 하 여 마이그레이션된 tooa 단일 파티션 컬렉션 수 있습니다. 400RU/s은 단일 파티션 컬렉션으로 사용할 수 있는 가장 낮은 처리량 hello입니다. 그러나 단일 파티션 컬렉션은 지불 동일 S1 컬렉션으로 된 hello 약 hello에 400RU/s 및 250 000RU/s – 하지에 대 한 지불 하 게는 하므로 hello 비용이 추가 150 000RU/s 사용 가능한 tooyou를 hello 합니다.
 
-S2 컬렉션이 있는 경우 1,000RU/s 단일 파티션 컬렉션으로 마이그레이션됩니다. 처리량 수준은 변경되지 않습니다.
+S2 컬렉션을 사용 하는 경우 1, 000RU/s를 사용 하 여 마이그레이션된 tooa 단일 파티션 컬렉션 수 있습니다. 변경 tooyour 처리량 수준이 없는지를 확인할 수 있습니다.
 
-S3 컬렉션이 있는 경우 2,500RU/s 단일 파티션 컬렉션으로 마이그레이션됩니다. 처리량 수준은 변경되지 않습니다.
+S3 컬렉션을 사용 하는 경우, 000RU/s 2.5를 사용 하 여 마이그레이션된 tooa 단일 파티션 컬렉션 수 있습니다. 변경 tooyour 처리량 수준이 없는지를 확인할 수 있습니다.
 
-이러한 각각의 경우에서 컬렉션을 마이그레이션한 후에는 처리량 수준을 사용자 지정하거나 필요에 따라 크기를 조정하여 대기 시간이 짧은 액세스를 사용자에게 제공할 수 있습니다. 컬렉션을 마이그레이션한 후에 처리량 수준을 변경하려면 Azure Portal에서 Cosmos DB 계정을 열고 [크기 조정]을 클릭한 다음 컬렉션을 선택하고 다음 스크린샷과 같이 처리량 수준을 조정하면 됩니다.
+각각의이 경우에 컬렉션 마이그레이션된 후를 수 수 toocustomize 처리량 수준을 아니면 필요한 tooprovide 대기 시간이 짧은 액세스 tooyour 사용자로 확장 및 축소 하는 것입니다. toochange hello 처리량 수준 컬렉션을 마이그레이션한 후 단순히 Cosmos DB 계정을 열고 hello Azure 포털에서에서 배율, 컬렉션을 선택를 hello 스크린 샷 다음 그림과 같이 hello 처리량 수준을 조정 합니다.
 
-![Azure Portal에서 처리량을 조정하는 방법](./media/performance-levels/portal-scale-throughput.png)
+![어떻게 tooscale 처리량 hello Azure 포털](./media/performance-levels/portal-scale-throughput.png)
 
 <a name="billing-change"></a>
 
-## <a name="how-will-my-billing-change-after-im-migrated-to-the-single-partition-collections"></a>단일 파티션 컬렉션으로 마이그레이션한 후 요금 청구는 어떻게 변경됩니까?
+## <a name="how-will-my-billing-change-after-im-migrated-toohello-single-partition-collections"></a>어떻게 청구 내 변경 마이그레이션된 toohello 단일 파티션 컬렉션 난 후?
 
-미국 동부 지역에 각각 10개의 S1 컬렉션(각각 1GB 저장소 사용)이 있고, 이러한 10개 S1 컬렉션을 400RU/s(최소 수준)의 10개 단일 파티션 컬렉션으로 마이그레이션한다고 가정합니다. 한 달 동안 10개의 단일 파티션 컬렉션을 유지하는 경우 청구서는 다음과 같이 표시됩니다.
+가정 하 고 10 S1 컬렉션, 1GB의 저장소에 대해 각각, hello 미국 동부 지역에 있고 400 RU/sec (hello 최소 수준)에서 이러한 10 S1 컬렉션 too10 단일 파티션 컬렉션을 마이그레이션하세요. 청구서 달에 대 한 hello 10 단일 파티션 컬렉션을 유지 하는 경우 다음과 같이 표시 됩니다.
 
-![10개 S1 컬렉션 및 10개 단일 파티션 컬렉션에 대한 가격 비교](./media/performance-levels/s1-vs-standard-pricing.png)
+![10 개의 컬렉션에 대 한 가격 책정 S1 too10 컬렉션을 비교 하는 방법을 단일 파티션 컬렉션에 대 한 가격을 사용 하 여](./media/performance-levels/s1-vs-standard-pricing.png)
 
 <a name="more-storage-needed"></a>
 
 ## <a name="what-if-i-need-more-than-10-gb-of-storage"></a>저장 용량이 10GB 이상 필요한 경우 어떻게 해야 합니까?
 
-S1, S2 또는 S3 성능 수준 컬렉션 또는 단일 파티션 컬렉션이 있든 간에 모두 10GB 저장소를 사용할 수 있는 경우 Cosmos DB 데이터 마이그레이션 도구를 사용하여 거의 무제한 저장소가 있는 분할된 컬렉션으로 데이터를 마이그레이션할 수 있습니다. 분할된 컬렉션의 이점에 대한 자세한 내용은 [Azure Cosmos DB의 분할 및 크기 조정](documentdb-partition-data.md)을 참조하세요. S1, S2, S3 또는 단일 파티션 컬렉션을 분할된 컬렉션으로 마이그레이션하는 방법에 대한 내용은 [단일 파티션에서 분할된 컬렉션으로 마이그레이션](documentdb-partition-data.md#migrating-from-single-partition)을 참조하세요. 
+데이터 tooa 사실상 사용 하 여 컬렉션을 분할 하는 hello Cosmos DB 데이터 마이그레이션 도구 toomigrate S1, S2 또는 S3 성능 수준에 따라 컬렉션 하는지 여부는 모두 10GB의 사용 가능한 저장 공간, 단일 파티션 컬렉션을 사용할 수 있습니다. 무제한 저장 합니다. 분할 된 컬렉션의 hello 이점에 대 한 정보를 참조 하십시오. [Partitioning 및 Azure Cosmos DB에 크기 조정](documentdb-partition-data.md)합니다. 방법에 대 한 내용은 toomigrate S1, S2, S3, 또는 단일 파티션 컬렉션 분할 tooa 컬렉션 참조 [toopartitioned 단일 파티션 컬렉션에서 마이그레이션](documentdb-partition-data.md#migrating-from-single-partition)합니다. 
 
 <a name="change-before"></a>
 
-## <a name="can-i-change-between-the-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>2017년 8월 1일 이전의 S1, S2 및 S3 성능 수준을 변경할 수 있습니까?
+## <a name="can-i-change-between-hello-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>2017 년 8 월 1 하기 전에 hello S1, S2, S3 성능 수준 간에 변경할 수 있나요?
 
-S1, S2 및 S3 성능을 갖춘 기존 계정만 포털을 통하거나 프로그래밍 방식으로 성능 수준 계층을 변경할 수 있습니다. S1, S2 및 S3 성능 수준은 2017년 8월 1일 이후로 더 이상 사용할 수 없게 됩니다. S1, S3 또는 S3에서 단일 파티션 컬렉션으로 변경하면 S1, S2 또는 S3 성능 수준으로 되돌릴 수 없습니다.
+기존 계정만 S1, S2, S3 성능 수 toochange 되며 hello 포털을 통해 또는 프로그래밍 방식으로 성능 수준의 계층을 변경 합니다. 2017 년 8 월 1 하 여 S1, S2, hello 및 S3 성능 수준을 사용할 수 없습니다. S1, S3, 또는 S3 tooa 단일 파티션 컬렉션에서 변경할 S1, S2 또는 S3 성능 수준 toohello 반환할 수 없습니다.
 
 <a name="when-migrated"></a>
 
 ## <a name="how-will-i-know-when-my-collection-has-migrated"></a>내 컬렉션이 마이그레이션된 시기는 어떻게 알 수 있습니까?
 
-마이그레이션은 2017년 7월 31일부로 시행됩니다. S1, S2 또는 S3 성능 수준을 사용하는 컬렉션이 있는 경우 마이그레이션을 수행하기 전에 Cosmos DB 팀에서 메일로 연락을 드립니다. 마이그레이션이 완료되면 2017년 8월 1일 Azure Portal에서 컬렉션에 표준 가격 정책이 적용되었음을 보여 줍니다.
+hello 마이그레이션 2017 년 7 월 31에서 발생 합니다. 컬렉션 hello S1, S2를 사용 하 여 또는 S3 성능 수준 hello Cosmos DB 팀 연락을 드릴 전자 메일을 통해 hello 마이그레이션 수행 되기 전에 합니다. 2017 년 8 월 1에 hello 마이그레이션이 완료 되 면 Azure 포털 hello 컬렉션 표준 가격 책정을 사용 하도록 표시 됩니다.
 
-![표준 가격 책정 계층으로 마이그레이션된 컬렉션을 확인하는 방법](./media/performance-levels/portal-standard-pricing-applied.png)
+![어떻게 tooconfirm 사용자 컬렉션에 toohello 표준 가격 책정 계층 마이그레이션](./media/performance-levels/portal-standard-pricing-applied.png)
 
 <a name="migrate-diy"></a>
 
-## <a name="how-do-i-migrate-from-the-s1-s2-s3-performance-levels-to-single-partition-collections-on-my-own"></a>S1, S2, S3 성능 수준에서 단일 파티션 컬렉션으로 마이그레이션하려면 어떻게 해야 합니까?
+## <a name="how-do-i-migrate-from-hello-s1-s2-s3-performance-levels-toosingle-partition-collections-on-my-own"></a>Hello S1, S2, S3 성능 수준 toosingle 파티션 컬렉션 직접에서 마이그레이션하려면 어떻게 해야 합니까?
 
-Azure Portal을 사용하거나 프로그래밍 방식으로 S1, S2 및 S3 성능 수준에서 단일 파티션 컬렉션으로 마이그레이션할 수 있습니다. 8월 1일 이전에 이 작업을 직접 수행하여 단일 파티션 컬렉션에서 사용할 수 있는 유연한 처리량 옵션을 활용할 수 있거나 2017년 7월 31일에 사용자를 위해 컬렉션을 마이그레이션할 것입니다.
+Hello S1, S2에서 마이그레이션할 수 있습니다 및 S3 성능 수준이 toosingle 파티션 컬렉션 hello Azure 포털을 사용 하 여 또는 프로그래밍 방식으로 합니다. 단일 파티션 컬렉션으로 사용할 수 있는 hello 유연한 처리량 옵션 중에서 8 월 1 일 전에 직접 toobenefit에 이렇게 하려면 또는 2017 년 7 월 31에서 사용자 컬렉션을 마이그레이션할 예정입니다.
 
-**Azure Portal을 사용하여 단일 파티션 컬렉션으로 마이그레이션하려면**
+**hello Azure 포털을 사용 하 여 toomigrate toosingle 파티션 컬렉션**
 
-1. [**Azure Portal**](https://portal.azure.com)에서 **Azure Cosmos DB**를 클릭한 다음 수정할 Cosmos DB 계정을 선택합니다. 
+1. Hello에 [ **Azure 포털**](https://portal.azure.com), 클릭 **Azure Cosmos DB**, hello Cosmos DB 계정 toomodify를 선택 합니다. 
  
-    **Azure Cosmos DB**가 이동 표시줄에 없는 경우 >를 클릭하고 **데이터베이스**까지 스크롤한 다음 **Azure Cosmos DB**, DocumentDB 계정을 차례로 선택합니다.  
+    경우 **Azure Cosmos DB** Jumpbar hello를 클릭 하지는 >, 너무 스크롤하여**데이터베이스**을 선택 **Azure Cosmos DB**, 한 다음 hello DocumentDB 계정을 선택 합니다.  
 
-2. 리소스 메뉴의 **컨테이너** 아래에서 **규모**를 클릭하고 드롭다운 목록에서 수정할 컬렉션을 선택한 다음 **가격 책정 계층**을 클릭합니다. 미리 정의된 처리량을 사용하는 계정은 S1, S2 또는 S3의 가격 책정 계층을 보유합니다.  **가격 책정 계층 선택** 블레이드에서 **표준**을 클릭하여 사용자 정의 처리량을 변경한 다음 **선택**을 클릭하여 변경 내용을 저장합니다.
+2. Hello 리소스 메뉴에서 아래 **컨테이너**, 클릭 **배율**hello 컬렉션 toomodify hello 드롭 다운 목록에서 선택한 다음 클릭 **가격 책정 계층**합니다. 미리 정의된 처리량을 사용하는 계정은 S1, S2 또는 S3의 가격 책정 계층을 보유합니다.  Hello에 **가격 책정 계층을 선택** 블레이드에서 클릭 **표준** toochange toouser 정의 된 처리량을 클릭 하 고 **선택** toosave 변경 합니다.
 
-    ![처리량 값을 변경하는 위치를 보여 주는 설정 블레이드의 스크린 샷](./media/performance-levels/change-performance-set-thoughput.png)
+    ![여기서 toochange hello 처리량 값을 보여 주는 hello 설정 블레이드의 스크린샷](./media/performance-levels/change-performance-set-thoughput.png)
 
-3. **규모** 블레이드로 돌아가면 **가격 책정 계층**이 **표준**으로 변경되어 있으며 **처리량(RU/s)** 상자에 기본값인 400이 표시됩니다. 처리량을 400~10,000개 RU/s( [요청 단위](request-units.md)/초) 사이로 설정합니다. 월별 예상 비용을 제공하기 위해 페이지 아래쪽의 **월별 예상 비용**이 자동으로 업데이트됩니다. 
+3. Hello에 다시 **배율** 블레이드, hello **가격 책정 계층** 너무 변경**표준** 및 hello **처리량 (000RU/s)** 된 상자가 표시 됩니다는 400의 기본값입니다. 400에서 10,000 사이 집합 hello 처리량 [요청 단위](request-units.md)-초당 (000RU/s). hello **예상 월별 요금 청구** hello hello 맨 아래에 페이지 자동으로 업데이트 tooprovide hello 월별 비용의 추정치입니다. 
 
     >[!IMPORTANT] 
-    > 변경 내용을 저장하고 표준 가격 책정 계층으로 이동하면 S1, S2 또는 S3 성능 수준으로 롤백할 수 없습니다.
+    > 변경 내용을 저장 하 고 이동 toohello 표준 가격 책정 계층을 롤백할 수 없습니다 toohello S1, S2 또는 S3 성능 수준입니다.
 
-4. **저장**을 클릭하여 변경 내용을 저장합니다.
+4. 클릭 **저장** toosave 변경 내용을 합니다.
 
-    더 많은 처리량(10,000RU/s 초과) 또는 더 많은 저장소(10GB 초과)가 필요하다고 판단되는 경우 분할된 컬렉션을 만들 수 있습니다. 단일 파티션 컬렉션을 분할된 컬렉션으로 마이그레이션하려면 [단일 파티션에서 분할된 컬렉션으로 마이그레이션](documentdb-partition-data.md#migrating-from-single-partition)을 참조하세요.
+    더 많은 처리량(10,000RU/s 초과) 또는 더 많은 저장소(10GB 초과)가 필요하다고 판단되는 경우 분할된 컬렉션을 만들 수 있습니다. 단일 파티션 컬렉션 분할 tooa 컬렉션 toomigrate 참조 [toopartitioned 단일 파티션 컬렉션에서 마이그레이션](documentdb-partition-data.md#migrating-from-single-partition)합니다.
 
     > [!NOTE]
-    > S1, S2 또는 S3에서 표준 계층으로 변경하는 데에는 최대 2분 정도 걸릴 수 있습니다.
+    > S1, S2 또는 S3 tooStandard에서 변경 too2 분을 차지할 수 있습니다.
     > 
     > 
 
-**.NET SDK를 사용하여 단일 파티션 컬렉션으로 마이그레이션하려면**
+**hello.NET SDK를 사용 하 여 toomigrate toosingle 파티션 컬렉션**
 
-컬렉션의 성능 수준 변경에 대한 다른 옵션은 SDK를 통하는 것입니다. 이 섹션에서는 [DocumentDB .NET API](documentdb-sdk-dotnet.md)를 사용한 컬렉션의 성능 수준 변경에 대해서만 다루고 있으나, 다른 SDK의 경우에도 프로세스는 유사합니다.
+컬렉션의 성능 수준 변경에 대한 다른 옵션은 SDK를 통하는 것입니다. 이 섹션에만 컬렉션의 성능 변경 적용를 사용 하 여 수준 우리의 [DocumentDB.NET API](documentdb-sdk-dotnet.md), 하지만 hello 프로세스는 우리의 다른 Sdk에 대 한 유사 합니다.
 
-다음 코드 조각에서는 컬렉션 처리량을 5,000RU/s로 변경합니다.
+초당 요청 단위 000 hello 컬렉션 처리량 too5 변경에 대 한 코드 조각을 다음과 같습니다.
     
 ```C#
-    //Fetch the resource to be updated
+    //Fetch hello resource toobe updated
     Offer offer = client.CreateOfferQuery()
                       .Where(r => r.ResourceLink == collection.SelfLink)    
                       .AsEnumerable()
                       .SingleOrDefault();
 
-    // Set the throughput to 5000 request units per second
+    // Set hello throughput too5000 request units per second
     offer = new OfferV2(offer, 5000);
 
-    //Now persist these changes to the database by replacing the original resource
+    //Now persist these changes toohello database by replacing hello original resource
     await client.ReplaceOfferAsync(offer);
 ```
 
-offer 메서드에 대한 자세한 내용 및 추가 예제를 보려면 [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx)을 방문하세요.
+방문 [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) tooview 추가 예제 및 우리의 제안 방법에 대 한 자세한 정보:
 
 * [**ReadOfferAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readofferasync.aspx)
 * [**ReadOffersFeedAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readoffersfeedasync.aspx)
@@ -170,11 +170,11 @@ offer 메서드에 대한 자세한 내용 및 추가 예제를 보려면 [MSDN]
 
 ## <a name="how-am-i-impacted-if-im-an-ea-customer"></a>EA 고객에게 미치는 영향은?
 
-EA 고객에게 적용한 가격은 현재 계약이 종료될 때까지 보호됩니다.
+EA 고객은 자신의 현재 계약 hello 끝날 때까지 보호 가격 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
-Azure Cosmos DB의 가격 책정 및 데이터 관리에 대한 자세한 내용은 다음 리소스를 참조하세요.
+가격 및 관리 Azure Cosmos DB를 사용 하 여 데이터에 대해 자세히 toolearn이 리소스를 살펴봅니다.
 
-1.  [Cosmos DB의 데이터 분할](documentdb-partition-data.md). 단일 파티션 컨테이너와 분할된 컨테이너 간의 차이점을 이해하고 매끄럽게 크기를 조정하는 분할 전략을 구현하는 데 유용한 팁을 알아봅니다.
-2.  [Cosmos DB 가격 책정](https://azure.microsoft.com/pricing/details/cosmos-db/). 처리량 프로비전 및 저장소 소비 비용에 대해 알아봅니다.
-3.  [요청 단위](request-units.md) 읽기, 쓰기, 쿼리와 같은 다양한 작업 유형의 처리량 사용에 대해 알아봅니다.
+1.  [Cosmos DB의 데이터 분할](documentdb-partition-data.md). 분할 전략 tooscale를 원활 하 게 구현에 대 한 팁 뿐만 아니라 단일 파티션 컨테이너 및 분할 된 컨테이너의 hello 차이점을 이해 합니다.
+2.  [Cosmos DB 가격 책정](https://azure.microsoft.com/pricing/details/cosmos-db/). 처리량을 프로 비전 하 고 저장소 사용의 hello 비용에 알아봅니다.
+3.  [요청 단위](request-units.md) 읽기, 쓰기, 쿼리 예를 들어, 다른 작업 형식에 대 한 처리량의 hello 사용량을 이해 합니다.

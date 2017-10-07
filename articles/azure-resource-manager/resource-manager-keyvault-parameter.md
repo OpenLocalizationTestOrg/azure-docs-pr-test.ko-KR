@@ -1,6 +1,6 @@
 ---
-title: "Resource Manager 템플릿에서 Key Vault 비밀 | Microsoft Docs"
-description: "배포하는 동안 키 자격 증명 모음의 비밀을 매개 변수로 전달하는 방법을 보여 줍니다."
+title: "리소스 관리자 템플릿 사용 하 여 자격 증명 모음 암호 aaaKey | Microsoft Docs"
+description: "어떻게 toopass 키에서 암호 자격 증명 모음에 매개 변수로 배포 하는 동안 보여 줍니다."
 services: azure-resource-manager,key-vault
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1ca72599e67e79d42a3d430dbb13e89ea7265334
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0bb7760c95b3b4ef34c9e5cc2e3421be56b5e5e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-key-vault-to-pass-secure-parameter-value-during-deployment"></a>Key Vault를 사용하여 배포 중에 보안 매개 변수 값 전달
+# <a name="use-key-vault-toopass-secure-parameter-value-during-deployment"></a>배포 중 주요 자격 증명 모음 toopass 보안 매개 변수 값을 사용 합니다.
 
-배포 중에 보안 값(예: 암호)을 매개 변수로 전달해야 할 경우 [Azure Key Vault](../key-vault/key-vault-whatis.md)에서 값을 검색할 수 있습니다. 매개 변수 파일에서 Key Vault 및 비밀을 참조하여 이 값을 검색합니다. 해당 Key Vault ID만 참조하므로 이 값은 절대 노출되지 않습니다. 리소스를 배포할 때마다 수동으로 비밀 값을 입력하지 않아도 됩니다. Key Vault는 배포하는 리소스 그룹과는 다른 구독에 있을 수 있습니다. Key Vault를 참조할 때는 구독 ID를 포함합니다.
+배포 중 매개 변수로 toopass를 안전한 값 (예: 암호)를 할 때 hello 값을 검색할 수 있습니다는 [Azure 키 자격 증명 모음](../key-vault/key-vault-whatis.md)합니다. Hello 주요 자격 증명 모음 및 암호 매개 변수 파일에 참조 하 여 hello 값을 검색 합니다. hello 값은 주요 자격 증명 모음 ID만 참조 하지 않기 때문에 표시 되지 않으며 않아도 toomanually hello 값 hello 암호에 대 한 때마다 입력 hello 리소스를 배포 합니다. hello 주요 자격 증명 모음에 배포 하는 hello 리소스 그룹 보다는 다른 구독에 있을 수 있습니다. Hello 구독 id입니다. 포함 hello 주요 자격 증명 모음을 참조 하는 경우
 
-Key Vault를 만들 때는 *enabledForTemplateDeployment* 속성을 *true*로 설정합니다. 이 값을 true로 설정하면 배포 중에 Resource Manager 템플릿으로부터의 액세스가 허용됩니다.  
+Hello 주요 자격 증명 모음을 만들 때 설정 hello *enabledForTemplateDeployment* 속성 너무*true*합니다. 이 값 tootrue를 설정 하 여 배포 하는 동안 리소스 관리자 템플릿에서 대 한 액세스를 허용 합니다.  
 
 ## <a name="deploy-a-key-vault-and-secret"></a>키 자격 증명 모음 및 비밀 배포
 
-Key Vault 및 비밀을 만들려면 Azure CLI 또는 PowerShell을 사용합니다. Key Vault가 템플릿 배포에 사용할 수 있도록 설정되었는지 확인합니다. 
+주요 자격 증명 모음 toocreate 및 암호를 Azure CLI 또는 PowerShell을 사용 합니다. 템플릿 배포에 대 한 해당 hello 키 자격 증명 모음 사용 됨을 확인 합니다. 
 
 Azure CLI의 경우 
 
@@ -53,14 +53,14 @@ $secretvalue = ConvertTo-SecureString $password -AsPlainText -Force
 Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue $secretvalue
 ```
 
-## <a name="enable-access-to-the-secret"></a>비밀에 대한 액세스를 사용하도록 설정
+## <a name="enable-access-toohello-secret"></a>액세스 toohello 암호를 사용 하도록 설정
 
-새 Key Vault를 사용하든, 기존 Key Vault를 사용하든, 템플릿을 배포하는 사용자가 비밀에 액세스할 수 있어야 합니다. 비밀을 참조하는 템플릿을 배포하는 사용자에게는 Key Vault에 대한 `Microsoft.KeyVault/vaults/deploy/action` 권한이 있어야 합니다. [소유자](../active-directory/role-based-access-built-in-roles.md#owner) 및 [참여자](../active-directory/role-based-access-built-in-roles.md#contributor) 역할 모두 이 액세스 권한을 부여합니다. 또한 이 사용 권한을 부여하는 [사용자 지정 역할](../active-directory/role-based-access-control-custom-roles.md)을 만들고 해당 역할에 사용자를 추가할 수도 있습니다. 사용자를 역할에 추가하는 방법에 대한 자세한 내용은 [Azure Active Directory에서 관리자 역할에 사용자 할당](../active-directory/active-directory-users-assign-role-azure-portal.md)을 참조하세요.
+확인 하는지 여부를 새 키 자격 증명 모음 또는 기존 파일을 사용 하는 hello 서식 파일을 배포 하는 hello 사용자 hello 암호에 액세스할 수 있습니다. 암호를 참조 하는 서식 파일을 배포 하는 hello 사용자 hello 있어야 합니다. `Microsoft.KeyVault/vaults/deploy/action` hello 주요 자격 증명 모음에 대 한 권한이 있습니다. hello [소유자](../active-directory/role-based-access-built-in-roles.md#owner) 및 [참가자](../active-directory/role-based-access-built-in-roles.md#contributor) 역할을 모두이 액세스 권한을 부여 합니다. 만들 수도 있습니다는 [사용자 지정 역할](../active-directory/role-based-access-control-custom-roles.md) 이 사용 권한을 부여 하 고 hello 사용자 toothat 역할을 추가 합니다. 사용자 tooa 역할을 추가 하는 방법에 대 한 정보를 참조 하십시오. [Azure Active Directory에서 tooadministrator 역할에 사용자 지정](../active-directory/active-directory-users-assign-role-azure-portal.md)합니다.
 
 
 ## <a name="reference-a-secret-with-static-id"></a>정적 ID로 비밀 참조
 
-Key Vault 비밀을 수신하는 템플릿은 다른 템플릿과 비슷합니다. **템플릿이 아닌 매개 변수 파일에서 Key Vault를 참조**하기 때문입니다. 예를 들어 다음 템플릿은 관리자 암호를 포함하는 SQL 데이터베이스를 배포합니다. 암호 매개 변수는 보안 문자열로 설정됩니다. 하지만 이 템플릿은 해당 값이 제공되는 위치를 지정하지는 않습니다.
+키 자격 증명 모음 암호를 수신 하는 hello 템플릿을 다른 서식 파일과 비슷합니다. 때문 **hello 키 자격 증명 모음 hello 매개 변수 파일을 하지 hello 서식 파일을 참조 합니다.** 예를 들어 다음 템플릿을 hello 관리자 암호를 포함 하는 SQL 데이터베이스를 배포 합니다. hello password 매개 변수는 tooa 보안 문자열로 설정 됩니다. 하지만 hello 서식 파일에서 해당 값을 제공 하는 위치를 지정 하지 않습니다.
 
 ```json
 {
@@ -146,7 +146,7 @@ Key Vault 비밀을 수신하는 템플릿은 다른 템플릿과 비슷합니�
 }
 ```
 
-이제 위 템플릿용으로 매개 변수 파일을 만들어야 합니다. 매개 변수 파일에서 템플릿의 매개 변수 이름과 일치하는 매개 변수를 지정합니다. 매개 변수 값으로는 Key Vault의 비밀을 참조합니다. 키 자격 증명 모음의 리소스 식별자와 비밀 이름을 전달하여 암호를 참조합니다. 다음 예에서는 키 자격 증명 모음 비밀이 이미 있어야 하고, 리소스 ID에 정적 값을 제공합니다.
+이제 hello 앞에 서식 파일에 대 한 매개 변수 파일을 만듭니다. Hello 매개 변수 파일에서 hello 서식 파일에서 hello 매개 변수가 hello 이름과 일치 하는 매개 변수를 지정 합니다. Hello 매개 변수 값에 대 한 hello hello 키 자격 증명 모음에서 암호를 참조 합니다. Hello 키 자격 증명 모음의 hello 리소스 식별자 및 hello 암호의 hello 이름을 전달 하 여 hello 비밀을 참조 합니다. 다음 예제는 hello에서 hello 키 자격 증명 모음 암호 이미 있어야 하며, 리소스 ID에 대 한 정적 값을 제공
 
 ```json
 {
@@ -194,9 +194,9 @@ Key Vault 비밀을 수신하는 템플릿은 다른 템플릿과 비슷합니�
 
 ## <a name="reference-a-secret-with-dynamic-id"></a>동적 ID로 비밀 참조
 
-이전 섹션에서는 키 자격 증명 모음 비밀에 대해 정적 리소스 ID를 전달하는 방법을 살펴보았습니다. 하지만, 일부 시나리오에서는, 현재 배포를 기반으로 달라지는 키 자격 증명 모음 비밀을 참조해야 합니다. 이런 경우, 매개 변수 파일에 리소스 ID를 하드 코딩할 수 없습니다. 아쉽게도, 매개 변수 파일에 템플릿 식이 허용되지 않기 때문에 매개 변수 파일에 리소스 ID를 동적으로 생성할 수 없습니다.
+정적 리소스 ID toopass hello 키에 대 한 보안 자격 증명 모음에 어떻게 hello 이전 섹션에 살펴보았습니다. 그러나 일부 시나리오에서는 tooreference hello 현재 배포에 따라 달라 지는 주요 자격 증명 모음 암호 해야 합니다. 이 경우 리소스 ID를 hello 매개 변수 파일에 하드 코드 hello 수 없습니다. 안타깝게도, 생성할 수 없습니다 동적으로 hello 리소스 ID hello 매개 변수 파일에 있으므로 hello 매개 변수 파일에 템플릿 식이 허용 되지 않습니다.
 
-키 자격 증명 모음 비밀에 대한 리소스 ID를 동적으로 생성하려면, 비밀이 필요한 리소스를 중첩된 템플릿으로 이동해야 합니다. 마스터 템플릿에서, 중첩된 템플릿을 추가하고 동적으로 생성된 리소스 ID를 포함하는 매개 변수에 전달합니다.
+toodynamically 생성 되는 주요 자격 증명 모음 암호에 대 한 hello 리소스 ID, 중첩 된 템플릿으로 hello 암호를 필요로 하는 hello 리소스를 이동 해야 합니다. 마스터 서식 파일에서 hello 중첩 된 템플릿 추가 하 고이 동적으로 생성 된 hello 리소스 ID를 포함 하는 매개 변수 전달
 
 ```json
 {

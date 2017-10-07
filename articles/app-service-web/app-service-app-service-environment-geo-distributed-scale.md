@@ -1,6 +1,6 @@
 ---
-title: "앱 서비스 환경으로 지역 분산된 규모"
-description: "트래픽 관리자 및 앱 서비스 환경으로 지역 분포를 사용하여 앱을 수평으로 확장하는 방법을 알아봅니다."
+title: "앱 서비스 환경에 분산 조정 aaaGeo"
+description: "Toohorizontally 트래픽 관리자 및 앱 서비스 환경을 사용 하 여 전 세계 분산을 사용 하 여 앱을 확장 하는 방법을 알아봅니다."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/07/2016
 ms.author: stefsch
-ms.openlocfilehash: 505301b2650c9b8bafdad352055f30e55148ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b441f637d8b7f679b3d83240baf99b8ee57e8f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="geo-distributed-scale-with-app-service-environments"></a>앱 서비스 환경으로 지역 분산된 규모
 ## <a name="overview"></a>개요
-대규모를 필요로 하는 응용 프로그램 시나리오는 앱의 단일 배포에 사용할 수 있는 계산 리소스 용량을 초과할 수 있습니다.  투표 응용 프로그램, 스포츠 이벤트 및 방송된 엔터테인먼트 이벤트는 대규모를 필요로 하는 시나리오를 모두 포함하는 예입니다. 대규모를 요구하면 수평으로 앱을 확장하여 단일 지역내에서 뿐만 아니라 지역에 걸쳐 수행되는 여러 앱 배포에 맞게 큰 부하 요구 사항을 처리합니다.
+응용 프로그램 필요한 시나리오는 매우 높은 대규모 hello 계산 리소스 용량 사용 가능한 tooa 단일 배포 응용 프로그램을 초과할 수 있습니다.  투표 응용 프로그램, 스포츠 이벤트 및 방송된 엔터테인먼트 이벤트는 대규모를 필요로 하는 시나리오를 모두 포함하는 예입니다. 가로로 영역, toohandle 극단적인 부하 요구 사항 뿐만 아니라 단일 지역 내에서 수행 되는 여러 응용 프로그램 배포 응용 프로그램을 확장 하 여 대규모 요구 사항은 충족할 수 있습니다.
 
-앱 서비스 환경은 수평적 규모 확장에 대한 이상적인 플랫폼입니다.  알려진된 요청 속도 지원할 수 있는 앱 서비스 환경 구성을 선택하면 개발자는 "쿠키 커터" 방식으로 추가 앱 서비스 환경을 배포하여 원하는 최대 부하 용량을 얻을 수 있습니다.
+앱 서비스 환경은 수평적 규모 확장에 대한 이상적인 플랫폼입니다.  앱 서비스 환경 구성 선택 하 고 나면 알려진된 요청 속도 지원할 수 있는, 개발자가 "쿠키 커터" 방식으로 tooattain 원하는 최고 부하 용량에에서 앱 서비스 환경을 배포할 수 있습니다.
 
-예를 들어 앱 서비스 환경의 구성에서 실행 중인 앱이 초당 20K(RPS) 요청을 처리하는 테스트를 거쳤다고 가정합니다.  원하는 최대 부하 용량이 100K RPS인 경우 다섯 가지(5) 앱 서비스 환경을 만들고 구성하여 응용 프로그램이 최대 예상된 부하를 처리할 수 있도록 할 수 있습니다.
+예를 들어 앱 서비스 환경 구성에서 실행 되는 응용 프로그램 (RP) 초당 테스트 된 toohandle 20k 요청 된 가정 합니다.  Hello 원하는 최대 로드 용량이 100k RPS, 다음 5 앱 서비스 환경을 만들 수 있습니다 및 구성 된 tooensure hello 응용 프로그램 hello 최대 예상된 부하를 처리할 수 있습니다.
 
-일반적으로 고객이 사용자 지정(또는 베니티) 도메인을 사용하여 앱에 액세스하기 때문에 개발자는 모든 앱 서비스 환경 인스턴스에 앱 요청을 분산하는 방법이 있어야 합니다.  이 작업을 수행할 수 있는 좋은 방법은 [Azure Traffic Manager 프로필][AzureTrafficManagerProfile]을 사용하여 사용자 지정 도메인을 해결하는 것입니다.  트래픽 관리자 프로필은 모든 개별 앱 서비스 환경을 가리키도록 구성될 수 있습니다.  트래픽 관리자는 트래픽 관리자 프로필의 설정에서 부하 분산에 따라 모든 앱 서비스 환경에 고객을 배포하도록 자동으로 처리합니다.  이 방법은 단일 모든 앱 서비스 환경이 Azure 지역에 배포되는지 전세계의 여러 Azure 지역에 배포되는지에 관계 없이 작동합니다.
+고객은 일반적으로 사용자 지정 이동해 왔거나 베 니 티 도메인, 개발자가 필요를 사용 하 여 앱 액세스 하므로 hello 앱 서비스 환경 인스턴스의 모든 방식으로 toodistribute 응용 프로그램을 요청 합니다.  이 좋은 방법 tooaccomplish tooresolve hello 사용자 지정 도메인 사용 하는 [Azure 트래픽 관리자 프로필][AzureTrafficManagerProfile]합니다.  개별 앱 서비스 환경 hello 하는 hello 트래픽 관리자 프로필의 모든 구성된 toopoint 될 수 있습니다.  트래픽 관리자 고객 모든 hello hello 부하 분산 hello 트래픽 관리자 프로필의 설정에 따라 앱 서비스 환경에서 배포를 자동으로 처리 합니다.  이 방법은 여부에 관계 없이 모든 hello 앱 서비스 환경 되는 단일 Azure 지역에 배포 된 전 세계 여러 Azure 지역에 배포할 수 있습니다.
 
-또한 고객이 베니티 도메인을 통해 앱에 액세스하므로 고객은 앱을 실행하는 앱 서비스 환경의 수를 인식하지 않습니다.  결과적으로 개발자는 앱 서비스 환경을 관찰된 트래픽 부하에 따라 쉽고 빠르게 추가 및 제거할 수 있습니다.
+또한 고객을 hello 베 니 티 도메인을 통해 앱에 액세스 하므로 고객은 인식 응용 프로그램을 실행 하는 앱 서비스 환경 hello 수 없습니다.  결과적으로 개발자는 앱 서비스 환경을 관찰된 트래픽 부하에 따라 쉽고 빠르게 추가 및 제거할 수 있습니다.
 
-아래의 개념적 다이어그램은 단일 지역 내에서 세 가지 앱 서비스 환경에 걸쳐 수평으로 확장된 앱을 보여줍니다.
+아래 hello 개념적 다이어그램에서는 단일 지역 내에서 3 개의 앱 서비스 환경에 걸쳐 가로로 확장 하는 응용 프로그램을 보여 줍니다.
 
 ![개념적 아키텍처][ConceptualArchitecture] 
 
-이 항목의 나머지 부분에서는 여러 App Service 환경을 사용하여 샘플 앱에 대한 분산된 토폴로지를 설정하는 단계를 안내합니다.
+이 항목의 나머지 부분에서는 hello 관련된 된 여러 앱 서비스 환경을 사용 하 여 hello 샘플 응용 프로그램에 대 한 분산된 토폴로지를 설정 하는 hello 단계를 안내 합니다.
 
-## <a name="planning-the-topology"></a>토폴로지 계획
-분산된 앱 공간을 빌드하기 전에 미리 약간 정보가 있는 편이 좋습니다.
+## <a name="planning-hello-topology"></a>Hello 토폴로지를 계획합니다.
+분산된 응용 프로그램 사용 공간이 아웃 빌드하기 전에 수 toohave 조각 정보를 미리 몇 가지 있습니다.
 
-* **앱에 대한 사용자 지정 도메인:** 고객이 앱에 액세스하는 데 사용할 사용자 지정 도메인 이름은 무엇입니까?  샘플 앱의 경우 사용자 지정 도메인 이름은 *www.scalableasedemo.com*
-* **트래픽 관리자 도메인:** 도메인 이름은 [Azure Traffic Manager 프로필][AzureTrafficManagerProfile]을 만들 때 선택해야 합니다.  이 이름은 *trafficmanager.net* 접미사와 결합하여 트래픽 관리자에서 관리되는 도메인 항목을 등록합니다.  샘플 앱의 경우 선택한 이름은 *scalable-ase-demo*입니다.  결과적으로 트래픽 관리자에서 관리되는 전체 도메인 이름은 *scalable-ase-demo.trafficmanager.net*입니다.
-* **앱 공간을 크기 조정하는 전략:** 응용 프로그램 공간은 단일 지역의 여러 App Service Environment에 걸쳐 분산됩니까?  여러 영역?  두 방법을 혼합 및 일치?  결정은 고객 트래픽이 생성되는 기대치 뿐만 아니라 백 엔드 인프라를 지원하는 앱의 나머지 부분이 확장할 수 있는 방법에 기반해야 합니다.  예를 들어 100% 상태 비저장 응용 프로그램의 경우 Azure 지역 마다 여러 App Service Environment의 조합을 사용하여 앱을 크게 확장할 수 있으며 여러 Azure 지역에 걸쳐 배포된 App Service Environment로 곱해집니다.  선택할 수 있는 15+ 공용 Azure 지역으로 고객은 전세계 하이퍼 규모의 응용 프로그램 공간을 진정으로 구축할 수 있습니다.  이 문서에 사용되는 샘플 앱의 경우 세 가지 앱 서비스 환경을 단일 Azure 지역(미국 중남부)에서 만들었습니다.
-* **App Service Environment에 대한 명명 규칙:** 각 App Service Environment에는 고유한 이름이 있어야 합니다.  하나 또는 두 개의 앱 서비스 환경 외에도 각 앱 서비스 환경을 식별하는 데 도움이 되는 명명 규칙을 파악하는 것이 좋습니다.  샘플 앱의 경우 간단한 명명 규칙을 사용했습니다.  세 가지 App Service Environment의 이름은 *fe1ase*, *fe2ase*, 및 *fe3ase*입니다.
-* **앱에 대한 명명 규칙:** 앱의 여러 인스턴스가 배포되기 때문에 이름은 배포된 앱의 인스턴스 각각에 필요합니다.  하나의 잘 알려지지 않지만 매우 편리한 앱 서비스 환경의 기능은 동일한 앱 이름을 여러 앱 서비스 환경에 걸쳐 사용할 수 있다는 점입니다.  각 앱 서비스 환경에 고유한 도메인 접미사가 있으므로 개발자는 각 환경에 정확히 동일한 앱 이름을 다시 사용하도록 선택할 수 있습니다.  예를 들어 개발자가 앱을 *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net* 등과 같이 명명할 수 있습니다.  그러나 샘플 앱의 경우 각 앱 인스턴스에도 고유한 이름이 지정됩니다.  앱 인스턴스에 사용되는 이름은 *webfrontend1*, *webfrontend2* 및 *webfrontend3*입니다.
+* **Hello 앱에 대 한 사용자 지정 도메인:** 고객에서 tooaccess hello 앱을 사용 하는 hello 사용자 지정 도메인 이름은 무엇입니까?  Hello 샘플 응용 프로그램 hello 사용자 지정 도메인 이름이 *www.scalableasedemo.com*
+* **트래픽 관리자 도메인:** 도메인 이름을 만들 때 선택한 toobe 필요는 [Azure 트래픽 관리자 프로필][AzureTrafficManagerProfile]합니다.  이 이름은 hello로 결합 됩니다 *trafficmanager.net* tooregister 트래픽 관리자에서 관리 되는 도메인 항목 접미사입니다.  Hello 샘플 응용 프로그램에 대 한 hello 이름 선택은 *ase 데모 확장 가능한*합니다.  따라서 hello 전체 도메인 이름을 트래픽 관리자에서 관리 되는 *ase demo.trafficmanager.net 확장 가능한*합니다.
+* **Hello 응용 프로그램 사용 공간 크기 조정에 대 한 전략:** hello 응용 프로그램의 공간에 배포 되는 단일 지역에서 여러 앱 서비스 환경?  여러 영역?  두 방법을 혼합 및 일치?  hello 의사 결정 고객 트래픽이 발생 한 위치,도 안녕하세요 rest 응용 프로그램을 지 원하는 백 엔드 인프라의 크기를 조정할 수 하는 방법의 기대치를 기반으로 해야 합니다.  예를 들어 100% 상태 비저장 응용 프로그램의 경우 Azure 지역 마다 여러 App Service Environment의 조합을 사용하여 앱을 크게 확장할 수 있으며 여러 Azure 지역에 걸쳐 배포된 App Service Environment로 곱해집니다.  15 + 공용 Azure 지역에서 사용할 수 있는 toochoose, 고객 전세계 대규모 응용 프로그램의 공간 진정으로 빌드할 수 있습니다.  이 문서에 사용 되는 hello 샘플 응용 프로그램을 세 가지 앱 서비스 환경에는 단일 Azure 지역 (미국 중남부) 생성 되었습니다.
+* **앱 서비스 환경 hello에 대 한 명명 규칙:** Each 앱 서비스 환경 이름은 고유 해야 합니다.  하나 또는 두 개의 앱 서비스 환경 이외의 것이 유용한 toohave 명명 규칙 toohelp 각 앱 서비스 환경을 식별 합니다.  Hello 샘플 응용 프로그램에 대 한 간단한 명명 규칙이 사용 되었습니다.  hello hello 3 앱 서비스 환경 이름은 소문자 *fe1ase*, *fe2ase*, 및 *fe3ase*합니다.
+* **Hello 앱에 대 한 명명 규칙:** hello 배포 된 앱의 각 인스턴스에 대해은 이름을 hello 앱의 여러 인스턴스를 배포할 하므로 필요 합니다.  앱 서비스 환경을 잘 알려지지 않은 있지만 매우 편리 하 게 기능 중 하나는 응용 프로그램 이름이 같은 여러 앱 서비스 환경에 걸쳐 사용할 수는 hello입니다.  각 앱 서비스 환경에 고유한 도메인 접미사가 있으므로 개발자는 각 환경에 사용 가능한 toore hello과 같은 응용 프로그램 이름을 선택할 수 있습니다.  예를 들어 개발자가 앱을 *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net* 등과 같이 명명할 수 있습니다.  Hello 샘플 응용 프로그램에 대 한 하지만 각 응용 프로그램 인스턴스 또한 고유한 이름이 지정 됩니다.  hello 사용 되는 응용 프로그램 인스턴스 이름은 *webfrontend1*, *webfrontend2*, 및 *webfrontend3*합니다.
 
-## <a name="setting-up-the-traffic-manager-profile"></a>트래픽 관리자 프로필 설정
-여러 App Service Environment에서 앱의 여러 인스턴스를 배포하면 개별 앱 인스턴스는 Traffic Manager를 사용하여 등록할 수 있습니다.  샘플 앱의 경우 트래픽 관리자 프로필은 다음 배포된 앱 인스턴스에 고객을 라우팅할 수 있는 *scalable-ase-demo.trafficmanager.net* 에 필요합니다.
+## <a name="setting-up-hello-traffic-manager-profile"></a>트래픽 관리자 프로필 hello 설정
+응용 프로그램의 여러 인스턴스는 여러 앱 서비스 환경에 배포 된 후 hello 개별 앱 인스턴스 트래픽 관리자를 등록할 수 있습니다.  Hello 샘플 응용 프로그램 트래픽 관리자 프로필에 대 한 필요한 *ase demo.trafficmanager.net 확장 가능한* 고객 배포의 다음 hello tooany 앱 인스턴스를 라우팅할 수 있는:
 
-* **webfrontend1.fe1ase.p.azurewebsites.net:** 첫 번째 App Service Environment에 배포된 샘플 앱의 인스턴스입니다.
-* **webfrontend2.fe2ase.p.azurewebsites.net:** 두 번째 App Service Environment에 배포된 샘플 앱의 인스턴스입니다.
-* **webfrontend3.fe3ase.p.azurewebsites.net:** 세 번째 App Service Environment에 배포된 샘플 앱의 인스턴스입니다.
+* **webfrontend1.fe1ase.p.azurewebsites.net:** hello 샘플 응용 프로그램에 배포 된 인스턴스의 hello 첫 번째 앱 서비스 환경입니다.
+* **webfrontend2.fe2ase.p.azurewebsites.net:** hello 샘플 응용 프로그램에 배포 된 인스턴스의 hello 두 번째 앱 서비스 환경입니다.
+* **webfrontend3.fe3ase.p.azurewebsites.net:** hello 샘플 응용 프로그램에 배포 된 인스턴스의 hello 세 번째 앱 서비스 환경입니다.
 
-**동일한** Azure 지역에서 실행되는 여러 Azure App Service 끝점을 등록하는 가장 쉬운 방법은 Powershell [Azure Resource Manager Traffic Manager 지원][ARMTrafficManager]을 사용하는 것입니다.  
+가장 쉬운 방법은 tooregister 여러 Azure 앱 서비스 끝점을 hello에서 모두 실행 hello **동일한** hello Powershell로는 Azure 지역 [Azure 리소스 관리자 트래픽 관리자 지원] [ ARMTrafficManager].  
 
-첫 번째 단계는 Azure 트래픽 관리자 프로필을 만드는 것입니다.  아래 코드에서는 샘플 앱에 프로필을 만든 방법을 보여줍니다.
+hello 첫 번째 단계는 Azure 트래픽 관리자 프로필 toocreate입니다.  hello 코드 아래 hello 샘플 응용 프로그램에 대 한 hello 호스트 프로필이 생성 되었는지는 방법을 보여 줍니다.
 
     $profile = New-AzureTrafficManagerProfile –Name scalableasedemo -ResourceGroupName yourRGNameHere -TrafficRoutingMethod Weighted -RelativeDnsName scalable-ase-demo -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 
-*RelativeDnsName* 매개 변수가 어떻게 *scalable-ase-demo*로 설정되는지 확인합니다.  도메인 이름 *scalable-ase-demo.trafficmanager.net* 이 만들어지고 트래픽 관리자 프로필에 연결되는 방법입니다.
+Hello 어떻게 확인 *RelativeDnsName* 매개 변수를 너무 설정한*ase 데모 확장 가능한*합니다.  도메인 이름 어떻게 hello은이 *ase demo.trafficmanager.net 확장 가능한* 생성 되어 트래픽 관리자 프로필과 연결 된입니다.
 
-*TrafficRoutingMethod* 매개 변수는 부하 분산 정책을 정의하고 트래픽 관리자는 사용 가능한 모든 끝점에서 고객 부하를 분산하는 방법을 결정하는 데 사용합니다.  이 예제에서 *가중치* 메서드가 선택되었습니다.  이렇게 하면 고객 요청이 각 끝점에 연결된 상대 가중치에 따라 등록된 응용 프로그램 끝점에 걸쳐 분산됩니다. 
+hello *TrafficRoutingMethod* hello 부하 분산 트래픽 관리자 toodetermine hello 사용 가능한 끝점의 모든 toospread 고객을 로드 하는 방법에서 사용 하는 정책 매개 변수를 정의 합니다.  이 예제에서는 hello에 *가 중* 메서드 선택 되었습니다.  이렇게 하면 모든 hello 등록 응용 프로그램 끝점에 연결 된 각 끝점 hello 상대 가중치에 따라 분산 되 고 고객 요청 합니다. 
 
-만든 프로필을 사용하여 각 앱 인스턴스를 프로필에 네이티브 Azure 끝점으로 추가합니다.  아래 코드는 각 프런트 엔드 웹앱에 대한 참조를 인출하고 *TargetResourceId* 매개 변수의 방법으로 각 앱을 Traffic Manager 끝점으로 추가합니다.
+각 응용 프로그램 인스턴스는 만든 hello 프로필을 기본 Azure 끝점으로 toohello 프로필을 추가 됩니다.  아래 hello 코드 참조 tooeach 프런트 엔드 웹 응용 프로그램을 가져오고 hello 통해 트래픽 관리자 끝점으로 각 응용 프로그램을 추가 하는 다음 *TargetResourceId* 매개 변수입니다.
 
     $webapp1 = Get-AzureRMWebApp -Name webfrontend1
     Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp1.Id –EndpointStatus Enabled –Weight 10
@@ -77,44 +77,44 @@ ms.lasthandoff: 07/11/2017
 
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
 
-개별 응용 프로그램 인스턴스에 *Add-AzureTrafficManagerEndpointConfig* 로 한 개의 호출이 있습니다.  각 Powershell 명령에서 *TargetResourceId* 매개 변수는 세 개의 배포된 앱 인스턴스 중 하나를 참조합니다.  Traffic Manager 프로필은 프로필에 등록된 세 개의 모든 끝점에 걸쳐 부하를 분산합니다.
+되어 한 번의 호출 너무*추가 AzureTrafficManagerEndpointConfig* 각 개별 응용 프로그램 인스턴스에 대 한 합니다.  hello *TargetResourceId* 각 Powershell 명령에서 매개 변수 hello 세 가지 배포 응용 프로그램 인스턴스 중 하나를 참조 합니다.  트래픽 관리자 프로필 hello hello 프로필에 등록 된 모든 세 끝점에서 부하를 분산 됩니다.
 
-세 끝점은 모두 *가중치* 매개 변수에 동일한 값(10)을 사용합니다.  그러면 트래픽 관리자에서 세 가지 앱 인스턴스에 상대적으로 균일하게 고객 요청을 분산하게 됩니다. 
+Hello에 대 한 동일한 값 (10) hello hello 세 끝점 사용의 모든 *가중치* 매개 변수입니다.  그러면 트래픽 관리자에서 세 가지 앱 인스턴스에 상대적으로 균일하게 고객 요청을 분산하게 됩니다. 
 
-## <a name="pointing-the-apps-custom-domain-at-the-traffic-manager-domain"></a>트래픽 관리자 도메인에서 앱의 사용자 지정 도메인 가리키기
-필요한 마지막 단계는 트래픽 관리자 도메인에서 앱의 사용자 지정 도메인을 가리키는 것입니다.  즉, 샘플 앱의 경우 *scalable-ase-demo.trafficmanager.net*에서 *www.scalableasedemo.com*을 가리킵니다.  이 단계는 사용자 지정 도메인을 관리하는 도메인 등록 기관으로 완료해야 합니다.  
+## <a name="pointing-hello-apps-custom-domain-at-hello-traffic-manager-domain"></a>트래픽 관리자 도메인 hello에서 hello 응용 프로그램의 사용자 지정 도메인을 가리키는
+필요한 hello 마지막 단계에는 hello toopoint hello 트래픽 관리자 도메인에 hello 응용 프로그램의 사용자 지정 도메인입니다.  가리키는 즉 hello 샘플 응용 프로그램에 대 한 *www.scalableasedemo.com* 에서 *ase demo.trafficmanager.net 확장 가능한*합니다.  이 단계는 toobe hello 사용자 지정 도메인을 관리 하는 hello 도메인 등록 기관에 완료 해야 합니다.  
 
-등록 기관의 도메인 관리 도구를 사용하여 CNAME 기록은 트래픽 관리자 도메인에서 사용자 지정 도메인을 가리키도록 만들어야 합니다.  아래 그림은 해당 CNAME 구성이 다음과 같다는 예를 보여줍니다.
+등록자의 도메인 관리 도구를 사용 하 여 CNAME 레코드 요구 toobe hello 트래픽 관리자 도메인에서 어떤 지점 hello 사용자 지정 도메인을 생성 합니다.  아래 hello 그림이 CNAME 구성의 모양을의 예를 보여 줍니다.
 
 ![사용자 지정 도메인에 대한 CNAME][CNAMEforCustomDomain] 
 
-이 항목에서 설명하지 않았지만 각 개별 앱 인스턴스도 등록된 사용자 지정 도메인이 있어야 합니다.  그렇지 않은 경우 앱 인스턴스로 요청을 하고 응용 프로그램에 앱으로 등록된 사용자 지정 도메인이 없다면 요청은 실패합니다.  
+이 항목에서 설명 하지 않지만 각 개별 앱 인스턴스 toohave hello 사용자 지정 도메인 등록 된도 필요 함을 기억 합니다.  그렇지 않으면 요청 tooan 응용 프로그램 인스턴스를 사용 하면 hello 응용 프로그램 등록 hello 앱 된 hello 사용자 지정 도메인이 없는 경우 hello 요청이 실패 합니다.  
 
-이 예에서 사용자 지정 도메인은 *www.scalableasedemo.com*이고 각 응용 프로그램 인스턴스에는 연결된 사용자 지정 도메인이 있습니다.
+사용자 지정 도메인은이 예제에서는 hello *www.scalableasedemo.com*, 하며 각 응용 프로그램 인스턴스에 연결 된 hello 사용자 지정 도메인입니다.
 
 ![사용자 지정 도메인][CustomDomain] 
 
-Azure App Service 앱으로 사용자 지정 도메인을 등록하는 요점은 [사용자 지정 도메인 등록][RegisterCustomDomain]의 다음 문서를 참조하세요.
+Azure 앱 서비스 앱을 사용자 지정 도메인을 등록에 대해 간략하게, hello 다음 문서를 참조 하세요. [사용자 지정 도메인 등록][RegisterCustomDomain]합니다.
 
-## <a name="trying-out-the-distributed-topology"></a>배포된 토폴로지 사용
-트래픽 관리자 및 DNS 구성의 최종 결과는 *www.scalableasedemo.com* 에 대한 요청이 다음 시퀀스를 통과하는 것입니다.
+## <a name="trying-out-hello-distributed-topology"></a>시험적으로 hello 분산 토폴로지
+hello hello 트래픽 관리자 및 DNS 구성의 최종 결과 요청에 대 한 *www.scalableasedemo.com* 순서 따르면 hello를 통해 전달 됩니다.
 
 1. 브라우저 또는 장치는 *www.scalableasedemo.com*
-2. 도메인 등록 기관에서 CNAME 항목은 DNS를 조회하여 Azure 트래픽 관리자로 리디렉션됩니다.
-3. DNS 조회는 Azure 트래픽 관리자 DNS 서버 중 하나에 대한 *scalable-ase-demo.trafficmanager.net* 에 대해 수행합니다.
-4. 부하 분산 정책에 따라(트래픽 관리자 프로필을 만들 때 이전에 사용된 *TrafficRoutingMethod* 매개 변수) 트래픽 관리자는 구성된 끝점 중 하나를 선택하고 브라우저 또는 장치에 해당 끝점의 FQDN을 반환합니다.
-5. 끝점의 FQDN가 앱 서비스 환경에서 실행 중인 앱 인스턴스의 URL이기 때문에 브라우저 또는 장치는 Microsoft Azure DNS 서버에 요청하여 FQDN을 IP 주소로 해결합니다. 
-6. 브라우저 또는 장치는 IP 주소에 HTTP/S 요청을 보냅니다.  
-7. 요청은 앱 서비스 환경 중 하나에서 실행 중인 앱 인스턴스 중 하나에 도착합니다.
+2. hello hello 도메인 등록 기관에서 CNAME 항목 hello DNS 조회 리디렉션 toobe tooAzure 트래픽 관리자 하면 됩니다.
+3. 에 대 한 DNS 조회 *ase demo.trafficmanager.net 확장 가능한* hello Azure 트래픽 관리자 DNS 서버 중 하나에 대 한 합니다.
+4. Hello 부하 분산 정책에 따라 (hello *TrafficRoutingMethod* hello 트래픽 관리자 프로필을 만들 때 이전에 사용 되는 매개 변수), 트래픽 관리자는 hello 중 하나를 선택 끝점을 구성 하 고 반환 하는의 FQDN hello 끝점 toohello 브라우저 또는 장치입니다.
+5. 앱 서비스 환경에서 실행 되는 응용 프로그램 인스턴스의 hello Url hello hello 끝점의 FQDN 이므로, hello 브라우저나 장치로 묻습니다 Microsoft Azure DNS 서버 tooresolve hello FQDN tooan IP 주소. 
+6. hello 브라우저나 장치로 hello HTTP/S 요청 toohello IP 주소를 전송 합니다.  
+7. hello 앱 서비스 환경 중 하나에서 실행 되는 hello 앱 인스턴스 중 하나에 도달 하는 hello 요청 합니다.
 
-아래 그림의 콘솔에서는 세 개의 샘플 앱 서비스 환경 중 하나에서 실행 중인 앱 인스턴스를 성공적으로 해결하는 샘플 앱의 사용자 지정 도메인에 대한 DNS 조회를 보여줍니다.(이 경우 세 개의 응용 프로그램 서비스 환경 중 두 번째) 
+hello 콘솔 아래 그림과 hello 샘플 응용 프로그램의 사용자 지정 도메인 성공적으로 확인 하 고 tooan 응용 프로그램에서 실행 중인 인스턴스 hello 3 샘플 앱 서비스 환경 중 하나에 대 한 DNS 조회 (이 경우 앱 서비스 환경 hello 3 중 두 번째 hello):
 
 ![DNS 조회][DNSLookup] 
 
 ## <a name="additional-links-and-information"></a>추가 링크 및 정보
-앱 서비스 환경에 대한 모든 문서와 지침은 [응용 프로그램 서비스 환경의 추가 정보](../app-service/app-service-app-service-environments-readme.md)에 있습니다.
+모든 문서와 방법을-hello에서 사용할 수 있는 앱 서비스 환경에 대 한의 하려면 [응용 프로그램 서비스 환경에 대 한 추가 정보](../app-service/app-service-app-service-environments-readme.md)합니다.
 
-Powershell [Azure Resource Manager Traffic Manager 지원][ARMTrafficManager]에 대한 설명서입니다.  
+Powershell hello에 대 한 설명서 [Azure 리소스 관리자 트래픽 관리자 지원][ARMTrafficManager]합니다.  
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

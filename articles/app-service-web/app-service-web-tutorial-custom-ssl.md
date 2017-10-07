@@ -1,6 +1,6 @@
 ---
-title: "Azure Web Apps에 기존 사용자 지정 SSL 인증서 바인딩 | Microsoft 문서"
-description: "Azure App Service의 웹앱, 모바일 앱 백 엔드 또는 API 앱에 사용자 지정 SSL 인증서를 바인딩하는 방법을 알아봅니다."
+title: "aaaBind 기존 사용자 지정 SSL 인증서 tooAzure 웹 응용 프로그램 | Microsoft Docs"
+description: "사용자 지정 SSL 인증서 tooyour 웹 앱, 모바일 앱 백 엔드, 또는 Azure 앱 서비스에서 API 앱 tootoobind에 알아봅니다."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 06/23/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 15c31ae5451a31dff2df08047ee43e75edacc127
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3503ba9f96c8ea8d18451e8bf9a9b441797ef44d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bind-an-existing-custom-ssl-certificate-to-azure-web-apps"></a>Azure Web Apps에 기존 사용자 지정 SSL 인증서 바인딩
+# <a name="bind-an-existing-custom-ssl-certificate-tooazure-web-apps"></a>기존 사용자 지정 SSL 인증서 tooAzure 웹 응용 프로그램 바인딩
 
-Azure Web Apps는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다. 이 자습서에서는 신뢰할 수 있는 인증 기관에서 구매한 사용자 지정 SSL 인증서를 [Azure Web Apps](app-service-web-overview.md)에 바인딩하는 방법을 보여 줍니다. 완료하면 사용자 지정 DNS 도메인의 HTTPS 끝점에서 웹앱에 액세스할 수 있습니다.
+Azure Web Apps는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다. 이 자습서에서는 어떻게 toobind 사용자 지정 SSL 인증서 너무 신뢰할 수 있는 인증 기관에서 구입한[Azure 웹 앱](app-service-web-overview.md)합니다. 완료 되 면 수 수 tooaccess 웹 앱에서 사용자 지정 DNS 도메인의 hello HTTPS 끝점입니다.
 
 ![사용자 지정 SSL 인증서가 포함된 웹앱](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
@@ -31,72 +31,72 @@ Azure Web Apps는 확장성 있는 자체 패치 웹 호스팅 서비스를 제�
 
 > [!div class="checklist"]
 > * 앱의 가격 책정 계층 업그레이드
-> * App Service에 사용자 지정 SSL 인증서 바인딩
+> * 사용자 지정 SSL 인증서 tooApp 서비스 바인딩
 > * 앱에 대해 HTTPS 적용
 > * 스크립트로 SSL 인증서 바인딩 자동화
 
 > [!NOTE]
-> 사용자 지정 SSL 인증서가 필요한 경우 Azure Portal에서 직접 SSL 인증서를 구매하고 웹앱에 바인딩할 수 있습니다. [App Service 인증서 자습서](web-sites-purchase-ssl-web-site.md)를 따르세요.
+> Tooget 사용자 지정 SSL 인증서가 필요한 경우 hello Azure 포털에서에서 직접 얻을 수 있으며 tooyour 웹 응용 프로그램을 바인딩합니다. Hello에 따라 [앱 서비스 인증서 자습서](web-sites-purchase-ssl-web-site.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서:
 
 - [App Service 앱 만들기](/azure/app-service/)
-- [웹앱에 사용자 지정 DNS 이름 매핑](app-service-web-tutorial-custom-domain.md)
+- [사용자 지정 DNS 이름 tooyour 웹 응용 프로그램 맵](app-service-web-tutorial-custom-domain.md)
 - 신뢰할 수 있는 인증 기관에서 SSL 인증서 구매
 
 <a name="requirements"></a>
 
 ### <a name="requirements-for-your-ssl-certificate"></a>SSL 인증서에 대한 요구 사항
 
-App Service에서 인증서를 사용하려면 인증서가 다음 요구 사항을 모두 충족해야 합니다.
+앱 서비스에서 인증서 toouse hello 인증서 요구 사항을 준수 하는 모든 hello를 충족 해야 합니다.
 
 * 신뢰할 수 있는 인증 기관에서 서명됨
 * 암호로 보호된 PFX 파일로 내보냄
 * 길이가 2048비트 이상인 개인 키를 포함함
-* 인증서 체인의 모든 중간 인증서를 포함함
+* Hello 인증서 체인에 모든 중간 인증서를 포함합니다.
 
 > [!NOTE]
-> **ECC(타원 곡선 암호화) 인증서**는 App Service에서 사용할 수 있지만 이 문서에서는 다루지 않습니다. ECC 인증서를 만드는 정확한 단계에서 인증 기관을 사용하세요.
+> **ECC(타원 곡선 암호화) 인증서**는 App Service에서 사용할 수 있지만 이 문서에서는 다루지 않습니다. 인증 기관 hello 정확한 단계 toocreate ECC 인증서에 사용 합니다.
 
 ## <a name="prepare-your-web-app"></a>웹앱 준비
 
-사용자 지정 SSL 인증서를 웹앱에 바인딩하려면 [App Service 가격](https://azure.microsoft.com/pricing/details/app-service/)이 **기본**, **표준** 또는 **프리미엄** 계층에 있어야 합니다. 이 단계에서는 웹앱이 지원되는 가격 책정 계층에 있음을 확인합니다.
+toobind 사용자 지정 SSL 인증서 tooyour 웹 응용 프로그램 프로그램 [앱 서비스 계획](https://azure.microsoft.com/pricing/details/app-service/) hello에 있어야 **기본**, **표준**, 또는 **프리미엄** 계층입니다. 이 단계에서는 있습니다 지원 되는지 확인을 웹 앱 hello에 가격 책정 계층입니다.
 
-### <a name="log-in-to-azure"></a>Azure에 로그인
+### <a name="log-in-tooazure"></a>TooAzure 로그인
 
-[Azure 포털](https://portal.azure.com)을 엽니다.
+열기 hello [Azure 포털](https://portal.azure.com)합니다.
 
-### <a name="navigate-to-your-web-app"></a>웹앱으로 이동
+### <a name="navigate-tooyour-web-app"></a>Tooyour 웹 응용 프로그램 이동
 
-왼쪽 메뉴에서 **App Services**를 클릭한 다음 웹앱의 이름을 클릭합니다.
+Hello 왼쪽된 메뉴에서 클릭 **응용 프로그램 서비스**, 웹 응용 프로그램의 hello 이름을 클릭 하 고 있습니다.
 
 ![웹앱 선택](./media/app-service-web-tutorial-custom-ssl/select-app.png)
 
-웹앱의 관리 페이지에 연결되었습니다.  
+웹 응용 프로그램의 hello 관리 페이지에 연결 되었습니다.  
 
-### <a name="check-the-pricing-tier"></a>가격 책정 계층 확인
+### <a name="check-hello-pricing-tier"></a>가격 책정 계층 hello를 확인 합니다.
 
-웹앱 페이지의 왼쪽 탐색 영역에서 **설정** 섹션으로 스크롤하고 **강화(App Service 계획)**를 선택합니다.
+웹 응용 프로그램 페이지의 왼쪽 탐색 hello 스크롤하여 toohello **설정** 선택한 섹션 **(앱 서비스 계획) 수직**합니다.
 
 ![강화 메뉴](./media/app-service-web-tutorial-custom-ssl/scale-up-menu.png)
 
-웹앱이 **무료** 또는 **공유** 계층에 있지 않은지 확인합니다. 웹앱의 현재 계층이 진한 파란색 상자로 강조 표시됩니다.
+Toomake 있는지 웹 앱 hello에 있지 않은지 확인 **무료** 또는 **Shared** 계층입니다. 웹앱의 현재 계층이 진한 파란색 상자로 강조 표시됩니다.
 
 ![가격 책정 계층 확인](./media/app-service-web-tutorial-custom-ssl/check-pricing-tier.png)
 
-사용자 지정 SSL은 **무료** 또는 **공유** 계층에서 지원되지 않습니다. 강화해야 하는 경우 다음 섹션의 단계를 수행합니다. 그렇지 않은 경우 **가격 책정 계층 선택** 페이지를 닫고 [SSL 인증서 업로드 및 바인딩](#upload)으로 건너뜁니다.
+사용자 지정 SSL hello에서 지원 되지 않습니다 **무료** 또는 **Shared** 계층입니다. tooscale 해야 할 경우 hello 다음 섹션의 hello 단계를 수행 합니다. Hello를 닫습니다 **가격 책정 계층 선택** 페이지 및 너무 건너뛸[업로드 하 고 SSL 인증서에 바인딩할](#upload)합니다.
 
 ### <a name="scale-up-your-app-service-plan"></a>App Service 계획 강화
 
-**기본**, **표준** 또는 **프리미엄** 계층 중 하나를 선택합니다.
+Hello 중 하나를 선택 **기본**, **표준**, 또는 **프리미엄** 계층입니다.
 
 **선택**을 클릭합니다.
 
 ![가격 책정 계층 선택](./media/app-service-web-tutorial-custom-ssl/choose-pricing-tier.png)
 
-다음 알림이 표시되면 강화 작업이 완료됩니다.
+Hello 알림을 다음 표시 되 면 hello 크기 조정 작업이 완료 되었습니다.
 
 ![강화 알림](./media/app-service-web-tutorial-custom-ssl/scale-notification.png)
 
@@ -104,15 +104,15 @@ App Service에서 인증서를 사용하려면 인증서가 다음 요구 사항
 
 ## <a name="bind-your-ssl-certificate"></a>SSL 인증서 바인딩
 
-SSL 인증서를 웹앱에 업로드할 준비가 되었습니다.
+사용자는 준비 tooupload SSL 인증서 tooyour 웹 앱입니다.
 
 ### <a name="merge-intermediate-certificates"></a>중간 인증서 병합
 
-인증 기관에서 여러 인증서를 인증서 체인에 제공하면 인증서를 순서대로 병합해야 합니다. 
+인증 기관에 인증서가 여러 개 hello 인증서 체인을 제공 하는 경우 순서 대로 toomerge hello 인증서가 필요 합니다. 
 
-이렇게 하려면 받은 각 인증서를 텍스트 편집기에서 엽니다. 
+toodo 각 열기가 인증서를 텍스트 편집기에서 받은 합니다. 
 
-_mergedcertificate.crt_라는 병합된 인증서의 파일을 만듭니다. 텍스트 편집기에서 각 인증서의 내용을 이 파일에 복사합니다. 인증서의 순서는 다음 템플릿과 비슷해야 합니다.
+라는 hello 병합 된 인증서에 대 한 파일을 만들 _mergedcertificate.crt_합니다. 텍스트 편집기에서이 파일에 각 인증서의 hello 콘텐츠를 복사 합니다. 인증서의 hello 순서는 서식 파일을 다음 hello 같이 표시 됩니다.
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -132,99 +132,99 @@ _mergedcertificate.crt_라는 병합된 인증서의 파일을 만듭니다. 텍
 -----END CERTIFICATE-----
 ```
 
-### <a name="export-certificate-to-pfx"></a>PFX로 인증서 내보내기
+### <a name="export-certificate-toopfx"></a>인증서 tooPFX 내보내기
 
-인증서 요청 생성에 사용된 개인 키로 병합된 SSL 인증서를 내보냅니다.
+병합 된 SSL 인증서를 사용 하 여 인증서 요청 생성 hello 개인 키로 내보냅니다.
 
-OpenSSL을 사용하여 인증서 요청을 생성한 경우 개인 키 파일을 만든 것입니다. 인증서를 PFX로 내보내려면 다음 명령을 실행합니다. _&lt;private-key-file>_ 및 _&lt;merged-certificate-file>_ 자리 표시자를 바꿉니다.
+OpenSSL을 사용하여 인증서 요청을 생성한 경우 개인 키 파일을 만든 것입니다. tooexport hello 다음 명령을 실행 하 여 인증서 tooPFX 합니다. Hello 자리 표시자를 대체  _&lt;개인 키 파일 >_ 및  _&lt;병합-인증서-파일 >_합니다.
 
 ```
 openssl pkcs12 -export -out myserver.pfx -inkey <private-key-file> -in <merged-certificate-file>  
 ```
 
-메시지가 표시되면 내보내기 암호를 정의합니다. 나중에 SSL 인증서를 App Service에 업로드할 때 이 암호를 사용합니다.
+메시지가 표시되면 내보내기 암호를 정의합니다. 프로그램 SSL 인증서 tooApp 서비스 나중에 업로드할 때이 암호를 사용 합니다.
 
-IIS 또는 _Certreq.exe_를 사용하여 인증서 요청을 생성한 경우 인증서를 로컬 컴퓨터에 설치한 다음 [해당 인증서를 PFX로 내보냅니다](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx).
+IIS를 사용 하는 경우 또는 _Certreq.exe_ toogenerate 인증서 요청, 설치 hello 인증서 tooyour 로컬 컴퓨터 즉, 한 다음 [hello 인증서 tooPFX 내보내기](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx)합니다.
 
 ### <a name="upload-your-ssl-certificate"></a>SSL 인증서 업로드
 
-SSL 인증서를 업로드하려면 웹앱의 왼쪽 탐색 영역에서 **SSL 인증서**를 클릭합니다.
+tooupload SSL 인증서를 클릭 하 여 **SSL 인증서** hello 왼쪽 탐색의 웹 앱에에서 있습니다.
 
 **인증서 업로드**를 클릭합니다.
 
-**PFX 인증서 파일**에서 PFX 파일을 선택합니다. **인증서 암호**에서 PFX 파일을 내보낼 때 만든 암호를 입력합니다.
+**PFX 인증서 파일**에서 PFX 파일을 선택합니다. **인증서 암호**, hello PFX 파일을 내보낼 때 만든 hello 암호를 입력 합니다.
 
 **업로드**를 클릭합니다.
 
 ![인증서 업로드](./media/app-service-web-tutorial-custom-ssl/upload-certificate.png)
 
-App Service에서 인증서 업로드가 완료되면 **SSL 인증서** 페이지에 업로드된 인증서가 표시됩니다.
+Hello에 표시 하는 앱 서비스 인증서를 업로드 완료 되 면 **SSL 인증서** 페이지.
 
 ![업로드된 인증서](./media/app-service-web-tutorial-custom-ssl/certificate-uploaded.png)
 
 ### <a name="bind-your-ssl-certificate"></a>SSL 인증서 바인딩
 
-**SSL 바인딩** 섹션에서 **바인딩 추가**를 클릭합니다.
+Hello에 **SSL 바인딩을** 섹션에서 클릭 **바인딩을 추가**합니다.
 
-**SSL 바인딩 추가** 페이지에서 드롭다운을 사용하여 보호할 도메인 이름과 사용할 인증서를 선택합니다.
+Hello에 **SSL 바인딩 추가** 페이지 hello 드롭다운 tooselect hello 도메인 이름 toosecure 및 인증서 toouse hello 사용 합니다.
 
 > [!NOTE]
-> 인증서를 업로드했지만 **Hostname** 드롭다운에서 해당 도메인 이름이 표시되지 않으면 브라우저 페이지를 새로 고쳐 봅니다.
+> 인증서를 업로드 한 해도 hello에 hello 도메인 이름에 표시 되지 않는 경우 **Hostname** 드롭다운에서 hello 브라우저 페이지를 새로 고 치세요.
 >
 >
 
-**SSL 유형**에서 **[SNI(서버 이름 표시)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 또는 IP 기반 SSL을 사용할지 선택합니다.
+**SSL 유형**을 선택 하는지 여부를 toouse  **[SNI 서버 이름 표시 ()](http://en.wikipedia.org/wiki/Server_Name_Indication)**  또는 IP 기반 SSL 합니다.
 
-- **SNI 기반 SSL** - 여러 개의 SNI 기반 SSL 바인딩을 추가할 수 있습니다. 이 옵션을 사용하면 여러 SSL 인증서로 같은 IP 주소의 여러 도메인을 보호할 수 있습니다. 대부분의 최신 브라우저(Internet Explorer, Chrome, Firefox 및 Opera 포함)는 SNI를 지원합니다. [Server Name Indication](http://wikipedia.org/wiki/Server_Name_Indication)(서버 이름 표시)에서 더 포괄적인 브라우저 지원 정보를 찾을 수 있습니다.
-- **IP 기반 SSL** - IP 기반 SSL 바인딩 하나만 추가할 수 있습니다. 이 옵션을 사용하면 전용 공용 IP 주소를 보호하는 데 하나의 SSL 인증서만 사용할 수 있습니다. 여러 도메인을 보호하려면 동일한 SSL 인증서를 사용하여 모두 보호해야 합니다. 이 옵션은 SSL 바인딩의 일반적인 옵션입니다.
+- **SNI 기반 SSL** - 여러 개의 SNI 기반 SSL 바인딩을 추가할 수 있습니다. 이 옵션을 사용 하면 여러 SSL 인증서 toosecure hello에 여러 도메인이 동일한 IP 주소입니다. 대부분의 최신 브라우저(Internet Explorer, Chrome, Firefox 및 Opera 포함)는 SNI를 지원합니다. [Server Name Indication](http://wikipedia.org/wiki/Server_Name_Indication)(서버 이름 표시)에서 더 포괄적인 브라우저 지원 정보를 찾을 수 있습니다.
+- **IP 기반 SSL** - IP 기반 SSL 바인딩 하나만 추가할 수 있습니다. 이 옵션을 사용 하면 하나의 SSL 인증서 toosecure 전용된 공용 IP 주소입니다. toosecure 여러 도메인에 보안을 설정 해야을 사용 하 여 모든 hello 같은 SSL 인증서입니다. SSL 바인딩에 대 한 hello 기존의 옵션입니다.
 
 **바인딩 추가**를 클릭합니다.
 
 ![SSL 인증서 바인딩](./media/app-service-web-tutorial-custom-ssl/bind-certificate.png)
 
-App Service에서 인증서 업로드가 완료되면 **SSL 바인딩** 섹션에 업로드된 인증서가 표시됩니다.
+Hello에 표시 하는 앱 서비스 인증서를 업로드 완료 되 면 **SSL 바인딩을** 섹션.
 
-![웹앱에 바인딩된 인증서](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
+![바인딩된 tooweb 응용 프로그램 인증서](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
 
 ## <a name="remap-a-record-for-ip-ssl"></a>IP SSL에 대한 A 레코드 다시 매핑
 
-웹앱에서 IP 기반 SSL을 사용하지 않을 경우 [사용자 지정 도메인에 대한 HTTPS 테스트](#test)로 건너뜁니다.
+웹 앱에서 IP 기반 SSL를 사용 하지 않는 경우 너무 건너뜁니다[사용자 지정 도메인에 대 한 테스트 HTTPS](#test)합니다.
 
 기본적으로 웹앱에서는 공유 공용 IP 주소를 사용합니다. IP 기반 SSL을 사용하여 인증서를 바인딩하면 App Service에서 웹앱에 대한 새로운 전용 IP 주소를 만듭니다.
 
-A 레코드를 웹앱에 매핑한 경우 이 새로운 전용 IP 주소로 도메인 레지스트리를 업데이트합니다.
+A 레코드 tooyour 웹 응용 프로그램을 매핑한 경우이 새, 전용 IP 주소로 도메인 레지스트리를 업데이트 합니다.
 
-웹앱의 **사용자 지정 도메인** 페이지가 새로운 전용 IP 주소로 업데이트됩니다. [이 IP 주소를 복사](app-service-web-tutorial-custom-domain.md#info)하고 이 새로운 IP 주소에 [A 레코드를 다시 매핑](app-service-web-tutorial-custom-domain.md#map-an-a-record)합니다.
+웹 앱의 **사용자 지정 도메인** 페이지 hello 새 전용된 IP 주소를 업데이트 합니다. [이 IP 주소를 복사](app-service-web-tutorial-custom-domain.md#info), 다음 [다시 매핑 hello 레코드](app-service-web-tutorial-custom-domain.md#map-an-a-record) toothis 새 IP 주소입니다.
 
 <a name="test"></a>
 
 ## <a name="test-https"></a>HTTPS 테스트
 
-이제 HTTPS가 사용자 지정 도메인에 작동하는지 확인하는 작업만 남았습니다. 다양한 브라우저에서 `https://<your.custom.domain>`으로 이동하여 웹앱을 처리하는지 확인합니다.
+이제 toodo 없어진을 사용자 지정 도메인에 대 한 HTTPS 작동 하는지 toomake 됩니다. 다양 한 브라우저에서 찾은 너무`https://<your.custom.domain>` toosee 웹 앱을 처리 하 합니다.
 
-![Azure 앱에 대한 포털 탐색](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
+![포털 탐색 tooAzure 응용 프로그램](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
 > [!NOTE]
 > 웹앱에서 인증서 유효성 검사 오류가 발생한 경우 자체 서명된 인증서를 사용하고 있을 수도 있습니다.
 >
-> 그렇지 않으면 인증서를 PFX 파일로 내보낼 때 중간 인증서를 생략했을 수도 있습니다.
+> 않은 hello 경우, 있습니다 수 생략 되었으므로 중간 인증서 toohello PFX 인증서 파일을 내보낼 때.
 
 <a name="bkmk_enforce"></a>
 
 ## <a name="enforce-https"></a>HTTPS 적용
 
-App Service에서는 HTTPS를 적용하지 *않으므로* 방문자는 HTTP를 사용하여 웹앱에 계속 액세스할 수 있습니다. 웹앱에 HTTPS를 적용하려면 웹앱의 _web.config_ 파일에 다시 쓰기 규칙을 정의합니다. 웹앱의 언어 프레임워크에 관계없이 App Service에서는 이 파일을 사용합니다.
+App Service에서는 HTTPS를 적용하지 *않으므로* 방문자는 HTTP를 사용하여 웹앱에 계속 액세스할 수 있습니다. hello에 다시 쓰기 규칙을 정의 하는 웹 앱에 대 한 HTTPS tooenforce _web.config_ 웹 앱에 대 한 파일입니다. 앱 서비스 웹 앱의 hello 언어 프레임 워크에 관계 없이이 파일을 사용합니다.
 
 > [!NOTE]
-> 언어별 요청 리디렉션이 있습니다. ASP.NET MVC는 _web.config_의 다시 쓰기 규칙 대신 [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) 필터를 사용할 수 있습니다.
+> 언어별 요청 리디렉션이 있습니다. ASP.NET MVC hello צ ְ ײ [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) hello 다시 쓰기 규칙에서 대신 필터 _web.config_합니다.
 
-.NET 개발자는 이 파일에 친숙해야 합니다. 이 파일은 솔루션의 루트에 있습니다.
+.NET 개발자는 이 파일에 친숙해야 합니다. 솔루션의 hello 루트입니다.
 
 또는 PHP, Node.js, Python 또는 Java로 개발할 경우 사용자 대신 App Service에서 이 파일을 생성했을 수 있습니다.
 
-[FTP/S를 사용하여 앱에 Azure App Service에 배포](app-service-deploy-ftp.md)의 지침에 따라 웹앱의 FTP 끝점에 연결합니다.
+Hello 지침에 따라 tooyour 웹 앱의 FTP 끝점 연결 [프로그램 응용 프로그램 tooAzure FTP/S를 사용 하 여 응용 프로그램 서비스를 배포할](app-service-deploy-ftp.md)합니다.
 
-이 파일은 _/home/site/wwwroot_에 있어야 합니다. 이 파일이 없으면 다음 XML을 사용하여 이 폴더에 _web.config_ 파일을 만듭니다.
+이 파일은 _/home/site/wwwroot_에 있어야 합니다. 그렇지 않은 경우 만들기는 _web.config_ hello 다음과 같은 XML이이 폴더에서:
 
 ```xml   
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,19 +247,19 @@ App Service에서는 HTTPS를 적용하지 *않으므로* 방문자는 HTTP를 �
 </configuration>
 ```
 
-기존 _web.config_ 파일의 경우 `<rule>` 요소 전체를 _web.config_의 `configuration/system.webServer/rewrite/rules` 요소에 복사합니다. _web.config_에 다른 `<rule>` 요소가 있으면 복사한 `<rule>` 요소를 다른 `<rule>` 요소 앞에 배치합니다.
+기존 _web.config_ 파일, hello 전체 복사 `<rule>` 요소에 프로그램 _web.config_의 `configuration/system.webServer/rewrite/rules` 요소입니다. 다른 경우 `<rule>` 요소에 프로그램 _web.config_, 복사 위치 hello `<rule>` hello 다른 하기 전에 요소 `<rule>` 요소입니다.
 
-이 규칙에서는 사용자가 웹앱에 대해 HTTP 요청을 수행할 때마다 HTTPS 프로토콜에 HTTP 301(영구 리디렉션)을 반환합니다. 예를 들어 `http://contoso.com`에서 `https://contoso.com`으로 리디렉션됩니다.
+이 규칙 hello 사용자가 HTTP 요청 tooyour 웹 앱 때마다 301 (영구적 이동) toohello HTTPS 프로토콜을 반환 합니다. 예를 들어에서 리디렉션합니다 `http://contoso.com` 너무`https://contoso.com`합니다.
 
-IIS URL 다시 쓰기 모듈에 대한 자세한 내용은 [URL 다시 쓰기](http://www.iis.net/downloads/microsoft/url-rewrite) (영문) 설명서를 참조하세요.
+IIS URL 재작성 모듈 hello에 대 한 자세한 내용은 참조 hello [URL 재작성](http://www.iis.net/downloads/microsoft/url-rewrite) 설명서입니다.
 
 ## <a name="enforce-https-for-web-apps-on-linux"></a>Linux의 Web Apps에 HTTPS 적용
 
-Linux의 App Service에서는 HTTPS를 적용하지 *않으므로* 누구든지 여전히 HTTP를 사용하여 웹앱에 액세스할 수 있습니다. 웹앱에 HTTPS를 적용하려면 웹앱의 _.htaccess_ 파일에 다시 쓰기 규칙을 정의합니다. 
+Linux의 App Service에서는 HTTPS를 적용하지 *않으므로* 누구든지 여전히 HTTP를 사용하여 웹앱에 액세스할 수 있습니다. hello에 다시 쓰기 규칙을 정의 하는 웹 앱에 대 한 HTTPS tooenforce _.htaccess_ 웹 앱에 대 한 파일입니다. 
 
-[FTP/S를 사용하여 앱에 Azure App Service에 배포](app-service-deploy-ftp.md)의 지침에 따라 웹앱의 FTP 끝점에 연결합니다.
+Hello 지침에 따라 tooyour 웹 앱의 FTP 끝점 연결 [프로그램 응용 프로그램 tooAzure FTP/S를 사용 하 여 응용 프로그램 서비스를 배포할](app-service-deploy-ftp.md)합니다.
 
-_/home/site/wwwroot_에서 다음 코드를 사용하여 _.htaccess_ 파일을 만듭니다.
+_/home/site/wwwroot_을 만듭니다는 _.htaccess_ 코드 다음 hello로 파일:
 
 ```
 RewriteEngine On
@@ -267,15 +267,15 @@ RewriteCond %{HTTP:X-ARR-SSL} ^$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
-이 규칙에서는 사용자가 웹앱에 대해 HTTP 요청을 수행할 때마다 HTTPS 프로토콜에 HTTP 301(영구 리디렉션)을 반환합니다. 예를 들어 `http://contoso.com`에서 `https://contoso.com`으로 리디렉션됩니다.
+이 규칙 hello 사용자가 HTTP 요청 tooyour 웹 앱 때마다 301 (영구적 이동) toohello HTTPS 프로토콜을 반환 합니다. 예를 들어에서 리디렉션합니다 `http://contoso.com` 너무`https://contoso.com`합니다.
 
 ## <a name="automate-with-scripts"></a>스크립트를 사용하여 자동화
 
-[Azure CLI](/cli/azure/install-azure-cli) 또는 [Azure PowerShell](/powershell/azure/overview)을 통해 스크립트를 사용하여 웹앱에 대한 SSL 바인딩을 자동화할 수 있습니다.
+Hello를 사용 하 여 스크립트를 사용 하 여 웹 앱에 대 한 SSL 바인딩의 자동화할 수 있습니다 [Azure CLI](/cli/azure/install-azure-cli) 또는 [Azure PowerShell](/powershell/azure/overview)합니다.
 
 ### <a name="azure-cli"></a>Azure CLI
 
-다음 명령은 내보낸 PFX 파일을 업로드하고 지문을 가져옵니다.
+다음 명령을 hello는 내보낸된 PFX 파일을 업로드 하 고 hello 지문을 가져옵니다.
 
 ```bash
 thumbprint=$(az appservice web config ssl upload \
@@ -287,7 +287,7 @@ thumbprint=$(az appservice web config ssl upload \
     --output tsv)
 ```
 
-다음 명령은 이전 명령의 지문을 사용하여 SNI 기반 SSL 바인딩을 추가합니다.
+hello 다음 명령을 한 SNI 기반 SSL 바인딩을 추가, hello 이전 명령에서 hello 지문을 사용 하 여 합니다.
 
 ```bash
 az appservice web config ssl bind \
@@ -299,7 +299,7 @@ az appservice web config ssl bind \
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-다음 명령은 내보낸 PFX 파일을 업로드하고 SNI 기반 SSL 바인딩을 추가합니다.
+hello 다음 명령은 내보낸된 PFX 파일을 업로드 하 고 SNI 기반 SSL 바인딩을 추가 합니다.
 
 ```PowerShell
 New-AzureRmWebAppSSLBinding `
@@ -317,11 +317,11 @@ New-AzureRmWebAppSSLBinding `
 
 > [!div class="checklist"]
 > * 앱의 가격 책정 계층 업그레이드
-> * App Service에 사용자 지정 SSL 인증서 바인딩
+> * 사용자 지정 SSL 인증서 tooApp 서비스 바인딩
 > * 앱에 대해 HTTPS 적용
 > * 스크립트로 SSL 인증서 바인딩 자동화
 
-다음 자습서로 이동하여 Azure Content Delivery Network를 사용하는 방법을 알아봅니다.
+다음 자습서 toolearn toohello 어떻게 발전 toouse Azure 콘텐츠 배달 네트워크입니다.
 
 > [!div class="nextstepaction"]
-> [Azure App Service에 CDN(Content Delivery Network) 추가](app-service-web-tutorial-content-delivery-network.md)
+> [추가 네트워크 CDN (콘텐츠 배달) tooan Azure 앱 서비스](app-service-web-tutorial-content-delivery-network.md)

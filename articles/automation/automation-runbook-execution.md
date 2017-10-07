@@ -1,6 +1,6 @@
 ---
-title: "Azure 자동화에서 Runbook 실행 | Microsoft Docs"
-description: "Azure 자동화의 Runbook이 처리되는 방법에 대한 자세한 내용을 설명합니다."
+title: "Azure 자동화에서 aaaRunbook 실행 | Microsoft Docs"
+description: "Azure 자동화에서 runbook은 처리 하는 방법에 대 한 hello 세부 정보를 설명 합니다."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2017
 ms.author: bwren
-ms.openlocfilehash: 14f923e3f08dd3b286218ae56012ce14edcc4058
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bdb535675443353d44640bc7773de3f9dac5e42c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="runbook-execution-in-azure-automation"></a>Azure 자동화에서 Runbook 실행
-Azure 자동화에서 Runbook을 시작하면 작업이 생성됩니다. 작업은 Runbook의 단일 실행 인스턴스입니다. 각 작업을 실행하기 위해 Azure 자동화 작업자가 할당됩니다. 작업자는 여러 Azure 계정에서 공유하지만 여러 자동화 계정의 작업은 서로 격리됩니다. 사용자는 작업에 대한 요청을 처리할 작업자를 제어할 수 없습니다.  단일 Runbook에서 동시에 여러 작업을 실행할 수 있습니다. Azure Portal에서 Runbook 목록을 확인하면 각 Runbook에 대해 시작된 모든 작업의 상태가 나열됩니다. 각 Runbook에 대한 작업 목록을 확인하여 각 작업의 상태를 추적할 수 있습니다. 다양한 작업 상태에 대한 설명은 [작업 상태](#job-statuses)를 참조하세요.
+Azure 자동화에서 Runbook을 시작하면 작업이 생성됩니다. 작업은 Runbook의 단일 실행 인스턴스입니다. Azure 자동화 작업 자가 toorun 각 작업을 할당 합니다. 작업자는 여러 Azure 계정에서 공유하지만 여러 자동화 계정의 작업은 서로 격리됩니다. 작업에 대 한 어떤 작업자 서비스 hello 요청에 대 한 제어가 없는 합니다.  단일 Runbook에서 동시에 여러 작업을 실행할 수 있습니다. Hello Azure 포털에서에서 runbook의 목록과 hello를 볼 때 각 runbook에 대해 시작 된 모든 작업의 hello 상태를 나열 합니다. 각 주문 tootrack hello 상태에서 각 runbook에 대 한 작업 목록이 hello를 볼 수 있습니다. Hello 다른 작업 상태에 대 한 참조 [작업 상태](#job-statuses)합니다.
 
-다음 다이어그램은 [그래픽 Runbook](automation-runbook-types.md#graphical-runbooks) 및 [PowerShell 워크플로 Runbook](automation-runbook-types.md#powershell-workflow-runbooks)에 대한 Runbook 작업의 수명 주기를 보여 줍니다.
+hello 다음 그림에 대 한 runbook 작업의 수명 주기 hello [그래픽 runbook](automation-runbook-types.md#graphical-runbooks) 및 [PowerShell 워크플로 runbook](automation-runbook-types.md#powershell-workflow-runbooks)합니다.
 
 ![작업 상태 - PowerShell 워크플로](./media/automation-runbook-execution/job-statuses.png)
 
-다음 다이어그램은 [PowerShell Runbook](automation-runbook-types.md#powershell-runbooks)에 대한 Runbook 작업의 수명 주기를 보여 줍니다.
+hello 다음 그림에 대 한 runbook 작업의 수명 주기 hello [PowerShell runbook](automation-runbook-types.md#powershell-runbooks)합니다.
 
 ![작업 상태 - PowerShell 스크립트](./media/automation-runbook-execution/job-statuses-script.png)
 
-Azure 구독에 연결하면 작업에서 Azure 리소스에 액세스할 수 있습니다. 단, 공용 클라우드에서 액세스할 수 있는 데이터 센터의 리소스에만 액세스할 수 있습니다.
+사용자 작업에 대 한 액세스 tooyour Azure는 연결 tooyour Azure 구독을 만들어서 리소스입니다. 만 해당 리소스 hello 공용 클라우드에서 액세스할 수 있는 경우 데이터 센터에서 액세스 tooresources를 권한이 있습니다.
 
 ## <a name="job-statuses"></a>작업 상태
-다음 표에서는 작업의 가능한 여러 상태를 설명합니다.
+hello 다음 표에 작업에 사용할 수 있는 여러 상태를 hello 있습니다.
 
-| 상태 | 설명 |
+| 가동 상태 | 설명 |
 |:--- |:--- |
-| Completed |작업이 완료되었습니다. |
-| Failed |[그래픽 및 PowerShell 워크플로 Runbook](automation-runbook-types.md)의 경우 Runbook을 컴파일하지 못했습니다.  [PowerShell 스크립트 Runbook](automation-runbook-types.md)의 경우 Runbook을 시작하지 못했거나 작업에서 예외가 발생했습니다. |
-| Failed, waiting for resources |작업이 [공평 분배](#fairshare) 한도에 세 번 도달했기 때문에 실패했고 매번 동일한 검사점 또는 Runbook의 처음부터 시작되었습니다. |
-| Queued |작업이 시작될 수 있도록 자동화 작업자의 리소스가 사용 가능한 상태가 되기를 기다리고 있습니다. |
-| Starting |작업이 작업자에게 할당되었으며 시스템이 시작하는 중입니다. |
-| Resuming |시스템이 일시 중단된 후 작업을 다시 시작하는 중입니다. |
-| 실행 중 |작업이 실행 중입니다. |
-| Running, waiting for resources |작업이 [공평 분배](#fairshare) 한도에 도달했기 때문에 언로드되었습니다. 잠시 후 마지막 검사점에서 작업이 다시 시작됩니다. |
-| 중지됨 |작업이 완료되기 전에 사용자에 의해 중지되었습니다. |
-| 중지 중 |시스템이 작업을 중지하는 중입니다. |
-| 일시 중단 |작업이 Runbook의 사용자, 시스템 또는 명령에 의해 일시 중단되었습니다. 일시 중단된 작업은 다시 시작할 수 있으며, 마지막 검사점에서 다시 시작되거나, 검사점이 없을 경우 Runbook의 처음부터 다시 시작됩니다. Runbook은 예외가 발생하는 경우에만 시스템에 의해 일시 중단됩니다. 기본적으로 ErrorActionPreference는 **Continue**로 설정되며, 이는 오류 발생 시 작업이 계속 실행된다는 의미입니다. 이 기본 설정 변수가 **Stop** 으로 설정된 경우 오류 발생 시 작업이 일시 중단됩니다.  [그래픽 및 PowerShell 워크플로 Runbook](automation-runbook-types.md) 에만 적용됩니다. |
-| Suspending |시스템이 사용자의 요청에 따라 작업을 일시 중단하려고 합니다. Runbook의 다음 검사점에 도달해야만 Runbook을 일시 중단할 수 있습니다. 이미 마지막 검사점을 지난 경우 완료되어야만 일시 중단할 수 있습니다.  [그래픽 및 PowerShell 워크플로 Runbook](automation-runbook-types.md) 에만 적용됩니다. |
+| Completed |hello 작업이 완료 되었습니다. |
+| 실패 |에 대 한 [그래픽 및 PowerShell 워크플로 runbook](automation-runbook-types.md), toocompile hello runbook이 실패 했습니다.  에 대 한 [PowerShell 스크립트 runbook](automation-runbook-types.md), hello runbook이 실패 했습니다 toostart 또는 hello 작업에서 예외가 발생 합니다. |
+| Failed, waiting for resources |hello에 도달 했으므로 hello 작업이 실패 했습니다 [공평 분배](#fairshare) 제한에 3 번 및에서 시작 된 hello 같은 검사점 또는 hello에서 hello runbook의 때마다 시작 합니다. |
+| Queued |hello 작업에서 대기 리소스에 대 한 사용 가능한 자동화 작업자 toocome에서 시작할 수 있도록 합니다. |
+| 시작 중 |hello 작업이 tooa 작업자에 할당 하 고 hello 시스템은 hello 프로세스를 시작 함입니다. |
+| Resuming |hello 시스템이 일시 중단 된 hello 작업을 다시 시작의 hello 프로세스입니다. |
+| 실행 중 |hello 작업이 실행 되 고 있습니다. |
+| Running, waiting for resources |hello 작업 언로드된 hello에 도달 했으므로 [공평 분배](#fairshare) 제한 합니다. 잠시 후 마지막 검사점에서 작업이 다시 시작됩니다. |
+| 중지됨 |hello 작업이 완료 되기 전에 hello 사용자가 중지 되었습니다. |
+| 중지 중 |hello 시스템이 hello 작업을 중지의 hello 프로세스입니다. |
+| 일시 중단 |hello 작업이 hello 사용자, hello 시스템 또는 hello runbook의 명령에 의해 일시 중단 되었습니다. 일시 중단 된 작업 다시 시작할 수 있으며, 마지막 검사점에서 또는 검사점에 없는 경우 hello hello runbook의 시작에서 다시 시작 합니다. 예외가 발생 하는 경우에 hello runbook hello 시스템에 의해 중단 됩니다. ErrorActionPreference 너무 설정 기본적으로**계속**, 의미 있는 오류 hello 작업이 계속 실행 합니다. 이 기본 설정 변수 너무 설정 되어 있으면**중지**, 오류 발생 시 hello 작업을 일시 중단 합니다.  너무 적용[그래픽 및 PowerShell 워크플로 runbook](automation-runbook-types.md) 만 합니다. |
+| Suspending |hello 시스템 hello 사용자의 hello 요청에서 toosuspend hello 작업을 하려고 합니다. 일시 중단할 수 전에 hello runbook 다음 검사점을 도달 해야만 합니다. 이미 마지막 검사점을 지난 경우 완료되어야만 일시 중단할 수 있습니다.  너무 적용[그래픽 및 PowerShell 워크플로 runbook](automation-runbook-types.md) 만 합니다. |
 
-## <a name="viewing-job-status-from-the-azure-portal"></a>Azure Portal에서 작업 상태 보기
-Azure Portal에서 또는 runbook 작업 상태 및 작업 스트림을 전달하도록 Microsoft OMS(Operations Management Suite) Log Analytics 작업 영역과의 통합을 구성하여 모든 runbook 작업의 요약된 상태를 보거나 특정 runbook 작업에 대한 세부 정보를 확인할 수 있습니다.  OMS Log Analytics와의 통합에 대한 자세한 내용은 [Automation에서 Log Analytics로 작업 상태 및 작업 스트림 전달(OMS)](automation-manage-send-joblogs-log-analytics.md)을 참조하세요.  
+## <a name="viewing-job-status-from-hello-azure-portal"></a>Hello Azure 포털에서에서 작업 상태 보기
+모든 runbook 작업의 요약 된 상태를 보거나 hello Azure 포털 또는 Microsoft Operations Management Suite (OMS) 로그 분석 작업 영역 tooforward runbook 작업 상태와의 통합 구성 하 여 특정 runbook 작업의 세부 정보로 드릴 수 있습니다 및 작업 스트림 합니다.  OMS 로그 분석에 통합 하는 방법에 대 한 자세한 내용은 참조 [자동화 tooLog 분석 (OMS)에서 작업 상태 및 작업 스트림 전달](automation-manage-send-joblogs-log-analytics.md)합니다.  
 
 ### <a name="automation-runbook-jobs-summary"></a>Automation runbook 작업 요약
-선택한 Automation 계정 오른쪽의 **작업 통계** 타일 아래에는 선택한 Automation 계정에 대한 모든 runbook 작업의 요약을 볼 수 있습니다.<br><br> ![작업 통계 타일](./media/automation-runbook-execution/automation-account-job-status-summary.png).<br> 이 타일은 실행된 모든 작업의 개수 및 작업 상태를 그래픽으로 표시합니다.  
+선택한 자동화 계정의 오른쪽 hello에 모든 아래에서 선택한 자동화 계정에 대 한 hello runbook 작업의 요약을 볼 수 **작업 통계** 바둑판식으로 배열입니다.<br><br> ![작업 통계 타일](./media/automation-runbook-execution/automation-account-job-status-summary.png).<br> 이 타일에는 개수 및 실행 된 모든 작업에 대 한 hello 작업 상태를 그래픽으로 표시 됩니다.  
 
-타일을 클릭하면 상태, 작업 실행 시작 및 완료 시간과 함께 실행된 모든 작업의 요약된 목록이 포함된 **작업** 블레이드가 나타납니다.<br><br> ![Automation 계정 작업 블레이드](./media/automation-runbook-execution/automation-account-jobs-status-blade.png)<br><br>  **작업 필터링**을 선택하여 작업 목록을 필터링할 수 있습니다. 특정 runbook이나 작업 상태를 필터링하거나 드롭다운 목록에서 검색할 날짜/시간 범위를 필터링할 수 있습니다.<br><br> ![작업 상태 필터링](./media/automation-runbook-execution/automation-account-jobs-filter.png)
+Hello 타일을 누르면 hello **작업** 블레이드를 실행 하는 모든 작업의, 시작 및 완료 시간, 상태 및 작업 실행와 요약 된 목록이 포함 됩니다.<br><br> ![Automation 계정 작업 블레이드](./media/automation-runbook-execution/automation-account-jobs-status-blade.png)<br><br>  선택 하 여 작업의 hello 목록을 필터링 할 수 있습니다 **작업을 필터링** 및 작업 상태, 특정 runbook을 필터링 또는 hello 드롭 다운 목록에서 날짜/시간 범위 toosearch 내을 환영 합니다.<br><br> ![작업 상태 필터링](./media/automation-runbook-execution/automation-account-jobs-filter.png)
 
-또는 Automation 계정의 **Runbook** 블레이드에서 runbook을 선택하여 특정 runbook에 대한 작업 요약 세부 정보를 확인한 다음 **작업** 타일을 선택할 수 있습니다.  그러면 **작업** 블레이드가 나타납니다. 여기에서 작업 레코드를 클릭하여 세부 정보 및 출력을 볼 수 있습니다.<br><br> ![Automation 계정 작업 블레이드](./media/automation-runbook-execution/automation-runbook-job-summary-blade.png)<br> 
+또는 hello에서 해당 runbook을 선택 하 여 작업이 특정 runbook에 대 한 요약 정보를 볼 수 있습니다 **Runbook** 자동화 계정 및 선택 hello 블레이드 **작업** 바둑판식으로 배열입니다.  이 인해 hello **작업** 블레이드에서 여기에서 클릭할 수 있습니다 hello 작업 레코드 tooview의 세부 정보 및 출력 하 고 있습니다.<br><br> ![Automation 계정 작업 블레이드](./media/automation-runbook-execution/automation-runbook-job-summary-blade.png)<br> 
 
 ### <a name="job-summary"></a>작업 요약
-특정 Runbook에 대해 생성된 모든 작업 및 해당 작업의 가장 최근 상태가 나와 있는 목록을 볼 수 있습니다. 이 목록에서 작업 상태 및 날짜 범위를 필터링하면 작업의 마지막 변경 사항을 볼 수 있습니다. 세부 정보 및 출력을 보려면 작업의 이름을 클릭합니다. 작업의 세부 보기에는 해당 작업에 제공된 Runbook 매개 변수의 값이 포함됩니다.
+특정 runbook의 가장 최근 상태에 대해 생성 된 hello 작업의 모든 목록을 볼 수 있습니다. 작업 상태에 의해이 목록을 필터링 할 수 있습니다 및 hello hello에 대 한 날짜 범위 toohello 작업의 마지막 변경 내용이 있습니다. tooview의 세부 정보 및 출력을 작업의 hello 이름을 클릭 합니다. hello hello 작업의 자세히 보기 hello 값 포함 toothat 작업에 제공 된 hello runbook 매개 변수에 대 한 합니다.
 
-다음 단계를 수행하여 Runbook의 작업을 볼 수 있습니다.
+Runbook에 대 한 tooview hello 작업 단계를 수행 하는 hello를 사용할 수 있습니다.
 
-1. Azure Portal에서 **Automation**을 선택한 다음 Automation 계정의 이름을 선택합니다.
-2. 허브에서 **Runbook**을 선택하고 **Runbook** 블레이드의 목록에서 runbook을 선택합니다.
-3. 선택한 runbook에 대한 블레이드에서 **작업** 타일을 클릭합니다.
-4. 목록에 있는 작업 중 하나를 클릭하고 runbook 작업 세부 정보 블레이드에서 세부 정보 및 출력을 볼 수 있습니다.
+1. Hello Azure 포털에서에서 선택 **자동화** 자동화 계정의 hello 이름을 선택 합니다.
+2. Hello 허브에서 선택 **Runbook** hello에서 **Runbook** 블레이드 hello 목록에서 runbook을 선택 합니다.
+3. Hello 선택한 runbook에 대 한 hello 블레이드에서 hello 클릭 **작업** 바둑판식으로 배열입니다.
+4. Hello 목록의 hello 작업 중 하나를 클릭 하 고 hello runbook 작업 세부 정보 블레이드에서 세부 정보 및 출력 볼 수 있습니다.
 
 ## <a name="retrieving-job-status-using-windows-powershell"></a>Windows PowerShell을 사용하여 작업 상태 검색
-[Get-AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx)을 사용하여 Runbook에 대해 생성된 작업 및 특정 작업을 검색할 수 있습니다. Windows PowerShell에서 [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx)을 사용하여 Runbook을 시작하는 경우 결과 작업이 반환됩니다. 작업의 출력을 얻으려면 [Get-AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx)을 사용합니다.
+Hello를 사용할 수 있습니다 [Get AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx) tooretrieve hello 작업 특정 작업의 runbook 및 hello 세부 정보를 생성 합니다. 사용 하 여 Windows PowerShell로 runbook을 시작 하는 경우 [시작 AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx), hello 결과 작업이 반환 됩니다. 사용 하 여 [Get AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx)출력 tooget 작업의 출력입니다.
 
-다음 명령 예제는 샘플 Runbook에 대한 마지막 작업을 검색하고 작업의 상태, Runbook 매개 변수에 제공된 값, 작업의 출력을 표시합니다.
+hello 다음 명령 예제 hello 샘플 runbook에 대 한 마지막 작업을 검색 하 고 해당 상태, hello runbook 매개 변수에 대해 제공 되는 hello 값 및 hello hello 작업에서 출력 표시 합니다.
 
     $job = (Get-AzureRmAutomationJob –AutomationAccountName "MyAutomationAccount" `
     –RunbookName "Test-Runbook" -ResourceGroupName "ResourceGroup01" | sort LastModifiedDate –desc)[0]
@@ -84,18 +84,18 @@ Azure Portal에서 또는 runbook 작업 상태 및 작업 스트림을 전달�
     –AutomationAccountName "MyAutomationAcct" -Id $job.JobId –Stream Output
 
 ## <a name="fair-share"></a>공평 분배
-Azure Automation에서는 클라우드의 모든 Runbook 간에 리소스를 공유할 수 있도록 3시간 동안 작업을 실행한 후 일시적으로 언로드합니다.  이 시간 동안 [PowerShell 기반 runbook](automation-runbook-types.md#powershell-runbooks) 작업은 중지되며 다시 시작되지 않습니다.  작업 상태에는 **Stopped**이 표시됩니다.  이 유형의 Runbook은 검사점을 지원하지 않으므로 항상 처음부터 다시 시작됩니다.  
+순서 tooshare 리소스 hello 클라우드의 모든 runbook에서 Azure 자동화는 일시적으로 언로드 어떤 작업이 든 3 시간 동안 실행 된 후입니다.  이 시간 동안 [PowerShell 기반 runbook](automation-runbook-types.md#powershell-runbooks) 작업은 중지되며 다시 시작되지 않습니다.  작업 상태 표시 hello **Stopped**합니다.  이 형식의 runbook은 항상 후 다시 시작 hello 시작 부분에서 검사점을 지원 하지 않습니다.  
 
-[PowerShell 워크플로 기반 Runbook](automation-runbook-types.md#powershell-workflow-runbooks)은 마지막 [검사점](https://docs.microsoft.com/system-center/sma/overview-powershell-workflows#bk_Checkpoints)에서 다시 시작됩니다.  3시간을 실행한 후 runbook 작업은 서비스에 의해 일시 중단되고 해당 상태에 **Running, waiting for resources**가 표시됩니다.  샌드박스를 사용할 수 있게 되면 runbook은 Automation 서비스에 의해 자동으로 다시 시작되고 마지막 검사점부터 계속됩니다.  이것은 일시 중단/다시 시작에 대한 정상적인 PowerShell 워크플로 동작입니다.  Runbook이 3시간의 런타임을 초과하면 3회까지 프로세스가 반복됩니다.  세 번째 프로세스가 다시 시작된 후에도 runbook이 3시간 내에 완료되지 못하면 runbook 작업은 실패하고 작업 상태에 **Failed, waiting for resources**가 표시됩니다.  이 경우 오류와 함께 다음 예외가 발생합니다.
+[PowerShell 워크플로 기반 Runbook](automation-runbook-types.md#powershell-workflow-runbooks)은 마지막 [검사점](https://docs.microsoft.com/system-center/sma/overview-powershell-workflows#bk_Checkpoints)에서 다시 시작됩니다.  3 시간을 실행 한 후 hello runbook 작업은 일시 중단 됩니다 hello 서비스 및 서버 인스턴스의 상태를 보여 줍니다 **실행, 리소스 대기**합니다.  샌드박스 사용 가능 해지면 hello runbook 자동으로 다시 시작 됩니다 hello 자동화 서비스 및 hello 마지막 검사점에서 다시 시작 합니다.  이것은 일시 중단/다시 시작에 대한 정상적인 PowerShell 워크플로 동작입니다.  Hello runbook 다시 초과 하면 런타임의 3 시간 hello 과정이 반복 toothree 시간.  Hello 세 번째 컴퓨터를 다시 시작 hello runbook 여전히 3 시간 내에 완료 되지 않은 다음 hello runbook 작업에 실패 하 고 hello 작업 상태가 표시 되 면 **실패, 리소스 대기**합니다.  이 경우 다음 hello 실패와 예외가 hello를 나타납니다.
 
-*작업이 동일한 검사점에서 반복적으로 제거되었기 때문에 실행을 계속할 수 없습니다. Runbook이 해당 상태를 유지하지 않고 시간이 오래 걸리는 작업을 수행하지 않는지 확인하세요.*
+*hello 작업 hello에서 반복적으로 제거 하기 때문에 실행을 계속할 수 없습니다 같은 검사점입니다. Runbook이 해당 상태를 유지하지 않고 시간이 오래 걸리는 작업을 수행하지 않는지 확인하세요.*
 
-이는 Runbook이 완료되지 않고 무기한으로 실행되어 다시 언로드되지 않은 상태로 다음 검사점에 도달하지 못하도록 하기 위한 것입니다.
+이 runbook 실행을 완료 하지 않고 무기한 tooprotect hello 서비스 수 toomake 되지 않는 것 다시 언로드되지 않으면 다음 검사점 toohello 합니다.
 
-Runbook에 검사점이 없거나 작업이 언로드되기 전에 첫 번째 검사점에 도달하지 않은 경우에는 처음부터 다시 시작됩니다.  
+Hello 작업에 도달 하지 않은 hello 첫 번째 검사점 언로드되기 전에 hello runbook에 검사점이 없는 경우 다음 다시 시작 hello 처음부터 합니다.  
 
-Runbook을 만들 때 두 검사점 간의 모든 활동을 실행할 시간을 3시간을 초과하지 않도록 해야 합니다. 이 3시간 제한에 도달하거나 오래 실행되는 작업이 중단되지 않도록 하기 위해 Runbook에 검사점을 추가해야 할 수도 있습니다. 예를 들어 Runbook에서 대용량 SQL 데이터베이스의 인덱스를 다시 작성할 수 있습니다. 이 단일 작업이 공평 분배 제한 내에 완료되지 않으면 작업이 언로드되고 처음부터 다시 시작됩니다. 이 경우 다시 인덱싱 작업을 여러 단계로 나눈 다음(예: 한 번의 하나의 테이블을 다시 인덱싱하도록) 작업이 완료할 마지막 작업 이후에 다시 시작될 수 있도록 각 작업 뒤에 검사점을 삽입해야 합니다.
+Runbook을 만들 때 해당 hello 시간 toorun 두 검사점 간에 어떤 작업도 3 시간을 초과 하지 않는지를 확인 해야 합니다. Tooadd 검사점 tooyour runbook tooensure 있는지 하거나 하지 않는이 3 시간 제한에 도달 장기 분할 해야 작업을 실행 합니다. 예를 들어 Runbook에서 대용량 SQL 데이터베이스의 인덱스를 다시 작성할 수 있습니다. 이 단일 작업이 공평 hello 안에 완료 되지 않으면 공유 제한 다음 hello 작업은 언로드되고 hello 처음부터 다시 시작 합니다. 이 경우 한 번에 테이블 하나씩 다시 인덱싱하는 등의 여러 단계를 hello 다시 인덱싱 작업을 중단 하 고 hello 작업 수를 다시 시작 후 마지막 작업 toocomplete hello 되도록 각 작업이 끝난 후 검사점을 삽입 해야 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* Azure Automation에서 runbook을 시작하는 데 사용할 수 있는 여러 가지 방법에 대해 자세히 알아보려면 [Azure Automation에서 Runbook 시작](automation-starting-a-runbook.md)을 참조하세요.
+* Azure 자동화에서 runbook을 사용 하는 toostart 수 있는 hello 다른 메서드에 대 한 자세한 정보는 toolearn 참조 [Azure 자동화에서 runbook 시작](automation-starting-a-runbook.md)
 

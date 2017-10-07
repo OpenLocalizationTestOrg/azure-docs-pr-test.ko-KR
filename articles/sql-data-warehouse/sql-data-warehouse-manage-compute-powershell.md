@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Data Warehouse의 계산 능력 관리(PowerShell) | Microsoft Docs"
-description: "계산 능력을 관리하는 PowerShell 작업 DWU를 조정하여 계산 리소스 크기를 조정합니다. 또는 계산 리소스를 일지 중지한 다음 다시 시작하여 비용을 절감합니다."
+title: "aaaManage 계산 능력이 Azure SQL 데이터 웨어하우스 (PowerShell)에서 | Microsoft Docs"
+description: "PowerShell 작업 toomanage 전원을 계산 합니다. DWU를 조정하여 계산 리소스 크기를 조정합니다. 또는 일시 중지 및 재개 자원 toosave 비용을 계산 합니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 6a185d96447c2e1b0b463439dd062081e783da5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b379d4cf89570649767f6896d2c630d4f1111d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-powershell"></a>Azure SQL Data Warehouse의 계산 능력 관리(PowerShell)
 > [!div class="op_single_selector"]
@@ -32,17 +32,17 @@ ms.lasthandoff: 07/11/2017
 >
 
 ## <a name="before-you-begin"></a>시작하기 전에
-### <a name="install-the-latest-version-of-azure-powershell"></a>Azure PowerShell 최신 버전 설치
+### <a name="install-hello-latest-version-of-azure-powershell"></a>Hello 최신 버전의 Azure PowerShell 설치
 > [!NOTE]
-> SQL Data Warehouse에서 Azure PowerShell을 사용하려면 Azure PowerShell 버전 1.0.3 이상을 설치해야 합니다.  현재 버전을 확인하려면 **Get-Module -ListAvailable -Name Azure**명령을 실행합니다. [Microsoft 웹 플랫폼 설치 관리자][Microsoft Web Platform Installer]를 통해 최신 버전을 설치할 수 있습니다.  자세한 내용은 [Azure PowerShell 설치 및 구성 방법][How to install and configure Azure PowerShell]을 참조하세요.
+> Azure PowerShell 버전 1.0.3 해야 SQL 데이터 웨어하우스를 사용 하 여 Azure PowerShell toouse 큽니다.  tooverify 현재 사용 중인 hello 명령을 실행 **Get-module-ListAvailable-Name Azure**합니다. Hello에서 최신 버전을 설치할 수 있습니다 [Microsoft 웹 플랫폼 설치 관리자][Microsoft Web Platform Installer]합니다.  자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고][How tooinstall and configure Azure PowerShell]합니다.
 >
 > 
 
 ### <a name="get-started-with-azure-powershell-cmdlets"></a>Azure PowerShell Cmdlet 시작
-시작하기:
+tooget 시작:
 
 1. Azure PowerShell을 엽니다.
-2. PowerShell 프롬프트에서 다음 명령을 실행하여 Azure Resource Manager에 로그인하고 구독을 선택합니다.
+2. Hello PowerShell 프롬프트에서 이러한 명령을 toosign toohello Azure 리소스 관리자에서에서 실행 하 고 구독을 선택 합니다.
 
     ```PowerShell
     Login-AzureRmAccount
@@ -56,7 +56,7 @@ ms.lasthandoff: 07/11/2017
 ## <a name="scale-compute-power"></a>계산 능력 크기 조정
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-DWU를 변경하려면 [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase] PowerShell cmdlet을 사용합니다. 다음 예제에서는 MyServer에서 호스팅되는 MySQLDW 데이터베이스에 대한 서비스 수준 목표를 DW1000으로 설정합니다.
+toochange hello dwu로 사용 하 여 hello [집합 AzureRmSqlDatabase] [ Set-AzureRmSqlDatabase] PowerShell cmdlet. hello 다음 예제에서는 설정 hello 서비스 수준 목표 tooDW1000 hello MySQLDW 호스팅되는 데이터베이스에 대 한 서버 MyServer에서 합니다.
 
 ```Powershell
 Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -RequestedServiceObjectiveName "DW1000"
@@ -67,10 +67,10 @@ Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -Requested
 ## <a name="pause-compute"></a>계산 일시 중지
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-데이터베이스를 일시 중지하려면 [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase] cmdlet을 사용합니다. 다음 예에서는 Server01 서버에서 호스트하는 이름이 Database02인 데이터베이스를 일시 중지합니다. 서버는 이름이 ResourceGroup1인 Azure 리소스 그룹 내에 있습니다.
+toopause 데이터베이스를 사용 하 여 hello [Suspend AzureRmSqlDatabase] [ Suspend-AzureRmSqlDatabase] cmdlet. hello 다음 중지 하는 예제 Server01 라는 서버에서 호스팅되는 Database02 라는 데이터베이스입니다. hello 서버 이름이 ResourceGroup1 Azure 리소스 그룹에 있습니다.
 
 > [!NOTE]
-> 서버가 foo.database.windows.net인 경우 PowerShell cmdlet의 ServerName으로 "foo"를 사용합니다.
+> 서버가 foo.database.windows.net, 있는 경우 "foo" hello PowerShell cmdlet에-ServerName hello으로 사용 하는 참고 합니다.
 >
 > 
 
@@ -78,7 +78,7 @@ Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -Requested
 Suspend-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" –DatabaseName "Database02"
 ```
-다음 예에서는 이를 변형하여 데이터베이스를 $database 개체로 검색합니다. 그런 다음 개체를 [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]에 파이프합니다. 결과는 resultDatabase 개체에 저장됩니다. 마지막 명령은 결과를 보여 줍니다.
+다음 예제에서는 같은 변형을 hello $database 개체에 hello 데이터베이스를 검색합니다. 다음 파이프 hello 개체 너무[Suspend AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]합니다. hello 결과 hello 개체 resultDatabase에 저장 됩니다. 마지막 명령은 hello hello 결과 보여 줍니다.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -92,14 +92,14 @@ $resultDatabase
 ## <a name="resume-compute"></a>계산 다시 시작
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-데이터베이스를 시작하려면 [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase] cmdlet을 사용합니다. 다음 예에서는 Server01 서버에서 호스팅되는 이름이 Database02인 데이터베이스를 시작합니다. 서버는 이름이 ResourceGroup1인 Azure 리소스 그룹 내에 있습니다.
+toostart 데이터베이스를 사용 하 여 hello [Resume AzureRmSqlDatabase] [ Resume-AzureRmSqlDatabase] cmdlet. hello 다음 예제에서는 시작 라는 Database02 Server01 라는 서버에서 호스트 데이터베이스입니다. hello 서버 이름이 ResourceGroup1 Azure 리소스 그룹에 있습니다.
 
 ```Powershell
 Resume-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" -DatabaseName "Database02"
 ```
 
-다음 예에서는 이를 변형하여 데이터베이스를 $database 개체로 검색합니다. 그런 다음 개체를 [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase]에 파이프하고 결과를 $resultDatabase에 저장합니다. 마지막 명령은 결과를 보여 줍니다.
+다음 예제에서는 같은 변형을 hello $database 개체에 hello 데이터베이스를 검색합니다. 파이프 hello 개체 너무[Resume AzureRmSqlDatabase] [ Resume-AzureRmSqlDatabase] $resultDatabase에 hello 결과 저장 합니다. 마지막 명령은 hello hello 결과 보여 줍니다.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -112,7 +112,7 @@ $resultDatabase
 
 ## <a name="check-database-state"></a>데이터베이스 상태 확인
 
-위의 예제에서와 같이 [Get-AzureRmSqlDatabase][Get-AzureRmSqlDatabase] cmdlet을 사용하여 데이터베이스에 대한 정보를 가져와서 상태를 확인할 뿐만 아니라 인수로 사용할 수 있습니다. 
+위의 예제는 hello와 같이 하나 צ ְ ײ [Get AzureRmSqlDatabase] [ Get-AzureRmSqlDatabase] 함으로써 hello 상태 뿐만 아니라 인수로 toouse를 검사 하는 데이터베이스에 대 한 cmdlet tooget 정보입니다. 
 
 ```powershell
 Get-AzureRmSqlDatabase [-ResourceGroupName] <String> [-ServerName] <String> [[-DatabaseName] <String>]
@@ -142,7 +142,7 @@ ElasticPoolName               :
 EarliestRestoreDate           : 1/1/0001 12:00:00 AM
 ```
 
-여기서 데이터베이스의 *상태*를 확인할 수 있습니다. 이 경우 이 데이터베이스가 온라인 상태인지 확인할 수 있습니다. 
+Toosee hello를 다음 확인할 수 있습니다 *상태* hello 데이터베이스의 합니다. 이 경우 이 데이터베이스가 온라인 상태인지 확인할 수 있습니다. 
 
 이 명령을 실행하면 온라인, 일시 중지 중, 다시 시작 중, 크기 조정 및 일시 중지됨의 상태가 표시됩니다.
 
@@ -156,7 +156,7 @@ EarliestRestoreDate           : 1/1/0001 12:00:00 AM
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [Management overview]: ./sql-data-warehouse-overview-manage.md
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Manage compute overview]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->

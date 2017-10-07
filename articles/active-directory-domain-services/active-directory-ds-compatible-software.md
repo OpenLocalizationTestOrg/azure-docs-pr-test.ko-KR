@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 1a4af8c9a5f30cf7ea24d587866d1b41ab9cfb2c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7c393eead91ff43dd862bbf10e3af44062ffeff9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="third-party-software-compatible-with-azure-ad-domain-services"></a>Azure AD Domain Services와 호환되는 타사 소프트웨어
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 07/11/2017
 
 ![One Identity](./media/compatible-software-icons/OneIdentity.png)
 
-One Identity Authentication Services를 통해 Unix, Linux 및 Mac OS X 시스템에서 조직의 기존 AD(Active Directory) 인프라의 액세스 권한, 인증 및 권한 부여를 사용할 수 있습니다. 이제 Authentication Services는 Windows 이외 리소스가 사용자의 기존 SaaS 솔루션에서 이미 사용 중인 것과 동일한 차세대 플랫폼을 활용하도록 지원하는 Azure Active Directory Domain Services를 지원합니다.
+하나의 Id 인증 서비스에는 Unix, Linux 및 Mac OS X 시스템 toouse hello 액세스, 인증 및 권한 부여는 조직의 기존 Active Directory (AD) 인프라 수 있습니다. 인증 서비스는 이제 Azure Active Directory 도메인 서비스 tooutilize hello 기존 SaaS 솔루션에서 이미 사용 하는 차세대 플랫폼 같은 비 Windows 리소스 사용을 지원 합니다.
 
 [One Identity Authentication Services](https://www.quest.com/products/authentication-services/)
 
@@ -37,6 +37,6 @@ One Identity Authentication Services를 통해 Unix, Linux 및 Mac OS X 시스�
 
 ![RedHat](./media/compatible-software-icons/RedHat.png)
 
-Red Hat Enterprise Linux는 오늘날 현대식 엔터프라이즈의 요구 사항을 충족하도록 구축된 세계 최고의 엔터프라이즈 Linux 플랫폼입니다. Red Hat Enterprise Linux는 Microsoft Azure의 엔터프라이즈 Linux 가상 컴퓨터(VM) 워크로드에 적합한 선택입니다. Red Hat Enterprise Linux는 데이터 센터에서 Azure 클라우드까지 Red Hat 및 Microsoft에서 긴밀하게 통합된 엔터프라이즈급 지원에 힘입어 비즈니스에 중요한 워크로드에 배포 유연성을 원하는 고객들을 위해 설계된 신뢰할 수 있는 안전한 개방형 플랫폼입니다.
+Red Hat Enterprise Linux는 hello world 뛰어난 엔터프라이즈 Linux 플랫폼 빌드되므로 toomeet 오늘날의 현대적인 엔터프라이즈의 hello 요구 합니다. Red Hat Enterprise Linux는 Microsoft Azure에서 엔터프라이즈 Linux 가상 컴퓨터 (VM) 작업에 대 한 기본 설정 hello 선택입니다. Red Hat Enterprise Linux, 신뢰할 수 있는 열린 이며 통합 된 엔터프라이즈급에 의해 hello 데이터 센터 toohello Azure 클라우드-에서 자신의 업무에 중요 한 작업-에 대 한 배포 유연성을 원하는 고객을 위해 디자인 된 보안 플랫폼 지원 Red Hat 및 Microsoft에서 지원 합니다.
 
-[Azure AD Domain Services에 RedHat Enterprise Linux 7.2 VM 조인](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
+[조인 RedHat 엔터프라이즈 Linux 7.2 VM tooAzure AD 도메인 서비스](active-directory-ds-admin-guide-join-rhel-linux-vm.md)

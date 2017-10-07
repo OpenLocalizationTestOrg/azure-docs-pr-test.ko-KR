@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service에서 웹앱에 대한 스테이징 환경 설정| Microsoft Docs"
-description: "Azure 앱 서비스에서 웹앱에 대한 준비된 개시를 사용하는 방법에 대해 알아봅니다."
+title: "Azure 앱 서비스의 웹 앱에 대 한 환경 준비를 aaaSet | Microsoft Docs"
+description: "Toouse Azure 앱 서비스에서 웹 앱에 대 한 게시를 준비 하는 방법에 대해 알아봅니다."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,66 +15,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-ms.openlocfilehash: ca27c55eaaceb3109b1450c550330dfc416fdf55
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 338424100a20bf823323313fb6699e439f367421
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-staging-environments-in-azure-app-service"></a>Azure App Service에서 스테이징 환경 설정
 <a name="Overview"></a>
 
-웹앱, Linux의 웹앱, 모바일 백 엔드 및 API 앱을 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714)에 배포할 때 **표준** 또는 **프리미엄** App Service 계획 모드에서 실행하면 기본 프로덕션 슬롯 대신 별도의 배포 슬롯에 배포할 수 있습니다. 배포 슬롯은 실제로 고유한 호스트 이름이 있는 라이브 앱입니다. 앱 콘텐츠 및 구성 요소는 프로덕션 슬롯을 포함하여 두 배포 슬롯 간에 교환될 수 있습니다. 응용 프로그램을 배포 슬롯에 배포하면 다음과 같은 이점이 있습니다.
+배포 하는 경우 웹 앱, Linux, 백 엔드 모바일 및 API 앱에 웹 앱 너무[앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714), hello에서 실행 하는 경우 기본 프로덕션 슬롯만 hello 대신 tooa 별도 배포 슬롯을 배포할 수 있습니다 **표준**또는 **프리미엄** 앱 서비스 계획 모드입니다. 배포 슬롯은 실제로 고유한 호스트 이름이 있는 라이브 앱입니다. 응용 프로그램 콘텐츠 및 구성 요소는 hello 프로덕션 슬롯을 포함 하 여 두 배포 슬롯 간에 교환할 수 있습니다. 배포 응용 프로그램 tooa 배포 슬롯을 사용 하 여 hello 이점을 뒤에 있습니다.
 
-* 프로덕션 슬롯과 교환하기 전에 준비 배포 슬롯에서 앱 변경 사항의 유효성을 검사할 수 있습니다.
-* 먼저 슬롯으로 앱을 배포하고 프로덕션으로 교환하기 때문에 프로덕션으로 교환되기 전에 슬롯에 있는 모든 인스턴스가 준비되어 있는 상태입니다. 따라서 앱을 배포할 때 가동 중지가 발생하지 않습니다. 트래픽 리디렉션은 중단 없이 원활하게 수행되며 교환 작업으로 인해 삭제되는 요청은 없습니다. 사전 교환 유효성 검사가 필요하지 않은 경우 [자동 교환](#Auto-Swap) 을 구성하여 이 전체 워크플로를 자동화할 수 있습니다.
-* 교환 후에는 이전의 준비된 앱이 들어 있던 슬롯 안에 이전의 프로덕션 앱이 들어갑니다. 프로덕션 슬롯과 교환한 변경 내용이 예상과 다른 경우 같은 교환 작업을 즉시 수행하여 "마지막 양호 상태"로 돌아갈 수 있습니다.
+* Hello 프로덕션 슬롯으로 교환 하기 전에 스테이징 배포 슬롯에서 응용 프로그램은 변경을 확인할 수 있습니다.
+* 앱 tooa 슬롯을 먼저 배포 하 고 프로덕션으로 교환 하기 전에 프로덕션으로 교환 하 hello 슬롯의 모든 인스턴스 준비 됩니다 되도록 합니다. 따라서 앱을 배포할 때 가동 중지가 발생하지 않습니다. hello 트래픽 리디렉션이 원활 하 게, 고 교환 작업으로 요청 없음이 삭제 됩니다. 사전 교환 유효성 검사가 필요하지 않은 경우 [자동 교환](#Auto-Swap) 을 구성하여 이 전체 워크플로를 자동화할 수 있습니다.
+* Hello 슬롯을 이전에 준비 된 앱과, 교환 후 프로덕션 응용 프로그램을 이전 하는 hello에 있습니다. Hello 프로덕션 슬롯으로 교환 된 hello 변경 하면 예상과 다른 경우 hello tooget "마지막 알려진된 좋은 사이트" 백업 하는 즉시 동일한 교체를 수행할 수 있습니다.
 
-각 앱 서비스 계획 모드는 다양한 수의 배포 슬롯을 지원합니다. 앱 모드가 지원하는 슬롯의 수를 알아보려면 [App Service 가격 책정](https://azure.microsoft.com/pricing/details/app-service/)을 참조하세요.
+각 앱 서비스 계획 모드는 다양한 수의 배포 슬롯을 지원합니다. 슬롯 개수 hello 아웃 toofind 앱의 모드를 지원, 참조 [앱 서비스 가격 책정](https://azure.microsoft.com/pricing/details/app-service/)합니다.
 
-* 앱에 여러 슬롯이 있을 때에는 모드를 변경할 수 없습니다.
+* 응용 프로그램에 여러 슬롯, hello 모드를 변경할 수 없습니다.
 * 프로덕션이 아닌 슬롯에 대해 크기 조정을 사용할 수 없습니다.
-* 연결된 리소스 관리는 프로덕션이 아닌 슬롯에 대해 지원되지 않습니다. 특별히 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715) 에서는 프로덕션이 아닌 슬롯을 다른 앱 서비스 계획으로 일시적으로 전환함으로써 프로덕션 슬롯에 미칠 수 있는 영향을 방지할 수 있습니다. 프로덕션 슬롯이 아닌 경우에는 두 슬롯을 교환하려면 프로덕션 슬롯과 같은 모드로 다시 한 번 공유해야 합니다.
+* 연결된 리소스 관리는 프로덕션이 아닌 슬롯에 대해 지원되지 않습니다. Hello에 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715) 만 hello 비-프로덕션 슬롯 tooa 다른 앱 서비스 계획 모드를 일시적으로 이동 하 여 프로덕션 슬롯에 영향을 줄이 방지할 수 있습니다. 해당 hello 비-프로덕션 슬롯 hello를 다시 공유 해야 하는 참고 hello 두 슬롯을 전환할 수 전에 hello 프로덕션 슬롯으로 동일한 모드입니다.
 
 <a name="Add"></a>
 
 ## <a name="add-a-deployment-slot"></a>배포 슬롯 추가
-여러 배포 슬롯을 사용하려면 앱이 **표준** 또는 **프리미엄** 모드에서 실행 중이어야 합니다.
+hello에서 hello 응용 프로그램을 실행 해야 **표준** 또는 **프리미엄** 다중 배포 슬롯이 있습니다 tooenable에 대 한 모드에서 순서입니다.
 
-1. [Azure Portal](https://portal.azure.com/)에서 앱의 [리소스 블레이드](../azure-resource-manager/resource-group-portal.md#manage-resources)를 엽니다.
-2. **배포 슬롯** 옵션을 선택한 후 **슬롯 추가**를 클릭합니다.
+1. Hello에 [Azure 포털](https://portal.azure.com/), 응용 프로그램을 열고 [리소스 블레이드](../azure-resource-manager/resource-group-portal.md#manage-resources)합니다.
+2. Hello 선택 **배포 슬롯** 클릭 한 다음 옵션을 **슬롯 추가**합니다.
    
     ![새 배포 슬롯 추가][QGAddNewDeploymentSlot]
    
    > [!NOTE]
-   > 앱이 **표준** 또는 **프리미엄** 모드가 아닌 경우 준비된 게시를 사용하려면 지원 모델을 나타내는 메시지를 받게 됩니다. 이때 **업그레이드**를 선택할 수 있는 옵션이 제공되고 계속하기 전에 앱의 **크기 조정** 탭으로 이동합니다.
+   > Hello 앱에에서 없는 경우 이미 hello **표준** 또는 **프리미엄** 모드에서는 준비 된 게시를 사용 하기 위해 지원 되는 hello 모드를 나타내는 메시지가 표시 됩니다. 이 시점에서 hello 옵션 tooselect를 있는 **업그레이드** toohello 이동 **배율** 계속 하기 전에 응용 프로그램의 탭 합니다.
    > 
    > 
-3. **슬롯 추가** 블레이드에서 슬롯에 이름을 지정하고, 다른 기존 배포 슬롯으로부터 앱 구성을 복제할 것인지 여부를 선택합니다. 확인 표시를 클릭하여 계속합니다.
+3. Hello에 **슬롯 추가** 블레이드에서 hello 슬롯에 이름을 지정 하 고 선택 여부 tooclone 앱 다른 기존 배포 슬롯에서에서 구성 합니다. Hello 확인 표시가 toocontinue를 클릭 합니다.
    
     ![구성 원본][ConfigurationSource1]
    
-    슬롯을 처음 추가할 때는 두 가지 선택만 가능합니다. 프로덕션의 기본 슬롯으로부터 구성을 복제하거나, 구성을 아예 복제하지 않는 것입니다.
-    여러 개의 슬롯을 만든 후에는 프로덕션이 아닌 슬롯으로부터 구성을 복제할 수 있습니다.
+    hello 슬롯을 추가 하는 처음으로 두 가지 선택 사항: 프로덕션 환경에서 되지 않거나 전혀 hello 기본 슬롯에서 복제 구성 합니다.
+    여러 슬롯을 만든 후에 프로덕션 환경에서 하나 hello 이외의 슬롯에서 수 tooclone 구성 됩니다.
    
     ![구성 원본][MultipleConfigurationSources]
-4. 앱의 리소스 블레이드에서 **배포 슬롯**을 클릭한 다음 배포 슬롯을 클릭하여 해당 슬롯의 리소스 블레이드를 엽니다. 그러면 다른 앱과 마찬가지로 메트릭 집합 및 구성이 표시됩니다. 배포 슬롯을 보고 있다는 사실을 상기시키기 위해 블레이드 상단에 슬롯 이름이 표시됩니다.
+4. 응용 프로그램의 리소스 블레이드 클릭 **배포 슬롯**, 배포 슬롯 tooopen 메트릭 및 다른 모든 앱에서와 마찬가지로 구성 집합과 해당 슬롯 리소스 블레이드를 차례로 클릭 합니다. hello 이름 hello 슬롯의 표시 되어 hello 블레이드 tooremind hello 위쪽에 배포 슬롯 hello 보려는 있습니다.
    
     ![배포 슬롯 제목][StagingTitle]
-5. 슬롯의 블레이드에서 앱 URL을 클릭합니다. 배포 슬롯은 고유의 호스트 이름을 가지고 있고 Live App이기도 합니다. 배포 슬롯에 대한 공용 액세스를 제한하려면 [앱 서비스 웹 앱 – 비 프로덕션 배포 슬롯에 대한 웹 액세스 차단](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)을 참조하세요.
+5. Hello 슬롯의 블레이드에서 hello 앱 URL을 클릭 합니다. 공지 hello 배포 슬롯에서 자체 호스트 이름을 있으며 라이브 앱 이기도 합니다. toolimit 공용 액세스 toohello 배포 슬롯 참조 [앱 서비스 웹 앱 블록 웹 액세스 toonon 프로덕션 배포 슬롯](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)합니다.
 
-배포 슬롯을 만든 후 콘텐츠가 없습니다. 다른 리포지토리 분기 또는 아예 다른 리포지토리로부터 슬롯에 배포할 수 있습니다. 슬롯의 구성을 변경할 수도 있습니다. 게시 프로필을 사용하거나 콘텐츠 업데이트를 위해 배포 슬롯에 연결된 배포 자격 증명을 사용합니다.  예를 들어 [git를 사용하여 이 슬롯에 게시](app-service-deploy-local-git.md)할 수 있습니다.
+배포 슬롯을 만든 후 콘텐츠가 없습니다. 전혀 다른 저장소 또는 다른 리포지토리의 분기에서 슬롯 toohello 배포할 수 있습니다. 또한 hello 슬롯의 구성을 변경할 수 있습니다. 사용 하 여 hello 프로필 배포 자격 증명 또는 연결 된 콘텐츠 업데이트에 대 한 hello 배포 슬롯을 게시 합니다.  예를 들어, [git가 포함 된 슬롯 toothis 게시](app-service-deploy-local-git.md)합니다.
 
 <a name="AboutConfiguration"></a>
 
 ## <a name="configuration-for-deployment-slots"></a>배포 슬롯의 구성
-다른 배포 슬롯으로부터 구성을 복제할 때 복제된 구성을 편집할 수 있습니다. 또한, 교환 후(특정 슬롯) 다른 구성 요소는 동일한 슬롯에 남아 있지만 일부 구성 요소는 교환(특정 슬롯 아님)에 따라 콘텐츠를 따릅니다. 다음 목록은 슬롯을 교환할 때 변경되는 구성을 보여 줍니다.
+다른 배포 슬롯에서에서 구성 복제 하면 복제 된 hello 구성을 편집할 수 있습니다. 또한 일부 구성 요소가 다른 구성 요소를 동일한 슬롯 교환 (특정 슬롯) 후 hello에 유지 하는 동안 스왑 (하지 특정 슬롯)에서 hello 콘텐츠를 수행 합니다. hello 다음 목록에서는 보여 hello 구성 슬롯을 전환할 때 변경 됩니다.
 
 **교환된 설정**:
 
 * 프레임워크 버전, 32/64비트, 웹 소켓과 같은 일반 설정
-* 앱 설정(슬롯에 맞도록 구성할 수 있음)
-* 연결 설정(슬롯에 맞도록 구성할 수 있음)
+* 앱 설정 (구성 된 toostick tooa 슬롯 수 있음)
+* 연결 문자열 (구성 된 toostick tooa 슬롯 수 있음)
 * 처리기 매핑
 * 모니터링 및 진단 설정
 * WebJob 콘텐츠
@@ -87,91 +87,91 @@ ms.lasthandoff: 08/18/2017
 * 크기 조정 설정
 * WebJob 스케줄러
 
-슬롯에 맞도록(교환되지 않음) 앱 설정 또는 연결 문자열을 구성하려면 특정 슬롯에 대해 **응용 프로그램 설정** 블레이드에 액세스한 다음 슬롯에 맞아야 하는 구성 요소에 대한 **슬롯 설정** 상자를 선택합니다. 특정 슬롯으로 구성 요소를 표시하면 앱과 연결된 모든 배포 슬롯에서 교환할 수 없도록 요소를 설정하는 효과가 있습니다.
+응용 프로그램 설정 또는 연결 문자열 toostick tooa 슬롯 (교환 되지 않습니다) 액세스 hello tooconfigure **응용 프로그램 설정** 특정 슬롯 다음 선택 hello에 대 한 블레이드 **슬롯 설정을** hello에 대 한 상자 hello 슬롯 집중 해야 하는 구성 요소입니다. Note 해당 구성 요소를 것으로 표시 슬롯 특정 효과가 hello hello 앱과 연결 된 모든 hello 배포 슬롯 간에 하지 스왑 가능으로 해당 요소를 설정 합니다.
 
 ![슬롯 설정][SlotSettings]
 
 <a name="Swap"></a>
 
 ## <a name="swap-deployment-slots"></a>배포 슬롯 교환 
-앱 리소스 블레이드의 **개요** 또는 **배포 슬롯** 보기에서 배포 슬롯을 교환할 수 있습니다.
+Hello에 배포 슬롯을 전환할 수 **개요** 또는 **배포 슬롯** 응용 프로그램의 리소스 블레이드의 보기입니다.
 
 > [!IMPORTANT]
-> 배포 슬롯에서 프로덕션으로 앱을 교환하기 전에 특정 슬롯이 아닌 모든 설정이 해당 교환 대상에서 원하는 대로 정확히 구성되어야 합니다.
+> 프로덕션 환경에 배포 슬롯에서 응용 프로그램을 교체 전에 toohave를 원하는 대로 모든 비 슬롯 특정 설정이 구성 되어 있는지 확인 hello 교환 대상은 합니다.
 > 
 > 
 
-1. 배포 슬롯을 교환하려면 앱의 명령 모음 또는 배포 슬롯의 명령 모음에서 **교환** 단추를 클릭합니다.
+1. tooswap 배포 슬롯 클릭 hello **교체** hello 앱의 hello 명령 모음 또는 배포 슬롯의 hello 명령 모음에서 단추입니다.
    
     ![교환 단추][SwapButtonBar]
 
-2. 교환 원본 및 교환 대상이 제대로 설정되어야 합니다. 일반적으로 교환 대상은 프로덕션 슬롯입니다. **확인** 을 클릭하여 작업을 완료합니다. 작업을 마치면 배포 슬롯이 교환됩니다.
+2. Hello 스왑 원본과 스왑 대상 제대로 설정 되어 있는지 확인 합니다. 일반적으로 hello 교환 대상은 프로덕션 슬롯 hello입니다. 클릭 **확인** toocomplete hello 작업 합니다. Hello 작업이 완료 되 면 hello 배포 슬롯 기능이 바뀌었는지 합니다.
 
     ![전체 교환](./media/web-sites-staged-publishing/SwapImmediately.png)
 
-    **미리 보기가 있는 교환** 교환 유형의 경우 [미리 보기가 있는 교환(다단계 교환)](#Multi-Phase)을 참조하세요.  
+    Hello에 대 한 **미리 보기** 유형 swap, 참조 [미리 보기 (다중 단계 교체)](#Multi-Phase)합니다.  
 
 <a name="Multi-Phase"></a>
 
 ## <a name="swap-with-preview-multi-phase-swap"></a>미리 보기가 있는 교환(다단계 교환)
 
 미리 보기가 있는 교환 또는 다단계 교환은 연결 문자열과 같은 슬롯 관련 구성 요소의 유효성 검사를 간소화합니다.
-업무상 중요한 워크로드의 경우 프로덕션 슬롯의 구성이 적용될 때 앱이 예상대로 동작하는지 확인하려고 할 것입니다. 이러한 유효성 검사는 앱이 프로덕션으로 교환되기 *전에* 수행해야 합니다. 미리 보기가 있는 교환이 필요합니다.
+중요 한 작업을 위해 앱 hello toovalidate hello 프로덕션 슬롯의 구성을 적용 될 때 예상 대로 작동 하 고 이러한 유효성 검사를 수행 해야 *하기 전에* hello 앱이 프로덕션 환경으로 대체 합니다. 미리 보기가 있는 교환이 필요합니다.
 
 > [!NOTE]
 > 미리 보기가 있는 교환은 Linux의 웹앱에서 지원되지 않습니다.
 
-**미리 보기가 있는 교환** 옵션을 사용할 경우([배포 슬롯 교환](#Swap)) App Service에서 다음을 수행합니다.
+Hello를 사용 하는 경우 **미리 보기가 교환이** 옵션 (참조 [배포 슬롯 교환](#Swap)), 다음 응용 프로그램 서비스는 hello:
 
-- 대상 슬롯(예: 프로덕션)의 기존 워크로드가 영향을 받지 않도록 해당 슬롯을 변경되지 않은 상태로 유지합니다.
-- 슬롯별 연결 문자열 및 앱 설정을 포함하는 대상 슬롯의 구성 요소를 원본 슬롯에 적용합니다.
-- 앞에서 언급한 이러한 구성 요소를 사용하여 원본 슬롯에서 작업자 프로세스를 다시 시작합니다.
-- 교환을 완료한 경우: 준비되기 전 원본 슬롯을 대상 슬롯으로 이동합니다. 대상 슬롯은 수동 교환에서와 같이 원본 슬롯으로 이동됩니다.
-- 교환을 취소한 경우: 원본 슬롯의 구성 요소를 원본 슬롯에 다시 적용합니다.
+- 유지 hello 대상 슬롯 변경 되지 않은 기존 작업 (예: 프로덕션) 해당 슬롯에 영향을 받지 않습니다.
+- Hello 대상 슬롯 toohello 원본 슬롯 hello 슬롯의 연결 문자열, 앱 설정 등의 hello 구성 요소에 적용 됩니다.
+- 이러한 앞에서 언급 한 구성 요소를 사용 하 여 hello 원본 슬롯에서 hello 작업자 프로세스를 다시 시작 합니다.
+- Hello 교환을 완료 하는 경우: hello 대상 슬롯으로 이동 합니다. hello 사전 warmed 업 원본 슬롯입니다. hello 대상 슬롯 수동 스왑에서와 같이 hello 원본 슬롯으로 이동 합니다.
+- Hello 스왑을 취소 하면: hello 원본 슬롯 toohello 원본 슬롯의 hello 구성 요소를 다시 적용 합니다.
 
-앱이 대상 슬롯의 구성에서 동작하는 방식을 정확하게 미리 볼 수 있습니다. 유효성 검사를 완료하면 별도 단계에서 교환을 완료합니다. 이 단계는 원본 슬롯이 이미 원하는 구성으로 준비되고 클라이언트에서 가동 중지 시간이 발생하지 않는다는 추가적인 이점을 제공합니다.  
+정확 하 게 hello 앱 동작 방식을 hello 대상 슬롯의 구성을 사용 하 여 미리 볼 수 있습니다. 유효성 검사를 완료 한 후 hello 스왑 별도 단계에서를 완료 합니다. 이 단계는 hello 원본 슬롯이 hello 필요한 구성 준비 이미 되 고 클라이언트 가동 중지 시간이 발생 하지 것입니다는 또 다른 이점은 hello 했습니다.  
 
-다단계 교환에 사용 가능한 Azure PowerShell cmdlet 샘플은 배포 슬롯 섹션에 대한 Azure PowerShell cmdlet에 포함되어 있습니다.
+Hello 다단계 전환을 사용할 수 있는 Azure PowerShell cmdlet에 대 한 예제는 hello 배포 슬롯 섹션에 대 한 Azure PowerShell cmdlet에에서 포함 됩니다.
 
 <a name="Auto-Swap"></a>
 
 ## <a name="configure-auto-swap"></a>자동 교환 구성
-자동 교환은 앱의 최종 사용자를 위해 중단 시간 및 콜드 부팅이 발생하지 않는 앱을 지속적으로 배포하려는 DevOps 시나리오를 간소화합니다. 배포 슬롯이 자동 교환에 대해 프로덕션에 구성될 때, 해당 슬롯에 이미 준비된 후에 해당 슬롯에 코드 업데이트를 푸시할 때마다 App Service가 앱을 프로덕션으로 자동 교환합니다.
+자동 스왑 간소화 DevOps 있는 시나리오는 toocontinuously hello 응용 프로그램의 최종 고객에 대 한 0 콜드 시작 및 중단 시간이 0을 사용 하 여 앱을 배포 합니다. 배포 슬롯에 대해 구성 된 자동 전환을 프로덕션 환경으로 내 코드 업데이트 toothat 슬롯을 누를 때마다 하는 경우 앱 서비스 됩니다 자동으로 교체 hello 앱 프로덕션 환경으로 해당 준비 된 후 이미 hello 슬롯에 합니다.
 
 > [!IMPORTANT]
-> 슬롯에 대해 자동 교환을 사용할 때 슬롯 구성은 정확히 대상 슬롯(일반적으로 프로덕션 슬롯)에 의도한 구성이어야 합니다.
+> 슬롯에 대 한 자동 교환를 설정한 경우 hello 슬롯 구성을 hello 대상 슬롯 (일반적으로 hello 프로덕션 슬롯)에 대 한으로 의도 된 hello 구성 정확 하 게 인지 확인 합니다.
 > 
 > 
 
 > [!NOTE]
 > 자동 교환은 Linux의 웹앱에서 지원되지 않습니다.
 
-슬롯에 대한 자동 교환 구성은 쉽습니다. 다음 단계를 따르세요.
+슬롯에 대한 자동 교환 구성은 쉽습니다. 아래의 hello 단계를 수행 합니다.
 
 1. **배포 슬롯**에서 비프로덕션 슬롯을 선택하고 해당 슬롯의 리소스 블레이드에서 **응용 프로그램 설정**을 선택합니다.  
    
     ![][Autoswap1]
-2. **자동 교환**은 **켜기**로 선택하고 **자동 교환 슬롯**에서 원하는 대상 슬롯을 선택한 다음 명령 모음에서 **저장**을 클릭합니다. 슬롯에 대한 구성은 정확히 대상 슬롯에 의도한 구성이어야 합니다.
+2. 선택 **에** 에 대 한 **자동 교환**선택, hello 원하는 대상 슬롯에 **자동 교환할 슬롯**를 클릭 하 고 **저장** hello 명령 모음에서 합니다. Hello 슬롯에 대 한 구성은 hello 대상 슬롯으로 의도 된 hello 구성 정확 하 게 있는지 확인 합니다.
    
-    작업이 완료되면 **알림** 탭에 **성공**이 녹색으로 깜박입니다.
+    hello **알림** 탭 녹색 깜박입니다 **성공** hello 작업이 완료 되 면입니다.
    
     ![][Autoswap2]
    
    > [!NOTE]
-   > 앱에 대한 자동 교환을 테스트하려면 먼저 **자동 교환 슬롯** 에서 비프로덕션 대상 슬롯을 선택하여 기능에 익숙해져야 합니다.  
+   > tootest 자동 교환에 대 한 응용 프로그램을 먼저 선택의 비-프로덕션 대상 슬롯 **자동 교환 슬롯** toobecome hello 기능에 익숙한 합니다.  
    > 
    > 
-3. 해당 배포 슬롯에 코드 푸시를 실행합니다. 자동 교환은 짧은 시간 후에 발생하며 업데이트는 대상 슬롯의 URL에 반영됩니다.
+3. 코드 푸시 toothat 배포 슬롯을 실행 합니다. 잠시 후 자동 전환할은 발생 하지 않으며 hello 업데이트 대상 슬롯의 URL에 반영 됩니다.
 
 <a name="Rollback"></a>
 
-## <a name="to-rollback-a-production-app-after-swap"></a>교환 후 프로덕션 앱을 롤백하려면
-슬롯 교환 후 프로덕션에서 오류가 발견되면 같은 두 슬롯을 즉시 교환하여 슬롯을 교환 전 상태로 롤백하세요.
+## <a name="toorollback-a-production-app-after-swap"></a>교환 후 프로덕션 앱 toorollback
+슬롯 교환 후 프로덕션에 오류가 있는지를 확인 하는 경우 hello 슬롯 백 tootheir 사전 스왑 상태 여 롤포워드할 즉시 hello 동일한 두 슬롯을 교환 합니다.
 
 <a name="Warm-up"></a>
 
 ## <a name="custom-warm-up-before-swap"></a>교환하기 전에 사용자 지정 준비
-일부 앱에는 사용자 지정 준비 작업이 필요할 수 있습니다. web.config의 `applicationInitialization` 구성 요소를 사용하면 요청을 받기 전에 수행할 사용자 지정 초기화 작업을 지정할 수 있습니다. 스왑 작업은 이 사용자 지정 준비가 완료될 때까지 대기합니다. 샘플 web.config 조각은 다음과 같습니다.
+일부 앱에는 사용자 지정 준비 작업이 필요할 수 있습니다. hello `applicationInitialization` web.config에 구성 요소 있습니다 toospecify 사용자 지정 초기화 작업 toobe 수행 전에 요청을 받을 수 있습니다. 이 사용자 지정 준비 toocomplete hello 스왑 작업이 대기 합니다. 샘플 web.config 조각은 다음과 같습니다.
 
     <applicationInitialization>
         <add initializationPage="/" hostName="[app hostname]" />
@@ -180,8 +180,8 @@ ms.lasthandoff: 08/18/2017
 
 <a name="Delete"></a>
 
-## <a name="to-delete-a-deployment-slot"></a>배포 슬롯을 삭제하려면
-배포 슬롯의 블레이드에서 배포 슬롯의 블레이드를 열고 **개요**(기본 페이지)를 클릭한 후 명령 모음에서 **삭제**를 클릭합니다.  
+## <a name="toodelete-a-deployment-slot"></a>배포 슬롯을 toodelete
+Hello 블레이드 열기 hello 배포 슬롯 블레이드 배포 슬롯에 대 한 클릭 **개요** (hello 기본 페이지)를 클릭 하 고 **삭제** hello 명령 모음에서 합니다.  
 
 ![배포 슬롯 삭제][DeleteStagingSiteButton]
 
@@ -190,9 +190,9 @@ ms.lasthandoff: 08/18/2017
 <a name="PowerShell"></a>
 
 ## <a name="azure-powershell-cmdlets-for-deployment-slots"></a>배포 슬롯용 Azure PowerShell cmdlet
-Azure PowerShell은 Windows PowerShell을 통해 Azure를 관리하기 위한 cmdlet을 제공하는 모듈로, Azure App Service에서 배포 슬롯을 관리하는 기능도 지원합니다.
+Azure PowerShell은 cmdlet toomanage Azure 앱 서비스의 배포 슬롯을 관리 하기 위한 지원을 비롯 하 여 Windows PowerShell을 통해 Azure를 제공 하는 모듈입니다.
 
-* Azure PowerShell을 설치 및 구성하는 방법과 Azure 구독에 Azure PowerShell을 인증하는 방법에 대한 자세한 내용은 [Microsoft Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview)을 참조하세요.  
+* 설치 하 고 Azure PowerShell을 구성 및 Azure 구독으로 Azure PowerShell 인증 정보를 참조 하십시오. [어떻게 tooinstall Microsoft Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.  
 
 - - -
 ### <a name="create-a-web-app"></a>웹앱 만들기
@@ -207,7 +207,7 @@ New-AzureRmWebAppSlot -ResourceGroupName [resource group name] -Name [app name] 
 ```
 
 - - -
-### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-to-source-slot"></a>미리 보기가 있는 교환(다단계 교환) 시작 및 대상 슬롯 구성을 원본 슬롯에 적용
+### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-toosource-slot"></a>검토 (다중 단계 교체) 교체를 시작 하 고 대상 슬롯 구성 toosource 슬롯 적용
 ```
 $ParametersObject = @{targetSlot  = "[slot name – e.g. “production”]"}
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action applySlotConfig -Parameters $ParametersObject -ApiVersion 2015-07-01
@@ -238,39 +238,39 @@ Remove-AzureRmResource -ResourceGroupName [resource group name] -ResourceType Mi
 <a name="CLI"></a>
 
 ## <a name="azure-command-line-interface-azure-cli-commands-for-deployment-slots"></a>배포 슬롯에 대한 Azure CLI(Azure 명령줄 인터페이스) 명령
-Azure CLI는 Azure 작업을 위한 플랫폼 간 명령을 제공하며, App Service 배포 슬롯을 관리하는 기능을 지원합니다.
+앱 서비스 배포 슬롯을 관리 하기 위한 지원을 비롯 하 여 Azure를 사용 하기 위한 플랫폼 간 명령을 제공 하는 hello Azure CLI 합니다.
 
-* Azure CLI 설치 및 구성 지침과 Azure CLI를 Azure 구독에 연결하는 방법에 대한 자세한 내용은 [Azure CLI 설치 및 구성](../cli-install-nodejs.md)을 참조하세요.
-* Azure CLI에서 Azure 앱 서비스에 사용할 수 있는 명령을 나열하려면 `azure site -h`를 호출합니다.
+* 설치 및 구성에 대 한 지침 Azure CLI hello에 대 한 방법에 대 한 정보를 포함 한 tooconnect Azure CLI tooyour Azure 구독을 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md)합니다.
+* hello Azure CLI Azure 앱 서비스에 사용할 수 있는 toolist hello 명령 호출 `azure site -h`합니다.
 
 > [!NOTE] 
 > 배포 슬롯에 대한 [Azure CLI 2.0](https://github.com/Azure/azure-cli) 명령의 경우 [az appservice web deployment slot](/cli/azure/appservice/web/deployment/slot)을 참조하세요.
 
 - - -
 ### <a name="azure-site-list"></a>azure site list
-현재 구독의 앱 관련 정보를 확인하려면 다음 예에서와 같이 **azure site list**를 호출합니다.
+호출에 hello 앱 hello 현재 구독에 대 한 내용은 **azure 사이트 목록**와 같이, 다음 예제는 hello 합니다.
 
 `azure site list webappslotstest`
 
 - - -
 ### <a name="azure-site-create"></a>azure site create
-배포 슬롯을 만들려면 다음 예에서와 같이 **azure site create**를 호출하고 기존 앱의 이름과 만들 슬롯의 이름을 지정합니다.
+배포 슬롯을 toocreate 호출 **azure 사이트 만들기** 기존 앱의 hello 이름과 hello 다음 예제와 같이 hello 슬롯 toocreate의 hello 이름을 지정 합니다.
 
 `azure site create webappslotstest --slot staging`
 
-새 슬롯의 소스 제어를 사용하도록 설정하려면 다음 예에서와 같이 **--git** 옵션을 사용합니다.
+hello 새 슬롯을 사용 하 여 hello에 대 한 소스 제어 tooenable **-git** hello 다음 예제와 같이 옵션입니다.
 
 `azure site create --git webappslotstest --slot staging`
 
 - - -
 ### <a name="azure-site-swap"></a>azure site swap
-업데이트된 배포 슬롯을 프로덕션 앱으로 만들려면 다음 예에서와 같이 **azure site swap** 명령을 사용하여 교환 작업을 수행합니다. 이때 프로덕션 앱에는 중단 시간이나 콜드 부팅이 발생하지 않습니다.
+toomake hello 업데이트 된 배포 슬롯 hello 프로덕션 응용 프로그램, hello를 사용 하 여 **azure 사이트 스왑** 명령 tooperform hello 다음 예제와 같이 스왑 작업 합니다. hello 프로덕션 앱 모든 중단 시간을 발생 하지 않습니다 나 콜드 시작 될 예정입니다.
 
 `azure site swap webappslotstest`
 
 - - -
 ### <a name="azure-site-delete"></a>azure site delete
-더 이상 필요하지 않은 배포 슬롯을 삭제하려면 다음 예에서와 같이 **azure site delete** 명령을 사용합니다.
+배포 슬롯을 더 이상 toodelete 필요 hello를 사용 하 여 **azure 사이트 삭제** hello 다음 예제와 같이 명령입니다.
 
 `azure site delete webappslotstest --slot staging`
 
@@ -281,9 +281,9 @@ Azure CLI는 Azure 작업을 위한 플랫폼 간 명령을 제공하며, App Se
 > 
 
 ## <a name="next-steps"></a>다음 단계
-[Azure App Service 웹앱 - 비프로덕션 배포 슬롯에 대한 웹 액세스 차단(영문)](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
-[Linux의 App Service 소개](./app-service-linux-intro.md)
-[Microsoft Azure 평가판](https://azure.microsoft.com/pricing/free-trial/)
+[Azure 앱 서비스 웹 앱-웹 액세스 toonon 프로덕션 배포 슬롯을 차단](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
+[소개 tooApp linux 서비스](./app-service-linux-intro.md)
+[Microsoft Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)
 
 <!-- IMAGES -->
 [QGAddNewDeploymentSlot]:  ./media/web-sites-staged-publishing/QGAddNewDeploymentSlot.png

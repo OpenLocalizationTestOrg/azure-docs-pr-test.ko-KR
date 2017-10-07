@@ -1,6 +1,6 @@
 ---
-title: "앱 등록 포털 도움말 항목 | Microsoft Docs"
-description: "Microsoft 앱 등록 포털의 다양한 기능을 설명합니다."
+title: "등록 포털 도움말 항목 aaaApp | Microsoft Docs"
+description: "Hello Microsoft 응용 프로그램 등록 포털의 다양 한 기능에 대 한 설명"
 services: active-directory
 documentationcenter: 
 author: lnalepa
@@ -15,35 +15,35 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: lenalepa
 ms.custom: aaddev
-ms.openlocfilehash: c60499c425a7fd800f7ca9a5bac1fed5af73b801
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3eb17b629577446a336152799497e7d980fb825d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-registration-reference"></a>앱 등록 참조
-이 문서에서는 Microsoft 앱 등록 포털 [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)에 있는 다양한 기능에 대한 컨텍스트 및 설명을 제공합니다.
+컨텍스트 및 다양 한 기능 hello Microsoft 응용 프로그램 등록 포털에 대 한 설명은이 문서에서는 [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)합니다.
 
 ## <a name="my-applications"></a>내 응용 프로그램
-이 목록에는 Azure AD v2.0 끝점에서 사용하도록 등록된 모든 응용 프로그램이 포함되어 있습니다.  이러한 응용 프로그램에는 Microsoft 계정의 개인 계정 및 Azure Active Directory의 회사/학교 계정을 모두 사용하여 사용자로 로그인할 수 있습니다.  Azure AD v2.0 끝점에 대한 자세한 내용은 [v2.0 개요](active-directory-appmodel-v2-overview.md)를 참조하세요.  이러한 응용 프로그램을 사용하여 Microsoft 계정 인증 끝점인 `https://login.live.com`과 통합할 수도 있습니다.
+이 목록에는 hello Azure AD v2.0 끝점에서 사용 하도록 등록 하 여 응용 프로그램의 모든 포함 합니다.  이러한 응용 프로그램이 두 개인 계정에서 Microsoft 계정 및 Azure Active Directory에서 작업/학교 계정이 있는 사용자의 hello 기능 toosign를 갖습니다.  Azure AD hello v2.0 끝점에 대해 자세히 toolearn 참조 우리의 [v2.0 개요](active-directory-appmodel-v2-overview.md)합니다.  이러한 응용 프로그램 hello Microsoft 계정 인증 끝점에 사용 되는 toointegrate 수도 있습니다 `https://login.live.com`합니다.
 
 ## <a name="live-sdk-applications"></a>Live SDK 응용 프로그램
-이 목록에는 Microsoft 계정으로만 사용하도록 등록된 모든 응용 프로그램이 포함되어 있습니다.  Azure Active Directory로 사용할 방법은 전혀 없습니다.  여기에서는 이전에 `https://account.live.com/developers/applications`에서 MSA 개발자 포털에 등록된 모든 응용 프로그램을 확인할 수 있습니다.  이전에 `https://account.live.com/developers/applications`에서 수행한 모든 함수를 이제 이 새 포털 `https://apps.dev.microsoft.com`에서 수행할 수 있습니다.  Microsoft 계정 응용 프로그램에 대한 추가적인 질문이 있으면 문의하세요.
+이 목록에는 Microsoft 계정으로만 사용하도록 등록된 모든 응용 프로그램이 포함되어 있습니다.  Azure Active Directory로 사용할 방법은 전혀 없습니다.  이이 hello MSA 개발자 포털에서 이전에 등록 하는 모든 응용 프로그램을 찾을 수 있는 `https://account.live.com/developers/applications`합니다.  이전에 `https://account.live.com/developers/applications`에서 수행한 모든 함수를 이제 이 새 포털 `https://apps.dev.microsoft.com`에서 수행할 수 있습니다.  Microsoft 계정 응용 프로그램에 대한 추가적인 질문이 있으면 문의하세요.
 
 ## <a name="application-secrets"></a>응용 프로그램 암호
-응용 프로그램 암호는 Azure AD에서 응용 프로그램에서 신뢰할 수 있는 [클라이언트 인증](http://tools.ietf.org/html/rfc6749#section-2.3) 이 되도록 하는 자격 증명입니다.  OAuth 및 OpenID Connect에서 응용 프로그램 암호는 일반적으로 `client_secret`이라고 합니다.  v2.0 프로토콜에서, 웹 주소 지정 가능한 위치에서 `https` 구성표를 사용하여 보안 토큰을 받는 모든 응용 프로그램에서는 해당 보안 토큰 상환 시 Azure AD에서 자신을 식별할 수 있도록 응용 프로그램 암호를 사용해야 합니다.  또한 장치에 대한 토큰을 받는 모든 기본 클라이언트에서는 응용 프로그램 암호를 사용하여 클라이언트 인증을 수행할 수 없도록 하여 안전하지 않은 환경에서 암호의 저장을 차단합니다.
+응용 프로그램 암호는 응용 프로그램 tooperform 신뢰할 수 있는 허용 하는 자격 증명 [클라이언트 인증](http://tools.ietf.org/html/rfc6749#section-2.3) Azure AD와 합니다.  OAuth 및 OpenID Connect, 응용 프로그램 암호는 일반적으로 참조 tooas는 `client_secret`합니다.  Hello v2.0 프로토콜 웹 주소 지정 가능한 위치에서 보안 토큰을 수신 하는 모든 응용 프로그램에서에서 (사용 하는 `https` 구성표) 자체 응용 프로그램 보안 tooidentify 해당 보안 토큰의 상환 시 tooAzure AD를 사용 해야 합니다.  또한 모든 네이티브 클라이언트 응용 프로그램 보안 tooperform 클라이언트 인증, toodiscourage를 사용 하 여 장치에서 받는 토큰을 금지 됩니다는 hello 안전 하지 않은 환경에서 암호를 저장 합니다.
 
-각 앱에는 해당 시점에 유효한 두 개의 응용 프로그램 암호가 포함될 수 있습니다.  두 개의 암호를 유지하여 응용 프로그램의 전체 환경에서 정기적으로 키 롤오버를 수행할 수 있습니다.  응용 프로그램 전체를 새 암호로 마이그레이션하면 이전 암호를 삭제하고 새 암호를 프로비전할 수 있습니다.
+각 앱에는 해당 시점에 유효한 두 개의 응용 프로그램 암호가 포함될 수 있습니다.  두 개의 비밀을 유지 하 여 응용 프로그램의 전체 환경 전체 hello ablilty tooperform 정기적인 키 롤오버를 할 수 있습니다.  Hello 전체 응용 프로그램 tooa 새 암호를 마이그레이션한 후 hello 이전 암호가 삭제 및 새 프로 비전 할 수 있습니다.
 
-이때 두 가지 유형의 응용 프로그램 암호만 앱 등록 포털에서 허용됩니다.  **새 암호 생성** 을 선택하면 응용 프로그램에 사용할 수 있는 해당 데이터 저장소에 공유 암호가 생성되어 저장됩니다.  **새 키 쌍 생성** 을 선택하면 Azure AD에 대한 클라이언트 인증을 위해 다운로드하여 사용할 수 있는 새 공개/개인 키를 만듭니다.
+이때 두 가지 유형의 응용 프로그램 암호는 hello 응용 프로그램 등록 포털에서 허용 됩니다.  선택 **새 암호를 생성할** 생성 하 고 응용 프로그램에서 사용할 수 있는 hello 각 데이터 저장소에 공유 암호를 저장 합니다.  선택 **새 키 쌍 생성** 다운로드 되어 클라이언트 인증 tooAzure AD에 사용 될 수 있는 새 공개/개인 키 쌍을 만듭니다.
 
 ## <a name="profile"></a>프로필
-앱 등록 포털의 프로필 섹션에서는 응용 프로그램에 대한 로그인 페이지를 사용자 지정할 수 있습니다.  이때 로그인 페이지의 응용 프로그램 로고, 서비스 계약 URL 및 개인 정보 취급 방침을 변경할 수 있습니다.  로고는 15KB 이하인 GIP, PNG 또는 JPEG 파일로 된 투명한 48 x 48 또는 50 x 50 픽셀 이미지여야 합니다.  값을 변경하고 결과 로그인 페이지를 확인해 보세요!
+hello 응용 프로그램 등록 포털의 hello 프로필 섹션 수 응용 프로그램에 대 한 페이지에 toocustomize hello 기호를 사용 합니다.  이 이번에 hello 로그인 페이지의 응용 프로그램 로고가, 서비스 URL 및 개인정보취급방침 약관을 변경할 수 있습니다.  hello 로고 이어야 합니다는 15KB GIF, PNG 또는 JPEG 파일에 투명 한 48 x 48 또는 50 x 50 픽셀 이미지 또는 작게 합니다.  Hello 값과 로그인 페이지 결과 보기 hello를 변경해 보세요!
 
 ## <a name="live-sdk-support"></a>Live SDK 지원
-"Live SDK 지원"을 사용하도록 설정하면 만든 응용 프로그램 암호 모두가 Azure AD 및 Microsoft 계정 데이터 저장소 모두에 프로비전됩니다.  그러면 응용 프로그램을 Microsoft 계정 서비스(login.live.com)와 직접 통합할 수 있습니다.  Azure AD v2.0 끝점이 아니라 Microsoft 계정을 직접 사용하여 앱을 빌드하려면 Live SDK 지원을 사용하도록 설정되었는지 확인해야 합니다.
+"라이브 SDK 지원"을 사용 하도록 설정 하면 모든 응용 프로그램을 만들면 비밀 hello Azure AD 및 Microsoft 계정 데이터 모두에 프로 비전 할 저장 합니다.  이렇게 하면 hello (login.live.com) Microsoft 계정 서비스와 직접 응용 프로그램 toointegrate 프로그램.  Microsoft 계정을 사용 하 여 직접 (것과 반대로 toousing hello Azure AD v2.0 끝점으로) 앱 toobuild을 원할 경우 라이브 SDK 지원 활성화 되어 있는지 확인 해야 합니다.
 
-Live SDK 지원을 사용하지 않도록 설정하면 응용 프로그램 암호가 Azure AD 데이터 저장소에만 기록됩니다.  Azure AD 데이터 저장소는 FISMA 규정 준수 등의 특정 표준을 충족하는 엔터프라이즈급 규정을 포함합니다.  Live SDK 지원을 사용하도록 설정하면 응용 프로그램이 이러한 일부 표준을 준수하지 못할 수 있습니다.
+라이브 SDK 지원을 사용 하지 않도록 설정 하면 해당 hello 응용 프로그램 암호 hello Azure AD 데이터 저장소에 기록 됩니다.  Azure AD hello 데이터 저장소 FISMA 규정 준수 등의 특정 표준 toomeet 허용 되는 엔터프라이즈급 규정을 통합 합니다.  Live SDK 지원을 사용하도록 설정하면 응용 프로그램이 이러한 일부 표준을 준수하지 못할 수 있습니다.
 
-Azure AD v2.0 끝점만 사용하려면 안전하게 Live SDK 지원을 사용하지 않도록 설정할 수 있습니다.
+Toouse hello Azure AD v2.0 끝점만 하려는 경우에 Live SDK 지원을 안전 하 게 해제할 수 있습니다.
 

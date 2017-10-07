@@ -1,6 +1,6 @@
 ---
-title: "Azure Monitor를 사용하여 API Management 모니터링 | Microsoft Docs"
-description: "Azure Monitor를 사용하여 Azure API Management 서비스를 모니터링하는 방법에 대해 알아봅니다."
+title: "aaaMonitor Azure 모니터를 사용 하 여 API 관리 | Microsoft Docs"
+description: "Azure 모니터를 사용 하 여 Azure API 관리 toomonitor을 서비스 하는 방법에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 0f64947755c79739bb6f15325929bd074cfd7210
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5012d8ed57ea4f94ea6bc1b7c4e1102516ec4414
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-api-management-with-azure-monitor"></a>Azure Monitor를 사용하여 API Management 모니터링
-Azure Monitor는 모든 Azure 리소스 모니터링을 위한 단일 소스를 제공하는 Azure 서비스입니다. Azure Monitor를 통해 API Management와 같은 Azure 리소스의 메트릭과 로그에 대해 시각화, 쿼리, 라우팅, 보관 및 조치를 수행할 수 있습니다. 
+Azure Monitor는 모든 Azure 리소스 모니터링을 위한 단일 소스를 제공하는 Azure 서비스입니다. Azure 모니터를 사용 시각화, 쿼리, 경로, 보관 하 고 수 hello 메트릭 및 API 관리와 같은 Azure 리소스에서 오는 로그 작업을 수행 합니다. 
 
-다음 비디오는 Azure Monitor를 사용하여 API Management를 모니터링하는 방법을 보여 줍니다. Azure Monitor에 대한 자세한 내용은 [Azure Monitor 시작]을 참조하세요. 
+비디오 표시 방법을 따르는 hello toomonitor Azure 모니터를 사용 하 여 API 관리 합니다. Azure Monitor에 대한 자세한 내용은 [Azure Monitor 시작]을 참조하세요. 
 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Monitor-API-Management-with-Azure-Monitor/player]
@@ -31,47 +31,47 @@ Azure Monitor는 모든 Azure 리소스 모니터링을 위한 단일 소스를 
 >
  
 ## <a name="metrics"></a>메트릭
-API Management는 현재 5개의 메트릭을 내보내고 향후 더 추가할 계획입니다. 이러한 메트릭은 1분마다 내보내지므로 거의 실시간으로 API의 상태를 확인할 수 있습니다. 다음은 메트릭에 대한 요약입니다.
-* 총 게이트웨이 요청: 기간 동안의 API 요청 수입니다. 
-* 성공적인 게이트웨이 요청: 304, 307 및 301보다 작은(예: 200) 모든 항목을 포함하여 성공적인 HTTP 응답 코드를 수신하는 API 요청의 수입니다. 
-* 실패한 게이트웨이 요청: 400 및 500보다 큰 모든 항목을 포함하여 잘못된 HTTP 응답 코드를 수신하는 API 요청의 수입니다.
-* 허가되지 않은 게이트웨이 요청: 401, 403 및 429를 포함하는 HTTP 응답 코드를 수신하는 API 요청의 수입니다. 
-* 기타 게이트웨이 요청: 앞의 범주 중 하나에 속하지 않는(예: 418) HTTP 응답 코드를 수신하는 API 요청의 수입니다.
+API 관리에는 현재 5 개의 메트릭을 내보내는 이며 tooadd hello 향후에 더 많은 계획 합니다. 이러한 메트릭을 내보내지는 1 분 마다 근처 hello 상태 및 Api의 상태에 대 한 실시간 가시성을 제공 합니다. 다음은 hello 메트릭에 대 한 요약입니다.
+* 게이트웨이 요청 합계: hello 기간에는 요청을 API hello 수입니다. 
+* 304, 등 307 301 (예: 200) 보다 작은 대상 성공 HTTP 응답 코드를 받은 API 요청의 성공 게이트웨이 요청: hello 수입니다. 
+* 실패 한 요청 수 게이트웨이: hello API 요청 수를 잘못 된 HTTP 응답 코드 400 및 500 보다 큰 모든 항목을 포함 하 여 받은입니다.
+* 받은 HTTP 응답 코드 401, 403, 및 429를 포함 하 여 API 요청 인증 되지 않은 게이트웨이 요청 수: hello 수입니다. 
+* API 요청 받은 HTTP 응답 코드의 앞에 범주 (예를 들어 418) hello tooany에 속하지 않는 다른 게이트웨이 요청: hello 수입니다.
 
-API Management 서비스에서 메트릭에 액세스하거나 Azure Monitor에서 모든 Azure 리소스의 메트릭에 액세스할 수 있습니다. API Management 서비스에서 메트릭을 보려면:
-1. Azure Portal을 엽니다.
-2. API Management 서비스로 이동합니다.
+API Management 서비스에서 메트릭에 액세스하거나 Azure Monitor에서 모든 Azure 리소스의 메트릭에 액세스할 수 있습니다. API 관리 서비스에서 tooview 메트릭:
+1. Azure 포털 hello를 엽니다.
+2. Tooyour API 관리 서비스를 이동 합니다.
 3. **메트릭**을 클릭합니다.
 
 ![메트릭 블레이드][metrics-blade]
 
-메트릭을 사용하는 방법에 대한 자세한 내용은 [메트릭 개요]를 참조하세요.
+방법에 대 한 자세한 정보에 대 한 메트릭, toouse 참조 [메트릭 개요]합니다.
 
 ## <a name="activity-logs"></a>활동 로그
-활동 로그는 API Management 서비스에서 수행된 작업에 대한 정보를 제공합니다. 이전에는 이러한 로그를 "감사 로그" 또는 "작업 로그"라고도 했습니다. 활동 로그를 통해 API Management 서비스에 대한 모든 쓰기 작업(PUT, POST, DELETE)에서 "무엇을, 누가, 언제"를 판단할 수 있습니다. 
+활동 로그 API 관리 서비스에서 수행 된 hello 작업에 대 한 정보를 제공 합니다. 이전에는 이러한 로그를 "감사 로그" 또는 "작업 로그"라고도 했습니다. 작업 로그를 사용 하 여 hello 확인할 수 있습니다 "부분, who, 시기 및" 모든 쓰기 작업 (PUT, POST, DELETE) API 관리 서비스에 대해 수행에 대 한 합니다. 
 
 > [!NOTE]
-> 활동 로그는 읽기(GET) 작업 또는 클래식 게시자 포털에서 수행되었거나 원본 Management API를 사용하는 작업을 포함하지 않습니다.
+> 읽기 (GET) 작업이 나에서 수행 된 작업 활동 로그를 포함 하지 않는 hello 클래식 게시자 포털 또는 관리 Api를 원래 hello를 사용 하 여 합니다.
 
-API Management 서비스에서 활동 로그에 액세스하거나 Azure Monitor에서 모든 Azure 리소스의 로그에 액세스할 수 있습니다. API Management 서비스에서 활동 로그를 보려면:
-1. Azure Portal을 엽니다.
-2. API Management 서비스로 이동합니다.
+API Management 서비스에서 활동 로그에 액세스하거나 Azure Monitor에서 모든 Azure 리소스의 로그에 액세스할 수 있습니다. API 관리 서비스에서 tooview 활동 기록합니다.
+1. Azure 포털 hello를 엽니다.
+2. Tooyour API 관리 서비스를 이동 합니다.
 3. **활동 로그**를 클릭합니다.
 
 ![활동 로그 블레이드][activity-logs-blade]
 
-메트릭을 사용하는 방법에 대한 자세한 내용은 [활동 로그 개요]를 참조하세요.
+방법에 대 한 자세한 내용은 toouse 메트릭 참조 [활동 로그 개요]합니다.
 
 ## <a name="alerts"></a>경고
-메트릭 및 활동 로그를 기반으로 경고를 수신하도록 구성할 수 있습니다. Azure Monitor를 사용하여 트리거되면 다음을 수행하도록 경고를 구성할 수 있습니다.
+메트릭 및 활동 로그를 기반으로 하는 tooreceive 경고를 구성할 수 있습니다. Azure 모니터 표시할 때을 다음 경고 toodo hello tooconfigure가 있습니다.
 
 * 전자 메일 알림 보내기
 * 웹후크 호출
 * Azure 논리 앱 호출
 
-API Management 서비스 또는 Azure Monitor에서 경고 규칙을 구성할 수 있습니다. API Management에서 구성하려면: 
-1. Azure Portal을 엽니다.
-2. API Management 서비스로 이동합니다.
+API Management 서비스 또는 Azure Monitor에서 경고 규칙을 구성할 수 있습니다. tooconfigure API 관리에서 해당: 
+1. Azure 포털 hello를 엽니다.
+2. Tooyour API 관리 서비스를 이동 합니다.
 3. **경고 규칙**을 클릭합니다.
 
 ![경고 규칙 블레이드][alert-rules-blade]
@@ -79,9 +79,9 @@ API Management 서비스 또는 Azure Monitor에서 경고 규칙을 구성할 �
 경고 사용에 대한 자세한 내용은 [경고 개요]를 참조하세요.
 
 ## <a name="diagnostic-logs"></a>진단 로그
-진단 로그는 감사 뿐만 아니라 문제 해결에 중요한 작업 및 오류에 대한 풍부한 정보를 제공합니다. 진단 로그는 활동 로그와 다릅니다. 활동 로그는 Azure 리소스에서 수행된 작업에 대한 정보를 제공합니다. 진단 로그는 리소스 자체에서 수행하는 작업에 대한 정보를 제공합니다.
+진단 로그는 감사 뿐만 아니라 문제 해결에 중요한 작업 및 오류에 대한 풍부한 정보를 제공합니다. 진단 로그는 활동 로그와 다릅니다. 작업 로그는 Azure 리소스에서 수행 된 hello 작업에 대 한 정보를 제공 합니다. 진단 로그는 리소스 자체에서 수행하는 작업에 대한 정보를 제공합니다.
 
-API Management는 현재 다음 구조를 갖는 각 항목으로 개별 API 요청에 대한 진단 로그(시간 단위로 일괄 처리됨)를 제공합니다.
+API 관리에는 현재 진단을 제공 hello 구조를 다음 있는 각 항목에 개별 API에 대 한 로그 (매시간 일괄 처리) 요청:
 
 ```
 {
@@ -113,27 +113,27 @@ API Management는 현재 다음 구조를 갖는 각 항목으로 개별 API 요
  }
 ```
 
-API Management 서비스에서 진단 로그에 액세스하거나 Azure Monitor에서 모든 Azure 리소스의 로그에 액세스할 수 있습니다. API Management 서비스에서 진단 로그를 보려면:
-1. Azure Portal을 엽니다.
-2. API Management 서비스로 이동합니다.
+API Management 서비스에서 진단 로그에 액세스하거나 Azure Monitor에서 모든 Azure 리소스의 로그에 액세스할 수 있습니다. API 관리 서비스에서 진단 로그 tooview:
+1. Azure 포털 hello를 엽니다.
+2. Tooyour API 관리 서비스를 이동 합니다.
 3. **진단 로그**를 클릭합니다.
 
 ![진단 로그 블레이드][diagnostic-logs-blade]
 
-메트릭을 사용하는 방법에 대한 자세한 내용은 [진단 로그 개요]를 참조하세요.
+방법에 대 한 자세한 정보에 대 한 메트릭, toouse 참조 [진단 로그의 개요]합니다.
 
 ## <a name="next-step"></a>다음 단계
 
 * [Azure Monitor 시작]
 * [메트릭 개요]
 * [활동 로그 개요]
-* [진단 로그 개요]
+* [진단 로그의 개요]
 * [경고 개요]
 
 [Azure Monitor 시작]: ../monitoring-and-diagnostics/monitoring-get-started.md
 [메트릭 개요]: ../monitoring-and-diagnostics/monitoring-overview-metrics.md
 [활동 로그 개요]: ../monitoring-and-diagnostics/monitoring-overview-activity-logs.md
-[진단 로그 개요]: ../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md
+[진단 로그의 개요]: ../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md
 [경고 개요]: ../monitoring-and-diagnostics/insights-alerts-portal.md
 
 

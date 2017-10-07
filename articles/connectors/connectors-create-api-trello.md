@@ -1,6 +1,6 @@
 ---
-title: "Azure Logic Apps의 Trello 커넥터 | Microsoft Docs"
-description: "Azure 앱 서비스로 논리 앱을 만듭니다. Trello는 회사 및 집에서 모든 프로젝트를 통해 큐브 뷰를 제공합니다.  쉽고 무료로 유연하며 시각적인 방법으로 프로젝트를 관리하고 무엇이든 구성할 수 있습니다.  Trello에 연결하여 보드, 목록 및 카드 관리"
+title: "Azure 논리 앱에서 aaaTrello 커넥터 | Microsoft Docs"
+description: "Azure 앱 서비스로 논리 앱을 만듭니다. Trello는 회사 및 집에서 모든 프로젝트를 통해 큐브 뷰를 제공합니다.  무료, 유연 하 고, 쉽고 시각적으로 toomanage 프로젝트 이며 아무 것도 구성 합니다.  보드, 목록 및 카드 tooTrello toomanage 연결"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 526a14710f24ee4a4b61a11873aa6caa0b47dc10
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 08aaea394c790ac41632490b7bbc84dcdfbab9da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-trello-connector"></a>Trello 커넥터 시작
-Trello는 회사 및 집에서 모든 프로젝트를 통해 큐브 뷰를 제공합니다.  쉽고 무료로 유연하며 시각적인 방법으로 프로젝트를 관리하고 무엇이든 구성할 수 있습니다.  Trello에 연결하여 보드, 목록 및 카드를 관리합니다.
+# <a name="get-started-with-hello-trello-connector"></a>Hello Trello 커넥터와 함께 시작
+Trello는 회사 및 집에서 모든 프로젝트를 통해 큐브 뷰를 제공합니다.  무료, 유연 하 고, 쉽고 시각적으로 toomanage 프로젝트 이며 아무 것도 구성 합니다.  보드, 목록 및 카드 tooTrello toomanage를 연결 합니다.
 
 논리 앱을 만들어 시작할 수 있습니다. [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md)를 참조하세요.
 
-## <a name="create-a-connection-to-trello"></a>Trello에 대한 연결 만들기
-Trello로 논리 앱을 만들려면 먼저 **연결**을 만든 후에 다음 속성에 대한 세부 정보를 입력해야 합니다.
+## <a name="create-a-connection-tootrello"></a>연결 tooTrello 만들기
+toocreate Trello 사용 하 여 논리 앱을 먼저 만듭니다는 **연결**, hello 다음과 같은 속성에 대 한 hello 세부 정보를 입력 합니다.
 
 | 속성 | 필수 | 설명 |
 | --- | --- | --- |
 | 신뢰 |예 |Trello 자격 증명 제공 |
 
-연결을 만든 후에 사용하여 작업을 실행하고 트리거에 대한 수신을 대기할 수 있습니다.
+Hello 연결을 만든 후 tooexecute hello 동작을 사용 하 고 hello 트리거 수신 수 있습니다.
 
-> [!INCLUDE [Steps to create a connection to Trello](../../includes/connectors-create-api-trello.md)]
+> [!INCLUDE [Steps toocreate a connection tooTrello](../../includes/connectors-create-api-trello.md)]
 > 
 
 ## <a name="connector-specific-details"></a>커넥터 관련 세부 정보
 
-[커넥터 세부 정보](/connectors/trello/)에서 swagger에 정의된 모든 트리거 및 작업과 제한 사항도 확인할 수 있습니다.
+모든 트리거 및 hello swagger에 정의 된 작업을 확인 하 고 hello에 어떠한 제한도 볼 [connector 세부 정보](/connectors/trello/)합니다.
 
 ## <a name="more-connectors"></a>추가 커넥터
-[API 목록](apis-list.md)으로 돌아갑니다.
+Toohello 돌아가서 [Api 목록](apis-list.md)합니다.

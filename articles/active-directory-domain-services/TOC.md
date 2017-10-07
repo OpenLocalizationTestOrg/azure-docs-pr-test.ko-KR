@@ -8,7 +8,7 @@
 
 # 시작
 ## Azure 클래식 포털
-### [작업 1: 관리자 그룹 만들기](active-directory-ds-getting-started-create-group.md)
+### [작업 1: hello 관리자 그룹 만들기](active-directory-ds-getting-started-create-group.md)
 ### [작업 2: 가상 네트워크 만들기 또는 선택](active-directory-ds-getting-started-vnet.md)
 ### [작업 3: Azure AD Domain Services 활성화](active-directory-ds-getting-started-enableaadds.md)
 ### [작업 4: 가상 네트워크에 대한 DNS 설정 업데이트](active-directory-ds-getting-started-update-dns.md)
@@ -30,9 +30,9 @@
 ### [관리되는 도메인에서 DNS 관리](active-directory-ds-admin-guide-administer-dns.md)
 ### 관리되는 도메인에 대한 LDAP 구성
 #### [작업 1: 보안 LDAP를 위한 인증서 가져오기](active-directory-ds-admin-guide-configure-secure-ldap.md)
-#### [작업 2: 보안 LDAP 인증서 내보내기](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)
-#### [작업 3: Azure 클래식 포털을 사용하여 관리되는 도메인에 대해 보안 LDAP를 사용하도록 설정](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
-#### [작업 3: Azure Portal(미리 보기)을 사용하여 관리되는 도메인에 대해 보안 LDAP를 사용하도록 설정](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
+#### [작업 2: hello 보안 LDAP 인증서 내보내기](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)
+#### [작업 3: Azure 클래식 포털을 사용 하 여 hello 관리 되는 도메인에 대 한 보안 LDAP를 사용 하도록 설정](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
+#### [작업 3: Azure 포털 (미리 보기)를 사용 하 여 hello 관리 되는 도메인에 대 한 보안 LDAP를 사용 하도록 설정](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
 
 ### [관리되는 도메인에 OU 만들기](active-directory-ds-admin-guide-create-ou.md)
 ### [관리되는 도메인에서 그룹 정책 관리](active-directory-ds-admin-guide-administer-group-policy.md)
@@ -44,7 +44,7 @@
 ## 문제 해결
 ### [FAQ](active-directory-ds-faqs.md)
 ### [문제 해결 가이드](active-directory-ds-troubleshooting.md)
-### [Azure Portal 환경 미리 보기 사용](active-directory-ds-azure-portal-enable-preview-access.md)
+### [Hello 미리 보기 포털 Azure 환경 사용](active-directory-ds-azure-portal-enable-preview-access.md)
 ### [일치하지 않는 테넌트 오류 해결](active-directory-ds-mismatched-tenant-error.md)
 
 # 참조

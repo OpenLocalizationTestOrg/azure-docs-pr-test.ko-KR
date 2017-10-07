@@ -1,6 +1,6 @@
 ---
-title: "Azure Managed Application MultiStorageAccountCombo UI 요소 | Microsoft Docs"
-description: "Azure Managed Applications의 Microsoft.Storage.MultiStorageAccountCombo UI 요소에 대해 설명합니다."
+title: "관리 되는 응용 프로그램 MultiStorageAccountCombo UI 요소 aaaAzure | Microsoft Docs"
+description: "Azure 관리 되는 응용 프로그램에 대 한 hello Microsoft.Storage.MultiStorageAccountCombo UI 요소를 설명합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 27843b116d949899e4eae65f342324f77ebca70b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 765be145b61c3dbf0a035a7a00aa18eee464a3eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftstoragemultistorageaccountcombo-ui-element"></a>Microsoft.Storage.MultiStorageAccountCombo UI 요소
 공통 접두사로 시작하는 이름의 저장소 계정을 여러 개 만드는 컨트롤 그룹입니다. [Azure 관리되는 응용 프로그램을 만드는](managed-application-publishing.md) 경우 이 요소를 사용합니다.
@@ -52,12 +52,12 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="remarks"></a>설명
-- `defaultValue.prefix`의 값은 하나 이상의 정수와 연결되어 저장소 계정 이름의 시퀀스를 생성합니다. 예를 들어 `defaultValue.prefix`가 **foobar**이고 `count`가 **2**이면 **foobar1** 및 **foobar2** 저장소 계정 이름이 생성됩니다. 생성된 저장소 계정 이름의 고유성에 대한 유효성 검사가 자동으로 수행됩니다.
-- 저장소 계정 이름은 `count`에 따라 사전순으로 생성됩니다. 예를 들어 `count`가 10이면 저장소 계정 이름은 2자리 정수로 끝납니다(01, 02, 03 등).
-- `defaultValue.prefix`의 기본값은 **null**이고, `defaultValue.type`의 기본값은 **Premium_LRS**입니다.
+- 값에 대 한 hello `defaultValue.prefix` 저장소 계정 이름 하나 이상의 정수 toogenerate hello 순서와 연결 됩니다. 예를 들어 `defaultValue.prefix`가 **foobar**이고 `count`가 **2**이면 **foobar1** 및 **foobar2** 저장소 계정 이름이 생성됩니다. 생성된 저장소 계정 이름의 고유성에 대한 유효성 검사가 자동으로 수행됩니다.
+- hello 저장소 계정 이름에 따라 사전순에 따라 생성 된 `count`합니다. 예를 들어 경우 `count` 10, hello 저장소 계정 이름은 2 자리 정수 끝나야 합니다 (01, 02, 03, 등입니다.).
+- 기본값에 대 한 hello `defaultValue.prefix` 은 **null**, 및에 대 한 `defaultValue.type` 은 **Premium_LRS**합니다.
 - `constraints.allowedTypes`에 지정되지 않은 형식은 숨겨지며, `constraints.excludedTypes`에 지정되지 않은 형식이 표시됩니다.
 `constraints.allowedTypes`와 `constraints.excludedTypes`는 모두 선택 사항이지만 동시에 사용할 수는 없습니다.
-- 저장소 계정 이름을 생성하는 것 외에도 `count`는 요소에 적절한 승수를 설정하는 데 사용됩니다. **2**와 같은 정적 값 또는 `[steps('step1').storageAccountCount]`와 같은 다른 요소의 동적 값을 지원합니다. 기본값은 **1**입니다.
+- 또한 toogenerating 저장소 계정 이름에 `count` hello 요소에 대 한 적절 한 승수 tooset 사용된 됩니다. **2**와 같은 정적 값 또는 `[steps('step1').storageAccountCount]`와 같은 다른 요소의 동적 값을 지원합니다. hello 기본값은 **1**합니다.
 
 ## <a name="sample-output"></a>샘플 출력
 ```json
@@ -70,6 +70,6 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* 관리되는 응용 프로그램에 대한 소개는 [Azure Managed Application 개요](managed-application-overview.md)를 참조하세요.
-* UI 정의 만들기에 대한 소개는 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)을 참조하세요.
+* 소개 toomanaged 응용 프로그램에 대 한 참조 [Azure 관리 되는 응용 프로그램 개요](managed-application-overview.md)합니다.
+* 소개 toocreating UI 정의 대 한 참조 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)합니다.
 * UI 요소의 공용 속성에 대한 설명은 [CreateUiDefinition 요소](managed-application-createuidefinition-elements.md)를 참조하세요.

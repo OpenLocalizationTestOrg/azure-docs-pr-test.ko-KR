@@ -1,6 +1,6 @@
 ---
-title: "Azure 웹앱에 사용자 지정 도메인 및 SSL 추가 | Microsoft Docs"
-description: "회사 브랜딩을 추가하여 프로덕션으로 전환하도록 Azure 웹앱을 준비하는 방법에 알아봅니다. 사용자 지정 도메인 이름(베니티 도메인)을 사용자 웹앱에 매핑하고 사용자 지정 SSL 인증서로 안전하게 유지합니다."
+title: "aaaAdd 사용자 지정 도메인 및 SSL tooan Azure 웹 앱 | Microsoft Docs"
+description: "어떻게 tooprepare Azure 웹 앱 toogo 프로덕션 내용을 회사 브랜딩 추가 하 여에 대해 알아봅니다. Hello 사용자 지정 도메인 이름 (베 니 티 도메인) tooyour 웹 앱을 매핑한 사용자 지정 SSL 인증서를 사용 하 여 보안 합니다."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,54 +15,54 @@ ms.topic: tutorial
 ms.date: 03/29/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: c9d00f678b6257a8aafb35acd2d5a2292703a2dc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2679ed8b2dbbeba0b128c1a3ec01148f97c35342
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-custom-domain-and-ssl-to-an-azure-web-app"></a>Azure 웹앱에 사용자 지정 도메인 및 SSL 추가
+# <a name="add-custom-domain-and-ssl-tooan-azure-web-app"></a>사용자 지정 도메인 및 SSL tooan Azure 웹 앱 추가
 
-이 자습서에서는 신속하게 사용자 지정 도메인 이름을 Azure 웹앱에 매핑한 다음 사용자 지정 SSL 인증서로 보호하는 방법을 설명합니다. 
+이 자습서에는 tooquickly 매핑하는 사용자 지정 도메인 이름을 tooyour Azure 웹 앱 하 고 다음 사용자 지정 SSL 인증서를 사용 하 여 보안 하는 방법을 보여줍니다. 
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-이 샘플을 실행하기 전에 [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)을 로컬로 설치합니다.
+이 샘플을 실행 하기 전에 hello 설치 [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 로컬로 합니다.
 
-또한 각 도메인 공급자에 대한 DNS 구성 페이지의 관리자 액세스가 필요합니다. 예를 들어 `www.contoso.com`을 추가하려면 `contoso.com`에 대한 DNS 항목을 구성할 수 있어야 합니다.
+또한 각 도메인 공급자에 대 한 관리 액세스 toohello DNS 구성 페이지가 있어야 되었습니다. 예를 들어 tooadd `www.contoso.com`, toobe 수 tooconfigure DNS 항목에 대 한 필요한 `contoso.com`합니다.
 
-마지막으로 업로드하고 바인딩하려는 SSL 인증서에 사용할 .PFX 파일 _및_ 해당 암호가 유효해야 합니다. 원하는 사용자 지정 도메인 이름을 보호하도록 이 SSL 인증서를 구성해야 합니다. 위의 예제에서 SSL 인증서는 `www.contoso.com`을 보호합니다. 
+마지막으로, 유효한 필요합니다. PFX 파일 _및_ tooupload 원하는 hello SSL 인증서에 대 한 암호 바인딩합니다. 이 SSL 인증서에는 원하는 구성된 toosecure hello 사용자 지정 도메인 이름 이어야 합니다. 위 예제는 hello에서 SSL 인증서를 보호 해야 `www.contoso.com`합니다. 
 
 ## <a name="step-1---create-an-azure-web-app"></a>1단계 - Azure 웹앱 만들기
 
-### <a name="log-in-to-azure"></a>Azure에 로그인
+### <a name="log-in-tooazure"></a>TooAzure 로그인
 
-이제 터미널 창에서 Azure CLI 2.0을 사용하여 Azure에서 Node.js 앱을 호스팅하는 데 필요한 리소스를 만들 예정입니다.  [az login](/cli/azure/#login) 명령으로 Azure 구독에 로그인하고 화면의 지시를 따릅니다. 
+진행 중인 toouse hello Azure CLI 2.0 터미널 윈도우 toocreate hello 리소스에서 필요한 toohost Azure에서 Node.js 앱 이제는입니다.  Tooyour hello로 Azure 구독에에서 로그인 [az 로그인](/cli/azure/#login) 명령 열고 지시를 따른 hello 화면에 표시 합니다. 
 
 ```azurecli 
 az login 
 ``` 
    
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기   
-[az group create](/cli/azure/group#create)를 사용하여 리소스 그룹을 만듭니다. Azure 리소스 그룹은 웹앱, 데이터베이스, 저장소 계정이 관리되었는지 등 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 
+Hello로 리소스 그룹 만들기 [az 그룹 만들기](/cli/azure/group#create)합니다. Azure 리소스 그룹은 웹앱, 데이터베이스, 저장소 계정이 관리되었는지 등 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 
 
 ```azurecli
 az group create --name myResourceGroup --location westeurope 
 ```
 
-`---location`에 사용할 수 있는 가능한 값을 보려면 `az appservice list-locations` Azure CLI 명령을 사용합니다.
+toosee에 사용할 수 있는 가능한 값은 있습니다 `---location`, hello를 사용 하 여 `az appservice list-locations` Azure CLI 명령입니다.
 
 ## <a name="create-an-app-service-plan"></a>App Service 계획 만들기
 
-[az appservice plan create](/cli/azure/appservice/plan#create) 명령으로 App Service 계획을 만듭니다. 
+Hello로 앱 서비스 계획 만들기 [az 앱 서비스 계획 만들기](/cli/azure/appservice/plan#create) 명령입니다. 
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-다음 예제에서는 **기본** 가격 책정 계층을 사용하는 `myAppServicePlan`이라는 App Service 계획을 만듭니다.
+hello 다음 예제에서는 명명 된 앱 서비스 계획 `myAppServicePlan` hello를 사용 하 여 **기본** 가격 책정 계층입니다.
 
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku B1
 
-App Service 계획을 만들었으면 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다. 
+Hello 앱 서비스 계획을 만든 hello Azure CLI 정보 비슷한 toohello 다음 예제에 표시 됩니다. 
 
 ```json 
 { 
@@ -82,15 +82,15 @@ App Service 계획을 만들었으면 Azure CLI는 다음 예제와 비슷한 �
 
 ## <a name="create-a-web-app"></a>웹앱 만들기
 
-이제 App Service 계획을 만들었으므로 `myAppServicePlan` App Service 계획 내에서 웹앱을 만듭니다. 웹앱은 코드를 배포할 호스팅 공간을 제공할 뿐만 아니라 배포된 응용 프로그램을 확인할 수 있도록 URL도 제공합니다. [az appservice web create](/cli/azure/appservice/web#create) 명령을 사용하여 웹앱을 만듭니다. 
+앱 서비스 계획을 만든 했으므로 hello 내에서 웹 응용 프로그램을 만들 `myAppServicePlan` 앱 서비스 계획 합니다. 호스팅 공간 toodeploy 코드 하는 것은 물론 있습니다 자동으로 제공 하는 URL tooview hello hello 웹 응용 프로그램은 응용 프로그램을 배포 합니다. 사용 하 여 hello [az 앱 서비스 웹 만들](/cli/azure/appservice/web#create) 명령 toocreate hello 웹 앱입니다. 
 
-아래 명령에서 `<app_name>` 자리 표시자를 확인한 고유한 앱 이름을 대체하세요. 이 고유한 이름은 웹앱에 대한 기본 도메인 이름의 일부로 사용되므로 이름은 Azure에 있는 모든 앱에서 고유해야 합니다. 나중에 사용자에게 노출하기 전에 웹앱에 사용자 지정 DNS 항목을 매핑할 수 있습니다. 
+Hello 명령 아래에 hello 나타나는 자신의 고유한 응용 프로그램 이름으로 대체 하세요 `<app_name>` 자리 표시자입니다. 이 고유 이름이 hello 이름 해야 toobe 고유 Azure에서 모든 앱 간에 hello 웹 앱에 대 한 기본 도메인 이름 hello의 hello 일부로 사용 됩니다. 나중에 tooyour 사용자 노출 먼저 모든 사용자 지정 DNS 항목 toohello 웹 앱을 매핑할 수 있습니다. 
 
 ```azurecli
 az appservice web create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan 
 ```
 
-웹앱을 만들었으면 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다. 
+Hello 웹 응용 프로그램을 만든 hello Azure CLI 정보 비슷한 toohello 다음 예제에 표시 됩니다. 
 
 ```json 
 { 
@@ -110,7 +110,7 @@ az appservice web create --name <app_name> --resource-group myResourceGroup --pl
 } 
 ```
 
-JSON 출력에서 `defaultHostName`은 웹앱의 기본 도메인 이름을 표시합니다. 브라우저에서 이 주소로 이동합니다.
+Hello JSON 출력에서에서 `defaultHostName` 웹 앱의 기본 도메인 이름을 표시 합니다. 브라우저에서 toothis 주소를 이동 합니다.
 
 ```
 http://<app_name>.azurewebsites.net 
@@ -120,33 +120,33 @@ http://<app_name>.azurewebsites.net
 
 ## <a name="step-2---configure-dns-mapping"></a>2단계 - DNS 매핑 구성
 
-이 단계에서는 사용자 지정 도메인의 매핑을 사용자 웹앱의 기본 도메인 이름인 `<app_name>.azurewebsites.net`에 추가합니다. 일반적으로 도메인 공급자의 웹 사이트에서 이 단계를 수행 합니다. 각 도메인 등록 기관의 웹 사이트는 약간씩 다르므로 공급자의 설명서를 참조해야 합니다. 하지만 다음은 몇 가지 일반적인 지침입니다. 
+이 단계에서는 사용자 지정 도메인 tooyour 웹 앱의 기본 도메인 이름에서 매핑을 추가 `<app_name>.azurewebsites.net`합니다. 일반적으로 도메인 공급자의 웹 사이트에서 이 단계를 수행 합니다. 각 도메인 등록 기관의 웹 사이트는 약간씩 다르므로 공급자의 설명서를 참조해야 합니다. 하지만 다음은 몇 가지 일반적인 지침입니다. 
 
-### <a name="navigate-to-to-dns-management-page"></a>DNS 관리 페이지로 이동
+### <a name="navigate-tootoodns-management-page"></a>TootooDNS 관리 페이지로 이동
 
-먼저 도메인 등록 기관의 웹 사이트에 로그인합니다.  
+첫째, tooyour 도메인 등록 기관의 웹 사이트에 로그인 합니다.  
 
-그런 다음 DNS 레코드를 관리하기 위한 페이지를 찾습니다. **도메인 이름**, **DNS** 또는 **이름 서버 관리** 레이블이 지정된 사이트의 링크 또는 영역을 찾습니다. 계정 정보를 확인한 다음 **내 도메인**과 같은 링크를 검색하여 링크를 찾을 수 있습니다.
+그런 다음 DNS 레코드를 관리 하기 위한 hello 페이지를 찾을 합니다. 링크 또는 레이블이 지정 된 hello 사이트의 영역을 찾고 **도메인 이름**, **DNS**, 또는 **이름 서버 관리**합니다. 종종, 계정 정보를 표시 하 고 다음 찾고 링크와 같은 여 hello 링크를 찾을 수 있습니다 **내 도메인**합니다.
 
 이 페이지를 찾았으면 DNS 레코드를 추가하거나 편집할 수 있는 링크를 찾습니다. 이는 **영역 파일** 또는 **DNS 레코드** 링크이거나 **고급 구성** 링크일 수 있습니다.
 
 ### <a name="create-a-cname-record"></a>CNAME 레코드 만들기
 
-원하는 하위 도메인 이름을 웹앱의 기본 도메인 이름(`<app_name>.azurewebsites.net`, 여기서 `<app_name>`은 앱의 고유 이름)에 매핑하는 CNAME 레코드를 추가합니다.
+Hello 원하는 하위 도메인 이름 tooyour 웹 응용 프로그램의 기본 도메인 이름을 매핑하는 CNAME 레코드 추가 (`<app_name>.azurewebsites.net`여기서 `<app_name>` 응용 프로그램의 고유 이름입니다).
 
-`www.contoso.com` 예제의 경우 `www` 호스트 이름을 `<app_name>.azurewebsites.net`에 매핑하는 CNAME을 만듭니다.
+Hello에 대 한 `www.contoso.com` hello에 매핑하는 CNAME을 만들어야 예제에서는 `www` hostname 너무`<app_name>.azurewebsites.net`합니다.
 
-## <a name="step-3---configure-the-custom-domain-on-your-web-app"></a>3단계 - 웹앱에서 사용자 지정 도메인 구성
+## <a name="step-3---configure-hello-custom-domain-on-your-web-app"></a>3 단계-웹 응용 프로그램에서 hello 사용자 지정 도메인 구성
 
-도메인 공급자의 웹 사이트에서 호스트 이름 매핑의 구성을 마쳤다면 웹앱에서 사용자 지정 도메인을 구성할 준비가 된 것입니다. [az appservice web config hostname add](/cli/azure/appservice/web/config/hostname#add) 명령을 사용하여 이 구성을 추가합니다. 
+작업을 마치면 hello 호스트 이름 매핑 도메인 공급자의 웹 사이트에서 구성 하 고 준비 tooconfigure hello에 대 한 사용자 지정 도메인 웹 앱입니다. 사용 하 여 hello [az 앱 서비스 웹 구성 호스트 이름 추가](/cli/azure/appservice/web/config/hostname#add) tooadd이이 구성을 명령입니다. 
 
-아래 명령에서 `<app_name>`을 고유한 앱 이름으로, <your_custom_domain>을 정규화된 사용자 지정 도메인 이름(예: `www.contoso.com`)으로 대체합니다. 
+아래 hello 명령을 대체할 하십시오 `<app_name>` 고유한 응용 프로그램 이름 및 < your_custom_domain > hello 정규화 된 사용자 지정 도메인 이름으로 (예: `www.contoso.com`). 
 
 ```azurecli
 az appservice web config hostname add --webapp <app_name> --resource-group myResourceGroup --name <your_custom_domain>
 ```
 
-이제 사용자 지정 도메인은 완전하게 사용자 웹앱에 매핑되었습니다. 브라우저에서 사용자 지정 도메인 이름으로 이동합니다. 예:
+hello 사용자 지정 도메인에는 이제 완벽 하 게 매핑된 tooyour 웹 앱입니다. 브라우저에서 toohello 사용자 지정 도메인 이름을 이동 합니다. 예:
 
 ```
 http://www.contoso.com 
@@ -154,27 +154,27 @@ http://www.contoso.com
 
 ![app-service-web-service-created](media/app-service-web-tutorial-domain-ssl/web-app-custom-domain.png)  
 
-## <a name="step-4---bind-a-custom-ssl-certificate-to-your-web-app"></a>4단계 - 웹앱에 사용자 지정 SSL 인증서 바인딩
+## <a name="step-4---bind-a-custom-ssl-certificate-tooyour-web-app"></a>4 단계-바인딩 사용자 지정 SSL 인증서 tooyour 웹 앱
 
-이제 브라우저의 주소 표시줄에 원하는 도메인 이름을 사용하는 Azure 웹앱이 있습니다. 하지만 `https://<your_custom_domain>`으로 이동하는 경우 인증서 오류가 발생합니다. 
+Hello 브라우저의 주소 표시줄에 원하는 hello 도메인 이름 사용 하 여 Azure 웹 앱을 만들었습니다. 그러나 toohello 이동 하는 경우 `https://<your_custom_domain>` 이제 인증서 오류가 발생 합니다. 
 
 ![app-service-web-service-created](media/app-service-web-tutorial-domain-ssl/web-app-cert-error.png)  
 
-이 오류는 웹앱에 사용자 지정 도메인 이름과 일치하는 SSL 인증서 바인딩 아직 없기 때문에 발생합니다. 하지만 `https://<app_name>.azurewebsites.net`으로 이동하면 오류가 발생하지 않습니다. 즉, 사용자의 앱 뿐 아니라 모든 Azure App Service 앱은 기본적으로 `*.azurewebsites.net` 와일드카드 도메인에 대한 SSL 인증서로 보호되기 때문입니다. 
+이 오류는 웹앱에 사용자 지정 도메인 이름과 일치하는 SSL 인증서 바인딩 아직 없기 때문에 발생합니다. 너무 이동 하는 경우 오류가 발생 하지 않는 반면`https://<app_name>.azurewebsites.net`합니다. 응용 프로그램 뿐 아니라 모든 Azure 앱 서비스 앱 hello에 대 한 hello SSL 인증서로 보호 되 때문에 이것이 `*.azurewebsites.net` 기본적으로 와일드 카드 도메인입니다. 
 
-사용자 지정 도메인 이름으로 웹앱에 액세스하려면 웹앱에 사용자 지정 도메인에 대한 SSL 인증서를 바인딩해야 합니다. 바로 이 단계에서 수행합니다. 
+tooaccess 웹 앱 사용자 지정 도메인 이름을 주문, 사용자 지정 도메인 toohello 웹 앱에 대 한 toobind hello SSL 인증서를 필요 합니다. 바로 이 단계에서 수행합니다. 
 
-### <a name="upload-the-ssl-certificate"></a>SSL 인증서 업로드
+### <a name="upload-hello-ssl-certificate"></a>Hello SSL 인증서를 업로드 합니다.
 
-[az appservice web config ssl upload](/cli/azure/appservice/web/config/ssl#upload) 명령을 사용하여 사용자 지정 도메인에 대한 SSL 인증서를 웹앱에 업로드합니다.
+Hello를 사용 하 여 사용자 지정 도메인 tooyour 웹 앱에 대 한 hello SSL 인증서를 업로드 [az 앱 서비스 웹 구성 ssl 업로드](/cli/azure/appservice/web/config/ssl#upload) 명령입니다.
 
-아래 명령에서 `<app_name>`을 고유한 앱 이름으로, `<path_to_ptx_file>`을 .PFX 파일에 대한 경로로, `<password>`를 인증서의 암호로 대체합니다. 
+아래 hello 명령을 대체할 하십시오 `<app_name>` 을 고유한 응용 프로그램 이름으로, `<path_to_ptx_file>` hello 경로 tooyour 사용 합니다. PFX 파일 및 `<password>` 인증서의 암호를 사용 합니다. 
 
 ```azurecli
 az appservice web config ssl upload --name <app_name> --resource-group myResourceGroup --certificate-file <path_to_pfx_file> --certificate-password <password> 
 ```
 
-인증서를 업로드하면 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다.
+Hello 인증서 업로드 되 면 hello Azure CLI 정보 비슷한 toohello를 다음 예제를 보여 줍니다.
 
 ```json
 {
@@ -210,21 +210,21 @@ ificates/9FD1D2D06E2293673E2A8D1CA484A092BD016D00__West Europe_myResourceGroup",
 }
 ```
 
-JSON 출력에서 `thumbprint`는 업로드된 인증서의 지문을 표시합니다. 다음 단계를 위해 해당 값을 복사합니다.
+Hello JSON 출력에서에서 `thumbprint` 업로드 된 인증서의 지문을 표시 합니다. Hello 다음 단계에 대 한 해당 값을 복사 합니다.
 
-### <a name="bind-the-uploaded-ssl-certificate-to-the-web-app"></a>업로드한 SSL 인증서를 웹앱에 바인딩
+### <a name="bind-hello-uploaded-ssl-certificate-toohello-web-app"></a>Toohello 웹 응용 프로그램 업로드 hello SSL 인증서 바인딩
 
-이제 웹앱에 원하는 사용자 지정 도메인 이름과 해당 사용자 지정 도메인을 보호하는 SSL 인증서가 있습니다. 이제 남은 것은 업로드된 인증서를 웹앱에 바인딩하는 것입니다. [az appservice web config ssl bind](/cli/azure/appservice/web/config/ssl#bind) 명령을 사용하여 이를 수행합니다.
+이제 웹 앱 원하는 hello 사용자 지정 도메인 이름을 있으며 해당 사용자 지정 도메인을 보호 하는 한 SSL 인증서가 있습니다. hello 것만 왼쪽된 toodo toobind hello 인증서를 업로드 toohello 웹 앱입니다. Hello를 사용 하 여이 작업을 수행 [az 앱 서비스 웹 구성 ssl 바인딩을](/cli/azure/appservice/web/config/ssl#bind) 명령입니다.
 
-아래 명령에서 `<app_name>`을 고유한 앱 이름으로, `<thumbprint-from-previous-output>`을 이전 명령에서 가져온 인증서 지문으로 대체합니다. 
+아래 hello 명령을 대체할 하십시오 `<app_name>` 을 고유한 응용 프로그램 이름 및 `<thumbprint-from-previous-output>` hello 이전 명령에서 얻을 수 있는 hello 인증서 지 문으로 합니다. 
 
 az appservice web config ssl bind --name <app_name> --resource-group myResourceGroup --certificate-thumbprint <thumbprint-from-previous-output> --ssl-type SNI
 
-인증서를 웹앱에 바인딩하면 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다.
+Hello 인증서가 바인딩된 tooyour 웹 응용 프로그램, 다음 예제에서는 정보 비슷한 toohello를 hello Azure CLI로 표시 됩니다.
 
 { "availabilityState": "Normal", "clientAffinityEnabled": true, "clientCertEnabled": false, "cloningInfo": null, "containerSize": 0, "dailyMemoryTimeQuota": 0, "defaultHostName": "<app_name>.azurewebsites.net", "enabled": true, "enabledHostNames": [ "www.contoso.com", "<app_name>.azurewebsites.net", "<app_name>.scm.azurewebsites.net" ], "gatewaySiteName": null, "hostNameSslStates": [ { "hostType": "Standard", "name": "<app_name>.azurewebsites.net", "sslState": "Disabled", "thumbprint": null, "toUpdate": null, "virtualIp": null }, { "hostType": "Repository", "name": "<app_name>.scm.azurewebsites.net", "sslState": "Disabled", "thumbprint": null, "toUpdate": null, "virtualIp": null }, { "hostType": "Standard", "name": "www.contoso.com", "sslState": "SniEnabled", "thumbprint": "9FD1D2D06E2293673E2A8D1CA484A092BD016D00", "toUpdate": null, "virtualIp": null } ], "hostNames": [ "www.contoso.com", "<app_name>.azurewebsites.net" ], "hostNamesDisabled": false, "hostingEnvironmentProfile": null, "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/site s/<app_name>", "isDefaultContainer": null, "kind": "WebApp", "lastModifiedTimeUtc": "2017-03-29T14:36:18.803333", "location": "West Europe", "maxNumberOfWorkers": null, "microService": "false", "name": "<app_name>", "outboundIpAddresses": "13.94.143.57,13.94.136.57,40.68.199.146,13.94.138.55,13.94.140.1", "premiumAppDeployed": null, "repositorySiteName": "<app_name>", "reserved": false, "resourceGroup": "myResourceGroup", "scmSiteAlsoStopped": false, "serverFarmId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsof t.Web/serverfarms/myAppServicePlan", "siteConfig": null, "slotSwapStatus": null, "state": "Running", "suspendedTill": null, "tags": null, "targetSwapSlot": null, "trafficManagerHostNames": null, "type": "Microsoft.Web/sites", "usageState": "Normal" }
 
-브라우저에서 사용자 지정 도메인 이름의 HTTPS 끝점으로 이동합니다. 예:
+브라우저에서 사용자 지정 도메인 이름의 tooHTTPS 끝점을 이동 합니다. 예:
 
 ```
 https://www.contoso.com 

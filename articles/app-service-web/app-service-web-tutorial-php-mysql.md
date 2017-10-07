@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 PHP 및 MySQL 웹앱 빌드 | Microsoft Docs"
-description: "MySQL 데이터베이스에 연결하여 Azure에서 PHP 앱이 작동하도록 하는 방법에 대해 알아봅니다."
+title: "Azure에서 PHP 및 MySQL 웹 앱 aaaBuild | Microsoft Docs"
+description: "자세한 내용은 방법 tooget Azure에서 작업 하는 PHP 응용 프로그램 연결 tooa로 MySQL 데이터베이스를 Azure입니다."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 07/21/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 6e8d8962180f7534b0b9074f03ecc8ea431ae1a4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3c050b30e2e2c80d011bed989cd5f8cecac35d15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-php-and-mysql-web-app-in-azure"></a>Azure에서 PHP 및 MySQL 웹앱 빌드
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다. 이 자습서에서는 Azure에서 PHP 웹앱을 만들고 MySQL 데이터베이스에 연결하는 방법을 보여 줍니다. 완료되면 [Laravel](https://laravel.com/) 앱이 Azure App Service Web Apps에서 실행됩니다.
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다. 이 자습서에서는 toocreate PHP Azure에서 응용 프로그램을 구성 하 고 tooa MySQL 데이터베이스를 연결 하는 방법을 보여 줍니다. 완료되면 [Laravel](https://laravel.com/) 앱이 Azure App Service Web Apps에서 실행됩니다.
 
 ![Azure App Service에서 실행 중인 PHP 앱](./media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
 
@@ -31,20 +31,20 @@ ms.lasthandoff: 08/29/2017
 
 > [!div class="checklist"]
 > * Azure에서 MySQL 데이터베이스 만들기
-> * MySQL에 PHP 앱 연결
-> * Azure에 앱 배포
-> * 데이터 모델 업데이트 및 앱 다시 배포
+> * PHP 응용 프로그램 tooMySQL 연결
+> * Hello 앱 tooAzure 배포
+> * Hello 데이터 모델을 업데이트 하 고 hello 응용 프로그램을 다시 배포
 > * Azure에서 진단 로그 스트림
-> * Azure Portal에서 앱 관리
+> * Hello Azure 포털에서에서 hello 응용 프로그램 관리
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서:
 
 * [Git 설치](https://git-scm.com/)
 * [PHP 5.6.4 이상 설치](http://php.net/downloads.php)
 * [작성기 설치](https://getcomposer.org/doc/00-intro.md)
-* PHP 확장 Laravel에 필요한 OpenSSL, Pdo-mysql, Mbstring, Tokenizer, XML 사용
+* PHP 확장 Laravel 요구에 따라 hello를 사용 하도록 설정: OpenSSL, PDO MySQL, Mbstring, 토크 나이저, XML
 * [MySQL 설치 및 시작](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
@@ -53,21 +53,21 @@ ms.lasthandoff: 08/29/2017
 
 이 단계에서는 이 자습서에서 사용할 데이터베이스를 로컬 MySQL 서버에 만듭니다.
 
-### <a name="connect-to-local-mysql-server"></a>로컬 MySQL 서버에 연결
+### <a name="connect-toolocal-mysql-server"></a>Toolocal MySQL 서버 연결
 
-터미널 창에서 로컬 MySQL 서버에 연결합니다. 이 터미널 창을 사용하여 이 자습서의 모든 명령을 실행할 수 있습니다.
+터미널 창에서 tooyour 로컬 MySQL 서버를 연결 합니다. 이 자습서에서는이 터미널 윈도우 toorun 모든 hello 명령을 사용할 수 있습니다.
 
 ```bash
 mysql -u root -p
 ```
 
-암호를 묻는 메시지가 표시되면 `root` 계정에 대한 암호를 입력합니다. 루트 계정 암호를 기억하지 못하는 경우 [MySQL: 루트 암호를 재설정하는 방법](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)을 참조하세요.
+암호에 대 한 메시지가 hello에 대 한 hello 암호 입력 `root` 계정. 참조 루트 계정 암호를 기억 하지 못하는 경우 [MySQL: tooReset 루트 암호를 hello 어떻게](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)합니다.
 
-명령이 성공적으로 실행되면 MySQL 서버가 실행되고 있습니다. 그렇지 않은 경우 [MySQL 설치 후 단계](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)에 따라 로컬 MySQL 서버가 시작되었는지 확인합니다.
+명령이 성공적으로 실행되면 MySQL 서버가 실행되고 있습니다. 그렇지 않은 경우 로컬 MySQL 서버의 다음 hello에서 시작 되었는지 확인 [MySQL 사후 설치 단계](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)합니다.
 
 ### <a name="create-a-database-locally"></a>로컬에서 데이터베이스 만들기
 
-`mysql` 프롬프트에서 데이터베이스를 만듭니다.
+Hello에 `mysql` 요청에서 데이터베이스를 만듭니다.
 
 ```sql 
 CREATE DATABASE sampledb;
@@ -84,18 +84,18 @@ quit
 ## <a name="create-a-php-app-locally"></a>로컬에서 PHP 앱 만들기
 이 단계에서는 Laravel 샘플 응용 프로그램 가져오고, 해당 데이터베이스를 구성한 후 로컬로 실행합니다. 
 
-### <a name="clone-the-sample"></a>샘플 복제
+### <a name="clone-hello-sample"></a>복제 hello 예제
 
-터미널 창에서 `cd`를 사용하여 작업 디렉터리로 이동합니다.
+Hello 터미널 창에서 `cd` tooa 작업 디렉터리입니다.
 
-다음 명령을 실행하여 샘플 리포지토리를 복제합니다.
+다음 명령은 tooclone hello 샘플 리포지토리 hello를 실행 합니다.
 
 ```bash
 git clone https://github.com/Azure-Samples/laravel-tasks
 ```
 
-`cd`를 사용하여 복제된 디렉터리로 이동합니다.
-필요한 패키지를 설치합니다.
+`cd`tooyour 복제 된 디렉터리입니다.
+Hello 필요한 패키지를 설치 합니다.
 
 ```bash
 cd laravel-tasks
@@ -104,7 +104,7 @@ composer install
 
 ### <a name="configure-mysql-connection"></a>MySQL 연결 구성
 
-리포지토리 루트에서 *.env*라는 파일을 만듭니다. 다음 변수를 *.env* 파일에 복사합니다. _&lt;root_password>_ 자리 표시자를 MySQL 루트 사용자의 암호로 바꿉니다.
+Hello 리포지토리 루트 라는 파일을 만들어 *.env*합니다. Hello에 변수를 다음 복사 hello *.env* 파일입니다. Hello 대체  _&lt;root_password >_ 자리 표시자 hello MySQL 루트 사용자의 암호를 사용 합니다.
 
 ```
 APP_ENV=local
@@ -118,11 +118,11 @@ DB_USERNAME=root
 DB_PASSWORD=<root_password>
 ```
 
-Laravel에서 _.env_ 파일을 사용하는 방법에 대한 자세한 내용은 [Laravel 환경 구성](https://laravel.com/docs/5.4/configuration#environment-configuration)(영문)을 참조하세요.
+Laravel hello를 사용 하는 방법에 대 한 내용은 _.env_ 파일, 참조 [Laravel 환경 구성](https://laravel.com/docs/5.4/configuration#environment-configuration)합니다.
 
-### <a name="run-the-sample-locally"></a>로컬에서 샘플 실행
+### <a name="run-hello-sample-locally"></a>Hello 샘플을 로컬로 실행
 
-[Laravel 데이터베이스 마이그레이션](https://laravel.com/docs/5.4/migrations)(영문)을 실행하여 응용 프로그램에 필요한 테이블을 만듭니다. 마이그레이션에서 만들어진 테이블을 보려면 Git 리포지토리의 _database/migrations_ 디렉터리를 살펴봅니다.
+실행 [Laravel 데이터베이스 마이그레이션을](https://laravel.com/docs/5.4/migrations) toocreate hello 테이블 hello 응용 프로그램 요구 합니다. 어떤 테이블에서에서 생성 됩니다 hello 마이그레이션에서 봐 hello toosee _데이터베이스/마이그레이션_ hello Git 리포지토리에 디렉터리입니다.
 
 ```bash
 php artisan migrate
@@ -134,23 +134,23 @@ php artisan migrate
 php artisan key:generate
 ```
 
-응용 프로그램을 실행합니다.
+Hello 응용 프로그램을 실행 합니다.
 
 ```bash
 php artisan serve
 ```
 
-브라우저에서 `http://localhost:8000`으로 이동합니다. 해당 페이지에서 몇 가지 작업을 추가합니다.
+너무 이동`http://localhost:8000` 브라우저에서 합니다. Hello 페이지에서 몇 가지 작업을 추가 합니다.
 
-![PHP가 MySQL 연결에 성공](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
+![PHP tooMySQL 성공적으로 연결](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
 
-PHP를 중지하려면 터미널에서 `Ctrl + C`를 입력합니다.
+PHP toostop 입력 `Ctrl + C` hello 터미널에 있습니다.
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-mysql-in-azure"></a>Azure에서 MySQL 만들기
 
-이 단계에서는 [MySQL용 Azure 데이터베이스(미리 보기)](/azure/mysql)에서 MySQL 데이터베이스를 만듭니다. 나중에 이 데이터베이스에 연결할 PHP 응용 프로그램을 구성합니다.
+이 단계에서는 [MySQL용 Azure 데이터베이스(미리 보기)](/azure/mysql)에서 MySQL 데이터베이스를 만듭니다. 나중 hello PHP 응용 프로그램 tooconnect toothis 데이터베이스를 구성 합니다.
 
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
@@ -158,9 +158,9 @@ PHP를 중지하려면 터미널에서 `Ctrl + C`를 입력합니다.
 
 ### <a name="create-a-mysql-server"></a>MySQL 서버 만들기
 
-[az mysql server create](/cli/azure/mysql/server#create) 명령을 사용하여 MySQL용 Azure 데이터베이스의 서버를 만듭니다.
+Hello로 MySQL (미리 보기)에 대 한 Azure 데이터베이스에서 서버 만들기 [az mysql server 만들기](/cli/azure/mysql/server#create) 명령입니다.
 
-다음 명령에서 _&lt;mysql_server_name>_ 자리 표시자를 고유한 MySQL 서버 이름으로 바꿉니다(유효한 문자: `a-z`, `0-9` 및 `-`). 이 이름은 MySQL 서버의 호스트 이름(`<mysql_server_name>.database.windows.net`)의 일부이며, 전역적으로 고유해야 합니다.
+Hello에 hello 나타나는 MySQL 서버 이름을 대체 다음 명령을,  _&lt;mysql_server_name >_ 자리 표시자 (유효한 문자는 `a-z`, `0-9`, 및 `-`). 이 이름은의 hello MySQL 서버 호스트 이름 부분입니다 (`<mysql_server_name>.database.windows.net`), toobe 전역적으로 고유 해야 합니다.
 
 ```azurecli-interactive
 az mysql server create \
@@ -171,7 +171,7 @@ az mysql server create \
     --admin-password MySQLAzure2017
 ```
 
-MySQL 서버를 만들면 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다.
+Hello MySQL 서버를 만든 다음 예제에서는 정보 비슷한 toohello를 hello Azure CLI로 표시 됩니다.
 
 ```json
 {
@@ -188,7 +188,7 @@ MySQL 서버를 만들면 Azure CLI는 다음 예제와 비슷한 정보를 표�
 
 ### <a name="configure-server-firewall"></a>서버 방화벽 구성
 
-[az mysql server firewall-rule create](/cli/azure/mysql/server/firewall-rule#create) 명령을 사용하여 클라이언트 연결을 허용하도록 MySQL 서버에 대한 방화벽 규칙을 만듭니다.
+방화벽 규칙 만들기 MySQL 서버 tooallow 클라이언트에 대 한 연결 hello를 사용 하 여 [az mysql 서버 방화벽 규칙 만들기](/cli/azure/mysql/server/firewall-rule#create) 명령입니다.
 
 ```azurecli-interactive
 az mysql server firewall-rule create \
@@ -200,23 +200,23 @@ az mysql server firewall-rule create \
 ```
 
 > [!NOTE]
-> MySQL용 Azure 데이터베이스(미리 보기)에서는 현재 Azure 서비스 연결만 제한하지 않습니다. Azure의 IP 주소는 동적으로 할당되므로 모든 IP 주소를 사용하도록 설정하는 것이 좋습니다. 이 서비스는 미리 보기로 있으며, 데이터베이스를 보호하기 위해 더 나은 방법을 제공하도록 계획되어 있습니다.
+> MySQL (미리 보기)에 대 한 azure 데이터베이스 연결만 tooAzure 서비스를 제한할 현재 하지 않습니다. Azure의 IP 주소를 동적으로 할당 것이 더 나은 tooenable 모든 IP 주소입니다. hello 서비스가 미리 보기입니다. 데이터베이스를 보호하기 위해 더 나은 방법을 제공하도록 계획되어 있습니다.
 >
 >
 
-### <a name="connect-to-production-mysql-server-locally"></a>로컬에서 프로덕션 MySQL 서버에 연결
+### <a name="connect-tooproduction-mysql-server-locally"></a>MySQL 서버를 로컬로 tooproduction 연결
 
-터미널 창에서 Azure의 MySQL 서버에 연결합니다. _&lt;mysql_server_name>_에 대해 이전에 지정한 값을 사용합니다.
+Hello 터미널 창에서 Azure의 toohello MySQL 서버를 연결 합니다. 에 대 한 이전에 지정 된 값이 hello를 사용 하 여  _&lt;mysql_server_name >_합니다.
 
 ```bash
 mysql -u adminuser@<mysql_server_name> -h <mysql_server_name>.database.windows.net -P 3306 -p
 ```
 
-암호를 묻는 메시지가 표시되면 데이터베이스를 만들 때 지정한 _$tr0ngPa$w0rd!_를 사용합니다.
+암호를 입력 하는 경우 사용 _tr0ngPa $$ w0rd!_, hello 데이터베이스를 만들 때 지정 합니다.
 
 ### <a name="create-a-production-database"></a>프로덕션 데이터베이스 만들기
 
-`mysql` 프롬프트에서 데이터베이스를 만듭니다.
+Hello에 `mysql` 요청에서 데이터베이스를 만듭니다.
 
 ```sql
 CREATE DATABASE sampledb;
@@ -224,28 +224,28 @@ CREATE DATABASE sampledb;
 
 ### <a name="create-a-user-with-permissions"></a>사용 권한이 있는 사용자 만들기
 
-_phpappuser_라는 데이터베이스 사용자를 만들고 `sampledb` 데이터베이스의 모든 권한을 부여합니다.
+라는 데이터베이스 사용자 만들기 _phpappuser_ hello에서 모든 권한을 지정 `sampledb` 데이터베이스입니다.
 
 ```sql
 CREATE USER 'phpappuser' IDENTIFIED BY 'MySQLAzure2017'; 
-GRANT ALL PRIVILEGES ON sampledb.* TO 'phpappuser';
+GRANT ALL PRIVILEGES ON sampledb.* too'phpappuser';
 ```
 
-`quit`를 입력하여 서버 연결을 종료합니다.
+입력 하 여 hello 서버 연결을 종료 `quit`합니다.
 
 ```sql
 quit
 ```
 
-## <a name="connect-app-to-azure-mysql"></a>Azure MySQL에 앱 연결
+## <a name="connect-app-tooazure-mysql"></a>응용 프로그램 tooAzure MySQL 연결
 
-이 단계에서는 MySQL용 Azure 데이터베이스(미리 보기)에서 만든 MySQL 데이터베이스에 PHP 응용 프로그램을 연결합니다.
+이 단계에서는 MySQL (미리 보기)에 대 한 Azure 데이터베이스에서 만든 hello PHP 응용 프로그램 toohello MySQL 데이터베이스를 연결 합니다.
 
 <a name="devconfig"></a>
 
-### <a name="configure-the-database-connection"></a>데이터베이스 연결 구성
+### <a name="configure-hello-database-connection"></a>Hello 데이터베이스 연결 구성
 
-리포지토리 루트에서 _.env.production_ 파일을 만들고 다음 변수를 복사합니다. _&lt;mysql_server_name>_ 자리 표시자를 바꿉니다.
+Hello 리포지토리 루트에서 만듭니다는 _. env.production_ 파일과 복사본 hello에 변수를 수행 합니다. Hello 자리 표시자 대체  _&lt;mysql_server_name >_합니다.
 
 ```
 APP_ENV=production
@@ -260,17 +260,17 @@ DB_PASSWORD=MySQLAzure2017
 MYSQL_SSL=true
 ```
 
-변경 내용을 저장합니다.
+Hello 변경 내용을 저장 합니다.
 
 > [!TIP]
-> MySQL 연결 정보를 보호하기 위해 이 파일은 이미 Git 리포지토리에서 제외됩니다(리포지토리 루트의 _.gitignore_ 참조). 나중에 MySQL용 Azure 데이터베이스(미리 보기)에서 데이터베이스에 연결하도록 App Service에서 환경 변수를 구성하는 방법에 대해 알아봅니다. 환경 변수를 사용하면 App Service에서 *.env* 파일이 필요하지 않습니다.
+> MySQL 연결 정보를이 파일 hello Git 저장소에서 이미 제외 되었습니다. toosecure (참조 _.gitignore_ hello 리포지토리 루트에). 이상에서는 MySQL (미리 보기)에 대 한 Azure 데이터베이스에서 데이터베이스 응용 프로그램 서비스 tooconnect tooyour에서 환경 변수 tooconfigure 방법 방법을 배웁니다. 환경 변수를 사용 하면 hello을 필요가 없습니다 *.env* 앱 서비스에서 파일입니다.
 >
 
 ### <a name="configure-ssl-certificate"></a>SSL 인증서 구성
 
-기본적으로 MySQL용 Azure 데이터베이스에는 클라이언트로부터의 SSL 연결이 적용됩니다. Azure에서 MySQL 데이터베이스에 연결하려면 _.pem_ SSL 인증서를 사용해야 합니다.
+기본적으로 MySQL용 Azure 데이터베이스에는 클라이언트로부터의 SSL 연결이 적용됩니다. 사용 해야 tooconnect tooyour Azure의 MySQL 데이터베이스를 한 _.pem_ SSL 인증서입니다.
 
-다음 코드와 같이 _config/database.php_를 열고 _sslmode_ 및 _options_ 매개 변수를 `connections.mysql`에 추가합니다.
+열기 _config/database.php_ hello 추가 _sslmode_ 및 _옵션_ 매개 변수가 너무`connections.mysql`hello 코드 다음에 나온 것 처럼 합니다.
 
 ```php
 'mysql' => [
@@ -282,54 +282,54 @@ MYSQL_SSL=true
 ],
 ```
 
-이 _certificate.pem_을 생성하는 방법에 대한 내용은 [MySQL용 Azure 데이터베이스에 안전하게 연결하기 위한 사용자 응용 프로그램의 SSL 연결 구성](../mysql/howto-configure-ssl.md)을 참조하세요.
+toolearn 어떻게 toogenerate이 _certificate.pem_, 참조 [응용 프로그램 toosecurely에서 SSL 구성 연결 MySQL 용 tooAzure 데이터베이스 연결](../mysql/howto-configure-ssl.md)합니다.
 
 > [!TIP]
-> _/ssl/certificate.pem_ 경로는 Git 리포지토리의 기존 _certificate.pem_ 파일을 가리킵니다. 이 파일은 이 자습서의 편의를 위해 제공됩니다. 최상의 방법으로 _.pem_ 인증서를 원본 제어에 커밋하지 않아야 합니다. 
+> hello 경로 _/ssl/certificate.pem_ tooan 기존 가리키는 _certificate.pem_ hello Git 리포지토리에서 파일입니다. 이 파일은 이 자습서의 편의를 위해 제공됩니다. 최상의 방법으로 _.pem_ 인증서를 원본 제어에 커밋하지 않아야 합니다. 
 >
 
-### <a name="test-the-application-locally"></a>로컬에서 응용 프로그램 테스트
+### <a name="test-hello-application-locally"></a>로컬로 hello 응용 프로그램 테스트
 
-_.env.production_을 환경 파일로 사용해서 Laravel 데이터베이스 마이그레이션을 실행하고 MySQL용 Azure 데이터베이스(미리 보기)에서 MySQL 데이터베이스에 테이블을 만듭니다. _.env.production_에는 Azure의 MySQL 데이터베이스에 대한 연결 정보가 있습니다.
+데이터베이스 마이그레이션에 Laravel 실행 _. env.production_ MySQL (미리 보기)에 대 한 Azure 데이터베이스에서 MySQL 데이터베이스의 환경 파일 toocreate hello 테이블 hello으로 합니다. 에 유의 해야 _. env.production_ Azure의 hello 연결 정보 tooyour MySQL 데이터베이스 사용 하는 합니다.
 
 ```bash
 php artisan migrate --env=production --force
 ```
 
-_.env.production_에는 아직 유효한 응용 프로그램 키가 없습니다. 터미널에서 새 키를 생성합니다.
+_.env.production_에는 아직 유효한 응용 프로그램 키가 없습니다. Hello 터미널에 것에 대 한 새를 생성 합니다.
 
 ```bash
 php artisan key:generate --env=production --force
 ```
 
-_.env.production_을 환경 파일로 사용해서 샘플 응용 프로그램을 실행합니다.
+Hello 샘플 응용 프로그램을 실행 _. env.production_ hello 환경 파일로 합니다.
 
 ```bash
 php artisan serve --env=production
 ```
 
-`http://localhost:8000`로 이동합니다. 오류 없이 페이지가 로드되면 PHP 응용 프로그램이 Azure의 MySQL 데이터베이스에 연결됩니다.
+너무 이동`http://localhost:8000`합니다. 오류 없이 hello 페이지가 로드 되 면 hello PHP 응용 프로그램이 Azure에서 MySQL 데이터베이스 사용 toohello 연결 합니다.
 
-해당 페이지에서 몇 가지 작업을 추가합니다.
+Hello 페이지에서 몇 가지 작업을 추가 합니다.
 
-![PHP가 MySQL용 Azure 데이터베이스(미리 보기)에 데이터베이스에 성공적으로 연결됨](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
+![PHP 성공적으로 연결 tooAzure 데이터베이스 MySQL (미리 보기)에 대 한](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
 
-PHP를 중지하려면 터미널에서 `Ctrl + C`를 입력합니다.
+PHP toostop 입력 `Ctrl + C` hello 터미널에 있습니다.
 
 ### <a name="commit-your-changes"></a>변경 내용을 커밋합니다
 
-다음 Git 명령을 실행하여 변경 내용을 커밋합니다.
+변경 내용을 Git 명령을 toocommit 다음 hello를 실행 합니다.
 
 ```bash
 git add .
 git commit -m "database.php updates"
 ```
 
-앱을 배포할 준비가 되었습니다.
+앱 배포 준비 toobe입니다.
 
-## <a name="deploy-to-azure"></a>Deploy to Azure
+## <a name="deploy-tooazure"></a>TooAzure 배포
 
-이 단계에서는 MySQL에 연결된 PHP 응용 프로그램을 Azure App Service에 배포합니다.
+이 단계에서는 hello PHP MySQL에 연결 된 응용 프로그램 tooAzure 앱 서비스를 배포합니다.
 
 ### <a name="create-an-app-service-plan"></a>App Service 계획 만들기
 
@@ -339,11 +339,11 @@ git commit -m "database.php updates"
 
 [!INCLUDE [Create web app no h](../../includes/app-service-web-create-web-app-no-h.md)]
 
-### <a name="set-the-php-version"></a>PHP 버전 설정
+### <a name="set-hello-php-version"></a>Set hello PHP 버전
 
-[az webapp config set](/cli/azure/webapp/config#set) 명령을 사용하여 응용 프로그램에 필요한 PHP 버전을 설정합니다.
+응용 프로그램 hello set hello PHP 버전 hello를 사용 하 여 필요한 [az webapp 구성 집합](/cli/azure/webapp/config#set) 명령입니다.
 
-다음 명령은 PHP 버전을 _7.0_으로 설정합니다.
+hello 다음 명령은 설정 hello PHP 버전 too_7.0_ 합니다.
 
 ```azurecli-interactive
 az webapp config set \
@@ -354,11 +354,11 @@ az webapp config set \
 
 ### <a name="configure-database-settings"></a>데이터베이스 설정 구성
 
-앞서 설명한 것처럼 App Service에서 환경 변수를 사용하여 Azure MySQL 데이터베이스에 연결할 수 있습니다.
+이전에 지적으로 환경 변수를 사용 하 여 앱 서비스에서 tooyour Azure의 MySQL 데이터베이스를 연결할 수 있습니다.
 
-App Service에서 [az webapp config appsettings set](/cli/azure/webapp/config/appsettings#set) 명령을 사용하여 환경 변수를 _앱 설정_으로 설정합니다.
+앱 서비스 환경 변수를 설정 _앱 설정_ hello를 사용 하 여 [az webapp 구성 appsettings 세트](/cli/azure/webapp/config/appsettings#set) 명령입니다.
 
-다음 명령에서는 `DB_HOST`, `DB_DATABASE`, `DB_USERNAME` 및 `DB_PASSWORD` 앱 설정을 구성합니다. _&lt;appname>_ 및 _&lt;mysql_server_name>_ 자리 표시자를 바꿉니다.
+hello 다음 명령을 hello 응용 프로그램 설정을 구성 `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, 및 `DB_PASSWORD`합니다. Hello 자리 표시자를 대체  _&lt;응용 프로그램 이름 >_ 및  _&lt;mysql_server_name >_합니다.
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -367,7 +367,7 @@ az webapp config appsettings set \
     --settings DB_HOST="<mysql_server_name>.database.windows.net" DB_DATABASE="sampledb" DB_USERNAME="phpappuser@<mysql_server_name>" DB_PASSWORD="MySQLAzure2017" MYSQL_SSL="true"
 ```
 
-PHP [getenv](http://www.php.net/manual/function.getenv.php) 메서드를 사용하여 설정에 액세스할 수 있습니다. Laravel 코드에서는 `getenv` PHP에 대해 [env()](https://laravel.com/docs/5.4/helpers#method-env) 래퍼를 사용합니다. 예를 들어 _config/database.php_의 MySQL 구성은 다음 코드와 같습니다.
+Hello PHP를 사용할 수 있습니다 [getenv](http://www.php.net/manual/function.getenv.php) 메서드 tooaccess hello 설정 합니다. 사용 하 여 hello Laravel 코드는 [env](https://laravel.com/docs/5.4/helpers#method-env) hello PHP 통해 래퍼 `getenv`합니다. 에 MySQL 구성 예를 들어 hello _config/database.php_ 코드 다음 hello 같습니다.
 
 ```php
 'mysql' => [
@@ -384,13 +384,13 @@ PHP [getenv](http://www.php.net/manual/function.getenv.php) 메서드를 사용�
 
 Laravel에는 App Service의 응용 프로그램 키가 필요합니다. 앱 설정을 사용하여 키를 구성할 수 있습니다.
 
-`php artisan`을 사용하면 _.env_로 저장하지 않고도 새 응용 프로그램 키를 생성할 수 있습니다.
+사용 하 여 `php artisan` toogenerate too_.env_ 저장 하지 않고 새 응용 프로그램 키입니다.
 
 ```bash
 php artisan key:generate --show
 ```
 
-[az webapp config appsettings set](/cli/azure/webapp/config/appsettings#set) 명령을 사용하여 App Service 웹앱에서 응용 프로그램 키를 설정합니다. 자리 표시자 _&lt;appname>_ 및 _&lt;outputofphpartisankey:generate>_를 바꿉니다.
+Hello 응용 프로그램 키에에서 설정 hello 앱 서비스 웹 앱 hello를 사용 하 여 [az webapp 구성 appsettings 세트](/cli/azure/webapp/config/appsettings#set) 명령입니다. Hello 자리 표시자를 대체  _&lt;응용 프로그램 이름 >_ 및  _&lt;outputofphpartisankey: 생성 >_합니다.
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -399,13 +399,13 @@ az webapp config appsettings set \
     --settings APP_KEY="<output_of_php_artisan_key:generate>" APP_DEBUG="true"
 ```
 
-`APP_DEBUG="true"`는 배포된 웹앱에서 오류가 발생하면 디버깅 정보를 반환하도록 Laravel에 지시합니다. 프로덕션 응용 프로그램을 실행할 때 더 안전한 `false`로 설정합니다.
+`APP_DEBUG="true"`지시 Laravel tooreturn 디버깅 정보 hello 웹 앱을 배포할 때 오류가 발생 합니다. 프로덕션 응용 프로그램을 실행할 때 설정 너무`false`, 변수인 더 안전 합니다.
 
-### <a name="set-the-virtual-application-path"></a>가상 응용 프로그램 경로 설정
+### <a name="set-hello-virtual-application-path"></a>Hello 가상 응용 프로그램 경로 설정 합니다
 
-웹앱에 대한 가상 응용 프로그램 경로를 설정합니다. [Laravel 응용 프로그램 수명 주기](https://laravel.com/docs/5.4/lifecycle)(영문)가 응용 프로그램의 루트 디렉터리 대신 _public_ 디렉터리에서 시작되므로 이 단계가 필요합니다. 해당 수명 주기가 루트 디렉터리에서 시작하는 다른 PHP 프레임워크는 가상 응용 프로그램 경로를 수동으로 구성하지 않아도 작동될 수 있습니다.
+Hello 웹 앱에 대 한 hello 가상 응용 프로그램 경로 설정 합니다. 이 단계는 필요 하기 때문에 hello [Laravel 응용 프로그램 수명 주기](https://laravel.com/docs/5.4/lifecycle) hello에서 시작 _공용_ hello 응용 프로그램의 루트 디렉터리가 아닌 디렉터리입니다. Hello 루트 디렉터리에서 해당 수명 주기를 시작 하는 다른 PHP 프레임 워크는 hello 가상 응용 프로그램 경로 수동으로 구성 하지 않고 작업할 수 있습니다.
 
-[az resource update](/cli/azure/resource#update) 명령을 사용하여 가상 응용 프로그램 경로를 설정합니다. _&lt;appname>_ 자리 표시자를 바꿉니다.
+Hello를 사용 하 여 hello 가상 응용 프로그램 경로 설정 [az 리소스 업데이트](/cli/azure/resource#update) 명령입니다. Hello 대체  _&lt;응용 프로그램 이름 >_ 자리 표시자입니다.
 
 ```azurecli-interactive
 az resource update \
@@ -418,7 +418,7 @@ az resource update \
     --api-version 2015-06-01
 ```
 
-기본적으로 Azure App Service에서는 루트 가상 응용 프로그램 경로(_/_)가 배포된 응용 프로그램 파일의 루트 디렉터리(_sites\wwwroot_)를 가리킵니다.
+기본적으로 Azure 앱 서비스는 hello 루트 가상 응용 프로그램 경로 가리키는 (_/_) hello의 toohello 루트 디렉터리는 응용 프로그램 파일 배포 (_sites\wwwroot_).
 
 ### <a name="configure-a-deployment-user"></a>배포 사용자 구성
 
@@ -428,15 +428,15 @@ az resource update \
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git-no-h.md)]
 
-### <a name="push-to-azure-from-git"></a>Git에서 Azure에 푸시
+### <a name="push-tooazure-from-git"></a>Git에서 tooAzure 푸시
 
-로컬 Git 리포지토리에 Azure 원격을 추가합니다.
+Azure 원격 tooyour 로컬 Git 리포지토리를 추가 합니다.
 
 ```bash
 git remote add azure <paste_copied_url_here>
 ```
 
-Azure 원격 위치에 푸시하여 PHP 응용 프로그램을 배포합니다. 배포 사용자를 만드는 작업의 일부로 이전에 제공한 암호를 묻는 메시지가 표시됩니다.
+Toohello Azure 원격 toodeploy hello PHP 응용 프로그램을 푸시하십시오. 이전 hello 배포 사용자의 hello 만들기의 일부로 제공한 hello 암호를 묻는 메시지가 나타납니다.
 
 ```bash
 git push azure master
@@ -446,7 +446,7 @@ git push azure master
 
 ```bash
 Counting objects: 3, done.
-Delta compression using up to 8 threads.
+Delta compression using up too8 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 291 bytes | 0 bytes/s, done.
 Total 3 (delta 2), reused 0 (delta 0)
@@ -460,18 +460,18 @@ remote: Running deployment command...
 ```
 
 > [!NOTE]
-> 배포 프로세스를 진행하면 마지막에 [Composer](https://getcomposer.org/) 패키지가 설치되는 것을 알 수 있습니다. App Service는 기본 배포 중에 이러한 자동화를 실행하지 않으므로 이 샘플 리포지토리는 사용 설정에 사용되는 추가 파일 3개가 루트 디렉터리에 들어 있습니다.
+> Hello 배포 프로세스를 설치 한다는 것을 알 수 있습니다 [작성기](https://getcomposer.org/) hello 끝에 패키지 합니다. 앱 서비스 기본 배포 하는 동안 이러한 자동화가 실행 되지 않으면, 하므로이 샘플 리포지토리에는 3 개의 추가 파일의 루트 디렉터리 tooenable에서:
 >
-> - `.deployment` - 이 파일은 App Service에서 `bash deploy.sh`를 사용자 지정 배포 스크립트로 실행하게 만듭니다.
-> - `deploy.sh` - 사용자 지정 배포 스크립트입니다. 파일을 검토하는 경우 `npm install` 다음에 `php composer.phar install`이 실행되는 것을 볼 수 있습니다.
-> - `composer.phar` - Composer 패키지 관리자입니다.
+> - `.deployment`-이 파일을 통해 앱 서비스 toorun 알 `bash deploy.sh` hello 사용자 지정 배포 스크립트로 합니다.
+> - `deploy.sh`-사용자 지정 배포 스크립트 hello 합니다. Hello 파일을 검토 하는 경우 실행 되는지 표시 됩니다 `php composer.phar install` 후 `npm install`합니다.
+> - `composer.phar`-hello 작성기 패키지 관리자.
 >
-> 이 방식으로 App Service에 대한 Git 기반 배포에 어떤 단계든 추가할 수 있습니다. 자세한 내용은 [사용자 지정 배포 스크립트](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script)를 참조하세요.
+> 이 접근 방식을 tooadd 모든 단계 tooyour Git 기반 배포 tooApp 서비스를 사용할 수 있습니다. 자세한 내용은 [사용자 지정 배포 스크립트](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script)를 참조하세요.
 >
 
-### <a name="browse-to-the-azure-web-app"></a>Azure 웹앱 찾아보기
+### <a name="browse-toohello-azure-web-app"></a>Toohello Azure 웹 앱을 찾아보기
 
-`http://<app_name>.azurewebsites.net`으로 이동한 후 목록에 몇 가지 작업을 추가합니다.
+너무 찾아보기`http://<app_name>.azurewebsites.net` 몇 가지 작업 toohello 목록을 추가 합니다.
 
 ![Azure App Service에서 실행 중인 PHP 앱](./media/app-service-web-tutorial-php-mysql/php-mysql-in-azure.png)
 
@@ -479,23 +479,23 @@ remote: Running deployment command...
 
 ## <a name="update-model-locally-and-redeploy"></a>로컬에서 모델 업데이트 및 다시 배포
 
-이 단계에서는 `task` 데이터 모델과 웹앱을 간단히 변경한 다음 업데이트를 Azure에 게시합니다.
+이 단계에서는 간단 하 게 변경 toohello 잘못 수행 `task` 데이터 모델 및 hello webapp, 한 다음 업데이트 tooAzure hello를 게시 합니다.
 
-작업 시나리오의 경우 작업을 완료한 것으로 표시할 수 있도록 응용 프로그램을 수정합니다.
+Hello 작업 시나리오에 대 한 작업을 완료로 표시할 수 있도록 hello 응용 프로그램을 수정 합니다.
 
 ### <a name="add-a-column"></a>열 추가
 
-터미널에서 Git 리포지토리의 루트로 이동합니다.
+Hello 터미널, toohello 루트 hello Git 리포지토리를 이동 합니다.
 
-`tasks` 테이블에 대한 새 데이터베이스 마이그레이션을 생성합니다.
+Hello에 대 한 새 데이터베이스 마이그레이션을 생성 `tasks` 테이블:
 
 ```bash
 php artisan make:migration add_complete_column --table=tasks
 ```
 
-이 명령은 생성되는 마이그레이션 파일의 이름을 표시합니다. _database/migrations_에서 이 파일을 찾아서 엽니다.
+이 명령은 생성 되는 hello 마이그레이션 파일의 이름을 hello를 표시 합니다. _database/migrations_에서 이 파일을 찾아서 엽니다.
 
-`up` 메서드를 다음 코드로 바꿉니다.
+Hello 대체 `up` 메서드 코드 다음 hello로:
 
 ```php
 public function up()
@@ -506,9 +506,9 @@ public function up()
 }
 ```
 
-앞의 코드는 `complete`라는 `tasks` 테이블에 부울 열을 추가합니다.
+hello 이전 부울 열에에서 추가 hello `tasks` 라는 테이블 `complete`합니다.
 
-`down` 메서드를 롤백 작업에 대한 다음 코드로 바꿉니다.
+Hello 대체 `down` hello 롤백 작업에 대 한 코드 다음 hello로 메서드:
 
 ```php
 public function down()
@@ -519,19 +519,19 @@ public function down()
 }
 ```
 
-터미널에서 Laravel 데이터베이스 마이그레이션을 실행하여 로컬 데이터베이스를 변경합니다.
+Hello 터미널, Laravel 데이터베이스 마이그레이션을 toomake hello 변경 hello 로컬 데이터베이스에서 실행 합니다.
 
 ```bash
 php artisan migrate
 ```
 
-[Laravel 명명 규칙](https://laravel.com/docs/5.4/eloquent#defining-models)에 따라 `Task`(_app/Task.php_ 참조) 모델은 기본적으로 `tasks` 테이블에 매핑됩니다.
+Hello에 따라 [Laravel ô ä ¢](https://laravel.com/docs/5.4/eloquent#defining-models), hello 모델 `Task` (참조 _app/Task.php_) toohello 매핑합니다 `tasks` 기본적으로 테이블입니다.
 
 ### <a name="update-application-logic"></a>응용 프로그램 논리 업데이트
 
-*routes/web.php* 파일을 엽니다. 응용 프로그램에서 해당 경로 및 비즈니스 논리를 여기에 정의합니다.
+열기 hello *routes/web.php* 파일입니다. hello 응용 프로그램의 경로 및 여기에 비즈니스 논리를 정의합니다.
 
-파일의 끝에 다음 코드를 포함하는 경로를 추가합니다.
+Hello 파일의 hello 끝 코드 다음 hello로 경로 추가 합니다.
 
 ```php
 /**
@@ -548,25 +548,25 @@ Route::post('/task/{id}', function ($id) {
 });
 ```
 
-앞의 코드는 `complete` 값을 설정/해제하여 데이터 모델을 간단히 업데이트합니다.
+hello 위의 코드는 간단한 업데이트 toohello 데이터 모델의 hello 값을 토글하 여 `complete`합니다.
 
-### <a name="update-the-view"></a>보기 업데이트
+### <a name="update-hello-view"></a>Hello 뷰 업데이트
 
-*resources/views/tasks.blade.php* 파일을 엽니다. `<tr>` 여는 태그를 찾아 다음으로 바꿉니다.
+열기 hello *resources/views/tasks.blade.php* 파일입니다. Hello `<tr>` 여는 태그과 바꿉니다.
 
 ```html
 <tr class="{{ $task->complete ? 'success' : 'active' }}" >
 ```
 
-앞의 코드는 작업이 완료되었는지 여부에 따라 행 색을 변경합니다.
+코드 변경 내용을 hello 행 색 hello 작업이 완료 되었는지 여부에 따라 앞에 오는 번호입니다.
 
-다음 줄에는 다음 코드가 있습니다.
+Hello 다음 줄에 다음 코드는 hello를 사용할 수 있습니다.
 
 ```html
 <td class="table-text"><div>{{ $task->name }}</div></td>
 ```
 
-전체 줄을 다음 코드로 바꿉니다.
+코드 다음 hello hello 줄을 전체를 바꿉니다.
 
 ```html
 <td>
@@ -581,31 +581,31 @@ Route::post('/task/{id}', function ($id) {
 </td>
 ```
 
-앞의 코드는 이전에 정의한 경로를 참조하는 제출 단추를 추가합니다.
+hello 앞의 코드에서는 앞에서 정의한 hello 경로 참조 하는 hello 전송 단추
 
-### <a name="test-the-changes-locally"></a>로컬에서 변경 내용 테스트
+### <a name="test-hello-changes-locally"></a>Hello 변경 내용을 로컬 테스트
 
-Git 리포지토리의 루트 디렉터리에서 개발 서버를 실행합니다.
+Hello Git 리포지토리의 루트 디렉터리 hello hello 개발 서버를 실행 합니다.
 
 ```bash
 php artisan serve
 ```
 
-작업 상태 변경을 확인하려면 `http://localhost:8000`으로 이동하고 확인란을 선택합니다.
+toosee hello 작업을 상태 변경, 탐색 너무`http://localhost:8000` 및 선택 hello 확인란을 선택 합니다.
 
-![작업에 확인란이 추가됨](./media/app-service-web-tutorial-php-mysql/complete-checkbox.png)
+![추가 된 확인란 tootask](./media/app-service-web-tutorial-php-mysql/complete-checkbox.png)
 
-PHP를 중지하려면 터미널에서 `Ctrl + C`를 입력합니다.
+PHP toostop 입력 `Ctrl + C` hello 터미널에 있습니다.
 
-### <a name="publish-changes-to-azure"></a>변경 내용을 Azure에 게시
+### <a name="publish-changes-tooazure"></a>변경 내용을 tooAzure 게시
 
-터미널에서 프로덕션 연결 문자열로 Laravel 데이터베이스 마이그레이션을 실행하여 Azure 데이터베이스를 변경합니다.
+Hello 터미널, hello Azure 데이터베이스 hello 프로덕션 연결 문자열 toomake hello 변경 Laravel 데이터베이스 마이그레이션을 실행 합니다.
 
 ```bash
 php artisan migrate --env=production --force
 ```
 
-Git에서 모든 변경 내용을 커밋한 다음 Azure에 코드 변경 내용을 푸시합니다.
+Git에서 모든 hello 변경 내용을 커밋하고 hello 코드 변경 내용을 tooAzure 푸시하고 합니다.
 
 ```bash
 git add .
@@ -613,17 +613,17 @@ git commit -m "added complete checkbox"
 git push azure master
 ```
 
-`git push`가 완료되면 Azure 웹앱으로 이동하여 새 기능을 테스트해 봅니다.
+한 번 hello `git push` 를 마치면 toohello Azure 웹 앱과 테스트 hello 새로운 기능을 탐색 합니다.
 
-![Azure에 게시된 모델 및 데이터베이스 변경 내용](media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
+![모델 및 데이터베이스 변경 내용이 게시 tooAzure](media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
 
-모든 작업을 추가했으면 데이터베이스에서 유지됩니다. 데이터 스키마를 업데이트하는 경우 기존 데이터는 그대로 유지됩니다.
+모든 작업을 추가한 hello 데이터베이스에 유지 됩니다. 업데이트 toohello 데이터 스키마 기존 데이터는 그대로 둡니다.
 
 ## <a name="stream-diagnostic-logs"></a>진단 로그 스트림
 
-PHP 응용 프로그램이 Azure App Service에서 실행되는 동안 콘솔 로그를 터미널에 파이프할 수 있습니다. 이 방법으로 응용 프로그램 오류를 디버깅하는 데 도움이 되는 진단 메시지를 동일하게 받을 수 있습니다.
+PHP 응용 프로그램 hello Azure 앱 서비스에서 실행 되는 동안 hello 콘솔 로그 파이프 된 tooyour 터미널 얻을 수 있습니다. 이런 방식으로 가져올 수 있습니다 hello 같은 진단 메시지 toohelp 응용 프로그램 오류를 디버깅 합니다.
 
-로그 스트리밍을 시작하려면 [az webapp log tail](/cli/azure/webapp/log#tail) 명령을 사용합니다.
+스트리밍을 사용 하 여 hello toostart 로그 [az webapp 비상 로그](/cli/azure/webapp/log#tail) 명령입니다.
 
 ```azurecli-interactive
 az webapp log tail \
@@ -631,28 +631,28 @@ az webapp log tail \
     --resource-group myResourceGroup
 ```
 
-로그 스트리밍이 시작되면 브라우저에서 Azure 웹앱을 새로 고쳐 일부 웹 트래픽을 가져옵니다. 이제 터미널에 파이프된 콘솔 로그가 표시될 수 있습니다. 콘솔 로그가 즉시 표시되지 않으면 30초 후에 다시 확인합니다.
+스트리밍 로그 시작 된 후 일부 웹 트래픽을 hello 브라우저 tooget의 hello Azure 웹 앱을 새로 고칩니다. 이제 콘솔 로그 파이프 된 toohello 터미널을 볼 수 있습니다. 콘솔 로그가 즉시 표시되지 않으면 30초 후에 다시 확인합니다.
 
-언제든지 로그 스트리밍을 중지하려면 `Ctrl`+`C`를 입력합니다.
+언제 든 지에서 스트리밍을 toostop 로그 형식 `Ctrl` + `C`합니다.
 
 > [!TIP]
-> PHP 응용 프로그램은 표준 [error_log()](http://php.net/manual/function.error-log.php)를 사용하여 콘솔에 출력할 수 있습니다. 샘플 응용 프로그램에서 _app/Http/routes.php_에서 이 접근 방식을 사용합니다.
+> PHP 응용 프로그램 hello 표준 צ ְ ײ [error_log()](http://php.net/manual/function.error-log.php) toooutput toohello 콘솔. hello 샘플 응용 프로그램에서이 접근 방식을 사용 하 여 _app/Http/routes.php_합니다.
 >
-> 웹 프레임워크로서 [Laravel은 Monolog](https://laravel.com/docs/5.4/errors) 로깅 공급자로 사용합니다. Monolog에서 콘솔에 메시지를 출력하게 하는 방법을 보려면 [PHP: monolog를 사용하여 콘솔에 로깅하는 방법(php://out)](http://stackoverflow.com/questions/25787258/php-how-to-use-monolog-to-log-to-console-php-out)을 참조하세요.
+> 웹 프레임 워크로 [Laravel Monolog 사용 하 여](https://laravel.com/docs/5.4/errors) hello 로깅 공급자입니다. toosee tooget Monolog toooutput toohello 콘솔 메시지는 방법 참조 [PHP: 어떻게 toouse monolog toolog tooconsole (php://out)](http://stackoverflow.com/questions/25787258/php-how-to-use-monolog-to-log-to-console-php-out)합니다.
 >
 >
 
-## <a name="manage-the-azure-web-app"></a>Azure 웹앱 관리
+## <a name="manage-hello-azure-web-app"></a>Hello Azure 웹 앱 관리
 
-만든 웹앱을 관리하려면 [Azure Portal](https://portal.azure.com)로 이동합니다.
+Toohello 이동 [Azure 포털](https://portal.azure.com) 만든 toomanage hello 웹 앱입니다.
 
-왼쪽 메뉴에서 **App Services**를 클릭한 다음 Azure 웹앱의 이름을 클릭합니다.
+Hello 왼쪽된 메뉴에서 클릭 **응용 프로그램 서비스**, Azure 웹 앱의 hello 이름을 클릭 하 고 있습니다.
 
-![Azure 웹앱에 대한 포털 탐색](./media/app-service-web-tutorial-php-mysql/access-portal.png)
+![포털 탐색 tooAzure 웹 응용 프로그램](./media/app-service-web-tutorial-php-mysql/access-portal.png)
 
 웹앱의 개요 페이지가 표시됩니다. 여기서 중지, 시작, 다시 시작, 찾아보기 및 삭제와 같은 기본 관리 작업을 수행할 수 있습니다.
 
-왼쪽 메뉴에서 앱을 구성하기 위한 페이지를 제공합니다.
+왼쪽된 메뉴 hello 응용 프로그램을 구성 하는 페이지를 제공 합니다.
 
 ![Azure Portal의 App Service 페이지](./media/app-service-web-tutorial-php-mysql/web-app-blade.png)
 
@@ -666,13 +666,13 @@ az webapp log tail \
 
 > [!div class="checklist"]
 > * Azure에서 MySQL 데이터베이스 만들기
-> * MySQL에 PHP 앱 연결
-> * Azure에 앱 배포
-> * 데이터 모델 업데이트 및 앱 다시 배포
+> * PHP 응용 프로그램 tooMySQL 연결
+> * Hello 앱 tooAzure 배포
+> * Hello 데이터 모델을 업데이트 하 고 hello 응용 프로그램을 다시 배포
 > * Azure에서 진단 로그 스트림
-> * Azure Portal에서 앱 관리
+> * Hello Azure 포털에서에서 hello 응용 프로그램 관리
 
-다음 자습서로 이동하여 사용자 지정 DNS 이름을 웹앱에 매핑하는 방법을 알아봅니다.
+다음 자습서 toolearn toohello 진행 방법을 사용자 지정 DNS toomap tooa 웹 앱의 이름을 합니다.
 
 > [!div class="nextstepaction"]
-> [Azure Web Apps에 기존 사용자 지정 DNS 이름 매핑](app-service-web-tutorial-custom-domain.md)
+> [지도 기존 사용자 지정 DNS 이름 tooAzure 웹 응용 프로그램](app-service-web-tutorial-custom-domain.md)

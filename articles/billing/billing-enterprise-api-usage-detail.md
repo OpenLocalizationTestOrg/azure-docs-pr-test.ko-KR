@@ -1,6 +1,6 @@
 ---
-title: "Azure 청구 엔터프라이즈 API - 사용량 세부 정보 | Microsoft Docs"
-description: "Azure 리소스 소비 및 추세에 대한 통찰력을 제공하는 데 사용되는 Azure 청구 사용량 및 RateCard API에 대한 자세한 정보를 제공합니다."
+title: "aaaAzure 청구 엔터프라이즈 Api-사용량 세부 정보 | Microsoft Docs"
+description: "Azure 리소스 소비 및 추세에 대 한 tooprovide 사용 되는 정보는 Azure 청구 사용량 및 RateCard Api에 알아봅니다."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 5b49220e6eb27544dba54255ee88c56ad79c3141
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: def0805008261df5872f015db3d2b26e47d25569
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---usage-details"></a>기업 고객을 위한 보고 API - 사용량 세부 정보
 
-사용량 세부 정보 API는 등록에 따른 사용량과 예상 요금 의 일별 분석 결과를 제공합니다. 이 결과에는 인스턴스, 측정기 및 부서에 대한 정보도 포함 됩니다. API는 청구 기간 또는 지정된 시작 날짜와 종료 날짜를 기준으로 쿼리할 수 있습니다. 
+사용 현황 세부 API hello 소비 된 수량 및 등록 하 여 예상된 요금 일별로 구분을 제공합니다. hello 결과는 인스턴스, 측정 단위 및 부서에 대 한 정보 포함 됩니다. 지정 된 시작 및 종료 날짜 또는 청구 기간에 의해 hello API를 쿼리할 수 있습니다. 
 ## <a name="consumption-apis"></a>사용량 API
 
 
 ##<a name="request"></a>요청 
-추가해야 할 공통 헤더 속성은 [여기](billing-enterprise-api.md)에 지정되어 있습니다. 청구 기간을 지정하지 않으면 현재 청구 기간에 대한 데이터가 반환됩니다. 사용자 지정 시간 범위는 yyyy-MM-dd 형식의 시작 날짜 및 종료 날짜 매개 변수로 지정할 수 있으며, 지원되는 최대 시간 범위는 36개월입니다.  
+Toobe 추가 해야 하는 공통 헤더 속성이 지정 되어 [여기](billing-enterprise-api.md)합니다. 청구 기간 지정 하지 않으면 다음 hello 현재 청구에 대 한 데이터 기간 반환 됩니다. 사용자가 지정한 시간 범위 hello 시작 되 면 지정할 수 있습니다 및 종료 날짜의에서 매개 변수를 hello 형식 yyyy. hello 지원 되는 최대 시간 범위는 36 개월입니다.  
 
 |메서드 | 요청 URI|
 |-|-|
@@ -37,12 +37,12 @@ ms.lasthandoff: 08/18/2017
 |GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/usagedetailsbycustomdate?startTime=2017-01-01&endTime=2017-01-10|
 
 > [!Note]
-> API의 미리 보기 버전을 사용하려면 위 URL에서 v2를 v1로 바꿉니다.
+> toouse hello 미리 보기 버전의 API, URL 위에 hello v1 v2를 대체 합니다.
 >
 
 ## <a name="response"></a>응답
 
-> 잠재적으로 많은 양의 데이터로 인해 결과 집합이 페이징됩니다. nextLink 속성(있는 경우)은 데이터의 다음 페이지에 대한 링크를 지정합니다. 링크가 비어 있으면 이 링크가 마지막 페이지임을 나타냅니다. 
+> Toohello 잠재적으로 많은 양의 데이터 hello 결과 인해 집합이 페이징 됩니다. hello nextLink 속성이 있는 경우 데이터의 다음 페이지 hello에 대 한 hello 링크를 지정 합니다. Hello 링크 비어 있으면 즉 hello 마지막 페이지를 나타냅니다. 
 <br/>
 
     {
@@ -92,42 +92,42 @@ ms.lasthandoff: 08/18/2017
 
 |속성 이름| 형식| 설명
 |-|-|-|
-|id| string| API 호출의 고유 ID |
-|데이터| JSON 배열| 모든 인스턴스/측정기에 대한 일별 사용량 세부 정보의 배열|
-|nextLink| string| 더 많은 데이터 페이지가 있으면 nextLink에서 다음 데이터 페이지를 반환하는 URL을 가리킵니다. |
+|id| string| hello hello API 호출에 대 한 고유 Id입니다. |
+|데이터| JSON 배열| hello 모든 instance\meter에 대 한 사용 정보를 매일의 배열입니다.|
+|nextLink| string| 페이지 데이터 hello nextLink 포인트 toohello URL tooreturn hello 다음 데이터 페이지를 더 많이 있는 경우. |
 |accountId| int| 사용되지 않는 필드입니다. 이전 버전과의 호환성을 위해 존재합니다. |
 |productId| int| 사용되지 않는 필드입니다. 이전 버전과의 호환성을 위해 존재합니다. |
 |resourceLocationId| int| 사용되지 않는 필드입니다. 이전 버전과의 호환성을 위해 존재합니다. |
 |consumedServiceID| int| 사용되지 않는 필드입니다. 이전 버전과의 호환성을 위해 존재합니다. |
 |departmentId| int| 사용되지 않는 필드입니다. 이전 버전과의 호환성을 위해 존재합니다. |
-|accountOwnerEmail| string| 계정 소유자의 전자 메일 계정입니다. |
-|accountName| string| 계정의 이름을 입력한 사용자입니다. |
+|accountOwnerEmail| string| Hello 계정 소유자의 전자 메일 계정입니다. |
+|accountName| string| 입력 한 고객 이름 hello 계정입니다. |
 |serviceAdministratorId| string| 서비스 관리자의 전자 메일 주소입니다. |
 |subscriptionId| int| 사용되지 않는 필드입니다. 이전 버전과의 호환성을 위해 존재합니다. |
-|subscriptionGuid| string| 구독의 전역 고유 식별자입니다. |
-|subscriptionName| string| 구독의 이름입니다. |
-|date| string| 소비가 발생한 날짜입니다. |
-|product| string| 측정기에 대한 추가 세부 정보입니다. 예: A1(VM)Windows - 아시아 태평양 동부|
-|meterId| string| 사용량을 내보낸 측정기의 식별자입니다. |
-|meterCategory| string| 사용된 Azure 플랫폼 서비스입니다. |
-|meterSubCategory| string| 요율에 영향을 줄 수 있는 Azure 서비스 유형을 정의합니다. 예: A1 VM(Windows 외)|
-|meterRegion| string| 데이터 센터 위치에 따라 가격이 책정되는 특정 서비스에 대한 데이터 센터의 위치를 식별합니다. |
-|meterName| string| 측정기의 이름입니다. |
-|consumedQuantity| double| 사용된 측정기의 양입니다. |
-|resourceRate| double| 청구 가능 단위당 해당되는 속도입니다. |
-|cost| double| 측정기에 대해 발생한 요금입니다. |
-|resourceLocation| string| 측정기가 실행되고 있는 데이터 센터를 식별합니다. |
-|consumedService| string| 사용된 Azure 플랫폼 서비스입니다. |
-|instanceId| string| 이 식별자는 리소스의 이름 또는 정규화된 리소스 ID입니다. 자세한 내용은 [Azure Resource Manager API](https://docs.microsoft.com/rest/api/resources/resources)를 참조하세요. |
+|subscriptionGuid| string| Hello 구독에 대 한 전역 고유 식별자입니다. |
+|subscriptionName| string| Hello 구독의 이름입니다. |
+|date| string| hello 날짜 소비 발생 했습니다. |
+|product| string| Hello 수준에 추가 세부 정보입니다. 예: A1(VM)Windows - 아시아 태평양 동부|
+|meterId| string| hello 식별자 사용 내보내집니다는 hello 미터입니다. |
+|meterCategory| string| 번호 사용 된 Azure 플랫폼 서비스입니다. |
+|meterSubCategory| string| Hello 속도 영향을 줄 수 있는 hello Azure 서비스 유형을 정의 합니다. 예: A1 VM(Windows 외)|
+|meterRegion| string| 데이터 센터 위치에 따라 가격이 책정 됩니다 하는 특정 서비스에 대 한 hello 데이터 센터의 hello 위치를 식별 합니다. |
+|meterName| string| Hello 표시기의 이름입니다. |
+|consumedQuantity| double| 소비 된 hello 미터의 hello 양입니다. |
+|resourceRate| double| 청구 가능 단위당 적용 가능한 hello 속도입니다. |
+|cost| double| hello 충전량 hello 미터에 대 한 발생 되었습니다. |
+|resourceLocation| string| Hello 측정기 실행 되 고 있는 hello 데이터 센터를 식별 합니다. |
+|consumedService| string| 번호 사용 된 Azure 플랫폼 서비스입니다. |
+|instanceId| string| 이 식별자는 hello 리소스의 hello 이름 또는 hello 정규화 된 리소스 id입니다. 자세한 내용은 [Azure Resource Manager API](https://docs.microsoft.com/rest/api/resources/resources)를 참조하세요. |
 |serviceInfo1| string| 내부 Azure 서비스 메타데이터입니다. |
 |serviceInfo2| string| 예를 들어, 가상 컴퓨터의 이미지 형식 및 ExpressRoute의 ISP 이름입니다. |
 |additionalInfo| string| 서비스 특정 메타데이터입니다. 예를 들어 가상 컴퓨터용 이미지 형식입니다. |
 |tags| string| 태그를 추가한 고객입니다. 자세한 내용은 [태그를 사용하여 Azure 리소스 구성](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-using-tags)을 참조하세요. |
 |storeServiceIdentifier| string| 이 열이 사용되지 않습니다. 이전 버전과의 호환성을 위해 존재합니다. |
-|departmentName| string| 부서 이름입니다. |
-|costCenter| string| 사용량이 연결된 비용 센터입니다. |
-|unitOfMeasure| string| 서비스 요금이 청구되는 단위를 식별합니다. 예: GB, 시간, 10,000초 |
-|resourceGroup| string| 배포된 측정기가 실행되는 리소스 그룹입니다. 자세한 내용은 [Azure Resource Manager 개요](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)를 참조하세요. |
+|departmentName| string| Hello 부서의 이름입니다. |
+|costCenter| string| hello 사용과 연관 hello 비용 센터 |
+|unitOfMeasure| string| Hello 서비스에 청구 되는 hello 단위를 식별 합니다. 예: GB, 시간, 10,000초 |
+|resourceGroup| string| hello 리소스 그룹에서 실행 중인 배포 된 미터는 hello에 있습니다. 자세한 내용은 [Azure Resource Manager 개요](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)를 참조하세요. |
 <br/>
 ## <a name="see-also"></a>참고 항목
 

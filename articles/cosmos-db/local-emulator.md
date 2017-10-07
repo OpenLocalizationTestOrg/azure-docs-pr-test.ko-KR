@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 에뮬레이터를 사용하여 로컬로 개발 | Microsoft Docs"
-description: "Azure Cosmos DB 에뮬레이터를 사용하여 Azure 구독을 구입하지 않고도 무료로 로컬에서 응용 프로그램을 개발하고 테스트할 수 있습니다."
+title: "hello Azure Cosmos DB 에뮬레이터를 사용 하 여 로컬로 aaaDevelop | Microsoft Docs"
+description: "Hello Azure Cosmos DB 에뮬레이터를 사용 하 여 개발 하 고 Azure 구독을 만들지 않고 비어 있거나 응용 프로그램을 로컬로 테스트할 수 있습니다."
 services: cosmos-db
 documentationcenter: 
 keywords: "Azure Cosmos DB 에뮬레이터"
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: arramac
-ms.openlocfilehash: a0f6a845a345ebd4ef0a58abf4934ce400103109
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fb5449489e5f71664e72d8e11e583315be371bf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-azure-cosmos-db-emulator-for-local-development-and-testing"></a>로컬 개발 및 테스트에 Azure Cosmos DB 에뮬레이터 사용
+# <a name="use-hello-azure-cosmos-db-emulator-for-local-development-and-testing"></a>Hello Azure Cosmos DB 에뮬레이터를 사용 하 여 로컬 개발 및 테스트
 
 <table>
 <tr>
@@ -38,35 +38,35 @@ ms.lasthandoff: 08/29/2017
 </tr>
 </table>
   
-Azure Cosmos DB 에뮬레이터는 개발 목적으로 Azure Cosmos DB 서비스를 에뮬레이트하는 로컬 환경을 제공합니다. Azure Cosmos DB 에뮬레이터를 사용하면 Azure 구독을 구입하거나 비용을 발생시키지 않고도 로컬에서 응용 프로그램을 테스트할 수 있습니다. Azure Cosmos DB 에뮬레이터에서 응용 프로그램이 작동하는 방식에 만족하는 경우 Azure Cosmos DB 계정을 클라우드에서 사용하도록 전환할 수 있습니다.
+hello Azure Cosmos DB 에뮬레이터 hello Azure Cosmos DB 서비스를 개발 목적으로 에뮬레이트하는 로컬 환경을 제공 합니다. Hello Azure Cosmos DB 에뮬레이터를 사용 하 여 개발 하 고 Azure 구독을 만들거나 모든 비용이 발생 하지 않고 응용 프로그램을 로컬로 테스트할 수 있습니다. Hello Azure Cosmos DB 에뮬레이터에서에서 응용 프로그램 작동 방식을 만족 스 러 우면 toousing hello 클라우드에서 Azure Cosmos DB 계정을 전환할 수 있습니다.
 
-이 문서에서 다루는 작업은 다음과 같습니다. 
+이 문서에서는 다음 작업 hello를 다룹니다. 
 
 > [!div class="checklist"]
-> * 에뮬레이터 설치
-> * Windows용 Docker에서 에뮬레이터 실행
+> * Hello 에뮬레이터를 설치합니다.
+> * Windows 용 Docker에 hello 에뮬레이터 실행
 > * 요청 인증
-> * 에뮬레이터에서 데이터 탐색기 사용
+> * Hello 에뮬레이터의에서 hello 데이터 탐색기를 사용 하 여
 > * SSL 인증서 내보내기
-> * 명령줄에서 에뮬레이터 호출
+> * 에뮬레이터의 hello hello 명령줄에서 호출
 > * 추적 파일 수집
 
-Kirill Gavrylyuk가 Azure Cosmos DB 에뮬레이터를 시작하는 방법을 보여 주는 다음 비디오를 시청하는 것으로 시작하는 것이 좋습니다. 이 비디오는 DocumentDB 에뮬레이터를 참조하지만 비디오를 탭한 후에는 도구 자체의 이름이 Azure Cosmos DB 에뮬레이터로 바뀝니다. 비디오의 모든 정보는 Azure Cosmos DB 에뮬레이터에 대해 정확합니다. 
+다음 비디오에서는 Kirill Gavrylyuk tooget Azure Cosmos DB 에뮬레이터 hello로 시작 하는 방법을 보여 줍니다 hello를 시청 하 여 시작 하는 것이 좋습니다. Hello 비디오를 눌러 이후 Azure Cosmos DB 에뮬레이터 hello 하는 hello 비디오에서는 DocumentDB 에뮬레이터 hello 라고 toohello 에뮬레이터 되지만 hello 도구 자체 이름이 변경 되었습니다. 비디오 hello에서 모든 정보는 hello Azure Cosmos DB 에뮬레이터에 대 한 정확 해야 합니다. 
 
 > [!VIDEO https://channel9.msdn.com/Events/Connect/2016/192/player]
 > 
 > 
 
-## <a name="how-the-emulator-works"></a>에뮬레이터의 작동 원리
-Azure Cosmos DB 에뮬레이터는 신뢰도 있는 Azure Cosmos DB 서비스의 에뮬레이션을 제공합니다. JSON 문서 만들기 및 쿼리, 컬렉션 프로비전 및 확장, 저장 프로시저 및 트리거 실행을 비롯하여 Azure Cosmos DB으로 동일한 기능을 지원합니다. Azure Cosmos DB 에뮬레이터를 사용하여 응용 프로그램을 개발 및 테스트하고 Azure Cosmos DB에 대한 연결 끝점에 대한 단일 구성을 변경하여 글로벌 규모로 Azure에 배포할 수 있습니다.
+## <a name="how-hello-emulator-works"></a>Hello 에뮬레이터의 작동 원리
+hello Azure Cosmos DB 에뮬레이터의 hello Azure Cosmos DB 서비스의 충실도 높은 재현 에뮬레이션을 제공합니다. JSON 문서 만들기 및 쿼리, 컬렉션 프로비전 및 확장, 저장 프로시저 및 트리거 실행을 비롯하여 Azure Cosmos DB으로 동일한 기능을 지원합니다. 개발 및 hello Azure Cosmos DB 에뮬레이터를 사용 하 여 응용 프로그램을 테스트 하 고 방금 단일 구성을 Azure Cosmos DB에 대 한 toohello 연결 끝점을 변경 하 여 세계적인 규모에 tooAzure 배포 수입니다.
 
-실제 Azure Cosmos DB 서비스의 충실도 높은 로컬 에뮬레이션을 만들었지만 Azure Cosmos DB 에뮬레이터의 구현은 서비스의 구현과 다릅니다. 예를 들어 Azure Cosmos DB 에뮬레이터는 로컬 파일 시스템(지속성) 및 HTTPS 프로토콜 스택(연결성)과 같은 표준 OS 구성 요소를 사용합니다. 따라서 전역 복제, 한 자리 밀리초 읽기/쓰기 대기 시간, 튜닝 가능한 일관성 수준 등 Azure 인프라를 기반으로 하는 일부 기능은 Azure Cosmos DB 에뮬레이터를 통해 사용할 수 없습니다.
+Hello 실제 Azure Cosmos DB 서비스의 충실도 높은 재현 로컬 에뮬레이션 만들었습니다 동안 hello Azure Cosmos DB 에뮬레이터의 hello 구현 hello 서비스의 차이가 있습니다. 예를 들어 hello Azure Cosmos DB 에뮬레이터는 지 속성 및 연결에 대 한 HTTPS 프로토콜 스택에 hello 로컬 파일 시스템 등 표준 OS 구성 요소를 사용합니다. 즉, 글로벌 복제, 읽기/쓰기 및 튜닝할 수 있는 일관성 수준에 대 한 대기 시간이 단일 자리 숫자 밀리초를 hello Azure Cosmos DB 에뮬레이터를 통해 사용할 수 없는 경우와 같은 Azure 인프라를 사용 하는 몇 가지 기능이 있습니다.
 
 > [!NOTE]
-> 현재 에뮬레이터의 데이터 탐색기는 DocumentDB API 컬렉션 및 MongoDB 컬렉션 만들기만 지원합니다. 에뮬레이터의 데이터 탐색기는 현재 테이블 및 그래프 만들기를 지원하지 않습니다. 
+> Hello에이 시간 hello 데이터 탐색기에서 에뮬레이터는 DocumentDB API 컬렉션과 MongoDB 컬렉션 hello 만들기만 지원합니다. hello 에뮬레이터의 hello 데이터 탐색기 현재 테이블 및 그래프의 hello 생성을 지원 하지 않습니다. 
 
 ## <a name="system-requirements"></a>시스템 요구 사항
-Azure Cosmos DB 에뮬레이터에는 다음과 같은 하드웨어 및 소프트웨어 요구 사항이 있습니다.
+hello Azure Cosmos DB 에뮬레이터의 hello 하드웨어 및 소프트웨어 요구 사항:
 
 * 소프트웨어 요구 사항
   * Windows Server 2012 R2, Windows Server 2016 또는 Windows 10
@@ -75,44 +75,44 @@ Azure Cosmos DB 에뮬레이터에는 다음과 같은 하드웨어 및 소프�
   * 10GB의 하드 디스크 여유 공간
 
 ## <a name="installation"></a>설치
-[Microsoft 다운로드 센터](https://aka.ms/cosmosdb-emulator)에서 Azure Cosmos DB 에뮬레이터를 다운로드하여 설치할 수 있습니다. 
+다운로드 하 여 hello에서 hello Azure Cosmos DB 에뮬레이터 설치 [Microsoft 다운로드 센터](https://aka.ms/cosmosdb-emulator)합니다. 
 
 > [!NOTE]
-> Azure Cosmos DB 에뮬레이터를 설치, 구성 및 실행하려면 컴퓨터에 대한 관리 권한이 있어야 합니다.
+> tooinstall를 구성 하 고 hello Azure Cosmos DB 에뮬레이터를 실행, hello 컴퓨터에서 관리자 권한이 있어야 합니다.
 
 ## <a name="running-on-docker-for-windows"></a>Windows용 Docker에서 실행
 
-Azure Cosmos DB 에뮬레이터는 Windows용 Docker에서 실행할 수 있습니다. 이 에뮬레이터는 Oracle Linux용 Docker에서 작동하지 않습니다.
+Windows 용 Docker에 hello Azure Cosmos DB 에뮬레이터를 실행할 수 있습니다. Oracle Linux에 대 한 hello 에뮬레이터 Docker에서 작동 하지 않습니다.
 
-[Windows용 Docker](https://www.docker.com/docker-windows)를 설치한 경우 즐겨 찾는 셸(PowerShell, cmd.exe 등)에서 다음 명령을 실행하여 Docker 허브에서 에뮬레이터 이미지를 끌어올 수 있습니다.
+설정한 후 [Windows 용 Docker](https://www.docker.com/docker-windows) 설치 되어 끌어올 수 있습니다 hello 에뮬레이터 이미지 Docker 허브에서 hello 즐겨 찾는 셸에서 다음 명령을 실행 하 여 (cmd.exe, PowerShell 등.).
 
 ```      
 docker pull microsoft/azure-cosmosdb-emulator 
 ```
-이미지를 시작하려면 다음 명령을 실행합니다.
+toostart hello 이미지를 hello 다음 명령을 실행 합니다.
 
 ``` 
 md %LOCALAPPDATA%\CosmosDBEmulatorCert 2>nul
 docker run -v %LOCALAPPDATA%\CosmosDBEmulatorCert:c:\CosmosDBEmulator\CosmosDBEmulatorCert -P -t -i microsoft/azure-cosmosdb-emulator 
 ```
 
-응답은 다음과 유사합니다.
+hello 응답 비슷한 toohello 다음과 같습니다.
 
 ```
 Starting Emulator
 Emulator Endpoint: https://172.20.229.193:8081/
 Master Key: C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
 Exporting SSL Certificate
-You can import the SSL certificate from an administrator command prompt on the host by running:
+You can import hello SSL certificate from an administrator command prompt on hello host by running:
 cd /d %LOCALAPPDATA%\CosmosDBEmulatorCert
 powershell .\importcert.ps1
 --------------------------------------------------------------------------------------------------
 Starting interactive shell
 ``` 
 
-에뮬레이터가 시작된 후 대화형 셸을 닫으면 에뮬레이터의 컨테이너가 종료됩니다.
+에뮬레이터를 시작 하는 hello 종료 hello 에뮬레이터의 컨테이너는 면 대화형 셸 hello를 종료 했습니다.
 
-클라이언트의 응답에서 끝점 및 마스터 키를 사용하고 SSL 인증서를 호스트로 가져옵니다. SSL 인증서를 가져오려면 관리자 명령 프롬프트에서 다음을 수행합니다.
+클라이언트에서 hello 끝점과 hello 응답에서의 마스터 키를 사용 하 하며 호스트로 hello SSL 인증서를 가져옵니다. tooimport hello SSL 인증서를 관리자 명령 프롬프트에서 다음 hello지 않습니다.
 
 ```
 cd %LOCALAPPDATA%\CosmosDBEmulatorCert
@@ -120,21 +120,21 @@ powershell .\importcert.ps1
 ```
 
 
-## <a name="start-the-emulator"></a>에뮬레이터 시작
+## <a name="start-hello-emulator"></a>Hello 에뮬레이터를 시작 합니다.
 
-Azure Cosmos DB 에뮬레이터를 시작하려면 시작 단추를 선택하거나 Windows 키를 누릅니다. **Azure Cosmos DB 에뮬레이터** 입력을 시작하고 응용 프로그램 목록에서 해당 에뮬레이터를 선택합니다. 
+toostart hello Azure Cosmos DB 에뮬레이터 hello 시작 단추를 선택 하거나 hello Windows 키를 누릅니다. 입력을 시작 **Azure Cosmos DB 에뮬레이터**, 및 응용 프로그램의 hello 목록에서 선택 hello 에뮬레이터입니다. 
 
-![시작 단추를 선택하거나 Windows 키를 누르고 **Azure Cosmos DB 에뮬레이터** 입력을 시작한 후 응용 프로그램 목록에서 해당 에뮬레이터를 선택합니다.](./media/local-emulator/database-local-emulator-start.png)
+![Hello 시작 단추를 클릭 하거나 눌러 hello Windows 키를 선택, 입력을 시작 * * Azure Cosmos DB 에뮬레이터 * *, 및 응용 프로그램의 hello 목록에서 선택 hello 에뮬레이터](./media/local-emulator/database-local-emulator-start.png)
 
-에뮬레이터를 실행 하는 경우 Windows 작업 표시줄 알림 영역에 아이콘이 표시 됩니다. ![Azure Cosmos DB 로컬 에뮬레이터 작업 표시줄 알림](./media/local-emulator/database-local-emulator-taskbar.png)
+Hello 에뮬레이터를 실행 하는 경우에 hello Windows 작업 표시줄 알림 영역에서에서 아이콘을 표시 됩니다. ![Azure Cosmos DB 로컬 에뮬레이터 작업 표시줄 알림](./media/local-emulator/database-local-emulator-taskbar.png)
 
-기본적으로 Azure Cosmos DB 에뮬레이터는 포트 8081에서 수신 대기하는 로컬 컴퓨터("localhost")에서 실행됩니다.
+기본적으로 Azure Cosmos DB 에뮬레이터 hello 포트 8081에서 수신 대기 로컬 hello 컴퓨터 ("localhost")에서 실행 됩니다.
 
-Azure Cosmos DB 에뮬레이터는 기본적으로 `C:\Program Files\Azure Cosmos DB Emulator` 디렉터리에 설치됩니다. 명령줄에서 에뮬레이터를 시작 및 중지할 수도 있습니다. 자세한 내용은 [명령줄 도구 참조](#command-line)를 참조하세요.
+hello Azure Cosmos DB 에뮬레이터가 설치 되어 기본 toohello로 `C:\Program Files\Azure Cosmos DB Emulator` 디렉터리입니다. 또한 시작 하 고 hello 명령줄에서 hello 에뮬레이터를 중지할 수 있습니다. 자세한 내용은 [명령줄 도구 참조](#command-line)를 참조하세요.
 
 ## <a name="start-data-explorer"></a>데이터 탐색기 시작
 
-Azure Cosmos DB 에뮬레이터를 시작하면 브라우저에서 Azure Cosmos DB 데이터 탐색기가 자동으로 열립니다. 주소는 [https://localhost:8081/_explorer/index.html](https://localhost:8081/_explorer/index.html)로 표시됩니다. 탐색기를 닫고 나중에 다시 열고 싶은 경우, 브라우저에서 URL을 열거나 아래와 같이 Windows 트레이 아이콘의 Azure Cosmos DB 에뮬레이터에서 실행할 수 있습니다.
+Hello Azure Cosmos DB 에뮬레이터를 시작할 때 자동으로 열립니다 hello Azure Cosmos DB 데이터 탐색기 브라우저에서 합니다. hello 주소도 나타납니다. [https://localhost:8081/_explorer/index.html](https://localhost:8081/_explorer/index.html)합니다. 닫기 탐색기 hello을 하면 toore 열기 원하는 것 이상 hello URL을 브라우저에서 열 하거나 아래와 같이 hello Windows 트레이 아이콘에에서 hello Azure Cosmos DB 에뮬레이터에서에서 실행 합니다.
 
 ![Azure Cosmos DB의 로컬 에뮬레이터 데이터 탐색기 시작 관리자](./media/local-emulator/database-local-emulator-data-explorer-launcher.png)
 
@@ -142,67 +142,67 @@ Azure Cosmos DB 에뮬레이터를 시작하면 브라우저에서 Azure Cosmos 
 데이터 탐색기에 다운로드할 수 있는 새 업데이트가 있는지 표시됩니다. 
 
 > [!NOTE]
-> Azure Cosmos DB 에뮬레이터의 특정 버전에서 만든 데이터에 다른 버전에서 액세스하지 못할 수도 있습니다. 데이터를 장기간 보존하려면 Azure Cosmos DB 에뮬레이터 대신 Azure Cosmos DB 계정에 저장하는 것이 좋습니다. 
+> 한 버전의 hello Azure Cosmos DB 에뮬레이터에서 만든 데이터 보장 되지 않습니다 toobe 액세스할 수 있는 다른 버전을 사용 하는 경우. Hello 장기에 대 한 데이터 toopersist 경우 아닌 hello Azure Cosmos DB 에뮬레이터는 Azure Cosmos DB 계정에 해당 데이터를 저장 하는 것이 좋습니다. 
 
 ## <a name="authenticating-requests"></a>요청 인증
-클라우드의 Azure Cosmos DB와 마찬가지로 Azure Cosmos DB 에뮬레이터에 대한 모든 요청을 인증해야 합니다. Azure Cosmos DB 에뮬레이터는 단일 고정 계정과 마스터 키 인증에 대해 알려진 인증 키를 지원합니다. Azure Cosmos DB 에뮬레이터에서 사용할 수 있는 자격 증명은 이 계정과 키뿐입니다. 아래에 이 계정과 키의 예제가 나와 있습니다.
+마찬가지로 hello 클라우드에서 Azure Cosmos DB와 함께 hello Azure Cosmos DB 에뮬레이터에 대해 구성 하는 모든 요청 인증 되어야 합니다. hello Azure Cosmos DB 에뮬레이터 마스터 키 인증을 위해 단일 고정 계정과 잘 알려진 인증 키를 지원 합니다. 이 계정과 키는 hello Azure Cosmos DB 에뮬레이터로 사용 하기 위해 허용 hello 유일한 자격 증명. 아래에 이 계정과 키의 예제가 나와 있습니다.
 
     Account name: localhost:<port>
     Account key: C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
 
 > [!NOTE]
-> Azure Cosmos DB 에뮬레이터에서 지원하는 마스터 키는 에뮬레이터 전용입니다. Azure Cosmos DB 에뮬레이터에서 프로덕션 Azure Cosmos DB 계정 및 키를 사용할 수 없습니다. 
+> hello Azure Cosmos DB 에뮬레이터에서 지 원하는 hello 마스터 키 hello 에뮬레이터에만 사용이 됩니다. Azure Cosmos DB 에뮬레이터 hello로 프로덕션 Azure Cosmos DB 계정 및 키를 사용할 수 없습니다. 
 
 > [!NOTE] 
-> /Key 옵션과 함께 에뮬레이터를 시작한 경우 “C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==” 대신 생성된 키를 사용합니다.
+> /Key 옵션 hello로 hello 에뮬레이터를 시작한 경우 그런 다음 대신 hello 생성 된 키 사용 "C2y6yDjf5/R + ob0N8A7Cgv30VRDJIWEHLM + 4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw = ="
 
-또한 Azure Cosmos DB 서비스와 마찬가지로 Azure Cosmos DB 에뮬레이터는 SSL을 통한 보안 통신만 지원합니다.
+또한와 마찬가지로 Azure Cosmos DB 서비스를 Azure Cosmos DB 에뮬레이터 hello hello SSL 통해 안전한 통신만을 지원 합니다.
 
-## <a name="running-the-emulator-on-a-local-network"></a>로컬 네트워크에서 에뮬레이터 실행
+## <a name="running-hello-emulator-on-a-local-network"></a>로컬 네트워크 hello 에뮬레이터를 실행합니다.
 
-로컬 네트워크에서 에뮬레이터를 실행할 수 있습니다. 네트워크 액세스를 활성화하려면 [명령줄](#command-line-syntax)에 /AllowNetworkAccess 옵션을 지정합니다. 또한 /Key=key_string 또는 /KeyFile=file_name/Key를 지정해야 합니다. /GenKeyFile=file_name을 사용하여 미리 설정된 임의 키로 파일을 생성할 수 있습니다.  그런 다음 /KeyFile=file_name 또는 /Key=contents_of_file로 전달할 수 있습니다.
+로컬 네트워크 hello 에뮬레이터를 실행할 수 있습니다. tooenable 네트워크 액세스, hello에 hello /AllowNetworkAccess 옵션을 지정할 [명령줄](#command-line-syntax), /Key를 지정 하는 또한 합니다 key_string 또는 /KeyFile = file_name = 합니다. /GenKeyFile를 사용할 수 있습니다 = file_name toogenerate 파일 현상을 임의 키 사용 합니다.  해당 너무/키 파일을 전달할 수 = file_name 또는 /Key = contents_of_file 합니다.
 
-처음에 네트워크 액세스를 사용하도록 설정하려면 사용자는 에뮬레이터를 종료하고 에뮬레이터의 데이터 디렉터리(C:\Users\user_name\AppData\Local\CosmosDBEmulator)를 삭제해야 합니다.
+hello 신규 hello 사용자에 대 한 네트워크 액세스 tooenable hello 에뮬레이터를 종료 해야 하 고 hello 에뮬레이터의 데이터 디렉터리 (C:\Users\user_name\AppData\Local\CosmosDBEmulator)를 삭제 합니다.
 
-## <a name="developing-with-the-emulator"></a>에뮬레이터를 사용한 개발
-Azure Cosmos DB 에뮬레이터를 데스크톱에서 실행하는 경우 지원되는 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 또는 [Azure Cosmos DB REST API](/rest/api/documentdb/)를 사용하여 에뮬레이터와 상호 작용할 수 있습니다. Azure Cosmos DB 에뮬레이터에는 코드를 작성하지 않고도 DocumentDB 및 MongoDB API 컬렉션을 만들고 문서를 확인 및 편집할 수 있는 기본 제공 데이터 탐색기도 포함되어 있습니다.   
+## <a name="developing-with-hello-emulator"></a>Hello 에뮬레이터를 사용 하 여 개발
+데스크톱에서 실행 되는 Azure DB Cosmos 에뮬레이터 hello 있는, 지원 되는 사용할 수 있습니다 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 또는 hello [Azure Cosmos DB REST API](/rest/api/documentdb/) toointeract 에뮬레이터 hello로 합니다. hello Azure Cosmos DB 에뮬레이터에는 모든 코드를 작성 하지 않고도 문서를 편집 하 고 hello DocumentDB MongoDB Api 및 보기에 대 한 컬렉션을 만들 수 있는 기본 제공 데이터 탐색기 포함 되어 있습니다.   
 
-    // Connect to the Azure Cosmos DB Emulator running locally
+    // Connect toohello Azure Cosmos DB Emulator running locally
     DocumentClient client = new DocumentClient(
         new Uri("https://localhost:8081"), 
         "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==");
 
-[MongoDB에 대한 Azure Cosmos DB 프로토콜 지원](mongodb-introduction.md)을 사용할 경우에는 다음 연결 문자열을 사용하세요.
+사용 중인 경우 [MongoDB에 대 한 Azure Cosmos DB 프로토콜 지원](mongodb-introduction.md), 다음 연결 문자열 hello를 사용 하십시오.
 
     mongodb://localhost:C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==@localhost:10255/admin?ssl=true&3t.sslSelfSignedCerts=true
 
-[Azure DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio)와 같은 기존 도구를 사용하여 Azure Cosmos DB 에뮬레이터에 연결할 수 있습니다. 또한 [Azure Cosmos DB 데이터 마이그레이션 도구](https://github.com/azure/azure-documentdb-datamigrationtool)를 사용하여 Azure Cosmos DB 에뮬레이터와 Azure Cosmos DB 서비스 간에 데이터를 마이그레이션할 수 있습니다.
+와 같은 기존 도구를 사용할 수 있습니다 [Azure DocumentDB 스튜디오](https://github.com/mingaliu/DocumentDBStudio) tooconnect toohello Azure Cosmos DB 에뮬레이터입니다. Hello Azure Cosmos DB 에뮬레이터와 hello를 사용 하 여 hello Azure Cosmos DB 서비스 간에 데이터를 마이그레이션할 수도 있습니다 [Azure Cosmos DB 데이터 마이그레이션 도구](https://github.com/azure/azure-documentdb-datamigrationtool)합니다.
 
 > [!NOTE] 
-> /Key 옵션과 함께 에뮬레이터를 시작한 경우 “C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==” 대신 생성된 키를 사용합니다.
+> /Key 옵션 hello로 hello 에뮬레이터를 시작한 경우 그런 다음 대신 hello 생성 된 키 사용 "C2y6yDjf5/R + ob0N8A7Cgv30VRDJIWEHLM + 4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw = ="
 
-기본적으로 Azure Cosmos DB 에뮬레이터를 사용하여 최대 25개의 단일 파티션의 컬렉션 또는 분할된 컬렉션 하나를 만들 수 있습니다. 이 값을 변경하는 방법에 대한 자세한 내용은 [PartitionCount 값 설정](#set-partitioncount)을 참조하세요.
+Hello Azure Cosmos DB 에뮬레이터를 사용 하 여 기본적으로, too25 단일 파티션 컬렉션 또는 1 분할 된 컬렉션을 만들 수 있습니다. 이 값을 변경 하는 방법에 대 한 자세한 내용은 참조 [hello PartitionCount 값 설정](#set-partitioncount)합니다.
 
-## <a name="export-the-ssl-certificate"></a>SSL 인증서 내보내기
+## <a name="export-hello-ssl-certificate"></a>Hello SSL 인증서 내보내기
 
-.NET 언어 및 런타임은 Windows 인증서 저장소를 사용하여 Azure Cosmos DB 로컬 에뮬레이터에 안전하게 연결합니다. 다른 언어의 경우 해당 언어만의 인증서 관리 및 사용 방법이 있습니다. Java는 자체의 고유 [인증서 저장소](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html)를 사용하고 Python은 [소켓 래퍼](https://docs.python.org/2/library/ssl.html)를 사용합니다.
+.NET 언어 및 런타임 사용 하 여 hello Windows 인증서 저장소 toosecurely toohello Azure Cosmos DB 로컬 에뮬레이터를 연결합니다. 다른 언어의 경우 해당 언어만의 인증서 관리 및 사용 방법이 있습니다. Java는 자체의 고유 [인증서 저장소](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html)를 사용하고 Python은 [소켓 래퍼](https://docs.python.org/2/library/ssl.html)를 사용합니다.
 
-Windows 인증서 저장소와 통합되지 않는 런타임 및 언어와 함께 사용할 인증서를 가져오기 위해 Windows 인증서 관리자를 사용하여 인증서를 내보내야 합니다. certlm.msc를 실행하거나 [Azure Cosmos DB 에뮬레이터 인증서 내보내기](./local-emulator-export-ssl-certificates.md)의 단계별 지침을 수행하여 이 작업을 시작할 수 있습니다. 인증서 관리자가 실행되면 아래에 표시된 대로 개인 인증서를 열고 BASE-64 인코딩 X.509(.cer) 파일로 "DocumentDBEmulatorCertificate"라는 이름의 인증서를 내보냅니다.
+순서 tooobtain에서 언어 및 통합 되지 않습니다 hello Windows 인증서 저장소로 있습니다 있는 런타임과 상호 인증서 toouse 할 tooexport 인증서 관리자 Windows hello를 사용 하 여 수 있습니다. Certlm.msc를 실행 하 여 시작 하거나 hello 단계별 지침에 따라 수 [hello Azure Cosmos DB 에뮬레이터 인증서 내보내기](./local-emulator-export-ssl-certificates.md)합니다. Hello 인증서 관리자를 실행 하 고, 내보내기 및 열기 hello 개인 인증서 아래와 같이 hello hello 친숙 한 이름이 "DocumentDBEmulatorCertificate" 인증서 대로 E-64로 인코딩된 X.509 (.cer) 파일입니다.
 
 ![Azure Cosmos DB 로컬 에뮬레이터 SSL 인증서](./media/local-emulator/database-local-emulator-ssl_certificate.png)
 
-[Java CA 인증서 저장소에 인증서 추가](https://docs.microsoft.com/azure/java-add-certificate-ca-store)의 지침을 따라 X.509 인증서를 Java 인증서 저장소로 가져올 수 있습니다. 인증서를 인증서 저장소에 가져온 후 Java 및 MongoDB 응용 프로그램을 Azure Cosmos DB 에뮬레이터에 연결할 수 있습니다.
+hello 지침에 따라 hello Java 인증서 저장소로 hello X.509 인증서를 가져올 수 [Java CA 인증서를 저장 하는 인증서 toohello 추가](https://docs.microsoft.com/azure/java-add-certificate-ca-store)합니다. 가져온 hello 인증서는 hello 인증서 저장소로 MongoDB 및 Java 응용 프로그램 수 tooconnect toohello Azure Cosmos DB 에뮬레이터 됩니다.
 
-Python 및 Node.js SDK에서 에뮬레이터에 연결하면 SSL 확인이 비활성화됩니다.
+Python 및 Node.js Sdk에서 toohello 에뮬레이터에 연결할 때 SSL 유효성 검사 불가능 합니다.
 
 ## <a id="command-line"></a>명령줄 도구 참조
-설치 위치에서 명령줄을 사용하여 에뮬레이터를 시작 및 중지하고, 옵션을 구성하고, 다른 작업을 수행할 수 있습니다.
+Hello 설치 위치에서 있습니다 수 명령줄 toostart hello를 사용 하 여 중지 hello 에뮬레이터, 옵션을 구성 하 고 다른 작업을 수행 합니다.
 
 ### <a name="command-line-syntax"></a>명령줄 구문
 
     CosmosDB.Emulator.exe [/Shutdown] [/DataPath] [/Port] [/MongoPort] [/DirectPorts] [/Key] [/EnableRateLimiting] [/DisableRateLimiting] [/NoUI] [/NoExplorer] [/?]
 
-옵션 목록을 보려면 명령 프롬프트에 `CosmosDB.Emulator.exe /?` 을(를) 입력합니다.
+옵션을 형식 tooview hello 목록 `CosmosDB.Emulator.exe /?` hello 명령 프롬프트입니다.
 
 <table>
 <tr>
@@ -213,51 +213,51 @@ Python 및 Node.js SDK에서 에뮬레이터에 연결하면 SSL 확인이 비�
 </tr>
 <tr>
   <td>[인수 없음]</td>
-  <td>기본 설정으로 Azure Cosmos DB 에뮬레이터를 시작합니다.</td>
+  <td>기본 설정으로 hello Azure Cosmos DB 에뮬레이터를 시작합니다.</td>
   <td>CosmosDB.Emulator.exe</td>
   <td></td>
 </tr>
 <tr>
   <td>[도움말]</td>
-  <td>지원되는 명령줄 인수 목록을 표시합니다.</td>
+  <td>Hello 목록을 표시 합니다. 명령줄 인수를 지원 합니다.</td>
   <td>CosmosDB.Emulator.exe /?</td>
   <td></td>
 </tr>
 <tr>
   <td>Shutdown</td>
-  <td>Azure Cosmos DB 에뮬레이터를 종료합니다.</td>
+  <td>Hello Azure Cosmos DB 에뮬레이터를 종료합니다.</td>
   <td>CosmosDB.Emulator.exe /Shutdown</td>
   <td></td>
 </tr>
 <tr>
   <td>DataPath</td>
-  <td>데이터 파일을 저장할 경로를 지정합니다. 기본값은 %LocalAppdata%\CosmosDBEmulator입니다.</td>
+  <td>어떤 toostore 데이터 파일에 hello 경로 지정합니다. 기본값은 %LocalAppdata%\CosmosDBEmulator입니다.</td>
   <td>CosmosDB.Emulator.exe /DataPath=&lt;datapath&gt;</td>
   <td>&lt;datapath&gt;: 액세스 가능한 경로</td>
 </tr>
 <tr>
   <td>포트</td>
-  <td>에뮬레이터에 사용할 포트 번호를 지정합니다.  기본값은 8081입니다.</td>
+  <td>Hello 에뮬레이터에 대 한 포트 번호 toouse hello를 지정합니다.  기본값은 8081입니다.</td>
   <td>CosmosDB.Emulator.exe /Port=&lt;port&gt;</td>
   <td>&lt;port&gt;: 단일 포트 번호</td>
 </tr>
 <tr>
   <td>MongoPort</td>
-  <td>MongoDB 호환성 API에 사용할 포트 번호를 지정합니다. 기본값은 10255입니다.</td>
+  <td>MongoDB 호환성 API에 대 한 포트 번호 toouse hello를 지정합니다. 기본값은 10255입니다.</td>
   <td>CosmosDB.Emulator.exe /MongoPort=&lt;mongoport&gt;</td>
   <td>&lt;mongoport&gt;: 단일 포트 번호</td>
 </tr>
 <tr>
   <td>DirectPorts</td>
-  <td>직접 연결에 사용할 포트를 지정합니다. 기본값은 10251,10252,10253,10254입니다.</td>
+  <td>직접 연결에 대 한 포트 toouse hello를 지정합니다. 기본값은 10251,10252,10253,10254입니다.</td>
   <td>CosmosDB.Emulator.exe /DirectPorts:&lt;directports&gt;</td>
   <td>&lt;directports&gt;: 쉼표로 구분된 4개의 포트 목록</td>
 </tr>
 <tr>
   <td>키</td>
-  <td>에뮬레이터에 대한 권한 부여 키입니다. 키는 64바이트 벡터의 base 64 인코딩이어야 합니다.</td>
+  <td>Hello 에뮬레이터에 대 한 권한 부여 키입니다. 키는 64 바이트 벡터의 hello base 64 인코딩 이어야 합니다.</td>
   <td>CosmosDB.Emulator.exe /Key:&lt;key&gt;</td>
-  <td>&lt;key&gt;: 키는 64바이트 벡터의 base 64 인코딩이어야 합니다.</td>
+  <td>&lt;키&gt;: 키 64 바이트 벡터의 hello base 64 인코딩 이어야 합니다</td>
 </tr>
 <tr>
   <td>EnableRateLimiting</td>
@@ -273,7 +273,7 @@ Python 및 Node.js SDK에서 에뮬레이터에 연결하면 SSL 확인이 비�
 </tr>
 <tr>
   <td>NoUI</td>
-  <td>에뮬레이터 사용자 인터페이스를 표시하지 않습니다.</td>
+  <td>Hello 에뮬레이터 사용자 인터페이스를 표시 하지 않습니다.</td>
   <td>CosmosDB.Emulator.exe /NoUI</td>
   <td></td>
 </tr>
@@ -285,19 +285,19 @@ Python 및 Node.js SDK에서 에뮬레이터에 연결하면 SSL 확인이 비�
 </tr>
 <tr>
   <td>PartitionCount</td>
-  <td>분할된 컬렉션의 최대 수를 지정합니다. 자세한 내용은 [컬렉션 수 변경](#set-partitioncount)을 참조하세요.</td>
+  <td>Hello 분할 된 컬렉션의 최대 수를 지정합니다. 참조 [hello 컬렉션 수를 변경](#set-partitioncount) 자세한 정보에 대 한 합니다.</td>
   <td>CosmosDB.Emulator.exe /PartitionCount=&lt;partitioncount&gt;</td>
   <td>&lt;partitioncount&gt;: 허용되는 단일 파티션 컬렉션의 최대 수입니다. 기본값은 25입니다. 허용되는 최대값은 250입니다.</td>
 </tr>
 <tr>
   <td>DefaultPartitionCount</td>
-  <td>분할된 컬렉션에 대한 기본 파티션 수를 지정합니다.</td>
+  <td>Hello 기본 분할 된 컬렉션에 대 한 파티션 수를 지정합니다.</td>
   <td>CosmosDB.Emulator.exe /DefaultPartitionCount=&lt;defaultpartitioncount&gt;</td>
   <td>&lt;defaultpartitioncount&gt; 기본값은 25입니다.</td>
 </tr>
 <tr>
   <td>AllowNetworkAccess</td>
-  <td>네트워크를 통해 에뮬레이터에 액세스할 수 있도록 합니다. /Key=&lt;key_string&gt; 또는 /KeyFile=&lt;file_name&gt;을 전달하여 네트워크 액세스를 활성화해야 합니다.</td>
+  <td>Toohello 에뮬레이터는 네트워크를 통해 액세스 하는 사용 하도록 설정 합니다. /Key 전달 해야 =&lt;key_string&gt; 또는 /KeyFile =&lt;file_name&gt; tooenable 네트워크 액세스.</td>
   <td>CosmosDB.Emulator.exe /AllowNetworkAccess /Key=&lt;key_string&gt;<br><br>또는<br><br>CosmosDB.Emulator.exe /AllowNetworkAccess /KeyFile=&lt;file_name&gt;</td>
   <td></td>
 </tr>
@@ -309,102 +309,102 @@ Python 및 Node.js SDK에서 에뮬레이터에 연결하면 SSL 확인이 비�
 </tr>
 <tr>
   <td>GenKeyFile</td>
-  <td>새 인증 키를 생성하고 지정된 파일에 저장합니다. 생성된 키를 /Key 또는 /KeyFile 옵션과 함께 사용할 수 있습니다.</td>
-  <td>CosmosDB.Emulator.exe  /GenKeyFile=&lt;path to key file&gt;</td>
+  <td>새 인증 키를 생성 하 고 toohello 지정된 파일을 저장 합니다. /Key hello 또는 /KeyFile 옵션 hello 생성 키를 사용할 수 있습니다.</td>
+  <td>CosmosDB.Emulator.exe /GenKeyFile =&lt;tookey 파일 경로&gt;</td>
   <td></td>
 </tr>
 <tr>
   <td>일관성</td>
-  <td>계정의 기본 일관성 수준을 설정합니다.</td>
+  <td>Hello 계정에 대 한 hello 기본 일관성 수준을 설정 합니다.</td>
   <td>CosmosDB.Emulator.exe /Consistency=&lt;consistency&gt;</td>
-  <td>&lt;일관성&gt;: 값은 Session, Strong, Eventual 또는 BoundedStaleness의 [일관성 수준](consistency-levels.md) 중 하나여야 합니다.  기본값은 Session입니다.</td>
+  <td>&lt;일관성&gt;: 값 hello 다음 중 하나 여야 합니다 [일관성 수준](consistency-levels.md): 세션, 강력한, 차례로 Eventual, 또는 BoundedStaleness 합니다.  hello 기본값은 세션입니다.</td>
 </tr>
 <tr>
   <td>?</td>
-  <td>도움말 메시지를 표시합니다.</td>
+  <td>Hello 도움말 메시지를 표시 합니다.</td>
   <td></td>
   <td></td>
 </tr>
 </table>
 
-## <a name="differences-between-the-azure-cosmos-db-emulator-and-azure-cosmos-db"></a>Azure Cosmos DB 에뮬레이터와 Azure Cosmos DB 간 차이점 
-Azure Cosmos DB 에뮬레이터는 로컬 개발자 워크스테이션에서 실행되는 에뮬레이트된 환경을 제공하기 때문에 클라우드의 Azure Cosmos DB 계정과 기능 면에서 몇 가지 차이가 있습니다.
+## <a name="differences-between-hello-azure-cosmos-db-emulator-and-azure-cosmos-db"></a>Hello Azure Cosmos DB 에뮬레이터와 Azure Cosmos DB의 차이점 
+Hello Azure Cosmos DB 에뮬레이터 로컬 개발자 워크스테이션에서 실행 되는 에뮬레이트된 환경을 제공 하기 때문에 일부 간 기능 차이 hello 에뮬레이터와 Azure Cosmos DB 계정을 hello 클라우드에서 있습니다.
 
-* Azure Cosmos DB 에뮬레이터는 단일 고정 계정과 알려진 마스터 키만 지원합니다.  Azure Cosmos DB 에뮬레이터에서는 키를 다시 생성할 수 없습니다.
-* Azure Cosmos DB 에뮬레이터는 확장 가능한 서비스가 아니며 많은 컬렉션을 지원하지 않습니다.
-* Azure Cosmos DB 에뮬레이터는 여러 [Azure Cosmos DB 일관성 수준](consistency-levels.md)을 시뮬레이션하지 않습니다.
-* Azure Cosmos DB 에뮬레이터는 [다중 지역 복제](distribute-data-globally.md)를 시뮬레이션하지 않습니다.
-* Azure Cosmos DB 에뮬레이터는 Azure Cosmos DB 서비스에서 사용할 수 있는 서비스 할당량 재정의(예: 문서 크기 제한, 향상된 분할된 컬렉션 저장소)를 지원하지 않습니다.
-* Azure Cosmos DB 에뮬레이터의 복사본은 최신 Azure Cosmos DB 서비스가 포함된 가장 최근의 변경 사항이 적용된 최신 에뮬레이터가 아닐 수 있으므로 [Azure Cosmos DB Capacity Planner](https://www.documentdb.com/capacityplanner)를 실행하여 응용 프로그램에 요구되는 프로덕션 처리량(RU)을 정확하게 예측해야 합니다.
+* hello Azure Cosmos DB 에뮬레이터만는 단일 고정 계정과 잘 알려진 마스터 키를 지원합니다.  키 다시 생성 hello Azure Cosmos DB 에뮬레이터의에서 수는 없습니다.
+* hello Azure Cosmos DB 에뮬레이터는 확장 가능한 서비스 아니며 많은 수의 컬렉션을 지원 하지 않습니다.
+* hello Azure Cosmos DB 에뮬레이터 시뮬레이션 하지 않습니다 다른 [Azure Cosmos DB 일관성 수준](consistency-levels.md)합니다.
+* hello Azure Cosmos DB 에뮬레이터 시뮬레이션 하지 않습니다 [다중 지역 복제](distribute-data-globally.md)합니다.
+* hello Azure Cosmos DB 에뮬레이터 hello Azure Cosmos DB 서비스 (예: 문서 크기 제한, 향상 된 분할 된 컬렉션 저장소)에서 사용할 수 있는 hello 서비스 할당량 재정의 지원 하지 않습니다.
+* Hello Azure Cosmos DB 에뮬레이터의 사본을 수 toodate hello Azure Cosmos DB 서비스와 hello 가장 최근 변경 내용으로 구성 되지 않아, 하세요 [Azure Cosmos DB 용량 플래너](https://www.documentdb.com/capacityplanner) tooaccurately 예상 프로덕션 처리량 (RUs) 응용 프로그램의 필요 합니다.
 
-## <a id="set-partitioncount"></a>컬렉션 수 변경
+## <a id="set-partitioncount"></a>컬렉션의 hello 수 변경
 
-기본적으로 Azure Cosmos DB 에뮬레이터를 사용하여 최대 25개의 단일 파티션의 컬렉션 또는 분할된 컬렉션 하나를 만들 수 있습니다. **PartitionCount** 값을 수정하여는 최대 250개의 단일 파티션 컬렉션 또는 10개의 분할된 컬렉션을 만들거나, 합쳐서 250개의 단일 파티션을 초과하지 않는 두 컬렉션 조합을 만들 수 있습니다(분할된 컬렉션 1개 = 단일 파티션 컬렉션 25개).
+기본적으로 too25 단일 파티션 컬렉션 또는 hello Azure Cosmos DB 에뮬레이터를 사용 하 여 1 분할 된 컬렉션을 만들 수 있습니다. Hello를 수정 하 여 **PartitionCount** 어떠한 조합의 hello 250 단일을 초과 하지 않는 두 개의 파티션 (위치 1 분할 또는 값을 too250 단일 파티션 컬렉션 또는 10 분할 된 컬렉션을 만들 수 있습니다 컬렉션 = 25 단일 파티션 컬렉션).
 
-현재 파티션 수가 초과된 후에 컬렉션을 만들려고 하면 에뮬레이터에서 다음 메시지와 함께 ServiceUnavailable 예외를 throw합니다.
+Hello 현재 파티션 수를 초과한 후 toocreate 컬렉션을 시도 하면 hello 에뮬레이터 hello 메시지의 뒤에 있는 ServiceUnavailable 예외를 throw 합니다.
 
     Sorry, we are currently experiencing high demand in this region, 
     and cannot fulfill your request at this time. We work continuously 
-    to bring more and more capacity online, and encourage you to try again. 
-    Please do not hesitate to email docdbswat@microsoft.com at any time or 
+    toobring more and more capacity online, and encourage you tootry again. 
+    Please do not hesitate tooemail docdbswat@microsoft.com at any time or 
     for any reason. ActivityId: 29da65cc-fba1-45f9-b82c-bf01d78a1f91
 
-Azure Cosmos DB 에뮬레이터에서 사용할 수 있는 컬렉션의 수를 변경하려면 다음을 수행합니다.
+컬렉션 사용 가능한 toohello Azure Cosmos DB 에뮬레이터의 hello 수 toochange 다음 hello지 않습니다.
 
-1. 시스템 트레이에서 **Azure Cosmos DB 에뮬레이터** 아이콘을 마우스 오른쪽 단추로 클릭한 다음 **데이터 다시 설정...**을 클릭하여 모든 로컬 Azure Cosmos DB 에뮬레이터 데이터를 삭제합니다.
+1. Hello를 마우스 오른쪽 단추로 클릭 하 여 모든 로컬 Azure Cosmos DB 에뮬레이터 데이터를 삭제 **Azure Cosmos DB 에뮬레이터** hello 시스템 트레이 클릭 한 다음에 아이콘 **데이터를 다시 설정...** .
 2. C:\Users\user_name\AppData\Local\CosmosDBEmulator 폴더에 있는 모든 에뮬레이터 데이터를 삭제합니다.
-3. **Azure Cosmos DB 에뮬레이터** 아이콘을 마우스 오른쪽 단추로 클릭한 다음 **마침**을 클릭하여 열려 있는 모든 인스턴스를 종료합니다. 모든 인스턴스를 종료하는 데는 1분 정도 걸립니다.
-4. 최신 버전의 [Azure Cosmos DB 에뮬레이터](https://aka.ms/cosmosdb-emulator)를 설치합니다.
-5. 250 이하의 값을 설정하여 PartitionCount 플래그로 에뮬레이터를 시작합니다. 예: `C:\Program Files\Azure CosmosDB Emulator>CosmosDB.Emulator.exe /PartitionCount=100`
+3. Hello를 마우스 오른쪽 단추로 클릭 하 여 열려 있는 모든 인스턴스를 종료 **Azure Cosmos DB 에뮬레이터** hello 시스템 트레이 클릭 한 다음에 아이콘 **종료**합니다. 모든 인스턴스 tooexit 1 분을 걸릴 수 있습니다.
+4. 최신 버전의 hello hello 설치 [Azure Cosmos DB 에뮬레이터](https://aka.ms/cosmosdb-emulator)합니다.
+5. 값을 설정 하 여 hello PartitionCount 플래그로 hello 에뮬레이터를 시작 합니다. < = 250 합니다. 예: `C:\Program Files\Azure CosmosDB Emulator>CosmosDB.Emulator.exe /PartitionCount=100`
 
 ## <a name="troubleshooting"></a>문제 해결
 
-다음은 Azure Cosmos DB 에뮬레이터에서 발생하는 문제 해결을 도와주는 팁입니다.
+다음 팁 toohelp hello Azure Cosmos DB 에뮬레이터와 함께 발생할 문제를 해결 하는 hello를 사용 합니다.
 
-- 새 버전의 에뮬레이터를 설치했는데 오류가 발생하는 경우 데이터를 다시 설정합니다. 시스템 트레이에서 Azure Cosmos DB 에뮬레이터 아이콘을 마우스 오른쪽 단추로 클릭한 다음, 데이터 다시 설정...을 클릭하여 데이터를 다시 설정할 수 있습니다. 오류가 해결되지 않으면 앱을 제거하고 다시 설치할 수 있습니다. 지침은 [로컬 에뮬레이터 제거](#uninstall)를 참조하세요.
+- 새 버전의 hello 에뮬레이터를 설치 하 여 오류를 발생 하는 경우 데이터를 다시 설정 확인 합니다. Hello 시스템 트레이에서 hello Azure Cosmos DB 에뮬레이터 아이콘을 마우스 오른쪽 단추로 클릭 한 다음 데이터를 다시 설정 클릭 하 여 데이터를 다시 설정할 수 있습니다... Hello 오류를 해결 하지 않으면 제거 하 고 hello 앱을 다시 설치 수 있습니다. 참조 [hello 로컬 에뮬레이터를 제거할](#uninstall) 지침에 대 한 합니다.
 
-- Azure Cosmos DB 에뮬레이터가 충돌하는 경우 c:\Users\user_name\AppData\Local\CrashDumps 폴더에서 덤프 파일을 수집하고, 압축하고, 전자 메일에 첨부하여 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)으로 보냅니다.
+- Hello Azure Cosmos DB 에뮬레이터가 충돌 하면 c:\Users\user_name\AppData\Local\CrashDumps 폴더에서 덤프 파일을 수집, 압축 및 첨부할 tooan 전자 메일 너무[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)합니다.
 
-- CosmosDB.StartupEntryPoint.exe에서 충돌을 경험하는 경우 관리자 명령 프롬프트에서 다음 명령을 실행합니다. `lodctr /R` 
+- 충돌 발생 하는 경우, CosmosDB.StartupEntryPoint.exe hello 관리자 명령 프롬프트에서 다음 명령을 실행 합니다.`lodctr /R` 
 
-- 연결 문제가 발생하는 경우 [추적 파일을 수집](#trace-files)하고, 압축하고, 전자 메일에 첨부하여 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)으로 보냅니다.
+- 연결에 문제가 발생 하는 경우 [추적 파일을 수집](#trace-files), 압축 및 첨부할 tooan 전자 메일 너무[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)합니다.
 
-- **서비스를 사용할 수 없음** 메시지가 나타나는 경우 에뮬레이터에서 네트워크 스택을 초기화하지 못했을 수 있습니다. 해당 네트워크 필터 드라이버로 인해 문제가 발생할 수 있으므로 Pulse 보안 클라이언트 또는 Juniper 네트워크 클라이언트를 설치했는지 확인합니다. 일반적으로 타사 네트워크 필터 드라이버를 제거하면 문제가 해결됩니다.
+- 표시 되 면 한 **서비스를 사용할 수 없는** hello 에뮬레이터에서 실패할 수 tooinitialize hello 네트워크 스택, 메시지입니다. 검사 toosee hello 펄스 있는 경우 보안 클라이언트 또는 Juniper 네트워크 클라이언트를 설치 하 고, 해당 네트워크 필터 드라이버는 hello 문제가 발생할 수 있습니다. Hello 문제를 해결 일반적으로 타사 네트워크 필터 드라이버를 제거 합니다.
 
 ### <a id="trace-files"></a>추적 파일 수집
 
-디버깅 추적을 수집하려면 관리 명령 프롬프트에서 다음 명령을 실행합니다.
+toocollect hello 명령 관리 명령 프롬프트에서 다음을 실행 하는 추적을 디버깅 합니다.
 
 1. `cd /d "%ProgramFiles%\Azure Cosmos DB Emulator"`
-2. `CosmosDB.Emulator.exe /shutdown` 프로그램이 종료되었는지 시스템 트레이를 확인합니다. 프로그램 종료에 1분 정도 걸릴 수 있습니다. Azure Cosmos DB 에뮬레이터 사용자 인터페이스에서 **종료**를 클릭해도 됩니다.
+2. `CosmosDB.Emulator.exe /shutdown` 조사식 hello 시스템 트레이 toomake 있는지 hello 프로그램이 종료 된, 1 분이 걸릴 수 있습니다. 클릭 해도 **종료** hello Azure Cosmos DB 에뮬레이터 사용자 인터페이스에 있습니다.
 3. `CosmosDB.Emulator.exe /starttraces`
 4. `CosmosDB.Emulator.exe`
-5. 문제를 재현합니다. 데이터 탐색기가 작동하지 않는 경우 브라우저가 몇 초 간 열리고 오류를 catch할 때까지 기다리면 됩니다.
+5. Hello 문제를 재현 합니다. 데이터 탐색기 작동 하지 않는 경우만 toowait은 몇 초 toocatch hello 오류에 대 한 브라우저 tooopen hello에 대 한 필요 합니다.
 5. `CosmosDB.Emulator.exe /stoptraces`
-6. `%ProgramFiles%\Azure Cosmos DB Emulator`로 이동하여 docdbemulator_000001.etl 파일을 찾습니다.
-7. 재현 단계와 마찬가지로 디버깅을 위해 .etl 파일을 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)으로 보냅니다.
+6. 너무 이동`%ProgramFiles%\Azure Cosmos DB Emulator` hello docdbemulator_000001.etl 파일을 찾습니다.
+7. 재현 단계와 함께 hello.etl 파일을 너무 보내기[ askcosmosdb@microsoft.com ](mailto:askcosmosdb@microsoft.com) 디버깅 합니다.
 
-### <a id="uninstall"></a>로컬 에뮬레이터 제거
+### <a id="uninstall"></a>제거의 로컬 에뮬레이터 hello
 
-1. 시스템 트레이에서 Azure Cosmos DB 에뮬레이터 아이콘을 마우스 오른쪽 단추로 클릭한 다음 마침을 클릭하여 로컬 에뮬레이터의 열려 있는 모든 인스턴스를 종료합니다. 모든 인스턴스를 종료하는 데는 1분 정도 걸립니다.
-2. Windows 검색 상자에 **앱 및 기능**을 입력하고 **앱 및 기능(시스템 설정)** 결과를 클릭합니다.
-3. 앱 목록에서 **Azure Cosmos DB 에뮬레이터**로 스크롤하여 선택하고, **제거**를 클릭한 다음, 확인하고 **제거**를 다시 클릭합니다.
-4. 앱이 제거되면 C:\Users\<user>\AppData\Local\CosmosDBEmulator로 이동하여 폴더를 삭제합니다. 
+1. Hello의 열려 있는 모든 인스턴스를 종료 hello 시스템 트레이에서 hello Azure Cosmos DB 에뮬레이터 아이콘을 마우스 오른쪽 단추로 클릭 한 다음 종료를 클릭 하 여 로컬 에뮬레이터입니다. 모든 인스턴스 tooexit 1 분을 걸릴 수 있습니다.
+2. Hello Windows 검색 상자에 입력 **응용 프로그램 및 기능** hello에서을 클릭 하 고 **응용 프로그램 및 기능 (시스템 설정)** 결과입니다.
+3. Hello 앱 목록에서 스크롤합니다 너무**Azure Cosmos DB 에뮬레이터**, 선택, 클릭 **제거**후 확인 하 고 클릭 **제거** 다시 합니다.
+4. Hello 앱을 제거할 때 이동 tooC:\Users\<사용자 > \AppData\Local\CosmosDBEmulator 및 delete hello 폴더입니다. 
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 다음을 수행했습니다.
+이 자습서에서는 hello 다음 작업을 수행 하면:
 
 > [!div class="checklist"]
-> * 로컬 에뮬레이터 설치
-> * Windows용 Docker에서 에뮬레이터 실행
+> * 설치의 로컬 에뮬레이터 hello
+> * Rand hello Windows 용 Docker에는 에뮬레이터
 > * 요청 인증
-> * 에뮬레이터에서 데이터 탐색기 사용
+> * Hello 에뮬레이터의에서 hello 데이터 탐색기를 사용합니다.
 > * SSL 인증서 내보내기
-> * 명령줄에서 에뮬레이터 호출
+> * 에뮬레이터의 hello hello 명령줄에서 호출
 > * 추적 파일 수집
 
-이 자습서에서는 무료 로컬 개발을 위해 로컬 에뮬레이터를 사용하는 방법을 살펴보았습니다. 이제 다음 자습서로 진행하여 에뮬레이터 SSL 인증서를 내보내는 방법을 알아볼 수 있습니다. 
+이 자습서에서는 toouse 무료 로컬 개발을 위한 로컬 에뮬레이터 hello 하는 방법을 배웠습니다. 이제 toohello 다음 자습서를 진행 하 고 알아볼 수 있습니다 어떻게 tooexport 에뮬레이터 SSL 인증서입니다. 
 
 > [!div class="nextstepaction"]
-> [Azure Cosmos DB 에뮬레이터 인증서 내보내기](local-emulator-export-ssl-certificates.md)
+> [Hello Azure Cosmos DB 에뮬레이터 인증서 내보내기](local-emulator-export-ssl-certificates.md)

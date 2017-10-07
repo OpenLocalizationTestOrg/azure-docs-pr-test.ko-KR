@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 앱 백업"
-description: "Azure 앱 서비스에서 앱의 백업을 만드는 방법에 대해 알아봅니다."
+title: "Azure에서 앱을 aaaBack"
+description: "자세한 방법을 Azure 앱 서비스에서 앱의 toocreate 백업 합니다."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 77e983afaaba8e944ab1f337e1c28ced83b63205
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e41d93d322bbc48b45b28eeaa817928d83c2b9d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="back-up-your-app-in-azure"></a>Azure에서 앱 백업
-[Azure App Service](../app-service/app-service-value-prop-what-is.md)의 백업 및 복원 기능을 사용하여 수동으로 또는 일정에 따라 앱 백업을 쉽게 만들 수 있습니다. 기존 앱을 덮어쓰거나 다른 앱으로 복원하여 앱을 이전 상태의 스냅숏으로 복원할 수 있습니다. 
+hello를 백업 및 복원 기능에 [Azure 앱 서비스](../app-service/app-service-value-prop-what-is.md) 앱 백업을 수동으로 또는 일정에 따라 쉽게 만들 수 있습니다. 덮어쓰기를 hello 기존 응용 프로그램 또는 tooanother 응용 프로그램을 복원 하 여 hello 앱 tooa 스냅숏을 이전 상태로 복원할 수 있습니다. 
 
 앱을 백업에서 복원하는 방법에 대한 자세한 내용은 [Azure에서 앱 복원](web-sites-restore.md)을 참조하세요.
 
 <a name="whatsbackedup"></a>
 
 ## <a name="what-gets-backed-up"></a>백업 대상
-App Service는 앱에서 사용하도록 구성한 Azure Storage 계정과 컨테이너에 다음 정보를 백업할 수 있습니다. 
+앱 서비스는 hello 다음을 백업할 수 정보 tooan Azure 저장소 계정 및 컨테이너 응용 프로그램 toouse를 구성 합니다. 
 
 * 앱 구성
 * 파일 콘텐츠
-* 앱에 연결된 데이터베이스
+* 데이터베이스 연결 된 tooyour 응용 프로그램
 
-백업 기능과 함께 지원되는 데이터베이스 솔루션은 다음과 같습니다. 
+hello 데이터베이스 솔루션을 다음 백업 기능으로 지원 됩니다. 
    - [SQL 데이터베이스](https://azure.microsoft.com/en-us/services/sql-database/)
    - [Azure Database for MySQL(미리 보기)](https://azure.microsoft.com/en-us/services/mysql)
    - [Azure Database for PostgreSQL(미리 보기)](https://azure.microsoft.com/en-us/services/postgres)
@@ -49,116 +49,116 @@ App Service는 앱에서 사용하도록 구성한 Azure Storage 계정과 컨�
 <a name="requirements"></a>
 
 ## <a name="requirements-and-restrictions"></a>요구 사항 및 제한 사항
-* 백업 및 복원 기능을 사용하려면 App Service 계획이 **표준** 계층 또는 **프리미엄** 계층에 있어야 합니다. 더 높은 계층을 사용하도록 앱 서비스 계획을 확장하는 방법에 대한 자세한 내용은 [Azure에서 앱 확장](web-sites-scale.md)을 참조하세요.  
+* hello를 백업 및 복원 기능을 사용 하려면 앱 서비스 계획 toobe hello에 hello **표준** 계층 또는 **프리미엄** 계층입니다. 앱 서비스 계획 toouse 더 높은 계층 확장에 대 한 자세한 내용은 참조 [Azure에서 응용 프로그램을 수직](web-sites-scale.md)합니다.  
   **프리미엄** 계층을 사용하면 **표준** 계층보다 더 많은 매일 백업을 수행할 수 있습니다.
-* Azure 저장소 계정과 컨테이너가 백업하려는 앱과 동일한 구독에 있어야 합니다. Azure 저장소 계정에 대한 자세한 내용은 이 문서의 끝에 있는 [링크](#moreaboutstorage) 를 참조하십시오.
-* 최대 10GB의 앱 및 데이터베이스 콘텐츠를 백업할 수 있습니다. 백업 크기가 이 제한을 초과하면 오류가 발생합니다.
+* Azure 저장소 계정 및 컨테이너에서 hello 필요 toobackup hello 앱과 동일한 구독 합니다. Azure 저장소 계정에 대 한 자세한 내용은 참조 hello [링크](#moreaboutstorage) hello이이 문서의 뒷부분에 있습니다.
+* 응용 프로그램 및 데이터베이스 콘텐츠 too10 GB 백업 될 수 있습니다. Hello 백업 크기가이 한도 초과 하면 오류가 발생 합니다.
 
 <a name="manualbackup"></a>
 
 ## <a name="create-a-manual-backup"></a>수동 백업 만들기
-1. [Azure Portal](https://portal.azure.com)에서 앱의 블레이드로 이동하여 **백업**을 선택합니다. **백업** 블레이드가 표시됩니다.
+1. Hello에 [Azure 포털](https://portal.azure.com)tooyour 앱 블레이드를 탐색, 선택, **백업을**합니다. hello **백업을** 블레이드를 표시 됩니다.
    
     ![백업 페이지][ChooseBackupsPage]
    
    > [!NOTE]
-   > 아래와 같은 메시지가 나타나면 백업을 계속 진행하기 전에 클릭하여 앱 서비스 계획을 업그레이드해야 합니다.
+   > 아래 hello 메시지를 표시 하는 경우 클릭 하기 전에 앱 서비스 계획을 진행할 수 tooupgrade 백업으로.
    > 자세한 내용은 [Azure에서 앱 확장](web-sites-scale.md) 을 참조하세요.  
    > ![저장소 계정 선택](./media/web-sites-backup/01UpgradePlan1.png)
    > 
    > 
 
-2. **백업** 블레이드에서 **구성** 클릭
+2. Hello에 **백업** 블레이드에서 클릭 **구성**
 ![구성 클릭](./media/web-sites-backup/ClickConfigure1.png)
-3. **백업 구성** 블레이드에서 **저장소: 구성되지 않음**을 클릭하여 저장소 계정을 구성합니다.
+3. Hello에 **백업 구성** 블레이드에서 클릭 **저장소: 구성 되지** tooconfigure 저장소 계정입니다.
    
     ![저장소 계정 선택][ChooseStorageAccount]
-4. **저장소 계정** 및 **컨테이너**를 선택하여 백업 대상을 선택합니다. 저장소 계정은 백업할 앱이 있는 동일한 구독에 속해야 합니다. 필요한 경우 각 블레이드에서 새 저장소 계정이 나 새 컨테이너를 만들 수 있습니다. 완료되면 **선택**을 클릭합니다.
+4. **저장소 계정** 및 **컨테이너**를 선택하여 백업 대상을 선택합니다. hello 저장소 계정이 toohello 속해야 tooback를 원하는 hello 앱과 동일한 구독 합니다. 원하는 경우 해당 블레이드 hello에에서 새 저장소 계정 또는 새 컨테이너를 만들 수 있습니다. 완료되면 **선택**을 클릭합니다.
    
     ![저장소 계정 선택](./media/web-sites-backup/02ChooseStorageAccount1-1.png)
-5. 왼쪽에 열려 있는 **백업 구성** 블레이드에서 **데이터베이스 백업**을 구성한 다음 백업에 포함할 데이터베이스(SQL Database 또는 MySQL)를 선택하고 **확인**을 클릭합니다.  
+5. Hello에 **백업 구성** 구성할 수는 계속 열려 블레이드에서 **Backup Database**, tooinclude hello 백업 (SQL 데이터베이스 또는 MySQL)에 사용한 다음 클릭 hello 데이터베이스를 선택 합니다 **확인**합니다.  
    
     ![저장소 계정 선택](./media/web-sites-backup/03ConfigureDatabase1.png)
    
    > [!NOTE]
-   > 이 목록에 표시될 데이터베이스의 경우 연결 문자열은 앱의 **응용 프로그램 설정** 블레이드에서 **연결 문자열** 섹션에 있어야 합니다.
+   > 이 목록에서 데이터베이스 tooappear에 대 한 연결 문자열 hello에 존재 해야 **연결 문자열** hello 섹션 **응용 프로그램 설정** 블레이드 앱에 대 한 합니다.
    > 
    > 
-6. **백업 구성** 블레이드에서 **저장**을 클릭합니다.    
-7. **백업** 블레이드에서 **백업**을 클릭합니다.
+6. Hello에 **백업 구성** 블레이드에서 클릭 **저장**합니다.    
+7. Hello에 **백업을** 블레이드에서 클릭 **백업**합니다.
    
     ![BackUpNow 단추][BackUpNow]
    
-    백업 프로세스를 수행하는 동안 진행 메시지가 표시됩니다.
+    Hello 백업 프로세스 중 진행 메시지를 표시 합니다.
 
-저장소 계정과 컨테이너가 구성되면 언제든지 수동 백업을 시작할 수 있습니다.  
+Hello 저장소 계정 및 컨테이너 구성 되 면 언제 든 지 수동 백업을 시작할 수 있습니다.  
 
 <a name="automatedbackups"></a>
 
 ## <a name="configure-automated-backups"></a>자동화된 백업 구성
-1. **백업 구성** 블레이드에서 **예약된 백업**을 **켜기**로 설정합니다. 
+1. Hello에 **백업 구성** 설정 블레이드에서 **예약 된 백업** 너무**에**합니다. 
    
     ![저장소 계정 선택](./media/web-sites-backup/05ScheduleBackup1.png)
-2. 백업 일정 옵션이 표시되면 **예약된 백업**을 **켜기**로 설정하고 원하는 대로 백업 일정을 구성한 다음 **확인**을 클릭합니다.
+2. 옵션 표시 됩니다, 백업 일정이 설정 **예약 된 백업** 너무**에**원하는 대로 hello 백업 일정을 구성 합니다. 다음을 클릭 **확인**합니다.
    
     ![자동 백업 사용][SetAutomatedBackupOn]
 
 <a name="partialbackups"></a>
 
 ## <a name="configure-partial-backups"></a>부분 백업 구성
-앱의 모든 것을 백업하고 싶지 않을 때도 있습니다. 다음은 몇 가지 예입니다.
+경우에 따라 원하지 toobackup 모든 앱에 합니다. 다음은 몇 가지 예입니다.
 
 * 오래된 블로그 게시물이나 이미지처럼 변하지 않는 정적 콘텐츠가 포함된 앱의 [주별 백업을 설정](web-sites-backup.md#configure-automated-backups) 합니다.
-* 앱의 콘텐츠가 10GB 이상이며, 이는 한 번에 백업할 수 있는 최대 용량입니다.
-* 로그 파일은 백업할 필요가 없습니다.
+* 응용 프로그램에 (즉, 한 번에 백업할 수 hello 최대 크기) 콘텐츠의 10GB 이상.
+* Toobackup hello 로그 파일을 바람직하지 않습니다.
 
-부분 백업을 사용하면 백업할 파일을 정확히 선택할 수 있습니다.
+부분 백업 정확 하 게 하는 파일 수를 선택할 수 있습니다. 원하는 toobackup 합니다.
 
 ### <a name="exclude-files-from-your-backup"></a>백업에서 파일 제외
-한 번 백업되었고 변경하지 않을 로그 파일과 정적 이미지가 포함된 앱이 있다고 가정해 보겠습니다. 이러한 경우 해당 폴더와 파일을 이후의 백업에서 저장하지 않도록 제외할 수 있습니다. 백업에서 파일과 폴더를 제외하려면 앱의 `D:\home\site\wwwroot` 폴더에 `_backup.filter` 파일을 만듭니다. 이 파일에서 제외할 파일과 폴더의 목록을 지정합니다. 
+로그 파일 및 정적 이미지를 한 번 백업 되 고 toochange 진행 되지 않고 있는 앱 있다고 가정 합니다. 이러한 경우 해당 폴더와 파일을 이후의 백업에서 저장하지 않도록 제외할 수 있습니다. tooexclude 파일과 하면 백업에서 폴더 만들기는 `_backup.filter` hello에 대 한 파일 `D:\home\site\wwwroot` 응용 프로그램의 폴더입니다. 파일 및 폴더 tooexclude이이 파일에 원하는 hello 목록을 지정 합니다. 
 
-파일에 쉽게 액세스하는 방법은 Kudu를 사용하는 것입니다. Kudu에 액세스하려면 웹앱의 **고급 도구 -> 이동** 설정을 클릭합니다.
+파일은 toouse Kudu는 쉽게 tooaccess 합니다. 클릭 **고급 도구 Go->** 웹 앱 tooaccess Kudu에 대 한 설정입니다.
 
 ![포털을 사용하는 Kudu][kudu-portal]
 
-백업에서 제외하려는 폴더를 식별합니다.  예를 들어 강조 표시된 폴더와 파일을 필터링하려고 합니다.
+백업에서 tooexclude 되도록 hello 폴더를 식별 합니다.  예를 들어 원하는 toofilter hello 강조 표시 된 폴더와 파일을 초과 합니다.
 
 ![Images 폴더][ImagesFolder]
 
-`_backup.filter`라는 파일을 만들고 위 목록을 파일에 저장하지만 `D:\home`을 제거합니다. 줄당 하나의 디렉터리 또는 파일을 나열하세요. 파일의 내용은 다음과 같아야 합니다.
+파일을 만들 `_backup.filter` 위의 hello 목록 hello 파일에 저장 되지만 제거 및 `D:\home`합니다. 줄당 하나의 디렉터리 또는 파일을 나열하세요. 따라서 hello 파일의 내용을 hello 여야 합니다.
  ```bash
     \site\wwwroot\Images\brand.png
     \site\wwwroot\Images\2014
     \site\wwwroot\Images\2013
 ```
 
-[ftp](web-sites-deploy.md#ftp) 또는 다른 방법을 사용하여 해당 사이트의 `D:\home\site\wwwroot\` 디렉터리에 `_backup.filter` 파일을 업로드합니다. 필요한 경우 `DebugConsole` Kudu를 사용하여 파일을 직접 만들고 여기에 내용을 삽입할 수도 있습니다.
+업로드 `_backup.filter` toohello 파일 `D:\home\site\wwwroot\` 사용 하 여 사이트의 디렉터리 [ftp](web-sites-deploy.md#ftp) 또는 다른 방법입니다. Kudu를 사용 하 여 직접 hello 파일을 만들 수 있습니다 `DebugConsole` 있습니다 hello 콘텐츠를 삽입 합니다.
 
-이제 평소와 같이 [수동](#create-a-manual-backup) 또는 [자동](#configure-automated-backups)으로 백업을 실행합니다. 이제 `_backup.filter`에 지정된 파일과 폴더가 이후에 예약되거나 수동으로 시작되는 백업에서 제외됩니다. 
+동일한 실행된 백업을 hello 수행한 방식으로 일반적으로, [수동으로](#create-a-manual-backup) 또는 [자동으로](#configure-automated-backups)합니다. 이제, 파일 및 폴더에 지정 된 `_backup.filter` hello 예약 하거나 수동으로 시작 된 이후 백업에서 제외 됩니다. 
 
 > [!NOTE]
-> [정기 백업을 복원](web-sites-restore.md)할 때와 동일한 방법으로 사이트의 부분 백업을 복원합니다. 복원 프로세스는 올바르게 수행됩니다.
+> 사이트 hello의 부분 백업을 복원 합니다. 같은 방법으로 [일반 백업 복원](web-sites-restore.md)합니다. hello 복원 프로세스 가깝습니다를 안녕지 않습니다.
 > 
-> 전체 백업이 복원되면 해당 사이트의 모든 콘텐츠가 백업에 있는 항목들로 대체됩니다. 파일이 사이트에 있지만 백업에 없는 경우 해당 파일은 삭제됩니다. 하지만 부분 백업이 복원되면 블랙 리스트 디렉터리에 위치한 모든 콘텐츠 또는 블랙 리스트에 포함된 모든 파일이 그대로 유지됩니다.
+> 전체 백업이 복원 되 면 hello 사이트에서 모든 콘텐츠 hello 백업에 무엇이으로 바뀝니다. 파일이 hello 사이트에 있지만 hello 백업에는 없는 경우 삭제를 가져옵니다. 하지만 부분 백업 복원 되 면 hello 차단 목록에 포함할 디렉터리 중 하나 또는 모든 블랙 리스트에 올린된 파일에 있는 모든 콘텐츠에 있는 그대로 유지 됩니다.
 > 
 
 
 <a name="aboutbackups"></a>
 
 ## <a name="how-backups-are-stored"></a>백업 저장 방법
-앱에 대해 하나 이상의 백업을 만들면 저장소 계정의 **컨테이너** 블레이드와 앱에 해당 백업이 표시됩니다. 저장소 계정에서 각 백업은 백업 데이터가 포함된 `.zip` 파일과 해당 `.zip` 파일 콘텐츠의 매니페스트가 포함된 `.xml` 파일로 구성되어 있습니다. 실제로 앱 복원을 수행하지 않고 백업에 액세스하고자 한다면 이들 파일의 압축을 풀고 찾아볼 수 있습니다.
+Hello 백업을 hello에 표시 되는 앱에 대 한 하나 이상의 백업을 수행한 후 **컨테이너** 저장소 계정과 응용 프로그램의 블레이드에서 합니다. 각 백업 이루어져 hello 저장소 계정에는`.zip` hello 백업 데이터를 포함 하는 파일 및 `.xml` hello의 매니페스트가 포함 된 파일 `.zip` 파일 내용의 합니다. 압축을 풀 수 있으며 원하는 tooaccess 백업을 복원 하는 경우 응용 프로그램을 실제로 수행 하지 않고 경우 이러한 파일을 찾을 수 있습니다.
 
-앱에 대한 데이터베이스 백업은 .zip 파일의 루트에 저장됩니다. SQL 데이터베이스의 경우 이 파일은 BACPAC 파일(파일 확장명 없음)이며, 가져올 수 있습니다. BACPAC 내보내기를 기반으로 하여 SQL 데이터베이스를 만들려면 [BACPAC 파일을 가져와 새 사용자 데이터베이스 만들기](http://technet.microsoft.com/library/hh710052.aspx)를 참조하세요.
+hello 앱에 대 한 데이터베이스 백업은 hello the.zip 파일의 hello 루트에 저장 됩니다. SQL 데이터베이스의 경우 이 파일은 BACPAC 파일(파일 확장명 없음)이며, 가져올 수 있습니다. toocreate hello BACPAC 내보내기에 따라 SQL 데이터베이스, 참조 [가져올 BACPAC 파일 tooCreate 새 사용자 데이터베이스](http://technet.microsoft.com/library/hh710052.aspx)합니다.
 
 > [!WARNING]
-> **websitebackups** 컨테이너에 있는 파일을 변경하면 백업이 잘못되어 복원할 수 없게 됩니다.
+> hello 파일을 변경 하면 **websitebackups** 컨테이너에 잘못 된 서명과 따라서 restorable 아닌 백업 toobecome hello 발생할 수 있습니다.
 > 
 > 
 
 <a name="nextsteps"></a>
 
 ## <a name="next-steps"></a>다음 단계
-앱을 백업에서 복원하는 방법에 대한 자세한 내용은 [Azure에서 앱 복원](web-sites-restore.md)을 참조하세요. 또한 REST API를 사용하여 App Service 앱을 백업하고 복원할 수 있습니다([REST를 사용하여 App Service 앱 백업 및 복원](websites-csm-backup.md)참조).
+앱을 백업에서 복원하는 방법에 대한 자세한 내용은 [Azure에서 앱 복원](web-sites-restore.md)을 참조하세요. 백업 하 고 REST API를 사용 하 여 앱 서비스 앱을 복원할 수도 있습니다 (참조 [사용 REST toobackup 및 복원 앱 서비스 앱](websites-csm-backup.md)).
 
 
 <!-- IMAGES -->

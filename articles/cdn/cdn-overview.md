@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN 개요 | Microsoft 문서"
-description: "Azure CDN(Content Delivery Network) 정의와 Blob 및 정적 콘텐츠를 캐시하여 고대역폭 콘텐츠를 배달하는 데 사용하는 방법을 알아봅니다."
+title: "aaaAzure CDN 개요 | Microsoft Docs"
+description: "Azure 콘텐츠 배달 네트워크 (CDN)은 어떤 hello에 알아봅니다 방법과 toouse 것 blob 및 정적 콘텐츠를 캐시 하 여 toodeliver 고대역폭 콘텐츠입니다."
 services: cdn
 documentationcenter: 
 author: smcevoy
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 02/08/2017
 ms.author: v-semcev
-ms.openlocfilehash: 2706f22d2bc3e77a53f0a6a39dcbea8048879d01
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e0230a6e107969b845985f2f4d357bf93cd40d42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="overview-of-the-azure-content-delivery-network-cdn"></a>Azure CDN(Content Delivery Network) 개요
+# <a name="overview-of-hello-azure-content-delivery-network-cdn"></a>Hello Azure 콘텐츠 배달 네트워크 (CDN)의 개요
 > [!NOTE]
-> 이 문서에서는 Azure CDN(Content Delivery Network)이 무엇이고 어떻게 작동하며 각 Azure CDN 제품의 기능은 무엇인지에 대해 설명합니다.  이 정보를 건너뛰고 CDN 끝점을 만드는 방법에 대한 자습서로 바로 이동하려면 [Azure CDN 사용](cdn-create-new-endpoint.md)을 참조하세요.  현재 CDN 노드 위치 목록을 보려면 [Azure CDN POP 위치](cdn-pop-locations.md)를 참조하세요.
+> 이 문서에서는 Azure 콘텐츠 배달 네트워크 (CDN)은 어떤 hello, 작동 방법 및 각 Azure CDN 제품의 hello 기능에 설명 합니다.  Tooskip이 정보를 표시할 경우 및 방법 대 직선 tooa 자습서 이동 toocreate CDN 끝점 참조 [Azure CDN을 사용 하 여](cdn-create-new-endpoint.md)합니다.  현재 CDN 노드 위치 목록을 toosee 참조 [Azure CDN POP 위치](cdn-pop-locations.md)합니다.
 > 
 > 
 
-Azure CDN(Content Delivery Network)은 전략적으로 배치된 위치에서 정적 웹 콘텐츠를 캐싱하여 사용자에게 콘텐츠를 배달하기 위한 최대 처리량을 제공합니다.  CDN은 전 세계 물리적 노드에 콘텐츠를 캐시하여 고대역폭 콘텐츠를 배달하기 위한 글로벌 솔루션을 개발자에게 제공합니다. 
+Azure 콘텐츠 배달 네트워크 (CDN) hello toousers 콘텐츠를 제공 하기 위한 전략적으로 배치 된 위치 tooprovide 최대 처리량에서 정적 웹 콘텐츠를 캐시 합니다.  CDN hello 개발자에 게 hello 전 세계 물리적 노드에서 hello 콘텐츠를 캐시 하 여 고대역폭 콘텐츠를 배달 하기 위한 글로벌 솔루션을 제공 합니다. 
 
-CDN을 사용하여 웹 사이트 자산을 캐시할 경우의 이점은 다음과 같습니다.
+hello CDN toocache 웹 사이트 자산을 사용 하 여 hello 이점은 다음과 같습니다.
 
-* 콘텐츠를 로드하기 위해 많은 왕복이 필요한 응용 프로그램을 사용 중인 최종 사용자의 성능 및 사용자 환경 향상
-* 제품 런칭 이벤트 시작 시와 같이 순간적인 높은 부하를 더 효율적으로 처리하기 위한 대규모 조정
-* 사용자 요청을 분산하고 에지 서버에서 콘텐츠를 제공하여 원본으로 전송되는 트래픽 양이 감소합니다.
+* 더 나은 성능과 사용자 tooload 콘텐츠를 필요한 여러 번 왕복 있는 응용 프로그램을 사용 하는 경우에 특히 최종 사용자에 대 한 환경을 제공 합니다.
+* 대형 배율 toobetter 제품의 hello 시작 될 때 시작 이벤트와 같은 일시적인 고 부하를 처리 합니다.
+* 사용자 요청을 배포 하 고에 지 서버에서 콘텐츠 처리를 적게 트래픽이 toohello 원점을 전송 됩니다.
 
 ## <a name="how-it-works"></a>작동 방법
 ![CDN 개요](./media/cdn-overview/cdn-overview.png)
 
-1. 사용자(Alice)가 특수 도메인 이름(예: `<endpointname>.azureedge.net`)으로 URL을 사용하여 파일(자산이라고도 함)을 요청합니다.  DNS는 최고 성능의 POP(상호 접속 위치) 위치로 요청을 라우팅합니다.  일반적으로 이것은 지리적으로 사용자에게 가장 가까운 POP입니다.
-2. POP의 에지 서버의 캐시에 파일이 없으면, 에지 서버는 원본에서 파일을 요청합니다.  원본은 Azure Web App, Azure Cloud Service, Azure Storage 계정 또는 공개적으로 액세스할 수 있는 웹 서버입니다.
-3. 원본은 파일의 TTL(Time-to-Live)을 설명하는 선택적인 HTTP 헤더를 포함하여, 파일을 에지 서버에 반환합니다.
-4. 에지 서버는 파일을 캐싱하고 원래 요청자(Alice)에게 파일을 반환합니다.  파일은 TTL이 만료될 때가지 에지 서버에 캐싱된 상태로 남습니다.  원본이 TTL을 지정하지 않은 경우, 기본 TTL은 7일입니다.
-5. 추가 사용자는 같은 URL을 사용하여 같은 파일을 요청할 수 있고, 같은 POP으로 전달될 수 있습니다.
-6. 파일의 TTL이 만료되지 않았으면, 에지 서버는 캐시로부터 파일을 반환합니다.  이렇게 하면 보다 신속하고 응답성이 뛰어난 사용자 환경이 가능합니다.
+1. 사용자(Alice)가 특수 도메인 이름(예: `<endpointname>.azureedge.net`)으로 URL을 사용하여 파일(자산이라고도 함)을 요청합니다.  DNS는 hello 요청 toohello 가장 낮은 상태 지점 (POP) 위치를 라우팅합니다.  일반적으로이 hello POP 지리적으로 가장 가까운 toohello 사용자입니다.
+2. Hello POP에에서 hello에 지 서버에서 캐시에에서 hello 파일이 수 없는 경우 hello에 지 서버 hello 원점에서 hello 파일을 요청 합니다.  Azure 웹 앱, Azure 클라우드 서비스, Azure 저장소 계정 또는 공개적으로 액세스할 수 있는 웹 서버 hello 원점 수 있습니다.
+3. hello 원점 hello 파일 toohello 지 서버를 hello 파일의 시간 to Live (TTL)를 설명 하는 선택적 HTTP 헤더를 포함 하 여 반환 합니다.
+4. hello에 지 서버 hello 파일을 캐시 하 고 hello 파일 toohello 원래 요청자 (Alice)를 반환 합니다.  hello 파일 hello TTL 만료 될 때까지 hello에 지 서버에 캐시 된 상태로 유지 됩니다.  Hello 원본 TTL을 지정 하지 않은 경우 hello 기본 TTL은 7 일입니다.
+5. 추가 사용자가 요청 hello 동일한 URL을 사용 하 여 파일 동일 하 고 있을 수 있습니다 수 방향이 지정 된 toothat 수 있습니다. 동일한 POP 합니다.
+6. Hello 파일에 대 한 hello TTL 만료 되지 않았는지 hello에 지 서버 hello 캐시에서 hello 파일을 반환 합니다.  이렇게 하면 보다 신속하고 응답성이 뛰어난 사용자 환경이 가능합니다.
 
 ## <a name="azure-cdn-features"></a>Azure CDN 기능
-Azure CDN 제품은 **Akamai의 Azure CDN Standard**, **Verizon의 Azure CDN Standard**, **Verizon의 Azure CDN Premium**, 세 가지가 있습니다.  다음 표는 각 제품에 사용할 수 있는 기능입니다.
+Azure CDN 제품은 **Akamai의 Azure CDN Standard**, **Verizon의 Azure CDN Standard**, **Verizon의 Azure CDN Premium**, 세 가지가 있습니다.  hello 다음 표에 hello 기능 각 제품을 사용할 수 있습니다.
 
 |  | Standard Akamai | Standard Verizon | Premium Verizon |
 | --- | --- | --- | --- |
@@ -85,18 +85,18 @@ Azure CDN 제품은 **Akamai의 Azure CDN Standard**, **Verizon의 Azure CDN Sta
 
 
 > [!TIP]
-> Azure CDN에서 참조하려는 기능이 있나요?  [피드백 보내기](https://feedback.azure.com/forums/169397-cdn) 
+> Azure CDN에서 toosee 원하는 기능 거기?  [피드백 보내기](https://feedback.azure.com/forums/169397-cdn) 
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
-CDN을 시작하려면 [Azure CDN 사용](cdn-create-new-endpoint.md)을 참조하세요.
+CDN에서 시작 tooget 참조 [Azure CDN을 사용 하 여](cdn-create-new-endpoint.md)합니다.
 
-기존 CDN 고객인 경우 이제 [Microsoft Azure Portal](https://portal.azure.com) 또는 [PowerShell](cdn-manage-powershell.md)을 통해 CDN 끝점을 관리할 수 있습니다.
+기존 CDN 고객 인 경우 hello 통해 CDN 끝점 이제 관리할 수 있습니다 [Microsoft Azure 포털](https://portal.azure.com) 또는 [PowerShell](cdn-manage-powershell.md)합니다.
 
-작동 중인 CDN 작업을 보려면 [빌드 2016 세션 비디오](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)를 참조하세요.
+toosee 동작에서 CDN을 hello, 체크 아웃 hello [우리의 빌드 2016 세션의 비디오](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)합니다.
 
-[.NET](cdn-app-dev-net.md) 또는 [Node.js](cdn-app-dev-node.md)를 사용하여 Azure CDN을 자동화하는 방법을 알아봅니다.
+자세한 내용은 방법 tooautomate Azure CDN와 [.NET](cdn-app-dev-net.md) 또는 [Node.js](cdn-app-dev-node.md)합니다.
 
 가격 정보는 [CDN 가격 책정](https://azure.microsoft.com/pricing/details/cdn/)을 참조하세요.
 

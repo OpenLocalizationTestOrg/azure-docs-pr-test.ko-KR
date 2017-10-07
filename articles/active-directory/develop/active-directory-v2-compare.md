@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 끝점의 차이점 | Microsoft Docs"
-description: "원래의 Azure AD와 v2.0 끝점 간의 비교입니다."
+title: "aaaWhat은 hello Azure AD v2.0 끝점에 차이가 있는? | Microsoft Docs"
+description: "Hello 원래 Azure AD와 hello v2.0 끝점 간의 비교 합니다."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,51 +15,51 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 81de65b0e825dec64383f52b02c5ee56c9434807
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e7ed196f9053fc21db799cd6bc513ba5c2b92885
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="whats-different-about-the-v20-endpoint"></a>v2.0 끝점의 달라진 점
-Azure Active Directory에 익숙하거나 이전에 Azure AD와 앱을 통합했다면 v2.0 끝점에서 예상하지 못한 몇 가지 차이를 느낄 수 있을 것입니다.  이 문서는 이러한 차이의 이해를 돕기 위해 작성되었습니다.
+# <a name="whats-different-about-hello-v20-endpoint"></a>Hello v2.0 끝점에 대 한 다른 무엇입니까?
+Azure Active Directory에 익숙한 hello 이전에 Azure AD와 응용 프로그램을 통합 한 경우 예상 하지 않고 hello v2.0 끝점에 차이가 있을 수 있습니다.  이 문서는 이러한 차이의 이해를 돕기 위해 작성되었습니다.
 
 > [!NOTE]
-> 일부 Azure Active Directory 시나리오 및 기능만 v2.0 끝점에서 지원합니다.  v2.0 끝점을 사용해야 하는지 확인하려면 [v2.0 제한 사항](active-directory-v2-limitations.md)을 참조하세요.
+> 모든 Azure Active Directory 시나리오 및 기능 hello v2.0 끝점에서 사용할 수 있습니다.  에 대해 알아보세요 hello v2.0 끝점을 사용 해야 하는 경우 toodetermine [v2.0 제한](active-directory-v2-limitations.md)합니다.
 >
 
 ## <a name="microsoft-accounts-and-azure-ad-accounts"></a>Microsoft 계정과 Azure AD 계정
-v2.0 끝점은 개발자가 단일 인증 끝점을 사용하여 Microsoft 계정과 Azure AD 계정 모두로부터 로그인할 수 있는 앱을 작성할 수 있도록 합니다.  이 모델은 완전한 계정 중립적인 앱을 작성할 수 있도록 해주며, 사용자가 로그인할 때 사용하는 계정 형식을 무시할 수 있습니다.  물론, 특정 세션에서 사용 중인 계정 유형을 인식할 수 있도록 *만들 수 있지만* , 그럴 필요가 없습니다.
+hello v2.0 끝점 toowrite 앱 로그인 단일 인증 끝점을 사용 하 여 Microsoft 계정과 Azure AD 계정에서 허용 하는 개발자를 수 있습니다.  이렇게 하면 기능 toowrite 앱 완전히 계정을 알 수 없는; hello 사용자가 로그인에 hello 계정의 hello 유형의 무시 수 있습니다.  물론, 있습니다 *수* hello 유형의 특정 세션에서 사용 되는 계정 인식 응용 프로그램을 만들 수 있지만 필요가 없습니다.
 
-예를 들어 앱이 [Microsoft Graph](https://graph.microsoft.io)를 호출하는 경우 일부 추가 기능 및 데이터를 해당 SharePoint 사이트 또는 디렉터리 데이터와 같은 엔터프라이즈 사용자가 사용할 수 있습니다.  하지만 [사용자의 메일 읽기](https://graph.microsoft.io/docs/api-reference/v1.0/resources/message)와 같은 작업 대부분에서 코드는 Microsoft 계정과 Azure AD 계정 두 곳에서 정확히 동일하게 쓰일 수 있습니다.  
+예를 들어, 앱 hello를 호출 하는 경우 [Microsoft Graph](https://graph.microsoft.io), 몇 가지 추가 기능 및 데이터에는 해당 SharePoint 사이트나 디렉터리 데이터와 같은 사용 가능한 tooenterprise 사용자가 됩니다.  하지만 많은 동작에 대 한와 같은 [사용자의 메일 읽기](https://graph.microsoft.io/docs/api-reference/v1.0/resources/message), hello 코드를 정확 하 게 작성할 수 있습니다. Microsoft 계정과 Azure AD 계정에 대 한 hello 동일 합니다.  
 
-이제 간단한 하나의 프로세스를 통해 Microsoft 계정과 Azure AD 계정을 사용하여 앱을 통합할 수 있습니다.  끝점의 단일 집합, 단일 라이브러리 및 단일 앱 등록을 사용하여 소비자와 엔터프라이즈 세계에 액세스하는 권한을 얻을 수 있습니다.  v2.0 끝점에 대해 알아보려면 [개요](active-directory-appmodel-v2-overview.md)를 확인하세요.
+이제 간단한 하나의 프로세스를 통해 Microsoft 계정과 Azure AD 계정을 사용하여 앱을 통합할 수 있습니다.  끝점, 단일 라이브러리 및는 단일 응용 프로그램 등록 toogain 액세스 tooboth hello 소비자 및 엔터프라이즈 세계의 단일 집합을 사용할 수 있습니다.  hello v2.0 끝점, 체크 아웃에 대해 더 알아봅니다 toolearn [개요 hello](active-directory-appmodel-v2-overview.md)합니다.
 
 ## <a name="new-app-registration-portal"></a>새 앱 등록 포털
-v2.0 끝점에서 작동하는 앱을 등록하려면 새 앱 등록 포털([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList))을 사용해야 합니다.  이 포털에서는 응용 프로그램 ID를 얻거나 앱의 로그인 페이지 모양을 사용자 지정하는 등의 작업을 수행할 수 있습니다.  포털에 액세스하려면 개인 계정이나 회사/학교 계정의 Microsoft 지원 계정만 있으면 됩니다.
+tooregister hello v2.0 끝점을 사용 하는 응용 프로그램을 새 응용 프로그램 등록 포털을 사용 해야: [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)합니다.  이 hello 포털 응용 프로그램 ID를 가져올 수 있는 응용 프로그램의 로그인 페이지 등의 hello 모양을 사용자 지정 합니다.  하기만 하면 tooaccess hello 포털 전원이 Microsoft 계정-개인 또는 작업/학교 계정입니다.
 
 ## <a name="one-app-id-for-all-platforms"></a>모든 플랫폼에 대한 하나의 앱 ID
-Azure Active Directory를 사용한 경우 단일 프로젝트에 여러 가지 다른 앱을 등록했었습니다.  예를 들어 웹 사이트와 iOS 앱 둘 다 구축하는 경우 서로 다른 응용 프로그램 ID를 사용하여 두 개를 별도로 등록해야 했습니다. Azure AD 앱 등록 포털에서는 등록하는 동안 강제로 다음과 같이 구분하도록 했습니다.
+Azure Active Directory를 사용한 경우 단일 프로젝트에 여러 가지 다른 앱을 등록했었습니다.  예를 들어 웹 사이트와 iOS 앱을 빌드한 경우 했던 tooregister에 두 개의 서로 다른 응용 프로그램 Id를 사용 하 여 별도로, 합니다. hello Azure AD 응용 프로그램 등록 포털 등록 중 toomake 있습니다 이러한 구분 강제:
 
 ![이전 응용 프로그램 등록 UI](../../media/active-directory-v2-flows/old_app_registration.PNG)
 
-마찬가지로 웹 사이트와 백 엔드 웹 API가 있는 경우 Azure AD의 개별 앱처럼 각각 따로 등록해야 했습니다.  또는 iOS 앱과 안드로이드 앱이 있는 경우도 마찬가지로 다른 두 개의 앱에 등록해야 했습니다.  응용 프로그램의 각 구성 요소를 등록하면 개발자와 고객에 대해 몇 가지 예기치 않은 동작이 발생했습니다.
+마찬가지로 웹 사이트와 백 엔드 웹 API가 있는 경우 Azure AD의 개별 앱처럼 각각 따로 등록해야 했습니다.  또는 iOS 앱과 안드로이드 앱이 있는 경우도 마찬가지로 다른 두 개의 앱에 등록해야 했습니다.  응용 프로그램의 각 구성 요소를 등록 하는 중이 어 졌 toosome 개발자와 고객에 대 한 예기치 않은 동작:
 
-* 각 구성 요소가 각 고객의 Azure Active Directory 테넌트에 별도의 앱으로 표시되었습니다.
-* 테넌트 관리자가 정책을 적용하거나, 액세스를 관리하거나, 앱을 삭제하려고 할 때 앱의 각 구성 요소에 대해 작업을 수행해야 했습니다.
-* 고객이 응용 프로그램에 동의하면 각 구성 요소가 동의 화면에서 개별 응용 프로그램으로 나타났습니다.
+* 각 구성 요소는 각 고객의 hello Azure Active Directory 테 넌 트에 별도 응용 프로그램으로 표시 되었습니다.
+* Toodo 업로드 테 넌 트 관리자에 대 한 액세스를 관리 하거나 응용 프로그램을 삭제 하려면 tooapply 정책을 시도 하므로 hello 응용 프로그램의 각 구성 요소에 대 한 합니다.
+* 고객이 동의한 tooan 응용 프로그램을 하는 경우 각 구성 요소는 고유한 응용 프로그램으로 hello 동의 화면에 나타납니다.
 
-이제 v2.0 끝점에서는 단일 앱 등록으로 프로젝트의 모든 구성 요소를 등록하고 전체 프로젝트에 단일 응용 프로그램 ID를 사용할 수 있습니다.  각 프로젝트에 여러 "플랫폼"이 추가 가능하며 추가한 플랫폼에 적절한 데이터를 제공할 수 있습니다.  물론, 원하는 조건에 따라 많은 앱을 만들 수 있지만, 대부분의 경우 하나의 응용 프로그램 ID가 필요합니다.
+Hello v2.0 끝점과 단일 응용 프로그램 등록으로 프로젝트의 모든 구성 요소를 등록 하 고 전체 프로젝트에 대 한 단일 응용 프로그램 Id를 사용 하 여 이제 있습니다.  여러 "플랫폼" tooa 각 프로젝트를 추가 하 고 추가한 각 플랫폼에 대 한 hello 적절 한 데이터를 제공.  물론, 요구 사항에 따라 있지만 hello 대부분의 경우 하나의 응용 프로그램 Id 해야 할 수 만큼 앱을 만들 수 있습니다.
 
-우리의 목적은 이 제품을 통해 앱 관리와 개발 환경을 더욱 간소화시키고, 작업 중인 단일 프로젝트의 보다 통합된 보기를 만드는 것입니다.
+목표를 두고는이 됩니다 간체 tooa 더 많은 앱 관리 되며 개발 환경에서 작업할 수 있는 단일 프로젝트의 더 통합 된 보기를 만들입니다.
 
 ## <a name="scopes-not-resources"></a>리소스가 아닌 범위
-Azure Active Directory에서 앱은 **리소스** 또는 토큰 수신자로 작동할 수 있습니다.  리소스는 많은 **범위** 또는 이해할 수 있는 **oAuth2Permissions**를 정의할 수 있으며, 클라이언트 앱이 범위의 특정 집합에 대한 리소스에 토큰을 요청하도록 허용합니다.  Azure AD Graph API를 리소스의 예로 생각해 볼 경우:
+Azure Active Directory에서 앱은 **리소스** 또는 토큰 수신자로 작동할 수 있습니다.  리소스의 수를 정의할 수 **범위** 또는 **oAuth2Permissions** 자신이 이해 하 toorequest 토큰 toothat 리소스의 범위는 특정 집합에 대 한 클라이언트 앱을 허용 합니다.  리소스의 예를 들어 hello Azure AD Graph API를 고려 합니다.
 
 * 리소스 식별자, 또는 `AppID URI`: `https://graph.windows.net/` 
 * 범위, 또는 `OAuth2Permissions`: `Directory.Read`, `Directory.Write` 등.  
 
-이 모든 것은 v2.0 끝점에서도 유효합니다.  앱은 여전히 리소스로 작동하고, 범위를 정의하고, URI로 식별될 수 있습니다.  클라이언트 앱은 여전히 해당 범위에 액세스 요청할 수 있습니다.  그러나 클라이언트가 권한을 요청하는 방식이 변경되었습니다.  이전에는, OAuth 2.0 인증을 Azure AD로 보냈습니다.
+이 모든 hello hello v2.0 끝점에 대 한도 마찬가지입니다.  앱은 여전히 리소스로 작동하고, 범위를 정의하고, URI로 식별될 수 있습니다.  클라이언트 응용 프로그램 액세스 toothose 범위를 요청할 여전히 수 있습니다.  그러나 클라이언트가 해당 권한을 요청 하는 hello 방식으로 변경 되었습니다.  Hello 지난, OAuth 2.0 요청 tooAzure AD 같은 보지 못했을 수 있습니다를 승인:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/authorize?
@@ -68,7 +68,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-클라이언트 앱이 권한 부여를 요청할 때 어떤 리소스가 필요한지 **리소스** 매개 변수가 표시해 주는 곳입니다.  Azure AD는 Azure 포털의 정적 구성을 기반 앱에 필요한 권한을 계산하고, 이에 따라 토큰을 발급합니다.  이제, 동일한 OAuth 2.0 인증 요청은 다음과 같습니다.
+여기서 hello **리소스** 매개 변수는 리소스 hello 클라이언트 응용 프로그램에 대 한 권한 부여 요청을 표시 합니다.  Azure AD는 hello Azure 포털에서에서 정적 구성에 따라 하 고 그에 따라 발급 된 토큰 hello 응용 프로그램에 필요한 hello 권한을 계산 합니다.  이제 hello 같은 OAuth 2.0 권한 부여 요청 같습니다.
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -77,20 +77,20 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-앱이 권한 부여를 요청할 때 어떤 리소스와 권한이 필요한지 **범위** 매개 변수가 표시해주는 곳입니다. 원하는 리소스는 여전히 요청에서 나타납니다. - 범위 매개 변수의 각 값에 단순 포함되어 있습니다.  이러한 방식의 범위 매개 변수 사용은 v2.0 끝점이 OAuth 2.0 사양과 더욱 잘 호환되도록 해주고 일반적인 업계 실무와 더욱 긴밀하게 연합될 수 있도록 합니다.  이 기능은 앱이 다음 섹션에서 설명하는 [증분 동의](#incremental-and-dynamic-consent)를 수행할 수 있도록 해줍니다.
+여기서 hello **범위** 매개 변수는 리소스 및 사용 권한 hello 앱에 대 한 권한 부여 요청을 나타냅니다. hello는 리소스는 hello 요청에 있는 매우 여전히-hello hello 범위 매개 변수 값의 각 롤포워드되지 단순히 않았습니다 원하는입니다.  이런이 방식으로 hello scope 매개 변수를 사용 하 여 hello v2.0 끝점 toobe hello OAuth 2.0 사양 보다 규격 허용과 업계의 일반적인 사례 보다 긴밀 하 게 정렬 합니다.  앱 tooperform 해줍니다 [증분 동의](#incremental-and-dynamic-consent), hello 다음 섹션에 설명 합니다.
 
 ## <a name="incremental-and-dynamic-consent"></a>증분 및 동적 동의
-이전에 Azure AD에 등록된 앱은 앱 생성 시 필요한 OAuth 2.0 권한을 Azure Portal에서 지정해야 했습니다.
+응용 프로그램 작성 시 hello Azure 포털의 필요한 OAuth 2.0 권한을 toospecify 필요한 이전에 Azure AD에에서 등록 하는 응용 프로그램:
 
 ![권한 등록 UI](../../media/active-directory-v2-flows/app_reg_permissions.PNG)
 
-앱에 필요한 권한은 **정적으로**구성되어 있습니다.  이 기능이 Azure 포털 내에 있도록 앱 구성을 허용하고 코드를 보기 좋고 간편하게 유지하는 동안, 개발자에게 몇 가지 문제가 발생합니다.
+hello 사용 권한이 필요한 응용 프로그램 구성 된 **정적으로**합니다.  Hello Azure 포털에서에서 hello 앱 tooexist의 구성을 허용이 깔끔하고 단순 hello 코드를 유지 하는 동안 개발자를 위한 몇 가지 문제를 제공 합니다.
 
-* 앱은 생성 시 항상 필요한 모든 사용권한에 대해 알아야 했습니다.  시간의 경과에 따라 권한을 추가하는 것은 어려운 작업이었습니다.
-* 앱은 항상 미리 액세스하는 모든 리소스에 대해 알아야 했습니다.  리소스의 임의 개수에 액세스할 수 있는 앱을 만들기 어려웠습니다.
-* 앱은 사용자의 첫 로그인 시 항상 필요한 모든 권한을 요청해야 했습니다.  일부 경우에는 권한 목록이 매우 길어서 최종 사용자가 앱에 처음 로그인 시 액세스 승인을 하지 않는 경우가 많았습니다.
+* 응용 프로그램에 tooknow 모든 hello 권한이 응용 프로그램을 만들 때 필요한 것입니다.  시간의 경과에 따라 권한을 추가하는 것은 어려운 작업이었습니다.
+* 응용 프로그램에 tooknow 모든 것도 액세스 하는 것 보다 앞선 시간 hello 리소스입니다.  임의 개수의 리소스를 액세스할 수 있는 어려운 toocreate 앱 있었습니다.
+* 응용 프로그램 toorequest 모든 hello 사용 권한을 hello 사용자의 첫 번째 로그인 시 필요한 것을 했습니다.  일부 경우에이 어 졌 최종 사용자는 초기 로그인에 대 한 hello 응용 프로그램의 액세스를 허용 하지 않는 것이 권한의 tooa 매우 긴 목록입니다.
 
-v2.0 끝점을 사용하여 앱이 원하는 권한을 런타임, 즉 앱을 일반적으로 사용하는 동안 **동적으로**지정할 수 있습니다.  이렇게 하려면, `scope` 매개 변수의 범위를 포함하는 권한을 요청하는 동안 앱이 요구하는 범위를 제 시간에 주어진 지점에 지정해야 합니다.
+Hello v2.0 끝점과 hello 권한을 지정할 수 있습니다 응용 프로그램 요구 사항 **동적으로**, 응용 프로그램의 일반 사용 하는 동안 런타임에 합니다.  toodo hello hello에 포함 하 여 특정된 시점에서 응용 프로그램 요구 사항 시간에서 범위를 지정할 수는 따라서 `scope` 의 권한 부여 요청 매개 변수:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -99,29 +99,29 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-위에서 요청하는 권한은 Azure AD 사용자의 디렉터리 데이터를 읽고, 해당 디렉터리에 기록하는 앱에 대한 권한입니다.  사용자가 이전에 이 특정 앱의 권한에 동의한 경우, 간단히 자격 증명만 입력하면 앱에 로그인됩니다.  사용자가 이 권한 중에 하나라도 동의하지 않으면, v2.0 끝점은 사용자에게 권한에 대한 동의를 요청할 것입니다.  자세한 내용은 [권한, 동의 및 범위](active-directory-v2-scopes.md)를 참조하세요.
+위의 hello Azure AD 사용자의 디렉터리 데이터 뿐만 아니라 데이터 tootheir 디렉터리 쓰기 앱 tooread hello에 대 한 권한을 요청합니다.  Hello 사용자가 지난 hello에서 toothose 권한을 동의 하는 경우이 특정 응용 프로그램에 대 한 자격 증명을 입력 하기만 하면 됩니다 하며 hello 앱에 서명 합니다.  Hello 사용자가 이러한 사용 권한은 tooany 동의 하지, hello v2.0 끝점 동의 toothose 사용 권한에 대 한 hello 사용자 라는 표시 됩니다.  더 많은 toolearn까지 읽을 수 있습니다에 [권한과 승인 범위](active-directory-v2-scopes.md)합니다.
 
-`scope` 매개 변수를 통해 동적으로 권한을 요청하도록 앱을 허용하는 것은 사용자의 환경의 완전한 통제를 제공합니다.  원한다면, 초기 단계에 동의 환경을 선택할 수 있고, 초기 권한 요청의 모든 권한을 요청할 수 있습니다.  또는 앱이 많은 권한을 요청하는 경우, 시간의 경과에 따라 앱의 특정 기능을 사용하도록 시도하는 것처럼 점진적으로 사용자로부터 권한을 수집하도록 선택할 수 있습니다.
+응용 프로그램 hello 통해 동적으로 toorequest 권한을 허용 `scope` 매개 변수는 사용자의 경험에 대 한 모든 권한을 제공 합니다.  원하는 경우 사용자가 동의 하 고 한 초기 인증 요청에 모든 권한을 요청할 toofrontload를 선택할 수 있습니다.  또는 앱에 권한 수가 많은 필요한 경우 선택할 수 있습니다 toogather 사용 권한만 hello 사용자 로부터 증분, 시간이 지남에 따라 toouse 응용 프로그램의 특정 기능을 시도할 때.
 
 ## <a name="well-known-scopes"></a>잘 알려진 범위
 #### <a name="offline-access"></a>오프라인 액세스
-v2.0 끝점을 사용하는 앱은 잘 알려진 새 권한(`offline_access` 범위)을 앱에 사용해야 할 수 있습니다.  모든 앱이 연장된 기간 동안 사용자를 대신하여 리소스에 액세스해야 할 경우, 사용자가 앱을 자주 쓰지 않는 경우에도 이 권한을 요청해야 합니다.  `offline_access` 범위는 “오프라인으로 데이터에 엑세스"라는 동의 대화 상자로 사용자에게 표시되며 반드시 동의해야 합니다.  `offline_access` 권한 요청은 웹앱이 OAuth 2.0 refresh_token을 v2.0 끝점에서 받을 수 있도록 해줍니다.  Refresh_token은 수명이 길며, 액세스의 기간이 확장된 새로운 OAuth 2.0 access_token으로 바꿀 수 있습니다.  
+앱 hello v2.0 끝점을 사용 하는 hello 사용 해야 새로운 잘 알려진 사용 권한 앱-에 대 한 hello `offline_access` 범위입니다.  Hello 사용자 적극적으로 사용 하지 않을 hello 앱 하는 경우에 사용자의 hello 대신 tooaccess 리소스는 시간을 연장된 된 기간 동안 해야 하는 경우 모든 앱이 사용이 권한을 toorequest 필요 합니다.  hello `offline_access` 범위는 "오프 라인 데이터 액세스"로 toohello 사용자 승인 대화 상자 표시 됩니다는 hello 사용자에 동의 해야 합니다.  요청 hello `offline_access` 권한 웹 응용 프로그램 tooreceive OAuth 2.0 refresh_tokens hello v2.0 끝점에서 사용 하도록 설정 합니다.  Refresh_token은 수명이 길며, 액세스의 기간이 확장된 새로운 OAuth 2.0 access_token으로 바꿀 수 있습니다.  
 
-앱이 `offline_access` 범위를 요청하지 않으면 refresh_token을 받을 수 없습니다.  즉, OAuth 2.0 권한 부여 코드 흐름에서 authorization_code를 교환하는 경우 `/token` 끝점에서 access_token만 받게 됩니다.  해당 access_token은 짧은 기간(일반적으로 1시간) 동안 유효하지만 결국 만료됩니다.  해당 시점에 앱은 사용자를 `/authorize` 끝점으로 다시 리디렉션하여 새 authorization_code를 검색해야 합니다.  리디렉션 중에 앱 형식에 따라 사용자가 자격 증명을 다시 입력하거나 권한에 다시 동의해야 할 수도 있고 그렇지 않을 수도 있습니다.
+앱 hello를 요청 하지 않고 `offline_access` 범위 refresh_tokens을 받지 것입니다.  즉,는 hello OAuth 2.0 권한 부여 코드 흐름에서 authorization_code을 교환할 때만 받습니다 다시는 access_token hello에서 `/token` 끝점입니다.  해당 access_token은 짧은 기간(일반적으로 1시간) 동안 유효하지만 결국 만료됩니다.  앱에서 tooredirect hello 사용자 백 toohello 시간, 해당 시점에 필요한 `/authorize` 끝점 tooretrieve 새 authorization_code 합니다.  이 이동 하는 동안 hello 사용자 수 또는 tooenter 자격 증명을 다시 필요 없거나 toopermissions hello hello 유형의 응용 프로그램에 따라 다시 동의 합니다.
 
-OAuth 2.0, refresh_token 및 access_token에 대한 자세한 내용은[v2.0 프로토콜 참조](active-directory-v2-protocols.md)를 확인하세요.
+OAuth 2.0, refresh_tokens, 및 access_tokens, 체크아웃 hello에 대 한 자세한 toolearn [v 2.0 프로토콜 참조](active-directory-v2-protocols.md)합니다.
 
 #### <a name="openid-profile-and-email"></a>OpenID, 프로필 및 전자 메일
-지금까지 Azure Active Directory에서 가장 기본적인 OpenID Connect 로그인 흐름은 결과 id_token의 사용자에 대해 다양한 정보를 제공했습니다.  id_token의 클레임에는 사용자의 이름, 기본 설정된 사용자 이름, 전자 메일 주소, 개체 ID 등이 있습니다.
+지금까지 hello 가장 기본적인 OpenID Connect 로그인 흐름 Azure Active Directory와은 다양 한 결과 id_token hello에에서 hello 사용자에 대 한 정보를 제공 합니다.  id_token의 hello 클레임 hello 사용자의 이름, 기본 사용자 이름, 전자 메일 주소, 개체 ID 및 더 포함할 수 있습니다.
 
-이제 `openid` 범위가 허용하는 앱의 액세스 정보를 제한할 것입니다.  ‘openid’ 범위는 앱이 사용자를 로그인시키고 해당 사용자에 대한 앱별 식별자만 수신할 수 있게 합니다.  앱에 있는 사용자의 개인 식별 정보(PII)를 가져오려면 앱은 사용자로부터 추가 권한을 요청해야 합니다.  이를 수행할 수 있는 두 가지의 새로운 범위, 즉 `email` 및 `profile` 범위를 도입할 것입니다.
+이제 해당 hello hello 정보를 제한 하는 `openid` 범위에 대 한 앱 액세스를 제공 합니다.  hello 'openid' 범위를 통해 응용 프로그램 toosign hello 사용자가을 hello 사용자에 대 한 응용 프로그램별 식별자를 수신만 됩니다.  Hello 사용자에 대 한 응용 프로그램에서 tooobtain 개인 식별이 가능한 정보 (PII)를 원하는 경우 응용 프로그램에 hello 사용자 로부터 toorequest 추가 권한이 필요 합니다.  도입 새 범위 두 – hello `email` 및 `profile` 수 있게 해 주는 toodo 하므로 범위 – 합니다.
 
-`email` 범위는 매우 간단합니다. 앱이 id_token의 `email` 클레임을 통해 사용자의 기본 메일 주소에 액세스할 수 있도록 해줍니다.  `profile` 범위는 앱이 사용자 이름, 기본 설정된 사용자 이름, 개체 ID 등 사용자에 관한 모든 기타 기본 정보에 액세스할 수 있도록 해줍니다.
+hello `email` 범위는 매우 단순 – hello 통해 응용 프로그램 액세스 toohello 사용자 기본 전자 메일 주소를 허용 `email` hello id_token에 클레임입니다.  hello `profile` ID, 개체 범위는 응용 프로그램 액세스 tooall hello 사용자-해당 이름, 기본 사용자 이름에 대 한 다른 기본 정보를 제공 합니다.
 
-이렇게 하면 최소한의 공개로 앱을 코딩할 수 있으며, 작업 수행에 필요한 정보만 사용자에게 요청할 수 있습니다.  이러한 범위에 대한 자세한 내용은 [v2.0 범위 참조](active-directory-v2-scopes.md)를 참조하세요.
+이렇게 하면 toocode – 최소 공개 방식에서 앱만 요청 hello 사용자 hello 집합이 필요한 정보를 응용 프로그램 toodo 작업 합니다.  이러한 범위에 대 한 자세한 내용은 참조 너무[v2.0 범위 참조가 hello](active-directory-v2-scopes.md)합니다.
 
 ## <a name="token-claims"></a>토큰 클레임
-V2.0 끝점에 의해 발급된 토큰의 클레임은 일반 공급 Azure AD 끝점에서 발급된 토큰과 동일하지 않습니다. 새로운 서비스로 마이그레이션하는 앱은 id_token 또는 access_token에 존재할 특정 클레임을 가정하면 안 됩니다. v2.0 토큰에서 내보내는 특정 클레임에 관한 더 자세한 내용은 [v2.0 토큰 참조](active-directory-v2-tokens.md)를 확인하세요.
+hello v2.0 끝점에서 발급 한 토큰의 클레임을 hello를 동일한 tootokens hello 일반적으로 사용할 수 있는 Azure AD 끝점에서 발급 됩니다.-앱 toohello 새 서비스를 마이그레이션하는 특정 클레임은 id_tokens 또는 access_tokens 존재 가정 하지 않아야 합니다. toolearn v 2.0 토큰에 포함 된 hello 특정 클레임에 대 한 참조 hello [v2.0 토큰 참조](active-directory-v2-tokens.md)합니다.
 
 ## <a name="limitations"></a>제한 사항
-v2.0 끝점을 사용할 때 고려해야 할 몇 가지 제한 사항이 있습니다.  이 제한 사항 중 하나라도 특정 시나리오에 적용하는 경우 [v2.0 제한 사항 문서](active-directory-v2-limitations.md) 를 참조하세요.
+Hello v2.0 포인트를 사용 하는 경우 인식 몇 가지 제한 사항이 toobe가 않습니다.  Toohello를 참조 하십시오 [v2.0 제한 doc](active-directory-v2-limitations.md) toosee tooyour 특정 시나리오를 적용 하는 이러한 모든 제한 합니다.

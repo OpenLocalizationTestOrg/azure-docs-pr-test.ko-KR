@@ -1,5 +1,5 @@
 ---
-title: "Azure Functions 테스트 | Microsoft Docs"
+title: "Azure 함수 aaaTesting | Microsoft Docs"
 description: "Postman, cURL 및 Node.js를 사용하여 Azure 함수를 테스트합니다."
 services: functions
 documentationcenter: na
@@ -17,30 +17,30 @@ ms.workload: na
 ms.date: 02/02/2017
 ms.author: wesmc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: aca03ba4137893157fcbe6650336782ab88cd234
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a084f8dbc8089356c3c19d789dc9098f2bb63052
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="strategies-for-testing-your-code-in-azure-functions"></a>Azure Functions에서 코드를 테스트하기 위한 전략
 
-이 토픽에서는 다음과 같은 일반적인 방법을 사용하여 함수를 테스트하는 다양한 방법을 보여 줍니다.
+이 항목 뒤 일반 hello를 사용 하는 등의 다양 한 방법으로 tootest 함수에 도달 하는 hello를 보여 줍니다.
 
 + cURL, Postman, 웹 기반 트리거에 대한 웹 브라우저 등의 HTTP 기반 도구
-+ Azure Storage 기반 트리거를 테스트하기 위한 Azure Storage 탐색기
-+ Azure Functions 포털의 테스트 탭
++ Azure 저장소 탐색기, tootest Azure 저장소 기반 트리거
++ Hello 함수 Azure 포털의 테스트 탭
 + 타이머로 트리거되는 함수
 + 테스트 응용 프로그램 또는 프레임워크
 
-이 모든 테스트 방법은 쿼리 문자열 매개 변수 또는 요청 본문을 통해 입력을 허용하는 HTTP 트리거 함수를 사용합니다. 첫 번째 섹션에서는 이 함수를 만듭니다.
+모든 이러한 테스트 메서드 함수를 사용할 HTTP 트리거 중 하나를 통해 입력을 허용 하는 쿼리 문자열 매개 변수 또는 hello 요청 본문. Hello 첫 번째 섹션에서이 함수를 만듭니다.
 
 ## <a name="create-a-function-for-testing"></a>테스트용 함수 만들기
-이 자습서의 대부분에서는 함수를 만들 때 제공되는 HttpTrigger JavaScript 함수 템플릿의 약간 수정된 버전을 사용합니다. 함수를 만드는 데 도움이 필요한 경우 이 [자습서](functions-create-first-azure-function.md)를 검토하세요. [Azure Portal]에서 테스트 함수를 만들 때에는 **HttpTrigger- JavaScript** 템플릿을 선택합니다.
+이 자습서의 대부분의 경우 약간 수정 된 버전의 hello 함수를 만들 때 사용할 수 있는 HttpTrigger JavaScript 함수 템플릿 사용 합니다. 함수를 만드는 데 도움이 필요한 경우 이 [자습서](functions-create-first-azure-function.md)를 검토하세요. Hello 선택 **HttpTrigger-JavaScript** hello에서 hello 테스트 함수를 만들 때 템플릿을 [Azure 포털]합니다.
 
-기본 함수 템플릿은 기본적으로 요청 본문 또는 쿼리 문자열 매개 변수의 이름(`name=<your name>`)을 되돌려 주는 hello world 함수입니다.  요청 본문의 JSON 콘텐츠로 이름 및 주소를 입력할 수 있도록 코드를 업데이트할 예정입니다. 그렇게 되면 함수는 사용 가능한 경우 이를 다시 클라이언트에 표시합니다.   
+hello 기본 함수 서식 파일은 기본적으로 hello 요청 본문 또는 쿼리 문자열 매개 변수에서 뒤로 hello 이름을 에코 하는 "hello world" 함수 `name=<your name>`합니다.  에 업데이트 하는 hello 코드 tooalso 사용 tooprovide hello 이름 및 주소 hello 요청 본문의 JSON 콘텐츠입니다. 그런 다음 hello 함수는 사용 가능한 경우 이러한 백 toohello 클라이언트를 에코 합니다.   
 
-함수를 테스트에 사용할 다음 코드로 업데이트합니다.
+테스트를 위해 사용 하는 코드를 다음 hello로 hello 함수를 업데이트 합니다.
 
 ```javascript
 module.exports = function (context, req) {
@@ -61,7 +61,7 @@ module.exports = function (context, req) {
     else {
         res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a name on hello query string or in hello request body"
         };
     }
     context.done(null, res);
@@ -73,11 +73,11 @@ function ProcessNewUserInformation(context, name, address) {
     var res;
 
     if (typeof address != "undefined") {
-        echoString += "\n" + "The address you provided is " + address;
+        echoString += "\n" + "hello address you provided is " + address;
         context.log("address = " + address);
     }
     res = {
-        // status: 200, /* Defaults to 200 */
+        // status: 200, /* Defaults too200 */
         body: echoString
     };
     return res;
@@ -85,28 +85,28 @@ function ProcessNewUserInformation(context, name, address) {
 ```
 
 ## <a name="test-a-function-with-tools"></a>도구를 사용하여 함수 테스트
-Azure Portal 외부에는 테스트용 함수를 트리거하는 데 사용할 수 있는 다양한 도구가 있습니다. 여기에는 UI 기반 및 명령줄 도구를 모두 포함하는 HTTP 테스트 도구, Azure Storage 액세스 도구 및 간단한 웹 브라우저도 포함됩니다.
+외부 hello Azure 포털을 사용할 수 있는 tootrigger 함수를 테스트 하기 위한 다양 한 도구가 있습니다. 여기에는 UI 기반 및 명령줄 도구를 모두 포함하는 HTTP 테스트 도구, Azure Storage 액세스 도구 및 간단한 웹 브라우저도 포함됩니다.
 
 ### <a name="test-with-a-browser"></a>브라우저를 사용하여 테스트
-웹 브라우저는 HTTP 통해 함수를 트리거하는 간단한 방법입니다. 본문 페이로드가 필요하지 않으며 쿼리 문자열 매개 변수만 사용하는 GET 요청에 대해서는 브라우저를 사용할 수 있습니다.
+hello 웹 브라우저는 HTTP 통해 제공 하기 위한 간단한 방법을 tootrigger 함수입니다. 본문 페이로드가 필요하지 않으며 쿼리 문자열 매개 변수만 사용하는 GET 요청에 대해서는 브라우저를 사용할 수 있습니다.
 
-위에서 정의한 함수를 테스트하려면 포털에서 **함수 Url**을 복사합니다. 다음과 같은 형식입니다.
+이전에 정의한 복사 hello tootest hello 함수 **함수 Url** hello 포털에서 합니다. 여기에 다음 폼 hello에 있습니다.
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-쿼리 문자열에 `name` 매개 변수를 추가합니다. `<Enter a name here>` 자리 표시자의 실제 이름을 사용합니다.
+Hello 추가 `name` toohello 쿼리 문자열 매개 변수입니다. Hello에 대 한 실제 이름을 사용 하 여 `<Enter a name here>` 자리 표시자입니다.
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>&name=<Enter a name here>
 
-브라우저에 URL을 붙여 넣으면 다음과 유사한 응답을 얻게 됩니다.
+응답 비슷한 toohello 다음 브라우저에 붙여넣기 hello URL을 받아야 합니다.
 
 ![테스트 응답이 표시된 Chrome 브라우저 탭의 스크린샷](./media/functions-test-a-function/browser-test.png)
 
-이 예제는 반환되는 문자열을 XML에 래핑하는 Chrome 브라우저입니다. 다른 브라우저에는 문자열 값만 표시됩니다.
+이 예제는 XML 문자열을 반환 하는 hello를 래핑하는 hello Chrome 브라우저. 다른 브라우저 hello 문자열 값만 표시 됩니다.
 
-함수를 실행하는 동안 포털 **로그** 창에 다음과 유사한 출력이 기록됩니다.
+Hello 포털에서 **로그** 창, 출력 유사한 toohello 다음 hello 함수 실행에 기록 됩니다.
 
-    2016-03-23T07:34:59  Welcome, you are now connected to log-streaming service.
+    2016-03-23T07:34:59  Welcome, you are now connected toolog-streaming service.
     2016-03-23T07:35:09.195 Function started (Id=61a8c5a9-5e44-4da0-909d-91d293f20445)
     2016-03-23T07:35:10.338 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==&name=Glenn from a browser
     2016-03-23T07:35:10.338 Request Headers = {"cache-control":"max-age=0","connection":"Keep-Alive","accept":"text/html","accept-encoding":"gzip","accept-language":"en-US"}
@@ -115,22 +115,22 @@ Azure Portal 외부에는 테스트용 함수를 트리거하는 데 사용할 �
     2016-03-23T07:35:10.369 Function completed (Success, Id=61a8c5a9-5e44-4da0-909d-91d293f20445)
 
 ### <a name="test-with-postman"></a>Postman을 사용하여 테스트
-대부분의 함수를 테스트하는 데 권장되는 도구는 Chrome 브라우저에 통합되는 Postman입니다. Postman을 설치하려면 [Postman 가져오기](https://www.getpostman.com/)를 참조하세요. Postman은 다양한 특성의 HTTP 요청에 대한 제어를 제공합니다.
+권장 도구 tootest hello 함수 대부분 우체부 hello Chrome 브라우저 통합 하는 것입니다. tooinstall 우체부, 참조 [가져오기 우체부](https://www.getpostman.com/)합니다. Postman은 다양한 특성의 HTTP 요청에 대한 제어를 제공합니다.
 
 > [!TIP]
-> 가장 익숙한 HTTP 테스트 도구를 사용하세요. 다음은 Postman의 몇 가지 대안입니다.  
+> 와 가장 편리 하 게 hello HTTP 테스트 도구를 사용 합니다. 다음은 몇 가지 대안 tooPostman입니다.  
 >
 > * [Fiddler](http://www.telerik.com/fiddler)  
 > * [Paw](https://luckymarmot.com/paw)  
 >
 >
 
-Postman에서 요청 본문을 사용하여 함수를 테스트하려면
+우체부에는 요청 본문으로 tootest hello 함수:
 
-1. Chrome 브라우저 창의 왼쪽 위에 있는 **앱** 단추에서 Postman을 시작합니다.
-2. **함수 Url**을 복사하여 Postman에 붙여 넣습니다. 액세스 코드 쿼리 문자열 매개 변수를 포함합니다.
-3. HTTP 메서드를 **POST**로 변경합니다.
-4. **본문** > **원시**를 클릭하고, 다음과 유사한 JSON 요청 본문을 추가합니다.
+1. Hello에서 우체부 시작 **앱** Chrome 브라우저 창의 hello 왼쪽 위 모퉁이의 단추입니다.
+2. **함수 Url**을 복사하여 Postman에 붙여 넣습니다. Hello 액세스 코드 쿼리 문자열 매개 변수를 포함합니다.
+3. Hello HTTP 메서드를도 변경**POST**합니다.
+4. 클릭 **본문** > **원시**, JSON 요청 본문 비슷한 toohello 다음 추가:
 
     ```json
     {
@@ -140,13 +140,13 @@ Postman에서 요청 본문을 사용하여 함수를 테스트하려면
     ```
 5. **보내기**를 클릭합니다.
 
-다음 이미지는 이 자습서의 간단한 에코 함수 예제 테스트를 보여 줍니다.
+hello 다음 이미지 예를 보여 줍니다 테스트 hello 간단한 에코 함수가이 자습서에서는 합니다.
 
 ![Postman 사용자 인터페이스의 스크린샷](./media/functions-test-a-function/postman-test.png)
 
-함수를 실행하는 동안 포털 **로그** 창에 다음과 유사한 출력이 기록됩니다.
+Hello 포털에서 **로그** 창, 출력 유사한 toohello 다음 hello 함수 실행에 기록 됩니다.
 
-    2016-03-23T08:04:51  Welcome, you are now connected to log-streaming service.
+    2016-03-23T08:04:51  Welcome, you are now connected toolog-streaming service.
     2016-03-23T08:04:57.107 Function started (Id=dc5db8b1-6f1c-4117-b5c4-f6b602d538f7)
     2016-03-23T08:04:57.763 HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==
     2016-03-23T08:04:57.763 Request Headers = {"cache-control":"no-cache","connection":"Keep-Alive","accept":"*/*","accept-encoding":"gzip","accept-language":"en-US"}
@@ -156,28 +156,28 @@ Postman에서 요청 본문을 사용하여 함수를 테스트하려면
     2016-03-23T08:04:57.763 address = Seattle, W.A. 98101
     2016-03-23T08:04:57.795 Function completed (Success, Id=dc5db8b1-6f1c-4117-b5c4-f6b602d538f7)
 
-### <a name="test-with-curl-from-the-command-line"></a>명령줄에서 cURL을 사용하여 테스트
-소프트웨어를 테스트할 때 명령줄만 살펴보아도 응용 프로그램을 디버그하는 데 전혀 문제가 없는 경우가 종종 있습니다. 테스트 함수와 전혀 차이가 없습니다. cURL은 Linux 기반 시스템에서 기본적으로 사용할 수 있습니다. Windows에서는 먼저 [cURL 도구](https://curl.haxx.se/)를 다운로드한 후 설치해야 합니다.
+### <a name="test-with-curl-from-hello-command-line"></a>CURL hello 명령줄에서 테스트
+소프트웨어를 테스트 하는 경우에 종종 아닙니다 필요한 toolook 어떤 hello 명령줄 toohelp 디버그 응용 프로그램 보다 더 이상. 테스트 함수와 전혀 차이가 없습니다. 참고 hello cURL은 Linux 기반 시스템에서 기본적으로 사용할 수 있습니다. Windows에서는 먼저 다운로드 하 여 hello 설치 [cURL 도구](https://curl.haxx.se/)합니다.
 
-위에서 정의한 함수를 테스트하려면 포털에서 **함수 URL**을 복사합니다. 다음과 같은 형식입니다.
+tootest hello 함수는 앞에서 정의한, 복사 hello **함수 URL** hello 포털에서 합니다. 여기에 다음 폼 hello에 있습니다.
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-함수를 트리거하는 URL입니다. 명령줄에서 cURL 명령을 사용하여 함수에 대한 GET(`-G` 또는 `--get`) 요청을 만들어서 테스트를 수행합니다.
+함수를 트리거할 기준이 hello URL입니다. 이 테스트 hello 명령줄 toomake hello cURL 명령을 사용 하 여 GET (`-G` 또는 `--get`) hello 함수에 대 한 요청:
 
     curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-이 예제에서는 cURL 명령에서 데이터(`-d`)로 전달할 수 있는 쿼리 문자열 매개 변수가 필요합니다.
+이 특정 예제 데이터로 전달 될 수 있는 쿼리 문자열 매개 변수를 (`-d`) hello에 cURL 명령:
 
     curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code> -d name=<Enter a name here>
 
-명령을 실행하면 명령줄에 다음과 같은 함수 출력이 표시됩니다.
+실행된 hello 명령 및 있습니다 hello hello 함수의 출력 hello 명령줄에서 다음을 참조 하십시오.
 
 ![명령 프롬프트 출력의 스크린샷](./media/functions-test-a-function/curl-test.png)
 
-함수를 실행하는 동안 포털 **로그** 창에 다음과 유사한 출력이 기록됩니다.
+Hello 포털에서 **로그** 창, 출력 유사한 toohello 다음 hello 함수 실행에 기록 됩니다.
 
-    2016-04-05T21:55:09  Welcome, you are now connected to log-streaming service.
+    2016-04-05T21:55:09  Welcome, you are now connected toolog-streaming service.
     2016-04-05T21:55:30.738 Function started (Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
     2016-04-05T21:55:30.738 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/HttpTriggerNodeJS1?code=XXXXXXX&name=Azure Functions
     2016-04-05T21:55:30.738 Function completed (Success, Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
@@ -185,32 +185,32 @@ Postman에서 요청 본문을 사용하여 함수를 테스트하려면
 ### <a name="test-a-blob-trigger-by-using-storage-explorer"></a>저장소 탐색기를 사용하여 Blob 트리거 테스트
 [Azure Storage 탐색기](http://storageexplorer.com/)를 사용하여 Blob 트리거 함수를 테스트할 수 있습니다.
 
-1. 함수 앱에 대한 [Azure Portal]에서 C#, F# 또는 JavaScript Blob 트리거 함수를 만듭니다. 모니터링할 경로를 Blob 컨테이너의 이름으로 설정합니다. 예:
+1. Hello에 [Azure 포털] 함수 앱에 대 한 C#, F # 또는 JavaScript blob 트리거 함수를 만듭니다. Blob 컨테이너의 hello 경로 toomonitor toohello 이름을 설정 합니다. 예:
 
         files
-2. 사용하려는 저장소 계정을 선택하거나 만들려면 **+** 단추를 클릭합니다. 그런 다음 **Create**를 클릭합니다.
-3. 다음 텍스트를 사용하여 텍스트 파일을 만들고 저장합니다.
+2. Hello 클릭  **+**  tooselect 단추 또는 toouse 원하는 hello 저장소 계정을 만듭니다. 그런 다음 **Create**를 클릭합니다.
+3. 텍스트를 다음 hello로 텍스트 파일을 만들고 저장:
 
         A text file for blob trigger function testing.
-4. [Azure Storage 탐색기](http://storageexplorer.com/)를 실행하고 모니터링되고 있는 저장소 계정의 Blob 컨테이너에 연결합니다.
-5. **업로드**를 클릭하여 텍스트 파일을 업로드합니다.
+4. 실행 [Azure 저장소 탐색기](http://storageexplorer.com/), 모니터링 되 고 hello 저장소 계정에서 toohello blob 컨테이너를 연결 합니다.
+5. 클릭 **업로드** tooupload hello 텍스트 파일입니다.
 
     ![저장소 탐색기의 스크린샷](./media/functions-test-a-function/azure-storage-explorer-test.png)
 
-기본 Blob 트리거 함수 코드는 로그에 Blob 처리 상황을 보고합니다.
+hello 기본 blob 트리거 함수 코드 hello 로그에 hello blob의 hello 처리를 보고합니다.
 
-    2016-03-24T11:30:10  Welcome, you are now connected to log-streaming service.
+    2016-03-24T11:30:10  Welcome, you are now connected toolog-streaming service.
     2016-03-24T11:30:34.472 Function started (Id=739ebc07-ff9e-4ec4-a444-e479cec2e460)
     2016-03-24T11:30:34.472 C# Blob trigger function processed: A text file for blob trigger function testing.
     2016-03-24T11:30:34.472 Function completed (Success, Id=739ebc07-ff9e-4ec4-a444-e479cec2e460)
 
 ## <a name="test-a-function-within-functions"></a>함수 내에서 함수 테스트
-Azure Functions 포털은 HTTP 및 타이머 트리거 함수를 테스트할 수 있도록 디자인되었습니다. 테스트하려는 다른 함수를 트리거하는 함수를 만들 수도 있습니다.
+hello Azure 함수 포털은 설계 된 함수를 트리거한 toolet HTTP 및 타이머를 테스트 합니다. 또한 다른 함수는 테스트할 tootrigger 함수를 만들 수 있습니다.
 
-### <a name="test-with-the-functions-portal-run-button"></a>함수 포털 실행 단추를 사용하여 테스트
-포털에서는 몇 가지 제한된 테스트를 수행할 수 있는 **실행** 단추를 제공합니다. 이 단추를 사용하여 요청 본문을 제공할 수 있지만 쿼리 문자열 매개 변수를 제공하거나 요청 헤더를 업데이트할 수는 없습니다.
+### <a name="test-with-hello-functions-portal-run-button"></a>테스트 실행 단추 포털 hello 함수
+hello 포털에서 제공 된 **실행** 단추 toodo 일부 사용할 수 있는 테스트 제한 합니다. Hello 단추를 사용 하 여 요청 본문을 제공할 수 있지만 쿼리 문자열 매개 변수를 제공 하거나 요청 헤더를 업데이트할 수 없습니다.
 
-**요청 본문** 필드에 다음과 유사한 JSON 문자열을 추가하여 앞에서 만든 HTTP 트리거 함수를 테스트합니다. 그런 다음 **실행** 단추를 클릭합니다.
+다음 JSON 문자열 비슷한 toohello hello에 추가 하 여 앞에서 만든 hello HTTP 트리거 기능 테스트 **요청 본문** 필드입니다. Hello 클릭 **실행** 단추입니다.
 
 ```json
 {
@@ -219,9 +219,9 @@ Azure Functions 포털은 HTTP 및 타이머 트리거 함수를 테스트할 �
 }
 ```
 
-함수를 실행하는 동안 포털 **로그** 창에 다음과 유사한 출력이 기록됩니다.
+Hello 포털에서 **로그** 창, 출력 유사한 toohello 다음 hello 함수 실행에 기록 됩니다.
 
-    2016-03-23T08:03:12  Welcome, you are now connected to log-streaming service.
+    2016-03-23T08:03:12  Welcome, you are now connected toolog-streaming service.
     2016-03-23T08:03:17.357 Function started (Id=753a01b0-45a8-4125-a030-3ad543a89409)
     2016-03-23T08:03:18.697 HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/wesmchttptriggernodejs1
     2016-03-23T08:03:18.697 Request Headers = {"connection":"Keep-Alive","accept":"*/*","accept-encoding":"gzip","accept-language":"en-US"}
@@ -233,43 +233,43 @@ Azure Functions 포털은 HTTP 및 타이머 트리거 함수를 테스트할 �
 
 
 ### <a name="test-with-a-timer-trigger"></a>타이머 트리거를 사용하여 테스트
-일부 함수는 앞에서 언급한 도구를 사용하여 제대로 테스트할 수 없습니다. 예를 들어 [Azure 큐 저장소](../storage/queues/storage-dotnet-how-to-use-queues.md)에 메시지를 놓을 때 실행되는 큐 트리거 함수를 생각해 보세요. 언제든지 큐에 메시지를 놓는 코드를 작성할 수 있으며, 콘솔 프로젝트의 이러한 예는 이 문서의 후반부에 제공됩니다. 그러나 함수를 직접 테스트하는 데 사용할 수 있는 또 다른 방법이 있습니다.  
+일부 함수는 앞에서 언급 한 hello 도구로 적절 하 게 테스트할 수 없습니다. 예를 들어 [Azure 큐 저장소](../storage/queues/storage-dotnet-how-to-use-queues.md)에 메시지를 놓을 때 실행되는 큐 트리거 함수를 생각해 보세요. 항상 작성할 수 코드 toodrop 메시지 큐로 있으며 콘솔 프로젝트에서 이러한 예는이 문서의 뒷부분에 제공 됩니다. 그러나 함수를 직접 테스트하는 데 사용할 수 있는 또 다른 방법이 있습니다.  
 
-큐 출력 바인딩으로 구성된 타이머 트리거를 사용할 수 있습니다. 이 타이머 트리거 코드는 큐에 테스트 메시지를 작성할 수 있습니다. 이 섹션에서는 그에 대한 예를 살펴보겠습니다.
+큐 출력 바인딩으로 구성된 타이머 트리거를 사용할 수 있습니다. 그런 다음 해당 타이머 트리거 코드가 hello 메시지 toohello 큐 테스트를 작성할 수 있습니다. 이 섹션에서는 그에 대한 예를 살펴보겠습니다.
 
-Azure Functions 바인딩 사용에 대한 자세한 내용은 [Azure Functions 개발자 참조](functions-reference.md)를 참조하세요.
+보다 자세한 내용을 보려면 Azure 함수 바인딩 사용에 대 한 참조 hello [Azure 함수 개발자 참조](functions-reference.md)합니다.
 
 #### <a name="create-a-queue-trigger-for-testing"></a>테스트용 큐 트리거 만들기
-이 방법을 시연하기 위해 먼저 `queue-newusers`라는 큐를 테스트하려는 큐 트리거 함수를 만듭니다. 이 함수는 큐 저장소에 놓은 새 사용자의 이름 및 주소 정보를 처리합니다.
+toodemonstrate이이 방법에서는 먼저 큐 트리거 함수를 만들 tootest 라는 큐에 대 한 원하는 `queue-newusers`합니다. 이 함수는 큐 저장소에 놓은 새 사용자의 이름 및 주소 정보를 처리합니다.
 
 > [!NOTE]
-> 다른 큐 이름을 사용하는 경우 해당 이름이 [큐 및 메타데이터 명명](https://msdn.microsoft.com/library/dd179349.aspx) 규칙을 준수해야 합니다. 그렇지 않으면 오류가 발생합니다.
+> 다른 큐 이름을 사용 하는 경우 사용 하는 hello 이름이 toohello를 준수 하는지 확인 [명명 큐 및 메타 데이터](https://msdn.microsoft.com/library/dd179349.aspx) 규칙입니다. 그렇지 않으면 오류가 발생합니다.
 >
 >
 
-1. 함수 앱에 대한 [Azure Portal]에서 **새 함수** > **QueueTrigger - C#**을 클릭합니다.
-2. 큐 함수가 모니터링할 큐 이름을 입력합니다.
+1. Hello에 [Azure 포털] 함수 앱에 대 한 클릭 **새 함수** > **QueueTrigger-C#**합니다.
+2. Hello 큐 이름 toobe hello 큐 함수에 의해 모니터링을 입력 합니다.
 
         queue-newusers
-3. 사용하려는 저장소 계정을 선택하거나 만들려면 **+** 단추를 클릭합니다. 그런 다음 **Create**를 클릭합니다.
-4. 기본 큐 함수 템플릿 코드에 대한 로그 항목을 모니터링할 수 있도록 포털 브라우저 창을 그대로 열어 둡니다.
+3. Hello 클릭  **+**  tooselect 단추 또는 toouse 원하는 hello 저장소 계정을 만듭니다. 그런 다음 **Create**를 클릭합니다.
+4. 이 포털 브라우저 창을 열고, hello 기본 큐 함수 템플릿 코드에 대 한 hello 로그 항목을 모니터링할 수 있도록 합니다.
 
-#### <a name="create-a-timer-trigger-to-drop-a-message-in-the-queue"></a>큐에 메시지를 놓는 타이머 트리거 만들기
-1. 새 브라우저 창에서 [Azure Portal]을 열고 함수 앱으로 이동합니다.
-2. **새 함수** > **TimerTrigger - C#**을 클릭합니다. 타이머 코드가 큐 함수 테스트할 빈도를 설정하는 cron 식을 입력합니다. 그런 다음 **Create**를 클릭합니다. 테스트를 30초마다 실행하려는 경우 다음 [CRON 식](https://wikipedia.org/wiki/Cron#CRON_expression)을 사용할 수 있습니다.
+#### <a name="create-a-timer-trigger-toodrop-a-message-in-hello-queue"></a>Hello 큐에 타이머 트리거 toodrop 메시지 만들기
+1. 열기 hello [Azure 포털] 새 브라우저 창에서 tooyour 함수 응용 프로그램을 이동 합니다.
+2. **새 함수** > **TimerTrigger - C#**을 클릭합니다. Cron 식 tooset 입력 얼마나 자주 hello 타이머 코드 테스트 큐 함수입니다. 그런 다음 **Create**를 클릭합니다. 30 초 마다 테스트 toorun hello을 원하는 경우에 hello 다음을 사용할 수 있습니다 [CRON 식](https://wikipedia.org/wiki/Cron#CRON_expression):
 
         */30 * * * * *
-3. 새 타이머 트리거에 대한 **통합** 탭을 클릭합니다.
+3. Hello 클릭 **통합** 새 타이머 트리거의 탭 합니다.
 4. **출력**에서 **+ 새 출력**을 클릭합니다. 그런 다음 **큐** 및 **선택**을 클릭합니다.
-5. **큐 메시지 개체**에 사용한 이름을 메모해 두세요. 이 이름은 타이머 함수 코드에 사용됩니다.
+5. Hello에 사용할 참고 hello 이름을 **큐 메시지 개체**합니다. Hello 타이머 함수 코드에서이 사용합니다.
 
         myQueue
-6. 메시지가 전송되는 큐 이름을 입력합니다.
+6. Hello 메시지를 보내는 위치 hello 큐 이름을 입력 합니다.
 
         queue-newusers
-7. **+** 단추를 클릭하여 이전에 큐 트리거와 함께 사용한 저장소 계정을 선택합니다. 그런 다음 **Save**를 클릭합니다.
-8. 타이머 트리거에 대한 **개발** 탭을 클릭합니다.
-9. 위에 표시된 것과 동일한 큐 메시지 개체 이름을 사용하는 한 C# 타이머 함수에 다음 코드를 사용할 수 있습니다. 그런 다음 **Save**를 클릭합니다.
+7. Hello 클릭  **+**  단추 tooselect hello 저장소 계정 큐 트리거 hello와 이전에 사용 합니다. 그런 다음 **Save**를 클릭합니다.
+8. Hello 클릭 **개발** 타이머 트리거를 탭 합니다.
+9. Hello 메시지 개체 이름 앞에 표시 된 동일한 큐를 사용으로 hello C# 타이머 함수에 대 한 코드 다음 hello를 사용할 수 있습니다. 그런 다음 **Save**를 클릭합니다.
 
     ```cs
     using System;
@@ -286,31 +286,31 @@ Azure Functions 바인딩 사용에 대한 자세한 내용은 [Azure Functions 
     }
     ```
 
-예제 cron 식을 사용했다면 C# 타이머 함수가 30초마다 실행됩니다. 타이머 함수의 로그에서 각 실행을 보고합니다.
+이 시점에서 C# 타이머 함수 hello hello 예제 cron 식을 사용 하는 경우 30 초 마다 실행 합니다. hello 타이머 함수에 대 한 hello 로그는 각 실행을 보고합니다.
 
-    2016-03-24T10:27:02  Welcome, you are now connected to log-streaming service.
+    2016-03-24T10:27:02  Welcome, you are now connected toolog-streaming service.
     2016-03-24T10:27:30.004 Function started (Id=04061790-974f-4043-b851-48bd4ac424d1)
     2016-03-24T10:27:30.004 C# Timer trigger function executed at: 3/24/2016 10:27:30 AM
     2016-03-24T10:27:30.004 {"name":"User testing from C# timer function","address":"XYZ"}
     2016-03-24T10:27:30.004 Function completed (Success, Id=04061790-974f-4043-b851-48bd4ac424d1)
 
-큐 함수에 대한 브라우저 창에 처리 중인 각 메시지가 표시됩니다.
+Hello 큐 함수에 대 한 hello 브라우저 창에서 처리 되 고 각 메시지를 확인할 수 있습니다.
 
-    2016-03-24T10:27:06  Welcome, you are now connected to log-streaming service.
+    2016-03-24T10:27:06  Welcome, you are now connected toolog-streaming service.
     2016-03-24T10:27:30.607 Function started (Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
     2016-03-24T10:27:30.607 C# Queue trigger function processed: {"name":"User testing from C# timer function","address":"XYZ"}
     2016-03-24T10:27:30.607 Function completed (Success, Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
 
 ## <a name="test-a-function-with-code"></a>코드를 사용하여 함수 테스트
-함수를 테스트하기 위해 외부 응용 프로그램 또는 프레임워크를 만들어야 하는 경우도 있습니다.
+외부 응용 프로그램 또는 프레임 워크 tootest toocreate 함수 할 수 있습니다.
 
 ### <a name="test-an-http-trigger-function-with-code-nodejs"></a>코드를 사용하여 HTTP 트리거 함수 테스트: Node.js
-Node.js 앱을 사용하여 함수를 테스트하기 위한 HTTP 요청을 실행할 수 있습니다.
-다음을 수행해야 합니다.
+Node.js 앱 tooexecute HTTP 요청 tootest 함수를 사용할 수 있습니다.
+Tooset 있는지 확인 하십시오.
 
-* 요청 옵션에서 `host`를 함수 앱 호스트로 설정
-* `path`에서 함수 이름 설정
-* `path`에서 액세스 코드(`<your code>`) 설정
+* hello `host` hello 요청 옵션 tooyour 기능 응용 프로그램 호스트에 있습니다.
+* Hello에서 함수 이름을 `path`합니다.
+* 액세스 코드 (`<your code>`) hello에 `path`합니다.
 
 코드 예제:
 
@@ -361,11 +361,11 @@ req.end(bodyString);
     *** Sending name and address in body ***
     {"name" : "Wes testing with Node.JS code","address" : "Dallas, T.X. 75201"}
     Hello Wes testing with Node.JS code
-    The address you provided is Dallas, T.X. 75201
+    hello address you provided is Dallas, T.X. 75201
 
-함수를 실행하는 동안 포털 **로그** 창에 다음과 유사한 출력이 기록됩니다.
+Hello 포털에서 **로그** 창, 출력 유사한 toohello 다음 hello 함수 실행에 기록 됩니다.
 
-    2016-03-23T08:08:55  Welcome, you are now connected to log-streaming service.
+    2016-03-23T08:08:55  Welcome, you are now connected toolog-streaming service.
     2016-03-23T08:08:59.736 Function started (Id=607b891c-08a1-427f-910c-af64ae4f7f9c)
     2016-03-23T08:09:01.153 HTTP trigger function processed a request. RequestUri=http://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1/?code=XXXXXXXXXX==
     2016-03-23T08:09:01.153 Request Headers = {"connection":"Keep-Alive","host":"functionsExample.azurewebsites.net"}
@@ -377,12 +377,12 @@ req.end(bodyString);
 
 
 ### <a name="test-a-queue-trigger-function-with-code-c"></a>코드를 사용하여 큐 트리거 함수 테스트: C# #
-앞에서 큐에 메시지를 놓는 코드를 사용하여 큐 트리거를 테스트하는 방법에 대해 설명했습니다. 다음 예제 코드는 [Azure 큐 저장소 시작](../storage/queues/storage-dotnet-how-to-use-queues.md) 자습서에 제공된 C# 코드를 기반으로 합니다. 해당 링크에서 다른 언어에 대한 코드를 사용할 수도 있습니다.
+앞서 설명한 코드 toodrop 메시지 큐에 사용 하 여 큐 트리거를 테스트할 수 있습니다. hello에 제공 된 hello C# 코드를 기반으로 하는 예제 코드를 다음 hello [Azure 큐 저장소 시작](../storage/queues/storage-dotnet-how-to-use-queues.md) 자습서입니다. 해당 링크에서 다른 언어에 대한 코드를 사용할 수도 있습니다.
 
-콘솔 앱에서 이 코드를 테스트하려면 다음을 수행해야 합니다.
+tootest 콘솔 응용 프로그램에서이 코드에서 수행 해야 합니다.
 
-* [app.config 파일에서 저장소 연결 문자열을 구성합니다](../storage/queues/storage-dotnet-how-to-use-queues.md).
-* 앱에 대한 매개 변수로 `name` 및 `address`를 전달합니다. 예: `C:\myQueueConsoleApp\test.exe "Wes testing queues" "in a console app"`. 이 코드는 런타임 동안 새 사용자에 대한 이름 및 주소를 명령줄 인수로 허용합니다.
+* [저장소 연결 문자열 hello app.config 파일에서 구성](../storage/queues/storage-dotnet-how-to-use-queues.md)합니다.
+* 전달 된 `name` 및 `address` 매개 변수 toohello 응용 프로그램으로 합니다. 예: `C:\myQueueConsoleApp\test.exe "Wes testing queues" "in a console app"`. (이 코드 수락 hello 이름 및 새 사용자의 주소를 명령줄 인수로 런타임 동안.)
 
 C# 코드 예제:
 
@@ -406,16 +406,16 @@ static void Main(string[] args)
     // Retrieve storage account from connection string
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-    // Create the queue client
+    // Create hello queue client
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-    // Retrieve a reference to a queue
+    // Retrieve a reference tooa queue
     CloudQueue queue = queueClient.GetQueueReference(queueName);
 
-    // Create the queue if it doesn't already exist
+    // Create hello queue if it doesn't already exist
     queue.CreateIfNotExists();
 
-    // Create a message and add it to the queue.
+    // Create a message and add it toohello queue.
     if (name != null)
     {
         if (address != null)
@@ -424,7 +424,7 @@ static void Main(string[] args)
             JSON = String.Format("{{\"name\":\"{0}\"}}", name);
     }
 
-    Console.WriteLine("Adding message to " + queueName + "...");
+    Console.WriteLine("Adding message too" + queueName + "...");
     Console.WriteLine(JSON);
 
     CloudQueueMessage message = new CloudQueueMessage(JSON);
@@ -432,9 +432,9 @@ static void Main(string[] args)
 }
 ```
 
-큐 함수에 대한 브라우저 창에 처리 중인 각 메시지가 표시됩니다.
+Hello 큐 함수에 대 한 hello 브라우저 창에서 처리 되 고 각 메시지를 확인할 수 있습니다.
 
-    2016-03-24T10:27:06  Welcome, you are now connected to log-streaming service.
+    2016-03-24T10:27:06  Welcome, you are now connected toolog-streaming service.
     2016-03-24T10:27:30.607 Function started (Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
     2016-03-24T10:27:30.607 C# Queue trigger function processed: {"name":"Wes testing queues","address":"in a console app"}
     2016-03-24T10:27:30.607 Function completed (Success, Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
@@ -442,4 +442,4 @@ static void Main(string[] args)
 
 <!-- URLs. -->
 
-[Azure Portal]: https://portal.azure.com
+[Azure 포털]: https://portal.azure.com

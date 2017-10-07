@@ -1,6 +1,6 @@
 ---
 title: "U-SQL 언어 시작 | Microsoft Docs"
-description: "U-SQL 언어의 기본 사항에 대해 알아봅니다."
+description: "Hello U SQL 언어의 hello 기본 사항에 알아봅니다."
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/23/2017
 ms.author: saveenr
-ms.openlocfilehash: 38c4e1b9bd24ef0b8a81f6154620f3f98d3b5ac1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5edee0e0d85211e84b3d47895c53d71f0a19f083
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-u-sql"></a>U-SQL 시작
-U-SQL은 선언적 SQL을 명령적 C#에 결합하여 규모에 관계 없이 데이터를 처리할 수 있도록 하는 언어입니다. U-SQL의 확장성 있는 분산 쿼리 기능을 통해 Azure SQL Database와 같은 관계형 저장소의 데이터를 효율적으로 분석할 수 있습니다. U-SQL을 사용하면 읽기에 대한 스키마를 적용하고 사용자 지정 논리 및 UDF를 삽입하여 구조화되지 않은 데이터를 처리할 수 있습니다. 또한 U-SQL에는 모든 규모에서 실행하는 방법을 세부적으로 제어할 수 있게 해주는 확장성이 포함되어 있습니다. 
+U-SQL는 선언적 SQL 결합 하는 언어에 있는 아무 눈금에는 데이터 toolet C# 명령적으로 처리 합니다. U-SQL의 hello 확장성, 분산 쿼리 기능을 통해 Azure SQL 데이터베이스 같은 관계형 저장소에서 데이터를 효율적으로 분석할 수 있습니다. U-SQL을 사용하면 읽기에 대한 스키마를 적용하고 사용자 지정 논리 및 UDF를 삽입하여 구조화되지 않은 데이터를 처리할 수 있습니다. 또한 U-SQL 포함 방법 세부적으로 제어를 제공 하는 확장성이 배율로 tooexecute 합니다. 
 
 ## <a name="learning-resources"></a>학습 리소스
 
-* [U-SQL 자습서](http://aka.ms/usqltutorial)에서는 대부분의 U-SQL 언어에 대한 안내식 연습 과정을 제공합니다. U-SQL을 학습하려는 모든 개발자는 이 문서를 읽어보는 것이 좋습니다.
-* **U-SQL 언어 구문**에 대한 자세한 내용은 [U-SQL 언어 참조](http://go.microsoft.com/fwlink/p/?LinkId=691348)를 참조하세요.
-* **U-SQL 디자인 철학**을 이해하려면 Visual Studio 블로그 게시물 [Introducing U-SQL – A Language that makes Big Data Processing Easy(U-SQL 소개 - 빅 데이터 처리를 수월하게 해주는 언어)](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)를 참조하세요.
+* hello [U-SQL 자습서](http://aka.ms/usqltutorial) hello U-SQL 언어의 대부분의는 안내 방식된 연습을 제공 합니다. 이 문서 toolearn U-SQL 하려는 모든 개발자가 읽는 것이 좋습니다.
+* Hello에 대 한 자세한 내용은 **U-SQL 언어 구문을**, hello 참조 [U SQL 언어 참조](http://go.microsoft.com/fwlink/p/?LinkId=691348)합니다.
+* toounderstand hello **U-SQL 디자인 원칙**, hello Visual Studio 블로그 게시물을 참조 [소개 U-SQL – 쉽게 빅 데이터 처리 하는 언어](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 문서의 U-SQL 샘플을 살펴본 후에 [자습서: Visual Studio용 데이터 레이크 도구를 사용하여 U-SQL 스크립트 개발](data-lake-analytics-data-lake-tools-get-started.md)을 읽고 완료하세요. 이 자습서는 Azure Data Lake Tools for Visual Studio에서 U-SQL을 사용하는 기법에 대해 설명합니다.
+이 문서에 hello U-SQL 샘플을 통한 진행 하기 전에 읽고 완료 [자습서: 데이터 레이크 도구를 사용 하 여 Visual Studio에 대 한 개발 U-SQL 스크립트](data-lake-analytics-data-lake-tools-get-started.md)합니다. 해당 자습서는 Azure 데이터 레이크 도구로 U-SQL를 사용 하 여 Visual studio의 hello 메커니즘을 설명 합니다.
 
 ## <a name="your-first-u-sql-script"></a>첫 번째 U-SQL 스크립트
 
-다음 U-SQL 스크립트는 간단하며 U-SQL 언어의 많은 측면을 파악하도록 합니다.
+U-SQL 스크립트를 다음 hello은 단순 하며 많은 측면 hello U-SQL 언어를 탐색할 수 있습니다.
 
 ```
 @searchlog =
@@ -50,34 +50,34 @@ U-SQL은 선언적 SQL을 명령적 C#에 결합하여 규모에 관계 없이 �
     USING Extractors.Tsv();
 
 OUTPUT @searchlog   
-    TO "/output/SearchLog-first-u-sql.csv"
+    too"/output/SearchLog-first-u-sql.csv"
     USING Outputters.Csv();
 ```
 
-이 스크립트에는 변환 단계가 없습니다. `SearchLog.tsv`라는 원본 파일을 읽어와서 스키마를 만들고, 행 집합을 SearchLog-first-u-sql.csv 파일에 다시 씁니다.
+이 스크립트에는 변환 단계가 없습니다. 호출 하는 hello 소스 파일에서 읽을 `SearchLog.tsv`schematizes, 및 hello 행 집합을 다시 첫 번째 u sql.csv SearchLog 라는 파일에 기록 합니다.
 
-`Duration` 필드의 데이터 형식 옆에 있는 물음표를 보세요. 이는 `Duration` 필드가 null이어도 된다는 것을 의미합니다.
+Hello 매개 변수 다음 toohello 데이터 형식에 hello 확인 `Duration` 필드입니다. 해당 hello 의미 `Duration` 필드는 null 일 수 없습니다.
 
 ### <a name="key-concepts"></a>주요 개념
-* **Rowset 변수**: 행 집합을 생성하는 각 쿼리 식은 변수에 할당될 수 있습니다. U-SQL은 스크립트의 T-SQL 변수 이름 지정 패턴(예: `@searchlog`)을 따릅니다.
-* **EXTRACT** 키워드는 파일에서 데이터를 읽고 읽기에 대한 스키마를 정의합니다. `Extractors.Tsv`는 탭으로 구분된 값 파일에 대한 기본 제공 U-SQL 추출기입니다. 사용자 지정 추출기를 개발할 수 있습니다.
-* **OUTPUT**은 행 집합의 데이터를 파일에 씁니다. `Outputters.Csv()`는 쉼표로 구분된 값 파일을 만들기 위한 기본 제공 U-SQL 출력기입니다. 사용자 지정 출력기를 개발할 수 있습니다.
+* **행 집합 변수**: 행 집합을 생성 하는 각 쿼리 식 tooa 변수를 할당할 수 있습니다. U-SQL hello T-SQL 변수 명명 패턴을 따릅니다 (`@searchlog`예를 들면) hello 스크립트에 있습니다.
+* hello **추출** 키워드 파일에서 데이터를 읽고 읽기의 hello 스키마를 정의 합니다. `Extractors.Tsv`는 탭으로 구분된 값 파일에 대한 기본 제공 U-SQL 추출기입니다. 사용자 지정 추출기를 개발할 수 있습니다.
+* hello **출력** 행 집합 tooa 파일에서 데이터를 씁니다. `Outputters.Csv()`기본 제공 U-SQL outputter toocreate 쉼표로 구분 된 값 파일입니다. 사용자 지정 출력기를 개발할 수 있습니다.
 
 ### <a name="file-paths"></a>파일 경로
 
-EXTRACT 및 OUTPUT 문은 파일 경로를 사용합니다. 파일 경로는 절대 경로 또는 상대 경로일 수 있습니다.
+hello 추출 및 문의 출력 파일 경로 사용 합니다. 파일 경로는 절대 경로 또는 상대 경로일 수 있습니다.
 
-다음에 나오는 이 절대 파일 경로는 `mystore`라는 Data Lake Store의 파일을 참조합니다.
+이 다음 절대 파일 경로 참조 라는 데이터 레이크 저장소의 tooa 파일 `mystore`:
 
     adl://mystore.azuredatalakestore.net/Samples/Data/SearchLog.tsv
 
-다음에 나오는 이 파일 경로는 `"/"`로 시작합니다. 기본 Data Lake Store 계정의 파일을 참조합니다.
+다음에 나오는 이 파일 경로는 `"/"`로 시작합니다. Hello 기본 데이터 레이크 저장소 계정에서 tooa 파일 참조:
 
     /output/SearchLog-first-u-sql.csv
 
 ## <a name="use-scalar-variables"></a>스칼라 변수 사용
 
-스크립트 유지 관리를 간편하게 만들기 위해 스칼라 변수를 사용할 수 있습니다. 이전 U-SQL 스크립트를 다음과 같이 작성할 수도 있습니다.
+으로 사용할 수 있습니다 스칼라 변수 잘 toomake 스크립트 유지 관리 보다 쉽게 합니다. 으로 hello 이전 U-SQL 스크립트를 작성할 수도 있습니다.
 
     DECLARE @in  string = "/Samples/Data/SearchLog.tsv";
     DECLARE @out string = "/output/SearchLog-scalar-variables.csv";
@@ -94,12 +94,12 @@ EXTRACT 및 OUTPUT 문은 파일 경로를 사용합니다. 파일 경로는 절
         USING Extractors.Tsv();
 
     OUTPUT @searchlog   
-        TO @out
+        too@out
         USING Outputters.Csv();
 
 ## <a name="transform-rowsets"></a>변환 행 집합
 
-**SELECT** 를 사용하여 행 집합을 변환합니다.
+사용 하 여 **선택** tootransform 행 집합:
 
     @searchlog =
         EXTRACT UserId          int,
@@ -118,12 +118,12 @@ EXTRACT 및 OUTPUT 문은 파일 경로를 사용합니다. 파일 경로는 절
     WHERE Region == "en-gb";
 
     OUTPUT @rs1   
-        TO "/output/SearchLog-transform-rowsets.csv"
+        too"/output/SearchLog-transform-rowsets.csv"
         USING Outputters.Csv();
 
-WHERE 절에는 [C# 부울 식](https://msdn.microsoft.com/library/6a71f45d.aspx)을 사용합니다. 자신의 식 및 함수에 C# 식 언어를 사용할 수 있습니다. 식 및 함수를 논리 결합(ANDs) 및 분리(ORs)와 결합하여 더 복잡한 필터링을 수행할 수 있습니다.
+WHERE 절 사용 하 여 hello는 [C# 부울 식](https://msdn.microsoft.com/library/6a71f45d.aspx)합니다. Hello C# 식 언어 toodo 고유한 식 및 함수에 사용할 수 있습니다. 식 및 함수를 논리 결합(ANDs) 및 분리(ORs)와 결합하여 더 복잡한 필터링을 수행할 수 있습니다.
 
-다음 스크립트는 DateTime.Parse() 메서드와 논리 결합을 사용합니다.
+hello 다음 스크립트에서는 hello DateTime.Parse() 메서드 및 결합 합니다.
 
     @searchlog =
         EXTRACT UserId          int,
@@ -147,18 +147,18 @@ WHERE 절에는 [C# 부울 식](https://msdn.microsoft.com/library/6a71f45d.aspx
         WHERE Start >= DateTime.Parse("2012/02/16") AND Start <= DateTime.Parse("2012/02/17");
 
     OUTPUT @rs1   
-        TO "/output/SearchLog-transform-datetime.csv"
+        too"/output/SearchLog-transform-datetime.csv"
         USING Outputters.Csv();
 
  >[!NOTE]
- >두 번째 쿼리는 첫 번째 행 집합의 결과를 기반으로 작동하며, 두 필터의 결합이 결과가 됩니다. 또한 변수 이름은 재사용이 가능하며 이름에는 어휘 범위(정적 범위)가 적용됩니다.
+ >hello 두 번째 쿼리는 두 개의 필터 hello의 합성을 만드는 hello 첫 번째 행의 hello 결과에 작동 합니다. 변수 이름으로도 다시 사용할 수 있습니다 및 hello 이름이 어휘 적으로 범위가 지정 됩니다.
 
 ## <a name="aggregate-rowsets"></a>집계 행 집합
-U-SQL에는 개발자에게 친숙한 ORDER BY, GROUP BY 및 집계가 제공됩니다.
+친숙 한 ORDER BY, GROUP BY 및 집계 hello U-SQL 제공 합니다.
 
-다음 쿼리는 지역 당 총 기간을 알아내고 최장 기간 다섯 개를 순서대로 표시합니다.
+hello 다음 쿼리에서 hello 총 기간 / 지역당을 찾아 다음 순서로 hello 상위 5 개 기간이 표시 합니다.
 
-U-SQL 행 집합은 다음 쿼리를 위해 이 순서를 유지하지 않습니다. 따라서 출력 순서를 정하려면 OUTPUT 문에 ORDER BY를 추가해야 합니다.
+U-SQL 행 집합에서 다음 쿼리 hello에 대 한 순서를 유지 하지 않습니다. 출력, 따라서 tooorder tooadd ORDER BY toohello 출력 문이 필요 합니다.
 
     DECLARE @outpref string = "/output/Searchlog-aggregation";
     DECLARE @out1    string = @outpref+"_agg.csv";
@@ -189,18 +189,18 @@ U-SQL 행 집합은 다음 쿼리를 위해 이 순서를 유지하지 않습니
         FETCH 5 ROWS;
 
     OUTPUT @rs1
-        TO @out1
+        too@out1
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
     OUTPUT @res
-        TO @out2
+        too@out2
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-U-SQL ORDER BY 절에서는 SELECT 식에 FETCH 절을 사용해야 합니다.
+hello U-SQL ORDER BY 절 hello FETCH 절을 사용 하 여 SELECT 식에 필요 합니다.
 
-U-SQL HAVING 절은 HAVING 조건을 만족하는 그룹으로 출력을 제한하는 데 사용될 수 있습니다.
+hello U-SQL HAVING 절에 사용 되는 toorestrict hello 출력 toogroups hello HAVING 조건에 맞는 될 수 있습니다.
 
     @searchlog =
         EXTRACT UserId          int,
@@ -222,11 +222,11 @@ U-SQL HAVING 절은 HAVING 조건을 만족하는 그룹으로 출력을 제한�
         HAVING SUM(Duration) > 200;
 
     OUTPUT @res
-        TO "/output/Searchlog-having.csv"
+        too"/output/Searchlog-having.csv"
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-고급 집계 시나리오의 경우 U-SQL 참조 설명서에서 [집계, 분석 및 참조 기능](https://msdn.microsoft.com/en-us/library/azure/mt621335.aspx)을 참조하세요.
+집계 고급 시나리오에 대 한 hello hello U-SQL 참조 설명서를 참조 하십시오. [분석, 집계 및 함수를 참조할](https://msdn.microsoft.com/en-us/library/azure/mt621335.aspx)
 
 ## <a name="next-steps"></a>다음 단계
 * [Microsoft Azure 데이터 레이크 분석 개요](data-lake-analytics-overview.md)

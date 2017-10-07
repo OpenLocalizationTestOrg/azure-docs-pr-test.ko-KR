@@ -1,5 +1,5 @@
 ---
-title: "스트리밍 로그 및 콘솔"
+title: "aaaStreaming 로그 및 콘솔"
 description: "스트리밍 로그 및 콘솔 개요"
 author: btardif
 manager: erikre
@@ -14,24 +14,24 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: byvinyal
-ms.openlocfilehash: 120ce6b115820728b9f853e9ff349beb0ef29c9d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb4b8ce5358da12041e164dfff8f43790dd67924
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="streaming-logs-and-the-console"></a>스트리밍 로그 및 콘솔
+# <a name="streaming-logs-and-hello-console"></a>스트리밍 로그 및 hello 콘솔
 ## <a name="streaming-logs"></a>스트리밍 로그
-**Azure Portal**은 통합 스트리밍 로그 뷰어를 제공하며, 이 뷰어에서 **App Service** 앱의 추적 이벤트를 실시간으로 볼 수 있습니다.  
+hello **Azure 포털** 는 통합된 스트리밍 로그 뷰어를 제공 추적 이벤트를 볼 수 있는 프로그램 **앱 서비스** 실시간으로 앱입니다.  
 
 이 기능을 설정하려면 몇 가지 간단한 단계를 수행해야 합니다.
 
 * 코드에 추적 쓰기
 * 앱에 대해 응용 프로그램 **진단 로그**를 사용하도록 설정
-* **Azure portal**의 기본 제공 **스트리밍 로그** UI에서 스트림을 봅니다.
+* 기본 제공 hello에서에서 보기 hello 스트림을 **스트리밍 로그** hello에 대 한 UI **Azure 포털**합니다.
 
-### <a name="how-to-write-traces-in-your-code"></a>코드에서 추적을 쓰는 방법
-코드에 추적을 쓰는 작업은 쉽습니다.  C#에서는 다음 코드를 쓰기만 하면 될 정도로 쉽습니다.
+### <a name="how-toowrite-traces-in-your-code"></a>Toowrite 코드에서 추적 하는 방법
+코드에 추적을 쓰는 작업은 쉽습니다.  C#에서 코드 다음 hello로 손쉽게입니다.
 
 `````````````````````````
 Trace.TraceInformation("My trace statement");
@@ -45,34 +45,34 @@ Trace.TraceWarning("My warning statement");
 Trace.TraceError("My error statement");
 `````````````````````````
 
-The Trace class lives in the System.Diagnostics namespace.
+Trace 클래스 hello hello System.Diagnostics 네임 스페이스에서 실행 됩니다.
 
-node.js 앱에서는 다음 코드를 쓰면 동일한 결과를 얻을 수 있습니다.
+Node.js 응용 프로그램에이 코드를 작성할 수 tooachieve hello 동일한 결과:
 
 `````````````````````````
 console.log("My trace statement").
 `````````````````````````
 
-### <a name="how-to-enable-and-view-the-streaming-logs"></a>스트리밍 로그를 사용하고 보는 방법
-![][BrowseSitesScreenshot] 진단은 앱별로 사용하도록 설정됩니다. 이 기능을 사용하도록 설정할 사이트로 이동하여 시작합니다.  
+### <a name="how-tooenable-and-view-hello-streaming-logs"></a>어떻게 tooenable 뷰와 hello 스트리밍 로그
+![][BrowseSitesScreenshot] 진단은 앱별로 사용하도록 설정됩니다. 이 기능을 원하는 tooenable toohello 사이트를 탐색 하 여 시작 합니다.  
 
-![][DiagnosticsLogs] 설정 메뉴에서 **모니터링** 섹션으로 스크롤하고 **(1) 진단 로그**를 클릭합니다. 그런 다음 **응용 프로그램 로깅(파일 시스템)** 또는 **응용 프로그램 로깅(blob)**을 **(2) 활성화**합니다. **수준** 옵션을 통해 캡처할 추적의 심각도 수준을 변경할 수 있습니다. **세부 정보 표시**는 모든 추적 스트리밍을 수집하므로, 이 기능에 익숙해지고 싶으면 이 설정을 지정해야 합니다.
+![][DiagnosticsLogs]설정 메뉴에서 toohello 아래로 스크롤하여 **모니터링** 섹션을 클릭할 **(1) 진단 로그**합니다. 그런 다음 **(2) enable** **응용 프로그램 로깅 (파일 시스템)** 또는 **응용 프로그램 로깅 (blob)** hello **수준** 옵션을 사용 하면 hello 변경 추적 toocapture의 심각도 수준입니다. Hello 기능에 익숙한 tooget 방금 넣으려는 경우 hello 수준을 설정 너무**Verbose** tooensure 모든 추적 문을 수집 됩니다.
 
-블레이드의 위에 있는 **저장** 을 클릭하면 로그를 볼 수 있습니다.
+클릭 **저장** hello 블레이드의 hello 위쪽에는 준비 tooview 로그 합니다.
 
 > [!NOTE]
-> 더 높은 **심각도 수준**을 설정하면 로그에 더 많은 리소스를 사용하여 더 상세한 추적이 생성됩니다. **심각도 수준**이 프로덕션 또는 높은 트래픽 사이트에 대해 적절한 세부 정보 표시로 구성되어 있는지 확인합니다. 
+> hello 더 높은 hello **심각도** hello 더 많은 리소스를 소비 된 toolog 및 hello 자세한 추적이 생성 됩니다. 있는지 확인 **심각도** 프로덕션 또는 트래픽 혼잡 사이트에 대 한 세부 정보 구성된 toohello 올바른 표시 됩니다. 
 > 
 > 
 
-![][StreamingLogsScreenshot] Azure Portal 내에서 **스트리밍 로그**를 보려면 설정 메뉴의 **모니터링** 섹션에서 **(1) 로그 스트림**을 클릭합니다. 앱에서 추적 문을 활발하게 쓰는 경우 **(2) 스트리밍 로그 UI**에서 거의 실시간으로 볼 수 있습니다.
+![][StreamingLogsScreenshot]tooview hello **스트리밍 로그** 에서 hello Azure 포털 내에서 클릭 하 여 **(1) 로그 스트림** hello에도 **모니터링** hello 설정 메뉴의 섹션입니다. 응용 프로그램은 추적 문을 작성 하는 중인 경우 hello에 표시 됩니다 **UI 로그 (2) 스트리밍** 거의 실시간으로 합니다.
 
 ## <a name="console"></a>콘솔
-**Azure Portal**에서는 앱에 대한 콘솔 액세스를 제공합니다. 앱의 파일 시스템을 탐색하고 powershell/cmd 스크립트를 실행할 수 있습니다. 콘솔 명령을 실행할 때 실행 중인 앱 코드와 동일한 권한 집합이 적용됩니다. 보호된 디렉터리에 대한 액세스 또는 관리자 권한이 필요한 스크립트 실행은 차단됩니다.  
+hello **Azure 포털** 콘솔 액세스 tooyour 응용 프로그램을 제공 합니다. 앱의 파일 시스템을 탐색하고 powershell/cmd 스크립트를 실행할 수 있습니다. Hello 콘솔 명령을 실행할 때 응용 프로그램 코드를 실행 하 여으로 동일한 사용 권한을 설정 하 여 바인딩됩니다. 액세스 tooprotected 디렉터리 또는 상승 된 권한이 필요 하는 스크립트 실행이 차단 됩니다.  
 
-![][ConsoleScreenshot] 설정 메뉴에서 **개발 도구** 섹션으로 스크롤하고 **(1) 콘솔**을 클릭하면 **(2) 콘솔** UI가 오른쪽에 열립니다.
+![][ConsoleScreenshot]설정 메뉴에서 아래로 스크롤하여 너무**개발 도구** 섹션을 클릭할 **(1) 콘솔** 및 hello **(2) 콘솔** UI toohello 오른쪽 열립니다.
 
-**콘솔**에 친숙해지려면 다음과 같은 기본 명령을 시도하세요.
+hello에 익숙한 tooget **콘솔**, 시도 같은 기본 명령을:
 
 `````````````````````````
 dir

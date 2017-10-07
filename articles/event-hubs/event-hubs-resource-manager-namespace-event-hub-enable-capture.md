@@ -1,5 +1,5 @@
 ---
-title: "템플릿을 사용하여 Azure Event Hubs 네임스페이스를 만들고 캡처를 사용하도록 설정 | Microsoft Docs"
+title: "서식 파일을 사용 하 여 Azure 이벤트 허브 네임 스페이스를 사용 하도록 설정한 Capture aaaCreate | Microsoft Docs"
 description: "Azure Resource Manager 템플릿을 사용하여 하나의 이벤트 허브가 있는 Azure Event Hubs 네임스페이스를 만들고 캡처를 사용하도록 설정"
 services: event-hubs
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/28/2017
 ms.author: sethm
-ms.openlocfilehash: 19bbb51868e767aa1d15f4574628b7fd36607207
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a43b4e8d690ae825047e8a9d609bfda89cf2a06f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-event-hubs-namespace-with-an-event-hub-and-enable-capture-using-an-azure-resource-manager-template"></a>Azure Resource Manager 템플릿을 사용하여 하나의 이벤트 허브가 있는 Event Hubs 네임스페이스를 만들고 캡처를 사용하도록 설정
 
-이 문서에서는 Azure Resource Manager 템플릿을 사용하여 하나의 이벤트 허브 인스턴스가 있는 Event Hubs 네임스페이스를 만들고 해당 이벤트 허브에서 [캡처 기능](event-hubs-capture-overview.md)을 사용하도록 설정하는 방법을 보여 줍니다. 또한 어떤 리소스를 배포할지 정의하는 방법 및 배포를 실행할 때 매개 변수를 지정하는 방법을 설명합니다. 배포를 위해 이 템플릿을 사용하거나 요구 사항에 맞게 사용자 지정을 할 수 있습니다.
+이 문서에서는 어떻게 toouse Azure 리소스 관리자 템플릿을 만들어지는 이벤트 허브 네임 스페이스를 하나의 이벤트 허브 인스턴스 및 사용 hello [캡처 기능은](event-hubs-capture-overview.md) hello 이벤트 허브에 있습니다. hello 문서에서는 설명 방법을 toodefine 및 hello 배포를 실행할 때 toodefine 매개 변수를을 지정 하는 방법에 리소스를 배포 합니다. 배포를 위한이 서식 파일을 사용 하거나 toomeet 사용자 지정할 수 있습니다 프로그램 요구 사항입니다.
 
-이 문서에는 선택한 대상에 따라 이벤트가 Azure Storage Blobs에 캡처되는지, 아니면 Azure Data Lake Store에 캡쳐되는지를 지정하는 방법을 보여줍니다.
+또한이 문서에서는 hello에 toospecify Azure 저장소 Blob 나 Azure Data Lake 저장소에 캡처할 이벤트를 기반으로 하는 방법을 보여 줍니다. 선택한 대상입니다.
 
 템플릿 만들기에 대한 자세한 내용은 [Azure Resource Manager 템플릿 작성하기][Authoring Azure Resource Manager templates]를 참조하세요.
 
 Azure 리소스 명명 규칙의 패턴 및 사례에 대한 자세한 내용은 [Azure 리소스 명명 규칙][Azure Resources naming conventions]을 참조하세요.
 
-전체 템플릿은 다음 GitHub 링크를 클릭합니다.
+Hello 전체 템플릿 hello 다음 GitHub 링크를 클릭 합니다.
 
-- [이벤트 허브 및 저장소 템플릿에 캡처 사용][Event Hub and enable Capture to Storage template] 
-- [이벤트 허브 및 Azure Data Lake Store 템플릿에 캡처 사용][Event Hub and enable Capture to Azure Data Lake Store template]
+- [이벤트 허브를 사용 하도록 설정한 캡처 tooStorage 서식 파일][Event Hub and enable Capture tooStorage template] 
+- [이벤트 허브를 사용 하도록 설정한 캡처 tooAzure 데이터 레이크 저장소 템플릿][Event Hub and enable Capture tooAzure Data Lake Store template]
 
 > [!NOTE]
-> 최신 템플릿을 확인하려면 [Azure 빠른 시작 템플릿][Azure Quickstart Templates] 갤러리를 방문하여 이벤트 허브를 검색하세요.
+> hello 최신 템플릿용으로 toocheck 방문 hello [Azure 빠른 시작 템플릿] [ Azure Quickstart Templates] 갤러리 및 이벤트 허브에 대 한 검색 합니다.
 > 
 > 
 
@@ -44,51 +44,51 @@ Azure 리소스 명명 규칙의 패턴 및 사례에 대한 자세한 내용은
 
 이 템플릿을 사용하면 하나의 이벤트 허브가 있는 Event Hubs 네임스페이스를 배포하고 [Event Hubs 캡처](event-hubs-capture-overview.md)도 사용할 수 있습니다.
 
-[이벤트 허브](event-hubs-what-is-event-hubs.md) 는 짧은 대기 시간 및 높은 안정성으로 이벤트 및 원격 분석을 엄청난 규모의 Azure에 제공하는 데 사용되는 이벤트 ingestor 서비스입니다. Event Hubs 캡처를 사용하면 Event Hubs의 스트리밍 데이터를 지정한 시간이나 선택한 크기 간격 내에서 Azure Blob Storage 또는 Azure Data Lake Store에 자동으로 전달할 수 있습니다.
+[이벤트 허브](event-hubs-what-is-event-hubs.md) 낮은 대기 시간과 높은 안정성에 대량으로 사용 되는 서비스 tooprovide 이벤트 및 원격 분석 ingress tooAzure 처리 하는 이벤트입니다. 이벤트 허브 캡처를 사용 하면 tooautomatically hello 특정된 시간이 나 선택한 크기 간격 내에서 이벤트 허브 tooAzure Blob 저장소에 데이터 또는 Azure 데이터 레이크 저장소를 스트리밍 배달 합니다.
 
-Azure Storage로 Event Hubs 캡처를 사용하도록 설정하려면 다음 단추를 클릭합니다.
+이벤트 허브 캡처 단추 tooenable Azure 저장소로 다음 hello를 클릭 합니다.
 
-[![Azure에 배포](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture%2Fazuredeploy.json)
+[![TooAzure 배포](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture%2Fazuredeploy.json)
 
-Azure Data Lake Store로 Event Hubs 캡처를 사용하도록 설정하려면 다음 단추를 클릭합니다.
+Hello Azure 데이터 레이크 저장소에 이벤트 허브 캡처 단추 tooenable 다음를 클릭 합니다.
 
-[![Azure에 배포](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture-for-adls%2Fazuredeploy.json)
+[![TooAzure 배포](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture-for-adls%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>매개 변수
 
-Azure 리소스 관리자와 함께 템플릿을 배포할 때 지정하고자 하는 값으로 매개 변수를 정의합니다. 템플릿은 모든 매개 변수 값이 포함된 `Parameters` 라는 섹션을 포함합니다. 배포하는 프로젝트에 따라 또는 환경에 따라 달라지는 이러한 값에 대한 매개 변수를 정의해야 합니다. 항상 동일하게 유지되는 값으로 매개 변수를 정의하지 마십시오. 각 매개 변수 값은 배포되는 리소스를 정의하는 템플릿에 사용됩니다.
+Azure 리소스 관리자와 정의한 매개 변수 값에 대 한 원하는 toospecify hello 서식 파일을 배포할 때. hello 템플릿에 섹션이 포함 되어 `Parameters` 모든 hello 매개 변수 값이 들어 있는입니다. 에 배포 하는 hello 환경에 따라 또는 배포 하는 hello 프로젝트에 따라 달라 지는 해당 값에 대 한 매개 변수를 정의 해야 합니다. 동일한 값을 항상 유지 hello에 대 한 매개 변수를 정의 하지 않습니다. 각 매개 변수 값은 배포 된 hello 템플릿 toodefine hello 리소스에 사용 됩니다.
 
-템플릿은 다음 매개 변수를 정의합니다.
+hello 템플릿은 매개 변수 뒤 hello를 정의 합니다.
 
 ### <a name="eventhubnamespacename"></a>eventHubNamespaceName
 
-만들 [Event Hubs 네임스페이스](event-hubs-create.md)의 이름입니다.
+hello의 hello 이름 [이벤트 허브 네임 스페이스](event-hubs-create.md) toocreate 합니다.
 
 ```json
 "eventHubNamespaceName":{  
      "type":"string",
      "metadata":{  
-         "description":"Name of the EventHub namespace"
+         "description":"Name of hello EventHub namespace"
       }
 }
 ```
 
 ### <a name="eventhubname"></a>eventHubName
 
-[Event Hubs 네임스페이스](event-hubs-create.md)에서 만든 이벤트 허브의 이름입니다.
+hello에서 만든 hello 이벤트 허브의 hello 이름 [이벤트 허브 네임 스페이스](event-hubs-create.md)합니다.
 
 ```json
 "eventHubName":{  
     "type":"string",
     "metadata":{  
-        "description":"Name of the event hub"
+        "description":"Name of hello event hub"
     }
 }
 ```
 
 ### <a name="messageretentionindays"></a>messageRetentionInDays
 
-이벤트 허브에서 메시지를 보관할 기간(일수)입니다. 
+hello hello 이벤트 허브에서 일 tooretain hello 메시지 수입니다. 
 
 ```json
 "messageRetentionInDays":{
@@ -97,14 +97,14 @@ Azure 리소스 관리자와 함께 템플릿을 배포할 때 지정하고자 �
     "minValue":"1",
     "maxValue":"7",
     "metadata":{
-       "description":"How long to retain the data in event hub"
+       "description":"How long tooretain hello data in event hub"
      }
  }
 ```
 
 ### <a name="partitioncount"></a>partitionCount
 
-이벤트 허브에서 만들 파티션 수입니다.
+hello 이벤트 허브에 대 한 파티션 toocreate hello 수입니다.
 
 ```json
 "partitionCount":{
@@ -120,7 +120,7 @@ Azure 리소스 관리자와 함께 템플릿을 배포할 때 지정하고자 �
 
 ### <a name="captureenabled"></a>captureEnabled
 
-이벤트 허브에서 캡처를 사용하도록 설정합니다.
+Hello 이벤트 허브에서 캡처를 사용 하도록 설정 합니다.
 
 ```json
 "captureEnabled":{
@@ -130,13 +130,13 @@ Azure 리소스 관리자와 함께 템플릿을 배포할 때 지정하고자 �
     "false",
     "true"],
     "metadata":{
-        "description":"Enable or disable the Capture for your event hub"
+        "description":"Enable or disable hello Capture for your event hub"
     }
  }
 ```
 ### <a name="captureencodingformat"></a>captureEncodingFormat
 
-이벤트 데이터를 직렬화하기 위해 지정하는 인코딩 형식입니다.
+hello 인코딩 형식을 tooserialize hello 이벤트 데이터를 지정 합니다.
 
 ```json
 "captureEncodingFormat":{
@@ -145,14 +145,14 @@ Azure 리소스 관리자와 함께 템플릿을 배포할 때 지정하고자 �
     "allowedValues":[
     "Avro"],
     "metadata":{
-        "description":"The encoding format in which Capture serializes the EventData"
+        "description":"hello encoding format in which Capture serializes hello EventData"
     }
 }
 ```
 
 ### <a name="capturetime"></a>captureTime
 
-Event Hubs 캡처를 통해 데이터를 캡처하기 시작하는 시간 간격입니다.
+이벤트 허브 캡처 시작 되 hello 데이터 캡처는 hello 시간 간격입니다.
 
 ```json
 "captureTime":{
@@ -161,13 +161,13 @@ Event Hubs 캡처를 통해 데이터를 캡처하기 시작하는 시간 간격
     "minValue":60,
     "maxValue":900,
     "metadata":{
-         "description":"the time window in seconds for the capture"
+         "description":"hello time window in seconds for hello capture"
     }
 }
 ```
 
 ### <a name="capturesize"></a>captureSize
-캡처를 통해 데이터를 캡처하기 시작하는 크기 간격입니다.
+캡처 시작 되는 hello 데이터 캡처는 hello 크기 간격입니다.
 
 ```json
 "captureSize":{
@@ -176,14 +176,14 @@ Event Hubs 캡처를 통해 데이터를 캡처하기 시작하는 시간 간격
     "minValue":10485760,
     "maxValue":524288000,
     "metadata":{
-        "description":"The size window in bytes for capture"
+        "description":"hello size window in bytes for capture"
     }
 }
 ```
 
 ###<a name="capturenameformat"></a>captureNameFormat
 
-Avro 파일을 쓰기 위해 Event Hubs 캡처에 의해 사용되는 이름 형식입니다. 캡처 이름 형식은 `{Namespace}`, `{EventHub}`, `{PartitionId}`, `{Year}`, `{Month}`, `{Day}`, `{Hour}`, `{Minute}` 및 `{Second}` 필드를 포함해야 합니다. 구분 기호 유무에 관계 없이 정렬될 수 있습니다.
+이벤트 허브 캡처 toowrite hello Avro 파일 사용 되는 hello 이름 형식입니다. 캡처 이름 형식은 `{Namespace}`, `{EventHub}`, `{PartitionId}`, `{Year}`, `{Month}`, `{Day}`, `{Hour}`, `{Minute}` 및 `{Second}` 필드를 포함해야 합니다. 구분 기호 유무에 관계 없이 정렬될 수 있습니다.
  
 ```json
 "captureNameFormat": {
@@ -198,51 +198,51 @@ Avro 파일을 쓰기 위해 Event Hubs 캡처에 의해 사용되는 이름 형
 
 ### <a name="apiversion"></a>apiVersion
 
-템플릿의 API 버전입니다.
+hello 템플릿의 hello API 버전입니다.
 
 ```json
  "apiVersion":{  
     "type":"string",
     "defaultValue":"2015-08-01",
     "metadata":{  
-        "description":"ApiVersion used by the template"
+        "description":"ApiVersion used by hello template"
     }
  }
 ```
 
-Azure Storage를 대상으로 선택한 경우 다음 매개 변수를 사용합니다.
+Hello 매개 변수를 대상으로 Azure 저장소를 선택 하면 다음을 사용 합니다.
 
 ### <a name="destinationstorageaccountresourceid"></a>destinationStorageAccountResourceId
 
-원하는 Storage 계정에 캡처하도록 설정하기 위해 캡처에 Azure Storage 계정 리소스 ID가 필요합니다.
+캡처는 tooyour 캡처는 Azure 저장소 계정 리소스 ID tooenable 원하는 저장소 계정이 필요 합니다.
 
 ```json
  "destinationStorageAccountResourceId":{
     "type":"string",
     "metadata":{
-        "description":"Your existing Storage account resource ID where you want the blobs be captured"
+        "description":"Your existing Storage account resource ID where you want hello blobs be captured"
     }
  }
 ```
 
 ### <a name="blobcontainername"></a>blobContainerName
 
-이벤트 데이터를 캡처할 BLOB 컨테이너입니다.
+hello를 blob 컨테이너는 toocapture에 이벤트 데이터입니다.
 
 ```json
  "blobContainerName":{
     "type":"string",
     "metadata":{
-        "description":"Your existing storage container in which you want the blobs captured"
+        "description":"Your existing storage container in which you want hello blobs captured"
     }
 }
 ```
 
-Azure Data Lake Store를 대상으로 선택한 경우 다음 매개 변수를 사용합니다. 이벤트를 캡처하려는 Data Lake Store 경로에서 사용 권한을 설정해야 합니다. 사용 권한을 설정하려면 [이 문서](event-hubs-capture-enable-through-portal.md#capture-data-to-an-azure-data-lake-store-account)를 참조하세요.
+Azure 데이터 레이크 저장소 대상으로 선택 하면 매개 변수 뒤 hello를 사용 합니다. 데이터 레이크 저장소 경로, tooCapture hello 이벤트 원하는에 권한을 설정 해야 합니다. tooset 사용 권한 참조 [이 여기서](event-hubs-capture-enable-through-portal.md#capture-data-to-an-azure-data-lake-store-account)합니다.
 
 ###<a name="subscriptionid"></a>subscriptionId
 
-Event Hubs 네임스페이스와 Azure Data Lake Store에 대한 구독 ID입니다. 이러한 두 리소스가 동일한 구독 ID에 있어야 합니다.
+Hello 이벤트 허브 네임 스페이스와 Azure 데이터 레이크 저장소에 대 한 구독 ID입니다. 이러한 두 리소스 hello 아래에 있어야 합니다. 같은 구독 id입니다.
 
 ```json
 "subscriptionId": {
@@ -255,7 +255,7 @@ Event Hubs 네임스페이스와 Azure Data Lake Store에 대한 구독 ID입니
 
 ###<a name="datalakeaccountname"></a>dataLakeAccountName
 
-캡처된 이벤트에 대한 Azure Data Lake Store 이름입니다.
+hello Azure Data Lake 저장소 이름 hello에 대 한 이벤트를 캡처합니다.
 
 ```json
 "dataLakeAccountName": {
@@ -268,7 +268,7 @@ Event Hubs 네임스페이스와 Azure Data Lake Store에 대한 구독 ID입니
 
 ###<a name="datalakefolderpath"></a>dataLakeFolderPath
 
-캡처된 이벤트에 대한 대상 폴더 경로입니다.
+hello에 대 한 hello 대상 폴더 경로 이벤트를 캡처합니다.
 
 ```json
 "dataLakeFolderPath": {
@@ -279,9 +279,9 @@ Event Hubs 네임스페이스와 Azure Data Lake Store에 대한 구독 ID입니
 }
 ```
 
-## <a name="resources-to-deploy-for-azure-storage-as-destination-to-captured-events"></a>캡처된 이벤트에 대한 대상으로 Azure Storage에 배포할 리소스
+## <a name="resources-toodeploy-for-azure-storage-as-destination-toocaptured-events"></a>대상 toocaptured 이벤트로 Azure 저장소에 대 한 리소스 toodeploy
 
-하나의 이벤트 허브가 있는 **EventHubs** 형식의 네임스페이스를 만들고 Azure Blob Storage에 캡처를 사용하도록 설정합니다.
+형식의 네임 스페이스를 만듭니다 **EventHubs**, 하나의 이벤트 허브와도 사용 tooAzure Blob 저장소를 캡처합니다.
 
 ```json
 "resources":[  
@@ -328,9 +328,9 @@ Event Hubs 네임스페이스와 Azure Data Lake Store에 대한 구독 ID입니
    ]
 ```
 
-## <a name="resources-to-deploy-for-azure-data-lake-store-as-destination"></a>Azure Data Lake Store에 대상으로 배포할 리소스
+## <a name="resources-toodeploy-for-azure-data-lake-store-as-destination"></a>대상으로 Azure 데이터 레이크 저장소에 대 한 리소스 toodeploy
 
-하나의 이벤트 허브가 있는 **EventHubs** 형식의 네임스페이스를 만들고 Azure Data Lake Store에 캡처를 사용하도록 설정합니다.
+형식의 네임 스페이스를 만듭니다 **EventHubs**, 하나의 이벤트 허브와도 캡처 tooAzure Data Lake 저장소를 사용 하도록 설정 합니다.
 
 ```json
  "resources": [
@@ -375,19 +375,19 @@ Event Hubs 네임스페이스와 Azure Data Lake Store에 대한 구독 ID입니
     ]
 ```
 
-## <a name="commands-to-run-deployment"></a>배포 실행 명령
+## <a name="commands-toorun-deployment"></a>명령 toorun 배포
 
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
 
-템플릿을 배포하여 Azure Storage로 Event Hubs 캡처를 사용하도록 설정합니다.
+Azure 저장소로 이벤트 허브 캡처 템플릿 tooenable 프로그램을 배포 합니다.
  
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -TemplateFile https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-eventhubs-create-namespace-and-enable-capture/azuredeploy.json
 ```
 
-템플릿을 배포하여 Azure Data Lake Store로 Event Hubs 캡처를 사용하도록 설정합니다.
+Azure 데이터 레이크 저장소에 이벤트 허브 캡처 템플릿 tooenable 프로그램을 배포 합니다.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -TemplateFile https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-eventhubs-create-namespace-and-enable-capture-for-adls/azuredeploy.json
@@ -413,9 +413,9 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 
 ## <a name="next-steps"></a>다음 단계
 
-[Azure Portal](https://portal.azure.com)을 통해 Event Hubs 캡처를 구성할 수도 있습니다. 자세한 내용은 [Azure Portal을 사용하여 Event Hubs 캡처를 사용하도록 설정](event-hubs-capture-enable-through-portal.md)을 참조하세요.
+Hello를 통해 이벤트 허브 캡처를 구성할 수도 있습니다 [Azure 포털](https://portal.azure.com)합니다. 자세한 내용은 참조 [활성화 이벤트 허브 캡처를 사용 하 여 Azure 포털을 hello](event-hubs-capture-enable-through-portal.md)합니다.
 
-Event Hubs에 대한 자세한 내용은 다음 링크를 참조하세요.
+Hello 다음 링크를 방문 하 여 이벤트 허브에 대 한 자세히 알아볼 수 있습니다.
 
 * [이벤트 허브 개요](event-hubs-what-is-event-hubs.md)
 * [이벤트 허브 만들기](event-hubs-create.md)
@@ -424,5 +424,5 @@ Event Hubs에 대한 자세한 내용은 다음 링크를 참조하세요.
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Azure Quickstart Templates]:  https://azure.microsoft.com/documentation/templates/?term=event+hubs
 [Azure Resources naming conventions]: https://azure.microsoft.com/documentation/articles/guidance-naming-conventions/
-[Event hub and enable Capture to Storage template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture
-[Event hub and enable Capture to Azure Data Lake Store template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture-for-adls
+[Event hub and enable Capture tooStorage template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture
+[Event hub and enable Capture tooAzure Data Lake Store template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture-for-adls

@@ -1,6 +1,6 @@
 ---
-title: "Azure AD 응용 프로그램 갤러리에 다중 테넌트 응용 프로그램을 추가하는 방법 | Microsoft Docs"
-description: "Azure AD 응용 프로그램 갤러리에서 사용자 지정 개발 다중 테넌트 응용 프로그램을 나열하는 방법을 설명합니다."
+title: "다중 테 넌 트 응용 프로그램 toohello Azure AD 응용 프로그램 갤러리 aaaHow tooadd | Microsoft Docs"
+description: "Hello Azure AD 응용 프로그램 갤러리에서에서 사용자 지정 개발 된 다중 테 넌 트 응용 프로그램을 나열할 수는 방법에 대해 설명"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 208f0d40bd7a8e8f35f16e1fcb09c305d833dbb2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2dc6e0d783835d2639a7e6dda172110ee860a977
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-add-a-multi-tenant-application-to-the-azure-ad-application-gallery"></a>Azure AD 응용 프로그램 갤러리에 다중 테넌트 응용 프로그램을 추가하는 방법
+# <a name="how-tooadd-a-multi-tenant-application-toohello-azure-ad-application-gallery"></a>어떻게 tooadd 다중 테 넌 트 응용 프로그램 toohello Azure AD 응용 프로그램 갤러리
 
-## <a name="what-is-the-azure-ad-application-gallery"></a>Azure AD 응용 프로그램 갤러리란?
+## <a name="what-is-hello-azure-ad-application-gallery"></a>Hello Azure AD 응용 프로그램 갤러리 란?
 
-Azure AD 응용 프로그램 갤러리는 수백만 명의 Azure Active Directory 고객에게 응용 프로그램을 제공하여 Marketplace에서 응용 프로그램의 영향과 범위를 넓히는 좋은 방법입니다. 아래 단계에서는 Azure AD 응용 프로그램 갤러리에 응용 프로그램을 나열하는 방법을 설명합니다.
+hello Azure AD 응용 프로그램 갤러리 위한 훌륭한 방법 tooget 응용 프로그램을 모든 hello 수백만 앞에 Azure Active Directory 고객 toobroaden hello 영향 이며 hello 시장에서 응용 프로그램의 도달 합니다. 아래 단계는 hello hello Azure AD 응용 프로그램 갤러리에서에서 응용 프로그램을 나열할 수는 방법을 설명 합니다.
 
 ## <a name="if-your-application-supports-saml-or-openidconnect"></a>응용 프로그램이 SAML 또는 OpenIDConnect를 지원하는 경우
-Azure AD 응용 프로그램 갤러리에 나열하려는 다중 테넌트 응용 프로그램이 있는 경우 먼저 응용 프로그램이 다음 Single Sign-On 기술 중 하나를 지원하는지 확인해야 합니다.
+Toolist hello Azure AD 응용 프로그램 갤러리에서에서 선택 하는 다중 테 넌 트 응용 프로그램의 경우 응용 프로그램 hello single sign on 기술 다음 중 하나를 지원 하는지 먼저 확인 해야 하면:
 
-1. **OpenID Connect** - 인증을 위한 OpenID Connect 및 구성을 위한 Azure AD 동의 API를 사용하는 Azure AD과 통합을 지원합니다. 통합을 시작하고 응용 프로그램이 SAML을 지원하지 않으면 이것이 권장 모드입니다.
-2. **SAML** – 응용 프로그램에는 이미 SAML 프로토콜을 사용하여 타사 ID 공급자를 구성할 기능이 있습니다.
+1. **OpenID Connect** -OpenID Connect를 사용 하 여 인증을 위해 Azure AD와 직접 통합 하 고 구성에 대 한 Azure AD 동의 API hello 합니다. 통합 시작 하는 경우 응용 프로그램 SAML을 지원 하지 않는 hello 권장 되는 모드입니다.
+2. **SAML** – 응용 프로그램에 이미 hello SAML 프로토콜을 사용 하 여 hello 기능 tooconfigure 타사 id 공급자가 있습니다.
 
-응용 프로그램에서 이러한 Single Sign-On 모드 중 하나를 지원하고 Azure AD 응용 프로그램 갤러리에 다중 테넌트 응용 프로그램을 나열하려는 경우 아래 문서의 단계를 수행할 수 있습니다. 빠르게 시작하려면 **waadpartners@microsoft.com**으로 메일을 보내세요.
+응용 프로그램에서 single sign on 모드 중 하나를 지원 하 고 원하는 toolist hello Azure AD 응용 프로그램 갤러리에서에서 다중 테 넌 트 응용 프로그램 아래 hello 문서의 hello 단계를 수행 합니다. 빠르게 시작 tooget 너무 전자 메일을 보내**waadpartners@microsoft.com**합니다.
 
 ## <a name="if-your-application-does-not-support-saml-or-openidconnect"></a>응용 프로그램이 SAML 또는 OpenIDConnect를 지원하지 않는 경우
-응용 프로그램이 이러한 모드 중 하나를 지원하지 않더라도 암호 Single Sign-On 기술을 사용하여 갤러리에 통합할 수 있습니다. 이 옵션을 살펴보려면 **waadpartners@microsoft.com**으로 메일을 보내세요.
+응용 프로그램이 이러한 모드 중 하나를 지원하지 않더라도 암호 Single Sign-On 기술을 사용하여 갤러리에 통합할 수 있습니다. Tooexplore 원하는 경우이 옵션을 메일을 너무 보낼 수**waadpartners@microsoft.com**합니다.
 
 ## <a name="next-steps"></a>다음 단계
-[Azure Active Directory 응용 프로그램 갤러리에 응용 프로그램을 나열하는 방법](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)
+[어떻게 toolist hello Azure Active Directory 응용 프로그램 갤러리에서 응용 프로그램](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)

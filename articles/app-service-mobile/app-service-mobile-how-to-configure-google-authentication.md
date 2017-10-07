@@ -1,6 +1,6 @@
 ---
-title: "앱 서비스 응용 프로그램에 대해 Google 인증을 구성하는 방법"
-description: "앱 서비스 응용 프로그램에 대해 Google 인증을 구성하는 방법을 알아봅니다."
+title: "응용 프로그램 서비스 응용 프로그램에 대 한 aaaHow tooconfigure Google 인증"
+description: "자세한 방법을 응용 프로그램 서비스 응용 프로그램에 대 한 tooconfigure Google 인증 합니다."
 services: app-service
 documentationcenter: 
 author: mattchenderson
@@ -14,44 +14,44 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: d6c1707f67d986487e5a45e76ffc9a02ddf16eb1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9175c40b78c859e9e191504c41cd0bb9a3380ccd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-your-app-service-application-to-use-google-login"></a>Google 로그인을 사용하도록 앱 서비스 응용 프로그램을 구성하는 방법
+# <a name="how-tooconfigure-your-app-service-application-toouse-google-login"></a>어떻게 tooconfigure 앱 서비스 응용 프로그램 toouse Google 로그인
 [!INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
 
-이 항목에서는 Google을 인증 공급자로 사용하도록 Azure 앱 서비스를 구성하는 방법을 보여 줍니다.
+이 항목에서는 Azure 앱 서비스 toouse tooconfigure 인증 공급자 인 Google에 있습니다.
 
-이 항목의 절차를 완료하려면 검증된 메일 주소가 포함된 Google 계정이 있어야 합니다. 새 Google 계정을 만들려면 [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302)으로 이동하십시오.
+이 항목의 toocomplete hello 절차, 확인 된 전자 메일 주소를 보유 하는 Google 계정이 있어야 합니다. 새 Google 계정 toocreate 너무 이동[accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302)합니다.
 
 ## <a name="register"> </a>Google을 사용하여 응용 프로그램 등록
-1. [Azure 포털]에 로그온한 다음 응용 프로그램으로 이동합니다. **URL**을 복사하여 나중에 Google 앱을 구성하는 데 사용합니다.
-2. [Google apis](http://go.microsoft.com/fwlink/p/?LinkId=268303) 웹 사이트로 이동하고 Google 계정 자격 증명으로 로그인하고 **프로젝트 만들기**를 클릭하고 **프로젝트 이름**을 입력한 후 **만들기**를 클릭합니다.
+1. Toohello 로그온 [Azure 포털], tooyour 응용 프로그램을 이동 합니다. 복사 프로그램 **URL**이며 이후 tooconfigure Google 앱을 사용 합니다.
+2. Toohello 이동 [Google api](http://go.microsoft.com/fwlink/p/?LinkId=268303) 사이트 Google 계정 자격 증명을 사용 하 여 로그인을 클릭 **프로젝트 만들기**, 제공 된 **프로젝트 이름**, 클릭  **만들**합니다.
 3. **Social APIs** 아래에서 **Google+ API**, **Enable**을 차례로 클릭합니다.
-4. 왼쪽 탐색에서 **Credentials** > **OAuth consent screen**을 클릭하고 **Email address**를 선택한 다음 **Product Name**을 입력하고 **Save**를 클릭합니다.
-5. **Credentials** 탭에서**Create credentials** > **OAuth client ID**를 클릭하고 **Web application**을 선택합니다.
-6. 앞서 복사한 App Service **URL**을 **Authorized JavaScript Origins**에 붙여넣고, 리디렉션 URI를**Authorized Redirect URI**에 붙여넣습니다. 리디렉션 URI는 경로 */.auth/login/google/callback*이 추가된 응용 프로그램의 URL입니다. 예: `https://contoso.azurewebsites.net/.auth/login/google/callback` HTTPS 체계를 사용 중인지 확인합니다. 그런 다음 **Create**를 클릭합니다.
-7. 다음 화면에서 클라이언트 ID 및 클라이언트 암호 값을 적어 둡니다.
+4. 왼쪽 탐색, hello에 **자격 증명** > **OAuth 동의 화면**을 선택한 후 사용자 **전자 메일 주소**를 입력 한 **제품이름**를 클릭 하 고 **저장**합니다.
+5. Hello에 **자격 증명** 탭을 클릭 **자격 증명을 만들어** > **OAuth 클라이언트 ID**을 선택한 후 **웹 응용 프로그램**합니다.
+6. 붙여넣기 hello 앱 서비스 **URL** 에 앞에서 복사한 있습니다 **자바 스크립트 원본**, 프로그램 리디렉션 붙여 URI에 **권한이 리디렉션 URI**합니다. 리디렉션 URI는 hello 경로 추가 되므로 응용 프로그램의 hello URL hello */.auth/login/google/callback*합니다. 예: `https://contoso.azurewebsites.net/.auth/login/google/callback`. Hello HTTPS 체계를 사용 하 고 있는지 확인 합니다. 그런 다음 **Create**를 클릭합니다.
+7. Hello 다음 화면에서 적어 hello 값 hello 클라이언트의 ID 및 클라이언트 암호입니다.
 
     > [!IMPORTANT]
-    > 클라이언트 암호는 중요한 보안 자격 증명입니다. 다른 사람과 이 암호를 공유하거나 클라이언트 응용 프로그램 내에 배포하지 마세요.
+    > hello 클라이언트 암호는는 중요 한 보안 자격 증명입니다. 다른 사람과 이 암호를 공유하거나 클라이언트 응용 프로그램 내에 배포하지 마세요.
 
 
-## <a name="secrets"> </a>응용 프로그램에 Google 정보 추가
-1. [Azure 포털]로 돌아가서 응용 프로그램으로 이동합니다. **Settings**를 클릭한 다음 **Authentication / Authorization**을 클릭합니다.
-2. 인증/권한 부여 기능이 사용하도록 설정되지 않은 경우 스위치를 **On**으로 전환합니다.
-3. **Google**을 클릭합니다. 이전에 가져온 앱 ID 및 앱 암호 값을 붙여넣고 필요에 따라 응용 프로그램에 필요한 범위를 설정합니다. 그런 후 **OK**를 클릭합니다.
+## <a name="secrets"></a>Google 추가 정보 tooyour 응용 프로그램
+1. Hello에 다시 [Azure 포털], tooyour 응용 프로그램을 이동 합니다. **Settings**를 클릭한 다음 **Authentication / Authorization**을 클릭합니다.
+2. 경우 hello 인증 / 권한 부여 기능은 활성화 되지 않으면, 너무 hello 스위치 설정**에**합니다.
+3. **Google**을 클릭합니다. 이전에 얻은 hello 앱 ID 및 응용 프로그램 암호 값에 붙여 넣고 필요에 따라 응용 프로그램에 필요한 모든 범위를 사용 합니다. 그런 후 **OK**를 클릭합니다.
    
    ![][1]
    
-   기본적으로 앱 서비스는 인증을 제공하지만 사이트 콘텐츠 및 API에 액세스하는 권한을 제한하지는 않습니다. 앱 코드에서 사용자 권한을 부여해야 합니다.
-4. (선택 사항) Google에서 인증된 사용자만 사이트에 액세스하도록 제한하려면 **Google**에 **요청이 인증되지 않으면 수행할 동작**을 설정합니다. 이렇게 하려면 모든 요청이 인증되어야 하며 모든 인증되지 않은 요청은 인증을 위해 Google에 리디렉션되어야 합니다.
+   기본적으로 앱 서비스 인증을 제공 하지만 콘텐츠 액세스 권한이 tooyour 사이트 및 Api 제한 하지 않습니다. 앱 코드에서 사용자 권한을 부여해야 합니다.
+4. (선택 사항) toorestrict 액세스 tooyour 사이트 tooonly 사용자 Google에 의해 인증 설정 **요청이 인증 되지 않은 경우 동작 tootake** 너무**Google**합니다. 이 경우 모든 요청을 인증할 수 하 고 인증 되지 않은 모든 요청은 인증에 대 한 리디렉션된 tooGoogle 키를 누릅니다.
 5. **Save**를 클릭합니다.
 
-이제 앱에서 Google을 인증에 사용할 준비가 되었습니다.
+이제 준비 toouse Google 인증에 대 한 응용 프로그램입니다.
 
 ## <a name="related-content"> </a>관련 콘텐츠
 [!INCLUDE [app-service-mobile-related-content-get-started-users](../../includes/app-service-mobile-related-content-get-started-users.md)]

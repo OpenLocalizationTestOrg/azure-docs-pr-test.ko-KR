@@ -1,5 +1,5 @@
 ---
-title: "Azure에서 Python 웹앱 만들기 | Microsoft Docs"
+title: "Azure에서 Python 웹 응용 프로그램 aaaCreate | Microsoft Docs"
 description: "몇 분 안에 Azure App Service Web Apps에서 첫 번째 Python Hello World를 배포합니다."
 services: app-service\web
 documentationcenter: 
@@ -15,22 +15,22 @@ ms.topic: quickstart
 ms.date: 03/17/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 119f9770097c010cc360e0e204d06a307a268814
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42178d490d8aa8eaf93710667aad598794c62c8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-python-web-app-in-azure"></a>Azure에서 Python 웹앱 만들기
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.  이 빠른 시작에서는 Python 앱을 개발하고 Azure Web Apps에 배포하는 방법을 설명합니다. [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)를 사용하여 웹앱을 만들고 Git을 사용하여 웹앱에 샘플 Python 코드를 배포합니다.
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)는 확장성 있는 자체 패치 웹 호스팅 서비스를 제공합니다.  이 퀵 스타트의 방법을 안내 toodevelop 및 Python 응용 프로그램 tooAzure 웹 앱을 배포 합니다. Hello를 사용 하 여 hello 웹 앱을 만드는 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), Git toodeploy 샘플 Python 코드가 toohello 웹 응용 프로그램을 사용 합니다.
 
 ![Azure에서 실행되는 샘플 앱](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
-Mac, Windows 또는 Linux 컴퓨터를 사용하여 아래 단계를 따르면 됩니다. 필수 구성 요소가 설치된 후 단계를 완료하는 데는 약 5분 정도 걸립니다.
+Mac, Windows 또는 Linux 컴퓨터를 사용 하 여 아래 hello 단계를 따를 수 있습니다. Hello 필수 구성 요소가 설치 되 면 약 5 분 toocomplete hello 단계가 필요 합니다.
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서:
 
 1. [Git 설치](https://git-scm.com/)
 1. [Python 설치](https://www.python.org/downloads/)
@@ -39,47 +39,47 @@ Mac, Windows 또는 Linux 컴퓨터를 사용하여 아래 단계를 따르면 �
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
-## <a name="download-the-sample"></a>샘플 다운로드
+## <a name="download-hello-sample"></a>Hello 샘플 다운로드
 
-터미널 창에서 다음 명령을 실행하여 로컬 컴퓨터에 샘플 앱 리포지토리를 복제합니다.
+터미널 창에서 hello 명령 tooclone hello 샘플 응용 프로그램 저장소 tooyour 로컬 컴퓨터에 다음을 실행 합니다.
 
 ```bash
 git clone https://github.com/Azure-Samples/python-docs-hello-world
 ```
 
-이 터미널 창을 사용하여 이 빠른 시작의 모든 명령을 실행합니다.
+이 퀵 스타트의이 터미널 윈도우 toorun 모든 hello 명령을 사용합니다.
 
-샘플 코드를 포함하는 디렉터리로 변경합니다.
+Hello 샘플 코드를 있는 toohello 디렉터리를 변경 합니다.
 
 ```bash
 cd Python-docs-hello-world
 ```
 
-## <a name="run-the-app-locally"></a>로컬에서 앱 실행
+## <a name="run-hello-app-locally"></a>Hello 응용 프로그램을 로컬로 실행
 
-`pip`를 사용하여 필요한 패키지를 설치합니다.
+사용 하 여 필요한 hello 패키지 설치 `pip`합니다.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Python 웹 서버에서 기본 제공을 시작하려면 터미널 창을 열고 `Python` 명령을 사용하여 응용 프로그램을 로컬로 실행합니다.
+터미널 윈도우를 열고 hello를 사용 하 여 hello 응용 프로그램을 로컬로 실행 `Python` 명령 toolaunch hello Python 웹 서버 기본 제공 합니다.
 
 ```bash
 python main.py
 ```
 
-웹 브라우저를 열고 http://localhost:5000 에서 샘플 앱으로 이동합니다.
+웹 브라우저를 열고 http://localhost:5000에서 toohello 샘플 응용 프로그램을 이동 합니다.
 
-이 페이지에 표시된 샘플 앱에서 **Hello World** 메시지를 볼 수 있습니다.
+Hello 나타나면 **Hello World** hello 페이지에 표시 되는 hello 샘플 응용 프로그램에서 메시지입니다.
 
 ![로컬로 실행되는 샘플 앱](media/app-service-web-get-started-python/localhost-hello-world-in-browser.png)
 
-터미널 창에서 **Ctrl+C**를 눌러 웹 서버를 종료합니다.
+사용자의 터미널 창에서 눌러 **Ctrl + C** tooexit hello 웹 서버.
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -93,24 +93,24 @@ python main.py
 
 Azure에서 비어 있는 새 웹앱을 만들었습니다.
 
-## <a name="configure-to-use-python"></a>Python을 사용하도록 구성
+## <a name="configure-toouse-python"></a>Python toouse 구성
 
-[az webapp config set](/cli/azure/webapp/config#set) 명령을 사용하여 Python 버전 `3.4`를 사용하도록 웹앱을 구성합니다.
+사용 하 여 hello [az webapp 구성 집합](/cli/azure/webapp/config#set) 명령 tooconfigure hello 웹 응용 프로그램 toouse Python 버전 `3.4`합니다.
 
 ```azurecli-interactive
 az webapp config set --python-version 3.4 --name <app_name> --resource-group myResourceGroup
 ```
 
 
-이러한 방식으로 Python 버전을 설정하는 것은 플랫폼에서 제공하는 기본 컨테이너를 사용합니다. 자신만의 컨테이너를 사용하려면 [az webapp config container set](/cli/azure/webapp/config/container#set) 명령에 대한 CLI 참조를 참조하세요.
+이러한 방식으로 hello Python 버전 설정 hello 플랫폼에서 제공 하는 기본 컨테이너를 사용 합니다. toouse 고유한 컨테이너 참조 hello hello에 대 한 참조를 CLI [az webapp 구성 컨테이너 세트](/cli/azure/webapp/config/container#set) 명령입니다.
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 18, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (16/16), done.
 Writing objects: 100% (18/18), 4.31 KiB | 0 bytes/s, done.
 Total 18 (delta 4), reused 0 (delta 0)
@@ -146,56 +146,56 @@ remote:         1 file(s) copied.
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a>앱으로 이동
+## <a name="browse-toohello-app"></a>Toohello 응용 프로그램 찾아보기
 
-웹 브라우저를 사용하여 배포된 응용 프로그램으로 이동합니다.
+찾아보기 toohello 웹 브라우저를 사용 하 여 응용 프로그램을 배포 합니다.
 
 ```bash
 http://<app_name>.azurewebsites.net
 ```
 
-Python 샘플 코드는 Azure App Service 웹앱에서 실행 중입니다.
+hello Python 샘플 코드는 Azure 앱 서비스 웹 앱에서 실행 중입니다.
 
 ![Azure에서 실행되는 샘플 앱](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
-**축하합니다.** App Service에 첫 번째 Python 앱을 배포했습니다.
+**축하합니다.** 배포한 프로그램 첫 번째 Python 응용 프로그램 tooApp 서비스입니다.
 
-## <a name="update-and-redeploy-the-code"></a>코드 업데이트 및 다시 배포
+## <a name="update-and-redeploy-hello-code"></a>업데이트 하 고 hello 코드를 다시 배포
 
-로컬 텍스트 편집기를 사용하여 Python 앱에서 `main.py` 파일을 열고 `return` 문 옆의 텍스트를 약간 변경합니다.
+Hello를 열고 로컬 텍스트 편집기를 사용 하 여 `main.py` hello Python 응용 프로그램에서 파일을 작은 변경 toohello 텍스트 다음 toohello 확인 `return` 문:
 
 ```python
 return 'Hello, Azure!'
 ```
 
-Git에서 변경 내용을 커밋한 다음 Azure에 코드 변경 내용을 푸시합니다.
+Git에서 변경 내용을 커밋하고 hello 코드 변경 내용을 tooAzure 푸시하고 합니다.
 
 ```bash
 git commit -am "updated output"
 git push azure master
 ```
 
-배포가 완료되면 [앱으로 이동](#browse-to-the-app) 단계에서 열린 브라우저 창으로 다시 전환하고 페이지를 새로 고칩니다.
+배포가 완료 되 면 hello에서 열린 백 toohello 브라우저 창을 전환 [찾아보기 toohello 앱](#browse-to-the-app) 단계 및 새로 고침 hello 페이지.
 
 ![Azure에서 실행되는 업데이트된 샘플 앱](media/app-service-web-get-started-python/hello-azure-in-browser.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>새로운 Azure 웹앱 관리
 
-만든 웹앱을 관리하려면 <a href="https://portal.azure.com" target="_blank">Azure Portal</a>로 이동합니다.
+Toohello 이동 <a href="https://portal.azure.com" target="_blank">Azure 포털</a> 만든 toomanage hello 웹 앱입니다.
 
-왼쪽 메뉴에서 **App Services**를 클릭한 다음 Azure 웹앱의 이름을 클릭합니다.
+Hello 왼쪽된 메뉴에서 클릭 **응용 프로그램 서비스**, Azure 웹 앱의 hello 이름을 클릭 하 고 있습니다.
 
-![Azure 웹앱에 대한 포털 탐색](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
+![포털 탐색 tooAzure 웹 응용 프로그램](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
 
 웹앱의 개요 페이지가 표시됩니다. 여기에서 찾아보기, 중지, 시작, 다시 시작, 삭제와 같은 기본 관리 작업을 수행할 수 있습니다. 
 
 ![Azure Portal의 App Service 블레이드](media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-detail.png)
 
-왼쪽 메뉴는 앱 구성을 위한 서로 다른 페이지를 제공합니다. 
+왼쪽된 메뉴 hello 응용 프로그램을 구성 하는 서로 다른 페이지를 제공 합니다. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

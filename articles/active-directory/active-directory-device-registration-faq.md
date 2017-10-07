@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory 자동 장치 등록 FAQ| Microsoft Docs"
+title: "Active Directory 자동 장치 등록 FAQ aaaAzure | Microsoft Docs"
 description: "Azure Active Directory를 사용한 장치 등록과 관련된 FAQ입니다."
 services: active-directory
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: 29751239ae2a26cd7b07ddd0d8a8e706d4056b68
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ba7f113fd3bc310def001a1f44d938b0be71dba8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-automatic-device-registration-faq"></a>Azure Active Directory 자동 장치 등록 FAQ
 
-**Q: 최근에 장치를 등록했습니다. Azure Portal에서 내 사용자 정보에 장치가 표시되지 않는 이유는 무엇인가요?**
+**Q: 저는 최근에 hello 장치를 등록합니다. Hello 장치 hello Azure 포털에서에서 내 사용자 정보에서 볼 수 없는 이유**
 
-**A:** 자동 장치 등록이 지정된 도메인 연결 Windows 10 장치가 사용자 정보 아래에 표시되지 않습니다.
-모든 장치를 표시하려면 PowerShell을 사용해야 합니다. 
+**A:** 자동 장치 등록 된 도메인에 가입 하는 Windows 10 장치 hello 사용자 정보에 표시 되지 않습니다.
+모든 장치 toouse PowerShell toosee 필요. 
 
-다음 장치만 사용자 정보 아래에 나열됩니다.
+만 hello 다음 장치 아래에 나열 됩니다 hello 사용자 정보:
 
 - 엔터프라이즈에 조인되지 않은 모든 개인 장치 
 - 모든 비 Windows 10/Windows Server 2016 
@@ -35,38 +35,38 @@ ms.lasthandoff: 08/03/2017
 
 ---
 
-**Q: Azure Portal에서 Azure Active Directory에 등록된 모든 장치를 볼 수는 없는 이유는 무엇인가요?** 
+**Q: 이유를 볼 수 없습니다 hello Azure 포털에서에서 Azure Active Directory에 등록 하는 모든 hello 장치?** 
 
-**A:** 현재 방법이 Azure Portal에서 등록된 모든 장치를 볼 수 있는 방법은 없습니다. 모든 장치를 찾으려면 Azure PowerShell을 사용할 수 있습니다. 자세한 내용은 [Get-MsolDevice](/powershell/module/msonline/get-msoldevice?view=azureadps-1.0) cmdlet을 참조하세요.
+**A:** 현재,이 방법은 toosee 없습니다 등록 된 모든 장치 hello Azure 포털의에서. Azure PowerShell toofind 모든 장치를 사용할 수 있습니다. 자세한 내용은 참조 hello [Get MsolDevice](/powershell/module/msonline/get-msoldevice?view=azureadps-1.0) cmdlet.
 
 --- 
 
-**Q: 클라이언트의 장치 등록 상태를 어떻게 알 수 있나요?**
+**Q: 어떻게 hello 클라이언트의 어떤 hello 장치 등록 상태를 알 수 있습니까 됩니다?**
 
-**A:** 장치 등록 상태는 다음에 따라 다릅니다.
+**A:** hello 장치 등록 상태에 따라 달라 집니다.
 
-- 장치가 무엇인지
+- 어떤 hello 장치가
 - 등록된 방법 
-- 관련된 모든 세부 정보 
+- Tooit을 관련 하는 모든 세부 정보입니다. 
  
 
 ---
 
-**Q: Azure Portal에서 또는 Windows PowerShell을 사용하여 삭제한 장치가 여전히 등록된 것으로 표시되는 이유는 무엇인가요?**
+**Q: 이유는 삭제 하려면 장치에 hello Azure 포털 또는 Windows PowerShell을 사용 하 여 여전히 나열 등록?**
 
-**A:** 이것은 의도적인 작동입니다. 장치는 클라우드의 리소스에 액세스할 수 없습니다. 장치를 제거하고 다시 등록하려면 장치에서 직접 작업을 수행해야 합니다. 
+**A:** 이것은 의도적인 작동입니다. hello 장치 액세스 tooresources hello 클라우드에서 없을 것입니다. Tooremove hello 장치를 다시 등록 하는 경우 수동 작업이 toobe hello 장치에 대해 수행 해야 합니다. 
 
 온-프레미스 AD 도메인에 조인된 Windows 10 및 Windows Server 2016:
 
-1.  관리자 권한으로 명령 프롬프트를 엽니다.
+1.  관리자 권한으로 hello 명령 프롬프트를 엽니다.
 
 2.  `dsregcmd.exe /debug /leave`를 입력합니다.
 
-3.  로그아웃했다가 로그인하여 장치를 다시 등록하는 예약된 작업을 트리거합니다. 
+3.  로그 아웃 하 고 다시 hello 장치를 등록 하는 tootrigger hello 예약 된 작업에 로그인 합니다. 
 
 온-프레미스 AD 도메인에 조인된 다른 Windows 플랫폼:
 
-1.  관리자 권한으로 명령 프롬프트를 엽니다.
+1.  관리자 권한으로 hello 명령 프롬프트를 엽니다.
 2.  `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /l"`을 입력합니다.
 3.  `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /j"`을 입력합니다.
 
@@ -76,78 +76,78 @@ ms.lasthandoff: 08/03/2017
 
 **A:**
 
--   Windows 10 및 Windows Server 2016의 경우 같은 장치를 반복해서 조인 해제했다가 다시 조인하면 중복된 항목이 나타날 수 있습니다. 
+-   Windows 10 및 Windows Server 2016, toounjoin 시도 반복된 하 고 다시 가입 하는 경우 동일한 장치 hello에 대 한 중복 된 항목이 있을 수 있습니다. 
 
--   회사 또는 학교 계정 추가를 사용한 경우 회사 또는 학교 계정 추가를 사용하는 각 Windows 사용자는 장치 이름이 같은 새 장치 레코드를 만들게 됩니다.
+-   추가 회사 또는 학교 계정을 사용 하는 각 windows 사용자 hello로 새 장치 레코드를 만들어집니다 추가 회사 또는 학교 계정을 사용한 경우 동일한 장치 이름입니다.
 
--   자동 등록을 사용하여 온-프레미스 AD 도메인에 조인된 다른 Windows 플랫폼은 장치에 로그인하는 각 도메인 사용자에 대해 장치 이름이 같은 새 장치 레코드를 만듭니다. 
+-   다른 Windows 플랫폼에는 온-프레미스 AD 도메인에 가입 된 자동 등록을 사용 하 여 hello와 새 장치 레코드가 만들어집니다 각 도메인 사용자가 hello 장치에 로그온에 대 한 동일한 장치 이름입니다. 
 
--   초기화되었다가 같은 이름으로 다시 설치되고 다시 조인된 AADJ 장치는 장치 이름이 같은 다른 레코드로 표시됩니다.
+-   초기화 된, AADJ 컴퓨터를 다시 설치 하 고 다시 조인 된 hello 동일한 이름, hello 사용 하 여 다른 레코드로 표시 됩니다 동일한 장치 이름입니다.
 
 ---
 
-**Q: Azure Portal에서 사용하지 않도록 설정한 장치에서 여전히 리소스에 액세스할 수 있는 이유는 무엇인가요?**
+**Q: 액세스 이유는 사용자 여전히 리소스 hello Azure 포털에서에서 비활성화 하는 장치에서?**
 
-**A:** 해지가 적용되는 데는 최대 1시간이 소요될 수 있습니다.
+**A:** 적용 revoke toobe tooan 시간 정도 걸릴 수 있습니다.
 
 >[!Note] 
->분실한 장치의 경우에는 장치를 초기화하여 사용자가 장치에 액세스하지 못하게 하는 것이 좋습니다. 자세한 내용은 [Intune에서 관리를 위해 장치 등록](https://docs.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune)을 참조하세요. 
+>손실 된 장치에 대 한 사용자가 hello 장치에 액세스할 수 없다고 hello 장치 tooensure 초기화 하는 것이 좋습니다. 자세한 내용은 [Intune에서 관리를 위해 장치 등록](https://docs.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune)을 참조하세요. 
 
 
 ---
 
 **Q: 사용자에게 "여기에서 해당 위치로 이동할 수 없습니다." 메시지가 표시되는 이유는 무엇인가요?**
 
-**A:** 특정 장치 상태를 요구하도록 특정 조건부 액세스 규칙을 구성했거나 장치가 조건을 충족하지 않을 경우 사용자가 차단되고 다음 메시지가 표시됩니다. 규칙을 평가하고 장치가 이 조건을 충족하는지 확인하여 이 메시지가 표시되지 않도록 하세요.
+**A:** 사용자가 차단 되 고이 메시지가 특정 조건부 액세스 규칙 toorequire 특정 장치 상태를 구성 하는 경우 hello 장치 hello 조건을 충족 하지 않습니다. Hello 규칙을 평가 하 고 해당 hello 장치를 확인 하십시오 수 toomeet hello 조건 tooavoid이이 메시지입니다.
 
 ---
 
 
-**Q: Azure Portal에서 사용자 정보에 장치 레코드가 표시되고 클라이언트에 등록된 상태로 표시됩니다. 조건부 액세스를 사용할 수 있게 제대로 설정되어 있는 것인가요?**
+**Q: hello 장치 레코드 hello Azure 포털에서에서 사용자 정보 hello에서 참조 하 고 hello 클라이언트에 등록 된 hello 상태를 볼 수 있습니다. 조건부 액세스를 사용할 수 있게 제대로 설정되어 있는 것인가요?**
 
-**A:** Azure Portal의 장치 레코드(deviceID) 및 상태가 클라이언트와 일치하고 조건부 액세스를 위한 평가 조건을 충족해야 합니다. 자세한 내용은 [Azure Active Directory Device 등록 시작](active-directory-device-registration.md)을 참조하세요.
+**A:** hello 장치 기록 (deviceID) 및 Azure 포털 hello에 대 한 상태가 hello 클라이언트와 일치 하 고 조건부 액세스에 대 한 평가 조건을 만족 해야 합니다. 자세한 내용은 [Azure Active Directory Device 등록 시작](active-directory-device-registration.md)을 참조하세요.
 
 ---
 
-**Q: Azure AD에 조인한 장치에 대해 "사용자 이름 또는 암호가 올바르지 않습니다." 메시지가 표시되는 이유는 무엇인가요?**
+**Q: 왜 "사용자 이름 또는 암호가 올바르지 않습니다." 메시지가 장치에 대 한 I에 막 합류 tooAzure AD?**
 
 **A:** 이 시나리오에 대한 일반적인 이유는 다음과 같습니다.
 
 - 사용자 자격 증명이 더 이상 유효하지 않습니다.
 
-- 컴퓨터가 Azure Active Directory와 통신할 수 없습니다. 네트워크 연결 문제가 있는지 확인합니다.
+- 컴퓨터가 없습니다 toocommunicate Azure Active Directory에 있습니다. 네트워크 연결 문제가 있는지 확인합니다.
 
-- Azure AD 조인 필수 구성 요소가 충족되지 않았습니다. [Azure Active Directory 조인을 통해 클라우드 기능을 Windows 10 장치로 확장](active-directory-azureadjoin-overview.md)에 대한 단계를 따라야 합니다.  
+- hello Azure AD Join 필수 조건은 충족 하지 않았습니다. 에 대 한 hello 단계를 따랐는지 확인 하십시오 [기능 tooWindows 10 장치의 Azure Active Directory Join을 통해 클라우드 확장](active-directory-azureadjoin-overview.md)합니다.  
 
-- 페더레이션 로그인을 수행하려면 페더레이션 서버가 Ws-Trust 활성 끝점을 지원해야 합니다. 
+- 페더레이션된 로그인에는 페더레이션 서버 toosupport WS-트러스트 활성 끝점이 필요 합니다. 
 
 ---
 
-**Q: PC를 조인하려고 할 때 "오류가 발생했습니다." 대화 상자가 표시되는 이유는 무엇인가요?**
+**Q: 표시 되는 이유 hello "Oops... 오류가 발생 했습니다!" 내 PC를 가입시 키 려 할 때 대화 마십시오?**
 
 **A:** Intune에 Azure Active Directory를 등록했기 때문입니다. 자세한 내용은 [Windows 장치 관리 설정](https://docs.microsoft.com/intune/deploy-use/set-up-windows-device-management-with-microsoft-intune#azure-active-directory-enrollment)을 참조하세요.  
 
 ---
 
-**Q: 오류 정보가 표시되지 않더라도 PC 조인 시도가 실패하는 이유는 무엇인가요?**
+**PC의 경우 오류 정보 받지 않는 경우 하지만 실패 시도 toojoin 내 q 했습니까?**
 
-**A:** 한 가지 가능한 원인은 사용자가 기본 제공 관리자 계정을 사용하여 장치에 로그인했기 때문입니다. Azure Active Directory 조인을 사용하여 설치를 완료하기 전에 다른 로컬 계정을 만드세요. 
-
----
-
-**Q: 자동 장치 등록의 설치에 대한 지침은 어디에서 찾나요?**
-
-**A:** 자세한 지침은 [Windows 도메인 가입 장치의 Azure Active Directory 자동 등록을 구성하는 방법](active-directory-conditional-access-automatic-device-registration-setup.md)을 참조하세요.
+**A:** toohello 장치 hello 기본 제공 관리자 계정을 사용 하 여 해당 hello 사용자가 로그인 한 가지 가능한 원인은 됩니다. Azure Active Directory Join toocomplete hello 설치 프로그램을 사용 하기 전에 다른 로컬 계정을 만드세요. 
 
 ---
 
-**Q: 자동 장치 등록에 대한 문제 해결 정보는 어디에서 찾나요?**
+**Q: 자동 장치 등록의 hello 설치에 대 한 지침을 어디서 찾을 수 있습니까?**
+
+**A:** 자세한 지침을 참조 하십시오. [어떻게 tooconfigure 자동 등록의 Windows 도메인에 가입 된 장치의 Azure Active Directory와](active-directory-conditional-access-automatic-device-registration-setup.md)
+
+---
+
+**Q: 어디에 있습니까 문제 해결 hello 자동 장치 등록에 대 한 내용은?**
 
 **A:** 문제 해결 정보는 다음을 참조하세요.
 
-- [Windows 10 및 Windows Server 2016에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows.md)
+- [가입 된 컴퓨터 tooAzure AD – Windows 10 및 Windows Server 2016 도메인의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows.md)
 
-- [Windows 하위 수준 클라이언트에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows-legacy.md)
+- [Windows 하위 클라이언트에 대 한 컴퓨터 tooAzure AD 가입 된 도메인의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows-legacy.md)
  
 ---
 

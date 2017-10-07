@@ -1,6 +1,6 @@
 ---
-title: "U-SQL 카탈로그 시작 | Microsoft Docs"
-description: "U-SQL 카탈로그를 사용하여 코드와 데이터를 공유하는 방법을 알아봅니다."
+title: "Hello U-SQL 카탈로그 시작 | Microsoft Docs"
+description: "Toouse hello U-SQL tooshare 코드 및 데이터 카탈로그 하는 방법에 대해 알아봅니다."
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/09/2017
 ms.author: edmaca
-ms.openlocfilehash: 08364c6c7bea53807844e3b1cc327dc3742e0487
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 559bb7a3879031eb290a3e82946d7bf42ac9f553
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-u-sql-catalog"></a>U-SQL 카탈로그 시작
+# <a name="get-started-with-hello-u-sql-catalog"></a>U-SQL 카탈로그 hello로 시작.
 
 ## <a name="create-a-tvf"></a>TVF 만들기
 
-이전 U-SQL 스크립트에서는 동일한 원본 파일에서 읽어 오는 EXTRACT 사용을 반복했습니다. U-SQL TVF(테이블 반환 함수)를 사용하면 데이터를 나중에 다시 사용할 수 있게 캡슐화할 수 있습니다.  
+Hello에서 추출 tooread hello 사용을 반복 hello 앞의 U-SQL 스크립트에서 동일한 소스 파일입니다. Hello U-SQL 테이블 반환 함수 (TVF) 사용 하 여 나중에 다시 사용에 대 한 hello 데이터를 캡슐화 할 수 있습니다.  
 
-다음 스크립트는 기본 데이터베이스 및 스키마에 `Searchlog()`라는 TVF를 만듭니다.
+hello 다음 스크립트를 만듭니다 라는 TVF `Searchlog()` hello 기본 데이터베이스와 스키마에서:
 
 ```
 DROP FUNCTION IF EXISTS Searchlog;
@@ -57,7 +57,7 @@ RETURN;
 END;
 ```
 
-다음 스크립트는 이전 스크립트에서 정의된 TVF를 사용하는 방법을 보여줍니다.
+다음 스크립트는 hello toouse TVF hello 앞의 스크립트에 정의 된 hello 하는 방법을 보여 줍니다.
 
 ```
 @res =
@@ -69,16 +69,16 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/SerachLog-use-tvf.csv"
+    too"/output/SerachLog-use-tvf.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
 ## <a name="create-views"></a>뷰 만들기
 
-단일 쿼리 식이 있는 경우 TVF 대신 U-SQL VIEW를 사용하여 해당 식을 캡슐화할 수 있습니다.
+쿼리 식 하나를 사용 하도록 설정한 경우 대신 TVF를 사용할 수 있습니다 보기 U-SQL tooencapsulate 해당 식입니다.
 
-다음 스크립트는 기본 데이터베이스 및 스키마에 `SearchlogView`라는 뷰를 만듭니다.
+hello 다음 스크립트를 만듭니다 라는 보기가 `SearchlogView` hello 기본 데이터베이스와 스키마에서:
 
 ```
 DROP VIEW IF EXISTS SearchlogView;
@@ -95,7 +95,7 @@ CREATE VIEW SearchlogView AS
 USING Extractors.Tsv();
 ```
 
-다음 스크립트는 정의된 뷰를 사용함을 나타냅니다.
+다음 스크립트는 hello hello 정의 된 보기의 hello 사용을 보여 줍니다.
 
 ```
 @res =
@@ -107,15 +107,15 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/Searchlog-use-view.csv"
+    too"/output/Searchlog-use-view.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
 ## <a name="create-tables"></a>테이블 만들기
-관계형 데이터베이스 테이블과 마찬가지로, U-SQL을 사용하여 미리 정의된 스키마가 포함된 테이블을 만들거나 테이블을 채운 쿼리(CREATE TABLE AS SELECT 또는 CTAS)에서 스키마를 유추하는 테이블을 만들 수 있습니다.
+관계형 데이터베이스 테이블 U-SQL와 수는 미리 정의 된 스키마가 있는 테이블을 만들 하거나 테이블을 만듭니다 (CREATE TABLE AS SELECT 또는 라고도 CTAS) hello 테이블을 채우는 hello 쿼리에서 hello 스키마를 유추 합니다.
 
-다음 스크립트를 사용하여 데이터베이스 하나와 테이블 두 개를 만듭니다.
+다음 스크립트는 hello를 사용 하 여 데이터베이스와 두 개의 테이블을 만듭니다.
 
 ```
 DROP DATABASE IF EXISTS SearchLogDb;
@@ -147,9 +147,9 @@ CREATE TABLE SearchLog2(
 ```
 
 ## <a name="query-tables"></a>쿼리 테이블
-데이터 파일을 쿼리하는 것과 같은 방식으로 이전 스크립트에서 만든 테이블을 쿼리할 수 있습니다. EXTRACT를 사용하여 행 집합을 만드는 대신 테이블 이름을 참조할 수 있습니다.
+Hello에 hello 이전 스크립트에서 만든 테이블을 쿼리할 수 같은 방식으로 데이터 파일 hello를 쿼리 합니다. 압축 해제를 사용 하 여 행 집합을 만드는 대신 이제 toohello 테이블 이름을 참조할 수 있습니다.
 
-테이블에서 읽어 오려면 이전에 사용한 변환 스크립트를 수정합니다.
+tooread hello 테이블에서 이전에 사용 hello 변환 스크립트를 수정 합니다.
 
 ```
 @rs1 =
@@ -166,13 +166,13 @@ GROUP BY Region;
     FETCH 5 ROWS;
 
 OUTPUT @res
-    TO "/output/Searchlog-query-table.csv"
+    too"/output/Searchlog-query-table.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
  >[!NOTE]
- >현재는 테이블을 만든 스크립트와 같은 스크립트의 테이블에 SELECT를 실행할 수 없습니다.
+ >현재 실행할 수 없습니다 SELECT hello 하나 hello 처럼 동일한 스크립트에 있는 테이블에 hello 테이블을 만들 위치입니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [Microsoft Azure 데이터 레이크 분석 개요](data-lake-analytics-overview.md)

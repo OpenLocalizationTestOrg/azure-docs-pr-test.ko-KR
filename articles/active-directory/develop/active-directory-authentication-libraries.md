@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 인증 라이브러리 | Microsoft Docs"
-description: "Azure AD 인증 라이브러리(ADAL)는 클라이언트 응용 프로그램 개발자들이 클라우드 또는 온-프레미스 Active Directory(AD)에 쉽게 사용자를 인증하고 API 호출 보안을 위한 액세스 토큰을 가져올 수 있게 합니다."
+title: "Active Directory 인증 라이브러리 aaaAzure | Microsoft Docs"
+description: "사용 하면 클라이언트 응용 프로그램 개발자가 Azure AD 인증 라이브러리 (ADAL) hello tooeasily 사용자 toocloud 인증 또는 온-프레미스 AD (Active Directory)와 후 보안 API 호출용 액세스 토큰을 가져올 합니다."
 services: active-directory
 documentationcenter: 
 author: bryanla
@@ -15,20 +15,20 @@ ms.workload: identity
 ms.date: 08/02/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: 9cf8ca88c9df4082590b18acd5c4a87a91bb1afd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 20fae18807ef03463ab1bc218e5f3548b5bd5717
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-authentication-libraries"></a>Azure Active Directory 인증 라이브러리
-Azure ADAL(Active Directory 인증 라이브러리)은 클라이언트 응용 프로그램 개발자들이 클라우드 또는 온-프레미스 AD(Active Directory)에 쉽게 사용자를 인증하고 API 호출 보안을 위한 액세스 토큰을 가져올 수 있게 합니다. ADAL은 개발자가 다음과 같은 기능을 통해 더 쉽게 인증하도록 합니다.
+hello Azure Active Directory 인증 라이브러리 (ADAL) 사용 하면 클라이언트 응용 프로그램 개발자가 tooeasily 인증 사용자 toocloud 또는 온-프레미스 Active Directory (AD) 하 고 보안 API 호출용 액세스 토큰을 가져옵니다. ADAL은 개발자가 다음과 같은 기능을 통해 더 쉽게 인증하도록 합니다.
  - 비동기 메서드 호출에 대한 지원
  - 액세스 토큰 및 새로 고침 토큰을 저장하는 구성 가능한 토큰 캐시
  - 액세스 토큰이 만료되고 새로 고침 토큰을 사용할 수 있을 때 자동 토큰 새로 고침
  - 등
  
-대부분의 복잡성을 처리함으로써 ADAL은 개발비즈니스 논리에 초점을 맞추고 보안 전문가가 아니더라도 리소스를 쉽게 보호할 수 있게 도와줍니다.
+대부분의 hello 복잡성을 처리 하 여 ADAL 비즈니스 논리에 집중할 개발자 주며 쉽게 보안에서 전문가가 아니더라도 리소스를 보호 합니다.
 
 ADAL은 다양한 플랫폼에서 사용할 수 있습니다.
 
@@ -44,7 +44,7 @@ ADAL은 다양한 플랫폼에서 사용할 수 있습니다.
 | .NET 클라이언트, Windows 스토어, Windows Phone 8.1 |ADAL .NET v2 |[NuGet](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/2.28.4) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/releases/tag/v2.28.4) | [데스크톱 앱](https://github.com/AzureADQuickStarts/NativeClient-DotNet/releases/tag/v2.X) | | 
 | JavaScript |ADAL.js |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-js) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-js) |[단일 페이지 앱](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi) | |
 | iOS, macOS |ADAL |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-objc/releases) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-objc) |[iOS 앱](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-ios) | [참조](https://cocoapods.org/pods/ADAL)|
-| Android |ADAL |[중앙 리포지토리](http://search.maven.org/remotecontent?filepath=com/microsoft/aad/adal/) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-android) |[Android 앱](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-android) | [JavaDocs](http://javadoc.io/doc/com.microsoft.aad/adal/)|
+| Android |ADAL |[hello 눈에 보는](http://search.maven.org/remotecontent?filepath=com/microsoft/aad/adal/) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-android) |[Android 앱](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-android) | [JavaDocs](http://javadoc.io/doc/com.microsoft.aad/adal/)|
 | Node.js |ADAL |[npm](https://www.npmjs.com/package/adal-node) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs) | | |
 | Java |ADAL4J |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) |[Java 웹앱](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-webapp-java) | |
 | 파이썬 |ADAL |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-python) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-python) | | |
@@ -67,20 +67,20 @@ ADAL을 원격 리소스에 액세스하는 클라이언트 인증에 사용할 
 
 ### <a name="authenticating-users-of-a-native-client-application-running-on-a-device"></a>장치에서 실행되는 네이티브 클라이언트 응용 프로그램의 사용자 인증 
 
-이 시나리오에서는 개발자가 웹 API와 같이 Azure AD에서 보호하는 원격 리소스에 액세스해야 하는 WPF 클라이언트 응용 프로그램을 가지고 있습니다. 개발자는 Azure 구독을 가지고 있고 다운스트림 웹 API 호출 방법을 알고 있으며 웹 API가 사용하는 Azure AD 테넌트를 알고 있습니다. 결과적으로, ADAL을 사용하여 인증 경험을 ADAL에 위임하거나 사용자 자격 증명을 명시적으로 처리함으로써 Azure AD와의 인증을 수월하게 지원할 수 있습니다. ADAL을 사용하면 쉽게 사용자를 인증하고 Azure AD에서 액세스 토큰 및 새로고침 토큰을 얻은 다음 액세스 토큰을 사용하여 웹 API에 요청할 수 있습니다.
+이 시나리오에서 개발자는 WPF 클라이언트 응용 프로그램, tooaccess web API와 같이 Azure AD를 통해 보호 되는 원격 리소스를 필요로 하에 있습니다. 그는 Azure 구독, tooinvoke 다운스트림 web API를 hello 하는 방법을 알고 있으며 Azure hello 알고 AD 테 넌 트 web API 사용 하 여 hello입니다. 결과적으로, hello 인증 경험 tooADAL 완전히 위임 하거나 명시적으로 사용자 자격 증명을 처리 하 여 Azure AD와 toofacilitate ADAL 인증을 사용할 수 없었습니다. ADAL 쉽게 tooauthenticate hello 사용자를 사용 하면 하 고 Azure AD에서 액세스 토큰 및 새로 고침 토큰을 얻은 다음 hello 액세스 토큰 toomake 요청 toohello 웹 API를 사용 합니다.
 
-Azure AD에 대한 인증을 사용하여 이 시나리오를 설명하는 코드 샘플의 경우 [웹 API에 네이티브 클라이언트 WPF 응용 프로그램](https://github.com/azureadsamples/nativeclient-dotnet)을 참조하세요.
+인증 tooAzure AD를 사용 하 여이 시나리오를 보여 주는 코드 샘플을 보려면 [네이티브 클라이언트 WPF 응용 프로그램 tooWeb API](https://github.com/azureadsamples/nativeclient-dotnet)합니다.
 
 ### <a name="authenticating-a-confidential-client-application-running-on-a-web-server"></a>웹 서버에서 실행되는 비밀 클라이언트 응용 프로그램 인증
 
-이 시나리오에서는 개발자가 웹 API와 같이 Azure AD에서 보호하는 원격 리소스에 액세스해야 하는 서버에서 실행 중인 응용 프로그램을 가지고 있습니다. 개발자는 Azure 구독을 가지고 있고 다운스트림 서비스 호출 방법을 알고 있으며 웹 API가 사용하는 Azure AD 테넌트를 알고 있습니다. 결과적으로, 개발자는 ADAL을 사용하여 응용 프로그램의 자격 증명을 명시적으로 처리함으로써 Azure AD로 인증을 용이하게 지원할 수 있습니다. ADAL을 사용하면 쉽게 응용 프로그램의 클라이언트 자격 증명을 사용하여 Azure AD에서 토큰을 점검한 다음 해당 토큰을 사용하여 웹 API에 요청할 수 있습니다. ADAL은 또한 액세스 토큰을 캐시화하고 필요한 대로 갱신하여 액세스 토큰의 수명 관리도 처리합니다. 이 시나리오를 보여 주는 코드 샘플에 대해서는 [웹 API에 디먼 콘솔 응용 프로그램](https://github.com/AzureADSamples/Daemon-DotNet)을 참조하세요.
+이 시나리오에서 개발자는 web API와 같이 Azure AD를 통해 보호 되는 원격 리소스 tooaccess 해야 하는 서버에서 실행 중인 응용 프로그램에 있습니다. 그는 Azure를 구독, tooinvoke 다운스트림 서비스 hello 하는 방법을 알고 고 알고 hello Azure AD 테 넌 트 hello 웹 API를 사용 합니다. 결과적으로, hello 응용 프로그램의 자격 증명을 명시적으로 처리 하 여 Azure AD와 toofacilitate ADAL 인증을 사용할 수 없었습니다. ADAL에서는 Azure AD의 토큰을 쉽게 tooretrieve hello 응용 프로그램의 클라이언트 자격 증명을 사용 하 여 하 고 해당 토큰 toomake 요청 toohello web API를 사용 합니다. ADAL도 hello의 hello 수명을 관리 하는 핸들 액세스 토큰 캐시 하 고 필요에 따라 갱신 하 여입니다. 이 시나리오를 보여 주는 코드 샘플을 보려면 [데몬 콘솔 응용 프로그램 tooWeb API](https://github.com/AzureADSamples/Daemon-DotNet)합니다.
 
 ### <a name="authenticating-a-confidential-client-application-running-on-a-server-on-behalf-of-a-user"></a>사용자를 대신하여 서버에서 실행되는 비밀 클라이언트 응용 프로그램 인증 
 
-이 시나리오에서는 개발자가 웹 API와 같이 Azure AD에서 보호하는 원격 리소스에 액세스해야 하는 서버에서 실행 중인 응용 프로그램을 가지고 있습니다. 이것은 또한 Azure AD 사용자 대신에 요청되어야 합니다. 개발자는 Azure 구독을 가지고 있고 다운스트림 웹 API 호출 방법을 알고 있으며 서비스가 사용하는 Azure AD 테넌트를 알고 있습니다. 사용자가 웹 응용 프로그램에 인증되면 응용 프로그램이 Azure AD로부터 사용자에 대한 인증 코드를 가져올 수 있습니다. 그러면 웹 응용 프로그램에서 ADAL을 사용하여 Azure AD의 응용 프로그램과 연결된 클라이언트 자격 증명과 인증 코드를 사용하는 사용자 대신 액세스 토큰과 새로고침 토큰을 얻을 수 있습니다. 웹 응용 프로그램을 액세스 토큰에서 소유하게 되면 토큰이 만료될 때까지 웹 API를 호출할 수 있습니다. 토큰이 만료되면 웹 응용 프로그램이 ADAL을 사용하여 이전에 받은 새로고침 토큰을 사통해 새 액세스 토큰을 가져올 수 있습니다. 이 시나리오를 보여 주는 코드 샘플에 대해서는 [웹 API에 네이티브 클라이언트](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof)를 참조하세요.
+이 시나리오에서 개발자는 web API와 같이 Azure AD를 통해 보호 되는 원격 리소스 tooaccess 해야 하는 서버에서 실행 중인 응용 프로그램에 있습니다. hello 요청은 Azure AD 사용자 대신 만든 toobe도 필요 합니다. 그는 Azure를 구독, tooinvoke 다운스트림 web API를 hello 하는 방법을 알고 고 알고 hello Azure AD 테 넌 트 hello 서비스를 사용 합니다. Hello 사용자가 인증 된 toohello 웹 응용 프로그램에 모두 되 면 hello 응용 프로그램 Azure AD에서 hello 사용자에 대 한 권한 부여 코드를 가져올 수 있습니다. hello 웹 응용 프로그램 액세스 토큰 및 새로 고침 토큰 hello 권한 부여 코드와 클라이언트 자격 증명에 연결 된 Azure AD에서 hello 응용 프로그램을 사용 하 여 사용자를 대신 하 여 ADAL tooobtain를 유도할 수 있습니다. Hello 웹 응용 프로그램 hello 액세스 토큰을 소유한 되 면 hello 토큰 만료 될 때까지 hello 웹 API를 호출할 수 있습니다. Hello 토큰이 만료 되 면 hello 웹 응용 프로그램 ADAL tooget 새 액세스 토큰을 사용 하 여 이전에 받은 hello 새로 고침 토큰을 사용 하 여 수 있습니다. 이 시나리오를 보여 주는 코드 샘플을 보려면 [Native client API tooWeb tooWeb API](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof)합니다.
 
 ## <a name="see-also"></a>참고 항목
 
-- [Azure Active Directory 개발자 가이드](active-directory-developers-guide.md)
+- [hello Azure Active Directory 개발자 가이드](active-directory-developers-guide.md)
 - [Azure Active directory 인증 시나리오](active-directory-authentication-scenarios.md)
 - [Azure Active Directory 코드 샘플](active-directory-code-samples.md)

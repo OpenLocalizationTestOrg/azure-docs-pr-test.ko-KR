@@ -1,6 +1,6 @@
 ---
-title: "PHP-SQL 웹 앱 만들기 및 Git를 사용하여 Azure 앱 서비스에 배포하기"
-description: "Azure SQL 데이터베이스에 데이터를 저장하는 PHP 웹 앱을 만들고 Git를 사용하여 Azure 앱 서비스에 배포하는 방법을 보여 주는 자습서입니다."
+title: "PHP SQL aaaCreate 웹 앱 및 tooAzure 앱 서비스 배포 Git를 사용 하 여"
+description: "Toocreate PHP 웹 앱에 Azure SQL 데이터베이스에 데이터를 저장 하는 방법과 Git 배포 tooAzure 앱 서비스를 사용 하 여 보여 주는 자습서입니다."
 services: app-service\web, sql-database
 documentationcenter: php
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 0baa3eced3824fec0907ca937c594f127a2bdf8b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaacb2fe0787bbcdafa72871912e8d08792be29d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-php-sql-web-app-and-deploy-to-azure-app-service-using-git"></a>PHP-SQL 웹 앱 만들기 및 Git를 사용하여 Azure 앱 서비스에 배포하기
-이 자습서에서는 Azure SQL 데이터베이스에 연결하는 [Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) 에서 PHP 웹앱을 만들고 Git를 사용하여 배포하는 방법을 설명합니다. 이 자습서는 컴퓨터에 [PHP][install-php], [SQL Server Express][install-SQLExpress], [PHP용 SQL Server를 위한 Microsoft 드라이버](http://www.microsoft.com/download/en/details.aspx?id=20098) 및 [Git][install-git]가 설치되어 있다고 가정합니다. 이 가이드를 완료하면 Azure에서 실행하는 PHP-SQL 웹 앱이 완성됩니다.
+# <a name="create-a-php-sql-web-app-and-deploy-tooazure-app-service-using-git"></a>PHP SQL 웹 응용 프로그램을 만들고 tooAzure 앱 서비스 배포 Git를 사용 하 여
+이 자습서에서는 어떻게 toocreate PHP 웹 응용 프로그램에서 [Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) tooAzure SQL 데이터베이스를 연결 하는 방법과 toodeploy Git를 사용 하 여 합니다. 이 자습서에 있다고 가정 [PHP][install-php], [SQL Server Express][install-SQLExpress], hello [Microsoft Drivers for PHP 용 SQL Server ](http://www.microsoft.com/download/en/details.aspx?id=20098), 및 [Git] [ install-git] 컴퓨터에 설치 합니다. 이 가이드를 완료하면 Azure에서 실행하는 PHP-SQL 웹 앱이 완성됩니다.
 
 > [!NOTE]
-> PHP, SQL Server Express 및 PHP용 SQL Server를 위한 Microsoft 드라이버는 [Microsoft 웹 플랫폼 설치 관리자](http://www.microsoft.com/web/downloads/platform.aspx)를 사용하여 설치하고 구성할 수 있습니다.
+> 설치 하 고 hello를 사용 하 여 PHP 용 SQL Server 용 PHP, SQL Server Express 및 hello Microsoft 드라이버를 구성 [Microsoft 웹 플랫폼 설치 관리자](http://www.microsoft.com/web/downloads/platform.aspx)합니다.
 > 
 > 
 
 다음 내용을 배웁니다.
 
-* [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715)을 사용하여 Azure 웹앱 및 SQL 데이터베이스를 만드는 방법. PHP는 앱 서비스 웹 앱에서 기본적으로 사용하도록 설정되어 있으므로 PHP 코드를 실행하기 위해 특별한 조치를 취할 필요가 없습니다.
-* Git를 사용하여 응용 프로그램을 Azure에 게시 및 다시 게시하는 방법
+* 어떻게 toocreate Azure 웹 앱 및 hello를 사용 하 여 SQL 데이터베이스 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715)합니다. 필요한 toorun 특별 한 아무 것도 PHP 기본적으로 앱 서비스 웹 앱에 활성화 되므로 PHP 코드입니다.
+* 어떻게 toopublish Git을 사용 하 여 응용 프로그램 tooAzure를 다시 게시 합니다.
 
-이 자습서의 지침에 따라 PHP에서 간단한 등록 웹 응용 프로그램을 빌드할 수 있습니다. 응용 프로그램은 Azure 웹 사이트에 호스트됩니다. 아래에는 완성된 응용 프로그램의 스크린샷이 표시되어 있습니다.
+이 자습서의 지침에 따라 PHP에서 간단한 등록 웹 응용 프로그램을 빌드할 수 있습니다. hello 응용 프로그램을 Azure 웹 사이트에서 호스트 됩니다. 완료 하는 hello 응용 프로그램의 스크린샷을 다음과 같습니다.
 
 ![Azure PHP 웹 사이트](./media/web-sites-php-sql-database-deploy-use-git/running_app_3.png)
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Azure 계정을 등록하기 전에 Azure App Service를 시작하려면 [App Service 체험](https://azure.microsoft.com/try/app-service/)으로 이동합니다. App Service에서 단기 스타터 웹앱을 즉시 만들 수 있습니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
+> Tooget Azure 계정에 등록 하기 전에 Azure 앱 서비스를 시작 하려는 경우 너무 이동[앱 서비스 시도](https://azure.microsoft.com/try/app-service/)앱 서비스의 수명이 짧은 스타터 웹 응용 프로그램 즉시 만들 수 있는, 합니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
 > 
 > 
 
 ## <a name="create-an-azure-web-app-and-set-up-git-publishing"></a>Azure 웹 앱 만들기 및 Git 게시 설정
-Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르세요.
+이러한 단계 toocreate Azure 웹 앱 및 SQL 데이터베이스를 수행 합니다.
 
-1. [Azure 포털](https://portal.azure.com/)에 로그인합니다.
-2. 대시보드 왼쪽 위에 있는 **새로 만들기** 아이콘을 클릭하여 Azure Marketplace를 열고 마켓플레이스 옆의 **모두 선택**을 클릭한 다음 **웹 + 모바일**을 선택합니다.
-3. 마켓플레이스에서 **웹 + 모바일**을 선택합니다.
-4. **웹앱 + SQL** 아이콘을 클릭합니다.
-5. 웹앱 + SQL 앱에 대한 설명을 읽은 후 **만들기**를 선택합니다.
-6. 각 부분(**리소스 그룹**, **웹앱**, **데이터베이스** 및 **구독**)을 클릭하고 필수 필드에 대한 값을 입력하거나 선택합니다.
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+2. Hello를 클릭 하 여 열기 hello Azure 마켓플레이스 **새로** hello 대시보드의 남아 있는 hello 위에 표시 아이콘을 클릭 **모두 선택** 다음 tooMarketplace 및 선택 **웹 + 모바일**합니다.
+3. 마켓플레이스 hello 선택 **웹 + 모바일**합니다.
+4. Hello 클릭 **웹 응용 프로그램 + SQL** 아이콘입니다.
+5. 웹 응용 프로그램 hello + SQL 응용 프로그램에 대 한 hello 설명을 읽은 후 선택 **만들기**합니다.
+6. 각 부분을 클릭 (**리소스 그룹**, **웹 앱**, **데이터베이스**, 및 **구독**)를 입력 하거나 필요한 hello에 대 한 값을 선택 필드:
    
    * 선택한 URL 이름을 입력합니다.    
    * 데이터베이스 서버 자격 증명 구성
-   * 가장 가까운 지역을 선택합니다.
+   * Hello 지역 가장 가까운 tooyou 선택
      
      ![앱 구성](./media/web-sites-php-sql-database-deploy-use-git/configure-db-settings.png)
-7. 웹앱 정의를 완료하면 **만들기**를 클릭합니다.
+7. Hello 웹 응용 프로그램 정의 완료 되 면 클릭 **만들기**합니다.
    
-    웹앱이 만들어지면 **알림** 단추가 녹색의 **성공**으로 깜박이며 그룹에서 웹 앱 및 SQL 데이터베이스를 모두 보여주는 리소스 그룹 블레이드가 열립니다.
-8. 리소스 그룹 블레이드에서 웹 앱 아이콘을 클릭하여 웹 앱 블레이드를 엽니다.
+    Hello 웹 응용 프로그램을 만들면 hello **알림** 단추가 녹색 깜박입니다 **성공** 모두 hello 웹 앱과 hello SQL 데이터베이스 hello 그룹의 리소스 그룹 블레이드 열기 tooshow hello 및 합니다.
+8. Hello 리소스 그룹 블레이드 tooopen hello 웹 응용 프로그램의 블레이드에서 hello 웹 앱의 아이콘을 클릭 합니다.
    
     ![웹앱의 리소스 그룹](./media/web-sites-php-sql-database-deploy-use-git/resource-group-blade.png)
 9. **설정**에서 **연속 배포** > **필요한 설정 구성**을 클릭합니다. **로컬 Git 리포지토리**를 선택하고 **확인**을 클릭합니다.
    
     ![소스 코드 위치](./media/web-sites-php-sql-database-deploy-use-git/setup-local-git.png)
    
-    이전에 Git 리포지토리를 설정하지 않았으면 사용자 이름과 암호를 제공해야 합니다. 이를 위해서는 웹앱 블레이드에서 **설정** > **배포 자격 증명**을 클릭합니다.
+    이전에 Git 리포지토리를 설정하지 않았으면 사용자 이름과 암호를 제공해야 합니다. toodo이를 클릭 하이 여 **설정** > **배포 자격 증명** hello 웹 앱의 블레이드에서 합니다.
    
     ![](./media/web-sites-php-sql-database-deploy-use-git/deployment-credentials.png)
-10. 나중에 PHP 앱을 배포하는 데 사용할 Git 원격 URL을 보려면 **설정**에서 **속성**을 클릭합니다.
+10. **설정** 클릭 **속성** toosee hello Git 원격 URL 하면 나중에 필요 toouse toodeploy PHP 응용 프로그램입니다.
 
 ## <a name="get-sql-database-connection-information"></a>SQL 데이터베이스 연결 정보 가져오기
-웹 앱에 연결되는 SQL 데이터베이스 인스턴스에 연결하려면 데이터베이스를 만들었을 때 지정한 연결 정보가 필요합니다. SQL 데이터베이스 연결 정보를 가져오려면 다음 단계를 따르세요.
+tooconnect toohello SQL 데이터베이스 인스턴스를 연결 tooyour 웹 응용 프로그램에 사용자가 hello 데이터베이스를 만들 때 지정한 연결 정보를 hello 필요 합니다. tooget hello SQL 데이터베이스 연결 정보는 다음이 단계를 따르십시오.
 
-1. 리소스 그룹 블레이드에서 다시 SQL 데이터베이스 아이콘을 클릭합니다.
-2. SQL 데이터베이스 블레이드에서 **설정** > **속성**을 클릭하고 **데이터베이스 연결 문자열 표시**를 클릭합니다. 
+1. Hello 리소스 그룹의 블레이드에 다시 hello SQL 데이터베이스의 아이콘을 클릭 합니다.
+2. Hello SQL 데이터베이스 블레이드 클릭 **설정** > **속성**, 클릭 **데이터베이스 연결 문자열 표시**합니다. 
    
     ![데이터베이스 속성 보기](./media/web-sites-php-sql-database-deploy-use-git/view-database-properties.png)
-3. 결과 대화 상자의 **PHP** 섹션에서 `Server`, `SQL Database` 및 `User Name` 값을 기록해 놓습니다. PHP 웹 앱을 Azure 앱 서비스에 게시할 때 나중에 이러한 값을 사용합니다.
+3. Hello에서 **PHP** 섹션 대화 상자의 결과 hello 메모해 hello 값에 대 한 `Server`, `SQL Database`, 및 `User Name`합니다. PHP 웹 응용 프로그램 tooAzure 앱 서비스를 게시 경우 나중에 이러한 값을 사용 합니다.
 
 ## <a name="build-and-test-your-application-locally"></a>로컬에서 응용 프로그램 빌드 및 테스트
-등록 응용 프로그램은 이름과 전자 메일 주소를 지정하여 이벤트에 등록하는 데 사용할 수 있는 간단한 PHP 응용 프로그램입니다. 이전 등록자에 대한 정보가 테이블에 표시되어 있습니다. 등록 정보는 SQL 데이터베이스 인스턴스에 저장되어 있습니다. 응용 프로그램은 다음과 같은 두 파일로 구성되어 있습니다(아래에서 사용할 수 있는 코드 복사/붙여넣기).
+hello 등록 응용 프로그램은 사용자 이름 및 전자 메일 주소를 제공 하 여 이벤트에 대 한 tooregister를 허용 하는 간단한 PHP 응용 프로그램입니다. 이전 등록자에 대한 정보가 테이블에 표시되어 있습니다. 등록 정보는 SQL 데이터베이스 인스턴스에 저장되어 있습니다. 두 파일 (복사/붙여넣기 코드 아래)의 hello 응용 프로그램 구성 됩니다.
 
 * **index.php**: 등록 양식 및 등록자 정보가 포함된 테이블을 표시합니다.
-* **createtable.php**: 응용 프로그램용 SQL 데이터베이스 테이블을 만듭니다. 이 파일은 한 번만 사용됩니다.
+* **createtable.php**: hello 응용 프로그램에 대 한 hello SQL 데이터베이스 테이블을 만듭니다. 이 파일은 한 번만 사용됩니다.
 
-응용 프로그램을 로컬에서 실행하려면 아래 단계를 따릅니다. 이러한 단계는 로컬 컴퓨터에 PHP 및 SQL Server Express가 설정되어 있으며 [SQL Server용 PDO 확장][pdo-sqlsrv]이 사용하도록 설정되어 있다는 것을 전제로 합니다.
+toorun hello 응용 프로그램을 로컬로 아래 hello 단계를 따릅니다. PHP 있고 SQL Server Express 로컬 컴퓨터에 설정 하 고 활성화 한 hello 가정 하면 다음이 단계는 [SQL Server에 대 한 확장 PDO][pdo-sqlsrv]합니다.
 
-1. `registration`이라는 SQL Server 데이터베이스를 만듭니다. 이는 `sqlcmd` 명령 프롬프트에서 다음 명령으로 수행할 수 있습니다.
+1. `registration`이라는 SQL Server 데이터베이스를 만듭니다. Hello에서 이렇게 하려면 `sqlcmd` 이러한 명령 사용 하 여 명령 프롬프트:
    
         >sqlcmd -S localhost\sqlexpress -U <local user name> -P <local password>
         1> create database registration
         2> GO    
 2. 응용 프로그램의 루트 디렉터리에 `createtable.php`, `index.php`(이)라는 두 파일을 만듭니다.
-3. 텍스트 편집기 또는 IDE에서 `createtable.php` 파일을 열고 아래 코드를 추가합니다. 이 코드는 `registration` 데이터베이스에 `registration_tbl` 테이블을 만드는 데 사용됩니다.
+3. 열기 hello `createtable.php` 텍스트 편집기 또는 IDE에서 파일을 아래 hello 코드를 추가 합니다. 이 코드를 사용 하는 toocreate hello 됩니다 `registration_tbl` hello 표에 `registration` 데이터베이스입니다.
    
         <?php
         // DB connection info
@@ -122,12 +122,12 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
         echo "<h3>Table created.</h3>";
         ?>
    
-    값을 업데이트 해야 합니다 <code>$user</code> 및 <code>$pwd</code> 로컬 SQL Server 사용자 이름 및 암호.
-4. 터미널의 응용 프로그램의 루트 디렉터리에서 다음 명령을 입력합니다.
+    에 대 한 tooupdate hello 값 해야 <code>$user</code> 및 <code>$pwd</code> 로컬 SQL Server 사용자 이름 및 암호.
+4. 다음 명령을 hello 응용 프로그램 유형 hello의 hello 루트 디렉터리에서 종료:
    
         php -S localhost:8000
-5. 웹 브라우저를 열고 **http://localhost:8000/createtable.php**로 이동합니다. 그러면 데이터베이스에 `registration_tbl` 테이블이 만들어집니다.
-6. 텍스트 편집기 또는 IDE에서 **index.php** 파일을 열고 페이지의 기본 HTML 및 CSS 코드를 추가합니다(PHP 코드는 이후 단계에서 추가 예정).
+5. 웹 브라우저를 열고 너무 찾아보기**http://localhost:8000/createtable.php**합니다. 이렇게 하면 hello 만들어집니다 `registration_tbl` hello 데이터베이스의 테이블입니다.
+6. 열기 hello **index.php** 텍스트 편집기 또는 IDE에서 파일을 hello 기본 HTML 및 CSS 코드 hello 페이지에 대 한 추가 (PHP 코드 hello 이후 단계에서 추가 될 예정임).
    
         <html>
         <head>
@@ -148,7 +148,7 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -159,14 +159,14 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
         ?>
         </body>
         </html>
-7. PHP 태그 내에서 데이터베이스 연결에 필요한 PHP 코드를 추가합니다.
+7. Hello PHP 태그 내 toohello 데이터베이스를 연결 하기 위한 PHP 코드를 추가 합니다.
    
         // DB connection info
         $host = "localhost\sqlexpress";
         $user = "user name";
         $pwd = "password";
         $db = "registration";
-        // Connect to database.
+        // Connect toodatabase.
         try {
             $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
             $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -175,8 +175,8 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
             die(var_dump($e));
         }
    
-    다시,에 대 한 값을 업데이트 해야 합니다 <code>$user</code> 및 <code>$pwd</code> 로컬 MySQL 사용자 이름 및 암호.
-8. 데이터베이스 연결 코드 다음에 등록 정보를 데이터베이스에 삽입하는 데 필요한 코드를 추가합니다.
+    에 대 한 tooupdate hello 값이 필요 합니다 다시 <code>$user</code> 및 <code>$pwd</code> 로컬 MySQL 사용자 이름 및 암호.
+8. Hello 데이터베이스 연결 코드를 다음 hello 데이터베이스에 등록 정보를 삽입 하기 위한 코드를 추가 합니다.
    
         if(!empty($_POST)) {
         try {
@@ -197,7 +197,7 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
         }
         echo "<h3>Your're registered!</h3>";
         }
-9. 마지막으로 위 코드 다음에 데이터베이스에서 데이터 검색에 필요한 코드를 추가합니다.
+9. 마지막으로, 위 hello 코드 뒤 hello 데이터베이스에서 데이터를 검색 하기 위한 코드를 추가 합니다.
    
         $sql_select = "SELECT * FROM registration_tbl";
         $stmt = $conn->query($sql_select);
@@ -218,10 +218,10 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
             echo "<h3>No one is currently registered.</h3>";
         }
 
-이제 **http://localhost:8000/index.php**로 이동하여 응용 프로그램을 테스트할 수 있습니다.
+검색할 수 있습니다 너무**http://localhost:8000/index.php** tootest hello 응용 프로그램입니다.
 
 ## <a name="publish-your-application"></a>응용 프로그램 게시
-응용 프로그램을 로컬에서 테스트한 후 Git를 사용하여 앱 서비스 웹 앱에 게시할 수 있습니다. 하지만 먼저 응용 프로그램의 데이터베이스 연결 정보를 업데이트해야 합니다. 이전에 **SQL Database 연결 정보 가져오기** 섹션에서 가져온 데이터베이스 연결 정보를 사용하여 `createdatabase.php` 및 `index.php` 파일 **둘 다**에서 다음 정보를 적합한 값으로 업데이트합니다.
+응용 프로그램을 로컬로 테스트 한 후 tooApp 서비스 웹 앱 Git를 사용 하 여 게시할 수 있습니다. 그러나 먼저 tooupdate hello 데이터베이스 연결 정보 hello 응용 프로그램에 필요 합니다. 이전에 얻은 hello 데이터베이스 연결 정보를 사용 하 여 (hello에 **가져올 SQL 데이터베이스 연결 정보** 섹션), 다음 정보에는 업데이트 hello **둘 다** hello `createdatabase.php` 및 `index.php` hello 사용 하 여 파일을 적절 한 값:
 
     // DB connection info
     $host = "tcp:<value of Server>";
@@ -230,18 +230,18 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
     $db = "<value of SQL Database>";
 
 > [!NOTE]
-> 에 <code>$host</code>, 서버 값으로 추가 해야 합니다 <code>tcp:</code>합니다.
+> Hello에 <code>$host</code>와 서버 hello 값 앞에 추가 될 해야 <code>tcp:</code>합니다.
 > 
 > 
 
-이제 Git 게시를 설정하고 응용 프로그램을 게시할 수 있습니다.
+이제 Git 게시를 준비 tooset 있고 hello 응용 프로그램을 게시 합니다.
 
 > [!NOTE]
-> 이러한 단계는 위의 **Azure 웹앱 만들기 및 Git 게시 설정** 섹션 끝에서 설명한 단계와 동일합니다.
+> 이 hello의 hello 끝에 동일한 단계를 설명 하는 hello **Azure 웹 앱을 만들고 Git 게시 설정** 위의 섹션.
 > 
 > 
 
-1. GitBash(또는 Git가 `PATH`에 있는 경우 터미널)을 열고 응용 프로그램의 루트 디렉터리( **등록** 디렉터리)로 디렉터리를 변경한 후 다음 명령을 실행합니다.
+1. GitBash 엽니다 (또는 터미널, Git에 있으면 프로그램 `PATH`), 응용 프로그램의 디렉터리 toohello 루트 디렉터리를 변경 (hello **등록** 디렉터리), 실행된 hello 명령에 따라:
    
         git init
         git add .
@@ -249,27 +249,27 @@ Azure 웹 앱 및 SQL 데이터베이스를 만들려면 다음 단계를 따르
         git remote add azure [URL for remote repository]
         git push azure master
    
-    이전에 만든 암호를 입력하라는 메시지가 나타납니다.
-2. **http://[웹앱 이름].azurewebsites.net/createtable.php**로 이동하여 응용 프로그램에 대한 SQL 데이터베이스 테이블을 만듭니다.
-3. **http://[웹앱 이름].azurewebsites.net/index.php**로 이동하여 응용 프로그램 사용을 시작합니다.
+    앞에서 만든 hello 암호를 묻는 메시지가 나타납니다.
+2. 너무 찾아보기**http://[web 앱 name].azurewebsites.net/createtable.php** hello 응용 프로그램에 대 한 toocreate hello SQL 데이터베이스 테이블입니다.
+3. 너무 찾아보기**http://[web 앱 name].azurewebsites.net/index.php** toobegin hello 응용 프로그램을 사용 합니다.
 
-응용 프로그램을 게시한 후 변경을 시작하고 Git를 사용하여 변경 내용을 게시할 수 있습니다. 
+응용 프로그램을 게시 한 후 변경 tooit 만들기를 시작 하는 Git toopublish를 사용 하 여 해당 합니다. 
 
-## <a name="publish-changes-to-your-application"></a>응용 프로그램에 변경 내용 게시
-응용 프로그램의 변경 내용을 게시하려면 다음 단계를 따르십시오.
+## <a name="publish-changes-tooyour-application"></a>변경 내용을 tooyour 응용 프로그램 게시
+toopublish 변경 tooapplication, 다음이 단계를 수행 합니다.
 
-1. 응용 프로그램을 로컬에서 변경합니다.
-2. GitBash를 열거나 Git가 `PATH`에 있는 경우 터미널을 열고 응용 프로그램의 루트 디렉터리로 이동한 후 다음 명령을 실행합니다.
+1. 변경 내용을 로컬로 tooyour 응용 프로그램을 확인 합니다.
+2. GitBash 엽니다 (또는 터미널, Git에는 it 프로그램 `PATH`), 응용 프로그램의 디렉터리 toohello 루트 디렉터리를 변경 하 고 hello 다음 명령을 실행:
    
         git add .
         git commit -m "comment describing changes"
         git push azure master
    
-    이전에 만든 암호를 입력하라는 메시지가 나타납니다.
-3. **http://[웹앱 이름].azurewebsites.net/index.php**로 이동하여 변경 내용을 확인합니다.
+    앞에서 만든 hello 암호를 묻는 메시지가 나타납니다.
+3. 너무 찾아보기**http://[web 앱 name].azurewebsites.net/index.php** toosee 변경 내용을 합니다.
 
 ## <a name="whats-changed"></a>변경된 내용
-* 웹 사이트에서 앱 서비스로의 변경에 대한 지침은 [Azure App Service와 이 서비스가 기존 Azure 서비스에 미치는 영향](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 웹 사이트 tooApp 서비스에서에서 변경 사항 참조 가이드 toohello: [기존 Azure 서비스에 대 한 해당 영향 및 Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-SQLExpress]: http://www.microsoft.com/download/details.aspx?id=29062

@@ -1,6 +1,6 @@
 ---
 title: "자습서: TalentLMS와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory와 TalentLMS 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 TalentLMS 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: jeedes
-ms.openlocfilehash: f28d6fbfad9dae578a20db7218b7e3b174ed859c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 25538086602e58fbaab0fbf223f5b03908a74922
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-talentlms"></a>자습서: TalentLMS와 Azure Active Directory 통합
 
-이 자습서에서는 Azure AD(Azure Active Directory)와 TalentLMS를 통합하는 방법에 대해 알아봅니다.
+이 자습서에 설명 어떻게 toointegrate TalentLMS와 Azure Active Directory (Azure AD).
 
-TalentLMS를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
+Azure AD와 TalentLMS 통합 이점을 다음 hello로 제공 합니다.
 
-- TalentLMS에 액세스할 수 있는 사용자를 Azure AD에서 제어할 수 있습니다.
-- 사용자가 자신의 Azure AD 계정으로 TalentLMS에 자동으로 로그온(Single Sign-On)되도록 설정할 수 있습니다.
-- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
+- 액세스 tooTalentLMS을 지닌 Azure AD에서 제어할 수 있습니다.
+- 프로그램 사용자 tooautomatically get 로그온 tooTalentLMS (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.
+- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
+Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-TalentLMS와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
+TalentLMS와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
 
 - Azure AD 구독
 - TalentLMS Single Sign-On이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
+> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
 
-이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
+이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [평가판 제품](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 갤러리에서 TalentLMS 추가
+1. TalentLMS는 hello 갤러리 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-talentlms-from-the-gallery"></a>갤러리에서 TalentLMS 추가
-TalentLMS가 Azure AD에 통합되도록 구성하려면 갤러리의 TalentLMS를 관리되는 SaaS 앱 목록에 추가해야 합니다.
+## <a name="adding-talentlms-from-hello-gallery"></a>TalentLMS는 hello 갤러리 추가
+tooconfigure hello와의 통합 TalentLMS Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 TalentLMS tooadd가 필요합니다.
 
-**갤러리에서 TalentLMS를 추가하려면 다음 단계를 수행합니다.**
+**hello 갤러리에서 TalentLMS tooadd hello 다음 단계를 수행 합니다.**
 
-1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
+1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
 
     ![Active Directory][1]
 
-2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
+2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
 
     ![응용 프로그램][2]
     
-3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
+3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
 
     ![응용 프로그램][3]
 
-4. 검색 상자에 **TalentLMS**를 입력합니다.
+4. Hello 검색 상자에 입력 **TalentLMS**합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_search.png)
 
-5. 결과 패널에서 **TalentLMS**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+5. Hello 결과 패널에서 선택 **TalentLMS**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 사용하여 TalentLMS에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 TalentLMS 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 TalentLMS의 관련 사용자 간에 연결 관계를 설정해야 합니다.
+Single sign on toowork에 대 한 Azure AD는 tooknow TalentLMS에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자와 TalentLMS에 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
 
-TalentLMS에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 연결 관계를 설정합니다.
+TalentLMS에 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
 
-TalentLMS에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
+tooconfigure와 TalentLMS와 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
 
-1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
-3. **[TalentLMS 테스트 사용자 만들기](#creating-a-talentlms-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 TalentLMS에 만듭니다.
-4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
+1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
+3. **[TalentLMS 테스트 사용자 만들기](#creating-a-talentlms-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 TalentLMS에 해당 하는 도구입니다.
+4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
+5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 TalentLMS 응용 프로그램에서 Single Sign-On을 구성합니다.
+이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 TalentLMS 응용 프로그램에서 single sign on 구성 합니다.
 
-**TalentLMS에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**
+**Azure AD tooconfigure single sign on와 TalentLMS를 hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal의 **TalentLMS** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
+1. Hello hello에 Azure 포털에서에서 **TalentLMS** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
 
     ![Single Sign-on 구성][4]
 
-2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
+2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_samlbase.png)
 
-3. **TalentLMS 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
+3. Hello에 **TalentLMS 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_url.png)
 
-    a. **로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<tenant-name>.TalentLMSapp.com`
+    a. Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<tenant-name>.TalentLMSapp.com`
 
-    b. **식별자** 텍스트 상자에서 `http://<tenant-name>.talentlms.com` 패턴을 사용하여 URL을 입력합니다.
+    b. Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`http://<tenant-name>.talentlms.com`
 
     > [!NOTE] 
-    > 이러한 값은 실제 값이 아닙니다. 실제 로그온 URL 및 식별자로 값을 업데이트합니다. 이러한 값을 얻으려면 [TalentLMS 클라이언트 지원 팀](https://www.talentlms.com/contact)에 문의하세요. 
+    > 이러한 값은 실제 값이 아닙니다. 이러한 항목을 업데이트 로그온 URL과 식별자 실제 hello로 값입니다. 연락처 [TalentLMS 클라이언트 지원 팀](https://www.talentlms.com/contact) tooget 이러한 값입니다. 
  
-4. **SAML 서명 인증서** 섹션에서 인증서의 **지문** 값을 복사합니다.
+4. Hello에 **SAML 서명 인증서** 섹션을 복사 hello **지문** hello 인증서의 값입니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_certificate.png) 
 
@@ -125,122 +125,122 @@ TalentLMS에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다�
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_general_400.png)
 
-6. **TalentLMS 구성** 섹션에서 **TalentLMS 구성**을 클릭하여 **로그온 구성** 창을 엽니다. **빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.
+6. Hello에 **TalentLMS 구성** 섹션에서 클릭 **구성 TalentLMS** tooopen **sign on 구성** 창. 복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_configure.png)  
 
-7. 다른 웹 브라우저 창에서 TalentLMS 회사 사이트에 관리자로 로그인합니다.
+7. 다른 웹 브라우저 창에서 관리자 권한으로 tooyour TalentLMS 회사 사이트에 로그인 합니다.
 
-8. **계정 및 설정** 섹션에서 **사용자** 탭을 클릭합니다.
+8. Hello에 **계정 & 설정** 섹션에서 hello **사용자** 탭 합니다.
    
     ![계정 & 설정](./media/active-directory-saas-talentlms-tutorial/IC777296.png "계정 & 설정")
 
 9. **SSO(Single Sign-On)**를 클릭합니다.
 
-10. Single Sign-On 섹션에서 다음 단계를 수행 합니다.
+10. Hello Single Sign-on 섹션에서에서 단계를 수행 하는 hello를 수행 합니다.
    
     ![Single Sign-On](./media/active-directory-saas-talentlms-tutorial/IC777297.png "Single Sign-On")   
 
-    a. **SSO 통합 형식** 목록에서 **SAML 2.0**을 선택합니다.
+    a. Hello에서 **SSO 통합 형식** 목록에서 **SAML 2.0**합니다.
 
-    b. Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 **ID 공급자(IDP)** 텍스트 상자에 붙여넣습니다.
+    b. Hello에 **IDP (Id 공급자)** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID**, Azure 포털에서 복사한입니다.
  
-    c. Azure Portal의 **지문** 값을 **Certificate Fingerprint**(인증서 지문) 텍스트 상자에 붙여넣습니다.    
+    c. 붙여넣기 hello **지문** hello에 Azure 포털에서 값 **인증서 지문** 텍스트 상자에 붙여넣습니다.    
 
-    d.  Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **Remote sign-in URL**(원격 로그인 URL) 텍스트 상자에 붙여넣습니다.
+    d.  Hello에 **원격 로그인 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL**, Azure 포털에서 복사한입니다.
  
-    e. Azure Portal에서 복사한 **로그아웃 URL** 값을 **Remote sign-out URL**(원격 로그아웃 URL) 텍스트 상자에 붙여넣습니다.
+    e. Hello에 **원격 로그 아웃 URL** 붙여넣기 hello 값의 텍스트 상자 **Sign-Out URL**, Azure 포털에서 복사한입니다.
 
-    f. 다음을 입력합니다. 
+    f. Hello 다음을 입력 합니다. 
 
-    * **TargetedID**(대상 ID) 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`을 입력합니다.
+    * Hello에 **TargetedID** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`
      
-    * **이름** 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`을 입력합니다.
+    * Hello에 **이름** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`
     
-    * **성** 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`을 입력합니다.
+    * Hello에 **성** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`
     
-    * **메일** 텍스트 상자에 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`를 입력합니다.
+    * Hello에 **전자 메일** 텍스트 상자`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`
     
 11. **Save**를 클릭합니다.
  
 > [!TIP]
-> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
+> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
+이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
+**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
 
-1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
+1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_01.png) 
 
-2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.
+2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_02.png) 
 
-3. **사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.
+3. tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_03.png) 
 
-4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
+4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-talentlms-tutorial/create_aaduser_04.png) 
 
-    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
+    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
 
-    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
+    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
 
-    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
+    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-a-talentlms-test-user"></a>TalentLMS 테스트 사용자 만들기
 
-Azure AD 사용자가 TalentLMS에 로그인할 수 있도록 하려면 TalentLMS로 프로비전되어야 합니다. TalentLMS의 경우 프로비전은 수동 작업입니다.
+tooenable Azure AD 사용자가 toolog tooTalentLMS에서 프로 비전 해야 TalentLMS에 있습니다. Hello TalentLMS의 경우에서 프로 비전은 수동 작업입니다.
 
-**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**
+**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**
 
-1. 자신의 **TalentLMS** 테넌트에 로그인합니다.
+1. Tooyour 로그인 **TalentLMS** 테 넌 트입니다.
 
 2. **사용자**를 클릭한 후 **사용자 추가**를 클릭합니다.
 
-3. **사용자 추가** 대화 상자 페이지에서 다음 단계를 수행합니다.
+3. Hello에 **사용자 추가** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
    
     ![사용자 추가](./media/active-directory-saas-talentlms-tutorial/IC777299.png "사용자 추가")  
 
-    a. **이름** 텍스트 상자에 사용자의 이름(예: **Britta**)을 입력합니다.
+    a. Hello에 **이름** textbox hello와 같은 사용자의 이름을 입력 **Britta**합니다.
 
-    b. **성** 텍스트 상자에 사용자의 성(예: **Simon**)을 입력합니다.
+    b. Hello에 **성** textbox hello와 같은 사용자의 성을 입력 **Simon**합니다.
  
-    c. **전자 메일 주소** 텍스트 상자에 **brittasimon@contoso.com**과 같은 사용자의 메일 주소를 입력합니다.
+    c. Hello에 **전자 메일 주소** 텍스트 상자와 같은 사용자의 전자 메일을 hello 입력  **brittasimon@contoso.com** 합니다.
 
     d. **사용자 추가**를 클릭합니다.
 
 >[!NOTE]
->다른 TalentLMS 사용자 계정 생성 도구 또는 TalentLMS가 제공한 API를 사용하여 AAD 사용자 계정을 프로비전할 수 있습니다.
+>다른 TalentLMS 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 AAD 사용자 계정을 tooprovision TalentLMS에서 제공 된 Api입니다.
  
 
-### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
+### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
 
-이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 TalentLMS에 대한 액세스 권한을 부여합니다.
+이 섹션에서는 tooTalentLMS 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.
 
 ![사용자 할당][200] 
 
-**Britta Simon을 TalentLMS에 할당하려면 다음 단계를 수행합니다.**
+**tooassign Britta Simon tooTalentLMS hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
+1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
 
     ![사용자 할당][201] 
 
-2. 응용 프로그램 목록에서 **TalentLMS**를 선택합니다.
+2. Hello 응용 프로그램 목록에서 선택 **TalentLMS**합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-talentlms-tutorial/tutorial_talentlms_app.png) 
 
-3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
 
     ![사용자 할당][202] 
 
@@ -248,7 +248,7 @@ Azure AD 사용자가 TalentLMS에 로그인할 수 있도록 하려면 TalentLM
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
+5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -256,13 +256,13 @@ Azure AD 사용자가 TalentLMS에 로그인할 수 있도록 하려면 TalentLM
     
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션은 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트하기 위한 것입니다.
+이 섹션의 hello 목적은 tootest 액세스 패널을 hello 사용 하 여 Azure AD single sign-on 구성 합니다.
 
-액세스 패널에서 TalentLMS 타일을 클릭하면 TalentLMS 응용 프로그램에 자동으로 로그온됩니다.
+Hello TalentLMS hello 액세스 패널에서에서 타일을 클릭할 때 자동으로 로그온 tooyour TalentLMS 응용 프로그램을 구해야
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

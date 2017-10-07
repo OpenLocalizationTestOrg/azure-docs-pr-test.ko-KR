@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory 보고서 보존 정책 | Microsoft Docs"
+title: "aaaAzure Active Directory 보고서 보존 정책 | Microsoft Docs"
 description: "Azure Active Directory에서 보고서 데이터 보존 정책"
 services: active-directory
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: ffeba8a6c32a21c75af21f948bbd6ea88dd9278c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c46a68198cb34e9c92662b2f8461010745392c04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-report-retention-policies"></a>Azure Active Directory 보고서 보존 정책
 
 
-이 문서에서는 Azure Active Directory의 여러 작업 보고서에 대한 데이터 보존과 함께 가장 일반적인 질문에 대한 대답을 제공합니다. 
+이 항목 toohello Azure Active Directory에서 각기 다른 활동이 보고서 hello에 대 한 데이터 보존 hello와 함께에서 가장 일반적인 질문을 답변 제공합니다. 
 
-**Q: 작업 데이터 수집을 시작하려면 어떻게 해야 하나요?**
+**Q: 시작 작업 데이터의 hello 컬렉션 어떻게 얻을 수 있습니까?**
 
 **A:**
 
 | Azure AD 버전 | 수집 시작 |
 | :--              | :--   |
 | Azure AD Premium P1 <br /> Azure AD Premium P2 | 구독 등록 시 |
-| Azure AD Free | 처음으로 [Azure Active Directory 블레이드](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)를 열거나 [보고 API](https://aka.ms/aadreports)를 사용할 때  |
+| Azure AD Free | 처음으로 열면 hello hello [Azure Active Directory 블레이드](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview) hello를 사용 하 여 또는 [Api를 보고 합니다.](https://aka.ms/aadreports)  |
 
 ---
-**Q: Azure Portal에서 작업 데이터를 사용할 수 있는 시기는 언제인가요?**
+**Q: 언제 활동 데이터 hello Azure 포털에서에서 사용할 수 있는?**
 
 **A:**
 
-- **즉시** - 이미 Azure 클래식 포털에서 보고서로 작업한 적이 있는 경우
-- **2시간 이내** - Azure 클래식 포털에서 보고 기능을 설정하지 않은 경우
+- **즉시** -hello Azure 클래식 포털에서에서 보고서를 이미 작업 한 경우
+- **2 시간 이내에** -켜지 않은 reporting hello Azure 클래식 포털에서에서 하는 경우
 
 ---
-**Q: 보안 신호 수집을 시작하려면 어떻게 해야 하나요?**  
+**Q: 시작 하는 보안 신호의 hello 컬렉션 어떻게 얻을 수 있습니까?**  
 
-**A:** 보안 신호의 경우 ID 보호 센터를 사용하도록 옵트인할 때 수집 프로세스가 시작됩니다. 
+**A:** 보안 신호에 대 한 hello 수집 프로세스가 때 옵트인 toouse hello Identity 보호 센터를 시작 합니다. 
 
 
 ---
-**Q: 수집된 데이터의 저장 기간은 얼마나 되나요?**
+**Q: 얼마나 오래 hello 수집 된 데이터 저장 됩니다.**
 
 **A:**
 

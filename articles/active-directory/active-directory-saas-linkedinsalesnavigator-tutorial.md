@@ -1,6 +1,6 @@
 ---
 title: "자습서: LinkedInSalesNavigator와 Azure Active Directory 통합 | Microsoft 문서"
-description: "Azure Active Directory와 LinkedInSalesNavigator 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 LinkedInSalesNavigator 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,128 +13,128 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: jeedes
-ms.openlocfilehash: ef26a16e79d9c9b0654634960b57dc59827b2c24
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 443d302d40d7af16aba5114e00963f23ea8d12d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-linkedin-sales-navigator"></a>자습서: LinkedIn Sales Navigator와 Azure Active Directory 통합
 
-이 자습서에서는 LinkedIn Sales Navigator를 Azure AD(Azure Active Directory)와 통합하는 방법에 대해 알아봅니다.
+이 자습서에 설명 어떻게 toointegrate LinkedIn Sales 탐색기와 Azure Active Directory (Azure AD).
 
-LinkedIn Sales Navigator를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
+LinkedIn Sales 탐색기 Azure AD와 통합 이점을 다음 hello로 제공 합니다.
 
-- LinkedIn Sales Navigator에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
-- 사용자의 Azure AD 계정으로 LinkedIn Sales Navigator에 자동으로 로그온(Single Sign-On)되도록 설정할 수 있습니다.
-- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
+- Azure ad 액세스 tooLinkedIn Sales 탐색기가 제어할 수 있습니다.
+- Azure AD 계정을 사용 하면 사용자가 tooautomatically get 로그온 tooLinkedIn Sales 탐색기 (Single Sign-on)를 사용할 수 있습니다.
+- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
 
-Azure AD와의 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
+Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 찾아보기 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-LinkedIn Sales Navigator와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
+LinkedIn Sales 탐색기와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
 
 - Azure AD 구독
 - LinkedIn Sales Navigator Single Sign-On이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
+> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
 
-이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
+이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 갤러리에서 LinkedIn Sales Navigator 추가
+1. LinkedIn Sales 탐색기 hello 갤러리 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-linkedin-sales-navigator-from-the-gallery"></a>갤러리에서 LinkedIn Sales Navigator 추가
-LinkedIn Sales Navigator가 Azure AD에 통합되도록 구성하려면 LinkedIn Sales Navigator를 갤러리에서 관리되는 SaaS 앱 목록에 추가해야 합니다.
+## <a name="adding-linkedin-sales-navigator-from-hello-gallery"></a>LinkedIn Sales 탐색기 hello 갤러리 추가
+tooconfigure hello 통합 LinkedIn Sales 탐색기의 Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Sales 탐색기 LinkedIn tooadd가 필요합니다.
 
-**갤러리에서 LinkedIn Sales Navigator를 추가하려면 다음 단계를 수행합니다.**
+**hello 갤러리, LinkedIn Sales 탐색기 tooadd hello 다음 단계를 수행 합니다.**
 
-1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
+1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
 
     ![Active Directory][1]
 
-2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
+2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
 
     ![응용 프로그램][2]
     
-3. 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
+3. 클릭 **새 응용 프로그램** hello 대화의 hello 위쪽에 단추입니다.
 
     ![응용 프로그램][3]
 
-4. 검색 상자에서 **LinkedIn Sales Navigator**를 입력합니다.
+4. Hello 검색 상자에 입력 **LinkedIn Sales 탐색기**합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_search.png)
 
-5. 결과 패널에서 **LinkedIn Sales Navigator**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+5. Hello 결과 패널에서 선택 **LinkedIn Sales 탐색기**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 LinkedIn Sales Navigator에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 LinkedIn Sales Navigator 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 LinkedIn Sales Navigator의 관련 사용자 간에 연결 관계가 형성되어야 합니다.
+Single sign on toowork에 대 한 Azure AD는 tooknow LinkedIn Sales 탐색 창에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 hello LinkedIn Sales 탐색 창에서 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
 
-이 연결 관계는 Azure AD의 **사용자 이름** 값을 LinkedIn Sales Navigator의 **Username** 값으로 할당하여 설정합니다.
+Hello hello 값을 할당 하 여이 링크 관계가 설정 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** LinkedIn Sales 탐색 창에서.
 
-LinkedIn Sales Navigator에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
+tooconfigure 및 LinkedIn Sales 탐색기를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
 
-1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
-3. **[LinkedIn Sales Navigator 테스트 사용자 만들기](#creating-a-linkedin-sales-navigator-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 LinkedIn Sales Navigator에 만듭니다.
-4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
+1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
+3. **[LinkedIn Sales 탐색기 테스트 사용자 만들기](#creating-a-linkedin-sales-navigator-test-user)**  -toohave Britta Simon hello 사용자의 연결 된 Azure AD toohello 표현인 LinkedIn Sales 탐색 창에서 해당 하는 도구입니다.
+4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
+5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 LinkedIn Sales Navigator 응용 프로그램에서 Single Sign-On을 구성합니다.
+이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 사용 하도록 설정 및 LinkedIn Sales 탐색기 응용 프로그램에서 single sign on 구성 합니다.
 
-**LinkedIn Sales Navigator에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**
+**LinkedIn Sales 탐색기와 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal의 **LinkedIn Sales Navigator** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
+1. Hello hello에 Azure 포털에서에서 **LinkedIn Sales 탐색기** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
 
-    ![Single Sign-On 구성][4]
+    ![Single Sign-on 구성][4]
 
-2. **Single Sign-On** 대화 상자의 **모드**에서 **SAML 기반 로그온**을 선택하여 Single Sign-On을 사용하도록 설정합니다.
+2. Hello에 **Single sign on** 대화에 **모드** 선택 **SAML 기반 로그온** tooenable single sign on입니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_samlbase.png)
 
-3. 다른 웹 브라우저 창에서 **LinkedIn Sales Navigator** 웹 사이트에 관리자로 로그온합니다.
+3. 로그온 tooyour 다른 웹 브라우저 창에서 **LinkedIn Sales 탐색기** 관리자 권한으로 웹 사이트입니다.
 
-4. **계정 센터**의 **설정** 아래에서 **전역 설정**을 클릭합니다. 또한 드롭다운 목록에서 **Sales Navigator**를 선택합니다.
+4. **계정 센터**의 **설정** 아래에서 **전역 설정**을 클릭합니다. 또한 선택 **Sales 탐색기** hello 드롭다운 목록에서 합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_admin_01.png)
 
-5. **OR Click Here to load and copy individual fields from the form**(또는 폼에서 개별 필드를 로드하여 복사하려면 여기를 클릭)을 클릭하고 **엔터티 ID** 및 **ACS(Assertion Consumer Access) URL**을 복사합니다.
+5. 클릭 **또는 여기를 클릭 tooload 및 복사의에서 개별 필드 hello 양식** 복사 **엔터티 Id** 및 **액세스 ACS (Assertion Consumer) Url**합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_admin_031.png)
 
-6. Azure Portal의 **LinkedIn Sales Navigator 도메인 및 URL** 섹션에서 **IDP** 시작 모드로 응용 프로그램을 구성하려는 경우 다음 단계를 수행합니다.
+6. Azure 포털에 아래 **LinkedIn Sales 탐색기 도메인 및 Url** 섹션를 hello tooconfigure hello 응용 프로그램에 필요한 경우 다음 단계를 수행 **IDP** 시작 모드입니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_url1.png)
 
-    a. **식별자** 텍스트 상자에 LinkedIn 포털에서 복사한 **엔티티 ID**를 입력합니다. 
+    a. Hello에 **식별자** textbox hello 입력 **엔터티 ID** LinkedIn 포털에서 복사 
 
-    b. **회신 URL** 텍스트 상자에 LinkedIn 포털에서 복사한 **ACS(Assertion Consumer Access) URL**을 입력합니다.
+    b. Hello에 **회신 URL** textbox hello 입력 **액세스 ACS (Assertion Consumer) Url** LinkedIn 포털에서 복사
 
-7. **SP** 시작 모드에서 응용 프로그램을 구성하려면 **고급 URL 설정 표시**를 선택하세요.
+7. 확인 **고급 URL 설정 표시**tooconfigure hello 응용 프로그램에 필요한 경우, **SP** 시작 모드입니다.
 
-    ![Single Sign-On 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_url2.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_url2.png)
 
-    **로그온 URL** 텍스트 상자에 다음 패턴으로 값을 입력합니다. `https://www.linkedin.com/checkpoint/enterprise/login/<account id>?application=salesNavigator`
+    Hello에 **로그온 URL** hello 패턴을 사용 하 여 형식 hello 값 텍스트 상자:`https://www.linkedin.com/checkpoint/enterprise/login/<account id>?application=salesNavigator`
 
-8. **LinkedIn Sales Navigator** 응용 프로그램은 특정 형식의 SAML 어설션이 필요하기 때문에 SAML 토큰 특성 구성에 사용자 지정 특성 매핑을 추가해야 합니다. 다음 스크린샷은 예제를 보여 줍니다. **사용자 ID**의 기본값은 **user.userprincipalname**이지만 LinkedIn Sales Navigator에는 이것이 사용자의 메일 주소와 매핑되어야 합니다. 목록에서 **user.mail** 특성을 사용하거나 조직 구성을 기반으로 적절한 특성 값을 사용할 수 있습니다. 
+8. 프로그램 **LinkedIn Sales 탐색기** tooadd 사용자 지정 특성 매핑을 tooyour SAML 토큰 특성 구성 요구 하는 특정 형식으로 hello SAML 어설션이 응용 프로그램입니다. 다음 스크린 샷 hello 예가 나와 있습니다. 기본값을 hello **사용자 식별자** 은 **user.userprincipalname** LinkedIn Sales 탐색기가 hello 사용자의 전자 메일 주소에 매핑 toobe 예상 하지만 합니다. 사용할 수 있습니다 **user.mail** hello 목록에서 특성 또는 사용자 조직 구성에 따라 hello 적절 한 특성 값을 사용 합니다. 
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/updateusermail.png)
     
-9. **사용자 특성** 섹션에서 **기타 모든 사용자 특성 보기 및 편집**을 클릭하고 특성을 설정합니다. 사용자는 **전자 메일**, **부서**, **이름** 및 **성**이라는 이름의 4개 클레임을 추가해야 하며, 값은 **user.mail**, **user.department**, **user.givenname** 및 **user.surname**으로 각각 매핑됩니다.
+9. **사용자 특성** 섹션에서 클릭 **보기 및 다른 모든 사용자 특성 편집** hello 특성을 설정 합니다. hello 사용자에 게 필요한 라는 tooadd 4 개의 클레임 **전자 메일**, **부서**, **firstname**, 및 **lastname** hello 값은 toobe에 매핑 **user.mail**, **user.department**, **user.givenname**, 및 **user.surname** 각각
 
     | 특성 이름 | 특성 값 |
     | --- | --- |    
@@ -145,103 +145,103 @@ LinkedIn Sales Navigator에서 Azure AD Single Sign-On을 구성하고 테스트
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/userattribute.png)
     
-    a. **특성 추가**를 클릭하여 특성 대화 상자를 엽니다.
+    a. 클릭 **특성 추가** tooopen hello 특성 대화 상자.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_attribute_04.png)
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_attribute_05.png)
    
-    b. **이름** 텍스트 상자에서 해당 행에 표시된 특성 이름을 입력합니다.
+    b. Hello에 **이름** textbox, 해당 행에 대 한 표시 형식 hello 특성 이름입니다.
     
-    c. **값** 목록에서 해당 행에 대해 표시된 특성을 입력합니다.
+    c. Hello에서 **값** 목록, 해당 행에 대 한 표시 유형 hello 특성 값입니다.
     
     d. **확인**을 클릭합니다.
 
-10. **이름** 특성에서 다음 단계를 수행합니다.
+10. Hello hello에서 다음 단계를 수행 **이름** 특성-
 
-    a. 특성을 클릭하여 **특성 편집** 창을 엽니다.
+    a. Hello 특성 tooopen hello 클릭 **특성 편집** 창.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/url_update.png)
 
-    b. **네임스페이스**에서 URL 값을 삭제합니다.
+    b. Hello에서 hello URL 값을 삭제 **네임 스페이스**합니다.
     
-    c. **확인**을 클릭하여 설정을 저장합니다.
+    c. 클릭 **확인** toosave hello 설정 합니다.
 
-11. **SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 XML 파일을 저장합니다.
+11. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello XML 파일을 컴퓨터에 저장 합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_certificate.png) 
 
 12. **저장** 단추를 클릭합니다.
 
-    ![Single Sign-On 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_general_400.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_general_400.png)
 
-13. **LinkedIn 관리 설정** 섹션으로 이동합니다. **XML 파일 업로드**를 클릭하여 Azure Portal에서 다운로드한 메타데이터 XML을 업로드합니다.
+13. 너무 이동**LinkedIn 관리 설정** 섹션. 클릭 **업로드 XML 파일** tooupload hello hello Azure 포털에서에서 다운로드 한 메타 데이터 XML 파일입니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_metadata_03.png)
 
-14. **설정**을 클릭하여 SSO를 사용하도록 설정합니다. SSO 상태가 **연결 안 됨**에서 **연결됨**으로 변경됩니다.
+14. 클릭 **에** tooenable SSO 합니다. SSO 상태에서 변경 **연결 되어 있지 않은** 너무**연결 됨**
 
-    ![Single Sign-On 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_admin_05.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_admin_05.png)
 
 
 > [!TIP]
-> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
+> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
+이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
+**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
 
-1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
+1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/create_aaduser_01.png) 
 
-2. **사용자 및 그룹**으로 이동하여 **모든 사용자**를 클릭합니다.
+2. 너무 이동**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/create_aaduser_02.png) 
 
-3. 대화 상자 위쪽에서 **추가**를 클릭하여 **사용자** 대화 상자를 엽니다.
+3. Hello 대화의 hello 위쪽 클릭 **추가** tooopen hello **사용자** 대화 상자.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/create_aaduser_03.png) 
 
-4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
+4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/create_aaduser_04.png) 
 
-    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
+    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
 
-    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
+    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
 
-    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
+    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-a-linkedin-sales-navigator-test-user"></a>LinkedIn Sales Navigator 테스트 사용자 만들기
 
-LinkedIn Sales Navigator 응용 프로그램이 JIT(Just-in-time) 사용자 프로비전을 지원하며 인증 후에 응용 프로그램에서 사용자가 자동으로 만들어집니다. **Automatically assign licenses**(라이선스 자동 할당)를 활성화하여 사용자에게 라이선스를 할당합니다.
+연결 된 Sales 탐색기 응용 프로그램 JIT (Time) 사용자 프로 비전 및 인증 사용자가 hello 응용 프로그램에서 자동으로 생성 한 후 마법사를 지원 합니다. 활성화 **자동으로 라이선스를 할당** tooassign 라이선스 toohello 사용자입니다.
    
    ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-linkedinsalesnavigator-tutorial/LinkedinUserprovswitch.png)
 
-### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
+### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
 
-이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 LinkedIn Sales Navigator에 대한 액세스 권한을 부여합니다.
+이 섹션에서는 액세스 tooLinkedIn Sales 탐색기 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.
 
 ![사용자 할당][200] 
 
-**Britta Simon을 LinkedIn Sales Navigator에 할당하려면 다음 단계를 수행합니다.**
+**tooassign Britta Simon tooLinkedIn Sales 탐색기 hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
+1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
 
     ![사용자 할당][201] 
 
-2. 응용 프로그램 목록에서 **LinkedIn Sales Navigator**를 선택합니다.
+2. Hello 응용 프로그램 목록에서 선택 **LinkedIn Sales 탐색기**합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_app.png) 
 
-3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
 
     ![사용자 할당][202] 
 
@@ -249,7 +249,7 @@ LinkedIn Sales Navigator 응용 프로그램이 JIT(Just-in-time) 사용자 프�
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
+5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -257,13 +257,13 @@ LinkedIn Sales Navigator 응용 프로그램이 JIT(Just-in-time) 사용자 프�
     
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
+이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
 
-액세스 패널에서 LinkedIn Sales Navigator 타일을 클릭하면 개인 LinkedIn 계정 세부 정보를 제공해야 하는 조직 페이지로 리디렉션됩니다. 개인 계정이 LinkedIn 비즈니스 계정과 연결됩니다. 액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](https://msdn.microsoft.com/library/dn308586)를 참조하세요. 
+Hello 액세스 패널에서에서 hello LinkedIn Sales 탐색기 타일을 클릭 하면 리디렉션된 tooOrganizational 페이지 있는 tooprovide 개인 LinkedIn 계정 세부 정보 있어야 합니다. 개인 계정이 LinkedIn 비즈니스 계정과 연결됩니다. 액세스 패널 hello에 대 한 자세한 내용은 참조 [액세스 패널 소개](https://msdn.microsoft.com/library/dn308586)합니다. 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

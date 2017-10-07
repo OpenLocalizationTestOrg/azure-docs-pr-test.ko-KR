@@ -1,6 +1,6 @@
 ---
-title: "클라우드 폴더에서 Azure 앱 서비스로 콘텐츠 동기화"
-description: "클라우드 폴더에서 콘텐츠 동기화를 통해 Azure 앱 서비스에 앱을 배포하는 방법에 대해 알아봅니다."
+title: "클라우드 폴더 tooAzure 앱 서비스에서에서 aaaSync 콘텐츠"
+description: "어떻게 toodeploy 콘텐츠를 통해 사용자 앱 tooAzure 앱 서비스는 클라우드 폴더에서을 동기화에 대해 알아봅니다."
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: 010e7dc492abefaa3afe814c0322af9f6fe5acd2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e1c6d53a427c36126d9cdb33cc21b4126b9d9c2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sync-content-from-a-cloud-folder-to-azure-app-service"></a>클라우드 폴더에서 Azure 앱 서비스로 콘텐츠 동기화
-이 자습서는 Dropbox 및 OneDrive와 같은 인기 있는 클라우드 저장소 서비스에서 콘텐츠를 동기화하여 [Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) 를 배포하는 방법을 보여줍니다. 
+# <a name="sync-content-from-a-cloud-folder-tooazure-app-service"></a>클라우드 폴더 tooAzure 앱 서비스의에서 콘텐츠를 동기화
+이 자습서에서는 어떻게 toodeploy 너무[Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714) 하 여 Dropbox 및 OneDrive와 같은 인기 있는 클라우드 저장소 서비스에서 콘텐츠를 동기화 하는 중입니다. 
 
 ## <a name="overview"></a>콘텐츠 동기화 배포 개요
-주문형 콘텐츠 동기화 배포는 앱 서비스와 통합된 [Kudu 배포 엔진](https://github.com/projectkudu/kudu/wiki) 에서 제공됩니다. [Azure 포털](https://portal.azure.com)에서 클라우드 저장소의 폴더를 지정하고 해당 폴더에서 앱 코드 및 콘텐츠 작업을 수행한 다음 단추를 클릭하여 앱 서비스를 동기화할 수 있습니다. 콘텐츠 동기화는 빌드 및 배포에 Kudu 프로세스를 활용합니다. 
+hello로 작동 하는 hello 주문형 콘텐츠 동기화 배포 [Kudu 배포 엔진](https://github.com/projectkudu/kudu/wiki) 앱 서비스와 통합 합니다. Hello에 [Azure 포털](https://portal.azure.com), 클라우드 저장소에 지정 된 폴더, 응용 프로그램 코드 및이 폴더의 내용을 작업할 수 있습니다 및 hello로 동기화 tooApp 서비스의 단추를 클릭 합니다. 콘텐츠 동기화에서 빌드 및 배포에 대 한 hello Kudu 프로세스를 사용합니다. 
 
-## <a name="contentsync"></a>콘텐츠 동기화 배포를 사용하는 방법
-[Azure 포털](https://portal.azure.com)에서 콘텐츠 동기화를 사용하려면 다음 단계를 따릅니다.
+## <a name="contentsync"></a>Tooenable 콘텐츠 배포를 동기화 하는 방법
+hello에서 tooenable 콘텐츠 동기화 [Azure 포털](https://portal.azure.com), 다음이 단계를 수행 합니다.
 
-1. Azure Portal의 앱 블레이드에서 **설정** > **배포 원본**을 클릭합니다. **원본 선택**을 클릭한 다음 배포 원본으로 **OneDrive** 또는 **Dropbox**를 선택합니다. 
+1. Hello Azure 포털에서에서 앱의 블레이드에서 클릭 **설정** > **배포 원본을**합니다. 클릭 **소스 선택**을 선택한 후 **OneDrive** 또는 **Dropbox** 배포에 대 한 hello 소스로 합니다. 
    
     ![콘텐츠 동기화](./media/app-service-deploy-content-sync/deployment_source.png)
    
    > [!NOTE]
-   > API의 기본적인 차이 때문에 **비즈니스용 OneDrive**는 지원되지 않습니다. 
+   > Hello, Api의에서 기본적인 차이 때문에 **비즈니스용 OneDrive** 이 이번에 지원 되지 않습니다. 
    > 
    > 
-2. 모든 앱 서비스 콘텐츠가 저장될 OneDrive 또는 Dropbox에 대해 미리 정의된 특정 지정 경로에 액세스하도록 앱 서비스를 설정하여 권한 부여 워크플로를 완료합니다.  
-    권한 부여 후에 앱 서비스 플랫폼은 지정된 콘텐츠 경로에 콘텐츠 폴더를 만드는 옵션 또는 이 지정된 콘텐츠 경로에서 기존 콘텐츠 폴더를 선택하는 옵션을 제공합니다. 앱 서비스 동기화에 사용된 클라우드 저장소 계정에 지정된 콘텐츠 경로는 다음과 같습니다.  
+2. 전체 hello 권한 부여 워크플로 tooenable 앱 서비스 tooaccess 특정 미리 지정 된 경로 대해 정의 된 OneDrive 또는 Dropbox 응용 프로그램 서비스 콘텐츠를 저장할 합니다.  
+    권한 부여 hello 앱 s 서비스 플랫폼 제공 됩니다 후 hello 옵션 toocreate hello에 콘텐츠 폴더를 콘텐츠 경로 또는 toochoose이 지정 된 콘텐츠 경로 아래의 기존 콘텐츠 폴더를 지정 합니다. 앱 서비스 동기화에 사용 되는 클라우드 저장소 계정에서 콘텐츠 경로 지정 하는 hello hello 다음과 같습니다.  
    
    * **OneDrive**: `Apps\Azure Web Apps` 
    * **Dropbox**: `Dropbox\Apps\Azure`
-3. 초기 콘텐츠 동기화 후 Azure 포털에서 필요에 따라 콘텐츠 동기화를 시작할 수 있습니다. 배포 기록은 **배포** 블레이드에서 확인할 수 있습니다.
+3. Hello 후 hello Azure 포털에서에서 주문형 콘텐츠는 초기 동기화 hello 콘텐츠는 동기화를 시작할 수 있습니다. 배포 기록을 hello로 사용할 수는 **배포** 블레이드입니다.
    
     ![배포 기록](./media/app-service-deploy-content-sync/onedrive_sync.png)
 

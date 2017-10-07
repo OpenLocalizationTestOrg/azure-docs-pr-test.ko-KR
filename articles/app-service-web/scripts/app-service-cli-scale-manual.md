@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 스크립트 샘플 - Azure CLI 2.0을 사용하여 수동으로 웹앱 크기 조정 | Microsoft Docs"
+title: "aaaAzure CLI 스크립트 샘플-Azure CLI 2.0을 사용 하 여 수동으로 웹 응용 프로그램의 크기를 조정 | Microsoft Docs"
 description: "Azure CLI 스크립트 샘플 - Azure CLI 2.0을 사용하여 수동으로 웹앱 크기 조정"
 services: appservice
 documentationcenter: appservice
@@ -16,41 +16,41 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: fe05661eb4e2d5c37aebdbfde002b34588db69e7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 64464c8a44522fdc2c8f3d0192388302a1d12667
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-a-web-app-manually"></a>수동으로 웹앱 크기 조정
 
-이 시나리오에서는 리소스 그룹, App Service 계획 및 웹앱을 만드는 방법을 알아봅니다. 그런 다음 단일 인스턴스에서 여러 인스턴스로 App Service 계획의 크기를 조정합니다.
+이 시나리오에서는 리소스 그룹 toocreate 배웁니다 앱 서비스 계획 및 웹 앱입니다. 단일 인스턴스 toomultiple 인스턴스에서 hello 앱 서비스 계획을 확장 한 다음 됩니다.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
 ## <a name="sample-script"></a>샘플 스크립트
 
-[!code-azurecli-interactive[기본](../../../cli_scripts/app-service/scale-manual/scale-manual.sh "수동 크기 조정")]
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/scale-manual/scale-manual.sh "Manual Scale")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트는 다음 명령을 사용하여 리소스 그룹, 웹앱 및 모든 관련된 리소스를 만듭니다. 테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.
+이 스크립트 명령 toocreate 리소스 그룹, 웹 앱 및 관련 된 모든 리소스를 수행 하는 hello를 사용 합니다. Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 모든 리소스가 저장되는 리소스 그룹을 만듭니다. |
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | App Service 계획을 만듭니다. Azure 웹앱에 대한 서버 팜과 비슷합니다. |
 | [az webapp create](https://docs.microsoft.com/cli/azure/webapp#create) | Azure 웹앱을 만듭니다. |
-| [az appservice plan update](https://docs.microsoft.com/cli/azure/appservice/plan#update) | App Service 계획의 속성을 업데이트합니다. |
+| [az appservice plan update](https://docs.microsoft.com/cli/azure/appservice/plan#update) | Hello 앱 서비스 계획의 속성을 업데이트 합니다. |
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
+Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.
 
-추가 App Service CLI 스크립트 샘플은 [Azure App Service 설명서](../app-service-cli-samples.md)에서 확인할 수 있습니다.
+추가 응용 프로그램 서비스 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 앱 서비스 설명서](../app-service-cli-samples.md)합니다.

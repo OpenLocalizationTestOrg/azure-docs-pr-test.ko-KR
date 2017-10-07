@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights SDK에서 필터링 및 전처리 | Microsoft Docs"
-description: "SDK용 원격 분석 프로세서 및 원격 분석 이니셜라이저를 작성하여 원격 분석이 Application Insights 포털에 전송되기 전에 데이터에 대한 속성을 필터링하거나 추가합니다."
+title: "aaaFiltering 및에서 전처리 hello Azure Application Insights SDK | Microsoft Docs"
+description: "SDK toofilter hello에 대 한 원격 분석 프로세서 및 원격 분석 이니셜라이저를 작성 하거나 hello 원격 분석 toohello Application Insights 포털에 전송 되기 전에 속성 toohello 데이터를 추가 합니다."
 services: application-insights
 documentationcenter: 
 author: beckylino
@@ -13,45 +13,45 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: bwren
-ms.openlocfilehash: 17e66775dd2cd1c858594102f1ddb32e2fbbccc8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 51b9db69b2375b8799718f1b0e1af77620dc2692
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="filtering-and-preprocessing-telemetry-in-the-application-insights-sdk"></a>Application Insights SDK에서 원격 분석 필터링 및 전처리
+# <a name="filtering-and-preprocessing-telemetry-in-hello-application-insights-sdk"></a>필터링 및 hello Application Insights SDK의에서 원격 분석을 전처리 합니다.
 
 
-Application Insights SDK에 대한 플러그인을 작성하고 구성하여 원격 분석을 Application Insights 서비스에 전송하기 전에 캡처하고 처리하는 방법을 사용자 지정할 수 있습니다.
+작성 및 hello Application Insights SDK toocustomize 원격 분석은 캡처하고 toohello Application Insights 서비스에 전송 되기 전에 처리 하는 방법에 대 한 플러그 인을 구성할 수 있습니다.
 
-* [샘플링](app-insights-sampling.md) 통계를 왜곡하지 않고 원격 분석의 양을 줄입니다. 관련 데이터 요소를 함께 유지하여 문제를 진단할 때 데이터 요소 간을 탐색할 수 있습니다. 포털에서는 샘플링을 보완하기 위해 총 개수를 곱합니다.
-* [ASP.NET](#filtering) 또는 [Java](app-insights-java-filter-telemetry.md)용 원격 분석 프로세서를 사용하여 필터링하면 서버에 전송되기 전에 SDK에서 원격 분석을 선택하거나 수정할 수 있습니다. 예를 들어 로봇의 요청을 제외하여 원격 분석의 양을 줄일 수 있습니다. 하지만 필터링은 트래픽을 감소시키는 데 있어 샘플링보다 더 기본적인 방법입니다. 이를 통해 전송된 요청을 더 잘 제어할 수 있지만 통계에 영향을 준다는 점을 알고 있어야 합니다(예: 성공한 모든 요청을 필터링하는 경우).
-* [원격 분석 이니셜라이저](#add-properties) 는 표준 모듈의 원격 분석을 포함한 앱에서 보낸 모든 원격 분석에 속성을 추가합니다. 예를 들어 계산된 값을 추가하거나 포털에서 데이터를 필터링하는 데 사용할 버전 번호를 추가할 수 있습니다.
-* [SDK API](app-insights-api-custom-events-metrics.md) 사용자 지정 이벤트 및 메트릭을 보내는 데 사용됩니다.
+* [샘플링](app-insights-sampling.md) hello 양의 원격 분석 통계에 영향을 주지 않고 줄어듭니다. 관련 데이터 요소를 함께 유지하여 문제를 진단할 때 데이터 요소 간을 탐색할 수 있습니다. Hello 포털 hello 총 개수는 hello 샘플링에 대 한 toocompensate를 곱한 값된입니다.
+* 원격 분석 프로세서를 사용 하 여 필터링 [ASP.NET에 대 한](#filtering) 또는 [Java](app-insights-java-filter-telemetry.md) 선택 하거나 toohello 서버 전송 하기 전에 hello SDK의에서 원격 분석을 수정할 수 있습니다. 예를 들어 로봇에서 요청을 제외 하 여 원격 분석의 hello 볼륨을 줄일 수 있습니다. 하지만 필터링은 샘플링 보다 더 기본적인 방법은 tooreducing 트래픽입니다. 전송 작업을 통해 더 많은 제어 기능 그러나 toobe 통계-예를 들어 영향 모든 성공한 요청을 필터링 하는 경우.
+* [속성을 추가 하는 원격 분석 이니셜라이저](#add-properties) hello 기본 모듈에서 원격 분석을 포함 하 여 응용 프로그램에서 보낸 tooany 원격 분석 합니다. 예를 들어 계산 된 값이 있습니다.; 추가할 수 있습니다. 또는 hello 포털에서 toofilter hello 데이터 버전 번호입니다.
+* [hello SDK API](app-insights-api-custom-events-metrics.md) toosend 사용 되는 사용자 지정 이벤트 및 메트릭이 됩니다.
 
 시작하기 전에 다음을 수행합니다.
 
-* 앱에 Application Insights [SDK for ASP.NET](app-insights-asp-net.md) 또는 [SDK for Java](app-insights-java-get-started.md)를 설치합니다.
+* Hello Application Insights 설치 [ASP.NET에 대 한 SDK](app-insights-asp-net.md) 또는 [SDK for Java](app-insights-java-get-started.md) 응용 프로그램에서 합니다.
 
 <a name="filtering"></a>
 
 ## <a name="filtering-itelemetryprocessor"></a>필터링: ITelemetryProcessor
-이 기술을 사용하면 원격 분석 스트림에서 포함되거나 제외된 요청을 보다 직접적으로 제어할 수 있습니다. 샘플링과 함께 사용할 수도 있고 또는 따로 사용할 수도 있습니다.
+이 기법을 사용 하면 원격 분석 스트림에 hello에서 제외 되거나 포함 무엇 보다 직접적으로 제어 합니다. 샘플링과 함께 사용할 수도 있고 또는 따로 사용할 수도 있습니다.
 
-원격 분석을 필터링하려면 원격 분석 프로세서를 작성하고 SDK를 사용하여 등록합니다. 모든 원격 분석은 해당 프로세서를 거친 다음 스트림에서 삭제하거나 속성을 추가할 수 있습니다. 직접 작성한 원격 분석뿐만 아니라 HTTP 요청 수집기 및 종속성 수집기와 같은 표준 모듈의 원격 분석이 여기에 포함됩니다. 예를 들어 로봇 또는 성공적인 종속성 호출에서 요청에 대한 원격 분석을 필터링할 수 있습니다.
+toofilter 원격 분석을 작성 한 원격 분석 프로세서 hello SDK로 등록. 모든 원격 분석 해당 프로세서를 거친 toodrop를 선택할 수 있습니다 hello에서 스트림, 또는 속성을 추가 합니다. Hello HTTP 요청 수집기 hello 종속성 수집기 등의 표준 모듈 hello에서에서 원격 분석와 사용자가 직접 작성 한 원격 분석이 포함 됩니다. 예를 들어 로봇 또는 성공적인 종속성 호출에서 요청에 대한 원격 분석을 필터링할 수 있습니다.
 
 > [!WARNING]
-> 프로세서를 사용하는 SDK에서 보낸 원격 분석을 필터링하는 작업은 포털에 표시되는 통계를 왜곡하고 관련된 항목을 수행하기 어렵게 만들 수 있습니다.
+> Hello SDK에서에서 전송 하는 hello 원격 분석 필터링 기울일 수 프로세서를 사용 하 여 관련 된 항목 hello 통계 hello 포털에서 참조 하 고 어려운 toofollow 확인 합니다.
 >
 > 대신 [샘플링](app-insights-sampling.md)사용을 고려하세요.
 >
 >
 
 ### <a name="create-a-telemetry-processor-c"></a>원격 분석 프로세서 만들기(C#)
-1. 프로젝트의 Application Insights SDK가 버전 2.0.0 이상인지 확인합니다. Visual Studio 솔루션 탐색기에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 NuGet 패키지 관리를 선택합니다. NuGet 패키지 관리자에서 Microsoft.ApplicationInsights.Web을 선택합니다.
-2. 필터를 만들려면 ITelemetryProcessor를 구현합니다. 원격 분석 모듈, 원격 분석 이니셜라이저 및 원격 분석 채널와 같은 또 다른 확장성 지점입니다.
+1. 프로젝트에 해당 hello Application Insights SDK 버전 2.0.0 확인 이상. Visual Studio 솔루션 탐색기에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 NuGet 패키지 관리를 선택합니다. NuGet 패키지 관리자에서 Microsoft.ApplicationInsights.Web을 선택합니다.
+2. 필터를 toocreate ITelemetryProcessor를 구현 합니다. 원격 분석 모듈, 원격 분석 이니셜라이저 및 원격 분석 채널와 같은 또 다른 확장성 지점입니다.
 
-    원격 분석 프로세서는 일련의 프로세싱을 생성합니다. 원격 분석 프로세서를 인스턴스화할 때 과정에서 다음 프로세서에 대한 링크를 전달합니다. 원격 분석 데이터 요소가 프로세스 메서드에 전달되는 경우 해당 작업을 수행하고 과정에서 다음 원격 분석 프로세서를 호출합니다.
+    원격 분석 프로세서는 일련의 프로세싱을 생성합니다. 원격 분석 처리기를 인스턴스화할 hello 체인 링크 toohello 다음 프로세서를 전달 합니다. 원격 분석 데이터 요소 toohello 프로세스 메서드를 전달 되는 작업을 수행 및 다음 호출 hello hello 체인의 다음 원격 분석 프로세서.
 
     ``` C#
 
@@ -66,16 +66,16 @@ Application Insights SDK에 대한 플러그인을 작성하고 구성하여 원
         // You can pass values from .config
         public string MyParamFromConfigFile { get; set; }
 
-        // Link processors to each other in a chain.
+        // Link processors tooeach other in a chain.
         public SuccessfulDependencyFilter(ITelemetryProcessor next)
         {
             this.Next = next;
         }
         public void Process(ITelemetry item)
         {
-            // To filter out an item, just return
+            // toofilter out an item, just return
             if (!OKtoSend(item)) { return; }
-            // Modify the item if required
+            // Modify hello item if required
             ModifyItem(item);
 
             this.Next.Process(item);
@@ -111,16 +111,16 @@ Application Insights SDK에 대한 플러그인을 작성하고 구성하여 원
 
 ```
 
-(샘플링 필터를 초기화하는 섹션과 동일합니다.)
+(이 hello 동일한 섹션 샘플링 필터를 초기화 합니다.)
 
-클래스에서 명명된 공용 속성을 제공하여 .config 파일의 문자열 값을 전달할 수 있습니다.
+클래스의 공용 명명 된 속성을 제공 하 여 hello.config 파일에서 문자열 값을 전달할 수 있습니다.
 
 > [!WARNING]
-> .config 파일의 형식 이름 및 모든 속성 이름이 코드의 클래스 및 속성 이름과 일치하는지 주의하여 확인해야 합니다. .config 파일에서 존재하지 않는 형식 또는 속성을 참조하는 경우 SDK가 원격 분석을 자동으로 전송하지 못할 수 있습니다.
+> Toomatch hello 형식 이름 및 hello.config 파일 toohello 클래스의 속성 이름 및 hello 코드의 속성 이름에 주의 해야 합니다. Hello.config 파일에서 존재 하지 않는 형식 또는 속성을 참조 하는 경우 SDK hello 실패할 수 있습니다 자동으로 toosend 모든 원격 분석.
 >
 >
 
-**또는** 코드에서 필터를 초기화할 수 있습니다. Global.asax.cs의 AppStart과 같은 적합한 초기화 클래스의 과정에서 프로세서를 삽입합니다.
+**또는** 코드에서 hello 필터를 초기화할 수 있습니다. 적합 한 초기화를 클래스-예를 들어 Global.asax.cs에 AppStart-hello 체인에 프로세서를 삽입 합니다.
 
 ```C#
 
@@ -138,7 +138,7 @@ Application Insights SDK에 대한 플러그인을 작성하고 구성하여 원
 
 ### <a name="example-filters"></a>예제 필터
 #### <a name="synthetic-requests"></a>가상 요청
-보트 및 웹 테스트를 필터링합니다. 메트릭 탐색기가 가상 소스를 필터링하는 옵션을 제공하지만 이 옵션은 SDK에서 필터링하여 트래픽을 감소시킵니다.
+보트 및 웹 테스트를 필터링합니다. 메트릭 탐색기를 사용 하면 가상 원본을 옵션 toofilter hello를이 옵션 hello SDK에서 필터링 하 여 트래픽을 줄입니다.
 
 ``` C#
 
@@ -164,7 +164,7 @@ public void Process(ITelemetry item)
     if (request != null &&
     request.ResponseCode.Equals("401", StringComparison.OrdinalIgnoreCase))
     {
-        // To filter out an item, just terminate the chain:
+        // toofilter out an item, just terminate hello chain:
         return;
     }
     // Send everything else:
@@ -174,10 +174,10 @@ public void Process(ITelemetry item)
 ```
 
 #### <a name="filter-out-fast-remote-dependency-calls"></a>빠른 원격 종속성 호출을 필터링합니다.
-느린 호출을 진단하려는 경우 빠른 호출을 필터링합니다.
+느린 toodiagnose 호출만 하려는 경우 hello fast 것을 필터링 합니다.
 
 > [!NOTE]
-> 이 포털에서 참조하는 통계를 왜곡시킵니다. 종속성 차트는 종속성 호출이 모두 실패한 것처럼 보입니다.
+> 이 hello 포털에 표시 하는 hello 통계 왜곡 됩니다. hello 종속성 차트 hello 종속성 호출 모든 오류가 발생 하는 경우 처럼 보입니다.
 >
 >
 
@@ -197,17 +197,17 @@ public void Process(ITelemetry item)
 ```
 
 #### <a name="diagnose-dependency-issues"></a>종속성 문제 진단
-[이 블로그](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/) 에서는 종속성으로 정규 ping을 자동으로 전송하여 종속성 문제를 진단하는 프로젝트에 대해 설명합니다.
+[이 블로그](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/) 일반 ping toodependencies를 자동으로 전송 하 여 프로젝트 toodiagnose 종속성 문제에 설명 합니다.
 
 
 <a name="add-properties"></a>
 
 ## <a name="add-properties-itelemetryinitializer"></a>속성 추가: ITelemetryInitializer
-원격 분석 이니셜라이저를 사용하여 모든 원격 분석과 함께 전송되는 전역 속성을 정의하고 표준 원격 분석 모듈의 선택한 동작을 재정의할 수 있습니다.
+된 모든 원격 분석; 보내는 원격 분석 이니셜라이저 toodefine 전역 속성을 사용 하 여 및 toooverride hello 표준 원격 분석 모듈의 동작을 선택 합니다.
 
-예를 들어, 웹 패키지에 대한 Application Insights는 HTTP 요청에 대한 원격 분석을 수집합니다. 기본적으로, 모든 요청을 응답 코드 > = 400으로 실패한 것으로 플래그합니다. 하지만 400를 성공으로 처리하려는 경우 성공 속성을 설정하는 원격 분석 이니셜라이저를 제공할 수 있습니다.
+예를 들어 hello Application Insights 웹 패키지에 대 한 HTTP 요청에 대 한 원격 분석을 수집합니다. 기본적으로, 모든 요청을 응답 코드 > = 400으로 실패한 것으로 플래그합니다. 하지만 성공으로 400 tootreat 원하는 hello 성공 속성을 설정 하는 원격 분석 이니셜라이저를 제공할 수 있습니다.
 
-원격 분석 이니셜라이저를 제공하는 경우 Track*() 메소드가 호출될 때마다 호출됩니다. 표준 원격 분석 모듈에 의해 호출되는 메서드가 포함됩니다. 규칙에 따라 이러한 모듈은 이니셜라이저에서 이미 설정된 모든 속성을 설정하지 않습니다.
+hello Track*() 때마다 호출 됩니다는 원격 분석 이니셜라이저를 제공 하는 경우 메서드를 호출 합니다. Hello 표준 원격 분석 모듈에 의해 호출 되는 메서드가 포함 됩니다. 규칙에 따라 이러한 모듈은 이니셜라이저에서 이미 설정된 모든 속성을 설정하지 않습니다.
 
 **이니셜라이저 정의**
 
@@ -223,7 +223,7 @@ public void Process(ITelemetry item)
     namespace MvcWebRole.Telemetry
     {
       /*
-       * Custom TelemetryInitializer that overrides the default SDK
+       * Custom TelemetryInitializer that overrides hello default SDK
        * behavior of treating response codes >= 400 as failed requests
        *
        */
@@ -239,12 +239,12 @@ public void Process(ITelemetry item)
             if (!parsed) return;
             if (code >= 400 && code < 500)
             {
-                // If we set the Success property, the SDK won't change it:
+                // If we set hello Success property, hello SDK won't change it:
                 requestTelemetry.Success = true;
-                // Allow us to filter these requests in the portal:
+                // Allow us toofilter these requests in hello portal:
                 requestTelemetry.Context.Properties["Overridden400s"] = "true";
             }
-            // else leave the SDK to set the Success property      
+            // else leave hello SDK tooset hello Success property      
         }
       }
     }
@@ -262,7 +262,7 @@ ApplicationInsights.config에서:
       </TelemetryInitializers>
     </ApplicationInsights>
 
-*또는* , 코드에서 이니셜라이저를 인스턴스화할 수 있습니다(예: Global.aspx.cs).
+*또는* Global.aspx.cs 예를 들어 코드에서 hello 이니셜라이저를 인스턴스화할 수 있습니다.
 
 ```C#
     protected void Application_Start()
@@ -281,7 +281,7 @@ ApplicationInsights.config에서:
 ### <a name="javascript-telemetry-initializers"></a>JavaScript 원격 분석 이니셜라이저
 *JavaScript*
 
-포털에서 가져온 초기화 코드 바로 뒤에 원격 분석 이니셜라이저를 삽입합니다.
+원격 분석 이니셜라이저 hello 포털에서 가져온 hello 초기화 코드 바로 뒤에 삽입 합니다.
 
 ```JS
 
@@ -301,17 +301,17 @@ ApplicationInsights.config에서:
             appInsights.context.addTelemetryInitializer(function (envelope) {
                 var telemetryItem = envelope.data.baseData;
 
-                // To check the telemetry item’s type - for example PageView:
+                // toocheck hello telemetry item’s type - for example PageView:
                 if (envelope.name == Microsoft.ApplicationInsights.Telemetry.PageView.envelopeType) {
                     // this statement removes url from all page view documents
                     telemetryItem.url = "URL CENSORED";
                 }
 
-                // To set custom properties:
+                // tooset custom properties:
                 telemetryItem.properties = telemetryItem.properties || {};
                 telemetryItem.properties["globalProperty"] = "boo";
 
-                // To set custom metrics:
+                // tooset custom metrics:
                 telemetryItem.measurements = telemetryItem.measurements || {};
                 telemetryItem.measurements["globalMetric"] = 100;
             });
@@ -323,16 +323,16 @@ ApplicationInsights.config에서:
     </script>
 ```
 
-TelemetryItem에서 사용할 수 있는 사용자 지정이 아닌 속성의 요약은 [Application Insights 데이터 모델 내보내기](app-insights-export-data-model.md)를 참조하세요.
+에 대 한 요약 hello hello telemetryItem에 사용할 수 있는 사용자 지정이 아닌 속성을 참조 하세요. [응용 프로그램 통찰력 내보낼 데이터 모델](app-insights-export-data-model.md)합니다.
 
 이니셜라이저를 원하는 수만큼 추가할 수 있습니다.
 
 ## <a name="itelemetryprocessor-and-itelemetryinitializer"></a>ITelemetryProcessor 및 ITelemetryInitializer
-원격 분석 프로세서 및 원격 분석 이니셜라이저 간의 차이는 무엇인가요?
+Hello 프로세서 원격 분석 및 원격 분석 이니셜라이저 차이 무엇입니까?
 
-* 두 프로그램으로 수행할 수 있는 작업의 일부가 겹칩니다. 모두 원격 분석에 속성을 추가하는 데 사용될 수 있습니다.
+* 이러한 수행할 수 있는 작업에 몇 가지 overlaps는: 모두 사용 하는 tooadd 속성 tootelemetry 일 수 있습니다.
 * TelemetryInitializers는 항상 TelemetryProcessors 전에 실행됩니다.
-* TelemetryProcessors를 사용하면 원격 분석 항목을 완전히 대체하거나 삭제할 수 있습니다.
+* TelemetryProcessors는 toocompletely 덮어쓰기를 허용 하거나 원격 분석 항목을 삭제 합니다.
 * TelemetryProcessors는 성능 카운터 원격 분석을 처리하지 않습니다.
 
 

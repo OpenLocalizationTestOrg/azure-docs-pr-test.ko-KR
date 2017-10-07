@@ -1,6 +1,6 @@
 ---
-title: "Azure Single Sign On SAML 프로토콜 | Microsoft Docs"
-description: "이 문서에서는 Azure Active Directory에서 Single Sign On SAML 프로토콜을 설명합니다."
+title: "SAML 프로토콜에서 Single Sign aaaAzure | Microsoft Docs"
+description: "이 문서에서는 Azure Active Directory에서 Single Sign SAML 프로토콜 hello 설명"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 07/19/2017
 ms.author: priyamo
 ms.custom: aaddev
-ms.openlocfilehash: f41402fc2cb282975b93071d998365fdb0a21941
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 435cfe0e7be3f2defd34e8b6f6b0f08596ee1f48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Single Sign-On SAML 프로토콜
-이 문서에서는 Azure AD(Azure Active Directory)에서 Single Sign-On에 대해 지원하는 SAML 2.0 인증 요청 및 응답에 대해 설명합니다.
+이 문서에서는 hello SAML 2.0 인증 요청 및 응답에 Azure Active Directory (Azure AD)에 대 한 Single Sign-on 지원에 대해 설명 합니다.
 
-아래 프로토콜 다이어그램은 Single Sign-On 시퀀스를 설명합니다. 클라우드 서비스(서비스 공급자)는 HTTP 리디렉션 바인딩을 사용하여 `AuthnRequest` (인증 요청) 요소를 Azure AD(ID 공급자)에 전달합니다. 그런 다음 Azure AD는 HTTP post 바인딩을 사용하여 `Response` 요소를 클라우드 서비스에 게시합니다.
+아래 다이어그램 hello 프로토콜 hello 단일 로그온 시퀀스를 설명합니다. hello 클라우드 서비스 (hello 서비스 공급자) 사용 하 여 HTTP 리디렉션 바인딩을 toopass는 `AuthnRequest` (인증 요청) 요소 tooAzure AD (hello id 공급자). HTTP post 바인딩을 toopost을 사용 하 여 다음 azure AD는 `Response` 요소 toohello 클라우드 서비스입니다.
 
 ![Single Sign On 워크플로](media/active-directory-single-sign-on-protocol-reference/active-directory-saml-single-sign-on-workflow.png)
 
 ## AuthnRequest
-사용자 인증을 요청하기 위해 클라우드 서비스는 `AuthnRequest` 요소를 Azure AD에 보냅니다. 샘플 SAML 2.0 `AuthnRequest` 는 다음과 같습니다.
+사용자 인증 toorequest 클라우드 서비스 보내기는 `AuthnRequest` 요소 tooAzure AD 합니다. 샘플 SAML 2.0 `AuthnRequest` 는 다음과 같습니다.
 
 ```
 <samlp:AuthnRequest
@@ -44,28 +44,28 @@ xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
 
 | 매개 변수 |  | 설명 |
 | --- | --- | --- |
-| ID |필수 |Azure AD는 이 특성을 사용하여 반환된 응답의 `InResponseTo` 특성을 채웁니다. ID는 숫자로 시작할 수 없으므로 GUID의 문자열 표현에 "id"와 같은 문자열을 앞에 추가합니다. 예를 들어 `id6c1c178c166d486687be4aaf5e482730` 은 유효한 ID입니다. |
+| ID |필수 |Azure AD에서는이 특성 toopopulate hello `InResponseTo` 특성의 hello 응답을 반환 합니다. ID로 시작 해서는 안 숫자 일반적인 전략은 tooprepend "id" toohello 문자열 표현 guid와 같은 문자열입니다. 예를 들어 `id6c1c178c166d486687be4aaf5e482730` 은 유효한 ID입니다. |
 | 버전 |필수 |**2.0**이어야 합니다. |
-| IssueInstant |필수 |UTC 값과 [라운드 트립 형식("o")](https://msdn.microsoft.com/library/az4se3k1.aspx)을 포함하는 DateTime 문자열입니다. Azure AD에는 이 형식의 DateTime 값이 필요하지만 값을 평가하거나 사용하지는 않습니다. |
-| AssertionConsumerServiceUrl |선택 사항 |제공된 경우 Azure AD에서 클라우드 서비스의 `RedirectUri` 와 일치해야 합니다. |
-| ForceAuthn |선택 사항 | 부울 값입니다. True인 경우, Azure AD와 유효한 세션이 있더라도 사용자를 다시 인증해야 합니다. |
-| IsPassive |선택 사항 |사용자 상호 작용 없이 세션 쿠키(있는 경우)를 사용하여 Azure AD가 사용자를 자동으로 인증할지를 지정하는 부울 값입니다. True이면 Azure AD는 세션 쿠키를 사용하여 사용자 인증을 시도합니다. |
+| IssueInstant |필수 |UTC 값과 [라운드 트립 형식("o")](https://msdn.microsoft.com/library/az4se3k1.aspx)을 포함하는 DateTime 문자열입니다. Azure AD는이 형식의 DateTime 값이 필요 하지만 평가 않거나 hello 값을 사용 합니다. |
+| AssertionConsumerServiceUrl |선택 사항 |제공 된 경우에 hello 일치 해야이 `RedirectUri` hello 클라우드 서비스에서 Azure AD의 합니다. |
+| ForceAuthn |선택 사항 | 부울 값입니다. 경우 true, 즉 해당 hello 사용자는 강제 toore-Azure AD와 올바른 세션 있는 경우에 인증 합니다. |
+| IsPassive |선택 사항 |이것이 여부를 Azure AD 인증 해야 hello 사용자 자동으로 사용자 조작 없이도 있는 경우에 hello 세션 쿠키를 사용 하 여 지정 하는 부울 값입니다. True 이면 Azure AD는 hello 세션 쿠키를 사용 하 여 tooauthenticate hello 사용자를 시도 합니다. |
 
 다른 모든 `AuthnRequest` 특성(예: Consent, Destination, AssertionConsumerServiceIndex, AttributeConsumerServiceIndex, ProviderName)은 **무시**됩니다.
 
-Azure AD도 `AuthnRequest`에서 `Conditions` 요소를 무시합니다.
+Azure AD에서는 hello 무시 `Conditions` 요소 `AuthnRequest`합니다.
 
 ### 발급자
-`AuthnRequest`의 `Issuer` 요소는 Azure AD에서 클라우드 서비스의 **ServicePrincipalNames** 중 하나와 정확히 일치해야 합니다. 일반적으로 응용 프로그램 등록 중에 지정된 **앱 ID URI** 로 설정됩니다.
+hello `Issuer` 요소에는 `AuthnRequest` hello 중 하나에 정확히 일치 해야 **ServicePrincipalNames** hello 클라우드 서비스에 Azure AD. 일반적으로이 설정은 toohello **앱 ID URI** 응용 프로그램 등록 시 지정 된 합니다.
 
-`Issuer` 요소를 포함하는 샘플 SAML 발췌본은 다음과 같습니다.
+Hello를 포함 하는 샘플 SAML 발췌문 `Issuer` 요소는 다음과 같습니다.
 
 ```
 <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">https://www.contoso.com</Issuer>
 ```
 
 ### NameIDPolicy
-이 요소는 응답에서 특정 이름 ID 형식을 요청하고 Azure AD로 전송되는 `AuthnRequest` 요소에서는 선택 사항입니다.
+이 요소는 특정 이름 ID 형식 hello에 대 한 응답을 요청 하 고에서 선택 사항 `AuthnRequest` 전송 요소 tooAzure AD 합니다.
 
 샘플 `NameIdPolicy` 요소는 다음과 같습니다.
 
@@ -73,32 +73,31 @@ Azure AD도 `AuthnRequest`에서 `Conditions` 요소를 무시합니다.
 <NameIDPolicy Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"/>
 ```
 
-`NameIDPolicy`가 제공된 경우 선택 사항인 `Format` 특성을 포함할 수 있습니다. `Format` 특성은 다음 값 중 하나만 포함할 수 있으며 다른 값을 사용하면 오류가 발생합니다.
+`NameIDPolicy`가 제공된 경우 선택 사항인 `Format` 특성을 포함할 수 있습니다. hello `Format` hello 다음 값 중 하나에만; 다른 오류가 발생 값 특성이 있을 수 있습니다.
 
-* `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`: Azure Active Directory는 쌍별 식별자로 NameID 클레임을 발급합니다.
-* `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`: Azure Active Directory는 전자 메일 주소 형식으로 NameID 클레임을 발급합니다.
-* `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`: 이 값은 클레임 형식을 선택하기 위한 Azure Active Directory를 허용합니다. Azure Active Directory는 쌍별 식별자로 NameID를 발급합니다.
-* `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`: Azure Active Directory는 현재 SSO 작업에 고유하고 임의 생성 값으로 NameID 클레임을 발급합니다. 따라서 임시 값이며 인증 사용자를 식별하는 데 사용할 수 없습니다.
+* `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`: Azure Active Directory는 쌍으로 된 식별자로 hello NameID 클레임을 발급합니다.
+* `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`: Azure Active Directory 전자 메일 주소 형식에서 hello NameID 클레임을 발급합니다.
+* `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`:이 값은 Azure Active Directory tooselect hello 클레임 형식을 허용합니다. Azure Active Directory는 쌍으로 된 식별자로 NameID hello를 발급합니다.
+* `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`: Azure Active Directory 고유 toohello 현재 SSO 작업 임의로 생성 된 값으로 hello NameID 클레임을 발급 합니다. 즉, 임시 hello 값은 인증 중인 사용자를 사용 하는 tooidentify hello 수 수 없습니다.
 
-Azure AD는 `AllowCreate` 특성을 무시합니다.
+Azure AD 무시 hello `AllowCreate` 특성입니다.
 
 ### RequestAuthnContext
-`RequestedAuthnContext` 요소는 원하는 인증 방법을 지정합니다. Azure AD로 전송되는 `AuthnRequest` 요소에서는 선택 사항입니다. Azure AD는 하나의 `AuthnContextClassRef` 값 `urn:oasis:names:tc:SAML:2.0:ac:classes:Password`만 지원합니다.
+hello `RequestedAuthnContext` 요소 hello 필요한 인증 방법을 지정 합니다. 에 선택 사항이 `AuthnRequest` 전송 요소 tooAzure AD 합니다. Azure AD는 하나의 `AuthnContextClassRef` 값 `urn:oasis:names:tc:SAML:2.0:ac:classes:Password`만 지원합니다.
 
 ### 범위 지정
-ID 공급자 목록을 포함하는 `Scoping` 요소는 Azure AD로 전송되는 `AuthnRequest` 요소에서 선택 사항입니다.
+hello `Scoping` id 공급자 목록이 포함 하는 요소는의 선택적 `AuthnRequest` 전송 요소 tooAzure AD 합니다.
 
-제공된 경우 `ProxyCount` 특성, `IDPListOption` 또는 `RequesterID` 요소는 지원되지 않으므로 포함하지 마세요.
+제공 된 경우 hello를 넣지 마십시오 `ProxyCount` 특성 `IDPListOption` 또는 `RequesterID` 요소를은 지원 되지 않습니다.
 
 ### 서명
 Azure AD에서는 서명된 인증 요청을 지원하지 않으므로 `AuthnRequest` 요소에 `Signature` 요소를 포함하지 마세요.
 
 ### 제목
-
-Azure AD는 `AuthnRequest` 요소의 `Subject` 요소를 무시합니다.
+Azure AD 무시 hello `Subject` 요소의 `AuthnRequest` 요소입니다.
 
 ## 응답
-요청한 로그온이 성공적으로 완료되면 Azure AD는 클라우드 서비스에 응답을 게시합니다. 성공적인 로그온 시도에 대한 샘플 응답은 다음과 같습니다.
+요청한 로그온 성공적으로 완료 되 면 Azure AD는 응답 toohello 클라우드 서비스를 게시 합니다. 샘플 응답 tooa 성공적인 로그온 시도 하는 다음과 같습니다.
 
 ```
 <samlp:Response ID="_a4958bfd-e107-4e67-b06d-0d85ade2e76a" Version="2.0" IssueInstant="2013-03-18T07:38:15.144Z" Destination="https://contoso.com/identity/inboundsso.aspx" InResponseTo="id758d0ef385634593a77bdf7e632984b6" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -144,13 +143,13 @@ Azure AD는 `AuthnRequest` 요소의 `Subject` 요소를 무시합니다.
 ```
 
 ### 응답
-`Response` 요소는 권한 부여 요청의 결과를 포함합니다. Azure AD는 `Response` 요소에 `ID`, `Version` 및 `IssueInstant` 값을 설정합니다. 다음 특성도 설정합니다.
+hello `Response` 요소 hello 권한 부여 요청의 hello 결과 포함 합니다. Hello를 설정 하는 azure AD `ID`, `Version` 및 `IssueInstant` hello 값 `Response` 요소입니다. 또한 hello 다음 특성을 설정 합니다.
 
-* `Destination`: 로그온이 성공적으로 완료되면 서비스 공급자(클라우드 서비스)의 `RedirectUri`로 설정됩니다.
-* `InResponseTo`: 응답을 시작한 `AuthnRequest` 요소의 `ID` 특성으로 설정됩니다.
+* `Destination`: 로그온 성공적으로 완료 되 면이 설정 됩니다 toohello `RedirectUri` hello 서비스 공급자 (클라우드 서비스)의 합니다.
+* `InResponseTo`:이 설정은 toohello `ID` hello 특성 `AuthnRequest` hello 응답을 시작 하는 요소입니다.
 
 ### 발급자
-Azure AD는 `Issuer` 요소를 `https://login.microsoftonline.com/<TenantIDGUID>/`로 설정합니다. 여기서 <TenantIDGUID>은(는) Azure AD 테넌트의 테넌트 ID입니다.
+Hello를 설정 하는 azure AD `Issuer` 요소 너무`https://login.microsoftonline.com/<TenantIDGUID>/` 여기서 <TenantIDGUID> hello Azure AD 테 넌 트의 hello 테 넌 트 ID입니다.
 
 예를 들어 발급자 요소를 포함하는 샘플 응답은 다음과 같습니다.
 
@@ -159,11 +158,11 @@ Azure AD는 `Issuer` 요소를 `https://login.microsoftonline.com/<TenantIDGUID>
 ```
 
 ### 가동 상태
-`Status` 요소가 로그온의 성공 여부를 전달합니다. 여기에는 요청 상태를 나타내는 코드 또는 중첩 코드 집합을 포함하는 `StatusCode` 요소가 포함됩니다. 또한 로그온 프로세스 중에 생성된 사용자 지정 오류 메시지를 포함하는 `StatusMessage` 요소도 포함됩니다.
+hello `Status` 요소가 로그온의 hello 성공 또는 실패를 전달 합니다. Hello 포함 `StatusCode` 코드나 hello hello 요청 상태를 나타내는 중첩된 코드 집합을 포함 하는 요소입니다. 또한 hello 포함 `StatusMessage` hello 로그온 프로세스 중 생성 되는 사용자 정의 오류 메시지를 포함 하는 요소입니다.
 
 <!-- TODO: Add a authentication protocol error reference -->
 
-다음은 실패한 로그온 시도에 대한 SAML 응답입니다.
+hello 다음은 SAML 응답 tooan 실패 한 로그온 시도 합니다.
 
 ```
 <samlp:Response ID="_f0961a83-d071-4be5-a18c-9ae7b22987a4" Version="2.0" IssueInstant="2013-03-18T08:49:24.405Z" InResponseTo="iddce91f96e56747b5ace6d2e2aa9d4f8c" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -172,26 +171,26 @@ Azure AD는 `Issuer` 요소를 `https://login.microsoftonline.com/<TenantIDGUID>
     <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Requester">
       <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:RequestUnsupported" />
     </samlp:StatusCode>
-    <samlp:StatusMessage>AADSTS75006: An error occurred while processing a SAML2 Authentication request. AADSTS90011: The SAML authentication request property 'NameIdentifierPolicy/SPNameQualifier' is not supported.
+    <samlp:StatusMessage>AADSTS75006: An error occurred while processing a SAML2 Authentication request. AADSTS90011: hello SAML authentication request property 'NameIdentifierPolicy/SPNameQualifier' is not supported.
 Trace ID: 66febed4-e737-49ff-ac23-464ba090d57c
 Timestamp: 2013-03-18 08:49:24Z</samlp:StatusMessage>
   </samlp:Status>
 ```
 
 ### 어설션
-`ID`, `IssueInstant` 및 `Version` 외에도 Azure AD는 응답의 `Assertion` 요소에서 다음 요소를 설정합니다.
+또한 toohello에서 `ID`, `IssueInstant` 및 `Version`, hello 요소 hello에 다음을 설정 하는 Azure AD `Assertion` hello 응답의 요소입니다.
 
 #### 발급자
-`https://sts.windows.net/<TenantIDGUID>/`로 설정됩니다. 여기서 <TenantIDGUID>은(는) Azure AD 테넌트의 테넌트 ID입니다.
+이 설정은 너무`https://sts.windows.net/<TenantIDGUID>/`여기서 <TenantIDGUID> 는 hello hello Azure AD 테 넌 트의 테 넌 트 ID입니다.
 
 ```
 <Issuer>https://login.microsoftonline.com/82869000-6ad1-48f0-8171-272ed18796e9/</Issuer>
 ```
 
 #### 서명
-Azure AD는 성공적인 로그온에 대한 응답에서 어설션을 서명합니다. `Signature` 요소는 클라우드 서비스에서 소스를 인증하고 어설션의 무결성을 확인하는 데 사용할 수 있는 디지털 서명을 포함합니다.
+Azure AD 서명 hello 어설션이 응답 tooa 로그온에 성공 합니다. hello `Signature` 요소 hello 클라우드 서비스가 hello 어설션의 tooauthenticate hello 소스 tooverify hello 무결성 사용 하 여 디지털 서명을 포함 합니다.
 
-이 디지털 서명을 생성하기 위해 Azure AD는 해당 메타데이터 문서의 `IDPSSODescriptor` 요소에 서명 키를 사용합니다.
+이 디지털 서명으로 Azure AD를 사용 하 여 toogenerate hello hello에 대 한 서명 키 `IDPSSODescriptor` 의 메타 데이터 문서의 요소입니다.
 
 ```
 <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
@@ -200,10 +199,9 @@ Azure AD는 성공적인 로그온에 대한 응답에서 어설션을 서명합
 ```
 
 #### 제목
+Hello 보안 주체 hello assertion에서 hello 문 hello 주체를 지정 합니다. 포함 된 `NameID` hello 인증 된 사용자를 나타내는 요소입니다. hello `NameID` 값은 대상인 hello hello 토큰에 대 한 유일한 toohello 방향이 지정 된 서비스 공급자는 대상이 지정 된 식별자입니다. 영구적이며 해지할 수 있지만 다시 할당되지는 않습니다. 이기도 불투명, 즉 hello 사용자에 대 한 정보도 노출 되지 않습니다 고 특성 쿼리의 식별자로 사용할 수 없습니다.
 
-이 어설션의 문 주체인 보안 주체를 지정합니다. 여기에는 인증된 사용자를 나타내는 `NameID` 요소가 포함됩니다. `NameID` 값은 토큰의 대상 그룹인 서비스 공급자에만 전달되는 대상 지정 식별자입니다. 영구적이며 해지할 수 있지만 다시 할당되지는 않습니다. 또한 불투명하며 사용자에 대한 어떠한 정보도 표시하지 않으며 특성 쿼리의 식별자로 사용할 수 없습니다.
-
-`SubjectConfirmation` 요소의 `Method` 특성은 항상 `urn:oasis:names:tc:SAML:2.0:cm:bearer`로 설정됩니다.
+hello `Method` hello 특성 `SubjectConfirmation` 요소는 항상 너무 설정`urn:oasis:names:tc:SAML:2.0:cm:bearer`합니다.
 
 ```
 <Subject>
@@ -215,7 +213,7 @@ Azure AD는 성공적인 로그온에 대한 응답에서 어설션을 서명합
 ```
 
 #### 조건
-이 요소는 SAML 어설션의 사용 제한을 정의하는 조건을 지정합니다.
+이 요소는 SAML 어설션의 hello 허용을 정의 하는 조건 사용 하 여 지정 합니다.
 
 ```
 <Conditions NotBefore="2013-03-18T07:38:15.128Z" NotOnOrAfter="2013-03-18T08:48:15.128Z">
@@ -225,13 +223,13 @@ Azure AD는 성공적인 로그온에 대한 응답에서 어설션을 서명합
 </Conditions>
 ```
 
-`NotBefore` 및 `NotOnOrAfter` 특성은 어설션이 유효한 간격을 지정합니다.
+hello `NotBefore` 및 `NotOnOrAfter` 특성 hello는 hello 어설션이 유효한 간격을 지정 합니다.
 
-* `NotBefore` 특성 값은 `Assertion` 요소의 `IssueInstant` 특성 값과 같거나 약간(1초 미만) 나중입니다. Azure AD에서는 Azure AD 자체와 클라우드 서비스(서비스 공급자) 간의 시차를 고려하지 않으며 이 시간에 어떠한 버퍼도 추가하지 않습니다.
-* `NotOnOrAfter` 특성 값은 `NotBefore` 특성 값보다 70분 후입니다.
+* 값의 hello hello `NotBefore` 특성은 같은 tooor 약간 (1 초 미만)의 hello 값 보다 나중 `IssueInstant` hello의 특성 `Assertion` 요소입니다. Azure AD에서 자체와 hello 시간의 차이를 고려 하지 클라우드 서비스 (서비스 공급자) 및 버퍼 toothis 때마다 추가 하지 않습니다.
+* 값의 hello hello `NotOnOrAfter` 특성은 70 분 후 hello hello 값 `NotBefore` 특성입니다.
 
 #### 대상
-대상 그룹을 식별하는 URI를 포함합니다. Azure AD는 이 요소의 값을 로그온이 시작된 `AuthnRequest`의 `Issuer` 요소 값으로 설정합니다. `Audience` 값을 평가하려면 응용 프로그램 등록 중에 지정된 `App ID URI` 값을 사용합니다.
+대상 그룹을 식별하는 URI를 포함합니다. 이 요소 toohello 값의 hello 값을 설정 하는 azure AD `Issuer` hello 요소의 `AuthnRequest` hello 로그온를 초기화 합니다. tooevaluate hello `Audience` hello hello 값을 사용 하 여, 값 `App ID URI` 응용 프로그램 등록 중에 지정한 합니다.
 
 ```
 <AudienceRestriction>
@@ -239,10 +237,10 @@ Azure AD는 성공적인 로그온에 대한 응답에서 어설션을 서명합
 </AudienceRestriction>
 ```
 
-`Issuer` 값과 마찬가지로 `Audience` 값은 Azure AD에서 클라우드 서비스를 나타내는 서비스 주체 이름 중 하나와 정확히 일치해야 합니다. 그러나 `Issuer` 요소의 값이 URI 값이 아닌 경우 응답에 있는 `Audience` 값은 `spn:` 접두사가 있는 `Issuer` 값입니다.
+Hello 처럼 `Issuer` 값을 hello `Audience` 값 정확히 일치 해야 Azure AD에서 hello 클라우드 서비스를 나타내는 hello 서비스 사용자 이름 중 하나입니다. 그러나 hello 값의 hello `Issuer` 아니므로 URI 값 hello `Audience` hello에 대 한 응답 값은 hello `Issuer` 기수가 `spn:`합니다.
 
 #### AttributeStatement
-주체 또는 사용자에 대한 클레임을 포함합니다. 다음 발췌문에는 샘플 `AttributeStatement` 요소가 포함되어 있습니다. 줄임표는 요소에 여러 특성 및 특성 값이 포함될 수 있음을 나타냅니다.
+이 hello 주체 또는 사용자에 대 한 클레임을 포함합니다. hello 발췌 한 다음 예제가 포함 `AttributeStatement` 요소입니다. hello 줄임표가 나타냅니다 hello 요소에는 여러 특성 및 특성 값에 포함 될 수 있습니다.
 
 ```
 <AttributeStatement>
@@ -256,14 +254,14 @@ Azure AD는 성공적인 로그온에 대한 응답에서 어설션을 서명합
 </AttributeStatement>
 ```        
 
-* **이름 클레임**: `Name` 특성 값(`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`)은 인증된 사용자의 사용자 주체 이름입니다(예: `testuser@managedtenant.com`).
-* **ObjectIdentifier 클레임**: `ObjectIdentifier` 특성 값(`http://schemas.microsoft.com/identity/claims/objectidentifier`)은 Azure AD에서 인증된 사용자를 나타내는 디렉터리 개체의 `ObjectId`입니다. `ObjectId` 는 인증된 사용자의 변경할 수 없으며 전역적으로 고유하고 재사용 방지 식별자입니다.
+* **클레임을 이름** : hello 값 hello `Name` 특성 (`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`) 같은 hello hello 인증 된 사용자의 사용자 계정 이름입니다 `testuser@managedtenant.com`합니다.
+* **ObjectIdentifier 클레임** : hello 값 hello `ObjectIdentifier` 특성 (`http://schemas.microsoft.com/identity/claims/objectidentifier`)는 hello `ObjectId` hello 나타내는 hello 디렉터리 개체의 Azure AD에서 사용자를 인증 합니다. `ObjectId`변경할 수 없는 전역적으로 고유 이며 hello의 안전 식별자 다시 사용 하 여 사용자를 인증 합니다.
 
 #### AuthnStatement
-이 요소는 어설션 주체가 특정 시간에 특정 수단으로 인증되었음을 어설션합니다.
+이 요소는 해당 hello 어설션 주체가 특정 시간에 특정 수단으로 인증 되었음을 어설션 합니다.
 
-* `AuthnInstant` 특성은 사용자가 Azure AD를 인증한 시간을 지정합니다.
-* `AuthnContext` 요소는 사용자를 인증하는 데 사용된 인증 컨텍스트를 지정합니다.
+* hello `AuthnInstant` 특성 Azure AD로 인증 hello 사용자 hello 시간을 지정 합니다.
+* hello `AuthnContext` 요소 tooauthenticate hello 사용자를 사용 하는 hello 인증 컨텍스트를 지정 합니다.
 
 ```
 <AuthnStatement AuthnInstant="2013-03-18T07:33:56.000Z" SessionIndex="_bf9c623d-cc20-407a-9a59-c2d0aee84d12">

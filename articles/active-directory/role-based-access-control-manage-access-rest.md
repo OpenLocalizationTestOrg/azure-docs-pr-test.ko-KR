@@ -1,6 +1,6 @@
 ---
-title: "REST를 사용한 역할 기반 액세스 제어 - Azure AD | Microsoft Docs"
-description: "REST API를 사용하여 역할 기반 액세스 제어 관리"
+title: "rest-Azure AD 액세스 제어 aaaRole 기반 | Microsoft Docs"
+description: "Hello REST API로 역할 기반 액세스 제어 관리"
 services: active-directory
 documentationcenter: na
 author: andredm7
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: andredm
-ms.openlocfilehash: a5c19fd87ce1ae3e199bf1dfc8cf82f5653baac2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ccd402fd4fe4583288076cac23753dd067694681
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-role-based-access-control-with-the-rest-api"></a>REST API를 사용하여 역할 기반 액세스 제어 관리
+# <a name="manage-role-based-access-control-with-hello-rest-api"></a>Hello REST API로 역할 기반 액세스 제어 관리
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
 
-Azure Portal 및 Azure Resource Manager API의 RBAC(역할 기반 액세스 제어)를 사용하면 세밀한 수준에서 구독과 리소스에 대한 액세스를 관리할 수 있습니다. 이 기능을 통해 특정 범위에서 Active Directory 사용자, 그룹 또는 서비스 사용자에게 일부 역할을 할당하여 액세스 권한을 부여할 수 있습니다.
+역할 기반 액세스 제어 (RBAC) hello Azure 포털에서에서 Azure 리소스 관리자 API 하면 쉽게 액세스 tooyour 구독 및 세분화 된 수준에서 리소스를 관리할 수 있습니다. 이 기능을 특정 범위에서 일부 역할 toothem 할당 하 여 Active Directory 사용자, 그룹 또는 서비스 사용자에 대 한 액세스를 부여할 수 있습니다.
 
 ## <a name="list-all-role-assignments"></a>모든 역할 할당 나열
-지정된 범위 및 하위 범위에서 모든 역할 할당을 나열합니다.
+지정 된 hello에서 모든 hello 역할 할당 범위 및 subscopes 합니다.
 
-역할 할당을 나열하려면 범위에서 `Microsoft.Authorization/roleAssignments/read` 작업에 대한 액세스 권한이 있어야 합니다. 모든 기본 제공 역할에는 이 작업에 대한 액세스 권한이 부여되어 있습니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+toolist 역할 할당을 액세스할 수 있어야 너무`Microsoft.Authorization/roleAssignments/read` hello 범위에서 작업 합니다. 모든 hello 기본 제공 역할 toothis 작업 액세스 권한이 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **GET** 메서드를 사용합니다.
+사용 하 여 hello **가져오기** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할 할당을 나열하려는 범위로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위를 원하는 toolist hello 역할 할당 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. *{api-version}* 을 2015-07-01로 바꿉니다.
-3. *{filter}* 를 역할 할당 목록을 필터링하기 위해 적용하려는 조건으로 바꿉니다.
+3. 대체 *{filter}* tooapply toofilter hello 역할 할당 목록을 원하는 hello 조건:
 
-   * 하위 범위에서는 역할 할당을 포함시키지 않고 지정된 범위에 대해서만 역할 할당 나열: `atScope()`    
+   * 만 hello에 대 한 역할 할당 목록을 subscopes에서 hello 역할 할당을 포함 하지 않는 범위를 지정 합니다.`atScope()`    
    * 특정 사용자, 그룹 또는 응용 프로그램에 대해서만 역할 할당 나열: `principalId%20eq%20'{objectId of user, group, or service principal}'`  
    * 그룹에서 상속된 역할 할당을 포함하여 특정 사용자에 대한 역할 할당 나열 | `assignedTo('{objectId of user}')`
 
@@ -79,23 +79,23 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ```
 
 ## <a name="get-information-about-a-role-assignment"></a>역할 할당에 대한 정보 가져오기
-역할 할당 식별자에서 지정한 단일 역할 할당에 대한 정보를 가져옵니다.
+Hello 역할 할당 id에서 지정한 단일 역할 할당에 대 한 정보를 가져옵니다.
 
-역할 할당에 대한 정보를 가져오려면 `Microsoft.Authorization/roleAssignments/read` 작업에 대한 액세스 권한이 있어야 합니다. 모든 기본 제공 역할에는 이 작업에 대한 액세스 권한이 부여되어 있습니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+역할 할당에 대 한 tooget 정보를 액세스할 수 있어야 너무`Microsoft.Authorization/roleAssignments/read` 작업 합니다. 모든 hello 기본 제공 역할 toothis 작업 액세스 권한이 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **GET** 메서드를 사용합니다.
+사용 하 여 hello **가져오기** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할 할당을 나열하려는 범위로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위를 원하는 toolist hello 역할 할당 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-assignment-id}* 를 역할 할당의 GUID 식별자로 바꿉니다.
+2. 대체 *{역할 할당 id}* hello 역할 할당의 hello GUID 식별자를 사용 합니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
 ### <a name="response"></a>응답
@@ -120,26 +120,26 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ```
 
 ## <a name="create-a-role-assignment"></a>역할 할당 만들기
-지정된 역할을 부여하는 지정된 보안 주체에 대해 지정된 범위에서 역할 할당을 만듭니다.
+역할 만들기 hello 지정한 보안 주체 권한을 부여 hello 지정 된 역할에 대 한 할당 hello에 범위를 지정 합니다.
 
-역할 할당을 만들려면 `Microsoft.Authorization/roleAssignments/write` 작업에 대한 액세스 권한이 있어야 합니다. 기본 제공 역할의 경우 *소유자* 및 *사용자 액세스 관리자*에게만 이러한 작업의 권한이 부여됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+역할 할당 toocreate 권한이 너무`Microsoft.Authorization/roleAssignments/write` 작업 합니다. Hello 기본 제공 역할 중만 *소유자* 및 *사용자 액세스 관리자에 게* 액세스 toothis 작업 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **PUT** 메서드를 사용합니다.
+사용 하 여 hello **배치** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할 할당을 만들려는 범위로 바꿉니다. 부모 범위에서 역할 할당을 만들 때 모든 자식 범위는 같은 역할 할당을 상속합니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위를 원하는 toocreate hello 역할 할당 합니다. 모든 자식 범위 상속 hello 부모 범위에서 역할 할당을 만들 때 동일한 역할 할당 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1   
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-assignment-id}* 를 새 역할 할당의 GUID 식별자가 되는 새 GUID로 바꿉니다.
+2. 대체 *{역할 할당 id}* hello 새 역할 할당의 GUID 식별자 hello 새 GUID를 가진 됩니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
-요청 본문에 대해 다음과 같은 형식으로 값을 제공합니다.
+Hello 요청 본문에 대 한 형식에 따라 hello에 hello 값을 제공 합니다.
 
 ```
 {
@@ -153,8 +153,8 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 
 | 요소 이름 | 필수 | 형식 | 설명 |
 | --- | --- | --- | --- |
-| roleDefinitionId |예 |문자열 |역할의 식별자입니다. 식별자의 형식은 `{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
-| principalId |예 |문자열 |역할을 할당할 Azure AD 보안 주체(사용자, 그룹 또는 서비스 사용자)의 objectId입니다. |
+| roleDefinitionId |예 |문자열 |hello 역할의 hello 식별자입니다. hello hello 식별자의 형식은 다음과 같습니다.`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
+| principalId |예 |문자열 |hello Azure AD 보안 주체 (사용자, 그룹 또는 서비스 사용자)의 objectId toowhich hello 역할 할당 됩니다. |
 
 ### <a name="response"></a>응답
 상태 코드: 201
@@ -178,23 +178,23 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ```
 
 ## <a name="delete-a-role-assignment"></a>역할 할당 삭제
-지정된 범위에서 역할 할당을 삭제합니다.
+Delete hello에서 역할 할당 범위를 지정 합니다.
 
-역할 할당을 삭제하려면 `Microsoft.Authorization/roleAssignments/delete` 작업에 대한 액세스 권한이 있어야 합니다. 기본 제공 역할의 경우 *소유자* 및 *사용자 액세스 관리자*에게만 이러한 작업의 권한이 부여됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+역할 할당 toodelete 있어야 액세스 toohello `Microsoft.Authorization/roleAssignments/delete` 작업 합니다. Hello 기본 제공 역할 중만 *소유자* 및 *사용자 액세스 관리자에 게* 액세스 toothis 작업 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **DELETE** 메서드를 사용합니다.
+사용 하 여 hello **삭제** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할 할당을 만들려는 범위로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위를 원하는 toocreate hello 역할 할당 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-assignment-id}* 를 역할 할당 id GUID로 바꿉니다.
+2. 대체 *{역할 할당 id}* hello 역할 할당 id GUID 사용 합니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
 ### <a name="response"></a>응답
@@ -219,27 +219,27 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ```
 
 ## <a name="list-all-roles"></a>모든 역할 나열
-지정된 범위에서 할당에 사용할 수 있는 모든 역할을 나열합니다.
+지정 된 hello에 대 한 할당에 사용할 수 있는 모든 hello 역할이 나열 범위입니다.
 
-역할을 나열하려면 범위에서 `Microsoft.Authorization/roleDefinitions/read` 작업에 대한 액세스 권한이 있어야 합니다. 모든 기본 제공 역할에는 이 작업에 대한 액세스 권한이 부여되어 있습니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+toolist 역할 권한이 너무`Microsoft.Authorization/roleDefinitions/read` hello 범위에서 작업 합니다. 모든 hello 기본 제공 역할 toothis 작업 액세스 권한이 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **GET** 메서드를 사용합니다.
+사용 하 여 hello **가져오기** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할을 나열하려는 범위로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위를 원하는 toolist hello 역할입니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. *{api-version}* 을 2015-07-01로 바꿉니다.
-3. *{filter}* 를 역할 목록을 필터링하기 위해 적용할 조건으로 바꿉니다.
+3. 대체 *{filter}* 역할 목록이 toofilter hello tooapply 한다고 hello 조건:
 
-   * 지정된 범위 및 해당 자식 범위에서 할당에 사용할 수 있는 역할 나열: `atScopeAndBelow()`
-   * 정확한 표시 이름을 사용하여 역할 검색: `roleName%20eq%20'{role-display-name}'` 역할의 정확한 표시 이름에 대한 URL 인코딩 형식을 사용합니다. 예를 들어, `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
+   * 할당 hello에 사용할 수 있는 목록 역할 범위 및 해당 하위 범위 중 하나를 지정:`atScopeAndBelow()`
+   * 정확한 표시 이름을 사용하여 역할 검색: `roleName%20eq%20'{role-display-name}'` Hello 역할의 정확한 표시 이름으로 hello hello URL 인코딩 형식을 사용 합니다. 예를 들어, `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
 ### <a name="response"></a>응답
 상태 코드: 200
@@ -251,7 +251,7 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -302,23 +302,23 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ```
 
 ## <a name="get-information-about-a-role"></a>역할에 대한 정보 가져오기
-역할 정의 식별자에서 지정한 단일 역할에 대한 정보를 가져옵니다. 해당 표시 이름을 사용하여 단일 역할에 대한 정보를 가져오려면 [모든 역할 나열](role-based-access-control-manage-access-rest.md#list-all-roles)을 참조하세요.
+Hello 역할 정의 id에서 지정한 단일 역할에 대 한 정보를 가져옵니다. 표시 이름을 사용 하 여 단일 역할에 대 한 tooget 정보 참조 [모든 역할을 나열](role-based-access-control-manage-access-rest.md#list-all-roles)합니다.
 
-역할에 대한 정보를 가져오려면 `Microsoft.Authorization/roleDefinitions/read` 작업에 대한 액세스 권한이 있어야 합니다. 모든 기본 제공 역할에는 이 작업에 대한 액세스 권한이 부여되어 있습니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+역할에 대 한 tooget 정보를 액세스할 수 있어야 너무`Microsoft.Authorization/roleDefinitions/read` 작업 합니다. 모든 hello 기본 제공 역할 toothis 작업 액세스 권한이 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **GET** 메서드를 사용합니다.
+사용 하 여 hello **가져오기** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할 할당을 나열하려는 범위로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위를 원하는 toolist hello 역할 할당 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-definition-id}* 를 역할 정의의 GUID 식별자로 바꿉니다.
+2. 대체 *{역할 정의 id}* hello 역할 정의의 hello GUID 식별자를 사용 합니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
 ### <a name="response"></a>응답
@@ -331,7 +331,7 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -384,24 +384,24 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ## <a name="create-a-custom-role"></a>사용자 지정 역할 만들기
 사용자 지정 역할을 만듭니다.
 
-사용자 지정 역할을 만들려면 해당하는 모든 `AssignableScopes`에서 `Microsoft.Authorization/roleDefinitions/write` 작업에 대한 액세스 권한이 있어야 합니다. 기본 제공 역할의 경우 *소유자* 및 *사용자 액세스 관리자*에게만 이러한 작업의 권한이 부여됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+사용자 지정 역할 toocreate 권한이 너무`Microsoft.Authorization/roleDefinitions/write` 모든 hello에 대 한 작업이 `AssignableScopes`합니다. Hello 기본 제공 역할 중만 *소유자* 및 *사용자 액세스 관리자에 게* 액세스 toothis 작업 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **PUT** 메서드를 사용합니다.
+사용 하 여 hello **배치** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}*을 사용자 지정 역할의 첫 번째 *AssignableScope*으로 바꿉니다. 다음 예제는 서로 다른 수준에 대한 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello로 첫 번째 *AssignableScope* hello 사용자 지정 역할을 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-definition-id}* 를 새 사용자 지정 역할의 GUID 식별자가 되는 새 GUID로 바꿉니다.
+2. 대체 *{역할 정의 id}* hello GUID 식별자 hello 새 사용자 지정 역할의 새 GUID를 가진 됩니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
-요청 본문에 대해 다음과 같은 형식으로 값을 제공합니다.
+Hello 요청 본문에 대 한 형식에 따라 hello에 hello 값을 제공 합니다.
 
 ```
 {
@@ -436,13 +436,13 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 
 | 요소 이름 | 필수 | 형식 | 설명 |
 | --- | --- | --- | --- |
-| name |예 |문자열 |사용자 지정 역할의 GUID 식별자입니다. |
-| properties.roleName |예 |문자열 |사용자 지정 역할의 표시 이름입니다. 최대 128자입니다. |
-| properties.description |아니요 |문자열 |사용자 지정 역할에 대한 설명입니다. 최대 1024자입니다. |
-| properties.type |예 |문자열 |"CustomRole"로 설정합니다. |
-| properties.permissions.actions |예 |문자열[] |사용자 지정 역할이 권한을 부여하는 작업을 지정하는 동작 문자열의 배열입니다. |
-| properties.permissions.notActions |아니요 |문자열[] |사용자 지정 역할이 권한을 부여하는 작업에서 제외할 작업을 지정하는 동작 문자열의 배열입니다. |
-| properties.assignableScopes |예 |문자열[] |사용자 지정 역할을 사용할 수 있는 범위의 배열입니다. |
+| name |예 |문자열 |사용자 지정 역할 hello의 GUID 식별자입니다. |
+| properties.roleName |예 |문자열 |Hello 사용자 지정 역할의 표시 이름입니다. 최대 128자입니다. |
+| properties.description |아니요 |문자열 |Hello 사용자 지정 역할의 설명입니다. 최대 1024자입니다. |
+| properties.type |예 |문자열 |도 "CustomRole." |
+| properties.permissions.actions |예 |문자열[] |동작의 배열을 지정 하 여 hello 작업 hello 사용자 지정 역할에 의해 부여 된 문자열입니다. |
+| properties.permissions.notActions |아니요 |문자열[] |Hello 작업 tooexclude hello 사용자 지정 역할에 의해 부여 된 hello 작업에서 지정 하는 동작 문자열의 배열입니다. |
+| properties.assignableScopes |예 |문자열[] |배열 범위는 hello 사용자 지정 역할을 사용할 수입니다. |
 
 ### <a name="response"></a>응답
 상태 코드: 201
@@ -487,24 +487,24 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ## <a name="update-a-custom-role"></a>사용자 지정 역할 업데이트
 사용자 지정 역할을 수정합니다.
 
-사용자 지정 역할을 수정하려면 해당하는 모든 `AssignableScopes`에서 `Microsoft.Authorization/roleDefinitions/write` 작업에 대한 액세스 권한이 있어야 합니다. 기본 제공 역할의 경우 *소유자* 및 *사용자 액세스 관리자*에게만 이러한 작업의 권한이 부여됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+사용자 지정 역할 toomodify 권한이 너무`Microsoft.Authorization/roleDefinitions/write` 모든 hello에 대 한 작업이 `AssignableScopes`합니다. Hello 기본 제공 역할 중만 *소유자* 및 *사용자 액세스 관리자에 게* 액세스 toothis 작업 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **PUT** 메서드를 사용합니다.
+사용 하 여 hello **배치** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}*을 사용자 지정 역할의 첫 번째 *AssignableScope*으로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello로 첫 번째 *AssignableScope* hello 사용자 지정 역할을 합니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-definition-id}* 를 사용자 지정 역할의 GUID 식별자로 바꿉니다.
+2. 대체 *{역할 정의 id}* hello 사용자 지정 역할의 hello GUID 식별자를 사용 합니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
-요청 본문에 대해 다음과 같은 형식으로 값을 제공합니다.
+Hello 요청 본문에 대 한 형식에 따라 hello에 hello 값을 제공 합니다.
 
 ```
 {
@@ -539,13 +539,13 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 
 | 요소 이름 | 필수 | 형식 | 설명 |
 | --- | --- | --- | --- |
-| name |예 |문자열 |사용자 지정 역할의 GUID 식별자입니다. |
-| properties.roleName |예 |문자열 |업데이트된 사용자 지정 역할의 표시 이름입니다. |
-| properties.description |아니요 |문자열 |업데이트된 사용자 지정 역할의 설명입니다. |
-| properties.type |예 |문자열 |"CustomRole"로 설정합니다. |
-| properties.permissions.actions |예 |문자열[] |업데이트된 사용자 지정 역할이 액세스 권한을 부여하는 작업을 지정하는 동작 문자열의 배열입니다. |
-| properties.permissions.notActions |아니요 |문자열[] |업데이트된 사용자 지정 역할이 권한을 부여하는 작업에서 제외할 작업을 지정하는 동작 문자열의 배열입니다. |
-| properties.assignableScopes |예 |문자열[] |업데이트된 사용자 지정 역할을 사용할 수 있는 범위의 배열입니다. |
+| name |예 |문자열 |사용자 지정 역할 hello의 GUID 식별자입니다. |
+| properties.roleName |예 |문자열 |사용자 지정 역할을 업데이트 하는 hello의 표시 이름입니다. |
+| properties.description |아니요 |문자열 |Hello 설명 사용자 지정 역할을 업데이트 합니다. |
+| properties.type |예 |문자열 |도 "CustomRole." |
+| properties.permissions.actions |예 |문자열[] |Hello 작업 toowhich hello를 지정 하는 동작 문자열의 배열 액세스를 부여 하는 사용자 지정 역할을 업데이트 합니다. |
+| properties.permissions.notActions |아니요 |문자열[] |동작의 배열을 지정 하 여 hello 작업 tooexclude는 hello 부여 사용자 지정 역할을 업데이트 하는 hello 작업에서 문자열입니다. |
+| properties.assignableScopes |예 |문자열[] |배열 범위는 hello 업데이트 된 사용자 지정 역할을 사용할 수입니다. |
 
 ### <a name="response"></a>응답
 상태 코드: 201
@@ -590,21 +590,21 @@ URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
 ## <a name="delete-a-custom-role"></a>사용자 지정 역할 삭제
 사용자 지정 역할을 삭제합니다.
 
-사용자 지정 역할을 삭제하려면 해당하는 모든 `AssignableScopes`에서 `Microsoft.Authorization/roleDefinitions/delete` 작업에 대한 액세스 권한이 있어야 합니다. 기본 제공 역할의 경우 *소유자* 및 *사용자 액세스 관리자*에게만 이러한 작업의 권한이 부여됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
+사용자 지정 역할 toodelete 권한이 너무`Microsoft.Authorization/roleDefinitions/delete` 모든 hello에 대 한 작업이 `AssignableScopes`합니다. Hello 기본 제공 역할 중만 *소유자* 및 *사용자 액세스 관리자에 게* 액세스 toothis 작업 부여 됩니다. Azure 리소스에 대한 액세스 관리 및 역할 할당에 대한 자세한 내용은 [Azure 역할 기반 액세스 제어](role-based-access-control-configure.md)를 참조하세요.
 
 ### <a name="request"></a>요청
-다음 URI와 함께 **DELETE** 메서드를 사용합니다.
+사용 하 여 hello **삭제** URI 뒤 hello로 메서드:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-URI 내에서 다음을 대체하여 요청을 사용자 지정합니다.
+Hello URI 내에서 다음 대체 toocustomize hello 요청 확인:
 
-1. *{scope}* 를 역할 정의를 삭제하려는 범위로 바꿉니다. 다음 예제에서는 서로 다른 수준에 대해 범위를 지정하는 방법을 보여 줍니다.
+1. 대체 *{scope}* hello 범위 원하는 toodelete hello 역할 정의입니다. 다음 예제는 hello toospecify 서로 다른 수준에 대 한 범위를 hello 하는 방법을 보여 줍니다.
 
    * 구독: /subscriptions/{subscription-id}  
    * 리소스 그룹: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 리소스: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. *{role-definition-id}* 를 사용자 지정 역할의 GUID 역할 정의 ID로 바꿉니다.
+2. 대체 *{역할 정의 id}* hello hello 사용자 지정 역할의 역할 정의 id GUID 사용 합니다.
 3. *{api-version}* 을 2015-07-01로 바꿉니다.
 
 ### <a name="response"></a>응답

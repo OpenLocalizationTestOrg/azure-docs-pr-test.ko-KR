@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions Storage 테이블 바인딩 | Microsoft Docs"
-description: "Azure Functions에서 Azure Storage 바인딩을 사용하는 방법을 이해합니다."
+title: "aaaAzure 함수 저장소 테이블 바인딩 | Microsoft Docs"
+description: "이해 어떻게 Azure 함수에서 toouse Azure 저장소 바인딩."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
-ms.openlocfilehash: bb01be3ee044f60376e0c9c2de7b3dd34f3b7aca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90c2a73329139d4ab3504bc0e2c90370133158bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-storage-table-bindings"></a>Azure Functions Storage 테이블 바인딩
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-이 문서에서는 Azure Functions에서 Azure Storage 테이블 바인딩을 구성하고 코딩하는 방법을 설명합니다. Azure Functions는 Azure Storage 테이블에 대한 입력 및 출력 바인딩을 지원합니다.
+이 문서에서는 tooconfigure 및 코드 Azure 저장소 테이블 Azure 함수에서 바인딩 방법을 설명 합니다. Azure Functions는 Azure Storage 테이블에 대한 입력 및 출력 바인딩을 지원합니다.
 
-Storage 테이블 바인딩은 다음과 같은 시나리오를 지원합니다.
+hello 저장소 테이블 바인딩은 hello를 다음 시나리오를 지원 합니다.
 
-* **C# 또는 Node.js 함수에서 단일 행을 읽습니다.** - `partitionKey` 및 `rowKey`를 설정합니다. `filter` 및 `take` 속성은 이 시나리오에서 사용되지 않습니다.
-* **C# 함수에서 여러 행을 읽습니다.** - 함수 런타임은 테이블에 바인딩된 `IQueryable<T>` 개체를 제공합니다. `T` 형식은 `TableEntity`에서 파생되거나 `ITableEntity`를 구현해야 합니다. `partitionKey`, `rowKey`, `filter` 및 `take` 속성은 이 시나리오에서 사용되지 않습니다. `IQueryable` 개체를 사용하여 필요한 모든 필터링 작업을 수행할 수 있습니다. 
-* **Node 함수에서 여러 행을 읽습니다.** - `filter` 및 `take` 속성을 설정합니다. `partitionKey` 또는 `rowKey`를 설정하지 않습니다.
-* **C# 함수에서 하나 이상의 행을 작성합니다.** - 함수 런타임에서는 테이블에 바인딩된 `ICollector<T>` 또는 `IAsyncCollector<T>`를 제공하며 여기서 `T`는 추가하려는 엔터티의 스키마를 지정합니다. 일반적으로 `T` 형식은 `TableEntity`에서 파생되거나 `ITableEntity`을 구현하지만 반드시 그런 것은 아닙니다. `partitionKey`, `rowKey`, `filter` 및 `take` 속성은 이 시나리오에서 사용되지 않습니다.
+* **C# 또는 Node.js 함수에서 단일 행을 읽습니다.** - `partitionKey` 및 `rowKey`를 설정합니다. hello `filter` 및 `take` 속성이이 시나리오에서는 사용 되지 않습니다.
+* **C# 함수에서 여러 행을 읽고** -hello 함수 런타임에서 제공는 `IQueryable<T>` 바인딩된 toohello 테이블 개체입니다. `T` 형식은 `TableEntity`에서 파생되거나 `ITableEntity`를 구현해야 합니다. hello `partitionKey`, `rowKey`, `filter`, 및 `take` 속성은이 시나리오에서는 사용 되지 않으며 hello를 사용할 수 있습니다 `IQueryable` 개체 toodo 필요한 필터링 합니다. 
+* **노드 함수에서 여러 행을 읽고** 설정 hello- `filter` 및 `take` 속성입니다. `partitionKey` 또는 `rowKey`를 설정하지 않습니다.
+* **C# 함수에서 하나 이상의 행을 작성** -hello 함수 런타임에서 제공는 `ICollector<T>` 또는 `IAsyncCollector<T>` 바인딩된 toohello 테이블 여기서 `T` hello 스키마 지정 원하는 tooadd hello 엔터티. 일반적으로 `T` 형식은 `TableEntity`에서 파생되거나 `ITableEntity`을 구현하지만 반드시 그런 것은 아닙니다. hello `partitionKey`, `rowKey`, `filter`, 및 `take` 속성이이 시나리오에서는 사용 되지 않습니다.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="storage-table-input-binding"></a>Storage 테이블 입력 바인딩
-Azure Storage 테이블 입력 바인딩을 사용하면 함수의 저장소 테이블을 사용할 수 있습니다. 
+Azure 저장소 테이블에 대 한 입력된 바인딩 hello toouse를 함수에서 저장소 테이블 있습니다. 
 
-함수에 대한 Storage 테이블 입력은 function.json의 `bindings` 배열에서 다음과 같은 JSON 개체를 사용합니다.
+다음 JSON 개체에 hello hello를 사용 하는 저장소 테이블 입력된 tooa 함수 hello `bindings` function.json의 배열:
 
 ```json
 {
@@ -49,28 +49,28 @@ Azure Storage 테이블 입력 바인딩을 사용하면 함수의 저장소 테
     "type": "table",
     "direction": "in",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to read - see below>",
-    "rowKey": "<RowKey of table entity to read - see below>",
-    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "partitionKey": "<PartitionKey of table entity tooread - see below>",
+    "rowKey": "<RowKey of table entity tooread - see below>",
+    "take": "<Maximum number of entities tooread in Node.js - optional>",
     "filter": "<OData filter expression for table input in Node.js - optional>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-다음 사항에 유의하세요. 
+참고 hello 다음. 
 
-* `partitionKey` 및 `rowKey`를 함께 사용하여 단일 엔터티를 읽습니다. 이러한 속성은 선택적입니다. 
-* `connection`은 저장소 연결 문자열을 포함하는 앱 설정의 이름을 포함해야 합니다. Azure Portal에서 **통합** 탭에 있는 표준 편집기는 저장소 계정을 만들거나 기존 계정을 선택하는 경우 사용하는 이 앱 설정을 구성합니다. 또한 [이 앱 설정을 수동으로 구성](functions-how-to-use-azure-function-app-settings.md#settings)할 수도 있습니다.  
+* 사용 하 여 `partitionKey` 및 `rowKey` 함께 tooread 단일 엔터티. 이러한 속성은 선택적입니다. 
+* `connection`저장소 연결 문자열을 포함 하는 응용 프로그램 설정의 hello 이름을 포함 해야 합니다. Hello Azure 포털에서에서 hello의 표준 편집기 hello **통합** 계정 저장소를 만들 때 또는 기존 선택에 대 한 탭이 응용 프로그램 설정을 구성 합니다. 또한 [이 앱 설정을 수동으로 구성](functions-how-to-use-azure-function-app-settings.md#settings)할 수도 있습니다.  
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>입력 사용
-C# 함수에서 `<T> <name>`같은 함수 시그니처의 명명된 매개 변수를 사용하여 입력 테이블 엔터티(또는 여러 엔터티)를 바인딩합니다.
-여기서 `T`는 데이터를 deserialize할 데이터 형식이며, `paramName`은 [입력 바인딩](#input)에서 사용자가 지정한 이름입니다. Node.js 함수에서 `context.bindings.<name>`을 사용하여 입력 테이블 엔터티(또는 여러 엔터티)에 액세스합니다.
+C# 함수를 바인딩할 있습니다 toohello 입력 테이블 엔터티 (또는 엔터티) 같은 프로그램 함수 서명에서 명명된 된 매개 변수를 사용 하 여 `<T> <name>`합니다.
+여기서 `T` hello 데이터 형식은 toodeserialize hello 데이터를 지정 하 고 `paramName` hello 이름인 hello에 지정 된 [입력 바인딩의](#input)합니다. Hello 입력 테이블 엔터티 (또는 엔터티)를 사용 하 여 액세스 Node.js 함수에서 `context.bindings.<name>`합니다.
 
-입력 데이터는 Node.js 또는 C# 함수에서 deserialize될 수 있습니다. Deserialize된 개체는 `RowKey` 및 `PartitionKey` 속성을 가집니다.
+Node.js 또는 C# 함수 hello 입력된 데이터를 deserialize 할 수 있습니다. 역직렬화 하는 hello 개체 `RowKey` 및 `PartitionKey` 속성입니다.
 
-C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Functions 런타임이 해당 형식을 사용하여 테이블 데이터를 deserialize하려고 시도하게 됩니다.
+C# 함수에서의 형식에 따라 hello tooany 바인딩할 수도 있습니다 런타임이 시도 하는 hello 함수 너무 데이터 및 deserialize hello 테이블 해당 형식을 사용 하 여:
 
 * 구현하는 모든 형식 `ITableEntity`
 * `IQueryable<T>`
@@ -78,8 +78,8 @@ C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Funct
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>입력 샘플
-큐 트리거를 사용하여 단일 테이블 행을 읽는 다음과 같은 function.json이 있다고 가정합니다. JSON은 `PartitionKey` 
-`RowKey`를 지정합니다. `"rowKey": "{queueTrigger}"`는 큐 메시지 문자열에서 나온 행 키를 의미합니다.
+Hello function.json 큐 트리거 tooread 단일 테이블 행을 사용 하 여 다음 있는 있어야 합니다. hello JSON 지정 `PartitionKey`  
+ `RowKey`합니다. `"rowKey": "{queueTrigger}"`hello 큐 메시지 문자열에서 해당 hello 행 키를 나타냅니다.
 
 ```json
 {
@@ -105,7 +105,7 @@ C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Funct
 }
 ```
 
-단일 테이블 엔터티를 읽는 언어별 샘플을 참조하세요.
+단일 테이블 엔터티를 읽을 수 있는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#inputcsharp)
 * [F#](#inputfsharp)
@@ -159,9 +159,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="storage-table-output-binding"></a>Storage 테이블 출력 바인딩
-Azure Storage 테이블 출력 바인딩을 사용하면 엔터티를 함수의 저장소 테이블에 쓸 수 있습니다. 
+Azure 저장소 테이블 hello 바인딩 toowrite 엔터티 tooa 저장소 함수에서 테이블을 사용 하면 출력 합니다. 
 
-함수에 대한 Storage 테이블 출력은 function.json의 `bindings` 배열에서 다음과 같은 JSON 개체를 사용합니다.
+다음 JSON 개체에 hello hello 함수를 사용 하는 저장소 테이블 출력 hello `bindings` function.json의 배열:
 
 ```json
 {
@@ -169,33 +169,33 @@ Azure Storage 테이블 출력 바인딩을 사용하면 엔터티를 함수의 
     "type": "table",
     "direction": "out",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to write - see below>",
-    "rowKey": "<RowKey of table entity to write - see below>",
+    "partitionKey": "<PartitionKey of table entity toowrite - see below>",
+    "rowKey": "<RowKey of table entity toowrite - see below>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-다음 사항에 유의하세요. 
+참고 hello 다음. 
 
-* `partitionKey` 및 `rowKey`를 함께 사용하여 단일 엔터티를 씁니다. 이러한 속성은 선택적입니다. 또한 함수 코드에 엔터티 개체를 만들 때 `PartitionKey` 및 `RowKey`를 지정할 수 있습니다.
-* `connection`은 저장소 연결 문자열을 포함하는 앱 설정의 이름을 포함해야 합니다. Azure Portal에서 **통합** 탭에 있는 표준 편집기는 저장소 계정을 만들거나 기존 계정을 선택하는 경우 사용하는 이 앱 설정을 구성합니다. 또한 [이 앱 설정을 수동으로 구성](functions-how-to-use-azure-function-app-settings.md#settings)할 수도 있습니다. 
+* 사용 하 여 `partitionKey` 및 `rowKey` 함께 toowrite 단일 엔터티. 이러한 속성은 선택적입니다. 지정할 수 있습니다 `PartitionKey` 및 `RowKey` 개체를 만들 때는 hello 엔터티 함수 코드에서.
+* `connection`저장소 연결 문자열을 포함 하는 응용 프로그램 설정의 hello 이름을 포함 해야 합니다. Hello Azure 포털에서에서 hello의 표준 편집기 hello **통합** 계정 저장소를 만들 때 또는 기존 선택에 대 한 탭이 응용 프로그램 설정을 구성 합니다. 또한 [이 앱 설정을 수동으로 구성](functions-how-to-use-azure-function-app-settings.md#settings)할 수도 있습니다. 
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>출력 사용
-C# 함수에서 `out <T> <name>`같은 함수 시그니처의 명명된 `out` 매개 변수를 사용하여 테이블 출력을 바인딩합니다. 여기서 `T`는 데이터를 직렬화하려는 데이터 형식이며, `paramName`은 [출력 바인딩](#output)에서 사용자가 지정한 이름입니다. Node.js 함수에서 `context.bindings.<name>`을 사용하여 테이블 출력에 액세스합니다.
+C# 함수를 명명 된 hello를 사용 하 여 toohello 테이블 출력 바인딩할 `out` 함수 시그니처의 매개 변수 같은 `out <T> <name>`여기서 `T` hello 데이터 형식은 tooserialize hello 데이터를 지정 하 고 `paramName` 는 hello 이름을 hello에 지정 된 [출력 바인딩이](#output)합니다. Node.js 함수 hello 표를 사용 하 여 출력 액세스 `context.bindings.<name>`합니다.
 
-Node.js 또는 C# 함수에서 개체를 직렬화할 수 있습니다. C# 함수에서 다음 형식으로 바인딩할 수 있습니다.
+Node.js 또는 C# 함수에서 개체를 직렬화할 수 있습니다. C# 함수에서 유형만 toohello를 바인딩할 수 있습니다.
 
 * 구현하는 모든 형식 `ITableEntity`
-* `ICollector<T>`(여러 엔터티를 출력. [샘플](#outcsharp)을 참조하세요.)
+* `ICollector<T>`(toooutput 여러 엔터티. [샘플](#outcsharp)을 참조하세요.)
 * `IAsyncCollector<T>`(비동기 버전의 `ICollector<T>`)
-* `CloudTable` (Azure Storage SDK 사용. [샘플](#readmulti)을 참조하세요.)
+* `CloudTable`(hello Azure 저장소 SDK를 사용 합니다. [샘플](#readmulti)을 참조하세요.)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>출력 샘플
-다음 *function.json* 및 *run.csx* 예제에서는 여러 테이블 엔터티를 작성하는 방법을 보여 줍니다.
+hello 다음 *function.json* 및 *run.csx* 예제와 방법을 toowrite 여러 테이블 엔터티.
 
 ```json
 {
@@ -217,7 +217,7 @@ Node.js 또는 C# 함수에서 개체를 직렬화할 수 있습니다. C# 함�
 }
 ```
 
-여러 테이블 엔터티를 만드는 언어별 샘플을 참조하세요.
+여러 테이블 엔터티를 만드는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -262,7 +262,7 @@ type Person = {
 }
 
 let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
-    for i = 1 to 10 do
+    for i = 1 too10 do
         log.Info(sprintf "Adding Person entity %d" i)
         tableBinding.Add(
             { PartitionKey = "Test"
@@ -293,7 +293,7 @@ module.exports = function (context) {
 <a name="readmulti"></a>
 
 ## <a name="sample-read-multiple-table-entities-in-c"></a>샘플: C#에서 여러 테이블 엔터티 읽기  #
-다음 *function.json* 및 C# 코드 예제에서는 큐 메시지에 지정된 파티션 키에 대한 엔터티를 읽습니다.
+hello 다음 *function.json* 및 C# 코드 예제에서는 hello 큐 메시지에 지정 된 파티션 키에 대 한 엔터티를 읽습니다.
 
 ```json
 {
@@ -317,7 +317,7 @@ module.exports = function (context) {
 }
 ```
 
-C# 코드는 엔터티 형식이 `TableEntity`에서 파생할 수 있도록 Azure 저장소 SDK에 대한 참조를 추가합니다.
+C# 코드 hello hello 엔터티 형식에서 파생 될 수 있도록 참조 toohello Azure 저장소 SDK를 추가 `TableEntity`합니다.
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"

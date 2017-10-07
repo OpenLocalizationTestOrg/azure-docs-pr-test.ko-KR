@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management에서 알림 및 메일 템플릿 구성 | Microsoft Docs"
-description: "Azure API 관리에서 알림 및 메일 템플릿을 구성하는 방법에 대해 알아봅니다."
+title: "aaaConfigure 알림을 하 고 Azure API 관리에서 서식 파일을 전자 메일로 | Microsoft Docs"
+description: "자세한 방법을 tooconfigure 알림 및 Azure API 관리에서 서식 파일을 전자 메일입니다."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 3d8b74e32059cfc1a4c3a8fc7d3bd04676ee80c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc23289c25a1641992b73cb955099b3f207b6968
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-notifications-and-email-templates-in-azure-api-management"></a>Azure API 관리에서 알림 및 전자 메일 템플릿을 구성하는 방법
-API 관리는 특정 이벤트에 대한 알림을 구성하는 기능과 API 관리 인스턴스의 관리자 및 개발자와 의사를 전달하는 데 사용되는 메일 템플릿을 구성하는 기능을 제공합니다. 이 항목에서는 사용 가능한 이벤트에 대한 알림을 구성하는 방법을 보여 주고 이러한 이벤트에 사용된 메일 템플릿 구성에 대한 개요를 제공합니다.
+# <a name="how-tooconfigure-notifications-and-email-templates-in-azure-api-management"></a>어떻게 tooconfigure 알림 및 Azure API 관리에서 서식 파일을 전자 메일
+API 관리 특정 이벤트 및 tooconfigure hello 전자 메일 템플릿으로 사용 되는 toocommunicate hello 관리자와 개발자 API 관리 인스턴스 사용에 대 한 tooconfigure 알림 hello 기능을 제공 합니다. 이 항목에 대 한 tooconfigure 알림을 사용할 수 있는 이벤트를 hello 하는 방법을 보여 줍니다., 이러한 이벤트에 사용 되는 hello 전자 메일 템플릿 구성의 개요를 제공 합니다.
 
 ## <a name="publisher-notifications"> </a>게시자 알림 구성
-알림을 구성하려면 Azure Portal에서 API 관리 서비스에 대해 **게시자 포털**을 클릭합니다. API 관리 게시자 포털로 이동됩니다.
+tooconfigure 알림을 클릭 **게시자 포털** API 관리 서비스에 대 한 hello Azure 포털의에서. API 관리 게시자 포털 toohello 이동합니다.
 
 ![게시자 포털][api-management-management-console]
 
 > [!NOTE] 
-> 아직 API Management 서비스 인스턴스를 만들지 않은 경우 [Azure API Management 시작][Get started with Azure API Management] 자습서의 [API Management 서비스 인스턴스 만들기][Create an API Management service instance]를 참조하세요.
+> API 관리 서비스 인스턴스를 아직 만들지 않은 경우 참조 [API 관리 서비스 인스턴스를 만들] [ Create an API Management service instance] hello에 [Azure API 관리 시작] [ Get started with Azure API Management] 자습서입니다.
 
-왼쪽의 **API Management** 메뉴에서 **알림**을 클릭하여 사용 가능한 알림을 봅니다.
+클릭 **알림** hello에서 **API 관리** 메뉴 hello에 왼쪽 tooview hello 수 있는 알림입니다.
 
 ![게시자 알림][api-management-publisher-notifications]
 
-알림에 대해 다음 이벤트 목록을 구성할 수 있습니다.
+hello 이벤트 목록은 다음 구성할 수 있습니다 알림.
 
-* **구독 요청(승인 필요)** - 지정된 메일 받는 사람 및 사용자가 승인이 필요한 API 제품의 구독 요청에 대한 메일 알림을 받습니다.
-* **새 구독** - 지정된 메일 받는 사람 및 사용자가 새 API 제품 구독에 대한 메일 알림을 받습니다.
-* **응용 프로그램 갤러리 요청** - 새 응용 프로그램이 응용 프로그램 갤러리에 제출되면 지정된 메일 받는 사람 및 사용자가 메일 알림을 받습니다.
-* **BCC** - 지정된 메일 받는 사람 및 사용자가 개발자에게 전송된 모든 메일의 숨은 참조 복사본을 받습니다.
-* **새 문제 및 설명** - 개발자 포털에서 새 문제 또는 설명이 제출되면 지정된 메일 받는 사람 및 사용자가 메일 알림을 받습니다.
-* **Close account message(계정 종료 메시지)** - 계정이 종료되면 지정된 메일 받는 사람 및 사용자가 메일 알림을 받습니다.
-* **구독 할당량 한도 근접** - 구독 사용량이 사용 할당량에 근접하면 다음 메일 받는 사람 및 사용자가 메일 알림을 받습니다.
+* **(이렇게 승인을 받도록) 구독 요청** -지정 된 전자 메일 받는 사람 hello 및 사용자가 이렇게 승인을 받도록 API 제품에 대 한 구독 요청에 대 한 전자 메일 알림을 받습니다.
+* **새 구독** -지정 된 전자 메일 받는 사람 hello 및 사용자가 새 API 제품 구독에 대 한 전자 메일 알림을 받습니다.
+* **응용 프로그램 갤러리 요청** -지정 된 전자 메일 받는 사람 hello 및 새 응용 프로그램에 제출 된 toohello 응용 프로그램 갤러리는 하는 경우 사용자가 전자 메일 알림을 받습니다.
+* **숨은 참조** -지정 된 전자 메일 받는 사람 hello 및 사용자 전자 메일 보낸 전자 메일 toodevelopers 모든 항목이 며 탄소 복사본을 받게 됩니다.
+* **새 문제 또는 주석** -지정 된 전자 메일 받는 사람 hello 및 사용자는 전자 메일 알림이 제공 때 새 문제 또는 주석 hello 개발자 포털에서 제출 합니다.
+* **계정 닫기 메시지** -지정 된 전자 메일 받는 사람 hello 및 계정을 닫을 때 사용자가 전자 메일 알림을 받습니다.
+* **임박한 구독 할당량 한도** -전자 메일 받는 사람에 게 다음 hello 및 구독 사용 현황 닫기 toousage 할당량을 가져올 때 사용자가 전자 메일 알림을 받습니다.
 
-각 이벤트에 대해 메일 주소 입력란을 사용하여 메일 받는 사람을 지정하거나 목록에서 사용자를 선택할 수 있습니다.
+각 이벤트에 대 한 hello 전자 메일 주소 텍스트 상자를 사용 하 여 전자 메일 받는 사람을 지정할 수 있습니다 또는 목록에서 사용자가 선택할 수 있습니다.
 
-알릴 메일 주소를 지정하려면 메일 주소 입력란에 입력합니다. 메일 주소를 여러 개 사용하는 경우 쉼표를 사용하여 구분하세요.
+알림을 받은 toospecify hello 전자 메일 주소 toobe hello 전자 메일 주소 텍스트 상자에을 입력 합니다. 메일 주소를 여러 개 사용하는 경우 쉼표를 사용하여 구분하세요.
 
 ![알림 받는 사람][api-management-email-addresses]
 
-알릴 사용자를 지정하려면 **받는 사람 추가**를 클릭하고, 알릴 사용자 옆에 있는 확인란을 선택하고 **확인**을 클릭합니다.
+toospecify hello 사용자 toobe 알림을 클릭 **받는 사람을 추가**알림을 hello 사용자 toobe 옆에 있는 hello 확인란을 클릭 **확인**합니다.
 
 > [!NOTE] 
-> 관리자만 목록에 표시됩니다.
+> 관리자만 hello 목록에 표시 됩니다.
 
 
-알림 받는 사람을 구성한 후 **저장** 을 클릭하여 업데이트된 알림 받는 사람을 적용합니다.
+Hello 알림 받는 사람을 구성한 후 클릭 **저장** tooapply hello 알림 받는 사람을 업데이트 합니다.
 
 > [!NOTE] 
-> **게시자 알림** 탭 외부로 이동하면 저장되지 않은 변경 내용이 있는 경우 게시자 포털에서 사용자에게 알립니다.
+> Hello 벗어나 탐색 하면 **게시자 알림** 탭 hello 게시자 포털 알려 변경 하지 않은 경우.
 
 
 ## <a name="email-templates"> </a>메일 템플릿 구성
-API 관리는 서비스를 관리 및 사용하는 과정에서 전송된 메일 메시지에 대한 메일 템플릿을 제공합니다. 다음 메일 템플릿이 제공됩니다.
+API 관리 전자 메일 템플릿을 제공 hello에 대 한 전자 메일 전송 된 메시지를 관리 하 고 hello 서비스를 사용 하 여 hello 과정에서 합니다. 다음 전자 메일 템플릿을 hello 제공 됩니다.
 
 * 응용 프로그램 갤러리 제출 승인
 * 개발자 인사 편지
 * 개발자 할당량 한도 근접 알림
 * 사용자 초대
-* 문제에 새 설명 추가
+* 새 메모 tooan 문제 추가
 * 새 문제 수신
 * 새 구독 활성화
 * 구독 갱신 확인
@@ -79,11 +79,11 @@ API 관리는 서비스를 관리 및 사용하는 과정에서 전송된 메일
 
 이러한 템플릿은 필요에 따라 수정할 수 있습니다.
 
-API Management 인스턴스의 메일 템플릿을 보고 구성하려면 왼쪽 **API Management** 메뉴에서 **알림**을 클릭하고 **메일 템플릿** 탭을 선택합니다.
+tooview API 관리 인스턴스에 대 한 전자 메일 템플릿을 hello 구성를 클릭 하 고 **알림** hello에서 **API 관리** hello 왼쪽, 및 select hello에 메뉴 **전자 메일 템플릿**  탭 합니다.
 
 ![메일 템플릿][api-management-email-templates]
 
-특정 템플릿을 보거나 수정하려면 **템플릿** 드롭다운 목록에서 선택합니다.
+tooview 특정 템플릿을 수정 하거나, hello에서 선택 **템플릿** 드롭 다운 목록입니다.
 
 ![메일 템플릿 목록][api-management-email-templates-list]
 
@@ -91,14 +91,14 @@ API Management 인스턴스의 메일 템플릿을 보고 구성하려면 왼쪽
 
 ![메일 템플릿 편집기][api-management-email-template]
 
-**매개 변수** 목록에는 제목 또는 본문에 삽입되는 매개 변수 목록이 포함되며, 이러한 매개 변수는 메일이 전송될 때 지정된 값으로 바뀝니다. 매개 변수를 삽입하려면 매개 변수를 넣을 위치에 커서를 놓고 매개 변수 이름 왼쪽 화살표를 클릭합니다.
+hello **매개 변수** 목록에 매개 변수의 경우에는 hello 제목 또는 본문에 삽입, hello 전자 메일을 보내면 대체 hello 지정 된 값이 됩니다. tooinsert 매개 변수를 커서 hello hello 매개 변수 toogo를 선택 하 고 hello 매개 변수 이름의 hello 화살표 toohello 왼쪽을 클릭 합니다.
 
-**미리 보기** 또는 **테스트 보내기**를 클릭하여 메일의 모양을 보거나 테스트 메일을 보냅니다.
+클릭 **미리 보기** 또는 **테스트 보내기** toosee hello 전자 메일은 보거나 테스트 전자 메일 보내기 방법입니다.
 
 > [!NOTE] 
-> 테스트를 미리 보거나 보낼 때에는 매개 변수가 실제 값으로 바뀌지 않습니다.
+> hello 매개 변수는 미리 보기 또는 테스트를 보낼 때 실제 값으로 바뀌지 않습니다.
 
-메일 템플릿의 변경 내용을 저장하려면 **저장**을 클릭하고, 변경 내용을 취소하려면 **취소**를 클릭합니다.
+toosave hello 변경 toohello 전자 메일 템플릿을 클릭 **저장**, toocancel hello 변경 클릭 또는 **취소**합니다.
  
 
 [api-management-management-console]: ./media/api-management-howto-configure-notifications/api-management-management-console.png
@@ -114,8 +114,8 @@ API Management 인스턴스의 메일 템플릿을 보고 구성하려면 왼쪽
 [Configure publisher notifications]: #publisher-notifications
 [Configure email templates]: #email-templates
 
-[How to create and use groups]: api-management-howto-create-groups.md
-[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How toocreate and use groups]: api-management-howto-create-groups.md
+[How tooassociate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance

@@ -10,8 +10,8 @@
 ## [Azure AD Premium에 등록](active-directory-get-started-premium.md)
 ## [사용자 지정 도메인 이름 추가](add-custom-domain.md)
 ## [회사 브랜딩 구성](customize-branding.md)
-## [Azure AD에 사용자 추가](add-users-azure-active-directory.md)
-## [사용자에게 라이선스 할당](license-users-groups.md)
+## [사용자가 tooAzure AD 추가](add-users-azure-active-directory.md)
+## [라이선스 toousers 할당](license-users-groups.md)
 ## [셀프 서비스 암호 재설정 구성](active-directory-passwords-getting-started.md)
 
 
@@ -38,9 +38,9 @@
 
 ## 사용자 관리
 ### [그룹을 사용하여 라이선스 할당](active-directory-licensing-whatis-azure-portal.md)
-#### [그룹에 라이선스 할당](active-directory-licensing-group-assignment-azure-portal.md)
+#### [라이선스 tooa 그룹 할당](active-directory-licensing-group-assignment-azure-portal.md)
 #### [그룹에서 라이선스 문제 식별 및 해결](active-directory-licensing-group-problem-resolution-azure-portal.md)
-#### [개별 라이선스 사용자를 그룹 기반 라이선스로 마이그레이션](active-directory-licensing-group-migration-azure-portal.md)
+#### [개별 사용이 허가 된 사용자 라이선스 toogroup 기반 마이그레이션](active-directory-licensing-group-migration-azure-portal.md)
 #### [그룹 기반 라이선스에 대한 추가 시나리오](active-directory-licensing-group-advanced.md)
 #### [그룹 기반 라이선스에 대한 PowerShell 예제](active-directory-licensing-ps-examples.md)
 ### [다른 디렉터리에서 사용자 추가(클래식 포털)](active-directory-create-users-external.md)
@@ -60,15 +60,15 @@
 ### [그룹 소유자 관리](active-directory-accessmanagement-managing-group-owners.md)
 ### [그룹 멤버 자격 관리](active-directory-groups-membership-azure-portal.md)
 ### [그룹을 사용하여 라이선스 할당](active-directory-licensing-whatis-azure-portal.md)
-#### [그룹에 라이선스 할당](active-directory-licensing-group-assignment-azure-portal.md)
+#### [라이선스 tooa 그룹 할당](active-directory-licensing-group-assignment-azure-portal.md)
 #### [그룹에서 라이선스 문제 식별 및 해결](active-directory-licensing-group-problem-resolution-azure-portal.md)
-#### [개별 라이선스 사용자를 그룹 기반 라이선스로 마이그레이션](active-directory-licensing-group-migration-azure-portal.md)
+#### [개별 사용이 허가 된 사용자 라이선스 toogroup 기반 마이그레이션](active-directory-licensing-group-migration-azure-portal.md)
 #### [그룹 기반 라이선스에 대한 추가 시나리오](active-directory-licensing-group-advanced.md)
 #### [그룹 기반 라이선스에 대한 PowerShell 예제](active-directory-licensing-ps-examples.md)
 ### [Office 365 그룹 만료 설정](active-directory-groups-lifecycle-azure-portal.md)
 ### [모든 그룹 보기](active-directory-groups-view-azure-portal.md)
 ### [전용 그룹 사용](active-directory-accessmanagement-dedicated-groups.md)
-### [SaaS 앱에 대한 그룹 액세스 추가](active-directory-accessmanagement-group-saasapps.md)
+### [그룹 액세스 tooSaaS 앱 추가](active-directory-accessmanagement-group-saasapps.md)
 ### [삭제된 Office 365 그룹 복원](active-directory-groups-restore-azure-portal.md)
 ### 그룹 설정 관리
 #### [Azure 포털](active-directory-groups-settings-azure-portal.md)
@@ -89,7 +89,7 @@
 ### 작업
 #### [명명된 위치 구성](active-directory-named-locations.md)
 #### [활동 보고서 보기](active-directory-reporting-migration.md)
-#### [Azure Active Directory Power BI 콘텐츠 팩 사용](active-directory-reporting-power-bi-content-pack-how-to.md)
+#### [Azure Active Directory Power BI 콘텐츠 팩 hello를 사용 하 여](active-directory-reporting-power-bi-content-pack-how-to.md)
 ### 참조
 #### [보존](active-directory-reporting-retention.md)
 #### [대기 시간](active-directory-reporting-latencies-azure-portal.md)
@@ -131,7 +131,7 @@
 
 ## 장치 관리
 ### [소개](device-management-introduction.md)
-### [Azure Portal 사용](device-management-azure-portal.md)
+### [Hello Azure 포털을 사용 하 여](device-management-azure-portal.md)
 ### [FAQ](device-management-faq.md)
 ### 작업
 #### [하이브리드 Azure AD 가입 장치 구성](device-management-hybrid-azuread-joined-devices-setup.md) 
@@ -188,7 +188,7 @@
 ##### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
 ##### [Microsoft 팀](application-proxy-teams.md)
 #### [문제 해결](active-directory-application-proxy-troubleshoot.md)
-#### 클래식 포털 사용
+#### Hello 클래식 포털을 사용 하 여
 ##### [커넥터 다운로드](application-proxy-enable-classic-portal.md)
 ##### [앱 게시](active-directory-application-proxy-publish.md)
 ##### [커넥터 사용](active-directory-application-proxy-connectors.md)
@@ -202,7 +202,7 @@
 #### [내 앱 모두 보기](active-directory-coreapps-view-azure-portal.md)
 #### [사용자 계정 프로비전 관리](active-directory-enterprise-apps-manage-provisioning.md)
 
-### [앱에 대한 액세스 관리](active-directory-managing-access-to-apps.md)
+### [액세스 tooapps 관리](active-directory-managing-access-to-apps.md)
 #### [셀프 서비스 액세스](active-directory-self-service-application-access.md)
 #### [SSO 액세스](active-directory-appssoaccess-whatis.md)
 #### [SSO 인증서](active-directory-sso-certs.md)
@@ -253,7 +253,7 @@
 #### [초대 없이 B2B 사용자 추가](active-directory-b2b-add-user-without-invite.md)
 #### [B2B에 대한 조건부 액세스](active-directory-b2b-mfa-instructions.md)
 #### [B2B 공유 정책](active-directory-b2b-delegate-invitations.md)
-#### [역할에 B2B 사용자 추가](active-directory-b2b-add-guest-to-role.md)
+#### [B2B 사용자 tooa 역할 추가](active-directory-b2b-add-guest-to-role.md)
 #### [동적 그룹 및 B2B 사용자](active-directory-b2b-dynamic-groups.md)
 #### [감사 및 보고서](active-directory-b2b-auditing-and-reporting.md)
 #### [B2B 및 Office 365 외부 공유](active-directory-b2b-o365-external-user.md)
@@ -261,16 +261,16 @@
 #### [현재 제한 사항](active-directory-b2b-current-limitations.md)
 #### [FAQ](active-directory-b2b-faq.md)
 #### [B2B 문제 해결](active-directory-b2b-troubleshooting.md)
-#### [B2B 사용자 이해](active-directory-b2b-user-properties.md)
+#### [Hello B2B 사용자 이해](active-directory-b2b-user-properties.md)
 #### [B2B 사용자 토큰](active-directory-b2b-user-token.md)
 #### [Azure AD용 B2B 통합 앱](active-directory-b2b-configure-saas-apps.md)
 #### [B2B 사용자 클레임 매핑](active-directory-b2b-claims-mapping.md)
-#### [B2B 공동 작업 및 B2C 비교](active-directory-b2b-compare-b2c.md)
+#### [B2B 공동 작업 tooB2C 비교](active-directory-b2b-compare-b2c.md)
 #### [B2B에 대한 지원 받기](active-directory-b2b-support.md)
 
 ### [Azure AD Connect를 사용하여 온-프레미스 ID 통합](./connect/active-directory-aadconnect.md)
 
-## 리소스에 대한 액세스 위임
+## 액세스 tooresources 위임
 ### [관리자 역할](active-directory-assign-admin-roles.md)
 #### [관리자 역할 할당](active-directory-users-assign-role-azure-portal.md)
 ### [관리 단위](active-directory-administrative-units-management.md)
@@ -283,7 +283,7 @@
 #### [사용자 지정 역할](role-based-access-control-custom-roles.md)
 #### [내부 및 외부 사용자에 대한 사용자 지정 역할 할당](role-based-access-control-create-custom-roles-for-internal-external-users.md)
 #### [보고](role-based-access-control-access-change-history-report.md)
-#### 역할을 관리하는 다양한 방법
+#### 다른 방법으로 toomanage 역할
 ##### [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 ##### [PowerShell](role-based-access-control-manage-access-powershell.md)
 ##### [REST (영문)](role-based-access-control-manage-access-rest.md)
@@ -299,7 +299,7 @@
 #### [기술 참조](active-directory-conditional-access-technical-reference.md)
 #### [지원되는 앱](active-directory-conditional-access-supported-apps.md)
 #### [장치 정책 이해](active-directory-conditional-access-device-policies.md)
-#### [연결된 앱에 대한 액세스 설정](active-directory-conditional-access-policy-connected-applications.md)
+#### [액세스 tooconnected 앱 설정](active-directory-conditional-access-policy-connected-applications.md)
 #### [재구성](active-directory-conditional-access-device-remediation.md)
 #### [FAQ](active-directory-conditional-faqs.md)
 #### [클래식 포털](active-directory-conditional-access.md)

@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB: DocumentDB Java API, SDK 및 리소스 | Microsoft Docs"
-description: "릴리스 날짜, 사용 중지 날짜 및 Azure Cosmos DB DocumentDB Java SDK의 각 버전 간의 변경 내용을 포함하는 Java API 및 SDK에 대한 모든 것을 알아봅니다."
+description: "Java API와 SDK 릴리스 날짜, 사용 중지 날짜 및 hello Azure Cosmos DB DocumentDB Java SDK의 각 버전 간의 변경 내용을 포함 하 여 hello에 대 한 모든에 대해 알아봅니다."
 services: cosmos-db
 documentationcenter: java
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 15e3f7ef3bfd6b1f61fe6081a378bdb29e0a1aa2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8ef43ebeb7ae1bfc55512c4a7489c1b7930122d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-documentdb-java-sdk-release-notes-and-resources"></a>Azure Cosmos DB: DocumentDB Java SDK 릴리스 정보 및 리소스
 > [!div class="op_single_selector"]
@@ -41,9 +41,9 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**API 설명서**</td><td>[Java API 참조 설명서](/java/api/com.microsoft.azure.documentdb)</td></tr>
 
-<tr><td>**SDK에 참여**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
+<tr><td>**TooSDK 영향**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
-<tr><td>**시작**</td><td>[Java SDK 시작](documentdb-java-get-started.md)</td></tr>
+<tr><td>**시작**</td><td>[Hello Java SDK 시작](documentdb-java-get-started.md)</td></tr>
 
 <tr><td>**웹앱 자습서**</td><td>[Azure Cosmos DB를 사용한 웹 응용 프로그램 개발](documentdb-java-application.md)</td></tr>
 
@@ -53,8 +53,8 @@ ms.lasthandoff: 08/18/2017
 ## <a name="release-notes"></a>릴리스 정보
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
-* 파티션 분할 동안 요청 처리에 대한 중요한 버그 수정.
-* Strong 및 BoundedStaleness 일관성 수준 관련 문제를 수정했습니다.
+* 파티션 중를 처리 하는 중요 한 버그 수정 toorequest 분할 합니다.
+* 강력한 hello 및 BoundedStaleness 일관성 수준 관련 문제를 해결 합니다.
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
 * ConsistentPrefix라는 새로운 일관성 수준에 대한 지원이 추가되었습니다.
@@ -62,11 +62,11 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * 초당 2,500 RU 및 초당 100 RU의 규모 조정 능력을 통해 분할된 컬렉션을 지원합니다.
-* 일부 쿼리에서 NullRef 예외를 일으킬 수 있는 네이티브 어셈블리 버그를 수정했습니다.
+* 일부 쿼리에서 NullRef 예외가 발생할 수 있는 네이티브 어셈블리 hello에서에서 버그를 수정 합니다.
 
 ### <a name="a-name196196"></a><a name="1.9.6"/>1.9.6
-* 게이트웨이 모드에서 쿼리에 대한 예외를 일으킬 수 있는 쿼리 엔진 구성에서 버그를 수정했습니다.
-* 컬렉션을 만든 후 즉시 요청에 대한 "소유자 리소스를 찾을 수 없습니다." 예외를 일으킬 수 있는 세션 컨테이너에 몇 가지 버그가 수정되었습니다.
+* 게이트웨이 모드에서 쿼리에 대 한 예외를 일으킬 수 있는 hello 쿼리 엔진 구성에서 버그를 수정 합니다.
+* 컬렉션을 만든 후 즉시 요청에 대 한 "소유자 리소스를 찾을 수 없습니다." 예외를 일으킬 수 있는 hello 세션 컨테이너에 몇 가지 버그도 수정 되었습니다.
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * 집계 쿼리(COUNT, MIN, MAX, SUM 및 AVG)에 대한 지원이 추가되었습니다. [집계 지원](documentdb-sql-query.md#Aggregates)을 참조하세요.
@@ -80,72 +80,72 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * ConnectionPolicy.setProxy() API와 함께 샘플 클라이언트 인스턴스 기반 프록시 지원이 추가되었습니다.
-* DocumentClient 인스턴스를 올바르게 종료하기 위한 DocumentClient.close() API가 추가되었습니다.
-* 게이트웨이 대신 네이티브 어셈블리에서 쿼리 계획을 파생하여 직접 연결 모드의 쿼리 성능을 개선했습니다.
-* 사용자가 POJO에서 JsonIgnoreProperties를 정의할 필요가 없도록 FAIL_ON_UNKNOWN_PROPERTIES = false로 설정했습니다.
-* SLF4J를 사용하도록 로깅을 리팩터링했습니다.
+* 추가 된 DocumentClient.close() API tooproperly DocumentClient 인스턴스 종료 합니다.
+* 쿼리 성능이 향상된 hello 쿼리 계획 hello 게이트웨이 대신 hello 네이티브 어셈블리에서 파생 하 여 직접 연결 모드에 있습니다.
+* FAIL_ON_UNKNOWN_PROPERTIES 설정 false = 사용자가 자신의 POJO에 JsonIgnoreProperties toodefine 필요 하지 않습니다.
+* 로깅 toouse SLF4J를 리팩터링 합니다.
 * 일관성 판독기의 몇 가지 버그를 수정했습니다.
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* 직접 연결 모드에서 연결 누수를 방지하기 위해 연결 관리의 버그를 수정했습니다.
-* NullReferenece 예외가 throw 될 수 있는 상위 쿼리의 버그를 수정했습니다.
-* 내부 캐시에 대한 네트워크 호출의 수를 줄여 성능을 개선했습니다.
+* 직접 연결 모드에서 hello 연결 관리 tooprevent 연결 누수에서 버그를 수정 합니다.
+* NullReferenece 예외가 throw 될 수 있는 hello TOP 쿼리에서 버그를 수정 합니다.
+* Hello hello 내부 캐시에 대 한 네트워크 호출 수를 줄이면 성능이 향상 되었습니다.
 * DocumentClientException에 상태 코드 ActivityID 및 요청 URI를 추가하여 문제 해결을 개선했습니다.
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
-* 연결 관리의 문제를 해결하여 안정성을 높였습니다.
+* 안정성에 대 한 hello 연결 관리 문제를 해결 합니다.
 
 ### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 * BoundedStaleness 일관성 수준에 대한 지원이 추가되었습니다.
 * 분할된 컬렉션의 CRUD 작업에 대한 직접 연결 지원이 추가되었습니다.
 * SQL을 사용하여 데이터베이스를 쿼리할 때의 버그가 수정되었습니다.
-* 세션 토큰이 잘못 설정된 경우에 발생할 수 있는 세션 캐시의 버그가 수정되었습니다.
+* 여기서 세션 토큰이 설정 되는 경우 올바르게 hello 세션 캐시에는 버그를 수정 합니다.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
 * 파티션 간 병렬 쿼리에 대한 지원이 추가되었습니다.
 * 분할된 컬렉션의 TOP/ORDER BY 쿼리에 대한 지원이 추가되었습니다.
 * 강력한 일관성에 대한 지원이 추가되었습니다.
 * 직접 연결을 사용할 때 이름 기반 요청에 대한 지원이 추가되었습니다.
-* 모든 요청 다시 시도 간에 ActivityId가 일관성을 유지하도록 수정되었습니다.
-* 동일한 이름의 컬렉션을 다시 만들 때 세션 캐시와 관련된 버그가 수정되었습니다.
+* 고정된 toomake ActivityId 전체 하 게 유지 일관 된 모든 요청 다시 시도 합니다.
+* 버그를 수정 hello 사용 하 여 컬렉션을 다시 만들 때 toohello 세션 캐시와 관련 된 동일한 이름입니다.
 * 지역 펜싱 공간 쿼리에 대한 컬렉션 인덱싱 정책을 지정하는 동안 Polygon 및 LineString 데이터 형식이 추가되었습니다.
 * Java 1.8용 Java 문서 관련 문제가 해결되었습니다.
 
 ### <a name="a-name181181"></a><a name="1.8.1"/>1.8.1
-* PartitionKeyDefinitionMap에서 버그를 수정하여 단일 파티션 컬렉션을 캐시하고 추가 인출 파티션 키를 요청하지 않았습니다.
-* 잘못된 파티션 키 값이 제공되는 경우 버그가 다시 시도되지 않도록 수정했습니다.
+* PartitionKeyDefinitionMap에서 버그를 수정 toocache 단일 파티션 컬렉션 및 추가 만들지 인출 파티션 키를 요청 합니다.
+* 잘못 된 파티션 키 값이 제공 하는 경우 버그 toonot 다시 시도 고정 합니다.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* 다중 지역 데이터베이스 계정에 대한 지원이 추가되었습니다.
-* 최대 재시도 횟수와 최대 재시도 대기 시간을 지정하는 옵션과 함께 정제된 요청의 자동 재시도 지원이 추가되었습니다.  RetryOptions와 ConnectionPolicy.getRetryOptions()을 참조하세요.
+* 다중 영역 데이터베이스 계정에 대 한 추가 된 hello 지원 합니다.
+* 자동 다시 시도 최대 옵션 toocustomize hello로 제한 된 요청에 대 한 지원 추가 재시도 횟수와 최대 대기 시간을 다시 시도 하십시오.  RetryOptions와 ConnectionPolicy.getRetryOptions()을 참조하세요.
 * IPartitionResolver 기반 사용자 지정 파티셔닝 코드의 사용이 중단되었습니다. 보다 큰 저장소 및 처리량에는 파티션된 컬렉션을 사용하세요.
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * 제한에 대한 재시도 정책 지원이 추가되었습니다.  
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* 문서에 대한 TTL(Time to Live) 지원이 추가되었습니다.
+* 문서에 대 한 시간 toolive (TTL) 지원이 추가 되었습니다.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * [분할된 컬렉션](partition-data.md) 및 [사용자 정의 성능 수준](performance-levels.md)이 구현되었습니다.
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* 다른 SDK와 일치하도록 little-endian의 해시 값을 생성하는 HashPartitionResolver의 버그를 수정합니다.
+* 다른 Sdk와 일치 하는 little endian toobe HashPartitionResolver toogenerate 해시 값에서 버그를 수정 합니다.
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* 여러 파티션 간의 응용 프로그램 분할을 지원하기 위해 해시 및 범위 파티션 해결 프로그램을 추가합니다.
+* 추가 해시 & 범위 파티션 확인자 tooassist 여러 파티션에서 분할 응용 프로그램입니다.
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
-* Upsert를 구현합니다. 새로운 upsertXXX 메서드가 Upsert 기능을 지원하기 위해 추가되었습니다.
+* Upsert를 구현합니다. 새 upsertXXX 메서드가 toosupport Upsert 기능을 추가 합니다.
 * ID 기반 라우팅을 구현합니다. 공용 API 변경 없이 모두 내부에서 변경됩니다.
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
-* 다른 SDK와 일치하는 버전 번호 가져오기를 생략하는 릴리스
+* 릴리스 건너뛴 정렬을 다른 Sdk 사용 하 여 toobring 버전 번호
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * 지리 공간 인덱스 지원
 * 모든 리소스에 대한 ID 속성의 유효성을 검사합니다. 리소스에 대한 ID는 ?, /, #, \, 문자를 포함하거나 공백으로 끝날 수 없습니다.
-* ResourceResponse에 새 헤더 "인덱스 변환 진행"을 추가합니다.
+* 새 헤더 "인덱스 변환 진행 중" tooResourceResponse를 추가합니다.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * V2 인덱싱 정책 구현
@@ -154,14 +154,14 @@ ms.lasthandoff: 08/18/2017
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>릴리스 및 사용 중지 날짜
-Microsoft는 매끄럽게 최신/지원 버전으로 전환할 수 있도록 적어도 SDK 사용 중지 **12개월** 전에 알림을 제공합니다.
+Microsoft는 알림을 적어도 제공 **12 개월** 순서 toosmooth hello 전환 tooa 지원/최신 버전의 SDK를 사용 중지 전에 합니다.
 
-새로운 기능 및 최적화는 현재 SDK에만 추가되어 있으며, 따라서 항상 최신 SDK 버전으로 가능한 한 빨리 업그레이드할 것을 권장합니다.
+새로운 기능 및 기능 및 최적화는 toohello 현재만 추가 그렇게 하면 항상 업그레이드 toohello 최신 SDK 버전을 가능한 한 빨리 권장는 SDK입니다.
 
-사용 중지된 SDK를 사용하는 Cosmos DB에 대한 요청은 서비스에서 거부됩니다.
+모든 요청 tooCosmos 사용 중지 된 SDK를 사용 하 여 DB hello 서비스에서 거부 됩니다.
 
 > [!WARNING]
-> **1.0.0** 이전 버전의 Java에 대한 모든 버전의 DocumentDB SDK는 **2016년 2월 29일**에 사용 중지됩니다.
+> 모든 버전의 Java 이전 tooversion에 대 한 DocumentDB SDK hello **1.0.0** 에 사용 중지 될 예정 **2016 년 2 월 29 일**합니다.
 > 
 > 
 
@@ -203,5 +203,5 @@ Microsoft는 매끄럽게 최신/지원 버전으로 전환할 수 있도록 적
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>참고 항목
-Cosmos DB에 대한 자세한 내용은 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 서비스 페이지를 참조하세요.
+Cosmos DB에 대해 자세히 toolearn 참조 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 서비스 페이지.
 

@@ -1,6 +1,6 @@
 ---
-title: "IntelliJ용 Azure 도구 키트 설치 | Microsoft Docs"
-description: "IntelliJ IDEA용 Azure 도구 키트를 설치하는 방법을 알아봅니다."
+title: "aaaInstalling hello IntelliJ 용 Azure 도구 키트 | Microsoft Docs"
+description: "Tooinstall hello IntelliJ 개념에 대 한 Azure 도구 키트를 hello 하는 방법에 대해 알아봅니다."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,83 +14,83 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: bf11a8580500f78c4a96a02953f221501eeffe6c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a39f27002835c356fc4da09bf9f45359c3c30b34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="installing-the-azure-toolkit-for-intellij"></a>IntelliJ용 Azure 도구 키트 설치
-IntelliJ용 Azure 도구 키트는 IntelliJ IDEA 개발 환경에서 Azure 응용 프로그램을 쉽게 작성, 개발, 테스트 및 배포할 수 있는 템플릿과 기능을 제공합니다. IntelliJ용 Azure 도구 키트는 다음 URL에 있는 GitHub의 프로젝트 사이트를 통해 MIT 라이선스에 따라 소스 코드 사용이 허가된 오픈 소스 프로젝트입니다.
+# <a name="installing-hello-azure-toolkit-for-intellij"></a>IntelliJ 용 hello Azure 도구 키트 설치
+hello IntelliJ 용 Azure 도구 키트 tooeasily 수 있는 템플릿과 기능을 만드는 나와 개발 테스트 및 hello IntelliJ 아이디어 개발 환경을 사용 하 여 Azure 응용 프로그램을 배포 합니다. hello IntelliJ 용 Azure 도구 키트는 소스 코드는 hello MIT 라이선스 url hello에 GitHub에서 hello 프로젝트의 사이트에서 사용할 수 있는 오픈 소스 프로젝트:
 
 <https://github.com/microsoft/azure-tools-for-java>
 
-IntelliJ용 Azure 도구 키트는 설정 대화 상자와 시작 화면의 구성 메뉴에서 설치할 수 있습니다. 다음 단계에서는 두 설치 방법을 모두 설명합니다.
+IntelliJ, hello 시작 화면의; hello 구성 메뉴와 hello 설정 대화 상자에서에 대 한 hello Azure 도구 키트를 설치 하는 방법에 두 가지가 두 설치 방법의 단계를 수행 하는 hello 소개 합니다.
 
 [!INCLUDE [azure-toolkit-for-IntelliJ-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## <a name="to-install-the-azure-toolkit-for-intellij-from-the-settings-dialog-box"></a>설정 대화 상자에서 IntelliJ용 Azure 도구 키트를 설치하려면
+## <a name="tooinstall-hello-azure-toolkit-for-intellij-from-hello-settings-dialog-box"></a>tooinstall hello hello 설정 대화 상자에서 IntelliJ 용 Azure 도구 키트
 1. IntelliJ IDEA를 시작합니다.
-2. IntelliJ IDEA가 열리면 **File**을 클릭한 다음 **Settings**를 클릭합니다.
+2. Hello IntelliJ 아이디어를 열 때 클릭 **파일**, 클릭 **설정을**합니다.
    
-    ![IntelliJ IDEA Settings 대화 상자 열기][01a]
-3. 설정 대화 상자에서 **Plugins**를 클릭하고 **Browse repositories**를 클릭합니다.
+    ![Hello IntelliJ 아이디어 설정 대화 상자를 엽니다.][01a]
+3. Hello 설정 대화 상자에서 클릭 **플러그 인**, 클릭 하 고 **저장소 찾아보기**합니다.
    
     ![IntelliJ IDEA Settings 대화 상자][02a]
-4. **Browse repositories** 대화 상자에서 검색 상자에 "Azure"를 입력합니다. **IntelliJ용 Azure 도구 키트**를 강조 표시하고 **Install**을 클릭합니다.
+4. Hello에 **저장소 찾아보기** 대화 상자에서 "Azure" hello 검색 상자에 입력 합니다. **IntelliJ용 Azure 도구 키트**를 강조 표시하고 **Install**을 클릭합니다.
    
-    ![IntelliJ용 Azure 도구 키트 검색][03]
+    ![IntelliJ hello Azure 도구 키트에 대 한 검색][03]
    
-    IntelliJ IDEA 대화 상자에서 설치 진행 상태가 표시됩니다.
+    IntelliJ 아이디어는 hello 설치 진행률 대화 상자에 표시 됩니다.
    
     ![설치 진행률][04]
-5. 설치가 완료되면 **Restart IntelliJ IDEA**를 클릭합니다.
+5. Hello 설치가 완료 되 면 클릭 **IntelliJ 아이디어를 다시 시작**합니다.
    
     ![Restart IntelliJ IDEA][05]
-6. **OK** 를 클릭하여 Settings 대화 상자를 닫습니다.
+6. 클릭 **확인** tooclose hello 설정 대화 상자.
    
     ![IntelliJ IDEA Settings 대화 상자 닫기][06]
-7. IntelliJ IDEA를 다시 시작할지 또는 연기할지 묻는 메시지가 나타나면 **Restart**를 클릭합니다.
+7. Toorestart IntelliJ 아이디어를 묻는 메시지가 표시 또는 연기를 클릭 하 여 **다시 시작**합니다.
    
     ![Restart IntelliJ IDEA][07]
 
-## <a name="to-install-the-azure-toolkit-for-intellij-from-the-start-screen"></a>시작 화면에서 IntelliJ용 Azure 도구 키트를 설치하려면
+## <a name="tooinstall-hello-azure-toolkit-for-intellij-from-hello-start-screen"></a>hello에서 tooinstall hello IntelliJ 용 Azure 도구 키트 시작 화면
 1. IntelliJ IDEA를 시작합니다.
-2. IntelliJ IDEA 시작 화면이 나타나면 **Configure**를 클릭하고 **Plugins**를 클릭합니다.
+2. Hello IntelliJ 아이디어 시작 화면이 나타나면 클릭 **구성**, 클릭 **플러그 인**합니다.
    
     ![IntelliJ IDEA 플러그 인 설치][01b]
-3. **Plugins** 대화 상자에서 **Browse repositories**를 클릭합니다.
+3. Hello에 **플러그 인** 대화 상자를 클릭 **저장소 찾아보기**합니다.
    
     ![IntelliJ 아이디어 플러그 인 저장소 찾아보기][02b]
-4. **Browse repositories** 대화 상자에서 검색 상자에 "Azure"를 입력합니다. **IntelliJ용 Azure 도구 키트**를 강조 표시하고 **Install**을 클릭합니다.
+4. Hello에 **저장소 찾아보기** 대화 상자에서 "Azure" hello 검색 상자에 입력 합니다. **IntelliJ용 Azure 도구 키트**를 강조 표시하고 **Install**을 클릭합니다.
    
-    ![IntelliJ용 Azure 도구 키트 검색][03]
+    ![IntelliJ hello Azure 도구 키트에 대 한 검색][03]
    
-    IntelliJ IDEA 대화 상자에서 설치 진행 상태가 표시됩니다.
+    IntelliJ 아이디어는 hello 설치 진행률 대화 상자에 표시 됩니다.
    
     ![설치 진행률][04]
-5. 설치가 완료되면 **Restart IntelliJ IDEA**를 클릭합니다.
+5. Hello 설치가 완료 되 면 클릭 **IntelliJ 아이디어를 다시 시작**합니다.
    
     ![Restart IntelliJ IDEA][05]
-6. IntelliJ IDEA를 다시 시작할지 또는 연기할지 묻는 메시지가 나타나면 **Restart**를 클릭합니다.
+6. Toorestart IntelliJ 아이디어를 묻는 메시지가 표시 또는 연기를 클릭 하 여 **다시 시작**합니다.
    
     ![Restart IntelliJ IDEA][07]
 
 ## <a name="see-also"></a>참고 항목
-Java IDE용 Azure 도구 키트에 대한 자세한 내용은 다음 링크를 참조하세요.
+Java Ide에 대 한 hello Azure 도구 키트에 대 한 자세한 내용은 hello 다음 링크 참조:
 
 * [Eclipse용 Azure 도구 키트]
-  * [Eclipse용 Azure 도구 키트의 새로운 기능]
-  * [Eclipse용 Azure 도구 키트 설치]
-  * [Eclipse용 Azure 도구 키트에 대한 로그인 지침]
+  * [Hello Azure Toolkit for Eclipse에서 새로운 이란]
+  * [Hello Eclipse 용 Azure 도구 키트 설치]
+  * [Eclipse 용 Azure 도구 키트 hello에 대 한 지침에 로그인]
   * [Eclipse에서 Azure용 Hello World 웹앱 만들기]
 * [IntelliJ용 Azure 도구 키트]
-  * [IntelliJ용 Azure 도구 키트의 새로운 기능]
-  * *IntelliJ용 Azure 도구 키트 설치(이 문서)*
-  * [IntelliJ용 Azure 도구 키트에 대한 로그인 지침]
+  * [Hello IntelliJ 용 Azure 도구 키트에서 새로운 이란]
+  * *IntelliJ (이 문서의 내용)에 대 한 hello Azure 도구 키트 설치*
+  * [Hello IntelliJ 용 Azure 도구 키트에 대 한 지침에 로그인]
   * [IntelliJ에서 Azure용 Hello World 웹앱 만들기]
 
-Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터]를 참조하세요.
+Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터]합니다.
 
 <!-- URL List -->
 
@@ -98,12 +98,12 @@ Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure
 [IntelliJ용 Azure 도구 키트]: ./azure-toolkit-for-intellij.md
 [Eclipse에서 Azure용 Hello World 웹앱 만들기]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [IntelliJ에서 Azure용 Hello World 웹앱 만들기]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Eclipse용 Azure 도구 키트 설치]: ./azure-toolkit-for-eclipse-installation.md
-[Installing the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Eclipse용 Azure 도구 키트에 대한 로그인 지침]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[IntelliJ용 Azure 도구 키트에 대한 로그인 지침]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Eclipse용 Azure 도구 키트의 새로운 기능]: ./azure-toolkit-for-eclipse-whats-new.md
-[IntelliJ용 Azure 도구 키트의 새로운 기능]: ./azure-toolkit-for-intellij-whats-new.md
+[Hello Eclipse 용 Azure 도구 키트 설치]: ./azure-toolkit-for-eclipse-installation.md
+[Installing hello Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[Eclipse 용 Azure 도구 키트 hello에 대 한 지침에 로그인]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Hello IntelliJ 용 Azure 도구 키트에 대 한 지침에 로그인]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Hello Azure Toolkit for Eclipse에서 새로운 이란]: ./azure-toolkit-for-eclipse-whats-new.md
+[Hello IntelliJ 용 Azure 도구 키트에서 새로운 이란]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 개발자 센터]: https://azure.microsoft.com/develop/java/
 

@@ -1,6 +1,6 @@
 ---
-title: "서비스 관리 API를 사용하는 방법(Python) - 기능 가이드"
-description: "Python에서 프로그래밍 방식으로 일반 서비스 관리 작업을 수행하는 방법에 대해 알아봅니다."
+title: "aaaHow toouse hello 서비스 관리 API (Python)-기능 가이드"
+description: "Tooprogrammatically Python에서 일반적인 서비스 관리 작업을 수행 하는 방법에 대해 알아봅니다."
 services: cloud-services
 documentationcenter: python
 author: lmazuel
@@ -14,48 +14,48 @@ ms.devlang: python
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: lmazuel
-ms.openlocfilehash: 13249ba9a4b317a3154776b411ce0bb1f316b3bb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b59622203470e1586484cec4033515edb39ca4d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-management-from-python"></a>Python에서 서비스 관리를 사용하는 방법
-이 가이드에서는 Python에서 프로그래밍 방식으로 일반 서비스 관리 작업을 수행하는 방법을 보여 줍니다. [Python용 Azure SDK](https://github.com/Azure/azure-sdk-for-python)의 **ServiceManagementService** 클래스는 [Azure 클래식 포털][management-portal]에서 사용할 수 있는 대부분의 서비스 관리 관련 기능에 대해 프로그래밍 방식의 액세스를 지원합니다(예: **클라우드 서비스, 배포, 데이터 관리 서비스, 가상 컴퓨터 만들기, 업데이트 및 삭제**). 이 기능은 서비스 관리에 프로그래밍 방식으로 액세스해야 하는 응용 프로그램을 빌드하는 데 유용할 수 있습니다.
+# <a name="how-toouse-service-management-from-python"></a>어떻게 toouse Python에서 서비스 관리
+이 가이드에서는 tooprogrammatically Python에서 서비스 관리 작업을 수행 하는 방법을 알아봅니다. hello **ServiceManagementService** hello 클래스 [Python 용 Azure SDK](https://github.com/Azure/azure-sdk-for-python) hello 서비스 관리 관련 기능 hello 에서에서사용할수있는프로그래밍방식액세스toomuch지원[Azure 클래식 포털] [ management-portal] (예: **만들기, 업데이트 및 클라우드 서비스, 배포, 데이터 관리 서비스 및 가상 컴퓨터 삭제**). 이 기능에 프로그래밍 방식 액세스 tooservice 관리 해야 하는 응용 프로그램을 구축 유용할 수 있습니다.
 
 ## <a name="WhatIs"> </a>서비스 관리 정의
-Service Management API는 [Azure 클래식 포털][management-portal]을 통해 사용할 수 있는 대부분의 서비스 관리 기능에 대해 프로그래밍 방식의 액세스를 제공합니다. Python용 Azure SDK를 사용하여 클라우드 서비스 및 저장소 계정을 관리할 수 있습니다.
+프로그래밍 방식 액세스 toomuch hello를 통해 사용할 수 있는 hello 서비스 관리 기능을 제공 하는 hello 서비스 관리 API [Azure 클래식 포털][management-portal]합니다. Python 용 Azure SDK hello toomanage을 사용 하면 클라우드 서비스 및 저장소 계정입니다.
 
-서비스 관리 API를 사용하려면 [Azure 계정을 만들어야](https://azure.microsoft.com/pricing/free-trial/)합니다.
+toouse hello 서비스 관리 API를 필요한 너무[Azure 계정을 만들려면](https://azure.microsoft.com/pricing/free-trial/)합니다.
 
 ## <a name="Concepts"> </a>개념
-Python용 Azure SDK는 REST API인 [Azure Service Management API][svc-mgmt-rest-api]를 래핑합니다. 모든 API 작업은 SSL을 통해 수행되고 X.509 v3 인증서를 사용하여 서로 인증됩니다. 관리 서비스는 Azure에서 실행 중인 서비스 내에서 액세스할 수 있거나, HTTPS 요청을 보내고 HTTPS 응답을 받을 수 있는 응용 프로그램에서 인터넷을 통해 직접 액세스할 수 있습니다.
+Python 용 Azure SDK hello 래핑합니다 hello [Azure 서비스 관리 API][svc-mgmt-rest-api], 하는 REST API입니다. 모든 API 작업은 SSL을 통해 수행되고 X.509 v3 인증서를 사용하여 서로 인증됩니다. hello 관리 서비스는 Azure에서 또는 hello 인터넷을 통해 직접 HTTPS 요청을 보내고 HTTPS 응답을 받을 수 있는 모든 응용 프로그램에서 실행 되는 서비스 내에서 액세스할 수 있습니다.
 
 ## <a name="Installation"> </a>설치
-이 문서에서 설명한 모든 기능은 `azure-servicemanagement-legacy` 패키지에서 사용할 수 있으며, 이 패키지는 pip을 사용하여 설치할 수 있습니다. (예를 들어 Python을 처음 사용한다면) 설치에 관한 자세한 내용은 [Python 설치 및 Azure SDK](../python-how-to-install.md) 문서를 참조하세요.
+Hello에 사용할 수 있는이 문서에서 설명 하는 모든 hello 기능 `azure-servicemanagement-legacy` 패키지는 pip를 사용 하 여 설치할 수 있습니다. 설치 (예: 새 tooPython 하려는 경우)에 대 한 자세한 내용은이 문서를 참조 하십시오.: [Python 설치 및 hello Azure SDK](../python-how-to-install.md)
 
-## <a name="Connect"> </a>방법: 서비스 관리에 연결
-서비스 관리 끝점에 연결하려면 Azure 구독 ID 및 유효한 관리 인증서가 있어야 합니다. [Azure 클래식 포털][management-portal]을 통해 구독 ID를 얻을 수 있습니다.
+## <a name="Connect"></a>하는 방법: tooservice management 연결
+Azure 구독 ID와 유효한 관리 인증서 tooconnect toohello 서비스 관리 끝점 필요합니다. Hello 통해 구독 ID를 가져올 수 있습니다 [Azure 클래식 포털][management-portal]합니다.
 
 > [!NOTE]
-> 이제 Windows에서 실행할 때 OpenSSL로 만든 인증서를 사용할 수 있습니다.  Python 2.7.4 이상이 필요합니다. .pfx 인증서 지원은 나중에 제거될 가능성이 크기 때문에 사용자는 .pfx 대신 OpenSSL을 사용하는 것이 좋습니다.
+> 이제 Windows에서 실행 되는 경우에 OpenSSL을 사용 하 여 만든 가능한 toouse 인증서입니다.  Python 2.7.4 이상이 필요합니다. .Pfx 인증서 hello 미래에서는 제거 될 가능성이 대 한 지원을 이후.pfx, 대신 사용자가 toouse OpenSSL을 권장 합니다.
 >
 >
 
 ### <a name="management-certificates-on-windowsmaclinux-openssl"></a>Windows/Mac/Linux의 관리 인증서(OpenSSL)
-[OpenSSL](http://www.openssl.org/) 을 사용하여 관리 인증서를 만들 수 있습니다.  실제로 서버용(`.cer` 파일)과 클라이언트용(`.pem` 파일)으로 두 개의 인증서를 만들어야 합니다. `.pem` 파일을 만들려면 다음을 실행합니다.
+사용할 수 있습니다 [OpenSSL](http://www.openssl.org/) toocreate 관리 인증서.  실제로 hello 서버에 대 한 toocreate 두 개의 인증서가 필요 (한 `.cer` 파일) hello 클라이언트에 대 한 하나 (한 `.pem` 파일). toocreate hello `.pem` 파일을 실행 합니다.
 
     openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
 
-`.cer` 인증서를 만들려면 다음을 실행합니다.
+toocreate hello `.cer` 인증서, 실행:
 
     openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
 
-Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인증서](cloud-services-certs-create.md)를 참조하세요. OpenSSL 매개 변수에 대한 자세한 설명은 [http://www.openssl.org/docs/apps/openssl.html](http://www.openssl.org/docs/apps/openssl.html)(영문)의 자료를 참조하세요.
+Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인증서](cloud-services-certs-create.md)를 참조하세요. OpenSSL 매개 변수 설명과 hello 설명서를 참조 [http://www.openssl.org/docs/apps/openssl.html](http://www.openssl.org/docs/apps/openssl.html)합니다.
 
-이러한 파일을 만든 후에는 [Azure 클래식 포털][management-portal]에서 "설정" 탭의 "업로드" 작업을 통해 `.cer` 파일을 Azure에 업로드해야 하고, `.pem` 파일을 저장한 위치를 적어 두어야 합니다.
+Tooupload hello 이러한 파일을 만든 후 해야 `.cer` tooAzure hello의 hello "설정" 탭의 hello "업로드 하세요." 동작을 통해 파일 [Azure 클래식 포털][management-portal], toomake 기록 필요 hello 저장 `.pem` 파일입니다.
 
-구독 ID를 얻어 인증서를 만들고 `.cer` 파일을 Azure에 업로드하고 나면 구독 ID 및 `.pem` 파일의 경로를 **ServiceManagementService**에 전달하여 Azure 관리 끝점에 연결할 수 있습니다.
+구독 ID를 가져온 후 인증서를 만들고 업로드 hello `.cer` 파일 tooAzure toohello Azure 관리 끝점 hello 구독 id로, hello 경로 toohello 전달 하 여 연결할 수 있습니다 `.pem` 파일 너무**ServiceManagementService**:
 
     from azure import *
     from azure.servicemanagement import *
@@ -65,18 +65,18 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
 
     sms = ServiceManagementService(subscription_id, certificate_path)
 
-앞의 예제에서 `sms` 은 **ServiceManagementService** 개체입니다. **ServiceManagementService** 클래스는 Azure 서비스를 관리하는 데 사용되는 주 클래스입니다.
+Hello 예제에서는 앞에서 `sms` 는 **ServiceManagementService** 개체입니다. hello **ServiceManagementService** 클래스 hello 사용 되는 기본 클래스 toomanage Azure 서비스입니다.
 
 ### <a name="management-certificates-on-windows-makecert"></a>Windows의 관리 인증서(MakeCert)
-`makecert.exe`를 사용하여 컴퓨터에 자체 서명된 관리 인증서를 만들 수 있습니다.  **Visual Studio 명령 프롬프트**를 **관리자**로 열고 *AzureCertificate*를 사용할 인증서 이름으로 바꿔서 다음 명령을 사용합니다.
+`makecert.exe`를 사용하여 컴퓨터에 자체 서명된 관리 인증서를 만들 수 있습니다.  열기는 **Visual Studio 명령 프롬프트** 로 **관리자** 다음 명령을, 대체 hello를 사용 하 여 *AzureCertificate* 원하는 hello 인증서 이름으로 toouse 합니다.
 
     makecert -sky exchange -r -n "CN=AzureCertificate" -pe -a sha1 -len 2048 -ss My "AzureCertificate.cer"
 
-이 명령은 `.cer` 파일을 만들고 만든 파일을 **개인** 인증서 저장소에 설치합니다. 자세한 내용은 [Azure Cloud Services 인증서 개요](cloud-services-certs-create.md)를 참조하세요.
+hello 명령은 hello `.cer` 파일과 hello에 설치 **개인** 인증서 저장소입니다. 자세한 내용은 [Azure Cloud Services 인증서 개요](cloud-services-certs-create.md)를 참조하세요.
 
-인증서를 만든 후에는 [Azure 클래식 포털][management-portal]에서 "설정" 탭의 "업로드" 작업을 통해 `.cer` 파일을 Azure에 업로드해야 합니다.
+Tooupload hello hello 인증서를 만든 후 해야 `.cer` tooAzure hello의 hello "설정" 탭의 hello "업로드 하세요." 동작을 통해 파일 [Azure 클래식 포털][management-portal]합니다.
 
-구독 ID를 얻어 인증서를 만들고 `.cer` 파일을 Azure에 업로드하고 나면 구독 ID 및 **개인** 인증서 저장소에 있는 인증서의 위치를 **ServiceManagementService**에 전달하여(다시 말해, *AzureCertificate*를 인증서 이름으로 바꿈) Azure 관리 끝점에 연결할 수 있습니다.
+구독 ID를 가져온 후 인증서를 만들고 업로드 hello `.cer` 파일 tooAzure toohello Azure 관리 끝점에 프로그램 hello구독id로,hello인증서의hello위치를전달하여연결할수있습니다**개인** 인증서 저장소에 너무**ServiceManagementService** (다시 대체 *AzureCertificate* 인증서의 hello 이름의):
 
     from azure import *
     from azure.servicemanagement import *
@@ -86,10 +86,10 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
 
     sms = ServiceManagementService(subscription_id, certificate_path)
 
-앞의 예제에서 `sms` 은 **ServiceManagementService** 개체입니다. **ServiceManagementService** 클래스는 Azure 서비스를 관리하는 데 사용되는 주 클래스입니다.
+Hello 예제에서는 앞에서 `sms` 는 **ServiceManagementService** 개체입니다. hello **ServiceManagementService** 클래스 hello 사용 되는 기본 클래스 toomanage Azure 서비스입니다.
 
 ## <a name="ListAvailableLocations"> </a>방법: 사용 가능한 위치 나열
-서비스를 호스트하는 데 사용할 수 있는 위치를 나열하려면 **list\_locations** 메서드를 사용합니다.
+서비스를 호스트 하는 데 사용할 수 있는 toolist hello 위치가 사용 하는 hello **목록\_위치** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -100,7 +100,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     for location in result:
         print(location.name)
 
-클라우드 서비스 또는 저장소 서비스를 만드는 경우 유효한 위치를 제공해야 합니다. **list\_locations** 메서드는 항상 현재 사용 가능한 위치의 최신 목록을 반환합니다. 현재 사용 가능한 위치는 다음과 같습니다.
+클라우드 서비스 또는 저장소 서비스를 만들 때 tooprovide 유효한 위치 해야 합니다. hello **목록\_위치** 메서드는 항상 최신 hello 현재 사용할 수 있는 위치의 목록을 반환 합니다. 이 문서의 작성일 hello 사용 가능한 위치는:
 
 * 서유럽
 * 북유럽
@@ -118,7 +118,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
 * 오스트레일리아 남동부
 
 ## <a name="CreateCloudService"> </a>방법: 클라우드 서비스 만들기
-응용 프로그램을 만들어 Azure에서 실행하면 코드와 구성은 모두 Azure [클라우드 서비스][cloud service](이전 Azure 릴리스에서는 *호스티드 서비스*라 함)라고 합니다. **create\_hosted\_service** 메서드를 통해 호스팅 서비스 이름(Azure에서 고유해야 함), 레이블(base64로 자동 인코딩됨), 설명 및 위치를 제공하여 새 호스팅 서비스를 만들 수 있습니다.
+응용 프로그램을 만들 Azure에서 실행 hello 코드와 구성이 함께 라고 Azure 시점과 [클라우드 서비스] [ cloud service] (라고는 *호스 티 드 서비스* 에 이전 버전 Azure 릴리스). hello **만들\_호스팅된\_서비스** 방법을 사용 하면 toocreate 새 호스팅된 서비스는 호스팅된 서비스 이름 (Azure에서 고유 해야 함)를 제공 하 여 레이블 (자동으로 인코딩된 toobase64)는 설명 및 위치입니다.
 
     from azure import *
     from azure.servicemanagement import *
@@ -132,7 +132,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
 
     sms.create_hosted_service(name, label, desc, location)
 
-**list\_hosted\_services** 메서드로 구독의 모든 호스팅 서비스를 나열할 수 있습니다.
+Hello로 구독에 대 한 모든 hello 호스팅된 서비스를 나열할 수 있습니다 **목록\_호스팅된\_서비스** 메서드:
 
     result = sms.list_hosted_services()
 
@@ -142,7 +142,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
         print('Location: ' + hosted_service.hosted_service_properties.location)
         print('')
 
-특정 호스티드 서비스에 대한 정보를 가져오려는 경우 호스티드 서비스 이름을 **get\_hosted\_service\_properties** 메서드에 전달하면 됩니다.
+특정 호스팅된 서비스에 대 한 tooget 정보를 원할 경우 후 그렇게 hello 호스팅 서비스 이름 toohello 전달 하 여 **가져오기\_호스팅된\_서비스\_속성** 메서드:
 
     hosted_service = sms.get_hosted_service_properties('myhostedservice')
 
@@ -150,17 +150,17 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     print('Management URL: ' + hosted_service.url)
     print('Location: ' + hosted_service.hosted_service_properties.location)
 
-클라우드 서비스를 만든 후 **create\_deployment** 메서드를 사용하여 코드를 서비스에 배포할 수 있습니다.
+클라우드 서비스를 만든 후 hello 사용 하 여 코드 toohello 서비스를 배포할 수 있습니다 **만들\_배포** 메서드.
 
 ## <a name="DeleteCloudService"> </a>방법: 클라우드 서비스 삭제
-서비스 이름을 **delete\_hosted\_service** 메서드에 전달하여 클라우드 서비스를 삭제할 수 있습니다.
+서비스 이름 toohello hello를 전달 하 여 클라우드 서비스를 삭제 하려면 **삭제\_호스팅된\_서비스** 메서드:
 
     sms.delete_hosted_service('myhostedservice')
 
-서비스의 모든 배포를 먼저 삭제해야 서비스를 삭제할 수 있습니다. 자세한 내용은 [방법: 배포 삭제](#DeleteDeployment) 를 참조하세요.
+서비스를 삭제 하기 전에 hello 서비스에 대 한 모든 배포 먼저 삭제 해야 합니다. 자세한 내용은 [방법: 배포 삭제](#DeleteDeployment) 를 참조하세요.
 
 ## <a name="DeleteDeployment"> </a>방법: 배포 삭제
-배포를 삭제하려면 **delete\_deployment** 메서드를 사용합니다. 다음 예제에서는 이름이 `v1`인 배포를 삭제하는 방법을 보여 줍니다.
+toodelete 해당 배포를 사용 하 여 hello **삭제\_배포** 메서드. hello 다음 예제에서는 어떻게 toodelete 배포 라는 `v1`합니다.
 
     from azure import *
     from azure.servicemanagement import *
@@ -170,7 +170,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     sms.delete_deployment('myhostedservice', 'v1')
 
 ## <a name="CreateStorageService"> </a>방법: 저장소 서비스 만들기
-[저장소 서비스](../storage/common/storage-create-storage-account.md)로 Azure [Blob](../storage/blobs/storage-python-how-to-use-blob-storage.md), [테이블](../cosmos-db/table-storage-how-to-use-python.md), [큐](../storage/queues/storage-python-how-to-use-queue-storage.md)에 액세스할 수 있습니다. 저장소 서비스를 만들려면 서비스(3자에서 24자 사이의 소문자로서 Azure 내에서 고유해야 함), 설명, 레이블(base64로 자동 인코딩되며 최대 100자까지 가능) 및 위치에 대해 이름이 있어야 합니다. 다음 예제에서는 위치를 지정하여 저장소 서비스를 만드는 방법을 보여 줍니다.
+A [저장소 서비스](../storage/common/storage-create-storage-account.md) 액세스할 수 있도록 tooAzure [Blob](../storage/blobs/storage-python-how-to-use-blob-storage.md), [테이블](../cosmos-db/table-storage-how-to-use-python.md), 및 [큐](../storage/queues/storage-python-how-to-use-queue-storage.md)합니다. 저장소 서비스 toocreate hello 서비스 (소문자 3 ~ 24 자 사이 및 Azure 내에서 고유)에 대 한 이름, 설명, too100 문자인 자동으로 인코딩된 toobase64), (위쪽 레이블 및 위치 해야합니다. 다음 예제는 hello toocreate 저장소 위치를 지정 하 여 처리할 하는 방법을 보여 줍니다.
 
     from azure import *
     from azure.servicemanagement import *
@@ -187,9 +187,9 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     operation_result = sms.get_operation_status(result.request_id)
     print('Operation status: ' + operation_result.status)
 
-앞의 예제에서 **create\_storage\_account** 작업 상태는 **create\_storage\_account**가 반환한 결과를 **get\_operation\_status** 메서드에 전달하여 검색할 수 있습니다.  
+해당 hello 상태의 hello 앞 예제는 hello에 언급 **만들\_저장소\_계정** 작업에서 반환 되는 hello 결과 전달 하 여 검색할 수 **만들\_저장소 \_계정** toohello **가져오기\_작업\_상태** 메서드.  
 
-**list\_storage\_accounts** 메서드로 저장소 계정 및 그 속성을 나열할 수 있습니다.
+저장소 계정 및 hello 사용 하 여 해당 속성을 나열할 수 **목록\_저장소\_계정** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -203,7 +203,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
         print('')
 
 ## <a name="DeleteStorageService"> </a>방법: 저장소 서비스 삭제
-저장소 서비스 이름을 **delete\_storage\_account** 메서드에 전달하여 저장소 서비스를 삭제할 수 있습니다. 저장소 서비스를 삭제하면 그 서비스에 저장되어 있는 모든 데이터(Blob, 테이블, 큐)가 삭제됩니다.
+저장소 서비스 이름 toohello hello를 전달 하 여 저장소 서비스를 삭제 하려면 **삭제\_저장소\_계정** 메서드. 저장소 서비스를 삭제 hello 서비스 (blob, 테이블 및 큐)에 저장 된 모든 데이터가 삭제 됩니다.
 
     from azure import *
     from azure.servicemanagement import *
@@ -213,7 +213,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     sms.delete_storage_account('mystorageaccount')
 
 ## <a name="ListOperatingSystems"> </a>방법: 사용 가능한 운영 체제 나열
-서비스를 호스트하는 데 사용할 수 있는 운영 체제를 나열하려면 **list\_operating\_systems** 메서드를 사용합니다.
+hello를 사용 하 여 서비스를 호스트 하는 데 사용할 수 있는 toolist hello 운영 체제 **목록\_운영\_시스템** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -227,7 +227,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
         print('Family: ' + os.family_label)
         print('Active: ' + str(os.is_active))
 
-또는 운영 체제를 제품군별로 그룹화하는 **list\_operating\_system\_families** 메서드를 사용할 수 있습니다.
+Hello 또는 사용할 수 있습니다 **목록\_운영\_시스템\_제품군** hello 운영 체제 제품군 별로 그룹화 하는 메서드:
 
     result = sms.list_operating_system_families()
 
@@ -240,7 +240,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
         print('')
 
 ## <a name="CreateVMImage"> </a>방법: 운영 체제 이미지 만들기
-운영 체제 이미지를 이미지 리포지토리에 추가하려면 **add\_os\_image** 메서드를 사용합니다.
+운영 체제 이미지 toohello 이미지 리포지토리에 tooadd hello를 사용 하 여 **추가\_os\_이미지** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -257,7 +257,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     operation_result = sms.get_operation_status(result.request_id)
     print('Operation status: ' + operation_result.status)
 
-사용 가능한 운영 체제 이미지를 나열하려면 **list\_os\_images** 메서드를 사용합니다. 여기에는 모든 플랫폼 이미지 및 사용자 이미지가 포함됩니다.
+toolist hello 운영 체제 이미지를 사용할 수 있는 hello를 사용 하 여 **목록\_os\_이미지** 메서드. 여기에는 모든 플랫폼 이미지 및 사용자 이미지가 포함됩니다.
 
     result = sms.list_os_images()
 
@@ -272,7 +272,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
         print('')
 
 ## <a name="DeleteVMImage"> </a>방법: 운영 체제 이미지 삭제
-사용자 이미지를 삭제하려면 **delete\_os\_image** 메서드를 사용합니다.
+toodelete 사용자 이미지를 사용 하 여 hello **삭제\_os\_이미지** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -285,7 +285,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     print('Operation status: ' + operation_result.status)
 
 ## <a name="CreateVM"> </a>방법: 가상 컴퓨터 만들기
-가상 컴퓨터를 만들려면 먼저 [클라우드 서비스](#CreateCloudService)를 만들어야 합니다.  그런 다음 **create\_virtual\_machine\_deployment** 메서드를 사용하여 가상 컴퓨터 배포를 만듭니다.
+가상 컴퓨터 toocreate 먼저 toocreate는 [클라우드 서비스](#CreateCloudService)합니다.  그런 다음 hello를 사용 하 여 hello 가상 컴퓨터 배포를 만들 **만들\_가상\_컴퓨터\_배포** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -295,7 +295,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     name = 'myvm'
     location = 'West US'
 
-    #Set the location
+    #Set hello location
     sms.create_hosted_service(service_name=name,
         label=name,
         location=location)
@@ -303,7 +303,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     # Name of an os image as returned by list_os_images
     image_name = 'OpenLogic__OpenLogic-CentOS-62-20120531-en-us-30GB.vhd'
 
-    # Destination storage account container/blob where the VM disk
+    # Destination storage account container/blob where hello VM disk
     # will be created
     media_link = 'url_to_target_storage_blob_for_vm_hd'
 
@@ -323,7 +323,7 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
         role_size='Small')
 
 ## <a name="DeleteVM"> </a>방법: 가상 컴퓨터 삭제
-가상 컴퓨터를 삭제하려면 **delete\_deployment** 메서드를 사용하여 먼저 배포를 삭제합니다.
+toodelete 가상 컴퓨터를 먼저 삭제 하면 hello를 사용 하 여 hello 배포 **삭제\_배포** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
@@ -333,19 +333,19 @@ Azure 인증서에 대한 자세한 내용은 [Azure 클라우드 서비스 인�
     sms.delete_deployment(service_name='myvm',
         deployment_name='myvm')
 
-그런 다음 **delete\_hosted\_service** 메서드를 사용하여 클라우드 서비스를 삭제할 수 있습니다.
+hello를 사용 하 여 hello 클라우드 서비스가 삭제 한 다음 수 **삭제\_호스팅된\_서비스** 메서드:
 
     sms.delete_hosted_service(service_name='myvm')
 
 ## <a name="how-to-create-a-virtual-machine-from-a-captured-virtual-machine-image"></a>방법: 캡처된 가상 컴퓨터 이미지에서 가상 컴퓨터 만들기
-VM 이미지를 캡처하기 위해 먼저 **capture\_vm\_image** 메서드를 호출합니다.
+VM 이미지 toocapture 처음 호출 하면 hello **캡처\_vm\_이미지** 메서드:
 
     from azure import *
     from azure.servicemanagement import *
 
     sms = ServiceManagementService(subscription_id, certificate_path)
 
-    # replace the below three parameters with actual values
+    # replace hello below three parameters with actual values
     hosted_service_name = 'hs1'
     deployment_name = 'dep1'
     vm_name = 'vm1'
@@ -365,11 +365,11 @@ VM 이미지를 캡처하기 위해 먼저 **capture\_vm\_image** 메서드를 �
             image
         )
 
-그런 다음 이미지가 캡처되었는지 확인하기 위해 **list\_vm\_images** API를 사용하여 이미지가 결과에 표시되는지 확인합니다.
+그런 다음, toomake 성공적으로 hello 이미지를 캡처한, hello를 사용 하 여 않았는지 **목록\_vm\_이미지** api를 이미지 hello 결과에 표시 되 고 있는지 확인:
 
     images = sms.list_vm_images()
 
-최종적으로 캡처된 이미지를 사용하여 가상 컴퓨터를 만들기 위해 이전처럼 **create\_virtual\_machine\_deployment** 메서드를 사용하지만, 이번에는 대신 vm_image_name을 전달합니다.
+toofinally hello 캡처된 이미지를 사용 하 여 hello 가상 컴퓨터를 만들고, hello를 사용 하 여 **만들\_가상\_컴퓨터\_배포** 앞, 하지만이 이번 전달 hello vm_image_name에 대신 메서드
 
     from azure import *
     from azure.servicemanagement import *
@@ -379,7 +379,7 @@ VM 이미지를 캡처하기 위해 먼저 **capture\_vm\_image** 메서드를 �
     name = 'myvm'
     location = 'West US'
 
-    #Set the location
+    #Set hello location
     sms.create_hosted_service(service_name=name,
         label=name,
         location=location)
@@ -394,18 +394,18 @@ VM 이미지를 캡처하기 위해 먼저 **capture\_vm\_image** 메서드를 �
         role_size='Small',
         vm_image_name = image_name)
 
-Linux 가상 컴퓨터를 캡처하는 방법에 대한 자세한 내용은 [Linux 가상 컴퓨터를 캡처하는 방법](../virtual-machines/linux/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)을 참조하세요.
+toocapture Linux 가상 컴퓨터를 확인 하는 방법에 대해 더 알아봅니다을 toolearn [어떻게 tooCapture Linux 가상 컴퓨터.](../virtual-machines/linux/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
-Windows 가상 컴퓨터를 캡처하는 방법에 대한 자세한 내용은 [Windows 가상 컴퓨터를 캡처하는 방법](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)을 참조하세요.
+toocapture Windows 가상 컴퓨터를 확인 하는 방법에 대해 더 알아봅니다을 toolearn [어떻게 tooCapture Windows 가상 컴퓨터.](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="What's Next"> </a>다음 단계
-서비스 관리의 기본 사항을 배웠으므로 이제 [Azure Python SDK에 대한 전체 API 참조 설명서](http://azure-sdk-for-python.readthedocs.org/) 에 액세스하고 쉽게 복잡한 작업을 수행하여 Python 응용 프로그램을 관리할 수 있습니다.
+서비스 관리 기본 사항 hello 배운, 했으므로 hello에 액세스할 수 있습니다 [hello Azure Python SDK에 대 한 전체 API 참조 설명서](http://azure-sdk-for-python.readthedocs.org/) 수행 하 고 복잡 한 작업을 쉽게 toomanage python 응용 프로그램입니다.
 
-자세한 내용은 [Python 개발자 센터](/develop/python/)를 참조하세요.
+자세한 내용은 참조 hello [Python 개발자 센터](/develop/python/)합니다.
 
 [What is Service Management]: #WhatIs
 [Concepts]: #Concepts
-[How to: Connect to service management]: #Connect
+[How to: Connect tooservice management]: #Connect
 [How to: List available locations]: #ListAvailableLocations
 [How to: Create a cloud service]: #CreateCloudService
 [How to: Delete a cloud service]: #DeleteCloudService

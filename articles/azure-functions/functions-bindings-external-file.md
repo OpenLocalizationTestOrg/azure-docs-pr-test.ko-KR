@@ -1,5 +1,5 @@
 ---
-title: "Azure Functions 외부 파일 바인딩(미리 보기) | Microsoft Docs"
+title: "aaaAzure 함수 외부 파일 바인딩 (미리 보기) | Microsoft Docs"
 description: "Azure Functions에서 외부 파일 바인딩 사용"
 services: functions
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: alkarche
-ms.openlocfilehash: 2082e4e9b23271be93f3e3ab43997c3243238da8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 583d9c0b871dc68a79614749ba6ac6711fa820fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-external-file-bindings-preview"></a>Azure Functions 외부 파일 바인딩(미리 보기)
-이 문서에서는 기본 제공 바인딩을 활용하는 사용자 함수 내에서 다양한 SaaS 공급자(예: OneDrive, Dropbox)의 파일을 조작하는 방법을 보여 줍니다. Azure Functions는 외부 파일에 대한 트리거, 입력 및 출력 바인딩을 지원합니다.
+이 문서에서는 어떻게 toomanipulate에서에서 파일을 다른 SaaS 공급자 (예: OneDrive, Dropbox) 기본 제공 바인딩을 사용 하 여 함수 내에서 설명 합니다. Azure Functions는 외부 파일에 대한 트리거, 입력 및 출력 바인딩을 지원합니다.
 
-이 바인딩은 SaaS 공급자에 대한 API 연결을 만들거나 함수 앱의 리소스 그룹에서 기존 API 연결을 사용합니다.
+이 바인딩은 API 연결 tooSaaS 공급자 만들거나 함수 응용 프로그램의 리소스 그룹에서 기존 API 연결을 사용 합니다.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -44,21 +44,21 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="external-file-trigger-binding"></a>외부 파일 트리거 바인딩
 
-Azure 외부 파일 트리거를 사용하면 원격 폴더를 모니터링하고 변경 사항이 감지될 때 함수 코드를 실행할 수 있습니다.
+hello Azure 외부 파일 트리거를 사용 하 여 원격 폴더를 모니터링 하 고 변경 되 면 함수 코드를 실행할 수 있습니다.
 
-외부 파일 트리거는 function.json의 `bindings` 배열에서 다음 JSON 개체를 사용합니다.
+다음 JSON 개체에 hello hello를 사용 하는 hello 외부 파일 트리거 `bindings` function.json의 배열
 
 ```json
 {
   "type": "apiHubFileTrigger",
   "name": "<Name of input parameter in function signature>",
   "direction": "in",
-  "path": "<folder to monitor, and optionally a name pattern - see below>",
+  "path": "<folder toomonitor, and optionally a name pattern - see below>",
   "connection": "<name of external file connection - see above>"
 }
 ```
 <!---
-See one of the following subheadings for more information:
+See one of hello following subheadings for more information:
 
 * [Name patterns](#pattern)
 * [File receipts](#receipts)
@@ -68,14 +68,14 @@ See one of the following subheadings for more information:
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>이름 패턴
-`path` 속성에서 파일 이름 패턴을 지정할 수 있습니다. 참조된 폴더는 SaaS 공급자에 있어야 합니다.
+Hello에 파일 이름 패턴을 지정할 수 있습니다 `path` 속성입니다. 참조 된 hello 폴더 hello SaaS 공급자에 있어야 합니다.
 예제:
 
 ```json
 "path": "input/original-{name}",
 ```
 
-이 경로에는 *input* 폴더에서 *original-File1.txt*라는 파일이 있으며 함수 코드의 `name` 변수값은 `File1.txt`이 됩니다.
+이 경로 명명 된 파일을 찾을 *원래 File1.txt* hello에 *입력* 폴더 및 hello hello 값 `name` 함수 코드에서 변수 것 `File1.txt`합니다.
 
 다른 예제:
 
@@ -83,49 +83,49 @@ See one of the following subheadings for more information:
 "path": "input/{filename}.{fileextension}",
 ```
 
-또한 이 경로에는 *original-File1.txt*라는 파일이 있으며 함수 코드에 있는 `filename` 및 `fileextension` 변수값은 *original-File1* 및 *txt*입니다.
+이 경로 라는 파일을 찾을 수도 *원래 File1.txt*, 및의 hello hello 값 `filename` 및 `fileextension` 함수 코드에서 변수 것 *원래 File1* 및  *txt*합니다.
 
-파일 확장명에 고정된 값을 사용하여 파일의 파일 형식을 제한할 수 있습니다. 예:
+Hello 파일 확장명에 대 한 고정된 값을 사용 하 여 hello 파일 형식의 파일을 제한할 수 있습니다. 예:
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-이 경우 *samples* 폴더의 *.png* 파일만 함수를 트리거합니다.
+이 경우만 *.png* hello에 대 한 파일 *샘플* 폴더 트리거 hello 기능입니다.
 
-중괄호는 이름 패턴에서 특수 문자입니다. 이름에 중괄호가 있는 파일 이름을 지정하려면 이중 중괄호를 사용합니다.
+중괄호는 이름 패턴에서 특수 문자입니다. 중괄호 hello 이름, 이중 hello 중괄호에에서 포함 된 toospecify 파일 이름입니다.
 예:
 
 ```json
 "path": "images/{{20140101}}-{name}",
 ```
 
-이 경로에는 *images* 폴더에 *{20140101}-soundfile.mp3*라는 파일이 있으며 함수 코드에 있는 `name` 변수값은 *soundfile.mp3*입니다.
+이 경로 명명 된 파일을 찾을 *{20140101}-soundfile.mp3* hello에 *이미지* 폴더 및 hello `name` 번호 hello 함수 코드에서 변수 값은 *soundfile.mp3*.
 
 <a name="receipts"></a>
 
 <!--- ### File receipts
-The Azure Functions runtime makes sure that no external file trigger function gets called more than once for the same new or updated file.
-It does so by maintaining *file receipts* to determine if a given file version has been processed.
+hello Azure Functions runtime makes sure that no external file trigger function gets called more than once for hello same new or updated file.
+It does so by maintaining *file receipts* toodetermine if a given file version has been processed.
 
-File receipts are stored in a folder named *azure-webjobs-hosts* in the Azure storage account for your function app
-(specified by the `AzureWebJobsStorage` app setting). A file receipt has the following information:
+File receipts are stored in a folder named *azure-webjobs-hosts* in hello Azure storage account for your function app
+(specified by hello `AzureWebJobsStorage` app setting). A file receipt has hello following information:
 
-* The triggered function ("*&lt;function app name>*.Functions.*&lt;function name>*", for example: "functionsf74b96f7.Functions.CopyFile")
-* The folder name
-* The file type ("BlockFile" or "PageFile")
-* The file name
-* The ETag (a file version identifier, for example: "0x8D1DC6E70A277EF")
+* hello triggered function ("*&lt;function app name>*.Functions.*&lt;function name>*", for example: "functionsf74b96f7.Functions.CopyFile")
+* hello folder name
+* hello file type ("BlockFile" or "PageFile")
+* hello file name
+* hello ETag (a file version identifier, for example: "0x8D1DC6E70A277EF")
 
-To force reprocessing of a file, delete the file receipt for that file from the *azure-webjobs-hosts* folder manually.
+tooforce reprocessing of a file, delete hello file receipt for that file from hello *azure-webjobs-hosts* folder manually.
 --->
 <a name="poison"></a>
 
 ### <a name="handling-poison-files"></a>포이즌 파일 처리
-외부 파일 트리거 함수가 실패하는 경우 Azure Functions는 해당 함수를 지정된 파일에 대해 기본적으로 최대 5번(첫 번째 시도 포함) 다시 시도합니다.
-5번 모두 실패할 경우 Functions는 메시지를 *webjobs-apihubtrigger-poison*이라는 Storage 큐에 추가합니다. 포이즌 파일에 대한 큐 메시지는 다음 속성을 포함하는 JSON 개체입니다.
+외부 파일 트리거 함수가 실패 하면 Azure 함수 기본적으로 (hello 첫 번째 시도가 포함)에 대해 지정된 된 파일에의 한 too5 시간 해당 기능을 다시 시도 합니다.
+함수 라는 메시지 tooa 저장소 큐 5 모든 시도 실패 하는 경우 추가 *webjobs-apihubtrigger-포이즌*합니다. 포이즌 파일에 대 한 hello 큐 메시지는 hello 다음과 같은 속성을 포함 하는 JSON 개체:
 
-* FunctionId(형식에서 *&lt;함수 앱 이름>*.Functions.*&lt;함수 이름>*)
+* FunctionId (hello 형태로 표시  *&lt;함수 응용 프로그램 이름 >*합니다. 함수입니다.  *&lt;함수 이름 >*)
 * FileType
 * FolderName
 * FileName
@@ -135,16 +135,16 @@ To force reprocessing of a file, delete the file receipt for that file from the 
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>트리거 사용
-C# 함수에서 `<T> <name>`같은 함수 시그니처의 명명된 매개 변수를 사용하여 입력 파일 데이터를 바인딩합니다.
-여기서 `T`는 데이터를 deserialize할 데이터 형식이며, `paramName`은 [JSON 트리거](#trigger)에서 사용자가 지정한 이름입니다. Node.js 함수에서 `context.bindings.<name>`을 사용하여 입력 파일 데이터에 액세스합니다.
+C# 기능을 같은 프로그램 함수 서명에서 명명된 된 매개 변수를 사용 하 여 toohello 입력된 파일 데이터 바인딩할 `<T> <name>`합니다.
+여기서 `T` hello 데이터 형식은 toodeserialize hello 데이터를 원하는 및 `paramName` hello 이름에 지정 된는 [JSON 트리거할](#trigger)합니다. 에서는 Node.js 함수를 사용 하 여 hello 입력된 파일 데이터 액세스 `context.bindings.<name>`합니다.
 
-다음 중 원하는 형식으로 파일을 deserialize할 수 있습니다.
+hello 다음 형식 중 하나로 hello 파일을 deserialize 할 수 있습니다.
 
 * 모든 [개체](https://msdn.microsoft.com/library/system.object.aspx)는 JSON 직렬화된 파일 데이터에 유용합니다.
-  사용자 지정 입력 형식을 선언하는 경우(예: `FooType`), Azure Functions에서 지정된 형식에 JSON 데이터를 deserialize하려고 시도합니다.
+  사용자 지정 입력된 형식을 선언 하는 경우 (예: `FooType`), Azure 함수에 지정 된 형식으로 toodeserialize hello JSON 데이터를 시도 합니다.
 * 문자열은 텍스트 파일 데이터에 유용합니다.
 
-C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Functions 런타임이 해당 형식을 사용하여 파일 데이터를 deserialize하려고 시도하게 됩니다.
+C# 기능을에서 형식에 따라 hello tooany을 바인딩할 수 있습니다 하 고 hello 함수 런타임에서 해당 형식을 사용 하 여 hello 파일 데이터를 deserialize 하려고 시도 합니다.
 
 * `string`
 * `byte[]`
@@ -153,7 +153,7 @@ C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Funct
 * `TextReader`
 
 ## <a name="trigger-sample"></a>트리거 샘플
-외부 파일 트리거를 정의하는 다음과 같은 function.json이 있다고 가정합니다.
+있다고 가정 하면 다음 function.json hello, 외부 파일 트리거를 정의 하는:
 
 ```json
 {
@@ -170,7 +170,7 @@ C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Funct
 }
 ```
 
-모니터링되는 폴더에 추가된 각 파일의 콘텐츠를 기록하는 언어별 샘플을 참조하세요.
+모니터링 되는 폴더로 toohello 추가 된 각 파일의 hello 내용을 기록 하는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#triggercsharp)
 * [Node.JS](#triggernodejs)
@@ -208,9 +208,9 @@ module.exports = function(context) {
 <a name="input"></a>
 
 ## <a name="external-file-input-binding"></a>외부 파일 입력 바인딩
-Azure 외부 파일 입력 바인딩을 사용하면 함수에 외부 폴더의 파일을 사용할 수 있습니다.
+hello Azure 외부 파일 입력된 바인딩을 통해 toouse를 함수에서 외부 폴더에서 파일을 수 있습니다.
 
-함수에 대한 외부 파일 입력은 function.json의 `bindings` 배열에서 다음과 같은 JSON 개체를 사용합니다.
+hello 외부 파일 입력된 tooa 함수 사용 하 여 다음 JSON 개체에 hello hello `bindings` function.json의 배열:
 
 ```json
 {
@@ -222,23 +222,23 @@ Azure 외부 파일 입력 바인딩을 사용하면 함수에 외부 폴더의 
 },
 ```
 
-다음 사항에 유의하세요.
+참고 hello 다음.
 
-* `path`에는 폴더 이름과 파일 이름이 포함되어야 합니다. 예를 들어 함수에 하나의 [큐 트리거](functions-bindings-storage-queue.md)가 있는 경우 `"path": "samples-workitems/{queueTrigger}"`를 사용하여 `samples-workitems` 폴더에서 트리거 메시지에 지정된 파일 이름과 일치하는 이름을 가진 파일을 가리킬 수 있습니다.   
+* `path`hello 폴더 이름 및 hello 파일 이름을 포함 해야 합니다. 예를 들어, 있는 경우는 [큐 트리거](functions-bindings-storage-queue.md) 함수에서 사용할 수 있습니다 `"path": "samples-workitems/{queueTrigger}"` hello에서 toopoint tooa 파일 `samples-workitems` hello 트리거 메시지에 지정 된 hello 파일 이름과 일치 하는 이름으로 폴더입니다.   
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>입력 사용
-C# 함수에서 `<T> <name>`같은 함수 시그니처의 명명된 매개 변수를 사용하여 입력 파일 데이터를 바인딩합니다.
-여기서 `T`는 데이터를 deserialize할 데이터 형식이며, `paramName`은 [입력 바인딩](#input)에서 사용자가 지정한 이름입니다. Node.js 함수에서 `context.bindings.<name>`을 사용하여 입력 파일 데이터에 액세스합니다.
+C# 기능을 같은 프로그램 함수 서명에서 명명된 된 매개 변수를 사용 하 여 toohello 입력된 파일 데이터 바인딩할 `<T> <name>`합니다.
+여기서 `T` hello 데이터 형식은 toodeserialize hello 데이터를 지정 하 고 `paramName` hello 이름에 지정 된는 [입력 바인딩의](#input)합니다. 에서는 Node.js 함수를 사용 하 여 hello 입력된 파일 데이터 액세스 `context.bindings.<name>`합니다.
 
-다음 중 원하는 형식으로 파일을 deserialize할 수 있습니다.
+hello 다음 형식 중 하나로 hello 파일을 deserialize 할 수 있습니다.
 
 * 모든 [개체](https://msdn.microsoft.com/library/system.object.aspx)는 JSON 직렬화된 파일 데이터에 유용합니다.
-  사용자 지정 입력 형식을 선언하는 경우(예: `InputType`), Azure Functions에서 지정된 형식에 JSON 데이터를 deserialize하려고 시도합니다.
+  사용자 지정 입력된 형식을 선언 하는 경우 (예: `InputType`), Azure 함수에 지정 된 형식으로 toodeserialize hello JSON 데이터를 시도 합니다.
 * 문자열은 텍스트 파일 데이터에 유용합니다.
 
-C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Functions 런타임이 해당 형식을 사용하여 파일 데이터를 deserialize하려고 시도하게 됩니다.
+C# 기능을에서 형식에 따라 hello tooany을 바인딩할 수 있습니다 하 고 hello 함수 런타임에서 해당 형식을 사용 하 여 hello 파일 데이터를 deserialize 하려고 시도 합니다.
 
 * `string`
 * `byte[]`
@@ -250,9 +250,9 @@ C# 함수에서 다음 형식 중 하나에 바인딩할 수도 있으며, Funct
 <a name="output"></a>
 
 ## <a name="external-file-output-binding"></a>외부 파일 출력 바인딩
-Azure 외부 파일 출력 바인딩을 사용하면 함수에 외부 폴더에 대한 파일을 쓸 수 있습니다.
+hello Azure 외부 파일 출력 바인딩을 통해 toowrite 파일 tooan 함수에서 외부 폴더 수 있습니다.
 
-함수에 대한 외부 파일 출력은 function.json의 `bindings` 배열에서 다음과 같은 JSON 개체를 사용합니다.
+다음 JSON 개체에 hello hello를 사용 하는 함수 출력 hello 외부 파일 `bindings` function.json의 배열:
 
 ```json
 {
@@ -264,22 +264,22 @@ Azure 외부 파일 출력 바인딩을 사용하면 함수에 외부 폴더에 
 }
 ```
 
-다음 사항에 유의하세요.
+참고 hello 다음.
 
-* `path`에는 쓸 수 있는 폴더 이름과 파일 이름이 포함되어야 합니다. 예를 들어 함수에 하나의 [큐 트리거](functions-bindings-storage-queue.md)가 있는 경우 `"path": "samples-workitems/{queueTrigger}"`를 사용하여 `samples-workitems` 폴더에서 트리거 메시지에 지정된 파일 이름과 일치하는 이름을 가진 파일을 가리킬 수 있습니다.   
+* `path`hello 폴더 이름 및 hello 파일 이름 toowrite를 포함 해야 합니다. 예를 들어, 있는 경우는 [큐 트리거](functions-bindings-storage-queue.md) 함수에서 사용할 수 있습니다 `"path": "samples-workitems/{queueTrigger}"` hello에서 toopoint tooa 파일 `samples-workitems` hello 트리거 메시지에 지정 된 hello 파일 이름과 일치 하는 이름으로 폴더입니다.   
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>출력 사용
-C# 함수에서 `out <T> <name>`같은 함수 시그니처의 명명된 `out` 매개 변수를 사용하여 출력 파일을 바인딩합니다. 여기서 `T`는 데이터를 serialize하려는 데이터 형식이며, `paramName`은 [출력 바인딩](#output)에서 사용자가 지정한 이름입니다. Node.js 함수에서 `context.bindings.<name>`을 사용하여 출력 파일 데이터에 액세스합니다.
+C# 함수를 명명 된 hello를 사용 하 여 toohello 출력 파일 바인딩할 `out` 함수 시그니처의 매개 변수 같은 `out <T> <name>`여기서 `T` hello 데이터 형식은 tooserialize hello 데이터를 지정 하 고 `paramName` 는 hello 이름을 에 지정 된 된 [출력 바인딩이](#output)합니다. 에서는 Node.js 함수를 사용 하 여 hello 출력 파일 액세스 `context.bindings.<name>`합니다.
 
-다음 형식 중 하나를 사용하여 출력 파일을 쓸 수 있습니다.
+유형만 hello를 사용 하 여 toohello 출력 파일을 작성할 수 있습니다.
 
 * 모든 [개체](https://msdn.microsoft.com/library/system.object.aspx)는 JSON 직렬화에 유용합니다.
-  사용자 지정 출력 형식을 선언하는 경우(예: `out OutputType paramName`), Azure Functions에서 개체를 JSON으로 직렬화하려고 시도합니다. 함수가 종료될 때 출력 매개 변수가 null이면 Functions 런타임은 파일을 null 개체로 만듭니다.
-* 문자열(`out string paramName`)은 텍스트 파일 데이터에 유용합니다. Functions 런타임은 함수가 종료될 때 문자열 매개 변수가 null이 아닌 경우에만 파일을 생성합니다.
+  사용자 지정 출력 형식을 선언 하는 경우 (예: `out OutputType paramName`), Azure 함수 tooserialize 개체를 JSON으로 시도 합니다. Hello 함수가 종료 되 면 hello 출력 매개 변수가 null 이면 hello 함수 런타임 개체를 null로 파일을 만듭니다.
+* 문자열(`out string paramName`)은 텍스트 파일 데이터에 유용합니다. hello 함수 런타임 hello 함수가 종료 되 면 문자열 매개 변수는 null이 아닌 경우에 파일을 만듭니다.
 
-C# 함수에서 다음 중 원하는 형식으로 출력할 수 있습니다.
+C# 함수에서의 hello 유형만 tooany를 출력할 수 있습니다.
 
 * `TextWriter`
 * `Stream`
@@ -293,7 +293,7 @@ C# 함수에서 다음 중 원하는 형식으로 출력할 수 있습니다.
 <a name="sample"></a>
 
 ## <a name="input--output-sample"></a>입력 + 출력 샘플
-다음과 같이 [Storage 큐 트리거](functions-bindings-storage-queue.md), n개의 외부 파일 입력, 외부 파일 출력을 정의하는 function.json이 있는 경우를 가정합니다.
+정의 하는 hello function.json 다음 가정는 [저장소 큐 트리거](functions-bindings-storage-queue.md), 외부 파일 입력 및 출력 외부 파일:
 
 ```json
 {
@@ -324,7 +324,7 @@ C# 함수에서 다음 중 원하는 형식으로 출력할 수 있습니다.
 }
 ```
 
-입력 파일을 출력 파일로 복사하는 언어별 샘플을 참조하세요.
+Hello 입력된 파일 toohello 출력 파일을 복사 하는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#incsharp)
 * [Node.JS](#innodejs)

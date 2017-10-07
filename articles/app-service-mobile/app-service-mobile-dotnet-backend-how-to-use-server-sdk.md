@@ -1,6 +1,6 @@
 ---
-title: "모바일 앱용 .NET 백 엔드 서버 SDK를 사용하는 방법 | Microsoft Docs"
-description: "Azure 앱 서비스 모바일 앱용 .NET 백 엔드 서버 SDK를 사용하는 방법에 대해 알아봅니다."
+title: "hello.NET 백 엔드 서버 모바일 앱에 대 한 SDK와 aaaHow toowork | Microsoft Docs"
+description: "Azure 앱 서비스 모바일 앱에 대 한와 toowork.NET 백 엔드 서버 SDK hello 하는 방법에 대해 알아봅니다."
 keywords: "앱 서비스, Azure 앱 서비스, 모바일 앱, 모바일 서비스, 규모, 확장성, 앱 배포, Azure 앱 배포"
 services: app-service\mobile
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 657fea16e47c15efd262c86d6a150a721476134a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2946c5ba4424565ac764e2ce5597bf42362fcedf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="work-with-the-net-backend-server-sdk-for-azure-mobile-apps"></a>Azure 모바일 앱용 .NET 백 엔드 서버 SDK 사용
+# <a name="work-with-hello-net-backend-server-sdk-for-azure-mobile-apps"></a>Azure 모바일 앱에 대 한 hello.NET 백 엔드 서버 SDK 사용
 [!INCLUDE [app-service-mobile-selector-server-sdk](../../includes/app-service-mobile-selector-server-sdk.md)]
 
-이 항목은 주요 Azure 앱 서비스 모바일 앱 시나리오에서 .NET 백 엔드 서버 SDK를 사용하는 방법을 보여줍니다. Azure 모바일 앱 SDK를 사용하면 ASP.NET 응용 프로그램에서 모바일 클라이언트를 사용하여 작업할 수 있습니다.
+이 항목에서는 toouse 주요 Azure 앱 서비스 모바일 앱 시나리오에서.NET 백 엔드 서버 SDK hello 하는 방법을 보여 줍니다. hello Azure 모바일 앱 SDK를 사용 하면 모바일 클라이언트 및 ASP.NET 응용 프로그램에서 작동 합니다.
 
 > [!TIP]
-> [Azure Mobile Apps용 .NET 서버 SDK][2]는 GitHub에서 오픈 소스입니다. 리포지토리는 전체 서버 SDK 단위 테스트 도구 모음 및 일부 샘플 프로젝트를 포함하는 모든 소스 코드를 포함합니다.
+> hello [.NET 서버 Azure 모바일 앱에 대 한 SDK] [ 2] 은 GitHub의 오픈 소스입니다. hello 리포지토리 hello 전체 서버 SDK 단위 테스트 도구 모음 및 일부 샘플 프로젝트를 포함 하 여 모든 소스 코드를 포함 합니다.
 >
 >
 
 ## <a name="reference-documentation"></a>참조 설명서
-서버 SDK에 대한 참조 설명서는 [Azure Mobile Apps .NET 참조][1]에서 찾을 수 있습니다.
+hello 서버 SDK에 대 한 참조 설명서 hello은 여기에서 찾을: [Azure 모바일 앱.NET 참조][1]합니다.
 
 ## <a name="create-app"></a>방법: .NET 모바일 앱 백 엔드 만들기
-새 프로젝트를 시작하는 경우 [Azure 포털] 과 Visual Studio 중 하나를 사용하여 앱 서비스 응용 프로그램을 만들 수 있습니다. App Service 응용 프로그램을 로컬로 실행하거나 클라우드 기반 앱 서비스 모바일 앱에 프로젝트를 게시할 수 있습니다.
+새 프로젝트를 시작 하는 경우에 어느 hello를 사용 하 여 응용 프로그램 서비스 응용 프로그램을 만들 수 있습니다 [Azure 포털] 또는 Visual Studio입니다. Hello 응용 프로그램 서비스 응용 프로그램을 로컬로 실행 하거나 hello 프로젝트 tooyour 클라우드 기반 앱 서비스 모바일 앱을 게시할 수 있습니다.
 
-기존 프로젝트에 모바일 기능을 추가하는 경우 [SDK 다운로드 및 초기화](#install-sdk) 섹션을 참조하세요.
+모바일 기능 tooan 기존 프로젝트를 추가 하는 경우 참조 hello [다운로드 하 고 hello SDK 초기화](#install-sdk) 섹션.
 
-### <a name="create-a-net-backend-using-the-azure-portal"></a>Azure 포털을 사용하여 .NET 백 엔드 만들기
-App Service 모바일 백 엔드를 만들려면 [빠른 시작 자습서][3]를 따르거나 다음과 같은 단계를 수행합니다.
+### <a name="create-a-net-backend-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여.NET 백 엔드 만들기
+hello를 수행 하거나 앱 서비스 모바일 백 엔드 toocreate [빠른 시작 자습서] [ 3] 하거나이 단계를 수행 합니다.
 
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service-classic](../../includes/app-service-mobile-dotnet-backend-create-new-service-classic.md)]
 
-*시작* 블레이드로 돌아가서 **테이블 API 만들기** 아래에서 **백 엔드 언어**로 **C#**을 선택합니다. **다운로드**를 클릭하고 로컬 컴퓨터에 압축된 프로젝트 파일을 풀고 Visual Studio에서 솔루션을 엽니다.
+Hello에 다시 *시작* 블레이드 아래 **API 테이블을 만들**, 선택 **C#** 으로 프로그램 **백 엔드 언어**합니다. 클릭 **다운로드**, 압축 된 프로젝트 파일 tooyour 로컬 컴퓨터에 압축을 풀고 Visual Studio에서 hello 솔루션을 엽니다.
 
 ### <a name="create-a-net-backend-using-visual-studio-2013-and-visual-studio-2015"></a>Visual Studio 2013 및 Visual Studio 2015를 사용하여 .NET 백 엔드 만들기
-Visual Studio에서 Azure Mobile Apps 프로젝트를 만들려면 [.NET용 Azure SDK][4](버전 2.9.0 이상)을 설치합니다. SDK를 설치한 후 다음 단계를 사용하여 ASP.NET 응용 프로그램을 만듭니다.
+Hello 설치 [Azure SDK for.NET] [ 4] (2.9.0 버전 이상) toocreate Visual Studio에서 Azure 모바일 앱 프로젝트. Hello SDK를 설치한 경우 단계를 수행 하는 hello를 사용 하 여 ASP.NET 응용 프로그램을 만듭니다.
 
-1. **새 프로젝트** 대화를 엽니다(*파일* > **새로 만들기** > **프로젝트...**에서).
+1. 열기 hello **새 프로젝트** 대화 (에서 *파일* > **새로** > **프로젝트...** ).
 2. **템플릿** > **Visual C#**를 확장하고 **웹**을 선택합니다.
 3. **ASP.NET 웹 응용 프로그램**을 선택합니다.
-4. 프로젝트 이름을 입력합니다. 그런 후 **OK**를 클릭합니다.
-5. *ASP.NET 4.5.2 템플릿*아래에서 **Azure Mobile App**을 선택합니다. **클라우드에 호스트** 를 선택하여 클라우드에 이 프로젝트를 게시할 수 있는 모바일 백 엔드를 만듭니다.
+4. Hello 프로젝트 이름을 입력 합니다. 그런 후 **OK**를 클릭합니다.
+5. *ASP.NET 4.5.2 템플릿*아래에서 **Azure Mobile App**을 선택합니다. 확인 **hello 클라우드의 호스트에에서** toocreate hello에 모바일 백 엔드 클라우드 toowhich이이 프로젝트를 게시할 수 있습니다.
 6. **확인**을 클릭합니다.
 
-## <a name="install-sdk"></a>방법: SDK 다운로드 및 설치
-SDK는 [NuGet.org]에서 사용할 수 있습니다. 이 패키지는 SDK를 사용하여 시작하는 데 필요한 기본 기능을 포함합니다. SDK를 초기화하려면 **HttpConfiguration** 개체에서 작업을 수행해야 합니다.
+## <a name="install-sdk"></a>방법: 다운로드 및 hello SDK를 초기화 합니다.
+hello SDK는에서 사용할 수 있는 [NuGet.org]합니다. 이 패키지에 hello 필요한 기본 기능 tooget hello SDK를 사용 하 여 시작 합니다. tooinitialize SDK hello, tooperform 작업 hello에 필요한 **HttpConfiguration** 개체입니다.
 
-### <a name="install-the-sdk"></a>SDK 설치
-SDK를 설치하려면 Visual Studio에서 서버 프로젝트를 마우스 오른쪽 단추로 클릭하고 **NuGet 패키지 관리**를 선택합니다. [Microsoft.Azure.Mobile.Server] 패키지를 검색한 다음 **설치**를 클릭합니다.
+### <a name="install-hello-sdk"></a>Hello SDK 설치
+tooinstall hello SDK, Visual Studio의 hello 서버 프로젝트를 마우스 오른쪽 단추로 선택 **NuGet 패키지 관리**, hello에 대 한 검색 [Microsoft.Azure.Mobile.Server] 패키지 하 고, 한 다음 클릭  **설치**합니다.
 
-### <a name="server-project-setup"></a> 서버 프로젝트 초기화
-A .NET 백 엔드 서버 프로젝트는 OWIN 시작 클래스를 포함하여 다른 ASP.NET 프로젝트와 유사하게 초기화됩니다. NuGet 패키지 `Microsoft.Owin.Host.SystemWeb`을 참조하도록 확인합니다. Visual Studio에서 이 클래스를 추가하려면 서버 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가** >
-**새 항목**을 선택하고 **웹** > **일반** > **OWIN 시작 클래스**를 차례로 선택합니다.  다음과 같은 특성의 클래스가 생성됩니다.
+### <a name="server-project-setup"></a>Hello 서버 프로젝트를 초기화 합니다.
+.NET 백 엔드 서버 프로젝트에는 OWIN 시작 클래스를 포함 하 여 초기화 된 유사한 tooother ASP.NET 프로젝트는. Hello NuGet 패키지를 참조 한 확인 `Microsoft.Owin.Host.SystemWeb`합니다. tooadd Visual Studio에서이 클래스 단추로 클릭 하 여 서버 프로젝트 고 **추가** >
+**새 항목**, 다음 **웹**  >  ** 일반** > **OWIN 시작 클래스**합니다.  클래스는 hello 특성을 다음으로 생성 됩니다.
 
     [assembly: OwinStartup(typeof(YourServiceName.YourStartupClassName))]
 
-OWIN 시작 클래스의 `Configuration()` 메서드에서 **HttpConfiguration** 개체를 사용하여 Azure Mobile Apps 환경을 구성합니다.
-다음 예제는 추가된 기능이 없는 서버 프로젝트를 초기화합니다.
+Hello에 `Configuration()` OWIN 시작 클래스를 사용 하 여의 메서드로 **HttpConfiguration** 개체 tooconfigure hello Azure 모바일 앱 환경입니다.
+다음 예제는 hello 추가 된 기능이 없는 hello 서버 프로젝트를 초기화 합니다.
 
     // in OWIN startup class
     public void Configuration(IAppBuilder app)
@@ -83,60 +83,60 @@ OWIN 시작 클래스의 `Configuration()` 메서드에서 **HttpConfiguration**
         app.UseWebApi(config);
     }
 
-개별 기능을 사용하려면 **ApplyTo**를 호출하기 전에 **MobileAppConfiguration** 개체에서 확장 메서드를 호출해야 합니다. 예를 들어 다음 코드는 초기화하는 동안 `[MobileAppController]` 특성을 포함하는 모든 API 컨트롤러에 기본 경로를 추가합니다.
+tooenable 개별 기능 hello에 확장 메서드를 호출 해야 **MobileAppConfiguration** 호출 하기 전에 개체 **ApplyTo**합니다. 예를 들어 hello 코드 다음 추가 hello 기본 라우팅합니다 hello 특성이 있는 tooall API 컨트롤러 `[MobileAppController]` 초기화 하는 동안:
 
     new MobileAppConfiguration()
         .MapApiControllers()
         .ApplyTo(config);
 
-Azure 포털의 빠른 시작 서버에서 **UseDefaultConfiguration()**을 호출합니다. 이것은 다음 설정과 같습니다.
+hello 서버 빠른 시작에서 Azure 포털 호출 hello **UseDefaultConfiguration()**합니다. 다음 단계를이 해당 toohello:
 
         new MobileAppConfiguration()
-            .AddMobileAppHomeController()             // from the Home package
+            .AddMobileAppHomeController()             // from hello Home package
             .MapApiControllers()
-            .AddTables(                               // from the Tables package
+            .AddTables(                               // from hello Tables package
                 new MobileAppTableConfiguration()
                     .MapTableControllers()
-                    .AddEntityFramework()             // from the Entity package
+                    .AddEntityFramework()             // from hello Entity package
                 )
-            .AddPushNotifications()                   // from the Notifications package
-            .MapLegacyCrossDomainController()         // from the CrossDomain package
+            .AddPushNotifications()                   // from hello Notifications package
+            .MapLegacyCrossDomainController()         // from hello CrossDomain package
             .ApplyTo(config);
 
-사용되는 확장 방법은 다음과 같습니다.
+사용 되는 hello 확장 방법은 다음과 같습니다.
 
-* `AddMobileAppHomeController()`은(는) 기본 Azure Mobile Apps 홈 페이지를 제공합니다.
-* `MapApiControllers()`은(는) `[MobileAppController]` 특성으로 데코레이팅된 WebAPI 컨트롤러에 대한 사용자 지정 API 기능을 제공합니다.
-* `AddTables()`은(는) 테이블 컨트롤러에 대한 `/tables` 끝점의 매핑을 제공합니다.
-* `AddTablesWithEntityFramework()`은(는) Entity Framework 기반 컨트롤러를 사용하는 `/tables` 끝점 매핑에 대한 약칭입니다.
+* `AddMobileAppHomeController()`hello 기본 Azure 모바일 앱 홈 페이지를 제공합니다.
+* `MapApiControllers()`hello로 데코 레이트 된 WebAPI 컨트롤러에 대 한 사용자 지정 API 기능을 제공 `[MobileAppController]` 특성입니다.
+* `AddTables()`hello의 매핑을 제공 `/tables` 끝점 tootable 컨트롤러입니다.
+* `AddTablesWithEntityFramework()`매핑 hello에 대 한 축약형 `/tables` Entity Framework를 사용 하 여 끝점 컨트롤러를 기반으로 합니다.
 * `AddPushNotifications()`은(는) Notification Hubs에 대한 장치를 등록하는 간단한 방법을 제공합니다.
 * `MapLegacyCrossDomainController()` 은(는) 로컬 개발을 위한 표준 CORS 헤더를 제공합니다.
 
 ### <a name="sdk-extensions"></a>SDK 확장
-다음 NuGet 기반 확장 패키지는 응용 프로그램에서 사용할 수 있는 다양한 모바일 기능을 제공합니다. **MobileAppConfiguration** 개체를 사용하여 초기화하는 동안 확장을 사용하도록 설정합니다.
+hello NuGet 기반 확장 패키지를 다음 응용 프로그램에서 사용할 수 있는 다양 한 모바일 기능을 제공 합니다. Hello를 사용 하 여 초기화 하는 동안 확장을 사용 하면 **MobileAppConfiguration** 개체입니다.
 
-* [Microsoft.Azure.Mobile.Server.Quickstart] 기본 모바일 앱 설정을 지원합니다. 초기화하는 동안 **UseDefaultConfiguration** 확장 메서드를 호출하여 구성에 추가했습니다. 이 확장은 알림, 인증, 엔터티, 테이블, Crossdomain 및 홈 패키지와 같은 확장을 포함합니다. 이 패키지는 Azure 포털에서 사용할 수 있는 Mobile Apps 빠른 시작에서 사용됩니다.
-* [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/) 웹 사이트 루트에 대해 기본 *이 모바일 앱이 실행 중인 페이지* 를 구현합니다. **AddMobileAppHomeController** 확장 메서드를 호출하여 구성에 추가합니다.
-* [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/) 데이터로 작업하기 위한 클래스를 포함하고 데이터 파이프라인을 설정합니다. **AddTables** 확장 메서드를 호출하여 구성에 추가합니다.
-* [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/) SQL 데이터베이스에서 데이터를 액세스하는 Entity Framework를 사용할 수 있도록 합니다. **AddTablesWithEntityFramework** 확장 메서드를 호출하여 구성에 추가합니다.
-* [Microsoft.Azure.Mobile.Server.Authentication] 인증을 사용할 수 있도록 하고 토큰의 유효성을 검사하는 데 사용되는 OWIN 미들웨어를 설정합니다. **AddAppServiceAuthentication** 및 **IAppBuilder**.**UseAppServiceAuthentication** 확장 메서드를 호출하여 구성에 추가합니다.
-* [Microsoft.Azure.Mobile.Server.Notifications] 푸시 알림을 사용할 수 있도록 하며 푸시 등록 끝점을 정의합니다. **AddPushNotifications** 확장 메서드를 호출하여 구성에 추가합니다.
-* [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/) 모바일 앱에서 레거시 웹 브라우저에 데이터를 제공하는 컨트롤러를 만듭니다. **MapLegacyCrossDomainController** 확장 메서드를 호출하여 구성에 추가합니다.
-* [Microsoft.Azure.Mobile.Server.Login]은 사용자 지정 인증 시나리오 동안 사용되는 정적 메서드인 AppServiceLoginHandler.CreateToken() 메서드를 제공합니다.
+* [Microsoft.Azure.Mobile.Server.Quickstart] 지원 hello 기본 모바일 앱 설정 합니다. Hello 호출 하 여 추가 된 toohello 구성을 **UseDefaultConfiguration** 초기화 하는 동안 확장 메서드. 이 확장은 알림, 인증, 엔터티, 테이블, Crossdomain 및 홈 패키지와 같은 확장을 포함합니다. 이 패키지는 hello hello Azure 포털에서 사용할 수 있는 모바일 앱 빠른 시작에서 사용 됩니다.
+* [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/) hello 기본 구현 *모바일 앱이 실행 되 고 페이지* hello 웹 사이트 루트에 대 한 합니다. Toohello 구성을 호출 하 여 추가 된 **AddMobileAppHomeController** 확장 메서드.
+* [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/) 데이터 및 설정 접속 hello 데이터 파이프라인을 사용 하기 위한 클래스가 포함 됩니다. Hello를 호출 하 여 toohello 구성을 추가 **AddTables** 확장 메서드.
+* [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/) hello Entity Framework hello SQL 데이터베이스에서에서 데이터를 tooaccess 수 있도록 합니다. Hello를 호출 하 여 toohello 구성을 추가 **AddTablesWithEntityFramework** 확장 메서드.
+* [Microsoft.Azure.Mobile.Server.Authentication] toovalidate 토큰을 사용 하는 사용 하면 인증 및 집합 접속 hello OWIN 미들웨어입니다. Hello를 호출 하 여 toohello 구성을 추가 **AddAppServiceAuthentication** 및 **IAppBuilder**. **UseAppServiceAuthentication** 확장 메서드입니다.
+* [Microsoft.Azure.Mobile.Server.Notifications] 푸시 알림을 사용할 수 있도록 하며 푸시 등록 끝점을 정의합니다. Hello를 호출 하 여 toohello 구성을 추가 **AddPushNotifications** 확장 메서드.
+* [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/) 데이터 toolegacy 모바일 앱에서 웹 브라우저를 사용 하는 컨트롤러를 만듭니다. Toohello 구성을 호출 하 여 추가 된 **MapLegacyCrossDomainController** 확장 메서드.
+* [Microsoft.Azure.Mobile.Server.Login] hello AppServiceLoginHandler.CreateToken() 메서드를 사용자 지정 인증 시나리오를 사용 하는 정적 메서드를 제공 합니다.
 
-## <a name="publish-server-project"></a>방법: 서버 프로젝트 게시
-이 섹션에서는 Visual Studio에서 .NET 백 엔드 프로젝트를 게시하는 방법을 보여줍니다. [Azure 앱 서비스 배포 설명서](../app-service-web/web-sites-deploy.md)에 나오는 Git 또는 다른 메서드를 사용하여 백 엔드 프로젝트를 배포할 수도 있습니다.
+## <a name="publish-server-project"></a>방법: hello 서버 프로젝트 게시
+이 섹션에서는 어떻게 toopublish.NET 백 엔드에서에서 프로젝트를 Visual Studio를 보여 줍니다. Git를 사용 하 여 백 엔드 프로젝트를 배포할 수도 있습니다 또는 hello에서 설명 하는 다른 방법 중 하나 hello [Azure 앱 서비스 배포 설명서](../app-service-web/web-sites-deploy.md)합니다.
 
-1. Visual Studio에서 NuGet 패키지를 복원하려면 프로젝트를 빌드하십시오.
-2. 솔루션 탐색기에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 클릭합니다. 처음 게시할 때는 게시 프로필을 정의해야 합니다. 이미 정의된 프로필이 있을 때 프로필을 선택하고 **게시**를 클릭합니다.
-3. 게시 대상을 선택하도록 요청 받으면 **Microsoft Azure App Service** > **다음**을 클릭한 다음 (필요한 경우) Azure 자격 증명을 사용하여 로그인합니다.
+1. Visual Studio에서 hello 프로젝트 toorestore NuGet 패키지를 다시 작성 합니다.
+2. 솔루션 탐색기, 마우스 오른쪽 단추로 클릭 hello 프로젝트에서에서 클릭 **게시**합니다. hello 처음 게시할 때는 해야 toodefine 게시 프로필. 이미 정의된 프로필이 있을 때 프로필을 선택하고 **게시**를 클릭합니다.
+3. 게시 대상 tooselect 묻는 메시지가 나타나면 클릭 **Microsoft Azure 앱 서비스** > **다음**, (필요한 경우) 한 다음 Azure 자격 증명으로 로그인 합니다.
    Visual Studio가 Azure에서 직접 게시 설정을 안전하게 다운로드하고 저장합니다.
 
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-1.png)
 4. **구독**을 선택하고 **보기**에서 **리소스 형식**을 선택하며 **모바일 앱**을 확장하고 모바일 앱 백 엔드를 클릭한 다음 **확인**을 클릭합니다.
 
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-2.png)
-5. 게시 프로필 정보를 확인하고 **게시**를 클릭합니다.
+5. Hello 확인을 클릭 하 고 게시 프로필 정보 **게시**합니다.
 
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-3.png)
 
@@ -145,10 +145,10 @@ Azure 포털의 빠른 시작 서버에서 **UseDefaultConfiguration()**을 호�
     ![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-success.png)
 
 ## <a name="define-table-controller"></a> 방법: 테이블 컨트롤러 정의
-모바일 클라이언트에 SQL 테이블을 노출하는 테이블 컨트롤러를 정의합니다.  테이블 컨트롤러를 구성하려면 세 단계가 필요합니다.
+SQL 테이블 toomobile 클라이언트 테이블 컨트롤러 tooexpose를 정의 합니다.  테이블 컨트롤러를 구성하려면 세 단계가 필요합니다.
 
 1. 데이터 전송 개체(DTO) 클래스를 만듭니다.
-2. Mobile DbContext 클래스에 테이블 참조를 구성합니다.
+2. Hello 모바일 DbContext 클래스에에서 대 한 테이블 참조를 구성 합니다.
 3. 테이블 컨트롤러를 만듭니다.
 
 데이터 전송 개체(DTO)는 `EntityData`에서 상속하는 일반 C# 개체입니다.  예:
@@ -159,7 +159,7 @@ Azure 포털의 빠른 시작 서버에서 **UseDefaultConfiguration()**을 호�
         public bool Complete {get; set;}
     }
 
-DTO는 SQL 데이터베이스 내에서 테이블을 정의하는 데 사용됩니다.  데이터베이스 항목을 만들려면 사용하는 DbContext에 `DbSet<>` 속성을 추가합니다.  Azure Mobile Apps에 대한 기본 프로젝트 템플릿에서 DbContext는 `Models\MobileServiceContext.cs`(이)라고 합니다.
+hello DTO는 hello SQL 데이터베이스 내에서 사용 되는 toodefine hello 테이블입니다.  toocreate hello 추가, 항목 데이터베이스는 `DbSet<>` 속성을 사용 하는 DbContext hello 합니다.  Azure 모바일 앱에 대 한 기본 프로젝트 템플릿에서 hello hello DbContext 라고 `Models\MobileServiceContext.cs`:
 
     public class MobileServiceContext : DbContext
     {
@@ -180,73 +180,73 @@ DTO는 SQL 데이터베이스 내에서 테이블을 정의하는 데 사용됩�
         }
     }
 
-Azure SDK가 설치되어 있으면 이제 다음과 같이 템플릿 테이블 컨트롤러를 만들 수 있습니다.
+Azure SDK를 설치 하는 hello를 사용 하도록 설정한 경우 다음과 같은 템플릿 테이블 컨트롤러를 만들 이제 있습니다.
 
-1. 컨트롤러 폴더를 마우스 오른쪽 단추로 클릭하고 **추가** > **컨트롤러를 참조하세요.를 참조하세요.를 참조하세요.**를 참조하세요.
-2. **Azure Mobile Apps 테이블 컨트롤러** 옵션을 선택한 다음 **추가**를 클릭합니다.
-3. **컨트롤러 추가** 대화 상자에서 다음을 수행합니다.
-   * **모델 클래스** 드롭다운에서 새 DTO를 선택합니다.
-   * **DbContext** 드롭다운에서 모바일 서비스 DbContext 클래스를 선택합니다.
-   * 컨트롤러 이름이 생성됩니다.
+1. 안녕하세요 Controllers 폴더를 마우스 오른쪽 단추로 클릭 하 고 선택 **추가** > **컨트롤러 중...** .
+2. 선택 hello **Azure 모바일 앱 테이블 컨트롤러** 클릭 한 다음 옵션을 **추가**합니다.
+3. Hello에 **컨트롤러 추가** 대화 상자:
+   * Hello에 **모델 클래스** 드롭다운을 선택 하면 새 DTO 합니다.
+   * Hello에 **DbContext** 드롭다운에서 선택 hello 모바일 서비스 DbContext 클래스입니다.
+   * hello 컨트롤러 이름이 생성 됩니다.
 4. **추가**를 클릭합니다.
 
-빠른 시작 서버 프로젝트는 간단한 **TodoItemController**에 대한 예제를 포함합니다.
+hello 퀵 스타트 서버 프로젝트에 단순에 대 한 예가 포함 되어 **TodoItemController**합니다.
 
-### <a name="adjust-pagesize"></a>방법: 테이블 페이징 크기 조정
-기본적으로 Azure 모바일 앱은 요청당 50개의 레코드를 반환합니다.  페이징은 클라이언트가 해당 UI 스레드와도, 서버와도 너무 오랫동안 연결되지 않으므로 최적의 사용자 환경을 보장합니다. 테이블 페이징 크기를 변경하려면 서버 쪽의 "허용되는 쿼리 크기"와 클라이언트 쪽 페이지 크기를 늘립니다. 서버 쪽의 "허용되는 쿼리 크기"는 `EnableQuery` 특성을 사용하여 조정됩니다.
+### <a name="adjust-pagesize"></a>방법: hello 테이블 페이징 크기 조정
+기본적으로 Azure 모바일 앱은 요청당 50개의 레코드를 반환합니다.  페이징은 hello 클라이언트 사용 너무 오래 동안 UI 스레드와 hello 서버 효율적인 사용자 환경을 보장 되도록 합니다. toochange hello 테이블 페이징 크기 증가 hello 서버 쪽 "허용 되는 쿼리 크기" 고 hello 클라이언트 쪽 페이지 크기 hello 서버 쪽 "허용 쿼리 크기"는 hello를 사용 하 여 `EnableQuery` 특성:
 
     [EnableQuery(PageSize = 500)]
 
-PageSize은 클라이언트에서 요청하는 크기보다 크거나 같습니다.  클라이언트 페이지 크기 변경에 대한 내용은 특정 클라이언트 방법 설명서를 참조하세요.
+Hello PageSize는 hello 클라이언트에서 요청한 hello 크기 보다 크거나 같은 hello를 확인 합니다.  Hello 클라이언트 페이지 크기 변경에 대 한 내용은 toohello 특정 클라이언트 방법 문서를 참조 하십시오.
 
 ## <a name="how-to-define-a-custom-api-controller"></a>방법: 사용자 지정 API 컨트롤러 정의
-사용자 지정 API 컨트롤러는 끝점을 노출하여 모바일 앱 백 엔드에서 가장 기본적인 기능을 제공합니다. [MobileAppController] 특성을 사용하여 모바일 전용 API 컨트롤러를 등록할 수 있습니다. `MobileAppController` 특성은 경로를 등록하고 모바일 앱 JSON 직렬 변환기를 설정한 후 [클라이언트 버전 검사](app-service-mobile-client-and-server-versioning.md)를 켭니다.
+사용자 지정 API 컨트롤러 hello 끝점을 노출 하 여 hello 가장 기본적인 기능 tooyour 모바일 앱 백 엔드를 제공 합니다. Hello [MobileAppController] 특성을 사용 하 여 모바일 전용 API 컨트롤러를 등록할 수 있습니다. hello `MobileAppController` 특성 hello 경로 등록 hello 모바일 앱 JSON serializer를 설정 하 고 설정 [클라이언트 버전을 확인](app-service-mobile-client-and-server-versioning.md)합니다.
 
-1. Visual Studio에서 컨트롤러 폴더를 마우스 오른쪽 단추로 클릭한 다음 **추가** > **컨트롤러**를 클릭하고 **웹 API 2 컨트롤러&mdash;비어 있음**을 선택한 후 **추가**를 클릭합니다.
+1. Visual Studio를 마우스 오른쪽 단추로 클릭 안녕하세요 Controllers 폴더를 클릭 한 다음 **추가** > **컨트롤러**선택, **Web API 2 컨트롤러&mdash;빈** 및 클릭 **추가**합니다.
 2. `CustomController`와 같은 **컨트롤러 이름**을 제공하고 **추가**를 클릭합니다.
-3. 새로운 컨트롤러 클래스 파일에서 다음 using 문을 추가합니다.
+3. Hello 새 컨트롤러 클래스 파일에서 추가 hello 다음 문을 사용 하 여:
 
         using Microsoft.Azure.Mobile.Server.Config;
-4. 다음 예제와 같이 **[MobileAppController]** 특성을 API 컨트롤러 클래스 정의에 적용합니다.
+4. Hello 적용 **[MobileAppController]** hello 다음 예제와 같이 toohello API 컨트롤러 클래스 정의 특성:
 
         [MobileAppController]
         public class CustomController : ApiController
         {
               //...
         }
-5. App_Start/Startup.MobileApp.cs 파일에서 다음 예제와 같이 **MapApiControllers** 확장 메서드에 대한 호출을 추가합니다.
+5. App_Start/Startup.MobileApp.cs 파일에서 추가 호출 toohello **MapApiControllers** hello 다음 예제와 같이 확장 메서드를:
 
         new MobileAppConfiguration()
             .MapApiControllers()
             .ApplyTo(config);
 
-`MapApiControllers()` 대신 `UseDefaultConfiguration()` 확장 메서드를 사용할 수도 있습니다. **MobileAppControllerAttribute** 가 적용되지 않는 모든 컨트롤러는 클라이언트에서 여전히 액세스할 수 있지만 모든 모바일 앱 클라이언트 SDK로 올바르게 사용되지 않을 수 있습니다.
+Hello를 사용할 수도 있습니다 `UseDefaultConfiguration()` 확장 메서드 대신 `MapApiControllers()`합니다. **MobileAppControllerAttribute** 가 적용되지 않는 모든 컨트롤러는 클라이언트에서 여전히 액세스할 수 있지만 모든 모바일 앱 클라이언트 SDK로 올바르게 사용되지 않을 수 있습니다.
 
 ## <a name="how-to-work-with-authentication"></a>방법: 인증으로 작업
-Azure Mobile Apps는 App Service 인증/권한 부여를 사용하여 모바일 백 엔드를 보호합니다.  이 섹션에서는 .NET 백 엔드 서버 프로젝트에서 다음과 같은 인증 관련 작업을 수행하는 방법을 보여줍니다.
+앱 서비스 인증을 사용 하 여 azure 모바일 앱 / 권한 부여 toosecure 모바일 백 엔드 합니다.  이 섹션에서는 tooperform hello.NET 백 엔드 서버 프로젝트의 인증 관련 작업을 수행 합니다.
 
-* [방법: 서버 프로젝트에 인증 추가](#add-auth)
+* [방법: 인증 tooa 서버 프로젝트를 추가 합니다.](#add-auth)
 * [방법: 응용 프로그램에 사용자 지정 인증 사용](#custom-auth)
 * [방법: 인증된 사용자 정보 검색](#user-info)
 * [방법: 인증된 사용자에 대한 데이터 액세스 제한](#authorize)
 
-### <a name="add-auth"></a>방법: 서버 프로젝트에 인증 추가
-**MobileAppConfiguration** 개체를 확장하고 OWIN 미들웨어를 구성하여 서버 프로젝트에 인증을 추가할 수 있습니다. [Microsoft.Azure.Mobile.Server.Quickstart] 패키지를 설치하고 **UseDefaultConfiguration** 확장 메서드를 호출하는 경우 3단계로 건너뛸 수 있습니다.
+### <a name="add-auth"></a>방법: 인증 tooa 서버 프로젝트를 추가 합니다.
+Hello를 확장 하 여 인증 tooyour 서버 프로젝트를 추가할 수 있습니다 **MobileAppConfiguration** 개체 및 OWIN 미들웨어를 구성 합니다. Hello를 설치 하는 경우 [Microsoft.Azure.Mobile.Server.Quickstart] 패키지 및 호출 hello **UseDefaultConfiguration** 확장 메서드를 toostep 3을 건너뛸 수 있습니다.
 
-1. Visual Studio에서 [Microsoft.Azure.Mobile.Server.Authentication] 패키지를 설치합니다.
-2. Startup.cs 프로젝트 파일에서 **Configuration** 메서드의 시작 부분에 다음 코드 줄을 추가합니다.
+1. Visual Studio에서 설치 hello [Microsoft.Azure.Mobile.Server.Authentication] 패키지 합니다.
+2. Hello Startup.cs 프로젝트 파일에서 다음 hello hello 시작 시 코드 줄을 hello 추가 **구성** 메서드:
 
         app.UseAppServiceAuthentication(config);
 
-    이 OWIN 미들웨어 구성 요소는 관련 App Service 게이트웨이에서 발급된 토큰의 유효성을 검사합니다.
-3. 인증을 요구하는 모든 컨트롤러 또는 메서드에 `[Authorize]` 특성을 추가합니다.
+    이 OWIN 미들웨어 구성 요소 관련 hello 앱 서비스 게이트웨이에서 발급 한 토큰의 유효성을 검사 합니다.
+3. Hello 추가 `[Authorize]` 특성 tooany 컨트롤러 또는 인증을 요구 하는 메서드.
 
-모바일 앱 백 엔드에 클라이언트를 인증하는 방법에 대해 알아보려면 [앱에 인증 추가](app-service-mobile-ios-get-started-users.md)를 참조하세요.
+방법에 대 한 toolearn tooauthenticate 클라이언트 tooyour 모바일 앱 백 엔드 참조 [추가 인증 tooyour 앱](app-service-mobile-ios-get-started-users.md)합니다.
 
 ### <a name="custom-auth"></a>방법: 응용 프로그램에 사용자 지정 인증 사용
-App Service 인증/권한 부여 공급자 중 하나를 사용하지 않으려면 본인의 고유한 로그인 시스템을 구현할 수 있습니다. 인증 토큰 생성을 위한 [Microsoft.Azure.Mobile.Server.Login] 패키지를 설치합니다.  사용자 자격 증명의 유효성 검사를 위한 고유 코드를 제공합니다. 예를 들어 데이터베이스의 솔트되고 해시된 암호를 기준으로 검사할 수 있습니다. 다음 예제에서 `isValidAssertion()` 메서드(다른 곳에 정의됨)는 이러한 검사를 담당합니다.
+Toouse hello 응용 프로그램 서비스 인증/권한 부여 공급자 중 하나를 싶지 않은 경우 로그인 하는 시스템을 구현할 수 있습니다. Hello 설치 [Microsoft.Azure.Mobile.Server.Login] tooassist 인증 토큰 생성 된 패키지입니다.  사용자 자격 증명의 유효성 검사를 위한 고유 코드를 제공합니다. 예를 들어 데이터베이스의 솔트되고 해시된 암호를 기준으로 검사할 수 있습니다. Hello 아래의 예제에서는 hello `isValidAssertion()` 메서드 (다른 곳에서 정의 됨)는 이러한 검사 합니다.
 
-사용자 지정 인증은 ApiController 만들기 및 `register` 및 `login` 작업 노출로 노출됩니다. 클라이언트는 사용자로부터 정보를 수집하는 데 사용자 지정 UI를 사용해야 합니다.  그러면 정보는 표준 HTTP POST 호출을 사용하여 API에 제출됩니다. 서버가 어설션의 유효성을 검사하면 `AppServiceLoginHandler.CreateToken()` 메서드를 사용하여 토큰이 발급됩니다.  ApiController는 `[MobileAppController]` 특성을 사용하면 **안 됩니다**.
+사용자 지정 인증 hello는 ApiController 만들고 노출 하 여 노출 됩니다 `register` 및 `login` 동작 합니다. hello 클라이언트 hello 사용자 로부터 사용자 지정 UI toocollect hello 정보를 사용 해야 합니다.  hello 정보가 다음 표준 HTTP POST로 제출 된 toohello API 호출 되었습니다. Hello를 사용 하 여 토큰이 발급 될 hello 서버 hello 어설션에 유효성 검사, 일단 `AppServiceLoginHandler.CreateToken()` 메서드.  hello ApiController **하지 않아야** hello를 사용 하 여 `[MobileAppController]` 특성입니다.
 
 예제 `login` 작업:
 
@@ -271,7 +271,7 @@ App Service 인증/권한 부여 공급자 중 하나를 사용하지 않으려�
             }
         }
 
-앞의 예에서 LoginResult 및 LoginResultUser는 필요한 속성을 노출하는 직렬화 가능 개체입니다. 클라이언트는 로그인 응답을 통해 다음과 같은 형식의 JSON 개체로 반환되어야 합니다.
+앞 예제는 hello, LoginResult 및 LoginResultUser은 필수 속성을 노출 하는 직렬화 가능 개체입니다. hello 클라이언트에서 로그인 응답 toobe hello 폼의 JSON 개체로 반환 합니다.
 
         {
             "authenticationToken": "<token>",
@@ -280,87 +280,87 @@ App Service 인증/권한 부여 공급자 중 하나를 사용하지 않으려�
             }
         }
 
-`AppServiceLoginHandler.CreateToken()` 메서드는 *audience* 및 *issuer* 매개 변수를 포함합니다. 이러한 매개 변수 모두 HTTPS 체계를 사용하여 응용 프로그램 루트의 URL로 설정됩니다. 마찬가지로 *secretKey* 를 응용 프로그램의 서명 키의 값으로 설정해야 합니다. 키를 만들고 사용자를 가장하는 데 사용될 수 있으므로 클라이언트의 서명 키를 배포하지 마십시오. App Service에서 호스트하는 동안 *WEBSITE\_AUTH\_SIGNING\_KEY* 환경 변수를 참조하여 서명 키를 가져올 수 있습니다. 로컬 디버깅 컨텍스트에서 필요한 경우 [인증을 사용하여 로컬 디버깅](#local-debug) 섹션의 지침에 따라 키를 검색하고 이 키를 응용 프로그램 설정으로 저장합니다.
+hello `AppServiceLoginHandler.CreateToken()` 메서드를 포함 한 *대상 그룹* 및 *발급자* 매개 변수입니다. 이러한 매개 변수를 모두 hello HTTPS 체계를 사용 하 여 응용 프로그램 루트의 toohello URL 설정 됩니다. 마찬가지로 설정 해야 *secretKey* 응용 프로그램의 toobe hello 값의 키를 서명 합니다. Hello를 사용 하는 toomint 키 수 있으며 사용자를 가장할 때 서명 클라이언트에서 키를 배포 하지 마십시오. Hello 서명 hello를 참조 하 여 응용 프로그램 서비스에서 호스트 하는 동안 키를 가져올 수 있습니다 *웹 사이트\_AUTH\_서명\_키* 환경 변수입니다. 로컬 디버깅 컨텍스트에서 필요한 경우 hello 지침 hello에 따라 [인증을 사용 하 여 로컬 디버깅](#local-debug) tooretrieve hello 키 섹션 및 응용 프로그램 설정으로 저장 합니다.
 
-발급된 토큰은 다른 클레임 및 만료 날짜를 포함할 수도 있습니다.  최소한 발급된 토큰은 제목(**sub**) 클레임을 포함해야 합니다.
+hello 발급 된 토큰 다른 클레임 및 만료 날짜를 포함할 수도 있습니다.  최소한, hello 발급 된 토큰 주제를 포함 해야 합니다 (**sub**) 클레임입니다.
 
-인증 경로를 오버로드하여 표준 클라이언트 `loginAsync()` 메서드를 지원할 수 있습니다.  클라이언트가 `client.loginAsync('custom');`을(를) 호출하여 로그인하는 경우 경로는 `/.auth/login/custom`이어야 합니다.  `MapHttpRoute()`을(를) 사용하여 사용자 지정 인증 컨트롤러에 대한 경로를 설정할 수 있습니다.
+Hello 표준 클라이언트를 지원할 수 있습니다 `loginAsync()` hello 인증 경로 오버 로드 하 여 메서드.  클라이언트 hello 호출 하는 경우 `client.loginAsync('custom');` 에 toolog, 프로그램 경로가 있어야 `/.auth/login/custom`합니다.  사용 하 여 hello 사용자 지정 인증 컨트롤러에 대 한 hello 경로 설정할 수 있습니다 `MapHttpRoute()`:
 
     config.Routes.MapHttpRoute("custom", ".auth/login/custom", new { controller = "CustomAuth" });
 
 > [!TIP]
-> `loginAsync()` 방식을 사용하여 인증 토큰이 서비스에 대한 모든 후속 호출에 연결되어 있는지 확인합니다.
+> Hello를 사용 하 여 `loginAsync()` 방식이 사용 되므로 해당 hello 인증 토큰이 연결 된 tooevery 후속 호출 toohello 서비스입니다.
 >
 >
 
 ### <a name="user-info"></a>방법: 인증된 사용자 정보 검색
-사용자가 앱 서비스에서 인증을 하는 경우 .NET 백 엔드 코드에서 할당된 사용자 ID와 기타 정보에 액세스할 수 있습니다. 백 엔드에서 권한 부여를 결정하는 데 사용자 정보를 사용할 수 있습니다. 다음 코드는 요청과 연결된 사용자 ID를 가져옵니다.
+사용자가 앱 서비스에 의해 인증, 사용자 ID 및 기타 정보.NET 백 엔드 코드를 할당 하는 hello를 액세스할 수 있습니다. hello 사용자 정보 hello 백 엔드에 대 한 권한 부여 결정에 사용할 수 있습니다. hello 다음 코드 가져오는 hello 사용자 ID를 요청과 연결 된 같습니다.
 
-    // Get the SID of the current user.
+    // Get hello SID of hello current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-SID는 공급자 특정 사용자 ID에서 파생되고 지정된 사용자 및 로그인 공급자에 대해 정적입니다.  SID는 잘못된 인증 토큰에 대한 null입니다.
+hello SID hello 공급자 특정 사용자 ID에서 파생 되 고 지정 된 사용자와 로그인 공급자에 대 한 정적이 합니다.  hello SID 잘못 된 인증 토큰에 대 한 null입니다.
 
-또한 앱 서비스는 로그인 공급자에서 특정 클레임을 요청할 수 있습니다. 각 ID 공급자는 ID 공급자 SDK를 사용하여 자세한 정보를 제공할 수 있습니다.  예를 들어 친구 정보에 대한 Facebook Graph API를 사용할 수 있습니다.  Azure 포털의 공급자 블레이드에서 요청된 클레임을 지정할 수 있습니다. 일부 클레임은 ID 공급자를 사용하여 추가 구성이 필요합니다.
+또한 앱 서비스는 로그인 공급자에서 특정 클레임을 요청할 수 있습니다. 각 ID 공급자는 ID 공급자 SDK를 사용하여 자세한 정보를 제공할 수 있습니다.  예를 들어 친구 정보에 대 한 hello Facebook Graph API를 사용할 수 있습니다.  Hello 공급자 블레이드에서 hello Azure 포털에서에서 요청 된 클레임을 지정할 수 있습니다. 일부 클레임 hello id 공급자와 추가 구성이 필요합니다.
 
-다음 코드는 **GetAppServiceIdentityAsync** 확장 메서드를 호출하여 로그인 자격 증명을 가져오며 이는 Facebook Graph API에 대한 요청에 필요한 액세스 토큰을 포함합니다.
+hello 다음 호출 hello 코드 **GetAppServiceIdentityAsync** 확장 메서드 tooget hello 로그인 자격 증명을 hello Facebook Graph API에 대 한 hello 액세스 토큰 필요한 toomake 요청 포함:
 
-    // Get the credentials for the logged-in user.
+    // Get hello credentials for hello logged-in user.
     var credentials =
         await this.User
         .GetAppServiceIdentityAsync<FacebookCredentials>(this.Request);
 
     if (credentials.Provider == "Facebook")
     {
-        // Create a query string with the Facebook access token.
+        // Create a query string with hello Facebook access token.
         var fbRequestUrl = "https://graph.facebook.com/me/feed?access_token="
             + credentials.AccessToken;
 
         // Create an HttpClient request.
         var client = new System.Net.Http.HttpClient();
 
-        // Request the current user info from Facebook.
+        // Request hello current user info from Facebook.
         var resp = await client.GetAsync(fbRequestUrl);
         resp.EnsureSuccessStatusCode();
 
-        // Do something here with the Facebook user information.
+        // Do something here with hello Facebook user information.
         var fbInfo = await resp.Content.ReadAsStringAsync();
     }
 
-**GetAppServiceIdentityAsync** 확장 메서드를 제공하는 `System.Security.Principal`에 문을 사용하여 추가합니다.
+사용 하 여 추가 대해 문을 `System.Security.Principal` tooprovide hello **GetAppServiceIdentityAsync** 확장 메서드.
 
 ### <a name="authorize"></a>방법: 인증된 사용자에 대한 데이터 액세스 제한
-이전 섹션에서는 인증된 사용자의 사용자 ID를 검색하는 방법을 살펴보았습니다. 이 값에 따라 데이터 및 다른 리소스에 대한 액세스를 제한할 수 있습니다. 예를 들어 테이블에 userId 열을 추가하고 사용자 ID를 기준으로 쿼리 결과를 필터링하면 반환된 데이터를 허가된 사용자만 액세스하도록 할 수 있습니다. 다음 코드는 SID가 TodoItem 테이블의 UserId 열 값과 일치할 때만 데이터 행을 반환합니다.
+Hello 이전 단원의 tooretrieve 인증된 된 사용자의 사용자 ID를 hello 하는 방법을 배웠습니다. 액세스 toodata 및이 값에 따라 기타 리소스를 제한할 수 있습니다. 예를 들어 사용자 Id 열 tootables를 추가 하 고 hello hello 사용자 ID 기준으로 쿼리 결과 필터링 tooauthorized 사용자만 데이터를 반환 하는 간단한 방법을 toolimit입니다. hello 다음 코드 행을 반환 데이터 hello SID hello UserId hello TodoItem 테이블의 열 값과 일치 하는 경우에:
 
-    // Get the SID of the current user.
+    // Get hello SID of hello current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-    // Only return data rows that belong to the current user.
+    // Only return data rows that belong toohello current user.
     return Query().Where(t => t.UserId == sid);
 
-`Query()` 메서드는 필터링을 처리하는 LINQ에 의해 조작될 수 있는 `IQueryable`을(를) 반환합니다.
+hello `Query()` 메서드가 반환 되는 `IQueryable` LINQ toohandle 필터링 하 여 조작할 수 있습니다.
 
-## <a name="how-to-add-push-notifications-to-a-server-project"></a>방법: 서버 프로젝트에 푸시 알림 추가
-**MobileAppConfiguration** 개체를 확장하고 알림 허브 클라이언트를 만들어 서버 프로젝트에 푸시 알림을 추가합니다.
+## <a name="how-to-add-push-notifications-tooa-server-project"></a>방법: 푸시 알림을 tooa 서버 프로젝트를 추가 합니다.
+Hello를 확장 하 여 푸시 알림 tooyour 서버 프로젝트를 추가 **MobileAppConfiguration** 개체와 알림 허브 클라이언트 만들기.
 
-1. Visual Studio에서 서버 프로젝트를 마우스 오른쪽 단추로 클릭하고 **NuGet 패키지 관리**를 클릭한 후 `Microsoft.Azure.Mobile.Server.Notifications`를 검색한 다음 **설치**를 클릭합니다.
-2. 이 단계를 반복하여 알림 허브 클라이언트 라이브러리를 포함하는 `Microsoft.Azure.NotificationHubs` 패키지를 설치합니다.
-3. App_Start/Startup.MobileApp.cs에서 초기화하는 동안 **AddPushNotifications()** 확장 메서드에 대한 호출을 추가합니다.
+1. Visual Studio에서 hello 서버 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 클릭 **NuGet 패키지 관리**, 검색할 `Microsoft.Azure.Mobile.Server.Notifications`, 클릭 **설치**합니다.
+2. 이 단계 tooinstall hello 반복 `Microsoft.Azure.NotificationHubs` hello 알림 허브 클라이언트 라이브러리를 포함 하는 패키지입니다.
+3. App_Start/Startup.MobileApp.cs에 추가 호출 toohello **AddPushNotifications()** 초기화 하는 동안 확장 메서드:
 
         new MobileAppConfiguration()
             // other features...
             .AddPushNotifications()
             .ApplyTo(config);
-4. 알림 허브 클라이언트를 만드는 다음 코드를 추가합니다.
+4. 알림 허브 클라이언트를 만드는 코드를 다음 hello를 추가 합니다.
 
-        // Get the settings for the server project.
+        // Get hello settings for hello server project.
         HttpConfiguration config = this.Configuration;
         MobileAppSettingsDictionary settings =
             config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-        // Get the Notification Hubs credentials for the Mobile App.
+        // Get hello Notification Hubs credentials for hello Mobile App.
         string notificationHubName = settings.NotificationHubName;
         string notificationHubConnection = settings
             .Connections[MobileAppSettingsKeys.NotificationHubConnectionString].ConnectionString;
@@ -369,15 +369,15 @@ SID는 공급자 특정 사용자 ID에서 파생되고 지정된 사용자 및 
         NotificationHubClient hub = NotificationHubClient
             .CreateClientFromConnectionString(notificationHubConnection, notificationHubName);
 
-이제 등록된 장치에 푸시 알림을 보내는 데 알림 허브 클라이언트를 사용할 수 있습니다. 자세한 내용은 [앱에 푸시 알림 추가](app-service-mobile-ios-get-started-push.md)를 참조하세요. 알림 허브에 대한 자세한 내용은 [알림 허브 개요](../notification-hubs/notification-hubs-push-notification-overview.md)를 참조하세요.
+이제 hello 알림 허브 클라이언트 toosend 푸시 알림을 tooregistered 장치를 사용할 수 있습니다. 자세한 내용은 참조 [추가 푸시 알림 tooyour 앱](app-service-mobile-ios-get-started-push.md)합니다. 알림 허브에 대해 자세히 toolearn 참조 [알림 허브 개요](../notification-hubs/notification-hubs-push-notification-overview.md)합니다.
 
 ## <a name="tags"></a>방법: 태그를 사용하여 대상 지정 푸시 활성화
-알림 허브를 사용하면 태그를 사용하여 특정 등록에 대상이 지정된 알림을 보낼 수 있습니다. 여러 태그가 자동으로 만들어집니다.
+알림 허브를 사용 하면 대상으로 지정 된 알림을 toospecific 등록 태그를 사용 하 여 보낼 수 있습니다. 여러 태그가 자동으로 만들어집니다.
 
-* 설치 ID는 특정 장치를 식별합니다.
-* 인증된 SID에 따라 사용자 ID는 특정 사용자를 식별합니다.
+* hello 설치 ID는 특정 장치를 식별합니다.
+* hello 사용자 Id에 따라 인증 hello SID 특정 사용자를 식별 합니다.
 
-**MobileServiceClient**의 **installationId** 속성에서 설치 ID에 액세스할 수 있습니다.  다음 예제에서는 설치 ID를 사용하여 알림 허브에서 특정 설치에 태그를 추가하는 방법을 보여 줍니다.
+ID는 hello에서 액세스할 수 있습니다 설치 hello **installationId** hello 속성 **MobileServiceClient**합니다.  hello 다음 예제에서는 설치 ID tooadd를 사용 하는 방법을 태그 tooa 특정 설치를 알림 허브에서:
 
     hub.PatchInstallation("my-installation-id", new[]
     {
@@ -389,27 +389,27 @@ SID는 공급자 특정 사용자 ID에서 파생되고 지정된 사용자 및 
         }
     });
 
-설치를 만들 때 푸시 알림 등록을 수행하는 동안 클라이언트가 제공한 태그는 백 엔드에서 무시됩니다. 클라이언트를 사용하여 설치에 태그를 추가하려면 이전 패턴을 사용하여 태그를 추가하는 사용자 지정 API를 만들어야 합니다.
+푸시 알림 등록 하는 동안 hello 클라이언트에서 제공 하는 태그는 hello 설치를 만들 때 hello 백 엔드에서 무시 됩니다. 클라이언트 tooadd tooenable 태그 toohello 설치, 패턴 앞 hello를 사용 하 여 태그를 추가 하는 사용자 지정 API를 만들어야 합니다.
 
-예제는 App Service Mobile Apps 완료된 빠른 시작 샘플에서 [클라이언트 추가 푸시 알림 태그][5]를 참조하세요.
+참조 [클라이언트 추가 푸시 알림 태그] [ 5] 예제를 보려면 hello 앱 서비스 모바일 앱 완료 된 quickstart 샘플에 있습니다.
 
-## <a name="push-user"></a>방법: 인증된 사용자에게 푸시 알림 보내기
-인증된 사용자가 푸시 알림에 등록하면 사용자 ID 태그가 등록에 자동으로 추가됩니다. 이 태그를 사용하여 해당 사용자로 등록된 모든 장치에 푸시 알림을 보낼 수 있습니다. 다음 코드는 요청을 만드는 사용자의 SID를 가져오고 해당 사용자에 대한 모든 장치 등록에 템플릿 푸시 알림을 보냅니다.
+## <a name="push-user"></a>방법: 사용자를 인증 하는 송신 푸시 알림을 tooan
+인증된 된 사용자 푸시 알림에 등록, 사용자 ID 태그 toohello 등록 자동으로 추가 됩니다. 이 태그를 사용 하 여 푸시 알림 tooall 장치가 해당 사용자가 등록 되어 보낼 수 있습니다. hello 다음 코드 hello 요청을 만드는 사용자의 SID 가져오고 해당 사용자에 대 한 템플릿 푸시 알림 tooevery 장치 등록을 보냅니다.
 
-    // Get the current user SID and create a tag for the current user.
+    // Get hello current user SID and create a tag for hello current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
     string userTag = "_UserId:" + sid;
 
-    // Build a dictionary for the template with the item message text.
+    // Build a dictionary for hello template with hello item message text.
     var notification = new Dictionary<string, string> { { "message", item.Text } };
 
-    // Send a template notification to the user ID.
+    // Send a template notification toohello user ID.
     await hub.SendTemplateNotificationAsync(notification, userTag);
 
-인증된 클라이언트의 푸시 알림을 등록할 때 등록을 시도하기 전에 인증이 완료되었는지 확인합니다. 자세한 내용은 .NET 백 엔드에 대한 App Service Mobile Apps 완료된 빠른 시작 샘플에서 [사용자에게 푸시 알림 보내기][6]를 참조하세요.
+인증된 클라이언트의 푸시 알림을 등록할 때 등록을 시도하기 전에 인증이 완료되었는지 확인합니다. 자세한 내용은 참조 [toousers 푸시] [ 6] .NET 백 엔드에 대 한 hello 앱 서비스 모바일 앱 완료 된 quickstart 샘플에 있습니다.
 
-## <a name="how-to-debug-and-troubleshoot-the-net-server-sdk"></a>방법: .NET 서버 SDK 디버그 및 문제 해결
+## <a name="how-to-debug-and-troubleshoot-hello-net-server-sdk"></a>방법: 디버그 및.NET 서버 SDK hello 문제 해결
 Azure 앱 서비스는 ASP.NET 응용 프로그램에 대한 여러 디버깅 및 문제 해결 기술을 제공합니다.
 
 * [Azure 앱 서비스 모니터링](../app-service-web/web-sites-monitor.md)
@@ -417,27 +417,27 @@ Azure 앱 서비스는 ASP.NET 응용 프로그램에 대한 여러 디버깅 �
 * [Visual Studio에서 Azure 앱 서비스 문제 해결](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)
 
 ### <a name="logging"></a>로깅
-표준 ASP.NET 추적 작성을 사용하여 앱 서비스 진단 로그에 쓸 수 있습니다. 로그를 작성하려면 먼저 모바일 앱 백 엔드에서 진단을 활성화해야 합니다.
+Hello 표준 ASP.NET 추적 쓰기를 사용 하 여 tooApp 서비스 진단 로그를 작성할 수 있습니다. Toohello 로그를 작성 하려면 먼저 모바일 앱 백엔드에 진단을 활성화 해야 합니다.
 
-진단을 사용하도록 설정하고 로그에 쓰려면:
+tooenable 진단 및 쓰기 toohello 로그:
 
-1. [진단을 사용하는 방법](../app-service-web/web-sites-enable-diagnostic-log.md#enablediag)에서 단계를 수행합니다.
-2. 코드 파일에 다음 using 문을 추가합니다.
+1. Hello 단계에 따라 [어떻게 tooenable 진단](../app-service-web/web-sites-enable-diagnostic-log.md#enablediag)합니다.
+2. Hello 다음 추가 문을 사용 하 여 코드 파일에:
 
         using System.Web.Http.Tracing;
-3. .NET 백 엔드에서 진단 로그에 작성하려면 다음과 같이 추적 작성기를 만듭니다.
+3. 추적 기록기 toowrite를 hello.NET 백 엔드 toohello 진단 로그에서 다음과 같이 만듭니다.
 
         ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
         traceWriter.Info("Hello, World");
-4. 서버 프로젝트를 다시 게시하고 모바일 앱 백 엔드에 액세스하여 로깅을 통해 코드 경로를 실행합니다.
-5. [방법: 로그 다운로드](../app-service-web/web-sites-enable-diagnostic-log.md#download)에 설명된 대로 로그를 다운로드하고 평가합니다.
+4. 서버 프로젝트를 다시 게시 하 고 hello 모바일 앱 백 엔드 tooexecute hello 코드 경로 hello 로깅 사용 하 여 액세스 키를 누릅니다.
+5. 다운로드 하 고에 설명 된 대로 hello 로그 평가 [하는 방법: 로그를 다운로드](../app-service-web/web-sites-enable-diagnostic-log.md#download)합니다.
 
 ### <a name="local-debug"></a>인증을 사용하여 로컬 디버깅
-응용 프로그램을 로컬로 실행하여 변경 내용을 클라우드에 게시하기 전에 테스트할 수 있습니다. 대부분의 Azure Mobile Apps 백 엔드의 경우 Visual Studio에 있는 동안 *F5* 를 누릅니다. 그러나 인증을 사용할 때 몇 가지 추가 고려 사항이 있습니다.
+응용 프로그램을 실행할 수 tootest toohello 클라우드 가격표를 게시 하기 전에 변경 되는 로컬입니다. 대부분의 Azure Mobile Apps 백 엔드의 경우 Visual Studio에 있는 동안 *F5* 를 누릅니다. 그러나 인증을 사용할 때 몇 가지 추가 고려 사항이 있습니다.
 
-클라우드 기반 모바일 앱에서 앱 서비스 인증/권한 부여를 구성해야 하며 클라이언트가 클라우드 끝점을 대체 로그인 호스트로 지정해야 합니다. 필요한 구체적인 단계는 클라이언트 플랫폼에 대한 설명서를 참조하세요.
+클라우드 기반 모바일 앱으로 응용 프로그램 서비스 인증/권한 부여 구성 되어 있어야 하 고 클라이언트 hello 대체 로그인 호스트로 지정 하는 hello 클라우드 끝점 있어야 합니다. 필요한 hello 특별 한 단계에 대 한 클라이언트 플랫폼에 대 한 hello 설명서를 참조 하십시오.
 
-모바일 백 엔드에 [Microsoft.Azure.Mobile.Server.Authentication] 을 설치했는지 확인합니다. 그런 다음 `MobileAppConfiguration`를 `HttpConfiguration`에 적용한 후 응용 프로그램의 OWIN 시작 클래스에 다음을 추가합니다.
+모바일 백 엔드에 [Microsoft.Azure.Mobile.Server.Authentication] 을 설치했는지 확인합니다. 그런 다음 응용 프로그램의 OWIN 시작 클래스에서 후 hello 다음 추가 `MobileAppConfiguration` 적용된 tooyour 되었습니다 `HttpConfiguration`:
 
         app.UseAppServiceAuthentication(new AppServiceAuthenticationOptions()
         {
@@ -447,15 +447,15 @@ Azure 앱 서비스는 ASP.NET 응용 프로그램에 대한 여러 디버깅 �
             TokenHandler = config.GetAppServiceTokenHandler()
         });
 
-앞의 예제에서는 HTTPS 체계를 사용하여 Web.config 파일 내에서 *authAudience* 및 *authIssuer* 응용 프로그램 설정을 응용 프로그램 루트의 URL로 구성해야 합니다. 마찬가지로 *authSigningKey* 를 응용 프로그램의 서명 키의 값으로 설정해야 합니다.
-서명 키를 가져오려면:
+앞 예제는 hello, hello를 구성 해야 *authAudience* 및 *authIssuer* Web.config 내에서 응용 프로그램 설정 파일 tooeach hello HTTPS를 사용 하 여 응용 프로그램 루트의 url 체계입니다. 마찬가지로 설정 해야 *authSigningKey* 응용 프로그램의 toobe hello 값의 키를 서명 합니다.
+tooobtain hello 서명 키:
 
-1. [Azure 포털]
+1. Hello 내에서 tooyour 앱 이동 [Azure 포털]
 2. **도구**, **Kudu**, **이동**을 클릭합니다.
-3. Kudu 관리 사이트에서 **환경**을 클릭합니다.
-4. *WEBSITE\_AUTH\_SIGNING\_KEY*에 대한 값을 찾습니다.
+3. Hello Kudu 관리 사이트에서 클릭 **환경**합니다.
+4. 에 대 한 hello 식일 *웹 사이트\_AUTH\_서명\_키*합니다.
 
-로컬 응용 프로그램 구성에서 *authSigningKey* 매개 변수에 대한 서명 키를 사용합니다.  로컬로 실행 중일 때 모바일 백 엔드가 이제 클라이언트가 클라우드 기반 끝점에서 가져오는 토큰을 확인하게 됩니다.
+서명 키 hello 사용 하 여 hello *authSigningKey* 로컬 응용 프로그램 config에 매개 변수입니다.  모바일 백 엔드는 이제 장착된 toovalidate 토큰을 로컬로 실행 하는 경우 hello 클라이언트 hello 클라우드 기반 끝점에서 hello 토큰을 가져옵니다.
 
 [1]: https://msdn.microsoft.com/library/azure/dn961176.aspx
 [2]: https://github.com/Azure/azure-mobile-apps-net-server

@@ -1,5 +1,5 @@
 ---
-title: "자습서: Azure PowerShell을 사용하여 데이터를 이동하는 파이프라인 만들기 | Microsoft Docs"
+title: "자습서: Azure PowerShell을 사용 하 여 파이프라인 toomove 데이터 만들기 | Microsoft Docs"
 description: "이 자습서에서는 Azure PowerShell을 사용하여 복사 작업을 사용하는 Azure Data Factory 파이프라인을 만듭니다."
 services: data-factory
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 81efe7c6af29af778686e1f6bcf62fedc9711052
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 21406d7dfaa0c555b2538fbb52839d761c140fc5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-create-a-data-factory-pipeline-that-moves-data-by-using-azure-powershell"></a>자습서: Azure PowerShell을 사용하여 데이터를 이동하는 Data Factory 파이프라인 만들기
 > [!div class="op_single_selector"]
@@ -33,119 +33,119 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-이 문서에서는 PowerShell을 사용하여 Azure Blob 저장소에서 Azure SQL 데이터베이스로 데이터를 복사하는 파이프라인이 있는 데이터 팩터리를 만드는 방법에 대해 알아봅니다. Azure Data Factory를 처음 사용하는 경우 이 자습서를 수행하기 전에 [Azure Data Factory 소개](data-factory-introduction.md) 문서를 참조하세요.   
+이 문서에서는 설명 어떻게 toouse PowerShell toocreate 데이터 팩터리 Azure blob 저장소 tooan Azure SQL 데이터베이스에서 데이터를 복사 하는 파이프라인을 사용 합니다. 새 tooAzure 데이터 팩터리 인 경우 hello 읽어 [소개 tooAzure Data Factory](data-factory-introduction.md) 이 자습서를 수행 하기 전에 문서입니다.   
 
-이 자습서에는 한 가지 작업 즉, 복사 작업이 포함된 파이프라인을 만듭니다. 복사 작업은 지원되는 데이터 저장소에서 지원되는 싱크 데이터 저장소로 데이터를 복사합니다. 원본 및 싱크로 지원되는 데이터 저장소 목록은 [지원되는 데이터 저장소](data-factory-data-movement-activities.md#supported-data-stores-and-formats)를 참조하세요. 이 작업은 다양한 데이터 저장소 간에 데이터를 안전하고 안정적이며 확장성 있는 방법으로 복사할 수 있는 전역적으로 사용 가능한 서비스를 통해 이루어집니다. 복사 작업에 대한 자세한 내용은 [데이터 이동 작업](data-factory-data-movement-activities.md)을 참조하세요.
+이 자습서에는 한 가지 작업 즉, 복사 작업이 포함된 파이프라인을 만듭니다. hello 복사 작업 지원 되는 데이터 저장소 tooa 싱크를 지원 되는 데이터 저장소에서 데이터를 복사합니다. 원본 및 싱크로 지원되는 데이터 저장소 목록은 [지원되는 데이터 저장소](data-factory-data-movement-activities.md#supported-data-stores-and-formats)를 참조하세요. hello 활동은 안전 하 고 안정적 이며 확장 가능한 방식으로 다양 한 데이터 저장소 간에 데이터를 복사할 수 있는 전역적으로 사용 가능한 서비스에 의해 수행 됩니다. Hello 복사 작업에 대 한 자세한 내용은 참조 [데이터 이동 작업](data-factory-data-movement-activities.md)합니다.
 
-파이프라인 하나에는 활동이 둘 이상 있을 수 있습니다. 한 활동의 출력 데이터 집합을 다른 활동의 입력 데이터 집합으로 설정함으로써 두 활동을 연결하여 활동을 하나씩 차례로 실행할 수 있습니다. 자세한 내용은 [파이프라인의 여러 작업](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)을 참조하세요.
+파이프라인 하나에는 활동이 둘 이상 있을 수 있습니다. 및 hello 입력 데이터 집합의 hello 다른 활동으로 한 활동의 hello 출력 데이터 집합을 설정 하 여 두 개의 활동 (활동 다음에 다른 실행)을 연결할 수 있습니다. 자세한 내용은 [파이프라인의 여러 작업](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)을 참조하세요.
 
 > [!NOTE]
-> 이 문서는 모든 데이터 팩터리 cmdlet을 다루지 않습니다. 이러한 cmdlet에 대한 포괄적인 설명서는 [Data Factory Cmdlet 참조](/powershell/module/azurerm.datafactories)를 참조하세요.
+> 이 문서는 모든 hello 데이터 팩터리 cmdlet을 다루지 않습니다. 이러한 cmdlet에 대한 포괄적인 설명서는 [Data Factory Cmdlet 참조](/powershell/module/azurerm.datafactories)를 참조하세요.
 > 
-> 이 자습서에서 데이터 파이프라인은 원본 데이터 저장소의 데이터를 대상 데이터 저장소로 복사합니다. Azure Data Factory를 사용하여 데이터를 변환하는 방법에 대한 자습서는 [자습서: Hadoop 클러스터를 사용하여 데이터를 변환하도록 파이프라인 빌드](data-factory-build-your-first-pipeline.md)를 참조하세요.
+> 이 자습서의 데이터 파이프라인 hello 원본 데이터 저장소 tooa 대상 데이터 저장소에서 데이터를 복사합니다. 방법에 대 한 자습서에 대 한 Azure 데이터 팩터리를 사용 하 여 tootransform 데이터 참조 [자습서: 빌드 Hadoop 클러스터를 사용 하 여 파이프라인 tootransform 데이터](data-factory-build-your-first-pipeline.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-- [자습서 필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 문서에서 나열하는 필수 구성 요소를 완료합니다.
-- **Azure PowerShell**을 설치합니다. [Azure PowerShell을 설치 및 구성하는 방법](../powershell-install-configure.md)의 지침을 따르세요.
+- Hello에 나온 필수 조건을 완료 [자습서 필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 문서.
+- **Azure PowerShell**을 설치합니다. Hello 지침에 따라 [어떻게 tooinstall Azure PowerShell을 구성 하 고](../powershell-install-configure.md)합니다.
 
 ## <a name="steps"></a>단계
-이 자습서의 일부로 수행하는 단계는 다음과 같습니다.
+이 자습서의 일환으로 수행 하는 hello 단계는 다음과 같습니다.
 
 1. Azure **데이터 팩터리**를 만듭니다. 이 단계에서는 ADFTutorialDataFactoryPSH라는 Azure Data Factory를 만듭니다. 
-2. 데이터 팩터리에서 **연결된 서비스**를 만듭니다. 이 단계에서는 두 가지 연결된 서비스 유형, 즉 Azure Storage와 Azure SQL Database를 만듭니다. 
+2. 만들 **연결 된 서비스** hello data factory에 있습니다. 이 단계에서는 두 가지 연결된 서비스 유형, 즉 Azure Storage와 Azure SQL Database를 만듭니다. 
     
-    AzureStorageLinkedService는 Azure 저장소 계정을 데이터 팩터리에 연결합니다. [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)의 일부로 컨테이너를 만들고 이 저장소 계정에 데이터를 업로드했습니다.   
+    AzureStorageLinkedService hello Azure 저장소 계정 toohello 데이터 팩터리를 연결합니다. 컨테이너를 만들고 데이터 toothis 저장소 계정을의 일환으로 업로드할 [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)합니다.   
 
-    AzureSqlLinkedService는 Azure SQL 데이터베이스를 데이터 팩터리에 연결합니다. Blob 저장소에서 복사된 데이터는 이 데이터베이스에 저장됩니다. [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)의 일부로 이 데이터베이스에서 SQL 테이블을 만들었습니다.   
-3. 데이터 팩터리에서 입력 및 출력 **데이터 집합**을 만듭니다.  
+    AzureSqlLinkedService는 Azure SQL 데이터베이스 toohello 데이터 팩터리를 연결합니다. hello blob 저장소에서 복사 된 hello 데이터는이 데이터베이스에 저장 됩니다. [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)의 일부로 이 데이터베이스에서 SQL 테이블을 만들었습니다.   
+3. 입력 및 출력 만들기 **데이터 집합** hello data factory에 있습니다.  
     
-    Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서 Azure 저장소 계정에 연결하는 데 사용하는 연결 문자열을 지정합니다. 그리고 입력 Blob 데이터 집합은 데이터가 포함된 컨테이너와 폴더를 지정합니다.  
+    hello Azure 저장소 연결 서비스 런타임에 tooconnect tooyour Azure 저장소 계정에서 사용 하는 데이터 팩터리 서비스는 hello 연결 문자열을 지정 합니다. 고 hello 입력된 blob 데이터 집합 hello 컨테이너 및 hello 입력된 데이터를 포함 하는 hello 폴더를 지정 합니다.  
 
-    마찬가지로 Azure SQL Database 연결된 서비스는 런타임에 Data Factory 서비스에서 Azure SQL 데이터베이스에 연결하는 데 사용하는 연결 문자열을 지정합니다. 그리고 출력 SQL 테이블 데이터 집합은 Blob 저장소의 데이터가 복사되는 데이터베이스의 테이블을 지정합니다.
-4. 데이터 팩터리에서 **파이프라인**을 만듭니다. 이 단계에서는 복사 활동을 사용하여 파이프라인을 만듭니다.   
+    마찬가지로, hello 연결 된 Azure SQL 데이터베이스 서비스는 런타임에 tooconnect tooyour Azure SQL 데이터베이스에서 사용 하는 데이터 팩터리 서비스는 hello 연결 문자열을 지정 합니다. 고 hello 출력 SQL 테이블의 데이터 집합 지정 hello 표 hello 데이터베이스 toowhich hello hello blob 저장소에서 데이터에서를 복사 합니다.
+4. 만들기는 **파이프라인** hello data factory에 있습니다. 이 단계에서는 복사 활동을 사용하여 파이프라인을 만듭니다.   
     
-    복사 활동은 Azure Blob 저장소의 Blob에서 Azure SQL 데이터베이스의 테이블로 데이터를 복사합니다. 파이프라인의 복사 활동을 사용하여 지원되는 모든 원본의 데이터를 지원되는 모든 대상으로 복사할 수 있습니다. 지원되는 데이터 저장소 목록은 [데이터 이동 활동](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 문서를 참조하세요. 
-5. 파이프라인을 모니터링합니다. 이 단계에서는 PowerShell을 사용하여 입력 및 출력 데이터 집합의 조각을 **모니터링**합니다.
+    hello 복사 활동 hello Azure blob 저장소 tooa hello Azure SQL 데이터베이스의 테이블에 blob에서 데이터를 복사합니다. 모든 지원 되는 원본 tooany 지원 대상에서 파이프라인 toocopy 데이터에서 복사 작업을 사용할 수 있습니다. 지원되는 데이터 저장소 목록은 [데이터 이동 활동](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 문서를 참조하세요. 
+5. 모니터 hello 파이프라인입니다. 이 단계에서는 있습니다 **모니터** PowerShell을 사용 하 여 입력 및 출력 데이터 집합의 조각을 hello 합니다.
 
 ## <a name="create-a-data-factory"></a>데이터 팩터리를 만듭니다.
 > [!IMPORTANT]
-> 아직 완료하지 않은 경우 [자습서의 필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)를 완료합니다.   
+> 전체 [hello 자습서에 대 한 필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 아직 수행 하지 않은 경우.   
 
-데이터 팩터리에는 하나 이상의 파이프라인이 포함될 수 있습니다. 파이프라인에는 하나 이상의 작업이 있을 수 있습니다. 예를 들어 원본에서 대상 데이터 저장소에 데이터를 복사하는 복사 작업 및 입력 데이터를 제품 출력 데이터로 변환하는 Hive 스크립트를 실행하는 HDInsight Hive 작업입니다. 이 단계에서는 데이터 팩터리 만들기를 시작하겠습니다.
+데이터 팩터리에는 하나 이상의 파이프라인이 포함될 수 있습니다. 파이프라인에는 하나 이상의 작업이 있을 수 있습니다. 예를 들어 원본 tooa 대상 데이터 저장소와 HDInsight Hive 활동 toorun 하이브 스크립트 tootransform에서 복사 작업 toocopy 데이터 데이터 tooproduct 출력 데이터를 입력 합니다. 이 단계에서는 hello 데이터 팩터리를 만드는 것부터 시작 하겠습니다.
 
-1. **PowerShell**을 시작합니다. 이 자습서를 마칠 때까지 Azure PowerShell을 열어 두세요. 닫은 후 다시 여는 경우 명령을 다시 실행해야 합니다.
+1. **PowerShell**을 시작합니다. 이 자습서의 hello 끝날 때까지 Azure PowerShell를 열어 둡니다. 닫고 다시 열 경우 toorun hello 명령을 다시 필요 합니다.
 
-    다음 명령을 실행하고 Azure Portal에 로그인하는 데 사용할 사용자 이름 및 암호를 입력합니다.
+    Hello 다음, 명령을 실행 하 고 hello 사용자 이름 및 toosign toohello Azure 포털에서에서 사용 하는 암호를 입력 합니다.
 
     ```PowerShell
     Login-AzureRmAccount
     ```   
    
-    다음 명령을 실행하여 이 계정의 모든 구독을 확인합니다.
+    이 계정에 대 한 모든 hello 구독 hello 명령 tooview 다음을 실행 합니다.
 
     ```PowerShell
     Get-AzureRmSubscription
     ```
 
-    다음 명령을 실행하여 사용하려는 구독을 선택합니다. **&lt;NameOfAzureSubscription**&gt;을 Azure 구독의 이름으로 바꿉니다.
+    다음 명령 tooselect hello 피드에 있는 toowork hello를 실행 합니다. 대체  **&lt;NameOfAzureSubscription** &gt; hello 이름의 Azure 구독:
 
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
-2. 다음 명령을 실행하여 **ADFTutorialResourceGroup** 이라는 Azure 리소스 그룹을 만듭니다.
+2. 라는 Azure 리소스 그룹 만들기 **ADFTutorialResourceGroup** hello 다음 명령을 실행 하 여:
 
     ```PowerShell
     New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
     ```
     
-    이 자습서의 일부 단계에서는 **ADFTutorialResourceGroup**이라는 리소스 그룹을 사용한다고 가정합니다. 다른 리소스 그룹을 사용하는 경우 이 자습서에서 ADFTutorialResourceGroup 대신 해당 리소스 그룹을 사용해야 합니다.
-3. **New-AzureRmDataFactory** cmdlet을 실행하여 **ADFTutorialDataFactoryPSH**라는 Data Factory를 만듭니다.  
+    이라는 hello 리소스 그룹을 사용 하는 것으로 가정이 자습서의 hello 단계 중 일부 **ADFTutorialResourceGroup**합니다. Toouse 필요한 다른 리소스 그룹을 사용 하는 경우이 자습서에서는 ADFTutorialResourceGroup 대신 것입니다.
+3. Hello 실행 **새로 AzureRmDataFactory** 라는 데이터 팩터리 cmdlet toocreate **ADFTutorialDataFactoryPSH**:  
 
     ```PowerShell
     $df=New-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH –Location "West US"
     ```
-    이 이름은 이미 사용되었을 수도 있습니다. 따라서 접두사 또는 접미사(예: ADFTutorialDataFactoryPSH05152017)를 추가하여 데이터 팩터리 이름을 고유하게 만들어 해당 명령을 다시 실행합니다.  
+    이 이름은 이미 사용되었을 수도 있습니다. 따라서 고유 하 게 만드는 hello 데이터 팩터리의 hello 이름 접두사 또는 접미사를 추가 하 여 (예: ADFTutorialDataFactoryPSH05152017) hello 명령을 다시 실행 합니다.  
 
-다음 사항에 유의하세요.
+포인트 다음 참고 hello:
 
-* Azure Data Factory 이름은 전역적으로 고유해야 합니다. 다음과 같은 오류가 발생하면 이름(예: yournameADFTutorialDataFactoryPSH)을 변경합니다. 이 자습서의 단계를 수행하는 동안 ADFTutorialFactoryPSH 대신 이 이름을 사용합니다. Data Factory 아티팩트에 대한 내용은 [Data Factory - 명명 규칙](data-factory-naming-rules.md)을 참조하세요.
+* hello Azure 데이터 팩터리의 hello 이름을 전역적으로 고유 해야 합니다. Hello 다음 오류가 표시 되 면 hello 이름 (예를 들어 yournameADFTutorialDataFactoryPSH)을 변경 합니다. 이 자습서의 단계를 수행하는 동안 ADFTutorialFactoryPSH 대신 이 이름을 사용합니다. Data Factory 아티팩트에 대한 내용은 [Data Factory - 명명 규칙](data-factory-naming-rules.md)을 참조하세요.
 
     ```
     Data factory name “ADFTutorialDataFactoryPSH” is not available
     ```
-* Data Factory 인스턴스를 만들려면 Azure 구독의 참가자 또는 관리자여야 합니다.
-* Data Factory의 이름은 나중에 DNS 이름으로 표시되므로 공개적으로 등록될 수도 있습니다.
-* "**구독이 Microsoft.DataFactory 네임스페이스를 사용하도록 등록되어 있지 않습니다.**"라는 오류가 발생할 수 있습니다. 다음 중 하나를 수행하고 다시 게시해 보세요.
+* toocreate 데이터 팩터리 인스턴스 hello Azure 구독 관리자 또는 참가자 여야 합니다.
+* hello hello 데이터 팩터리의 이름입니다 hello 미래에 DNS 이름으로 등록 하 고 있으므로 공개 될 수 있습니다.
+* Hello 다음 오류가 나타날 수 있습니다: "**이 구독 microsoft.datafactory가 등록 된 toouse 네임 스페이스가 아닙니다.**" Hello 다음 중 하나를 수행 하 고 다시 게시 하십시오.
 
-  * Azure PowerShell에서 다음 명령을 실행하여 데이터 팩터리 공급자를 등록합니다.
+  * Azure PowerShell에서 명령 tooregister hello 데이터 팩터리 공급자 hello를 실행 합니다.
 
     ```PowerShell
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
     ```
 
-    데이터 팩터리 공급자가 등록되어 있는지 확인하려면 다음 명령을 실행합니다.
+    데이터 팩터리 공급자가 등록 되어 해당 hello hello 명령 tooconfirm 다음을 실행 합니다.
 
     ```PowerShell
     Get-AzureRmResourceProvider
     ```
-  * Azure 구독을 사용하여 [Azure Portal](https://portal.azure.com)에 로그인합니다. Azure Portal에서 Data Factory 블레이드로 이동하거나 Data Factory를 만듭니다. 이 작업은 공급자를 자동으로 등록합니다.
+  * 로그인에 사용 하 여 Azure 구독 toohello hello [Azure 포털](https://portal.azure.com)합니다. Tooa Data Factory 블레이드로 이동 하거나 hello Azure 포털에서에서 데이터 팩터리를 만듭니다. 이 동작은 hello 공급자를 자동으로 등록합니다.
 
 ## <a name="create-linked-services"></a>연결된 서비스 만들기
-데이터 팩터리에서 연결된 서비스를 만들어 데이터 저장소를 연결하고 계산 서비스를 데이터 팩터리에 연결합니다. 이 자습서에서는 Azure HDInsight 또는 Azure Data Lake Analytics와 같은 계산 서비스를 사용하지 않습니다. Azure Storage(원본) 및 Azure SQL Database(대상) 유형의 두 데이터 저장소를 사용합니다. 
+데이터 팩터리 toolink 데이터 저장 및 계산 toohello 데이터 팩터리 서비스에에서 연결 된 서비스를 만듭니다. 이 자습서에서는 Azure HDInsight 또는 Azure Data Lake Analytics와 같은 계산 서비스를 사용하지 않습니다. Azure Storage(원본) 및 Azure SQL Database(대상) 유형의 두 데이터 저장소를 사용합니다. 
 
 이에 따라 두 개의 연결된 서비스, 즉 AzureStorage와 AzureSqlDatabase 유형의 AzureStorageLinkedService와 AzureSqlLinkedService를 만듭니다.  
 
-AzureStorageLinkedService는 Azure 저장소 계정을 데이터 팩터리에 연결합니다. 이 저장소 계정은 컨테이너를 만들고 [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)의 일부로 데이터를 업로드한 계정입니다.   
+AzureStorageLinkedService hello Azure 저장소 계정 toohello 데이터 팩터리를 연결합니다. 이 저장소 계정은 hello 하나 컨테이너를 생성 하 고 hello 데이터의 일부로 업로드 [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)합니다.   
 
-AzureSqlLinkedService는 Azure SQL 데이터베이스를 데이터 팩터리에 연결합니다. Blob 저장소에서 복사된 데이터는 이 데이터베이스에 저장됩니다. [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)의 일부로 이 데이터베이스에서 emp 테이블을 만들었습니다. 
+AzureSqlLinkedService는 Azure SQL 데이터베이스 toohello 데이터 팩터리를 연결합니다. hello blob 저장소에서 복사 된 hello 데이터는이 데이터베이스에 저장 됩니다. 이 데이터베이스에 hello emp 테이블의 일부분으로 만든 [필수 구성 요소](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)합니다. 
 
 ### <a name="create-a-linked-service-for-an-azure-storage-account"></a>Azure 저장소 계정에 대한 연결된 서비스 만들기
-이 단계에서는 Azure 저장소 계정을 데이터 팩터리에 연결합니다.
+이 단계에서는 Azure 저장소 계정 tooyour 데이터 팩터리를 연결할 수 있습니다.
 
-1. 다음 내용이 포함된 **AzureStorageLinkedService.json** JSON 파일을 **C:\ADFGetStartedPSH** 폴더에 만듭니다. (아직 없는 경우 ADFGetStartedPSH 폴더를 만듭니다.)
+1. 라는 JSON 파일을 만들어 **AzureStorageLinkedService.json** 에 **C:\ADFGetStartedPSH** 폴더 콘텐츠를 다음 hello로: (hello 폴더 만들기 ADFGetStartedPSH 아직 없는 경우.)
 
     > [!IMPORTANT]
-    > 파일을 저장하기 전에 &lt;accountname&gt;과 &lt;accountkey&gt;를 Azure 저장소 계정의 이름과 키로 바꿉니다. 
+    > 대체 &lt;accountname&gt; 및 &lt;accountkey&gt; 이름과 hello 파일 저장 하기 전에 Azure 저장소 계정의 키입니다. 
 
     ```json
     {
@@ -158,13 +158,13 @@ AzureSqlLinkedService는 Azure SQL 데이터베이스를 데이터 팩터리에 
         }
      }
     ``` 
-2. **Azure PowerShell**에서 **ADFGetStartedPSH** 폴더로 전환합니다.
-4. **New-AzureRmDataFactoryLinkedService** cmdlet을 실행하여 **AzureStorageLinkedService** 연결된 서비스를 만듭니다. 이 자습서에서 사용하는 이 cmdlet 및 다른 Data Factory cmdlet을 사용하려면 **ResourceGroupName** 및 **DataFactoryName** 매개 변수에 대한 값을 전달해야 합니다. 또는 cmdlet을 실행할 때마다 ResourceGroupName 및 DataFactoryName을 입력하지 않고 New-AzureRmDataFactory cmdlet에서 반환한 DataFactory 개체를 전달할 수 있습니다. 
+2. **Azure PowerShell**, toohello 전환 **ADFGetStartedPSH** 폴더입니다.
+4. Hello 실행 **새로 AzureRmDataFactoryLinkedService** 연결 된 서비스 cmdlet toocreate hello: **AzureStorageLinkedService**합니다. 이 cmdlet 및 기타 데이터 팩터리 cmdlet이이 자습서에서 사용 하 여 값이 필요 하면 toopass hello에 대 한 **ResourceGroupName** 및 **DataFactoryName** 매개 변수입니다. 또는 리소스 그룹 이름 및 DataFactoryName cmdlet을 실행할 때마다 입력 하지 않고도 hello 새로 AzureRmDataFactory cmdlet에서 반환 하는 hello DataFactory 개체를 전달할 수 있습니다. 
 
     ```PowerShell
     New-AzureRmDataFactoryLinkedService $df -File .\AzureStorageLinkedService.json
     ```
-    샘플 출력은 다음과 같습니다.
+    다음은 hello 샘플 출력이입니다.
 
     ```
     LinkedServiceName : AzureStorageLinkedService
@@ -174,16 +174,16 @@ AzureSqlLinkedService는 Azure SQL 데이터베이스를 데이터 팩터리에 
     ProvisioningState : Succeeded
     ``` 
 
-    이 연결된 서비스를 만드는 다른 방법은 DataFactory 개체를 지정하는 대신 리소스 그룹 이름과 데이터 팩터리 이름을 지정하는 것입니다.  
+    이 연결 된 서비스를 만드는 다른 방법은 toospecify 리소스 그룹 이름 및 hello DataFactory 개체를 지정 하는 대신 데이터 팩터리의 이름입니다.  
 
     ```PowerShell
     New-AzureRmDataFactoryLinkedService -ResourceGroupName ADFTutorialResourceGroup -DataFactoryName <Name of your data factory> -File .\AzureStorageLinkedService.json
     ```
 
 ### <a name="create-a-linked-service-for-an-azure-sql-database"></a>Azure SQL Database에 대한 연결된 서비스 만들기
-이 단계에서는 Azure SQL 데이터베이스를 데이터 팩터리에 연결합니다.
+이 단계에서는 Azure SQL 데이터베이스 tooyour 데이터 팩터리를 연결할 수 있습니다.
 
-1. 다음 내용이 포함된 AzureSqlLinkedService.json이라는 JSON 파일을 C:\ADFGetStartedPSH 폴더에 만듭니다.
+1. 콘텐츠 다음 hello로 AzureSqlLinkedService.json C:\ADFGetStartedPSH 폴더에는 JSON 파일을 만듭니다.
 
     > [!IMPORTANT]
     > &lt;servername&gt;, &lt;databasename&gt;, &lt;username@servername&gt; 및 &lt;password&gt;를 Azure SQL Server의 이름, 데이터베이스, 사용자 계정 및 암호로 바꿉니다.
@@ -199,13 +199,13 @@ AzureSqlLinkedService는 Azure SQL 데이터베이스를 데이터 팩터리에 
         }
      }
     ```
-2. 다음 명령을 실행하여 연결된 서비스를 만듭니다.
+2. 다음 명령은 toocreate hello 연결 된 서비스를 실행 합니다.
 
     ```PowerShell
     New-AzureRmDataFactoryLinkedService $df -File .\AzureSqlLinkedService.json
     ```
     
-    샘플 출력은 다음과 같습니다.
+    다음은 hello 샘플 출력이입니다.
 
     ```
     LinkedServiceName : AzureSqlLinkedService
@@ -215,26 +215,26 @@ AzureSqlLinkedService는 Azure SQL 데이터베이스를 데이터 팩터리에 
     ProvisioningState : Succeeded
     ```
 
-   SQL Database Server에 대해 **Azure 서비스 방문 허용** 설정이 켜져 있는지 확인합니다. 이 설정을 확인하고 켜려면 다음 단계를 수행합니다.
+   확인 **tooAzure 서비스 액세스를 허용** SQL 데이터베이스 서버에 대 한 설정이 켜져 있습니다. tooverify 및 켜십시오, 다음 단계 hello지 않습니다.
 
-    1. [Azure Portal](https://portal.azure.com)에 로그인
-    2. 왼쪽에 있는 **더 많은 서비스 >**를 클릭하고 **데이터베이스** 범주에서 **SQL 서버**를 클릭합니다.
-    3. SQL 서버 목록에서 서버를 선택합니다.
-    4. SQL 서버 블레이드에서 **방화벽 설정 표시** 링크를 클릭합니다.
-    5. **방화벽 설정** 블레이드에서 **Azure 서비스에 대한 액세스 허용**에 대해 **켜기**를 클릭합니다.
-    6. 도구 모음에서 **저장**을 클릭합니다. 
+    1. Toohello 로그인 [Azure 포털](https://portal.azure.com)
+    2. 클릭 **더 많은 서비스 >** 를 클릭 한 hello 왼쪽 **SQL server** hello에 **데이터베이스** 범주입니다.
+    3. SQL server hello 목록에서 서버를 선택 합니다.
+    4. Hello SQL server 블레이드 클릭 **방화벽 설정 표시** 링크 합니다.
+    5. Hello에 **방화벽 설정** 블레이드에서 클릭 **ON** 에 대 한 **tooAzure 서비스 액세스를 허용**합니다.
+    6. 클릭 **저장** hello 도구 모음입니다. 
 
 ## <a name="create-datasets"></a>데이터 집합 만들기
-이전 단계에서는 Azure Storage 계정과 Azure SQL Database를 데이터 팩터리에 연결하는 연결된 서비스를 만들었습니다. 이 단계에서는 AzureStorageLinkedService 및 AzureSqlLinkedService에서 각각 참조하는 데이터 저장소에 저장된 입력 및 출력 데이터를 나타내는 InputDataset 및 OutputDataset이라는 두 개의 데이터 집합을 정의합니다.
+Hello 이전 단계에서 Azure 저장소 계정 및 Azure SQL 데이터베이스 tooyour 데이터 팩터리에 연결 된 서비스 toolink을 만들었습니다. 이 단계에서는 InputDataset 및 입력을 나타내는 OutputDataset 각각 AzureStorageLinkedService 및 AzureSqlLinkedService에서 참조 하는 hello 데이터 저장소에 저장 되어 있는 출력 데이터 라는 두 개의 데이터 집합을 정의 합니다.
 
-Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서 Azure 저장소 계정에 연결하는 데 사용하는 연결 문자열을 지정합니다. 그리고 입력 Blob 데이터 집합(InputDataset)은 입력 데이터가 포함된 컨테이너와 폴더를 지정합니다.  
+hello Azure 저장소 연결 서비스 런타임에 tooconnect tooyour Azure 저장소 계정에서 사용 하는 데이터 팩터리 서비스는 hello 연결 문자열을 지정 합니다. 고 hello 입력된 blob 데이터 집합 (InputDataset) hello 컨테이너 및 hello 입력된 데이터를 포함 하는 hello 폴더를 지정 합니다.  
 
-마찬가지로 Azure SQL Database 연결된 서비스는 런타임에 Data Factory 서비스에서 Azure SQL 데이터베이스에 연결하는 데 사용하는 연결 문자열을 지정합니다. 그리고 출력 SQL 테이블 데이터 집합(OututDataset)은 Blob 저장소의 데이터가 복사되는 데이터베이스의 테이블을 지정합니다. 
+마찬가지로, hello 연결 된 Azure SQL 데이터베이스 서비스는 런타임에 tooconnect tooyour Azure SQL 데이터베이스에서 사용 하는 데이터 팩터리 서비스는 hello 연결 문자열을 지정 합니다. 및 hello 출력 SQL 테이블의 데이터 집합 (OututDataset) hello blob 저장소에서 데이터를 복사 하는 hello 데이터베이스 toowhich hello에 hello 테이블을 지정 합니다. 
 
 ### <a name="create-an-input-dataset"></a>입력 데이터 집합 만들기
-이 단계에서는 AzureStorageLinkedService 연결된 서비스에서 나타내는 Azure Storage의 Blob 컨테이너(adftutorial)의 루트 폴더에 있는 Blob 파일(emp.txt)을 가리키는 InputDataset이라는 데이터 집합을 만듭니다. fileName 값을 지정하지 않거나 건너뛰면 입력 폴더에 있는 모든 Blob의 데이터가 대상에 복사됩니다. 이 자습서에서는 fileName 값을 지정합니다.  
+이 단계에서는 hello hello AzureStorageLinkedService 연결 된 서비스를 나타내는 Azure 저장소에서에서 blob 컨테이너 (adftutorial)의 hello 루트 폴더에 tooa blob 파일 (emp.txt)를 가리키는 InputDataset 라는 데이터 집합이 만듭니다. 하지 hello 파일 이름에 대 한 값을 지정 (하거나 건너뛸 수), 데이터 hello 입력된 폴더의 모든 blob에서 됩니다 복사한 toohello 대상입니다. 이 자습서에서는 hello 파일 이름에 대 한 값을 지정합니다.  
 
-1. 다음 내용이 포함된 **InputDataset.json**이라는 JSON 파일을 **C:\ADFGetStartedPSH** 폴더에 만듭니다.
+1. 라는 JSON 파일을 만들어 **InputDataset.json** hello에 **C:\ADFGetStartedPSH** 폴더에 콘텐츠를 다음 hello:
 
     ```json
     {
@@ -269,26 +269,26 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
      }
     ```
 
-    다음 테이블은 코드 조각에 사용된 JSON 속성에 대한 설명을 제공합니다.
+    hello 다음 표에서 hello 조각에 사용 되는 hello JSON 속성에 대해 설명 합니다.
 
     | 속성 | 설명 |
     |:--- |:--- |
-    | type | Azure Blob 저장소에 데이터가 있기 때문에 type 속성은 **AzureBlob**으로 설정됩니다. |
-    | linkedServiceName | 이전에 만든 **AzureStorageLinkedService**를 참조합니다. |
-    | folderPath | 입력 Blob이 포함된 Blob **컨테이너**와 **폴더**를 지정합니다. 이 자습서에서 adftutorial은 Blob 컨테이너이며, 폴더는 루트 폴더입니다. | 
-    | fileName | 이 속성은 선택 사항입니다. 이 속성을 생략하면 folderPath의 모든 파일이 선택됩니다. 이 자습서에서는 fileName에 대해 **emp.txt**를 지정하므로 해당 파일만 처리를 위해 선택됩니다. |
-    | format -> type |입력 파일은 텍스트 형식이므로 **TextFormat**을 사용합니다. |
-    | columnDelimiter | 입력 파일의 열은 **쉼표(`,`)**로 구분됩니다. |
-    | frequency/interval | frequency는 **Hour**로 설정되고, interval은 **1**로 설정됩니다. 즉 입력 조각이 **매시간** 사용될 수 있습니다. 다시 말하면, Data Factory 서비스가 지정한 Blob 컨테이너(**adftutorial**)의 루트 폴더에서 매 시간마다 입력 데이터를 찾습니다. 이러한 시간 이전 또는 이후가 아니라 파이프라인의 시작 시간과 종료 시간 내에 있는 데이터를 찾습니다.  |
-    | external | 이 파이프라인에 의해 데이터가 생성되지 않는 경우 이 속성은 **true**로 설정됩니다. 이 자습서의 입력 데이터는 이 파이프라인에 의해 생성되지 않는 emp.txt 파일에 있으므로 이 속성을 true로 설정합니다. |
+    | type | hello type 속성이 너무 설정 되어**AzureBlob** 데이터는 Azure blob 저장소에 있기 때문에 있습니다. |
+    | linkedServiceName | Toohello 참조 **AzureStorageLinkedService** 앞에서 만든 합니다. |
+    | folderPath | Hello blob 지정 **컨테이너** 및 hello **폴더** 입력된 blob이 있는 합니다. 이 자습서에서는 adftutorial는 hello blob 컨테이너 및 폴더는 hello 루트 폴더입니다. | 
+    | fileName | 이 속성은 선택 사항입니다. 이 속성을 생략 하는 경우 hello folderPath에서 모든 파일을 선택 합니다. 이 자습서에서는 **emp.txt** hello 파일 이름, 해당 파일에만 선택 처리를 위해 지정 됩니다. |
+    | format -> type |사용 하도록 hello 입력된 파일은 hello 텍스트 형식 **TextFormat**합니다. |
+    | columnDelimiter | hello 입력된 파일에 hello 열으로 구분 됩니다 **쉼표 문자 (`,`)**합니다. |
+    | frequency/interval | hello 빈도가 너무 설정**시간** 간격이 너무 설정 되 고**1**, 즉, 해당 hello 입력 분할 영역을 사용할 수 있는 **매시간**합니다. 즉, hello 데이터 팩터리 서비스 검색 입력된 데이터에 대 한 1 시간 마다 blob 컨테이너의 hello 루트 폴더 (**adftutorial**) 사용자가 지정한 합니다. Hello 파이프라인 시작 및 종료 시간, 날짜부터 또는이 시간 이후로 내의 hello 데이터를 찾습니다.  |
+    | external | 이 속성은 너무**true** 경우 hello 데이터가이 파이프라인에서 생성 되지 않습니다. 이 자습서의 hello 입력된 데이터는 hello emp.txt 파일을 설정 하 여이 속성 tootrue 있으므로이 파이프라인에서 생성 되지 않습니다. |
 
     이러한 JSON 속성에 대한 자세한 내용은 [Azure Blob 커넥터 문서](data-factory-azure-blob-connector.md#dataset-properties)를 참조하세요.
-2. 다음 명령을 실행하여 데이터 팩터리 데이터 집합을 만듭니다.
+2. Hello 명령 toocreate hello Data Factory 데이터 집합을 따라를 실행 합니다.
 
     ```PowerShell  
     New-AzureRmDataFactoryDataset $df -File .\InputDataset.json
     ```
-    샘플 출력은 다음과 같습니다.
+    다음은 hello 샘플 출력이입니다.
 
     ```
     DatasetName       : InputDataset
@@ -303,9 +303,9 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
     ```
 
 ### <a name="create-an-output-dataset"></a>출력 데이터 집합 만들기
-이 단계의 일부에서는 **OutputDataset**라는 출력 데이터 집합을 만듭니다. 이 데이터 집합은 **AzureSqlLinkedService**가 나타내는 Azure SQL Database에서 SQL 테이블을 가리킵니다. 
+명명 된 출력 데이터 집합을 만들면이 부분 hello 단계 **OutputDataset**합니다. 이 데이터 집합으로 표시 하는 hello Azure SQL 데이터베이스의 tooa SQL 테이블 점은 **AzureSqlLinkedService**합니다. 
 
-1. 다음 내용이 포함된 **OutputDataset.json**이라는 JSON 파일을 **C:\ADFGetStartedPSH** 폴더에 만듭니다.
+1. 라는 JSON 파일을 만들어 **OutputDataset.json** hello에 **C:\ADFGetStartedPSH** 폴더 콘텐츠를 다음 hello로:
 
     ```json
     {
@@ -334,25 +334,25 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
     }
     ```
 
-    다음 테이블은 코드 조각에 사용된 JSON 속성에 대한 설명을 제공합니다.
+    hello 다음 표에서 hello 조각에 사용 되는 hello JSON 속성에 대해 설명 합니다.
 
     | 속성 | 설명 |
     |:--- |:--- |
-    | type | Azure SQL 데이터베이스의 테이블에 데이터가 복사되기 때문에 type 속성은 **AzureSqlTable**로 설정됩니다. |
-    | linkedServiceName | 이전에 만든 **AzureSqlLinkedService**를 참조합니다. |
-    | tableName | 데이터가 복사되는 **테이블**을 지정했습니다. | 
-    | frequency/interval | frequency는 **Hour**로 설정되고, interval은 **1**입니다. 즉 출력 조각이 이러한 시간 이전 또는 이후가 아니라 파이프라인의 시작 시간과 종료 시간 사이에서 **매시간** 생성됩니다.  |
+    | type | hello type 속성이 너무 설정 되어**AzureSqlTable** 데이터가 Azure SQL 데이터베이스에서 복사 된 tooa 테이블 되어 있습니다. |
+    | linkedServiceName | Toohello 참조 **AzureSqlLinkedService** 앞에서 만든 합니다. |
+    | tableName | 지정 된 hello **테이블** toowhich hello 데이터가 복사 됩니다. | 
+    | frequency/interval | hello 주기 설정 너무**시간** 간격은 및 **1**, hello 출력 조각만 생성 되는 것이 즉 **매시간** hello 파이프라인 시작 및 종료 시간, 이전은 아님 사이 또는 이 시간 후.  |
 
-    데이터베이스의 emp 테이블에 **ID**, **FirstName** 및 **LastName**이라는 세 개의 열이 있습니다. ID는 ID 열이므로 여기서 **FirstName** 및 **LastName**만 지정해야 합니다.
+    세 개의 열인 – **ID**, **FirstName**, 및 **LastName** – hello 데이터베이스의 hello emp 테이블에 있습니다. Toospecify만 필요 하므로 ID는 id 열 **FirstName** 및 **LastName** 여기 합니다.
 
     이러한 JSON 속성에 대한 자세한 내용은 [Azure SQL 커넥터 문서](data-factory-azure-sql-connector.md#dataset-properties)를 참조하세요.
-2. 다음 명령을 실행하여 Data Factory 데이터 집합을 만듭니다.
+2. Hello toocreate hello data factory 데이터 명령 집합을 따라를 실행 합니다.
 
     ```PowerShell   
     New-AzureRmDataFactoryDataset $df -File .\OutputDataset.json
     ```
 
-    샘플 출력은 다음과 같습니다.
+    다음은 hello 샘플 출력이입니다.
 
     ```
     DatasetName       : OutputDataset
@@ -369,16 +369,16 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
 ## <a name="create-a-pipeline"></a>파이프라인을 만듭니다.
 이 단계에서는 **InputDataset**을 입력으로 사용하고 **OutputDataset**을 출력으로 사용하는 **복사 활동**을 포함한 파이프라인을 만듭니다.
 
-현재 출력 데이터 집합은 일정을 작동하는 것입니다. 이 자습서에서는 출력 데이터 집합이 한 시간에 한 번씩 조각을 생성하도록 구성됩니다. 이 파이프라인은 하루 24시간 간격, 즉 24시간 동안에 걸친 시작 시간과 종료 시간을 갖습니다. 따라서 24개의 출력 데이터 집합이 파이프라인에 의해 생성됩니다. 
+현재 출력 데이터 집합은 어떤 드라이브 hello 일정입니다. 이 자습서에서는 출력 데이터 집합은 구성 된 tooproduce 조각을 두 번는 시간입니다. hello 파이프라인 시작 시간과 종료 시간이 되는 24 시간 이상 떨어져 1 일에 있습니다. 따라서 출력 데이터 집합의 24 조각은 hello 파이프라인에 의해 생성 됩니다. 
 
 
-1. **C:\ADFGetStartedPSH** 폴더에 다음과 같은 내용으로 **ADFTutorialPipeline.json**이라는 JSON 파일을 만듭니다.
+1. 라는 JSON 파일을 만들어 **ADFTutorialPipeline.json** hello에 **C:\ADFGetStartedPSH** 폴더에 콘텐츠를 다음 hello:
 
     ```json   
     {
       "name": "ADFTutorialPipeline",
       "properties": {
-        "description": "Copy data from a blob to Azure SQL table",
+        "description": "Copy data from a blob tooAzure SQL table",
         "activities": [
           {
             "name": "CopyFromBlobToSQL",
@@ -416,28 +416,28 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
       }
     } 
     ```
-    다음 사항에 유의하세요.
+    포인트 다음 참고 hello:
    
-    - 작업 섹션에는 **형식**이 **복사**로 설정된 작업만 있습니다. 복사 활동에 대한 자세한 내용은 [데이터 이동 활동](data-factory-data-movement-activities.md)을 참조하세요. Data Factory 솔루션에서 [데이터 변환 활동](data-factory-data-transformation-activities.md)을 사용할 수도 있습니다.
-    - 작업에 대한 입력을 **InputDataset**으로 설정하고 작업에 대한 출력을 **OutputDataset**으로 설정합니다. 
-    - **typeProperties** 섹션에서 **BlobSource**를 원본 유형으로 지정하고 **SqlSink**를 싱크 유형으로 지정합니다. 복사 활동에서 원본 및 싱크로 지원되는 데이터 저장소의 전체 목록은 [지원되는 데이터 저장소](data-factory-data-movement-activities.md#supported-data-stores-and-formats)를 참조하세요. 지원되는 특정 데이터 저장소를 원본/싱크로 사용하는 방법을 알아보려면 표에 나와 있는 링크를 클릭하세요.  
+    - Hello 활동 섹션에는 활동이 하나만 인 **형식** 너무 설정**복사**합니다. Hello 복사 작업에 대 한 자세한 내용은 참조 [데이터 이동 작업](data-factory-data-movement-activities.md)합니다. Data Factory 솔루션에서 [데이터 변환 활동](data-factory-data-transformation-activities.md)을 사용할 수도 있습니다.
+    - Hello 활동 너무 설정 되어 입력**InputDataset** 및 hello 활동 너무 설정 되어 출력**OutputDataset**합니다. 
+    - Hello에 **typeProperties** 섹션 **BlobSource** hello 원본 유형으로 지정 된 및 **SqlSink** hello 싱크 유형으로 지정 합니다. 원본 및 싱크도 hello 복사 작업에서 지 원하는 데이터 저장소의 전체 목록은 참조 하십시오. [데이터 저장소를 지원](data-factory-data-movement-activities.md#supported-data-stores-and-formats)합니다. 소스/싱크도 toouse 지원 되는 특정 데이터를 저장 하는 방법 toolearn hello 표에 hello 링크를 클릭 합니다.  
      
-    **시작** 속성 값을 현재 날짜로 바꾸고 **종료** 값을 다음 날짜로 바꿉니다. 날짜 부분만 지정하고 날짜/시간의 시간 부분은 건너뛸 수 있습니다. 예를 들어, "2016-02-03"은 "2016-02-03T00:00:00Z"과 동일합니다.
+    Hello hello 값 바꾸기 **시작** hello 현재 날짜를 사용 하 여 속성 및 **끝** 다음날 hello 사용 하 여 값입니다. Hello 날짜 부분만 지정 하 고 날짜 시간 hello의 hello 시간 부분을 건너뛸 수 있습니다. 예를 들어 "2016-02-03", 즉 너무 "2016-02-03T00:00:00Z"
      
-    start 및 end 날짜/시간은 둘 다 [ISO 형식](http://en.wikipedia.org/wiki/ISO_8601)(영문)이어야 합니다. 예를 들어 2016-10-14T16:32:41Z입니다. **종료** 시간은 선택 사항이지만 이 자습서에서는 사용합니다. 
+    start 및 end 날짜/시간은 둘 다 [ISO 형식](http://en.wikipedia.org/wiki/ISO_8601)(영문)이어야 합니다. 예를 들어 2016-10-14T16:32:41Z입니다. hello **끝** 시간 선택 사항 이지만이 자습서에서 사용 했습니다. 
      
-    **종료** 속성 값을 지정하지 않는 경우 "**시작 + 48시간**"으로 계산됩니다. 파이프라인을 무기한 실행하려면 **종료** 속성 값으로 **9999-09-09**를 지정합니다.
+    Hello에 대 한 값을 지정 하지 않으면 **끝** 로 계산 됩니다 속성을 "**start + 48 시간**"입니다. toorun hello 파이프라인 무제한으로 지정 **9999-09-09** hello에 대 한 hello 값으로 **끝** 속성입니다.
      
-    앞의 예에서는 각 데이터 조각이 1시간마다 생성되므로 24개 데이터 조각이 있게 됩니다.
+    앞 예제는 hello에서 24 데이터 조각이 각 데이터 조각이 시간 단위로 생성 됩니다.
 
     파이프라인 정의의 JSON 속성에 대한 설명은 [파이프라인 만들기](data-factory-create-pipelines.md) 문서를 참조하세요. 복사 활동 정의의 JSON 속성에 대한 설명은 [데이터 이동 활동](data-factory-data-movement-activities.md)을 참조하세요. BlobSource에서 지원하는 JSON 속성에 대한 설명은 [Azure Blob 커넥터 문서](data-factory-azure-blob-connector.md)를 참조하세요. SqlSink에서 지원하는 JSON 속성에 대한 설명은 [Azure SQL Database 커넥터 문서](data-factory-azure-sql-connector.md)를 참조하세요.
-2. 다음 명령을 실행하여 Data Factory 테이블을 만듭니다.
+2. Hello 명령 toocreate hello 데이터 팩터리 테이블을 다음을 실행 합니다.
 
     ```PowerShell   
     New-AzureRmDataFactoryPipeline $df -File .\ADFTutorialPipeline.json
     ```
 
-    샘플 출력은 다음과 같습니다. 
+    다음은 hello 샘플 출력이입니다. 
 
     ```
     PipelineName      : ADFTutorialPipeline
@@ -447,12 +447,12 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
     ProvisioningState : Succeeded
     ```
 
-**축하합니다.** Azure Blob 저장소에서 Azure SQL 데이터베이스로 데이터를 복사하는 파이프라인이 있는 Azure 데이터 팩터리를 성공적으로 만들었습니다. 
+**축하합니다.** Azure blob 저장소 tooan Azure SQL 데이터베이스의 파이프라인 toocopy 데이터로 Azure 데이터 팩터리에 성공적으로 만들었습니다. 
 
-## <a name="monitor-the-pipeline"></a>파이프라인 모니터링
-이 단계에서는 Azure PowerShell을 사용하여 Azure Data Factory에서 어떤 일이 일어나는지 모니터링합니다.
+## <a name="monitor-hello-pipeline"></a>모니터 hello 파이프라인
+이 단계를 진행 되는 상황에서 Azure 데이터 팩터리에 Azure PowerShell toomonitor 사용 합니다.
 
-1. &lt;DataFactoryName&gt;을 데이터 팩터리 이름으로 바꿔 **Get-AzureRmDataFactory**를 실행하고, 출력을 $df 변수에 할당합니다.
+1. 대체 &lt;DataFactoryName&gt; data factory와 실행의 hello 이름의 **Get AzureRmDataFactory**, hello 출력 tooa 변수 $df 할당 합니다.
 
     ```PowerShell  
     $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name <DataFactoryName>
@@ -463,7 +463,7 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
     $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH0516
     ```
     
-    그런 다음 $df의 내용을 출력하도록(print) 실행하여 다음 출력을 봅니다. 
+    다음 출력 $df toosee hello의 인쇄 hello 내용을 실행 합니다. 
     
     ```
     PS C:\ADFGetStartedPSH> $df
@@ -476,15 +476,15 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
     Properties        : Microsoft.Azure.Management.DataFactories.Models.DataFactoryProperties
     ProvisioningState : Succeeded
     ```
-2. **Get-AzureRmDataFactorySlice**를 실행하여 파이프라인의 출력 데이터 집합인 **OutputDataset**의 모든 조각에 대한 세부 정보를 가져옵니다.  
+2. 실행 **Get AzureRmDataFactorySlice** hello의 모든 분할 영역에 대 한 세부 정보 tooget **OutputDataset**, hello 파이프라인의 hello 출력 데이터 집합은입니다.  
 
     ```PowerShell   
     Get-AzureRmDataFactorySlice $df -DatasetName OutputDataset -StartDateTime 2017-05-11T00:00:00Z
     ```
 
-   이 설정은 파이프라인 JSON의 **시작** 값과 일치해야 합니다. 현재 날짜의 오전 12시부터 다음 날짜의 오전 12시까지 각 시간마다 하나씩, 24개의 조각이 표시됩니다.
+   이 설정은 hello 일치 해야 **시작** hello 파이프라인 JSON의 값입니다. 24 조각 표시 되어야 다음 날의 hello AM hello 현재 날짜 too12의 오전 12 시에서 각 시간에 대 한 합니다.
 
-   다음은 출력의 세 가지 샘플 조각입니다. 
+   다음은 hello 출력에서 3 개의 샘플 슬라이스입니다. 
 
     ``` 
     ResourceGroupName : ADFTutorialResourceGroup
@@ -520,13 +520,13 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
     LatencyStatus     :
     LongRetryCount    : 0
     ```
-3. **Get-AzureRmDataFactoryRun**을 실행하여 **특정** 조각에 대한 작업 실행의 세부 정보를 가져옵니다. 이전 명령의 출력에서 날짜-시간 값을 복사하여 StartDateTime 매개 변수의 값을 지정합니다. 
+3. 실행 **Get AzureRmDataFactoryRun** tooget hello 활동 세부 정보에 대해 실행 되는 **특정** 조각입니다. Hello 이전 명령 toospecify hello hello StartDateTime 매개 변수 값의 hello 출력에서 hello 날짜 및 시간 값을 복사 합니다. 
 
     ```PowerShell  
     Get-AzureRmDataFactoryRun $df -DatasetName OutputDataset -StartDateTime "5/11/2017 09:00:00 PM"
     ```
 
-   샘플 출력은 다음과 같습니다. 
+   다음은 hello 샘플 출력이입니다. 
 
     ```
     Id                  : c0ddbd75-d0c7-4816-a775-704bbd7c7eab_636301332000000000_636301368000000000_OutputDataset
@@ -551,20 +551,20 @@ Azure 저장소 연결된 서비스는 런타임에 Data Factory 서비스에서
 Data Factory cmdlet에 대한 포괄적인 설명서는 [Data Factory cmdlet 참조](/powershell/module/azurerm.datafactories)를 참조하세요.
 
 ## <a name="summary"></a>요약
-이 자습서에서는 Azure Blob에서 Azure SQL 데이터베이스로 데이터를 복사하는 Azure Data Factory를 만들었습니다. PowerShell를 사용하여 데이터 팩터리, 연결된 서비스, 데이터 집합 및 파이프라인을 만들었습니다. 이 자습서에서 수행한 단계를 요약하면 다음과 같습니다.  
+이 자습서에서는 Azure blob tooan Azure SQL 데이터베이스에서 Azure 데이터 팩터리 toocopy 데이터를 만들었습니다. PowerShell toocreate hello 데이터 팩터리, 연결 된 서비스, 데이터 집합 및 파이프라인을 사용 했습니다. 이 자습서에서 수행 하는 hello 상위 수준 단계는 다음과 같습니다.  
 
-1. Azure **Data Factory**를 만들었습니다.
+1. Azure **데이터 팩터리**를 만들었습니다.
 2. **연결된 서비스**를 만들었습니다.
 
-   a. 입력 데이터를 보유하는 Azure Storage 계정을 연결하는 **Azure Storage**에 연결된 서비스입니다.     
-   b. 출력 데이터를 보유하는 SQL Database를 연결하는 **Azure SQL** 연결된 서비스입니다.
+   a. **Azure 저장소** 서비스 toolink 입력된 데이터를 보유 하는 Azure 저장소 계정을 연결 합니다.     
+   b. **Azure SQL** 서비스 toolink hello 출력 데이터를 보유 하는 SQL 데이터베이스를 연결 합니다.
 3. 파이프라인의 입력 데이터와 출력 데이터를 설명하는 **데이터 집합** 을 만들었습니다.
-4. 원본으로 **BlobSource**를 사용하고 싱크로 **SqlSink**를 사용하는 **복사 작업**으로 **파이프라인**을 만들었습니다.
+4. 만든는 **파이프라인** 와 **복사 작업**와 **BlobSource** hello 소스로 및 **SqlSink** hello 싱크로 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 Azure Blob 저장소를 원본 데이터 저장소로 사용하고 Azure SQL 데이터베이스를 복사 작업의 대상 데이터 저장소로 사용했습니다. 다음 표에서는 복사 활동에서 원본 및 싱크로 지원되는 데이터 저장소의 목록을 제공합니다. 
+이 자습서에서는 Azure Blob 저장소를 원본 데이터 저장소로 사용하고 Azure SQL 데이터베이스를 복사 작업의 대상 데이터 저장소로 사용했습니다. hello 다음 표에서 hello 복사 작업에서 원본과 대상으로 지 원하는 데이터 저장소는 목록: 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-데이터 저장소간에 데이터를 복사하는 방법에 대해 알아보려면 테이블에서 데이터 저장소에 대한 링크를 클릭하세요. 
+toolearn toocopy 데이터는 데이터를 저장 하는 방법에 대 한 hello 테이블에서 데이터 저장소에 hello에 대 한 hello 링크를 클릭 합니다. 
 

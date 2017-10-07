@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory B2B 공동 작업 초대 상환 | Microsoft Docs"
+title: "Active Directory B2B 공동 작업 초대 상환 aaaAzure | Microsoft Docs"
 description: "Azure Active Directory B2B 공동 작업 초대 상환 환경"
 services: active-directory
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/24/2017
 ms.author: sasubram
-ms.openlocfilehash: aea802af038786c58d9640333458ad88fe8f90bd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e1162c9b4d159d9a22d1b15db5be0e55d3fb884c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2b-collaboration-invitation-redemption"></a>Azure Active Directory B2B 공동 작업 초대 상환
 
 ## <a name="azure-ad-and-microsoft-account-users"></a>Azure AD 및 Microsoft 계정 사용자
-기존 Azure AD 계정 또는 Microsoft 계정이 있는 사용자의 경우 상환 환경은 로그인하는 것만큼 쉽습니다.
+기존 Azure AD 계정 또는 Microsoft 계정을 가진 사용자에 대 한 hello 상환은 것은 쉽습니다로 로그인 합니다.
 
 ## <a name="social-id-user-first-time-redemption"></a>소셜 ID 사용자의 최초 상환
-Azure AD B2B 공동 작업을 사용하면 어떤 전자 메일 주소로도 쉽게 상환을 수행할 수 있습니다. Microsoft 이외 전자 메일 주소를 B2B 공동 작업에 사용하는 상환 환경을 살펴보겠습니다. 상환 시에 계정을 만들어야 할 수 있으므로 이러한 상환 흐름이 좀 더 적합합니다. 다음 비디오에서 확인해보세요.
+Azure AD B2B 공동 작업을 사용 하면 상환에 사용 되는 모든 전자 메일 주소 toobe 쉬워집니다. B2B 공동 작업에 대 한 타사 전자 메일 주소를 사용 하는 경우 hello 상환 경험을 살펴봅니다. 있는 경우에 toocreate 계정을 상환 hello 시이 상환 흐름은 조금 더 복잡 합니다. 체크 아웃 인 비디오를 따라 hello:
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/b2b-collaboration-redemption/Player]
 > 
@@ -39,7 +39,7 @@ Azure AD B2B 공동 작업에 대한 다른 문서 찾아보기:
 * [Azure AD B2B 공동 작업이란?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Azure Active Directory 관리자가 B2B 공동 작업 사용자를 추가하는 방법](active-directory-b2b-admin-add-users.md)
 * [정보 근로자가 B2B 공동 작업 사용자를 추가하는 방법](active-directory-b2b-iw-add-users.md)
-* [B2B 공동 작업 초대 전자 메일의 요소](active-directory-b2b-invitation-email.md)
+* [hello B2B 공동 작업 초대 메일의 hello 요소](active-directory-b2b-invitation-email.md)
 * [Azure AD B2B 공동 작업 라이선스](active-directory-b2b-licensing.md)
 * [Azure Active Directory B2B 공동 작업 문제 해결](active-directory-b2b-troubleshooting.md)
 * [Azure Active Directory B2B 공동 작업 자주 묻는 질문(FAQ)](active-directory-b2b-faq.md)

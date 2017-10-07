@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory B2C: 사용자 고유의 특성을 사용자 지정 정책에 추가하고 프로필 편집에 사용 | Microsoft Docs"
-description: "확장 속성, 사용자 지정 특성을 사용하고 사용자 인터페이스에 포함하는 방법에 대한 연습"
+title: "Azure Active Directory B2C: 사용자의 고유한 특성 toocustom 정책을 추가 하 고 프로필 편집에 사용 하 | Microsoft Docs"
+description: "확장 속성을 사용자 지정 특성을 사용 하 고 hello 사용자 인터페이스에 포함 하는 연습"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,63 +14,63 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja
-ms.openlocfilehash: 67c9f6eca18e2dd77e00b8bc8c7bcc546ea3936e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8cc9c6a38d7652797ba54a3e02078ac2bf4a693b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-creating-and-using-custom-attributes-in-a-custom-profile-edit-policy"></a>Azure Active Directory B2C: 사용자 지정 프로필 편집 정책에서 사용자 지정 특성을 만들고 사용
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-이 문서에서는 Azure AD B2C 디렉터리에 사용자 지정 특성을 만들고 이 새로운 특성을 프로필 편집 사용자 경험에서 사용자 지정 클레임으로 사용합니다.
+이 문서에서는 Azure AD B2C 디렉터리에 사용자 지정 특성을 만들 및 hello 프로필 편집 사용자 작업의 사용자 지정 클레임으로이 새 특성을 사용 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-[사용자 지정 정책을 사용하여 시작](active-directory-b2c-get-started-custom.md) 문서의 단계를 완료합니다.
+Hello 문서에서 단계를 완료 하는 hello [사용자 지정 정책을 사용 하 여 시작](active-directory-b2c-get-started-custom.md)합니다.
 
-## <a name="use-custom-attributes-to-collect-information-about-your-customers-in-azure-active-directory-b2c-using-custom-policies"></a>사용자 지정 특성을 사용하여 사용자 지정 정책을 사용하는 Azure Active Directory B2C에서 고객에 대한 정보를 수집합니다.
-Azure Active Directory(Azure AD) B2C 디렉터리에는 지정된 이름, 성, 도시, 우편 번호, userPrincipalName의 특성 집합이 함께 제공됩니다.  주로 고유한 특성을 만들어야 합니다.  예:
-* 고객 대면 응용 프로그램은 "LoyaltyNumber"와 같은 특성을 유지해야 합니다.
+## <a name="use-custom-attributes-toocollect-information-about-your-customers-in-azure-active-directory-b2c-using-custom-policies"></a>사용자 지정 정책을 사용 하 여 Azure Active Directory B2C에 고객에 대 한 사용자 지정 특성 toocollect 정보를 사용 하 여
+Azure Active Directory(Azure AD) B2C 디렉터리에는 지정된 이름, 성, 도시, 우편 번호, userPrincipalName의 특성 집합이 함께 제공됩니다.  Toocreate 사용자 고유의 특성 주로 해야 합니다.  예:
+* 고객 지향 응용 프로그램이 있어야 toopersist "LoyaltyNumber."와 같은 특성
 * ID 공급자는 "uniqueUserGUID"처럼 저장해야 하는 고유한 사용자 ID를 포함합니다.
-* 사용자 지정 사용자 경험에서는 "migrationStatus"와 같은 사용자 상태를 유지해야 합니다.
+* 사용자 지정 사용자 여행 필요 "migrationStatus."와 같은 사용자의 toopersist hello 상태
 
-Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 확장할 수 있습니다. 또한 [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md)를 사용하여 이러한 특성을 읽고 쓸 수 있습니다.
+Azure AD B2C hello 각 사용자 계정에 저장 하는 특성 집합을 확장할 수 있습니다. 또한 읽고 수 hello를 사용 하 여 이러한 특성을 쓸 [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md)합니다.
 
-확장 속성은 디렉터리에서 사용자 개체의 스키마를 확장합니다.  조건 확장 속성, 사용자 지정 특성 및 사용자 지정 클레임은 이 문서의 컨텍스트에서 동일한 항목을 참조하고 이름은 컨텍스트(응용 프로그램, 개체, 정책)에 따라 달라집니다.
+확장 속성 hello 디렉터리에 hello 사용자 개체의 hello 스키마를 확장합니다.  hello 용어 확장 속성, 사용자 지정 특성 및 사용자 지정 클레임 toohello hello 컨텍스트 (응용 프로그램, 개체, 정책)에 따라 달라 집니다이 문서와 hello 이름의 hello 컨텍스트에서 동일한 작업을 참조 하십시오.
 
-확장 속성은 사용자에 대한 데이터를 포함할 수 있더라도 응용 프로그램 개체에만 등록할 수 있습니다. 이 속성은 응용 프로그램에 연결됩니다. 확장 속성을 등록하려면 응용 프로그램 개체에 쓰기 권한이 있어야 합니다. 단일 개체에 100개의 확장 속성(모든 형식 및 모든 응용 프로그램)을 작성할 수 있습니다. 확장 속성이 대상 디렉터리 유형에 추가되고 Azure AD B2C 디렉터리 테넌트에서 즉시 액세스할 수 있게 됩니다.
-응용 프로그램이 삭제되면 모든 사용자에 대해 포함된 모든 데이터와 함께 해당 확장 속성도 제거됩니다. 확장 속성이 응용 프로그램에 의해 삭제되면 대상 디렉터리 개체에서 제거되고 값이 삭제됩니다.
+확장 속성은 사용자에 대한 데이터를 포함할 수 있더라도 응용 프로그램 개체에만 등록할 수 있습니다. hello 속성은 연결 된 toohello 응용 프로그램입니다. hello 응용 프로그램 개체에는 쓰기 권한을 부여한 tooregister 확장 속성 이어야 합니다. (모든 형식 및 모든 응용 프로그램)에서 확장 속성을 100 tooany 단일 개체를 작성할 수 있습니다. 확장 속성 toohello 대상 디렉터리 유형에 추가 되 고 hello Azure AD B2C 디렉터리 테 넌 트에 즉시 액세스할 수 있게 됩니다.
+Hello 응용 프로그램을 삭제 하면 모든 사용자에 대해 여기에 포함 된 데이터와 함께 해당 확장 속성 제거 됩니다. Hello에 없어지기 hello 응용 프로그램에서 확장 속성 삭제 되 면 대상 디렉터리 개체 및 hello 삭제 하는 값입니다.
 
-확장 속성은 테넌트의 등록된 응용 프로그램 컨텍스트에서만 존재합니다. 응용 프로그램의 개체 ID는 ID를 사용하는 TechnicalProfile에 포함되어야 합니다.
+확장 속성 hello 테 넌 트에 등록된 된 응용 프로그램의 hello 컨텍스트 에서만에서 존재합니다. 해당 응용 프로그램의 개체 id hello TechnicalProfile 사용 하는 hello에 포함 되어야 합니다.
 
 >[!NOTE]
->Azure AD B2C 디렉터리는 일반적으로 `b2c-extensions-app`으로 명명된 Web App을 포함합니다.  이 응용 프로그램은 주로 Azure Portal을 통해 만든 사용자 지정 클레임에 대한 b2c 기본 제공 정책에 사용됩니다.  이 응용 프로그램을 사용하여 b2c 사용자 지정 정책의 확장을 등록하는 것은 고급 사용자에게만 권장됩니다.  이에 대한 지침은 이 문서의 다음 단계 섹션에 포함되어 있습니다.
+>hello Azure AD B2C 디렉터리 라는 웹 앱을 일반적으로 포함 `b2c-extensions-app`합니다.  이 응용 프로그램은 주로 hello Azure 포털을 통해 만든 hello 사용자 지정 클레임에 대 한 hello b2c에 대 한 기본 제공 정책에서 사용 됩니다.  고급 사용자에 게이 응용 프로그램 tooregister 확장을 사용 하 여 b2c 사용자 지정 정책에 대 한 것이 좋습니다.  이 대 한 지침은이 문서의 다음 단계 섹션 hello에 포함 됩니다.
 
 
-## <a name="creating-a-new-application-to-store-the-extension-properties"></a>확장 속성을 저장할 새 응용 프로그램 만들기
+## <a name="creating-a-new-application-toostore-hello-extension-properties"></a>새 응용 프로그램 toostore hello 확장 속성 만들기
 
-1. 브라우저 세션을 열고 [Azure Portal](https://portal.azure.com)로 이동하여 구성할 B2C 디렉터리의 관리 자격 증명으로 로그인합니다.
-1. 왼쪽 탐색 메뉴에서 **Azure Active Directory**를 클릭합니다. 추가 서비스>를 선택하여 서비스를 찾아야 합니다.
+1. 검색 세션을 열고 toohello 이동 [Azure 포털](https://portal.azure.com) hello tooconfigure B2C 디렉터리의 관리자 자격 증명으로 로그인 합니다.
+1. 클릭 **Azure Active Directory** hello 왼쪽된 탐색 메뉴에 있습니다. 선택 하 여 더 명의 toofind 할 수 있습니다 > 합니다.
 1. **앱 등록**을 선택하고 **새 응용 프로그램 등록**을 클릭합니다.
-1. 다음 권장되는 항목을 제공합니다.
-  * 웹 응용 프로그램의 이름 지정: **WebApp-GraphAPI-DirectoryExtensions**
+1. Hello 다음 권장 항목을 제공 합니다.
+  * Hello 웹 응용 프로그램에 대 한 이름을 지정: **WebApp-GraphAPI-DirectoryExtensions**
   * 응용 프로그램 유형: 웹앱/API
   * 로그온 URL:https://{tenantName}.onmicrosoft.com/WebApp-GraphAPI-DirectoryExtensions
-1. **만들기를 선택합니다. 성공적인 완료가 **알림**에 표시됩니다.
-1. 새로 만든 **WebApp-GraphAPI-DirectoryExtensions** 웹 응용 프로그램을 선택합니다.
+1. **만들기를 선택합니다. Hello에 성공적으로 완료 표시 **알림**
+1. 새로 만든 hello 웹 응용 프로그램 선택: **WebApp-GraphAPI-DirectoryExtensions**
 1. **필요한 권한** 설정을 선택합니다.
 1. **Windows Active Directory** API를 선택합니다.
 1. **디렉터리 데이터 읽기 및 쓰기** 응용 프로그램 권한을 확인 표시하고 **저장**을 선택합니다.
 1. **사용 권한 부여**를 선택하고 **예**를 확인합니다.
-1. 클립보드에 복사하고 WebApp-GraphAPI-DirectoryExtensions>Settings>Properties>에서 다음 ID를 저장합니다.
+1. Tooyour 클립보드를 복사 하 고 hello 식별자 WebApp-GraphAPI-DirectoryExtensions에서 다음 저장 > 설정 > 속성 >
 *  **응용 프로그램 ID** - 예: `103ee0e6-f92d-4183-b576-8c3739027780`
 * **개체 ID** - 예: `80d8296a-da0a-49ee-b6ab-fd232aa45201`
 
 
 
-## <a name="modifying-your-custom-policy-to-add-the-applicationobjectid"></a>사용자 지정 정책을 수정하여 ApplicationObjectId 추가
+## <a name="modifying-your-custom-policy-tooadd-hello-applicationobjectid"></a>사용자 지정 정책 tooadd hello ApplicationObjectId 수정
 
 ```xml
     <ClaimsProviders>
@@ -96,16 +96,16 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
 ```
 
 >[!NOTE]
->해당 요소가 해당 요소를 사용하여 모든 Azure Active Directory TechnicalProfiles에 포함되고 재사용되기 때문에 <TechnicalProfile Id="AAD-Common">은 "공용"입니다.`<IncludeTechnicalProfile ReferenceId="AAD-Common" />`
+>hello <TechnicalProfile Id="AAD-Common"> 해당 요소에 포함 되어 hello 요소를 사용 하 여 모든 hello Azure Active Directory TechnicalProfiles에서에서 다시 사용 하기 때문에 참조 된 tooas "공용" 됩니다.`<IncludeTechnicalProfile ReferenceId="AAD-Common" />`
 
 >[!NOTE]
->TechnicalProfile이 처음 새로 작성된 확장 속성에 작성되는 경우 일회성 오류가 발생할 수 있습니다.  확장 속성은 처음 사용할 때 만들어집니다.  
+>Hello TechnicalProfile hello 첫 번째 시간 toohello 새로 만든 확장 속성을 기록 하는 경우 일회성 오류가 발생할 수 있습니다.  hello 확장 속성은 만들어집니다 hello 처음으로 사용 됩니다.  
 
-## <a name="using-the-new-extension-property--custom-attribute-in-a-user-journey"></a>사용자 경험에서 새 확장 속성/사용자 지정 특성 사용
+## <a name="using-hello-new-extension-property--custom-attribute-in-a-user-journey"></a>Hello 새 확장 속성을 사용 하 여 사용자 지정 특성을 사용자 여행 /
 
 
-1. 정책 편집 사용자 경험을 설명하는 신뢰 당사자(RP) 파일을 엽니다.  시작하는 경우 Azure Portal의 Azure B2C 사용자 지정 정책 섹션에서 RP-PolicyEdit 파일의 이미 구성된 버전을 직접 다운로드하는 것이 좋습니다.  또는 저장소 폴더에서 XML 파일을 엽니다.
-2. 사용자 지정 클레임 `loyaltyId`를 추가합니다.  `<RelyingParty>` 요소에 사용자 지정 클레임을 포함하면 UserJourney TechnicalProfiles에 매개 변수로 전달되고 응용 프로그램의 토큰에 포함됩니다.
+1. 정책에 설명 하는 신뢰 Party(RP) 파일 열기 hello 사용자 작업을 편집 합니다.  시작 하는 경우 프로그램 이미 구성 된 버전의 hello RP PolicyEdit hello hello Azure 포털에서에서 Azure B2C 사용자 지정 정책 섹션에서 직접 파일 권장 toodownload 수 있습니다.  또는 저장소 폴더에서 XML 파일을 엽니다.
+2. 사용자 지정 클레임 `loyaltyId`를 추가합니다.  Hello 사용자 지정을 포함 하 여 hello에 클레임 `<RelyingParty>` 요소, 매개 변수 toohello UserJourney TechnicalProfiles 변수로 전달 되 고 hello 응용 프로그램에 대 한 hello 토큰에 포함 합니다.
 ```xml
 <RelyingParty>
    <DefaultUserJourney ReferenceId="ProfileEdit" />
@@ -123,7 +123,7 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
    </TechnicalProfile>
  </RelyingParty>
  ```
-3. 표시된 것처럼 `<ClaimsSchema>` 요소 내부 확장 정책 파일 `TrustFrameworkExtensions.xml`에 클레임 정의를 추가합니다.
+3. 클레임 정의 toohello 확장명 정책 파일을 추가 `TrustFrameworkExtensions.xml` hello 내 `<ClaimsSchema>` 요소와 같이 합니다.
 ```xml
 <ClaimsSchema>
         <ClaimType Id="extension_loyaltyId">
@@ -134,10 +134,10 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
         </ClaimType>
 </ClaimsSchema>
 ```
-4. 동일한 클레임 정의를 기본 정책 파일 `TrustFrameworkBase.xml`에 추가합니다.  
->기본 및 확장 파일 모두에 `ClaimType` 정의를 추가하는 것은 일반적으로 필요하지 않지만, 다음 단계에서 기본 파일의 TechnicalProfiles에 extension_loyaltyId를 추가하므로 정책 유효성 검사기에서 해당 정의가 없는 기본 파일의 업로드를 거부합니다.
->TrustFrameworkBase.xml 파일에서 "ProfileEdit"라는 사용자 경험의 실행을 추적하는 데 유용할 수 있습니다.  편집기에서 같은 이름의 사용자 경험을 검색하고 오케스트레이션 5단계에서 TechnicalProfileReferenceID="SelfAsserted-ProfileUpdate"를 호출하는 것을 확인합니다.  이 TechnicalProfile을 검색 및 검사하여 흐름에 익숙해 지도록 합니다.
-5. TechnicalProfile "SelfAsserted-ProfileUpdate"에서 입력 및 출력 클레임으로 loyaltyId를 추가합니다.
+4. Hello 추가 정의 toohello 기본 정책 파일을 클레임 동일 `TrustFrameworkBase.xml`합니다.  
+>하지만 추가 `ClaimType` hello 자료 및 hello 확장 파일 정의 일반적으로 필요 hello 정책 유효성 검사기는 hello 업로드를 거부 hello 다음 단계 hello extension_loyaltyId tooTechnicalProfiles hello 기본 파일에서을 추가 하는 이후 hello 없이 기본 파일입니다.
+>Hello TrustFrameworkBase.xml 파일에서 "ProfileEdit" 라는 hello 사용자 작업의 유용한 tootrace hello 실행 수 있습니다.  Hello 동일 하면 편집기의 이름을 지정 하 고 5 단계 오케스트레이션 호출 hello TechnicalProfileReferenceID 있는지 관찰의 hello 사용자 작업에 대 한 검색 "SelfAsserted ProfileUpdate" = 합니다.  검색 하 고 hello 흐름에 따라 직접이 TechnicalProfile toofamiliarize를 검사 합니다.
+5. Hello TechnicalProfile "SelfAsserted ProfileUpdate"의 입력 및 출력 클레임으로 loyaltyId 추가
 ```xml
 <TechnicalProfile Id="SelfAsserted-ProfileUpdate">
           <DisplayName>User ID signup</DisplayName>
@@ -151,8 +151,8 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
             <InputClaim ClaimTypeReferenceId="alternativeSecurityId" />
             <InputClaim ClaimTypeReferenceId="userPrincipalName" />
 
-            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
-                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <!-- Optional claims. These claims are collected from hello user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written toodirectory after being updateed by hello user, i.e. AAD-UserWriteProfileUsingObjectId. -->
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
             <InputClaim ClaimTypeReferenceId="extension_loyaltyId"/>
@@ -161,8 +161,8 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
             <!-- Required claims -->
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
 
-            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
-                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <!-- Optional claims. These claims are collected from hello user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written toodirectory after being updateed by hello user, i.e. AAD-UserWriteProfileUsingObjectId. -->
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
             <OutputClaim ClaimTypeReferenceId="extension_loyaltyId"/>
@@ -172,7 +172,7 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
           </ValidationTechnicalProfiles>
         </TechnicalProfile>
 ```
-6. TechnicalProfile "AAD-UserWriteProfileUsingObjectId"에서 클레임을 추가하여 클레임 값을 디렉터리의 현재 사용자에 대한 확장 속성에서 유지합니다.
+6. Hello hello 디렉터리의 현재 사용자에 대 한 hello 확장 속성에 hello 클레임의 TechnicalProfile "AAD UserWriteProfileUsingObjectId" toopersist hello 값에 클레임을 추가 합니다.
 ```xml
 <TechnicalProfile Id="AAD-UserWriteProfileUsingObjectId">
           <Metadata>
@@ -197,10 +197,10 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 ```
-7. TechnicalProfile "AAD-UserReadUsingObjectId"에서 클레임을 추가하여 사용자가 로그인할 때마다 확장 특성 값을 읽어 옵니다. 지금까지 로컬 계정의 흐름에서만 TechnicalProfiles가 변경되었습니다.  소셜/페더레이션된 계정의 흐름에 새 특성이 필요한 경우 다른 TechnicalProfiles 집합을 변경해야 합니다. 다음 단계를 참조하세요.
+7. 사용자가 로그인 할 때마다 TechnicalProfile "AAD UserReadUsingObjectId" tooread hello hello 확장 특성 값에 클레임을 추가 합니다. 지금까지 hello TechnicalProfiles 로컬 계정의 hello 흐름에서 변경 되었습니다.  사회/페더레이션 계정의 hello 흐름에서 hello 새 특성을 사용할 경우 다른 집합이 TechnicalProfiles toobe 변경 해야 합니다. 다음 단계를 참조하세요.
 
 ```xml
-<!-- The following technical profile is used to read data after user authenticates. -->
+<!-- hello following technical profile is used tooread data after user authenticates. -->
      <TechnicalProfile Id="AAD-UserReadUsingObjectId">
        <Metadata>
          <Item Key="Operation">Read</Item>
@@ -225,14 +225,14 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
 
 
 >[!IMPORTANT]
->IncludeTechnicalProfile 요소는 AAD-Common의 모든 요소를 이 TechnicalProfile에 추가합니다.
+>hello IncludeTechnicalProfile 요소 AAD 공통 toothis TechnicalProfile의 모든 hello 요소를 추가합니다.
 
-## <a name="test-the-custom-policy-using-run-now"></a>"지금 실행"을 사용하여 사용자 지정 정책 테스트
-1. **Azure AD B2C 블레이드**를 열고 **ID 경험 프레임워크 > 사용자 지정 정책**로 이동합니다.
-1. 업로드한 사용자 지정 정책을 선택하고 **지금 실행** 단추를 클릭합니다.
-1. 전자 메일 주소를 사용하여 등록할 수 있습니다.
+## <a name="test-hello-custom-policy-using-run-now"></a>"Run Now"를 사용 하 여 hello 사용자 지정 정책 테스트
+1. 열기 hello **Azure AD B2C 블레이드** 너무 이동**Id 경험 프레임 워크 > 사용자 지정 정책의**합니다.
+1. 업로드 하는 hello 사용자 지정 정책을 선택 하 고 hello 클릭 **지금 실행** 단추입니다.
+1. 전자 메일 주소를 사용 하 여 수 toosign 있어야 합니다.
 
-응용 프로그램으로 다시 전송된 ID 토큰에는 extension_loyaltyId가 앞에 오는 사용자 지정 클레임으로 새로운 확장 속성이 포함됩니다. 예제를 참조하세요.
+hello id 토큰 tooyour 응용 프로그램을 사용자 지정 클레임 extension_loyaltyId 앞으로 hello 새 확장 속성에 다시 보냈습니다. 예제를 참조하세요.
 
 ```
 {
@@ -253,18 +253,18 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
 
 ## <a name="next-steps"></a>다음 단계
 
-나열된 TechnicalProfiles를 변경하여 새 클레임을 소셜 계정 로그인에 대한 흐름에 추가합니다. 이러한 두 TechnicalProfiles는 사용자 개체의 로케이터로 alternativeSecurityId를 사용하여 사용자 데이터를 쓰고 읽기 위해 소셜/페더레이션된 계정 로그인에 사용됩니다.
+TechnicalProfiles 나열 된 hello를 변경 하 여 소셜 계정 로그인에 대 한 hello 새 클레임 toohello 흐름을 추가 합니다. 이러한 두 TechnicalProfiles 사회/페더레이션 계정 로그인 toowrite 사용 하 고 hello 사용자 개체의 로케이터 hello hello alternativeSecurityId 사용 하 여 hello 사용자 데이터를 읽이 됩니다.
 ```
   <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 
   <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
 ```
 
-기본 및 사용자 지정 정책 간에 동일한 확장 특성을 사용합니다.
-포털 환경을 통해 확장 특성(즉, 사용자 지정 특성)을 추가하는 경우 해당 특성은 모든 b2c 테넌트에 존재하는 **b2c-extensions-app을 사용하여 등록됩니다.  사용자 지정 정책에서 이러한 확장 특성을 사용하려면:
-1. portal.azure.com의 b2c 테넌트 내에서 **Azure Active Directory**로 이동하고 **앱 등록** 선택
+기본 및 사용자 지정 정책 간에 동일한 확장 특성 hello를 사용 하 여 합니다.
+Hello를 사용 하 여 이러한 특성은 등록 hello 포털 경험을 통해 확장 특성 (즉, 사용자 지정 특성의 경우)를 추가 하면 * * b2c-확장-app 모든 b2c 테 넌 트에 존재 합니다.  toouse 사용자 지정 정책에서 이러한 확장 특성:
+1. B2c 테 넌 트에 portal.azure.com 내에서 이동 너무**Azure Active Directory** 선택 **앱 등록**
 2. **b2c-확장-앱**을 찾고 선택
-3. 'Essentials' 아래에서 **응용 프로그램 ID** 및 **개체 ID** 기록
+3. 'Essentials' 레코드 hello에서 **응용 프로그램 ID** 및 hello **개체 ID**
 4. 다음과 같이 AAD 공용 기술 프로필 메타데이터에 포함:
 
 ```xml
@@ -276,25 +276,25 @@ Azure AD B2C를 사용하면 각 사용자 계정에 저장된 특성 집합을 
               <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
               <!-- Provide objectId and appId before using extension properties. -->
               <Metadata>
-                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is the "Object ID" from the "b2c-extensions-app"-->
-                <Item Key="ClientId">insert appId here</Item> <!--This is the "Application ID" from the "b2c-extensions-app"-->
+                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is hello "Object ID" from hello "b2c-extensions-app"-->
+                <Item Key="ClientId">insert appId here</Item> <!--This is hello "Application ID" from hello "b2c-extensions-app"-->
               </Metadata>
 ```
 
-포털 환경과 일관성을 유지하기 위해 사용자 지정 정책에서 사용하기 *전에* 포털 UI를 사용하여 이러한 특성을 만듭니다.  포털에서 "ActivationStatus" 특성을 만들 때 다음과 같이 참조해야 합니다.
+hello 포털 환경과 tookeep 일관성 hello 포털 UI를 사용 하 여 이러한 특성을 만들 *전에* 지정 정책에서 사용 합니다.  를 만들 때 특성 "ActivationStatus" hello 포털에서 다음과 같이 tooit을 참조 해야 합니다.
 
 ```
-extension_ActivationStatus in the custom policy
-extension_<app-guid>_ActivationStatus via the Graph API.
+extension_ActivationStatus in hello custom policy
+extension_<app-guid>_ActivationStatus via hello Graph API.
 ```
 
 
 ## <a name="reference"></a>참조
 
-* **TP(기술 프로필)**은 끝점의 이름, 해당 메타데이터, 해당 프로토콜을 정의하고 Identity Experience Framework가 수행해야 하는 클레임의 교환에 대해 자세히 설명하는 *함수*로 간주할 수 있는 요소 유형입니다.  오케스트레이션 단계 또는 다른 TechnicalProfile에서 이 *함수*를 호출하면 InputClaims 및 OutputClaims가 호출자의 매개 변수로 제공됩니다.
+* A **기술 프로필 (TP)** 요소 형식인로 간주 될 수 있는 한 *함수* 끝점의 이름, 해당 메타 데이터, 해당 프로토콜을 정의 하 고 세부 정보 hello Identity hello 클레임 교환을 경험 프레임 워크를 수행 해야 합니다.  때이 *함수* 다른 TechnicalProfile, InputClaims 및 OutputClaims은 hello 호출자가 매개 변수로 제공 됩니다 hello 또는 오케스트레이션 단계에서 호출 됩니다.
 
 
-* 확장 속성에 대한 완전한 처리는 [디렉터리 스키마 확장 | Graph API 개념](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions) 문서를 참조하세요.
+* 확장 속성에 대해 전체 처리를 위해 hello 문서 참조 [디렉터리 스키마 확장 | GRAPH API 개념](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)
 
 >[!NOTE]
->Graph API의 확장 특성은 `extension_ApplicationObjectID_attributename` 규칙을 사용하여 명명됩니다. 사용자 지정 정책은 확장 특성을 extension_attributename으로 참조하므로 XML에서 ApplicationObjectId가 생략됩니다.
+>Hello 규칙을 사용 하 여 Graph API에 대 한 확장 특성 이름은 `extension_ApplicationObjectID_attributename`합니다. 따라서 XML hello에 ApplicationObjectId hello 생략 extension_attributename로 tooextensions 특성을 참조 하는 사용자 지정 정책

@@ -1,6 +1,6 @@
 ---
-title: "ID 동기화 및 중복 특성 복원력 | Microsoft Docs"
-description: "Azure AD Connect를 사용하여 디렉터리 동기화 동안 UPN 또는 ProxyAddress 충돌을 사용하여 개체를 처리하는 방법의 새 동작입니다."
+title: "aaaIdentity 동기화 및 중복 특성 복원 력 | Microsoft Docs"
+description: "어떻게 toohandle 개체와 함께 UPN 또는 / / ProxyAddress 충돌 하는 동안 Azure AD Connect를 사용 하 여 디렉터리 동기화의 새로운 동작입니다."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
-ms.openlocfilehash: 7a8700e70f64851a0c5e5e8c6b31ec7a6884a96c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e27dcbf9d71f83fa9566cae2fd99350297d1cd9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="identity-synchronization-and-duplicate-attribute-resiliency"></a>ID 동기화 및 중복 특성 복원력
 중복 특성 복원력은 Microsoft의 동기화 도구 중 하나를 실행하는 경우 **UserPrincipalName** 및 **ProxyAddress**의 충돌로 발생하는 마찰을 제거하는 Azure Active Directory의 기능입니다.
 
-이 두 특성은 일반적으로 지정된 Azure Active Directory 테넌트의 모든 **사용자**, **그룹** 또는 **연락처** 개체에 고유해야 합니다.
+이 두 특성은 모두에서 일반적으로 필요한 toobe 고유 **사용자**, **그룹**, 또는 **연락처** 지정된 Azure Active Directory 테 넌 트의 개체입니다.
 
 > [!NOTE]
 > 사용자만 UPN을 가질 수 있습니다.
 > 
 > 
 
-이 기능이 활성화하는 새 동작은 동기화 파이프라인의 클라우드 부분에 있으므로 클라이언트와 관계 없으며 Azure AD Connect, DirSync 및 MIM + 커넥터를 포함하는 모든 Microsoft 동기화 제품과 관련되어 있습니다. 일반 용어인 "동기화 클라이언트"는 이 문서에서 이러한 제품 중 하나를 나타내는 데 사용됩니다.
+이 기능을 사용 하는 새로운 동작 hello hello 동기화 파이프라인의 hello 클라우드 부분에 있으면 클라이언트 알 수 없는 및 Azure AD Connect, 디렉터리 동기화 및 MIM + 커넥터를 포함 하 여 Microsoft 동기화 제품에 대 한 관련 되므로 합니다. hello 일반 용어 "동기화 클라이언트"는이 문서 toorepresent 이러한 제품 중 하나에 사용 됩니다.
 
 ## <a name="current-behavior"></a>현재 동작
-이 고유성 제약 조건을 위반하는 UPN 또는 ProxyAddress 값으로 새 개체를 프로비전하려고 하는 경우 Azure Active Directory는 개체가 생성되는 것을 차단합니다. 마찬가지로 개체가 고유하지 않은 UPN 또는 ProxyAddress로 업데이트되면 업데이트가 실패합니다. 프로비전 시도 또는 업데이트는 각 내보내기 주기 시 동기화 클라이언트에서 다시 시도되고 충돌이 해결될 때까지 계속해서 실패합니다. 각 시도 시 오류 보고서가 발생되고 동기화 클라이언트에서 오류가 기록됩니다.
+가 시도 tooprovision이 고유성 제약 조건을 위반 하는 UPN 또는 / / ProxyAddress 값으로 새 개체를 Azure Active Directory는 해당 개체를 만들지를 차단 합니다. 마찬가지로, 고유 하지 않은 UPN 또는 / / ProxyAddress 개체 업데이트 되 면 hello 업데이트가 실패 합니다. 시도 업데이트를 프로 비전 하는 hello 각 내보내기 주기 시 hello 동기화 클라이언트에서 다시 시도 되 고 toofail hello 충돌이 해결 될 때까지 계속 됩니다. 각 시도 시 생성 되는 오류 보고서 전자 메일 및 hello 동기화 클라이언트에서 오류가 기록 됩니다.
 
 ## <a name="behavior-with-duplicate-attribute-resiliency"></a>중복 특성 복원력으로 동작
-중복 특성으로 개체 프로비전 또는 업데이트에 완전히 실패하는 대신 Azure Active Directory는 고유성 제약 조건을 위반하는 중복 특성을 “격리합니다”. 이 특성이 UserPrincipalName과 같은 프로비전에 필요한 경우 서비스는 자리 표시자 값을 할당합니다. 이러한 임시 값의 형식은  
+완전히 대신 tooprovision 실패 하거나 중복 된 특성으로 Azure Active Directory "를 선택 하면" hello 고유성 제약 조건을 위반 하 게 hello 중복 된 특성 개체를 업데이트 합니다. 이 특성에 필요한 경우 프로 비전, UserPrincipalName, 같은 hello 서비스 자리 표시자 값을 할당 합니다. 이러한 임시 값의 hello 형식은  
 “***<OriginalPrefix>+<4DigitNumber>@<InitialTenantDomain>.onmicrosoft.com***”.  
-**ProxyAddress**와 같은 특성이 필요하지 않은 경우 Azure Active Directory는 단순히 충돌 특성을 격리하고 개체 생성 또는 업데이트를 진행합니다.
+다음과 같은 hello 특성이 필요 하지 않은 경우는 **/ / ProxyAddress**, Azure Active Directory 단순히 hello 충돌 특성을 격리 하 고 hello 개체 만들기 또는 업데이트를 진행 합니다.
 
-특성을 격리 시 충돌에 대한 정보는 이전 동작에 사용된 동일한 오류 보고서 전자 메일에 전송됩니다. 그러나 격리가 발생할 때 이 정보는 오류 보고서에 한 번만 표시되며 이후 메일에 계속해서 기록되지 않습니다. 또한 이 개체에 대한 내보내기가 성공했으므로 동기화 클라이언트는 오류를 기록하지 않고 후속 동기화 주기 시 만들기 / 업데이트 작업을 시도하지 않습니다.
+Hello 특성을 격리 시 hello 충돌에 대 한 정보 hello 이전 동작에 사용 되는 동일한 오류 보고서를 전자 메일 hello에 전송 됩니다. 그러나이 정보에만 나타납니다 hello 오류 보고서에 한 번 발생 하는 hello 격리 하는 경우 것 중지 toobe 기록 나중에 전자 메일 됩니다. 또한이 개체에 대 한 hello 내보내기에 성공 하면 이후 hello 동기화 클라이언트 오류를 기록 하지 않습니다 하 고는 hello를 다시 시도 하지 만들기 / 업데이트 작업을 다음 동기화 주기 시.
 
-이 동작을 지원하기 위해 사용자, 그룹 및 연락처 개체 클래스:   
+이 문제는 새 특성 되었습니다 toosupport toohello 사용자, 그룹 및 연락처 개체 클래스를 추가 했습니다.  
 **DirSyncProvisioningError**
 
-정상적으로 추가해야 하는 고유성 제약 조건을 위반하는 충돌 특성을 저장하는 데 사용되는 다중값 특성입니다. 해결된 중복 특성 충돌을 찾기 위해 1시간마다 실행되고 격리에서 문제의 특성을 자동으로 제거하는 백그라운드 타이머 작업이 Azure Active Directory에서 활성화되었습니다.
+위반 하는 hello 고유성 제약 조건을 추가 해야 정상적으로 사용 되는 toostore hello 충돌 하는 특성이 있는 다중 값된 특성입니다. 백그라운드 타이머 작업에 대 한 중복 된 특성 충돌 해결 및 격리를 통해 문제의 hello 특성을 자동으로 제거 하는 모든 시간 toolook를 실행 하는 Azure Active Directory에 설정 되었습니다.
 
 ### <a name="enabling-duplicate-attribute-resiliency"></a>중복 특성 복원력 활성화
-중복 특성 복원력은 모든 Azure Active Directory 테넌트의 새로운 기본 동작입니다. 2016년 8월 22일 또는 그 이후에 동기화를 처음으로 사용하는 모든 테넌트에 기본적으로 설정됩니다. 이 날짜 이전에 동기화를 사용하도록 설정한 테넌트에는 이 기능이 일괄적으로 사용하도록 설정됩니다. 이 출시는 2016년 9월에 시작되며 기능이 사용되는 특정 날짜와 함께 각 테넌트의 기술 알림 담당자에게 전자 메일 알림이 전송됩니다.
+중복 특성 복원 력 모든 Azure Active Directory 테 넌 트 간에 hello 새로운 기본 동작을 됩니다. 2016 년 8 월 22 일 년 이후에 처음으로 hello에 대 한 동기화를 사용 하도록 설정 된 모든 테 넌 트에 대해 기본적으로에 됩니다. 동기화 이전 toothis 날짜를 사용 하도록 설정 된 테 넌 트 hello 기능 일괄 처리에서 사용 하도록 설정 해야 합니다. 2016 년 9 월에에서 시작 됩니다.이 출시 및 tooeach 테 넌 트의 기술 알림 접촉이 hello 특정 날짜 hello 기능을 설정할 때 전자 메일 알림이 전송 됩니다.
 
 > [!NOTE]
 > 중복 특성 복원력이 설정된 후에는 해제할 수 없습니다.
 
-이 기능이 테넌트에 사용되는지 확인하려면 Azure Active Directory PowerShell 모듈의 최신 버전을 다운로드하여 다음을 실행하면 됩니다.
+테 넌 트에 대 한 hello 기능이 활성화 된 경우 toocheck, 후 그렇게 hello hello Azure Active Directory PowerShell 모듈의 최신 버전을 다운로드 및 실행 하 여:
 
 `Get-MsolDirSyncFeatures -Feature DuplicateUPNResiliency`
 
 `Get-MsolDirSyncFeatures -Feature DuplicateProxyAddressResiliency`
 
 > [!NOTE]
-> 이제는 중복 특성 복원력 기능을 사용자 테넌트에서 켜기 전에 사전에 활성화하는 데 Set-MsolDirSyncFeature cmdlet을 사용할 수 없습니다. 기능을 테스트하려면 새로운 Azure Active Directory 테넌트를 만들어야 합니다.
+> 테 넌 트에 대해 켜져 전에 집합 MsolDirSyncFeature cmdlet tooproactively hello 중복 특성 탄력성 기능을 사용을 더 이상 사용할 수 없습니다. toobe 수 tootest hello 기능을 새 Azure Active Directory 테 넌 트 toocreate가 필요 합니다.
 
 ## <a name="identifying-objects-with-dirsyncprovisioningerrors"></a>DirSyncProvisioningErrors로 개체 식별
-중복 속성 충돌로 인해 이러한 오류가 있는 개체를 식별하는 방법은 현재 PowerShell Azure Active Directory 및 Office 365 관리자 포털로 두 가지 메서드가 있습니다. 향후 보고에 기반한 추가 포털로 확장할 계획이 있습니다.
+Tooduplicate 속성 충돌, PowerShell Azure Active Directory 및 Office 365 관리 포털 hello 인해 이러한 오류가 있는 tooidentify 개체는 현재 두 가지 방법입니다. 계획 tooextend tooadditional 포털 기반 보고 hello 앞에 있습니다.
 
 ### <a name="azure-active-directory-powershell"></a>Azure Active Directory PowerShell
-이 항목에서 PowerShell cmdlet의 경우 다음은 true입니다.
+이 항목의 PowerShell cmdlet hello에 대 한 hello 다음은 true입니다.
 
-* 다음 cmdlet은 모두 대/소문자 구분입니다.
-* **–ErrorCategory PropertyConflict**는 항상 포함되어야 합니다. 현재 다른 종류의 **ErrorCategory**는 없지만 나중에 확장될 수 있습니다.
+* Cmdlet을 다음 hello 모두 대/소문자 구분입니다.
+* hello **– ErrorCategory PropertyConflict** 항상 포함 되어야 합니다. 다른 종류의 현재는 **ErrorCategory**, 하지만 hello 향후에 확장할 수 있습니다.
 
 먼저 **Connect-MsolService**를 실행하고 테넌트 관리자에 대한 자격 증명을 입력하여 시작합니다.
 
-그런 다음 다양한 방법으로 오류를 보려면 다음 cmdlet 및 연산자를 사용합니다.
+그런 다음 다른 방법으로 다음 cmdlet과 연산자에 해당 하는 tooview의 오류 hello를 사용 합니다.
 
 1. [모두 표시](#see-all)
 2. [속성 형식으로](#by-property-type)
@@ -83,15 +83,15 @@ ms.lasthandoff: 08/03/2017
 6. [제한된 수량 또는 모두](#in-a-limited-quantity-or-all)
 
 #### <a name="see-all"></a>모두 표시
-연결되면 테넌트에서 오류를 프로비저닝하는 특성의 일반 목록을 보기 위해 다음을 실행합니다.
+연결 되 면 toosee 일반 프로 비전 오류 hello 테 넌 트에 특성 목록을 실행 합니다.
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict`
 
-다음과 같은 결과가 생성됩니다.  
+이 hello 다음과 같은 결과 생성합니다.  
  ![Get MsolDirSyncProvisioningError](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1.png "Get MsolDirSyncProvisioningError")  
 
 #### <a name="by-property-type"></a>속성 형식으로
-속성 형식으로 오류를 보려면 **UserPrincipalName** 또는 **ProxyAddresses** 인수를 가진 **-PropertyName** 플래그를 추가합니다.
+속성 형식에 의해 toosee 오류 추가 hello **-PropertyName** hello로 플래그 **UserPrincipalName** 또는 **ProxyAddresses** 인수:
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyName UserPrincipalName`
 
@@ -100,73 +100,73 @@ ms.lasthandoff: 08/03/2017
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyName ProxyAddresses`
 
 #### <a name="by-conflicting-value"></a>충돌 값으로
-특정 속성에 관련된 오류를 확인하려면 **-PropertyValue** 플래그를 추가합니다(이 플래그를 추가하는 경우 **-PropertyName**을 함께 사용해야 함).
+toosee 오류 tooa 특정 속성을 관련 된 추가 hello **-PropertyValue** 플래그 (**-PropertyName** 이 플래그를 추가 하는 경우 함께 사용 해야 합니다).
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyValue User@domain.com -PropertyName UserPrincipalName`
 
 #### <a name="using-a-string-search"></a>문자열 검색을 사용하여
-광범위한 문자열 검색을 수행하려면 **-SearchString** 플래그를 사용합니다. 항상 필수 항목인 **-ErrorCategory PropertyConflict**를 제외하고 위의 모든 플래그와 독립적으로 사용할 수 있습니다.
+hello를 사용 하는 광범위 한 문자열 검색 toodo **-SearchString** 플래그입니다. 이 사용할 수 독립적으로 모든 플래그의 hello 예외와 함께 위의 hello **-ErrorCategory PropertyConflict**는 항상 필요한 것은:
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -SearchString User`
 
 #### <a name="in-a-limited-quantity-or-all"></a>제한된 수량 또는 모두
-1. **MaxResults<Int>**는 특정 값으로 쿼리를 제한하는 데 사용할 수 있습니다.
-2. **All** 은 많은 오류가 있는 경우 검색되는 모든 결과를 확인하기 위해 사용할 수 있습니다.
+1. **MaxResults <Int>**  수 toolimit hello 쿼리 tooa 특정 수의 값을 사용 합니다.
+2. **모든** 사용된 tooensure 오류가 많이 있는 경우 모두 hello 모든 결과 검색 될 수 있습니다.
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -MaxResults 5`
 
 ## <a name="office-365-admin-portal"></a>Office 365 관리 포털
-Office 365 관리 센터에서 디렉터리 동기화 오류를 볼 수 있습니다. Office 365 포털의 보고서는 이러한 오류가 있는 **사용자** 개체만을 표시합니다. **그룹** 및 **연락처** 간의 충돌에 대한 정보는 표시하지 않습니다.
+Hello Office 365 관리 센터에서 디렉터리 동기화 오류를 볼 수 있습니다. hello Office 365 포털만 화면에서 보고서를 hello **사용자** 이러한 오류가 있는 개체입니다. **그룹** 및 **연락처** 간의 충돌에 대한 정보는 표시하지 않습니다.
 
 ![활성 사용자](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1234.png "활성 사용자")
 
-Office 365 관리 센터에서 디렉터리 동기화 오류를 보는 방법에 대한 지침은 [Office 365에서 디렉터리 동기화 오류 확인](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)을 참조하세요.
+Admin 님 안녕하세요 Office 365에서에서 디렉터리 동기화 오류 tooview 센터 방법에 지침은 [Office 365의 디렉터리 동기화 오류를 식별](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)합니다.
 
 ### <a name="identity-synchronization-error-report"></a>ID 동기화 오류 보고서
-중복 특성 충돌이 있는 개체가 이 새 동작으로 처리되는 경우 알림은 테넌트에 대한 기술 알림 문의로 전송되는 표준 ID 동기화 오류 보고서 전자 메일에 포함됩니다. 그러나 이 동작에서 중요한 변경 사항이 있습니다. 이전에 중복 특성 충돌에 대한 정보는 충돌이 해결될 때까지 모든 후속 오류 보고서에 포함됩니다. 이 새 동작으로 지정된 충돌에 대한 오류 알림이 충돌 특성이 격리되는 시간에 한 번만 나타납니다.
+충돌 하는 중복 된 특성을 가진 개체에 포함 된 알림을이 새로운 동작으로 처리 될 때 Identity 동기화 오류 보고서에 전자 메일로 보낼 hello 표준 toohello 기술 알림 연락처 hello 테 넌 트에 대 한 전송 됩니다. 그러나 이 동작에서 중요한 변경 사항이 있습니다. Hello 지난에 중복 된 특성 충돌에 대 한 정보 hello 충돌이 해결 될 때까지 모든 후속 오류 보고서에 포함 됩니다. 이 새로운 동작으로 지정 된 충돌에 대 한 hello 오류 알림 않습니다에 표시 한 번-hello 시간 hello 충돌 하는 특성 격리 됩니다.
 
-ProxyAddress 충돌에 대한 메일 알림의 예제는 다음과 같습니다.  
+모양의 어떤 hello 전자 메일 알림 / / ProxyAddress 충돌에 대 한 예는 다음과 같습니다.  
     ![활성 사용자](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/6.png "활성 사용자")  
 
 ## <a name="resolving-conflicts"></a>충돌 해결
-이러한 오류에 대한 문제 해결 전략 및 해결 방법은 중복 특성 오류가 이전에 처리된 방식과 다르지 않습니다. 유일한 차이점은 타이머 작업은 서비스쪽 테넌트를 통해 스윕하여 충돌이 해결되면 적절한 개체에 문제의 특성을 자동으로 추가한다는 점입니다.
+이러한 오류에 대 한 전략 및 해결 방법을 문제를 해결 하지 다를 수는 hello 방식 hello 지난 오류 중복 된 특성을 처리 합니다. hello 유일한 차이점은 hello 충돌을 해결 되 면 hello 테 넌 트 서비스 측 tooautomatically hello 통해 hello 타이머 작업 스윕의 질문 toohello 적절 한 개체에 hello 특성 추가 한다는 합니다.
 
-다음 문서에서는 다양한 문제 해결 및 해결 방법을 간략하게 설명합니다. [Office 365에서 중복되거나 잘못된 특성이 디렉터리 동기화를 방해할 경우](https://support.microsoft.com/kb/2647098).
+hello 다음 문서에 간략하게 설명 다양 한 문제 해결 및 해결 방법: [중복 되거나 잘못 된 특성에는 Office 365의 디렉터리 동기화 되지 않게](https://support.microsoft.com/kb/2647098)합니다.
 
 ## <a name="known-issues"></a>알려진 문제
-이러한 알려진 문제로 인해 데이터 손실 또는 서비스 저하가 발생하지 않습니다. 그 중 일부는 심미적이며 다른 것은 충돌 특성을 격리하는 대신 표준 “*사전 복원력*” 중복 특성 오류를 throw하고 다른 것은 추가 수동 수정이 필요한 특정 오류를 발생시킵니다.
+이러한 알려진 문제로 인해 데이터 손실 또는 서비스 저하가 발생하지 않습니다. 그 중 일부는 미적인 따라서는 다른 표준 "*사전 복원 력*" 중복 된 특성 오류 toobe hello 충돌 특성을 포함 하며 다른 격리 대신 throw 하면 특정 오류 toorequire 추가 수동 픽스업 합니다.
 
 **핵심 동작:**
 
-1. 특정 특성 구성이 있는 개체는 격리되는 중복 특성과 달리 내보내기 오류가 계속 수신됩니다.  
+1. 특정 한 특성 구성 사용 하 여 개체 격리 되 고 중복 된 것과 반대로 toohello 특성으로 tooreceive 내보내기 오류를 계속 합니다.  
    예:
    
     a. 새로운 사용자가 **Joe@contoso.com**의 UPN과 ProxyAddress **smtp:Joe@contoso.com**로 AD에서 만들어집니다.
    
-    b. 이 개체의 속성이 ProxyAddress가 **SMTP:Joe@contoso.com**인 기존 그룹과 충돌합니다.
+    b. hello이 개체의 속성 충돌할 ProxyAddress 인 기존 그룹  **SMTP:Joe@contoso.com** 합니다.
    
-    c. 내보낼 때 충돌 특성이 격리되는 대신 **ProxyAddress 충돌** 오류가 발생합니다. 복구 기능이 활성화되기 전에 수행되므로 각 후속 동기화 주기 시 작업이 다시 시도됩니다.
-2. 두 그룹이 동일한 SMTP 주소로 온-프레미스가 생성되는 경우 하나는 첫 번째 시도에서 표준 중복 **ProxyAddress** 오류로 프로비전하지 못합니다. 그러나 다음 동기화 주기 시 중복 값은 제대로 격리됩니다.
+    c. 을 내보낼 때는 **/ / ProxyAddress 충돌** hello 충돌 특성 격리 하지 않고 오류가 throw 됩니다. hello 복원 력 기능은 사용 하기 전에 것 처럼 각 다음 동기화 주기 시 hello 작업이 다시 시도 됩니다.
+2. 두 개의 그룹이 생성 되는 경우 온-프레미스 hello로 동일 SMTP 주소, 중복 되는 표준 hello 첫 번째 시도에 실패 한 tooprovision **/ / ProxyAddress** 오류입니다. 그러나 hello 중복 값은 제대로 격리 hello 시 다음 동기화 주기.
 
 **Office 포털 보고서**:
 
-1. UPN 충돌 집합에서 두 개체에 대한 자세한 오류 메시지는 같습니다. 이는 실제로 하나에만 변경된 데이터가 있는 경우 둘 모두 해당 UPN을 변경 / 격리했음을 나타냅니다.
-2. UPN 충돌에 대한 자세한 오류 메시지는 해당 UPN을 변경하고 격리한 사용자에 대한 잘못된 displayName을 보여 줍니다. 예:
+1. UPN 충돌 집합에서 두 개체에 대 한 hello 자세한 오류 메시지는 동일한 hello입니다. 이는 실제로 하나에만 변경된 데이터가 있는 경우 둘 모두 해당 UPN을 변경 / 격리했음을 나타냅니다.
+2. UPN 충돌에 대 한 hello 자세한 오류 메시지에는 해당 UPN 변경/격리는 사용자에 대 한 잘못 된 displayName hello 보여 줍니다. 예:
    
     a. **사용자 A**는 먼저 **UPN = User@contoso.com**과 동기화합니다.
    
-    b. **사용자 B**는 **UPN = User@contoso.com**과 동기화하려고 시도합니다.
+    b. **사용자 B** 가 된 다음 동기화 시도 toobe **UPN = User@contoso.com** 합니다.
    
-    c. **사용자 B**의 UPN은 **User1234@contoso.onmicrosoft.com**로 변경되며 **User@contoso.com**이 **DirSyncProvisioningErrors**에 추가됩니다.
+    c. **사용자 B의** UPN 너무 변경 **User1234@contoso.onmicrosoft.com**  및  **User@contoso.com**  너무 추가**DirSyncProvisioningErrors**합니다.
    
-    d. **사용자 B**에 대한 오류 메시지는 **사용자 A**가 이미 **User@contoso.com**을 UPN으로 가지고 있음을 나타내야 하지만 **사용자 B** 고유의 displayName을 보여 줍니다.
+    d. hello 오류 메시지에 대 한 **사용자 B** 나타나야 합니다 **사용자 A** 이미  **User@contoso.com**  UPN을 하지만 보듯이 **사용자 B의** 자체 표시 이름입니다.
 
 **ID 동기화 오류 보고서**:
 
-*이 문제를 해결하는 방법에 대한 단계*의 링크가 잘못되었습니다.  
+에 대 한 hello 링크 *방법과 관련 된 단계 tooresolve이이 문제* 올바르지 않습니다.  
     ![활성 사용자](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/6.png "활성 사용자")  
 
-[https://aka.ms/duplicateattributeresiliency](https://aka.ms/duplicateattributeresiliency)를 가리켜야 합니다.
+너무 가리켜야[https://aka.ms/duplicateattributeresiliency](https://aka.ms/duplicateattributeresiliency)합니다.
 
 ## <a name="see-also"></a>참고 항목
 * [Azure AD Connect 동기화](active-directory-aadconnectsync-whatis.md)

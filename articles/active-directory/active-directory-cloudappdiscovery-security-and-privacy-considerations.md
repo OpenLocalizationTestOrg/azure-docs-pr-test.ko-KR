@@ -1,6 +1,6 @@
 ---
-title: "클라우드 앱 검색 보안 및 개인정보 취급 방침 고려 사항 | Microsoft Docs"
-description: "이 항목에서는 클라우드 앱 검색과 관련된 보안 및 개인정보 취급 방침 고려 사항을 설명 합니다."
+title: "aaaCloud App Discovery 보안 및 개인 정보 고려 사항 | Microsoft Docs"
+description: "이 항목에서는 hello 보안 및 개인 정보 고려 사항 관련된 tooCloud App Discovery에 설명 합니다."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,68 +14,68 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 1510b7a91d7eea4d16d781299bc9948da4324c51
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 33659e85bd2cf4294e443512e69a85401f7c53f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-app-discovery-security-and-privacy-considerations"></a>클라우드 앱 보안 및 개인정보 취급 방침 고려 사항
-Microsoft는 조직의 보안 관리에 유용한 소프트웨어 및 서비스를 제공하는 동시에 개인 정보와 데이터를 보호하기 위해 노력하고 있습니다.  
-데이터를 타인에게 맡길 때 해당 신뢰에는 엄격한 보안, 엔지니어링 투자 및 전문 지원 기술이 필요함을 알고 있습니다.
-Microsoft는 보안 소프트웨어 개발 수명 주기 방법에서부터 서비스에 이르기까지 엄격한 규정 준수 및 보안 지침을 따릅니다.  
+Microsoft는 커밋된 tooprotecting 개인 정보 데이터, 소프트웨어 및 서비스를 제공 하는 동안 유용한 정보와 hello 조직의 보안을 관리할 수 있습니다.  
+데이터 tooothers 맡길 때 해당 신뢰 필요 함을 상당한 보안 엔지니어링 투자 및 전문 지식 tooback 것입니다.
+Microsoft 보안 소프트웨어 개발 수명 주기 사례 toooperating 서비스에서에서 toostrict 규정 준수 및 보안 지침을 따릅니다.  
 데이터 보안 및 보호는 Microsoft의 최우선 과제입니다.
 
 이 항목에서는 Azure Active Directory 클라우드 앱 검색 내에서 데이터 수집, 처리 및 보안 방법에 대해 설명합니다.
 
 ## <a name="overview"></a>개요
 클라우드 앱 검색은 Azure AD의 기능이며 Microsoft Azure에서 호스트됩니다.  
-클라우드 앱 검색 끝점 에이전트는 IT 관리 컴퓨터로부터 응용 프로그램 검색 데이터를 수집하는 데 사용됩니다.  
-수집된 데이터는 Azure AD 클라우드 앱 검색 서비스에 암호화된 채널을 통해 안전하게 전송됩니다.  
-그 다음 조직에 대한 클라우드 앱 검색 데이터가 Azure Portal에 표시됩니다. 
+hello Cloud App Discovery endpoint agent는 IT 관리 컴퓨터에서 사용 되는 toocollect 응용 프로그램 검색 데이터입니다.  
+hello 수집 데이터는 전송 안전 하 게 암호화 된 채널 toohello Azure AD Cloud App Discovery 서비스를 통해 합니다.  
+그런 다음 hello 조직에 대 한 Cloud App Discovery 데이터 hello Azure 포털에에서 표시 됩니다. 
 
 ![클라우드 앱 검색 작동 방법](./media/active-directory-cloudappdiscovery-security-and-privacy-considerations/cad01.png) 
 
-다음 섹션은 정보 흐름을 따르며 조직에서 클라우드 앱 검색 서비스를 거쳐, 궁극적으로 클라우드 앱 검색 포털로 이동할 때 어떻게 보호되는지를 설명합니다.
+hello 다음 섹션에서는 정보의 흐름 hello 따르고 조직 toohello Cloud App Discovery 서비스 및 궁극적으로 toohello Cloud App Discovery 포털로에서 이동할 때 데이터 보호 방식에 대해 설명 합니다.
 
 ## <a name="collecting-data-from-your-organization"></a>조직에서 데이터 수집
-Azure Active Directory 클라우드 앱 검색 기능을 사용하여 조직의 직원들이 사용하는 응용 프로그램에 대한 정보를 얻으려면 먼저 Azure AD 클라우드 앱 검색 끝점 에이전트를 조직 내 컴퓨터에 배포해야 합니다.
+Toofirst 해야 순서 toouse Azure Active Directory의 클라우드 앱 검색 기능 tooget insights 조직의 직원이 사용 하는 hello 응용 프로그램으로, hello Azure AD Cloud App Discovery 끝점 에이전트 toomachines 조직에 배포 합니다.
 
-Azure Active Directory 테넌트(또는 대리자)의 관리자가 Azure 포털에서 에이전트 설치 패키지를 다운로드할 수 있습니다. 에이전트를 수동으로 설치하거나 SCCM 또는 그룹 정책을 사용하여 조직의 여러 컴퓨터에 설치할 수도 있습니다.
+Hello Azure Active Directory 테 넌 트 (또는 해당 대리자)의 관리자 hello Azure 포털에서에서 hello 에이전트 설치 패키지를 다운로드할 수 있습니다. hello 에이전트 수 수동으로 설치 하거나 SCCM 또는 그룹 정책을 사용 하 여 hello 조직에서 여러 컴퓨터에서 설치 합니다.
 
 배포 옵션에 대한 자세한 지침은 [클라우드 앱 검색 그룹 정책 배포 가이드](http://social.technet.microsoft.com/wiki/contents/articles/30965.cloud-app-discovery-group-policy-deployment-guide.aspx)를 참조하십시오.
 
 
-### <a name="data-collected-by-the-agent"></a>에이전트에 의해 수집된 데이터
-아래 목록에 요약된 정보는 웹 응용 프로그램에 연결되는 경우 에이전트에 의해 수집됩니다. 이 정보는 관리자가 검색에 대해 구성한 응용 프로그램에 대해서만 수집됩니다.  
-Microsoft [Azure Portal](https://portal.azure.com/)의 **설정**->**데이터 컬렉션**->**앱 컬렉션 목록**에 있는 클라우드 앱 검색 블레이드를 통해 에이전트가 모니터링하는 클라우드 앱 목록을 편집할 수 있습니다. 자세한 내용은 [클라우드 앱 검색 시작](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
+### <a name="data-collected-by-hello-agent"></a>Hello 에이전트에 의해 수집 된 데이터
+hello 목록 아래에 설명 된 hello 정보는 연결 tooa 웹 응용 프로그램을 만들 때 hello 에이전트에 의해 수집 됩니다. hello만 수집 되는 해당 응용 프로그램 관리자에 게 해당 검색에 대 한 구성 했습니다.  
+Hello Microsoft Cloud App Discovery 블레이드 hello 통해 에이전트를 모니터링 hello 하는 클라우드 응용 프로그램의 hello 목록을 편집할 수 있습니다 [Azure 포털](https://portal.azure.com/)아래 **설정**->**데이터 컬렉션**->**앱 컬렉션 목록**합니다. 자세한 내용은 [클라우드 앱 검색 시작](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 
 
 **정보 범주**: 사용자 정보  
 **설명**:  
-대상 웹 응용 프로그램에 요청을 수행하는 프로세스의 Windows 사용자 이름(예: 도메인\사용자 이름) 및 사용자의 WID(Windows 보안 식별자)
+요청 toohello 대상 웹 응용 프로그램을 만든 hello 프로세스의 hello Windows 사용자 이름 (예:: 도메인 \ 사용자 이름) hello hello 사용자의 Windows 보안 식별자 (SID) 뿐 아니라 합니다.
 
 **정보 범주**: 프로세스 정보  
 **설명**:  
-대상 웹 응용 프로그램에 요청을 수행하는 프로세스의 이름(예: "iexplore.exe")
+hello 요청 toohello 대상 웹 응용 프로그램을 만든 hello 프로세스의 hello 이름 (예:: "iexplore.exe")
 
 **정보 범주**: 컴퓨터 정보  
 **설명**:  
-에이전트가 설치된 컴퓨터 NetBIOS 이름
+에이전트가 설치 된 어떤 hello hello 컴퓨터 NetBIOS 이름입니다.
 
 **정보 범주**: 앱 트래픽 정보  
 **설명**: 
 
-다음 연결 정보:
+다음 연결 정보는 hello:
 
-* 원본(로컬 컴퓨터) 및 대상 IP 주소와 포트 번호
-* 요청이 사라지는 조직의 공용 IP 주소
-* 요청 타임스탬프
-* 보내고 받은 트래픽 볼륨
-* IP 버전(4 또는 6)
-* TLS 연결에만: 서버 이름 표시 확장 또는 서버 인증서의 대상 호스트 이름
+* hello 원본 (로컬 컴퓨터) 및 대상 IP 주소와 포트 번호
+* hello 공용 IP 주소는 hello를 통해 요청 외부로 이동 하는 hello 조직입니다.
+* hello hello 요청 시간
+* 보내고 받은 트래픽의 hello 볼륨
+* hello IP 버전 (4 또는 6)
+* TLS 연결에: hello 서버 이름 표시 확장 또는 hello 서버 인증서 hello 대상 호스트 이름입니다.
 
-다음 HTTP 정보:
+다음 HTTP 정보 hello:
 
 * 메서드(GET, POST 등)
 * 프로토콜(HTTP/1.1 등).
@@ -86,77 +86,77 @@ Microsoft [Azure Portal](https://portal.azure.com/)의 **설정**->**데이터 �
 * 참조 페이지 URL 정보(쿼리 문자열 제외)
 
 > [!NOTE]
-> 위의 HTTP 정보는 암호화되지 않은 모든 연결에 대해 수집됩니다.
-> TLS 연결의 경우에는 포털에서 '자세히 검사' 설정이 켜져 있을 때만 이 정보가 캡처됩니다. 설정은 기본적으로 'ON'입니다.
+> hello 위의 HTTP 정보는 암호화 되지 않은 모든 연결에 대해 수집 됩니다.
+> 이 정보가 TLS 연결에 대 한 hello 포털에서 hello ' 자세한 검사 ' 설정이 켜져 있을 때만 캡처됩니다. hello 설정은 기본적으로 'ON'입니다.
 > 자세한 내용은 아래 내용과 [클라우드 앱 검색 시작](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 > 
 > 
 
-에이전트는 네트워크 작업에 대한 데이터뿐만 아니라 소프트웨어 및 하드웨어 구성에 대한 익명 정보, 오류 보고서 및 에이전트 사용 방법에 대한 정보도 수집합니다.
+또한 toohello hello 에이전트에 수집 하는 데이터 hello 네트워크 활동에 대 한, 또한 hello 소프트웨어 및 하드웨어 구성, 오류 보고서 및 hello 에이전트의 사용 방법에 대 한 정보에 대 한 익명 정보를 수집 합니다.
 
 
-### <a name="how-the-agent-works"></a>에이전트의 작동 원리
-에이전트 설치에는 다음 두 구성 요소가 포함됩니다.
+### <a name="how-hello-agent-works"></a>Hello 에이전트의 작동 원리
+hello 에이전트 설치는 두 가지 구성 요소가 포함 되어 있습니다.
 
 * 사용자 모드 구성 요소
 * 커널 모드 드라이버 구성 요소(Windows 필터링 플랫폼 드라이버)
 
-에이전트를 처음 설치하는 경우 컴퓨터에 시스템별 신뢰할 수 있는 인증서를 저장한 다음 클라우드 앱 검색 서비스와 보안 연결을 설정합니다.  
-에이전트는 클라우드 앱 검색 서비스로부터 이 보안 연결을 통해 정기적으로 정책 구성을 검색합니다.  
-이 정책에는 다른 정보와 함께 모니터링할 클라우드 응용 프로그램과 자동 업데이트 사용 여부에 대한 정보가 포함됩니다.
+컴퓨터별 신뢰할 수 있는 인증서를 저장 hello 에이전트를 처음 설치 하는 경우 hello 컴퓨터에 있는 다음 사용 하 여 보안 연결 tooestablish hello Cloud App Discovery 서비스와 합니다.  
+hello 에이전트 정책 구성 hello Cloud App Discovery 서비스에서에서이 보안 연결을 통해 정기적으로 검색합니다.  
+hello 정책에는 클라우드 응용 프로그램 toomonitor에 대 한 정보 및 여부 자동 업데이트를 사용 하도록 무엇 보다도 포함 됩니다.
 
-Internet Explorer 또는 Chrome에서 컴퓨터로 웹 트래픽을 송수신하면 클라우드 앱 검색 에이전트가 트래픽을 분석하고 관련 메타데이터를 추출합니다(위의 **에이전트에 의해 수집된 데이터** 참조).  
-매분마다 에이전트가 암호화된 채널을 통해 수집한 메타데이터를 클라우드 앱 검색 서비스로 업로드합니다.
+웹 트래픽을 전달 하 고 Internet Explorer 및 Chrome에서 hello 컴퓨터에 수신 하는 대로 hello Cloud App Discovery 에이전트 hello 트래픽을 분석 하 고 추출 hello 관련 메타 데이터 (참조 hello **hello 에이전트에서 데이터 수집** 섹션 위).  
+1 분 마다 hello 에이전트 암호화 된 채널을 통해 메타 데이터 toohello hello 수집 Cloud App Discovery 서비스에 업로드합니다.
 
-드라이버 구성 요소는 암호화된 트래픽을 차단하고 암호화된 스트림으로 자체적으로 삽입됩니다. 아래의 **암호화된 연결에서 데이터 가로채기(자세히 검사)** 섹션에 자세한 내용이 있습니다.
+암호화 된 트래픽을 hello hello 암호화 된 스트림으로 자체를 삽입 하는 hello 드라이버 구성 요소 절편입니다. Hello에 대 한 자세한 내용은 **암호화 된 연결 (자세한 검사)에서 데이터를 가로채** 아래 섹션.
 
 ### <a name="respecting-user-privacy"></a>사용자 개인정보 존중
-우리의 목표는 관리자에게 응용 프로그램 사용에 대한 자세한 정보와 사용자 개인정보 사이에서 균형을 잡을 수 있는 도구를 제공하는 것입니다. 이를 위해 저희는 포털의 설정 페이지에서 다음 노브를 제공합니다.
+목표는 tooprovide 관리자 hello 도구 tooset hello 간의 균형 조직에 맞게 응용 프로그램 사용 현황 및 사용자 개인 정보에 대 한 자세한 표시 합니다. 노브 hello hello 포털 설정 페이지에서 다음 hello 제공 toothat 끝:
 
-* **데이터 수집**: 관리자는 어떤 응용 프로그램 또는 응용 프로그램 범주에서 검색 데이터를 가져올 것인지를 지정하도록 선택할 수 있습니다.
-* **자세히 검사**: 관리자는 에이전트가 SSL/TLS 연결에 대한 HTTP 트래픽을 수집할 것인지 여부를 지정하도록 선택할 수 있습니다(**'자세히 검사'**라고도 함). 다음 섹션에서 이 내용을 좀 더 자세히 다룹니다.
-* **동의 옵션**: 관리자는 클라우드 앱 검색 포털을 사용하여 에이전트의 데이터 수집을 사용자에게 알릴지와 에이전트가 사용자 데이터를 수집하기 전에 사용자의 동의를 요구할지를 선택할 수 있습니다.
+* **데이터 수집**: 관리자는 응용 프로그램 또는 응용 프로그램 범주 tooget 검색 데이터에서 원하는 toospecify를 선택할 수 있습니다.
+* **자세한 검사**: hello 에이전트가 SSL/TLS 연결에 대 한 HTTP 트래픽을 수집할지 하는 경우 관리자 toospecify를 선택할 수 (즉, **' 자세한 검사 '**). 이 hello 다음 섹션에서 자세히 살펴보겠습니다.
+* **옵션 동의**: 여부 관리자 hello Cloud App Discovery 포털 toochoose 사용 하 여 hello 에이전트를 사용 하 여 hello 데이터 컬렉션의 toonotify 사용자 toorequire 사용자 hello 에이전트 사용자 데이터 수집을 시작 하기 전에 동의 여부와 합니다.
 
-클라우드 앱 검색 끝점 에이전트는 위의 **에이전트에 의해 수집된 데이터** 섹션에 설명된 정보만 수집합니다.
+hello Cloud App Discovery 끝점 에이전트만 ַ ׁ ֱ hello hello에 설명 된 **hello 에이전트에서 데이터 수집** 위의 섹션.
 
 ### <a name="intercepting-data-from-encrypted-connections-deep-inspection"></a>암호화된 연결에서 데이터 가로채기(자세히 검사)
-앞서 설명한 것처럼 관리자는 암호화된 연결('자세히 검사')에서 데이터를 모니터링하도록 에이전트를 구성할 수 있습니다. TLS([전송 계층 보안](https://msdn.microsoft.com/library/windows/desktop/aa380516%28v=vs.85%29.aspx))는 오늘날 인터넷에서 사용되는 가장 일반적인 프로토콜 중 하나입니다. 클라이언트는 TLS와의 통신을 암호화하여 웹 서버와의 안전하고 비공개적인 통신 채널을 설정할 수 있습니다. TLS는 인증 자격 증명을 전달하기 위한 필수 보호 기능을 제공하고 중요한 정보의 노출을 방지합니다.
+에서 설명한 것 처럼 관리자 hello 에이전트 toomonitor 데이터 암호화 된 연결 ('자세한 검사')를에서 구성할 수 있습니다. TLS ([Transport Layer Security](https://msdn.microsoft.com/library/windows/desktop/aa380516%28v=vs.85%29.aspx)) 중 하나입니다. hello hello 인터넷에서 사용에서 하는 가장 일반적인 프로토콜 오늘 합니다. 클라이언트 수는 웹 서버;와 안전 하 고 개인 통신 채널을 설정 하는 데 TLS와의 통신을 암호화 하 여 TLS 인증 자격 증명을 전달 하기 위한 필수 보호 기능을 제공 하 고 중요 한 정보의 hello 공개 되지 않도록 합니다.
 
-TLS가 제공하는 종단 간 보안 암호화 채널은 중요한 보안 및 개인 정보 보호를 가능하게 하지만 프로토콜이 악의적이거나 부정한 목적에 악용되기도 합니다. 따라서 실제로 TLS를 "범용 방화벽 통과 프로토콜"이라고도 합니다. 이러한 문제의 근본 원인은 응용 프로그램 계층 데이터가 SSL로 암호화되기 때문에 대부분의 방화벽이 TLS 통신을 검사할 수 없다는 데 있습니다. 이 사실을 아는 공격자는 TLS를 자주 활용하여 사용자에게 악의적인 페이로드를 전달함으로써 가장 지능적인 응용 프로그램 계층 방화벽이더라도 TLS를 완전히 가려 호스트 간에 TLS 통신을 릴레이해야 하도록 만듭니다. 최종 사용자는 빈번히 TLS를 활용하여 회사 방화벽 및 프록시 서버를 통해 적용되는 액세스 제어를 우회하며, 공용 프록시에 연결하고 정책에 의해 차단될 수 있는 방화벽을 통과해서 비 TLS 프로토콜을 터널링하는 데도 이용합니다.
+Hello 종단 간 보안 암호화 된 채널에서 TLS 제공을 통해 중요 한 보안 및 개인 정보 보호, 동안 hello 프로토콜은 악의적 이거나 악의적인 목적 악용 되기도 합니다. 따라서 훨씬 "프로토콜 유니버설 방화벽 바이패스" tooas hello 참조 TLS 종종는 실제로 합니다. hello 문제의 hello 루트 그는 대부분의 방화벽 없습니다 tooinspect TLS 통신 하므로 hello 응용 프로그램 계층 데이터는 SSL로 암호화 됩니다. 이 알고 있으면 공격자가 자주 활용 하 여 TLS toodeliver 악의적인 페이로드 tooa 사용자도 hello 가장 지능형 응용 프로그램 계층 방화벽은 완전히 시력 tooTLS 값과 호스트 간의 TLS 통신을 릴레이 단순히 해야 합니다. 최종 사용자가 자신의 회사 방화벽 및 프록시 서버를 tooconnect toopublic 프록시를 사용 하 여 및 터널링 정책에 의해 차단 될 수 있습니다 hello 방화벽을 통해-TLS 프로토콜에 대 한 강제 적용 하는 TLS toobypass 액세스 제어를 자주 활용 합니다.
 
-자세한 검사를 사용할 경우 클라우드 앱 검색 에이전트는 신뢰할 수 있는 메시지 가로채기(man-in-the-middle) 역할을 할 수 있습니다. HTTPS로 보호된 리소스에 대한 액세스 요청이 수행되면 끝점 에이전트 드라이버는 연결을 가로채고 대상 서버에 대해 새 연결을 설정하여 클라이언트를 대신해 해당 SSL 인증서를 검색합니다. 에이전트는 (해지되지 않았는지 확인하고 다른 인증서 확인을 수행하여) 인증서가 신뢰할 수 있는지를 확인하고 통과하는 경우 끝점 에이전트가 정보를 서버 인증서에서 복사하고 해당 정보를 사용하여 고유한 (가로채기 인증서로 알려진)서버 인증서를 만듭니다. 루트 인증서를 사용하여 끝점 에이전트가 가로채기 인증서를 즉석에서 서명하고 Windows 신뢰할 수 있는 인증서 저장소에 설치합니다. 이 자체 서명된 루트 인증서는 내보낼 수 없음으로 표시되며 관리자에게 ACL됩니다. 인증서가 생성된 컴퓨터를 벗어나지 않도록 하기 위해서입니다. 최종 사용자의 클라이언트 응용 프로그램이 가로채기 인증서를 받으면 루트 인증서까지 인증서 체인 유효성을 성공적으로 검사할 수 있기 때문에 신뢰할 수 있습니다. 이 프로세스는 주로 최종 사용자의 관점에서 아래에 설명된 몇 가지 주의 사항을 명확히 밝힙니다.
+자세한 검사는 신뢰할 수 있는 중간자-에-개입으로 hello Cloud App Discovery 에이전트 tooact을 수 있습니다. 클라이언트 요청이 만들어질 때 HTTPS tooaccess 보호 된 리소스, hello 끝점 에이전트 드라이버 hello 연결을 차단 하 고 새 연결 toohello 대상 서버 tooretrieves hello 클라이언트를 대신해 서 해당 SSL 인증서를 설정 합니다. hello 인증서 수를 신뢰 (것가 해지 되었는지 여부를 확인 하 고 다른 인증서 검사를 수행), 및 전달 이러한 hello Endpoint Agent 다음 hello 정보에서에서 복사 hello 서버 인증서를 자체 만듭니다 hello 에이전트 확인 합니다. 서버 인증서-해당 정보를 사용 하는 인터 셉 션 인증서-라고 합니다. hello 인터 셉 션 인증서는 서명 된에 즉시 hello Windows 신뢰할 수 있는 인증서 저장소에 설치 된 루트 인증서로 hello 끝점 에이전트에 의해입니다. 이 자체 서명 된 루트 인증서는 내보낼 수 없는 표시 되어 있으며 ACL tooadministrators 했습니다. 포함 된 의도 한 toonever leave hello 컴퓨터 작성 된 합니다. Hello 최종 사용자의 클라이언트 응용 프로그램 hello 인터 셉 션 인증서를 받으면 것의 유효성을 검사 hello 인증서 체인 모든 hello 방식으로 toohello 루트 인증서 때문에 그 신뢰할 수 있습니다. 이 프로세스는 주로 최종 사용자의 관점에서 아래에 설명된 몇 가지 주의 사항을 명확히 밝힙니다.
 
-클라우드 앱 검색 끝점 에이전트는 자세히 검사를 사용하도록 설정하여, TLS 암호화 통신의 암호를 해독하고 조사할 수 있으므로, 노이즈를 줄이고 암호화된 클라우드 앱 사용에 대한 통찰력을 제공할 수 있습니다.
+자세히 검사를 사용 하 여 hello Cloud App Discovery Endpoint Agent 수 암호를 해독 하 고 hello 서비스 tooreduce 노이즈를 허용 하는 TLS 암호화 통신을 검사 및 암호화 hello 클라우드 응용 프로그램의 hello 사용에 대 한 통찰력을 제공 합니다.
 
 #### <a name="a-word-of-caution"></a>주의 사항
-자세한 검사를 설정하기 전에 법률 및 HR 부서에 본인의 의도를 전달하고 동의를 구할 것을 강력히 권장합니다. 최종 사용자의 개인 암호화 통신을 검사하는 것은 분명히 민감한 사인일 수 있습니다. 자세히 검사의 프로덕션 롤아웃 전에 회사 보안 및 해당 사용 정책을 업데이트하여 암호화된 통신이 검사될 것임을 명시해야 합니다. 이러한 통신을 모니터링하도록 클라우드 앱 검색을 구성하는 경우 사용자 알림 및 민감한 사이트(예: 은행 및 의료 사이트)에 대한 제외가 필요할 수 있습니다. 앞에서 언급했듯이 관리자는 클라우드 앱 검색 포털을 사용하여 에이전트의 데이터 수집을 사용자에게 알릴지와 에이전트가 사용자 데이터를 수집하기 전에 사용자의 동의를 요구할지를 선택할 수 있습니다.
+자세히 검사를 설정 하기 전에 것이 좋습니다 의도 tooyour 법률 및 인사 부서를 전달할의 동의 구하는 하 합니다. 최종 사용자의 개인 암호화 통신을 검사하는 것은 분명히 민감한 사인일 수 있습니다. 전에 프로덕션 롤아웃 자세한 검사 확인 하면 회사 보안 및 사용 제한 정책이 업데이트 되었습니다. 암호화 된 통신 tooindicate 검사 합니다. 사용자 알림 및 중요 사이트 (예: 은행 및 의료 보험 사이트)의 예외 해야 할 수도 있습니다 Cloud App Discovery toomonitor를 구성 하는 경우 해당 합니다. 위에서 설명 했 듯이 관리자 사용 하 여 hello Cloud App Discovery 포털 toochoose 여부 hello 에이전트를 사용 하 여 hello 데이터 컬렉션의 toonotify 사용자 toorequire 사용자 hello 에이전트 사용자 데이터 수집을 시작 하기 전에 동의 여부와 합니다.
 
 ### <a name="known-issues-and-drawbacks"></a>알려진 문제 및 단점
-TLS 가로채기가 최종 사용자 환경에 영향을 줄 수 있는 몇 가지 경우가 있습니다.
+TLS 인터 셉 션 hello 최종 사용자 환경 영향을 줄 수는 있는 경우도 있습니다.
 
-* EV(확장 유효성 검사) 인증서는 웹 브라우저의 주소 표시줄을 녹색으로 렌더링하여 신뢰할 수 있는 웹 사이트를 방문하고 있다는 시각적 근거가 됩니다. TLS 검사가 클라이언트에 발급한 인증서에 EV를 복제할 수 없으므로 EV 인증서를 사용하는 웹 사이트가 정상적으로 작동하지만 주소 표시줄이 녹색으로 표시되지 않습니다.  
-* 공용 키 고정(인증서 고정이라고도 함)은 메시지 가로채기(man-in-the-middle) 공격 및 가짜 인증 기관으로부터 사용자를 보호하는 데 도움을 주기 위해 고안되었습니다. 고정된 사이트의 루트 인증서가 알려진 좋은 CA 중 하나와 일치하지 않으면 브라우저는 오류와 함께 연결을 거부합니다. 실제로 TLS 가로채기는 메시지 가로채기(man-in-the-middle) 공격이므로 이러한 연결은 실패합니다.
-* 사용자가 사이트 정보를 조사하려고 브라우저 주소 표시줄 브라우저의 잠금 아이콘을 클릭하는 경우 웹 사이트 인증서 서명에 사용되는 인증 기관에서 종료 체인이 표시되지 않지만 Windows 신뢰할 수 있는 인증서 저장소로 끝나는 인증서 체인이 대신 표시됩니다.
+* 확장된 유효성 검사 (EV) 인증서는 신뢰할 수 있는 웹 사이트를 방문 하는 스위치 hello 웹 브라우저 녹색 tooact의 hello 주소 표시줄을 렌더링 합니다. TLS 검사 EV 인증서를 사용 하는 웹 사이트는 정상적으로 동작 하므로 toohello 클라이언트 발급 hello 인증서에 EV 달라 야 하지만 hello 주소 표시줄에 녹색 표시 되지 않습니다.  
+* 디자인 된 공용 키 고정 (고정 인증서도 함) toohelp 사용자가 중간자 개입 공격 으로부터 보호 하 고 인증 기관 rogue 합니다. 고정 된 사이트에 대 한 hello 루트 인증서와 일치 하는 알려진 좋은 CA의 hello이 없으면 hello 브라우저 오류가 발생 하 여 hello 연결을 거부 합니다. 실제로 TLS 가로채기는 메시지 가로채기(man-in-the-middle) 공격이므로 이러한 연결은 실패합니다.
+* 사용자가 hello 자물쇠 아이콘이 hello 브라우저 주소 표시줄 브라우저 tooinspect hello 사이트 정보를 클릭 하는 경우 었 표시 되지 않습니다 toosign hello 웹 사이트 인증서를 사용 하는 hello 인증서 기관에서 종료 체인 있지만 인증서 체인으로 끝나는 Windows hello 하는 대신 신뢰할 수 있는 인증서 저장소입니다.
 
-이러한 문제의 발생을 줄이려면 확장된 유효성 검사 또는 공용 키 고정을 사용하고 끝점 에이전트를 지시한다고 알려진 클라우드 서비스 및 클라이언트 응용 프로그램을 추적하여 영향을 받는 연결의 가로채기를 방지합니다. 그러나 이 경우에도 이러한 클라우드 앱의 사용 및 전송되는 데이터의 볼륨에 대한 보고서를 받지만 자세히 검사되지 않았기 때문에 사용된 앱을 어떻게 사용할 수 있는지에 대한 세부 정보가 없습니다.
+이러한 문제의 tooreduce hello 발생에서는 추적 클라우드 서비스 및 toouse 알려진 클라이언트 응용 프로그램 확장 유효성 검사 또는 공개 키를 고정 하 고 영향을 받는 연결을 차단 하는 hello Endpoint Agent tooavoid을 지시 합니다. 이 경우에도 이러한 클라우드 응용 프로그램의 hello 사용 및 전송 되는 데이터의 hello 볼륨 보고서 받아 볼 수 있습니다 하지만 hello 앱 사용 된 방법에 대 한 세부 정보가 없습니다 가능 하지 않으므로 전체 검사 합니다.
 
-## <a name="sending-data-to-cloud-app-discovery"></a>클라우드 앱 검색에 데이터 보내기
-에이전트에 의해 메타데이터가 수집되면 최대 1분동안 또는 캐시된 데이터가 5MB의 크기에 도달할 때까지 컴퓨터에 캐시됩니다. 그런 다음 압축되어 클라우드 앱 검색 서비스에 보안 연결을 통해 전송됩니다.
+## <a name="sending-data-toocloud-app-discovery"></a>보내는 데이터 tooCloud App Discovery
+메타 데이터를 hello 에이전트에 의해 수집 되 면 hello tooone 분을 컴퓨터에 캐시 됩니다 또는 hello 될 때까지 캐시 된 데이터 크기가 5mb입니다. 그런 다음 압축 되며 보안 연결 toohello Cloud App Discovery 서비스를 통해 전송 됩니다.
 
-에이전트가 어떤 이유로든 클라우드 앱 검색 서비스와 통신할 수 없는 경우 수집된 메타데이터는 컴퓨터(예: 관리자 그룹)에서 권한이 있는 사용자만 액세스할 수 있는 로컬 파일 캐시에 저장됩니다.  
-에이전트는 클라우드 앱 검색 서비스에서 성공적으로 수신할 때까지 캐시된 메타데이터의 재전송을 자동으로 시도합니다.
+Hello 에이전트 어떤 이유로 든 Cloud App Discovery 서비스 hello로 없습니다 toocommunicate 이면 hello 수집 된 메타 데이터에에서 저장 됩니다 (예: hello 관리자 그룹) hello 컴퓨터에서 권한이 있는 사용자만 액세스할 수 있는 로컬 파일 캐시.  
+hello 에이전트 자동으로 시도 tooresend hello 캐시 된 메타 데이터에 성공적으로 hello Cloud App Discovery 서비스에서 수신 될 때까지 합니다.
 
-## <a name="receiving-the-data-at-the-service-end"></a>서비스 측에서 데이터 수신
-에이전트는 위에 언급된 컴퓨터별 클라이언트 인증 인증서를 사용하여 클라우드 앱 검색 서비스를 인증하고 암호화된 채널을 통해 데이터를 전달합니다.  
-클라우드 앱 검색 서비스의 분석 파이프라인은 분석 파이프라인의 모든 단계를 통해 메타데이터를 논리적으로 분할하여 각 고객에 대해 개별적으로 메타데이터를 처리합니다.
-분석된 메타데이터는 포털에서 다양한 보고서를 구동합니다.
+## <a name="receiving-hello-data-at-hello-service-end"></a>Hello 서비스 쪽에서 hello 데이터 받기
+hello 에이전트 toohello hello 컴퓨터 특정 클라이언트 인증 인증서를 사용 하 여 서비스 앞서 설명 된 데이터를 전달 된 암호화 된 채널을 통해 Cloud App Discovery를 인증 합니다.  
+hello Cloud App Discovery 서비스의 분석 파이프라인 프로세스 메타 데이터 각 고객에 대해 개별적으로 논리적으로 hello 분석 파이프라인의 모든 단계를 통해 분할 하 여입니다.
+hello 메타 데이터 드라이브 hello는 hello 포털에서 다양 한 보고서를 분석합니다.
 
-처리되지 않은 메타데이터 및 분석된 메타데이터는 최대 180일 동안 저장됩니다. 또한 고객은 자신이 선택한 Azure blob 저장소 계정에 분석된 메타데이터를 캡처하도록 선택할 수 있습니다.
-이것은 메타데이터의 오프라인 분석 및 장기적인 데이터 보존에 유용합니다.
+처리 되지 않은 메타 데이터를 hello 및 too180 일 수를 분석 하는 hello 메타 데이터에 대 한 저장 됩니다. 또한 고객 자신이 선택한 Azure blob 저장소 계정에서 toocapture 분석 hello 메타 데이터를 선택할 수 있습니다.
+이 hello 데이터를 더 오래 보존할 뿐만 아니라 메타 데이터의 오프 라인 분석에 유용 합니다.
 
-## <a name="accessing-the-data-using-the-azure-portal"></a>Azure 포털을 사용한 데이터 액세스
-수집된 메타데이터 보안을 유지하기 위한 노력으로 기본적으로 테넌트의 전역 관리자만 Azure 포털의 클라우드 앱 검색 기능에 액세스할 수 있습니다.  
-그러나 관리자는 다른 사용자 또는 그룹에 이 액세스 권한을 위임하도록 선택할 수 있습니다.
+## <a name="accessing-hello-data-using-hello-azure-portal"></a>Azure 포털 hello를 사용 하 여 hello 데이터에 액세스
+노력 tookeep hello 수집 된 메타 데이터에 보안을 기본적으로 hello 테 넌 트의 전역 관리자만 적용 액세스 toohello Cloud App Discovery 기능 hello Azure 포털의.  
+그러나 관리자는이 액세스 tooother 사용자 또는 그룹 toodelegate 선택할 수 있습니다.
 
 > [!NOTE]
 > 자세한 내용은 [클라우드 앱 검색 시작](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
@@ -164,7 +164,7 @@ TLS 가로채기가 최종 사용자 환경에 영향을 줄 수 있는 몇 가�
 > 
 
 
-포털에서 데이터에 액세스하는 모든 사용자는 Azure AD Premium 라이선스의 사용 허가를 받아야 합니다.
+Azure AD Premium 라이선스가 hello 포털에서 사용자 액세스 hello 데이터를 받아야 합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
 * [조직 내에서 사용되고 있는 허용되지 않은 클라우드 앱을 검색하는 방법](active-directory-cloudappdiscovery-whatis.md)

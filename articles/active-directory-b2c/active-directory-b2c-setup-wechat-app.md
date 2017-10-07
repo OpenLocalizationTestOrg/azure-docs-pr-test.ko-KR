@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C: WeChat 구성 | Microsoft Docs"
-description: "소비자에게 Azure Active Directory B2C를 사용하여 보안이 유지되는 응용 프로그램에서 WeChat 계정으로 등록 및 로그인을 제공합니다."
+description: "등록 및 로그인 tooconsumers WeChat 계정 Azure Active Directory B2C에 의해 보안 되는 응용 프로그램에 제공 합니다."
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/26/2017
 ms.author: parakhj
-ms.openlocfilehash: a54aec23d951610118246e9f70cdd27752ef39a6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 92cc3579d818d2379a503ccc695138b33a34466d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-wechat-accounts"></a>Azure Active Directory B2C: 고객에게 WeChat 계정으로 등록 및 로그인 제공
+# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-tooconsumers-with-wechat-accounts"></a>Azure Active Directory B2C: WeChat 계정 등록 및 로그인 tooconsumers 제공
 
 > [!NOTE]
 > 이 기능은 미리 보기 상태입니다.
@@ -28,24 +28,24 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="create-a-wechat-application"></a>WeChat 응용 프로그램 만들기
 
-Azure AD(Azure Active Directory) B2C에서 WeChat을 ID 공급자로 사용하려면 WeChat 응용 프로그램을 만들고 올바른 매개 변수를 제공해야 합니다. 이렇게 하려면 WeChat 계정이 필요합니다. 없는 경우 모바일 앱 중 하나를 통해 등록하거나 QQ 번호를 사용하여 하나를 얻을 수 있습니다. 그 후에 WeChat 개발자 프로그램에 등록된 계정을 가져옵니다. 자세한 내용은 [여기](http://kf.qq.com/faq/161220Brem2Q161220uUjERB.html)에서 찾을 수 있습니다.
+toouse WeChat (Azure AD) Azure Active Directory B2C에을 id 공급자로 toocreate WeChat 응용 프로그램에 필요 하 고이 hello 오른쪽 매개 변수를 제공 합니다. 하면 WeChat 계정 toodo이 필요합니다. 없는 경우 모바일 앱 중 하나를 통해 등록하거나 QQ 번호를 사용하여 하나를 얻을 수 있습니다. 그 후에 등록 된 hello WeChat 개발자 프로그램 계정을 가져옵니다. 자세한 내용은 [여기](http://kf.qq.com/faq/161220Brem2Q161220uUjERB.html)에서 찾을 수 있습니다.
 
 ### <a name="register-a-wechat-application"></a>WeChat 응용 프로그램 등록
 
-1. [https://open.weixin.qq.com/](https://open.weixin.qq.com/)으로 이동하고 로그인합니다.
+1. 너무 이동[https://open.weixin.qq.com/](https://open.weixin.qq.com/) 로그인 하십시오.
 2. **管理中心**(관리 센터)를 클릭합니다.
-3. 새 응용 프로그램을 등록하는 데 필요한 단계를 따릅니다.
-4. **授权回调域**(콜백 URL)에 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`를 입력합니다. 예를 들어 `tenant_name`이 contoso.onmicrosoft.com인 경우 URL을 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`가 되도록 설정합니다.
-5. **앱 ID** 및 **앱 키**를 찾고 복사합니다. 나중에 필요합니다.
+3. Hello 필요한 단계 tooregister 새 응용 프로그램을 따릅니다.
+4. **授权回调域**(콜백 URL)에 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`를 입력합니다. 예를 들어 경우 프로그램 `tenant_name` contoso.onmicrosoft.com 집합 hello URL toobe은 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`합니다.
+5. 찾기 및 복사 hello **앱 ID** 및 **응용 프로그램 키는**합니다. 나중에 필요합니다.
 
 ## <a name="configure-wechat-as-an-identity-provider-in-your-tenant"></a>테넌트에서 WeChat을 ID 공급자로 구성
-1. 다음 단계에 따라 [Azure 포털의 B2C 기능 블레이드로 이동합니다](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) .
-2. B2C 기능 블레이드에서 **ID 공급자**를 클릭합니다.
-3. 블레이드의 위쪽에서 **+추가** 를 클릭합니다.
-4. ID 공급자 구성에 친숙한 **이름** 을 제공합니다. 예를 들어 "WeChat"을 입력합니다.
+1. 다음 단계를 너무[toohello B2C 기능 블레이드를 탐색](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) hello Azure 포털에 있습니다.
+2. Hello B2C 기능 블레이드에서 클릭 **Id 공급자**합니다.
+3. 클릭 **+ 추가** hello hello 블레이드 위쪽에 있습니다.
+4. 친숙 한 제공 **이름** hello id 공급자 구성에 대 한 합니다. 예를 들어 "WeChat"을 입력합니다.
 5. **ID 공급자 형식**을 클릭하고 **WeChat**을 선택한 다음 **확인**을 클릭합니다.
 6. **이 ID 공급자 설정**을 클릭합니다.
-7. **클라이언트 ID**로 앞에서 복사한 **앱 키**를 입력합니다.
-8. **클라이언트 암호**로 앞에서 복사한 **앱 암호**를 입력합니다.
-9. **확인**을 클릭한 다음 **만들기**를 클릭하여 WeChat 구성을 저장합니다.
+7. Hello 입력 **응용 프로그램 키는** hello로 앞에서 복사한 **클라이언트 ID**합니다.
+8. Hello 입력 **응용 프로그램 암호** hello로 앞에서 복사한 **클라이언트 암호**합니다.
+9. 클릭 **확인** 클릭 하 고 **만들기** toosave WeChat 구성 합니다.
 

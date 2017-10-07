@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory를 사용하여 개발자 계정에 권한 부여 - Azure API Management | Microsoft Docs"
-description: "API 관리에서 Azure Active Directory를 사용하여 권한을 부여하는 방법"
+title: "Azure Active Directory-Azure API 관리를 사용 하 여 aaaAuthorize 개발자 계정을 | Microsoft Docs"
+description: "자세한 내용은 방법 tooauthorize 사용자가 Azure Active Directory를 사용 하 여 API 관리에서 합니다."
 services: api-management
 documentationcenter: API Management
 author: steved0x
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 7637e6419d17a2d75904fbe63df5f27d4be4bbe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebf5447a509a47df35e4262138bfcf423cb1dd5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>Azure API 관리에서 Azure Active Directory를 사용하여 개발자 계정에 권한을 부여하는 방법
+# <a name="how-tooauthorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>Tooauthorize 개발자 어떻게 사용 하 여 계정을 Azure Active Directory를 Azure API 관리에서
 ## <a name="overview"></a>개요
-이 가이드에서는 Azure Active Directory의 사용자에게 개발자 포털에 액세스할 수 있도록 하는 방법을 보여 줍니다. 또한 이 가이드에서는 Azure Active Directory의 사용자를 포함하는 외부 그룹을 추가하여 Azure Active Directory 사용자 그룹을 관리하는 방법을 보여줍니다.
+이 가이드에서는 tooenable Azure Active Directory에서 사용자에 대 한 toohello 개발자 포털에 액세스 하는 방법을 알아봅니다. 이 가이드 또한 보면 방법을 포함 하는 외부 그룹을 추가 하 여 Azure Active Directory 사용자 그룹이 toomanage hello Azure Active Directory의 사용자가 있습니다.
 
-> 이 가이드의 단계를 완료하려면 먼저 응용 프로그램을 만들 Azure Active Directory가 있어야 합니다.
+> 이 가이드의 단계를 toocomplete hello 있어야 Azure Active Directory는 toocreate에 응용 프로그램입니다.
 > 
 > 
 
-## <a name="how-to-authorize-developer-accounts-using-azure-active-directory"></a>Azure Active Directory를 사용하여 개발자 계정에 권한을 부여하는 방법
-시작하려면 Azure Portal에서 API Management 서비스에 대한 **게시자 포털**을 클릭합니다. API 관리 게시자 포털로 이동됩니다.
+## <a name="how-tooauthorize-developer-accounts-using-azure-active-directory"></a>Tooauthorize 개발자 어떻게 사용 하 여 계정을 Azure Active Directory
+시작 tooget 클릭 **게시자 포털** hello API 관리 서비스에 대 한 Azure 포털의에서. API 관리 게시자 포털 toohello 이동합니다.
 
 ![게시자 포털][api-management-management-console]
 
-> 아직 API Management 서비스 인스턴스를 만들지 않은 경우 [Azure API Management 시작][Get started with Azure API Management] 자습서의 [API Management 서비스 인스턴스 만들기][Create an API Management service instance]를 참조하세요.
+> API 관리 서비스 인스턴스를 아직 만들지 않은 경우 참조 [API 관리 서비스 인스턴스를 만들] [ Create an API Management service instance] hello에 [Azure API 관리 시작] [ Get started with Azure API Management] 자습서입니다.
 > 
 > 
 
-왼쪽의 **API Management** 메뉴에서 **보안**을 클릭하고 **외부 ID**를 클릭합니다.
+클릭 **보안** hello에서 **API 관리** 메뉴를 클릭 한 hello 왼쪽 **외부 Id**합니다.
 
 ![외부 ID][api-management-security-external-identities]
 
-**Azure Active Directory**를 클릭합니다. **리디렉션 URL** 을 기록해 두고 Azure 클래식 포털에서 Azure Active Directory로 전환합니다.
+**Azure Active Directory**를 클릭합니다. Hello 메모 **리디렉션 URL** hello Azure 클래식 포털에서에서 Azure Active Directory tooyour 전환 하 고 있습니다.
 
 ![외부 ID][api-management-security-aad-new]
 
-**추가** 단추를 클릭하여 새 Azure Active Directory 응용 프로그램을 만들고 **내 조직에서 개발 중인 응용 프로그램 추가**를 선택합니다.
+Hello 클릭 **추가** toocreate 새 Azure Active Directory 응용 프로그램 단추 선택한 **조직에서 개발 중인 응용 프로그램 추가**합니다.
 
 ![새 Azure Active Directory 응용 프로그램 추가][api-management-new-aad-application-menu]
 
-응용 프로그램의 이름을 입력하고 **웹 응용 프로그램 및/또는 Web API**를 선택한 후 다음 단추를 클릭합니다.
+Hello 응용 프로그램에 대 한 이름을 입력 **웹 응용 프로그램 및/또는 Web API**, hello 다음 단추를 클릭 합니다.
 
 ![새 Azure Active Directory 응용 프로그램][api-management-new-aad-application-1]
 
-**로그온 URL**에는 개발자 포털의 로그온 URL을 입력합니다. 이 예제에서 **로그온 URL**은 `https://aad03.portal.current.int-azure-api.net/signin`입니다. 
+에 대 한 **로그온 URL**, 개발자 포털을 가리키도록의 hello 로그온 URL을 입력 합니다. 이 예제에서는 hello **로그온 URL** 은 `https://aad03.portal.current.int-azure-api.net/signin`합니다. 
 
-**앱 ID URL**의 경우 Azure Active Directory에서 기본 도메인 또는 사용자 지정 도메인을 입력하고 고유 문자열을 추가합니다. 이 예제에서 **https://contoso5api.onmicrosoft.com**이라는 기본 도메인은 지정된 **/api** 접미사와 함께 사용됩니다.
+Hello에 대 한 **앱 ID URL**hello Azure Active Directory에 대 한 hello 기본 도메인 또는 사용자 지정 도메인을 입력 하 고 고유한 문자열 tooit를 추가 합니다. 이 예제에서는 기본 도메인의 hello **https://contoso5api.onmicrosoft.com** 의 hello 접미사와 함께 사용 되 **/api** 지정 합니다.
 
 ![새 Azure Active Directory 응용 프로그램 속성][api-management-new-aad-application-2]
 
-확인 단추를 클릭하여 응용 프로그램을 저장하여 만들고 **구성** 탭으로 전환하여 새 응용 프로그램을 구성합니다.
+Hello 확인 단추 toosave 클릭 하 고 hello 응용 프로그램을 만들어 toohello 전환 **구성** tooconfigure hello 새 응용 프로그램을 탭 합니다.
 
 ![새 Azure Active Directory 응용 프로그램 만들어짐][api-management-new-aad-app-created]
 
-이 응용 프로그램에 여러 Azure Active Directory를 사용하려는 경우 **응용 프로그램이 다중 테넌트임**에 **예**를 클릭합니다. 기본값은 **아니요**입니다.
+여러 Azure Active 디렉터리 하는 경우이 응용 프로그램에 사용 되는 toobe 클릭 **예** 에 대 한 **응용 프로그램은 다중 테 넌 트**합니다. hello 기본값은 **아니요**합니다.
 
 ![예][api-management-aad-app-multi-tenant]
 
-게시자 포털의 **외부 ID** 탭에 있는 **Azure Active Directory** 섹션에서 **리디렉션 URL**을 복사하여 **회신 URL** 텍스트 상자에 붙여 넣습니다. 
+복사 hello **리디렉션 URL** hello에서 **Azure Active Directory** hello 섹션 **외부 Id** 탭 hello 게시자 포털에서 하 고 hello 에붙여**회신 URL** 입력란. 
 
 ![회신 URL][api-management-aad-reply-url]
 
-구성 탭의 아래쪽으로 스크롤하고 **응용 프로그램 권한** 드롭다운을 선택하고 **디렉터리 데이터 읽기**를 선택합니다.
+스크롤 toohello 맨 hello 구성 탭을 선택 하는 hello **응용 프로그램 사용 권한** 드롭 다운 확인 **디렉터리 데이터 읽기**합니다.
 
 ![응용 프로그램 권한][api-management-aad-app-permissions]
 
-**권한 위임** 드롭다운을 선택하고 **로그온 사용 및 사용자 프로필 읽기**를 선택합니다.
+선택 hello **권한 위임** 드롭 다운 확인 **로그온을 사용 하도록 설정 하 고 사용자의 프로필 읽기**합니다.
 
 ![위임된 권한][api-management-aad-delegated-permissions]
 
-> 응용 프로그램 및 위임된 권한에 대한 자세한 내용은 [Graph API 액세스][Accessing the Graph API]를 참조하세요.
+> 응용 프로그램 및 권한이 위임된 하는 방법에 대 한 자세한 내용은 참조 [Graph API 액세스 hello][Accessing hello Graph API]합니다.
 > 
 > 
 
-**클라이언트 ID** 를 클립보드에 복사합니다.
+복사 hello **클라이언트 Id** toohello 클립보드 합니다.
 
 ![클라이언트 ID][api-management-aad-app-client-id]
 
-게시자 포털로 다시 전환하고 Azure Active Directory 응용 프로그램 구성에서 복사한 **클라이언트 ID** 를 붙여넣습니다.
+뒤로 toohello 게시자 포털을 전환 하 고 hello에 붙여 **클라이언트 Id** hello Azure Active Directory 응용 프로그램 구성에서 복사 합니다.
 
 ![클라이언트 ID][api-management-client-id]
 
-Azure Active Directory 구성으로 다시 전환하고 **키** 섹션에서 **기간 선택** 드롭다운 목록을 클릭하여 간격을 지정합니다. 이 예제에서는 **1년**을 사용합니다.
+뒤로 toohello Azure Active Directory 구성을 전환 하 고 hello 클릭 **기간 선택** 드롭 다운 hello **키** 섹션 고 간격을 지정 합니다. 이 예제에서는 **1년**을 사용합니다.
 
 ![키][api-management-aad-key-before-save]
 
-**저장** 을 클릭하여 구성을 저장하고 키를 표시합니다. 키를 클립보드에 복사합니다.
+클릭 **저장** toosave hello 구성 및 표시 hello 키입니다. Hello 키 toohello 클립보드에 복사 합니다.
 
-> 이 키를 기록해 둡니다. Azure Active Directory 구성 창을 닫으면 키를 다시 표시할 수 없습니다.
+> 이 키를 기록해 둡니다. Hello Azure Active Directory 구성 창을 닫으면 되 면 hello 키를 다시 표시할 수 없습니다.
 > 
 > 
 
 ![키][api-management-aad-key-after-save]
 
-게시자 포털로 다시 전환하고 키를 **클라이언트 암호** 텍스트 상자에 붙여 넣습니다.
+스위치 백 toohello 게시자 포털 및 붙여넣기 hello 키 hello에 **클라이언트 암호** 입력란.
 
 ![클라이언트 암호][api-management-client-secret]
 
-**허용된 테넌트** 는 어느 디렉터리를 API 관리 서비스 인스턴스의 API에 액세스할지 지정합니다. 액세스 권한을 부여하려는 Azure Active Directory 인스턴스의 도메인을 지정합니다. 줄바꿈, 공백 또는 쉼표로 여러 도메인을 구분할 수 있습니다.
+**테 넌 트 허용** 하는 디렉터리 액세스 toohello hello API 관리 서비스 인스턴스에의 Api를 포함 하도록 지정 합니다. Hello toogrant에 액세스 하는 Azure Active Directory 인스턴스 toowhich의 hello 도메인을 지정 합니다. 줄바꿈, 공백 또는 쉼표로 여러 도메인을 구분할 수 있습니다.
 
 ![허용된 테넌트][api-management-client-allowed-tenants]
 
 
-원하는 구성이 지정되면 **저장**을 클릭합니다.
+Hello 원하는 구성이 지정 되어 있는 경우 클릭 **저장**합니다.
 
 ![저장][api-management-client-allowed-tenants-save]
 
-변경 내용이 저장되면 지정된 Azure Active Directory의 사용자는 [Azure Active Directory 계정을 사용하여 개발자 포털에 로그인][Log in to the Developer portal using an Azure Active Directory account]의 단계를 수행하여 개발자 포털에 로그인할 수 있습니다.
+지정 된는 Azure Active Directory의 hello 단계를 수행 하 여 toohello 개발자 포털에 서명할 수 hello에 hello 사용자 hello 변경 내용이 저장 되 면 [Azure Active Directory 계정을 사용 하 여 toohello 개발자 포털에 로그인] [Log in toohello Developer portal using an Azure Active Directory account].
 
-여러 도메인은 **허용된 테넌트** 섹션에서 지정할 수 있습니다. 사용자가 응용 프로그램이 등록되었던 원래 도메인이 아닌 다른 도메인에서 로그인하려면, 다른 도메인의 전역 관리자가 디렉터리 데이터에 액세스할 수 있도록 응용 프로그램에 권한을 부여해야 합니다. 권한을 부여하려면 전역 관리자는 `https://<URL of your developer portal>/aadadminconsent`로 이동하고(예: https://contoso.portal.azure-api.net/aadadminconsent) 액세스를 지정하려는 Active Directory 테넌트의 도메인 이름을 입력하여 제출을 클릭합니다. 다음 예제에서 `miaoaad.onmicrosoft.com`의 전역 관리자는 이 특정 개발자 포털에 있는 사용 권한을 부여하려고 합니다. 
+여러 도메인 hello에 지정할 수 있습니다 **허용 테 넌 트** 섹션. 모든 사용자는 hello 원래 도메인 hello 응용 프로그램 등록 된 다른 도메인에서 로그인 할 수, 전에 hello 서로 다른 도메인의 글로벌 관리자 권한을 부여 해야 응용 프로그램 tooaccess hello에 대 한 디렉터리 데이터. toogrant 권한, 전역 관리자에 게 너무 이동 해야`https://<URL of your developer portal>/aadadminconsent` (예를 들어 https://contoso.portal.azure-api.net/aadadminconsent) hello toogive 액세스 tooand 원하는 Active Directory 테 넌 트의 hello 도메인 이름 입력 제출을 클릭 합니다. Hello 다음의 예를 들어의 전역 관리자 `miaoaad.onmicrosoft.com` toogive 권한 toothis 특정 개발자 포털에서이 하려고 시도 합니다. 
 
 ![권한][api-management-aad-consent]
 
-다음 화면에서 전역 관리자에게는 사용 권한의 부여를 확인하는 메시지가 표시됩니다. 
+Hello 다음 화면에서 전역 관리자에 게 증명된 tooconfirm hello 권한을 부여 됩니다. 
 
 ![권한][api-management-permissions-form]
 
-> 전역 관리자에게 권한이 부여되기 전에 비 전역 관리자가 로그인을 시도하는 경우, 로그인 시도에 실패하며 오류 화면이 표시됩니다.
+> 비전역 관리자가 권한 전에 toolog에 전역 관리자가 부여, hello 로그인 시도 실패 및 오류 화면이 표시 됩니다.
 > 
 > 
 
-## <a name="how-to-add-an-external-azure-active-directory-group"></a>외부 Azure Active Directory 그룹을 추가하는 방법
-Azure Active Directory의 사용자가 액세스할 수 있게 되면 Azure Active Directory 그룹을 API 관리에 추가하여 원하는 제품이 있는 그룹에서 개발자와의 연계를 보다 쉽게 관리할 수 있습니다.
+## <a name="how-tooadd-an-external-azure-active-directory-group"></a>어떻게 tooadd 외부 Azure Active Directory 그룹
+Azure Active Directory의 사용자에 대 한 액세스를 설정한 후 쉽게 관리할 수 원하는 hello 제품 hello 그룹에서 hello 개발자의 hello 연결 API 관리 toomore에 Azure Active Directory 그룹을 추가할 수 있습니다.
 
-> 외부 Azure Active Directory 그룹을 구성하려면 이전 섹션의 과정을 수행하여 ID 탭에서 먼저 Azure Active Directory가 구성되어야 합니다. 
+> 먼저 외부 Azure Active Directory 그룹에서 Azure Active Directory hello tooconfigure hello hello 이전 섹션 절차에에서 따라 hello Identities 탭에서 구성 되어야 합니다. 
 > 
 > 
 
-그룹에 대한 액세스 권한을 부여하려는 제품의 **표시 여부** 탭에 외부 Azure Active Directory 그룹이 추가됩니다. **제품**을 클릭한 다음 원하는 제품의 이름을 클릭합니다.
+외부 Azure Active Directory 그룹 hello에서 추가 된 **가시성** toogrant 액세스 toohello 그룹 원하는 hello 제품의 탭 합니다. 클릭 **제품**, hello 원하는 제품의 hello 이름을 클릭 하 고 있습니다.
 
 ![제품 구성][api-management-configure-product]
 
-**표시 여부** 탭으로 전환하고 **Azure Active Directory에서 그룹 추가**를 클릭합니다.
+Toohello 전환 **가시성** 탭을 클릭 **Azure Active Directory에서 그룹 추가**합니다.
 
 ![그룹 추가][api-management-add-groups]
 
-드롭다운 목록에서 **Azure Active Directory 테넌트**를 선택한 다음 **그룹**에 원하는 그룹 이름을 입력하여 텍스트 상자에 추가합니다.
+선택 hello **Azure Active Directory 테 넌 트** hello 드롭 다운 목록 및 hello hello에서 원하는 그룹의 다음 유형 hello 이름에서 **그룹** toobe 입력란을 추가 합니다.
 
 ![그룹 선택][api-management-select-group]
 
-이 그룹 이름은 다음 예제에서 보이는 대로 Azure Active Directory의 **그룹** 목록에서 찾을 수 있습니다.
+이 그룹 이름은 hello에 있습니다 **그룹** hello 다음 예제에에서 표시 된 대로 Azure Active Directory에 대 한 나열 합니다.
 
 ![Azure Active Directory 그룹 목록][api-management-aad-groups-list]
 
-**추가** 를 클릭하여 그룹 이름의 유효성을 검사하고 그룹을 추가합니다. 이 예제에서는 **Contoso 5 개발자** 외부 그룹이 추가됩니다. 
+클릭 **추가** toovalidate hello 그룹 이름 및 hello 그룹을 추가 합니다. 이 예제에서는 hello **Contoso 5 개발자** 외부 그룹이 추가 됩니다. 
 
 ![그룹 추가됨][api-management-aad-group-added]
 
-**저장** 을 클릭하여 새 그룹 선택 내용을 저장합니다.
+클릭 **저장** toosave hello 새 그룹을 선택 합니다.
 
-Azure Active Directory 그룹이 한 제품에서 구성되면 API Management 서비스 인스턴스에 있는 다른 제품의 **표시 여부** 탭에서 확인할 수 있습니다.
+제품 중 하나에서 Azure Active Directory 그룹에 구성 된 사용 가능한 toobe hello에 확인 표시가 되어 **가시성** 탭에 대 한 hello API 관리 서비스 인스턴스의 다른 제품 hello 합니다.
 
-추가된 외부 그룹의 속성을 검토 및 구성하려면 **그룹** 탭에서 그룹 이름을 클릭합니다.
+tooreview hello 속성 hello hello 그룹의 hello 이름을 클릭 하는 추가 되 면 외부 그룹을 구성 하 고 **그룹** 탭 합니다.
 
 ![그룹 관리][api-management-groups]
 
-여기서 그룹의 **이름** 및 **설명**을 편집할 수 있습니다.
+여기에서 hello를 편집할 수 있습니다 **이름** 및 hello **설명** hello 그룹의 합니다.
 
 ![그룹 편집][api-management-edit-group]
 
-구성된 Azure Active Directory의 사용자는 개발자 포털에 로그인할 수 있으며 다음 섹션의 지침을 수행하여 표시 여부가 있는 그룹을 보고 구독할 수 있습니다.
+사용자 hello에서 구성 된 Azure Active Directory 수 뷰와 toohello 개발자 포털에 로그인 및 hello 지침 hello 섹션 다음에 따라 표시 여부를 가지는 tooany 그룹을 구독 합니다.
 
-## <a name="how-to-log-in-to-the-developer-portal-using-an-azure-active-directory-account"></a>Azure Active Directory 계정을 사용하여 개발자 포털에 로그인하는 방법
-이전 섹션에서 구성된 Azure Active Directory 계정을 사용하여 개발자 포털에 로그인하려면 Active Directory 응용 프로그램 구성에서 **로그온 URL**을 사용하여 새 브라우저 창을 열고 **Azure Active Directory**를 클릭합니다.
+## <a name="how-toolog-in-toohello-developer-portal-using-an-azure-active-directory-account"></a>어떻게 toolog Azure Active Directory 계정을 사용 하 여 toohello 개발자 포털에서
+hello 이전 섹션에 구성 된 Azure Active Directory 계정을 사용 하는 hello 개발자 포털에 toolog hello를 사용 하 여 새 브라우저 창을 열고 **로그온 URL** hello Active Directory 응용 프로그램 구성 및 클릭 **Azure Active Directory**합니다.
 
 ![개발자 포털][api-management-dev-portal-signin]
 
-Azure Active Directory에서 사용자 중 하나의 자격 증명을 입력하고 **로그인**을 클릭합니다.
+Azure Active Directory에 hello 사용자 중 하나의 hello 자격 증명을 입력 하 고 클릭 **로그인**합니다.
 
 ![로그인][api-management-aad-signin]
 
-추가 정보가 필요한 경우 등록 양식과 함께 메시지가 표시될 수 있습니다. 등록 양식을 완성하고 **등록**을 클릭합니다.
+추가 정보가 필요한 경우 등록 양식과 함께 메시지가 표시될 수 있습니다. Hello 등록 양식을 완성 하 고 클릭 **등록**합니다.
 
 ![등록][api-management-complete-registration]
 
-사용자는 이제 API 관리 서비스 인스턴스에 대한 개발자 포털에 로그인됩니다.
+사용자는 이제 API 관리 서비스 인스턴스에 대 한 hello 개발자 포털에 기록 됩니다.
 
 ![등록 완료][api-management-registration-complete]
 
@@ -220,10 +220,10 @@ Azure Active Directory에서 사용자 중 하나의 자격 증명을 입력하�
 [api-management-groups]: ./media/api-management-howto-aad/api-management-groups.png
 [api-management-edit-group]: ./media/api-management-howto-aad/api-management-edit-group.png
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -232,13 +232,13 @@ Azure Active Directory에서 사용자 중 하나의 자격 증명을 입력하�
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[Accessing the Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
+[Accessing hello Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
-[Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
+[Log in toohello Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 

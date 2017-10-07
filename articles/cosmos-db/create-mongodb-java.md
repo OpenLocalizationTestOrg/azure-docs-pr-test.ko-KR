@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: Java 및 MongoDB API에서 콘솔 앱 작성 | Microsoft Docs"
-description: "Azure Cosmos DB MongoDB API에 연결 및 쿼리하는 데 사용할 수 있는 Java 코드 샘플을 제시합니다."
+title: "Azure Cosmos DB: Java 사용 하 여 콘솔 응용 프로그램을 빌드하고 MongoDB API hello | Microsoft Docs"
+description: "Tooconnect tooand 쿼리를 사용할 수는 Java 코드 샘플 hello Azure Cosmos DB MongoDB API를 표시."
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,21 +15,21 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: f84294d7d324f094d173f7a2ec89759266a74210
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fbe416f6b20ed2bb83a1d41eb70ffc6e3cee2b61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-mongodb-api-console-app-with-java-and-the-azure-portal"></a>Azure Cosmos DB: Java 및 Azure Portal에서 MongoDB API 콘솔 앱 빌드
+# <a name="azure-cosmos-db-build-a-mongodb-api-console-app-with-java-and-hello-azure-portal"></a>Azure Cosmos DB: Java와 함께 MongoDB API 콘솔 응용 프로그램을 빌드하고 hello Azure 포털
 
-Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. Azure Cosmos DB의 핵심인 전역 배포 및 수평적 크기 조정 기능의 이점을 활용하여 문서, 키/값 및 그래프 데이터베이스를 빠르게 만들고 쿼리할 수 있습니다. 
+Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. 신속 하 게 만들기 및 문서, 키/값 및 hello 글로벌 배포 및 수평 확장이 기능 Cosmos DB Azure의 hello 핵심에에서 활용 중 일부는 그래프 데이터베이스를 쿼리할 수 있습니다. 
 
-이 빠른 시작에서는 Azure Portal을 사용하여 Azure Cosmos DB 계정, 문서 데이터베이스 및 컬렉션을 만드는 방법을 보여 줍니다. 그런 다음, [MongoDB Java 드라이버](https://docs.mongodb.com/ecosystem/drivers/java/)에서 작성한 콘솔 앱을 빌드 및 배포합니다. 
+이 빠른 시작 toocreate Azure Cosmos DB 계정, 문서 데이터베이스 및 컬렉션 사용 하 여 Azure 포털을 hello 방법을 보여 줍니다. 그런 다음 빌드하고 hello를 기반으로 하는 콘솔 응용 프로그램 배포 [MongoDB Java 드라이버](https://docs.mongodb.com/ecosystem/drivers/java/)합니다. 
 
 ## <a name="prerequisites"></a>필수 조건
 
-* 이 샘플을 실행하기 전에 다음 필수 조건이 있어야 합니다.
+* 이 예제를 실행 하려면 먼저 다음 필수 구성 요소는 hello가 있어야 합니다.
    * JDK 1.7+(JDK가 없는 경우 `apt-get install default-jdk` 실행)
    * Maven(Maven이 없는 경우 `apt-get install maven` 실행)
 
@@ -45,25 +45,25 @@ Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터�
 
 [!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
-## <a name="clone-the-sample-application"></a>샘플 응용 프로그램 복제
+## <a name="clone-hello-sample-application"></a>Hello 샘플 응용 프로그램 복제
 
-이제 GitHub에서 MongoDB API 앱을 복제하고 연결 문자열을 설정한 다음 실행해 보겠습니다. 프로그래밍 방식으로 데이터를 사용하여 얼마나 쉽게 작업할 수 있는지 알게 될 것입니다. 
+이제 github에서 복제는 MongoDB API 앱 hello 연결 문자열을 설정 하 고 실행 하겠습니다. 얼마나 쉬운지 데이터로 toowork 프로그래밍 방식으로 표시 됩니다. 
 
-1. git bash와 같은 git 터미널 창을 열고 `cd`를 수행하여 작업 디렉터리로 이동합니다.  
+1. 예: git bash git 터미널 윈도우를 열고 및 `cd` tooa 작업 디렉터리입니다.  
 
-2. 다음 명령을 실행하여 샘플 리포지토리를 복제합니다. 
+2. 다음 명령은 tooclone hello 샘플 리포지토리 hello를 실행 합니다. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-mongodb-java-getting-started.git
     ```
 
-3. 그런 다음 Visual Studio에서 솔루션을 엽니다. 
+3. 그런 다음 Visual Studio에서 hello 솔루션 파일을 엽니다. 
 
-## <a name="review-the-code"></a>코드 검토
+## <a name="review-hello-code"></a>Hello 코드 검토
 
-앱에서 어떤 상황이 발생하고 있는지 빠르게 살펴보겠습니다. `Program.cs` 파일을 열어 보면 이들 코드 줄에서 Azure Cosmos DB 리소스를 만드는 것을 알 수 있습니다. 
+Hello 앱에서 일어나는 빠르게 검토를 만들어 보겠습니다. 열기 hello `Program.cs` 파일을 다음 코드이 줄을 만든다고 hello Azure Cosmos DB 리소스를 찾을 수 있습니다. 
 
-* DocumentClient가 초기화됩니다.
+* hello DocumentClient 초기화 됩니다.
 
     ```java
     MongoClientURI uri = new MongoClientURI("FILLME");`
@@ -95,34 +95,34 @@ Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터�
 
 ## <a name="update-your-connection-string"></a>연결 문자열 업데이트
 
-이제 Azure Portal로 다시 이동하여 연결 문자열 정보를 가져와서 앱에 복사합니다.
+이제 돌아가서 toohello Azure 포털 tooget 연결 문자열 정보를 hello 앱에 복사 합니다.
 
-1. 계정에서 **빠른 시작**을 선택하고 Java를 선택한 다음 연결 문자열을 클립보드에 복사합니다.
+1. Hello 계정에서에서 선택 **빠른 시작**, Java을 선택 하 고 hello 연결 문자열 tooyour 클립보드에 복사
 
-2. `Program.java` 파일을 열고 MongoClientURI 생성자에 대한 인수를 연결 문자열로 바꿉니다. 이제 Azure Cosmos DB와 통신하는 데 필요한 모든 정보로 앱이 업데이트되었습니다. 
+2. 열기 hello `Program.java` 파일, hello 인수 toohello MongoClientURI 생성자 hello 연결 문자열로 대체 합니다. 이제 앱을 업데이트 한 toocommunicate Azure Cosmos DB와 함께 필요한 모든 hello 정보 인 합니다. 
     
-## <a name="run-the-console-app"></a>콘솔 앱 실행
+## <a name="run-hello-console-app"></a>Hello 콘솔 앱 실행
 
-1. 터미널에서 `mvn package`를 실행하여 필요한 npm 모듈을 설치합니다.
+1. 실행 `mvn package` 터미널 tooinstall에 필수 npm 모듈
 
-2. 터미널에서 `mvn exec:java -D exec.mainClass=GetStarted.Program`을 실행하여 Java 응용 프로그램을 시작합니다.
+2. 실행 `mvn exec:java -D exec.mainClass=GetStarted.Program` 터미널 toostart에서 Java 응용 프로그램입니다.
 
-이제 [Robomongo](mongodb-robomongo.md) / [Studio 3T](mongodb-mongochef.md)를 사용하여 이 새 데이터를 쿼리, 수정 및 사용할 수 있습니다.
+이제 사용할 수 있습니다 [Robomongo](mongodb-robomongo.md) / [Studio 3t 이상](mongodb-mongochef.md) tooquery, 수정 하 고이 새 데이터를 사용 합니다.
 
-## <a name="review-slas-in-the-azure-portal"></a>Azure Portal에서 SLA 검토
+## <a name="review-slas-in-hello-azure-portal"></a>Sla hello Azure 포털에서에서 검토 하 고
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>리소스 정리
 
-이 앱을 계속 사용하지 않으려면 Azure Portal에서 다음 단계에 따라 이 빠른 시작에서 만든 리소스를 모두 삭제합니다.
+것 toocontinue toouse이 응용이 프로그램을 만들이 빠른 시작 하 여 hello Azure 포털에서에서 단계를 수행 하는 hello로 리소스를 모두 삭제:
 
-1. Azure Portal의 왼쪽 메뉴에서 **리소스 그룹**을 클릭한 다음 만든 리소스의 이름을 클릭합니다. 
-2. 리소스 그룹 페이지에서 **삭제**를 클릭하고 텍스트 상자에서 삭제할 리소스의 이름을 입력한 다음 **삭제**를 클릭합니다.
+1. Hello Azure 포털에서에서 왼쪽 메뉴 hello에서에서 클릭 **리소스 그룹** 만든 hello 리소스의 hello 이름을 클릭 하 고 있습니다. 
+2. 리소스 그룹 페이지에서 클릭 **삭제**hello 텍스트 상자에 hello 리소스 toodelete의 hello 이름을 입력 한 다음 클릭 **삭제**합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 빠른 시작에서, Azure Cosmos DB 계정을 만들고, 데이터 탐색기를 사용하여 컬렉션을 만들고, 콘솔 앱을 실행하는 방법을 알아보았습니다. 이제 사용자의 Cosmos DB 계정에 추가 데이터를 가져올 수 있습니다. 
+이 빠른 시작에서 Azure Cosmos DB 계정 toocreate hello 데이터 탐색기를 사용 하 여 컬렉션을 만들 하 고 콘솔 응용 프로그램을 실행 하는 방법 배웠습니다. 이제 tooyour Cosmos DB 계정 추가 데이터를 가져올 수 있습니다. 
 
 > [!div class="nextstepaction"]
 > [Azure Cosmos DB로 MongoDB 데이터 가져오기](mongodb-migrate.md)

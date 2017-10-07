@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights를 사용하여 Node.js 서비스 모니터링 | Microsoft Docs"
+title: "Node.js aaaMonitor Azure Application Insights를 사용 하 여 서비스 | Microsoft Docs"
 description: "Application Insights를 사용하여 Node.js 서비스의 성능을 모니터링하고 문제를 진단합니다."
 services: application-insights
 documentationcenter: nodejs
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/01/2017
 ms.author: bwren
-ms.openlocfilehash: ee65207e546c7050cc7bf35c36624fc49ad9eec4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0a7e66990cd4d3a2fcaf3fa779adb336c861f8ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-your-nodejs-services-and-apps-with-application-insights"></a>Application Insights를 사용하여 Node.js 서비스 및 앱 모니터링
 
-백 엔드 서비스 및 구성 요소를 배포한 후 [Azure Application Insights](app-insights-overview.md)로 모니터링하여 [성능 및 기타 문제를 신속하게 발견하고 진단](app-insights-detect-triage-diagnose.md)할 수 있습니다. 데이터 센터, Azure VM, Web Apps, 기타 공용 클라우드 등 어느 위치에 호스트된 Node.js 서비스에도 사용할 수 있습니다.
+[Azure Application Insights](app-insights-overview.md) toohelp를 배포한 후 백 엔드 서비스 및 구성 요소를 모니터링 하면 [검색 하 고 성능 및 기타 문제를 신속 하 게 진단](app-insights-detect-triage-diagnose.md)합니다. 데이터 센터, Azure VM, Web Apps, 기타 공용 클라우드 등 어느 위치에 호스트된 Node.js 서비스에도 사용할 수 있습니다.
 
-모니터링 데이터를 수신, 저장 및 탐색하려면 다음 지침에 따라 코드에 에이전트를 포함하고 Azure에서 해당 Application Insights 리소스를 설정합니다. 에이전트는 추가 분석 및 탐색을 위해 해당 리소스로 데이터를 보냅니다.
+tooreceive, 저장 및 모니터링 하 여 데이터 탐색, hello 지침 tooinclude 코드에서 에이전트를 다음에 따라 및 Azure에서 해당 Application Insights 리소스를 설정 합니다. hello 에이전트 추가 분석 및 탐색에 대 한 데이터 toothat 리소스를 보냅니다.
 
-Node.js 에이전트는 들어오고 나가는 HTTP 요청, 여러 시스템 메트릭 및 예외를 자동으로 모니터링할 수 있습니다. v0.20부터는 `mongodb`, `mysql`, `redis` 등의 일반적인 타사 패키지도 모니터링할 수 있습니다. 들어오는 HTTP 요청과 관련된 모든 이벤트는 좀 더 빠른 문제 해결을 위해 상호 관계가 지정됩니다.
+hello Node.js 에이전트 들어오고 나가는 HTTP 요청, 여러 가지 시스템 메트릭 및 예외에 자동으로 모니터링할 수 있습니다. v0.20부터는 `mongodb`, `mysql`, `redis` 등의 일반적인 타사 패키지도 모니터링할 수 있습니다. 빠른 문제 해결에 대 한 tooan 들어오는 HTTP 요청과 상호 관련 된 모든 이벤트.
 
-뒷부분에서 설명할 에이전트 API를 사용하여 앱과 시스템을 수동으로 계측하면 앱과 시스템의 더 많은 요소를 모니터링할 수 있습니다.
+응용 프로그램의 더 많은 요소를 모니터링할 수 있습니다 및 수동으로 계측 하 여 시스템 뒷부분에서 설명 하는 hello 에이전트 API를 사용 합니다.
 
 ![예제 성능 모니터링 차트](./media/app-insights-nodejs/10-perf.png)
 
@@ -37,33 +37,33 @@ Node.js 에이전트는 들어오고 나가는 HTTP 요청, 여러 시스템 메
 
 ### <a name="resource"></a> App Insights 리소스 설정
 
-**시작하기 전에** Azure 구독이 있는지 확인하거나 [무료 계정을 새로 만듭니다][azure-free-offer]. 조직에 이미 Azure 구독이 있으면 관리자가 [다음 지침][add-aad-user]에 따라 사용자를 구독에 추가할 수 있습니다.
+**시작하기 전에** Azure 구독이 있는지 확인하거나 [무료 계정을 새로 만듭니다][azure-free-offer]. 관리자가 조직에 이미 Azure 구독이 있으면 따르면 [이러한 지침] [ add-aad-user] tooadd tooit 있습니다.
 
 [azure-free-offer]: https://azure.microsoft.com/en-us/free/
 [add-aad-user]: https://docs.microsoft.com/en-us/azure/active-directory/active-directory-users-create-azure-portal
 
-[Azure Portal][portal]에 로그인하고 다음 그림처럼 "새로 만들기" > "개발자 도구" > "Application Insights"를 클릭하여 Application Insights 리소스를 만듭니다. 리소스에는 원격 분석 데이터를 수신하기 위한 끝점, 이 데이터 저장소, 저장된 보고서 및 대시보드, 규칙 및 경고 구성이 포함됩니다.
+이제 toohello 로그인 [Azure 포털] [ portal] hello 다음에 설명 된 대로 Application Insights 리소스 만들기-"새로 만들기"를 클릭 하 고 > "개발자 도구" > "Application Insights"입니다. hello 리소스에 원격 분석 데이터 받기, 보고서 및 대시보드, 규칙 및 경고 구성 및 더 저장이 데이터에 대 한 저장소에 대 한 끝점 포함 되어 있습니다.
 
 ![App Insights 리소스 만들기](./media/app-insights-nodejs/03-new_appinsights_resource.png)
 
-리소스 만들기 페이지의 응용 프로그램 유형 드롭다운에서 "Node.js 응용 프로그램"을 선택합니다. 앱 유형에 따라 생성되는 기본 대시보드 및 보고서 집합이 결정됩니다. 모든 App Insights 리소스는 모든 언어 및 플랫폼에서 데이터를 수집할 수 있으므로 걱정할 필요는 없습니다.
+Hello 리소스 만들기 페이지에서 "Node.js 응용 프로그램" hello 응용 프로그램 유형 드롭다운 목록에서 선택 합니다. hello 앱 유형을 hello 기본 집합이 대시보드 및 보고서 생성을 결정 합니다. 모든 App Insights 리소스는 모든 언어 및 플랫폼에서 데이터를 수집할 수 있으므로 걱정할 필요는 없습니다.
 
 ![새로운 App Insights 리소스 형식](./media/app-insights-nodejs/04-create_appinsights_resource.png)
 
-### <a name="agent"></a> Node.js 에이전트 설정
+### <a name="agent"></a>Hello Node.js 에이전트 설정
 
-이제 에이전트가 데이터를 수집할 수 있도록 앱에 에이전트를 포함해야 합니다.
-먼저 아래와 같이 리소스의 계측 키(이하 `ikey`)를 복사합니다. App Insights 시스템은 이 키를 사용하여 데이터를 Azure 리소스로 매핑하므로 환경 변수 또는 코드에서 에이전트가 사용할 키를 지정해야 합니다.  
+이제 데이터를 수집할 수 있도록 응용 프로그램에서 시간 tooinclude hello 에이전트입니다.
+리소스의 계측 키를 복사 하 여 시작 (tooas이 하 라고 프로그램 `ikey`) 아래와 같이 hello 포털에서 합니다. App Insights 시스템 toospecify 필요 하므로이 키 toomap 데이터 tooyour Azure 리소스 사용 하 여 hello 환경 변수 또는 에이전트 toouse hello에 대 한 코드에서.  
 
 ![계측 키 복사](./media/app-insights-nodejs/05-appinsights_ikey_portal.png)
 
-다음으로 package.json을 통해 Node.js 에이전트 라이브러리를 앱의 종속성에 추가합니다. 앱의 루트 폴더에서 다음을 실행합니다.
+다음으로 package.json 통해 hello Node.js 에이전트 라이브러리 tooyour 응용 프로그램의 종속성을 추가 합니다. 응용 프로그램의 hello 루트 폴더에서 다음을 실행 합니다.
 
 ```bash
 npm install applicationinsights --save
 ```
 
-이제 코드에서 라이브러리를 명시적으로 로드해야 합니다. 에이전트는 여러 다른 라이브러리에 계측 값을 삽입합니다. 따라서 최대한 신속하게, 심지어 다른 `require` 문보다도 먼저 로드해야 합니다. 시작하려면 첫 번째 .js 파일의 맨 위에 다음을 추가합니다.
+이제 tooexplicitly 부하 hello 라이브러리 코드에 있어야합니다. 다양 한 라이브러리에 계기를 삽입 하는 hello 에이전트, 때문에 로드 해야 것도 다른 하기 전에 가능한 한 빨리 `require` 문. tooget 시작, 첫 번째.js 파일의 hello 위쪽에 추가 합니다.
 
 ```javascript
 const appInsights = require("applicationinsights");
@@ -71,46 +71,46 @@ appInsights.setup("<instrumentation_key>");
 appInsights.start();
 ```
 
-`setup` 메서드는 기본적으로 모든 추적 항목에 사용할 계측 키(따라서 Azure 리소스까지)를 구성합니다. 구성 후 `start` 호출이 완료되고 원격 분석 데이터의 수집 및 송신이 시작됩니다.
+hello `setup` 메서드 hello 계측 키 (및 따라서 Azure 리소스) 구성 toobe 추적 된 모든 항목에 대해 기본적으로 사용 합니다. 호출 `start` 구성이 완료 된 toobegin 수집 및 원격 분석 데이터를 전송 된 후입니다.
 
-ikey를 `setup()` 또는 `getClient()`에 수동으로 전달하는 대신 APPINSIGHTS\_INSTRUMENTATIONKEY 환경 변수를 통해 제공할 수도 있습니다. 이렇게 하면 ikey가 커밋된 소스 코드의 영향을 받지 않으며 다른 환경에 다른 ikey를 지정할 수 있습니다.
+APPINSIGHTS hello 환경 변수를 통해 ikey 제공할 수도 있습니다\_전달 하는 대신 수동으로 너무 INSTRUMENTATIONKEY `setup()` 또는 `getClient()`합니다. 이 연습에서는 ikeys 커밋된 소스 코드에서와 다른 환경에 대해 다른 ikeys toospecify 유지 수 있습니다.
 
 추가 구성 옵션은 아래에 설명되어 있습니다.
 
-계측 키를 비어 있지 않은 문자열로 설정하면 원격 분석을 전송하지 않고도 에이전트를 사용해 볼 수 있습니다.
+Hello 계측 키 tooany 비어 있지 않은 문자열을 설정 하 여 원격 분석을 전송 하지 않고 hello 에이전트를 시도할 수 있습니다.
 
 ### <a name="monitor"></a> 앱 모니터링
 
-에이전트는 Node.js 런타임 및 일부 일반적인 타사 모듈에 대한 원격 분석 데이터를 자동으로 수집합니다. 이제 응용 프로그램을 사용하여 이 데이터를 생성합니다.
+Node.js 런타임 hello에 대 한 원격 분석 및 몇 가지 일반적인 제 3 자 모듈 hello 에이전트를 자동으로 수집 합니다. 응용 프로그램 지금 toogenerate를 사용 하 여이 데이터의 일부입니다.
 
-그런 후 다음 그림과 같이 [Azure Portal][portal]에서 이전에 만든 Application Insights 리소스를 찾고, 개요 타임 라인에서 첫 번째 데이터 요소를 찾습니다. 자세한 내용을 보려면 차트를 클릭합니다.
+그런 다음, hello [Azure 포털] [ portal] 앞에서 만든 toohello Application Insights 리소스를 찾아보고 검색할 처음 몇 가지 데이터 요소에 hello 다음 이미지와 같이 hello 개요 타임 라인입니다. 자세한 내용은 hello 차트를 클릭 합니다.
 
 ![첫 번째 데이터 요소](./media/app-insights-nodejs/12-first-perf.png)
 
-다음 그림과 같이 응용 프로그램 맵 단추를 클릭하여 앱에 대해 검색된 토폴로지를 봅니다. 자세한 내용을 보려면 맵에서 구성 요소를 클릭합니다.
+Hello 응용 프로그램 맵 단추 tooview hello 토폴로지 hello 다음 이미지와 같이 앱에 대 한 검색을 클릭 합니다. 자세한 내용은 hello 맵에서 구성 요소를 클릭 합니다.
 
 ![간단한 앱 맵](./media/app-insights-nodejs/06-appinsights_appmap.png)
 
-"조사" 섹션에 제공되는 다른 보기를 사용하여 앱에 대해 자세히 알아보고 문제를 해결하세요.
+응용 프로그램에 대 한 자세한 정보 및 hello "검사" 섹션에서 사용할 수 있는 다른 보기 hello를 사용 하 여 문제를 해결 합니다.
 
 ![조사 섹션](./media/app-insights-nodejs/07-appinsights_investigate_blades.png)
 
 #### <a name="no-data"></a>데이터가 없나요?
 
-에이전트는 제출할 데이터를 일괄 처리하기 때문에 항목이 포털에 표시될 때까지 지연이 있을 수 있습니다. 리소스에 데이터가 보이지 않으면 다음 해결 방법 중 일부를 시도해 보세요.
+Hello 에이전트 데이터 전송에 대 한 일괄 처리 하기 때문에 있을 수 있습니다 지연 전에 항목이 hello 포털에 표시 됩니다. 표시 되지 않으면 데이터, 리소스에 따라 수정 하는 hello 중 일부를 시도:
 
-* 응용 프로그램을 좀 더 사용하고 원격 분석을 생성하는 작업을 좀 더 수행합니다.
-* 포털 리소스 보기에서 **새로 고침**을 클릭합니다. 차트가 주기적으로 자동 새로 고침되지만 새로 고침을 클릭하면 즉시 새로 고쳐집니다.
+* 좀 더; hello 응용 프로그램을 사용 하 여 더 많은 작업 toogenerate 더 많은 원격 분석을 수행 합니다.
+* 클릭 **새로 고침** hello 포털 리소스 뷰에서 합니다. 차트 자동으로 새로 고쳐 자체 주기적으로 있지만이 toohappen 즉시 강제로 새로 고침.
 * [필요한 발신 포트](app-insights-ip-addresses.md)가 열려 있는지 확인합니다.
-* [검색](app-insights-diagnostic-search.md) 타일을 열고 개별 이벤트를 검색합니다.
-* [FAQ][]를 확인합니다.
+* 열기 hello [검색](app-insights-diagnostic-search.md) 바둑판식으로 배열 하 고 개별 이벤트를 찾아보십시오.
+* Hello 확인 [FAQ][]합니다.
 
 
 ## <a name="agent-configuration"></a>에이전트 구성
 
-다음은 에이전트의 구성 메서드와 해당 기본값입니다.
+다음은 hello 에이전트 구성 방법 및 기본값입니다.
 
-서비스에서 이벤트의 상관 관계를 완전하게 지정하려면 `.setAutoDependencyCorrelation(true)`을 설정합니다. 이렇게 하면 에이전트가 Node.js의 비동기 콜백에서 컨텍스트를 추적할 수 있습니다.
+서비스의 이벤트를 상호 연결 시키고 toofully 수 있는지 tooset `.setAutoDependencyCorrelation(true)`합니다. 따라서 hello 에이전트 tootrack 컨텍스트 Node.js에서 비동기 콜백 간에 있습니다.
 
 ```javascript
 const appInsights = require("applicationinsights");
@@ -127,9 +127,9 @@ appInsights.setup("<instrumentation_key>")
 
 <!-- TODO: Fully document agent API. -->
 
-.NET 에이전트 API는 [여기](app-insights-api-custom-events-metrics.md)에 자세히 설명되어 있습니다.
+hello.NET 에이전트 API 대 한 자세한 내용은 [여기](app-insights-api-custom-events-metrics.md)합니다.
 
-Application Insights Node.js 클라이언트를 사용하여 모든 요청, 이벤트, 메트릭 또는 예외를 추적할 수 있습니다. 다음 예제에서는 사용 가능한 API의 일부를 보여 줍니다.
+요청, 이벤트, 메트릭 또는 통찰력 Node.js 응용 프로그램 클라이언트 hello를 사용 하 여 예외를 추적할 수 있습니다. hello 다음 예제에서는 일부 hello 사용 가능한 Api입니다.
 
 ```javascript
 let appInsights = require("applicationinsights");
@@ -143,7 +143,7 @@ client.trackTrace("trace message");
 
 let http = require("http");
 http.createServer( (req, res) => {
-  client.trackRequest(req, res); // Place at the beginning of your request handler
+  client.trackRequest(req, res); // Place at hello beginning of your request handler
 });
 ```
 
@@ -162,7 +162,7 @@ success = true;
 client.trackDependency("dependency name", "command name", duration, success);
 ```
 
-### <a name="add-a-custom-property-to-all-events"></a>모든 이벤트에 사용자 지정 속성 추가
+### <a name="add-a-custom-property-tooall-events"></a>사용자 지정 속성 tooall 이벤트 추가
 
 ```javascript
 appInsights.client.commonProperties = {
@@ -194,7 +194,7 @@ server.on("listening", () => {
 
 ## <a name="more-resources"></a>추가 리소스
 
-* [포털에서 원격 분석 모니터링](app-insights-dashboards.md)
+* [Hello 포털에서 원격 분석을 모니터링 합니다.](app-insights-dashboards.md)
 * [원격 분석에 분석 쿼리 작성](app-insights-analytics-tour.md)
 
 <!--references-->

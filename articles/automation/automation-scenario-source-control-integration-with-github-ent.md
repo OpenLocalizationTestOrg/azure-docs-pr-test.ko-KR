@@ -1,6 +1,6 @@
 ---
-title: "GitHub Enterprise와 Azure Automation 소스 제어 통합 | Microsoft Docs"
-description: "Automation runbook의 소스 제어를 위해 GitHub Enterprise와의 통합을 구성하는 방법을 자세히 설명합니다."
+title: "GitHub 엔터프라이즈와 소스 제어 통합을 자동화 aaaAzure | Microsoft Docs"
+description: "Hello 방법 자세히 설명 합니다. 자동화 runbook의 소스 제어에 대 한 GitHub 엔터프라이즈와 tooconfigure 통합 합니다."
 services: automation
 documentationCenter: 
 authors: mgoedtel
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: magoedte
-ms.openlocfilehash: 62793dcdbbf4c83161e95d1c165d5c231245f7c6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 915d36ccabb72fdee1dba663049a0b331249cd73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-automation-scenario---automation-source-control-integration-with-github-enterprise"></a>Azure Automation 시나리오 - GitHub Enterprise와 Automation 소스 제어 통합
 
-Automation은 현재 GitHub 소스 제어 리포지토리에 Automation 계정의 Runbook을 연결할 수 있도록 하는 소스 제어 통합을 지원합니다.  그러나 DevOps 작업을 지원하기 위해 [GitHub Enterprise](https://enterprise.github.com/home) 배포한 고객은 비즈니스 프로세스 및 서비스 관리 작업을 자동화하도록 개발된 runbook의 수명 주기를 관리하는 데도 이 기능을 사용하려고 할 수 있습니다.  
+자동화는 현재 자동화 계정 tooa GitHub 소스 제어 리포지토리에 tooassociate runbook 수 있는 소스 제어 통합을 지원 합니다.  그러나 배포한 고객의 [GitHub Enterprise](https://enterprise.github.com/home) toosupport 자신의 DevOps 사례, toouse 할 것은 runbook의 toomanage hello 수명 주기 개발 tooautomate 비즈니스 프로세스 및 서비스 관리 작업입니다.  
 
-이 시나리오에서는 Azure Resource Manager 모듈 및 Git 도구가 설치된 Hybrid Runbook Worker로 구성된 데이터 센터에 Windows 컴퓨터가 있습니다.  하이브리드 작업자 컴퓨터에는 로컬 Git 리포지토리의 복제본이 있습니다.  Runbook이 Hybrid Worker에서 실행될 때 Git 디렉터리가 동기화되고 runbook 파일 내용이 Automation 계정으로 전달됩니다.
+이 시나리오에서는 hello Azure 리소스 관리자 모듈 및 Git 도구가 설치 된 Hybrid Runbook Worker로 구성 된 데이터 센터의 Windows 컴퓨터를가지고 있습니다.  hello 하이브리드 작업자 컴퓨터의 hello 로컬 Git 리포지토리를 복제를 있습니다.  Hello runbook hello 하이브리드 작업자에서 실행 될 때 hello Git 디렉터리 동기화 되 고 hello 자동화 계정으로 hello runbook 파일 내용을 가져옵니다.
 
-이 문서에서는 Azure Automation 환경에서 이러한 구성을 설정하는 방법을 설명합니다. 보안 자격 증명, 이 시나리오를 지원하는 데 필요한 Runbook 및 데이터 센터에 Hybrid Runbook Worker 배포가 포함된 Automation을 구성하여 Runbook을 실행하고, GitHub Enterprise 리포지토리에 액세스하여 Runbook을 Automation 계정과 동기화합니다.  
+이 문서에서는 설명 어떻게 Azure 자동화 환경에서이 구성을 tooset 합니다. 자동화 hello 보안 자격 증명으로 구성 하 여 시작, runbook 필요한 toosupport이이 시나리오에서는 및의 데이터에서 Hybrid Runbook Worker 배포 toorun hello runbook 가운데 맞춤 및 GitHub Enterprise 리포지토리 toosynchronize 액세스 자동화 계정 사용 하 여 runbook입니다.  
 
 
-## <a name="getting-the-scenario"></a>시나리오 가져오기
+## <a name="getting-hello-scenario"></a>Hello 시나리오를 가져오기
 
-이 시나리오는 Azure 포털의 [Runbook 갤러리](automation-runbook-gallery.md)에서 직접 가져오거나 [PowerShell 갤러리](https://www.powershellgallery.com)에서 다운로드할 수 있는 2개의 PowerShell runbook으로 구성됩니다.
+이 시나리오 hello에서 직접 가져올 수 있는 두 개의 PowerShell runbook 이루어져 [Runbook 갤러리](automation-runbook-gallery.md) hello Azure 포털 또는 hello에서 다운로드 [PowerShell 갤러리](https://www.powershellgallery.com)합니다.
 
 ### <a name="runbooks"></a>Runbook
 
 Runbook | 설명| 
 --------|------------|
-Export-RunAsCertificateToHybridWorker | Runbook은 Automation 계정에서 하이브리드 작업자로 RunAs(실행) 인증서를 내보내어 Runbook을 Automation 계정으로 가져오기 위해 작업자의 Runbook이 Azure로 인증하도록 합니다.| 
-Sync-LocalGitFolderToAutomationAccount | Runbook은 하이브리드 컴퓨터의 로컬 Git 폴더를 동기화한 다음 Runbook 파일(*.ps1)을 Automation 계정으로 가져옵니다.|
+Export-RunAsCertificateToHybridWorker | Runbook은 hello worker에서 runbook hello 자동화 계정에 순서 tooimport runbook에서 Azure로 인증할 수 있도록 자동화 계정 tooa 하이브리드 작업자에서 RunAs 인증서를 내보냅니다.| 
+Sync-LocalGitFolderToAutomationAccount | Runbook 동기화 hello 하이브리드 컴퓨터의 로컬 Git 폴더 hello 한 다음 hello 자동화 계정으로 hello runbook 파일 (*.ps1)를 가져옵니다.|
 
 ### <a name="credentials"></a>자격 증명
 
 자격 증명 | 설명|
 -----------|------------|
-GitHRWCredential | 하이브리드 작업자에 대한 권한이 있는 사용자에 대한 사용자 이름과 암호를 포함하도록 만드는 자격 증명 자산입니다.|
+GitHRWCredential | 자격 증명 자산 권한 toohello 하이브리드 작업자와 toocontain hello 사용자 이름 및 사용자의 암호를 만듭니다.|
 
 ## <a name="installing-and-configuring-this-scenario"></a>이 시나리오 설치 및 구성
 
 ### <a name="prerequisites"></a>필수 조건
 
-1. Sync-LocalGitFolderToAutomationAccount runbook은 [Azure 실행 계정](automation-sec-configure-azure-runas-account.md)을 사용하여 인증을 합니다. 
+1. hello 동기화 LocalGitFolderToAutomationAccount runbook hello를 사용 하 여 인증 [Azure 실행 계정](automation-sec-configure-azure-runas-account.md)합니다. 
 
-2. Azure Automation 솔루션이 사용되도록 설정되고 구성된 Microsoft OMS(Operations Management Suite) 작업 공간도 필요합니다.  이 시나리오를 설치하고 구성하는 데 사용되는 Automation 계정과 연결된 작업 영역이 없으면 Hybrid Runbook Worker에서 **New-OnPremiseHybridWorker.ps1** 스크립트를 실행할 때 해당 작업 영역이 만들어지고 구성됩니다.        
+2. Microsoft Operations Management Suite (OMS) 작업 영역 설정 하 고 구성 하는 Azure 자동화 솔루션 hello로은 필요 합니다.  생성 되 고 hello를 실행할 때를 구성 하지 않은 경우이 시나리오를 구성 하 고 hello 자동화 사용 되는 계정 tooinstall와 관련이 있는, **새로 OnPremiseHybridWorker.ps1** hello 하이브리드에서 스크립트 runbook worker입니다.        
 
     > [!NOTE]
-    > 현재 OMS와 Automation의 통합만 지원되는 지역은 **오스트레일리아 남동부**, **미국 동부 2**, **동남 아시아** 및 **유럽 서부**입니다. 
+    > 현재 hello 다음 지역만 자동화 통합을 지 원하는 OMS- **오스트레일리아 남동부**, **미국 동부 2**, **동남 아시아**, 및 **서 부 유럽**합니다. 
 
-3. 전용 Hybrid Runbook Worker로 사용할 수 있는 컴퓨터는 GitHub 소프트웨어를 호스트하고 runbook 파일(*runbook*.ps1)을 파일 시스템의 소스 디렉터리에 유지하여 GitHub와 Automation 계정 간에 동기화를 수행합니다.
+3. 컴퓨터를 호스트 하는 또한 hello GitHub 소프트웨어 hello runbook 파일을 유지 하 여 전용된 하이브리드 Runbook 작업자로 사용 될 수 있습니다 (*runbook*.ps1) hello 파일 시스템 toosynchronize GitHub 사이 있는 원본 디렉터리에 사용자 및 자동화 계정입니다.
 
-### <a name="import-and-publish-the-runbooks"></a>Runbook 가져오기 및 게시
+### <a name="import-and-publish-hello-runbooks"></a>가져오기 및 hello runbook 게시
 
-Azure Portal의 Automation 계정에서 Runbook 갤러리의 *Export-RunAsCertificateToHybridWorker* 및 *Sync-LocalGitFolderToAutomationAccount* Runbook을 가져오려면 [Runbook 갤러리에서 Runbook 가져오기](automation-runbook-gallery.md#to-import-a-runbook-from-the-runbook-gallery-with-the-azure-portal)의 절차를 따릅니다. Runbook을 Automation 계정으로 가져온 후에는 Runbook을 게시합니다.
+tooimport hello *내보내기 RunAsCertificateToHybridWorker* 및 *동기화 LocalGitFolderToAutomationAccount* hello Azure 포털에서에서 자동화 계정의 hello Runbook 갤러리에서에서 runbook hello 절차에 따라 [hello Runbook 갤러리에서에서 Runbook 가져오기](automation-runbook-gallery.md#to-import-a-runbook-from-the-runbook-gallery-with-the-azure-portal)합니다. 성공적으로 가져온 자동화 계정으로 후 hello runbook을 게시 합니다.
 
 ### <a name="deploy-and-configure-hybrid-runbook-worker"></a>Hybrid Runbook Worker 배포 및 구성
 
-데이터 센터에 Hybrid Runbook Worker를 아직 배포하지 않은 경우 요구 사항을 검토하고 [Azure Automation Hybrid Runbook Worker - 설치 및 구성 자동화](automation-hybrid-runbook-worker.md#automated-deployment)의 절차를 사용하여 자동 설치 단계를 따릅니다.  컴퓨터에 Hybrid Worker를 설치했으면 다음 단계를 수행하여 이 시나리오를 지원하도록 구성을 완료합니다.
+Hello 요구 사항을 검토 하 고의 hello 절차를 사용 하 여 hello 자동화 된 설치 단계를 수행 해야 데이터 센터에 이미 배포 된 Hybrid Runbook Worker가 [Azure 자동화 Hybrid Runbook Worker-설치 자동화 구성과](automation-hybrid-runbook-worker.md#automated-deployment)합니다.  컴퓨터에 hello 하이브리드 작업자를 성공적으로 설치한 후 수행 하는 구성 toosupport이이 시나리오 단계 toocomplete 다음 hello 합니다.
 
-1. 로컬 관리자 권한이 있는 계정으로 Hybrid Runbook Worker 역할을 호스팅하는 컴퓨터에 로그온하고 Git Runbook 파일을 저장할 디렉터리를 만듭니다.  디렉터리에 내부 Git 리포지토리를 복제합니다.
-2. 아직 실행 계정을 만들지 않았거나 이 용도로 새 전용 계정을 만들려면 Azure Portal에서 Automation 계정으로 이동한 후 Automation 계정을 선택하고 Hybrid Worker에 대한 권한이 있는 사용자의 사용자 이름 및 암호를 포함하는 [자격 증명 자산](automation-credentials.md)을 만듭니다.  
-3. Automation 계정에서 [runbook](automation-edit-textual-runbook.md)  **Export-RunAsCertificateToHybridWorker**를 편집하고 강력한 암호를 사용하여 변수 *$Password*의 값을 수정합니다.  값을 수정한 후 **게시**를 클릭하여 runbook 초안 버전을 게시합니다. 
-5. Runbook **Export-RunAsCertificateToHybridWorker**를 시작하고 **Runbook 시작** 블레이드의 **실행 설정** 옵션에서 **Hybrid Worker** 옵션을 선택하고 드롭다운 목록에서 이 시나리오에 대해 이전에 만든 Hybrid Worker 그룹을 선택합니다.  
+1. Toohello 컴퓨터 호스팅 hello 하이브리드 Runbook 작업자 역할에 로컬 관리자 권한이 있는 계정으로 서명과 디렉터리 toohold hello Git runbook 파일을 만듭니다.  Hello 내부 Git 리포지토리 toohello 디렉터리를 복제 합니다.
+2. 이미 않아도 만든 실행 계정 또는 toocreate 한 새 이러한 용도로 전용를 원하는 경우 hello Azure 포털에서에서 탐색 tooAutomation 계정을 자동화 계정을 선택한 만들기는 [자격 증명 자산](automation-credentials.md) 입니다 hello 사용자 이름 및 사용자 권한 toohello 하이브리드 작업자에 대 한 암호를 포함합니다.  
+3. 자동화 계정에서 [hello runbook 편집](automation-edit-textual-runbook.md)**내보내기 RunAsCertificateToHybridWorker** hello hello 변수 값을 수정 하 고 *$Password* 강력한와 암호입니다.    Hello 값을 수정한 후 클릭 **게시** toohave hello runbook의 초안 버전을 hello 게시 합니다. 
+5. Hello runbook을 시작 **내보내기 RunAsCertificateToHybridWorker**, 및 hello **Runbook 시작** 블레이드 hello 옵션 아래에서 **실행 설정** hello옵션을선택**Hybrid Worker** 및이 시나리오에 대해 이전에 만든 hello 드롭다운 목록에서 선택 hello Hybrid worker 그룹입니다.  
 
-    이렇게 하면 인증서를 하이브리드 작업자로 내보내어 Azure 리소스를 관리하기 위해 작업자의 Runbook이 실행 연결을 사용하여 Azure로 인증할 수 있도록 합니다(이 시나리오의 경우 특히 Automation 계정으로 Runbook 가져오기).
+    이 runbook hello 작업자의 % (이 시나리오-가져오기 runbook toohello 자동화 계정에 대 한 특정)에 Azure 리소스가 순서 toomanage의 연결 계정으로 실행 hello를 사용 하 여 Azure로 인증할 수 있도록 인증서 toohello 하이브리드 작업자를 내보냅니다.
 
-4. Automation 계정에서 이전에 만든 하이브리드 작업자 그룹을 선택하고, 이 그룹에 대한 [실행 계정을 지정](automation-hrw-run-runbooks.md#runas-account)하고, 방금 또는 이전에 만든 자격 증명 자산을 선택합니다.  이렇게 하면 동기화 Runbook이 Git 명령을 실행할 수 있습니다. 
-5. Runbook **Sync-LocalGitFolderToAutomationAccount**를 시작하고 다음의 필수 입력 매개 변수 값을 제공한 다음 **Runbook 시작** 블레이드의 **실행 설정** 옵션에서 **Hybrid Worker** 옵션을 선택하고 드롭다운 목록에서 이 시나리오에 대해 이전에 만든 Hybrid Worker 그룹을 선택합니다.
-    * *ResourceGroup* - Automation 계정과 연결된 리소스 그룹의 이름
-    * *AutomationAccountName* - 자동화 계정의 이름
-    * *GitPath* - Git이 최신 변경 내용을 끌어오도록 설정된 Hybrid Runbook Worker의 로컬 폴더 또는 파일
+4. 자동화 계정에서 선택 hello Hybrid worker 그룹 앞에서 만든 및 [RunAs 계정을 지정](automation-hrw-run-runbooks.md#runas-account) hello Hybrid worker 그룹 및 선택한 hello 자격 증명 자산 방금 또는 이미 만들었습니다.  이렇게 하면 해당 hello 동기화 runbook Git 명령을 실행할 수 있습니다. 
+5. Hello runbook을 시작 **동기화 LocalGitFolderToAutomationAccount**, hello 다음과 같은 필수 입력된 매개 변수 값을 제공 및 hello **Runbook 시작** 블레이드 hello 옵션 아래에서 **실행 설정** hello 옵션을 선택 **Hybrid Worker** 및이 시나리오에 대해 이전에 만든 hello 드롭다운 목록에서 선택 hello Hybrid worker 그룹:
+    * *ResourceGroup* -hello 자동화 계정에 연결 된 리소스 그룹의 이름
+    * *AutomationAccountName* -hello 자동화 계정 이름
+    * *GitPath* -hello 로컬 폴더 또는 파일 크기가 hello Hybrid Runbook Worker에 toopull 최신 변경 내용을 Git가 설정
 
-    이제 Hybrid Worker 컴퓨터의 로컬 Git 폴더가 동기화된 후 소스 디렉터리에서 Automation 계정으로 .ps1 파일이 전달됩니다.
+    Hello 하이브리드 작업자 컴퓨터의 로컬 Git 폴더 hello 동기화 되 고 hello 소스 디렉터리 toohello 자동화 계정에서에서 hello.ps1 파일을 가져옵니다.
 
     ![Sync-LocalGitFolderToAutomationAccount Runbook 시작](media/automation-scenario-source-control-integration-with-github-ent/start-runbook-synclocalgitfoldertoautoacct.png)<br>
 
-7. Automation 계정의 **Runbook** 블레이드에서 runbook을 선택하여 runbook에 대한 작업 요약 세부 정보를 확인한 다음 **작업** 타일을 선택합니다.  **모든 로그** 타일을 선택하고 자세한 로그 스트림을 검토하여 성공적으로 완료되었는지 확인합니다.  
+7. Hello에서 선택 하 여 hello runbook에 대 한 작업 요약 정보를 볼 **Runbook** 자동화 계정 및 선택 hello 블레이드 **작업** 바둑판식으로 배열입니다.  Hello를 선택 하 여 성공적으로 완료 확인 **모든 로그** 타일 및 hello 자세한 로그 스트림 검토 합니다.  
 
 ## <a name="next-steps"></a>다음 단계
 
--  Runbook 형식, 해당 장점 및 제한 사항에 대해 자세히 확인하려면 [Azure 자동화 Runbook 형식](automation-runbook-types.md)
+-  runbook 형식이, 장점 및 제한 사항에 대해 자세히 tooknow 참조 [Azure 자동화 runbook 형식](automation-runbook-types.md)
 -  PowerShell 스크립트 지원 기능에 대한 자세한 내용은 [Azure 자동화에서 네이티브 PowerShell 스크립트 지원](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)

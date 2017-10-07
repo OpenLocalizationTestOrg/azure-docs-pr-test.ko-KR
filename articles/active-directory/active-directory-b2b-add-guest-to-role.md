@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory B2B 공동 작업 사용자를 역할에 추가 | Microsoft Docs"
-description: "Azure Active Directory의 역할에 게스트 사용자 추가"
+title: "aaaAdd Azure Active Directory B2B 공동 작업 사용자 tooa 역할 | Microsoft Docs"
+description: "Azure Active Directory에서 게스트 사용자 tooa 역할 추가"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -16,15 +16,15 @@ ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e816349ea971c997f655b4d51672dba666bc3e89
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ccc58a0c8ecc73f8e79a8d827efdc0ff93846a96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-permissions-to-users-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Azure Active Directory 테넌트에서 파트너 조직의 사용자에게 권한 부여
+# <a name="grant-permissions-toousers-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Azure Active Directory 테 넌 트의 파트너 조직에서 toousers 사용 권한 부여
 
-Azure AD(Azure Active Directory) B2B 공동 작업 사용자가 디렉터리에 게스트 사용자로 추가되고 디렉터리의 게스트 사용 권한이 기본적으로 제한되지만 기업은 조직의 추가 권한 역할을 채우기 위해 게스트 사용자가 필요할 수 있습니다. 높은 권한 역할 정의를 지원하기 위해 조직의 요구에 따라 원하는 역할에 게스트 사용자를 추가할 수 있습니다.
+Azure Active Directory (Azure AD) B2B 공동 작업 사용자는 추가 게스트 사용자 toohello 디렉터리로 및 게스트 사용 권한 hello 디렉터리에 기본적으로 제한 됩니다. 비즈니스 조직에서 일부 게스트 사용자 toofill 높은 권한이 역할을 할 수 있습니다. 높은 권한이 역할 정의 toosupport 게스트 사용자 조직의 요구에 따라 원하는 추가 된 tooany 역할이 될 수 있습니다.
 
 ## <a name="default-role"></a>기본 역할
 

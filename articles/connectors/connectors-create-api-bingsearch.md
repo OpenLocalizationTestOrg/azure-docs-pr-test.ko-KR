@@ -1,6 +1,6 @@
 ---
-title: "Bing 검색 커넥터 논리 앱 추가 | Microsoft Docs"
-description: "REST API 매개 변수를 사용하는 Bing 검색 커넥터 개요"
+title: "aaaAdd hello Bing 검색 커넥터 논리 앱 | Microsoft Docs"
+description: "REST API 매개 변수를 사용 하는 hello Bing 검색 커넥터 개요"
 services: 
 suite: 
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 863a15d716161bfa9d3e041174504b73a2956e8d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 839b7d85367d1fdc63b91dcfe3166e177f10eaf1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-bing-search-connector"></a>Bing 검색 커넥터 시작
-Bing 검색에 연결하여 뉴스 검색, 비디오 검색 등의 작업을 수행합니다. Bing 검색을 사용하면 다음과 같은 작업을 수행할 수 있습니다. 
+# <a name="get-started-with-hello-bing-search-connector"></a>Hello Bing 검색 커넥터와 함께 시작
+TooBing 검색 toosearch 뉴스, 검색 비디오 등을 연결 합니다. Bing 검색을 사용하면 다음과 같은 작업을 수행할 수 있습니다. 
 
-* 검색에서 가져온 데이터를 기반으로 비즈니스 흐름을 빌드합니다. 
-* 이미지 검색, 뉴스 검색 등의 작업을 사용합니다. 이러한 작업을 사용하여 응답을 가져오고 출력을 다른 작업에 사용할 수 있도록 설정합니다. 예를 들어 비디오를 검색한 다음 Twitter를 사용하여 Twitter 피드에 해당 비디오를 게시할 수 있습니다.
+* 검색에서 받아야 하는 hello 데이터를 기반으로 비즈니스 흐름을 작성 합니다. 
+* 동작 toosearch 이미지, 검색 hello 뉴스 등을 사용 합니다. 이러한 작업 응답을 가져오고 다른 작업에 사용할 수 있는 hello 출력을 확인 합니다. 예를 들어, 비디오를 검색 하 고 사용 하 여 Twitter toopost Twitter 피드 비디오 tooa 해당 수 있습니다.
 
 이제 논리 앱을 만들어 시작할 수 있습니다. [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md)를 참조하세요.
 
 ## <a name="connector-specific-details"></a>커넥터 관련 세부 정보
 
-[커넥터 세부 정보](/connectors/bingsearch/)에서 swagger에 정의된 모든 트리거 및 작업과 제한 사항도 확인할 수 있습니다.
+모든 트리거 및 hello swagger에 정의 된 작업을 확인 하 고 hello에 어떠한 제한도 볼 [connector 세부 정보](/connectors/bingsearch/)합니다.
 
 ## <a name="more-connectors"></a>추가 커넥터
-[API 목록](apis-list.md)으로 돌아갑니다.
+Toohello 돌아가서 [Api 목록](apis-list.md)합니다.
 

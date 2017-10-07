@@ -1,6 +1,6 @@
 ---
-title: "Windows 10 및 Windows Server 2016에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결 | Microsoft Docs"
-description: "Windows 10 및 Windows Server 2016에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결"
+title: "Windows 10 및 Windows Server 2016 용 aaaTroubleshooting hello 자동 등록의 Azure AD 도메인 연결 컴퓨터 | Microsoft Docs"
+description: "Windows 10 및 Windows Server 2016에 대 한 연결 컴퓨터를 Azure AD 도메인의 hello 자동 등록 문제를 해결 합니다."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,22 +14,22 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: 5b7f95f302f716d9221b5fae59aa2df5c956a524
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3795323ce9392368b412b3e1208868431e59a74b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad--windows-10-and-windows-server-2016"></a>Windows 10 및 Windows Server 2016에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-tooazure-ad--windows-10-and-windows-server-2016"></a>가입 된 컴퓨터 tooAzure AD – Windows 10 및 Windows Server 2016 도메인의 자동 등록 문제 해결
 
-이 항목은 다음 클라이언트에 적용됩니다.
+이 항목은 적용 가능한 toohello 다음 클라이언트:
 
 -   Windows 10
 -   Windows Server 2016
 
-기타 Windows 클라이언트의 경우 [Windows 하위 수준 클라이언트에 대한 Azure AD 도메인 조인 컴퓨터의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows-legacy.md)을 참조하세요.
+다른 Windows 클라이언트에 대 한 참조 [Windows 하위 클라이언트에 대 한 컴퓨터 tooAzure AD 가입 된 도메인의 자동 등록 문제 해결](active-directory-device-registration-troubleshoot-windows-legacy.md)합니다.
 
-이 항목에서는 다음 시나리오를 지원하기 위해 [Windows 도메인 가입 장치의 Azure Active Directory 자동 등록을 구성하는 방법](active-directory-device-registration-get-started.md)에 설명된 대로 도메인 가입 장치의 자동 등록을 구성했다고 가정합니다.
+이 항목에서는 구성 자동 등록의 도메인에 가입 된 장치에서 설명한 대로 설명 된 [어떻게 tooconfigure 자동 등록의 Windows 도메인에 가입 된 장치의 Azure Active Directory와](active-directory-device-registration-get-started.md) 다음 시나리오는 toosupport hello:
 
 - [장치 기반 조건부 액세스](active-directory-conditional-access-automatic-device-registration-setup.md)
 
@@ -38,16 +38,16 @@ ms.lasthandoff: 08/03/2017
 - [비즈니스용 Windows Hello](active-directory-azureadjoin-passport-deployment.md)
 
 
-이 문서에서는 잠재적인 문제를 해결하는 방법에 대한 문제 해결 지침을 제공합니다. 
+이 문서에 어떻게 tooresolve 잠재적 문제 해결 지침을 제공 합니다. 
 
-등록은 Windows 10 2015년 11월 업데이트 이상에서 지원됩니다.  
-위 시나리오를 사용하려면 기념일 업데이트를 사용하는 것이 좋습니다.
+hello 등록은 지원 hello windows에서 10 2015 년 11 월 업데이트 이상.  
+위의 hello 시나리오를 사용 하기 위한 hello Anniversary 업데이트를 사용 하는 것이 좋습니다.
 
-## <a name="step-1-retrieve-the-registration-status"></a>1단계: 등록 상태 검색 
+## <a name="step-1-retrieve-hello-registration-status"></a>1 단계: hello 등록 상태를 검색 합니다. 
 
-**등록 상태를 검색하려면**
+**tooretrieve hello 등록 상태:**
 
-1. 관리자 권한으로 명령 프롬프트를 엽니다.
+1. 관리자 권한으로 hello 명령 프롬프트를 엽니다.
 
 2. **dsregcmd /status**를 입력합니다.
 
@@ -57,7 +57,7 @@ ms.lasthandoff: 08/03/2017
     | Device State                                                         |  +----------------------------------------------------------------------+
     
         AzureAdJoined : YES
-     EnterpriseJoined : NO DeviceId : 5820fbe9-60c8-43b0-bb11-44aee233e4e7 Thumbprint : B753A6679CE720451921302CA873794D94C6204A KeyContainerId : bae6a60b-1d2f-4d2a-a298-33385f6d05e9 KeyProvider : Microsoft Platform Crypto Provider TpmProtected : YES KeySignTest: : MUST Run elevated to test.
+     EnterpriseJoined: DeviceId 없음: 5820fbe9-60c8-43b0-bb11-44aee233e4e7 지문: B753A6679CE720451921302CA873794D94C6204A KeyContainerId: bae6a60b-1d2f-4d2a-a298-33385f6d05e9 KeyProvider: Microsoft 플랫폼 암호화 공급자 TpmProtected: 예 KeySignTest:: tootest 상승 된 실행 해야 합니다.
                   Idp : login.windows.net TenantId : 72b988bf-86f1-41af-91ab-2d7cd011db47 TenantName : Contoso AuthCodeUrl : https://login.microsoftonline.com/msitsupp.microsoft.com/oauth2/authorize AccessTokenUrl : https://login.microsoftonline.com/msitsupp.microsoft.com/oauth2/token MdmUrl : https://enrollment.manage-beta.microsoft.com/EnrollmentServer/Discovery.svc MdmTouUrl : https://portal.manage-beta.microsoft.com/TermsOfUse.aspx dmComplianceUrl : https://portal.manage-beta.microsoft.com/?portalAction=Compliance SettingsUrl : eyJVcmlzIjpbImh0dHBzOi8va2FpbGFuaS5vbmUubWljcm9zb2Z0LmNvbS8iLCJodHRwczovL2thaWxhbmkxLm9uZS5taWNyb3NvZnQuY29tLyJdfQ== JoinSrvVersion : 1.0 JoinSrvUrl : https://enterpriseregistration.windows.net/EnrollmentServer/device/ JoinSrvId : urn:ms-drs:enterpriseregistration.windows.net KeySrvVersion : 1.0 KeySrvUrl : https://enterpriseregistration.windows.net/EnrollmentServer/key/ KeySrvId : urn:ms-drs:enterpriseregistration.windows.net DomainJoined : YES DomainName : CONTOSO
     
     +----------------------------------------------------------------------+
@@ -71,53 +71,53 @@ ms.lasthandoff: 08/03/2017
 
 
 
-## <a name="step-2-evaluate-the-registration-status"></a>2단계: 등록 상태 평가 
+## <a name="step-2-evaluate-hello-registration-status"></a>2 단계: hello 등록 상태를 평가 합니다. 
 
-다음 필드를 검토하고 예상 값을 갖는지 확인합니다.
+Hello 다음 필드를 검토 하 고 hello 예상 값을 갖는지 확인 하십시오.
 
 ### <a name="azureadjoined--yes"></a>AzureAdJoined : YES  
 
-이 필드는 장치가 Azure AD에 등록되어 있는지 여부를 나타냅니다. 이 값이 'NO'로 표시되면 등록이 완료되지 않은 것입니다. 
+이 필드는 hello 장치가 Azure AD에 등록 되었는지 여부를 표시 합니다. Hello 값 '아니요'로 표시 되 면 등록 완료 되지 않았습니다. 
 
 **가능한 원인:**
 
-- 등록을 위한 컴퓨터 인증이 실패했습니다.
+- 등록에 대 한 hello 컴퓨터의 인증에 실패 했습니다.
 
-- 조직에 컴퓨터에서 검색될 수 없는 HTTP 프록시가 있습니다.
+- Hello 컴퓨터도 찾을 수 없습니다 hello 조직 중인 HTTP 프록시
 
-- 컴퓨터가 인증을 위해 Azure AD에, 또는 등록을 위해 Azure DRS에 연결할 수 없습니다.
+- 인증을 위해 Azure AD 또는 등록에 대 한 Azure DRS hello 컴퓨터에 연결할 수 없습니다.
 
-- 컴퓨터가 조직의 내부 네트워크 또는 온-프레미스 AD 도메인 컨트롤러의 직접 가시선 내에 있는 VPN에 있지 않습니다.
+- hello 컴퓨터 아닐 hello 조직의 내부 네트워크 또는 VPN의 직선 tooan와 온-프레미스 AD 도메인 컨트롤러입니다.
 
-- 컴퓨터에 TPM이 있는 경우 잘못된 상태일 수도 있습니다.
+- Hello 컴퓨터에 TPM이 있으면 잘못 된 상태에 수도 있습니다.
 
-- 이전에 문서에 설명된 것처럼 다시 확인해야 하는 잘못된 서비스 구성이 있을 수 있습니다. 일반적인 예제는 다음과 같습니다.
+- 서비스에서 잘못 된 구성 앞에서 기록한 hello 문서에 다시 tooverify를 필요 함이 있을 수 있습니다. 일반적인 예제는 다음과 같습니다.
 
     - 페더레이션 서버에서 Ws-Trust 끝점이 사용되도록 설정되어 있지 않습니다.
 
     - 페더레이션 서버는 Windows 통합 인증을 사용한 네트워크 컴퓨터에서의 인바운드 인증을 허용하지 않을 수 있습니다.
 
-    - 컴퓨터가 속한 AD 포리스트의 Azure AD에서 확인된 도메인 이름을 가리키는 서비스 연결 지점 개체가 없습니다.
+    - Azure AD에서 hello 컴퓨터 속한 hello AD 포리스트에 tooyour 확인 된 도메인 이름을 가리키는 서비스 연결 지점 개체가 없는
 
 ---
 
 ### <a name="domainjoined--yes"></a>DomainJoined : YES  
 
-이 필드는 장치가 온-프레미스 Active Directory에 조인되는지 여부를 보여 줍니다. 값이 **NO**로 표시되면 장치는 Azure AD에 자동으로 등록될 수 없습니다. Azure AD에 등록할 수 있으려면 먼저 장치가 온-프레미스 Active Directory에 조인되는지 확인합니다. Azure AD에 컴퓨터를 직접 조인하려면 Azure Active Directory 조인 기능 알아보기로 이동하세요.
+이 필드는 hello 장치 조인된 tooan 온-프레미스 Active Directory 인지 여부를 표시 합니다. Hello 값으로 표시 되 면 **아니요**, hello 장치 없습니다 자동 등록을 Azure AD와 합니다. 해당 hello 장치 조인 toohello 온-프레미스 Active Directory와 Azure AD에 등록할 수 전에 먼저 확인 합니다. Hello 컴퓨터 tooAzure AD 직접 추가 하기 위해 원하는 경우 Azure Active Directory Join의 기능에 대해 tooLearn 이동 하세요.
 
 ---
 
 ### <a name="workplacejoined--no"></a>WorkplaceJoined : NO  
 
-이 필드는 장치가 Azure AD에 개인 장치로 등록되어 있는지 여부를 보여 줍니다(“작업 영역 조인”으로 표시). 이 값이 Azure AD에 등록된 도메인 조인 컴퓨터에 대해 'NO'로 표시되어야 하는데 YES로 표시되면 컴퓨터 등록을 완료하기 전에 회사 또는 학교 계정이 추가되었다는 것을 의미합니다. 이 경우 Windows 10 기념일 업데이트 버전(1607 '실행' 창 또는 명령 프롬프트 창에서 WinVer 명령을 실행하는 경우 1607 표시)을 사용하면 이러한 계정은 무시됩니다.
+이 필드는 hello 장치를 Azure AD와 있지만 개인 장치 (작업 공간 연결로 표시)로 등록 되었는지 여부를 표시 합니다. 그러나이 값은 Azure AD에 등록 된 도메인에 가입 된 컴퓨터에 대 한 '아니요'로 표시 해야 하면, 됨을 의미 하는 예로 표시 되는 경우 회사 또는 학교 계정을 추가 된 이전 toohello 컴퓨터 완료 등록 합니다. 이 경우 hello 계정은 Windows 10 (1607 때 '실행' 창 또는 명령 프롬프트 창의 hello hello WinVer 명령에서 실행)의 hello Anniversary 업데이트 버전을 사용 하는 경우 무시 됩니다.
 
 ---
 
 ### <a name="wamdefaultset--yes-and-azureadprt--yes"></a>WamDefaultSet : YES 및 AzureADPrt : YES
   
-이러한 필드는 장치에 로그인 시 Azure AD에서 성공적으로 인증되었음을 나타냅니다. ‘NO’가 표시될 경우 가능한 원인은 다음과 같습니다.
+이러한 필드에 해당 hello 사용자가 AD tooAzure toohello 장치 로그인 시 인증 성공적으로 나타납니다. 표시 하는 경우 '아니요' hello 다음 원인은 다음과 같습니다.
 
-- 등록 시 장치에 연결된 TPM에 잘못된 저장소 키(STK)가 있습니다(상승된 권한으로 실행하면서 KeySignTest 확인).
+- 등록 (확인 hello KeySignTest 높은 실행 하는 동안) 시 hello 장치와 연결 된 TPM의 잘못 된 저장소 키 (STK)입니다.
 
 - 대체 로그인 ID
 
@@ -125,4 +125,4 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="next-steps"></a>다음 단계
 
-자세한 내용은 [자동 장치 등록 FAQ](active-directory-device-registration-faq.md)를 참조하세요. 
+자세한 내용은 참조 hello [자동 장치 등록 FAQ](active-directory-device-registration-faq.md) 

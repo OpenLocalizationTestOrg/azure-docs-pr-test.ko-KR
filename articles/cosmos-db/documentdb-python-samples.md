@@ -1,5 +1,5 @@
 ---
-title: "Azure Cosmos DB에 대한 DocumentDB API Python 예제 | Microsoft Docs"
+title: "Azure Cosmos DB에 대 한 API aaaDocumentDB Python 예제 | Microsoft Docs"
 description: "CRUD 작업을 비롯한 Azure Cosmos DB의 일반적인 작업에 대한 github의 Python 예제를 찾습니다."
 keywords: "Python 예제"
 services: cosmos-db
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/24/2016
 ms.author: moderakh
-ms.openlocfilehash: d1577eeeb8fe8007394431ce70a1c7a6ee61776b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8f240782b0997f2d32b68d310dc6f4ff6cb36d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-python-examples"></a>Azure Cosmos DB Python 예제
 > [!div class="op_single_selector"]
@@ -30,25 +30,25 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Azure Cosmos DB 리소스에 대해 CRUD 작업 및 다른 일반적인 작업을 수행하는 샘플 솔루션은 [azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 리포지토리에 포함되어 있습니다. 이 문서는 다음을 제공합니다.
+샘플 솔루션을 CRUD 작업 및 Azure Cosmos DB 리소스에서 기타 일반적인 작업을 수행 하는 hello에 포함 된 [azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 리포지토리 합니다. 이 문서는 다음을 제공합니다.
 
-* 각 Python 예제 프로젝트 파일에서 작업에 연결합니다. 
-* 관련된 API 참조 콘텐츠에 대한 링크입니다.
+* 각 hello Python 예제 프로젝트 파일에서 링크 toohello 작업입니다. 
+* 링크 toohello 관련 API 참조 콘텐츠입니다.
 
 **필수 구성 요소**
 
-1. 이러한 Python 예제를 사용하려면 Azure 계정이 필요합니다.
-   * [Azure 계정을 무료로 개설](https://azure.microsoft.com/pricing/free-trial/)할 수 있음: 유료 Azure 서비스를 사용해볼 수 있는 크레딧을 받게 되며 크레딧을 모두 사용한 후에도 계정을 유지하고 무료 Azure 서비스(예: 웹 서비스)를 사용할 수 있습니다. 설정을 명시적으로 변경하여 결제를 요청하지 않는 한 신용 카드로 결제되지 않습니다.
+1. Azure 계정 toouse 이러한 Python 예제 필요합니다.
+   * 할 수 있습니다 [무료로 Azure 계정을 개설](https://azure.microsoft.com/pricing/free-trial/): 크레딧을 얻게 유료 Azure 서비스 아웃 tootry 사용할 수 있으며 사용 후에 최대 hello 계정 등에 사용 하 여 웹 사이트와 같은 Azure 서비스를 해제 합니다. 명시적으로 설정을 변경 하 고 청구 toobe 요청 하지 않는 한 신용 카드, 청구 됩니다 하지 않습니다.
      * [Visual Studio 구독자 혜택을 활성화](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)할 수 있음: Visual Studio 구독은 유료 Azure 서비스에 사용할 수 있는 크레딧을 매달 제공합니다.
-2. 또한 [Python SDK](documentdb-sdk-python.md)가 필요합니다. 
+2. 또한 hello 해야 [Python SDK](documentdb-sdk-python.md)합니다. 
    
    > [!NOTE]
-   > 각 샘플은 자체 포함되며 자체를 설정하고 자체를 정리합니다. 샘플은 [document_client.CreateCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html)에 대한 여러 호출을 실행합니다. 구독에 이렇게 영향을 줄 때마다 생성되는 컬렉션의 성능 계층 당 1시간 사용량이 청구됩니다. 
+   > 각 샘플은 자체 포함되며 자체를 설정하고 자체를 정리합니다. 이와 같이 hello 샘플 발급 여러 번 호출 너무[document_client 합니다. CreateCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html)합니다. 구독에 영향을 주는 이렇게 될 때마다 생성 되 고 hello 컬렉션의 hello 성능 계층 당 사용량의 1 시간에 대 한 청구 됩니다. 
    > 
    > 
 
 ## <a name="database-examples"></a>데이터베이스 예제
-[DatabaseManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement) 프로젝트의 [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement/Program.py) 파일은 다음 작업을 수행하는 방법을 보여 줍니다.
+hello [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement/Program.py) 파일의 hello [DatabaseManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement) 프로젝트 tooperform hello 다음 작업 방법을 보여 줍니다.
 
 | 작업 | API 참조 |
 | --- | --- |
@@ -59,7 +59,7 @@ Azure Cosmos DB 리소스에 대해 CRUD 작업 및 다른 일반적인 작업�
 | [데이터베이스 삭제](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/DatabaseManagement/Program.py#L113-L126) |[document_client.DeleteDatabase](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html) |
 
 ## <a name="collection-examples"></a>컬렉션 예제
-[CollectionManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement) 프로젝트의 [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement/Program.py) 파일은 다음 작업을 수행하는 방법을 보여 줍니다.
+hello [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement/Program.py) 파일의 hello [CollectionManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement) 프로젝트 tooperform hello 다음 작업 방법을 보여 줍니다.
 
 | 작업 | API 참조 |
 | --- | --- |

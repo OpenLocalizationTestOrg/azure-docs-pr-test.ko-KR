@@ -1,6 +1,6 @@
 ---
-title: "Azure 앱 서비스에서 Azure Redis 캐시를 사용하는 세션 상태"
-description: "Azure 캐시 서비스를 사용하여 ASP.NET 세션 상태 캐싱을 지원하는 방법에 대해 설명합니다."
+title: "Azure 앱 서비스에서 Azure Redis 캐시와 aaaSession 상태"
+description: "Toouse hello Azure 캐시 서비스 toosupport ASP.NET 세션 상태 캐싱 하는 방법에 대해 알아봅니다."
 services: app-service\web
 documentationcenter: .net
 author: Rick-Anderson
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 06/27/2016
 ms.author: riande
-ms.openlocfilehash: 64fa909daf92b2b1f0cf4c7b334edba807fe7228
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f689b6754ea072aa195f822ab6482f4bf2748375
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="session-state-with-azure-redis-cache-in-azure-app-service"></a>Azure 앱 서비스에서 Azure Redis 캐시를 사용하는 세션 상태
-이 항목에서는 세션 상태에 Azure Redis 캐시 서비스를 사용하는 방법을 설명합니다.
+이 항목에서는 toouse Azure Redis 캐시 서비스 세션 상태에 대 한 hello 하는 방법을 설명 합니다.
 
-ASP.NET 웹 앱에서 세션 상태를 사용하는 경우 외부 세션 상태 공급자(Redis 캐시 서비스 또는 SQL Server 세션 상태 공급자)를 구성해야 합니다. 세션 상태를 사용하는 경우 외부 공급자를 사용하지 않으면 웹 앱의 인스턴스가 하나로 제한됩니다. Redis 캐시 서비스는 가장 빠르고 간편하게 사용하도록 설정할 수 있습니다.
+ASP.NET 웹 응용 프로그램 세션 상태를 사용 하는 외부 세션 상태 공급자 (hello Redis 캐시 서비스 또는 SQL Server 세션 상태 공급자) tooconfigure를 해야 합니다. 세션 상태를 사용 하 고 외부 공급자를 사용 하지 않는 경우에 웹 응용 프로그램의 제한 된 tooone 인스턴스 됩니다. hello Redis 캐시 서비스는 hello 빠르고 간편한 tooenable입니다.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a id="createcache"></a>캐시 만들기
-캐시를 만들려면 [다음 지침](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-cache)을 따르세요.
+## <a id="createcache"></a>Hello 캐시 만들기
+에 따라 [이러한 방향은](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-cache) toocreate hello 캐시 합니다.
 
-## <a id="configureproject"></a>웹앱에 RedisSessionStateProvider NuGet 패키지 추가
-NuGet `RedisSessionStateProvider` 패키지를 설치합니다.  다음 명령을 사용하여 패키지 관리자 콘솔에서 설치합니다(**도구** > **NuGet 패키지 관리자** > **패키지 관리자 콘솔**):
+## <a id="configureproject"></a>Hello RedisSessionStateProvider NuGet 패키지 tooyour 웹 응용 프로그램 추가
+Hello NuGet 설치 `RedisSessionStateProvider` 패키지 합니다.  사용 하 여 hello 다음 명령은 hello 패키지 관리자 콘솔에서 tooinstall (**도구** > **NuGet 패키지 관리자** > **패키지 관리자 콘솔**):
 
   `PM> Install-Package Microsoft.Web.RedisSessionStateProvider`
 
-**도구** > **NuGet 패키지 관리자** > **솔루션의 NuGet 패키지 관리**에서 설치하려면 `RedisSessionStateProvider`를 검색합니다.
+tooinstall **도구** > **NuGet 패키지 관리자** > **덩어리 패키지를 솔루션에 대 한 관리**, 검색할 `RedisSessionStateProvider`합니다.
 
-자세한 내용은 [NuGet RedisSessionStateProvider 페이지](http://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider/) 및 [캐시 클라이언트 구성](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#NuGet)을 참조하세요.
+자세한 내용은 참조 hello [NuGet RedisSessionStateProvider 페이지](http://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider/) 및 [hello 캐시 클라이언트 구성](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#NuGet)합니다.
 
-## <a id="configurewebconfig"></a>Web.Config 파일 수정
-NuGet 패키지는 캐시에 대한 어셈블리 참조를 만들 뿐 아니라 *web.config* 파일에 스텁 항목을 추가합니다. 
+## <a id="configurewebconfig"></a>Hello Web.Config 파일 수정
+Hello에 스텁 항목을 추가 하는 hello NuGet 패키지를 toomaking 어셈블리 캐시에 대 한 참조 하는 또한 *web.config* 파일입니다. 
 
-1. *web.config* 를 열고 **sessionState** 요소를 찾습니다.
-2. `host`, `accessKey`, `port`(SSL 포트는 6380이어야 함) 값을 입력하고 `SSL`를 `true`로 설정합니다. 이러한 값은 캐시 인스턴스에 대한 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715) 블레이드에서 가져올 수 있습니다. 자세한 내용은 [캐시에 연결](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-cache)을 참조하세요. 비 SSL 포트는 기본적으로 새 캐시에 대해 사용하지 않도록 설정됩니다. 비-SSL 포트 사용 방법에 대한 자세한 내용은 [Azure Redis Cache에서 캐시 구성](https://msdn.microsoft.com/library/azure/dn793612.aspx) 토픽의 [액세스 포트](https://msdn.microsoft.com/library/azure/dn793612.aspx#AccessPorts) 섹션을 참조하세요. 변경 내용을 표시 하는 다음 태그는 *web.config* 파일을 변경 하려면 특별히 *포트*, *호스트*, accessKey * 및 *ssl* .
+1. 열기 hello *web.config* hello hello 및 **sessionState** 요소입니다.
+2. Hello 값을 입력 `host`, `accessKey`, `port` (SSL 포트 hello 6380 이어야 함)을 설정 하 고 `SSL` 너무`true`합니다. Hello에서 이러한 값을 가져올 수 있습니다 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715) 블레이드 캐시 인스턴스에 대 한 합니다. 자세한 내용은 참조 [toohello 캐시 연결](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-cache)합니다. Hello 비 SSL 포트 새 캐시에 대해 기본적으로 해제 되어 있는지 확인 합니다. Hello 비 SSL 포트를 사용 하도록 설정 하는 방법에 대 한 자세한 내용은 참조 hello [액세스 포트](https://msdn.microsoft.com/library/azure/dn793612.aspx#AccessPorts) hello 섹션인 [Azure Redis Cache에서 캐시 구성](https://msdn.microsoft.com/library/azure/dn793612.aspx) 항목입니다. hello 다음 태그를 보여 줍니다 hello 변경 toohello *web.config* 파일이, 특히 hello 변경 너무*포트*, *호스트*, accessKey * 및 *ssl*.
    
           <system.web>;
             <customErrors mode="Off" />;
@@ -73,32 +73,32 @@ NuGet 패키지는 캐시에 대한 어셈블리 참조를 만들 뿐 아니라 
             </sessionState>;
           </system.web>;
 
-## <a id="usesessionobject"></a> 코드에서 Session 개체 사용
-마지막 단계는 ASP.NET 코드에서 Session 개체 사용을 시작하는 것입니다. **Session.Add** 메서드를 사용하여 세션 상태에 개체를 추가합니다. 이 메서드는 키-값 쌍을 사용하여 세션 상태 캐시에 항목을 저장합니다.
+## <a id="usesessionobject"></a>Hello 세션 개체를 사용 하 여 코드에서
+hello 최종 단계 toobegin hello 세션 개체를 사용 하 여 ASP.NET 코드에서입니다. Hello를 사용 하 여 개체 toosession 상태를 추가한 **Session.Add** 메서드. 이 메서드는 hello 세션 상태 캐시의 키-값 쌍 toostore 항목을 사용 합니다.
 
     string strValue = "yourvalue";
     Session.Add("yourkey", strValue);
 
-다음 코드를 사용하면 세션 상태에서 이 값이 검색됩니다.
+hello 코드 다음 세션 상태에서이 값을 검색 합니다.
 
     object objValue = Session["yourkey"];
     if (objValue != null)
        strValue = (string)objValue;    
 
-Redis 캐시를 사용하여 웹 앱에서 개체를 캐시할 수도 있습니다. 자세한 내용은 [Azure Redis 캐시를 사용한 MVC 동영상 앱(15분)](https://azure.microsoft.com/blog/2014/06/05/mvc-movie-app-with-azure-redis-cache-in-15-minutes/)(영문)을 참조하세요.
-ASP.NET 세션 상태 사용 방법에 대한 자세한 내용은 [ASP.NET 세션 상태 개요][ASP.NET Session State Overview]를 참조하세요.
+웹 앱의 hello Redis Cache toocache 개체를 사용할 수도 있습니다. 자세한 내용은 [Azure Redis 캐시를 사용한 MVC 동영상 앱(15분)](https://azure.microsoft.com/blog/2014/06/05/mvc-movie-app-with-azure-redis-cache-in-15-minutes/)(영문)을 참조하세요.
+방법에 대 한 자세한 내용은 toouse ASP.NET 세션 상태 참조 [ASP.NET 세션 상태 개요][ASP.NET Session State Overview]합니다.
 
 > [!NOTE]
-> Azure 계정을 등록하기 전에 Azure App Service를 시작하려면 [App Service 체험](https://azure.microsoft.com/try/app-service/)으로 이동합니다. App Service에서 단기 스타터 웹앱을 즉시 만들 수 있습니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
+> Tooget Azure 계정에 등록 하기 전에 Azure 앱 서비스를 시작 하려는 경우 너무 이동[앱 서비스 시도](https://azure.microsoft.com/try/app-service/)앱 서비스의 수명이 짧은 스타터 웹 응용 프로그램 즉시 만들 수 있는, 합니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
 > 
 > 
 
 ## <a name="whats-changed"></a>변경된 내용
-* 웹 사이트에서 앱 서비스로의 변경에 대한 지침은 [Azure 앱 서비스와 이 서비스가 기존 Azure 서비스에 미치는 영향](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 웹 사이트 tooApp 서비스에서에서 변경 사항 참조 가이드 toohello: [기존 Azure 서비스에 대 한 해당 영향 및 Azure 앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714)
   
   *작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)*
 
-[installed the latest]: http://www.windowsazure.com/downloads/?sdk=net  
+[installed hello latest]: http://www.windowsazure.com/downloads/?sdk=net  
 [ASP.NET Session State Overview]: http://msdn.microsoft.com/library/ms178581.aspx
 
 [NewIcon]: ./media/web-sites-dotnet-session-state-caching/CacheScreenshot_NewButton.png

@@ -1,6 +1,6 @@
 ---
-title: "Visual Studio를 사용하여 Azure 앱 서비스에서 웹 앱 문제 해결"
-description: "Visual Studio 2013에서 기본 제공되는 원격 디버깅, 추적 및 로깅 도구를 사용하여 Azure 웹 앱 문제를 해결하는 방법에 대해 알아봅니다."
+title: "Visual Studio를 사용 하 여 Azure 앱 서비스의 웹 앱 aaaTroubleshoot"
+description: "어떻게 tootroubleshoot 원격 디버깅을 사용 하 여 Azure 웹 앱, 추적, 로깅 도구 및 tooVisual Studio 2013에에서는 기본 제공에 대해 알아봅니다."
 services: app-service
 documentationcenter: .net
 author: tdykstra
@@ -14,68 +14,68 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/29/2016
 ms.author: rachelap
-ms.openlocfilehash: abfd9a4c1b346377d7f1fc30455a1487b113537d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8e3a8a58293f2ebcdc131fbf2534f8ff99b26730
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-a-web-app-in-azure-app-service-using-visual-studio"></a>Visual Studio를 사용하여 Azure 앱 서비스에서 웹 앱 문제 해결
 ## <a name="overview"></a>개요
-이 자습서에서는 원격으로 [디버그 모드](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)를 실행하거나 응용 프로그램 로그 및 웹 서버 로그를 확인하여 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714)에서 웹앱을 디버그할 수 있는 Visual Studio 도구를 사용하는 방법을 보여줍니다.
+이 자습서는 데 도움이 되는 toouse Visual Studio 도구에 웹 응용 프로그램을 디버깅 하는 방법을 보여 줍니다. [앱 서비스](http://go.microsoft.com/fwlink/?LinkId=529714),를 실행 하 여 [디버그 모드](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx) 원격으로 또는 응용 프로그램 로그와 웹 서버 로그를 확인 하 여 합니다.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 다음 내용을 배웁니다.
 
 * Visual Studio에서 사용할 수 있는 Azure 웹 앱 관리 기능
-* Visual Studio 원격 뷰를 사용하여 원격 웹 앱에서 빠르게 변경하는 방법
-* 웹 응용 및 WebJob에 대한 프로젝트를 Azure에서 실행하는 동안 원격으로 디버그 모드를 실행하는 방법
-* 응용 프로그램 추적 로그를 만드는 방법 및 해당 로그가 생성될 때 이를 보는 방법
-* 자세한 오류 메시지 및 실패한 요청 추적을 포함하여 웹 서버 로그를 보는 방법
-* 진단 로그를 Azure 저장소 계정으로 보내고 해당 위치에서 로그를 보는 방법
+* 어떻게 toouse Visual Studio 원격 원격 웹 앱에서 toomake 빠른 변경 내용을 봅니다.
+* 어떻게 toorun 디버그 모드는 프로젝트 하는 동안 원격으로와 같은 웹 작업이 모두 웹 응용 프로그램에 대 한 Azure에서 실행 합니다.
+* 어떻게 toocreate 응용 프로그램 추적 로그 하 고 보는 동안 hello 응용 프로그램을 만드는 것입니다.
+* 어떻게 tooview 웹 서버 로그를 포함 하 여 자세한 오류 메시지 및 실패 한 요청 추적 합니다.
+* 어떻게 toosend 진단 tooan Azure 저장소 계정 로그 하 고 보는 있습니다.
 
 Visual Studio Ultimate가 있으면 디버깅에 [IntelliTrace](http://msdn.microsoft.com/library/vstudio/dd264915.aspx) 를 사용할 수도 있습니다. IntelliTrace는 이 자습서에서 다루지 않습니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 자습서에서는 [Azure 및 ASP.NET 시작][GetStarted]에서 설정한 개발 환경, 웹 프로젝트 및 Azure 웹앱을 작업합니다. WebJobs 섹션의 경우 [Azure WebJobs SDK 시작][GetStartedWJ]에서 만든 응용 프로그램이 필요합니다.
+이 자습서는 hello 개발 환경, 웹 프로젝트 및 Azure 웹 앱에서 설정한 [Azure 및 ASP.NET 시작][GetStarted]합니다. Hello WebJobs 섹션에 대 한 hello 응용 프로그램에서 만드는 해야 [hello Azure WebJobs SDK 시작][GetStartedWJ]합니다.
 
-이 자습서에 제시된 코드 샘플은 C# MVC 웹 응용 프로그램용이지만 문제 해결 절차는 Visual Basic 및 Web Forms 응용 프로그램에도 동일하게 적용됩니다.
+이 자습서에 표시 된 예제는 C# MVC 웹 응용 프로그램에 대 한 있지만 문제 해결 절차 hello hello 코드는 Visual Basic 및 Web Forms 응용 프로그램에 대 한 동일한 hello 됩니다.
 
-이 자습서는 Visual Studio 2015 또는 2013을 사용하는 경우를 가정합니다. Visual Studio 2013을 사용하는 경우 WebJobs 기능을 사용하려면 [업데이트 4](http://go.microsoft.com/fwlink/?LinkID=510314) 이상이 필요합니다.
+hello 자습서에서는 Visual Studio 2015 또는 2013을 사용 하는 가정 합니다. Visual Studio 2013을 사용 하는 경우에 hello WebJobs 기능 필요 [업데이트 4](http://go.microsoft.com/fwlink/?LinkID=510314) 이상.
 
-로그 스트리밍 기능은 .NET Framework 4 이상을 대상으로 하는 응용 프로그램에 대해서만 작동합니다.
+hello 스트리밍 로그 기능에 대 한.NET Framework 4 이상을 대상으로 하는 응용 프로그램 에서만 작동 합니다.
 
 ## <a name="sitemanagement"></a>웹 앱 구성 및 관리
-Visual Studio를 사용하면 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715)에서 사용할 수 있는 웹 앱 관리 기능 및 구성 설정의 일부에 액세스할 수 있습니다. 이 섹션에서는 **서버 탐색기**를 사용하여 사용할 수 있는 기능에 대해 알아봅니다. 최신 Azure 통합 기능을 확인하려면 **클라우드 탐색기** 도 사용해 보십시오. **보기** 메뉴에서 두 창을 모두 열 수 있습니다.
+Visual Studio는 hello 웹 응용 프로그램 관리 기능 및 hello에서 사용할 수 있는 구성 설정의 액세스 tooa 하위 집합을 제공 [Azure 포털](http://go.microsoft.com/fwlink/?LinkId=529715)합니다. 이 섹션에서는 **서버 탐색기**를 사용하여 사용할 수 있는 기능에 대해 알아봅니다. toosee hello 최신 Azure 통합 기능을 사용해 **클라우드 탐색기** 도 합니다. Windows hello에서 열 수 **보기** 메뉴.
 
-1. Visual Studio에서 Azure에 아직 로그인하지 않았으면 **서버 탐색기**에서 **Azure에 연결** 단추를 클릭합니다.
+1. Visual Studio에서 tooAzure에 로그인 하지 않은 경우 클릭 hello **tooAzure 연결** 단추 **서버 탐색기**합니다.
 
-    계정에 액세스할 수 있게 해 주는 또 다른 방법은 관리 인증서를 설치하는 것입니다. 인증서를 설치하도록 선택한 경우 **서버 탐색기**에서 **Azure** 노드를 마우스 오른쪽 단추로 클릭한 다음 상황에 맞는 메뉴에서 **구독 관리 및 필터링**을 클릭합니다. **Azure 구독 관리** 대화 상자에서 **인증서** 탭을 클릭한 후 **가져오기**를 클릭합니다. 지침에 따라 Azure 계정에 대한 구독 파일( *.publishsettings* 파일이라고도 함)을 다운로드하고 가져옵니다.
+    Tooinstall 액세스 tooyour 계정을 사용 하도록 설정 하는 관리 인증서 것이 좋습니다. Tooinstall 인증서를 선택 하면 hello 마우스 오른쪽 단추로 클릭 **Azure** 노드에서 **서버 탐색기**, 클릭 하 고 **구독 관리 및 필터링** hello 상황에 맞는 메뉴에서입니다. Hello에 **Azure 구독 관리** 대화 상자를 클릭 hello **인증서** 탭을 클릭 한 다음 **가져오기**합니다. Hello directions toodownload 따르고 다음 구독 파일을 가져옵니다 (라고도 *.publishsettings* 파일) 하 여 Azure 계정에 대 한 합니다.
 
    > [!NOTE]
-   > 구독 파일을 다운로드한 경우 소스 코드 디렉터리의 외부 폴더(예: Downloads 폴더)에 구독 파일을 저장한 다음 가져오기가 완료되면 해당 파일을 삭제합니다. 악의적인 사용자가 구독 파일에 액세스할 경우 Azure 서비스를 편집, 생성 및 삭제할 수 있습니다.
+   > 구독 파일을 다운로드 하는 경우 소스 코드 디렉터리 외부 (예를 들어 hello 다운로드 폴더), tooa 폴더를 저장 하 고 hello 가져오기가 완료 되 면 삭제 합니다. Access toohello 구독 파일을 얻은 악의적인 사용자는 수 편집 만들고 Azure 서비스를 삭제 합니다.
    >
    >
 
-    Visual Studio에서 Azure 리소스에 연결하는 방법에 대한 자세한 내용은 [계정, 구독 및 관리 역할 관리](http://go.microsoft.com/fwlink/?LinkId=324796#BKMK_AccountVCert)를 참조하세요.
+    Visual Studio에서 tooAzure 리소스를 연결 하는 방법에 대 한 자세한 내용은 참조 [계정 관리, 구독 및 관리 역할](http://go.microsoft.com/fwlink/?LinkId=324796#BKMK_AccountVCert)합니다.
 2. **서버 탐색기**에서 **Azure**를 확장한 후 **App Service**를 확장합니다.
-3. [Azure 및 ASP.NET 시작][GetStarted]에서 만든 웹앱을 리소스 그룹을 확장한 후 웹앱 노드를 마우스 오른쪽 단추로 클릭하고 **설정 보기**를 클릭합니다.
+3. 만든 hello 웹 앱을 포함 하는 hello 리소스 그룹을 확장 [Azure 및 ASP.NET 시작][GetStarted], hello 웹 응용 프로그램 노드를 마우스 오른쪽 단추로 클릭 한 다음 고를 클릭 **설정보기**.
 
     ![서버 탐색기에서 설정 보기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-viewsettings.png)
 
-    **Azure 웹 앱** 탭이 나타나면 이 탭에서 Visual Studio에서 사용할 수 있는 웹 앱 관리 및 구성 작업이 무엇인지 확인할 수 있습니다.
+    hello **Azure 웹 앱** 탭에 표시 되 고 있는 웹 응용 프로그램 관리 및 구성 작업 Visual Studio에서 사용할 수 있는 hello를 볼 수 있습니다.
 
     ![Azure 웹 앱 창](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-configtab.png)
 
-    이 자습서에서는 로깅 및 추적 드롭다운을 사용합니다. 원격 디버깅도 사용하지만 이를 사용하도록 설정하는 방법은 다른 방법을 사용하게 될 것입니다.
+    이 자습서에서는 있습니다 사용할 예정 hello 로깅 및 추적 드롭다운입니다. 또한 원격 디버깅을 사용 하지만 다른 방법을 tooenable 사용할 것입니다.
 
-    이 창에 있는 응용 프로그램 설정 및 연결 문자열 상자에 대한 자세한 내용은 [Azure 웹 앱: 응용 프로그램 문자열 및 연결 문자열 작동 방식](http://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx)을 참조하세요.
+    이 창에 hello 앱 설정 및 연결 문자열 상자에 대 한 정보를 참조 하십시오. [Azure 웹 앱: 방법: 응용 프로그램 문자열 및 연결 문자열 작업](http://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx)합니다.
 
-    이 창에서 지원하지 않는 웹앱 관리 작업을 수행하려는 경우 **관리 포털에서 열기** 를 클릭하여 브라우저 창에서 Azure 포털을 엽니다.
+    이 창에서 수행할 수 없는 웹 응용 프로그램 관리 작업을 tooperform 클릭 **관리 포털에서 열기** tooopen 브라우저 창 toohello Azure 포털입니다.
 
 ## <a name="remoteview"></a>서버 탐색기에서 웹 앱 파일 액세스
-일반적으로 Web.config 파일에서 `customErrors` 플래그를 `On` 또는 `RemoteOnly`로 설정한 상태로 웹 프로젝트가 배포되기 때문에 문제가 발생한 경우 유용한 오류 메시지를 받지 못합니다. 받을 수 있는 대부분의 오류는 모두 다음 중 하나와 유사합니다.
+일반적으로 hello로 웹 프로젝트를 배포 하면 `customErrors` hello Web.config 파일 집합에에서 플래그가 지정 너무`On` 또는 `RemoteOnly`, 의미 하는 경우 다른 유용한 오류 메시지를 가져오지 않음 문제가 발생 합니다. 많은 오류에 대 한 모든 얻게는 hello는 스토리를 다음 중 하 나와 비슷한 페이지입니다.
 
 **'/' 응용 프로그램의 서버 오류:**
 
@@ -85,174 +85,174 @@ Visual Studio를 사용하면 [Azure 포털](http://go.microsoft.com/fwlink/?Lin
 
 ![도움이 되지 않는 오류 메시지](./media/web-sites-dotnet-troubleshoot-visual-studio/genericerror1.png)
 
-**웹 사이트에서 페이지를 표시할 수 없습니다.**
+**hello 웹 사이트 hello 페이지를 표시할 수 없습니다.**
 
 ![도움이 되지 않는 오류 메시지](./media/web-sites-dotnet-troubleshoot-visual-studio/genericerror2.png)
 
-오류의 원인을 찾는 가장 쉬운 방법은 주로 자세한 오류 메시지를 사용하도록 설정하는 것입니다. 이전 스크린샷 중 첫 번째 스크린샷에 그 방법이 설명되어 있습니다. 배포된 Web.config 파일의 변경이 필요합니다. 프로젝트에서 *Web.config* 파일을 편집한 후 프로젝트를 다시 배포하거나 [Web.config 변환](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/web-config-transformations)을 만들고 디버그 빌드를 배포할 수도 있지만 더 빠른 방법이 있습니다. **솔루션 탐색기**에서 *원격 보기* 기능을 사용하면 원격 웹앱의 파일을 직접 보고 편집할 수 있습니다.
+자주 hello 가장 쉬운 방법은 toofind hello hello 오류는 발생 tooenable hello 스크린 샷을 앞의 첫 번째 hello 되는 자세한 오류 메시지에 설명 방법을 toodo 합니다. 변경 hello에 배포 된 Web.config 파일을 필요로 하 합니다. Hello를 편집할 수 *Web.config* hello 프로젝트와 재배포 hello 프로젝트에서 파일을 만들거나 한 [f i g 변환](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/web-config-transformations) 및 디버그 빌드를 배포 하지만 더 빠른 방법:에서 **솔루션 탐색기** 직접 보고 하 고 hello를 사용 하 여 hello 원격 웹 앱에서 파일을 편집할 수 *원격 뷰* 기능입니다.
 
-1. **서버 탐색기**에서 **Azure**, **App Service**, 웹앱이 있는 리소스 그룹, 웹앱의 노드를 차례로 확장합니다.
+1. **서버 탐색기**를 확장 하 고 **Azure**를 확장 하 고 **앱 서비스**, 웹 앱에 있는 hello 리소스 그룹을 확장 한 다음 웹 앱에 대 한 hello 노드를 확장 합니다.
 
-    표시되는 노드를 통해 웹 앱의 콘텐츠 파일 및 로그 파일에 액세스할 수 있습니다.
-2. **파일** 노드를 확장하고 *Web.config* 파일을 두 번 클릭합니다.
+    액세스 toohello 웹 앱의 콘텐츠 파일 및 로그 파일을 제공 하는 노드를 참조 합니다.
+2. Hello 확장 **파일** 노드를 hello를 두 번 클릭 하 고 *Web.config* 파일입니다.
 
     ![Web.config 열기](./media/web-sites-dotnet-troubleshoot-visual-studio/webconfig.png)
 
-    원격 웹앱의 Visual Studio에서 Web.config 파일이 열리고 제목 표시줄의 파일 이름 옆에 [원격]이 표시됩니다.
-3. `system.web` 요소에 다음 줄을 추가합니다.
+    Visual Studio hello 원격 웹 앱에서 hello Web.config 파일이 열리고 hello 제목 표시줄에 다음 [원격] toohello 파일 이름을 보여 줍니다.
+3. 다음 줄 toohello hello 추가 `system.web` 요소:
 
     `<customErrors mode="Off"></customErrors>`
 
     ![Web.config 편집](./media/web-sites-dotnet-troubleshoot-visual-studio/webconfigedit.png)
-4. 도움이 되지 않는 오류 메시지가 표시된 브라우저를 새로 고칩니다. 이제 다음 예와 같이 자세한 오류 메시지가 표시됩니다.
+4. Hello 도움이 되지 않는 오류 메시지를 표시 하는 hello 브라우저 새로 고치고 이제 다음 예제는 hello 같은 자세한 오류 메시지를 받을:
 
     ![자세한 오류 메시지](./media/web-sites-dotnet-troubleshoot-visual-studio/detailederror.png)
 
-    (표시된 오류는 빨간색으로 표시된 줄이 *Views\Home\Index.cshtml*에 추가되어 생성됨)
+    (표시 하는 hello 오류가 너무 빨간색으로 표시 된 hello 줄을 추가 하 여 만들어진*Views\Home\Index.cshtml*.)
 
-Web.config 파일을 편집하는 방법은 문제를 더 쉽게 해결할 수 있도록 Azure 웹 앱의 파일 읽기/편집 기능을 사용하는 한 가지 예에 지나지 않습니다.
+편집 hello Web.config 파일은 하나의 예는 hello 기능에 Azure 웹 앱에 tooread 및 편집 파일 확인 문제 해결에 도움이 되는 시나리오입니다.
 
 ## <a name="remotedebug"></a>원격 디버깅 웹 앱
-자세한 오류 메시지에 충분한 정보가 제공되지 않은 경우 로컬로 오류를 다시 만들 수는 없습니다. 이때 문제를 해결하는 또 다른 방법은 원격으로 디버그 모드에서 실행하는 것입니다. 중단점을 설정하고 메모리를 직접 조작하며 코드를 단계별로 실행하고 심지어 코드 경로를 변경할 수 있습니다.
+Hello 자세한 오류 메시지는 정보를 충분히 제공 하지 않는 경우 hello 오류 로컬로 다시 만들 수 없습니다 또 다른 방법은 tootroubleshoot는 toorun 디버그 모드에서 원격으로 합니다. 중단점을 설정할 메모리를 직접 조작 및 코드를 단계적 hello 코드 경로 변경할 수도 있습니다.
 
 원격 디버깅은 Visual Studio의 Express Edition에서 작동하지 않습니다.
 
-이 섹션에서는 [Azure 및 ASP.NET 시작][GetStarted]에서 만든 프로젝트를 사용하여 원격으로 디버그하는 방법을 보여 줍니다.
+이 섹션에서는 hello를 사용 하 여 원격 toodebug 어떻게 프로젝트에서 만드는 [Azure 및 ASP.NET 시작][GetStarted]합니다.
 
-1. [Azure 및 ASP.NET 시작][GetStarted]에서 만든 웹 프로젝트를 엽니다.
+1. 만든 웹 프로젝트를 열고 hello [Azure 및 ASP.NET 시작][GetStarted]합니다.
 2. *Controllers\HomeController.cs*를 엽니다.
-3. `About()` 메서드를 삭제하고 그 자리에 다음 코드를 삽입합니다.
+3. Hello 삭제 `About()` 메서드 및 삽입 hello 다음 해당 위치에 코드입니다.
 
         public ActionResult About()
         {
             string currentTime = DateTime.Now.ToLongTimeString();
-            ViewBag.Message = "The current time is " + currentTime;
+            ViewBag.Message = "hello current time is " + currentTime;
             return View();
         }
-4. `ViewBag.Message` 줄에 [중단점을 설정](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)합니다.
-5. **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 클릭합니다.
-6. [Azure 및 ASP.NET 시작][GetStarted]에서 사용한 프로필과 동일한 프로필을 **프로필** 드롭다운 목록에서 선택합니다.
-7. **설정** 탭을 클릭하고 **구성**을 **디버그**로 변경한 후 **게시**를 클릭합니다.
+4. [중단점을 설정](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx) hello에 `ViewBag.Message` 선입니다.
+5. **솔루션 탐색기**hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 클릭 **게시**합니다.
+6. Hello에 **프로필** 동일 하면에 사용 된 프로필 드롭 다운 목록, 선택 hello [Azure 및 ASP.NET 시작][GetStarted]합니다.
+7. Hello 클릭 **설정** 를 탭 하 고 변경 **구성** 너무**디버그**, 클릭 하 고 **게시**합니다.
 
     ![디버그 모드에서 게시](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-publishdebug.png)
-8. 배포를 마치고 브라우저에 웹 앱의 Azure URL이 열리면 브라우저를 닫습니다.
+8. 배포 후 완료 되 고 브라우저가 toohello 닫기 hello 브라우저 웹 응용 프로그램의 Azure URL을 엽니다.
 9. **서버 탐색기**에서 웹앱을 마우스 오른쪽 단추로 클릭한 다음 **디버거 연결**을 클릭합니다.
 
     ![디버거 연결](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-attachdebugger.png)
 
-    브라우저에 Azure에서 실행되는 홈 페이지가 자동으로 열립니다. Azure에서 디버깅용 서버를 설정할 때까지 약 20초 정도 기다려야 할 수 있습니다. 이 지연은 웹 앱에서 디버그 모드를 처음 실행하는 경우에만 발생합니다. 이후 48시간 내에 디버그를 다시 시작하면 지연이 발생하지 않습니다.
+    hello 브라우저는 자동으로 Azure에서 실행 중인 tooyour 홈 페이지를 엽니다. 수 toowait 20 초 했거나 하므로 하는 동안 Azure 디버깅에 대 한 hello 서버를 설정 합니다. 이 지연은만 hello 웹 응용 프로그램에서 디버그 모드에서 실행 되는 처음으로 발생 합니다. 디버깅 다시 시작 하면 다음 48 시간 hello 내에서 이후 시간 지연 되지 않습니다.
 
-    **참고:** 디버거를 시작하는 데 문제가 있는 경우 **서버 탐색기** 대신 **클라우드 탐색기**를 사용해 보십시오.
-10. 메뉴에서 **정보** 를 클릭합니다.
+    **참고:** hello 디버거를 시작 하는 데 문제가 있는 경우 시도 toodo 사용 하 여 **클라우드 탐색기** 대신 **서버 탐색기**합니다.
+10. 클릭 **에 대 한** hello 메뉴에 있습니다.
 
-     Visual Studio가 중단점에서 중지되고 코드는 로컬 컴퓨터가 아닌 Azure에서 실행됩니다.
-11. `currentTime` 변수를 마우스 포인터로 가리켜 시간 값을 봅니다.
+     Visual Studio hello 중단점에서 중지 하 고 hello 코드가 로컬 컴퓨터에 없는 Azure에서 실행 합니다.
+11. Hello 위로 마우스를 가져가고 `currentTime` 변수 toosee hello 시간 값입니다.
 
      ![Azure에서 실행 중인 디버그 모드의 변수 보기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-debugviewinwa.png)
 
-     보이는 시간은 Azure 서버 시간이며 이는 로컬 컴퓨터의 표준 시간대와 다를 수 있습니다.
-12. `currentTime` 변수에 "현재 Azure에서 실행 중" 같은 새 값을 입력합니다.
-13. F5 키를 눌러 계속 실행합니다.
+     hello 표시 시간은 로컬 컴퓨터에는 다른 표준 시간대에 있을 수 있는 hello Azure 서버 시간입니다.
+12. Hello에 대 한 새 값을 입력 `currentTime` "이제 Azure에서 실행 중인"와 같은 변수입니다.
+13. F5 toocontinue 실행 키를 누릅니다.
 
-     Azure에서 실행되는 정보 페이지에는 currentTime 변수에 입력한 새 값이 표시됩니다.
+     Azure에서 실행 되는 페이지에 대 한 hello hello hello currentTime 변수에 입력 한 새 값을 표시 합니다.
 
      ![새 값이 표시된 정보 페이지](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-debugchangeinwa.png)
 
 ## <a name="remotedebugwj"></a> 원격 디버깅 WebJob
-이 섹션에서는 [Azure WebJob SDK 시작](websites-dotnet-webjobs-sdk.md)에서 만든 프로젝트 및 웹 앱을 사용하여 원격으로 디버그하는 방법을 보여 줍니다
+이 섹션에서는 hello 프로젝트와 웹 응용 프로그램을 사용 하 여 원격 toodebug를 만드는 방법에 [hello Azure WebJobs SDK 시작](websites-dotnet-webjobs-sdk.md)합니다.
 
-이 섹션에 표시된 기능은 Visual Studio 2013 업데이트 4에서만 사용할 수 있습니다.
+이 섹션에 표시 된 hello 기능은 Visual Studio 2013 업데이트 4 이상에 사용할 수 있습니다.
 
 연속 WebJobs에서 원격 디버깅만 작동합니다. 예약 및 주문형 WebJobs은 디버깅을 지원하지 않습니다.
 
-1. [Azure WebJobs SDK 시작][GetStartedWJ]에서 만든 웹 프로젝트를 엽니다.
-2. ContosoAdsWebJob 프로젝트에서 *Functions.cs*를 엽니다.
-3. `GnerateThumbnail` 메서드의 첫 번째 문에 [중단점을 설정](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)합니다.
+1. 만든 웹 프로젝트를 열고 hello [hello Azure WebJobs SDK 시작][GetStartedWJ]합니다.
+2. Hello ContosoAdsWebJob 프로젝트를 열고 *Functions.cs*합니다.
+3. [중단점을 설정](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx) hello의 첫 번째 문에서 hello `GnerateThumbnail` 메서드.
 
     ![중단점 설정](./media/web-sites-dotnet-troubleshoot-visual-studio/wjbreakpoint.png)
-4. **솔루션 탐색기**에서 웹 프로젝트(WebJob 프로젝트가 아님)를 마우스 오른쪽 단추로 클릭하고 **게시**를 클릭합니다.
-5. **프로필** 드롭다운 목록에서 [Azure WebJobs SDK 시작](websites-dotnet-webjobs-sdk.md)에서 사용한 것과 같은 프로필을 선택합니다.
-6. **설정** 탭을 클릭하고 **구성**을 **디버그**로 변경한 후 **게시**를 클릭합니다.
+4. **솔루션 탐색기**hello 웹 프로젝트 (하지 hello WebJob 프로젝트의 경우)를 마우스 오른쪽 단추로 클릭 하 고 클릭 **게시**합니다.
+5. Hello에 **프로필** 동일 하면에 사용 된 프로필 드롭 다운 목록, 선택 hello [hello Azure WebJobs SDK 시작](websites-dotnet-webjobs-sdk.md)합니다.
+6. Hello 클릭 **설정** 를 탭 하 고 변경 **구성** 너무**디버그**, 클릭 하 고 **게시**합니다.
 
-    Visual Studio에서 웹 및 WebJob 프로젝트를 배포하며 브라우저에서 웹 앱의 Azure URL이 열립니다.
+    Visual Studio hello 웹 및 WebJob 프로젝트를 배포 하 고 브라우저 웹 응용 프로그램의 Azure URL toohello를 엽니다.
 7. **서버 탐색기**에서 **Azure > App Service > 리소스 그룹 > 웹앱 > WebJobs > 연속**을 확장하고 **ContosoAdsWebJob**을 마우스 오른쪽 단추로 클릭합니다.
 8. **디버거 연결**을 클릭합니다.
 
     ![디버거 연결](./media/web-sites-dotnet-troubleshoot-visual-studio/wjattach.png)
 
-    브라우저에 Azure에서 실행되는 홈 페이지가 자동으로 열립니다. Azure에서 디버깅용 서버를 설정할 때까지 약 20초 정도 기다려야 할 수 있습니다. 이 지연은 웹 앱에서 디버그 모드를 처음 실행하는 경우에만 발생합니다. 48시간 이내에 수행하는 경우 다음에 디버거를 연결할 때는 지연이 발생하지 않습니다.
-9. Contoso Ads 홈페이지로 열리는 웹 브라우저에서 새 광고를 만듭니다.
+    hello 브라우저는 자동으로 Azure에서 실행 중인 tooyour 홈 페이지를 엽니다. 수 toowait 20 초 했거나 하므로 하는 동안 Azure 디버깅에 대 한 hello 서버를 설정 합니다. 이 지연은만 hello 웹 응용 프로그램에서 디버그 모드에서 실행 되는 처음으로 발생 합니다. hello 있는 hello 디버거를 연결 하는 다음 번 됩니다는 지연을 48 시간 이내에 수행 하는 경우.
+9. 열린된 toohello Contoso 광고 홈 페이지는 hello 웹 브라우저에서 새 ad를 만듭니다.
 
-    광고를 만들면 큐 메시지가 생성되며, WebJob에서 메시지를 선택하여 처리합니다. WebJobs SDK가 큐 메시지를 처리할 함수를 호출하면 코드가 중단점에 도달합니다.
-10. 디버거가 중단점에서 중단되면 프로그램이 클라우드에서 실행되는 동안 변수 값을 검사하고 변경할 수 있습니다. 다음 그림에서 디버거는 GenerateThumbnail 메서드로 전달된 blobInfo 개체의 내용을 보여 줍니다.
+    광고를 만들면는 큐 메시지 toobe 만들어지면 WebJob hello에 의해 선택 되 고 처리 하는 합니다. WebJobs SDK hello hello 함수 tooprocess hello 큐 메시지를 호출 하면 hello 코드 중단점이 적중 됩니다.
+10. Hello 디버거는 중단점에서 중단을 검토 하 고 hello 프로그램 hello 클라우드 실행 되는 동안 변수 값을 변경할 수 있습니다. Hello 다음 그림 hello 디버거 toohello GenerateThumbnail 메서드에 전달 된 hello blobInfo 개체의 hello 내용을 보여 줍니다.
 
      ![디버거에서 blobInfo 개체](./media/web-sites-dotnet-troubleshoot-visual-studio/blobinfo.png)
-11. F5 키를 눌러 계속 실행합니다.
+11. F5 toocontinue 실행 키를 누릅니다.
 
-     GenerateThumbnail 메서드가 미리 보기 만들기를 완료합니다.
-12. 브라우저에서 인덱스 페이지를 새로 고치면 미리 보기가 표시됩니다.
-13. Visual Studio에서 디버깅을 중지하려면 SHIFT+F5를 누릅니다.
-14. **서버 탐색기**에서 ContosoAdsWebJob 노드를 마우스 오른쪽 단추로 클릭하고 **대시보드 보기**를 클릭합니다.
-15. Azure 자격 증명을 사용하여 로그인한 다음 WebJob 이름을 클릭하여 WebJob 페이지로 이동합니다.
+     hello GenerateThumbnail 메서드 hello 축소판 그림을 만들기를 완료 합니다.
+12. Hello 브라우저를 새로 고침 hello 인덱스 페이지의 hello 축소판 그림을 표시 합니다.
+13. Visual Studio에서 toostop 디버깅 SHIFT + f 5를 누릅니다.
+14. **서버 탐색기**hello ContosoAdsWebJob 노드를 마우스 오른쪽 단추로 클릭 하 고 클릭 **View 대시보드**합니다.
+15. Azure 자격 증명으로 로그인 하 고에 대 한 WebJob hello WebJob 이름 toogo toohello 페이지를 클릭 합니다.
 
      ![ContosoAdsWebJob 클릭](./media/web-sites-dotnet-troubleshoot-visual-studio/clickcaw.png)
 
-     대시보드에서 GenerateThumbnail 함수 대시보드가 최근에 실행되었음을 확인할 수 있습니다.
+     hello 대시보드 해당 hello 최근에 실행 GenerateThumbnail 함수를 보여 줍니다.
 
-     (다음에 **대시보드 보기**를 클릭하면 로그인할 필요가 없고 브라우저가 바로 WebJob에 대한 페이지로 이동합니다.)
-16. 함수 이름을 클릭하여 함수 실행에 대한 세부 정보를 확인합니다.
+     (다음 클릭할 때 hello **View 대시보드**,에서는 toosign 없는 나타나고 hello 브라우저 직접 toohello 페이지에 대 한 WebJob.)
+16. Hello 함수 이름 toosee hello 함수를 실행 하는 방법에 대 한 정보를 클릭 합니다.
 
      ![함수 정보](./media/web-sites-dotnet-troubleshoot-visual-studio/funcdetails.png)
 
-함수에서 [로그가 작성](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs)되었으면 **ToggleOutput** 을 클릭하여 확인할 수 있습니다.
+경우 함수 [로그 작성](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs), 누르면 **ToggleOutput** toosee 해당 합니다.
 
 ## <a name="notes-about-remote-debugging"></a>원격 디버깅 관련 참고 사항
-* 프로덕션 사이트에서 디버그 모드로 실행하는 것은 권장되지 않습니다. 프로덕션 웹 앱이 여러 서버 인스턴스로 확장되지 않은 경우 디버깅으로 인해 웹 서버에서 다른 요청에 응답할 수 없습니다. 여러 웹 서버 인스턴스를 배포하여 이들을 디버거에 연결한 경우 디버깅은 임의 인스턴스에서 실행되므로 후속 브라우저 요청이 해당 인스턴스로 이동하도록 보장할 수 있는 방법이 없습니다. 또한 일반적으로는 프로덕션 사이트에 디버그 빌드를 배포하지 않는데 이는 릴리스 빌드용 컴파일러 최적화로 인해 현재 진행되는 상황이 소스 코드에 자세히 표시되는 것이 불가능하기 때문입니다. 프로덕션 문제를 해결하는 데는 응용 프로그램 추적 및 웹 서버 로그가 최적의 리소스입니다.
+* 프로덕션 사이트에서 디버그 모드로 실행하는 것은 권장되지 않습니다. Toomultiple 서버 인스턴스는 프로덕션 웹 앱 확장 되지 않습니다, 하는 경우 디버깅 tooother 요청 응답에서 웹 서버 hello 수 없게 됩니다. 이렇게 하면 여러 웹 서버 인스턴스를 얻을 수 있습니다 및 임의 인스턴스를 toohello 디버거를 연결 하는 경우가 없는 방식으로 tooensure 해당 후속 브라우저 요청은 toothat 인스턴스를 이동 합니다. 또한 일반적으로 디버그 빌드 tooproduction를 배포 하지 않으려는 릴리스 빌드에 대 한 컴파일러 최적화 수 일어나는 불가능 한 tooshow 여 한 줄씩 소스 코드에서. 프로덕션 문제를 해결하는 데는 응용 프로그램 추적 및 웹 서버 로그가 최적의 리소스입니다.
 * 원격 디버깅 시 중단점에서 장시간 중지하지 않도록 합니다. 몇 분 이상 중지된 프로세스는 Azure에서 응답하지 않는 프로세스로 간주되어 종료되기 때문입니다.
-* 디버그하는 동안 서버는 데이터를 Visual Studio로 보내며, 이로 인해 대역폭 사용 요금에 영향을 줄 수 있습니다. 대역폭 요금에 대한 자세한 내용은 [Azure 가격 책정](https://azure.microsoft.com/pricing/calculator/)을 참조하십시오.
-* *Web.config* 파일에서 `compilation` 요소의 `debug` 특성이 true로 설정되어 있어야 합니다. 디버그 빌드 구성을 게시하면 기본적으로 true로 설정됩니다.
+* 디버그 하는 동안 hello 서버 데이터 tooVisual 대역폭 요금에 영향을 줄 수 있는 Studio 보내는 중입니다. 대역폭 요금에 대한 자세한 내용은 [Azure 가격 책정](https://azure.microsoft.com/pricing/calculator/)을 참조하십시오.
+* 해당 hello 있는지 확인 `debug` hello 특성 `compilation` hello 요소 *Web.config* 파일 tootrue 설정 합니다. 디버그 빌드 구성을 게시할 때 tootrue 기본적으로 설정 됩니다.
 
         <system.web>
           <compilation debug="true" targetFramework="4.5" />
           <httpRuntime targetFramework="4.5" />
         </system.web>
-* 디버거에서 디버그하려는 코드가 단계별로 실행되지 않는 경우 "내 코드만" 설정을 변경해야 할 수 있습니다.  자세한 내용은 [단계별 코드 실행을 내 코드만으로 제한](http://msdn.microsoft.com/library/vstudio/y740d9d3.aspx#BKMK_Restrict_stepping_to_Just_My_Code)을 참조하십시오.
-* 원격 디버깅 기능을 사용하도록 설정하면 서버의 타이머가 시작되고 48시간 후 기능이 자동으로 꺼집니다. 이 48시간 제한은 보안 및 성능상의 이유로 제한됩니다. 원하는 횟수만큼 기능을 쉽게 다시 켤 수 있습니다. 디버깅을 활발히 사용하지 않는 경우 이를 사용하지 않는 상태로 두는 것이 좋습니다.
-* 웹 앱 프로세스(w3wp.exe)뿐만 아니라 모든 프로세스에 디버거를 수동으로 연결할 수 있습니다. Visual Studio에서 디버그 모드를 사용하는 방법에 대한 자세한 내용은 [Visual Studio의 디버깅](http://msdn.microsoft.com/library/vstudio/sc65sadd.aspx)을 참조하십시오.
+* 해당 hello 디버거 않습니다 toodebug 원하는 코드를 한 단계씩를 찾을 경우 toochange hello 내 코드만 설정을 할 수 있습니다.  자세한 내용은 참조 [내 코드만 단계별 실행 tooJust 제한](http://msdn.microsoft.com/library/vstudio/y740d9d3.aspx#BKMK_Restrict_stepping_to_Just_My_Code)합니다.
+* Hello 원격 디버깅 기능을 사용 하도록 설정 하 고 48 시간 후 hello 기능은 자동으로 해제 되어 hello 서버에서 타이머를 시작 합니다. 이 48시간 제한은 보안 및 성능상의 이유로 제한됩니다. 원하는 횟수 만큼 다시에 hello 기능을 쉽게 설정할 수 있습니다. 디버깅을 활발히 사용하지 않는 경우 이를 사용하지 않는 상태로 두는 것이 좋습니다.
+* Hello 디버거 tooany 프로세스 뿐만 아니라 hello 웹 응용 프로그램 프로세스 (w3wp.exe)를 수동으로 연결할 수 있습니다. Toouse 모드 Visual Studio에서 디버깅 하는 방법에 대 한 자세한 내용은 참조 [Visual Studio의 디버깅](http://msdn.microsoft.com/library/vstudio/sc65sadd.aspx)합니다.
 
 ## <a name="logsoverview"></a>진단 로그 개요
-Azure 웹 앱에서 실행하는 ASP.NET 응용 프로그램은 다음과 같은 종류의 로그를 생성할 수 있습니다.
+Azure 웹 앱에서 실행 되는 ASP.NET 응용 프로그램 종류의 로그를 다음 hello를 만들 수 있습니다.:
 
 * **응용 프로그램 추적 로그**<br/>
-  응용 프로그램은 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/system.diagnostics.trace.aspx) 클래스의 메서드를 호출하여 추적 로그를 생성합니다.
+  hello 응용 프로그램이 로그가 만들어집니다 hello의 메서드를 호출 하 여 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/system.diagnostics.trace.aspx) 클래스입니다.
 * **웹 서버 로그**<br/>
-  웹 서버는 웹 앱에 대한 모든 HTTP 요청에 대해 로그 항목을 생성합니다.
+  hello 웹 서버는 모든 HTTP 요청 toohello 웹 앱에 대 한 로그 항목을 만듭니다.
 * **자세한 오류 메시지 로그**<br/>
-  웹 서버는 실패한 HTTP 요청(상태 코드 400 이상으로 인해 발생한 오류)에 대해 일부 추가 정보가 수록된 HTML 페이지를 생성합니다.
+  hello 웹 서버 (상태 코드가 400 이상 하) 실패 한 HTTP 요청에 대 한 몇 가지 추가 정보가 있는 HTML 페이지를 만듭니다.
 * **실패한 요청 추적 로그**<br/>
-  웹 서버는 실패한 HTTP 요청에 대한 자세한 추적 정보가 수록된 XML 파일을 생성합니다. 또한 웹 서버는 브라우저에서 XML 파일 형식으로 지정할 수 있도록 XSL 파일도 제공합니다.
+  hello 웹 서버는 실패 한 HTTP 요청에 대 한 자세한 추적 정보를 XML 파일을 만듭니다. hello 웹 서버는 XSL 파일 tooformat hello XML 브라우저에서 제공합니다.
 
-로깅 기능을 사용하면 웹 앱 성능에 영향을 미칠 수 있으므로 Azure에서는 필요에 따라 각 로그 유형을 사용 또는 사용하지 않도록 설정할 수 있는 기능이 제공됩니다. 응용 프로그램 로그의 경우 특정 심각도 수준 이상의 로그만 작성되도록 지정할 수 있습니다. 새 웹 앱을 만들 때 기본적으로 모든 로깅은 사용하지 않도록 설정됩니다.
+Azure를 사용 하면 되므로 웹 앱 성능에 영향을, 로깅 기능 tooenable hello 또는 필요에 따라 각 유형의 로그를 사용 하지 않도록 설정 합니다. 응용 프로그램 로그의 경우 특정 심각도 수준 이상의 로그만 작성되도록 지정할 수 있습니다. 새 웹 앱을 만들 때 기본적으로 모든 로깅은 사용하지 않도록 설정됩니다.
 
-로그는 웹 앱의 파일 시스템에 있는 *LogFiles* 폴더의 파일에 기록되며 FTP를 통해 액세스할 수 있습니다. 웹 서버 로그 및 응용 프로그램 로그는 또한 Azure 저장소 계정에도 기록될 수 있습니다. 저장소 계정에서는 파일 시스템에서 보존할 수 있는 로그보다 훨씬 많은 볼륨의 로그를 보존할 수 있습니다. 파일 시스템을 사용하는 경우 최대 100MB의 로그로 제한됩니다. 참고로, 파일 시스템 로그는 단기 보존용입니다. 제한값에 도달한 경우 Azure는 새 로그를 위한 공간을 만들기 위해 오래된 로그 파일을 삭제합니다.  
+로그가 기록 toofiles는 *로그 파일이* 웹 응용 프로그램 및 FTP를 통해 액세스할 수는 hello 파일 시스템의 폴더입니다. 웹 서버 로그 및 응용 프로그램 로그를 기록할 수도 tooan Azure 저장소 계정입니다. 큰 양의 hello 파일 시스템에 가능한 것 보다는 저장소 계정에 로그를 유지할 수 있습니다. Hello 파일 시스템을 사용 하는 경우 100 메가바이트 로그의 최대 제한 tooa 것입니다. 참고로, 파일 시스템 로그는 단기 보존용입니다. Azure에 사용할 새 이전 로그 파일 toomake 공간 후 삭제 hello 제한에 도달 합니다.)  
 
 ## <a name="apptracelogs"></a>응용 프로그램 추적 로그 만들기 및 보기
-이 섹션에서는 다음 작업을 수행합니다.
+작업이 섹션에서는 다음 작업 hello:
 
-* [Azure 및 ASP.NET 시작][GetStarted]에서 만든 웹 프로젝트에 추적 문을 추가합니다.
-* 프로젝트를 로컬로 실행하는 경우 로그 보기
-* Azure에서 실행하는 응용 프로그램에서 생성된 로그 보기
+* 추적 문이 toohello 웹 프로젝트에서 만든 추가 [Azure 및 ASP.NET 시작][GetStarted]합니다.
+* Hello 프로젝트를 로컬로 실행할 때 hello 로그를 봅니다.
+* Azure에서 실행 되는 hello 응용 프로그램에 의해 생성 될 때 hello 로그를 봅니다.
 
-WebJob에서 응용 프로그램을 만드는 방법에 대한 자세한 내용은 [WebJobs SDK를 사용하여 Azure 큐 저장소 작업을 하는 방법 - 로그를 쓰는 방법](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs)을 참조하세요. 로그를 보고 Azure에 저장하는 방법을 제어하기 위한 다음 지침은 WebJob에서 만들어진 응용 프로그램 로그에도 적용됩니다.
+WebJobs에 toocreate 응용 프로그램을 기록 하는 방법에 대 한 정보를 참조 하십시오. [방법을 사용 하 여 Azure 큐 저장소와 toowork hello WebJobs SDK-toowrite 기록 하는 방법을](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs)합니다. hello 로그를 확인 하 고 Azure에 저장 하는 방법을 제어 하기 위한 다음 지침도 적용 WebJobs에서 만들어진 tooapplication 로그 됩니다.
 
-### <a name="add-tracing-statements-to-the-application"></a>응용 프로그램에 추적 문 추가
-1. *Controllers\HomeController.cs*를 열고 `Index`, `About`, `Contact` 메서드를 다음 코드로 바꾸어 `System.Diagnostics`에 대해 `Trace` 문과 `using` 문을 추가합니다.
+### <a name="add-tracing-statements-toohello-application"></a>추적 문이 toohello 응용 프로그램 추가
+1. 열기 *Controllers\HomeController.cs*, 대체 hello 및 `Index`, `About`, 및 `Contact` tooadd 순서에에서 따라 hello 사용 하 여 메서드 코드 `Trace` 문 및 `using` 문 에 대 한 `System.Diagnostics`:
 
         public ActionResult Index()
         {
             Trace.WriteLine("Entering Index method");
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            Trace.TraceInformation("Displaying the Index page at " + DateTime.Now.ToLongTimeString());
+            ViewBag.Message = "Modify this template toojump-start your ASP.NET MVC application.";
+            Trace.TraceInformation("Displaying hello Index page at " + DateTime.Now.ToLongTimeString());
             Trace.WriteLine("Leaving Index method");
             return View();
         }
@@ -261,7 +261,7 @@ WebJob에서 응용 프로그램을 만드는 방법에 대한 자세한 내용�
         {
             Trace.WriteLine("Entering About method");
             ViewBag.Message = "Your app description page.";
-            Trace.TraceWarning("Transient error on the About page at " + DateTime.Now.ToShortTimeString());
+            Trace.TraceWarning("Transient error on hello About page at " + DateTime.Now.ToShortTimeString());
             Trace.WriteLine("Leaving About method");
             return View();
         }
@@ -270,21 +270,21 @@ WebJob에서 응용 프로그램을 만드는 방법에 대한 자세한 내용�
         {
             Trace.WriteLine("Entering Contact method");
             ViewBag.Message = "Your contact page.";
-            Trace.TraceError("Fatal error on the Contact page at " + DateTime.Now.ToLongTimeString());
+            Trace.TraceError("Fatal error on hello Contact page at " + DateTime.Now.ToLongTimeString());
             Trace.WriteLine("Leaving Contact method");
             return View();
         }        
-2. 파일 맨 위에 `using System.Diagnostics;` 문을 추가합니다.
+2. 추가 `using System.Diagnostics;` hello 파일의 문 toohello 맨 위로 이동 합니다.
 
-### <a name="view-the-tracing-output-locally"></a>로컬에서 추적 출력 보기
-1. F5 키를 눌러 디버그 모드에서 응용 프로그램을 실행합니다.
+### <a name="view-hello-tracing-output-locally"></a>로컬에서 출력 보기 hello 추적
+1. F5 toorun hello 응용 프로그램 키를 눌러 디버그 모드에서.
 
-    기본 추적 수신기는 모든 추적 출력을 다른 디버그 출력과 함께 **출력** 창에 기록합니다. 다음 그림에서는 `Index` 메서드에 추가한 trace 문의 출력을 보여줍니다.
+    hello 기본 추적 수신기 작성 모든 추적 출력 toohello **출력** 함께 다른 디버그 출력 창. hello 다음 그림과 hello hello 출력 toohello 추가한 추적 문을 `Index` 메서드.
 
     ![디버그 창의 추적](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-debugtracing.png)
 
-    다음 단계는 디버그 모드에서 컴파일하지 않고 웹 페이지에서 추적 출력을 보는 방법을 보여 줍니다.
-2. 프로젝트 폴더에 위치한 응용 프로그램 Web.config 파일을 열고 파일 끝에 있는 닫는 `<system.diagnostics>` 요소 바로 앞에 `</configuration>` 요소를 추가합니다.
+    단계를 수행 하는 hello tooview 추적 웹 페이지에서 디버그 모드에서 컴파일하면 하지 않고 출력 하는 방법을 보여 줍니다.
+2. Hello 응용 프로그램 Web.config 파일 (hello hello 프로젝트 폴더에 있는 하나)를 열고 추가 된 `<system.diagnostics>` hello hello 닫기 바로 전에 hello 파일 끝에 요소 `</configuration>` 요소:
 
           <system.diagnostics>
             <trace>
@@ -299,263 +299,263 @@ WebJob에서 응용 프로그램을 만드는 방법에 대한 자세한 내용�
             </trace>
           </system.diagnostics>
 
-    `WebPageTraceListener`를 사용하면 `/trace.axd`로 이동하여 추적 출력을 확인할 수 있습니다.
-3. Web.config 파일의 `<system.web>` 아래에 <a href="http://msdn.microsoft.com/library/vstudio/6915t83k(v=vs.100).aspx">trace 요소</a>를 다음 예와 같이 추가합니다.
+    hello `WebPageTraceListener` 너무 이동 하 여 추적 출력을 볼 수 있으며`/trace.axd`합니다.
+3. 추가 <a href="http://msdn.microsoft.com/library/vstudio/6915t83k(v=vs.100).aspx">trace 요소</a> 아래 `<system.web>` hello 다음 예제 처럼 hello Web.config 파일에서:
 
         <trace enabled="true" writeToDiagnosticsTrace="true" mostRecent="true" pageOutput="false" />
-4. Ctrl+F5를 눌러 응용 프로그램을 실행합니다.
-5. 브라우저 창의 주소 표시줄에서 *trace.axd*를 URL에 추가한 후 Enter 키를 누릅니다. URL은 http://localhost:53370/trace.axd와 유사해집니다.
-6. **응용 프로그램 추적** 페이지에서 BrowserLink 줄이 아니라 첫 번째 줄의 **세부 정보 보기**를 클릭합니다.
+4. CTRL + f 5 toorun hello 응용 프로그램 키를 누릅니다.
+5. Hello hello 브라우저 창의 주소 표시줄에 추가 *trace.axd* toohello URL 입력 (hello URL이 비슷한 toohttp://localhost:53370/trace.axd 수 없음).
+6. Hello에 **응용 프로그램 추적** 페이지 **세부 정보 보기** hello 첫 번째 줄 (하지 hello BrowserLink 선)에 있습니다.
 
     ![trace.axd](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-traceaxd1.png)
 
-    **요청 세부 정보** 페이지가 나타나며, **추적 정보** 섹션에서 `Index` 메서드에 추가한 trace 문의 출력을 확인합니다.
+    hello **요청 세부 사항** 페이지가 표시 되 면 및 hello **추적 정보** toohello 추가한 hello trace 문의 출력 hello 섹션 `Index` 메서드.
 
     ![trace.axd](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-traceaxd2.png)
 
-    기본적으로 `trace.axd` 는 로컬에서만 사용할 수 있습니다. 원격 웹앱에서 사용할 수 있도록 하려면, 다음 예에 표시된 것처럼 *Web.config* 파일의 `trace` 요소에 `localOnly="false"`를 추가하면 됩니다.
+    기본적으로 `trace.axd` 는 로컬에서만 사용할 수 있습니다. Toomake 하려는 경우 원격 웹 앱에서 사용할 수 있는 것을 추가할 수 있습니다 `localOnly="false"` toohello `trace` hello 요소 *Web.config* hello 다음 예제와 같이 파일:
 
         <trace enabled="true" writeToDiagnosticsTrace="true" localOnly="false" mostRecent="true" pageOutput="false" />
 
-    하지만 보안상의 이유로 프로덕션 웹 앱에서 `trace.axd`를 사용하도록 설정하는 것은 일반적으로 권장되지 않습니다. 다음 섹션에서는 Azure 웹 앱의 추적 로그를 더 쉽게 읽을 수 있는 방법을 확인할 수 있습니다.
+    그러나 사용 `trace.axd` 프로덕션에서 웹 앱은 일반적으로 권장 되지 보안상의 이유로 및 hello 다음 섹션에에서는 추적 로그는 Azure 웹 앱에는 쉽게 방법은 tooread 표시 됩니다.
 
-### <a name="view-the-tracing-output-in-azure"></a>Azure에서 추적 출력 보기
-1. **솔루션 탐색기**에서 웹 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 선택합니다.
-2. **웹 게시** 대화 상자에서 **게시**를 클릭합니다.
+### <a name="view-hello-tracing-output-in-azure"></a>Azure의 hello 추적 출력을 보려면
+1. **솔루션 탐색기**hello 웹 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 클릭 **게시**합니다.
+2. Hello에 **웹 게시** 대화 상자를 클릭 **게시**합니다.
 
-    Visual Studio에서 업데이트가 게시된 후 **연결** 탭의 **대상 URL**의 확인란을 선택 취소하지 않은 경우 브라우저 창이 열리고 사용자의 홈 페이지가 표시됩니다.
+    브라우저 창 tooyour 홈 페이지를 열고 Visual Studio가 업데이트를 게시 한 후 (선택 취소 하지 않은 것으로 가정 **대상 URL** hello에 **연결** 탭).
 3. **서버 탐색기**에서 웹앱을 마우스 오른쪽 단추로 클릭하고 **스트리밍 로그 보기**를 선택합니다.
 
     ![상황에 맞는 메뉴의 스트리밍 로그 보기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-viewlogsmenu.png)
 
-    **출력** 창에는 현재 로그 스트리밍 서비스에 연결되어 있음이 표시되고, 로그는 표시되지 않은 상태로 매분마다 알림 줄이 추가됩니다.
+    hello **출력** 창에 표시에 있는 연결 된 toohello 로그 스트리밍 서비스를 마우스 선을 추가 하는 알림 로그 toodisplay 없이 이동 하는 분 간격입니다.
 
     ![상황에 맞는 메뉴의 스트리밍 로그 보기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-nologsyet.png)
-4. 응용 프로그램 홈 페이지가 표시된 브라우저 창에서 **연락처**를 클릭합니다.
+4. 응용 프로그램 홈 페이지를 보여 주는 hello 브라우저 창에서 클릭 **연락처**합니다.
 
-    몇 초 이내에 `Contact` 메서드에 추가한 오류 수준의 추적에 대한 출력이 **출력** 창에 나타납니다.
+    추가한 toohello hello 오류 수준 추적에서 출력 하는 몇 초 hello 내 `Contact` 메서드가 hello에 표시 되는 **출력** 창.
 
     ![출력 창의 오류 추적](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-errortrace.png)
 
-    로그 모니터링 서비스를 사용하도록 설정하는 경우 오류 수준의 추적이 기본 설정이므로 Visual Studio에는 오류 수준의 추적만 표시됩니다. 새 Azure 웹 앱을 만드는 경우 이전에 사이트 설정 페이지를 열고 확인한 것처럼 모든 로깅은 기본적으로 사용하지 않도록 설정됩니다.
+    Visual Studio hello 로그 서비스 모니터링을 사용 하도록 설정 하면 hello 기본 설정 이기 때문에 오류 수준 추적을 데이터만 표시 됩니다. 새 Azure 웹 앱을 만들 때 이전 hello 설정 페이지를 열어 본 것 처럼 모든 로깅은 기본적으로 비활성화 되어:
 
     ![응용 프로그램 로깅 끄기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-apploggingoff.png)
 
-    하지만 **스트리밍 로그 보기**를 선택한 경우 Visual Studio는 자동으로 **응용 프로그램 로깅(파일 시스템)**을 **오류**로 변경합니다. 이는 오류 수준의 로그가 보고된다는 의미입니다. 추적 로그를 모두 보려면 이 설정을 **자세한 정보 표시**로 변경할 수 있습니다. 심각도 수준을 오류보다 낮은 수준으로 선택하면 그보다 더 높은 심각도 수준의 모든 로그가 보고됩니다. 따라서 자세한 정보 표시를 선택하는 경우 정보, 경고 및 오류 로그도 볼 수 있습니다.  
+    그러나 선택한 경우 **스트리밍 로그 보기**, 자동으로 변경 하는 Visual Studio **응용 프로그램 Logging(File System)** 너무**오류**, 즉, 오류 수준 로그 보고 하는 경우가 있습니다. 모든 추적 로그 toosee 순서, 너무이 설정을 변경할 수 있습니다**Verbose**합니다. 심각도 수준을 오류보다 낮은 수준으로 선택하면 그보다 더 높은 심각도 수준의 모든 로그가 보고됩니다. 따라서 자세한 정보 표시를 선택하는 경우 정보, 경고 및 오류 로그도 볼 수 있습니다.  
 
-1. **서버 탐색기**에서 웹앱을 마우스 오른쪽 단추로 클릭하고 이전과 마찬가지로 **설정 보기**를 클릭합니다.
-2. **응용 프로그램 로깅(파일 시스템)**을 **자세한 정보 표시**로 변경한 후 **저장**을 클릭합니다.
+1. **서버 탐색기**hello 웹 응용 프로그램을 마우스 오른쪽 단추로 클릭 한 다음 클릭 **설정 보기** 앞에서 수행한 것 처럼 합니다.
+2. 변경 **응용 프로그램 로깅 (파일 시스템)** 너무**Verbose**, 클릭 하 고 **저장**합니다.
 
-    ![추적 수준을 자세한 정보 표시로 설정](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-applogverbose.png)
-3. 이제 **연락처** 페이지가 표시되는 브라우저 창에서 **홈**을 클릭하고 **정보**를 클릭한 후 **연락처**를 클릭합니다.
+    ![추적 수준 tooVerbose 설정](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-applogverbose.png)
+3. 이제을 표시 하는 hello 브라우저 창에서 프로그램 **연락처** 페이지 **홈**, 클릭 **에 대 한**, 클릭 하 고 **연락처**합니다.
 
-    몇 초 이내에 **출력** 창에 추적 출력이 모두 표시됩니다.
+    몇 초 안에 hello **출력** 창 모든 추적 출력을 표시 합니다.
 
     ![자세한 정보 표시 추적 출력](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-verbosetraces.png)
 
-    이 섹션에서는 Azure 웹 앱 설정을 사용하여 로깅을 사용 및 사용하지 않도록 설정했습니다. 또한 Web.config 파일을 수정하여 추적 수신기를 사용 또는 사용하지 않도록 설정할 수도 있습니다. 하지만 Web.config 파일을 수정하면 앱 도메인이 재순환할 수 있습니다. 반면에 웹 앱 구성을 통해 로깅을 사용하도록 설정하면 재순환하지 않습니다. 문제를 재현하는 데 오랜 시간이 걸리는 경우 또는 문제가 일시적인 경우 앱 도메인을 재순환하면 문제가 "수정"되고 문제가 다시 발생할 때까지 강제로 대기해야 합니다. Azure에서 진단을 사용하도록 설정하면 이러한 상황이 발생하지 않으므로 오류 정보를 즉시 캡처하기 시작할 수 있습니다.
+    이 섹션에서는 Azure 웹 앱 설정을 사용하여 로깅을 사용 및 사용하지 않도록 설정했습니다. 사용 하도록 설정 하 고 hello Web.config 파일을 수정 하 여 추적 수신기를 사용 하지 않도록 설정할 수도 있습니다. 그러나, hello Web.config 파일을 수정 하는 수행 하지 않는 hello 웹 응용 프로그램 구성을 통해 로깅을 사용 하는 동안 hello 응용 프로그램 도메인 toorecycle를 발생 합니다. Hello 문제는 시간이 오래 tooreproduce 또는 간헐적으로 발생 하는 경우 "수정" 및 toowait 강제로 다시 발생 하면 될 때까지 수 hello 응용 프로그램 도메인을 재활용 합니다. Azure에서 진단을 사용하도록 설정하면 이러한 상황이 발생하지 않으므로 오류 정보를 즉시 캡처하기 시작할 수 있습니다.
 
 ### <a name="output-window-features"></a>출력 창 기능
-**출력** 창의 **Azure 로그** 탭에는 여러 단추와 하나의 입력란이 있습니다.
+hello **Azure 로그** hello 탭 **출력** 창에 여러 단추와 텍스트 상자:
 
 ![로그 탭의 단추](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-icons.png)
 
-이들은 다음 기능을 수행합니다.
+이러한 함수를 수행 하는 hello를 수행 합니다.
 
-* **출력** 창의 내용을 지웁니다.
+* 지우기 hello **출력** 창.
 * 자동 줄 바꿈을 사용 또는 사용하지 않도록 설정합니다.
 * 로그 모니터링을 시작 또는 중지합니다.
-* 모니터링할 로그를 지정합니다.
+* 지정 합니다. toomonitor를 기록 합니다.
 * 로그를 다운로드합니다.
 * 검색 문자열 또는 정규식을 기반으로 로그를 필터링합니다.
-* **출력** 창을 닫습니다.
+* 닫기 hello **출력** 창.
 
-검색 문자열 또는 정규식을 입력하면 Visual Studio에서 클라이언트 측의 로깅 정보가 필터링됩니다. 즉, **Output** 창에 로그가 표시된 후에 조건을 입력할 수 있으며 로그를 다시 생성할 필요 없이 필터링 조건을 변경할 수 있습니다.
+검색 문자열 또는 정규식을 입력 하면 Visual Studio hello 클라이언트에서 로깅 정보를 필터링 합니다. 즉, hello 로그 hello에 표시 된 후 hello 조건을 입력할 수 있습니다 **출력** 창과 있습니다 tooregenerate hello 로그 필요 없이 필터링 조건을 변경할 수 있습니다.
 
 ## <a name="webserverlogs"></a>웹 서버 로그 보기
-웹 서버 로그는 웹 앱의 모든 HTTP 작업을 기록합니다. **출력** 창에서 웹 서버 로그를 보려면 웹 앱에서 이를 사용하도록 설정하고 Visual Studio에서 이들의 모니터링을 명시적으로 지정해야 합니다.
+웹 서버 로그 hello 웹 앱에 대 한 모든 HTTP 작업을 기록 합니다. 순서 toosee에 hello에서 해당 **출력** tooenable hello에 대 한 웹 앱 및 Visual Studio에 지시할 toomonitor 원하는 있는 창에 있습니다.
 
-1. **서버 탐색기**에서 열었던 **Azure Web App 구성** 탭에서 웹 서버 로깅을 **켜기**로 변경하고 **저장**을 클릭합니다.
+1. Hello에 **Azure 웹 앱 구성** 탭에서 연 **서버 탐색기**, 웹 서버 로깅도 변경**에**, 클릭 하 고 **저장**.
 
     ![웹 서버 로깅 사용](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-webserverloggingon.png)
-2. **출력** 창에서 **모니터링할 Azure 로그 지정** 단추를 클릭합니다.
+2. Hello에 **출력** 창의 hello 클릭 **는 Azure 로그 toomonitor 지정** 단추입니다.
 
-    ![Specify which Azure logs to monitor](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-specifylogs.png)
-3. **Azure 로깅 옵션** 대화 상자에서 **웹 서버 로그**를 선택한 후 **확인**을 클릭합니다.
+    ![Azure 로그 toomonitor 지정](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-specifylogs.png)
+3. Hello에 **Azure 로깅 옵션** 대화 상자에서 **웹 서버 로그**, 클릭 하 고 **확인**합니다.
 
     ![웹 서버 로그 모니터링](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-monitorwslogson.png)
-4. 웹앱이 표시되는 브라우저 창에서 **홈**을 클릭하고 **정보**를 클릭한 후 **연락처**를 클릭합니다.
+4. Hello 웹 응용 프로그램을 보여 주는 hello 브라우저 창에서 클릭 **홈**, 클릭 **에 대 한**, 클릭 하 고 **연락처**합니다.
 
-    일반적으로 응용 프로그램 로그가 나타나고 다음으로 웹 서버 로그가 나타납니다. 로그가 나타날 때까지 잠시 기다려야 할 수 있습니다.
+    hello 응용 프로그램 로그는 일반적으로 표시, 첫 번째 hello 웹 서버 로그가 나옵니다. Toowait 해야할 hello에 대 한 시간이 tooappear를 기록 합니다.
 
     ![출력 창의 웹 서버 로그](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-wslogs.png)
 
-기본적으로 Visual Studio를 사용하여 웹 서버 로그를 사용하도록 처음 설정하는 경우 Azure는 로그를 파일 시스템에 기록합니다. 또는 Azure 포털을 사용하여 웹 서버 로그가 저장소 계정의 Blob 컨테이너에 기록되도록 지정할 수 있습니다.
+기본적으로 Visual Studio를 사용 하 여 웹 서버 로그를 처음 사용 하는 경우 Azure hello 로그 toohello 파일 시스템을 씁니다. 사용 하 여 hello Azure 서버 로그를 웹 포털 toospecify 쓸지 tooa blob 컨테이너는 저장소 계정에 합니다.
 
-포털을 사용하여 Azure 저장소 계정에 기록하도록 웹 서버 로깅을 설정한 후 Visual Studio에서 로깅을 사용하지 않도록 설정하는 경우 Visual Studio에서 로깅을 사용하도록 다시 설정하면 저장소 계정 설정이 복원됩니다.
+Hello 포털 tooenable 웹 서버 로깅 tooan Azure 저장소 계정을 사용 하 고 다음 Visual Studio에서 로깅을 다시 사용 하는 경우 Visual Studio에서 로깅을 사용 하지 않도록 설정 하는 경우 저장소 계정 설정은 복원 됩니다.
 
 ## <a name="detailederrorlogs"></a>자세한 오류 메시지 로그 보기
-자세한 오류 로그에서는 오류 응답 코드(400 이상)를 유발한 HTTP 요청과 관련된 일부 추가 정보가 제공됩니다. **출력** 창에서 웹 서버 로그를 보려면 웹 앱에서 이를 사용하도록 설정하고, Visual Studio에서 이들의 모니터링을 명시적으로 지정해야 합니다.
+자세한 오류 로그에서는 오류 응답 코드(400 이상)를 유발한 HTTP 요청과 관련된 일부 추가 정보가 제공됩니다. 순서 toosee에 hello에서 해당 **출력** tooenable hello에 대 한 웹 앱 및 Visual Studio에 지시할 toomonitor 원하는 있는 창에 있습니다.
 
-1. **서버 탐색기**에서 열었던 **Azure Web App 구성** 탭에서 **자세한 오류 메시지**를 **켜기**로 변경하고 **저장**을 클릭합니다.
+1. Hello에 **Azure 웹 앱 구성** 탭에서 연 **서버 탐색기**, 변경 **자세한 오류 메시지** 너무**에**, 및 클릭 **저장**합니다.
 
     ![자세한 오류 메시지 사용](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-detailedlogson.png)
-2. **출력** 창에서 **모니터링할 Azure 로그 지정** 단추를 클릭합니다.
-3. **Azure 로깅 옵션** 대화 상자에서 **모든 로그**를 클릭한 후 **확인**을 클릭합니다.
+2. Hello에 **출력** 창의 hello 클릭 **는 Azure 로그 toomonitor 지정** 단추입니다.
+3. Hello에 **Azure 로깅 옵션** 대화 상자를 클릭 **모든 로그**, 클릭 하 고 **확인**합니다.
 
     ![모든 로그 모니터링](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-monitorall.png)
-4. 404 오류를 유발하도록 브라우저 창의 주소 표시줄에서 추가 문자를 URL에 추가(예: `http://localhost:53370/Home/Contactx`)한 후 Enter를 누릅니다.
+4. Hello hello 브라우저 창의 주소 표시줄에 추가할 추가 문자가 toohello URL toocause 404 오류 (예를 들어 `http://localhost:53370/Home/Contactx`), Enter 키를 누릅니다.
 
-    몇 초 후 Visual Studio의 **출력** 창에 자세한 오류 로그가 나타납니다.
+    몇 초 정도 hello 자세한 오류 로그에도 Visual Studio hello 나타납니다 **출력** 창.
 
     ![출력 창의 자세한 오류 로그](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-detailederrorlog.png)
 
-    Ctrl 키를 누른 채 링크를 클릭하면 브라우저에 서식이 지정된 로그 출력이 표시됩니다.
+    제어 + 브라우저로 서식이 지정 된 hello 링크 toosee hello 로그 출력을 클릭 합니다.
 
     ![브라우저 창의 자세한 오류 로그](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-detailederrorloginbrowser.png)
 
 ## <a name="downloadlogs"></a>파일 시스템 로그 다운로드
-**출력** 창에서 모니터링할 수 있는 모든 로그는 *.zip* 파일로 다운로드할 수도 있습니다.
+Hello에서 모니터링할 수 있는 모든 로그 **출력** 창으로 다운로드할 수도 있습니다는 *.zip* 파일입니다.
 
-1. **출력** 창에서 **스트리밍 로그 다운로드**를 클릭합니다.
+1. Hello에 **출력** 창 클릭 **스트리밍 로그 다운로드**합니다.
 
     ![로그 탭의 단추](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-downloadicon.png)
 
-    파일 탐색기에서 다운로드한 파일이 선택된 상태로 *Downloads* 폴더가 열립니다.
+    파일 탐색기가 열리면 tooyour *다운로드* hello로 폴더 선택한 파일을 다운로드 합니다.
 
     ![다운로드한 파일](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-downloadedfile.png)
-2. *.zip* 파일의 압축을 풀면 다음 폴더 구조가 표시됩니다.
+2. Hello 추출 *.zip* 파일, 표시 폴더 구조를 다음 hello:
 
     ![다운로드한 파일](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-logfilefolders.png)
 
-   * 응용 프로그램 추적 로그는 *LogFiles\Application* 폴더에 *.txt* 파일로 기록됩니다.
-   * 웹 서버 로그는 *LogFiles\http\RawLogs* 폴더에 *.log* 파일로 기록됩니다. [Log Parser](http://www.microsoft.com/download/details.aspx?displaylang=en&id=24659) 같은 도구를 사용하여 이들 파일을 보고 조작할 수 있습니다.
-   * 자세한 오류 메시지 로그는 *LogFiles\DetailedErrors* 폴더에 *.html* 파일로 기록됩니다.
+   * 응용 프로그램 추적 로그에는 *.txt* hello에 대 한 파일 *LogFiles\Application* 폴더입니다.
+   * 웹 서버 로그에는 *.log* hello에 대 한 파일 *LogFiles\http\RawLogs* 폴더입니다. 와 같은 도구를 사용할 수 [로그 구문 분석기](http://www.microsoft.com/download/details.aspx?displaylang=en&id=24659) tooview 및 이러한 파일을 조작 합니다.
+   * 자세한 오류 메시지 로그에는 *.html* hello에 대 한 파일 *LogFiles\DetailedErrors* 폴더입니다.
 
-     참고로, *deployments* 폴더는 소스 제어 게시로 인해 생성되는 것이며 Visual Studio 게시와는 전혀 관계가 없습니다. *Git* 폴더는 소스 제어 게시 및 로그 파일 스트리밍 서비스와 관련된 추적 로그용입니다.  
+     (hello *배포* 폴더 게시; 소스 제어에서 만든 파일에는 모두 관련된 tooVisual Studio 게시 되어 있지 않습니다. hello *Git* 추적 관련된 toosource 제어 게시 및 hello 로그 파일 스트리밍 서비스에 대 한 폴더는입니다.)  
 
 ## <a name="storagelogs"></a>저장소 로그 보기
-응용 프로그램 추적 로그를 Azure 저장소 계정으로 보낼 수 있고 이들 로그를 Visual Studio에서 볼 수도 있습니다. 그러려면 저장소 계정을 만들고 클래식 포털에서 저장소 로그를 사용하도록 설정한 후 **Azure Web App** 창의 **로그** 탭에서 보면 됩니다.
+응용 프로그램 추적 로그를 보낼 수 있습니다 tooan Azure 저장소 계정 및 Visual Studio에서 볼 수 있습니다. toodo 합니다 저장소 계정 만들기, hello 클래식 포털의 저장소 로그를 사용 하도록 설정 하는 hello에서 볼 **로그** hello 탭 **Azure 웹 앱** 창.
 
-다음 세 대상 모두 또는 일부에 로그를 보낼 수 있습니다.
+3 가지 대상의 전체 또는 로그 tooany를 보낼 수 있습니다.
 
-* 파일 시스템
+* hello 파일 시스템입니다.
 * 저장소 계정 테이블
 * 저장소 계정 Blob
 
 각 대상마다 서로 다른 심각도 수준을 지정할 수 있습니다.
 
-테이블을 사용하면 로그 세부 정보를 온라인으로 쉽게 볼 수 있으며 스트리밍도 지원됩니다. 테이블에서 로그를 쿼리할 수 있고 새 로그가 생성될 때 새 로그를 확인할 수도 있습니다. Blob을 사용하면 로그를 파일로 쉽게 다운로드할 수 있고, Blob 저장소와의 연동 방식이 인식되는 HDInsight를 사용하여 로그를 분석할 수도 있습니다. 자세한 내용은 [데이터 저장소 옵션(Azure에서 실제 클라우드 앱 빌드)](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options)에서 **Hadoop 및 MapReduce**를 참조하십시오.
+테이블의 로그를 온라인으로 쉽게 tooview 세부 정보 지정 하 고 스트리밍; 지원 테이블에 있는 로그를 쿼리할 수 있으며 생성 될 때 새 로그를 참조 하십시오. Blob 쉽게 toodownload 로그에서 만들 파일 및 tooanalyze HDInsight 알기 때문에 HDInsight를 통해 어떻게 toowork blob 저장소입니다. 자세한 내용은 [데이터 저장소 옵션(Azure에서 실제 클라우드 앱 빌드)](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options)에서 **Hadoop 및 MapReduce**를 참조하십시오.
 
-현재 파일 시스템 로그가 자세한 정보 표시 수준으로 설정되어 있습니다. 다음 단계에서는 정보 수준의 로그가 저장소 계정 테이블로 전송되도록 설정하는 방법을 안내합니다. 정보 수준이란 `Trace.WriteLine`을 호출하여 생성된 로그를 제외하고 `Trace.TraceInformation`, `Trace.TraceWarning` 및 `Trace.TraceError`를 호출하여 생성된 모든 로그가 표시됨을 의미합니다.
+현재 파일 시스템 로그 집합 tooverbose 수준;가 hello 다음 단계에 관한 정보 수준의 로그 toogo toostorage 계정 테이블을 설정 합니다. 정보 수준이란 `Trace.WriteLine`을 호출하여 생성된 로그를 제외하고 `Trace.TraceInformation`, `Trace.TraceWarning` 및 `Trace.TraceError`를 호출하여 생성된 모든 로그가 표시됨을 의미합니다.
 
-저장소 계정은 파일 시스템에 비해 더 많은 저장 공간을 제공하고 더 오랫동안 로그를 보존합니다. 응용 프로그램 추적 로그를 저장소로 보내는 또 다른 이점은 파일 시스템 로그에서 얻을 수 없는 각 로그별 일부 추가 정보를 얻을 수 있다는 점입니다.
+저장소 계정을 더 많은 디스크 공간과 로그에 대 한 오래 보존 비교 toohello 파일 시스템을 제공 합니다. 추적 로그 toostorage 보내는 응용 프로그램의 또 다른 이점은 적용 되는 파일 시스템 로그에서 볼 수 없는 각 로그에 몇 가지 추가 정보를 가져올 합니다.
 
-1. Azure 노드 아래에서 **저장소**를 마우스 오른쪽 단추로 클릭하고 **저장소 계정 만들기**를 클릭합니다.
+1. 마우스 오른쪽 단추로 클릭 **저장소** 아래에서 Azure 노드를 hello 및 클릭 **저장소 계정 만들기**합니다.
 
 ![저장소 계정 만들기](./media/web-sites-dotnet-troubleshoot-visual-studio/createstor.png)
 
-1. **저장소 계정 만들기** 대화 상자에서 저장소 계정의 이름을 입력합니다.
+1. Hello에 **저장소 계정 만들기** 대화 상자에서 hello 저장소 계정의 이름을 입력 합니다.
 
-    이 이름은 고유해야 합니다(다른 Azure 저장소 계정이 동일한 이름을 사용할 수 없음). 입력한 이름이 이미 사용 중이면 변경할 수 있습니다.
+    hello 이름은 고유 해야 합니다 (다른 Azure 저장소 계정이 없으면 hello 점이 동일한 이름). 입력 한 hello 이름이 이미 사용 중이면 얻게 됩니다 기회 toochange 것입니다.
 
-    저장소 계정에 액세스하기 위한 URL은 *{name}*.core.windows.net입니다.
-2. **지역 또는 선호도 그룹** 드롭다운 목록을 가장 가까운 지역으로 설정합니다.
+    저장소 계정 수 URL tooaccess hello *{name}*. core.windows.net 합니다.
+2. 집합 hello **지역 또는 선호도 그룹** 드롭 다운 목록 toohello 영역에 대 한 가장 가까운 tooyou 합니다.
 
-    이 설정은 저장소 계정을 호스트할 Azure 데이터 센터를 지정합니다. 이 자습서의 경우 어떤 항목을 선택해도 두드러진 차이를 느낄 수 없지만 프로덕션 웹 앱의 경우에는 대기 시간과 데이터 발신 요금을 최소화하기 위해 웹 서버와 저장소 계정을 동일한 지역에 두기 원할 것입니다. 나중에 만들게 될 웹 앱은 대기 시간을 최소화하기 위해 웹 앱에 액세스하는 브라우저에 가능한 한 가까운 지역에서 실행합니다.
-3. **복제** 드롭다운 목록을 **로컬 중복**으로 설정합니다.
+    이 설정은 저장소 계정을 호스트할 Azure 데이터 센터를 지정합니다. 이 자습서에 대 한 사용자가 선택한 눈에 띄는 차이점이 확인 되지 않습니다 되지만 웹 서버 및 사용자 저장소 계정 toobe hello에 원하는 프로덕션 웹 앱에 대 한 동일한 지역 toominimize 대기 시간 및 데이터 요금을 송신 합니다. hello 웹 앱 (나중에 만들) 순서 toominimize 대기 시간에 웹 앱에 액세스 가능한 toohello 브라우저와 가까운 지역에서 실행 해야 합니다.
+3. 집합 hello **복제** 드롭 다운 목록 너무**로컬 중복**합니다.
    
-    저장소 계정에 대해 지역에서 복제를 사용하는 경우에는 저장된 콘텐츠가 보조 위치에 복제되어 기본 위치에서 주요 재해가 발생하는 경우 보조 데이터 센터로 장애 조치(Failover)할 수 있도록 합니다. 지역에서 복제는 추가 비용을 발생시킬 수 있습니다. 테스트 및 개발 계정의 경우 일반적으로 지역에서 복제 비용을 지불하지 않는 것이 좋습니다. 자세한 내용은 [저장소 계정 만들기, 관리 또는 삭제](../storage/common/storage-create-storage-account.md)를 참조하세요
+    저장소 계정에 대 한 지리적 복제를 사용 하는 경우 저장 된 hello 콘텐츠 hello 기본 위치에서 중요 재해가 발생 한 경우 복제 된 tooa 보조 데이터 센터 tooenable 장애 조치 toothat 위치입니다. 지역에서 복제는 추가 비용을 발생시킬 수 있습니다. 테스트 및 개발 계정에 대 한 일반적으로 원하지 toopay 지리적 복제에 대 한 합니다. 자세한 내용은 [저장소 계정 만들기, 관리 또는 삭제](../storage/common/storage-create-storage-account.md)를 참조하세요
 4. **만들기**를 클릭합니다.
 
     ![새 저장소 계정](./media/web-sites-dotnet-troubleshoot-visual-studio/newstorage.png)    
-5. Visual Studio **Azure Web App** 창에서 **로그** 탭을 클릭한 다음 **관리 포털에서 로깅 구성**을 클릭합니다.
+5. Hello Visual Studio에서에서 **Azure 웹 앱** 창의 hello 클릭 **로그** 탭을 클릭 한 다음 **관리 포털에서 로깅 구성**합니다.
 
-    <!-- todo:screenshot of new portal if the VS page link goes to new portal -->
+    <!-- todo:screenshot of new portal if hello VS page link goes toonew portal -->
     ![로깅 구성](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-configlogging.png)
 
-    웹앱의 클래식 포털에서 **구성** 탭이 열립니다.
-6. 클래식 포털의 **구성** 탭에서 응용 프로그램 진단 섹션까지 아래로 스크롤한 후 **응용 프로그램 로깅(Table Storage)**을 **켜기**로 변경합니다.
-7. **로깅 수준**을 **정보**로 변경합니다.
+    Hello 열립니다 **구성** 웹 앱에 대 한 hello 클래식 포털의 탭 합니다.
+6. Hello 클래식 포털에서 **구성** 탭을 toohello 응용 프로그램 진단 섹션에서 아래로 스크롤하여 한 다음 변경 **응용 프로그램 로깅 (테이블 저장소)** 너무**에**합니다.
+7. 변경 **로깅 수준** 너무**정보**합니다.
 8. **Manage Table Storage**를 클릭합니다.
 
     ![Manage Table Storage 클릭](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-stgsettingsmgmtportal.png)
 
-    둘 이상의 저장소 계정이 있는 경우 **Manage table storage for application diagnostics** 상자에서 사용자의 저장소 계정을 선택할 수 있습니다. 새 테이블을 만들거나 기존 테이블을 사용할 수 있습니다.
+    Hello에 **응용 프로그램 진단 위한 테이블 저장소 관리** 상자 여러 개 있는 경우 저장소 계정의 선택할 수 있습니다. 새 테이블을 만들거나 기존 테이블을 사용할 수 있습니다.
 
     ![Manage Table Storage](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-choosestorageacct.png)
-9. **Manage table storage for application diagnostics** 상자에서 확인 표시를 클릭하여 상자를 닫습니다.
-10. 클래식 포털의 **구성** 탭에서 **저장**을 클릭합니다.
-11. 응용 프로그램 웹앱이 표시되는 브라우저 창에서 **홈**을 클릭하고 **정보**를 클릭한 후 **연락처**를 클릭합니다.
+9. Hello에 **응용 프로그램 진단 위한 테이블 저장소 관리** 상자 hello 확인 표시가 tooclose hello 상자를 클릭 합니다.
+10. Hello 클래식 포털에서 **구성** 탭을 클릭 **저장**합니다.
+11. Hello 응용 프로그램 웹 응용 프로그램을 표시 하는 hello 브라우저 창에서 클릭 **홈**, 클릭 **에 대 한**, 클릭 하 고 **연락처**합니다.
 
-     이들 웹 페이지를 탐색하는 동안 생성된 로깅 정보가 저장소 계정에 기록됩니다.
-12. Visual Studio의 **Azure Web App** 창에 있는 **로그** 탭에서 **진단 요약** 아래의 **새로 고침**을 클릭합니다.
+     이러한 웹 페이지를 탐색 하 여 생성 한 hello 로깅 정보 toohello 저장소 계정을 작성 됩니다.
+12. Hello에 **로그** hello 탭 **Azure 웹 앱** Visual Studio에서 창을 클릭 **새로 고침** 아래 **진단 요약**합니다.
 
      ![새로 고침 클릭](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-refreshstorage.png)
 
-     **Diagnostic Summary** 섹션에는 기본적으로 지난 15분간의 로그가 표시됩니다. 더 많은 로그를 표시하도록 기간을 변경할 수 있습니다.
+     hello **진단 요약** 섹션 hello에 대 한 로그 지난 15 분 동안 기본적으로 표시 합니다. 더 많은 로그 hello 기간 toosee를 변경할 수 있습니다.
 
-     참고로, "테이블을 찾을 수 없습니다" 오류가 나타나면 **응용 프로그램 로깅(저장소)**을 사용하도록 설정하고 **저장**을 클릭한 후 추적하는 페이지를 탐색했는지 확인하십시오.
+     ("테이블을 찾을 수 없습니다" 오류가 발생할 경우 확인 사용 하도록 설정한 후에 추적 hello 않는 toohello 페이지를 검색할 **응용 프로그램 로깅 (저장소)** 클릭 한 후 **저장**.)
 
      ![저장소 로그](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-storagelogs.png)
 
-     이 보기에는 파일 시스템 로그에서 얻을 수 없는 각 로그의 **프로세스 ID** 및 **스레드 ID**가 표시됩니다. Azure 저장소 테이블을 직접 보면 추가 필드를 확인할 수 있습니다.
+     이 보기는 통지 참조 **프로세스 ID** 및 **스레드 ID** hello 파일 시스템 로그에서 얻지 못할 각 로그에 대 한 합니다. Hello Azure 저장소 테이블을 직접 확인 하 여 추가 필드를 볼 수 있습니다.
 13. **View all application logs**를 클릭합니다.
 
-     추적 로그 테이블은 Azure 저장소 테이블 뷰어에 나타납니다.
+     hello 추적 로그 테이블 hello Azure 저장소 테이블 뷰어에 표시 됩니다.
 
-     참고로, "시퀀스에 요소가 없습니다" 오류가 나타나면 **서버 탐색기**를 열고 **Azure** 노드 아래에서 사용자 저장소 계정의 노드를 확장한 후 **테이블**을 마우스 오른쪽 단추로 클릭하고 **새로 고침**을 클릭합니다.
+     ("시퀀스에 요소가" 오류가 발생할 경우 열 **서버 탐색기**, hello에서 저장소 계정에 대 한 hello 노드를 확장 **Azure** 노드를 마우스 오른쪽 단추로 **테이블**클릭 **새로 고침**.)
 
      ![테이블 보기의 저장소 로그](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-tracelogtableview.png)
 
-     이 보기에는 다른 보기에서 볼 수 없는 추가 필드가 표시됩니다. 이 보기에서는 또한 쿼리를 작성하는 특수 쿼리 작성기 UI를 사용하여 로그를 필터링할 수 있습니다. 자세한 내용은 [서버 탐색기를 사용하여 저장소 리소스 탐색](http://msdn.microsoft.com/library/ff683677.aspx)(영문)에서 "테이블 리소스 사용 - 엔터티 필터링"을 참조하십시오.
-14. 단일 행에 대한 세부 정보를 확인하려면 행의 하나를 두 번 클릭합니다.
+     이 보기에는 다른 보기에서 볼 수 없는 추가 필드가 표시됩니다. 이 보기 사용 수도 toofilter 로그 쿼리를 생성 하기 위한 특수 쿼리 작성기 UI를 사용 하 여 있습니다. 자세한 내용은 [서버 탐색기를 사용하여 저장소 리소스 탐색](http://msdn.microsoft.com/library/ff683677.aspx)(영문)에서 "테이블 리소스 사용 - 엔터티 필터링"을 참조하십시오.
+14. 단일 행에 대 한 hello 세부 정보를 toolook hello 행 중 하나를 두 번 클릭 합니다.
 
      ![서버 탐색기의 추적 테이블](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-tracetablerow.png)
 
 ## <a name="failedrequestlogs"></a>실패한 요청 추적 로그 보기
-실패한 요청 추적 로그는 URL 다시 쓰기 또는 인증 문제 등이 발생하는 경우 IIS에서 HTTP 요청이 처리되는 방식을 자세히 이해해야 하는 경우에 유용합니다.
+실패 한 요청 추적 로그는 IIS URL 재작성 또는 인증 문제를 비롯 한 경우에는 HTTP 요청을 처리 하는 방법의 toounderstand hello 세부 정보를 할 때 유용 합니다.
 
-Azure 웹 앱은 IIS 7.0 이상 버전에서 사용할 수 있는 실패한 요청 추적 기능을 똑같이 사용합니다. 하지만 기록될 오류를 구성하는 IIS 설정에 대한 액세스 권한이 없습니다. 실패한 요청 추적을 사용하도록 설정하면 모든 오류가 캡처됩니다.
+Azure 웹 앱 사용 하 여 hello 동일 하지 못했습니다가 IIS 7.0과 함께 사용할 수 있는 이상용 되어 추적 기능을 요청 합니다. 그러나 액세스 toohello 기록할 오류를 구성 하는 IIS 설정을 기록, 않아도 됩니다. 실패한 요청 추적을 사용하도록 설정하면 모든 오류가 캡처됩니다.
 
-Visual Studio를 사용하여 실패한 요청 추적을 사용하도록 설정할 수 있지만 Visual Studio에서 해당 로그를 볼 수는 없습니다. 이러한 로그는 XML 파일입니다. 스트리밍 로그 서비스는 일반 텍스트 모드에서 읽을 수 있는 것으로 간주되는 파일인 *.txt*, *.html*, *.log* 파일만을 모니터링합니다.
+Visual Studio를 사용하여 실패한 요청 추적을 사용하도록 설정할 수 있지만 Visual Studio에서 해당 로그를 볼 수는 없습니다. 이러한 로그는 XML 파일입니다. 일반 텍스트 모드에서 읽을 수 있는 것으로 간주 되는 파일을 모니터링 하는 스트리밍 로그 서비스에만 hello: *.txt*, *.html*, 및 *.log* 파일입니다.
 
-실패한 요청 추적 로그는 FTP를 통해 브라우저에서 직접 보거나 로컬에서 FTP 도구를 사용하여 로컬 컴퓨터에 다운로드한 후 볼 수 있습니다. 이 섹션에서는 브라우저에서 직접 보겠습니다.
+FTP를 통해 직접 또는 FTP 도구 toodownload를 사용 하 여 후 로컬로 브라우저에서 실패 한 요청 추적 로그를 볼 수 있습니다 이러한 tooyour 로컬 컴퓨터입니다. 이 섹션에서는 브라우저에서 직접 보겠습니다.
 
-1. **서버 탐색기**에서 열었던 **Azure Web App** 창의 **구성** 탭에서 **실패한 요청 추적**을 **켜기**로 변경하고 **저장**을 클릭합니다.
+1. Hello에 **구성** hello 탭 **Azure 웹 앱** 에서 열린 창 **서버 탐색기**, 변경 **실패 한 요청 추적**너무**에**, 클릭 하 고 **저장**합니다.
 
     ![실패한 요청 추적 사용](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-failedrequeston.png)
-2. 웹 앱이 표시된 브라우저 창의 주소 표시줄에서 추가 문자를 URL에 추가하고 Enter 키를 눌러 404 오류를 발생시킵니다.
+2. Hello 웹 응용 프로그램을 보여 주는 hello 브라우저 창의 주소 표시줄 hello 추가 문자가 toohello URL을 추가 하 고 Enter toocause 404 오류를 클릭 합니다.
 
-    그러면 실패한 요청 추적 로그가 만들어집니다. 다은 단계는 로그를 보거나 다운로드하는 방법을 보여 줍니다.
-3. Visual Studio의 **Azure Web App** 창에 있는 **구성** 탭에서 **관리 포털에서 열기**를 클릭합니다.
-4. 웹앱의 [Azure Portal](https://portal.azure.com) **설정** 블레이드에서 **배포 자격 증명**을 클릭한 다음 새 사용자 이름 및 암호를 입력합니다.
+    이 인해 생성 하는 실패 한 요청 추적 로그 toobe와 hello 다음 단계 표시 방법을 tooview 또는 다운로드 hello 로그 합니다.
+3. Hello에 Visual Studio에서 **구성** hello 탭 **Azure 웹 앱** 창 클릭 **관리 포털에서 열기**합니다.
+4. Hello에 [Azure 포털](https://portal.azure.com) **설정** 블레이드 웹 앱에 대 한 클릭 **배포 자격 증명**, 새 사용자 이름 및 암호를 입력 합니다.
 
     ![새 FTP 사용자 이름 및 암호](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-enterftpcredentials.png)
 
-    **로그인할 때, 앞에 웹 앱 이름이 있는 상태로 전체 사용자 이름을 사용해야 합니다. 예를 들어, 사용자 이름으로 "myid"를 입력하고 사이트가 "myexample"인 경우, "myexample\myid"로 로그인합니다.
-5. 새 브라우저 창에서, 사용자 웹앱에 대한 **웹앱** 블레이드의 **FTP 호스트 이름** 또는 **FTPS 호스트 이름** 아래에 표시된 URL로 이동합니다.
-6. 이전에 만든 FTP 자격 증명을 사용하여 로그인합니다(사용자 이름 앞에 웹 앱 이름 포함).
+    * * 로그인 할 때 toouse hello 전체 사용자 이름을 hello 웹 응용 프로그램 이름 tooit 사용 해야 합니다. 예를 들어, 사용자 이름으로 "myid"를 입력 하는 경우 hello 사이트는 "myexample"로 로그인 "myexample\myid"입니다.
+5. 새 브라우저 창에서 아래 표시 된 toohello URL로 이동 **FTP 호스트 이름** 또는 **FTPS 호스트 이름** hello에 **웹 응용 프로그램** 블레이드 웹 앱에 대 한 합니다.
+6. 이전 버전 (포함 hello 웹 응용 프로그램 이름에 대 한 접두사 hello 사용자 이름) 만든 hello FTP 자격 증명을 사용 하 여 로그인 합니다.
 
-    브라우저에 웹 앱의 루트 폴더가 표시됩니다.
-7. *LogFiles* 폴더를 엽니다.
+    hello 브라우저 hello 웹 앱의 hello 루트 폴더를 표시 합니다.
+7. 열기 hello *LogFiles* 폴더입니다.
 
     ![LogFiles 폴더 열기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-logfilesfolder.png)
-8. 이름에 W3SVC와 숫자 값이 있는 폴더를 엽니다.
+8. W3SVC를 더한 숫자 값을 명명 된 hello 폴더를 엽니다.
 
     ![W3SVC 폴더 열기](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-w3svcfolder.png)
 
-    폴더에는 실패한 요청 추적을 사용하도록 설정한 후에 기록된 모든 로그가 XML 파일로 포함되어 있습니다. 또한 브라우저에서 XML 형식으로 사용할 수 있는 XSL 파일도 있습니다.
+    실패 한 요청 추적을 설정한 후 기록 된 모든 오류에 대 한 XML 파일과 브라우저 tooformat hello XML을 사용할 수 있는 XSL 파일 hello 폴더에 포함 되어 있습니다.
 
     ![W3SVC 폴더](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-w3svcfoldercontents.png)
-9. 추적 정보를 확인하려는 실패한 요청의 XML 파일을 클릭합니다.
+9. 에 대 한 추적 정보를 toosee hello 실패 한 요청에 대 한 hello XML 파일을 클릭 합니다.
 
-    다음 그림에는 샘플 오류에 대한 추적 정보의 일부가 나와 있습니다.
+    hello 다음은 샘플 오류에 대 한 hello 추적 정보의 일부입니다.
 
     ![브라우저의 실패한 요청 추적](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-failedrequestinbrowser.png)
 
 ## <a name="nextsteps"></a>다음 단계
-Visual Studio를 사용하여 Azure 웹 앱에서 생성된 로그를 쉽게 보는 방법을 확인했습니다. 다음 섹션에서는 관련 항목에 대한 기타 리소스 링크를 제공합니다.
+어떻게 Visual Studio에서는 쉽게 tooview를 살펴 보았으며 Azure 웹 앱에서 만든 로그가 있습니다. hello 다음 섹션에서는 링크 toomore 리소스에 관련된 항목:
 
 * Azure 웹 앱 문제 해결
 * Visual Studio의 디버깅
@@ -566,75 +566,75 @@ Visual Studio를 사용하여 Azure 웹 앱에서 생성된 로그를 쉽게 보
 * 클라우드 서비스 디버깅
 
 ### <a name="azure-web-app-troubleshooting"></a>Azure 웹 앱 문제 해결
-Azure 앱 서비스에서 웹 앱 문제 해결에 대한 자세한 내용은 다음 리소스를 참조하십시오.
+Azure 앱 서비스의 웹 응용 프로그램 문제를 해결 하는 방법에 대 한 자세한 내용은 hello 다음 리소스를 참조 하세요.
 
-* [웹 앱을 모니터링하는 방법](/manage/services/web-sites/how-to-monitor-websites/)
+* [어떻게 toomonitor 웹 앱](/manage/services/web-sites/how-to-monitor-websites/)
 * [Visual Studio 2013을 사용하여 Azure Web Apps에서 메모리 누수 검사](http://blogs.msdn.com/b/visualstudioalm/archive/2013/12/20/investigating-memory-leaks-in-azure-web-sites-with-visual-studio-2013.aspx) 관리되는 메모리 문제를 분석하는 데 사용되는 Visual Studio 기능에 대한 Microsoft ALM 블로그 게시물입니다.
 * [알아 두면 도움이 되는 Azure Web Apps 온라인 도구](https://azure.microsoft.com/blog/2014/03/28/windows-azure-websites-online-tools-you-should-know-about-2/) Amit Apple의 블로그 게시물입니다.
 
-특정 문제 해결 질문과 관련하여 도움이 필요한 경우 다음 포럼 중 하나에서 게시물을 작성하십시오.
+에 대 한 특정 문제 해결 질문 도움말, hello 다음 포럼 중 하나에서 스레드를 시작 합니다.
 
-* [ASP.NET 사이트의 Azure 포럼](http://forums.asp.net/1247.aspx/1?Azure+and+ASP+NET)(영문)
-* [MSDN의 Azure 포럼](http://social.msdn.microsoft.com/Forums/windowsazure/)(영문)
+* [hello ASP.NET 사이트의 Azure 포럼 hello](http://forums.asp.net/1247.aspx/1?Azure+and+ASP+NET)합니다.
+* [MSDN의 Azure 포럼 hello](http://social.msdn.microsoft.com/Forums/windowsazure/)합니다.
 * [StackOverflow.com](http://www.stackoverflow.com)(영문)
 
 ### <a name="debugging-in-visual-studio"></a>Visual Studio의 디버깅
-Visual Studio에서 디버그 모드를 사용하는 방법에 대한 자세한 내용은 MSDN 토픽 [Visual Studio의 디버깅](http://msdn.microsoft.com/library/vstudio/sc65sadd.aspx)과 [Visual Studio 2010을 사용한 디버깅 팁](http://weblogs.asp.net/scottgu/archive/2010/08/18/debugging-tips-with-visual-studio-2010.aspx)을 참조하세요.
+Toouse 모드 Visual Studio에서 디버깅 하는 방법에 대 한 자세한 내용은 참조 hello [Visual Studio의 디버깅](http://msdn.microsoft.com/library/vstudio/sc65sadd.aspx) MSDN 항목 및 [Visual Studio 2010과 디버그 팁](http://weblogs.asp.net/scottgu/archive/2010/08/18/debugging-tips-with-visual-studio-2010.aspx)합니다.
 
 ### <a name="remote-debugging-in-azure"></a>Azure의 원격 디버깅
-Azure 웹 앱 및 WebJob의 원격 디버깅에 대한 자세한 내용은 다음 리소스를 참조하세요.
+Azure 웹 앱 및 WebJobs 원격 디버깅에 대 한 자세한 내용은 hello 다음 리소스를 참조 하세요.
 
-* [Azure 앱 서비스 웹 앱의 원격 디버깅 소개.](https://azure.microsoft.com/blog/2014/05/06/introduction-to-remote-debugging-on-azure-web-sites/)
-* [Azure 앱 서비스 웹 앱의 원격 디버깅 소개 2부 - 원격 디버깅 세부 정보](https://azure.microsoft.com/blog/2014/05/07/introduction-to-remote-debugging-azure-web-sites-part-2-inside-remote-debugging/)
-* [Azure 앱 서비스 웹 앱의 원격 디버깅 소개 3부 - 다중 인스턴스 환경 및 GIT](https://azure.microsoft.com/blog/2014/05/08/introduction-to-remote-debugging-on-azure-web-sites-part-3-multi-instance-environment-and-git/)
+* [소개 tooRemote 디버깅 Azure 앱 서비스 웹 앱](https://azure.microsoft.com/blog/2014/05/06/introduction-to-remote-debugging-on-azure-web-sites/)합니다.
+* [Azure 앱 서비스 웹 앱 디버깅 파트 2-내 원격 디버깅 소개 tooRemote](https://azure.microsoft.com/blog/2014/05/07/introduction-to-remote-debugging-azure-web-sites-part-2-inside-remote-debugging/)
+* [소개 tooRemote Azure 앱 서비스 웹 앱 파트 3-다중 인스턴스 환경 및 GIT에 디버깅](https://azure.microsoft.com/blog/2014/05/08/introduction-to-remote-debugging-on-azure-web-sites-part-3-multi-instance-environment-and-git/)
 * [Webjob 디버깅(비디오)](https://www.youtube.com/watch?v=ncQm9q5ZFZs&list=UU_SjTh-ZltPmTYzAybypB-g&index=1)
 
-웹 앱에 Azure 웹 API 또는 모바일 서비스 백 엔드가 사용되는 경우 이들을 디버그해야 하면 [Visual Studio에서 .NET 백 엔드 디버깅](http://blogs.msdn.com/b/azuremobile/archive/2014/03/14/debugging-net-backend-in-visual-studio.aspx)을 참조하세요.
+웹 앱에는 Azure 웹 API 또는 모바일 서비스 백 엔드에서 사용 하 여 toodebug 참조 하는 경우 [Visual Studio에서.NET 백 엔드 디버깅](http://blogs.msdn.com/b/azuremobile/archive/2014/03/14/debugging-net-backend-in-visual-studio.aspx)합니다.
 
 ### <a name="tracing-in-aspnet-applications"></a>ASP.NET 응용 프로그램의 추적
-현재 인터넷에서 ASP.NET 추적과 관련하여 완벽한 최신 소개 정보를 제공하는 곳이 없습니다. 최상의 방법은 MVC가 아직 출시되지 않은 시점에 Web Forms용으로 작성된 기존 소개 자료를 먼저 참조한 후, 특정 문제에 주력하는 최신 블로그 게시물의 정보로 보충하는 것입니다. 시작하기에 유용한 리소스 위치는 다음과 같습니다.
+없는 철저 하 고 최신 소개 tooASP.NET 추적 hello 인터넷에서 사용할 수 있습니다. hello 최상의 할 수 있는 Web Forms MVC 아직 존재 하지 않은 및 최신 블로그도 보완 하는 때문에 집중 된에 대 한 게시물 특정 문제 용으로 작성 된 이전 소개 자료는 시작 하세요. 일부 장황한 toostart hello 다음 리소스는.
 
 * [모니터링 및 원격 분석(Azure에서 실제 클라우드 앱 빌드)](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry)<br>
   Azure 클라우드 응용 프로그램에서 추적을 권장하는 전자책의 한 챕터
 * [ASP.NET 추적](http://msdn.microsoft.com/library/ms972204.aspx)<br/>
-  오래된 자료이지만 추적의 기초를 소개하는 여전히 유용한 리소스입니다.
+  이전 하지만 여전히 좋은 리소스의 기본 사항을 소개 toohello 주체입니다.
 * [추적 수신기](http://msdn.microsoft.com/library/4y5y10s7.aspx)<br/>
-  추적 수신기에 대한 정보를 제공하지만 [WebPageTraceListener](http://msdn.microsoft.com/library/system.web.webpagetracelistener.aspx)를 언급하지 않습니다.
+  추적 수신기에 대 한 정보 hello를 언급 하지 않는 있지만 [WebPageTraceListener](http://msdn.microsoft.com/library/system.web.webpagetracelistener.aspx)합니다.
 * [연습: ASP.NET 추적을 System.Diagnostics 추적과 통합](http://msdn.microsoft.com/library/b0ectfxd.aspx)<br/>
-  이 자료도 오래되었지만 소개 자료에서 다루지 않은 일부 추가 정보가 포함되어 있습니다.
+  이 너무 오래 되 면 하지만 몇 가지 추가 정보를 포함 합니다. 해당 hello 소개 문서 처리 하지는 않습니다.
 * [ASP.NET MVC Razor 뷰에서 추적](http://blogs.msdn.com/b/webdev/archive/2013/07/16/tracing-in-asp-net-mvc-razor-views.aspx)<br/>
-  Razor 뷰의 추적 정보와 더불어, MVC 응용 프로그램의 처리되지 않은 모든 예외를 기록할 수 있도록 오류 필터를 만드는 방법을 설명하는 게시물입니다. Web Forms 응용 프로그램의 처리되지 않은 모든 예외를 기록하는 방법에 대한 자세한 내용은 MSDN의 [오류 처리기의 전체 예제](http://msdn.microsoft.com/library/bb397417.aspx) 에서 Global.asax를 참조하십시오. MVC 또는 Web Forms 중 하나에서 특정 예외를 기록하되 기본 프레임워크 처리 방식은 그대로 적용하려면 다음 예와 같이 해당 오류를 catch한 후 다시 throw하면 됩니다.
+  Razor 뷰에 사용 되는 추적 외에도 hello post toocreate 오류가 필터링 하는 방법을 순서 toolog에 MVC 응용 프로그램에서 처리 되지 않은 모든 예외도 설명 합니다. 모든 toolog 처리 되지 않은 대 한 정보에 대 한 hello Global.asax 예제를 참조 하는 Web Forms 응용 프로그램에서 예외 [오류 처리기에 대 한 전체 예제](http://msdn.microsoft.com/library/bb397417.aspx) msdn 합니다. MVC 또는 Web Forms toolog 특정 예외가 하지만 고객을 위해 적용을 처리 하는 hello 기본 프레임 워크를 사용 하는 경우 catch 하 고 수 hello 다음 예제와 같이 다시 throw:
 
         try
         {
-           // Your code that might cause an exception to be thrown.
+           // Your code that might cause an exception toobe thrown.
         }
         catch (Exception ex)
         {
             Trace.TraceError("Exception: " + ex.ToString());
             throw;
         }
-* [Azure 명령줄에서 진단 추적 로깅 스트리밍(Glimpse 포함)](http://www.hanselman.com/blog/StreamingDiagnosticsTraceLoggingFromTheAzureCommandLinePlusGlimpse.aspx)<br/>
-  이 자습서에서 설명한 Visual Studio 관련 작업을 명령줄로 수행하는 방법을 설명합니다. [Glimpse](http://www.hanselman.com/blog/IfYoureNotUsingGlimpseWithASPNETForDebuggingAndProfilingYoureMissingOut.aspx) 는 ASP.NET 응용 프로그램을 디버그하는 데 사용하는 도구입니다.
+* [Hello Azure 명령줄에서에서 진단 추적 로그 (및 Glimpse!) 스트리밍](http://www.hanselman.com/blog/StreamingDiagnosticsTraceLoggingFromTheAzureCommandLinePlusGlimpse.aspx)<br/>
+  어떻게 toouse hello 명령줄 toodo이 자습서에서는 어떤 방법을 Visual Studio에서 toodo 합니다. [Glimpse](http://www.hanselman.com/blog/IfYoureNotUsingGlimpseWithASPNETForDebuggingAndProfilingYoureMissingOut.aspx) 는 ASP.NET 응용 프로그램을 디버그하는 데 사용하는 도구입니다.
 * [David Ebbo와 함께 하는 Web Apps 로깅 및 진단](/documentation/videos/azure-web-site-logging-and-diagnostics/) 및 [David Ebbo와 함께 하는 Web Apps에서 로그 스트리밍](/documentation/videos/log-streaming-with-azure-web-sites/)<br>
   은 Scott Hanselman과 David Ebbo가 제작한 비디오입니다.
 
-오류 로깅과 관련하여, 사용자 자신의 추적 코드를 기록하는 또 다른 방법은 [ELMAH](http://nuget.org/packages/elmah/)같은 오픈 소스 로깅 프레임워크를 사용하는 것입니다. 자세한 내용은 [Scott Hanselman의 ELMAH 관련 블로그 게시물](http://www.hanselman.com/blog/NuGetPackageOfTheWeek7ELMAHErrorLoggingModulesAndHandlersWithSQLServerCompact.aspx)(영문)을 참조하십시오.
+오류 로깅에 대 한 대체 toowriting 추적 하는 코드는 오픈 소스 toouse 로깅 프레임 워크와 같은 [ELMAH](http://nuget.org/packages/elmah/)합니다. 자세한 내용은 [Scott Hanselman의 ELMAH 관련 블로그 게시물](http://www.hanselman.com/blog/NuGetPackageOfTheWeek7ELMAHErrorLoggingModulesAndHandlersWithSQLServerCompact.aspx)(영문)을 참조하십시오.
 
-또한 Azure에서 로그를 스트리밍하려면 ASP.NET 또는 System.Diagnostics 추적 기능을 사용할 필요가 없습니다. Azure 웹앱 스트리밍 로그 서비스는 *LogFiles* 폴더에 위치한 *.txt*, *.html* 또는 *.log* 파일을 스트리밍합니다. 따라서 웹 앱의 파일 시스템에 기록하는 사용자 자신의 로깅 시스템을 만들 수 있습니다. 그러면 파일이 자동으로 스트리밍되어 다운로드됩니다. 그러려면 *d:\home\logfiles* 폴더에 파일을 만드는 응용 프로그램 코드만 작성하면 됩니다.
+또한 ASP.NET toouse 없는 또는 System.Diagnostics 추적 tooget 스트리밍 하려는 경우 Azure에서 로그의 note 합니다. hello Azure 웹 앱 로그 서비스 스트리밍 스트리밍되지 모든 *.txt*, *.html*, 또는 *.log* hello에서 찾은 파일 *LogFiles* 폴더입니다. 따라서 hello 웹 응용 프로그램의 toohello 파일 시스템을 작성 하는 로깅 시스템을 만들 수 있습니다 및 파일에 자동으로 스트리밍 되며 다운로드 합니다. Toodo 됩니다 hello에서 파일을 작성 하는 응용 프로그램 코드를 작성 *d:\home\logfiles* 폴더입니다.
 
 ### <a name="analyzing-web-server-logs"></a>웹 서버 로그 분석
-웹 서버 로그 분석에 대한 자세한 내용은 다음 리소스를 참조하세요.
+웹 서버 로그를 분석 하는 방법에 대 한 자세한 내용은 hello 다음 리소스를 참조 하세요.
 
 * [LogParser](http://www.microsoft.com/download/details.aspx?id=24659)<br/>
   웹 서버 로그(*.log* 파일)의 데이터를 보는 데 사용하는 도구입니다.
 * [LogParser를 사용하여 IIS 성능 문제 또는 응용 프로그램 오류 문제 해결](http://www.iis.net/learn/troubleshoot/performance-issues/troubleshooting-iis-performance-issues-or-application-errors-using-logparser)<br/>
-  웹 서버 로그를 분석하는 데 사용할 수 있는 로그 파서 도구를 소개합니다.
+  Tooanalyze 웹 서버를 사용할 수 있는 소개 toohello 로그 구문 분석기 도구를 기록 합니다.
 * [Robert McMurray의 LogParser 사용 관련 블로그 게시물](http://blogs.msdn.com/b/robert_mcmurray/archive/tags/logparser/)<br/>
-* [IIS 7.0, IIS 7.5 및 IIS 8.0의 HTTP 상태 코드](http://support.microsoft.com/kb/943891)
+* [hello IIS 7.0, IIS 7.5 및 IIS 8.0의 HTTP 상태 코드](http://support.microsoft.com/kb/943891)
 
 ### <a name="analyzing-failed-request-tracing-logs"></a>실패한 요청 로그 분석
-Microsoft TechNet 웹 사이트에 포함된 [실패한 요청 추적 사용](http://www.iis.net/learn/troubleshoot/using-failed-request-tracing) (영문) 섹션은 이러한 로그 사용 방법을 이해하는 데 유용할 수 있습니다. 하지만 이 설명서에서는 IIS에서 실패한 요청 추적을 구성하는 방법을 중점적으로 다루며, 이는 Azure 웹 앱에서 수행할 수 없습니다.
+hello Microsoft TechNet 웹 사이트를 포함 한 [를 사용 하 여 실패 한 요청 추적](http://www.iis.net/learn/troubleshoot/using-failed-request-tracing) 섹션 이해 하는 데 도움이 될 수 있습니다 어떻게 toouse 이러한 로그입니다. 하지만 이 설명서에서는 IIS에서 실패한 요청 추적을 구성하는 방법을 중점적으로 다루며, 이는 Azure 웹 앱에서 수행할 수 없습니다.
 
 [GetStarted]: app-service-web-get-started-dotnet.md
 [GetStartedWJ]: websites-dotnet-webjobs-sdk.md

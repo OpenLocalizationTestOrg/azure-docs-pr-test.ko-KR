@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management에서 개발자 포털의 스타일 사용자 지정 | Microsoft Docs"
-description: "Azure API Management에서 개발자 포털의 페이지에 사용되는 스타일을 수정하는 방법을 알아봅니다."
+title: "Azure API 관리에서 hello 개발자 포털에서 aaaCustomize 스타일 | Microsoft Docs"
+description: "Azure API 관리에서 hello 개발자 포털에서 모든 페이지에 대 한 toomodify hello 스타일을 사용 하는 방법에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: antonba
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/09/2017
 ms.author: antonba
-ms.openlocfilehash: bd08eb476a4bd7298c5650977b88ba0b24deddec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaaa86527992ba43e64eab5fd35c7f57b573c812
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-the-styling-of-the-developer-portal-in-azure-api-management"></a>Azure API Management에서 개발자 포털의 스타일 사용자 지정
-Azure API Management에는 개발자 포털을 사용자 지정하는 기본적인 방법이 세 가지 있습니다.
+# <a name="customize-hello-styling-of-hello-developer-portal-in-azure-api-management"></a>Azure API 관리에서 개발자 포털 hello의 hello 스타일을 사용자 지정
+Azure API 관리에서 세 가지 기본 방법 toocustomize hello 개발자 포털이 있습니다.
 
-* [페이지 레이아웃 요소 및 정적 페이지의 콘텐츠 편집][modify-content-layout]
-* [개발자 포털 전반의 페이지 요소에 사용된 스타일 업데이트][customize-styles](이 가이드에 설명되어 있음)
-* [포털에서 생성된 페이지에 사용된 템플릿 수정][portal-templates](예: API 문서, 제품, 사용자 인증 등)
+* [정적 페이지 및 페이지 레이아웃 요소 hello 내용을 편집합니다][modify-content-layout]
+* [페이지 요소에 대 한 hello 개발자 포털에서 사용 하는 hello 스타일 업데이트] [ customize-styles] (이 가이드에서 설명)
+* [Hello 포털에서 생성 된 페이지에 사용 되는 hello 템플릿을 수정] [ portal-templates] (예: API docs, 제품, 사용자 인증 등)
 
-## <a name="change-headers-styling"> </a>페이지 요소의 스타일 변경
+## <a name="change-headers-styling"></a>페이지 요소의 hello 스타일 변경
 
-포털에서 페이지의 색, 글꼴, 크기, 간격 및 기타 스타일 관련 요소는 스타일 규칙에 따라 정의됩니다. 
+hello 색, 글꼴, 크기, 간격, 및 hello 포털에서 모든 페이지의 기타 스타일 관련 요소 정의 된 스타일 규칙에 의해 합니다. 
 
-스타일 규칙 편집은 관리자로 로그인되어 있는 동안 **개발자 포털**에서 수행됩니다. 여기로 이동하려면 우선 Azure Portal을 열고 API Management 인스턴스의 서비스 도구 모음에서 **게시자 포털**을 클릭하세요.
+Hello 스타일 규칙은 방식 hello에서 **개발자 포털** 관리자 권한으로 로그인 하는 중입니다. 먼저 hello Azure 포털을 열고 마우스 클릭 tooget 있습니다 **게시자 포털** API 관리 인스턴스 hello 서비스 도구 모음에서 합니다.
 
 ![게시자 포털][api-management-management-console]
 
-그런 다음 오른쪽 상단의 **개발자 포털**을 클릭합니다. 
+다음에서 클릭 **개발자 포털** hello 오른쪽에 있습니다. 
 
-![게시자 포털의 자 포털 링크][api-management-pp-dp-link]
+![Hello 게시자 포털의 개발자 포털 링크][api-management-pp-dp-link]
 
-사용자 지정 도구 모음을 열려면 사용자 지정 아이콘 위로 마우스를 이동(또는 선택)한 다음 도구 모음에서 “스타일”을 클릭합니다.
+hello 사용자 지정 아이콘 위로 마우스를 이동 (또는 선택) tooopen hello에 대 한 사용자 지정 도구 모음 및 다음 클릭 "스타일을" hello 도구 모음에서 합니다.
 
 ![사용자 지정 도구 모음 단추][api-management-customization-toolbar-button]
 
-스타일 규칙 편집에는 두 가지 주요 방법이 있습니다. 기본적으로 표시되는 곳에 사용되는 모든 스타일 규칙의 목록을 확인하고 필요에 따라 스타일을 수정하거나, **페이지에서 요소 선택**을 선택한 다음 페이지에서 아무 곳이나 클릭하여 해당 요소에 대한 스타일만 확인할 수 있습니다.
+스타일 지정 규칙을 편집 하는 두 개의 주요 방법을-기본적으로 표시 되는 모든 hello 스타일 규칙을 사용 하는 hello 목록을 검색 하 고 필요에 따라 스타일을 수정할 수 없거나 없는 선택할 수 있습니다 **hello 페이지에서 요소 선택** 한 다음 해당 요소에 대 한 hello 페이지 toosee 유일한 hello 스타일 아무 곳 이나 클릭 합니다.
 
 ![사용자 지정 도구 모음][api-management-customization-toolbar]
 
-이 예제의 경우 **페이지에서 요소 선택** 옵션을 클릭합니다.  이제 마우스를 요소 위로 가져가면 요소가 강조 표시되어 클릭하면 어느 요소의 스타일부터 편집을 시작하게 되는지가 나타납니다. 머리글의 텍스트(일반적으로 회사 이름이 여기에 있음) 위로 마우스로 이동한 다음 클릭합니다. 명명되고 분류된 스타일 규칙 집합이 스타일 편집기 내에 나타납니다. 각 규칙은 선택한 요소의 스타일 속성을 나타냅니다. 예를 들어, 위에서 선택한 머리글 텍스트의 경우 텍스트의 크기는 @font-size-h1이고, 대체 항목이 있는 글꼴의 이름은 @headings-font-family입니다.
+Hello 클릭 **hello 페이지에서 요소 선택** 이 예제에 대 한 옵션입니다.  요소 이제 될 강조 표시를 가리키면 hello 마우스 toosignify와 어떤 요소 스타일을 클릭 한 경우 편집을 시작 합니다. 이동 hello 위로 마우스를 hello 헤더 (일반적으로 hello 회사 이름이 있는 여기) 및 클릭 hello 텍스트 것입니다. Hello 스타일 편집기 내에서 명명 된 인수와 분류 된 스타일 지정 규칙 집합이 표시 됩니다. 각 규칙 hello 선택 된 요소의 스타일 속성을 나타냅니다. 예를 들어 위에서 선택한 hello 머리글 텍스트에 대 한 hello hello 텍스트 크기가에 @font-size-h1 대안 hello 글꼴의 이름이 고 hello 중인 동안 @headings-font-family합니다.
 
-> [부트스트랩][bootstrap](영문)에 익숙한 경우 이 규칙은 실제로 개발자 포털에서 사용하는 부트스트랩 테마 내의 [LESS 변수][LESS variables](영문)입니다.
+> 익숙한 경우 [부트스트랩][bootstrap], 이러한 규칙은 실제로 [LESS 변수] [ LESS variables] hello 사용 되는 hello 부트스트랩 테마 내에서 개발자 포털입니다.
 > 
 > 
 
-이제 제목 텍스트의 색을 변경하겠습니다. **@headings-color** 필드에서 항목을 선택하고 **#000000**을 입력합니다. 이는 검정색의 16진 코드입니다. 이 과정에서 텍스트 상자 끝부분에 사각형 색 표시기가 나타나는 것이 확인됩니다. 이 표시기를 클릭하면 색 선택을 통해 색을 선택할 수 있습니다.
+Hello hello 머리글 텍스트 색을 변경해 보겠습니다. Hello에서 hello 항목을 선택  **@headings-color**  필드와 형식 **#000000**합니다. Hello 검정 hello 색에 대 한 16 진수 코드입니다. 이렇게 하면 사각형 색 표시기 hello 끝 hello 텍스트 상자에 표시 되는지 볼 수 있습니다. 색 선택이이 표시기를 클릭 하면 toochoose 색.
 
 ![색 선택][api-management-customization-toolbar-color-picker]
 
-변경 내용을 적용하면 실시간으로 미리 보기를 확인할 수 있지만 관리자에게만 표시됩니다. 변경 내용을 모든 사람이 볼 수 있게 하려면 스타일 편집기에서 **게시** 단추를 클릭하고 변경 내용을 확인하세요.
+변경 내용은이 미리 보기를 실시간으로, 하지만 표시만 tooadministrators 됩니다. toomake hello 클릭, 이러한 변경 사항은 표시 tooeveryone **게시** hello 스타일 지정 편집기에서 단추 및 hello 변경 사항을 확인 합니다.
 
 ![게시 메뉴][api-management-customization-toolbar-publish-form]
 
-> 페이지상의 다른 요소에 적용되는 스타일 규칙을 변경하려면 머리글의 경우와 동일한 절차를 따릅니다. 스타일 편집기에서 **페이지에서 요소 선택**을 클릭하고 원하는 요소를 선택한 후 화면에 표시되는 스타일 규칙의 값을 수정하기 시작합니다.
+> toochange hello tooany 적용 되는 규칙 다른 요소의 스타일 hello 페이지에서 다음과 같은 hello hello 헤더에 대 한 프로시저 처럼 않았습니다. 클릭 **hello 페이지에서 요소 선택** hello 스타일 지정 편집기, select hello 요소에 관심이 및 시작 hello 화면에 표시 된 hello 스타일 규칙의 hello 값을 수정 합니다.
 > 
 > 
 
 
 ## <a name="next-steps"> </a>다음 단계
-* [개발자 포털 템플릿](api-management-developer-portal-templates.md)을 사용하여 개발자 포털 페이지의 콘텐츠를 사용자 지정하는 방법 알아보기.
+* 개발자 포털의 toocustomize hello 콘텐츠 페이지를 사용 하 여 하는 방식에 대해 알아봅니다 [개발자 포털 템플릿](api-management-developer-portal-templates.md)합니다.
 
-[Change the styling of the headers]: #change-headers-styling
+[Change hello styling of hello headers]: #change-headers-styling
 [Next steps]: #next-steps
 
 [Azure Classic Portal]: https://manage.windowsazure.com/

@@ -1,6 +1,6 @@
 ---
-title: "할당한 응용 프로그램이 액세스 패널에 표시되지 않음 | Microsoft Docs"
-description: "응용 프로그램이 액세스 패널에 표시되지 않는 문제 해결"
+title: "할당 된 aaaAn 응용 프로그램은 hello 액세스 패널에 표시 되지 않는 | Microsoft Docs"
+description: "응용 프로그램은 hello 액세스 패널에에서 표시 되지 않는 한 문제 해결"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,17 +14,17 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviwer: japere
-ms.openlocfilehash: 9ea5744d77b90929598ea5feb80c7bbdff3772fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 089883f406267df4552c7fc991883f335ad49fd5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="an-assigned-application-is-not-appearing-on-the-access-panel"></a>할당한 응용 프로그램이 액세스 패널에 표시되지 않음
+# <a name="an-assigned-application-is-not-appearing-on-hello-access-panel"></a>할당된 된 응용 프로그램은 hello 액세스 패널에 표시 되지 않는
 
-액세스 패널은 웹 기반 포털로 Azure AD(Azure Active Directory)에 회사 또는 학교 계정이 있는 사용자가 Azure AD 관리자를 통해 액세스 권한을 부여받은 클라우드 기반 응용 프로그램을 보고 시작할 수 있도록 합니다. 이러한 응용 프로그램은 Azure AD 포털에서 사용자를 대신하여 구성됩니다. 응용 프로그램을 액세스 패널에 표시하려면 응용 프로그램이 올바르게 구성되어 있고, 사용자나 그 사용자가 속한 그룹에 할당되어 있어야 합니다.
+hello 액세스 패널은 작업으로는 사용할 수 있는 웹 기반 포털 또는 학교 계정을 Azure Active Directory (Azure AD) tooview 및 시작 클라우드 기반 응용 프로그램에서 해당 hello Azure AD 관리자가 부여 해 준에 대 한 액세스. 이러한 응용 프로그램 hello Azure AD 포털에서 hello 사용자를 대신 하 여 구성 됩니다. hello 응용 프로그램을 올바르게 구성 되어야 합니다. 및 할당 된 toohello 사용자 또는 그룹 hello 사용자가 hello 액세스 패널에에서 toosee hello 응용 프로그램의 구성원입니다.
 
-사용자가 볼 수 있는 앱의 종류는 다음과 같은 범주로 분류됩니다.
+사용자 표시 될 수는 앱의 hello 유형 hello 다음 범주에에서 속합니다.
 
 -   Office 365 응용 프로그램
 
@@ -34,639 +34,639 @@ ms.lasthandoff: 08/03/2017
 
 -   기존 SSO 솔루션을 사용한 응용 프로그램
 
-## <a name="general-issues-to-check-first"></a>먼저 확인해야 할 일반적인 문제
+## <a name="general-issues-toocheck-first"></a>일반 toocheck를 먼저 문제
 
--   사용자에게 방금 응용 프로그램이 추가되었으면 몇 분 후에 사용자의 액세스 패널에 로그인했다가 다시 로그아웃하고 응용 프로그램이 추가되었는지 봅니다.
+-   응용 프로그램 방금 tooa 사용자를 추가 하는 경우 다시 toosign 시작 및 종료 hello 사용자의 액세스 패널에 몇 분 toosee 후 hello 응용 프로그램에 추가 되는 경우.
 
--   라이선스가 사용자 또는 사용자가 구성원인 그룹에서 제거된 경우 변경 사항이 만들어질 그룹의 크기 및 복잡성에 따라 시간이 오래 걸릴 수 있습니다. 액세스 패널에 로그인하기 전에 잠시 여유 시간을 둡니다.
+-   사용자 또는 그룹 hello 사용자에서 라이선스가 제거 방금 되었으면는이 멤버는 변경 내용 toobe 수행에 대 한 hello 그룹의 hello 크기와 복잡성에 따라 시간이 오래 걸릴 수 있습니다. Hello 액세스 패널에 로그인 하기 전에 추가 시간을 허용 합니다.
 
-## <a name="problems-related-to-application-configuration"></a>응용 프로그램 구성에 관련된 문제
+## <a name="problems-related-tooapplication-configuration"></a>문제 관련된 tooapplication 구성
 
-응용 프로그램이 올바르게 구성되지 않아서 사용자의 액세스 패널에 표시되지 않을 수도 있습니다. 다음은 응용 프로그램 구성과 관련된 문제를 해결할 수 있는 몇 가지 방법입니다.
+응용 프로그램이 올바르게 구성되지 않아서 사용자의 액세스 패널에 표시되지 않을 수도 있습니다. 다음은 몇 가지 관련된 tooapplication 구성 문제를 해결할 수 있습니다.
 
--   [Azure AD 갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하는 방법](#how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application)
+-   [Single sign on Azure AD 갤러리 응용 프로그램에 대 한 tooconfigure 페더레이션 하는 방법](#how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application)
 
--   [비갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하는 방법](#how-to-configure-federated-single-sign-on-for-a-non-gallery-application)
+-   [Single sign on 갤러리가 아닌 응용 프로그램에 대 한 tooconfigure 페더레이션 하는 방법](#how-to-configure-federated-single-sign-on-for-a-non-gallery-application)
 
--   [Azure AD 갤러리 응용 프로그램에 대해 암호 Single Sign-On 응용 프로그램을 구성하는 방법](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
+-   [어떻게 tooconfigure 암호 single sign-on 응용 프로그램에 대 한 Azure AD 갤러리 응용 프로그램](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
--   [비갤러리 응용 프로그램에 대해 암호 Single Sign-On 응용 프로그램을 구성하는 방법](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
+-   [어떻게 tooconfigure 암호 single sign-on 응용 프로그램 갤러리가 아닌 응용 프로그램에 대 한](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
-### <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>Azure AD 갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하는 방법
+### <a name="how-tooconfigure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>Single sign on Azure AD 갤러리 응용 프로그램에 대 한 tooconfigure 페더레이션 하는 방법
 
-Azure AD 갤러리에서 Enterprise Single Sign-On 기능을 사용하도록 설정된 모든 응용 프로그램은 단계별 자습서를 사용할 수 있습니다. [Azure Active Directory와 SaaS 앱을 통합하는 방법에 대한 자습서 목록](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)에 액세스하면 자세한 단계별 지침을 볼 수 있습니다.
+Enterprise Single Sign-on 기능을 사용 하도록 설정 하는 hello Azure AD 갤러리의 모든 응용 프로그램에는 단계별 자습서를 사용할 수 있습니다. Hello에 액세스할 수 있습니다 [방법에 대 한 자습서 목록 toointegrate SaaS 앱 Azure Active Directory와](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) 세부 단계별 지침에 대 한 합니다.
 
-Azure AD 갤러리에서 응용 프로그램을 구성하려면 다음을 수행해야 합니다.
+tooconfigure hello Azure AD 갤러리에서 응용 프로그램 해야합니다.
 
--   [Azure AD 갤러리에서 응용 프로그램 추가](#add-an-application-from-the-azure-ad-gallery)
+-   [Hello Azure AD 갤러리에서 응용 프로그램 추가](#add-an-application-from-the-azure-ad-gallery)
 
--   [Azure AD에서 응용 프로그램의 메타데이터 값 구성(로그온 URL, 식별자, 회신 URL)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [Azure ad (로그온 URL, 식별자, 회신 URL) hello 응용 프로그램의 메타 데이터 값을 구성 합니다.](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [사용자 식별자를 선택하고 응용 프로그램에 보낼 사용자 특성 추가](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [사용자의 Id를 선택 하 고 사용자 특성 전송 toobe toohello 응용 프로그램 추가](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
 -   [Azure AD 메타데이터 및 인증서 검색](#download-the-azure-ad-metadata-or-certificate)
 
--   [응용 프로그램에서 Azure AD 메타데이터 값 구성(로그온 URL, 발급자, 로그아웃 URL 및 인증서)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [Hello 응용 프로그램 (로그온 URL, 발급자, 로그 아웃 URL 및 인증서)에 Azure AD 메타 데이터 값을 구성 합니다.](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a>Azure AD 갤러리에서 응용 프로그램 추가
+#### <a name="add-an-application-from-hello-azure-ad-gallery"></a>Hello Azure AD 갤러리에서 응용 프로그램 추가
 
-Azure AD 갤러리에서 응용 프로그램을 추가하려면 아래 단계를 수행합니다.
+아래의 hello 단계를 수행 하는 tooadd hello Azure AD 갤러리에서에서 응용 프로그램:
 
-1.  [Azure Portal](https://portal.azure.com)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [Azure 포털](https://portal.azure.com) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **엔터프라이즈 응용 프로그램** 블레이드의 오른쪽 위 모서리에서 **추가** 단추를 클릭합니다.
+5.  hello 클릭 **추가** hello hello 오른쪽 위 모서리에 있는 단추 **엔터프라이즈 응용 프로그램** 블레이드입니다.
 
-6.  **갤러리에서 추가** 섹션의 **이름 입력** 텍스트 상자에 응용 프로그램 이름을 입력합니다.
+6.  Hello에 **이름을 입력** hello에서 텍스트 상자에 붙여넣습니다 **hello 갤러리에서 추가** 섹션, hello 응용 프로그램의 형식 hello 이름입니다.
 
-7.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
+7.  Single sign on tooconfigure 원하는 hello 응용 프로그램을 선택 합니다.
 
-8.  응용 프로그램을 추가하기 전에 **이름** 텍스트 상자에서 이름을 변경할 수 있습니다.
+8.  Hello 응용 프로그램을 추가 하기 전에 hello에서 이름을 변경할 수 **이름** 텍스트 상자에 붙여넣습니다.
 
-9.  **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+9.  클릭 **추가** tooadd hello 응용 프로그램 단추입니다.
 
-짧은 시간 후에 응용 프로그램의 구성 블레이드를 볼 수 있습니다.
+짧은 시간 후 수 toosee hello 응용 프로그램의 구성 블레이드에서 수 있습니다.
 
-#### <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a>Azure AD 갤러리에서 응용 프로그램의 Single Sign-On 구성
+#### <a name="configure-single-sign-on-for-an-application-from-hello-azure-ad-gallery"></a>Single sign on hello Azure AD 갤러리에서 응용 프로그램에 대 한 구성
 
-응용 프로그램에 대한 Single Sign-On을 구성하려면 아래 단계를 따릅니다.
+tooconfigure single sign on 응용 프로그램에 대 한 아래의 hello 단계를 수행 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-  * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+  * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
+6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **모드** 드롭다운에서 **SAML 기반 로그온**을 선택합니다.
+8.  선택 **SAML 기반 로그온** hello에서 **모드** 드롭다운입니다.
 
-9.  **도메인 및 URL**에 필요한 값을 입력합니다. 이러한 값은 응용 프로그램 공급업체에서 받아야 합니다.
+9.  필요한 hello 값을 입력 **도메인 및 Url입니다.** Hello 응용 프로그램 공급 업체에서 이러한 값을 구해야 합니다.
 
-   1. 응용 프로그램을 SP에서 시작한 SSO로 구성하려면 로그온 URL 값이 필요합니다. 일부 응용 프로그램의 경우는 식별자도 필수 값입니다.
+   1. SP에서 시작한 SSO와 tooconfigure hello 응용 프로그램 hello 로그인 URL에 필요한 값입니다. 일부 응용 프로그램에 대 한 hello 식별자도 필요한 값입니다.
 
-   2. 응용 프로그램을 IdP에서 시작한 SSO로 구성하려면 회신 URL 값이 필요합니다. 일부 응용 프로그램의 경우는 식별자도 필수 값입니다.
+   2. IdP에서 시작한 SSO, hello 필수 값입니다. 회신 URL로 tooconfigure hello 응용 프로그램입니다. 일부 응용 프로그램에 대 한 hello 식별자도 필요한 값입니다.
 
-10. **선택 사항:** 선택적인 값을 보려면 **고급 URL 설정 표시**를 클릭합니다.
+10. **선택 사항:** 클릭 **고급 URL 설정 표시** toosee hello 선택적 값입니다.
 
-11. **사용자 특성**의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다.
+11. Hello에 **사용자 특성**, 선택 hello에 있는 사용자에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다.
 
-12. **선택 사항:** 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집하려면 **다른 모든 사용자 특성 보기 및 편집**을 클릭합니다.
+12. **선택 사항:** 클릭 **보기 및 다른 모든 사용자 특성 편집** tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.
 
-   특성을 추가하려면:
+   tooadd 특성:
 
-   1. **특성 추가**를 클릭합니다. **이름**을 입력하고 드롭다운에서 **값**을 선택합니다.
+   1. **특성 추가**를 클릭합니다. Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.
 
-   2. **저장**을 클릭합니다. 테이블에 새 특성이 표시됩니다.
+   2. **저장**을 클릭합니다. Hello 테이블에 새 특성을 hello 표시 됩니다.
 
-13. 응용 프로그램의 Single Sign-On을 구성하는 방법에 관한 문서에 액세스하려면 **&lt;응용 프로그램 이름&gt; 구성**을 클릭합니다. 또한 응용 프로그램에 SSO를 설정하는 데 필요한 메타데이터 URL 및 인증서는 있습니다.
+13. 클릭 **구성 &lt;응용 프로그램 이름&gt;**  방법은 tooaccess 설명서 tooconfigure single sign on hello 응용 프로그램에 있습니다. 또한 hello 메타 데이터 Url 및 hello 응용 프로그램과 함께 필요한 인증서 toosetup SSO에 있습니다.
 
-14. 구성을 저장하려면 **저장**을 클릭합니다.
+14. 클릭 **저장** toosave hello 구성 합니다.
 
-15. 응용 프로그램에 사용자를 할당합니다.
+15. Toohello 응용 프로그램 사용자를 할당 합니다.
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>사용자 식별자를 선택하고 응용 프로그램에 보낼 사용자 특성 추가
+#### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a>사용자의 Id를 선택 하 고 사용자 특성 전송 toobe toohello 응용 프로그램 추가
 
-사용자 식별자를 선택하거나 사용자 특성을 추가하려면 아래 단계를 수행합니다.
+tooselect hello 사용자 식별자 또는 사용자 특성 추가, 아래의 hello 단계를 수행:
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-  * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+  * Hello를 사용 하 여 원하는 여기 tooshow hello 응용 프로그램을 표시 되지 않으면 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성한 응용 프로그램을 선택합니다.
+6.  Single sign on 구성한 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **사용자 특성** 섹션 아래의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다. 사용자를 인증하려면 선택한 옵션이 응용 프로그램의 예상 값과 일치해야 합니다.
+8.  Hello에서 **사용자 특성** 섹션에서 사용자 hello에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다. hello 선택된 된 옵션 두어야 hello 응용 프로그램 tooauthenticate hello 사용자에서 toomatch hello 예상 값.
 
    >[!NOTE] 
-   >Azure AD에서는 선택한 값 또는 SAML AuthRequest에서 응용 프로그램이 요청한 형식을 기반으로 NameID 특성(사용자 식별자)의 형식을 선택합니다. 자세한 내용은 NameIDPolicy 섹션 아래의 [Single Sign-On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) 문서에서 확인할 수 있습니다.
+   >Hello NameID 특성 (사용자 식별자)에 대 한 azure AD 선택 hello 형식 선택한 hello 값에 따라 또는 hello SAML AuthRequest hello에 hello 응용 프로그램에서 요청한 형식입니다. 자세한 내용은 방문 hello 문서 [Single Sign On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) hello에서 NameIDPolicy 섹션.
    >
    >
 
-9.  사용자 특성을 추가하려면 **다른 모든 사용자 특성 보기 및 편집**을 클릭하여 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집합니다.
+9.  tooadd 사용자 특성을 클릭 하 여 **보기 및 다른 모든 사용자 특성을 편집** tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.
 
-   특성을 추가하려면:
+   tooadd 특성:
 
-   1. **특성 추가**를 클릭합니다. **이름**을 입력하고 드롭다운에서 **값**을 선택합니다.
+   1. **특성 추가**를 클릭합니다. Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.
 
-   2. **저장**을 클릭합니다. 테이블에 새 특성이 표시됩니다.
+   2. **저장**을 클릭합니다. Hello hello 테이블에 새 특성을 볼 수 있습니다.
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a>Azure AD 메타데이터 또는 인증서 다운로드
+#### <a name="download-hello-azure-ad-metadata-or-certificate"></a>Hello Azure AD 메타 데이터 또는 인증서를 다운로드 합니다.
 
-Azure AD에서 응용 프로그램 메타데이터 또는 인증서를 다운로드하려면 아래 단계를 수행합니다.
+toodownload hello에 대 한 응용 프로그램 메타 데이터 또는 Azure AD에서 인증서를 다음 hello 단계를 따라 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-  * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+  * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성한 응용 프로그램을 선택합니다.
+6.  Single sign on 구성한 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **SAML 서명 인증서** 섹션으로 이동한 다음 **다운로드** 열 값을 클릭합니다. Single Sign-On을 구성해야 할 응용 프로그램에 따라 메타데이터 XML이나 인증서를 다운로드하는 옵션이 표시됩니다.
+8.  너무 이동**SAML 서명 인증서** 섹션에서 다음 클릭 **다운로드** 열 값입니다. 어떤 hello 응용 프로그램에 single sign-on 구성 필요한 경우에 따라 메타 데이터 XML hello 또는 인증서를 환영 hello 옵션 toodownload를 볼 수 있습니다.
 
-    Azure AD에서는 메타데이터를 가져오는 URL을 제공하지 않습니다. 메타데이터는 XML 파일로만 검색할 수 있습니다.
+    Azure AD URL tooget hello 메타 데이터를 제공 하지 않습니다. hello 메타 데이터를 XML 파일로 검색할 수 있습니다.
 
-### <a name="how-to-configure-federated-single-sign-on-for-a-non-gallery-application"></a>비갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하는 방법
+### <a name="how-tooconfigure-federated-single-sign-on-for-a-non-gallery-application"></a>Single sign on 갤러리가 아닌 응용 프로그램에 대 한 tooconfigure 페더레이션 하는 방법
 
-비갤러리 응용 프로그램을 구성하려면 Azure AD 프리미엄이 있어야 하며 응용 프로그램에서 SAML 2.0을 지원해야 합니다. Azure AD 버전에 대한 자세한 내용은 [Azure AD 가격 책정](https://azure.microsoft.com/pricing/details/active-directory/)에서 확인할 수 있습니다.
+toohave Azure AD premium이 필요 tooconfigure 갤러리가 아닌 응용 프로그램 및 hello 응용 프로그램이 SAML 2.0을 지원 합니다. Azure AD 버전에 대한 자세한 내용은 [Azure AD 가격 책정](https://azure.microsoft.com/pricing/details/active-directory/)에서 확인할 수 있습니다.
 
--   [Azure AD에서 응용 프로그램의 메타데이터 값 구성(로그온 URL, 식별자, 회신 URL)](#configuring-single-sign-on)
+-   [Azure ad (로그온 URL, 식별자, 회신 URL) hello 응용 프로그램의 메타 데이터 값을 구성 합니다.](#configuring-single-sign-on)
 
--   [사용자 식별자를 선택하고 응용 프로그램에 보낼 사용자 특성 추가](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [사용자의 Id를 선택 하 고 사용자 특성 전송 toobe toohello 응용 프로그램 추가](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
 -   [Azure AD 메타데이터 및 인증서 검색](#download-the-azure-ad-metadata-or-certificate)
 
--   [응용 프로그램에서 Azure AD 메타데이터 값 구성(로그온 URL, 발급자, 로그아웃 URL 및 인증서)](#configuring-single-sign-on)
+-   [Hello 응용 프로그램 (로그온 URL, 발급자, 로그 아웃 URL 및 인증서)에 Azure AD 메타 데이터 값을 구성 합니다.](#configuring-single-sign-on)
 
-#### <a name="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>Azure AD에서 응용 프로그램의 메타데이터 값 구성(로그온 URL, 식별자, 회신 URL)
+#### <a name="configure-hello-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>Azure ad (로그온 URL, 식별자, 회신 URL) hello 응용 프로그램의 메타 데이터 값을 구성 합니다.
 
-Azure AD 갤러리에 없는 응용 프로그램에 대해 Single Sign-On을 구성하려면 아래 단계를 수행합니다.
+tooconfigure single sign on hello Azure AD 갤러리에 없는 응용 프로그램에 대 한 아래의 hello 단계를 수행 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **엔터프라이즈 응용 프로그램** 블레이드의 오른쪽 위 모서리에서 **추가** 단추를 클릭합니다.
+5.  hello 클릭 **추가** hello hello 오른쪽 위 모서리에 있는 단추 **엔터프라이즈 응용 프로그램** 블레이드입니다.
 
-6.  **고유한 응용 프로그램 추가** 섹션에서 **비갤러리 응용 프로그램**을 클릭합니다.
+6.  클릭 **비 갤러리 응용 프로그램** hello에 **위해 자신의 앱 추가** 섹션.
 
-7.  **이름** 텍스트 상자에 응용 프로그램 이름을 입력합니다.
+7.  Hello에 hello 응용 프로그램의 hello 이름을 입력 **이름** 텍스트 상자에 붙여넣습니다.
 
-8.  **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+8.  클릭 **추가** tooadd hello 응용 프로그램 단추입니다.
 
-9.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+9.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-10. **모드** 드롭다운에서 **SAML 기반 로그온**을 선택합니다.
+10. 선택 **SAML 기반 로그온** hello에 **모드** 드롭다운입니다.
 
-11. **도메인 및 URL**에 필요한 값을 입력합니다. 이러한 값은 응용 프로그램 공급업체에서 받아야 합니다.
+11. 필요한 hello 값을 입력 **도메인 및 Url입니다.** Hello 응용 프로그램 공급 업체에서 이러한 값을 구해야 합니다.
 
-   1. 응용 프로그램을 IdP에서 시작한 SSO로 구성하려면 회신 URL과 식별자를 입력합니다.
+   1. IdP에서 시작한 SSO와 tooconfigure hello 응용 프로그램 회신 URL hello 및 hello 식별자를 입력 합니다.
 
-   2.  **선택 사항:** 응용 프로그램을 SP에서 시작한 SSO로 구성하려면 로그온 URL 값이 필요합니다.
+   2.  **선택 사항:** SP에서 시작한 SSO와 tooconfigure hello 응용 프로그램 hello 로그인 URL에 필요한 값입니다.
 
-12. **사용자 특성**의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다.
+12. Hello에 **사용자 특성**, 선택 hello에 있는 사용자에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다.
 
-13. **선택 사항:** 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집하려면 **다른 모든 사용자 특성 보기 및 편집**을 클릭합니다.
+13. **선택 사항:** 클릭 **보기 및 다른 모든 사용자 특성 편집** tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.
 
-   특성을 추가하려면:
+   tooadd 특성:
 
-   1. **특성 추가**를 클릭합니다. **이름**을 입력하고 드롭다운에서 **값**을 선택합니다.
+   1. **특성 추가**를 클릭합니다. Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.
 
-   2. **저장**을 클릭합니다. 테이블에 새 특성이 표시됩니다.
+   2. **저장**을 클릭합니다. Hello 테이블에 새 특성을 hello 표시 됩니다.
 
-14. 응용 프로그램의 Single Sign-On을 구성하는 방법에 관한 문서에 액세스하려면 **&lt;응용 프로그램 이름&gt; 구성**을 클릭합니다. 또한 응용 프로그램에 필요한 Azure AD URL과 인증서가 있습니다.
+14. 클릭 **구성 &lt;응용 프로그램 이름&gt;**  방법은 tooaccess 설명서 tooconfigure single sign on hello 응용 프로그램에 있습니다. 또한 Azure AD Url 및 hello 응용 프로그램에 필요한 인증서에 있습니다.
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>사용자 식별자를 선택하고 응용 프로그램에 보낼 사용자 특성 추가
+#### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a>사용자의 Id를 선택 하 고 사용자 특성 전송 toobe toohello 응용 프로그램 추가
 
-사용자 식별자를 선택하거나 사용자 특성을 추가하려면 아래 단계를 수행합니다.
+tooselect hello 사용자 식별자 또는 사용자 특성 추가, 아래의 hello 단계를 수행:
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성한 응용 프로그램을 선택합니다.
+6.  Single sign on 구성한 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **사용자 특성** 섹션 아래의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다. 사용자를 인증하려면 선택한 옵션이 응용 프로그램의 예상 값과 일치해야 합니다.
+8.  Hello에서 **사용자 특성** 섹션에서 사용자 hello에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다. hello 선택된 된 옵션 두어야 hello 응용 프로그램 tooauthenticate hello 사용자에서 toomatch hello 예상 값.
 
    >[!NOTE] 
-   >Azure AD에서는 선택한 값 또는 SAML AuthRequest에서 응용 프로그램이 요청한 형식을 기반으로 NameID 특성(사용자 식별자)의 형식을 선택합니다. 자세한 내용은 NameIDPolicy 섹션 아래의 [Single Sign-On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) 문서에서 확인할 수 있습니다.
+   >Hello NameID 특성 (사용자 식별자)에 대 한 azure AD 선택 hello 형식 선택한 hello 값에 따라 또는 hello SAML AuthRequest hello에 hello 응용 프로그램에서 요청한 형식입니다. 자세한 내용은 방문 hello 문서 [Single Sign On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) hello에서 NameIDPolicy 섹션.
    >
    >
 
-9.  사용자 특성을 추가하려면 **다른 모든 사용자 특성 보기 및 편집**을 클릭하여 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집합니다.
+9.  tooadd 사용자 특성을 클릭 하 여 **보기 및 다른 모든 사용자 특성을 편집** tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.
 
-   특성을 추가하려면:
+   tooadd 특성:
 
-   1. **특성 추가**를 클릭합니다. **이름**을 입력하고 드롭다운에서 **값**을 선택합니다.
+   1. **특성 추가**를 클릭합니다. Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.
 
-   2. **저장**을 클릭합니다. 테이블에 새 특성이 표시됩니다.
+   2. **저장**을 클릭합니다. Hello 테이블에 새 특성을 hello 표시 됩니다.
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a>Azure AD 메타데이터 또는 인증서 다운로드
+#### <a name="download-hello-azure-ad-metadata-or-certificate"></a>Hello Azure AD 메타 데이터 또는 인증서를 다운로드 합니다.
 
-Azure AD에서 응용 프로그램 메타데이터 또는 인증서를 다운로드하려면 아래 단계를 수행합니다.
+toodownload hello에 대 한 응용 프로그램 메타 데이터 또는 Azure AD에서 인증서를 다음 hello 단계를 따라 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성한 응용 프로그램을 선택합니다.
+6.  Single sign on 구성한 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **SAML 서명 인증서** 섹션으로 이동한 다음 **다운로드** 열 값을 클릭합니다. Single Sign-On을 구성해야 할 응용 프로그램에 따라 메타데이터 XML이나 인증서를 다운로드하는 옵션이 표시됩니다.
+8.  너무 이동**SAML 서명 인증서** 섹션에서 다음 클릭 **다운로드** 열 값입니다. 어떤 hello 응용 프로그램에 single sign-on 구성 필요한 경우에 따라 메타 데이터 XML hello 또는 인증서를 환영 hello 옵션 toodownload를 볼 수 있습니다.
 
-Azure AD에서는 메타데이터를 가져오는 URL을 제공하지 않습니다. 메타데이터는 XML 파일로만 검색할 수 있습니다.
+Azure AD URL tooget hello 메타 데이터를 제공 하지 않습니다. hello 메타 데이터를 XML 파일로 검색할 수 있습니다.
 
-### <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Azure AD 갤러리 응용 프로그램에 대해 암호 Single Sign-On을 구성하는 방법
+### <a name="how-tooconfigure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Azure AD 갤러리 응용 프로그램에 대 한 sign-on tooconfigure 암호 single 방법
 
-Azure AD 갤러리에서 응용 프로그램을 구성하려면 다음을 수행해야 합니다.
+tooconfigure hello Azure AD 갤러리에서 응용 프로그램 해야합니다.
 
--   [Azure AD 갤러리에서 응용 프로그램 추가](#add-an-application-from-the-azure-ad-gallery)
+-   [Hello Azure AD 갤러리에서 응용 프로그램 추가](#add-an-application-from-the-azure-ad-gallery)
 
--   [암호 Single Sign-On에 대한 응용 프로그램 구성](#configure-the-application-for-password-single-sign-on)
+-   [암호 single sign on에 대 한 hello 응용 프로그램 구성](#configure-the-application-for-password-single-sign-on)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a>Azure AD 갤러리에서 응용 프로그램 추가
+#### <a name="add-an-application-from-hello-azure-ad-gallery"></a>Hello Azure AD 갤러리에서 응용 프로그램 추가
 
-Azure AD 갤러리에서 응용 프로그램을 추가하려면 아래 단계를 수행합니다.
+아래의 hello 단계를 수행 하는 tooadd hello Azure AD 갤러리에서에서 응용 프로그램:
 
-1.  [Azure Portal](https://portal.azure.com)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [Azure 포털](https://portal.azure.com) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **엔터프라이즈 응용 프로그램** 블레이드의 오른쪽 위 모서리에서 **추가** 단추를 클릭합니다.
+5.  hello 클릭 **추가** hello hello 오른쪽 위 모서리에 있는 단추 **엔터프라이즈 응용 프로그램** 블레이드입니다.
 
-6.  **갤러리에서 추가** 섹션의 **이름 입력** 텍스트 상자에 응용 프로그램 이름을 입력합니다.
+6.  Hello에 **이름을 입력** hello에서 텍스트 상자에 붙여넣습니다 **hello 갤러리에서 추가** 섹션, hello 응용 프로그램의 형식 hello 이름입니다.
 
-7.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
+7.  Single sign on tooconfigure 원하는 hello 응용 프로그램을 선택 합니다.
 
-8.  응용 프로그램을 추가하기 전에 **이름** 텍스트 상자에서 이름을 변경할 수 있습니다.
+8.  Hello 응용 프로그램을 추가 하기 전에 hello에서 이름을 변경할 수 **이름** 텍스트 상자에 붙여넣습니다.
 
-9.  **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+9.  클릭 **추가** tooadd hello 응용 프로그램 단추입니다.
 
-짧은 시간 후에 응용 프로그램의 구성 블레이드를 볼 수 있습니다.
+짧은 시간 후 수 toosee hello 응용 프로그램의 구성 블레이드에서 수 있습니다.
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a>암호 Single Sign-On에 대한 응용 프로그램 구성
+#### <a name="configure-hello-application-for-password-single-sign-on"></a>암호 single sign on에 대 한 hello 응용 프로그램 구성
 
-응용 프로그램에 Single Sign-On을 구성하려면 아래 단계를 수행합니다.
+tooconfigure single sign on 응용 프로그램에 대 한 아래의 hello 단계를 수행 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
+6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **암호 기반의 로그온** 모드를 선택합니다.
+8.  선택 hello 모드 **암호 기반 로그온 합니다.**
 
-9.  [응용 프로그램에 사용자를 할당합니다](#how-to-assign-a-user-to-an-application-directly).
+9.  [Toohello 응용 프로그램 사용자를 할당](#how-to-assign-a-user-to-an-application-directly)합니다.
 
-10. 또한 사용자의 행을 선택하고 **자격 증명 업데이트**를 클릭하고 사용자를 대신하여 사용자 이름 및 암호를 입력하여 사용자를 대신하여 자격 증명을 제공할 수도 있습니다. 그렇지 않으면 사용자는 시작할 때 자격 증명을 입력하라는 메시지를 받게 됩니다.
+10. Hello 사용자의 hello 행을 선택 하 고를 클릭 하 여 hello 사용자 대신 자격 증명도 제공할 수 또한 **업데이트 자격 증명** hello 사용자를 대신해 서 hello 사용자 이름 및 암호를 입력 합니다. 그렇지 않은 경우 사용자 수 증명된 tooenter hello 자격 증명 자체 종료 합니다.
 
-### <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>비갤러리 응용 프로그램에 대해 암호 Single Sign-On을 구성하는 방법
+### <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a>Tooconfigure 암호 로그온 갤러리가 아닌 응용 프로그램에 대 한 단일 하는 방법
 
-Azure AD 갤러리에서 응용 프로그램을 구성하려면 다음을 수행해야 합니다.
+tooconfigure hello Azure AD 갤러리에서 응용 프로그램 해야합니다.
 
 -   [비갤러리 응용 프로그램 추가](#add-a-non-gallery-application)
 
--   [암호 Single Sign-On에 대한 응용 프로그램 구성](#configure-the-application-for-password-single-sign-on)
+-   [암호 single sign on에 대 한 hello 응용 프로그램 구성](#configure-the-application-for-password-single-sign-on)
 
 #### <a name="add-a-non-gallery-application"></a>비갤러리 응용 프로그램 추가
 
-Azure AD 갤러리에서 응용 프로그램을 추가하려면 아래 단계를 수행합니다.
+아래의 hello 단계를 수행 하는 tooadd hello Azure AD 갤러리에서에서 응용 프로그램:
 
-1.  [Azure Portal](https://portal.azure.com)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [Azure 포털](https://portal.azure.com) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**합니다.
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **엔터프라이즈 응용 프로그램** 블레이드의 오른쪽 위 모서리에서 **추가** 단추를 클릭합니다.
+5.  hello 클릭 **추가** hello hello 오른쪽 위 모서리에 있는 단추 **엔터프라이즈 응용 프로그램** 블레이드입니다.
 
 6.  **비갤러리 응용 프로그램**을 클릭합니다.
 
-7.  **이름** 텍스트 상자에 응용 프로그램의 이름을 입력합니다. **추가**를 선택합니다.
+7.  Hello에 응용 프로그램의 hello 이름을 입력 **이름** 텍스트 상자에 붙여넣습니다. **추가**를 선택합니다.
 
-짧은 시간 후에 응용 프로그램의 구성 블레이드를 볼 수 있습니다.
+짧은 시간 후 수 toosee hello 응용 프로그램의 구성 블레이드에서 수 있습니다.
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a>암호 Single Sign-On에 대한 응용 프로그램 구성
+#### <a name="configure-hello-application-for-password-single-sign-on"></a>암호 single sign on에 대 한 hello 응용 프로그램 구성
 
-응용 프로그램에 Single Sign-On을 구성하려면 아래 단계를 수행합니다.
+tooconfigure single sign on 응용 프로그램에 대 한 아래의 hello 단계를 수행 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-    1.  여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+    1.  여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
+6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **암호 기반 로그온** 모드를 선택합니다.
+8.  선택 hello 모드 **암호 기반 로그온 합니다.**
 
-9.  **로그온 URL**을 입력합니다. 사용자가 로그인하기 위해 사용자 이름과 암호를 입력하는 URL입니다. URL에서 로그인 필드가 표시되는지 확인합니다.
+9.  Hello 입력 **로그온 URL**합니다. 사용자가을 자신의 사용자 이름 및 암호 toosign 입력할 수 있는 hello URL입니다. Hello 로그인 필드 hello URL에 표시 되는지 확인 합니다.
 
-10. [응용 프로그램에 사용자를 할당합니다](#how-to-assign-a-user-to-an-application-directly).
+10. [Toohello 응용 프로그램 사용자를 할당](#how-to-assign-a-user-to-an-application-directly)합니다.
 
-11. 또한 사용자의 행을 선택하고 **자격 증명 업데이트**를 클릭하고 사용자를 대신하여 사용자 이름 및 암호를 입력하여 사용자를 대신하여 자격 증명을 제공할 수도 있습니다. 그렇지 않으면 사용자는 시작할 때 자격 증명을 입력하라는 메시지를 받게 됩니다.
+11. Hello 사용자의 hello 행을 선택 하 고를 클릭 하 여 hello 사용자 대신 자격 증명도 제공할 수 또한 **업데이트 자격 증명** hello 사용자를 대신해 서 hello 사용자 이름 및 암호를 입력 합니다. 그렇지 않은 경우 사용자 수 증명된 tooenter hello 자격 증명 자체 종료 합니다.
 
-## <a name="problems-related-to-assigning-applications-to-users"></a>사용자의 응용 프로그램 할당과 관련된 문제
+## <a name="problems-related-tooassigning-applications-toousers"></a>문제 관련된 tooassigning 응용 프로그램 toousers
 
-사용자에게 응용 프로그램이 할당되지 않아 액세스 패널에서 응용 프로그램이 표시되지 않을 수도 있습니다. 다음은 확인할 몇 가지 방법입니다.
+사용자 하지 표시 될 수는 응용 프로그램 액세스 패널에서 toohello 응용 프로그램 할당 되지 않습니다. 다음은 몇 가지 방법으로 toocheck입니다.
 
--   [사용자가 응용 프로그램에 할당되었는지 확인](#check-if-a-user-is-assigned-to-the-application)
+-   [사용자가 toohello 응용 프로그램을 할당 하는 경우 확인](#check-if-a-user-is-assigned-to-the-application)
 
--   [응용 프로그램에 사용자를 직접 할당하는 방법](#how-to-assign-a-user-to-an-application-directly)
+-   [어떻게 tooassign 사용자 tooan 응용 프로그램을 직접](#how-to-assign-a-user-to-an-application-directly)
 
--   [사용자에게 응용 프로그램과 관련된 라이선스가 할당되었는지 확인](#check-if-a-user-is-under-a-license-related-to-the-application)
+-   [사용자가 tooa 라이선스가 할당 되었는지 확인 하 고 관련 toohello 응용 프로그램](#check-if-a-user-is-under-a-license-related-to-the-application)
 
--   [사용자에게 라이선스를 할당하는 방법](#how-to-assign-a-user-a-license)
+-   [어떻게 tooassign 라이선스 tooa 사용자](#how-to-assign-a-user-a-license)
 
-### <a name="check-if-a-user-is-assigned-to-the-application"></a>사용자가 응용 프로그램에 할당되었는지 확인
+### <a name="check-if-a-user-is-assigned-toohello-application"></a>사용자가 toohello 응용 프로그램을 할당 하는 경우 확인
 
-사용자가 응용 프로그램에 할당되었는지 확인하려면 다음 단계를 수행합니다.
+toocheck 사용자 toohello 응용 프로그램에 지정 되 면 hello 아래의 단계를 수행 합니다.
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-6.  문제의 응용 프로그램 이름을 **검색**합니다.
+6.  **검색** hello 응용 프로그램과의 hello 이름에 대 한 합니다.
 
 7.  **사용자 및 그룹**을 클릭합니다.
 
-8.  사용자가 응용 프로그램에 할당되었는지 확인합니다.
+8.  이때 회원님의 사용자 toohello 응용 프로그램에 할당 된 경우 toosee를 확인 합니다.
 
-   * 할당되지 않았으면 “응용 프로그램에 사용자를 직접 할당하는 방법”에 있는 단계를 수행하여 할당합니다.
+   * hello 단계를 수행 하지 않은 경우 "어떻게 tooassign 사용자 tooan 응용 프로그램을 직접" toodo 하도록 합니다.
 
-### <a name="how-to-assign-a-user-to-an-application-directly"></a>응용 프로그램에 사용자를 직접 할당하는 방법
+### <a name="how-tooassign-a-user-tooan-application-directly"></a>어떻게 tooassign 사용자 tooan 응용 프로그램을 직접
 
-응용 프로그램에 하나 이상의 사용자를 직접 할당하려면 다음 단계를 수행합니다.
+tooassign 아래의 hello 단계를 직접 수행 하는 하나 이상의 사용자가 tooan 응용 프로그램:
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자**합니다.
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **더 많은 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-  * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+  * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  목록에서 사용자를 할당하려는 응용 프로그램을 선택합니다.
+6.  원하는 사용자 toofrom hello 목록 tooassign hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 **사용자 및 그룹** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **사용자 및 그룹** 목록의 맨 위에서 **추가** 단추를 클릭하여 **할당 추가** 블레이드를 엽니다.
+8.  Hello 클릭 **추가** hello 위로 단추 **사용자 및 그룹** 목록 tooopen hello **할당 추가** 블레이드입니다.
 
-9.  **할당 추가** 블레이드에서 **사용자 및 그룹** 선택기를 클릭합니다.
+9.  hello 클릭 **사용자 및 그룹** hello에서 선택기 **할당 추가** 블레이드입니다.
 
-10. **이름 또는 전자 메일 주소로 검색** 검색 상자에 할당하려는 사용자의 **전체 이름** 또는 **전자 메일 주소**를 입력합니다.
+10. Hello 입력 **전체 이름** 또는 **전자 메일 주소** hello에 할당 하려는 hello 사용자의 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자입니다.
 
-11. 목록의 **사용자** 위로 마우스를 이동하여 **확인란**을 표시합니다. 사용자의 프로필 사진이나 로고 옆의 확인란을 클릭하여 사용자를 **선택됨** 목록에 추가합니다.
+11. Hello 위로 마우스를 가져가고 **사용자** hello 목록 tooreveal에는 **확인란**합니다. Hello 확인란 다음 toohello 사용자의 프로필 사진 또는 로고 tooadd 사용자 toohello 클릭 **선택한** 목록입니다.
 
-12. **선택 사항:** **둘 이상의 사용자를 추가**하려는 경우 **이름 또는 전자 메일 주소로 검색** 검색 상자에 다른 **전체 이름** 또는 **전자 메일 주소**를 입력하고 확인란을 클릭하여 이 사용자를 **선택됨** 목록에 추가합니다.
+12. **선택 사항:** 너무 원하는 경우**둘 이상의 사용자를 추가**, 다른 유형 **전체 이름** 또는 **전자 메일 주소** hello에 **이름으로 검색 전자 메일 주소 또는** 상자에서 검색 하 고이 사용자 toohello hello 확인란 tooadd 클릭 **선택한** 목록입니다.
 
-13. 사용자 선택이 완료되면 **선택** 단추를 클릭하여 응용 프로그램에 할당되도록 사용자 및 그룹의 목록에 추가합니다.
+13. 사용자 선택을 완료 했으면 클릭 hello **선택** 단추 tooadd 해당 사용자 및 그룹 toobe toohello 목록이 toohello 응용 프로그램을 할당 합니다.
 
-14. **선택 사항:** **할당 추가** 블레이드에서 **역할 선택** 선택기를 클릭하여 선택한 사용자에게 할당할 역할을 선택합니다.
+14. **선택 사항:** hello 클릭 **역할 선택** hello에 선택 기가 **할당 추가** 블레이드 tooselect 역할 tooassign toohello 사용자가 선택한 합니다.
 
-15. **할당** 단추를 클릭하여 선택한 사용자에게 응용 프로그램을 할당합니다.
+15. Hello 클릭 **할당** 단추 tooassign hello 응용 프로그램 toohello 사용자를 선택 합니다.
 
-짧은 시간 후에 선택한 사용자는 액세스 패널에서 이러한 응용 프로그램을 시작할 수 있습니다.
+짧은 기간 hello 사용자가 선택한 수 수 toolaunch에서 이러한 응용 프로그램 액세스 패널 hello 합니다.
 
-### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a>사용자에게 응용 프로그램과 관련된 라이센스가 있는지 확인
+### <a name="check-if-a-user-is-under-a-license-related-toohello-application"></a>사용자 라이선스 인지 확인 toohello 응용 프로그램 관련
 
-사용자의 할당된 라이선스를 확인하려면 다음 단계를 수행합니다.
+toocheck 사용자의 라이선스를 다음 단계에 따라 hello 할당:
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
-
-5.  **모든 사용자**를 클릭합니다.
-
-6.  관심이 있는 사용자를 **검색**하고 **행을 클릭**하여 선택합니다.
-
-7.  **라이선스**를 클릭하여 사용자가 현재 할당된 라이선스를 봅니다.
-
-  * 사용자가 Office 라이선스에 할당된 경우 사용자의 액세스 패널에 나타나도록 자사 Office 응용 프로그램을 활성화합니다.
-
-### <a name="how-to-assign-a-user-a-license"></a>사용자에게 라이선스를 할당하는 방법 
-
-사용자에게 라이선스를 할당하려면 다음 단계를 수행합니다.
-
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
-
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
-
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
-
-4.  탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+4.  클릭 **사용자 및 그룹** hello 탐색 메뉴에 있습니다.
 
 5.  **모든 사용자**를 클릭합니다.
 
-6.  관심이 있는 사용자를 **검색**하고 **행을 클릭**하여 선택합니다.
+6.  **검색** 에 관심이 있는 hello 사용자에 대 한 및 **hello 행 클릭** tooselect 합니다.
 
-7.  **라이선스**를 클릭하여 사용자가 현재 할당된 라이선스를 봅니다.
+7.  클릭 **라이선스** toosee 현재 어떤 라이선스 hello 사용자에 게 할당 합니다.
 
-8.  **할당** 단추를 클릭합니다.
+  * Hello 사용자가 할당 된 tooan Office 라이선스 하는 경우 첫 번째 파티 Office 응용 프로그램 tooappear hello 사용자의 액세스 패널에 사용 하도록 설정 합니다.
 
-9.  사용 가능한 제품 목록에서 **하나 이상의 제품**을 선택합니다.
+### <a name="how-tooassign-a-user-a-license"></a>어떻게 tooassign 사용자 라이선스 
 
-10. **선택 사항** 제품을 상세하게 할당하려면 **할당 옵션** 항목을 클릭합니다. 완료되면 **확인**을 클릭합니다.
+아래의 hello 단계를 수행 하는 라이선스 tooa 사용자 tooassign:
 
-11. **할당** 단추를 클릭하여 이러한 라이선스를 이 사용자에게 할당합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
 
-## <a name="problems-related-to-assigning-applications-to-groups"></a>그룹의 응용 프로그램 할당과 관련된 문제
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-사용자는 응용 프로그램이 할당된 그룹에 속해 있으므로 액세스 패널에 응용 프로그램이 표시될 수 있습니다. 다음은 확인할 몇 가지 방법입니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
--   [사용자의 그룹 멤버 자격 확인](#check-a-users-group-memberships)
-
--   [그룹에 응용 프로그램을 직접 할당하는 방법](#how-to-assign-an-application-to-a-group-directly)
-
--   [사용자가 라이선스에 할당된 그룹에 속해 있는지 확인](#check-if-a-user-is-part-of-group-assigned-to-a-license)
-
--   [그룹에 라이선스를 할당하는 방법](#how-to-assign-a-license-to-a-group)
-
-### <a name="check-a-users-group-memberships"></a>사용자의 그룹 멤버 자격 확인
-
-그룹의 멤버 자격을 확인하려면 다음 단계를 수행합니다.
-
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
-
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
-
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
-
-4.  탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+4.  클릭 **사용자 및 그룹** hello 탐색 메뉴에 있습니다.
 
 5.  **모든 사용자**를 클릭합니다.
 
-6.  관심이 있는 사용자를 **검색**하고 **행을 클릭**하여 선택합니다.
+6.  **검색** 에 관심이 있는 hello 사용자에 대 한 및 **hello 행 클릭** tooselect 합니다.
+
+7.  클릭 **라이선스** toosee 현재 어떤 라이선스 hello 사용자에 게 할당 합니다.
+
+8.  Hello 클릭 **할당** 단추입니다.
+
+9.  선택 **하나 이상의 제품** hello 사용 가능한 제품 목록에서 합니다.
+
+10. **선택적** hello 클릭 **할당 옵션** 항목 toogranularly 제품을 할당 합니다. 완료되면 **확인**을 클릭합니다.
+
+11. Hello 클릭 **할당** tooassign 이러한 라이선스 toothis 사용자 단추입니다.
+
+## <a name="problems-related-tooassigning-applications-toogroups"></a>문제 관련된 tooassigning 응용 프로그램 toogroups
+
+사용자 표시 될 수는 응용 프로그램 액세스 패널에서 hello 응용 프로그램 할당 된 그룹의 일부입니다. 다음은 몇 가지 방법으로 toocheck입니다.
+
+-   [사용자의 그룹 구성원 자격 확인](#check-a-users-group-memberships)
+
+-   [Tooassign 응용 프로그램 tooa 그룹화 방법을 직접](#how-to-assign-an-application-to-a-group-directly)
+
+-   [사용자 tooa 라이선스가 할당 된 그룹의 일부 인지 확인](#check-if-a-user-is-part-of-group-assigned-to-a-license)
+
+-   [어떻게 tooassign 라이선스 tooa 그룹](#how-to-assign-a-license-to-a-group)
+
+### <a name="check-a-users-group-memberships"></a>사용자의 그룹 구성원 자격 확인
+
+toocheck 그룹의 구성원, 다음 단계에 따라 hello:
+
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
+
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+
+4.  클릭 **사용자 및 그룹** hello 탐색 메뉴에 있습니다.
+
+5.  **모든 사용자**를 클릭합니다.
+
+6.  **검색** 에 관심이 있는 hello 사용자에 대 한 및 **hello 행 클릭** tooselect 합니다.
 
 7.  **그룹**을 클릭합니다.
 
-8.  사용자가 응용 프로그램에 할당된 그룹에 속하는지 확인합니다.
+8.  이때 회원님의 사용자는 할당 된 그룹 toohello 응용 프로그램의 일부인 경우 toosee를 확인 합니다.
 
-  * 그룹에서 사용자를 제거하려는 경우 그룹의 **행을 클릭**하고 삭제를 선택합니다.
+  * Hello 그룹에서 사용자가 tooremove hello **hello 행 클릭** hello 그룹 및 삭제를 선택 합니다.
 
-### <a name="how-to-assign-an-application-to-a-group-directly"></a>그룹에 응용 프로그램을 직접 할당하는 방법
+### <a name="how-tooassign-an-application-tooa-group-directly"></a>Tooassign 응용 프로그램 tooa 그룹화 방법을 직접
 
-응용 프로그램에 하나 이상의 그룹을 직접 할당하려면 다음 단계를 수행합니다.
+하나 이상의 tooassign 그룹 tooan 응용 프로그램을 직접 아래 hello 단계 수행:
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자**합니다.
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **더 많은 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
+4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
 
-5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
+5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
 
-  * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
+  * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
 
-6.  목록에서 사용자를 할당하려는 응용 프로그램을 선택합니다.
+6.  원하는 사용자 toofrom hello 목록 tooassign hello 응용 프로그램을 선택 합니다.
 
-7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+7.  Hello 응용 프로그램 로드 되 면 클릭 **사용자 및 그룹** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
 
-8.  **사용자 및 그룹** 목록의 맨 위에서 **추가** 단추를 클릭하여 **할당 추가** 블레이드를 엽니다.
+8.  Hello 클릭 **추가** hello 위로 단추 **사용자 및 그룹** 목록 tooopen hello **할당 추가** 블레이드입니다.
 
-9.  **할당 추가** 블레이드에서 **사용자 및 그룹** 선택기를 클릭합니다.
+9.  hello 클릭 **사용자 및 그룹** hello에서 선택기 **할당 추가** 블레이드입니다.
 
-10. **이름 또는 메일 주소로 검색** 검색 상자에 할당하려는 그룹의 **전체 그룹 이름**을 입력합니다.
+10. Hello 입력 **전체 그룹 이름** hello에 할당 하려는 hello 그룹의 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자입니다.
 
-11. 목록의 **그룹** 위로 마우스를 이동하여 **확인란**을 표시합니다. 그룹의 프로필 사진이나 로고 옆의 확인란을 클릭하여 사용자를 **선택됨** 목록에 추가합니다.
+11. Hello 위로 마우스를 가져가고 **그룹** hello 목록 tooreveal에는 **확인란**합니다. Hello 확인란 다음 toohello 그룹의 프로필 사진 또는 로고 tooadd 사용자 toohello 클릭 **선택한** 목록입니다.
 
-12. **선택 사항:** **둘 이상의 그룹을 추가**하려는 경우 **이름 또는 메일 주소로 검색** 검색 상자에 다른 **전체 그룹 이름**을 입력하고 확인란을 클릭하여 이 그룹을 **선택됨** 목록에 추가합니다.
+12. **선택 사항:** 너무 원하는 경우**둘 이상의 그룹을 추가**, 다른 유형 **전체 그룹 이름** hello에 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자 이 그룹 toohello hello 확인란 tooadd 클릭 **선택한** 목록입니다.
 
-13. 그룹 선택이 완료되면 **선택** 단추를 클릭하여 응용 프로그램에 할당되도록 사용자 및 그룹의 목록에 추가합니다.
+13. 그룹을 선택 하면 완료 했으면 클릭 hello **선택** 단추 tooadd 해당 사용자 및 그룹 toobe toohello 목록이 toohello 응용 프로그램을 할당 합니다.
 
-14. **선택 사항:** **할당 추가** 블레이드에서 **역할 선택** 선택기를 클릭하여 선택한 그룹에 할당할 역할을 선택합니다.
+14. **선택 사항:** hello 클릭 **역할 선택** hello에 선택 기가 **할당 추가** 블레이드 tooselect 역할 tooassign toohello 그룹 선택 했습니다.
 
-15. **할당** 단추를 클릭하여 선택한 그룹에 응용 프로그램을 할당합니다.
+15. Hello 클릭 **할당** 단추 tooassign hello 응용 프로그램 toohello 선택 된 그룹입니다.
 
-짧은 시간 후에 선택한 사용자는 액세스 패널에서 이러한 응용 프로그램을 시작할 수 있습니다.
+짧은 기간 hello 사용자가 선택한 수 수 toolaunch에서 이러한 응용 프로그램 액세스 패널 hello 합니다.
 
-### <a name="check-if-a-user-is-part-of-group-assigned-to-a-license"></a>사용자가 라이선스에 할당된 그룹에 속해 있는지 확인
+### <a name="check-if-a-user-is-part-of-group-assigned-tooa-license"></a>사용자 tooa 라이선스가 할당 된 그룹의 일부 인지 확인
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+4.  클릭 **사용자 및 그룹** hello 탐색 메뉴에 있습니다.
 
 5.  **모든 사용자**를 클릭합니다.
 
-6.  관심이 있는 사용자를 **검색**하고 **행을 클릭**하여 선택합니다.
+6.  **검색** 에 관심이 있는 hello 사용자에 대 한 및 **hello 행 클릭** tooselect 합니다.
 
 7.  **그룹**을 클릭합니다.
 
-8.  특정 그룹의 행을 클릭합니다.
+8.  특정 그룹의 hello 행을 클릭 합니다.
 
-9.  **라이선스**를 클릭하여 그룹이 할당된 라이선스를 봅니다.
+9.  클릭 **라이선스** toosee 라이선스 hello 그룹 tooit에 할당 합니다.
 
-   * 그룹이 Office 라이선스에 할당된 경우 사용자의 액세스 패널에 나타나도록 특정 자사 Office 응용 프로그램을 활성화할 수 있습니다.
+   * Hello 그룹이 할당 된 tooan Office 라이선스 이면이 hello 사용자의 액세스 패널에 첫 번째 파티 Office 응용 프로그램 tooappear 특정로 설정 될 수 있습니다.
 
-### <a name="how-to-assign-a-license-to-a-group"></a>그룹에 라이선스를 할당하는 방법
+### <a name="how-tooassign-a-license-tooa-group"></a>어떻게 tooassign 라이선스 tooa 그룹
 
-그룹에 라이선스를 할당하려면 다음 단계를 수행합니다.
+아래의 hello 단계를 수행 하는 라이선스 tooa 그룹을 tooassign:
 
-1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
+1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
 
-2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
+2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
 
-3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
+3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
 
-4.  탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+4.  클릭 **사용자 및 그룹** hello 탐색 메뉴에 있습니다.
 
 5.  **모든 그룹**을 클릭합니다.
 
-6.  관심이 있는 그룹을 **검색**하고 **행을 클릭**하여 선택합니다.
+6.  **검색** 에 관심이 있는 hello 그룹에 대 한 및 **hello 행 클릭** tooselect 합니다.
 
-7.  **라이선스**를 클릭하여 그룹이 현재 할당된 라이선스를 봅니다.
+7.  클릭 **라이선스** toosee 현재 hello 라이선스 그룹에 할당 합니다.
 
-8.  **할당** 단추를 클릭합니다.
+8.  Hello 클릭 **할당** 단추입니다.
 
-9.  사용 가능한 제품 목록에서 **하나 이상의 제품**을 선택합니다.
+9.  선택 **하나 이상의 제품** hello 사용 가능한 제품 목록에서 합니다.
 
-10. **선택 사항** 제품을 상세하게 할당하려면 **할당 옵션** 항목을 클릭합니다. 완료되면 **확인**을 클릭합니다.
+10. **선택적** hello 클릭 **할당 옵션** 항목 toogranularly 제품을 할당 합니다. 완료되면 **확인**을 클릭합니다.
 
-11. **할당** 단추를 클릭하여 이러한 라이선스를 이 그룹에 할당합니다. 그룹의 크기와 복잡성에 따라 시간이 오래 걸릴 수 있습니다.
+11. Hello 클릭 **할당** tooassign 이러한 라이선스 toothis 그룹 단추입니다. Hello 그룹의 hello 크기와 복잡성에 따라 시간이 오래 걸릴 수 있습니다.
 
 >[!NOTE]
->시간을 단축하려면 일시적으로 라이선스를 사용자에게 직접 할당할 수도 있습니다. 
+>toodo이 더 빨리 고려 임시로 라이선스 toohello 사용자를 직접 지정 합니다. 
 >
 >
 
 ## <a name="next-steps"></a>다음 단계
-[Azure Active Directory에 새 사용자 추가](active-directory-users-create-azure-portal.md)
+[새 사용자 tooAzure Active Directory를 추가 합니다.](active-directory-users-create-azure-portal.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB Python API, SDK 및 리소스 | Microsoft Docs"
-description: "릴리스 날짜, 사용 중지 날짜 및 Azure Cosmos DB Python SDK의 각 버전 간의 변경 내용을 포함하는 Python API 및 SDK에 대한 모든 것을 알아봅니다."
+title: "aaaAzure Cosmos DB Python API SDK 및 리소스 | Microsoft Docs"
+description: "Python API와 SDK 릴리스 날짜, 사용 중지 날짜 및 hello Azure Cosmos DB Python SDK의 각 버전 간의 변경 내용을 포함 하 여 hello에 대 한 모든에 대해 알아봅니다."
 services: cosmos-db
 documentationcenter: python
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 70d2550f713ff0e9daed235eb8053589b8682633
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1a164b72d2bd819de87df0229357b82e2177af2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-python-sdk-release-notes-and-resources"></a>Azure Cosmos DB Python SDK: 릴리스 정보 및 리소스
 > [!div class="op_single_selector"]
@@ -43,9 +43,9 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**SDK 설치 지침**</td><td>[Python SDK 설치 지침](http://azure.github.io/azure-documentdb-python/)</td></tr>
 
-<tr><td>**SDK에 참여**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
+<tr><td>**TooSDK 영향**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
 
-<tr><td>**시작**</td><td>[Python SDK 시작](documentdb-python-application.md)</td></tr>
+<tr><td>**시작**</td><td>[Hello Python SDK 시작](documentdb-python-application.md)</td></tr>
 
 <tr><td>**현재 지원되는 플랫폼**</td><td>[Python 2.7](https://www.python.org/downloads/) 및 [Python 3.5](https://www.python.org/downloads/)</td></tr>
 </table></br>
@@ -58,13 +58,13 @@ ms.lasthandoff: 08/18/2017
 ### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
 * 집계 쿼리(COUNT, MIN, MAX, SUM 및 AVG)에 대한 지원이 추가되었습니다.
 * Cosmos DB 에뮬레이터에 대해 실행하는 경우 SSL 유효성 검사를 비활성화하기 위한 옵션을 추가했습니다.
-* 종속 요청 모듈이 정확히 2.10.0이어야 하는 제한을 제거했습니다.
-* 분할된 컬렉션에 대한 최소 처리량이 10,100RU/s에서 2500RU/s로 감소됩니다.
+* 종속 요청 모듈 toobe 정확히 2.10.0 hello 제한을 제거 합니다.
+* 10,100 000RU/s too2500 000RU/s에서 분할 된 컬렉션에 대해 최소 처리량을 적어집니다.
 * 저장된 프로시저가 실행되는 동안 스크립트 로깅을 사용할 수 있도록 지원이 추가되었습니다.
-* 이 릴리스에서 REST API 버전이 '2017-01-19'로 증가되었습니다.
+* REST API 버전 ' 2017 추락 너무-01-19' 이번 릴리스부터 합니다.
 
 ### <a name="a-name201201"></a><a name="2.0.1"/>2.0.1
-* 문서 주석에 대한 편집이 변경되었습니다.
+* Toodocumentation 주석 편집 변경 작업을 수행 합니다.
 
 ### <a name="a-name200200"></a><a name="2.0.0"/>2.0.0
 * Python 3.5에 대한 지원이 추가되었습니다.
@@ -73,33 +73,33 @@ ms.lasthandoff: 08/18/2017
 * 분할된 컬렉션의 TOP/ORDERBY 쿼리에 대한 지원이 추가되었습니다.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
-* 제한된 요청에 대한 재시도 정책 지원이 추가되었습니다. (제한된 요청은 오류 코드 429, 요청 속도가 너무 크다는 예외를 수신합니다.) 기본적으로 오류 코드 429가 발생하면 Azure Cosmos DB는 각 요청을 9번 다시 시도하며 응답 헤더에서 retryAfter 시간을 적용합니다. 이제 다시 시도 간의 서버에서 반환한 retryAfter 시간을 무시하려는 경우 고정된 다시 시도 간격 시간은 ConnectionPolicy 개체에서 RetryOptions 속성의 일부로 설정될 수 있습니다. Azure Cosmos DB는 제한된 요청 각각에 대해 30초 동안 대기하고(다시 시도 횟수와 관계 없이) 오류 코드 429를 포함하는 응답을 반환합니다. 이 시간도 ConnectionPolicy 개체에 있는 RetryOptions 속성에서 재정의할 수 있습니다.
-* 이제 Cosmos DB는 x-ms-throttle-retry-count 및 x-ms-throttle-retry-wait-time-ms를 다시 시도 사이에 요청이 대기한 제한 다시 시도 수 및 누적 시간을 표시하는 모든 요청의 응답 헤더로 반환합니다.
-* document_client 클래스에 노출된 RetryPolicy 클래스 및 해당 속성(retry_policy)을 제거하고 대신 일부 기본 다시 시도 옵션을 재정의하는 데 사용할 수 있는 ConnectionPolicy 클래스의 RetryOptions 속성을 노출하는 RetryOptions 클래스를 지정했습니다.
+* 제한된 요청에 대한 재시도 정책 지원이 추가되었습니다. (제한된 요청은 오류 코드 429, 요청 속도가 너무 크다는 예외를 수신합니다.) 기본적으로 Azure Cosmos DB 다시 시도 9 번 각 요청에 대 한 오류 코드 429 오류가 발생 하면 hello retryAfter 시간 hello 응답 헤더에 적용 합니다. 고정 된 다시 시도 간격 시간 수 이제 hello RetryOptions 속성의 일부로 개체에 설정 될 hello ConnectionPolicy hello 다시 시도 대기 중 서버에서 반환 된 tooignore hello retryAfter 시간이 필요한 경우. 이제 azure Cosmos DB 최대 (관계 없이 다시 시도 횟수)가 제한 및 오류 코드: 429 hello 응답을 반환 하는 각 요청에 대 한 30 초까지 기다립니다. 이 이번에는 hello RetryOptions ConnectionPolicy 개체 속성에서에서 재정의 된 될 수도 있습니다.
+* Cosmos DB 이제 x-ms-스로틀-다시 시도-횟수 및 반환 x-ms-throttle-retry-wait-time-ms hello 응답 헤더의 모든 요청 toodenote hello 스로틀 수 및 hello cummulative hello 요청 대기 시간 hello 재시도 간격을 다시 시도 하십시오.
+* 제거 hello RetryPolicy 클래스 및 (retry_policy) 속성을 해당 하는 hello hello document_client 클래스에 노출 되며 대신 hello RetryOptions 클래스의 속성을 ConnectionPolicy toooverride 사용된 될 수 있는 노출 RetryOptions 클래스를 도입 일부 hello 기본 옵션을 다시 시도 하십시오.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* 다중 지역 데이터베이스 계정에 대한 지원이 추가되었습니다.
+* 다중 영역 데이터베이스 계정에 대 한 추가 된 hello 지원 합니다.
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* 문서의 TTL(Time to Live) 기능에 대한 지원이 추가되었습니다.
+* 추가 된 hello 문서에 대 한 시간 tooLive(TTL) 기능에 대 한 지원.
 
 ### <a name="a-name161161"></a><a name="1.6.1"/>1.6.1
-* partitionkey 경로에 특수 문자를 허용하는 서버 쪽 분할과 관련된 버그 수정입니다.
+* 버그 수정 관련 tooserver 쪽 tooallow partitionkey 경로에서 특수 문자를 분할 합니다.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * [분할된 컬렉션](partition-data.md) 및 [사용자 정의 성능 수준](performance-levels.md)이 구현되었습니다. 
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* 여러 파티션 간의 응용 프로그램 분할을 지원하기 위해 해시 및 범위 파티션 해결 프로그램을 추가합니다.
+* 추가 해시 & 범위 파티션 확인자 tooassist 여러 파티션에서 분할 응용 프로그램입니다.
 
 ### <a name="a-name142142"></a><a name="1.4.2"/>1.4.2
-* Upsert를 구현합니다. 새로운 UpsertXXX 메서드가 Upsert 기능을 지원하기 위해 추가되었습니다.
+* Upsert를 구현합니다. 새 UpsertXXX 메서드가 toosupport Upsert 기능을 추가 합니다.
 * ID 기반 라우팅을 구현합니다. 공용 API 변경 없이 모두 내부에서 변경됩니다.
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * 지리 공간 인덱스를 지원합니다.
 * 모든 리소스에 대한 ID 속성의 유효성을 검사합니다. 리소스에 대한 ID는 ?, /, #, \, 문자를 포함하거나 공백으로 끝날 수 없습니다.
-* ResourceResponse에 새 헤더 "인덱스 변환 진행"을 추가합니다.
+* 새 헤더 "인덱스 변환 진행 중" tooResourceResponse를 추가합니다.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * V2 인덱싱 정책을 구현합니다.
@@ -111,14 +111,14 @@ ms.lasthandoff: 08/18/2017
 * GA SDK.
 
 ## <a name="release--retirement-dates"></a>릴리스 및 사용 중지 날짜
-Microsoft는 매끄럽게 최신/지원 버전으로 전환할 수 있도록 적어도 SDK 사용 중지 **12개월** 전에 알림을 제공합니다.
+Microsoft는 알림을 적어도 제공 **12 개월** 순서 toosmooth hello 전환 tooa 지원/최신 버전의 SDK를 사용 중지 전에 합니다.
 
-새로운 기능 및 최적화는 현재 SDK에만 추가되어 있으며, 따라서 항상 최신 SDK 버전으로 가능한 한 빨리 업그레이드할 것을 권장합니다. 
+새로운 기능 및 기능 및 최적화는 toohello 현재만 추가 그렇게 하면 항상 업그레이드 toohello 최신 SDK 버전을 가능한 한 빨리 권장는 SDK입니다. 
 
-사용 중지된 SDK를 사용하는 Cosmos DB에 대한 요청은 서비스에서 거부됩니다.
+모든 요청 tooCosmos 사용 중지 된 SDK를 사용 하 여 DB hello 서비스에서 거부 됩니다.
 
 > [!WARNING]
-> **1.0.0** 이전 버전의 Python에 대한 모든 버전의 Azure DocumentDB SDK는 **2016년 2월 29일**에 사용 중지됩니다. 
+> 모든 버전의 이전 tooversion Python에 대 한 Azure DocumentDB SDK hello **1.0.0** 에 사용 중지 될 예정 **2016 년 2 월 29 일**합니다. 
 > 
 > 
 
@@ -152,5 +152,5 @@ Microsoft는 매끄럽게 최신/지원 버전으로 전환할 수 있도록 적
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>참고 항목
-Cosmos DB에 대한 자세한 내용은 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 서비스 페이지를 참조하세요. 
+Cosmos DB에 대해 자세히 toolearn 참조 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 서비스 페이지. 
 

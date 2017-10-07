@@ -1,6 +1,6 @@
 ---
-title: "Azure 모바일 계약 내에서 이모지 이모티콘 사용"
-description: "푸시 알림 내에서 이모지 이모티콘을 사용하는 방법"
+title: "Azure Mobile Engagement 내 aaaUse Emoji 이모티콘"
+description: "어떻게 toouse Emoji 이모티콘 푸시 알림 내에서"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: bbb7ce5e95b229a7505c5e97b6866d5a302a1d27
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 63bfc59ef472e9fe9aa28b5ac8761017b9250e0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-emoji-emoticon-within-push-notifications"></a>푸시 알림 내에서 이모지 이모티콘 사용
 다음과 같은 쉬운 몇 가지 단계를 통해 푸시 알림에 이모지 이모티콘을 포함할 수 있습니다. 
 
-1. 먼저 메시지에서 보낼 이모지를 찾아야 합니다. 장치 제조업체에서 새로 승인한 이모지를 장치 플랫폼에 추가하려면 다소 시간이 걸리므로 선택하는 이모지를 대상 장치에서 지원할지 확인하십시오. 
-2. **Windows** 에서 이 [링크](http://apps.timwhitlock.info/emoji/tables/unicode) 를 탐색하고 ‘네이티브' 아이콘을 복사할 수 있습니다.
+1. 먼저 모든 toofind hello toosend hello 메시지에 원하는 Emoji 해야 합니다. 해당 hello Emoji 선택 하는 장치 제조업체 일부 시간 tooadd 새로 승인 된 Emojis toohello 장치 플랫폼을 받아들이기 때문 hello 대상 장치에서 지원 될 것을 확인 하십시오. 
+2. **Windows** -toothis 탐색할 수 [링크](http://apps.timwhitlock.info/emoji/tables/unicode) 및 복사 hello 'Native' 아이콘입니다.
    
     ![][7] 
-3. **Mac**에서 편집 -> 이모지 및 기호 아래의 사전 응용 프로그램에서 이모지를 찾을 수 있습니다.
+3. **Mac** -hello를 찾을 수 있습니다 Emoji & 기호 Emojis 편집 중인 사전 응용 프로그램에서-> 합니다.
    
     ![][6] 
-4. 이제 Azure Mobile Engagement 포털에서 **Reach** 탭으로 이동합니다. 푸시 알림 유형(공지, 설문 조사 등)을 선택합니다. 이 예제에서는 공지 푸시를 선택합니다.
-5. 알림 텍스트에 도달할 때까지 여러 알림 필드를 지정합니다. 이 위치에서 이모지 이모티콘을 추가합니다. 제목, 메시지 또는 두 항목 모두에 이모티콘을 넣을 수 있습니다. 위의 위치에서 찾은 이모지를 끌어서 놓거나 복사해야 합니다. 
+4. 이제 toohello 이동 **도달** hello hello Azure Mobile Engagement 포털에 탭 합니다. 프로그램 푸시 알림 (알림, 여론 조사 등)의 hello 유형을 선택 합니다. 이 예제에서는 공지 푸시를 선택합니다.
+5. Hello 알림의 hello 텍스트에 도달할 때까지 hello 알림 hello 서로 다른 필드를 지정 합니다. 이 위치에서 이모지 이모티콘을 추가합니다. Tooput를 선택할 수 있습니다 hello 제목, hello 메시지 중 하나 또는 둘 다에 있습니다. Toodrag 및 drop 필요 하거나 Emoji 위의 hello 위치에서 발견 된 hello를 복사 합니다. 
    
     ![][1]
-6. 알림에 대한 다른 필드를 완료하고 저장합니다. 
-7. 테스트를 실행하거나 공지를 활성화할 때 지정된 대로 이모티콘이 있는 알림이 표시됩니다.   
+6. 전체 hello hello 알림에 대 한 다른 필드를 저장 합니다. 
+7. Hello 알림이 활성화 또는 테스트를 실행할 때 지정 된 대로 hello 이모티콘 관련 된 알림을 나타납니다.   
    
     ![][3] ![][4] ![][5]
 

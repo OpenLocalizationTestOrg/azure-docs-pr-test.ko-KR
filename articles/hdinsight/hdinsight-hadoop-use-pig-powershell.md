@@ -1,6 +1,6 @@
 ---
-title: "HDInsight에서 PowerShell과 Hadoop Pig 사용 - Azure | Microsoft Docs"
-description: "Azure PowerShell을 사용하여 HDInsight의 Hadoop 클러스터에 Pig 작업을 제출하는 방법에 대해 알아봅니다."
+title: "powershell에서 Azure HDInsight Hadoop Pig aaaUse | Microsoft Docs"
+description: "Azure PowerShell을 사용 하 여 HDInsight의 toosubmit Pig 작업 tooa Hadoop 클러스터 하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,27 +16,27 @@ ms.workload: big-data
 ms.date: 06/16/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 28904b07609ffb40a8195278fd1afd3957896733
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 771617df203011eaec715a0dba6f5014a42877f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-powershell-to-run-pig-jobs-with-hdinsight"></a>Azure PowerShell을 사용하여 HDInsight에서 Pig 작업 실행
+# <a name="use-azure-powershell-toorun-pig-jobs-with-hdinsight"></a>HDInsight와 Azure PowerShell toorun Pig 작업을 사용 하 여
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-이 문서는 Azure PowerShell을 사용하여 HDInsight의 Hadoop 클러스터에 Pig 작업을 제출하는 예제를 보여 줍니다. Pig를 사용하면 매핑하고 함수를 줄이는 대신 데이터 변환을 모델링하는 언어(Pig Latin)를 사용하여 MapReduce 작업을 작성할 수 있습니다.
+이 문서는 HDInsight 클러스터에서 Azure PowerShell toosubmit Pig 작업 tooa Hadoop을 사용 하는 예제를 제공 합니다. Pig은 데이터 변환, 모델링 언어 (Pig 라틴 문자)를 사용 하 여 toowrite MapReduce 작업을 허용 하지 않고 매핑한 함수를 줄입니다.
 
 > [!NOTE]
-> 이 문서에는 예제에 사용된 Pig Latin 문이 수행하는 작업에 대해 자세한 설명을 제공하지 않습니다. 이 예제에 사용된 Pig Latin에 대한 자세한 내용은 [HDInsight에서 Hadoop과 Pig 사용](hdinsight-use-pig.md)을 참조하세요.
+> 이 문서는 hello 예제에서 사용 되는 hello Pig 라틴 문을 수행할 작업에 대 한 자세한 설명을 제공 하지 않습니다. 이 예에서 사용 된 Pig 라틴 hello에 대 한 정보를 참조 하십시오. [HDInsight에서 Hadoop으로 Pig](hdinsight-use-pig.md)합니다.
 
 ## <a id="prereq"></a>필수 조건
 
 * **Azure HDInsight 클러스터**
 
   > [!IMPORTANT]
-  > Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+  > Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 * **Azure PowerShell이 포함된 워크스테이션**.
 
@@ -44,33 +44,33 @@ ms.lasthandoff: 07/11/2017
 
 ## <a id="powershell"></a>PowerShell을 사용하여 Pig 작업 실행
 
-Azure PowerShell은 HDInsight에서 Pig 작업을 원격으로 실행할 수 있는 *cmdlet* 을 제공합니다. 내부적으로 PowerShell은 HDInsight 클러스터에서 실행되는 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat)으로 REST 호출을 사용합니다.
+Azure PowerShell에는 *cmdlet* 수 있는 실행 tooremotely Pig 작업 HDInsight의 합니다. 내부적으로 PowerShell 사용 하 여 REST 호출 너무[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) hello HDInsight 클러스터에서 실행 합니다.
 
-다음 cmdlet은 원격 HDInsight 클러스터에서 Pig 작업을 실행할 때 사용됩니다.
+hello 다음 cmdlet은 사용 되는 원격 HDInsight 클러스터에서 Pig 작업을 실행할 때:
 
-* **Login-AzureRmAccount**: Azure 구독에 대해 Azure PowerShell을 인증합니다.
-* **New-AzureRmHDInsightPigJobDefinition**: 지정한 Pig Latin 문을 사용하여 *작업 정의*를 만듭니다.
-* **Start-AzureRmHDInsightJob**: HDInsight로 작업 정의를 보내고, 작업을 시작하고, 작업 상태를 확인하는 데 사용할 수 있는 *작업* 개체를 반환합니다.
-* **Wait-AzureRmHDInsightJob**: 작업 개체를 사용하여 작업 상태를 확인합니다. 작업이 완료될 때까지 기다리거나 대기 시간이 초과될 때까지 기다립니다.
-* **Get-AzureRmHDInsightJobOutput**: 작업 출력을 검색하는 데 사용됩니다.
+* **로그인 AzureRmAccount**: Azure PowerShell 인증 tooyour Azure 구독
+* **새 AzureRmHDInsightPigJobDefinition**: 만듭니다는 *작업 정의* hello를 사용 하 여 Pig 라틴 문 지정
+* **시작 AzureRmHDInsightJob**: hello 작업 정의 tooHDInsight hello 작업을 시작 보내고 반환 된 *작업* hello 작업의 사용된 toocheck hello 상태가 될 수 있는 개체
+* **대기 AzureRmHDInsightJob**: hello 작업의 hello 작업 개체 toocheck hello 상태를 사용 합니다. Hello 작업이 완료 되었는지 또는 hello 대기 시간을 초과 했습니다 때까지 기다렸다가 합니다.
+* **Get AzureRmHDInsightJobOutput**: hello 작업의 tooretrieve hello 출력 사용
 
-다음 단계는 HDInsight 클러스터에서 작업을 실행하기 위해 이러한 cmdlet을 사용하는 방법에 대해 설명합니다.
+hello 다음 단계 설명 방법을 toouse 이러한 cmdlet toorun HDInsight 클러스터에서 작업 합니다.
 
-1. 편집기를 사용하여 다음 코드를 **pigjob.ps1**로 저장합니다.
+1. 코드를 다음 hello 저장의 편집기를 사용 하 여 **pigjob.ps1**합니다.
 
-    [!code-powershell[기본](../../powershell_scripts/hdinsight/use-pig/use-pig.ps1?range=5-51)]
+    [!code-powershell[main](../../powershell_scripts/hdinsight/use-pig/use-pig.ps1?range=5-51)]
 
-1. 새 Windows PowerShell 명령 프롬프트를 엽니다. **pigjob.ps1** 파일의 디렉터리 위치를 변경한 다음 명령을 사용하여 스크립트를 실행합니다.
+1. 새 Windows PowerShell 명령 프롬프트를 엽니다. Hello의 디렉터리 toohello 위치를 변경 **pigjob.ps1** 파일을 다음 명령 toorun hello 스크립트 다음 hello를 사용 하 여:
 
         .\pigjob.ps1
 
-    Azure 구독에 로그인하라는 메시지가 표시됩니다. 그런 다음 HTTPs/관리자 계정 이름과 HDInsight 클러스터 암호를 묻는 메시지가 표시됩니다.
+    Tooyour Azure 구독에서에서 메시지 표시 toolog 됩니다. 그런 다음 hello HTTPs/관리자 계정 이름 및 hello HDInsight 클러스터에 대 한 암호를 묻습니다.
 
-2. 작업이 완료되면 다음 텍스트와 유사한 정보가 반환됩니다.
+2. Hello 작업이 완료 되 면 면 정보 비슷한 toohello 텍스트 다음 반환 해야 합니다.
 
-        Start the Pig job ...
-        Wait for the Pig job to complete ...
-        Display the standard output ...
+        Start hello Pig job ...
+        Wait for hello Pig job toocomplete ...
+        Display hello standard output ...
         (TRACE,816)
         (DEBUG,434)
         (INFO,96)
@@ -80,20 +80,20 @@ Azure PowerShell은 HDInsight에서 Pig 작업을 원격으로 실행할 수 있
 
 ## <a id="troubleshooting"></a>문제 해결
 
-작업이 완료될 때 정보가 반환되지 않은 경우, 처리하는 동안 오류가 발생했을 수 있습니다. 이 작업에 대한 오류 정보를 보려면 **pigjob.ps1** 파일 끝에 다음 명령을 추가하고 저장한 다음 다시 실행합니다.
+정보가 없는 hello 작업이 완료 되었을 때 반환 되 면 처리 하는 동안 오류가 발생 한 수 있습니다. 이 작업에 대 한 오류 정보 tooview 추가 명령을 toohello의 끝 다음 hello hello **pigjob.ps1** 파일을 저장 하 고 다시 실행 합니다.
 
-    # Print the output of the Pig job.
-    Write-Host "Display the standard error output ..." -ForegroundColor Green
+    # Print hello output of hello Pig job.
+    Write-Host "Display hello standard error output ..." -ForegroundColor Green
     Get-AzureRmHDInsightJobOutput `
             -Clustername $clusterName `
             -JobId $pigJob.JobId `
             -HttpCredential $creds `
             -DisplayOutputType StandardError
 
-이 명령은 작업을 실행할 때 서버의 STDERR에 기록된 정보를 반환하며 이 정보는 작업이 실패한 이유를 확인하는 데 도움이 될 수 있습니다.
+Hello 작업을 실행할 때 tooSTDERR hello 서버에 기록 된 hello 정보를 반환 합니다 되며 hello 작업은 실패 하는 이유 확인 도움이 될 수 있습니다.
 
 ## <a id="summary"></a>요약
-이처럼 Azure PowerShell은 HDInsight 클러스터에서 Pig 작업을 실행하고, 작업 상태를 모니터링하고, 출력을 검색하는 쉬운 방법을 알려줍니다.
+볼 수 있듯이 Azure PowerShell을 쉽게 toorun Pig 작업에 제공 된 HDInsight 클러스터, 모니터 hello 작업 상태 및 검색 hello 출력 합니다.
 
 ## <a id="nextsteps"></a>다음 단계
 HDInsight의 Pig에 대한 일반적인 정보:

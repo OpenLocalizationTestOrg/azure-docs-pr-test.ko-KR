@@ -1,6 +1,6 @@
 ---
-title: "사용자 할당 필요 - Azure AD | Microsoft Docs"
-description: "Azure 응용 프로그램에 대해 사용자 할당을 요구하는 방법."
+title: "Azure AD 사용자 할당이 aaaRequire | Microsoft Docs"
+description: "어떻게 Azure 응용 프로그램에 대 한 toorequire 사용자 할당 합니다."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: kgremban
 robots: noindex
-ms.openlocfilehash: 079b806c041a4a21e9350342867aee581c57bf45
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b72037cb2321fe03a8ecbbefb568029ce903a126
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-and-applications-require-user-assignment"></a>Azure AD 및 응용 프로그램: 사용자 할당 요구
 ## <a name="requiring-user-assignment"></a>사용자 할당 요구
-1. 관리자 계정으로 Azure 포털에 로그인합니다.
-2. 주 메뉴에서 **모든 항목** 항목을 클릭합니다.
-3. 응용 프로그램에 대해 사용하는 디렉터리를 선택합니다.
-4. **응용 프로그램** 탭을 클릭합니다.
-5. 이 디렉터리와 연결된 응용 프로그램 목록에서 응용 프로그램을 선택합니다.
-6. **구성** 탭을 클릭합니다.
-7. **앱 액세스에 필요한 사용자 할당** 토글을 예로 변경합니다.
-8. 화면 아래쪽에 있는 **저장** 단추를 클릭합니다.
+1. 관리자 계정으로 Azure 포털 toohello에 로그인 합니다.
+2. Hello 클릭 **모든 항목** hello 주 메뉴의 항목입니다.
+3. Hello 응용 프로그램에 대 한 사용 하는 hello 디렉터리를 선택 합니다.
+4. Hello 클릭 **응용 프로그램** 탭 합니다.
+5. 이 디렉터리와 연결 된 응용 프로그램의 hello 목록에서 hello 응용 프로그램을 선택 합니다.
+6. Hello 클릭 **구성** 탭 합니다.
+7. 변경 hello **사용자 할당 필요 tooAccess 앱** tooYes 설정/해제 합니다.
+8. Hello 클릭 **저장** hello hello 화면 맨 아래에 단추입니다.
 
-이제 응용 프로그램에 사용자 및/또는 그룹을 할당해야 합니다. [응용 프로그램에 사용자 지정](active-directory-applications-guiding-developers-assigning-users.md) 및 [응용 프로그램에 그룹 지정](active-directory-applications-guiding-developers-assigning-groups.md)을 참조하세요.
+지금 tooassign 사용자 및/또는 그룹 toohello 응용 프로그램을 갖게 됩니다. 참조 [tooan 응용 프로그램 사용자를 할당](active-directory-applications-guiding-developers-assigning-users.md) 및 [tooan 응용 프로그램 그룹을 지정](active-directory-applications-guiding-developers-assigning-groups.md)합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]

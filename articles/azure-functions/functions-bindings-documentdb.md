@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions Cosmos DB 바인딩 | Microsoft Docs"
-description: "Azure Functions에서 Azure Cosmos DB 바인딩을 사용하는 방법을 파악합니다."
+title: "aaaAzure 함수 Cosmos DB 바인딩 | Microsoft Docs"
+description: "이해 어떻게 Azure 함수에서 toouse Azure Cosmos DB 바인딩."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/18/2016
 ms.author: glenga
-ms.openlocfilehash: de95b0591eb95e76dbb7ba2382e9e14e1f66cda1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 76b89e8296db1dd28dff9528903b1f6a28f55232
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-cosmos-db-bindings"></a>Azure Functions Cosmos DB 바인딩
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-이 문서에서는 Azure Functions에서 Azure Cosmos DB 바인딩을 구성하고 코딩하는 방법을 설명합니다. Azure Functions는 Cosmos DB에 대한 입력 및 출력 바인딩을 지원합니다.
+이 문서에서는 설명 어떻게 Azure 함수에서 tooconfigure 및 코드 Azure Cosmos DB 바인딩. Azure Functions는 Cosmos DB에 대한 입력 및 출력 바인딩을 지원합니다.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-Cosmos DB에 대한 자세한 내용은 [Cosmos DB 소개](../documentdb/documentdb-introduction.md) 및 [Cosmos DB 콘솔 응용 프로그램 빌드](../documentdb/documentdb-get-started.md)를 참조하세요.
+Cosmos DB에 대 한 자세한 내용은 참조 하십시오. [소개 tooCosmos DB](../documentdb/documentdb-introduction.md) 및 [Cosmos DB 콘솔 응용 프로그램 빌드](../documentdb/documentdb-get-started.md)합니다.
 
 <a id="docdbinput"></a>
 
 ## <a name="documentdb-api-input-binding"></a>DocumentDB API 입력 바인딩
-DocumentDB API 입력 바인딩은 Cosmos DB 문서를 검색하고 함수의 명명된 입력 매개 변수를 전달합니다. 함수를 호출한 트리거에 따라 문서 ID를 결정할 수 있습니다. 
+Cosmos DB 문서를 검색 하 고 toohello 명명 된 hello 함수의 입력된 매개 변수를 전달 하는 hello DocumentDB API 입력된 바인딩 합니다. hello 함수를 호출 하는 hello 트리거를 기반으로 hello 문서 ID를 확인할 수 있습니다. 
 
-DocumentDB API 입력 바인딩은 *function.json*에 다음 속성이 있습니다.
+DocumentDB API 입력된 바인딩 hello에 다음과 같은 속성에 hello *function.json*:
 
-- `name` : 문서에 대한 함수 코드에 사용되는 식별자 이름입니다.
-- `type` : “documentdb”로 설정해야 합니다.
-- `databaseName` : 문서를 포함하는 데이터베이스입니다.
-- `collectionName` : 문서를 포함하는 컬렉션입니다.
-- `id` : 검색할 문서의 ID입니다. 이 속성은 바인딩 매개 변수를 지원합니다. [Azure Functions 트리거 및 바인딩 개념](functions-triggers-bindings.md) 문서에서 [바인딩 식에서 사용자 지정 입력 속성에 바인딩](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression)을 참조하세요.
-- `sqlQuery`: 여러 문서를 검색하는 데 사용되는 Cosmos DB SQL 쿼리입니다. 쿼리는 런타임 바인딩을 지원합니다. 예: `SELECT * FROM c where c.departmentId = {departmentId}`
-- `connection`: Cosmos DB 연결 문자열을 포함하는 앱 설정의 이름입니다.
-- `direction` : `"in"`으로 설정해야 합니다.
+- `name`: Hello 문서에 대 한 함수 코드에서 사용 하는 식별자 이름
+- `type`: 너무 설정 해야 합니다 "documentdb"
+- `databaseName`: hello 문서를 포함 하는 hello 데이터베이스
+- `collectionName`: hello 문서를 포함 하는 hello 컬렉션
+- `id`: hello hello 문서 tooretrieve의 Id입니다. 이 속성은 바인딩 매개 변수 지원 참조 [바인딩 식에서 toocustom 입력된 속성을 바인딩할](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression) hello 문서의 [Azure 함수 트리거 및 바인딩 개념](functions-triggers-bindings.md)합니다.
+- `sqlQuery`: 여러 문서를 검색하는 데 사용되는 Cosmos DB SQL 쿼리입니다. hello 쿼리 런타임 바인딩을 지원합니다. 예: `SELECT * FROM c where c.departmentId = {departmentId}`
+- `connection`: Cosmos DB 연결 문자열을 포함 하는 hello 앱 설정의 hello 이름
+- `direction`: 너무 설정 되어 있어야`"in"`합니다.
 
-속성 `id` 및 `sqlQuery`를 둘 다 지정할 수는 없습니다. `id` 및 `sqlQuery`를 둘 다 설정하지 않으면 전체 컬렉션이 검색됩니다.
+속성을 hello `id` 및 `sqlQuery` 모두 지정할 수 없습니다. 모두 `id` 나 `sqlQuery` 설정 되 면 hello 전체 컬렉션에서 검색 됩니다.
 
 ## <a name="using-a-documentdb-api-input-binding"></a>DocumentDB API 입력 바인딩 사용
 
-* C# 및 F# 함수에서 함수가 성공적으로 종료되면 명명된 입력 매개 변수를 통해 입력 문서에 변경한 내용이 자동으로 유지됩니다. 
-* JavaScript 함수에서는 함수 종료 시 자동으로 업데이트되지 않습니다. 대신 `context.bindings.<documentName>In` 및 `context.bindings.<documentName>Out`을 사용하여 업데이트합니다. [JavaScript 샘플](#injavascript)을 참조하세요.
+* C# 및 F # 함수에서 hello 함수는 성공적으로 종료 될 때 명명 된 입력된 매개 변수를 통해 toohello 입력된 문서를 변경한 내용은 자동으로 유지 됩니다. 
+* JavaScript 함수에서는 함수 종료 시 자동으로 업데이트되지 않습니다. 대신를 사용 하 여 `context.bindings.<documentName>In` 및 `context.bindings.<documentName>Out` toomake 업데이트 합니다. Hello 참조 [JavaScript 샘플](#injavascript)합니다.
 
 <a name="inputsample"></a>
 
 ## <a name="input-sample-for-single-document"></a>단일 문서에 대한 입력 샘플
-function.json의 `bindings` 배열에 다음과 같은 DocumentDB API 입력 바인딩이 있다고 가정합니다.
+DocumentDB API 입력 바인딩 hello에 있다고 가정 하면 hello 다음 `bindings` function.json의 배열:
 
 ```json
 {
@@ -71,7 +71,7 @@ function.json의 `bindings` 배열에 다음과 같은 DocumentDB API 입력 바
 }
 ```
 
-이 입력 바인딩을 사용하여 문서의 텍스트 값을 업데이트하는 언어별 샘플을 참조하세요.
+이 입력된 바인딩의 tooupdate hello 문서의 텍스트 값을 사용 하는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#incsharp)
 * [F#](#infsharp)
@@ -98,7 +98,7 @@ let Run(myQueueItem: string, inputDocument: obj) =
   inputDocument?text <- "This has changed."
 ```
 
-이 샘플에는 `FSharp.Interop.Dynamic` 및 `Dynamitey` NuGet 종속성을 지정하는 `project.json` 파일이 필요합니다.
+이 샘플을 사용 하려면 한 `project.json` hello를 지정 하는 파일 `FSharp.Interop.Dynamic` 및 `Dynamitey` NuGet 종속성:
 
 ```json
 {
@@ -113,7 +113,7 @@ let Run(myQueueItem: string, inputDocument: obj) =
 }
 ```
 
-`project.json` 파일을 추가하려면 [F# 패키지 관리](functions-reference-fsharp.md#package)를 참조하세요.
+tooadd는 `project.json` 파일, 참조 [F # 패키지 관리](functions-reference-fsharp.md#package)합니다.
 
 <a name="injavascript"></a>
 
@@ -130,9 +130,9 @@ module.exports = function (context) {
 
 ## <a name="input-sample-with-multiple-documents"></a>여러 문서가 있는 입력 샘플
 
-SQL 쿼리로 지정된 여러 문서를 검색하려고 하며 큐 트리거를 사용하여 쿼리 매개 변수를 사용자 지정한다고 가정합니다. 
+한다고 tooretrieve SQL 쿼리로 지정 된 여러 문서는 큐 트리거 toocustomize hello 쿼리 매개 변수를 사용 하 여 가정 합니다. 
 
-이 예제에서 큐 트리거는 매개 변수 `departmentId`를 제공합니다. 큐 메시지 `{ "departmentId" : "Finance" }`는 재무 부서에 대한 모든 레코드를 반환합니다. *function.json*에서 다음을 사용합니다.
+이 예제에서는 hello 큐 트리거 매개 변수를 제공 `departmentId`합니다. 큐 메시지의 `{ "departmentId" : "Finance" }` hello 재무 부서에 대 한 모든 레코드를 반환 합니다. 다음 hello를 사용 하 여 *function.json*:
 
 ```
 {
@@ -177,30 +177,30 @@ module.exports = function (context, input) {
 ```
 
 ## <a id="docdboutput"></a>DocumentDB API 출력 바인딩
-DocumentDB API 출력 바인딩을 사용하면 Azure Cosmos DB 데이터베이스에 새 문서를 작성할 수 있습니다. *function.json*에 다음 속성이 있습니다.
+DocumentDB API hello 작성할 새 문서 tooan Azure Cosmos DB 데이터베이스 바인딩 수를 출력 합니다. 다음과 같은 속성에 hello 있기 *function.json*:
 
-- `name` : 새 문서에 대한 함수 코드에 사용되는 식별자입니다.
-- `type` : `"documentdb"`로 설정해야 합니다.
-- `databaseName` : 새 문서를 만들 컬렉션을 포함하는 데이터베이스입니다.
-- `collectionName` : 새 문서를 만들 컬렉션입니다.
-- `createIfNotExists` : 컬렉션이 존재하지 않는 경우 만들 수 있는지 여부를 나타내는 부울 값입니다. 기본값은 *false*입니다. 새 컬렉션이 예약된 처리량을 사용하여 만들어지면 가격 책정 면에서 의미하는 바가 있기 때문입니다. 자세한 내용은 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/documentdb/)를 참조하세요.
-- `connection`: Cosmos DB 연결 문자열을 포함하는 앱 설정의 이름입니다.
-- `direction` : `"out"`으로 설정해야 합니다.
+- `name`: Hello 새 문서에 대 한 함수 코드에서 사용 되는 식별자
+- `type`: 너무 설정 해야 합니다`"documentdb"`
+- `databaseName`: hello 새 문서를 만들 위치 hello 컬렉션을 포함 하는 hello 데이터베이스.
+- `collectionName`: hello 컬렉션 hello 새 문서를 만들 위치입니다.
+- `createIfNotExists`: 부울 값이 존재 하지 않는 경우 hello 컬렉션을 만들 수는 여부를 tooindicate입니다. hello 기본값은 *false*합니다. 이유 hello 예약 된 처리량이 가격에 영향을 줄 수 있는 컬렉션을 만들고 새로운 기능이 며에 대 한 합니다. 자세한 내용은 hello를 방문 하세요 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/documentdb/)합니다.
+- `connection`: Cosmos DB 연결 문자열을 포함 하는 hello 앱 설정의 hello 이름
+- `direction`: 너무 설정 해야 합니다`"out"`
 
 ## <a name="using-a-documentdb-api-output-binding"></a>DocumentDB API 출력 바인딩 사용
-이 섹션에서는 함수 코드에서 DocumentDB API 출력 바인딩을 사용하는 방법을 보여 줍니다.
+이 섹션에서는 어떻게 toouse DocumentDB API 출력 함수 코드에서 바인딩을 보여 줍니다.
 
-함수에서 출력 매개 변수를 작성하는 경우 기본적으로 새 문서는 사용자의 데이터베이스에 생성되며, 자동으로 생성된 GUID를 문서 ID로 사용합니다. 출력 매개 변수의 `id` JSON 속성을 지정하여 출력 문서의 문서 ID를 지정할 수 있습니다. 
+기본적으로 데이터베이스에 새 문서 생성은 함수에서 toohello 출력 매개 변수를 작성할 때 hello로 자동으로 생성된 된 GUID와 문서 id입니다. Hello를 지정 하 여 출력 문서의 hello 문서 ID를 지정할 수 있습니다 `id` hello에 JSON 속성 매개 변수를 출력 합니다. 
 
 >[!Note]  
->기존 문서의 ID를 지정하면 새 출력 문서에 의해 덮어쓰여집니다. 
+>기존 문서 hello ID를 지정 하 여 hello 새 출력 문서가 덮어쓰기됩니다. 
 
-여러 문서를 출력하기 위해 `ICollector<T>` 또는 `IAsyncCollector<T>`에 바인딩할 수 있으며, 여기서 `T`는 지원되는 형식 중 하나입니다.
+toooutput 여러 문서를 바인딩할 수도 있습니다 너무`ICollector<T>` 또는 `IAsyncCollector<T>` 여기서 `T` hello 지원 형식 중 하나입니다.
 
 <a name="outputsample"></a>
 
 ## <a name="documentdb-api-output-binding-sample"></a>DocumentDB API 출력 바인딩 샘플
-function.json의 `bindings` 배열에 다음과 같은 DocumentDB API 출력 바인딩이 있다고 가정합니다.
+DocumentDB API 출력 바인딩 hello에 있다고 가정 하면 hello 다음 `bindings` function.json의 배열:
 
 ```json
 {
@@ -214,7 +214,7 @@ function.json의 `bindings` 배열에 다음과 같은 DocumentDB API 출력 바
 }
 ```
 
-또한 다음과 같은 형식의 JSON을 수신하는 큐에 대한 큐 입력 바인딩이 있습니다.
+있고 JSON 형식에 따라 hello에서 부여 하는 큐에 대 한 큐 입력된 바인딩:
 
 ```json
 {
@@ -224,7 +224,7 @@ function.json의 `bindings` 배열에 다음과 같은 DocumentDB API 출력 바
 }
 ```
 
-그리고 각 레코드에 대해 다음과 같은 형식의 Cosmos DB 문서를 만들려고 합니다.
+및 toocreate Cosmos DB 문서에서 각 레코드에 대 한 형식에 따라 hello에:
 
 ```json
 {
@@ -235,7 +235,7 @@ function.json의 `bindings` 배열에 다음과 같은 DocumentDB API 출력 바
 }
 ```
 
-이 출력 바인딩을 사용하여 문서를 데이터베이스에 추가하는 언어별 샘플을 참조하세요.
+이 출력 바인딩 tooadd 문서 tooyour 데이터베이스를 사용 하는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -292,7 +292,7 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
       address = employee?address }
 ```
 
-이 샘플에는 `FSharp.Interop.Dynamic` 및 `Dynamitey` NuGet 종속성을 지정하는 `project.json` 파일이 필요합니다.
+이 샘플을 사용 하려면 한 `project.json` hello를 지정 하는 파일 `FSharp.Interop.Dynamic` 및 `Dynamitey` NuGet 종속성:
 
 ```json
 {
@@ -307,7 +307,7 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
 }
 ```
 
-`project.json` 파일을 추가하려면 [F# 패키지 관리](functions-reference-fsharp.md#package)를 참조하세요.
+tooadd는 `project.json` 파일, 참조 [F # 패키지 관리](functions-reference-fsharp.md#package)합니다.
 
 <a name="outjavascript"></a>
 

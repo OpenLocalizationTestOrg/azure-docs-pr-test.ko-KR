@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management의 API 템플릿 | Microsoft Docs"
-description: "Azure API Management의 개발자 포털에서 API 페이지의 콘텐츠를 사용자 지정하는 방법을 알아봅니다."
+title: "Azure API 관리에서 aaaAPI 템플릿 | Microsoft Docs"
+description: "Toocustomize hello Azure API 관리 개발자 포털에 hello API 페이지의 내용을 hello 하는 방법에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 3802868470f0f74cd1f895a00195259861ea16f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fdfa76167cfaf3b23b22d6321904f34da077fecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-templates-in-azure-api-management"></a>Azure API Management의 API 템플릿
-Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사용하여 개발자 포털 페이지의 콘텐츠를 사용자 지정하는 기능을 제공합니다. 이러한 템플릿에서 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers) 및 제공된 지역화 [String 리소스](api-management-template-resources.md#strings), [Glyph 리소스](api-management-template-resources.md#glyphs) 및 [Page 컨트롤](api-management-page-controls.md)의 집합과 같은 선택한 편집기를 사용하여 필요에 따라 페이지 콘텐츠를 유연하게 구성할 수 있습니다.  
+Azure API 관리 개발자 포털 페이지 콘텐츠를 구성 하는 템플릿 집합을 사용 하 여 콘텐츠의 toocustomize hello 기능 hello를 제공 합니다. 사용 하 여 [DotLiquid](http://dotliquidmarkup.org/) 구문 및 hello 편집기의 선택한와 같은 [디자이너에 대 한 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), 제공 된 집합을 지역화 [문자열 리소스](api-management-template-resources.md#strings), [ 문자 모양 리소스](api-management-template-resources.md#glyphs), 및 [컨트롤 페이지](api-management-page-controls.md), 이러한 템플릿을 사용 하 여 나타나며 hello 페이지의 뛰어난 유연성 tooconfigure hello 내용을 백업이 있어야 합니다.  
   
- 이 섹션의 템플릿을 통해 개발자 포털에서 API 페이지의 콘텐츠를 사용자 지정할 수 있습니다.  
+ 이 섹션의 hello 템플릿 hello 개발자 포털에서 hello API 페이지의 toocustomize hello 내용을 허용합니다.  
   
 -   [API 목록](#APIList)  
 -   [작업](#Product)  
@@ -38,10 +38,10 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
     -   [Ruby](#Ruby)  
 
 > [!NOTE]
->  다음 문서에는 샘플 기본 템플릿이 포함되어 있지만 지속적인 향상으로 인해 변경될 수 있습니다. 원하는 개별 템플릿으로 이동하여 개발자 포털에서 라이브 기본 템플릿을 볼 수 있습니다. 템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)을 참조하세요.  
+>  예제 기본 서식 파일 설명서, hello에 포함 되었지만 이러한 toocontinuous 개선 인해 주체 toochange 됩니다. 원하는 toohello 개별 서식 파일을 이동 하 여 hello 라이브 기본 템플릿 hello 개발자 포털에서 볼 수 있습니다. 서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)합니다.  
   
 ##  <a name="APIList"></a> API 목록  
- **API 목록** 템플릿을 통해 개발자 포털에서 API 목록 페이지의 본문을 사용자 지정할 수 있습니다.  
+ hello **API 목록** 템플릿을 사용 하 여 hello API 목록 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.  
   
  ![개발자 포털 API 목록](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "APIM 개발자 포털 템플릿 API 목록")  
   
@@ -76,9 +76,9 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ### <a name="controls"></a>컨트롤  
- `API list` 템플릿에서 다음 [페이지 컨트롤](api-management-page-controls.md)을 사용할 수 있습니다.  
+ hello `API list` 템플릿 hello 다음을 사용할 수 있습니다 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
--   [페이징 컨트롤](api-management-page-controls.md#paging-control)  
+-   [paging-control](api-management-page-controls.md#paging-control)  
   
 -   [검색 컨트롤](api-management-page-controls.md#search-control)  
   
@@ -86,7 +86,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
   
 |속성|형식|설명|  
 |--------------|----------|-----------------|  
-|apis|[API 요약](api-management-template-data-model-reference.md#APISummary) 엔터티의 컬렉션입니다.|현재 사용자에게 표시되는 API입니다.|  
+|apis|[API 요약](api-management-template-data-model-reference.md#APISummary) 엔터티의 컬렉션입니다.|hello Api 표시 toohello 현재 사용자입니다.|  
   
 ### <a name="sample-template-data"></a>샘플 템플릿 데이터  
   
@@ -109,7 +109,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ##  <a name="Product"></a> 작업  
- **작업** 템플릿을 통해 개발자 포털에서 작업 페이지의 본문을 사용자 지정할 수 있습니다.  
+ hello **작업** 템플릿을 사용 하 여 hello 작업 페이지의 toocustomize hello 본문 hello 개발자 포털에서 합니다.  
   
  ![개발자 포털 작업 페이지](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "APIM 개발자 포털 템플릿 작업 페이지")  
   
@@ -335,21 +335,21 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ### <a name="controls"></a>컨트롤  
- `Operation` 템플릿에서는 [컨트롤 페이지](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello `Operation` 서식 파일의 hello 사용 하지 못하도록 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 ### <a name="data-model"></a>데이터 모델  
   
 |속성|형식|설명|  
 |--------------|----------|-----------------|  
-|apiId|string|현재 API의 ID입니다.|  
-|apiName|string|API 이름입니다.|  
-|apiDescription|string|API에 대한 설명입니다.|  
-|api|[API 요약](api-management-template-data-model-reference.md#APISummary) 엔터티입니다.|현재 API입니다.|  
-|operation|[작업](api-management-template-data-model-reference.md#Operation)|현재 표시된 작업입니다.|  
-|sampleUrl|string|현재 작업의 URL입니다.|  
+|apiId|string|hello 현재 API의 hello id입니다.|  
+|apiName|string|hello API의 hello 이름입니다.|  
+|apiDescription|string|Hello API의 설명입니다.|  
+|api|[API 요약](api-management-template-data-model-reference.md#APISummary) 엔터티입니다.|hello 현재 API입니다.|  
+|operation|[작업](api-management-template-data-model-reference.md#Operation)|hello는 현재 작업을 표시 합니다.|  
+|sampleUrl|string|hello 현재 작업에 대 한 hello URL입니다.|  
 |operationMenu|[작업 메뉴](api-management-template-data-model-reference.md#Menu)|이 API에 대한 작업 메뉴입니다.|  
-|consoleUrl|URI|**시도** 버튼에 대한 URI입니다.|  
-|샘플|[코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티의 컬렉션입니다.|현재 작업에 대한 코드 샘플입니다.|  
+|consoleUrl|URI|hello에 대 한 URI hello **실습** 단추입니다.|  
+|샘플|[코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티의 컬렉션입니다.|hello hello 현재 작업에 대 한 코드 샘플.|  
   
 ### <a name="sample-template-data"></a>샘플 템플릿 데이터  
   
@@ -376,7 +376,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -456,7 +456,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -480,7 +480,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -504,7 +504,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -528,7 +528,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -552,7 +552,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -576,7 +576,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -600,7 +600,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -624,7 +624,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -639,7 +639,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 ```  
   
 ##  <a name="CodeSamples"></a> 코드 샘플  
- 다음 템플릿을 사용하여 작업 페이지에서 개별 코드 샘플의 본문을 사용자 지정할 수 있습니다.  
+ hello 다음 템플릿을 사용 하면 hello 개별 코드 샘플의 toocustomize hello 본문 hello 작업 페이지에 있습니다.  
   
  ![개발자 포털 템플릿 코드 샘플](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "APIM 개발자 포털 템플릿 코드 샘플")  
   
@@ -660,7 +660,7 @@ Azure API Management는 해당 콘텐츠를 구성하는 템플릿 집합을 사
 -   [Ruby](#Ruby)  
   
 ###  <a name="Curl"></a> Curl  
- **DocumentationSamplesCurl** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesCurl** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
@@ -678,7 +678,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -700,7 +700,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -713,7 +713,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 ```  
   
 ###  <a name="CSharp"></a> C#  
- **DocumentationSamplesCsharp** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesCsharp** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
@@ -731,7 +731,7 @@ namespace CSHttpClientSample
         static void Main()  
         {  
             MakeRequest();  
-            Console.WriteLine("Hit ENTER to exit...");  
+            Console.WriteLine("Hit ENTER tooexit...");  
             Console.ReadLine();  
         }  
   
@@ -857,7 +857,7 @@ namespace CSHttpClientSample
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -879,7 +879,7 @@ namespace CSHttpClientSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -892,12 +892,12 @@ namespace CSHttpClientSample
 ```  
   
 ###  <a name="Stub"></a> Java  
- **DocumentationSamplesJava** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesJava** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
 ```xml  
-// // This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// // This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 import java.net.URI;  
 import org.apache.http.HttpEntity;  
 import org.apache.http.HttpResponse;  
@@ -953,7 +953,7 @@ public class JavaSample
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -975,7 +975,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -988,7 +988,7 @@ public class JavaSample
 ```  
   
 ###  <a name="JavaScript"></a> JavaScript  
- **DocumentationSamplesJs** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesJs** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
@@ -1042,7 +1042,7 @@ public class JavaSample
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -1064,7 +1064,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1077,7 +1077,7 @@ public class JavaSample
 ```  
   
 ###  <a name="ObjectiveC"></a> Objective C  
- **DocumentationSamplesObjc** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesObjc** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
@@ -1154,7 +1154,7 @@ int main(int argc, const char * argv[])
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -1176,7 +1176,7 @@ int main(int argc, const char * argv[])
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1189,13 +1189,13 @@ int main(int argc, const char * argv[])
 ```  
   
 ###  <a name="PHP"></a> PHP  
- **DocumentationSamplesPhp** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesPhp** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
 ```xml  
 <?php  
-// This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 require_once 'HTTP/Request2.php';  
   
 $request = new Http_Request2('{{scheme}}://{{host}}{{path}}');  
@@ -1244,7 +1244,7 @@ catch (HttpException $ex)
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -1266,7 +1266,7 @@ catch (HttpException $ex)
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1279,7 +1279,7 @@ catch (HttpException $ex)
 ```  
   
 ###  <a name="Python"></a> Python  
- **DocumentationSamplesPython** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesPython** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
@@ -1362,7 +1362,7 @@ except Exception as e:
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -1384,7 +1384,7 @@ except Exception as e:
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1397,7 +1397,7 @@ except Exception as e:
 ```  
   
 ###  <a name="Ruby"></a> Ruby  
- **DocumentationSamplesRuby** 템플릿을 사용하면 작업 페이지의 코드 샘플 섹션에 있는 코드 샘플을 사용자 지정할 수 있습니다.  
+ hello **DocumentationSamplesRuby** 템플릿을 사용 하 여 코드 hello 작업 페이지의 hello 코드 샘플 섹션에는 샘플 toocustomize 합니다.  
   
 #### <a name="default-template"></a>기본 템플릿  
   
@@ -1433,7 +1433,7 @@ puts response.body
 ```  
   
 #### <a name="controls"></a>컨트롤  
- 코드 샘플 템플릿에서는 [페이지 컨트롤](api-management-page-controls.md) 사용을 허용하지 않습니다.  
+ hello 코드 예제 서식 파일 hello 사용 불가 모든 [컨트롤 페이지](api-management-page-controls.md)합니다.  
   
 #### <a name="data-model"></a>데이터 모델  
  [코드 샘플](api-management-template-data-model-reference.md#Sample) 엔터티입니다.  
@@ -1455,7 +1455,7 @@ puts response.body
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1468,4 +1468,4 @@ puts response.body
 ```
 
 ## <a name="next-steps"></a>다음 단계
-템플릿 작업에 대한 자세한 내용은 [템플릿을 사용하여 API Management 개발자 포털을 사용자 지정하는 방법](api-management-developer-portal-templates.md)을 참조하세요.
+서식 파일 사용에 대 한 자세한 내용은 참조 [어떻게 toocustomize hello 템플릿을 사용 하 여 API 관리 개발자 포털](api-management-developer-portal-templates.md)합니다.

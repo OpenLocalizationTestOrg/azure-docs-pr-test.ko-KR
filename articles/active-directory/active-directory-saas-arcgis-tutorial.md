@@ -1,6 +1,6 @@
 ---
 title: "자습서: ArcGIS Online과 Azure Active Directory 통합 | Microsoft Docs"
-description: "Azure Active Directory 및 ArcGIS Online 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
+description: "단일 로그온 tooconfigure 방법을 알아보려면 Azure Active Directory와 ArcGIS Online 합니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: jeedes
-ms.openlocfilehash: df72270ca6443b456c079b22425f1660aa522389
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f3dd55d798cf3256fb2758e011f33946baa405ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-arcgis-online"></a>자습서: ArcGIS Online과 Azure Active Directory 통합
 
-이 자습서에서는 Azure AD(Azure Active Directory)와 ArcGIS Online을 통합하는 방법에 대해 알아봅니다.
+이 자습서에 설명 어떻게 toointegrate ArcGIS에서 온라인으로 Azure Active Directory (Azure AD).
 
-ArcGIS Online을 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
+Azure AD와 ArcGIS 온라인 통합 이점을 다음 hello 제공:
 
-- ArcGIS Online에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
-- 사용자가 해당 Azure AD 계정으로 ArcGIS Online에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.
-- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
+- 온라인 액세스 tooArcGIS을 지닌 Azure AD에서 제어할 수 있습니다.
+- 프로그램 사용자 tooautomatically get 로그온 tooArcGIS 온라인 (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.
+- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
+Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
 
 <!--## Overview
 
-To enable single sign-on with ArcGIS Online, it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in ArcGIS Online.
+tooenable single sign-on with ArcGIS Online, it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in ArcGIS Online.
 
 >[!Note]: 
->This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>필수 조건
 
-ArcGIS Online과 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
+ArcGIS 온라인와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
 
 - Azure AD 구독
 - ArcGIS Online Single Sign-On이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
+> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
 
-이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
+이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 갤러리에서 ArcGIS Online 추가
+1. ArcGIS 온라인 hello 갤러리 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-arcgis-online-from-the-gallery"></a>갤러리에서 ArcGIS Online 추가
-ArcGIS Online의 Azure AD 통합을 구성하려면 갤러리의 ArcGIS Online을 관리되는 SaaS 앱 목록에 추가해야 합니다.
+## <a name="adding-arcgis-online-from-hello-gallery"></a>ArcGIS 온라인 hello 갤러리 추가
+tooconfigure hello와의 통합 ArcGIS 온라인 Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 ArcGIS 온라인 tooadd가 필요합니다.
 
-**갤러리에서 ArcGIS Online을 추가하려면 다음 단계를 수행합니다.**
+**ArcGIS 온라인 hello 갤러리에서 tooadd hello 다음 단계를 수행 합니다.**
 
-1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
+1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
 
     ![Active Directory][1]
 
-2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
+2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
 
     ![응용 프로그램][2]
     
-3. 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭하여 새 응용 프로그램을 추가합니다.
+3. 클릭 **새 응용 프로그램** hello 대화 tooadd 새 응용 프로그램의 hello 맨 위의 단추를 합니다.
 
     ![응용 프로그램][3]
 
-4. 검색 상자에 **ArcGIS Online**을 입력합니다.
+4. Hello 검색 상자에 입력 **ArcGIS 온라인**합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_search.png)
 
-5. 결과 패널에서 **ArcGIS Online**을 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
+5. Hello 결과 패널에서 선택 **ArcGIS 온라인**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 ArcGIS Online에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 ArcGIS Online 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 ArcGIS Online의 관련 사용자 간에 연결이 형성되어야 합니다.
+Single sign on toowork에 대 한 Azure AD는 tooknow ArcGIS 온라인에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자와 ArcGIS 온라인의 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
 
-이 연결 관계는 Azure AD의 **사용자 이름** 값을 ArcGIS Online의 **Username** 값으로 할당하여 설정합니다.
+Hello hello 값을 할당 하 여이 링크 관계가 설정 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** ArcGIS 온라인에서 합니다.
 
-ArcGIS Online에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
+tooconfigure 및 온라인 ArcGIS를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
 
-1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
-3. **[ArcGIS Online 테스트 사용자 만들기](#creating-an-arcgis-online-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 ArcGIS Online에 만듭니다.
-4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
+1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
+3. **[ArcGIS 온라인 테스트 사용자를 만들려면](#creating-an-arcgis-online-test-user)**  -toohave Britta Simon ArcGIS 온라인 표현인 연결 된 toohello Azure AD의 사용자에 해당 하는 도구입니다.
+4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
+5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 ArcGIS Online 응용 프로그램에서 Single Sign-On을 구성합니다.
+이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 ArcGIS 온라인 응용 프로그램에서 single sign on 구성 합니다.
 
-**ArcGIS Online에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**
+**tooconfigure Azure AD single sign on ArcGIS Online과 hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal의 **ArcGIS Online** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
+1. Hello hello에 Azure 포털에서에서 **ArcGIS 온라인** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
 
     ![Single Sign-on 구성][4]
 
-2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
+2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_samlbase.png)
 
-3. **ArcGIS Online 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
+3. Hello에 **ArcGIS 온라인 도메인 및 Url** 섹션에서 단계 다음에 나오는 hello 수행:
 
     ![Single Sign-on 구성](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_url.png)
 
-    **로그온 URL** 텍스트 상자에 다음 패턴으로 값을 입력합니다. `https://<company>.maps.arcgis.com` 
+    Hello에 **로그온 URL** hello 패턴을 사용 하 여 형식 hello 값 텍스트 상자:`https://<company>.maps.arcgis.com`
 
     > [!NOTE] 
-    > 이 값은 실제 값이 아닙니다. 이 값을 실제 로그온 URL로 업데이트합니다. 이 값을 가져오려면 [ArcGIS Online 클라이언트 지원팀](http://support.esri.com/)에 문의하세요. 
+    > 이 값은 실제 hello 되지 않습니다. Hello로이 값을 업데이트 합니다. 실제 로그온 URL입니다. 연락처 [ArcGIS 온라인 클라이언트 지원 팀](http://support.esri.com/) tooget이이 값입니다. 
 
-4. **SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 XML 파일을 저장합니다.
+4. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello XML 파일을 컴퓨터에 저장 합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_certificate.png) 
 
@@ -145,61 +145,61 @@ ArcGIS Online에서 Azure AD Single Sign-On을 구성하고 테스트하려면 �
 
     ![회사 로그인](./media/active-directory-saas-arcgis-tutorial/ic784744.png "회사 로그인")
 
-10. **ID 공급자 설정** 구성 페이지에서 다음 단계를 수행합니다.
+10. Hello에 **Id 공급자 설정** 구성 페이지를 hello 다음 단계를 수행 합니다.
    
     ![ID 공급자 설정](./media/active-directory-saas-arcgis-tutorial/ic784745.png "ID 공급자 설정")
    
-    a. **이름** 텍스트 상자에 조직의 이름을 입력합니다.
+    a. Hello에 **이름** textbox 조직 이름을 입력 합니다.
 
-    b. **회사 ID 공급자에 대한 메타데이터를 다음을 사용하여 제공합니다**에서 **파일**을 선택합니다.
+    b. 에 대 한 **hello 엔터프라이즈 Id 공급자에 대 한 메타 데이터를 사용 하 여 제공 됩니다**선택, **A 파일**합니다.
 
-    c. 다운로드한 메타데이터 파일을 업로드하려면 **파일 선택**을 클릭합니다.
+    c. tooupload 다운로드 한 메타 데이터 파일을 클릭 하 여 **파일 선택**합니다.
 
     d. **ID 공급자 설정**을 클릭합니다.
 
 > [!TIP]
-> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
+> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
+이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
+**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
 
-1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
+1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-arcgis-tutorial/create_aaduser_01.png) 
 
-2. **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭하여 사용자 목록을 표시합니다.
+2. 너무 이동**사용자 및 그룹** 클릭 **모든 사용자에 게** 사용자 toodisplay hello 목록입니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-arcgis-tutorial/create_aaduser_02.png) 
 
-3. 대화 상자 위쪽에서 **추가**를 클릭하여 **사용자** 대화 상자를 엽니다.
+3. Hello 대화의 hello 위쪽 클릭 **추가** tooopen hello **사용자** 대화 상자.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-arcgis-tutorial/create_aaduser_03.png) 
 
-4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
+4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-arcgis-tutorial/create_aaduser_04.png) 
 
-    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
+    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
 
-    b. **사용자 이름** 텍스트 상자에 Britta Simon의 **메일 주소**를 입력합니다.
+    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** Britta Simon의 합니다.
 
-    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
+    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-an-arcgis-online-test-user"></a>ArcGIS Online 테스트 사용자 만들기
 
-Azure AD 사용자가 ArcGIS Online에 로그인할 수 있도록 하려면 ArcGIS Online으로 프로비전되어야 합니다.  
-ArcGIS Online의 경우 프로비전은 수동 작업입니다.
+Tooenable Azure AD 사용자가 toolog Online ArcGIS에 주문 하 고에 Online ArcGIS에 이들 프로 비전 해야 합니다.  
+Hello 온라인 ArcGIS의 경우에서 프로 비전은 수동 작업입니다.
 
-**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**
+**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**
 
-1. **ArcGIS** 테넌트에 로그인합니다.
+1. Tooyour 로그인 **ArcGIS** 테 넌 트입니다.
 
 2. **멤버 초대**를 클릭합니다.
    
@@ -209,37 +209,37 @@ ArcGIS Online의 경우 프로비전은 수동 작업입니다.
    
     ![멤버를 자동으로 추가](./media/active-directory-saas-arcgis-tutorial/ic784748.png "멤버를 자동으로 추가")
 
-4. **멤버** 대화 상자 페이지에서 다음 단계를 수행합니다.
+4. Hello에 **멤버** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
    
      ![추가 및 검토](./media/active-directory-saas-arcgis-tutorial/ic784749.png "추가 및 검토")
     
-     a. 프로비전하려는 유효한 AAD 계정의 **전자 메일**, **이름** 및 **성**을 입력합니다.
+     a. Hello 입력 **전자 메일**, **이름**, 및 **성** tooprovision 하려는 유효한 AAD 계정의 합니다.
   
      b. **추가 및 검토**를 클릭합니다.
-5. 입력한 데이터를 검토한 다음 **멤버 추가**를 클릭합니다.
+5. 입력 한 다음 클릭 hello 데이터를 검토 **구성원 추가**합니다.
    
     ![멤버 추가](./media/active-directory-saas-arcgis-tutorial/ic784750.png "멤버 추가")
         
     > [!NOTE]
-    > Azure Active Directory 계정 보유자는 활성화되기 전에 전자 메일을 받고 링크를 따라 계정을 확인합니다.
+    > hello Azure Active Directory 계정 소유자 전자 메일을 받게 되 고 링크 tooconfirm 자신의 계정을 활성화 되기 전에 수행 됩니다.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
+### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
 
-이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 ArcGIS Online에 대한 액세스 권한을 부여합니다.
+이 섹션에서는 액세스 tooArcGIS 온라인 권한을 부여 하 여 Britta Simon toouse Azure single sign on을 사용 합니다.
 
 ![사용자 할당][200] 
 
-**Britta Simon을 ArcGIS Online에 할당하려면 다음 단계를 수행합니다.**
+**tooassign Britta Simon tooArcGIS 온라인으로 hello 다음 단계를 수행 합니다.**
 
-1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
+1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
 
     ![사용자 할당][201] 
 
-2. 응용 프로그램 목록에서 **ArcGIS Online**을 선택합니다.
+2. Hello 응용 프로그램 목록에서 선택 **ArcGIS 온라인**합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_app.png) 
 
-3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
+3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
 
     ![사용자 할당][202] 
 
@@ -247,7 +247,7 @@ ArcGIS Online의 경우 프로비전은 수동 작업입니다.
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
+5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -255,14 +255,14 @@ ArcGIS Online의 경우 프로비전은 수동 작업입니다.
     
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
+이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
 
-액세스 패널에서 ArcGIS Online 타일을 클릭하면 ArcGIS Online 응용 프로그램에 자동으로 로그온됩니다.
-액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요.
+Hello 액세스 패널에서에서 hello ArcGIS 온라인 타일을 클릭할 때 자동으로 로그온 tooyour ArcGIS 온라인 응용 프로그램을 구해야 합니다.
+액세스 패널 hello에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

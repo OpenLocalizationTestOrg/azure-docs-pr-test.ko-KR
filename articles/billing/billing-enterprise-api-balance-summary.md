@@ -1,6 +1,6 @@
 ---
-title: "Azure 청구 엔터프라이즈 API - 잔액 및 요약 | Microsoft Docs"
-description: "Azure 리소스 소비 및 추세에 대한 통찰력을 제공하는 데 사용되는 Azure 청구 사용량 및 RateCard API에 대한 자세한 정보를 제공합니다."
+title: "aaaAzure 청구 엔터프라이즈 Api-균형 및 요약 | Microsoft Docs"
+description: "Azure 리소스 소비 및 추세에 대 한 tooprovide 사용 되는 정보는 Azure 청구 사용량 및 RateCard Api에 알아봅니다."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: f6b149f0e656d2263705048aa5b644f5bb4a5712
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b031de2c347e5abeacd11743cc96024434518918
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---balance-and-summary"></a>기업 고객을 위한 보고 API - 잔액 및 요약
 
-잔액 및 요약 API는 잔액, 신규 구매, Azure Marketplace 서비스 요금, 조정 및 초과 요금에 대한 월별 정보 요약을 제공합니다.
+hello 균형 및 요약 API 월별 요약 잔액, 새 구매, Azure 마켓플레이스 서비스 요금이, 조정 및 초과 요금에 대 한 정보를 제공 합니다.
 
 
 ##<a name="request"></a>요청 
-추가해야 할 공통 헤더 속성은 [여기](billing-enterprise-api.md)에 지정되어 있습니다. 청구 기간을 지정하지 않으면 현재 청구 기간에 대한 데이터가 반환됩니다.
+Toobe 추가 해야 하는 공통 헤더 속성이 지정 되어 [여기](billing-enterprise-api.md)합니다. 청구 기간 지정 하지 않으면 다음 hello 현재 청구에 대 한 데이터 기간 반환 됩니다.
 
 |메서드 | 요청 URI|
 |-|-|
@@ -35,7 +35,7 @@ ms.lasthandoff: 08/03/2017
 |GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/balancesummary|
 
 > [!Note]
-> API의 미리 보기 버전을 사용하려면 위 URL에서 v2를 v1로 바꿉니다.
+> toouse hello 미리 보기 버전의 API, URL 위에 hello v1 v2를 대체 합니다.
 >
 
 ## <a name="response"></a>응답
@@ -77,11 +77,11 @@ ms.lasthandoff: 08/03/2017
 
 |속성 이름| 형식| 설명
 |-|-|-|
-|id|string|특정 청구 기간 및 등록에 대한 고유 ID|
-|billingPeriodId|string |청구 기간 ID|
-|currencyCode|string |통화 코드|
-|beginningBalance|decimal| 청구 기간의 기초 잔액|
-|endingBalance|decimal| 청구 기간의 최종 잔액(영업일 기준으로 매일 업데이트됨)|
+|id|string|hello 특정 청구 기간 및 등록에 대 한 고유 Id|
+|billingPeriodId|string |hello 청구 기간 Id|
+|currencyCode|string |hello 통화 코드|
+|beginningBalance|decimal| hello 청구 기간에 대 한 hello 기초 잔액|
+|endingBalance|decimal| hello 균형 (매일 업데이트 됩니다이 진행 기간)에 대 한 hello 청구 기간의 끝|
 |newPurchases|decimal| 총 신규 구매 금액|
 |adjustments|decimal| 총 조정 금액|
 |utilized|decimal| 총 약정 사용량|

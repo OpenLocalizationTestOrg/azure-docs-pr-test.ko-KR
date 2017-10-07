@@ -1,5 +1,5 @@
 ---
-title: "Azure AD에서 사용할 SaaS 앱 통합 자습서 | Microsoft Docs"
+title: "Azure AD에 사용 하기 위해 응용 프로그램 통합 자습서 aaaSaaS | Microsoft Docs"
 description: "다양한 타사 SaaS(Software as a Service) 응용 프로그램에 대한 Azure Active Directory Single Sign-On 통합을 구성합니다."
 services: active-directory
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.date: 06/21/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.reviewer: jeedes
-ms.openlocfilehash: 5bedead730e0538c4cad464a9aee7f97a5a8c3ef
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d99ec50ac2db52ab0f8547b2caaac19fd3a5a0d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="saas-application-integration-with-azure-active-directory"></a>Azure Active Directory와 SaaS 응용 프로그램 통합
 
-Azure Active Directory와 클라우드 사용 [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) 응용 프로그램을 통합할 수 있도록 구성 과정을 안내하는 자습서 모음을 개발했습니다.
+클라우드 사용 toohelp 통합 [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) Azure Active Directory와 응용 프로그램을 구성을 안내 하는 자습서의 컬렉션 개발 했습니다.
 
-사용자 프로비저닝 지침이 있는 경우 이 자습서의 오른쪽 열에 사용자 프로비저닝에 대한 해당 응용 프로그램 자습서로 연결하는 링크가 포함되어 있습니다.
+사용자 프로비저닝 지침 했으므로 다음 toohello 응용 프로그램 자습서 hello 오른쪽 열에서 프로 비전 하는 사용자는 응용 프로그램 자습서에 포함 되어 있습니다.
 
-Azure AD에 사전 통합된 포괄적인 SaaS 앱 목록에 대해서는 [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps)를 참조하세요.
+Azure AD로 미리 통합 된 SaaS 앱의 포괄적인 목록 hello에 대 한 참조 hello [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps)합니다.
 
 ## <a name="saas-tutorials"></a>SaaS 자습서
 
@@ -68,7 +68,7 @@ Azure AD에 사전 통합된 포괄적인 SaaS 앱 목록에 대해서는 [Activ
 | ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-autotaskworkplace-tutorial.png)| [Autotask](active-directory-saas-autotaskworkplace-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/SaaSApp_BambooHR.png)| [Bamboo HR](active-directory-saas-bamboo-hr-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/saasapp_bambubysproutsocial.png)| [Bambu by Sprout Social](active-directory-saas-bambubysproutsocial-tutorial.md)|
-| ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [BC in the Cloud](active-directory-saas-bcinthecloud-tutorial.md)
+| ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [클라우드 hello에 BC](active-directory-saas-bcinthecloud-tutorial.md)
 | ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-beeline-tutorial.png)| [BeeLine](active-directory-saas-beeline-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-benefithub-tutorial.png)| [BenefitHub](active-directory-saas-benefithub-tutorial.md)
 | ![로고](./media/active-directory-saas-tutorial-list/SaaSApp_Benefitssolver.png)| [Benefitsolver](active-directory-saas-benefitsolver-tutorial.md)|
@@ -349,7 +349,7 @@ Azure AD에 사전 통합된 포괄적인 SaaS 앱 목록에 대해서는 [Activ
 | ![로고](./media/active-directory-saas-tutorial-list/saasapp_teamphoria.png)| [Teamphoria](active-directory-saas-teamphoria-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/SaaSApp_TeamSeer.png)| [TeamSeer](active-directory-saas-teamseer-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/SaaSApp_Teamwork.png)| [Teamwork](active-directory-saas-teamwork-tutorial.md)
-| ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [The Funding Portal](active-directory-saas-thefundingportal-tutorial.md)|
+| ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [hello Funding 포털](active-directory-saas-thefundingportal-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-thirdlight-tutorial.png)| [ThirdLight](active-directory-saas-thirdlight-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-thoughtworks-mingle-tutorial.png)| [Thoughtworks Mingle](active-directory-saas-thoughtworks-mingle-tutorial.md)|
 | ![로고](./media/active-directory-saas-tutorial-list/active-directory-saas-thousandeyes-tutorial.png)| [ThousandEyes](active-directory-saas-thousandeyes-tutorial.md)|
@@ -403,4 +403,4 @@ Azure AD에 사전 통합된 포괄적인 SaaS 앱 목록에 대해서는 [Activ
 ## <a name="related-articles"></a>관련 문서
 
 * [Azure Active Directory의 응용 프로그램 관리를 위한 문서 인덱스](active-directory-apps-index.md)
-* [SaaS App을 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
+* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱](active-directory-saas-tutorial-list.md)

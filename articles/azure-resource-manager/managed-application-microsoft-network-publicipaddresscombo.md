@@ -1,6 +1,6 @@
 ---
-title: "Azure Managed Application PublicIpAddressCombo UI 요소 | Microsoft Docs"
-description: "Azure Managed Applications의 Microsoft.Network.PublicIpAddressCombo UI 요소에 대해 설명합니다."
+title: "관리 되는 응용 프로그램 PublicIpAddressCombo UI 요소 aaaAzure | Microsoft Docs"
+description: "Azure 관리 되는 응용 프로그램에 대 한 hello Microsoft.Network.PublicIpAddressCombo UI 요소를 설명합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 2eb773f5f0cf389fc39bc3a0f5fbf9ac726d1949
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8ba689005c0eccda0a57bf628de4b5197886a950
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftnetworkpublicipaddresscombo-ui-element"></a>Microsoft.Network.PublicIpAddressCombo UI 요소
 새 또는 기존 공용 IP 주소를 선택하는 컨트롤 그룹입니다. [Azure 관리되는 응용 프로그램을 만드는](managed-application-publishing.md) 경우 이 요소를 사용합니다.
@@ -25,9 +25,9 @@ ms.lasthandoff: 07/11/2017
 ## <a name="ui-sample"></a>UI 샘플
 ![Microsoft.Network.PublicIpAddressCombo](./media/managed-application-elements/microsoft.network.publicipaddresscombo.png)
 
-- 사용자가 공용 IP 주소에 대해 '없음'을 선택하면 도메인 이름 레이블 텍스트 상자가 숨겨집니다.
-- 사용자가 기존 공용 IP 주소를 선택하면 도메인 이름 레이블 텍스트 상자가 비활성화됩니다. 이 값은 선택한 IP 주소의 도메인 이름 레이블입니다.
-- 도메인 이름 접미사(예: westus.cloudapp.azure.com)는 선택한 위치에 따라 자동으로 업데이트됩니다.
+- Hello 사용자가 공용 IP 주소에 대 한 ' 없음'를 선택 하는 경우 hello 도메인 이름 레이블 입력란은 숨겨집니다.
+- Hello 사용자가 기존 공용 IP 주소를 선택 하는 경우 hello 도메인 이름 레이블 텍스트 상자가 비활성화 됩니다. 해당 값은 hello 도메인 이름 레이블이 hello 선택한 IP 주소입니다.
+- hello hello 선택한 위치에 따라 자동으로 도메인 이름 접미사 (예를 들어 westus.cloudapp.azure.com) 업데이트 합니다.
 
 ## <a name="schema"></a>스키마
 ```json
@@ -61,20 +61,20 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="remarks"></a>설명
-- `constraints.required.domainNameLabel`을 **true**로 설정하면 사용자가 새 공용 IP 주소를 만들 때 도메인 이름 레이블을 제공해야 합니다. 레이블이 없는 기존의 공용 IP 주소는 선택할 수 없습니다.
-- `options.hideNone`을 **true**로 설정하면 공용 IP 주소에 대해 **없음**을 선택하는 옵션이 숨겨집니다. 기본값은 **false**입니다.
-- `options.hideDomainNameLabel`이 **true**로 설정하면 도메인 이름 레이블의 텍스트 상자가 숨겨집니다. 기본값은 **false**입니다.
-- `options.hideExisting`이 true이면 사용자가 기존 공용 IP 주소를 선택할 수 없습니다. 기본값은 **false**입니다.
+- 경우 `constraints.required.domainNameLabel` 너무 설정**true**, hello 사용자가 새 공용 IP 주소를 만들 때 도메인 이름 레이블을 제공 해야 합니다. 레이블이 없는 기존의 공용 IP 주소는 선택할 수 없습니다.
+- 경우 `options.hideNone` 너무 설정**true**, 다음 옵션 tooselect hello **None** hello 공용 IP 주소는 숨겨집니다. hello 기본값은 **false**합니다.
+- 경우 `options.hideDomainNameLabel` 너무 설정 되어**true**, 다음 hello 텍스트 상자에 도메인 이름 레이블이 숨겨집니다. hello 기본값은 **false**합니다.
+- 경우 `options.hideExisting` 가 true 이면 hello 사용자가 기존 공용 IP 주소 수 toochoose가 아닙니다. hello 기본값은 **false**합니다.
 
 ## <a name="sample-output"></a>샘플 출력
-사용자가 공용 IP 주소를 선택하지 않는 경우 예상되는 출력은 다음과 같습니다.
+Hello 사용자가 공용 IP 주소를 선택 하는 경우 hello 다음 예상 출력은:
 ```json
 {
   "newOrExistingOrNone": "none"
 }
 ```
 
-사용자가 새 또는 기존 IP 주소를 선택하는 경우 예상되는 출력은 다음과 같습니다.
+Hello 사용자가 기존 또는 새 IP 주소를 선택 하는 경우 hello 다음 예상 출력은:
 ```json
 {
   "name": "ip01",
@@ -87,6 +87,6 @@ ms.lasthandoff: 07/11/2017
 - `options.hideDomainNameLabel`을 지정하면 `domainNameLabel`이 선언되지 않습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 관리되는 응용 프로그램에 대한 소개는 [Azure Managed Application 개요](managed-application-overview.md)를 참조하세요.
-* UI 정의 만들기에 대한 소개는 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)을 참조하세요.
+* 소개 toomanaged 응용 프로그램에 대 한 참조 [Azure 관리 되는 응용 프로그램 개요](managed-application-overview.md)합니다.
+* 소개 toocreating UI 정의 대 한 참조 [CreateUiDefinition 시작](managed-application-createuidefinition-overview.md)합니다.
 * UI 요소의 공용 속성에 대한 설명은 [CreateUiDefinition 요소](managed-application-createuidefinition-elements.md)를 참조하세요.

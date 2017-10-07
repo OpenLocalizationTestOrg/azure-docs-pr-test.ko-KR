@@ -1,6 +1,6 @@
 ---
-title: "Azure 앱 서비스 웹 앱에 Java 응용 프로그램 추가"
-description: "이 자습서에서는 페이지 또는 응용 프로그램을 Java를 사용하도록 이미 구성된 Azure 앱 서비스 웹 앱의 인스턴스를 추가하는 방법을 보여줍니다."
+title: "aaaAdd Java 응용 프로그램 tooAzure 앱 서비스 웹 앱"
+description: "이 자습서 tooadd 이미 있는 Azure 앱 서비스 웹 앱의 페이지 또는 응용 프로그램 tooyour 인스턴스 toouse Java를 구성 하는 방법을 보여 줍니다."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,28 +14,28 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: c28e7c499ed02b759df580f4b14a971b6aec5b67
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2feb464b2933921ad2887779a6b7589634e2e2f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-java-application-to-azure-app-service-web-apps"></a>Azure 앱 서비스 웹 앱에 Java 응용 프로그램 추가
-[Azure 앱 서비스에서 Java 웹 앱 만들기](web-sites-java-get-started.md)에 설명된 대로 [Azure App Service][Azure App Service]에서 Java 웹 앱을 초기화하면, **webapps** 폴더에 WAR을 배치하여 응용 프로그램을 업로드할 수 있습니다.
+# <a name="add-a-java-application-tooazure-app-service-web-apps"></a>Java 응용 프로그램 tooAzure 앱 서비스 웹 앱 추가
+Java 웹 응용 프로그램 초기화 되 면 [Azure 앱 서비스] [ Azure App Service] 에 문서화 된 대로 [Azure 앱 서비스에서 Java 웹 앱을 만들](web-sites-java-get-started.md)를 배치 하 여 응용 프로그램을 업로드할 수 있습니다 프로그램 전쟁 hello에 **webapps** 폴더입니다.
 
-**webapps** 폴더의 탐색 경로는 웹 앱 인스턴스 설정 방법에 따라 다릅니다.
+탐색 경로 toohello hello **webapps** 폴더를 웹 응용 프로그램 인스턴스를 설정 하는 방법에 따라 달라 집니다.
 
-* Azure Marketplace를 사용하여 웹앱을 설정한 경우 **webapps** 폴더의 경로는 **d:\home\site\wwwroot\bin\application\_server\webapps**의 형식이며, 여기서 **application\_server**는 Web Apps 인스턴스에 적용되는 응용 프로그램 서버의 이름입니다. 
-* Azure 구성 UI를 사용하여 웹앱을 설정한 경우 **webapps** 폴더의 경로는 **d:\home\site\wwwroot\webapps**의 형식입니다. 
+* Hello Azure Marketplace를 사용 하 여 웹 앱을 설정 하면 경로 toohello hello **webapps** 폴더는 hello 형태로 **d:\home\site\wwwroot\bin\application\_server\webapps**여기서 **응용 프로그램\_서버** 웹 앱 인스턴스에 대 한 적용 hello 응용 프로그램 서버 hello 이름입니다. 
+* Hello Azure 구성 UI 사용 하 여 웹 앱을 설정 하면 경로 toohello hello **webapps** 폴더는 hello 형태로 **d:\home\site\wwwroot\webapps**합니다. 
 
-소스 제어를 사용하여 [연속 통합 시나리오](app-service-continuous-deployment.md)에 포함된 응용 프로그램 또는 웹 페이지를 업로드할 수 있습니다. 또한 FTP는 응용 프로그램 또는 웹 페이지 업로드를 위한 옵션입니다. FTP를 통해 응용 프로그램을 배포하는 방법에 대한 자세한 내용은 [Azure App Service에 앱 배포]를 참조하세요.
+응용 프로그램 또는 웹 페이지를 포함 하 여 소스 제어 tooupload를 사용할 수 있습니다 [연속 통합 시나리오](app-service-continuous-deployment.md)합니다. FTP는 또한 응용 프로그램 또는 웹 페이지; 업로드 하기 위한 옵션 FTP를 통한 응용 프로그램을 배포 하는 방법에 대 한 자세한 내용은 참조 [프로그램 응용 프로그램 tooAzure 앱 서비스 배포]합니다.
 
-Tomcat 웹 앱에 대한 참고 사항: **webapps** 폴더에 WAR 파일을 업로드하면 Tomcat 응용 프로그램 서버에서 해당 파일을 추가했는지 검색한 후 자동으로 로드합니다. 파일(WAR 이외 파일)을 루트 디렉터리로 복사한 경우에는 해당 파일을 사용하기 전에 응용 프로그램 서버를 다시 시작해야 합니다. Azure에서 실행되는 Tomcat Java 웹 앱의 자동 로드 기능은 추가 중인 새 WAR 파일이나 **webapps** 폴더에 추가된 새 파일 또는 디렉터리를 기반으로 합니다. 
+Tomcat 웹 앱에 대 한 참고: WAR 파일 toohello에 업로드 했으므로 **webapps** 폴더 hello Tomcat 응용 프로그램 서버에서 되었음을 감지 하면 추가한 것 자동으로 로드 합니다. 참고 (WAR 파일)을 제외한 파일 toohello 루트 디렉터리를 복사 하는 경우 hello 응용 프로그램 서버는 해당 파일을 사용 하기 전에 다시 시작 toobe 필요 합니다. hello Azure에서 실행 되는 Tomcat Java 웹 앱에 대 한 hello autoload 기능 추가, 새 WAR 파일을 삭제 하거나 새 파일 또는 디렉터리 추가 toohello **webapps** 폴더입니다. 
 
 <a name="see-also"></a>
 
 ## <a name="see-also"></a>참고 항목
-Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터]를 참조하세요.
+Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터]합니다.
 
 [application-insights-app-insights-java-get-started](../application-insights/app-insights-java-get-started.md)
 
@@ -43,4 +43,4 @@ Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure
 
 [Azure Java 개발자 센터]: https://azure.microsoft.com/develop/java/
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
-[Azure App Service에 앱 배포]: ./web-sites-deploy.md
+[프로그램 응용 프로그램 tooAzure 앱 서비스 배포]: ./web-sites-deploy.md
