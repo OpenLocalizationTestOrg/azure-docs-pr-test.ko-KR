@@ -1,6 +1,6 @@
 ---
-title: "탄력적 데이터베이스 작업 도구를 제거하는 방법"
-description: "탄력적 데이터베이스 작업 도구를 제거하는 방법"
+title: "aaaHow toouninstall 탄력적 데이터베이스 작업 도구"
+description: "어떻게 toouninstall hello 탄력적 데이터베이스 작업 도구"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: ae7f0bce452a0a86f6f1e4d9b0c93a0fa1727f21
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3bc1e889d5042bc3eaa9fd9da89816737e0b8df8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="uninstall-elastic-database-jobs-components"></a><span data-ttu-id="4b8df-103">탄력적 데이터베이스 작업 구성 요소 제거</span><span class="sxs-lookup"><span data-stu-id="4b8df-103">Uninstall Elastic Database jobs components</span></span>
-<span data-ttu-id="4b8df-104">**탄력적 데이터베이스 작업** 구성 요소를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-104">**Elastic Database jobs** components can be uninstalled using either the Portal or PowerShell.</span></span>
+# <a name="uninstall-elastic-database-jobs-components"></a><span data-ttu-id="481a8-103">탄력적 데이터베이스 작업 구성 요소 제거</span><span class="sxs-lookup"><span data-stu-id="481a8-103">Uninstall Elastic Database jobs components</span></span>
+<span data-ttu-id="481a8-104">**탄력적 데이터베이스 작업** hello 포털 또는 PowerShell을 사용 하 여 구성 요소를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-104">**Elastic Database jobs** components can be uninstalled using either hello Portal or PowerShell.</span></span>
 
-## <a name="uninstall-elastic-database-jobs-components-using-the-azure-portal"></a><span data-ttu-id="4b8df-105">Azure 포털을 사용하여 탄력적 데이터베이스 작업 구성 요소 제거</span><span class="sxs-lookup"><span data-stu-id="4b8df-105">Uninstall Elastic Database jobs components using the Azure portal</span></span>
-1. <span data-ttu-id="4b8df-106">[Azure 포털](https://portal.azure.com/)을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-106">Open the [Azure portal](https://portal.azure.com/).</span></span>
-2. <span data-ttu-id="4b8df-107">**탄력적 데이터베이스 작업** 구성 요소를 포함하는 구독, 즉 탄력적 데이터베이스 작업 구성 요소가 설치된 구독으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-107">Navigate to the subscription that contains **Elastic Database jobs** components, namely the subscription in which Elastic Database jobs components were installed.</span></span>
-3. <span data-ttu-id="4b8df-108">**찾아보기**를 클릭하고 **리소스 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-108">Click **Browse** and click **Resource groups**.</span></span>
-4. <span data-ttu-id="4b8df-109">"__ElasticDatabaseJob"이라는 이름의 리소스 그룹을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-109">Select the resource group named "__ElasticDatabaseJob".</span></span>
-5. <span data-ttu-id="4b8df-110">해당 리소스 그룹을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-110">Delete the resource group.</span></span>
+## <a name="uninstall-elastic-database-jobs-components-using-hello-azure-portal"></a><span data-ttu-id="481a8-105">탄력적 데이터베이스 작업 hello Azure 포털을 사용 하 여 구성 요소 제거</span><span class="sxs-lookup"><span data-stu-id="481a8-105">Uninstall Elastic Database jobs components using hello Azure portal</span></span>
+1. <span data-ttu-id="481a8-106">열기 hello [Azure 포털](https://portal.azure.com/)합니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-106">Open hello [Azure portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="481a8-107">포함 된 toohello 구독 이동 **탄력적 데이터베이스 작업** 구성 요소에는 탄력적 데이터베이스 작업 구성 요소가 설치 되었지만 구독 즉 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-107">Navigate toohello subscription that contains **Elastic Database jobs** components, namely hello subscription in which Elastic Database jobs components were installed.</span></span>
+3. <span data-ttu-id="481a8-108">**찾아보기**를 클릭하고 **리소스 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-108">Click **Browse** and click **Resource groups**.</span></span>
+4. <span data-ttu-id="481a8-109">리소스 그룹 선택 hello 라는 "__ElasticDatabaseJob"입니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-109">Select hello resource group named "__ElasticDatabaseJob".</span></span>
+5. <span data-ttu-id="481a8-110">Hello 리소스 그룹을 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-110">Delete hello resource group.</span></span>
 
-## <a name="uninstall--elastic-database-jobs-components-using-powershell"></a><span data-ttu-id="4b8df-111">PowerShell을 사용하여 탄력적 데이터베이스 작업 구성 요소 제거</span><span class="sxs-lookup"><span data-stu-id="4b8df-111">Uninstall  Elastic Database jobs components using PowerShell</span></span>
-1. <span data-ttu-id="4b8df-112">Microsoft Azure PowerShell 명령 창을 시작하고 Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x 폴더 아래의 tools 하위 디렉터리로 이동합니다. **cd tools**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-112">Launch a Microsoft Azure PowerShell command window and navigate to the tools sub-directory under the Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x folder: Type **cd tools**.</span></span>
+## <a name="uninstall--elastic-database-jobs-components-using-powershell"></a><span data-ttu-id="481a8-111">PowerShell을 사용하여 탄력적 데이터베이스 작업 구성 요소 제거</span><span class="sxs-lookup"><span data-stu-id="481a8-111">Uninstall  Elastic Database jobs components using PowerShell</span></span>
+1. <span data-ttu-id="481a8-112">Microsoft Azure PowerShell 명령 창을 시작 하 고 도구 toohello hello Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x 폴더에 하위 디렉터리를 이동: 형식 **cd 도구**합니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-112">Launch a Microsoft Azure PowerShell command window and navigate toohello tools sub-directory under hello Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x folder: Type **cd tools**.</span></span>
    
-     <span data-ttu-id="4b8df-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x* > cd 도구</span><span class="sxs-lookup"><span data-stu-id="4b8df-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools</span></span>
-2. <span data-ttu-id="4b8df-114">.\UninstallElasticDatabaseJobs.ps1 PowerShell 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-114">Execute the .\UninstallElasticDatabaseJobs.ps1 PowerShell script.</span></span>
+     <span data-ttu-id="481a8-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x* > cd 도구</span><span class="sxs-lookup"><span data-stu-id="481a8-113">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools</span></span>
+2. <span data-ttu-id="481a8-114">Hello.\UninstallElasticDatabaseJobs.ps1 PowerShell 스크립트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="481a8-114">Execute hello .\UninstallElasticDatabaseJobs.ps1 PowerShell script.</span></span>
    
-     <span data-ttu-id="4b8df-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools > Unblock-file.\UninstallElasticDatabaseJobs.ps1 PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools >.\UninstallElasticDatabaseJobs.ps1</span><span class="sxs-lookup"><span data-stu-id="4b8df-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\UninstallElasticDatabaseJobs.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\UninstallElasticDatabaseJobs.ps1</span></span>
+     <span data-ttu-id="481a8-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools > Unblock-file.\UninstallElasticDatabaseJobs.ps1 PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools >.\UninstallElasticDatabaseJobs.ps1</span><span class="sxs-lookup"><span data-stu-id="481a8-115">PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\UninstallElasticDatabaseJobs.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\UninstallElasticDatabaseJobs.ps1</span></span>
 
-<span data-ttu-id="4b8df-116">또는 간단히 구성 요소 설치에 사용된 위치에서 기본값을 가정하여 다음 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="4b8df-116">Or simply, execute the following script, assuming default values where used on installation of the components:</span></span>
+<span data-ttu-id="481a8-116">Hello 기본 가정, 다음 스크립트를 실행 해, 또는 hello 구성 요소 설치에 사용 되는 값:</span><span class="sxs-lookup"><span data-stu-id="481a8-116">Or simply, execute hello following script, assuming default values where used on installation of hello components:</span></span>
 
         $ResourceGroupName = "__ElasticDatabaseJob"
         Switch-AzureMode AzureResourceManager
@@ -47,18 +47,18 @@ ms.lasthandoff: 07/11/2017
         $resourceGroup = Get-AzureResourceGroup -Name $ResourceGroupName
         if(!$resourceGroup)
         {
-            Write-Host "The Azure Resource Group: $ResourceGroupName has already been deleted.  Elastic database job components are uninstalled."
+            Write-Host "hello Azure Resource Group: $ResourceGroupName has already been deleted.  Elastic database job components are uninstalled."
             return
         }
 
-        Write-Host "Removing the Azure Resource Group: $ResourceGroupName.  This may take a few minutes.”
+        Write-Host "Removing hello Azure Resource Group: $ResourceGroupName.  This may take a few minutes.”
         Remove-AzureResourceGroup -Name $ResourceGroupName -Force
-        Write-Host "Completed removing the Azure Resource Group: $ResourceGroupName.  Elastic database job compoennts are now uninstalled."
+        Write-Host "Completed removing hello Azure Resource Group: $ResourceGroupName.  Elastic database job compoennts are now uninstalled."
 
-## <a name="next-steps"></a><span data-ttu-id="4b8df-117">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4b8df-117">Next steps</span></span>
-<span data-ttu-id="4b8df-118">탄력적 데이터베이스 작업을 다시 설치하려면 [탄력적 데이터베이스 작업 서비스 설치](sql-database-elastic-jobs-service-installation.md)</span><span class="sxs-lookup"><span data-stu-id="4b8df-118">To re-install Elastic Database jobs, see [Installing the Elastic Database job service](sql-database-elastic-jobs-service-installation.md)</span></span>
+## <a name="next-steps"></a><span data-ttu-id="481a8-117">다음 단계</span><span class="sxs-lookup"><span data-stu-id="481a8-117">Next steps</span></span>
+<span data-ttu-id="481a8-118">toore 설치 탄력적 데이터베이스 작업 참조 [hello 탄력적 데이터베이스 작업 서비스를 설치 합니다.](sql-database-elastic-jobs-service-installation.md)</span><span class="sxs-lookup"><span data-stu-id="481a8-118">toore-install Elastic Database jobs, see [Installing hello Elastic Database job service](sql-database-elastic-jobs-service-installation.md)</span></span>
 
-<span data-ttu-id="4b8df-119">탄력적 데이터베이스 작업의 개요는 [탄력적 데이터베이스 작업 개요](sql-database-elastic-jobs-overview.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4b8df-119">For an overview of Elastic Database jobs, see [Elastic Database jobs overview](sql-database-elastic-jobs-overview.md).</span></span>
+<span data-ttu-id="481a8-119">탄력적 데이터베이스 작업의 개요는 [탄력적 데이터베이스 작업 개요](sql-database-elastic-jobs-overview.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="481a8-119">For an overview of Elastic Database jobs, see [Elastic Database jobs overview](sql-database-elastic-jobs-overview.md).</span></span>
 
 <!--Image references-->
 

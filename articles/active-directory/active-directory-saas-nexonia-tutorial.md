@@ -1,6 +1,6 @@
 ---
 title: "자습서: Nexonia와 Azure Active Directory 통합 | Microsoft 문서"
-description: "Azure Active Directory 및 Nexonia 간에 Single Sign-On을 구성하는 방법을 알아봅니다."
+description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Nexonia 사이입니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,216 +13,216 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/1/2017
 ms.author: jeedes
-ms.openlocfilehash: 1370fa64c2ddc25d3121c567ceea4828b1e50921
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3778804084a7989414260bae5654cf76e9ccca6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-nexonia"></a><span data-ttu-id="d6b52-103">자습서: Nexonia와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="d6b52-103">Tutorial: Azure Active Directory integration with Nexonia</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-nexonia"></a><span data-ttu-id="737c9-103">자습서: Nexonia와 Azure Active Directory 통합</span><span class="sxs-lookup"><span data-stu-id="737c9-103">Tutorial: Azure Active Directory integration with Nexonia</span></span>
 
-<span data-ttu-id="d6b52-104">이 자습서에서는 Nexonia와 Azure AD(Azure Active Directory)를 통합하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-104">In this tutorial, you learn how to integrate Nexonia with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="737c9-104">이 자습서에 설명 어떻게 toointegrate Nexonia Azure Active directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="737c9-104">In this tutorial, you learn how toointegrate Nexonia with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="d6b52-105">Nexonia와 Azure AD를 통합하면 다음과 같은 이점이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-105">Integrating Nexonia with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="737c9-105">다음 이점을 hello로 제공 Nexonia Azure AD와 통합:</span><span class="sxs-lookup"><span data-stu-id="737c9-105">Integrating Nexonia with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="d6b52-106">Azure AD에서는 Nexonia에 대한 액세스 권한이 있는 사용자를 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-106">You can control in Azure AD who has access to Nexonia</span></span>
-- <span data-ttu-id="d6b52-107">사용자가 Azure AD 계정으로 Nexonia에 자동으로 로그인(Single Sign-On)할 수 있도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-107">You can enable your users to automatically get signed-on to Nexonia (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="d6b52-108">단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="737c9-106">액세스 tooNexonia을 지닌 Azure AD에서 제어할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-106">You can control in Azure AD who has access tooNexonia</span></span>
+- <span data-ttu-id="737c9-107">프로그램 사용자 tooautomatically get 로그온 tooNexonia (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-107">You can enable your users tooautomatically get signed-on tooNexonia (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="737c9-108">하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="d6b52-109">Azure AD와의 SaaS 앱 통합에 대한 자세한 내용은</span><span class="sxs-lookup"><span data-stu-id="d6b52-109">If you want to know more details about SaaS app integration with Azure AD, see.</span></span> <span data-ttu-id="d6b52-110">[Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d6b52-110">[What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="737c9-109">Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 참조 tooknow 하려는 경우.</span><span class="sxs-lookup"><span data-stu-id="737c9-109">If you want tooknow more details about SaaS app integration with Azure AD, see.</span></span> <span data-ttu-id="737c9-110">[Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="737c9-110">[What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d6b52-111">필수 조건</span><span class="sxs-lookup"><span data-stu-id="d6b52-111">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="737c9-111">필수 조건</span><span class="sxs-lookup"><span data-stu-id="737c9-111">Prerequisites</span></span>
 
-<span data-ttu-id="d6b52-112">Nexonia와 Azure AD를 통합하도록 구성하려면 다음 항목이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-112">To configure Azure AD integration with Nexonia, you need the following items:</span></span>
+<span data-ttu-id="737c9-112">다음 항목 hello가 필요 tooconfigure Nexonia와 Azure AD 통합 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-112">tooconfigure Azure AD integration with Nexonia, you need hello following items:</span></span>
 
-- <span data-ttu-id="d6b52-113">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="d6b52-113">An Azure AD subscription</span></span>
-- <span data-ttu-id="d6b52-114">Nexonia Single Sign-On 사용이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="d6b52-114">A Nexonia single-sign on enabled subscription</span></span>
+- <span data-ttu-id="737c9-113">Azure AD 구독</span><span class="sxs-lookup"><span data-stu-id="737c9-113">An Azure AD subscription</span></span>
+- <span data-ttu-id="737c9-114">Nexonia Single Sign-On 사용이 설정된 구독</span><span class="sxs-lookup"><span data-stu-id="737c9-114">A Nexonia single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d6b52-115">이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-115">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="737c9-115">이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-115">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="d6b52-116">이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-116">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="737c9-116">이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-116">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="d6b52-117">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="d6b52-117">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="d6b52-118">Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-118">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="737c9-117">꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.</span><span class="sxs-lookup"><span data-stu-id="737c9-117">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="737c9-118">Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-118">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="d6b52-119">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="d6b52-119">Scenario description</span></span>
-<span data-ttu-id="d6b52-120">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-120">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d6b52-121">이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-121">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="737c9-119">시나리오 설명</span><span class="sxs-lookup"><span data-stu-id="737c9-119">Scenario description</span></span>
+<span data-ttu-id="737c9-120">이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-120">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="737c9-121">이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-121">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="d6b52-122">갤러리에서 Nexonia 추가</span><span class="sxs-lookup"><span data-stu-id="d6b52-122">Adding Nexonia from the gallery</span></span>
-2. <span data-ttu-id="d6b52-123">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="d6b52-123">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="737c9-122">Nexonia는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="737c9-122">Adding Nexonia from hello gallery</span></span>
+2. <span data-ttu-id="737c9-123">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="737c9-123">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-nexonia-from-the-gallery"></a><span data-ttu-id="d6b52-124">갤러리에서 Nexonia 추가</span><span class="sxs-lookup"><span data-stu-id="d6b52-124">Adding Nexonia from the gallery</span></span>
-<span data-ttu-id="d6b52-125">Azure AD에 Nexonia를 통합하도록 구성하려면 갤러리의 Nexonia를 관리되는 SaaS 앱 목록에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-125">To configure the integration of Nexonia into Azure AD, you need to add Nexonia from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-nexonia-from-hello-gallery"></a><span data-ttu-id="737c9-124">Nexonia는 hello 갤러리 추가</span><span class="sxs-lookup"><span data-stu-id="737c9-124">Adding Nexonia from hello gallery</span></span>
+<span data-ttu-id="737c9-125">tooconfigure hello와의 통합 Nexonia Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Nexonia tooadd가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-125">tooconfigure hello integration of Nexonia into Azure AD, you need tooadd Nexonia from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="d6b52-126">**갤러리에서 Nexonia를 추가하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="d6b52-126">**To add Nexonia from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="737c9-126">**hello 갤러리에서 Nexonia tooadd hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="737c9-126">**tooadd Nexonia from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6b52-127">**[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-127">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="737c9-127">Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-127">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="d6b52-129">**엔터프라이즈 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-129">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="d6b52-130">그런 후 **모든 응용 프로그램**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-130">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="737c9-129">너무 이동**엔터프라이즈 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-129">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="737c9-130">이동 하 여 너무**모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-130">Then go too**All applications**.</span></span>
 
     ![응용 프로그램][2]
     
-3. <span data-ttu-id="d6b52-132">새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-132">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="737c9-132">tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-132">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![응용 프로그램][3]
 
-4. <span data-ttu-id="d6b52-134">검색 상자에서 **Nexonia**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-134">In the search box, type **Nexonia**.</span></span>
+4. <span data-ttu-id="737c9-134">Hello 검색 상자에 입력 **Nexonia**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-134">In hello search box, type **Nexonia**.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_search.png)
 
-5. <span data-ttu-id="d6b52-136">결과 패널에서 **Nexonia**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-136">In the results panel, select **Nexonia**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="737c9-136">Hello 결과 패널에서 선택 **Nexonia**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-136">In hello results panel, select **Nexonia**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="d6b52-138">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="d6b52-138">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="d6b52-139">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 하여 Nexonia에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-139">In this section, you configure and test Azure AD single sign-on with Nexonia based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="737c9-138">Azure AD Single Sign-on 구성 및 테스트</span><span class="sxs-lookup"><span data-stu-id="737c9-138">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="737c9-139">이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 하여 Nexonia에서 Azure AD Single Sign-On을 구성하고 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-139">In this section, you configure and test Azure AD single sign-on with Nexonia based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="d6b52-140">Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 대응하는 Nexonia 사용자가 누구인지 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-140">For single sign-on to work, Azure AD needs to know what the counterpart user in Nexonia is to a user in Azure AD.</span></span> <span data-ttu-id="d6b52-141">즉 Azure AD 사용자와 Nexonia의 관련 사용자 간에 연결 관계가 설정되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-141">In other words, a link relationship between an Azure AD user and the related user in Nexonia needs to be established.</span></span>
+<span data-ttu-id="737c9-140">Single sign on toowork에 대 한 Azure AD는 tooknow Nexonia에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-140">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Nexonia is tooa user in Azure AD.</span></span> <span data-ttu-id="737c9-141">즉, Azure AD 사용자 및 Nexonia에 hello 관련된 사용자 간 링크 관계를 설정할 toobe가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-141">In other words, a link relationship between an Azure AD user and hello related user in Nexonia needs toobe established.</span></span>
 
-<span data-ttu-id="d6b52-142">Nexonia에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-142">In Nexonia, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="737c9-142">Nexonia에서 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-142">In Nexonia, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="d6b52-143">Nexonia에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-143">To configure and test Azure AD single sign-on with Nexonia, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="737c9-143">tooconfigure 및 Nexonia 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-143">tooconfigure and test Azure AD single sign-on with Nexonia, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="d6b52-144">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-144">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="d6b52-145">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-145">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="d6b52-146">**[Nexonia 테스트 사용자 만들기](#creating-a-nexonia-test-user)** - Britta Simon의 Azure AD 표현과 연결되는 대응 사용자를 Nexonia에 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-146">**[Creating a Nexonia test user](#creating-a-nexonia-test-user)** - to have a counterpart of Britta Simon in Nexonia that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="d6b52-147">**[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-147">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="d6b52-148">**[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-148">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="737c9-144">**[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-144">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="737c9-145">**[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-145">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="737c9-146">**[Nexonia 테스트 사용자 만들기](#creating-a-nexonia-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 Nexonia에 해당 하는 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-146">**[Creating a Nexonia test user](#creating-a-nexonia-test-user)** - toohave a counterpart of Britta Simon in Nexonia that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="737c9-147">**[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-147">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="737c9-148">**[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.</span><span class="sxs-lookup"><span data-stu-id="737c9-148">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="d6b52-149">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="d6b52-149">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="737c9-149">Azure AD Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="737c9-149">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="d6b52-150">이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Nexonia 응용 프로그램에서 Single Sign-On을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-150">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Nexonia application.</span></span>
+<span data-ttu-id="737c9-150">이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Nexonia 응용 프로그램에서 single sign on 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-150">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Nexonia application.</span></span>
 
 >[!Note]
-><span data-ttu-id="d6b52-151">통합에 문제가 있는 경우 문제 해결 가이드에 대한 이 [링크](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-federated-sso-gallery?WT.mc_id=UI_AAD_Enterprise_Apps_SupportOrTroubleshooting)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d6b52-151">If you have issues in the integration then refer this [link](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-federated-sso-gallery?WT.mc_id=UI_AAD_Enterprise_Apps_SupportOrTroubleshooting) for troubleshooting guide.</span></span> <span data-ttu-id="d6b52-152">그래도 해결 방법을 찾지 못하면 Azure Portal에서 지원 요청을 제기하세요.</span><span class="sxs-lookup"><span data-stu-id="d6b52-152">If you still have not found the solution, then raise the support request from Azure portal.</span></span>
+><span data-ttu-id="737c9-151">Hello 통합에 문제가 있을 경우 다음이 참조 [링크](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-federated-sso-gallery?WT.mc_id=UI_AAD_Enterprise_Apps_SupportOrTroubleshooting) 문제 해결 가이드에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-151">If you have issues in hello integration then refer this [link](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-federated-sso-gallery?WT.mc_id=UI_AAD_Enterprise_Apps_SupportOrTroubleshooting) for troubleshooting guide.</span></span> <span data-ttu-id="737c9-152">여전히 찾지 못한 hello 솔루션을 하는 경우에 다음 Azure 포털에서 hello 지원 요청을 발생 시킵니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-152">If you still have not found hello solution, then raise hello support request from Azure portal.</span></span>
 
-<span data-ttu-id="d6b52-153">**Nexonia에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="d6b52-153">**To configure Azure AD single sign-on with Nexonia, perform the following steps:**</span></span>
+<span data-ttu-id="737c9-153">**tooconfigure Azure AD single sign on, Nexonia와 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="737c9-153">**tooconfigure Azure AD single sign-on with Nexonia, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6b52-154">Azure Portal의 **Nexonia** 응용 프로그램 통합 페이지에서 **Single sign-on**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-154">In the Azure portal, on the **Nexonia** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="737c9-154">Hello hello에 Azure 포털에서에서 **Nexonia** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-154">In hello Azure portal, on hello **Nexonia** application integration page, click **Single sign-on**.</span></span>
 
     ![Single Sign-on 구성][4]
 
-2. <span data-ttu-id="d6b52-156">**Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-156">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="737c9-156">Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-156">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Single Sign-on 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_samlbase.png)
 
-3. <span data-ttu-id="d6b52-158">**Nexonia 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-158">On the **Nexonia Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="737c9-158">Hello에 **Nexonia 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-158">On hello **Nexonia Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_url.png)
 
-    <span data-ttu-id="d6b52-160">**회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다.`https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`</span><span class="sxs-lookup"><span data-stu-id="d6b52-160">In the **Reply URL** textbox, type a URL using the following pattern: `https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`</span></span>
+    <span data-ttu-id="737c9-160">Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`</span><span class="sxs-lookup"><span data-stu-id="737c9-160">In hello **Reply URL** textbox, type a URL using hello following pattern: `https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="d6b52-161">이 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-161">This value is not real.</span></span> <span data-ttu-id="d6b52-162">실제 회신 URL로 이 값을 업데이트하세요.</span><span class="sxs-lookup"><span data-stu-id="d6b52-162">Update this value with the actual Reply URL.</span></span> <span data-ttu-id="d6b52-163">이 값을 가져오려면 [Nexonia 지원 팀](https://nexonia.zendesk.com/hc/requests/new)에 문의합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-163">Contact [Nexonia support team](https://nexonia.zendesk.com/hc/requests/new) to get this value.</span></span> 
+    > <span data-ttu-id="737c9-161">이 값은 실제 값이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-161">This value is not real.</span></span> <span data-ttu-id="737c9-162">Hello 실제 회신 URL로이 값을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-162">Update this value with hello actual Reply URL.</span></span> <span data-ttu-id="737c9-163">연락처 [Nexonia 지원 팀](https://nexonia.zendesk.com/hc/requests/new) tooget이이 값입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-163">Contact [Nexonia support team](https://nexonia.zendesk.com/hc/requests/new) tooget this value.</span></span> 
 
 
-4. <span data-ttu-id="d6b52-164">**SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-164">On the **SAML Signing Certificate** section, click **Certificate (Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="737c9-164">Hello에 **SAML 서명 인증서** 섹션에서 클릭 **인증서 (Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-164">On hello **SAML Signing Certificate** section, click **Certificate (Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_certificate.png) 
 
-5. <span data-ttu-id="d6b52-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="737c9-166">**저장** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-166">Click **Save** button.</span></span>
 
-    ![Single Sign-On 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_general_400.png)
+    ![Single Sign-on 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="d6b52-168">**Nexonia 구성** 섹션에서 **Nexonia 구성**을 클릭하여 **로그인 구성** 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-168">On the **Nexonia Configuration** section, click **Configure Nexonia** to open **Configure sign-on** window.</span></span> <span data-ttu-id="d6b52-169">**빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-169">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="737c9-168">Hello에 **Nexonia 구성** 섹션에서 클릭 **구성 Nexonia** tooopen **sign on 구성** 창.</span><span class="sxs-lookup"><span data-stu-id="737c9-168">On hello **Nexonia Configuration** section, click **Configure Nexonia** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="737c9-169">복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**</span><span class="sxs-lookup"><span data-stu-id="737c9-169">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
-    ![Single Sign-On 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_configure.png) 
+    ![Single Sign-on 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_configure.png) 
 
-7. <span data-ttu-id="d6b52-171">응용 프로그램에 SSO를 구성하려면 [Nexonia 지원 팀](https://nexonia.zendesk.com/hc/requests/new)에 문의하고 다음을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-171">To get SSO configured for your application, contact [Nexonia support team](https://nexonia.zendesk.com/hc/requests/new) and provide them with the following:</span></span>
+7. <span data-ttu-id="737c9-171">응용 프로그램에 tooget SSO 구성에 문의 하시기 바랍니다 [Nexonia 지원 팀](https://nexonia.zendesk.com/hc/requests/new) hello 다음을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-171">tooget SSO configured for your application, contact [Nexonia support team](https://nexonia.zendesk.com/hc/requests/new) and provide them with hello following:</span></span>
 
-    <span data-ttu-id="d6b52-172">• 다운로드한 **인증서**</span><span class="sxs-lookup"><span data-stu-id="d6b52-172">• The downloaded **certificate**</span></span>
+    <span data-ttu-id="737c9-172">다운로드 한 • hello **인증서**</span><span class="sxs-lookup"><span data-stu-id="737c9-172">• hello downloaded **certificate**</span></span>
 
-    <span data-ttu-id="d6b52-173">• **SAML 엔터티 ID**</span><span class="sxs-lookup"><span data-stu-id="d6b52-173">• The **SAML Entity ID**</span></span>
+    <span data-ttu-id="737c9-173">• hello **SAML 엔터티 ID**</span><span class="sxs-lookup"><span data-stu-id="737c9-173">• hello **SAML Entity ID**</span></span>
 
-    <span data-ttu-id="d6b52-174">• **SAML Single Sign-On 서비스 URL**</span><span class="sxs-lookup"><span data-stu-id="d6b52-174">• The **SAML Single Sign-On Service URL**</span></span>
+    <span data-ttu-id="737c9-174">• hello **SAML Single Sign-on 서비스 URL**</span><span class="sxs-lookup"><span data-stu-id="737c9-174">• hello **SAML Single Sign-On Service URL**</span></span>
 
-    <span data-ttu-id="d6b52-175">• **로그아웃 URL**</span><span class="sxs-lookup"><span data-stu-id="d6b52-175">• The **Sign-Out URL**</span></span>
+    <span data-ttu-id="737c9-175">• hello **Sign-Out URL**</span><span class="sxs-lookup"><span data-stu-id="737c9-175">• hello **Sign-Out URL**</span></span>
 
 > [!TIP]
-> <span data-ttu-id="d6b52-176">이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-176">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="d6b52-177">**Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-177">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="d6b52-178">포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-178">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="737c9-176">이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!</span><span class="sxs-lookup"><span data-stu-id="737c9-176">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="737c9-177">Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션.</span><span class="sxs-lookup"><span data-stu-id="737c9-177">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="737c9-178">자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="737c9-178">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="d6b52-179">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="d6b52-179">Creating an Azure AD test user</span></span>
-<span data-ttu-id="d6b52-180">이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-180">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="737c9-179">Azure AD 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="737c9-179">Creating an Azure AD test user</span></span>
+<span data-ttu-id="737c9-180">이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-180">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Azure AD 사용자 만들기][100]
 
-<span data-ttu-id="d6b52-182">**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**</span><span class="sxs-lookup"><span data-stu-id="d6b52-182">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="737c9-182">**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="737c9-182">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6b52-183">**Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-183">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="737c9-183">Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-183">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-nexonia-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="d6b52-185">사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-185">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="737c9-185">사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-185">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-nexonia-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="d6b52-187">**사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-187">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="737c9-187">tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-187">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-nexonia-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="d6b52-189">**사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-189">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="737c9-189">Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-189">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-nexonia-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="d6b52-191">a.</span><span class="sxs-lookup"><span data-stu-id="d6b52-191">a.</span></span> <span data-ttu-id="d6b52-192">**이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-192">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="737c9-191">a.</span><span class="sxs-lookup"><span data-stu-id="737c9-191">a.</span></span> <span data-ttu-id="737c9-192">Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-192">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="d6b52-193">b.</span><span class="sxs-lookup"><span data-stu-id="d6b52-193">b.</span></span> <span data-ttu-id="d6b52-194">**사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-194">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="737c9-193">b.</span><span class="sxs-lookup"><span data-stu-id="737c9-193">b.</span></span> <span data-ttu-id="737c9-194">Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-194">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="d6b52-195">c.</span><span class="sxs-lookup"><span data-stu-id="d6b52-195">c.</span></span> <span data-ttu-id="d6b52-196">**암호 표시**를 선택하고 **암호** 값을 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-196">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="737c9-195">c.</span><span class="sxs-lookup"><span data-stu-id="737c9-195">c.</span></span> <span data-ttu-id="737c9-196">선택 **암호 표시** hello hello 값 기록 **암호**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-196">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="d6b52-197">d.</span><span class="sxs-lookup"><span data-stu-id="d6b52-197">d.</span></span> <span data-ttu-id="d6b52-198">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-198">Click **Create**.</span></span>
+    <span data-ttu-id="737c9-197">d.</span><span class="sxs-lookup"><span data-stu-id="737c9-197">d.</span></span> <span data-ttu-id="737c9-198">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-198">Click **Create**.</span></span>
  
-### <a name="creating-a-nexonia-test-user"></a><span data-ttu-id="d6b52-199">Nexonia 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="d6b52-199">Creating a Nexonia test user</span></span>
+### <a name="creating-a-nexonia-test-user"></a><span data-ttu-id="737c9-199">Nexonia 테스트 사용자 만들기</span><span class="sxs-lookup"><span data-stu-id="737c9-199">Creating a Nexonia test user</span></span>
 
-<span data-ttu-id="d6b52-200">이 섹션에서는 Nexonia에서 Britta Simon이라는 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-200">In this section, you create a user called Britta Simon in Nexonia.</span></span> <span data-ttu-id="d6b52-201">[Nexonia 지원 팀](https://nexonia.zendesk.com/hc/requests/new)에 문의하여 Nexonia 플랫폼에 사용자를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-201">Work with [Nexonia support team](https://nexonia.zendesk.com/hc/requests/new) to add the users in the Nexonia platform.</span></span> <span data-ttu-id="d6b52-202">Single Sign-On을 사용하려면 먼저 사용자를 만들고 활성화해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-202">Users must be created and activated before you use single sign-on.</span></span>
+<span data-ttu-id="737c9-200">이 섹션에서는 Nexonia에서 Britta Simon이라는 사용자를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-200">In this section, you create a user called Britta Simon in Nexonia.</span></span> <span data-ttu-id="737c9-201">작업할 [Nexonia 지원 팀](https://nexonia.zendesk.com/hc/requests/new) hello Nexonia 플랫폼의 tooadd hello 사용자입니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-201">Work with [Nexonia support team](https://nexonia.zendesk.com/hc/requests/new) tooadd hello users in hello Nexonia platform.</span></span> <span data-ttu-id="737c9-202">Single Sign-On을 사용하려면 먼저 사용자를 만들고 활성화해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-202">Users must be created and activated before you use single sign-on.</span></span>
 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="d6b52-203">Azure AD 테스트 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="d6b52-203">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="737c9-203">Azure AD hello 테스트 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-203">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="d6b52-204">이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Nexonia에 대한 액세스 권한을 부여합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-204">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Nexonia.</span></span>
+<span data-ttu-id="737c9-204">이 섹션에서는 tooNexonia 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-204">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooNexonia.</span></span>
 
 ![사용자 할당][200] 
 
-<span data-ttu-id="d6b52-206">**Britta Simon을 Nexonia에 할당하려면 다음 단계를 수행합니다.**</span><span class="sxs-lookup"><span data-stu-id="d6b52-206">**To assign Britta Simon to Nexonia, perform the following steps:**</span></span>
+<span data-ttu-id="737c9-206">**tooassign Britta Simon tooNexonia hello 다음 단계를 수행 합니다.**</span><span class="sxs-lookup"><span data-stu-id="737c9-206">**tooassign Britta Simon tooNexonia, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6b52-207">Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-207">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="737c9-207">Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-207">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![사용자 할당][201] 
 
-2. <span data-ttu-id="d6b52-209">응용 프로그램 목록에서 **Nexonia**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-209">In the applications list, select **Nexonia**.</span></span>
+2. <span data-ttu-id="737c9-209">Hello 응용 프로그램 목록에서 선택 **Nexonia**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-209">In hello applications list, select **Nexonia**.</span></span>
 
     ![Single Sign-on 구성](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_app.png) 
 
-3. <span data-ttu-id="d6b52-211">왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-211">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="737c9-211">Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-211">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![사용자 할당][202] 
 
-4. <span data-ttu-id="d6b52-213">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-213">Click **Add** button.</span></span> <span data-ttu-id="d6b52-214">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-214">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="737c9-213">**추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-213">Click **Add** button.</span></span> <span data-ttu-id="737c9-214">그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-214">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![사용자 할당][203]
 
-5. <span data-ttu-id="d6b52-216">**사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-216">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="737c9-216">**사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-216">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="d6b52-217">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-217">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="737c9-217">**사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-217">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="d6b52-218">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-218">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="737c9-218">**할당 추가** 대화 상자에서 **할당** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-218">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="d6b52-219">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="d6b52-219">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="737c9-219">Single Sign-On 테스트</span><span class="sxs-lookup"><span data-stu-id="737c9-219">Testing single sign-on</span></span>
 
-<span data-ttu-id="d6b52-220">이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-220">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="737c9-220">이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-220">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="d6b52-221">[액세스 패널]에서 [Nexonia] 타일을 클릭하면 Nexonia 응용 프로그램에 자동으로 로그온됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6b52-221">When you click the Nexonia tile in the Access Panel, you should get automatically signed-on to your Nexonia application.</span></span>
-<span data-ttu-id="d6b52-222">액세스 패널에 대한 자세한 내용은 [Azure 시작](https://msdn.microsoft.com/library/dn308586)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d6b52-222">For more information about the Access Panel, see [introduction to the Access Panel](https://msdn.microsoft.com/library/dn308586).</span></span>
+<span data-ttu-id="737c9-221">Hello 액세스 패널에서에서 hello Nexonia 타일을 클릭할 때 자동으로 로그온 tooyour Nexonia 응용 프로그램을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="737c9-221">When you click hello Nexonia tile in hello Access Panel, you should get automatically signed-on tooyour Nexonia application.</span></span>
+<span data-ttu-id="737c9-222">액세스 패널에 대한 자세한 내용은 [Azure 시작](https://msdn.microsoft.com/library/dn308586)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="737c9-222">For more information about the Access Panel, see [introduction to the Access Panel](https://msdn.microsoft.com/library/dn308586).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="d6b52-223">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="d6b52-223">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="737c9-223">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="737c9-223">Additional resources</span></span>
 
-* [<span data-ttu-id="d6b52-224">Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록</span><span class="sxs-lookup"><span data-stu-id="d6b52-224">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="d6b52-225">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="d6b52-225">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="737c9-224">방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와</span><span class="sxs-lookup"><span data-stu-id="737c9-224">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="737c9-225">Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?</span><span class="sxs-lookup"><span data-stu-id="737c9-225">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

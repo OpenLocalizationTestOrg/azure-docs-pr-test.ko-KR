@@ -1,6 +1,6 @@
 ---
-title: "클라이언트 인증서 인증을 사용하여 백 엔드 서비스 보호 - Azure API Management | Microsoft Docs"
-description: "Azure API 관리에서 클라이언트 인증서 인증을 사용하여 백 엔드 서비스를 보호하는 방법에 대해 알아봅니다."
+title: "클라이언트 인증서 인증-Azure API 관리를 사용 하 여 aaaSecure 백 엔드 서비스 | Microsoft Docs"
+description: "클라이언트를 사용 하 여 toosecure 백 엔드 서비스의 Azure API 관리에서 인증 인증서 방법을 알아봅니다."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,101 +14,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 2ebe71c96fd9076a48f689041634dbd23d3d8414
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 565bb61044fed1158944202c36e8abe30edf5729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a><span data-ttu-id="fc386-103">Azure API 관리에서 클라이언트 인증서 인증을 사용하여 백 엔드 서비스를 보호하는 방법</span><span class="sxs-lookup"><span data-stu-id="fc386-103">How to secure back-end services using client certificate authentication in Azure API Management</span></span>
-<span data-ttu-id="fc386-104">API 관리에서는 클라이언트 인증서를 사용하여 API의 백 엔드 서비스에 대한 액세스를 보호하는 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-104">API Management provides the capability to secure access to the back-end service of an API using client certificates.</span></span> <span data-ttu-id="fc386-105">이 가이드에서는 API 게시자 포털에서 인증서를 관리하는 방법과 인증서를 사용하여 백 엔드 서비스에 액세스하도록 API를 구성하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-105">This guide shows how to manage certificates in the API publisher portal, and how to configure an API to use a certificate to access its back-end service.</span></span>
+# <a name="how-toosecure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a><span data-ttu-id="a21cd-103">클라이언트를 사용 하 여 toosecure 백 엔드 서비스의 Azure API 관리에서 인증 인증서 방법</span><span class="sxs-lookup"><span data-stu-id="a21cd-103">How toosecure back-end services using client certificate authentication in Azure API Management</span></span>
+<span data-ttu-id="a21cd-104">API 관리 클라이언트 인증서를 사용 하 여 hello 기능 toosecure 액세스 toohello 백 엔드 서비스의 API 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-104">API Management provides hello capability toosecure access toohello back-end service of an API using client certificates.</span></span> <span data-ttu-id="a21cd-105">이 가이드에서는 toomanage hello API 게시자 포털에서 인증서 방법 등에 tooconfigure API toouse 인증서 tooaccess 백 엔드 서비스에 해당 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-105">This guide shows how toomanage certificates in hello API publisher portal, and how tooconfigure an API toouse a certificate tooaccess its back-end service.</span></span>
 
-<span data-ttu-id="fc386-106">API Management REST API를 사용하여 인증서를 관리하는 방법에 대한 자세한 내용은 [Azure API Management REST API 인증서 엔터티][Azure API Management REST API Certificate entity]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="fc386-106">For information about managing certificates using the API Management REST API, see [Azure API Management REST API Certificate entity][Azure API Management REST API Certificate entity].</span></span>
+<span data-ttu-id="a21cd-106">Hello API 관리 REST API를 사용 하 여 인증서를 관리 하는 방법에 대 한 정보를 참조 하십시오. [Azure API 관리 REST API 인증서 엔터티][Azure API Management REST API Certificate entity]합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-106">For information about managing certificates using hello API Management REST API, see [Azure API Management REST API Certificate entity][Azure API Management REST API Certificate entity].</span></span>
 
-## <span data-ttu-id="fc386-107"><a name="prerequisites"> </a>필수 조건</span><span class="sxs-lookup"><span data-stu-id="fc386-107"><a name="prerequisites"> </a>Prerequisites</span></span>
-<span data-ttu-id="fc386-108">이 가이드에서는 클라이언트 인증서 인증을 사용하여 API의 백 엔드 서비스에 액세스하도록 API 관리 서비스 인스턴스를 구성하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-108">This guide shows you how to configure your API Management service instance to use client certificate authentication to access the back-end service for an API.</span></span> <span data-ttu-id="fc386-109">이 항목의 단계를 수행하기 전에 클라이언트 인증서 인증을 사용하도록 백 엔드 서비스를 구성해야 하며([Azure Websites에서 인증서 인증을 구성하려면 이 문서 참조][to configure certificate authentication in Azure WebSites refer to this article]) API Management 게시자 포털에서 업로드할 인증서 및 해당 인증서의 암호에 액세스할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-109">Before following the steps in this topic, you should have your back-end service configured for client certificate authentication ([to configure certificate authentication in Azure WebSites refer to this article][to configure certificate authentication in Azure WebSites refer to this article]), and have access to the certificate and the password for the certificate for uploading in the API Management publisher portal.</span></span>
+## <span data-ttu-id="a21cd-107"><a name="prerequisites"> </a>필수 조건</span><span class="sxs-lookup"><span data-stu-id="a21cd-107"><a name="prerequisites"> </a>Prerequisites</span></span>
+<span data-ttu-id="a21cd-108">이 가이드를 보면 어떻게 tooconfigure 프로그램 API 관리 서비스 인스턴스 toouse 클라이언트 인증서 인증 tooaccess hello에 대 한 백 엔드 서비스는 API입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-108">This guide shows you how tooconfigure your API Management service instance toouse client certificate authentication tooaccess hello back-end service for an API.</span></span> <span data-ttu-id="a21cd-109">이 항목의 단계를 다음 hello, 전에 클라이언트 인증서 인증에 대해 구성 된 백 엔드 서비스 있어야 ([toothis 문서를 참조 하는 Azure 웹 사이트에서 인증 tooconfigure 인증서] [ tooconfigure certificate authentication in Azure WebSites refer toothis article]), 액세스 hello API 관리 게시자 포털에 업로드 하기 위한 hello 인증서에 대 한 인증서와 hello 암호 toohello 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-109">Before following hello steps in this topic, you should have your back-end service configured for client certificate authentication ([tooconfigure certificate authentication in Azure WebSites refer toothis article][tooconfigure certificate authentication in Azure WebSites refer toothis article]), and have access toohello certificate and hello password for hello certificate for uploading in hello API Management publisher portal.</span></span>
 
-## <span data-ttu-id="fc386-110"><a name="step1"> </a>클라이언트 인증서 업로드</span><span class="sxs-lookup"><span data-stu-id="fc386-110"><a name="step1"> </a>Upload a client certificate</span></span>
-<span data-ttu-id="fc386-111">시작하려면 Azure Portal에서 API Management 서비스에 대한 **게시자 포털**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-111">To get started, click **Publisher portal** in the Azure Portal for your API Management service.</span></span> <span data-ttu-id="fc386-112">API 관리 게시자 포털로 이동됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-112">This takes you to the API Management publisher portal.</span></span>
+## <span data-ttu-id="a21cd-110"><a name="step1"> </a>클라이언트 인증서 업로드</span><span class="sxs-lookup"><span data-stu-id="a21cd-110"><a name="step1"> </a>Upload a client certificate</span></span>
+<span data-ttu-id="a21cd-111">시작 tooget 클릭 **게시자 포털** API 관리 서비스에 대 한 hello Azure 포털의에서.</span><span class="sxs-lookup"><span data-stu-id="a21cd-111">tooget started, click **Publisher portal** in hello Azure Portal for your API Management service.</span></span> <span data-ttu-id="a21cd-112">API 관리 게시자 포털 toohello 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-112">This takes you toohello API Management publisher portal.</span></span>
 
 ![API 게시자 포털][api-management-management-console]
 
-> <span data-ttu-id="fc386-114">아직 API Management 서비스 인스턴스를 만들지 않은 경우 [Azure API Management 시작][Get started with Azure API Management] 자습서의 [API Management 서비스 인스턴스 만들기][Create an API Management service instance]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="fc386-114">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in the [Get started with Azure API Management][Get started with Azure API Management] tutorial.</span></span>
+> <span data-ttu-id="a21cd-114">API 관리 서비스 인스턴스를 아직 만들지 않은 경우 참조 [API 관리 서비스 인스턴스를 만들] [ Create an API Management service instance] hello에 [Azure API 관리 시작] [ Get started with Azure API Management] 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-114">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in hello [Get started with Azure API Management][Get started with Azure API Management] tutorial.</span></span>
 > 
 > 
 
-<span data-ttu-id="fc386-115">왼쪽의 **API Management** 메뉴에서 **보안**을 클릭하고 **클라이언트 인증서**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-115">Click **Security** from the **API Management** menu on the left, and click **Client certificates**.</span></span>
+<span data-ttu-id="a21cd-115">클릭 **보안** hello에서 **API 관리** 메뉴를 클릭 한 hello 왼쪽 **클라이언트 인증서**합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-115">Click **Security** from hello **API Management** menu on hello left, and click **Client certificates**.</span></span>
 
 ![클라이언트 인증서][api-management-security-client-certificates]
 
-<span data-ttu-id="fc386-117">새 인증서를 업로드하려면 **인증서 업로드**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-117">To upload a new certificate, click **Upload certificate**.</span></span>
+<span data-ttu-id="a21cd-117">새 인증서를 tooupload 클릭 **인증서 업로드**합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-117">tooupload a new certificate, click **Upload certificate**.</span></span>
 
 ![인증서 업로드][api-management-upload-certificate]
 
-<span data-ttu-id="fc386-119">인증서를 찾은 다음 인증서의 암호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-119">Browse to your certificate, and then enter the password for the certificate.</span></span>
+<span data-ttu-id="a21cd-119">Tooyour 인증서를 찾은 다음 hello 인증서에 대 한 hello 암호를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-119">Browse tooyour certificate, and then enter hello password for hello certificate.</span></span>
 
-> <span data-ttu-id="fc386-120">인증서는 **.pfx** 형식이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-120">The certificate must be in **.pfx** format.</span></span> <span data-ttu-id="fc386-121">자체 서명된 인증서도 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-121">Self-signed certificates are allowed.</span></span>
+> <span data-ttu-id="a21cd-120">hello 인증서에 있어야 **.pfx** 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-120">hello certificate must be in **.pfx** format.</span></span> <span data-ttu-id="a21cd-121">자체 서명된 인증서도 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-121">Self-signed certificates are allowed.</span></span>
 > 
 > 
 
 ![인증서 업로드][api-management-upload-certificate-form]
 
-<span data-ttu-id="fc386-123">**업로드** 를 클릭하여 인증서를 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-123">Click **Upload** to upload the certificate.</span></span>
+<span data-ttu-id="a21cd-123">클릭 **업로드** tooupload hello 인증서입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-123">Click **Upload** tooupload hello certificate.</span></span>
 
-> <span data-ttu-id="fc386-124">이때 인증서 암호의 유효성을 검사하여</span><span class="sxs-lookup"><span data-stu-id="fc386-124">The certificate password is validated at this time.</span></span> <span data-ttu-id="fc386-125">암호가 잘못된 경우 오류 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-125">If it is incorrect an error message is displayed.</span></span>
+> <span data-ttu-id="a21cd-124">hello 인증서 암호는이 이번에 유효성이 검사 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-124">hello certificate password is validated at this time.</span></span> <span data-ttu-id="a21cd-125">암호가 잘못된 경우 오류 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-125">If it is incorrect an error message is displayed.</span></span>
 > 
 > 
 
 ![업로드된 인증서][api-management-certificate-uploaded]
 
-<span data-ttu-id="fc386-127">업로드된 인증서는 **클라이언트 인증서** 탭에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-127">Once the certificate is uploaded, it appears on the **Client certificates** tab.</span></span> <span data-ttu-id="fc386-128">인증서가 여러 개인 경우 제목이나 지문의 마지막 4자를 적어 둡니다. 이러한 항목은 인증서를 사용하도록 API를 구성할 때 인증서를 선택하는 데 사용됩니다. 여기에 대해서는 다음 섹션인 [게이트웨이 인증에 클라이언트 인증서를 사용하도록 API 구성][Configure an API to use a client certificate for gateway authentication]에서 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-128">If you have multiple certificates, make a note of the subject, or the last four characters of the thumbprint, which are used to select the certificate when configuring an API to use certificates, as covered in the following [Configure an API to use a client certificate for gateway authentication][Configure an API to use a client certificate for gateway authentication] section.</span></span>
+<span data-ttu-id="a21cd-127">Hello에 나타나는 hello 인증서를 업로드 한 후 **클라이언트 인증서** 탭 합니다. 인증서가 여러 개 있는 경우 hello 주체의 적어 두거나 hello 다음에서 살펴본 것 처럼 인증서 API toouse를 구성할 때 사용 되는 tooselect hello 인증서는는 hello 손도장의 마지막 네 문자가 hello [구성 프로그램 API toouse 게이트웨이 인증을 위해 클라이언트 인증서] [ Configure an API toouse a client certificate for gateway authentication] 섹션.</span><span class="sxs-lookup"><span data-stu-id="a21cd-127">Once hello certificate is uploaded, it appears on hello **Client certificates** tab. If you have multiple certificates, make a note of hello subject, or hello last four characters of hello thumbprint, which are used tooselect hello certificate when configuring an API toouse certificates, as covered in hello following [Configure an API toouse a client certificate for gateway authentication][Configure an API toouse a client certificate for gateway authentication] section.</span></span>
 
-> <span data-ttu-id="fc386-129">사용하는 경우 인증서 체인 유효성 검사를 해제하려면(예: 자체 서명된 인증서) 이 FAQ [항목](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end)에 설명된 단계를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-129">To turn off certificate chain validation when using, for example, a self-signed certificate, follow the steps described in this FAQ [item](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end).</span></span>
+> <span data-ttu-id="a21cd-128">이 FAQ에 설명 된 hello 단계를 수행 하는 예를 들어 자체 서명 된 인증서를 사용 하면 인증서 체인 유효성 검사 해제 tooturn [항목](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end)합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-128">tooturn off certificate chain validation when using, for example, a self-signed certificate, follow hello steps described in this FAQ [item](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end).</span></span>
 > 
 > 
 
-## <span data-ttu-id="fc386-130"><a name="step1a"> </a>클라이언트 인증서 삭제</span><span class="sxs-lookup"><span data-stu-id="fc386-130"><a name="step1a"> </a>Delete a client certificate</span></span>
-<span data-ttu-id="fc386-131">인증서를 삭제하려면 원하는 인증서 옆에 있는 **삭제** 를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-131">To delete a certificate, click **Delete** beside the desired certificate.</span></span>
+## <span data-ttu-id="a21cd-129"><a name="step1a"> </a>클라이언트 인증서 삭제</span><span class="sxs-lookup"><span data-stu-id="a21cd-129"><a name="step1a"> </a>Delete a client certificate</span></span>
+<span data-ttu-id="a21cd-130">toodelete 인증서를 클릭 하 여 **삭제** hello 원하는 인증서 옆에 있는 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-130">toodelete a certificate, click **Delete** beside hello desired certificate.</span></span>
 
 ![인증서 삭제][api-management-certificate-delete]
 
-<span data-ttu-id="fc386-133">**예, 삭제합니다.** 를 클릭하여 삭제를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-133">Click **Yes, delete it** to confirm.</span></span>
+<span data-ttu-id="a21cd-132">클릭 **예, 삭제할** tooconfirm 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-132">Click **Yes, delete it** tooconfirm.</span></span>
 
 ![삭제 확인][api-management-confirm-delete]
 
-<span data-ttu-id="fc386-135">인증서를 API에서 사용하고 있는 경우 경고 화면이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-135">If the certificate is in use by an API, then a warning screen is displayed.</span></span> <span data-ttu-id="fc386-136">이러한 인증서를 삭제하려면 먼저 해당 인증서를 사용하도록 구성된 API에서 인증서를 제거해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-136">To delete the certificate you must first remove the certificate from any APIs that are configured to use it.</span></span>
+<span data-ttu-id="a21cd-134">Hello 인증서는 API에서 사용 중인 경우 경고 화면이 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-134">If hello certificate is in use by an API, then a warning screen is displayed.</span></span> <span data-ttu-id="a21cd-135">hello를 먼저 제거 해야 toodelete hello 인증서 것 구성된 toouse 있는 모든 Api에서 인증서입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-135">toodelete hello certificate you must first remove hello certificate from any APIs that are configured toouse it.</span></span>
 
 ![삭제 확인][api-management-confirm-delete-policy]
 
-## <span data-ttu-id="fc386-138"><a name="step2"> </a>게이트웨이 인증에 클라이언트 인증서를 사용하도록 API 구성</span><span class="sxs-lookup"><span data-stu-id="fc386-138"><a name="step2"> </a>Configure an API to use a client certificate for gateway authentication</span></span>
-<span data-ttu-id="fc386-139">왼쪽의 **API Management** 메뉴에서 **API**를 클릭하고 원하는 API의 이름을 클릭한 후에 **보안** 탭을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-139">Click **APIs** from the **API Management** menu on the left, click the name of the desired API, and click the **Security** tab.</span></span>
+## <span data-ttu-id="a21cd-137"><a name="step2"></a>API toouse 게이트웨이 인증을 위해 클라이언트 인증서를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-137"><a name="step2"> </a>Configure an API toouse a client certificate for gateway authentication</span></span>
+<span data-ttu-id="a21cd-138">클릭 **Api** hello에서 **API 관리** 메뉴 hello에 남아 있는 원하는 hello API의 hello 이름을 클릭 하 고 hello 클릭 **보안** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-138">Click **APIs** from hello **API Management** menu on hello left, click hello name of hello desired API, and click hello **Security** tab.</span></span>
 
 ![API 보안][api-management-api-security]
 
-<span data-ttu-id="fc386-141">**자격 증명 사용** 드롭다운 목록에서 **클라이언트 인증서**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-141">Select **Client certificates** from the **With credentials** drop-down list.</span></span>
+<span data-ttu-id="a21cd-140">선택 **클라이언트 인증서** hello에서 **자격 증명으로** 드롭 다운 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-140">Select **Client certificates** from hello **With credentials** drop-down list.</span></span>
 
 ![클라이언트 인증서][api-management-mutual-certificates]
 
-<span data-ttu-id="fc386-143">**클라이언트 인증서** 드롭다운 목록에서 원하는 인증서를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-143">Select the desired certificate from the **Client certificate** drop-down list.</span></span> <span data-ttu-id="fc386-144">인증서가 여러 개이면 이전 섹션에서 적어 둔 제목이나 지문의 마지막 4자를 통해 올바른 인증서를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-144">If there are multiple certificates you can look at the subject or the last four characters of the thumbprint as noted in the previous section to determine the correct certificate.</span></span>
+<span data-ttu-id="a21cd-142">선택 hello hello에서 원하는 인증서 **클라이언트 인증서** 드롭 다운 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-142">Select hello desired certificate from hello **Client certificate** drop-down list.</span></span> <span data-ttu-id="a21cd-143">여러 인증서가 있는 경우 hello 주체를 살펴볼 수도 있고 hello hello 지문 안녕하세요 이전 섹션 toodetermine hello 올바른 인증서에 설명 된 대로 마지막 4 자를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-143">If there are multiple certificates you can look at hello subject or hello last four characters of hello thumbprint as noted in hello previous section toodetermine hello correct certificate.</span></span>
 
 ![인증서 선택][api-management-select-certificate]
 
-<span data-ttu-id="fc386-146">**저장** 을 클릭하여 API에 대한 구성 변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-146">Click **Save** to save the configuration change to the API.</span></span>
+<span data-ttu-id="a21cd-145">클릭 **저장** toosave hello 구성 변경 toohello API입니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-145">Click **Save** toosave hello configuration change toohello API.</span></span>
 
-> <span data-ttu-id="fc386-147">이 변경 내용은 즉시 적용되며 해당 API의 작업 호출은 인증서를 사용하여 백 엔드 서버에서 인증됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-147">This change is effective immediately, and calls to operations of that API will use the certificate to authenticate on the back-end server.</span></span>
+> <span data-ttu-id="a21cd-146">이 변경 내용이 즉시 적용 됩니다 및 해당 API의 toooperations ´ ֲ 호출 hello hello 백 엔드 서버에서 인증서 tooauthenticate 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-146">This change is effective immediately, and calls toooperations of that API will use hello certificate tooauthenticate on hello back-end server.</span></span>
 > 
 > 
 
 ![API 변경 내용 저장][api-management-save-api]
 
-> <span data-ttu-id="fc386-149">API의 백 엔드 서비스에 대해 게이트웨이 인증을 위해 지정된 인증서는 해당 API의 정책에 포함되며 정책 편집기에서 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fc386-149">When a certificate is specified for gateway authentication for the back-end service of an API, it becomes part of the policy for that API, and can be viewed in the policy editor.</span></span>
+> <span data-ttu-id="a21cd-148">API의 hello 백 엔드 서비스에 대 한 게이트웨이 인증용 인증서를 지정 하면 해당 API에 대 한 hello 정책의 일부가 됩니다 하 고 hello 정책 편집기에서 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-148">When a certificate is specified for gateway authentication for hello back-end service of an API, it becomes part of hello policy for that API, and can be viewed in hello policy editor.</span></span>
 > 
 > 
 
 ![인증서 정책][api-management-certificate-policy]
 
-## <a name="next-steps"></a><span data-ttu-id="fc386-151">다음 단계</span><span class="sxs-lookup"><span data-stu-id="fc386-151">Next steps</span></span>
-<span data-ttu-id="fc386-152">HTTP 기본 또는 공유 암호 인증과 같은 백 엔드 서비스를 보호하는 다른 방법에 대한 자세한 내용은 다음 비디오를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="fc386-152">For more information on other ways to secure your backend service, such as HTTP basic or shared secret authentication, see the following video.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a21cd-150">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a21cd-150">Next steps</span></span>
+<span data-ttu-id="a21cd-151">다른 방법으로 toosecure 대 한 자세한 내용은 기본 또는 공유 암호 인증 HTTP와 같은 백 엔드 서비스에 hello 다음 비디오를 참조 합니다.</span><span class="sxs-lookup"><span data-stu-id="a21cd-151">For more information on other ways toosecure your backend service, such as HTTP basic or shared secret authentication, see hello following video.</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Last-mile-Security/player]
 > 
@@ -130,10 +130,10 @@ ms.lasthandoff: 07/11/2017
 
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: ../api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -142,13 +142,13 @@ ms.lasthandoff: 07/11/2017
 
 [Azure API Management REST API Certificate entity]: http://msdn.microsoft.com/library/azure/dn783483.aspx
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[to configure certificate authentication in Azure WebSites refer to this article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
+[tooconfigure certificate authentication in Azure WebSites refer toothis article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
 
 [Prerequisites]: #prerequisites
 [Upload a client certificate]: #step1
 [Delete a client certificate]: #step1a
-[Configure an API to use a client certificate for gateway authentication]: #step2
-[Test the configuration by calling an operation in the Developer Portal]: #step3
+[Configure an API toouse a client certificate for gateway authentication]: #step2
+[Test hello configuration by calling an operation in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
 

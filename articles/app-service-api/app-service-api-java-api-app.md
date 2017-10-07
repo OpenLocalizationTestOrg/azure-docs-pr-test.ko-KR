@@ -1,6 +1,6 @@
 ---
-title: "Azure 앱 서비스에서 Java API 앱 빌드 및 배포"
-description: "Java API 앱 패키지를 만들고 Azure 앱 서비스에 배포하는 방법을 알아봅니다."
+title: "aaaBuild 및 Azure 앱 서비스의 Java API 앱 배포"
+description: "자세한 내용은 어떻게 toocreate Java API 앱 패키지 및 tooAzure 앱 서비스를 배포 합니다."
 services: app-service\api
 documentationcenter: java
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.date: 04/25/2017
 ms.author: rachelap;robmcm
-ms.openlocfilehash: e38c540071cb49b0177e79178566d72ecb5f8886
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a4056fec870b1c4bed8ee14bb0e748b3ee89b9e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-and-deploy-a-java-api-app-in-azure-app-service"></a><span data-ttu-id="0fa6a-103">Azure 앱 서비스에서 Java API 앱 빌드 및 배포</span><span class="sxs-lookup"><span data-stu-id="0fa6a-103">Build and deploy a Java API app in Azure App Service</span></span>
+# <a name="build-and-deploy-a-java-api-app-in-azure-app-service"></a><span data-ttu-id="229c5-103">Azure 앱 서비스에서 Java API 앱 빌드 및 배포</span><span class="sxs-lookup"><span data-stu-id="229c5-103">Build and deploy a Java API app in Azure App Service</span></span>
 [!INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
-<span data-ttu-id="0fa6a-104">이 자습서에서는 Java 응용 프로그램을 만들고 [Git]를 사용하여 Azure 앱 서비스 API 앱에 배포하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-104">This tutorial shows how to create a Java application and deploy it to Azure App Service API Apps using [Git].</span></span> <span data-ttu-id="0fa6a-105">이 자습서의 지침은 Java를 실행할 수 있는 모든 운영 체제에 적용될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-105">The instructions in this tutorial can be followed on any operating system that is capable of running Java.</span></span> <span data-ttu-id="0fa6a-106">이 자습서의 코드는 [Maven]을 사용하여 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-106">The code in this tutorial is built using [Maven].</span></span> <span data-ttu-id="0fa6a-107">[Jax-RS]는 RESTful 서비스를 만드는 데 사용되고 [Swagger 편집기]를 사용하여 [Swagger] 메타데이터 사양을 기반으로 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-107">[Jax-RS] is used to create the RESTful Service, and is generated based on the [Swagger] metadata specification using the [Swagger Editor].</span></span>
+<span data-ttu-id="229c5-104">이 자습서에서는 어떻게 toocreate Java 응용 프로그램을 사용 하 여 tooAzure 앱 서비스 API 앱을 배포 하 고 [Git]합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-104">This tutorial shows how toocreate a Java application and deploy it tooAzure App Service API Apps using [Git].</span></span> <span data-ttu-id="229c5-105">이 자습서의 지침에 hello Java 실행할 수 있는 모든 운영 체제에서 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-105">hello instructions in this tutorial can be followed on any operating system that is capable of running Java.</span></span> <span data-ttu-id="229c5-106">이 자습서에서는 hello 코드를 사용 하 여 만들어집니다 [Maven]합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-106">hello code in this tutorial is built using [Maven].</span></span> <span data-ttu-id="229c5-107">[잭 스 RS] 는 RESTful 서비스를 사용 하는 toocreate hello 및 hello에 따라 생성 됩니다 [Swagger] hello를 사용 하 여 메타 데이터 사양 [Swagger 편집기]합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-107">[Jax-RS] is used toocreate hello RESTful Service, and is generated based on hello [Swagger] metadata specification using hello [Swagger Editor].</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="0fa6a-108">필수 조건</span><span class="sxs-lookup"><span data-stu-id="0fa6a-108">Prerequisites</span></span>
-1. <span data-ttu-id="0fa6a-109">[Java 개발자 키트 8] \(이상)</span><span class="sxs-lookup"><span data-stu-id="0fa6a-109">[Java Developer's Kit 8] \(or later)</span></span>
-2. <span data-ttu-id="0fa6a-110">[Maven] 설치됨</span><span class="sxs-lookup"><span data-stu-id="0fa6a-110">[Maven] installed on your development machine</span></span>
-3. <span data-ttu-id="0fa6a-111">[Git] 설치됨</span><span class="sxs-lookup"><span data-stu-id="0fa6a-111">[Git] installed on your development machine</span></span>
-4. <span data-ttu-id="0fa6a-112">[Microsoft Azure]에 대한 유료 또는 [무료 평가판] 구독</span><span class="sxs-lookup"><span data-stu-id="0fa6a-112">A paid or [free trial] subscription to [Microsoft Azure]</span></span>
-5. <span data-ttu-id="0fa6a-113">[Postman]</span><span class="sxs-lookup"><span data-stu-id="0fa6a-113">An HTTP test application like [Postman]</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="229c5-108">필수 조건</span><span class="sxs-lookup"><span data-stu-id="229c5-108">Prerequisites</span></span>
+1. <span data-ttu-id="229c5-109">[Java 개발자 키트 8] \(이상)</span><span class="sxs-lookup"><span data-stu-id="229c5-109">[Java Developer's Kit 8] \(or later)</span></span>
+2. <span data-ttu-id="229c5-110">[Maven] 설치됨</span><span class="sxs-lookup"><span data-stu-id="229c5-110">[Maven] installed on your development machine</span></span>
+3. <span data-ttu-id="229c5-111">[Git] 설치됨</span><span class="sxs-lookup"><span data-stu-id="229c5-111">[Git] installed on your development machine</span></span>
+4. <span data-ttu-id="229c5-112">유료 또는 [무료 평가판] 구독 너무[Microsoft Azure]</span><span class="sxs-lookup"><span data-stu-id="229c5-112">A paid or [free trial] subscription too[Microsoft Azure]</span></span>
+5. <span data-ttu-id="229c5-113">[우체부]</span><span class="sxs-lookup"><span data-stu-id="229c5-113">An HTTP test application like [Postman]</span></span>
 
-## <a name="scaffold-the-api-using-swaggerio"></a><span data-ttu-id="0fa6a-114">Swagger.IO를 사용하여 API 스캐폴드</span><span class="sxs-lookup"><span data-stu-id="0fa6a-114">Scaffold the API using Swagger.IO</span></span>
-<span data-ttu-id="0fa6a-115">swagger.io 온라인 편집기를 사용하여 API의 구조를 나타내는 Swagger JSON 또는 YAML 코드를 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-115">Using the swagger.io online editor, you can enter Swagger JSON or YAML code representing the structure of your API.</span></span> <span data-ttu-id="0fa6a-116">API 노출 영역이 설계되면 다양한 플랫폼 및 프레임워크에 코드를 내보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-116">Once you have the API surface area designed, you can export code for a variety of platforms and frameworks.</span></span> <span data-ttu-id="0fa6a-117">다음 섹션에서 스캐폴드된 코드는 모의 기능을 포함하도록 수정됩니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-117">In the next section, the scaffolded code will be modified to include mock functionality.</span></span> 
+## <a name="scaffold-hello-api-using-swaggerio"></a><span data-ttu-id="229c5-114">Swagger.IO를 사용 하 여 스 캐 폴드 hello API</span><span class="sxs-lookup"><span data-stu-id="229c5-114">Scaffold hello API using Swagger.IO</span></span>
+<span data-ttu-id="229c5-115">Hello swagger.io 온라인 편집기를 사용 하 여 API의 hello 구조를 나타내는 JSON Swagger 또는 YAML 코드를 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-115">Using hello swagger.io online editor, you can enter Swagger JSON or YAML code representing hello structure of your API.</span></span> <span data-ttu-id="229c5-116">Hello API 노출 영역 설계를 만든 후에 다양 한 플랫폼 및 프레임 워크에 대 한 코드를 내보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-116">Once you have hello API surface area designed, you can export code for a variety of platforms and frameworks.</span></span> <span data-ttu-id="229c5-117">Hello 다음 섹션에서 스 캐 폴드 된 hello 코드가 수정 된 tooinclude 모의 기능 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-117">In hello next section, hello scaffolded code will be modified tooinclude mock functionality.</span></span> 
 
-<span data-ttu-id="0fa6a-118">이 데모는 swagger.io 편집기에 붙여 넣는 Swagger JSON 본문으로 시작되며 그런 다음 JAX-RS가 REST API 끝점에 액세스하기 위해 사용한 코드를 생성하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-118">This demonstration will begin with a Swagger JSON body that you will paste into the swagger.io editor, which will then be used to generate code making use of JAX-RS to access a REST API endpoint.</span></span> <span data-ttu-id="0fa6a-119">그러면 스캐폴드된 코드를 편집하여 모의 데이터를 반환하며 이는 데이터 지속성 메커니즘을 기반으로 한 REST API를 시뮬레이션합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-119">Then, you'll edit the scaffolded code to return mock data, simulating a REST API built atop a data persistence mechanism.</span></span>  
+<span data-ttu-id="229c5-118">이 데모는 다음 사용된 toogenerate 코드 수행할 예정 잭 스 RS tooaccess의 REST API 끝점을 사용 하는 hello swagger.io 편집기에 붙여 하는 Swagger JSON 본문으로 시작 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-118">This demonstration will begin with a Swagger JSON body that you will paste into hello swagger.io editor, which will then be used toogenerate code making use of JAX-RS tooaccess a REST API endpoint.</span></span> <span data-ttu-id="229c5-119">그런 다음 편집 합니다 스 캐 폴드 된 hello 코드 tooreturn 모의 데이터를 기반으로 데이터 지 속성 메커니즘 REST API를 시뮬레이션 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-119">Then, you'll edit hello scaffolded code tooreturn mock data, simulating a REST API built atop a data persistence mechanism.</span></span>  
 
-1. <span data-ttu-id="0fa6a-120">다음 Swagger JSON 코드를 클립보드에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-120">Copy the following Swagger JSON code to your clipboard:</span></span>
+1. <span data-ttu-id="229c5-120">다음 JSON Swagger 코드 tooyour 클립보드 hello를 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-120">Copy hello following Swagger JSON code tooyour clipboard:</span></span>
    
         {
             "swagger": "2.0",
@@ -131,28 +131,28 @@ ms.lasthandoff: 08/29/2017
                 }
             }
         }
-2. <span data-ttu-id="0fa6a-121">[온라인 Swagger 편집기]로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-121">Navigate to the [Online Swagger Editor].</span></span> <span data-ttu-id="0fa6a-122">이동하면 **파일-> JSON 붙여넣기** 메뉴 항목을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-122">Once there, click the **File -> Paste JSON** menu item.</span></span>
+2. <span data-ttu-id="229c5-121">Toohello 이동 [온라인 Swagger 편집기]합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-121">Navigate toohello [Online Swagger Editor].</span></span> <span data-ttu-id="229c5-122">한 번 hello, 클릭 **파일 붙여넣기 JSON->** 메뉴 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-122">Once there, click hello **File -> Paste JSON** menu item.</span></span>
    
     ![JSON 메뉴 항목 붙여넣기][paste-json]
-3. <span data-ttu-id="0fa6a-124">연락처 목록에 앞에서 복사한 API Swagger JSON를 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-124">Paste in the Contacts List API Swagger JSON you copied earlier.</span></span> 
+3. <span data-ttu-id="229c5-124">연락처 목록 API Swagger JSON 앞에서 복사한 hello에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-124">Paste in hello Contacts List API Swagger JSON you copied earlier.</span></span> 
    
     ![Swagger에 JSON 코드 붙여넣기][pasted-swagger]
-4. <span data-ttu-id="0fa6a-126">설명서 페이지 및 편집기에서 렌더링된 API 요약을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-126">View the documentation pages and API summary rendered in the editor.</span></span> 
+4. <span data-ttu-id="229c5-126">Hello 설명서 페이지 및 hello 편집기에서 렌더링 되는 API 요약을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-126">View hello documentation pages and API summary rendered in hello editor.</span></span> 
    
     ![Swagger로 생성된 문서 보기][view-swagger-generated-docs]
-5. <span data-ttu-id="0fa6a-128">**서버 생성 -> JAX-RS** 메뉴 옵션을 선택하여 모의 구현을 추가하기 위해 나중에 편집할 서버 쪽 코드를 스캐폴드합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-128">Select the **Generate Server -> JAX-RS** menu option to scaffold the server-side code you'll edit later to add mock implementation.</span></span> 
+5. <span data-ttu-id="229c5-128">선택 hello **서버 생성 잭 스 RS->** 메뉴 옵션 tooscaffold hello 서버 쪽 코드 이후 tooadd 모의 구현을 편집 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-128">Select hello **Generate Server -> JAX-RS** menu option tooscaffold hello server-side code you'll edit later tooadd mock implementation.</span></span> 
    
     ![코드 메뉴 항목 생성][generate-code-menu-item]
    
-    <span data-ttu-id="0fa6a-130">코드가 생성되면 다운로드할 ZIP 파일을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-130">Once the code is generated, you'll be provided a ZIP file to download.</span></span> <span data-ttu-id="0fa6a-131">이 파일은 Swagger 코드 생성기 및 모든 관련된 작성 스크립트로 인해 스캐폴드된 코드를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-131">This file contains the code scaffolded by the Swagger code generator and all associated build scripts.</span></span> <span data-ttu-id="0fa6a-132">개발 워크스테이션의 디렉터리에 전체 라이브러리의 압축을 풉니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-132">Unzip the entire library to a directory on your development workstation.</span></span> 
+    <span data-ttu-id="229c5-130">Hello 코드 생성 되 면 ZIP 파일 toodownload를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-130">Once hello code is generated, you'll be provided a ZIP file toodownload.</span></span> <span data-ttu-id="229c5-131">Hello Swagger 코드 생성기에서 스 캐 폴드 된 hello 코드를 포함 하는이 파일 및 관련 된 모든 스크립트를 작성 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-131">This file contains hello code scaffolded by hello Swagger code generator and all associated build scripts.</span></span> <span data-ttu-id="229c5-132">Hello 전체 라이브러리 tooa 디렉터리를 개발 워크스테이션에서 압축을 풉니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-132">Unzip hello entire library tooa directory on your development workstation.</span></span> 
 
-## <a name="edit-the-code-to-add-api-implementation"></a><span data-ttu-id="0fa6a-133">코드를 편집하여 API 구현 추가</span><span class="sxs-lookup"><span data-stu-id="0fa6a-133">Edit the Code to add API Implementation</span></span>
-<span data-ttu-id="0fa6a-134">이 섹션에서는 Swagger로 생성된 코드의 서버 측 구현을 사용자 지정 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-134">In this section, you'll replace the Swagger-generated code's server-side implementation with your custom code.</span></span> <span data-ttu-id="0fa6a-135">새 코드는 클라이언트를 호출하는 데 연락처의 ArrayList 엔터티를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-135">The new code will return an ArrayList of Contact entities to the calling client.</span></span> 
+## <a name="edit-hello-code-tooadd-api-implementation"></a><span data-ttu-id="229c5-133">Hello 코드 tooadd API 구현 편집</span><span class="sxs-lookup"><span data-stu-id="229c5-133">Edit hello Code tooadd API Implementation</span></span>
+<span data-ttu-id="229c5-134">이 섹션에서는 사용자 지정 코드로 hello Swagger에서 생성 된 코드의 서버 쪽 구현을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-134">In this section, you'll replace hello Swagger-generated code's server-side implementation with your custom code.</span></span> <span data-ttu-id="229c5-135">hello 새 코드는 연락처의 ArrayList 엔터티 toohello 호출 클라이언트를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-135">hello new code will return an ArrayList of Contact entities toohello calling client.</span></span> 
 
-1. <span data-ttu-id="0fa6a-136">[Visual Studio Code] 또는 원하는 텍스트 편집기를 사용하여 *src/gen/java/io/swagger/model* 폴더에 위치한 *Contact.java* 모델 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-136">Open the *Contact.java* model file, which is located in the *src/gen/java/io/swagger/model* folder, using [Visual Studio Code] or your favorite text editor.</span></span> 
+1. <span data-ttu-id="229c5-136">열기 hello *Contact.java* hello에 있는 모델 파일을 *src/gen/java/io/swagger/모델* 폴더를 사용 하 여 [Visual Studio Code] 또는 원하는 텍스트 편집기입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-136">Open hello *Contact.java* model file, which is located in hello *src/gen/java/io/swagger/model* folder, using [Visual Studio Code] or your favorite text editor.</span></span> 
    
     ![연락처 모델 파일 열기][open-contact-model-file]
-2. <span data-ttu-id="0fa6a-138">**연락처** 클래스 내에 다음 생성자를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-138">Add the following constructor within the **Contact** class.</span></span> 
+2. <span data-ttu-id="229c5-138">Hello hello 내에서 생성자를 다음 추가 **연락처** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-138">Add hello following constructor within hello **Contact** class.</span></span> 
    
         public Contact(Integer id, String name, String email) 
         {
@@ -160,10 +160,10 @@ ms.lasthandoff: 08/29/2017
             this.name = name;
             this.emailAddress = email;
         }
-3. <span data-ttu-id="0fa6a-139">[Visual Studio Code] 또는 원하는 텍스트 편집기를 사용하여 *src/main/java/io/swagger/api/impl* 폴더에 위치한 *ContactsApiServiceImpl.java* 서비스 구현 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-139">Open the *ContactsApiServiceImpl.java* service implementation file, which is located in the *src/main/java/io/swagger/api/impl* folder, using [Visual Studio Code] or your favorite text editor.</span></span>
+3. <span data-ttu-id="229c5-139">열기 hello *ContactsApiServiceImpl.java* hello에 있는 서비스 구현 파일 *src/main/java/io/swagger/api/impl* 폴더를 사용 하 여 [Visual Studio Code]또는 원하는 텍스트 편집기입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-139">Open hello *ContactsApiServiceImpl.java* service implementation file, which is located in hello *src/main/java/io/swagger/api/impl* folder, using [Visual Studio Code] or your favorite text editor.</span></span>
    
     ![연락처 서비스 코드 파일 열기][open-contact-service-code-file]
-4. <span data-ttu-id="0fa6a-141">이 새 코드를 사용하여 파일의 코드를 덮어써서 모의 구현을 서비스 코드에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-141">Overwrite the code in the file with this new code to add a mock implementation to the service code.</span></span> 
+4. <span data-ttu-id="229c5-141">이 새 코드 tooadd 모의 구현 toohello 서비스 코드도 hello 파일의 hello 코드를 덮어씁니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-141">Overwrite hello code in hello file with this new code tooadd a mock implementation toohello service code.</span></span> 
    
         package io.swagger.api.impl;
    
@@ -211,51 +211,51 @@ ms.lasthandoff: 08/29/2017
                 return Response.ok().entity(ret).build();
             }
         }
-5. <span data-ttu-id="0fa6a-142">명령 프롬프트를 열고 디렉터리를 응용 프로그램의 루트 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-142">Open a command prompt and change directory to the root folder of your application.</span></span>
-6. <span data-ttu-id="0fa6a-143">로컬로 Jetty 앱 서버를 사용하여 코드를 작성하고 실행하려면 다음 Maven 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-143">Execute the following Maven command to build the code and run it using the Jetty app server locally.</span></span> 
+5. <span data-ttu-id="229c5-142">명령 프롬프트를 열고 응용 프로그램의 디렉터리 toohello 루트 폴더를 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-142">Open a command prompt and change directory toohello root folder of your application.</span></span>
+6. <span data-ttu-id="229c5-143">Maven 명령 toobuild hello 코드 다음 hello를 실행 하 고 hello Jetty 응용 프로그램 서버를 사용 하 여 로컬로 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-143">Execute hello following Maven command toobuild hello code and run it using hello Jetty app server locally.</span></span> 
    
         mvn package jetty:run
-7. <span data-ttu-id="0fa6a-144">Jetty가 포트 8080에서 코드를 시작했음을 반영하는 명령 창이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-144">You should see the command window reflect that Jetty has started your code on port 8080.</span></span> 
+7. <span data-ttu-id="229c5-144">Jetty 포트 8080에서 코드가 시작 되었음을 반영 하는 hello 명령 창에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-144">You should see hello command window reflect that Jetty has started your code on port 8080.</span></span> 
    
     ![연락처 서비스 코드 파일 열기][run-jetty-war]
-8. <span data-ttu-id="0fa6a-146">[Postman]을 사용하여 http://localhost:8080/api/contacts에 있는 "모든 연락처 가져오기" API 메서드에 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-146">Use [Postman] to make a request to the "get all contacts" API method at http://localhost:8080/api/contacts.</span></span>
+8. <span data-ttu-id="229c5-146">사용 하 여 [우체부] http://localhost:8080/api/연락처에서 toomake 요청 toohello "모든 연락처 가져오기" API 메서드.</span><span class="sxs-lookup"><span data-stu-id="229c5-146">Use [Postman] toomake a request toohello "get all contacts" API method at http://localhost:8080/api/contacts.</span></span>
    
-    ![연락처 API 호출][calling-contacts-api]
-9. <span data-ttu-id="0fa6a-148">[Postman]을 사용하여 http://localhost:8080/api/contacts/2에 있는 "특정 연락처 가져오기" API 메서드에 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-148">Use [Postman] to make a request to the "get specific contact" API method located at http://localhost:8080/api/contacts/2.</span></span>
+    ![Hello 연락처 API를 호출 합니다.][calling-contacts-api]
+9. <span data-ttu-id="229c5-148">사용 하 여 [우체부] http://localhost:8080/api/연락처/2에 있는 요청 toohello "특정 연락처 가져오기" API toomake 메서드.</span><span class="sxs-lookup"><span data-stu-id="229c5-148">Use [Postman] toomake a request toohello "get specific contact" API method located at http://localhost:8080/api/contacts/2.</span></span>
    
-    ![연락처 API 호출][calling-specific-contact-api]
-10. <span data-ttu-id="0fa6a-150">마지막으로 콘솔에서 다음 Maven 명령을 실행하여 Java WAR(웹 보관) 파일을 작성합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-150">Finally, build the Java WAR (Web ARchive) file by executing the following Maven command in your console.</span></span> 
+    ![Hello 연락처 API를 호출 합니다.][calling-specific-contact-api]
+10. <span data-ttu-id="229c5-150">마지막으로 hello Maven 명령 콘솔에서 다음을 실행 하 여 hello Java WAR (웹 보관) 파일을 빌드하십시오.</span><span class="sxs-lookup"><span data-stu-id="229c5-150">Finally, build hello Java WAR (Web ARchive) file by executing hello following Maven command in your console.</span></span> 
     
          mvn package war:war
-11. <span data-ttu-id="0fa6a-151">WAR 파일을 작성하면 **대상** 폴더에 둘 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-151">Once the WAR file is built, it will be placed into the **target** folder.</span></span> <span data-ttu-id="0fa6a-152">**대상** 폴더로 이동하여 WAR 파일의 이름을 **ROOT.war**로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-152">Navigate into the **target** folder and rename the WAR file to **ROOT.war**.</span></span> <span data-ttu-id="0fa6a-153">대/소문자가 이 형식과 일치하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-153">(Make sure the capitalization matches this format).</span></span>
+11. <span data-ttu-id="229c5-151">Hello에 두려는 됩니다 hello WAR 파일 작성 된 후 **대상** 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-151">Once hello WAR file is built, it will be placed into hello **target** folder.</span></span> <span data-ttu-id="229c5-152">Hello 트리로 이동 **대상** 폴더 및 이름 바꾸기 hello WAR 파일 너무**ROOT.war**합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-152">Navigate into hello **target** folder and rename hello WAR file too**ROOT.war**.</span></span> <span data-ttu-id="229c5-153">(Hello 대/소문자가 일치 해야이 형식).</span><span class="sxs-lookup"><span data-stu-id="229c5-153">(Make sure hello capitalization matches this format).</span></span>
     
           rename swagger-jaxrs-server-1.0.0.war ROOT.war
-12. <span data-ttu-id="0fa6a-154">마지막으로 응용 프로그램의 루트 폴더에서 다음 명령을 실행하여 WAR 파일을 Azure에 배포하는 데 사용할 **배포** 폴더를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-154">Finally, execute the following commands from the root folder of your application to create a **deploy** folder to use to deploy the WAR file to Azure.</span></span> 
+12. <span data-ttu-id="229c5-154">마지막으로 hello 명령을 응용 프로그램 toocreate의 hello 루트 폴더에서 다음을 실행 한 **배포** 폴더 toouse toodeploy hello WAR 파일 tooAzure 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-154">Finally, execute hello following commands from hello root folder of your application toocreate a **deploy** folder toouse toodeploy hello WAR file tooAzure.</span></span> 
     
           mkdir deploy
           mkdir deploy\webapps
           copy target\ROOT.war deploy\webapps
           cd deploy
 
-## <a name="publish-the-output-to-azure-app-service"></a><span data-ttu-id="0fa6a-155">Azure 앱 서비스에 출력 게시</span><span class="sxs-lookup"><span data-stu-id="0fa6a-155">Publish the output to Azure App Service</span></span>
-<span data-ttu-id="0fa6a-156">이 섹션에서는 Azure 포털을 사용 하여 새 API 앱을 만들고 Java 응용 프로그램을 호스팅하기 위해 해당 API 앱을 준비하며 새 API 앱을 실행하기 위해 Azure 앱 서비스에 새로 만든 WAR 파일을 배포하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-156">In this section you'll learn how to create a new API App using the Azure Portal, prepare that API App for hosting Java applications, and deploy the newly-created WAR file to Azure App Service to run your new API App.</span></span> 
+## <a name="publish-hello-output-tooazure-app-service"></a><span data-ttu-id="229c5-155">Hello 출력 tooAzure 앱 서비스를 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-155">Publish hello output tooAzure App Service</span></span>
+<span data-ttu-id="229c5-156">어떻게 toocreate hello를 사용 하 여 새 API 앱 Azure 포털에서 Java 응용 프로그램 호스팅에 대 한 API 앱을 준비 하 고 hello 배포 새로 만든 WAR 알아봅니다이 섹션에서는 앱 서비스 toorun tooAzure 새 API 앱 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-156">In this section you'll learn how toocreate a new API App using hello Azure Portal, prepare that API App for hosting Java applications, and deploy hello newly-created WAR file tooAzure App Service toorun your new API App.</span></span> 
 
-1. <span data-ttu-id="0fa6a-157">**새로 만들기 -> 웹 + 모바일 -> API 앱** 메뉴 항목을 클릭하고 앱의 세부 정보를 입력한 다음 **만들기**를 클릭하여 [Azure Portal]에서 새 API 앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-157">Create a new API app in the [Azure portal], by clicking the **New -> Web + Mobile -> API app** menu item, entering your app details, and then clicking **Create**.</span></span>
+1. <span data-ttu-id="229c5-157">Hello에 새 API 앱 만들기 [Azure 포털], hello를 클릭 하 여 **새로운 웹-> +-> API 앱을 모바일** 메뉴 항목, 응용 프로그램 세부 정보를 입력 하 고 클릭 한 다음 **만들기**합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-157">Create a new API app in hello [Azure portal], by clicking hello **New -> Web + Mobile -> API app** menu item, entering your app details, and then clicking **Create**.</span></span>
    
     ![새 API 앱 만들기][create-api-app]
-2. <span data-ttu-id="0fa6a-159">API 앱을 만들면 앱의 **설정** 블레이드를 열고 **응용 프로그램 설정** 메뉴 항목을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-159">Once your API app has been created, open your app's **Settings** blade, and then click the **Application settings** menu item.</span></span> <span data-ttu-id="0fa6a-160">사용 가능한 옵션에서 최신 Java 버전을 선택한 다음 **웹 컨테이너** 메뉴에서 최신 Tomcat을 선택하고 **저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-160">Select the latest Java versions from the available options, then select the latest Tomcat from the **Web container** menu, and then click **Save**.</span></span>
+2. <span data-ttu-id="229c5-159">API 앱을 만든 후 응용 프로그램을 열고 **설정** 블레이드에서 hello를 클릭 한 다음 **응용 프로그램 설정** 메뉴 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-159">Once your API app has been created, open your app's **Settings** blade, and then click hello **Application settings** menu item.</span></span> <span data-ttu-id="229c5-160">선택 hello hello 사용 가능한 옵션 중에서 최신 Java 버전 선택 hello hello에서 최신 Tomcat 다음 **웹 컨테이너** 메뉴를 차례로 클릭 **저장**합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-160">Select hello latest Java versions from hello available options, then select hello latest Tomcat from hello **Web container** menu, and then click **Save**.</span></span>
    
-    ![API 앱 블레이드에서 Java 설정][set-up-java]
-3. <span data-ttu-id="0fa6a-162">**배포 자격 증명** 설정 메뉴 항목을 클릭하고 API 앱에 파일을 게시하는 데 사용하려는 사용자 이름 및 암호를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-162">Click the **Deployment credentials** settings menu item, and provide a username and password you wish to use for publishing files to your API App.</span></span> 
+    ![API 앱 블레이드 hello에서 Java를 설정 합니다.][set-up-java]
+3. <span data-ttu-id="229c5-162">Hello 클릭 **배포 자격 증명** 설정 메뉴 항목을 선택한 사용자 이름 및 파일 tooyour API 앱을 게시 하기 위한 toouse 원하는 암호를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-162">Click hello **Deployment credentials** settings menu item, and provide a username and password you wish toouse for publishing files tooyour API App.</span></span> 
    
     ![배포 자격 증명 설정][deployment-credentials]
-4. <span data-ttu-id="0fa6a-164">**배포 원본** 설정 메뉴 항목을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-164">Click the **Deployment source** settings menu item.</span></span> <span data-ttu-id="0fa6a-165">일단 이동하면 **원본 선택** 단추를 클릭하고 **로컬 Git 리포지토리** 옵션을 선택한 다음 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-165">Once there, click the **Choose source** button, select the **Local Git Repository** option, and then click **OK**.</span></span> <span data-ttu-id="0fa6a-166">API 앱을 사용하는 연결이 있는 Azure에서 실행되는 Git 리포지토리가 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-166">This will create a Git repository running in Azure, that has an association with your API App.</span></span> <span data-ttu-id="0fa6a-167">Git 리포지토리의 *마스터* 분기로 코드를 커밋할 때마다 코드는 라이브 실행 중인 API 앱 인스턴스에 게시됩니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-167">Each time you commit code to the *master* branch of your Git repository, your code will be published into your live running API App instance.</span></span> 
+4. <span data-ttu-id="229c5-164">Hello 클릭 **배포 원본** 설정 메뉴 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-164">Click hello **Deployment source** settings menu item.</span></span> <span data-ttu-id="229c5-165">한 번 hello, 클릭 **선택 소스** 단추, 선택 hello **로컬 Git 리포지토리** 옵션을 선택한 다음 클릭 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-165">Once there, click hello **Choose source** button, select hello **Local Git Repository** option, and then click **OK**.</span></span> <span data-ttu-id="229c5-166">API 앱을 사용하는 연결이 있는 Azure에서 실행되는 Git 리포지토리가 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-166">This will create a Git repository running in Azure, that has an association with your API App.</span></span> <span data-ttu-id="229c5-167">코드 toohello을 커밋할 때마다 *마스터* 분기의 Git 리포지토리를 코드 라이브 실행 중인 API 앱 인스턴스로 게시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-167">Each time you commit code toohello *master* branch of your Git repository, your code will be published into your live running API App instance.</span></span> 
    
     ![새 로컬 Git 리포지토리 설정][select-git-repo]
-5. <span data-ttu-id="0fa6a-169">새 Git 리포지토리의 URL을 클립보드에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-169">Copy the new Git repository's URL to your clipboard.</span></span> <span data-ttu-id="0fa6a-170">잠시 후에 중요하다고 생각되면 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-170">Save this as it will be important in a moment.</span></span> 
+5. <span data-ttu-id="229c5-169">Hello 새 Git 리포지토리 URL tooyour 클립보드에 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-169">Copy hello new Git repository's URL tooyour clipboard.</span></span> <span data-ttu-id="229c5-170">잠시 후에 중요하다고 생각되면 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-170">Save this as it will be important in a moment.</span></span> 
    
     ![앱에 대한 새 Git 리포지토리 설정][copy-git-repo-url]
-6. <span data-ttu-id="0fa6a-172">Git는 온라인 리포지토리에 WAR 파일을 푸시합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-172">Git push the WAR file to the online repository.</span></span> <span data-ttu-id="0fa6a-173">이 작업을 수행하려면 앞에서 만든 **배포** 폴더로 이동하므로 코드를 앱 서비스에서 실행하는 리포지토리까지 쉽게 커밋할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-173">To do this, navigate into the **deploy** folder you created earlier so that you can easily commit the code up to the repository running in your App Service.</span></span> <span data-ttu-id="0fa6a-174">콘솔 창에 위치하고 webapps 폴더가 있는 폴더로 이동하면 다음 Git 명령을 발급하여 프로세스를 시작하고 배포를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-174">Once you're in the console window and navigated into the folder where the webapps folder is located, issue the following Git commands to launch the process and fire off a deployment.</span></span> 
+6. <span data-ttu-id="229c5-172">Git 푸시 hello WAR 파일 toohello 온라인 저장소입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-172">Git push hello WAR file toohello online repository.</span></span> <span data-ttu-id="229c5-173">toodo이 hello 트리로 이동 **배포** 앱 서비스에서 실행 되는 toohello 리포지토리를 hello 코드를 쉽게 커밋할 수 있도록 이전에 만든 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-173">toodo this, navigate into hello **deploy** folder you created earlier so that you can easily commit hello code up toohello repository running in your App Service.</span></span> <span data-ttu-id="229c5-174">한 번 hello 콘솔 창에 하 고 hello Git 명령을 toolaunch hello 프로세스를 실행 하 고 실행 하는 배포 hello webapps 폴더 위치한 hello 폴더로 이동 하 게 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-174">Once you're in hello console window and navigated into hello folder where hello webapps folder is located, issue hello following Git commands toolaunch hello process and fire off a deployment.</span></span> 
    
          git init
          git add .
@@ -263,36 +263,36 @@ ms.lasthandoff: 08/29/2017
          git remote add azure [YOUR GIT URL]
          git push azure master
    
-    <span data-ttu-id="0fa6a-175">**푸시** 요청을 발급하면 이전에 배포 자격 증명에 대해 만든 암호를 요청하는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-175">Once you issue the **push** request, you'll be asked for the password you created for the deployment credential earlier.</span></span> <span data-ttu-id="0fa6a-176">자격 증명을 입력하면 업데이트가 배포되었다는 메시지가 포털에 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-176">After you enter your credentials, you should see your portal display that the update was deployed.</span></span>
-7. <span data-ttu-id="0fa6a-177">다시 한 번 Postman을 사용하여 Azure 앱 서비스에서 실행되는 새로 배포된 API 앱을 누르면 동작이 일관되고 예상 대로 연락처 데이터를 반환하며 Swagger.io로 스캐폴드된 Java 코드에 간단한 코드 변경 내용을 사용하는 것을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-177">If you once again use Postman to hit the newly-deployed API App running in Azure App Service, you'll see that the behavior is consistent and that now it is returning contact data as expected, and using simple code changes to the Swagger.io scaffolded Java code.</span></span> 
+    <span data-ttu-id="229c5-175">Hello 발급 되 면 **푸시** 요청을 만들라는 메시지가 이전에 만든 배포 자격 증명 hello에 대 한 hello 암호에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-175">Once you issue hello **push** request, you'll be asked for hello password you created for hello deployment credential earlier.</span></span> <span data-ttu-id="229c5-176">자격 증명을 입력 한 후 배포 된 hello 업데이트 하는 포털 디스플레이 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-176">After you enter your credentials, you should see your portal display that hello update was deployed.</span></span>
+7. <span data-ttu-id="229c5-177">다시 한 번에 우체부 toohit hello 새로 배포 된 Azure 앱 서비스에서 실행 되는 API 앱을 사용 하면 hello 동작은 일관 된 동작이 며 이제 반환 하는 연락처 데이터를 예상 대로 및 Java 코드 스 캐 폴드 된 간단한 코드 변경 내용을 toohello Swagger.io를 사용 하 여 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-177">If you once again use Postman toohit hello newly-deployed API App running in Azure App Service, you'll see that hello behavior is consistent and that now it is returning contact data as expected, and using simple code changes toohello Swagger.io scaffolded Java code.</span></span> 
    
     ![Azure에서 Java 연락처 REST API 라이브 사용][postman-calling-azure-contacts]
 
-## <a name="next-steps"></a><span data-ttu-id="0fa6a-179">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0fa6a-179">Next steps</span></span>
-<span data-ttu-id="0fa6a-180">이 문서에서는 Swagger.io 편집기에서 가져온 Swagger JSON 파일 및 스캐폴드된 Java 코드를 시작할 수 있었습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-180">In this article, you were able to start with a Swagger JSON file and some scaffolded Java code obtained from the Swagger.io editor.</span></span> <span data-ttu-id="0fa6a-181">여기서부터 간단한 변경 내용 및 Git 배포 프로세스가 Java로 작성된 기능 API 앱을 갖게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-181">From there, your simple changes and a Git deploy process resulted in having a functional API app written in Java.</span></span> <span data-ttu-id="0fa6a-182">다음 자습서에서는 [CORS를 사용하여 JavaScript 클라이언트에서 API 앱을 사용][App Service API CORS]하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-182">The next tutorial shows how to [consume API apps from JavaScript clients, using CORS][App Service API CORS].</span></span> <span data-ttu-id="0fa6a-183">시리즈의 후반부 자습서에서는 인증 및 권한 부여를 구현하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-183">Later tutorials in the series show how to implement authentication and authorization.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="229c5-179">다음 단계</span><span class="sxs-lookup"><span data-stu-id="229c5-179">Next steps</span></span>
+<span data-ttu-id="229c5-180">이 문서에서는 JSON Swagger 파일 및 hello Swagger.io 편집기에서 가져온 일부 스 캐 폴드 Java 코드를 사용 하 여 수 toostart 있었습니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-180">In this article, you were able toostart with a Swagger JSON file and some scaffolded Java code obtained from hello Swagger.io editor.</span></span> <span data-ttu-id="229c5-181">여기서부터 간단한 변경 내용 및 Git 배포 프로세스가 Java로 작성된 기능 API 앱을 갖게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-181">From there, your simple changes and a Git deploy process resulted in having a functional API app written in Java.</span></span> <span data-ttu-id="229c5-182">hello 다음 자습서에서는 어떻게 너무[CORS를 사용 하 여 JavaScript 클라이언트에서 API 앱][App Service API CORS]합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-182">hello next tutorial shows how too[consume API apps from JavaScript clients, using CORS][App Service API CORS].</span></span> <span data-ttu-id="229c5-183">이후 자습서에서이 계열 표시를 어떻게 hello tooimplement 인증 및 권한 부여 합니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-183">Later tutorials in hello series show how tooimplement authentication and authorization.</span></span>
 
-<span data-ttu-id="0fa6a-184">이 샘플을 작성하려면 JSON blob를 유지하기 위해 [Java용 저장소 SDK] 에 대한 자세한 정보를 알아볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-184">To build on this sample, you can learn more about the [Storage SDK for Java] to persist the JSON blobs.</span></span> <span data-ttu-id="0fa6a-185">또는 [Document DB Java SDK] 를 사용하여 Azure Document DB에 연락처 데이터를 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-185">Or, you could use the [Document DB Java SDK] to save your Contact data to Azure Document DB.</span></span> 
+<span data-ttu-id="229c5-184">이 샘플에서 toobuild를 학습할 수 있는 hello에 대 한 자세한 [저장소 SDK for Java] toopersist hello JSON blob입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-184">toobuild on this sample, you can learn more about hello [Storage SDK for Java] toopersist hello JSON blobs.</span></span> <span data-ttu-id="229c5-185">Hello를 사용할 수 있습니다 또는 [문서 DB Java SDK] toosave 연락처 데이터 tooAzure 문서 DB입니다.</span><span class="sxs-lookup"><span data-stu-id="229c5-185">Or, you could use hello [Document DB Java SDK] toosave your Contact data tooAzure Document DB.</span></span> 
 
 <a name="see-also"></a>
 
-## <a name="see-also"></a><span data-ttu-id="0fa6a-186">참고 항목</span><span class="sxs-lookup"><span data-stu-id="0fa6a-186">See Also</span></span>
-<span data-ttu-id="0fa6a-187">Java에서 Azure를 사용하는 방법에 대한 자세한 내용은 [Java 개발자용 Azure](/java/azure)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0fa6a-187">For more information about using Azure with Java, visit [Azure for Java developers](/java/azure).</span></span>
+## <a name="see-also"></a><span data-ttu-id="229c5-186">참고 항목</span><span class="sxs-lookup"><span data-stu-id="229c5-186">See Also</span></span>
+<span data-ttu-id="229c5-187">Java에서 Azure를 사용하는 방법에 대한 자세한 내용은 [Java 개발자용 Azure](/java/azure)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="229c5-187">For more information about using Azure with Java, visit [Azure for Java developers](/java/azure).</span></span>
 
 <!-- URL List -->
 
 [App Service API CORS]: app-service-api-cors-consume-javascript.md
-[Azure Portal]: https://portal.azure.com/
-[Document DB Java SDK]: ../documentdb/documentdb-java-application.md
+[Azure 포털]: https://portal.azure.com/
+[문서 DB Java SDK]: ../documentdb/documentdb-java-application.md
 [무료 평가판]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: http://www.git-scm.com/
 [Azure Java Developer Center]: /develop/java/
 [Java 개발자 키트 8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-[Jax-RS]: https://jax-rs-spec.java.net/
+[잭 스 RS]: https://jax-rs-spec.java.net/
 [Maven]: https://maven.apache.org/
 [Microsoft Azure]: https://azure.microsoft.com/
 [온라인 Swagger 편집기]: http://editor2.swagger.io/
-[Postman]: https://www.getpostman.com/
-[Java용 저장소 SDK]:../storage/blobs/storage-java-how-to-use-blob-storage.md
+[우체부]: https://www.getpostman.com/
+[저장소 SDK for Java]:../storage/blobs/storage-java-how-to-use-blob-storage.md
 [Swagger]: http://swagger.io/
 [Swagger 편집기]: http://editor.swagger.io/
 [Visual Studio Code]: https://code.visualstudio.com

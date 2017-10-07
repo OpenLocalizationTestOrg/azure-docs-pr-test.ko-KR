@@ -1,6 +1,6 @@
 ---
-title: "Azure API Management 가져오기에서 제한 사항 및 알려진 문제 | Microsoft Docs"
-description: "Open API, WSDL 또는 WADL 형식을 사용하여 Azure API Management로 가져오기 시 알려진 문제 및 제한 사항입니다."
+title: "Azure API 관리 API의 알려진 문제와 aaaRestrictions 가져오기 | Microsoft Docs"
+description: "정보 가져오기 hello Open API, WSDL 또는 WADL 형식을 사용 하 여 Azure API 관리에 대 한 제한 사항 및 알려진된 문제입니다."
 services: api-management
 documentationcenter: 
 author: mattfarm
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: apipm
-ms.openlocfilehash: ac799d66b5038c207413086b0fa71239ff2a332f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bed5ace47de6ccbfbecba25ea6b69c5329de089
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="api-import-restrictions-and-known-issues"></a><span data-ttu-id="673be-103">API 가져오기 제한 사항 및 알려진 문제</span><span class="sxs-lookup"><span data-stu-id="673be-103">API import restrictions and known issues</span></span>
-## <a name="about-this-list"></a><span data-ttu-id="673be-104">다음 목록 정보</span><span class="sxs-lookup"><span data-stu-id="673be-104">About this list</span></span>
-<span data-ttu-id="673be-105">API를 Azure API Management로 가능한 완벽하고 문제 없이 가져올 수 있도록 최선의 노력을 하고 있지만 간혹 제한 사항이 적용되거나 성공적으로 가져오기 위해 수정이 필요한 문제가 확인됩니다.</span><span class="sxs-lookup"><span data-stu-id="673be-105">While every effort is made to ensure that importing your API into Azure API Management is as seamless and problem-free as possible, we do occasionally impose restrictions or identify issues that will need to be rectified before you can successfully import.</span></span> <span data-ttu-id="673be-106">이 문서에서는 이러한 내용을 API의 가져오기 형식별로 구성하여 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="673be-106">This article documents these, organised by the import format of the API.</span></span>
+# <a name="api-import-restrictions-and-known-issues"></a><span data-ttu-id="4853a-103">API 가져오기 제한 사항 및 알려진 문제</span><span class="sxs-lookup"><span data-stu-id="4853a-103">API import restrictions and known issues</span></span>
+## <a name="about-this-list"></a><span data-ttu-id="4853a-104">다음 목록 정보</span><span class="sxs-lookup"><span data-stu-id="4853a-104">About this list</span></span>
+<span data-ttu-id="4853a-105">동안 대처 하는 Azure API 관리 API 가져오기는 안전 tooensure 이루어집니다 문제 없이 최대한,에서는 경우에 따라 제한 사항이 적용 않거나 toobe 성공적으로 가져오기 전에 수정 해야 하는 문제를 식별 합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-105">While every effort is made tooensure that importing your API into Azure API Management is as seamless and problem-free as possible, we do occasionally impose restrictions or identify issues that will need toobe rectified before you can successfully import.</span></span> <span data-ttu-id="4853a-106">이 문서에서는 이러한 문서 hello API의 hello 가져오기 형식에 따라 organised 합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-106">This article documents these, organised by hello import format of hello API.</span></span>
 
-## <span data-ttu-id="673be-107"><a name="open-api"> </a>Open API/Swagger</span><span class="sxs-lookup"><span data-stu-id="673be-107"><a name="open-api"> </a>Open API/Swagger</span></span>
-<span data-ttu-id="673be-108">일반적으로 Open API 문서를 가져오는 중 오류를 수신하면 새 Azure Portal에서 디자이너를 사용하거나(Design - Front End - Open API Specification Editor) <a href="http://www.swagger.io">Swagger Editor</a>와 같은 타사 도구를 사용하여 유효성을 검사해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="673be-108">In general, if you are receiving errors importing your Open API document, please ensure you have validated it - either using the designer in the new Azure Portal (Design - Front End - Open API Specification Editor), or with a 3rd party tool such as <a href="http://www.swagger.io">Swagger Editor</a>.</span></span>
+## <span data-ttu-id="4853a-107"><a name="open-api"> </a>Open API/Swagger</span><span class="sxs-lookup"><span data-stu-id="4853a-107"><a name="open-api"> </a>Open API/Swagger</span></span>
+<span data-ttu-id="4853a-108">일반적으로 개방형 API 문서를 가져오는 과정에서 오류가 발생 하는 경우 확인 하십시오 것-검사 한 hello 디자이너를 사용 하 여 hello 새 Azure 포털 (디자인-프런트 엔드-API 사양 편집기 열기)에서 또는 세 번째와 자가 도구와 같은 중 <a href="http://www.swagger.io"> 편집기 swagger</a>합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-108">In general, if you are receiving errors importing your Open API document, please ensure you have validated it - either using hello designer in hello new Azure Portal (Design - Front End - Open API Specification Editor), or with a 3rd party tool such as <a href="http://www.swagger.io">Swagger Editor</a>.</span></span>
 
-* <span data-ttu-id="673be-109">**호스트 이름** 호스트 이름 특성이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="673be-109">**Host Name** we require a host name attribute.</span></span>
-* <span data-ttu-id="673be-110">**기본 경로** 기본 경로 특성이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="673be-110">**Base Path** we require a base path attribute.</span></span>
-* <span data-ttu-id="673be-111">**스키마** 스키마 배열이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="673be-111">**Schemes** we require a scheme array.</span></span> 
+* <span data-ttu-id="4853a-109">**호스트 이름** 호스트 이름 특성이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-109">**Host Name** we require a host name attribute.</span></span>
+* <span data-ttu-id="4853a-110">**기본 경로** 기본 경로 특성이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-110">**Base Path** we require a base path attribute.</span></span>
+* <span data-ttu-id="4853a-111">**스키마** 스키마 배열이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-111">**Schemes** we require a scheme array.</span></span> 
 
-## <span data-ttu-id="673be-112"><a name="wsdl"> </a>WSDL</span><span class="sxs-lookup"><span data-stu-id="673be-112"><a name="wsdl"> </a>WSDL</span></span>
-<span data-ttu-id="673be-113">SOAP 통과 API를 생성하는 데 WSDL 파일이 사용되며 SOAP-to-REST API의 백 엔드로 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="673be-113">WSDL files are used to generate SOAP Pass-through APIs, or serve as the backend of a SOAP-to-REST API.</span></span>
+## <span data-ttu-id="4853a-112"><a name="wsdl"> </a>WSDL</span><span class="sxs-lookup"><span data-stu-id="4853a-112"><a name="wsdl"> </a>WSDL</span></span>
+<span data-ttu-id="4853a-113">WSDL 파일 SOAP 통과 Api를 사용 하는 toogenerate 있거나 SOAP-REST API의 백 엔드 hello으로 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-113">WSDL files are used toogenerate SOAP Pass-through APIs, or serve as hello backend of a SOAP-to-REST API.</span></span>
 
-* <span data-ttu-id="673be-114">**WSDL:Import** 현재 이 특성을 사용한 API는 지원하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="673be-114">**WSDL:Import** we do not currently support APIs using this attribute.</span></span> <span data-ttu-id="673be-115">고객은 가져온 요소를 문서 하나로 병합해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="673be-115">Customers should merge the imported elements into one document.</span></span>
-* <span data-ttu-id="673be-116">**여러 부분으로 된 메시지**는 현재 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="673be-116">**Messages with multiple parts** are currently not supported.</span></span>
-* <span data-ttu-id="673be-117">**WCF wsHttpBinding** Windows Communication Foundation으로 생성된 SOAP 서비스는 basicHttpBinding을 사용해야 합니다. wsHttpBinding은 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="673be-117">**WCF wsHttpBinding** SOAP services created with Windows Communication Foundation should use basicHttpBinding - wsHttpBinding is not supported.</span></span>
-* <span data-ttu-id="673be-118">**MTOM** MTOM을 사용한 서비스는 <em>작동할 수 있습니다</em>.</span><span class="sxs-lookup"><span data-stu-id="673be-118">**MTOM** Services using MTOM <em>may</em> work.</span></span> <span data-ttu-id="673be-119">현재는 공식적으로 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="673be-119">Official support is not offered at this time.</span></span>
-* <span data-ttu-id="673be-120">재귀적으로 정의된(예: 자체의 배열을 참조) **재귀** 형식은 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="673be-120">**Recursion** types that are defined recursively (e.g. refer to an array of themselves) are not supported.</span></span>
+* <span data-ttu-id="4853a-114">**WSDL:Import** 현재 이 특성을 사용한 API는 지원하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-114">**WSDL:Import** we do not currently support APIs using this attribute.</span></span> <span data-ttu-id="4853a-115">고객은 하나의 문서로 가져온 hello 요소를 병합 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-115">Customers should merge hello imported elements into one document.</span></span>
+* <span data-ttu-id="4853a-116">**여러 부분으로 된 메시지**는 현재 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-116">**Messages with multiple parts** are currently not supported.</span></span>
+* <span data-ttu-id="4853a-117">**WCF wsHttpBinding** Windows Communication Foundation으로 생성된 SOAP 서비스는 basicHttpBinding을 사용해야 합니다. wsHttpBinding은 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-117">**WCF wsHttpBinding** SOAP services created with Windows Communication Foundation should use basicHttpBinding - wsHttpBinding is not supported.</span></span>
+* <span data-ttu-id="4853a-118">**MTOM** MTOM을 사용한 서비스는 <em>작동할 수 있습니다</em>.</span><span class="sxs-lookup"><span data-stu-id="4853a-118">**MTOM** Services using MTOM <em>may</em> work.</span></span> <span data-ttu-id="4853a-119">현재는 공식적으로 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-119">Official support is not offered at this time.</span></span>
+* <span data-ttu-id="4853a-120">**재귀** 않은 형식 정의 재귀적으로 (예: tooan 배열 자체 참조)는 지원 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-120">**Recursion** types that are defined recursively (e.g. refer tooan array of themselves) are not supported.</span></span>
 
-## <span data-ttu-id="673be-121"><a name="wadl"> </a>WADL</span><span class="sxs-lookup"><span data-stu-id="673be-121"><a name="wadl"> </a>WADL</span></span>
-<span data-ttu-id="673be-122">현재는 알려진 WADL 가져오기 문제가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="673be-122">There are no known WADL import issues currently.</span></span>
+## <span data-ttu-id="4853a-121"><a name="wadl"> </a>WADL</span><span class="sxs-lookup"><span data-stu-id="4853a-121"><a name="wadl"> </a>WADL</span></span>
+<span data-ttu-id="4853a-122">현재는 알려진 WADL 가져오기 문제가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="4853a-122">There are no known WADL import issues currently.</span></span>
 
 
 [api-management-management-console]: ./media/api-management-howto-add-operations/api-management-management-console.png
@@ -77,6 +77,6 @@ ms.lasthandoff: 07/11/2017
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
-[How to cache operation results in Azure API Management]: api-management-howto-cache.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
+[How toocache operation results in Azure API Management]: api-management-howto-cache.md

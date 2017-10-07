@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB용 ASP.NET MVC 자습서: 웹 응용 프로그램 개발 | Microsoft Docs"
-description: "Azure Cosmos DB를 사용하여 MVC 웹 응용 프로그램을 만드는 ASP.NET MVC 자습서 JSON을 저장하고 Azure Websites - ASP NET MVC 단계별 자습서에서 호스팅하는 todo 앱에서 데이터에 액세스합니다."
+description: "ASP.NET MVC 자습서 toocreate Azure Cosmos DB를 사용 하 여 MVC 웹 응용 프로그램 JSON을 저장하고 Azure Websites - ASP NET MVC 단계별 자습서에서 호스팅하는 todo 앱에서 데이터에 액세스합니다."
 keywords: "ASP.NET MVC 자습서, 웹 응용 프로그램 개발, MVC 웹 응용 프로그램, ASP NET MVC 단계별 자습서"
 services: cosmos-db
 documentationcenter: .net
@@ -15,124 +15,124 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: mimig
-ms.openlocfilehash: 3f2950fe25feb8f3ee81cc0a79bf624f0ee33bd5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dac2a9599b395524533e6fe14983789ff095331f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <span data-ttu-id="3f071-105"><a name="_Toc395809351"></a>ASP.NET MVC 자습서: Azure Cosmos DB를 사용한 웹 응용 프로그램 개발</span><span class="sxs-lookup"><span data-stu-id="3f071-105"><a name="_Toc395809351"></a>ASP.NET MVC Tutorial: Web application development with Azure Cosmos DB</span></span>
+# <span data-ttu-id="d6237-105"><a name="_Toc395809351"></a>ASP.NET MVC 자습서: Azure Cosmos DB를 사용한 웹 응용 프로그램 개발</span><span class="sxs-lookup"><span data-stu-id="d6237-105"><a name="_Toc395809351"></a>ASP.NET MVC Tutorial: Web application development with Azure Cosmos DB</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="3f071-106">.NET</span><span class="sxs-lookup"><span data-stu-id="3f071-106">.NET</span></span>](documentdb-dotnet-application.md)
-> * [<span data-ttu-id="3f071-107">Node.JS</span><span class="sxs-lookup"><span data-stu-id="3f071-107">Node.js</span></span>](documentdb-nodejs-application.md)
-> * [<span data-ttu-id="3f071-108">Java</span><span class="sxs-lookup"><span data-stu-id="3f071-108">Java</span></span>](documentdb-java-application.md)
-> * [<span data-ttu-id="3f071-109">Python</span><span class="sxs-lookup"><span data-stu-id="3f071-109">Python</span></span>](documentdb-python-application.md)
+> * [<span data-ttu-id="d6237-106">.NET</span><span class="sxs-lookup"><span data-stu-id="d6237-106">.NET</span></span>](documentdb-dotnet-application.md)
+> * [<span data-ttu-id="d6237-107">Node.JS</span><span class="sxs-lookup"><span data-stu-id="d6237-107">Node.js</span></span>](documentdb-nodejs-application.md)
+> * [<span data-ttu-id="d6237-108">Java</span><span class="sxs-lookup"><span data-stu-id="d6237-108">Java</span></span>](documentdb-java-application.md)
+> * [<span data-ttu-id="d6237-109">Python</span><span class="sxs-lookup"><span data-stu-id="d6237-109">Python</span></span>](documentdb-python-application.md)
 > 
 > 
 
-<span data-ttu-id="3f071-110">Azure Cosmos DB를 효율적으로 활용하여 JSON 문서를 저장 및 쿼리할 수 있는 방법을 강조하기 위해 이 문서에서는 Azure Cosmos DB를 사용하여 todo 앱을 빌드하는 방법을 보여 주는 종합적인 연습을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-110">To highlight how you can efficiently leverage Azure Cosmos DB to store and query JSON documents, this article provides an end-to-end walk-through showing you how to build a todo app using Azure Cosmos DB.</span></span> <span data-ttu-id="3f071-111">작업은 Azure Cosmos DB에 JSON 문서로 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-111">The tasks will be stored as JSON documents in Azure Cosmos DB.</span></span>
+<span data-ttu-id="d6237-110">toohighlight이이 문서에서는 방법을 보여 주는 하는 종단 간 연습을 제공 수 효율적으로 Azure Cosmos DB toostore를 활용 하 고 JSON 문서를 쿼리 하는 방법 toobuild Azure Cosmos DB를 사용 하 여 todo 앱.</span><span class="sxs-lookup"><span data-stu-id="d6237-110">toohighlight how you can efficiently leverage Azure Cosmos DB toostore and query JSON documents, this article provides an end-to-end walk-through showing you how toobuild a todo app using Azure Cosmos DB.</span></span> <span data-ttu-id="d6237-111">hello 작업 Azure Cosmos DB에서 JSON 문서도 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-111">hello tasks will be stored as JSON documents in Azure Cosmos DB.</span></span>
 
-![이 자습서에서 만든 할 일 모음 MVC 웹 응용 프로그램의 스크린샷 - ASP NET MVC 단계별 자습서](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-image01.png)
+![Hello 할 일 목록 ASP NET MVC 자습서 단계별-이 자습서에서 만든 MVC 웹 응용 프로그램의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-image01.png)
 
-<span data-ttu-id="3f071-113">이 연습에서는 Azure Cosmos DB 서비스를 사용하여 Azure에서 호스트되는 ASP.NET MVC 웹 응용 프로그램의 데이터를 저장하고 액세스하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-113">This walk-through shows you how to use the Azure Cosmos DB service to store and access data from an ASP.NET MVC web application hosted on Azure.</span></span> <span data-ttu-id="3f071-114">ASP.NET MVC 구성 요소가 아닌 Azure Cosmos DB에만 집중하는 자습서를 찾는 경우 [Azure Cosmos DB C# 콘솔 응용 프로그램 빌드](documentdb-get-started.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3f071-114">If you're looking for a tutorial that focuses only on Azure Cosmos DB, and not the ASP.NET MVC components, see [Build an Azure Cosmos DB C# console application](documentdb-get-started.md).</span></span>
+<span data-ttu-id="d6237-113">이 연습에서는 toouse Azure에서 호스팅되는 ASP.NET MVC 웹 응용 프로그램에서 Azure Cosmos DB 서비스 toostore 및 액세스 데이터를 hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-113">This walk-through shows you how toouse hello Azure Cosmos DB service toostore and access data from an ASP.NET MVC web application hosted on Azure.</span></span> <span data-ttu-id="d6237-114">표시 되 면 Azure Cosmos DB에만 초점을 두는 자습서에 대 한 원하는 하지 hello ASP.NET MVC 구성 요소 [Azure Cosmos DB C# 콘솔 응용 프로그램을 작성할](documentdb-get-started.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-114">If you're looking for a tutorial that focuses only on Azure Cosmos DB, and not hello ASP.NET MVC components, see [Build an Azure Cosmos DB C# console application](documentdb-get-started.md).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="3f071-115">이 자습서에서는 이전에 ASP.NET MVC 및 Azure Websites를 사용해 본 경험이 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-115">This tutorial assumes that you have prior experience using ASP.NET MVC and Azure Websites.</span></span> <span data-ttu-id="3f071-116">ASP.NET 또는 [필수 도구](#_Toc395637760)를 처음 사용하는 경우 [GitHub][GitHub]에서 전체 샘플 프로젝트를 다운로드하고 이 샘플의 지침을 따르는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-116">If you are new to ASP.NET or the [prerequisite tools](#_Toc395637760), we recommend downloading the complete sample project from [GitHub][GitHub] and following the instructions in this sample.</span></span> <span data-ttu-id="3f071-117">프로젝트를 빌드하고 나면 이 문서를 검토하여 프로젝트의 컨텍스트에서 코드를 이해할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-117">Once you have it built, you can review this article to gain insight on the code in the context of the project.</span></span>
+> <span data-ttu-id="d6237-115">이 자습서에서는 이전에 ASP.NET MVC 및 Azure Websites를 사용해 본 경험이 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-115">This tutorial assumes that you have prior experience using ASP.NET MVC and Azure Websites.</span></span> <span data-ttu-id="d6237-116">새 tooASP.NET 또는 hello [필수 구성 요소 도구](#_Toc395637760)에서 hello 전체 샘플 프로젝트를 다운로드 하는 것이 좋습니다 [GitHub] [ GitHub] hello 지침에 따라 이 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-116">If you are new tooASP.NET or hello [prerequisite tools](#_Toc395637760), we recommend downloading hello complete sample project from [GitHub][GitHub] and following hello instructions in this sample.</span></span> <span data-ttu-id="d6237-117">를 만든 후 작성 된 것이 문서 toogain에 대 한 정보 hello 프로젝트의 hello 컨텍스트에서 hello 코드를 검토할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-117">Once you have it built, you can review this article toogain insight on hello code in hello context of hello project.</span></span>
 > 
 > 
 
-## <span data-ttu-id="3f071-118"><a name="_Toc395637760"></a>이 데이터베이스 자습서의 필수 조건</span><span class="sxs-lookup"><span data-stu-id="3f071-118"><a name="_Toc395637760"></a>Prerequisites for this database tutorial</span></span>
-<span data-ttu-id="3f071-119">이 문서의 지침을 따르기 전에 다음이 있는지 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-119">Before following the instructions in this article, you should ensure that you have the following:</span></span>
+## <span data-ttu-id="d6237-118"><a name="_Toc395637760"></a>이 데이터베이스 자습서의 필수 조건</span><span class="sxs-lookup"><span data-stu-id="d6237-118"><a name="_Toc395637760"></a>Prerequisites for this database tutorial</span></span>
+<span data-ttu-id="d6237-119">Hello이이 문서의 지침을 수행 하기 전에 hello 다음 있는지 확인 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-119">Before following hello instructions in this article, you should ensure that you have hello following:</span></span>
 
-* <span data-ttu-id="3f071-120">활성 Azure 계정.</span><span class="sxs-lookup"><span data-stu-id="3f071-120">An active Azure account.</span></span> <span data-ttu-id="3f071-121">계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-121">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="3f071-122">자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3f071-122">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
+* <span data-ttu-id="d6237-120">활성 Azure 계정.</span><span class="sxs-lookup"><span data-stu-id="d6237-120">An active Azure account.</span></span> <span data-ttu-id="d6237-121">계정이 없는 경우 몇 분 만에 평가판 계정을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-121">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="d6237-122">자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d6237-122">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
 
-    <span data-ttu-id="3f071-123">또는</span><span class="sxs-lookup"><span data-stu-id="3f071-123">OR</span></span>
+    <span data-ttu-id="d6237-123">또는</span><span class="sxs-lookup"><span data-stu-id="d6237-123">OR</span></span>
 
-    <span data-ttu-id="3f071-124">[Azure Cosmos DB 에뮬레이터](local-emulator.md)의 로컬 설치</span><span class="sxs-lookup"><span data-stu-id="3f071-124">A local installation of the [Azure Cosmos DB Emulator](local-emulator.md).</span></span>
-* <span data-ttu-id="3f071-125">[Visual Studio 2017](http://www.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="3f071-125">[Visual Studio 2017](http://www.visualstudio.com/).</span></span>  
-* <span data-ttu-id="3f071-126">Microsoft Azure SDK for .NET for Visual Studio 2017, Visual Studio 설치 관리자를 통해 사용 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-126">Microsoft Azure SDK for .NET for Visual Studio 2017, available through the Visual Studio Installer.</span></span>
+    <span data-ttu-id="d6237-124">Hello의 로컬 설치 [Azure Cosmos DB 에뮬레이터](local-emulator.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-124">A local installation of hello [Azure Cosmos DB Emulator](local-emulator.md).</span></span>
+* <span data-ttu-id="d6237-125">[Visual Studio 2017](http://www.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="d6237-125">[Visual Studio 2017](http://www.visualstudio.com/).</span></span>  
+* <span data-ttu-id="d6237-126">Microsoft Azure SDK for.NET에 대 한 Visual Studio 2017 년 hello Visual Studio 설치 관리자를 통해 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-126">Microsoft Azure SDK for .NET for Visual Studio 2017, available through hello Visual Studio Installer.</span></span>
 
-<span data-ttu-id="3f071-127">이 문서의 모든 스크린 샷은 Microsoft Visual Studio Community 2017을 사용하여 작성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-127">All the screen shots in this article have been taken using Microsoft Visual Studio Community 2017.</span></span> <span data-ttu-id="3f071-128">시스템이 다른 버전으로 구성된 경우 화면과 옵션이 일부 달라질 수 있지만 위의 필수 구성 요소를 충족하면 솔루션을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-128">If your system is configured with a different version it is possible that your screens and options won't match entirely, but if you meet the above prerequisites this solution should work.</span></span>
+<span data-ttu-id="d6237-127">Microsoft Visual Studio 커뮤니티 2017을 사용 하 여이 문서에서 모든 hello 스크린 샷 수행 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-127">All hello screen shots in this article have been taken using Microsoft Visual Studio Community 2017.</span></span> <span data-ttu-id="d6237-128">시스템 구성에 다른 버전으로 경우 것으로 화면과 옵션 완전히 일치 하지 않습니다 되지만 hello 위의 필수 구성 요소를 충족 하는 경우에이 솔루션 작동 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-128">If your system is configured with a different version it is possible that your screens and options won't match entirely, but if you meet hello above prerequisites this solution should work.</span></span>
 
-## <span data-ttu-id="3f071-129"><a name="_Toc395637761"></a>1단계: Azure Cosmos DB 데이터베이스 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="3f071-129"><a name="_Toc395637761"></a>Step 1: Create an Azure Cosmos DB database account</span></span>
-<span data-ttu-id="3f071-130">Azure Cosmos DB 계정을 만들어 시작해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-130">Let's start by creating an Azure Cosmos DB account.</span></span> <span data-ttu-id="3f071-131">Azure Cosmos DB용 SQL(DocumentDB) 계정이 이미 있거나 이 자습서에 Azure Cosmos DB 에뮬레이터를 사용하고 있는 경우 [새 ASP.NET MVC 응용 프로그램 만들기](#_Toc395637762)로 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-131">If you already have a SQL (DocumentDB) account for Azure Cosmos DB or if you are using the Azure Cosmos DB Emulator for this tutorial, you can skip to [Create a new ASP.NET MVC application](#_Toc395637762).</span></span>
+## <span data-ttu-id="d6237-129"><a name="_Toc395637761"></a>1단계: Azure Cosmos DB 데이터베이스 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="d6237-129"><a name="_Toc395637761"></a>Step 1: Create an Azure Cosmos DB database account</span></span>
+<span data-ttu-id="d6237-130">Azure Cosmos DB 계정을 만들어 시작해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-130">Let's start by creating an Azure Cosmos DB account.</span></span> <span data-ttu-id="d6237-131">경우 이미 Azure Cosmos DB에 대 한 SQL (DocumentDB) 계정이 또는 사용 하는 경우이 자습서에 대 한 Azure Cosmos DB 에뮬레이터 hello를 건너뛸 수 있습니다 너무[새 ASP.NET MVC 응용 프로그램 만들기](#_Toc395637762)합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-131">If you already have a SQL (DocumentDB) account for Azure Cosmos DB or if you are using hello Azure Cosmos DB Emulator for this tutorial, you can skip too[Create a new ASP.NET MVC application](#_Toc395637762).</span></span>
 
 [!INCLUDE [create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 [!INCLUDE [keys](../../includes/cosmos-db-keys.md)]
 
 <br/>
-<span data-ttu-id="3f071-132">이제 새 ASP.NET MVC 응용 프로그램을 처음부터 만드는 방법을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-132">We will now walk through how to create a new ASP.NET MVC application from the ground-up.</span></span> 
+<span data-ttu-id="d6237-132">이제 단계별로 어떻게 toocreate hello에서 새 ASP.NET MVC 응용 프로그램 명확 하 게 해제 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-132">We will now walk through how toocreate a new ASP.NET MVC application from hello ground-up.</span></span> 
 
-## <span data-ttu-id="3f071-133"><a name="_Toc395637762"></a>2단계: 새 ASP.NET MVC 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="3f071-133"><a name="_Toc395637762"></a>Step 2: Create a new ASP.NET MVC application</span></span>
+## <span data-ttu-id="d6237-133"><a name="_Toc395637762"></a>2단계: 새 ASP.NET MVC 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="d6237-133"><a name="_Toc395637762"></a>Step 2: Create a new ASP.NET MVC application</span></span>
 
-1. <span data-ttu-id="3f071-134">Visual Studio의 **파일** 메뉴에서 **새로 만들기**를 가리킨 후 **프로젝트**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-134">In Visual Studio, on the **File** menu, point to **New**, and then click **Project**.</span></span> <span data-ttu-id="3f071-135">**새 프로젝트** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-135">The **New Project** dialog box appears.</span></span>
+1. <span data-ttu-id="d6237-134">Hello에 Visual Studio에서 **파일** 메뉴 너무 가리킨**새로**, 클릭 하 고 **프로젝트**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-134">In Visual Studio, on hello **File** menu, point too**New**, and then click **Project**.</span></span> <span data-ttu-id="d6237-135">hello **새 프로젝트** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-135">hello **New Project** dialog box appears.</span></span>
 
-2. <span data-ttu-id="3f071-136">**프로젝트 형식** 창에서 **템플릿**, **Visual C#**, **웹**을 확장한 후 **ASP.NET 웹 응용 프로그램**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-136">In the **Project types** pane, expand **Templates**, **Visual C#**, **Web**, and then select **ASP.NET Web Application**.</span></span>
+2. <span data-ttu-id="d6237-136">Hello에 **프로젝트 형식** 창 확장 **템플릿**, **Visual C#**, **웹**를 선택한 후 **ASP.NET 웹 응용 프로그램** .</span><span class="sxs-lookup"><span data-stu-id="d6237-136">In hello **Project types** pane, expand **Templates**, **Visual C#**, **Web**, and then select **ASP.NET Web Application**.</span></span>
 
-      ![ASP.NET 웹 응용 프로그램 프로젝트 유형이 강조 표시된 새 프로젝트 대화 상자의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-project-dialog.png)
+      ![강조 표시 하는 hello ASP.NET 웹 응용 프로그램 프로젝트 형식과 함께 hello 새 프로젝트 대화 상자 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-project-dialog.png)
 
-3. <span data-ttu-id="3f071-138">**이름** 상자에 프로젝트의 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-138">In the **Name** box, type the name of the project.</span></span> <span data-ttu-id="3f071-139">이 자습서에서는 "todo"라는 이름을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-139">This tutorial uses the name "todo".</span></span> <span data-ttu-id="3f071-140">다른 이름을 사용하도록 선택한 경우에는 이 자습서에서 todo 네임스페이스를 지칭할 때마다 지정한 응용 프로그램 이름을 사용하도록 제공된 코드 샘플을 조정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-140">If you choose to use something other than this, then wherever this tutorial talks about the todo namespace, you need to adjust the provided code samples to use whatever you named your application.</span></span> 
-4. <span data-ttu-id="3f071-141">**찾아보기**를 클릭하여 프로젝트를 만들 폴더로 이동한 후 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-141">Click **Browse** to navigate to the folder where you would like to create the project, and then click **OK**.</span></span>
+3. <span data-ttu-id="d6237-138">Hello에 **이름** 상자 hello 프로젝트의 hello 이름을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-138">In hello **Name** box, type hello name of hello project.</span></span> <span data-ttu-id="d6237-139">이 자습서에서는 hello 이름 "todo"를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-139">This tutorial uses hello name "todo".</span></span> <span data-ttu-id="d6237-140">을 선택 하면 toouse이 아닌 다른 hello todo 네임 스페이스에 대 한이 자습서 발언 때마다 해야 tooadjust hello 제공 된 코드 샘플 toouse 응용 프로그램이 지정한 이름을.</span><span class="sxs-lookup"><span data-stu-id="d6237-140">If you choose toouse something other than this, then wherever this tutorial talks about hello todo namespace, you need tooadjust hello provided code samples toouse whatever you named your application.</span></span> 
+4. <span data-ttu-id="d6237-141">클릭 **찾아보기** toonavigate toohello 폴더 위치 toocreate hello 프로젝트를 선택한 다음 클릭 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-141">Click **Browse** toonavigate toohello folder where you would like toocreate hello project, and then click **OK**.</span></span>
    
-      <span data-ttu-id="3f071-142">**새 ASP.NET 웹 응용 프로그램** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-142">The **New ASP.NET Web Application** dialog box appears.</span></span>
+      <span data-ttu-id="d6237-142">hello **새 ASP.NET 웹 응용 프로그램** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-142">hello **New ASP.NET Web Application** dialog box appears.</span></span>
    
-    ![새 ASP.NET 웹 응용 프로그램 대화 상자 스크린샷(MVC 응용 프로그램 템플릿이 강조 표시됨)](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-MVC.png)
-5. <span data-ttu-id="3f071-144">템플릿 창에서 **MVC**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-144">In the templates pane, select **MVC**.</span></span>
+    ![강조 표시 하는 hello MVC 응용 프로그램 템플릿 사용 하 여 hello 새 ASP.NET 웹 응용 프로그램 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-MVC.png)
+5. <span data-ttu-id="d6237-144">Hello 템플릿 창에서 선택 **MVC**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-144">In hello templates pane, select **MVC**.</span></span>
 
-6. <span data-ttu-id="3f071-145">**확인** 을 클릭하면 Visual Studio에서 빈 ASP.NET MVC 템플릿을 스캐폴딩합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-145">Click **OK** and let Visual Studio do its thing around scaffolding the empty ASP.NET MVC template.</span></span> 
+6. <span data-ttu-id="d6237-145">클릭 **확인** 주위 스 캐 폴딩 hello 빈 ASP.NET MVC 템플릿에서 해당 작업을 수행 하는 Visual Studio를 사용 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-145">Click **OK** and let Visual Studio do its thing around scaffolding hello empty ASP.NET MVC template.</span></span> 
 
           
-7. <span data-ttu-id="3f071-146">Visual Studio에서 상용구 MVC 응용 프로그램을 만들면 로컬에서 실행할 수 있는 빈 ASP.NET 응용 프로그램을 갖게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-146">Once Visual Studio has finished creating the boilerplate MVC application you have an empty ASP.NET application that you can run locally.</span></span>
+7. <span data-ttu-id="d6237-146">Visual Studio 완료 되 면 hello 상용구 MVC 응용 프로그램을 만드는 해야 빈 ASP.NET 응용 프로그램을 로컬로 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-146">Once Visual Studio has finished creating hello boilerplate MVC application you have an empty ASP.NET application that you can run locally.</span></span>
    
-    <span data-ttu-id="3f071-147">모두 ASP.NET "Hello World" 응용 프로그램을 본 적이 있다고 확신하므로 프로젝트 로컬 실행은 건너뛰겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-147">We'll skip running the project locally because I'm sure we've all seen the ASP.NET "Hello World" application.</span></span> <span data-ttu-id="3f071-148">바로 이 프로젝트에 Azure Cosmos DB를 추가하고 응용 프로그램을 작성하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-148">Let's go straight to adding Azure Cosmos DB to this project and building our application.</span></span>
+    <span data-ttu-id="d6237-147">ASP.NET "Hello World" 모든 표시 hello 이유임 확실 하기 때문에 로컬로 실행 중인 hello 프로젝트 건너뜁니다 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-147">We'll skip running hello project locally because I'm sure we've all seen hello ASP.NET "Hello World" application.</span></span> <span data-ttu-id="d6237-148">직선 tooadding Azure Cosmos DB toothis 프로젝트 및 응용 프로그램을 빌드 해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-148">Let's go straight tooadding Azure Cosmos DB toothis project and building our application.</span></span>
 
-## <span data-ttu-id="3f071-149"><a name="_Toc395637767"></a>3단계: MVC 웹 응용 프로그램 프로젝트에 Azure Cosmos DB 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-149"><a name="_Toc395637767"></a>Step 3: Add Azure Cosmos DB to your MVC web application project</span></span>
-<span data-ttu-id="3f071-150">이 솔루션에 필요한 대부분의 ASP.NET MVC 배관을 만들었으므로 이제 이 자습서의 실제 목적으로 돌아가 MVC 웹 응용 프로그램에 Azure Cosmos DB를 추가해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-150">Now that we have most of the ASP.NET MVC plumbing that we need for this solution, let's get to the real purpose of this tutorial, adding Azure Cosmos DB to our MVC web application.</span></span>
+## <span data-ttu-id="d6237-149"><a name="_Toc395637767"></a>3 단계: Azure Cosmos DB tooyour MVC 웹 응용 프로그램 프로젝트 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-149"><a name="_Toc395637767"></a>Step 3: Add Azure Cosmos DB tooyour MVC web application project</span></span>
+<span data-ttu-id="d6237-150">이제 대부분이이 솔루션에 대 한 hello ASP.NET MVC 배관의 했으므로 Azure Cosmos DB tooour MVC 웹 응용 프로그램을 추가 하는이 자습서에서는 주요 목적은 toohello 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-150">Now that we have most of hello ASP.NET MVC plumbing that we need for this solution, let's get toohello real purpose of this tutorial, adding Azure Cosmos DB tooour MVC web application.</span></span>
 
-1. <span data-ttu-id="3f071-151">Azure Cosmos DB .NET SDK는 패키지되어 NuGet 패키지로 배포되며,</span><span class="sxs-lookup"><span data-stu-id="3f071-151">The Azure Cosmos DB .NET SDK is packaged and distributed as a NuGet package.</span></span> <span data-ttu-id="3f071-152">Visual Studio에서 NuGet 패키지를 다운로드하려면 **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭한 후 **NuGet 패키지 관리**를 클릭하여 Visual Studio에서 NuGet 패키지 관리자를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-152">To get the NuGet package in Visual Studio, use the NuGet package manager in Visual Studio by right-clicking on the project in **Solution Explorer** and then clicking **Manage NuGet Packages**.</span></span>
+1. <span data-ttu-id="d6237-151">hello Cosmos DB AZURE.NET SDK가 패키징되 어 NuGet 패키지로 배포 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-151">hello Azure Cosmos DB .NET SDK is packaged and distributed as a NuGet package.</span></span> <span data-ttu-id="d6237-152">tooget Visual Studio에서 NuGet 패키지를 hello, Visual Studio에서 hello NuGet 패키지 관리자를 사용 하 여 hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 여 **솔루션 탐색기** 클릭 한 다음 **NuGet 패키지 관리**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-152">tooget hello NuGet package in Visual Studio, use hello NuGet package manager in Visual Studio by right-clicking on hello project in **Solution Explorer** and then clicking **Manage NuGet Packages**.</span></span>
    
-    ![NuGet 패키지 관리가 강조 표시된 솔루션 탐색기 내 웹 응용 프로그램 프로젝트에 대한 마우스 오른쪽 클릭 옵션의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-manage-nuget.png)
+    ![Hello 스크린 샷 단추로 NuGet 패키지 관리 강조 표시 된 솔루션 탐색기에서 hello 웹 응용 프로그램 프로젝트에 대 한 옵션을 클릭 합니다.](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-manage-nuget.png)
    
-    <span data-ttu-id="3f071-154">**NuGet 패키지 관리** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-154">The **Manage NuGet Packages** dialog box appears.</span></span>
-2. <span data-ttu-id="3f071-155">NuGet **찾아보기** 상자에 ***Azure DocumentDB***를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-155">In the NuGet **Browse** box, type ***Azure DocumentDB***.</span></span> <span data-ttu-id="3f071-156">(패키지 이름은 Azure Cosmos DB로 업데이트되지 않았습니다.)</span><span class="sxs-lookup"><span data-stu-id="3f071-156">(The package name has not been updated to Azure Cosmos DB.)</span></span>
+    <span data-ttu-id="d6237-154">hello **NuGet 패키지 관리** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-154">hello **Manage NuGet Packages** dialog box appears.</span></span>
+2. <span data-ttu-id="d6237-155">Hello NuGet에서에서 **찾아보기** 상자에서 입력 ***Azure DocumentDB***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-155">In hello NuGet **Browse** box, type ***Azure DocumentDB***.</span></span> <span data-ttu-id="d6237-156">(hello 패키지 이름을 업데이트 tooAzure Cosmos DB 되지 않았습니다.)</span><span class="sxs-lookup"><span data-stu-id="d6237-156">(hello package name has not been updated tooAzure Cosmos DB.)</span></span>
    
-    <span data-ttu-id="3f071-157">결과에서 **Microsoft.Azure.DocumentDB by Microsoft** 패키지를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-157">From the results, install the **Microsoft.Azure.DocumentDB by Microsoft** package.</span></span> <span data-ttu-id="3f071-158">그러면 Azure Cosmos DB 패키지 및 모든 종속성(예: Newtonsoft.Json)이 다운로드되어 설치됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-158">This will download and install the Azure Cosmos DB package as well as all dependencies, such as Newtonsoft.Json.</span></span> <span data-ttu-id="3f071-159">**미리 보기** 창에서 **확인**을 클릭하고 **라이선스 승인** 창에서 **동의**를 클릭하여 설치를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-159">Click **OK** in the **Preview** window, and **I Accept** in the **License Acceptance** window to complete the install.</span></span>
+    <span data-ttu-id="d6237-157">Hello 결과 통해 설치 hello **microsoft Microsoft.Azure.DocumentDB** 패키지 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-157">From hello results, install hello **Microsoft.Azure.DocumentDB by Microsoft** package.</span></span> <span data-ttu-id="d6237-158">이 다운로드 하 여 Newtonsoft.Json 등 모든 종속성 뿐 아니라 hello Azure Cosmos DB 패키지를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-158">This will download and install hello Azure Cosmos DB package as well as all dependencies, such as Newtonsoft.Json.</span></span> <span data-ttu-id="d6237-159">클릭 **확인** hello에 **미리 보기** 창 및 **동의** hello에 **라이선스 승인** 창 toocomplete hello 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-159">Click **OK** in hello **Preview** window, and **I Accept** in hello **License Acceptance** window toocomplete hello install.</span></span>
    
-    ![Microsoft Azure DocumentDB Client Library가 강조 표시된 NuGet 패키지 관리 창의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-install-nuget.png)
+    ![화면 샷 hello NuGet 패키지 관리 창 hello 강조 표시 하는 Microsoft Azure DocumentDB 클라이언트 라이브러리](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-install-nuget.png)
    
-      <span data-ttu-id="3f071-161">또는 패키지 관리자 콘솔을 사용하여 패키지를 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-161">Alternatively you can use the Package Manager Console to install the package.</span></span> <span data-ttu-id="3f071-162">이렇게 하려면 **도구** 메뉴에서 **NuGet 패키지 관리자**, **패키지 관리자 콘솔**을 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-162">To do so, on the **Tools** menu, click **NuGet Package Manager**, and then click **Package Manager Console**.</span></span> <span data-ttu-id="3f071-163">프롬프트에 다음을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-163">At the prompt, type the following.</span></span>
+      <span data-ttu-id="d6237-161">또는 hello 패키지 관리자 콘솔 tooinstall hello 패키지를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-161">Alternatively you can use hello Package Manager Console tooinstall hello package.</span></span> <span data-ttu-id="d6237-162">toodo hello에 너무 **도구** 메뉴를 클릭 하 여 **NuGet 패키지 관리자**, 클릭 하 고 **패키지 관리자 콘솔**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-162">toodo so, on hello **Tools** menu, click **NuGet Package Manager**, and then click **Package Manager Console**.</span></span> <span data-ttu-id="d6237-163">Hello 프롬프트 hello 다음을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-163">At hello prompt, type hello following.</span></span>
    
         Install-Package Microsoft.Azure.DocumentDB
         
-3. <span data-ttu-id="3f071-164">패키지가 설치되고 나면 Visual Studio 솔루션은 Microsoft.Azure.Documents.Client 및 Newtonsoft.Json이라는 두 개의 새 참조가 추가된 상태로 다음과 유사합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-164">Once the package is installed, your Visual Studio solution should resemble the following with two new references added, Microsoft.Azure.Documents.Client and Newtonsoft.Json.</span></span>
+3. <span data-ttu-id="d6237-164">Hello 패키지를 설치한 후 Visual Studio 솔루션에 두 개의 새 참조 추가, Microsoft.Azure.Documents.Client 및 Newtonsoft.Json을 사용 하 여 hello 다음을 비슷해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-164">Once hello package is installed, your Visual Studio solution should resemble hello following with two new references added, Microsoft.Azure.Documents.Client and Newtonsoft.Json.</span></span>
    
-    ![솔루션 탐색기에서 JSON 데이터 프로젝트에 추가된 두 참조의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-added-references.png)
+    ![화면 샷 hello 두 개의 참조 솔루션 탐색기에서 toohello JSON 데이터 프로젝트 추가](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-added-references.png)
 
-## <span data-ttu-id="3f071-166"><a name="_Toc395637763"></a>4단계: ASP.NET MVC 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="3f071-166"><a name="_Toc395637763"></a>Step 4: Set up the ASP.NET MVC application</span></span>
-<span data-ttu-id="3f071-167">이제 이 MVC 응용 프로그램에 모델, 뷰 및 컨트롤러를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-167">Now let's add the models, views, and controllers to this MVC application:</span></span>
+## <span data-ttu-id="d6237-166"><a name="_Toc395637763"></a>4 단계: hello ASP.NET MVC 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="d6237-166"><a name="_Toc395637763"></a>Step 4: Set up hello ASP.NET MVC application</span></span>
+<span data-ttu-id="d6237-167">이제 hello 모델, 뷰 및 컨트롤러 toothis MVC 응용 프로그램을 추가 해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-167">Now let's add hello models, views, and controllers toothis MVC application:</span></span>
 
-* <span data-ttu-id="3f071-168">[모델 추가](#_Toc395637764).</span><span class="sxs-lookup"><span data-stu-id="3f071-168">[Add a model](#_Toc395637764).</span></span>
-* <span data-ttu-id="3f071-169">[컨트롤러 추가](#_Toc395637765).</span><span class="sxs-lookup"><span data-stu-id="3f071-169">[Add a controller](#_Toc395637765).</span></span>
-* <span data-ttu-id="3f071-170">[뷰 추가](#_Toc395637766).</span><span class="sxs-lookup"><span data-stu-id="3f071-170">[Add views](#_Toc395637766).</span></span>
+* <span data-ttu-id="d6237-168">[모델 추가](#_Toc395637764).</span><span class="sxs-lookup"><span data-stu-id="d6237-168">[Add a model](#_Toc395637764).</span></span>
+* <span data-ttu-id="d6237-169">[컨트롤러 추가](#_Toc395637765).</span><span class="sxs-lookup"><span data-stu-id="d6237-169">[Add a controller](#_Toc395637765).</span></span>
+* <span data-ttu-id="d6237-170">[뷰 추가](#_Toc395637766).</span><span class="sxs-lookup"><span data-stu-id="d6237-170">[Add views](#_Toc395637766).</span></span>
 
-### <span data-ttu-id="3f071-171"><a name="_Toc395637764"></a>JSON 데이터 모델 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-171"><a name="_Toc395637764"></a>Add a JSON data model</span></span>
-<span data-ttu-id="3f071-172">먼저 MVC의 **M** 인 모델을 만들겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-172">Let's begin by creating the **M** in MVC, the model.</span></span> 
+### <span data-ttu-id="d6237-171"><a name="_Toc395637764"></a>JSON 데이터 모델 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-171"><a name="_Toc395637764"></a>Add a JSON data model</span></span>
+<span data-ttu-id="d6237-172">Hello를 만들어 보겠습니다 **M** mvc에서 모델을 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-172">Let's begin by creating hello **M** in MVC, hello model.</span></span> 
 
-1. <span data-ttu-id="3f071-173">**솔루션 탐색기**에서 **Models** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **클래스**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-173">In **Solution Explorer**, right-click the **Models** folder, click **Add**, and then click **Class**.</span></span>
+1. <span data-ttu-id="d6237-173">**솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **모델** 폴더를 클릭 **추가**, 클릭 하 고 **클래스**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-173">In **Solution Explorer**, right-click hello **Models** folder, click **Add**, and then click **Class**.</span></span>
    
-      <span data-ttu-id="3f071-174">**새 항목 추가** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-174">The **Add New Item** dialog box appears.</span></span>
-2. <span data-ttu-id="3f071-175">새 클래스의 이름을 **Item.cs**로 지정하고 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-175">Name your new class **Item.cs** and click **Add**.</span></span> 
-3. <span data-ttu-id="3f071-176">이 새 **Item.cs** 파일에서 마지막 *using 문*뒤에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-176">In this new **Item.cs** file, add the following after the last *using statement*.</span></span>
+      <span data-ttu-id="d6237-174">hello **새 항목 추가** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-174">hello **Add New Item** dialog box appears.</span></span>
+2. <span data-ttu-id="d6237-175">새 클래스의 이름을 **Item.cs**로 지정하고 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-175">Name your new class **Item.cs** and click **Add**.</span></span> 
+3. <span data-ttu-id="d6237-176">이 새로운 **Item.cs** 파일, 마지막 hello hello 뒤에 다음 추가 *문을 사용 하 여*합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-176">In this new **Item.cs** file, add hello following after hello last *using statement*.</span></span>
    
         using Newtonsoft.Json;
-4. <span data-ttu-id="3f071-177">이제 이 코드를</span><span class="sxs-lookup"><span data-stu-id="3f071-177">Now replace this code</span></span> 
+4. <span data-ttu-id="d6237-177">이제 이 코드를</span><span class="sxs-lookup"><span data-stu-id="d6237-177">Now replace this code</span></span> 
    
         public class Item
         {
         }
    
-    <span data-ttu-id="3f071-178">다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-178">with the following code.</span></span>
+    <span data-ttu-id="d6237-178">코드 다음 안녕하세요와.</span><span class="sxs-lookup"><span data-stu-id="d6237-178">with hello following code.</span></span>
    
         public class Item
         {
@@ -149,90 +149,90 @@ ms.lasthandoff: 08/18/2017
             public bool Completed { get; set; }
         }
    
-    <span data-ttu-id="3f071-179">Azure Cosmos DB의 모든 데이터가 네트워크를 통해 전달되고 JSON으로 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-179">All data in Azure Cosmos DB is passed over the wire and stored as JSON.</span></span> <span data-ttu-id="3f071-180">JSON.NET에서 개체를 직렬화/역직렬화하는 방식을 제어하기 위해 방금 만든 **Item** 클래스에서 본 것처럼 **JsonProperty** 특성을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-180">To control the way your objects are serialized/deserialized by JSON.NET you can use the **JsonProperty** attribute as demonstrated in the **Item** class we just created.</span></span> <span data-ttu-id="3f071-181">꼭 **필요한** 과정은 아니지만 저는 제가 만든 속성이 JSON camelCase 명명 규칙을 따르는지 확인하고 싶습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-181">You don't **have** to do this but I want to ensure that my properties follow the JSON camelCase naming conventions.</span></span> 
+    <span data-ttu-id="d6237-179">Azure Cosmos DB에서 모든 데이터는 hello 네트워크를 통해 전달 되 고 JSON으로 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-179">All data in Azure Cosmos DB is passed over hello wire and stored as JSON.</span></span> <span data-ttu-id="d6237-180">개체는 사용할 수 있습니다 JSON.NET 직렬화/역직렬화 toocontrol hello 방식으로 hello **JsonProperty** hello에서와 같이 특성 **항목** 방금 만든 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-180">toocontrol hello way your objects are serialized/deserialized by JSON.NET you can use hello **JsonProperty** attribute as demonstrated in hello **Item** class we just created.</span></span> <span data-ttu-id="d6237-181">그렇지 않으면 **가** toodo 했지만이 원하는 tooensure 내 속성 hello JSON camelCase 명명 규칙을 따르도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-181">You don't **have** toodo this but I want tooensure that my properties follow hello JSON camelCase naming conventions.</span></span> 
    
-    <span data-ttu-id="3f071-182">JSON의 경우 속성 이름 형식을 제어할 수 있을 뿐만 아니라, **Description** 속성에 대해 했던 것처럼 .NET 속성의 이름을 완전히 다시 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-182">Not only can you control the format of the property name when it goes into JSON, but you can entirely rename your .NET properties like I did with the **Description** property.</span></span> 
+    <span data-ttu-id="d6237-182">뿐만 아니라을 조정할 수 hello 속성 이름의 hello 형식은 JSON에 있지만 hello로 했던 처럼.NET 속성을 완전히 바꿀 수 있습니다 **설명** 속성입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-182">Not only can you control hello format of hello property name when it goes into JSON, but you can entirely rename your .NET properties like I did with hello **Description** property.</span></span> 
 
-### <span data-ttu-id="3f071-183"><a name="_Toc395637765"></a>컨트롤러 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-183"><a name="_Toc395637765"></a>Add a controller</span></span>
-<span data-ttu-id="3f071-184">**M** 작업을 마쳤으므로 이제 MVC의 **C**인 컨트롤러 클래스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-184">That takes care of the **M**, now let's create the **C** in MVC, a controller class.</span></span>
+### <span data-ttu-id="d6237-183"><a name="_Toc395637765"></a>컨트롤러 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-183"><a name="_Toc395637765"></a>Add a controller</span></span>
+<span data-ttu-id="d6237-184">Hello의 담당 **M**, 이제 hello를 만들어 보겠습니다 **C** mvc에서 컨트롤러 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-184">That takes care of hello **M**, now let's create hello **C** in MVC, a controller class.</span></span>
 
-1. <span data-ttu-id="3f071-185">**솔루션 탐색기**에서 **Controllers** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **컨트롤러**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-185">In **Solution Explorer**, right-click the **Controllers** folder, click **Add**, and then click **Controller**.</span></span>
+1. <span data-ttu-id="d6237-185">**솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **컨트롤러** 폴더를 클릭 **추가**, 클릭 하 고 **컨트롤러**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-185">In **Solution Explorer**, right-click hello **Controllers** folder, click **Add**, and then click **Controller**.</span></span>
    
-    <span data-ttu-id="3f071-186">**스캐폴드 추가** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-186">The **Add Scaffold** dialog box appears.</span></span>
-2. <span data-ttu-id="3f071-187">**MVC 5 컨트롤러 - 비어 있음**을 선택한 후 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-187">Select **MVC 5 Controller - Empty** and then click **Add**.</span></span>
+    <span data-ttu-id="d6237-186">hello **추가 스 캐 폴드** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-186">hello **Add Scaffold** dialog box appears.</span></span>
+2. <span data-ttu-id="d6237-187">**MVC 5 컨트롤러 - 비어 있음**을 선택한 후 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-187">Select **MVC 5 Controller - Empty** and then click **Add**.</span></span>
    
-    ![MVC 5 컨트롤러 - 비어 있음 옵션이 강조 표시된 스캐폴드 추가 대화 상자의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-controller-add-scaffold.png)
-3. <span data-ttu-id="3f071-189">새 컨트롤러의 이름을 **ItemController**</span><span class="sxs-lookup"><span data-stu-id="3f071-189">Name your new Controller, **ItemController.**</span></span>
+    ![MVC 5 컨트롤러 강조 표시 하는 빈 옵션 hello로 hello 스 캐 폴드 추가 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-controller-add-scaffold.png)
+3. <span data-ttu-id="d6237-189">새 컨트롤러의 이름을 **ItemController**</span><span class="sxs-lookup"><span data-stu-id="d6237-189">Name your new Controller, **ItemController.**</span></span>
    
-    ![컨트롤러 추가 대화 상자의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-controller.png)
+    ![Hello 컨트롤러 추가 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-controller.png)
    
-    <span data-ttu-id="3f071-191">파일을 만들고 나면 Visual Studio 솔루션은 **솔루션 탐색기**에 새 ItemController.cs 파일이 있는 상태로 다음과 유사합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-191">Once the file is created, your Visual Studio solution should resemble the following with the new ItemController.cs file in **Solution Explorer**.</span></span> <span data-ttu-id="3f071-192">이전에 만든 새 Item.cs 파일도 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-192">The new Item.cs file created earlier is also shown.</span></span>
+    <span data-ttu-id="d6237-191">Visual Studio 솔루션에 새 ItemController.cs 파일로 hello hello 다음과 같이 해야 hello 파일을 만든 후 **솔루션 탐색기**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-191">Once hello file is created, your Visual Studio solution should resemble hello following with hello new ItemController.cs file in **Solution Explorer**.</span></span> <span data-ttu-id="d6237-192">앞에서 만든 hello 새 Item.cs 파일 정보도 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-192">hello new Item.cs file created earlier is also shown.</span></span>
    
-    ![Visual Studio 솔루션의 스크린샷 - 새 ItemController.cs 파일 및 Item.cs 파일이 강조 표시된 솔루션 탐색기](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-item-solution-explorer.png)
+    ![Hello Visual Studio 솔루션-hello 새 ItemController.cs 파일과 Item.cs 파일 강조 표시 된 솔루션 탐색기의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-new-item-solution-explorer.png)
    
-    <span data-ttu-id="3f071-194">나중에 돌아올 것이므로 ItemController.cs를 닫아도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-194">You can close ItemController.cs, we'll come back to it later.</span></span> 
+    <span data-ttu-id="d6237-194">ItemController.cs 닫을 수 있습니다, 다시 tooit 나중 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-194">You can close ItemController.cs, we'll come back tooit later.</span></span> 
 
-### <span data-ttu-id="3f071-195"><a name="_Toc395637766"></a>뷰 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-195"><a name="_Toc395637766"></a>Add views</span></span>
-<span data-ttu-id="3f071-196">이제 MVC의 **V** 인 뷰를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-196">Now, let's create the **V** in MVC, the views:</span></span>
+### <span data-ttu-id="d6237-195"><a name="_Toc395637766"></a>뷰 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-195"><a name="_Toc395637766"></a>Add views</span></span>
+<span data-ttu-id="d6237-196">이제 hello를 만들어 보겠습니다 **V** mvc에서는 뷰 hello:</span><span class="sxs-lookup"><span data-stu-id="d6237-196">Now, let's create hello **V** in MVC, hello views:</span></span>
 
-* <span data-ttu-id="3f071-197">[항목 인덱스 뷰 추가](#AddItemIndexView).</span><span class="sxs-lookup"><span data-stu-id="3f071-197">[Add an Item Index view](#AddItemIndexView).</span></span>
-* <span data-ttu-id="3f071-198">[새 항목 뷰 추가](#AddNewIndexView).</span><span class="sxs-lookup"><span data-stu-id="3f071-198">[Add a New Item view](#AddNewIndexView).</span></span>
-* <span data-ttu-id="3f071-199">[항목 편집 뷰 추가](#_Toc395888515).</span><span class="sxs-lookup"><span data-stu-id="3f071-199">[Add an Edit Item view](#_Toc395888515).</span></span>
+* <span data-ttu-id="d6237-197">[항목 인덱스 뷰 추가](#AddItemIndexView).</span><span class="sxs-lookup"><span data-stu-id="d6237-197">[Add an Item Index view](#AddItemIndexView).</span></span>
+* <span data-ttu-id="d6237-198">[새 항목 뷰 추가](#AddNewIndexView).</span><span class="sxs-lookup"><span data-stu-id="d6237-198">[Add a New Item view](#AddNewIndexView).</span></span>
+* <span data-ttu-id="d6237-199">[항목 편집 뷰 추가](#_Toc395888515).</span><span class="sxs-lookup"><span data-stu-id="d6237-199">[Add an Edit Item view](#_Toc395888515).</span></span>
 
-#### <span data-ttu-id="3f071-200"><a name="AddItemIndexView"></a>항목 인덱스 뷰 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-200"><a name="AddItemIndexView"></a>Add an Item Index view</span></span>
-1. <span data-ttu-id="3f071-201">**솔루션 탐색기**에서 **Views** 폴더를 확장하고 앞에서 **ItemController**를 추가할 때 Visual Studio에서 만들어진 빈 **Item** 폴더를 마우스 오른쪽 단추로 클릭하고 **추가**, **보기**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-201">In **Solution Explorer**, expand the **Views**  folder, right-click the empty **Item** folder that Visual Studio created for you when you added the **ItemController** earlier, click **Add**, and then click **View**.</span></span>
+#### <span data-ttu-id="d6237-200"><a name="AddItemIndexView"></a>항목 인덱스 뷰 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-200"><a name="AddItemIndexView"></a>Add an Item Index view</span></span>
+1. <span data-ttu-id="d6237-201">**솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 hello 빈 **항목** hello를 추가 했을 때 Visual Studio를 만든 폴더에  **ItemController** 이전에 클릭 **추가**, 클릭 하 고 **보기**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-201">In **Solution Explorer**, expand hello **Views**  folder, right-click hello empty **Item** folder that Visual Studio created for you when you added hello **ItemController** earlier, click **Add**, and then click **View**.</span></span>
    
-    ![뷰 추가 명령이 강조 표시된 Visual Studio에서 만든 항목 폴더를 보여 주는 솔루션 탐색기의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view.png)
-2. <span data-ttu-id="3f071-203">**뷰 추가** 대화 상자에서 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-203">In the **Add View** dialog box, do the following:</span></span>
+    ![Visual Studio 강조 표시 하는 hello 뷰 추가 명령을 사용 하 여 만든 hello 항목 폴더를 나타내는 솔루션 탐색기의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view.png)
+2. <span data-ttu-id="d6237-203">Hello에 **뷰 추가** 대화 상자에서 다음 hello지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-203">In hello **Add View** dialog box, do hello following:</span></span>
    
-   * <span data-ttu-id="3f071-204">**뷰 이름** 상자에 ***인덱스***를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-204">In the **View name** box, type ***Index***.</span></span>
-   * <span data-ttu-id="3f071-205">**템플릿** 상자에서 ***목록***을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-205">In the **Template** box, select ***List***.</span></span>
-   * <span data-ttu-id="3f071-206">**모델 클래스** 상자에서 ***항목(todo.Models)***을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-206">In the **Model class** box, select ***Item (todo.Models)***.</span></span>
-   * <span data-ttu-id="3f071-207">레이아웃 페이지 상자에 ***~/Views/Shared/_Layout.cshtml***을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-207">In the layout page box, type ***~/Views/Shared/_Layout.cshtml***.</span></span>
+   * <span data-ttu-id="d6237-204">Hello에 **뷰 이름** 상자에서 입력 ***인덱스***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-204">In hello **View name** box, type ***Index***.</span></span>
+   * <span data-ttu-id="d6237-205">Hello에 **템플릿** 상자 ***목록***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-205">In hello **Template** box, select ***List***.</span></span>
+   * <span data-ttu-id="d6237-206">Hello에 **모델 클래스** 상자 ***항목 (할 일입니다. 모델)***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-206">In hello **Model class** box, select ***Item (todo.Models)***.</span></span>
+   * <span data-ttu-id="d6237-207">Hello 레이아웃 페이지 상자에 입력 ***~/Views/Shared/_Layout.cshtml***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-207">In hello layout page box, type ***~/Views/Shared/_Layout.cshtml***.</span></span>
      
-   ![뷰 추가 대화 상자를 보여주는 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view-dialog.png)
-3. <span data-ttu-id="3f071-209">이러한 값이 모두 설정된 후 **추가** 를 클릭하면 Visual Studio에서 새 템플릿 뷰를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-209">Once all these values are set, click **Add** and let Visual Studio create a new template view.</span></span> <span data-ttu-id="3f071-210">완료되면 만들어진 cshtml 파일이 열립니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-210">Once it is done, it will open the cshtml file  that was created.</span></span> <span data-ttu-id="3f071-211">나중에 돌아올 것이므로 Visual Studio에서 해당 파일을 닫아도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-211">We can close that file in Visual Studio as we will come back to it later.</span></span>
+   ![표시 된 hello 뷰 추가 대화 상자 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-add-view-dialog.png)
+3. <span data-ttu-id="d6237-209">이러한 값이 모두 설정된 후 **추가** 를 클릭하면 Visual Studio에서 새 템플릿 뷰를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-209">Once all these values are set, click **Add** and let Visual Studio create a new template view.</span></span> <span data-ttu-id="d6237-210">작업이 완료 되 면 만든 hello cshtml 파일이 열립니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-210">Once it is done, it will open hello cshtml file  that was created.</span></span> <span data-ttu-id="d6237-211">우리는 나중에 다시 tooit 대로 Visual Studio에서 해당 파일을 닫을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-211">We can close that file in Visual Studio as we will come back tooit later.</span></span>
 
-#### <span data-ttu-id="3f071-212"><a name="AddNewIndexView"></a>새 항목 뷰 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-212"><a name="AddNewIndexView"></a>Add a New Item view</span></span>
-<span data-ttu-id="3f071-213">**항목 인덱스** 뷰를 만든 방법과 유사하게 이제 새 **항목**을 만들기 위한 새 뷰를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-213">Similar to how we created an **Item Index** view, we will now create a new view for creating new **Items**.</span></span>
+#### <span data-ttu-id="d6237-212"><a name="AddNewIndexView"></a>새 항목 뷰 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-212"><a name="AddNewIndexView"></a>Add a New Item view</span></span>
+<span data-ttu-id="d6237-213">만든 비슷한 toohow는 **항목 인덱스** 보기를 지금 만듭니다 새로 만들기에 대 한 새 보기 **항목**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-213">Similar toohow we created an **Item Index** view, we will now create a new view for creating new **Items**.</span></span>
 
-1. <span data-ttu-id="3f071-214">**솔루션 탐색기**에서 **Item** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **보기**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-214">In **Solution Explorer**, right-click the **Item** folder again, click **Add**, and then click **View**.</span></span>
-2. <span data-ttu-id="3f071-215">**뷰 추가** 대화 상자에서 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-215">In the **Add View** dialog box, do the following:</span></span>
+1. <span data-ttu-id="d6237-214">**솔루션 탐색기**, 마우스 오른쪽 단추로 클릭 hello **항목** 폴더를 다시 클릭 **추가**, 클릭 하 고 **보기**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-214">In **Solution Explorer**, right-click hello **Item** folder again, click **Add**, and then click **View**.</span></span>
+2. <span data-ttu-id="d6237-215">Hello에 **뷰 추가** 대화 상자에서 다음 hello지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-215">In hello **Add View** dialog box, do hello following:</span></span>
    
-   * <span data-ttu-id="3f071-216">**뷰 이름** 상자에 ***Create***를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-216">In the **View name** box, type ***Create***.</span></span>
-   * <span data-ttu-id="3f071-217">**템플릿** 상자에서 ***Create***를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-217">In the **Template** box, select ***Create***.</span></span>
-   * <span data-ttu-id="3f071-218">**모델 클래스** 상자에서 ***항목(todo.Models)***을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-218">In the **Model class** box, select ***Item (todo.Models)***.</span></span>
-   * <span data-ttu-id="3f071-219">레이아웃 페이지 상자에 ***~/Views/Shared/_Layout.cshtml***을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-219">In the layout page box, type ***~/Views/Shared/_Layout.cshtml***.</span></span>
-   * <span data-ttu-id="3f071-220">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-220">Click **Add**.</span></span>
+   * <span data-ttu-id="d6237-216">Hello에 **뷰 이름** 상자에서 입력 ***만들기***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-216">In hello **View name** box, type ***Create***.</span></span>
+   * <span data-ttu-id="d6237-217">Hello에 **템플릿** 상자 ***만들기***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-217">In hello **Template** box, select ***Create***.</span></span>
+   * <span data-ttu-id="d6237-218">Hello에 **모델 클래스** 상자 ***항목 (할 일입니다. 모델)***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-218">In hello **Model class** box, select ***Item (todo.Models)***.</span></span>
+   * <span data-ttu-id="d6237-219">Hello 레이아웃 페이지 상자에 입력 ***~/Views/Shared/_Layout.cshtml***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-219">In hello layout page box, type ***~/Views/Shared/_Layout.cshtml***.</span></span>
+   * <span data-ttu-id="d6237-220">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-220">Click **Add**.</span></span>
    
-#### <span data-ttu-id="3f071-221"><a name="_Toc395888515"></a>항목 편집 뷰 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-221"><a name="_Toc395888515"></a>Add an Edit Item view</span></span>
-<span data-ttu-id="3f071-222">마지막으로, 이전과 동일한 방식으로 **항목** 을 편집하기 위한 최종 뷰를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-222">And finally, add one last view for editing an **Item** in the same way as before.</span></span>
+#### <span data-ttu-id="d6237-221"><a name="_Toc395888515"></a>항목 편집 뷰 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-221"><a name="_Toc395888515"></a>Add an Edit Item view</span></span>
+<span data-ttu-id="d6237-222">마지막으로 편집을 위해 마지막 보기를 추가 하 고는 **항목** hello에 이전과 동일한 방식으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-222">And finally, add one last view for editing an **Item** in hello same way as before.</span></span>
 
-1. <span data-ttu-id="3f071-223">**솔루션 탐색기**에서 **Item** 폴더를 마우스 오른쪽 단추로 클릭한 후 **추가**, **보기**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-223">In **Solution Explorer**, right-click the **Item** folder again, click **Add**, and then click **View**.</span></span>
-2. <span data-ttu-id="3f071-224">**뷰 추가** 대화 상자에서 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-224">In the **Add View** dialog box, do the following:</span></span>
+1. <span data-ttu-id="d6237-223">**솔루션 탐색기**, 마우스 오른쪽 단추로 클릭 hello **항목** 폴더를 다시 클릭 **추가**, 클릭 하 고 **보기**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-223">In **Solution Explorer**, right-click hello **Item** folder again, click **Add**, and then click **View**.</span></span>
+2. <span data-ttu-id="d6237-224">Hello에 **뷰 추가** 대화 상자에서 다음 hello지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-224">In hello **Add View** dialog box, do hello following:</span></span>
    
-   * <span data-ttu-id="3f071-225">**뷰 이름** 상자에 ***Edit***를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-225">In the **View name** box, type ***Edit***.</span></span>
-   * <span data-ttu-id="3f071-226">**템플릿** 상자에서 ***Edit***를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-226">In the **Template** box, select ***Edit***.</span></span>
-   * <span data-ttu-id="3f071-227">**모델 클래스** 상자에서 ***항목(todo.Models)***을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-227">In the **Model class** box, select ***Item (todo.Models)***.</span></span>
-   * <span data-ttu-id="3f071-228">레이아웃 페이지 상자에 ***~/Views/Shared/_Layout.cshtml***을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-228">In the layout page box, type ***~/Views/Shared/_Layout.cshtml***.</span></span>
-   * <span data-ttu-id="3f071-229">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-229">Click **Add**.</span></span>
+   * <span data-ttu-id="d6237-225">Hello에 **뷰 이름** 상자에서 입력 ***편집***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-225">In hello **View name** box, type ***Edit***.</span></span>
+   * <span data-ttu-id="d6237-226">Hello에 **템플릿** 상자 ***편집***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-226">In hello **Template** box, select ***Edit***.</span></span>
+   * <span data-ttu-id="d6237-227">Hello에 **모델 클래스** 상자 ***항목 (할 일입니다. 모델)***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-227">In hello **Model class** box, select ***Item (todo.Models)***.</span></span>
+   * <span data-ttu-id="d6237-228">Hello 레이아웃 페이지 상자에 입력 ***~/Views/Shared/_Layout.cshtml***합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-228">In hello layout page box, type ***~/Views/Shared/_Layout.cshtml***.</span></span>
+   * <span data-ttu-id="d6237-229">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-229">Click **Add**.</span></span>
 
-<span data-ttu-id="3f071-230">이 작업이 완료되면 나중에 이러한 뷰로 돌아올 것이므로 Visual Studio에서 모든 cshtml 문서를 닫습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-230">Once this is done, close all the cshtml documents in Visual Studio as we will return to these views later.</span></span>
+<span data-ttu-id="d6237-230">이 작업이 완료 되 면 나중 toothese 뷰를 반환 합니다에서는 Visual Studio에서 모든 hello cshtml 문서를 닫습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-230">Once this is done, close all hello cshtml documents in Visual Studio as we will return toothese views later.</span></span>
 
-## <span data-ttu-id="3f071-231"><a name="_Toc395637769"></a>5단계: Azure Cosmos DB 연결</span><span class="sxs-lookup"><span data-stu-id="3f071-231"><a name="_Toc395637769"></a>Step 5: Wiring up Azure Cosmos DB</span></span>
-<span data-ttu-id="3f071-232">표준 MVC를 처리했으므로 이제 Azure Cosmos DB에 대한 코드를 추가해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-232">Now that the standard MVC stuff is taken care of, let's turn to adding the code for Azure Cosmos DB.</span></span> 
+## <span data-ttu-id="d6237-231"><a name="_Toc395637769"></a>5단계: Azure Cosmos DB 연결</span><span class="sxs-lookup"><span data-stu-id="d6237-231"><a name="_Toc395637769"></a>Step 5: Wiring up Azure Cosmos DB</span></span>
+<span data-ttu-id="d6237-232">Hello 표준 MVC 항목 처리, 했으므로 Azure Cosmos DB에 대 한 tooadding hello 코드를 설정 해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-232">Now that hello standard MVC stuff is taken care of, let's turn tooadding hello code for Azure Cosmos DB.</span></span> 
 
-<span data-ttu-id="3f071-233">이 섹션에서는 다음을 처리하기 위한 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-233">In this section, we'll add code to handle the following:</span></span>
+<span data-ttu-id="d6237-233">이 섹션에서는 코드 toohandle hello 다음을 추가 하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-233">In this section, we'll add code toohandle hello following:</span></span>
 
-* <span data-ttu-id="3f071-234">[완료되지 않은 항목 나열](#_Toc395637770).</span><span class="sxs-lookup"><span data-stu-id="3f071-234">[Listing incomplete Items](#_Toc395637770).</span></span>
-* <span data-ttu-id="3f071-235">[항목 추가](#_Toc395637771).</span><span class="sxs-lookup"><span data-stu-id="3f071-235">[Adding Items](#_Toc395637771).</span></span>
-* <span data-ttu-id="3f071-236">[항목 편집](#_Toc395637772).</span><span class="sxs-lookup"><span data-stu-id="3f071-236">[Editing Items](#_Toc395637772).</span></span>
+* <span data-ttu-id="d6237-234">[완료되지 않은 항목 나열](#_Toc395637770).</span><span class="sxs-lookup"><span data-stu-id="d6237-234">[Listing incomplete Items](#_Toc395637770).</span></span>
+* <span data-ttu-id="d6237-235">[항목 추가](#_Toc395637771).</span><span class="sxs-lookup"><span data-stu-id="d6237-235">[Adding Items](#_Toc395637771).</span></span>
+* <span data-ttu-id="d6237-236">[항목 편집](#_Toc395637772).</span><span class="sxs-lookup"><span data-stu-id="d6237-236">[Editing Items](#_Toc395637772).</span></span>
 
-### <span data-ttu-id="3f071-237"><a name="_Toc395637770"></a>MVC 웹 응용 프로그램에서 완료되지 않은 항목 나열</span><span class="sxs-lookup"><span data-stu-id="3f071-237"><a name="_Toc395637770"></a>Listing incomplete Items in your MVC web application</span></span>
-<span data-ttu-id="3f071-238">먼저 Azure Cosmos DB에 연결하고 이를 사용할 모든 논리가 포함된 클래스를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-238">The first thing to do here is add a class that contains all the logic to connect to and use Azure Cosmos DB.</span></span> <span data-ttu-id="3f071-239">이 자습서에서는 이 모든 논리를 DocumentDBRepository라는 리포지토리 클래스로 캡슐화합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-239">For this tutorial we'll encapsulate all this logic in to a repository class called DocumentDBRepository.</span></span> 
+### <span data-ttu-id="d6237-237"><a name="_Toc395637770"></a>MVC 웹 응용 프로그램에서 완료되지 않은 항목 나열</span><span class="sxs-lookup"><span data-stu-id="d6237-237"><a name="_Toc395637770"></a>Listing incomplete Items in your MVC web application</span></span>
+<span data-ttu-id="d6237-238">hello 첫 번째 것이 toodo은 추가 모든 hello 논리 tooconnect tooand 사용 하 여 Azure Cosmos DB를 포함 하는 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-238">hello first thing toodo here is add a class that contains all hello logic tooconnect tooand use Azure Cosmos DB.</span></span> <span data-ttu-id="d6237-239">이 자습서에 대 한 DocumentDBRepository 라는 tooa 저장소 클래스에서이 모든 논리를 캡슐화 할 것 했습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-239">For this tutorial we'll encapsulate all this logic in tooa repository class called DocumentDBRepository.</span></span> 
 
-1. <span data-ttu-id="3f071-240">**솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가**, **클래스**를 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-240">In **Solution Explorer**, right-click on the project, click **Add**, and then click **Class**.</span></span> <span data-ttu-id="3f071-241">새 클래스의 이름을 **DocumentDBRepository**로 지정하고 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-241">Name the new class **DocumentDBRepository** and click **Add**.</span></span>
-2. <span data-ttu-id="3f071-242">새로 만든 **DocumentDBRepository** 클래스에서 *네임스페이스* 선언 위에 다음 *using 문*을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-242">In the newly created **DocumentDBRepository** class and add the following *using statements* above the *namespace* declaration</span></span>
+1. <span data-ttu-id="d6237-240">**솔루션 탐색기**hello 프로젝트를 마우스 오른쪽 단추로 클릭 하 여 **추가**, 클릭 하 고 **클래스**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-240">In **Solution Explorer**, right-click on hello project, click **Add**, and then click **Class**.</span></span> <span data-ttu-id="d6237-241">Hello 새 클래스 이름을 **DocumentDBRepository** 클릭 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-241">Name hello new class **DocumentDBRepository** and click **Add**.</span></span>
+2. <span data-ttu-id="d6237-242">새로 만든 hello에 **DocumentDBRepository** 클래스 및 hello 다음 추가 *문을 사용 하 여* hello 위에 *네임 스페이스* 선언</span><span class="sxs-lookup"><span data-stu-id="d6237-242">In hello newly created **DocumentDBRepository** class and add hello following *using statements* above hello *namespace* declaration</span></span>
    
         using Microsoft.Azure.Documents; 
         using Microsoft.Azure.Documents.Client; 
@@ -242,13 +242,13 @@ ms.lasthandoff: 08/18/2017
         using System.Threading.Tasks;
         using System.Net
         
-    <span data-ttu-id="3f071-243">이제 이 코드를</span><span class="sxs-lookup"><span data-stu-id="3f071-243">Now replace this code</span></span> 
+    <span data-ttu-id="d6237-243">이제 이 코드를</span><span class="sxs-lookup"><span data-stu-id="d6237-243">Now replace this code</span></span> 
    
         public class DocumentDBRepository
         {
         }
    
-    <span data-ttu-id="3f071-244">다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-244">with the following code.</span></span>
+    <span data-ttu-id="d6237-244">코드 다음 안녕하세요와.</span><span class="sxs-lookup"><span data-stu-id="d6237-244">with hello following code.</span></span>
    
         public static class DocumentDBRepository<T> where T : class
         {
@@ -306,17 +306,17 @@ ms.lasthandoff: 08/18/2017
         }
    
     
-3. <span data-ttu-id="3f071-245">구성에서 일부 값을 읽어올 것이므로 응용 프로그램의 **Web.config** 파일을 열고 `<AppSettings>` 섹션 아래에 다음 줄을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-245">We're reading some values from configuration, so open the **Web.config** file of your application and add the following lines under the `<AppSettings>` section.</span></span>
+3. <span data-ttu-id="d6237-245">구성에서 일부 값을 읽는 하는 것, hello을 열고 **Web.config** 응용 프로그램의 파일 hello hello 아래 줄을 다음 추가 `<AppSettings>` 섹션.</span><span class="sxs-lookup"><span data-stu-id="d6237-245">We're reading some values from configuration, so open hello **Web.config** file of your application and add hello following lines under hello `<AppSettings>` section.</span></span>
    
-        <add key="endpoint" value="enter the URI from the Keys blade of the Azure Portal"/>
-        <add key="authKey" value="enter the PRIMARY KEY, or the SECONDARY KEY, from the Keys blade of the Azure  Portal"/>
+        <add key="endpoint" value="enter hello URI from hello Keys blade of hello Azure Portal"/>
+        <add key="authKey" value="enter hello PRIMARY KEY, or hello SECONDARY KEY, from hello Keys blade of hello Azure  Portal"/>
         <add key="database" value="ToDoList"/>
         <add key="collection" value="Items"/>
-4. <span data-ttu-id="3f071-246">이제 Azure Portal의 키 블레이드를 사용하여 *끝점* 및 *authKey* 값을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-246">Now, update the values for *endpoint* and *authKey* using the Keys blade of the Azure Portal.</span></span> <span data-ttu-id="3f071-247">키 블레이드의 **URI**를 끝점 설정 값으로 사용하고 키 블레이드의 **기본 키** 또는 **보조 키**를 authKey 설정 값으로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-247">Use the **URI** from the Keys blade as the value of the endpoint setting, and use the **PRIMARY KEY**, or **SECONDARY KEY** from the Keys blade as the value of the authKey setting.</span></span>
+4. <span data-ttu-id="d6237-246">이제, 업데이트에 대 한 hello 값 *끝점* 및 *authKey* hello Azure 포털의 키 블레이드에서 hello를 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-246">Now, update hello values for *endpoint* and *authKey* using hello Keys blade of hello Azure Portal.</span></span> <span data-ttu-id="d6237-247">Hello를 사용 하 여 **URI** hello 끝점 설정 및 사용 하 여 hello hello 값으로 hello 키 블레이드에서 **기본 키**, 또는 **보조 키** hello의 hello 값으로 hello 키 블레이드에서 authKey 설정입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-247">Use hello **URI** from hello Keys blade as hello value of hello endpoint setting, and use hello **PRIMARY KEY**, or **SECONDARY KEY** from hello Keys blade as hello value of hello authKey setting.</span></span>
 
-    <span data-ttu-id="3f071-248">Azure Cosmos DB 리포지토리의 연결을 완료했으므로 이제 응용 프로그램 논리를 추가해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-248">That takes care of wiring up the Azure Cosmos DB repository, now let's add our application logic.</span></span>
+    <span data-ttu-id="d6237-248">관리 배선 hello Azure Cosmos DB 리포지토리를 이제 보겠습니다 추가할이 응용 프로그램 논리.</span><span class="sxs-lookup"><span data-stu-id="d6237-248">That takes care of wiring up hello Azure Cosmos DB repository, now let's add our application logic.</span></span>
 
-1. <span data-ttu-id="3f071-249">todo 모음 응용 프로그램으로 가장 먼저 할 일은 완료되지 않은 항목을 표시하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-249">The first thing we want to be able to do with a todo list application is to display the incomplete items.</span></span>  <span data-ttu-id="3f071-250">다음 코드 조각을 **DocumentDBRepository** 클래스 내의 아무 곳에나 복사하여 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-250">Copy and paste the following code snippet anywhere within the **DocumentDBRepository** class.</span></span>
+1. <span data-ttu-id="d6237-249">hello 먼저 원하는 toobe 수 toodo 할 일 목록 응용 프로그램은 toodisplay hello 불완전 한 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-249">hello first thing we want toobe able toodo with a todo list application is toodisplay hello incomplete items.</span></span>  <span data-ttu-id="d6237-250">복사 및 붙여넣기 hello 내 코드 조각 다음 hello **DocumentDBRepository** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-250">Copy and paste hello following code snippet anywhere within hello **DocumentDBRepository** class.</span></span>
    
         public static async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
         {
@@ -333,15 +333,15 @@ ms.lasthandoff: 08/18/2017
    
             return results;
         }
-2. <span data-ttu-id="3f071-251">앞에서 추가한 **ItemController** 를 열고 네임스페이스 선언 위에 다음 *using 문* 을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-251">Open the **ItemController** we added earlier and add the following *using statements* above the namespace declaration.</span></span>
+2. <span data-ttu-id="d6237-251">열기 hello **ItemController** 앞에 추가 하 고 hello 다음 추가 *문을 사용 하 여* hello 네임 스페이스 선언 위에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-251">Open hello **ItemController** we added earlier and add hello following *using statements* above hello namespace declaration.</span></span>
    
         using System.Net;
         using System.Threading.Tasks;
         using todo.Models;
    
-    <span data-ttu-id="3f071-252">프로젝트 이름이 "todo"가 아닌 경우 프로젝트 이름을 반영하기 위해 "todo.Models";를 사용하여 업데이트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-252">If your project is not named "todo", then you need to update using "todo.Models"; to reflect the name of your project.</span></span>
+    <span data-ttu-id="d6237-252">프로젝트 "todo"을 지정 하지 않은 경우 다음 필요한 tooupdate "todo를 사용 하 여. 모델 "; 프로젝트의 tooreflect hello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-252">If your project is not named "todo", then you need tooupdate using "todo.Models"; tooreflect hello name of your project.</span></span>
    
-    <span data-ttu-id="3f071-253">이제 이 코드를</span><span class="sxs-lookup"><span data-stu-id="3f071-253">Now replace this code</span></span>
+    <span data-ttu-id="d6237-253">이제 이 코드를</span><span class="sxs-lookup"><span data-stu-id="d6237-253">Now replace this code</span></span>
    
         //GET: Item
         public ActionResult Index()
@@ -349,7 +349,7 @@ ms.lasthandoff: 08/18/2017
             return View();
         }
    
-    <span data-ttu-id="3f071-254">다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-254">with the following code.</span></span>
+    <span data-ttu-id="d6237-254">코드 다음 안녕하세요와.</span><span class="sxs-lookup"><span data-stu-id="d6237-254">with hello following code.</span></span>
    
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
@@ -357,40 +357,40 @@ ms.lasthandoff: 08/18/2017
             var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
             return View(items);
         }
-3. <span data-ttu-id="3f071-255">**Global.asax.cs**를 열고 **Application_Start** 메서드에 다음 줄을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-255">Open **Global.asax.cs** and add the following line to the **Application_Start** method</span></span> 
+3. <span data-ttu-id="d6237-255">열기 **Global.asax.cs** hello 줄 toohello 다음 추가 **Application_Start** 메서드</span><span class="sxs-lookup"><span data-stu-id="d6237-255">Open **Global.asax.cs** and add hello following line toohello **Application_Start** method</span></span> 
    
         DocumentDBRepository<todo.Models.Item>.Initialize();
 
-<span data-ttu-id="3f071-256">이때 오류 없이 솔루션을 작성할 수 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-256">At this point your solution should be able to build without any errors.</span></span>
+<span data-ttu-id="d6237-256">이 시점에서 솔루션에는 오류 없이 수 toobuild 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-256">At this point your solution should be able toobuild without any errors.</span></span>
 
-<span data-ttu-id="3f071-257">지금 응용 프로그램을 실행하면 **HomeController** 및 해당 컨트롤러의 **인덱스** 뷰로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-257">If you ran the application now, you would go to the **HomeController** and the **Index** view of that controller.</span></span> <span data-ttu-id="3f071-258">이것은 시작할 때 선택한 MVC 템플릿 프로젝트에 대한 기본 동작이지만 여기서는 사용하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-258">This is the default behavior for the MVC template project we chose at the start but we don't want that!</span></span> <span data-ttu-id="3f071-259">이 동작을 변경하기 위해 이 MVC 응용 프로그램의 라우팅을 변경하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-259">Let's change the routing on this MVC application to alter this behavior.</span></span>
+<span data-ttu-id="d6237-257">Toohello 거쳐야 hello 응용 프로그램을 지금 실행 한 경우 **HomeController** 및 hello **인덱스** 해당 컨트롤러의 보기입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-257">If you ran hello application now, you would go toohello **HomeController** and hello **Index** view of that controller.</span></span> <span data-ttu-id="d6237-258">이 hello 시작 될 때 선택한 이유는 hello MVC 서식 파일 프로젝트에 대 한 기본 동작 hello 하지만 않도록 하는!</span><span class="sxs-lookup"><span data-stu-id="d6237-258">This is hello default behavior for hello MVC template project we chose at hello start but we don't want that!</span></span> <span data-ttu-id="d6237-259">이 MVC 응용 프로그램 tooalter에서이 동작은 라우팅 hello를 변경해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-259">Let's change hello routing on this MVC application tooalter this behavior.</span></span>
 
-<span data-ttu-id="3f071-260">***App\_Start\RouteConfig.cs***를 열고 "defaults:"로 시작하는 줄을 찾은 후 다음과 같이 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-260">Open ***App\_Start\RouteConfig.cs*** and locate the line starting with "defaults:" and change it to resemble the following.</span></span>
+<span data-ttu-id="d6237-260">열기 ***앱\_Start\RouteConfig.cs*** 찾을 hello 줄으로 시작 하 고 "기본값:" tooresemble hello 다음 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-260">Open ***App\_Start\RouteConfig.cs*** and locate hello line starting with "defaults:" and change it tooresemble hello following.</span></span>
 
         defaults: new { controller = "Item", action = "Index", id = UrlParameter.Optional }
 
-<span data-ttu-id="3f071-261">이 구문은 이제 ASP.NET MVC에 라우팅 동작을 제어하기 위한 URL에 값이 지정되지 않은 경우 **홈** 대신 **항목**을 컨트롤러로 사용하고 사용자 **인덱스**를 뷰로 사용하라고 지시합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-261">This now tells ASP.NET MVC that if you have not specified a value in the URL to control the routing behavior that instead of **Home**, use **Item** as the controller and user **Index** as the view.</span></span>
+<span data-ttu-id="d6237-261">이 구문은 이제 지시 hello URL toocontrol에 값을 지정 하지 않은 경우 hello 라우팅 동작 대신 ASP.NET MVC **홈**를 사용 하 여 **항목** hello 컨트롤러 및 사용자 **인덱스** hello 뷰로 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-261">This now tells ASP.NET MVC that if you have not specified a value in hello URL toocontrol hello routing behavior that instead of **Home**, use **Item** as hello controller and user **Index** as hello view.</span></span>
 
-<span data-ttu-id="3f071-262">이제 응용 프로그램을 실행하면 응용 프로그램에서 리포지토리 클래스를 호출하는 **ItemController**를 호출하며 GetItems 메서드를 사용하여 완료되지 않은 모든 항목을 **Views**\\**Item**\\**Index** 뷰로 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-262">Now if you run the application, it will call into your **ItemController** which will call in to the repository class and use the GetItems method to return all the incomplete items to the **Views**\\**Item**\\**Index** view.</span></span> 
+<span data-ttu-id="d6237-262">Hello 응용 프로그램을 실행 하는 경우에 호출 됩니다는 이제 프로그램 **ItemController** toohello 저장소 클래스에서 호출 되며 모든 hello 불완전 한 항목 toohello GetItems 메서드 tooreturn hello를 사용 하 여 있는 **뷰** \\ **항목**\\**인덱스** 보기.</span><span class="sxs-lookup"><span data-stu-id="d6237-262">Now if you run hello application, it will call into your **ItemController** which will call in toohello repository class and use hello GetItems method tooreturn all hello incomplete items toohello **Views**\\**Item**\\**Index** view.</span></span> 
 
-<span data-ttu-id="3f071-263">이 프로젝트를 지금 빌드하여 실행하면 이제 다음과 같이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-263">If you build and run this project now, you should now see something that looks this.</span></span>    
+<span data-ttu-id="d6237-263">이 프로젝트를 지금 빌드하여 실행하면 이제 다음과 같이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-263">If you build and run this project now, you should now see something that looks this.</span></span>    
 
-![이 데이터베이스 자습서에서 만든 할 일 모음 웹 응용 프로그램의 스크린샷](./media/documentdb-dotnet-application/build-and-run-the-project-now.png)
+![Hello 할 일 목록 웹 응용 프로그램의이 데이터베이스 자습서에서 만든 스크린 샷](./media/documentdb-dotnet-application/build-and-run-the-project-now.png)
 
-### <span data-ttu-id="3f071-265"><a name="_Toc395637771"></a>항목 추가</span><span class="sxs-lookup"><span data-stu-id="3f071-265"><a name="_Toc395637771"></a>Adding Items</span></span>
-<span data-ttu-id="3f071-266">빈 그리드 외에 확인할 항목이 있도록 데이터베이스에 일부 항목을 추가하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-266">Let's put some items into our database so we have something more than an empty grid to look at.</span></span>
+### <span data-ttu-id="d6237-265"><a name="_Toc395637771"></a>항목 추가</span><span class="sxs-lookup"><span data-stu-id="d6237-265"><a name="_Toc395637771"></a>Adding Items</span></span>
+<span data-ttu-id="d6237-266">에 있는 빈 그리드가 toolook 보다 더 많은 한 일부 항목 데이터베이스로 넘어가면 적용 해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-266">Let's put some items into our database so we have something more than an empty grid toolook at.</span></span>
 
-<span data-ttu-id="3f071-267">Azure Cosmos DB에 레코드를 저장하기 위해 Azure Cosmos DBRepository 및 ItemController에 일부 코드를 추가하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-267">Let's add some code to  Azure Cosmos DBRepository and ItemController to persist the record in Azure Cosmos DB.</span></span>
+<span data-ttu-id="d6237-267">일부 코드를 너무 추가해보겠습니다 Azure Cosmos DB에서 Azure Cosmos DBRepository 및 ItemController toopersist hello 레코드입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-267">Let's add some code too Azure Cosmos DBRepository and ItemController toopersist hello record in Azure Cosmos DB.</span></span>
 
-1. <span data-ttu-id="3f071-268">다음 메서드를 **DocumentDBRepository** 클래스에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-268">Add the following method to your **DocumentDBRepository** class.</span></span>
+1. <span data-ttu-id="d6237-268">다음 메서드 tooyour hello 추가 **DocumentDBRepository** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-268">Add hello following method tooyour **DocumentDBRepository** class.</span></span>
    
        public static async Task<Document> CreateItemAsync(T item)
        {
            return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
        }
    
-   <span data-ttu-id="3f071-269">이 메서드는 단순히 전달된 개체를 받아서 Azure Cosmos DB에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-269">This method simply takes an object passed to it and persists it in Azure Cosmos DB.</span></span>
-2. <span data-ttu-id="3f071-270">ItemController.cs 파일을 열고 클래스 내에 다음 코드 조각을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-270">Open the ItemController.cs file and add the following code snippet within the class.</span></span> <span data-ttu-id="3f071-271">이를 통해 ASP.NET MVC에서 **Create** 작업을 위해 수행할 작업을 인식할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-271">This is how ASP.NET MVC knows what to do for the **Create** action.</span></span> <span data-ttu-id="3f071-272">이 경우 앞에서 만든 관련 Create.cshtml 뷰를 렌더링합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-272">In this case just render the associated Create.cshtml view created earlier.</span></span>
+   <span data-ttu-id="d6237-269">이 메서드는 단순히 tooit 전달 되는 개체를 사용 하 고 계속 되 면 Azure Cosmos DB에서.</span><span class="sxs-lookup"><span data-stu-id="d6237-269">This method simply takes an object passed tooit and persists it in Azure Cosmos DB.</span></span>
+2. <span data-ttu-id="d6237-270">Hello ItemController.cs 파일을 열고 hello 코드 조각 hello 클래스 내에서 다음을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-270">Open hello ItemController.cs file and add hello following code snippet within hello class.</span></span> <span data-ttu-id="d6237-271">이 ASP.NET MVC의 hello에 대 한 어떤 toodo 알고 어떻게 **만들기** 동작 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-271">This is how ASP.NET MVC knows what toodo for hello **Create** action.</span></span> <span data-ttu-id="d6237-272">이 경우에 렌더링 hello 관련 앞에서 만든 Create.cshtml 보기.</span><span class="sxs-lookup"><span data-stu-id="d6237-272">In this case just render hello associated Create.cshtml view created earlier.</span></span>
    
         [ActionName("Create")]
         public async Task<ActionResult> CreateAsync()
@@ -398,8 +398,8 @@ ms.lasthandoff: 08/18/2017
             return View();
         }
    
-    <span data-ttu-id="3f071-273">이제 **만들기** 뷰의 제출을 수락하는 코드를 이 컨트롤러에 더 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-273">We now need some more code in this controller that will accept the submission from the **Create** view.</span></span>
-3. <span data-ttu-id="3f071-274">이 컨트롤러에 대한 폼 POST의 처리 방법을 ASP.NET MVC에 알리는 다음 코드 블록을 ItemController.cs 클래스에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-274">Add the next block of code to the ItemController.cs class that tells ASP.NET MVC what to do with a form POST for this controller.</span></span>
+    <span data-ttu-id="d6237-273">이제 hello에서 hello 전송이 허용 하는이 컨트롤러에 몇 가지 더 많은 코드가 필요 **만들기** 보기.</span><span class="sxs-lookup"><span data-stu-id="d6237-273">We now need some more code in this controller that will accept hello submission from hello **Create** view.</span></span>
+3. <span data-ttu-id="d6237-274">Hello 코드 toohello 어떤 toodo이이 컨트롤러에 대 한 POST 양식으로 ASP.NET MVC에 알려 주는 ItemController.cs 클래스의 다음 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-274">Add hello next block of code toohello ItemController.cs class that tells ASP.NET MVC what toodo with a form POST for this controller.</span></span>
    
         [HttpPost]
         [ActionName("Create")]
@@ -415,18 +415,18 @@ ms.lasthandoff: 08/18/2017
             return View(item);
         }
    
-    <span data-ttu-id="3f071-275">이 코드는 DocumentDBRepository를 호출하고 CreateItemAsync 메서드를 사용하여 새로운 todo 항목을 데이터베이스에 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-275">This code calls in to the DocumentDBRepository and uses the CreateItemAsync method to persist the new todo item to the database.</span></span> 
+    <span data-ttu-id="d6237-275">이 코드 toohello DocumentDBRepository 호출 하 고 hello CreateItemAsync 메서드 toopersist hello 새 할 일 항목 toohello 데이터베이스를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-275">This code calls in toohello DocumentDBRepository and uses hello CreateItemAsync method toopersist hello new todo item toohello database.</span></span> 
    
-    <span data-ttu-id="3f071-276">**보안 정보**: **ValidateAntiForgeryToken** 특성은 여기서 교차 사이트 요청 위조 공격으로부터 이 응용 프로그램을 보호하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-276">**Security Note**: The **ValidateAntiForgeryToken** attribute is used here to help protect this application against cross-site request forgery attacks.</span></span> <span data-ttu-id="3f071-277">이 특성을 추가하는 것 외에 뷰가 이 위조 방지 토큰과 작동하도록 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-277">There is more to it than just adding this attribute, your views need to work with this anti-forgery token as well.</span></span> <span data-ttu-id="3f071-278">이 주제에 대한 자세한 내용과 이를 올바르게 구현하는 방법의 예는 [교차 사이트 요청 위조 방지(영문)][Preventing Cross-Site Request Forgery]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3f071-278">For more on the subject, and examples of how to implement this correctly, please see [Preventing Cross-Site Request Forgery][Preventing Cross-Site Request Forgery].</span></span> <span data-ttu-id="3f071-279">[GitHub][GitHub]에서 제공하는 소스 코드에는 완벽하게 구현되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-279">The source code provided on [GitHub][GitHub] has the full implementation in place.</span></span>
+    <span data-ttu-id="d6237-276">**보안 정보**: hello **ValidateAntiForgeryToken** 특성은 사용 여기 toohelp 교차 사이트 요청 위조 공격에 대 한이 응용 프로그램을 보호 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-276">**Security Note**: hello **ValidateAntiForgeryToken** attribute is used here toohelp protect this application against cross-site request forgery attacks.</span></span> <span data-ttu-id="d6237-277">이 특성을 추가 하는 것 보다 더 많은 tooit를 보기에는이 위조 방지 토큰으로 toowork 필요 없습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-277">There is more tooit than just adding this attribute, your views need toowork with this anti-forgery token as well.</span></span> <span data-ttu-id="d6237-278">Hello 제목 및 예제는 어떻게 tooimplement이 올바르게 참조 하십시오에 대 한 자세한 [교차 사이트 요청 위조 방지][Preventing Cross-Site Request Forgery]합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-278">For more on hello subject, and examples of how tooimplement this correctly, please see [Preventing Cross-Site Request Forgery][Preventing Cross-Site Request Forgery].</span></span> <span data-ttu-id="d6237-279">에 제공 된 소스 코드를 hello [GitHub] [ GitHub] hello 완전 한 구현에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-279">hello source code provided on [GitHub][GitHub] has hello full implementation in place.</span></span>
    
-    <span data-ttu-id="3f071-280">**보안 정보**: 또한 메서드 매개 변수에 **Bind** 특성을 사용하여 과도한 게시 공격으로부터 보호할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-280">**Security Note**: We also use the **Bind** attribute on the method parameter to help protect against over-posting attacks.</span></span> <span data-ttu-id="3f071-281">자세한 내용은 [ASP.NET MVC의 기본 CRUD 작업(영문)][Basic CRUD Operations in ASP.NET MVC]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3f071-281">For more details please see [Basic CRUD Operations in ASP.NET MVC][Basic CRUD Operations in ASP.NET MVC].</span></span>
+    <span data-ttu-id="d6237-280">**보안 정보**: hello도 사용 **바인딩할** hello 메서드 매개 변수 toohelp 특성이 공격을 과도 하 게 게시 으로부터 보호 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-280">**Security Note**: We also use hello **Bind** attribute on hello method parameter toohelp protect against over-posting attacks.</span></span> <span data-ttu-id="d6237-281">자세한 내용은 [ASP.NET MVC의 기본 CRUD 작업(영문)][Basic CRUD Operations in ASP.NET MVC]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d6237-281">For more details please see [Basic CRUD Operations in ASP.NET MVC][Basic CRUD Operations in ASP.NET MVC].</span></span>
 
-<span data-ttu-id="3f071-282">데이터베이스에 새 항목을 추가하는 데 필요한 코드가 완성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-282">This concludes the code required to add new Items to our database.</span></span>
+<span data-ttu-id="d6237-282">Hello 필요한 코드 tooadd 새 항목 tooour 데이터베이스를 완료 했습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-282">This concludes hello code required tooadd new Items tooour database.</span></span>
 
-### <span data-ttu-id="3f071-283"><a name="_Toc395637772"></a>항목 편집</span><span class="sxs-lookup"><span data-stu-id="3f071-283"><a name="_Toc395637772"></a>Editing Items</span></span>
-<span data-ttu-id="3f071-284">마지막으로 수행할 작업은 데이터베이스에서 **항목** 을 편집하고 완료로 표시하는 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-284">There is one last thing for us to do, and that is to add the ability to edit **Items** in the database and to mark them as complete.</span></span> <span data-ttu-id="3f071-285">편집용 뷰는 이미 프로젝트에 추가되었으므로 다시 컨트롤러와 **DocumentDBRepository** 클래스에 일부 코드를 추가하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-285">The view for editing was already added to the project, so we just need to add some code to our controller and to the **DocumentDBRepository** class again.</span></span>
+### <span data-ttu-id="d6237-283"><a name="_Toc395637772"></a>항목 편집</span><span class="sxs-lookup"><span data-stu-id="d6237-283"><a name="_Toc395637772"></a>Editing Items</span></span>
+<span data-ttu-id="d6237-284">에 마지막으로 toodo, 않으며 하는 tooadd hello 기능 tooedit **항목** hello 데이터베이스와 toomark에서와 같이 완료 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-284">There is one last thing for us toodo, and that is tooadd hello ability tooedit **Items** in hello database and toomark them as complete.</span></span> <span data-ttu-id="d6237-285">hello 보기 편집을 위해 이미 추가 되었으므로 toohello 프로젝트, 일부 코드 tooour 컨트롤러 및 toohello त ु म च tooadd 하므로 **DocumentDBRepository** 다시 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-285">hello view for editing was already added toohello project, so we just need tooadd some code tooour controller and toohello **DocumentDBRepository** class again.</span></span>
 
-1. <span data-ttu-id="3f071-286">**DocumentDBRepository** 클래스에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-286">Add the following to the **DocumentDBRepository** class.</span></span>
+1. <span data-ttu-id="d6237-286">Hello toohello 다음 추가 **DocumentDBRepository** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-286">Add hello following toohello **DocumentDBRepository** class.</span></span>
    
         public static async Task<Document> UpdateItemAsync(string id, T item)
         {
@@ -453,10 +453,10 @@ ms.lasthandoff: 08/18/2017
             }
         }
    
-    <span data-ttu-id="3f071-287">이러한 메서드 중 첫 번째 메서드인 **GetItem**은 Azure Cosmos DB에서 항목을 가져오며, 이 항목이 다시 **ItemController** 및 **편집** 뷰로 전달됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-287">The first of these methods, **GetItem** fetches an Item from Azure Cosmos DB which is passed back to the **ItemController** and then on to the **Edit** view.</span></span>
+    <span data-ttu-id="d6237-287">이러한 메서드의 첫 번째 hello **GetItem** 백 toohello 전달 되는 Azure Cosmos DB에서 항목을 인출 **ItemController** toohello에서 **편집** 보기.</span><span class="sxs-lookup"><span data-stu-id="d6237-287">hello first of these methods, **GetItem** fetches an Item from Azure Cosmos DB which is passed back toohello **ItemController** and then on toohello **Edit** view.</span></span>
    
-    <span data-ttu-id="3f071-288">방금 추가한 메서드 중 두 번째 메서드는 Cosmos DB의 **문서**를 **ItemController**에서 전달된 **문서** 버전으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-288">The second of the methods we just added replaces the **Document** in Azure Cosmos DB with the version of the **Document** passed in from the **ItemController**.</span></span>
-2. <span data-ttu-id="3f071-289">**ItemController** 클래스에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-289">Add the following to the **ItemController** class.</span></span>
+    <span data-ttu-id="d6237-288">hello 메서드의 두 번째 hello 대체 hello 방금 추가한 **문서** hello 버전의 hello Azure Cosmos DB에서 **문서** hello에서 전달 된 **ItemController**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-288">hello second of hello methods we just added replaces hello **Document** in Azure Cosmos DB with hello version of hello **Document** passed in from hello **ItemController**.</span></span>
+2. <span data-ttu-id="d6237-289">Hello toohello 다음 추가 **ItemController** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-289">Add hello following toohello **ItemController** class.</span></span>
    
         [HttpPost]
         [ActionName("Edit")]
@@ -489,63 +489,63 @@ ms.lasthandoff: 08/18/2017
             return View(item);
         }
    
-    <span data-ttu-id="3f071-290">첫 번째 메서드는 사용자가 **인덱스** 뷰에서 **편집** 링크를 클릭할 때 발생하는 Http Get을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-290">The first method handles the Http GET that happens when the user clicks on the **Edit** link from the **Index** view.</span></span> <span data-ttu-id="3f071-291">이 메서드는 Azure Cosmos DB에서 [**문서**](http://msdn.microsoft.com/library/azure/microsoft.azure.documents.document.aspx)를 가져와 **편집** 뷰에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-291">This method fetches a [**Document**](http://msdn.microsoft.com/library/azure/microsoft.azure.documents.document.aspx) from Azure Cosmos DB and passes it to the **Edit** view.</span></span>
+    <span data-ttu-id="d6237-290">hello 첫 번째 메서드 핸들 hello hello에 hello 사용자가 클릭할 때 발생 하는 Http GET **편집** hello에서 링크 **인덱스** 보기.</span><span class="sxs-lookup"><span data-stu-id="d6237-290">hello first method handles hello Http GET that happens when hello user clicks on hello **Edit** link from hello **Index** view.</span></span> <span data-ttu-id="d6237-291">이 메서드를 인출는 [ **문서** ](http://msdn.microsoft.com/library/azure/microsoft.azure.documents.document.aspx) Azure Cosmos DB에서 toohello 전달 **편집** 보기.</span><span class="sxs-lookup"><span data-stu-id="d6237-291">This method fetches a [**Document**](http://msdn.microsoft.com/library/azure/microsoft.azure.documents.document.aspx) from Azure Cosmos DB and passes it toohello **Edit** view.</span></span>
    
-    <span data-ttu-id="3f071-292">그런 다음 **편집** 뷰는 **IndexController**에 Http Post를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-292">The **Edit** view will then do an Http POST to the **IndexController**.</span></span> 
+    <span data-ttu-id="d6237-292">hello **편집** 보기 다음 Http POST toohello를 수행 **IndexController**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-292">hello **Edit** view will then do an Http POST toohello **IndexController**.</span></span> 
    
-    <span data-ttu-id="3f071-293">추가한 두 번째 메서드는 데이터베이스에 저장되도록 업데이트된 개체를 Azure Cosmos DB에 전달하는 작업을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-293">The second method we added handles passing the updated object to Azure Cosmos DB to be persisted in the database.</span></span>
+    <span data-ttu-id="d6237-293">업데이트 하는 hello 개체 tooAzure Cosmos DB toobe 전달 핸들 추가 hello 두 번째 방법은 hello 데이터베이스에 보관 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-293">hello second method we added handles passing hello updated object tooAzure Cosmos DB toobe persisted in hello database.</span></span>
 
-<span data-ttu-id="3f071-294">응용 프로그램을 실행하는 데 필요한 모든 작업(완료되지 않은 **항목** 나열, 새 **항목** 추가 및 **항목** 편집)이 완료되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-294">That's it, that is everything we need to run our application, list incomplete **Items**, add new **Items**, and edit **Items**.</span></span>
+<span data-ttu-id="d6237-294">응용 프로그램 toorun 필요한 모든 구성 되 고, 즉, 완료 되지 않은 목록 **항목**, 새로 추가 **항목**, 편집 및 **항목**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-294">That's it, that is everything we need toorun our application, list incomplete **Items**, add new **Items**, and edit **Items**.</span></span>
 
-## <span data-ttu-id="3f071-295"><a name="_Toc395637773"></a>6단계: 로컬에서 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="3f071-295"><a name="_Toc395637773"></a>Step 6: Run the application locally</span></span>
-<span data-ttu-id="3f071-296">로컬 컴퓨터에서 응용 프로그램을 테스트하려면 다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-296">To test the application on your local machine, do the following:</span></span>
+## <span data-ttu-id="d6237-295"><a name="_Toc395637773"></a>6 단계: hello 응용 프로그램을 로컬로 실행</span><span class="sxs-lookup"><span data-stu-id="d6237-295"><a name="_Toc395637773"></a>Step 6: Run hello application locally</span></span>
+<span data-ttu-id="d6237-296">로컬 컴퓨터의 tootest hello 응용 프로그램은 다음 hello지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-296">tootest hello application on your local machine, do hello following:</span></span>
 
-1. <span data-ttu-id="3f071-297">디버그 모드에서 응용 프로그램을 빌드하려면 Visual Studio에서 F5 키를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-297">Hit F5 in Visual Studio to build the application in debug mode.</span></span> <span data-ttu-id="3f071-298">응용 프로그램이 빌드되고 앞에서 본 것처럼 빈 그리드 페이지가 포함된 상태로 브라우저가 시작되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-298">It should build the application and launch a browser with the empty grid page we saw before:</span></span>
+1. <span data-ttu-id="d6237-297">디버그 모드에서 Visual Studio toobuild hello 응용 프로그램에서 f5 키를 누르면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-297">Hit F5 in Visual Studio toobuild hello application in debug mode.</span></span> <span data-ttu-id="d6237-298">Hello 응용 프로그램을 작성 하 고 실행 하기 전에 살펴본 hello 빈 그리드 페이지를 사용 하 여 브라우저:</span><span class="sxs-lookup"><span data-stu-id="d6237-298">It should build hello application and launch a browser with hello empty grid page we saw before:</span></span>
    
-    ![이 데이터베이스 자습서에서 만든 할 일 모음 웹 응용 프로그램의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item-a.png)
+    ![Hello 할 일 목록 웹 응용 프로그램의이 데이터베이스 자습서에서 만든 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item-a.png)
    
      
-2. <span data-ttu-id="3f071-300">**새로 만들기** 링크를 클릭하고 **이름** 및 **설명** 필드에 값을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-300">Click the **Create New** link and add values to the **Name** and **Description** fields.</span></span> <span data-ttu-id="3f071-301">**완료** 확인란을 선택 취소된 상태로 둡니다. 그렇지 않으면 새 **항목**이 완료 상태로 추가되며 초기 목록에 나타나지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-301">Leave the **Completed** check box unselected otherwise the new **Item** will be added in a completed state and will not appear on the initial list.</span></span>
+2. <span data-ttu-id="d6237-300">Hello 클릭 **새로 만들기** 에 연결 하 고 추가 값 toohello **이름** 및 **설명** 필드입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-300">Click hello **Create New** link and add values toohello **Name** and **Description** fields.</span></span> <span data-ttu-id="d6237-301">Hello 둡니다 **완료** 확인란 새 그렇지 않으면 hello 선택 되지 않은 **항목** 완료 됨 상태로 추가 되 고 hello 초기 목록에 표시 되지 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-301">Leave hello **Completed** check box unselected otherwise hello new **Item** will be added in a completed state and will not appear on hello initial list.</span></span>
    
-    ![만들기 뷰의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-new-item.png)
-3. <span data-ttu-id="3f071-303">**만들기**를 클릭하면 **인덱스** 뷰로 다시 리디렉션되고 **항목**이 목록에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-303">Click **Create** and you are redirected back to the **Index** view and your **Item** appears in the list.</span></span>
+    ![Hello 뷰 만들기 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-new-item.png)
+3. <span data-ttu-id="d6237-303">클릭 **만들기** 리디렉션된 백 toohello 않으며 **인덱스** 보기 및 **항목** hello 목록에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-303">Click **Create** and you are redirected back toohello **Index** view and your **Item** appears in hello list.</span></span>
    
-    ![인덱스 뷰의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item.png)
+    ![Hello 인덱스 뷰 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-an-item.png)
    
-    <span data-ttu-id="3f071-305">Todo 목록에 **항목** 을 더 추가해도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-305">Feel free to add a few more **Items** to your todo list.</span></span>
+    <span data-ttu-id="d6237-305">몇 가지 더 무료 tooadd 느껴집니다 **항목** tooyour 할 일 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-305">Feel free tooadd a few more **Items** tooyour todo list.</span></span>
     
-4. <span data-ttu-id="3f071-306">목록에서 **항목** 옆의 **편집**을 클릭합니다. **편집** 뷰로 이동되며, 여기서 **완료** 플래그를 비롯한 개체 속성을 업데이트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-306">Click **Edit** next to an **Item** on the list and you are taken to the **Edit** view where you can update any property of your object, including the **Completed** flag.</span></span> <span data-ttu-id="3f071-307">**완료** 플래그를 표시하고 **저장**을 클릭하면 **항목**이 완료되지 않은 작업 목록에서 제거됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-307">If you mark the **Complete** flag and click **Save**, the **Item** is removed from the list of incomplete tasks.</span></span>
+4. <span data-ttu-id="d6237-306">클릭 **편집** 다음 tooan **항목** hello 목록에 toohello 취해집니다 **편집** hello를 포함 하 여 개체의 모든 속성을 업데이트할 수 있는 보기  **완료** 플래그입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-306">Click **Edit** next tooan **Item** on hello list and you are taken toohello **Edit** view where you can update any property of your object, including hello **Completed** flag.</span></span> <span data-ttu-id="d6237-307">Hello를 표시 하는 경우 **완료** 플래그를 클릭 하 여 **저장**, hello **항목** 완료 되지 않은 작업의 hello 목록에서 제거 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-307">If you mark hello **Complete** flag and click **Save**, hello **Item** is removed from hello list of incomplete tasks.</span></span>
    
-    ![완료 상자가 선택된 인덱스 뷰의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-completed-item.png)
-5. <span data-ttu-id="3f071-309">앱을 테스트하고 나면 Ctrl+F5를 눌러 앱 디버깅을 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-309">Once you've tested the app, press Ctrl+F5 to stop debugging the app.</span></span> <span data-ttu-id="3f071-310">배포할 준비가 되었습니다!</span><span class="sxs-lookup"><span data-stu-id="3f071-310">You're ready to deploy!</span></span>
+    ![Hello 인덱스 뷰 hello Completed 확인란을 선택의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-completed-item.png)
+5. <span data-ttu-id="d6237-309">Hello 앱을 테스트 하면 Ctrl + f 5 toostop hello 응용 프로그램 디버깅에 키를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-309">Once you've tested hello app, press Ctrl+F5 toostop debugging hello app.</span></span> <span data-ttu-id="d6237-310">준비 toodeploy 넌!</span><span class="sxs-lookup"><span data-stu-id="d6237-310">You're ready toodeploy!</span></span>
 
-## <span data-ttu-id="3f071-311"><a name="_Toc395637774"></a>7단계: Azure App Service에 응용 프로그램 배포</span><span class="sxs-lookup"><span data-stu-id="3f071-311"><a name="_Toc395637774"></a>Step 7: Deploy the application to Azure App Service</span></span> 
-<span data-ttu-id="3f071-312">이제 전체 응용 프로그램이 Azure Cosmos DB와 올바르게 작동하므로 Azure App Service에 이 웹앱을 배포하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-312">Now that you have the complete application working correctly with Azure Cosmos DB we're going to deploy this web app to Azure App Service.</span></span>  
+## <span data-ttu-id="d6237-311"><a name="_Toc395637774"></a>7 단계: 배포 hello 응용 프로그램 tooAzure 앱 서비스</span><span class="sxs-lookup"><span data-stu-id="d6237-311"><a name="_Toc395637774"></a>Step 7: Deploy hello application tooAzure App Service</span></span> 
+<span data-ttu-id="d6237-312">Hello 완전 한 응용 프로그램을가지고 Azure Cosmos DB으로 제대로 작동 여기 toodeploy이 웹 앱 tooAzure 앱 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-312">Now that you have hello complete application working correctly with Azure Cosmos DB we're going toodeploy this web app tooAzure App Service.</span></span>  
 
-1. <span data-ttu-id="3f071-313">이 응용 프로그램을 게시하기 위해 할 일은 **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 클릭하는 것뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-313">To publish this application all you need to do is right-click on the project in **Solution Explorer** and click **Publish**.</span></span>
+1. <span data-ttu-id="d6237-313">toopublish이 응용이 프로그램 모두 toodo 필요한은에서 hello 프로젝트를 마우스 오른쪽 단추로 클릭 **솔루션 탐색기** 클릭 **게시**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-313">toopublish this application all you need toodo is right-click on hello project in **Solution Explorer** and click **Publish**.</span></span>
    
-    ![솔루션 탐색기 내 게시 옵션의 스크린샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-publish.png)
+    ![Hello 솔루션 탐색기에서 게시 옵션의 스크린 샷](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-publish.png)
 
-2. <span data-ttu-id="3f071-315">**게시** 대화 상자에서 **Microsoft Azure App Service**를 클릭한 다음 **새로 만들기**를 선택하여 App Service 프로필을 만들거나 **기존 항목 선택**을 클릭하여 기존 프로필을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-315">In the **Publish** dialog box, click **Microsoft Azure App Service**, then select **Create New** to create an App Service profile, or click **Select Existing** to use an existing profile.</span></span>
+2. <span data-ttu-id="d6237-315">Hello에 **게시** 대화 상자에서 클릭 **Microsoft Azure 앱 서비스**을 선택한 후 **새로 만들기** toocreate 응용 프로그램 서비스를 프로 파일링 하거나 클릭 **선택 기존** toouse 기존 프로필입니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-315">In hello **Publish** dialog box, click **Microsoft Azure App Service**, then select **Create New** toocreate an App Service profile, or click **Select Existing** toouse an existing profile.</span></span>
 
     ![Visual Studio에서 대화 상자 게시](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-publish-to-existing.png)
 
-3. <span data-ttu-id="3f071-317">기존 Azure App Service 프로필이 있는 경우 구독 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-317">If you have an existing Azure App Service profile, enter your subscription name.</span></span> <span data-ttu-id="3f071-318">**보기** 필터를 사용하여 리소스 그룹 또는 리소스 종류별로 정렬한 다음 Azure App Service를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-318">Use the **View** filter to sort by resource group or resource type, then select your Azure App Service.</span></span> 
+3. <span data-ttu-id="d6237-317">기존 Azure App Service 프로필이 있는 경우 구독 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-317">If you have an existing Azure App Service profile, enter your subscription name.</span></span> <span data-ttu-id="d6237-318">사용 하 여 hello **보기** toosort 리소스 그룹 또는 리소스 종류를 필터링 한 다음 Azure 앱 서비스를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-318">Use hello **View** filter toosort by resource group or resource type, then select your Azure App Service.</span></span> 
    
     ![Visual Studio의 App Service 대화 상자](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-app-service.png)
 
-4. <span data-ttu-id="3f071-320">새 Azure App Service 프로필을 만들려면 **게시** 대화 상자에서 **새로 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-320">To create a new Azure App Service profile, click **Create New** in the **Publish** dialog box.</span></span> <span data-ttu-id="3f071-321">**앱 서비스 만들기** 대화 상자에서 웹앱 이름 및 적절한 구독, 리소스 그룹 및 App Service 계획을 입력하고 **만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-321">In the **Create App Service** dialog, enter your Web App name and appropriate subscription, resource group, and App Service plan, then click **Create**.</span></span>
+4. <span data-ttu-id="d6237-320">새 Azure 앱 서비스 프로필 toocreate 클릭 **새로 만들기** hello에 **게시** 대화 상자.</span><span class="sxs-lookup"><span data-stu-id="d6237-320">toocreate a new Azure App Service profile, click **Create New** in hello **Publish** dialog box.</span></span> <span data-ttu-id="d6237-321">Hello에 **응용 프로그램 서비스 만들기** 대화 상자에서 웹 응용 프로그램 이름 및 적절 한 구독, 리소스 그룹 및 앱 서비스 계획을 입력 한 다음 클릭 **만들기**합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-321">In hello **Create App Service** dialog, enter your Web App name and appropriate subscription, resource group, and App Service plan, then click **Create**.</span></span>
 
     ![Visual Studio의 앱 서비스 만들기 대화 상자](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-create-app-service.png)
 
-<span data-ttu-id="3f071-323">몇 초 후에 Visual Studio에서 웹 응용 프로그램 게시를 완료하고 브라우저를 시작하며, Azure에서 실행되는 작업 내용을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-323">In a few seconds, Visual Studio will finish publishing your web application and launch a browser where you can see your handiwork running in Azure!</span></span>
+<span data-ttu-id="d6237-323">몇 초 후에 Visual Studio에서 웹 응용 프로그램 게시를 완료하고 브라우저를 시작하며, Azure에서 실행되는 작업 내용을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-323">In a few seconds, Visual Studio will finish publishing your web application and launch a browser where you can see your handiwork running in Azure!</span></span>
 
 
 
-## <span data-ttu-id="3f071-324"><a name="_Toc395637775"></a>다음 단계</span><span class="sxs-lookup"><span data-stu-id="3f071-324"><a name="_Toc395637775"></a>Next steps</span></span>
-<span data-ttu-id="3f071-325">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-325">Congratulations!</span></span> <span data-ttu-id="3f071-326">지금까지 Azure Cosmos DB를 사용하여 첫 ASP.NET MVC 웹 응용 프로그램을 빌드하고 Azure에 게시했습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-326">You just built your first ASP.NET MVC web application using Azure Cosmos DB and published it to Azure.</span></span> <span data-ttu-id="3f071-327">이 자습서에 포함되지 않은 세부 정보 및 삭제 기능을 비롯한 전체 응용 프로그램 소스 코드는 [GitHub][GitHub]에서 다운로드하거나 복제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-327">The source code for the complete application, including the detail and delete functionality that were not included in this tutorial can be downloaded or cloned from [GitHub][GitHub].</span></span> <span data-ttu-id="3f071-328">따라서 이 내용을 앱에 추가하려는 경우 코드를 끌어와서 이 앱에 추가하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3f071-328">So if you're interested in adding that to your app, grab the code and add it to this app.</span></span>
+## <span data-ttu-id="d6237-324"><a name="_Toc395637775"></a>다음 단계</span><span class="sxs-lookup"><span data-stu-id="d6237-324"><a name="_Toc395637775"></a>Next steps</span></span>
+<span data-ttu-id="d6237-325">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-325">Congratulations!</span></span> <span data-ttu-id="d6237-326">방금 첫 번째 ASP.NET MVC 웹 응용 프로그램을 Azure Cosmos DB를 사용 하 여 작성 하 고 tooAzure 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-326">You just built your first ASP.NET MVC web application using Azure Cosmos DB and published it tooAzure.</span></span> <span data-ttu-id="d6237-327">hello 전체 응용 프로그램의 경우 hello 세부 정보를 포함 하 여 소스 코드를 hello 및 삭제이 포함 되지 않은 기능 자습서를 다운로드 하거나에서 복제 된 항목 수 [GitHub][GitHub]합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-327">hello source code for hello complete application, including hello detail and delete functionality that were not included in this tutorial can be downloaded or cloned from [GitHub][GitHub].</span></span> <span data-ttu-id="d6237-328">따라서 추가 tooyour 이러한 앱에 관심이 hello 코드 잡은 toothis 앱을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d6237-328">So if you're interested in adding that tooyour app, grab hello code and add it toothis app.</span></span>
 
-<span data-ttu-id="3f071-329">응용 프로그램에 기능을 더 추가하려면 [Azure Cosmos DB .NET 라이브러리](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)에서 사용 가능한 API를 검토하고 [GitHub][GitHub]의 Azure Cosmos DB .NET 라이브러리에 자유롭게 기여하세요.</span><span class="sxs-lookup"><span data-stu-id="3f071-329">To add additional functionality to your application, review the APIs available in the [Azure Cosmos DB .NET Library](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) and feel free to contribute to the Azure Cosmos DB .NET Library on [GitHub][GitHub].</span></span> 
+<span data-ttu-id="d6237-329">tooadd 추가 기능 tooyour 응용 프로그램을 검토 hello hello에서 사용할 수 있는 Api [Azure Cosmos DB.NET 라이브러리](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) 무료 toocontribute toohello Azure Cosmos DB.NET 라이브러리에 여겨지는 [GitHub] [GitHub].</span><span class="sxs-lookup"><span data-stu-id="d6237-329">tooadd additional functionality tooyour application, review hello APIs available in hello [Azure Cosmos DB .NET Library](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) and feel free toocontribute toohello Azure Cosmos DB .NET Library on [GitHub][GitHub].</span></span> 
 
 [\*]: https://microsoft.sharepoint.com/teams/DocDB/Shared%20Documents/Documentation/Docs.LatestVersions/PicExportError
 [Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx

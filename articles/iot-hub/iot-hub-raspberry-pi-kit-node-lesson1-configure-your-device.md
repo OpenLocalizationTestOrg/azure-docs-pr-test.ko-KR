@@ -1,12 +1,12 @@
 ---
-title: "Azure IoT에 Raspberry Pi(노드) 연결 - 단원 1: 장치 구성 | Microsoft Docs"
-description: Configure Raspberry Pi 3 for first-time use and install the Raspbian OS, a free operating system that is optimized for the Raspberry Pi hardware.
+title: "연결 라스베리 Pi (노드) tooAzure IoT-1 단원: 장치 구성 | Microsoft Docs"
+description: "처음 사용 하기 위해 라스베리 Pi 3 구성 하 고 hello Raspbian OS, hello 라스베리 Pi 하드웨어에 최적화 된 무료 운영 체제를 설치 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: "Raspbian 설치, Raspbian 다운로드, Raspbian 설치 방법, Raspbian 설정, Raspberry Pi 설치 Raspbian, Raspberry Pi 설치 OS, Raspberry Pi SD 카드 설치, Raspberry Pi 연결, Raspberry Pi에 연결, Raspberry Pi 연결"
+keywords: "raspbian 다운로드, 설치 raspbian은 tooinstall raspbian raspbian 설치 라즈베리 pi 설치 raspbian 라즈베리 pi 설치 라즈베리 os pi sd 카드 라즈베리 설치 pi 연결 연결 tooraspberry pi 라즈베리 pi 연결"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: 43f7c2cf-f1a5-4dd5-93f0-7e546c6dc91e
@@ -17,105 +17,105 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b848c48157a2310f0eb1d6398f8b9aaa4395d47f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 504a4d2a3f29717f955530812442cce2a78a6448
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-your-device"></a><span data-ttu-id="5ffd3-104">장치 구성</span><span class="sxs-lookup"><span data-stu-id="5ffd3-104">Configure your device</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="5ffd3-105">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="5ffd3-105">What you will do</span></span>
-<span data-ttu-id="5ffd3-106">최초 사용을 위해 Pi를 구성하고 Raspbian 운영 체제를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-106">Configure Pi for first-time use and install the Raspbian operating system.</span></span> <span data-ttu-id="5ffd3-107">Raspbian은 Raspberry Pi 하드웨어에 최적화된 무료 운영 체제입니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-107">Raspbian is a free operating system that is optimized for the Raspberry Pi hardware.</span></span> <span data-ttu-id="5ffd3-108">문제가 있으면 [문제 해결 페이지](iot-hub-raspberry-pi-kit-node-troubleshooting.md)에서 솔루션을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-108">If you have any problems, you can seek solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span></span>
+# <a name="configure-your-device"></a><span data-ttu-id="b4ae7-104">장치 구성</span><span class="sxs-lookup"><span data-stu-id="b4ae7-104">Configure your device</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="b4ae7-105">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="b4ae7-105">What you will do</span></span>
+<span data-ttu-id="b4ae7-106">Pi를 처음 사용 하기 위해 구성 하 고 hello Raspbian 운영 체제를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-106">Configure Pi for first-time use and install hello Raspbian operating system.</span></span> <span data-ttu-id="b4ae7-107">Raspbian는 가능한 운영 체제 hello 라스베리 Pi 하드웨어에 대해 최적화 된입니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-107">Raspbian is a free operating system that is optimized for hello Raspberry Pi hardware.</span></span> <span data-ttu-id="b4ae7-108">Hello에서 솔루션을 검색할 수 있는 문제가 있는 경우 [문제 해결 페이지](iot-hub-raspberry-pi-kit-node-troubleshooting.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-108">If you have any problems, you can seek solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="5ffd3-109">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="5ffd3-109">What you will learn</span></span>
-<span data-ttu-id="5ffd3-110">이 문서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-110">In this article, you will learn:</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="b4ae7-109">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="b4ae7-109">What you will learn</span></span>
+<span data-ttu-id="b4ae7-110">이 문서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-110">In this article, you will learn:</span></span>
 
-* <span data-ttu-id="5ffd3-111">Pi에 Raspbian을 설치하는 방법.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-111">How to install Raspbian on Pi.</span></span>
-* <span data-ttu-id="5ffd3-112">USB 케이블을 사용하여 Pi에 전원을 공급하는 방법.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-112">How to power up Pi by using a USB cable.</span></span>
-* <span data-ttu-id="5ffd3-113">이더넷 케이블이나 무선 네트워크를 사용하여 Pi를 네트워크에 연결하는 방법.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-113">How to connect Pi to the network by using an Ethernet cable or wireless network.</span></span>
-* <span data-ttu-id="5ffd3-114">LED를 실험용 회로판에 추가하고 Pi에 연결하는 방법.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-114">How to add an LED to the breadboard and connect it to Pi.</span></span>
+* <span data-ttu-id="b4ae7-111">어떻게 tooinstall 원주율 Raspbian 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-111">How tooinstall Raspbian on Pi.</span></span>
+* <span data-ttu-id="b4ae7-112">어떻게 USB 케이블을 사용 하 여 toopower Pi 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-112">How toopower up Pi by using a USB cable.</span></span>
+* <span data-ttu-id="b4ae7-113">어떻게 tooconnect Pi toohello 이더넷 케이블 또는 무선 네트워크를 사용 하 여 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-113">How tooconnect Pi toohello network by using an Ethernet cable or wireless network.</span></span>
+* <span data-ttu-id="b4ae7-114">Tooadd LED toohello breadboard 어떻게 tooPi 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-114">How tooadd an LED toohello breadboard and connect it tooPi.</span></span>
 
-## <a name="what-you-will-need"></a><span data-ttu-id="5ffd3-115">필요한 사항</span><span class="sxs-lookup"><span data-stu-id="5ffd3-115">What you will need</span></span>
-<span data-ttu-id="5ffd3-116">이 작업을 완료하려면 Raspberry Pi 3 시작 키트에서 다음 부품이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-116">To complete this operation, you need the following parts from your Raspberry Pi 3 Starter Kit:</span></span>
+## <a name="what-you-will-need"></a><span data-ttu-id="b4ae7-115">필요한 사항</span><span class="sxs-lookup"><span data-stu-id="b4ae7-115">What you will need</span></span>
+<span data-ttu-id="b4ae7-116">toocomplete 라스베리 Pi 3 시작 키트에서 파트를 수행 하는 hello 해야이 작업을이 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-116">toocomplete this operation, you need hello following parts from your Raspberry Pi 3 Starter Kit:</span></span>
 
-* <span data-ttu-id="5ffd3-117">Raspberry Pi 3 보드</span><span class="sxs-lookup"><span data-stu-id="5ffd3-117">The Raspberry Pi 3 board</span></span>
-* <span data-ttu-id="5ffd3-118">16GB microSD 카드</span><span class="sxs-lookup"><span data-stu-id="5ffd3-118">The 16-GB microSD card</span></span>
-* <span data-ttu-id="5ffd3-119">6피트 마이크로 USB 케이블과 5볼트 2암페어 전원 공급 장치</span><span class="sxs-lookup"><span data-stu-id="5ffd3-119">The 5-volt 2-amp power supply with the 6-foot micro USB cable</span></span>
-* <span data-ttu-id="5ffd3-120">실험용 회로판</span><span class="sxs-lookup"><span data-stu-id="5ffd3-120">The breadboard</span></span>
-* <span data-ttu-id="5ffd3-121">커넥터 와이어</span><span class="sxs-lookup"><span data-stu-id="5ffd3-121">Connector wires</span></span>
-* <span data-ttu-id="5ffd3-122">560옴 저항기</span><span class="sxs-lookup"><span data-stu-id="5ffd3-122">A 560-ohm resistor</span></span>
-* <span data-ttu-id="5ffd3-123">확산형 10mm LED</span><span class="sxs-lookup"><span data-stu-id="5ffd3-123">A diffused 10-mm LED</span></span>
-* <span data-ttu-id="5ffd3-124">이더넷 케이블 </span><span class="sxs-lookup"><span data-stu-id="5ffd3-124">The Ethernet cable</span></span>
+* <span data-ttu-id="b4ae7-117">hello 라스베리 Pi 3 보드</span><span class="sxs-lookup"><span data-stu-id="b4ae7-117">hello Raspberry Pi 3 board</span></span>
+* <span data-ttu-id="b4ae7-118">hello 16GB microSD 카드</span><span class="sxs-lookup"><span data-stu-id="b4ae7-118">hello 16-GB microSD card</span></span>
+* <span data-ttu-id="b4ae7-119">hello 6 피트 마이크로 USB 케이블 hello 5 v 2 amp 전원 공급 장치</span><span class="sxs-lookup"><span data-stu-id="b4ae7-119">hello 5-volt 2-amp power supply with hello 6-foot micro USB cable</span></span>
+* <span data-ttu-id="b4ae7-120">hello breadboard</span><span class="sxs-lookup"><span data-stu-id="b4ae7-120">hello breadboard</span></span>
+* <span data-ttu-id="b4ae7-121">커넥터 와이어</span><span class="sxs-lookup"><span data-stu-id="b4ae7-121">Connector wires</span></span>
+* <span data-ttu-id="b4ae7-122">560옴 저항기</span><span class="sxs-lookup"><span data-stu-id="b4ae7-122">A 560-ohm resistor</span></span>
+* <span data-ttu-id="b4ae7-123">확산형 10mm LED</span><span class="sxs-lookup"><span data-stu-id="b4ae7-123">A diffused 10-mm LED</span></span>
+* <span data-ttu-id="b4ae7-124">hello 이더넷 케이블</span><span class="sxs-lookup"><span data-stu-id="b4ae7-124">hello Ethernet cable</span></span>
 
 ![시작 키트의 항목](media/iot-hub-raspberry-pi-lessons/lesson1/starter_kit.jpg)
 
-<span data-ttu-id="5ffd3-126">다음 항목도 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-126">You also need:</span></span>
+<span data-ttu-id="b4ae7-126">다음 항목도 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-126">You also need:</span></span>
 
-* <span data-ttu-id="5ffd3-127">Pi를 연결할 유선 또는 무선 연결.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-127">A wired or wireless connection for Pi to connect to.</span></span>
-* <span data-ttu-id="5ffd3-128">운영 체제 이미지를 microSD 카드에 굽기 위한 USB-SD 어댑터 또는 miniSD 카드.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-128">A USB-SD adapter or miniSD card to burn the operating system image onto the microSD card.</span></span>
-* <span data-ttu-id="5ffd3-129">Windows, Mac 또는 Linux를 실행하는 컴퓨터 </span><span class="sxs-lookup"><span data-stu-id="5ffd3-129">A computer running Windows, Mac, or Linux.</span></span> <span data-ttu-id="5ffd3-130">컴퓨터는 microSD 카드에 Raspbian을 설치하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-130">The computer is used to install Raspbian on the microSD card.</span></span>
-* <span data-ttu-id="5ffd3-131">필요한 도구 및 소프트웨어를 다운로드하기 위한 인터넷 연결.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-131">An Internet connection to download the necessary tools and software.</span></span>
+* <span data-ttu-id="b4ae7-127">에 Pi tooconnect에 대 한 유선 또는 무선 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-127">A wired or wireless connection for Pi tooconnect to.</span></span>
+* <span data-ttu-id="b4ae7-128">USB SD 어댑터 또는 miniSD 카드 tooburn hello에 운영 체제 이미지 hello microSD 카드입니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-128">A USB-SD adapter or miniSD card tooburn hello operating system image onto hello microSD card.</span></span>
+* <span data-ttu-id="b4ae7-129">Windows, Mac 또는 Linux를 실행하는 컴퓨터 </span><span class="sxs-lookup"><span data-stu-id="b4ae7-129">A computer running Windows, Mac, or Linux.</span></span> <span data-ttu-id="b4ae7-130">hello 컴퓨터가 hello microSD 카드에 사용 되는 tooinstall Raspbian 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-130">hello computer is used tooinstall Raspbian on hello microSD card.</span></span>
+* <span data-ttu-id="b4ae7-131">인터넷 연결 toodownload 필요한 도구와 소프트웨어 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-131">An Internet connection toodownload hello necessary tools and software.</span></span>
 
-## <a name="install-raspbian-on-the-microsd-card"></a><span data-ttu-id="5ffd3-132">microSD 카드에 Raspbian 설치</span><span class="sxs-lookup"><span data-stu-id="5ffd3-132">Install Raspbian on the microSD card</span></span>
-<span data-ttu-id="5ffd3-133">Raspbian 이미지를 설치를 위해 microSD 카드를 준비합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-133">Prepare the microSD card for installation of the Raspbian image.</span></span>
+## <a name="install-raspbian-on-hello-microsd-card"></a><span data-ttu-id="b4ae7-132">Raspbian hello microSD 카드에 설치</span><span class="sxs-lookup"><span data-stu-id="b4ae7-132">Install Raspbian on hello microSD card</span></span>
+<span data-ttu-id="b4ae7-133">Hello microSD 카드 hello Raspbian 이미지의 설치를 준비 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-133">Prepare hello microSD card for installation of hello Raspbian image.</span></span>
 
-1. <span data-ttu-id="5ffd3-134">Raspbian을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-134">Download Raspbian.</span></span>
-   1. <span data-ttu-id="5ffd3-135">Raspbian Jessie with Pixel의 zip 파일을 [다운로드](https://www.raspberrypi.org/downloads/raspbian/)합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-135">[Download](https://www.raspberrypi.org/downloads/raspbian/) the .zip file for Raspbian Jessie with Pixel.</span></span>
-   2. <span data-ttu-id="5ffd3-136">컴퓨터의 폴더에 Raspbian 이미지의 압축을 풉니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-136">Extract the Raspbian image to a folder on your computer.</span></span>
-2. <span data-ttu-id="5ffd3-137">microSD 카드에 Raspbian을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-137">Install Raspbian to the microSD card.</span></span>
-   1. <span data-ttu-id="5ffd3-138">Etcher SD 카드 버너 유틸리티를 [다운로드](https://www.etcher.io)하여 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-138">[Download](https://www.etcher.io) and install the Etcher SD card burner utility.</span></span>
-   2. <span data-ttu-id="5ffd3-139">Etcher를 실행하고 1단계에서 압축을 푼 Raspbian 이미지를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-139">Run Etcher and select the Raspbian image that you extracted in step 1.</span></span>
-   3. <span data-ttu-id="5ffd3-140">microSD 카드 드라이브를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-140">Select the microSD card drive.</span></span>
-      <span data-ttu-id="5ffd3-141">Etcher가 이미 올바른 드라이브를 선택했을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-141">Note that Etcher may have already selected the correct drive.</span></span>
-   4. <span data-ttu-id="5ffd3-142">**Flash**를 클릭하여 microSD 카드에 Raspbian을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-142">Click **Flash** to install Raspbian to the microSD card.</span></span>
-   5. <span data-ttu-id="5ffd3-143">설치가 완료되면 컴퓨터에서 microSD 카드를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-143">Remove the microSD card from your computer when installation is complete.</span></span>
-      <span data-ttu-id="5ffd3-144">완료되면 Etcher가 microSD 카드를 자동으로 배출하거나 탑재를 해제하므로 microSD 카드를 바로 제거하는 것이 안전합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-144">It's safe to remove the microSD card directly because Etcher automatically ejects or unmounts the microSD card upon completion.</span></span>
-   6. <span data-ttu-id="5ffd3-145">Pi에 microSD 카드를 삽입합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-145">Insert the microSD card into Pi.</span></span>
+1. <span data-ttu-id="b4ae7-134">Raspbian을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-134">Download Raspbian.</span></span>
+   1. <span data-ttu-id="b4ae7-135">[다운로드](https://www.raspberrypi.org/downloads/raspbian/) hello.zip 파일에 대 한 픽셀을 Raspbian 제시 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-135">[Download](https://www.raspberrypi.org/downloads/raspbian/) hello .zip file for Raspbian Jessie with Pixel.</span></span>
+   2. <span data-ttu-id="b4ae7-136">Hello Raspbian 이미지 tooa 컴퓨터의 폴더에 추출 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-136">Extract hello Raspbian image tooa folder on your computer.</span></span>
+2. <span data-ttu-id="b4ae7-137">Raspbian toohello microSD 카드를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-137">Install Raspbian toohello microSD card.</span></span>
+   1. <span data-ttu-id="b4ae7-138">[다운로드](https://www.etcher.io) hello Etcher SD 카드 버너 유틸리티 하 여 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-138">[Download](https://www.etcher.io) and install hello Etcher SD card burner utility.</span></span>
+   2. <span data-ttu-id="b4ae7-139">Etcher를 실행 하 고 1 단계에서 압축을 푼 hello Raspbian 이미지를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-139">Run Etcher and select hello Raspbian image that you extracted in step 1.</span></span>
+   3. <span data-ttu-id="b4ae7-140">Hello microSD 카드 드라이브를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-140">Select hello microSD card drive.</span></span>
+      <span data-ttu-id="b4ae7-141">Etcher 선택 했을 수 이미 hello 올바른 드라이브 참고 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-141">Note that Etcher may have already selected hello correct drive.</span></span>
+   4. <span data-ttu-id="b4ae7-142">클릭 **플래시** tooinstall Raspbian toohello microSD 카드입니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-142">Click **Flash** tooinstall Raspbian toohello microSD card.</span></span>
+   5. <span data-ttu-id="b4ae7-143">설치가 완료 되 면 hello microSD 카드를 컴퓨터에서 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-143">Remove hello microSD card from your computer when installation is complete.</span></span>
+      <span data-ttu-id="b4ae7-144">되므로 안전 tooremove hello microSD 카드 직접 Etcher를 꺼냅니다. 자동으로 또는 완료 되 면 hello microSD 카드 탑재 해제 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-144">It's safe tooremove hello microSD card directly because Etcher automatically ejects or unmounts hello microSD card upon completion.</span></span>
+   6. <span data-ttu-id="b4ae7-145">Pi에 hello microSD 카드를 삽입 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-145">Insert hello microSD card into Pi.</span></span>
 
-![SD 카드 삽입](media/iot-hub-raspberry-pi-lessons/lesson1/insert_sdcard.jpg)
+![Hello SD 카드를 삽입 합니다.](media/iot-hub-raspberry-pi-lessons/lesson1/insert_sdcard.jpg)
 
-## <a name="turn-on-pi"></a><span data-ttu-id="5ffd3-147">Pi 켜기</span><span class="sxs-lookup"><span data-stu-id="5ffd3-147">Turn on Pi</span></span>
-<span data-ttu-id="5ffd3-148">마이크로 USB 케이블 및 전원 공급 장치를 사용하여 Pi를 켭니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-148">Turn on Pi by using the micro USB cable and the power supply.</span></span>
+## <a name="turn-on-pi"></a><span data-ttu-id="b4ae7-147">Pi 켜기</span><span class="sxs-lookup"><span data-stu-id="b4ae7-147">Turn on Pi</span></span>
+<span data-ttu-id="b4ae7-148">Pi hello 마이크로 USB 케이블 및 hello 전원 공급 장치를 사용 하 여 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-148">Turn on Pi by using hello micro USB cable and hello power supply.</span></span>
 
 ![켜기](media/iot-hub-raspberry-pi-lessons/lesson1/micro_usb_power_on.jpg)
 
 > [!NOTE]
-> <span data-ttu-id="5ffd3-150">Raspberry가 정상 작동하는 데 충분한 전원이 공급되도록 2A 이상인 키트의 전원 공급 장치를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-150">It is important to use the power supply in the kit that is at least 2A to make sure that your Raspberry has enough power to work correctly.</span></span>
+> <span data-ttu-id="b4ae7-150">최소 hello 키트의 중요 한 toouse hello 전원 공급 장치는 프로그램 라스베리에 충분 한 전력 toowork 올바르게 있는지 2A toomake 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-150">It is important toouse hello power supply in hello kit that is at least 2A toomake sure that your Raspberry has enough power toowork correctly.</span></span>
 
-## <a name="enable-ssh"></a><span data-ttu-id="5ffd3-151">SSH 사용</span><span class="sxs-lookup"><span data-stu-id="5ffd3-151">Enable SSH</span></span>
-<span data-ttu-id="5ffd3-152">2016년 11월 릴리스를 기준으로 Raspbian은 기본적으로 SSH 서버를 비활성화했습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-152">As of the November 2016 release, Raspbian has the SSH server disabled by default.</span></span> <span data-ttu-id="5ffd3-153">수동으로 활성화해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-153">You need to enable it manually.</span></span> <span data-ttu-id="5ffd3-154">[공식 지침](https://www.raspberrypi.org/documentation/remote-access/ssh/)을 참조하거나 모니터를 연결하고 **기본 설정 -> Raspberry Pi 구성**으로 이동하여 SSH를 사용하도록 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-154">You can refer to the [official instructions](https://www.raspberrypi.org/documentation/remote-access/ssh/) or connect a monitor and go to **Preferences -> Raspberry Pi Configuration** to enable SSH.</span></span>
+## <a name="enable-ssh"></a><span data-ttu-id="b4ae7-151">SSH 사용</span><span class="sxs-lookup"><span data-stu-id="b4ae7-151">Enable SSH</span></span>
+<span data-ttu-id="b4ae7-152">Hello 2016 년 11 월 릴리스를 기준으로 Raspbian 기본적으로 사용 하지 않도록 설정 하는 hello SSH 서버를 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-152">As of hello November 2016 release, Raspbian has hello SSH server disabled by default.</span></span> <span data-ttu-id="b4ae7-153">Tooenable 필요한 것 수동으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-153">You need tooenable it manually.</span></span> <span data-ttu-id="b4ae7-154">Toohello 참조할 수 있습니다 [공식 지침](https://www.raspberrypi.org/documentation/remote-access/ssh/) 하거나 모니터를 연결 하 고 이동 너무**기본 설정-> 라스베리 Pi 구성** tooenable SSH 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-154">You can refer toohello [official instructions](https://www.raspberrypi.org/documentation/remote-access/ssh/) or connect a monitor and go too**Preferences -> Raspberry Pi Configuration** tooenable SSH.</span></span>
 
-## <a name="connect-raspberry-pi-3-to-the-network"></a><span data-ttu-id="5ffd3-155">Raspberry Pi 3을 네트워크에 연결</span><span class="sxs-lookup"><span data-stu-id="5ffd3-155">Connect Raspberry Pi 3 to the network</span></span>
-<span data-ttu-id="5ffd3-156">Pi를 유선 네트워크 또는 무선 네트워크에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-156">You can connect Pi to a wired network or to a wireless network.</span></span> <span data-ttu-id="5ffd3-157">Pi가 컴퓨터와 같은 네트워크에 연결되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-157">Make sure that Pi is connected to the same network as your computer.</span></span> <span data-ttu-id="5ffd3-158">예를 들어 Pi를 컴퓨터가 연결된 스위치와 같은 스위치에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-158">For example, you can connect Pi to the same switch that your computer is connected to.</span></span>
+## <a name="connect-raspberry-pi-3-toohello-network"></a><span data-ttu-id="b4ae7-155">라스베리 Pi 3 toohello 네트워크에 연결</span><span class="sxs-lookup"><span data-stu-id="b4ae7-155">Connect Raspberry Pi 3 toohello network</span></span>
+<span data-ttu-id="b4ae7-156">Pi tooa 유선 네트워크 또는 tooa 무선 네트워크를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-156">You can connect Pi tooa wired network or tooa wireless network.</span></span> <span data-ttu-id="b4ae7-157">Pi 사용자 컴퓨터와 동일한 네트워크 연결된 toohello 인지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-157">Make sure that Pi is connected toohello same network as your computer.</span></span> <span data-ttu-id="b4ae7-158">예를 들어 컴퓨터에 연결 되어 있는지를 전환 동일한는 Pi toohello를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-158">For example, you can connect Pi toohello same switch that your computer is connected to.</span></span>
 
-### <a name="connect-to-a-wired-network"></a><span data-ttu-id="5ffd3-159">유선 네트워크에 연결</span><span class="sxs-lookup"><span data-stu-id="5ffd3-159">Connect to a wired network</span></span>
-<span data-ttu-id="5ffd3-160">이더넷 케이블을 사용하여 Pi를 유선 네트워크에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-160">Use the Ethernet cable to connect Pi to your wired network.</span></span> <span data-ttu-id="5ffd3-161">연결이 수립되면 Pi의 LED 두 개가 켜집니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-161">The two LEDs on Pi turn on if the connection is established.</span></span>
+### <a name="connect-tooa-wired-network"></a><span data-ttu-id="b4ae7-159">Tooa 유선 네트워크 연결</span><span class="sxs-lookup"><span data-stu-id="b4ae7-159">Connect tooa wired network</span></span>
+<span data-ttu-id="b4ae7-160">Hello 이더넷 케이블 tooconnect Pi tooyour 유선 네트워크를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-160">Use hello Ethernet cable tooconnect Pi tooyour wired network.</span></span> <span data-ttu-id="b4ae7-161">hello Pi에서 두 개의 Led 설정 hello 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-161">hello two LEDs on Pi turn on if hello connection is established.</span></span>
 
 ![이더넷 케이블을 사용하여 연결](media/iot-hub-raspberry-pi-lessons/lesson1/connect_ethernet.jpg)
 
-### <a name="connect-to-a-wireless-network"></a><span data-ttu-id="5ffd3-163">무선 네트워크에 연결</span><span class="sxs-lookup"><span data-stu-id="5ffd3-163">Connect to a wireless network</span></span>
-<span data-ttu-id="5ffd3-164">Raspberry Pi Foundation의 [지침](https://www.raspberrypi.org/learning/software-guide/wifi/)에 따라 Pi를 무선 네트워크에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-164">Follow the [instructions](https://www.raspberrypi.org/learning/software-guide/wifi/) from the Raspberry Pi Foundation to connect Pi to your wireless network.</span></span> <span data-ttu-id="5ffd3-165">이 지침에 따르면 먼저 모니터와 키보드를 Pi에 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-165">These instructions require you to first connect a monitor and a keyboard to Pi.</span></span>
+### <a name="connect-tooa-wireless-network"></a><span data-ttu-id="b4ae7-163">Tooa 무선 네트워크 연결</span><span class="sxs-lookup"><span data-stu-id="b4ae7-163">Connect tooa wireless network</span></span>
+<span data-ttu-id="b4ae7-164">Hello에 따라 [지침](https://www.raspberrypi.org/learning/software-guide/wifi/) hello 라스베리 Pi Foundation tooconnect Pi tooyour 무선 네트워크에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-164">Follow hello [instructions](https://www.raspberrypi.org/learning/software-guide/wifi/) from hello Raspberry Pi Foundation tooconnect Pi tooyour wireless network.</span></span> <span data-ttu-id="b4ae7-165">이러한 지침을 사용 해야 하는 모니터 및 키보드 tooPi toofirst 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-165">These instructions require you toofirst connect a monitor and a keyboard tooPi.</span></span>
 
-## <a name="connect-the-led-to-pi"></a><span data-ttu-id="5ffd3-166">LED를 Pi에 연결</span><span class="sxs-lookup"><span data-stu-id="5ffd3-166">Connect the LED to Pi</span></span>
-<span data-ttu-id="5ffd3-167">이 작업을 완료하려면 [실험용 회로판](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard), 커넥터 와이어, LED 및 저항기를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-167">To complete this task, use the [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard), the connector wires, the LED, and the resistor.</span></span> <span data-ttu-id="5ffd3-168">이러한 항목을 Pi의 [범용 입출력](https://www.raspberrypi.org/documentation/usage/gpio/)(GPIO) 포트에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-168">Connect them to the [general-purpose input/output](https://www.raspberrypi.org/documentation/usage/gpio/) (GPIO) ports of Pi.</span></span>
+## <a name="connect-hello-led-toopi"></a><span data-ttu-id="b4ae7-166">Hello LED tooPi 연결</span><span class="sxs-lookup"><span data-stu-id="b4ae7-166">Connect hello LED tooPi</span></span>
+<span data-ttu-id="b4ae7-167">toocomplete이 작업을 사용 하 여 hello [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)및 LED, hello 저항기 hello 커넥터 와이어 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-167">toocomplete this task, use hello [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard), hello connector wires, hello LED, and hello resistor.</span></span> <span data-ttu-id="b4ae7-168">Toohello 연결 [범용 입/출력](https://www.raspberrypi.org/documentation/usage/gpio/) Pi의 포트 (GPIO).</span><span class="sxs-lookup"><span data-stu-id="b4ae7-168">Connect them toohello [general-purpose input/output](https://www.raspberrypi.org/documentation/usage/gpio/) (GPIO) ports of Pi.</span></span>
 
 ![실험용 회로판, LED 및 저항기](media/iot-hub-raspberry-pi-lessons/lesson1/breadboard_led_resistor.jpg)
 
-1. <span data-ttu-id="5ffd3-170">LED의 더 짧은 다리를 **GPIO GND(Pin 6)**에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-170">Connect the shorter leg of the LED to **GPIO GND (Pin 6)**.</span></span>
-2. <span data-ttu-id="5ffd3-171">저항기의 한 쪽 다리에 더 긴 LED 다리를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-171">Connect the longer leg of the LED to one leg of the resistor.</span></span>
-3. <span data-ttu-id="5ffd3-172">LED의 다른 다리를 **GPIO 4(Pin 7)**에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-172">Connect the other leg of the resistor to **GPIO 4 (Pin 7)**.</span></span>
+1. <span data-ttu-id="b4ae7-170">Hello 짧은 다리 hello LED의 너무 연결**GPIO GND (Pin 6)**합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-170">Connect hello shorter leg of hello LED too**GPIO GND (Pin 6)**.</span></span>
+2. <span data-ttu-id="b4ae7-171">Hello hello 저항기의 LED tooone 레그의 긴 레그 hello를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-171">Connect hello longer leg of hello LED tooone leg of hello resistor.</span></span>
+3. <span data-ttu-id="b4ae7-172">연결의 hello 저항기 다른 레그 너무 hello**GPIO 4 (Pin 7)**합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-172">Connect hello other leg of hello resistor too**GPIO 4 (Pin 7)**.</span></span>
 
-<span data-ttu-id="5ffd3-173">LED 극성이 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-173">Note that the LED polarity is important.</span></span> <span data-ttu-id="5ffd3-174">이 극성 설정은 일반적으로 활성(낮음)이라고 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-174">This polarity setting is commonly known as Active Low.</span></span>
+<span data-ttu-id="b4ae7-173">Note는 hello LED 극성이 중요 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-173">Note that hello LED polarity is important.</span></span> <span data-ttu-id="b4ae7-174">이 극성 설정은 일반적으로 활성(낮음)이라고 합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-174">This polarity setting is commonly known as Active Low.</span></span>
 
 ![핀아웃](media/iot-hub-raspberry-pi-lessons/lesson1/pinout_breadboard.png)
 
-<span data-ttu-id="5ffd3-176">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-176">Congratulations!</span></span> <span data-ttu-id="5ffd3-177">Pi 구성을 마쳤습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-177">You've successfully configured Pi.</span></span>
+<span data-ttu-id="b4ae7-176">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-176">Congratulations!</span></span> <span data-ttu-id="b4ae7-177">Pi 구성을 마쳤습니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-177">You've successfully configured Pi.</span></span>
 
-## <a name="summary"></a><span data-ttu-id="5ffd3-178">요약</span><span class="sxs-lookup"><span data-stu-id="5ffd3-178">Summary</span></span>
-<span data-ttu-id="5ffd3-179">이 문서에서는 Raspbian을 설치하고, Pi를 네트워크에 연결하고, LED를 Pi에 연결하여 Pi를 구성하는 방법을 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-179">In this article, you’ve learned how to configure Pi by installing Raspbian, connecting Pi to a network, and connecting an LED to Pi.</span></span> <span data-ttu-id="5ffd3-180">아직 LED에는 불이 들어오지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-180">Note that the LED doesn't yet light up.</span></span> <span data-ttu-id="5ffd3-181">다음 작업은 Pi에서 샘플 응용 프로그램 실행을 위한 준비로 필요한 도구 및 소프트웨어를 설치하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5ffd3-181">The next task is to install the necessary tools and software in preparation for running a sample application on Pi.</span></span>
+## <a name="summary"></a><span data-ttu-id="b4ae7-178">요약</span><span class="sxs-lookup"><span data-stu-id="b4ae7-178">Summary</span></span>
+<span data-ttu-id="b4ae7-179">이 문서에서 배운 Raspbian, Pi tooa 네트워크 연결을 설치 하 고 연결 하는 LED tooPi tooconfigure Pi 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-179">In this article, you’ve learned how tooconfigure Pi by installing Raspbian, connecting Pi tooa network, and connecting an LED tooPi.</span></span> <span data-ttu-id="b4ae7-180">Note 해당 hello LED가 켜 아직 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-180">Note that hello LED doesn't yet light up.</span></span> <span data-ttu-id="b4ae7-181">hello 다음 작업은 tooinstall hello 필요한 도구 및 Pi에서 샘플 응용 프로그램을 실행 하는 준비 과정에서 소프트웨어.</span><span class="sxs-lookup"><span data-stu-id="b4ae7-181">hello next task is tooinstall hello necessary tools and software in preparation for running a sample application on Pi.</span></span>
 
 ![하드웨어는 준비되었습니다.](media/iot-hub-raspberry-pi-lessons/lesson1/hardware_ready.jpg)
 
-## <a name="next-steps"></a><span data-ttu-id="5ffd3-183">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5ffd3-183">Next steps</span></span>
-[<span data-ttu-id="5ffd3-184">도구 얻기</span><span class="sxs-lookup"><span data-stu-id="5ffd3-184">Get the tools</span></span>](iot-hub-raspberry-pi-kit-node-lesson1-get-the-tools-win32.md)
+## <a name="next-steps"></a><span data-ttu-id="b4ae7-183">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b4ae7-183">Next steps</span></span>
+[<span data-ttu-id="b4ae7-184">Hello 도구 가져오기</span><span class="sxs-lookup"><span data-stu-id="b4ae7-184">Get hello tools</span></span>](iot-hub-raspberry-pi-kit-node-lesson1-get-the-tools-win32.md)
 

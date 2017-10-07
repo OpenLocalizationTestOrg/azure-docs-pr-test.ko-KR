@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-title: "Service Bus Relay 설명서"
-description: "Azure Relay 서비스가 어떻게 하이브리드 클라우드 및 온-프레미스 환경에서 작동하고, 방법, 자습서, 비디오, API 참조 등으로 완료되는지 알아봅니다."
-ms.openlocfilehash: 43d2c5ca34e4903a41160496fdb4d975cb665de7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+title: "aaaService 버스 릴레이 설명서"
+description: "자습서, 비디오, API 참조, 등 hello Azure 릴레이 서비스는 하이브리드 클라우드 및 온-프레미스 환경에서 완벽 하 게 방법, 작동 방법에 대해 알아봅니다."
+ms.openlocfilehash: c042c82c90fa03e91ee9c1b513e325d7e8d33c08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-relay-documentation"></a>Service Bus Relay 설명서
-Azure Relay 서비스는 방화벽 연결을 열거나 회사 네트워크 인프라를 주입식으로 변경하지 않고도 회사 엔터프라이즈 네트워크와 공용 클라우드 내에서 온-프레미스와 클라우드 환경 사이의 하이브리드 응용 프로그램을 어떻게 원활하게 작동하도록 하는지 알아봅니다.
+어떻게 Azure 릴레이 서비스 사이 하이브리드 응용 프로그램을 용이 하 게 온-프레미스 및 알아내거나 tooopen 방화벽 연결할 필요 없이 클라우드는 회사의 엔터프라이즈 네트워크 및 hello 공용 클라우드 내에서 환경 개입 수준이 변경 tooa 회사에 필요 네트워크 인프라입니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

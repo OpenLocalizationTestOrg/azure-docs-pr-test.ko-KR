@@ -1,5 +1,5 @@
 ---
-title: "SQL Data Warehouse의 GROUP BY 옵션 | Microsoft Docs"
+title: "SQL 데이터 웨어하우스에 옵션에 aaaGroup | Microsoft Docs"
 description: "솔루션 개발을 위한 Azure SQL 데이터 웨어하우스의 GROUP BY 옵션 구현을 위한 팁."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,25 +15,25 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: da71cb834c13da5d0f5690f471efc6c696163f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc443c2af4e3ef2babd74d78aa6fb57bb3c1c7ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="group-by-options-in-sql-data-warehouse"></a><span data-ttu-id="aa947-103">SQL 데이터 웨어하우스의 GROUP BY 옵션</span><span class="sxs-lookup"><span data-stu-id="aa947-103">Group by options in SQL Data Warehouse</span></span>
-<span data-ttu-id="aa947-104">[GROUP BY][GROUP BY] 절을 사용하여 데이터를 요약 행 집합으로 집계합니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-104">The [GROUP BY][GROUP BY] clause is used to aggregate data to a summary set of rows.</span></span> <span data-ttu-id="aa947-105">또한 Azure SQL 데이터 웨어하우스에서 직접 지원하지 않기 때문에 해결해야 하는 기능을 확장하는 몇 가지 옵션이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-105">It also has a few options that extend it's functionality that need to be worked around as they are not directly supported by Azure SQL Data Warehouse.</span></span>
+# <a name="group-by-options-in-sql-data-warehouse"></a><span data-ttu-id="cb5dd-103">SQL 데이터 웨어하우스의 GROUP BY 옵션</span><span class="sxs-lookup"><span data-stu-id="cb5dd-103">Group by options in SQL Data Warehouse</span></span>
+<span data-ttu-id="cb5dd-104">hello [GROUP BY] [ GROUP BY] 절을 사용 하는 tooaggregate 데이터 tooa 요약 행 집합입니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-104">hello [GROUP BY][GROUP BY] clause is used tooaggregate data tooa summary set of rows.</span></span> <span data-ttu-id="cb5dd-105">또한 Azure SQL 데이터 웨어하우스에서 직접 지원 하지 않는 대로 해결할 필요가 toobe 해당의 기능을 확장 하는 몇 가지 옵션이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-105">It also has a few options that extend it's functionality that need toobe worked around as they are not directly supported by Azure SQL Data Warehouse.</span></span>
 
-<span data-ttu-id="aa947-106">이들 옵션은</span><span class="sxs-lookup"><span data-stu-id="aa947-106">These options are</span></span>
+<span data-ttu-id="cb5dd-106">이들 옵션은</span><span class="sxs-lookup"><span data-stu-id="cb5dd-106">These options are</span></span>
 
-* <span data-ttu-id="aa947-107">GROUP BY with ROLLUP</span><span class="sxs-lookup"><span data-stu-id="aa947-107">GROUP BY with ROLLUP</span></span>
-* <span data-ttu-id="aa947-108">그룹화 집합</span><span class="sxs-lookup"><span data-stu-id="aa947-108">GROUPING SETS</span></span>
-* <span data-ttu-id="aa947-109">GROUP BY with CUBE</span><span class="sxs-lookup"><span data-stu-id="aa947-109">GROUP BY with CUBE</span></span>
+* <span data-ttu-id="cb5dd-107">GROUP BY with ROLLUP</span><span class="sxs-lookup"><span data-stu-id="cb5dd-107">GROUP BY with ROLLUP</span></span>
+* <span data-ttu-id="cb5dd-108">그룹화 집합</span><span class="sxs-lookup"><span data-stu-id="cb5dd-108">GROUPING SETS</span></span>
+* <span data-ttu-id="cb5dd-109">GROUP BY with CUBE</span><span class="sxs-lookup"><span data-stu-id="cb5dd-109">GROUP BY with CUBE</span></span>
 
-## <a name="rollup-and-grouping-sets-options"></a><span data-ttu-id="aa947-110">롤업 및 그룹화 집합 옵션</span><span class="sxs-lookup"><span data-stu-id="aa947-110">Rollup and grouping sets options</span></span>
-<span data-ttu-id="aa947-111">여기서 가장 간단한 옵션은 명시적 구문에 의존하는 대신 `UNION ALL` 을 사용하여 롤업을 수행하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-111">The simplest option here is to use `UNION ALL` instead to perform the rollup rather than relying on the explicit syntax.</span></span> <span data-ttu-id="aa947-112">결과는 완전히 동일합니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-112">The result is exactly the same</span></span>
+## <a name="rollup-and-grouping-sets-options"></a><span data-ttu-id="cb5dd-110">롤업 및 그룹화 집합 옵션</span><span class="sxs-lookup"><span data-stu-id="cb5dd-110">Rollup and grouping sets options</span></span>
+<span data-ttu-id="cb5dd-111">hello 여기 가장 간단한 옵션은 toouse `UNION ALL` 대신에 의존 하지 않고 tooperform hello 롤업 hello 명시적 구문입니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-111">hello simplest option here is toouse `UNION ALL` instead tooperform hello rollup rather than relying on hello explicit syntax.</span></span> <span data-ttu-id="cb5dd-112">hello 결과 동일한 hello 정확 하 게</span><span class="sxs-lookup"><span data-stu-id="cb5dd-112">hello result is exactly hello same</span></span>
 
-<span data-ttu-id="aa947-113">다음은 `ROLLUP` 옵션을 사용하는 GROUP BY 문의 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-113">Below is an example of a group by statement using the `ROLLUP` option:</span></span>
+<span data-ttu-id="cb5dd-113">다음은 group by hello를 사용 하 여 문의 예 `ROLLUP` 옵션:</span><span class="sxs-lookup"><span data-stu-id="cb5dd-113">Below is an example of a group by statement using hello `ROLLUP` option:</span></span>
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -48,13 +48,13 @@ GROUP BY ROLLUP (
 ;
 ```
 
-<span data-ttu-id="aa947-114">ROLLUP을 사용하여 다음과 같은 집계를 요청했습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-114">By using ROLLUP we have requested the following aggregations:</span></span>
+<span data-ttu-id="cb5dd-114">롤업을 사용 하 여 집계를 수행 하는 hello 요청한:</span><span class="sxs-lookup"><span data-stu-id="cb5dd-114">By using ROLLUP we have requested hello following aggregations:</span></span>
 
-* <span data-ttu-id="aa947-115">국가 및 지역</span><span class="sxs-lookup"><span data-stu-id="aa947-115">Country and Region</span></span>
-* <span data-ttu-id="aa947-116">국가</span><span class="sxs-lookup"><span data-stu-id="aa947-116">Country</span></span>
-* <span data-ttu-id="aa947-117">총합계</span><span class="sxs-lookup"><span data-stu-id="aa947-117">Grand Total</span></span>
+* <span data-ttu-id="cb5dd-115">국가 및 지역</span><span class="sxs-lookup"><span data-stu-id="cb5dd-115">Country and Region</span></span>
+* <span data-ttu-id="cb5dd-116">국가</span><span class="sxs-lookup"><span data-stu-id="cb5dd-116">Country</span></span>
+* <span data-ttu-id="cb5dd-117">총합계</span><span class="sxs-lookup"><span data-stu-id="cb5dd-117">Grand Total</span></span>
 
-<span data-ttu-id="aa947-118">이 요청을 바꾸려면 `UNION ALL`을 사용해야 하며, 동일한 결과가 반환되도록 필요한 집계를 명시적으로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-118">To replace this you will need to use `UNION ALL`; specifying the aggregations required explicitly to return the same results:</span></span>
+<span data-ttu-id="cb5dd-118">tooreplace toouse 해야이 `UNION ALL`; 명시적으로 필요한 hello 집계 지정 tooreturn hello 동일한 결과:</span><span class="sxs-lookup"><span data-stu-id="cb5dd-118">tooreplace this you will need toouse `UNION ALL`; specifying hello aggregations required explicitly tooreturn hello same results:</span></span>
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -81,14 +81,14 @@ FROM  dbo.factInternetSales s
 JOIN  dbo.DimSalesTerritory t     ON s.SalesTerritoryKey       = t.SalesTerritoryKey;
 ```
 
-<span data-ttu-id="aa947-119">GROUPING SETS의 경우 같은 원칙을 적용하되 보고자 하는 집계 수준에 맞는 UNION ALL 섹션만 만들면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-119">For GROUPING SETS all we need to do is adopt the same principal but only create UNION ALL sections for the aggregation levels we want to see</span></span>
+<span data-ttu-id="cb5dd-119">Toosee 원하는 toodo 필요한 것은 채택 GROUPING SETS 주 동일 hello 있지만 계정만 hello에 대 한 UNION ALL 섹션을 만들 집계 수준</span><span class="sxs-lookup"><span data-stu-id="cb5dd-119">For GROUPING SETS all we need toodo is adopt hello same principal but only create UNION ALL sections for hello aggregation levels we want toosee</span></span>
 
-## <a name="cube-options"></a><span data-ttu-id="aa947-120">큐브 옵션</span><span class="sxs-lookup"><span data-stu-id="aa947-120">Cube options</span></span>
-<span data-ttu-id="aa947-121">UNION ALL 접근방식을 사용하여 GROUP BY WITH CUBE를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-121">It is possible to create a GROUP BY WITH CUBE using the UNION ALL approach.</span></span> <span data-ttu-id="aa947-122">문제는 코드가 금세 번거롭고 다루기 힘들게 될 수 있다는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-122">The problem is that the code can quickly become cumbersome and unwieldy.</span></span> <span data-ttu-id="aa947-123">이 문제를 완화하기 위해 더 고급스러운 이 접근방식을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-123">To mitigate this you can use this more advanced approach.</span></span>
+## <a name="cube-options"></a><span data-ttu-id="cb5dd-120">큐브 옵션</span><span class="sxs-lookup"><span data-stu-id="cb5dd-120">Cube options</span></span>
+<span data-ttu-id="cb5dd-121">가능한 toocreate는 GROUP BY WITH CUBE는 hello UNION ALL 접근 방식을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-121">It is possible toocreate a GROUP BY WITH CUBE using hello UNION ALL approach.</span></span> <span data-ttu-id="cb5dd-122">hello 문제는 번거롭고 다루기 hello 코드 신속 하 게 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-122">hello problem is that hello code can quickly become cumbersome and unwieldy.</span></span> <span data-ttu-id="cb5dd-123">toomitigate이이 사용 하 여 고급 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-123">toomitigate this you can use this more advanced approach.</span></span>
 
-<span data-ttu-id="aa947-124">위의 예제를 사용해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-124">Let's use the example above.</span></span>
+<span data-ttu-id="cb5dd-124">위의 hello 예제를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-124">Let's use hello example above.</span></span>
 
-<span data-ttu-id="aa947-125">첫 번째 단계는 만들고자 하는 집계의 모든 수준을 정의하는 ‘큐브'를 정의하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-125">The first step is to define the 'cube' that defines all the levels of aggregation that we want to create.</span></span> <span data-ttu-id="aa947-126">파생된 테이블 두 개의 CROSS JOIN에 주목해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-126">It is important to take note of the CROSS JOIN of the two derived tables.</span></span> <span data-ttu-id="aa947-127">이렇게 하면 필요한 모든 수준이 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-127">This generates all the levels for us.</span></span> <span data-ttu-id="aa947-128">코드의 나머지 부분은 사실상 서식 지정을 위한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-128">The rest of the code is really there for formatting.</span></span>
+<span data-ttu-id="cb5dd-125">hello 첫 번째 단계는 toodefine hello 모든 hello 수준의 toocreate 한다고 집계를 정의 하는 ' 큐브의'입니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-125">hello first step is toodefine hello 'cube' that defines all hello levels of aggregation that we want toocreate.</span></span> <span data-ttu-id="cb5dd-126">적절 하지 중요 tootake hello hello 두 파생된 테이블의 CROSS JOIN의 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-126">It is important tootake note of hello CROSS JOIN of hello two derived tables.</span></span> <span data-ttu-id="cb5dd-127">이 모든 hello 수준을 위해 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-127">This generates all hello levels for us.</span></span> <span data-ttu-id="cb5dd-128">hello 코드의 나머지 부분 hello 거기 실제로 서식을 지정 하기 위한 합니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-128">hello rest of hello code is really there for formatting.</span></span>
 
 ```sql
 CREATE TABLE #Cube
@@ -119,11 +119,11 @@ SELECT Cols
 FROM GrpCube;
 ```
 
-<span data-ttu-id="aa947-129">CTAS의 결과는 아래와 같습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-129">The results of the CTAS can be seen below:</span></span>
+<span data-ttu-id="cb5dd-129">hello의 hello 결과 CTAS에는 아래 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-129">hello results of hello CTAS can be seen below:</span></span>
 
 ![][1]
 
-<span data-ttu-id="aa947-130">두 번째 단계는 중간 결과를 저장할 대상 테이블을 지정하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-130">The second step is to specify a target table to store interim results:</span></span>
+<span data-ttu-id="cb5dd-130">hello 두 번째 단계는 대상 테이블 toostore 중간 결과 toospecify입니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-130">hello second step is toospecify a target table toostore interim results:</span></span>
 
 ```sql
 DECLARE
@@ -146,7 +146,7 @@ WITH
 ;
 ```
 
-<span data-ttu-id="aa947-131">세 번째 단계는 집계를 수행하는 열의 큐브를 반복하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-131">The third step is to loop over our cube of columns performing the aggregation.</span></span> <span data-ttu-id="aa947-132">쿼리는 #Cube 임시 테이블의 모든 행에 대해 한 번 실행하며 결과를 #Results 임시 테이블에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-132">The query will run once for every row in the #Cube temporary table and store the results in the #Results temp table</span></span>
+<span data-ttu-id="cb5dd-131">hello 세 번째 단계는 hello 집계를 수행 하는 열이 큐브에 대해 tooloop을 것입니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-131">hello third step is tooloop over our cube of columns performing hello aggregation.</span></span> <span data-ttu-id="cb5dd-132">hello 쿼리 hello #Cube 임시 테이블의 모든 행에 대해 한 번 실행 되 고 hello 결과 hello #Results 임시 테이블에 저장</span><span class="sxs-lookup"><span data-stu-id="cb5dd-132">hello query will run once for every row in hello #Cube temporary table and store hello results in hello #Results temp table</span></span>
 
 ```sql
 SET @nbr =(SELECT MAX(Seq) FROM #Cube);
@@ -170,7 +170,7 @@ BEGIN
 END
 ```
 
-<span data-ttu-id="aa947-133">마지막으로 #Results 임시 테이블을 읽어서 결과를 반환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-133">Lastly we can return the results by simply reading from the #Results temporary table</span></span>
+<span data-ttu-id="cb5dd-133">마지막으로 간단히 hello #Results 임시 테이블에서 참조 하 여 hello 결과 반환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-133">Lastly we can return hello results by simply reading from hello #Results temporary table</span></span>
 
 ```sql
 SELECT *
@@ -179,10 +179,10 @@ ORDER BY 1,2,3
 ;
 ```
 
-<span data-ttu-id="aa947-134">코드를 섹션으로 분할하고 반복 구성을 생성하면 코드의 관리 및 유지 관리가 더 쉬워집니다.</span><span class="sxs-lookup"><span data-stu-id="aa947-134">By breaking the code up into sections and generating a looping construct the code becomes more manageable and maintainable.</span></span>
+<span data-ttu-id="cb5dd-134">Hello 코드 섹션으로 분할 하 고 반복 구문을 hello를 생성 하 여 좀 더 관리 및 유지 관리 가능한 코드 향상 됩니다.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-134">By breaking hello code up into sections and generating a looping construct hello code becomes more manageable and maintainable.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="aa947-135">다음 단계</span><span class="sxs-lookup"><span data-stu-id="aa947-135">Next steps</span></span>
-<span data-ttu-id="aa947-136">더 많은 개발 팁은 [개발 개요][development overview]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aa947-136">For more development tips, see [development overview][development overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="cb5dd-135">다음 단계</span><span class="sxs-lookup"><span data-stu-id="cb5dd-135">Next steps</span></span>
+<span data-ttu-id="cb5dd-136">더 많은 개발 팁은 [개발 개요][development overview]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cb5dd-136">For more development tips, see [development overview][development overview].</span></span>
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png

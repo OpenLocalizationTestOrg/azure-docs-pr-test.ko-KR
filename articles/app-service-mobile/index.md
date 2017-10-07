@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Apps 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "Azure App Service에서 Mobile Apps을 사용하여 네이티브 iOS, Android 또는 Windows 앱 또는 Xamarin이나 Cordova를 사용하는 교차 플랫폼 앱을 빌드하고 호스팅하는 방법에 대해 알아봅니다."
+title: "모바일 앱 설명서-자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "자세한 내용은 방법 toouse 모바일 앱에서 Azure 앱 서비스 toobuild와 호스트 네이티브 iOS, Android 또는 Windows 앱 또는 Xamarin 또는 Cordova를 사용 하 여 플랫폼 간 앱."
 services: app-service\mobile
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f660922fa2f7d5d21b4e6678233792ad6cb84041
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09b103b274c66f515d9a34bbdcb54cf0ff3a035a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mobile-apps-documentation"></a>Mobile Apps 설명서
 
-Azure App Service에서 Mobile Apps을 사용하여 네이티브 iOS, Android 또는 Windows 앱 또는 Xamarin이나 Cordova를 사용하는 교차 플랫폼 앱을 빌드하는 방법에 대해 알아봅니다. 자습서, 비디오, 클라이언트 SDK 설명서 등에서는 모바일 앱에 대해 백 엔드를 빌드하고 호스팅하는 방법을 보여 줍니다.
+자세한 내용은 방법 toouse 모바일 앱에서 Azure 앱 서비스 toobuild 네이티브 iOS, Android 또는 Windows 앱 또는 Xamarin 또는 Cordova를 사용 하 여 플랫폼 간 앱. 자습서, 비디오, 클라이언트 SDK 설명서 등 설명 어떻게 toobuild와 호스트는 모든 모바일 앱에 대 한 백 엔드 hello 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

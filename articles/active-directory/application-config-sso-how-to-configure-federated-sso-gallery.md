@@ -1,6 +1,6 @@
 ---
-title: "Azure AD 갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하는 방법 | Microsoft Docs"
-description: "기존 Azure AD 갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하고 자습서를 사용하여 신속하게 준비하는 방법"
+title: "single sign on Azure AD 갤러리 응용 프로그램에 대 한 페더레이션 aaaHow tooconfigure | Microsoft Docs"
+description: "Single sign on는 기존 Azure AD 갤러리 응용 프로그램 및 사용 하 여 자습서 tooget 신속 하 게 진행에 대 한 tooconfigure 페더레이션 하는 방법"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,204 +13,204 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 1b1d00718981b2c7d11f5b88428d02e16dd0b34d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a93de021fddd253e4fe663c221b822d12625fd54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a><span data-ttu-id="eb6d9-103">Azure AD 갤러리 응용 프로그램에 대해 페더레이션된 Single Sign-On을 구성하는 방법</span><span class="sxs-lookup"><span data-stu-id="eb6d9-103">How to configure federated single sign-on for an Azure AD Gallery application</span></span>
+# <a name="how-tooconfigure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a><span data-ttu-id="b198e-103">Single sign on Azure AD 갤러리 응용 프로그램에 대 한 tooconfigure 페더레이션 하는 방법</span><span class="sxs-lookup"><span data-stu-id="b198e-103">How tooconfigure federated single sign-on for an Azure AD Gallery application</span></span>
 
-<span data-ttu-id="eb6d9-104">Azure AD 갤러리에서 Enterprise Single Sign-On 기능을 사용하도록 설정된 모든 응용 프로그램은 단계별 자습서를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-104">All applications in the Azure AD gallery enabled with Enterprise single sign-on capability has a step-by-step tutorial available.</span></span> <span data-ttu-id="eb6d9-105">[Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)에 액세스하면 자세한 단계별 지침을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-105">You can access the [List of tutorials on how to integrate SaaS apps with Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) for detailed step-by-step guidance.</span></span>
+<span data-ttu-id="b198e-104">Enterprise single sign-on 기능은 사용 하도록 설정 하는 Azure AD hello 갤러리의 모든 응용 프로그램에는 단계별 자습서를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-104">All applications in hello Azure AD gallery enabled with Enterprise single sign-on capability has a step-by-step tutorial available.</span></span> <span data-ttu-id="b198e-105">Hello에 액세스할 수 있습니다 [방법에 대 한 자습서 목록 toointegrate SaaS 앱 Azure Active Directory와](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) 자세한 단계별 지침에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-105">You can access hello [List of tutorials on how toointegrate SaaS apps with Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) for detailed step-by-step guidance.</span></span>
 
-## <a name="overview-of-steps-required"></a><span data-ttu-id="eb6d9-106">필요한 단계 개요</span><span class="sxs-lookup"><span data-stu-id="eb6d9-106">Overview of steps required</span></span>
-<span data-ttu-id="eb6d9-107">Azure AD 갤러리에서 응용 프로그램을 구성하려면 다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-107">To configure an application from the Azure AD gallery you need to:</span></span>
+## <a name="overview-of-steps-required"></a><span data-ttu-id="b198e-106">필요한 단계 개요</span><span class="sxs-lookup"><span data-stu-id="b198e-106">Overview of steps required</span></span>
+<span data-ttu-id="b198e-107">tooconfigure hello Azure AD 갤러리에서 응용 프로그램 해야합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-107">tooconfigure an application from hello Azure AD gallery you need to:</span></span>
 
--   [<span data-ttu-id="eb6d9-108">Azure AD 갤러리에서 응용 프로그램 추가</span><span class="sxs-lookup"><span data-stu-id="eb6d9-108">Add an application from the Azure AD gallery</span></span>](#add-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="b198e-108">Hello Azure AD 갤러리에서 응용 프로그램 추가</span><span class="sxs-lookup"><span data-stu-id="b198e-108">Add an application from hello Azure AD gallery</span></span>](#add-an-application-from-the-azure-ad-gallery)
 
--   [<span data-ttu-id="eb6d9-109">Azure AD에서 응용 프로그램의 메타데이터 값 구성(로그온 URL, 식별자, 회신 URL)</span><span class="sxs-lookup"><span data-stu-id="eb6d9-109">Configure the application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="b198e-109">Azure ad (로그온 URL, 식별자, 회신 URL) hello 응용 프로그램의 메타 데이터 값을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-109">Configure hello application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [<span data-ttu-id="eb6d9-110">사용자 식별자를 선택하고 응용 프로그램에 보낼 사용자 특성 추가</span><span class="sxs-lookup"><span data-stu-id="eb6d9-110">Select User Identifier and add user attributes to be sent to the application</span></span>](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [<span data-ttu-id="b198e-110">사용자의 Id를 선택 하 고 사용자 특성 전송 toobe toohello 응용 프로그램 추가</span><span class="sxs-lookup"><span data-stu-id="b198e-110">Select User Identifier and add user attributes toobe sent toohello application</span></span>](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
--   [<span data-ttu-id="eb6d9-111">Azure AD 메타데이터 및 인증서 검색</span><span class="sxs-lookup"><span data-stu-id="eb6d9-111">Retrieve Azure AD metadata and certificate</span></span>](#download-the-azure-ad-metadata-or-certificate)
+-   [<span data-ttu-id="b198e-111">Azure AD 메타데이터 및 인증서 검색</span><span class="sxs-lookup"><span data-stu-id="b198e-111">Retrieve Azure AD metadata and certificate</span></span>](#download-the-azure-ad-metadata-or-certificate)
 
--   [<span data-ttu-id="eb6d9-112">응용 프로그램에서 Azure AD 메타데이터 값 구성(로그온 URL, 발급자, 로그아웃 URL 및 인증서)</span><span class="sxs-lookup"><span data-stu-id="eb6d9-112">Configure Azure AD metadata values in the application (Sign on URL, Issuer, Logout URL and certificate)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="b198e-112">Hello 응용 프로그램 (로그온 URL, 발급자, 로그 아웃 URL 및 인증서)에 Azure AD 메타 데이터 값을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-112">Configure Azure AD metadata values in hello application (Sign on URL, Issuer, Logout URL and certificate)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [<span data-ttu-id="eb6d9-113">응용 프로그램에 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="eb6d9-113">Assign users to the application</span></span>](#assign-users-to-the-application)
+-   [<span data-ttu-id="b198e-113">사용자가 toohello 응용 프로그램 할당</span><span class="sxs-lookup"><span data-stu-id="b198e-113">Assign users toohello application</span></span>](#assign-users-to-the-application)
 
-## <a name="add-an-application-from-the-azure-ad-gallery"></a><span data-ttu-id="eb6d9-114">Azure AD 갤러리에서 응용 프로그램 추가</span><span class="sxs-lookup"><span data-stu-id="eb6d9-114">Add an application from the Azure AD gallery</span></span>
+## <a name="add-an-application-from-hello-azure-ad-gallery"></a><span data-ttu-id="b198e-114">Hello Azure AD 갤러리에서 응용 프로그램 추가</span><span class="sxs-lookup"><span data-stu-id="b198e-114">Add an application from hello Azure AD gallery</span></span>
 
-<span data-ttu-id="eb6d9-115">Azure AD 갤러리에서 응용 프로그램을 추가하려면 아래 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-115">To add an application from the Azure AD Gallery, follow the steps below:</span></span>
+<span data-ttu-id="b198e-115">아래의 hello 단계를 수행 하는 tooadd hello Azure AD 갤러리에서에서 응용 프로그램:</span><span class="sxs-lookup"><span data-stu-id="b198e-115">tooadd an application from hello Azure AD Gallery, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="eb6d9-116">[Azure Portal](https://portal.azure.com)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-116">Open the [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**</span></span>
+1.  <span data-ttu-id="b198e-116">열기 hello [Azure 포털](https://portal.azure.com) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**</span><span class="sxs-lookup"><span data-stu-id="b198e-116">Open hello [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**</span></span>
 
-2.  <span data-ttu-id="eb6d9-117">왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-117">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="b198e-117">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-117">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="eb6d9-118">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-118">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="b198e-118">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-118">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="eb6d9-119">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-119">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="b198e-119">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-119">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="eb6d9-120">**엔터프라이즈 응용 프로그램** 블레이드의 오른쪽 위 모서리에서 **추가** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-120">click the **Add** button at the top-right corner on the **Enterprise Applications** blade.</span></span>
+5.  <span data-ttu-id="b198e-120">hello 클릭 **추가** hello hello 오른쪽 위 모서리에 있는 단추 **엔터프라이즈 응용 프로그램** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-120">click hello **Add** button at hello top-right corner on hello **Enterprise Applications** blade.</span></span>
 
-6.  <span data-ttu-id="eb6d9-121">**갤러리에서 추가** 섹션의 **이름 입력** 텍스트 상자에 응용 프로그램 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-121">In the **Enter a name** textbox from the **Add from the gallery** section, type the name of the application.</span></span>
+6.  <span data-ttu-id="b198e-121">Hello에 **이름을 입력** hello에서 텍스트 상자에 붙여넣습니다 **hello 갤러리에서 추가** 섹션, hello 응용 프로그램의 형식 hello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-121">In hello **Enter a name** textbox from hello **Add from hello gallery** section, type hello name of hello application.</span></span>
 
-7.  <span data-ttu-id="eb6d9-122">Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-122">Select the application you want to configure for single sign-on.</span></span>
+7.  <span data-ttu-id="b198e-122">Single sign on tooconfigure 원하는 hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-122">Select hello application you want tooconfigure for single sign-on.</span></span>
 
-8.  <span data-ttu-id="eb6d9-123">응용 프로그램을 추가하기 전에 **이름** 텍스트 상자에서 이름을 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-123">Before adding the application, you can change its name from the **Name** textbox.</span></span>
+8.  <span data-ttu-id="b198e-123">Hello 응용 프로그램을 추가 하기 전에 hello에서 이름을 변경할 수 **이름** 텍스트 상자에 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-123">Before adding hello application, you can change its name from hello **Name** textbox.</span></span>
 
-9.  <span data-ttu-id="eb6d9-124">**추가** 단추를 클릭하여 응용 프로그램을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-124">Click **Add** button, to add the application.</span></span>
+9.  <span data-ttu-id="b198e-124">클릭 **추가** tooadd hello 응용 프로그램 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-124">Click **Add** button, tooadd hello application.</span></span>
 
-<span data-ttu-id="eb6d9-125">잠시 후 응용 프로그램의 구성 블레이드를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-125">After a short period of time, you be able to see the application’s configuration blade.</span></span>
+<span data-ttu-id="b198e-125">시간의 짧은 기간 이후에 수 toosee hello 응용 프로그램의 구성 블레이드에서 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-125">After a short period of time, you be able toosee hello application’s configuration blade.</span></span>
 
-## <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a><span data-ttu-id="eb6d9-126">Azure AD 갤러리에서 응용 프로그램의 Single Sign-On 구성</span><span class="sxs-lookup"><span data-stu-id="eb6d9-126">Configure single sign-on for an application from the Azure AD gallery</span></span>
+## <a name="configure-single-sign-on-for-an-application-from-hello-azure-ad-gallery"></a><span data-ttu-id="b198e-126">Single sign on hello Azure AD 갤러리에서 응용 프로그램에 대 한 구성</span><span class="sxs-lookup"><span data-stu-id="b198e-126">Configure single sign-on for an application from hello Azure AD gallery</span></span>
 
-<span data-ttu-id="eb6d9-127">응용 프로그램에 대한 Single Sign-On을 구성하려면 아래 단계를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-127">To configure single sign-on for an application, follow the steps below:</span></span>
+<span data-ttu-id="b198e-127">tooconfigure single sign on 응용 프로그램에 대 한 아래의 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-127">tooconfigure single sign-on for an application, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="eb6d9-128">[**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-128">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin**.</span></span>
+1.  <span data-ttu-id="b198e-128">열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-128">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin**.</span></span>
 
-2.  <span data-ttu-id="eb6d9-129">왼쪽 주 탐색 메뉴의 맨 아래에서 **더 많은 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-129">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="b198e-129">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-129">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="eb6d9-130">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-130">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="b198e-130">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-130">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="eb6d9-131">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-131">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="b198e-131">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-131">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="eb6d9-132">**모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-132">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="b198e-132">클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-132">click **All Applications** tooview a list of all your applications.</span></span>
 
-   * <span data-ttu-id="eb6d9-133">여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-133">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+   * <span data-ttu-id="b198e-133">여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**</span><span class="sxs-lookup"><span data-stu-id="b198e-133">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="eb6d9-134">Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-134">Select the application you want to configure single sign-on.</span></span>
+6.  <span data-ttu-id="b198e-134">Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-134">Select hello application you want tooconfigure single sign-on.</span></span>
 
-7.  <span data-ttu-id="eb6d9-135">응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-135">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="b198e-135">Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-135">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="eb6d9-136">**모드** 드롭다운에서 **SAML 기반 로그온**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-136">Select **SAML-based Sign-on** from the **Mode** dropdown.</span></span>
+8.  <span data-ttu-id="b198e-136">선택 **SAML 기반 로그온** hello에서 **모드** 드롭다운입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-136">Select **SAML-based Sign-on** from hello **Mode** dropdown.</span></span>
 
-9.  <span data-ttu-id="eb6d9-137">**도메인 및 URL**에 필요한 값을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-137">Enter the required values in **Domain and URLs.**</span></span> <span data-ttu-id="eb6d9-138">이러한 값은 응용 프로그램 공급업체에서 받아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-138">You should get these values from the application vendor.</span></span>
+9.  <span data-ttu-id="b198e-137">필요한 hello 값을 입력 **도메인 및 Url입니다.**</span><span class="sxs-lookup"><span data-stu-id="b198e-137">Enter hello required values in **Domain and URLs.**</span></span> <span data-ttu-id="b198e-138">Hello 응용 프로그램 공급 업체에서 이러한 값을 구해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-138">You should get these values from hello application vendor.</span></span>
 
-   1. <span data-ttu-id="eb6d9-139">응용 프로그램을 SP에서 시작한 SSO로 구성하려면 로그온 URL 값이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-139">To configure the application as SP-initiated SSO, the Sign on URL it’s a required value.</span></span> <span data-ttu-id="eb6d9-140">일부 응용 프로그램의 경우는 식별자도 필수 값입니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-140">For some applications, the Identifier is also a required value.</span></span>
+   1. <span data-ttu-id="b198e-139">SP에서 시작한 SSO와 tooconfigure hello 응용 프로그램 hello 로그인 URL에 필요한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-139">tooconfigure hello application as SP-initiated SSO, hello Sign on URL it’s a required value.</span></span> <span data-ttu-id="b198e-140">일부 응용 프로그램에 대 한 hello 식별자도 필요한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-140">For some applications, hello Identifier is also a required value.</span></span>
 
-   2. <span data-ttu-id="eb6d9-141">응용 프로그램을 IdP에서 시작한 SSO로 구성하려면 회신 URL 값이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-141">To configure the application as IdP-initiated SSO, the Reply URL it’s a required value.</span></span> <span data-ttu-id="eb6d9-142">일부 응용 프로그램의 경우는 식별자도 필수 값입니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-142">For some applications, the Identifier is also a required value.</span></span>
+   2. <span data-ttu-id="b198e-141">IdP에서 시작한 SSO, hello 필수 값입니다. 회신 URL로 tooconfigure hello 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-141">tooconfigure hello application as IdP-initiated SSO, hello Reply URL it’s a required value.</span></span> <span data-ttu-id="b198e-142">일부 응용 프로그램에 대 한 hello 식별자도 필요한 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-142">For some applications, hello Identifier is also a required value.</span></span>
 
-10. <span data-ttu-id="eb6d9-143">**선택 사항:** 선택적인 값을 보려면 **고급 URL 설정 표시**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-143">**Optional:** click **Show advanced URL settings** if you want to see the non-required values.</span></span>
+10. <span data-ttu-id="b198e-143">**선택 사항:** 클릭 **고급 URL 설정 표시** toosee hello 선택적 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-143">**Optional:** click **Show advanced URL settings** if you want toosee hello non-required values.</span></span>
 
-11. <span data-ttu-id="eb6d9-144">**사용자 특성**의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-144">In the **User attributes**, select the unique identifier for your users in the **User Identifier** dropdown.</span></span>
+11. <span data-ttu-id="b198e-144">Hello에 **사용자 특성**, 선택 hello에 있는 사용자에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-144">In hello **User attributes**, select hello unique identifier for your users in hello **User Identifier** dropdown.</span></span>
 
-12. <span data-ttu-id="eb6d9-145">**선택 사항:** 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집하려면 **다른 모든 사용자 특성 보기 및 편집**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-145">**Optional:** click **View and edit all other user attributes** to edit the attributes to be sent to the application in the SAML token when user sign in.</span></span>
+12. <span data-ttu-id="b198e-145">**선택 사항:** 클릭 **보기 및 다른 모든 사용자 특성 편집** tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-145">**Optional:** click **View and edit all other user attributes** tooedit hello attributes toobe sent toohello application in hello SAML token when user sign in.</span></span>
 
-  <span data-ttu-id="eb6d9-146">특성을 추가하려면:</span><span class="sxs-lookup"><span data-stu-id="eb6d9-146">To add an attribute:</span></span>
+  <span data-ttu-id="b198e-146">tooadd 특성:</span><span class="sxs-lookup"><span data-stu-id="b198e-146">tooadd an attribute:</span></span>
    
-   1. <span data-ttu-id="eb6d9-147">**특성 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-147">click **Add attribute**.</span></span> <span data-ttu-id="eb6d9-148">**이름**을 입력하고 드롭다운에서 **값**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-148">Enter the **Name** and the select the **Value** from the dropdown.</span></span>
+   1. <span data-ttu-id="b198e-147">**특성 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-147">click **Add attribute**.</span></span> <span data-ttu-id="b198e-148">Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-148">Enter hello **Name** and hello select hello **Value** from hello dropdown.</span></span>
 
-   1. <span data-ttu-id="eb6d9-149">**저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-149">Click **Save.**</span></span> <span data-ttu-id="eb6d9-150">테이블에 새 특성이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-150">You see the new attribute in the table.</span></span>
+   1. <span data-ttu-id="b198e-149">**저장**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-149">Click **Save.**</span></span> <span data-ttu-id="b198e-150">Hello 테이블에 새 특성을 hello 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-150">You see hello new attribute in hello table.</span></span>
 
-13. <span data-ttu-id="eb6d9-151">응용 프로그램의 Single Sign-On을 구성하는 방법에 관한 문서에 액세스하려면 **&lt;응용 프로그램 이름&gt; 구성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-151">click **Configure &lt;application name&gt;** to access documentation on how to configure single sign-on in the application.</span></span> <span data-ttu-id="eb6d9-152">또한 응용 프로그램에 SSO를 설정하는 데 필요한 메타데이터 URL 및 인증서는 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-152">Also, you has the metadata URLs and certificate required to setup SSO with the application.</span></span>
+13. <span data-ttu-id="b198e-151">클릭 **구성 &lt;응용 프로그램 이름&gt;**  방법은 tooaccess 설명서 tooconfigure single sign on hello 응용 프로그램에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-151">click **Configure &lt;application name&gt;** tooaccess documentation on how tooconfigure single sign-on in hello application.</span></span> <span data-ttu-id="b198e-152">또한 hello 메타 데이터 Url 및 hello 응용 프로그램과 함께 필요한 인증서 toosetup SSO에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-152">Also, you has hello metadata URLs and certificate required toosetup SSO with hello application.</span></span>
 
-14. <span data-ttu-id="eb6d9-153">구성을 저장하려면 **Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-153">Click **Save** to save the configuration.</span></span>
+14. <span data-ttu-id="b198e-153">클릭 **저장** toosave hello 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-153">Click **Save** toosave hello configuration.</span></span>
 
-15. <span data-ttu-id="eb6d9-154">응용 프로그램에 사용자를 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-154">Assign users to the application.</span></span>
+15. <span data-ttu-id="b198e-154">Toohello 응용 프로그램 사용자를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-154">Assign users toohello application.</span></span>
 
-## <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a><span data-ttu-id="eb6d9-155">사용자 식별자를 선택하고 응용 프로그램에 보낼 사용자 특성 추가</span><span class="sxs-lookup"><span data-stu-id="eb6d9-155">Select User Identifier and add user attributes to be sent to the application</span></span>
+## <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a><span data-ttu-id="b198e-155">사용자의 Id를 선택 하 고 사용자 특성 전송 toobe toohello 응용 프로그램 추가</span><span class="sxs-lookup"><span data-stu-id="b198e-155">Select User Identifier and add user attributes toobe sent toohello application</span></span>
 
-<span data-ttu-id="eb6d9-156">사용자 식별자를 선택하거나 사용자 특성을 추가하려면 아래 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-156">To select the User Identifier or add user attributes, follow the steps below:</span></span>
+<span data-ttu-id="b198e-156">tooselect hello 사용자 식별자 또는 사용자 특성 추가, 아래의 hello 단계를 수행:</span><span class="sxs-lookup"><span data-stu-id="b198e-156">tooselect hello User Identifier or add user attributes, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="eb6d9-157">[**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-157">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="b198e-157">열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**</span><span class="sxs-lookup"><span data-stu-id="b198e-157">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="eb6d9-158">왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-158">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="b198e-158">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-158">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="eb6d9-159">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-159">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="b198e-159">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-159">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="eb6d9-160">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-160">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="b198e-160">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-160">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="eb6d9-161">**모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-161">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="b198e-161">클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-161">click **All Applications** tooview a list of all your applications.</span></span>
 
-   * <span data-ttu-id="eb6d9-162">여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-162">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+   * <span data-ttu-id="b198e-162">여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**</span><span class="sxs-lookup"><span data-stu-id="b198e-162">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="eb6d9-163">Single Sign-On을 구성한 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-163">Select the application you have configured single sign-on.</span></span>
+6.  <span data-ttu-id="b198e-163">Single sign on 구성한 hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-163">Select hello application you have configured single sign-on.</span></span>
 
-7.  <span data-ttu-id="eb6d9-164">응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-164">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="b198e-164">Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-164">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="eb6d9-165">**사용자 특성** 섹션 아래의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-165">Under the **User attributes** section, select the unique identifier for your users in the **User Identifier** dropdown.</span></span> <span data-ttu-id="eb6d9-166">사용자를 인증하려면 선택한 옵션이 응용 프로그램의 예상 값과 일치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-166">The selected option needs to match the expected value in the application to authenticate the user.</span></span>
+8.  <span data-ttu-id="b198e-165">Hello에서 **사용자 특성** 섹션에서 사용자 hello에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-165">Under hello **User attributes** section, select hello unique identifier for your users in hello **User Identifier** dropdown.</span></span> <span data-ttu-id="b198e-166">hello 선택된 된 옵션 두어야 hello 응용 프로그램 tooauthenticate hello 사용자에서 toomatch hello 예상 값.</span><span class="sxs-lookup"><span data-stu-id="b198e-166">hello selected option needs toomatch hello expected value in hello application tooauthenticate hello user.</span></span>
 
   >[!NOTE] 
-  ><span data-ttu-id="eb6d9-167">Azure AD에서는 선택한 값 또는 SAML AuthRequest에서 응용 프로그램이 요청한 형식을 기반으로 NameID 특성(사용자 식별자)의 형식을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-167">Azure AD select the format for the NameID attribute (User Identifier) based on the value selected or the format requested by the application in the SAML AuthRequest.</span></span> <span data-ttu-id="eb6d9-168">자세한 내용은 NameIDPolicy 섹션 아래의 [Single Sign-On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) 문서에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-168">For more information visit the article [Single Sign-On SAML protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) under the section NameIDPolicy.</span></span>
+  ><span data-ttu-id="b198e-167">Hello NameID 특성 (사용자 식별자)에 대 한 azure AD 선택 hello 형식 선택한 hello 값에 따라 또는 hello SAML AuthRequest hello에 hello 응용 프로그램에서 요청한 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-167">Azure AD select hello format for hello NameID attribute (User Identifier) based on hello value selected or hello format requested by hello application in hello SAML AuthRequest.</span></span> <span data-ttu-id="b198e-168">자세한 내용은 방문 hello 문서 [Single Sign On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) hello에서 NameIDPolicy 섹션.</span><span class="sxs-lookup"><span data-stu-id="b198e-168">For more information visit hello article [Single Sign-On SAML protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) under hello section NameIDPolicy.</span></span>
   >
   >
 
-9.  <span data-ttu-id="eb6d9-169">사용자 특성을 추가하려면 **다른 모든 사용자 특성 보기 및 편집**을 클릭하여 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-169">To add user attributes, click **View and edit all other user attributes** to edit the attributes to be sent to the application in the SAML token when user sign in.</span></span>
+9.  <span data-ttu-id="b198e-169">tooadd 사용자 특성을 클릭 하 여 **보기 및 다른 모든 사용자 특성을 편집** tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-169">tooadd user attributes, click **View and edit all other user attributes** tooedit hello attributes toobe sent toohello application in hello SAML token when user sign in.</span></span>
 
-   <span data-ttu-id="eb6d9-170">특성을 추가하려면:</span><span class="sxs-lookup"><span data-stu-id="eb6d9-170">To add an attribute:</span></span>
+   <span data-ttu-id="b198e-170">tooadd 특성:</span><span class="sxs-lookup"><span data-stu-id="b198e-170">tooadd an attribute:</span></span>
   
-   1. <span data-ttu-id="eb6d9-171">**특성 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-171">click **Add attribute**.</span></span> <span data-ttu-id="eb6d9-172">**이름**을 입력하고 드롭다운에서 **값**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-172">Enter the **Name** and the select the **Value** from the dropdown.</span></span>
+   1. <span data-ttu-id="b198e-171">**특성 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-171">click **Add attribute**.</span></span> <span data-ttu-id="b198e-172">Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-172">Enter hello **Name** and hello select hello **Value** from hello dropdown.</span></span>
 
-   2. <span data-ttu-id="eb6d9-173">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-173">Click **Save**.</span></span> <span data-ttu-id="eb6d9-174">테이블에 새 특성이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-174">You see the new attribute in the table.</span></span>
+   2. <span data-ttu-id="b198e-173">**Save**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-173">Click **Save**.</span></span> <span data-ttu-id="b198e-174">Hello 테이블에 새 특성을 hello 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-174">You see hello new attribute in hello table.</span></span>
 
-## <a name="download-the-azure-ad-metadata-or-certificate"></a><span data-ttu-id="eb6d9-175">Azure AD 메타데이터 또는 인증서 다운로드</span><span class="sxs-lookup"><span data-stu-id="eb6d9-175">Download the Azure AD metadata or certificate</span></span>
+## <a name="download-hello-azure-ad-metadata-or-certificate"></a><span data-ttu-id="b198e-175">Hello Azure AD 메타 데이터 또는 인증서를 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-175">Download hello Azure AD metadata or certificate</span></span>
 
-<span data-ttu-id="eb6d9-176">Azure AD에서 응용 프로그램 메타데이터 또는 인증서를 다운로드하려면 아래 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-176">To download the application metadata or certificate from Azure AD, follow the steps below:</span></span>
+<span data-ttu-id="b198e-176">toodownload hello에 대 한 응용 프로그램 메타 데이터 또는 Azure AD에서 인증서를 다음 hello 단계를 따라 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-176">toodownload hello application metadata or certificate from Azure AD, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="eb6d9-177">[**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-177">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="b198e-177">열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**</span><span class="sxs-lookup"><span data-stu-id="b198e-177">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="eb6d9-178">왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-178">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="b198e-178">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-178">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="eb6d9-179">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-179">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="b198e-179">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-179">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="eb6d9-180">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-180">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="b198e-180">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-180">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="eb6d9-181">**모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-181">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="b198e-181">클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-181">click **All Applications** tooview a list of all your applications.</span></span>
 
-  *  <span data-ttu-id="eb6d9-182">여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-182">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications**.</span></span>
+  *  <span data-ttu-id="b198e-182">여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램**합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-182">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications**.</span></span>
 
-6.  <span data-ttu-id="eb6d9-183">Single Sign-On을 구성한 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-183">Select the application you have configured single sign-on.</span></span>
+6.  <span data-ttu-id="b198e-183">Single sign on 구성한 hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-183">Select hello application you have configured single sign-on.</span></span>
 
-7.  <span data-ttu-id="eb6d9-184">응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-184">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="b198e-184">Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-184">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="eb6d9-185">**SAML 서명 인증서** 섹션으로 이동한 다음 **다운로드** 열 값을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-185">Go to **SAML Signing Certificate** section, then click **Download** column value.</span></span> <span data-ttu-id="eb6d9-186">Single Sign-On을 구성해야 할 응용 프로그램에 따라 메타데이터 XML이나 인증서를 다운로드하는 옵션이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-186">Depending on what the application requires configuring single sign-on, you see either the option to download the Metadata XML or the Certificate.</span></span>
+8.  <span data-ttu-id="b198e-185">너무 이동**SAML 서명 인증서** 섹션에서 다음 클릭 **다운로드** 열 값입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-185">Go too**SAML Signing Certificate** section, then click **Download** column value.</span></span> <span data-ttu-id="b198e-186">어떤 hello 응용 프로그램에 single sign-on 구성 필요한 경우에 따라 메타 데이터 XML hello 또는 인증서를 환영 hello 옵션 toodownload를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-186">Depending on what hello application requires configuring single sign-on, you see either hello option toodownload hello Metadata XML or hello Certificate.</span></span>
 
-<span data-ttu-id="eb6d9-187">Azure AD에서는 메타데이터를 가져오는 URL을 제공하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-187">Azure AD doesn’t provide a URL to get the metadata.</span></span> <span data-ttu-id="eb6d9-188">메타데이터는 XML 파일로만 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-188">The metadata can only be retrieved as a XML file.</span></span>
+<span data-ttu-id="b198e-187">Azure AD URL tooget hello 메타 데이터를 제공 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-187">Azure AD doesn’t provide a URL tooget hello metadata.</span></span> <span data-ttu-id="b198e-188">hello 메타 데이터를 XML 파일로 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-188">hello metadata can only be retrieved as a XML file.</span></span>
 
-## <a name="assign-users-to-the-application"></a><span data-ttu-id="eb6d9-189">응용 프로그램에 사용자 할당</span><span class="sxs-lookup"><span data-stu-id="eb6d9-189">Assign users to the application</span></span>
+## <a name="assign-users-toohello-application"></a><span data-ttu-id="b198e-189">사용자가 toohello 응용 프로그램 할당</span><span class="sxs-lookup"><span data-stu-id="b198e-189">Assign users toohello application</span></span>
 
-<span data-ttu-id="eb6d9-190">응용 프로그램에 하나 이상의 사용자를 직접 할당하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-190">To assign one or more users to an application directly, follow the steps below:</span></span>
+<span data-ttu-id="b198e-190">tooassign 아래의 hello 단계를 직접 수행 하는 하나 이상의 사용자가 tooan 응용 프로그램:</span><span class="sxs-lookup"><span data-stu-id="b198e-190">tooassign one or more users tooan application directly, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="eb6d9-191">[**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-191">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="b198e-191">열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**</span><span class="sxs-lookup"><span data-stu-id="b198e-191">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="eb6d9-192">왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-192">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="b198e-192">열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-192">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="eb6d9-193">필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-193">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="b198e-193">에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-193">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="eb6d9-194">Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-194">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="b198e-194">클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-194">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="eb6d9-195">**모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-195">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="b198e-195">클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-195">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="eb6d9-196">여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-196">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="b198e-196">여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**</span><span class="sxs-lookup"><span data-stu-id="b198e-196">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="eb6d9-197">목록에서 사용자를 할당하려는 응용 프로그램을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-197">Select the application you want to assign a user to from the list.</span></span>
+6.  <span data-ttu-id="b198e-197">원하는 사용자 toofrom hello 목록 tooassign hello 응용 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-197">Select hello application you want tooassign a user toofrom hello list.</span></span>
 
-7.  <span data-ttu-id="eb6d9-198">응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-198">Once the application loads, click **Users and Groups** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="b198e-198">Hello 응용 프로그램 로드 되 면 클릭 **사용자 및 그룹** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-198">Once hello application loads, click **Users and Groups** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="eb6d9-199">**사용자 및 그룹** 목록의 맨 위에서 **추가** 단추를 클릭하여 **할당 추가** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-199">Click the **Add** button on top of the **Users and Groups** list to open the **Add Assignment** blade.</span></span>
+8.  <span data-ttu-id="b198e-199">Hello 클릭 **추가** hello 위로 단추 **사용자 및 그룹** 목록 tooopen hello **할당 추가** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-199">Click hello **Add** button on top of hello **Users and Groups** list tooopen hello **Add Assignment** blade.</span></span>
 
-9.  <span data-ttu-id="eb6d9-200">**할당 추가** 블레이드에서 **사용자 및 그룹** 선택기를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-200">click the **Users and groups** selector from the **Add Assignment** blade.</span></span>
+9.  <span data-ttu-id="b198e-200">hello 클릭 **사용자 및 그룹** hello에서 선택기 **할당 추가** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-200">click hello **Users and groups** selector from hello **Add Assignment** blade.</span></span>
 
-10. <span data-ttu-id="eb6d9-201">**이름 또는 전자 메일 주소로 검색** 검색 상자에 할당하려는 사용자의 **전체 이름** 또는 **전자 메일 주소**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-201">Type in the **full name** or **email address** of the user you are interested in assigning into the **Search by name or email address** search box.</span></span>
+10. <span data-ttu-id="b198e-201">Hello 입력 **전체 이름** 또는 **전자 메일 주소** hello에 할당 하려는 hello 사용자의 **이름 또는 전자 메일 주소로 검색을 통해** 검색 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-201">Type in hello **full name** or **email address** of hello user you are interested in assigning into hello **Search by name or email address** search box.</span></span>
 
-11. <span data-ttu-id="eb6d9-202">목록의 **사용자** 위로 마우스를 이동하여 **확인란**을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-202">Hover over the **user** in the list to reveal a **checkbox**.</span></span> <span data-ttu-id="eb6d9-203">사용자의 프로필 사진이나 로고 옆의 확인란을 클릭하여 사용자를 **선택됨** 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-203">Click the checkbox next to the user’s profile photo or logo to add your user to the **Selected** list.</span></span>
+11. <span data-ttu-id="b198e-202">Hello 위로 마우스를 가져가고 **사용자** hello 목록 tooreveal에는 **확인란**합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-202">Hover over hello **user** in hello list tooreveal a **checkbox**.</span></span> <span data-ttu-id="b198e-203">Hello 확인란 다음 toohello 사용자의 프로필 사진 또는 로고 tooadd 사용자 toohello 클릭 **선택한** 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-203">Click hello checkbox next toohello user’s profile photo or logo tooadd your user toohello **Selected** list.</span></span>
 
-12. <span data-ttu-id="eb6d9-204">**선택 사항:** **둘 이상의 사용자를 추가**하려는 경우 **이름 또는 전자 메일 주소로 검색** 검색 상자에 다른 **전체 이름** 또는 **전자 메일 주소**를 입력하고 확인란을 클릭하여 이 사용자를 **선택됨** 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-204">**Optional:** If you would like to **add more than one user**, type in another **full name** or **email address** into the **Search by name or email address** search box, and click the checkbox to add this user to the **Selected** list.</span></span>
+12. <span data-ttu-id="b198e-204">**선택 사항:** 너무 원하는 경우**둘 이상의 사용자를 추가**, 다른 유형 **전체 이름** 또는 **전자 메일 주소** hello에 **이름으로 검색 전자 메일 주소 또는** 상자에서 검색 하 고이 사용자 toohello hello 확인란 tooadd 클릭 **선택한** 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-204">**Optional:** If you would like too**add more than one user**, type in another **full name** or **email address** into hello **Search by name or email address** search box, and click hello checkbox tooadd this user toohello **Selected** list.</span></span>
 
-13. <span data-ttu-id="eb6d9-205">사용자 선택이 완료되면 **선택** 단추를 클릭하여 응용 프로그램에 할당되도록 사용자 및 그룹의 목록에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-205">When you are finished selecting users, click the **Select** button to add them to the list of users and groups to be assigned to the application.</span></span>
+13. <span data-ttu-id="b198e-205">사용자 선택을 완료 했으면 클릭 hello **선택** 단추 tooadd 해당 사용자 및 그룹 toobe toohello 목록이 toohello 응용 프로그램을 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-205">When you are finished selecting users, click hello **Select** button tooadd them toohello list of users and groups toobe assigned toohello application.</span></span>
 
-14. <span data-ttu-id="eb6d9-206">**선택 사항:** **할당 추가** 블레이드에서 **역할 선택** 선택기를 클릭하여 선택한 사용자에게 할당할 역할을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-206">**Optional:** click the **Select Role** selector in the **Add Assignment** blade to select a role to assign to the users you have selected.</span></span>
+14. <span data-ttu-id="b198e-206">**선택 사항:** hello 클릭 **역할 선택** hello에 선택 기가 **할당 추가** 블레이드 tooselect 역할 tooassign toohello 사용자가 선택한 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-206">**Optional:** click hello **Select Role** selector in hello **Add Assignment** blade tooselect a role tooassign toohello users you have selected.</span></span>
 
-15. <span data-ttu-id="eb6d9-207">**할당** 단추를 클릭하여 선택한 사용자에게 응용 프로그램을 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-207">Click the **Assign** button to assign the application to the selected users.</span></span>
+15. <span data-ttu-id="b198e-207">Hello 클릭 **할당** 단추 tooassign hello 응용 프로그램 toohello 사용자를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-207">Click hello **Assign** button tooassign hello application toohello selected users.</span></span>
 
-<span data-ttu-id="eb6d9-208">잠시 후 선택한 사용자는 솔루션 설명 섹션에 설명된 메서드를 사용하여 이러한 응용 프로그램을 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-208">After a short period of time, the users you have selected be able to launch these applications using the methods described in the solution description section.</span></span>
+<span data-ttu-id="b198e-208">시간의 짧은 기간 이후에 hello 사용자가 선택한 이러한 응용 프로그램을 사용 하 여 hello hello 솔루션 설명 섹션에 설명 된 방법 수 toolaunch 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-208">After a short period of time, hello users you have selected be able toolaunch these applications using hello methods described in hello solution description section.</span></span>
 
-## <a name="customizing-the-saml-claims-sent-to-an-application"></a><span data-ttu-id="eb6d9-209">응용 프로그램에 보낸 SAML 클레임 사용자 지정</span><span class="sxs-lookup"><span data-stu-id="eb6d9-209">Customizing the SAML claims sent to an application</span></span>
+## <a name="customizing-hello-saml-claims-sent-tooan-application"></a><span data-ttu-id="b198e-209">Tooan 응용 프로그램 보낸 hello SAML 클레임 사용자 지정</span><span class="sxs-lookup"><span data-stu-id="b198e-209">Customizing hello SAML claims sent tooan application</span></span>
 
-<span data-ttu-id="eb6d9-210">응용 프로그램에 전송된 SAML 특성 클레임을 사용자 지정하는 방법을 알아보려면 [Azure Active Directory의 클레임 매핑](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="eb6d9-210">To learn how to customize the SAML attribute claims sent to your application, see [Claims mapping in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) for more information.</span></span>
+<span data-ttu-id="b198e-210">toolearn toocustomize hello SAML 특성 클레임 전송 tooyour 응용 프로그램 참조 [Azure Active Directory에서 매핑을 클레임](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) 자세한 정보에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-210">toolearn how toocustomize hello SAML attribute claims sent tooyour application, see [Claims mapping in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) for more information.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="eb6d9-211">다음 단계</span><span class="sxs-lookup"><span data-stu-id="eb6d9-211">Next steps</span></span>
-[<span data-ttu-id="eb6d9-212">응용 프로그램 프록시를 사용하여 앱에 Single Sign-On 제공</span><span class="sxs-lookup"><span data-stu-id="eb6d9-212">Provide single sign-on to your apps with Application Proxy</span></span>](active-directory-application-proxy-sso-using-kcd.md)
+## <a name="next-steps"></a><span data-ttu-id="b198e-211">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b198e-211">Next steps</span></span>
+[<span data-ttu-id="b198e-212">응용 프로그램 프록시 single sign on tooyour 앱을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="b198e-212">Provide single sign-on tooyour apps with Application Proxy</span></span>](active-directory-application-proxy-sso-using-kcd.md)
 
 
 

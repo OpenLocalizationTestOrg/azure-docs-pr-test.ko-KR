@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 1.0을 사용하여 라우팅 및 가상 어플라이언스 제어 | Microsoft Docs"
-description: "Azure CLI 1.0을 사용하여 라우팅 및 가상 어플라이언스 제어 방법 알아보기"
+title: "aaaControl 라우팅 및 가상 어플라이언스를 사용 하 여 hello Azure CLI 1.0 | Microsoft Docs"
+description: "Toocontrol 라우팅 및 가상 어플라이언스를 사용 하 여 Azure CLI 1.0 hello 하는 방법에 대해 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/18/2017
 ms.author: jdial
-ms.openlocfilehash: 5f21bc7a4fcd9507ea9d6b2b752a2328a7b834f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c8a552d949521fa554880c00405e65fa47a8162
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-user-defined-routes-udr-using-the-azure-cli-10"></a><span data-ttu-id="150ff-103">Azure CLI 1.0을 사용하여 UDR(사용자 정의 경로) 만들기</span><span class="sxs-lookup"><span data-stu-id="150ff-103">Create User-Defined Routes (UDR) using the Azure CLI 1.0</span></span>
+# <a name="create-user-defined-routes-udr-using-hello-azure-cli-10"></a><span data-ttu-id="f2970-103">사용자 정의 경로 (UDR) hello Azure CLI 1.0을 사용 하 여 만들기</span><span class="sxs-lookup"><span data-stu-id="f2970-103">Create User-Defined Routes (UDR) using hello Azure CLI 1.0</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="150ff-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="150ff-104">PowerShell</span></span>](virtual-network-create-udr-arm-ps.md)
-> * [<span data-ttu-id="150ff-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="150ff-105">Azure CLI</span></span>](virtual-network-create-udr-arm-cli.md)
-> * [<span data-ttu-id="150ff-106">템플릿</span><span class="sxs-lookup"><span data-stu-id="150ff-106">Template</span></span>](virtual-network-create-udr-arm-template.md)
-> * [<span data-ttu-id="150ff-107">PowerShell(클래식)</span><span class="sxs-lookup"><span data-stu-id="150ff-107">PowerShell (Classic)</span></span>](virtual-network-create-udr-classic-ps.md)
-> * [<span data-ttu-id="150ff-108">CLI(클래식)</span><span class="sxs-lookup"><span data-stu-id="150ff-108">CLI (Classic)</span></span>](virtual-network-create-udr-classic-cli.md)
+> * [<span data-ttu-id="f2970-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="f2970-104">PowerShell</span></span>](virtual-network-create-udr-arm-ps.md)
+> * [<span data-ttu-id="f2970-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="f2970-105">Azure CLI</span></span>](virtual-network-create-udr-arm-cli.md)
+> * [<span data-ttu-id="f2970-106">템플릿</span><span class="sxs-lookup"><span data-stu-id="f2970-106">Template</span></span>](virtual-network-create-udr-arm-template.md)
+> * [<span data-ttu-id="f2970-107">PowerShell(클래식)</span><span class="sxs-lookup"><span data-stu-id="f2970-107">PowerShell (Classic)</span></span>](virtual-network-create-udr-classic-ps.md)
+> * [<span data-ttu-id="f2970-108">CLI(클래식)</span><span class="sxs-lookup"><span data-stu-id="f2970-108">CLI (Classic)</span></span>](virtual-network-create-udr-classic-cli.md)
 
-<span data-ttu-id="150ff-109">Azure CLI를 사용하여 사용자 지정 라우팅 및 가상 어플라이언스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-109">Create custom routing and virtual appliances using the Azure CLI.</span></span>
+<span data-ttu-id="f2970-109">사용자 지정 라우팅 및 가상 어플라이언스 hello Azure CLI를 사용 하 여 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-109">Create custom routing and virtual appliances using hello Azure CLI.</span></span>
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="150ff-110">태스크를 완료하기 위한 CLI 버전</span><span class="sxs-lookup"><span data-stu-id="150ff-110">CLI versions to complete the task</span></span> 
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="f2970-110">CLI 버전 toocomplete hello 작업</span><span class="sxs-lookup"><span data-stu-id="f2970-110">CLI versions toocomplete hello task</span></span> 
 
-<span data-ttu-id="150ff-111">다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-111">You can complete the task using one of the following CLI versions:</span></span> 
+<span data-ttu-id="f2970-111">Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-111">You can complete hello task using one of hello following CLI versions:</span></span> 
 
-- <span data-ttu-id="150ff-112">[Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) - 클래식 및 리소스 관리 배포 모델용 CLI(이 문서)</span><span class="sxs-lookup"><span data-stu-id="150ff-112">[Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="150ff-113">[Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) - 리소스 관리 배포 모델용 차세대 CLI</span><span class="sxs-lookup"><span data-stu-id="150ff-113">[Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) - our next generation CLI for the resource management deployment model</span></span> 
+- <span data-ttu-id="f2970-112">[Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) – 우리의 CLI 모델에 대 한 hello 클래식 및 리소스 관리 배포 (이 문서)</span><span class="sxs-lookup"><span data-stu-id="f2970-112">[Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="f2970-113">[Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) -우리의 차세대 CLI hello 리소스 관리 배포 모델에 대 한</span><span class="sxs-lookup"><span data-stu-id="f2970-113">[Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) - our next generation CLI for hello resource management deployment model</span></span> 
 
 
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-<span data-ttu-id="150ff-114">아래 샘플 Azure CLI 명령에는 위의 시나리오를 기반으로 이미 만들어져 있는 단순한 환경이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-114">The sample Azure CLI commands below expect a simple environment already created based on the scenario above.</span></span> <span data-ttu-id="150ff-115">이 문서에 표시된 대로 명령을 실행하려는 경우 먼저 [이 템플릿](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)을 배포하여 테스트 환경을 구축하고 **Azure에 배포**를 클릭한 다음 필요한 경우 기본 매개 변수 값을 바꾸고 포털의 지침을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-115">If you want to run the commands as they are displayed in this document, first build the test environment by deploying [this template](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), click **Deploy to Azure**, replace the default parameter values if necessary, and follow the instructions in the portal.</span></span>
+<span data-ttu-id="f2970-114">hello 샘플 Azure CLI 명령 아래에 이미 위의 hello 시나리오를 기반으로 만들어진 단순 환경이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-114">hello sample Azure CLI commands below expect a simple environment already created based on hello scenario above.</span></span> <span data-ttu-id="f2970-115">이 문서에 표시 된 대로 toorun hello 명령을 원하는 경우 먼저 hello 테스트 환경을 구축 배포 하 여 [이 서식 파일](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), 클릭 **tooAzure 배포**, 대체 hello 기본 매개 변수 값 필요한 경우, 및의 지침에 따라 hello hello 포털 하는 경우.</span><span class="sxs-lookup"><span data-stu-id="f2970-115">If you want toorun hello commands as they are displayed in this document, first build hello test environment by deploying [this template](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), click **Deploy tooAzure**, replace hello default parameter values if necessary, and follow hello instructions in hello portal.</span></span>
 
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a><span data-ttu-id="150ff-116">프런트 엔드 서브넷에 대한 UDR 만들기</span><span class="sxs-lookup"><span data-stu-id="150ff-116">Create the UDR for the front-end subnet</span></span>
-<span data-ttu-id="150ff-117">위의 시나리오에 따라 필요한 경로 테이블 및 경로를 만들려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-117">To create the route table and route needed for the front end subnet based on the scenario above, follow the steps below.</span></span>
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a><span data-ttu-id="f2970-116">Hello UDR hello 프런트 엔드 서브넷에 대 한 만들기</span><span class="sxs-lookup"><span data-stu-id="f2970-116">Create hello UDR for hello front-end subnet</span></span>
+<span data-ttu-id="f2970-117">toocreate hello 경로 테이블 및 필요한 위의 hello 시나리오에 따라 hello 프런트 엔드 서브넷에 대 한 경로 아래의 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-117">toocreate hello route table and route needed for hello front end subnet based on hello scenario above, follow hello steps below.</span></span>
 
-1. <span data-ttu-id="150ff-118">다음 명령을 실행하여 프런트 엔드 서브넷에 대한 경로 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-118">Run the following command to create a route table for the front-end subnet:</span></span>
+1. <span data-ttu-id="f2970-118">다음 명령은 toocreate hello hello 프런트 엔드 서브넷에 대 한 경로 테이블을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-118">Run hello following command toocreate a route table for hello front-end subnet:</span></span>
 
     ```azurecli
     azure network route-table create -g TestRG -n UDR-FrontEnd -l uswest
     ```
    
-    <span data-ttu-id="150ff-119">출력</span><span class="sxs-lookup"><span data-stu-id="150ff-119">Output:</span></span>
+    <span data-ttu-id="f2970-119">출력:</span><span class="sxs-lookup"><span data-stu-id="f2970-119">Output:</span></span>
    
         info:    Executing command network route-table create
         info:    Looking up route table "UDR-FrontEnd"
@@ -69,18 +69,18 @@ ms.lasthandoff: 07/11/2017
         data:    Provisioning state              : Succeeded
         info:    network route-table create command OK
    
-    <span data-ttu-id="150ff-120">매개 변수:</span><span class="sxs-lookup"><span data-stu-id="150ff-120">Parameters:</span></span>
+    <span data-ttu-id="f2970-120">매개 변수:</span><span class="sxs-lookup"><span data-stu-id="f2970-120">Parameters:</span></span>
    
-   * <span data-ttu-id="150ff-121">**-g (or --resource-group)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-121">**-g (or --resource-group)**.</span></span> <span data-ttu-id="150ff-122">UDR이 만들어지는 리소스 그룹의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-122">Name of the resource group where the UDR will be created.</span></span> <span data-ttu-id="150ff-123">이 시나리오에서는 *TestRG*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-123">For our scenario, *TestRG*.</span></span>
-   * <span data-ttu-id="150ff-124">**-l(또는 --location)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-124">**-l (or --location)**.</span></span> <span data-ttu-id="150ff-125">새 UDR을 만들 Azure 지역입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-125">Azure region where the new UDR will be created.</span></span> <span data-ttu-id="150ff-126">이 시나리오에서는 *westus*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-126">For our scenario, *westus*.</span></span>
-   * <span data-ttu-id="150ff-127">**-n (or --name)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-127">**-n (or --name)**.</span></span> <span data-ttu-id="150ff-128">새 UDR의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-128">Name for the new UDR.</span></span> <span data-ttu-id="150ff-129">이 시나리오에서는 *UDR-FrontEnd*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-129">For our scenario, *UDR-FrontEnd*.</span></span>
-2. <span data-ttu-id="150ff-130">다음 명령을 실행하여 경로 테이블에 경로를 만들고 백 엔드 서브넷(192.168.2.0/24)으로 보내진 모든 트래픽을 **FW1** VM(192.168.0.4)으로 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-130">Run the following command to create a route in the route table to send all traffic destined to the back-end subnet (192.168.2.0/24) to the **FW1** VM (192.168.0.4):</span></span>
+   * <span data-ttu-id="f2970-121">**-g (or --resource-group)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-121">**-g (or --resource-group)**.</span></span> <span data-ttu-id="f2970-122">Hello UDR 만들어지는 hello 리소스 그룹의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-122">Name of hello resource group where hello UDR will be created.</span></span> <span data-ttu-id="f2970-123">이 시나리오에서는 *TestRG*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-123">For our scenario, *TestRG*.</span></span>
+   * <span data-ttu-id="f2970-124">**-l(또는 --location)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-124">**-l (or --location)**.</span></span> <span data-ttu-id="f2970-125">Hello 새 UDR 만들어지는 azure 지역.</span><span class="sxs-lookup"><span data-stu-id="f2970-125">Azure region where hello new UDR will be created.</span></span> <span data-ttu-id="f2970-126">이 시나리오에서는 *westus*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-126">For our scenario, *westus*.</span></span>
+   * <span data-ttu-id="f2970-127">**-n (or --name)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-127">**-n (or --name)**.</span></span> <span data-ttu-id="f2970-128">Hello에 대 한 이름을 새 UDR 합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-128">Name for hello new UDR.</span></span> <span data-ttu-id="f2970-129">이 시나리오에서는 *UDR-FrontEnd*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-129">For our scenario, *UDR-FrontEnd*.</span></span>
+2. <span data-ttu-id="f2970-130">모든 트래픽이 toohello 백 엔드 서브넷 (192.168.2.0/24) toohello 명령 toocreate hello 경로 테이블 toosend에서 경로 따라 hello 실행 **FW1** VM (192.168.0.4):</span><span class="sxs-lookup"><span data-stu-id="f2970-130">Run hello following command toocreate a route in hello route table toosend all traffic destined toohello back-end subnet (192.168.2.0/24) toohello **FW1** VM (192.168.0.4):</span></span>
 
     ```azurecli
     azure network route-table route create -g TestRG -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -y VirtualAppliance -p 192.168.0.4
     ```
    
-    <span data-ttu-id="150ff-131">출력</span><span class="sxs-lookup"><span data-stu-id="150ff-131">Output:</span></span>
+    <span data-ttu-id="f2970-131">출력:</span><span class="sxs-lookup"><span data-stu-id="f2970-131">Output:</span></span>
    
         info:    Executing command network route-table route create
         info:    Looking up route "RouteToBackEnd" in route table "UDR-FrontEnd"
@@ -95,25 +95,25 @@ ms.lasthandoff: 07/11/2017
         data:    Address prefix                  : 192.168.2.0/24
         info:    network route-table route create command OK
    
-    <span data-ttu-id="150ff-132">매개 변수</span><span class="sxs-lookup"><span data-stu-id="150ff-132">Parameters:</span></span>
+    <span data-ttu-id="f2970-132">매개 변수</span><span class="sxs-lookup"><span data-stu-id="f2970-132">Parameters:</span></span>
    
-   * <span data-ttu-id="150ff-133">**-r(또는 --route-table-name)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-133">**-r (or --route-table-name)**.</span></span> <span data-ttu-id="150ff-134">경로가 추가될 경로 테이블의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-134">Name of the route table where the route will be added.</span></span> <span data-ttu-id="150ff-135">이 시나리오에서는 *UDR-FrontEnd*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-135">For our scenario, *UDR-FrontEnd*.</span></span>
-   * <span data-ttu-id="150ff-136">**-a(또는 --address-prefix)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-136">**-a (or --address-prefix)**.</span></span> <span data-ttu-id="150ff-137">패킷을 보내는 서브넷에 대한 주소 접두사입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-137">Address prefix for the subnet where packets are destined to.</span></span> <span data-ttu-id="150ff-138">이 시나리오에서는 *192.168.2.0/24*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-138">For our scenario, *192.168.2.0/24*.</span></span>
-   * <span data-ttu-id="150ff-139">**-y(또는 --next-hop-type)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-139">**-y (or --next-hop-type)**.</span></span> <span data-ttu-id="150ff-140">전송할 개체 트래픽 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-140">Type of object traffic will be sent to.</span></span> <span data-ttu-id="150ff-141">가능한 값은 *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet* 또는 *None*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-141">Possible values are *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet*, or *None*.</span></span>
-   * <span data-ttu-id="150ff-142">**-p(또는 --next-hop-ip-address**).</span><span class="sxs-lookup"><span data-stu-id="150ff-142">**-p (or --next-hop-ip-address**).</span></span> <span data-ttu-id="150ff-143">다음 홉에 대한 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-143">IP address for next hop.</span></span> <span data-ttu-id="150ff-144">이 시나리오에서는 *192.168.0.4*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-144">For our scenario, *192.168.0.4*.</span></span>
-3. <span data-ttu-id="150ff-145">다음 명령을 실행하여 위에서 만든 경로 테이블을 **FrontEnd** 서브넷에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-145">Run the following command to associate the route table created above with the **FrontEnd** subnet:</span></span>
+   * <span data-ttu-id="f2970-133">**-r(또는 --route-table-name)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-133">**-r (or --route-table-name)**.</span></span> <span data-ttu-id="f2970-134">Hello 경로 추가할 hello 경로 테이블의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-134">Name of hello route table where hello route will be added.</span></span> <span data-ttu-id="f2970-135">이 시나리오에서는 *UDR-FrontEnd*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-135">For our scenario, *UDR-FrontEnd*.</span></span>
+   * <span data-ttu-id="f2970-136">**-a(또는 --address-prefix)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-136">**-a (or --address-prefix)**.</span></span> <span data-ttu-id="f2970-137">Hello 서브넷에 패킷을 보내는 위치에 대 한 주소 접두사입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-137">Address prefix for hello subnet where packets are destined to.</span></span> <span data-ttu-id="f2970-138">이 시나리오에서는 *192.168.2.0/24*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-138">For our scenario, *192.168.2.0/24*.</span></span>
+   * <span data-ttu-id="f2970-139">**-y(또는 --next-hop-type)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-139">**-y (or --next-hop-type)**.</span></span> <span data-ttu-id="f2970-140">전송할 개체 트래픽 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-140">Type of object traffic will be sent to.</span></span> <span data-ttu-id="f2970-141">가능한 값은 *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet* 또는 *None*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-141">Possible values are *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet*, or *None*.</span></span>
+   * <span data-ttu-id="f2970-142">**-p(또는 --next-hop-ip-address**).</span><span class="sxs-lookup"><span data-stu-id="f2970-142">**-p (or --next-hop-ip-address**).</span></span> <span data-ttu-id="f2970-143">다음 홉에 대한 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-143">IP address for next hop.</span></span> <span data-ttu-id="f2970-144">이 시나리오에서는 *192.168.0.4*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-144">For our scenario, *192.168.0.4*.</span></span>
+3. <span data-ttu-id="f2970-145">실행된 hello 다음 명령은 hello를 사용 하 여 위에서 만든 tooassociate hello 경로 테이블 **프런트 엔드** 서브넷:</span><span class="sxs-lookup"><span data-stu-id="f2970-145">Run hello following command tooassociate hello route table created above with hello **FrontEnd** subnet:</span></span>
 
     ```azurecli
     azure network vnet subnet set -g TestRG -e TestVNet -n FrontEnd -r UDR-FrontEnd
     ```
    
-    <span data-ttu-id="150ff-146">출력</span><span class="sxs-lookup"><span data-stu-id="150ff-146">Output:</span></span>
+    <span data-ttu-id="f2970-146">출력:</span><span class="sxs-lookup"><span data-stu-id="f2970-146">Output:</span></span>
    
         info:    Executing command network vnet subnet set
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         info:    Looking up route table "UDR-FrontEnd"
         info:    Setting subnet "FrontEnd"
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         virtualNetworks/TestVNet/subnets/FrontEnd
         data:    Type                            : Microsoft.Network/virtualNetworks/subnets
@@ -131,44 +131,44 @@ ms.lasthandoff: 07/11/2017
         data:    
         info:    network vnet subnet set command OK
    
-    <span data-ttu-id="150ff-147">매개 변수</span><span class="sxs-lookup"><span data-stu-id="150ff-147">Parameters:</span></span>
+    <span data-ttu-id="f2970-147">매개 변수</span><span class="sxs-lookup"><span data-stu-id="f2970-147">Parameters:</span></span>
    
-   * <span data-ttu-id="150ff-148">**-e(또는 --vnet-name)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-148">**-e (or --vnet-name)**.</span></span> <span data-ttu-id="150ff-149">서브넷이 위치한 VNet의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-149">Name of the VNet where the subnet is located.</span></span> <span data-ttu-id="150ff-150">이 시나리오에서는 *TestVNet*입니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-150">For our scenario, *TestVNet*.</span></span>
+   * <span data-ttu-id="f2970-148">**-e(또는 --vnet-name)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-148">**-e (or --vnet-name)**.</span></span> <span data-ttu-id="f2970-149">Hello hello 서브넷 위치한 VNet의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-149">Name of hello VNet where hello subnet is located.</span></span> <span data-ttu-id="f2970-150">이 시나리오에서는 *TestVNet*입니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-150">For our scenario, *TestVNet*.</span></span>
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a><span data-ttu-id="150ff-151">백 엔드 서브넷에 대한 UDR 만들기</span><span class="sxs-lookup"><span data-stu-id="150ff-151">Create the UDR for the back-end subnet</span></span>
-<span data-ttu-id="150ff-152">위의 시나리오에 따라 백 엔드 서브넷에 필요한 경로 테이블 및 경로를 만들려면 다음 단계를 마칩니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-152">To create the route table and route needed for the back-end subnet based on the scenario above, complete the following steps:</span></span>
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a><span data-ttu-id="f2970-151">Hello UDR hello 백 엔드 서브넷에 대 한 만들기</span><span class="sxs-lookup"><span data-stu-id="f2970-151">Create hello UDR for hello back-end subnet</span></span>
+<span data-ttu-id="f2970-152">toocreate hello 경로 테이블 및 위의 단계를 수행 하는 전체 hello hello 시나리오에 따라 hello 백 엔드 서브넷에 필요한 경로:</span><span class="sxs-lookup"><span data-stu-id="f2970-152">toocreate hello route table and route needed for hello back-end subnet based on hello scenario above, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="150ff-153">다음 명령을 실행하여 백 엔드 서브넷에 대한 경로 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-153">Run the following command to create a route table for the back-end subnet:</span></span>
+1. <span data-ttu-id="f2970-153">다음 명령은 toocreate hello hello 백 엔드 서브넷에 대 한 경로 테이블을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-153">Run hello following command toocreate a route table for hello back-end subnet:</span></span>
 
     ```azurecli
     azure network route-table create -g TestRG -n UDR-BackEnd -l westus
     ```
 
-2. <span data-ttu-id="150ff-154">다음 명령을 실행하여 경로 테이블에 경로를 만들고 프런트 엔드 서브넷(192.168.1.0/24)으로 보내진 모든 트래픽을 **FW1** VM(192.168.0.4)으로 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-154">Run the following command to create a route in the route table to send all traffic destined to the front-end subnet (192.168.1.0/24) to the **FW1** VM (192.168.0.4):</span></span>
+2. <span data-ttu-id="f2970-154">모든 트래픽이 toohello 프런트 엔드 서브넷 (192.168.1.0/24) toohello 명령 toocreate hello 경로 테이블 toosend에서 경로 따라 hello 실행 **FW1** VM (192.168.0.4):</span><span class="sxs-lookup"><span data-stu-id="f2970-154">Run hello following command toocreate a route in hello route table toosend all traffic destined toohello front-end subnet (192.168.1.0/24) toohello **FW1** VM (192.168.0.4):</span></span>
 
     ```azurecli
     azure network route-table route create -g TestRG -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -y VirtualAppliance -p 192.168.0.4
     ```
 
-3. <span data-ttu-id="150ff-155">다음 명령을 실행하여 경로 테이블을 **BackEnd** 서브넷에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-155">Run the following command to associate the route table with the **BackEnd** subnet:</span></span>
+3. <span data-ttu-id="f2970-155">실행 hello 명령 tooassociate hello 경로 테이블 hello로 다음 **백 엔드** 서브넷:</span><span class="sxs-lookup"><span data-stu-id="f2970-155">Run hello following command tooassociate hello route table with hello **BackEnd** subnet:</span></span>
 
     ```azurecli
     azure network vnet subnet set -g TestRG -e TestVNet -n BackEnd -r UDR-BackEnd
     ```
 
-## <a name="enable-ip-forwarding-on-fw1"></a><span data-ttu-id="150ff-156">FW1에서 IP 전달을 사용하도록 설정</span><span class="sxs-lookup"><span data-stu-id="150ff-156">Enable IP forwarding on FW1</span></span>
-<span data-ttu-id="150ff-157">사용 되는 NIC에서 IP 전달을 사용 하도록 설정 하려면 **FW1**, 다음 단계를 완료 합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-157">To enable IP forwarding in the NIC used by **FW1**, complete the following steps:</span></span>
+## <a name="enable-ip-forwarding-on-fw1"></a><span data-ttu-id="f2970-156">FW1에서 IP 전달을 사용하도록 설정</span><span class="sxs-lookup"><span data-stu-id="f2970-156">Enable IP forwarding on FW1</span></span>
+<span data-ttu-id="f2970-157">hello에서 사용 하는 NIC에 IP 전달을 tooenable **FW1**완료, 다음 단계 hello:</span><span class="sxs-lookup"><span data-stu-id="f2970-157">tooenable IP forwarding in hello NIC used by **FW1**, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="150ff-158">다음 명령을 실행하고 **IP 전달 사용**에 대한 값을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-158">Run the command that follows and notice the value for **Enable IP forwarding**.</span></span> <span data-ttu-id="150ff-159">*false*로 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-159">It should be set to *false*.</span></span>
+1. <span data-ttu-id="f2970-158">뒤에 오는 hello 값에 대 한 hello 명령을 실행 **IP 전달을**합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-158">Run hello command that follows and notice hello value for **Enable IP forwarding**.</span></span> <span data-ttu-id="f2970-159">너무 설정 해야*false*합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-159">It should be set too*false*.</span></span>
 
     ```azurecli
     azure network nic show -g TestRG -n NICFW1
     ```
 
-    <span data-ttu-id="150ff-160">출력</span><span class="sxs-lookup"><span data-stu-id="150ff-160">Output:</span></span>
+    <span data-ttu-id="f2970-160">출력:</span><span class="sxs-lookup"><span data-stu-id="f2970-160">Output:</span></span>
    
         info:    Executing command network nic show
-        info:    Looking up the network interface "NICFW1"
+        info:    Looking up hello network interface "NICFW1"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         networkInterfaces/NICFW1
         data:    Name                            : NICFW1
@@ -191,18 +191,18 @@ ms.lasthandoff: 07/11/2017
         virtualNetworks/TestVNet/subnets/DMZ
         data:    
         info:    network nic show command OK
-2. <span data-ttu-id="150ff-161">다음 명령을 실행하여 IP 전달을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="150ff-161">Run the following command to enable IP forwarding:</span></span>
+2. <span data-ttu-id="f2970-161">다음 명령 tooenable IP 전달을 hello를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="f2970-161">Run hello following command tooenable IP forwarding:</span></span>
 
     ```azurecli
     azure network nic set -g TestRG -n NICFW1 -f true
     ```
    
-    <span data-ttu-id="150ff-162">출력</span><span class="sxs-lookup"><span data-stu-id="150ff-162">Output:</span></span>
+    <span data-ttu-id="f2970-162">출력:</span><span class="sxs-lookup"><span data-stu-id="f2970-162">Output:</span></span>
    
         info:    Executing command network nic set
-        info:    Looking up the network interface "NICFW1"
+        info:    Looking up hello network interface "NICFW1"
         info:    Updating network interface "NICFW1"
-        info:    Looking up the network interface "NICFW1"
+        info:    Looking up hello network interface "NICFW1"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         networkInterfaces/NICFW1
         data:    Name                            : NICFW1
@@ -226,7 +226,7 @@ ms.lasthandoff: 07/11/2017
         data:    
         info:    network nic set command OK
    
-    <span data-ttu-id="150ff-163">매개 변수</span><span class="sxs-lookup"><span data-stu-id="150ff-163">Parameters:</span></span>
+    <span data-ttu-id="f2970-163">매개 변수</span><span class="sxs-lookup"><span data-stu-id="f2970-163">Parameters:</span></span>
    
-   * <span data-ttu-id="150ff-164">**-f(또는 --enable-ip-forwarding)**.</span><span class="sxs-lookup"><span data-stu-id="150ff-164">**-f (or --enable-ip-forwarding)**.</span></span> <span data-ttu-id="150ff-165">*true* 또는 *false*.</span><span class="sxs-lookup"><span data-stu-id="150ff-165">*true* or *false*.</span></span>
+   * <span data-ttu-id="f2970-164">**-f(또는 --enable-ip-forwarding)**.</span><span class="sxs-lookup"><span data-stu-id="f2970-164">**-f (or --enable-ip-forwarding)**.</span></span> <span data-ttu-id="f2970-165">*true* 또는 *false*.</span><span class="sxs-lookup"><span data-stu-id="f2970-165">*true* or *false*.</span></span>
 

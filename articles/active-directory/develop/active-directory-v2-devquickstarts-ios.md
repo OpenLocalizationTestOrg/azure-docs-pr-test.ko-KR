@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v 2.0 끝점을 사용하여 iOS 응용 프로그램에 로그인 추가 | Microsoft Docs"
-description: "타사 라이브러리를 사용하여 개인 Microsoft 계정과 회사 또는 학교 계정 둘 다로 사용자를 로그인하는 iOS 앱을 빌드하는 방법입니다."
+title: "Azure AD v2.0 끝점 hello aaaAdd 로그인 tooan iOS 응용 프로그램 사용 하 여 | Microsoft Docs"
+description: "어떻게 toobuild iOS 앱 하는 서명 두 개인 Microsoft 계정으로 사용자와 회사 또는 학교 계정에 타사 라이브러리를 사용 하 여 합니다."
 services: active-directory
 documentationcenter: 
 author: brandwe
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 ms.custom: aaddev
-ms.openlocfilehash: cf1455dc3d55ea3581195f7a315556d134c23a26
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a384062e6e4bd398a2b12318800728e627e05c32
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-ios-app-using-a-third-party-library-with-graph-api-using-the-v20-endpoint"></a><span data-ttu-id="d193d-103">v2.0 끝점을 사용하는 Graph API와 함께 타사 라이브러리를 사용하여 iOS 앱에 로그인 추가</span><span class="sxs-lookup"><span data-stu-id="d193d-103">Add sign-in to an iOS app using a third-party library with Graph API using the v2.0 endpoint</span></span>
-<span data-ttu-id="d193d-104">Microsoft ID 플랫폼은 OAuth2 및 OpenID Connect와 같은 개방형 표준을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-104">The Microsoft identity platform uses open standards such as OAuth2 and OpenID Connect.</span></span> <span data-ttu-id="d193d-105">개발자는 서비스와 통합하려는 모든 라이브러리를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-105">Developers can use any library they want to integrate with our services.</span></span> <span data-ttu-id="d193d-106">개발자가 플랫폼을 다른 라이브러리와 함께 사용할 수 있도록 돕기 위해, 타사 라이브러리를 Microsoft ID 플랫폼에 연결하도록 구성하는 방법을 설명하는 이와 같은 연습 몇 가지를 작성했습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-106">To help developers use our platform with other libraries, we've written a few walkthroughs like this one to demonstrate how to configure third-party libraries to connect to the Microsoft identity platform.</span></span> <span data-ttu-id="d193d-107">[RFC6749 OAuth2 사양](https://tools.ietf.org/html/rfc6749) 을 구현하는 대부분의 라이브러리는 Microsoft ID 플랫폼에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-107">Most libraries that implement [the RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) can connect to the Microsoft identity platform.</span></span>
+# <a name="add-sign-in-tooan-ios-app-using-a-third-party-library-with-graph-api-using-hello-v20-endpoint"></a><span data-ttu-id="d8095-103">타사 라이브러리를 사용 하 여 Graph api v 2.0 끝점 hello를 사용 하 여 로그인 tooan iOS 앱 추가</span><span class="sxs-lookup"><span data-stu-id="d8095-103">Add sign-in tooan iOS app using a third-party library with Graph API using hello v2.0 endpoint</span></span>
+<span data-ttu-id="d8095-104">hello Microsoft id 플랫폼 OAuth2 및 OpenID Connect와 같은 개방형 표준을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-104">hello Microsoft identity platform uses open standards such as OAuth2 and OpenID Connect.</span></span> <span data-ttu-id="d8095-105">개발자는 서비스와 toointegrate 원하는 모든 라이브러리를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-105">Developers can use any library they want toointegrate with our services.</span></span> <span data-ttu-id="d8095-106">toohelp 개발자 플랫폼을 사용 하 여 다른 라이브러리와을 작성 했습니다이 하나의 toodemonstrate와 같은 몇 가지 연습 어떻게 tooconfigure 타사 라이브러리 tooconnect toohello Microsoft id 플랫폼입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-106">toohelp developers use our platform with other libraries, we've written a few walkthroughs like this one toodemonstrate how tooconfigure third-party libraries tooconnect toohello Microsoft identity platform.</span></span> <span data-ttu-id="d8095-107">구현 하는 대부분의 라이브러리 [hello RFC6749 OAuth2 사양](https://tools.ietf.org/html/rfc6749) toohello Microsoft id 플랫폼을 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-107">Most libraries that implement [hello RFC6749 OAuth2 spec](https://tools.ietf.org/html/rfc6749) can connect toohello Microsoft identity platform.</span></span>
 
-<span data-ttu-id="d193d-108">이 연습에서 만드는 응용 프로그램을 사용하여 해당 조직에 로그인한 다음 Graph API를 사용하여 조직에서 다른 사용자를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-108">With the application that this walkthrough creates, users can sign in to their organization and then search for others in their organization by using the Graph API.</span></span>
+<span data-ttu-id="d8095-108">사용자는이 연습에서 만들어지는 hello 응용 프로그램을 사용 하 여 한 tootheir 조직 로그인 hello Graph API를 사용 하 여 조직에서 다른 사용자가 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-108">With hello application that this walkthrough creates, users can sign in tootheir organization and then search for others in their organization by using hello Graph API.</span></span>
 
-<span data-ttu-id="d193d-109">OAuth2 또는 OpenID Connect를 처음 접하는 경우 이 샘플 구성 대부분이 잘 이해되지 않을 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-109">If you're new to OAuth2 or OpenID Connect, much of this sample configuration may not make sense to you.</span></span> <span data-ttu-id="d193d-110">배경 지식을 위해 [v2.0 프로토콜 - OAuth 2.0 권한 부여 코드 흐름](active-directory-v2-protocols-oauth-code.md)을 읽어보는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-110">We recommend that you read  [v2.0 Protocols - OAuth 2.0 Authorization Code Flow](active-directory-v2-protocols-oauth-code.md) for background.</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="d193d-111">조건부 액세스 및 Intune 정책 관리 등과 같은 OAuth2 또는 OpenID Connect 표준의 식을 사용하는 플랫폼의 일부 기능은 수행하려면 오픈 소스인 Microsoft Azure ID 라이브러리를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-111">Some features of our platform that do have an expression in the OAuth2 or OpenID Connect standards, such as Conditional Access and Intune policy management, require you to use our open source Microsoft Azure Identity Libraries.</span></span>
-> 
-> 
-
-<span data-ttu-id="d193d-112">v2.0 끝점에서는 일부 Azure Active Directory 시나리오 및 기능만 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-112">The v2.0 endpoint does not support all Azure Active Directory scenarios and features.</span></span>
+<span data-ttu-id="d8095-109">이 예제 구성의 많은 새로운 tooOAuth2 또는 OpenID Connect를 사용 하는 경우 의미 tooyou를 하면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-109">If you're new tooOAuth2 or OpenID Connect, much of this sample configuration may not make sense tooyou.</span></span> <span data-ttu-id="d8095-110">배경 지식을 위해 [v2.0 프로토콜 - OAuth 2.0 권한 부여 코드 흐름](active-directory-v2-protocols-oauth-code.md)을 읽어보는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-110">We recommend that you read  [v2.0 Protocols - OAuth 2.0 Authorization Code Flow](active-directory-v2-protocols-oauth-code.md) for background.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d193d-113">v2.0 끝점을 사용해야 하는지 확인하려면 [v2.0 제한 사항](active-directory-v2-limitations.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d193d-113">To determine if you should use the v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
+> <span data-ttu-id="d8095-111">OAuth2 hello 또는 조건부 액세스 및 Intune 정책 관리와 같은 OpenID Connect 표준을 식에서 없는 플랫폼의 일부 기능 있습니다 toouse 우리의 오픈 소스 Microsoft Azure Identity 라이브러리를 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-111">Some features of our platform that do have an expression in hello OAuth2 or OpenID Connect standards, such as Conditional Access and Intune policy management, require you toouse our open source Microsoft Azure Identity Libraries.</span></span>
 > 
 > 
 
-## <a name="download-code-from-github"></a><span data-ttu-id="d193d-114">GitHub에서 코드 다운로드</span><span class="sxs-lookup"><span data-stu-id="d193d-114">Download code from GitHub</span></span>
-<span data-ttu-id="d193d-115">이 자습서에 대한 코드는 [GitHub](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-v2)에서 유지 관리됩니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-115">The code for this tutorial is maintained [on GitHub](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-v2).</span></span>  <span data-ttu-id="d193d-116">자습서에 따라 [.zip으로 앱 구조를 다운로드](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip) 하거나 구조를 복제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-116">To follow along, you can [download the app's skeleton as a .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip) or clone the skeleton:</span></span>
+<span data-ttu-id="d8095-112">hello v2.0 끝점에는 모든 Azure Active Directory 시나리오 및 기능을 지원 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-112">hello v2.0 endpoint does not support all Azure Active Directory scenarios and features.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="d8095-113">에 대해 알아보세요 hello v2.0 끝점을 사용 해야 하는 경우 toodetermine [v2.0 제한](active-directory-v2-limitations.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-113">toodetermine if you should use hello v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
+> 
+> 
+
+## <a name="download-code-from-github"></a><span data-ttu-id="d8095-114">GitHub에서 코드 다운로드</span><span class="sxs-lookup"><span data-stu-id="d8095-114">Download code from GitHub</span></span>
+<span data-ttu-id="d8095-115">이 자습서에 대 한 hello 코드 유지 관리 [GitHub에서](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-v2)합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-115">hello code for this tutorial is maintained [on GitHub](https://github.com/Azure-Samples/active-directory-ios-native-nxoauth2-v2).</span></span>  <span data-ttu-id="d8095-116">수에 따라 toofollow, [.zip으로 hello 응용 프로그램의 기본 정의 다운로드](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip) 또는 복제 hello 스 켈 레 톤:</span><span class="sxs-lookup"><span data-stu-id="d8095-116">toofollow along, you can [download hello app's skeleton as a .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip) or clone hello skeleton:</span></span>
 
 ```
 git clone --branch skeleton git@github.com:Azure-Samples/active-directory-ios-native-nxoauth2-v2.git
 ```
 
-<span data-ttu-id="d193d-117">샘플을 다운로드할 수도 있고 지금 바로 시작할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-117">You can also just download the sample and get started right away:</span></span>
+<span data-ttu-id="d8095-117">Hello 샘플을 다운로드할 수도 수 고를 지금 시작:</span><span class="sxs-lookup"><span data-stu-id="d8095-117">You can also just download hello sample and get started right away:</span></span>
 
 ```
 git clone git@github.com:Azure-Samples/active-directory-ios-native-nxoauth2-v2.git
 ```
 
-## <a name="register-an-app"></a><span data-ttu-id="d193d-118">앱 등록</span><span class="sxs-lookup"><span data-stu-id="d193d-118">Register an app</span></span>
-<span data-ttu-id="d193d-119">[응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)에서 새 앱을 만들거나 [v2.0 끝점을 사용하여 앱을 등록하는 방법](active-directory-v2-app-registration.md)의 자세한 단계를 따르세요.</span><span class="sxs-lookup"><span data-stu-id="d193d-119">Create a new app at the [Application registration portal](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow the detailed steps at  [How to register an app with the v2.0 endpoint](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="d193d-120">다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-120">Make sure to:</span></span>
+## <a name="register-an-app"></a><span data-ttu-id="d8095-118">앱 등록</span><span class="sxs-lookup"><span data-stu-id="d8095-118">Register an app</span></span>
+<span data-ttu-id="d8095-119">Hello에 새 앱 만들기 [응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), 또는 hello 세부 단계에 따라 [어떻게 tooregister hello v2.0 끝점을 사용 하 여 앱](active-directory-v2-app-registration.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-119">Create a new app at hello [Application registration portal](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow hello detailed steps at  [How tooregister an app with hello v2.0 endpoint](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="d8095-120">다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-120">Make sure to:</span></span>
 
-* <span data-ttu-id="d193d-121">앱에 할당된 **응용 프로그램 ID** 는 곧 필요하므로 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-121">Copy the **Application Id** that's assigned to your app because you'll need it soon.</span></span>
-* <span data-ttu-id="d193d-122">앱용 **Mobile** 플랫폼을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-122">Add the **Mobile** platform for your app.</span></span>
-* <span data-ttu-id="d193d-123">포털에서 **리디렉션 URI** 를 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-123">Copy the **Redirect URI** from the portal.</span></span> <span data-ttu-id="d193d-124">`urn:ietf:wg:oauth:2.0:oob`의 기본값을 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-124">You must use the default value of `urn:ietf:wg:oauth:2.0:oob`.</span></span>
+* <span data-ttu-id="d8095-121">복사 hello **응용 프로그램 Id** 할당된 tooyour 응용 프로그램은 곧 필요 하기 때문입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-121">Copy hello **Application Id** that's assigned tooyour app because you'll need it soon.</span></span>
+* <span data-ttu-id="d8095-122">Hello 추가 **모바일** 응용 프로그램을 위한 플랫폼입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-122">Add hello **Mobile** platform for your app.</span></span>
+* <span data-ttu-id="d8095-123">복사 hello **리디렉션 URI** hello 포털에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-123">Copy hello **Redirect URI** from hello portal.</span></span> <span data-ttu-id="d8095-124">기본값 hello를 사용 해야 `urn:ietf:wg:oauth:2.0:oob`합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-124">You must use hello default value of `urn:ietf:wg:oauth:2.0:oob`.</span></span>
 
-## <a name="download-the-third-party-nxoauth2-library-and-create-a-workspace"></a><span data-ttu-id="d193d-125">타사 NXOAuth2 라이브러리 다운로드 및 작업 영역 만들기</span><span class="sxs-lookup"><span data-stu-id="d193d-125">Download the third-party NXOAuth2 library and create a workspace</span></span>
-<span data-ttu-id="d193d-126">이 연습에서는 Mac OS X 및 iOS(Cocoa 및 Cocoa touch)에 대한 OAuth2 라이브러리인 GitHub의 OAuth2Client를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-126">For this walkthrough, you will use the OAuth2Client from GitHub, which is an OAuth2 library for Mac OS X and iOS (Cocoa and Cocoa touch).</span></span> <span data-ttu-id="d193d-127">이 라이브러리는 OAuth2 사양의 초안 10에 기반을 둡니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-127">This library is based on draft 10 of the OAuth2 spec.</span></span> <span data-ttu-id="d193d-128">네이티브 응용 프로그램 프로필을 구현하고 사용자의 권한 부여 끝점을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-128">It implements the native application profile and supports the authorization endpoint of the user.</span></span> <span data-ttu-id="d193d-129">이것이 바로 Microsoft ID 플랫폼과 통합하기 위해 필요한 모든 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-129">These are all the things you'll need to integrate with the Microsoft identity platform.</span></span>
+## <a name="download-hello-third-party-nxoauth2-library-and-create-a-workspace"></a><span data-ttu-id="d8095-125">Hello 제 3 자 NXOAuth2 라이브러리를 다운로드 하 고 작업 영역 만들기</span><span class="sxs-lookup"><span data-stu-id="d8095-125">Download hello third-party NXOAuth2 library and create a workspace</span></span>
+<span data-ttu-id="d8095-126">이 연습에서는 (Cocoa 및 터치 Cocoa) iOS 및 Mac OS X에 대 한 OAuth2 라이브러리는 GitHub에서 OAuth2Client hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-126">For this walkthrough, you will use hello OAuth2Client from GitHub, which is an OAuth2 library for Mac OS X and iOS (Cocoa and Cocoa touch).</span></span> <span data-ttu-id="d8095-127">이 라이브러리의 hello OAuth2 사양 초안 10 기반으로 합니다. Hello 네이티브 응용 프로그램 프로필을 구현 하 고 hello 사용자의 hello 권한 부여 끝점을 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-127">This library is based on draft 10 of hello OAuth2 spec. It implements hello native application profile and supports hello authorization endpoint of hello user.</span></span> <span data-ttu-id="d8095-128">이들은 toointegrate hello Microsoft id 플랫폼을 사용 해야 하는 모든 hello 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-128">These are all hello things you'll need toointegrate with hello Microsoft identity platform.</span></span>
 
-### <a name="add-the-library-to-your-project-by-using-cocoapods"></a><span data-ttu-id="d193d-130">CocoaPods를 사용하여 프로젝트에 라이브러리 추가하기</span><span class="sxs-lookup"><span data-stu-id="d193d-130">Add the library to your project by using CocoaPods</span></span>
-<span data-ttu-id="d193d-131">CocoaPods는 Xcode 프로젝트에 대한 종속성 관리자입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-131">CocoaPods is a dependency manager for Xcode projects.</span></span> <span data-ttu-id="d193d-132">이전 설치 단계를 자동으로 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-132">It manages the previous installation steps automatically.</span></span>
+### <a name="add-hello-library-tooyour-project-by-using-cocoapods"></a><span data-ttu-id="d8095-129">CocoaPods를 사용 하 여 hello 라이브러리 tooyour 프로젝트 추가</span><span class="sxs-lookup"><span data-stu-id="d8095-129">Add hello library tooyour project by using CocoaPods</span></span>
+<span data-ttu-id="d8095-130">CocoaPods는 Xcode 프로젝트에 대한 종속성 관리자입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-130">CocoaPods is a dependency manager for Xcode projects.</span></span> <span data-ttu-id="d8095-131">이전 설치 단계 hello을 자동으로 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-131">It manages hello previous installation steps automatically.</span></span>
 
 ```
 $ vi Podfile
 ```
-1. <span data-ttu-id="d193d-133">이 podfile에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-133">Add the following to this podfile:</span></span>
+1. <span data-ttu-id="d8095-132">Hello toothis podfile 다음을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-132">Add hello following toothis podfile:</span></span>
    
     ```
      platform :ios, '8.0'
@@ -80,7 +80,7 @@ $ vi Podfile
    
      end
     ```
-2. <span data-ttu-id="d193d-134">CocoaPods를 사용하여 podfile를 로드합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-134">Load the podfile by using CocoaPods.</span></span> <span data-ttu-id="d193d-135">로드하려는 새 XCode 작업 영역을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-135">This will create a new Xcode workspace that you will load.</span></span>
+2. <span data-ttu-id="d8095-133">CocoaPods를 사용 하 여 hello podfile를 로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-133">Load hello podfile by using CocoaPods.</span></span> <span data-ttu-id="d8095-134">로드하려는 새 XCode 작업 영역을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-134">This will create a new Xcode workspace that you will load.</span></span>
    
     ```
     $ pod install
@@ -88,24 +88,24 @@ $ vi Podfile
     $ open QuickStart.xcworkspace
     ```
 
-## <a name="explore-the-structure-of-the-project"></a><span data-ttu-id="d193d-136">프로젝트의 구조 탐색</span><span class="sxs-lookup"><span data-stu-id="d193d-136">Explore the structure of the project</span></span>
-<span data-ttu-id="d193d-137">프로젝트의 기본 골격 구조는 다음과 같이 설정되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-137">The following structure is set up for our project in the skeleton:</span></span>
+## <a name="explore-hello-structure-of-hello-project"></a><span data-ttu-id="d8095-135">Hello 프로젝트의 hello 구조 탐색</span><span class="sxs-lookup"><span data-stu-id="d8095-135">Explore hello structure of hello project</span></span>
+<span data-ttu-id="d8095-136">구조를 다음 hello hello 스 켈 레 톤에서이 프로젝트에 대해 설정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-136">hello following structure is set up for our project in hello skeleton:</span></span>
 
-* <span data-ttu-id="d193d-138">UPN 검색으로 마스터 보기</span><span class="sxs-lookup"><span data-stu-id="d193d-138">A Master View with a UPN Search</span></span>
-* <span data-ttu-id="d193d-139">선택한 사용자에 관한 데이터 세부 정보 보기</span><span class="sxs-lookup"><span data-stu-id="d193d-139">A Detail View for the data about the selected user</span></span>
-* <span data-ttu-id="d193d-140">사용자가 앱에 로그인하여 그래프를 쿼리할 수 있도록 하는 로그인 뷰</span><span class="sxs-lookup"><span data-stu-id="d193d-140">A Login View where a user can sign in to the app to query the graph</span></span>
+* <span data-ttu-id="d8095-137">UPN 검색으로 마스터 보기</span><span class="sxs-lookup"><span data-stu-id="d8095-137">A Master View with a UPN Search</span></span>
+* <span data-ttu-id="d8095-138">사용자를 선택 하는 hello에 대 한 hello 데이터에 대 한 세부 정보 보기</span><span class="sxs-lookup"><span data-stu-id="d8095-138">A Detail View for hello data about hello selected user</span></span>
+* <span data-ttu-id="d8095-139">Toohello 앱 tooquery hello 그래프에는 사용자 로그인 수 있는 로그인 보기</span><span class="sxs-lookup"><span data-stu-id="d8095-139">A Login View where a user can sign in toohello app tooquery hello graph</span></span>
 
-<span data-ttu-id="d193d-141">인증 추가를 위해 골격 구조의 다양한 파일로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-141">We will move to various files in the skeleton to add authentication.</span></span> <span data-ttu-id="d193d-142">시각적 코드와 같은 코드의 다른 부분은 ID와 밀접한 관련이 없으나 사용자에게 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-142">Other parts of the code, such as the visual code, do not pertain to identity but are provided for you.</span></span>
+<span data-ttu-id="d8095-140">म hello 뼈대 tooadd 인증의 toovarious 파일을 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-140">We will move toovarious files in hello skeleton tooadd authentication.</span></span> <span data-ttu-id="d8095-141">Hello 코드 hello 시각적 코드 등의 다른 부분 tooidentity 맞지 않는 있지만 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-141">Other parts of hello code, such as hello visual code, do not pertain tooidentity but are provided for you.</span></span>
 
-## <a name="set-up-the-settingsplst-file-in-the-library"></a><span data-ttu-id="d193d-143">라이브러리의 settings.plst 파일 설정</span><span class="sxs-lookup"><span data-stu-id="d193d-143">Set up the settings.plst file in the library</span></span>
-* <span data-ttu-id="d193d-144">빠른 시작 프로젝트에서 `settings.plist` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-144">In the QuickStart project, open the `settings.plist` file.</span></span> <span data-ttu-id="d193d-145">Azure 포털에 사용한 값을 반영하도록 섹션의 요소 값을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-145">Replace the values of the elements in the section to reflect the values that you used in the Azure portal.</span></span> <span data-ttu-id="d193d-146">코드는 Active Directory 인증 라이브러리를 사용할 때마다 이러한 값을 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-146">Your code will reference these values whenever it uses the Active Directory Authentication Library.</span></span>
-  * <span data-ttu-id="d193d-147">`clientId` 는 포털에서 복사한 응용 프로그램의 클라이언트 ID입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-147">The `clientId` is the client ID of your application that you copied from the portal.</span></span>
-  * <span data-ttu-id="d193d-148">`redirectUri` 는 포털에서 제공한 리디렉션 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-148">The `redirectUri` is the redirect URL that the portal provided.</span></span>
+## <a name="set-up-hello-settingsplst-file-in-hello-library"></a><span data-ttu-id="d8095-142">Hello 라이브러리의 hello settings.plst 파일 설정</span><span class="sxs-lookup"><span data-stu-id="d8095-142">Set up hello settings.plst file in hello library</span></span>
+* <span data-ttu-id="d8095-143">Hello 퀵 스타트 프로젝트를 열고 hello `settings.plist` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-143">In hello QuickStart project, open hello `settings.plist` file.</span></span> <span data-ttu-id="d8095-144">Hello hello Azure 포털에서에서 사용 하는 hello 섹션 tooreflect hello 값 hello 요소 값을 대체 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-144">Replace hello values of hello elements in hello section tooreflect hello values that you used in hello Azure portal.</span></span> <span data-ttu-id="d8095-145">Hello Active Directory 인증 라이브러리를 사용 하 여 때마다 코드는 이러한 값을 참조 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-145">Your code will reference these values whenever it uses hello Active Directory Authentication Library.</span></span>
+  * <span data-ttu-id="d8095-146">hello `clientId` hello hello 포털에서 복사 하는 응용 프로그램 클라이언트 ID입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-146">hello `clientId` is hello client ID of your application that you copied from hello portal.</span></span>
+  * <span data-ttu-id="d8095-147">hello `redirectUri` hello 리디렉션 URL hello 포털이 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-147">hello `redirectUri` is hello redirect URL that hello portal provided.</span></span>
 
-## <a name="set-up-the-nxoauth2client-library-in-your-loginviewcontroller"></a><span data-ttu-id="d193d-149">LoginViewController의 NXOAuth2Client 라이브러리 설정</span><span class="sxs-lookup"><span data-stu-id="d193d-149">Set up the NXOAuth2Client library in your LoginViewController</span></span>
-<span data-ttu-id="d193d-150">NXOAuth2Client 라이브러리는 시작하기 위해 일부 값을 필요로 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-150">The NXOAuth2Client library requires some values to get set up.</span></span> <span data-ttu-id="d193d-151">해당 작업을 마친 후 획득한 토큰을 사용하여 Graph API를 호출할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-151">After you complete that task, you can use the acquired token to call the Graph API.</span></span> <span data-ttu-id="d193d-152">`LoginView` 는 인증이 필요할 때마다 호출되므로 해당 파일에 구성 값을 입력하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-152">Because `LoginView` will be called any time we need to authenticate, it makes sense to put configuration values in to that file.</span></span>
+## <a name="set-up-hello-nxoauth2client-library-in-your-loginviewcontroller"></a><span data-ttu-id="d8095-148">프로그램 LoginViewController에 hello NXOAuth2Client 라이브러리 설정</span><span class="sxs-lookup"><span data-stu-id="d8095-148">Set up hello NXOAuth2Client library in your LoginViewController</span></span>
+<span data-ttu-id="d8095-149">hello NXOAuth2Client 라이브러리를 설정 하는 일부 값 tooget이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-149">hello NXOAuth2Client library requires some values tooget set up.</span></span> <span data-ttu-id="d8095-150">해당 작업을 완료 한 후에 hello 토큰을 획득 한 toocall hello Graph API를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-150">After you complete that task, you can use hello acquired token toocall hello Graph API.</span></span> <span data-ttu-id="d8095-151">때문에 `LoginView` 언제 든 지 호출 됩니다는 의미가 tooput 구성 값 toothat 파일에, tooauthenticate 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-151">Because `LoginView` will be called any time we need tooauthenticate, it makes sense tooput configuration values in toothat file.</span></span>
 
-* <span data-ttu-id="d193d-153">`LoginViewController.m` 파일에 일부 값을 추가하여 인증 및 권한 부여에 대한 컨텍스트를 설정해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-153">Let's add some values to the  `LoginViewController.m` file to set the context for authentication and authorization.</span></span> <span data-ttu-id="d193d-154">코드 다음에는 값에 대한 세부 정보가 나옵니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-154">Details about the values follow the code.</span></span>
+* <span data-ttu-id="d8095-152">일부 값 toohello 추가해보겠습니다 `LoginViewController.m` 인증 및 권한 부여에 대 한 파일 tooset hello 컨텍스트입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-152">Let's add some values toohello  `LoginViewController.m` file tooset hello context for authentication and authorization.</span></span> <span data-ttu-id="d8095-153">Hello 값에 대 한 세부 정보는 hello 코드를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-153">Details about hello values follow hello code.</span></span>
   
     ```objc
     NSString *scopes = @"openid offline_access User.Read";
@@ -122,22 +122,22 @@ $ vi Podfile
     NSURL *authcode;
     ```
 
-<span data-ttu-id="d193d-155">코드에 대한 세부 정보를 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-155">Let's look at details about the code.</span></span>
+<span data-ttu-id="d8095-154">Hello 코드에 대 한 세부 정보를 살펴 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-154">Let's look at details about hello code.</span></span>
 
-<span data-ttu-id="d193d-156">첫 번째 문자열은 `scopes`에 대한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-156">The first string is for `scopes`.</span></span>  <span data-ttu-id="d193d-157">`User.Read` 값을 사용하여 로그인한 사용자의 기본 프로필을 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-157">The `User.Read` value allows you to read the basic profile of the signed in user.</span></span>
+<span data-ttu-id="d8095-155">에 대 한 hello 첫 번째 문자열은 `scopes`합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-155">hello first string is for `scopes`.</span></span>  <span data-ttu-id="d8095-156">hello `User.Read` 값 tooread hello hello 사용자 로그인의 기본 프로필을 사용 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-156">hello `User.Read` value allows you tooread hello basic profile of hello signed in user.</span></span>
 
-<span data-ttu-id="d193d-158">[Microsoft Graph 권한 범위](https://graph.microsoft.io/docs/authorization/permission_scopes)에서 사용 가능한 모든 범위에 대해 알아볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-158">You can learn more about all the available scopes at [Microsoft Graph permission scopes](https://graph.microsoft.io/docs/authorization/permission_scopes).</span></span>
+<span data-ttu-id="d8095-157">모든 hello 사용할 수 있는 범위에 대해 자세히 알아볼 수 있습니다 [Microsoft Graph 사용 권한 범위](https://graph.microsoft.io/docs/authorization/permission_scopes)합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-157">You can learn more about all hello available scopes at [Microsoft Graph permission scopes](https://graph.microsoft.io/docs/authorization/permission_scopes).</span></span>
 
-<span data-ttu-id="d193d-159">`authURL`, `loginURL`, `bhh` 및 `tokenURL`에서는 앞서 제공된 값을 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-159">For `authURL`, `loginURL`, `bhh`, and `tokenURL`, you should use the values provided previously.</span></span> <span data-ttu-id="d193d-160">오픈 소스 Microsoft Azure Identity 라이브러리를 사용하는 경우 메타데이터 끝점을 사용하여 이 데이터를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-160">If you use the open source Microsoft Azure Identity Libraries, we pull this data down for you by using our metadata endpoint.</span></span> <span data-ttu-id="d193d-161">사용자를 위해 이러한 값을 추출하는 어려운 작업을 마쳤습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-161">We've done the hard work of extracting these values for you.</span></span>
+<span data-ttu-id="d8095-158">에 대 한 `authURL`, `loginURL`, `bhh`, 및 `tokenURL`, 이전에 제공 된 hello 값을 사용 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-158">For `authURL`, `loginURL`, `bhh`, and `tokenURL`, you should use hello values provided previously.</span></span> <span data-ttu-id="d8095-159">Hello 오픈 소스 Microsoft Azure Identity 라이브러리를 사용 하는 경우에서는 끌어오고이 데이터를 우리의 메타 데이터 끝점을 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-159">If you use hello open source Microsoft Azure Identity Libraries, we pull this data down for you by using our metadata endpoint.</span></span> <span data-ttu-id="d8095-160">수행한 hello 복잡 한 작업을 사용자에 대 한 이러한 값을 추출 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-160">We've done hello hard work of extracting these values for you.</span></span>
 
-<span data-ttu-id="d193d-162">`keychain` 값은 NXOAuth2Client 라이브러리가 토큰을 저장하기 위해 키 집합을 만드는데 사용할 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-162">The `keychain` value is the container that the NXOAuth2Client library will use to create a keychain to store your tokens.</span></span> <span data-ttu-id="d193d-163">다양한 앱에서 SSO(Single Sign-On)를 가져오려 한다면 각 응용 프로그램에서 동일한 키 집합을 지정하는 것은 물론 Xcode 자격에서 그 키 집합의 사용을 요청할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-163">If you'd like to get single sign-on (SSO) across numerous apps, you can specify the same keychain in each of your applications and request the use of that keychain in your Xcode entitlements.</span></span> <span data-ttu-id="d193d-164">이 내용은 Apple 설명서에서 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-164">This is explained in the Apple documentation.</span></span>
+<span data-ttu-id="d8095-161">hello `keychain` 값은 NXOAuth2Client 라이브러리 hello hello 컨테이너 toocreate 키 집합 toostore 프로그램 토큰을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-161">hello `keychain` value is hello container that hello NXOAuth2Client library will use toocreate a keychain toostore your tokens.</span></span> <span data-ttu-id="d8095-162">지정할 수는 경우 원하는 tooget single sign on (SSO) 여러 앱 간에 각 응용 프로그램에서 동일한 키 집합 hello 및 hello를 사용 하 여 Xcode 자격에 해당 키 집합의 요청을 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-162">If you'd like tooget single sign-on (SSO) across numerous apps, you can specify hello same keychain in each of your applications and request hello use of that keychain in your Xcode entitlements.</span></span> <span data-ttu-id="d8095-163">이 hello Apple 설명서에에서 설명 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-163">This is explained in hello Apple documentation.</span></span>
 
-<span data-ttu-id="d193d-165">나머지 이런 값들은 라이브러리를 사용하여 값을 컨텍스트로 옮길 위치를 만드는 것이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-165">The rest of these values are required to use the library and create places for you to carry values to the context.</span></span>
+<span data-ttu-id="d8095-164">이러한 값의 hello 나머지 필수 toouse hello 라이브러리 이며 toocarry 값 toohello 컨텍스트를 위치를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-164">hello rest of these values are required toouse hello library and create places for you toocarry values toohello context.</span></span>
 
-### <a name="create-a-url-cache"></a><span data-ttu-id="d193d-166">URL 캐시 만들기</span><span class="sxs-lookup"><span data-stu-id="d193d-166">Create a URL cache</span></span>
-<span data-ttu-id="d193d-167">항상 뷰를 로드한 후에 호출되는 `(void)viewDidLoad()`내부에서 다음 코드는 캐시를 사용할 수 있게 준비합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-167">Inside `(void)viewDidLoad()`, which is always called after the view is loaded, the following code primes a cache for our use.</span></span>
+### <a name="create-a-url-cache"></a><span data-ttu-id="d8095-165">URL 캐시 만들기</span><span class="sxs-lookup"><span data-stu-id="d8095-165">Create a URL cache</span></span>
+<span data-ttu-id="d8095-166">내부 `(void)viewDidLoad()`, 이라고 하는 항상 hello 보기 로드 된 후, hello 다음 코드 primes 사용에 대 한 캐시 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-166">Inside `(void)viewDidLoad()`, which is always called after hello view is loaded, hello following code primes a cache for our use.</span></span>
 
-<span data-ttu-id="d193d-168">다음 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-168">Add the following code:</span></span>
+<span data-ttu-id="d8095-167">Hello 코드 다음을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-167">Add hello following code:</span></span>
 
 ```objc
 - (void)viewDidLoad {
@@ -153,15 +153,15 @@ $ vi Podfile
 }
 ```
 
-### <a name="create-a-webview-for-sign-in"></a><span data-ttu-id="d193d-169">로그인을 위한 WebView 만들기</span><span class="sxs-lookup"><span data-stu-id="d193d-169">Create a WebView for sign-in</span></span>
-<span data-ttu-id="d193d-170">WebView는 사용자에게 SMS 텍스트 메시지(구성된 경우)와 같은 추가 요소에 대한 메시지를 표시하거나 사용자에게 오류 메시지를 반환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-170">A WebView can prompt the user for additional factors like SMS text message (if configured) or return error messages to the user.</span></span> <span data-ttu-id="d193d-171">여기서 WebView를 설정한 후에 ID 서비스의 WebView에서 발생할 콜백을 처리할 코드를 작성합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-171">Here you'll set up the WebView and then later write the code to handle the callbacks that will happen in the WebView from the identity services.</span></span>
+### <a name="create-a-webview-for-sign-in"></a><span data-ttu-id="d8095-168">로그인을 위한 WebView 만들기</span><span class="sxs-lookup"><span data-stu-id="d8095-168">Create a WebView for sign-in</span></span>
+<span data-ttu-id="d8095-169">웹 보기는 SMS 문자 메시지 (구성 된 경우)와 같은 추가 요소에 대 한 hello 사용자 메시지를 표시 하거나 메시지 toohello 사용자가 오류를 반환 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-169">A WebView can prompt hello user for additional factors like SMS text message (if configured) or return error messages toohello user.</span></span> <span data-ttu-id="d8095-170">여기를 설정 합니다 WebView hello 및 다음 나중 쓰기 hello 일이 발생 하는 코드 toohandle hello 콜백을 hello WebView의에서 hello id 서비스에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-170">Here you'll set up hello WebView and then later write hello code toohandle hello callbacks that will happen in hello WebView from hello identity services.</span></span>
 
 ```objc
 -(void)requestOAuth2Access {
-    //to sign in to Microsoft APIs using OAuth2, we must show an embedded browser (UIWebView)
+    //toosign in tooMicrosoft APIs using OAuth2, we must show an embedded browser (UIWebView)
     [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"myGraphService"
                                    withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-                                       //navigate to the URL returned by NXOAuth2Client
+                                       //navigate toohello URL returned by NXOAuth2Client
 
                                        NSURLRequest *r = [NSURLRequest requestWithURL:preparedURL];
                                        [self.loginView loadRequest:r];
@@ -169,13 +169,13 @@ $ vi Podfile
 }
 ```
 
-### <a name="override-the-webview-methods-to-handle-authentication"></a><span data-ttu-id="d193d-172">인증을 처리하는 WebView 메서드 재정의</span><span class="sxs-lookup"><span data-stu-id="d193d-172">Override the WebView methods to handle authentication</span></span>
-<span data-ttu-id="d193d-173">사용자가 이전에 설명한 대로 로그인해야 할 때 발생하는 상황을 WebView에 알리려면 다음 코드를 붙여넣을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-173">To tell the WebView what happens when a user needs to sign in as discussed previously, you can paste the following code.</span></span>
+### <a name="override-hello-webview-methods-toohandle-authentication"></a><span data-ttu-id="d8095-171">Hello WebView 메서드 toohandle 인증 재정의</span><span class="sxs-lookup"><span data-stu-id="d8095-171">Override hello WebView methods toohandle authentication</span></span>
+<span data-ttu-id="d8095-172">tootell hello WebView 사용자는 이전에 설명한 대로 toosign에 있어야 하는 경우, 코드 다음 hello를 붙여넣을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-172">tootell hello WebView what happens when a user needs toosign in as discussed previously, you can paste hello following code.</span></span>
 
 ```objc
 - (void)resolveUsingUIWebView:(NSURL *)URL {
 
-    // We get the auth token from a redirect so we need to handle that in the webview.
+    // We get hello auth token from a redirect so we need toohandle that in hello webview.
 
     if (![NSThread isMainThread]) {
         [self performSelectorOnMainThread:@selector(resolveUsingUIWebView:) withObject:URL waitUntilDone:YES];
@@ -193,27 +193,27 @@ $ vi Podfile
 
     NSLog(@"webView:shouldStartLoadWithRequest: %@ (%li)", request.URL, (long)navigationType);
 
-    // The webview is where all the communication happens. Slightly complicated.
+    // hello webview is where all hello communication happens. Slightly complicated.
 
     myLoadedUrl = [webView.request mainDocumentURL];
     NSLog(@"***Loaded url: %@", myLoadedUrl);
 
-    //if the UIWebView is showing our authorization URL or consent URL, show the UIWebView control
+    //if hello UIWebView is showing our authorization URL or consent URL, show hello UIWebView control
     if ([request.URL.absoluteString rangeOfString:authURL options:NSCaseInsensitiveSearch].location != NSNotFound) {
         self.loginView.hidden = NO;
     } else if ([request.URL.absoluteString rangeOfString:loginURL options:NSCaseInsensitiveSearch].location != NSNotFound) {
-        //otherwise hide the UIWebView, we've left the authorization flow
+        //otherwise hide hello UIWebView, we've left hello authorization flow
         self.loginView.hidden = NO;
     } else if ([request.URL.absoluteString rangeOfString:bhh options:NSCaseInsensitiveSearch].location != NSNotFound) {
-        //otherwise hide the UIWebView, we've left the authorization flow
+        //otherwise hide hello UIWebView, we've left hello authorization flow
         self.loginView.hidden = YES;
         [[NXOAuth2AccountStore sharedStore] handleRedirectURL:request.URL];
     }
     else {
         self.loginView.hidden = NO;
-        //read the Location from the UIWebView, this is how Microsoft APIs is returning the
-        //authentication code and relation information. This is controlled by the redirect URL we chose to use from Microsoft APIs
-        //continue the OAuth2 flow
+        //read hello Location from hello UIWebView, this is how Microsoft APIs is returning the
+        //authentication code and relation information. This is controlled by hello redirect URL we chose toouse from Microsoft APIs
+        //continue hello OAuth2 flow
        // [[NXOAuth2AccountStore sharedStore] handleRedirectURL:request.URL];
     }
 
@@ -222,17 +222,17 @@ $ vi Podfile
 }
 ```
 
-### <a name="write-code-to-handle-the-result-of-the-oauth2-request"></a><span data-ttu-id="d193d-174">OAuth2 요청의 결과를 처리할 코드를 작성합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-174">Write code to handle the result of the OAuth2 request</span></span>
-<span data-ttu-id="d193d-175">다음 코드는 WebView에서 반환되는 redirectURL을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-175">The following code will handle the redirectURL that returns from the WebView.</span></span> <span data-ttu-id="d193d-176">인증이 실패하면 코드는 재시도합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-176">If authentication wasn't successful, the code will try again.</span></span> <span data-ttu-id="d193d-177">한편 라이브러리는 콘솔에서 보거나 비동기식으로 처리할 수 있는 오류를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-177">Meanwhile, the library will provide the error that you can see in the console or handle asynchronously.</span></span>
+### <a name="write-code-toohandle-hello-result-of-hello-oauth2-request"></a><span data-ttu-id="d8095-173">Hello OAuth2 요청 결과인 toohandle hello 코드 작성</span><span class="sxs-lookup"><span data-stu-id="d8095-173">Write code toohandle hello result of hello OAuth2 request</span></span>
+<span data-ttu-id="d8095-174">hello 다음 코드에서는 처리 hello 웹 보기에서에서 반환 하는 hello redirectURL 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-174">hello following code will handle hello redirectURL that returns from hello WebView.</span></span> <span data-ttu-id="d8095-175">인증 되지 않았지만, hello 코드 다시 시도 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-175">If authentication wasn't successful, hello code will try again.</span></span> <span data-ttu-id="d8095-176">한편, hello 라이브러리는 비동기적으로 처리 하거나 hello 콘솔에서 볼 수 있는 hello 오류를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-176">Meanwhile, hello library will provide hello error that you can see in hello console or handle asynchronously.</span></span>
 
 ```objc
 - (void)handleOAuth2AccessResult:(NSString *)accessResult {
 
     AppData* data = [AppData getInstance];
 
-    //parse the response for success or failure
+    //parse hello response for success or failure
      if (accessResult)
-    //if success, complete the OAuth2 flow by handling the redirect URL and obtaining a token
+    //if success, complete hello OAuth2 flow by handling hello redirect URL and obtaining a token
      {
          [[NXOAuth2AccountStore sharedStore] handleRedirectURL:accessResult];
     } else {
@@ -242,8 +242,8 @@ $ vi Podfile
 }
 ```
 
-### <a name="set-up-the-oauth-context-called-account-store"></a><span data-ttu-id="d193d-178">OAuth 컨텍스트 설정(호출된 계정 저장소)</span><span class="sxs-lookup"><span data-stu-id="d193d-178">Set up the OAuth Context (called account store)</span></span>
-<span data-ttu-id="d193d-179">응용 프로그램에서 액세스할 수 있게 하려는 각 서비스에 대한 공유 계정 저장소의 `-[NXOAuth2AccountStore setClientID:secret:authorizationURL:tokenURL:redirectURL:forAccountType:]` 을 호출할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-179">Here you can call `-[NXOAuth2AccountStore setClientID:secret:authorizationURL:tokenURL:redirectURL:forAccountType:]` on the shared account store for each service that you want the application to be able to access.</span></span> <span data-ttu-id="d193d-180">계정 유형은 특정 서비스에 대한 식별자로 사용되는 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-180">The account type is a string that is used as an identifier for a certain service.</span></span> <span data-ttu-id="d193d-181">Graph API에 액세스하게 되므로 코드는 `"myGraphService"`로 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-181">Because you are accessing the Graph API, the code refers to it as `"myGraphService"`.</span></span> <span data-ttu-id="d193d-182">그런 다음 토큰과 함께 뭔가가 변경될 때 알려주도록 관찰자를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-182">You then set up an observer that will tell you when anything changes with the token.</span></span> <span data-ttu-id="d193d-183">토큰을 가져온 후에는 사용자를 `masterView`로 다시 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-183">After you get the token, you return the user back to the `masterView`.</span></span>
+### <a name="set-up-hello-oauth-context-called-account-store"></a><span data-ttu-id="d8095-177">Hello OAuth 컨텍스트 (계정 저장소 라고도 함)를 설정</span><span class="sxs-lookup"><span data-stu-id="d8095-177">Set up hello OAuth Context (called account store)</span></span>
+<span data-ttu-id="d8095-178">호출할 수는 여기 `-[NXOAuth2AccountStore setClientID:secret:authorizationURL:tokenURL:redirectURL:forAccountType:]` hello 응용 프로그램 toobe 수 tooaccess 하려는 각 서비스에 대 한 hello 공유 계정 저장소에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-178">Here you can call `-[NXOAuth2AccountStore setClientID:secret:authorizationURL:tokenURL:redirectURL:forAccountType:]` on hello shared account store for each service that you want hello application toobe able tooaccess.</span></span> <span data-ttu-id="d8095-179">hello 계정 유형은 특정 서비스에 대 한 식별자로 사용 되는 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-179">hello account type is a string that is used as an identifier for a certain service.</span></span> <span data-ttu-id="d8095-180">Hello 코드 참조로 tooit hello Graph API에 액세스 하는 때문에 `"myGraphService"`합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-180">Because you are accessing hello Graph API, hello code refers tooit as `"myGraphService"`.</span></span> <span data-ttu-id="d8095-181">그런 다음 알려 hello 토큰 변경 사항이 관찰자를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-181">You then set up an observer that will tell you when anything changes with hello token.</span></span> <span data-ttu-id="d8095-182">Hello 사용자 백 toohello hello 토큰을 가져온 후 돌아가면 `masterView`합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-182">After you get hello token, you return hello user back toohello `masterView`.</span></span>
 
 ```objc
 - (void)setupOAuth2AccountStore {
@@ -288,16 +288,16 @@ $ vi Podfile
 }
 ```
 
-## <a name="set-up-the-master-view-to-search-and-display-the-users-from-the-graph-api"></a><span data-ttu-id="d193d-184">Graph API에서 사용자를 검색 및 표시하도록 MasterView 설정</span><span class="sxs-lookup"><span data-stu-id="d193d-184">Set up the Master View to search and display the users from the Graph API</span></span>
-<span data-ttu-id="d193d-185">눈금에 반환된 데이터를 표시하는 MVC(Master-View-Controller) 앱은 이 연습에서 다루지 않으며 다양한 온라인 자습서에 해당 빌드 방법이 설명되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-185">A Master-View-Controller (MVC) app that displays the returned data in the grid is beyond the scope of this walkthrough, and many online tutorials explain how to build one.</span></span> <span data-ttu-id="d193d-186">이러한 모든 코드는 기본 골격 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-186">All this code is in the skeleton file.</span></span> <span data-ttu-id="d193d-187">그러나 이 MVC 응용 프로그램에서 몇 가지를 다룰 필요가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-187">However, you do need to deal with a few things in this MVC application:</span></span>
+## <a name="set-up-hello-master-view-toosearch-and-display-hello-users-from-hello-graph-api"></a><span data-ttu-id="d8095-183">마스터 뷰 toosearch hello를 설정 하 고 hello Graph API의에서 hello 사용자 표시</span><span class="sxs-lookup"><span data-stu-id="d8095-183">Set up hello Master View toosearch and display hello users from hello Graph API</span></span>
+<span data-ttu-id="d8095-184">많은 온라인 자습서에 설명 하 고 hello 표에 데이터를 반환 하는 hello를 표시 하는 마스터-뷰-컨트롤러 (MVC) 앱은이 연습의 hello 다루지 않습니다 어떻게 toobuild 하나입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-184">A Master-View-Controller (MVC) app that displays hello returned data in hello grid is beyond hello scope of this walkthrough, and many online tutorials explain how toobuild one.</span></span> <span data-ttu-id="d8095-185">이 모든 코드는 hello 뼈대 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-185">All this code is in hello skeleton file.</span></span> <span data-ttu-id="d8095-186">그러나이 MVC 응용 프로그램에는 몇 가지 사항을 toodeal 필요가:</span><span class="sxs-lookup"><span data-stu-id="d8095-186">However, you do need toodeal with a few things in this MVC application:</span></span>
 
-* <span data-ttu-id="d193d-188">사용자가 뭔가를 검색 필드에 입력할 때 가로채기</span><span class="sxs-lookup"><span data-stu-id="d193d-188">Intercept when a user types something in the search field</span></span>
-* <span data-ttu-id="d193d-189">결과를 눈금에 표시할 수 있도록 데이터의 개체를 MasterView에 다시 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-189">Provide an object of data back to the MasterView so it can display the results in the grid</span></span>
+* <span data-ttu-id="d8095-187">Intercept 사용자 hello 검색 필드에 값을 입력할 때</span><span class="sxs-lookup"><span data-stu-id="d8095-187">Intercept when a user types something in hello search field</span></span>
+* <span data-ttu-id="d8095-188">Hello 표에 hello 결과 표시할 수 있도록 데이터 백 toohello MasterView의 개체를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-188">Provide an object of data back toohello MasterView so it can display hello results in hello grid</span></span>
 
-<span data-ttu-id="d193d-190">이를 아래와 같이 수행할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-190">We'll do those below.</span></span>
+<span data-ttu-id="d8095-189">이를 아래와 같이 수행할 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-189">We'll do those below.</span></span>
 
-### <a name="add-a-check-to-see-if-youre-logged-in"></a><span data-ttu-id="d193d-191">로그인되었는지 보기 위한 확인란 추가</span><span class="sxs-lookup"><span data-stu-id="d193d-191">Add a check to see if you're logged in</span></span>
-<span data-ttu-id="d193d-192">사용자가 로그인하지 않으면 응용 프로그램이 하는 일이 거의 없기 때문에 캐시에 토큰이 이미 있는지 확인하는 것이 현명합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-192">The application does little if the user is not signed in, so it's smart to check if there is already a token in the cache.</span></span> <span data-ttu-id="d193d-193">그렇지 않은 경우 사용자가 로그인하도록 LoginView로 리디렉션합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-193">If not, you redirect to the LoginView for the user to sign in.</span></span> <span data-ttu-id="d193d-194">다시 말해서 뷰가 로드될 때 작업을 수행할 가장 좋은 방법은 Apple이 제공한 `viewDidLoad()` 메서드를 사용하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-194">If you recall, the best way to do actions when a view loads is to use the `viewDidLoad()` method that Apple provides us.</span></span>
+### <a name="add-a-check-toosee-if-youre-logged-in"></a><span data-ttu-id="d8095-190">사용자가 로그인 하는 경우 확인 toosee 추가</span><span class="sxs-lookup"><span data-stu-id="d8095-190">Add a check toosee if you're logged in</span></span>
+<span data-ttu-id="d8095-191">hello 응용 프로그램에 거의 hello 사용자가 로그인 되지 않은 경우 hello 캐시에서 토큰을 이미이 스마트 toocheck 되기 때문입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-191">hello application does little if hello user is not signed in, so it's smart toocheck if there is already a token in hello cache.</span></span> <span data-ttu-id="d8095-192">사용자 toosign hello에 대 한 LoginView toohello 리디렉션되지 그렇지 않은 경우에 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-192">If not, you redirect toohello LoginView for hello user toosign in.</span></span> <span data-ttu-id="d8095-193">Hello 가장 좋은 방법은 toodo 작업 보기를 로드 하는 경우는 toouse hello을 기억나지 `viewDidLoad()` Apple 제공 하는 메서드입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-193">If you recall, hello best way toodo actions when a view loads is toouse hello `viewDidLoad()` method that Apple provides us.</span></span>
 
 ```objc
 - (void)viewDidLoad {
@@ -317,8 +317,8 @@ $ vi Podfile
         }
 ```
 
-### <a name="update-the-table-view-when-data-is-received"></a><span data-ttu-id="d193d-195">데이터를 수신할 때 Table View 업데이트</span><span class="sxs-lookup"><span data-stu-id="d193d-195">Update the Table View when data is received</span></span>
-<span data-ttu-id="d193d-196">Graph API에서 데이터를 반환할 때 해당 데이터를 표시해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-196">When the Graph API returns data, you need to display the data.</span></span> <span data-ttu-id="d193d-197">편의상 여기에 테이블을 업데이트하기 위한 모든 코드가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-197">For simplicity, here is all the code to update the table.</span></span> <span data-ttu-id="d193d-198">오른쪽 값을 MVC 상용구 코드에 붙여넣을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-198">You can just paste the right values in your MVC boilerplate code.</span></span>
+### <a name="update-hello-table-view-when-data-is-received"></a><span data-ttu-id="d8095-194">데이터를 받을 때 hello 테이블 뷰 업데이트</span><span class="sxs-lookup"><span data-stu-id="d8095-194">Update hello Table View when data is received</span></span>
+<span data-ttu-id="d8095-195">Graph API hello 데이터 반환 될 때 toodisplay hello 데이터가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-195">When hello Graph API returns data, you need toodisplay hello data.</span></span> <span data-ttu-id="d8095-196">간단히 하기 위해 모든 hello 코드 tooupdate hello 테이블 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-196">For simplicity, here is all hello code tooupdate hello table.</span></span> <span data-ttu-id="d8095-197">Hello 오른쪽 값 MVC 상용구 코드에 붙여넣을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-197">You can just paste hello right values in your MVC boilerplate code.</span></span>
 
 ```objc
 #pragma mark - Table View
@@ -344,7 +344,7 @@ $ vi Podfile
      user = [upnArray objectAtIndex:indexPath.row];
 
 
-    // Configure the cell
+    // Configure hello cell
     cell.textLabel.text = user.name;
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
@@ -353,8 +353,8 @@ $ vi Podfile
 
 ```
 
-### <a name="provide-a-way-to-call-the-graph-api-when-someone-types-in-the-search-field"></a><span data-ttu-id="d193d-199">누군가가 검색 필드에 입력할 때 Graph API를 호출하는 방법을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-199">Provide a way to call the Graph API when someone types in the search field</span></span>
-<span data-ttu-id="d193d-200">사용자가 검색 상자에 입력할 때 입력된 내용을 Graph API로 넣을 필요가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-200">When a user types a search in the box, you need to shove that over to the Graph API.</span></span> <span data-ttu-id="d193d-201">다음 코드에서 빌드하게 되는 `GraphAPICaller` 클래스는 프레젠테이션에서 조회 기능을 분리합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-201">The `GraphAPICaller` class, which you will build in the following code, separates the lookup functionality from the presentation.</span></span> <span data-ttu-id="d193d-202">이제, Graph API에 검색 문자를 공급하는 코드를 작성해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-202">For now, let's write the code that feeds any search characters to the Graph API.</span></span> <span data-ttu-id="d193d-203">검색할 문자열을 받는 `lookupInGraph`라는 메서드를 제공하여 이 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-203">We do this by providing a method called `lookupInGraph`, which takes the string that we want to search for.</span></span>
+### <a name="provide-a-way-toocall-hello-graph-api-when-someone-types-in-hello-search-field"></a><span data-ttu-id="d8095-198">Hello 검색 필드에 입력할 때 방법을 toocall hello Graph API를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-198">Provide a way toocall hello Graph API when someone types in hello search field</span></span>
+<span data-ttu-id="d8095-199">Tooshove hello 상자에 입력 한 검색 하는 경우 해야 toohello Graph API를 통해입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-199">When a user types a search in hello box, you need tooshove that over toohello Graph API.</span></span> <span data-ttu-id="d8095-200">hello `GraphAPICaller` hello 코드 뒤에서 작성 하는 클래스를 hello 프레젠테이션에서 hello 조회 기능을 분리 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-200">hello `GraphAPICaller` class, which you will build in hello following code, separates hello lookup functionality from hello presentation.</span></span> <span data-ttu-id="d8095-201">지금은 Graph API의 모든 검색 문자 toohello 피드 hello 코드를 작성해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-201">For now, let's write hello code that feeds any search characters toohello Graph API.</span></span> <span data-ttu-id="d8095-202">라는 메서드를 제공 하 여 수행할 `lookupInGraph`, hello 문자열에 대 한 toosearch 원하는 사용 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-202">We do this by providing a method called `lookupInGraph`, which takes hello string that we want toosearch for.</span></span>
 
 ```objc
 
@@ -391,11 +391,11 @@ if (searchText.length > 0) {
 }
 ```
 
-## <a name="write-a-helper-class-to-access-the-graph-api"></a><span data-ttu-id="d193d-204">Graph API에 액세스할 도우미 클래스 작성</span><span class="sxs-lookup"><span data-stu-id="d193d-204">Write a Helper class to access the Graph API</span></span>
-<span data-ttu-id="d193d-205">이것이 응용 프로그램의 핵심입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-205">This is the core of our application.</span></span> <span data-ttu-id="d193d-206">나머지는 Apple에서 기본 MVC 패턴으로 코드를 삽입한 반면, 여기서는 그래프를 사용자 유형으로 쿼리하고 그 데이터를 반환하는 코드를 작성합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-206">Whereas the rest was inserting code in the default MVC pattern from Apple, here you write code to query the graph as the user types and then return that data.</span></span> <span data-ttu-id="d193d-207">아래에는 코드와 자세한 설명이 차례대로 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-207">Here's the code, and a detailed explanation follows it.</span></span>
+## <a name="write-a-helper-class-tooaccess-hello-graph-api"></a><span data-ttu-id="d8095-203">Graph API 도우미 클래스 tooaccess hello</span><span class="sxs-lookup"><span data-stu-id="d8095-203">Write a Helper class tooaccess hello Graph API</span></span>
+<span data-ttu-id="d8095-204">응용 프로그램의 hello 핵심입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-204">This is hello core of our application.</span></span> <span data-ttu-id="d8095-205">Hello rest Apple hello 기본 MVC 패턴에서 코드를 삽입 했습니다, 반면 여기 있습니다 작성 코드 tooquery hello 그래프 hello 사용자가 하 고 해당 데이터를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-205">Whereas hello rest was inserting code in hello default MVC pattern from Apple, here you write code tooquery hello graph as hello user types and then return that data.</span></span> <span data-ttu-id="d8095-206">다음은 hello 코드 및 대 한 자세한 내용은 뒤에 오는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-206">Here's hello code, and a detailed explanation follows it.</span></span>
 
-### <a name="create-a-new-objective-c-header-file"></a><span data-ttu-id="d193d-208">새 Objective C 헤더 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="d193d-208">Create a new Objective C header file</span></span>
-<span data-ttu-id="d193d-209">파일 이름을 `GraphAPICaller.h`로 지정하고 다음 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-209">Name the file `GraphAPICaller.h`, and add the following code.</span></span>
+### <a name="create-a-new-objective-c-header-file"></a><span data-ttu-id="d8095-207">새 Objective C 헤더 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="d8095-207">Create a new Objective C header file</span></span>
+<span data-ttu-id="d8095-208">이름 hello 파일 `GraphAPICaller.h`, 코드 다음 hello를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-208">Name hello file `GraphAPICaller.h`, and add hello following code.</span></span>
 
 ```objc
 @interface GraphAPICaller : NSObject<NSURLConnectionDataDelegate>
@@ -406,10 +406,10 @@ if (searchText.length > 0) {
 @end
 ```
 
-<span data-ttu-id="d193d-210">여기서 지정된 메서드는 문자열을 가져와 completionBlock을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-210">Here you see that a specified method takes a string and returns a completionBlock.</span></span> <span data-ttu-id="d193d-211">이 completionBlock은 짐작할 수 있듯이 사용자가 검색할 때 실시간으로 데이터를 채워 넣는 개체를 제공하여 테이블을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-211">This completionBlock, as you may have guessed, will update the table by providing an object with populated data in real time as the user searches.</span></span>
+<span data-ttu-id="d8095-209">여기서 지정된 메서드는 문자열을 가져와 completionBlock을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-209">Here you see that a specified method takes a string and returns a completionBlock.</span></span> <span data-ttu-id="d8095-210">이 completionBlock 짐작할 수 있습니다는 테이블을 업데이트할 hello hello 사용자 검색으로 실시간으로 채워진된 데이터에 개체를 제공 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-210">This completionBlock, as you may have guessed, will update hello table by providing an object with populated data in real time as hello user searches.</span></span>
 
-### <a name="create-a-new-objective-c-file"></a><span data-ttu-id="d193d-212">새 Objective C 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="d193d-212">Create a new Objective C file</span></span>
-<span data-ttu-id="d193d-213">파일 이름을 `GraphAPICaller.m`로 지정하고 다음 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-213">Name the file `GraphAPICaller.m`, and add the following method.</span></span>
+### <a name="create-a-new-objective-c-file"></a><span data-ttu-id="d8095-211">새 Objective C 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="d8095-211">Create a new Objective C file</span></span>
+<span data-ttu-id="d8095-212">이름 hello 파일 `GraphAPICaller.m`, hello 메서드 뒤에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-212">Name hello file `GraphAPICaller.m`, and add hello following method.</span></span>
 
 ```objc
 +(void) searchUserList:(NSString*)searchString
@@ -436,16 +436,16 @@ if (searchText.length > 0) {
                    // e.g., update a progress indicator
                }
                    responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
-                       // Process the response
+                       // Process hello response
                        if (responseData) {
                            NSError *error;
                            NSDictionary *dataReturned = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
                            NSLog(@"Graph Response was: %@", dataReturned);
 
-                           // We can grab the top most JSON node to get our graph data.
+                           // We can grab hello top most JSON node tooget our graph data.
                            NSArray *graphDataArray = [dataReturned objectForKey:@"value"];
 
-                           // Don't be thrown off by the key name being "value". It really is the name of the
+                           // Don't be thrown off by hello key name being "value". It really is hello name of the
                            // first node. :-)
 
                            //each object is a key value pair
@@ -479,24 +479,24 @@ if (searchText.length > 0) {
 
 ```
 
-<span data-ttu-id="d193d-214">이 메서드를 자세히 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-214">Let's go through this method in detail.</span></span>
+<span data-ttu-id="d8095-213">이 메서드를 자세히 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-213">Let's go through this method in detail.</span></span>
 
-<span data-ttu-id="d193d-215">이 코드의 핵심은 초기에 settings.plist 파일 내에 미리 정의한 매개 변수를 사용하는 `NXOAuth2Request`메서드에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-215">The core of this code is in the `NXOAuth2Request`, method which takes the parameters that you've already defined in the settings.plist file.</span></span>
+<span data-ttu-id="d8095-214">이 코드의 hello 핵심 hello 중인 `NXOAuth2Request`, hello 매개 변수를 사용 하면 이미 정의한 hello settings.plist 파일에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-214">hello core of this code is in hello `NXOAuth2Request`, method which takes hello parameters that you've already defined in hello settings.plist file.</span></span>
 
-<span data-ttu-id="d193d-216">첫 번째 단계는 적절한 Graph API 호출을 생성하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-216">The first step is to construct the right Graph API call.</span></span> <span data-ttu-id="d193d-217">`/users`를 호출하게 되므로 버전과 함께 Graph API 리소스에 추가하여 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-217">Because you are calling `/users`, you specify that by appending it to the Graph API resource along with the version.</span></span> <span data-ttu-id="d193d-218">이것들이 API가 진화함에 따라 변화할 수 있으므로 외부 설정 파일에 놓는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-218">It makes sense to put these in an external settings file because these can change as the API evolves.</span></span>
+<span data-ttu-id="d8095-215">hello 첫 번째 단계는 tooconstruct hello 오른쪽 Graph API 호출입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-215">hello first step is tooconstruct hello right Graph API call.</span></span> <span data-ttu-id="d8095-216">호출 하는 때문에 `/users`, hello 버전과 함께 toohello Graph API 리소스를 추가 하 여 지정 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-216">Because you are calling `/users`, you specify that by appending it toohello Graph API resource along with hello version.</span></span> <span data-ttu-id="d8095-217">이렇게 하면 의미 tooput 외부 설정 파일에 이러한 내용을 hello API 진화 함에 따라 이러한가 변경 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-217">It makes sense tooput these in an external settings file because these can change as hello API evolves.</span></span>
 
 ```objc
 NSString *graphURL = [NSString stringWithFormat:@"%@%@/users", data.graphApiUrlString, data.apiversion];
 ```
 
-<span data-ttu-id="d193d-219">다음으로 Graph API 호출에 제공할 매개 변수를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-219">Next, you need to specify parameters that you will also provide to the Graph API call.</span></span> <span data-ttu-id="d193d-220">런타임 시 모든 URI 비합치 문자는 삭제됨으로 리소스 끝점에 매개 변수를 삽입하지 않는 것이 *매우 중요* 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-220">It is *very important* that you do not put the parameters in the resource endpoint because that is scrubbed for all non-URI conforming characters at runtime.</span></span> <span data-ttu-id="d193d-221">모든 쿼리 코드는 매개 변수에 제공되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-221">All query code must be provided in the parameters.</span></span>
+<span data-ttu-id="d8095-218">다음으로, 해야 toospecify 매개 변수 toohello Graph API 호출 또한 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-218">Next, you need toospecify parameters that you will also provide toohello Graph API call.</span></span> <span data-ttu-id="d8095-219">*매우 중요 한* 를 배치 하지 않는 hello 매개 변수 hello 리소스 끝점에서 런타임에 모든 URI가 아닌 표준에 맞는 문자에 대해 삭제 되는 때문에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-219">It is *very important* that you do not put hello parameters in hello resource endpoint because that is scrubbed for all non-URI conforming characters at runtime.</span></span> <span data-ttu-id="d8095-220">모든 쿼리 코드 hello 매개 변수에서 제공 되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-220">All query code must be provided in hello parameters.</span></span>
 
 ```objc
 
 NSDictionary* params = [self convertParamsToDictionary:searchString];
 ```
 
-<span data-ttu-id="d193d-222">이것이 아직 작성하지 않은 메서드 `convertParamsToDictionary` 을 호출하는 것을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-222">You might notice this calls a `convertParamsToDictionary` method that you haven't written yet.</span></span> <span data-ttu-id="d193d-223">이제 파일 끝에서 실행해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-223">Let's do so now at the end of the file:</span></span>
+<span data-ttu-id="d8095-221">이것이 아직 작성하지 않은 메서드 `convertParamsToDictionary` 을 호출하는 것을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-221">You might notice this calls a `convertParamsToDictionary` method that you haven't written yet.</span></span> <span data-ttu-id="d8095-222">Hello hello 파일 끝에 이제 수행 하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-222">Let's do so now at hello end of hello file:</span></span>
 
 ```objc
 +(NSDictionary*) convertParamsToDictionary:(NSString*)searchString
@@ -513,7 +513,7 @@ NSDictionary* params = [self convertParamsToDictionary:searchString];
 }
 
 ```
-<span data-ttu-id="d193d-224">다음으로 데이터를 API에서 JSON 형식으로 다시 가져오기 위해 `NXOAuth2Request` 메서드를 사용해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-224">Next, let's use the `NXOAuth2Request` method to get data back from the API in JSON format.</span></span>
+<span data-ttu-id="d8095-223">다음으로 hello를 사용 하 여 보겠습니다 `NXOAuth2Request` 메서드 tooget 데이터를 JSON 형식으로 hello API에서에서 다시 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-223">Next, let's use hello `NXOAuth2Request` method tooget data back from hello API in JSON format.</span></span>
 
 ```objc
 NSArray *accounts = [store accountsWithAccountType:@"myGraphService"];
@@ -525,23 +525,23 @@ NSArray *accounts = [store accountsWithAccountType:@"myGraphService"];
                    // e.g., update a progress indicator
                }
                    responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
-                       // Process the response
+                       // Process hello response
                        if (responseData) {
                            NSError *error;
                            NSDictionary *dataReturned = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
                            NSLog(@"Graph Response was: %@", dataReturned);
 
-                           // We can grab the top most JSON node to get our graph data.
+                           // We can grab hello top most JSON node tooget our graph data.
                            NSArray *graphDataArray = [dataReturned objectForKey:@"value"];
 ```
 
-<span data-ttu-id="d193d-225">마지막으로, 데이터를 MasterViewController에 반환하는 방법을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-225">Finally, let's look at how you return the data to the MasterViewController.</span></span> <span data-ttu-id="d193d-226">데이터는 직렬화되어 반환되며 MainViewController가 사용할 수 있는 개체에 역직렬화되어 로드되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-226">The data returns as serialized and needs to be deserialized and loaded in an object that the MainViewController can consume.</span></span> <span data-ttu-id="d193d-227">이런 목적으로 기본 골격 구조에 User 개체를 만드는 `User.m/h` 파일이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-227">For this purpose, the skeleton has a `User.m/h` file that creates a User object.</span></span> <span data-ttu-id="d193d-228">그래프의 정보로 User 개체를 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-228">You populate that User object with information from the graph.</span></span>
+<span data-ttu-id="d8095-224">마지막으로, 살펴보겠습니다 hello 데이터 toohello MasterViewController를 반환 하는 방법.</span><span class="sxs-lookup"><span data-stu-id="d8095-224">Finally, let's look at how you return hello data toohello MasterViewController.</span></span> <span data-ttu-id="d8095-225">hello 데이터 직렬화 할를 반환 하 고 역직렬화 toobe 필요 하 고 개체에 로드 된 해당 hello MainViewController 소비할 수 있는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-225">hello data returns as serialized and needs toobe deserialized and loaded in an object that hello MainViewController can consume.</span></span> <span data-ttu-id="d8095-226">이 작업을 위해 hello 구조에는 `User.m/h` 사용자 개체를 만드는 파일을 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-226">For this purpose, hello skeleton has a `User.m/h` file that creates a User object.</span></span> <span data-ttu-id="d8095-227">해당 사용자 개체를 hello 그래프의 정보로 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-227">You populate that User object with information from hello graph.</span></span>
 
 ```objc
-                           // We can grab the top most JSON node to get our graph data.
+                           // We can grab hello top most JSON node tooget our graph data.
                            NSArray *graphDataArray = [dataReturned objectForKey:@"value"];
 
-                           // Don't be thrown off by the key name being "value". It really is the name of the
+                           // Don't be thrown off by hello key name being "value". It really is hello name of the
                            // first node. :-)
 
                            //each object is a key value pair
@@ -564,9 +564,9 @@ NSArray *accounts = [store accountsWithAccountType:@"myGraphService"];
 ```
 
 
-## <a name="run-the-sample"></a><span data-ttu-id="d193d-229">샘플 실행</span><span class="sxs-lookup"><span data-stu-id="d193d-229">Run the sample</span></span>
-<span data-ttu-id="d193d-230">기본 구조를 사용하거나 연습을 따라했다면 응용 프로그램이 이제 실행됩니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-230">If you've used the skeleton or followed along with the walkthrough your application should now run.</span></span> <span data-ttu-id="d193d-231">시뮬레이터를 시작하고 **로그인** 을 클릭하여 응용 프로그램을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-231">Start the simulator and click **Sign in** to use the application.</span></span>
+## <a name="run-hello-sample"></a><span data-ttu-id="d8095-228">Hello 예제 실행</span><span class="sxs-lookup"><span data-stu-id="d8095-228">Run hello sample</span></span>
+<span data-ttu-id="d8095-229">Hello 구조를 사용 하거나 hello 연습 함께 다음 경우에 응용 프로그램 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-229">If you've used hello skeleton or followed along with hello walkthrough your application should now run.</span></span> <span data-ttu-id="d8095-230">Hello 시뮬레이터를 시작 하 고 클릭 **로그인** toouse hello 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-230">Start hello simulator and click **Sign in** toouse hello application.</span></span>
 
-## <a name="get-security-updates-for-our-product"></a><span data-ttu-id="d193d-232">당사 제품에 대한 보안 업데이트 가져오기</span><span class="sxs-lookup"><span data-stu-id="d193d-232">Get security updates for our product</span></span>
-<span data-ttu-id="d193d-233">[Security TechCenter](https://technet.microsoft.com/security/dd252948) 를 방문해서 보안 공지 경고를 구독하여 보안 사건이 발생할 때 알림을 받는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="d193d-233">We encourage you to get notifications of when security incidents occur by visiting the [Security TechCenter](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.</span></span>
+## <a name="get-security-updates-for-our-product"></a><span data-ttu-id="d8095-231">당사 제품에 대한 보안 업데이트 가져오기</span><span class="sxs-lookup"><span data-stu-id="d8095-231">Get security updates for our product</span></span>
+<span data-ttu-id="d8095-232">보안 사고 hello를 방문 하 여 발생 하는 경우의 알림 tooget 좋습니다 [보안 TechCenter](https://technet.microsoft.com/security/dd252948) 및 tooSecurity 자문 경고를 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="d8095-232">We encourage you tooget notifications of when security incidents occur by visiting hello [Security TechCenter](https://technet.microsoft.com/security/dd252948) and subscribing tooSecurity Advisory Alerts.</span></span>
 

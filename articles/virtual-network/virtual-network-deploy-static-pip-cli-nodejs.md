@@ -1,6 +1,6 @@
 ---
-title: "고정 공용 IP가 있는 VM 만들기 - Azure CLI 1.0 | Microsoft Docs"
-description: "Azure CLI(명령줄 인터페이스) 1.0을 사용하여 고정 공용 IP 주소가 있는 VM을 만드는 방법에 대해 알아봅니다."
+title: "고정 공용 IP 주소-Azure CLI 1.0을 사용 하 여 VM aaaCreate | Microsoft Docs"
+description: "고정 공용 IP 주소를 사용 하 여 사용 하 여 VM toocreate Azure CLI (명령줄 인터페이스) 1.0 hello 하는 방법을 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,40 +16,40 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a373c32271096308678fe3402e8420cc14fe5935
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ee906b65735830757b455df00f9f8d4373be3dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-cli-10"></a><span data-ttu-id="6f7b4-103">Azure CLI 1.0을 사용하여 고정 공용 IP 주소가 있는 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="6f7b4-103">Create a VM with a static public IP address using the Azure CLI 1.0</span></span>
+# <a name="create-a-vm-with-a-static-public-ip-address-using-hello-azure-cli-10"></a><span data-ttu-id="25145-103">고정 공용 IP 주소로 hello Azure CLI 1.0을 사용 하 여 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="25145-103">Create a VM with a static public IP address using hello Azure CLI 1.0</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="6f7b4-104">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="6f7b4-104">Azure portal</span></span>](virtual-network-deploy-static-pip-arm-portal.md)
-> * [<span data-ttu-id="6f7b4-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="6f7b4-105">PowerShell</span></span>](virtual-network-deploy-static-pip-arm-ps.md)
-> * [<span data-ttu-id="6f7b4-106">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="6f7b4-106">Azure CLI 2.0</span></span>](virtual-network-deploy-static-pip-arm-cli.md)
-> * [<span data-ttu-id="6f7b4-107">Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="6f7b4-107">Azure CLI 1.0</span></span>](virtual-network-deploy-static-pip-cli-nodejs.md)
-> * [<span data-ttu-id="6f7b4-108">템플릿</span><span class="sxs-lookup"><span data-stu-id="6f7b4-108">Template</span></span>](virtual-network-deploy-static-pip-arm-template.md)
-> * [<span data-ttu-id="6f7b4-109">PowerShell(클래식)</span><span class="sxs-lookup"><span data-stu-id="6f7b4-109">PowerShell (Classic)</span></span>](virtual-networks-reserved-public-ip.md)
+> * [<span data-ttu-id="25145-104">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="25145-104">Azure portal</span></span>](virtual-network-deploy-static-pip-arm-portal.md)
+> * [<span data-ttu-id="25145-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="25145-105">PowerShell</span></span>](virtual-network-deploy-static-pip-arm-ps.md)
+> * [<span data-ttu-id="25145-106">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="25145-106">Azure CLI 2.0</span></span>](virtual-network-deploy-static-pip-arm-cli.md)
+> * [<span data-ttu-id="25145-107">Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="25145-107">Azure CLI 1.0</span></span>](virtual-network-deploy-static-pip-cli-nodejs.md)
+> * [<span data-ttu-id="25145-108">템플릿</span><span class="sxs-lookup"><span data-stu-id="25145-108">Template</span></span>](virtual-network-deploy-static-pip-arm-template.md)
+> * [<span data-ttu-id="25145-109">PowerShell(클래식)</span><span class="sxs-lookup"><span data-stu-id="25145-109">PowerShell (Classic)</span></span>](virtual-networks-reserved-public-ip.md)
 
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
 > [!NOTE]
-> <span data-ttu-id="6f7b4-110">Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-110">Azure has two different deployment models for creating and working with resources: [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="6f7b4-111">이 문서에서는 Resource Manager 배포 모델 사용을 설명하며 Microsoft에서는 대부분의 새로운 배포에 대해 클래식 배포 모델 대신 이 모델을 사용하도록 권장합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-111">This article covers using the Resource Manager deployment model, which Microsoft recommends for most new deployments instead of the classic deployment model.</span></span>
+> <span data-ttu-id="25145-110">Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="25145-110">Azure has two different deployment models for creating and working with resources: [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="25145-111">이 문서에서는 Microsoft hello 클래식 배포 모델 대신 대부분의 새 배포에 권장 하는 hello 리소스 관리자 배포 모델을 사용 하 여 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-111">This article covers using hello Resource Manager deployment model, which Microsoft recommends for most new deployments instead of hello classic deployment model.</span></span>
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
 [!INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
-<span data-ttu-id="6f7b4-112">Azure CLI 1.0(이 문서) 또는 [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md)을 사용하여 이 태스크를 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-112">You can complete this task using the Azure CLI 1.0 (this article) or the [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md).</span></span> 
+<span data-ttu-id="25145-112">Hello Azure CLI 1.0 (이 문서) 또는 hello를 사용 하 여이 작업을 완료할 수 있습니다 [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-112">You can complete this task using hello Azure CLI 1.0 (this article) or hello [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md).</span></span> 
 
-## <span data-ttu-id="6f7b4-113"><a name = "create"></a>1단계 - 스크립트 시작</span><span class="sxs-lookup"><span data-stu-id="6f7b4-113"><a name = "create"></a>Step 1 - Start your script</span></span>
-<span data-ttu-id="6f7b4-114">사용되는 전체 bash 스크립트를 [여기](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-cli.sh)에서 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-114">You can download the full bash script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-cli.sh).</span></span> <span data-ttu-id="6f7b4-115">다음 단계에 완료하여 스크립트가 사용자 환경에서 작동하도록 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-115">Complete the following steps to change the script to work in your environment:</span></span>
+## <span data-ttu-id="25145-113"><a name = "create"></a>1단계 - 스크립트 시작</span><span class="sxs-lookup"><span data-stu-id="25145-113"><a name = "create"></a>Step 1 - Start your script</span></span>
+<span data-ttu-id="25145-114">사용 되는 hello 전체 bash 스크립트를 다운로드할 수 있습니다 [여기](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-cli.sh)합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-114">You can download hello full bash script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-cli.sh).</span></span> <span data-ttu-id="25145-115">Hello 단계 toochange hello 스크립트 toowork 사용자 환경에서 다음을 완료 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-115">Complete hello following steps toochange hello script toowork in your environment:</span></span>
 
-<span data-ttu-id="6f7b4-116">배포에 사용하려는 값을 기반으로 아래 변수 값을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-116">Change the values of the variables below based on the values you want to use for your deployment.</span></span> <span data-ttu-id="6f7b4-117">다음 값은 이 문서에 사용되는 시나리오에 매핑됩니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-117">The following values map to the scenario used in this article:</span></span>
+<span data-ttu-id="25145-116">Hello 값을 변경 hello 값을 기반으로 hello 변수 원하는 toouse 배포에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-116">Change hello values of hello variables below based on hello values you want toouse for your deployment.</span></span> <span data-ttu-id="25145-117">이 문서에서 사용 하는 값 지도 toohello 시나리오를 따르는 hello:</span><span class="sxs-lookup"><span data-stu-id="25145-117">hello following values map toohello scenario used in this article:</span></span>
 
 ```azurecli
-# Set variables for the new resource group
+# Set variables for hello new resource group
 rgName="IaaSStory"
 location="westus"
 
@@ -79,16 +79,16 @@ pipName="PIPWEB1"
 dnsName="iaasstoryws1"
 ```
 
-## <a name="step-2---create-the-necessary-resources-for-your-vm"></a><span data-ttu-id="6f7b4-118">2단계 - VM에 필요한 리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="6f7b4-118">Step 2 - Create the necessary resources for your VM</span></span>
-<span data-ttu-id="6f7b4-119">VM을 만들기 전에 VM에서 사용할 리소스 그룹, VNet, 공용 IP 및 NIC가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-119">Before creating a VM, you need a resource group, VNet, public IP, and NIC to be used by the VM.</span></span>
+## <a name="step-2---create-hello-necessary-resources-for-your-vm"></a><span data-ttu-id="25145-118">2 단계-hello 필요한 리소스에 대 한 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="25145-118">Step 2 - Create hello necessary resources for your VM</span></span>
+<span data-ttu-id="25145-119">VM을 만들기 전에 리소스 그룹, VNet, 공용 IP, 및 필요한 NIC toobe hello VM에서 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-119">Before creating a VM, you need a resource group, VNet, public IP, and NIC toobe used by hello VM.</span></span>
 
-1. <span data-ttu-id="6f7b4-120">새 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-120">Create a new resource group.</span></span>
+1. <span data-ttu-id="25145-120">새 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="25145-120">Create a new resource group.</span></span>
 
     ```azurecli
     azure group create $rgName $location
     ```
 
-2. <span data-ttu-id="6f7b4-121">VNet 및 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-121">Create the VNet and subnet.</span></span>
+2. <span data-ttu-id="25145-121">만들 hello VNet 및 서브넷입니다.</span><span class="sxs-lookup"><span data-stu-id="25145-121">Create hello VNet and subnet.</span></span>
 
     ```azurecli
     azure network vnet create --resource-group $rgName \
@@ -101,7 +101,7 @@ dnsName="iaasstoryws1"
         --address-prefix $subnetPrefix
     ```
 
-3. <span data-ttu-id="6f7b4-122">공용 IP 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-122">Create the public IP resource.</span></span>
+3. <span data-ttu-id="25145-122">Hello 공용 IP 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="25145-122">Create hello public IP resource.</span></span>
 
     ```azurecli
     azure network public-ip create --resource-group $rgName \
@@ -111,7 +111,7 @@ dnsName="iaasstoryws1"
         --domain-name-label $dnsName
     ```
 
-4. <span data-ttu-id="6f7b4-123">공용 IP를 사용하여 위에서 만든 서브넷의 VM에 대한 NIC(네트워크 인터페이스)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-123">Create the network interface (NIC) for the VM in the subnet created above, with the public IP.</span></span> <span data-ttu-id="6f7b4-124">명령의 첫 번째 집합을 사용하여 위에서 만든 서브넷의 **ID** 를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-124">Notice the first set of commands are used to retrieve the **Id** of the subnet created above.</span></span>
+4. <span data-ttu-id="25145-123">Hello 공용 IP를 사용 하 여 위에서 만든 hello 서브넷에 VM hello에 대 한 hello 네트워크 인터페이스 (NIC)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="25145-123">Create hello network interface (NIC) for hello VM in hello subnet created above, with hello public IP.</span></span> <span data-ttu-id="25145-124">명령 알림 hello 첫 번째 집합은 사용 되는 tooretrieve hello **Id** 위에서 만든 hello 서브넷의 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-124">Notice hello first set of commands are used tooretrieve hello **Id** of hello subnet created above.</span></span>
 
     ```azurecli
     subnetId="$(azure network vnet subnet show --resource-group $rgName \
@@ -129,10 +129,10 @@ dnsName="iaasstoryws1"
     ```
 
    > [!TIP]
-   > <span data-ttu-id="6f7b4-125">위의 첫 번째 명령은 [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) 및 [문자열 조작](http://tldp.org/LDP/abs/html/string-manipulation.html)(구체적으로 말하면, 하위 문자열 제거)을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-125">The first command above uses [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) and [string manipulation](http://tldp.org/LDP/abs/html/string-manipulation.html) (more specifically, substring removal).</span></span>
+   > <span data-ttu-id="25145-125">첫 번째 명령을 사용 하 여 위에 hello [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) 및 [문자열 조작](http://tldp.org/LDP/abs/html/string-manipulation.html) (구체적으로, 부분 문자열 제거).</span><span class="sxs-lookup"><span data-stu-id="25145-125">hello first command above uses [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) and [string manipulation](http://tldp.org/LDP/abs/html/string-manipulation.html) (more specifically, substring removal).</span></span>
    >
 
-5. <span data-ttu-id="6f7b4-126">VM OS 드라이브를 호스트하는 저장소 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-126">Create a storage account to host the VM OS drive.</span></span>
+5. <span data-ttu-id="25145-126">저장소 계정 toohost hello VM 운영 체제 드라이브를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="25145-126">Create a storage account toohost hello VM OS drive.</span></span>
 
     ```azurecli
     azure storage account create $stdStorageAccountName \
@@ -140,10 +140,10 @@ dnsName="iaasstoryws1"
         --location $location --type LRS
     ```
 
-## <a name="step-3---create-the-vm"></a><span data-ttu-id="6f7b4-127">3단계 - VM 만들기</span><span class="sxs-lookup"><span data-stu-id="6f7b4-127">Step 3 - Create the VM</span></span>
-<span data-ttu-id="6f7b4-128">이제 필요한 모든 리소스를 배치했으므로 새 VM을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-128">Now that all necessary resources are in place, you can create a new VM.</span></span>
+## <a name="step-3---create-hello-vm"></a><span data-ttu-id="25145-127">3 단계-hello VM 만들기</span><span class="sxs-lookup"><span data-stu-id="25145-127">Step 3 - Create hello VM</span></span>
+<span data-ttu-id="25145-128">이제 필요한 모든 리소스를 배치했으므로 새 VM을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="25145-128">Now that all necessary resources are in place, you can create a new VM.</span></span>
 
-1. <span data-ttu-id="6f7b4-129">VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-129">Create the VM.</span></span>
+1. <span data-ttu-id="25145-129">Hello VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="25145-129">Create hello VM.</span></span>
 
     ```azurecli
     azure vm create --resource-group $rgName \
@@ -160,18 +160,18 @@ dnsName="iaasstoryws1"
         --admin-username $username \
         --admin-password $password
     ```
-2. <span data-ttu-id="6f7b4-130">스크립트 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-130">Save the script file.</span></span>
+2. <span data-ttu-id="25145-130">Hello 스크립트 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-130">Save hello script file.</span></span>
 
-## <a name="step-4---run-the-script"></a><span data-ttu-id="6f7b4-131">4단계 - 스크립트 실행</span><span class="sxs-lookup"><span data-stu-id="6f7b4-131">Step 4 - Run the script</span></span>
-<span data-ttu-id="6f7b4-132">필요한 내용을 변경하고 위에 표시된 스크립트를 파악한 후 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-132">After making any necessary changes, and understanding the script show above, run the script.</span></span>
+## <a name="step-4---run-hello-script"></a><span data-ttu-id="25145-131">4 단계-실행 hello 스크립트</span><span class="sxs-lookup"><span data-stu-id="25145-131">Step 4 - Run hello script</span></span>
+<span data-ttu-id="25145-132">필요한 내용을 변경 하 고 hello 스크립트 이해 한 후 위에 표시할 hello 스크립트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-132">After making any necessary changes, and understanding hello script show above, run hello script.</span></span>
 
-1. <span data-ttu-id="6f7b4-133">Bash 콘솔에서 위의 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-133">From a bash console, run the script above.</span></span>
+1. <span data-ttu-id="25145-133">Bash 콘솔에서 위 hello 스크립트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-133">From a bash console, run hello script above.</span></span>
 
     ```azurecli
     sh myscript.sh
     ```
 
-2. <span data-ttu-id="6f7b4-134">몇 분 후에 아래 출력이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6f7b4-134">The output below should be displayed after a few minutes.</span></span>
+2. <span data-ttu-id="25145-134">몇 분 후 아래의 hello 출력을 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="25145-134">hello output below should be displayed after a few minutes.</span></span>
 
         info:    Executing command group create
         info:    Getting resource group IaaSStory
@@ -197,9 +197,9 @@ dnsName="iaasstoryws1"
         data:      192.168.0.0/16
         info:    network vnet create command OK
         info:    Executing command network vnet subnet create
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         info:    Creating subnet "FrontEnd"
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd
         data:    Type                            : Microsoft.Network/virtualNetworks/subnets
         data:    ProvisioningState               : Succeeded
@@ -208,9 +208,9 @@ dnsName="iaasstoryws1"
         data:
         info:    network vnet subnet create command OK
         info:    Executing command network public-ip create
-        info:    Looking up the public ip "PIPWEB1"
+        info:    Looking up hello public ip "PIPWEB1"
         info:    Creating public ip address "PIPWEB1"
-        info:    Looking up the public ip "PIPWEB1"
+        info:    Looking up hello public ip "PIPWEB1"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/publicIPAddresses/PIPWEB1
         data:    Name                            : PIPWEB1
         data:    Type                            : Microsoft.Network/publicIPAddresses
@@ -223,10 +223,10 @@ dnsName="iaasstoryws1"
         data:    FQDN                            : iaasstoryws1.westus.cloudapp.azure.com
         info:    network public-ip create command OK
         info:    Executing command network nic create
-        info:    Looking up the network interface "NICWEB1"
-        info:    Looking up the public ip "PIPWEB1"
+        info:    Looking up hello network interface "NICWEB1"
+        info:    Looking up hello public ip "PIPWEB1"
         info:    Creating network interface "NICWEB1"
-        info:    Looking up the network interface "NICWEB1"
+        info:    Looking up hello network interface "NICWEB1"
         data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/networkInterfaces/NICWEB1
         data:    Name                            : NICWEB1
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -246,10 +246,10 @@ dnsName="iaasstoryws1"
         info:    Creating storage account
         info:    storage account create command OK
         info:    Executing command vm create
-        info:    Looking up the VM "WEB1"
-        info:    Using the VM Size "Standard_A1"
-        info:    The [OS, Data] Disk or image configuration requires storage account
-        info:    Looking up the storage account iaasstorystorage
-        info:    Looking up the NIC "NICWEB1"
+        info:    Looking up hello VM "WEB1"
+        info:    Using hello VM Size "Standard_A1"
+        info:    hello [OS, Data] Disk or image configuration requires storage account
+        info:    Looking up hello storage account iaasstorystorage
+        info:    Looking up hello NIC "NICWEB1"
         info:    Creating VM "WEB1"
         info:    vm create command OK

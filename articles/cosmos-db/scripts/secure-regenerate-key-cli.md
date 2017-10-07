@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 스크립트 - Azure Cosmos DB 계정 키 재생성 | Microsoft Docs"
+title: "aaaAzure CLI 스크립트를 다시 생성 Azure Cosmos DB 계정 키 | Microsoft Docs"
 description: "Azure CLI 스크립트 샘플 - Azure Cosmos DB 계정 키 재생성"
 services: cosmos-db
 documentationcenter: cosmosdb
@@ -16,45 +16,45 @@ ms.tgt_pltfrm: cosmosdb
 ms.workload: database
 ms.date: 06/02/2017
 ms.author: mimig
-ms.openlocfilehash: 1a0ff3f8b8fb3eaf398d9fa925ef027b2481d47a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ca77e05039775c90d7541899eeffc45a76d60657
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="regenerate-an-azure-cosmos-db-account-key-using-the-azure-cli"></a><span data-ttu-id="4c609-103">Azure CLI를 사용하여 Azure Cosmos DB 계정 키 재생성</span><span class="sxs-lookup"><span data-stu-id="4c609-103">Regenerate an Azure Cosmos DB account key using the Azure CLI</span></span>
+# <a name="regenerate-an-azure-cosmos-db-account-key-using-hello-azure-cli"></a><span data-ttu-id="b0cc5-103">Hello Azure CLI를 사용 하 여 Azure Cosmos DB 계정 키를 다시 생성</span><span class="sxs-lookup"><span data-stu-id="b0cc5-103">Regenerate an Azure Cosmos DB account key using hello Azure CLI</span></span>
 
-<span data-ttu-id="4c609-104">이 샘플은 Azure CLI를 사용하여 모든 종류의 Azure Cosmos DB 계정 키를 재생성합니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-104">This sample regenerates any kind of Azure Cosmos DB account key using the Azure CLI.</span></span> 
+<span data-ttu-id="b0cc5-104">이 샘플에는 모든 종류의 hello Azure CLI를 사용 하 여 Azure Cosmos DB 계정 키 다시 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-104">This sample regenerates any kind of Azure Cosmos DB account key using hello Azure CLI.</span></span> 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="4c609-105">CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-105">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="4c609-106">`az --version`을 실행하여 버전을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-106">Run `az --version` to find the version.</span></span> <span data-ttu-id="4c609-107">설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4c609-107">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="b0cc5-105">Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-105">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="b0cc5-106">실행 `az --version` toofind hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-106">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="b0cc5-107">Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-107">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
-## <a name="sample-script"></a><span data-ttu-id="4c609-108">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="4c609-108">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="b0cc5-108">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="b0cc5-108">Sample script</span></span>
 
-<span data-ttu-id="4c609-109">[!code-azurecli-interactive[기본](../../../cli_scripts/cosmosdb/secure-cosmosdb-regenerate-keys/secure-cosmosdb-regenerate-keys.sh?highlight=27-31 "Azure Cosmos DB 계정 키 재생성")]</span><span class="sxs-lookup"><span data-stu-id="4c609-109">[!code-azurecli-interactive[main](../../../cli_scripts/cosmosdb/secure-cosmosdb-regenerate-keys/secure-cosmosdb-regenerate-keys.sh?highlight=27-31 "Regenerate Azure Cosmos DB account keys")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/cosmosdb/secure-cosmosdb-regenerate-keys/secure-cosmosdb-regenerate-keys.sh?highlight=27-31 "Regenerate Azure Cosmos DB account keys")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="4c609-110">배포 정리</span><span class="sxs-lookup"><span data-stu-id="4c609-110">Clean up deployment</span></span>
+## <a name="clean-up-deployment"></a><span data-ttu-id="b0cc5-109">배포 정리</span><span class="sxs-lookup"><span data-stu-id="b0cc5-109">Clean up deployment</span></span>
 
-<span data-ttu-id="4c609-111">스크립트 샘플을 실행한 후에 다음 명령을 사용하여 리소스 그룹 및 관련된 모든 리소스를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-111">After the script sample has been run, the following command can be used to remove the resource group and all resources associated with it.</span></span>
+<span data-ttu-id="b0cc5-110">Hello 스크립트 예제를 실행 한 후 다음 명령을 hello 사용된 tooremove hello 리소스 그룹과 연결 된 모든 리소스가 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-110">After hello script sample has been run, hello following command can be used tooremove hello resource group and all resources associated with it.</span></span>
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="4c609-112">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="4c609-112">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="b0cc5-111">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="b0cc5-111">Script explanation</span></span>
 
-<span data-ttu-id="4c609-113">이 스크립트는 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-113">This script uses the following commands.</span></span> <span data-ttu-id="4c609-114">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-114">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="b0cc5-112">이 스크립트 명령 뒤 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-112">This script uses hello following commands.</span></span> <span data-ttu-id="b0cc5-113">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-113">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="4c609-115">명령</span><span class="sxs-lookup"><span data-stu-id="4c609-115">Command</span></span> | <span data-ttu-id="4c609-116">참고 사항</span><span class="sxs-lookup"><span data-stu-id="4c609-116">Notes</span></span> |
+| <span data-ttu-id="b0cc5-114">명령</span><span class="sxs-lookup"><span data-stu-id="b0cc5-114">Command</span></span> | <span data-ttu-id="b0cc5-115">참고 사항</span><span class="sxs-lookup"><span data-stu-id="b0cc5-115">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="4c609-117">az group create</span><span class="sxs-lookup"><span data-stu-id="4c609-117">az group create</span></span>](/cli/azure/group#create) | <span data-ttu-id="4c609-118">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-118">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="4c609-119">az cosmosdb create</span><span class="sxs-lookup"><span data-stu-id="4c609-119">az cosmosdb create</span></span>](https://docs.microsoft.com/cli/azure/cosmosdb#create) | <span data-ttu-id="4c609-120">Azure Cosmos DB 계정을 업그레이드합니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-120">Updates an Azure Cosmos DB account.</span></span> |
-| [<span data-ttu-id="4c609-121">az cosmosdb regenerate-key</span><span class="sxs-lookup"><span data-stu-id="4c609-121">az cosmosdb regenerate-key</span></span>](/cli/azure/cosmosdb/regenerate-key) | <span data-ttu-id="4c609-122">Azure Cosmos DB 계정 키를 재생성합니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-122">Regeneratates Azure Cosmos DB account keys.</span></span> |
-| [<span data-ttu-id="4c609-123">az group delete</span><span class="sxs-lookup"><span data-stu-id="4c609-123">az group delete</span></span>](https://docs.microsoft.com/cli/azure/group#delete) | <span data-ttu-id="4c609-124">모든 중첩 리소스를 포함한 리소스 그룹을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-124">Deletes a resource group including all nested resources.</span></span> |
+| [<span data-ttu-id="b0cc5-116">az group create</span><span class="sxs-lookup"><span data-stu-id="b0cc5-116">az group create</span></span>](/cli/azure/group#create) | <span data-ttu-id="b0cc5-117">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-117">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="b0cc5-118">az cosmosdb create</span><span class="sxs-lookup"><span data-stu-id="b0cc5-118">az cosmosdb create</span></span>](https://docs.microsoft.com/cli/azure/cosmosdb#create) | <span data-ttu-id="b0cc5-119">Azure Cosmos DB 계정을 업그레이드합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-119">Updates an Azure Cosmos DB account.</span></span> |
+| [<span data-ttu-id="b0cc5-120">az cosmosdb regenerate-key</span><span class="sxs-lookup"><span data-stu-id="b0cc5-120">az cosmosdb regenerate-key</span></span>](/cli/azure/cosmosdb/regenerate-key) | <span data-ttu-id="b0cc5-121">Azure Cosmos DB 계정 키를 재생성합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-121">Regeneratates Azure Cosmos DB account keys.</span></span> |
+| [<span data-ttu-id="b0cc5-122">az group delete</span><span class="sxs-lookup"><span data-stu-id="b0cc5-122">az group delete</span></span>](https://docs.microsoft.com/cli/azure/group#delete) | <span data-ttu-id="b0cc5-123">모든 중첩 리소스를 포함한 리소스 그룹을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-123">Deletes a resource group including all nested resources.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="4c609-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4c609-125">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b0cc5-124">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b0cc5-124">Next steps</span></span>
 
-<span data-ttu-id="4c609-126">Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4c609-126">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="b0cc5-125">Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-125">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="4c609-127">추가 Azure Cosmos DB CLI 스크립트 샘플은 [Azure Cosmos DB CLI 설명서](../cli-samples.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4c609-127">Additional Azure Cosmos DB CLI script samples can be found in the [Azure Cosmos DB CLI documentation](../cli-samples.md).</span></span>
+<span data-ttu-id="b0cc5-126">추가 Azure Cosmos DB CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure Cosmos DB CLI 설명서](../cli-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b0cc5-126">Additional Azure Cosmos DB CLI script samples can be found in hello [Azure Cosmos DB CLI documentation](../cli-samples.md).</span></span>
