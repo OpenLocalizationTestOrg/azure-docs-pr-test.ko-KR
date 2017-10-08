@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 분석으로 얼굴 편집 | Microsoft Docs"
-description: "이 항목에서는 Azure Media Analytics로 얼굴을 편집하는 방법을 보여 줍니다."
+title: "Azure 미디어 분석을 aaaRedact 면 | Microsoft Docs"
+description: "이 항목에서는 Azure 미디어 analytics와 tooredact 직면 하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;
-ms.openlocfilehash: 747f3ae1a7484515083c590942de3da22568cd39
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f5688a8c6374151c526a9c702b904d8c3e46164
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics"></a>Azure 미디어 분석으로 얼굴 편집
 ## <a name="overview"></a>개요
-**Azure Media Redactor** 는 클라우드에서 확장성 있는 얼굴 편집 기능을 제공하는 [Azure Media Analytics](media-services-analytics-overview.md) MP(미디어 프로세서)입니다. 얼굴 편집을 사용하면 선택한 개인의 얼굴을 흐리게 표시하기 위해 동영상을 수정할 수 있습니다. 공공 안전과 새 미디어 시나리오를 위해 얼굴 편집 서비스를 사용할 수 있습니다. 짧은 장면이라도 여러 명의 얼굴이 포함된 경우 수동으로 편집하려면 많은 시간이 걸릴 수 있지만 이 서비스를 사용하면 몇 번의 간단한 단계를 통해 얼굴을 편집할 수 있습니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/azure-media-redactor/) 를 참조하세요.
+**Azure 미디어 Redactor** 는 [Azure 미디어 분석](media-services-analytics-overview.md) hello 클라우드에서 확장 가능한 글꼴 교정에서 제공 하는 미디어 프로세서 (MP). Face 교정 있습니다 toomodify 선택한 개인의 순서 tooblur 면에서 비디오를 수 있습니다. 공용 안전과 뉴스 미디어 시나리오에서 toouse hello 얼굴 교정 서비스를 할 수 있습니다. 몇 분 정도 여러 글꼴로 포함 된 장면 시간 tooredact 수동으로 필요로 하지만이 서비스 hello 모양을 가진 교정 프로세스는 몇 가지 간단한 단계만 거치면 요구 됩니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/azure-media-redactor/) 를 참조하세요.
 
-이 항목은 **Azure Media Redactor** 에 대한 세부 정보 및 .NET용 Media Services SDK와 함께 사용하는 방법을 보여 줍니다.
+이 항목에 대 한 세부 정보를 제공 **Azure 미디어 Redactor** 표시 방법을 toouse Media Services SDK for.NET으로 합니다.
 
-**Azure Media Redactor** MP는 현재 미리 보기 상태입니다. 이 기능은 모든 공용 Azure 지역과 미국 정부 및 중국 데이터 센터에서 사용할 수 있습니다. 이 미리 보기는 현재 무료입니다. 
+hello **Azure 미디어 Redactor** MP는 현재 미리 보기로 합니다. 이 기능은 모든 공용 Azure 지역과 미국 정부 및 중국 데이터 센터에서 사용할 수 있습니다. 이 미리 보기는 현재 무료입니다. 
 
 ## <a name="face-redaction-modes"></a>얼굴 편집 모드
-얼굴 편집은 동일한 개인이 다른 각도에서도 흐리게 표시될 수 있도록 동영상의 모든 프레임에서 얼굴을 감지하고 앞뒤 시간의 얼굴 개체를 추적합니다. 자동 편집 프로세스는 매우 복잡하여 항상 원하는 결과가 100% 생성되지는 않습니다. 따라서 Media Analytics는 최종 결과를 수정하기 위한 몇 가지 방법을 제공합니다.
+비디오의 모든 프레임에서 얼굴 감지 하 고 hello 얼굴 추적 안 면 교정 works 개체 모두 앞으로 및 뒤로 시간 내에 있도록 hello 동일한 개별 수 수 흐려지는 다른 각도도에서 합니다. hello 교정 자동화 된 프로세스는 매우 복잡 하며 미디어 분석을 제공 toomodify hello 최종 출력 하는 여러 가지 방법으로 이러한 이유로 100%의 원하는 출력을 생성 하지 않습니다.
 
-완전 자동 모드 외에, ID 목록을 통해 검색한 얼굴을 선택/선택 취소할 수 있는 2단계 워크플로가 있습니다. 또한 MP는 프레임별 임의 조정을 위해 JSON 형식의 메타데이터 파일을 사용합니다. 이 워크플로는 **분석** 및 **편집** 모드로 분할됩니다. 두 모드를 하나의 작업에서 두 작업을 실행하는 단일 단계로 결합할 수 있습니다. 이러한 모드를 **결합된** 모드라고 합니다.
+또한 tooa 완전 자동 모드에서는 hello 선택/de-selection Id 목록을 통해 찾은 면 수 있는 2 패스 워크플로입니다. 또한, 프레임 조정 hello MP 당 임의의 toomake JSON 형식의 메타 데이터 파일을 사용합니다. 이 워크플로는 **분석** 및 **편집** 모드로 분할됩니다. 두 작업 모두 하나의 작업이;에서 실행 되는 단일 패스로 hello 두 가지 모드를 결합할 수 있습니다. 이 모드는 무엇 일까요 **조합**합니다.
 
 ### <a name="combined-mode"></a>결합된 모드
 이 모드는 수동 입력 없이 자동으로 편집된 mp4를 생성합니다.
@@ -49,14 +49,14 @@ ms.lasthandoff: 08/29/2017
 [이 동영상을 보세요.](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc6608001-e5da-429b-9ec8-d69d8f3bfc79%2Fdance_redacted.mp4)
 
 ### <a name="analyze-mode"></a>분석 모드
-2단계 워크플로의 **분석** 단계는 동영상 입력을 사용하여 얼굴 위치의 JSON 파일과 검색된 각 얼굴의 jpg 이미지를 생성합니다.
+hello **분석** 각 개의 jpg 이미지가 얼굴 감지 및 hello 2 패스 워크플로의 패스 비디오 입력을 얼굴 위치의 JSON 파일을 생성 합니다.
 
 | 단계 | 파일 이름 | 참고 사항 |
 | --- | --- | --- |
 | 입력 자산 |foo.bar |WMV, MPV 또는 MP4 형식의 동영상 |
 | 입력 구성 |작업 구성 사전 설정 |{'version':'1.0', 'options': {'mode':'analyze'}} |
-| 출력 자산 |foo_annotations.json |얼굴 위치의 주석 데이터(JSON 형식). 사용자가 흐리게 표시하는 테두리 상자를 수정하기 위해 편집할 수 있습니다. 아래 샘플을 참조하세요. |
-| 출력 자산 |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |검색된 각 얼굴을 잘라낸 jpg(숫자는 얼굴의 레이블 ID) |
+| 출력 자산 |foo_annotations.json |얼굴 위치의 주석 데이터(JSON 형식). 이 흐리게 하 여 hello 사용자 toomodify hello 경계 상자의 편집할 수 있습니다. 아래 샘플을 참조하세요. |
+| 출력 자산 |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |각 자른된 jpg 과제를 여기서 hello 번호 나타냅니다 hello 앞면의 hello labelId를 발견 했습니다. |
 
 #### <a name="output-example"></a>출력 예제:
 
@@ -108,22 +108,22 @@ ms.lasthandoff: 08/29/2017
     … truncated
 
 ### <a name="redact-mode"></a>편집 모드
-워크플로의 두 번째 단계에서는 하나의 자산으로 결합해야 하는 여러 입력을 사용합니다.
+hello hello 워크플로의 두 번째 단계에서는 단일 자산에 결합 해야 하는 입력 중 더 큰 수 합니다.
 
-여기에는 흐리게 표시할 ID 목록, 원본 동영상 및 주석 JSON이 포함됩니다. 이 모드에서는 주석을 사용하여 입력 동영상에 흐리게 표시를 적용합니다.
+여기에 Id tooblur, hello 원본 비디오 및 JSON hello 주석 목록이 포함 됩니다. 이 모드는 hello 입력된 비디오에서 주석 tooapply 흐리게 hello를 사용 합니다.
 
-분석 단계의 출력에는 원본 동영상이 포함되지 않습니다. 동영상을 편집 모드 작업의 입력 자산으로 업로드하고 기본 파일로 선택해야 합니다.
+hello 출력 hello 분석 패스에서는 hello 원본 비디오 비디오 hello toobe hello Redact 모드 작업에 대 한 hello 입력된 자산으로 업로드 하 고 주 파일 hello로 선택 해야 합니다.
 
 | 단계 | 파일 이름 | 참고 사항 |
 | --- | --- | --- |
 | 입력 자산 |foo.bar |WMV, MPV 또는 MP4 형식의 동영상. 1단계와 동일한 동영상입니다. |
 | 입력 자산 |foo_annotations.json |1단계의 주석 메타데이터 파일 및 수정 사항(선택 사항) |
-| 입력 자산 |foo_IDList.txt(선택 사항) |줄로 구분된 편집할 얼굴 ID의 새 목록(선택 사항). 지정하지 않으면 모든 얼굴이 흐리게 표시됩니다. |
+| 입력 자산 |foo_IDList.txt(선택 사항) |(옵션) 새 줄 면 tooredact Id의 목록을 구분합니다. 지정하지 않으면 모든 얼굴이 흐리게 표시됩니다. |
 | 입력 구성 |작업 구성 사전 설정 |{'version':'1.0', 'options': {'mode':'redact'}} |
 | 출력 자산 |foo_redacted.mp4 |주석을 기반으로 흐리게 표시하기가 적용된 동영상 |
 
 #### <a name="example-output"></a>예제 출력
-IDList에서 하나의 ID가 선택된 출력입니다.
+선택한 한 ID 가진 IDList hello 출력입니다.
 
 [이 동영상을 보세요.](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fad6e24a2-4f9c-46ee-9fa7-bf05e20d19ac%2Fdance_redacted1.mp4)
 
@@ -135,9 +135,9 @@ IDList에서 하나의 ID가 선택된 출력입니다.
 
 ## <a name="blur-types"></a>흐리게 형식
 
-**결합** 또는 **편집** 모드에는 JSON 입력 구성을 통해 선택할 수 있는 5가지 흐리게 모드가 있습니다(**낮음**, **중간**, **높음**, **디버그** 및 **검정**). 기본적으로 **중간**이 사용됩니다.
+Hello에 **조합** 또는 **Redact** 모드를 가지 5 다른 흐림 효과 모드를 통해 hello JSON 입력된 구성에서 선택할 수 있습니다: **낮은**, **Med**, **높은**, **디버그**, 및 **검정**합니다. 기본적으로 **중간**이 사용됩니다.
 
-아래에 흐리게 형식의 샘플을 확인할 수 있습니다.
+샘플의 hello 아래의 형식 흐림 효과 찾을 수 있습니다.
 
 ### <a name="example-json"></a>예제 JSON:
 
@@ -163,25 +163,25 @@ IDList에서 하나의 ID가 선택된 출력입니다.
 
 ![검정](./media/media-services-face-redaction/blur5.png)
 
-## <a name="elements-of-the-output-json-file"></a>출력 JSON 파일의 요소
+## <a name="elements-of-hello-output-json-file"></a>Hello 출력 JSON 파일의 요소
 
-편집 MP는 한 동영상 프레임 내에서 최대 64명의 얼굴을 검색할 수 있는 고정밀도 얼굴 위치 검색 및 추적을 제공합니다. 정면이 최상의 결과를 제공하며 측면 또는 작은 얼굴(24x24 픽셀보다 작거나 같음)의 경우에는 어려울 수 있습니다.
+hello 교정 MP 고정밀 얼굴 위치 검색 및 비디오 프레임에 too64 휴먼 면을 검색할 수 있는 추적을 제공 합니다. 전면 제공 하는 동안 측면 및 작은 면 hello 최상의 결과 (미만 또는 too24x24 픽셀 값이) 하는 어려움이 있습니다.
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
 ## <a name="net-sample-code"></a>.NET 샘플 코드
 
-다음 프로그램은 방법을 보여 줍니다.
+hello 다음 프로그램 표시 하는 방법:
 
-1. 자산을 만들고 미디어 파일을 자산에 업로드합니다.
-2. 다음 json 기본 설정을 포함하는 구성 파일을 기반으로 얼굴 편집 작업을 만듭니다. 
+1. 자산 만들기 hello 자산 미디어 파일을 업로드 합니다.
+2. 다음 json 사전 설정을 hello를 포함 하는 구성 파일에 따라 얼굴 교정 작업과 작업을 만듭니다. 
    
         {'version':'1.0', 'options': {'mode':'combined'}}
-3. 출력 JSON 파일을 다운로드합니다. 
+3. Hello 출력 JSON 파일을 다운로드 합니다. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
+개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
 
 #### <a name="example"></a>예제
 
@@ -197,7 +197,7 @@ IDList에서 하나의 ID가 선택된 출력입니다.
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -213,17 +213,17 @@ IDList에서 하나의 ID가 선택된 출력입니다.
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Run the FaceRedaction job.
+            // Run hello FaceRedaction job.
             var asset = RunFaceRedactionJob(@"C:\supportFiles\FaceRedaction\SomeFootage.mp4",
                         @"C:\supportFiles\FaceRedaction\config.json");
 
-            // Download the job output asset.
+            // Download hello job output asset.
             DownloadAsset(asset, @"C:\supportFiles\FaceRedaction\Output");
         }
 
         static IAsset RunFaceRedactionJob(string inputMediaFilePath, string configurationFile)
         {
-            // Create an asset and upload the input media file to storage.
+            // Create an asset and upload hello input media file toostorage.
             IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
             "My Face Redaction Input Asset",
             AssetCreationOptions.None);
@@ -231,38 +231,38 @@ IDList에서 하나의 ID가 선택된 출력입니다.
             // Declare a new job.
             IJob job = _context.Jobs.Create("My Face Redaction Job");
 
-            // Get a reference to Azure Media Redactor.
+            // Get a reference tooAzure Media Redactor.
             string MediaProcessorName = "Azure Media Redactor";
 
             var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-            // Read configuration from the specified file.
+            // Read configuration from hello specified file.
             string configuration = File.ReadAllText(configurationFile);
 
-            // Create a task with the encoding details, using a string preset.
+            // Create a task with hello encoding details, using a string preset.
             ITask task = job.Tasks.AddNew("My Face Redaction Task",
             processor,
             configuration,
             TaskOptions.None);
 
-            // Specify the input asset.
+            // Specify hello input asset.
             task.InputAssets.Add(asset);
 
-            // Add an output asset to contain the results of the job.
+            // Add an output asset toocontain hello results of hello job.
             task.OutputAssets.AddNew("My Face Redaction Output Asset", AssetCreationOptions.None);
 
-            // Use the following event handler to check job progress.  
+            // Use hello following event handler toocheck job progress.  
             job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-            // Launch the job.
+            // Launch hello job.
             job.Submit();
 
-            // Check job execution and wait for job to finish.
+            // Check job execution and wait for job toofinish.
             Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
             progressJobTask.Wait();
 
-            // If job state is Error, the event handling
+            // If job state is Error, hello event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

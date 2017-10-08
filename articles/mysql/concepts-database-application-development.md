@@ -1,6 +1,6 @@
 ---
-title: "MySQL용 Azure 데이터베이스에 대한 데이터베이스 응용 프로그램 개발 개요 | Microsoft Docs"
-description: "개발자가 MySQL용 Azure 데이터베이스에 연결하기 위한 응용 프로그램 코드를 작성할 때 따라야 하는 디자인 고려 사항을 소개합니다."
+title: "MySQL에 대 한 Azure 데이터베이스에 대 한 응용 프로그램 개발 개요 aaaDatabase | Microsoft Docs"
+description: "개발자는 MySQL에 대 한 응용 프로그램 코드 tooconnect tooAzure 데이터베이스를 작성할 때 따라야 하는 디자인 고려 사항을 소개합니다"
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -9,26 +9,26 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 350dd775e172120d806d1193877a34d94f4d3f6a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f08df605eba21b4ba4b43565c0a7ded95779a171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-development-overview-for-azure-database-for-mysql"></a>MySQL용 Azure 데이터베이스에 대한 응용 프로그램 개발 개요 
-이 문서에서는 개발자가 MySQL용 Azure 데이터베이스에 연결하기 위한 응용 프로그램 코드를 작성할 때 따라야 하는 디자인 고려 사항을 설명합니다. 
+이 문서에서는 개발자 MySQL에 대 한 응용 프로그램 코드 tooconnect tooAzure 데이터베이스를 작성할 때 따라야 하는 설계 고려 사항 
 
 > [!TIP]
-> 서버를 만들고, 서버 기반 방화벽을 만들고, 서버 속성을 보고, 데이터베이스를 만들고, 워크벤치 및 mysql.exe를 사용하여 연결 및 쿼리하는 방법을 보여 주는 자습서를 보려면 [첫 번째 Azure MySQL Database 디자인](tutorial-design-database-using-portal.md)을 참조하세요.
+> 방법 toocreate는 서버에서 서버 기반 방화벽 만듭니다 서버 속성 보기, 데이터베이스 만들기, 연결 하 mysql.exe 및 워크 벤치를 사용 하 여 쿼리 표시는 자습서를 참조 하세요. [첫 번째 Azure의 MySQL 데이터베이스 디자인](tutorial-design-database-using-portal.md)
 
 ## <a name="language-and-platform"></a>언어 및 플랫폼
-다양한 프로그래밍 언어 및 플랫폼에 대한 코드 샘플을 사용할 수 있습니다. [MySQL용 Azure 데이터베이스에 연결하는 데 사용되는 연결 라이브러리](concepts-connection-libraries.md)에서 코드 샘플에 대한 링크를 찾을 수 있습니다.
+다양한 프로그래밍 언어 및 플랫폼에 대한 코드 샘플을 사용할 수 있습니다. Toohello 코드 샘플에서 링크를 찾을 수 있습니다: [MySQL 용 tooconnect tooAzure 데이터베이스를 사용 하는 연결 라이브러리](concepts-connection-libraries.md)
 
 ## <a name="tools"></a>도구
-MySQL용 Azure 데이터베이스는 워크벤치와 같은 MySQL 공통 관리 도구 또는 mysql.exe, [phpMyAdmin](https://www.phpmyadmin.net/), [Navicat](https://www.navicat.com/products/navicat-for-mysql) 등과 같은 MySQL 유틸리티와 호환되는 MySQL 커뮤니티 버전을 사용합니다. 또한 Azure Portal, Azure CLI, REST API를 사용하여 데이터베이스 서비스와 상호 작용할 수도 있습니다.
+MySQL에 대 한 azure 데이터베이스 사용 hello MySQL community 버전, MySQL, mysql.exe 같은 워크 벤치 또는 MySQL 유틸리티와 같은 일반 관리 도구와 호환 [phpMyAdmin](https://www.phpmyadmin.net/), [Navicat](https://www.navicat.com/products/navicat-for-mysql), 등입니다. 또한 hello Azure 포털, Azure CLI 및 REST Api toointeract hello 데이터베이스 서비스와 함께 사용할 수 있습니다.
 
 ## <a name="resource-limitations"></a>리소스 제한
-Azure MySQL Database는 다음 두 가지 메커니즘을 사용하여 서버에서 사용할 수 있는 리소스를 관리합니다. 
+Azure의 MySQL 데이터베이스 다른 두 가지 메커니즘을 사용 하 여 hello 리소스 tooa 사용할 수 있는 서버를 관리 합니다. 
 - 리소스 관리 
 - 제한 적용
 
@@ -39,12 +39,12 @@ Azure MySQL Database는 액세스를 제한하고, 데이터를 보호하고, �
 Azure MySQL Database는 사용자 및 로그인의 서버 인증을 지원합니다.
 
 ## <a name="resiliency"></a>복원력
-MySQL Database에 연결하는 동안 일시적인 오류가 발생하면, 코드는 호출을 다시 시도해야 합니다. 여러 클라이언트가 재시도를 동시에 수행하여 SQL Database가 채워지지 않도록 재시도 논리에 백오프 논리를 사용하는 것이 좋습니다.
+일시적인 오류가 발생 하는 tooMySQL 데이터베이스를 연결 하는 동안 코드 hello 호출을 다시 시도 합니다. 동시에 다시 시도 하는 여러 클라이언트가 포함 된 SQL 데이터베이스 hello 부담이 되지 않는 있도록 논리에 백오프 hello 재시도 논리가 사용을 좋습니다.
 
-- 코드 샘플: 재시도 논리를 설명하는 코드 샘플을 보려면 [MySQL용 Azure 데이터베이스에 연결하는 데 사용되는 연결 라이브러리](concepts-connection-libraries.md)에서 선택한 언어에 대한 샘플을 참조하세요.
+- 코드 샘플: 보여주는 코드 샘플에 다시 시도 논리를 hello에서 선택한 언어에 대 한 예제 참조: [MySQL 용 tooconnect tooAzure 데이터베이스를 사용 하는 연결 라이브러리](concepts-connection-libraries.md)
 
 ## <a name="managing-connections"></a>연결 관리
-데이터베이스 연결은 제한된 리소스이므로 성능을 향상시키려면 MySQL Database에 액세스할 때 적절한 연결을 사용하는 것이 좋습니다.
-- 연결 풀링 또는 영구 연결을 사용하여 데이터베이스에 액세스합니다.
-- 수명이 짧은 연결을 사용하여 데이터베이스에 액세스합니다. 
-- 연결 시도 시 응용 프로그램의 재시도 논리를 사용하여 허용되는 최대 횟수에 도달한 동시 연결로 인한 실패를 잡아냅니다. 재시도 논리에는 짧은 지연 시간을 설정한 후, 추가 연결 시도가 있기 전에 임의 시간 동안 기다립니다.
+데이터베이스 연결 제한 된 리소스 되므로 권장 연결을 통해 구분이 가능한 사용할 MySQL 데이터베이스에 액세스할 때 tooachieve 성능 향상.
+- Hello 데이터베이스 연결 풀링을 또는 영구 연결을 사용 하 여 액세스 합니다.
+- 짧은 연결 수명 범위를 사용 하 여 hello 데이터베이스를 액세스 합니다. 
+- Hello hello 연결 시도, tooconcurrent 연결 인해 toocatch 실패 시점에서 응용 프로그램에서 재시도 논리를 사용 하 여 허용 되는 hello 최대값에 도달 했습니다. Hello에서 재시도 논리 짧은 지연 간격을 설정 하 고 hello 추가 연결 시도 하기 전에 임의의 시간이 될 때까지 기다립니다.

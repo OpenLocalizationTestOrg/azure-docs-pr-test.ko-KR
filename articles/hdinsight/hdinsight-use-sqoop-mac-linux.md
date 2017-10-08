@@ -1,6 +1,6 @@
 ---
-title: "Hadoop과 Apache Sqoop - Azure HDInsight | Microsoft Docs"
-description: "Apache Sqoop을 사용하여 HDInsight의 Hadoop과 Azure SQL Database 간에 가져오기 및 내보내기를 수행하는 방법을 알아봅니다."
+title: "Azure HDInsight에서 Hadoop으로 Sqoop aaaApache | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Apache Sqoop tooimport 및 HDInsight의 Hadoop 및 Azure SQL 데이터베이스 간의 내보내기."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -17,24 +17,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: larryfr
-ms.openlocfilehash: 35dcbb91e6af1480685c9fd5b829c54277c1c605
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b256285659bbcf18ff05e220ccdf51c21eb8fbf7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-apache-sqoop-to-import-and-export-data-between-hadoop-on-hdinsight-and-sql-database"></a>Apache Sqoop을 사용하여 HDInsight의 Hadoop과 SQL Database 간에 데이터 가져오기 및 내보내기
+# <a name="use-apache-sqoop-tooimport-and-export-data-between-hadoop-on-hdinsight-and-sql-database"></a>HDInsight에서 Hadoop 및 SQL 데이터베이스 간에 데이터를 내보내고 Apache Sqoop tooimport를 사용 하 여
 
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL Database 또는 Microsoft SQL Server Database 사이에서 가져오기 및 내보내기를 수행하는 방법을 알아봅니다. 이 문서의 단계에서는 Hadoop 클러스터의 헤드에서 직접 `sqoop` 명령을 사용합니다. SSH를 사용하여 헤드 노드에 연결하고 이 문서의 명령을 실행합니다.
+Azure HDInsight 및 Azure SQL 데이터베이스 또는 Microsoft SQL Server 데이터베이스에 있는 클러스터 toouse Apache Sqoop tooimport 및 Hadoop 간에 내보내기에 알아봅니다. 이 문서 사용 하 여 hello에서 단계를 hello `sqoop` hello Hadoop 클러스터의 헤드 노드에 hello에서 직접 명령입니다. SSH tooconnect toohello 헤드 노드를 사용 하 고이 문서에서 hello 명령을 실행 합니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계는 Linux를 사용하는 HDInsight 클러스터에만 적용됩니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> hello이 문서의 단계 에서만 사용 가능 Linux를 사용 하는 HDInsight 클러스터입니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 ## <a name="install-freetds"></a>FreeTDS 설치
 
-1. SSH를 사용하여 HDInsight 클러스터에 연결합니다. 예를 들어 다음 명령은 `mycluster`라는 클러스터의 기본 헤드 노드에 연결합니다.
+1. SSH tooconnect toohello HDInsight 클러스터를 사용 합니다. 다음 명령을 hello 라는 클러스터의 toohello 기본 헤드 노드에 연결 하는 예를 들어 `mycluster`:
 
     ```bash
     ssh CLUSTERNAME-ssh.azurehdinsight.net
@@ -42,32 +42,32 @@ Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL
 
     자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-2. 다음 명령을 사용하여 FreeTDS:를 설치합니다.
+2. 다음 명령은 tooinstall FreeTDS hello를 사용 합니다.
 
     ```bash
     sudo apt --assume-yes install freetds-dev freetds-bin
     ```
 
-    FreeTDS는 SQL Database에 연결하기 위해 여러 단계에서 사용됩니다.
+    FreeTDS 몇 가지 단계 tooconnect tooSQL 데이터베이스에에서 사용 됩니다.
 
-## <a name="create-the-table-in-sql-database"></a>SQL 데이터베이스에 테이블 만들기
+## <a name="create-hello-table-in-sql-database"></a>SQL 데이터베이스에 hello 테이블 만들기
 
 > [!IMPORTANT]
-> [클러스터 및 SQL Database 만들기](hdinsight-use-sqoop.md)에서 만든 HDInsight 클러스터 및 SQL Database를 사용하고 있는 경우 이 섹션의 단계를 무시하십시오. 데이터베이스 테이블은 [클러스터 및 SQL Database 만들기](hdinsight-use-sqoop.md)의 단계 중에 생성된 것입니다.
+> SQL 데이터베이스에서 만든 및 hello HDInsight 클러스터를 사용 하는 경우 [클러스터 및 SQL 데이터베이스 만들기](hdinsight-use-sqoop.md), hello이이 섹션의에서 단계를 건너뜁니다. hello 데이터베이스 및 테이블 생성 된 hello에 hello의 일부 단계 [클러스터 및 SQL 데이터베이스 만들기](hdinsight-use-sqoop.md) 문서.
 
-1. SSH 세션에서 다음 명령을 사용하여 SQL Database 서버에 연결합니다.
+1. Hello SSH 세션에서 다음 명령을 tooconnect toohello SQL 데이터베이스 서버 hello를 사용 합니다.
 
         TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D sqooptest
 
-    다음 텍스트와 비슷한 출력이 표시됩니다.
+    텍스트 다음 출력 유사한 toohello를 나타납니다.
 
         locale is "en_US.UTF-8"
         locale charset is "UTF-8"
         using default charset "UTF-8"
-        Default database being set to sqooptest
+        Default database being set toosqooptest
         1>
 
-2. `1>` 프롬프트에 다음 쿼리를 입력합니다.
+2. Hello에 `1>` hello 다음 쿼리를 입력 합니다.
 
     ```sql
     CREATE TABLE [dbo].[mobiledata](
@@ -87,51 +87,51 @@ Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL
     GO
     ```
 
-    `GO` 문을 입력하면 이전 문이 평가됩니다. 먼저 **mobiledata** 테이블이 생성된 다음 클러스터형 인덱스가 추가됩니다(SQL 데이터베이스에 필수).
+    Hello 때 `GO` hello 이전 문이 계산을 문을 입력 합니다. 첫째, hello **mobiledata** 테이블을 만든 다음 클러스터형된 인덱스 (SQL 데이터베이스에 필요). tooit 추가
 
-    다음 쿼리를 사용하여 테이블이 생성되었는지 확인합니다.
+    다음 테이블 hello 쿼리 tooverify 사용 하 여 hello가 만들어졌습니다.
 
     ```sql
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    그러면 다음 텍스트와 유사한 출력이 표시됩니다.
+    텍스트 다음 출력 유사한 toohello를 표시 됩니다.
 
         TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
         sqooptest       dbo     mobiledata      BASE TABLE
 
-3. `exit` at the `1>` 를 입력하여 tsql 유틸리티를 종료합니다.
+3. 입력 `exit` hello에 `1>` tooexit hello tsql 유틸리티 메시지를 표시 합니다.
 
 ## <a name="sqoop-export"></a>Sqoop 내보내기
 
-1. SSH와 클러스터 간 연결에서 다음 명령을 사용하여 Sqoop이 SQL Database를 볼 수 있는지 확인합니다.
+1. Hello SSH 연결 toohello 클러스터에서 사용 하 여 hello 다음 명령 수 tooverify Sqoop SQL 데이터베이스를 볼 수 있습니다.
 
     ```bash
     sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> -P
     ```
-    확인 메시지가 표시되면 SQL Database 로그인의 암호를 입력합니다.
+    메시지가 표시 되 면 hello SQL 데이터베이스 로그인에 대 한 hello 암호를 입력 합니다.
 
-    이 명령은 앞에서 만든 **sqooptest** 데이터베이스를 포함한 데이터베이스 목록이 반환됩니다.
+    이 명령은 hello 등 데이터베이스의 목록을 반환 **sqooptest** 앞에서 만든 데이터베이스입니다.
 
-2. **hivesampletable**에서 **mobiledata** 테이블로 데이터를 내보내려면 다음 명령을 사용합니다.
+2. tooexport 데이터로 **hivesampletable** toohello **mobiledata** 테이블에서 다음 명령을 hello를 사용 하 여:
 
     ```bash
     sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> -P --table 'mobiledata' --export-dir 'wasb:///hive/warehouse/hivesampletable' --fields-terminated-by '\t' -m 1
     ```
 
-    이 명령은 Sqoop에 **sqooptest** 데이터베이스에 연결하도록 지시합니다. 그러면 Sqoop은 **wasb:///hive/warehouse/hivesampletable**에서 **mobiledata** 테이블로 데이터를 내보냅니다.
+    이 명령은 지시 Sqoop tooconnect toohello **sqooptest** 데이터베이스입니다. 데이터를 내보내므로 Sqoop **wasb: / / / hive/웨어하우스/hivesampletable** toohello **mobiledata** 테이블입니다.
 
     > [!IMPORTANT]
-    > 클러스터의 기본 저장소가 Azure Storage 계정이면 `wasb:///`를 사용합니다. Azure Data Lake Store이면 `adl:///`을 사용합니다.
+    > 사용 하 여 `wasb:///` hello 기본 저장소 클러스터에 Azure 저장소 계정이 면 합니다. Azure Data Lake Store이면 `adl:///`을 사용합니다.
 
-3. 명령이 완료되면 다음 명령과 TSQL을 사용하여 데이터베이스에 연결합니다.
+3. Hello 명령이 완료 된 후 다음 TSQL를 사용 하 여 명령 tooconnect toohello 데이터베이스 hello를 사용 합니다.
 
     ```bash
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P -p 1433 -D sqooptest
     ```
 
-    연결되면 다음 명령문을 사용하여 데이터가 **mobiledata** 테이블로 내보내기되었는지 확인합니다.
+    다음 데이터 hello 문을 tooverify 사용 하 여 hello 내보낸된 toohello가 연결 되 면 **mobiledata** 테이블:
 
     ```sql
     SET ROWCOUNT 50;
@@ -139,19 +139,19 @@ Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL
     GO
     ```
 
-    테이블에 데이터 목록이 표시됩니다. `exit` 를 입력하여 tsql 유틸리티를 종료합니다.
+    Hello 테이블의에서 데이터를 목록이 표시 됩니다. 형식 `exit` tooexit hello tsql 유틸리티입니다.
 
 ## <a name="sqoop-import"></a>Sqoop 가져오기
 
-1. 다음 명령을 사용하여 SQL Database의 **mobiledata** 테이블에서 HDInsight의 **wasb:///tutorials/usesqoop/importeddata** 디렉터리로 데이터를 가져옵니다.
+1. 사용 하 여 hello 다음 명령은 tooimport 데이터로 hello **mobiledata** toohello SQL 데이터베이스의 테이블 **wasb: / / / 자습서/usesqoop/importeddata** 디렉터리 HDInsight에:
 
     ```bash
     sqoop import --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
     ```
 
-    데이터의 필드는 탭 문자로 구분되어 있으며 줄은 줄 바꿈 문자로 종료됩니다.
+    hello 데이터의 hello 필드는 탭 문자로 구분 하 고 hello 줄 새 줄 문자로 종료 됩니다.
 
-2. 가져오기가 완료되면 다음 명령을 사용하여 새로운 디렉터리에 데이터를 나열합니다.
+2. Hello 가져오기 완료 되 면 다음 명령 toolist hello 데이터 hello 새 디렉터리를으로 hello를 사용 합니다.
 
     ```bash
     hdfs dfs -text /tutorials/usesqoop/importeddata/part-m-00000
@@ -159,21 +159,21 @@ Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL
 
 ## <a name="using-sql-server"></a>SQL Server 사용하기
 
-또한 Sqoop을 사용하여 데이터 센터 내 또는 Azure에 호스팅된 가상 컴퓨터에서 SQL Server로부터 데이터를 가져오기/내보내기할 수 있습니다. SQL 데이터베이스와 SQL Server의 차이점은 다음과 같습니다.
+Sqoop tooimport를 사용 하 고 데이터 센터 또는 Azure에서 호스팅되는 가상 컴퓨터에서 SQL Server에서 데이터를 내보낼 수도 있습니다. SQL 데이터베이스 및 SQL Server를 사용 하 여 hello 차이점은 같습니다.
 
-* HDInsight와 SQL Server가 모두 동일한 Azure Virtual Network에 있어야 합니다.
+* HDInsight와 SQL Server 해야 수에 hello 동일한 Azure 가상 네트워크입니다.
 
-    예제를 보려면 [온-프레미스 네트워크에 HDInsight 연결](./connect-on-premises-network.md) 문서를 참조하세요.
+    예를 들어 참조 hello [HDInsight 연결 tooyour 온-프레미스 네트워크](./connect-on-premises-network.md) 문서.
 
-    HDInsight와 함께 Azure Virtual Network를 사용하는 방법에 대한 자세한 내용은 [Azure Virtual Network를 사용하여 HDInsight 확장](hdinsight-extend-hadoop-virtual-network.md) 문서를 참조하세요. Azure Virtual Network에 대한 자세한 내용은 [가상 네트워크 개요](../virtual-network/virtual-networks-overview.md) 문서를 참조하세요.
+    HDInsight를 사용 하 여 Azure 가상 네트워크와에 자세한 내용은 참조 hello [Azure 가상 네트워크와 확장 HDInsight](hdinsight-extend-hadoop-virtual-network.md) 문서. Azure 가상 네트워크에 대 한 자세한 내용은 참조 hello [가상 네트워크 개요](../virtual-network/virtual-networks-overview.md) 문서.
 
-* SQL Server는 SQL 인증을 허용하도록 구성되어야 합니다. 자세한 내용은 [인증 모드 선택](https://msdn.microsoft.com/ms144284.aspx) 문서를 참조하세요.
+* SQL Server 구성된 tooallow SQL 인증 이어야 합니다. 자세한 내용은 참조 hello [인증 모드 선택](https://msdn.microsoft.com/ms144284.aspx) 문서.
 
-* SQL Server를 원격 연결을 허용하도록 구성해야 할 수 있습니다. 자세한 내용은 [SQL Server 데이터베이스 엔진에 연결하는 문제를 해결하는 방법](http://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx)(영문)을 참조하십시오.
+* Tooconfigure SQL Server tooaccept 원격 연결을 할 수 있습니다. 자세한 내용은 참조 hello [어떻게 tootroubleshoot 연결 toohello SQL Server 데이터베이스 엔진](http://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx) 문서.
 
-* **SQL Server Management Studio**, **tsql** 등의 유틸리티를 사용하여 SQL Server에 **sqooptest** 데이터베이스를 만듭니다. Azure CLI를 사용하는 단계는 Azure SQL Database에만 작동합니다.
+* Hello 만들기 **sqooptest** 와 같은 유틸리티를 사용 하 여 SQL Server의 데이터베이스 **SQL Server Management Studio** 또는 **tsql**합니다. Azure SQL 데이터베이스에 대 한 hello Azure CLI를 사용 하 여 hello 단계 에서만 작동 합니다.
 
-    다음 Transact-SQL 문을 사용하여 **mobiledata** 테이블을 만듭니다.
+    다음 TRANSACT-SQL 문을 toocreate hello 사용 하 여 hello **mobiledata** 테이블:
 
     ```sql
     CREATE TABLE [dbo].[mobiledata](
@@ -190,7 +190,7 @@ Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL
     [sessionpagevieworder] [bigint])
     ```
 
-* HDInsight에서 SQL Server에 연결하는 경우 SQL Server의 IP 주소를 사용해야 할 수 있습니다. 예:
+* SQL Server toohello을 HDInsight에서 연결할 때에 hello SQL Server의 toouse hello IP 주소를 할 수 있습니다. 예:
 
     ```bash
     sqoop import --connect 'jdbc:sqlserver://10.0.1.1:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
@@ -198,17 +198,17 @@ Apache Sqoop을 사용하여 Azure HDInsight의 Hadoop 클러스터와 Azure SQL
 
 ## <a name="limitations"></a>제한 사항
 
-* 대량 내보내기 - Linux 기반 HDInsight와 함께 Microsoft SQL Server 또는 Azure SQL 데이터베이스에 데이터를 내보내는 데 사용된 Sqoop 커넥터도 현재 대량 삽입을 지원하지 않습니다.
+* 대량 내보내기-와 Linux 기반 HDInsight, hello Sqoop 사용 커넥터 tooexport 데이터 tooMicrosoft SQL Server 또는 Azure SQL 데이터베이스 현재 대량 삽입을 지원 하지 않습니다.
 
-* 배치 - Linux 기반 HDInsight에서 삽입을 수행할 때 `-batch` 스위치를 사용하는 경우 Sqoop은 삽입 작업을 일괄 처리하는 대신 여러 번의 삽입 작업을 수행합니다.
+* 일괄 처리-Linux 기반 HDInsight와 hello를 사용 하는 경우 `-batch` 삽입 수행 시 전환, Sqoop hello 삽입 작업을 일괄 처리 하는 대신 여러 삽입 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이제 Sqoop을 사용하는 방법에 대해 알아봤습니다. 자세한 내용은 다음을 참조하세요.
+파악 했으므로 이제 어떻게 toouse Sqoop 합니다. toolearn 더 참조 하십시오.
 
 * [HDInsight와 함께 Oozie 사용][hdinsight-use-oozie]: Oozie 워크플로에서 Sqoop 작업을 사용합니다.
-* [HDInsight를 사용하여 비행 지연 데이터 분석][hdinsight-analyze-flight-data]: Hive를 사용하여 비행 지연 데이터를 분석한 후 Sqoop을 사용하여 데이터를 Azure SQL Database로 내보냅니다.
-* [HDInsight에 데이터 업로드][hdinsight-upload-data]: HDInsight/Azure Blob Storage에 데이터를 업로드하는 다른 방법을 찾습니다.
+* [HDInsight를 사용 하 여 비행 연착 데이터를 분석][hdinsight-analyze-flight-data]: tooanalyze 비행 하이브 사용 하 여 데이터를 지연 하 고 다음 Sqoop tooexport 데이터 tooan Azure SQL 데이터베이스를 사용 합니다.
+* [데이터 tooHDInsight 업로드][hdinsight-upload-data]: 데이터 tooHDInsight/Azure Blob 저장소에 업로드 하기 위한 다른 방법을 찾아야 합니다.
 
 [hdinsight-versions]:  hdinsight-component-versioning.md
 [hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md

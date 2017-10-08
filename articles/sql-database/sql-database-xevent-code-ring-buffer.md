@@ -1,6 +1,6 @@
 ---
-title: "SQL Database에 대한 XEvent 링 버퍼 코드 | Microsoft Docs"
-description: "Azure SQL Database에서 링 버퍼 대상을 사용하여 편리하고 빨라진 Transact-SQL 코드 샘플을 제공합니다."
+title: "SQL 데이터베이스에 대 한 링 버퍼 코드 aaaXEvent | Microsoft Docs"
+description: "Azure SQL 데이터베이스의 hello 링 버퍼 대상 사용 하 여 쉽게 만들고 빠른 만들어지는 Transact SQL 코드 예제를 제공 합니다."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,33 +16,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 6fbefe151901ac3b15d93712422878fc4d6206f1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 21df748d9999d6837d2b5bbe4a3f47fb351b4633
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a>SQL Database의 확장 이벤트에 대한 링 버퍼 대상 코드
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-테스트 중 확장 이벤트에 대한 정보를 캡처하고 보고하는 가장 쉽고 빠른 방법을 위한 전체 코드 샘플이 필요할 수 있습니다. 확장 이벤트 데이터에 대한 가장 쉬운 대상은 [링 버퍼 대상](http://msdn.microsoft.com/library/ff878182.aspx)입니다.
+원하는 hello 쉬운 신속 하 게 toocapture 및 보고서에 대 한 정보는 확장된 이벤트 테스트 하는 동안에 대 한 전체 코드 샘플입니다. 확장된 이벤트 데이터에 대 한 쉬운 대상 hello는 hello [링 버퍼 대상](http://msdn.microsoft.com/library/ff878182.aspx)합니다.
 
 이 항목에서는 다음을 수행하는 Transact-SQL 코드 샘플을 제공합니다.
 
-1. 시연하는 데 사용할 데이터를 포함하는 테이블을 만듭니다.
+1. 와 데이터 toodemonstrate 있는 테이블을 만듭니다.
 2. 기존 확장 이벤트에 대한 세션 즉, **sqlserver.sql_statement_starting**을 만듭니다.
    
-   * 이 이벤트는 특정 업데이트 문자열을 포함하는 SQL 문( **statement LIKE '%UPDATE tabEmployee%'**)으로 제한됩니다.
-   * 링 버퍼 유형의 대상 즉, **package0.ring_buffer**로 이벤트 출력을 보내도록 선택합니다.
-3. 이벤트 세션을 시작합니다.
+   * hello 이벤트는 특정 업데이트 문자열을 포함 하는 제한 된 tooSQL 문은: **'업데이트 tabEmployee % %'와 같은 문을**합니다.
+   * Hello 이벤트 tooa 형식이 링 버퍼 대상의 toosend hello 출력 즉 선택 **package0.ring_buffer**합니다.
+3. Hello 이벤트 세션을 시작합니다.
 4. 몇 가지 간단한 SQL UPDATE 문을 실행합니다.
-5. SQL SELECT 문을 실행하여 링 버퍼에서 이벤트 출력을 검색합니다.
+5. SQL SELECT 문을 tooretrieve 이벤트 출력을 hello 링 버퍼에서에서 발급합니다.
    
    * **sys.dm_xe_database_session_targets** 및 다른 DMV(동적 관리 뷰)가 조인됩니다.
-6. 이벤트 세션을 중지합니다.
-7. 링 버퍼 대상을 삭제하여 해당 리소스를 해제합니다.
-8. 이벤트 세션 및 데모 테이블을 삭제합니다.
+6. Hello 이벤트 세션을 중지합니다.
+7. 삭제 합니다. 해당 리소스를 링 버퍼 대상, toorelease hello 합니다.
+8. Hello 이벤트 세션 및 hello 데모 테이블을 삭제합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
@@ -51,14 +51,14 @@ ms.lasthandoff: 08/18/2017
   
   * 또는 몇 분 이내에 [**AdventureWorksLT** 데모 데이터베이스를 만들](sql-database-get-started.md) 수 있습니다.
 * SQL Server Management Studio(ssms.exe)(이상적으로 최신 월별 업데이트 버전). 
-  다음 위치에서 최신 ssms.exe를 다운로드할 수 있습니다.
+  Hello 최신 ssms.exe에서 다운로드할 수 있습니다.
   
   * [SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx)항목
-  * [직접 다운로드 링크](http://go.microsoft.com/fwlink/?linkid=616025)
+  * [직접 링크 toohello 다운로드 합니다.](http://go.microsoft.com/fwlink/?linkid=616025)
 
 ## <a name="code-sample"></a>코드 샘플
 
-다음 링 버퍼 코드 샘플은 약간만 수정하면 Azure SQL Database 또는 Microsoft SQL Server에서 실행할 수 있습니다. 5단계의 FROM 절에 사용되는 일부 DMV(동적 관리 뷰) 이름에 '_database' 노드가 있다는 점이 다릅니다. 예:
+매우 사소한 수정 hello 링 버퍼 및 다음 코드 샘플 수에서 실행할 수 Azure SQL 데이터베이스 또는 Microsoft SQL Server. hello 차이가 5 단계에서에서 hello FROM 절에 사용 되는 일부 동적 관리 뷰 (Dmv)의 hello 이름에 ' 만족할' hello 노드의 hello 존재 합니다. 예:
 
 * sys.dm_xe**_database**_session_targets
 * sys.dm_xe_session_targets
@@ -220,13 +220,13 @@ GO
 
 ## <a name="ring-buffer-contents"></a>링 버퍼 콘텐츠
 
-ssms.exe를 사용하여 코드 샘플을 실행했습니다.
+Ssms.exe toorun hello 코드 샘플을 사용 했습니다.
 
-결과를 보기 위해 열 머리글 **target_data_XML** 아래의 셀을 클릭했습니다.
+tooview hello 결과 클릭 hello 셀 hello 열 머리글 아래에서 **target_data_XML**합니다.
 
-그런 다음 결과 창에서 열 머리글 **target_data_XML** 아래의 셀을 클릭했습니다. 그러면 결과 셀의 콘텐츠가 XML로 표시된 다른 파일 탭이 ssms.exe에 만들어졌습니다.
+Hello 결과 창에 hello 열 머리글 아래에서 hello 셀 클릭 한 다음 **target_data_XML**합니다. 다른 파일 탭은 hello에 hello 결과 셀의 내용을 표시 된, XML로 ssms.exe에서 만든 하는이를이 클릭 합니다.
 
-출력은 다음 블록에 표시되어 있습니다. 길어 보이지만 두 개의 **<event>** 요소뿐입니다.
+hello 출력 hello 블록 뒤에 표시 됩니다. 길어 보이지만 두 개의 **<event>** 요소뿐입니다.
 
 &nbsp;
 
@@ -320,7 +320,7 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 
 #### <a name="release-resources-held-by-your-ring-buffer"></a>링 버퍼에서 보유한 리소스 해제
 
-링 버퍼 사용을 마쳤으면 링 버퍼를 제거하고 다음과 같은 **ALTER** 를 실행하여 링 버퍼의 리소스를 해제할 수 있습니다.
+링 버퍼를 완료 하는 경우 제거 하 고 실행 하는 해당 리소스를 해제 수는 **ALTER** hello 다음과 같은:
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -330,7 +330,7 @@ GO
 ```
 
 
-이벤트 세션의 정의는 삭제되지 않고 업데이트됩니다. 나중에 이벤트 세션에 링 버퍼의 다른 인스턴스를 추가할 수 있습니다.
+이벤트 세션의 hello 정의 업데이트는 되지만 삭제 되지 않습니다. 나중에 hello 링 버퍼 tooyour 이벤트 세션의 다른 인스턴스를 추가할 수 있습니다.
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -345,11 +345,11 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 
 ## <a name="more-information"></a>자세한 정보
 
-Azure SQL Database의 확장 이벤트에 대한 기본 항목은 다음과 같습니다.
+Azure SQL 데이터베이스에서 확장된 이벤트에 대 한 hello 기본 항목은입니다.
 
 * [SQL Database의 확장 이벤트 고려 사항](sql-database-xevent-db-diff-from-svr.md): Microsoft SQL Server와 Azure SQL Database 간에 다른 확장 이벤트의 일부 측면을 비교합니다.
 
-확장 이벤트에 대한 다른 코드 샘플 항목은 다음 링크에서 사용할 수 있습니다. 하지만 어느 샘플이든 Azure SQL Database와 Microsoft SQL Server 중 무엇을 대상으로 하는지 늘 확인해야 합니다. 그런 다음 샘플을 실행하기 위해 약간의 변경이 필요한지 결정할 수 있습니다.
+확장된 이벤트에 대 한 다른 코드 샘플 항목에 링크를 따라 hello에서 제공 됩니다. 그러나 모든 샘플 toosee 체크 정기적으로 hello 샘플 Microsoft SQL Server와 Azure SQL 데이터베이스를 대상으로 하는지 여부를. 그런 다음 약간의 변경이 필요한 toorun hello 샘플 지 여부를 결정할 수 있습니다.
 
 * Azure SQL Database에 대한 코드 샘플: [SQL Database의 확장 이벤트에 대한 이벤트 파일 대상 코드](sql-database-xevent-code-event-file.md)
 
@@ -357,5 +357,5 @@ Azure SQL Database의 확장 이벤트에 대한 기본 항목은 다음과 같�
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

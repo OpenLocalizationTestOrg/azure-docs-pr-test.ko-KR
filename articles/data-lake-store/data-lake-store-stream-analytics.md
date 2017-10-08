@@ -1,6 +1,6 @@
 ---
-title: "Stream Analytics에서 Data Lake Store로 데이터 스트리밍 | Microsoft 문서"
-description: "Azure 스트림 분석을 사용하여 Azure Data Lake 저장소에 데이터 스트리밍"
+title: "데이터 레이크 저장소에 대 한 스트림 분석에서 aaaStream 데이터 | Microsoft Docs"
+description: "Azure 스트림 분석 toostream 데이터를 사용 하 여 Azure 데이터 레이크 저장소로"
 services: data-lake-store,stream-analytics
 documentationcenter: 
 author: nitinme
@@ -14,116 +14,116 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 90104aaacf24a5a7156900fc3848a27f60329814
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68c727d4807db0abe6efa90145d68c78902eb789
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-data-from-azure-storage-blob-into-data-lake-store-using-azure-stream-analytics"></a>Azure 스트림 분석을 사용하여 Azure 저장소 Blob에서 Data Lake 저장소에 데이터 스트리밍
-이 문서는 Azure 스트림 분석 작업에 대한 출력으로 Azure Data Lake 저장소를 사용하는 방법을 알아봅니다. 이 문서에서는 Azure 저장소 Blob(입력)에서 데이터를 읽고 Data Lake 저장소(출력)에 데이터를 기록하는 간단한 시나리오를 보여줍니다.
+이 문서에서 toouse Azure 데이터 레이크 저장 되는 방식과 Azure 스트림 분석 작업에 대 한 출력으로 살펴봅니다. 이 문서에서는 Azure 저장소 blob (입력)에서 데이터를 읽고 하는 간단한 시나리오를 설명 하 고 쓰기 hello 데이터 tooData 레이크 저장소 (출력).
 
 > [!NOTE]
-> 이 때 [Azure 클래식 포털](https://manage.windowsazure.com)에서만 스트림 분석에 대한 Data Lake Store 출력을 만들고 구성할 수 있습니다. 따라서 이 자습서의 일부는 Azure 클래식 포털을 사용합니다.
+> 이때 데이터 레이크 저장소의 생성 및 구성 출력 스트림 분석 hello 에서만 지원 됩니다 [Azure 클래식 포털](https://manage.windowsazure.com)합니다. 따라서이 자습서의 일부 hello Azure 클래식 포털을 사용 합니다.
 >
 >
 
 ## <a name="prerequisites"></a>필수 조건
-이 자습서를 시작하기 전에 다음이 있어야 합니다.
+이 자습서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **Azure 구독**. [Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
 
-* **Azure Storage 계정**. 이 계정에서 Blob 컨테이너를 사용하여 스트림 분석 작업에 대한 데이터를 입력합니다. 이 자습서의 경우 **storageforasa**라는 저장소 계정 및 **storageforasacontainer**라는 계정 내의 컨테이너가 있다고 가정합니다. 컨테이너를 만든 후에 샘플 데이터 파일을 거기에 업로드합니다. 
+* **Azure Storage 계정**. 스트림 분석 작업에 대 한이 계정 tooinput 데이터에서 blob 컨테이너를 사용 합니다. 이 자습서에서는 가정 라는 저장소 계정이 있는 **storageforasa** hello 계정 내의 컨테이너 및 **storageforasacontainer**합니다. Hello 컨테이너를 만든 후에 예제 데이터 파일 tooit을 업로드 합니다. 
   
-* **Azure Data Lake Store 계정**. [Azure Portal을 사용하여 Azure Data Lake Store 시작](data-lake-store-get-started-portal.md)에 있는 지침을 따릅니다. **asadatalakestore**라는 Data Lake Store 계정이 있다고 가정합니다. 
+* **Azure Data Lake Store 계정**. Hello 지침에 따라 [hello Azure 포털을 사용 하 여 Azure 데이터 레이크 저장소 시작](data-lake-store-get-started-portal.md)합니다. **asadatalakestore**라는 Data Lake Store 계정이 있다고 가정합니다. 
 
 ## <a name="create-a-stream-analytics-job"></a>스트림 분석 작업 만들기
-입력 원본 및 출력 대상을 포함하는 스트림 분석 작업을 만들어 시작합니다. 이 자습서의 경우 원본은 Azure blob 컨테이너이고 대상은 Data Lake 저장소입니다.
+입력 원본 및 출력 대상을 포함하는 스트림 분석 작업을 만들어 시작합니다. 이 자습서에 대 한 hello 원본이 Azure blob 컨테이너가 있으며 hello 대상이 데이터 레이크 저장소입니다.
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+1. Toohello 로그온 [Azure 포털](https://portal.azure.com)합니다.
 
-2. 왼쪽 창에서 **Stream Analytics 작업**을 클릭한 후 **추가**를 클릭합니다.
+2. Hello 왼쪽된 창에서 클릭 **스트림 분석 작업이**, 클릭 하 고 **추가**합니다.
 
     ![Stream Analytics 작업 만들기](./media/data-lake-store-stream-analytics/create.job.png "Stream Analytics 작업 만들기")
 
     > [!NOTE]
-    > 저장소 계정과 동일한 지역에 작업을 만들지 않으면 지역 간에 데이터를 이동하는 데 추가 비용이 발생합니다.
+    > Hello에서 작업을 만드는 확인 hello 저장소 계정 또는 사용자와 동일한 지역에 지역 간 데이터 이동의 추가 비용 발생 합니다.
     >
 
-## <a name="create-a-blob-input-for-the-job"></a>작업에 대한 Blob 입력 만들기
+## <a name="create-a-blob-input-for-hello-job"></a>Hello 작업에 대 한 Blob 입력 만들기
 
-1. Stream Analytics 작업 페이지를 열고 왼쪽 창에서 **입력** 탭을 클릭한 다음 **추가**를 클릭합니다.
+1. Hello 왼쪽된 창에서 hello 스트림 분석 작업에 대 한 열기 hello 페이지 클릭 hello **입력** 탭을 클릭 한 다음 **추가**합니다.
 
-    ![작업에 입력 추가](./media/data-lake-store-stream-analytics/create.input.1.png "작업에 입력 추가")
+    ![입력된 tooyour 작업에 추가할](./media/data-lake-store-stream-analytics/create.input.1.png "입력된 tooyour 작업 추가")
 
-2. **새 입력** 블레이드에서 다음 값을 제공합니다.
+2. Hello에 **새 입력** 블레이드에서 hello 다음 값을 제공 합니다.
 
-    ![작업에 입력 추가](./media/data-lake-store-stream-analytics/create.input.2.png "작업에 입력 추가")
+    ![입력된 tooyour 작업에 추가할](./media/data-lake-store-stream-analytics/create.input.2.png "입력된 tooyour 작업 추가")
 
-    * **입력 별칭**에 작업 입력에 대한 고유한 이름을 입력합니다.
+    * 에 대 한 **입력 별칭**를 작업 입력 hello에 대 한 고유한 이름을 입력 합니다.
     * **원본 형식**으로 **데이터 스트림**을 선택합니다.
     * **원본**으로 **Blob Storage**를 선택합니다.
     * **구독**에 대해 **현재 구독의 Blob Storage 사용**을 선택합니다.
-    * **저장소 계정**에서 필수 조건의 일부로 만든 저장소 계정을 선택합니다. 
-    * **컨테이너**에 대해 선택한 저장소 계정에서 만든 컨테이너를 선택합니다.
+    * 에 대 한 **저장소 계정**, hello 필수 소프트웨어의 일부로 만든 hello 저장소 계정을 선택 합니다. 
+    * 에 대 한 **컨테이너**선택, hello 컨테이너에서 hello 만든 저장소 계정을 선택 합니다.
     * **이벤트 직렬화 형식**으로 **CSV**를 선택합니다.
     * **구분 기호**로 **탭**을 선택합니다.
     * **인코딩**으로 **UTF-8**을 선택합니다.
 
-    **만들기**를 클릭합니다. 이제 포털에 입력이 추가되고 연결을 테스트합니다.
+    **만들기**를 클릭합니다. 이제 hello 포털 hello 입력을 추가 하 고 hello 연결 tooit를 테스트 합니다.
 
 
-## <a name="create-a-data-lake-store-output-for-the-job"></a>작업에 대한 Data Lake 저장소 출력 만들기
+## <a name="create-a-data-lake-store-output-for-hello-job"></a>Hello 작업에 대 한 데이터 레이크 저장소 출력 만들기
 
-1. Stream Analytics 작업에 대한 페이지를 열고 **출력** 탭을 클릭한 다음 **추가**를 클릭합니다.
+1. Hello 스트림 분석 작업에 대 한 hello 페이지, hello 클릭 **출력** 탭을 클릭 한 다음 **추가**합니다.
 
-    ![작업에 출력 추가](./media/data-lake-store-stream-analytics/create.output.1.png "작업에 출력 추가")
+    ![출력 tooyour 작업을 추가](./media/data-lake-store-stream-analytics/create.output.1.png "출력 tooyour 작업 추가")
 
-2. **새 출력** 블레이드에서 다음 값을 제공합니다.
+2. Hello에 **새 출력** 블레이드에서 hello 다음 값을 제공 합니다.
 
-    ![작업에 출력 추가](./media/data-lake-store-stream-analytics/create.output.2.png "작업에 출력 추가")
+    ![출력 tooyour 작업을 추가](./media/data-lake-store-stream-analytics/create.output.2.png "출력 tooyour 작업 추가")
 
-    * **입력 별칭**에 작업 출력에 대한 고유한 이름을 입력합니다. 쿼리 출력을 이 Data Lake 저장소로 직접 보내기 위해 쿼리에서 사용되는 식별 이름입니다.
+    * 에 대 한 **출력 별칭**를 입력 한 hello 작업 출력에 대 한 고유 이름입니다. 쿼리 toodirect hello 쿼리 출력 toothis Data Lake 저장소에에서 사용 되는 친숙 한 이름입니다.
     * **싱크**로 **Data Lake Store**를 선택합니다.
-    * Data Lake Store 계정에 대한 액세스 권한을 부여하라는 메시지가 표시됩니다. **권한 부여**를 클릭합니다.
+    * 입력 정보 요청된 tooauthorize 됩니다 tooData Lake 저장소 계정에 액세스 합니다. **권한 부여**를 클릭합니다.
 
-3. **새 출력** 블레이드에서 계속 다음 값을 제공합니다.
+3. Hello에 **새 출력** 블레이드에서 tooprovide hello 다음 값을 계속 합니다.
 
-    ![작업에 출력 추가](./media/data-lake-store-stream-analytics/create.output.3.png "작업에 출력 추가")
+    ![출력 tooyour 작업을 추가](./media/data-lake-store-stream-analytics/create.output.3.png "출력 tooyour 작업 추가")
 
-    * **계정 이름**에는 작업 출력을 전송하려는 위치에 미리 만든 Data Lake Store 계정을 선택합니다.
-    * **경로 접두사 패턴**에는 지정된 Data Lake Store 계정 내에서 파일을 작성하는 데 사용되는 파일 경로를 입력합니다.
-    * **날짜 형식**의 경우, 접두사 경로에 날짜 토큰을 사용한 경우 파일을 구성하는 날짜 형식을 선택할 수 있습니다.
-    * **시간 형식**의 경우, 접두사 경로에 시간 토큰을 사용한 경우 파일을 구성하는 시간 형식을 지정합니다.
+    * 에 대 한 **계정 이름**를 전송 하는 hello 작업 출력 toobe 저장할 이미 만든 hello 데이터 레이크 저장소 계정을 선택 합니다.
+    * 에 대 한 **경로 접두사 패턴**, 입력 파일에 사용 된 경로 toowrite hello 내에서 파일에 데이터 레이크 저장소 계정을 지정 합니다.
+    * 에 대 한 **날짜 형식**, 날짜 토큰을 사용 하는 hello 접두사 경로 있는 경우 파일 구성 됩니다 hello 날짜 형식을 선택할 수 있습니다.
+    * 에 대 한 **시간 형식**시간 토큰을 사용 하는 hello 접두사 경로 있는 경우, 사용자 파일 구성할 지 hello 시간 형식을 지정 합니다.
     * **이벤트 직렬화 형식**으로 **CSV**를 선택합니다.
     * **구분 기호**로 **탭**을 선택합니다.
     * **인코딩**으로 **UTF-8**을 선택합니다.
     
-    **만들기**를 클릭합니다. 이제 포털에 출력이 추가되고 연결을 테스트합니다.
+    **만들기**를 클릭합니다. 이제 hello 포털 hello 출력을 추가 하 고 hello 연결 tooit를 테스트 합니다.
     
-## <a name="run-the-stream-analytics-job"></a>스트림 분석 작업 실행
+## <a name="run-hello-stream-analytics-job"></a>Hello 스트림 분석 작업을 실행 합니다.
 
-1. Stream Analytics 작업을 실행하려면 **쿼리** 탭에서 쿼리를 실행해야 합니다. 이 자습서에서는 아래의 화면 캡처와 같이 작업 입력 및 출력 별칭으로 자리 표시자를 대체하여 샘플 쿼리를 실행할 수 있습니다.
+1. 스트림 분석 작업 toorun hello에서 쿼리를 실행 해야 **쿼리** 탭 합니다. 이 자습서에서는 대체 하 여 hello 예제 쿼리를 실행할 수 있습니다 hello 화면 캡처 아래와 같이 hello로 hello 자리 표시자 작업 입력 및 출력 별칭입니다.
 
     ![쿼리 실행](./media/data-lake-store-stream-analytics/run.query.png "쿼리 실행")
 
-2. 화면 맨 위에서 **저장**을 클릭한 다음 **개요** 탭에서 **시작**을 클릭합니다. 대화 상자에서 **사용자 지정 시간**을 선택한 다음 현재 날짜 및 시간을 설정합니다.
+2. 클릭 **저장** 그 다음 hello hello hello 화면 맨 위에서 **개요** 탭을 클릭 **시작**합니다. Hello 대화 상자에서 선택 **사용자 지정 시간**, hello 현재 날짜 및 시간을 설정 합니다.
 
     ![작업 시간 설정](./media/data-lake-store-stream-analytics/run.query.2.png "작업 시간 설정")
 
-    **시작**을 클릭하여 작업을 시작합니다. 작업을 시작하는 데 최대 몇 분이 걸릴 수 있습니다.
+    클릭 **시작** toostart hello 작업 합니다. 최대 tooa 몇 분 toostart hello 작업을 걸릴 수 있습니다.
 
-3. Blob에서 데이터를 선택하는 작업을 트리거하려면 샘플 데이터 파일을 Blob 컨테이너에 복사합니다. [Azure Data Lake Git 리포지토리](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)에서 샘플 데이터 파일을 가져올 수 있습니다. 이 자습서에서는 **vehicle1_09142014.csv** 파일을 복사하겠습니다. [Azure 저장소 탐색기](http://storageexplorer.com/)와 같은 다양한 클라이언트를 사용하여 Blob 컨테이너에 데이터를 업로드할 수 있습니다.
+3. hello blob에서 tootrigger hello 작업 toopick hello 데이터 샘플 데이터 파일 toohello blob 컨테이너를 복사 합니다. Hello에서 예제 데이터 파일을 가져올 수 있습니다 [Azure 데이터 레이크 Git 리포지토리](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)합니다. 이 자습서에 대 한 복사 hello 파일 **vehicle1_09142014.csv**합니다. 와 같은 다양 한 클라이언트를 사용할 수 [Azure 저장소 탐색기](http://storageexplorer.com/), tooupload 데이터 tooa blob 컨테이너입니다.
 
-4. **개요** 탭의 **모니터링** 아래에서 데이터가 처리된 방식을 확인합니다.
+4. Hello에서 **개요** 탭의 **모니터링**, hello 데이터 처리 방법을 참조 하세요.
 
     ![작업 모니터링](./media/data-lake-store-stream-analytics/run.query.3.png "작업 모니터링")
 
-5. 마지막으로 Data Lake Store 계정에서 작업 출력 데이터가 제공되는 것을 확인할 수 있습니다. 
+5. 마지막으로 hello 작업 출력 데이터를 hello Data Lake 저장소 계정에서 사용할 수 있는지 확인할 수 있습니다. 
 
     ![출력 확인](./media/data-lake-store-stream-analytics/run.query.4.png "출력 확인")
 
-    데이터 탐색기 창에서 Data Lake Store 출력 설정(`streamanalytics/job/output/{date}/{time}`)에 지정된 대로 출력이 폴더 경로에 기록됩니다.  
+    Hello 데이터 탐색기 창에서 해당 hello 출력으로 작성 된 tooa 폴더 경로에 지정 된 hello 데이터 레이크 저장소 출력 설정 확인 (`streamanalytics/job/output/{date}/{time}`).  
 
 ## <a name="see-also"></a>참고 항목
-* [HDInsight 클러스터를 만들어 Data Lake 저장소 사용](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [HDInsight 클러스터 toouse 데이터 레이크 저장소 만들기](data-lake-store-hdinsight-hadoop-use-portal.md)

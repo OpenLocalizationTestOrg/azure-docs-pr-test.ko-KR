@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 모니터링 데이터 사용 | Microsoft Docs"
-description: "현재 Azure에서 사용할 수 있는 모든 모니터링 데이터 원본을 알아봅니다."
+title: "Azure로에서 데이터를 모니터링 하는 aaaConsume | Microsoft Docs"
+description: "현재 Azure에서 사용할 수 있는 데이터 원본을 모니터링 하는 모든 hello에 알아봅니다."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/27/2017
 ms.author: johnkem
-ms.openlocfilehash: 6586cad908e6527b874dc3f0ee256c6b2cea8c49
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3c7fdad7c25b4d456df395b453fa0e75d514b0b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="consume-monitoring-data-from-azure"></a>Azure에서 모니터링 데이터 사용
 
-Azure 플랫폼 전반에 걸쳐 Azure Monitor 파이프라인을 사용하여 모니터링 데이터를 한 곳에 모았지만 일부 모니터링 데이터는 파이프라인에서 아직 사용할 수 없습니다. 이 문서에서는 Azure 서비스에서 프로그래밍 방식으로 모니터링 데이터에 액세스할 수 있는 여러 가지 방법을 요약합니다.
+Hello Azure 간에 플랫폼, 우리는 상태로 전환 함께 hello Azure 모니터 파이프라인과 한 위치에서 데이터를 모니터링 하지만 실제로 오늘 모든 모니터링 데이터를 아직 해당 파이프라인에서 사용할 수 있는지를 확인 합니다. 이 문서에서는 hello Azure 서비스에서 모니터링 데이터를 프로그래밍 방식으로 액세스할 수 있는 다양 한 방법으로 요약 됩니다.
 
 ## <a name="options-for-data-consumption"></a>데이터 사용 옵션
 
@@ -52,5 +52,5 @@ Azure 플랫폼 전반에 걸쳐 Azure Monitor 파이프라인을 사용하여 �
 ## <a name="next-steps"></a>다음 단계
 
 - [Azure Monitor 메트릭](monitoring-overview-metrics.md)에 대해 자세히 알아보기
-- [Azure 활동 로그](monitoring-overview-activity-logs.md)에 대해 자세히 알아보기
+- 에 대 한 자세한 내용은 [hello Azure 활동 로그](monitoring-overview-activity-logs.md)
 - [Azure 진단 로그](monitoring-overview-of-diagnostic-logs.md)에 대해 자세히 알아보기

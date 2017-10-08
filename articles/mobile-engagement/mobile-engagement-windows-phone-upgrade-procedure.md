@@ -1,5 +1,5 @@
 ---
-title: "Windows Phone Silverlight SDK 업그레이드 절차"
+title: "aaaWindows Phone Silverlight SDK 업그레이드 절차"
 description: "Azure Mobile Engagement용 Windows Phone Silverlight SDK 업그레이드 절차"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: f87f65788075c7f4067e77946e1bcbc8f3709317
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d72e7b8a59ef2c0a95b22efbf1e5257271399ddc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-phone-silverlight-sdk-upgrade-procedures"></a>Windows Phone Silverlight SDK 업그레이드 절차
-이전 버전의 SDK를 응용 프로그램에 이미 통합한 경우에는 SDK를 업그레이드할 때 다음 사항을 고려해야 합니다.
+통합 한 경우 이미이 SDK의 이전 버전 응용 프로그램으로, tooconsider hello hello SDK로 업그레이드 하는 경우 지점 뒤에 있어야 합니다.
 
-여러 SDK 버전을 건너뛴 경우에는 여러 절차를 수행해야 할 수 있습니다. 예를 들어 0.10.1에서 0.11.0으로 마이그레이션하는 경우에는 먼저 "0.9.0에서 0.10.1로 마이그레이션" 절차를 수행한 후에 "0.10.1에서 0.11.0으로 마이그레이션" 절차를 수행해야 합니다.
+여러 버전의 SDK hello 누락 하는 경우 몇 가지 절차 toofollow 있을 수 있습니다. 예를 들어 0.10.1에서 마이그레이션하는 경우 toofirst hello를 따라 있는 too0.11.0 "0.9.0에서 too0.10.1" 프로시저 다음 hello "0.10.1에서 too0.11.0" 프로시저입니다.
 
-## <a name="from-200-to-330"></a>2.0.0에서 3.3.0으로
+## <a name="from-200-too330"></a>2.0.0에서 too3.3.0
 ### <a name="test-logs"></a>테스트 로그
-이제 SDK에서 생성된 콘솔 로그를 사용/사용 안 함/필터링할 수 있습니다. 이를 사용자 지정하려면 속성 `EngagementAgent.Instance.TestLogEnabled`를 `EngagementTestLogLevel` 열거형에서 사용 가능한 값 중 하나로 업데이트합니다. 예를 들어 다음과 같습니다.
+Hello SDK에서 생성 되는 콘솔 로그 사용/사용 안 함/필터링 될 수 있습니다. toocustomize이, 업데이트 hello 속성 `EngagementAgent.Instance.TestLogEnabled` hello에서 사용할 수 있는 hello 값의 tooone `EngagementTestLogLevel` 열거형 예를 들어:
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();
 
-## <a name="from-111-to-200"></a>1.1.1에서 2.0.0으로 마이그레이션
-아래에서는 SDK 통합을 Capptain SAS 제공 Capptain 서비스에서 Azure Mobile Engagement 구동 앱으로 마이그레이션하는 방법을 설명합니다. 
+## <a name="from-111-too200"></a>1.1.1에서 too2.0.0
+hello 다음 설명 방법을 toomigrate SDK 통합 hello Capptain 서비스에서에서 제공한 Capptain SAS Azure Mobile Engagement에서 제공 하는 응용 프로그램에 합니다. 
 
 > [!IMPORTANT]
-> Capptain과 Mobile Engagement는 같은 서비스가 아니며, 아래에서 제공하는 절차에서는 클라이언트 앱을 마이그레이션하는 방법만 중점적으로 설명합니다. 앱에서 SDK를 마이그레이션해도 데이터가 Capptain 서버에서 Mobile Engagement 서버로 마이그레이션되지는 않습니다.
+> Capptain 및 Mobile Engagement는 동일한 서비스 하지 hello 및 아래에 주어진 hello 프로시저 어떻게 toomigrate hello 클라이언트 응용 프로그램을 강조 표시 합니다. Hello 앱에 마이그레이션 hello SDK hello Capptain 서버 toohello Mobile Engagement 서버에서 데이터를 마이그레이션하지 않습니다.
 > 
 > 
 
-이전 버전에서 마이그레이션하는 경우에는 Capptain 웹 사이트를 참조하여 1.1.1로 먼저 마이그레이션한 후에 다음 절차를 따르세요.
+이전 버전에서 마이그레이션하려는 경우 하십시오 hello Capptain 웹 사이트 toomigrate too1.1.1를 먼저 참조 다음 절차를 수행 하는 hello를 적용 합니다.
 
 ### <a name="nuget-package"></a>NuGet 패키지
 **Capptain.WindowsPhone**을 **MicrosoftAzure.MobileEngagement** Nuget 패키지로 대체합니다.
 
 ### <a name="applying-mobile-engagement"></a>Mobile Engagement 적용
-SDK에서는 `Engagement`(이)라는 용어를 사용합니다. 이 변경 내용에 맞게 프로젝트를 업데이트해야 합니다.
+hello SDK hello 단어를 사용 하 여 `Engagement`합니다. Tooupdate 프로젝트 toomatch 해야이 변경 합니다.
 
-현재 Capptain NuGet 패키지는 제거해야 합니다. Capptain 리소스 폴더의 모든 변경 내용도 제거됩니다. 해당 폴더의 파일을 보존하려면 복사본을 만드세요.
+Toouninstall 현재 Capptain nuget 패키지를 해야합니다. Capptain 리소스 폴더의 모든 변경 내용도 제거됩니다. Tookeep 하려는 경우 해당 파일의 복사본을 확인 합니다.
 
-그런 다음 새 Microsoft Azure Engagement NuGet 패키지를 프로젝트에 설치합니다. 해당 패키지는 [Nuget](http://www.nuget.org/packages/MicrosoftAzure.MobileEngagement)에서 직접 찾을 수 있습니다. 이 작업을 수행하면 Engagement에서 사용하는 모든 리소스 파일이 바뀌며 프로젝트 참조에 새 Engagement DLL이 추가됩니다.
+그 후 hello 새 Microsoft Azure Engagement nuget 패키지를 프로젝트에 설치 합니다. 해당 패키지는 [Nuget](http://www.nuget.org/packages/MicrosoftAzure.MobileEngagement)에서 직접 찾을 수 있습니다. 프로젝트 참조를 Engagement에서 사용 되는 및 hello 새 Engagement DLL tooyour 추가 하는 모든 리소스 파일에이 작업으로 바꿉니다.
 
-Capptain DLL 참조를 삭제하여 프로젝트 참조를 정리해야 합니다. 이렇게 하지 않으면 Capptain 버전이 충돌하여 오류가 발생합니다.
+해야 tooclean 프로젝트 참조 Capptain DLL 참조를 삭제 하 여 합니다. 이 적용 하지 않을 경우 hello 버전 Capptain의 충돌 하는 및 오류가 발생 합니다.
 
-Capptain 리소스를 사용자 지정한 경우 이전 파일 콘텐츠를 복사하여 새 Engagement 파일에 붙여 넣습니다. xaml 파일과 cs 파일을 모두 업데이트해야 합니다.
+Capptain 리소스를 사용자 지정한 경우 이전 파일 내용을 복사한 hello 새 Engagement 파일에 붙여 넣습니다. Xaml 및 cs 파일을 모두 업데이트 toobe 한지 note 하십시오.
 
-해당 단계를 완료한 후에는 이전 Capptain 참조만 새 Engagement 참조로 바꾸면 됩니다.
+이러한 단계가 완료 되 면 hello 새 Engagement 참조에 의해 tooreplace 이전 Capptain 참조가 있습니다.
 
-1. 모든 Capptain 네임스페이스를 업데이트해야 합니다.
+1. 모든 Capptain 네임 스페이스 업데이트 toobe가 있어야 합니다.
    
     마이그레이션 전:
    
@@ -108,18 +108,18 @@ Capptain 리소스를 사용자 지정한 경우 이전 파일 콘텐츠를 복�
         xmlns:engagement="clr-namespace:Microsoft.Azure.Engagement;assembly=Microsoft.Azure.Engagement.EngagementAgent.WP"
         ...
         </engagement:EngagementPage>
-4. Capptain 그림과 같은 기타 리소스도 "Engagement"를 사용하도록 이름이 바뀌었습니다.
+4. Hello Capptain 그림 등의 다른 리소스에 대 한,이 또한 있다가 이름이 바뀐된 toouse "계약" 점에 유의 하십시오.
 
 ### <a name="application-id--sdk-key"></a>응용 프로그램 ID/SDK 키
-Engagement에서는 연결 문자열을 사용합니다. 따라서 Mobile Engagement에서는 응용 프로그램 ID와 SDK 키를 지정할 필요가 없으며 연결 문자열만 지정하면 됩니다. EngagementConfiguration 파일에서 연결 문자열을 설정할 수 있습니다.
+Engagement에서는 연결 문자열을 사용합니다. 응용 프로그램 ID 및 Mobile Engagement와 SDK 키 toospecify 없는, 하기만 하면 toospecify 연결 문자열입니다. EngagementConfiguration 파일에서 연결 문자열을 설정할 수 있습니다.
 
-Engagement 구성은 프로젝트의 `Resources\EngagementConfiguration.xml` 파일에서 설정할 수 있습니다.
+hello Engagement 구성에서 설정할 수 있습니다 프로그램 `Resources\EngagementConfiguration.xml` 프로젝트의 파일입니다.
 
-이 파일을 편집하여 다음을 지정합니다.
+이 파일 toospecify를 편집 합니다.
 
 * `<connectionString>` 및 `<\connectionString>` 태그 사이의 응용 프로그램 연결 문자열
 
-이 문자열을 런타임에 지정하려는 경우에는 Engagement 에이전트 초기화 전에 다음 메서드를 호출하면 됩니다.
+런타임 시 대신 있습니다 호출할 수 있는 hello 다음 toospecify 하려는 경우 hello Engagement 에이전트를 초기화 하기 전에 메서드:
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -128,10 +128,10 @@ Engagement 구성은 프로젝트의 `Resources\EngagementConfiguration.xml` 파
         /* Initialize Engagement angent with above configuration. */
         EngagementAgent.Instance.Init(engagementConfiguration);
 
-응용 프로그램의 연결 문자열은 Azure 클래식 포털에 표시됩니다.
+응용 프로그램에 대 한 연결 문자열 hello hello Azure 클래식 포털에에서 표시 됩니다.
 
 ### <a name="items-name-change"></a>항목 이름 변경
-*capptain*이라는 모든 항목은 *engagement*라고 이름을 지정합니다. 마찬가지로 *Capptain*은 *Engagement*로 지정됩니다.
+*capptain*이라는 모든 항목은 *engagement*라고 이름을 지정합니다. 마찬가지로 *Capptain* 너무*Engagement*합니다.
 
 일반적으로 사용되는 Capptain 항목의 예제:
 

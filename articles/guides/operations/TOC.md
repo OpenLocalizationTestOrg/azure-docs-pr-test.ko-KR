@@ -6,12 +6,12 @@
 ## [주요 개념](azure-operations-guide.md#azure-key-concepts)
 ### [Microsoft Azure Portal 개요](https://azure.microsoft.com/documentation/articles/azure-portal-overview/) 
 ### [포털을 통해 Azure 리소스 관리](https://docs.microsoft.com/azure/azure-portal/resource-group-portal)
-### [Azure PowerShell 설치 및 구성하는 방법](/powershell/azure/install-azurerm-ps)
-### [Azure CLI 설치](/cli/azure/install-azure-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [어떻게 tooinstall Azure PowerShell 및 구성](/powershell/azure/install-azurerm-ps)
+### [Hello Azure CLI를 설치 합니다.](/cli/azure/install-azure-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [Azure REST SDK 참조](https://docs.microsoft.com/rest/api/index)
 
 ## [구독](azure-operations-guide.md#azure-subscriptions)
-### [Azure 청구 송장 및 일간 사용 현황 데이터를 다운로드하는 방법](../../billing/billing-download-azure-invoice-daily-usage-date.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [어떻게 toodownload 프로그램 Azure 청구 청구서 및 일일 사용량 데이터](../../billing/billing-download-azure-invoice-daily-usage-date.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [리소스 사용에 대한 통찰력 얻기](../../billing/billing-usage-rate-card-overview.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [온라인 요금 계산기](http://azure.microsoft.com/pricing/calculator)
 ### [청구 경고 설정](../../billing/billing-set-up-alerts.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
@@ -19,12 +19,12 @@
 ## [Azure 리소스 관리자](azure-operations-guide.md#azure-resource-manager)
 
 ### [Azure 리소스 관리자 템플릿 작성](../../resource-group-authoring-templates.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-###[Azure Portal을 사용하여 템플릿 배포](../../azure-resource-manager/resource-group-template-deploy-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+###[Hello Azure 포털을 사용 하 여 템플릿을 배포 합니다.](../../azure-resource-manager/resource-group-template-deploy-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ###[Azure PowerShell을 사용하여 템플릿 배포](../../azure-resource-manager/resource-group-template-deploy.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-###[Azure CLI를 사용하여 템플릿 배포](../../azure-resource-manager/resource-group-template-deploy-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+###[Hello Azure CLI를 사용 하 여 템플릿을 배포 합니다.](../../azure-resource-manager/resource-group-template-deploy-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 
 ## [보안(RBAC)](azure-operations-guide.md#security-of-azure-resource)
-###[역할 할당을 사용하여 리소스 관리](../../active-directory/role-based-access-control-configure.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+###[역할 할당 toomanage 리소스를 사용 하 여](../../active-directory/role-based-access-control-configure.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 
 ## [가상 컴퓨터](azure-operations-guide.md#azure-virtual-machines)
 ### [Windows용 VM 크기](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fguides%2foperations%2ftoc.json) 
@@ -32,8 +32,8 @@
 
 
 ### Windows VM 빠르게 만들기
-#### [Azure CLI 사용](../../virtual-machines/windows/quick-create-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-#### [포털 사용](../../virtual-machines/windows/quick-create-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+#### [Hello Azure CLI를 사용 하 여](../../virtual-machines/windows/quick-create-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+#### [Hello 포털을 사용 하 여](../../virtual-machines/windows/quick-create-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 #### [PowerShell 사용](../../virtual-machines/windows/quick-create-powershell.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### Windows용 가상 컴퓨터 자습서
 #### [VM 만들기/관리](../../virtual-machines/windows/tutorial-manage-vm.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
@@ -50,8 +50,8 @@
 #### [팀 서비스 CI/CD](../../virtual-machines/windows/tutorial-vsts-iis-cicd.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 
 ### Linux VM 빠르게 만들기
-#### [Azure CLI 사용](../../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-#### [포털 사용](../../virtual-machines/linux/quick-create-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+#### [Hello Azure CLI를 사용 하 여](../../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+#### [Hello 포털을 사용 하 여](../../virtual-machines/linux/quick-create-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 #### [PowerShell 사용](../../virtual-machines/linux/quick-create-powershell.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### Linux용 가상 컴퓨터 자습서
 #### [VM 만들기/관리](../../virtual-machines/linux/tutorial-manage-vm.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
@@ -68,19 +68,19 @@
 #### [Jenkins CI/CD](../../virtual-machines/linux/tutorial-jenkins-github-docker-cicd.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 
 ### [Azure의 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-### [Azure Portal을 사용하여 Azure에서 VM으로 포트 열기](../../virtual-machines/windows/nsg-quickstart-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [여는 포트 tooa hello Azure 포털을 사용 하 여 Azure에서 VM](../../virtual-machines/windows/nsg-quickstart-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 
 ## [저장소](azure-operations-guide.md#azure-storage)
 
 ### [Azure Blob 저장소](../../storage/blobs/storage-blob-storage-tiers.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [.NET을 사용하여 Azure Blob 저장소 시작](../../storage/blobs/storage-dotnet-how-to-use-blobs.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [Windows에서 Azure 파일 저장소 시작](../../storage/files/storage-how-to-use-files-windows.md?toc=%2fazure%2fguides%2foperations%2ftoc.json) 
-### [Linux에서 Azure 파일 저장소 사용 방법](../../storage/files/storage-how-to-use-files-linux.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [어떻게 toouse Linux로 Azure 파일 저장소](../../storage/files/storage-how-to-use-files-linux.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [Azure Table Storage 시작](../../cosmos-db/table-storage-how-to-use-dotnet.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [Azure Queue Storage 시작](../../storage/queues/storage-dotnet-how-to-use-queues.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [저장소 계정을 만드는](../../storage/common/storage-create-storage-account.md#create-a-storage-account)
 ### [Azure 저장소와 함께 Azure PowerShell 사용](../../storage/common/storage-powershell-guide-full.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-### [Azure Storage에서 Azure CLI 사용.](../../storage/common/storage-azure-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [Azure 저장소에 있는 hello Azure CLI를 사용합니다.](../../storage/common/storage-azure-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [Azure Storage 클라이언트 도구](../../storage/common/storage-explorers.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [Azure Storage 서비스 REST API 참조](/rest/api/storageservices/Azure-Storage-Services-REST-API-Reference)
 ### [공유 액세스 서명 사용](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
@@ -88,13 +88,13 @@
 
 
 ## [가상 네트워크](azure-operations-guide.md#azure-virtual-network)
-### [Azure Portal을 사용하여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-pportal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [Hello Azure 포털을 사용 하 여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-pportal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [PowerShell을 사용하여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-ps.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-### [Azure CLI를 사용하여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+### [Hello Azure CLI를 사용 하 여 가상 네트워크 만들기](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### [네트워크 보안 그룹을 사용하여 네트워크 트래픽 필터링](../../virtual-network/virtual-networks-nsg.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 ### 가상 네트워킹 자습서
 #### [VM 부하 분산](../../virtual-machines/linux/tutorial-load-balance-nodejs.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
-#### [가상 네트워크에 컴퓨터 연결](../../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
+#### [컴퓨터 tooa 가상 네트워크에 연결](../../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fguides%2foperations%2ftoc.json)
 
 ## [다음 단계](azure-operations-guide.md#next-steps)
 # 리소스

@@ -1,6 +1,6 @@
 ---
-title: "Azure RemoteApp에서 Citrix XenApp Essentials로 마이그레이션 | Microsoft Docs"
-description: "Azure RemoteApp에서 Citrix XenApp Essentials로 마이그레이션하는 방법"
+title: "Azure RemoteApp tooCitrix XenApp Essentials에서에서 aaaMigrate | Microsoft Docs"
+description: "어떻게 toomigrate Azure RemoteApp tooCitrix XenApp Essentials에서"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,41 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: fcd96a466d1c0dad17d7012308281ef868463b19
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa3ce28bc5a86d5b1dd3408196d51935395f55c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-from-azure-remoteapp-to-citrix-xenapp-essentials"></a>Azure RemoteApp에서 Citrix XenApp Essentials로 마이그레이션
+# <a name="migrate-from-azure-remoteapp-toocitrix-xenapp-essentials"></a>Azure RemoteApp tooCitrix XenApp Essentials에서 마이그레이션
 
-Azure RemoteApp를 사용하고 Citrix XenApp Essentials로 마이그레이션하려는 몇 가지 필수 구성 요소에 유념해야 합니다. 먼저 Citrix의 [Citrix XenApp Essentials의 단계별 기술 배포 가이드](https://docs.citrix.com/content/dam/docs/en-us/citrix-cloud/downloads/xenapp-essentials-deployment-guide.pdf) 및 해당 [ 온라인 기술 라이브러리](http://docs.citrix.com/en-us/citrix-cloud/xenapp-and-xendesktop-service/xenapp-essentials.html)를 참고하세요. 
+Azure RemoteApp을 사용 중이 고 toomigrate tooCitrix XenApp Essentials, 많은 경우 몇 가지 필수 구성 요소 tookeep 유의 해야 합니다. 먼저 Citrix의 [Citrix XenApp Essentials의 단계별 기술 배포 가이드](https://docs.citrix.com/content/dam/docs/en-us/citrix-cloud/downloads/xenapp-essentials-deployment-guide.pdf) 및 해당 [ 온라인 기술 라이브러리](http://docs.citrix.com/en-us/citrix-cloud/xenapp-and-xendesktop-service/xenapp-essentials.html)를 참고하세요. 
 
 ## <a name="prerequisite-steps-for-migration"></a>마이그레이션을 위한 필수 구성 요소 단계
 
-1. 새로운 가상 네트워크를 만들거나 Azure Resource Manager에서 Citrix XenApp Essentials에 배포할 Azure Virtual Network를 결정합니다. Azure RemoteApp에서는 Azure 클래식 포털을 사용합니다. Citrix XenApp Essentials는 Azure Resource Manager만 지원합니다.  
-2. Citrix는 하이브리드 배포만 지원하기 때문에 선택한 가상 네트워크에 도메인 컨트롤러에 대한 네트워킹 액세스 권한이 있는지 확인합니다. Azure RemoteApp의 클라우드 배포를 사용하는 경우 가상 네트워크가 Active Directory 도메인 컨트롤러에 대한 네트워킹 액세스 권한이 있는지 확인합니다. Azure Active Directory Domain Services(Azure AD DS)를 사용할 수도 있습니다. 
-3. 첫 번째 시도에서 도메인 가입에 성공할 수 있도록 DNS가 가상 네트워크에 대해 올바르게 구성되어 있는지 확인합니다. 선택한 가상 네트워크에서 VM(가상 컴퓨터)을 만들고 수동 도메인 가입을 수행하여 DNS 및 도메인 가입이 예상대로 작동하는지 확인할 수 있습니다. 이렇게 하면 Citrix XenApp Essentials를 처음 배포할 때 성공할 수 있습니다. 
-4. 필요한 경우 Azure RemoteApp과 함께 사용하는 Azure 클래식 포털 가상 네트워크와 Azure Resource Manager 가상 네트워크간에 가상 네트워크 피어링을 만듭니다. 이 피어링 프로세스는 두 네트워크가 동일한 지역에 있는 경우 작동합니다. 그렇지 않은 경우 사이트 간 VPN을 사용하여 네트워킹용 가상 네트워크를 연결합니다. 
-5. 필요한 경우 [Azure RemoteApp 내부/외부로 데이터를 마이그레이션하는 방법](remoteapp-migrate.md)을 참조하세요. 
-6. 기존 Azure RemoteApp 이미지를 업데이트하여 Citrix VDA 구성 요소를 포함시킵니다(지침은 Citrix 설명서 참조). 
-7. Azure Marketplace로 이동하고 Citrix XenApp Essentials 배포를 시작합니다.
+1. 새로운 가상 네트워크를 만들거나 Azure Resource Manager에서 Citrix XenApp Essentials에 배포할 Azure Virtual Network를 결정합니다. Azure 클래식 포털; hello를 사용 하는 azure RemoteApp Citrix XenApp Essentials만 Azure 리소스 관리자를 지원합니다.  
+2. Citrix만 하이브리드 배포를 지원 하기 때문에 선택한 hello 가상 네트워크에 액세스 tooyour 도메인 컨트롤러, 네트워킹을 확인 합니다. Azure RemoteApp의 클라우드 배포를 사용 하는 경우 가상 네트워크에 액세스 tooan Active Directory 도메인 컨트롤러를 네트워크에 있는지 확인 합니다. Azure Active Directory Domain Services(Azure AD DS)를 사용할 수도 있습니다. 
+3. DNS가 제대로 구성 되어 hello 가상 네트워크에 대 한 도메인 가입 하 여 첫 번째 시도에서 성공한 이므로 해당 hello를 확인 합니다. 선택한 hello 가상 네트워크의 가상 컴퓨터 (VM)를 만들 하 고 해당 hello DNS 수동 도메인 가입 tooverify를 수행할 수 있습니다 및 예상 대로 작동 하는 도메인 가입 합니다. 이렇게 하면는 성공적인 hello 처음 Citrix XenApp Essentials를 배포 합니다. 
+4. 필요한 경우 Azure RemoteApp과 함께 사용하는 Azure 클래식 포털 가상 네트워크와 Azure Resource Manager 가상 네트워크간에 가상 네트워크 피어링을 만듭니다. 피어 링이 프로세스가 작동 하는 hello 두 네트워크에에서 들어 있는 경우 hello 동일 지역입니다. 그렇지 않으면 네트워킹에 대 한 사이트 간 VPN tooconnect hello 가상 네트워크를 사용 합니다. 
+5. 필요에 따라 읽기 [방법 및 Azure RemoteApp 외부로 toomigrate 데이터](remoteapp-migrate.md)합니다. 
+6. 업데이트 하면 기존 Azure RemoteApp 이미지 tooinclude hello Citrix VDA 구성 요소 (자세한 내용은 hello Citrix 설명서 참조). 
+7. Azure 마켓플레이스 toohello 이동한 Citrix XenApp Essentials 배포를 시작 합니다.
 
 ## <a name="other-considerations"></a>기타 고려 사항
 
-마이그레이션 할 때 다음과 같은 추가 고려 사항에 유념하세요.
-- Citrix XenApp Essentials는 하이브리드 배포만 지원합니다. 즉, 도메인 조인을 수행하기 위해 도메인 컨트롤러에 대한 네트워크 액세스 권한이 필요합니다. Azure RemoteApp의 클라우드 배포를 사용하는 경우 Azure AD DS를 사용하거나 도메인 가입을 위해 가상 네트워크에 Active Directory에 대한 액세스 권한이 있는지 확인합니다. 
-- Citrix XenApp Essentials로 사용자 데이터를 이동하는 방법을 알아보려면 [Azure RemoteApp 내부/외부로 데이터를 마이그레이션하는 방법](remoteapp-migrate.md)을 참조하세요. 
+마이그레이션하는 경우 추가로 고려해 야 할 다음 hello 유의 해야 합니다.
+- Citrix XenApp Essentials는 하이브리드 배포만 지원합니다. 즉, 순서 tooperform 도메인 가입의 네트워크 액세스 tooa 도메인 컨트롤러가 필요합니다. Azure RemoteApp의 클라우드 배포를 사용 하는 경우 Azure AD DS를 사용 하거나 가상 네트워크에 도메인 가입에 대 한 액세스 tooActive 디렉터리에 있는지 확인 하십시오. 
+- toolearn toomove 사용자 데이터 tooCitrix XenApp Essentials 참조 [방법 및 Azure RemoteApp 외부로 toomigrate 데이터](remoteapp-migrate.md)합니다. 
 - Citrix XenApp Essentials는 Active Directory 계정만을 지원합니다. Microsoft 계정(예 : outlook.com, msn.com 또는 hotmail.com)은 지원하지 않습니다. 
 
 ## <a name="citrix-xenapp-essentials-billing"></a>Citrix XenApp Essentials 청구
 
-가격 책정에 대한 자세한 내용은 [FAQ](https://www.citrix.com/global-partners/microsoft/resources/xenapp-essentials-faq.html#tab-30699) 및 [Citrix 개요 문서](https://www.citrix.com/global-partners/microsoft/remote-app.html)를 참고하세요. Citrix XenApp Essentials에 대해 세 가지 청구 구성 요소가 있습니다.
+가격 책정에 자세한 내용은 참조 hello [FAQ](https://www.citrix.com/global-partners/microsoft/resources/xenapp-essentials-faq.html#tab-30699) 및 [Citrix 개요 문서](https://www.citrix.com/global-partners/microsoft/remote-app.html)합니다. TooCitrix XenApp Essentials는 세 개의 청구 구성 요소:
 
-- Citrix 서비스 요금은 월 사용자당 $12입니다. 모든 Azure Marketplace 구매와 같이 Azure 구독에 연결된 지불 방법으로 청구됩니다. EA(기업 계약) 고객의 경우 Azure 금액 크레딧을 사용할 수 없습니다. 
-- RDS(Remote Data Services) CAL(client access licenses) 현재 Citrix XenApp Essentials 결제 정보와 함께 제공되는 원격 액세스 요금은 $ 6.25로 구입할 수 있습니다. EA 고객은 Azure 금액 크레딧을 사용하여 지불할 수 있습니다. 기존 RDS CAL을 사용하려면 청구서에 적용할 수 있도록 [arainfo@microsoft.com](mailto:arainfo@microsoft.com)으로 문의하세요. 
-- Azure 계산 및 저장소 이 기능은 VM에서 사용한 Azure Storage 비용 및 계산 소비입니다. VM 크기와 사용자 밀도를 선택할 때 가격 책정에 주의하세요. EA 고객은 Azure 금액 크레딧을 사용하여 지불할 수 있습니다.
+- hello Citrix 서비스 요금을는 매월 사용자 당 $12입니다. 모든 Azure 마켓플레이스 구매와 같은 Azure 구독에 연결 된 청구 toohello 지불 방법입니다. EA(기업 계약) 고객의 경우 Azure 금액 크레딧을 사용할 수 없습니다. 
+- RDS(Remote Data Services) CAL(client access licenses) 현재는 $6.25에 대 한 hello Citrix XenApp Essentials 지불으로 제공 되는 원격 액세스 요금이 hello를 구입할 수 있습니다. EA 고객 인 경우이 대 한 Azure 금액 크레딧 toopay를 사용할 수 있습니다. 기존 RDS Cal toouse 하려는 경우에 게 문의 하세요. [ arainfo@microsoft.com ](mailto:arainfo@microsoft.com)이므로이 tooyour 청구서를 적용할 수 있습니다. 
+- Azure 계산 및 저장소 이 hello Azure 저장소 비용 및 계산 소비 hello Vm에 대 한 사용 합니다. VM 크기와 사용자 밀도를 선택할 때 가격 책정에 주의하세요. EA 고객 인 경우이 대 한 Azure 금액 크레딧 toopay를 사용할 수 있습니다.
 
 다른 질문이 있으면:
 - [arainfo@microsoft.com](mailto:arainfo@microsoft.com)으로 메일을 보내세요.
-- [Azure 지원에 문의하세요](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade). 먼저 [Azure 지원 사례를 열어서](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 필수 조건 1~5 단계에 도움이 되도록 합니다. 6~7 단계의 경우 Citrix 관리 포털 내에서 지원 티켓을 열어서 Citrix에 문의하세요. 
+- [Azure 지원에 문의하세요](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade). 먼저 [Azure 지원 케이스를 열고](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) toohelp 필수 구성 요소와 1-5 단계. 6-7 단계에 대 한 hello Citrix 관리 포털 내에서 지원 티켓을 열어 Citrix에 게 문의 합니다. 

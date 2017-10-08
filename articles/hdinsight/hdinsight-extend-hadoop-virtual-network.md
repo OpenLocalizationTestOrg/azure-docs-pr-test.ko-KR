@@ -1,6 +1,6 @@
 ---
-title: "Virtual Network로 HDInsight 확장 - Azure | Microsoft Docs"
-description: "Azure Virtual Network를 사용하여 HDInsight 다른 클라우드 리소스 또는 데이터 센터에서 리소스에 연결하는 방법을 알아봅니다."
+title: "가상 네트워크-Azure HDInsight aaaExtend | Microsoft Docs"
+description: "어떻게 toouse Azure 가상 네트워크 tooconnect HDInsight tooother 클라우드 리소스 또는 데이터 센터의 리소스에 알아봅니다"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,173 +15,173 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/23/2017
 ms.author: larryfr
-ms.openlocfilehash: 380423ec42ad4905c73fcd57501102e9f7062e81
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ba80be4d9f280c6c62fa8acc996ef5f921acdbbd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="extend-azure-hdinsight-using-an-azure-virtual-network"></a>Azure Virtual Network를 사용하여 Azure HDInsight 확장
 
-[Azure Virtual Network](../virtual-network/virtual-networks-overview.md)에 HDInsight를 사용하는 방법을 알아봅니다. Azure Virtual Network를 사용하면 다음 시나리오가 가능합니다.
+자세한 내용은 방법 toouse HDInsight와는 [Azure 가상 네트워크](../virtual-network/virtual-networks-overview.md)합니다. Azure 가상 네트워크를 사용 하 여 다음 시나리오는 hello 수 있습니다.
 
-* 온-프레미스 네트워크에서 HDInsight에 직접 연결합니다.
+* 온-프레미스 네트워크에서 직접 tooHDInsight를 연결 합니다.
 
-* Azure Virtual Network에서 데이터 저장소에 HDInsight를 연결합니다.
+* HDInsight toodata 연결 된 Azure 가상 네트워크에 저장 합니다.
 
-* 인터넷을 통해 공개적으로 사용할 수 없는 Hadoop 서비스에 직접 액세스합니다. 예를 들어 Kafka API 또는 HBase Java API.
+* 직접 넘는 공개적으로 사용할 수 없는 Hadoop 서비스 액세스 방법에 인터넷 hello 합니다. 예를 들어 Kafka Api 또는 hello HBase Java API입니다.
 
 > [!WARNING]
-> 이 문서의 정보를 이해하려면 TCP/IP 네트워킹에 대한 사전 지식이 필요합니다. TCP/IP 네트워킹에 대해 잘 모르는 경우 이전에 프로덕션 네트워크를 수정한 사람과 협력하여 작업해야 합니다.
+> hello이이 문서의 정보에에서는 TCP/IP 네트워킹 이해를 해야 합니다. TCP/IP 네트워킹 잘 모르는 경우 tooproduction 네트워크 수정 하기 전에 장애가 있는 사용자와 파트너가 해야 합니다.
 
 ## <a name="planning"></a>계획
 
-다음은 가상 네트워크에 HDInsight를 설치하려고 할 때 대답해야 하는 질문입니다.
+hello 다음은 가상 네트워크의 tooinstall HDInsight를 계획할 때 대답 해야 하는 hello 질문입니다.
 
-* 기존 가상 네트워크에 HDInsight 설치해야 하나요? 아니면 새 네트워크를 만드나요?
+* 기존 가상 네트워크에 HDInsight tooinstall 필요 한가요? 아니면 새 네트워크를 만드나요?
 
-    기존 가상 네트워크를 사용하는 경우 HDInsight를 설치하기 전에 네트워크 구성을 수정해야 할 수 있습니다. 자세한 내용은 [기존 가상 네트워크에 HDInsight 추가](#existingvnet) 섹션을 참조하세요.
+    기존 가상 네트워크를 사용 하는 경우 HDInsight를 설치 하기 전에 toomodify hello 네트워크 구성을 할 수 있습니다. 자세한 내용은 참조 hello [HDInsight tooan 기존 가상 네트워크 추가](#existingvnet) 섹션.
 
-* HDInsight가 들어 있는 가상 네트워크를 다른 가상 네트워크 또는 온-프레미스 네트워크에 연결하시겠습니까?
+* 온-프레미스 네트워크 또는 tooconnect hello 가상 네트워크 HDInsight tooanother 가상 네트워크를 포함 하 시겠습니까?
 
-    네트워크 간의 리소스로 쉽게 작업하려면 사용자 지정 DNS를 만들고 DNS 전달을 구성해야 할 수 있습니다. 자세한 내용은 [다중 네트워크 연결](#multinet) 섹션을 참조하세요.
+    tooeasily 작업 네트워크를 통해 리소스를 리소스와 필요한 사용자 지정 DNS toocreate 및 DNS 전달 구성 될 수 있습니다. 자세한 내용은 참조 hello [여러 네트워크 연결](#multinet) 섹션.
 
-* HDInsight로의 인바운드 또는 아웃바운드 트래픽을 제한/리디렉션하시겠습니까?
+* Toorestrict/리디렉션 원하는 인바운드 또는 아웃 바운드 트래픽 tooHDInsight?
 
-    HDInsight는 Azure 데이터 센터에서 특정 IP 주소와 무제한 통신을 포함해야 합니다. 또한 클라이언트 통신에 방화벽을 통해 허용해야 하는 여러 포트가 있습니다. 자세한 내용은 [네트워크 트래픽 제어](#networktraffic) 섹션을 참조하세요.
+    HDInsight은 hello Azure 데이터 센터에서 특정 IP 주소와 통신을 제한 해야 있습니다. 또한 클라이언트 통신에 방화벽을 통해 허용해야 하는 여러 포트가 있습니다. 자세한 내용은 참조 hello [네트워크 트래픽을 제어](#networktraffic) 섹션.
 
-## <a id="existingvnet"></a>기존 가상 네트워크에 HDInsight 추가
+## <a id="existingvnet"></a>HDInsight tooan 기존 가상 네트워크 추가
 
-이 섹션의 단계를 사용하여 새 HDInsight를 기존 Azure Virtual Network에 추가하는 방법을 알아봅니다.
+이 섹션 toodiscover을 어떻게 hello 단계를 사용 하 여 Azure 가상 네트워크를 기존 새 HDInsight tooan tooadd 합니다.
 
 > [!NOTE]
 > 기존 HDInsight 클러스터를 가상 네트워크에 추가할 수 없습니다.
 
-1. 가상 네트워크에 클래식 또는 리소스 관리자 배포 모델을 사용하나요?
+1. 사용 하는 기본 리소스 관리자 배포 모델 hello 가상 네트워크에 대 한?
 
     HDInsight 3.4 이상에는 리소스 관리자 가상 네트워크가 필요합니다. 이전 버전의 HDInsightㅇ는 클래식 가상 네트워크가 필요했습니다.
 
-    기존 네트워크가 클래식 가상 네트워크인 경우 리소스 관리자 가상 네트워크를 만든 후 둘을 연결해야 합니다. [새 VNet에 클래식 VNet 연결](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
+    기존 네트워크 클래식 가상 네트워크 인 경우 다음 리소스 관리자 가상 네트워크를 만들고 해야 다음 두 hello를 연결 합니다. [클래식 Vnet toonew Vnet 연결](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)합니다.
 
-    조인된 후 리소스 관리자 네트워크에 설치된 HDInsight는 클래식 네트워크의 리소스와 상호 작용할 수 있습니다.
+    조인, hello 리소스 관리자 네트워크에 설치 하는 HDInsight hello 클래식 네트워크 리소스와 상호 작용할 수 있습니다.
 
-2. 강제 터널링을 사용하나요? 강제 터널링은 검사 및 로깅을 위해 장치에 아웃바운드 인터넷 트래픽을 적용하는 서브넷 설정입니다. HDInsight는 강제 터널링을 지원하지 않습니다. 서브넷에 HDInsight를 설치하기 전에 강제 터널링을 제거하거나 HDInsight에 대해 새 서브넷을 만듭니다.
+2. 강제 터널링을 사용하나요? 강제 터널링 하는 것은 검사에 대 한 아웃 바운드 인터넷 트래픽을 tooa 장치를 강제로 수행 하는 서브넷 설정 및 로깅입니다. HDInsight는 강제 터널링을 지원하지 않습니다. 서브넷에 HDInsight를 설치하기 전에 강제 터널링을 제거하거나 HDInsight에 대해 새 서브넷을 만듭니다.
 
-3. 가상 네트워크 내부 또는 외부로 트래픽을 제한하기 위해 네트워크 보안 그룹, 사용자 정의 경로 또는 Virtual Network 어플라이언스를 사용하나요?
+3. 사용 합니까 네트워크 보안 그룹, 사용자 정의 경로 또는 가상 네트워크 어플라이언스에 toorestrict 트래픽 내부 또는 외부로 가상 네트워크 hello?
 
-    관리 서비스로 HDInsight를 사용하려면 Azure 데이터 센터에서 여러 IP 주소에 대한 무제한 액세스가 필요합니다. 이러한 IP 주소와의 통신을 허용하려면 기존의 모든 네트워크 보안 그룹 또는 사용자 정의 경로를 업데이트합니다.
+    관리 되는 서비스로 HDInsight hello Azure 데이터 센터에 대 한 무제한 액세스 tooseveral IP 주소가 필요합니다. 이러한 IP 주소와 통신을 tooallow 모든 기존 네트워크 보안 그룹 또는 사용자 정의 경로 업데이트 합니다.
 
-    HDInsight는 다양한 포트를 사용하는 여러 서비스를 호스팅합니다. 이 포트로의 트래픽을 차단하지 마세요. 가상 어플라이언스 방화벽을 통과하도록 허용할 포트 목록은 [보안](#security) 섹션을 참조하세요.
+    HDInsight는 다양한 포트를 사용하는 여러 서비스를 호스팅합니다. 트래픽이 toothese 포트를 차단 하지 않습니다. 가상 어플라이언스 방화벽을 통해 포트 tooallow 목록이 참조 hello [보안](#security) 섹션.
 
-    기존 보안 구성을 찾으려면 다음 Azure PowerShell 또는 Azure CLI 명령을 사용합니다.
+    toofind 기존 보안 구성에 따라 Azure PowerShell 또는 Azure CLI 명령을 사용 하 여 hello:
 
     * 네트워크 보안 그룹
 
         ```powershell
-        $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+        $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
         get-azurermnetworksecuritygroup -resourcegroupname $resourceGroupName
         ```
 
         ```azurecli-interactive
-        read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+        read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
         az network nsg list --resource-group $RESOURCEGROUP
         ```
 
-        자세한 내용은 [네트워크 보안 그룹 문제 해결](../virtual-network/virtual-network-nsg-troubleshoot-portal.md) 문서를 참조하세요.
+        자세한 내용은 참조 hello [네트워크 보안 그룹 문제 해결](../virtual-network/virtual-network-nsg-troubleshoot-portal.md) 문서.
 
         > [!IMPORTANT]
-        > 네트워크 보안 그룹 규칙은 규칙 우선 순위에 따라 적용됩니다. 트래픽 패턴과 일치하는 첫 번째 규칙이 적용되고 해당 트래픽에 대해서는 다른 규칙이 적용되지 않습니다. 가장 허용적인 것부터 가장 허용적이지 않은 것 순서로 규칙을 정렬합니다. 자세한 내용은 [네트워크 보안 그룹을 사용하여 네트워크 트래픽 필터링](../virtual-network/virtual-networks-nsg.md) 문서를 참조하세요.
+        > 네트워크 보안 그룹 규칙은 규칙 우선 순위에 따라 적용됩니다. hello 트래픽 패턴과 일치 하는 hello 첫 번째 규칙을 적용 하 고 해당 트래픽을 에서만 적용 됩니다. 순서에서 가장 높은 tooleast 허용 되는 규칙입니다. 자세한 내용은 참조 hello [네트워크 보안 그룹과 네트워크 트래픽 필터](../virtual-network/virtual-networks-nsg.md) 문서.
 
     * 사용자 정의 경로
 
         ```powershell
-        $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+        $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
         get-azurermroutetable -resourcegroupname $resourceGroupName
         ```
 
         ```azurecli-interactive
-        read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+        read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
         az network route-table list --resource-group $RESOURCEGROUP
         ```
 
-        자세한 내용은 [문제 해결 경로](../virtual-network/virtual-network-routes-troubleshoot-portal.md) 문서를 참조하세요.
+        자세한 내용은 참조 hello [경로 문제를 해결](../virtual-network/virtual-network-routes-troubleshoot-portal.md) 문서.
 
-4. HDInsight 클러스터를 만들고 구성 중 Azure Virtual Network를 선택합니다. 클러스터 만들기 프로세스를 이해하려면 다음 문서의 단계를 사용하세요.
+4. HDInsight 클러스터를 만들고 구성 하는 동안 hello Azure 가상 네트워크를 선택 합니다. Hello 문서 toounderstand hello 클러스터 만들기 프로세스의 단계를 사용 하 여 hello:
 
-    * [Azure Portal을 사용하여 HDInsight 만들기](hdinsight-hadoop-create-linux-clusters-portal.md)
+    * [HDInsight hello Azure 포털을 사용 하 여 만들기](hdinsight-hadoop-create-linux-clusters-portal.md)
     * [Azure PowerShell을 사용하여 HDInsight 만들기](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)
     * [Azure CLI 1.0을 사용하여 HDInsight 만들기](hdinsight-hadoop-create-linux-clusters-azure-cli.md)
     * [Azure Resource Manager 템플릿을 사용하여 HDInsight 만들기](hdinsight-hadoop-create-linux-clusters-arm-templates.md)
 
   > [!IMPORTANT]
-  > 가상 네트워크에 HDInsight 추가하기는 선택적 구성 단계입니다. 클러스터를 구성할 때 가상 네트워크를 선택해야 합니다.
+  > 옵션 구성 단계를 tooa 가상 네트워크는 HDInsight를 추가 합니다. Hello 클러스터를 구성할 때 있는지 tooselect hello 가상 네트워크를 수 있습니다.
 
 ## <a id="multinet"></a>다중 네트워크 연결
 
-다중 네트워크 구성에서 가장 큰 문제는 네트워크 간 이름 확인입니다.
+hello 다중 네트워크 구성이 포함 된 가장 큰 문제는 hello 네트워크 간에 이름 확인 합니다.
 
-Azure는 가상 네트워크에 설치된 Azure 서비스에 대한 이름 확인을 제공합니다. 기본 제공 이름 확인을 통해 HDInsight는 FQDN(정규화된 도메인 이름)을 사용하여 다음 리소스에 연결할 수 있습니다.
+Azure는 가상 네트워크에 설치된 Azure 서비스에 대한 이름 확인을 제공합니다. 기본 제공 이름 확인이 정규화 된 도메인 이름 (FQDN)을 사용 하 여 리소스를 다음 HDInsight tooconnect toohello를 허용 됩니다.
 
-* 인터넷에서 사용할 수 있는 모든 리소스. 예를 들어, microsoft.com, google.com.
+* 사용할 수 있는 모든 리소스에는 인터넷 hello 합니다. 예를 들어, microsoft.com, google.com.
 
-* 리소스의 __내부 DNS 이름__을 사용하여 동일한 Azure Virtual Network에 있는 모든 리소스. 예를 들어 기본 이름 확인 기능을 사용할 경우, 다음은 HDInsight 작업자 노드에 할당된 내부 DNS 이름에 대한 예입니다.
+* 에 hello 동일한 Azure 가상 네트워크에서 hello를 사용 하 여 모든 리소스 __내부 DNS 이름을__ hello 리소스의 합니다. 예를 들어 hello 기본 이름 확인을 사용할 경우 hello 다음은 예제 내부 DNS 이름이 할당된 tooHDInsight 작업자 노드.
 
     * wn0-hdinsi.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net
     * wn2-hdinsi.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net
 
     이러한 두 노드는 내부 DNS 이름을 사용하여 서로 직접 통신하고 HDInsight의 다른 노드와 통신할 수 있습니다.
 
-기본 이름 확인에서는 HDInsight가 가상 네트워크에 조인된 네트워크에 있는 리소스 이름을 확인하도록 허용하지 __않습니다__. 예를 들어 온-프레미스 네트워크를 가상 네트워크에 조인하는 것이 일반적입니다. 기본 이름 확인만으로는, HDInsight가 이름으로 온-프레미스 네트워크의 리소스에 액세스할 수 없습니다. 반대도 마찬가지입니다. 온-프레미스 네트워크의 리소스는 이름으로 가상 네트워크의 리소스에 액세스할 수 없습니다.
+기본 이름 확인 기능 hello 않습니다 __하지__ 조인된 toohello 가상 네트워크에 있는 네트워크에 HDInsight tooresolve hello 리소스 이름에 허용 합니다. 예를 들어, 일반적인 toojoin는 온-프레미스 네트워크 toohello 가상 네트워크입니다. 만 hello 기본 이름 확인을 HDInsight 이름별 hello 온-프레미스 네트워크의 리소스를 액세스할 수 없습니다. hello 반대도 온-프레미스 네트워크의 리소스 이름으로 hello 가상 네트워크의 리소스에 액세스할 수 없습니다 마찬가지입니다.
 
 > [!WARNING]
-> 사용자 지정 DNS 서버를 만들고 이 서버를 사용하도록 가상 네트워크를 구성한 후 HDInsight 클러스터를 만들어야 합니다.
+> 사용자 지정 DNS 서버 hello을 만들고 가상 네트워크 toouse hello를 구성 해야 HDInsight 클러스터를 hello를 만들기 전에 것입니다.
 
-가상 네트워크 및 조인된 네트워크의 리소스 간에 이름 확인을 사용하려면 다음 작업을 수행해야 합니다.
+tooenable hello 가상 네트워크와 조인 된 네트워크의 리소스 간에 이름 확인을 hello 다음 작업을 수행 해야 합니다.
 
-1. HDInsight를 설치할 계획인 Azure Virtual Network에서 사용자 지정 DNS 서버를 만듭니다.
+1. Hello tooinstall HDInsight을 계획 하는 Azure 가상 네트워크에서에서 사용자 지정 DNS 서버를 만듭니다.
 
-2. 사용자 지정 DNS 서버를 사용하도록 가상 네트워크를 구성합니다.
+2. Hello 가상 네트워크 toouse hello 사용자 지정 DNS 서버를 구성 합니다.
 
-3. 가상 네트워크에 대해 Azure에서 할당한 DNS 접미사를 찾습니다. 이 값은 `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net`과 유사합니다. DNS 접미사를 찾는 방법에 대한 자세한 내용은 [예제: 사용자 지정 DNS](#example-dns) 섹션을 참조하세요.
+3. Azure 가상 네트워크에 대 한 DNS 접미사를 할당 하는 hello를 찾습니다. 이 값이 너무 유사`0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net`합니다. Hello DNS 접미사를 찾는 방법에 대 한 정보를 참조 hello [예제: 사용자 지정 DNS](#example-dns) 섹션.
 
-4. DNS 서버 간에 전달을 구성합니다. 구성은 원격 네트워크의 유형에 따라 달라집니다.
+4. Hello DNS 서버 간에 전달을 구성 합니다. hello 구성 hello 유형의 원격 네트워크에 따라 달라 집니다.
 
-    * 원격 네트워크가 온-프레미스 네트워크인 경우 다음과 같이 DNS를 구성합니다.
+    * Hello 원격 네트워크는 온-프레미스 네트워크를 DNS를 다음과 같이 구성 합니다.
         
-        * __사용자 지정 DNS(가상 네트워크에서)__:
+        * __사용자 지정 DNS__ hello 가상 네트워크) (에:
 
-            * 가상 네트워크의 DNS 접미사에 대한 요청을 Azure 재귀 확인자(168.63.129.16)에 전달합니다. Azure에서 가상 네트워크의 리소스에 대한 요청을 처리합니다.
+            * Hello 가상 네트워크 toohello Azure 재귀 확인자 (168.63.129.16)의 hello DNS 접미사에 대 한 요청을 전달 합니다. Azure는 hello 가상 네트워크의 리소스에 대 한 요청 처리
 
-            * 다른 모든 요청을 온-프레미스 DNS 서버에 전달합니다. 온-프레미스 DNS가 Microsoft.com과 같은 인터넷 리소스에 대한 요청을 비롯한 기타 모든 이름 확인 요청을 처리합니다.
+            * 모든 다른 요청 toohello 온-프레미스 DNS 서버를 전달 합니다. hello 온-프레미스 DNS 처리 다른 모든 이름 확인 요청을 Microsoft.com 같은 인터넷 리소스에 대 한 요청을 포함 합니다.
 
-        * __온-프레미스 DNS__: 가상 네트워크 DNS 접미사에 대한 요청을 사용자 지정 DNS 서버에 전달합니다. 그러면 사용자 지정 DNS 서버에서 Azure 재귀 확인자로 전달합니다.
+        * __온-프레미스 DNS__: hello 가상 네트워크 DNS 접미사 toohello 사용자 지정 DNS 서버에 대 한 요청을 전달 합니다. 사용자 지정 DNS 서버 hello toohello Azure 재귀 확인자를 전달합니다.
 
-        이 구성은 가상 네트워크에 대한 DNS 접미사를 포함하는 정규화된 도메인 이름 요청을 사용자 지정 DNS 서버로 라우팅합니다. 공용 인터넷 주소를 포함한 모든 다른 요청은 온-프레미스 DNS 서버에서 처리됩니다.
+        이 구성 경로 요청에 대 한 정규화 된 도메인 이름 hello 가상 네트워크 toohello 사용자 지정 DNS 서버 hello DNS 접미사를 포함 하는 합니다. (공용 인터넷 주소)에 다른 모든 요청은 hello 온-프레미스 DNS 서버에서 처리 됩니다.
 
-    * 원격 네트워크가 다른 Azure Virtual Network인 경우 다음과 같이 DNS를 구성합니다.
+    * Hello 원격 네트워크는 다른 Azure 가상 네트워크를 DNS를 다음과 같이 구성 합니다.
 
         * __사용자 지정 DNS(각 가상 네트워크에서)__:
 
-            * 가상 네트워크 DNS 접미사에 대한 요청은 사용자 지정 DNS 서버에 전달됩니다. 각 가상 네트워크에 있는 DNS는 해당 네트워크 내에서 리소스를 확인하는 역할을 합니다.
+            * Hello 가상 네트워크의 DNS 접미사 hello에 대 한 요청 toohello 사용자 지정 DNS 서버에 전달 됩니다. 각 가상 네트워크에 DNS hello는 해당 네트워크 내에서 리소스를 확인 해야 합니다.
 
-            * 다른 모든 요청은 Azure 재귀 확인자에 전달합니다. 재귀 확인자는 로컬 및 인터넷 리소스를 확인하는 역할을 합니다.
+            * 다른 모든 요청 toohello Azure 재귀 확인자를 전달 합니다. hello 재귀 확인자는 로컬 해결 하 고 인터넷 리소스 하는 일을 담당 합니다.
 
-        각 네트워크의 DNS 서버는 DNS 접미사에 따라 요청을 다른 곳으로 전달합니다. 다른 요청은 Azure 재귀 확인자를 사용하여 확인됩니다.
+        각 네트워크에 대 한 hello DNS 서버, DNS 접미사에 따라 요청 toohello를 전달합니다. 다른 요청 hello Azure 재귀 확인자를 사용 하 여 확인 됩니다.
 
-    각 구성에 대한 예는 [예제: 사용자 지정 DNS](#example-dns) 섹션을 참조하세요.
+    예를 보려면 각 구성 참조 hello [예제: 사용자 지정 DNS](#example-dns) 섹션.
 
-자세한 내용은 [VM 및 역할 인스턴스의 이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) 문서를 참조하세요.
+자세한 내용은 참조 hello [Vm 및 역할 인스턴스에 대 한 이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) 문서.
 
-## <a name="directly-connect-to-hadoop-services"></a>Hadoop 서비스에 직접 연결
+## <a name="directly-connect-toohadoop-services"></a>TooHadoop 서비스에 직접 연결
 
-HDInsight에 대한 대부분의 설명서는 인터넷을 통해 클러스터에 액세스할 수 있다고 가정합니다. 예를 들어 https://CLUSTERNAME.azurehdinsight.net에서 클러스터에 연결할 수 있습니다. 이 주소는 인터넷에서 액세스를 제한하는 데 NSG 또는 UDR을 사용한 경우에는 사용할 수 없는 공용 게이트웨이를 사용합니다.
+HDInsight에 대 한 대부분 설명서 hello를 통해 액세스 toohello 클러스터 있다고 가정 합니다. 인터넷 합니다. 예를 들어, https://CLUSTERNAME.azurehdinsight.net에 toohello 클러스터를 연결할 수 있습니다. 이 주소에서 UDRs toorestrict 액세스 hello 인터넷 또는 Nsg를 사용 하는 경우에 사용할 수 없는 hello 공용 게이트웨이 사용 합니다.
 
-가상 네트워크를 통해 Ambari 및 다른 웹 페이지에 연결하려면 다음 단계를 사용합니다.
+tooconnect tooAmbari 및 hello 가상 네트워크를 통해 다른 웹 페이지 단계를 수행 하는 hello를 사용 합니다.
 
-1. HDInsight 클러스터 노드의 내부 FQDN(정규화된 도메인 이름)을 검색하려면 다음 방법 중 하나를 사용합니다.
+1. hello HDInsight 클러스터 노드의 toodiscover hello 내부 정규화 된 도메인 이름 (FQDN) hello 메서드를 다음 중 하나를 사용 합니다.
 
     ```powershell
-    $resourceGroupName = "The resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = "hello resource group that contains hello virtual network used with HDInsight"
 
     $clusterNICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName | where-object {$_.Name -like "*node*"}
 
@@ -200,44 +200,44 @@ HDInsight에 대한 대부분의 설명서는 인터넷을 통해 클러스터�
     az network nic list --resource-group <resourcegroupname> --output table --query "[?contains(name,'node')].{NICname:name,InternalIP:ipConfigurations[0].privateIpAddress,InternalFQDN:dnsSettings.internalFqdn}"
     ```
 
-    반환된 노드 목록에서 헤드 노드에 대한 FQDN을 찾아 Ambari 및 기타 웹 서비스에 연결하는 데 사용합니다. 예를 들어 `http://<headnode-fqdn>:8080`을 사용하여 Ambari에 액세스합니다.
+    반환 되는 노드 hello 목록의 hello FQDN hello에 대 한 헤드 노드 찾아 hello Fqdn tooconnect tooAmbari 및 기타 웹 서비스를 사용 합니다. 사용 예를 들어 `http://<headnode-fqdn>:8080` tooaccess Ambari 합니다.
 
     > [!IMPORTANT]
-    > 헤드 노드에서 호스팅되는 일부 서비스는 한 번에 한 노드에서만 활성화됩니다. 한 헤드 노드에서 서비스에 액세스하려고 하고 404 오류가 반환되면 다른 헤드 노드로 전환합니다.
+    > 일부 서비스의 hello 헤드 노드에 호스팅되 한 번에 한 노드에서 활성화만 됩니다. 헤드 노드 하나에서 서비스에 액세스 하면 404 오류를 반환 하는 경우 toohello 다른 헤드 노드를 전환 합니다.
 
-2. 서비스가 제공되는 노드 및 포트를 확인하려면 [HDInsight의 Hadoop 서비스에서 사용하는 포트](./hdinsight-hadoop-port-settings-for-services.md) 문서를 참조하세요.
+2. toodetermine hello 노드 및 서비스를 사용할 수 있는 포트 참조 hello [HDInsight의 Hadoop 서비스에 의해 사용 되는 포트](./hdinsight-hadoop-port-settings-for-services.md) 문서.
 
 ## <a id="networktraffic"></a> 네트워크 트래픽 제어
 
-Azure Virtual Networks의 네트워크 트래픽은 다음 방법을 사용하여 제어할 수 있습니다.
+메서드를 다음 hello를 사용 하 여 Azure 가상 네트워크에서 네트워크 트래픽을 제어할 수 있습니다.
 
-* **NSG(네트워크 보안 그룹)**를 통해 네트워크로의 인바운드 및 아웃바운드 트래픽을 필터링할 수 있습니다. 자세한 내용은 [네트워크 보안 그룹을 사용하여 네트워크 트래픽 필터링](../virtual-network/virtual-networks-nsg.md) 문서를 참조하세요.
+* **네트워크 보안 그룹** (NSG) toofilter 인바운드 및 아웃 바운드 트래픽을 toohello 네트워크를 허용 합니다. 자세한 내용은 참조 hello [네트워크 보안 그룹과 네트워크 트래픽 필터](../virtual-network/virtual-networks-nsg.md) 문서.
 
     > [!WARNING]
     > HDInsight는 아웃바운드 트래픽을 제한하도록 지원하지 않습니다.
 
-* **UDR(사용자 정의 경로)**은 네트워크에 있는 리소스 간에 트래픽이 흐르는 방식을 정의합니다. 자세한 내용은 [사용자 정의 경로 및 IP 전달](../virtual-network/virtual-networks-udr-overview.md) 문서를 참조하세요.
+* **사용자 정의 경로** (UDR) hello 네트워크의 리소스 간의 트래픽 흐름 방식을 정의 합니다. 자세한 내용은 참조 hello [사용자 정의 경로 및 IP 전달](../virtual-network/virtual-networks-udr-overview.md) 문서.
 
-* **네트워크 가상 어플라이언스**는 방화벽 및 라우터와 같은 장치 기능을 복제합니다. 자세한 내용은 [네트워크 어플라이언스](https://azure.microsoft.com/solutions/network-appliances) 문서를 참조하세요.
+* **네트워크 가상 어플라이언스** 방화벽, 라우터 등과 같은 장치의 기능을 hello를 복제 합니다. 자세한 내용은 참조 hello [네트워크 어플라이언스에](https://azure.microsoft.com/solutions/network-appliances) 문서.
 
-관리 서비스로 HDInsight를 사용하려면 Azure 클라우드에서 Azure 상태 및 관리 서비스에 대한 무제한 액세스가 필요합니다. NSG 및 UDR을 사용할 때는 이러한 서비스에서 HDInsight와 계속 통신할 수 있는지 확인해야 합니다.
+HDInsight 관리 되는 서비스로 Azure 클라우드 hello에 대 한 무제한 액세스 tooAzure 상태 및 관리 서비스를 필요합니다. NSG 및 UDR을 사용할 때는 이러한 서비스에서 HDInsight와 계속 통신할 수 있는지 확인해야 합니다.
 
-HDInsight는 여러 포트에서 서비스를 공개합니다. 가상 어플라이언스 방화벽을 사용할 경우 이러한 서비스에 사용된 포트에서 트래픽을 허용해야 합니다. 자세한 내용은 [필수 포트] 섹션을 참조하세요.
+HDInsight는 여러 포트에서 서비스를 공개합니다. 가상 기기 방화벽을 사용 하는 경우에 이러한 서비스에 사용 되는 포트를 hello의 트래픽을 허용 해야 합니다. 자세한 내용은 hello [필요한 포트] 섹션을 참조 합니다.
 
 ### <a id="hdinsight-ip"></a> 네트워크 보안 그룹 및 사용자 정의 경로가 있는 HDInsight
 
-네트워크 트래픽을 제어하는 데 **네트워크 보안 그룹** 또는 **사용자 정의 경로**를 사용할 계획인 경우 HDInsight를 설치하기 전에 다음 작업을 수행합니다.
+사용 하려는 경우 **네트워크 보안 그룹** 또는 **사용자 정의 경로** toocontrol 네트워크 트래픽 hello 동작 HDInsight를 설치 하기 전에 다음을 수행 하십시오.
 
-1. HDInsight에 대해 사용할 Azure 지역을 식별합니다.
+1. Hello Azure 지역 toouse HDInsight에 대 한 계획을 식별 합니다.
 
-2. HDInsight에 필요한 IP 주소를 식별합니다. 자세한 내용은 [HDInsight에 필요한 IP 주소](#hdinsight-ip) 섹션을 참조하세요.
+2. HDInsight에서 요구 하는 hello IP 주소를 식별 합니다. 자세한 내용은 참조 hello [HDInsight에 필요한 IP 주소](#hdinsight-ip) 섹션.
 
-3. HDInsight을 설치하려는 서브넷에 대한 사용자 정의 경로 또는 네트워크 보안 그룹을 만들거나 수정합니다.
+3. 만들기 또는 수정 hello 네트워크 보안 그룹 또는 tooinstall HDInsight를 계획 하는 hello 서브넷에 대 한 사용자 정의 경로에 있습니다.
 
-    * __네트워크 보안 그룹__: IP 주소에서 포트 __443__에 __인바운드__ 트래픽을 허용합니다.
-    * __사용자 정의 경로__: 각 IP 주소에 대한 경로를 만들고 __다음 홉 유형__을 __인터넷__으로 설정합니다.
+    * __네트워크 보안 그룹__: 허용 __인바운드__ 포트에서 트래픽을 __443__ hello IP 주소의 기능과 동일에서 합니다.
+    * __사용자 정의 경로__: 경로 tooeach IP 주소를 만들고 hello 설정 __다음 홉 형식__ too__Internet__ 합니다.
 
-네트워크 보안 그룹 또는 사용자 정의 경로에 대한 자세한 내용은 다음 설명서를 참조하세요.
+네트워크 보안 그룹 또는 사용자 정의 된 경로에 대 한 자세한 내용은 hello 설명서를 참조 하세요.
 
 * [네트워크 보안 그룹](../virtual-network/virtual-networks-nsg.md)
 
@@ -245,18 +245,18 @@ HDInsight는 여러 포트에서 서비스를 공개합니다. 가상 어플라�
 
 #### <a name="forced-tunneling"></a>강제 터널링
 
-강제 터널링은 서브넷의 모든 트래픽이 특정 네트워크 또는 위치(예: 온-프레미스 네트워크)로 적용되는 사용자 정의 라우팅 구성입니다. HDInsight는 강제 터널링을 지원하지 __않습니다.__
+강제 터널링은 하나의 사용자 정의 라우팅 구성 강제 tooa 특정 네트워크 또는 온-프레미스 네트워크와 같은 위치에서 서브넷의에서 모든 트래픽이입니다. HDInsight는 강제 터널링을 지원하지 __않습니다.__
 
 ## <a id="hdinsight-ip"></a> 필수 IP 주소
 
 > [!IMPORTANT]
-> Azure 상태 및 관리 서비스는 HDInsight와 통신할 수 있어야 합니다. 네트워크 보안 그룹 또는 사용자 정의 경로를 사용하는 경우 이러한 서비스의 IP 주소에서 HDInsight로 트래픽이 전송되도록 할 수 있습니다.
+> Azure health hello 및 관리 서비스 수 toocommunicate HDInsight와 이어야 합니다. 네트워크 보안 그룹 또는 사용자 정의 경로 사용 하는 경우 트래픽을 hello에서 이러한 서비스 tooreach HDInsight에 대 한 IP 주소를 허용 합니다.
 >
-> 트래픽을 제어하는 네트워크 보안 그룹 또는 사용자 정의 경로를 사용하지 않는 경우 이 섹션을 무시할 수 있습니다.
+> 네트워크 보안 그룹 또는 사용자 정의 경로 toocontrol 트래픽을 사용 하지 않는 경우에이 섹션을 무시할 수 있습니다.
 
-네트워크 보안 그룹 또는 사용자 정의 경로를 사용하는 경우 Azure 상태 및 관리 서비스의 트래픽이 HDInsight에 도달하도록 해야 합니다. 다음 단계를 사용하여 다음을 허용해야 하는 IP 주소를 찾을 수 있습니다.
+네트워크 보안 그룹 또는 사용자 정의 경로 사용 하는 경우에 hello Azure 상태 및 관리 서비스 tooreach HDInsight에서 트래픽을 허용 해야 합니다. 사용 하 여 hello 다음 단계 toofind hello IP 주소를 허용 해야 합니다.
 
-1. 다음 IP 주소에서 트래픽을 항상 허용해야 합니다.
+1. 항상 트래픽을 hello 다음 IP 주소를 허용 해야 합니다.
 
     | IP 주소 | 허용되는 포트 | 방향 |
     | ---- | ----- | ----- |
@@ -265,10 +265,10 @@ HDInsight는 여러 포트에서 서비스를 공개합니다. 가상 어플라�
     | 168.61.48.131 | 443 | 인바운드 |
     | 138.91.141.162 | 443 | 인바운드 |
 
-2. HDInsight 클러스터가 다음 지역 중에 있으면 해당 지역에 대해 나열된 IP 주소에서 트래픽을 허용해야 합니다.
+2. HDInsight 클러스터에 hello 영역을 다음 중 하나에 있으면 hello 지역에 대해 나열 된 hello IP 주소에서 트래픽을 허용 해야 합니다.
 
     > [!IMPORTANT]
-    > 사용하는 Azure 지역이 나열되지 않으면 1단계의 4가지 IP 주소만 사용합니다.
+    > 사용 하는 Azure 지역 hello 나열 되지 않으면 사용만 hello 1 단계에서 네 개의 IP 주소입니다.
 
     | 국가 | 지역 | 허용된 IP 주소 | 허용되는 포트 | 방향 |
     | ---- | ---- | ---- | ---- | ----- |
@@ -297,15 +297,15 @@ HDInsight는 여러 포트에서 서비스를 공개합니다. 가상 어플라�
     | &nbsp; | 미국 중서부 | 52.161.23.15</br>52.161.10.167 | 443 | 인바운드 |
     | &nbsp; | 미국 서부 2 | 52.175.211.210</br>52.175.222.222 | 443 | 인바운드 |
 
-    Azure Government에 사용할 IP 주소에 대한 자세한 내용은 [Azure Government 인텔리전스 + 분석](https://docs.microsoft.com/azure/azure-government/documentation-government-services-intelligenceandanalytics) 문서를 참조하세요.
+    Hello IP에 대 한 정보에 대 한 Azure Government toouse 주소에 대 한 참조 hello [Azure Government Intelligence + 분석](https://docs.microsoft.com/azure/azure-government/documentation-government-services-intelligenceandanalytics) 문서.
 
-3. 가상 네트워크에서 사용자 지정 DNS 서버를 사용하는 경우 __168.63.129.16__에서의 액세스도 허용해야 합니다. 이 주소는 Azure 재귀 확인자입니다. 자세한 내용은 [VM 및 역할 인스턴스의 이름 확인](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) 문서를 참조하세요.
+3. 가상 네트워크에서 사용자 지정 DNS 서버를 사용하는 경우 __168.63.129.16__에서의 액세스도 허용해야 합니다. 이 주소는 Azure 재귀 확인자입니다. 자세한 내용은 참조 hello [Vm 및 역할에 대 한 이름 확인 인스턴스](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) 문서.
 
-자세한 내용은 [네트워크 트래픽 제어](#networktraffic) 섹션을 참조하세요.
+자세한 내용은 참조 hello [네트워크 트래픽을 제어](#networktraffic) 섹션.
 
 ## <a id="hdinsight-ports"></a> 필수 포트
 
-네트워크 **가상 어플라이언스 방화벽**을 사용하여 가상 네트워크를 보호할 계획인 경우 다음 포트에서 아웃바운드 트래픽을 허용해야 합니다.
+네트워크를 사용 하려는 경우 **가상 어플라이언스 방화벽** toosecure hello 가상 네트워크 포트를 수행 하는 hello에 아웃 바운드 트래픽을 허용 해야 합니다.
 
 * 53
 * 443
@@ -313,44 +313,44 @@ HDInsight는 여러 포트에서 서비스를 공개합니다. 가상 어플라�
 * 11000-11999
 * 14000-14999
 
-특정 서비스에 대한 포트 목록은 [HDInsight의 Hadoop 서비스에서 사용하는 포트](hdinsight-hadoop-port-settings-for-services.md) 문서를 참조하세요.
+특정 서비스에 대 한 포트 목록이 참조 hello [HDInsight의 Hadoop 서비스에 의해 사용 되는 포트](hdinsight-hadoop-port-settings-for-services.md) 문서.
 
-가상 어플라이언스의 방화벽 규칙에 대한 자세한 내용은 [가상 어플라이언스 시나리오](../virtual-network/virtual-network-scenario-udr-gw-nva.md) 문서를 참조하세요.
+가상 어플라이언스에 대 한 방화벽 규칙에 대 한 자세한 내용은 참조 hello [가상 어플라이언스 시나리오](../virtual-network/virtual-network-scenario-udr-gw-nva.md) 문서.
 
 ## <a id="hdinsight-nsg"></a>예제: HDInsight에서 네트워크 보안 그룹
 
-이 섹션의 예제는 HDInsight가 Azure 관리 서비스와 통신할 수 있도록 하는 네트워크 보안 그룹 규칙을 만드는 방법을 보여 줍니다. 예제를 사용하기 전에 사용 중인 Azure 지역과 일치하도록 IP 주소를 조정합니다. 이 정보는 [네트워크 보안 그룹 및 사용자 정의 경로가 있는 HDInsight](#hdinsight-ip) 섹션에서 확인할 수 있습니다.
+이 섹션의 예제 hello hello로 HDInsight toocommunicate를 허용 하는 Azure 관리 서비스 toocreate 네트워크 보안 그룹을 규칙 하는 방법을 보여 줍니다. Hello 예제를 사용 하기 전에 hello 사용 하는 Azure 지역에 대 한 hello IP 주소 toomatch hello 것을 조정 합니다. Hello에서이 정보를 찾을 수 있습니다 [네트워크 보안 그룹 및 사용자 정의 경로 포함 하는 HDInsight](#hdinsight-ip) 섹션.
 
 ### <a name="azure-resource-management-template"></a>Azure Resource Management 템플릿
 
-다음 리소스 관리 템플릿은 인바운드 트래픽을 제한하지만 HDInsight에 필요한 IP 주소에서의 트래픽은 허용하는 가상 네트워크를 만듭니다. 또한 이 템플릿은 가상 네트워크에 HDInsight 클러스터를 만듭니다.
+hello 다음 리소스 관리 템플릿을 만듭니다 인바운드 트래픽을 제한 하지만 HDInsight에 필요한 hello IP 주소에서의 트래픽을 허용 하는 가상 네트워크. 또한이 템플릿은 hello 가상 네트워크에는 HDInsight 클러스터를 만듭니다.
 
 * [보안 Azure Virtual Network 및 HDInsight Hadoop 클러스터 배포](https://azure.microsoft.com/resources/templates/101-hdinsight-secure-vnet/)
 
 > [!IMPORTANT]
-> 이 예제에 사용된 IP 주소를 사용 중인 Azure 지역에 맞게 변경합니다. 이 정보는 [네트워크 보안 그룹 및 사용자 정의 경로가 있는 HDInsight](#hdinsight-ip) 섹션에서 확인할 수 있습니다.
+> 이 예제에서는 toomatch hello 사용 하는 Azure 지역에서에서 사용 하는 hello IP 주소를 변경 합니다. Hello에서이 정보를 찾을 수 있습니다 [네트워크 보안 그룹 및 사용자 정의 경로 포함 하는 HDInsight](#hdinsight-ip) 섹션.
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-다음 PowerShell 스크립트를 사용하여 인바운드 트래픽을 제한하며 북유럽 지역의 IP 주소에서 전송되는 트래픽을 허용하는 가상 네트워크를 만듭니다.
+다음 PowerShell 스크립트 toocreate 인바운드 트래픽을 제한 하 고 hello 트래픽을 hello 유럽 북부 지역에 대 한 IP 주소를 허용 하는 가상 네트워크는 hello를 사용 합니다.
 
 > [!IMPORTANT]
-> 이 예제에 사용된 IP 주소를 사용 중인 Azure 지역에 맞게 변경합니다. 이 정보는 [네트워크 보안 그룹 및 사용자 정의 경로가 있는 HDInsight](#hdinsight-ip) 섹션에서 확인할 수 있습니다.
+> 이 예제에서는 toomatch hello 사용 하는 Azure 지역에서에서 사용 하는 hello IP 주소를 변경 합니다. Hello에서이 정보를 찾을 수 있습니다 [네트워크 보안 그룹 및 사용자 정의 경로 포함 하는 HDInsight](#hdinsight-ip) 섹션.
 
 ```powershell
 $vnetName = "Replace with your virtual network name"
-$resourceGroupName = "Replace with the resource group the virtual network is in"
-$subnetName = "Replace with the name of the subnet that you plan to use for HDInsight"
-# Get the Virtual Network object
+$resourceGroupName = "Replace with hello resource group hello virtual network is in"
+$subnetName = "Replace with hello name of hello subnet that you plan toouse for HDInsight"
+# Get hello Virtual Network object
 $vnet = Get-AzureRmVirtualNetwork `
     -Name $vnetName `
     -ResourceGroupName $resourceGroupName
-# Get the region the Virtual network is in.
+# Get hello region hello Virtual network is in.
 $location = $vnet.Location
-# Get the subnet object
+# Get hello subnet object
 $subnet = $vnet.Subnets | Where-Object Name -eq $subnetName
 # Create a Network Security Group.
-# And add exemptions for the HDInsight health and management services.
+# And add exemptions for hello HDInsight health and management services.
 $nsg = New-AzureRmNetworkSecurityGroup `
     -Name "hdisecure" `
     -ResourceGroupName $resourceGroupName `
@@ -432,9 +432,9 @@ $nsg = New-AzureRmNetworkSecurityGroup `
         -Access Deny `
         -Priority 500 `
         -Direction Inbound
-# Set the changes to the security group
+# Set hello changes toohello security group
 Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
-# Apply the NSG to the subnet
+# Apply hello NSG toohello subnet
 Set-AzureRmVirtualNetworkSubnetConfig `
     -VirtualNetwork $vnet `
     -Name $subnetName `
@@ -443,9 +443,9 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 ```
 
 > [!IMPORTANT]
-> 이 예제에서는 필요한 IP 주소에서 인바운드 트래픽을 허용하도록 규칙을 추가하는 방법을 보여 줍니다. 다른 소스에서 인바운드 액세스를 제한하는 규칙은 포함하지 않습니다.
+> 이 예제에서는 tooadd 규칙 tooallow hello 필요한 IP 주소에서 트래픽을 인바운드 하는 방법을 보여 줍니다. 규칙 toorestrict 포함 하지 않으므로 다른 소스에서 인바운드 액세스 합니다.
 >
-> 다음 예제는 인터넷에서 SSH 액세스를 사용 설정하는 방법을 보여 줍니다.
+> 다음 예제는 hello tooenable SSH hello 인터넷에서에서 액세스 하는 방법을 보여 줍니다.
 >
 > ```powershell
 > Add-AzureRmNetworkSecurityRuleConfig -Name "SSH" -Description "SSH" -Protocol "*" -SourcePortRange "*" -DestinationPortRange "22" -SourceAddressPrefix "*" -DestinationAddressPrefix "VirtualNetwork" -Access Allow -Priority 306 -Direction Inbound
@@ -453,20 +453,20 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
 ### <a name="azure-cli"></a>Azure CLI
 
-다음 단계에 따라 인바운드 트래픽을 제한하지만 HDInsight에 필요한 IP 주소에서의 트래픽은 허용하는 가상 네트워크를 만듭니다.
+다음 단계 toocreate 인바운드 트래픽을 제한 하지만 HDInsight에 필요한 hello IP 주소에서의 트래픽을 허용 하는 가상 네트워크는 hello를 사용 합니다.
 
-1. 다음 명령을 사용하여 `hdisecure`이라는 새 네트워크 보안 그룹을 만듭니다. **RESOURCEGROUPNAME**을 Azure Virtual Network를 포함하는 리소스 그룹으로 바꿉니다. **LOCATION**을 그룹이 만들어진 위치(지역)로 바꿉니다.
+1. 새 네트워크 보안 그룹 이라는 명령 toocreate 다음 사용 하 여 hello `hdisecure`합니다. 대체 **RESOURCEGROUPNAME** hello Azure 가상 네트워크를 포함 하는 hello 리소스 그룹을 사용 합니다. 대체 **위치** hello 위치 (지역)와 해당 hello 그룹에서 만든 합니다.
 
     ```azurecli
     az network nsg create -g RESOURCEGROUPNAME -n hdisecure -l LOCATION
     ```
 
-    그룹을 만들면 새 그룹에 대한 정보를 받습니다.
+    Hello 그룹을 만든 후 hello 새 그룹에 정보가 나타납니다.
 
-2. 다음을 사용하여 Azure HDInsight 상태 및 관리 서비스에서 포트 443에 대한 인바운드 통신을 허용하는 새 네트워크 보안 그룹에 규칙을 추가합니다. **RESOURCEGROUPNAME** 을 Azure Virtual Network를 포함하는 리소스 그룹 이름으로 바꿉니다.
+2. Hello tooadd 규칙 toohello 새 네트워크 보안 그룹 hello Azure HDInsight 상태 및 관리 서비스에서에서 포트 443에서 인바운드 통신을 허용 하는 다음을 사용 합니다. 대체 **RESOURCEGROUPNAME** hello Azure 가상 네트워크를 포함 하는 hello 리소스 그룹의 hello 이름으로 합니다.
 
     > [!IMPORTANT]
-    > 이 예제에 사용된 IP 주소를 사용 중인 Azure 지역에 맞게 변경합니다. 이 정보는 [네트워크 보안 그룹 및 사용자 정의 경로가 있는 HDInsight](#hdinsight-ip) 섹션에서 확인할 수 있습니다.
+    > 이 예제에서는 toomatch hello 사용 하는 Azure 지역에서에서 사용 하는 hello IP 주소를 변경 합니다. Hello에서이 정보를 찾을 수 있습니다 [네트워크 보안 그룹 및 사용자 정의 경로 포함 하는 HDInsight](#hdinsight-ip) 섹션.
 
     ```azurecli
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule1 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "52.164.210.96" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 300 --direction "Inbound"
@@ -478,30 +478,30 @@ Set-AzureRmVirtualNetworkSubnetConfig `
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n block --protocol "*" --source-port-range "*" --destination-port-range "*" --source-address-prefix "Internet" --destination-address-prefix "VirtualNetwork" --access "Deny" --priority 500 --direction "Inbound"
     ```
 
-3. 이 네트워크 보안 그룹에 대한 고유 식별자를 검색하려면 다음 명령을 사용합니다.
+3. 이 네트워크 보안 그룹을 다음 명령을 사용 하 여 hello에 대 한 tooretrieve hello의 고유 식별자:
 
     ```azurecli
     az network nsg show -g RESOURCEGROUPNAME -n hdisecure --query 'id'
     ```
 
-    이 명령은 다음 텍스트와 유사한 값을 반환합니다.
+    이 명령은 텍스트 다음 값 비슷한 toohello를 반환 합니다.
 
         "/subscriptions/SUBSCRIPTIONID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
 
-    예상된 결과를 얻지 못한 경우 명령에서 id에 따옴표를 넣어 사용합니다.
+    Hello 예상 결과 얻지 못할 경우 hello 명령에서 id 주위 큰따옴표를 사용 합니다.
 
-4. 다음 명령을 사용하여 네트워크 보안 그룹을 서브넷에 적용합니다. __GUID__ 및 __RESOURCEGROUPNAME__ 값을 이전 단계에서 반환된 값으로 대체합니다. __VNETNAME__ 및 __SUBNETNAME__을 만들려는 가상 네트워크 이름 및 서브넷 이름으로 바꿉니다.
+4. 다음 명령은 tooapply hello 네트워크 보안 그룹 tooa 서브넷 hello를 사용 합니다. Hello 대체 __GUID__ 및 __RESOURCEGROUPNAME__ hello 이전 단계에서 반환 된 것과 hello 사용 하 여 값입니다. 대체 __VNETNAME__ 및 __SUBNETNAME__ hello 가상 네트워크 이름 및 toocreate 서브넷 이름을 사용 합니다.
 
     ```azurecli
     az network vnet subnet update -g RESOURCEGROUPNAME --vnet-name VNETNAME --name SUBNETNAME --set networkSecurityGroup.id="/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
     ```
 
-    이 명령이 완료되면 Virtual Network에 HDInsight를 설치할 수 있습니다.
+    이 명령은 완료 되 면 hello 가상 네트워크에 HDInsight를 설치할 수 있습니다.
 
 > [!IMPORTANT]
-> 이러한 단계를 사용하면 Azure 클라우드의 HDInsight 상태 및 관리 서비스에 대한 액세스만 열립니다. Virtual Network 외부에서 HDInsight 클러스터에 대한 기타 액세스는 차단됩니다. 가상 네트워크 외부에서 액세스할 수 있도록 하려는 경우 네트워크 보안 그룹 규칙을 추가해야 합니다.
+> 이러한 단계는 access toohello HDInsight 상태 및 관리 서비스에 hello Azure 클라우드만 엽니다. 모든 다른 액세스 toohello HDInsight 클러스터에서 가상 네트워크 외부 hello 차단 됩니다. tooenable 액세스 hello 가상 네트워크 외부에서 추가 네트워크 보안 그룹 규칙을 추가 해야 합니다.
 >
-> 다음 예제는 인터넷에서 SSH 액세스를 사용 설정하는 방법을 보여 줍니다.
+> 다음 예제는 hello tooenable SSH hello 인터넷에서에서 액세스 하는 방법을 보여 줍니다.
 >
 > ```azurecli
 > az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule5 --protocol "*" --source-port-range "*" --destination-port-range "22" --source-address-prefix "*" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 306 --direction "Inbound"
@@ -511,50 +511,50 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
 ### <a name="name-resolution-between-a-virtual-network-and-a-connected-on-premises-network"></a>가상 네트워크와 연결된 온-프레미스 네트워크 간에 이름 확인
 
-이 예제에서는 다음과 같이 가정합니다.
+이 예제에서는 다음 가정을 hello:
 
-* VPN 게이트웨이를 사용하여 온-프레미스 네트워크에 연결된 Azure Virtual Network가 있습니다.
+* Azure 가상 네트워크 VPN 게이트웨이 사용 하 여 연결 된 tooan 온-프레미스 네트워크를 해야 합니다.
 
-* 가상 네트워크의 사용자 지정 DNS 서버는 운영 체제로 Linux 또는 Unix 실행합니다.
+* hello 가상 네트워크의 사용자 지정 DNS 서버 hello hello 운영 체제로 Linux 또는 Unix 실행 합니다.
 
-* [바인딩](https://www.isc.org/downloads/bind/)이 사용자 지정 DNS 서버에 설치됩니다.
+* [바인딩](https://www.isc.org/downloads/bind/) hello 사용자 지정 DNS 서버에 설치 되어 있습니다.
 
-가상 네트워크의 사용자 지정 DNS 서버에서:
+Hello 사용자 지정 DNS 서버 hello 가상 네트워크에서:
 
-1. Azure PowerShell 또는 Azure CLI를 사용하여 가상 네트워크의 DNS 접미사를 찾습니다.
+1. Hello 가상 네트워크의 Azure PowerShell 또는 Azure CLI toofind hello DNS 접미사를 사용 합니다.
 
     ```powershell
-    $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
     $NICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName
     $NICs[0].DnsSettings.InternalDomainNameSuffix
     ```
 
     ```azurecli-interactive
-    read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+    read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
     az network nic list --resource-group $RESOURCEGROUP --query "[0].dnsSettings.internalDomainNameSuffix"
     ```
 
-2. 가상 네트워크에 대한 사용자 지정 DNS 서버에서 `/etc/bind/named.conf.local` 파일의 내용으로 다음 텍스트를 사용합니다.
+2. Hello 사용자 지정 DNS 서버에서 가상 네트워크 hello에 대 한 hello의 hello 콘텐츠로 텍스트를 다음 hello를 사용 하 여 `/etc/bind/named.conf.local` 파일:
 
     ```
-    // Forward requests for the virtual network suffix to Azure recursive resolver
+    // Forward requests for hello virtual network suffix tooAzure recursive resolver
     zone "0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net" {
         type forward;
         forwarders {168.63.129.16;}; # Azure recursive resolver
     };
     ```
 
-    `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` 값을 가상 네트워크의 DNS 접미사로 바꿉니다.
+    Hello 대체 `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` 가상 네트워크의 DNS 접미사 hello 사용 하 여 값입니다.
 
-    이 구성은 가상 네트워크의 DNS 접미사에 대한 모든 DNS 요청을 Azure 재귀 확인자에 전달합니다.
+    이 구성은 Azure 재귀 해결 프로그램을 toohello hello 가상 네트워크의 DNS 접미사 hello에 대 한 모든 DNS 요청을 라우팅합니다.
 
-2. 가상 네트워크에 대한 사용자 지정 DNS 서버에서 `/etc/bind/named.conf.options` 파일의 내용으로 다음 텍스트를 사용합니다.
+2. Hello 사용자 지정 DNS 서버에서 가상 네트워크 hello에 대 한 hello의 hello 콘텐츠로 텍스트를 다음 hello를 사용 하 여 `/etc/bind/named.conf.options` 파일:
 
     ```
-    // Clients to accept requests from
-    // TODO: Add the IP range of the joined network to this list
+    // Clients tooaccept requests from
+    // TODO: Add hello IP range of hello joined network toothis list
     acl goodclients {
-        10.0.0.0/16; # IP address range of the virtual network
+        10.0.0.0/16; # IP address range of hello virtual network
         localhost;
         localnets;
     };
@@ -566,75 +566,75 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
             allow-query { goodclients; };
 
-            # All other requests are sent to the following
+            # All other requests are sent toohello following
             forwarders {
-                192.168.0.1; # Replace with the IP address of your on-premises DNS server
+                192.168.0.1; # Replace with hello IP address of your on-premises DNS server
             };
 
             dnssec-validation auto;
 
-            auth-nxdomain no;    # conform to RFC1035
+            auth-nxdomain no;    # conform tooRFC1035
             listen-on { any; };
     };
     ```
     
-    * `10.0.0.0/16` 값을 가상 네트워크의 IP 주소 범위로 바꿉니다. 이 항목으로 이 범위 내의 주소로 이름 확인 요청이 가능합니다.
+    * Hello 대체 `10.0.0.0/16` 가상 네트워크의 IP 주소 범위 hello 사용 하 여 값입니다. 이 항목으로 이 범위 내의 주소로 이름 확인 요청이 가능합니다.
 
-    * 온-프레미스 네트워크의 IP 주소 범위를 `acl goodclients { ... }` 섹션에 추가합니다.  이 항목으로 온-프레미스 네트워크의 리소스에서 이름 확인 요청이 가능합니다.
+    * Hello 온-프레미스 네트워크 toohello의 hello IP 주소 범위 추가 `acl goodclients { ... }` 섹션.  항목은 hello 온-프레미스 네트워크에 리소스에서 이름 확인 요청을 허용합니다.
     
-    * `192.168.0.1` 값을 온-프레미스 DNS 서버의 IP 주소로 바꿉니다. 이 항목은 다른 모든 DNS 요청을 온-프레미스 DNS 서버에 라우팅합니다.
+    * Hello 값을 대체 `192.168.0.1` 온-프레미스 DNS 서버의 hello IP 주소를 사용 합니다. 이 항목에는 모든 DNS 요청 toohello 온-프레미스 DNS 서버를 라우팅합니다.
 
-3. 구성을 사용하려면 바인딩을 다시 시작합니다. 예: `sudo service bind9 restart`
+3. toouse hello 구성 바인딩을 다시 시작 합니다. 예: `sudo service bind9 restart`.
 
-4. 온-프레미스 DNS 서버에 조건부 전달자를 추가합니다. 1단계에서 DNS 접미사에 대한 요청을 사용자 지정 DNS 서버에 보내도록 조건부 전달자를 구성합니다.
+4. 조건부 전달자 toohello 온-프레미스 DNS 서버를 추가 합니다. 단계 1 toohello 사용자 지정 DNS 서버에서 DNS 접미사 hello에 대 한 hello 조건 전달자 toosend 요청을 구성 합니다.
 
     > [!NOTE]
-    > 조건부 전달자를 추가하는 방법에 대한 구체적인 정보는 DNS 소프트웨어에 대한 설명서를 참조하세요.
+    > 방법에 대 한 구체적인 정보에 대 한 DNS 소프트웨어에 대 한 hello 설명서를 참조 하십시오. tooadd 조건 전달자 합니다.
 
-다음 단계를 완료한 후 FQDN(정규화된 도메인 이름)을 사용하여 네트워크의 리소스에 연결할 수 있습니다. 이제 HDInsight를 가상 네트워크에 설치할 수 있습니다.
+다음이 단계를 완료 한 후 tooresources 정규화 된 도메인 이름 (FQDN)을 사용 하 여 두 네트워크에 연결할 수 있습니다. 이제 hello 가상 네트워크로 HDInsight를 설치할 수 있습니다.
 
 ### <a name="name-resolution-between-two-connected-virtual-networks"></a>두 개의 연결된 가상 네트워크 간의 이름 확인
 
-이 예제에서는 다음과 같이 가정합니다.
+이 예제에서는 다음 가정을 hello:
 
 * VPN 게이트웨이 또는 피어링을 사용하여 연결된 두 Azure Virtual Networks가 있습니다.
 
-* 두 네트워크의 사용자 지정 DNS 서버는 운영 체제로 Linux 또는 Unix를 실행합니다.
+* 두 네트워크에에서 사용자 지정 DNS 서버 hello hello 운영 체제로 Linux 또는 Unix 실행 합니다.
 
-* [바인딩](https://www.isc.org/downloads/bind/)이 사용자 지정 DNS 서버에 설치됩니다.
+* [바인딩](https://www.isc.org/downloads/bind/) hello 사용자 지정 DNS 서버에 설치 됩니다.
 
-1. Azure PowerShell 또는 Azure CLI를 사용하여 두 가상 네트워크의 DNS 접미사를 찾습니다.
+1. 두 가상 네트워크의 Azure PowerShell 또는 Azure CLI toofind hello DNS 접미사를 사용 합니다.
 
     ```powershell
-    $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
     $NICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName
     $NICs[0].DnsSettings.InternalDomainNameSuffix
     ```
 
     ```azurecli-interactive
-    read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+    read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
     az network nic list --resource-group $RESOURCEGROUP --query "[0].dnsSettings.internalDomainNameSuffix"
     ```
 
-2. 사용자 지정 DNS 서버에서 `/etc/bind/named.config.local` 파일의 내용으로 다음 텍스트를 사용합니다. 두 가상 네트워크의 사용자 지정 DNS 서버에서 다음과 같이 변경합니다.
+2. 콘텐츠로 사용 hello hello 텍스트를 다음으로 사용 하 여 hello `/etc/bind/named.config.local` hello 사용자 지정 DNS 서버에는 파일입니다. 두 가상 네트워크에서 사용자 지정 DNS 서버 hello에 이와 같이 변경 합니다.
 
     ```
-    // Forward requests for the virtual network suffix to Azure recursive resolver
+    // Forward requests for hello virtual network suffix tooAzure recursive resolver
     zone "0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net" {
         type forward;
-        forwarders {10.0.0.4;}; # The IP address of the DNS server in the other virtual network
+        forwarders {10.0.0.4;}; # hello IP address of hello DNS server in hello other virtual network
     };
     ```
 
-    `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` 값을 __다른__ 가상 네트워크의 DNS 접미사로 바꿉니다. 이 항목은 원격 네트워크의 DNS 접미사 요청을 해당 네트워크의 사용자 지정 DNS로 라우팅합니다.
+    Hello 대체 `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` hello의 hello DNS 접미사를 사용 하 여 값 __다른__ 가상 네트워크입니다. 이 항목의 hello 원격 네트워크 toohello hello DNS 접미사에 대 한 요청을 라우팅하는 네트워크에 있는 사용자 지정 DNS 합니다.
 
-3. 두 가상 네트워크의 사용자 지정 DNS 서버에서 `/etc/bind/named.conf.options` 파일의 내용으로 다음 텍스트를 사용합니다.
+3. 콘텐츠로 사용 hello hello 텍스트를 다음 hello를 사용 하 여 hello 사용자 지정 DNS 서버에서 두 가상 네트워크에 `/etc/bind/named.conf.options` 파일:
 
     ```
-    // Clients to accept requests from
+    // Clients tooaccept requests from
     acl goodclients {
-        10.1.0.0/16; # The IP address range of one virtual network
-        10.0.0.0/16; # The IP address range of the other virtual network
+        10.1.0.0/16; # hello IP address range of one virtual network
+        10.0.0.0/16; # hello IP address range of hello other virtual network
         localhost;
         localnets;
     };
@@ -652,24 +652,24 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
             dnssec-validation auto;
 
-            auth-nxdomain no;    # conform to RFC1035
+            auth-nxdomain no;    # conform tooRFC1035
             listen-on { any; };
     };
     ```
     
-    * `10.0.0.0/16` 및 `10.1.0.0/16` 값을 가상 네트워크의 IP 주소 범위로 바꿉니다. 이 항목으로 각 네트워크의 리소스가 DNS 서버에 요청할 수 있습니다.
+    * Hello 대체 `10.0.0.0/16` 및 `10.1.0.0/16` 값 hello ip 주소 범위가 가상 네트워크의 합니다. 이 항목을 사용 하면 각 네트워크의 리소스의 DNS 서버 hello toomake 요청 합니다.
 
-    가상 네트워크의 DNS 접미사에 해당하지 않는 모든 요청(예: microsoft.com)은 Azure 재귀 확인자에 의해 처리됩니다.
+    Hello 가상 네트워크 (예를 들어, microsoft.com) hello DNS 접미사에 대 한 하지 않은 모든 요청은 hello Azure 재귀 확인자에 의해 처리 됩니다.
 
-4. 구성을 사용하려면 바인딩을 다시 시작합니다. 예를 들어, 두 DNS 서버에서 `sudo service bind9 restart`입니다.
+4. toouse hello 구성 바인딩을 다시 시작 합니다. 예를 들어, 두 DNS 서버에서 `sudo service bind9 restart`입니다.
 
-다음 단계를 완료한 후 FQDN(정규화된 도메인 이름)을 사용하여 가상 네트워크의 리소스에 연결할 수 있습니다. 이제 HDInsight를 가상 네트워크에 설치할 수 있습니다.
+다음이 단계를 완료 한 후 tooresources 정규화 된 도메인 이름 (FQDN)을 사용 하 여 hello 가상 네트워크에 연결할 수 있습니다. 이제 hello 가상 네트워크로 HDInsight를 설치할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* 온-프레미스 네트워크에 연결하기 위해 HDInsight를 구성하는 종단 간 예제는 [HDInsight를 온-프레미스 네트워크에 연결](./connect-on-premises-network.md)을 참조하세요.
+* HDInsight tooconnect tooan 온-프레미스 네트워크 구성의 종단 간 예제를 참조 하십시오. [HDInsight 연결 tooan 온-프레미스 네트워크](./connect-on-premises-network.md)합니다.
 
-* Azure 가상 네트워크에 대한 자세한 내용은 [Azure Virtual Network 개요](../virtual-network/virtual-networks-overview.md)를 참조하세요.
+* Azure 가상 네트워크에 대 한 자세한 내용은 참조 hello [Azure 가상 네트워크 개요](../virtual-network/virtual-networks-overview.md)합니다.
 
 * 네트워크 보안 그룹에 대한 자세한 내용은 [네트워크 보안 그룹](../virtual-network/virtual-networks-nsg.md)을 참조하세요.
 

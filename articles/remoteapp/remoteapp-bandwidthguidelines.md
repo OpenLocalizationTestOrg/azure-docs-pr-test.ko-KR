@@ -1,5 +1,5 @@
 ---
-title: "Azure RemoteApp 네트워크 대역폭 - 일반 지침 | Microsoft 문서"
+title: "aaaAzure RemoteApp 네트워크 대역폭-일반적인 지침 | Microsoft Docs"
 description: "Azure RemoteApp 컬렉션 및 앱에 대한 몇 가지 기본 네트워크 대역폭 지침을 알아봅니다."
 services: remoteapp
 documentationcenter: 
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 0b6521cc240556186890f0b797c6d80e431ac4be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3407eea71e2e8ac524787ee680cfd870c800864
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp-network-bandwidth---general-guidelines-if-you-cant-test-your-own"></a>Azure RemoteApp 네트워크 대역폭 - 일반적인 지침(자체 테스트를 수행할 수 없는 경우)
 > [!IMPORTANT]
-> Azure RemoteApp은 2017년 8월 31일에 중단되었습니다. 자세한 내용은 [알림](https://go.microsoft.com/fwlink/?linkid=821148) 을 읽어보세요.
+> Azure RemoteApp은 2017년 8월 31일에 중단되었습니다. 읽기 hello [알림](https://go.microsoft.com/fwlink/?linkid=821148) 대 한 자세한 내용은 합니다.
 > 
 > 
 
-Azure RemoteApp에 대한 [네트워크 대역폭 테스트](remoteapp-bandwidthtests.md) 를 실행할 시간 또는 능력이 없는 경우 사용자당 네트워크 대역폭을 예측하는 데 도움이 될 수 있는 일반적인 지침이 있습니다.
+Hello 시간 또는 용량 toorun hello 있는지 [대역폭 테스트 네트워크](remoteapp-bandwidthtests.md) 은 사용자 당 네트워크 대역폭을 예측 하는 데 도움이 되는 몇 가지 매우 일반적인 지침 여기 Azure RemoteApp에 대 한 합니다.
 
-이러한 시나리오가 혼합된 경우에는 원격 환경의 최신 인터넷 연결 앱에 대해 10MB/s 이하는 최소 네트워크 대역폭으로 권장되지 않습니다. 이는 평균 사용자 환경보다 더 나은 환경을 보장하지 않습니다.
+이러한 시나리오를 혼합 하 여, 있는 경우 권장 됩니다 아무 것도 보다 작거나 (을) 10MB/s 원격 환경에서 인터넷에 연결 된 최신 앱에 대 한 최소 네트워크 대역폭을 hello으로 합니다. 이는 평균 사용자 환경보다 더 나은 환경을 보장하지 않습니다.
 
 ## <a name="complex-powerpoint-simple-powerpoint"></a>복잡한 PowerPoint, 단순한 PowerPoint
-Azure RemoteApp은 100MB LAN에서 가장 효율적으로 작동합니다. 10MB/s 네트워크 프로필에서 120밀리초가 넘는 지터가 5%를 초과하는 경우 평균적인 사용자 환경이 제공됩니다. 1MB/s에서는 다릅니다. 예를 들어 슬라이드 쇼에서 프레임을 건너뛰어 애니메이션된 전환이 보이지 않을 수 있습니다.
+Azure RemoteApp은 100MB LAN에서 가장 효율적으로 작동합니다. hello 10MB/s 네트워크 프로필을 120 ms 위에 지터 이상 5%, hello 사용자 때 평균 경험 표시 됩니다. 1 m B/초 hello에 다른는 명백한-예를 들어, 슬라이드 쇼에서, 프레임은 생략 hello 사용자 전환 애니메이션된을 전혀 표시 되지 않을 수 있습니다.
 
 ## <a name="internet-explorer-mixed-pdf-pdf-text"></a>Internet Explorer, 혼합된 PDF, PDF, 텍스트
-10MB/s 네트워크 프로필은 대부분의 측면에서 LAN에 가깝습니다. 1MB/s는 화면에 이미지가 있는 경우 사용자가 스크롤할 때 일부 지터가 발생할 수 있지만 정상적인 환경을 제공합니다.
+10 MB/s 네트워크 프로필은 대부분의 측면에서 닫기 tooLAN입니다. 1 m B/초 있을 수 있지만 일부 지터 스크롤할 hello 화면에 이미지 상태일 때 확인 된 경험을 제공 합니다.
 
 ## <a name="flash-video-youtube"></a>Flash 비디오(YouTube)
-100MB/s LAN은 최상의 환경을 제공하고, 10MB/s는 허용되는 환경(즉, 프레임 속도를 유지하지만 지터가 증가함)을 제공합니다. 1MB/s에서는 지터가 매우 높습니다.
+10MB/s는 허용 가능한 (의미 hello 프레임 속도를 따라갈 म 하지만 증가 지터) 100MB/s LAN hello 최고의 사용 환경을 제공 합니다. 1MB/s에서는 지터가 매우 높습니다.
 
 ## <a name="word-typing-word-remote-input"></a>Word 입력(Word 원격 입력)
 낮은 대역폭을 사용하는 시나리오입니다. 256KB/s에서 LAN만큼 적절한 환경을 제공합니다.

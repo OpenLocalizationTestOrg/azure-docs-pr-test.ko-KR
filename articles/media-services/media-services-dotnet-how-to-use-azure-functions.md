@@ -1,6 +1,6 @@
 ---
-title: "Media Services에서 Azure Functions 개발"
-description: "이 항목에서는 Azure Portal을 사용하여 Media Services에서 Azure Functions를 개발하기 시작하는 방법을 보여 줍니다."
+title: "aaaDevelop 미디어 서비스로 Azure 함수"
+description: "이 항목에서는 방법을 사용 하 여 미디어 서비스와 Azure 기능을 개발 하는 toostart hello Azure 포털을 보여줍니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: juliako
-ms.openlocfilehash: 35d539855572fef6c00de614a4e57738a8abd075
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3b2c2fb498fea399c862dfbdb63033d06cabf6d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="develop-azure-functions-with-media-services"></a>Media Services에서 Azure Functions 개발
 
-이 항목에서는 Media Services를 사용하는 Azure Functions를 만들기 시작하는 방법을 보여 줍니다. 이 항목에 정의된 Azure Function은 새 MP4 파일에 대한 저장소 계정 컨테이너 **input**을 모니터링합니다. 저장소 컨테이너에서 파일이 삭제되면 blob 트리거가 함수를 실행합니다.
+이 항목에서는 tooget 미디어 서비스를 사용 하는 Azure 함수를 만드는 것부터 시작 하는 방법을 보여 줍니다. 이 항목에 정의 된 Azure 함수 hello 라는 저장소 계정 컨테이너 모니터링 **입력** 새 MP4 파일에 대 한 합니다. Hello 저장소 컨테이너에 파일은 삭제 되 면 hello blob 트리거 hello 함수를 실행 합니다.
 
-Azure Media Services를 사용하는 기존 Azure Functions를 탐색하고 배포하려는 경우 [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)를 확인하세요. 이 리포지토리는 Blob Storage에서 직접 콘텐츠를 수집하고 Blob Storage에 콘텐츠를 인코딩 및 작성하는 데 관련된 워크플로를 표시하는 데 Media Services를 사용하는 예제를 포함합니다. 또한 WebHooks 및 Azure 큐를 통해 작업 알림을 모니터링하는 방법의 예도 포함되어 있습니다. [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) 리포지토리의 예제를 기반으로 함수를 개발할 수도 있습니다. 함수를 배포하려면 **Azure에 배포** 단추를 누릅니다.
+원하는 tooexplore Azure 미디어 서비스를 사용 하는 기존 Azure 함수를 배포 하는 경우 체크 아웃 [미디어 서비스 Azure 함수](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)합니다. 이 저장소는 미디어 서비스 tooshow 워크플로 관련된 tooingesting 직접 blob 저장소에서 인코딩, 콘텐츠를 쓸 롤백할 tooblob 저장소 콘텐츠를 사용 하는 예제를 포함 합니다. 또한 toomonitor Webhook 및 Azure 큐를 통해 알림을 작업 하는 방법의 예도 포함 되어 있습니다. Hello에 hello 예제에 따라 함수를 개발 [미디어 서비스 Azure 함수](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) 저장소입니다. toodeploy hello 함수, 키를 눌러 hello **tooAzure 배포** 단추입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-- 첫 번째 함수를 만들기 전에 활성 Azure 계정이 있어야 합니다. Azure 계정이 아직 없는 경우 [체험 계정을 사용](https://azure.microsoft.com/free/)할 수 있습니다.
-- AMS(Azure Media Services) 계정에서 작업을 수행하거나 Media Services에서 보낸 이벤트를 수신 대기하는 Azure Functions를 만들려는 경우 [여기](media-services-portal-create-account.md)에 설명한 대로 AMS 계정을 만들어야 합니다.
-- [Azure Functions를 사용하는 방법](../azure-functions/functions-overview.md)을 이해합니다. 또한 다음을 검토합니다.
+- 첫 번째 함수를 만들기 전에 toohave 활성 Azure 계정 해야 합니다. Azure 계정이 아직 없는 경우 [체험 계정을 사용](https://azure.microsoft.com/free/)할 수 있습니다.
+- 설명 된 대로 AMS 계정을 Azure 미디어 서비스 (AMS) 계정에 작업을 수행 하거나 미디어 서비스에서 보낸 tooevents 수신 대기 하는 toocreate Azure 함수를 사용 하도록 하려는 경우 만든 [여기](media-services-portal-create-account.md)합니다.
+- 이해 [어떻게 toouse Azure 함수](../azure-functions/functions-overview.md)합니다. 또한 다음을 검토합니다.
     - [Azure Functions HTTP 및 웹후크 바인딩](../azure-functions/functions-triggers-bindings.md)
-    - [Azure 함수 앱 설정을 구성하는 방법](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
+    - [어떻게 tooconfigure Azure 함수 앱 설정](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
     
 ## <a name="considerations"></a>고려 사항
 
--  소비 계획에서 실행되는 Azure Functions의 시간 초과 제한은 5분입니다.
+-  Hello 소비 계획으로 실행 하는 azure 함수를 제한 하는 5 분 시간 초과 갖고 있습니다.
 
 ## <a name="create-a-function-app"></a>함수 앱 만들기
 
-1. [Azure Portal](http://portal.azure.com) 로 이동하여 Azure 계정으로 로그인합니다.
+1. Toohello 이동 [Azure 포털](http://portal.azure.com) 및 Azure 계정으로 로그인 합니다.
 2. [여기](../azure-functions/functions-create-function-app-portal.md)에 설명한 대로 함수 앱을 만듭니다.
 
 >[!NOTE]
-> **StorageConnection** 환경 변수에 지정(다음 단계 참조)한 저장소 계정은 앱과 동일한 지역에 있어야 합니다.
+> Hello에 지정 하는 저장소 계정을 **StorageConnection** hello 환경 변수 여야 합니다 (hello 다음 단계 참조) 응용 프로그램으로 같은 지역입니다.
 
 ## <a name="configure-function-app-settings"></a>함수 앱 구성 설정
 
-Media Services 함수를 개발하는 경우 함수 전체에서 사용할 환경 변수를 쉽게 추가할 수 있습니다. 앱 설정을 구성하려면 앱 설정 구성 링크를 클릭합니다. 자세한 내용은 [Azure 함수 앱 설정을 구성하는 방법](../azure-functions/functions-how-to-use-azure-function-app-settings.md)을 참조하세요. 
+미디어 서비스 기능을 개발, 때는 함수 전체에서 사용할 수 있는 편리한 tooadd 환경 변수입니다. tooconfigure 앱 설정 hello 앱 설정 구성 링크를 클릭 합니다. 자세한 내용은 참조 [어떻게 tooconfigure Azure 함수 앱 설정](../azure-functions/functions-how-to-use-azure-function-app-settings.md)합니다. 
 
 예:
 
 ![설정](./media/media-services-azure-functions/media-services-azure-functions001.png)
 
-이 문서에 정의된 함수는 앱 설정에 다음 환경 변수가 있다고 가정합니다.
+앱 설정에서 환경 변수를 다음 hello 있다고 가정 하 고이 문서에 정의 된 hello 함수:
 
 **AMSAccount**: *AMS 계정 이름*(예: testams)
 
@@ -71,12 +71,12 @@ Media Services 함수를 개발하는 경우 함수 전체에서 사용할 환�
 함수 앱을 배포하면 **App Services** Azure Functions에서 찾을 수 있습니다.
 
 1. 함수 앱을 선택하고 **새 함수**를 클릭합니다.
-2. **C#** 언어 및 **데이터 처리** 시나리오를 선택합니다.
-3. **BlobTrigger** 템플릿을 선택합니다. 이 함수는 Blob이 **input** 컨테이너에 업로드될 때마다 트리거됩니다. **input** 이름은 다음 단계에서 **Path**에 지정됩니다.
+2. Hello 선택 **C#** 언어 및 **데이터 처리** 시나리오입니다.
+3. **BlobTrigger** 템플릿을 선택합니다. 이 함수를 hello로 blob은 업로드 될 때마다 트리거되어 **입력** 컨테이너입니다. hello **입력** hello에 이름이 지정 된 **경로**, hello 다음 단계에서 합니다.
 
     ![업로드](./media/media-services-azure-functions/media-services-azure-functions004.png)
 
-4. **BlobTrigger**를 선택하면 페이지에 몇 가지 추가 컨트롤이 표시됩니다.
+4. 선택 하 고 나면 **BlobTrigger**, 몇 가지 더 많은 컨트롤이 hello 페이지에 표시 됩니다.
 
     ![업로드](./media/media-services-azure-functions/media-services-azure-functions005.png)
 
@@ -85,16 +85,16 @@ Media Services 함수를 개발하는 경우 함수 전체에서 사용할 환�
 
 ## <a name="files"></a>파일
 
-Azure Function은 이 섹션에 설명된 코드 파일 및 기타 파일과 연결됩니다. 기본적으로 함수는 **function.json** 및 **run.csx**(C#) 파일과 연결됩니다. **project.json** 파일을 추가해야 합니다. 이 섹션의 나머지 부분에서는 이러한 파일의 정의를 보여 줍니다.
+Azure Function은 이 섹션에 설명된 코드 파일 및 기타 파일과 연결됩니다. 기본적으로 함수는 **function.json** 및 **run.csx**(C#) 파일과 연결됩니다. Tooadd 해야는 **project.json** 파일입니다. hello이이 단원의 나머지 부분에서는 이러한 파일에 대 한 hello 정의 보여 줍니다.
 
 ![업로드](./media/media-services-azure-functions/media-services-azure-functions003.png)
 
 ### <a name="functionjson"></a>function.json
 
-function.json 파일은 함수 바인딩 및 기타 구성 설정을 정의합니다. 런타임은 이 파일을 사용하여 모니터링할 이벤트와 함수 실행에서 데이터를 전달하고 반환하는 방법을 결정합니다. 자세한 내용은 [Azure Functions HTTP 및 웹후크 바인딩](../azure-functions/functions-reference.md#function-code)을 참조하세요.
+hello function.json 파일 hello 함수 바인딩 및 기타 구성 설정을 정의합니다. hello 런타임은이 파일 toodetermine hello 이벤트 toomonitor 및 toopass 데이터를 한 반환 데이터에서 실행이 작동 방식을 사용 합니다. 자세한 내용은 [Azure Functions HTTP 및 웹후크 바인딩](../azure-functions/functions-reference.md#function-code)을 참조하세요.
 
 >[!NOTE]
->함수가 실행되지 않도록 **disabled** 속성을 **true**로 설정합니다. 
+>집합 hello **비활성화** 속성 너무**true** tooprevent hello 함수 실행 되지 않도록 합니다. 
 
 
 **function.json** 파일의 예제는 다음과 같습니다.
@@ -114,7 +114,7 @@ function.json 파일은 함수 바인딩 및 기타 구성 설정을 정의합�
 
 ### <a name="projectjson"></a>project.json
 
-project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .NET Azure Media Services 패키지를 포함하는 **project.json** 파일의 예입니다. 버전 번호가 패키지의 최신 업데이트로 변경되므로 가장 최근 버전을 확인해야 합니다. 
+hello project.json 파일 종속성을 포함합니다. 예로 **project.json** hello 필요한.NET Azure 미디어 서비스를 포함 하는 파일에서 Nuget 패키지 합니다. hello 버전 번호가 변경 된다는 최신 업데이트로 toohello 패키지 hello 가장 최신 버전을 확인 해야 하므로 note 합니다. 
 
     {
       "frameworks": {
@@ -129,14 +129,14 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
     
 ### <a name="runcsx"></a>run.csx
 
-함수에 대한 C# 코드입니다.  아래 정의된 함수는 새 MP4 파일에 대한 저장소 계정 컨테이너 **input**(경로에 지정됨)을 모니터링합니다. 저장소 컨테이너에서 파일이 삭제되면 blob 트리거가 함수를 실행합니다.
+함수에 대 한 hello C# 코드입니다.  hello 함수 아래에 정의 된 모니터가 라는 저장소 계정 컨테이너 **입력** (즉 hello 경로에 지정 된 항목) 새 MP4 파일에 대 한 합니다. Hello 저장소 컨테이너에 파일은 삭제 되 면 hello blob 트리거 hello 함수를 실행 합니다.
     
-이 섹션에 정의된 예제는 다음을 보여 줍니다. 
+이 섹션에 정의 된 hello 예제 
 
-1. AMS 자산에 blob을 복사하여 Media Services 계정에 자산을 수집하는 방법 
-2. Media Encoder Standard의 "적응 스트리밍" 사전 설정을 사용하는 인코딩 작업을 제출하는 방법
+1. tooingest를 미디어 서비스 자산 (AMS 자산으로 blob를 복사) 하 여 계정 하는 방법 및 
+2. 어떻게 toosubmit 미디어 인코더 표준의 "적응 스트리밍"를 사용 하는 인코딩 작업을 미리 설정 됩니다.
 
-실제 시나리오에서는 작업 진행률을 추적한 다음 인코딩된 자산을 게시할 가능성이 높습니다. 자세한 내용은 [Azure 웹후크를 사용하여 Media Services 작업 알림 모니터링](media-services-dotnet-check-job-progress-with-webhooks.md)을 참조하세요. 더 많은 예제는 [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)를 참조하세요.  
+Hello 실제 시나리오에서는 가장 가능성이 높은 tootrack 작업 진행 상황을 다음 인코딩된 자산을 게시 합니다. 자세한 내용은 참조 [사용 하 여 Azure Webhook toomonitor 미디어 서비스 작업 알림](media-services-dotnet-check-job-progress-with-webhooks.md)합니다. 더 많은 예제는 [Media Services Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)를 참조하세요.  
 
 함수를 정의했으면 **저장 및 실행**을 클릭합니다.
 
@@ -171,12 +171,12 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
 
     public static void Run(CloudBlockBlob myBlob, string fileName, TraceWriter log)
     {
-        // NOTE that the variables {fileName} here come from the path setting in function.json
-        // and are passed into the  Run method signature above. We can use this to make decisions on what type of file
-        // was dropped into the input container for the function. 
+        // NOTE that hello variables {fileName} here come from hello path setting in function.json
+        // and are passed into hello  Run method signature above. We can use this toomake decisions on what type of file
+        // was dropped into hello input container for hello function. 
 
-        // No need to do any Retry strategy in this function, By default, the SDK calls a function up to 5 times for a 
-        // given blob. If the fifth try fails, the SDK adds a message to a queue named webjobs-blobtrigger-poison.
+        // No need toodo any Retry strategy in this function, By default, hello SDK calls a function up too5 times for a 
+        // given blob. If hello fifth try fails, hello SDK adds a message tooa queue named webjobs-blobtrigger-poison.
 
         log.Info($"C# Blob trigger function processed: {fileName}.mp4");
         log.Info($"Using Azure Media Services account : {_mediaServicesAccountName}");
@@ -184,16 +184,16 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
 
         try
         {
-        // Create and cache the Media Services credentials in a static class variable.
+        // Create and cache hello Media Services credentials in a static class variable.
         _cachedCredentials = new MediaServicesCredentials(
                 _mediaServicesAccountName,
                 _mediaServicesAccountKey);
 
-        // Used the chached credentials to create CloudMediaContext.
+        // Used hello chached credentials toocreate CloudMediaContext.
         _context = new CloudMediaContext(_cachedCredentials);
 
-        // Step 1:  Copy the Blob into a new Input Asset for the Job
-        // ***NOTE: Ideally we would have a method to ingest a Blob directly here somehow. 
+        // Step 1:  Copy hello Blob into a new Input Asset for hello Job
+        // ***NOTE: Ideally we would have a method tooingest a Blob directly here somehow. 
         // using code from this sample - https://azure.microsoft.com/en-us/documentation/articles/media-services-copying-existing-blob/
 
         StorageCredentials mediaServicesStorageCredentials =
@@ -203,25 +203,25 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
 
         // Step 2: Create an Encoding Job
 
-        // Declare a new encoding job with the Standard encoder
+        // Declare a new encoding job with hello Standard encoder
         IJob job = _context.Jobs.Create("Azure Function - MES Job");
 
-        // Get a media processor reference, and pass to it the name of the 
-        // processor to use for the specific task.
+        // Get a media processor reference, and pass tooit hello name of hello 
+        // processor toouse for hello specific task.
         IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-        // Create a task with the encoding details, using a custom preset
+        // Create a task with hello encoding details, using a custom preset
         ITask task = job.Tasks.AddNew("Encode with Adaptive Streaming",
             processor,
             "Adaptive Streaming",
             TaskOptions.None); 
 
-        // Specify the input asset to be encoded.
+        // Specify hello input asset toobe encoded.
         task.InputAssets.Add(newAsset);
 
-        // Add an output asset to contain the results of the job. 
+        // Add an output asset toocontain hello results of hello job. 
         // This output is specified as AssetCreationOptions.None, which 
-        // means the output asset is not encrypted. 
+        // means hello output asset is not encrypted. 
         task.OutputAssets.AddNew(fileName, AssetCreationOptions.None);
 
         job.Submit();
@@ -266,13 +266,13 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
     }
 
     /// <summary>
-    /// Creates a new asset and copies blobs from the specifed storage account.
+    /// Creates a new asset and copies blobs from hello specifed storage account.
     /// </summary>
-    /// <param name="blob">The specified blob.</param>
-    /// <returns>The new asset.</returns>
+    /// <param name="blob">hello specified blob.</param>
+    /// <returns>hello new asset.</returns>
     public static async Task<IAsset> CreateAssetFromBlobAsync(CloudBlockBlob blob, string assetName, TraceWriter log)
     {
-         //Get a reference to the storage account that is associated with the Media Services account. 
+         //Get a reference toohello storage account that is associated with hello Media Services account. 
         StorageCredentials mediaServicesStorageCredentials =
         new StorageCredentials(_storageAccountName, _storageAccountKey);
         _destinationStorageAccount = new CloudStorageAccount(mediaServicesStorageCredentials, false);
@@ -286,7 +286,7 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
         ILocator destinationLocator = _context.Locators.CreateLocator(LocatorType.Sas, asset, writePolicy);
         CloudBlobClient destBlobStorage = _destinationStorageAccount.CreateCloudBlobClient();
 
-        // Get the destination asset container reference
+        // Get hello destination asset container reference
         string destinationContainerName = (new Uri(destinationLocator.Path)).Segments[1];
         CloudBlobContainer assetContainer = destBlobStorage.GetContainerReference(destinationContainerName);
 
@@ -300,7 +300,7 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
 
         log.Info("Created asset.");
 
-        // Get hold of the destination blob
+        // Get hold of hello destination blob
         CloudBlockBlob destinationBlob = assetContainer.GetBlockBlobReference(blob.Name);
 
         // Copy Blob
@@ -334,15 +334,15 @@ project.json 파일은 종속성을 포함합니다. 다음은 Nuget의 필수 .
     }
 ##<a name="test-your-function"></a>함수 테스트
 
-함수를 테스트하려면 연결 문자열에 지정한 저장소 계정의 **input** 컨테이너에 MP4 파일을 업로드해야 합니다.  
+tootest tooupload hello로 MP4 파일 필요한 함수를 **입력** hello 연결 문자열에 지정 하는 hello 저장소 계정의 컨테이너입니다.  
 
 ## <a name="next-step"></a>다음 단계
 
-이제 미디어 서비스 응용 프로그램 개발을 시작할 준비가 되었습니다. 
+이 시점에서 미디어 서비스 응용 프로그램을 개발 하는 준비 toostart 됩니다. 
  
-Azure Media Services에서 Azure Functions 및 Logic Apps를 사용하여 사용자 지정 콘텐츠 만들기 워크플로를 만드는 방법에 대한 자세한 내용 및 전체 샘플/솔루션은 [GitHub의 Media Services .NET 함수 통합 샘플](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)을 참조하세요.
+자세한 내용과 전체 샘플/의 Azure 기능 및 논리 앱을 사용 하 여 Azure 미디어 서비스 toocreate 사용자 지정 콘텐츠 제작 워크플로 사용 하 여 솔루션에 대 한 참조 hello [GitHub에 미디어 서비스.NET 함수 통합 샘플](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)
 
-또한 [Azure 웹후크를 사용하여 .NET으로 Media Services 작업 알림 모니터링](media-services-dotnet-check-job-progress-with-webhooks.md)을 참조하세요. 
+참고: [사용 하 여 Azure Webhook toomonitor 미디어 서비스.NET을 사용 하 여 알림 작업](media-services-dotnet-check-job-progress-with-webhooks.md)합니다. 
 
 ## <a name="media-services-learning-paths"></a>미디어 서비스 학습 경로
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

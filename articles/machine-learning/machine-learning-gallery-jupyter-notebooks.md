@@ -1,6 +1,6 @@
 ---
-title: "Cortana Intelligence 갤러리 Jupyter Notebooks | Microsoft Docs"
-description: "Cortana Intelligence 갤러리에서 Jupyter 노트북 검색."
+title: "aaaCortana Intelligence 갤러리 Jupyter 노트북 | Microsoft Docs"
+description: "Jupyter 노트북 hello Cortana 인텔리전스 갤러리를 검색 합니다."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: ff7d5c372500c2cd392ed65a921d8a994b090f23
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 459968ddbcf1da17e6993dd577a90b4dd3847cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-jupyter-notebooks-in-the-cortana-intelligence-gallery"></a>Cortana Intelligence 갤러리에서 Jupyter 노트북 검색
+# <a name="discover-jupyter-notebooks-in-hello-cortana-intelligence-gallery"></a>Jupyter 노트북 hello Cortana 인텔리전스 갤러리에서 검색
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="jupyter-notebooks"></a>Jupyter 노트북
 **[Jupyter 노트북](https://gallery.cortanaintelligence.com/notebooks)**은 하나의 단일 대화형 캔버스에 코드, 데이터 시각화 및 문서를 포함합니다.
-갤러리의 노트북은 자습서는 물론 고급 기계 학습 기술 및 솔루션에 대한 설명을 제공합니다.
+Hello 갤러리 노트북 자습서 및 고급 컴퓨터 학습 기술 및 솔루션에 대 한 세부 정보를 제공 합니다.
 
 ## <a name="discover"></a>검색
-  갤러리에는 노트북을 찾으려면 엽니다는 [갤러리](http://gallery.cortanaintelligence.com) 클릭 **전자 필기장** 갤러리 홈 페이지의 위쪽에 합니다.
+  hello open hello 갤러리에서에서 노트북용 toobrowse [갤러리](http://gallery.cortanaintelligence.com) 클릭 하 고 **전자 필기장** hello hello 갤러리 홈 페이지 위쪽에 있습니다.
 
-  **[Jupyter 노트북](https://gallery.cortanaintelligence.com/notebooks)**  페이지 가장 인기 있는 전자 필기장의 목록이 표시 됩니다.
-모든 노트북을 보려면 **모두 표시**를 클릭합니다.
-이 페이지에서 갤러리의 모든 노트북을 찾아볼 수 있습니다. 또한 페이지 왼쪽에서 필터 조건을 선택하고 맨 위에 검색어를 입력하여 검색할 수 있습니다.
+  **[Jupyter 노트북](https://gallery.cortanaintelligence.com/notebooks)**  페이지 hello 가장 인기 있는 전자 필기장의 목록이 표시 됩니다.
+클릭 **스크롤하게** tooview 모든 전자 필기장 합니다.
+이 페이지에서 갤러리 hello에서 모든 전자 필기장을 찾아볼 수 있습니다. 또한 hello hello 페이지 왼쪽에 필터 조건을 선택 하 여 검색할 수 있으며 입력 검색 단어 hello 맨 위로 이동 합니다.
 
- 아무 노트북이나 클릭하여 노트북의 세부 정보 페이지를 열고 그것에 관한 자세한 내용을 읽습니다. 이 페이지에서 주석 섹션을 통해 주석을 달거나 피드백을 제공하거나 질문을 할 수 있습니다. LinkedIn 또는 Twitter의 공유 기능을 사용하여 친구나 동료와 그것을 공유할 수 있습니다. 페이지를 보도록 다른 사용자를 초대하기 위해 노트북의 링크를 메일로 보낼 수도 있습니다.
+ 모든 전자 필기장 tooopen 전자 필기장의 세부 정보 페이지를 클릭 하 고 자세한 정보를 읽을 합니다. 이 페이지에서 주석 사용자 의견을 제공 하거나 hello 설명 섹션을 통해 질문 수 있습니다. 친구와도 공유할 수 또는 hello를 사용 하 여 동료 LinkedIn 또는 Twitter의 기능을 공유 합니다. 또한 다른 사용자가 tooview hello 페이지 링크 toothe 노트북 tooinvite를 보낼 수 있습니다.
 
 ![이 항목을 친구 들과 공유](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![사용자 고유의 설명 추가](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>다운로드
-갤러리에서 Machine Learning Studio 작업 영역으로 노트북 복사본을 다운로드할 수 있습니다.
+기계 학습 스튜디오 작업 영역으로의 모든 노트북 복사본 hello 갤러리에서에서 다운로드할 수 있습니다.
 
-### <a name="download-from-the-gallery"></a>갤러리에서 다운로드
-갤러리에서 노트북 복사본을 다운로드하려면:
+### <a name="download-from-hello-gallery"></a>Hello 갤러리에서 다운로드
+hello 갤러리에서에서 노트북의 복사본을 toodownload:
 
-1. 갤러리에서 노트북의 세부 정보 페이지를 엽니다.
+1. Hello 갤러리에서에서 hello 전자 필기장의 세부 정보 페이지를 엽니다.
 2. **Studio에서 열기**를 클릭합니다.
-3. 사용할 지역과 작업 영역을 선택합니다.
+3. Hello 지역 및 toouse 원하는 작업 영역 선택
    
-    ![갤러리에서 Jupyter 노트북 열기](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
+    ![Jupyter 노트북 hello 갤러리에서 열기](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
 
-**Studio에서 열기**를 클릭하면, 노트북이 Machine Learning Studio 작업 영역으로 로드되어 열립니다.(Studio에 로그인되어 있지 않다면 작업 영역으로 노트북이 복사되기 전에 Microsoft 계정을 사용하여 로그인하라는 메시지가 표시됩니다.) Studio 홈 페이지 왼쪽에서 **노트북**을 클릭하면 나중에 노트북을 다시 찾을 수 있습니다.
+클릭할 때 **Studio에서 열기**, hello 전자 필기장의 기계 학습 스튜디오 작업 영역에 로드 되 고 열 (아직 로그인 tooStudio, 됩니다 hello 하기 전에 Microsoft 계정을 사용 하 여 증명된 toosign 노트북은 복사한 tooyour 작업 영역). 클릭 하 여 나중에 다시 hello 노트북을 찾을 수 있습니다 **전자 필기장** hello hello Studio 홈 페이지의 왼쪽에 있습니다.
 
 ### <a name="download-in-machine-learning-studio"></a>Machine Learning Studio에서 다운로드
-Machine Learning Studio에서 작업하는 동안 동일한 갤러리 노트북을 열 수도 있습니다.
+Hello을 열 수도 있습니다 기계 학습 스튜디오에서 작업 하는 동안 동일한 갤러리 전자 필기장:
 
 1. Machine Learning Studio에서 **+새로 만들기**를 클릭합니다.
-2. **노트북** 선택 – 갤러리의 노트북 목록이 표시되면 그 중에 선택하거나 검색 상자를 사용하여 특정 노트북을 찾을 수 있습니다.
+2. 선택 **노트북** -에서 선택할 수 있습니다 또는 hello 검색 상자를 사용 하 여 특정 노트북을 찾을 수 있습니다 hello 갤러리에서에서 전자 필기장의 목록이 표시 됩니다
 3. 마우스로 노트북을 가리키고 **노트북 열기**를 선택합니다.
    
     ![Machine Learning Studio 내에서 갤러리 노트북 열기](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-studio.png)
 
-노트북 복사본이 다운로드되어 Machine Learning Studio의 Jupyter 노트북 섹션에 있는 작업 영역에 열립니다.
-Studio의 **노트북** 페이지에 다른 노트북과 함께 해당 노트북이 나열됩니다.([Studio 홈 페이지](https://studio.azureml.net/)의 왼쪽에서 **노트북**을 클릭합니다).
+Hello 전자 필기장의 복사본을 다운로드 하 고 hello 기계 학습 스튜디오의 Jupyter 노트북 섹션에서에서 작업 영역에서 열 됩니다.
+hello 노트북 함께 나열 될, hello에 다른 노트북, **전자 필기장** Studio의 페이지 (hello에 [Studio 홈 페이지](https://studio.azureml.net/), 클릭 **전자 필기장** hello 왼쪽에).
 
-**[갤러리로 이동 >>](http://gallery.cortanaintelligence.com)**
+**[라인 ME toohello 갤러리 >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

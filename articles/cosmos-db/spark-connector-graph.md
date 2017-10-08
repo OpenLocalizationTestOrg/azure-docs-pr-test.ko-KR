@@ -15,33 +15,33 @@ ms.devlang: gremlin
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: khdang
-ms.openlocfilehash: 27c4d945e418b130c68cfde845571eb93658101e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0be5c9b12cdba4a428c809d00e1e68785a9ec1ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a>Azure Cosmos DB: Spark 및 Apache TinkerPop Gremlin을 사용하여 그래프 분석 수행
 
-[Azure Cosmos DB](introduction.md)는 Microsoft에서 제공하는 전 세계에 배포된 다중 모델 데이터베이스 서비스입니다. Azure Cosmos DB의 코어인 전역 배포 및 수평적 규모 조정 기능의 이점을 활용하여 문서, 키/값 및 그래프 데이터베이스를 만들고 쿼리할 수 있습니다. Azure Cosmos DB는 [Apache TinkerPop Gremlin](graph-introduction.md)을 사용하는 OLTP(온라인 트랜잭션 처리) 그래프 워크로드를 지원합니다.
+[Azure Cosmos DB](introduction.md) 세계적으로 분산 된 다중 모델 데이터베이스 서비스로, Microsoft에서 hello 됩니다. 만들기 및 문서, 키/값 및 그래프 데이터베이스의 경우는 모두 Cosmos DB Azure의 hello 핵심 hello 글로벌 메일 및 가로 배율 기능에서 혜택을 쿼리할 수 있습니다. Azure Cosmos DB는 [Apache TinkerPop Gremlin](graph-introduction.md)을 사용하는 OLTP(온라인 트랜잭션 처리) 그래프 워크로드를 지원합니다.
 
-[Spark](http://spark.apache.org/)는 범용 OLAP(온라인 분석 처리) 데이터 처리에 중점을 둔 Apache Software Foundation 프로젝트입니다. Spark는 Hadoop MapReduce 모델과 유사한 하이브리드 메모리 내/디스크 기반 분산형 컴퓨팅 모델을 제공합니다. Apache Spark는 클라우드에서 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/)를 사용하여 배포할 수 있습니다.
+[Spark](http://spark.apache.org/)는 범용 OLAP(온라인 분석 처리) 데이터 처리에 중점을 둔 Apache Software Foundation 프로젝트입니다. Spark는 하이브리드에 메모리/디스크 기반 분산된 하는 컴퓨팅 모델은 비슷한 toohello Hadoop MapReduce 모델을 제공 합니다. 사용 하 여 hello 클라우드에서 Apache Spark를 배포할 수 있습니다 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/)합니다.
 
-Azure Cosmos DB와 Spark를 결합하여 Gremlin을 사용할 때 OLTP와 OLAP 워크로드를 모두 수행할 수 있습니다. 이 빠른 시작 문서는 Azure HDInsight Spark 클러스터에서 Azure Cosmos DB에 Gremlin 쿼리를 실행하는 방법을 보여줍니다.
+Azure Cosmos DB와 Spark를 결합하여 Gremlin을 사용할 때 OLTP와 OLAP 워크로드를 모두 수행할 수 있습니다. 이 빠른 시작 문서 toorun Gremlin Azure Cosmos DB에 대 한 Azure HDInsight Spark 클러스터에서 쿼리 하는 방법을 보여줍니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 샘플을 실행하기 전에 다음 필수 조건이 있어야 합니다.
+이 예제를 실행 하려면 먼저 다음 필수 구성 요소는 hello가 있어야 합니다.
 * Azure HDInsight Spark 클러스터 2.0
 * JDK 1.8+(JDK가 없는 경우 `apt-get install default-jdk` 실행)
 * Maven(Maven이 없는 경우 `apt-get install maven` 실행)
 * Azure 구독([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])
 
-Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 내용은 [HDInsight 클러스터 프로비전](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)을 참조하세요.
+방법에 대 한 정보에 대 한 Azure HDInsight Spark 클러스터를 tooset 참조 [프로 비전 하는 HDInsight 클러스터](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)합니다.
 
 ## <a name="create-an-azure-cosmos-db-database-account"></a>Azure Cosmos DB 데이터베이스 계정 만들기
 
-먼저 다음을 수행하여 Graph API로 데이터베이스 계정을 만듭니다.
+첫째, hello 다음을 수행 하 여 hello Graph API로 데이터베이스 계정을 만듭니다.
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
@@ -51,11 +51,11 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
 
 ## <a name="get-apache-tinkerpop"></a>Apache TinkerPop 가져오기
 
-다음을 수행하여 Apache TinkerPop을 가져옵니다.
+Hello 다음을 수행 하 여 Apache TinkerPop를 가져옵니다.
 
-1. HDInsight 클러스터 `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`의 마스터 노드에 원격 연결
+1. Hello HDInsight 클러스터의 마스터 노드에 원격 toohello `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`합니다.
 
-2. TinkerPop3 소스 코드 복제, 로컬에서 빌드 및 Maven 캐시에 설치
+2. Hello TinkerPop3 소스 코드를 복제 하 고 로컬로 빌드 tooMaven 캐시를 설치 합니다.
 
     ```bash
     git clone https://github.com/apache/tinkerpop.git
@@ -63,11 +63,11 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     mvn clean install
     ```
 
-3. Spark-Gremlin 플러그 인 설치 
+3. Hello Spark Gremlin 플러그 인 설치 
 
-    a. 플러그 인 설치는 Grape에서 처리됩니다. 플러그인과 해당 종속성을 다운로드 할 수 있도록 Grape에 대한 리포지토리 정보를 입력합니다. 
+    a. 플러그 인 hello hello 설치 포도에 의해 처리 됩니다. 플러그 인 hello 및 해당 종속성을 다운로드할 수 있도록 포도 대 한 hello 저장소 정보를 채웁니다. 
 
-      `~/.groovy/grapeConfig.xml`에 grape 구성 파일이 없으면 해당 파일을 만듭니다. 다음 설정을 사용합니다.
+      에 없는 경우 hello 포도 구성 파일을 만들 `~/.groovy/grapeConfig.xml`합니다. 다음 설정을 사용 하 여 hello:
 
     ```xml
     <ivysettings>
@@ -91,7 +91,7 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
 
     b. Gremlin 콘솔 `bin/gremlin.sh`을 시작합니다.
         
-    c. 이전 단계에서 빌드한 버전 3.3.0-SNAPSHOT으로 Spark-Gremlin 플러그인을 설치합니다.
+    c. Hello Spark Gremlin 플러그 인을 설치 3.3.0-SNAPSHOT hello 이전 단계에서 기본 제공 합니다.
 
     ```bash
     $ bin/gremlin.sh
@@ -103,7 +103,7 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     plugin activated: tinkerpop.utilities
     plugin activated: tinkerpop.tinkergraph
     gremlin> :install org.apache.tinkerpop spark-gremlin 3.3.0-SNAPSHOT
-    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart the console to use [tinkerpop.spark]
+    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart hello console toouse [tinkerpop.spark]
     gremlin> :q
     $ bin/gremlin.sh
 
@@ -117,17 +117,17 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     ==>tinkerpop.spark activated
     ```
 
-4. `Hadoop-Gremlin`이 `:plugin list`를 사용하여 활성화되었는지 확인합니다. Spark Gremlin 플러그 인 `:plugin unuse tinkerpop.hadoop`을 방해할 수 있기 때문에 이 플러그 인을 사용하지 않습니다.
+4. Toosee 여부 확인 `Hadoop-Gremlin` 사용 하 여 활성화 `:plugin list`합니다. 사용 안 함이 플러그 인, 플러그 인이 Spark Gremlin hello로 충돌할 수 있으므로 `:plugin unuse tinkerpop.hadoop`합니다.
 
 ## <a name="prepare-tinkerpop3-dependencies"></a>TinkerPop3 종속성 준비
 
-이전 단계에서 TinkerPop3을 빌드할 때 프로세스는 대상 디렉터리에 있는 Spark 및 Hadoop의 모든 jar 종속성도 가져왔습니다. HDI로 미리 설치된 jar 파일을 사용하고 필요한 대로 추가 종속성만 가져옵니다.
+Hello 이전 단계에서 TinkerPop3을 작성할 때 hello 프로세스가 가져왔습니다 모든 jar 종속성 Spark 및 Hadoop에 대 한 hello 대상 디렉터리에 있습니다. HDI와 미리 설치 된 끌어오도록 추가 종속성만 필요에 따라 jar hello를 사용 합니다.
 
-1. `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`에서 Gremlin 콘솔 대상 디렉터리로 이동합니다. 
+1. 이동 toohello Gremlin 콘솔 대상 디렉터리 `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`합니다. 
 
-2. `ext/`에서 모든 jar를 `lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`으로 이동시킵니다.
+2. 모든 jar 이동 `ext/` 너무`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`합니다.
 
-3. 아래 목록에 없는 `lib/`에서 모든 jar 라이브러리를 제거합니다.
+3. 라이브러리에서 모든 jar 제거 `lib/` 있는지에 속하지 않은 hello를 따르는 목록:
 
     ```bash
     # TinkerPop3
@@ -174,13 +174,13 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     xml-apis-1.3.04.jar                        
     ```
 
-## <a name="get-the-azure-cosmos-db-spark-connector"></a>Azure Cosmos DB Spark 커넥터 가져오기
+## <a name="get-hello-azure-cosmos-db-spark-connector"></a>Hello Azure Cosmos DB Spark 커넥터 가져오기
 
-1. Azure Cosmos DB Spark 커넥터 `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` 및 Cosmos DB Java SDK`azure-documentdb-1.10.0.jar`를 [GitHub의 Azure Cosmos DB Spark 커넥터](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11)에서 가져옵니다.
+1. Hello Azure Cosmos DB Spark 커넥터 가져오기 `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` 및 Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` 에서 [GitHub의 Azure Cosmos DB Spark 커넥터](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11)합니다.
 
-2. 또는 로컬에서 빌드할 수 있습니다. 최신 버전의 Spark-Gremlin이 Spark 1.6.1로 빌드되었고 Azure Cosmos DB Spark 커넥터에서 현재 사용되는 Spark 2.0.2와 호환되지 않으므로 수동으로 최신 TinkerPop3 코드를 빌드하고 jar를 설치할 수 있습니다. 다음을 수행합니다.
+2. 또는 로컬에서 빌드할 수 있습니다. Spark Gremlin의 hello 최신 버전이 1.6.1 Spark와 함께 빌드된 있고 hello Azure Cosmos DB Spark 커넥터에 현재 사용 되는 Spark 2.0.2와 호환 되지 않습니다 hello 최신 TinkerPop3 코드를 작성 하 고 hello jar를 수동으로 설치할 수 있습니다. 다음 hello지 않습니다.
 
-    a. Azure Cosmos DB Spark 커넥터를 복제합니다.
+    a. Hello Azure Cosmos DB Spark 커넥터를 복제 합니다.
 
     b. TinkerPop3 빌드(이전 단계에서 이미 수행됨). 모든 TinkerPop 3.3.0-SNAPSHOT jar를 로컬로 설치합니다.
 
@@ -193,9 +193,9 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     mvn install:install-file -Dfile="tinkergraph-gremlin-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=tinkergraph-gremlin -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar`
     ```
 
-    c. `tinkerpop.version` `azure-documentdb-spark/pom.xml`를 `3.3.0-SNAPSHOT`으로 업데이트합니다.
+    c. 업데이트 `tinkerpop.version` `azure-documentdb-spark/pom.xml` 너무`3.3.0-SNAPSHOT`합니다.
     
-    d. Maven으로 빌드. 필요한 jar가 `target` 및 `target/alternateLocation`에 배치됩니다.
+    d. Maven으로 빌드. hello 필요한 jar에 배치 됩니다 `target` 및 `target/alternateLocation`합니다.
 
     ```bash
     git clone https://github.com/Azure/azure-cosmosdb-spark.git
@@ -203,7 +203,7 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     mvn clean package
     ```
 
-3. 이전에 언급한 jar를 로컬 디렉터리 ~/azure-documentdb-spark에 복사
+3. 앞에서 언급 한 jar tooa 로컬 디렉터리에 복사 hello ~ / azure-documentdb-spark:
 
     ```bash
     $ azure-documentdb-spark:
@@ -212,22 +212,22 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     cp target/alternateLocation/azure-documentdb-1.10.0.jar ~/azure-documentdb-spark
     ```
 
-## <a name="distribute-the-dependencies-to-the-spark-worker-nodes"></a>종속성을 Spark 작업자 노드에 배포 
+## <a name="distribute-hello-dependencies-toohello-spark-worker-nodes"></a>Hello 종속성 toohello Spark 작업자 노드를 배포 합니다. 
 
-1. 그래프 데이터의 변환이 TinkerPop3에 달려 있기 때문에 관련 종속성을 모든 Spark 작업자 노드에 배포해야 합니다.
+1. 그래프 데이터의 hello 변환을 TinkerPop3에 의존 하기 때문에 배포 해야 hello 관련 종속성 tooall Spark 작업자 노드.
 
-2. 이전에 언급한 Gremlin 종속성과 CosmosDB Spark 커넥터 jar 및 CosmosDB Java SDK를 다음과 같이 작업자 노드에 복사합니다.
+2. 복사 hello 앞에서 언급 한 Gremlin 종속성, hello CosmosDB Spark 커넥터 jar 및 CosmosDB Java SDK toohello 작업자 노드 hello 다음을 수행 하 여:
 
-    a. 모든 jar를 `~/azure-documentdb-spark`에 복사합니다.
+    a. 에 모든 hello jar 복사 `~/azure-documentdb-spark`합니다.
 
     ```bash
     $ /home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone:
     cp lib/* ~/azure-documentdb-spark
     ```
 
-    b. Ambari 대시보드에 있는 `Spark2` 섹션의 `Spark2 Clients` 리스트에서 모든 Spark 작업자 노드의 목록을 가져옵니다.
+    b. Hello hello에서 Ambari 대시보드에서 찾을 수 있는 모든 Spark 작업자 노드 목록이 `Spark2 Clients` hello 목록 `Spark2` 섹션.
 
-    c. 해당 디렉터리를 각 노드에 복사합니다.
+    c. 해당 디렉터리 tooeach hello 노드를 복사 합니다.
 
     ```bash
     scp -r ~/azure-documentdb-spark sshuser@wn0-cosmos:/home/sshuser
@@ -235,19 +235,19 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     ...
     ```
     
-## <a name="set-up-the-environment-variables"></a>환경 변수 설정
+## <a name="set-up-hello-environment-variables"></a>Hello 환경 변수를 설정 합니다.
 
-1. Spark 클러스터의 HDP 버전을 확인합니다. `/usr/hdp/`에서 디렉터리 이름입니다(예: 2.5.4.2-7).
+1. Hello HDP 버전을의 hello Spark 클러스터를 찾습니다. Hello 디렉터리 이름 아래에서 `/usr/hdp/` (예를 들어 2.5.4.2-7).
 
-2. 모든 노드에 hdp.version을 설정합니다. Ambari 대시보드에서 **YARN 섹션** > **구성** > **고급**으로 이동하고 다음을 수행합니다. 
+2. 모든 노드에 hdp.version을 설정합니다. Ambari 대시보드에 이동 너무**YARN 섹션** > **Configs** > **고급**, 수행가 다음를 hello 다음 및: 
  
-    a. `Custom yarn-site`에서 마스터 노드의 HDP 버전 값으로 새 속성 `hdp.version`을 추가합니다. 
+    a. `Custom yarn-site`, 새 속성 추가 `hdp.version` hello 마스터 노드에서 hello HDP 버전의 hello 값을 사용 합니다. 
      
-    b. 구성을 저장합니다. 발생한 경고를 무시할 수 있습니다. 
+    b. Hello 구성을 저장 합니다. 발생한 경고를 무시할 수 있습니다. 
      
-    c. 알림 아이콘이 나타내는 대로 YARN 및 Oozie 서비스를 다시 시작합니다.
+    c. Hello 알림 아이콘으로 표시 하는 대로 hello YARN 및 Oozie 서비스를 다시 시작 합니다.
 
-3. 마스터 노드에서 다음 환경 변수를 설정(적절하게 값을 대체)합니다.
+3. 환경 변수 hello 마스터 노드 (적절 하 게 바꾸기 hello 값)에 따라 집합 hello:
 
     ```bash
     export HADOOP_GREMLIN_LIBS=/home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/ext/spark-gremlin/lib
@@ -256,9 +256,9 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     export HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
     ```
 
-## <a name="prepare-the-graph-configuration"></a>그래프 구성 준비
+## <a name="prepare-hello-graph-configuration"></a>Hello 그래프 구성을 준비합니다
 
-1. Azure Cosmos DB 연결 매개 변수와 Spark 설정으로 구성 파일을 생성하고 `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`에 넣습니다.
+1. 구성 파일을 hello로 Azure Cosmos DB 연결 매개 변수 및 설정, 멤버를 만들고에 넣습니다. `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`합니다.
 
     ```
     gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
@@ -278,7 +278,7 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
     gremlin.spark.persistContext=true
 
-    # Classpath for the driver and executors
+    # Classpath for hello driver and executors
     spark.driver.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     spark.executor.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     
@@ -294,9 +294,9 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     spark.documentdb.preferredRegions=FILLIN
     ```
 
-2. 이 경우에 이전 단계에서 배포한 jar 디렉터리를 포함하도록 `spark.driver.extraClassPath` 및 `spark.executor.extraClassPath`를 `/home/sshuser/azure-documentdb-spark/*`으로 업데이트합니다.
+2. 업데이트 hello `spark.driver.extraClassPath` 및 `spark.executor.extraClassPath` hello 이전 단계에서이 경우 배포 된 hello jar의 tooinclude hello 디렉터리 `/home/sshuser/azure-documentdb-spark/*`합니다.
 
-3. Azure Cosmos DB에 다음 세부 정보를 입력합니다.
+3. Hello Azure Cosmos DB에 대 한 다음 세부 정보를 제공 합니다.
 
     ```
     spark.documentdb.Endpoint=https://FILLIN.documents.azure.com:443/
@@ -307,10 +307,10 @@ Azure HDInsight Spark 클러스터를 설정하는 방법에 대한 자세한 �
     #spark.documentdb.preferredRegions=West\ US;West\ US\ 2
     ```
    
-## <a name="load-the-tinkerpop-graph-and-save-it-to-azure-cosmos-db"></a>TinkerPop 그래프를 로드하고 Azure Cosmos DB에 저장합니다.
-Azure Cosmos DB에 그래프를 유지할 수 있는 방법을 보여주려면 이 예제에서는 TinkerPop 미리 정의된 TinkerPop 최신 그래프를 사용합니다. 그래프는 Kryo 형식으로 저장되었으며 TinkerPop 리포지토리에 제공됩니다.
+## <a name="load-hello-tinkerpop-graph-and-save-it-tooazure-cosmos-db"></a>Hello TinkerPop 그래프를 로드 하 고 tooAzure Cosmos DB 저장
+toodemonstrate toopersist Azure Cosmos DB를 사용 하 여 hello TinkerPop이이 예제에는 그래프 미리 TinkerPop 최신 그래프를 정의 하는 방법입니다. hello 그래프는 Kryo 형식으로 저장 하 고 hello TinkerPop 저장소에 제공 됩니다.
 
-1. Gremlin을 YARN 모드로 실행하기 때문에 Hadoop 파일 시스템에서 그래프 데이터를 사용할 수 있도록 해야 합니다. 다음 명령을 사용하여 디렉터리를 만들고 그 안에 로컬 그래프 파일을 복사합니다. 
+1. 하므로 Gremlin YARN 모드에서를 실행 하는 확인 해야 hello 그래프 데이터 hello Hadoop 파일 시스템에서에서 사용할 수 있습니다. 사용 하 여 hello 다음 toomake 디렉터리 및 hello 로컬 그래프 파일 복사에는 명령입니다. 
 
     ```bash
     $ tinkerpop:
@@ -318,16 +318,16 @@ Azure Cosmos DB에 그래프를 유지할 수 있는 방법을 보여주려면 �
     hadoop fs -copyFromLocal ~/tinkerpop/data/tinkerpop-modern.kryo /graphData/tinkerpop-modern.kryo
     ```
 
-2. 그래프를 읽기 위해 `GryoInputFormat`을 사용하도록 `gremlin-spark.properties` 파일을 임시로 업데이트합니다. 또한 `inputLocation`을 다음과 같이 만든 디렉터리로 표시합니다.
+2. 일시적으로 hello 업데이트 `gremlin-spark.properties` toouse 파일 `GryoInputFormat` tooread hello 그래프입니다. 또한 나타낼 `inputLocation` hello 디렉터리로 만들면 hello 다음과 같이 합니다.
 
     ```
     gremlin.hadoop.graphReader=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoInputFormat
     gremlin.hadoop.inputLocation=/graphData/tinkerpop-modern.kryo
     ```
 
-3. Gremlin 콘솔을 시작하고 다음 계산 단계를 만들어서 구성된 Azure Cosmos DB 컬렉션에 데이터를 저장합니다.  
+3. Gremlin 콘솔을 시작 하 고 계산 단계 toopersist 데이터 구성 toohello Azure Cosmos DB 컬렉션 다음 hello를 만듭니다.  
 
-    a. `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")` 그래프를 만듭니다.
+    a. Hello 그래프 만들기 `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`합니다.
 
     b. `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`을 작성하기 위해 SparkGraphComputer를 사용합니다.
 
@@ -346,25 +346,25 @@ Azure Cosmos DB에 그래프를 유지할 수 있는 방법을 보여주려면 �
     ==>result[hadoopgraph[documentdbinputrdd->documentdboutputrdd],memory[size:1]]
     ```
 
-4. 데이터 탐색기에서 Azure Cosmos DB에 데이터가 유지되어 있는지 확인할 수 있습니다.
+4. 데이터 탐색기에서 해당 hello 된 데이터는 유지 tooAzure Cosmos DB 확인할 수 있습니다.
 
-## <a name="load-the-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a>Azure Cosmos DB에서 그래프를 로드하고 Gremlin 쿼리를 실행합니다.
+## <a name="load-hello-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a>Azure Cosmos DB에서 hello 그래프를 로드 하 고 Gremlin 쿼리 실행
 
-1. 그래프를 로드하려면 `graphReader`를 `DocumentDBInputRDD`로 설정하도록 `gremlin-spark.properties`를 편집합니다.
+1. tooload hello 그래프 편집 `gremlin-spark.properties` tooset `graphReader` 너무`DocumentDBInputRDD`:
 
     ```
     gremlin.hadoop.graphReader=com.microsoft.azure.documentdb.spark.gremlin.DocumentDBInputRDD
     ```
 
-2. 다음을 수행하여 그래프를 로드하고 데이터를 순회한 다음 Gremlin 쿼리를 실행합니다.
+2. 부하 hello 그래프 hello 데이터를 트래버스하 고 hello 다음을 수행 하 여 함께 Gremlin 쿼리를 실행 합니다.
 
-    a. Gremlin 콘솔 `bin/gremlin.sh`을 시작합니다.
+    a. Hello Gremlin 콘솔 시작 `bin/gremlin.sh`합니다.
 
-    b. `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')` 구성으로 그래프를 만듭니다.
+    b. Hello 구성으로 hello 그래프 만들기 `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`합니다.
 
     c. SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`로 그래프 순회를 만듭니다.
 
-    d. 다음 Gremlin 그래프 쿼리를 실행합니다.
+    d. Hello 다음 Gremlin graph 쿼리를 실행 합니다.
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -397,11 +397,11 @@ Azure Cosmos DB에 그래프를 유지할 수 있는 방법을 보여주려면 �
     ```
 
 > [!NOTE]
-> 자세한 로그를 보려면 `conf/log4j-console.properties`의 로그 수준을 보다 자세한 수준으로 설정합니다.
+> 더 자세한 toosee에 hello 로그 수준 설정 로깅, `conf/log4j-console.properties` tooa 더 자세한 수준입니다.
 >
 
 ## <a name="next-steps"></a>다음 단계
 
-이 빠른 시작 문서에서는 Azure Cosmos DB와 Spark를 결합하여 그래프를 사용하는 방법을 알아 보았습니다.
+이 빠른 시작 문서와 toowork Azure Cosmos DB 및 Spark 결합 하 여 그래프로 표시 하는 방법을 배웠습니다.
 
 > [!div class="nextstepaction"]

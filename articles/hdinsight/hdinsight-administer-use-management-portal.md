@@ -1,6 +1,6 @@
 ---
-title: "Azure Portal을 사용하여 Windows 기반 HDInsight의 Hadoop 클러스터 관리 | Microsoft Docs"
-description: "HDInsight 서비스를 관리하는 방법에 대해 알아봅니다. HDInsight 클러스터를 만들고 대화형 JavaScript 콘솔을 열고 Hadoop 명령 콘솔을 여는 방법에 대해 설명합니다."
+title: "HDInsight를 사용 하 여의 aaaManage Windows 기반 Hadoop 클러스터 hello Azure 포털 | Microsoft Docs"
+description: "자세한 내용은 방법 tooadminister HDInsight 서비스입니다. HDInsight 클러스터, 대화형 JavaScript 콘솔 열기 hello 및 열기 hello Hadoop 명령 콘솔을 만듭니다."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,89 +16,89 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: f69fa4f838b22ccbb25186c08cac9744bb31c6d1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a237726b0e37a08005ce22e96581739e93edb050
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-windows-based-hadoop-clusters-in-hdinsight-by-using-the-azure-portal"></a>Azure Portal을 사용하여 HDInsight의 Windows 기반 Hadoop 클러스터 관리
+# <a name="manage-windows-based-hadoop-clusters-in-hdinsight-by-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 HDInsight의 Hadoop Windows 기반 클러스터를 관리 합니다.
 
-[Azure Portal][azure-portal]에서 Azure HDInsight의 Windows 기반 Hadoop 클러스터를 만들고, Hadoop 사용자의 암호를 변경하고, RDP (원격 데스크톱 프로토콜)를 사용하도록 설정하여 클러스터의 Hadoop 명령 콘솔에 액세스할 수 있습니다.
+Hello를 사용 하 여 [Azure 포털][azure-portal]프로토콜 RDP (원격 데스크톱)를 사용 하도록 설정에 액세스할 수 있도록 hello Hadoop 및 Azure HDInsight의 Hadoop Windows 기반 클러스터를 만들, Hadoop 사용자 암호를 변경할 수 있습니다, hello 클러스터에서 명령 콘솔입니다.
 
-이 문서의 정보는 Windows 기반 HDInsight 클러스터에만 적용됩니다. Linux 기반 클러스터 관리에 대한 자세한 내용은 [Azure Portal을 사용하여 HDInsight의 Hadoop 클러스터 관리](hdinsight-administer-use-portal-linux.md)를 참조하세요.
+이 문서의 정보 hello에 tooWindow 기반 HDInsight 클러스터에만 적용 됩니다. Linux 기반 클러스터 관리에 대 한 자세한 내용은 참조 하십시오. [를 사용 하 여 HDInsight의 Hadoop 관리 클러스터에 Azure 포털 hello](hdinsight-administer-use-portal-linux.md)합니다.
 
 > [!IMPORTANT]
-> Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 문서를 시작하기 전에 다음이 있어야 합니다.
+이 문서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **Azure 구독**. [Azure 무료 평가판](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)을 참조하세요.
-* **Azure 저장소 계정** - HDInsight 클러스터는 Azure Blob 저장소 컨테이너를 기본 파일 시스템으로 사용합니다. Azure Blob 저장소가 HDInsight 클러스터에서 매끄럽게 작동하는 방식에 대한 자세한 내용은 [HDInsight에서 Azure Blob 저장소 사용](hdinsight-hadoop-use-blob-storage.md)을 참조하세요. Azure 저장소 계정 만들기에 대한 자세한 내용은 [저장소 계정을 만드는 방법](../storage/common/storage-create-storage-account.md)을 참조하세요.
+* **Azure 저장소 계정** -는 HDInsight 클러스터 hello 기본 파일 시스템으로 Azure Blob 저장소 컨테이너를 사용 합니다. Azure Blob 저장소가 HDInsight 클러스터에서 매끄럽게 작동하는 방식에 대한 자세한 내용은 [HDInsight에서 Azure Blob 저장소 사용](hdinsight-hadoop-use-blob-storage.md)을 참조하세요. Azure 저장소 계정을 만드는 방법에 대 한 세부 정보를 참조 하십시오. [어떻게 tooCreate 저장소 계정](../storage/common/storage-create-storage-account.md)합니다.
 
-## <a name="open-the-portal"></a>포털 열기
-1. [https://portal.azure.com](https://portal.azure.com)에 로그인합니다.
-2. 포털을 연 후 다음을 수행할 수 있습니다.
+## <a name="open-hello-portal"></a>Hello 포털 열기
+1. 역시 로그인[https://portal.azure.com](https://portal.azure.com)합니다.
+2. Hello 포털을 연 후 다음 작업을 수행할 수 있습니다.
 
-   * 왼쪽 메뉴에서 **새로 만들기** 를 클릭하여 새 클러스터를 만듭니다.
+   * 클릭 **새로** hello 왼쪽된 메뉴 toocreate 새 클러스터에서에서:
 
        ![새 HDInsight 클러스터 단추](./media/hdinsight-administer-use-management-portal/azure-portal-new-button.png)
-   * 왼쪽 메뉴에서 **HDInsight 클러스터** 를 클릭합니다.
+   * 클릭 **HDInsight 클러스터** hello 왼쪽된 메뉴에서 합니다.
 
        ![Azure 포털 HDInsight 클러스터 단추](./media/hdinsight-administer-use-management-portal/azure-portal-hdinsight-button.png)
 
-     왼쪽 메뉴에 **HDInsight**가 표시되지 않으면 **찾아보기**를 클릭합니다.
+     경우 **HDInsight** hello 왼쪽된 메뉴에 표시를 클릭 하지 **찾아보기**합니다.
 
      ![Azure Portal 찾아보기 클러스터 단추](./media/hdinsight-administer-use-management-portal/azure-portal-browse-button.png)
 
 ## <a name="create-clusters"></a>클러스터 만들기
-포털을 사용하여 만드는 지침은 [HDInsight 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)를 참조하세요.
+Hello 만들기 hello 포털을 사용 하 여 지침은 [만들 HDInsight 클러스터](hdinsight-hadoop-provision-linux-clusters.md)합니다.
 
-HDInsight는 다양한 Hadoop 구성 요소에서 작동합니다. 검증되어 지원되는 구성 요소 목록은 [Azure HDInsight에 포함된 Hadoop 버전](hdinsight-component-versioning.md)(영문)을 참조하세요. 다음 옵션 중 하나를 사용하여 HDInsight를 사용자 지정할 수 있습니다.
+HDInsight는 다양한 Hadoop 구성 요소에서 작동합니다. Hello 구성 요소 확인 및 지원 된 hello 목록에 대 한 참조 [Azure HDInsight의 Hadoop의 어떤 버전은](hdinsight-component-versioning.md)합니다. Hello 다음 옵션 중 하나를 사용 하 여 HDInsight를 사용자 지정할 수 있습니다.
 
-* 스크립트 작업을 사용하여 클러스터 구성을 변경하거나 Giraph 또는 Solr과 같은 사용자 지정 구성 요소를 설치하도록 클러스터를 사용자 지정할 수 있는 사용자 지정 스크립트를 실행합니다. 자세한 내용은 [스크립트 작업을 사용하여 HDInsight 클러스터 사용자 지정](hdinsight-hadoop-customize-cluster.md)(영문)을 참조하세요.
-* 클러스터를 만드는 동안 HDInsight .NET SDK 또는 Azure PowerShell의 클러스터 사용자 지정 매개 변수를 사용합니다. 그러면 이러한 구성 변경 내용이 클러스터 수명 동안 유지되며 Azure 플랫폼이 유지 관리를 위해 정기적으로 수행하는 클러스터 노드 이미지로 다시 설치의 영향을 받지 않습니다. 클러스터 사용자 지정 매개 변수 사용에 대한 자세한 내용은 [HDInsight 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)를 참조하세요.
-* Mahout, Cascading 등의 일부 네이티브 Java 구성 요소는 클러스터에서 JAR 파일로 실행할 수 있습니다. 이러한 JAR 파일은 Azure Blob 저장소에 배포되고 Hadoop 작업 제출 메커니즘을 통해 HDInsight 클러스터에 제출될 수 있습니다. 자세한 내용은 [프로그래밍 방식으로 Hadoop 작업 제출](hdinsight-submit-hadoop-jobs-programmatically.md)을 참조하세요.
+* 사용 하 여 작업 스크립팅 toorun 사용자 지정 스크립트 클러스터 tooeither를 사용자 지정할 수 있는 클러스터 구성을 변경 하거나 Giraph 또는 Solr 같은 사용자 지정 구성 요소를 설치 합니다. 자세한 내용은 [스크립트 작업을 사용하여 HDInsight 클러스터 사용자 지정](hdinsight-hadoop-customize-cluster.md)(영문)을 참조하세요.
+* 클러스터를 만드는 동안 hello HDInsight.NET SDK 또는 Azure PowerShell에서 hello 클러스터 사용자 지정 매개 변수를 사용 합니다. 이러한 구성 변경 내용을 다음 hello 클러스터의 hello 수명을 통해 보존 됩니다 및 유지 관리를 위해 Azure 플랫폼 주기적으로 수행 하는 클러스터 노드 reimages 영향을 받지 않습니다. Hello 클러스터에 대 한 사용자 지정 매개 변수를 사용 하 여에 대 한 자세한 내용은 참조 하십시오. [만들 HDInsight 클러스터](hdinsight-hadoop-provision-linux-clusters.md)합니다.
+* Mahout 및 Cascading와 같은 일부 네이티브 Java 구성 요소가 JAR 파일로 hello 클러스터에서 실행할 수 있습니다. 이러한 JAR 파일 분산된 tooAzure Blob 저장소 일 수 있습니다 및 tooHDInsight 클러스터 Hadoop 작업 전송 메커니즘을 통해 전송 합니다. 자세한 내용은 [프로그래밍 방식으로 Hadoop 작업 제출](hdinsight-submit-hadoop-jobs-programmatically.md)을 참조하세요.
 
   > [!NOTE]
-  > HDInsight 클러스터에 Jar 파일을 배포하거나 HDInsight 클러스터에서 Jar 파일을 호출하는 데 문제가 있는 경우 [Microsoft 지원 센터](https://azure.microsoft.com/support/options/)로 문의하세요.
+  > JAR 파일 tooHDInsight 클러스터 배포 문제 또는 문의 HDInsight 클러스터에서 JAR 파일을 호출할 경우 [Microsoft 지원](https://azure.microsoft.com/support/options/)합니다.
   >
-  > Cascading은 HDInsight에서 지원되지 않으며 Microsoft 지원 대상이 아닙니다. 지원되는 구성 요소 목록은 [HDInsight에서 제공하는 클러스터 버전의 새로운 기능](hdinsight-component-versioning.md)을 참조하세요.
+  > Cascading은 HDInsight에서 지원되지 않으며 Microsoft 지원 대상이 아닙니다. 지원 되는 구성의 목록에 대 한 참조 [HDInsight에서 제공 하는 hello 클러스터 버전의 새로운 기능](hdinsight-component-versioning.md)합니다.
   >
   >
 
-원격 데스크톱 연결을 사용하여 클러스터에 사용자 지정 소프트웨어를 설치하는 기능은 지원되지 않습니다. 헤드 노드의 드라이브에는 파일을 저장하면 안 됩니다. 클러스터를 다시 만들어야 하는 경우 파일이 손실됩니다. Azure Blob 저장소에 파일을 저장하는 것이 좋습니다. Blob 저장소는 영구적입니다.
+원격 데스크톱 연결을 사용 하 여 hello 클러스터에 있는 사용자 지정 소프트웨어 설치는 지원 되지 않습니다. Toore 해야 할 경우 삭제 될 것으로 hello 헤드 노드의 hello 드라이브에 모든 파일을 저장 하지 않아야-hello 클러스터를 만듭니다. Azure Blob 저장소에 파일을 저장하는 것이 좋습니다. Blob 저장소는 영구적입니다.
 
 ## <a name="list-and-show-clusters"></a>클러스터 나열 및 표시
-1. [https://portal.azure.com](https://portal.azure.com)에 로그인합니다.
-2. 왼쪽 메뉴에서 **HDInsight 클러스터** 를 클릭합니다.
-3. 클러스터 이름을 클릭합니다. 클러스터 목록이 긴 경우 페이지 상단의 필터를 사용할 수 있습니다.
-4. 목록에서 클러스터를 두 번 클릭하여 세부 정보를 표시합니다.
+1. 역시 로그인[https://portal.azure.com](https://portal.azure.com)합니다.
+2. 클릭 **HDInsight 클러스터** hello 왼쪽된 메뉴에서 합니다.
+3. Hello 클러스터 이름을 클릭 합니다. Hello 클러스터 목록이 긴 경우에 hello hello 페이지 위쪽에 필터를 사용할 수 있습니다.
+4. Hello 목록 tooshow hello 세부 정보에서 클러스터를 두 번 클릭 합니다.
 
     **메뉴 및 요점**:
 
     ![Azure Portal HDInsight 클러스터 요점](./media/hdinsight-administer-use-management-portal/hdinsight-essentials.png)
 
-   * 메뉴를 사용자 지정하려면 메뉴의 아무 곳이나 마우스 오른쪽 단추로 클릭한 후 **사용자 지정**을 클릭합니다.
-   * **설정** 및 **모든 설정**: 클러스터의 **설정** 블레이드를 표시하여 자세한 구성 정보에 액세스할 수 있도록 합니다.
-   * **대시보드**, **클러스터 대시보드** 및 **URL: 이러한 항목을 통해 Linux 기반 클러스터용 Ambari 웹인 클러스터 대시보드에 액세스할 수 있습니다. -**보안 셸**: SSH(보안 셸) 연결을 사용하여 클러스터에 연결하는 지침을 보여 줍니다.
-   * **클러스터 크기 조정**: 이 클러스터의 작업자 노드 수를 변경할 수 있습니다.
-   * **삭제**: 클러스터를 삭제합니다.
+   * toocustomize hello 메뉴 hello 메뉴에서 아무 곳 이나 마우스 오른쪽 단추로 클릭 한 다음 클릭 **사용자 지정**합니다.
+   * **설정** 및 **모든 설정을**: 표시 hello **설정을** 블레이드 tooaccess 수 있는 hello 클러스터에 대 한 자세한 hello 클러스터에 대 한 구성 정보입니다.
+   * **대시보드**, **클러스터 대시보드** 및 **URL: 모든 방법으로 tooaccess hello 클러스터 대시보드 Linux 기반 클러스터용 Ambari Web 즉 이들은 합니다. -**보안 셸 * *: hello 지침 tooconnect toohello 클러스터를 SSH (보안 셸) 연결을 사용 하 여 보여 줍니다.
+   * **클러스터의 크기를 조정**:이 클러스터에 대 한 toochange hello 작업자 노드 수를 허용 합니다.
+   * **삭제**: hello 클러스터를 삭제 합니다.
    * **빠른 시작**: HDInsight를 사용하여 시작하는 데 도움이 되는 정보를 표시합니다.
-   * **사용자: Azure 구독의 다른 사용자를 위해 이 클러스터의 *포털 관리* 권한을 설정할 수 있습니다.
+   * * * 사용자: 있습니다에 대 한 권한을 tooset *포털 관리* Azure 구독에서 다른 사용자에 대 한이 클러스터의 합니다.
 
      > [!IMPORTANT]
-     > 이는 *오직* Azure 포털에서 이 클러스터에 대한 액세스 및 권한에만 영향을 미치며, HDInsight 클러스터에 연결하거나 작업을 제출할 수 있는 사용자에게는 영향을 미치지 않습니다.
+     > 이 *만* hello Azure 포털에에서 대 한 액세스 권한과 toothis 클러스터 미치며 tooor 전송 작업 toohello HDInsight 클러스터를 연결할 수 있는 사용자에 아무 효과가 없습니다.
      >
      >
-   * **태그**: 태그를 사용하면 클라우드 서비스의 사용자 지정 분류를 정의하기 위한 키/값 쌍을 설정할 수 있습니다. 예를 들어 **project**라는 키를 만든 다음 특정 프로젝트와 연결된 모든 서비스에 공통 값을 사용할 수 있습니다.
-   * **Ambari 보기**: Ambari 웹에 연결합니다.
+   * **태그**: 태그 있습니다 tooset 키/값 쌍 toodefine 클라우드 서비스의 사용자 정의 분류를 사용 합니다. 예를 들어 **project**라는 키를 만든 다음 특정 프로젝트와 연결된 모든 서비스에 공통 값을 사용할 수 있습니다.
+   * **Ambari 뷰**: tooAmbari 웹 연결 합니다.
 
      > [!IMPORTANT]
-     > HDInsight 클러스터에 의해 제공되는 서비스를 관리하려면 Ambari 웹 또는 Ambari REST API를 사용해야 합니다. Ambari 사용에 대한 자세한 내용은 [Ambari를 사용하여 HDInsight 클러스터 관리](hdinsight-hadoop-manage-ambari.md)를 참조하세요.
+     > HDInsight 클러스터 hello에서 toomanage hello 서비스 제공, Ambari Web을 사용 하거나 REST API Ambari hello 해야 합니다. Ambari 사용에 대한 자세한 내용은 [Ambari를 사용하여 HDInsight 클러스터 관리](hdinsight-hadoop-manage-ambari.md)를 참조하세요.
      >
      >
 
@@ -109,13 +109,13 @@ HDInsight는 다양한 Hadoop 구성 요소에서 작동합니다. 검증되어 
 
     ![Azure Portal HDInsight 클러스터 사용 현황](./media/hdinsight-administer-use-management-portal/hdinsight.portal.cluster.settings.png)
 
-   * **속성**: 클러스터 속성을 표시합니다.
+   * **속성**: hello 클러스터 속성을 확인 합니다.
    * **클러스터 AAD ID**:
-   * **Azure 저장소 키**: 기본 저장소 계정 및 키를 표시합니다. 저장소 계정은 클러스터를 만드는 과정에서 구성됩니다.
-   * **클러스터 로그인**: 클러스터 HTTP 사용자 이름 및 암호를 변경합니다.
-   * **외부 Metastore**: Hive 및 Oozie Metastore를 표시합니다. Metastore는 클러스터 생성 과정 중에만 구성될 수 있습니다.
-   * **클러스터 크기 조정**: 클러스터 작업자 노드의 수를 늘리거나 줄입니다.
-   * **원격 데스크톱**: 원격 데스크톱(RDP) 액세스를 활성화하거나 비활성화하고 RDP 사용자 이름을 구성합니다.  RDP 사용자 이름은 HTTP 사용자 이름과 반드시 달라야 합니다.
+   * **Azure 저장소 키**: hello 기본 저장소 계정 및 키를 확인 합니다. hello 저장소 계정은 hello 클러스터를 만드는 프로세스 동안 구성입니다.
+   * **로그인 클러스터**: hello 클러스터 HTTP 사용자 이름 및 암호를 변경 합니다.
+   * **외부 Metastore**: hello Hive 및 Oozie metastore를 확인 합니다. hello metastore hello 클러스터를 만드는 프로세스 동안만 구성할 수 있습니다.
+   * **클러스터의 크기를 조정**: 증가 및 감소 hello 클러스터 작업자 노드 수입니다.
+   * **원격 데스크톱**: 설정 및 원격 데스크톱 (RDP) 액세스를 사용 하지 않도록 설정 및 hello RDP 사용자 이름을 구성 합니다.  hello RDP 사용자 이름은 hello HTTP 사용자 이름은 달라 야 합니다.
    * **공식 파트너**:
 
      > [!NOTE]
@@ -124,114 +124,114 @@ HDInsight는 다양한 Hadoop 구성 요소에서 작동합니다. 검증되어 
      >
 6. **속성**을 클릭합니다.
 
-    속성 섹션에는 다음 내용이 나열됩니다.
+    hello 속성 섹션 hello 다음을 나열합니다.
 
    * **호스트 이름**: 클러스터 이름입니다.
    * **클러스터 URL**.
    * **상태**: 중단됨, 수락됨, ClusterStorageProvisioned, AzureVMConfiguration, HDInsightConfiguration, 운영, 실행 중, 오류, 삭제 중, 삭제됨, 시간 초과됨, DeleteQueued, DeleteTimedout, DeleteError, PatchQueued, CertRolloverQueued, ResizeQueued, ClusterCustomization를 포함합니다.
-   * **지역**: Azure 위치입니다. 지원되는 Azure 위치를 보려면, **HDInsight 가격** 의 [지역](https://azure.microsoft.com/pricing/details/hdinsight/)드롭다운 목록 상자를 참고하세요.
+   * **지역**: Azure 위치입니다. 목록이 지원 되는 Azure 위치에 대 한 참조 hello **지역** 드롭다운 목록 상자 [HDInsight 가격](https://azure.microsoft.com/pricing/details/hdinsight/)합니다.
    * **생성된 데이터**.
    * **운영 체제**: **Windows** 또는 **Linux**입니다.
    * **형식**: Hadoop, HBase, Storm, Spark.
    * **버전**. [HDInsight 버전](hdinsight-component-versioning.md)
    * **구독**: 구독 이름입니다.
    * **구독 ID**.
-   * **주 데이터 원본**. Azure Blob 저장소 계정이 기본 Hadoop 파일 시스템으로 사용됩니다.
+   * **주 데이터 원본**. Azure Blob 저장소 계정 hello Hadoop 파일 시스템 hello 기본값으로 사용 됩니다.
    * **작업자 노드 가격 책정 계층**.
    * **헤드 노드 가격 책정 계층**.
 
 ## <a name="delete-clusters"></a>클러스터 삭제
-클러스터 삭제는 기본 저장소 계정이나 연결된 저장소 계정을 삭제하지 않습니다. 동일한 저장소 계정과 동일한 Metastore를 사용하여 클러스터를 다시 만들 수 있습니다.
+Hello 기본 저장소 계정 또는 연결 된 저장소 계정을 삭제 하는 클러스터 삭제 되지 않습니다. 사용 하 여 hello 클러스터를 다시 만들 수 있습니다 hello 동일한 저장소 계정 및 동일한 metastore hello 합니다.
 
-1. [포털][azure-portal]에 로그인합니다.
-2. 왼쪽 메뉴에서 **모두 찾아보기**, **HDInsight 클러스터**, 클러스터 이름을 차례로 클릭합니다.
-3. 상단 메뉴에서 **삭제** 를 클릭하고 지침을 따릅니다.
+1. Toohello 로그인 [포털][azure-portal]합니다.
+2. 클릭 **모두 찾아보기** hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**, 클러스터 이름을 클릭 합니다.
+3. 클릭 **삭제** hello 위쪽 메뉴에서 다음 hello 지침을 따릅니다.
 
 참고 항목: [클러스터 일시 중지/종료](#pauseshut-down-clusters)
 
 ## <a name="scale-clusters"></a>클러스터 크기 조정
-클러스터 크기 조정 기능을 사용하여 클러스터를 다시 생성하지 않고 Azure HDInsight에서 실행되는 클러스터에서 사용되는 작업자 노드 수를 변경합니다.
+hello 클러스터 기능을 확장 하면 toochange hello toore 필요 없이 Azure HDInsight에서 실행 되는 클러스터에서 사용 하는 작업자 노드 수-hello 클러스터를 만듭니다.
 
 > [!NOTE]
-> HDInsight 버전 3.1.3 이상을 사용하는 클러스터만 지원됩니다. 클러스터 버전을 알 수 없는 경우 속성 페이지를 확인할 수 있습니다.  [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
+> HDInsight 버전 3.1.3 이상을 사용하는 클러스터만 지원됩니다. 클러스터의 hello 버전을 잘 모를 경우 hello 속성 페이지를 확인할 수 있습니다.  [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
 >
 >
 
-HDInsight에서 지원되는 클러스터의 각 형식에 대한 데이터 노드 수를 변경하는 영향은 다음과 같습니다.
+hello HDInsight에서 지원 되는 클러스터의 각 형식에 대 한 데이터 노드 수를 변경 하는 hello 미치는 영향:
 
 * Hadoop은
 
-    모든 보류 중인 또는 실행 중인 작업에 영향을 주지 않고 실행되는 Hadoop 클러스터의 작업자 노드 수를 원활하게 늘릴 수 있습니다. 작업이 진행 중인 동안에 새 작업을 제출할 수 있습니다. 크기 조정 작업의 오류는 정상적으로 처리되므로 클러스터는 항상 기능 상태로 남아 있습니다.
+    원활 하 게 hello 보류 중 또는 실행 중인 작업이 모두 영향을 주지 않고 실행 되는 Hadoop 클러스터의 작업자 노드 수를 늘릴 수 있습니다. Hello 작업이 진행 중인 동안에 새 작업을 제출할 수 있습니다. 크기 조정 작업의 오류는 hello 클러스터는 항상를 작동 상태로 남아 있도록 정상적으로 처리 됩니다.
 
-    데이터 노드 수를 줄여 Hadoop 클러스터를 축소하면 클러스터의 서비스 중 일부가 다시 시작됩니다. 그러면 실행 중인 작업과 보류 중인 작업이 크기 조정 작업을 완료하지 못하고 실패합니다. 그러나 작업이 완료되면 작업을 다시 제출할 수 있습니다.
+    Hadoop 클러스터는 hello 데이터 노드 수를 줄여 규모 축소, hello 클러스터의 hello 서비스 중 일부를 다시 시작 됩니다. 이렇게 하면 실행 중인 모든와 hello hello 크기 조정 작업이 완료 될 때 작업 toofail 보류 중. 그러나 hello 작업이 완료 되 면 hello 작업을 다시 전송할을 수 있습니다.
 * HBase
 
-    HBase 클러스터가 실행 중인 동안 데이터 노드를 원활하게 추가하거나 제거할 수 있습니다. 지역 서버는 크기 조정 작업을 완료하는 몇 분 안에 자동으로 균형을 맞춥니다. 그러나 클러스터의 헤드 노드에 로그인한 다음 명령 프롬프트 창에서 다음 명령을 실행하여 자동으로 지역 서버의 균형을 맞출 수도 있습니다.
+    원활 하 게 추가 하거나 실행 하는 동안 노드 tooyour HBase 클러스터를 제거할 수 있습니다. 지역 서버는 hello 크기 조정 작업을 완료 하는 몇 분 안에 자동으로 균형이 조정 됩니다. 그러나 명령을 명령 프롬프트 창에서 다음 실행 중인 hello와 클러스터의 헤드 노드에 hello에 로그인 하 여 hello 지역 서버를 수동으로 분산 시킬 수 있습니다 있습니다.
 
         >pushd %HBASE_HOME%\bin
         >hbase shell
         >balancer
 
-    HBase 셸 사용에 대한 자세한 내용은 []을 참조하세요.
+    Hello HBase 셸을 사용 하 여에 대 한 자세한 내용은 참조 하십시오.
 * Storm
 
-    실행 중인 동안 Storm 클러스터에 데이터 노드를 원활하게 추가하거나 제거할 수 있습니다. 하지만 크기 조정 작업이 성공적으로 완료되면 다시 토폴로지 균형을 조정해야 합니다.
+    원활 하 게 추가 하거나 실행 하는 동안 데이터 노드 tooyour Storm 클러스터를 제거할 수 있습니다. 하지만 hello 크기 조정 작업을 성공적으로 완료 한 후 toorebalance hello 토폴로지를 해야 합니다.
 
     다음 두 가지 방법으로 사용하여 균형을 조정할 수 있습니다.
 
   * Storm 웹 UI
   * 명령줄 인터페이스(CLI) 도구
 
-    자세한 내용은 [Apache Storm 설명서](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) (영문)을 참조하세요.
+    Toohello를 참조 하십시오 [Apache Storm 설명서](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) 자세한 세부 정보에 대 한 합니다.
 
-    Storm 웹 UI는 HDInsight 클러스터에서 제공됩니다.
+    hello 스톰 웹 UI hello HDInsight 클러스터에서 제공 됩니다.
 
     ![HDInsight Storm 규모 균형 재조정](./media/hdinsight-administer-use-management-portal/hdinsight-portal-scale-cluster-storm-rebalance.png)
 
-    다음은 CLI 명령을 사용하여 Storm 토폴로지 균형을 다시 조정하는 방법의 예입니다.
+    다음은 예제 어떻게 toouse hello CLI 명령을 toorebalance hello 스톰 토폴로지:
 
-        ## Reconfigure the topology "mytopology" to use 5 worker processes,
-        ## the spout "blue-spout" to use 3 executors, and
-        ## the bolt "yellow-bolt" to use 10 executors
+        ## Reconfigure hello topology "mytopology" toouse 5 worker processes,
+        ## hello spout "blue-spout" toouse 3 executors, and
+        ## hello bolt "yellow-bolt" toouse 10 executors
         $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
-**클러스터 크기를 조정하려면**
+**tooscale 클러스터**
 
-1. [포털][azure-portal]에 로그인합니다.
-2. 왼쪽 메뉴에서 **모두 찾아보기**, **HDInsight 클러스터**, 클러스터 이름을 차례로 클릭합니다.
-3. 위쪽 메뉴에서 **설정**을 클릭한 다음 **클러스터 크기 조정**을 클릭합니다.
-4. **작업자 노드 수**를 입력합니다. 클러스터 노드 수에 대한 제한은 Azure 구독에 따라 다릅니다. 제한을 늘리려면 청구 지원 팀에 문의할 수 있습니다.  비용 정보는 노드 수에 대한 변경 내용을 반영합니다.
+1. Toohello 로그인 [포털][azure-portal]합니다.
+2. 클릭 **모두 찾아보기** hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**, 클러스터 이름을 클릭 합니다.
+3. 클릭 **설정** hello 상단 메뉴에서 **배율 클러스터**합니다.
+4. **작업자 노드 수**를 입력합니다. 클러스터 노드의 hello 수 제한을 15 hello Azure 구독 마다 다릅니다. 청구 지원 tooincrease hello 제한을 문의할 수 있습니다.  hello 비용 정보 hello 변경 사항을 toohello 노드 수를 반영 합니다.
 
     ![HDinsight Hadoop Hbase Storm Spark 크기 조정](./media/hdinsight-administer-use-management-portal/hdinsight.portal.scale.cluster.png)
 
 ## <a name="pauseshut-down-clusters"></a>클러스터 일시 중지/종료
-대부분의 Hadoop 작업은 이따금 실행되는 일괄 처리 작업입니다. 대부분의 Hadoop 클러스터는 프로세스에 사용되지 않는 기간이 깁니다. HDInsight를 사용하면 데이터가 Azure 저장소에 저장되기 때문에 클러스터를 사용하지 않을 때 안전하게 삭제할 수 있습니다.
-HDInsight 클러스터를 사용하지 않는 기간에도 요금이 청구됩니다. 클러스터에 대한 요금이 저장소에 대한 요금보다 몇 배 더 많기 때문에, 클러스터를 사용하지 않을 때는 삭제하는 것이 경제적인 면에서 더 합리적입니다.
+대부분의 Hadoop 작업은 이따금 실행되는 일괄 처리 작업입니다. 대부분의 Hadoop 클러스터에 대 한는 오랜 시간 해당 hello 클러스터 사용 하지 않는 처리를 위해 합니다. HDInsight를 사용하면 데이터가 Azure 저장소에 저장되기 때문에 클러스터를 사용하지 않을 때 안전하게 삭제할 수 있습니다.
+HDInsight 클러스터를 사용하지 않는 기간에도 요금이 청구됩니다. Hello 클러스터에 대 한 hello 요금이 저장소에 대 한 hello 요금 보다 많은 배 더 많은 경우 이렇게 하면 경제 toodelete 클러스터 사용에서 되지 않은 있습니다.
 
-프로세스를 프로그래밍할 수 있는 방법은 다양합니다.
+여러 가지 방법으로 hello 프로세스를 프로그래밍할 수 있습니다.
 
 * 사용자 Azure 데이터 팩터리. 주문형 및 자체 정의 HDInsight 연결된 서비스는 [Azure HDInsight 연결된 서비스](../data-factory/data-factory-compute-linked-services.md) 및 [Azure 데이터 팩터리를 사용한 분석 및 변환](../data-factory/data-factory-data-transformation-activities.md)을 참조하세요.
 * Azure PowerShell 사용  [비행 지연 데이터 분석](hdinsight-analyze-flight-delay-data.md)을 참조하세요.
 * Azure CLI 사용 [Azure CLI를 사용하여 HDInsight 클러스터 관리](hdinsight-administer-use-command-line.md)를 참조하세요.
 * HDInsight .NET SDK 사용 [Hadoop 작업 제출](hdinsight-submit-hadoop-jobs-programmatically.md)을 참조하세요.
 
-가격 정보는 [HDInsight 가격](https://azure.microsoft.com/pricing/details/hdinsight/)을 참조하세요. 포털에서 클러스터를 삭제하려면 [클러스터 삭제](#delete-clusters)
+가격 책정 정보는 hello에 대 한 참조 [HDInsight 가격](https://azure.microsoft.com/pricing/details/hdinsight/)합니다. hello 포털에서에서 클러스터 toodelete 참조 [클러스터를 삭제 합니다.](#delete-clusters)
 
 ## <a name="change-cluster-username"></a>클러스터 사용자 이름 변경
-HDInsight 클러스터마다 두 개의 사용자 계정이 포함될 수 있습니다. HDInsight 클러스터 사용자 계정은 만드는 과정 중에 생성됩니다. RDP를 통해 클러스터에 액세스하기 위해 RDP 사용자 계정을 만들 수도 있습니다. [원격 데스크톱 사용](#connect-to-hdinsight-clusters-by-using-rdp)을 참조하세요.
+HDInsight 클러스터마다 두 개의 사용자 계정이 포함될 수 있습니다. HDInsight 클러스터 사용자 계정 hello hello 만들기 프로세스 중 생성 됩니다. 또한 RDP 통해 hello 클러스터에 액세스 하기 위한 RDP 사용자 계정을 만들 수 있습니다. [원격 데스크톱 사용](#connect-to-hdinsight-clusters-by-using-rdp)을 참조하세요.
 
-**HDInsight 클러스터 사용자 이름 및 암호 변경**
+**toochange hello HDInsight 클러스터 사용자 이름 및 암호**
 
-1. [포털][azure-portal]에 로그인합니다.
-2. 왼쪽 메뉴에서 **모두 찾아보기**, **HDInsight 클러스터**, 클러스터 이름을 차례로 클릭합니다.
-3. 상단 메뉴에서 **설정**을 클릭한 다음 **클러스터 로그인**을 클릭합니다.
-4. **클러스터 로그인**이 활성화되어 있으면 **사용 안함**을 클릭한 후 **사용**을 클릭해야 사용자 이름과 암호를 변경할 수 있습니다.
-5. **클러스터 로그인 이름** 및/또는 **클러스터 로그인 암호**를 변경한 다음 **저장**을 클릭합니다.
+1. Toohello 로그인 [포털][azure-portal]합니다.
+2. 클릭 **모두 찾아보기** hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**, 클러스터 이름을 클릭 합니다.
+3. 클릭 **설정** hello 상단 메뉴에서 **클러스터 로그인**합니다.
+4. 경우 **클러스터 로그인** 되었습니다 클릭 해야 사용 하도록 설정 **사용 하지 않도록 설정**, 클릭 하 고 **사용** hello 사용자 이름 및 암호를 변경할 수 있습니다...
+5. 변경 hello **클러스터 로그인 이름** hello 및/또는 **클러스터 로그인 암호**, 클릭 하 고 **저장**합니다.
 
     ![HDinsight 변경 클러스터 사용자 사용자 이름 암호 http 사용자](./media/hdinsight-administer-use-management-portal/hdinsight.portal.change.username.password.png)
 
 ## <a name="grantrevoke-access"></a>액세스 권한 부여/해지
-HDInsight 클러스터에는 다음과 같은 HTTP 웹 서비스가 있습니다(이러한 모든 서비스에 RESTful 끝점이 있음).
+HDInsight 클러스터에는 HTTP 웹 서비스 (모든 이러한 서비스는 RESTful 끝점)를 수행 하는 hello:
 
 * ODBC
 * JDBC
@@ -239,51 +239,51 @@ HDInsight 클러스터에는 다음과 같은 HTTP 웹 서비스가 있습니다
 * Oozie
 * Templeton
 
-이러한 서비스에는 기본적으로 액세스 권한이 부여됩니다. Azure 포털에서 액세스 권한을 해지/부여할 수 있습니다.
+이러한 서비스에는 기본적으로 액세스 권한이 부여됩니다. 있습니다 수 revoke/부여 hello 액세스 hello Azure 포털에서에서 합니다.
 
 > [!NOTE]
-> 액세스 권한을 부여/해지하여 클러스터 사용자 이름 및 암호를 다시 설정합니다.
+> Hello 액세스 권한을 부여/취소를 하 여 hello 클러스터 사용자 이름 및 암호를 설정 합니다.
 >
 >
 
-**HTTP 웹 서비스 액세스 권한을 부여/해지하려면**
+**HTTP toogrant/revoke 웹 서비스 액세스**
 
-1. [포털][azure-portal]에 로그인합니다.
-2. 왼쪽 메뉴에서 **모두 찾아보기**, **HDInsight 클러스터**, 클러스터 이름을 차례로 클릭합니다.
-3. 상단 메뉴에서 **설정**을 클릭한 다음 **클러스터 로그인**을 클릭합니다.
-4. **클러스터 로그인**이 활성화되어 있으면 **사용 안함**을 클릭한 후 **사용**을 클릭해야 사용자 이름과 암호를 변경할 수 있습니다.
-5. **클러스터 로그인 사용자 이름** 및 **클러스터 로그인 암호**에 클러스터의 새 사용자 이름 및 암호를 각각 입력합니다.
+1. Toohello 로그인 [포털][azure-portal]합니다.
+2. 클릭 **모두 찾아보기** hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**, 클러스터 이름을 클릭 합니다.
+3. 클릭 **설정** hello 상단 메뉴에서 **클러스터 로그인**합니다.
+4. 경우 **클러스터 로그인** 되었습니다 클릭 해야 사용 하도록 설정 **사용 하지 않도록 설정**, 클릭 하 고 **사용** hello 사용자 이름 및 암호를 변경할 수 있습니다...
+5. 에 대 한 **클러스터 로그인 사용자 이름과** 및 **클러스터 로그인 암호**, hello 클러스터에 대 한 hello 새 사용자 이름 및 암호를 각각 입력 합니다.
 6. **저장**을 클릭합니다.
 
     ![HDinsight 총합계 제거 http 웹 서비스 액세스](./media/hdinsight-administer-use-management-portal/hdinsight.portal.change.username.password.png)
 
-## <a name="find-the-default-storage-account"></a>기본 저장소 계정 찾기
-각 HDInsight 클러스터에는 기본 저장소 계정이 있습니다. 클러스터의 기본 저장소 계정 및 키는 **설정**/**속성**/**Azure 저장소 키**. [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
+## <a name="find-hello-default-storage-account"></a>Hello 기본 저장소 계정 찾기
+각 HDInsight 클러스터에는 기본 저장소 계정이 있습니다. 아래에 표시 하는 클러스터에 대 한 기본 저장소 계정 및 해당 키를 hello **설정**/**속성**/**Azure 저장소 키**합니다. [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
 
-## <a name="find-the-resource-group"></a>리소스 그룹 찾기
-Azure Resource Manager 모드에서는 각각의 HDInsight 클러스터가 Azure 리소스 그룹과 함께 만들어집니다. 클러스터가 속하는 Azure 리소스 그룹이 아래 표시됩니다.
+## <a name="find-hello-resource-group"></a>Hello 리소스 그룹 찾기
+Hello Azure 리소스 관리자 모드에서 각 HDInsight 클러스터는 Azure 리소스 그룹으로 만들어집니다. 클러스터에 tooappears 속하는 hello Azure 리소스 그룹:
 
-* 클러스터 목록에 **리소스 그룹** 열이 있습니다.
+* hello 클러스터 목록에는 **리소스 그룹** 열입니다.
 * 클러스터 **Essential** 타일.  
 
 [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
 
 ## <a name="open-hdinsight-query-console"></a>HDInsight 쿼리 콘솔 열기
-HDInsight 쿼리 콘솔에는 다음 기능이 포함됩니다.
+hello HDInsight 쿼리 콘솔 hello 같은 기능에 포함 됩니다.
 
-* **Hive 편집기**: Hive 작업 제출을 위한 GUI 웹 인터페이스입니다.  [쿼리 콘솔을 사용하여 Hive 쿼리 실행](hdinsight-hadoop-use-hive-query-console.md)을 참조하세요.
+* **Hive 편집기**: Hive 작업 제출을 위한 GUI 웹 인터페이스입니다.  참조 [실행 하이브 쿼리를 사용 하 여 hello 쿼리 콘솔](hdinsight-hadoop-use-hive-query-console.md)합니다.
 
     ![HDInsight 포털 Hive 편집기](./media/hdinsight-administer-use-management-portal/hdinsight-hive-editor.png)
 * **작업 내역**: Hadoop 작업을 모니터링합니다.  
 
     ![HDInsight 포털 작업 내역](./media/hdinsight-administer-use-management-portal/hdinsight-job-history.png)
 
-    작업 속성, **작업 쿼리**, **작업 출력을 비롯한 세부 정보를 표시하려면 **쿼리 이름**을 클릭합니다. 사용자의 워크스테이션에 쿼리와 출력을 모두 다운로드할 수도 있습니다.
-* **파일 브라우저**: 기본 저장소 계정 및 연결된 저장소 계정을 찾아봅니다.
+    클릭 **쿼리 이름** tooshow hello 작업 속성을 비롯 한 세부 정보 **작업 쿼리**, 및 * * 작업 출력 합니다. Hello 쿼리와 hello 출력 tooyour 워크스테이션 다운로드할 수 있습니다.
+* **브라우저 파일**: hello 기본 저장소 계정 찾아보기 및 연결 된 저장소 계정을 hello 합니다.
 
     ![HDInsight 포털 파일 브라우저 찾아보기](./media/hdinsight-administer-use-management-portal/hdinsight-file-browser.png)
 
-    스크린샷에서 **<Account>** 형식은 해당 항목이 Azure 저장소 계정이라는 것을 나타냅니다.  계정 이름을 클릭하여 파일을 찾아봅니다.
+    Hello 스크린 샷에 hello  **<Account>**  형식은 hello 항목은 Azure 저장소 계정을 나타냅니다.  Hello 계정 이름 toobrowse hello 파일을 클릭 합니다.
 * **Hadoop UI**.
 
     ![HDInsight 포털 Hadoop UI](./media/hdinsight-administer-use-management-portal/hdinsight-hadoop-ui.png)
@@ -294,69 +294,69 @@ HDInsight 쿼리 콘솔에는 다음 기능이 포함됩니다.
     ![HDInsight 포털 YARN UI](./media/hdinsight-administer-use-management-portal/hdinsight-yarn-ui.png)
 
 ## <a name="run-hive-queries"></a>Hive 쿼리 실행
-포털에서 Hive 작업을 실행하려면 HDInsight 쿼리 콘솔에서 **Hive 편집기** 를 클릭합니다. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
+tooran 하이브 작업은 hello 포털에서에서 클릭 **하이브 편집기** hello HDInsight 쿼리 콘솔. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
 
 ## <a name="monitor-jobs"></a>작업 모니터링
-포털에서 작업을 모니터링하려면 HDInsight 쿼리 콘솔에서 **작업 내역** 을 클릭합니다. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
+toomonitor 작업은 hello 포털에서에서 클릭 **작업 기록** hello HDInsight 쿼리 콘솔. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
 
 ## <a name="browse-files"></a>파일 찾아보기
-기본 저장소 계정 및 연결된 저장소 계정에 저장된 파일을 찾아보려면 HDInsight 쿼리 콘솔에서 **파일 브라우저** 를 클릭합니다. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
+toobrowse 파일 hello 기본 저장소 계정에 저장 하 고 연결 된 저장소 계정을 hello, 클릭 **파일 브라우저** hello HDInsight 쿼리 콘솔. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
 
-HDInsight 콘솔의 **Hadoop UI**에서 **파일 시스템 찾아보기** 유틸리티를 사용할 수도 있습니다.  [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
+Hello를 사용할 수도 있습니다 **hello 파일 시스템 검색** hello에서 유틸리티 **Hadoop UI** hello HDInsight 콘솔에서.  [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
 
 ## <a name="monitor-cluster-usage"></a>클러스터 사용 현황 모니터링
-HDInsight 클러스터 블레이드의 **사용량** 섹션에는 HDInsight에서 사용하기 위해 구독에서 사용할 수 있는 코어 수뿐만 아니라 이 클러스터에 할당된 코어 수 및 이 클러스터 내에서 노드에 할당된 방법에 대한 정보도 표시됩니다. [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
+hello **사용** hello HDInsight 클러스터 블레이드의 섹션에는 hello HDInsight 함께 사용할 사용 가능한 tooyour 구독 코어 수가 hello toothis 클러스터 하 게 하는 방법을 할당 하는 코어 수에 대 한 정보가 표시 됩니다. 이 클러스터 내에서 hello 노드에 대 한 할당. [클러스터 나열 및 표시](#list-and-show-clusters)를 참조하세요.
 
 > [!IMPORTANT]
-> HDInsight 클러스터에 의해 제공되는 서비스를 모니터링하려면 Ambari 웹 또는 Ambari REST API를 사용해야 합니다. Ambari 사용에 대한 자세한 내용은 [Ambari를 사용하여 HDInsight 클러스터 관리](hdinsight-hadoop-manage-ambari.md)
+> HDInsight 클러스터 hello에서 toomonitor hello 서비스 제공, Ambari Web을 사용 하거나 REST API Ambari hello 해야 합니다. Ambari 사용에 대한 자세한 내용은 [Ambari를 사용하여 HDInsight 클러스터 관리](hdinsight-hadoop-manage-ambari.md)
 >
 >
 
 ## <a name="open-hadoop-ui"></a>Hadoop UI 열기
-클러스터를 모니터링하고, 파일 시스템을 찾아보고, 로그를 확인하려면 HDInsight 쿼리 콘솔에서 **Hadoop UI** 를 클릭합니다. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
+toomonitor hello 클러스터, 찾아보기 hello 파일 시스템 및 로그를 확인 하 고, 클릭 **Hadoop UI** hello HDInsight 쿼리 콘솔. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
 
 ## <a name="open-yarn-ui"></a>Yarn UI 열기
-Yarn 사용자 인터페이스를 사용하려면 HDInsight 쿼리 콘솔에서 **Yarn UI** 를 클릭합니다. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
+toouse Yarn 사용자 인터페이스를 클릭 하 여 **Yarn UI** hello HDInsight 쿼리 콘솔. [HDInsight 쿼리 콘솔 열기](#open-hdinsight-query-console)를 참조하세요.
 
-## <a name="connect-to-clusters-using-rdp"></a>RDP를 사용하여 클러스터에 연결
-생성 시 제공한 클러스터의 자격 증명은 원격 데스크톱을 통해 클러스터 자체가 아니라 클러스터의 서비스에 대한 액세스를 제공합니다. 클러스터를 프로비전할 때 또는 클러스터가 프로비전된 후 원격 데스크톱 액세스를 켤 수 있습니다. 생성 시 원격 데스크톱을 사용하도록 설정하는 방법에 대한 지침은 [HDInsight 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)를 참조하세요.
+## <a name="connect-tooclusters-using-rdp"></a>Tooclusters RDP를 사용 하 여 연결
+생성 시 사용자가 제공한 hello 클러스터에 대 한 자격 증명 hello hello 클러스터 있지만 하지 toohello 클러스터 자체 원격 데스크톱을 통해 toohello 서비스 액세스를 부여 합니다. 클러스터를 프로비전할 때 또는 클러스터가 프로비전된 후 원격 데스크톱 액세스를 켤 수 있습니다. Hello 생성 시 원격 데스크톱을 사용 하는 방법에 대 한 지침은 [만들 HDInsight 클러스터](hdinsight-hadoop-provision-linux-clusters.md)합니다.
 
-**원격 데스크톱을 사용하도록 설정하려면**
+**원격 데스크톱 tooenable**
 
-1. [포털][azure-portal]에 로그인합니다.
-2. 왼쪽 메뉴에서 **모두 찾아보기**, **HDInsight 클러스터**, 클러스터 이름을 차례로 클릭합니다.
-3. 상단 메뉴에서 **설정**을 클릭한 다음 **원격 데스크톱**을 클릭합니다.
+1. Toohello 로그인 [포털][azure-portal]합니다.
+2. 클릭 **모두 찾아보기** hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**, 클러스터 이름을 클릭 합니다.
+3. 클릭 **설정** hello 상단 메뉴에서 **원격 데스크톱**합니다.
 4. **만료 날짜**, **원격 데스크톱 사용자 이름** 및 **원격 데스크톱 암호**를 입력한 다음 **사용**을 클릭합니다.
 
     ![HDInsight에서 원격 데스크톱 비활성화 구성 해제](./media/hdinsight-administer-use-management-portal/hdinsight.portal.remote.desktop.png)
 
-    만료 날짜에 대한 기본 값은 1주일입니다.
+    만료에 대 한 hello 기본값은 1 주일입니다.
 
    > [!NOTE]
-   > HDInsight .NET SDK를 통해 클러스터에서 원격 데스크톱을 사용하도록 설정할 수도 있습니다. 다음과 같은 방식으로 HDInsight 클라이언트 개체에서 **EnableRdp** 메서드를 사용합니다 **client.EnableRdp(clustername, location, "rdpuser", "rdppassword", DateTime.Now.AddDays(6))**. 마찬가지로, 클러스터에서 원격 데스크톱을 사용하지 않도록 설정하려면 **client.DisableRdp(clustername, location)**을 사용할 수 있습니다. 이러한 메서드에 대한 자세한 내용은 [HDInsight .NET SDK 참조](http://go.microsoft.com/fwlink/?LinkId=529017)를 참조하세요. Windows에서 실행되는 HDInsight 클러스터에만 적용됩니다.
+   > 클러스터에 hello HDInsight.NET SDK tooenable 원격 데스크톱을 사용할 수도 있습니다. 사용 하 여 hello **EnableRdp** hello 방식으로 다음에 hello HDInsight 클라이언트 개체에서 메서드: **클라이언트입니다. EnableRdp (clustername, 위치, "rdpuser", "rdppassword", DateTime.Now.AddDays(6))**합니다. 마찬가지로, hello 클러스터에 원격 데스크톱을 toodisable를 사용할 수 있습니다 **클라이언트입니다. (Clustername, 위치) DisableRdp**합니다. 이러한 메서드에 대한 자세한 내용은 [HDInsight .NET SDK 참조](http://go.microsoft.com/fwlink/?LinkId=529017)를 참조하세요. Windows에서 실행되는 HDInsight 클러스터에만 적용됩니다.
    >
    >
 
-**RDP를 사용하여 클러스터에 연결하려면**
+**RDP를 사용 하 여 tooconnect tooa 클러스터**
 
-1. [포털][azure-portal]에 로그인합니다.
-2. 왼쪽 메뉴에서 **모두 찾아보기**, **HDInsight 클러스터**, 클러스터 이름을 차례로 클릭합니다.
-3. 상단 메뉴에서 **설정**을 클릭한 다음 **원격 데스크톱**을 클릭합니다.
-4. **연결** 을 클릭하고 지침을 따릅니다. 연결이 사용 안함인 경우 먼저 활성화해야 합니다. 원격 데스크톱 사용자 이름 및 암호를 사용하고 있는지 확인합니다.  클러스터 사용자 자격 증명을 사용할 수 없습니다.
+1. Toohello 로그인 [포털][azure-portal]합니다.
+2. 클릭 **모두 찾아보기** hello 왼쪽된 메뉴에서 클릭 **HDInsight 클러스터**, 클러스터 이름을 클릭 합니다.
+3. 클릭 **설정** hello 상단 메뉴에서 **원격 데스크톱**합니다.
+4. 클릭 **연결** hello 지침을 따릅니다. 연결이 사용 안함인 경우 먼저 활성화해야 합니다. Hello 원격 데스크톱 사용자 이름과 암호를 사용 하 여 했는지 확인 합니다.  Hello 클러스터 사용자 자격 증명을 사용할 수 없습니다.
 
 ## <a name="open-hadoop-command-line"></a>Hadoop 명령줄 열기
-원격 데스크톱을 통해 클러스터에 연결하고 Hadoop 명령줄을 사용하려면 이전 섹션에 설명된 대로 먼저 클러스터에 대한 원격 데스크톱 액세스를 사용하도록 설정해야 합니다.
+원격 데스크톱을 사용 하 여 hello Hadoop 명령줄을 사용 하 여 tooconnect toohello 클러스터를 먼저 설정 해야 원격 데스크톱 액세스 toohello 클러스터 hello 이전 섹션에 설명 된 대로 합니다.
 
-**Hadoop 명령줄을 열려면**
+**tooopen Hadoop 명령줄**
 
-1. 원격 데스크톱을 사용하여 클러스터에 연결합니다.
-2. 데스크톱에서 **Hadoop 명령줄**을 두 번 클릭합니다.
+1. 원격 데스크톱을 사용 하 여 toohello 클러스터에 연결 합니다.
+2. Hello 바탕 화면에서 두 번 클릭 **Hadoop 명령줄**합니다.
 
     ![HDI.HadoopCommandLine][image-hadoopcommandline]
 
     Hadoop 명령에 대한 자세한 내용은 [Hadoop 명령 참조](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/CommandsManual.html)(영문)를 참조하세요.
 
-이전 스크린샷의 폴더 이름에는 Hadoop 버전 번호가 포함되어 있습니다. 버전 번호는 클러스터에 설치된 Hadoop 구성 요소의 버전에 따라 변경될 수 있습니다. Hadoop 환경 변수를 사용하여 해당 폴더를 참조할 수 있습니다. 예:
+Hello 이전 스크린 샷 hello 폴더 이름에는 내장 된 hello Hadoop 버전 번호를 있습니다. hello 버전 번호 수에 따라 hello 변경 된 버전의 hello Hadoop 구성 요소가 hello 클러스터에 설치 합니다. Hadoop 환경 변수 toorefer toothose 폴더를 사용할 수 있습니다. 예:
 
     cd %hadoop_home%
     cd %hive_home%
@@ -366,7 +366,7 @@ Yarn 사용자 인터페이스를 사용하려면 HDInsight 쿼리 콘솔에서 
     cd %hcatalog_home%
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 포털을 사용하여 HDInsight 클러스터를 만드는 방법과 Hadoop 명령줄 도구를 여는 방법을 배웠습니다. 자세한 내용은 다음 문서를 참조하세요.
+이 문서에서는 방법을 사용 하 여 HDInsight 클러스터 toocreate hello 포털 및 tooopen Hadoop 명령줄 도구를 hello 하는 방법을 배웠습니다. 더 toolearn hello 다음 문서를 참조:
 
 * [Azure PowerShell을 사용하여 HDInsight 관리](hdinsight-administer-use-powershell.md)
 * [Azure CLI를 사용하여 HDInsight 관리](hdinsight-administer-use-command-line.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Services 입력 메타데이터 스키마 | Microsoft 문서"
-description: "이 항목에서는 Azure Media Services 입력 메타데이터 스키마에 대한 개요를 제공합니다."
+title: "미디어 서비스 입력된 메타 데이터 스키마 aaaAzure | Microsoft Docs"
+description: "hello 항목에서는 Azure 미디어 서비스 입력된 메타 데이터 스키마에 대 한 개요를 제공 합니다."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako
-ms.openlocfilehash: 4787e4033e1afda6339b0b917263ecc165e400ad
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9b72c6ff317aa98451ea75548465dc6023b44a55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="input-metadata"></a>입력 메타데이터
-인코딩 작업은 일부 인코딩 태스크를 수행할 입력 자산(또는 자산)과 연결됩니다.  태스크가 완료되는 즉시 출력 자산이 생성됩니다.  출력 자산에는 비디오, 오디오, 미리 보기, 매니페스트 등이 포함됩니다. 출력 자산에는 입력된 자산에 대한 메타데이터가 있는 파일도 포함됩니다. 메타데이터 XML 파일의 이름 형식은 &lt;asset_id&gt;_metadata.xml입니다(예: 41114ad3-eb5e-4c57-8d92-5354e2b7d4a4_metadata.xml). 여기서 &lt;asset_id&gt;는 입력 자산의 AssetId 값입니다.  
+인코딩 작업은 입력된 자산 (또는 자산)와 연결 하려는 tooperform 몇 가지 인코딩 작업 합니다.  태스크가 완료되는 즉시 출력 자산이 생성됩니다.  hello 출력 자산은 비디오, 오디오, 미리 보기, 매니페스트 포함, 등 hello 출력 자산도 hello 입력된 자산 관련 메타 데이터가 있는 파일을 포함 합니다. hello hello 메타 데이터 XML 파일의 이름에 형식에 따라 hello: &lt;t _ i d&gt;_ m e (예를 들어 41114ad3 eb5e-4 c-57-8 d 92-5354e2b7d4a4_metadata.xml), 여기서 &lt;t _ i d&gt; 는 hello AssetId hello 입력 자산의 값입니다.  
 
-메타데이터 파일을 검사하려는 경우 **SAS** 로케이터를 만들어 로컬 컴퓨터에 파일을 다운로드할 수 있습니다. [Media Services .NET SDK 확장을 사용](media-services-dotnet-get-started.md)하면 SAS 로케이터를 만들고 파일을 다운로드하는 방법에 대한 예제를 찾을 수 있습니다.  
+Tooexamine hello 메타 데이터 파일을 원하는 경우 만들 수 있습니다는 **SAS** 로케이터 및 다운로드 hello 파일 tooyour 로컬 컴퓨터입니다. 방법에 대 한 예제를 찾을 수 toocreate SAS 로케이터 파일을 다운로드 하 고 [hello 미디어 서비스.NET SDK Extensions를 사용 하 여](media-services-dotnet-get-started.md)합니다.  
 
-이 항목에서는 입력 메타데이터(&lt; asset_id &gt; _metadata.xml)의 기초가 되는 XML 스키마의 요소 및 형식에 대해 설명합니다.  출력 자산에 대한 메타데이터가 포함된 파일에 대한 자세한 내용은 [출력 메타데이터](media-services-output-metadata-schema.md)를 참조하세요.  
+이 항목에서는 어떤 hello 입력된 메타 데이터가에 hello 요소 및 형식의 hello XML 스키마를 설명 (&lt;t _ i d&gt;_ m e) 기반 합니다.  Hello 출력 자산 관련 메타 데이터가 포함 된 hello 파일에 대 한 정보를 참조 하십시오. [출력 메타 데이터](media-services-output-metadata-schema.md)합니다.  
 
 > [!NOTE]
-> [스키마 코드](media-services-input-metadata-schema.md#code) 및 [XML 예제](media-services-input-metadata-schema.md#xml)는 이 항목의 끝에 있습니다.  
+> Hello를 찾을 수 있습니다 [스키마 코드](media-services-input-metadata-schema.md#code) 는 [XML 예제](media-services-input-metadata-schema.md#xml) 이 항목의 hello 끝에 있습니다.  
 > 
 > 
 
 ## <a name="AssetFiles"></a> AssetFiles 요소(루트 요소)
-인코딩 작업에 대한 [AssetFile 요소](media-services-input-metadata-schema.md#AssetFile) 컬렉션이 포함됩니다.  
+컬렉션을 포함 [AssetFile 요소](media-services-input-metadata-schema.md#AssetFile)hello 인코딩 작업에 대 한 합니다.  
 
-이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 | 이름 | 설명 |
 | --- | --- |
@@ -44,40 +44,40 @@ ms.lasthandoff: 08/29/2017
 ## <a name="AssetFile"></a> AssetFile 요소
  자산 파일을 설명하는 속성과 요소를 포함하고 있습니다.  
 
- 이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+ 이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="attributes"></a>특성
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
 | **Name**<br /><br /> 필수 |**xs:string** |자산 파일의 이름입니다. |
-| **크기**<br /><br /> 필수 |**xs:long** |자산 파일의 크기(바이트)입니다. |
+| **크기**<br /><br /> 필수 |**xs:long** |바이트 단위로 hello 자산 파일의 크기입니다. |
 | **Duration**<br /><br /> 필수 |**xs:duration** |콘텐츠 재생 시간입니다. 예제: Duration="PT25M37.757S" |
-| **NumberOfStreams**<br /><br /> 필수 |**xs:int** |자산 파일의 스트림 수입니다. |
+| **NumberOfStreams**<br /><br /> 필수 |**xs:int** |Hello 자산 파일의 스트림 수입니다. |
 | **FormatNames**<br /><br /> 필수 |**xs:string** |형식 이름입니다. |
 | **FormatVerboseNames**<br /><br /> 필수 |**xs:string** |자세한 형식 이름입니다. |
 | **StartTime** |**xs:duration** |콘텐츠 시작 시간입니다. 예제: StartTime="PT2.669S" |
-| **OverallBitRate** |**xs:int** |자산 파일의 평균 비트 전송률(Kbps)입니다. |
+| **OverallBitRate** |**xs:int** |Kbps에서 hello 자산 파일의 평균 비트입니다. |
 
 > [!NOTE]
-> 다음 4개의 자식 요소가 순서대로 나타나야 합니다.  
+> 다음과 같은 4 자식 요소가 hello 시퀀스에 나타나야 합니다.  
 > 
 > 
 
 ### <a name="child-elements"></a>자식 요소
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **Programs**<br /><br /> minOccurs="0" | |자산 파일의 형식이 MPEG-TS인 경우 모든 [Programs 요소](media-services-input-metadata-schema.md#Programs)의 컬렉션입니다. |
-| **VideoTracks**<br /><br /> minOccurs="0" | |각각의 실제 자산 파일에는 적절한 컨테이너 형식으로 인터리빙된 0개 이상의 비디오 트랙이 포함될 수 있습니다. 이 요소에는 자산 파일의 일부인 모든 [VideoTracks 요소](media-services-input-metadata-schema.md#VideoTracks)의 컬렉션이 포함됩니다. |
-| **AudioTracks**<br /><br /> minOccurs="0" | |각각의 실제 자산 파일에는 적절한 컨테이너 형식으로 인터리빙된 0개 이상의 오디오 트랙이 포함될 수 있습니다. 이 요소에는 자산 파일의 일부인 모든 [AudioTracks 요소](media-services-input-metadata-schema.md#AudioTracks)의 컬렉션이 포함됩니다. |
+| **Programs**<br /><br /> minOccurs="0" | |모든 컬렉션 [프로그램 요소](media-services-input-metadata-schema.md#Programs) 때 hello 자산 파일이 MPEG-TS 형태로 표시 합니다. |
+| **VideoTracks**<br /><br /> minOccurs="0" | |각각의 실제 자산 파일에는 적절한 컨테이너 형식으로 인터리빙된 0개 이상의 비디오 트랙이 포함될 수 있습니다. 이 요소는 모든 컬렉션을 포함 [VideoTracks 요소](media-services-input-metadata-schema.md#VideoTracks) hello 자산 파일의 일부인 합니다. |
+| **AudioTracks**<br /><br /> minOccurs="0" | |각각의 실제 자산 파일에는 적절한 컨테이너 형식으로 인터리빙된 0개 이상의 오디오 트랙이 포함될 수 있습니다. 이 요소는 모든 컬렉션을 포함 [AudioTracks 요소](media-services-input-metadata-schema.md#AudioTracks) hello 자산 파일의 일부인 합니다. |
 | **Metadata**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |key/value 문자열로 표시되는 자산 파일의 메타데이터입니다. 예:<br /><br /> **&lt;Metadata key="language" value="eng" /&gt;** |
 
 ## <a name="TrackType"></a> TrackType
-이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="attributes"></a>특성
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **Id**<br /><br /> 필수 |**xs:int** |이 오디오 또는 비디오 트랙의 0 기준 인덱스입니다.<br /><br /> 반드시 MP4 파일에 사용되는 TrackID일 필요는 없습니다. |
+| **Id**<br /><br /> 필수 |**xs:int** |이 오디오 또는 비디오 트랙의 0 기준 인덱스입니다.<br /><br /> 이 아닌 경우 반드시 해당 hello MP4 파일에서 사용 되는 TrackID |
 | **Codec** |**xs:string** |비디오 트랙 코덱 문자열입니다. |
 | **CodecLongName** |**xs:string** |오디오 또는 비디오 트랙 코덱의 긴 이름입니다. |
 | **TimeBase**<br /><br /> 필수 |**xs:string** |시간 기준입니다. 예제: TimeBase="1/48000" |
@@ -86,7 +86,7 @@ ms.lasthandoff: 08/29/2017
 | **Duration** |**xs:duration** |트랙 지속 시간입니다. 예제: Duration="PTSampleFormat M37.757S" |
 
 > [!NOTE]
-> 다음 2개의 자식 요소가 순서대로 나타나야 합니다.  
+> 다음과 같은 2 자식 요소가 hello 시퀀스에 나타나야 합니다.  
 > 
 > 
 
@@ -94,14 +94,14 @@ ms.lasthandoff: 08/29/2017
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
 | **Disposition**<br /><br /> minOccurs="0" maxOccurs="1" |[StreamDispositionType](media-services-input-metadata-schema.md#StreamDispositionType) |프레젠테이션 정보가 포함됩니다(예: 특정 오디오 트랙이 시각 장애 시청자를 위한 것인지 여부). |
-| **Metadata**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |다양한 정보를 저장하는 데 사용할 수 있는 일반 key/value 문자열입니다. 예제: key=”language” 및 value=”eng” |
+| **Metadata**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |사용 되는 toohold 다양 한 일 수 있는 일반 키/값 문자열입니다. 예제: key=”language” 및 value=”eng” |
 
 ## <a name="AudioTrackType"></a> AudioTrackType(TrackType에서 상속)
  **AudioTrackType**는 [TrackType](media-services-input-metadata-schema.md#TrackType)에서 상속되는 전역 복합 형식입니다.  
 
- 형식은 자산 파일의 특정 오디오 트랙을 나타냅니다.  
+ hello 형식은 hello 자산 파일의 특정 오디오 트랙을 나타냅니다.  
 
- 이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+ 이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="attributes"></a>특성
 | 이름 | 형식 | 설명 |
@@ -110,15 +110,15 @@ ms.lasthandoff: 08/29/2017
 | **ChannelLayout** |**xs:string** |채널 레이아웃입니다. |
 | **Channels**<br /><br /> 필수 |**xs:int** |오디오 채널 수입니다(0개 이상). |
 | **SamplingRate**<br /><br /> 필수 |**xs:int** |오디오 샘플링 속도(샘플/초 또는 Hz)입니다. |
-| **Bitrate** |**xs:int** |자산 파일에서 계산되는 평균 오디오 비트 전송률(bps)입니다. 기본 스트림 페이로드만 계산되며, 패키징 오버헤드는 이 개수에 포함되지 않습니다. |
-| **BitsPerSample** |**xs:int** |wFormatTag 형식 샘플당 비트입니다. |
+| **Bitrate** |**xs:int** |Hello 자산 파일에서 계산 되는 초당 비트 단위의 평균 오디오 비트 속도입니다. Hello 기본 스트림 페이로드만 계산 되며 및 hello 패키징 오버 헤드는이 개수에 포함 되지 않습니다. |
+| **BitsPerSample** |**xs:int** |Hello wFormatTag 형식에 대 한 샘플당 비트를 입력합니다. |
 
 ## <a name="VideoTrackType"></a> VideoTrackType(TrackType에서 상속)
 **VideoTrackType**는 [TrackType](media-services-input-metadata-schema.md#TrackType)에서 상속되는 전역 복합 형식입니다.  
 
-형식은 자산 파일의 특정 비디오 트랙을 나타냅니다.  
+hello 형식은 hello 자산 파일의 특정 비디오 트랙을 나타냅니다.  
 
-이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="attributes"></a>특성
 | 이름 | 형식 | 설명 |
@@ -135,20 +135,20 @@ ms.lasthandoff: 08/29/2017
 | **SampleAspectRatioNumerator** |**xs:double** |비디오 샘플 가로 세로 비율의 분자입니다. |
 | **SampleAspectRatioNumerator** |**xs:double** |비디오 샘플 가로 세로 비율의 분모입니다. |
 | **FrameRate**<br /><br /> 필수 |**xs: decimal** |.3f 형식으로 측정된 비디오 프레임 속도입니다. |
-| **Bitrate** |**xs:int** |자산 파일에서 계산되는 평균 비디오 비트 전송률(Kb/초)입니다. 기본 스트림 페이로드만 계산되며, 패키징 오버헤드는 포함되지 않습니다. |
+| **Bitrate** |**xs:int** |Hello 자산 파일에서 계산 된 대로 k b / 초, 평균 비디오 비트 속도입니다. Hello 기본 스트림 페이로드만 계산 되며 및 hello 패키징 오버 헤드는 포함 되지 않습니다. |
 | **MaxGOPBitrate** |**xs:int** |이 비디오 트랙의 최대 GOP 평균 비트 전송률(Kb/초)입니다. |
 | **HasBFrames** |**xs:int** |B 프레임의 비디오 트랙 번호입니다. |
 
 ## <a name="MetadataType"></a> MetadataType
 **MetadataType**은 자산 파일의 메타데이터를 key/value 문자열로 설명하는 전역 복합 형식입니다. 예제: key=”language” 및 value=”eng”  
 
-이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="attributes"></a>특성
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **key**<br /><br /> 필수 |**xs:string** |key/value 쌍의 키입니다. |
-| **값**<br /><br /> 필수 |**xs:string** |key/value 쌍의 값입니다. |
+| **key**<br /><br /> 필수 |**xs:string** |hello 키/값 쌍의 hello 키입니다. |
+| **값**<br /><br /> 필수 |**xs:string** |hello 키/값 쌍의 hello 값입니다. |
 
 ## <a name="ProgramType"></a> ProgramType
 **ProgramType**은 프로그램을 설명하는 전역 복합 형식입니다.  
@@ -164,24 +164,24 @@ ms.lasthandoff: 08/29/2017
 | **EndPTS** |**xs: long** |프레젠테이션 끝 타임스탬프입니다. |
 
 ## <a name="StreamDispositionType"></a> StreamDispositionType
-**StreamDispositionType**은 스트림을 설명하는 전역 복합 형식입니다.  
+**StreamDispositionType** 는 hello 스트림을 설명 하는 전역 복합 유형입니다.  
 
-이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="attributes"></a>특성
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **기본값**<br /><br /> 필수 |**xs:int** |기본 프레젠테이션임을 나타내려면 이 속성을 1로 설정합니다. |
-| **Dub**<br /><br /> 필수 |**xs:int** |더빙된 프레젠테이션임을 나타내려면 이 속성을 1로 설정합니다. |
-| **Original**<br /><br /> 필수 |**xs:int** |원본 프레젠테이션임을 나타내려면 이 속성을 1로 설정합니다. |
-| **Comment**<br /><br /> 필수 |**xs:int** |이 트랙에 해설이 있음을 나타내려면 이 속성을 1로 설정합니다. |
-| **Lyrics**<br /><br /> 필수 |**xs:int** |이 트랙에 가사가 있음을 나타내려면 이 속성을 1로 설정합니다. |
-| **Karaoke**<br /><br /> 필수 |**xs:int** |가라오케 트랙(배경 음악, 보컬 없음)임을 나타내려면 이 성을 1로 설정합니다. |
-| **Forced**<br /><br /> 필수 |**xs:int** |강제 프레젠테이션임을 나타내려면 이 속성을 1로 설정합니다. |
-| **HearingImpaired**<br /><br /> 필수 |**xs:int** |청각 장애자용 트랙임을 나타내려면 이 속성을 1로 설정합니다. |
-| **VisualImpaired**<br /><br /> 필수 |**xs:int** |시각 장애자용 트랙임을 나타내려면 이 속성을 1로 설정합니다. |
-| **CleanEffects**<br /><br /> 필수 |**xs:int** |이 트랙에 새 효과가 있음을 나타내려면 이 속성을 1로 설정합니다. |
-| **AttachedPic**<br /><br /> 필수 |**xs:int** |이 트랙에 그림이 있음을 나타내려면 이 속성을 1로 설정합니다. |
+| **기본값**<br /><br /> 필수 |**xs:int** |이이 특성 too1 tooindicate hello 기본 표시가 설정 합니다. |
+| **Dub**<br /><br /> 필수 |**xs:int** |설정 합니다.이 특성 too1 tooindicate 프레젠테이션 더빙 hello 합니다. |
+| **Original**<br /><br /> 필수 |**xs:int** |이이 특성 too1 tooindicate hello 원본 표시를 설정 합니다. |
+| **Comment**<br /><br /> 필수 |**xs:int** |설정 합니다.이 특성 too1 tooindicate 트랙에 설명이 포함 되어 있습니다. |
+| **Lyrics**<br /><br /> 필수 |**xs:int** |설정 합니다.이 특성 too1 tooindicate 트랙에 가사가 포함 되어 있습니다. |
+| **Karaoke**<br /><br /> 필수 |**xs:int** |설정 합니다.이 특성 too1 tooindicate 나타냅니다 hello이 항목이 가라오케 트랙 (배경 음악, 보컬 없음). |
+| **Forced**<br /><br /> 필수 |**xs:int** |이이 특성 too1 tooindicate 강제 hello 프레젠테이션을 설정 합니다. |
+| **HearingImpaired**<br /><br /> 필수 |**xs:int** |이 특성 too1 tooindicate hello 항목이 청각 장애 자용 임을 설정 합니다. |
+| **VisualImpaired**<br /><br /> 필수 |**xs:int** |이 트랙은 시각 장애가 있는 hello에 대 한이 특성 too1 tooindicate를 설정 합니다. |
+| **CleanEffects**<br /><br /> 필수 |**xs:int** |이 트랙에이 특성 too1 tooindicate 클린 효과 설정 합니다. |
+| **AttachedPic**<br /><br /> 필수 |**xs:int** |이 트랙에이 특성 too1 tooindicate 그림을 설정 합니다. |
 
 ## <a name="Programs"></a> Programs 요소
 여러 **Program** 요소를 보유하는 래퍼 요소입니다.  
@@ -189,27 +189,27 @@ ms.lasthandoff: 08/29/2017
 ### <a name="child-elements"></a>자식 요소
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **Program**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[ProgramType](media-services-input-metadata-schema.md#ProgramType) |MPEG-TS 형식의 자산 파일에는 자산 파일의 프로그램에 대한 정보가 포함됩니다. |
+| **Program**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[ProgramType](media-services-input-metadata-schema.md#ProgramType) |MPEG-TS 형식인 자산 파일에 대 한 hello 자산 파일의 프로그램에 대 한 정보를 포함 합니다. |
 
 ## <a name="VideoTracks"></a> VideoTracks 요소
  여러 **VideoTrack** 요소를 보유하는 래퍼 요소입니다.  
 
- 이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+ 이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="child-elements"></a>자식 요소
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **VideoTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[VideoTrackType(TrackType에서 상속)](media-services-input-metadata-schema.md#VideoTrackType) |자산 파일의 비디오 트랙에 대한 정보가 포함됩니다. |
+| **VideoTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[VideoTrackType(TrackType에서 상속)](media-services-input-metadata-schema.md#VideoTrackType) |Hello 자산 파일의 비디오 트랙에 대 한 정보를 포함합니다. |
 
 ## <a name="AudioTracks"></a> AudioTracks 요소
  여러 **AudioTrack** 요소를 보유하는 래퍼 요소입니다.  
 
- 이 항목 끝에 있는 [XML 예제](media-services-input-metadata-schema.md#xml)를 참조하세요.  
+ 이 항목의 hello 끝에 XML 예제: [XML 예제](media-services-input-metadata-schema.md#xml)합니다.  
 
 ### <a name="elements"></a>요소
 | 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| **AudioTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[AudioTrackType(TrackType에서 상속)](media-services-input-metadata-schema.md#AudioTrackType) |자산 파일의 오디오 트랙에 대한 정보가 포함됩니다. |
+| **AudioTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[AudioTrackType(TrackType에서 상속)](media-services-input-metadata-schema.md#AudioTrackType) |Hello 자산 파일의 오디오 트랙에 대 한 정보를 포함합니다. |
 
 ## <a name="code"></a> 스키마 코드
     <?xml version="1.0" encoding="utf-8"?>  
@@ -277,7 +277,7 @@ ms.lasthandoff: 08/29/2017
         </xs:sequence>  
         <xs:attribute name="Id" use="required">  
           <xs:annotation>  
-            <xs:documentation>zero-based index of this video track. Note: this is not necessarily the TrackID as used in an MP4 file</xs:documentation>  
+            <xs:documentation>zero-based index of this video track. Note: this is not necessarily hello TrackID as used in an MP4 file</xs:documentation>  
           </xs:annotation>  
           <xs:simpleType>  
             <xs:restriction base="xs:int">  
@@ -324,7 +324,7 @@ ms.lasthandoff: 08/29/2017
 
       <xs:complexType name="VideoTrackType">  
         <xs:annotation>  
-          <xs:documentation>A specific video track in the parent AssetFile</xs:documentation>  
+          <xs:documentation>A specific video track in hello parent AssetFile</xs:documentation>  
         </xs:annotation>  
         <xs:complexContent>  
           <xs:extension base="TrackType">  
@@ -421,7 +421,7 @@ ms.lasthandoff: 08/29/2017
             </xs:attribute>  
             <xs:attribute name="Bitrate">  
               <xs:annotation>  
-                <xs:documentation>average video bit rate in kilobits per second, as calculated from the AssetFile. Counts only the elementary stream payload, and does not include the packaging overhead</xs:documentation>  
+                <xs:documentation>average video bit rate in kilobits per second, as calculated from hello AssetFile. Counts only hello elementary stream payload, and does not include hello packaging overhead</xs:documentation>  
               </xs:annotation>  
               <xs:simpleType>  
                 <xs:restriction base="xs:int">  
@@ -450,7 +450,7 @@ ms.lasthandoff: 08/29/2017
 
       <xs:complexType name="AudioTrackType">  
         <xs:annotation>  
-          <xs:documentation>a specific audio track in the parent AssetFile</xs:documentation>  
+          <xs:documentation>a specific audio track in hello parent AssetFile</xs:documentation>  
         </xs:annotation>  
         <xs:complexContent>  
           <xs:extension base="TrackType">  
@@ -486,7 +486,7 @@ ms.lasthandoff: 08/29/2017
             </xs:attribute>  
             <xs:attribute name="Bitrate">  
               <xs:annotation>  
-                <xs:documentation>average audio bit rate in bits per second, as calculated from the AssetFile. Counts only the elementary stream payload, and does not include the packaging overhead</xs:documentation>  
+                <xs:documentation>average audio bit rate in bits per second, as calculated from hello AssetFile. Counts only hello elementary stream payload, and does not include hello packaging overhead</xs:documentation>  
               </xs:annotation>  
               <xs:simpleType>  
                 <xs:restriction base="xs:int">  
@@ -496,7 +496,7 @@ ms.lasthandoff: 08/29/2017
             </xs:attribute>  
             <xs:attribute name="BitsPerSample">  
               <xs:annotation>  
-                <xs:documentation>Bits per sample for the wFormatTag format type</xs:documentation>  
+                <xs:documentation>Bits per sample for hello wFormatTag format type</xs:documentation>  
               </xs:annotation>  
               <xs:simpleType>  
                 <xs:restriction base="xs:int">  
@@ -510,7 +510,7 @@ ms.lasthandoff: 08/29/2017
 
       <xs:element name="AssetFiles">  
         <xs:annotation>  
-          <xs:documentation>Collection of AssetFile entries for the encoding job</xs:documentation>  
+          <xs:documentation>Collection of AssetFile entries for hello encoding job</xs:documentation>  
         </xs:annotation>  
         <xs:complexType>  
           <xs:sequence>  
@@ -522,7 +522,7 @@ ms.lasthandoff: 08/29/2017
                 <xs:sequence>  
                   <xs:element name="Programs" minOccurs="0">  
                     <xs:annotation>  
-                      <xs:documentation>This is the collection of all programs when file is MPEG-TS</xs:documentation>  
+                      <xs:documentation>This is hello collection of all programs when file is MPEG-TS</xs:documentation>  
                     </xs:annotation>  
                     <xs:complexType>  
                       <xs:sequence>  
@@ -532,7 +532,7 @@ ms.lasthandoff: 08/29/2017
                   </xs:element>  
                   <xs:element name="VideoTracks" minOccurs="0">  
                     <xs:annotation>  
-                      <xs:documentation>Each physical AssetFile can contain in it zero or more video tracks interleaved into an appropriate container format. This is the collection of all those video tracks</xs:documentation>  
+                      <xs:documentation>Each physical AssetFile can contain in it zero or more video tracks interleaved into an appropriate container format. This is hello collection of all those video tracks</xs:documentation>  
                     </xs:annotation>  
                     <xs:complexType>  
                       <xs:sequence>  
@@ -542,7 +542,7 @@ ms.lasthandoff: 08/29/2017
                   </xs:element>  
                   <xs:element name="AudioTracks" minOccurs="0">  
                     <xs:annotation>  
-                      <xs:documentation>each physical AssetFile can contain in it zero or more audio tracks interleaved into an appropriate container format. This is the collection of all those audio tracks</xs:documentation>  
+                      <xs:documentation>each physical AssetFile can contain in it zero or more audio tracks interleaved into an appropriate container format. This is hello collection of all those audio tracks</xs:documentation>  
                     </xs:annotation>  
                     <xs:complexType>  
                       <xs:sequence>  
@@ -554,7 +554,7 @@ ms.lasthandoff: 08/29/2017
                 </xs:sequence>  
                 <xs:attribute name="Name" type="xs:string" use="required">  
                   <xs:annotation>  
-                    <xs:documentation>the media asset file name</xs:documentation>  
+                    <xs:documentation>hello media asset file name</xs:documentation>  
                   </xs:annotation>  
                 </xs:attribute>  
                 <xs:attribute name="Size" use="required">  
@@ -594,7 +594,7 @@ ms.lasthandoff: 08/29/2017
                 </xs:attribute>  
                 <xs:attribute name="OverallBitRate">  
                   <xs:annotation>  
-                    <xs:documentation>average bitrate of the asset file in kbps</xs:documentation>  
+                    <xs:documentation>average bitrate of hello asset file in kbps</xs:documentation>  
                   </xs:annotation>  
                   <xs:simpleType>  
                     <xs:restriction base="xs:int">  
@@ -611,7 +611,7 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="xml"></a> XML 예제
-다음은 입력 메타데이터 파일의 예제입니다.  
+hello 다음은 hello 입력 메타 데이터 파일의 예입니다.  
 
     <?xml version="1.0" encoding="utf-8"?>  
     <AssetFiles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/windowsazure/mediaservices/2014/07/mediaencoder/inputmetadata">  

@@ -1,6 +1,6 @@
 ---
-title: "HBase를 사용하여 Twitter 데이터 실시간 분석 - Azure | Microsoft Docs"
-description: "이 문서에서는 HDInsight(Hadoop) 클러스터에서 HBase를 사용하여 Twitter의 빅 데이터를 실시간으로 데이터 분석하는 방법에 대해 알아봅니다."
+title: "HBase-Azure와 실시간 Twitter 감성 aaaAnalyze | Microsoft Docs"
+description: "자세한 방법 (Hadoop) HDInsight 클러스터의 HBase를 사용 하 여 Twitter에서 빅 데이터의 toodo 실시간 감성 분석 합니다."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/24/2017
 ms.author: jgao
-ms.openlocfilehash: 4d5bb90c0e7573afb75282810c9ba58e7163e127
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 87e5c0c0a90d222a3f0bc3c3f3fce1e938320480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a>HDInsight에서 HBase를 사용하여 Twitter 데이터 실시간 분석
-이 문서에서는 HDInsight(Hadoop) HBase 클러스터를 사용하여 Twitter의 빅 데이터를 실시간으로 [감정 분석](http://en.wikipedia.org/wiki/Sentiment_analysis)하는 방법에 대해 알아봅니다.
+자세한 방법을 toodo 실시간 [감성 분석](http://en.wikipedia.org/wiki/Sentiment_analysis) HDInsight에서 HBase 클러스터를 사용 하 여 Twitter에서 큰 데이터입니다.
 
-소셜 웹 사이트는 빅데이터 채택의 주요 추진력 중 하나입니다. Twitter와 같은 사이트에서 제공하는 공개 API는 대중적인 추세를 분석하고 이해하는 데 유용한 데이터 원본입니다. 이 자습서에는 다음을 수행하기 위한 콘솔 스트리밍 서비스 응용 프로그램과 ASP.NET 웹 응용 프로그램을 개발합니다.
+소셜 웹 사이트는 빅 데이터 채택에 대 한 주요 추진 배경과 hello 중 하나입니다. Twitter와 같은 사이트에서 제공하는 공개 API는 대중적인 추세를 분석하고 이해하는 데 유용한 데이터 원본입니다. 이 자습서에서는 서비스 응용 프로그램 및 ASP.NET 웹 응용 프로그램 tooperform hello 다음 스트리밍 콘솔을 개발할 수 있습니다.
 
 ![HDInsight HBase에서 Twitter 데이터 분석][img-app-arch]
 
-* 스트리밍 응용 프로그램
+* 응용 프로그램 스트리밍을 hello
 
-  * Twitter 스트리밍 API를 사용하여 실시간으로 지역 태그가 적용된 트윗 가져오기
-  * 이러한 트윗의 데이터 평가
-  * Microsoft HBase SDK를 사용하여 HBase에 데이터 정보 저장
-* Azure 웹 사이트 응용 프로그램
+  * 스트리밍 API를 실시간으로 hello Twitter를 사용 하 여 트 윗 지역 태그가 지정 된 가져오기
+  * 이러한 트 윗의 hello 정서를 평가 합니다.
+  * 사용 하 여 HBase에서 정보 hello Microsoft HBase SDK hello 정서를 저장 합니다.
+* hello Azure 웹 사이트 응용 프로그램
 
-  * ASP.NET 웹 응용 프로그램을 사용하여 Bing 지도에 실시간 통계 결과를 그림으로 나타내기 트윗의 시각화는 다음 스크린샷과 유사합니다.
+  * ASP.NET 웹 응용 프로그램을 사용 하 여 Bing 지도에서 hello 실시간 통계 결과 그립니다. Hello 트 윗의 시각화는 비슷한 toohello 다음 스크린 샷:
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
 
-    특정 키워드를 사용해 트윗을 쿼리하여 트윗에 표현된 의견이 긍정적인지 부정적인지 아니면 중립적인지를 파악할 수 있습니다.
+    모르는와 특정 키워드 tooget 수 tooquery 트 윗의 의미 hello 트 윗에 표현 된 hello 견해는 양수, 음수 또는 중립 하는 경우.
 
 전체 Visual Studio 솔루션 샘플은 GitHub [실시간 소셜 데이터 분석 앱](https://github.com/maxluk/tweet-sentiment)에서 확인할 수 있습니다.
 
 ### <a name="prerequisites"></a>필수 조건
-이 자습서를 시작하기 전에 다음이 있어야 합니다.
+이 자습서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **HDInsight의 HBase 클러스터**. 클러스터 만들기에 대한 지침은 [HDInsight에서 Hadoop을 통해 HBase 사용 시작][hbase-get-started]을 참조하세요. 
 
 * Visual Studio 2013/2015/2017이 설치된 **워크스테이션**입니다. 관련 지침은 [Visual Studio 설치](http://msdn.microsoft.com/library/e2h7fzkw.aspx)를 참조하세요.
 
 ## <a name="create-a-twitter-application-id-and-secrets"></a>Twitter 응용 프로그램 ID 및 암호 만들기
-Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 권한을 부여합니다. OAuth를 사용하는 첫 단계는 Twitter 개발자 사이트에서 새 응용 프로그램을 만드는 것입니다.
+Twitter 스트리밍 Api 사용 하 여 hello [OAuth](http://oauth.net/) tooauthorize 요청 합니다. hello 첫 번째 단계 toouse OAuth toocreate hello Twitter 개발자 사이트에서 새 응용 프로그램입니다.
 
-**Twitter 응용 프로그램 ID 및 암호를 만들려면**
+**toocreate Twitter 응용 프로그램 ID 및 암호**
 
-1. [Twitter Apps](https://apps.twitter.com/)에 로그인합니다. Twitter 계정이 없는 경우 **Sign up now** 링크를 클릭합니다.
+1. 역시 로그인[Twitter 앱](https://apps.twitter.com/)합니다. Hello 클릭 **지금 등록** Twitter 계정이 없는 경우 연결 합니다.
 2. **Create New App**을 클릭합니다.
-3. **Name**, **Description** 및 **Website**를 입력합니다. Twitter 응용 프로그램 이름은 고유해야 합니다. 웹 사이트 필드는 실제로 사용되지는 않으므로 유효한 URL을 입력하지 않아도 됩니다.
+3. **Name**, **Description** 및 **Website**를 입력합니다. hello Twitter 응용 프로그램 이름에는 고유한 이름 이어야 합니다. hello 웹 사이트 필드를 실제로 사용 되지 않습니다. 올바른 URL toobe 되어 있지 않습니다.
 4. **Yes, I agree**를 선택한 후 **Create your Twitter application**을 클릭합니다.
-5. **사용 권한** 탭을 클릭한 다음 **읽기 전용**을 클릭합니다. 이 자습서에서는 읽기 전용 사용 권한으로 충분합니다.
-6. **Keys and Access Tokens** 탭을 클릭합니다.
-7. 페이지의 아래쪽에서 **내 액세스 토큰 만들기**를 클릭합니다.
-9. **소비자 키(API 키)**, **소비자 비밀**, **액세스 토큰** 및 **액세스 토큰 비밀** 값을 복사합니다. 자습서의 뒷부분에서 이러한 값이 필요합니다.
+5. Hello 클릭 **권한을** 탭을 클릭 한 다음 **읽기 전용**합니다. hello 읽기 전용 권한이이 자습서에 충분 합니다.
+6. Hello 클릭 **키와 액세스 토큰이** 탭 합니다.
+7. 클릭 **내 액세스 토큰 만들기** hello hello 페이지 아래쪽에 있습니다.
+9. 복사 hello **소비자 키 (API 키)**, **소비자 암호 (API Secret)**, **액세스 토큰**, 및 **액세스 토큰 암호** 값입니다. Hello 자습서의 뒷부분에서 이러한 값이 있어야합니다.
 
-    > ![참고]OAuth 테스트 단추가 더 이상 작동하지 않습니다.
+    > ! [참고] hello 테스트 OAuth 단추 더 이상 작동 하지 않습니다.
 
 ## <a name="create-twitter-streaming-service"></a>Twitter 스트리밍 서비스 만들기
-트윗을 가져오고 트윗의 데이터 점수를 계산한 다음 처리된 트윗 단어를 HBase로 보내는 응용 프로그램을 만들어야 합니다.
+응용 프로그램 tooget 트 윗 toocreate 필요 윗 감성 점수를 계산 하 고 처리 하는 hello 윗 단어 tooHBase 보냅니다.
 
-**스트리밍 응용 프로그램을 만들려면**
+**응용 프로그램 스트리밍을 toocreate hello**
 
 1. **Visual Studio**를 열고 **TweetSentimentStreaming**이라는 Visual C# 콘솔 응용 프로그램을 만듭니다.
-2. **패키지 관리자 콘솔**에서 다음 명령을 실행합니다.
+2. **패키지 관리자 콘솔**실행 hello 다음 명령을:
 
         Install-Package Microsoft.HBase.Client -version 0.4.2.0
         Install-Package TweetinviAPI -version 1.0.0.0
 
-    이러한 명령으로 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 패키지(HBase 클러스터에 액세스하기 위한 클라이언트 라이브러리) 및 [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) 패키지(Twitter API에 액세스하는 데 사용)를 설치합니다.
+    이 명령은 설치 hello [HBase.NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) hello 클라이언트 라이브러리 tooaccess hello HBase 클러스터 및 hello 패키지 [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) Twitter API hello 사용 되는 tooaccess 변수인, 패키지 합니다.
 
    > [!NOTE]
-   > 이 문서에서 사용된 샘플은 위에 지정 된 버전을 사용하여 테스트되었습니다.  -version 스위치를 제거하면 최신 버전을 설치할 수 있습니다.
+   > 이 문서에서 사용 하는 hello 예제는 위에 명시 된 hello 버전을 사용 하 여 테스트 되었습니다.  제거할 수 있습니다 hello-버전 스위치 tooinstall hello 최신 버전입니다.
    >
    >
-3. **솔루션 탐색기**에서 **System.Configuration**을 참조에 추가합니다.
-4. 새로운 **HBaseWriter.cs**클래스 파일을 프로젝트에 추가하고 다음과 같은 코드로 바꿉니다.
+3. **솔루션 탐색기**, 추가 **System.Configuration** toohello 참조 합니다.
+4. 라는 새 클래스 파일 toohello 프로젝트를 추가 **HBaseWriter.cs**, 다음 hello 코드 hello 다음으로 바꿉니다.
 
         using System;
         using System.Collections.Generic;
@@ -103,8 +103,8 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
             {
                 // HDinsight HBase cluster and HBase table information
                 const string CLUSTERNAME = "https://<Enter Your Cluster Name>.azurehdinsight.net/";
-                const string HADOOPUSERNAME = "admin"; //the default name is "admin"
-                const string HADOOPUSERPASSWORD = "<Enter the Hadoop User Password>";
+                const string HADOOPUSERNAME = "admin"; //hello default name is "admin"
+                const string HADOOPUSERPASSWORD = "<Enter hello Hadoop User Password>";
 
                 const string HBASETABLENAME = "tweets_by_words";
                 const string COUNT_ROW_KEY = "~ROWCOUNT";
@@ -112,13 +112,13 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
 
                 long rowCount = 0;
 
-                // Sentiment dictionary file and the punctuation characters
+                // Sentiment dictionary file and hello punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
                 private static char[] _punctuationChars = new[] {
             ' ', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
             ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~' };   //ascii 58--64 + misc.
 
-                // For writting to HBase
+                // For writting tooHBase
                 HBaseClient client;
 
                 // a sentiment dictionary for estimate sentiment. It is loaded from a physical file.
@@ -129,13 +129,13 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 Queue<ITweet> queue = new Queue<ITweet>();
                 bool threadRunning = true;
 
-                // This function connects to HBase, loads the sentiment dictionary, and starts the thread for writting.
+                // This function connects tooHBase, loads hello sentiment dictionary, and starts hello thread for writting.
                 public HBaseWriter()
                 {
                     ClusterCredentials credentials = new ClusterCredentials(new Uri(CLUSTERNAME), HADOOPUSERNAME, HADOOPUSERPASSWORD);
                     client = new HBaseClient(credentials);
 
-                    // create the HBase table if it doesn't exist
+                    // create hello HBase table if it doesn't exist
                     if (!client.ListTablesAsync().Result.name.Contains(HBASETABLENAME))
                     {
                         TableSchema tableSchema = new TableSchema();
@@ -151,7 +151,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     // Load sentiment dictionary from a file
                     LoadDictionary();
 
-                    // Start a thread for writting to HBase
+                    // Start a thread for writting tooHBase
                     writerThread = new Thread(new ThreadStart(WriterThreadFunction));
                     writerThread.Start();
                 }
@@ -179,7 +179,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     }
                     catch(Exception ex)
                     {
-                        if (ex.InnerException.Message.Equals("The remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
+                        if (ex.InnerException.Message.Equals("hello remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
                         {
                             return 0;
                         }
@@ -193,7 +193,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     return 0;
                 }
 
-                // Enqueue the Tweets received
+                // Enqueue hello Tweets received
                 public void WriteTweet(ITweet tweet)
                 {
                     lock (queue)
@@ -260,19 +260,19 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     }
                 }
 
-                // Popular a CellSet object to be written into HBase
+                // Popular a CellSet object toobe written into HBase
                 private void CreateTweetByWordsCells(CellSet set, ITweet tweet)
                 {
-                    // Split the Tweet into words
+                    // Split hello Tweet into words
                     string[] words = tweet.Text.ToLower().Split(_punctuationChars);
 
-                    // Calculate sentiment score base on the words
+                    // Calculate sentiment score base on hello words
                     int sentimentScore = CalcSentimentScore(words);
                     var word_pairs = words.Take(words.Length - 1)
                                         .Select((word, idx) => string.Format("{0} {1}", word, words[idx + 1]));
                     var all_words = words.Concat(word_pairs).ToList();
 
-                    // For each word in the Tweet add a row to the HBase table
+                    // For each word in hello Tweet add a row toohello HBase table
                     foreach (string word in all_words)
                     {
                         string time_index = (ulong.MaxValue - (ulong)tweet.CreatedAt.ToBinary()).ToString().PadLeft(20) + tweet.IdStr;
@@ -281,7 +281,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                         // Create a row
                         var row = new CellSet.Row { key = Encoding.UTF8.GetBytes(key) };
 
-                        // Add columns to the row, including Tweet identifier, language, coordinator(if available), and sentiment
+                        // Add columns toohello row, including Tweet identifier, language, coordinator(if available), and sentiment
                         var value = new Cell { column = Encoding.UTF8.GetBytes("d:id_str"), data = Encoding.UTF8.GetBytes(tweet.IdStr) };
                         row.values.Add(value);
 
@@ -302,7 +302,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     }
                 }
 
-                // Write a Tweet (CellSet) to HBase
+                // Write a Tweet (CellSet) tooHBase
                 public void WriterThreadFunction()
                 {
                     try
@@ -321,7 +321,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                                     } while (queue.Count > 0);
                                 }
 
-                                // Write the Tweet by words cell set to the HBase table
+                                // Write hello Tweet by words cell set toohello HBase table
                                 client.StoreCellsAsync(HBASETABLENAME, set).Wait();
                                 Console.WriteLine("\tRows written: {0}", set.rows.Count);
                             }
@@ -344,8 +344,8 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 public string Polarity { get; set; }
             }
         }
-5. 이전 코드에서 **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, DICTIONARYFILENAME 등의 상수를 설정합니다. DICTIONARYFILENAME은 파일 이름 및 direction.tsv의 위치입니다.  **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**에서 파일을 다운로드할 수 있습니다. HBase 테이블 이름을 변경하려면 웹 응용 프로그램에서 테이블 이름을 적절하게 변경해야 합니다.
-6. **Program.cs**를 열고 다음과 같은 코드로 바꿉니다.
+5. 집합 hello 상수 hello 이전 코드에서 포함 하 여 **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, 및 DICTIONARYFILENAME 합니다. hello DICTIONARYFILENAME hello 파일 이름 및 hello direction.tsv의 hello 위치는입니다.  hello 파일에서 다운로드할 수 있습니다 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**합니다. Toochange hello HBase 테이블 이름을 지정할 경우 그에 따라 hello 웹 응용 프로그램에서 hello 테이블 이름을 변경 해야 합니다.
+6. 열기 **Program.cs**, hello 코드 hello 다음과 같이 바꿉니다.
 
         using System;
         using System.Diagnostics;
@@ -386,7 +386,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                                 tweetCount++;
                                 var tweet = args.Tweet;
 
-                                // Write Tweets to HBase
+                                // Write Tweets tooHBase
                                 hbase.WriteTweet(tweet);
 
                                 if (timer.ElapsedMilliseconds > 1000)
@@ -416,22 +416,22 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
 
             }
         }
-7. **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY**, **TWITTERAPPAPISECRET** 등의 상수를 설정합니다.
+7. Hello 상수를 포함 하 여 설정 **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** 및 **TWITTERAPPAPISECRET**.
 
-스트리밍 서비스를 실행하려면 **F5**키를 누릅니다. 다음은 콘솔 응용 프로그램의 스크린샷입니다.
+서비스 키를 눌러 스트리밍을 toorun hello **F5**합니다. hello 다음은 hello 콘솔 응용 프로그램의 스크린샷입니다.
 
 ![hdinsight.hbase.twitter.sentiment.streaming.service][img-streaming-service]
 
-웹 응용 프로그램을 개발하는 동안 더 많은 데이터를 사용할 수 있도록 스트리밍 콘솔 응용 프로그램을 실행 상태로 유지합니다. HBase 셸을 사용하여 테이블에 삽입된 데이터를 검사할 수 있습니다. [HDInsight에서 HBase 시작](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data)을 참조하세요.
+더 많은 데이터 toouse 갖도록 hello 웹 응용 프로그램을 개발 하는 동안 실행 되는 콘솔 응용 프로그램 스트리밍을 hello를 유지 합니다. hello 테이블에 삽입 tooexamine hello 데이터 HBase 셸을 사용할 수 있습니다. [HDInsight에서 HBase 시작](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data)을 참조하세요.
 
 ## <a name="visualize-real-time-sentiment"></a>실시간 데이터 시각화
-이 섹션에서는 HBase에서 실시간 데이터를 읽은 다음 Bing 지도에 플로팅하는 ASP.NET MVC 웹 응용 프로그램을 만듭니다.
+이 섹션에서는 Bing 지도에서 HBase 및 도면을 hello 데이터에서는 ASP.NET MVC 웹 응용 프로그램 tooread hello 실시간/도별로 인지 데이터를 만듭니다.
 
-**ASP.NET MVC 웹 응용 프로그램을 만들려면**
+**toocreate ASP.NET MVC 웹 응용 프로그램**
 
 1. Visual Studio를 엽니다.
 2. **파일**, **새로 만들기**를 클릭한 후 **프로젝트**를 클릭합니다.
-3. 다음 정보를 입력합니다.
+3. Hello 다음 정보를 입력 합니다.
 
    * 템플릿 범주: **Visual C#/웹**
    * 템플릿: **ASP.NET 웹 응용 프로그램**
@@ -441,25 +441,25 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
 5. **템플릿 선택**에서 **MVC**를 클릭합니다.
 6. **Microsoft Azure**에서 **구독 관리**를 클릭합니다.
 7. **Microsoft Azure 구독 관리**에서 **로그인**을 클릭합니다.
-8. Azure 자격 증명을 입력합니다. 그러면 **계정** 탭에서 Azure 구독 정보가 표시됩니다.
-9. **닫기**를 클릭하여 **Microsoft Azure 구독 관리** 창을 닫습니다.
+8. Azure 자격 증명을 입력합니다. Hello에 Azure 구독 정보를 표시 하는 **계정** 탭 합니다.
+9. 클릭 **닫기** tooclose hello **Microsoft Azure 구독 관리** 창.
 10. **새 ASP.NET 프로젝트 - TweetSentimentWeb**에서 **확인**을 클릭합니다.
-11. **Microsoft Azure 사이트 설정 구성**에서 현재 위치와 가장 인접한 **지역**을 선택합니다. 데이터베이스 서버는 지정하지 않아도 됩니다.
+11. **Microsoft Azure 사이트 설정 구성**선택, hello **지역** 가장 가까운 tooyou 즉 합니다. 데이터베이스 서버 toospecify가 필요는 없습니다.
 12. **확인**을 클릭합니다.
 
-**Nuget 패키지를 설치하려면**
+**tooinstall NuGet 패키지**
 
-1. **도구** 메뉴에서 **Nuget 패키지 관리자**, **패키지 관리자 콘솔**을 차례로 클릭합니다. 페이지 아래쪽에 콘솔 패널이 열립니다.
-2. 다음 명령을 사용하여 HBase 클러스터에 액세스하기 위한 클라이언트 라이브러리인 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 패키지를 설치합니다.
+1. Hello에서 **도구** 메뉴를 클릭 하 여 **Nuget 패키지 관리자**, 클릭 하 고 **패키지 관리자 콘솔**합니다. hello 콘솔 패널 hello hello 페이지 맨 아래에 열립니다.
+2. 사용 하 여 hello 다음 명령은 tooinstall hello [HBase.NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) hello 클라이언트 라이브러리 tooaccess HBase 클러스터입니다.
 
         Install-Package Microsoft.HBase.Client
 
-**HBaseReader 클래스를 추가하려면**
+**tooadd HBaseReader 클래스**
 
 1. **솔루션 탐색기**에서 **TweetSentiment**를 확장합니다.
 2. **모델**을 마우스 오른쪽 단추로 클릭하고 **추가**, **클래스**를 차례로 클릭합니다.
-3. **이름** 필드에 **HBaseReader.cs**를 입력하고 **추가**를 클릭합니다.
-4. 코드를 다음으로 바꿉니다.
+3. Hello에 **이름** 필드를 입력 **HBaseReader.cs**, 클릭 하 고 **추가**합니다.
+4. Hello 다음과 같이 hello 코드를 바꿉니다.
 
         using System;
         using System.Collections.Generic;
@@ -485,7 +485,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 const string HADOOPUSERPASSWORD = "<HBaseCluserUserPassword>";
                 const string HBASETABLENAME = "tweets_by_words";
 
-                // The constructor
+                // hello constructor
                 public HBaseReader()
                 {
                     ClusterCredentials creds = new ClusterCredentials(
@@ -495,12 +495,12 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     client = new HBaseClient(creds);
                 }
 
-                // Query Tweets sentiment data from the HBase table asynchronously
+                // Query Tweets sentiment data from hello HBase table asynchronously
                 public async Task<IEnumerable<Tweet>> QueryTweetsByKeywordAsync(string keyword)
                 {
                     List<Tweet> list = new List<Tweet>();
 
-                    // Demonstrate Filtering the data from the past 6 hours the row key
+                    // Demonstrate Filtering hello data from hello past 6 hours hello row key
                     string timeIndex = (ulong.MaxValue -
                         (ulong)DateTime.UtcNow.Subtract(new TimeSpan(6, 0, 0)).ToBinary()).ToString().PadLeft(20);
                     string startRow = keyword + "_" + timeIndex;
@@ -522,7 +522,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     {
                         foreach (CellSet.Row row in next.rows)
                         {
-                            // find the cell with string pattern "d:coor"
+                            // find hello cell with string pattern "d:coor"
                             var coordinates =
                                 row.values.Find(c => Encoding.UTF8.GetString(c.column) == "d:coor");
 
@@ -567,23 +567,23 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 public int Sentiment { get; set; }
             }
         }
-5. **HBaseReader** 클래스 내에서 상수 값을 다음과 같이 변경합니다.
+5. 내부 hello **HBaseReader** 클래스 hello 상수 값을 다음과 같이 변경 합니다.
 
-   * **CLUSTERNAME**: HBase 클러스터 이름입니다(예: *https://<HBaseClusterName>.azurehdinsight.net/*).
-   * **HADOOPUSERNAME**: HBase 클러스터 Hadoop 사용자의 사용자 이름입니다. 기본 이름은 *admin*입니다.
-   * **HADOOPUSERPASSWORD**: HBase 클러스터 Hadoop 사용자의 암호입니다.
+   * **CLUSTERNAME**: hello HBase 클러스터 이름, 예를 들어 *https://<HBaseClusterName>.azurehdinsight.net/*합니다.
+   * **HADOOPUSERNAME**: hello HBase 클러스터 Hadoop 사용자 사용자 이름입니다. 기본 이름은 hello *admin*합니다.
+   * **HADOOPUSERPASSWORD**: hello HBase 클러스터 Hadoop 사용자 암호입니다.
    * **HBASETABLENAME** = "tweets_by_words";
 
-     HBase 테이블 이름은 **"tweets_by_words";**입니다. 값은 스트리밍 서비스에서 전송한 값과 일치해야 합니다. 그래야 웹 응용 프로그램이 같은 HBase 테이블에서 데이터를 읽을 수 있습니다.
+     hello HBase 테이블 이름이 **"tweets_by_words";**합니다. hello 값에는 hello 웹 응용 프로그램에서 hello hello 데이터를 읽을 수 있도록 hello 스트리밍 서비스를 전송 하는 hello 값과 일치 해야 동일한 HBase 테이블입니다.
 
-**TweetsController 컨트롤러를 추가하려면**
+**tooadd TweetsController 컨트롤러**
 
 1. **솔루션 탐색기**에서 **TweetSentimentWeb**을 확장합니다.
 2. **컨트롤러**를 마우스 오른쪽 단추로 클릭하고 **추가**를 클릭한 후 **컨트롤러**를 클릭합니다.
 3. **웹 API 2 컨트롤러 - 비어 있음**을 클릭한 다음 **추가**를 클릭합니다.
-4. **컨트롤러 이름** 필드에 **TweetsController**를 입력하고 **추가**를 클릭합니다.
-5. **솔루션 탐색기**에서 TweetsController.cs를 두 번 클릭하여 해당 파일을 엽니다.
-6. 파일을 다음과 같이 수정합니다.
+4. Hello에 **컨트롤러 이름** 필드를 입력 **TweetsController**, 클릭 하 고 **추가**합니다.
+5. **솔루션 탐색기**, TweetsController.cs tooopen hello 파일을 두 번 클릭 합니다.
+6. Hello 다음과 같이 되도록 hello 파일을 수정 합니다.
 
         using System;
         using System.Collections.Generic;
@@ -608,12 +608,12 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
             }
         }
 
-**heatmap.js를 추가하려면**
+**tooadd heatmap.js**
 
 1. **솔루션 탐색기**에서 **TweetSentimentWeb**을 확장합니다.
 2. **스크립트**를 마우스 오른쪽 단추로 클릭하고 **추가**를 클릭한 다음 **JavaScript 파일**을 클릭합니다.
-3. **항목 이름** 필드에 **heatmap.js**를 입력합니다.
-4. 다음 코드를 파일에 붙여 넣습니다. 이 코드는 Alastair Aitchison이 작성한 것입니다. 자세한 내용은 [Bing Maps AJAX v7 HeatMap 라이브러리](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/)를 참조하세요.
+3. Hello에 **항목 이름** 필드를 입력 **heatmap.js**합니다.
+4. Hello를 hello 파일에 코드를 다음에 붙여 넣습니다. hello 코드 Alastair Aitchison 썼습니다. 자세한 내용은 [Bing Maps AJAX v7 HeatMap 라이브러리](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/)를 참조하세요.
 
         /*******************************************************************************
         * Author: Alastair Aitchison
@@ -621,22 +621,22 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
         * Date: 15th April 2011
         *
         * Description:
-        * This JavaScript file provides an algorithm that can be used to add a heatmap
-        * overlay on a Bing Maps v7 control. The intensity and temperature palette
-        * of the heatmap are designed to be easily customisable.
+        * This JavaScript file provides an algorithm that can be used tooadd a heatmap
+        * overlay on a Bing Maps v7 control. hello intensity and temperature palette
+        * of hello heatmap are designed toobe easily customisable.
         *
         * Requirements:
-        * The heatmap layer itself is created dynamically on the client-side using
-        * the HTML5 &lt;canvas> element, and therefore requires a browser that supports
+        * hello heatmap layer itself is created dynamically on hello client-side using
+        * hello HTML5 &lt;canvas> element, and therefore requires a browser that supports
         * this element. It has been tested on IE9, Firefox 3.6/4 and
         * Chrome 10 browsers. If you can confirm whether it works on other browsers or
-        * not, I'd love to hear from you!
+        * not, I'd love toohear from you!
         *
         * Usage:
-        * The HeatMapLayer constructor requires:
-        * - A reference to a map object
+        * hello HeatMapLayer constructor requires:
+        * - A reference tooa map object
         * - An array or Microsoft.Maps.Location items
-        * - Optional parameters to customise the appearance of the layer
+        * - Optional parameters toocustomise hello appearance of hello layer
         *  (Radius,, Unit, Intensity, and ColourGradient), and a callback function
         */
 
@@ -652,16 +652,16 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
 
             // Set default options
             var _options = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 1000,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'meters',
 
-                // Colour temperature gradient of the map
+                // Colour temperature gradient of hello map
                 colourgradient: {
                     "0.00": 'rgba(255,0,255,20)',  // Magenta
                     "0.25": 'rgba(0,0,255,40)',    // Blue
@@ -670,7 +670,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     "1.00": 'rgba(255,0,0,150)'    // Red
                 },
 
-                // Callback function to be fired after heatmap layer has been redrawn
+                // Callback function toobe fired after heatmap layer has been redrawn
                 callback: null
             };
 
@@ -679,7 +679,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 var _mapDiv = _map.getRootElement();
 
                 if (_mapDiv.childNodes.length >= 3 && _mapDiv.childNodes[2].childNodes.length >= 2) {
-                    // Create the canvas element
+                    // Create hello canvas element
                     _canvas = document.createElement('canvas');
                     _canvas.style.position = 'relative';
 
@@ -691,16 +691,16 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
 
                     _mapDiv.childNodes[2].childNodes[1].appendChild(container);
 
-                    // Override defaults with any options passed in the constructor
+                    // Override defaults with any options passed in hello constructor
                     _setOptions(options);
 
                     // Load array of location data
                     _setPoints(locations);
 
-                    // Create a colour gradient from the suppied colourstops
+                    // Create a colour gradient from hello suppied colourstops
                     _temperaturemap = _createColourGradient(_options.colourgradient);
 
-                    // Wire up the event handler to redraw heatmap canvas
+                    // Wire up hello event handler tooredraw heatmap canvas
                     _viewchangestarthandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangestart', _clearHeatMap);
                     _viewchangeendhandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangeend', _createHeatMap);
 
@@ -712,7 +712,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 }
             }
 
-            // Resets the heat map
+            // Resets hello heat map
             function _clearHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -730,19 +730,19 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 return ctx.getImageData(0, 0, 256, 1).data;
             }
 
-            // Applies a colour gradient to the intensity map
+            // Applies a colour gradient toohello intensity map
             function _colouriseHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 var dat = ctx.getImageData(0, 0, _canvas.width, _canvas.height);
                 var pix = dat.data; // pix is a CanvasPixelArray containing height x width x 4 bytes of data (RGBA)
                 for (var p = 0, len = pix.length; p < len;) {
-                    var a = pix[p + 3] * 4; // get the alpha of this pixel
-                    if (a != 0) { // If there is any data to plot
-                        pix[p] = _temperaturemap[a]; // set the red value of the gradient that corresponds to this alpha
-                        pix[p + 1] = _temperaturemap[a + 1]; //set the green value based on alpha
-                        pix[p + 2] = _temperaturemap[a + 2]; //set the blue value based on alpha
+                    var a = pix[p + 3] * 4; // get hello alpha of this pixel
+                    if (a != 0) { // If there is any data tooplot
+                        pix[p] = _temperaturemap[a]; // set hello red value of hello gradient that corresponds toothis alpha
+                        pix[p + 1] = _temperaturemap[a + 1]; //set hello green value based on alpha
+                        pix[p + 2] = _temperaturemap[a + 2]; //set hello blue value based on alpha
                     }
-                    p += 4; // Move on to the next pixel
+                    p += 4; // Move on toohello next pixel
                 }
                 ctx.putImageData(dat, 0, 0);
             }
@@ -754,22 +754,22 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 }
             }
 
-            // Sets the heatmap points from an array of Microsoft.Maps.Locations  
+            // Sets hello heatmap points from an array of Microsoft.Maps.Locations  
             function _setPoints(locations) {
                 _locations = locations;
             }
 
-            // Main method to draw the heatmap
+            // Main method toodraw hello heatmap
             function _createHeatMap() {
-                // Ensure the canvas matches the current dimensions of the map
-                // This also has the effect of resetting the canvas
+                // Ensure hello canvas matches hello current dimensions of hello map
+                // This also has hello effect of resetting hello canvas
                 _canvas.height = _map.getHeight();
                 _canvas.width = _map.getWidth();
 
                 _canvas.style.top = -_canvas.height / 2 + 'px';
                 _canvas.style.left = -_canvas.width / 2 + 'px';
 
-                // Calculate the pixel radius of each heatpoint at the current map zoom
+                // Calculate hello pixel radius of each heatpoint at hello current map zoom
                 if (_options.unit == "pixels") {
                     radiusInPixel = _options.radius;
                 } else {
@@ -778,12 +778,12 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
 
                 var ctx = _canvas.getContext("2d");
 
-                // Convert lat/long to pixel location
+                // Convert lat/long toopixel location
                 var pixlocs = _map.tryLocationToPixel(_locations, Microsoft.Maps.PixelReference.control);
                 var shadow = 'rgba(0, 0, 0, ' + _options.intensity + ')';
                 var mapWidth = 256 * Math.pow(2, _map.getZoom());
 
-                // Create the Intensity Map by looping through each location
+                // Create hello Intensity Map by looping through each location
                 for (var i = 0, len = pixlocs.length; i < len; i++) {
                     var x = pixlocs[i].x;
                     var y = pixlocs[i].y;
@@ -797,15 +797,15 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                     grd.addColorStop(0.0, shadow);
                     grd.addColorStop(1.0, 'transparent');
 
-                    // Draw the heatpoint onto the canvas
+                    // Draw hello heatpoint onto hello canvas
                     ctx.fillStyle = grd;
                     ctx.fillRect(x - radiusInPixel, y - radiusInPixel, 2 * radiusInPixel, 2 * radiusInPixel);
                 }
 
-                // Apply the specified colour gradient to the intensity map
+                // Apply hello specified colour gradient toohello intensity map
                 _colouriseHeatMap();
 
-                // Call the callback function, if specified
+                // Call hello callback function, if specified
                 if (_options.callback) {
                     _options.callback();
                 }
@@ -830,17 +830,17 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 _setOptions(options);
             }
 
-            // Sets an array of Microsoft.Maps.Locations from which the heatmap is created
+            // Sets an array of Microsoft.Maps.Locations from which hello heatmap is created
             this.SetPoints = function (locations) {
-                // Reset the existing heatmap layer
+                // Reset hello existing heatmap layer
                 _clearHeatMap();
-                // Pass in the new set of locations
+                // Pass in hello new set of locations
                 _setPoints(locations);
-                // Recreate the layer
+                // Recreate hello layer
                 _createHeatMap();
             }
 
-            // Removes the heatmap layer from the DOM
+            // Removes hello heatmap layer from hello DOM
             this.Remove = function () {
                 _canvas.parentNode.parentNode.removeChild(_canvas.parentNode);
 
@@ -855,19 +855,19 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 _viewchangeendhandler = null;
             }
 
-            // Call the initialisation routine
+            // Call hello initialisation routine
             _init();
         };
 
-        // Call the Module Loaded method
+        // Call hello Module Loaded method
         Microsoft.Maps.moduleLoaded('HeatMapModule');
 
-**twitterStream.js를 추가하려면**
+**tooadd twitterStream.js**
 
 1. **솔루션 탐색기**에서 **TweetSentimentWeb**을 확장합니다.
 2. **스크립트**를 마우스 오른쪽 단추로 클릭하고 **추가**를 클릭한 다음 **JavaScript 파일**을 클릭합니다.
-3. **항목 이름** 필드에 **twitterStream.js**를 입력합니다.
-4. 다음 코드를 복사하여 파일에 붙여 넣습니다.
+3. Hello에 **항목 이름** 필드를 입력**twitterStream.js**합니다.
+4. 복사한 hello 파일에 코드를 다음 hello를 붙여넣습니다.
 
         var liveTweetsPos = [];
         var liveTweets = [];
@@ -878,7 +878,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
         var heatmapPos;
 
         function initialize() {
-            // Initialize the map
+            // Initialize hello map
             var options = {
                 credentials: "AvFJTZPZv8l3gF8VC3Y7BPBd0r7LKo8dqKG02EAlqg9WAi0M7la6zSIT-HwkMQbx",
                 center: new Microsoft.Maps.Location(23.0, 8.0),
@@ -891,24 +891,24 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
             // Heatmap options for positive, neutral and negative layers
 
             var heatmapOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels'
             };
 
             var heatmapPosOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -926,13 +926,13 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
             };
 
             var heatmapNegOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -949,7 +949,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
                 }
             };
 
-            // Register and load the Client Side HeatMap Module
+            // Register and load hello Client Side HeatMap Module
             Microsoft.Maps.registerModule("HeatMapModule", "scripts/heatmap.js");
             Microsoft.Maps.loadModule("HeatMapModule", {
                 callback: function () {
@@ -993,7 +993,7 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
         }
 
         function addTweet(item) {
-            //Add tweet to the heat map arrays.
+            //Add tweet toohello heat map arrays.
             var tweetLocation = new Microsoft.Maps.Location(item.Latitude, item.Longtitude);
             if (item.Sentiment > 0) {
                 liveTweetsPos.push(tweetLocation);
@@ -1063,10 +1063,10 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
             }
         }
 
-**layout.cshtml을 수정하려면**
+**toomodify hello layout.cshtml**
 
 1. **솔루션 탐색기**에서 **TweetSentimentWeb**, **뷰**, **공유**를 차례로 확장하고 _**Layout.cshtml**을 두 번 클릭합니다.
-2. 파일의 내용을 다음으로 바꿉니다.
+2. Hello 콘텐츠를 hello 다음 코드로 바꿉니다.
 
         <!DOCTYPE html>
         <html>
@@ -1126,10 +1126,10 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
         </body>
         </html>
 
-**Index.cshtml을 수정하려면**
+**toomodify hello Index.cshtml**
 
 1. **솔루션 탐색기**에서 **TweetSentimentWeb**, **뷰**, **홈**을 차례로 확장하고 _**Index.cshtml**을 두 번 클릭합니다.
-2. 파일의 내용을 다음으로 바꿉니다.
+2. Hello 콘텐츠를 hello 다음 코드로 바꿉니다.
 
         @{
             ViewBag.Title = "Tweet Sentiment";
@@ -1139,10 +1139,10 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
             <div id="map_canvas"/>
         </div>
 
-**site.css 파일을 수정하려면**
+**toomodify hello site.css 파일**
 
 1. **솔루션 탐색기**에서 **TweetSentimentWeb**, **콘텐츠**를 차례로 확장하고 _**Site.css**를 두 번 클릭합니다.
-2. 파일에 다음 코드를 추가합니다.
+2. 다음 코드 toohello 파일 hello를 추가 합니다.
 
         /* make container, and thus map, 100% width */
         .map_container {
@@ -1162,33 +1162,33 @@ Twitter 스트리밍 API는 [OAuth](http://oauth.net/) 를 사용하여 요청 �
           font-size: 30px;
         }
 
-**global.asax 파일을 수정하려면**
+**toomodify hello global.asax 파일**
 
 1. **Solution Explorer**에서 **TweetSentimentWeb**을 확장하고 **Global.asax**를 두 번 클릭합니다.
-2. 다음 **using** 문을 추가합니다.
+2. Hello 다음 추가 **를 사용 하 여** 문:
 
         using System.Web.Http;
-3. **Application_Start()** 함수 내에 다음 줄을 추가합니다.
+3. Hello hello 안에 줄을 다음 추가 **application_start ()** 함수:
 
         // Register API routes
         GlobalConfiguration.Configure(WebApiConfig.Register);
 
-    웹 API 컨트롤러가 MVC 응용 프로그램 내부에서 작동하도록 API 경로의 등록을 수정합니다.
+    Hello API 경로 toomake hello Web API 컨트롤러 작업의 hello MVC 응용 프로그램 내 hello 등록을 수정 합니다.
 
-**웹 응용 프로그램을 실행하려면**
+**toorun hello 웹 응용 프로그램**
 
-1. 스트리밍 서비스 콘솔 응용 프로그램이 계속 실행 중인지 확인합니다. 그래야 실시간 변경 내용을 확인할 수 있습니다.
-2. **F5** 키를 눌러 웹 응용 프로그램을 실행합니다.
+1. 서비스 콘솔 응용 프로그램 스트리밍 해당 hello 여전히 실행 되 고 hello 실시간 변경 사항은 볼 수 있도록 확인 합니다.
+2. 키를 눌러 **F5** toorun hello 웹 응용 프로그램:
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
-3. 텍스트 상자에 키워드를 입력하고 **검색**을 클릭합니다.  HBase 테이블에 수집된 데이터에 따라 일부 키워드는 검색되지 않을 수도 있습니다. "love," "xbox," "playstation" 등의 일반적인 키워드를 사용해 보세요.
-4. **긍정적**, **중립**, **부정적** 간을 전환하여 주제에 대한 데이터를 비교합니다.
-5. 다른 시간에 스트리밍 서비스를 실행한 다음 같은 키워드를 검색하여 결과를 비교해 봅니다.
+3. Hello 텍스트 상자에 키워드를 입력 한 다음 클릭 **이동**합니다.  Hello HBase 테이블에 수집 하는 hello 데이터에 따라 일부 키워드를 찾을 수 있습니다. "love," "xbox," "playstation" 등의 일반적인 키워드를 사용해 보세요.
+4. 간에 전환 **양의**, **중립**, 및 **음수** toocompare 감성 hello 주제에 합니다.
+5. Hello 추가 1 시간 동안 실행 하는 스트리밍 서비스를 사용 하 고 검색 동일한 키워드 hello hello 결과 비교 합니다.
 
-필요한 경우 Azure 웹 사이트에 응용 프로그램을 배포할 수 있습니다. 관련 지침은 [Azure Websites 및 ASP.NET 시작][website-get-started]을 참조하세요.
+필요에 따라 hello 응용 프로그램 tooAzure 웹 사이트를 배포할 수 있습니다. 관련 지침은 [Azure Websites 및 ASP.NET 시작][website-get-started]을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 트윗을 가져와서 트윗 데이터를 분석하고 데이터를 HBase에 저장한 다음 실시간 Twitter 데이터를 Bing 지도에 표시하는 방법을 알아보았습니다. 자세한 내용은 다음을 참조하세요.
+이 자습서에서는 tooget 트 윗 방식을 알아보았습니다, 그리고 트 윗 hello 감성 데이터 tooHBase 및 있는 hello 실시간 Twitter 감성 데이터 tooBing 맵 저장의 hello 감성 분석 합니다. toolearn 더 참조 하십시오.
 
 * [HDInsight 시작][hdinsight-get-started]
 * [HDInsight에서 HBase 복제 구성](hdinsight-hbase-replication.md)

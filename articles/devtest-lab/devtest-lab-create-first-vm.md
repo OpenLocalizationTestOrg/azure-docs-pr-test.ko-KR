@@ -1,6 +1,6 @@
 ---
-title: "Azure DevTest Labs에서 첫 번째 VM 만들기 | Microsoft Docs"
-description: "Azure DevTest Labs에서 랩에 첫 번째 가상 컴퓨터를 만드는 방법 알아보기"
+title: "aaaCreate 첫 번째 VM에 Azure DevTest Labs 랩에서 | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate Azure DevTest Labs에 랩의 첫 번째 가상 컴퓨터"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/24/2017
 ms.author: tarcher
-ms.openlocfilehash: aa6b60b799e1e98815cf288d5612f98cd77cc00e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c3257efca9be6fdd190eaac1db731464e07fcfd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-vm-in-a-lab-in-azure-devtest-labs"></a>Azure DevTest Labs에서 첫 번째 VM 만들기
 
-DevTest Labs에 처음에 액세스하고 첫 번째 VM을 만드는 경우 미리 로드된 [기본 Marketplace 이미지](devtest-lab-configure-marketplace-images.md)를 사용하여 수행할 것입니다. 나중에 VM을 더 만들 때 [사용자 지정 이미지와 수식](devtest-lab-add-vm.md) 중에서 선택할 수도 있습니다. 
+처음에 DevTest Labs를 액세스 하 고 첫 번째 VM toocreate 원하는 있습니다 때 가능성이 이렇게 하려면 미리 로드를 사용 하 여 [기본 마켓플레이스 이미지](devtest-lab-configure-marketplace-images.md)합니다. 나중에 수 있습니다 수 toochoose에서는 [수식 및 사용자 지정 이미지](devtest-lab-add-vm.md) 더 많은 Vm을 만들 때. 
 
-이 자습서에서는 DevTest Labs에서 랩에 첫 번째 VM을 추가하기 위해 Azure Portal을 사용하는 방법을 설명합니다.
+이 자습서에서는 Azure 포털 tooadd hello를 사용 하 여 첫 번째 VM tooa 랩에서 DevTest Labs 합니다.
 
-## <a name="steps-to-add-your-first-vm-to-a-lab-in-azure-devtest-labs"></a>Azure DevTest Labs에서 랩에 첫 번째 VM을 추가하는 단계
-1. [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)에 로그인합니다.
-1. **추가 서비스**를 선택한 후 목록에서 **DevTest Labs**을 선택합니다.
-1. 랩 목록에서 VM을 만들려는 랩을 선택합니다.  
-1. 랩의 **개요** 블레이드에서 **+ 추가**를 선택합니다.  
+## <a name="steps-tooadd-your-first-vm-tooa-lab-in-azure-devtest-labs"></a>Azure DevTest Labs로 첫 번째 VM tooa 랩을 tooadd 단계
+1. Toohello 로그인 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040)합니다.
+1. 선택 **더 서비스**를 선택한 후 **DevTest Labs** hello 목록에서 합니다.
+1. 랩의 hello 목록에서 toocreate hello VM 원하는 hello 랩을 선택 합니다.  
+1. Hello 랩에 **개요** 블레이드를 **+ 추가**합니다.  
 
     ![VM 단추 추가](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. **기본 선택** 블레이드에서 VM의 Marketplace 이미지를 선택합니다.
-1. **가상 컴퓨터** 블레이드의 **가상 컴퓨터 이름** 텍스트 상자에 새 가상 컴퓨터의 이름을 입력합니다.
+1. Hello에 **기본 선택** 블레이드, 선택는 마켓플레이스 이미지 hello VM에 대 한 합니다.
+1. Hello에 **가상 컴퓨터** 블레이드에서 hello에 hello 새 가상 컴퓨터에 대 한 이름을 입력 **가상 컴퓨터 이름** 입력란.
 
     ![랩 VM 블레이드](./media/devtest-lab-add-vm/devtestlab-lab-add-first-vm.png)
 
-1. 가상 컴퓨터에서 관리자 권한이 부여된 **사용자 이름**을 입력합니다.  
-1. **값 입력** 텍스트 필드에 암호를 입력합니다.
-1. **가상 컴퓨터 디스크 유형**은 랩에서 가상 컴퓨터의 저장소 디스크 유형을 허용하는지 확인합니다.
-1. **가상 컴퓨터 크기** 를 선택하고 만들려는 프로세서 코어, RAM 크기 및 VM의 하드 드라이브 크기를 지정하는 미리 정의된 항목 중 하나를 선택합니다.
-1. **아티팩트** 를 선택하고 아티팩트 목록에서 기본 이미지에 추가하려는 아티팩트를 선택하고 구성합니다.
-    **참고:** DevTest Lab을 처음 접하거나 아티팩트를 구성 중인 경우 [VM에 기존 아티팩트 추가](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) 섹션을 참조한 다음 완료되면 여기로 돌아옵니다.
-1. **만들기** 를 누르고 지정된 VM을 랩에 추가합니다.
+1. 입력 한 **사용자 이름** hello 가상 컴퓨터에서 관리자 권한이 부여 되 합니다.  
+1. 레이블이 지정 된 hello 텍스트 필드에 암호를 입력 **값을 입력**합니다.
+1. hello **가상 컴퓨터 디스크 유형** hello 랩에서 hello 가상 컴퓨터에 대 한 허용 되는 저장소 디스크 형식을 결정 합니다.
+1. 선택 **가상 컴퓨터 크기** hello 프로세서 코어, RAM 크기 및 hello VM toocreate의 hello 하드 드라이브 크기를 지정 하는 항목을 미리 정의 된 hello 중 하나를 선택 합니다.
+1. 선택 **아티팩트** -아티팩트-hello 목록에서 선택 하 고 원하는 tooadd toohello 기본 이미지 hello 아티팩트를 구성 합니다.
+    **참고:** 새 tooDevTest 랩 이거나 toohello 참조 아티팩트 구성 [기존 아티팩트 tooa VM 추가](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) 섹션 및 다음 완료 되 면 여기로 돌아와 합니다.
+1. 선택 **만들기** tooadd hello VM toohello 랩을 지정 합니다.
 
-   랩 블레이드는 VM의 만들기 상태를 표시합니다. 처음에는 **생성 중**이 표시되고 VM이 시작하면 **실행 중**으로 표시됩니다.
+   hello 랩 블레이드 hello의 상태를 표시 hello VM 만들기-처음으로 **만들기**,으로 다음 **실행** hello VM을 시작한 후입니다.
 
 ## <a name="next-steps"></a>다음 단계
-* VM을 만든 후에는 해당 VM의 블레이드에서 **연결** 을 선택하여 VM에 연결할 수 있습니다.
-* 이후의 VM을 랩에 추가하는 방법에 대한 자세한 정보는 [랩에 VM 추가](devtest-lab-add-vm.md)를 확인하세요.
-* [DevTest Labs Azure Resource Manager 빠른 시작 템플릿 갤러리](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)를 탐색합니다.
+* 한 번 만든 VM hello, 연결할 수 있습니다 toohello VM을 선택 하 여 **연결** hello VM 블레이드에서 합니다.
+* 체크 아웃 [추가 VM tooa 랩](devtest-lab-add-vm.md) 랩에서 다음 Vm을 추가 하는 방법에 대 한 자세한 정보에 대 한 합니다.
+* Hello 탐색 [DevTest Labs Azure 리소스 관리자 퀵 스타트 템플릿 갤러리](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)합니다.

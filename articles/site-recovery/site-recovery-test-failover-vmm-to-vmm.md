@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery에서 테스트 장애 조치(failover)(VMM에서 VMM으로) | Microsoft Docs"
-description: "Azure Site Recovery는 가상 컴퓨터 및 실제 서버의 복제, 장애 조치 및 복구를 조정합니다. Azure로 또는 보조 데이터 센터로 장애 조치에 대해 알아봅니다."
+title: "Azure 사이트 복구에서 aaaTest 장애 조치 (VMM tooVMM) | Microsoft Docs"
+description: "Azure Site Recovery hello 복제, 장애 조치 및 복구 가상 컴퓨터와 물리적 서버와 조정합니다. 장애 조치 tooAzure 또는 보조 데이터 센터에 알아봅니다."
 services: site-recovery
 documentationcenter: 
 author: prateek9us
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: pratshar
-ms.openlocfilehash: afc4790d5714ce7145c8f4291a05acc2e9882a9b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b4f65ab692cbb0665102c4f51ea0694151cd3ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="test-failover-vmm-to-vmm-in-site-recovery"></a>Site Recovery에서 테스트 장애 조치(failover)(VMM에서 VMM으로)
+# <a name="test-failover-vmm-toovmm-in-site-recovery"></a>사이트 복구에서 장애 조치 (VMM tooVMM)를 테스트 합니다.
 
 
-이 문서는 Azure Site Recovery로 보호되는 VM(가상 컴퓨터) 및 물리적 서버의 테스트 장애 조치(failover) 또는 DR(재해 복구) 훈련을 수행하기 위한 정보와 지침을 제공합니다. System Center VMM(Virtual Machine Manager) 관리 온-프레미스 사이트를 복구 사이트로 사용합니다.
+이 문서는 Azure Site Recovery로 보호되는 VM(가상 컴퓨터) 및 물리적 서버의 테스트 장애 조치(failover) 또는 DR(재해 복구) 훈련을 수행하기 위한 정보와 지침을 제공합니다. System Center Virtual Machine Manager VMM에서 관리 하는 온-프레미스 사이트 hello 복구 사이트로 사용 합니다.
 
-데이터 손실 또는 가동 중지 없이 복제 전략의 유효성을 검사하거나 DR 훈련을 수행하기 위해 테스트 장애 조치(failover)를 실행합니다. 테스트 장애 조치(failover)는 진행 중인 복제 또는 프로덕션 환경에 영향을 주지 않습니다. 가상 컴퓨터 또는 [복구 계획](site-recovery-create-recovery-plans.md)에서 실행할 수 있습니다. 테스트 장애 조치(failover)를 트리거할 때 테스트 가상 컴퓨터를 연결할 네트워크를 지정해야 합니다. **작업** 페이지에서 테스트 장애 조치(failover)의 진행률을 추적할 수 있습니다.  
+테스트 장애 조치 toovalidate 복제 전략을 실행 하거나 데이터 손실 또는 가동 중지 시간 없이 DR 드릴을 수행 합니다. 테스트 장애 조치는 프로덕션 환경 또는 hello 진행 중인 복제에 영향을 받지 없는 합니다. 가상 컴퓨터 또는 [복구 계획](site-recovery-create-recovery-plans.md)에서 실행할 수 있습니다. 테스트 장애 조치를 트리거하는, hello 테스트 가상 컴퓨터에 연결 하는 toospecify hello 네트워크가 필요 합니다. Hello에서 hello 테스트 장애 조치의 hello 진행률을 추적할 수 있습니다 **작업** 페이지.  
 
-의견이나 질문이 있는 경우 이 문서의 하단 또는 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에 게시합니다.
+설명 또는 질문 하는 경우에 게시 hello 또는이 문서의 hello 아래쪽 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
 
 
-## <a name="prepare-the-infrastructure-for-test-failover"></a>테스트 장애 조치(failover)를 위한 인프라 준비
-기존 네트워크를 사용하여 테스트 장애 조치(failover)를 실행하려는 경우 해당 네트워크에서 Active Directory, DHCP 및 DNS를 준비합니다.
+## <a name="prepare-hello-infrastructure-for-test-failover"></a>테스트 장애 조치에 대 한 hello 인프라 준비
+기존 네트워크를 사용 하 여 테스트 장애 조치 toorun를 원하는 경우 해당 네트워크에서 Active Directory, DHCP 및 DNS를 준비 합니다.
 
-VM 네트워크를 자동으로 만드는 옵션을 사용하여 테스트 장애 조치(failover)를 실행하려는 경우 테스트 장애 조치(failover)에 사용할 복구 계획에서 그룹 1 앞에 수동 단계를 추가합니다. 그런 다음 테스트 장애 조치(failover)를 실행하기 전에 자동으로 만든 네트워크에 인프라 리소스를 추가합니다.
+Hello 옵션 toocreate VM 네트워크를 자동으로 사용 하 여 toorun 테스트 장애 조치를 원하는 경우 toouse hello 테스트 장애 조치에 대 한 거 hello 복구 계획에서 그룹 1 앞에 수동 단계를 추가 합니다. 그런 다음 추가 hello 인프라 리소스 toohello hello 테스트 장애 조치를 실행 하기 전에 네트워크를 자동으로 생성 합니다.
 
-### <a name="things-to-note"></a>주의할 사항
-보조 사이트에 복제 시, 복제 컴퓨터에서 사용하는 네트워크 유형이 테스트 장애 조치에 사용되는 논리 네트워크 유형과 일치해야 하는 것은 아니지만 일부 조합이 작동하지 않을 수 있습니다. 복제본에서 DHCP 및 VLAN 기반 격리를 사용하는 경우 복제본에 대한 VM 네트워크는 고정 IP 주소 풀이 필요하지 않습니다. 따라서 사용 가능한 주소 풀이 없으므로 테스트 장애 조치에 대한 Windows 네트워크 가상화의 사용이 작동하지 않습니다. 
+### <a name="things-toonote"></a>작업 toonote
+때 hello 유형의 네트워크 hello 복제본 컴퓨터 사용 하 여 toomatch hello 유형의 테스트 장애 조치에 사용 되는 논리 네트워크에 필요 하지 않은 하지만 일부 조합이 작동 하지 않을 수 tooa 보조 사이트를 복제 하는 합니다. Hello 복제본 DHCP 및 VLAN 기반 격리를 사용 하는 경우 고정 IP 주소 풀을 hello 복제본에 대 한 hello VM 네트워크에 필요 하지 않습니다. Windows 네트워크 가상화를 사용 하 여 hello 테스트 장애 조치에 대 한 주소 풀이 없습니다를 사용할 수 없으므로 작동 하지 않습니다. 
 
-또한 복제본 네트워크가 격리 없음을 사용하고 테스트 네트워크가 Windows 네트워크 가상화를 사용하는 경우 테스트 장애 조치(failover)가 작동하지 않습니다. 이것은 격리 없는 네트워크에 Windows 네트워크 가상화 네트워크를 만드는 데 필요한 서브넷이 없기 때문입니다.
+또한 테스트 장애 조치 hello hello 복제본 네트워크 격리 안 함에서 사용 하 고 hello 테스트 네트워크가 Windows 네트워크 가상화를 사용 하는 경우 작동 하지 않습니다. Hello 비 격리 네트워크에 없는 hello 서브넷 필요한 toocreate Windows 네트워크 가상화 네트워크 때문입니다.
 
-장애 조치 후에 복제본 가상 컴퓨터가 매핑된 VM 네트워크에 연결된 방식은 VM네트워크가 VMM 콘솔에서 구성된 방식에 따라 다릅니다.
+어떻게 hello VMM 콘솔에서 hello VM 네트워크를 구성 하는 방법에 따라 장애 조치가 후 복제본 가상 컴퓨터에 연결 된 toomapped VM 네트워크 됩니다.
 
 #### <a name="vm-network-configured-with-no-isolation-or-vlan-isolation"></a>격리 없음 또는 VLAN 격리로 구성된 VM 네트워크
-DHCP가 VM 네트워크에 대해 정의된 경우 복제본 가상 컴퓨터가 관련된 논리 네트워크 내 네트워크 사이트에 대해 지정된 설정을 통해 VLAN ID에 연결됩니다. 가상 컴퓨터는 사용 가능한 DHCP 서버로부터 IP 주소를 수신합니다. 
+DHCP hello VM 네트워크에 대해 정의 된 경우 hello 복제본 가상 컴퓨터가 hello 연결 된 논리 네트워크의 네트워크 사이트를 hello에 대 한 지정 된 hello 설정을 통해 연결 된 toohello VLAN ID입니다. hello 가상 컴퓨터는 hello 사용 가능한 DHCP 서버에서 IP 주소를 받습니다. 
 
-대상 VM 네트워크에 대해 고정 IP 주소 풀을 정의할 필요가 없습니다. VM 네트워크에 대해 고정 IP 주소 풀이 사용되는 경우 복제본 가상 컴퓨터가 관련된 논리 네트워크 내 네트워크 사이트에 대해 지정된 설정을 통해 VLAN ID에 연결됩니다.
+Hello 대상 VM 네트워크에 대 한 고정 IP 주소 풀을 toodefine가 필요는 없습니다. 고정 IP 주소 풀 hello VM 네트워크에 대해 사용 하는 경우 hello 복제본 가상 컴퓨터가 hello 연결 된 논리 네트워크의 네트워크 사이트를 hello에 대 한 지정 된 hello 설정을 통해 연결 된 toohello VLAN ID입니다.
 
-가상 컴퓨터는 VM 네트워크에 대해 지정된 풀로부터 IP 주소를 수신합니다. 고정 IP 주소 풀이 대상 VM 네트워크에 정의되어 있다면 IP 주소 할당이 실패합니다. 보호 및 복구에 사용하려는 원본과 대상 VMM 서버 모두에 IP 주소 풀을 만듭니다.
+hello 가상 컴퓨터는 hello VM 네트워크에 대해 정의 된 hello 풀에서 IP 주소를 수신 합니다. 고정 IP 주소 풀은 hello 대상 VM 네트워크에 정의 되어 있지 IP 주소 할당이 실패 합니다. 두 hello 소스 및 대상 VMM 서버에서 보호 및 복구에 사용할 hello IP 주소 풀을 만듭니다.
 
 #### <a name="vm-network-with-windows-network-virtualization"></a>Windows 네트워크 가상화를 사용하여 VM 네트워크
-VM 네트워크가 Windows 네트워크 가상화를 사용하여 구성된 경우 원본 VM 네트워크가 DHCP 또는 고정 IP 주소 풀을 사용하도록 구성되었는지 여부에 상관 없이 대상 VM 네트워크에 대해 고정 풀을 정의해야 합니다. 
+VM 네트워크를 Windows 네트워크 가상화로 구성 된 경우 hello 원본 VM 네트워크 구성된 toouse DHCP 인지에 관계 없이 hello 대상 VM 네트워크에 고정 풀 또는 고정 IP 주소 풀을 정의 해야 합니다. 
 
-DHCP를 정의하는 경우 대상 VMM 서버가 DHCP 서버 역할을 하며, 대상 VM 네트워크에 대해 정의된 풀로부터 IP 주소를 제공합니다. 고정 IP 주소 풀의 사용이 원본 서버에 대해 정의 되어 있다면 대상 VMM 서버가 풀로부터 IP 주소를 할당합니다. 두 경우 모두, 고정 IP 주소 풀이 정의되어 있지 않으면 IP 주소 할당이 실패합니다.
+DHCP를 정의 하는 경우 hello 대상 VMM 서버는 DHCP 서버 역할을 하 고 hello 대상 VM 네트워크에 대 한 정의 된 hello 풀에서 IP 주소를 제공 합니다. 고정 IP 주소 풀을 사용 하 여 hello 원본 서버에 대해 정의 된 경우 hello 대상 VMM 서버 hello 풀에서 IP 주소를 할당 합니다. 두 경우 모두, 고정 IP 주소 풀이 정의되어 있지 않으면 IP 주소 할당이 실패합니다.
 
 
 ### <a name="prepare-dhcp"></a>DHCP 준비
-테스트 장애 조치에 사용되는 가상 컴퓨터가 DHCP를 사용하는 경우 테스트 장애 조치의 목적을 위해 격리된 네트워크 내에 테스트 DHCP 서버를 만듭니다.
+Hello 가상 컴퓨터에 포함 된 경우 테스트 장애 조치 DHCP를 사용 하 여, 테스트 장애 조치의 hello 목적을 위해 hello 격리 된 네트워크 내에서 테스트 DHCP 서버를 만듭니다.
 
 ### <a name="prepare-active-directory"></a>Active Directory 준비
-응용프로그램 테스트를 위해 테스트 장애 조치를 실행하려면 테스트 환경에서 프로덕션 Active Directory 환경의 복사본이 필요합니다. 자세한 내용은 [Active Directory의 테스트 장애 조치(failover) 시 고려 사항](site-recovery-active-directory.md#test-failover-considerations)을 참조하세요.
+응용 프로그램 테스트에 대 한 테스트 장애 조치 toorun 테스트 환경에서 hello 프로덕션 Active Directory 환경의 복사본이 필요 합니다. 자세한 내용을 보려면 검토 hello [Active Directory에 대 한 장애 조치 고려 사항에 테스트](site-recovery-active-directory.md#test-failover-considerations)합니다.
 
 ### <a name="prepare-dns"></a>DNS 준비
-다음과 같이 테스트 장애 조치에 대한 DNS 서버를 준비합니다.
+다음과 같이 hello 테스트 장애 조치에 대 한 DNS 서버를 준비 합니다.
 
-* **DHCP**: 가상 컴퓨터에서 DHCP를 사용하는 경우 테스트 DNS의 IP 주소를 테스트 DHCP 서버에서 업데이트해야 합니다. 네트워크 유형의 Windows 네트워크 가상화를 사용하는 경우 VMM 서버가 DHCP 서버로 작동합니다. 따라서 테스트 장애 조치(failover) 네트워크에서 DNS의 IP 주소가 업데이트되어야 합니다. 이 경우 가상 컴퓨터가 관련 DNS 서버에 자체 등록됩니다.
-* **고정 주소**: 가상 컴퓨터가 고정 IP 주소를 사용하는 경우 테스트 장애 조치(failover)에서 테스트 DNS 서버의 IP 주소를 업데이트해야 합니다. 테스트 가상 컴퓨터의 IP 주소로 DNS를 업데이트해야 할 수 있습니다. 이러한 용도로 다음 예제 스크립트를 사용할 수 있습니다.
+* **DHCP**: hello 테스트 DHCP 서버에서 hello 테스트 DNS의 hello IP 주소를 업데이트 해야 가상 컴퓨터에서 DHCP를 사용 합니다. Windows 네트워크 가상화 네트워크 유형을 사용 하 여, VMM 서버 hello hello DHCP 서버로 작동 합니다. 따라서 hello 테스트 장애 조치 네트워크에서 DNS의 hello IP 주소를 업데이트 해야 합니다. 이 경우 hello 가상 컴퓨터 자신 toohello 관련 DNS 서버를 등록합니다.
+* **고정 주소**: 가상 컴퓨터에서 고정 IP 주소를 사용 하는 경우 hello 테스트 장애 조치 네트워크에서 DNS 서버를 업데이트 해야 하는 hello 테스트의 IP 주소입니다. Hello 테스트 가상 컴퓨터의 hello IP 주소로 DNS tooupdate를 할 수 있습니다. 이 목적을 위해 샘플 스크립트를 다음 hello를 사용할 수 있습니다.
 
         Param(
         [string]$Zone,
@@ -80,39 +80,39 @@ DHCP를 정의하는 경우 대상 VMM 서버가 DHCP 서버 역할을 하며, �
 
 
 ## <a name="run-a-test-failover"></a>테스트 장애 조치(Failover) 실행
-이 절차는 복구 계획에 대한 테스트 장애 조치를 실행하는 방법을 설명합니다. 또는 **가상 컴퓨터** 탭에서 단일 가상 컴퓨터에 대한 장애 조치를 실행할 수 있습니다.
+이 절차에서는 설명 어떻게 toorun 복구에 대 한 테스트 장애 조치 계획 합니다. 또는 hello에서 단일 가상 컴퓨터에 대 한 hello 장애 조치를 실행할 수 있습니다 **가상 컴퓨터** 탭 합니다.
 
 ![테스트 장애 조치(Failover) 블레이드](./media/site-recovery-test-failover-vmm-to-vmm/TestFailover.png)
 
 1. **복구 계획** > *recoveryplan_name*을 선택합니다. **장애 조치(Failover)** > **Test 장애 조치(Failover)**에서 의견이나 질문을 게시합니다.
-1. **테스트 장애 조치** 블레이드에서 테스트 장애 조치(failover) 후에 가상 컴퓨터를 네트워크에 연결할 방법을 지정합니다. 자세한 내용은 [네트워크 옵션](#network-options-in-site-recovery)을 참조하세요.
-1. **작업** 탭에서 장애 조치 진행 상황을 추적합니다.
-1. 장애 조치(failover)가 완료되면 가상 컴퓨터가 성공적으로 시작되는지 확인합니다.
-1. 작업이 완료되면 복구 계획에서 **테스트 장애 조치 정리**를 클릭합니다. **참고**에서 테스트 장애 조치와 관련된 모든 관측 내용을 기록하고 저장합니다. 이 단계는 테스트 장애 조치(failover) 중에 생성된 가상 컴퓨터 및 네트워크를 삭제합니다.
+1. Hello에 **테스트 장애 조치** 블레이드에서 지정 방법을 가상 컴퓨터 연결된 toonetworks hello 테스트 장애 조치 후 합니다. 자세한 내용은 참조 hello [네트워크 옵션](#network-options-in-site-recovery)합니다.
+1. Hello에서 장애 조치 진행률 추적 **작업** 탭 합니다.
+1. 장애 조치 완료 되 면 hello 가상 컴퓨터가 성공적으로 시작 되는지 확인 합니다.
+1. 완료 되 면 클릭 **테스트 장애 조치 정리** hello 복구 계획에 있습니다. **노트**을 기록 하 고 테스트 장애 조치 hello와 관련 된 모든 관찰을 저장 합니다. 이 단계는 hello 가상 컴퓨터와 테스트 장애 조치 중에 생성 된 네트워크를 삭제 합니다.
 
 
 ## <a name="network-options-in-site-recovery"></a>Site Recovery의 네트워크 옵션
 
-테스트 장애 조치를 실행하면 테스트 복제 컴퓨터에 대한 네트워크 설정을 선택하라는 메시지가 나타납니다. 여러 옵션이 있습니다.  
+테스트 장애 조치를 실행 하면 묻는 테스트 복제 컴퓨터에 대 한 네트워크 설정은 tooselect 합니다. 여러 옵션이 있습니다.  
 
 | **테스트 장애 조치 옵션** | **설명** | **장애 조치 검사** | **세부 정보** |
 | --- | --- | --- | --- |
-| **보조 VMM 사이트로 장애 조치--네트워크 없이** |VM 네트워크를 선택하지 마십시오. |장애 조치(failover)에서 테스트 컴퓨터가 생성되었는지 확인<br/><br/>테스트 가상 컴퓨터는 복제본 가상 컴퓨터가 있는 호스트에 생성됩니다. 복제본 가상 컴퓨터가 있는 클라우드에는 추가되지 않습니다. |<p>장애 조치된 컴퓨터는 네트워크에 연결되지 않습니다.<br/><br/>컴퓨터는 생성된 후에 VM 네트워크에 연결될 수 있습니다. |
-| **보조 VMM 사이트로 장애 조치--네트워크 사용** |기존 VM 네트워크를 선택합니다. |장애 조치가 가상 컴퓨터 만들어졌는지 확인합니다. |테스트 가상 컴퓨터는 복제본 가상 컴퓨터가 있는 호스트에 생성됩니다. 복제본 가상 컴퓨터가 있는 클라우드에는 추가되지 않습니다.<br/><br/>프로덕션 네트워크에서 격리된 VM 네트워크를 만듭니다.<br/><br/>권장되는 VLAN 기반 네트워크를 사용하는 경우 이 목적을 위해 VMM에서 별도의 논리 네트워크(프로덕션에 사용되지 않음)를 만드는 것이 좋습니다. 이 논리 네트워크는 테스트 장애 조치(failover)에 대한 VM 네트워크를 만드는 데 사용됩니다.<br/><br/>논리 네트워크는 가상 컴퓨터를 호스트하는 모든 Hyper-V 서버에 있는 하나 이상의 네트워크 어댑터에 연결해야 합니다.<br/><br/>VLAN 논리 네트워크의 경우 논리 네트워크에 추가한 네트워크 사이트는 격리되어야 합니다.<br/><br/>Windows 네트워크 가상화 기반의 논리 네트워크를 사용한다면 Azure Site Recovery가 격리된 VM 네트워크를 자동으로 생성합니다. |
-| **보조 VMM 사이트로 장애 조치--네트워크 만들기** |임시 테스트 네트워크가 **논리 네트워크**에서 지정한 설정 및 관련 네트워크 사이트를 기반으로 자동 생성됩니다. |장애 조치가 가상 컴퓨터 만들어졌는지 확인합니다. |복구 계획에서 VM 네트워크를 두 개 이상 사용할 경우 이 옵션을 사용합니다. Windows 네트워크 가상화 네트워크를 사용하는 경우 이 옵션을 사용하여 복제 가상 컴퓨터의 네트워크에서 동일한 설정(서브넷 및 IP 주소 풀)으로 VM 네트워크를 자동으로 만들 수 있습니다. 테스트 장애 조치 완료 후 이러한 VM 네트워크는 자동으로 정리됩니다.</p><p>테스트 가상 컴퓨터는 복제본 가상 컴퓨터가 있는 호스트에 생성됩니다. 복제본 가상 컴퓨터가 있는 클라우드에는 추가되지 않습니다. |
+| **장애 조치 tooa VMM 없이 보조 사이트-네트워크** |VM 네트워크를 선택하지 마십시오. |장애 조치(failover)에서 테스트 컴퓨터가 생성되었는지 확인<br/><br/>hello 테스트 가상 컴퓨터가 hello 호스트 hello 복제 가상 컴퓨터가 있는 위치에 만들어집니다. Hello 복제 가상 컴퓨터가 위치한 toohello 클라우드는 추가 되지 않습니다. |<p>hello 실패 한 컴퓨터에 연결 된 tooany 네트워크 잘못 되었습니다.<br/><br/>hello 컴퓨터 만들어진 후 연결 된 tooa VM 네트워크 수 있습니다. |
+| **장애 조치 tooa 보조 VMM 사이트 간-네트워크** |기존 VM 네트워크를 선택합니다. |장애 조치가 가상 컴퓨터 만들어졌는지 확인합니다. |hello 테스트 가상 컴퓨터가 hello 호스트 hello 복제 가상 컴퓨터가 있는 위치에 만들어집니다. Hello 복제 가상 컴퓨터가 위치한 toohello 클라우드는 추가 되지 않습니다.<br/><br/>프로덕션 네트워크에서 격리된 VM 네트워크를 만듭니다.<br/><br/>권장되는 VLAN 기반 네트워크를 사용하는 경우 이 목적을 위해 VMM에서 별도의 논리 네트워크(프로덕션에 사용되지 않음)를 만드는 것이 좋습니다. 이 논리 네트워크는 테스트 장애 조치에 대 한 VM 네트워크를 사용 하는 toocreate 합니다.<br/><br/>hello 논리 네트워크의 가상 컴퓨터를 호스트 하는 모든 hello Hyper-v 서버 hello 네트워크 어댑터 중 하나 이상에 연결 해야 합니다.<br/><br/>논리 네트워크는 VLAN에 대 한 hello toohello 논리 네트워크를 추가한 네트워크 사이트가 격리 되어야 합니다.<br/><br/>Windows 네트워크 가상화 기반의 논리 네트워크를 사용한다면 Azure Site Recovery가 격리된 VM 네트워크를 자동으로 생성합니다. |
+| **장애 조치 tooa 보조 VMM 사이트-네트워크 만들기** |임시 테스트 네트워크가에서 지정 하는 hello 설정에 따라 자동으로 만들어집니다. **논리 네트워크** 및 해당 관련된 네트워크 사이트. |장애 조치가 가상 컴퓨터 만들어졌는지 확인합니다. |Hello 복구 계획에 VM 네트워크가 하나 이상 사용 하는 경우이 옵션을 사용 합니다. Windows 네트워크 가상화 네트워크를 사용 하는 경우이 옵션 자동으로 만들 수 hello로 VM 네트워크 (서브넷 및 IP 주소 풀)의 동일한 설정을 hello 복제 가상 컴퓨터의 hello 네트워크에 있는 합니다. 이러한 VM 네트워크를 자동으로 정리 hello 테스트 장애 조치 완료 된 후입니다.</p><p>hello 테스트 가상 컴퓨터가 hello 호스트 hello 복제 가상 컴퓨터가 있는 위치에 만들어집니다. Hello 복제 가상 컴퓨터가 위치한 toohello 클라우드는 추가 되지 않습니다. |
 
 > [!TIP]
-> 테스트 장애 조치(failover) 중에 가상 컴퓨터에 제공된 IP 주소는 이 IP 주소가 테스트 장애 조치(failover) 네트워크에서 사용할 수 있는 경우, 가상 컴퓨터가 계획되거나 계획되지 않은 장애 조치(failover)에 대해 수신하게 되는 동일한 IP 주소입니다. 동일한 IP 주소를 테스트 장애 조치(failover) 네트워크에서 사용할 수 없는 경우 가상 컴퓨터는 테스트 장애 조치(failover) 네트워크에서 사용 가능한 다른 IP 주소를 받게 됩니다.
+> hello tooa 가상 컴퓨터에 테스트 장애 조치 중 지정 된 IP 주소는 hello (hello IP 주소는 hello 테스트 장애 조치 네트워크에서 사용할 수 있다고 가정)는 계획 되거나 계획 되지 않은 장애 조치에 대 한 IP 주소를 가상 컴퓨터를 hello을 받습니다. Hello 동일한 IP 주소를 사용할 수 없으면 hello 테스트 장애 조치 네트워크에서 가상 컴퓨터 hello hello 테스트 장애 조치 네트워크에서 사용할 수 있는 다른 IP 주소를 받습니다.
 >
 >
 
 
-## <a name="test-failover-to-a-production-network-on-a-recovery-site"></a>복구 사이트의 프로덕션 네트워크로 테스트 장애 조치(failover)
-테스트 장애 조치(Failover)를 수행할 때 [네트워크 매핑](https://docs.microsoft.com/azure/site-recovery/site-recovery-network-mapping)에서 입력한 프로덕션 복구 사이트 네트워크와 다른 네트워크를 선택하는 것이 좋습니다. 그러나 장애 조치된 가상 컴퓨터에서 종단 간 네트워크 연결의 유효성을 실제로 검사하려는 경우 다음 사항에 유의하세요.
+## <a name="test-failover-tooa-production-network-on-a-recovery-site"></a>복구 사이트에서 테스트 장애 조치 tooa 프로덕션 네트워크
+테스트 장애 조치(Failover)를 수행할 때 [네트워크 매핑](https://docs.microsoft.com/azure/site-recovery/site-recovery-network-mapping)에서 입력한 프로덕션 복구 사이트 네트워크와 다른 네트워크를 선택하는 것이 좋습니다. 그러나 장애 조치 된 가상 컴퓨터에서 toovalidate 종단 간 네트워크 연결을 원하는 경우 다음 지점 hello:
 
-* 테스트 장애 조치(failover)를 수행할 때 기본 가상 컴퓨터를 종료합니다. 이렇게 하지 않으면 동일한 ID의 두 가상 컴퓨터는 동시에 동일한 네트워크에서 실행됩니다. 이 경우 원치 않는 결과가 발생할 수 있습니다.
-* 테스트 장애 조치(failover) 가상 컴퓨터에 수행하는 모든 변경 내용은 테스트 장애 조치(failover) 가상 컴퓨터를 정리할 때 손실됩니다. 이러한 변경 내용은 기본 가상 컴퓨터에 다시 복제되지 않습니다.
-* 이러한 방법으로 테스트를 수행하면 프로덕션 응용 프로그램이 가동 중지되는 결과를 가져옵니다. DR 훈련이 진행 중인 동안에는 응용 프로그램을 사용하지 말라고 응용 프로그램 사용자에게 요청합니다.  
+* Hello 테스트 장애 조치를 수행할 때 해당 hello 주 가상 컴퓨터가 종료 되었는지 확인 합니다. 두 가상 컴퓨터를 동일한 id hello에 동일한 네트워크에서 실행 될 것 hello hello 동일 하지 않으면 시간입니다. 이 경우 tooundesired 결과 초래할 수 있습니다.
+* 가상 컴퓨터 장애 조치 hello 정리를 테스트할 때 toohello 테스트 가상 컴퓨터가 장애 조치를 수행한 변경 내용 손실 됩니다. 이러한 변경 내용은 주 가상 컴퓨터 복제 백 toohello 않습니다.
+* 이러한 방법으로 테스트를 수행 하는 프로덕션 응용 프로그램에 대 한 toodowntime를 이어집니다. Hello 응용 프로그램 hello DR 드릴 하는 경우 진행 중인 하지 toouse hello 응용 프로그램의 사용자에 게 요청 합니다.  
 
 
 ## <a name="next-steps"></a>다음 단계

@@ -1,5 +1,5 @@
 ---
-title: "Windows 유니버설 앱 Engagement SDK에 대한 고급 구성"
+title: "구성에 대 한 Windows 유니버설 앱 Engagement SDK aaaAdvanced"
 description: "Windows 유니버설 앱과 Azure Mobile Engagement 사용에 대한 고급 구성 옵션"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: cb9454212c94cf65093219c3d24c71277ede7877
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 23bd05012bc25d438d8d4985a112280bed0292b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-configuration-for-windows-universal-apps-engagement-sdk"></a>Windows 유니버설 앱 Engagement SDK에 대한 고급 구성
 > [!div class="op_single_selector"]
@@ -29,27 +29,27 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-이 절차에서는 Azure Mobile Engagement Android 앱에 대한 다양한 고급 구성 옵션을 구성하는 방법을 설명합니다.
+이 절차에서는 설명 방법을 tooconfigure Azure Mobile Engagement Android 앱에 대 한 다양 한 구성 옵션입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
 ## <a name="advanced-configuration"></a>고급 구성
 ### <a name="disable-automatic-crash-reporting"></a>자동 작동 중단 보고를 사용하지 않도록 설정
-Engagement의 자동 작동 중단 보고를 사용하지 않도록 설정할 수 있습니다. 그러면 처리되지 않은 예외가 발생할 때 Engagement에서 아무 작업도 수행하지 않습니다.
+Hello 자동 충돌 보고 서비스의 기능을 해제할 수 있습니다. 그러면 처리되지 않은 예외가 발생할 때 Engagement에서 아무 작업도 수행하지 않습니다.
 
 > [!WARNING]
-> 이 기능을 사용하지 않도록 설정하면 앱에서 처리되지 않은 작동 중단이 발생해도 Engagement에서 작동 중단을 전송하지 않으며 **또한** 세션 및 작업도 닫지 않습니다.
+> 이 기능을 사용 하지 않도록 설정할 경우 Engagement hello 크래시를 보내지 않습니다 응용 프로그램에서 처리 되지 않은 충돌이 일어나면 **AND** hello 세션 및 작업 닫히지 않습니다.
 > 
 > 
 
-자동 작동 중단 보고를 사용하지 않도록 설정하려면 구성을 선언한 방식에 따라 사용자 지정합니다.
+toodisable 자동 충돌 보고를 선언한 hello 방식에 따라 구성을 사용자 지정:
 
 #### <a name="from-engagementconfigurationxml-file"></a>`EngagementConfiguration.xml` 파일에서
-`<reportCrash>` 및 `</reportCrash>` 태그 간의 작동 중단 보고를 `false`(으)로 설정합니다.
+보고서를 너무 충돌 설정`false` 사이 `<reportCrash>` 및 `</reportCrash>` 태그입니다.
 
 #### <a name="from-engagementconfiguration-object-at-run-time"></a>런타임에 `EngagementConfiguration` 개체에서
-EngagementConfiguration 개체를 사용하여 작동 중단 보고를 false로 설정합니다.
+보고서 크래시 toofalse EngagementConfiguration 개체를 사용 하 여 설정 합니다.
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -59,18 +59,18 @@ EngagementConfiguration 개체를 사용하여 작동 중단 보고를 false로 
         engagementConfiguration.Agent.ReportCrash = false;
 
 ### <a name="disable-real-time-reporting"></a>실시간 보고 사용 안 함
-기본적으로 Engagement 서비스는 로그를 실시간으로 보고합니다. 응용 프로그램이 로그를 자주 보고하는 경우 로그를 버퍼링한 후 정기적으로 한 번에 모두 보고하는 것이 좋습니다. 이를 "버스트 모드"라고 합니다.
+기본적으로 hello Engagement 서비스 보고서는 실시간으로 기록 합니다. 더 나은 toobuffer hello 로그 및 tooreport은 응용 프로그램 로그를 자주 보고 하는 경우를 표준 시간으로 한 번에 모두 있습니다. 이를 "버스트 모드"라고 합니다.
 
-이 방식을 사용하려면 다음 메서드를 호출합니다.
+따라서 toodo hello 메서드를 호출 합니다.
 
         EngagementAgent.Instance.SetBurstThreshold(int everyMs);
 
-인수는 **밀리초**단위의 값입니다. 언제든지 실시간 로깅을 다시 활성화하려면 매개 변수를 포함하지 않거나 값을 0으로 설정하여 메서드를 호출합니다.
+hello 인수에는 **밀리초**합니다. Tooreactivate hello 실시간 로깅 원할 때마다 모든 매개 변수 없이 또는 hello 0 값을 가진 hello 메서드를 호출 합니다.
 
-버스트 모드를 사용하는 경우 배터리 수명은 약간 길어지지만 Engagement 모니터에 영향을 주게 됩니다. 모든 세션 및 작업 기간이 버스트 임계값으로 반올림되므로 버스트 임계값보다 짧은 세션과 작업은 표시되지 않을 수도 있습니다. 30000(30초) 이하의 버스트 임계값을 사용하는 것이 좋습니다. 저장된 로그는 300개 항목으로 제한됩니다. 너무 길게 보내면 일부 로그가 손실될 수 있습니다.
+버스트 모드 약간 hello 배터리 수명 늘어나지만 hello Engagement 모니터에 영향을 주: 모든 세션 및 작업 기간 둥근된 toohello 버스트 임계값 (따라서 세션 및 작업 hello 버스트 임계값 표시 되지 않는 보다 짧은) 됩니다. 30000(30초) 이하의 버스트 임계값을 사용하는 것이 좋습니다. 저장 된 로그는 제한 된 too300 항목입니다. 너무 길게 보내면 일부 로그가 손실될 수 있습니다.
 
 > [!WARNING]
-> 1초보다 짧은 기간으로 버스트 임계값을 구성할 수는 없습니다. 버스트 임계값을 1초보다 짧게 구성하면 SDK에는 오류가 포함된 추적이 표시되며, 값은 자동으로 기본값인 0초로 다시 설정됩니다. 그러면 SDK에서 실시간 로그 보고가 트리거됩니다.
+> 두 번째 hello 버스트 임계값은 1 보다 작은 구성된 tooa 기간 수 없습니다. 이렇게 하면 자동으로 toohello 기본값을 다시 0 초로 설정 및는 hello SDK hello 오류와 함께 추적을 보여 줍니다. 이 트리거 hello SDK tooreport hello 로그인 실시간 합니다.
 > 
 > 
 

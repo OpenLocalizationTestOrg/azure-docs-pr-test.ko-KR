@@ -1,6 +1,6 @@
 ---
-title: "인터넷 연결 부하 분산 장치 만들기 - Azure 템플릿 | Microsoft Docs"
-description: "템플릿을 사용하여 Resource Manager에서 인터넷 연결 부하 분산 장치를 만드는 방법에 대해 알아봅니다."
+title: "aaaCreate 인터넷 연결 부하 분산 장치-Azure 템플릿 | Microsoft Docs"
+description: "어떻게 toocreate 인터넷 연결 부하 분산 장치 템플릿을 사용 하는 리소스 관리자에 알아봅니다."
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: d829000e63515814b192f3f8256e3b8637bb3a34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bce8cb87303838f3bc732d51228ab46d8015552
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-an-internet-facing-load-balancer-using-a-template"></a>템플릿을 사용하여 인터넷 연결 부하 분산 장치 만들기
 
@@ -32,20 +32,20 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-이 문서에서는 리소스 관리자 배포 모델에 대해 설명합니다. 또한 [클래식 배포 모델을 사용하여 인터넷 연결 부하 분산 장치를 만드는 방법을 배울 수 있습니다](load-balancer-get-started-internet-classic-portal.md)
+이 문서에서는 hello 리소스 관리자 배포 모델에 설명 합니다. 수도 있습니다 [toocreate 인터넷 연결 부하 분산 장치 클래식 배포 모델을 사용 하는 방법에 대해 알아봅니다](load-balancer-get-started-internet-classic-portal.md)
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a>클릭하여 배포하는 방식으로 템플릿 배포
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Hello 템플릿을 사용 하 여 배포 toodeploy 클릭
 
-공용 저장소에서 사용할 수 있는 샘플 템플릿은 위에 설명된 시나리오를 생성하는 데 사용된 기본값을 포함하는 매개 변수 파일을 사용합니다. 클릭하여 배포하는 방식으로 이 템플릿을 배포하려면 [이 링크](http://go.microsoft.com/fwlink/?LinkId=544801)에 따라 **Azure에 배포**를 클릭하고 필요한 경우 기본 매개 변수 값을 대체하고 포털의 지침을 따릅니다.
+hello 공용 저장소에서 사용할 수 있는 hello 샘플 템플릿 hello 기본 사용 되는 값 toogenerate hello 위에서 언급 한 시나리오를 포함 하는 매개 변수 파일을 사용 합니다. toodeploy toodeploy, 클릭 하 여 사용 하 여이 서식 파일에 따라 [이 링크](http://go.microsoft.com/fwlink/?LinkId=544801), 클릭 **tooAzure 배포**hello 기본 매개 변수 값, 필요한 경우 바꾼 hello 포털의 hello 지침을 따릅니다.
 
-## <a name="deploy-the-template-by-using-powershell"></a>PowerShell을 사용하여 템플릿 배포
+## <a name="deploy-hello-template-by-using-powershell"></a>PowerShell을 사용 하 여 hello 서식 파일을 배포 합니다.
 
-PowerShell을 사용하여 다운로드한 템플릿을 배포하려면 다음 단계를 수행합니다.
+PowerShell을 사용 하 여 다운로드 한 toodeploy hello 템플릿을 다음 hello 단계를 따릅니다.
 
-1. Azure PowerShell을 처음 사용하는 경우 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azure/overview) 을 참조하고 지침을 끝까지 따르면서 Azure에 로그인하고 구독을 선택합니다.
-2. **New-AzureRmResourceGroupDeployment** cmdlet을 실행하고 템플릿을 사용하여 리소스 그룹을 만듭니다.
+1. Azure PowerShell을 처음 사용 하는 경우 참조 [어떻게 tooInstall 및 Azure PowerShell 구성](/powershell/azure/overview) 모든 hello 방식으로 toohello toosign를 Azure로 끝나고 구독을 선택 하는 hello 지침을 따릅니다.
+2. Hello 실행 **새로 AzureRmResourceGroupDeployment** 사용 하 여 리소스 그룹 cmdlet toocreate hello 템플릿.
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name TestRG -Location uswest `
@@ -53,23 +53,23 @@ PowerShell을 사용하여 다운로드한 템플릿을 배포하려면 다음 �
         -TemplateParameterFile 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json'
     ```
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a>Azure CLI를 사용하여 템플릿 배포
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 hello 서식 파일을 배포 합니다.
 
-Azure CLI를 사용하여 템플릿을 배포하려면 아래 단계를 따르세요.
+hello Azure CLI를 사용 하 여 toodeploy hello 템플릿을 다음 hello 단계를 따릅니다.
 
-1. Azure CLI를 처음 사용하는 경우 [Azure CLI 설치 및 구성](../cli-install-nodejs.md) 을 참조하고 Azure 계정 및 구독을 선택하는 부분까지 관련 지침을 따릅니다.
-2. 아래와 같이 **azure config mode** 명령을 실행하여 Resource Manager 모드로 전환합니다.
+1. Azure CLI 처음 사용 하는 경우 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) Azure 계정 및 구독을 선택 하면 toohello 포인트 hello 지침을 따릅니다.
+2. Hello 실행 **azure 구성 모드** 명령 tooswitch tooResource 관리자 모드에서는 다음과 같이 합니다.
 
     ```azurecli
     azure config mode arm
     ```
 
-    다음은 위의 명령에 대해 예상된 출력입니다.
+    다음은 위의 hello 명령에 대 한 예상 hello 출력이입니다.
 
         info:    New mode is arm
 
-3. 브라우저에서 [빠른 시작 템플릿](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules)으로 이동하고 json 파일의 내용을 복사하여 컴퓨터에 새 파일로 붙여넣습니다. 이 시나리오의 경우 아래 값을 **c:\lb\azuredeploy.parameters.json**이라는 파일로 복사합니다.
-4. 위에서 다운로드하여 수정한 템플릿과 매개 변수 파일로 **azure group deployment create** cmdlet을 실행하여 새 부하 분산 장치를 배포합니다. 출력 다음에 표시되는 목록은 사용되는 매개 변수를 설명합니다.
+3. 브라우저에서 이동 너무[퀵 스타트 템플릿 hello](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules)hello json 파일의 내용을 hello 복사한 컴퓨터에서 새 파일에 붙여 넣습니다. 이 시나리오에서는 있습니다 것 수 값을 복사할 hello 라는 tooa 파일 아래 **c:\lb\azuredeploy.parameters.json**합니다.
+4. Hello 실행 **으로 azure 그룹 배포 만들기** cmdlet toodeploy hello 새 부하 분산 장치 hello 템플릿 및 매개 변수를 사용 하 여 파일을 다운로드 하 고 위에서 수정할 수 있습니다. hello 출력 뒤에 표시 된 hello 목록 사용 되는 hello 매개 변수를 설명 합니다.
 
     ```azurecli
     azure group create --name TestRG --location westus --template-file 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json' --parameters-file 'c:\lb\azuredeploy.parameters.json'

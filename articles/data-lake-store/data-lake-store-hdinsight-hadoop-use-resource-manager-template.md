@@ -1,6 +1,6 @@
 ---
-title: "Azure 템플릿을 사용하여 Azure HDInsight 및 Data Lake Store 만들기 | Microsoft Docs"
-description: "Azure Resource Manager 템플릿을 사용하여 Azure Data Lake Store로 HDInsight Hadoop 클러스터 만들기 및 사용"
+title: "Azure 템플릿 toocreate aaaUse HDInsight 및 데이터 레이크 저장소 | Microsoft Docs"
+description: "Azure 리소스 관리자 템플릿 toocreate를 사용 하 고 HDInsight 클러스터를 사용 하 여 Azure 데이터 레이크 저장소"
 services: data-lake-store,hdinsight
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/04/2017
 ms.author: nitinme
-ms.openlocfilehash: 6f43423096f0e74f41afea275e4ec9801dc2cea5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb88a626f2837dcc29295f3f73a91757059c3bb8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-hdinsight-cluster-with-data-lake-store-using-azure-resource-manager-template"></a>Azure Resource Manager 템플릿을 사용하여 Data Lake Store로 HDInsight 클러스터 만들기
 > [!div class="op_single_selector"]
@@ -29,67 +29,67 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Azure PowerShell을 사용하여 Azure Data Lake Store에서 HDInsight 클러스터를 **추가 저장소로** 구성하는 방법에 대해 알아봅니다.
+Azure 데이터 레이크 저장소와 toouse Azure PowerShell tooconfigure HDInsight 클러스터 되는 방법에 대해 알아봅니다 **추가 저장소로**합니다.
 
-지원되는 클러스터 유형의 경우 Data Lake Store는 기본 저장소 또는 추가 저장소 계정으로 사용됩니다. Data Lake Store를 추가 저장소로 사용하는 경우 클러스터의 기본 저장소 계정은 여전히 Azure Storage Blob(WASB)이고 클러스터 관련 파일(예: 로그 등)은 여전히 기본 저장소에 기록되지만 처리하려는 데이터는 Data Lake Store 계정에 저장될 수 있습니다. Data Lake 저장소를 추가 저장소 계정으로 사용하면 클러스터에서 저장소로 읽고 쓰는 성능 또는 기능에 영향을 주지 않습니다.
+지원되는 클러스터 유형의 경우 Data Lake Store는 기본 저장소 또는 추가 저장소 계정으로 사용됩니다. 데이터 레이크 저장소는 추가 저장소로 사용 되는, hello 클러스터에 대 한 기본 저장소 계정 hello 계속 Azure 저장소 Blob (WASB) 이며 hello 클러스터 관련 파일 (예: 로그 등) 동안 hello 데이터 toohello 기본 저장소 계속 기록 했는지 원하는 tooprocess 데이터 레이크 저장소 계정에 저장할 수 있습니다. 데이터 레이크 저장소를 사용 하 여 추가 저장소 계정으로 영향을 주지 않습니다 성능이 나 hello 기능 tooread/쓰기 toohello hello 클러스터에서 저장소입니다.
 
 ## <a name="using-data-lake-store-for-hdinsight-cluster-storage"></a>HDInsight 클러스터 저장소에서 Data Lake Store 사용
 
 Data Lake Store에서 HDInsight를 사용하는 몇 가지 중요한 고려 사항은 다음과 같습니다.
 
-* 기본 저장소로 Data Lake Store에 액세스할 수 있는 HDInsight 클러스터를 만드는 옵션은 HDInsight 버전 3.5 및 3.6에서 사용할 수 있습니다.
+* 옵션 toocreate HDInsight 클러스터에 액세스할 수 있는 기본 저장소로 tooData Lake 저장소는 HDInsight 버전 3.5 및 3.6 수 있습니다.
 
-* 추가 저장소로 Data Lake Store에 액세스할 수 있는 HDInsight 클러스터를 만드는 옵션은 HDInsight 버전 3.2, 3.4, 3.5 및 3.6에서 사용할 수 있습니다.
+* 옵션 toocreate HDInsight 클러스터에 액세스할 수 있는 추가 저장소로 tooData Lake 저장소는 HDInsight 버전 3.2, 3.4, 3.5, 및 3.6 수 있습니다.
 
-이 문서에서 데이터 레이크 저장소를 추가 저장소로 사용하여 Hadoop 클러스터를 프로비저닝합니다. 기본 저장소로 Data Lake Store를 사용하여 Hadoop 클러스터를 만드는 방법에 대한 지침은 [Azure Portal을 사용하여 Data Lake 저장소를 포함한 HDInsight 클러스터 만들기](data-lake-store-hdinsight-hadoop-use-portal.md)를 참조하세요.
+이 문서에서 데이터 레이크 저장소를 추가 저장소로 사용하여 Hadoop 클러스터를 프로비저닝합니다. 기본 저장소로 데이터 레이크 저장소와 toocreate Hadoop 클러스터 되는 방법에 지침은 [Azure 포털을 사용 하 여 데이터 레이크 저장소는 HDInsight 클러스터 만들기](data-lake-store-hdinsight-hadoop-use-portal.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 자습서를 시작하기 전에 다음이 있어야 합니다.
+이 자습서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **Azure 구독**. [Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
-* **Azure PowerShell 1.0 이상**. [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview)을 참조하세요.
-* **Azure Active Directory 서비스 사용자**. 이 자습서의 단계에서는 Azure AD에서 서비스 사용자를 만드는 방법에 대한 지침을 제공합니다. 그러나 서비스 사용자를 만들려면 Azure AD 관리자여야 합니다. Azure AD 관리자인 경우 이 필수 조건을 건너뛰고 자습서를 진행할 수 있습니다.
+* **Azure PowerShell 1.0 이상**. 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
+* **Azure Active Directory 서비스 사용자**. 이 자습서의 단계는 방법에 지침을 제공 toocreate Azure AD에서 서비스 사용자입니다. 그러나는 Azure AD 관리자 toobe 수 toocreate 서비스 사용자 여야 합니다. Azure AD 관리자 인 경우이 필수 구성이 요소를 건너뛰고 hello 자습서를 진행할 수 있습니다.
 
-    **Azure AD 관리자가 아닌 경우** 서비스 사용자를 만드는 데 필요한 단계를 수행할 수 없습니다. 이 경우 먼저 Azure AD 관리자가 서비스 사용자를 만들어야 Data Lake Store와 HDInsight 클러스터를 만들 수 있습니다. 또한 [인증서를 사용하여 서비스 사용자 만들기](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority)에 설명된 대로 인증서를 사용하여 서비스 사용자를 만들어야 합니다.
+    **Azure AD 관리자가 아닌 경우**, 수 tooperform hello 단계 필요한 toocreate 서비스 사용자 됩니다. 이 경우 먼저 Azure AD 관리자가 서비스 사용자를 만들어야 Data Lake Store와 HDInsight 클러스터를 만들 수 있습니다. 또한 hello 서비스 사용자 사용 하 여 만들어야는 인증서에 설명 된 대로 [인증서로 서비스 사용자를 만들](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority)합니다.
 
 ## <a name="create-an-hdinsight-cluster-with-azure-data-lake-store"></a>Azure Data Lake Store로 HDInsight 클러스터 만들기
-Resource Manager 템플릿 및 템플릿 사용을 위한 필수 조건은 GitHub의 [새 Data Lake Store로 HDInsight Linux 클러스터 배포](https://github.com/Azure/azure-quickstart-templates/tree/master/201-hdinsight-datalake-store-azure-storage)에서 확인할 수 있습니다. 이 링크에 제공된 지침에 따라 Azure Data Lake Store를 추가 저장소로 사용하는 HDInsight 클러스터를 만듭니다.
+hello 리소스 관리자 템플릿 및 hello hello 템플릿을 사용 하 여 필수 구성 요소에는 GitHub에서 사용할 수 있는 [새 데이터 레이크 저장소를 사용 하 여 HDInsight Linux 클러스터 배포](https://github.com/Azure/azure-quickstart-templates/tree/master/201-hdinsight-datalake-store-azure-storage)합니다. 에 제공 된 링크 toocreate이 HDInsight 클러스터와 Azure 데이터 레이크 저장소로 저장소를 추가 하는 hello hello 지침을 따릅니다.
 
-위에 언급된 링크의 지침에는 PowerShell이 필요합니다. 이러한 지침을 시작하기 전에 Azure 계정에 로그인해야 합니다. 바탕 화면에서 새 Azure PowerShell 창을 열고 다음 코드 조각을 입력합니다. 로그인하라는 메시지가 표시되면 구독 관리자/소유자 중 하나로 로그인해야 합니다.
+위에서 언급 한 hello 링크에서 지침 hello PowerShell이 필요 합니다. 이러한 지침을 시작 하기 전에 tooyour Azure 계정에에서 로그인 해야 합니다. 바탕 화면에서 새 Azure PowerShell 창을 열고 hello 조각 다음을 입력 합니다. , 입력 정보 요청된 toolog 있는지 확인 하는 경우 로그인 할 hello 구독 admininistrators/소유자 중 하나로:
 
 ```
-# Log in to your Azure account
+# Log in tooyour Azure account
 Login-AzureRmAccount
 
-# List all the subscriptions associated to your account
+# List all hello subscriptions associated tooyour account
 Get-AzureRmSubscription
 
 # Select a subscription
 Set-AzureRmContext -SubscriptionId <subscription ID>
 ```
 
-## <a name="upload-sample-data-to-the-azure-data-lake-store"></a>Azure Data Lake Store에 샘플 데이터 업로드
-Resource Manager 템플릿은 새 Data Lake Store 계정을 만들어 HDInsight 클러스터에 연결합니다. 이제 일부 샘플 데이터를 Data Lake Store에 업로드해야 합니다. 데이터 레이크 저장소의 데이터에 액세스하는 HDInsight 클러스터에서 작업을 실행하려면 자습서의 뒷부분에서 이 데이터가 필요합니다. 데이터를 업로드하는 방법은 [Data Lake Store에 파일 업로드](data-lake-store-get-started-portal.md#uploaddata)를 참조하세요. 업로드할 일부 샘플 데이터를 찾는 경우 **Azure 데이터 레이크 Git 리포지토리** 의 [Ambulance Data](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData)폴더에 있을 수 있습니다.
+## <a name="upload-sample-data-toohello-azure-data-lake-store"></a>샘플 데이터 toohello Azure Data Lake 저장소에 업로드
+hello 리소스 관리자 템플릿을 새 데이터 레이크 저장소 계정을 만들고 hello HDInsight 클러스터에 연결 합니다. 지금 일부 샘플 데이터 toohello Data Lake 저장소를 업로드 해야 합니다. Hello 데이터 레이크 저장소의에서 데이터를 액세스 하는 HDInsight 클러스터에서 hello 자습서 toorun 작업에서 나중에이 데이터를 필요 합니다. 방법에 대 한 지침은 tooupload 데이터 참조 [파일 tooyour 데이터 레이크 저장소 업로드](data-lake-store-get-started-portal.md#uploaddata)합니다. 몇 가지 샘플 데이터 tooupload를 찾고 hello를 얻을 수 있습니다 **Ambulance 데이터** hello 폴더 [Azure 데이터 레이크 Git 리포지토리](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData)합니다.
 
-## <a name="set-relevant-acls-on-the-sample-data"></a>샘플 데이터에서 관련 ACL 설정
-HDInsight 클러스터에서 업로드한 샘플 데이터에 액세스할 수 있는지 확인하려면 HDInsight 클러스터와 Data Lake Store 간의 ID를 설정하는 데 사용되는 Azure AD 응용 프로그램에서 액세스하려는 파일/폴더에 액세스할 수 있는지 확인해야 합니다. 이렇게 하려면 다음 단계를 수행합니다.
+## <a name="set-relevant-acls-on-hello-sample-data"></a>Hello 예제 데이터에서 관련 Acl 설정
+toomake hello 샘플 데이터 업로드 hello HDInsight 클러스터에서 액세스할 수 있는지를 확인 해야 hello HDInsight 클러스터와 데이터 레이크 저장소 간에 사용 되는 tooestablish id가 있는 hello Azure AD 응용 프로그램에는 액세스 toohello 파일/폴더는 tooaccess를 하려고합니다. toodo이 hello 다음 단계를 수행 합니다.
 
-1. HDInsight 클러스터 및 Data Lake Store와 연결된 Azure AD 응용 프로그램의 이름을 찾습니다. 이름을 찾는 한 가지 방법은 Resource Manager 템플릿을 사용하여 만든 HDInsight 클러스터 블레이드를 열고 **클러스터 AAD ID** 탭을 클릭한 다음 **서비스 사용자 표시 이름** 값을 확인하는 것입니다.
-2. 이제 HDInsight 클러스터에서 액세스하려는 파일/폴더에서 Azure AD 응용 프로그램에 대한 액세스를 제공합니다. Data Lake Store의 파일/폴더에 대한 올바른 ACL을 설정하려면 [Data Lake Store의 데이터 보안](data-lake-store-secure-data.md#filepermissions)을 참조하세요.
+1. Hello HDInsight 클러스터와 연결 된 Azure AD 응용 프로그램 및 hello 데이터 레이크 저장소의 hello 이름을 찾습니다. Hello 이름에 대 한 한 가지 방법은 toolook tooopen hello HDInsight 클러스터 블레이드 hello 리소스 관리자 템플릿을 사용 하 여 만든 이면 hello 클릭 **클러스터 AAD Id** 탭을 hello 값 찾기 위해 **서비스 사용자 표시 이름**합니다.
+2. 이제 hello 파일/폴더 tooaccess hello HDInsight 클러스터에서 원하는 액세스 toothis Azure AD 응용 프로그램을 제공 합니다. 데이터 레이크 저장소의 파일/폴더 hello tooset hello 오른쪽 Acl 참조 [데이터 레이크 저장소의 데이터를 보호 하려면](data-lake-store-secure-data.md#filepermissions)합니다.
 
-## <a name="run-test-jobs-on-the-hdinsight-cluster-to-use-the-data-lake-store"></a>HDInsight 클러스터에서 테스트 작업을 실행하여 데이터 레이크 저장소 사용
-HDInsight 클러스터를 구성한 후에 클러스터에서 테스트 작업을 실행하여 HDInsight 클러스터가 데이터 레이크 저장소에 액세스할 수 있는지 테스트할 수 있습니다. 이렇게 하려면 데이터 레이크 저장소에 이전에 업로드한 샘플 데이터를 사용하여 테이블을 만드는 샘플 Hive 작업을 실행합니다.
+## <a name="run-test-jobs-on-hello-hdinsight-cluster-toouse-hello-data-lake-store"></a>Hello HDInsight 클러스터 toouse hello 데이터 레이크 저장소에서 테스트 작업 실행
+HDInsight 클러스터를 구성 하 고 나면에서 실행할 수 있습니다 테스트 작업이 hello 클러스터 tootest 해당 hello HDInsight 클러스터 Data Lake 저장소에 액세스할 수 있습니다. toodo, 이전 tooyour 데이터 레이크 저장소를 업로드 하는 hello 샘플 데이터를 사용 하 여 테이블을 만드는 예제 Hive 작업을 수행 됩니다.
 
-이 섹션에서는 HDInsight Linux 클러스터로 SSH하고 샘플 Hive 쿼리를 실행합니다. Windows 클라이언트를 사용 중인 경우 **PuTTY**를 사용하는 것이 좋습니다([http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)에서 다운로드할 수 있음).
+이 섹션에서는 SSH HDInsight Linux 클러스터와 실행된 hello에 샘플 Hive 쿼리 합니다. Windows 클라이언트를 사용 중인 경우 **PuTTY**를 사용하는 것이 좋습니다([http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)에서 다운로드할 수 있음).
 
 PuTTY 사용에 대한 자세한 내용은 [Windows에서 HDInsight의 Linux 기반 Hadoop과 SSH 사용 ](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)을 참조하세요.
 
-1. 연결되면 다음 명령을 사용하여 Hive CLI를 시작합니다.
+1. 연결 되 면 다음 명령을 hello를 사용 하 여 hello 하이브 CLI를 시작 합니다.
 
    ```
    hive
    ```
-2. CLI를 사용하여 다음 문을 입력하여 Data Lake 저장소에서 샘플 데이터를 사용한 **vehicles**라는 새 테이블을 만듭니다.
+2. Hello CLI를 사용 하 여 hello 문을 toocreate 라는 새 테이블을 다음 입력 **차량** hello 데이터 레이크 저장소의에서 hello 예제 데이터를 사용 하 여:
 
    ```
    DROP TABLE vehicles;
@@ -97,7 +97,7 @@ PuTTY 사용에 대한 자세한 내용은 [Windows에서 HDInsight의 Linux 기
    SELECT * FROM vehicles LIMIT 10;
    ```
 
-   다음과 유사한 결과가 표시됩니다.
+   출력 유사한 toohello 다음을 나타나야 합니다.
 
    ```
    1,1,2014-09-14 00:00:03,46.81006,-92.08174,51,S,1
@@ -114,19 +114,19 @@ PuTTY 사용에 대한 자세한 내용은 [Windows에서 HDInsight의 Linux 기
 
 
 ## <a name="access-data-lake-store-using-hdfs-commands"></a>HDFS 명령을 사용한 액세스 데이터 레이크 저장소
-데이터 레이크 저장소를 사용하도록 HDInsight 클러스터를 구성한 후 HDFS 셸 명령을 사용하여 저장소에 액세스할 수 있습니다.
+Hello HDInsight 클러스터 toouse Data Lake 저장소를 구성한 후에 hello HDFS 셸 명령을 tooaccess hello 저장소를 사용할 수 있습니다.
 
-이 섹션에서는 HDInsight Linux 클러스터로 SSH하고 HDFS 명령을 실행합니다. Windows 클라이언트를 사용 중인 경우 **PuTTY**를 사용하는 것이 좋습니다([http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)에서 다운로드할 수 있음).
+이 섹션에서는 SSH HDInsight Linux 클러스터 및 실행된 hello HDFS 명령입니다. Windows 클라이언트를 사용 중인 경우 **PuTTY**를 사용하는 것이 좋습니다([http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)에서 다운로드할 수 있음).
 
 PuTTY 사용에 대한 자세한 내용은 [Windows에서 HDInsight의 Linux 기반 Hadoop과 SSH 사용 ](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)을 참조하세요.
 
-연결되면 다음 HDFS 파일 시스템 명령을 사용하여 데이터 레이크 저장소에 파일을 나열합니다.
+연결 되 면 hello Data Lake 저장소에 있는 HDFS 파일 시스템 명령 toolist hello 파일을 다음 hello를 사용 합니다.
 
 ```
 hdfs dfs -ls adl://<Data Lake Store account name>.azuredatalakestore.net:443/
 ```
 
-데이터 레이크 저장소에 이전에 업로드한 파일이 나열되어야 합니다.
+이전 toohello 데이터 레이크 저장소를 업로드 하는 hello 파일을 나열 됩니다.
 
 ```
 15/09/17 21:41:15 INFO web.CaboWebHdfsFileSystem: Replacing original urlConnectionFactory with org.apache.hadoop.hdfs.web.URLConnectionFactory@21a728d6
@@ -134,8 +134,8 @@ Found 1 items
 -rwxrwxrwx   0 NotSupportYet NotSupportYet     671388 2015-09-16 22:16 adl://mydatalakestore.azuredatalakestore.net:443/mynewfolder
 ```
 
-`hdfs dfs -put` 명령을 사용하여 일부 파일을 데이터 레이크 저장소에 업로드한 다음 `hdfs dfs -ls`을(를) 사용하여 파일이 성공적으로 업로드되었는지 여부를 확인할 수도 있습니다.
+Hello를 사용할 수도 있습니다 `hdfs dfs -put` 일부 파일 toohello 데이터 레이크 저장소 tooupload 명령을 클릭 한 다음 사용 하 여 `hdfs dfs -ls` tooverify hello 파일이 성공적으로 업로드 된 여부.
 
 
 ## <a name="next-steps"></a>다음 단계
-* [Azure Storage Blob에서 Data Lake Store로 데이터 복사](data-lake-store-copy-data-wasb-distcp.md)
+* [Azure 저장소 Blob tooData Lake 저장소에서 데이터 복사](data-lake-store-copy-data-wasb-distcp.md)

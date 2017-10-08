@@ -1,6 +1,6 @@
 ---
-title: "PlayReady 및/또는 Widevine 동적 일반 암호화 사용 | Microsoft Docs"
-description: "Microsoft Azure 미디어 서비스를 사용하면 Microsoft PlayReady DRM으로 보호되는 MPEG-DASH, 부드러운 스트리밍 및 Http-Live-Streaming(HLS) 스트림을 배달할 수 있습니다. 또한 Widevine DRM으로 암호화된 DASH를 배달할 수 있습니다. 이 항목에서는 PlayReady 및 Widevine DRM으로 동적으로 암호화하는 방법을 보여 줍니다."
+title: "aaaUsing PlayReady 및/또는 Widevine 동적 일반 암호화 | Microsoft Docs"
+description: "Microsoft Azure 미디어 서비스에서는 있습니다 toodeliver MPEG DASH, 부드러운 스트리밍 및 Http 라이브 스트리밍 (HLS) 스트림을 Microsoft PlayReady DRM으로 보호 합니다. 또한, toodelivery를 Widevine DRM을 사용 하 여 암호화 된 DASH를 있습니다. 이 항목에서는 toodynamically Widevine DRM 및 PlayReady로 암호화 하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 6cfb7b558b8dce511d517e69c022765feae245fa
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0475e6ec80dcf39eb4e5c4ad4d17f821502951bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-playready-andor-widevine-dynamic-common-encryption"></a>PlayReady 및/또는 Widevine 동적 일반 암호화 사용
 
@@ -29,128 +29,128 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Microsoft Azure 미디어 서비스를 사용하면 [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/)으로 보호되는 MPEG-DASH, 부드러운 스트리밍 및 HTTP-Live-Streaming(HLS) 스트림을 전달할 수 있습니다. 또한 Widevine DRM 라이선스로 암호화된 DASH 스트림을 전달할 수 있습니다. PlayReady와 Widevine 모두 일반적인 암호화(ISO/IEC 23001-7 CENC) 사양에 따라 암호화됩니다. [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (버전 3.5.1부터 시작) 또는 REST API를 통해 Widevine을 사용하도록 AssetDeliveryConfiguration을 구성할 수 있습니다.
+Microsoft Azure 미디어 서비스 사용 하면 toodeliver MPEG DASH, 부드러운 스트리밍 및 HTTP 라이브 스트리밍 (HLS) 스트림에서 보호 된 [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/)합니다. 또한, DRM Widevine 라이선스를 갖고 있는 toodeliver 암호화 된 DASH 스트림을 있습니다. PlayReady 및 Widevine 모두 hello 일반 암호화 (ISO/IEC 23001-7 CENC) 사양 당 암호화 됩니다. 사용할 수 있습니다 [AMS.NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (3.5.1 hello 버전부터 시작) 또는 REST API tooconfigure 프로그램 AssetDeliveryConfiguration toouse Widevine 합니다.
 
-미디어 서비스는 PlayReady와 Widevine DRM 라이선스를 제공하는 서비스를 제공합니다. 또한 미디어 서비스는 사용자가 보호된 콘텐츠를 재생할 때 PlayReady 또는 Widevine DRM 런타임이 적용하려는 권한 및 제한을 구성할 수 있는 API도 제공합니다. 사용자가 사용권 계약에 따라 DRM으로 보호된 콘텐츠를 요청하면 플레이어 응용 프로그램은 AMS 라이선스 서비스에서 라이선스를 요청합니다. 권한이 부여된 경우 AMS 라이선스 서비스는 플레이어에 라이선스를 발급합니다. PlayReady 또는 Widevine 라이선스에는 클라이언트 플레이어가 콘텐츠를 해독하고 스트림하는 데 사용할 수 있는 해독 키가 들어 있습니다.
+미디어 서비스는 PlayReady와 Widevine DRM 라이선스를 제공하는 서비스를 제공합니다. 미디어 서비스 hello 권한을 구성할 수 있는 Api도 제공 하 고 hello PlayReady 또는 Widevine DRM 런타임은 tooenforce 때 사용자에 대 한 원하는 제한을 보호 된 콘텐츠를 재생 합니다. 사용자 DRM으로 보호 된 콘텐츠를 요청 하는 경우 hello 플레이어 응용 프로그램 hello AMS 라이선스 서비스에서 라이선스를 요청 합니다. hello AMS 라이선스 서비스에서 권한 부여 라이선스 toohello 플레이어를 발생 합니다. PlayReady 또는 Widevine 라이선스 hello 클라이언트 플레이어 toodecrypt 및 스트림 hello 콘텐츠 사용할 수 있는 hello 암호 해독 키를 포함 합니다.
 
-또한 다음 AMS 파트너를 사용하여 Widevine 라이선스를 배달할 수 있습니다. [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/). 자세한 내용은 [Axinom](media-services-axinom-integration.md) 및 [castLabs](media-services-castlabs-integration.md)를 이용한 통합을 참조하세요.
+Widevine 라이선스를 배달 AMS 파트너 toohelp 다음 hello을 사용할 수 있습니다: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/)합니다. 자세한 내용은 [Axinom](media-services-axinom-integration.md) 및 [castLabs](media-services-castlabs-integration.md)를 이용한 통합을 참조하세요.
 
-미디어 서비스는 키를 요청 하는 사용자에 권한을 부여하는 여러 방법을 지원합니다. 콘텐츠 키 권한 부여 정책에는 열기 또는 토큰 제한과 같은 하나 이상의 권한 부여 제한이 있을 수 있습니다. 토큰 제한 정책은 보안 토큰 서비스(STS)에 의해 발급된 토큰이 수반되어야 합니다. Media Services 지원 토큰에는 [단순 웹 토큰](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)(SWT) 형식 및 [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)(JWT) 형식의 토큰을 지원합니다. 자세한 내용은 콘텐츠 키 권한 부여 정책 구성을 참조하세요.
+미디어 서비스는 키를 요청 하는 사용자에 권한을 부여하는 여러 방법을 지원합니다. hello 콘텐츠 키 인증 정책이 있을 수 하나 이상의 권한 부여 제한을: 열거나 토큰 제한 합니다. 보안 토큰 서비스 (STS)에서 발급 한 토큰 hello 토큰 제한 정책은 함께 제공 해야 합니다. 미디어 서비스는 hello에 토큰을 지원 [단순 웹 토큰](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) 형식 및 [JSON 웹 토큰](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) 형식입니다. 자세한 내용은 구성 hello 콘텐츠 키 권한 부여 정책을 참조 하십시오.
 
-동적 암호화를 이용하려면 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일의 집합이 포함된 자산을 만들어야 합니다. 또한 자산의 배달 정책을 구성해야 합니다(이 항목의 뒷부분에서 설명). 이렇게 하면 스트리밍 URL에 지정된 형식에 따라 주문형 스트리밍 서버는 사용자가 선택한 프로토콜로 스트림이 배달되도록 합니다. 따라서 사용자는 단일 저장소 형식으로 파일을 저장하고 해당 파일에 대한 요금을 지불하기만 하면 되며, 미디어 서비스에서는 클라이언트의 요청 각각에 따라 적절한 HTTP 응답을 작성하고 제공합니다.
+tootake 이점은 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일 집합이 포함 된 자산 toohave 동적 암호화 해야 합니다. 또한 해야 tooconfigure hello 배달 정책 (이 항목의 뒷부분에 설명) hello 자산에 대 한 합니다. 그런 다음 형식에 따라 hello hello 스트리밍 URL에에서 지정 된, 주문형 스트리밍 서버 hello 됩니다 되도록 해당 hello 스트림의 선택한 hello 프로토콜에서 제공 됩니다. 결과적으로, toostore 하기만 하면 및 단일 저장소 형식 및 미디어 서비스의 hello 파일에 대 한 급여 빌드하고 클라이언트에서 각 요청에 따라 hello 적절 한 HTTP 응답을 제공 합니다.
 
-이 항목은 PlayReady 및 Widevine과 같은 여러 DRM으로 보호된 미디어를 제공하는 응용 프로그램으로 작업하는 개발자에게 유용합니다. 이 항목에서는 권한 부여 정책으로 PlayReady 라이선스 배달 서비스를 구성하여 권한이 있는 클라이언트만 PlayReady 또는 Widevine 라이선스를 받을 수 있도록 하는 방법을 보여 줍니다. 또한 DASH에 대해 PlayReady 또는 Widevine DRM으로 동적 암호화를 사용하는 방법을 보여줍니다.
+이 항목에는 유용한 toodevelopers PlayReady Widevine 등 여러 DRMs로 보호 된 미디어를 전달 하는 응용 프로그램에서 작동 하는 것입니다. hello 항목에서는 권한 있는 클라이언트만 PlayReady 또는 Widevine 라이선스를 받을 수 있도록 권한 부여 정책 사용 하 여 PlayReady 라이선스 배달 서비스 tooconfigure hello 하는 방법을 보여 줍니다. 또한 표시 방법을 PlayReady 또는 대시를 통해 Widevine DRM을 사용 하 여 toouse 동적 암호화 암호화 합니다.
 
 >[!NOTE]
->AMS 계정이 만들어질 때 **기본** 스트리밍 끝점은 **중지됨** 상태에서 계정에 추가됩니다. 콘텐츠 스트리밍을 시작하고 동적 패키징 및 동적 암호화를 활용하려면 콘텐츠를 스트리밍하려는 스트리밍 끝점은 **실행** 상태에 있어야 합니다. 
+>AMS 계정이 만들어질 때 한 **기본** 스트리밍 끝점에 hello tooyour 계정 추가 됩니다 **Stopped** 상태입니다. 동적 패키징 및 동적 암호화 하면 콘텐츠 및 take 장점이 스트리밍 toostart hello toostream 콘텐츠 hello toobe에 들어 있는 스트리밍 끝점 **실행** 상태입니다. 
 
 ## <a name="download-sample"></a>샘플 다운로드
-[여기](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm)에서 이 문서에 설명된 샘플을 다운로드할 수 있습니다.
+이 문서에서 설명 하는 hello 샘플을 다운로드할 수 [여기](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm)합니다.
 
 ## <a name="configuring-dynamic-common-encryption-and-drm-license-delivery-services"></a>동적 일반 암호화 및 DRM 라이선스 전달 서비스 구성
 
-다음은 PlayReady로 자산을 보호하고 미디어 서비스 라이선스 배달 서비스를 사용하며 동적 암호화를 사용할 때 수행해야 하는 일반적인 단계입니다.
+hello 다음은 hello 미디어 서비스 라이선스 배달 서비스를 사용 하 고 또한 동적 암호화를 사용 하 여 PlayReady로 자산을 보호 하는 경우 tooperform 해야 하는 일반적인 단계입니다.
 
-1. 자산을 만들고 파일을 자산에 업로드합니다.
-2. 파일이 들어 있는 자산을 적응 비트 전송률 MP4 집합으로 인코딩합니다.
-3. 콘텐츠 키를 만들고 인코딩된 자산에 연결합니다. 미디어 서비스에서 콘텐츠 키에는 자산의 암호화 키가 들어 있습니다.
-4. 콘텐츠 키의 권한 부여 정책을 구성합니다. 콘텐츠 키 권한 부여 정책은 사용자가 구성해야 하며 콘텐츠 키를 클라이언트에 배달하기 위해서는 해당 클라이언트를 충족시켜야 합니다.
+1. 자산 만들기 hello 자산 파일 업로드 합니다.
+2. Hello 자산 포함 hello 파일 toohello 적응 비트 전송률을 MP4 집합으로 인코딩하십시오.
+3. 콘텐츠 키를 만들고 hello 인코딩된 자산에 연결 합니다. 미디어 서비스 콘텐츠 키 hello hello 자산의 암호화 키를 포함합니다.
+4. Hello 콘텐츠 키 권한 부여 정책을 구성 합니다. hello 콘텐츠 키 인증 정책은 구성 하 고 hello 클라이언트에서 콘텐츠 키 toobe 배달된 toohello 클라이언트 hello 하려면 충족 해야 합니다.
 
-    콘텐츠 키 인증 정책을 만들 때 다음을 지정해야 합니다. 전달 메서드(PlayReady 또는 Widevine), 제한(열기 또는 토큰) 및 클라이언트에 키가 전달되는 방법을 정의하는 키 전달 형식에 관련된 정보([PlayReady](media-services-playready-license-template-overview.md) 또는 [Widevine](media-services-widevine-license-template-overview.md) 라이선스 템플릿).
+    Toospecify hello 다음 hello 콘텐츠 키 권한 부여 정책을 만들 때 필요한: 배달 메서드 (PlayReady 또는 Widevine) 제한 사항 (열기 또는 토큰) 및 정보 hello 키 배달 방법을 정의 하는 특정 toohello 키 배달 유형 toohello 클라이언트 ([PlayReady](media-services-playready-license-template-overview.md) 또는 [Widevine](media-services-widevine-license-template-overview.md) 라이선스 템플릿을).
 
-5. 자산에 대한 배달 정책을 구성합니다. 배달 정책 구성에는 배달 프로토콜(예: MPEG DASH, HLS, 부드러운 스트리밍 또는 모두), 동적 암호화 형식(예: 일반 암호화), PlayReady 또는 Widevine 라이선스 획득 URL이 포함됩니다.
+5. 자산에 대 한 hello 배달 정책을 구성 합니다. hello 배달 정책 구성에: 배달 프로토콜 (예를 들어, MPEG DASH, HLS, 부드러운 스트리밍 또는 모두), hello 동적 암호화 (예를 들어 일반 암호화), PlayReady 또는 Widevine 라이선스 취득 URL 형식입니다.
 
-    동일한 자산의 각 프로토콜에 다른 정책을 적용할 수 있습니다. 예를 들어, Smooth/DASH에 PlayReady 암호화를, HLS에 AES 봉투(envelope)를 적용할 수 있습니다. 배달 정책에 정의되지 않은 모든 프로토콜(예: HLS만 프로토콜로 지정하는 단일 정책)은 스트리밍에서 차단됩니다. 정의한 자산 배달 정책이 없는 경우는 예외입니다. 이렇게 하면 모든 프로토콜이 허용됩니다.
+    Hello에 서로 다른 정책 tooeach 프로토콜을 적용할 수 동일한 자산입니다. 예를 들어 PlayReady 암호화 tooSmooth/DASH 및 AES 봉투 (envelope) tooHLS 적용할 수 있습니다. 배달 정책에 정의 되어 있지 않은 모든 프로토콜 (예를 들어 추가한만 hello 프로토콜로 HLS를 지정 하는 단일 정책을) 스트리밍에서 차단 됩니다. hello 예외 toothis는 없는 자산 배달 정책을 정의 해야 합니다. 그런 다음 모든 프로토콜이 일반 hello에 허용 됩니다.
 
-6. 스트리밍 URL을 얻기 위해 주문형 로케이터를 만듭니다.
+6. 순서 tooget 스트리밍 URL에서에서 OnDemand 로케이터를 만듭니다.
 
-이 항목의 끝부분에서 전체 .NET 예제가 나와 있습니다.
+Hello 항목의 hello 끝에는 전체.NET 예제를 찾을 수 있습니다.
 
-다음 이미지는 위에서 설명한 워크플로를 보여 줍니다. 여기서는 인증에 토큰을 사용합니다.
+다음 이미지는 hello 위에서 설명한 hello 워크플로를 보여 줍니다. 여기서 hello 토큰 인증을 위해 사용 됩니다.
 
 ![PlayReady로 보호](./media/media-services-content-protection-overview/media-services-content-protection-with-drm.png)
 
-이 항목의 나머지 부분에서는 자세한 설명, 코드 예제 및 위에서 설명한 작업을 수행하는 방법을 보여주는 항목에 대한 링크를 제공합니다.
+이 항목의 나머지 부분 hello에 대 한 세부 정보, 코드 예제 및 tooachieve 위에서 설명한 작업 hello 하는 방법을 보여 주는 링크 tootopics 제공 합니다.
 
 ## <a name="current-limitations"></a>현재 제한 사항
-자산 배달 정책을 추가하거나 업데이트하는 경우 연결된 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.
+를 추가 하거나 자산 배달 정책을 업데이트 하는 경우 (있는 경우) 연결 된 hello 로케이터를 삭제 하 고 새 로케이터를 만듭니다 해야 합니다.
 
 Azure 미디어 서비스를 사용하여 Widevine를 암호화할 때 제한 사항은 현재 여러 콘텐츠 키가 지원되지 않는다는 점입니다.
 
-## <a name="create-an-asset-and-upload-files-into-the-asset"></a>자산 만들기 및 파일을 자산에 업로드
-관리, 인코딩 및 비디오 스트림을 수행하려면 먼저 콘텐츠를 Microsoft Azure 미디어 서비스에 업로드해야 합니다. 업로드되면 이후 처리 및 스트리밍을 위해 콘텐츠가 클라우드에 안전하게 저장됩니다.
+## <a name="create-an-asset-and-upload-files-into-hello-asset"></a>자산 만들기 및 hello 자산에 파일 업로드
+순서 toomanage 인코딩 및 스트리밍 비디오, Microsoft Azure 미디어 서비스에 콘텐츠를 먼저 업로드 해야 합니다. 를 업로드 한 후 콘텐츠 추가 처리 및 스트리밍에 대 한 hello 클라우드에 안전 하 게 저장 됩니다.
 
 자세한 내용은 [미디어 서비스 계정에 파일 업로드](media-services-dotnet-upload-files.md)를 참조하세요.
 
-## <a name="encode-the-asset-containing-the-file-to-the-adaptive-bitrate-mp4-set"></a>파일이 들어 있는 자산을 적응 비트 전송률 MP4 집합으로 인코딩
-동적 암호화를 사용하는 경우 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일의 집합이 포함된 자산을 만들기만 하면 됩니다. 이렇게 하면 매니페스트 및 조각 요청의 지정된 형식에 따라 주문형 스트리밍 서버는 사용자가 선택한 프로토콜로 스트림을 받을 수 있도록 합니다. 따라서 사용자는 단일 저장소 형식으로 파일을 저장하고 해당 파일에 대한 요금을 지불하기만 하면 되며, 미디어 서비스에서 클라이언트의 요청에 따라 적절한 응답을 작성하고 제공합니다. 자세한 내용은 [동적 패키징 개요](media-services-dynamic-packaging-overview.md) 항목을 참조하세요.
+## <a name="encode-hello-asset-containing-hello-file-toohello-adaptive-bitrate-mp4-set"></a>Hello 자산 포함 hello 파일 toohello 적응 비트 전송률 MP4 세트로 인코딩
+동적 암호화 toocreate 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일 집합이 포함 된 자산은 하기만 하면 됩니다. 그런 다음 hello hello 매니페스트에 지정 된 형식에 따라 및 요청 조각, 주문형 스트리밍 서버 hello 스트림이 선택한 hello 프로토콜에 수신 하는 방법을 사용 하면 hello 합니다. 결과적으로, toostore 하기만 하면 및 단일 저장소 형식 및 미디어 서비스 서비스의 hello 파일에 대 한 급여 빌드하고 클라이언트에서에서 요청에 따라 hello 적절 한 응답을 제공 합니다. 자세한 내용은 참조 hello [동적 패키징 개요](media-services-dynamic-packaging-overview.md) 항목입니다.
 
-인코딩하는 방법에 관한 지침은 [미디어 인코더 표준을 사용하여 자산을 인코딩하는 방법](media-services-dotnet-encode-with-media-encoder-standard.md)을 참조하세요.
+방법에 대 한 지침은 tooencode, 참조 [어떻게 tooencode 미디어 인코더 표준를 사용 하 여 자산](media-services-dotnet-encode-with-media-encoder-standard.md)합니다.
 
-## <a id="create_contentkey"></a>콘텐츠 키를 만들어 인코딩된 자산에 연결
-미디어 서비스에서 콘텐츠 키에는 자산을 암호화할 키가 들어 있습니다.
+## <a id="create_contentkey"></a>콘텐츠 키를 만들고 hello 인코딩된 자산에 연결
+Hello 콘텐츠 키 미디어 서비스 자산 tooencrypt hello 키에 포함 되어 있는 합니다.
 
 자세한 내용은 [콘텐츠 키 만들기](media-services-dotnet-create-contentkey.md)를 참조하세요.
 
-## <a id="configure_key_auth_policy"></a>콘텐츠 키의 인증 정책을 구성합니다.
-미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다. 콘텐츠 키 권한 부여 정책은 사용자가 구성해야 하며 이 키를 클라이언트에 배달하기 위해서는 해당 클라이언트(플레이어)를 충족시켜야 합니다. 콘텐츠 키 권한 부여 정책에는 열기 또는 토큰 제한과 같은 하나 이상의 권한 부여 제한이 있을 수 있습니다.
+## <a id="configure_key_auth_policy"></a>Hello 콘텐츠 키 권한 부여 정책 구성
+미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다. hello 콘텐츠 키 인증 정책은 구성 하 고 hello 키 toobe toohello 클라이언트에 배달 하려면에서 hello 클라이언트 (플레이어)에서 충족 해야 합니다. hello 콘텐츠 키 인증 정책이 있을 수 하나 이상의 권한 부여 제한을: 열거나 토큰 제한 합니다.
 
 자세한 내용은 [콘텐츠 키 권한 부여 정책 구성](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption)을 참조하세요.
 
 ## <a id="configure_asset_delivery_policy"></a>자산 배달 정책 구성
-자산에 대한 배달 정책을 구성합니다. 자산 배달 정책 구성에는 다음이 포함됩니다.
+자산에 대 한 hello 배달 정책을 구성 합니다. 자산 배달 정책 구성 hello 있는 일부의 원인에는 다음이 포함 됩니다.
 
-* DRM 라이선스 획득 URL.
-* 자산 배달 프로토콜(예: MPEG DASH, HLS, 부드러운 스트리밍 또는 모두).
-* 동적 암호화 형식.(이 경우 일반 암호화)
+* hello DRM 라이선스 취득 URL입니다.
+* hello 자산 배달 프로토콜 (예를 들어, MPEG DASH, HLS, 부드러운 스트리밍 또는 모두)입니다.
+* 동적 암호화 (이 경우 일반 암호화)에 hello 형식입니다.
 
 자세한 내용은 [자산 배달 정책 구성 ](media-services-rest-configure-asset-delivery-policy.md)을 참조하세요.
 
-## <a id="create_locator"></a>스트리밍 URL을 얻기 위해 주문형 스트리밍 로케이터 만들기
-사용자에게 Smooth, DASH 또는 HLS에 대한 스트리밍 URL을 제공해야 합니다.
+## <a id="create_locator"></a>주문형 스트리밍 로케이터 순서 tooget 스트리밍 URL 만들기
+스트리밍 URL을 부드러운 스트리밍, DASH 또는 HLS hello로 사용자 tooprovide를 해야 합니다.
 
 > [!NOTE]
 > 자산 배달 정책을 추가하거나 업데이트하는 경우 기존 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.
 >
 >
 
-자산을 게시하고 스트리밍 URL을 작성하는 방법은 [스트리밍 URL 작성](media-services-deliver-streaming-content.md)을 참조하세요.
+Toopublish 자산 및 빌드 스트리밍 URL 참조 하는 방법에 대 한 지침은 [스트리밍 URL을 작성할](media-services-deliver-streaming-content.md)합니다.
 
 ## <a name="get-a-test-token"></a>테스트 토큰 가져오기
-키 권한 부여 정책에 사용된 토큰 제한에 따라 테스트 토큰을 가져옵니다.
+테스트 토큰 가져오기 hello 키 권한 부여 정책에 사용 된 hello 토큰 제한을 기반 합니다.
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate =
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on the data in the given TokenRestrictionTemplate.
-    //The GenerateTestToken method returns the token without the word “Bearer” in front
-    //so you have to add it in front of the token string.
+    // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+    //so you have tooadd it in front of hello token string.
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate);
-    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
 
 
-[AMS 플레이어](http://amsplayer.azurewebsites.net/azuremediaplayer.html) 를 사용하여 스트림을 테스트할 수 있습니다.
+Hello를 사용할 수 있습니다 [AMS 플레이어](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest 스트림을 합니다.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-1. 개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
-2. 다음 요소를 app.config 파일에 정의된 **appSettings**에 추가합니다.
+1. 개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+2. 추가 요소를 너무 다음 hello**appSettings** app.config 파일에 정의 된:
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
 ## <a name="example"></a>예제
 
-다음 샘플에서는 .Net - 버전 3.5.2용 Azure 미디어 서비스 SDK에 도입된 기능을 보여줍니다.(특히, Widevine 라이선스 템플릿을 정의하고 Azure 미디어 서비스에서 Widevine 라이선스를 요청하는 기능).
+hello 다음 예제에서는.Net 용 Azure 미디어 서비스 SDK에 도입 된 기능-버전 3.5.2 (특히 hello 기능 toodefine는 Widevine 라이선스 템플릿 및 Azure 미디어 서비스에서 Widevine 라이선스를 요청)입니다.
 
-Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮어씁니다.
+이 섹션에 표시 된 hello 코드도 Program.cs 파일의 hello 코드를 덮어씁니다.
 
 >[!NOTE]
->다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
+>다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
 
-입력 파일이 있는 폴더를 가리키도록 변수를 업데이트해야 합니다.
+확인 되었는지 tooupdate 변수 toopoint toofolders 입력된 파일이 있는 위치 합니다.
 
     using System;
     using System.Collections.Generic;
@@ -168,7 +168,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -205,7 +205,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("PlayReady License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense));
             Console.WriteLine();
 
@@ -228,17 +228,17 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
-            // You can use the http://amsplayer.azurewebsites.net/azuremediaplayer.html player to test streams.
+            // You can use hello http://amsplayer.azurewebsites.net/azuremediaplayer.html player tootest streams.
             // Note that DASH works on IE 11 (via PlayReady), Edge (via PlayReady), Chrome (via Widevine).
 
             string url = GetStreamingOriginLocator(encodedAsset);
@@ -274,7 +274,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
         {
             var encodingPreset = "Adaptive Streaming";
 
-            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} to {1}",
+            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} too{1}",
                         inputAsset.Name,
                         encodingPreset));
 
@@ -308,7 +308,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
                         "ContentKey",
                         ContentKeyType.CommonEncryption);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -353,7 +353,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
 
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
-            // Associate the content key authorization policy with the content key.
+            // Associate hello content key authorization policy with hello content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -395,7 +395,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
 
-            // Associate the content key authorization policy with the content key
+            // Associate hello content key authorization policy with hello content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -417,41 +417,41 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
 
         static private string ConfigurePlayReadyLicenseTemplate()
         {
-            // The following code configures PlayReady License Template using .NET classes
-            // and returns the XML string.
+            // hello following code configures PlayReady License Template using .NET classes
+            // and returns hello XML string.
 
-            //The PlayReadyLicenseResponseTemplate class represents the template for the response sent back to the end user.
-            //It contains a field for a custom data string between the license server and the application
+            //hello PlayReadyLicenseResponseTemplate class represents hello template for hello response sent back toohello end user.
+            //It contains a field for a custom data string between hello license server and hello application
             //(may be useful for custom app logic) as well as a list of one or more license templates.
             PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
 
-            // The PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
-            // to be returned to the end users.
-            //It contains the data on the content key in the license and any rights or restrictions to be
-            //enforced by the PlayReady DRM runtime when using the content key.
+            // hello PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
+            // toobe returned toohello end users.
+            //It contains hello data on hello content key in hello license and any rights or restrictions toobe
+            //enforced by hello PlayReady DRM runtime when using hello content key.
             PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
-            //Configure whether the license is persistent (saved in persistent storage on the client)
-            //or non-persistent (only held in memory while the player is using the license).  
+            //Configure whether hello license is persistent (saved in persistent storage on hello client)
+            //or non-persistent (only held in memory while hello player is using hello license).  
             licenseTemplate.LicenseType = PlayReadyLicenseType.Nonpersistent;
 
-            // AllowTestDevices controls whether test devices can use the license or not.  
-            // If true, the MinimumSecurityLevel property of the license
-            // is set to 150.  If false (the default), the MinimumSecurityLevel property of the license is set to 2000.
+            // AllowTestDevices controls whether test devices can use hello license or not.  
+            // If true, hello MinimumSecurityLevel property of hello license
+            // is set too150.  If false (hello default), hello MinimumSecurityLevel property of hello license is set too2000.
             licenseTemplate.AllowTestDevices = true;
 
-            // You can also configure the Play Right in the PlayReady license by using the PlayReadyPlayRight class.
-            // It grants the user the ability to playback the content subject to the zero or more restrictions
-            // configured in the license and on the PlayRight itself (for playback specific policy).
-            // Much of the policy on the PlayRight has to do with output restrictions
-            // which control the types of outputs that the content can be played over and
+            // You can also configure hello Play Right in hello PlayReady license by using hello PlayReadyPlayRight class.
+            // It grants hello user hello ability tooplayback hello content subject toohello zero or more restrictions
+            // configured in hello license and on hello PlayRight itself (for playback specific policy).
+            // Much of hello policy on hello PlayRight has toodo with output restrictions
+            // which control hello types of outputs that hello content can be played over and
             // any restrictions that must be put in place when using a given output.
-            // For example, if the DigitalVideoOnlyContentRestriction is enabled,
-            //then the DRM runtime will only allow the video to be displayed over digital outputs
-            //(analog video outputs won’t be allowed to pass the content).
+            // For example, if hello DigitalVideoOnlyContentRestriction is enabled,
+            //then hello DRM runtime will only allow hello video toobe displayed over digital outputs
+            //(analog video outputs won’t be allowed toopass hello content).
 
-            //IMPORTANT: These types of restrictions can be very powerful but can also affect the consumer experience.
-            // If the output protections are configured too restrictive,
-            // the content might be unplayable on some clients. For more information, see the PlayReady Compliance Rules document.
+            //IMPORTANT: These types of restrictions can be very powerful but can also affect hello consumer experience.
+            // If hello output protections are configured too restrictive,
+            // hello content might be unplayable on some clients. For more information, see hello PlayReady Compliance Rules document.
 
             // For example:
             //licenseTemplate.PlayRight.AgcAndColorStripeRestriction = new AgcAndColorStripeRestriction(1);
@@ -489,15 +489,15 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
 
         static public void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
         {
-            // Get the PlayReady license service URL.
+            // Get hello PlayReady license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
-            // GetKeyDeliveryUrl for Widevine attaches the KID to the URL.
+            // GetKeyDeliveryUrl for Widevine attaches hello KID toohello URL.
             // For example: https://amsaccount1.keydelivery.mediaservices.windows.net/Widevine/?KID=268a6dcb-18c8-4648-8c95-f46429e4927c.  
-            // The WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
-            // to append /? KID =< keyId > to the end of the url when creating the manifest.
+            // hello WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
+            // tooappend /? KID =< keyId > toohello end of hello url when creating hello manifest.
             // As a result Widevine license acquisition URL will have KID appended twice,
-            // so we need to remove the KID that in the URL when we call GetKeyDeliveryUrl.
+            // so we need tooremove hello KID that in hello URL when we call GetKeyDeliveryUrl.
 
             Uri widevineUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.Widevine);
             UriBuilder uriBuilder = new UriBuilder(widevineUrl);
@@ -512,7 +512,7 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
 
             };
 
-            // In this case we only specify Dash streaming protocol in the delivery policy,
+            // In this case we only specify Dash streaming protocol in hello delivery policy,
             // All other protocols will be blocked from streaming.
             var assetDeliveryPolicy = _context.AssetDeliveryPolicies.Create(
                 "AssetDeliveryPolicy",
@@ -521,21 +521,21 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
             assetDeliveryPolicyConfiguration);
 
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
         /// <summary>
-        /// Gets the streaming origin locator.
+        /// Gets hello streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset.
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -546,12 +546,12 @@ Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮�
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin.
+            // Create a locator toohello streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file.
+            // Create a URL toohello manifest file.
             return originLocator.Path + assetFile.Name;
         }
 

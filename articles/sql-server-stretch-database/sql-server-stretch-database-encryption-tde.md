@@ -1,5 +1,5 @@
 ---
-title: "Stretch Database에 대해 투명한 데이터 암호화를 사용하도록 설정 - Azure | Microsoft Docs"
+title: "스트레치 데이터베이스-Azure에 대 한 투명 한 데이터 암호화 aaaEnable | Microsoft Docs"
 description: "Azure에서 SQL Server Stretch Database에 대해 TDE(투명한 데이터 암호화)를 사용하도록 설정"
 services: sql-server-stretch-database
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2016
 ms.author: douglasl
-ms.openlocfilehash: ceb355d2ba872ed5d3886c6dc82ca75b1854db0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d6bff455030ac8851b2184c1e8097afd61361d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-tde-for-stretch-database-on-azure"></a>Azure에서 Stretch Database에 대해 TDE(투명한 데이터 암호화)를 사용하도록 설정
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-TDE(투명한 데이터 암호화)는 응용 프로그램에 대한 변경 요구 없이 데이터베이스, 연결된 백업 및 저장된 트랜잭션 로그 파일에 대한 실시간 암호화 및 암호 해독을 수행하여 악의적인 활동의 위협으로부터 보호합니다.
+투명 한 데이터 암호화 (TDE)는 변경 내용을 toohello 필요 없이 실시간 암호화 및 hello 데이터베이스, 연결 된 백업 및 트랜잭션 로그 파일에 대 한 암호 해독을 수행 하 여 악의적인 활동의 hello 위협 으로부터 보호 응용 프로그램입니다.
 
-TDE는 데이터베이스 암호화 키라는 대칭 키를 사용하여 전체 데이터베이스의 저장소를 암호화합니다. 데이터베이스 암호화 키는 기본 제공 서버 인증서에 의해 보호됩니다. 기본 제공 서버 인증서는 각 Azure 서버에 대해 고유합니다. Microsoft는 적어도 90일마다 이러한 인증서를 자동으로 회전합니다. TDE에 대한 일반적인 설명은 [투명한 데이터 암호화(TDE)]를 참조하세요.
+TDE 키 호출된 hello 대칭 데이터베이스 암호화 키를 사용 하 여 전체 데이터베이스의 hello 저장소를 암호화 합니다. hello 데이터베이스 암호화 키는 기본 제공 서버 인증서로 보호 됩니다. hello 기본 제공 서버 인증서는 각 Azure 서버에 대해 고유 합니다. Microsoft는 적어도 90일마다 이러한 인증서를 자동으로 회전합니다. TDE에 대한 일반적인 설명은 [투명한 데이터 암호화(TDE)]를 참조하세요.
 
 ## <a name="enabling-encryption"></a>암호화 설정
-스트레치 사용 SQL Server 데이터베이스에서 마이그레이션된 데이터를 저장하는 Azure 데이터베이스에 대해 TDE를 사용하도록 설정하려면 다음을 수행합니다.
+TDE tooenable hello 스트레치 사용 SQL Server 데이터베이스에서 마이그레이션된 데이터를 저장 하는 Azure 데이터베이스에 대 한 작업을 다음 hello지 않습니다.
 
-1. [Azure 포털](https://portal.azure.com)
-2. 데이터베이스 블레이드에서 **설정** 단추 클릭
-3. **투명한 데이터 암호화** 옵션 선택 ![][1]
-4. **켜기** 설정을 선택한 다음 **저장**
-   ![][2] 선택
+1. Hello에 열기 hello 데이터베이스 [Azure 포털](https://portal.azure.com)
+2. 데이터베이스 블레이드에서 hello hello 클릭 **설정을** 단추
+3. 선택 hello **투명 한 데이터 암호화** 옵션![][1]
+4. 선택 hello **에** 설정을 선택한 후 **저장**
+   ![][2]
 
 ## <a name="disabling-encryption"></a>암호화 비활성화
-스트레치 사용 SQL Server 데이터베이스에서 마이그레이션된 데이터를 저장하는 Azure 데이터베이스에 대해 TDE를 사용하지 않도록 설정하려면 다음을 수행합니다.
+TDE toodisable hello 스트레치 사용 SQL Server 데이터베이스에서 마이그레이션된 데이터를 저장 하는 Azure 데이터베이스에 대 한 작업을 다음 hello지 않습니다.
 
-1. [Azure 포털](https://portal.azure.com)
-2. 데이터베이스 블레이드에서 **설정** 단추 클릭
-3. **투명한 데이터 암호화** 옵션 선택
-4. **끄기** 설정을 선택한 다음 **저장** 선택
+1. Hello에 열기 hello 데이터베이스 [Azure 포털](https://portal.azure.com)
+2. 데이터베이스 블레이드에서 hello hello 클릭 **설정을** 단추
+3. 선택 hello **투명 한 데이터 암호화** 옵션
+4. 선택 hello **오프** 설정을 선택한 후 **저장**
 
 <!--Anchors-->
 [투명한 데이터 암호화(TDE)]: https://msdn.microsoft.com/library/bb934049.aspx

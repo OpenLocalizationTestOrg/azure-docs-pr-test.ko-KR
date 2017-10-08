@@ -1,6 +1,6 @@
 ---
-title: "Apache Hive로 Twitter 데이터 분석 - Azure HDInsight | Microsoft Docs"
-description: "HDInsight에서 Hive 및 Hadoop을 사용하여 원시 TWitter 데이터를 검색 가능한 Hive 테이블로 변환하는 방법을 알아 봅니다."
+title: "Twitter 데이터 Apache Hive-Azure HDInsight를 aaaAnalyze | Microsoft Docs"
+description: "어떻게 toouse Hive 및 Hadoop 데이터에 사용할 HDInsight tootransform 원시 TWitter 검색 가능한 Hive 테이블에 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,32 +16,32 @@ ms.topic: article
 ms.date: 08/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: b8656123fa9c5158f366872ab050f370080ec18a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 02c4d027c7bbf390ac1c3724c14f8d549ea5195e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-twitter-data-using-hive-and-hadoop-on-hdinsight"></a>HDInsight에서 Hive 및 Hadoop을 사용하여 Twitter 데이터 분석
 
-Apache Hive를 사용하여 Twitter 데이터를 처리하는 방법을 알아봅니다. 결과는 특정 단어가 포함된 많은 트윗을 보낸 Twitter 사용자의 목록이 됩니다.
+자세한 내용은 방법 toouse Apache Hive tooprocess Twitter 데이터입니다. hello 결과 hello 특정 단어를 포함 하는 대부분 트 윗을 보낼 Twitter 사용자의 목록입니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계는 HDInsight 3.6에서 테스트했습니다.
+> 이 문서의 단계 hello HDInsight 3.6에서 테스트 되었습니다.
 >
-> Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
-## <a name="get-the-data"></a>데이터 가져오기
+## <a name="get-hello-data"></a>Hello 데이터 가져오기
 
-Twitter를 사용하여 [각 트윗에 대한 데이터](https://dev.twitter.com/docs/platform-objects/tweets) 를 REST API를 통해 JSON(JavaScript Notation) 개체로서 검색할 수 있습니다. [OAuth](http://oauth.net) 는 API에 대한 인증을 필요로 합니다.
+Twitter 있습니다 tooretrieve hello [각 트 윗에 대 한 데이터](https://dev.twitter.com/docs/platform-objects/tweets) REST API를 통해 개체 JSON (JavaScript Notation) 문서와 합니다. [OAuth](http://oauth.net) 인증 toohello API에 필요 합니다.
 
 ### <a name="create-a-twitter-application"></a>Twitter 응용 프로그램 만들기
 
-1. 웹 브라우저에서[https://apps.twitter.com/](https://apps.twitter.com/)으로 로그인합니다. Twitter 계정이 없는 경우 **지금 로그인** 링크를 클릭합니다.
+1. 웹 브라우저에서 로그인 너무[https://apps.twitter.com/](https://apps.twitter.com/)합니다. Hello 클릭 **등록 지금** Twitter 계정이 없는 경우 연결 합니다.
 
 2. **Create New App**을 클릭합니다.
 
-3. **Name**, **Description**, **Website**를 입력합니다. **Website** 필드의 URL을 구성할 수 있습니다. 다음 표는 사용할 샘플 값을 보여 줍니다.
+3. **Name**, **Description**, **Website**를 입력합니다. Hello에 대 한 URL을 만들 수 **웹 사이트** 필드입니다. 다음 표에서 hello 몇 가지 샘플 값 toouse를 보여 줍니다.
 
    | 필드 | 값 |
    |:--- |:--- |
@@ -51,24 +51,24 @@ Twitter를 사용하여 [각 트윗에 대한 데이터](https://dev.twitter.com
 
 4. **Yes, I agree**를 선택한 후 **Create your Twitter application**을 클릭합니다.
 
-5. **Permissions** 탭을 클릭합니다. 기본 권한은 **Read only**입니다.
+5. Hello 클릭 **권한을** 탭 hello 기본 권한은 **읽기 전용**합니다.
 
-6. **Keys and Access Tokens** 탭을 클릭합니다.
+6. Hello 클릭 **키와 액세스 토큰이** 탭 합니다.
 
 7. **Create my access token**을 클릭합니다.
 
-8. 페이지의 오른쪽 위에서 **Test OAuth** 를 클릭합니다.
+8. 클릭 **테스트 OAuth** hello 페이지의 hello 오른쪽 위 모서리에 있습니다.
 
 9. **consumer key**, **Consumer secret**, **Access token** 및 **Access token secret**을 기록해 둡니다.
 
 ### <a name="download-tweets"></a>트윗 다운로드
 
-다음 Python 코드는 Twitter에서 10,000개의 트윗을 다운로드하고 **tweets.txt**라는 파일에 저장합니다.
+hello Python 코드 다음에 저장 하 고 Twitter에서 10, 000 트 윗 다운로드 라는 tooa 파일 **tweets.txt**합니다.
 
 > [!NOTE]
-> 다음 단계는 Python이 이미 설치되어 있으므로 HDInsight 클러스터에서 수행됩니다.
+> 단계를 수행 하는 hello Python가 이미 설치 되어 있으므로 hello HDInsight 클러스터에서 수행 됩니다.
 
-1. SSH를 사용하여 HDInsight 클러스터에 연결합니다.
+1. SSH를 사용 하 여 toohello HDInsight 클러스터를 연결 합니다.
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -76,7 +76,7 @@ Twitter를 사용하여 [각 트윗에 대한 데이터](https://dev.twitter.com
 
     자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-3. 다음 명령을 사용하여 [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2) 및 기타 필요한 패키지를 설치합니다.
+3. 사용 하 여 hello 다음 명령을 tooinstall [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2), 및 기타 필요한 패키지:
 
    ```bash
    sudo apt install python-dev libffi-dev libssl-dev
@@ -89,13 +89,13 @@ Twitter를 사용하여 [각 트윗에 대한 데이터](https://dev.twitter.com
    pip install tweepy progressbar pyOpenSSL requests[security]
    ```
 
-4. 다음 명령을 사용하여 **gettweets.py**라는 파일을 만듭니다.
+4. 사용 하 여 hello 다음 명령은 toocreate 이라는 파일로 내보내집니다 **gettweets.py**:
 
    ```bash
    nano gettweets.py
    ```
 
-5. 다음 텍스트를 **gettweets.py** 파일의 콘텐츠로 사용합니다.
+5. 콘텐츠로 사용 hello hello 텍스트를 다음으로 사용 하 여 hello **gettweets.py** 파일:
 
    ```python
    #!/usr/bin/python
@@ -112,29 +112,29 @@ Twitter를 사용하여 [각 트윗에 대한 데이터](https://dev.twitter.com
    access_token='Your access token'
    access_token_secret='Your access token secret'
 
-   #The number of tweets we want to get
+   #hello number of tweets we want tooget
    max_tweets=10000
 
-   #Create the listener class that receives and saves tweets
+   #Create hello listener class that receives and saves tweets
    class listener(StreamListener):
-       #On init, set the counter to zero and create a progress bar
+       #On init, set hello counter toozero and create a progress bar
        def __init__(self, api=None):
            self.num_tweets = 0
            self.pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=max_tweets).start()
 
        #When data is received, do this
        def on_data(self, data):
-           #Append the tweet to the 'tweets.txt' file
+           #Append hello tweet toohello 'tweets.txt' file
            with open('tweets.txt', 'a') as tweet_file:
                tweet_file.write(data)
-               #Increment the number of tweets
+               #Increment hello number of tweets
                self.num_tweets += 1
-               #Check to see if we have hit max_tweets and exit if so
+               #Check toosee if we have hit max_tweets and exit if so
                if self.num_tweets >= max_tweets:
                    self.pbar.finish()
                    sys.exit(0)
                else:
-                   #increment the progress bar
+                   #increment hello progress bar
                    self.pbar.update(self.num_tweets)
            return True
 
@@ -142,68 +142,68 @@ Twitter를 사용하여 [각 트윗에 대한 데이터](https://dev.twitter.com
        def on_error(self, status):
            print status
 
-   #Get the OAuth token
+   #Get hello OAuth token
    auth = OAuthHandler(consumer_key, consumer_secret)
    auth.set_access_token(access_token, access_token_secret)
-   #Use the listener class for stream processing
+   #Use hello listener class for stream processing
    twitterStream = Stream(auth, listener())
    #Filter for these topics
    twitterStream.filter(track=["azure","cloud","hdinsight"])
    ```
 
     > [!IMPORTANT]
-    > 다음 항목에 대한 자리 표시자 텍스트를 Twitter 응용 프로그램의 정보로 대체합니다.
+    > Hello twitter 응용 프로그램에서 다음 hello 정보로는 항목에 대 한 hello 개체 틀 텍스트를 바꿉니다.
     >
     > * `consumer_secret`
     > * `consumer_key`
     > * `access_token`
     > * `access_token_secret`
 
-6. **Ctrl + X**, **Y**를 차례로 사용하여 파일을 저장합니다.
+6. 사용 하 여 **Ctrl + X**, 다음 **Y** toosave hello 파일입니다.
 
-7. 다음 명령을 사용하여 파일을 실행하고 트윗을 다운로드합니다.
+7. 다음 명령은 toorun hello 파일 hello를 사용 하 여 트 윗을 다운로드 및:
 
     ```bash
     python gettweets.py
     ```
 
-    진행률 표시기가 나타납니다. 진행률 표시기는 트윗이 다운로드되면서 100%까지 올라갑니다.
+    진행률 표시기가 나타납니다. 트 윗 다운로드 hello로 too100 %를 계산 합니다.
 
    > [!NOTE]
-   > 진행률 표시줄이 앞으로 이동하는 데 시간이 오래 걸리는 경우 추세 항목을 추적하는 필터를 변경해야 합니다. 필터에서 항목에 대한 트윗이 많을 경우 필요하면 10,000개의 트윗을 신속하게 가져올 수 있습니다.
+   > 진행률 표시줄 tooadvance hello에 대 한 시간이 오래 걸리면, hello 필터 tootrack 추세 항목을 변경 해야 합니다. 필터에 hello 항목에 대 한 많은 트 윗을 hello를 필요한 10000 트 윗 신속 하 게 가져올 수 있습니다.
 
-### <a name="upload-the-data"></a>데이터 업로드
+### <a name="upload-hello-data"></a>Hello 데이터 업로드
 
-HDInsight 저장소로 데이터를 복사하려면 다음 명령을 사용합니다.
+tooupload hello 데이터 tooHDInsight 저장소에서 다음 명령을 사용 하 여 hello:
 
    ```bash
    hdfs dfs -mkdir -p /tutorials/twitter/data
    hdfs dfs -put tweets.txt /tutorials/twitter/data/tweets.txt
 ```
 
-이러한 명령은 클러스터의 모든 노드에서 액세스할 수 있는 위치에 데이터를 저장합니다.
+이 명령은 hello 클러스터의 모든 노드에 액세스할 수 있는 위치에 hello 데이터를 저장 합니다.
 
-## <a name="run-the-hiveql-job"></a>HiveQL 작업 실행
+## <a name="run-hello-hiveql-job"></a>Hello HiveQL 작업 실행
 
-1. 다음 명령을 사용하여 HiveQL 문이 포함 된 파일을 만듭니다.
+1. 다음 명령은 toocreate HiveQL 문을 포함 하는 파일 hello를 사용 합니다.
 
    ```bash
    nano twitter.hql
    ```
 
-    다음 텍스트를 파일의 내용으로 사용합니다.
+    콘텐츠로 사용 hello hello 파일 텍스트를 다음 hello를 사용 합니다.
 
    ```hiveql
    set hive.exec.dynamic.partition = true;
    set hive.exec.dynamic.partition.mode = nonstrict;
    -- Drop table, if it exists
    DROP TABLE tweets_raw;
-   -- Create it, pointing toward the tweets logged from Twitter
+   -- Create it, pointing toward hello tweets logged from Twitter
    CREATE EXTERNAL TABLE tweets_raw (
        json_response STRING
    )
    STORED AS TEXTFILE LOCATION '/tutorials/twitter/data';
-   -- Drop and recreate the destination table
+   -- Drop and recreate hello destination table
    DROP TABLE tweets;
    CREATE TABLE tweets
    (
@@ -238,8 +238,8 @@ HDInsight 저장소로 데이터를 복사하려면 다음 명령을 사용합�
        profile_image_url STRING,
        json_response STRING
    );
-   -- Select tweets from the imported data, parse the JSON,
-   -- and insert into the tweets table
+   -- Select tweets from hello imported data, parse hello JSON,
+   -- and insert into hello tweets table
    FROM tweets_raw
    INSERT OVERWRITE TABLE tweets
    SELECT
@@ -299,16 +299,16 @@ HDInsight 저장소로 데이터를 복사하려면 다음 명령을 사용합�
    WHERE (length(json_response) > 500);
    ```
 
-2. **Ctrl + X**, **Y**를 차례로 누르고 파일을 저장합니다.
-3. 다음 명령을 사용하여 파일에 포함된 HiveQL을 실행합니다.
+2. 키를 눌러 **Ctrl + X**, 키를 누릅니다 **Y** toosave hello 파일입니다.
+3. 다음 명령 toorun hello HiveQL hello 파일에 포함 된 hello를 사용 합니다.
 
    ```bash
    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i twitter.hql
    ```
 
-    이 명령은 **twitter.hql** 파일을 실행합니다. 쿼리가 완료되면 `jdbc:hive2//localhost:10001/>` 프롬프트가 표시됩니다.
+    이 명령은 실행 hello hello **twitter.hql** 파일입니다. Hello 쿼리가 완료 되 면 표시 되 면 한 `jdbc:hive2//localhost:10001/>` 프롬프트입니다.
 
-4. Beeline 프롬프트에서 다음 쿼리를 사용하여 데이터를 가져왔는지 확인합니다.
+4. Hello beeline 프롬프트에서 다음 데이터를 가져온 쿼리 tooverify hello를 사용 합니다.
 
    ```hiveql
    SELECT name, screen_name, count(1) as cc
@@ -318,11 +318,11 @@ HDInsight 저장소로 데이터를 복사하려면 다음 명령을 사용합�
        ORDER BY cc DESC LIMIT 10;
    ```
 
-    이 쿼리는 메시지 텍스트에 단어 **Azure**를 포함하는 최대 10개의 트윗을 반환합니다.
+    이 쿼리는 최대 10 개의 트 윗 hello 단어를 포함 하는 반환 **Azure** hello 메시지 텍스트에 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-비구조적 JSON 데이터 집합을 구조적 Hive 테이블로 변환하는 방법에 대해 알아보았습니다. HDInsight에서 Hive에 대한 자세한 내용은 다음 문서를 참조하세요.
+배웠습니다 어떻게 tootransform 구조화 된 Hive 테이블에는 구조화 되지 않은 JSON 데이터 집합입니다. toolearn 하이브 HDInsight에 대 한 자세한 정보 hello 다음 문서를 참조 하세요.
 
 * [HDInsight 시작](hdinsight-hadoop-linux-tutorial-get-started.md)
 * [HDInsight를 사용하여 비행 지연 데이터 분석](hdinsight-analyze-flight-delay-data-linux.md)

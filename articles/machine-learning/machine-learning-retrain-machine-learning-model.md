@@ -1,6 +1,6 @@
 ---
-title: "Machine Learning 모델 재학습 | Microsoft Docs"
-description: "Azure Machine Learning에서 모델을 다시 학습하고 새로 학습된 모델을 사용하도록 웹 서비스를 업데이트하는 방법을 알아봅니다."
+title: "기계 학습 모델 aaaRetrain | Microsoft Docs"
+description: "Tooretrain 모델 및 update hello 웹 서비스 toouse hello 새로 학습 된 모델에 Azure 기계 학습 방법에 대해 알아봅니다."
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,86 +14,86 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: f86c2bc41dd7ff0bc31454a56b84d136dc7d026c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 342bb9954105339b4b634ff20968a64f4f9f750e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="retrain-a-machine-learning-model"></a>Machine Learning 모델 재학습
-Azure 기계 학습에서 기계 학습 모델 운영 프로세스의 일부로 모델은 학습 및 저장됩니다. 그런 다음 이를 서술적 웹 서비스를 만드는 데 사용합니다. 그러면 웹 사이트, 대시보드 및 모바일 앱에서 웹 서비스를 사용할 수 있습니다. 
+Azure 기계 학습에서 기계 학습 모델의 해결해줍니다 hello 과정의 일환으로, 모델을 교육 하 고 저장 합니다. 그런 다음 사용할 있습니다 toocreate predicative 웹 서비스. hello 웹 서비스는 다음 웹 사이트, 대시보드 및 모바일 앱에서 사용할 수 있습니다. 
 
-기계 학습을 사용하여 만드는 모델은 일반적으로 정적이지 않습니다. 새 데이터를 사용할 수 있는 경우 또는 API 소비자가 자체적인 데이터를 가진 경우 모델을 재학습해야 합니다. 
+기계 학습을 사용하여 만드는 모델은 일반적으로 정적이지 않습니다. 때나 hello API의 hello 소비자가 새 데이터를 사용할 수 있게 됨 자신의 데이터 hello 모델에 다시 학습 되도록 toobe가 필요 합니다. 
 
-재학습은 자주 발생할 수 있습니다. 프로그래밍 방식의 재학습 API 기능을 사용하면 재학습 API를 통해 프로그래밍 방식으로 모델을 다시 학습하고 새로 학습된 모델과 함께 웹 서비스를 업데이트할 수 있습니다. 
+재학습은 자주 발생할 수 있습니다. Hello 프로그래밍 재교육 API 기능 hello 모델 hello Api 재교육 및 업데이트 hello 웹 서비스를 사용 하 여 hello 새로 학습 된 모델을 다시 학습 프로그래밍 방식으로 있습니다. 
 
-이 문서에서는 재학습 프로세스를 설명하고 재학습 API를 사용하는 방법을 보여 줍니다.
+이 문서는 hello 재교육 프로세스를 설명 하 고 toouse 재교육 Api hello 하는 방법을 보여 줍니다.
 
-## <a name="why-retrain-defining-the-problem"></a>다시 학습 이유: 문제 정의
-기계 학습 훈련 프로세스의 일부로, 데이터 집합을 사용하여 모델을 학습합니다. 기계 학습을 사용하여 만드는 모델은 일반적으로 정적이지 않습니다. 새 데이터를 사용할 수 있는 경우 또는 API 소비자가 자체적인 데이터를 가진 경우 모델을 재학습해야 합니다.
+## <a name="why-retrain-defining-hello-problem"></a>다시 학습 이유: hello 문제 정의
+학습 프로세스 hello 기계 학습의 일환으로, 데이터 집합을 사용 하 여 모델을 학습 합니다. 기계 학습을 사용하여 만드는 모델은 일반적으로 정적이지 않습니다. 때나 hello API의 hello 소비자가 새 데이터를 사용할 수 있게 됨 자신의 데이터 hello 모델에 다시 학습 되도록 toobe가 필요 합니다.
 
-이러한 시나리오에서 개발자나 API 소비자는 프로그래밍 방식의 API를 통해 일회성이나 주기적으로 고유한 데이터를 사용하여 모델을 다시 학습할 수 있는 클라이언트를 만들 수 있습니다. 그런 후에 다시 학습의 결과를 평가하고 새로 학습된 모델을 사용하도록 웹 서비스 API를 업데이트할 수 있습니다.
+이러한 시나리오에서 프로그래밍 방식으로 API를 제공 편리 tooallow 또는 hello 프로그램 Api toocreate 수, 일회성 또는 정기적으로 보존 하기 위해 자신의 데이터를 사용 하 여 hello 모델 클라이언트의 소비자입니다. 그런 다음, 재교육 hello 결과 평가 수 있으며 hello 웹 서비스 API toouse hello 새로 학습 된 모델 업데이트.
 
 > [!NOTE]
-> 기존 학습 실험 및 새 웹 서비스가 있다면 다음 섹션에서 언급된 연습을 수행하는 대신에 기존 예측 웹 서비스 재학습을 확인하는 것이 좋습니다.
+> 기존 학습 실험 및 새 웹 서비스를 설정한 경우 다음 hello 연습 hello 다음 섹션에서에서 설명 하는 대신 기존 예측 웹 서비스 재 아웃 toocheck을 수도 있습니다.
 > 
 > 
 
 ## <a name="end-to-end-workflow"></a>종단 간 워크플로
-프로세스에 학습 실험 및 웹 서비스로 게시된 서술적 실험이 구성 요소로 포함됩니다. 학습된 모델을 다시 학습할 수 있으려면 학습 실험은 학습된 모델의 출력을 사용하여 웹 서비스로 게시되어야 합니다. 그러면 API가 다시 학습을 위해 모델에 액세스할 수 있습니다. 
+hello 프로세스에서는 다음과 같은 구성 요소가 hello: A 학습 실험과 예측 실험을 웹 서비스로 게시 합니다. 학습된 된 모델을 학습 실험 hello tooenable 간섭할 학습된 된 모델의 hello 출력을 사용 하 여 웹 서비스로 게시 되어야 합니다. 따라서 API 액세스 toohello 모델을 학습을 다시 수행할 수 있습니다. 
 
-다음 단계는 신규 및 기존 웹 서비스에 모두 적용됩니다.
+단계를 수행 하는 hello tooboth 새로 추가 되거나 기존의 웹 서비스를 적용 합니다.
 
-초기 예측 웹 서비스를 만듭니다.
+Hello 초기 예측 웹 서비스를 만듭니다.
 
 * 학습 실험 만들기
 * 예측 웹 실험 만들기
 * 예측 웹 서비스 배포
 
-웹 서비스 재학습:
+Hello 웹 서비스를 다시 학습:
 
-* 재학습을 감안하여 학습 실험 업데이트
-* 재학습 웹 서비스 배포
-* 학습 실험의 일괄 처리 실행 서비스 코드를 사용하여 모델 재학습
+* 학습 실험 tooallow 재교육에 대 한 업데이트
+* Hello 재교육 웹 서비스를 배포 합니다.
+* Hello 배치 실행 서비스 코드 tooretrain hello 모델을 사용 하 여
 
-이전 단계에 대한 연습은 [프로그래밍 방식으로 Machine Learning 모델 다시 학습](machine-learning-retrain-models-programmatically.md)을 참조하세요.
+Hello 이전 단계를 연습에 대 한 참조 [기계 학습을 다시 학습을 프로그래밍 방식으로 모델링](machine-learning-retrain-models-programmatically.md)합니다.
 
 > [!NOTE] 
-> 새 웹 서비스를 배포하려면 웹 서비스를 배포하려는 구독에 충분한 권한이 있어야 합니다. 자세한 내용은 [Azure Machine Learning 웹 서비스 포털에서 웹 서비스 관리](machine-learning-manage-new-webservice.md)를 참조하세요. 
+> toodeploy 충분 한 권한이의 해야 hello 구독 toowhich hello 웹 서비스를 배포 하면 새 웹 서비스입니다. 자세한 내용은 참조 하십시오 [hello Azure 컴퓨터 학습 웹 서비스 포털을 사용 하 여 웹 서비스 관리](machine-learning-manage-new-webservice.md)합니다. 
 
 기존 웹 서비스를 배포한 경우:
 
-* 예측 웹 서비스에 새 끝점 만들기
-* PATCH URL 및 코드 가져오기
-* PATCH URL을 사용하여 다시 학습된 모델의 새 끝점을 가리킵니다. 
+* Hello 예측 웹 서비스에 새 끝점 만들기
+* Hello 패치 URL 및 코드 가져오기
+* 사용 하 여 hello 패치 URL toopoint hello hello에서 새 끝점에 모델을 다시 학습 되도록 
 
-이전 단계에 대한 연습은 [기존 웹 서비스 재학습](machine-learning-retrain-a-classic-web-service.md)을 참조하세요.
+Hello 이전 단계를 연습에 대 한 참조 [클래식 웹 서비스를 다시 학습](machine-learning-retrain-a-classic-web-service.md)합니다.
 
-기존 웹 서비스를 다시 학습하는 데 있어 난관에 봉착한 경우 [Azure Machine Learning Classic Web 서비스 재학습 문제 해결](machine-learning-troubleshooting-retraining-models.md)을 참조하세요.
+문제가 재교육 클래식 웹 서비스를 실행 하면 참조 [hello 재교육 Azure 컴퓨터 학습 클래식 웹 서비스의 문제 해결](machine-learning-troubleshooting-retraining-models.md)합니다.
 
 새 웹 서비스를 배포한 경우:
 
-* Azure Resource Manager 계정으로 로그인합니다.
-* 웹 서비스 정의 가져오기
-* JSON으로 웹 서비스 정의 내보내기
-* JSON에서 `ilearner` blob에 대한 참조 업데이트
-* JSON을 웹 서비스 정의로 가져오기
-* 웹 서비스를 새 웹 서비스 정의로 업데이트합니다.
+* Tooyour Azure 리소스 관리자 계정에 로그인
+* Hello 웹 서비스 정의 가져오기
+* JSON으로 hello 웹 서비스 정의 내보내기
+* Hello 참조 toohello 업데이트 `ilearner` hello JSON에에서 blob
+* 웹 서비스 정의 hello JSON 가져오기
+* 새 웹 서비스 정의 된 hello 웹 서비스를 업데이트 합니다.
 
-이전 단계에 대한 연습은 [Machine Learning Management PowerShell cmdlets를 사용하여 새 웹 서비스 재학습](machine-learning-retrain-new-web-service-using-powershell.md)을 참조하세요.
+Hello 이전 단계를 연습에 대 한 참조 [hello 컴퓨터 학습 관리 PowerShell cmdlet을 사용 하 여 새 웹 서비스를 다시 학습](machine-learning-retrain-new-web-service-using-powershell.md)합니다.
 
-Classic Web 서비스에 대한 재학습을 설정하는 프로세스에는 다음 단계가 포함됩니다.
+hello 프로세스는 기존의 웹 서비스에 대 한 재교육를 설정 하기 위한 단계를 수행 하는 hello 포함 됩니다.
 
 ![재학습 프로세스 개요][1]
 
-New Web 서비스에 대한 재학습을 설정하는 프로세스에는 다음 단계가 포함됩니다.
+새 웹 서비스에 대 한 재교육를 설정 하기 위한 hello 프로세스 단계를 수행 하는 hello 포함 됩니다.
 
 ![재학습 프로세스 개요][7]
 
 ## <a name="other-resources"></a>기타 리소스
 * [Azure Data Factory를 사용하여 Azure Machine Learning 모델 재학습 및 업데이트](https://azure.microsoft.com/blog/retraining-and-updating-azure-machine-learning-models-with-azure-data-factory/)
 * [PowerShell을 사용하여 한 실험에서 여러 Machine Learning 모델 및 웹 서비스 끝점 만들기](machine-learning-create-models-and-endpoints-with-powershell.md)
-* [API를 사용한 AML 재학습 모델](https://www.youtube.com/watch?v=wwjglA8xllg) 비디오는 Retraining API 및 PowerShell을 사용하여 Azure Machine Learning에서 만들어진 Machine Learning 모델을 재학습하는 방법을 보여줍니다.
+* hello [AML 재교육 모델 사용 하 여 Api](https://www.youtube.com/watch?v=wwjglA8xllg) 동영상에서는 재교육 Api 및 PowerShell tooretrain 기계 학습 모델 hello를 사용 하 여 Azure 기계 학습에서 만드는 방법.
 
 <!--image links-->
 [1]: ./media/machine-learning-retrain-machine-learning-model/machine-learning-retrain-models-programmatically-IMAGE01.png

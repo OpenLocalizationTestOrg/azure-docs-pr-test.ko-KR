@@ -1,6 +1,6 @@
 ---
-title: "오픈 소스 미디어 프레임워크용 부드러운 스트리밍 플러그 인"
-description: "Adobe 오픈 소스 미디어 프레임워크용 Azure 미디어 서비스 부드러운 스트리밍 플러그 인을 사용하는 방법에 대해 알아봅니다."
+title: "aaaSmooth hello Open 소스 미디어 프레임 워크에 대 한 스트리밍 플러그 인"
+description: "Toouse hello Adobe 열기 소스 미디어 프레임 워크에 대 한 Azure 미디어 서비스 부드러운 스트리밍 플러그 인을 hello 하는 방법에 대해 알아봅니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 9c764f176ae75085320882de3fb26d8e7d52daaf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3cf8e4679279344cf79c3f0e5b28f63adf88179d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-microsoft-smooth-streaming-plugin-for-the-adobe-open-source-media-framework"></a>Adobe 오픈 소스 미디어 프레임워크용 Microsoft 부드러운 스트리밍 플러그 인을 사용하는 방법
+# <a name="how-toouse-hello-microsoft-smooth-streaming-plugin-for-hello-adobe-open-source-media-framework"></a>TooUse는 hello Adobe 열기 소스 미디어 프레임 워크에 대 한 Microsoft 부드러운 스트리밍 플러그 인을 hello 하는 방법
 ## <a name="overview"></a>개요
-오픈 소스 미디어 프레임워크용 Microsoft 부드러운 스트리밍 플러그 인 2.0(SS for OSMF)은 OSMF의 기본 기능을 확장하며 기존 및 새로운 OSMF 플레이어에 Microsoft 부드러운 스트리밍 콘텐츠 재생을 추가합니다. 이 플러그 인은 또한 SMP(Strobe Media Playback)에 부드러운 스트리밍 재생 기능을 추가합니다.
+열기 소스 미디어 Framework 2.0 (OSMF 용 SS) OSMF의 hello 기본 기능을 확장 하 고 Microsoft 부드러운 스트리밍 콘텐츠 재생 toonew 기존 OSMF 추가 대 한 Microsoft 부드러운 스트리밍 플러그 인을 hello 플레이어입니다. 또한 hello 플러그 인 부드러운 스트리밍 재생 기능 tooStrobe 미디어 재생 (SMP)를 추가합니다.
 
 SS for OSMF에는 두 가지 버전의 플러그 인이 포함됩니다.
 
 * OSMF용 정적 부드러운 스트리밍 플러그 인(.swc)
 * OSMF용 동적 부드러운 스트리밍 플러그 인(.swf)
 
-이 문서는 OSMF 및 OSMF 플러그 인에 대한 실용적인 일반 지식을 가진 독자를 대상으로 합니다. OSMF에 대한 자세한 내용은 [OSMF 공식 사이트](http://osmf.org/)(영문)에 있는 설명서를 참조하십시오.
+이 문서에서는 hello 판독기에는 OSMF 및 OSMF 대 한 일반 작업 지식이 가정 플러그 인 합니다. OSMF에 대 한 자세한 내용은 설명서를 참조 하십시오 hello hello에 [공식 OSMF 사이트](http://osmf.org/)합니다.
 
 ### <a name="smooth-streaming-plugin-for-osmf-20"></a>OSMF용 부드러운 스트리밍 플러그 인 2.0
-이 플러그 인은 다음 기능을 통해 주문형 부드러운 스트리밍 콘텐츠의 로딩과 재생을 지원합니다.
+hello 플러그 인 같은 기능 hello로 로드 하 고 주문형 부드러운 스트리밍 콘텐츠의 재생을 지원 합니다.
 
 * 주문형 부드러운 스트리밍 재생(재생, 일시 중지, 검색, 중지)
 * Live Smooth Streaming 재생(재생)
@@ -46,18 +46,18 @@ SS for OSMF에는 두 가지 버전의 플러그 인이 포함됩니다.
 * 이 버전은 OSMF 2.0만 지원함
 
 ## <a name="supported-features-and-known-issues"></a>지원되는 기능 및 알려진 문제
-지원되는 기능, 지원되지 않는 기능 및 알려진 문제의 전체 목록은 [이 문서](http://download.microsoft.com/download/3/1/B/31B63D97-574E-4A8D-BF8D-170744181724/Smooth_Streaming_Plugin_for_OSMF.pdf)를 참조하세요.
+전체 목록을 지원 되는 기능, 지원 되지 않는 기능 및 알려진된 문제에 대 한 참조 너무[이 문서](http://download.microsoft.com/download/3/1/B/31B63D97-574E-4A8D-BF8D-170744181724/Smooth_Streaming_Plugin_for_OSMF.pdf)합니다.
 
-## <a name="loading-the-plugin"></a>플러그 인 로드
-OSMF 플러그 인은 정적으로(컴파일 시간에) 또는 동적으로(런타임에) 로드할 수 있습니다. OSMF용 부드러운 스트리밍 플러그 인 다운로드에는 동적 버전과 정적 버전이 모두 있습니다.
+## <a name="loading-hello-plugin"></a>로드 hello 플러그 인
+OSMF 플러그 인은 정적으로(컴파일 시간에) 또는 동적으로(런타임에) 로드할 수 있습니다. OSMF 다운로드에 대 한 부드러운 스트리밍 플러그인 hello 동적 및 정적 버전이 포함 됩니다.
 
-* 정적 로드: 정적으로 로드하려면 정적 라이브러리(SWC) 파일이 필요합니다. 정적 플러그 인이 프로젝트에 참조로 추가되고 컴파일 시간에 최종 출력 파일 내에 병합됩니다.
-* 동적 로드: 동적으로 로드하려면 미리 컴파일된(SWF) 파일이 필요합니다. 동적 플러그 인이 런타임에 로드되며 프로젝트 출력에 포함되지 않습니다. (컴파일된 출력) 동적 플러그 인은 HTTP 및 FILE 프로토콜을 사용하여 로드할 수 있습니다.
+* 정적 로드: tooload 정적으로 정적 라이브러리 (SWC) 파일은 필요 합니다. 정적 플러그 인 참조로 추가 된 hello 컴파일 타임에 파일 toohello 프로젝트와 hello 최종 출력 내부 병합 합니다.
+* 동적 로드: tooload 동적으로 미리 컴파일된 (SWF) 파일이 필요 합니다. 동적 플러그 인 hello 런타임에서 로드 되 고 hello 프로젝트 출력에 포함 되지 않습니다. (컴파일된 출력) 동적 플러그 인은 HTTP 및 FILE 프로토콜을 사용하여 로드할 수 있습니다.
 
-정적 및 동적 로드에 대한 자세한 내용은 공식 [OSMF 플러그 인 페이지](http://osmf.org/dev/osmf/OtherPDFs/osmf_plugin_dev_guide.pdf)(영문)를 참조하십시오.
+정적 및 동적 로드에 대 한 자세한 내용은 참조 hello 공식 [OSMF 플러그 인 페이지](http://osmf.org/dev/osmf/OtherPDFs/osmf_plugin_dev_guide.pdf)합니다.
 
 ### <a name="ss-for-osmf-static-loading"></a>SS for OSMF 정적 로드
-아래 코드 조각은 OSMF용 SS 플러그 인을 정적으로 로드하고 OSMF MediaFactory 클래스를 사용하여 기본 비디오를 재생하는 방법을 보여 줍니다. SS for OSMF 코드를 포함하기 전에 먼저 프로젝트 참조에 "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" 정적 플러그 인이 있는지 확인하십시오.
+아래 코드 조각 hello tooload이 OSMF 용 SS 플러그 인을 정적으로 hello 하 한 OSMF MediaFactory 클래스를 사용 하 여 기본 비디오를 재생 하는 방법을 보여줍니다. OSMF 코드에 대 한 hello SS를 포함 하기 전에 hello 프로젝트 참조 "MSAdaptiveStreamingPlugin v1.0.3 osmf2.0.swc" hello 정적 플러그 인이 포함 되어 있는지 확인 하십시오.
 
 ```
 package 
@@ -94,24 +94,24 @@ package
         private function initMediaPlayer():void
         {
 
-            // Create the container (sprite) for managing display and layout
+            // Create hello container (sprite) for managing display and layout
             _mediaPlayerSprite = new MediaPlayerSprite();    
             _mediaPlayerSprite.addEventListener(MediaErrorEvent.MEDIA_ERROR, onPlayerFailed);
             _mediaPlayerSprite.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onPlayerStateChange);
             _mediaPlayerSprite.scaleMode = ScaleMode.NONE;
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
-            //Adds the container to the stage
+            //Adds hello container toohello stage
             addChild(_mediaPlayerSprite);
 
             // Create a mediafactory instance
             _mediaFactory = new DefaultMediaFactory();
 
-            // Add the listeners for PLUGIN_LOADING
+            // Add hello listeners for PLUGIN_LOADING
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoaded);
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadFailed );
 
-            // Load the plugin class 
+            // Load hello plugin class 
             loadAdaptiveStreamingPlugin( );  
 
         }
@@ -126,15 +126,15 @@ package
 
         private function onPluginLoaded( event:MediaFactoryEvent ):void
         {
-            // The plugin is loaded successfully.
-            // Your web server needs to host a valid crossdomain.xml file to allow plugin to download Smooth Streaming files.
+            // hello plugin is loaded successfully.
+            // Your web server needs toohost a valid crossdomain.xml file tooallow plugin toodownload Smooth Streaming files.
         loadMediaSource("http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest")
 
         }
 
         private function onPluginLoadFailed( event:MediaFactoryEvent ):void
         {
-            // The plugin is failed to load ...
+            // hello plugin is failed tooload ...
         }
 
 
@@ -148,12 +148,12 @@ package
             {
                 case MediaPlayerState.LOADING: 
 
-                    // A new source is started to load.
+                    // A new source is started tooload.
 
                     break;
 
                 case  MediaPlayerState.READY :   
-                    // Add code to deal with Player Ready when it is hit the first load after a source is loaded. 
+                    // Add code toodeal with Player Ready when it is hit hello first load after a source is loaded. 
 
                     break;
 
@@ -174,7 +174,7 @@ package
 
         private function loadMediaSource(sourceURL : String):void 
         {
-            // Take an URL of SmoothStreamingSource's manifest and add it to the page.
+            // Take an URL of SmoothStreamingSource's manifest and add it toohello page.
 
             var resource:URLResource= new URLResource( sourceURL );
 
@@ -183,7 +183,7 @@ package
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
 
-            // Add the media element
+            // Add hello media element
             _mediaPlayerSprite.media = element;
         }     
 
@@ -193,7 +193,7 @@ package
 
 
 ### <a name="ss-for-osmf-dynamic-loading"></a>SS for OSMF 동적 로드
-아래 코드 조각은 OSMF용 SS 플러그 인을 동적으로 로드하고 OSMF MediaFactory 클래스를 사용하여 기본 비디오를 재생하는 방법을 보여 줍니다. SS for OSMF 코드를 포함하기 전에 먼저 "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" 동적 플러그 인을 프로젝트 폴더에 복사(FILE 프로토콜을 사용하여 로드하려는 경우)하거나 HTTP 로드용 웹 서버 아래에 복사합니다. 프로젝트 참조에 "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc"를 포함할 필요는 없습니다.
+아래 코드 조각 hello tooload OSMF 용 SS 플러그 인을 동적으로 hello 하 고 hello OSMF MediaFactory 클래스를 사용 하는 기본 비디오를 재생 하는 방법을 보여 줍니다. OSMF 코드에 대 한 hello SS를 포함 하기 전에 파일 프로토콜을 사용 하 여 tooload 이나 HTTP 부하에 대 한 웹 서버에서 복사 hello "MSAdaptiveStreamingPlugin v1.0.3 osmf2.0.swf" 동적 플러그 인 toohello 프로젝트 폴더를 복사 합니다. 없는 필요 tooinclude "MSAdaptiveStreamingPlugin v1.0.3 osmf2.0.swc" hello 프로젝트 참조에 있습니다.
 
 package {
 
@@ -208,7 +208,7 @@ package {
     import flash.system.Capabilities;
 
 
-    //Sets the size of the SWF
+    //Sets hello size of hello SWF
 
     [SWF(width="1024", height="768", backgroundColor='#405050', frameRate="25")]
     public class TestPlayer extends Sprite
@@ -227,22 +227,22 @@ package {
         private function initMediaPlayer():void
         {
 
-            // Create the container (sprite) for managing display and layout
+            // Create hello container (sprite) for managing display and layout
             _mediaPlayerSprite = new MediaPlayerSprite();    
             _mediaPlayerSprite.addEventListener(MediaErrorEvent.MEDIA_ERROR, onPlayerFailed);
             _mediaPlayerSprite.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onPlayerStateChange);
 
-            //Adds the container to the stage
+            //Adds hello container toohello stage
             addChild(_mediaPlayerSprite);
 
             // Create a mediafactory instance
             _mediaFactory = new DefaultMediaFactory();
 
-            // Add the listeners for PLUGIN_LOADING
+            // Add hello listeners for PLUGIN_LOADING
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoaded);
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadFailed );
 
-            // Load the plugin class 
+            // Load hello plugin class 
             loadAdaptiveStreamingPlugin( );  
 
         }
@@ -252,7 +252,7 @@ package {
             var pluginResource:MediaResourceBase;
             var adaptiveStreamingPluginUrl:String;
 
-            // Your dynamic plugin web server needs to host a valid crossdomain.xml file to allow loading plugins.
+            // Your dynamic plugin web server needs toohost a valid crossdomain.xml file tooallow loading plugins.
 
             adaptiveStreamingPluginUrl = "http://yourdomain/MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf";
             pluginResource = new URLResource(adaptiveStreamingPluginUrl);
@@ -262,16 +262,16 @@ package {
 
         private function onPluginLoaded( event:MediaFactoryEvent ):void
         {
-            // The plugin is loaded successfully.
+            // hello plugin is loaded successfully.
 
-            // Your web server needs to host a valid crossdomain.xml file to allow plugin to download Smooth Streaming files.
+            // Your web server needs toohost a valid crossdomain.xml file tooallow plugin toodownload Smooth Streaming files.
 
     loadMediaSource("http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest")
         }
 
         private function onPluginLoadFailed( event:MediaFactoryEvent ):void
         {
-            // The plugin is failed to load ...
+            // hello plugin is failed tooload ...
         }
 
 
@@ -285,12 +285,12 @@ package {
             {
                 case MediaPlayerState.LOADING: 
 
-                    // A new source is started to load.
+                    // A new source is started tooload.
 
                     break;
 
                 case  MediaPlayerState.READY :   
-                    // Add code to deal with Player Ready when it is hit the first load after a source is loaded. 
+                    // Add code toodeal with Player Ready when it is hit hello first load after a source is loaded. 
 
                     break;
 
@@ -311,7 +311,7 @@ package {
 
         private function loadMediaSource(sourceURL : String):void 
         {
-            // Take an URL of SmoothStreamingSource's manifest and add it to the page.
+            // Take an URL of SmoothStreamingSource's manifest and add it toohello page.
 
             var resource:URLResource= new URLResource( sourceURL );
 
@@ -319,22 +319,22 @@ package {
             _mediaPlayerSprite.scaleMode = ScaleMode.LETTERBOX;
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
-            // Add the media element
+            // Add hello media element
             _mediaPlayerSprite.media = element;
         }     
 
     }
 }
 
-## <a name="strobe-media--playback-with-the-ss-odmf-dynamic-plugin"></a>Strobe Media Playback 및 SS ODMF 동적 플러그 인
-OSMF용 부드러운 스트리밍 동적 플러그 인은 [SMP(Strobe Media Playback)](http://osmf.org/strobe_mediaplayback.html)(영문)와 호환됩니다. SS for OSMF 플러그 인을 사용하여 SMP에 부드러운 스트리밍 콘텐츠 재생을 추가할 수 있습니다. 이렇게 하려면 다음 단계에 따라 "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf"를 HTTP 로드용 웹 서버 아래에 복사합니다.
+## <a name="strobe-media--playback-with-hello-ss-odmf-dynamic-plugin"></a>SS ODMF 동적 플러그 인 hello로 strobe Media Playback
+hello 부드러운 스트리밍 OSMF 동적 플러그 인에 대해 호환 되 [Strobe 미디어 재생 (SMP)](http://osmf.org/strobe_mediaplayback.html)합니다. OSMF 플러그 인 tooadd 부드러운 스트리밍 콘텐츠 재생 tooSMP에 대 한 hello SS를 사용할 수 있습니다. toodo "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" 웹 서버에서 다음 hello를 사용 하 여 HTTP 부하에 대 한 단계는이 복사 합니다.
 
-1. [Strobe Media Playback 설정 페이지](http://osmf.org/dev/2.0gm/setup.html)(영문)로 이동합니다. 
-2. src를 부드러운 스트리밍 원본(예: http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest)으로 설정합니다. 
-3. 원하는 대로 구성을 변경하고 Preview and Update를 클릭합니다.
+1. Hello 찾아보기 [Strobe Media Playback 설정 페이지](http://osmf.org/dev/2.0gm/setup.html)합니다. 
+2. Hello src tooa 부드러운 스트리밍 원본 (예: http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest) 설정 
+3. Hello 필요한 구성 변경 내용을 확인 하 고 미리 보기 및 업데이트를 클릭 합니다.
    
    **참고** 콘텐츠 웹 서버에는 유효한 crossdomain.xml이 필요합니다. 
-4. 즐겨 사용하는 텍스트 편집기에서 코드를 복사하여 다음 예와 같이 간단한 HTML 페이지에 붙여넣습니다.
+4. 복사한 hello 코드 tooa 간단한 HTML 페이지와 같은 원하는 텍스트 편집기를 사용 하 여 다음 예제는 hello에 붙여넣습니다.
 
         <html>
         <body>
@@ -359,7 +359,7 @@ OSMF용 부드러운 스트리밍 동적 플러그 인은 [SMP(Strobe Media Play
 
 
 
-1. 부드러운 스트리밍 OSMF 플러그 인을 embed 태그에 추가하고 저장합니다.
+1. 부드러운 스트리밍 OSMF 플러그 인 toohello 추가 코드를 포함 하 고 저장 합니다.
    
         <html>
         <object width="920" height="640"> 
@@ -379,10 +379,10 @@ OSMF용 부드러운 스트리밍 동적 플러그 인은 [SMP(Strobe Media Play
         </embed>
         </object>
         </html>
-2. HTML 페이지를 저장하고 웹 서버에 게시합니다. 즐겨 사용하는 Flash&reg; Player 지원 인터넷 브라우저(Internet Explorer, Chrome, Firefox 등)를 사용하여 게시된 웹 페이지로 이동합니다.
+2. HTML 페이지를 저장 하 고 tooa 웹 서버를 게시 합니다. 찾아보기 toohello 즐겨 찾는 Flash 사용자를 사용 하 여 웹 페이지를 게시&reg; 플레이어 인터넷 브라우저 (Internet Explorer, Chrome, Firefox, 등)를 사용 하도록 설정 합니다.
 3. Adobe&reg; Flash&reg; Player에서 부드러운 스트리밍 콘텐츠를 즐깁니다.
 
-일반적인 OSMF 개발에 대한 자세한 내용은 공식 [OSMF 개발 페이지](http://osmf.org/resources.html)(영문)를 참조하십시오.
+일반 OSMF 개발에 대 한 자세한 내용은 hello 공식을 참조 하십시오 [OSMF 개발 페이지](http://osmf.org/resources.html)합니다.
 
 ## <a name="media-services-learning-paths"></a>미디어 서비스 학습 경로
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

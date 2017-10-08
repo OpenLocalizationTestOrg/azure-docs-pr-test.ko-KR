@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "HDInsight의 Hadoop을 알아보세요. 설명서에서는 Hadoop, Spark, HBase, R-Server를 사용하여 빅 데이터를 처리하고 분석하며 정보를 얻는 방법을 보여 줍니다."
+title: "aaaAzure HDInsight 설명서-자습서, API 참조 | Microsoft Docs"
+description: "HDInsight의 Hadoop을 알아보세요. 표시 하는 설명서 toouse Hadoop, Spark, HBase, 분석 및 빅 데이터 로부터 이해를 넓힐 R 서버 및 더 많은 tooprocess 합니다."
 services: hdinsight
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 6f16d77f3590bedf9338afc784110c2acff80592
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 592c31863df2e90886c9e9596b1a24edea79e990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="azure-hdinsight-documentation"></a>Azure HDInsight 설명서
 
-HDInsight의 클라우드에서 Hadoop을 사용하여 스트리밍 또는 기록 데이터를 분석하는 방법에 대해 알아봅니다. 자습서 및 기타 설명서에서는 Hadoop 에코 시스템의 Hadoop, Spark, HBase, Storm 및 다른 기술을 사용하여 클러스터를 만들고 빅 데이터를 처리 및 분석하며 솔루션을 개발하는 방법을 보여 줍니다.
+HDInsight tooanalyze 스트리밍 또는 기록 데이터에 toouse Hadoop hello에 클라우드 하는 방법에 대해 알아봅니다. 자습서 및 기타 문서 알려주는 toocreate 클러스터를 처리 하 고 빅 데이터 분석 및 Hadoop, Spark, HBase, 솔루션을 개발 방법 R 서버, 스톰, 및 기타 기술을 hello Hadoop 생태계에서.
 
 <ul class="panelContent cardsFTitle">
     <li>

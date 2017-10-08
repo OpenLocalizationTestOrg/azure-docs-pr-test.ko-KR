@@ -1,6 +1,6 @@
 ---
 title: "데이터 변환: 데이터 처리 및 변환 | Microsoft Docs"
-description: "Hadoop, Machine Learning 또는 Azure Data Lake Analytics를 사용하여 Azure Data Factory에서 데이터를 변환 또는 처리하는 방법에 대해 알아봅니다."
+description: "자세한 내용은 방법 tootransform 데이터 나 Hadoop, 기계 학습 또는 Azure 데이터 레이크 분석을 사용 하 여 Azure Data Factory에서 데이터를 처리 합니다."
 keywords: "데이터 변환, 데이터 처리, 데이터를 변환, 변환 작업"
 services: data-factory
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: 7fc30f32b5038467b3474d89311dc51e182c6e8a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 917d617259699b0e71de3a0e0c17463d00f2e0a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-in-azure-data-factory"></a>Azure Data Factory의 데이터 변환
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 07/11/2017
 > * [.NET 사용자 지정](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>개요
-이 문서에서는 원시 데이터를 예측 가능하고 통찰력 있는 정보로 변환하고 처리하는 데 사용할 수 있는 Azure Data Factory의 데이터 변환 작업을 설명합니다. 변환 작업은 Azure HDInsight 클러스터나 Azure Batch와 같은 컴퓨팅 환경에서 실행됩니다. 각 변환 작업에 대한 자세한 정보가 있는 문서에 대한 링크를 제공합니다.
+이 문서에서는 tootransform צ ְ ײ 예측 및 통찰력에 원시 데이터를 처리 하는 Azure 데이터 팩터리에서 데이터 변환 작업에 설명 합니다. 변환 작업은 Azure HDInsight 클러스터나 Azure Batch와 같은 컴퓨팅 환경에서 실행됩니다. 링크 tooarticles 각 변환 작업에 대 한 자세한 정보를 제공합니다.
 
-Data Factory는 개별적 또는 다른 작업과 연계하여 [파이프라인](data-factory-create-pipelines.md)에 추가할 수 있는 다음 데이터 변환 작업을 지원합니다.
+데이터 팩터리의 지원 너무 추가할 수 있는 데이터 변환 작업을 수행 하는 hello[파이프라인](data-factory-create-pipelines.md) 중 하나 개별적으로 다른 작업과 체인입니다.
 
 > [!NOTE]
 > 단계별 지침이 포함된 연습은 [Hive 변환으로 파이프라인 만들기](data-factory-build-your-first-pipeline.md) 문서를 참조하세요.  
@@ -43,48 +43,48 @@ Data Factory는 개별적 또는 다른 작업과 연계하여 [파이프라인]
 > 
 
 ## <a name="hdinsight-hive-activity"></a>HDInsight Hive 작업
-Data Factory 파이프라인에서 HDInsight Hive 작업은 사용자 고유 또는 주문형 Windows/Linux 기반 HDInsight 클러스터의 Hive 쿼리를 실행합니다. 이 작업에 대한 자세한 내용은 [Hive 작업](data-factory-hive-activity.md) 문서를 참조하세요. 
+데이터 팩터리 파이프라인에서 HDInsight Hive 활동 hello 하이브 쿼리를 직접 또는 요청 시 Windows/Linux 기반 HDInsight 클러스터를 실행합니다. 이 작업에 대한 자세한 내용은 [Hive 작업](data-factory-hive-activity.md) 문서를 참조하세요. 
 
 ## <a name="hdinsight-pig-activity"></a>HDInsight Pig 작업
-Data Factory 파이프라인에서 HDInsight Pig 작업은 사용자 고유 또는 주문형 Windows/Linux 기반 HDInsight 클러스터의 Pig 쿼리를 실행합니다. 이 작업에 대한 자세한 내용은 [Pig 작업](data-factory-pig-activity.md) 문서를 참조하세요. 
+hello 데이터 팩터리 파이프라인에서 HDInsight Pig 작업을 직접 Pig 쿼리 또는 요청 시 Windows/Linux 기반 HDInsight 클러스터를 실행합니다. 이 작업에 대한 자세한 내용은 [Pig 작업](data-factory-pig-activity.md) 문서를 참조하세요. 
 
 ## <a name="hdinsight-mapreduce-activity"></a>HDInsight MapReduce 작업
-Data Factory 파이프라인의 HDInsight MapReduce 작업은 사용자 고유 또는 주문형 Windows/Linux 기반 HDInsight 클러스터에서 MapReduce 프로그램을 실행합니다. 이 작업에 대한 자세한 내용은 [MapReduce 작업](data-factory-map-reduce.md) 문서를 참조하세요.
+데이터 팩터리 파이프라인에서 HDInsight MapReduce 작업 hello MapReduce 프로그램을 직접 또는 요청 시 Windows/Linux 기반 HDInsight 클러스터를 실행합니다. 이 작업에 대한 자세한 내용은 [MapReduce 작업](data-factory-map-reduce.md) 문서를 참조하세요.
 
 ## <a name="hdinsight-streaming-activity"></a>HDInsight 스트리밍 작업
-Data Factory 파이프라인의 HDInsight 스트리밍 작업은 사용자 고유 또는 주문형 Windows/Linux 기반 HDInsight 클러스터에서 Hadoop 스트리밍 프로그램을 실행합니다. 이 작업에 대한 자세한 내용은 [HDInsight 스트리밍 작업](data-factory-hadoop-streaming-activity.md)을 참조하세요.
+데이터 팩터리 파이프라인에서 HDInsight 스트리밍 활동 hello Hadoop 스트리밍 프로그램을 직접 또는 요청 시 Windows/Linux 기반 HDInsight 클러스터를 실행합니다. 이 작업에 대한 자세한 내용은 [HDInsight 스트리밍 작업](data-factory-hadoop-streaming-activity.md)을 참조하세요.
 
 ## <a name="hdinsight-spark-activity"></a>HDInsight Spark 작업
-Data Factory 파이프라인에서 HDInsight Spark 작업은 사용자 고유 HDInsight 클러스터에서 Spark 프로그램을 실행합니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](data-factory-spark.md) 을 참조하세요. 
+데이터 팩터리 파이프라인에서 HDInsight Spark 활동 hello 고유한 HDInsight 클러스터에서 Spark 프로그램을 실행합니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](data-factory-spark.md) 을 참조하세요. 
 
 ## <a name="machine-learning-activities"></a>Machine Learning 작업
-Azure Data Factory를 사용하면 예측 분석을 위해 게시된 Azure Machine Learning 웹 서비스를 사용하는 파이프라인을 쉽게 만들 수 있습니다. Azure Data Factory 파이프라인에서 [배치 실행 작업](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity)을 사용하여 Machine Learning 웹 서비스를 호출하고 배치에 있는 데이터에 대한 예측을 할 수 있습니다.
+웹 predictive analytics에 대해 서비스에 tooeasily 하면 게시 된 Azure 기계 학습을 사용 하는 파이프라인을 생성 하는 azure Data Factory 수 있습니다. Hello를 사용 하 여 [일괄 처리 실행 작업](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity) 는 Azure 데이터 팩터리 파이프라인에서 일괄 처리의 hello 데이터에 대 한 기계 학습 웹 서비스 toomake 예측을 호출할 수 있습니다.
 
-시간이 지남에 따라 Machine Learning 점수 매기기 실험의 예측 모델은 새 입력 데이터 집합을 사용하여 다시 학습되어야 합니다. 재학습으로 완료한 후에는 재학습한 Machine Learning 모델로 점수 매기기 웹 서비스를 업데이트하려고 합니다. [업데이트 리소스 작업](data-factory-azure-ml-batch-execution-activity.md#updating-models-using-update-resource-activity)을 사용하여 새로 학습된 모델로 웹 서비스를 업데이트합니다.  
+시간이 지남에 따라 hello 예측 모델 hello 점수 매기기 실험 toobe 다시 학습 되도록 new를 사용 하 여 필요한 기계 학습의에서 입력 데이터 집합입니다. 재교육를 완료 한 후 웹 서비스 hello와 점수 매기기 tooupdate hello 기계 학습 모델을 다시 학습 되도록 할 수 있습니다. Hello를 사용할 수 있습니다 [업데이트 리소스 작업](data-factory-azure-ml-batch-execution-activity.md#updating-models-using-update-resource-activity) hello 새로 학습 된 모델 tooupdate hello 웹 서비스입니다.  
 
 이러한 Machine Learning 작업에 대한 자세한 내용은 [Machine Learning 작업 사용](data-factory-azure-ml-batch-execution-activity.md)을 참조하세요. 
 
 ## <a name="stored-procedure-activity"></a>저장 프로시저 작업
-Data Factory 파이프라인에서 SQL Server 저장 프로시저 작업을 사용하여 엔터프라이즈 또는 Azure VM의 Azure SQL Database, Azure SQL 데이터 웨어하우스, SQL Server Database의 데이터 저장소 중 하나에서 저장 프로시저를 호출할 수 있습니다. 자세한 내용은 [저장 프로시저 작업](data-factory-stored-proc-activity.md)을 참조하세요.  
+데이터 팩터리 파이프라인 tooinvoke hello 데이터 저장소를 다음 중 하나에 있는 저장된 프로시저의에서 hello SQL Server 저장 프로시저 활동을 사용할 수 있습니다: Azure SQL 데이터베이스, Azure SQL 데이터 웨어하우스, 기업 내에 SQL Server 데이터베이스 또는 Azure VM입니다. 자세한 내용은 [저장 프로시저 작업](data-factory-stored-proc-activity.md)을 참조하세요.  
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL 작업
 Data Lake Analytics U-SQL 작업은 Azure Data Lake Analytics 클러스터에 대해 U-SQL 스크립트를 실행합니다. 자세한 내용은 [Data Analytics U-SQL 작업](data-factory-usql-activity.md) 문서를 참조하세요. 
 
 ## <a name="net-custom-activity"></a>.NET 사용자 지정 작업
-Data Factory에서 지원되지 않는 방식으로 데이터를 변환해야 하는 경우 고유의 데이터 이동 논리가 포함된 사용자 지정 작업을 만들어서 파이프라인에 해당 작업을 사용할 수 있습니다. Azure 배치 서비스 또는 Azure HDInsight 클러스터를 사용하여 실행되도록 사용자 지정 .NET 작업을 구성할 수 있습니다. 자세한 내용은 [사용자 지정 작업 사용](data-factory-use-custom-activities.md) 문서를 참조하세요. 
+데이터 팩터리에서 지원 되지 않는 방식으로 tootransform 데이터를 유지 해야 하는 경우 고유의 데이터 처리 논리와 사용자 지정 활동을 만들 있고 hello 파이프라인에서 hello 활동을 사용 합니다. Hello 사용자 지정.NET 작업 toorun Azure 배치 서비스 또는 Azure HDInsight 클러스터를 사용 하 여 구성할 수 있습니다. 자세한 내용은 [사용자 지정 작업 사용](data-factory-use-custom-activities.md) 문서를 참조하세요. 
 
-R이 설치된 HDInsight 클러스터에서 R 스크립트를 실행하는 사용자 지정 작업을 만들 수 있습니다. [Azure Data Factory를 사용하여 R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)을 참조하세요. 
+만들 수 있습니다는 사용자 지정 활동 toorun R 스크립트에서 HDInsight 클러스터에 설치 된 R을 사용. [Azure Data Factory를 사용하여 R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)을 참조하세요. 
 
 ## <a name="compute-environments"></a>컴퓨팅 환경
-컴퓨팅 환경을 위한 연결된 서비스를 만들고 변환 작업을 정의할 때 이 연결된 서비스를 사용합니다. 데이터 팩터리에서 지원하는 컴퓨팅 환경은 두 가지 유형이 있습니다. 
+Hello 계산 환경에 대 한 연결 된 서비스를 만들고 변환 작업을 정의할 때 연결 된 hello 서비스를 사용 하 여 합니다. 데이터 팩터리에서 지원하는 컴퓨팅 환경은 두 가지 유형이 있습니다. 
 
-1. **주문형**: 이 경우 데이터 팩터리에서 완전히 컴퓨팅 환경을 관리합니다. 데이터를 처리하기 위한 작업을 제출하기 전에 데이터 팩터리 서비스에서 자동으로 컴퓨팅 환경을 만들고 작업이 완료되면 제거합니다. 작업 실행, 클러스터 관리, 부트스트래핑 작업에 대한 주문형 컴퓨팅 환경의 세부적인 설정을 구성 및 제어할 수 있습니다. 
-2. **자체 환경 사용**: 이 경우 사용자 고유의 컴퓨팅 환경(예: HDInsight 클러스터)을 데이터 팩터리에 연결된 서비스로 등록할 수 있습니다. 컴퓨팅 환경은 이를 사용하여 작업을 실행하는 데이터 팩터리 서비스와 사용자에 의해 관리됩니다. 
+1. **주문형**: 데이터 팩터리에서 hello 컴퓨팅 환경을 완전히 관리 되는 경우에 합니다. 자동으로 작업은 전송 된 tooprocess 데이터 전에 hello 데이터 팩터리 서비스에서 만든 및 hello 작업이 완료 될 때 제거 됩니다. 구성 하 고 hello 요청 시 계산 환경에서 작업 실행, 클러스터 관리 및 부트스트래핑 동작의 세부적인 설정을 제어할 수 있습니다. 
+2. **자체 환경 사용**: 이 경우 사용자 고유의 컴퓨팅 환경(예: HDInsight 클러스터)을 데이터 팩터리에 연결된 서비스로 등록할 수 있습니다. hello 컴퓨팅 환경을 관리 하 고 데이터 팩터리 서비스 hello tooexecute hello 활동 사용 합니다. 
 
-데이터 팩터리에서 지원하는 계산 서비스에 대한 자세한 내용은 [계산 연결된 서비스](data-factory-compute-linked-services.md) 문서를 참조하세요. 
+참조 [계산 연결 된 서비스](data-factory-compute-linked-services.md) 에 대 한 문서 toolearn 계산 Data Factory에서 지 원하는 서비스입니다. 
 
 ## <a name="summary"></a>요약
-Azure Data Factory는 작업에 대한 다음 데이터 변환 작업 및 컴퓨팅 환경을 지원합니다. 변환 작업은 개별적 또는 다른 작업과 연계하여 파이프라인에 추가될 수 있습니다.
+Azure Data Factory 지원 데이터 변환 활동이 hello 및 hello hello 활동에 대 한 계산 환경입니다. hello 변환 활동 수 추가 toopipelines 하거나 개별적으로 또는 다른 작업과 연결 합니다.
 
 | 데이터 변환 작업 | 컴퓨팅 환경 |
 |:--- |:--- |

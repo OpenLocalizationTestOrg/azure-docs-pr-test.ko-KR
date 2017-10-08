@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export를 사용하여 속성 및 메타데이터 설정 | Microsoft Docs"
-description: "Azure Import/Export 도구를 실행하여 드라이브를 준비할 때 대상 BLOB에 설정할 속성과 메타데이터를 지정하는 방법을 알아봅니다."
+title: "aaaSetting 속성 및 메타 데이터를 사용 하 여 Azure 가져오기/내보내기 | Microsoft Docs"
+description: "Hello Azure 가져오기/내보내기 도구 tooprepare 드라이브를 실행할 때 toospecify 속성 및 메타 데이터 toobe hello 대상 blob에 대 한 설정 방법에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: bdc7a53f82d1fbbb726e2b1bd5d96678a8563566
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 05c2b13bead793c8ab5aac6ce25816be97fffb14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setting-properties-and-metadata-during-the-import-process"></a>가져오기 프로세스 중에 속성 및 메타데이터 설정
+# <a name="setting-properties-and-metadata-during-hello-import-process"></a>속성 설정 및 hello 중에 메타 데이터 가져오기 프로세스
 
-Microsoft Azure Import/Export 도구를 실행하여 드라이브를 준비할 때 대상 BLOB에 설정할 속성과 메타데이터를 지정할 수 있습니다. 다음 단계를 수행하세요.
+Microsoft Azure 가져오기/내보내기 도구 tooprepare hello 드라이브를 실행 하면 속성 및 메타 데이터 toobe hello 대상 blob에 대 한 설정에 지정할 수 있습니다. 다음 단계를 수행하세요.
 
-1.  Blob 속성을 설정하려면 속성 이름 및 값을 지정하는 텍스트 파일을 로컬 컴퓨터에 만듭니다.
-2.  Blob 메타데이터를 설정하려면 메타데이터 이름 및 값을 지정하는 텍스트 파일을 로컬 컴퓨터에 만듭니다.
-3.  이러한 파일 중 하나 또는 둘 모두의 전체 경로를 `PrepImport` 작업의 일부로 Azure Import/Export 도구에 전달합니다.
+1.  tooset blob 속성, 속성 이름 및 값을 지정 하는 로컬 컴퓨터에 텍스트 파일을 만듭니다.
+2.  tooset blob 메타 데이터, 메타 데이터 이름 및 값을 지정 하는 로컬 컴퓨터에 텍스트 파일을 만듭니다.
+3.  Hello 전체 경로 tooone 중 또는 둘 다 이러한 파일 toohello Azure 가져오기/내보내기 도구 hello의 일부로 전달 `PrepImport` 작업 합니다.
 
 > [!NOTE]
->  속성 또는 메타데이터 파일을 복사 세션의 일부로 지정하면 해당 복사 세션의 일부로 가져오는 모든 Blob에 대해 해당 속성 또는 메타데이터가 설정됩니다. 가져올 일부 Blob에 대해 다른 속성 또는 메타데이터 집합을 지정하려면 다른 속성이나 메타데이터 파일을 사용하여 별도의 복사 세션을 만들어야 합니다.
+>  속성 또는 메타데이터 파일을 복사 세션의 일부로 지정하면 해당 복사 세션의 일부로 가져오는 모든 Blob에 대해 해당 속성 또는 메타데이터가 설정됩니다. 가져올 hello blob 중 일부에 대해 toospecify 다양 한 속성이 나 메타 데이터를 원하는 toocreate 별도 세션 다른 속성이 나 메타 데이터 파일을 복사 해야 합니다.
 
 ## <a name="specify-blob-properties-in-a-text-file"></a>텍스트 파일에서 Blob 속성 지정
 
-Blob 속성을 지정하려면 로컬 텍스트 파일을 만들고 속성 이름을 요소로, 속성 값을 값으로 지정하는 XML을 포함합니다. 다음은 몇 가지 속성 값을 지정하는 예입니다.
+toospecify blob 속성 로컬 텍스트 파일을 만들고으로 요소 및 속성 값을 값으로 속성 이름을 지정 하는 XML을 포함 합니다. 다음은 몇 가지 속성 값을 지정하는 예입니다.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -44,11 +44,11 @@ Blob 속성을 지정하려면 로컬 텍스트 파일을 만들고 속성 이�
 </Properties>
 ```
 
-`C:\WAImportExport\ImportProperties.txt` 같은 로컬 위치에 파일을 저장합니다.
+Hello 파일 tooa와 같은 로컬 위치에 저장 `C:\WAImportExport\ImportProperties.txt`합니다.
 
 ## <a name="specify-blob-metadata-in-a-text-file"></a>텍스트 파일에서 Blob 메타데이터를 지정합니다.
 
-마찬가지로 Blob 메타데이터를 지정하려면 메타데이터 이름을 요소로, 메타데이터 값을 값으로 지정하는 로컬 텍스트 파일을 만듭니다. 다음은 몇 가지 메타데이터 값을 지정하는 예입니다.
+마찬가지로, toospecify blob 메타 데이터, 메타 데이터 이름으로 요소 및 메타 데이터 값을 값으로 지정 하는 로컬 텍스트 파일을 만듭니다. 다음은 몇 가지 메타데이터 값을 지정하는 예입니다.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -59,9 +59,9 @@ Blob 속성을 지정하려면 로컬 텍스트 파일을 만들고 속성 이�
 </Metadata>
 ```
 
-`C:\WAImportExport\ImportMetadata.txt` 같은 로컬 위치에 파일을 저장합니다.
+Hello 파일 tooa와 같은 로컬 위치에 저장 `C:\WAImportExport\ImportMetadata.txt`합니다.
 
-## <a name="add-the-path-to-properties-and-metadata-files-in-datasetcsv"></a>dataset.csv의 속성 및 메타데이터 파일에 경로 추가
+## <a name="add-hello-path-tooproperties-and-metadata-files-in-datasetcsv"></a>Dataset.csv에 hello 경로 tooproperties 및 메타 데이터 파일 추가
 
 ```
 BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile

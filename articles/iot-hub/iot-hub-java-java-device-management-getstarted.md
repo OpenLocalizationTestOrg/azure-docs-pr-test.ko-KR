@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 장치 관리 시작(Java) | Microsoft Docs"
-description: "Azure IoT Hub 장치 관리를 사용하여 원격 장치 재부팅을 시작하는 방법입니다. Java용 Azure IoT 장치 SDK를 사용하여 직접 메서드를 포함한 시뮬레이션된 장치 앱을 구현하며 Java용 Azure IoT service SDK를 사용하여 직접 메서드를 호출하는 서비스 앱을 구현합니다."
+title: "Azure IoT Hub 장치 관리 (Java) aaaGet 시작 | Microsoft Docs"
+description: "어떻게 toouse Azure IoT Hub 장치 관리 tooinitiate 원격 장치를 다시 부팅 합니다. Hello Azure IoT 장치 SDK를 사용 하 여 Java tooimplement 직접적인 방법 및 hello Java tooimplement hello 직접 메서드를 호출 하는 서비스 응용 프로그램에 대 한 Azure IoT 서비스 SDK 포함 하는 시뮬레이션 된 장치 앱에 대 한 합니다."
 services: iot-hub
 documentationcenter: .java
 author: dominicbetts
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: c75635f366f5ced4bf91792d1a905dd6aab8ed79
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7aaeda9d4ff7002e5c66adfd61e2dfd5bcea964f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-management-java"></a>장치 관리 시작(Java)
 
@@ -25,57 +25,57 @@ ms.lasthandoff: 08/18/2017
 
 이 자습서에서는 다음을 수행하는 방법에 대해 설명합니다.
 
-* Azure Portal을 사용하여 IoT Hub를 만들고 IoT Hub에 장치 ID를 만듭니다.
-* 장치를 다시 부팅하는 직접 메서드를 구현하는 시뮬레이트된 장치 앱을 만듭니다. 직접 메서드는 클라우드에서 호출됩니다.
-* IoT Hub를 통해 시뮬레이트된 장치 앱에서 재부팅 직접 메서드를 호출하는 앱을 만듭니다. 그러면 이 앱이 장치에서 보고된 속성을 모니터링하여 재부팅 작업이 완료되는 시간을 확인합니다.
+* Azure 포털 toocreate IoT Hub hello를 사용 하 및 IoT 허브에서 장치 id를 만드는 키를 누릅니다.
+* 직접적인 방법 tooreboot hello 장치를 구현 하는 시뮬레이션 된 장치 앱을 만듭니다. Hello 클라우드에서 직접 메서드 호출 됩니다.
+* 다시 부팅 hello IoT 허브를 통해 hello 시뮬레이션 된 장치 응용 프로그램에서 직접 메서드를 호출 하는 응용 프로그램을 만듭니다. 이 응용 프로그램 다음 hello 다시 부팅 작업이 완료 되 면 hello 장치 toosee에서 속성을 보고 된 hello 모니터입니다.
 
-이 자습서를 마치면 다음 두 가지 Java 콘솔 앱이 만들어집니다.
+이 자습서의 hello 끝에 두 개의 Java 콘솔 응용 프로그램을 사용할 수 있습니다.
 
 **simulated-device**. 이 앱의 기능:
 
-* IoT Hub를 앞에서 만든 장치 ID에 연결합니다.
+* 앞에서 만든 hello 장치 id를 가진 tooyour IoT 허브를 연결 합니다.
 * 재부팅 직접 메서드 호출을 수신합니다.
 * 물리적 재부팅을 시뮬레이트합니다.
-* 보고된 속성을 통해 마지막 재부팅 시간을 보고합니다.
+* 보고 속성을 통해 hello 마지막 재부팅 hello 시간을 보고 합니다.
 
 **trigger-reboot**. 이 앱의 기능:
 
-* 시뮬레이트된 장치 앱에서 직접 메서드를 호출합니다.
-* 시뮬레이트된 장치에서 보낸 직접 메서드 호출에 대한 응답을 표시합니다.
-* 업데이트된 보고된 속성을 표시합니다.
+* Hello 시뮬레이션 된 장치 응용 프로그램에서 직접 메서드를 호출합니다.
+* Hello 시뮬레이션 된 장치에서 전송 하는 hello 응답 toohello 직접 메서드 호출을 표시 합니다.
+* 업데이트 표시 hello 속성을 보고 합니다.
 
 > [!NOTE]
-> 장치와 솔루션 백 엔드에서 실행하기 위해 응용 프로그램을 빌드하는 데 사용할 수 있는 SDK에 관한 정보는 [Azure IoT SDK][lnk-hub-sdks]를 참조하세요.
+> 장치 및 백 엔드 솔루션에서 응용 프로그램 toorun toobuild를 사용할 수 있는 Sdk hello에 대 한 정보를 참조 하십시오. [Azure IoT Sdk][lnk-hub-sdks]합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete 해야이 자습서에서는:
 
-* Java SE 8. <br/> [개발 환경 준비][lnk-dev-setup]는 Windows 또는 Linux에서 이 자습서에 대한 Java를 설치하는 방법을 설명합니다.
-* Maven 3.  <br/> [개발 환경 준비][lnk-dev-setup]는 Windows 또는 Linux에서 이 자습서에 대한 [Maven][lnk-maven]을 설치하는 방법을 설명합니다.
+* Java SE 8. <br/> [개발 환경을 준비] [ lnk-dev-setup] 설명 방법을 Windows 또는 Linux에서이 자습서에 대 한 Java tooinstall 합니다.
+* Maven 3.  <br/> [개발 환경을 준비] [ lnk-dev-setup] 설명 방법을 tooinstall [Maven] [ lnk-maven] Windows 또는 Linux에서이 자습서에 대 한 합니다.
 * [Node.js 버전 0.10.0 이상](http://nodejs.org)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>직접 메서드를 사용하여 장치에서 원격 재부팅 트리거
+## <a name="trigger-a-remote-reboot-on-hello-device-using-a-direct-method"></a>트리거는 직접 메서드를 사용 하 여 hello 장치에 원격 컴퓨터를 다시 부팅
 
 이 섹션에서는 다음을 수행하는 Java 콘솔 앱을 만듭니다.
 
-1. 시뮬레이트된 장치 앱에서 재부팅 직접 메서드를 호출합니다.
-1. 응답을 표시합니다.
-1. 장치에서 보낸 보고된 속성을 폴링하여 재부팅이 완료되는 시간을 확인합니다.
+1. Hello hello 시뮬레이션 된 장치 응용 프로그램에서 다시 부팅 직접 메서드를 호출 합니다.
+1. Hello 응답을 표시합니다.
+1. 설문 hello hello 다시 부팅이 완료 되 면 hello 장치 toodetermine에서 전송 속성을 보고 합니다.
 
-이 콘솔 앱은 IoT Hub에 연결하여 직접 메서드를 호출하고 보고된 속성을 읽습니다.
+이 콘솔 응용 프로그램 연결 tooyour IoT Hub tooinvoke hello 직접적인 방법 및 읽기 hello 속성을 보고 합니다.
 
 1. dm-get-started라는 빈 폴더를 만듭니다.
 
-1. 명령 프롬프트에서 다음 명령을 사용하여 dm-get-started folder 폴더에 **trigger-reboot**라는 Maven 프로젝트를 만듭니다. 다음은 긴 단일 명령입니다.
+1. Hello dm get 시작 폴더에서 라는 Maven 프로젝트를 만듭니다 **트리거를 다시 부팅** hello 다음 명령 프롬프트에서 명령을 사용 합니다. hello 다음에는 단일, 긴 명령을 보여 줍니다.
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=trigger-reboot -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. 명령 프롬프트에서 trigger-reboot 폴더로 이동합니다.
+1. 명령 프롬프트 toohello 트리거를 다시 부팅 폴더를 이동 합니다.
 
-1. 텍스트 편집기를 사용하여 trigger-reboot 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT Hub와 통신하도록 앱에서 iot-service-client 패키지를 사용할 수 있습니다.
+1. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 트리거를 다시 부팅 폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 있습니다 toouse hello iot 서비스 클라이언트에서에서 패키지를 IoT hub와 사용자 응용 프로그램 toocommunicate 수 있습니다.
 
     ```xml
     <dependency>
@@ -87,9 +87,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-service-search]을 사용하여 **iot-service-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 서비스 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-service-search]합니다.
 
-1. **종속성** 노드 뒤에 다음 **빌드** 노드를 추가합니다. 이 구성에서는 Maven에 Java 1.8을 사용하여 앱을 빌드하도록 지시합니다.
+1. Hello 다음 추가 **빌드** hello 후 노드 **종속성** 노드. 이 구성은 지시 Maven toouse Java 1.8 toobuild hello 응용 프로그램.
 
     ```xml
     <build>
@@ -107,11 +107,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. pom.xml 파일을 저장하고 닫습니다.
+1. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-1. 텍스트 편집기를 사용하여 trigger-reboot\src\main\java\com\mycompany\app\App.java 원본 파일을 엽니다.
+1. 텍스트 편집기를 사용 하 여 hello trigger-reboot\src\main\java\com\mycompany\app\App.java 소스 파일을 엽니다.
 
-1. 파일에 다음 **import** 문을 추가합니다.
+1. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.DeviceMethod;
@@ -126,7 +126,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.concurrent.ExecutorService;
     ```
 
-1. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. `{youriothubconnectionstring}`은 *IoT Hub 만들기* 섹션에서 기록한 IoT Hub 연결 문자열로 바꿉니다.
+1. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 대체 `{youriothubconnectionstring}` hello에서 기록한 IoT 허브 연결 문자열로 *IoT 허브를 만듭니다.* 섹션:
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -137,7 +137,7 @@ ms.lasthandoff: 08/18/2017
     private static final Long connectTimeout = TimeUnit.SECONDS.toSeconds(5);
     ```
 
-1. 장치 쌍에서 10초마다 보고되는 속성을 읽는 스레드를 구현하려면 **App** 클래스에 다음 중첩 클래스를 추가합니다.
+1. tooimplement hello를 읽을 수 있는 스레드 속성을 보고 hello 장치로 이중 10 초 마다 추가 hello 다음 중첩 클래스 toohello **앱** 클래스:
 
     ```java
     private static class ShowReportedProperties implements Runnable {
@@ -158,7 +158,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. 시뮬레이트된 장치에서 재부팅 직접 메서드를 호출하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. tooinvoke hello 재부팅 hello 시뮬레이션 된 장치에서 직접 메서드 추가 코드 toohello 다음 hello **주** 메서드:
 
     ```java
     System.out.println("Starting sample...");
@@ -183,7 +183,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. 시뮬레이트된 장치에서 보고된 속성을 스레드가 폴링을 시작하도록 하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. toostart hello 스레드 toopoll hello hello 시뮬레이션 된 장치에서 보고 된 속성, 다음 코드 toohello hello 추가 **주** 메서드:
 
     ```java
     ShowReportedProperties showReportedProperties = new ShowReportedProperties();
@@ -191,32 +191,32 @@ ms.lasthandoff: 08/18/2017
     executor.execute(showReportedProperties);
     ```
 
-1. 앱을 중지할 수 있도록 하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. tooenable 하면 toostop hello 응용 프로그램, 코드 toohello 다음 hello 추가 **주** 메서드:
 
     ```java
-    System.out.println("Press ENTER to exit.");
+    System.out.println("Press ENTER tooexit.");
     System.in.read();
     executor.shutdownNow();
     System.out.println("Shutting down sample...");
     ```
 
-1. trigger-reboot\src\main\java\com\mycompany\app\App.java 파일을 저장한 후 닫습니다.
+1. 저장 하 고 hello trigger-reboot\src\main\java\com\mycompany\app\App.java 파일을 닫습니다.
 
-1. **trigger-reboot** 백 엔드 앱을 빌드하고 오류를 수정합니다. 명령 프롬프트에서 trigger-reboot 폴더로 이동한 후 다음 명령을 실행합니다.
+1. Hello 빌드 **트리거를 다시 부팅** 백 엔드 응용 프로그램 오류 수정 하십시오. 명령 프롬프트 toohello 트리거를 다시 부팅 폴더 및 다음 명령이 실행된 hello를 이동 합니다.
 
     `mvn clean package -DskipTests`
 
 ## <a name="create-a-simulated-device-app"></a>시뮬레이션된 장치 앱 만들기
 
-이 섹션에서는 장치를 시뮬레이트하는 Java 콘솔 앱을 만듭니다. 이 앱은 IoT Hub의 재부팅 직접 메서드 호출을 수신하고 그 즉시 해당 호출에 응답합니다. 그런 다음 잠시 유휴 상태로 전환하여 재부팅 프로세스를 시뮬레이트한 후 보고된 속성을 사용하여 **trigger-reboot** 백 엔드 앱에 재부팅이 완료되었음을 알립니다.
+이 섹션에서는 장치를 시뮬레이트하는 Java 콘솔 앱을 만듭니다. hello 앱 IoT 허브에서 hello 재부팅 직접 메서드 호출에 대 한 수신 하 고 즉시 toothat 호출 응답 합니다. 앱 다음 잠시 동안 대기한 hello toosimulate hello 다시 부팅 프로세스 보고 속성 toonotify hello를 사용 하기 전에 **트리거를 다시 부팅** hello 다시 부팅 하는 백 엔드 앱이 완성 합니다.
 
-1. 명령 프롬프트에서 다음 명령을 사용하여 dm-get-started 폴더에 **simulated-device**라는 Maven 프로젝트를 만듭니다. 다음은 긴 단일 명령입니다.
+1. Hello dm get 시작 폴더에서 라는 Maven 프로젝트를 만듭니다 **시뮬레이션 된 장치** hello 다음 명령 프롬프트에서 명령을 사용 합니다. hello 다음은 단일, 긴 명령입니다.
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. 명령 프롬프트에서 simulated-device 폴더로 이동합니다.
+1. 명령 프롬프트 toohello 시뮬레이션 된 장치 폴더를 이동 합니다.
 
-1. 텍스트 편집기를 사용하여 simulated-device 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT Hub와 통신하도록 앱에서 iot-service-client 패키지를 사용할 수 있습니다.
+1. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 시뮬레이션 된 장치 폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 있습니다 toouse hello iot 서비스 클라이언트에서에서 패키지를 IoT hub와 사용자 응용 프로그램 toocommunicate 수 있습니다.
 
     ```xml
     <dependency>
@@ -227,9 +227,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-device-search]을 사용하여 **iot-device-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 장치 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-device-search]합니다.
 
-1. **종속성** 노드 뒤에 다음 **빌드** 노드를 추가합니다. 이 구성에서는 Maven에 Java 1.8을 사용하여 앱을 빌드하도록 지시합니다.
+1. Hello 다음 추가 **빌드** hello 후 노드 **종속성** 노드. 이 구성은 지시 Maven toouse Java 1.8 toobuild hello 응용 프로그램.
 
     ```xml
     <build>
@@ -247,11 +247,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. pom.xml 파일을 저장하고 닫습니다.
+1. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-1. 텍스트 편집기를 사용하여 simulated-device\src\main\java\com\mycompany\app\App.java 원본 파일을 엽니다.
+1. 텍스트 편집기를 사용 하 여 hello simulated-device\src\main\java\com\mycompany\app\App.java 소스 파일을 엽니다.
 
-1. 파일에 다음 **import** 문을 추가합니다.
+1. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -265,7 +265,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.HashSet;
     ```
 
-1. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. `{yourdeviceconnectionstring}`을 *장치 ID 만들기* 섹션에서 기록해 둔 장치 연결 문자열로 바꿉니다.
+1. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 대체 `{yourdeviceconnectionstring}` hello에서 기록한 hello 장치 연결 문자열과 함께 *장치 id를 만드는* 섹션:
 
     ```java
     private static final int METHOD_SUCCESS = 200;
@@ -276,31 +276,31 @@ ms.lasthandoff: 08/18/2017
     private static DeviceClient client;
     ```
 
-1. 직접 메서드 상태 이벤트에 대한 콜백 처리기를 구현하려면 **App** 클래스에 다음 중첩 클래스를 추가합니다.
+1. 직접적인 방법 상태 이벤트에 대 한 콜백 처리기 tooimplement hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     protected static class DirectMethodStatusCallback implements IotHubEventCallback
     {
       public void execute(IotHubStatusCode status, Object context)
       {
-        System.out.println("IoT Hub responded to device method operation with status " + status.name());
+        System.out.println("IoT Hub responded toodevice method operation with status " + status.name());
       }
     }
     ```
 
-1. 장치 쌍 상태 이벤트에 대한 콜백 처리기를 구현하려면 **App** 클래스에 다음 중첩 클래스를 추가합니다.
+1. 장치로 이중 상태 이벤트에 대 한 콜백 처리기 tooimplement hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     protected static class DeviceTwinStatusCallback implements IotHubEventCallback
     {
         public void execute(IotHubStatusCode status, Object context)
         {
-            System.out.println("IoT Hub responded to device twin operation with status " + status.name());
+            System.out.println("IoT Hub responded toodevice twin operation with status " + status.name());
         }
     }
     ```
 
-1. 속성 이벤트에 대한 콜백 처리기를 구현하려면 **App** 클래스에 다음 중첩 클래스를 추가합니다.
+1. 속성 이벤트에 대 한 콜백 처리기 tooimplement hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     protected static class PropertyCallback implements PropertyCallBack<String, String>
@@ -313,7 +313,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. 장치 재부팅을 시뮬레이트하는 스레드를 구현하려면 **App** 클래스에 다음 중첩 클래스를 추가합니다. 이 스레드는 5초 동안 유휴 상태를 유지한 후 **lastReboot** 보고된 속성을 설정합니다.
+1. 스레드 toosimulate hello 장치를 다시 부팅, tooimplement hello 다음 추가 클래스 toohello 중첩 **앱** 클래스입니다. 5 초 동안 대기 하 고 다음 hello를 설정 하는 hello 스레드 **lastReboot** 속성을 보고 합니다.
 
     ```java
     protected static class RebootDeviceThread implements Runnable {
@@ -334,7 +334,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. 장치에서 직접 메서드를 구현하려면 **App** 클래스에 다음 중첩 클래스를 추가합니다. 시뮬레이트된 앱은 **재부팅** 직접 메서드에 대한 호출을 수신하면 호출자에게 수신 확인을 반환한 후 재부팅을 처리하기 위한 스레드를 시작합니다.
+1. hello 장치에서 tooimplement hello 직접적인 방법 hello 다음 추가 클래스 toohello 중첩 **앱** 클래스입니다. Hello 시뮬레이트된 응용 프로그램 호출 toohello를 받을 때 **재부팅** 직접적인 방법 승인을 toohello 발신자를 반환 하 고 다음 시작 스레드 tooprocess hello를 다시 부팅 합니다.
 
     ```java
     protected static class DirectMethodCallback implements com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback
@@ -366,20 +366,20 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. 다음 예외를 throw하도록 **main** 메서드의 서명을 수정합니다.
+1. Hello의 hello 서명을 수정 **주** 메서드 toothrow hello 다음 예외:
 
     ```java
     public static void main(String[] args) throws IOException, URISyntaxException
     ```
 
-1. **DeviceClient**를 인스턴스화하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. tooinstantiate는 **DeviceClient**, 다음 코드 toohello hello 추가 **주** 메서드:
 
     ```java
     System.out.println("Starting device client sample...");
     client = new DeviceClient(connString, protocol);
     ```
 
-1. 직접 메서드 호출 수신을 시작하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. 직접 메서드 호출을 수신 대기 toostart 추가 코드 toohello 다음 hello **주** 메서드:
 
     ```java
     try
@@ -387,7 +387,7 @@ ms.lasthandoff: 08/18/2017
       client.open();
       client.subscribeToDeviceMethod(new DirectMethodCallback(), null, new DirectMethodStatusCallback(), null);
       client.startDeviceTwin(new DeviceTwinStatusCallback(), null, new PropertyCallback(), null);
-      System.out.println("Subscribed to direct methods and polling for reported properties. Waiting...");
+      System.out.println("Subscribed toodirect methods and polling for reported properties. Waiting...");
     }
     catch (Exception e)
     {
@@ -397,10 +397,10 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. 장치 시뮬레이터를 종료하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. hello 장치 시뮬레이터 아래로 tooshut 추가 코드 toohello 다음 hello **주** 메서드:
 
     ```java
-    System.out.println("Press any key to exit...");
+    System.out.println("Press any key tooexit...");
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
     scanner.close();
@@ -408,31 +408,31 @@ ms.lasthandoff: 08/18/2017
     System.out.println("Shutting down...");
     ```
 
-1. simulated-device\src\main\java\com\mycompany\app\App.java 파일을 저장한 후 닫습니다.
+1. 저장 하 고 hello simulated-device\src\main\java\com\mycompany\app\App.java 파일을 닫습니다.
 
-1. **simulated-device** 백 엔드 앱을 빌드하고 오류를 수정합니다. 명령 프롬프트에서 simulated-device 폴더로 이동한 후 다음 명령을 실행합니다.
+1. Hello 빌드 **시뮬레이션 된 장치** 백 엔드 응용 프로그램 오류 수정 하십시오. 명령 프롬프트에서 다음 명령이 실행된 hello 및 toohello 시뮬레이션 된 장치 폴더를 이동 합니다.
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a>앱 실행
+## <a name="run-hello-apps"></a>Hello 앱 실행
 
-이제 앱을 실행할 준비가 되었습니다.
+준비 toorun hello 앱입니다.
 
-1. simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub의 재부팅 메서드 호출에 대한 수신 대기를 시작합니다.
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![재부팅 직접 메서드 호출을 수신 대기할 Java IoT Hub 시뮬레이트된 장치 앱][1]
-
-1. trigger-reboot 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub의 시뮬레이트된 장치에 대해 재부팅 메서드를 호출합니다.
+1. Hello 시뮬레이션 된 장치 폴더에서 명령 프롬프트에서 다음 명령을 toobegin IoT 허브에서 다시 부팅 메서드 호출을 수신 대기 하는 hello를 실행 합니다.
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![재부팅 직접 메서드를 호출할 Java IoT Hub 서비스 앱][2]
+    ![다시 부팅 직접 메서드 호출에 대 한 시뮬레이션 된 Java IoT Hub 장치 앱 toolisten][1]
 
-1. 시뮬레이트된 장치는 재부팅 직접 메서드 호출에 응답합니다.
+1. Hello 트리거를 다시 부팅 폴더에서 명령 프롬프트에서 hello IoT 허브에서 명령 toocall hello 재부팅 메서드 시뮬레이션 된 장치에서 다음을 실행 합니다.
 
-    ![Java IoT Hub 시뮬레이트된 장치 앱은 직접 메서드 호출에 응답합니다.][3]
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
+
+    ![Java IoT 허브 서비스 응용 프로그램 toocall hello 직접 메서드를 다시 부팅][2]
+
+1. 시뮬레이션 된 장치 hello toohello 재부팅 직접 메서드 호출을 응답합니다.
+
+    ![Java IoT Hub 시뮬레이션 된 장치 응용 프로그램 응답 toohello 직접 메서드 호출][3]
 
 [!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 

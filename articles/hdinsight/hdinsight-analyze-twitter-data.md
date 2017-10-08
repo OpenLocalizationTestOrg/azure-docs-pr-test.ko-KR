@@ -1,6 +1,6 @@
 ---
-title: "HDInsight의 Hadoop을 사용하여 Twitter 데이터 분석 - Azure | Microsoft Docs"
-description: "Hive를 사용하여 HDInsight의 Hadoop에서 Twitter 데이터를 분석해 특정 단어의 사용 빈도를 확인하는 방법에 대해 알아봅니다."
+title: "Azure HDInsight에서 Hadoop으로 Twitter 데이터 aaaAnalyze | Microsoft Docs"
+description: "Toouse 하이브 tooanalyze Twitter 데이터 Hadoop에서 HDInsight toofind에 특정 단어의 사용 빈도 hello 하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,71 +15,71 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 711d364c36c3aba699326f4a76d42891ba3219fb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 40c0a1afbc1fff10c070d22a99cd9d32d42f230a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-twitter-data-using-hive-in-hdinsight"></a>HDInsight에서 Hive를 사용하여 Twitter 데이터 분석
-소셜 웹 사이트는 빅데이터 채택의 주요 추진력 중 하나입니다. Twitter와 같은 사이트에서 제공하는 공개 API는 대중적인 추세를 분석하고 이해하는 데 유용한 데이터 원본입니다.
-이 자습서에서는 Twitter 스트리밍 API를 사용해 트윗을 가져온 다음 Azure HDInsight의 Apache Hive를 사용하여 특정 단어가 포함된 트윗을 가장 많이 보낸 Twitter 사용자 목록을 가져옵니다.
+소셜 웹 사이트는 빅 데이터 채택에 대 한 주요 추진 배경과 hello 중 하나입니다. Twitter와 같은 사이트에서 제공하는 공개 API는 대중적인 추세를 분석하고 이해하는 데 유용한 데이터 원본입니다.
+이 자습서에서는 스트리밍 API, Twitter를 사용 하 여 트 윗을 가져올 한 다음 Azure HDInsight tooget hello 특정 단어가 포함 된 대부분 윗 보낸 Twitter 사용자의 목록에 Apache Hive를 사용 합니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계에는 Windows 기반 HDInsight 클러스터가 필요합니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요. Linux 기반 클러스터에 대한 단계는 [HDInsight에서 Hive를 사용하여 Twitter 데이터 분석(Linux)](hdinsight-analyze-twitter-data-linux.md)을 참조하세요.
+> hello이 문서의 단계는 Windows 기반 HDInsight 클러스터가 필요합니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요. 단계 특정 tooa Linux 기반 클러스터에 대 한 참조 [(Linux) HDInsight의 Hive를 사용 하 여 Twitter 분석 데이터](hdinsight-analyze-twitter-data-linux.md)합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 자습서를 시작하기 전에 다음이 있어야 합니다.
+이 자습서를 시작 하기 전에 hello 다음이 있어야 합니다.
 
 * **워크스테이션** .
 
-    Windows PowerShell 스크립트를 실행하려면 관리자로 Azure PowerShell을 실행하고 실행 정책을 *RemoteSigned*로 설정해야 합니다. [Windows PowerShell 스크립트 실행][powershell-script]을 참조하세요.
+    tooexecute Windows PowerShell 스크립트를 관리자 권한으로 Azure PowerShell을 실행 하 고 설정 해야 hello 실행 정책을 너무*RemoteSigned*합니다. [Windows PowerShell 스크립트 실행][powershell-script]을 참조하세요.
 
-    Windows PowerShell 스크립트를 실행하기 전에 다음과 같은 cmdlet을 사용하여 Azure 구독에 연결되어 있는지 확인합니다.
+    Windows PowerShell 스크립트를 실행 하기 전에 hello 다음 cmdlet을 사용 하 여 Azure 구독 연결된 tooyour 있는지를 확인 합니다.
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-    여러 Azure 구독이 있는 경우 다음 cmdlet을 사용하여 현재 구독을 설정합니다.
+    여러 Azure 구독이 있는 경우 다음 cmdlet tooset hello 현재 구독 하는 hello를 사용 합니다.
 
     ```powershell
     Select-AzureRmSubscription -SubscriptionID <Azure Subscription ID>
     ```
 
     > [!IMPORTANT]
-    > Azure Service Manager를 사용하여 HDInsight 리소스를 관리하는 Azure PowerShell 지원은 더 이상 **지원되지 않고** 2017년 1월 1일에 제거되었습니다. 이 문서의 단계에서는 Azure Resource Manager로 작동하는 새 HDInsight cmdlet을 사용합니다.
+    > Azure Service Manager를 사용하여 HDInsight 리소스를 관리하는 Azure PowerShell 지원은 더 이상 **지원되지 않고** 2017년 1월 1일에 제거되었습니다. Azure 리소스 관리자와 함께 작동 하는이 문서 사용 hello 새 HDInsight cmdlet의 hello 단계입니다.
     >
-    > [Azure PowerShell 설치 및 구성](/powershell/azureps-cmdlets-docs) 단계를 수행하여 최신 버전의 Azure PowerShell을 설치합니다. Azure Resource Manager로 작동하는 새로운 cmdlet을 사용하도록 수정해야 하는 스크립트가 있는 경우 자세한 내용은 [HDInsight 클러스터에 대한 Azure Resource Manager 기반 개발 도구에 마이그레이션](hdinsight-hadoop-development-using-azure-resource-manager.md) 을 참조하세요.
+    > Hello 단계에 따라 [설치 Azure PowerShell을 구성 하 고](/powershell/azureps-cmdlets-docs) tooinstall hello 최신 버전의 Azure PowerShell. 해당 필요 toobe Azure 리소스 관리자와 함께 작동 하는 toouse hello 새로운 cmdlet 수정 스크립트가 있는 경우, 참조 [HDInsight 클러스터에 대 한 마이그레이션 tooAzure 리소스 관리자 기반 개발 도구](hdinsight-hadoop-development-using-azure-resource-manager.md) 자세한 정보에 대 한 합니다.
 
-* **Azure HDInsight 클러스터**. 클러스터 프로비전에 대한 자세한 내용은 [HDInsight 사용 시작][hdinsight-get-started] 또는 [HDInsight 클러스터 프로비전][hdinsight-provision]을 참조하세요. 자습서의 뒷부분에서 이 클러스터 이름이 필요합니다.
+* **Azure HDInsight 클러스터**. 클러스터 프로비전에 대한 자세한 내용은 [HDInsight 사용 시작][hdinsight-get-started] 또는 [HDInsight 클러스터 프로비전][hdinsight-provision]을 참조하세요. Hello 자습서의 뒷부분에 나오는 hello 클러스터 이름이 필요 합니다.
 
-다음 표는 이 자습서에 사용된 파일을 보여 줍니다.
+hello 다음 표에이 자습서에 사용 된 hello 파일.
 
 | 파일 | 설명 |
 | --- | --- |
-| /tutorials/twitter/data/tweets.txt |Hive 작업의 원본 데이터입니다. |
-| /tutorials/twitter/output |Hive 작업의 출력 폴더입니다. 기본 Hive 작업 출력 파일 이름은 **000000_0**입니다. |
-| tutorials/twitter/twitter.hql |HiveQL 스크립트 파일입니다. |
-| /tutorials/twitter/jobstatus |Hadoop 작업 상태입니다. |
+| /tutorials/twitter/data/tweets.txt |hello hello 하이브 작업에 대 한 소스 데이터입니다. |
+| /tutorials/twitter/output |hello 하이브 작업에 대 한 hello 출력 폴더입니다. hello 기본 하이브 작업 출력 파일 이름은 **000000_0**합니다. |
+| tutorials/twitter/twitter.hql |hello HiveQL 스크립트 파일입니다. |
+| /tutorials/twitter/jobstatus |Hadoop 작업 상태 번호입니다. |
 
 ## <a name="get-twitter-feed"></a>Twitter 피드 가져오기
-이 자습서에는 [Twitter 스트리밍 API][twitter-streaming-api](영문)를 사용합니다. 사용할 특정 Twitter 스트리밍 API는 [상태/필터][twitter-statuses-filter](영문)입니다.
+이 자습서를 사용 하 여 hello [스트리밍 Api Twitter][twitter-streaming-api]합니다. hello 스트리밍 API를 사용 하 여 특정 Twitter은 [상태/필터][twitter-statuses-filter]합니다.
 
 > [!NOTE]
-> 트윗 10,000개와 Hive 스크립트 파일(다음 섹션에서 설명됨)을 포함하는 파일이 공용 Blob 컨테이너에 업로드되었습니다. 업로드된 파일을 사용하려는 경우 이 섹션을 건너뛸 수 있습니다.
+> 공용 Blob 컨테이너에 10, 000 트 윗 및 hello Hive 스크립트 파일 (hello 다음 섹션에 포함 됨)를 포함 하는 파일을 업로드 하지 않았습니다. Toouse hello 업로드 파일을 원하는 경우이 섹션을 건너뛸 수 있습니다.
 
-[트윗 데이터](https://dev.twitter.com/docs/platform-objects/tweets) (영문)는 복잡한 중첩 구조를 포함하는 JSON(JavaScript Object Notation) 형식으로 저장됩니다. 기존의 프로그래밍 언어를 사용하여 여러 줄의 코드를 작성하는 대신, 이 중첩 구조를 Hive 테이블로 변환하여 HiveQL이라는 SQL(구조적 쿼리 언어)과 유사한 언어로 쿼리할 수 있습니다.
+[트 윗 데이터](https://dev.twitter.com/docs/platform-objects/tweets) 복잡 한 중첩된 구조를 포함 하는 hello 개체 JSON (JavaScript Notation) 형식으로 저장 됩니다. 기존의 프로그래밍 언어를 사용하여 여러 줄의 코드를 작성하는 대신, 이 중첩 구조를 Hive 테이블로 변환하여 HiveQL이라는 SQL(구조적 쿼리 언어)과 유사한 언어로 쿼리할 수 있습니다.
 
-Twitter는 OAuth를 사용하여 API에 대한 권한 있는 액세스를 제공합니다. OAuth는 사용자가 암호를 공유하지 않아도 사용자를 대신하여 응용 프로그램 작동을 승인할 수 있게 하는 인증 프로토콜입니다. 자세한 내용은 [oauth.net](http://oauth.net/)(영문) 또는 Hueniverse가 제공하는 유용한 [OAuth 초보자 가이드](http://hueniverse.com/oauth/)(영문)를 참조하세요.
+Twitter는 OAuth 권한이 tooprovide 액세스 tooits API를 사용합니다. OAuth에 자신의 암호를 공유 하지 않고 대신 사용자가 tooapprove 응용 프로그램 tooact 수 있는 인증 프로토콜입니다. 자세한 내용은에서 확인할 수 있습니다 [oauth.net](http://oauth.net/) 또는 hello 뛰어난 [초급자 가이드 tooOAuth](http://hueniverse.com/oauth/) Hueniverse에서 합니다.
 
-OAuth를 사용하는 첫 단계는 Twitter 개발자 사이트에서 새 응용 프로그램을 만드는 것입니다.
+hello 첫 번째 단계 toouse OAuth toocreate hello Twitter 개발자 사이트에서 새 응용 프로그램입니다.
 
-**Twitter 응용 프로그램을 만들려면**
+**toocreate Twitter 응용 프로그램**
 
-1. [https://apps.twitter.com/](https://apps.twitter.com/)(영문)에 로그인합니다. Twitter 계정이 없는 경우 **Sign up now** 링크를 클릭합니다.
+1. 역시 로그인[https://apps.twitter.com/](https://apps.twitter.com/)합니다. Hello 클릭 **지금 등록** Twitter 계정이 없는 경우 연결 합니다.
 2. **Create New App**을 클릭합니다.
-3. **Name**, **Description**, **Website**를 입력합니다. **Website** 필드의 URL을 구성할 수 있습니다. 다음 표는 사용할 샘플 값을 보여 줍니다.
+3. **Name**, **Description**, **Website**를 입력합니다. Hello에 대 한 URL을 만들 수 **웹 사이트** 필드입니다. 다음 표에서 hello 몇 가지 샘플 값 toouse를 보여 줍니다.
 
    | 필드 | 값 |
    | --- | --- |
@@ -87,46 +87,46 @@ OAuth를 사용하는 첫 단계는 Twitter 개발자 사이트에서 새 응용
    |  설명 |MyHDInsightApp |
    |  Website |http://www.myhdinsightapp.com |
 4. **Yes, I agree**를 선택한 후 **Create your Twitter application**을 클릭합니다.
-5. **Permissions** 탭을 클릭합니다. 기본 권한은 **Read only**입니다. 이 자습서에는 이 권한이면 충분합니다.
-6. **Keys and Access Tokens** 탭을 클릭합니다.
+5. Hello 클릭 **권한을** 탭 hello 기본 권한은 **읽기 전용**합니다. 이 자습서에는 이 권한이면 충분합니다.
+6. Hello 클릭 **키와 액세스 토큰이** 탭 합니다.
 7. **Create my access token**을 클릭합니다.
-8. 페이지의 오른쪽 위에서 **Test OAuth** 를 클릭합니다.
-9. **consumer key**, **Consumer secret**, **Access token** 및 **Access token secret**을 기록해 둡니다. 이 값은 자습서의 뒷부분에서 필요합니다.
+8. 클릭 **테스트 OAuth** hello 페이지의 hello 오른쪽 위 모서리에 있습니다.
+9. **consumer key**, **Consumer secret**, **Access token** 및 **Access token secret**을 기록해 둡니다. Hello 자습서의 뒷부분에 나오는 hello 값이 필요 합니다.
 
-이 자습서에서는 Windows PowerShell을 사용하여 웹 서비스를 호출합니다. .NET C# 샘플의 경우 [HDInsight에서 HBase를 사용하여 Twitter 데이터 실시간 분석][hdinsight-hbase-twitter-sentiment]을 참조하세요. 웹 서비스 호출에 많이 사용되는 다른 도구는 [*Curl*][curl]입니다. Curl은 [여기][curl-download](영문)에서 다운로드할 수 있습니다.
+이 자습서에서는 Windows PowerShell toomake hello 웹 서비스 호출을 사용 합니다. .NET C# 샘플의 경우 [HDInsight에서 HBase를 사용하여 Twitter 데이터 실시간 분석][hdinsight-hbase-twitter-sentiment]을 참조하세요. hello 다른 인기 있는 도구 toomake 웹 서비스 호출은 [ *Curl*][curl]합니다. Curl은 [여기][curl-download](영문)에서 다운로드할 수 있습니다.
 
 > [!NOTE]
-> Windows에서 curl 명령을 사용할 때는 옵션 값에 작은따옴표 대신 큰따옴표를 사용합니다.
+> Hello curl 명령을 사용 하 여 Windows에는 hello 옵션 값에 대 한 단일 따옴표 대신 큰따옴표를 사용 합니다.
 
-**트윗을 가져오려면**
+**트 윗 tooget**
 
-1. Windows PowerShell ISE(통합 스크립팅 환경)를 엽니다. (Windows 8 시작 화면에서 **PowerShell_ISE**를 입력하고 **Windows PowerShell ISE**를 클릭하면 됩니다. [Windows 8 및 Windows에서 Windows PowerShell 시작][powershell-start](영문)을 참조하세요.
-2. 스크립트 창에서 다음 스크립트를 복사합니다.
+1. Windows PowerShell 통합 스크립팅 환경 (ISE) hello를 엽니다. (Hello Windows 8 시작 화면에 입력 **PowerShell_ISE** 클릭 하 고 **Windows PowerShell ISE**합니다. [Windows 8 및 Windows에서 Windows PowerShell 시작][powershell-start](영문)을 참조하세요.
+2. Hello hello 스크립트 창에 스크립트를 다음을 복사 합니다.
 
     ```powershell
     #region - variables and constants
-    $clusterName = "<HDInsightClusterName>" # Enter the HDInsight cluster name
+    $clusterName = "<HDInsightClusterName>" # Enter hello HDInsight cluster name
 
-    # Enter the OAuth information for your Twitter application
+    # Enter hello OAuth information for your Twitter application
     $oauth_consumer_key = "<TwitterAppConsumerKey>";
     $oauth_consumer_secret = "<TwitterAppConsumerSecret>";
     $oauth_token = "<TwitterAppAccessToken>";
     $oauth_token_secret = "<TwitterAppAccessTokenSecret>";
 
-    $destBlobName = "tutorials/twitter/data/tweets.txt" # This script saves the tweets into this blob.
+    $destBlobName = "tutorials/twitter/data/tweets.txt" # This script saves hello tweets into this blob.
 
-    $trackString = "Azure, Cloud, HDInsight" # This script gets the tweets containing these keywords.
+    $trackString = "Azure, Cloud, HDInsight" # This script gets hello tweets containing these keywords.
     $track = [System.Uri]::EscapeDataString($trackString);
-    $lineMax = 10000  # The script will get this number of tweets. It is about 3 minutes every 100 lines.
+    $lineMax = 10000  # hello script will get this number of tweets. It is about 3 minutes every 100 lines.
     #endregion
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     Login-AzureRmAccount
     #endregion
 
     #region - Create a block blob object for writing tweets into Blob storage
-    Write-Host "Get the default storage account name and Blob container name using the cluster name ..." -ForegroundColor Green
+    Write-Host "Get hello default storage account name and Blob container name using hello cluster name ..." -ForegroundColor Green
     $myCluster = Get-AzureRmHDInsightCluster -Name $clusterName
     $resourceGroupName = $myCluster.ResourceGroup
     $storageAccountName = $myCluster.DefaultStorageAccount.Replace(".blob.core.windows.net", "")
@@ -134,7 +134,7 @@ OAuth를 사용하는 첫 단계는 Twitter 개발자 사이트에서 새 응용
     Write-Host "`tThe storage account name is $storageAccountName." -ForegroundColor Yellow
     Write-Host "`tThe blob container name is $containerName." -ForegroundColor Yellow
 
-    Write-Host "Define the Azure storage connection string ..." -ForegroundColor Green
+    Write-Host "Define hello Azure storage connection string ..." -ForegroundColor Green
     $storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName)[0].Value
     $storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$storageAccountName;AccountKey=$storageAccountKey"
     Write-Host "`tThe connection string is $storageConnectionString." -ForegroundColor Yellow
@@ -217,8 +217,8 @@ OAuth를 사용하는 첫 단계는 Twitter 개발자 사이트에서 새 응용
     }
     #endregion
 
-    #region - Write tweets to Blob storage
-    Write-Host "Write to the destination blob ..." -ForegroundColor Green
+    #region - Write tweets tooBlob storage
+    Write-Host "Write toohello destination blob ..." -ForegroundColor Green
     $writeStream.Flush()
     $memStream.Seek(0, "Begin")
     $destBlob.UploadFromStream($memStream)
@@ -229,44 +229,44 @@ OAuth를 사용하는 첫 단계는 Twitter 개발자 사이트에서 새 응용
     Write-Host "Completed!" -ForegroundColor Green
     ```
 
-3. 스크립트에서 첫 번째 5~8개의 변수를 설정합니다.
+3. Hello 스크립트에서 hello 처음 다섯 개의 tooeight 변수를 설정 합니다.
 
     변수|설명
     ---|---
-    $clusterName|응용 프로그램을 실행하려는 HDInsight 클러스터의 이름입니다.
-    $oauth_consumer_key|앞에서 Twitter 응용 프로그램을 만들 때 적어 둔 Twitter 응용 프로그램 **consumer key** 입니다.
-    $oauth_consumer_secret|앞에서 기록해 둔 Twitter 응용 프로그램 **consumer secret** 입니다.
-    $oauth_token|앞에서 기록해 둔 Twitter 응용 프로그램 **access token** 입니다.
-    $oauth_token_secret|앞에서 기록해 둔 Twitter 응용 프로그램 **access token secret** 입니다.
-    $destBlobName|출력 Blob 이름입니다. 기본값은 **tutorials/twitter/data/tweets.txt**입니다. 기본값을 변경하는 경우 이에 따라 Windows PowerShell 스크립트를 업데이트해야 합니다.
-    $trackString|웹 서비스가 이 키워드와 관련된 트윗을 반환합니다. 기본값은 **Azure, Cloud, HDInsight**입니다. 기본값을 변경하는 경우 이에 따라 Windows PowerShell 스크립트를 업데이트합니다.
-    $lineMax|이 값은 스크립트가 읽는 트윗의 수를 결정합니다. 트윗 100개를 읽는 데 약 3분이 걸립니다. 더 큰 수를 설정할 수 있지만 그러면 다운로드하는 데 더 많은 시간이 걸립니다.
+    $clusterName|Toorun hello 응용 프로그램을 원하는 hello HDInsight 클러스터의 hello 이름입니다.
+    $oauth_consumer_key|이 hello Twitter 응용 프로그램 **소비자 키** 앞서 작성 hello Twitter 응용 프로그램을 만들 때.
+    $oauth_consumer_secret|이 hello Twitter 응용 프로그램 **소비자 암호** 앞서 작성 합니다.
+    $oauth_token|이 hello Twitter 응용 프로그램 **액세스 토큰** 앞서 작성 합니다.
+    $oauth_token_secret|이 hello Twitter 응용 프로그램 **액세스 토큰 암호** 앞서 작성 합니다.
+    $destBlobName|Hello 출력 blob 이름입니다. hello 기본값은 **tutorials/twitter/data/tweets.txt**합니다. Hello 기본값을 변경 하면 tooupdate hello Windows PowerShell 스크립트를 적절 하 게 해야 합니다.
+    $trackString|hello 웹 서비스는 트 윗 관련된 toothese 키워드를 반환 합니다. hello 기본값은 **클라우드, Azure HDInsight**합니다. Hello 기본값을 변경 하면 hello Windows PowerShell 스크립트를 적절 하 게 업데이트 합니다.
+    $lineMax|hello 값 개수 트 윗 hello 스크립트는 읽기를 결정 합니다. 트 윗 100 tooread 약 3 분이 필요합니다. 더 큰 숫자를 설정할 수 있지만 더 많은 시간 toodownload 걸립니다.
 
-1. **F5** 키를 눌러 스크립트를 실행합니다. 문제가 발생하는 경우 해결하려면 모든 줄을 선택하고 **F8**키를 누릅니다.
-2. 출력이 끝나면 "Complete!"가 표시 됩니다. 오류 메시지는 빨간색으로 표시됩니다.
+1. 키를 눌러 **F5** toorun hello 스크립트입니다. 이 문제를 해결 정보를 실행 하는 경우 모든 hello 줄을 선택 하 고 다음 키를 누릅니다 **F8**합니다.
+2. 출력이 끝나면 hello의 끝 hello 출력 합니다. 오류 메시지는 빨간색으로 표시됩니다.
 
-유효성 검사 절차로, Azure 저장소 탐색기 또는 Azure PowerShell을 사용하여 Azure Blob 저장소에서 출력 파일 **/tutorials/twitter/data/tweets.txt**를 확인할 수 있습니다. 파일을 나열하는 샘플 Windows PowerShell 스크립트를 보려면 [HDInsight에서 Blob Storage 사용][hdinsight-storage-powershell]을 참조하세요.
+유효성 검사 프로시저 hello 출력 파일을 확인할 수 있습니다 **/tutorials/twitter/data/tweets.txt**, Azure 저장소 탐색기 또는 Azure PowerShell을 사용 하 여 Azure Blob 저장소에 있습니다. 파일을 나열하는 샘플 Windows PowerShell 스크립트를 보려면 [HDInsight에서 Blob Storage 사용][hdinsight-storage-powershell]을 참조하세요.
 
 ## <a name="create-hiveql-script"></a>HiveQL 스크립트 만들기
-Azure PowerShell을 사용하여 여러 HiveQL 문을 한 번에 하나씩 실행하거나 HiveQL 문을 스크립트 파일에 패키지할 수 있습니다. 이 자습서에서는 HiveQL 스크립트를 만듭니다. 스크립트 파일은 Azure Blob 저장소에 업로드해야 합니다. 다음 섹션에서는 Azure PowerShell을 사용하여 스크립트 파일을 실행합니다.
+Azure PowerShell을 사용 하는 스크립트 파일에 한 번, 패키지 hello HiveQL 문은에 여러 HiveQL 문은 하나 실행할 수 있습니다. 이 자습서에서는 HiveQL 스크립트를 만듭니다. hello 스크립트 파일을 업로드 tooAzure Blob 저장소 이어야 합니다. Hello 다음 섹션에서 Azure PowerShell을 사용 하 여 hello 스크립트 파일을 실행 합니다.
 
 > [!NOTE]
-> Hive 스크립트 파일 및 트윗 10,000개를 포함하는 파일이 공용 Blob 컨테이너에 업로드되었습니다. 업로드된 파일을 사용하려는 경우 이 섹션을 건너뛸 수 있습니다.
+> 공용 Blob 컨테이너에서 hello Hive 스크립트 파일 및 10, 000 트 윗을 포함 하는 파일을 업로드 하지 않았습니다. Toouse hello 업로드 파일을 원하는 경우이 섹션을 건너뛸 수 있습니다.
 
-HiveQL 스크립트는 다음을 수행합니다.
+hello HiveQL 스크립트 hello 다음을 수행 합니다.
 
-1. 이미 있는 경우 **tweets_raw 테이블을 삭제**합니다.
-2. **tweets_raw Hive 테이블을 만듭니다**. 이 임시 Hive 구조적 테이블에는 추가 ETL(추출, 변환 및 로드) 처리를 위한 데이터가 저장됩니다. 파티션에 대한 자세한 내용은 [Hive 자습서][apache-hive-tutorial](영문)을 참조하세요.
-3. **데이터를 로드** 합니다. 이제 중첩 JSON 형식의 대량 트윗 데이터 집합이 임시 Hive 테이블 구조로 변환되었습니다.
-4. **tweets 테이블을 삭제** 합니다.
-5. **tweets 테이블을 만듭니다**. Hive를 사용하여 트윗 데이터 집합에 대해 쿼리하려면 먼저 다른 ETL 프로세스를 실행해야 합니다. 이 ETL 프로세스는 "twitter_raw" 테이블에 저장한 데이터에 대해 더욱 자세한 테이블 스키마를 정의합니다.
-6. **overwrite 테이블을 삽입**합니다. 이 복잡한 Hive 스크립트는 Hadoop 클러스터로 긴 MapReduce 작업 집합을 시작합니다. 데이터 집합 및 클러스터의 크기에 따라 이 작업은 약 10분 정도 걸릴 수 있습니다.
-7. **overwrite 디렉터리 삽입**합니다. 쿼리를 실행하고 데이터 집합을 파일로 출력합니다. 이 쿼리는 "Azure"라는 단어가 포함된 트윗을 가장 많이 보낸 Twitter 사용자의 목록을 반환합니다.
+1. **Hello tweets_raw 테이블을 삭제** hello 테이블이 이미 존재 하는 경우.
+2. **Hello tweets_raw 하이브 테이블 만들기**합니다. 이 임시 하이브 구조화 된 테이블에 대 한 hello 데이터를 더 이상 보유 추출, 변환 및 로드 (ETL) 처리 합니다. 파티션에 대한 자세한 내용은 [Hive 자습서][apache-hive-tutorial](영문)을 참조하세요.
+3. **데이터 로드** /tutorials/twitter/data hello 원본 폴더에서. 임시 하이브 테이블 구조에 중첩 된 JSON 형식으로 hello 트 윗 큰 데이터 집합 변환 된 이제 합니다.
+4. **Hello 트 윗 테이블 삭제** hello 테이블이 이미 존재 하는 경우.
+5. **Hello 트 윗 테이블 만들기**합니다. 하이브를 사용 하 여 hello 트 윗 데이터 집합에 대해 쿼리하려면 먼저 toorun 다른 ETL 프로세스입니다. 이 ETL 프로세스 hello "twitter_raw" 테이블에 저장 된 hello 데이터에 대 한 보다 자세한 테이블 스키마를 정의 합니다.
+6. **overwrite 테이블을 삽입**합니다. 이 복잡 한 하이브 스크립트 일정도 긴 MapReduce 작업 집합이 hello Hadoop 클러스터에 의해 합니다. 크기에 따라 데이터 집합 및 hello 클러스터를 약 10 분이 걸릴 수 없습니다.
+7. **overwrite 디렉터리 삽입**합니다. 쿼리 및 출력 hello 데이터 집합 tooa 파일을 실행 합니다. 이 쿼리는 "Azure" hello 단어를 포함 하는 대부분 트 윗을 보낼 Twitter 사용자의 목록을 반환 합니다.
 
-**Hive 스크립트를 만들어 Azure에 업로드하려면**
+**toocreate 하이브 스크립트를 tooAzure 업로드**
 
 1. Windows PowerShell ISE를 엽니다.
-2. 스크립트 창에서 다음 스크립트를 복사합니다.
+2. Hello hello 스크립트 창에 스크립트를 다음을 복사 합니다.
 
     ```powershell
     #region - variables and constants
@@ -389,8 +389,8 @@ HiveQL 스크립트는 다음을 수행합니다.
     "@
     #endregion
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
 
     Try{
         Get-AzureRmSubscription
@@ -403,8 +403,8 @@ HiveQL 스크립트는 다음을 수행합니다.
 
     #endregion
 
-    #region - Create a block blob object for writing the Hive script file
-    Write-Host "Get the default storage account name and container name based on the cluster name ..." -ForegroundColor Green
+    #region - Create a block blob object for writing hello Hive script file
+    Write-Host "Get hello default storage account name and container name based on hello cluster name ..." -ForegroundColor Green
     $myCluster = Get-AzureRmHDInsightCluster -ClusterName $clusterName
     $resourceGroupName = $myCluster.ResourceGroup
     $defaultStorageAccountName = $myCluster.DefaultStorageAccount.Replace(".blob.core.windows.net", "")
@@ -412,11 +412,11 @@ HiveQL 스크립트는 다음을 수행합니다.
     Write-Host "`tThe storage account name is $defaultStorageAccountName." -ForegroundColor Yellow
     Write-Host "`tThe blob container name is $defaultBlobContainerName." -ForegroundColor Yellow
 
-    Write-Host "Define the connection string ..." -ForegroundColor Green
+    Write-Host "Define hello connection string ..." -ForegroundColor Green
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccountName)[0].Value
     $storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$defaultStorageAccountName;AccountKey=$defaultStorageAccountKey"
 
-    Write-Host "Create block blob objects referencing the hql script file" -ForegroundColor Green
+    Write-Host "Create block blob objects referencing hello hql script file" -ForegroundColor Green
     $storageAccount = [Microsoft.WindowsAzure.Storage.CloudStorageAccount]::Parse($storageConnectionString)
     $storageClient = $storageAccount.CreateCloudBlobClient();
     $storageContainer = $storageClient.GetContainerReference($defaultBlobContainerName)
@@ -428,8 +428,8 @@ HiveQL 스크립트는 다음을 수행합니다.
     $writeStream.Writeline($hqlStatements)
     #endregion
 
-    #region - Write the Hive script file to Blob storage
-    Write-Host "Write to the destination blob ... " -ForegroundColor Green
+    #region - Write hello Hive script file tooBlob storage
+    Write-Host "Write toohello destination blob ... " -ForegroundColor Green
     $writeStream.Flush()
     $memStream.Seek(0, "Begin")
     $hqlScriptBlob.UploadFromStream($memStream)
@@ -438,28 +438,28 @@ HiveQL 스크립트는 다음을 수행합니다.
     Write-Host "Completed!" -ForegroundColor Green
     ```
 
-3. 스크립트에서 첫 2개의 변수를 설정합니다.
+3. Hello 스크립트에서 hello 처음 두 개의 변수를 설정 합니다.
 
    | 변수 | 설명 |
    | --- | --- |
-   |  $clusterName |응용 프로그램을 실행하려는 HDInsight 클러스터 이름을 입력합니다. |
+   |  $clusterName |Toorun hello 응용 프로그램을 원하는 hello HDInsight 클러스터 이름을 입력 합니다. |
    |  $subscriptionID |Azure 구독 ID를 입력합니다. |
-   |  $sourceDataPath |Hive 쿼리가 데이터를 읽는 Azure Blob 저장소 위치입니다. 이 변수를 변경할 필요가 없습니다. |
-   |  $outputPath |Hive 쿼리가 결과를 출력하는 Azure Blob 저장소 위치입니다. 이 변수를 변경할 필요가 없습니다. |
-   |  $hqlScriptFile |HiveQL 스크립트 파일의 위치 및 파일 이름입니다. 이 변수를 변경할 필요가 없습니다. |
-4. **F5** 키를 눌러 스크립트를 실행합니다. 문제가 발생하는 경우 해결하려면 모든 줄을 선택하고 **F8**키를 누릅니다.
-5. 출력이 끝나면 "Complete!"가 표시 됩니다. 오류 메시지는 빨간색으로 표시됩니다.
+   |  $sourceDataPath |hello Azure Blob 저장소 위치를 위치 hello 하이브 쿼리 hello 데이터를 읽습니다. 이 변수 toochange을 필요 하지 않습니다. |
+   |  $outputPath |hello Azure Blob 저장소 위치 hello 하이브 쿼리 hello 결과 출력 합니다. 이 변수 toochange을 필요 하지 않습니다. |
+   |  $hqlScriptFile |hello 위치와 hello HiveQL 스크립트 파일의 hello 파일 이름입니다. 이 변수 toochange을 필요 하지 않습니다. |
+4. 키를 눌러 **F5** toorun hello 스크립트입니다. 이 문제를 해결 정보를 실행 하는 경우 모든 hello 줄을 선택 하 고 다음 키를 누릅니다 **F8**합니다.
+5. 출력이 끝나면 hello의 끝 hello 출력 합니다. 오류 메시지는 빨간색으로 표시됩니다.
 
-유효성 검사 절차로, Azure 저장소 탐색기 또는 Azure PowerShell을 사용하여 Azure Blob 저장소에서 출력 파일 **/tutorials/twitter/twitter.hql**을 확인할 수 있습니다. 파일을 나열하는 샘플 Windows PowerShell 스크립트를 보려면 [HDInsight에서 Blob Storage 사용][hdinsight-storage-powershell]을 참조하세요.
+유효성 검사 프로시저 hello 출력 파일을 확인할 수 있습니다 **/tutorials/twitter/twitter.hql**, Azure 저장소 탐색기 또는 Azure PowerShell을 사용 하 여 Azure Blob 저장소에 있습니다. 파일을 나열하는 샘플 Windows PowerShell 스크립트를 보려면 [HDInsight에서 Blob Storage 사용][hdinsight-storage-powershell]을 참조하세요.
 
 ## <a name="process-twitter-data-by-using-hive"></a>Hive를 사용하여 Twitter 데이터 처리
-준비 작업을 모두 마쳤습니다. 이제 Hive 스크립트를 호출하고 결과를 확인할 수 있습니다.
+모든 hello 준비 작업을 마쳤습니다. 이제 hello 하이브 스크립트를 호출 하 고 hello 결과 확인할 수 있습니다.
 
 ### <a name="submit-a-hive-job"></a>Hive 작업 제출
-다음 Windows PowerShell 스크립트를 사용하여 Hive 스크립트를 실행합니다. 첫 번째 변수를 설정해야 합니다.
+다음 Windows PowerShell 스크립트 toorun hello 하이브 스크립트 hello를 사용 합니다. Tooset hello 첫 번째 변수가 필요 합니다.
 
 > [!NOTE]
-> 마지막 두 섹션에서 업로드한 HiveQL 스크립트 및 트윗을 사용하려면 $hqlScriptFile을 "/tutorials/twitter/twitter.hql"로 설정합니다. 사용자를 위해 공개 blob에 업로드한 것을 사용하려면 $hqlScriptFile을 “wasb://twittertrend@hditutorialdata.blob.core.windows.net/twitter.hql”로 설정합니다.
+> toouse hello 트 윗 및 HiveQL 스크립트 집합 $hqlScriptFile too"/tutorials/twitter/twitter.hql hello 마지막 두 섹션에서 업로드 hello"입니다. toouse hello 된 것을 tooa 공용 blob 업로드, 너무 $hqlScriptFile 설정"wasb://twittertrend@hditutorialdata.blob.core.windows.net/twitter.hql"입니다.
 
 ```powershell
 #region variables and constants
@@ -467,7 +467,7 @@ $clusterName = "<Existing Azure HDInsight Cluster Name>"
 $httpUserName = "admin"
 $httpUserPassword = "<HDInsight Cluster HTTP User Password>"
 
-#use one of the following
+#use one of hello following
 $hqlScriptFile = "wasb://twittertrend@hditutorialdata.blob.core.windows.net/twitter.hql"
 $hqlScriptFile = "/tutorials/twitter/twitter.hql"
 
@@ -484,31 +484,31 @@ $defaultBlobContainerName = $myCluster.DefaultStorageContainer
 #region - Invoke Hive
 Write-Host "Invoke Hive ... " -ForegroundColor Green
 
-# Create the HDInsight cluster
+# Create hello HDInsight cluster
 $pw = ConvertTo-SecureString -String $httpUserPassword -AsPlainText -Force
 $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
 
 Use-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $clusterName -HttpCredential $httpCredential
 $response = Invoke-AzureRmHDInsightHiveJob -DefaultStorageAccountName $defaultStorageAccountName -DefaultStorageAccountKey $defaultStorageAccountKey -DefaultContainer $defaultBlobContainerName -file $hqlScriptFile -StatusFolder $statusFolder #-OutVariable $outVariable
 
-Write-Host "Display the standard error log ... " -ForegroundColor Green
+Write-Host "Display hello standard error log ... " -ForegroundColor Green
 $jobID = ($response | Select-String job_ | Select-Object -First 1) -replace ‘\s*$’ -replace ‘.*\s’
 Get-AzureRmHDInsightJobOutput -ClusterName $clusterName -JobId $jobID -DefaultContainer $defaultBlobContainerName -DefaultStorageAccountName $defaultStorageAccountName -DefaultStorageAccountKey $defaultStorageAccountKey -HttpCredential $httpCredential
 #endregion
 ```
 
-### <a name="check-the-results"></a>결과 확인
-다음 Windows PowerShell 스크립트를 사용하여 Hive 작업 출력을 확인합니다. 처음 2개의 변수를 설정해야 합니다.
+### <a name="check-hello-results"></a>Hello 결과 확인
+다음 Windows PowerShell 스크립트 toocheck hello 하이브 작업 출력 hello를 사용 합니다. Tooset hello 처음 두 개의 변수를 필요 합니다.
 
 ```powershell
 #region variables and constants
 $clusterName = "<Existing Azure HDInsight Cluster Name>"
 
-$blob = "tutorials/twitter/output/000000_0" # The name of the blob to be downloaded.
+$blob = "tutorials/twitter/output/000000_0" # hello name of hello blob toobe downloaded.
 #endregion
 
 #region - Create an Azure storage context object
-Write-Host "Get the default storage account name and container name based on the cluster name ..." -ForegroundColor Green
+Write-Host "Get hello default storage account name and container name based on hello cluster name ..." -ForegroundColor Green
 $myCluster = Get-AzureRmHDInsightCluster -ClusterName $clusterName
 $resourceGroupName = $myCluster.ResourceGroup
 $defaultStorageAccountName = $myCluster.DefaultStorageAccount.Replace(".blob.core.windows.net", "")
@@ -523,11 +523,11 @@ $storageContext = New-AzureStorageContext -StorageAccountName $defaultStorageAcc
 #endregion
 
 #region - Download blob and display blob
-Write-Host "Download the blob ..." -ForegroundColor Green
+Write-Host "Download hello blob ..." -ForegroundColor Green
 cd $HOME
 Get-AzureStorageBlobContent -Container $defaultBlobContainerName -Blob $blob -Context $storageContext -Force
 
-Write-Host "Display the output ..." -ForegroundColor Green
+Write-Host "Display hello output ..." -ForegroundColor Green
 Write-Host "==================================" -ForegroundColor Green
 cat "./$blob"
 Write-Host "==================================" -ForegroundColor Green
@@ -535,18 +535,18 @@ Write-Host "==================================" -ForegroundColor Green
 ```
 
 > [!NOTE]
-> Hive 테이블은 필드 구분 기호로 \001을 사용합니다. 구분 기호는 출력에서 보이지 않습니다.
+> 필드 구분 기호를 hello hello Hive 테이블 \001을 사용 됩니다. hello 구분 기호 hello 출력에 표시 되지 않습니다.
 
-분석 결과가 Azure Blob 저장소에 배치된 후에는 데이터를 Azure SQL 데이터베이스/SQL Server로 내보내거나, 파워 쿼리를 사용하여 데이터를 Excel로 내보내거나, Hive ODBC 드라이버를 사용하여 응용 프로그램을 데이터에 연결할 수 있습니다. 자세한 내용은 [HDInsight에서 Sqoop 사용][hdinsight-use-sqoop], [HDInsight를 사용하여 비행 지연 데이터 분석][hdinsight-analyze-flight-delay-data], [파워 쿼리로 HDInsight에 Excel 연결][hdinsight-power-query] 및 [Microsoft Hive ODBC 드라이버로 HDInsight에 Excel 연결][hdinsight-hive-odbc]을 참조하세요.
+Azure Blob 저장소에 hello 분석 결과 배치한 후 hello 데이터 tooan Azure SQL 데이터베이스/SQL server를 내보낼 파워 쿼리를 사용 하 여 hello 데이터 tooExcel 내보내기 하거나 hello 하이브 ODBC 드라이버를 사용 하 여 응용 프로그램 toohello 데이터 연결 수 있습니다. 자세한 내용은 참조 [HDInsight 사용 하 여 Sqoop][hdinsight-use-sqoop], [HDInsight를 사용 하 여 비행 연착 데이터를 분석][hdinsight-analyze-flight-delay-data], [ 파워 쿼리를 사용 하 여 Excel tooHDInsight 연결][hdinsight-power-query], 및 [Microsoft ODBC Driver 하이브 hello로 Excel 연결 tooHDInsight][hdinsight-hive-odbc]합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 비구조적 JSON 데이터 집합을 구조적 Hive 테이블로 변환하여 Azure의 HDInsight를 통해 Twitter 데이터를 쿼리하고 탐색하고 분석하는 방법을 살펴보았습니다. 자세한 내용은 다음을 참조하세요.
+이 자습서에서 살펴본 것 tootransform 구조화 된 Hive 테이블 tooquery에는 구조화 되지 않은 JSON 데이터 집합을 탐색 하 고 Azure에서 HDInsight를 사용 하 여 Twitter에서 데이터를 분석 하는 방법입니다. toolearn 더 참조 하십시오.
 
 * [HDInsight 시작][hdinsight-get-started]
 * [HDInsight에서 HBase를 사용하여 Twitter 데이터 실시간 분석][hdinsight-hbase-twitter-sentiment]
 * [HDInsight를 사용하여 비행 지연 데이터 분석][hdinsight-analyze-flight-delay-data]
-* [파워 쿼리로 HDInsight에 Excel 연결][hdinsight-power-query]
-* [Microsoft Hive ODBC 드라이버로 HDInsight에 Excel 연결][hdinsight-hive-odbc]
+* [파워 쿼리를 사용 하 여 Excel tooHDInsight 연결][hdinsight-power-query]
+* [Microsoft ODBC Driver 하이브 hello를 사용 하 여 Excel tooHDInsight 연결][hdinsight-hive-odbc]
 * [HDInsight에서 Sqoop 사용][hdinsight-use-sqoop]
 
 [curl]: http://curl.haxx.se

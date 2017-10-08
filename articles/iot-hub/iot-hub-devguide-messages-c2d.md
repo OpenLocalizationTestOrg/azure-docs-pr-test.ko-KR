@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 클라우드-장치 메시징 이해 | Microsoft Docs"
-description: "개발자 가이드 - IoT Hub를 사용하여 클라우드-장치 메시징을 사용하는 방법입니다. 메시지 수명 주기 및 구성 옵션에 대한 정보를 포함합니다."
+title: "Azure IoT Hub 클라우드-장치 aaaUnderstand 메시징 | Microsoft Docs"
+description: "개발자 가이드-어떻게 toouse 클라우드-장치 IoT Hub와 메시징입니다. Hello 메시지 수명 주기 및 구성 옵션에 대 한 정보가 포함 됩니다."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -13,85 +13,85 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: 04ac46498c912b0503036f70b7f3d0e28e5a82b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c747b50163873d823556a8baa769c4b8f7f8c44
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-cloud-to-device-messages-from-iot-hub"></a>IoT Hub에서 클라우드-장치 메시지 보내기
 
-솔루션 백 엔드에서 장치 앱으로 단방향 알림을 보내려면 IoT Hub에서 장치로 클라우드-장치 메시지를 보냅니다. IoT Hub가 지원하는 다른 클라우드-장치 옵션에 대한 설명은 [클라우드-장치 통신 지침][lnk-c2d-guidance]을 참조하세요.
+toosend 단방향 알림 toohello 장치 응용 프로그램 솔루션 백 엔드에서 IoT 허브 tooyour 장치에서 클라우드-장치 메시지를 보냅니다. IoT Hub가 지원하는 다른 클라우드-장치 옵션에 대한 설명은 [클라우드-장치 통신 지침][lnk-c2d-guidance]을 참조하세요.
 
-서비스 지향 끝점(**/messages/devicebound**)을 통해 클라우드-장치 메시지를 보냅니다. 그런 다음 장치는 장치별 끝점(**/devices/{deviceId}/messages/devicebound**)을 통해 메시지를 수신합니다.
+서비스 지향 끝점(**/messages/devicebound**)을 통해 클라우드-장치 메시지를 보냅니다. 장치를 장치 특정 끝점을 통해 hello 메시지 받습니다 (**/devices/ {deviceId} / 메시지/devicebound**).
 
-각 클라우드-장치 메시지는 **to** 속성을 **/devices/{deviceId}/messages/devicebound**로 설정하여 단일 장치를 대상화합니다.
+각 클라우드-장치 메시지 대상으로 하는 단일 장치 hello 설정 하 여 **를** 속성 너무**/devices/ {deviceId} / 메시지/devicebound**합니다.
 
-각 장치 큐는 클라우드-장치 메시지를 최대 50개까지 보유합니다. 동일한 장치에 더 많은 메시지를 보내려고 하면 오류가 발생합니다.
+각 장치 큐는 클라우드-장치 메시지를 최대 50개까지 보유합니다. 더 많은 메시지 toohello toosend 시도 같은 장치는 오류가 발생 합니다.
 
-## <a name="the-cloud-to-device-message-lifecycle"></a>클라우드-장치 메시지 수명 주기
+## <a name="hello-cloud-to-device-message-lifecycle"></a>hello 클라우드-장치 메시지 수명 주기
 
-메시지 전달을 한 번 이상 보장하기 위해 IoT Hub는 장치 별 큐에 클라우드-장치 메시지를 유지합니다. IoT Hub가 큐에서 메시지를 제거하기 위해 장치가 *완료* 를 명시적으로 인정해야 합니다. 이 방법은 연결 및 장치 오류로부터 복원력을 보장합니다.
+IoT Hub tooguarantee에서-최소 1 회 메시지 배달을 장치 단위 큐에 있는 클라우드-장치 메시지를 유지합니다. 장치를 명시적으로 승인 해야 *완료* 큐 hello에서 IoT Hub tooremove에 대 한 합니다. 이 방법은 연결 및 장치 오류로부터 복원력을 보장합니다.
 
-다음 다이어그램은 IoT Hub에서 클라우드-장치 메시지에 대한 수명 주기 상태 그래프를 보여 줍니다.
+hello 다음 다이어그램 그래프를 보여 줍니다 hello 수명 주기 상태 클라우드-장치 메시지에 대 한 IoT Hub에 있습니다.
 
 ![클라우드-장치 메시지 수명 주기][img-lifecycle]
 
-IoT Hub 서비스가 장치에 메시지를 보내면 서비스는 메시지 상태를 **큐에 넣음**으로 설정합니다. 장치가 메시지를 *수신*하려고 하면 IoT Hub는 상태를 **숨김**으로 설정하여 메시지를 *잠그고* 장치에 있는 다른 스레드가 다른 메시지 수신을 시작하도록 허용합니다. 장치 스레드가 메시지의 처리를 완료하면 IoT Hub에 메시지를 *완료* 했다고 알립니다. 그런 다음 IoT Hub는 상태를 **완료**로 설정합니다.
+IoT Hub 서비스 hello 메시지 tooa 장치, hello 서비스를 보낼 때 설정 하는 hello 메시지 상태 너무**큐에 대기 된**합니다. 장치가 너무 경우*수신* 메시지가 IoT Hub *잠금* hello 메시지 (너무 hello 상태를 설정 하 여**보이지 않는**), 다른 스레드에서 hello 장치 toostart에서 허용 하는 다른 메시지를 수신 합니다. 장치 스레드 hello 메시지 처리를 완료 하 여 IoT Hub 알립니다 *완료* hello 메시지입니다. IoT Hub 다음 상태를 설정 hello 너무**Completed**합니다.
 
 장치는 다음을 선택할 수도 있습니다.
 
-* 메시지 *거부*. 이 경우 IoT Hub는 메시지를 **Deadlettered** 상태로 설정합니다. MQTT 프로토콜을 통해 연결하는 장치는 클라우드-장치 메시지를 거부할 수 없습니다.
-* 메시지 *중단*. 이 경우 IoT Hub는 상태를 **큐에 넣음**으로 설정하여 메시지를 큐에 다시 넣습니다.
+* *거부* hello 메시지를 IoT Hub tooset 것 toohello **배달 못한 메시지로 분류** 상태입니다. Hello MQTT 프로토콜을 통해 연결 하는 장치는 클라우드-장치 메시지를 거부할 수 없습니다.
+* *중단* hello 메시지를 IoT Hub tooput hello 메시지 hello 큐에 다시 hello 상태 너무 설정 하 여**큐에 대기 된**합니다.
 
-스레드는 IoT Hub에 알리지 않고 메시지를 처리하는 데 실패할 수 있습니다. 이 경우 *표시 또는 잠금 시간 초과* 후에 메시지는 **숨김** 상태에서 **큐에 넣음** 상태로 자동 전환됩니다. 이 시간 제한의 기본값은 1분입니다.
+스레드는 tooprocess 메시지가 IoT Hub에 게 알리지 않고 실패할 수 있습니다. 이 경우 메시지를 자동으로 hello에서 전환을 **보이지 않는** 상태 백 toohello **큐에 대기 된** 후 상태는 *표시 유형 (또는 잠금) 시간 초과*합니다. 이 시간 제한의 hello 기본 값은 1 분입니다.
 
-메시지는 IoT Hub의 **최대 배달 횟수** 속성에 지정된 최대 지정된 횟수만큼 **큐에 넣음** 및 **숨김** 상태 간에 전환될 수 있습니다. 해당 전환 횟수 후에 IoT Hub는 메시지의 상태를 **Deadlettered**로 설정합니다. 마찬가지로 IoT Hub는 만료 시간 후에 메시지의 상태를 **Deadlettered**로 설정합니다. 관련 설명은 [TTL(Time to Live)][lnk-ttl]을 참조하세요.
+메시지 hello 간에 전환할 수 **큐에 대기 된** 및 **보이지 않는** 에 대 한 상태에는 기껏해야 hello에 지정 된 횟수 만큼 hello **최대 배달 횟수** IoT 허브에서 속성입니다. IoT Hub 해당 전환 횟수 후 hello 메시지의 hello 상태 너무 설정**배달 못한 메시지로 분류**합니다. 마찬가지로, IoT 허브 상태를 설정 hello 메시지의 너무**배달 못한 메시지로 분류** 만료 시간 이후 (참조 [시간 toolive][lnk-ttl]).
 
-[IoT Hub를 사용하여 클라우드-장치 메시지를 보내는 방법][lnk-c2d-tutorial]에서는 클라우드에서 클라우드-장치 메시지를 보내고 장치에서 수신하는 방법을 보여 줍니다.
+hello [IoT Hub와 toosend 클라우드-장치 메시지 방법을] [ lnk-c2d-tutorial] hello에서 클라우드-장치 메시지 toosend 클라우드 하 고 장치에서 수신 하는 방법을 보여줍니다.
 
-일반적으로 메시지 손실이 응용 프로그램 논리에 영향을 주지 않으면 장치가 클라우드-장치 메시지를 완료합니다. 예를 들어 장치가 메시지 콘텐츠를 로컬에 유지하거나 작업을 성공적으로 실행한 경우입니다. 또한 메시지가 임시 정보를 전달하고 있으므로 손실되더라도 응용 프로그램의 기능에 영향을 주지 않을 수도 있습니다. 경우에 따라 장기간 실행되는 작업의 경우 로컬 저장소에 작업 설명을 보관한 후 클라우드-장치 메시지를 완료할 수 있습니다. 그런 다음 작업이 진행되는 다양한 단계에서 하나 이상의 장치-클라우드 메시지를 사용하여 솔루션 백 엔드에 알림을 제공할 수 있습니다.
+일반적으로 장치는 hello hello 메시지의 영향을 주지 않습니다 hello 응용 프로그램 논리 경우 클라우드-장치 메시지를 완료 합니다. 예를 들어 때 hello hello 메시지 콘텐츠를 로컬로 지속에 장치나 작업 처리가 성공적으로 실행 합니다. hello 메시지 인 손실 hello hello 응용 프로그램의 기능에 영향을 주지는 일시적인 정보를 수행할 수도 수입니다. 경우에 따라 장기 실행 작업에 대 한 צ ְ ײ hello 클라우드-장치 메시지를 유지 한 후 hello 로컬 저장소에 대 한 작업 설명입니다. 그런 다음 hello 작업의 진행률의 여러 단계에서 하나 이상의 장치-클라우드 메시지와 함께 hello 솔루션 백 엔드에 알릴 수 있습니다.
 
-## <a name="message-expiration-time-to-live"></a>메시지 만료(TTL(Time To Live))
+## <a name="message-expiration-time-toolive"></a>메시지 만료 (toolive 시간)
 
-모든 클라우드-장치 메시지에는 만료 시간이 있습니다. 이 시간은 서비스에 의해 설정되거나(**ExpiryTimeUtc** 속성) IoT Hub 속성처럼 기본 *TTL(Time To Live)* 을 사용하여 IoT Hub에 의해 설정됩니다. [클라우드-장치 구성 옵션][lnk-c2d-configuration]을 참조하세요.
+모든 클라우드-장치 메시지에는 만료 시간이 있습니다. 이 이번 hello 서비스에 의해 설정 됩니다 (hello에 **ExpiryTimeUtc** 속성), 또는 기본 hello를 사용 하 여 IoT 허브 *시간 toolive* IoT Hub 속성으로 지정 합니다. [클라우드-장치 구성 옵션][lnk-c2d-configuration]을 참조하세요.
 
-메시지 만료를 활용하여 연결되지 않은 장치에 메시지 보내기를 방지하는 일반적인 방법은 TTL(Time to Live) 값을 짧게 설정하는 것입니다. 이 방법은 장치 연결 상태를 유지 관리하는 것과 동일한 결과를 내면서 더 효율적입니다. 메시지 승인을 요청하면 IoT Hub는 메시지를 수신할 수 있는 장치가 무엇인지 온라인 상태이거나 장애가 발생한 장치가 무엇인지를 알려줍니다.
+일반적인 방식으로 tootake 장점은 만료 메시지 및 toodisconnected 장치 메시지를 전송 하지 않도록, tooset toolive 짧은 시간 값이 있습니다. 이 방법은 hello 보다 효율적인 하면서 hello 장치 연결 상태를 유지 관리와 같은 결과 얻을 수 있습니다. 메시지 승인이 요청 하는 경우 장치는 수 tooreceive 메시지 이며 어떤 장치가 온라인 상태 인지 실패 한 IoT Hub 알립니다.
 
 ## <a name="message-feedback"></a>메시지 피드백
 
-클라우드-장치 메시지를 보낼 때 서비스는 해당 메시지의 최종 상태에 대한 메시지 단위 피드백을 전달하도록 요청할 수 있습니다.
+클라우드-장치 메시지를 보내면 hello 서비스는 hello 메시지의 최종 상태에 대 한 메시지 피드백의 hello 배달을 요청할 수 있습니다.
 
 | Ack 속성 | 동작 |
 | ------------ | -------- |
-| **positive** | 클라우드-장치 메시지가 **Completed** 상태가 되는 경우에만 IoT Hub가 피드백 메시지를 생성합니다. |
-| **negative** | 클라우드-장치 메시지가 **Deadlettered** 상태가 되는 경우에만 IoT Hub가 피드백 메시지를 생성합니다. |
+| **positive** | IoT Hub 피드백 메시지를 생성 하 고 hello 클라우드-장치 메시지 hello에 도달한 경우에 **Completed** 상태입니다. |
+| **negative** | IoT Hub 및 경우에, hello 클라우드-장치 메시지 큐에 도달 hello 피드백 메시지를 생성 **배달 못한 메시지로 분류** 상태입니다. |
 | **full**     | IoT Hub는 어떤 경우든 피드백 메시지를 생성합니다. |
 
-**Ack**가 **full**이고 피드백 메시지를 수신하지 못한 경우 피드백 메시지가 만료되었음을 의미합니다. 서비스는 원본 메시지에서 발생한 상황을 알지 못합니다. 실제로 서비스는 만료되기 전에 피드백을 처리할 수 있는지 확인해야 합니다. 오류가 발생한 경우 서비스를 다시 가동하는 데 충분한 시간을 허용하기 위해 최대 만료 시간이 2일로 지정되어 있습니다.
+경우 **Ack** 은 **전체**, 및 피드백 메시지가, 해당 hello 피드백 메시지 만료 된 것을 의미 합니다. hello 서비스 어떤 발생 했습니다 toohello 원본 메시지를 알 수 없습니다. 실제로 서비스는 만료 되기 전에 hello 피드백을 처리할 수 있도록 확인 해야 합니다. hello 최대 만료 시간은 2 일 수 있는 충분 한 시간 tooget hello 서비스를 다시 실행 오류가 발생 합니다.
 
-[끝점][lnk-endpoints]에 설명된 대로 IoT Hub는 서비스 지향 끝점(**/messages/servicebound/feedback**)을 통해 피드백을 메시지로 전달합니다. 피드백 수신을 위한 의미 체계는 클라우드-장치 메시지의 경우와 같으며 동일한 [메시지 수명 주기][lnk-lifecycle]를 갖습니다. 가능한 경우 메시지 피드백은 다음 형식으로 단일 메시지에서 일괄 처리됩니다.
+[끝점][lnk-endpoints]에 설명된 대로 IoT Hub는 서비스 지향 끝점(**/messages/servicebound/feedback**)을 통해 피드백을 메시지로 전달합니다. hello 의미 체계 의견을 받기 위한 클라우드-장치 메시지의 경우와 동일는 hello와 같은 hello가 [메시지 수명 주기][lnk-lifecycle]합니다. 가능 하면 항상 피드백 메시지 일괄 처리 되는 단일 메시지에서 형식에 따라 hello로:
 
 | 속성     | 설명 |
 | ------------ | ----------- |
-| EnqueuedTime | 메시지를 만든 시간을 나타내는 타임스탬프입니다. |
+| EnqueuedTime | Hello 메시지를 만들 때를 나타내는 타임 스탬프입니다. |
 | UserId       | `{iot hub name}` |
 | ContentType  | `application/vnd.microsoft.iothub.feedback.json` |
 
-본문은 각각 다음과 같은 속성이 있는 레코드의 JSON으로 직렬화된 배열입니다.
+hello 본문은 다음과 같은 속성 hello로 각 레코드의 JSON 직렬화 된 배열:
 
 | 속성           | 설명 |
 | ------------------ | ----------- |
-| EnqueuedTimeUtc    | 메시지의 결과가 발생하는 경우를 나타내는 타임스탬프입니다. 예를 들어 완료된 장치 또는 만료된 메시지입니다. |
-| OriginalMessageId  | 이 피드백 정보와 관련된 클라우드-장치 메시지의 **MessageId**입니다. |
+| EnqueuedTimeUtc    | Hello 메시지의 hello 결과 발생 한 시기를 나타내는 타임 스탬프입니다. 예를 들어 완료 하는 장치를 hello 또는 hello 메시지는 만료 되었습니다. |
+| OriginalMessageId  | **MessageId** hello 클라우드-장치 메시지 toowhich의이 사용자 의견 정보를 연결 합니다. |
 | StatusCode         | 필수 문자열 IoT Hub에 의해 생성된 피드백 메시지에서 사용됩니다. <br/> 'Success' <br/> 'Expired' <br/> 'DeliveryCountExceeded' <br/> 'Rejected' <br/> 'Purged' |
 | 설명        | **StatusCode**에 대한 문자열 값입니다. |
-| deviceId           | 피드백의 해당 부분과 관련된 클라우드-장치 메시지에서 대상 장치의 **DeviceId**입니다. |
-| DeviceGenerationId | 피드백의 해당 부분과 관련된 클라우드-장치 메시지에서 대상 장치의 **DeviceGenerationId**입니다. |
+| deviceId           | **DeviceId** hello 클라우드-장치 메시지 toowhich의 hello 대상 장치의 피드백의이 부분 연결 합니다. |
+| DeviceGenerationId | **DeviceGenerationId** hello 클라우드-장치 메시지 toowhich의 hello 대상 장치의 피드백의이 부분 연결 합니다. |
 
-서비스는 원본 메시지와 해당 피드백을 상호 연결하기 위해 클라우드-장치 메시지에 대한 **MessageId** 를 지정해야 합니다.
+hello 서비스 지정 해야 합니다는 **MessageId** hello 클라우드-장치 메시지 toobe 수 toocorrelate 해당 피드백 hello 원본 메시지에 대 한 합니다.
 
-다음 예제에서는 피드백 메시지의 본문을 보여 줍니다.
+hello 다음 예제에서는 hello 피드백 메시지 본문
 
 ```json
 [
@@ -112,22 +112,22 @@ IoT Hub 서비스가 장치에 메시지를 보내면 서비스는 메시지 상
 
 ## <a name="cloud-to-device-configuration-options"></a>클라우드-장치 구성 옵션
 
-각 IoT Hub는 클라우드-장치 메시징에 다음 구성 옵션을 노출합니다.
+각 IoT 허브는 hello 다음 클라우드-장치 메시징에 대 한 구성 옵션을 제공 합니다.
 
 | 속성                  | 설명 | 범위 및 기본값 |
 | ------------------------- | ----------- | ----------------- |
-| defaultTtlAsIso8601       | 클라우드-장치 메시지에 대한 기본 TTL | 최대 2D(최소 1 분)까지 ISO_8601 간격입니다. 기본값은 1시간입니다. |
-| maxDeliveryCount          | 클라우드-장치 장치 단위 큐에 대한 최대 전달 수입니다. | 1에서 100까지 입니다. 기본값은 10입니다. |
-| feedback.ttlAsIso8601     | 서비스 바인딩 피드백 메시지에 대한 보존 기간입니다. | 최대 2D(최소 1 분)까지 ISO_8601 간격입니다. 기본값은 1시간입니다. |
-| feedback.maxDeliveryCount |피드백 큐에 대한 최대 전달 수입니다. | 1에서 100까지 입니다. 기본값은 100입니다. |
+| defaultTtlAsIso8601       | 클라우드-장치 메시지에 대한 기본 TTL | Too2D ISO_8601 간격 (최소 1 분)입니다. 기본값은 1시간입니다. |
+| maxDeliveryCount          | 클라우드-장치 장치 단위 큐에 대한 최대 전달 수입니다. | 1 too100 합니다. 기본값은 10입니다. |
+| feedback.ttlAsIso8601     | 서비스 바인딩 피드백 메시지에 대한 보존 기간입니다. | Too2D ISO_8601 간격 (최소 1 분)입니다. 기본값은 1시간입니다. |
+| feedback.maxDeliveryCount |피드백 큐에 대한 최대 전달 수입니다. | 1 too100 합니다. 기본값은 100입니다. |
 
-이러한 구성 옵션을 설정하는 방법에 대한 자세한 내용은 [IoT Hub 만들기][lnk-portal]를 참조하세요.
+Tooset 이러한 구성 옵션을 확인 하려면 어떻게 해야 하는 방법에 대 한 자세한 내용은 [만들 IoT hub][lnk-portal]합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-클라우드-장치 메시지를 수신하는 데 사용할 수 있는 SDK에 대한 자세한 내용은 [Azure IoT SDK][lnk-sdks]를 참조하세요.
+Hello Sdk에 대 한 내용은 tooreceive 클라우드-장치 메시지를 사용 하 여, 참조 수 [Azure IoT Sdk][lnk-sdks]합니다.
 
-클라우드-장치 메시지를 수신하려면 [클라우드-장치 보내기][lnk-c2d-tutorial] 자습서를 참조하세요.
+클라우드-장치 메시지를 받는 아웃 tootry 참조 hello [클라우드-장치 보내기] [ lnk-c2d-tutorial] 자습서입니다.
 
 [img-lifecycle]: ./media/iot-hub-devguide-messages-c2d/lifecycle.png
 

@@ -1,6 +1,6 @@
 ---
-title: "Java에서 알림 허브를 사용하는 방법"
-description: "Java 백 엔드에서 Azure 알림 허브를 사용하는 방법에 대해 알아봅니다."
+title: "aaaHow toouse Java 통해 알림 허브"
+description: "자세한 내용은 방법 toouse Azure 알림 허브는 Java 백 엔드에서 합니다."
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,20 +14,20 @@ ms.devlang: java
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 41f978750ddef9f7e878c65b0017e909720154aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: afcf305b1acd9ee28ee4889040ece59d9399d29d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-notification-hubs-from-java"></a>Java에서 알림 허브를 사용하는 방법
+# <a name="how-toouse-notification-hubs-from-java"></a>어떻게 toouse Java에서 알림 허브
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-이 항목에서는 완전히 지원되는 새 공식 Azure 알림 허브 Java SDK의 주요 기능에 대해 설명합니다. 이 SDK는 오픈 소스 프로젝트이며 [Java SDK]에서 전체 SDK 코드를 확인할 수 있습니다. 
+이 항목에서는 hello 완벽 하 게 지원 hello 새 공식의 주요 기능 설명 Azure 알림 허브 Java SDK입니다. 오픈 소스 프로젝트 이며 hello SDK 코드 전체에서 볼 수 있습니다 [Java SDK]합니다. 
 
-일반적으로는 MSDN 항목 [알림 허브 REST API](http://msdn.microsoft.com/library/dn223264.aspx)에서 설명하는 것처럼 알림 허브 REST 인터페이스를 사용하여 Java/PHP/Python/Ruby 백 엔드에서 모든 알림 허브 기능에 액세스할 수 있습니다. 이 Java SDK는 Java에서 이러한 REST 인터페이스에 대한 씬 래퍼를 제공합니다. 
+일반적으로 Java/PHP/Python/Ruby 백 엔드에서 모든 알림 허브 기능에 액세스할 수 있습니다 hello MSDN 항목에 설명 된 대로 hello 알림 허브 REST 인터페이스를 사용 하 여 [알림 허브 REST Api](http://msdn.microsoft.com/library/dn223264.aspx)합니다. 이 Java SDK는 Java에서 이러한 REST 인터페이스에 대한 씬 래퍼를 제공합니다. 
 
-현재 SDK에 포함되어 있는 기능은 다음과 같습니다.
+hello SDK에서 지 원하는 현재:
 
 * 알림 허브에 대한 CRUD 
 * 등록에 대한 CRUD
@@ -42,7 +42,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="compile-and-build"></a>컴파일 및 빌드
 [Maven]
 
-빌드하려면 다음 코드를 사용합니다.
+toobuild:
 
     mvn package
 
@@ -104,7 +104,7 @@ ms.lasthandoff: 07/11/2017
 
 **create registrationid + upsert 패턴을 사용하여 등록 만들기:**
 
-장치에 등록 ID를 저장하는 경우 응답 손실로 인한 중복 항목을 제거합니다.
+Hello 장치의 등록 id를 저장 하는 경우 분실 tooany 응답 인해 중복을 제거 합니다.
 
     String id = hub.createRegistrationId();
     WindowsRegistration reg = new WindowsRegistration(id, new URI(CHANNELURI));
@@ -136,21 +136,21 @@ ms.lasthandoff: 07/11/2017
 모든 컬렉션 쿼리는 $top 및 연속 토큰을 지원합니다.
 
 ### <a name="installation-api-usage"></a>설치 API 사용
-설치 API는 등록 관리 대신 사용할 수 있는 메커니즘입니다. 올바르지 않거나 비효율적인 방식으로 수행하기 쉬운 중요한 등록을 여러 개 유지 관리하는 대신 이제는 단일 설치 개체를 사용할 수 있습니다. 이 경우 설치에는 푸시 채널(장치 토큰), 태그, 템플릿, 보조 타일(WNS 및 APNS의 경우) 등 필요한 모든 항목이 포함됩니다. 더 이상 ID를 가져오기 위해 서비스를 호출할 필요가 없으며 GUID나 다른 식별자를 생성하여 장치에 저장한 다음 푸시 채널(장치 토큰)과 함께 백 엔드로 전송하기만 하면 됩니다. 백 엔드에서는 CreateOrUpdateInstallation만 단일 호출하면 됩니다. 이 호출은 완전 멱등 방식이므로 필요한 경우 다시 시도해도 됩니다.
+설치 API는 등록 관리 대신 사용할 수 있는 메커니즘입니다. Trivial 되지 않으며 잘못 또는 비효율적으로 쉽게 설정할 수 있는 여러 등록을 유지 하는 대신 이제를 가능한 toouse 단일 설치 개체. 이 경우 설치에는 푸시 채널(장치 토큰), 태그, 템플릿, 보조 타일(WNS 및 APNS의 경우) 등 필요한 모든 항목이 포함됩니다. Toocall hello 서비스 tooget Id를 더 이상 필요 없는-방금 생성 GUID 또는 다른 식별자, 장치에 유지 및 tooyour 백 엔드 푸시 채널 (장치 토큰)와 함께 보내기. Hello 백 엔드에만 수행 해야 한 번만 호출: 필요한 경우 무료 tooretry 바랍니다 CreateOrUpdateInstallation, 것은 완벽 하 게 idempotent입니다.
 
 Amazon Kindle Fire의 경우 이 호출은 다음과 같습니다.
 
     Installation installation = new Installation("installation-id", NotificationPlatform.Adm, "adm-push-channel");
     hub.createOrUpdateInstallation(installation);
 
-이 호출을 다음과 같이 업데이트할 수도 있습니다. 
+Tooupdate 하려는 경우 해당: 
 
     installation.addTag("foo");
     installation.addTemplate("template1", new InstallationTemplate("{\"data\":{\"key1\":\"$(value1)\"}}","tag-for-template1"));
     installation.addTemplate("template2", new InstallationTemplate("{\"data\":{\"key2\":\"$(value2)\"}}","tag-for-template2"));
     hub.createOrUpdateInstallation(installation);
 
-고급 시나리오용으로 설치 개체의 특정 속성만 수정할 수 있는 부분 업데이트 기능도 제공됩니다. 기본적으로 부분 업데이트는 설치 개체에 대해 실행할 수 있는 JSON 패치 작업의 하위 집합입니다.
+우리는 고급 시나리오에 대 한 hello 설치 개체의 특정 속성에만 toomodify 수 있는 부분 업데이트 기능이 있습니다. 기본적으로 부분 업데이트는 설치 개체에 대해 실행할 수 있는 JSON 패치 작업의 하위 집합입니다.
 
     PartialUpdateOperation addChannel = new PartialUpdateOperation(UpdateOperationType.Add, "/pushChannel", "adm-push-channel2");
     PartialUpdateOperation addTag = new PartialUpdateOperation(UpdateOperationType.Add, "/tags", "bar");
@@ -161,9 +161,9 @@ Amazon Kindle Fire의 경우 이 호출은 다음과 같습니다.
 
     hub.deleteInstallation(installation.getInstallationId());
 
-CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 요청한 작업은 호출 중에 시스템 큐로 전송되어 백그라운드에서 실행됩니다. Get은 기본 런타임 시나리오용이 아니며 디버그 및 문제 해결 전용이므로 서비스에서 엄격하게 제한됩니다.
+CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 방금 요청 된 작업 toohello 시스템 큐 hello 호출 동안 들어가고 백그라운드에서 실행 됩니다. Note 디버그 및 문제 해결을 위해에 대해서만 하지만 주 런타임 시나리오에 대 한 Get 설계 되지 않았습니다, hello 서비스에 의해 제한 밀접 하 게 됩니다.
 
-설치의 전송 흐름은 등록에서도 동일합니다. 특정 설치에만 알림을 보내려는 경우의 옵션으로는 "InstallationId:{desired-id}" 태그를 사용하면 됩니다. 위 코드의 경우 이 태그가 포함된 형식은 다음과 같습니다.
+등록에 대 한 설치에 대 한 송신 흐름 동일 hello 됩니다. 방금 옵션 tootarget 알림 toohello 도입 했습니다 특정 설치-사용할 태그 "InstallationId: {원하는 id}"입니다. 위 코드의 경우 이 태그가 포함된 형식은 다음과 같습니다.
 
     Notification n = Notification.createWindowsNotification("WNS body");
     hub.sendNotification(n, "InstallationId:{installation-id}");
@@ -176,7 +176,7 @@ CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 요
     hub.sendNotification(n, "InstallationId:{installation-id} && tag-for-template1");
 
 ### <a name="schedule-notifications-available-for-standard-tier"></a>알림 예약(표준 계층에 사용 가능)
-일반 전송과 같지만 알림을 배달해야 하는 시간을 지정하는 scheduledTime 매개 변수가 추가로 사용됩니다. 서비스에서는 현재 시간 + 5분 및 현재 날짜 + 7일 사이의 모든 지정 시간을 사용할 수 있습니다.
+일반 송신 같지만 하나 추가 매개 변수-알림 배달 되도록 라는 scheduledTime hello 동일 합니다. 서비스에서는 현재 시간 + 5분 및 현재 날짜 + 7일 사이의 모든 지정 시간을 사용할 수 있습니다.
 
 **Windows 기본 알림 예약:**
 
@@ -186,7 +186,7 @@ CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 요
     hub.scheduleNotification(n, c.getTime());
 
 ### <a name="importexport-available-for-standard-tier"></a>가져오기/내보내기(표준 계층에 사용 가능)
-등록에 대해 대량 작업을 수행해야 하는 경우가 있습니다. 일반적으로는 다른 시스템과 통합할 때나 태그 업데이트 등의 대량 수정을 수행하는 경우가 여기에 해당합니다. 등록 수가 매우 많은 경우에는 Get/Update 흐름을 사용하지 않는 것이 좋습니다. 이러한 시나리오에서는 가져오기/내보내기 기능을 사용합니다. 기본적으로는 들어오는 데이터의 원본과 출력의 위치로 사용할 저장소 계정의 특정 Blob 컨테이너에 대한 액세스를 제공합니다.
+경우에 따라 등록에 대해 필요한 tooperform 대량 작업입니다. 일반적으로 다른 시스템 또는는 대규모 수정 toosay 업데이트 hello 태그와 통합 됩니다. 수천 개의 등록에 대 한 논의 하 고 경우 Get/업데이트 흐름 toouse 하지 강력 하 게 좋습니다. 가져오기/내보내기 기능은 설계 된 toocover hello 시나리오입니다. 기본적으로 제공 하는 액세스 toosome blob 컨테이너 저장소 계정에서 들어오는 데이터 및 출력에 대 한 위치에 대 한 소스로 합니다.
 
 **내보내기 작업 제출:**
 
@@ -217,10 +217,10 @@ CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 요
 
     List<NotificationHubJob> jobs = hub.getAllNotificationHubJobs();
 
-**SAS 서명이 포함된 URI:** 특정 Blob 파일이나 Blob 컨테이너의 URL에 사용 권한, 만료 시간 등의 매개 변수 집합과 계정 SAS 키를 사용하여 작성된 이러한 모든 항목의 서명이 결합된 URI입니다. Azure 저장소 Java SDK에는 이러한 종류의 URI 만들기를 비롯하여 다양한 기능이 포함되어 있습니다. 작업을 간단하게 수행하려는 경우 github 위치에서 매우 기본적이고 간단한 서명 알고리즘 구현을 포함하는 ImportExportE2E 테스트 클래스를 살펴보세요.
+**와 SAS 서명 URI:** 일부 blob 파일 또는 blob 컨테이너의 URL을 hello와 같은 사용 권한 및 만료 시간 매개 변수 집합과 계정의 SAS 키를 사용 하 여 이러한 모든 작업의 시그니처입니다. Azure 저장소 Java SDK에는 이러한 종류의 URI 만들기를 비롯하여 다양한 기능이 포함되어 있습니다. 간단한 대신 ImportExportE2E 서명 알고리즘의 기본 하 고 압축 구현에 (hello github 위치)에서 테스트 클래스에서 검토할 수 있습니다.
 
 ### <a name="send-notifications"></a>알림 보내기
-알림 개체는 헤더, 네이티브 코드 작성 시 사용되는 몇 가지 유틸리티 메서드 및 템플릿 알림 개체를 포함하는 본문입니다.
+hello 알림 개체는 헤더와 본문 단순히에 hello 기본 등록과 템플릿 알림을 개체 작성의 일부 유틸리티 메서드가 수 있습니다.
 
 * **Windows 스토어 및 Windows Phone 8.1(비 Silverlight)**
   
@@ -252,13 +252,13 @@ CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 요
         String message = "{\"data\":{\"msg\":\"Hello from Java!\"}}";
         Notification n = Notification.createAdmNotification(message);
         hub.sendNotification(n);
-* **태그로 보내기**
+* **TooTags 보내기**
   
         Set<String> tags = new HashSet<String>();
         tags.add("boo");
         tags.add("foo");
         hub.sendNotification(n, tags);
-* **태그 식으로 보내기**       
+* **Tootag 식 보내기**       
   
         hub.sendNotification(n, "foo && ! bar");
 * **템플릿 알림 보내기**
@@ -272,22 +272,22 @@ CreateOrUpdate, Patch 및 Delete의 최종 결과는 Get과 동일합니다. 요
 이제 Java 코드를 실행하면 대상 장치에 나타나는 알림이 생성되어야 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 항목에서는 알림 허브에 대한 단순한 Java REST 클라이언트를 만드는 방법을 알아보았습니다. 여기에서 다음을 할 수 있습니다.
+이 항목에서 소개 된 방법을 toocreate 간단한 Java REST 클라이언트 알림 허브에 대 한 합니다. 여기에서 다음을 할 수 있습니다.
 
-* 전체 SDK 코드가 포함된 전체 [Java SDK]를 다운로드합니다. 
-* 다음 샘플을 사용해 봅니다.
-  * [알림 허브 시작]
+* 전체 hello 다운로드 [Java SDK], hello 전체 SDK 코드가 포함 되어 있습니다. 
+* Hello 샘플을 사용할:
+  * [registerNativeWithDeviceToken]
   * [속보 보내기]
   * [지역화된 속보 보내기]
-  * [인증된 사용자에게 알림 보내기]
-  * [인증된 사용자에게 플랫폼 간 알림 보내기]
+  * [Tooauthenticated 사용자 알림 보내기]
+  * [Tooauthenticated 사용자 크로스 플랫폼 알림 보내기]
 
 [Java SDK]: https://github.com/Azure/azure-notificationhubs-java-backend
 [Get started tutorial]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
-[알림 허브 시작]: http://www.windowsazure.com/manage/services/notification-hubs/getting-started-windows-dotnet/
+[registerNativeWithDeviceToken]: http://www.windowsazure.com/manage/services/notification-hubs/getting-started-windows-dotnet/
 [속보 보내기]: http://www.windowsazure.com/manage/services/notification-hubs/breaking-news-dotnet/
 [지역화된 속보 보내기]: http://www.windowsazure.com/manage/services/notification-hubs/breaking-news-localized-dotnet/
-[인증된 사용자에게 알림 보내기]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users/
-[인증된 사용자에게 플랫폼 간 알림 보내기]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users-xplat-mobile-services/
+[Tooauthenticated 사용자 알림 보내기]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users/
+[Tooauthenticated 사용자 크로스 플랫폼 알림 보내기]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users-xplat-mobile-services/
 [Maven]: http://maven.apache.org/
 

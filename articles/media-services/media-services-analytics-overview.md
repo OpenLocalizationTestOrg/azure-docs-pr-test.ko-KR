@@ -1,5 +1,5 @@
 ---
-title: "Media Services 플랫폼에서 미디어 분석 | Microsoft 문서"
+title: "hello 미디어 서비스 플랫폼에서 분석 aaaMedia | Microsoft Docs"
 description: "엔터프라이즈 규모, 규정 준수, 보안 및 전 세계 범위의 음성 및 컴퓨터 비전 서비스 컬렉션인 미디어 분석의 공개 미리 보기"
 services: media-services
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: milanga;juliako;johndeu
-ms.openlocfilehash: c0bbe6f80370515fa783b12757434897fe2221b6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7545f0532d7618164ebe65e2f4232c5f63453cfd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="media-analytics-on-the-media-services-platform"></a>Media Services 플랫폼에서 미디어 분석
+# <a name="media-analytics-on-hello-media-services-platform"></a>미디어 분석 hello 미디어 서비스 플랫폼에서
 ## <a name="overview"></a>개요
-직원을 교육하고, 고객을 참여시키고, 비즈니스 기능을 문서화하는 기본 미디어로 비디오를 사용하는 조직이 늘어나고 있습니다. 클라우드 컴퓨팅은 이러한 대용량 미디어 파일을 저장, 스트림, 액세스하는 방법을 제공합니다. 하지만 비디오 콘텐츠의 회사 라이브러리가 늘어남에 따라 콘텐츠에서 통찰력을 추출하는 효과적인 방법이 동일하게 필요합니다. 
+많은 조직에서 사용 하는 비디오 선호 중간 tootrain hello 직원, 자신의 고객 및 비즈니스 기능 문서 의견을 교환 합니다. 클라우드 컴퓨팅 방식으로 toostore 제공 스트림, 및 이러한 큰 미디어 파일에 액세스 합니다. 하지만는 회사의 라이브러리의 비디오 콘텐츠까지 확장 되면서 hello 콘텐츠에서 통찰력을 추출 하는 효과적인 방법을 합니다. 
 
-이 증가하는 요구를 해결하기 위해 Azure Media Services는 Azure Media 분석을 제공합니다. 미디어 분석은 조직과 기업이 비디오 파일에서 실질적인 통찰력을 끌어내기 쉽도록 만드는 언어 및 시각 구성 요소 모음입니다. 핵심 Media Services 플랫폼 구성 요소를 사용하여 구축된 미디어 분석은 대규모 미디어를 하루에 처리할 수 있습니다.
+tooaddress이 증가 요구 Azure 미디어 서비스는 Azure 미디어 분석을 제공합니다. 미디어 분석은 쉽게 조직 및 기업 tooderive 실행 가능한 통찰력에 대 한 비디오 파일에서 음성 및 비전 구성 요소 컬렉션입니다. 미디어 분석 hello 핵심 미디어 서비스 플랫폼 구성 요소를 사용 하 여 작성, 하루만에 대규모로 처리 하는 미디어를 처리할 수 있습니다.
 
-개발자는 미디어 분석을 통해 응용 프로그램에 고급 비디오 기능을 신속하게 가져올 수 있습니다. 대기업에 필요한 전체 규모, 규정 준수, 보안 및 전 세계 범위의 엔터프라이즈 환경을 제공합니다.
+개발자는 미디어 분석을 통해 응용 프로그램에 고급 비디오 기능을 신속하게 가져올 수 있습니다. Hello 대형, 규정 준수, 보안, 대규모 조직에 필요한 글로벌 서비스와 엔터프라이즈 환경에 제공 합니다.
 
-다음 다이어그램에서는 미디어 분석 및 Media Services 플랫폼의 다른 주요 부분을 보여 줍니다. 
+hello 다음 보여 주는 다이어그램 미디어 분석 및 hello 미디어 서비스 플랫폼의 다른 주요 부분입니다. 
 
 ![VoD 워크플로](./media/media-services-analytics-overview/media-services-analytics-overview01.png)
 
-미디어 분석 미디어 프로세서는 MP4 파일 또는 JSON 파일을 생성합니다. 미디어 프로세서가 MP4 파일을 생성한 경우 파일을 점진적으로 다운로드할 수 있습니다. 미디어 프로세서가 JSON 파일을 생성한 경우 Azure Blob Storage에서 해당 파일을 다운로드할 수 있습니다. 
+미디어 분석 미디어 프로세서는 MP4 파일 또는 JSON 파일을 생성합니다. MP4 파일을 생성 하는 미디어 프로세서를 점진적으로 hello 파일을 다운로드할 수 있습니다. JSON 파일을 생성 하는 미디어 프로세서 하는 경우에 Azure Blob 저장소에서 hello 파일을 다운로드할 수 있습니다. 
 
 ## <a name="media-analytics-services"></a>미디어 분석 서비스
 
 ### <a name="indexer"></a>인덱서
-Azure Media Indexer를 사용하면 콘텐츠를 검색할 수 있도록 설정하고 선택 캡션 트랙을 생성할 수 있습니다. Azure Media Indexer 2 미리 보기에는 이전 버전에 비해 보다 빠른 인덱싱과 더 광범위한 언어 지원이 있습니다. 지원되는 언어는 영어, 스페인어, 프랑스어, 독일어, 이탈리아어, 중국어, 포르투갈어, 아랍어 등입니다. 자세한 내용 및 예제는 [Azure Media Indexer 2를 사용하여 비디오 처리](media-services-process-content-with-indexer2.md)를 참조하세요.
+Azure Media Indexer를 사용하면 콘텐츠를 검색할 수 있도록 설정하고 선택 캡션 트랙을 생성할 수 있습니다. 비교 toohello 이전 버전에서는 Azure 미디어 인덱서 2 미리 보기에서 인덱싱 빠르고 보다 광범위 한 언어를 지원 합니다. 지원되는 언어는 영어, 스페인어, 프랑스어, 독일어, 이탈리아어, 중국어, 포르투갈어, 아랍어 등입니다. 자세한 내용 및 예제는 [Azure Media Indexer 2를 사용하여 비디오 처리](media-services-process-content-with-indexer2.md)를 참조하세요.
 ### <a name="hyperlapse"></a>Hyperlapse
-Microsoft Hyperlapse는 긴 형식의 콘텐츠에서 빠르고 사용할 수 있는 비디오를 만들도록 비디오 안정화 및 시간 경과 기능을 결합합니다. 시간 경과 비디오를 만드는 것 외에 Hyperlapse를 사용하여 휴대폰 및 캠코더를 통해 캡처한 흔들리는 비디오에서 안정적인 비디오를 만들 수 있습니다. 자세한 내용 및 예제는 [Hyperlapse 미디어 파일 및 Azure Media Hyperlapse](media-services-hyperlapse-content.md)를 참조하세요.
+Microsoft Hyperlapse 안정화 비디오 및 long 형식의 콘텐츠에서 경과 기능 toocreate 신속 하 고 사용 될 수 있습니다 비디오에 결합합니다. 경과 비디오를 만드는 것 외에도 Hyperlapse toocreate 안정적인 비디오 휴대 전화 및 캠코더를 통해 캡처된 떨림 비디오를 사용할 수 있습니다. 자세한 내용 및 예제는 [Hyperlapse 미디어 파일 및 Azure Media Hyperlapse](media-services-hyperlapse-content.md)를 참조하세요.
 ### <a name="motion-detector"></a>동작 감지기
-동작 감지기를 사용하여 편지지 배경의 비디오에서 동작을 감지할 수 있습니다. 그러면 감시 카메라에서 감지된 동작 이벤트에서의 거짓 긍정을 확인할 수 있습니다. 자세한 내용 및 예제는 [Azure Media 분석에 대한 동작 감지](media-services-motion-detection.md)를 참조하세요.
+고정 배경이 있는 비디오 동작 탐지기 toodetect 동작을 사용할 수 있습니다. 따라서 거짓 긍정에 대 한 가능한 toocheck 동작 이벤트에서 감시 카메라 검색에 있습니다. 자세한 내용 및 예제는 [Azure Media 분석에 대한 동작 감지](media-services-motion-detection.md)를 참조하세요.
 ### <a name="face-detector"></a>얼굴 감지기
 얼굴 감지기를 사용하여 사람들의 얼굴과 행복, 슬픔, 놀라움 등의 감정을 감지할 수 있습니다. 여기에는 이벤트 참여자의 반응을 집계하고 분석하는 등 나중에 설명된 몇 가지 유용한 산업 응용 분야가 있습니다. 자세한 내용 및 예제는 [Azure Media 분석에 대한 얼굴 및 감정 감지](media-services-face-and-emotion-detection.md)를 참조하세요.
 ### <a name="video-summarization"></a>비디오 요약
-비디오 요약을 사용하면 원본 비디오에서 흥미로운 조각을 자동으로 선택하여 긴 비디오의 요약을 만들 수 있습니다. 이 기능은 긴 비디오에서 예상되는 사항에 대한 빠른 개요를 제공하려는 경우에 유용합니다. 자세한 내용 및 예제는 [Azure Media Video Thumbnails를 사용하여 비디오 요약 만들기](media-services-video-summarization.md)를 참조하세요.
+비디오 요약을 사용 하면 hello 원본 비디오에서 흥미로운 조각을 자동으로 선택 하 여 긴 비디오의 요약을 만들 수 있습니다. 이 기능은 tooprovide 비디오에서 어떤 tooexpect의 간략 한 개요를 하려는 경우에 유용 합니다. 자세한 내용 및 예제에 대 한 참조 [사용 하 여 Azure 미디어 비디오 축소판 toocreate 비디오 요약](media-services-video-summarization.md)합니다.
 ### <a name="optical-character-recognition"></a>광학 문자 인식
-Azure Media OCR(광학 문자 인식)을 사용하여 비디오 파일의 텍스트 콘텐츠를 편집 및 검색 가능한 디지털 텍스트로 변환할 수 있습니다. 그러면 미디어의 비디오 신호에서 의미 있는 메타데이터를 자동으로 추출할 수 있습니다.
+Azure Media OCR(광학 문자 인식)을 사용하여 비디오 파일의 텍스트 콘텐츠를 편집 및 검색 가능한 디지털 텍스트로 변환할 수 있습니다. 그런 다음 미디어의 hello 비디오 신호에서 의미 있는 메타 데이터 추출 hello를 자동화할 수 있습니다.
 ### <a name="scalable-face-redaction"></a>확장 가능한 얼굴 편집
-Azure Media Redactor는 클라우드에서 확장성 있는 얼굴 편집 기능을 제공하는 Media Analytics 미디어 프로세서입니다. 얼굴 편집을 사용하면 선택한 개인의 얼굴을 흐리게 표시하기 위해 동영상을 수정할 수 있습니다. 뉴스 미디어 또는 공공 안전과 관련된 경우 얼굴 편집 서비스를 사용할 수 있습니다. 짧은 장면이라도 여러 명의 얼굴이 포함된 경우 수동으로 편집하려면 많은 시간이 걸릴 수 있지만 이 서비스를 사용하면 몇 번의 간단한 단계를 통해 얼굴을 편집할 수 있습니다. 자세한 내용은 [Azure Media 분석으로 얼굴 편집](media-services-face-redaction.md) 문서를 참조하세요.
+Azure 미디어 Redactor hello 클라우드에서 확장 가능한 글꼴 교정 제공 하는 미디어 분석 미디어 프로세서입니다. Face 교정을 사용 하 여 선택한 개인의 비디오 tooblur 면 프로그램을 수정할 수 있습니다. 뉴스 미디어 또는 공공 안전 관련 된 경우 toouse hello 얼굴 교정 서비스를 할 수 있습니다. 몇 분 정도 장면 여러 글꼴로 포함 하 고 표시 되려면 시간 tooredact 수동으로 마이그레이션하지만이 서비스와 얼굴 교정 몇 가지 간단한 단계만 거치면 합니다. 자세한 내용은 참조 hello [Azure 미디어 분석을 면 교정](media-services-face-redaction.md) 문서.
 
 ## <a name="common-scenarios"></a>일반적인 시나리오
 미디어 분석은 조직 및 기업이 비디오에서 새로운 통찰력을 얻고 대용량의 비디오 콘텐츠를 효율적으로 관리하는 데 도움이 됩니다. 다음은 몇 가지 시나리오입니다.
 
-* **콜 센터** 소셜 미디어의 출현에도 고객 콜 센터는 여전히 고객 서비스 트랜잭션의 많은 부분을 용이하게 합니다. 높은 고객 만족도 달성하기 위해 분석될 수 있는 많은 양의 고객 정보가 이 오디오 데이터에서 인코딩됩니다. 미디어 인덱서를 사용하여 조직은 텍스트를 추출하고 검색 인덱스와 대시보드를 빌드할 수 있습니다. 그런 다음 일반적인 불만, 불만의 원인 및 기타 관련 데이터 인텔리전스를 추출할 수 있습니다.
-* **사용자 생성 콘텐츠 조정** 뉴스 미디어 방송국부터 경찰서까지 많은 조직에는 비디오 및 이미지와 같은 사용자 생성 미디어를 허용하는 공공 포털이 있습니다. 예기치 않은 이벤트로 인해 콘텐츠 양이 급증할 수 있습니다. 이러한 시나리오에서는 콘텐츠의 적합성을 수동으로 효과적으로 검토하는 것이 어렵습니다. 고객은 콘텐츠 감수 서비스에 의존하여 적절한 콘텐츠에 중점을 둘 수 있습니다.
-* **감시** IP 카메라 사용이 증가함에 따라 감시 비디오의 인벤토리도 증가합니다. 감시 비디오를 수동으로 검토하는 것은 많은 시간이 소요되고 실수가 발생하기 쉽습니다. 미디어 분석에서는 파생물을 보다 쉽게 검토, 관리 및 생성할 수 있도록 동작 감지, 얼굴 감지 및 Hyperlapse와 같은 서비스를 제공합니다.
+* **콜 센터** 소셜 미디어, hello 도입 된 경우에 고객의 전화 교환 국 높은 비율의 고객 서비스 트랜잭션이 여전히 용이 하 게 합니다. 이 오디오 데이터 인코딩된 tooachieve 고객 만족도 분석 하는 많은 양의 될 수 있는 고객 정보입니다. 미디어 인덱서를 사용하여 조직은 텍스트를 추출하고 검색 인덱스와 대시보드를 빌드할 수 있습니다. 그런 다음 일반적인 불만, 불만의 원인 및 기타 관련 데이터 인텔리전스를 추출할 수 있습니다.
+* **사용자 생성 콘텐츠 조정** 뉴스 미디어 콘센트 toopolice 부서의 많은 조직은 비디오 및 이미지와 같은 미디어 사용자 생성을 허용 하는 공용 웹 포털 있습니다. hello 볼륨이 콘텐츠 toounexpected 이벤트 인해 스파이크 수 있습니다. 이러한 시나리오에서는 것이 어려운 tooconduct 적합성에 대 한 콘텐츠 효과적인 수동 검토 합니다. 해당 되는 콘텐츠에 hello 콘텐츠 중재 서비스 toofocus 고객 사용 수 있습니다.
+* **감시** Hello로 사용 하 여 IP 카메라의 증가 거리 내 감시 비디오의 증가 하 고 인벤토리를 제공 됩니다. 거리 내 감시 비디오를 수동으로 검토 하는 시간이 많이 사용 하 고 발생할 가능성이 toohuman 오류입니다. 미디어 분석 동작 감지, 얼굴 감지, 검토, 관리 및 파생 항목을 쉽게 만들 Hyperlapse toomake hello 과정 등과 같은 서비스를 제공 합니다.
 
 ## <a name="media-analytics-media-processors"></a>미디어 분석 미디어 프로세서
-이 섹션에서는 미디어 분석 미디어 프로세서를 나열하고 .NET 또는 REST를 사용하여 미디어 프로세서(MP) 개체를 가져옵니다.
+이 섹션 목록 hello 미디어 분석 미디어 프로세서 및 표시 방법을 toouse.NET 또는 REST tooget 미디어 프로세서 (MP) 개체입니다.
 
 ### <a name="mp-names"></a>MP 이름
 * Azure 미디어 인덱서 2 미리 보기
@@ -71,7 +71,7 @@ Azure Media Redactor는 클라우드에서 확장성 있는 얼굴 편집 기능
 * Azure 미디어 OCR
 
 ### <a name="net"></a>.NET
-다음 함수는 지정된 MP 이름 중 하나를 사용하고 MP 개체를 반환합니다.
+hello의 함수 하나 하나를 수행 하는 hello MP 이름을 지정 하 고 MP 개체를 반환을 지정 합니다.
 
     static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
     {

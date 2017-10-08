@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 엔터티에서 집계한 상태를 보는 방법 | Microsoft Docs"
-description: "상태 쿼리 및 일반 쿼리를 통해 Azure 서비스 패브릭 엔터티에서 집계한 상태를 쿼리, 확인 및 평가하는 방법을 설명합니다."
+title: "aaaHow tooview Azure Service Fabric 엔터티의 집계 상태 | Microsoft Docs"
+description: "Tooquery, 보고, 하 고 상태 쿼리 수 및 일반 쿼리를 통해 Azure 서비스 패브릭 엔터티의 집계 상태를 평가 하는 방법을 설명 합니다."
 services: service-fabric
 documentationcenter: .net
 author: oanapl
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: oanapl
-ms.openlocfilehash: b97972b1bdc28a17fb9c3a0e997738f5bd0b5d15
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: add810551cac26d2b4ff81b57d94ddd780c2cc2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-service-fabric-health-reports"></a>서비스 패브릭 상태 보고서 보기
-Azure Service Fabric은 시스템 구성 요소와 워치독이 모니터링하는 로컬 조건을 보고할 수 있는 상태 엔터티가 있는 [상태 모델](service-fabric-health-introduction.md)을 사용합니다. [상태 저장소](service-fabric-health-introduction.md#health-store) 는 모든 상태 데이터를 집계하여 엔터티가 정상인지 여부를 판단합니다.
+Azure Service Fabric은 시스템 구성 요소와 워치독이 모니터링하는 로컬 조건을 보고할 수 있는 상태 엔터티가 있는 [상태 모델](service-fabric-health-introduction.md)을 사용합니다. hello [상태 저장소](service-fabric-health-introduction.md#health-store) 엔터티가 정상 상태 인지 여부를 모든 상태 데이터 toodetermine를 집계 합니다.
 
-자동으로 클러스터는 시스템 구성 요소에 의해 전송되는 상태 보고서로 채워집니다. 추가 정보는 [시스템 상태 보고서를 사용하여 문제 해결](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)을 참조하세요.
+hello 클러스터 hello 시스템 구성 요소에서 보낸 상태 보고서에 자동으로 채워집니다. 자세한 내용을 [사용 하 여 시스템 상태 보고서를 tootroubleshoot](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)합니다.
 
-서비스 패브릭은 엔터티의 집계한 상태를 가져올 수 있는 여러 방법을 제공합니다.
+서비스 패브릭 hello 엔터티의 여러 방법으로 tooget hello 집계 상태를 제공합니다.
 
 * [서비스 패브릭 탐색기](service-fabric-visualizing-your-cluster.md) 또는 기타 시각화 도구
 * 상태 쿼리(PowerShell, API 또는 REST를 통해)
-* 속성 중 하나로 상태를 가지고 있는 엔터티 목록을 반환하는 일반 쿼리(PowerShell, API 또는 REST를 통해)
+* 일반 쿼리 (PowerShell, API, REST 통해) hello 속성 중 하나로 상태는 포함 하는 엔터티 반환 하는 목록을
 
-이러한 옵션을 설명하기 위해 5개의 노드와 [fabric:/WordCount application](http://aka.ms/servicefabric-wordcountapp)이 있는 로컬 클러스터를 사용하겠습니다. **fabric:/WordCount** 응용 프로그램에는 상태 저장 서비스 유형 `WordCountServiceType` 및 상태 비저장 서비스 유형 `WordCountWebServiceType` 등, 두 기본 서비스가 포함됩니다. `ApplicationManifest.xml`을 상태 저장 서비스에 대해 7개의 대상 복제본과 1개의 파티션을 요구하도록 변경했습니다. 클러스터에는 노드가 5개뿐이라 목표 수에 미달하므로 시스템 구성 요소는 서비스 파티션에 대해 경고를 보고합니다.
+toodemonstrate 보겠습니다 이러한 옵션을 로컬 클러스터를 사용 하 여 5 개 노드와 hello와 [패브릭: / WordCount 응용 프로그램](http://aka.ms/servicefabric-wordcountapp)합니다. hello **패브릭: / WordCount** 두 개의 기본 서비스 형식의 상태 저장 서비스를 포함 하는 응용 프로그램 `WordCountServiceType`, 및 형식의 상태 비저장 서비스 `WordCountWebServiceType`합니다. Hello 변경한 다음 `ApplicationManifest.xml` hello 상태 저장 서비스 파티션 한 개에 대 한 7 toorequire 대상 복제본입니다. Hello 클러스터에는 5 개의 노드가 있습니다, 때문에 hello 시스템 구성 요소 hello 대상 수 있기 때문에 hello 서비스 파티션에 경고를 보고 합니다.
 
 ```xml
 <Service Name="WordCountService">
@@ -48,17 +48,17 @@ Azure Service Fabric은 시스템 구성 요소와 워치독이 모니터링하�
 ```
 
 ## <a name="health-in-service-fabric-explorer"></a>서비스 패브릭 탐색기 내 상태
-서비스 패브릭 탐색기는 클러스터의 시각적 보기를 제공합니다. 아래 이미지에서 다음을 알 수 있습니다.
+서비스 패브릭 탐색기 hello 클러스터의 시각적 보기를 제공합니다. 아래 hello 이미지를 확인할 수 있습니다.
 
-* 속성 **가용성**에 대해 **MyWatchdog**에서 보고한 오류 이벤트가 있으므로 응용 프로그램 **fabric:/WordCount**가 빨간색(오류 시)입니다.
-* 해당 서비스 중 하나인 **패브릭:/WordCount/WordCountService** 가 노란색입니다(경고 시). 서비스는 7개의 복제본으로 구성되나 클러스터에는 5개의 노드가 있으므로 두 복제본을 배치할 수 없습니다. 여기에 표시되지 않았지만 서비스 파티션은 `System.FM`에서의 시스템 보고(`Partition is below target replica or instance count`) 때문에 노란색입니다. 노란색 파티션은 노란색 서비스를 트리거합니다.
-* 클러스터는 빨간색 응용 프로그램으로 인해 빨간색입니다.
+* 응용 프로그램 hello **패브릭: / WordCount** 에서 보고 하는 오류 이벤트를 있기 때문에 빨간색 (오류)는 **MyWatchdog** hello 속성에 대 한 **가용성**합니다.
+* 해당 서비스 중 하나인 **패브릭:/WordCount/WordCountService** 가 노란색입니다(경고 시). 7 개의 복제본 hello 서비스를 구성 하 고 hello 클러스터에는 5 개의 노드가 두 repicas 배치 될 수 없습니다. 보고서를 시스템으로 인해 hello 서비스 파티션은 노란색 여기 표시 되지 않는 있지만 `System.FM` 되었다는 `Partition is below target replica or instance count`합니다. hello 노란색 파티션 트리거 hello 노란색 서비스입니다.
+* hello 클러스터는 빨간색 hello 응용 프로그램으로 인해 빨간색입니다.
 
-평가는 클러스터 매니페스트 및 응용 프로그램 매니페스트의 기본 정책을 사용합니다. 엄격한 정책이며 오류를 용납하지 않습니다.
+hello 평가 기본 정책에서 hello 클러스터 매니페스트 및 응용 프로그램 매니페스트를 사용합니다. 엄격한 정책이며 오류를 용납하지 않습니다.
 
-서비스 패브릭 탐색기로 클러스터 보기:
+서비스 패브릭 탐색기로 hello 클러스터의 보기:
 
-![서비스 패브릭 탐색기로 클러스터 보기.][1]
+![서비스 패브릭 탐색기를 사용 하는 hello 클러스터의 보기입니다.][1]
 
 [1]: ./media/service-fabric-view-entities-aggregated-health/servicefabric-explorer-cluster-health.png
 
@@ -69,47 +69,47 @@ Azure Service Fabric은 시스템 구성 요소와 워치독이 모니터링하�
 >
 
 ## <a name="health-queries"></a>상태 쿼리
-서비스 패브릭은 각각의 지원되는 [엔터티 유형](service-fabric-health-introduction.md#health-entities-and-hierarchy)에 대해 상태 쿼리를 노출합니다. 이러한 항목은 [FabricClient.HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthmanager?view=azure-dotnet), PowerShell cmdlet 및 REST의 메서드를 사용하여 API를 통해 액세스할 수 있습니다. 이러한 쿼리는 집계된 성능 상태, 엔터티 상태 이벤트, 자식 상태(해당되는 경우), 엔터티가 정상이 아닐 때 비정상적 평가 및 자식 상태 통계(해당되는 경우) 등을 포함한 엔터티에 대한 완전한 상태 정보를 반환합니다.
+각 지원 hello에 대 한 상태 쿼리 수를 노출 하는 서비스 패브릭 [엔터티 형식](service-fabric-health-introduction.md#health-entities-and-hierarchy)합니다. Hello에 메서드를 사용 하는 API 통해 액세스할 수 있습니다 [FabricClient.HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthmanager?view=azure-dotnet), PowerShell cmdlet 및 REST 합니다. 이러한 쿼리가 hello 엔터티에 대 한 전체 상태 정보를 반환할: hello 성능 상태, 엔터티 상태 이벤트, 해당 하는 경우 자식 상태, 비정상 상태의 평가 (hello 엔터티 정상이 아님) 하는 경우 및 자식 상태 통계를 집계 (때 해당).
 
 > [!NOTE]
-> 상태 엔터티는 Health 스토어에서 완전히 채워지면 사용자에게 반환됩니다. 엔터티는 활성화 상태이고(삭제되지 않음) 시스템 보고서를 가져야 합니다. 또한 계층 구조 체인에서 부모 엔터티는 시스템 보고서를 가져야 합니다. 이러한 조건 중 하나라도 만족되지 않으면 상태 쿼리가 엔터티가 반환되지 않는 이유를 보여 주는 [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode) `FabricHealthEntityNotFound`와 함께 [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception)을 반환합니다.
+> 상태 엔터티는 완전히 채워지면 hello health store에서 반환 됩니다. hello 엔터티 (삭제 됨) 활성 상태 여야 하 고 시스템 보고서 해야 합니다. Hello 계층 구조 체인에서 해당 부모 엔터티에 system 보고서 있어야 합니다. 이러한 조건 중 하나라도 충족 되지 않은 경우 hello 상태 반환을 쿼리 하는 한 [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception) 와 [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode) `FabricHealthEntityNotFound` hello 엔터티 반환 되지 않습니다 보여 주는 합니다.
 >
 >
 
-상태 쿼리는 엔터티 유형에 따라 달라지는 엔터티 식별자를 전달해야 합니다. 쿼리는 옵션인 상태 정책 매개 변수를 수락합니다. 상태 정책이 지정되지 않으면 클러스터 또는 응용 프로그램 매니페스트의 [상태 정책](service-fabric-health-introduction.md#health-policies) 이 평가에 사용됩니다. 매니페스트가 상태 정책에 대한 정의를 포함하지 않을 경우 평가에 기본 상태 정책을 사용합니다. 기본 상태 정책에는 오류가 허용되지 않습니다. 또한 쿼리는 지정된 필터를 유지하는 부분 자녀 또는 이벤트만 반환하기 위한 필터를 수락합니다. 다른 필터에서는 하위 통계 제외가 허용됩니다.
+상태 쿼리 수 hello hello 엔터티 형식에 따라 달라 지는 hello 엔터티 식별자를 전달 해야 합니다. hello 쿼리 선택적 상태 정책 매개 변수를 허용 합니다. 상태 정책이 지정 된 경우 hello [상태 정책을](service-fabric-health-introduction.md#health-policies) hello 클러스터 또는 응용 프로그램 매니페스트에서 평가에 사용 됩니다. Hello 매니페스트 상태 정책에 대 한 정의 포함 하지, hello 기본 상태 정책 평가 위해 사용 됩니다. hello 기본 상태 정책을 발생 한 모든 오류를 허용 하지 않습니다. hello 쿼리 부분 자식만 반환에 대 한 필터를 적용할 수도 또는 지정 된 필터를 hello 이벤트-hello 것을 고려 합니다. 다른 필터 hello 자식 통계 제외 하 고 허용 합니다.
 
 > [!NOTE]
-> 출력 필터는 서버 쪽에 적용되므로 메시지 회신 크기가 감소합니다. 클라이언트 쪽에서 필터를 적용하는 것보다 반환된 데이터를 제한하는 출력 필터를 사용하는 것이 좋습니다.
+> hello 출력 필터 hello 서버 쪽에서 적용 되므로 hello 메시지 회신 크기가 줄어듭니다. Toolimit hello 데이터 반환 hello 클라이언트 쪽에서 필터를 적용 하지 않고 hello 출력 필터를 사용 하는 것이 좋습니다.
 >
 >
 
 엔터티의 상태는 다음을 포함합니다.
 
-* 엔터티의 집계된 성능 상태. 엔터티 상태 보고서, 자녀 상태(해당되는 경우) 및 상태 정책을 기반으로 Health 스토어에 의해 계산됩니다. [엔터티 상태 평가](service-fabric-health-introduction.md#health-evaluation)에 대해 자세히 알아봅니다.  
-* 엔터티에 대한 상태 이벤트입니다.
-* 자녀를 가질 수 있는 엔터티에 대한 모든 자녀의 성능 상태 컬렉션입니다. 성능 상태에는 엔터티 식별자와 집계된 성능 상태가 포함됩니다. 자녀에 대한 완전한 상태를 얻으려면 자녀 엔터티 유형에 대한 쿼리 상태를 호출하고 자녀 식별자를 전달합니다.
-* 엔터티가 비정상일 경우 비정상인 평가는 엔터티의 상태를 트리거한 보고서를 가리킵니다. 평가는 재귀적이며 현재 상태를 트리거한 자식 상태 평가를 포함합니다. 예를 들어, 워치독이 복제본에 대해 오류를 보고했습니다. 응용 프로그램 상태는 비정상 서비스로 인해 비정상 평가를 표시하며, 서비스는 파티션 오류로 인해 비정상 상태가 되고, 파티션은 복제본 오류로 인해 비정상 상태가 되며, 복제본은 다시 워치독 오류 상태 보고서로 인해 비정상 상태가 됩니다.
-* 자식이 있는 엔터티의 모든 자식 유형에 대한 상태 통계. 예를 들어, 클러스터 상태는 클러스터의 총 응용 프로그램, 서비스, 파티션, 복제본 및 배포 엔터티수를 나타냅니다. 서비스 상태는 특정 서비스의 총 파티션 및 복제본 수를 나타냅니다.
+* hello는 hello 엔터티의 상태를 집계합니다. 엔터티 상태 보고서, 하위 상태 (있는 경우), 및 상태 정책을 기반으로 하는 hello 상태 저장소에 의해 계산 합니다. [엔터티 상태 평가](service-fabric-health-introduction.md#health-evaluation)에 대해 자세히 알아봅니다.  
+* hello 상태 이벤트를 hello 엔터티 합니다.
+* hello 컬렉션의 모든 자식 항목 자식을 가질 수 있는 hello 엔터티에 대 한 성능 상태입니다. hello 상태 엔터티 식별자를 포함 하 고 hello 집계 된 상태입니다. 자식에 대 한 전체 상태 tooget hello 자식 엔터티 형식에 대 한 hello 쿼리 상태를 호출 하 고 hello 자식 식별자 전달 합니다.
+* 해당 지점 toohello 보고 하는 hello 비정상 상태의 평가 hello 엔터티 상태가 정상이 아닌 경우 hello 엔터티의 hello 상태가 트리거됩니다. hello 평가 재귀, 현재 상태를 트리거한 hello 자식 상태 평가 포함 합니다. 예를 들어, 워치독이 복제본에 대해 오류를 보고했습니다. hello 응용 프로그램 상태 tooan 비정상적인 서비스; 인해 비정상 평가 버전을 보여 줍니다. 오류가; tooa 파티션 인해 hello 서비스가 정상이 아님을 hello 파티션 오류가; tooa 복제본 인해 손상 되었습니다. hello 복제본 toohello watchdog 오류 상태 보고서 인해 손상 되었습니다.
+* 자식이 있는 hello 엔터티의 모든 하위 형식에 대 한 hello 상태 통계입니다. 예를 들어 클러스터 상태 hello 응용 프로그램, 서비스, 파티션, 복제본의 총 수를 표시 하 고 hello 클러스터의 엔터티를 배포 합니다. 서비스 상태 hello 총 파티션 수를 보여주며, hello에서 복제본 서비스를 지정 합니다.
 
 ## <a name="get-cluster-health"></a>클러스터 상태 가져오기
-클러스터 엔터티의 상태를 반환하고 응용 프로그램 및 노드의 상태를 포함합니다(클러스터의 자녀). 입력:
+반환 상태 hello 클러스터 엔터티의 hello를 hello 응용 프로그램 및 상태 (hello 클러스터의 자식) 노드를 포함 합니다. 입력:
 
-* [옵션] 노드 및 클러스터 이벤트를 평가하는 데 사용되는 클러스터 상태 정책.
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 상태 정책이 있는 응용 프로그램 상태 정책 맵.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트, 노드 및 응용 프로그램에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트, 노드 및 응용 프로그램은 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
-* [선택 사항] 상태 통계를 제외하는 필터
-* [선택 사항] 상태 통계에 fabric:/System 상태 통계를 포함하는 필터. 상태 통계가 제외되지 않는 경우에만 해당합니다. 기본적으로 상태 통계에는 시스템 응용 프로그램이 아닌 사용자 응용 프로그램에 대한 통계만 포함됩니다.
+* [선택 사항] hello 클러스터 상태 정책 tooevaluate hello 노드와 hello 클러스터 이벤트를 사용 합니다.
+* [선택 사항] hello 응용 프로그램 상태 정책 지도 hello 상태 정책을 사용 하 여 toooverride hello 응용 프로그램 매니페스트 정책을 사용 합니다.
+* [선택 사항] 이벤트, 노드 및 되는 항목을 지정 하는 응용 프로그램에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트, 노드 및 응용 프로그램은 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
+* [선택 사항] Tooexclude 상태 통계를 필터링 합니다.
+* [선택 사항] 필터링 tooinclude 패브릭: / 시스템 상태 통계에 hello 상태 통계. Hello 상태 통계 제외 되지 않은 경우에 적용 가능 합니다. 기본적으로 hello 상태 통계에는 사용자 응용 프로그램 및 하지 hello 시스템 응용 프로그램에 대 한 통계만 포함 됩니다.
 
 ### <a name="api"></a>API
-클러스터 상태를 얻으려면 **HealthManager**에서 `FabricClient`를 만들고 [GetClusterHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync) 메서드를 호출합니다.
+tooget 상태 클러스터를 만들기는 `FabricClient` 및 호출 hello [GetClusterHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync) 메서드를 해당 **HealthManager**합니다.
 
-다음 호출은 클러스터 상태를 가져옵니다.
+hello 다음 호출이 가져옵니다 hello 클러스터 상태를:
 
 ```csharp
 ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthAsync();
 ```
 
-다음 코드는 노드 및 응용 프로그램에 대한 사용자 지정 클러스터 상태 정책 및 필터를 사용하여 클러스터 상태를 가져옵니다. 상태 통계가 fabric:/System 통계를 포함하도록 지시합니다. 입력 정보를 포함하는 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription)을 생성합니다.
+hello 다음 코드는 사용자 지정 클러스터 상태 정책을 사용 하 여 hello 클러스터 상태를 가져옵니다을 노드 및 응용 프로그램에 대 한 필터. Hello 상태 통계 포함 hello 패브릭 지정 것: / 시스템 통계. 만들 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription), hello 입력된 정보가 들어 있는입니다.
 
 ```csharp
 var policy = new ClusterHealthPolicy()
@@ -141,11 +141,11 @@ ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-클러스터 상태를 가져오려는 cmdlet은 [Get-ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
+hello cmdlet tooget hello 클러스터 상태 설명이 [Get ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-클러스터의 상태는 설명된 대로 구성된 5개의 노드 및 시스템 응용 프로그램 및 fabric:/WordCount입니다.
+hello hello 클러스터의 상태는 5 개의 노드가, hello 시스템 응용 프로그램 및 패브릭: / WordCount 설명 된 대로 구성 합니다.
 
-다음 cmdlet은 기본 상태 정책을 사용하여 클러스터 상태를 가져옵니다. fabric:/WordCount 응용 프로그램이 경고이기 때문에 집계된 성능 상태는 경고입니다. 비정상 평가가 집계된 상태를 트리거한 조건을 어떻게 자세히 제공하는지 확인합니다.
+cmdlet을 다음 hello 기본 상태 정책을 사용 하 여 클러스터 상태를 가져옵니다. hello 집계 된 상태 (경고), 때문에 패브릭 hello: WordCount 응용 프로그램은 경고에 /입니다. 참고 되는 조건은 hello 비정상 상태의 평가 hello에 세부 정보를 제공 하는 방법에 hello 집계 상태가 트리거됩니다.
 
 ```xml
 PS D:\ServiceFabric> Get-ServiceFabricClusterHealth
@@ -202,7 +202,7 @@ HealthStatistics        :
                           Application           : 0 Ok, 1 Warning, 0 Error
 ```
 
-다음 PowerShell cmdlet이 사용자 지정 응용 프로그램 정책을 사용하여 클러스터의 상태를 가져옵니다. 오류 또는 경고 응용 프로그램 및 노드만 가져오도록 결과를 필터링합니다. 결과적으로 모두 정상이므로 반환되는 노드가 없습니다. 패브릭:/WordCount 응용 프로그램만 응용 프로그램 필터를 유지합니다. 사용자 지정 정책이 경고를 패브릭:/WordCount 응용 프로그램에 대해 오류로 고려하도록 지정하므로 응용 프로그램이 오류 시 평가되며 클러스터도 마찬가지입니다.
+hello 다음 PowerShell cmdlet을 가져옵니다 hello 클러스터의 hello 상태를 사용자 지정 응용 프로그램 정책을 사용 하 여 합니다. 결과 tooget 응용 프로그램만의 및 노드 오류 또는 경고를 필터링합니다. 결과적으로 모두 정상이므로 반환되는 노드가 없습니다. 패브릭만 hello: WordCount 응용 프로그램에서는 hello 응용 프로그램 필터 /입니다. 사용자 지정 정책 hello hello 패브릭에 대 한 오류로 tooconsider 경고를 지정 하기 때문에: / WordCount 응용 프로그램을 hello 응용 프로그램은 오류를 평가 이며 hello 클러스터도 마찬가지입니다.
 
 ```powershell
 PS D:\ServiceFabric> $appHealthPolicy = New-Object -TypeName System.Fabric.Health.ApplicationHealthPolicy
@@ -239,25 +239,25 @@ HealthEvents            : None
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy)를 사용하여 클러스터 상태를 가져올 수 있습니다.
+사용 하 여 클러스터 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-node-health"></a>노드 상태 가져오기
-노드 엔터티의 상태를 반환하고 노드에서 보고된 상태 이벤트를 포함합니다. 입력:
+반환 상태 노드 엔터티의 hello와 hello 노드에서 보고 된 hello 상태 이벤트를 포함 합니다. 입력:
 
-* [필수] 노드를 식별하는 노드 이름.
-* [옵션] 상태를 평가하는 데 사용되는 클러스터 상태 정책 설정.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트는 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
+* Hello 노드를 식별 하는 [필수] hello 노드 이름입니다.
+* [선택 사항] hello 클러스터 상태 정책 설정은 tooevaluate 상태를 사용 합니다.
+* [선택 사항] 어떤 항목을 지정 하는 이벤트에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트는 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
 
 ### <a name="api"></a>API
-API를 통해 노드 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync) 메서드를 호출합니다.
+hello API 통해 tooget 노드 상태 만들기는 `FabricClient` 및 호출 hello [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync) 해당 HealthManager 메서드.
 
-다음 코드는 지정된 노드 이름에 대한 노드 상태를 가져옵니다.
+hello 다음 코드를 가져옵니다 hello 지정 된 노드 이름에 대 한 hello 노드 상태를:
 
 ```csharp
 NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(nodeName);
 ```
 
-다음 코드는 지정된 노드 이름에 대한 노드 상태를 가져오고 [NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription)을 통해 이벤트 필터와 사용자 지정 정책을 전달합니다.
+hello 다음 코드를 가져옵니다 hello 노드 상태 hello 노드 이름과 전달 및에 지정 된 이벤트 필터를 통해 사용자 지정 정책에 대 한 [NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription):
 
 ```csharp
 var queryDescription = new NodeHealthQueryDescription(nodeName)
@@ -270,8 +270,8 @@ NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(quer
 ```
 
 ### <a name="powershell"></a>PowerShell
-노드 상태를 가져오려는 cmdlet은 [Get-ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
-다음 cmdlet은 기본 상태 정책을 사용하여 노드 상태를 가져옵니다.
+hello cmdlet tooget hello 노드 상태는 [Get ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
+cmdlet을 다음 hello 기본 상태 정책을 사용 하 여 hello 노드 상태를 가져옵니다.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricNodeHealth _Node_1
@@ -293,7 +293,7 @@ HealthEvents          :
                         Transitions           : Error->Ok = 7/13/2017 4:40:47 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
-다음 cmdlet은 클러스터 내에서 모든 노드의 상태를 가져옵니다.
+hello 다음 cmdlet을 가져옵니다 모든 노드의 상태를 hello hello 클러스터:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricNode | Get-ServiceFabricNodeHealth | select NodeName, AggregatedHealthState | ft -AutoSize
@@ -308,26 +308,26 @@ _Node_0                     Ok
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy)를 사용하여 노드 상태를 가져올 수 있습니다.
+사용 하 여 노드 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-application-health"></a>응용 프로그램 상태 가져오기
-응용프로그램 엔터티의 상태를 반환합니다. 배포된 응용 프로그램 및 서비스 자녀의 성능 상태를 포함합니다. 입력:
+응용 프로그램 엔터티 hello 상태를 반환 합니다. Hello hello 배포 응용 프로그램 및 서비스의 하위 항목의 상태가 포함 됩니다. 입력:
 
-* [필수] 응용 프로그램을 식별하는 응용 프로그램 이름(URI).
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 응용 프로그램 상태 정책.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트, 서비스 및 배포된 응용 프로그램에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트, 서비스 및 배포된 응용 프로그램은 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
-* [선택 사항] 상태 통계를 제외하는 필터 지정하지 않은 경우 상태 통계는 모든 응용 프로그램 자녀(서비스, 파티션, 복제본, 배포된 응용 프로그램, 배포된 서비스 패키지)에 대한 양호, 경고 및 오류 수를 포함합니다.
+* [필수] hello 응용 프로그램 이름 (URI) hello 응용 프로그램을 식별 하는입니다.
+* [선택 사항] hello 응용 프로그램 상태 정책이 toooverride hello 응용 프로그램 매니페스트 정책을 사용 합니다.
+* [선택 사항] 이벤트, 서비스 및 되는 항목을 지정 하는 배포 된 응용 프로그램에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트, 서비스 및 배포 된 응용 프로그램은 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
+* [선택 사항] Tooexclude hello 상태 통계를 필터링 합니다. Hello 상태 통계 포함 hello 확인, 경고 및 모든 응용 프로그램 자식에 대 한 오류 수를 지정 하지: 서비스, 파티션, 복제본, 응용 프로그램을 배포 하 고 서비스 패키지를 배포 합니다.
 
 ### <a name="api"></a>API
-응용 프로그램 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync) 메서드를 호출합니다.
+tooget 응용 프로그램 상태 만들기는 `FabricClient` 및 호출 hello [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync) 해당 HealthManager 메서드.
 
-다음 코드는 지정된 응용 프로그램 이름(URI)에 대한 응용 프로그램 상태를 가져옵니다.
+hello 다음 코드를 가져옵니다 (URI) hello 지정 된 응용 프로그램 이름에 대 한 hello 응용 프로그램 상태를:
 
 ```csharp
 ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplicationHealthAsync(applicationName);
 ```
 
-다음 코드는 [ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription)을 통해 지정된 필터와 사용자 지정 정책으로 지정된 응용 프로그램 이름(URI)에 대한 응용 프로그램 상태를 가져옵니다.
+hello 다음 코드 hello 지정 된 응용 프로그램 이름 (URI)에 대 한 hello 응용 프로그램 상태 필터와 함께 가져오고을 통해 지정 된 사용자 지정 정책을 [ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription)합니다.
 
 ```csharp
 HealthStateFilter warningAndErrors = HealthStateFilter.Error | HealthStateFilter.Warning;
@@ -356,9 +356,9 @@ ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplic
 ```
 
 ### <a name="powershell"></a>PowerShell
-응용 프로그램 상태를 가져오기 위한 cmdlet은 [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
+hello cmdlet tooget hello 응용 프로그램 상태를 [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-다음 cmdlet은 **fabric:/WordCount** 응용 프로그램의 상태를 반환합니다.
+hello 다음 cmdlet이 반환 hello의 hello 상태 **패브릭: / WordCount** 응용 프로그램:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth fabric:/WordCount
@@ -426,7 +426,7 @@ HealthStatistics                :
                                   DeployedApplication   : 5 Ok, 0 Warning, 0 Error
 ```
 
-다음 PowerShell cmdlet은 사용자 지정 정책을 전달합니다. 또한 자녀와 이벤트를 필터링합니다.
+다음 사용자 지정 정책에서 PowerShell cmdlet 패스 번호입니다. 또한 자녀와 이벤트를 필터링합니다.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth -ApplicationName fabric:/WordCount -ConsiderWarningAsError $true -ServicesFilter Error -EventsFilter Error -DeployedApplicationsFilter Error -ExcludeHealthStatistics
@@ -454,26 +454,26 @@ HealthEvents                    : None
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy)를 사용하여 응용 프로그램 상태를 가져올 수 있습니다.
+사용 하 여 응용 프로그램 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-service-health"></a>서비스 상태 가져오기
-서비스 엔터티의 상태를 반환합니다. 파티션 성능 상태를 포함합니다. 입력:
+서비스는 엔터티의 hello 상태를 반환 합니다. Hello 파티션 성능 상태를 포함합니다. 입력:
 
-* [필수] 서비스를 식별하는 서비스 이름(URI)
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 응용 프로그램 상태 정책.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트 및 파티션에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트 및 파티션은 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
-* [선택 사항] 상태 통계를 제외하는 필터 지정하지 않은 경우 상태는 서비스의 모든 파티션 및 복제본에 대해 양호, 경고 및 오류 수를 표시합니다.
+* [필수] hello 서비스 이름 (URI) hello 서비스를 식별 합니다.
+* [선택 사항] hello 응용 프로그램 상태 정책을 toooverride hello 응용 프로그램 매니페스트 정책을 사용합니다.
+* [선택 사항] 필터 이벤트 및 되는 항목을 지정 하는 파티션에 대 한 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트 및 파티션에 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
+* [선택 사항] Tooexclude 상태 통계를 필터링 합니다. 지정 하지 않으면 확인 상태 통계 표시 hello hello, 모든 파티션과 hello 서비스의 복제본에 대 한 경고 및 오류를 계산 합니다.
 
 ### <a name="api"></a>API
-API를 통해 서비스 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync) 메서드를 호출합니다.
+hello API 통해 서비스 상태 tooget 만들기는 `FabricClient` 및 호출 hello [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync) 해당 HealthManager 메서드.
 
-다음 예제는 지정된 서비스 이름(URI)을 가진 서비스 상태를 가져옵니다.
+hello 다음 예제에서는 가져옵니다 지정 된 서비스 이름 (URI)으로 서비스의 hello 상태를:
 
 ```charp
 ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthAsync(serviceName);
 ```
 
-다음 코드는 [ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription)을 통해 필터와 사용자 지정 정책을 지정하면서 지정된 서비스 이름(URI)에 대한 서비스 상태를 가져옵니다.
+hello 다음 코드를 가져옵니다 (URI) hello 지정 된 서비스 이름에 대 한 hello 서비스 상태를 통해 사용자 지정 정책 및 필터를 지정 하 [ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription):
 
 ```csharp
 var queryDescription = new ServiceHealthQueryDescription(serviceName)
@@ -486,9 +486,9 @@ ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-서비스 상태를 가져오는 cmdlet은 [Get-ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
+hello cmdlet tooget hello 서비스 상태는 [Get ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-다음 cmdlet은 기본 상태 정책을 사용하여 서비스 상태를 가져옵니다.
+cmdlet을 다음 hello 기본 상태 정책을 사용 하 여 hello 서비스 상태를 가져옵니다.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricServiceHealth -ServiceName fabric:/WordCount/WordCountService
@@ -526,27 +526,27 @@ HealthStatistics      :
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy)를 사용하여 서비스 상태를 가져올 수 있습니다.
+사용 하 여 서비스 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-partition-health"></a>파티션 상태 가져오기
-파티션 엔터티의 상태를 반환합니다. 복제본 성능 상태를 포함합니다. 입력:
+파티션 엔터티의 hello 상태를 반환 합니다. Hello 복제 데이터베이스 상태를 포함합니다. 입력:
 
-* [필수] 파티션을 식별하는 파티션 ID (GUID).
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 응용 프로그램 상태 정책.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트 및 복제본에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트 및 복제본은 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
-* [선택 사항] 상태 통계를 제외하는 필터 지정하지 않은 경우 상태 통계는 양호, 경고 및 오류 상태인 복제본 수를 표시합니다.
+* [필수] hello 파티션 hello 파티션을 식별 하는 ID (GUID)입니다.
+* [선택 사항] hello 응용 프로그램 상태 정책을 toooverride hello 응용 프로그램 매니페스트 정책을 사용합니다.
+* [선택 사항] 이벤트와 되는 항목을 지정 하는 복제본에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트 및 복제본은 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
+* [선택 사항] Tooexclude 상태 통계를 필터링 합니다. 지정 하지 않으면 hello 상태 통계 상태 확인, 경고 및 오류에는 복제본의 수는 보여 줍니다.
 
 ### <a name="api"></a>API
-API를 통해 파티션 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync) 메서드를 호출합니다. 옵션인 매개 변수를 지정하려면 [PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription)을 만듭니다.
+hello API 통해 tooget 파티션 상태 만들기는 `FabricClient` 및 호출 hello [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync) 해당 HealthManager 메서드. toospecify 선택적 매개 변수를 만들 [PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription)합니다.
 
 ```csharp
 PartitionHealth partitionHealth = await fabricClient.HealthManager.GetPartitionHealthAsync(partitionId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-파티션 상태를 가져오기 위한 cmdlet은 [Get-ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
+hello cmdlet tooget hello 파티션 상태는 [Get ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-다음 cmdlet은 **fabric:/WordCount/WordCountService** 서비스의 모든 파티션 상태를 가져오며 복제본 상태를 필터링합니다.
+hello 다음 cmdlet을 가져옵니다 hello의 모든 파티션에 대 한 hello 상태 **패브릭: / WordCount/WordCountService** 서비스 및 복제 상태는 필터링:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricPartitionHealth -ReplicasFilter None
@@ -585,8 +585,8 @@ HealthEvents          :
                         SentAt                : 7/13/2017 6:35:17 PM
                         ReceivedAt            : 7/13/2017 6:35:18 PM
                         TTL                   : 00:01:05
-                        Description           : The Load Balancer was unable to find a placement for one or more of the Service's Replicas:
-                        Secondary replica could not be placed due to the following constraints and properties:  
+                        Description           : hello Load Balancer was unable toofind a placement for one or more of hello Service's Replicas:
+                        Secondary replica could not be placed due toohello following constraints and properties:  
                         TargetReplicaSetSize: 7
                         Placement Constraint: N/A
                         Parent Service: N/A
@@ -618,26 +618,26 @@ HealthStatistics      :
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy)를 사용하여 파티션 상태를 가져올 수 있습니다.
+사용 하 여 파티션 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-replica-health"></a>복제본 상태 가져오기
-상태 저장 서비스 복제본 또는 상태 비저장 서비스 인스턴스의 상태를 반환합니다. 입력:
+상태 저장 서비스 복제본 또는 상태 비저장 서비스 인스턴스의 hello 상태를 반환합니다. 입력:
 
-* [필수] 복제본을 식별하는 파티션 ID(GUID) 및 복제본 ID.
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 응용 프로그램 상태 정책 매개 변수.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트는 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
+* [필수] hello 파티션 ID (GUID) 및 복제본 ID hello 복제 데이터베이스를 식별 하는입니다.
+* [선택 사항] hello 응용 프로그램 상태 정책 매개 변수 toooverride hello 응용 프로그램 매니페스트 정책을 사용 합니다.
+* [선택 사항] 어떤 항목을 지정 하는 이벤트에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트는 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
 
 ### <a name="api"></a>API
-API를 통해 복제본 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync) 메서드를 호출합니다. 고급 매개 변수를 지정하려면 [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription)을 사용합니다.
+hello API 통해 tooget hello 복제 데이터베이스 상태 만들기는 `FabricClient` 및 호출 hello [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync) 해당 HealthManager 메서드. 고급 매개 변수를 사용 하 여 toospecify [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription)합니다.
 
 ```csharp
 ReplicaHealth replicaHealth = await fabricClient.HealthManager.GetReplicaHealthAsync(partitionId, replicaId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-복제본 상태를 가져오는 cmdlet은 [Get-ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
+hello cmdlet tooget hello 복제 데이터베이스 상태는 [Get ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-다음 cmdlet은 서비스의 모든 파티션에 대한 주 복제본의 상태를 가져옵니다.
+hello 다음 cmdlet을 가져옵니다 hello 서비스의 모든 파티션에 대 한 hello 주 복제본의 hello 상태를:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricReplica | where {$_.ReplicaRole -eq "Primary"} | Get-ServiceFabricReplicaHealth
@@ -661,18 +661,18 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy)를 사용하여 복제본 상태를 가져올 수 있습니다.
+사용 하 여 복제 데이터베이스 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-deployed-application-health"></a>배포된 응용 프로그램 상태 가져오기
-노드 엔터티에 배포된 응용 프로그램의 상태를 반환합니다. 배포된 서비스 패키지 성능 상태를 포함합니다. 입력:
+노드 엔터티에 배포 된 응용 프로그램의 hello 상태를 반환 합니다. 배포 된 hello 서비스 패키지 상태를 포함합니다. 입력:
 
-* [필수] 배포된 응용 프로그램을 식별하는 응용 프로그램 이름(URI) 및 노드 이름(문자열)
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 응용 프로그램 상태 정책.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트 및 배포된 서비스 패키지에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트 및 배포된 서비스 패키지는 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
-* [선택 사항] 상태 통계를 제외하는 필터 지정하지 않은 경우 상태 통계는 양호, 경고 및 오류 상태인 배포 서비스 패키지 수를 표시합니다.
+* [필수] hello 응용 프로그램 이름 (URI) 및 노드 이름 (문자열) hello를 식별 하는 응용 프로그램을 배포 합니다.
+* [선택 사항] hello 응용 프로그램 상태 정책이 toooverride hello 응용 프로그램 매니페스트 정책을 사용 합니다.
+* [선택 사항] 이벤트 및 되는 항목을 지정 하는 배포 된 서비스 패키지에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트 및 배포 된 서비스 패키지는 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
+* [선택 사항] Tooexclude 상태 통계를 필터링 합니다. 지정 하지 않으면 hello 상태 통계 확인, 경고 및 오류 상태에서 배포 된 서비스 패키지의 hello 번호를 표시 합니다.
 
 ### <a name="api"></a>API
-API 통해 노드에 배포된 응용 프로그램의 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync) 메서드를 호출합니다. 옵션인 매개 변수를 지정하려면 [DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription)을 사용합니다.
+hello API 통해 노드에서 배포 된 응용 프로그램의 tooget hello 상태 만들기는 `FabricClient` 및 호출 hello [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync) 해당 HealthManager 메서드. toospecify 선택적 매개 변수를 사용 하 여 [DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription)합니다.
 
 ```csharp
 DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedApplicationHealthAsync(
@@ -680,9 +680,9 @@ DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedA
 ```
 
 ### <a name="powershell"></a>PowerShell
-배포된 응용 프로그램 상태를 가져오기 위한 cmdlet은 [Get-ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다. 응용 프로그램이 배포되는 위치를 확인하려면 [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) 를 실행하고 배포된 응용 프로그램 자녀를 살펴봅니다.
+hello cmdlet tooget hello 배포 응용 프로그램 상태를 [Get ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet. 응용 프로그램 배포 되는 위치 아웃 toofind 실행 [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) hello에 자식 응용 프로그램을 배포 합니다.
 
-다음 cmdlet은 **_Node_2**에 배포된 **fabric:/WordCount** 응용 프로그램의 상태를 가져옵니다.
+hello 다음 cmdlet을 가져옵니다 hello의 hello 상태 **패브릭: / WordCount** 응용 프로그램에 배포 된 **_Node_2**합니다.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricDeployedApplicationHealth -ApplicationName fabric:/WordCount -NodeName _Node_0
@@ -710,7 +710,7 @@ HealthEvents                       :
                                      SentAt                : 7/13/2017 5:57:06 PM
                                      ReceivedAt            : 7/13/2017 5:57:17 PM
                                      TTL                   : Infinite
-                                     Description           : The application was activated successfully.
+                                     Description           : hello application was activated successfully.
                                      RemoveWhenExpired     : False
                                      IsExpired             : False
                                      Transitions           : Error->Ok = 7/13/2017 5:57:17 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -720,17 +720,17 @@ HealthStatistics                   :
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy)를 사용하여 배포된 응용 프로그램 상태를 가져올 수 있습니다.
+사용 하 여 배포 된 응용 프로그램 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="get-deployed-service-package-health"></a>배포된 서비스 패키지 상태 가져오기
-배포된 서비스 패키지 엔터티의 상태를 반환합니다. 입력:
+반환 상태는 배포 된 서비스 패키지 엔터티의 hello 합니다. 입력:
 
-* [필수] 배포된 서비스 패키지를 식별하는 응용 프로그램 이름(URI), 노드 이름(문자열) 및 서비스 매니페스트 이름(문자열).
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 응용 프로그램 상태 정책.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 이벤트에 대한 필터(예: 오류만 또는 경고 및 오류). 모든 이벤트는 필터에 관계 없이 엔터티 집계된 상태 평가에 사용됩니다.
+* [필수] hello 응용 프로그램 이름 (URI), 노드 이름 (문자열) 및 서비스 매니페스트 이름 (string) hello를 식별 하는 서비스 패키지를 배포 합니다.
+* [선택 사항] hello 응용 프로그램 상태 정책을 toooverride hello 응용 프로그램 매니페스트 정책을 사용합니다.
+* [선택 사항] 어떤 항목을 지정 하는 이벤트에 대 한 필터 관심 및 hello 결과 (예를 들어 오류만, 또는 경고 및 오류)으로 반환 되어야 합니다. 모든 이벤트는 hello 필터에 관계 없이 사용 되는 tooevaluate hello 엔터티의 집계 된 상태입니다.
 
 ### <a name="api"></a>API
-API 통해 배포된 서비스 패키지 상태를 가져오려면 HealthManager에서 `FabricClient` 를 만들고 [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync) 메서드를 호출합니다. 옵션인 매개 변수를 지정하려면 [DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription)을 사용합니다.
+hello API 통해 배포 된 서비스 패키지의 tooget hello 상태 만들기는 `FabricClient` 호출 hello 및 [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync) 해당 HealthManager 메서드. toospecify 선택적 매개 변수를 사용 하 여 [DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription)합니다.
 
 ```csharp
 DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeployedServicePackageHealthAsync(
@@ -738,9 +738,9 @@ DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeploy
 ```
 
 ### <a name="powershell"></a>PowerShell
-배포된 서비스 패키지 상태를 가져오는 cmdlet은 [Get-ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다. 응용 프로그램이 배포되는 위치를 확인하려면 [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) 를 실행하고 배포된 응용 프로그램을 살펴봅니다. 응용 프로그램에 어떤 서비스 패키지가 있는지 보려면 [Get-ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps) 출력에 배포된 서비스 패키지 자녀를 살펴봅니다.
+hello cmdlet tooget hello 배포 된 서비스 패키지 상태는 [Get ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet. 응용 프로그램 배포 되는 위치 toosee 실행 [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) hello 배포 응용 프로그램을 확인 합니다. 서비스 패키지 응용 프로그램에서 조회에 있는 hello toosee 배포 hello 서비스 패키지 자식의 [Get ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps) 출력 합니다.
 
-다음 cmdlet은 **_Node_2**에 배포된 **fabric:/WordCount** 응용 프로그램의 **WordCountServicePkg** 서비스 패키지 상태를 가져옵니다. 엔터티에 성공적인 서비스 패키지 및 진입점 활성화와 성공적인 서비스 유형 등록을 위한 **System.Hosting** 보고서가 있습니다.
+hello 다음 cmdlet을 가져옵니다 hello의 hello 상태 **WordCountServicePkg** 서비스 패키지의 hello **패브릭: / WordCount** 응용 프로그램에 배포 된 **_Node_2**합니다. hello 엔터티에 **System.Hosting** 성공적인 서비스 패키지 및 진입점 활성화 및 성공적인 서비스 유형을 등록에 대 한 보고서입니다.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricDeployedApplication -ApplicationName fabric:/WordCount -NodeName _Node_2 | Get-ServiceFabricDeployedServicePackageHealth -ServiceManifestName WordCountServicePkg
@@ -759,7 +759,7 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:06 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The ServicePackage was activated successfully.
+                             Description           : hello ServicePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -771,7 +771,7 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:06 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The CodePackage was activated successfully.
+                             Description           : hello CodePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -783,51 +783,51 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:07 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The ServiceType was registered successfully.
+                             Description           : hello ServiceType was registered successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책을 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy)를 사용하여 배포된 서비스 패키지 상태를 가져올 수 있습니다.
+사용 하 여 배포 된 서비스 패키지 상태를 가져올 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy) hello 본문에 설명 된 상태 정책을 포함 합니다.
 
 ## <a name="health-chunk-queries"></a>상태 청크 쿼리
-상태 청크 쿼리는 입력 필터당 여러 수준의 클러스터 자식(재귀적)을 반환할 수 있습니다. 반환할 자식을 선택할 수 있는 유연성 높은 고급 필터를 지원합니다. 필터는 고유의 식별자나 다른 그룹 식별자 및/또는 상태를 통해 자식을 지정할 수 있습니다. 항상 첫 번째 수준 자식이 포함되는 상태 명령과는 다르게, 기본적으로 자식이 포함되지 않습니다.
+hello 상태 청크 쿼리는 여러 수준의 클러스터 당 자녀 수 (재귀적) 입력된 필터를 반환할 수 있습니다. Hello 자식 선택에 유연성을 많이 사용할 수 있는 고급 필터를 지원 toobe 반환 합니다. hello 필터 hello 고유 식별자 또는 다른 그룹 식별자 및/또는 상태 자식을 지정할 수 있습니다. 기본적으로 자식 항상 첫 번째 수준의 하위 항목을 포함 하는 것과 반대로 toohealth 명령으로 포함 됩니다.
 
-[상태 쿼리](service-fabric-view-entities-aggregated-health.md#health-queries) 는 필요한 필터마다 지정된 엔터티의 첫 번째 수준 자식만 반환합니다. 자식의 자식을 가져오려면 관심이 있는 각 엔터티에 대해 추가 상태 API를 호출해야 합니다. 마찬가지로, 특정 엔터티의 상태를 가져오려면 원하는 각 엔터티에 대해 하나의 상태 API를 호출해야 합니다. 청크 쿼리 고급 필터링을 사용하면 쿼리 하나로 원하는 여러 항목을 요청할 수 있으므로 메시지 크기와 메시지의 수를 최소화할 수 있습니다.
+hello [상태 쿼리 수](service-fabric-view-entities-aggregated-health.md#health-queries) hello의 반환 첫 번째 수준 자식 당 필요한 필터를 지정 합니다. hello 자식의 tooget hello 자식 관심 있는 각 엔터티에 대 한 추가 상태 Api를 호출 해야 합니다. 마찬가지로, 특정 엔터티의 tooget hello 상태, 원하는 각 엔터티에 대 한 상태 API를 호출 해야 합니다. hello 청크 쿼리 고급 필터링 있습니다 toorequest 여러 관심 있는 항목의 hello 메시지 크기와 hello 메시지 수를 최소화 한 쿼리에서 합니다.
 
-청크 쿼리의 값은 한 번의 호출로 더 많은 클러스터 엔터티(필요한 루트에서 시작하여 잠재적으로 모든 클러스터 엔터티)의 상태 정보를 얻을 수 있습니다. 복잡한 상태 쿼리를 다음과 같이 표현할 수 있습니다.
+hello hello 청크 쿼리의 기간은 파악할 수 상태 추가 클러스터 엔터티 (잠재적으로 모든 클러스터 엔터티에 필요한 루트부터 시작)에 대 한 한 번의 호출입니다. 복잡한 상태 쿼리를 다음과 같이 표현할 수 있습니다.
 
 * 오류 상태인 응용 프로그램만 반환하고, 이러한 응용 프로그램에 대해 경고 또는 오류 상태인 모든 서비스를 포함합니다. 반환된 서비스의 경우 모든 파티션을 포함합니다.
-* 이름으로 지정한 4개 응용 프로그램의 상태만 반환합니다.
-* 원하는 유형의 응용 프로그램 상태만 반환합니다.
-* 노드에 배포된 모든 엔터티를 반환합니다. 모든 응용 프로그램, 지정된 노드에 배포된 모든 응용 프로그램, 해당 노드에 배포된 모든 서비스 패키지가 반환됩니다.
+* 해당 이름으로 지정 된 네 가지 응용 프로그램의 hello 상태만를 반환 합니다.
+* 원하는 응용 프로그램 종류의 응용 프로그램의 hello 상태만를 반환 합니다.
+* 노드에 배포된 모든 엔터티를 반환합니다. 모든 응용 프로그램, hello 지정 노드에서 배포 된 모든 응용 프로그램 및 해당 노드의 모든 배포 된 hello 서비스 패키지를 반환합니다.
 * 오류 상태인 모든 복제본을 반환합니다. 모든 응용 프로그램, 서비스, 파티션 및 오류 상태인 복제본만 반환합니다.
 * 모든 응용 프로그램을 반환합니다. 지정된 서비스의 경우 모든 파티션을 포함합니다.
 
-현재, 상태 청크 쿼리는 클러스터 엔터티에 대해서만 노출됩니다. 상태 청크 쿼리는 클러스터 상태 청크를 반환하며, 다음을 포함합니다.
+현재 hello 상태 청크 쿼리는 hello 클러스터 엔터티에 대해서만 표시 됩니다. 상태 청크 쿼리는 클러스터 상태 청크를 반환하며, 다음을 포함합니다.
 
-* 클러스터 집계 성능 상태.
-* 입력 필터를 준수하는 노드의 상태 청크 목록.
-* 입력 필터를 준수하는 응용 프로그램의 상태 청크 목록. 각 응용 프로그램 상태 청크는 입력 필터를 준수하는 모든 서비스가 포함된 청크 목록과 필터를 준수하는 모든 배포된 응용 프로그램이 포함된 청크 목록을 포함하고 있습니다. 서비스 자식 및 배포된 응용 프로그램에도 동일한 내용이 적용됩니다. 이러한 방식으로, 요청이 있을 경우 클러스터의 모든 엔터티를 계층적 방식으로 반환할 수 있습니다.
+* hello 클러스터 상태를 집계합니다.
+* hello 상태 상태 청크는 노드의 목록이 입력된 필터를 적용 합니다.
+* hello 상태 상태 청크 목록이 입력된 필터를 적용 하는 응용 프로그램. 입력된 필터 및 청크 목록이 hello 필터를 적용 하는 모든 배포 된 응용 프로그램으로 적용 하는 모든 서비스와 청크 목록을 포함 하는 각 응용 프로그램 상태 상태 청크 합니다. 서비스 및 응용 프로그램 배포 된 hello 자식에 대 한 동일 합니다. 이러한 방식으로를 계층 형태로 요청 하는 경우 hello 클러스터의 모든 엔터티를 잠재적으로 반환 수 있습니다.
 
 ### <a name="cluster-health-chunk-query"></a>클러스터 상태 청크 쿼리
-클러스터 엔터티의 상태를 반환하며 필수 자식의 계층적 상태 청크를 포함합니다. 입력:
+반환 상태 hello 클러스터 엔터티의 hello를 필수 자식의 hello 계층적 상태 상태 청크를 포함 합니다. 입력:
 
-* [옵션] 노드 및 클러스터 이벤트를 평가하는 데 사용되는 클러스터 상태 정책.
-* [옵션] 응용 프로그램 매니페스트 정책을 재정의하는 데 사용되는 상태 정책이 있는 응용 프로그램 상태 정책 맵.
-* [옵션] 관심 있는 엔터티를 지정하고 결과에 반환되어야 하는 노드 및 응용 프로그램에 대한 필터. 필터는 엔터티/엔터티 그룹에 한정적으로 적용하거나 해당 수준의 모든 엔터티에 적용할 수 있습니다. 쿼리에서 반환하는 엔터티를 세분화할 수 있도록 필터 목록에 일반 필터 하나 그리고/또는 특정 식별자에 대한 필터가 포함될 수 있습니다. 필터 목록이 비어 있으면 기본적으로 자식이 반환되지 않습니다.
-  필터에 대한 자세한 내용은 [NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter) 및 [ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter)를 참조하세요. 응용 프로그램 필터는 자식에 대한 고급 필터를 재귀적으로 지정할 수 있습니다.
+* [선택 사항] hello 클러스터 상태 정책 tooevaluate hello 노드와 hello 클러스터 이벤트를 사용 합니다.
+* [선택 사항] hello 응용 프로그램 상태 정책 지도 hello 상태 정책을 사용 하 여 toooverride hello 응용 프로그램 매니페스트 정책을 사용 합니다.
+* [선택 사항] 노드 및 되는 항목을 지정 하는 응용 프로그램에 대 한 필터 관심 및 hello 결과에 반환 해야 합니다. hello 필터 특정 tooan 엔터티/엔터티 그룹 이거나 해당 수준에서 적용 가능한 tooall 엔터티 않습니다. 필터 목록 hello 하나의 일반적인 필터 및/또는 필터 hello 쿼리에 의해 반환 되는 특정 식별자 toofine 세부 수준 엔터티를 포함할 수 있습니다. 비어 있는 경우 기본적으로 hello 자식은 반환 되지 않습니다.
+  Hello 필터에 대 한 자세한 설명 [NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter) 및 [ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter)합니다. hello 응용 프로그램 필터 수 재귀적으로 자식에 대 한 고급 필터를 지정 합니다.
 
-청크 결과에는 필터를 준수하는 하위 항목이 포함됩니다.
+hello 청크 결과 hello 필터를 적용 하는 hello 자식을 포함 됩니다.
 
-현재, 청크 쿼리 비정상 평가 또는 엔터티 이벤트를 반환하지 않습니다. 이러한 추가 정보는 기존 클러스터 상태 쿼리를 사용하여 얻을 수 있습니다.
+현재 비정상 상태의 평가 또는 엔터티 이벤트 hello 청크 쿼리 반환 하지 않습니다. Hello 기존 클러스터 상태 쿼리를 사용 하 여 추가 정보를 얻을 수 있습니다.
 
 ### <a name="api"></a>API
-클러스터 상태 청크를 가져오려면 해당 **HealthManager**에서 `FabricClient`를 만들고 [GetClusterHealthChunkAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync) 메서드를 호출합니다. 상태 정책 및 고급 필터를 설명하는 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription)을 전달할 수 있습니다.
+tooget 클러스터 상태 청크를 만들고는 `FabricClient` 및 호출 hello [GetClusterHealthChunkAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync) 메서드를 해당 **HealthManager**합니다. 에 전달할 수 있습니다 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription) toodescribe 상태 정책 및 고급 필터입니다.
 
-다음 코드는 고급 필터가 포함된 클러스터 상태 청크를 가져옵니다.
+hello 다음 코드 청크를 가져옵니다 클러스터 상태 고급 필터.
 
 ```csharp
 var queryDescription = new ClusterHealthChunkQueryDescription();
@@ -857,7 +857,7 @@ var wordCountServiceFilter = new ServiceHealthStateFilter()
 };
 wordCountServiceFilter.PartitionFilters.Add(wordCountServicePartitionFilter);
 
-// Application filter: for specific application, return no services except the ones of interest
+// Application filter: for specific application, return no services except hello ones of interest
 var wordCountApplicationFilter = new ApplicationHealthStateFilter()
     {
         // Always return fabric:/WordCount application
@@ -871,9 +871,9 @@ var result = await fabricClient.HealthManager.GetClusterHealthChunkAsync(queryDe
 ```
 
 ### <a name="powershell"></a>PowerShell
-클러스터 상태를 가져오려는 cmdlet은 [Get-ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk)입니다. 먼저 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet을 사용하여 클러스터에 연결합니다.
+hello cmdlet tooget hello 클러스터 상태 설명이 [Get ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk)합니다. 첫째, toohello 클러스터 hello를 사용 하 여 연결 [Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-다음 코드는 항상 반환되어야 하는 특정 노드를 제외하고 노드에 오류가 있을 때에만 해당 노드를 가져옵니다.
+hello 다음 코드에서는 노드 항상 반환 되어야 하는 특정 노드를 제외 하 고 오류가 있는 경우에
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -881,7 +881,7 @@ $allFilter = [System.Fabric.Health.HealthStateFilter]::All;
 
 $nodeFilter1 = New-Object System.Fabric.Health.NodeHealthStateFilter -Property @{HealthStateFilter=$errorFilter}
 $nodeFilter2 = New-Object System.Fabric.Health.NodeHealthStateFilter -Property @{NodeNameFilter="_Node_1";HealthStateFilter=$allFilter}
-# Create node filter list that will be passed in the cmdlet
+# Create node filter list that will be passed in hello cmdlet
 $nodeFilters = New-Object System.Collections.Generic.List[System.Fabric.Health.NodeHealthStateFilter]
 $nodeFilters.Add($nodeFilter1)
 $nodeFilters.Add($nodeFilter2)
@@ -899,7 +899,7 @@ NodeHealthStateChunks        :
 ApplicationHealthStateChunks : None
 ```
 
-다음 cmdlet은 응용 프로그램 필터가 포함된 클러스터 청크를 가져옵니다.
+hello cmdlet을 다음 응용 프로그램 필터와 클러스터 청크를 가져옵니다.
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -965,7 +965,7 @@ ApplicationHealthStateChunks :
                                         HealthState           : Error
 ```
 
-다음 cmdlet은 노드에 배포된 모든 엔터티를 반환합니다.
+hello 다음 cmdlet 엔터티를 반환 배포 된 모든 노드에 있습니다.
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -1021,56 +1021,56 @@ ApplicationHealthStateChunks :
 ```
 
 ### <a name="rest"></a>REST (영문)
-본문에 설명된 상태 정책 및 고급 필터를 포함하는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster)를 사용하여 클러스터 상태 청크를 가져올 수 있습니다.
+클러스터 상태 청크를 얻을 수 있습니다는 [GET 요청](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks) 또는 [POST 요청](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster) 이 포함 된 상태 정책을 hello 본문에서 설명 하는 고급 필터입니다.
 
 ## <a name="general-queries"></a>일반 쿼리
-일반 쿼리는 지정된 형식의 서비스 패브릭 엔터티 목록을 반환합니다. 이러한 쿼리는 API( **FabricClient.QueryManager**상의 메서드를 통해), PowerShell cmdlet 및 REST를 통해 노출됩니다. 이러한 쿼리는 여러 구성 요소에서 하위 쿼리를 집계합니다. 둘 중 하나는 [Health 스토어](service-fabric-health-introduction.md#health-store)로 각 쿼리 결과에 대해 집계된 상태를 채웁니다.  
+일반 쿼리는 지정된 형식의 서비스 패브릭 엔터티 목록을 반환합니다. Hello API 통해 노출 됩니다 (hello에 대 한 메서드를 통해 **FabricClient.QueryManager**), PowerShell cmdlet 및 REST 합니다. 이러한 쿼리는 여러 구성 요소에서 하위 쿼리를 집계합니다. 그 중 하나는 hello [상태 저장소](service-fabric-health-introduction.md#health-store), 각 쿼리 결과 대 한 성능 상태를 집계 하는 hello를 채웁니다.  
 
 > [!NOTE]
-> 일반 쿼리는 엔터티의 집계된 성능 상태를 반환 하고 풍부한 상태 데이터를 포함하지 않습니다. 엔터티가 비정상이면 상태 쿼리를 따라서 이벤트, 자녀 성능 상태 및 비정상 평가를 포함하는 모든 상태 정보를 가져올 수 있습니다.
+> 일반 쿼리는 hello 엔터티의 집계 hello 성능 상태를 반환 하 고 풍부한 상태 데이터가 포함 되지 않습니다. 엔터티 상태가 정상이 아닌 경우 있습니다 수 구성에 따라 상태 쿼리 tooget 이벤트, 자식 상태 및 비정상 상태의 평가 비롯 한 모든 상태 정보를 합니다.
 >
 >
 
-일반 쿼리가 엔터티에 대해 알 수 없는 성능 상태를 반환하는 경우 상태 저장소에 해당 엔터티에 대해 완전한 데이터가 없을 수 있습니다. 또한 상태 저장소에 대한 하위 쿼리에 성공하지 못한 것일 수 있습니다(예: 통신 오류가 있거나 상태 저장소가 정체됨). 엔터티에 대한 상태 쿼리를 따릅니다. 네트워크 문제와 같은 하위 쿼리에 일시적인 오류가 발생한 경우 후속 쿼리는 성공할 수 있습니다. 또한 엔터티가 상태 저장소로부터 노출되지 않은 자세한 이유를 제공할 수도 있습니다.
+엔터티에 대 한 알 수 없는 상태를 반환 하는 일반 쿼리 불가능 해당 hello 상태 저장소에 없는 hello 엔터티에 대 한 완전 한 데이터입니다. 하위 쿼리 toohello 상태 저장소 되지 않았지만 있는지 수 이기도 (예를 들어, 통신 오류 또는 hello 상태 저장소 제한 되었다는). Hello 엔터티에 대 한 상태 쿼리 다음 추가 합니다. Hello 하위 네트워크 문제와 같은 일시적인 오류를 발생 하는 경우이 후속 쿼리는 성공할 수 있습니다. 또한을 줄 수 자세히 hello 엔터티 노출 되지 않는 하는 방법에 대 한 hello health store에서 합니다.
 
-엔터티에 대한 **HealthState** 가 포함된 쿼리는 다음과 같습니다.
+쿼리를 포함 하는 hello **HealthState** 엔터티는:
 
-* 노드 목록: 클러스터의 목록 노드(페이징)를 반환합니다.
+* 노드 목록: (페이징) hello 클러스터 hello 목록 노드를 반환 합니다.
   * API: [FabricClient.QueryClient.GetNodeListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getnodelistasync)
   * PowerShell: Get-ServiceFabricNode
-* 응용 프로그램 목록: 클러스터의 응용 프로그램 목록(페이징)을 반환합니다.
+* 응용 프로그램 목록: (페이징) hello 클러스터의 응용 프로그램 hello 목록을 반환 합니다.
   * API: [FabricClient.QueryClient.GetApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getapplicationlistasync)
   * PowerShell: Get-ServiceFabricApplication
-* 서비스 목록: 응용 프로그램의 서비스 목록(페이징)을 반환합니다.
+* 서비스 목록: (페이징) 응용 프로그램에서 서비스 hello 목록을 반환 합니다.
   * API: [FabricClient.QueryClient.GetServiceListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getservicelistasync)
   * PowerShell: Get-ServiceFabricService
-* 파티션 목록: 서비스의 파티션 목록(페이징)을 반환합니다.
+* 파티션 목록: (페이징) 서비스에 있는 파티션의 hello 목록을 반환 합니다.
   * API: [FabricClient.QueryClient.GetPartitionListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getpartitionlistasync)
   * PowerShell: Get-ServiceFabricPartition
-* 복제본 목록: 파티션의 복제본 목록(페이징)을 반환합니다.
+* 복제본 목록: (페이징) 파티션의 복제본 hello 목록을 반환 합니다.
   * API: [FabricClient.QueryClient.GetReplicaListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getreplicalistasync)
   * PowerShell: Get-ServiceFabricReplica
-* 배포된 응용 프로그램 목록: 노드에 배포된 응용 프로그램의 목록을 반환합니다.
+* 배포 응용 프로그램 목록: 노드에 배포 된 응용 프로그램의 hello 목록을 반환 합니다.
   * API: [FabricClient.QueryClient.GetDeployedApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedapplicationlistasync)
   * PowerShell: Get-ServiceFabricDeployedApplication
-* 배포된 서비스 패키지 목록: 배포된 응용 프로그램에서 서비스 패키지 목록을 반환합니다.
+* 서비스 패키지 목록 배포: 배포 된 응용 프로그램의 서비스 패키지 hello 목록을 반환 합니다.
   * API: [FabricClient.QueryClient.GetDeployedServicePackageListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync)
   * PowerShell: Get-ServiceFabricDeployedApplication
 
 > [!NOTE]
-> 일부 쿼리는 페이징된 결과를 반환합니다. 반환되는 이러한 쿼리는 [PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1)에서 파생된 목록입니다. 결과가 메시지와 맞지 않으면 한 페이지만 반환되고 열거형이 중지된 위치를 추적하는 ContinuationToken이 반환됩니다. 다음 결과를 얻으려면 계속해서 동일한 쿼리를 호출하고 이전 쿼리의 연속 토큰을 전달합니다.
+> Hello 쿼리의 일부 페이지 된 결과 반환 합니다. hello 반환 이러한 쿼리는 목록에서 파생 된 [PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1)합니다. Hello 결과 메시지에 맞지 않으면, 페이지에만 반환 되 고 열거형에서 중지 된 추적는 ContinuationToken 하는. 동일한 쿼리 한 hello 이전 쿼리 tooget 다음 결과에서 hello continuation 토큰을 전달 toocall hello를 계속 합니다.
 >
 >
 
 ### <a name="examples"></a>예
-다음 코드는 클러스터에서 비정상 응용 프로그램을 가져옵니다.
+hello 다음 코드 hello 비정상 상태 응용 프로그램을의 가져옵니다 hello 클러스터:
 
 ```csharp
 var applications = fabricClient.QueryManager.GetApplicationListAsync().Result.Where(
   app => app.HealthState == HealthState.Error);
 ```
 
-다음 cmdlet은 패브릭:/WordCount 응용 프로그램에 대한 응용 프로그램 세부 정보를 가져옵니다. 성능 상태는 경고입니다.
+hello 다음 cmdlet을 가져옵니다 hello 패브릭에 대 한 hello 응용 프로그램 세부 정보: / WordCount 응용 프로그램입니다. 성능 상태는 경고입니다.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplication -ApplicationName fabric:/WordCount
@@ -1090,7 +1090,7 @@ ApplicationParameters  : { "WordCountWebService_InstanceCount" = "1";
                          [ProcessId] -tid [ThreadId]","EnvironmentBlock":"_NO_DEBUG_HEAP=1\u0000"}]" }
 ```
 
-다음 cmdlet은 성능 상태가 오류인 서비스를 가져옵니다.
+hello 다음 cmdlet을 가져옵니다 상태가 error 사용 하 여 hello 서비스를:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplication | Get-ServiceFabricService | where {$_.HealthState -eq "Error"}
@@ -1107,13 +1107,13 @@ HealthState            : Error
 ```
 
 ## <a name="cluster-and-application-upgrades"></a>클러스터 및 응용 프로그램 업그레이드
-클러스터 및 응용 프로그램의 모니터링된 업그레이드 중 서비스 패브릭이 상태를 점검하여 모든 것이 정상으로 유지되는지 확인합니다. 엔터티가 구성된 상태 정책을 사용한 평가로 비정상인 경우 업그레이드는 다음 작업을 결정하는 업그레이드 관련 정책을 적용합니다. 업그레이드는 사용자 상호 작용을 허용하도록 일시 중지되거나(예: 오류 조건 해결 또는 정책 변경) 이전 버전으로 자동으로 롤백할 수도 있습니다.
+서비스 패브릭 hello 클러스터와 응용 프로그램의 모니터링 되는 업그레이드 중 모든 남아 정상 상태 tooensure를 확인 합니다. 엔터티를 구성 된 상태 정책을 사용 하 여 계산한 정상 없으면 hello 업그레이드 업그레이드 관련 정책을 toodetermine hello 다음 동작을 적용 합니다. 이 자동으로 롤백합니다 toohello 이전 버전 되었거나 hello 업그레이드 (예: 오류 상태를 수정 하거나 정책이 변경), 일시 중지 된 tooallow 사용자 상호 작용을 수 있습니다.
 
-*클러스터* 업그레이드 중 클러스터 업그레이드 상태를 가져올 수 있습니다. 업그레이드 상태는 클러스터에서 비정상인 항목을 가리키는 비정상 평가를 포함합니다. 상태 문제로 인해 업그레이드가 롤백되는 경우 업그레이드 상태가 마지막 비정상 이유를 기억합니다. 이 정보는 업그레이드가 롤백되거나 중지된 후에 무엇이 잘못되었는지를 관리자가 조사하는 데 도움이 될 수 있습니다.
+중는 *클러스터* 업그레이드를 얻을 수 있습니다 hello 클러스터 업그레이드 상태입니다. hello 업그레이드 상태 비정상 상태의 평가, 어떤 지점 toowhat hello 클러스터의 상태가 포함 됩니다. Hello 업그레이드가 롤백되면 toohealth 문제 인해 hello 업그레이드 상태 hello 마지막 비정상 이유를 기억 합니다. 이 정보에는 관리자 hello 업그레이드 롤백 또는 중지 후 잘못 된 부분을 조사할 수 있습니다.
 
-마찬가지로, *응용 프로그램* 업그레이드 중에 응용 프로그램 업그레이드 상태에 비정상 평가가 포함됩니다.
+마찬가지로, 동안는 *응용 프로그램* 업그레이드, 모든 비정상 상태의 평가 hello 응용 프로그램 업그레이드 상태에 포함 됩니다.
 
-다음은 수정된 패브릭:/WordCount 응용 프로그램에 대한 응용 프로그램 업그레이드 상태를 보여줍니다. watchdog에서 복제본 하나에서 오류를 보고했습니다. 상태 검사를 준수하지 않기 때문에 업그레이드가 롤백됩니다.
+hello 다음 테이블에 나와 hello 응용 프로그램 업그레이드 상태에 대 한 수정 된 패브릭: / WordCount 응용 프로그램입니다. watchdog에서 복제본 하나에서 오류를 보고했습니다. hello 상태 검사를 준수 하지 않을 서 hello 업그레이드 중입니다.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationUpgrade fabric:/WordCount
@@ -1167,12 +1167,12 @@ ForceRestart                  : False
 UpgradeReplicaSetCheckTimeout : 00:15:00
 ```
 
-[Service Fabric 응용 프로그램 업그레이드](service-fabric-application-upgrade.md)에 대해 자세히 알아봅니다.
+Hello에 대 한 자세한 [서비스 패브릭 응용 프로그램 업그레이드](service-fabric-application-upgrade.md)합니다.
 
-## <a name="use-health-evaluations-to-troubleshoot"></a>상태 평가를 사용하여 문제 해결
-클러스터 또는 응용 프로그램에 문제가 있을 때마다 클러스터나 응용 프로그램 상태를 확인하여 무엇이 잘못인지 식별합니다. 비정상 평가는 현재 비정상 상태를 무엇이 트리거했는지에 대한 세부 정보를 제공합니다. 필요한 경우 비정상 자녀 엔터티로 드릴다운하여 근본 원인을 식별할 수 있습니다.
+## <a name="use-health-evaluations-tootroubleshoot"></a>상태 평가 tootroubleshoot를 사용 하 여
+Hello 클러스터 또는 응용 프로그램에 문제가 있을 때마다 확인 hello 클러스터 또는 응용 프로그램 상태 toopinpoint 문제가 무엇 인지 합니다. 비정상 상태의 평가 hello 트리거된 hello 현재 비정상 상태에 대 한 세부 정보를 제공 합니다. 해야 할 경우에 비정상 상태의 자식 엔터티 tooidentify hello 근본 원인을 다운 드릴 수 있습니다.
 
-예를 들어, 복제본 중 하나에서 오류를 보고하여 상태가 비정상인 응용 프로그램이 있습니다. 다음 Powershell cmdlet은 비정상 평가를 표시합니다.
+예를 들어, 복제본 중 하나에서 오류를 보고하여 상태가 비정상인 응용 프로그램이 있습니다. hello 다음 Powershell cmdlet으로 다음과 같은 hello 비정상 상태의 평가
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth fabric:/WordCount -EventsFilter None -ServicesFilter None -DeployedApplicationsFilter None -ExcludeHealthStatistics
@@ -1200,7 +1200,7 @@ DeployedApplicationHealthStates : None
 HealthEvents                    : None
 ```
 
-복제본을 살펴 자세한 정보를 파악할 수 있습니다.
+자세한 내용은 hello 복제본 tooget를 확인할 수 있습니다.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricReplicaHealth -ReplicaOrInstanceId 131444422260002646 -PartitionId af2e3e44-a8f8-45ac-9f31-4093eb897600
@@ -1239,16 +1239,16 @@ HealthEvents          :
 ```
 
 > [!NOTE]
-> 비정상 평가는 엔터티가 현재 상태로 평가된 첫 번째 이유를 보여 줍니다. 이 상태를 트리거하는 다른 여러 이벤트가 있을 수 있지만 평가에 반영되지 않습니다. 자세한 내용을 알아보려면 클러스터의 모든 비정상 보고서를 산출하는 상태 엔터티를 드릴다운합니다.
+> hello 비정상 상태의 평가 표시 hello 첫 번째 이유 hello 엔터티는 평가 toocurrent 상태. 이 상태를 트리거하는 여러 다른 이벤트가 있을 수 있지만 hello 평가에 반영 되지 않습니다. tooget 자세한 내용은 hello 상태 엔터티 toofigure hello 클러스터의 모든 hello 비정상 보고서로 드릴 다운 합니다.
 >
 >
 
 ## <a name="next-steps"></a>다음 단계
-[시스템 상태 보고서를 사용하여 문제 해결](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
+[시스템 상태 보고서 tootroubleshoot를 사용 하 여](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
 
 [사용자 지정 서비스 패브릭 상태 보고서 추가](service-fabric-report-health.md)
 
-[서비스 상태를 보고 및 확인하는 방법](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+[어떻게 tooreport 및 확인 서비스 상태](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 
 [로컬로 서비스 모니터링 및 진단](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 

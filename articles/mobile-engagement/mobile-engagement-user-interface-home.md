@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 사용자 인터페이스 - 홈"
-description: "Azure Mobile Engagement를 사용하여 기존 응용 프로그램과 프로젝트를 관리하는 방법을 알아봅니다."
+title: "aaaAzure Mobile Engagement 사용자 인터페이스-홈"
+description: "자세한 내용은 방법 toomanage 기존 응용 프로그램과 Azure Mobile Engagement를 사용 하 여 프로젝트"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 0f15cb975f57f6f5cab12d5118ff50a6fab14388
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 727dad188c5876d09db84634a17e10b280039c49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-your-existing-application-and-projects"></a>기존 응용 프로그램 및 프로젝트를 관리하는 방법
-이 문서에서는 **Mobile Engagement** 포털의 **홈** 페이지를 설명합니다. **Mobile Engagement** 포털을 사용하여 모바일 앱을 모니터링하고 관리합니다. 포털 사용을 시작하려면 먼저 **Azure Mobile Engagement** 계정을 만들어야 합니다. 
+# <a name="how-toomanage-your-existing-application-and-projects"></a>어떻게 toomanage 기존 응용 프로그램 및 프로젝트
+이 문서에서는 hello 설명 **홈** hello 페이지 **Mobile Engagement** 포털입니다. Hello를 사용 하 여 **Mobile Engagement** 포털 toomonitor 모바일 앱을 관리 하 고 있습니다. 먼저 toocreate hello 포털을 사용 하 여 해당 toostart 참고는 **Azure Mobile Engagement** 계정. 
 
-홈페이지로 이동하려면 페이지의 왼쪽 위에서 **홈** 을 클릭합니다. 선택한 컬렉션에 속하는 모든 응용 프로그램 목록이 있습니다. 이 페이지에서는 응용 프로그램의 빠른 개요만 참조합니다.
+tooget toohello 홈 페이지에서 클릭 **홈** hello에 hello 페이지의 왼쪽 맨 위로 이동 합니다. Hello 선택한 컬렉션의 일부인 응용 프로그램의 모든 hello 목록을 포함 합니다. 이 페이지에서는 응용 프로그램의 빠른 개요만 참조합니다.
 
-또한 홈페이지에는 계정의 모든 응용 프로그램을 포함할 수 있는 모든 프로젝트가 있습니다. 누구나 계정을 만들면 UI의 홈페이지에 액세스할 수 있지만 다른 사용자들이 **내 프로젝트**의 사용자 지정 응용 프로그램에 액세스하도록 하려면 해당 사용자에게 권한을 부여해야 합니다.
+hello 홈 페이지에는 계정에 있는 모든 응용 프로그램을 포함할 수 있는 모든 프로젝트도 포함 되어 있습니다. 계정을 만들어 hello 홈 페이지의 UI hello 누구나 액세스할 수 있습니다 하지만 해당 템플릿을 toogrant 사용 tooother 사용자 toohave 액세스 tooyour 사용자 지정 응용 프로그램에 필요한 **내 프로젝트**합니다.
 
-선택한 응용 프로그램에 대한 비교 차트를 볼 수도 있습니다. 또한 프로젝트에서 선택한 응용 프로그램에 대한 비교 차트를 보려면 선택합니다.
+Hello 선택한 응용 프로그램에 대 한 hello 비교 차트를 볼 수 있습니다. 또는 프로젝트에서 선택한 응용 프로그램에 대 한 tooview hello 비교 차트를 선택 합니다.
 
 ![Home1][0]
 
 ## <a name="my-applications"></a>내 응용 프로그램
-응용 프로그램에 대한 간략한 개요에서 상세한 리본 옵션을 확인하기 위해 열 응용 프로그램을 선택할 수 있습니다. 응용 프로그램 이름을 클릭하면 응용 프로그램에서 가장 자주 방문하는 리본 위치가 반환되며, 기어 아이콘을 클릭하면 응용 프로그램의 "설정" 페이지로 직접 이동할 수 있습니다. 응용 프로그램 테이블에 표시되는 정보를 검색, 필터링 또는 정렬할 수 있습니다. 열 머리글을 끌어서 놓는 방법으로 순서를 변경할 수도 있습니다.
+hello 응용 프로그램의 빠른 개요 사용 하면 응용 프로그램을 원하는 tooselect tooopen tooview hello 리본 메뉴 옵션을 자세히 설명 합니다. 응용 프로그램에서 응용 프로그램 tooreturn 가장 최근에 방문한 toohello 리본 위치의 hello 이름을 클릭 하거나 클릭 hello 기어 아이콘 toogo 수 응용 프로그램의 직접 toohello "설정" 페이지입니다. 검색할 수 있습니다, 필터 또는 정렬 hello 정보 표시 hello 응용 프로그램에 테이블. 있습니다 수 끌어서 놓을 수도 hello 열 머리글 toochange hello 순서입니다.
 
-무엇보다도 응용 프로그램 개요에는 다음 항목이 포함됩니다.
+무엇 보다도 응용 프로그램의 hello 개요 포함 됩니다.
 
-* **새 사용자 추세**: 지난 2주 동안의 새 사용자 증가 수
-* **활성 사용자**: 지난 30일 동안의 활성 사용자 수
-* **활성 사용자 추세**: 지난 2주 동안의 활성 사용자 증가 수
-* **세션**: 세션은 사용자가 응용 프로그램 사용을 시작한 시간부터 중지할 때까지 한 번 사용하는 것
-* **세션 추세**: 지난 2주 동안의 세션 증가 수
+* **새 사용자가 추세**: hello 지난 2 주 동안 새 사용자의 진화 합니다.
+* **활성 사용자**: hello 지난 30 일 동안 활성 사용자 수입니다.
+* **활성 사용자 추세**: hello 지난 2 주 동안 활성 사용자의 진화 합니다.
+* **세션**: 세션은 사용자가 수행 하는 hello 응용 프로그램의 용도 중 하나, hello 사용자 hello 시간부터 hello 사용자가을 중지할 때까지 사용 하 여을 시작 합니다.
+* **세션 추세**: 지난 2 주 hello에 따라 세션의 발전 합니다.
 
-응용 프로그램을 클릭하면 UI를 통해 앱 모니터링 및 관리를 시작할 수 있습니다. 예:    
+응용 프로그램을 클릭 한 후에 모니터링 하 고 hello UI 통해 응용 프로그램 관리를 시작할 수 있습니다. 예:    
 
 * [응용 프로그램에 대한 실시간 데이터 모니터링](mobile-engagement-user-interface-monitor.md)
 * [응용 프로그램에 대한 기록 데이터 분석](mobile-engagement-user-interface-analytics.md)
-* [사용자의 세그먼트를 만들고 관리하여 사용 패턴 식별](mobile-engagement-user-interface-segments.md)
-* [푸시 알림으로 응용 프로그램의 사용자에게 알림](mobile-engagement-user-interface-reach.md)
+* [만들기 및 사용자가 tooidentify 사용 패턴의 세그먼트를 관리 합니다.](mobile-engagement-user-interface-segments.md)
+* [푸시 알림 응용 프로그램의 toohello 사용자 연락](mobile-engagement-user-interface-reach.md)
 
 ## <a name="my-projects"></a>내 프로젝트
-프로젝트를 사용하여 응용 프로그램을 그룹화하고 다른 사용자에게 응용 프로그램에 액세스할 수 있는 권한을 부여할 수 있습니다. 메일 주소를 제공하여 다른 사용자에게 권한을 부여합니다. **새 프로젝트** 단추를 사용하면 새 프로젝트의 "이름"과 "설명"만 입력하여 새 프로젝트를 만들 수 있습니다. 프로젝트를 만든 후에는 프로젝트 이름을 클릭하여 제품 이름과 설명을 편집하고 이 프로젝트에 표시할 모든 응용 프로그램을 선택할 수 있습니다.
+프로젝트 toogroup 응용 프로그램을 사용 하 고 응용 프로그램 사용 권한 tooother 사용자 tooaccess를 부여할 수 있습니다. 사용자 권한을 부여 tooother 사용자 전자 메일 주소를 제공 하 여 합니다. hello **새 프로젝트** 단추 있습니다 toocreate 새 프로젝트만 "name"와 새 프로젝트의 "설명"을 입력 합니다. 프로젝트를 만든 후이 프로젝트의 toosee 원하는 모든 hello 응용 프로그램에서 사용 중인 제품과 tooselect의 hello 프로젝트 이름 tooedit hello 이름 및 설명을 클릭 수 있습니다.
 
 ![Home6][60]
 
 역할의 종류
 
-* **보기 권한자**: 프로젝트에 연결된 응용 프로그램을 볼 수만 있는 사용자입니다. 보기 권한자는 분석 및 모니터 데이터에 액세스하고 도달률 결과를 확인할 수 있습니다. 그러나 정보를 변경하거나 응용 프로그램/사용자를 관리할 수는 없습니다. 또한 도달률 캠페인을 만들거나 해당 상태를 변경할 수도 없습니다.
+* **뷰어**: A 뷰어는 사용자 응용 프로그램 보기 hello tooa 프로젝트 연결 수입니다. 보기 권한자는 분석 및 모니터 데이터에 액세스하고 도달률 결과를 확인할 수 있습니다. 그러나 정보를 변경하거나 응용 프로그램/사용자를 관리할 수는 없습니다. 또한 도달률 캠페인을 만들거나 해당 상태를 변경할 수도 없습니다.
 * **개발자**: 보기 권한자가 수행할 수 있는 모든 작업을 수행할 수 있으며 응용 프로그램을 관리할 수도 있는 사용자입니다. 개발자는 응용 프로그램을 사용하거나 사용하지 않도록 설정하고, 패키지/서명 등의 응용 프로그램 정보를 변경하고, 도달률 캠페인을 만들 수 있습니다. 그러나 사용자를 관리할 수는 없습니다.
-* **관리자**: 개발자가 수행할 수 있는 모든 작업을 수행할 수 있으며 사용자를 관리할 수도 있는 사용자입니다. 관리자는 사용자를 프로젝트에 참가하도록 초대하고 사용자 역할을 변경하며 프로젝트 정보를 변경할 수 있습니다. "설정"에서 응용 프로그램 수준 권한을 설정할 수도 있습니다.
+* **관리자**: 개발자가 수행할 수 있는 모든 작업을 수행할 수 있으며 사용자를 관리할 수도 있는 사용자입니다. 관리자가 사용자 toojoin 프로젝트를 초대할 수, 사용자 역할을 변경할 수 및 프로젝트의 정보를 변경할 수 있습니다. "설정"에서 응용 프로그램 수준 권한을 설정할 수도 있습니다.
 
-이 프로젝트에 속하는 모든 응용 프로그램을 보려면 프로젝트를 클릭합니다. 다음 이미지에서는 선택한 응용 프로그램에 대한 비교 차트를 보여 줍니다.
+이 프로젝트의 일부인 모든 hello 응용 프로그램 프로젝트 tooview 클릭 합니다. 다음 이미지는 hello hello 선택한 응용 프로그램에 대 한 hello 비교 차트를 보여 줍니다.
 
 ![Home2][3]
 

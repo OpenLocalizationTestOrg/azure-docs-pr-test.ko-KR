@@ -1,6 +1,6 @@
 ---
 title: "시뮬레이션된 장치 및 Azure IoT 게이트웨이 - 단원 1: NUC 설정 | Microsoft Docs"
-description: "Intel NUC를 센서와 Azure IoT Hub 사이의 IoT 게이트웨이로 작동하도록 설정하여 센서 정보를 수집하고 IoT Hub에 보냅니다."
+description: "센서와 Azure IoT Hub toocollect 센서 정보 사이의 IoT 게이트웨이로 Intel NUC toowork를 설정 하 고 tooIoT 허브 전송 됩니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,32 +17,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b87974be9570f7d03fe84ae0a1d1fa7e346ff189
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2146c7cd8ca54adbd0af279364ec8484be1b45b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-intel-nuc-as-an-iot-gateway"></a>Intel NUC를 IoT 게이트웨이로 설정
 
 ## <a name="what-you-will-do"></a>수행할 사항
 
 - Intel NUC를 IoT 게이트웨이로 설정합니다.
-- Intel NUC에 Azure IoT Edge 패키지를 설치합니다.
-- 게이트웨이 기능을 확인하려면 Intel NUC에서 "hello_world" 샘플 응용 프로그램을 실행합니다.
-문제가 있으면 [문제 해결 페이지](iot-hub-gateway-kit-c-sim-troubleshooting.md)에서 솔루션을 검색하세요.
+- Intel NUC에 hello Azure IoT 가장자리 패키지를 설치 합니다.
+- Intel NUC tooverify hello 게이트웨이 기능에는 "hello_world" 예제 응용 프로그램을 실행 합니다.
+문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지](iot-hub-gateway-kit-c-sim-troubleshooting.md)합니다.
 
 ## <a name="what-you-will-learn"></a>알아볼 내용
 
 이 단원에서는 다음 내용을 배웁니다.
 
-- Intel NUC와 주변 장치를 연결하는 방법
-- 스마트 패키지 관리자를 사용하여 Intel NUC에 필요한 패키지를 설치 및 업데이트하는 방법
-- 게이트웨이 기능을 확인하기 위해 "hello_world" 샘플 응용 프로그램을 실행하는 방법
+- 어떻게 tooconnect Intel NUC 주변 장치를 합니다.
+- 어떻게 사용 하 여 Intel NUC tooinstall 및 업데이트 hello 필요한 패키지가 hello 스마트 패키지 관리자.
+- 어떻게 toorun hello_world"hello" 예제 응용 프로그램 tooverify hello 게이트웨이 기능 합니다.
 
 ## <a name="what-you-need"></a>필요한 항목
 
-- 사전 설치된 Intel IoT 게이트웨이 소프트웨어 제품군을 포함하는 Intel NUC 키트 DE3815TYKE(Wind River Linux * 7.0.0.13)
+- Intel IoT 게이트웨이 소프트웨어 제품군 hello로 Intel NUC 키트 DE3815TYKE (바람 강 Linux * 7.0.0.13) 사전 설치 합니다.
 - 이더넷 케이블
 - 키보드
 - HDMI 또는 VGA 케이블
@@ -50,53 +50,53 @@ ms.lasthandoff: 07/11/2017
 
 ![게이트웨이 키트](media/iot-hub-gateway-kit-lessons/lesson1/kit_without_sensortag.png)
 
-## <a name="connect-intel-nuc-with-the-peripherals"></a>주변 장치와 연결된 Intel NUC
+## <a name="connect-intel-nuc-with-hello-peripherals"></a>Intel NUC hello 주변 장치를 사용 하 여 연결
 
-아래 이미지는 다양한 주변 장치가 연결된 Intel NUC의 예제입니다.
+아래 hello 이미지는 다양 한 주변 장치에 연결 하는 Intel NUC의 예:
 
-1. 키보드에 연결됨
-2. VGA 또는 HDMI 케이블 모니터에 연결됨
-3. 이더넷 케이블을 통해 유선된 네트워크에 연결됨
-4. 전원 케이블로 전원 공급 장치에 연결됨
+1. 연결 된 tooa 키보드입니다.
+2. Toohello 모니터 vga 또는 HDMI 케이블을 연결합니다.
+3. 연결 된 tooa 유선 이더넷 케이블을 통해 네트워크입니다.
+4. 연결 된 toohello 전원 공급 장치 전원 케이블을 사용 합니다.
 
-![주변 장치에 연결된 Intel NUC](media/iot-hub-gateway-kit-lessons/lesson1/nuc.png)
+![Intel NUC tooperipherals 연결](media/iot-hub-gateway-kit-lessons/lesson1/nuc.png)
 
-## <a name="connect-to-the-intel-nuc-system-from-host-computer-via-secure-shell-ssh"></a>SSH(보안 셸)를 통해 호스트 컴퓨터에서 Intel NUC 시스템에 연결
+## <a name="connect-toohello-intel-nuc-system-from-host-computer-via-secure-shell-ssh"></a>호스트 컴퓨터를 통해 SSH (보안 셸)에서 toohello Intel NUC 시스템에 연결
 
-NUC 장치의 IP 주소를 얻기 위해 키보드 및 모니터가 필요합니다. IP 주소를 이미 알고 있는 경우 이 섹션의 3단계로 건너뛸 수 있습니다.
+여기 NUC 장치의 키보드 및 모니터 tooget hello IP 주소가 필요합니다. Hello IP를 이미 알고 있는 경우 주소를이 섹션의 3 toostep를 건너뛸 수 있습니다.
 
-1. 전원 단추를 눌러 Intel NUC를 켜고 시스템에 로그인합니다.
+1. Intel NUC hello 시스템에서 전원 단추 hello 및 로그를 키를 누르면으로 설정 됩니다.
 
-   사용자 이름 및 암호는 모두 `root`입니다.
+   hello 기본 사용자 이름과 암호는 모두 `root`합니다.
 
-2. `ifconfig` 명령을 실행하여 NUC의 IP 주소를 가져옵니다. 이 단계는 NUC 장치에서 수행됩니다.
+2. Hello를 실행 하 여 NUC의 hello IP 주소를 가져올 `ifconfig` 명령입니다. 이 단계는 hello NUC 장치에서 수행 됩니다.
 
-   다음은 명령 출력의 예제입니다.
+   Hello 명령 출력의 예를 들면 다음과 같습니다.
 
    ![NUC IP를 보여주는 ifconfig 출력](media/iot-hub-gateway-kit-lessons/lesson1/ifconfig.png)
 
-   이 예제에서는 `inet addr:` 뒤에 나오는 값은 호스트 컴퓨터에서 Intel NUC로 원격 연결을 하려는 경우에 필요한 IP 주소입니다.
+   이 예제에서는 값 뒤에 오는 hello `inet addr:` 호스트 컴퓨터 tooIntel NUC에서 원격으로 tooconnect를 계획할 때 필요한 hello IP 주소입니다.
 
-3. 호스트 컴퓨터에서 다음 중 하나의 SSH 클라이언트를 사용하여 Intel NUC에 연결합니다.
+3. Hello 호스트 컴퓨터 tooconnect tooIntel NUC에서에서 SSH 클라이언트를 다음 중 하나를 사용 합니다.
 
-   - Windows용 [PuTTY](http://www.putty.org/)입니다.
-   - Ubuntu 또는 macOS에 있는 기본 제공 SSH 클라이언트입니다.
+   - Windows용 [PuTTY](http://www.putty.org/)
+   - hello에 SSH 클라이언트 Ubuntu 또는 macOS입니다.
 
-   호스트 컴퓨터의 Intel NUC에서 작동하기에 보다 효율적이고 생산적입니다. IP 주소, 사용자 이름 및 SSH 클라이언트를 통해 NUC 연결할 때 사용할 암호가 필요합니다. MacOS에서 SSH 클라이언트를 사용하는 예제입니다.
+   호스트 컴퓨터와에서 Intel NUC에 더 효율적이 고 생산적인 toooperate 것합니다. Hello hello IP 주소, 사용자 이름 및 암호를 필요한 SSH 클라이언트를 통해 tooconnect hello NUC 합니다. MacOS에 hello 예제 사용 하 여 SSH 클라이언트가입니다.
    ![MacOS에서 실행되는 SSH 클라이언트](media/iot-hub-gateway-kit-lessons/lesson1/ssh.png)
 
-## <a name="install-the-azure-iot-edge-package"></a>Azure IoT Edge 패키지 설치
+## <a name="install-hello-azure-iot-edge-package"></a>Hello Azure IoT 가장자리 패키지 설치
 
-Azure IoT Edge 패키지에는 SDK 및 해당 종속성이 사전 컴파일된 이진 파일이 포함되어 있습니다. 이러한 이진 파일은 Azure IoT Edge, Azure IoT SDK 및 해당하는 도구입니다. 또한 이 패키지에는 게이트웨이 기능을 확인하는 데 사용되는 "hello_world" 샘플 응용 프로그램이 포함되어 있습니다. IoT Edge는 게이트웨이의 핵심 부분입니다. 패키지를 설치하려면 다음 단계를 따르세요.
+hello Azure IoT 가장자리 패키지 hello SDK의 hello 미리 컴파일된 이진 파일 및 해당 종속성을 포함합니다. 이러한 이진 파일은 Azure IoT 가장자리, Azure IoT SDK hello 및 hello 해당 도구입니다. 또한 hello 패키지 hello 게이트웨이 기능을 사용 하는 toovalidate "hello_world" 샘플 응용 프로그램을 포함 합니다. IoT 가장자리가 hello 게이트웨이의 hello 핵심 부분입니다. tooinstall hello 패키지에서 다음이 단계를 수행 합니다.
 
-1. 터미널 창에서 다음 명령을 실행하여 IoT 클라우드 저장소를 추가합니다.
+1. Hello 명령을 터미널 창에서 다음을 실행 하 여 hello IoT 클라우드 저장소를 추가 합니다.
 
    ```bash
    rpm --import http://iotdk.intel.com/misc/iot_pub.key
    smart channel --add IoT_Cloud type=rpm-md name="IoT_Cloud" baseurl=http://iotdk.intel.com/repos/iot-cloud/wrlinux7/rcpl13/ -y
    ```
 
-   `rpm` 명령은 rpm 키를 가져옵니다. `smart channel` 명령은 rpm 채널을 스마트 패키지 관리자에 추가합니다. `smart update` 명령을 실행하기 전에 아래와 같은 출력을 볼 수 있습니다.
+   hello `rpm` imports hello rpm 키 명령입니다. hello `smart channel` 명령은 hello rpm 채널 toohello 스마트 패키지 관리자를 추가 합니다. Hello를 실행 하기 전에 `smart update` 같은 출력이 표시 명령을 아래 합니다.
 
    ![rpm 및 스마트 채널 명령 출력](media/iot-hub-gateway-kit-lessons/lesson1/rpm_smart_channel.png)
 
@@ -104,36 +104,36 @@ Azure IoT Edge 패키지에는 SDK 및 해당 종속성이 사전 컴파일된 �
    smart update
    ```
 
-2. 다음 명령을 실행하여 패키지를 설치합니다.
+2. Hello 다음 명령을 실행 하 여 hello 패키지를 설치 합니다.
 
    ```bash
    smart install packagegroup-cloud-azure -y
    ```
 
-   `packagegroup-cloud-azure`는 패키지의 이름입니다. `smart install` 명령은 패키지 설치를 설치하는 데 사용됩니다.
+   `packagegroup-cloud-azure`hello hello 패키지 이름이입니다. hello `smart install` 명령에 사용 되는 tooinstall hello 패키지입니다.
 
-   패키지를 설치한 후 Intel NUC는 게이트웨이로 작동해야 합니다.
+   Hello 패키지를 설치한 후 Intel NUC 예상된 toowork 게이트웨이로 됩니다.
 
-## <a name="run-the-azure-iot-edge-helloworld-sample-application"></a>Azure IoT Edge "hello_world" 샘플 응용 프로그램을 실행합니다.
+## <a name="run-hello-azure-iot-edge-helloworld-sample-application"></a>Hello Azure IoT 가장자리 "hello_world" 샘플 응용 프로그램 실행
 
-`azureiotgatewaysdk/samples`로 이동하여 샘플 "hello_world" 샘플 응용 프로그램을 실행합니다. 이 샘플 응용 프로그램은 `hello_world.json` 파일에서 게이트웨이를 만들고 Azure IoT Edge 아키텍처의 기본 구성 요소를 사용하여 5초마다 파일에 hellow world 메시지를 기록합니다.
+너무 이동`azureiotgatewaysdk/samples` hello 샘플 "hello_world" 샘플 응용 프로그램을 실행 합니다. 이 샘플 응용 프로그램에서 hello 한 게이트웨이 만듭니다 `hello_world.json` 파일을 5 초 마다 hello hello Azure IoT 가장자리 아키텍처 toolog hello world 메시지 tooa 파일의 기본 구성 요소를 사용 합니다.
 
-다음 명령을 실행하여 샘플 "hello_world" 샘플 응용 프로그램을 실행합니다.
+Hello 다음 명령을 실행 하 여 hello 샘플 "hello_world" 샘플 응용 프로그램을 실행할 수 있습니다.
 
 ```bash
 cd /usr/share/azureiotgatewaysdk/samples/hello_world/
 ./hello_world hello_world.json
 ```
 
-게이트웨이 기능이 올바르게 작동하는 경우 샘플 응용 프로그램은 다음과 같은 출력을 생성합니다.
+샘플 응용 프로그램 hello hello 다음과 같이 hello 게이트웨이 기능이 제대로 작동 하는 경우 출력을 생성 합니다.
 
 ![응용 프로그램 출력](media/iot-hub-gateway-kit-lessons/lesson1/hello_world.png)
 
-문제가 있으면 [문제 해결 페이지](iot-hub-gateway-kit-c-troubleshooting.md)에서 솔루션을 검색하세요.
+문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지](iot-hub-gateway-kit-c-troubleshooting.md)합니다.
 
 ## <a name="summary"></a>요약
 
-축하합니다. 게이트웨이로 Intel NUC 설정을 완료했습니다. 이제 호스트 컴퓨터를 설정하고 Azure IoT hub를 만들고 Azure IoT hub 논리적 장치를 등록하는 다음 단원으로 이동할 준비가 되었습니다.
+축하합니다. 게이트웨이로 Intel NUC 설정을 완료했습니다. 준비가 이제 toomove 호스트 컴퓨터를 다음 단원에서는 tooset toohello에 Azure IoT hub를 만들고 Azure IoT 허브 논리적 장치를 등록 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [호스트 컴퓨터 및 Azure IoT Hub 준비](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-win32.md)

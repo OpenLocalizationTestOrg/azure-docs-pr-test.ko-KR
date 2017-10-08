@@ -1,6 +1,6 @@
 ---
-title: "Azure MFA 클라우드 또는 서버 중에서 선택 | Microsoft Docs"
-description: "보안을 유지하려는 대상과 사용자의 위치에 대한 질문에 답하여 적합한 다단계 인증 보안 솔루션을 선택합니다.  클라우드, MFA 서버 또는 AD FS를 선택합니다."
+title: "Azure MFA 클라우드 또는 서버 사이의 aaaChoose | Microsoft Docs"
+description: "이 적합 한지를 요청 하 여 내 사용자가 현재 위치 및 toosecure 시도 I에 있는 어떤 오전 hello multi-factor authentication 보안 솔루션을 선택 합니다.  클라우드, MFA 서버 또는 AD FS를 선택합니다."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/23/2017
 ms.author: kgremban
-ms.openlocfilehash: 6f8ee3449244b12d2c8b5714e6ad893e2f0b10ee
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bd9639e5f744f586d9143c6e90b105ed645eecb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="choose-the-azure-multi-factor-authentication-solution-for-you"></a>사용자를 위한 Azure Multi-Factor Authentication 솔루션 선택
-Azure MFA(Multi-Factor Authentication)에는 여러 가지 버전이 있기 때문에 사용하기에 적절한 버전을 파악하기 위해 몇 가지 질문에 답해야 합니다.  해당 질문은 다음과 같습니다.
+# <a name="choose-hello-azure-multi-factor-authentication-solution-for-you"></a>Hello Azure Multi-factor Authentication 솔루션 선택
+있기 때문에 여러 버전의 Azure Multi-factor Authentication (MFA), 버전을 적절 한 toouse hello 몇 가지 질문 toofigure를 대답 해야 했습니다.  해당 질문은 다음과 같습니다.
 
-* [보안을 유지하려는 대상은 무엇입니까](#what-am-i-trying-to-secure)
-* [사용자는 어디에 있습니까](#where-are-the-users-located)
+* [어떤 toosecure 려 하는데](#what-am-i-trying-to-secure)
+* [Hello 사용자는 어디에 있습니까](#where-are-the-users-located)
 * [어떤 기능이 필요합니까?](#what-featured-do-i-need)
 
-다음 섹션에서는 이러한 각 대답의 결정에 대한 지침을 제공합니다.
+hello 다음 섹션에서는 한 지침을 제공 각 이러한 응답을 결정 합니다.
 
-## <a name="what-am-i-trying-to-secure"></a>보안을 유지하려는 대상은 무엇입니까?
-올바른 2단계 인증 솔루션을 결정하려면 먼저 두 번째 인증 방법으로 보안을 유지하려는 대상이 무엇인지 답해야 합니다.  Azure에 있는 응용프로그램입니까?  또는 원격 액세스 시스템입니까?  보안을 유지하려는 대상이 무엇인지 결정하여 Multi-Factor Authentication 활성화가 필요한 곳에 대한 질문에 답할 수 있습니다.  
+## <a name="what-am-i-trying-toosecure"></a>어떤 toosecure 시도 있습니까?
+toodetermine hello 올바른 2 단계 확인 솔루션을 먼저 우리 질문에 대답 해야 hello 무엇 인가 하는 동안 toosecure 보조 인증 방법 사용 합니다.  Azure에 있는 응용프로그램입니까?  또는 원격 액세스 시스템입니까?  항목을 파악 함으로써 포함 상태 toosecure, Multi-factor Authentication toobe 사용 하도록 설정 해야 하는 위치의 hello 질문에 응답할 수 있습니다.  
 
-| 보안을 유지하려는 대상은 무엇입니까 | 클라우드의 MFA | MFA 서버  |
+| 동안 toosecure 무엇입니까 | Hello 클라우드에서 MFA | MFA 서버  |
 | --- |:---:|:---:|
 | 자사 Microsoft 앱 |● |● |
-| 앱 갤러리의 SaaS 앱 |● |  |
+| Hello 응용 프로그램 갤러리에서 SaaS 응용 프로그램 |● |  |
 | Azure AD 앱 프록시를 통해 웹 응용프로그램 게시됨 |● |  |
 | Azure AD 응용프로그램 프록시를 통해 IIS 응용프로그램 게시되지 않음 | |● |
 | VPN, RDG와 같은 원격 액세스 | ● | ● |
 
-## <a name="where-are-the-users-located"></a>사용자는 어디에 있습니까
-다음으로 사용자의 위치를 확인하여 사용할 올바른 솔루션이 클라우드에 있는지 MFA 서버를 사용한 온-프레미스인지를 확인하는 데 도움을 줍니다.
+## <a name="where-are-hello-users-located"></a>Hello 사용자는 어디에 있습니까
+다음으로, 사용자에 게 있는 보면 hello 클라우드에 관계 없이 toodetermine hello 올바른 솔루션 toouse 있습니다 또는 온-프레미스를 사용 하 여 MFA 서버 hello 합니다.
 
-| 사용자 위치 | 클라우드의 MFA | MFA 서버  |
+| 사용자 위치 | Hello 클라우드에서 MFA | MFA 서버  |
 | --- |:---:|:---:|
 | Azure Active Directory |● | |
 | Azure AD 및 AD FS로 페더레이션을 사용한 온-프레미스 AD |● |● |
@@ -52,9 +52,9 @@ Azure MFA(Multi-Factor Authentication)에는 여러 가지 버전이 있기 때�
 | 온-프레미스 Active Directory | |● |
 
 ## <a name="what-features-do-i-need"></a>어떤 기능이 필요합니까?
-다음 표는 클라우드에서 Multi-Factor Authentication과 함께 사용할 수 있는 경우와 Multi-Factor Authentication 서버와 함께 사용할 수 있는 경우에 대한 기능 비교입니다.
+hello 다음 표에서 비교 hello 클라우드에서 Multi-factor authentication 및 Multi-factor Authentication 서버 hello로 사용할 수 있는 hello 기능 합니다.
 
-| 기능 | 클라우드의 MFA | MFA 서버  |
+| 기능 | Hello 클라우드에서 MFA | MFA 서버  |
 | --- |:---:|:---:|
 | 두 번째 단계로 모바일 앱 알림 | ● | ● |
 | 두 번째 단계로 모바일 앱 확인 코드 | ● | ● |
@@ -77,7 +77,7 @@ Azure MFA(Multi-Factor Authentication)에는 여러 가지 버전이 있기 때�
 
 ## <a name="next-steps"></a>다음 단계
 
-클라우드 다단계 인증 또는 MFA 서버 온-프레미스 사용 여부를 결정했으므로 Azure Multi-Factor Authentication을 설정하고 사용을 시작할 수 있습니다. **시나리오를 나타내는 아이콘 선택**
+toouse multi-factor authentication 또는 hello와 MFA 서버 온-프레미스 클라우드, 여부에서는 시작할 수를 설정 하 고 Azure Multi-factor Authentication을 사용 하 여 있음을 확인 했습니다. **시나리오를 나타내는 hello 아이콘을 선택 합니다.**
 
 <center>
 

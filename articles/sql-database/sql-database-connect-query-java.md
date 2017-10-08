@@ -1,6 +1,6 @@
 ---
-title: "Java를 사용하여 Azure SQL Database 쿼리 | Microsoft Docs"
-description: "이 항목에서는 Java를 사용하여 Azure SQL Database에 연결하고 Transact-SQL 문을 사용하여 쿼리하는 프로그램을 만드는 방법을 보여 줍니다."
+title: "Azure SQL 데이터베이스 aaaUse Java tooquery | Microsoft Docs"
+description: "이 항목에서는 toouse Java toocreate tooan Azure SQL 데이터베이스와 쿼리를 TRANSACT-SQL 문을 사용 하 여 연결 하는 프로그램입니다."
 services: sql-database
 documentationcenter: 
 author: ajlam
@@ -15,55 +15,55 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: andrela
-ms.openlocfilehash: 103b0755ab89a13297cfdc9ec72416664da8c1e9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f014edbe38ca0e7b6e43f4eb4d2e53d3561bf3e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-java-to-query-an-azure-sql-database"></a>Java를 사용하여 Azure SQL Database 쿼리
+# <a name="use-java-tooquery-an-azure-sql-database"></a>Java tooquery Azure SQL 데이터베이스를 사용 하 여
 
-이 빠른 시작에서는 [Java](https://docs.microsoft.com/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server)를 사용하여 Azure SQL Database에 연결하고 Transact-SQL 문을 사용하여 데이터를 쿼리하는 방법을 보여 줍니다.
+이 빠른 시작에서는 방법을 toouse [Java](https://docs.microsoft.com/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server) tooconnect tooan Azure SQL 데이터베이스에 있으며 다음 TRANSACT-SQL 문을 tooquery 데이터를 사용 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 빠른 시작 자습서를 완료하려면 다음 필수 구성 요소가 있어야 합니다.
+toocomplete이 빠른 시작 자습서, hello 필수 구성 요소를 수행 했는지 확인 합니다.
 
-- Azure SQL 데이터베이스입니다. 이 빠른 시작에서는 다음과 같은 빠른 시작 중 하나에서 만든 리소스를 사용합니다. 
+- Azure SQL 데이터베이스입니다. 이러한 빠른 시작 중 하나에서 만들어진 hello 리소스를 사용 하는이 빠른 시작: 
 
    - [DB 만들기 - 포털](sql-database-get-started-portal.md)
    - [DB 만들기 - CLI](sql-database-get-started-cli.md)
    - [DB 만들기 - PowerShell](sql-database-get-started-powershell.md)
 
-- 이 빠른 시작 자습서에서 사용하는 컴퓨터의 공용 IP 주소에 대한 [서버 수준 방화벽 규칙](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)
+- A [서버 수준 방화벽 규칙](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) hello hello 컴퓨터의 공용 IP 주소에 대 한이 빠른 시작 자습서에 사용 합니다.
 
 - 운영 체제에 맞게 설치된 Java 및 관련 소프트웨어
 
     - **MacOS**: Homebrew와 Java를 설치한 다음 Maven을 설치합니다. [1.2 및 1.3 단계](https://www.microsoft.com/sql-server/developer-get-started/java/mac/) 참조
-    - **Ubuntu**: Java Development Kit을 설치하고 Maven을 설치합니다. [1.2, 1.3 및 1.4 단계](https://www.microsoft.com/sql-server/developer-get-started/java/ubuntu/) 참조
-    - **Windows**: Java Development Kit을 설치하고 Maven을 설치합니다. [1.2 및 1.3 단계](https://www.microsoft.com/sql-server/developer-get-started/java/windows/) 참조    
+    - **Ubuntu**: Maven 설치 하 고 hello Java 개발 키트를 설치 합니다. [1.2, 1.3 및 1.4 단계](https://www.microsoft.com/sql-server/developer-get-started/java/ubuntu/) 참조
+    - **Windows**: Java Development Kit hello 및 Maven 설치 합니다. [1.2 및 1.3 단계](https://www.microsoft.com/sql-server/developer-get-started/java/windows/) 참조    
 
 ## <a name="sql-server-connection-information"></a>SQL 서버 연결 정보
 
-Azure SQL Database에 연결하는 데 필요한 연결 정보를 가져옵니다. 다음 절차에는 정규화된 서버 이름, 데이터베이스 이름 및 로그인 정보가 필요합니다.
+Hello 연결 필요한 정보 tooconnect toohello Azure SQL 데이터베이스를 가져옵니다. Hello 정규화 된 서버 이름, 데이터베이스 이름 및 로그인 정보 hello 다음 절차에 필요 합니다.
 
-1. [Azure Portal](https://portal.azure.com/)에 로그인합니다.
-2. 왼쪽 메뉴에서 **SQL Database**를 선택하고 **SQL Database** 페이지에서 데이터베이스를 클릭합니다. 
-3. 데이터베이스의 **개요** 페이지에서 다음 이미지와 같이 정규화된 서버 이름을 검토합니다. 해당 서버 이름을 마우스로 가리키면 **복사하려면 클릭** 옵션이 표시됩니다.  
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+2. 선택 **SQL 데이터베이스** hello 왼쪽 메뉴에서 hello에 데이터베이스를 클릭 하 고 **SQL 데이터베이스** 페이지. 
+3. Hello에 **개요** 데이터베이스 페이지에서 hello 다음 이미지와 같이 hello 정규화 된 서버 이름을 검토: hello 서버 이름 toobring hello 가리키면 **toocopy 클릭** 옵션입니다.  
 
    ![서버 이름](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. 서버 로그인 정보를 잊어버린 경우 SQL Database 서버 페이지로 이동하여 서버 관리자 로그인 이름을 확인합니다.  필요한 경우 암호를 다시 설정합니다.     
+4. 서버 로그인 정보를 잊은 경우 toohello SQL 데이터베이스 서버 페이지 tooview hello 서버 관리자 이름을 이동 합니다.  필요한 경우 hello 암호를 재설정 합니다.     
 
 ## <a name="create-maven-project-and-dependencies"></a>**Maven 프로젝트 및 종속성 만들기**
-1. 터미널에서 **sqltest**라는 새 Maven 프로젝트를 만듭니다. 
+1. Hello 터미널에서 라는 새 Maven 프로젝트를 만들 **sqltest**합니다. 
 
    ```bash
    mvn archetype:generate "-DgroupId=com.sqldbsamples" "-DartifactId=sqltest" "-DarchetypeArtifactId=maven-archetype-quickstart" "-Dversion=1.0.0"
    ```
 
 2. 메시지가 표시되면 **Y**를 입력합니다.
-3. 디렉터리를 **sqltest**로 변경하고 원하는 텍스트 편집기에서 ***pom.xml***을 엽니다.  다음 코드를 사용하여 프로젝트의 종속성에 **SQL Server용 Microsoft JDBC Driver**를 추가합니다.
+3. 디렉터리도 변경**sqltest** 엽니다 ***pom.xml*** 원하는 텍스트 편집기를 사용 합니다.  Hello 추가 **SQL Server 용 Microsoft JDBC Driver** 다음 코드를 사용 하 여 tooyour 프로젝트 종속성 hello:
 
    ```xml
    <dependency>
@@ -73,7 +73,7 @@ Azure SQL Database에 연결하는 데 필요한 연결 정보를 가져옵니�
    </dependency>
    ```
 
-4. 또한 ***pom.xml***에서 프로젝트에 다음 속성을 추가합니다.  속성 섹션이 없으면 종속성 뒤에 추가할 수 있습니다.
+4. 또한 ***pom.xml***, hello 다음 tooyour 프로젝트 속성을 추가 합니다.  속성 섹션을 설정 하지 않은 경우에 hello 종속성 후 추가할 수 있습니다.
 
    ```xml
    <properties>
@@ -84,11 +84,11 @@ Azure SQL Database에 연결하는 데 필요한 연결 정보를 가져옵니�
 
 5. ***pom.xml***을 저장하고 닫습니다.
 
-## <a name="insert-code-to-query-sql-database"></a>SQL 데이터베이스 쿼리 코드 삽입
+## <a name="insert-code-tooquery-sql-database"></a>코드 tooquery SQL 데이터베이스를 삽입 합니다.
 
 1. \sqltest\src\main\java\com\sqlsamples\App.java에 있는 Maven 프로젝트에 이미 ***App.java***라는 파일이 있어야 합니다.
 
-2. 파일을 열어 내용을 다음 코드로 바꾸고, 서버, 데이터베이스, 사용자 및 암호에 대해 적절한 값을 추가합니다.
+2. 파일을 열고 hello을 바꾸기 hello 다음 그 내용을 코드 한 hello 서버, 데이터베이스, 사용자 및 암호에 대 한 적절 한 값을 추가 합니다.
 
    ```java
    package com.sqldbsamples;
@@ -103,7 +103,7 @@ Azure SQL Database에 연결하는 데 필요한 연결 정보를 가져옵니�
 
     public static void main(String[] args) {
     
-        // Connect to database
+        // Connect toodatabase
            String hostName = "your_server.database.windows.net";
            String dbName = "your_database";
            String user = "your_username";
@@ -144,16 +144,16 @@ Azure SQL Database에 연결하는 데 필요한 연결 정보를 가져옵니�
    }
    ```
 
-## <a name="run-the-code"></a>코드 실행
+## <a name="run-hello-code"></a>Hello 코드 실행
 
-1. 명령 프롬프트에서 다음 명령을 실행합니다.
+1. Hello 명령 프롬프트에서 다음 명령을 hello를 실행 합니다.
 
    ```bash
    mvn package
    mvn -q exec:java "-Dexec.mainClass=com.sqldbsamples.App"
    ```
 
-2. 상위 20개 행이 반환되는지 확인한 다음 응용 프로그램 창을 닫습니다.
+2. 확인 hello 상위 20 개의 행이 반환 됩니다 한 hello 응용 프로그램 창을 닫습니다.
 
 
 ## <a name="next-steps"></a>다음 단계

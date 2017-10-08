@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric의 ReliableConcurrentQueue"
+title: "Azure 서비스 패브릭에서 aaaReliableConcurrentQueue"
 description: "ReliableConcurrentQueue는 병렬 큐에 추가하고 큐에서 제거할 수 있는 처리량이 높은 큐입니다."
 services: service-fabric
 documentationcenter: .net
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: sangarg
-ms.openlocfilehash: 122cb48149477f295a65b8ee623c647b6db10a86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78a9905996b9ab265c1288d2b49753638d7bc445
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-reliableconcurrentqueue-in-azure-service-fabric"></a>Azure Service Fabric의 ReliableConcurrentQueue 소개
-신뢰할 수 있는 동시 큐는 비동기, 트랜잭션 및 복제된 큐로서 큐에 넣기 및 큐에서 제거 작업에 대한 높은 동시성을 제공합니다. [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)에서 제공한 엄격한 FIFO 순서를 완화하여 처리량이 높고 대기 시간이 짧게 설계되었으며 대신 최상의 순서를 제공합니다.
+# <a name="introduction-tooreliableconcurrentqueue-in-azure-service-fabric"></a>Azure 서비스 패브릭에서 tooReliableConcurrentQueue 소개
+신뢰할 수 있는 동시 큐는 비동기, 트랜잭션 및 복제된 큐로서 큐에 넣기 및 큐에서 제거 작업에 대한 높은 동시성을 제공합니다. 디자인 된 toodeliver 높은 처리량 및 짧은 대기 시간 완화 hello 엄격한 FIFO 순서에서 제공 하 여 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx) 대신 최상의 순서를 제공 합니다.
 
 ## <a name="apis"></a>API
 
@@ -33,20 +33,20 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="comparison-with-reliable-queuehttpsmsdnmicrosoftcomlibraryazuredn971527aspx"></a>[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)와 비교
 
-신뢰할 수 있는 동시 큐는 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)에 대한 대안을 제공합니다. FIFO 보장은 동시성을 상쇄해야 하기 때문에 엄격한 FIFO 순서가 필요하지 않은 경우에 사용해야 합니다.  [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)는 잠금을 사용하여 큐에 넣을 수 있는 최대 트랜잭션 및 한 번에 큐에서 제거하도록 허용되는 최대 트랜잭션 순으로 FIFO 순서를 강제합니다. 비교에서 신뢰할 수 있는 동시 큐는 정렬 제약 조건을 완화하고 어떤 수의 동시 트랜잭션이 해당 큐에 넣기 및 큐에서 제거 작업을 인터리브하도록 할 수 있습니다. 가장 효율적인 순서를 제공하지만 신뢰할 수 있는 동시 큐에 있는 두 값의 상대적 순서를 보장할 수 없습니다.
+신뢰할 수 있는 동시 큐 대신 너무 제공[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)합니다. FIFO 보장은 동시성을 상쇄해야 하기 때문에 엄격한 FIFO 순서가 필요하지 않은 경우에 사용해야 합니다.  [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx) 잠금을 tooenforce FIFO 순서 지정 tooenqueue 허용 되는 최대 하나의 트랜잭션 및 가장 많이 toodequeue 한 번에 허용 된 트랜잭션을 최대 하나만 사용 합니다. 비교에서 신뢰할 수 있는 동시 큐 모든 숫자 동시 트랜잭션이 toointerleave 해당 큐에 넣을 수 있습니다 및 큐에서 제거 작업 hello 순서 제약 조건을 완화 합니다. 하지만 최상의 순서는 보장 신뢰할 수 있는 동시 큐에 있는 두 값의 상대적 순서 hello 수 제공 됩니다.
 
 여러 동시 트랜잭션이 큐에 넣기 및/또는 큐에서 제거를 수행할 때 신뢰할 수 있는 동시 큐는 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)보다 처리량이 높고 대기 시간이 낮습니다.
 
-ReliableConcurrentQueue의 샘플 사용 사례는 [메시지 큐](https://en.wikipedia.org/wiki/Message_queue) 시나리오입니다. 이 시나리오에서 한 명 이상의 메시지 생산자는 항목을 만들고 큐에 추가하며 한 명 이상의 메시지 소비자는 큐에서 메시지를 끌어오고 처리합니다. 여러 생산자 및 소비자는 큐를 처리하기 위해 동시 트랜잭션을 사용하여 독립적으로 작동할 수 있습니다.
+샘플 사용 사례는 hello hello ReliableConcurrentQueue [메시지 큐](https://en.wikipedia.org/wiki/Message_queue) 시나리오입니다. 이 시나리오에서는 하나 이상의 메시지 생산자를 만들고 항목 toohello 큐에 추가 하 고 hello 큐에서 메시지를 끌어올 하 고 처리 하는 메시지 소비자 하나 이상의 합니다. 여러 생산자와 소비자 수 독립적으로 작업 순서 tooprocess hello 큐에서 동시 트랜잭션을 사용 합니다.
 
 ## <a name="usage-guidelines"></a>사용 지침
-* 큐에 있는 항목의 보존 기간이 짧습니다. 즉, 항목은 오랜 시간 동안 큐에 유지되지 않습니다.
-* 큐는 엄격한 FIFO 순서를 보장하지 않습니다.
-* 큐는 고유한 쓰기를 읽을 수 없습니다. 항목이 트랜잭션 내에서 큐에 삽입된 경우 동일한 트랜잭션 내에서 큐에서 제거하는 사용자에게 표시되지 않습니다.
-* 큐에서 제거는 서로 분리되지 않습니다. 항목 *A*가 트랜잭션 *txnA*라는 큐에서 제거된 경우 *txnA*가 커밋되지 않더라도 항목 *A*는 동시 트랜잭션 *txnB*에 표시되지 않습니다.  *txnA*가 중단되면 *txnB*에서 즉시 *A*를 볼 수 있게 됩니다.
-* *TryPeekAsync* 동작은 *TryDequeueAsync*를 사용한 다음 트랜잭션을 중단하여 구현할 수 있습니다. 이러한 예는 프로그래밍 패턴 섹션에 있습니다.
-* 개수는 비트랜잭션입니다. 큐에서 요소의 수를 추측하는 데 사용할 수 있지만 특정 시점을 나타내며 의존할 수 없습니다.
-* 큐에서 제거된 항목에서 비용이 많이 드는 처리는 시스템의 성능에 영향을 줄 수 있는 장기 실행 트랜잭션을 방지하기 위해 트랜잭션이 활성화된 동안 수행하면 안됩니다.
+* hello 큐는 hello 큐의 hello 항목 낮은 보존 기간이 필요 합니다. 즉, hello 항목은 오랜 시간 동안 hello 큐에 남아 있지입니다.
+* hello 큐는 엄격한 FIFO 순서를 보장 하지 않습니다.
+* hello 큐 자체 쓰기 읽을 수 없습니다. Hello 내 표시 tooa dequeuer 않을 트랜잭션 내에서 큐에 대기 된 항목의 경우 동일한 트랜잭션.
+* 큐에서 제거는 서로 분리되지 않습니다. 항목 *A* 트랜잭션으로 큐에서 제거 *txnA*경우라도, *txnA* 항목, 커밋되지 않은 *A* 됩니다 표시 tooa 동시 트랜잭션 *txnB*합니다.  경우 *txnA* 중단 되 면 *A* 너무 표시 될*txnB* 즉시 합니다.
+* *TryPeekAsync* 동작을 사용 하 여 구현할 수 있습니다는 *TryDequeueAsync* 다음 hello 트랜잭션을 중단 하 고 있습니다. 이러한 예는 hello 프로그래밍 패턴 섹션에서에서 찾을 수 있습니다.
+* 개수는 비트랜잭션입니다. 사용된 tooget hello hello 큐에 있는 요소 수에 대해 알 수 있지만 지정-에-시간 나타내며에 의존할 수 없습니다.
+* Hello에 대 한 처리 비용이 많이 드는 큐에서 제거 된 항목을 수행 하지 않도록 hello 트랜잭션이 활성 중일 tooavoid 장기 실행 트랜잭션을 hello 시스템에 성능에 주는 영향이 있을 수 있습니다.
 
 ## <a name="code-snippets"></a>코드 조각
 몇 가지 코드 조각 및 예상된 출력에 대해 살펴보겠습니다. 이 섹션에서 예외 처리는 무시됩니다.
@@ -66,7 +66,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-작업이 성공적으로 완료되고 큐를 수정하는 동시 트랜잭션이 없다고 가정합니다. 사용자는 다음 순서 중 하나로 항목을 포함하는 큐를 예상할 수 있습니다.
+Hello 큐를 수정 하는 트랜잭션은 동시 트랜잭션이 없는 있었습니다 하 고 성공적으로 완료 하는 hello 작업을 가정 합니다. hello 사용자 hello 주문 다음 중 하나에 hello 큐 toocontain hello 항목 될 수 있습니다.
 
 > 10, 20
 
@@ -95,11 +95,11 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-작업이 성공적으로 완료되고, 작업이 병렬로 실행되고, 큐를 수정하는 다른 동시 트랜잭션이 없다고 가정합니다. 큐에 있는 항목의 순서를 방해할 수 없습니다. 이 코드 조각에 대 한 항목은 4에 나타날 수 있습니다! 가능한 순서로 정렬 되어 있습니다.  큐는 원래 (큐에 넣은) 순서로 항목을 유지하려고 하지만 오류 또는 동시 작업으로 인해 순서를 변경해야 할 수도 있습니다.
+hello 작업에서 병렬로 실행 하 고 다른 트랜잭션은 동시 트랜잭션이 없는 hello 큐 수정 했음을 hello 작업이 성공적으로 완료 하는 것으로 가정 합니다. Hello 순서 hello 큐의 항목에 대 한 없습니다 유추를 만들 수 있습니다. 이 코드 조각에 대 한 hello 항목 4 hello에 나타날 수 있습니다! 가능한 순서로 정렬 되어 있습니다.  hello 큐 tookeep hello 항목 순서로 hello 원래 (큐), 되지만 강제 tooreorder 않을 수 있습니다 기한 tooconcurrent 작업 또는 오류가 발생 합니다.
 
 
 ### <a name="dequeueasync"></a>DequeueAsync
-다음은 예상된 출력 뒤에 TryDequeueAsync를 사용하기 위한 몇 가지 코드 조각입니다. 큐가 이미 큐의 다음 항목으로 채워졌다고 가정합니다.
+다음은 TryDequeueAsync hello 예상 출력 뒤에 사용 하기 위한 몇 가지 코드 조각입니다. 해당 hello 큐 hello hello 큐에 있는 항목을 다음으로 이미 채워져 가정 합니다.
 > 10, 20, 30, 40, 50, 60
 
 - *사례 1: 단일 큐에서 제거 작업*
@@ -115,7 +115,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-작업이 성공적으로 완료되고 큐를 수정하는 동시 트랜잭션이 없다고 가정합니다. 큐에 있는 항목의 순서를 방해할 수 없으므로 3개의 모든 항목은 순서에 관계없이 제거될 수 있습니다. 큐는 원래 (큐에 넣은) 순서로 항목을 유지하려고 하지만 오류 또는 동시 작업으로 인해 순서를 변경해야 할 수도 있습니다.  
+Hello 큐를 수정 하는 트랜잭션은 동시 트랜잭션이 없는 있었습니다 하 고 성공적으로 완료 하는 hello 작업을 가정 합니다. 없는 유추 hello 큐의 hello 항목 hello 순서에 대 한 만들어질 수 있으므로 모든 세 항목이 hello 수 있습니다 수 큐에서 제거를 순서에 관계 없이 합니다. hello 큐 tookeep hello 항목 순서로 hello 원래 (큐), 되지만 강제 tooreorder 않을 수 있습니다 기한 tooconcurrent 작업 또는 오류가 발생 합니다.  
 
 - *사례 2: 병렬 큐에서 제거 작업*
 
@@ -141,13 +141,13 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-작업이 성공적으로 완료되고, 작업이 병렬로 실행되고, 큐를 수정하는 다른 동시 트랜잭션이 없다고 가정합니다. 큐에 있는 항목의 순서를 방해할 수 없으므로 *dequeue1* 및 *dequeue2* 목록은 순서에 관계없이 각각 두 개의 항목을 포함합니다.
+hello 작업에서 병렬로 실행 하 고 다른 트랜잭션은 동시 트랜잭션이 없는 hello 큐 수정 했음을 hello 작업이 성공적으로 완료 하는 것으로 가정 합니다. 없는 유추 hello 큐의 hello 항목 hello 순서에 대 한 만들어질 수 있으므로 hello 목록 *dequeue1* 및 *dequeue2* 각각 순서에 관계 없이 두 개의 항목이 포함 됩니다.
 
-동일한 항목은 두 목록에 모두 표시되지 *않습니다*. 따라서 dequeue1에 *10*, *30*이 있으면 dequeue2에는 *20*, *40*이 포함됩니다.
+동일한 항목은 hello *하지* 두 목록에에서 표시 합니다. 따라서 dequeue1에 *10*, *30*이 있으면 dequeue2에는 *20*, *40*이 포함됩니다.
 
 - *사례 3: 트랜잭션이 중단된 큐에서 제거 순서*
 
-진행 중인 큐에서 제거를 포함한 트랜잭션을 중단하면 항목을 큐의 시작 부분에 다시 배치합니다. 항목을 큐의 시작 부분에 다시 배치하는 순서는 보장되지 않습니다. 다음 코드를 살펴보겠습니다.
+진행 중인 인 트랜잭션을 중단 하 고 hello 항목 hello 큐의 hello 헤드에 대해 설정 큐에서 제거 합니다. hello 항목 hello 큐의 앞 부분 hello에 넣는 다시 hello 순서 보장 되지 않습니다. 에 대해 알아보겠습니다 코드 다음 hello:
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -155,25 +155,25 @@ using (var txn = this.StateManager.CreateTransaction())
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
 
-    // Abort the transaction
+    // Abort hello transaction
     await txn.AbortAsync();
 }
 ```
-다음과 같은 순서로 항목을 큐에서 제거한다고 가정합니다.
+순서에 따라 hello에 hello 항목 된 큐에서 제거를 가정 합니다.
 > 10, 20
 
-트랜잭션을 중단하는 경우 항목은 다음 순서로 큐의 시작 부분에 다시 추가됩니다.
+Hello 트랜잭션을 중단 하는 것 때 hello 항목 추가 되 hello 큐의 앞 부분 백 toohello hello 주문 다음 중 하나:
 > 10, 20
 
 > 20, 10
 
-트랜잭션이 성공적으로 *커밋되지* 않은 경우에도 마찬가지입니다.
+hello에 마찬가지입니다 hello 트랜잭션의 푼 성공적으로 모든 경우 *커밋됨*합니다.
 
 ## <a name="programming-patterns"></a>프로그래밍 패턴
 이 섹션에서는 ReliableConcurrentQueue를 사용하는 데 도움이 될 수 있는 몇 가지 프로그래밍 패턴을 살펴보겠습니다.
 
 ### <a name="batch-dequeues"></a>큐에서 제거 일괄 처리
-한 번에 큐에서 제거를 수행하는 대신 큐에서 제거를 일괄 처리하는 소비자 작업의 경우 프로그래밍 패턴을 사용하는 것이 좋습니다. 사용자는 모든 일괄 처리 또는 일괄 처리 크기 간에 지연 시간을 제한하도록 선택할 수 있습니다. 다음 코드 조각에서는 이 프로그래밍 모델을 보여줍니다.  이 예제에서 트랜잭션이 커밋된 후에 처리를 수행합니다. 따라서 처리하는 동안 오류가 발생하는 경우 처리되지 않은 항목은 처리되지 않고 손실됩니다.  또는 트랜잭션 범위 내에서 처리를 수행할 수 있지만 그러면 성능에 부정적인 영향을 주고 이미 처리된 항목을 처리해야 할 수 있습니다.
+A 소비자 작업 toobatch hello에 대 한 프로그래밍 패턴은 권장의 하나를 수행 하는 대신 큐에서 한 번에 큐에서 제거 합니다. hello 사용자는 모든 일괄 처리 또는 hello 일괄 처리 크기 간에 toothrottle 지연 선택할 수 있습니다. hello 다음 코드 조각은이 프로그래밍 모델을 보여줍니다.  이 예제에서는 hello 처리 했는지 hello 트랜잭션이 커밋된 후 되도록 오류 처리 하는 동안 toooccur 인 경우 hello 처리 되지 않은 항목 손실 처리 된 필요 없이 note 합니다.  하지만 Hello 처리를 수행할 수 있습니다 또는 hello 트랜잭션 범위 내에서이 성능에 부정적인 영향을 미칠 수 있습니다 및 이미 hello 항목 처리가 필요 처리 합니다.
 
 ```
 int batchSize = 5;
@@ -194,12 +194,12 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
             else
             {
-                // else break the for loop
+                // else break hello for loop
                 break;
             }
         }
@@ -207,7 +207,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -219,7 +219,7 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-notification-based-processing"></a>최상의 알림 기반 처리
-개수 API를 사용하는 또 다른 프로그래밍 패턴입니다. 여기서는 큐에 대해 최상의 알림 기반 처리를 구현할 수 있습니다. 큐 개수는 큐에 넣기 또는 큐에서 제거 작업을 제한하는 데 사용할 수 있습니다.  이전 예제와 같이 처리가 트랜잭션 외부에서 발생하므로 처리하는 동안 오류가 발생하는 경우 처리되지 않은 항목은 손실될 수 있습니다.
+또 다른 흥미로운 프로그래밍 패턴 hello 개수 API를 사용합니다. 여기에서는 hello 큐에 대 한 최상의 알림 기반 처리를 구현할 수 있습니다. hello 큐 개수 인 큐에서 사용 되는 toothrottle 또는 큐에서 제거 작업 수 있습니다.  참고 hello 이전 예제와 같이 hello 처리 hello 트랜잭션 밖에 서 발생 하므로 처리 되지 않은 항목이 손실 될 수 있다는 처리 하는 동안 오류가 발생 하는 경우.
 
 ```
 int threshold = 5;
@@ -231,11 +231,11 @@ while(!cancellationToken.IsCancellationRequested)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        // If the queue does not have the threshold number of items, delay the task and check again
+        // If hello queue does not have hello threshold number of items, delay hello task and check again
         await Task.Delay(TimeSpan.FromMilliseconds(delayMs), cancellationToken);
     }
 
-    // If there are approximately threshold number of items, try and process the queue
+    // If there are approximately threshold number of items, try and process hello queue
 
     // Buffer for dequeued items
     List<int> processItems = new List<int>();
@@ -250,7 +250,7 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
         } while (processItems.Count < threshold && ret.HasValue);
@@ -258,7 +258,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -267,9 +267,9 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-drain"></a>최상의 드레이닝
-데이터 구조의 동시 특성으로 인해 큐의 드레이닝을 보장할 수 없습니다.  큐에서 사용자 작업이 진행되지 않는 경우더라도 TryDequeueAsync에 대한 특정 호출은 이전에 큐에 넣고 커밋된 항목을 반환하지 않을 수 있습니다.  큐에 넣은 항목은 *결국* 큐에서 제거된다고 표시되지만 모든 생산자가 중지되고 새 큐에 넣기 작업이 허용되는 경우에도 독립 소비자는 대역외 통신 메커니즘 없이 큐가 안정적인 상태에 도달했음을 알 수 없습니다. 따라서 드레이닝 작업은 아래와 같이 구현될 때 가장 효율적입니다.
+Hello 데이터 구조의 toohello 동시 특성 인해 hello 큐의 드레이닝을 보장할 수 없습니다.  즉, hello 큐에 없는 사용자는 작업은 진행 중인, 경우에 특정 호출 tooTryDequeueAsync 반환할 수 없습니다. 큐에 대기 된 이전의 항목 수 및 커밋되지 않습니다.  하지만 hello 큐에 대기 된 항목은 너무 보장*결국* 는-대역외 통신 메커니즘 없이 독립 소비자를 알 수 없으므로 해당 hello 큐에 경우에도 안정 상태에 도달 했습니다 표시 toodequeue 될 모든 생산자를 중지 하 고 새 큐에 삽입 작업이 허용 되지 않습니다. 따라서 hello 드레이닝 작업이 최상의 아래 구현입니다.
 
-사용자는 큐를 비우기 전에 모든 추가 생산자와 소비자 작업을 중지하고 실행 중인 모든 트랜잭션을 커밋하거나 중단할 때까지 기다려야 합니다.  사용자가 예상된 큐의 항목 수를 아는 경우 모든 항목이 큐에서 제거되었음을 알리는 알림을 설정할 수 있습니다.
+hello 사용자는 모든 후속 생산자와 소비자 작업을 중지 하 고 모든 진행 중인 트랜잭션은 toocommit 또는 중단 toodrain hello 큐를 시도 하기 전에 대기 해야 합니다.  Hello 사용자가 예상 하는 hello hello 큐의 항목 수를 알고, 모든 항목이 있는 큐 제거 알리는 알림을 설정할 수 있습니다.
 
 ```
 int numItemsDequeued;
@@ -289,7 +289,7 @@ do
 
             if(ret.HasValue)
             {
-                // Buffer the dequeues
+                // Buffer hello dequeues
                 processItems.Add(ret.Value);
             }
         } while (ret.HasValue && processItems.Count < batchSize);
@@ -297,7 +297,7 @@ do
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -306,7 +306,7 @@ do
 ```
 
 ### <a name="peek"></a>보기
-ReliableConcurrentQueue는 *TryPeekAsync* API를 제공하지 않습니다. 사용자는 *TryDequeueAsync*를 사용한 다음 트랜잭션을 중단하여 보기 의미 체계를 가져올 수 있습니다. 이 예제에서는 큐에서 제거는 항목의 값이 *10*보다 큰 경우에만 처리됩니다.
+ReliableConcurrentQueue hello를 제공 하지 않습니다 *TryPeekAsync* api입니다. 사용자가 액세스할 수 hello 피크 (peek) 의미 체계를 사용 하 여 한 *TryDequeueAsync* 다음 hello 트랜잭션을 중단 하 고 있습니다. 이 예제에서는 큐에서 hello 항목의 값 보다 큰 경우에 처리 *10*합니다.
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -318,7 +318,7 @@ using (var txn = this.StateManager.CreateTransaction())
     {
         if (ret.Value > 10)
         {
-            // Process the item
+            // Process hello item
             Console.WriteLine("Value : " + ret.Value);
             valueProcessed = true;
         }
@@ -342,5 +342,5 @@ using (var txn = this.StateManager.CreateTransaction())
 * [Reliable Services 백업 및 복원(재해 복구)](service-fabric-reliable-services-backup-restore.md)
 * [신뢰할 수 있는 상태 관리자 구성](service-fabric-reliable-services-configuration.md)
 * [Service Fabric Web API 서비스 시작](service-fabric-reliable-services-communication-webapi.md)
-* [Reliable Services 프로그래밍 모델 고급 사용법](service-fabric-reliable-services-advanced-usage.md)
+* [Hello 신뢰할 수 있는 서비스 프로그래밍 모델의 고급 사용](service-fabric-reliable-services-advanced-usage.md)
 * [신뢰할 수 있는 컬렉션에 대한 개발자 참조](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)

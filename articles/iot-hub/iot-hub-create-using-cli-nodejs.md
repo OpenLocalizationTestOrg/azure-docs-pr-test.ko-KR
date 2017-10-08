@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI(azure.js)를 사용하여 IoT Hub 만들기 | Microsoft Docs"
-description: "플랫폼 간 Azure CLI(azure.js)를 사용하여 Azure IoT hub를 만드는 방법"
+title: "Azure CLI (azure.js)를 사용 하 여 IoT hub aaaCreate | Microsoft Docs"
+description: "어떻게 사용 하 여 Azure IoT 허브 toocreate hello 플랫폼 간 Azure CLI (azure.js)."
 services: iot-hub
 documentationcenter: .net
 author: BeatriceOltean
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/04/2017
 ms.author: boltean
-ms.openlocfilehash: 5e37c6c5e8625ce446ab203f19f9a8b2f1cd5a46
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c2a7ea98500b0a0e55a39f4cdfea4605c92add94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-azure-cli"></a>Azure CLI를 사용하여 IoT Hub 만들기
+# <a name="create-an-iot-hub-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 IoT 허브를 만듭니다.
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>소개
 
-Azure CLI 2.0(azure.js)을 사용하여 Azure IoT Hub를 프로그래밍 방식으로 만들고 관리할 수 있습니다. 이 문서는 Azure CLI(azure.js)를 사용하여 IoT Hub를 만드는 방법을 보여줍니다.
+Azure CLI (azure.js) toocreate를 사용 하 여 수 있으며, Azure IoT 허브를 프로그래밍 방식으로 관리할 수 있습니다. 이 문서에서는 어떻게 toouse hello Azure CLI (azure.js) toocreate IoT hub를 보여 줍니다.
 
-다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.
+Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다.
 
-* Azure CLI(azure.js) - 이 문서에 설명된 것처럼 클래식 및 리소스 관리 배포 모델용 CLI입니다.
-* [Azure CLI 2.0(az.py)](iot-hub-create-using-cli.md) - 리소스 관리 배포 모델용 차세대 CLI
+* Azure CLI (azure.js) – hello CLI 클래식 hello와이 문서에 설명 된 대로 리소스 관리 배포 모델에 대 한 합니다.
+* [Azure CLI 2.0 (az.py)](iot-hub-create-using-cli.md) -차세대 CLI hello 리소스 관리 배포 모델에 대 한 hello 합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요:
 
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 내에 [계정][lnk-free-trial]을 만들 수 있습니다.
-* [Azure CLI 0.10.4][lnk-CLI-install] 이상 Azure CLI가 이미 설치된 경우 다음 명령을 사용하여 명령 프롬프트에서 현재 버전을 확인할 수 있습니다.
+* [Azure CLI 0.10.4][lnk-CLI-install] 이상 설치 된 Azure CLI hello 이미 있는 경우 다음 명령을 hello로 hello hello 명령 프롬프트에서 현재 버전을 확인할 수 있습니다.
 
 ```azurecli
 azure --version
 ```
 
 > [!NOTE]
-> Azure에는 리소스를 만들고 작업하는 [Azure Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. Azure CLI는 Azure Resource Manager 모드여야 합니다.
+> Azure에는 리소스를 만들고 작업하는 [Azure Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. hello Azure CLI Azure Resource Manager 모드에 있어야 합니다.
 >
 > ```azurecli
 > azure config mode arm
@@ -51,20 +51,20 @@ azure --version
 
 ## <a name="set-your-azure-account-and-subscription"></a>Azure 계정 및 구독 설정
 
-1. 명령 프롬프트에서 다음 명령을 입력하여 로그인합니다.
+1. Hello 명령 프롬프트에서 다음 명령을 hello를 입력 하 여 로그인:
 
    ```azurecli
     azure login
    ```
 
-   제안된 웹 브라우저와 코드를 사용하여 인증합니다.
-1. Azure 구독이 여러 개 있는 경우 Azure에 연결하면 자격 증명과 연결된 모든 Azure 구독에 액세스할 수 있습니다. 다음 명령을 사용하여 Azure 구독을 보고 기본적으로 사용되는 구독을 확인할 수 있습니다.
+   Hello 제안 된 웹 브라우저와 코드 tooauthenticate 사용 합니다.
+1. 여러 Azure 구독이 있는 경우 tooAzure 연결 액세스 권한을 부여 tooall hello 자격 증명으로 연결 된 Azure 구독. 볼 수 있습니다 hello Azure 구독 및 hello 명령을 사용 하 여 hello 기본적으로는 어떤 것을 식별 합니다.
 
    ```azurecli
     azure account list
    ```
 
-   나머지 명령을 실행할 구독 컨텍스트를 설정하려면 다음을 사용합니다.
+   tooset hello 구독 상황에 맞는 hello toorun hello 나머지 원하는 명령을 사용 합니다.
 
    ```azurecli
     azure account set <subscription name>
@@ -77,7 +77,7 @@ azure --version
    ```
 
 > [!TIP]
-> [Azure CLI를 사용하여 Azure 리소스 및 리소스 그룹 관리][lnk-CLI-arm] 문서는 Azure CLI를 사용하여 Azure 리소스를 관리하는 방법에 대해 자세히 설명합니다.
+> hello 문서 [hello Azure CLI toomanage Azure를 사용 하 여 리소스 및 리소스 그룹] [ lnk-CLI-arm] toouse Azure CLI toomanage Azure hello 하는 방법에 대 한 자세한 정보를 제공 리소스입니다.
 
 ## <a name="create-an-iot-hub"></a>IoT Hub 만들기
 
@@ -87,28 +87,28 @@ azure --version
 azure iothub create -g <resource-group> -n <name> -l <location> -s <sku-name> -u <units>
 ```
 
-* **resource-group**: 리소스 그룹 이름입니다. 형식은 대/소문자를 구분하지 않는 영숫자, 밑줄 및 하이픈으로 구성되며, 길이는 1-64자입니다.
-* **이름**: 만들려는 IoT Hub의 이름입니다. 형식은 대/소문자를 구분하지 않는 영숫자, 밑줄 및 하이픈으로 구성되며, 길이는 3-50자입니다.
-* **location**: IoT Hub를 프로비전할 위치(Azure 지역/데이터 센터)입니다.
-* **sku-name**: sku 이름이며, [F1, S1, S2, S3] 중 하나입니다. 최신 전체 목록은 IoT Hub 가격 책정 페이지를 참조하세요.
-* **units**: 프로비전된 단위의 수입니다. 범위: F1[1-1], S1, S2[1-200], S3[1-10]. IoT Hub 단위는 총 메시지 수와 연결하려는 장치 수를 기반으로 합니다.
+* **resource-group**: hello 리소스 그룹 이름입니다. hello 형식은 소문자 영숫자, 밑줄 및 하이픈, 1-64 길이입니다.
+* **이름**. 만든 hello IoT 허브 toobe의 hello 이름입니다. hello 형식은 소문자 영숫자, 밑줄 및 하이픈, 3-50 길이입니다.
+* **location**: hello 위치 (azure 지역/데이터 센터) tooprovision hello IoT 허브입니다.
+* **sku-name**: 중 하나는 hello sku의 hello 이름: [F1, S1, S2, S3]. 최신 전체 목록을 hello toohello IoT 허브에 대 한 가격 책정 페이지를 참조 하십시오.
+* **units**: hello 프로 비전 된 단위 수입니다. 범위: F1[1-1], S1, S2[1-200], S3[1-10]. IoT Hub 단위 기반 tooconnect 원하는 장치에 총 메시지 수와 hello 수 있습니다.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-만들기에 사용할 수 있는 모든 매개 변수를 보려면 명령 프롬프트에서 help 명령을 사용합니다.
+toosee 모든 hello 작성할 수 있는 매개 변수, 명령 프롬프트에서 hello 도움말 명령을 사용할 수 있습니다.
 
 ```azurecli
 azure iothub create -h
 ```
 
-간단한 예제: **exampleResourceGroup**이라는 리소스 그룹에 **exampleIoTHubName**이라는 IoT Hub를 만들려면 다음 명령을 실행합니다.
+간단한 예: IoT 허브 호출 toocreate **exampleIoTHubName** hello 리소스 그룹에 **exampleResourceGroup**실행 hello 다음 명령을:
 
 ```azurecli
 azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1 -u 1
 ```
 
 > [!NOTE]
-> 이 Azure CLI 명령은 대금이 청구되는 S1 표준 IoT Hub를 만듭니다. 다음 명령을 사용하여 IoT hub **exampleIoTHubName**을 삭제할 수 있습니다.
+> 이 Azure CLI 명령은 대금이 청구되는 S1 표준 IoT Hub를 만듭니다. Hello IoT 허브를 삭제할 수 있습니다 **exampleIoTHubName** 다음 명령을 사용 하 여:
 >
 > ```azurecli
 > azure iothub delete -g exampleResourceGroup -n exampleIoTHubName
@@ -116,13 +116,13 @@ azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1
 
 ## <a name="next-steps"></a>다음 단계
 
-IoT Hub를 개발하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
+toolearn IoT 허브에 대 한 개발에 대 한 더 hello 다음 문서를 참조 하세요.
 
 * [IoT SDK][lnk-sdks]
 
-IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.
+toofurther는 IoT Hub의 hello 기능을 참조 하십시오.
 
-* [Azure Portal을 사용하여 IoT Hub 관리][lnk-portal]
+* [Azure 포털 toomanage IoT Hub hello를 사용 하 여][lnk-portal]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub를 사용하여 장치 펌웨어 업데이트(.NET/Node) | Microsoft Docs"
-description: "장치 펌웨어 업데이트를 시작하려면 Azure IoT Hub에서 장치 관리를 사용하는 방법입니다. Node.js용 Azure IoT 장치 SDK를 사용하여 시뮬레이션된 장치 앱을 구현하고 .NET용 Azure IoT 서비스 SDK를 사용하여 펌웨어 업데이트를 트리거하는 서비스 앱을 구현합니다."
+title: "Azure IoT Hub (.NET/노드)와 aaaDevice 펌웨어 업데이트 | Microsoft Docs"
+description: "Azure IoT Hub tooinitiate 장치 펌웨어에 toouse 장치 관리 업데이트 하는 방법입니다. Node.js tooimplement 시뮬레이션 된 장치 응용 프로그램에 대 한 hello Azure IoT 장치 SDK 및.NET tooimplement hello 펌웨어 업데이트가 발생 하는 서비스 앱에 대 한 Azure IoT 서비스 SDK hello를 사용 합니다."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/17/2017
 ms.author: juanpere
-ms.openlocfilehash: c2192328a152e955d182c4a07b391c98a5960964
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d48899651bcd5d67e577c971be0f9453c8f21592
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-device-management-to-initiate-a-device-firmware-update-netnode"></a>장치 관리를 사용하여 장치 펌웨어 업데이트(.NET/Node)를 시작합니다.
+# <a name="use-device-management-tooinitiate-a-device-firmware-update-netnode"></a>장치 관리 tooinitiate 장치 펌웨어 업데이트 (.NET/노드)를 사용 하 여
 [!INCLUDE [iot-hub-selector-firmware-update](../../includes/iot-hub-selector-firmware-update.md)]
 
 ## <a name="introduction"></a>소개
-[장치 관리 시작][lnk-dm-getstarted] 자습서에서 [장치 쌍][lnk-devtwin] 및 [직접 메서드][lnk-c2dmethod] 기본 형식을 사용하여 장치를 원격으로 다시 부팅하는 방법을 살펴보았습니다. 이 자습서에서는 동일한 IoT Hub 기본 형식을 사용하고 시뮬레이션된 종단 간 펌웨어 업데이트를 수행하는 방법을 보여 줍니다.  이 패턴은 [Raspberry Pi 장치 구현 샘플][lnk-rpi-implementation]에 대한 펌웨어 업데이트 구현에 사용됩니다.
+Hello에 [장치 관리 시작] [ lnk-dm-getstarted] 자습서에서 언급 했 듯이 어떻게 toouse hello [장치로 이중] [ lnk-devtwin] 및 [직접 메서드] [ lnk-c2dmethod] 기본 형식 tooremotely는 장치를 다시 부팅 합니다. 이 자습서에서는 hello IoT Hub 기본 형식과 동일 하 고는-종단 toodo 펌웨어 업데이트를 시뮬레이션 하는 방법을 보여 줍니다.  이 패턴은 hello에 대 한 hello 펌웨어 업데이트 구현에서 사용 [라스베리 Pi 장치 구현 샘플][lnk-rpi-implementation]합니다.
 
 이 자습서에서는 다음을 수행하는 방법에 대해 설명합니다.
 
-* IoT Hub를 통해 시뮬레이션된 장치 앱에서 firmwareUpdate 직접 메서드를 호출하는 .NET 콘솔 앱을 만듭니다.
-* **firmwareUpdate** 직접 메서드를 구현하는 시뮬레이트된 장치 앱을 만듭니다. 이 메서드는 펌웨어 이미지를 다운로드하기 위해 대기했다가 펌웨어 이미지를 다운로드하고, 마지막으로 펌웨어 이미지를 적용하는 다단계 프로세스를 시작합니다. 업데이트의 각 단계 동안, 장치는 보고된 속성을 사용하여 진행 상황을 보고합니다.
+* IoT 허브를 통해 hello 시뮬레이션 된 장치 응용 프로그램에서 hello firmwareUpdate 직접 메서드를 호출 하 여.NET 콘솔 응용 프로그램을 만듭니다.
+* **firmwareUpdate** 직접 메서드를 구현하는 시뮬레이트된 장치 앱을 만듭니다. 이 메서드를 toodownload hello 펌웨어 이미지 될 때까지 대기 하 고, hello 펌웨어 이미지를 다운로드 하 고, 마지막으로 hello 펌웨어 이미지를 적용 하는 여러 단계로 이루어진 프로세스를 시작 합니다. Hello 업데이트의 각 단계 hello 장치 사용 하 여 hello 속성 tooreport를 진행률 보고 했습니다.
 
-이 자습서의 끝 부분에는 다음과 같은 Node.js 콘솔 장치 앱과 .NET(C#) 콘솔 백 엔드 앱이 있습니다.
+이 자습서의 hello 끝에 콘솔 장치 Node.js 응용 프로그램 및.NET (C#) 콘솔 백 엔드 응용 프로그램
 
-**dmpatterns_fwupdate_service.js** - 시뮬레이션된 장치 앱에서 직접 메서드를 호출하고 응답을 표시하며 업데이트된 reported 속성을 주기적으로(매 500밀리초) 표시합니다.
+**dmpatterns_fwupdate_service.js**, hello 응답 표시 hello 시뮬레이션 된 장치 응용 프로그램에서 직접 메서드를 호출 하 고 정기적으로 (500 밀리초 마다) 업데이트 표시 hello 보고 속성입니다.
 
-**TriggerFWUpdate** - 앞에서 만든 장치 ID를 사용하여 IoT Hub 에 연결하고, firmwareUpdate 직접 메서드를 수신하며, 펌웨어 업데이트를 시뮬레이션하기 위한 다단계 프로세스(이미지 다운로드 대기, 새 이미지 다운로드, 마지막으로 이미지 적용 등)를 실행합니다.
+**TriggerFWUpdate**를 포함 하 여 펌웨어 업데이트 다중 상태 프로세스 toosimulate을 통해 실행을 firmwareUpdate 직접 메서드를 받으면 앞에서 만든 hello 장치 id를 가진 tooyour IoT 허브를 연결 하는: hello 이미지 다운로드를 기다리는 중 hello 새 이미지와 마지막으로 적용 hello 이미지를 다운로드 합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요:
 
 * Visual Studio 2015 또는 Visual Studio 2017.
-* Node.js 버전 0.12.x 이상, <br/>  Windows 또는 Linux에서 이 자습서를 위해 Node.js를 설치하는 방법에 대해서는 [개발 환경 준비][lnk-dev-setup]에서 설명합니다.
+* Node.js 버전 0.12.x 이상, <br/>  [개발 환경을 준비] [ lnk-dev-setup] 설명 방법을 Windows 또는 Linux에서이 자습서에 대 한 tooinstall Node.js 합니다.
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 안에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.
 
-IoT hub 허브를 만들고 IoT Hub 연결 문자열을 확보하려면 [장치 관리 시작](iot-hub-csharp-node-device-management-get-started.md) 문서의 내용을 수행하세요.
+Hello에 따라 [장치 관리 시작](iot-hub-csharp-node-device-management-get-started.md) 문서 toocreate IoT hub 및 IoT 허브 연결 문자열을 가져옵니다.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-firmware-update-on-the-device-using-a-direct-method"></a>직접 메서드를 사용하여 장치에서 원격 펌웨어 업데이트 트리거
-이 섹션에서는 장치에서 원격 펌웨어 업데이트를 시작하는 .NET 콘솔 앱(C# 사용)을 만듭니다. 앱은 직접 메서드를 사용하여 업데이트를 시작하고 장치 쌍 쿼리를 사용하여 정기적으로 활성 펌웨어 업데이트의 상태를 가져옵니다.
+## <a name="trigger-a-remote-firmware-update-on-hello-device-using-a-direct-method"></a>직접 메서드를 사용 하 여 hello 장치에 대 한 원격 펌웨어 업데이트 트리거
+이 섹션에서는 장치에서 원격 펌웨어 업데이트를 시작하는 .NET 콘솔 앱(C# 사용)을 만듭니다. hello 앱 직접적인 방법 tooinitiate hello 업데이트를 사용 하 고 사용 하 여 장치로 이중 쿼리 tooperiodically hello 액티브 펌웨어 업데이트의 hello 상태를 가져옵니다.
 
-1. Visual Studio에서 **콘솔 응용 프로그램** 프로젝트 템플릿을 사용하여 Visual C# Windows 클래식 데스크톱 프로젝트를 최신 솔루션에 추가합니다. 프로젝트 이름을 **TriggerFWUpdate**로 지정합니다.
+1. Visual Studio에서 Visual C# Windows 클래식 데스크톱 프로젝트 toohello 현재 솔루션 hello를 사용 하 여 추가 **콘솔 응용 프로그램** 서식 파일 프로젝트. 이름 hello 프로젝트 **TriggerFWUpdate**합니다.
 
     ![새 Visual C# Windows 클래식 데스크톱 프로젝트][img-createapp]
 
-1. 솔루션 탐색기에서 **TriggerFWUpdate** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **NuGet 패키지 관리...**를 클릭합니다.
-1. **NuGet 패키지 관리자** 창에서 **찾아보기**를 선택하고 **microsoft.azure.devices**를 검색한 다음 **설치**를 선택하여 **Microsoft.Azure.Devices** 패키지를 설치하고 사용 약관에 동의합니다. 이 프로시저에서는 [Azure IoT 서비스 SDK][lnk-nuget-service-sdk] NuGet 패키지 및 종속 항목에 참조를 다운로드, 설치 및 추가합니다.
+1. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **TriggerFWUpdate** 프로젝트를 마우스 클릭 **NuGet 패키지 관리...** .
+1. Hello에 **NuGet 패키지 관리자** 창에서 **찾아보기**, 검색할 **microsoft.azure.devices**선택, **설치** tooinstall hello **Microsoft.Azure.Devices** 패키지 및 hello 사용 약관에 동의 합니다. 이 절차를 다운로드, 설치 하 고 참조 toohello 추가 [Azure IoT 서비스 SDK] [ lnk-nuget-service-sdk] NuGet 패키지 및 해당 종속성.
 
     ![NuGet 패키지 관리자 창][img-servicenuget]
-1. **Program.cs** 파일 위에 다음 `using` 문을 추가합니다.
+1. Hello 다음 추가 `using` hello 위쪽 hello에 문을 **Program.cs** 파일:
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Shared;
         
-1. **Program** 클래스에 다음 필드를 추가합니다. 여러 자리 표시자 값을 이전 섹션에서 만든 허브에 대한 IoT Hub 연결 문자열 및 장치의 ID로 바꿉니다.
+1. 다음 필드 toohello hello 추가 **프로그램** 클래스입니다. Hello로 여러 자리 표시자 값 hello hello 이전 섹션에서 만든 hello 허브에 대 한 IoT 허브 연결 문자열 및 hello 장치 Id 대체 합니다.
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -73,7 +73,7 @@ IoT hub 허브를 만들고 IoT Hub 연결 문자열을 확보하려면 [장치 
         static JobClient jobClient;
         static string targetDevice = "{deviceIdForTargetDevice}";
         
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
    
         public static async Task QueryTwinFWUpdateReported()
         {
@@ -81,7 +81,7 @@ IoT hub 허브를 만들고 IoT Hub 연결 문자열을 확보하려면 [장치 
             Console.WriteLine(twin.Properties.Reported.ToJson());
         }
         
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
 
         public static async Task StartFirmwareUpdate()
         {
@@ -98,38 +98,38 @@ IoT hub 허브를 만들고 IoT Hub 연결 문자열을 확보하려면 [장치 
             Console.WriteLine("Invoked firmware update on device.");
         }
 
-1. 마지막으로 **Main** 메서드에 다음 줄을 추가합니다.
+1. 마지막으로 다음 줄 toohello hello 추가 **Main** 메서드:
    
         registryManager = RegistryManager.CreateFromConnectionString(connString);
         StartFirmwareUpdate().Wait();
         QueryTwinFWUpdateReported().Wait();
-        Console.WriteLine("Press ENTER to exit.");
+        Console.WriteLine("Press ENTER tooexit.");
         Console.ReadLine();
         
-1. 솔루션 탐색기에서 **시작 프로젝트 설정...**을 열고 **TriggerFWUpdate** 프로젝트의 **작업**이 **시작**인지 확인합니다.
+1. Hello 솔루션 탐색기를 열고 hello **설정 시작 프로젝트...**  hello 있는지를 확인 하 고 **동작** 에 대 한 **TriggerFWUpdate** 프로젝트는 **시작**합니다.
 
-1. 솔루션을 빌드하십시오.
+1. Hello 솔루션을 빌드하십시오.
 
 [!INCLUDE [iot-hub-device-firmware-update](../../includes/iot-hub-device-firmware-update.md)]
 
-## <a name="run-the-apps"></a>앱 실행
-이제 앱을 실행할 준비가 되었습니다.
+## <a name="run-hello-apps"></a>Hello 앱 실행
+준비 toorun hello 앱입니다.
 
-1. **manageddevice** 폴더의 명령 프롬프트에서 다음 명령을 실행하여 다시 시작 직접 메서드에 대한 수신 대기를 시작합니다.
+1. Hello에 대 한 hello 명령 프롬프트 **manageddevice** 폴더를 다음 명령 toobegin hello 재부팅 직접적인 방법에 대 한 수신 대기 하는 hello를 실행 합니다.
    
     ```
     node dmpatterns_fwupdate_device.js
     ```
-2. Visual Studio에서 **TriggerFWUpdate** 프로젝트를 마우스 오른쪽 단추로 클릭하고 C# 콘솔 앱을 실행한 후 **디버그**, **새 인스턴스 시작**을 차례로 선택합니다.
+2. Visual Studio에서 마우스 오른쪽 단추로 클릭 hello **TriggerFWUpdate** projectRun toohello C# 콘솔 응용 프로그램, 선택 **디버그** 및 **새 인스턴스 시작**합니다.
 
-3. 콘솔에서 직접 메서드에 대한 장치 응답을 확인합니다.
+3. Hello 장치 응답 toohello 직접적인 방법 hello 콘솔에 표시 됩니다.
 
     ![펌웨어가 성공적으로 업데이트됨][img-fwupdate]
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 직접 메서드를 사용하여 장치에서 원격 펌웨어 업데이트를 트리거하고, 보고된 속성을 사용하여 펌웨어 업데이트 프로세스의 진행 상황을 이해했습니다.
+이 자습서에서는 직접적인 방법 tootrigger 원격을 사용 하는 장치 및 사용 하는 hello에 펌웨어 업데이트가 보고 되는 hello 펌웨어 업데이트의 속성 toofollow hello 진행률입니다.
 
-IoT 솔루션을 확장하고 여러 장치에서 메서드 호출을 예약하는 방법을 알아보려면 [jobs 예약 및 브로드캐스트][lnk-tutorial-jobs] 자습서를 참조하세요.
+toolearn tooextend IoT 솔루션 및 일정 메서드를 여러 장치에서 호출 하는 방법 참조 hello [일정 및 브로드캐스트 작업] [ lnk-tutorial-jobs] 자습서입니다.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-firmware-update/servicesdknuget.png

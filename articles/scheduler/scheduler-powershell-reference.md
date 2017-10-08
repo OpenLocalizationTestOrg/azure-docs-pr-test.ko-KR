@@ -1,5 +1,5 @@
 ---
-title: "스케줄러 PowerShell Cmdlet 참조"
+title: "aaaScheduler PowerShell Cmdlet 참조"
 description: "스케줄러 PowerShell Cmdlet 참조"
 services: scheduler
 documentationcenter: .NET
@@ -14,16 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: 141919ab4506b3de4c4a69670dcf54c60ee6409c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2b23bcd3e4493ffba1dbf21fbb87818be7c01e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-powershell-cmdlets-reference"></a>스케줄러 PowerShell Cmdlet 참조
-다음 표에서는 Azure 스케줄러의 주요 cmdlet을 설명하고 참조 페이지에 연결합니다.
+다음 표에서 hello 및 설명 각각 hello Azure Scheduler의 주요 cmdlet의 toohello 참조 페이지에 연결 합니다.
 
-Azure PowerShell을 설치하고 Azure 구독에 연결하려면 [Azure PowerShell 설치 및 구성하는 방법](/powershell/azure/overview)을 참조하세요. 
+Azure PowerShell tooinstall Azure 구독과 연결을 참조 하세요 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다. 
 
 [Azure Resource Manager cmdlet](/powershell/azure/overview)에 대한 자세한 내용은 [Azure Resource Manager로 Azure PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.
 
@@ -47,7 +47,7 @@ Azure PowerShell을 설치하고 Azure 구독에 연결하려면 [Azure PowerShe
 | [Set-AzureRmSchedulerServiceBusTopicJob](/powershell/module/azurerm.scheduler/set-azurermschedulerservicebustopicjob) |Service Bus 토픽 작업을 수정합니다. |
 | [Set-AzureRmSchedulerStorageQueueJob](/powershell/module/azurerm.scheduler/set-azurermschedulerstoragequeuejob) |Storage 큐 작업을 수정합니다. |
 
-자세한 내용을 보려면, 다음 중 원하는 cmdlet을 실행하세요. 
+자세한 내용을 보려면 hello 다음 cmdlet을 실행할 수 있습니다. 
 
 ```
 Get-Help <cmdlet name> -Detailed
@@ -64,7 +64,7 @@ Get-Help <cmdlet name> -Full
 
  [Azure 스케줄러 개념, 용어 및 엔터티 계층 구조](scheduler-concepts-terms.md)
 
- [Azure 포털에서 스케줄러 사용 시작](scheduler-get-started-portal.md)
+ [Hello Azure 포털에서에서 스케줄러 사용 시작](scheduler-get-started-portal.md)
 
  [Azure 스케줄러의 버전 및 요금 청구](scheduler-plans-billing.md)
 

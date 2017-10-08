@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 분석으로 얼굴 편집 안내 | Microsoft Docs"
-description: "이 항목에서는 AMSE(Azure Media Services 탐색기) 및 Azure Media Redactor Visualizer(오픈 소스 도구)를 사용하여 전체 교정 워크플로를 실행하는 방법에 대한 단계별 지침을 보여줍니다."
+title: "Azure 미디어 분석 연습을 aaaRedact 면 | Microsoft Docs"
+description: "이 항목에서는 방법에 단계별 지침을 보여 줍니다. toorun Azure 미디어 서비스 탐색기 (AMSE) 및 Azure 미디어 Redactor 시각화 도우미 (오픈 소스 도구)를 사용 하 여 전체 교정 워크플로 합니다."
 services: media-services
 documentationcenter: 
 author: Lichard
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: rli; juliako;
-ms.openlocfilehash: c0c622237f8cdca65fb6933f14cc21e9eb9ac036
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ab28f4052b73fdb74fcd5766235eab35402a0c9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics-walkthrough"></a>Azure 미디어 분석으로 얼굴 편집 안내
 
 ## <a name="overview"></a>개요
 
-**Azure Media Redactor** 는 클라우드에서 확장성 있는 얼굴 편집 기능을 제공하는 [Azure Media Analytics](media-services-analytics-overview.md) MP(미디어 프로세서)입니다. 얼굴 편집을 사용하면 선택한 개인의 얼굴을 흐리게 표시하기 위해 동영상을 수정할 수 있습니다. 공공 안전과 새 미디어 시나리오를 위해 얼굴 편집 서비스를 사용할 수 있습니다. 짧은 장면이라도 여러 명의 얼굴이 포함된 경우 수동으로 편집하려면 많은 시간이 걸릴 수 있지만 이 서비스를 사용하면 몇 번의 간단한 단계를 통해 얼굴을 편집할 수 있습니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/azure-media-redactor/) 를 참조하세요.
+**Azure 미디어 Redactor** 는 [Azure 미디어 분석](media-services-analytics-overview.md) hello 클라우드에서 확장 가능한 글꼴 교정에서 제공 하는 미디어 프로세서 (MP). Face 교정 있습니다 toomodify 선택한 개인의 순서 tooblur 면에서 비디오를 수 있습니다. 공용 안전과 뉴스 미디어 시나리오에서 toouse hello 얼굴 교정 서비스를 할 수 있습니다. 몇 분 정도 여러 글꼴로 포함 된 장면 시간 tooredact 수동으로 필요로 하지만이 서비스 hello 모양을 가진 교정 프로세스는 몇 가지 간단한 단계만 거치면 요구 됩니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/azure-media-redactor/) 를 참조하세요.
 
-**Azure Media Redactor**에 대한 자세한 내용은 [얼굴 교정 개요](media-services-face-redaction.md) 항목을 참조하세요.
+에 대 한 세부 정보에 대 한 **Azure 미디어 Redactor**, hello 참조 [얼굴 교정 개요](media-services-face-redaction.md) 항목입니다.
 
-이 항목에서는 AMSE(Azure Media Services 탐색기) 및 Azure Media Redactor Visualizer(오픈 소스 도구)를 사용하여 전체 교정 워크플로를 실행하는 방법에 대한 단계별 지침을 보여줍니다.
+이 항목에서는 방법에 단계별 지침을 보여 줍니다. toorun Azure 미디어 서비스 탐색기 (AMSE) 및 Azure 미디어 Redactor 시각화 도우미 (오픈 소스 도구)를 사용 하 여 전체 교정 워크플로 합니다.
 
-**Azure Media Redactor** MP는 현재 미리 보기 상태입니다. 이 기능은 모든 공용 Azure 지역과 미국 정부 및 중국 데이터 센터에서 사용할 수 있습니다. 이 미리 보기는 현재 무료입니다. 현재 릴리스에서 처리되는 비디오 길이는 10분으로 제한됩니다.
+hello **Azure 미디어 Redactor** MP는 현재 미리 보기로 합니다. 이 기능은 모든 공용 Azure 지역과 미국 정부 및 중국 데이터 센터에서 사용할 수 있습니다. 이 미리 보기는 현재 무료입니다. Hello 현재 릴리스에서 처리 된 비디오 길이 제한은 10 분은 없습니다.
 
 자세한 내용은 [이 블로그](https://azure.microsoft.com/en-us/blog/redaction-preview-available-globally) 를 참조하세요.
 
 ## <a name="azure-media-services-explorer-workflow"></a>Azure Media Services 탐색기 워크플로
 
-Redactor를 시작하는 가장 쉬운 방법은 github에서 오픈 소스 AMSE 도구를 사용하는 것입니다. 주석 json 또는 얼굴 jpg 이미지에 액세스할 필요가 없는 경우 **결합** 모드를 통해 간소화된 워크플로를 실행할 수 있습니다.
+hello 가장 쉬운 방법은 tooget 시작 Redactor는 github에서 toouse hello 오픈 소스 AMSE 도구입니다. 통해 간단한 워크플로 실행할 수 있습니다 **결합** toohello 주석 json 또는 hello 얼굴 jpg 이미지에 액세스할 필요 하지 않는 경우에 모드입니다.
 
 ### <a name="download-and-setup"></a>다운로드 및 설치
 
-1. AMSE 도구를 [여기서](https://github.com/Azure/Azure-Media-Services-Explorer) 다운로드합니다.
-1. 서비스 키를 사용하여 Media Services 계정에 로그인합니다.
+1. Hello AMSE 도구를 다운로드할 [여기](https://github.com/Azure/Azure-Media-Services-Explorer)합니다.
+1. Tooyour 서비스 키를 사용 하 여 미디어 서비스 계정에에서 로그인 합니다.
 
-    계정 이름 및 키 정보를 가져오려면 [Azure Portal](https://portal.azure.com/)로 이동하여 AMS 계정을 선택합니다. 그런 후 설정 > 키를 선택합니다. 키 관리 창에 계정 이름과 기본 및 보조 키가 표시됩니다. 계정 이름 및 기본 키 값을 복사해 둡니다.
+    계정 이름 및 키 정보, 이동 toohello tooobtain hello [Azure 포털](https://portal.azure.com/) AMS 계정을 선택 합니다. 그런 후 설정 > 키를 선택합니다. hello 관리 키 windows hello 계정 이름을 표시 하 고 hello 기본 및 보조 키 표시 됩니다. Hello 계정 이름 및 hello 기본 키의 값을 복사 합니다.
 
 ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough001.png)
 
@@ -57,69 +57,69 @@ Redactor를 시작하는 가장 쉬운 방법은 github에서 오픈 소스 AMSE
 
 ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough003.png)
 
-출력에는 얼굴 위치 데이터가 있는 주석 json 파일과 감지된 각 얼굴의 jpg가 포함됩니다. 
+hello 출력은 검색 된 각 면의 jpg 뿐만 아니라 얼굴 위치 데이터를 사용 하는 주석 json 파일이 포함 됩니다. 
 
 ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough004.png)
 
 ###<a name="second-pass--redact-mode"></a>2 패스 – 교정 모드
 
-1. 1 패스의 출력으로 원본 비디오 자산을 업로드하고 기본 자산으로 설정합니다. 
+1. Hello 첫 번째 패스에서 출력 하 고 기본 자산으로 설정 하 여 원래 비디오 자산 toohello를 업로드 합니다. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough005.png)
 
-2. (선택 사항) 교정하려는 ID의 줄 바꿈으로 구분된 목록이 포함된 'Dance_idlist.txt' 파일을 업로드합니다. 
+2. (선택 사항) 줄 바꿈 구분 된 목록이 hello tooredact 원하는 Id 포함 하는 'Dance_idlist.txt' 파일을 업로드 합니다. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough006.png)
 
-3. (선택 사항) 경계 상자 경계를 늘리는 등, annotations.json 파일을 편집합니다. 
-4. 1 패스의 출력 자산을 마우스 오른쪽 단추로 클릭하고 Redactor를 선택한 후 **교정** 모드에서 실행합니다. 
+3. (선택 사항) 모든 편집 내용이 toohello annotations.json 파일을 늘리는 등 hello 경계 상자 경계를 확인 합니다. 
+4. Hello 첫 번째 패스에서 hello 출력 자산을 마우스 오른쪽 단추로 클릭 하 고 hello Redactor, 선택 hello를 사용 하 여 실행 **Redact** 모드입니다. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough007.png)
 
-5. 교정된 최종 출력 자산을 다운로드하거나 공유합니다. 
+5. 다운로드 하거나 hello 최종 교정된 출력 자산을 공유 합니다. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough008.png)
 
 ##<a name="azure-media-redactor-visualizer-open-source-tool"></a>Azure Media Redactor Visualizer 오픈 소스 도구
 
-오픈 소스 [Visualizer 도구](https://github.com/Microsoft/azure-media-redactor-visualizer)는 개발자가 주석 형식부터 시작해서 출력을 구문 분석하고 사용할 수 있도록 지원합니다.
+오픈 소스 [시각화 도우미 도구](https://github.com/Microsoft/azure-media-redactor-visualizer) 디자인 된 toohelp 개발자가 구문 분석 한 hello 출력을 사용 하 여 hello 주석 형식으로 시작 됩니다.
 
-리포지토리를 복제한 후에 프로젝트를 실행하기 위해 해당 [공식 사이트](https://ffmpeg.org/download.html)에서 FFMPEG를 다운로드해야 합니다.
+Toodownload FFMPEG 할 순서 toorun hello 프로젝트에서 hello 리포지토리를 복제 한 후에서 자신의 [공식 사이트](https://ffmpeg.org/download.html)합니다.
 
-JSON 주석 데이터를 구문 분석하려는 개발자는 Models.MetaData 내부에서 샘플 코드 예제를 확인합니다.
+샘플 코드 예제에 대 한 JSON 주석 데이터 tooparse hello 시도 개발자 인 경우 Models.MetaData 내부 확인 합니다.
 
-### <a name="set-up-the-tool"></a>도구 설정
+### <a name="set-up-hello-tool"></a>Hello 도구 설정
 
-1.  전체 솔루션을 다운로드하고 빌드합니다. 
+1.  다운로드 하 고 hello 전체 솔루션을 빌드하십시오. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough009.png)
 
 2.  [여기](https://ffmpeg.org/download.html)에서 FFMPEG를 다운로드합니다. 이 프로젝트는 정적 링크가 있는 be1d324(2016-10-04)를 사용하여 개발되었습니다. 
-3.  ffmpeg.exe 및 ffprobe.exe를 AzureMediaRedactor.exe와 동일한 출력 폴더에 복사합니다. 
+3.  Ffmpeg.exe 및 ffprobe.exe toohello 복사 AzureMediaRedactor.exe 동일한 출력 폴더입니다. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough010.png)
 
 4. AzureMediaRedactor.exe를 실행합니다. 
 
-### <a name="use-the-tool"></a>도구 사용
+### <a name="use-hello-tool"></a>Hello 도구 사용
 
-1. 분석 모드에서 Redactor MP를 사용하여 Azure Media Services 계정에서 비디오를 처리합니다. 
-2. 원본 비디오 파일 및 교정 - 분석 작업의 출력을 모두 다운로드합니다. 
-3. Visualizer 응용 프로그램을 실행하고 위의 파일을 선택합니다. 
+1. 분석 모드 hello Redactor MP로 Azure 미디어 서비스 계정에서 비디오를 처리 합니다. 
+2. 원본 비디오 파일 hello와 hello 교정의 hello 출력을 다운로드 하-작업을 분석 합니다. 
+3. Hello 시각화 도우미 응용 프로그램을 실행 하 고 위의 hello 파일을 선택 합니다. 
 
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough011.png)
 
-4. 파일을 미리 봅니다. 오른쪽의 사이드바에서 흐리게 표시하려는 얼굴을 선택합니다. 
+4. 파일을 미리 봅니다. 선택 하면 향하도록 것인지 hello에 hello 사이드바 통해 tooblur 오른쪽 합니다. 
     
     ![얼굴 편집](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough012.png)
 
-5.  아래쪽 텍스트 필드는 얼굴 ID로 업데이트됩니다. 줄 바꿈으로 구분된 이러한 ID 목록으로 "idlist.txt"라는 파일을 만듭니다. 
+5.  hello 아래쪽 텍스트 필드는 hello 글꼴 Id로 업데이트 됩니다. 줄 바꿈으로 구분된 이러한 ID 목록으로 "idlist.txt"라는 파일을 만듭니다. 
 
     >[!NOTE]
-    > idlist.txt는 ANSI로 저장해야 합니다. ANSI로 저장하려면 메모장을 사용할 수 있습니다.
+    > hello idlist.txt은 ANSI에 저장 됩니다. Ansi에서 메모장 toosave를 사용할 수 있습니다.
     
-6.  1단계의 출력 자산에 이 파일을 업로드합니다. 이 자산에도 원본 비디오를 업로드하고 기본 자산으로 설정합니다. 
-7.  "Redact" 모드를 사용하여 이 자산에 대해 교정 작업을 실행하여 교정된 최종 비디오를 얻습니다. 
+6.  1 단계에서이 파일 toohello 출력 자산을 업로드 합니다. Hello 원래 비디오 toothis 자산으로 업로드 하 고 기본 자산으로 설정 합니다. 
+7.  이 자산 "Redact" 모드 tooget hello 최종 교정 비디오 교정 작업을 실행 합니다. 
 
 ## <a name="next-steps"></a>다음 단계 
 

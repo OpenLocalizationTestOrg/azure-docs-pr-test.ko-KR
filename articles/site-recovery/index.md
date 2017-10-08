@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "복제본을 배포하고 관리하여 물리적 서버 및 가상 컴퓨터에 대한 클라우드 재해 복구 및 비즈니스 연속성을 설정하는 방법에 대해 알아봅니다."
+title: "사이트 복구 설명서-자습서, aaaAzure API 참조 | Microsoft Docs"
+description: "자세한 방법을 물리적 서버 및 배포 하 고 복제를 관리 하 여 가상 컴퓨터에 대 한 클라우드 재해 복구 및 비즈니스 연속성을 tooset 합니다."
 services: site-recovery
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 06/05/2017
 ms.author: carolz
-ms.openlocfilehash: ef7a25de4536cfd54331e1bce7d22f351768585c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 08c295488f2e9058922a495ffac24ee96f33fbda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="site-recovery-documentation"></a>Site Recovery 설명서
 
-Site Recovery를 사용하여 비즈니스 연속성 및 재해 복구 전략에 참여하고 가동 중지 시간에도 앱과 워크로드를 사용 가능한 상태로 유지하는 방법에 대해 알아봅니다. 자습서 및 기타 문서에서는 온-프레미스 컴퓨터 및 Azure VM의 복제, 장애 조치(failover) 및 복구를 계획, 배포 및 관리하는 방법을 설명합니다.
+자세한 방법을 toouse 사이트 복구 toocontribute tooyour 비즈니스 연속성 및 재해 복구 전략을 tookeep 앱 및 워크 로드 가동 중지 시간 동안 사용할 수 있습니다. 자습서 및 기타 기사 알려주는 tooplan, 배포 하 고 hello 복제, 장애 조치 및 온-프레미스 컴퓨터와 Azure Vm의 복구를 관리 하는 방법입니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Site Recovery를 사용하여 비즈니스 연속성 및 재해 복구 전략에
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure에 Hyper-V VM 복제 시작(VMM 없음)</h3>
+                        <h3>Hyper-v Vm tooAzure (VMM 없음)의 복제 시작</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Site Recovery를 사용하여 비즈니스 연속성 및 재해 복구 전략에
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure에 VMM 클라우드의 Hyper-V VM 복제 시작</h3>
+                        <h3>VMM 클라우드 tooAzure의 Hyper-v Vm의 복제 시작</h3>
                     </div>
                 </div>
             </div>

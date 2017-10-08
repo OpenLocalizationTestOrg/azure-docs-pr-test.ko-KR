@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL 탄력적인 확장 FAQ | Microsoft Docs"
+title: "SQL 탄력적인 크기 조정 FAQ aaaAzure | Microsoft Docs"
 description: "Azure SQL 데이터베이스의 탄력적인 확장에 대한 질문과 대답을 제공합니다."
 services: sql-database
 documentationcenter: 
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: f0a7b5ce61feaead608d457465f64813737fa112
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8c77902e8ce9cbbc5e081cd9d2c911d4c8dc9e5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="elastic-database-tools-faq"></a>탄력적 데이터베이스 도구 FAQ
-#### <a name="if-i-have-a-single-tenant-per-shard-and-no-sharding-key-how-do-i-populate-the-sharding-key-for-the-schema-info"></a>분할 및 분할 안 함 키당 단일 테넌트가 있는 경우 스키마 정보에 대한 분할 키를 채우려면 어떻게 해야 하나요?
-스키마 정보 개체는 시나리오를 분할 병합하는 데만 사용됩니다. 응용 프로그램이 기본적으로 단일 테넌트인 경우에는 분할 병합 도구가 필요하지 않으므로 스키마 정보 개체를 채울 필요가 없습니다.
+#### <a name="if-i-have-a-single-tenant-per-shard-and-no-sharding-key-how-do-i-populate-hello-sharding-key-for-hello-schema-info"></a>단일 테 넌 트 당 분할 된 데이터베이스 및 분할 키를 있으면 hello 스키마 정보에 대 한 분할 키 hello 어떻게 채울 합니까?
+hello 스키마 정보 개체에만 사용 되는 toosplit 병합 시나리오입니다. 기본적으로 단일-테 넌 트 응용 프로그램을 사용 하는 경우 hello 분할 병합 도구 하지 않아도 하 고 없기 때문에 필요 toopopulate hello 스키마 정보 개체가 없습니다.
 
 #### <a name="ive-provisioned-a-database-and-i-already-have-a-shard-map-manager-how-do-i-register-this-new-database-as-a-shard"></a>데이터베이스를 프로비전했으며 분할된 데이터베이스 맵 관리자가 이미 있습니다. 이 새로운 데이터베이스를 분할로 등록하려면 어떻게 해야 하나요?
-**[탄력적 데이터베이스 클라이언트 라이브러리를 사용하여 응용 프로그램에 분할된 데이터베이스 추가](sql-database-elastic-scale-add-a-shard.md)**를 참조하세요. 
+참조 하십시오  **[hello 탄력적 데이터베이스 클라이언트 라이브러리를 사용 하 여 분할 tooan 응용 프로그램을 추가](sql-database-elastic-scale-add-a-shard.md)**합니다. 
 
 #### <a name="how-much-do-elastic-database-tools-cost"></a>탄력적 데이터베이스 도구의 비용은 얼마인가요?
-탄력적 데이터베이스 클라이언트 라이브러리 사용에는 비용이 발생하지 않습니다. 분할된 데이터베이스 및 분할된 데이터베이스 맵 관리자에 사용하는 Azure SQL 데이터베이스와 분할 병합 도구에 대해 프로비전된 웹/작업자 역할과 관련된 비용만 발생합니다.
+Hello 탄력적 데이터베이스 클라이언트 라이브러리를 사용 하 여 모든 비용 발생 하지 않습니다. 비용은은 hello 분할 병합 도구에 대 한 프로 비전 hello 웹/작업자 역할 뿐만 아니라 분할 영역 및 Shard Map Manager hello에 대 한 사용 하는 hello Azure SQL 데이터베이스에 대해서만 계산 됩니다.
 
 #### <a name="why-are-my-credentials-not-working-when-i-add-a-shard-from-a-different-server"></a>다른 서버에서 분할을 추가할 경우 내 자격 증명이 작동하지 않는 것은 무엇 때문인가요?
-형식의 자격 증명을 사용 하지 않는 "사용자 ID =username@servername", 대신 사용 하 여 "사용자 ID 사용자 이름 =".  또한 "사용자 이름" 로그인에 분할에 대한 권한이 있는지 확인하세요.
+Hello 형태의 자격 증명을 사용 하지 않는 "사용자 ID =username@servername"를 대신 사용 하 여 "사용자 ID 사용자 이름 =".  또한 해당 hello "username" 로그인에 대 한 권한이 hello 분할 해야 합니다.
 
-#### <a name="do-i-need-to-create-a-shard-map-manager-and-populate-shards-every-time-i-start-my-applications"></a>내 응용 프로그램을 시작할 때마다 분할된 데이터베이스 맵 관리자를 만들고 분할을 채워야 하나요?
-아니요, 분할된 데이터베이스 맵 관리자(예: **[ShardMapManagerFactory.CreateSqlShardMapManager](http://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.createsqlshardmapmanager.aspx)**)는 한 번만 만들면 됩니다.  응용 프로그램 시작 시 응용 프로그램에서 **[ShardMapManagerFactory.TryGetSqlShardMapManager()](http://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.trygetsqlshardmapmanager.aspx)** 호출을 사용해야 합니다.  이러한 호출은 응용 프로그램 도메인당 하나만 있어야 합니다.
+#### <a name="do-i-need-toocreate-a-shard-map-manager-and-populate-shards-every-time-i-start-my-applications"></a>Shard Map Manager toocreate 필요 하 고 하는 내 응용 프로그램을 시작할 때마다 분할 영역을 채우는?
+더-hello Shard Map Manager 만들 hello (예를 들어  **[ShardMapManagerFactory.CreateSqlShardMapManager](http://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.createsqlshardmapmanager.aspx)**) 작업은 일회성 작업입니다.  응용 프로그램 hello 호출을 사용 해야  **[ShardMapManagerFactory.TryGetSqlShardMapManager()](http://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.trygetsqlshardmapmanager.aspx)**  응용 프로그램 시작 시.  이러한 호출은 응용 프로그램 도메인당 하나만 있어야 합니다.
 
 #### <a name="i-have-questions-about-using-elastic-database-tools-how-do-i-get-them-answered"></a>탄력적 데이터베이스 도구 사용과 관련된 질문이 있는 경우 답변을 받으려면 어떻게 해야 하나요?
-[Azure SQL 데이터베이스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)에서 문의하세요.
+에 게 연락 하세요 hello에 toous [Azure SQL 데이터베이스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)합니다.
 
-#### <a name="when-i-get-a-database-connection-using-a-sharding-key-i-can-still-query-data-for-other-sharding-keys-on-the-same-shard--is-this-by-design"></a>분할 키를 사용하여 데이터베이스에 연결하는 경우 동일한 분할의 다른 분할 키에 대한 데이터도 쿼리할 수 있습니다.  의도한 동작인가요?
-탄력적인 확장 API는 분할 키에 맞는 데이터베이스 연결을 제공하지만 분할 키 필터링 기능을 제공하지 않습니다.  필요한 경우 쿼리에 **WHERE** 절을 추가하여 범위를 제공된 분할 키로 제한하세요.
+#### <a name="when-i-get-a-database-connection-using-a-sharding-key-i-can-still-query-data-for-other-sharding-keys-on-hello-same-shard--is-this-by-design"></a>분할 키를 사용 하 여 데이터베이스 연결을 받으면 볼 수 있습니다. 여전히 데이터를 쿼리 hello에 다른 분할 키 동일 분할 합니다.  의도한 동작인가요?
+hello 탄력적인 확장 Api 분할 키에 대 한 연결 toohello 올바른 데이터베이스를 제공 하지만 분할 키 필터링을 제공 하지 않습니다.  추가 **여기서** 필요한 경우 절 tooyour 쿼리 toorestrict hello 범위 toohello 분할 키를 제공 합니다.
 
 #### <a name="can-i-use-a-different-azure-database-edition-for-each-shard-in-my-shard-set"></a>내 분할 집합의 각 분할에 대해 다른 Azure 데이터베이스 버전을 사용할 수 있나요?
-예, 분할은 개별 데이터베이스이므로 한 분할은 Premium Edition이고 다른 버전은 Standard Edition일 수 있습니다. 또한 분할 수명 동안 여러 번 분할 버전의 규모가 확장되거나 축소될 수 있습니다.
+예, 분할은 개별 데이터베이스이므로 한 분할은 Premium Edition이고 다른 버전은 Standard Edition일 수 있습니다. 또한 분할 영역이 hello 에디션의 hello 분할의 hello 수명 동안 여러 번 위나 아래로 확장할 수 있습니다.
 
-#### <a name="does-the-split-merge-tool-provision-or-delete-a-database-during-a-split-or-merge-operation"></a>분할 또는 병합 작업 중 분할 병합 도구에서 데이터베이스를 프로비전(또는 삭제)하나요?
-아니요. **분할** 작업의 경우 적절한 스키마를 가진 대상 데이터베이스가 있고 분할된 데이터베이스 맵 관리자에 등록되어 있어야 합니다.  **병합** 작업의 경우 분할된 데이터베이스 맵 관리자에서 분할된 데이터베이스를 삭제한 후 데이터베이스를 삭제해야 합니다.
+#### <a name="does-hello-split-merge-tool-provision-or-delete-a-database-during-a-split-or-merge-operation"></a>가 분할 병합 도구 프로 비전 hello (또는 삭제) 분할 또는 병합 작업 중에 데이터베이스?
+아니요. 에 대 한 **분할** 작업 hello 대상 데이터베이스 hello 적절 한 스키마와 함께 존재 해야 하며 hello Shard Map Manager에 등록 합니다.  에 대 한 **병합** 작업 hello shard map manager에서 hello 분할 된 데이터베이스를 삭제 한 다음 hello 데이터베이스를 삭제 해야 합니다.
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

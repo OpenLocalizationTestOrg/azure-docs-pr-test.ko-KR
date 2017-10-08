@@ -1,6 +1,6 @@
 ---
-title: "샘플 시작"
-description: "Power BI Embedded, SDK를 사용하여 대화형 Power BI 보고서를 비즈니스 인텔리전스 응용 프로그램에 추가"
+title: "aaaGet 샘플을 시작"
+description: "Power BI 포함, SDK tooadd 비즈니스 인텔리전스 응용 프로그램에 대화형 Power BI 보고서를 사용 하 여"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/02/2017
 ms.author: asaxton
-ms.openlocfilehash: c3cb1763f807220a4a829f410d7eb77974b25776
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fef9dd8e0f734b748b930d3f85ad4b517d9661e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-power-bi-embedded-sample"></a>Power BI Embedded 시작 샘플
 
-**Microsoft Power BI Embedded**를 사용하면 Power BI 보고서를 웹 또는 모바일 응용 프로그램에 통합할 수 있습니다. 이 문서에서 **Power BI Embedded** 시작 샘플을 소개합니다.
+**Microsoft Power BI Embedded**를 사용하면 Power BI 보고서를 웹 또는 모바일 응용 프로그램에 통합할 수 있습니다. 이 문서에서는 합니다 소개 toohello **Power BI 포함** get 시작된 샘플.
 
-진행하기 전에 다음 리소스를 저장하려고 할 것입니다. 이렇게 하면 Power BI 보고서를 샘플 앱 및 사용자 앱에 통합할 때도 도움이 됩니다.
+본론, 전에는 다음 리소스 toosave hello를 설치할 좋을 것입니다. 너무 hello 샘플 응용 프로그램 및 앱에 Power BI 보고서 통합 때 도움이 됩니다.
 
 * [샘플 작업 영역 웹앱](http://go.microsoft.com/fwlink/?LinkId=761493)
 * [Power BI Embedded API 참조](https://msdn.microsoft.com/en-US/library/azure/mt711507.aspx)
@@ -33,26 +33,26 @@ ms.lasthandoff: 07/11/2017
 * [JavaScript Report Embed 샘플](https://microsoft.github.io/PowerBI-JavaScript/demo)
 
 > [!NOTE] 
-> Power BI Embedded 시작 샘플을 구성하고 실행하려면 먼저 Azure 구독에 적어도 하나의 **작업 영역 컬렉션** 을 만들어야 합니다. Azure 포털에 **작업 영역 컬렉션** 을 만드는 방법을 알아보려면 [Power BI Embedded 시작](power-bi-embedded-get-started.md)을 참조하세요.
+> Toocreate 하나 이상 실행된 hello Power BI 포함 가져오기 샘플을 시작 및 구성할 수 있습니다, 전에 해야 **작업 영역 컬렉션** Azure 구독에 있습니다. toolearn 어떻게 toocreate는 **작업 영역 컬렉션** hello Azure 포털에서에서 볼 [Power BI embedded 시작](power-bi-embedded-get-started.md)합니다.
 
-## <a name="configure-the-sample-app"></a>샘플 앱 구성
+## <a name="configure-hello-sample-app"></a>Hello 샘플 응용 프로그램 구성
 
-샘플 앱을 실행하는 데 필요한 구성 요소에 액세스할 Visual Studio 개발 환경을 설정하는 방법을 단계적으로 안내합니다.
+Visual Studio 개발 환경 tooaccess hello 구성 요소가 필요한 toorun hello 샘플 앱을 설정 하는 과정을 살펴보겠습니다.
 
-1. [Power BI Embedded - 보고서를 웹앱으로 통합](http://go.microsoft.com/fwlink/?LinkId=761493) 샘플을 GitHub에서 다운로드하여 압축을 해제합니다.
-2. Visual Studio에서 **PowerBI-embedded.sln** 을 엽니다. 이 솔루션에서 사용되는 패키지를 업데이트하려면 NuGET 패키지 관리자 콘솔에서 **Update-Package** 명령을 실행해야 할 수 있습니다.
-3. 솔루션을 빌드하십시오.
-4. **ProvisionSample** 콘솔 앱을 실행합니다. 샘플 콘솔 앱에서 작업 영역을 프로비전하고 PBIX 파일을 가져옵니다.
-5. 새 **작업 영역**을 프로비전하려면 옵션 1 **컬렉션 관리**를 선택한 다음 옵션 6 **새 작업 영역 프로비전**을 선택합니다.
-6. 새 **보고서**를 가져오려면 옵션 2 **관리 보고**를 선택한 다음, 옵션 3 **PBIX 데스크톱 파일을 작업 영역에 가져오기**를 선택합니다.
+1. 다운로드 하 고 hello 압축을 풀면 [Power BI 포함-웹 응용 프로그램에 보고서 통합](http://go.microsoft.com/fwlink/?LinkId=761493) GitHub의 샘플입니다.
+2. Visual Studio에서 **PowerBI-embedded.sln** 을 엽니다. Tooexecute hello 야 **업데이트 패키지** hello이이 솔루션에서 사용 되는 순서 tooupdate hello 패키지에서 NuGET 패키지 관리자 콘솔에서 명령을 합니다.
+3. Hello 솔루션을 빌드하십시오.
+4. Hello 실행 **ProvisionSample** 콘솔 앱입니다. Hello 샘플 콘솔 응용 프로그램에서 작업 영역을 프로 비전 하 고 PBIX 파일을 가져옵니다.
+5. 새 tooprovision **작업 영역**, 1, 옵션을 선택 **컬렉션 관리**, 다음 6 옵션을 선택 하 고 **새 작업 영역을 프로 비전**
+6. 새 tooimport **보고서**, 2, 옵션을 선택 **관리 보고서**, 선택한 후 옵션 3, **가져오기 PBIX 데스크톱 파일을 작업 영역으로**합니다.
 
-7. **작업 영역 컬렉션** 이름 및 **선택키**를 입력합니다. **Azure 포털**에서 이러한 정보를 가져올 수 있습니다. **선택키**를 가져오는 방법에 대해 알아보려면 Microsoft Power BI Embedded 시작의 [Power BI API 선택키 보기](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) 를 참조하세요.
+7. **작업 영역 컬렉션** 이름 및 **선택키**를 입력합니다. Hello에서 얻을 수 있습니다 **Azure 포털**합니다. toolearn 방법에 대 한 자세한 tooget 프로그램 **선택 키**, 참조 [Power BI API 액세스 키 보기](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) 에서 Microsoft Power BI embedded 시작 합니다.
 
     ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
-8. 이 문서의 뒷부분에서 사용할 수 있도록 새로 만든 **작업 영역 ID** 를 복사하여 저장합니다. **작업 영역 ID**는 **Azure Portal**에서 확인할 수 있습니다.
+8. 복사 하 고 새로 만든 hello 저장 **작업 영역 ID** 이 문서의 뒷부분에 나오는 toouse 합니다. Hello 후 **작업 영역 ID** 가 만들어지면를 찾을 수 있습니다 hello **Azure 포털**합니다.
 
     ![](media/powerbi-embedded-get-started-sample/workspace-id.png)
-9. PBIX 파일을 **작업 영역**으로 가져오려면 옵션 **6, 기존 작업 영역**에 PBIX Desktop 파일을 가져옵니다. 사용할 수 있는 PBIX 파일이 없는 경우 [소매점 분석 샘플 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)를 다운로드할 수 있습니다.
+9. tooimport PBIX 파일을으로 프로그램 **작업 영역**, 옵션을 선택 **6입니다. 기존 작업 영역**에 PBIX Desktop 파일을 가져옵니다. Hello를 다운로드할 수 파일 편리한 PBIX를 설정 하지 않은 경우 [소매 분석 샘플 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)합니다.
 10. 메시지가 표시되면 **데이터 집합**의 식별 이름을 입력합니다.
 
 다음과 같은 응답이 표시됩니다.
@@ -63,15 +63,15 @@ Checking import state... Succeeded
 ```
 
 > [!NOTE]
-> PBIX 파일에 직접 쿼리 연결이 포함되어 있는 경우 연결 문자열을 업데이트하도록 옵션 7을 실행합니다.
+> PBIX 파일에 직접 쿼리 연결을 있으면 옵션 7 tooupdate hello 연결 문자열을 실행 합니다.
 
-이제 Power BI PBIX 보고서를 **작업 영역**에 가져왔습니다. 다음으로는 **Power BI Embedded** 시작 샘플 웹앱을 실행하는 방법을 살펴보겠습니다.
+이제 Power BI PBIX 보고서를 **작업 영역**에 가져왔습니다. 이제는 방법에 살펴보겠습니다 toorun hello **Power BI 포함** 시작된 샘플 웹 응용 프로그램을 가져옵니다.
 
-## <a name="run-the-sample-web-app"></a>샘플 웹앱 실행
-웹앱 샘플은 **작업 영역**으로 가져온 보고서를 렌더링하는 샘플 응용 프로그램입니다. 웹앱 샘플을 구성하는 방법은 다음과 같습니다.
+## <a name="run-hello-sample-web-app"></a>Hello 샘플 웹 응용 프로그램 실행
+웹 앱 샘플 hello로 가져올 보고서를 렌더링 하는 샘플 응용 프로그램은 프로그램 **작업 영역**합니다. 어떻게 tooconfigure hello 웹 앱 샘플은 다음과 같습니다.
 
-1. **PowerBI-embedded** Visual Studio 솔루션에서 **EmbedSample** 웹 응용 프로그램을 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트로 설정**을 선택합니다.
-2. **web.config**의 **EmbedSample** 웹 응용 프로그램에서 **appSettings**, 즉 **AccessKey**, **WorkspaceCollection** 이름 및 **WorkspaceId**를 편집합니다.
+1. Hello에 **PowerBI 포함** Visual Studio 솔루션을 오른쪽 클릭 hello **EmbedSample** 웹 응용 프로그램을 선택 하 고 **시작 프로젝트로 설정**합니다.
+2. **web.config**, hello에 **EmbedSample** 웹 응용 프로그램을 편집 hello **appSettings**: **AccessKey**,  **WorkspaceCollection** 이름 및 **WorkspaceId**합니다.
 
     ```
     <appSettings>
@@ -81,28 +81,28 @@ Checking import state... Succeeded
         <add key="powerbi:WorkspaceId" value="" />
     </appSettings>
     ```
-3. **EmbedSample** 웹 응용 프로그램을 실행합니다.
+3. Hello 실행 **EmbedSample** 웹 응용 프로그램입니다.
 
-**EmbedSample** 웹 응용 프로그램을 실행하면 왼쪽 탐색 패널에 **보고서** 메뉴가 포함되어야 합니다. 가져온 보고서를 보려면 **보고서**를 확장하고 보고서를 클릭합니다. [소매 분석 샘플 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)를 가져온 경우 샘플 웹앱이 다음과 같이 보입니다.
+실행 된 hello **EmbedSample** 웹 응용 프로그램에서는 hello 왼쪽된 탐색 패널 있어야는 **보고서** 메뉴. 확장을 가져온 tooview hello 보고서 **보고서**, 보고서를 클릭 합니다. Hello를 가져온 경우 [소매 분석 샘플 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547), hello 샘플 웹 응용 프로그램은 다음과 같습니다.
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-sample-left-nav.png)
 
-보고서를 클릭하면 **EmbedSample** 웹 응용 프로그램이 다음과 같이 표시되어야 합니다.
+보고서를 클릭 한 후 hello **EmbedSample** 웹 응용 프로그램 같아야이:
 
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
-## <a name="explore-the-sample-code"></a>샘플 코드 탐색
+## <a name="explore-hello-sample-code"></a>Hello 샘플 코드 탐색
 
-**Microsoft Power BI Embedded** 샘플은 **Power BI** 보고서를 앱에 통합하는 방법을 보여주는 웹앱의 예입니다. MVC(Model-View-Controller) 디자인 패턴을 사용하여 모범 사례를 보여 줍니다. 이 섹션에서는 **PowerBI-embedded** 웹앱 솔루션 내에서 탐색할 수 있는 샘플 코드 부분을 중점적으로 살펴봅니다. MVC(Model-View-Controller) 패턴은 도메인의 모델링, 프레젠테이션 및 작업을 사용자 입력에 따라 모델, 보기 및 제어의 세 가지 별도 클래스로 구분합니다. MVC에 대한 알아보려면 [ASP.NET에 대해 알아보기](http://www.asp.net/mvc)를 참조하세요.
+hello **Microsoft Power BI Embedded** 샘플 표시 하는 예제 웹 응용 프로그램은 toointegrate **Power BI** 앱에는 보고서입니다. 모델-뷰-컨트롤러 (MVC)을 사용 하 여 패턴 toodemonstrate에 대 한 유용한 정보를 디자인 합니다. 이 섹션에서는 hello 내에서 탐색할 수 있는 hello 샘플 코드의 일부를 요약 **PowerBI 포함** 웹 응용 프로그램 솔루션입니다. hello 모델-뷰-컨트롤러 (MVC) 패턴을 구분 hello 도메인, hello 프레젠테이션 및 세 가지 별도 클래스에 대 한 사용자 입력에 따라 hello 동작의 hello 모델링: 모델, 뷰 및 제어 합니다. MVC에 대해 자세히 toolearn 참조 [ASP.NET에 대 한 자세한 내용은](http://www.asp.net/mvc)합니다.
 
-**Microsoft Power BI Embedded** 샘플 코드는 다음과 같이 구분됩니다. 각 섹션에는 샘플 코드를 쉽게 찾을 수 있도록 PowerBI-embedded.sln 솔루션에 파일 이름이 포함되어 있습니다.
+hello **Microsoft Power BI Embedded** 샘플 코드는 다음과 같이 구분 됩니다. 각 섹션에 hello 파일 이름을 hello PowerBI embedded.sln 솔루션 hello 샘플에서 hello 코드를 쉽게 찾을 수 있도록 합니다.
 
 > [!NOTE]
-> 이 섹션에서는 코드가 작성된 방법을 보여 주는 샘플 코드에 대해 요약합니다. 전체 샘플을 보려면 Visual Studio에서 PowerBI-embedded.sln을 로드하세요.
+> 이 섹션은 요약 hello 코드를 작성 하는 방법을 보여 주는 hello 샘플 코드입니다. 전체 tooview hello 샘플, Visual Studio에서 PowerBI embedded.sln hello 솔루션을 로드 하십시오.
 
 ### <a name="model"></a>모델
 
-이 샘플에는 **ReportsViewModel** 및 **ReportViewModel**이 있습니다.
+hello 샘플에는 **ReportsViewModel** 및 **ReportViewModel**합니다.
 
 **ReportsViewModel.cs**: 여러 Power BI 보고서를 나타냅니다.
 
@@ -122,7 +122,7 @@ Checking import state... Succeeded
 
 ### <a name="connection-string"></a>연결 문자열
 
-연결 문자열은 다음 형식이어야 합니다.
+형식에 따라 hello hello 연결 문자열 이어야 합니다.
 
 ```
 Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
@@ -132,14 +132,14 @@ Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
 
 ### <a name="view"></a>보기
 
-**보기**를 통해 여러 Power BI **보고서** 및 하나의 Power BI **보고서** 표시를 관리합니다.
+hello **보기** Power BI의 hello 표시를 관리 **보고서** 및 Power BI **보고서**합니다.
 
-**Reports.cshtml**: **Model.Reports**를 반복하여 **ActionLink**를 만듭니다. **ActionLink**는 다음과 같이 구성됩니다.
+**Reports.cshtml**: 반복 **Model.Reports** toocreate는 **ActionLink**합니다. hello **ActionLink** 다음과 같이 구성 됩니다.
 
 | 부 | 설명 |
 | --- | --- |
-| 제목 |보고서의 이름입니다. |
-| QueryString |보고서 ID에 대한 링크입니다. |
+| 제목 |Hello 보고서의 이름입니다. |
+| QueryString |링크 toohello 보고서 id입니다. |
 
     <div id="reports-nav" class="panel-collapse collapse">
         <div class="panel-body">
@@ -155,7 +155,7 @@ Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
         </div>
     </div>
 
-Report.cshtml: **Model.AccessToken** 및 **PowerBIReportFor**에 대한 람다 식을 설정합니다.
+Report.cshtml: hello 설정 **Model.AccessToken**, 람다 식에 대 한 hello 및 **PowerBIReportFor**합니다.
 
     @model ReportViewModel
 
@@ -168,7 +168,7 @@ Report.cshtml: **Model.AccessToken** 및 **PowerBIReportFor**에 대한 람다 �
 
 ### <a name="controller"></a>Controller
 
-**DashboardController.cs**: **앱 토큰**을 전달하는 PowerBIClient를 만듭니다. **자격 증명**을 가져오기 위해 **서명 키**에서 JWT(JSON Web Token)가 생성됩니다. **자격 증명**은 **PowerBIClient** 인스턴스를 만드는 데 사용됩니다. **PowerBIClient** 인스턴스가 작성되면 GetReports() 및 GetReportsAsync()를 호출할 수 있습니다.
+**DashboardController.cs**: **앱 토큰**을 전달하는 PowerBIClient를 만듭니다. JSON 웹 토큰 (JWT) hello에서 만들어집니다. **서명 키** tooget hello **자격 증명**합니다. hello **자격 증명** 사용된 toocreate의 인스턴스는 **PowerBIClient**합니다. **PowerBIClient** 인스턴스가 작성되면 GetReports() 및 GetReportsAsync()를 호출할 수 있습니다.
 
 CreatePowerBIClient()
 
@@ -223,13 +223,13 @@ ActionResult Reports()
 
 ### <a name="integrate-a-report-into-your-app"></a>앱에 보고서 통합
 
-**보고서**를 만든 후에는 **IFrame**을 사용하여 Power BI **보고서**를 포함합니다. 다음은 **Microsoft Power BI Embedded** 샘플 내 powerbi.js의 코드 조각입니다.
+있으면는 **보고서**를 사용 하면 프로그램 **IFrame** tooembed hello Power BI **보고서**합니다. 다음은 hello에 powerbi.js에서 코드 조각 **Microsoft Power BI Embedded** 샘플.
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-iframe-code.png)
 
 ## <a name="filter-reports-embedded-in-your-application"></a>응용 프로그램에 포함된 보고서 필터링
 
-URL 구문을 사용하여 포함된 보고서를 필터링할 수 있습니다. 이렇게 하려면 지정된 필터를 사용하여 **eq** 연산자가 포함된 **$filter** 쿼리 문자열 매개 변수를 iFrame src url에 추가합니다. 필터 쿼리 구문은 다음과 같습니다.
+URL 구문을 사용하여 포함된 보고서를 필터링할 수 있습니다. toodo이를 추가 하면 한 **$filter** 쿼리 문자열 매개 변수가 있는 **eq** 연산자 tooyour iFrame src url과 hello 필터를 지정 합니다. Hello 필터 쿼리 구문은 다음과 같습니다.
 
 ```
 https://app.powerbi.com/reportEmbed
@@ -238,7 +238,7 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ```
 
 > [!NOTE]
-> {tableName/fieldName}은(는) 공백이나 특수 문자를 포함할 수 없습니다. {fieldValue}은(는) 단일 범주 값을 허용합니다.  
+> {tableName/fieldName}은(는) 공백이나 특수 문자를 포함할 수 없습니다. hello {fieldValue}에 하나의 범주 값을 허용합니다.  
 
 ## <a name="see-also"></a>참고 항목
 
@@ -248,4 +248,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 [데이터 집합에서 새 보고서 만들기](power-bi-embedded-create-report-from-dataset.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [JavaScript Embed 샘플](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-궁금한 점이 더 있나요? [Power BI 커뮤니티를 이용하세요.](http://community.powerbi.com/)
+궁금한 점이 더 있나요? [Power BI 커뮤니티 hello를 시도 하십시오.](http://community.powerbi.com/)

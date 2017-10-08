@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement Android SDK 통합"
+title: "Mobile Engagement Android SDK 통합 aaaAzure"
 description: "Azure Mobile Engagement용 Android SDK의 최신 업데이트 및 절차"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,23 +14,23 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1f047f93fa8bc852b28c86e91d0c007a94fb4299
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: df5c82812fe0a242eaa5df8c906030237215b7eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upgrade-procedures"></a>업그레이드 절차
-이전 버전의 SDK를 응용 프로그램에 이미 통합한 경우에는 SDK를 업그레이드할 때 다음 사항을 고려해야 합니다.
+통합 한 경우 이미이 SDK의 이전 버전 응용 프로그램으로, tooconsider hello hello SDK로 업그레이드 하는 경우 지점 뒤에 있어야 합니다.
 
-여러 SDK 버전을 건너뛴 경우에는 여러 절차를 수행해야 할 수 있습니다. 예를 들어 1.4.0에서 1.6.0으로 마이그레이션하는 경우 먼저 "1.4.0에서 1.5.0으로" 절차를 따른 다음 "1.5.0에서 1.6.0으로" 절차를 따라야 합니다.
+여러 버전의 SDK hello 누락 하는 경우 몇 가지 절차 toofollow 있을 수 있습니다. 예를 들어 1.4.0에서 마이그레이션하는 경우 toofirst hello를 따라 있는 too1.6.0 "1.4.0에서 too1.5.0" 프로시저 다음 hello "1.5.0가에서 too1.6.0" 프로시저입니다.
 
-업그레이드를 수행하려는 소스 버전이 무엇이든, `mobile-engagement-VERSION.jar` 을 새로운 파일로 바꾸세요.
+에서 업그레이드 하는 hello 버전과 상관 없이 해야 tooreplace hello `mobile-engagement-VERSION.jar` 새 hello로 합니다.
 
-## <a name="from-420-to-421"></a>4.2.0 ~ 4.2.1
-이 단계는 실제로 모든 버전의 SDK에서 실행할 수 있으며 도달률 활동을 통합할 때 보안을 강화합니다.
+## <a name="from-420-too421"></a>4.2.0에서 too4.2.1
+실제로 hello SDK의 모든 버전에이 단계를 수행할 수에 보안 향상 Reach 활동을 통합 합니다.
 
-이제 모든 도달률 활동에 `exported="false"` 을(를) 추가해야 합니다.
+이제 추가할지를 묻는 `exported="false"` tooall Reach 활동입니다.
 
 도달률 활동은 이제 사용자의 `AndroidManifest.xml`에서 다음과 같이 나타납니다.
 
@@ -61,13 +61,13 @@ ms.lasthandoff: 07/11/2017
               </intent-filter>
             </activity>
 
-## <a name="from-400-to-410"></a>4.0.0에서 4.1.0으로
-이제 SDK가 Android M에서 새 권한 모델을 다룹니다.
+## <a name="from-400-too410"></a>4.0.0에서 too4.1.0
+hello SDK 지금 핸들 새 사용 권한 모델 Android M에서입니다.
 
 위치 기능 또는 큰 그림 알림을 사용하는 경우 [이 섹션](mobile-engagement-android-integrate-engagement.md#android-m-permissions)을 읽으세요.
 
-새 권한 모델 외에도 이제 런타임 시 위치 기능 구성을 지원합니다.
-위치에 대한 매니페스트 매개 변수와 계속 호환 가능하지만 더 이상 사용할 수 없습니다. 런타임 구성을 사용하려면 ``AndroidManifest.xml``에서 다음 섹션을 제거합니다.
+또한 새 사용 권한 모델 toohello 이제 지원 런타임에 위치 기능을 구성 합니다.
+म hello 매니페스트 매개 변수 위치에 대 한 여전히 호환 되지만 이제 사용 되지 않습니다. toouse 런타임 구성 제거 hello 다음 섹션에서 프로그램 ``AndroidManifest.xml``:
 
     <meta-data
       android:name="engagement:locationReport:lazyArea"
@@ -82,11 +82,11 @@ ms.lasthandoff: 07/11/2017
       android:name="engagement:locationReport:realTime:fine"
       android:value="true"/>
 
-대신 런타임 구성을 사용하려면 [이 업데이트된 절차](mobile-engagement-android-integrate-engagement.md#location-reporting) 를 확인합니다.
+읽을 [프로시저 업데이트](mobile-engagement-android-integrate-engagement.md#location-reporting) toouse 런타임 구성 대신 합니다.
 
-## <a name="from-300-to-400"></a>3.0.0에서 4.0.0으로
+## <a name="from-300-too400"></a>3.0.0에서 too4.0.0
 ### <a name="native-push"></a>네이티브 푸시
-네이티브 푸시(GCM/ADM)가 이제 앱 알림에도 사용되므로 모든 푸시 캠페인 유형에 대한 네이티브 푸시 자격 증명을 구성해야 합니다.
+네이티브 푸시 GCM/ADM ()는 이제에 사용 앱 알림에서 때문에 모든 유형의 푸시 캠페인에 대 한 hello 네이티브 푸시 자격 증명을 구성 해야 합니다.
 
 아직 하지 않았다면 [이 절차](mobile-engagement-android-integrate-engagement-reach.md#native-push)를 따르세요.
 
@@ -130,7 +130,7 @@ ms.lasthandoff: 07/11/2017
     </receiver>
 
 이제 공지(텍스트/웹 콘텐츠 포함) 또는 설문 조사를 클릭할 때 로딩 화면이 있을 수 있습니다.
-해당 캠페인이 4.0.0에서 작동하려면 이를 추가해야 합니다.
+에 tooadd이 해당 캠페인 toowork 4.0.0에 대 한
 
     <activity
       android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity"
@@ -142,13 +142,13 @@ ms.lasthandoff: 07/11/2017
     </activity>
 
 ### <a name="resources"></a>리소스
-새 `res/layout/engagement_loading.xml` 파일을 프로젝트에 포함합니다.
+새 hello 포함 `res/layout/engagement_loading.xml` 하 여 프로젝트에는 파일입니다.
 
-## <a name="from-240-to-300"></a>2.4.0에서 3.0.0으로 마이그레이션
-아래에서는 SDK 통합을 Capptain SAS 제공 Capptain 서비스에서 Azure Mobile Engagement 구동 앱으로 마이그레이션하는 방법을 설명합니다. 이전 버전에서 마이그레이션하는 경우 Capptain 웹 사이트를 참조하여 먼저 2.4.0으로 마이그레이션한 후 다음 절차를 적용하세요.
+## <a name="from-240-too300"></a>2.4.0에서 too3.0.0
+hello 다음 설명 방법을 toomigrate SDK 통합 hello Capptain 서비스에서에서 제공한 Capptain SAS Azure Mobile Engagement에서 제공 하는 응용 프로그램에 합니다. 이전 버전에서 마이그레이션하려는 경우 먼저 hello Capptain 웹 사이트 toomigrate too2.4.0를 참조 하십시오 고 절차를 수행 하는 hello를 적용 합니다.
 
 > [!IMPORTANT]
-> Capptain과 Mobile Engagement는 같은 서비스가 아니며, 아래에서 제공하는 절차에서는 클라이언트 앱을 마이그레이션하는 방법만 중점적으로 설명합니다. 앱에서 SDK를 마이그레이션해도 데이터가 Capptain 서버에서 Mobile Engagement 서버로 마이그레이션되지는 않습니다.
+> Capptain Mobile Engagement 하지 hello 같은 서비스 및 highlights만 아래 어떻게 toomigrate hello 클라이언트 응용 프로그램에 주어진 프로시저 hello 합니다. Hello 앱에 마이그레이션 hello SDK hello Capptain 서버 toohello Mobile Engagement 서버에서 데이터를 마이그레이션하지 않습니다.
 > 
 > 
 
@@ -156,42 +156,42 @@ ms.lasthandoff: 07/11/2017
 `libs` 폴더에서 `capptain.jar`을(를) `mobile-engagement-VERSION.jar`로 바꿉니다.
 
 ### <a name="resource-files"></a>리소스 파일
-제공하는 모든 리소스 파일(`capptain_`이(가) 접두사로 지정됨)을 새 파일(`engagement_`이(가) 접두사로 지정됨)로 바꿔야 합니다.
+제공 하는 모든 리소스 파일 (접두사로 `capptain_`) hello 새로 toobe 대체가 (접두사로 `engagement_`).
 
-해당 파일을 사용자 지정한 경우 새 파일에 대해 모든 사용자 지정 내용을 다시 적용해야 하며, **리소스 파일의 모든 식별자 이름이 바뀝니다**.
+Toore 해야 해당 파일을 사용자 지정한 경우-hello 새 파일에서 사용자 지정을 적용 **hello 리소스 파일의 모든 hello 식별자 이름이 바뀐**합니다.
 
 ### <a name="application-id"></a>응용 프로그램 UI
-이제 Engagement에서 연결 문자열을 사용하여 응용 프로그램 식별자와 같은 SDK 식별자를 구성합니다.
+이제 Engagement hello 응용 프로그램 식별자와 같은 연결 문자열 tooconfigure hello SDK 식별자를 사용합니다.
 
-다음과 같은 시작 관리자 작업에서 `EngagementAgent.init` 메서드를 사용해야 합니다.
+Toouse 있는 `EngagementAgent.init` 에서 다음과 같이 시작 관리자 활동이 메서드:
 
             EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
             engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-응용 프로그램의 연결 문자열은 Azure 포털에 표시됩니다.
+응용 프로그램에 대 한 연결 문자열 hello Azure 포털에 표시 됩니다.
 
-`EngagementAgent.init`이(가) 해당 메서드를 대체하므로, `CapptainAgent.configure`에 대한 모든 호출을 제거하세요.
+너무 대 한 모든 호출을 제거 하십시오`CapptainAgent.configure` 으로 `EngagementAgent.init` 해당 메서드를 대체 합니다.
 
-`appId`은(는) 더 이상 `AndroidManifest.xml`을(를) 사용하여 구성할 수 없습니다.
+hello `appId` 더 이상 사용 하 여 구성할 수 `AndroidManifest.xml`합니다.
 
 다음 섹션이 있는 경우 `AndroidManifest.xml`에서 이 섹션을 제거하세요.
 
             <meta-data android:name="capptain:appId" android:value="<YOUR_APPID>"/>
 
 ### <a name="java-api"></a>Java API
-SDK의 모든 Java 클래스를 호출할 때마다 이름을 바꿔야 합니다. 예를 들어 `CapptainAgent.getInstance(this)`의 이름은 `EngagementAgent.getInstance(this)`(으)로 바꿔야 하고, `extends CapptainActivity`의 이름은 `extends EngagementActivity`(으)로 바꿔야 하는 식입니다.
+모든 호출 tooany 우리의 SDK의 Java 클래스의 이름을 바꿀 toobe에 예를 들어 `CapptainAgent.getInstance(this)` 바꿔야 `EngagementAgent.getInstance(this)`, `extends CapptainActivity` 바꿔야 `extends EngagementActivity` 등...
 
-기본 에이전트 기본 설정 파일과 통합된 경우 기본 파일 이름은 이제 `engagement.agent`이고 키는 `engagement:agent`입니다.
+기본 에이전트 기본 설정 파일에 통합 된 경우 hello 기본 파일 이름은 아닌 `engagement.agent` 되며 hello 키 `engagement:agent`합니다.
 
-웹 공지를 만들 때 Javascript 바인더는 이제 `engagementReachContent`입니다.
+웹 공지를 만들 때는 hello Javascript 바인더는 이제 `engagementReachContent`합니다.
 
 ### <a name="androidmanifestxml"></a>AndroidManifest.xml
-많은 변경이 발생했으며, 서비스가 더 이상 공유되지 않고 많은 수신기를 더 이상 탐색할 수 없습니다.
+많이 변경 내용이 있습니다, hello 서비스는 더 이상 공유 되지 않습니다 및 수신자의 많은 더 이상 내보낼 수 없습니다.
 
-서비스 선언은 더욱 간단합니다. 의도 필터 및 그 안의 모든 메타데이터를 제거한 다음 `exportable=false`을(를) 추가합니다.
+hello 서비스 선언을 올바르게 간단 합니다. hello 의도 필터와, 그 안의 모든 메타 데이터를 제거 하 고 추가 `exportable=false`합니다.
 
-또한 모든 항목이 Engagement를 사용하도록 이름이 바뀝니다.
+또한 이름이 바뀐된 toouse engagement는 모두.
 
 이제 다음과 같습니다.
 
@@ -201,7 +201,7 @@ SDK의 모든 Java 클래스를 호출할 때마다 이름을 바꿔야 합니�
               android:label="<Your application name>Service"
               android:process=":Engagement"/>
 
-테스트 로그를 활성화하려는 경우 이제 meta-data가 응용 프로그램 태그로 이동되었고 다음과 같이 이름이 바뀌었습니다.
+이제 hello 메타 데이터 되었습니다 tooenable 테스트 로그에 하려는 경우 toohello 응용 프로그램 태그를 이동 하 고 이름이 변경 되었습니다.
 
             <application>
 
@@ -211,7 +211,7 @@ SDK의 모든 Java 클래스를 호출할 때마다 이름을 바꿔야 합니�
 
             </application>
 
-모든 다른 meta-data 이름이 바뀌었으며 전체 목록은 다음과 같습니다(이름 바꾸기에서는 사용자가 사용하는 이름만 사용함).
+모든 다른 메타 데이터의 이름이 변경 되었습니다 방금, (물론 이름 바꾸기만 hello 구성 사용 하면) hello 전체 목록은 다음과 같습니다.
 
             <meta-data
               android:name="engagement:reportCrash"
@@ -259,7 +259,7 @@ SDK의 모든 Java 클래스를 호출할 때마다 이름을 바꿔야 합니�
                 android:value="false"/>
             </activity>
 
-Google Play 및 SmartAd 추적이 SDK에서 제거되었습니다. 대체하지 않고 이 부분을 제거하기만 하면 됩니다.
+Google Play 및 SmartAd 추적 없어졌습니다. SDK에서 하기만 하면 tooremove이 대체 하지 않고:
 
             <meta-data 
                 android:name="capptain:track:installReferrerForwardList"
@@ -268,7 +268,7 @@ Google Play 및 SmartAd 추적이 SDK에서 제거되었습니다. 대체하지 
                 android:name="capptain:track:adservers"
                 android:value="smartad" />
 
-도달률 활동은 이제 다음과 같이 선언됩니다.
+hello Reach 활동은 이제 다음과 같이 선언 됩니다.
 
             <activity
               android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"
@@ -297,9 +297,9 @@ Google Play 및 SmartAd 추적이 SDK에서 제거되었습니다. 대체하지 
               </intent-filter>
             </activity>
 
-사용자 지정 도달률 활동이 있는 경우 `com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT` 또는 `com.microsoft.azure.engagement.reach.intent.action.POLL`와(과) 일치하도록 의도 작업을 변경하기만 하면 됩니다.
+유일한 toochange hello 의도 작업 toomatch 하거나 필요한 사용자 지정 범위 활동을 설정한 경우 `com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT` 또는 `com.microsoft.azure.engagement.reach.intent.action.POLL`합니다.
 
-브로드캐스트 수신기 이름이 바뀌었으며, 이제 `exported=false`을(를) 추가합니다. 새 사양이 포함된 수신기의 전체 목록은 다음과 같습니다(이름 바꾸기에서는 사용자가 사용하는 이름만 사용함).
+hello 브로드캐스트 수신기 이름이 바뀐 플러스 이제 추가 `exported=false`합니다. Hello (물론 이름 바꾸기만 hello 구성 사용 하면) hello 새 사양으로 hello 수신자의 전체 목록은 다음과 같습니다.
 
             <receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachReceiver"
               android:exported="false">
@@ -378,7 +378,7 @@ Google Play 및 SmartAd 추적이 SDK에서 제거되었습니다. 대체하지 
               </intent-filter>
             </receiver>
 
-추적 수신기가 제거되었으므로, 이 섹션을 제거해야 합니다.
+추적 수신기 제거 되어, tooremove이이 섹션이 있습니다.
 
           <receiver android:name="com.ubikod.capptain.android.sdk.track.CapptainTrackReceiver">
             <intent-filter>
@@ -387,7 +387,7 @@ Google Play 및 SmartAd 추적이 SDK에서 제거되었습니다. 대체하지 
             </intent-filter>
           </receiver>
 
-브로드캐스트 수신기의 구현 선언 **EngagementMessageReceiver**가 `AndroidManifest.xml`에서 변경되었습니다. 즉, XMPP 엔터티 및 API에서 임의의 XMPP 보내고 제거하는 API와 장치 간의 메시지를 주고받는 API가 제거되었기 때문입니다. 따라서 **EngagementMessageReceiver** 구현에서 다음 콜백을 삭제해야 합니다.
+Hello hello의 구현 선언 수신기를 브로드캐스팅하 참고 **EngagementMessageReceiver** hello에서 변경 되었습니다. `AndroidManifest.xml`합니다. 임의 XMPP 임의의 XMPP 엔터티에서 메시지 hello API toosend 및 제거 하기 때문에이 API toosend hello 및 장치 간에 메시지 송수신 제거 되었습니다. 따라서 있는 또한 toodelete hello에서 콜백을 다음 프로그램 **EngagementMessageReceiver** 구현:
 
             protected void onDeviceMessageReceived(android.content.Context context, java.lang.String deviceId, java.lang.String payload)
 
@@ -404,7 +404,7 @@ and
             sendXMPPMessage(android.os.Bundle msg)
 
 ### <a name="proguard"></a>Proguard
-Proguard 구성은 브랜드 재지정의 영향을 받을 수 있으며, 규칙은 이제 다음과 같습니다.
+Proguard 구성 방법, 규칙은 이제와 같은 계획 hello 영향을 받을 수 있습니다.
 
             -dontwarn android.**
             -keep class android.support.v4.** { *; }

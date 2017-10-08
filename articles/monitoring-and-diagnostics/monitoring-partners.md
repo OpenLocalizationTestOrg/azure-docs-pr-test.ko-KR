@@ -1,5 +1,5 @@
 ---
-title: "Azure Monitor 파트너 통합 | Microsoft Docs"
+title: "aaaAzure 모니터 파트너 통합 | Microsoft Docs"
 description: "Azure Monitor의 파트너와, 파트너 통합을 위한 설명서에 액세스하는 방법을 살펴봅니다."
 author: johnkemnetz
 manager: orenr
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/16/2017
 ms.author: johnkem
-ms.openlocfilehash: 46b6ec12655b64b8fce6e103d5d71a4e8021890e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: df3af300bff702c49b1ce66216bc44670ac11938
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-partner-integrations"></a>Azure Monitor 파트너 통합
 | 파트너 |  |  |
@@ -30,83 +30,83 @@ ms.lasthandoff: 08/18/2017
 | [![Partner Logo][sciencelogic-logo]<br/>**ScienceLogic**][sciencelogic-anchor] | [![Partner Logo][splunk-logo]<br/>**Splunk**][splunk-anchor] | [![Partner Logo][sumologic-logo]<br/>**Sumo Logic**][sumologic-anchor] | |
 
 ## <a name="alertlogic-log-manager"></a>AlertLogic Log Manager
-Alert Logic Log Manager는 보안 분석 및 보존을 위해 Azure Monitor API를 통한 Azure Activity Log를 포함하여 VM, 응용 프로그램 및 Azure 플랫폼 로그를 수집합니다.  이 정보는 부정 행위를 탐지하고 규정 준수 요구 사항에 부합하는 데 사용됩니다.
+경고 논리 로그 관리자 보안 분석 및 hello Azure 모니터 API를 통해 hello Azure 활동 로그를 포함 하 여 보존에 대 한 VM을 Azure 플랫폼 로그를 수집 합니다.  이 정보는 사용 되는 toodetect 만날 수 있으며 malfeasance 규정 준수 요구 사항입니다.
 
-[설명서로 이동합니다.][alertlogic-doc]
+[Toohello 설명서를 이동 합니다.][alertlogic-doc]
 
 ## <a name="appdynamics"></a>AppDynamics
-AppDynamics APM(Application Performance Management)을 사용하면 응용 프로그램 소유자가 성능 병목 문제를 신속히 해결하고 Azure 환경에서 실행되는 응용 프로그램의 성능을 최적화할 수 있습니다. AppDynamics APM은 Azure Marketplace와 자연스럽게 통합되며 Azure Cloud Service(PaaS, 웹 및 작업자 역할 포함), 가상 컴퓨터(IaaS), 원격 서비스 탐지(Microsoft Azure Service Bus), Microsoft Azure Queue Microsoft Azure Remote Services(Azure Blob), Azure Queue (Microsoft Service Bus), 데이터 저장소, Microsoft Azure Blob Storage 모니터링에 사용할 수 있습니다.
+AppDynamics 응용 프로그램 성능 관리 (APM) 사용 하면 응용 프로그램 소유자 toorapidly 성능 병목 상태 문제를 해결 하 고 Azure 환경에서 실행 중인 응용 프로그램 성능을 hello를 최적화 합니다. AppDynamics APM은 Azure Marketplace와 자연스럽게 통합되며 Azure Cloud Service(PaaS, 웹 및 작업자 역할 포함), 가상 컴퓨터(IaaS), 원격 서비스 탐지(Microsoft Azure Service Bus), Microsoft Azure Queue Microsoft Azure Remote Services(Azure Blob), Azure Queue (Microsoft Service Bus), 데이터 저장소, Microsoft Azure Blob Storage 모니터링에 사용할 수 있습니다.
 
-[설명서로 이동합니다.][appdynamics-doc]
+[Toohello 설명서를 이동 합니다.][appdynamics-doc]
 
 ## <a name="atlassian-jira"></a>Atlassian JIRA
 Azure Monitor 경고에 JIRA 티켓을 만들 수 있습니다.
 
-[설명서로 이동합니다.][atlassian-doc]
+[Toohello 설명서를 이동 합니다.][atlassian-doc]
 
 ## <a name="circonus"></a>Circonus
-Circonus는 온-프레미스 또는 SaaS 배포용으로 빌드된 마이크로 서비스 모니터링 및 분석 플랫폼입니다. 완전히 자동화 가능한 API 중심 플랫폼은 모니터링하는 시스템에 비해 더 확장 가능하고 안정적입니다. DevOps의 요구 사항에 대해 개발된 Circonus는 비즈니스 최적화를 사용할 수 있는 백분위수 기반 경고, 그래프, 대시보드 및 Machine Learning 인텔리전스를 제공합니다. Circonus는 Microsoft Azure 클라우드 리소스 및 해당 응용 프로그램을 실시간으로 모니터링합니다. Circonus를 사용하여 리소스 및 응용 프로그램에서 측정하려는 변수에 대해 메트릭을 수집하고 추적할 수 있습니다. Circonus를 사용하면 Azure의 리소스 사용률, 응용 프로그램 성능 및 작동 상태를 시스템 수준에서 표시할 수 있습니다.
+Circonus는 온-프레미스 또는 SaaS 배포용으로 빌드된 마이크로 서비스 모니터링 및 분석 플랫폼입니다. 완전히 자동화 가능한 API 중심 플랫폼은 모니터링하는 시스템에 비해 더 확장 가능하고 안정적입니다. DevOps의 hello 요구 사항에 대 한 개발 된 Circonus 백분위 수 기반 경고, 그래프, 대시보드 및 비즈니스 최적화를 사용할 수 있는 기계 학습 인텔리전스를 제공 합니다. Circonus는 Microsoft Azure 클라우드 리소스 및 해당 응용 프로그램을 실시간으로 모니터링합니다. Circonus toocollect 및 트랙 메트릭을 사용할 수 있습니다 hello 변수에 대 한 원하는 toomeasure 리소스 및 응용 프로그램에 대 한 합니다. Circonus를 사용하면 Azure의 리소스 사용률, 응용 프로그램 성능 및 작동 상태를 시스템 수준에서 표시할 수 있습니다.
 
-[설명서로 이동합니다.][circonus-doc]
+[Toohello 설명서를 이동 합니다.][circonus-doc]
 
 ## <a name="cloudhealth"></a>CloudHealth
-상당한 시간과 비용을 절감하도록 빌드된 플랫폼을 사용하여 클라우드를 통합하고 자동화합니다. 탁월한 가시성, 직관적인 최적화 및 견고한 관리 사례를 통해 CloudHealth는 클라우드 관리를 재정의하고 있습니다. Cloudhealth 플랫폼을 사용하면 엔터프라이즈 및 MSP가 클라우드 투자에 따른 수익을 최대화하고 비용, 사용량, 성능 및 보안과 관련하여 확고한 결정을 내릴 수 있습니다.
+통합 하 고는 기본 제공 플랫폼 toosave 심각한 시간과 비용으로 클라우드를 자동화 합니다. 탁월한 가시성, 직관적인 최적화 및 견고한 관리 사례를 통해 CloudHealth는 클라우드 관리를 재정의하고 있습니다. hello Cloudhealth 플랫폼 통해 기업은 및 Msp toomaximize 클라우드 투자 수익률을 비용, 사용, 성능 및 보안 주위 확신 결정을 내립니다.
 
 [자세히 알아보세요.][cloudhealth-doc]
 
 ## <a name="cloudmonix"></a>CloudMonix
 CloudMonix는 Microsoft Azure 플랫폼을 위한 모니터링, 자동화 및 자동 복구 서비스를 제공합니다.
 
-[설명서로 이동합니다.][cloudmonix-doc]
+[Toohello 설명서를 이동 합니다.][cloudmonix-doc]
 
 ## <a name="cloudyn"></a>Cloudyn
-Cloudyn은 기업이 클라우드 기능을 완전히 구현할 수 있도록 다중 플랫폼 하이브리드 클라우드 배포를 관리 및 최적화합니다. SaaS 솔루션은 Insights와 함께 사용, 성능 및 비용에 대한 정보와, 스마트한 최적화와 클라우드 관리를 위해 조치 가능한 권장 사항을 제공합니다. Cloudyn을 사용하면 정확한 비용 청구와 계층적 비용 할당 관리를 통해 책임을 밝힐 수 있습니다. Cloudyn은 Azure 배포 최적화를 위한 정보 및 조치 가능한 권장 사항을 제공하기 위해 Azure Monitoring과 통합됩니다.
+Cloudyn 관리 하 고 최적화 하는 다중 플랫폼, 하이브리드 클라우드 배포 toohelp 기업 자신의 클라우드 잠재력을 실제로 완벽 하 게 합니다. hello SaaS 솔루션은 사용, 성능 및 비용, 정보 및 권장 스마트 최적화 및 클라우드 관리를 위해 연결 하 여에 대 한 가시성을 제공 합니다. Cloudyn을 사용하면 정확한 비용 청구와 계층적 비용 할당 관리를 통해 책임을 밝힐 수 있습니다. Cloudyn에 통합 된 Azure 모니터링 순서 tooprovide insights 및에서 권장 순서 toooptimize Azure 배포 합니다.
 
-[설명서로 이동합니다.][cloudyn-doc]
+[Toohello 설명서를 이동 합니다.][cloudyn-doc]
 
 ## <a name="datadog"></a>Datadog
-Datadog는 클라우드급 응용 프로그램을 위한 세계 선두의 모니터링 서비스로, 서버, 데이터베이스, 도구 및 서비스의 데이터를 하나로 모아 전체 스택에 대한 통합된 뷰를 제시합니다. 이 기능은 SaaS 기반 데이터 분석 플랫폼에서 제공되므로 개발 및 운영 팀이 협업하여 중단 시간을 방지하고, 성능 문제를 해결하며, 개발 및 개발 주기가 제 때에 끝날 수 있게 할 수 있습니다. Datadog와 Azure를 통합하면 전체 인프라에서 메트릭을 수집 및 파악하고, VM 메트릭과 응용 프로그램 수준 메트릭을 상관하며, 속성 및 사용자 지정 태그의 조합을 통해 메트릭을 상세 분석할 수 있습니다.
+Datadog는 클라우드 규모의 응용 프로그램에 대 한 서비스를 모니터링 하는 hello world 선행 서버, 데이터베이스, 도구에서 데이터를 함께 가져오기 및 toopresent 전체 스택의 통합된 뷰를 서비스 합니다. 이러한 기능 및 제공 되 공동 개발 및 Ops 팀 toowork 수 있도록 하는 SaaS 기반 데이터 분석 플랫폼에서 tooavoid 가동 중지 시간, 성능 문제를 해결 하 고는 개발에 확인 배포 사이클 시간 내에 완료 합니다. Datadog와 Azure를 통합하면 전체 인프라에서 메트릭을 수집 및 파악하고, VM 메트릭과 응용 프로그램 수준 메트릭을 상관하며, 속성 및 사용자 지정 태그의 조합을 통해 메트릭을 상세 분석할 수 있습니다.
 
-[설명서로 이동합니다.][datadog-doc]
+[Toohello 설명서를 이동 합니다.][datadog-doc]
 
 ## <a name="dynatrace"></a>Dynatrace
-Dynatrace OneAgent는 Azure 확장 메커니즘을 통해 Azure VM 및 App Services와 통합됩니다. 이러한 방식으로 Dynatrace OneAgent는 호스트, 네트워크 및 서비스에 대한 성능 메트릭을 수집할 수 있습니다. 메트릭을 단순히 표시하는 것 외에도 Dynatrace는 전체 환경을 시각화하여 클라이언트 측에서 데이터베이스 계층으로 가는 트랜잭션을 나타낼 수 있습니다. 문제의 AI 기반 상관과, 메서드 수준 코드 및 데이터베이스 정보를 포함하여 완전 통합된 근본 원인 분석을 통해 문제 해결과 성능 최적화가 매우 간편해집니다.
+hello Dynatrace OneAgent hello Azure 확장 메커니즘을 통해 Azure Vm 및 응용 프로그램 서비스와 통합 됩니다. 이러한 방식으로 Dynatrace OneAgent는 호스트, 네트워크 및 서비스에 대한 성능 메트릭을 수집할 수 있습니다. Dynatrace 시각화는 방금 메트릭을 표시 외에도 환경에 종단 간, hello 클라이언트 쪽 toohello 데이터베이스 계층에서 트랜잭션을 표시 합니다. 문제의 AI 기반 상관과, 메서드 수준 코드 및 데이터베이스 정보를 포함하여 완전 통합된 근본 원인 분석을 통해 문제 해결과 성능 최적화가 매우 간편해집니다.
 
-[설명서로 이동합니다.][dynatrace-doc]
+[Toohello 설명서를 이동 합니다.][dynatrace-doc]
 
 ## <a name="newrelic"></a>NewRelic
 [자세히 알아봅니다][newrelic-doc].
 
 ## <a name="opsgenie"></a>OpsGenie
-OpsGenie는 Azure가 생성한 경고의 디스패처 역할을 합니다. OpsGenie는 호출 예약 및 에스컬레이션에 따라 이메일, 문자 메시지(SMS), 전화, 푸시 알림 등을 사용하여 알림을 받을 적합한 사람을 판단합니다. 간단히 말해, Azure는 탐지된 문제에 대한 경고를 생성하고 OpsGenie가 그에 대해 작업할 적합한 사람을 확인합니다.
+Azure에 의해 생성 된 hello 경고에 대 한 디스패처 OpsGenie 역할을 합니다. OpsGenie 결정 됨을 알리는 여 전화 일정 및 escalation에 따라 hello 적임자 toonotify 푸시 알림 전자 메일, SMS (문자 메시지), 전화 통화를 사용 합니다. 간단히 검색 된 문제에 대 한 경고를 생성 하는 Azure을 OpsGenie hello 적임자 작업 하는.
 
-[설명서로 이동합니다.][opsgenie-doc]
+[Toohello 설명서를 이동 합니다.][opsgenie-doc]
 
 ## <a name="pagerduty"></a>PagerDuty
-선두적인 사건 관리 솔루션인 PagerDuty는 Azure Alerts의 메트릭에 대해 최고 수준의 지원을 제공합니다. 현재 PagerDuty는 Azure Monitor 경고, 자동 규모 조정 알림 및 감사 로그 이벤트에 대한 알림과, Azure 서비스에 대한 플랫폼 수준 메트릭에 대한 알림을 지원합니다. 이렇게 향상된 기능을 통해 사용자는 더 많은 핵심 Azure 플랫폼 정보를 파악하는 동시에 PagerDuty의 사건 관리 기능을 완벽하게 활용하여 실시간으로 대처할 수 있습니다. 확장된 Azure 통합은 Webhook를 통해 구현되어 더 빠르고 간편한 설정과 사용자 지정이 가능합니다.
+PagerDuty, 인시던트 관리 솔루션을 선행 hello 메트릭에 Azure 경고에 대 한 고급 지원을 제공 했습니다. 오늘날 PagerDuty 이제 알림 Azure 모니터 경고, 자동 크기 조정 알림 및 감사 로그 이벤트의에서 지원에 Azure 서비스에 대 한 플랫폼 수준 메트릭 추가 toonotifications 합니다. 이러한 향상 된이 기능 제공 hello 핵심 Azure 플랫폼에 대 한 사용자가 향상 된 가시성 수 있게 하는 동안 tootake 완전히 실시간 응답에 대 한 PagerDuty의 인시던트 관리 기능 활용 합니다. 확장된 Azure 통합은 Webhook를 통해 구현되어 더 빠르고 간편한 설정과 사용자 지정이 가능합니다.
 
-[설명서로 이동합니다.][pagerduty-doc]
+[Toohello 설명서를 이동 합니다.][pagerduty-doc]
 
 ## <a name="sciencelogic"></a>ScienceLogic
-ScienceLogic은 어디서든지 모든 기술을 관리하는 차세대 IT 서비스 보증 플랫폼을 제공합니다.  하나의 플랫폼에서 ScienceLogic은 일정한 동작에 있는 IT 리소스, 서비스 및 응용 프로그램을 관리하는 확장 태스크를 간소화하는 데 필요한 규모, 보안, 자동화 및 복원력을 제공합니다.  ScienceLogic 플랫폼은 Azure API를 사용하여 Microsoft Azure와 상호 작용합니다.  ScienceLogic은 Azure 서비스 및 리소스에 대한 실시간 가시성을 제공하므로 항목이 작동하지 않는 경우 더 빠르게 해결할 수 있습니다. 또한 다른 클라우드 및 데이터 센터 시스템과 서비스와 함께 Azure를 관리할 수 있습니다.
+ScienceLogic hello 아무 곳 이나 모든 기술을 관리 하기 위한 차세대 IT 서비스 보증 플랫폼을 제공 합니다.  하나의 플랫폼 ScienceLogic hello 배율, 보안, 자동화 및 복원 력이 필요한 toosimplify hello 끊임없이 확장 관리 작업을 일정 한 동작이에 있는 응용 프로그램, 서비스 및 IT 리소스를 제공 합니다.  hello ScienceLogic 플랫폼 Microsoft Azure를 사용한 toointerface Azure Api를 사용합니다.  ScienceLogic은 Azure 서비스 및 리소스에 대한 실시간 가시성을 제공하므로 항목이 작동하지 않는 경우 더 빠르게 해결할 수 있습니다. 또한 다른 클라우드 및 데이터 센터 시스템과 서비스와 함께 Azure를 관리할 수 있습니다.
 
 [자세히 알아봅니다][sciencelogic-doc].
 
 ## <a name="azure-monitor-add-on-for-splunk"></a>Splunk용 Azure Monitor 추가 기능
-Splunk용 Azure Monitor 추가 기능은 [Splunkbase에서 사용 가능](https://splunkbase.splunk.com/app/3534/)합니다.
+hello Splunk에 대 한 Azure 모니터 추가 [hello Splunkbase 여기에서 사용할 수 있는](https://splunkbase.splunk.com/app/3534/)합니다.
 
-[설명서로 이동합니다.][splunk-doc]
+[Toohello 설명서를 이동 합니다.][splunk-doc]
 
 ## <a name="sumo-logic"></a>Sumo Logic
-Sumo Logic은 안전한 클라우드 기반, 컴퓨터 데이터 분석 서비스이며, 전체 응용 프로그램 수명 주기와 스택을 통해 구조화, 반구조화 및 구조화되지 않은 데이터에서 실시간 연속 인텔리전스를 전달합니다. 전 세계 1,000명 이상의 고객이 최신 응용 프로그램 및 클라우드 인프라를 빌드, 실행 및 보안하기 위한 예측 분석에 Sumo Logic을 사용합니다. Sumo Logic을 사용하여 고객은 다중 테넌트, 서비스 모델 장점을 이용하여 지속적인 혁신으로 성장을 가속화하여 경쟁 우위, 비즈니스 가치와 성장을 증가시킵니다.
+Sumo Logic는 hello 전체 응용 프로그램 수명 주기 및 스택을 통해, 반 구조화 또는 반 구조화 되지 않은 데이터에서 실시간으로 연속 인텔리전스에 전달 하는 컴퓨터를 안전 하 고, 클라우드-네이티브 데이터 분석 서비스. Hello 전 세계 1000 개 이상의 고객 Sumo Logic hello 분석 및 insights toobuild를 실행 하 고 최신 응용 프로그램의 보안 및 클라우드 인프라에 대 한 사용 합니다. Sumo Logic로 고객 경쟁 우위, 비즈니스 가치 및 증가 증가 하는 다중 테 넌 트, 서비스 모델 장점은 tooaccelerate shift toocontinuous 혁신의 얻게 됩니다.
 
 [자세히 알아봅니다][sumologic-doc].
 
 ## <a name="next-steps"></a>다음 단계
 * [Azure Monitor에 대한 자세한 정보](monitoring-overview.md)
-* [REST API를 사용하여 메트릭 액세스](monitoring-rest-api-walkthrough.md)
-* [타사 서비스에 활동 로그 스트림](monitoring-stream-activity-logs-event-hubs.md)
-* [타사 서비스에 진단 로그 스트림](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Hello REST API를 사용 하 여 메트릭에 액세스](monitoring-rest-api-walkthrough.md)
+* [스트림 hello tooa 제 3 자 서비스 활동 로그](monitoring-stream-activity-logs-event-hubs.md)
+* [진단 로그 tooa 제 3 자 서비스 스트림](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 
 <!--Partner Anchors-->
 [alertlogic-anchor]: #alertlogic-log-manager "AlertLogic"

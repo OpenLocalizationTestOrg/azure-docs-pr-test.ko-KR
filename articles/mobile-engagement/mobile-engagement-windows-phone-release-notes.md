@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement Windows Phone Silverlight SDK 릴리스 정보 | Microsoft Docs"
+title: "aaaAzure Mobile Engagement Windows Phone Silverlight SDK 릴리스 정보 | Microsoft Docs"
 description: "Azure Mobile Engagement - Windows Phone Silverlight SDK 릴리스 정보"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,33 +14,33 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/03/2016
 ms.author: piyushjo
-ms.openlocfilehash: df754a3002750e6ba0b71b664c1df84d506808a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9af6ca91295dbecfa4c51fe4b3bad6626fa5999
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-phone-silverlight-sdk-release-notes"></a>Windows Phone Silverlight SDK 릴리스 정보
 ##<a name="331-11032016"></a>3.3.1 (11/03/2016)
-*MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.4.1**의 일부
+Hello의 일부 *MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.4.1**
 
 * 안정성 향상
 
 ## <a name="330-04192016"></a>3.3.0(2016/04/19)
-*MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.4.0**
+Hello의 일부 *MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.4.0**
 
-* SDK로 내보낸 콘솔 로그를 사용/사용 안 함/필터링하기 위해 "TestLogLevel" API를 추가했습니다.
+* 추가 된 "TestLogLevel" API tooenable/사용 안 함/필터 콘솔 로그 hello SDK가 내보냅니다.
 
 ## <a name="320-01222016"></a>3.2.0(2016/01/22)
-*MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.3.0**
+Hello의 일부 *MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.3.0**
 
 * 사용자 지정 스키마, ms-appx 및 ms-appdata를 작업 URL에 사용할 수 있습니다.
 * 안정성 향상
 
 ## <a name="310-11202015"></a>3.1.0(11/20/2015)
-*MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.2.0**
+Hello의 일부 *MicrosoftAzure.MobileEngagement* Nuget 패키지 **v3.2.0**
 
-* 초기화 바로 다음에 장치 ID를 요청하는 동안 크래시를 수정하였습니다.
+* Hello 초기화 후 바로 hello 장치 id를 요청 하는 동안 고정된 충돌 합니다.
 * 콘솔은 향상된 기능을 기록합니다.
 
 ## <a name="300-04032015"></a>3.0.0(2015/04/03)

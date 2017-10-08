@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 서비스를 사용하여 DRM 라이선스 또는 AES 키 제공"
-description: "이 문서에서는 AMS(Azure 미디어 서비스)를 사용하여 PlayReady 및/또는 Widevine 라이선스 및 AES 키를 제공하지만 나머지 작업(인코딩, 암호화, 스트리밍)에는 온-프레미스 서버를 사용하여 수행할 수 있는 방법을 설명합니다."
+title: "aaaUse Azure 미디어 서비스 toodeliver DRM 라이선스 또는 AES 키"
+description: "이 문서에서는 Azure 미디어 서비스 (AMS) toodeliver PlayReady 및/또는 Widevine 라이선스 및 AES 키를 사용할 수 있지만 rest (인코딩, 암호화, 스트리밍) hello 수행 방법을 설명 온-프레미스 서버를 사용 하 여 합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 263a381dc72105eea60ad9b39434599ff04a4531
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a81da2973c79e5182ae58aeca7a0f14f3fc7c9ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-media-services-to-deliver-drm-licenses-or-aes-keys"></a>Azure 미디어 서비스를 사용하여 DRM 라이선스 또는 AES 키 제공
-AMS(Azure 미디어 서비스)를 사용하면 수집, 인코드, 콘텐츠 보호 추가 및 콘텐츠를 스트림할 수 있습니다(자세한 내용은 [이](media-services-protect-with-drm.md) 문서 참조). 그러나 라이선스 및/또는 키를 제공하는 데 AMS만 사용하고 온-프레미스 서버를 사용하여 인코딩, 암호화 및 스트리밍을 수행하려는 고객이 있습니다. 이 문서에서는 AMS를 사용하여 PlayReady 및/또는 Widevine 라이선스를 제공하지만 나머지 작업에는 온-프레미스 서버를 사용하여 수행하는 방법을 설명합니다. 
+# <a name="use-azure-media-services-toodeliver-drm-licenses-or-aes-keys"></a>Azure 미디어 서비스 toodeliver DRM 라이선스 또는 AES 키를 사용 하 여
+Azure 미디어 서비스 AMS ()를 사용 하면 tooingest, 인코딩, 콘텐츠 보호를 추가 및 콘텐츠를 스트리밍하려면 (참조 [이](media-services-protect-with-drm.md) 내용은 문서의). 그러나만 toouse AMS toodeliver 라이선스 및/또는 키를 선택 하 고 수행 인코딩, 암호화 및 온-프레미스 서버를 사용 하 여 고객에 게 있습니다. 이 문서에서는 AMS toodeliver PlayReady 및/또는 Widevine 라이선스를 사용할 수 있지만 온-프레미스 서버와 함께 rest hello 수행 방법을 설명 합니다. 
 
 ## <a name="overview"></a>개요
-Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제공하는 서비스를 제공합니다. 또한 미디어 서비스는 사용자가 DRM 사용권 계약에 따라 보호하는 콘텐츠를 재생할 때 DRM 런타임이 적용하도록 하려는 권한 및 제한을 구성할 수 있는 API도 제공합니다. 사용자가 사용권 계약에 따라 보호하는 콘텐츠를 요청하면 플레이어 응용 프로그램은 AMS 라이선스 서비스에서 라이선스를 요청합니다. 권한이 부여된 경우 AMS 라이선스 서비스는 플레이어에 라이선스를 발급합니다. PlayReady 및 Widevine 라이선스에는 클라이언트 플레이어가 콘텐츠를 해독하고 스트림하는 데 사용할 수 있는 암호 해독 키가 들어 있습니다.
+Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제공하는 서비스를 제공합니다. 미디어 서비스 hello 권한을 구성할 수 있는 Api도 제공 하 고 보호 된 콘텐츠 hello DRM hello DRM 런타임은 tooenforce 때 사용자에 대 한 원하는 제한을 다시 재생 됩니다. 사용자 요청 hello 보호 된 콘텐츠를 hello 플레이어 응용 프로그램 라이선스 hello AMS 라이선스 서비스에서 요청. (이 권한이 부여 된) 경우 hello AMS 라이선스 서비스는 hello 라이선스 toohello 플레이어를 발행 합니다. hello PlayReady 및 Widevine 라이선스 hello 클라이언트 플레이어 toodecrypt 및 스트림 hello 콘텐츠에서 사용할 수 있는 hello 암호 해독 키를 포함 합니다.
 
-미디어 서비스는 라이선스 또는 키를 요청하는 사용자에 권한을 부여하는 여러 방법을 지원합니다. 콘텐츠 키의 권한 부여 정책을 구성하고 정책에는 하나 이상의 제한(열기 제한 또는 토큰 제한)이 있을 수 있습니다. 토큰 제한 정책은 보안 토큰 서비스(STS)에 의해 발급된 토큰이 수반되어야 합니다. 미디어 서비스 지원 토큰에는 간단한 웹 토큰(SWT) 형식 및 JSON 웹 토큰(JWT) 형식의 토큰을 지원합니다.
+미디어 서비스는 라이선스 또는 키를 요청하는 사용자에 권한을 부여하는 여러 방법을 지원합니다. Hello 콘텐츠 키 권한 부여 정책 구성 및 hello 정책에는 하나 이상의 제한이 있을 수: 열거나 토큰 제한 합니다. 보안 토큰 서비스 (STS)에서 발급 한 토큰 hello 토큰 제한 정책은 함께 제공 해야 합니다. 미디어 서비스는 hello 단순 웹 토큰 (SWT) 형식 및 JSON 웹 토큰 (JWT) 형식 토큰을 지원합니다.
 
-다음 다이어그램에서는 AMS를 사용하여 PlayReady 및/또는 Widevine 라이선스를 제공하지만 나머지 작업에는 온-프레미스 서버를 사용하여 수행하는 데 필요한 주요 단계를 보여 줍니다.
+hello 다음 보여 주는 다이어그램 주요 단계는 hello tootake toouse AMS toodeliver PlayReady 및/또는 Widevine 라이선스 필요 하지만 온-프레미스 서버와 함께 rest hello지 않습니다.
 
 ![PlayReady로 보호](./media/media-services-deliver-keys-and-licenses/media-services-diagram1.png)
 
 ## <a name="download-sample"></a>샘플 다운로드
-[여기](https://github.com/Azure/media-services-dotnet-deliver-drm-licenses)에서 이 문서에 설명된 샘플을 다운로드할 수 있습니다.
+이 문서에서 설명 하는 hello 샘플을 다운로드할 수 [여기](https://github.com/Azure/media-services-dotnet-deliver-drm-licenses)합니다.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-1. 개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
-2. 다음 요소를 app.config 파일에 정의된 **appSettings**에 추가합니다.
+1. 개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+2. 추가 요소를 너무 다음 hello**appSettings** app.config 파일에 정의 된:
 
     <add key="Issuer" value="http://testacs.com"/> <add key="Audience" value="urn:test"/>
 
 ## <a name="net-code-example"></a>.NET 코드 예제
 
-다음 코드 예제에서는 일반적인 콘텐츠 키를 만들고 PlayReady 또는 Widevine 라이선스 취득 URL을 가져오는 방법을 보여 줍니다. AMS에서 **콘텐츠 키**, **키 id**, **라이선스 취득 URL**과 같은 정보를 가져와서 온-프레미스 서버를 구성해야 합니다. 온-프레미스 서버를 구성하면 자체 스트리밍 서버에서 스트림할 수 있습니다. 암호화된 스트림은 AMS 라이선스 서버를 가리키므로 플레이어는 AMS에서 라이선스를 요청합니다. 토큰 인증을 선택하면 AMS 라이선스 서버는 HTTPS를 통해 전송한 토큰의 유효성을 검사하고 유효한 경우 플레이어로 라이선스를 다시 제공합니다. (코드 예제에서는 일반적인 콘텐츠 키를 만들고 PlayReady 또는 Widevine 라이선스 취득 URL을 가져오는 방법만 보여 줍니다. AES-128 키를 제공하려는 경우에는 봉투 콘텐츠 키를 만들고 키 취득 URL을 가져와야 하며 [이](media-services-protect-with-aes128.md) 문서에서 이 작업을 수행하는 방법을 설명합니다).
+다음 코드 예제는 hello 방법을 보여 줍니다 toocreate 공통 콘텐츠 키 Widevine 또는 PlayReady 라이선스 취득 Url을 가져옵니다. Tooget 필요한 AMS에서 정보를 다음 hello 하 고 온-프레미스 서버 구성: **콘텐츠 키**, **키 id**, **라이선스 취득 URL**합니다. 온-프레미스 서버를 구성하면 자체 스트리밍 서버에서 스트림할 수 있습니다. Hello 암호화 스트림 포인트 tooAMS 라이선스 서버를 이후 플레이어 AMS에서 라이선스를 요청 합니다. 토큰 인증을 선택 하면 hello AMS 라이선스 서버는 HTTPS를 통해 전송 된 hello 토큰 유효성을 검사 하 고 (유효한 경우) hello 라이선스 백 tooyour 플레이어를 제공 합니다. (hello 코드 예제에서는 방법을 보여 줍니다 toocreate 공통 콘텐츠 키 Widevine 또는 PlayReady 라이선스 취득 Url을 가져옵니다. Aes-128 toodelivery 키 원하는 toocreate 봉투 콘텐츠 키를 해야 키 취득 URL을 가져올 및 [이](media-services-protect-with-aes128.md) 방법을 보여 줍니다 문서 toodo 것).
 
     using System;
     using System.Collections.Generic;
@@ -58,7 +58,7 @@ Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제�
     {
         class Program
         {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -85,7 +85,7 @@ Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제�
 
                 IContentKey key = CreateCommonTypeContentKey();
 
-                // Print out the key ID and Key in base64 string format
+                // Print out hello key ID and Key in base64 string format
                 Console.WriteLine("Created key {0} with key value {1} ",
                     key.Id, System.Convert.ToBase64String(key.GetClearKeyValue()));
 
@@ -146,7 +146,7 @@ Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제�
 
                 contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
                 contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
-                // Associate the content key authorization policy with the content key.
+                // Associate hello content key authorization policy with hello content key.
                 contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
                 contentKey = contentKey.UpdateAsync().Result;
             }
@@ -189,7 +189,7 @@ Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제�
                 contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
                 contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
 
-                // Associate the content key authorization policy with the content key
+                // Associate hello content key authorization policy with hello content key
                 contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
                 contentKey = contentKey.UpdateAsync().Result;
 
@@ -211,52 +211,52 @@ Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제�
 
             static private string ConfigurePlayReadyLicenseTemplate()
             {
-                // The following code configures PlayReady License Template using .NET classes
-                // and returns the XML string.
+                // hello following code configures PlayReady License Template using .NET classes
+                // and returns hello XML string.
 
-                //The PlayReadyLicenseResponseTemplate class represents the template 
-                //for the response sent back to the end user. 
-                //It contains a field for a custom data string between the license server 
-                //and the application (may be useful for custom app logic) 
+                //hello PlayReadyLicenseResponseTemplate class represents hello template 
+                //for hello response sent back toohello end user. 
+                //It contains a field for a custom data string between hello license server 
+                //and hello application (may be useful for custom app logic) 
                 //as well as a list of one or more license templates.
 
                 PlayReadyLicenseResponseTemplate responseTemplate =
                     new PlayReadyLicenseResponseTemplate();
 
-                // The PlayReadyLicenseTemplate class represents a license template 
+                // hello PlayReadyLicenseTemplate class represents a license template 
                 // for creating PlayReady licenses
-                // to be returned to the end users. 
-                // It contains the data on the content key in the license 
-                // and any rights or restrictions to be 
-                // enforced by the PlayReady DRM runtime when using the content key.
+                // toobe returned toohello end users. 
+                // It contains hello data on hello content key in hello license 
+                // and any rights or restrictions toobe 
+                // enforced by hello PlayReady DRM runtime when using hello content key.
                 PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
 
-                // Configure whether the license is persistent 
-                // (saved in persistent storage on the client) 
-                // or non-persistent (only held in memory while the player is using the license).  
+                // Configure whether hello license is persistent 
+                // (saved in persistent storage on hello client) 
+                // or non-persistent (only held in memory while hello player is using hello license).  
                 licenseTemplate.LicenseType = PlayReadyLicenseType.Nonpersistent;
 
-                // AllowTestDevices controls whether test devices can use the license or not.  
-                // If true, the MinimumSecurityLevel property of the license
-                // is set to 150.  If false (the default), 
-                // the MinimumSecurityLevel property of the license is set to 2000.
+                // AllowTestDevices controls whether test devices can use hello license or not.  
+                // If true, hello MinimumSecurityLevel property of hello license
+                // is set too150.  If false (hello default), 
+                // hello MinimumSecurityLevel property of hello license is set too2000.
                 licenseTemplate.AllowTestDevices = true;
 
-                // You can also configure the Play Right in the PlayReady license by using the PlayReadyPlayRight class. 
-                // It grants the user the ability to playback the content subject to the zero or more restrictions 
-                // configured in the license and on the PlayRight itself (for playback specific policy). 
-                // Much of the policy on the PlayRight has to do with output restrictions 
-                // which control the types of outputs that the content can be played over and 
+                // You can also configure hello Play Right in hello PlayReady license by using hello PlayReadyPlayRight class. 
+                // It grants hello user hello ability tooplayback hello content subject toohello zero or more restrictions 
+                // configured in hello license and on hello PlayRight itself (for playback specific policy). 
+                // Much of hello policy on hello PlayRight has toodo with output restrictions 
+                // which control hello types of outputs that hello content can be played over and 
                 // any restrictions that must be put in place when using a given output.
-                // For example, if the DigitalVideoOnlyContentRestriction is enabled, 
-                //then the DRM runtime will only allow the video to be displayed over digital outputs 
-                //(analog video outputs won’t be allowed to pass the content).
+                // For example, if hello DigitalVideoOnlyContentRestriction is enabled, 
+                //then hello DRM runtime will only allow hello video toobe displayed over digital outputs 
+                //(analog video outputs won’t be allowed toopass hello content).
 
                 // IMPORTANT: These types of restrictions can be very powerful 
-                // but can also affect the consumer experience. 
-                // If the output protections are configured too restrictive, 
-                // the content might be unplayable on some clients. 
-                // For more information, see the PlayReady Compliance Rules document.
+                // but can also affect hello consumer experience. 
+                // If hello output protections are configured too restrictive, 
+                // hello content might be unplayable on some clients. 
+                // For more information, see hello PlayReady Compliance Rules document.
 
                 // For example:
                 //licenseTemplate.PlayRight.AgcAndColorStripeRestriction = new AgcAndColorStripeRestriction(1);
@@ -336,5 +336,5 @@ Media Services는 PlayReady와 Widevine DRM 라이선스 및 AES-128 키를 제�
 
 [AES-128 동적 암호화 및 키 전달 서비스 사용](media-services-protect-with-aes128.md)
 
-[파트너를 사용하여 Azure 미디어 서비스에 Widevine 라이선스 제공](media-services-licenses-partner-integration.md)
+[파트너 toodeliver Widevine 라이선스 tooAzure 미디어 서비스를 사용 하 여](media-services-licenses-partner-integration.md)
 

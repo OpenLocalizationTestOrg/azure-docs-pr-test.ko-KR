@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 장치-클라우드 메시징 이해 | Microsoft Docs"
-description: "개발자 가이드 - IoT Hub를 사용하여 장치-클라우드 메시징을 사용하는 방법입니다. 원격 분석 및 비원격 분석 데이터를 전송하고 라우팅을 사용하여 메시지를 전송하는 방법에 대한 정보가 포함됩니다."
+title: "aaaUnderstand Azure IoT Hub 장치-클라우드 메시징 | Microsoft Docs"
+description: "개발자 가이드-어떻게 toouse 장치-클라우드 IoT Hub와 메시징입니다. 원격 분석 및 비 telemtry 모두 데이터를 보내고 라우팅 toodeliver 메시지를 사용 하는 방법에 대 한 정보가 포함 됩니다."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -13,55 +13,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: d856e26084ee79386a2e8e0e527804bda86b477b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 07dc8a6be747365c7efbc528ab2762b0d9790758
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-device-to-cloud-messages-to-iot-hub"></a>IoT Hub에 장치-클라우드 메시지 보내기
+# <a name="send-device-to-cloud-messages-tooiot-hub"></a>장치-클라우드 메시지 tooIoT 허브 보내기
 
-시계열 원격 분석 및 경고를 장치에서 솔루션 백 엔드로 보내려면 장치-클라우드 메시지를 장치에서 IoT Hub로 보냅니다. IoT Hub에서 지원하는 기타 장치-클라우드 옵션에 대한 설명은 [장치-클라우드 통신 지침][lnk-d2c-guidance]을 참조하세요.
+toosend 시계열 원격 분석 및 경고 프로그램 장치 tooyour 솔루션 백 엔드를 장치 tooyour IoT 허브에서 장치-클라우드 메시지를 전송 합니다. IoT Hub에서 지원하는 기타 장치-클라우드 옵션에 대한 설명은 [장치-클라우드 통신 지침][lnk-d2c-guidance]을 참조하세요.
 
-장치 지향 끝점(**/devices/{deviceId}/messages/events**)을 통해 장치-클라우드 메시지를 보냅니다. 그런 다음 라우팅 규칙은 메시지를 IoT Hub의 서비스 지향 끝점 중 하나로 라우팅합니다. 라우팅 규칙은 허브를 통과하는 장치-클라우드 메시지의 헤더 및 본문을 사용하여 허브를 라우팅할 위치를 결정합니다. 기본적으로 메시지는 [Event Hubs][lnk-event-hubs]와 호환되는 기본 제공 서비스 연결 끝점(**messages/events**)으로 라우팅됩니다. 따라서 표준 [Event Hubs 통합 및 SDK][lnk-compatible-endpoint]를 사용하여 솔루션 백 엔드에서 장치-클라우드 메시지를 받을 수 있습니다.
+장치 지향 끝점(**/devices/{deviceId}/messages/events**)을 통해 장치-클라우드 메시지를 보냅니다. 라우팅 규칙 다음 hello 웹 서비스 끝점에 메시지 tooone IoT 허브에 라우트 합니다. Hello 헤더와 본문 허브 toodetermine를 통해 흐르는 hello 장치-클라우드 메시지의 라우팅 규칙에 사용 하 여 여기서 tooroute 해당 합니다. 기본적으로 메시지는 라우트된 toohello 기본 제공 서비스 연결 끝점 (**이벤트 메시지/**), 즉 호환 [이벤트 허브][lnk-event-hubs]합니다. 따라서 표준을 사용할 수 있습니다 [이벤트 허브 통합 및 Sdk] [ lnk-compatible-endpoint] 솔루션에서 장치-클라우드 메시지 tooreceive 백 엔드 합니다.
 
-IoT Hub는 스트리밍 메시징 패턴을 사용하여 장치-클라우드 메시징을 구현합니다. IoT Hub의 장치 - 클라우드 메시지는 여러 독자가 읽을 수 있는 서비스를 통과하는 많은 양의 이벤트가 있다는 점에서 [Service Bus][lnk-servicebus] *메시지*보다는 [Event Hubs][lnk-event-hubs] *이벤트*에 가깝습니다.
+IoT Hub는 스트리밍 메시징 패턴을 사용하여 장치-클라우드 메시징을 구현합니다. IoT Hub 장치-클라우드 메시지와 더 비슷하게는 [이벤트 허브] [ lnk-event-hubs] *이벤트* 보다 [서비스 버스] [ lnk-servicebus] *메시지* 많은 양의 여러 판독기가 읽을 수 있는 hello 서비스를 통해 전달 되는 이벤트는 합니다.
 
-IoT Hub를 사용한 장치-클라우드 메시징의 특징은 다음과 같습니다.
+장치-클라우드 IoT Hub와 메시징 hello 특성 뒤에 있습니다.
 
-* 장치-클라우드 메시지는 영구적이며 IoT Hub의 기본 **messages/events** 끝점에 최대 7일 동안 보관됩니다.
-* 장치-클라우드 메시지는 최대 256KB까지 가능하며 보내기를 최적화하기 위해 일괄 처리로 그룹화할 수 있습니다. 배치는 최대 256KB가 될 수 있습니다.
-* [IoT Hub에 대한 액세스 제어][lnk-devguide-security] 섹션에서 설명한 것처럼 IoT Hub는 장치 단위 인증 및 액세스 제어를 허용합니다.
-* IoT Hub를 사용하면 최대 10개의 사용자 지정 끝점을 만들 수 있습니다. 메시지는 IoT Hub에 구성된 경로에 따라 끝점으로 전달됩니다. 자세한 내용은 [라우팅 규칙](#routing-rules)을 참조하세요.
+* 장치-클라우드 메시지는 영 속 IoT 허브의 기본 보존 **이벤트메시지/** tooseven 일 구성에 대 한 끝점입니다.
+* 장치-클라우드 메시지 256KB 최대 있어야 하 고 toooptimize 전송 하는 일괄 처리로 그룹화 할 수 있습니다. 배치는 최대 256KB가 될 수 있습니다.
+* Hello에 설명 된 대로 [컨트롤 액세스 tooIoT 허브] [ lnk-devguide-security] 섹션에서 IoT Hub-장치 인증 및 액세스 제어를 사용 하면 됩니다.
+* IoT Hub too10 사용자 지정 끝점을 toocreate가 있습니다. 메시지가는 IoT hub에 구성 된 경로에 따라 toohello 끝점 배달 됩니다. 자세한 내용은 [라우팅 규칙](#routing-rules)을 참조하세요.
 * IoT Hub를 사용하면 수백만 대의 장치를 동시에 연결할 수 있습니다([할당량 및 제한][lnk-quotas] 참조).
 * IoT Hub는 임의 분할을 허용하지 않습니다. 장치-클라우드 메시지는 원래 **deviceId**와 관련하여 분할됩니다.
 
-IoT Hub와 Event Hubs 서비스의 차이점에 대한 자세한 내용은 [Azure IoT Hub 및 Azure Event Hubs의 비교][lnk-comparison]를 참조하세요.
+Hello 차이 hello IoT Hub 및 이벤트 허브 서비스에 대 한 자세한 내용은 참조 [Azure IoT Hub 비교 및 Azure 이벤트 허브][lnk-comparison]합니다.
 
 ## <a name="send-non-telemetry-traffic"></a>비-원격 분석 트래픽 보내기
 
-때때로 원격 분석 데이터 요소 외에도 장치는 솔루션 백 엔드에서 별도로 실행하고 처리해야 하는 메시지와 요청을 보냅니다. 예를 들어 백 엔드에서 특정 작업을 트리거해야 하는 중요한 경고가 있습니다. 이러한 형식의 메시지를 메시지 헤더 또는 메시지 본문의 값을 기반으로 처리 전용 끝점에 보내는 [라우팅 규칙][lnk-devguide-custom]을 쉽게 작성할 수 있습니다.
+메시지를 별도 실행 및 hello 솔루션 백 엔드의 처리를 필요로 하는 요청 장치 보내고 종종는 또한 tootelemetry 데이터 요소, 합니다. 예를 들어 hello에서 특정 동작을 트리거해야 하는 중요 한 알림 백 엔드 합니다. 쉽게 작성할 수는 [라우팅 규칙] [ lnk-devguide-custom] toosend 이러한 유형의 메시지 tooan 끝점 전용 hello 메시지에 헤더 또는 hello 메시지 본문의 값에 따라 tootheir 처리 합니다.
 
-이런 종류의 메시지를 처리하는 최선의 방법에 대한 정보는 [자습서: IoT Hub 장치-클라우드 메시지를 처리하는 방법][lnk-d2c-tutorial] 자습서를 참조하세요.
+Hello 가장 좋은 방법은 tooprocess이 메시지의 종류에 대 한 자세한 내용은 참조 hello [자습서: 어떻게 tooprocess IoT Hub 장치-클라우드 메시지] [ lnk-d2c-tutorial] 자습서입니다.
 
 ## <a name="route-device-to-cloud-messages"></a>장치-클라우드 메시지 라우팅
 
-백 엔드 앱에 장치-클라우드 메시지를 라우팅하는 두 가지 옵션이 있습니다.
+라우팅 장치-클라우드 메시지 tooyour 백 엔드 응용 프로그램에 대 한 두 가지 옵션이 있습니다.
 
-* 허브에서 수신한 장치-클라우드 메시지를 백 엔드 앱에서 읽을 수 있도록 기본 제공 [Event Hub 호환 끝점][lnk-compatible-endpoint]을 사용합니다. 기본 제공 Event Hub 호환 끝점에 대해 알아보려면 [기본 제공 끝점에서 장치-클라우드 메시지 읽기][lnk-devguide-builtin]를 참조하세요.
-* 라우팅 규칙을 사용하여 IoT Hub의 사용자 지정 끝점에 메시지를 보냅니다. 사용자 지정 끝점을 사용하면 백 엔드 앱에서 Event Hubs, Service Bus 큐 또는 Service Bus 토픽을 사용하여 장치-클라우드 메시지를 읽을 수 있습니다. 라우팅 및 사용자 지정 끝점에 대해 알아보려면 [장치-클라우드 메시지에 대한 사용자 지정 끝점 및 라우팅 규칙 사용][lnk-devguide-custom]을 참조하세요.
+* 기본 제공 hello를 사용 하 여 [호환 이벤트 허브 끝점] [ lnk-compatible-endpoint] tooenable 백 엔드 앱 tooread hello 장치-클라우드 메시지 hello 허브에서 수신 합니다. toolearn hello 기본 제공 하는 이벤트 허브 호환 끝점에 대 한 참조 [hello 기본 제공 끝점에서 장치-클라우드 메시지를 읽은][lnk-devguide-builtin]합니다.
+* IoT hub에서 라우팅 규칙 toosend 메시지 toocustom 끝점을 사용 합니다. 사용자 지정 끝점을 이벤트 허브, 서비스 버스 큐 또는 Service Bus 항목을 사용 하 여 백 엔드 앱 tooread 장치-클라우드 메시지를 사용 하도록 설정 합니다. 라우팅 및 사용자 지정 끝점에 대 한 toolearn 참조 [장치-클라우드 메시지에 대 한 사용자 지정 끝점 및 라우팅 규칙을 사용 하 여][lnk-devguide-custom]합니다.
 
 ## <a name="anti-spoofing-properties"></a>스푸핑 방지 속성
 
-장치-클라우드 메시지에서 스푸핑된 장치를 피하려면 IoT Hub는 다음 속성을 사용하여 모든 메시지를 보여줍니다.
+IoT Hub는 장치-클라우드 메시지에 스탬프 hello 다음 속성이 있는 모든 메시지를 스푸핑 tooavoid 장치:
 
 * **ConnectionDeviceId**
 * **ConnectionDeviceGenerationId**
 * **ConnectionAuthMethod**
 
-처음 두 가지는 [장치 ID 속성][lnk-device-properties]에 따라 원래 장치의 **deviceId** 및 **generationId**를 포함합니다.
+hello 처음 두 개의 포함 hello **deviceId** 및 **generationId** 의 장치를 기준으로 발생 하는 hello [장치 id 속성][lnk-device-properties]합니다.
 
-**ConnectionAuthMethod** 속성은 다음 속성을 가진 JSON으로 직렬화된 개체를 포함합니다.
+hello **ConnectionAuthMethod** 속성 다음과 같은 속성 hello로 JSON으로 직렬화 된 개체를 포함 합니다.
 
 ```json
 {
@@ -73,9 +73,9 @@ IoT Hub와 Event Hubs 서비스의 차이점에 대한 자세한 내용은 [Azur
 
 ## <a name="next-steps"></a>다음 단계
 
-장치-클라우드 메시지를 보내는 데 사용할 수 있는 SDK에 대한 자세한 내용은 [Azure IoT SDK][lnk-sdks]를 참조하세요.
+Hello Sdk에 대 한 내용은 toosend 장치-클라우드 메시지를 사용 하 여, 참조 수 [Azure IoT Sdk][lnk-sdks]합니다.
 
-[시작하기][lnk-get-started] 자습서에서는 시뮬레이트된 장치와 물리적 장치 둘 다에서 장치-클라우드 메시지를 보내는 방법을 보여 줍니다. 자세한 내용은 [경로를 사용하여 IoT Hub 장치-클라우드 메시지 처리][lnk-d2c-tutorial] 자습서를 참조하세요.
+hello [시작] [ lnk-get-started] 보여 주는 자습서 시뮬레이션 및 실제 장치에서 toosend 장치-클라우드 메시지 방법을 합니다. 자세한 정보를 얻기 위해 hello 참조 [경로 사용 하 여 프로세스 IoT Hub 장치-클라우드 메시지] [ lnk-d2c-tutorial] 자습서입니다.
 
 [lnk-devguide-builtin]: iot-hub-devguide-messages-read-builtin.md
 [lnk-devguide-custom]: iot-hub-devguide-messages-read-custom.md

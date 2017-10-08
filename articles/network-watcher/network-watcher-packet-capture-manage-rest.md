@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher를 사용하여 패킷 캡처 관리 - REST API | Microsoft Docs"
-description: "이 페이지에서는 Azure REST API를 사용하여 Network Watcher의 패킷 캡처 기능을 관리하는 방법에 대해 설명합니다."
+title: "aaaManage 패킷 캡처 Azure 네트워크 감시자-REST API를 | Microsoft Docs"
+description: "이 페이지에서는 방법을 toomanage hello Azure REST API를 사용 하 여 네트워크 감시자의 패킷 캡처 기능을 설명 합니다."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 49ec20802a252258d8493eb26510270b925e851a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a531fbe796e85e94961bd192d171defb299be05
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-packet-captures-with-azure-network-watcher-using-azure-rest-api"></a>Azure REST API를 사용하여 Azure Network Watcher로 패킷 캡처 관리
 
@@ -29,24 +29,24 @@ ms.lasthandoff: 08/29/2017
 > - [CLI 2.0](network-watcher-packet-capture-manage-cli.md)
 > - [Azure REST API](network-watcher-packet-capture-manage-rest.md)
 
-Network Watcher 패킷 캡처를 사용하면 가상 컴퓨터 간에 트래픽을 추적하는 캡처 세션을 만들 수 있습니다. 원하는 트래픽만 캡처할 수 있도록 캡처 세션에 대 한 필터가 제공됩니다. 패킷 캡처를 통해 사후 및 사전 대응적으로 네트워크 예외를 진단할 수 있습니다. 또한 네트워크 침입에 대한 정보를 가져오는 네트워크 통계를 수집하는 것을 포함하여 클라이언트 서버 간 통신을 디버깅할 수 있습니다. 이 기능은 원격으로 패킷 캡처를 트리거할 수 있게 하여 원하는 컴퓨터에서 수동으로 패킷 캡처를 실행하는 부담을 줄이고 시간을 단축합니다.
+네트워크 감시자 패킷 캡처 toocreate 캡처 세션 tootrack 트래픽 tooand를 가상 컴퓨터를 수 있습니다. 필터는 원하는 hello 트래픽만 캡처 hello 캡처 세션 tooensure 위해 제공 됩니다. 패킷 캡처 프로비저닝하지 및 사전 toodiagnose 네트워크 예외 수 있습니다. 통신 및 더 많은 네트워크 침입, toodebug 클라이언트-서버에 대 한 정보를 확보 하는 네트워크 통계를 수집 하는 것이 다른 사용 됩니다. 이 기능은 수 tooremotely 트리거 패킷 캡처 됨으로써 수동으로 및 시간을 단축할 수 있는 hello 원하는 컴퓨터에 패킷 캡처를 실행 해야 하는 hello 부담 래핑할 수 있습니다.
 
-이 문서에서는 패킷 캡처를 위해 현재 사용할 수 있는 여러 관리 태스크를 설명합니다.
+이 문서에서는 하 hello 패킷 캡처를 위해 현재 사용할 수 있는 다른 관리 작업 합니다.
 
 - [**패킷 캡처 가져오기**](#get-a-packet-capture)
 - [**모든 패킷 캡처 나열**](#list-all-packet-captures)
-- [**패킷 캡처의 상태 쿼리**](#query-packet-capture-status)
+- [**패킷 캡처 hello 상태 쿼리**](#query-packet-capture-status)
 - [**패킷 캡처 시작**](#start-packet-capture)
 - [**패킷 캡처 중지**](#stop-packet-capture)
 - [**패킷 캡처 삭제**](#delete-packet-capture)
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-이 시나리오에서는 Network Watcher Rest API를 호출하여 IP 흐름 확인을 실행합니다. PowerShell을 사용하여 REST API를 호출하는 데 ARMclient가 사용됩니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
+이 시나리오에서는 IP 확인 흐름 hello 네트워크 감시자 Rest API toorun을 호출할 수 있습니다. ARMclient는 PowerShell을 사용 하 여 사용 되는 toocall hello REST API입니다. ARMClient는 [Chocolatey의 ARMClient](https://chocolatey.org/packages/ARMClient)에서 chocolatey에 있습니다.
 
-이 시나리오에서는 사용자가 Network Watcher를 만드는 [Network Watcher 만들기](network-watcher-create.md)의 단계를 이미 수행했다고 가정합니다.
+이 시나리오에서는 hello 단계에 따라 이미 가정 [네트워크 감시자를 만들](network-watcher-create.md) toocreate 네트워크 감시자 합니다.
 
-> 패킷 캡처에는 가상 컴퓨터 확장 `AzureNetworkWatcherExtension`이 필요합니다. Windows VM에서 확장을 설치하려면 [Windows용 Azure Network Watcher 에이전트 가상 컴퓨터 확장](../virtual-machines/windows/extensions-nwa.md)을 방문하고 Linux VM인 경우 [Linux용 Azure Network Watcher 에이전트 가상 컴퓨터 확장](../virtual-machines/linux/extensions-nwa.md)을 방문하세요.
+> 패킷 캡처에는 가상 컴퓨터 확장 `AzureNetworkWatcherExtension`이 필요합니다. Windows VM에서 hello 확장을 설치 하는 것에 대 한 방문 [Windows에 대 한 네트워크 감시자 에이전트가 Azure 가상 컴퓨터 확장](../virtual-machines/windows/extensions-nwa.md) 및 방문을 Linux VM에 대 한 [Linux용Azure네트워크감시자에이전트가가상컴퓨터확장](../virtual-machines/linux/extensions-nwa.md).
 
 ## <a name="log-in-with-armclient"></a>ARMClient에 로그인
 
@@ -56,12 +56,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>가상 컴퓨터 검색
 
-다음 스크립트를 실행하여 가상 컴퓨터를 반환합니다. 패킷 캡처를 시작하기 위해 이 정보가 필요합니다.
+다음 스크립트 tooreturn hello 가상 컴퓨터를 실행 합니다. 패킷 캡처를 시작하기 위해 이 정보가 필요합니다.
 
-다음 코드에는 다음 변수가 필요합니다.
+hello 다음 코드에 필요한 변수:
 
-- **subscriptionId** - **Get-AzureRMSubscription** cmdlet으로 구독 ID도 검색할 수 있습니다.
-- **resourceGroupName** - 가상 컴퓨터를 포함하는 리소스 그룹의 이름입니다.
+- **subscriptionId** -hello로도 hello 구독 id를 검색할 수 **Get AzureRMSubscription** cmdlet.
+- **resourceGroupName** -hello 가상 컴퓨터를 포함 하는 리소스 그룹의 이름입니다.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -70,7 +70,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-다음 출력에서는 다음 예제에 가상 컴퓨터의 ID가 사용됩니다.
+Hello 다음과 같은 출력에서 hello 가상 컴퓨터의 hello id hello 다음 예제에 사용 됩니다.
 
 ```json
 ...
@@ -88,7 +88,7 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 
 ## <a name="get-a-packet-capture"></a>패킷 캡처 가져오기
 
-다음 예제에서는 단일 패킷 캡처의 상태를 가져옵니다.
+hello 다음 예제에서는 hello의 상태를 가져옵니다 단일 패킷 캡처
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -97,7 +97,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-다음 응답은 패킷 캡처의 상태를 쿼리할 때 반환된 일반적인 응답의 예입니다.
+hello 다음 응답은 일반적으로 패킷 캡처의 hello 상태를 쿼리할 때 반환 된 응답의 예입니다.
 
 ```json
 {
@@ -122,7 +122,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="list-all-packet-captures"></a>모든 패킷 캡처 나열
 
-다음 예제에서는 지역의 모든 패킷 캡처 세션을 가져옵니다.
+다음 예제는 hello 영역의 모든 패킷 캡처 세션을 가져옵니다.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -131,7 +131,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures?api-version=2016-12-01"
 ```
 
-다음 응답은 모든 패킷 캡처를 가져올 때 반환된 일반적인 응답의 예입니다.
+hello 다음 응답은 일반적으로 모든 패킷을 가져올 때 반환 된 응답의 예가 캡처
 
 ```json
 {
@@ -196,7 +196,7 @@ ture_17_23_15_364.cap",
 
 ## <a name="query-packet-capture-status"></a>패킷 캡처 상태 쿼리
 
-다음 예제에서는 지역의 모든 패킷 캡처 세션을 가져옵니다.
+다음 예제는 hello 영역의 모든 패킷 캡처 세션을 가져옵니다.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -206,7 +206,7 @@ $packetCaptureName = "TestPacketCapture5"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-다음 응답은 패킷 캡처의 상태를 쿼리할 때 반환된 일반적인 응답의 예입니다.
+hello 다음 응답은 일반적으로 패킷 캡처의 hello 상태를 쿼리할 때 반환 된 응답의 예입니다.
 
 ```json
 {
@@ -220,7 +220,7 @@ armclient get "https://management.azure.com/subscriptions/${subscriptionId}/Reso
 
 ## <a name="start-packet-capture"></a>패킷 캡처 시작
 
-다음 예제에서는 가상 컴퓨터에서 패킷 캡처를 만듭니다.  이 예제는 예제를 만드는 데 유연성을 허용하도록 매개 변수화됩니다.
+다음 예제는 hello 가상 컴퓨터에서 패킷 캡처를 만듭니다.  hello 예는 예제를 만들 유연성에 대 한 매개 변수가 있는 tooallow입니다.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -272,7 +272,7 @@ armclient PUT "https://management.azure.com/subscriptions/${subscriptionId}/Reso
 
 ## <a name="stop-packet-capture"></a>패킷 캡처 중지
 
-다음 예제에서는 가상 컴퓨터에서 패킷 캡처를 중지합니다.  이 예제는 예제를 만드는 데 유연성을 허용하도록 매개 변수화됩니다.
+다음 예제는 hello 가상 컴퓨터에서 패킷 캡처를 중지 합니다.  hello 예는 예제를 만들 유연성에 대 한 매개 변수가 있는 tooallow입니다.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -284,7 +284,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="delete-packet-capture"></a>패킷 캡처 삭제
 
-다음 예제에서는 가상 컴퓨터에서 패킷 캡처를 삭제합니다.  이 예제는 예제를 만드는 데 유연성을 허용하도록 매개 변수화됩니다.
+다음 예에서는 hello 가상 컴퓨터에서 패킷 캡처를 삭제 합니다.  hello 예는 예제를 만들 유연성에 대 한 매개 변수가 있는 tooallow입니다.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -296,13 +296,13 @@ armclient delete "https://management.azure.com/subscriptions/${subscriptionId}/R
 ```
 
 > [!NOTE]
-> 패킷 캡처를 삭제해도 저장소 계정에서 파일을 삭제하지 않습니다.
+> 패킷 캡처를 삭제 해도 hello 파일 hello 저장소 계정에서 삭제 되지 않습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure Storage 계정에서 파일을 다운로드하는 방법에 대한 지침은 [.NET을 사용하여 Azure Blob Storage 시작](../storage/blobs/storage-dotnet-how-to-use-blobs.md)을 참조하세요. 사용할 수 있는 다른 도구는 저장소 탐색기입니다. 저장소 탐색기에 대한 자세한 내용은 여기에 있는 [저장소 탐색기](http://storageexplorer.com/) 링크에서 찾을 수 있습니다.
+Azure 저장소 계정에서 파일을 다운로드 하는 방법은 참조 너무[.NET을 사용 하 여 Azure Blob 저장소 시작](../storage/blobs/storage-dotnet-how-to-use-blobs.md)합니다. 사용할 수 있는 다른 도구는 저장소 탐색기입니다. 저장소 탐색기에 대 한 자세한 내용은 여기에 있습니다 링크 hello: [저장소 탐색기](http://storageexplorer.com/)
 
-[경고로 트리거된 패킷 캡처 만들기](network-watcher-alert-triggered-packet-capture.md)를 확인하여 가상 컴퓨터 경고로 패킷 캡처를 자동화하는 방법을 알아봅니다.
+어떻게 tooautomate 패킷 캡처를 가상 컴퓨터 경고 보기에 대해 알아봅니다 [경고 트리거된 패킷 캡처를 만들려면](network-watcher-alert-triggered-packet-capture.md)
 
 
 

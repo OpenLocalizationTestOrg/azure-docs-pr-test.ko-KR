@@ -1,6 +1,6 @@
 ---
-title: "Azure Security Center 빠른 시작 가이드| Microsoft Docs"
-description: "이 문서는 Azure Security Center를 빠르게 시작할 수 있도록 보안 모니터링 및 정책 관리 구성 요소를 안내하고 다음 단계로 연결하는 데 도움이 됩니다."
+title: "aaaAzure 보안 센터 빠른 시작 가이드 | Microsoft Docs"
+description: "이 문서에서는 hello 보안 모니터링 및 정책 관리 구성 요소를 안내 하 고 toonext 단계를 연결 하 여 Azure 보안 센터를 신속 하 게 시작할 수 있습니다."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,109 +14,109 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: 392c814b7d3ff6b4f0f7850a51960576775e0307
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 23b2444ba1ba30d0a1bd1a1afbc4fd0abfd0827c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-center-quick-start-guide"></a>Azure Security Center 빠른 시작 가이드
-이 문서에서는 Azure Security Center를 빠르게 시작할 수 있도록 보안 센터의 보안 모니터링 및 정책 관리 구성 요소를 안내합니다.
+이 문서에서는 빠르게 시작 Azure 보안 센터 hello 모니터링 및 정책 관리의 보안 구성 요소 보안 센터를 안내 하 여 합니다.
 
 > [!NOTE]
-> 2017년 6월 초를 시작으로 Security Center는 Microsoft Monitoring Agent를 사용하여 데이터를 수집 및 저장합니다. 자세한 내용은 [Azure Security Center 플랫폼 마이그레이션](security-center-platform-migration.md)을 참조하세요. 이 문서의 정보는 Microsoft Monitoring Agent로 전환된 후의 Security Center 기능을 나타냅니다.
+> 보안 센터는 초기 년 6 월 2017 년 부터는 hello Microsoft Monitoring Agent toocollect를 사용 하 고 데이터를 저장 합니다. 참조 [Azure 보안 센터 플랫폼 마이그레이션](security-center-platform-migration.md) toolearn 더 합니다. 이 문서의 정보 hello 전환 toohello Microsoft Monitoring Agent 후 보안 센터 기능을 나타냅니다.
 >
 >
 
 ## <a name="prerequisites"></a>필수 조건
-Security Center를 시작하려면 Microsoft Azure에 대한 구독이 있어야 합니다. 구독이 없는 경우 [무료 계정](https://azure.microsoft.com/pricing/free-trial/)으로 등록할 수 있습니다.
+보안 센터와 시작 tooget, 구독 tooMicrosoft Azure 있어야 합니다. 구독이 없는 경우 [무료 계정](https://azure.microsoft.com/pricing/free-trial/)으로 등록할 수 있습니다.
 
-Security Center의 무료 계층은 구독에서 자동으로 사용하도록 설정되고 Azure 리소스의 보안 상태에 대한 가시성을 제공합니다. Azure 파트너의 보안 제품과 서비스를 통해 기본 보안 정책 관리, 보안 권장 사항 및 통합이 제공됩니다.
+보안 센터의 hello 무료 계층 구독에 자동으로 활성화 하 고 Azure 리소스의 hello 보안 상태에 대 한 가시성을 제공 합니다. Azure 파트너의 보안 제품과 서비스를 통해 기본 보안 정책 관리, 보안 권장 사항 및 통합이 제공됩니다.
 
-[Azure 포털](https://azure.microsoft.com/features/azure-portal/)에서 Security Center에 액세스합니다. Azure 포털에 대한 자세한 내용은 [포털 문서](https://azure.microsoft.com/documentation/services/azure-portal/)를 참조하세요.
+보안 센터 hello에서 액세스 [Azure 포털](https://azure.microsoft.com/features/azure-portal/)합니다. toolearn hello Azure 포털에 대 한 자세한 참조 hello [포털 설명서](https://azure.microsoft.com/documentation/services/azure-portal/)합니다.
 
 ## <a name="permissions"></a>권한
-Security Center에서는 리소스가 속한 구독이나 리소스 그룹에 대한 소유자, 참가자 또는 독자 역할을 할당 받을 때 Azure 리소스와 관련된 항목만 볼 수 있습니다. Security Center의 역할 및 허용된 작업에 대한 자세한 내용은 [Azure Security Center의 권한](security-center-permissions.md)을 참조하세요.
+보안 센터에만 표시와 관련 된 정보가 tooan hello 구독 또는 리소스 그룹에 속한 리소스에 대 한 소유자, 참가자 또는 판독기의 hello 역할 할당 될 때 Azure 리소스입니다. 참조 [Azure 보안 센터에서 사용 권한을](security-center-permissions.md) toolearn 역할 및 보안 센터에서 허용 되는 작업에 대 한 자세한 합니다.
 
 ## <a name="data-collection"></a>데이터 수집
-Security Center는 해당 보안 상태를 평가하고 보안 권장 사항을 제공하며 위협에 경고하기 위해 VM(가상 컴퓨터)에서 데이터를 수집합니다. Security Center에 처음 액세스하는 경우 구독의 모든 VM에서 데이터 수집을 활성화합니다. Security Center는 지원되는 모든 기존 Azure VM 및 새로 만든 Azure VM에 Microsoft Monitoring Agent를 프로비전합니다. 데이터 수집 작동 방식에 대한 자세한 내용은 [데이터 수집 활성화](security-center-enable-data-collection.md)를 참조하세요.
+보안 센터에서에서 데이터를 수집한 가상 컴퓨터 (Vm) tooassess 자신의 보안 상태, 보안 권장 사항을 제공 하 고 있습니다 toothreats 경고 합니다. Security Center에 처음 액세스하는 경우 구독의 모든 VM에서 데이터 수집을 활성화합니다. 보안 센터에 모든 기존 프로 비전 hello Microsoft Monitoring Agent는 Azure Vm 및 만들어진 새로 지원. 참조 [데이터 컬렉션 활성화](security-center-enable-data-collection.md) toolearn 데이터 수집 작동 방식에 대 한 자세한 합니다.
 
-데이터 수집을 사용하는 것이 좋습니다. Security Center의 무료 계층을 사용하는 경우 보안 정책에서 데이터 수집을 해제하여 VM에서 데이터 수집을 사용하지 않도록 설정할 수 있습니다. 데이터 수집은 Security Center의 표준 계층에 대한 구독에 필요합니다. 무료 및 표준 가격 책정 계층에 대한 자세한 내용은 [Security Center 가격 책정](security-center-pricing.md)을 참조하세요.
+데이터 수집을 사용하는 것이 좋습니다. 보안 센터의 무료 계층 hello를 사용 하는 경우에 hello 보안 정책에서 데이터 수집을 해제 하 여 Vm에서 데이터 수집을 해제할 수 있습니다. 데이터 컬렉션 보안 센터의 hello 표준 계층에 구독이 필요 합니다. 참조 [보안 센터 가격](security-center-pricing.md) 무료 및 표준 가격 책정 계층에 더 알아봅니다 toolearn hello 합니다.
 
-다음 단계에서는 Security Center의 구성 요소를 액세스하여 사용하는 방법을 설명합니다. 여기서는 데이터 수집을 해제하도록 선택하는 경우 이 기능을 해제하는 방법을 보여 줍니다.
+단계를 수행 하는 hello 방법을 사용 하 여 tooaccess hello 보안 센터의 구성 요소에 설명 합니다. 이 단계에서는 보여줍니다 어떻게 tooturn 아웃 tooopt를 선택 하는 경우 데이터 수집 해제 합니다.
 
 > [!NOTE]
-> 이 문서에서는 배포 예제를 사용하여 서비스를 소개합니다. 단계별 가이드는 아닙니다.
+> 이 문서에서는 배포 예제를 사용 하 여 hello 서비스를 소개 합니다. 단계별 가이드는 아닙니다.
 >
 >
 
 ## <a name="access-security-center"></a>Security Center 액세스
-포털에서 다음 단계에 따라 Security Center에 액세스합니다.
+Hello 포털에서 이러한 단계 tooaccess 보안 센터를 따릅니다.
 
-1. **Microsoft Azure** 메뉴에서 **Security Center**를 선택합니다.
+1. Hello에 **Microsoft Azure** 메뉴 선택 **보안 센터**합니다.
 
    ![Azure 메뉴][1]
-2. 처음으로 Security Center에 액세스하는 경우 **시작** 블레이드가 열립니다. **Security Center 시작**을 선택하여 **Security Center** 블레이드를 열고 데이터 수집을 사용하도록 설정합니다.
+2. 액세스 하려는 경우 보안 센터 hello에 대 한 처음으로, hello **시작** 블레이드를 엽니다. 선택 **시작 보안 센터** tooopen hello **보안 센터** 블레이드 및 tooenable 데이터 수집 합니다.
    ![시작 화면][10]
-3. 시작 블레이드에서 Security Center를 시작하거나 Microsoft Azure 메뉴에서 Security Center를 선택하면 **Security Center** 블레이드가 열립니다. 향후 **Security Center** 블레이드에 손쉽게 액세스하려면 오른쪽 위에 있는 **대시보드에 블레이드 고정** 옵션을 선택합니다.
-   ![대시보드 옵션에 블레이드 고정][2]
+3. Hello 시작 블레이드에서 보안 센터를 시작 하거나에서 hello Microsoft Azure 보안 센터를 선택 하면 hello **보안 센터** 블레이드를 엽니다. 쉽게 액세스할 수 있도록 toohello에 대 한 **보안 센터** hello 이후, 선택 hello 블레이드 **Pin 블레이드 toodashboard** 옵션 (오른쪽 위).
+   ![Pin 블레이드 toodashboard 옵션][2]
 
 ## <a name="use-security-center"></a>Security Center 사용
 Azure 구독 및 리소스 그룹에 대한 보안 정책을 구성할 수 있습니다. 다음과 같이 구독에 대한 보안 정책을 구성하세요.
 
-1. **Security Center** 블레이드에서 **정책** 타일을 선택합니다.
-2. **보안 정책 – 구독별로 정책 정의** 블레이드에서 구독을 선택합니다.
-3. **보안 정책** 블레이드에서 자동으로 로그를 수집하도록 **데이터 수집**을 활성화합니다. 구독에 있는 현재 VM과 새로운 VM에 모니터링 확장이 프로비전됩니다. (Security Center의 무료 계층에서 **데이터 수집**을 **끄기**로 설정하면 데이터 수집을 옵트아웃(opt out)할 수 있습니다. **데이터 수집**을 **끄기**로 설정하면 Security Center에서 보안 경고 및 권장 사항을 제공하지 않습니다.)
-4. **보안 정책** 블레이드에서 **방지 정책**을 선택합니다. 그러면 **방지 정책** 블레이드가 열립니다.
-5. **방지 정책** 블레이드에서 보안 정책의 일부로 보려는 권장 사항을 설정합니다. 예제:
+1. Hello에 **보안 센터** 블레이드, 선택 hello **정책** 바둑판식으로 배열입니다.
+2. Hello에 **보안 정책-구독 당 정책을 정의** 블레이드, 구독을 선택 합니다.
+3. Hello에 **보안 정책** 블레이드에서 **데이터 수집** 활성화 tooautomatically 수집 로그 됩니다. 모니터링 확장 hello hello 구독에서 모든 현재와 새 vm 프로 비전 됩니다. (보안 센터의 hello 무료 계층에서 있습니다 수 옵트아웃 데이터 수집을 설정 하 여 **데이터 수집** 너무**오프**합니다. 설정 **데이터 수집** 너무**오프** 보안 센터 보안 경고 및 권장 사항을 제공 하는 것을 금지 합니다.)
+4. Hello에 **보안 정책** 블레이드를 **방지 정책**합니다. Hello 열립니다 **방지 정책** 블레이드입니다.
+5. Hello에 **방지 정책** 블레이드에서 hello 권장 보안 정책의 일부로 toosee 되도록 설정 합니다. 예제:
 
-   * **시스템 업데이트**를 **켜기**로 설정하면 지원되는 모든 VM에 대해 누락된 OS 업데이트가 있는지 검사합니다.
-   * **OS 취약성**을 **켜기**로 설정하면 지원되는 모든 VM을 검사하여 VM을 공격에 더 취약하게 만들 수 있는 OS 구성을 식별합니다.
+   * 설정 **시스템 업데이트** 너무**에** 검사가 모든 누락 된 운영 체제 업데이트에 대 한 Vm을 지원 합니다.
+   * 설정 **OS 취약점** 너무**에** 검색이 지원 되는 모든 Vm tooidentify 하도록 할 수 있는 모든 OS 구성을 hello VM tooattack 으로부터 더 취약 합니다.
 
 ### <a name="view-recommendations"></a>권장 사항 보기
-1. **Security Center** 블레이드로 돌아가서 **권장 사항** 타일을 선택합니다. Security Center에서는 Azure 리소스의 보안 상태를 주기적으로 분석합니다. Security Center에서 잠재적인 보안 취약성을 식별하는 경우 **권장 사항** 블레이드에서 권장 사항을 보여 줍니다.
+1. Toohello 반환 **보안 센터** 블레이드에 대 한 선택 hello **권장 사항을** 바둑판식으로 배열입니다. 보안 센터 리소스를 Azure의 hello 보안 상태를 정기적으로 분석합니다. 보안 센터에는 잠재적인 보안 취약점 식별, hello에 권장 사항을 표시 **권장 사항을** 블레이드입니다.
    ![Azure Security Center의 권장 사항][5]
-2. **권장 사항을** 블레이드에서 권장 사항을 선택하여 자세한 정보를 표시하거나 문제를 해결하기 위한 조치를 선택합니다.
+2. Hello에 대 한 권장 구성을 선택 **권장 사항을** 블레이드 tooview 자세한 정보 및/또는 tootake 작업 tooresolve hello 발급 합니다.
 
-### <a name="view-the-security-state-of-your-resources"></a>리소스의 보안 상태 보기
-1. **Security Center** 블레이드로 돌아갑니다. 대시보드의 **방지** 섹션에는 VM, 네트워킹, 데이터 및 응용 프로그램의 보안 상태에 대한 지표가 포함되어 있습니다.
-2. **Compute**를 선택하여 자세한 정보를 봅니다. 세 개의 탭을 보여 주는 **Compute** 블레이드가 열립니다.
+### <a name="view-hello-security-state-of-your-resources"></a>리소스 보기 hello 보안 상태
+1. Toohello 반환 **보안 센터** 블레이드입니다. hello **방지** hello 대시보드의 Vm, 네트워킹, 데이터 및 응용 프로그램에 대 한 hello 보안 상태 표시기를 포함 합니다.
+2. 선택 **계산** tooview 자세한 정보. hello **계산** 블레이드 보여 주는 세 개의 탭을 엽니다.
 
   - **개요** - 모니터링 및 VM 권장 사항이 포함되어 있습니다.
   - **가상 컴퓨터** - 모든 VM과 현재 보안 상태를 나열합니다.
   - **클라우드 서비스**: Security Center에서 모니터링하는 웹 및 작업자 역할을 나열합니다.
 
-    ![Azure 보안 센터의 리소스 상태 타일][6]
+    ![Azure 보안 센터에서 hello 리소스 상태 타일][6]
 
-3. **개요** 탭의 **가상 컴퓨터 권장 사항**에서 권장 사항을 선택하여 자세한 정보를 보거나 필요한 제어를 구성하는 작업을 선택합니다.
-4. **가상 컴퓨터** 탭에서 VM을 선택하여 추가 세부 정보를 봅니다.
+3. Hello에 **개요** 탭 아래에서 권장 구성을 선택 합니다 **가상 컴퓨터의 권장 사항을** tooview 정보 및/또는 take 작업 tooconfigure 필요한 컨트롤을 더 합니다.
+4. Hello에 **가상 컴퓨터** 탭 VM tooview 추가 세부 정보를 선택 합니다.
 
 ### <a name="view-security-alerts"></a>보안 경고 보기
-1. **Security Center** 블레이드로 돌아가서 **보안 경고** 타일을 선택합니다. **보안 경고** 블레이드가 열려 경고 목록을 보여 줍니다. 보안 로그 및 네트워크 활동의 보안 상태 분석에서 이러한 경고를 생성합니다. 통합된 파트너 솔루션에서 보내는 경고도 있습니다.
+1. Toohello 반환 **보안 센터** 블레이드에 대 한 선택 hello **보안 경고** 바둑판식으로 배열입니다. hello **보안 경고** 블레이드가 열리고 경고의 목록이 표시 됩니다. 이러한 경고를 생성 하는 hello 네트워크 작업 및 보안 로그의 보안 센터 분석 합니다. 통합된 파트너 솔루션에서 보내는 경고도 있습니다.
    ![Azure Security Center의 보안 경고][7]
 
    > [!NOTE]
-   > Security Center의 표준 계층을 사용하도록 설정된 경우에만 보안 경고를 제공합니다. 표준 계층을 60일 무료 평가판으로 사용할 수 있습니다. 표준 계층을 가져오는 방법에 대한 내용은 [다음 단계](#next-steps)를 참조하세요.
+   > 보안 경고는 보안 센터의 hello 표준 계층에서 사용 되는 경우에 사용할 수만 있습니다. Hello 표준 계층의 60 일 무료 평가판 ´ ù. 참조 [다음 단계](#next-steps) tooget 표준 hello 하는 방법에 대 한 내용은 계층입니다.
    >
    >
-2. 경고를 선택하여 추가적인 정보를 표시합니다. 이 예에서는 **수정된 시스템 이진 파일 검색**을 선택합니다. 이렇게 하면 해당 경고에 대한 세부 정보를 추가로 제공하는 블레이드가 열립니다.
+2. 경고 tooview 추가 정보를 선택 합니다. 이 예에서는 **수정된 시스템 이진 파일 검색**을 선택합니다. Hello 경고에 대 한 추가 세부 정보를 제공 하는 블레이드가 열립니다.
    ![Azure Security Center의 보안 경고 세부 정보][8]
 
-### <a name="view-the-health-of-your-partner-solutions"></a>파트너 솔루션의 상태 보기
-1. **Security Center** 블레이드로 돌아갑니다. **파트너 솔루션** 타일에서 Azure 구독과 통합된 파트너 솔루션의 상태를 한 눈에 모니터링할 수 있습니다.
-2. **파트너 솔루션** 타일을 선택합니다. 블레이드가 열리고 Security Center에 연결된 파트너 솔루션의 목록을 보여 줍니다.
+### <a name="view-hello-health-of-your-partner-solutions"></a>파트너 솔루션의 hello 상태 보기
+1. Toohello 반환 **보안 센터** 블레이드입니다. hello **파트너 솔루션** 타일 모니터링할 수 있습니다를 한 눈에 hello Azure 구독과 통합 하 여 파트너 솔루션의 상태입니다.
+2. 선택 hello **파트너 솔루션** 바둑판식으로 배열입니다. 블레이드 열리고 파트너 솔루션의 목록 표시 tooSecurity 센터 연결.
    ![파트너 솔루션][9]
-3. 파트너 솔루션을 선택합니다. 이 예에서는 **QualysVa1** 솔루션을 선택합니다.  블레이드가 열리고 파트너 솔루션의 상태 및 솔루션의 관련 리소스를 보여 줍니다. **솔루션 콘솔** 을 선택하여 이 솔루션에 대한 파트너 관리 환경을 엽니다.
+3. 파트너 솔루션을 선택합니다. 이 예에서는 hello를 선택 하겠습니다 **QualysVa1** 솔루션입니다.  블레이드가 열리고 hello 업체 솔루션 및 hello 솔루션의 hello 상태 관련 리소스를 보여 줍니다. 선택 **솔루션 콘솔** 이 솔루션에 tooopen hello 파트너 관리 환경을 제공 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 Security Center의 보안 모니터링 및 정책 관리 구성 요소를 소개했습니다. 이제 Security Center에 익숙해졌으므로 다음 단계를 수행하세요.
+이 문서에서는 toohello 모니터링 및 정책 관리의 보안 구성 요소를 보안 센터 도입 되었습니다. 보안 센터에 익숙하다면 했으므로 hello 다음 단계를 시도해 보십시오.
 
-* Azure 구독의 보안 정책을 구성합니다. 자세한 내용은 [Azure Security Center의 보안 정책 설정](security-center-policies.md)을 참조하세요.
-* Security Center에서 권장 사항을 사용하여 Azure 리소스를 보호합니다. 자세한 내용은 [Azure Security Center에서 보안 권장 사항 관리](security-center-recommendations.md)를 참조하세요.
-* 현재 보안 경고를 검토하고 관리합니다. 자세한 내용은 [Azure Security Center에서 보안 경고 관리 및 대응](security-center-managing-and-responding-alerts.md)을 참조하세요.
+* Azure 구독의 보안 정책을 구성합니다. toolearn 더 참조 [Azure 보안 센터에서 보안 정책 설정](security-center-policies.md)합니다.
+* Hello 권장 사항을 사용 하 여 보안 센터 toohelp에서 Azure 리소스를 보호 합니다. toolearn 더 참조 [Azure 보안 센터에서 보안 권장 사항 관리](security-center-recommendations.md)합니다.
+* 현재 보안 경고를 검토하고 관리합니다. toolearn 더 참조 [Azure 보안 센터에서 경고를 관리 하 고 응답 toosecurity](security-center-managing-and-responding-alerts.md)합니다.
 - [Azure Security Center 데이터 보안](security-center-data-security.md) - Security Center에서 데이터를 관리하고 보호하는 방법을 알아봅니다.
-* Security Center의 [표준 계층](security-center-pricing.md)과 함께 제공되는 [고급 위협 탐지 기능](security-center-detection-capabilities.md)에 대해 알아봅니다. 표준 계층은 처음 60일간 무료로 제공됩니다.
-* Security Center 사용에 대한 질문이 있으면 [Azure Security Center FAQ](security-center-faq.md)를 참조하세요.
+* Hello에 대 한 자세한 [고급 위협 검색 기능](security-center-detection-capabilities.md) hello 함께 제공 되 [표준 계층](security-center-pricing.md) 보안 센터의 합니다. hello 표준 계층은 무료로 제공 되지만 hello에 대 한 첫 번째 60 일입니다.
+* 보안 센터를 사용 하는 방법에 대 한 질문이 있으면 참조 hello [Azure 보안 센터 FAQ](security-center-faq.md)합니다.
 
 <!--Image references-->
 [1]: ./media/security-center-get-started/azure-menu.png

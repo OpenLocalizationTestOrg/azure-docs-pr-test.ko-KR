@@ -1,6 +1,6 @@
 ---
-title: ".NET 백 엔드를 통한 Azure 알림 허브의 Android 사용자 알림"
-description: "Azure에서 사용자에게 푸시 알림을 보내는 방법에 대해 알아봅니다. Android용 Java로 작성된 코드 샘플"
+title: ".NET 백 엔드와 aaaAzure Android 용 알림 허브 알릴 사용자"
+description: "Azure에서 toosend 알림 toousers 강제 하는 방법에 대해 알아봅니다. Android용 Java로 작성된 코드 샘플"
 documentationcenter: android
 services: notification-hubs
 author: ysxu
@@ -14,17 +14,17 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 418a4b638dfaa3fee33a7a7242433699205c79f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b042d2e6fb7f7c861c378526a8a0d59ab75beef9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a>.NET 백 엔드를 통한 Azure 알림 허브의 Android 사용자 알림
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>개요
-Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및 규모 확장 푸시 인프라에 액세스할 수 있어, 모바일 플랫폼용 소비자 응용 프로그램 및 엔터프라이즈 응용 프로그램 모두에 대한 푸시 알림을 매우 간단하게 구현할 수 있습니다. 이 자습서에서는 Azure 알림 허브를 사용하여 특정 장치에서 특정 앱 사용자에게 푸시 알림을 보내는 방법을 보여 줍니다. [앱 백 엔드에서 등록](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) 지침 항목에 나와 있는 대로 ASP.NET WebAPI 백 엔드는 클라이언트를 인증하고 알림을 생성하는 데 사용됩니다. 이 자습서는 [알림 허브 시작(Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) 자습서에서 만든 알림 허브를 기반으로 합니다.
+Azure의 푸시 알림 지원을 사용 하면 tooaccess는 사용 하기 쉬운, 다중 플랫폼, 및 수평 확장형 푸시 인프라를 모바일 앱을 위해 소비자 및 엔터프라이즈 응용 프로그램에 대 한 푸시 알림 hello 구현이 크게 간소화 플랫폼입니다. 이 자습서에서는 toouse Azure 알림 허브 toosend 특정 장치에서 알림을 tooa 특정 응용 프로그램 사용자를 강제 하는 방법을 보여 줍니다. ASP.NET WebAPI 백 엔드는 사용 되는 tooauthenticate 클라이언트 및 toogenerate 알림 hello 지침 항목에 나와 있는 것 처럼 [앱 백 엔드에서 등록](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)합니다. Hello에서 만든 hello 알림 허브를 기반으로 한이 자습서 [(Android) 알림 허브 시작](notification-hubs-android-push-notification-google-gcm-get-started.md) 자습서입니다.
 
 > [!NOTE]
 > 이 자습서에서는 [알림 허브 시작(Android)](notification-hubs-android-push-notification-google-gcm-get-started.md)에 설명된 대로 알림 허브를 만들고 구성했다고 가정합니다
@@ -33,11 +33,11 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="create-the-android-project"></a>Android 프로젝트 만들기
-다음은 Android 응용 프로그램을 만드는 단계입니다.
+## <a name="create-hello-android-project"></a>Hello Android 프로젝트 만들기
+hello 다음 단계 toocreate hello Android 응용 프로그램입니다.
 
-1. [알림 허브 시작(Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) 자습서에 따라 앱을 만들고 GCM에서 푸시 알림을 받도록 구성합니다.
-2. **res/layout/activity_main.xml** 파일을 열고 다음 콘텐츠 정의로 바꿉니다.
+1. Hello에 따라 [(Android) 알림 허브 시작](notification-hubs-android-push-notification-google-gcm-get-started.md) 자습서 toocreate 및 GCM에서 응용 프로그램 tooreceive 푸시 알림을 구성 합니다.
+2. Open 프로그램 **res/layout/activity_main.xml** 파일, hello hello 콘텐츠 정의 다음으로 대체 합니다.
    
     그러면 사용자로 로그인할 수 있는 새 EditText 컨트롤이 추가됩니다. 또한 보내는 알림의 일부가 될 사용자 이름 태그 필드가 추가됩니다.
    
@@ -122,7 +122,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
             android:layout_below="@+id/editTextNotificationMessage"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
-3. **res/values/strings.xml** 파일을 열고 `send_button` 정의를 다음 줄로 바꿉니다. 그러면 `send_button`에 대한 문자열이 다시 정의되고 다른 컨트롤에 대한 문자열이 추가됩니다.
+3. Open 프로그램 **res/values/strings.xml** hello를 바꾸고 파일 `send_button` hello 다음과 같이 정의 줄 hello에 대 한 해당 재정의 hello 문자열 `send_button` hello에 대 한 문자열을 다른 컨트롤 추가 및:
    
         <string name="usernameHint">Username</string>
         <string name="passwordHint">Password</string>
@@ -135,7 +135,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
     main_activity.xml 그래픽 레이아웃은 다음과 같이 표시되어야 합니다.
    
     ![][A1]
-4. `MainActivity` 클래스와 동일한 패키지에서 **RegisterClient**라는 새 클래스를 만듭니다. 새 클래스 파일에 아래 코드를 사용합니다.
+4. 이라는 새 클래스를 만들 **RegisterClient** 패키징하여 동일 hello에 프로그램 `MainActivity` 클래스입니다. 아래 hello 코드를 사용 하 여 hello 새 클래스 파일에 대 한 합니다.
    
         import java.io.IOException;
         import java.io.UnsupportedEncodingException;
@@ -240,15 +240,15 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
             }
         }
    
-    이 구성 요소는 푸시 알림을 등록하기 위해 앱 백 엔드에 접속하는 데 필요한 REST 호출을 구현합니다. 또한 *앱 백 엔드에서 등록* 에 설명된 대로 알림 허브에서 생성된 [registrationId](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)를 로컬로 저장합니다. 이 구성 요소는 **로그인** 단추를 클릭할 때 로컬 저장소에 저장된 인증 토큰을 사용합니다.
-5. `MainActivity` 클래스에서 `NotificationHub`에 대한 전용 필드를 제거하거나 주석 처리하고 `RegisterClient` 클래스에 대한 필드 및 ASP.NET 백 엔드의 끝점에 대한 문자열을 추가합니다. `<Enter Your Backend Endpoint>` 을 이전에 얻은 실제 백 엔드 끝점으로 바꿔야 합니다. 예: `http://mybackend.azurewebsites.net`
+    이 구성 요소는 hello REST 호출 필요한 toocontact hello 앱 백 순서 tooregister 푸시 알림을 구현합니다. 또한 로컬로 hello 저장 *registrationIds* 알림 허브에 설명 된 대로 hello에서 만든 [앱 백 엔드에서 등록](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)합니다. Hello를 클릭할 때 로컬 저장소에 저장 하는 권한 부여 토큰을 사용 하 여 참고 **로그인** 단추입니다.
+5. 사용자 `MainActivity` 클래스를 제거 하거나 주석 처리에 대 한 개인 필드 `NotificationHub`, hello에 대 한 필드를 추가 하 고 `RegisterClient` 클래스 및 ASP.NET 백 엔드의 끝점에 대 한 문자열입니다. 수 있는지 tooreplace `<Enter Your Backend Endpoint>` hello로 실제 백 엔드 끝점 이전에 얻은 합니다. 예: `http://mybackend.azurewebsites.net`.
 
         //private NotificationHub hub;
         private RegisterClient registerClient;
         private static final String BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
 
 
-1. `MainActivity` 클래스의 `onCreate` 메서드에서 `hub` 필드의 초기화를 제거하거나 주석 처리하고 `registerWithNotificationHubs` 메서드를 호출합니다. 그런 다음 `RegisterClient` 클래스의 인스턴스를 초기화할 코드를 추가합니다. 메서드에는 다음 줄이 포함되어야 합니다.
+1. 사용자 `MainActivity` hello에 클래스 `onCreate` 메서드를 제거 하거나 주석으로 hello hello 초기화 `hub` 필드와 hello 호출 toohello `registerWithNotificationHubs` 메서드. 다음 코드 tooinitialize hello의 인스턴스를 추가할 `RegisterClient` 클래스입니다. hello 메서드 hello 다음 줄을 포함 해야 합니다.
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -265,8 +265,8 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
    
             setContentView(R.layout.activity_main);
         }
-2. `MainActivity` 클래스에서 전체 `registerWithNotificationHubs` 메서드를 삭제하거나 주석 처리합니다. 이는 이 자습서에서는 사용되지 않습니다.
-3. 다음 `import` 문을 **MainActivity.java** 파일에 추가합니다.
+2. 사용자 `MainActivity` 클래스, 삭제 또는 전체 hello 주석 `registerWithNotificationHubs` 메서드. 이는 이 자습서에서는 사용되지 않습니다.
+3. Hello 다음 추가 `import` 문 tooyour **MainActivity.java** 파일입니다.
    
         import android.widget.Button;
         import java.io.UnsupportedEncodingException;
@@ -276,7 +276,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
         import org.apache.http.client.ClientProtocolException;
         import java.io.IOException;
         import org.apache.http.HttpStatus;
-4. 그런 다음 **로그인** 단추 클릭 이벤트를 처리하고 푸시 알림을 보내는 다음 메서드를 추가합니다.
+4. 그런 다음 hello 메서드 toohandle hello 다음 추가 **로그인** 단추 클릭 이벤트 및 푸시 알림을 보내는 합니다.
    
         @Override
         protected void onStart() {
@@ -296,7 +296,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
                         String regid = gcm.register(SENDER_ID);
                         registerClient.register(regid, new HashSet<String>());
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to register", e.getMessage());
+                        DialogNotify("MainActivity - Failed tooregister", e.getMessage());
                         return e;
                     }
                     return null;
@@ -320,15 +320,15 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
         }
    
         /**
-         * This method calls the ASP.NET WebAPI backend to send the notification message
-         * to the platform notification service based on the pns parameter.
+         * This method calls hello ASP.NET WebAPI backend toosend hello notification message
+         * toohello platform notification service based on hello pns parameter.
          *
-         * @param pns     The platform notification service to send the notification message to. Must
-         *                be one of the following ("wns", "gcm", "apns").
-         * @param userTag The tag for the user who will receive the notification message. This string
+         * @param pns     hello platform notification service toosend hello notification message to. Must
+         *                be one of hello following ("wns", "gcm", "apns").
+         * @param userTag hello tag for hello user who will receive hello notification message. This string
          *                must not contain spaces or special characters.
-         * @param message The notification message string. This string must include the double quotes
-         *                to be used as JSON content.
+         * @param message hello notification message string. This string must include hello double quotes
+         *                toobe used as JSON content.
          */
         public void sendPush(final String pns, final String userTag, final String message)
                 throws ClientProtocolException, IOException {
@@ -354,7 +354,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
                             throw new RuntimeException("Error sending notification");
                         }
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to send " + pns + " notification ", e.getMessage());
+                        DialogNotify("MainActivity - Failed toosend " + pns + " notification ", e.getMessage());
                         return e;
                     }
    
@@ -363,17 +363,17 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
             }.execute(null, null, null);
         }
 
-    **로그인** 단추에 대한 `login` 처리기는 입력 사용자 이름과 암호(이는 인증 체계에서 사용하는 모든 토큰을 나타냄)를 사용하여 기본 인증 토큰을 생성하고 `RegisterClient`를 사용하여 등록을 위한 백 엔드를 호출합니다.
+    hello `login` hello에 대 한 처리기 **로그인** 단추는 기본 인증 사용 하 여 토큰에 사용자 이름이 입력된 하는 hello 및 암호 (참고가는 인증 체계를 사용 하는 모든 토큰)를 생성 한 다음 사용하여`RegisterClient`toocall hello 백 엔드 등록에 대 한 합니다.
 
-    `sendPush` 메서드는 사용자 태그를 기반으로 사용자에 대한 보안 알림을 트리거하는 백 엔드를 호출합니다. `sendPush`에서 대상으로 하는 플랫폼 알림 서비스는 전달되는 `pns` 문자열에 따라 다릅니다.
+    hello `sendPush` 메서드 hello 백 엔드 tootrigger hello 사용자 태그에 따라 보안 알림 toohello 사용자를 호출 합니다. hello 플랫폼 알림 서비스에 `sendPush` 대상 hello에 따라 달라 집니다 `pns` 문자열이 전달 되었습니다.
 
-1. 다음과 같이 `MainActivity` 클래스에서 사용자가 선택한 플랫폼 알림 서비스를 사용하여 `sendPush` 메서드를 호출하도록 `sendNotificationButtonOnClick` 메서드를 업데이트합니다.
+1. 사용자 `MainActivity` 클래스, 업데이트 hello `sendNotificationButtonOnClick` 메서드 toocall hello `sendPush` hello 사용자와 방법을 다음과 같은 플랫폼 알림 서비스를 선택 합니다.
    
        /**
-        * Send Notification button click handler. This method sends the push notification
-        * message to each platform selected.
+        * Send Notification button click handler. This method sends hello push notification
+        * message tooeach platform selected.
         *
-        * @param v The view
+        * @param v hello view
         */
        public void sendNotificationButtonOnClick(View v)
                throws ClientProtocolException, IOException {
@@ -400,16 +400,16 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
            }
        }
 
-## <a name="run-the-application"></a>응용 프로그램 실행
-1. Android Studio를 사용하여 장치 또는 에뮬레이터에서 응용 프로그램을 실행합니다.
-2. Android 앱에서 사용자 이름과 암호를 입력합니다. 둘 다 동일한 문자열 값이어야 하며 공백이나 특수 문자를 포함해서는 안 됩니다.
-3. Android 앱에서 **Log in**을 클릭합니다. **Logged in and registered**를 나타내는 알림 메시지를 기다립니다. 이 메시지가 나타나면 **Send Notification** 단추가 활성화됩니다.
+## <a name="run-hello-application"></a>Hello 응용 프로그램 실행
+1. 장치 또는 Android Studio를 사용 하 여 에뮬레이터 hello 응용 프로그램을 실행 합니다.
+2. Hello Android 앱에서 사용자 이름 및 암호를 입력 합니다. 여야 hello 동일한 문자열 값 있으며 없어야 공백이 나 특수 문자.
+3. Hello Android 앱에서 클릭 **로그인**합니다. **Logged in and registered**를 나타내는 알림 메시지를 기다립니다. 이렇게 하면 hello **알림 보내기** 단추입니다.
    
     ![][A2]
-4. 토글 단추를 클릭하여 앱을 실행하고 사용자를 등록한 모든 플랫폼을 활성화합니다.
-5. 알림 메시지를 받을 사용자의 이름을 입력합니다. 대상 장치에 이 사용자에 대한 알림이 등록되어 있어야 합니다.
-6. 사용자가 푸시 알림 메시지로 받을 메시지를 입력합니다.
-7. **Send Notification**을 클릭합니다.  일치하는 사용자 이름 태그로 등록된 각 장치에 푸시 알림이 수신됩니다.
+4. Hello 토글 단추 tooenable 클릭 수 있는 모든 플랫폼 hello 앱을 실행 하 고 사용자를 등록 합니다.
+5. Hello 알림 메시지를 수신할 hello 사용자의 이름을 입력 합니다. 해당 사용자는 장치를 대상으로 하는 hello에 대 한 알림을 등록 되어야 합니다.
+6. 푸시 알림 메시지로 사용자 tooreceive hello에 대 한 메시지를 입력 합니다.
+7. **Send Notification**을 클릭합니다.  Hello 일치 하는 사용자 이름 태그로 등록에는 각 장치 hello 푸시 알림을 받게 됩니다.
 
 [A1]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users.png
 [A2]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users-enter-password.png

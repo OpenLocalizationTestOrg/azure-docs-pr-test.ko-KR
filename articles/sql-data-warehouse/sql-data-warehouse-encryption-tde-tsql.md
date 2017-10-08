@@ -1,5 +1,5 @@
 ---
-title: "SQL Data Warehouse의 투명한 데이터 암호화(T-SQL) | Microsoft Docs"
+title: "SQL 데이터 웨어하우스 (T-SQL)의 데이터 암호화 aaaTransparent | Microsoft Docs"
 description: "SQL Data Warehouse의 TDE(투명한 데이터 암호화)(T-SQL)"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 74c9032aababdce91ed617cd7a4c628915b42504
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3894431c76f14b217f3a6b9a42dbf2f4d216bad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde"></a>투명한 데이터 암호화(TDE) 시작
 > [!div class="op_single_selector"]
@@ -31,38 +31,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="required-permssions"></a>필요한 권한
-TDE(투명한 데이터 암호화)를 사용하려면 관리자 또는 dbmanager 역할의 멤버여야 합니다.
+투명 한 데이터 암호화 (TDE) tooenable 관리자나 hello dbmanager 역할의 멤버 여야 합니다.
 
 ## <a name="enabling-encryption"></a>암호화 설정
-SQL Data Warehouse에 대한 TDE를 사용하려면 다음 단계를 따르세요.
+SQL 데이터 웨어하우스에 대 한 이러한 단계 tooenable TDE를 수행 합니다.
 
-1. 마스터 데이터베이스에서 *dbmanager* 역할의 관리자 또는 멤버인 로그인을 사용하여 데이터베이스를 호스팅하는 서버의 **마스터** 데이터베이스에 연결
-2. 다음 문을 실행하여 데이터베이스를 암호화합니다.
+1. Toohello 연결 *마스터* hello 서버 관리자 또는 hello의 멤버인 로그인을 사용 하는 hello 데이터베이스를 호스팅하는 데이터베이스 **dbmanager** hello master 데이터베이스의 역할
+2. 다음 문을 tooencrypt hello 데이터베이스 hello를 실행 합니다.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 ```
 
 ## <a name="disabling-encryption"></a>암호화 비활성화
-SQL Data Warehouse에 대한 TDE를 사용하지 않으려면 다음 단계를 따르세요.
+SQL 데이터 웨어하우스에 대 한 이러한 단계 toodisable TDE를 수행 합니다.
 
-1. 마스터 데이터베이스에서 *dbmanager* 역할의 관리자 또는 멤버인 로그인을 사용하여 **마스터** 데이터베이스에 연결
-2. 다음 문을 실행하여 데이터베이스를 암호화합니다.
+1. Toohello 연결 *마스터* 관리자 이거나 hello의 구성원 인 로그인을 사용 하 여 데이터베이스 **dbmanager** hello master 데이터베이스의 역할
+2. 다음 문을 tooencrypt hello 데이터베이스 hello를 실행 합니다.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION OFF;
 ```
 
 > [!NOTE]
-> TDE 설정을 변경하기 전에 일시 중지된 SQL Data Warehouse를 다시 시작해야 합니다.
+> 일시 중지 된 SQL 데이터 웨어하우스 toohello TDE 설정을 변경 하기 전에 다시 시작 되어야 합니다.
 > 
 > 
 
 ## <a name="verifying-encryption"></a>암호화 확인
-SQL 데이터 웨어하우스에 대한 암호화 상태를 확인하려면 다음 단계를 따르세요.
+SQL 데이터 웨어하우스에 대 한 tooverify 암호화 상태는 아래의 hello 단계를 수행 합니다.
 
-1. 마스터 데이터베이스에서 *dbmanager* 역할의 관리자 또는 멤버인 로그인을 사용하여 **마스터** 또는 인스턴스 데이터베이스에 연결
-2. 다음 문을 실행하여 데이터베이스를 암호화합니다.
+1. Toohello 연결 *마스터* 또는 인스턴스 데이터베이스 관리자 또는 hello의 멤버인 로그인을 사용 하 여 **dbmanager** hello master 데이터베이스의 역할
+2. 다음 문을 tooencrypt hello 데이터베이스 hello를 실행 합니다.
 
 ```sql
 SELECT
