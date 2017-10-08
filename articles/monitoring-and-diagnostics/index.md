@@ -1,6 +1,6 @@
 ---
-title: "Azure Monitor 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "모니터링 및 진단 서비스를 사용하여 성능을 추적하고 보안을 유지 관리하며 추세를 파악하는 방법에 대해 알아봅니다. API 참조, 모범 사례 등입니다."
+title: "aaaAzure 모니터 설명서-자습서, API 참조 | Microsoft Docs"
+description: "어떻게 toouse 모니터링 및 진단 서비스 tootrack 성능, 보안을 유지 알아보고 추세를 파악 합니다. API 참조, 모범 사례 등입니다."
 services: monitoring-and-diagnostics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 5583254cd559314478bdc42e3f41171c6cf1e85a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b86390735ef74e137ec835b301b904763fad4405
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-documentation"></a>Azure Monitor 설명서
 
-Azure 모니터링 및 진단 서비스를 사용하여 성능을 추적하고 보안을 유지 관리하며 추세를 파악하는 방법에 대해 알아봅니다. 자습서, API 참조, 모범 사례 및 기타 설명서를 통해 모니터링 및 진단의 사용법과 확장성 및 안정성이 뛰어난 솔루션을 계획하고 배포하는 방법을 이해할 수 있습니다.
+Toouse Azure 모니터링 및 진단 서비스 tootrack 성능, 보안을 유지 하 고 추세를 파악할 방법에 대해 알아봅니다. 자습서, API 참조, 모범 사례 및 기타 설명서 도움말 hello 모니터링 및 진단의 사용을 이해 및 방법을 tooplan 및 확장성과 안정성이 뛰어난 솔루션을 배포 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

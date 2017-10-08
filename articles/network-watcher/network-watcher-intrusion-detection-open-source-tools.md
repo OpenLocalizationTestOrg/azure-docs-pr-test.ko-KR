@@ -1,6 +1,6 @@
 ---
-title: "Azure Network Watcher 및 오픈 소스 도구를 사용하여 네트워크 침입 검색 수행 | Microsoft Docs"
-description: "이 문서에서는 Azure Network Watcher 및 오픈 소스 도구를 사용하여 네트워크 침입 검색을 수행하는 방법에 대해 설명합니다."
+title: "Azure 네트워크 감시자 오픈 소스 도구와 aaaPerform 네트워크 침입 감지 | Microsoft Docs"
+description: "이 문서에서는 Azure 네트워크 감시자 toouse 및 오픈 소스 도구 tooperform 네트워크 침입 감지에 어떻게 설명"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 82d5e525859ebe03b152c63e4debbae469049c12
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5a909b827ab32ad6b2fd8e2911a944fd940249e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="perform-network-intrusion-detection-with-network-watcher-and-open-source-tools"></a><span data-ttu-id="0c369-103">Network Watcher 및 오픈 소스 도구를 사용하여 네트워크 침입 검색 수행</span><span class="sxs-lookup"><span data-stu-id="0c369-103">Perform network intrusion detection with Network Watcher and open source tools</span></span>
+# <a name="perform-network-intrusion-detection-with-network-watcher-and-open-source-tools"></a><span data-ttu-id="52eea-103">Network Watcher 및 오픈 소스 도구를 사용하여 네트워크 침입 검색 수행</span><span class="sxs-lookup"><span data-stu-id="52eea-103">Perform network intrusion detection with Network Watcher and open source tools</span></span>
 
-<span data-ttu-id="0c369-104">패킷 캡처는 네트워크 IDS(침입 검색 시스템)를 구현하고 NSM(네트워크 보안 모니터링)을 수행하기 위한 핵심 구성 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-104">Packet captures are a key component for implementing network intrusion detection systems (IDS) and performing Network Security Monitoring (NSM).</span></span> <span data-ttu-id="0c369-105">패킷 캡처를 처리하고 가능한 네트워크 침입 및 악의적인 활동의 서명을 찾기 위한 여러 가지 오픈 소스 IDS 도구가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-105">There are several open source IDS tools that process packet captures and look for signatures of possible network intrusions and malicious activity.</span></span> <span data-ttu-id="0c369-106">Network Watcher에서 제공하는 패킷 캡처를 사용하여 나쁜 영향을 주는 침입 또는 취약성에 대해 네트워크를 분석할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-106">Using the packet captures provided by Network Watcher, you can analyze your network for any harmful intrusions or vulnerabilities.</span></span>
+<span data-ttu-id="52eea-104">패킷 캡처는 네트워크 IDS(침입 검색 시스템)를 구현하고 NSM(네트워크 보안 모니터링)을 수행하기 위한 핵심 구성 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-104">Packet captures are a key component for implementing network intrusion detection systems (IDS) and performing Network Security Monitoring (NSM).</span></span> <span data-ttu-id="52eea-105">패킷 캡처를 처리하고 가능한 네트워크 침입 및 악의적인 활동의 서명을 찾기 위한 여러 가지 오픈 소스 IDS 도구가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-105">There are several open source IDS tools that process packet captures and look for signatures of possible network intrusions and malicious activity.</span></span> <span data-ttu-id="52eea-106">네트워크 감시자에서 제공 하는 hello 패킷 캡처를 사용 하 여 유해한 침입 또는 취약성에 대해 네트워크를 분석할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-106">Using hello packet captures provided by Network Watcher, you can analyze your network for any harmful intrusions or vulnerabilities.</span></span>
 
-<span data-ttu-id="0c369-107">이러한 오픈 소스 도구로 Suricata가 있으며, 의심스러운 이벤트가 발생할 때마다 경고를 트리거하고 네트워크 트래픽을 모니터링하는 규칙 집합을 사용하는 IDS 엔진입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-107">One such open source tool is Suricata, an IDS engine that uses rulesets to monitor network traffic and triggers alerts whenever suspicious events occur.</span></span> <span data-ttu-id="0c369-108">Suricata는 멀티스레드 엔진을 제공하므로 빨라진 속도 및 효율성으로 네트워크 트래픽 분석을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-108">Suricata offers a multi-threaded engine, meaning it can perform network traffic analysis with increased speed and efficiency.</span></span> <span data-ttu-id="0c369-109">Suricata 및 해당 기능에 대한 자세한 내용은 https://suricata-ids.org/ 웹 사이트를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-109">For more details about Suricata and its capabilities, visit their website at https://suricata-ids.org/.</span></span>
+<span data-ttu-id="52eea-107">이러한 한 오픈 소스 도구 Suricata, ruleset toomonitor 네트워크 트래픽을 사용 하 고 의심 스러운 이벤트가 발생할 때마다 경고를 트리거합니다 하는 ID 엔진입니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-107">One such open source tool is Suricata, an IDS engine that uses rulesets toomonitor network traffic and triggers alerts whenever suspicious events occur.</span></span> <span data-ttu-id="52eea-108">Suricata는 멀티스레드 엔진을 제공하므로 빨라진 속도 및 효율성으로 네트워크 트래픽 분석을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-108">Suricata offers a multi-threaded engine, meaning it can perform network traffic analysis with increased speed and efficiency.</span></span> <span data-ttu-id="52eea-109">Suricata 및 해당 기능에 대한 자세한 내용은 https://suricata-ids.org/ 웹 사이트를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="52eea-109">For more details about Suricata and its capabilities, visit their website at https://suricata-ids.org/.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="0c369-110">시나리오</span><span class="sxs-lookup"><span data-stu-id="0c369-110">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="52eea-110">시나리오</span><span class="sxs-lookup"><span data-stu-id="52eea-110">Scenario</span></span>
 
-<span data-ttu-id="0c369-111">이 문서에서는 Network Watcher, Suricata 및 탄력적 스택을 사용하여 네트워크 침입 검색을 수행하도록 사용자 환경을 설정하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-111">This article explains how to set up your environment to perform network intrusion detection using Network Watcher, Suricata, and the Elastic Stack.</span></span> <span data-ttu-id="0c369-112">Network Watcher는 네트워크 침입 검색을 수행하는 데 사용되는 패킷 캡처를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-112">Network Watcher provides you with the packet captures used to perform network intrusion detection.</span></span> <span data-ttu-id="0c369-113">Suricata는 패킷 캡처를 처리하고 지정된 위협의 규칙 집합과 일치하는 패킷에 따라 경고를 트리거합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-113">Suricata processes the packet captures and trigger alerts based on packets that match its given ruleset of threats.</span></span> <span data-ttu-id="0c369-114">이러한 경고는 로컬 컴퓨터의 로그 파일에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-114">These alerts are stored in a log file on your local machine.</span></span> <span data-ttu-id="0c369-115">탄력적 스택을 사용하여 Suricata에서 생성한 로그를 인덱싱하고 Kibana 대시보드를 만드는 데 사용하여 로그의 시각적 표현을 제공하고 잠재적인 네트워크 취약성을 신속하게 파악할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-115">Using the Elastic Stack, the logs generated by Suricata can be indexed and used to create a Kibana dashboard, providing you with a visual representation of the logs and a means to quickly gain insights to potential network vulnerabilities.</span></span>  
+<span data-ttu-id="52eea-111">환경 tooperform tooset 네트워크 네트워크 감시자를 Suricata를 사용 하 여 침입 검색 방법과 탄력적 스택 hello이 문서에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-111">This article explains how tooset up your environment tooperform network intrusion detection using Network Watcher, Suricata, and hello Elastic Stack.</span></span> <span data-ttu-id="52eea-112">네트워크 감시자 사용 되는 tooperform 네트워크 침입 감지를 캡처하여 hello 패킷과 함께 있습니다를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-112">Network Watcher provides you with hello packet captures used tooperform network intrusion detection.</span></span> <span data-ttu-id="52eea-113">Suricata 프로세스 hello 패킷 캡처하고 트리거 경고 위협의 지정 된 규칙 집합을 일치 하는 패킷을 기반으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-113">Suricata processes hello packet captures and trigger alerts based on packets that match its given ruleset of threats.</span></span> <span data-ttu-id="52eea-114">이러한 경고는 로컬 컴퓨터의 로그 파일에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-114">These alerts are stored in a log file on your local machine.</span></span> <span data-ttu-id="52eea-115">탄력적 스택 hello를 사용 하 여 Suricata에서 생성 된 hello 로그 인덱싱할 수 및 toocreate hello 로그의 시각적 표현을는 수단 tooquickly 이득 insights toopotential 네트워크 취약점을 갖출 Kibana 대시보드를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-115">Using hello Elastic Stack, hello logs generated by Suricata can be indexed and used toocreate a Kibana dashboard, providing you with a visual representation of hello logs and a means tooquickly gain insights toopotential network vulnerabilities.</span></span>  
 
 ![간단한 웹 응용 프로그램 시나리오][1]
 
-<span data-ttu-id="0c369-117">두 오픈 소스 도구 모두 Azure VM에서 설정하여 사용자의 Azure 네트워크 환경 내에서 분석을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-117">Both open source tools can be set up on an Azure VM, allowing you to perform this analysis within your own Azure network environment.</span></span>
+<span data-ttu-id="52eea-117">두 오픈 소스 도구를 설정할 수 있습니다는 Azure VM에서 tooperform 있도록 자신의 Azure 네트워크 환경 내에서 이러한 분석 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-117">Both open source tools can be set up on an Azure VM, allowing you tooperform this analysis within your own Azure network environment.</span></span>
 
-## <a name="steps"></a><span data-ttu-id="0c369-118">단계</span><span class="sxs-lookup"><span data-stu-id="0c369-118">Steps</span></span>
+## <a name="steps"></a><span data-ttu-id="52eea-118">단계</span><span class="sxs-lookup"><span data-stu-id="52eea-118">Steps</span></span>
 
-### <a name="install-suricata"></a><span data-ttu-id="0c369-119">Suricata 설치</span><span class="sxs-lookup"><span data-stu-id="0c369-119">Install Suricata</span></span>
+### <a name="install-suricata"></a><span data-ttu-id="52eea-119">Suricata 설치</span><span class="sxs-lookup"><span data-stu-id="52eea-119">Install Suricata</span></span>
 
-<span data-ttu-id="0c369-120">설치의 다른 모든 방법은 http://suricata.readthedocs.io/en/latest/install.html을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-120">For all other methods of installation, visit http://suricata.readthedocs.io/en/latest/install.html</span></span>
+<span data-ttu-id="52eea-120">설치의 다른 모든 방법은 http://suricata.readthedocs.io/en/latest/install.html을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="52eea-120">For all other methods of installation, visit http://suricata.readthedocs.io/en/latest/install.html</span></span>
 
-1. <span data-ttu-id="0c369-121">VM의 명령줄 터미널에서 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-121">In the command-line terminal of your VM run the following commands:</span></span>
+1. <span data-ttu-id="52eea-121">VM의 hello 명령줄 터미널 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-121">In hello command-line terminal of your VM run hello following commands:</span></span>
 
     ```
     sudo add-apt-repository ppa:oisf/suricata-stable
@@ -48,13 +48,13 @@ ms.lasthandoff: 07/11/2017
     sudo sudo apt-get install suricata
     ```
 
-1. <span data-ttu-id="0c369-122">설치를 확인하려면 `suricata -h` 명령을 실행하여 전체 명령 목록을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-122">To verify your installation, run the command `suricata -h` to see the full list of commands.</span></span>
+1. <span data-ttu-id="52eea-122">tooverify hello 명령을 실행 하 여 설치 `suricata -h` toosee hello 전체 명령 목록을 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-122">tooverify your installation, run hello command `suricata -h` toosee hello full list of commands.</span></span>
 
-### <a name="download-the-emerging-threats-ruleset"></a><span data-ttu-id="0c369-123">Emerging Threats 규칙 집합 다운로드</span><span class="sxs-lookup"><span data-stu-id="0c369-123">Download the Emerging Threats ruleset</span></span>
+### <a name="download-hello-emerging-threats-ruleset"></a><span data-ttu-id="52eea-123">Hello 위협 발생 하 고 규칙 집합 다운로드</span><span class="sxs-lookup"><span data-stu-id="52eea-123">Download hello Emerging Threats ruleset</span></span>
 
-<span data-ttu-id="0c369-124">이 단계에서는 Suricata에 대해 실행할 규칙이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-124">At this stage, we do not have any rules for Suricata to run.</span></span> <span data-ttu-id="0c369-125">네트워크에 검색할 구체적인 위협이 있는 경우 사용자 고유의 규칙을 만들거나 여러 공급자로부터 개발된 규칙 집합(예: Emerging Threats, Snort의 VRT 규칙)을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-125">You can create your own rules if there are specific threats to your network you would like to detect, or you can also use developed rule sets from a number of providers, such as Emerging Threats, or VRT rules from Snort.</span></span> <span data-ttu-id="0c369-126">Emerging Threats 규칙 집합은 여기에서 자유롭게 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-126">We use the freely accessible Emerging Threats ruleset here:</span></span>
+<span data-ttu-id="52eea-124">이 단계에서는 없어 Suricata toorun에 대 한 모든 규칙.</span><span class="sxs-lookup"><span data-stu-id="52eea-124">At this stage, we do not have any rules for Suricata toorun.</span></span> <span data-ttu-id="52eea-125">Toodetect, 원하는 특정 위협 tooyour 네트워크 또는 다양 한 발생 하 고 위협 또는 VRT 규칙 Snort에서 같은 공급자에서에서 사용 하 여 개발 된 규칙 집합을 수도 있습니다 하는 경우 사용자 고유의 규칙을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-125">You can create your own rules if there are specific threats tooyour network you would like toodetect, or you can also use developed rule sets from a number of providers, such as Emerging Threats, or VRT rules from Snort.</span></span> <span data-ttu-id="52eea-126">여기 hello 자유롭게 액세스할 수 있는 위협 발생 하 고 규칙 집합에서 사용:</span><span class="sxs-lookup"><span data-stu-id="52eea-126">We use hello freely accessible Emerging Threats ruleset here:</span></span>
 
-<span data-ttu-id="0c369-127">규칙 집합을 다운로드하고 디렉터리에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-127">Download the rule set and copy them into the directory:</span></span>
+<span data-ttu-id="52eea-127">Hello 규칙 집합을 다운로드 하 여 hello 디렉터리에 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-127">Download hello rule set and copy them into hello directory:</span></span>
 
 ```
 wget http://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz
@@ -62,26 +62,26 @@ tar zxf emerging.rules.tar.gz
 sudo cp -r rules /etc/suricata/
 ```
 
-### <a name="process-packet-captures-with-suricata"></a><span data-ttu-id="0c369-128">Suricata로 패킷 캡처 처리</span><span class="sxs-lookup"><span data-stu-id="0c369-128">Process packet captures with Suricata</span></span>
+### <a name="process-packet-captures-with-suricata"></a><span data-ttu-id="52eea-128">Suricata로 패킷 캡처 처리</span><span class="sxs-lookup"><span data-stu-id="52eea-128">Process packet captures with Suricata</span></span>
 
-<span data-ttu-id="0c369-129">Suricata를 사용하여 패킷 캡처를 처리하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-129">To process packet captures using Suricata, run the following command:</span></span>
+<span data-ttu-id="52eea-129">tooprocess 패킷 hello 다음 명령을 실행 Suricata를 사용 하 여 캡처합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-129">tooprocess packet captures using Suricata, run hello following command:</span></span>
 
 ```
 sudo suricata -c /etc/suricata/suricata.yaml -r <location_of_pcapfile>
 ```
-<span data-ttu-id="0c369-130">결과 경고를 확인하려면 fast.log 파일을 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-130">To check the resulting alerts, read the fast.log file:</span></span>
+<span data-ttu-id="52eea-130">hello fast.log 파일을 읽을 toocheck hello 결과 알림:</span><span class="sxs-lookup"><span data-stu-id="52eea-130">toocheck hello resulting alerts, read hello fast.log file:</span></span>
 ```
 tail -f /var/log/suricata/fast.log
 ```
 
-### <a name="set-up-the-elastic-stack"></a><span data-ttu-id="0c369-131">탄력적 스택 설정</span><span class="sxs-lookup"><span data-stu-id="0c369-131">Set up the Elastic Stack</span></span>
+### <a name="set-up-hello-elastic-stack"></a><span data-ttu-id="52eea-131">탄력적 스택 hello 설정</span><span class="sxs-lookup"><span data-stu-id="52eea-131">Set up hello Elastic Stack</span></span>
 
-<span data-ttu-id="0c369-132">Suricata에서 생성하는 로그에는 네트워크에서 발생하는 작업에 대한 유용한 정보가 포함되지만 이러한 로그 파일은 읽고 이해하기 어렵습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-132">While the logs that Suricata produces contain valuable information about what’s happening on our network, these log files aren’t the easiest to read and understand.</span></span> <span data-ttu-id="0c369-133">Suricata를 탄력적 스택과 연결하여 로그에서 정보를 검색하고, 그래프화하며 분석하고 정보를 끌어낼 수 있는 Kibana 대시보드를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-133">By connecting Suricata with the Elastic Stack, we can create a Kibana dashboard what allows us to search, graph, analyze, and derive insights from our logs.</span></span>
+<span data-ttu-id="52eea-132">Hello 로그 Suricata 생성 하는 네트워크에서 발생 한 상황에 대 한 중요 한 정보를 포함, 이러한 로그 파일 hello 쉬운 tooread 되지 하 고 이해 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-132">While hello logs that Suricata produces contain valuable information about what’s happening on our network, these log files aren’t hello easiest tooread and understand.</span></span> <span data-ttu-id="52eea-133">Suricata 탄력적 스택 hello를 연결 하 여 우리 수 Kibana 대시보드 toosearch 수 있습니다, 그리고 그래프, 분석, 만들고 insights는 로그에서 파생 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-133">By connecting Suricata with hello Elastic Stack, we can create a Kibana dashboard what allows us toosearch, graph, analyze, and derive insights from our logs.</span></span>
 
-#### <a name="install-elasticsearch"></a><span data-ttu-id="0c369-134">Elasticsearch 설치</span><span class="sxs-lookup"><span data-stu-id="0c369-134">Install Elasticsearch</span></span>
+#### <a name="install-elasticsearch"></a><span data-ttu-id="52eea-134">Elasticsearch 설치</span><span class="sxs-lookup"><span data-stu-id="52eea-134">Install Elasticsearch</span></span>
 
-1. <span data-ttu-id="0c369-135">이번 5.0 이상의 탄력적 스택에는 Java 8이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-135">The Elastic Stack from version 5.0 and above requires Java 8.</span></span> <span data-ttu-id="0c369-136">`java -version` 명령을 실행하여 버전을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-136">Run the command `java -version` to check your version.</span></span> <span data-ttu-id="0c369-137">java가 설치되지 않은 경우 [Oracle의 웹 사이트](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)에서 설명서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-137">If you do not have java install, refer to documentation on [Oracle's website](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)</span></span>
-1. <span data-ttu-id="0c369-138">시스템에 맞는 이진 패키지를 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-138">Download the correct binary package for your system:</span></span>
+1. <span data-ttu-id="52eea-135">hello 탄력적 스택 버전 5.0 이상과 Java 8 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-135">hello Elastic Stack from version 5.0 and above requires Java 8.</span></span> <span data-ttu-id="52eea-136">Hello 명령을 실행 `java -version` toocheck 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-136">Run hello command `java -version` toocheck your version.</span></span> <span data-ttu-id="52eea-137">설치에 toodocumentation를 참조 하세요 java 있는지 [Oracle의 웹 사이트](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)</span><span class="sxs-lookup"><span data-stu-id="52eea-137">If you do not have java install, refer toodocumentation on [Oracle's website](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)</span></span>
+1. <span data-ttu-id="52eea-138">시스템에 대 한 hello 올바른 이진 패키지를 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-138">Download hello correct binary package for your system:</span></span>
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.deb
@@ -89,15 +89,15 @@ tail -f /var/log/suricata/fast.log
     sudo /etc/init.d/elasticsearch start
     ```
 
-    <span data-ttu-id="0c369-139">다른 설치 방법은 [Elasticsearch 설치](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-139">Other installation methods can be found at [Elasticsearch Installation](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)</span></span>
+    <span data-ttu-id="52eea-139">다른 설치 방법은 [Elasticsearch 설치](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-139">Other installation methods can be found at [Elasticsearch Installation](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)</span></span>
 
-1. <span data-ttu-id="0c369-140">명령으로 Elasticsearch가 실행 중인지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-140">Verify that Elasticsearch is running with the command:</span></span>
+1. <span data-ttu-id="52eea-140">Elasticsearch hello 명령을 사용 하 여 실행 되 고 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-140">Verify that Elasticsearch is running with hello command:</span></span>
 
     ```
     curl http://127.0.0.1:9200
     ```
 
-    <span data-ttu-id="0c369-141">다음과 유사한 응답이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-141">You should see a response similar to this:</span></span>
+    <span data-ttu-id="52eea-141">응답 비슷한 toothis를 나타나야 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-141">You should see a response similar toothis:</span></span>
 
     ```
     {
@@ -114,23 +114,23 @@ tail -f /var/log/suricata/fast.log
     }
     ```
 
-<span data-ttu-id="0c369-142">탄력적 검색 설치에 대한 추가 정보는 [설치](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html) 페이지를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-142">For further instructions on installing Elastic search, refer to the page [Installation](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)</span></span>
+<span data-ttu-id="52eea-142">에 대 한 자세한 지침은 설치 탄력적 검색, toohello 페이지 참조 [설치](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)</span><span class="sxs-lookup"><span data-stu-id="52eea-142">For further instructions on installing Elastic search, refer toohello page [Installation](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)</span></span>
 
-### <a name="install-logstash"></a><span data-ttu-id="0c369-143">Logstash 설치</span><span class="sxs-lookup"><span data-stu-id="0c369-143">Install Logstash</span></span>
+### <a name="install-logstash"></a><span data-ttu-id="52eea-143">Logstash 설치</span><span class="sxs-lookup"><span data-stu-id="52eea-143">Install Logstash</span></span>
 
-1. <span data-ttu-id="0c369-144">Logstash를 설치하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-144">To install Logstash run the following commands:</span></span>
+1. <span data-ttu-id="52eea-144">tooinstall Logstash hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-144">tooinstall Logstash run hello following commands:</span></span>
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.2.0.deb
     sudo dpkg -i logstash-5.2.0.deb
     ```
-1. <span data-ttu-id="0c369-145">다음으로 eve.json 파일의 출력에서 읽어오도록 Logstash를 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-145">Next we need to configure Logstash to read from the output of eve.json file.</span></span> <span data-ttu-id="0c369-146">다음을 사용하여 logstash.conf 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-146">Create a logstash.conf file using:</span></span>
+1. <span data-ttu-id="52eea-145">그런 다음 tooconfigure Logstash tooread eve.json 파일의 hello 출력에서 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-145">Next we need tooconfigure Logstash tooread from hello output of eve.json file.</span></span> <span data-ttu-id="52eea-146">다음을 사용하여 logstash.conf 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-146">Create a logstash.conf file using:</span></span>
 
     ```
     sudo touch /etc/logstash/conf.d/logstash.conf
     ```
 
-1. <span data-ttu-id="0c369-147">다음 내용을 파일에 추가합니다(eve.json 파일의 경로가 올바른지 확인).</span><span class="sxs-lookup"><span data-stu-id="0c369-147">Add the following content to the file (make sure that the path to the eve.json file is correct):</span></span>
+1. <span data-ttu-id="52eea-147">다음 콘텐츠 toohello 파일 hello 추가 (hello 경로 toohello eve.json 파일이 올바른지 확인):</span><span class="sxs-lookup"><span data-stu-id="52eea-147">Add hello following content toohello file (make sure that hello path toohello eve.json file is correct):</span></span>
 
     ```ruby
     input {
@@ -202,88 +202,88 @@ tail -f /var/log/suricata/fast.log
     }
     ```
 
-1. <span data-ttu-id="0c369-148">Logstash가 파일을 수집할 수 있도록 하려면 eve.json 파일에 대해 적절한 권한을 부여해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-148">Make sure to give the correct permissions to the eve.json file so that Logstash can ingest the file.</span></span>
+1. <span data-ttu-id="52eea-148">Logstash hello 파일을 수집할 수 있도록 있는지 toogive hello 올바른 사용 권한이 toohello eve.json 파일을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-148">Make sure toogive hello correct permissions toohello eve.json file so that Logstash can ingest hello file.</span></span>
     
     ```
     sudo chmod 775 /var/log/suricata/eve.json
     ```
 
-1. <span data-ttu-id="0c369-149">Logstash를 시작하려면 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-149">To start Logstash run the command:</span></span>
+1. <span data-ttu-id="52eea-149">toostart Logstash hello 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-149">toostart Logstash run hello command:</span></span>
 
     ```
     sudo /etc/init.d/logstash start
     ```
 
-<span data-ttu-id="0c369-150">Logstash 설치에 대한 추가 정보는 [공식적인 설명서](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-150">For further instructions on installing Logstash, refer to the [official documentation](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span></span>
+<span data-ttu-id="52eea-150">Logstash를 설치 하는 방법에 자세한 내용은 참조 toohello [공식 설명서](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span><span class="sxs-lookup"><span data-stu-id="52eea-150">For further instructions on installing Logstash, refer toohello [official documentation](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span></span>
 
-### <a name="install-kibana"></a><span data-ttu-id="0c369-151">Kibana 설치</span><span class="sxs-lookup"><span data-stu-id="0c369-151">Install Kibana</span></span>
+### <a name="install-kibana"></a><span data-ttu-id="52eea-151">Kibana 설치</span><span class="sxs-lookup"><span data-stu-id="52eea-151">Install Kibana</span></span>
 
-1. <span data-ttu-id="0c369-152">다음 명령을 실행하여 Kibana를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-152">Run the following commands to install Kibana:</span></span>
+1. <span data-ttu-id="52eea-152">다음 명령을 tooinstall Kibana hello를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-152">Run hello following commands tooinstall Kibana:</span></span>
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/kibana/kibana-5.2.0-linux-x86_64.tar.gz
     tar xzvf kibana-5.2.0-linux-x86_64.tar.gz
 
     ```
-1. <span data-ttu-id="0c369-153">Kibana를 실행하려면 다음 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-153">To run Kibana use the commands:</span></span>
+1. <span data-ttu-id="52eea-153">toorun Kibana hello 명령을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-153">toorun Kibana use hello commands:</span></span>
 
     ```
     cd kibana-5.2.0-linux-x86_64/
     ./bin/kibana
     ```
 
-1. <span data-ttu-id="0c369-154">Kibana 웹 인터페이스를 보려면 `http://localhost:5601`로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-154">To view your Kibana web interface, navigate to `http://localhost:5601`</span></span>
-1. <span data-ttu-id="0c369-155">이 시나리오에서 Suricata 로그에 대해 사용된 인덱스 패턴은 "logstash-*"입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-155">For this scenario, the index pattern used for the Suricata logs is "logstash-*"</span></span>
+1. <span data-ttu-id="52eea-154">tooview Kibana 웹 인터페이스를 너무 이동`http://localhost:5601`</span><span class="sxs-lookup"><span data-stu-id="52eea-154">tooview your Kibana web interface, navigate too`http://localhost:5601`</span></span>
+1. <span data-ttu-id="52eea-155">이 시나리오에 대 한 hello Suricata 로그에 사용 되는 hello 인덱스 패턴은 "logstash-*"</span><span class="sxs-lookup"><span data-stu-id="52eea-155">For this scenario, hello index pattern used for hello Suricata logs is "logstash-*"</span></span>
 
-1. <span data-ttu-id="0c369-156">Kibana 대시보드를 원격으로 보려면 **포트 5601**에 대해 액세스를 허용하는 인바운드 NSG 규칙을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-156">If you want to view the Kibana dashboard remotely, create an inbound NSG rule allowing access to **port 5601**.</span></span>
+1. <span data-ttu-id="52eea-156">Tooview hello Kibana 대시보드를 원격으로 원하는 경우 만들 너무 액세스를 허용 하는 인바운드 NSG 규칙**5601 포트**합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-156">If you want tooview hello Kibana dashboard remotely, create an inbound NSG rule allowing access too**port 5601**.</span></span>
 
-### <a name="create-a-kibana-dashboard"></a><span data-ttu-id="0c369-157">Kibana 대시보드 만들기</span><span class="sxs-lookup"><span data-stu-id="0c369-157">Create a Kibana dashboard</span></span>
+### <a name="create-a-kibana-dashboard"></a><span data-ttu-id="52eea-157">Kibana 대시보드 만들기</span><span class="sxs-lookup"><span data-stu-id="52eea-157">Create a Kibana dashboard</span></span>
 
-<span data-ttu-id="0c369-158">이 문서에서는 경고에 대한 추세 및 세부 정보를 볼 수 있는 샘플 대시보드를 제공했습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-158">For this article, we have provided a sample dashboard for you to view trends and details in your alerts.</span></span>
+<span data-ttu-id="52eea-158">이 문서에 대 한 있습니다 tooview 추세에 대 한 샘플 대시보드 및 경고의 세부 사항을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-158">For this article, we have provided a sample dashboard for you tooview trends and details in your alerts.</span></span>
 
-1. <span data-ttu-id="0c369-159">대시보드 파일은 [여기](https://aka.ms/networkwatchersuricatadashboard)에서, 시각화 파일은 [여기](https://aka.ms/networkwatchersuricatavisualization)에서, 저장된 검색 파일은 [여기](https://aka.ms/networkwatchersuricatasavedsearch)에서 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-159">Download the dashboard file [here](https://aka.ms/networkwatchersuricatadashboard), the visualization file [here](https://aka.ms/networkwatchersuricatavisualization), and the saved search file [here](https://aka.ms/networkwatchersuricatasavedsearch).</span></span>
+1. <span data-ttu-id="52eea-159">Hello 대시보드 파일을 다운로드 [여기](https://aka.ms/networkwatchersuricatadashboard), hello 시각화 파일 [여기](https://aka.ms/networkwatchersuricatavisualization), 및 저장 하는 hello 검색 파일 [여기](https://aka.ms/networkwatchersuricatasavedsearch)합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-159">Download hello dashboard file [here](https://aka.ms/networkwatchersuricatadashboard), hello visualization file [here](https://aka.ms/networkwatchersuricatavisualization), and hello saved search file [here](https://aka.ms/networkwatchersuricatasavedsearch).</span></span>
 
-1. <span data-ttu-id="0c369-160">Kibana의 **관리** 탭 아래에서 **저장된 개체**로 이동하고 세 개 파일을 모두 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-160">Under the **Management** tab of Kibana, navigate to **Saved Objects** and import all three files.</span></span> <span data-ttu-id="0c369-161">그런 다음 **대시보드** 탭에서 샘플 대시보드를 열고 로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-161">Then from the **Dashboard** tab you can open and load the sample dashboard.</span></span>
+1. <span data-ttu-id="52eea-160">Hello에서 **관리** 탭 Kibana의 이동 너무**개체 저장** 세 개 파일을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-160">Under hello **Management** tab of Kibana, navigate too**Saved Objects** and import all three files.</span></span> <span data-ttu-id="52eea-161">Hello 다음 **대시보드** 열면 탭 및 부하 hello 샘플 대시보드 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-161">Then from hello **Dashboard** tab you can open and load hello sample dashboard.</span></span>
 
-<span data-ttu-id="0c369-162">사용자가 관심 있는 메트릭에 맞는 시각화 및 대시보드를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-162">You can also create your own visualizations and dashboards tailored towards metrics of your own interest.</span></span> <span data-ttu-id="0c369-163">Kibana의 [공식적인 설명서](https://www.elastic.co/guide/en/kibana/current/visualize.html)에서 Kibana 시각화 만들기에 대해 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-163">Read more about creating Kibana visualizations from Kibana's [official documentation](https://www.elastic.co/guide/en/kibana/current/visualize.html).</span></span>
+<span data-ttu-id="52eea-162">사용자가 관심 있는 메트릭에 맞는 시각화 및 대시보드를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-162">You can also create your own visualizations and dashboards tailored towards metrics of your own interest.</span></span> <span data-ttu-id="52eea-163">Kibana의 [공식적인 설명서](https://www.elastic.co/guide/en/kibana/current/visualize.html)에서 Kibana 시각화 만들기에 대해 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="52eea-163">Read more about creating Kibana visualizations from Kibana's [official documentation](https://www.elastic.co/guide/en/kibana/current/visualize.html).</span></span>
 
 ![Kibana 대시보드][2]
 
-### <a name="visualize-ids-alert-logs"></a><span data-ttu-id="0c369-165">IDS 경고 로그 시각화</span><span class="sxs-lookup"><span data-stu-id="0c369-165">Visualize IDS alert logs</span></span>
+### <a name="visualize-ids-alert-logs"></a><span data-ttu-id="52eea-165">IDS 경고 로그 시각화</span><span class="sxs-lookup"><span data-stu-id="52eea-165">Visualize IDS alert logs</span></span>
 
-<span data-ttu-id="0c369-166">샘플 대시보드는 Suricata 경고 로그에 대한 다양한 시각화를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-166">The sample dashboard provides several visualizations of the Suricata alert logs:</span></span>
+<span data-ttu-id="52eea-166">hello 샘플 대시보드는 hello Suricata 경고 로그의 몇 가지 시각화를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-166">hello sample dashboard provides several visualizations of hello Suricata alert logs:</span></span>
 
-1. <span data-ttu-id="0c369-167">GeoIP별 경고 – 지리적 위치에 따라 출처 국가별로 경고의 분포를 보여 주는 맵(IP로 확인)입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-167">Alerts by GeoIP – a map showing the distribution of alerts by their country of origin based on geographic location (determined by IP)</span></span>
+1. <span data-ttu-id="52eea-167">GeoIP – 원본 (결정에 따라 IP)는 지리적 위치에 따라 해당 국가 hello 분포를 보여 주는 지도 별 경고</span><span class="sxs-lookup"><span data-stu-id="52eea-167">Alerts by GeoIP – a map showing hello distribution of alerts by their country of origin based on geographic location (determined by IP)</span></span>
 
     ![지역 ip][3]
 
-1. <span data-ttu-id="0c369-169">상위 10개 경고 - 가장 자주 트리거된 상위 10개 경고 및 이에 대한 설명을 요약하여 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-169">Top 10 Alerts – a summary of the 10 most frequent triggered alerts and their description.</span></span> <span data-ttu-id="0c369-170">개별 경고를 클릭하면 특정 경고와 관련된 정보로 대시보드가 필터링됩니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-170">Clicking an individual alert filters down the dashboard to the information pertaining to that specific alert.</span></span>
+1. <span data-ttu-id="52eea-169">상위 10 개의 경고 – hello 10 가장 자주 트리거되 경고의 요약이 그 설명을 보고 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-169">Top 10 Alerts – a summary of hello 10 most frequent triggered alerts and their description.</span></span> <span data-ttu-id="52eea-170">개별 경고를 클릭 하면 toothat 특정 경고와 관련 된 hello 대시보드 toohello 정보를 필터링 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-170">Clicking an individual alert filters down hello dashboard toohello information pertaining toothat specific alert.</span></span>
 
     ![이미지 4][4]
 
-1. <span data-ttu-id="0c369-172">경고 수 - 규칙 집합에 의해 트리거된 총 경고 수입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-172">Number of Alerts – the total count of alerts triggered by the ruleset</span></span>
+1. <span data-ttu-id="52eea-172">경고-수 hello hello 규칙 집합에 의해 트리거되는 경고의 총 수</span><span class="sxs-lookup"><span data-stu-id="52eea-172">Number of Alerts – hello total count of alerts triggered by hello ruleset</span></span>
 
     ![이미지 5][5]
 
-1. <span data-ttu-id="0c369-174">상위 20개 원본/대상 IP/포트 - 경고를 트리거한 상위 20개 IP 및 포트를 보여 주는 원형 차트입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-174">Top 20 Source/Destination IPs/Ports - pie charts showing the top 20 IPs and ports that alerts were triggered on.</span></span> <span data-ttu-id="0c369-175">트리거된 경고 수 및 경고 종류를 표시하도록 특정 IP/포트로 필터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-175">You can filter down on specific IPs/ports to see how many and what kind of alerts are being triggered.</span></span>
+1. <span data-ttu-id="52eea-174">상위 20 소스/대상 Ip/포트-을 보여 주는 원형 차트는 상위 Ip 20 개 hello 및 경고 하는 포트에서 트리거 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-174">Top 20 Source/Destination IPs/Ports - pie charts showing hello top 20 IPs and ports that alerts were triggered on.</span></span> <span data-ttu-id="52eea-175">개수와 특정 Ip/포트 toosee 아래로 필터링 할 수 있습니다 알림의 종류 트리거되는 중입니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-175">You can filter down on specific IPs/ports toosee how many and what kind of alerts are being triggered.</span></span>
 
     ![이미지 6][6]
 
-1. <span data-ttu-id="0c369-177">경고 요약 – 각 개별 경고의 구체적인 세부 정보를 요약하여 보여주는 표입니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-177">Alert Summary – a table summarizing specific details of each individual alert.</span></span> <span data-ttu-id="0c369-178">각 경고에 대해 관심이 있는 다른 매개 변수를 보여 주도록 이 표를 사용자 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-178">You can customize this table to show other parameters of interest for each alert.</span></span>
+1. <span data-ttu-id="52eea-177">경고 요약 – 각 개별 경고의 구체적인 세부 정보를 요약하여 보여주는 표입니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-177">Alert Summary – a table summarizing specific details of each individual alert.</span></span> <span data-ttu-id="52eea-178">이 테이블 tooshow 각 경고에 대 한 관심 있는 다른 매개 변수를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-178">You can customize this table tooshow other parameters of interest for each alert.</span></span>
 
     ![이미지 7][7]
 
-<span data-ttu-id="0c369-180">사용자 지정 시각화 및 대시보드 만들기에 대한 자세한 내용은 [Kibana의 공식적인 설명서](https://www.elastic.co/guide/en/kibana/current/introduction.html)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-180">For more documentation on creating custom visualizations and dashboards, see [Kibana’s official documentation](https://www.elastic.co/guide/en/kibana/current/introduction.html).</span></span>
+<span data-ttu-id="52eea-180">사용자 지정 시각화 및 대시보드 만들기에 대한 자세한 내용은 [Kibana의 공식적인 설명서](https://www.elastic.co/guide/en/kibana/current/introduction.html)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="52eea-180">For more documentation on creating custom visualizations and dashboards, see [Kibana’s official documentation](https://www.elastic.co/guide/en/kibana/current/introduction.html).</span></span>
 
-## <a name="conclusion"></a><span data-ttu-id="0c369-181">결론</span><span class="sxs-lookup"><span data-stu-id="0c369-181">Conclusion</span></span>
+## <a name="conclusion"></a><span data-ttu-id="52eea-181">결론</span><span class="sxs-lookup"><span data-stu-id="52eea-181">Conclusion</span></span>
 
-<span data-ttu-id="0c369-182">Network Watcher에서 제공하는 패킷 캡처와 Suricata와 같은 오픈 소스 IDS 도구를 결합하여 광범위한 위협에 대해 네트워크 침입 검색을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-182">By combining packet captures provided by Network Watcher and open source IDS tools such as Suricata, you can perform network intrusion detection for a wide range of threats.</span></span> <span data-ttu-id="0c369-183">이러한 대시보드를 통해 네트워크 내에서 추세와 이상 현상을 신속하게 파악하고 데이터를 자세히 살펴, 악의적인 사용자 에이전트 또는 취약한 포트 등 경고의 근본 원인을 파악할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-183">These dashboards allow you to quickly spot trends and anomalies within your network, as well dig into the data to discover root causes of alerts such as malicious user agents or vulnerable ports.</span></span> <span data-ttu-id="0c369-184">이렇게 추출된 데이터로 나쁜 영향을 주는 침입 시도로부터 네트워크를 보호 및 대응하는 방법을 합리적으로 결정하고 향후 네트워크에 대한 침입을 방지하는 규칙을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0c369-184">With this extracted data, you can make informed decisions on how to react to and protect your network from any harmful intrusion attempts, and create rules to prevent future intrusions to your network.</span></span>
+<span data-ttu-id="52eea-182">Network Watcher에서 제공하는 패킷 캡처와 Suricata와 같은 오픈 소스 IDS 도구를 결합하여 광범위한 위협에 대해 네트워크 침입 검색을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-182">By combining packet captures provided by Network Watcher and open source IDS tools such as Suricata, you can perform network intrusion detection for a wide range of threats.</span></span> <span data-ttu-id="52eea-183">이러한 대시보드 있습니다 tooquickly 동향 및 비정상 네트워크 내도 살펴보고 hello 데이터 toodiscover 근본 원인 악의적인 사용자 에이전트 또는 취약 포트 같은 알림 메시지를 허용 합니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-183">These dashboards allow you tooquickly spot trends and anomalies within your network, as well dig into hello data toodiscover root causes of alerts such as malicious user agents or vulnerable ports.</span></span> <span data-ttu-id="52eea-184">이 추출 된 데이터로 tooreact tooand 모든 유해한 침입 시도로 네트워크를 보호 하는 방법에 대 한 합리적 결정 하 고 규칙 tooprevent 이후 침입 tooyour 네트워크를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52eea-184">With this extracted data, you can make informed decisions on how tooreact tooand protect your network from any harmful intrusion attempts, and create rules tooprevent future intrusions tooyour network.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="0c369-185">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0c369-185">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="52eea-185">다음 단계</span><span class="sxs-lookup"><span data-stu-id="52eea-185">Next steps</span></span>
 
-<span data-ttu-id="0c369-186">[패킷 캡처를 사용하여 Azure Functions로 자동 관리 네트워크 모니터링 수행](network-watcher-alert-triggered-packet-capture.md)에서 경고를 기반으로 패킷 캡처를 트리거하는 방법에 대해 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-186">Learn how to trigger packet captures based on alerts by visiting [Use packet capture to do proactive network monitoring with Azure Functions](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="52eea-186">Tootrigger 패킷에 따라 경고 방문 하 여 캡처 하는 방법에 대해 알아봅니다 [패킷 캡처 toodo 사전 네트워크 모니터링 Azure 함수와 함께 사용 하 여](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="52eea-186">Learn how tootrigger packet captures based on alerts by visiting [Use packet capture toodo proactive network monitoring with Azure Functions](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
-<span data-ttu-id="0c369-187">[PowerBI에서 NSG 흐름 로그 시각화](network-watcher-visualize-nsg-flow-logs-power-bi.md)에서 Power BI로 NSG 흐름 로그를 시각화하는 방법에 대해 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="0c369-187">Learn how to visualize your NSG flow logs with Power BI by visiting [Visualize NSG flows logs with Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
+<span data-ttu-id="52eea-187">Toovisualize NSG 흐름 기록 하는 방법을 Power BI를 방문 하 여 자세한 [NSG 시각화할 Power BI를 사용 하 여 로그 전달](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span><span class="sxs-lookup"><span data-stu-id="52eea-187">Learn how toovisualize your NSG flow logs with Power BI by visiting [Visualize NSG flows logs with Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
 
 
 

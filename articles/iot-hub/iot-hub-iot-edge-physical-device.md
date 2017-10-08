@@ -1,6 +1,6 @@
 ---
-title: "물리적 장치에서 Azure IoT Edge 사용 | Microsoft Docs"
-description: "Texas Instruments SensorTag 장치를 사용하여 Raspberry Pi 3에서 실행되는 IoT Edge 게이트웨이를 통해 IoT Hub로 데이터를 전송하는 방법입니다. 이 게이트웨이는 Azure IoT Edge를 사용하여 빌드됩니다."
+title: "Azure IoT 가장자리를 사용 하 여 물리적 장치 aaaUse | Microsoft Docs"
+description: "어떻게 toouse 라스베리 Pi 3 장치에서 실행 중인 IoT 지 게이트웨이 통해 텍사스 기기 SensorTag 장치 toosend 데이터 tooan IoT 허브입니다. hello 게이트웨이 Azure IoT 가장자리를 사용 하 여 만들어집니다."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,208 +14,208 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: andbuc
-ms.openlocfilehash: 02962a91c739a53dfcf947bcc736e5c293b9384f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2385accdbd99012ad094232653ee47d4e5c7839
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-iot-edge-on-a-raspberry-pi-to-forward-device-to-cloud-messages-to-iot-hub"></a><span data-ttu-id="45ae1-104">Raspberry Pi에 Azure IoT Edge를 사용하여 IoT Hub에 장치-클라우드 메시지 전달</span><span class="sxs-lookup"><span data-stu-id="45ae1-104">Use Azure IoT Edge on a Raspberry Pi to forward device-to-cloud messages to IoT Hub</span></span>
+# <a name="use-azure-iot-edge-on-a-raspberry-pi-tooforward-device-to-cloud-messages-tooiot-hub"></a><span data-ttu-id="75181-104">Azure IoT 가장자리 라스베리 Pi tooforward 장치-클라우드 메시지 tooIoT 허브에서 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="75181-104">Use Azure IoT Edge on a Raspberry Pi tooforward device-to-cloud messages tooIoT Hub</span></span>
 
-<span data-ttu-id="45ae1-105">[Bluetooth 저에너지 샘플][lnk-ble-samplecode]의 이 연습에서는 [Azure IoT Edge][lnk-sdk]를 사용하여 다음을 수행하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-105">This walkthrough of the [Bluetooth low energy sample][lnk-ble-samplecode] shows you how to use [Azure IoT Edge][lnk-sdk] to:</span></span>
+<span data-ttu-id="75181-105">이 연습에서는 hello의 [Bluetooth 낮은 에너지 샘플] [ lnk-ble-samplecode] 방법을 보여주는 toouse [Azure IoT 가장자리] [ lnk-sdk] 에:</span><span class="sxs-lookup"><span data-stu-id="75181-105">This walkthrough of hello [Bluetooth low energy sample][lnk-ble-samplecode] shows you how toouse [Azure IoT Edge][lnk-sdk] to:</span></span>
 
-* <span data-ttu-id="45ae1-106">물리적 장치에서 IoT Hub로 장치-클라우드 원격 분석을 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-106">Forward device-to-cloud telemetry to IoT Hub from a physical device.</span></span>
-* <span data-ttu-id="45ae1-107">IoT Hub에서 물리적 장치로 명령을 라우팅합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-107">Route commands from IoT Hub to a physical device.</span></span>
+* <span data-ttu-id="75181-106">실제 장치에서 장치-클라우드 원격 분석 tooIoT 허브를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-106">Forward device-to-cloud telemetry tooIoT Hub from a physical device.</span></span>
+* <span data-ttu-id="75181-107">IoT Hub tooa 물리적 장치에서 명령 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-107">Route commands from IoT Hub tooa physical device.</span></span>
 
-<span data-ttu-id="45ae1-108">이 연습에서는 다음 내용을 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-108">This walkthrough covers:</span></span>
+<span data-ttu-id="75181-108">이 연습에서는 다음 내용을 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="75181-108">This walkthrough covers:</span></span>
 
-* <span data-ttu-id="45ae1-109">**아키텍처**: Bluetooth 저에너지 샘플에 대한 중요한 아키텍처 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-109">**Architecture**: important architectural information about the Bluetooth low energy sample.</span></span>
-* <span data-ttu-id="45ae1-110">**빌드 및 실행**: 샘플을 빌드하고 실행하는 데 필요한 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-110">**Build and run**: the steps required to build and run the sample.</span></span>
+* <span data-ttu-id="75181-109">**아키텍처**: hello Bluetooth 낮은 에너지 샘플에 대 한 중요 한 아키텍처 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-109">**Architecture**: important architectural information about hello Bluetooth low energy sample.</span></span>
+* <span data-ttu-id="75181-110">**빌드 및 실행**: hello 단계 필요한 toobuild 및 실행된 hello 샘플.</span><span class="sxs-lookup"><span data-stu-id="75181-110">**Build and run**: hello steps required toobuild and run hello sample.</span></span>
 
-## <a name="architecture"></a><span data-ttu-id="45ae1-111">아키텍처</span><span class="sxs-lookup"><span data-stu-id="45ae1-111">Architecture</span></span>
+## <a name="architecture"></a><span data-ttu-id="75181-111">아키텍처</span><span class="sxs-lookup"><span data-stu-id="75181-111">Architecture</span></span>
 
-<span data-ttu-id="45ae1-112">이 연습은 Raspbian Linux를 실행하는 Raspberry Pi 3에서 IoT Edge 게이트웨이를 빌드하고 실행하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-112">The walkthrough shows you how to build and run an IoT Edge gateway on a Raspberry Pi 3 that runs Raspbian Linux.</span></span> <span data-ttu-id="45ae1-113">게이트웨이는 IoT Edge를 사용하여 빌드됩니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-113">The gateway is built using IoT Edge.</span></span> <span data-ttu-id="45ae1-114">이 샘플은 Texas Instruments SensorTag BLE(Bluetooth 저에너지) 장치를 사용하여 온도 데이터를 수집합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-114">The sample uses a Texas Instruments SensorTag Bluetooth Low Energy (BLE) device to collect temperature data.</span></span>
+<span data-ttu-id="75181-112">hello 연습 toobuild 및 라스베리 Pi 3에서 IoT 지 게이트웨이 실행 하는 실행 방법을 Raspbian Linux 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="75181-112">hello walkthrough shows you how toobuild and run an IoT Edge gateway on a Raspberry Pi 3 that runs Raspbian Linux.</span></span> <span data-ttu-id="75181-113">hello 게이트웨이 IoT 가장자리를 사용 하 여 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="75181-113">hello gateway is built using IoT Edge.</span></span> <span data-ttu-id="75181-114">hello 샘플 텍사스 기기 SensorTag Bluetooth 낮은 에너지 (배포용) 장치 toocollect 온도 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-114">hello sample uses a Texas Instruments SensorTag Bluetooth Low Energy (BLE) device toocollect temperature data.</span></span>
 
-<span data-ttu-id="45ae1-115">IoT Edge 게이트웨이를 실행하면 다음 작업이 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-115">When you run the IoT Edge gateway it:</span></span>
+<span data-ttu-id="75181-115">Hello IoT 지 게이트웨이 실행 하는 경우 해당:</span><span class="sxs-lookup"><span data-stu-id="75181-115">When you run hello IoT Edge gateway it:</span></span>
 
-* <span data-ttu-id="45ae1-116">BLE(Bluetooth 저에너지) 프로토콜을 사용하여 SensorTag 장치에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-116">Connects to a SensorTag device using the Bluetooth Low Energy (BLE) protocol.</span></span>
-* <span data-ttu-id="45ae1-117">HTTP 프로토콜을 사용하여 IoT Hub에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-117">Connects to IoT Hub using the HTTP protocol.</span></span>
-* <span data-ttu-id="45ae1-118">SensorTag 장치에서 IoT Hub로 원격 분석을 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-118">Forwards telemetry from the SensorTag device to IoT Hub.</span></span>
-* <span data-ttu-id="45ae1-119">IoT Hub에서 SensorTag 장치로 명령을 라우팅합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-119">Routes commands from IoT Hub to the SensorTag device.</span></span>
+* <span data-ttu-id="75181-116">Hello Bluetooth 낮은 에너지 (배포용) 프로토콜을 사용 하 여 tooa SensorTag 장치를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-116">Connects tooa SensorTag device using hello Bluetooth Low Energy (BLE) protocol.</span></span>
+* <span data-ttu-id="75181-117">TooIoT 허브 연결 hello HTTP 프로토콜을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-117">Connects tooIoT Hub using hello HTTP protocol.</span></span>
+* <span data-ttu-id="75181-118">Hello SensorTag 장치 tooIoT 허브에서에서 원격 분석을 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-118">Forwards telemetry from hello SensorTag device tooIoT Hub.</span></span>
+* <span data-ttu-id="75181-119">IoT Hub toohello SensorTag 장치에서 명령을 라우팅합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-119">Routes commands from IoT Hub toohello SensorTag device.</span></span>
 
-<span data-ttu-id="45ae1-120">게이트웨이에는 다음과 같은 IoT Edge 모듈이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-120">The gateway contains the following IoT Edge modules:</span></span>
+<span data-ttu-id="75181-120">hello 게이트웨이 모듈 IoT 가장자리를 따라 hello를 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-120">hello gateway contains hello following IoT Edge modules:</span></span>
 
-* <span data-ttu-id="45ae1-121">*BLE 모듈* - BLE 장치와 연결되며, 장치에서 온도 데이터를 수신하고 장치로 명령을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-121">A *BLE module* that interfaces with a BLE device to receive temperature data from the device and send commands to the device.</span></span>
-* <span data-ttu-id="45ae1-122">*BLE 클라우드-장치 모듈* - *BLE 모듈*에 대한 BLE 지침으로 IoT Hub에서 전송된 JSON 메시지를 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-122">A *BLE cloud to device module* that translates JSON messages sent from IoT Hub into BLE instructions for the *BLE module*.</span></span>
-* <span data-ttu-id="45ae1-123">*로거 모듈* - 모든 게이트웨이 메시지를 로컬 파일에 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-123">A *logger module* that logs all gateway messages to a local file.</span></span>
-* <span data-ttu-id="45ae1-124">*ID 매핑 모듈* - BLE 장치 MAC 주소 및 Azure IoT Hub 장치 ID 간을 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-124">An *identity mapping module* that translates between BLE device MAC addresses and Azure IoT Hub device identities.</span></span>
-* <span data-ttu-id="45ae1-125">*IoT Hub 모듈* - IoT hub에 원격 분석 데이터를 업로드하고 IoT hub에서 장치 명령을 수신합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-125">An *IoT Hub module* that uploads telemetry data to an IoT hub and receives device commands from an IoT hub.</span></span>
-* <span data-ttu-id="45ae1-126">*BLE 프린터 모듈* - BLE 장치의 원격 분석을 해석하고 형식이 지정된 데이터를 콘솔에 출력하여 문제 해결 및 디버깅을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-126">A *BLE printer module* that interprets telemetry from the BLE device and prints formatted data to the console to enable troubleshooting and debugging.</span></span>
+* <span data-ttu-id="75181-121">A *배포용 모듈* hello 장치와 송신 명령 toohello 장치에서 배포용 장치 tooreceive 온도 데이터와 교류 하 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-121">A *BLE module* that interfaces with a BLE device tooreceive temperature data from hello device and send commands toohello device.</span></span>
+* <span data-ttu-id="75181-122">A *배포용 클라우드 toodevice 모듈* hello에 대 한 지침 배포용으로 IoT 허브에서 보낸 JSON 메시지를 변환 하는 *배포용 모듈*합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-122">A *BLE cloud toodevice module* that translates JSON messages sent from IoT Hub into BLE instructions for hello *BLE module*.</span></span>
+* <span data-ttu-id="75181-123">A *로 거 모듈* 모든 게이트웨이 메시지 tooa 로컬 파일을 기록 하 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-123">A *logger module* that logs all gateway messages tooa local file.</span></span>
+* <span data-ttu-id="75181-124">*ID 매핑 모듈* - BLE 장치 MAC 주소 및 Azure IoT Hub 장치 ID 간을 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-124">An *identity mapping module* that translates between BLE device MAC addresses and Azure IoT Hub device identities.</span></span>
+* <span data-ttu-id="75181-125">*IoT 허브 모듈* 원격 분석 데이터 tooan IoT 허브를 업로드 하 고 IoT 허브에서 장치 명령을 수신 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-125">An *IoT Hub module* that uploads telemetry data tooan IoT hub and receives device commands from an IoT hub.</span></span>
+* <span data-ttu-id="75181-126">A *배포용 프린터 모듈* hello 배포용 장치에서 원격 분석을 해석 하 고 형식이 지정 된 데이터 toohello 콘솔 tooenable 문제 해결 및 디버깅 출력입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-126">A *BLE printer module* that interprets telemetry from hello BLE device and prints formatted data toohello console tooenable troubleshooting and debugging.</span></span>
 
-### <a name="how-data-flows-through-the-gateway"></a><span data-ttu-id="45ae1-127">게이트웨이를 통해 데이터가 흐르는 방식</span><span class="sxs-lookup"><span data-stu-id="45ae1-127">How data flows through the gateway</span></span>
+### <a name="how-data-flows-through-hello-gateway"></a><span data-ttu-id="75181-127">Hello 게이트웨이 통해 데이터 흐름</span><span class="sxs-lookup"><span data-stu-id="75181-127">How data flows through hello gateway</span></span>
 
-<span data-ttu-id="45ae1-128">다음 블록 다이어그램에서는 원격 분석 업로드 데이터 흐름 파이프라인을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-128">The following block diagram illustrates the telemetry upload data flow pipeline:</span></span>
+<span data-ttu-id="75181-128">블록 다이어그램을 다음 hello hello 원격 분석 업로드 데이터 흐름 파이프라인을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="75181-128">hello following block diagram illustrates hello telemetry upload data flow pipeline:</span></span>
 
 ![원격 분석 업로드 게이트웨이 파이프라인](media/iot-hub-iot-edge-physical-device/gateway_ble_upload_data_flow.png)
 
-<span data-ttu-id="45ae1-130">원격 분석 항목이 BLE 장치에서 IoT Hub로 이동하면서 진행되는 단계는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-130">The steps that an item of telemetry takes traveling from a BLE device to IoT Hub are:</span></span>
+<span data-ttu-id="75181-130">원격 분석의 항목 사용 배포용 장치 tooIoT에서 이동 하는 hello 단계 허브가 같습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-130">hello steps that an item of telemetry takes traveling from a BLE device tooIoT Hub are:</span></span>
 
-1. <span data-ttu-id="45ae1-131">BLE 장치가 온도 샘플을 생성한 후 Bluetooth를 통해 게이트웨이의 BLE 모듈로 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-131">The BLE device generates a temperature sample and sends it over Bluetooth to the BLE module in the gateway.</span></span>
-1. <span data-ttu-id="45ae1-132">BLE 모듈이 샘플을 수신한 후 장치의 MAC 주소와 함께 broker에 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-132">The BLE module receives the sample and publishes it to the broker along with the MAC address of the device.</span></span>
-1. <span data-ttu-id="45ae1-133">ID 매핑 모듈이 이 메시지를 선택하고 내부 표를 사용하여 장치의 MAC 주소를 IoT Hub 장치 ID로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-133">The identity mapping module picks up this message and uses an internal table to translate the MAC address of the device into an IoT Hub device identity.</span></span> <span data-ttu-id="45ae1-134">IoT Hub 장치 ID는 장치 ID와 장치 키로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-134">An IoT Hub device identity consists of a device ID and device key.</span></span>
-1. <span data-ttu-id="45ae1-135">ID 매핑 모듈은 온도 샘플 데이터, 장치의 MAC 주소, 장치 ID 및 장치 키가 포함된 새 메시지를 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-135">The identity mapping module publishes a new message that contains the temperature sample data, the MAC address of the device, the device ID, and the device key.</span></span>
-1. <span data-ttu-id="45ae1-136">IoT Hub 모듈은 새 메시지(ID 매핑 모듈에 의해 생성)를 수신한 후 IoT Hub에 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-136">The IoT Hub module receives this new message (generated by the identity mapping module) and publishes it to IoT Hub.</span></span>
-1. <span data-ttu-id="45ae1-137">로거 모듈이 broker의 모든 메시지를 로컬 파일에 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-137">The logger module logs all messages from the broker to a local file.</span></span>
+1. <span data-ttu-id="75181-131">hello 배포용 장치 온도 샘플에서는 오류가 발생 하 고 hello 게이트웨이에 Bluetooth toohello 배포용 모듈을 통해 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="75181-131">hello BLE device generates a temperature sample and sends it over Bluetooth toohello BLE module in hello gateway.</span></span>
+1. <span data-ttu-id="75181-132">hello 배포용 모듈 hello 샘플 받아 toohello 브로커 hello 장치의 hello MAC 주소와 함께 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-132">hello BLE module receives hello sample and publishes it toohello broker along with hello MAC address of hello device.</span></span>
+1. <span data-ttu-id="75181-133">hello 인식 매핑 모듈이이 메시지를 선택 하 고 IoT Hub 장치 id를 내부 테이블 tootranslate hello hello 장치의 MAC 주소를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-133">hello identity mapping module picks up this message and uses an internal table tootranslate hello MAC address of hello device into an IoT Hub device identity.</span></span> <span data-ttu-id="75181-134">IoT Hub 장치 ID는 장치 ID와 장치 키로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="75181-134">An IoT Hub device identity consists of a device ID and device key.</span></span>
+1. <span data-ttu-id="75181-135">hello 인식 매핑 모듈 hello 온도 예제 데이터, hello 장치, hello 장치 ID 및 hello 장치 키의 hello MAC 주소를 포함 하는 새 메시지를 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-135">hello identity mapping module publishes a new message that contains hello temperature sample data, hello MAC address of hello device, hello device ID, and hello device key.</span></span>
+1. <span data-ttu-id="75181-136">hello IoT 허브 모듈 (hello 인식 매핑 모듈에서 생성)이 새 메시지를 받아 tooIoT 허브 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-136">hello IoT Hub module receives this new message (generated by hello identity mapping module) and publishes it tooIoT Hub.</span></span>
+1. <span data-ttu-id="75181-137">hello로 거 모듈 hello 브로커 tooa 로컬 파일에서 모든 메시지를 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-137">hello logger module logs all messages from hello broker tooa local file.</span></span>
 
-<span data-ttu-id="45ae1-138">다음 블록 다이어그램에서는 장치 명령 데이터 흐름 파이프라인을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-138">The following block diagram illustrates the device command data flow pipeline:</span></span>
+<span data-ttu-id="75181-138">블록 다이어그램을 다음 hello hello 장치 명령 데이터 흐름 파이프라인을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="75181-138">hello following block diagram illustrates hello device command data flow pipeline:</span></span>
 
 ![장치 명령 게이트웨이 파이프라인](media/iot-hub-iot-edge-physical-device/gateway_ble_command_data_flow.png)
 
-1. <span data-ttu-id="45ae1-140">IoT Hub 모듈은 새로운 명령 메시지에 대한 IoT Hub를 주기적으로 폴링합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-140">The IoT Hub module periodically polls the IoT hub for new command messages.</span></span>
-1. <span data-ttu-id="45ae1-141">IoT Hub 모듈은 새 명령 메시지를 받으면 broke에 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-141">When the IoT Hub module receives a new command message, it publishes it to the broker.</span></span>
-1. <span data-ttu-id="45ae1-142">ID 매핑 모듈은 명령 메시지를 선택하고 내부 표를 사용하여 IoT Hub 장치 ID를 장치 MAC 주소로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-142">The identity mapping module picks up the command message and uses an internal table to translate the IoT Hub device ID to a device MAC address.</span></span> <span data-ttu-id="45ae1-143">그런 다음 메시지의 속성 맵에 대상 장치의 MAC 주소가 포함된 새 메시지를 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-143">It then publishes a new message that includes the MAC address of the target device in the properties map of the message.</span></span>
-1. <span data-ttu-id="45ae1-144">BLE 클라우드-장치 모듈은 이 메시지를 선택해 BLE 모듈에 적합한 BLE 명령으로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-144">The BLE Cloud-to-Device module picks up this message and translates it into the proper BLE instruction for the BLE module.</span></span> <span data-ttu-id="45ae1-145">그런 다음 새 메시지를 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-145">It then publishes a new message.</span></span>
-1. <span data-ttu-id="45ae1-146">BLE 모듈은 이 메시지를 선택하고 BLE 장치와 통신하여 I/O 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-146">The BLE module picks up this message and executes the I/O instruction by communicating with the BLE device.</span></span>
-1. <span data-ttu-id="45ae1-147">로거 모듈이 broker의 모든 메시지를 디스크 파일에 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-147">The logger module logs all messages from the broker to a disk file.</span></span>
+1. <span data-ttu-id="75181-140">IoT Hub 모듈 주기적으로 폴링하여 hello hello 새 명령 메시지에 대 한 IoT hub 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-140">hello IoT Hub module periodically polls hello IoT hub for new command messages.</span></span>
+1. <span data-ttu-id="75181-141">IoT Hub 모듈 hello 새 명령 메시지를 받으면 게시 것 toohello 브로커 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-141">When hello IoT Hub module receives a new command message, it publishes it toohello broker.</span></span>
+1. <span data-ttu-id="75181-142">hello 인식 매핑 모듈 hello 명령 메시지를 선택 하 고 내부 테이블 tootranslate hello IoT Hub 장치 ID tooa 장치 MAC 주소를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-142">hello identity mapping module picks up hello command message and uses an internal table tootranslate hello IoT Hub device ID tooa device MAC address.</span></span> <span data-ttu-id="75181-143">그런 다음 hello 메시지의 hello 속성 맵에서 hello 대상 장치의 hello MAC 주소를 포함 하는 새 메시지를 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-143">It then publishes a new message that includes hello MAC address of hello target device in hello properties map of hello message.</span></span>
+1. <span data-ttu-id="75181-144">hello 배포용 클라우드-장치 모듈이이 메시지를 선택 하 고 hello hello 배포용 모듈에 대 한 적절 한 배포용 명령으로 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-144">hello BLE Cloud-to-Device module picks up this message and translates it into hello proper BLE instruction for hello BLE module.</span></span> <span data-ttu-id="75181-145">그런 다음 새 메시지를 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-145">It then publishes a new message.</span></span>
+1. <span data-ttu-id="75181-146">hello 배포용 모듈이이 메시지를 선택 하 고 hello 배포용 장치와 통신 하 여 hello I/O 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-146">hello BLE module picks up this message and executes hello I/O instruction by communicating with hello BLE device.</span></span>
+1. <span data-ttu-id="75181-147">hello로 거 모듈 hello 브로커 tooa 디스크 파일에서 모든 메시지를 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-147">hello logger module logs all messages from hello broker tooa disk file.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="45ae1-148">필수 조건</span><span class="sxs-lookup"><span data-stu-id="45ae1-148">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="75181-148">필수 조건</span><span class="sxs-lookup"><span data-stu-id="75181-148">Prerequisites</span></span>
 
-<span data-ttu-id="45ae1-149">이 자습서를 완료하려면 활성 Azure 구독이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-149">To complete this tutorial, you need an active Azure subscription.</span></span>
+<span data-ttu-id="75181-149">toocomplete이이 자습서에서는 활성 Azure 구독이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-149">toocomplete this tutorial, you need an active Azure subscription.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="45ae1-150">계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-150">If you don’t have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="45ae1-151">자세한 내용은 [Azure 무료 평가판][lnk-free-trial]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="45ae1-151">For details, see [Azure Free Trial][lnk-free-trial].</span></span>
+> <span data-ttu-id="75181-150">계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-150">If you don’t have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="75181-151">자세한 내용은 [Azure 무료 평가판][lnk-free-trial]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="75181-151">For details, see [Azure Free Trial][lnk-free-trial].</span></span>
 
-<span data-ttu-id="45ae1-152">Raspberry Pi의 명령줄에 원격으로 액세스할 수 있도록 데스크톱 컴퓨터에 SSH 클라이언트가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-152">You need SSH client on your desktop machine to enable you to remotely access the command line on the Raspberry Pi.</span></span>
+<span data-ttu-id="75181-152">사용자 데스크톱 컴퓨터 tooenable 있습니다 tooremotely 액세스 hello 명령줄로 라스베리 Pi hello에에 SSH 클라이언트를 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-152">You need SSH client on your desktop machine tooenable you tooremotely access hello command line on hello Raspberry Pi.</span></span>
 
-- <span data-ttu-id="45ae1-153">Windows에서는 SSH 클라이언트를 포함하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-153">Windows does not include an SSH client.</span></span> <span data-ttu-id="45ae1-154">[PuTTY](http://www.putty.org/)를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-154">We recommend using [PuTTY](http://www.putty.org/).</span></span>
-- <span data-ttu-id="45ae1-155">대부분의 Linux 배포판 및 Mac OS는 명령줄 SSH 유틸리티를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-155">Most Linux distributions and Mac OS include the command-line SSH utility.</span></span> <span data-ttu-id="45ae1-156">자세한 내용은 [Linux 또는 Mac OS를 사용하는 SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="45ae1-156">For more information, see [SSH Using Linux or Mac OS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md).</span></span>
+- <span data-ttu-id="75181-153">Windows에서는 SSH 클라이언트를 포함하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-153">Windows does not include an SSH client.</span></span> <span data-ttu-id="75181-154">[PuTTY](http://www.putty.org/)를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-154">We recommend using [PuTTY](http://www.putty.org/).</span></span>
+- <span data-ttu-id="75181-155">대부분의 Linux 배포판 및 Mac OS 명령줄 SSH 유틸리티 hello를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-155">Most Linux distributions and Mac OS include hello command-line SSH utility.</span></span> <span data-ttu-id="75181-156">자세한 내용은 [Linux 또는 Mac OS를 사용하는 SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="75181-156">For more information, see [SSH Using Linux or Mac OS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md).</span></span>
 
-## <a name="prepare-your-hardware"></a><span data-ttu-id="45ae1-157">하드웨어 준비</span><span class="sxs-lookup"><span data-stu-id="45ae1-157">Prepare your hardware</span></span>
+## <a name="prepare-your-hardware"></a><span data-ttu-id="75181-157">하드웨어 준비</span><span class="sxs-lookup"><span data-stu-id="75181-157">Prepare your hardware</span></span>
 
-<span data-ttu-id="45ae1-158">이 자습서에서는 사용자가 Raspbian을 실행하는 Raspberry Pi 3 에 연결된 [Texas Instruments SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) 장치를 사용한다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-158">This tutorial assumes you are using a [Texas Instruments SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) device connected to a Raspberry Pi 3 running Raspbian.</span></span>
+<span data-ttu-id="75181-158">이 자습서에서는 사용 하는 가정는 [텍사스 기기 SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) 장치가 연결 tooa 라스베리 Pi 3 Raspbian를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-158">This tutorial assumes you are using a [Texas Instruments SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) device connected tooa Raspberry Pi 3 running Raspbian.</span></span>
 
-### <a name="install-raspbian"></a><span data-ttu-id="45ae1-159">Raspbian 설치</span><span class="sxs-lookup"><span data-stu-id="45ae1-159">Install Raspbian</span></span>
+### <a name="install-raspbian"></a><span data-ttu-id="75181-159">Raspbian 설치</span><span class="sxs-lookup"><span data-stu-id="75181-159">Install Raspbian</span></span>
 
-<span data-ttu-id="45ae1-160">다음 옵션 중 하나를 사용하여 Raspbian을 Raspberry Pi 3 장치에 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-160">You can use either of the following options to install Raspbian on your Raspberry Pi 3 device.</span></span>
+<span data-ttu-id="75181-160">Hello 옵션 tooinstall Raspbian 라스베리 Pi 3 장치에서 다음 중 하나를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-160">You can use either of hello following options tooinstall Raspbian on your Raspberry Pi 3 device.</span></span>
 
-* <span data-ttu-id="45ae1-161">최신 버전의 Raspbian을 설치하려면 [NOOBS][lnk-noobs] 그래픽 사용자 인터페이스를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-161">To install the latest version of Raspbian, use the [NOOBS][lnk-noobs] graphical user interface.</span></span>
-* <span data-ttu-id="45ae1-162">최신 Raspbian 운영 체제 이미지를 수동으로 [다운로드][lnk-raspbian]하고 SD 카드에 씁니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-162">Manually [download][lnk-raspbian] and write the latest image of the Raspbian operating system to an SD card.</span></span>
+* <span data-ttu-id="75181-161">tooinstall hello 최신 버전의 Raspbian 사용 하 여 hello [NOOBS] [ lnk-noobs] 그래픽 사용자 인터페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-161">tooinstall hello latest version of Raspbian, use hello [NOOBS][lnk-noobs] graphical user interface.</span></span>
+* <span data-ttu-id="75181-162">수동으로 [다운로드] [ lnk-raspbian] hello Raspbian 운영 체제 tooan SD 카드의 hello 최신 이미지를 작성 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-162">Manually [download][lnk-raspbian] and write hello latest image of hello Raspbian operating system tooan SD card.</span></span>
 
-### <a name="sign-in-and-access-the-terminal"></a><span data-ttu-id="45ae1-163">터미널 로그인 및 액세스</span><span class="sxs-lookup"><span data-stu-id="45ae1-163">Sign in and access the terminal</span></span>
+### <a name="sign-in-and-access-hello-terminal"></a><span data-ttu-id="75181-163">로그인 및 액세스 hello 터미널</span><span class="sxs-lookup"><span data-stu-id="75181-163">Sign in and access hello terminal</span></span>
 
-<span data-ttu-id="45ae1-164">Raspberry Pi의 터미널 환경에 액세스하는 두 가지 옵션이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-164">You have two options to access a terminal environment on your Raspberry Pi:</span></span>
+<span data-ttu-id="75181-164">환경을 사용 하는 두 가지 옵션 tooaccess 터미널 라스베리 원주율:</span><span class="sxs-lookup"><span data-stu-id="75181-164">You have two options tooaccess a terminal environment on your Raspberry Pi:</span></span>
 
-* <span data-ttu-id="45ae1-165">키보드 및 모니터가 Raspberry Pi에 연결된 경우 Raspbian GUI를 사용하여 터미널 창에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-165">If you have a keyboard and monitor connected to your Raspberry Pi, you can use the Raspbian GUI to access a terminal window.</span></span>
+* <span data-ttu-id="75181-165">키보드 연결된 tooyour 라스베리 Pi를 모니터링 하는 경우에 hello Raspbian GUI tooaccess 터미널 윈도우를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-165">If you have a keyboard and monitor connected tooyour Raspberry Pi, you can use hello Raspbian GUI tooaccess a terminal window.</span></span>
 
-* <span data-ttu-id="45ae1-166">데스크톱 컴퓨터에서 SSH를 사용하여 Raspberry Pi의 명령줄에 액세스합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-166">Access the command line on your Raspberry Pi using SSH from your desktop machine.</span></span>
+* <span data-ttu-id="75181-166">액세스 hello 명령줄 데스크톱 컴퓨터의 SSH를 사용 하 여 라스베리 원주율입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-166">Access hello command line on your Raspberry Pi using SSH from your desktop machine.</span></span>
 
-#### <a name="use-a-terminal-window-in-the-gui"></a><span data-ttu-id="45ae1-167">GUI에서 터미널 창 사용</span><span class="sxs-lookup"><span data-stu-id="45ae1-167">Use a terminal Window in the GUI</span></span>
+#### <a name="use-a-terminal-window-in-hello-gui"></a><span data-ttu-id="75181-167">Hello GUI에서에서 터미널 윈도우를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="75181-167">Use a terminal Window in hello GUI</span></span>
 
-<span data-ttu-id="45ae1-168">Raspbian에 대한 기본 자격 증명은 사용자 이름 **pi** 및 암호 **raspberry**입니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-168">The default credentials for Raspbian are username **pi** and password **raspberry**.</span></span> <span data-ttu-id="45ae1-169">GUI의 작업 표시줄에서 모니터 모양의 아이콘을 사용하여 **터미널** 유틸리티를 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-169">In the task bar in the GUI, you can launch the **Terminal** utility using the icon that looks like a monitor.</span></span>
+<span data-ttu-id="75181-168">Raspbian에 대 한 hello 기본 자격 증명이 username **pi** 및 암호 **라스베리**합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-168">hello default credentials for Raspbian are username **pi** and password **raspberry**.</span></span> <span data-ttu-id="75181-169">Hello GUI에에서 hello 작업 표시줄에서 hello를 시작할 수 있습니다 **터미널** hello 모양의 아이콘을 모니터를 사용 하 여 유틸리티입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-169">In hello task bar in hello GUI, you can launch hello **Terminal** utility using hello icon that looks like a monitor.</span></span>
 
-#### <a name="sign-in-with-ssh"></a><span data-ttu-id="45ae1-170">SSH를 사용하여 로그인</span><span class="sxs-lookup"><span data-stu-id="45ae1-170">Sign in with SSH</span></span>
+#### <a name="sign-in-with-ssh"></a><span data-ttu-id="75181-170">SSH를 사용하여 로그인</span><span class="sxs-lookup"><span data-stu-id="75181-170">Sign in with SSH</span></span>
 
-<span data-ttu-id="45ae1-171">Raspberry Pi에 명령줄 액세스를 위해 SSH를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-171">You can use SSH for command-line access to your Raspberry Pi.</span></span> <span data-ttu-id="45ae1-172">[SSH(Secure Shell)][lnk-pi-ssh] 문서에서는 Raspberry Pi에서 SSH를 구성하는 방법 및 [Windows][lnk-ssh-windows] 또는 [Linux 및 Mac OS][lnk-ssh-linux]에서 연결하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-172">The article [SSH (Secure Shell)][lnk-pi-ssh] describes how to configure SSH on your Raspberry Pi, and how to connect from [Windows][lnk-ssh-windows] or [Linux & Mac OS][lnk-ssh-linux].</span></span>
+<span data-ttu-id="75181-171">명령줄 액세스 tooyour 라스베리 Pi에 대 한 SSH를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-171">You can use SSH for command-line access tooyour Raspberry Pi.</span></span> <span data-ttu-id="75181-172">hello 문서 [SSH (보안 셸)] [ lnk-pi-ssh] 설명 방법을 tooconfigure 라스베리 Pi와의 SSH 방법과에서 tooconnect [Windows] [ lnk-ssh-windows] 또는 [Linux 및 Mac OS][lnk-ssh-linux]합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-172">hello article [SSH (Secure Shell)][lnk-pi-ssh] describes how tooconfigure SSH on your Raspberry Pi, and how tooconnect from [Windows][lnk-ssh-windows] or [Linux & Mac OS][lnk-ssh-linux].</span></span>
 
-<span data-ttu-id="45ae1-173">사용자 이름 **pi** 및 암호 **raspberry**로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-173">Sign in with username **pi** and password **raspberry**.</span></span>
+<span data-ttu-id="75181-173">사용자 이름 **pi** 및 암호 **raspberry**로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-173">Sign in with username **pi** and password **raspberry**.</span></span>
 
-### <a name="install-bluez-537"></a><span data-ttu-id="45ae1-174">BlueZ 5.37 설치</span><span class="sxs-lookup"><span data-stu-id="45ae1-174">Install BlueZ 5.37</span></span>
+### <a name="install-bluez-537"></a><span data-ttu-id="75181-174">BlueZ 5.37 설치</span><span class="sxs-lookup"><span data-stu-id="75181-174">Install BlueZ 5.37</span></span>
 
-<span data-ttu-id="45ae1-175">BLE 모듈은 BlueZ 스택을 통해 Bluetooth 하드웨어와 통신합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-175">The BLE modules talk to the Bluetooth hardware via the BlueZ stack.</span></span> <span data-ttu-id="45ae1-176">모듈이 제대로 작동하려면 BlueZ 버전 5.37이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-176">You need version 5.37 of BlueZ for the modules to work correctly.</span></span> <span data-ttu-id="45ae1-177">다음 지침은 올바른 BlueZ 버전이 설치되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-177">These instructions make sure the correct version of BlueZ is installed.</span></span>
+<span data-ttu-id="75181-175">hello 배포용 모듈 hello BlueZ 스택을 통해 toohello Bluetooth 하드웨어와 통신 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-175">hello BLE modules talk toohello Bluetooth hardware via hello BlueZ stack.</span></span> <span data-ttu-id="75181-176">5.37 BlueZ의 버전에 필요한 hello 모듈 toowork 올바르게 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-176">You need version 5.37 of BlueZ for hello modules toowork correctly.</span></span> <span data-ttu-id="75181-177">이러한 지침은 hello BlueZ의 올바른 버전이 설치 되어 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-177">These instructions make sure hello correct version of BlueZ is installed.</span></span>
 
-1. <span data-ttu-id="45ae1-178">현재 Bluetooth 디먼을 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-178">Stop the current bluetooth daemon:</span></span>
+1. <span data-ttu-id="75181-178">현재 bluetooth 데몬 hello를 중지 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-178">Stop hello current bluetooth daemon:</span></span>
 
     ```sh
     sudo systemctl stop bluetooth
     ```
 
-1. <span data-ttu-id="45ae1-179">BlueZ 종속성을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-179">Install the BlueZ dependencies:</span></span>
+1. <span data-ttu-id="75181-179">Hello BlueZ 종속성을 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-179">Install hello BlueZ dependencies:</span></span>
 
     ```sh
     sudo apt-get update
     sudo apt-get install bluetooth bluez-tools build-essential autoconf glib2.0 libglib2.0-dev libdbus-1-dev libudev-dev libical-dev libreadline-dev
     ```
 
-1. <span data-ttu-id="45ae1-180">bluez.org에서 BlueZ 소스 코드를 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-180">Download the BlueZ source code from bluez.org:</span></span>
+1. <span data-ttu-id="75181-180">Bluez.org에서 hello BlueZ 소스 코드를 다운로드 하세요.</span><span class="sxs-lookup"><span data-stu-id="75181-180">Download hello BlueZ source code from bluez.org:</span></span>
 
     ```sh
     wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.37.tar.xz
     ```
 
-1. <span data-ttu-id="45ae1-181">소스 코드 압축을 풉니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-181">Unzip the source code:</span></span>
+1. <span data-ttu-id="75181-181">Hello 소스 코드를 압축을 풉니다.</span><span class="sxs-lookup"><span data-stu-id="75181-181">Unzip hello source code:</span></span>
 
     ```sh
     tar -xvf bluez-5.37.tar.xz
     ```
 
-1. <span data-ttu-id="45ae1-182">디렉터리를 새로 생성된 폴더로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-182">Change directories to the newly created folder:</span></span>
+1. <span data-ttu-id="75181-182">디렉터리 toohello 새로 만든 폴더를 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-182">Change directories toohello newly created folder:</span></span>
 
     ```sh
     cd bluez-5.37
     ```
 
-1. <span data-ttu-id="45ae1-183">빌드할 BlueZ 코드를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-183">Configure the BlueZ code to be built:</span></span>
+1. <span data-ttu-id="75181-183">Hello BlueZ 코드 toobe 구축을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-183">Configure hello BlueZ code toobe built:</span></span>
 
     ```sh
     ./configure --disable-udev --disable-systemd --enable-experimental
     ```
 
-1. <span data-ttu-id="45ae1-184">BlueZ를 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-184">Build BlueZ:</span></span>
+1. <span data-ttu-id="75181-184">BlueZ를 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-184">Build BlueZ:</span></span>
 
     ```sh
     make
     ```
 
-1. <span data-ttu-id="45ae1-185">빌드가 완료되면 BlueZ를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-185">Install BlueZ once it is done building:</span></span>
+1. <span data-ttu-id="75181-185">빌드가 완료되면 BlueZ를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-185">Install BlueZ once it is done building:</span></span>
 
     ```sh
     sudo make install
     ```
 
-1. <span data-ttu-id="45ae1-186">`/lib/systemd/system/bluetooth.service` 파일에서 새로운 Bluetooth 디먼을 가리키도록 Bluetooth에 대한 systemd 서비스 구성을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-186">Change systemd service configuration for bluetooth so it points to the new bluetooth daemon in the file `/lib/systemd/system/bluetooth.service`.</span></span> <span data-ttu-id="45ae1-187">'ExecStart' 줄을 다음 텍스트로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-187">Replace the 'ExecStart' line with the following text:</span></span>
+1. <span data-ttu-id="75181-186">Bluetooth hello 파일에서 새 bluetooth 데몬이 toohello 하는 것을 나타내는 되므로 systemd 서비스 구성 변경 `/lib/systemd/system/bluetooth.service`합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-186">Change systemd service configuration for bluetooth so it points toohello new bluetooth daemon in hello file `/lib/systemd/system/bluetooth.service`.</span></span> <span data-ttu-id="75181-187">Hello 'ExecStart' 줄을 텍스트 다음 hello로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="75181-187">Replace hello 'ExecStart' line with hello following text:</span></span>
 
     ```conf
     ExecStart=/usr/local/libexec/bluetooth/bluetoothd -E
     ```
 
-### <a name="enable-connectivity-to-the-sensortag-device-from-your-raspberry-pi-3-device"></a><span data-ttu-id="45ae1-188">Raspberry Pi 3 장치에서 SensorTag 장치로 연결 설정</span><span class="sxs-lookup"><span data-stu-id="45ae1-188">Enable connectivity to the SensorTag device from your Raspberry Pi 3 device</span></span>
+### <a name="enable-connectivity-toohello-sensortag-device-from-your-raspberry-pi-3-device"></a><span data-ttu-id="75181-188">라스베리 Pi 3 장치에서 연결 toohello SensorTag 장치 사용</span><span class="sxs-lookup"><span data-stu-id="75181-188">Enable connectivity toohello SensorTag device from your Raspberry Pi 3 device</span></span>
 
-<span data-ttu-id="45ae1-189">이 샘플을 실행하기 전에 Raspberry Pi 3이 SensorTag 장치에 연결할 수 있는지 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-189">Before running the sample, you need to verify that your Raspberry Pi 3 can connect to the SensorTag device.</span></span>
+<span data-ttu-id="75181-189">실행 중인 hello 샘플 하기 전에 tooverify 라스베리 Pi 3 toohello SensorTag 장치를 연결할 수 있도록 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-189">Before running hello sample, you need tooverify that your Raspberry Pi 3 can connect toohello SensorTag device.</span></span>
 
-1. <span data-ttu-id="45ae1-190">`rfkill` 유틸리티가 설치되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-190">Ensure the `rfkill` utility is installed:</span></span>
+1. <span data-ttu-id="75181-190">Hello 확인 `rfkill` 유틸리티를 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-190">Ensure hello `rfkill` utility is installed:</span></span>
 
     ```sh
     sudo apt-get install rfkill
     ```
 
-1. <span data-ttu-id="45ae1-191">Raspberry Pi 3에서 Bluetooth를 차단 해제하고 버전 번호가 **5.37**인지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-191">Unblock bluetooth on the Raspberry Pi 3 and check that the version number is **5.37**:</span></span>
+1. <span data-ttu-id="75181-191">Hello 라스베리 Pi 3에서 bluetooth를 차단을 해제 하 고 hello 버전 번호가 인지 확인 **5.37**:</span><span class="sxs-lookup"><span data-stu-id="75181-191">Unblock bluetooth on hello Raspberry Pi 3 and check that hello version number is **5.37**:</span></span>
 
     ```sh
     sudo rfkill unblock bluetooth
     bluetoothctl --version
     ```
 
-1. <span data-ttu-id="45ae1-192">대화형 Bluetooth 셸을 시작하려면 Bluetooth 서비스를 시작하고 **bluetoothctl** 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-192">To enter the interactive bluetooth shell, start the bluetooth service and execute the **bluetoothctl** command :</span></span>
+1. <span data-ttu-id="75181-192">tooenter hello 대화형 bluetooth 셸 hello bluetooth 서비스 시작 및 실행 hello **bluetoothctl** 명령:</span><span class="sxs-lookup"><span data-stu-id="75181-192">tooenter hello interactive bluetooth shell, start hello bluetooth service and execute hello **bluetoothctl** command :</span></span>
 
     ```sh
     sudo systemctl start bluetooth
     bluetoothctl
     ```
 
-1. <span data-ttu-id="45ae1-193">**power on** 명령을 입력하여 bluetooth 컨트롤러에 전원을 공급합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-193">Enter the command **power on** to power up the bluetooth controller.</span></span> <span data-ttu-id="45ae1-194">명령은 다음과 비슷한 출력을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-194">The command returns output similar to the following:</span></span>
+1. <span data-ttu-id="75181-193">Hello 명령을 입력 **전원 켜기** toopower hello bluetooth 컨트롤러를 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-193">Enter hello command **power on** toopower up hello bluetooth controller.</span></span> <span data-ttu-id="75181-194">hello 명령은 유사한 toohello 다음을 출력을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-194">hello command returns output similar toohello following:</span></span>
 
     ```sh
     [NEW] Controller 98:4F:EE:04:1F:DF C3 raspberrypi [default]
     ```
 
-1. <span data-ttu-id="45ae1-195">대화형 Bluetooth 셸에서 **scan on** 명령을 입력하여 Bluetooth 장치를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-195">In the interactive bluetooth shell, enter the command **scan on** to scan for bluetooth devices.</span></span> <span data-ttu-id="45ae1-196">명령은 다음과 비슷한 출력을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-196">The command returns output similar to the following:</span></span>
+1. <span data-ttu-id="75181-195">Hello 대화형 bluetooth 셸에서 hello 명령을 입력 **검색 시 검색** tooscan bluetooth 장치에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-195">In hello interactive bluetooth shell, enter hello command **scan on** tooscan for bluetooth devices.</span></span> <span data-ttu-id="75181-196">hello 명령은 유사한 toohello 다음을 출력을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-196">hello command returns output similar toohello following:</span></span>
 
     ```sh
     Discovery started
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: yes
     ```
 
-1. <span data-ttu-id="45ae1-197">작은 단추(녹색 표시등이 깜박거림)를 눌러 SensorTag 장치를 검색 가능하게 합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-197">Make the SensorTag device discoverable by pressing the small button (the green LED should flash).</span></span> <span data-ttu-id="45ae1-198">Raspberry Pi 3은 SensorTag 장치를 검색해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-198">The Raspberry Pi 3 should discover the SensorTag device:</span></span>
+1. <span data-ttu-id="75181-197">Hello 작은 단추 (녹색 led가 깜박입니다 hello)를 눌러 hello SensorTag 장치 검색 가능 하 게 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-197">Make hello SensorTag device discoverable by pressing hello small button (hello green LED should flash).</span></span> <span data-ttu-id="75181-198">hello 라스베리 Pi 3 hello SensorTag 장치를 검색 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-198">hello Raspberry Pi 3 should discover hello SensorTag device:</span></span>
 
     ```sh
     [NEW] Device A0:E6:F8:B5:F6:00 CC2650 SensorTag
@@ -223,19 +223,19 @@ ms.lasthandoff: 07/11/2017
     [CHG] Device A0:E6:F8:B5:F6:00 RSSI: -43
     ```
 
-    <span data-ttu-id="45ae1-199">이 예제에서는 SensorTag 장치의 MAC 주소가 **A0:E6:F8:B5:F6:00**이라는 것을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-199">In this example, you can see that the MAC address of the SensorTag device is **A0:E6:F8:B5:F6:00**.</span></span>
+    <span data-ttu-id="75181-199">이 예제에서는 해당 hello hello 장치가 SensorTag의 MAC 주소를 확인할 수 있습니다 **A0:E6:F8:B5:F6:00**합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-199">In this example, you can see that hello MAC address of hello SensorTag device is **A0:E6:F8:B5:F6:00**.</span></span>
 
-1. <span data-ttu-id="45ae1-200">**scan off** 명령을 입력하여 스캔을 해제합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-200">Turn off scanning by entering the **scan off** command:</span></span>
+1. <span data-ttu-id="75181-200">Hello를 입력 하 여 검색 기능을 해제 **오프 스캔** 명령:</span><span class="sxs-lookup"><span data-stu-id="75181-200">Turn off scanning by entering hello **scan off** command:</span></span>
 
     ```sh
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: no
     Discovery stopped
     ```
 
-1. <span data-ttu-id="45ae1-201">**connect \<MAC 주소\>**를 입력하고 MAC 주소를 사용하여 SensorTag 장치에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-201">Connect to your SensorTag device using its MAC address by entering **connect \<MAC address\>**.</span></span> <span data-ttu-id="45ae1-202">다음 샘플 출력은 명확히 하기 위해 축약형으로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-202">The following sample output is abbreviated for clarity:</span></span>
+1. <span data-ttu-id="75181-201">MAC 주소를 사용 하 여 입력 하 여 tooyour SensorTag 장치 연결 **연결 \<MAC 주소\>**합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-201">Connect tooyour SensorTag device using its MAC address by entering **connect \<MAC address\>**.</span></span> <span data-ttu-id="75181-202">다음 샘플 출력 hello은 쉽게 구별할 수 있도록 약어:</span><span class="sxs-lookup"><span data-stu-id="75181-202">hello following sample output is abbreviated for clarity:</span></span>
 
     ```sh
-    Attempting to connect to A0:E6:F8:B5:F6:00
+    Attempting tooconnect tooA0:E6:F8:B5:F6:00
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: yes
     Connection successful
     [CHG] Device A0:E6:F8:B5:F6:00 UUIDs: 00001800-0000-1000-8000-00805f9b34fb
@@ -251,64 +251,64 @@ ms.lasthandoff: 07/11/2017
     [CHG] Device A0:E6:F8:B5:F6:00 Modalias: bluetooth:v000Dp0000d0110
     ```
 
-    > <span data-ttu-id="45ae1-203">**list-attributes** 명령을 사용하여 장치의 GATT 특성을 다시 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-203">You can list the GATT characteristics of the device again using the **list-attributes** command.</span></span>
+    > <span data-ttu-id="75181-203">Hello를 사용 하 여 다시 hello 장치의 hello GATT 특성을 나열할 수 있습니다 **특성 목록** 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-203">You can list hello GATT characteristics of hello device again using hello **list-attributes** command.</span></span>
 
-1. <span data-ttu-id="45ae1-204">이제 **disconnect** 명령을 사용하여 장치에서 연결을 끊은 다음 **quit** 명령을 사용하여 Bluetooth 셸을 끝낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-204">You can now disconnect from the device using the **disconnect** command and then exit from the bluetooth shell using the **quit** command:</span></span>
+1. <span data-ttu-id="75181-204">Hello를 사용 하 여 hello 장치에서 연결을 끊을 이제 수 **연결 끊기** 명령을 클릭 한 다음 종료 hello를 사용 하 여 hello bluetooth 셸에서 **종료** 명령:</span><span class="sxs-lookup"><span data-stu-id="75181-204">You can now disconnect from hello device using hello **disconnect** command and then exit from hello bluetooth shell using hello **quit** command:</span></span>
 
     ```sh
-    Attempting to disconnect from A0:E6:F8:B5:F6:00
+    Attempting toodisconnect from A0:E6:F8:B5:F6:00
     Successful disconnected
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: no
     ```
 
-<span data-ttu-id="45ae1-205">이제 Raspberry Pi 3에서 BLE IoT Edge 샘플을 실행할 준비가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-205">You're now ready to run the BLE IoT Edge sample on your Raspberry Pi 3.</span></span>
+<span data-ttu-id="75181-205">이 든 이제 준비 toorun hello 배포용 IoT 가장자리 샘플 라스베리 Pi 3입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-205">You're now ready toorun hello BLE IoT Edge sample on your Raspberry Pi 3.</span></span>
 
-## <a name="run-the-iot-edge-ble-sample"></a><span data-ttu-id="45ae1-206">IoT Edge BLE 샘플 실행</span><span class="sxs-lookup"><span data-stu-id="45ae1-206">Run the IoT Edge BLE sample</span></span>
+## <a name="run-hello-iot-edge-ble-sample"></a><span data-ttu-id="75181-206">Hello IoT 가장자리 배포용 샘플 실행</span><span class="sxs-lookup"><span data-stu-id="75181-206">Run hello IoT Edge BLE sample</span></span>
 
-<span data-ttu-id="45ae1-207">IoT Edge BLE 샘플을 실행하려면 다음 세 가지 작업을 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-207">To run the IoT Edge BLE sample, you need to complete three tasks:</span></span>
+<span data-ttu-id="75181-207">toorun hello IoT 가장자리 배포용 샘플 toocomplete 세 가지 작업이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-207">toorun hello IoT Edge BLE sample, you need toocomplete three tasks:</span></span>
 
-* <span data-ttu-id="45ae1-208">IoT Hub에서 두 개의 샘플 장치를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-208">Configure two sample devices in your IoT Hub.</span></span>
-* <span data-ttu-id="45ae1-209">Raspberry Pi 3 장치에서 IoT Edge를 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-209">Build IoT Edge on your Raspberry Pi 3 device.</span></span>
-* <span data-ttu-id="45ae1-210">Raspberry Pi 3 장치에서 BLE 샘플을 구성하고 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-210">Configure and run the BLE sample on your Raspberry Pi 3 device.</span></span>
+* <span data-ttu-id="75181-208">IoT Hub에서 두 개의 샘플 장치를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-208">Configure two sample devices in your IoT Hub.</span></span>
+* <span data-ttu-id="75181-209">Raspberry Pi 3 장치에서 IoT Edge를 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-209">Build IoT Edge on your Raspberry Pi 3 device.</span></span>
+* <span data-ttu-id="75181-210">구성 하 고 라스베리 Pi 3 장치에서 hello 배포용 샘플을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-210">Configure and run hello BLE sample on your Raspberry Pi 3 device.</span></span>
 
-<span data-ttu-id="45ae1-211">작성할 때 IoT Edge는 Linux에서 실행되는 게이트웨이의 BLE 모듈만 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-211">At the time of writing, IoT Edge only supports BLE modules in gateways running on Linux.</span></span>
+<span data-ttu-id="75181-211">작성 hello 시 IoT 가장자리 Linux에서 실행 중인 게이트웨이의 배포용 모듈만 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-211">At hello time of writing, IoT Edge only supports BLE modules in gateways running on Linux.</span></span>
 
-### <a name="configure-two-sample-devices-in-your-iot-hub"></a><span data-ttu-id="45ae1-212">IoT Hub에서 두 개의 샘플 장치 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-212">Configure two sample devices in your IoT Hub</span></span>
+### <a name="configure-two-sample-devices-in-your-iot-hub"></a><span data-ttu-id="75181-212">IoT Hub에서 두 개의 샘플 장치 구성</span><span class="sxs-lookup"><span data-stu-id="75181-212">Configure two sample devices in your IoT Hub</span></span>
 
-* <span data-ttu-id="45ae1-213">Azure 구독에서 [IoT Hub를 만듭니다][lnk-create-hub]. 이 연습을 완료하려면 허브 이름이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-213">[Create an IoT hub][lnk-create-hub] in your Azure subscription, you need the name of your hub to complete this walkthrough.</span></span> <span data-ttu-id="45ae1-214">계정이 없는 경우 몇 분 내에 [계정][lnk-free-trial]을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-214">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
-* <span data-ttu-id="45ae1-215">**SensorTag_01**이라는 장치 하나를 IoT hub에 추가하고 해당 ID와 장치 키를 적어둡니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-215">Add one device called **SensorTag_01** to your IoT hub and make a note of its id and device key.</span></span> <span data-ttu-id="45ae1-216">[장치 Explorer 또는 iothub-explorer][lnk-explorer-tools] 도구를 사용하여 이전 단계에서 만든 IoT Hub에 장치를 추가하고 해당 키를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-216">You can use the [device explorer or iothub-explorer][lnk-explorer-tools] tools to add this device to the IoT hub you created in the previous step and to retrieve its key.</span></span> <span data-ttu-id="45ae1-217">게이트웨이를 구성할 때 이 장치를 SensorTag 장치에 매핑합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-217">You map this device to the SensorTag device when you configure the gateway.</span></span>
+* <span data-ttu-id="75181-213">[IoT 허브를 만듭니다.] [ lnk-create-hub] Azure 구독에 필요한 허브 toocomplete의 hello 이름을이 연습 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-213">[Create an IoT hub][lnk-create-hub] in your Azure subscription, you need hello name of your hub toocomplete this walkthrough.</span></span> <span data-ttu-id="75181-214">계정이 없는 경우 몇 분 내에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-214">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
+* <span data-ttu-id="75181-215">라는 하나의 장치 추가 **SensorTag_01** tooyour IoT hub id와 장치 키을 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-215">Add one device called **SensorTag_01** tooyour IoT hub and make a note of its id and device key.</span></span> <span data-ttu-id="75181-216">Hello를 사용할 수 있습니다 [장치 탐색기 또는 iothub 탐색기] [ lnk-explorer-tools] tooadd 키 tooretrieve hello 이전 단계에서 만든이 장치 toohello IoT 허브 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-216">You can use hello [device explorer or iothub-explorer][lnk-explorer-tools] tools tooadd this device toohello IoT hub you created in hello previous step and tooretrieve its key.</span></span> <span data-ttu-id="75181-217">Hello 게이트웨이 구성 하는 경우이 장치 toohello SensorTag 장치를 매핑합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-217">You map this device toohello SensorTag device when you configure hello gateway.</span></span>
 
-### <a name="build-azure-iot-edge-on-your-raspberry-pi-3"></a><span data-ttu-id="45ae1-218">Raspberry Pi 3에서 Azure IoT Edge 빌드</span><span class="sxs-lookup"><span data-stu-id="45ae1-218">Build Azure IoT Edge on your Raspberry Pi 3</span></span>
+### <a name="build-azure-iot-edge-on-your-raspberry-pi-3"></a><span data-ttu-id="75181-218">Raspberry Pi 3에서 Azure IoT Edge 빌드</span><span class="sxs-lookup"><span data-stu-id="75181-218">Build Azure IoT Edge on your Raspberry Pi 3</span></span>
 
-<span data-ttu-id="45ae1-219">Azure IoT Edge에 대한 종속성을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-219">Install dependencies for Azure IoT Edge:</span></span>
+<span data-ttu-id="75181-219">Azure IoT Edge에 대한 종속성을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-219">Install dependencies for Azure IoT Edge:</span></span>
 
 ```sh
 sudo apt-get install cmake uuid-dev curl libcurl4-openssl-dev libssl-dev
 ```
 
-<span data-ttu-id="45ae1-220">다음 명령을 사용하여 IoT Edge 및 모든 하위 모듈을 홈 디렉터리로 복제합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-220">Use the following commands to clone IoT Edge and all its submodules to your home directory:</span></span>
+<span data-ttu-id="75181-220">사용 하 여 hello 다음 tooclone IoT Edge 및 모든 하위 모듈 tooyour 홈 디렉터리 명령:</span><span class="sxs-lookup"><span data-stu-id="75181-220">Use hello following commands tooclone IoT Edge and all its submodules tooyour home directory:</span></span>
 
 ```sh
 cd ~
 git clone https://github.com/Azure/iot-edge.git
 ```
 
-<span data-ttu-id="45ae1-221">Raspberry Pi 3에 IoT Edge 리포지토리의 전체 복사본이 있는 경우 다음 명령을 사용하여 SDK가 포함된 폴더에서 빌드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-221">When you have a complete copy of the IoT Edge repository on your Raspberry Pi 3, you can build it using the following command from the folder that contains the SDK:</span></span>
+<span data-ttu-id="75181-221">라스베리 Pi 3에 hello IoT 가장자리 저장소의 전체 복사본을 있을 때 hello hello SDK를 포함 하는 hello 폴더에서 다음 명령을 사용 하 여 빌드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-221">When you have a complete copy of hello IoT Edge repository on your Raspberry Pi 3, you can build it using hello following command from hello folder that contains hello SDK:</span></span>
 
 ```sh
 cd ~/iot-edge
 ./tools/build.sh  --disable-native-remote-modules
 ```
 
-### <a name="configure-and-run-the-ble-sample-on-your-raspberry-pi-3"></a><span data-ttu-id="45ae1-222">Raspberry Pi 3에서 BLE 샘플 구성 및 실행</span><span class="sxs-lookup"><span data-stu-id="45ae1-222">Configure and run the BLE sample on your Raspberry Pi 3</span></span>
+### <a name="configure-and-run-hello-ble-sample-on-your-raspberry-pi-3"></a><span data-ttu-id="75181-222">구성 하 고 라스베리 Pi 3에서 hello 배포용 샘플을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-222">Configure and run hello BLE sample on your Raspberry Pi 3</span></span>
 
-<span data-ttu-id="45ae1-223">샘플을 부트스트랩하고 실행하려면 게이트웨이에서 참여하는 각 IoT Edge 모듈을 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-223">To bootstrap and run the sample, you must configure each IoT Edge module that participates in the gateway.</span></span> <span data-ttu-id="45ae1-224">이 구성은 JSON 파일에 제공되며 참여하는 5가지 IoT Edge 모듈을 모두 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-224">This configuration is provided in a JSON file and you must configure all five participating IoT Edge modules.</span></span> <span data-ttu-id="45ae1-225">리포지토리에는 구성 파일을 직접 작성하기 위한 시작 지점으로 사용할 수 있는 **gateway\_sample.json**이라는 샘플 JSON 파일이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-225">There is a sample JSON file in the repository called **gateway\_sample.json** that you can use as the starting point for building your own configuration file.</span></span> <span data-ttu-id="45ae1-226">이 파일은 IoT Edge 리포지토리의 로컬 복사본에 있는 **samples/ble_gateway/src** 폴더에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-226">This file is in the **samples/ble_gateway/src** folder in local copy of the IoT Edge repository.</span></span>
+<span data-ttu-id="75181-223">toobootstrap 및 실행된 hello 샘플 hello 게이트웨이 참여 하는 각 IoT 지 모듈을 구성 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-223">toobootstrap and run hello sample, you must configure each IoT Edge module that participates in hello gateway.</span></span> <span data-ttu-id="75181-224">이 구성은 JSON 파일에 제공되며 참여하는 5가지 IoT Edge 모듈을 모두 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-224">This configuration is provided in a JSON file and you must configure all five participating IoT Edge modules.</span></span> <span data-ttu-id="75181-225">Hello 저장소 호출 중인 샘플 JSON 파일 **게이트웨이\_sample.json** hello 구성 파일을 직접 작성의 시작 지점으로 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-225">There is a sample JSON file in hello repository called **gateway\_sample.json** that you can use as hello starting point for building your own configuration file.</span></span> <span data-ttu-id="75181-226">이 파일은 hello에 **샘플/ble_gateway/src** hello IoT 가장자리 저장소의 로컬 복사본에 있는 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-226">This file is in hello **samples/ble_gateway/src** folder in local copy of hello IoT Edge repository.</span></span>
 
-<span data-ttu-id="45ae1-227">다음 섹션에서는 BLE 샘플에 대해 이 구성 파일을 편집하는 방법을 설명하고 IoT Edge 리포지토리가 Raspberry Pi 3의 **/home/pi/iot-edge/** 폴더에 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-227">The following sections describe how to edit this configuration file for the BLE sample and assume that the IoT Edge repository is in the **/home/pi/iot-edge/** folder on your Raspberry Pi 3.</span></span> <span data-ttu-id="45ae1-228">리포지토리가 다른 위치에 있으면 그에 맞게 경로를 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-228">If the repository is elsewhere, adjust the paths accordingly.</span></span>
+<span data-ttu-id="75181-227">hello 다음 섹션에서는 어떻게이 구성은 hello 배포용 샘플에 대 한 파일을 해당 hello IoT 가장자리 리포지토리 가정 tooedit의에서 설명 hello **/home/pi/iot-edge /** 라스베리 Pi 3에는 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-227">hello following sections describe how tooedit this configuration file for hello BLE sample and assume that hello IoT Edge repository is in hello **/home/pi/iot-edge/** folder on your Raspberry Pi 3.</span></span> <span data-ttu-id="75181-228">Hello 리포지토리는 다른 위치를 hello 경로 적절 하 게 조정 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-228">If hello repository is elsewhere, adjust hello paths accordingly.</span></span>
 
-#### <a name="logger-configuration"></a><span data-ttu-id="45ae1-229">로거 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-229">Logger configuration</span></span>
+#### <a name="logger-configuration"></a><span data-ttu-id="75181-229">로거 구성</span><span class="sxs-lookup"><span data-stu-id="75181-229">Logger configuration</span></span>
 
-<span data-ttu-id="45ae1-230">게이트웨이 리포지토리가 **/home/pi/iot-edge/** 폴더에 있다고 가정하고 다음과 같이 로거 모듈을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-230">Assuming the gateway repository is located in the **/home/pi/iot-edge/** folder, configure the logger module as follows:</span></span>
+<span data-ttu-id="75181-230">Hello 게이트웨이 저장소 hello에 있는 것으로 가정 **/home/pi/iot-edge /** 폴더를 다음과 같이 hello로 거 모듈을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-230">Assuming hello gateway repository is located in hello **/home/pi/iot-edge/** folder, configure hello logger module as follows:</span></span>
 
 ```json
 {
@@ -326,9 +326,9 @@ cd ~/iot-edge
 }
 ```
 
-#### <a name="ble-module-configuration"></a><span data-ttu-id="45ae1-231">BLE 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-231">BLE module configuration</span></span>
+#### <a name="ble-module-configuration"></a><span data-ttu-id="75181-231">BLE 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="75181-231">BLE module configuration</span></span>
 
-<span data-ttu-id="45ae1-232">BLE 장치에 대한 샘플 구성에서는 Texas Instruments SensorTag 장치를 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-232">The sample configuration for the BLE device assumes a Texas Instruments SensorTag device.</span></span> <span data-ttu-id="45ae1-233">GATT 주변 기기로 작동할 수 있는 모든 표준 BLE 장치가 작동되어야 하지만 GATT 특성 ID 및 데이터를 업데이트해야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-233">Any standard BLE device that can operate as a GATT peripheral should work but you may need to update the GATT characteristic IDs and data.</span></span> <span data-ttu-id="45ae1-234">SensorTag 장치의 MAC 주소를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-234">Add the MAC address of your SensorTag device:</span></span>
+<span data-ttu-id="75181-232">hello 배포용 장치에 대 한 샘플 구성 hello 텍사스 기기 SensorTag 장치를 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-232">hello sample configuration for hello BLE device assumes a Texas Instruments SensorTag device.</span></span> <span data-ttu-id="75181-233">주변는 GATT 작동 해야 하지만 tooupdate hello GATT 특성 Id 및 데이터를 할 수 있습니다으로 작동할 수 있는 모든 표준 배포용 장치입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-233">Any standard BLE device that can operate as a GATT peripheral should work but you may need tooupdate hello GATT characteristic IDs and data.</span></span> <span data-ttu-id="75181-234">SensorTag 장치의 hello MAC 주소를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-234">Add hello MAC address of your SensorTag device:</span></span>
 
 ```json
 {
@@ -387,11 +387,11 @@ cd ~/iot-edge
 }
 ```
 
-<span data-ttu-id="45ae1-235">SensorTag 장치를 사용하지 않는 경우 BLE 장치에 대한 설명서를 검토하여 GATT 특성 ID 및 데이터 값을 업데이트해야 하는지 여부를 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-235">If you are not using a SensorTag device, review the documentation for your BLE device to determine whether you need to update the GATT characteristic IDs and data values.</span></span>
+<span data-ttu-id="75181-235">SensorTag 장치를 사용 하지 않는 경우 tooupdate hello GATT 특성 Id 및 데이터 값을 필요한 지 배포용 장치 toodetermine에 대 한 hello 설명서를 검토 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-235">If you are not using a SensorTag device, review hello documentation for your BLE device toodetermine whether you need tooupdate hello GATT characteristic IDs and data values.</span></span>
 
-#### <a name="iot-hub-module"></a><span data-ttu-id="45ae1-236">IoT Hub 모듈</span><span class="sxs-lookup"><span data-stu-id="45ae1-236">IoT Hub module</span></span>
+#### <a name="iot-hub-module"></a><span data-ttu-id="75181-236">IoT Hub 모듈</span><span class="sxs-lookup"><span data-stu-id="75181-236">IoT Hub module</span></span>
 
-<span data-ttu-id="45ae1-237">IoT Hub의 이름을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-237">Add the name of your IoT Hub.</span></span> <span data-ttu-id="45ae1-238">일반적으로 접미사 값은 **azure-devices.net**입니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-238">The suffix value is typically **azure-devices.net**:</span></span>
+<span data-ttu-id="75181-237">IoT Hub의 hello 이름을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-237">Add hello name of your IoT Hub.</span></span> <span data-ttu-id="75181-238">일반적으로 hello 접미사 값은 **azure devices.net**:</span><span class="sxs-lookup"><span data-stu-id="75181-238">hello suffix value is typically **azure-devices.net**:</span></span>
 
 ```json
 {
@@ -410,9 +410,9 @@ cd ~/iot-edge
 }
 ```
 
-#### <a name="identity-mapping-module-configuration"></a><span data-ttu-id="45ae1-239">ID 매핑 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-239">Identity mapping module configuration</span></span>
+#### <a name="identity-mapping-module-configuration"></a><span data-ttu-id="75181-239">ID 매핑 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="75181-239">Identity mapping module configuration</span></span>
 
-<span data-ttu-id="45ae1-240">SensorTag 장치의 MAC 주소와 IoT Hub에 추가된 **SensorTag_01** 장치의 장치 ID 및 키를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-240">Add the MAC address of your SensorTag device and the device ID and key of the **SensorTag_01** device you added to your IoT Hub:</span></span>
+<span data-ttu-id="75181-240">SensorTag 장치 및 hello 장치 ID 및 키의 hello의 hello MAC 주소를 추가 **SensorTag_01** tooyour IoT 허브를 추가 하는 장치:</span><span class="sxs-lookup"><span data-stu-id="75181-240">Add hello MAC address of your SensorTag device and hello device ID and key of hello **SensorTag_01** device you added tooyour IoT Hub:</span></span>
 
 ```json
 {
@@ -433,7 +433,7 @@ cd ~/iot-edge
 }
 ```
 
-#### <a name="ble-printer-module-configuration"></a><span data-ttu-id="45ae1-241">BLE 프린터 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-241">BLE Printer module configuration</span></span>
+#### <a name="ble-printer-module-configuration"></a><span data-ttu-id="75181-241">BLE 프린터 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="75181-241">BLE Printer module configuration</span></span>
 
 ```json
 {
@@ -448,7 +448,7 @@ cd ~/iot-edge
 }
 ```
 
-#### <a name="blec2d-module-configuration"></a><span data-ttu-id="45ae1-242">BLEC2D 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-242">BLEC2D Module Configuration</span></span>
+#### <a name="blec2d-module-configuration"></a><span data-ttu-id="75181-242">BLEC2D 모듈 구성</span><span class="sxs-lookup"><span data-stu-id="75181-242">BLEC2D Module Configuration</span></span>
 
 ```json
 {
@@ -463,16 +463,16 @@ cd ~/iot-edge
 }
 ```
 
-#### <a name="routing-configuration"></a><span data-ttu-id="45ae1-243">라우팅 구성</span><span class="sxs-lookup"><span data-stu-id="45ae1-243">Routing Configuration</span></span>
+#### <a name="routing-configuration"></a><span data-ttu-id="75181-243">라우팅 구성</span><span class="sxs-lookup"><span data-stu-id="75181-243">Routing Configuration</span></span>
 
-<span data-ttu-id="45ae1-244">다음 구성은 IoT Edge 모듈 간에 다음과 같은 라우팅을 보장합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-244">The following configuration ensures the following routing between IoT Edge modules:</span></span>
+<span data-ttu-id="75181-244">hello 다음 구성을 사용 하면 hello 다음 IoT 가장자리 모듈 간의 라우팅:</span><span class="sxs-lookup"><span data-stu-id="75181-244">hello following configuration ensures hello following routing between IoT Edge modules:</span></span>
 
-* <span data-ttu-id="45ae1-245">**로거** 모듈은 모든 메시지를 수신하고 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-245">The **Logger** module receives and logs all messages.</span></span>
-* <span data-ttu-id="45ae1-246">**SensorTag** 모듈은 **매핑** 및 **BLE 프린터** 모듈 둘 다에 메시지를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-246">The **SensorTag** module sends messages to both the **mapping** and **BLE Printer** modules.</span></span>
-* <span data-ttu-id="45ae1-247">**매핑** 모듈은 IoT Hub 보내질 메시지를 **IoTHub** 모듈에 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-247">The **mapping** module sends messages to the **IoTHub** module to be sent up to your IoT Hub.</span></span>
-* <span data-ttu-id="45ae1-248">**IoTHub** 모듈은 메시지를 **매핑** 모듈로 돌려 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-248">The **IoTHub** module sends messages back to the **mapping** module.</span></span>
-* <span data-ttu-id="45ae1-249">**mapping** 모듈은 메시지를 **BLEC2D** 모듈에 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-249">The **mapping** module sends messages to the **BLEC2D** module.</span></span>
-* <span data-ttu-id="45ae1-250">**BLEC2D** 모듈은 메시지를 **Sensor Tag** 모듈로 돌려 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-250">The **BLEC2D** module sends messages back to the **Sensor Tag** module.</span></span>
+* <span data-ttu-id="75181-245">hello **로 거** 모듈 수신 하 고 모든 메시지를 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-245">hello **Logger** module receives and logs all messages.</span></span>
+* <span data-ttu-id="75181-246">hello **SensorTag** 모듈 tooboth hello 메시지를 보내는 **매핑** 및 **배포용 프린터** 모듈입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-246">hello **SensorTag** module sends messages tooboth hello **mapping** and **BLE Printer** modules.</span></span>
+* <span data-ttu-id="75181-247">hello **매핑** 모듈 보내는 메시지 toohello **IoTHub** 모듈 toobe tooyour IoT Hub를 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-247">hello **mapping** module sends messages toohello **IoTHub** module toobe sent up tooyour IoT Hub.</span></span>
+* <span data-ttu-id="75181-248">hello **IoTHub** 모듈 toohello 회신 메시지를 보내는 **매핑** 모듈입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-248">hello **IoTHub** module sends messages back toohello **mapping** module.</span></span>
+* <span data-ttu-id="75181-249">hello **매핑** 모듈 보내는 메시지 toohello **BLEC2D** 모듈입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-249">hello **mapping** module sends messages toohello **BLEC2D** module.</span></span>
+* <span data-ttu-id="75181-250">hello **BLEC2D** 모듈 toohello 회신 메시지를 보내는 **센서 태그** 모듈입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-250">hello **BLEC2D** module sends messages back toohello **Sensor Tag** module.</span></span>
 
 ```json
 "links" : [
@@ -486,27 +486,27 @@ cd ~/iot-edge
  ]
 ```
 
-<span data-ttu-id="45ae1-251">샘플을 실행하려면 JSON 구성 파일에 대한 경로를 매개 변수로 **ble\_gateway** binary에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-251">To run the sample, pass the path to the JSON configuration file as a parameter to the **ble\_gateway** binary.</span></span> <span data-ttu-id="45ae1-252">다음 명령은 **gateway_sample.json** 구성 파일을 사용하고 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-252">The following command assumes you are using the **gateway_sample.json** configuration file.</span></span> <span data-ttu-id="45ae1-253">Raspberry Pi의 **iot-edge** 폴더에서 이 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-253">Execute this command from the **iot-edge** folder on the Raspberry Pi:</span></span>
+<span data-ttu-id="75181-251">매개 변수 toohello 패스 hello 경로 toohello JSON 구성 파일 toorun hello 샘플 **배포용\_게이트웨이** 이진입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-251">toorun hello sample, pass hello path toohello JSON configuration file as a parameter toohello **ble\_gateway** binary.</span></span> <span data-ttu-id="75181-252">hello 다음 명령을 사용 하 고 가정 hello **gateway_sample.json** 구성 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="75181-252">hello following command assumes you are using hello **gateway_sample.json** configuration file.</span></span> <span data-ttu-id="75181-253">Hello에서이 명령을 실행 **iot 가장자리** hello 라스베리 Pi의 폴더:</span><span class="sxs-lookup"><span data-stu-id="75181-253">Execute this command from hello **iot-edge** folder on hello Raspberry Pi:</span></span>
 
 ```sh
 ./build/samples/ble_gateway/ble_gateway ./samples/ble_gateway/src/gateway_sample.json
 ```
 
-<span data-ttu-id="45ae1-254">샘플을 실행하기 전에 SensorTag 장치에 있는 작은 단추를 눌러 검색을 가능하게 만들어야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-254">You may need to press the small button on the SensorTag device to make it discoverable before you run the sample.</span></span>
+<span data-ttu-id="75181-254">Toopress 야 hello 작은 단추 hello SensorTag 장치 toomake 검색 가능한 것 hello 샘플을 실행 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="75181-254">You may need toopress hello small button on hello SensorTag device toomake it discoverable before you run hello sample.</span></span>
 
-<span data-ttu-id="45ae1-255">샘플을 실행할 경우 [Device Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 또는 [iothub-explorer](https://github.com/Azure/iothub-explorer) 도구를 사용하여 SensorTag 장치에서 IoT Edge 게이트웨이가 전달하는 메시지를 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-255">When you run the sample, you can use the [device explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) or the [iothub-explorer](https://github.com/Azure/iothub-explorer) tool to monitor the messages the IoT Edge gateway forwards from the SensorTag device.</span></span> <span data-ttu-id="45ae1-256">예를 들어 iothub-explorer를 사용하면 다음 명령으로 장치-클라우드 메시지를 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-256">For example, using iothub-explorer you can monitor device-to-cloud messages using the following command:</span></span>
+<span data-ttu-id="75181-255">Hello 샘플을 실행 하면 hello를 사용할 수 있습니다 [장치 탐색기](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 또는 hello [iothub 탐색기](https://github.com/Azure/iothub-explorer) 도구 toomonitor hello 메시지 hello hello SensorTag 장치에서 IoT 지 게이트웨이 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-255">When you run hello sample, you can use hello [device explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) or hello [iothub-explorer](https://github.com/Azure/iothub-explorer) tool toomonitor hello messages hello IoT Edge gateway forwards from hello SensorTag device.</span></span> <span data-ttu-id="75181-256">예를 들어 iothub 탐색기를 사용 하 여 다음 명령을 hello를 사용 하 여 장치-클라우드 메시지 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-256">For example, using iothub-explorer you can monitor device-to-cloud messages using hello following command:</span></span>
 
 ```sh
 iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
 ```
 
-## <a name="send-cloud-to-device-messages"></a><span data-ttu-id="45ae1-257">클라우드-장치 메시지 보내기</span><span class="sxs-lookup"><span data-stu-id="45ae1-257">Send cloud-to-device messages</span></span>
+## <a name="send-cloud-to-device-messages"></a><span data-ttu-id="75181-257">클라우드-장치 메시지 보내기</span><span class="sxs-lookup"><span data-stu-id="75181-257">Send cloud-to-device messages</span></span>
 
-<span data-ttu-id="45ae1-258">또한 BLE 모듈은 IoT Hub에서 장치로 명령을 보내도록 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-258">The BLE module also supports sending commands from IoT Hub to the device.</span></span> <span data-ttu-id="45ae1-259">[장치 Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 또는 [iothub-explorer](https://github.com/Azure/iothub-explorer) 도구를 사용하여 BLE 게이트웨이 모듈이 BLE 장치에 전달하는 JSON 메시지를 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-259">You can use the [device explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) or the [iothub-explorer](https://github.com/Azure/iothub-explorer) tool to send JSON messages that the BLE gateway module forwards on to the BLE device.</span></span>
+<span data-ttu-id="75181-258">hello 배포용 모듈에는 또한 IoT Hub toohello 장치에서 보내는 명령을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-258">hello BLE module also supports sending commands from IoT Hub toohello device.</span></span> <span data-ttu-id="75181-259">Hello를 사용할 수 있습니다 [장치 탐색기](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 또는 hello [iothub 탐색기](https://github.com/Azure/iothub-explorer) 도구 toosend JSON 메시지 해당 hello 배포용 게이트웨이 모듈 toohello 배포용 장치에 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-259">You can use hello [device explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) or hello [iothub-explorer](https://github.com/Azure/iothub-explorer) tool toosend JSON messages that hello BLE gateway module forwards on toohello BLE device.</span></span>
 
-<span data-ttu-id="45ae1-260">Texas Instruments SensorTag 장치를 사용하는 경우 IoT Hub에서 명령을 보내서 빨간색 LED, 녹색 LED 또는 버저를 켤 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-260">If you are using the Texas Instruments SensorTag device, you can turn on the red LED, green LED, or buzzer by sending commands from IoT Hub.</span></span> <span data-ttu-id="45ae1-261">IoT Hub에서 명령을 보내기 전에 먼저 다음 두 JSON 메시지를 순서대로 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-261">Before you send commands from IoT Hub, first send the following two JSON messages in order.</span></span> <span data-ttu-id="45ae1-262">그런 다음 원하는 명령을 보내서 표시등 또는 버저를 켭니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-262">Then you can send any of the commands to turn on the lights or buzzer.</span></span>
+<span data-ttu-id="75181-260">Hello 텍사스 기기 SensorTag 장치를 사용 하는 경우 켤 수 있습니다 hello 빨간색 LED, 녹색 LED 또는 버저 IoT 허브에서 명령을 전송 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-260">If you are using hello Texas Instruments SensorTag device, you can turn on hello red LED, green LED, or buzzer by sending commands from IoT Hub.</span></span> <span data-ttu-id="75181-261">IoT 허브에서 명령에 보내기 전에 먼저 hello 다음 순서 대로 두 개의 JSON 메시지를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="75181-261">Before you send commands from IoT Hub, first send hello following two JSON messages in order.</span></span> <span data-ttu-id="75181-262">그런 다음 hello 명령 tooturn hello lights 또는 버저에 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-262">Then you can send any of hello commands tooturn on hello lights or buzzer.</span></span>
 
-1. <span data-ttu-id="45ae1-263">모든 LED 및 버저 다시 설정(끄기):</span><span class="sxs-lookup"><span data-stu-id="45ae1-263">Reset all LEDs and the buzzer (turn them off):</span></span>
+1. <span data-ttu-id="75181-263">(해제) 하는 모든 Led 형식 및 hello 버저 다시 설정 하십시오.</span><span class="sxs-lookup"><span data-stu-id="75181-263">Reset all LEDs and hello buzzer (turn them off):</span></span>
 
     ```json
     {
@@ -516,7 +516,7 @@ iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devic
     }
     ```
 
-1. <span data-ttu-id="45ae1-264">I/O를 '원격'으로 구성:</span><span class="sxs-lookup"><span data-stu-id="45ae1-264">Configure I/O as 'remote':</span></span>
+1. <span data-ttu-id="75181-264">I/O를 '원격'으로 구성:</span><span class="sxs-lookup"><span data-stu-id="75181-264">Configure I/O as 'remote':</span></span>
 
     ```json
     {
@@ -526,9 +526,9 @@ iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devic
     }
     ```
 
-<span data-ttu-id="45ae1-265">이제 다음 명령을 보내서 SensorTag 장치에서 표시등 또는 버저를 켤 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="45ae1-265">Now you can send any of the following commands to turn on the lights or buzzer on the SensorTag device:</span></span>
+<span data-ttu-id="75181-265">이제 hello 나오는 명령 tooturn hello lights 또는 hello SensorTag 장치에서 버저에 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="75181-265">Now you can send any of hello following commands tooturn on hello lights or buzzer on hello SensorTag device:</span></span>
 
-* <span data-ttu-id="45ae1-266">빨간색 LED 켜기:</span><span class="sxs-lookup"><span data-stu-id="45ae1-266">Turn on the red LED:</span></span>
+* <span data-ttu-id="75181-266">Hello 빨간색 LED를 켭니다.</span><span class="sxs-lookup"><span data-stu-id="75181-266">Turn on hello red LED:</span></span>
 
     ```json
     {
@@ -538,7 +538,7 @@ iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devic
     }
     ```
 
-* <span data-ttu-id="45ae1-267">녹색 LED 켜기:</span><span class="sxs-lookup"><span data-stu-id="45ae1-267">Turn on the green LED:</span></span>
+* <span data-ttu-id="75181-267">Hello 녹색 LED를 켭니다.</span><span class="sxs-lookup"><span data-stu-id="75181-267">Turn on hello green LED:</span></span>
 
     ```json
     {
@@ -548,7 +548,7 @@ iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devic
     }
     ```
 
-* <span data-ttu-id="45ae1-268">버저 켜기:</span><span class="sxs-lookup"><span data-stu-id="45ae1-268">Turn on the buzzer:</span></span>
+* <span data-ttu-id="75181-268">Hello 버저를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="75181-268">Turn on hello buzzer:</span></span>
 
     ```json
     {
@@ -558,15 +558,15 @@ iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devic
     }
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="45ae1-269">다음 단계</span><span class="sxs-lookup"><span data-stu-id="45ae1-269">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="75181-269">다음 단계</span><span class="sxs-lookup"><span data-stu-id="75181-269">Next Steps</span></span>
 
-<span data-ttu-id="45ae1-270">IoT Edge와 코드 예제 실험에 대해 더욱 심도 있게 이해하고 싶다면 다음 개발자 자습서 및 리소스를 참고하세요.</span><span class="sxs-lookup"><span data-stu-id="45ae1-270">If you want to gain a more advanced understanding of IoT Edge and experiment with some code examples, visit the following developer tutorials and resources:</span></span>
+<span data-ttu-id="75181-270">원하는 toogain IoT 가장자리에 대 한 자세한 하 고 몇 가지 코드 예제를 시험해 방문 hello 다음 개발자 자습서 및 리소스:</span><span class="sxs-lookup"><span data-stu-id="75181-270">If you want toogain a more advanced understanding of IoT Edge and experiment with some code examples, visit hello following developer tutorials and resources:</span></span>
 
-* <span data-ttu-id="45ae1-271">[Azure IoT Edge][lnk-sdk]</span><span class="sxs-lookup"><span data-stu-id="45ae1-271">[Azure IoT Edge][lnk-sdk]</span></span>
+* <span data-ttu-id="75181-271">[Azure IoT Edge][lnk-sdk]</span><span class="sxs-lookup"><span data-stu-id="75181-271">[Azure IoT Edge][lnk-sdk]</span></span>
 
-<span data-ttu-id="45ae1-272">IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="45ae1-272">To further explore the capabilities of IoT Hub, see:</span></span>
+<span data-ttu-id="75181-272">toofurther는 IoT Hub의 hello 기능을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="75181-272">toofurther explore hello capabilities of IoT Hub, see:</span></span>
 
-* <span data-ttu-id="45ae1-273">[IoT Hub 개발자 가이드][lnk-devguide]</span><span class="sxs-lookup"><span data-stu-id="45ae1-273">[IoT Hub developer guide][lnk-devguide]</span></span>
+* <span data-ttu-id="75181-273">[IoT Hub 개발자 가이드][lnk-devguide]</span><span class="sxs-lookup"><span data-stu-id="75181-273">[IoT Hub developer guide][lnk-devguide]</span></span>
 
 <!-- Links -->
 [lnk-ble-samplecode]: https://github.com/Azure/iot-edge/tree/master/samples/ble_gateway

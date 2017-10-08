@@ -1,6 +1,6 @@
 ---
-title: "H264 다중 비트 전송률 1080p Media Encoder Standard 사전 설정-Azure | Microsoft Docs"
-description: "이 항목은 **H264 다중 비트 전송률 1080p** 태스크 미리 설정에 대한 개요를 제공합니다."
+title: "aaaH264 다중 비트 전송률 1080p 미디어 인코더 표준 사전 설정-Azure | Microsoft Docs"
+description: "hello에 대 한 개요를 제공 하는 hello 항목 * * H264 다중 비트 전송률 1080 p * * 태스크 사전 설정입니다."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: a1aa9c097ae3eba6c14476d58b432d8d8cc126c0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2b2b1f65c72c6a6a9425c49b75d10e4e411ef43d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-multiple-bitrate-1080p"></a><span data-ttu-id="c5726-103">H264 다중 비트 전송률 1080p</span><span class="sxs-lookup"><span data-stu-id="c5726-103">H264 Multiple Bitrate 1080p</span></span>
-<span data-ttu-id="c5726-104">`Media Encoder Standard`는 인코딩 작업을 만들 때 사용할 수 있는 인코딩 미리 설정을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="c5726-105">`preset name`을 사용하여 미디어 파일을 인코딩할 형식을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="c5726-106">또는 자신만의 JSON 또는 XML 기반 미리 설정(UTF-8 또는 UTF-16 인코딩을 사용하여)을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="c5726-107">그런 다음 사용자 지정 미리 설정을 인코더에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="c5726-108">`Media Encoder Standard` 인코더에서 지원되는 모든 미리 설정 이름의 목록을 보려면 [Media Encoder Standard에 대한 작업 미리 설정](media-services-mes-presets-overview.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c5726-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-multiple-bitrate-1080p"></a><span data-ttu-id="9f841-103">H264 다중 비트 전송률 1080p</span><span class="sxs-lookup"><span data-stu-id="9f841-103">H264 Multiple Bitrate 1080p</span></span>
+<span data-ttu-id="9f841-104">`Media Encoder Standard`는 인코딩 작업을 만들 때 사용할 수 있는 인코딩 미리 설정을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="9f841-105">사용할 수 있습니다는 `preset name` 어떤 형식으로 원하는 tooencode toospecify 미디어 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="9f841-106">또는 자신만의 JSON 또는 XML 기반 미리 설정(UTF-8 또는 UTF-16 인코딩을 사용하여)을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="9f841-107">그런 다음 hello 미리 설정 된 toohello 사용자 지정 인코더를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="9f841-108">사전 설정 이름을이에서 지 원하는 모든 hello 목록이 hello에 대 한 `Media Encoder Standard` 인코더 참조 [미디어 인코더 표준의 태스크 사전 설정](media-services-mes-presets-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="c5726-109">이 항목은 XML 및 JSON 형식의 `H264 Multiple Bitrate 1080p` 미리 설정을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-109">This topic shows the `H264 Multiple Bitrate 1080p` preset in XML and JSON format.</span></span>  
+ <span data-ttu-id="9f841-109">이 항목에서는 hello `H264 Multiple Bitrate 1080p` XML 및 JSON 형식으로 미리 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-109">This topic shows hello `H264 Multiple Bitrate 1080p` preset in XML and JSON format.</span></span>  
   
- <span data-ttu-id="c5726-110">미리 설정은 스테레오 AAC 오디오 및 6000kbps에서 400kbps에 이르는 8 GOP 정렬 MP4 파일 집합을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-110">This preset produces a set of 8 GOP-aligned MP4 files, ranging from 6000 kbps to 400 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="c5726-111">미리 설정의 프로필, 비트 전송률, 샘플링 주기 등에 대한 자세한 내용을 보려면 아래 정의된 XML 또는 JSON을 검토하세요.</span><span class="sxs-lookup"><span data-stu-id="c5726-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="c5726-112">미리 설정에 포함된 각 요소의 의미 및 유효한 값에 대한 설명은 [Media Encoder Standard 스키마](media-services-mes-schema.md) 항목을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c5726-112">For explanations of what each element in these presets means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
+ <span data-ttu-id="9f841-110">이 사전 설정 kbps too400 6000kbps, 및 AAC 오디오 스테레오에서 까지의 8 GOP 정렬 MP4 파일 집합을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-110">This preset produces a set of 8 GOP-aligned MP4 files, ranging from 6000 kbps too400 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="9f841-111">프로필에 대 한 자세한 정보에 대 한 비트 전송률, 샘플링 속도 등에이 사전 설정, XML 또는 JSON 아래에 정의 된 hello를 검사 합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="9f841-112">이러한 사전 설정 방법 및 hello 유효한 값에 있는 각 요소의의 각 요소에 대 한 설명을 참조 hello [미디어 인코더 표준 스키마](media-services-mes-schema.md) 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-112">For explanations of what each element in these presets means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="c5726-113">계층에서 `Width` 및 `Height` 값을 수정하는 경우 가로 세로 비율을 일관적으로 유지해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c5726-113">When modifying the `Width` and `Height` values across layers, make sure that the aspect ratio remains consistent.</span></span> <span data-ttu-id="c5726-114">예: 1920x1080, 1280x720, 1080x576, 640x360.</span><span class="sxs-lookup"><span data-stu-id="c5726-114">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="c5726-115">가로 세로 비율을 혼합하여 사용하지 말아야 합니다. 예: 1280x720, 720x480, 640x360.</span><span class="sxs-lookup"><span data-stu-id="c5726-115">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+>  <span data-ttu-id="9f841-113">Hello를 수정할 때 `Width` 및 `Height` 값, 계층에서 해당 hello 가로 세로 비율 일관성이 유지 되는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="9f841-113">When modifying hello `Width` and `Height` values across layers, make sure that hello aspect ratio remains consistent.</span></span> <span data-ttu-id="9f841-114">예: 1920x1080, 1280x720, 1080x576, 640x360.</span><span class="sxs-lookup"><span data-stu-id="9f841-114">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="9f841-115">가로 세로 비율을 혼합하여 사용하지 말아야 합니다. 예: 1280x720, 720x480, 640x360.</span><span class="sxs-lookup"><span data-stu-id="9f841-115">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
   
- <span data-ttu-id="c5726-116">XML</span><span class="sxs-lookup"><span data-stu-id="c5726-116">XML</span></span>  
+ <span data-ttu-id="9f841-116">XML</span><span class="sxs-lookup"><span data-stu-id="9f841-116">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -177,7 +177,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="c5726-117">JSON</span><span class="sxs-lookup"><span data-stu-id="c5726-117">JSON</span></span>  
+ <span data-ttu-id="9f841-117">JSON</span><span class="sxs-lookup"><span data-stu-id="9f841-117">JSON</span></span>  
   
 ```  
 {  

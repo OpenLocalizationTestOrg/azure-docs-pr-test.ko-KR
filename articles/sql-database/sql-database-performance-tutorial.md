@@ -1,6 +1,6 @@
 ---
-title: "성능 문제 해결 및 데이터베이스 최적화 | Microsoft Docs"
-description: "SQL Database에 성능 권장 사항을 적용하고 데이터베이스에 대해 실행되는 쿼리의 성능에 대한 정보를 얻는 방법을 알아봅니다."
+title: "aaaTroubleshoot 성능 문제 및 데이터베이스 최적화 | Microsoft Docs"
+description: "성능 권장 사항 tooyour SQL 데이터베이스 뿐만 아니라 하세요 방법에 대 한 통찰력 toogain hello 데이터베이스에 대해 실행 하는 hello 쿼리의 성능을 적용합니다"
 metakeywords: azure sql database performance monitoring recommendation
 services: sql-database
 documentationcenter: 
@@ -15,100 +15,100 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: janeng
-ms.openlocfilehash: f9ae96cdc80c347593f229cb2fce3f2d4d8e7caf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e948d30ac74eecf45420d5d77ef55e3c0b6f3f47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-performance-issues-and-optimize-your-database"></a><span data-ttu-id="dd1b1-103">성능 문제 해결 및 데이터베이스 최적화</span><span class="sxs-lookup"><span data-stu-id="dd1b1-103">Troubleshoot performance issues and optimize your database</span></span>
+# <a name="troubleshoot-performance-issues-and-optimize-your-database"></a><span data-ttu-id="f1b1f-103">성능 문제 해결 및 데이터베이스 최적화</span><span class="sxs-lookup"><span data-stu-id="f1b1f-103">Troubleshoot performance issues and optimize your database</span></span>
 
-<span data-ttu-id="dd1b1-104">인덱스 누락 및 최적화되지 않은 쿼리는 데이터베이스 성능을 저하시키는 일반적인 원인입니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-104">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="dd1b1-105">이 자습서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-105">In this tutorial you learn to:</span></span>
+<span data-ttu-id="f1b1f-104">인덱스 누락 및 최적화되지 않은 쿼리는 데이터베이스 성능을 저하시키는 일반적인 원인입니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-104">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="f1b1f-105">이 자습서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-105">In this tutorial you learn to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="dd1b1-106">성능 향상 권장 사항 검토, 적용 및 되돌리기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-106">Review, apply and revert performance improvement recommendations</span></span>
-> * <span data-ttu-id="dd1b1-107">높은 리소스 사용률을 나타내는 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-107">Find queries with high resource utilization</span></span>
-> * <span data-ttu-id="dd1b1-108">장기 실행 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-108">Find long running queries</span></span>
+> * <span data-ttu-id="f1b1f-106">성능 향상 권장 사항 검토, 적용 및 되돌리기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-106">Review, apply and revert performance improvement recommendations</span></span>
+> * <span data-ttu-id="f1b1f-107">높은 리소스 사용률을 나타내는 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-107">Find queries with high resource utilization</span></span>
+> * <span data-ttu-id="f1b1f-108">장기 실행 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-108">Find long running queries</span></span>
 
-> <span data-ttu-id="dd1b1-109">성능 문제(예를 들어, 권장 사항을 받기 위한 인덱스 누락)가 있는 데이터베이스에서 지속적인 워크로드가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-109">You need a continuous workload on a database with performance issues – missing an index for example to receive a recommendation.</span></span>
+> <span data-ttu-id="f1b1f-109">예를 들어 tooreceive 권장 인덱스가 없다는 – 성능 문제를 사용 하 여 데이터베이스에 연속 작업을 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-109">You need a continuous workload on a database with performance issues – missing an index for example tooreceive a recommendation.</span></span>
 >
 
-## <a name="log-in-to-the-azure-portal"></a><span data-ttu-id="dd1b1-110">Azure 포털에 로그인</span><span class="sxs-lookup"><span data-stu-id="dd1b1-110">Log in to the Azure portal</span></span>
+## <a name="log-in-toohello-azure-portal"></a><span data-ttu-id="f1b1f-110">Azure 포털 toohello에 로그인</span><span class="sxs-lookup"><span data-stu-id="f1b1f-110">Log in toohello Azure portal</span></span>
 
-<span data-ttu-id="dd1b1-111">[Azure 포털](https://portal.azure.com/)에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-111">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
+<span data-ttu-id="f1b1f-111">Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-111">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
 
-## <a name="review-and-apply-a-recommendation"></a><span data-ttu-id="dd1b1-112">권장 사항 검토 및 적용</span><span class="sxs-lookup"><span data-stu-id="dd1b1-112">Review and apply a recommendation</span></span>
+## <a name="review-and-apply-a-recommendation"></a><span data-ttu-id="f1b1f-112">권장 사항 검토 및 적용</span><span class="sxs-lookup"><span data-stu-id="f1b1f-112">Review and apply a recommendation</span></span>
 
-<span data-ttu-id="dd1b1-113">다음 단계에 따라 데이터베이스에 대한 시스템에서 권장 사항을 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-113">Follow these steps to apply a recommendation from the system for your database:</span></span>
+<span data-ttu-id="f1b1f-113">데이터베이스에 대 한 hello 시스템에서 이러한 단계 tooapply 권장 사항을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-113">Follow these steps tooapply a recommendation from hello system for your database:</span></span>
 
-1. <span data-ttu-id="dd1b1-114">데이터베이스 블레이드에서 **쿼리 권장 사항** 메뉴를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-114">Click the **Performance recommendations** menu in the database blade.</span></span>
+1. <span data-ttu-id="f1b1f-114">Hello 클릭 **성능 권장 사항** hello 데이터베이스 블레이드에서 메뉴.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-114">Click hello **Performance recommendations** menu in hello database blade.</span></span>
 
     ![성능 권장 사항](./media/sql-database-performance-tutorial/perf_recommendations.png)
 
-2. <span data-ttu-id="dd1b1-116">권장 사항 목록에서 사용 중인 권장 사항을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-116">From the list of recommendations, select an active recommendation.</span></span> <span data-ttu-id="dd1b1-117">이 예제에서 인덱스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-117">In this example, Create Index.</span></span>
+2. <span data-ttu-id="f1b1f-116">권장 구성의 hello 목록에서 활성는 권장 사항을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-116">From hello list of recommendations, select an active recommendation.</span></span> <span data-ttu-id="f1b1f-117">이 예제에서 인덱스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-117">In this example, Create Index.</span></span>
 
     ![권장 사항 선택](./media/sql-database-performance-tutorial/create_index.png)
 
-3. <span data-ttu-id="dd1b1-119">**적용** 단추를 클릭하여 권장 사항을 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-119">Apply the recommendation by clicking the **Apply** button.</span></span> <span data-ttu-id="dd1b1-120">필요에 따라 권장 사항 정보를 검토하고 **스크립트 보기** 단추를 클릭하여 실행할 T-SQL 스크립트를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-120">Optionally, review the recommendation details and see the T-SQL script to  be executed by clicking on **View Script** button.</span></span>
+3. <span data-ttu-id="f1b1f-119">Hello를 클릭 하 여 hello 권장 구성 적용 **적용** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-119">Apply hello recommendation by clicking hello **Apply** button.</span></span> <span data-ttu-id="f1b1f-120">필요에 따라 hello 권장 사항 세부 정보를 검토 하 고 hello T-SQL 스크립트를 클릭 하 여 실행할 너무 참조 **스크립트 보기** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-120">Optionally, review hello recommendation details and see hello T-SQL script too be executed by clicking on **View Script** button.</span></span>
 
     ![권장 사항 적용](./media/sql-database-performance-tutorial/apply.png)
 
-4. <span data-ttu-id="dd1b1-122">[선택 사항] 권장 사항이 자동으로 적용되도록 하려면 자동 조정을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-122">[Optional] Enable automatic tuning for recommendations to be applied automatically.</span></span>
+4. <span data-ttu-id="f1b1f-122">[선택 사항] 자동 튜닝 권장 사항 toobe 자동으로 적용에 대 한 사용 하도록 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-122">[Optional] Enable automatic tuning for recommendations toobe applied automatically.</span></span>
 
     ![자동 조정](./media/sql-database-performance-tutorial/auto_tuning.png)
 
-## <a name="revert-a-recommendation"></a><span data-ttu-id="dd1b1-124">권장 사항 되돌리기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-124">Revert a recommendation</span></span>
+## <a name="revert-a-recommendation"></a><span data-ttu-id="f1b1f-124">권장 사항 되돌리기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-124">Revert a recommendation</span></span>
 
-<span data-ttu-id="dd1b1-125">Database Advisor는 구현된 모든 권장 사항을 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-125">The Database Advisor monitors every recommendation implemented.</span></span> <span data-ttu-id="dd1b1-126">권장 사항으로 워크로드가 개선되지 않으면 자동으로 되돌려집니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-126">If a recommendation doesn't improve the workload it will be automatically reverted.</span></span> <span data-ttu-id="dd1b1-127">수동으로 권장 사항 되돌리기가 가능하지만 대부분의 경우 반드시 그런 것은 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-127">Manually reverting a recommendation is possible, but not necessary in most cases.</span></span> <span data-ttu-id="dd1b1-128">권장 사항을 되돌리려면</span><span class="sxs-lookup"><span data-stu-id="dd1b1-128">To revert a recommendation:</span></span>
+<span data-ttu-id="f1b1f-125">hello 데이터베이스 관리자를 구현 하는 모든 권장 사항을 모니터링 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-125">hello Database Advisor monitors every recommendation implemented.</span></span> <span data-ttu-id="f1b1f-126">권장 사항을 hello 작업 부하를 자동으로 되돌릴 수는 향상 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-126">If a recommendation doesn't improve hello workload it will be automatically reverted.</span></span> <span data-ttu-id="f1b1f-127">수동으로 권장 사항 되돌리기가 가능하지만 대부분의 경우 반드시 그런 것은 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-127">Manually reverting a recommendation is possible, but not necessary in most cases.</span></span> <span data-ttu-id="f1b1f-128">toorevert 권장:</span><span class="sxs-lookup"><span data-stu-id="f1b1f-128">toorevert a recommendation:</span></span>
 
-1. <span data-ttu-id="dd1b1-129">성능 권장 사항 메뉴로 이동하고 적용된 권장 사항 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-129">Go to the performance recommendations menu and select one of the applied recommendations.</span></span>
+1. <span data-ttu-id="f1b1f-129">Toohello 성능 권장 사항 메뉴를 이동 하 고 적용 하는 hello 권장 사항 중 하나를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-129">Go toohello performance recommendations menu and select one of hello applied recommendations.</span></span>
 
     ![권장 사항 선택](./media/sql-database-performance-tutorial/select.png)
 
-2. <span data-ttu-id="dd1b1-131">세부 정보 보기에서 **되돌리기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-131">In the details view, click **Revert**.</span></span>
+2. <span data-ttu-id="f1b1f-131">Hello 세부 정보 뷰에서 클릭 **Revert**합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-131">In hello details view, click **Revert**.</span></span>
 
     ![권장 사항 되돌리기](./media/sql-database-performance-tutorial/revert.png)
 
-## <a name="find-the-query-that-consumes-the-most-resources"></a><span data-ttu-id="dd1b1-133">대부분의 리소스를 사용하는 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-133">Find the query that consumes the most resources</span></span>
+## <a name="find-hello-query-that-consumes-hello-most-resources"></a><span data-ttu-id="f1b1f-133">대부분의 리소스 hello를 사용 하는 hello 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-133">Find hello query that consumes hello most resources</span></span>
 
-<span data-ttu-id="dd1b1-134">다음 단계에 따라 대부분의 리소스를 사용하는 쿼리를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-134">Follow these steps to find the query consuming the most resources:</span></span>
+<span data-ttu-id="f1b1f-134">대부분의 리소스 hello를 사용해 이러한 단계 toofind hello 쿼리를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-134">Follow these steps toofind hello query consuming hello most resources:</span></span>
 
-1. <span data-ttu-id="dd1b1-135">데이터베이스 블레이드에서 **Query Performance Insight** 메뉴를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-135">Click on the **Query Performance Insight** menu in the database blade.</span></span>
+1. <span data-ttu-id="f1b1f-135">Hello 클릭 **Query Performance Insight** hello 데이터베이스 블레이드에서 메뉴.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-135">Click on hello **Query Performance Insight** menu in hello database blade.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/query_perf_insights.png)
 
-2. <span data-ttu-id="dd1b1-137">리소스 종류를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-137">Select a resource type.</span></span>
+2. <span data-ttu-id="f1b1f-137">리소스 종류를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-137">Select a resource type.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/select_resource_type.png)
 
-3. <span data-ttu-id="dd1b1-139">테이블에서 첫 번째 쿼리를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-139">Select the first query in the table.</span></span>
+3. <span data-ttu-id="f1b1f-139">Hello 표에 hello 첫 번째 쿼리를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-139">Select hello first query in hello table.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/select_query.png)
 
-4. <span data-ttu-id="dd1b1-141">쿼리 세부 정보를 검토합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-141">Review the query details.</span></span>
+4. <span data-ttu-id="f1b1f-141">Hello 쿼리 세부 정보를 검토 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-141">Review hello query details.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/query_details.png)
 
-## <a name="find-the-longest-running-query"></a><span data-ttu-id="dd1b1-143">가장 오래 실행되는 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-143">Find the longest running query</span></span>
+## <a name="find-hello-longest-running-query"></a><span data-ttu-id="f1b1f-143">Hello 가장 긴 실행 중인 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-143">Find hello longest running query</span></span>
 
-1. <span data-ttu-id="dd1b1-144">Query Performance Insight로 이동하고 **장기 실행 쿼리** 탭을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-144">Go to Query Performance Insight and select the **Long running queries** tab.</span></span>
+1. <span data-ttu-id="f1b1f-144">TooQuery Performance Insight를 이동 하 고 hello 선택 **장기 실행 쿼리** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-144">Go tooQuery Performance Insight and select hello **Long running queries** tab.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/long_running.png)
 
-3. <span data-ttu-id="dd1b1-146">테이블에서 첫 번째 쿼리를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-146">Select the first query in the table.</span></span>
+3. <span data-ttu-id="f1b1f-146">Hello 표에 hello 첫 번째 쿼리를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-146">Select hello first query in hello table.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/select_first_query.png)
 
-4. <span data-ttu-id="dd1b1-148">쿼리 세부 정보를 검토합니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-148">Review the query details.</span></span>
+4. <span data-ttu-id="f1b1f-148">Hello 쿼리 세부 정보를 검토 합니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-148">Review hello query details.</span></span>
 
     ![쿼리 인사이트](./media/sql-database-performance-tutorial/review_query_details.png)
 
 
 
-## <a name="next-steps"></a><span data-ttu-id="dd1b1-150">다음 단계</span><span class="sxs-lookup"><span data-stu-id="dd1b1-150">Next steps</span></span> 
-<span data-ttu-id="dd1b1-151">인덱스 누락 및 최적화되지 않은 쿼리는 데이터베이스 성능을 저하시키는 일반적인 원인입니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-151">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="dd1b1-152">이 자습서에서는 다음에 대해 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="dd1b1-152">In this tutorial you learned to:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f1b1f-150">다음 단계</span><span class="sxs-lookup"><span data-stu-id="f1b1f-150">Next steps</span></span> 
+<span data-ttu-id="f1b1f-151">인덱스 누락 및 최적화되지 않은 쿼리는 데이터베이스 성능을 저하시키는 일반적인 원인입니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-151">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="f1b1f-152">이 자습서에서는 다음에 대해 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="f1b1f-152">In this tutorial you learned to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="dd1b1-153">성능 향상 권장 사항 검토, 적용 및 되돌리기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-153">Review, apply and revert performance improvement recommendations</span></span>
-> * <span data-ttu-id="dd1b1-154">높은 리소스 사용률을 나타내는 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-154">Find queries with high resource utilization</span></span>
-> * <span data-ttu-id="dd1b1-155">장기 실행 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="dd1b1-155">Find long running queries</span></span>
+> * <span data-ttu-id="f1b1f-153">성능 향상 권장 사항 검토, 적용 및 되돌리기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-153">Review, apply and revert performance improvement recommendations</span></span>
+> * <span data-ttu-id="f1b1f-154">높은 리소스 사용률을 나타내는 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-154">Find queries with high resource utilization</span></span>
+> * <span data-ttu-id="f1b1f-155">장기 실행 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f1b1f-155">Find long running queries</span></span>
 
-[<span data-ttu-id="dd1b1-156">SQL 데이터베이스 성능 튜닝 팁</span><span class="sxs-lookup"><span data-stu-id="dd1b1-156">SQL Database performance tuning tips</span></span>](https://docs.microsoft.com/azure/sql-database/sql-database-troubleshoot-performance)
+[<span data-ttu-id="f1b1f-156">SQL 데이터베이스 성능 튜닝 팁</span><span class="sxs-lookup"><span data-stu-id="f1b1f-156">SQL Database performance tuning tips</span></span>](https://docs.microsoft.com/azure/sql-database/sql-database-troubleshoot-performance)

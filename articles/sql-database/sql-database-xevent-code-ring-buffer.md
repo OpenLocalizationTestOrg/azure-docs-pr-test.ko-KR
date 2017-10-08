@@ -1,6 +1,6 @@
 ---
-title: "SQL Database에 대한 XEvent 링 버퍼 코드 | Microsoft Docs"
-description: "Azure SQL Database에서 링 버퍼 대상을 사용하여 편리하고 빨라진 Transact-SQL 코드 샘플을 제공합니다."
+title: "SQL 데이터베이스에 대 한 링 버퍼 코드 aaaXEvent | Microsoft Docs"
+description: "Azure SQL 데이터베이스의 hello 링 버퍼 대상 사용 하 여 쉽게 만들고 빠른 만들어지는 Transact SQL 코드 예제를 제공 합니다."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,52 +16,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 6fbefe151901ac3b15d93712422878fc4d6206f1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 21df748d9999d6837d2b5bbe4a3f47fb351b4633
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a><span data-ttu-id="a5cf5-103">SQL Database의 확장 이벤트에 대한 링 버퍼 대상 코드</span><span class="sxs-lookup"><span data-stu-id="a5cf5-103">Ring Buffer target code for extended events in SQL Database</span></span>
+# <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a><span data-ttu-id="f4089-103">SQL Database의 확장 이벤트에 대한 링 버퍼 대상 코드</span><span class="sxs-lookup"><span data-stu-id="f4089-103">Ring Buffer target code for extended events in SQL Database</span></span>
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-<span data-ttu-id="a5cf5-104">테스트 중 확장 이벤트에 대한 정보를 캡처하고 보고하는 가장 쉽고 빠른 방법을 위한 전체 코드 샘플이 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-104">You want a complete code sample for the easiest quick way to capture and report information for an extended event during a test.</span></span> <span data-ttu-id="a5cf5-105">확장 이벤트 데이터에 대한 가장 쉬운 대상은 [링 버퍼 대상](http://msdn.microsoft.com/library/ff878182.aspx)입니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-105">The easiest target for extended event data is the [Ring Buffer target](http://msdn.microsoft.com/library/ff878182.aspx).</span></span>
+<span data-ttu-id="f4089-104">원하는 hello 쉬운 신속 하 게 toocapture 및 보고서에 대 한 정보는 확장된 이벤트 테스트 하는 동안에 대 한 전체 코드 샘플입니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-104">You want a complete code sample for hello easiest quick way toocapture and report information for an extended event during a test.</span></span> <span data-ttu-id="f4089-105">확장된 이벤트 데이터에 대 한 쉬운 대상 hello는 hello [링 버퍼 대상](http://msdn.microsoft.com/library/ff878182.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-105">hello easiest target for extended event data is hello [Ring Buffer target](http://msdn.microsoft.com/library/ff878182.aspx).</span></span>
 
-<span data-ttu-id="a5cf5-106">이 항목에서는 다음을 수행하는 Transact-SQL 코드 샘플을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-106">This topic presents a Transact-SQL code sample that:</span></span>
+<span data-ttu-id="f4089-106">이 항목에서는 다음을 수행하는 Transact-SQL 코드 샘플을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-106">This topic presents a Transact-SQL code sample that:</span></span>
 
-1. <span data-ttu-id="a5cf5-107">시연하는 데 사용할 데이터를 포함하는 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-107">Creates a table with data to demonstrate with.</span></span>
-2. <span data-ttu-id="a5cf5-108">기존 확장 이벤트에 대한 세션 즉, **sqlserver.sql_statement_starting**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-108">Creates a session for an existing extended event, namely **sqlserver.sql_statement_starting**.</span></span>
+1. <span data-ttu-id="f4089-107">와 데이터 toodemonstrate 있는 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-107">Creates a table with data toodemonstrate with.</span></span>
+2. <span data-ttu-id="f4089-108">기존 확장 이벤트에 대한 세션 즉, **sqlserver.sql_statement_starting**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-108">Creates a session for an existing extended event, namely **sqlserver.sql_statement_starting**.</span></span>
    
-   * <span data-ttu-id="a5cf5-109">이 이벤트는 특정 업데이트 문자열을 포함하는 SQL 문( **statement LIKE '%UPDATE tabEmployee%'**)으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-109">The event is limited to SQL statements that contain a particular Update string: **statement LIKE '%UPDATE tabEmployee%'**.</span></span>
-   * <span data-ttu-id="a5cf5-110">링 버퍼 유형의 대상 즉, **package0.ring_buffer**로 이벤트 출력을 보내도록 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-110">Chooses to send the output of the event to a target of type Ring Buffer, namely  **package0.ring_buffer**.</span></span>
-3. <span data-ttu-id="a5cf5-111">이벤트 세션을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-111">Starts the event session.</span></span>
-4. <span data-ttu-id="a5cf5-112">몇 가지 간단한 SQL UPDATE 문을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-112">Issues a couple of simple SQL UPDATE statements.</span></span>
-5. <span data-ttu-id="a5cf5-113">SQL SELECT 문을 실행하여 링 버퍼에서 이벤트 출력을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-113">Issues a SQL SELECT statement to retrieve event output from the Ring Buffer.</span></span>
+   * <span data-ttu-id="f4089-109">hello 이벤트는 특정 업데이트 문자열을 포함 하는 제한 된 tooSQL 문은: **'업데이트 tabEmployee % %'와 같은 문을**합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-109">hello event is limited tooSQL statements that contain a particular Update string: **statement LIKE '%UPDATE tabEmployee%'**.</span></span>
+   * <span data-ttu-id="f4089-110">Hello 이벤트 tooa 형식이 링 버퍼 대상의 toosend hello 출력 즉 선택 **package0.ring_buffer**합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-110">Chooses toosend hello output of hello event tooa target of type Ring Buffer, namely  **package0.ring_buffer**.</span></span>
+3. <span data-ttu-id="f4089-111">Hello 이벤트 세션을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-111">Starts hello event session.</span></span>
+4. <span data-ttu-id="f4089-112">몇 가지 간단한 SQL UPDATE 문을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-112">Issues a couple of simple SQL UPDATE statements.</span></span>
+5. <span data-ttu-id="f4089-113">SQL SELECT 문을 tooretrieve 이벤트 출력을 hello 링 버퍼에서에서 발급합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-113">Issues a SQL SELECT statement tooretrieve event output from hello Ring Buffer.</span></span>
    
-   * <span data-ttu-id="a5cf5-114">**sys.dm_xe_database_session_targets** 및 다른 DMV(동적 관리 뷰)가 조인됩니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-114">**sys.dm_xe_database_session_targets** and other dynamic management views (DMVs) are joined.</span></span>
-6. <span data-ttu-id="a5cf5-115">이벤트 세션을 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-115">Stops the event session.</span></span>
-7. <span data-ttu-id="a5cf5-116">링 버퍼 대상을 삭제하여 해당 리소스를 해제합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-116">Drops the Ring Buffer target, to release its resources.</span></span>
-8. <span data-ttu-id="a5cf5-117">이벤트 세션 및 데모 테이블을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-117">Drops the event session and the demo table.</span></span>
+   * <span data-ttu-id="f4089-114">**sys.dm_xe_database_session_targets** 및 다른 DMV(동적 관리 뷰)가 조인됩니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-114">**sys.dm_xe_database_session_targets** and other dynamic management views (DMVs) are joined.</span></span>
+6. <span data-ttu-id="f4089-115">Hello 이벤트 세션을 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-115">Stops hello event session.</span></span>
+7. <span data-ttu-id="f4089-116">삭제 합니다. 해당 리소스를 링 버퍼 대상, toorelease hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-116">Drops hello Ring Buffer target, toorelease its resources.</span></span>
+8. <span data-ttu-id="f4089-117">Hello 이벤트 세션 및 hello 데모 테이블을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-117">Drops hello event session and hello demo table.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a5cf5-118">필수 조건</span><span class="sxs-lookup"><span data-stu-id="a5cf5-118">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="f4089-118">필수 조건</span><span class="sxs-lookup"><span data-stu-id="f4089-118">Prerequisites</span></span>
 
-* <span data-ttu-id="a5cf5-119">Azure 계정 및 구독</span><span class="sxs-lookup"><span data-stu-id="a5cf5-119">An Azure account and subscription.</span></span> <span data-ttu-id="a5cf5-120">[무료 평가판](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-120">You can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
-* <span data-ttu-id="a5cf5-121">테이블을 만들 수 있는 데이터베이스.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-121">Any database you can create a table in.</span></span>
+* <span data-ttu-id="f4089-119">Azure 계정 및 구독</span><span class="sxs-lookup"><span data-stu-id="f4089-119">An Azure account and subscription.</span></span> <span data-ttu-id="f4089-120">[무료 평가판](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-120">You can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+* <span data-ttu-id="f4089-121">테이블을 만들 수 있는 데이터베이스.</span><span class="sxs-lookup"><span data-stu-id="f4089-121">Any database you can create a table in.</span></span>
   
-  * <span data-ttu-id="a5cf5-122">또는 몇 분 이내에 [**AdventureWorksLT** 데모 데이터베이스를 만들](sql-database-get-started.md) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-122">Optionally you can [create an **AdventureWorksLT** demonstration database](sql-database-get-started.md) in minutes.</span></span>
-* <span data-ttu-id="a5cf5-123">SQL Server Management Studio(ssms.exe)(이상적으로 최신 월별 업데이트 버전).</span><span class="sxs-lookup"><span data-stu-id="a5cf5-123">SQL Server Management Studio (ssms.exe), ideally its latest monthly update version.</span></span> 
-  <span data-ttu-id="a5cf5-124">다음 위치에서 최신 ssms.exe를 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-124">You can download the latest ssms.exe from:</span></span>
+  * <span data-ttu-id="f4089-122">또는 몇 분 이내에 [**AdventureWorksLT** 데모 데이터베이스를 만들](sql-database-get-started.md) 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-122">Optionally you can [create an **AdventureWorksLT** demonstration database](sql-database-get-started.md) in minutes.</span></span>
+* <span data-ttu-id="f4089-123">SQL Server Management Studio(ssms.exe)(이상적으로 최신 월별 업데이트 버전).</span><span class="sxs-lookup"><span data-stu-id="f4089-123">SQL Server Management Studio (ssms.exe), ideally its latest monthly update version.</span></span> 
+  <span data-ttu-id="f4089-124">Hello 최신 ssms.exe에서 다운로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-124">You can download hello latest ssms.exe from:</span></span>
   
-  * <span data-ttu-id="a5cf5-125">[SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx)항목</span><span class="sxs-lookup"><span data-stu-id="a5cf5-125">Topic titled [Download SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).</span></span>
-  * [<span data-ttu-id="a5cf5-126">직접 다운로드 링크</span><span class="sxs-lookup"><span data-stu-id="a5cf5-126">A direct link to the download.</span></span>](http://go.microsoft.com/fwlink/?linkid=616025)
+  * <span data-ttu-id="f4089-125">[SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx)항목</span><span class="sxs-lookup"><span data-stu-id="f4089-125">Topic titled [Download SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).</span></span>
+  * [<span data-ttu-id="f4089-126">직접 링크 toohello 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-126">A direct link toohello download.</span></span>](http://go.microsoft.com/fwlink/?linkid=616025)
 
-## <a name="code-sample"></a><span data-ttu-id="a5cf5-127">코드 샘플</span><span class="sxs-lookup"><span data-stu-id="a5cf5-127">Code sample</span></span>
+## <a name="code-sample"></a><span data-ttu-id="f4089-127">코드 샘플</span><span class="sxs-lookup"><span data-stu-id="f4089-127">Code sample</span></span>
 
-<span data-ttu-id="a5cf5-128">다음 링 버퍼 코드 샘플은 약간만 수정하면 Azure SQL Database 또는 Microsoft SQL Server에서 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-128">With very minor modification, the following Ring Buffer code sample can be run on either Azure SQL Database or Microsoft SQL Server.</span></span> <span data-ttu-id="a5cf5-129">5단계의 FROM 절에 사용되는 일부 DMV(동적 관리 뷰) 이름에 '_database' 노드가 있다는 점이 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-129">The difference is the presence of the node '_database' in the name of some dynamic management views (DMVs), used in the FROM clause in Step 5.</span></span> <span data-ttu-id="a5cf5-130">예:</span><span class="sxs-lookup"><span data-stu-id="a5cf5-130">For example:</span></span>
+<span data-ttu-id="f4089-128">매우 사소한 수정 hello 링 버퍼 및 다음 코드 샘플 수에서 실행할 수 Azure SQL 데이터베이스 또는 Microsoft SQL Server.</span><span class="sxs-lookup"><span data-stu-id="f4089-128">With very minor modification, hello following Ring Buffer code sample can be run on either Azure SQL Database or Microsoft SQL Server.</span></span> <span data-ttu-id="f4089-129">hello 차이가 5 단계에서에서 hello FROM 절에 사용 되는 일부 동적 관리 뷰 (Dmv)의 hello 이름에 ' 만족할' hello 노드의 hello 존재 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-129">hello difference is hello presence of hello node '_database' in hello name of some dynamic management views (DMVs), used in hello FROM clause in Step 5.</span></span> <span data-ttu-id="f4089-130">예:</span><span class="sxs-lookup"><span data-stu-id="f4089-130">For example:</span></span>
 
-* <span data-ttu-id="a5cf5-131">sys.dm_xe**_database**_session_targets</span><span class="sxs-lookup"><span data-stu-id="a5cf5-131">sys.dm_xe**_database**_session_targets</span></span>
-* <span data-ttu-id="a5cf5-132">sys.dm_xe_session_targets</span><span class="sxs-lookup"><span data-stu-id="a5cf5-132">sys.dm_xe_session_targets</span></span>
+* <span data-ttu-id="f4089-131">sys.dm_xe**_database**_session_targets</span><span class="sxs-lookup"><span data-stu-id="f4089-131">sys.dm_xe**_database**_session_targets</span></span>
+* <span data-ttu-id="f4089-132">sys.dm_xe_session_targets</span><span class="sxs-lookup"><span data-stu-id="f4089-132">sys.dm_xe_session_targets</span></span>
 
 &nbsp;
 
@@ -218,15 +218,15 @@ GO
 
 &nbsp;
 
-## <a name="ring-buffer-contents"></a><span data-ttu-id="a5cf5-133">링 버퍼 콘텐츠</span><span class="sxs-lookup"><span data-stu-id="a5cf5-133">Ring Buffer contents</span></span>
+## <a name="ring-buffer-contents"></a><span data-ttu-id="f4089-133">링 버퍼 콘텐츠</span><span class="sxs-lookup"><span data-stu-id="f4089-133">Ring Buffer contents</span></span>
 
-<span data-ttu-id="a5cf5-134">ssms.exe를 사용하여 코드 샘플을 실행했습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-134">We used ssms.exe to run the code sample.</span></span>
+<span data-ttu-id="f4089-134">Ssms.exe toorun hello 코드 샘플을 사용 했습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-134">We used ssms.exe toorun hello code sample.</span></span>
 
-<span data-ttu-id="a5cf5-135">결과를 보기 위해 열 머리글 **target_data_XML** 아래의 셀을 클릭했습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-135">To view the results, we clicked the cell under the column header **target_data_XML**.</span></span>
+<span data-ttu-id="f4089-135">tooview hello 결과 클릭 hello 셀 hello 열 머리글 아래에서 **target_data_XML**합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-135">tooview hello results, we clicked hello cell under hello column header **target_data_XML**.</span></span>
 
-<span data-ttu-id="a5cf5-136">그런 다음 결과 창에서 열 머리글 **target_data_XML** 아래의 셀을 클릭했습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-136">Then in the results pane we clicked the cell under the column header **target_data_XML**.</span></span> <span data-ttu-id="a5cf5-137">그러면 결과 셀의 콘텐츠가 XML로 표시된 다른 파일 탭이 ssms.exe에 만들어졌습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-137">This click created another file tab in ssms.exe in which the content of the result cell was displayed, as XML.</span></span>
+<span data-ttu-id="f4089-136">Hello 결과 창에 hello 열 머리글 아래에서 hello 셀 클릭 한 다음 **target_data_XML**합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-136">Then in hello results pane we clicked hello cell under hello column header **target_data_XML**.</span></span> <span data-ttu-id="f4089-137">다른 파일 탭은 hello에 hello 결과 셀의 내용을 표시 된, XML로 ssms.exe에서 만든 하는이를이 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-137">This click created another file tab in ssms.exe in which hello content of hello result cell was displayed, as XML.</span></span>
 
-<span data-ttu-id="a5cf5-138">출력은 다음 블록에 표시되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-138">The output is shown in the following block.</span></span> <span data-ttu-id="a5cf5-139">길어 보이지만 두 개의 **<event>** 요소뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-139">It looks long, but it is just two **<event>** elements.</span></span>
+<span data-ttu-id="f4089-138">hello 출력 hello 블록 뒤에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-138">hello output is shown in hello following block.</span></span> <span data-ttu-id="f4089-139">길어 보이지만 두 개의 **<event>** 요소뿐입니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-139">It looks long, but it is just two **<event>** elements.</span></span>
 
 &nbsp;
 
@@ -318,9 +318,9 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 ```
 
 
-#### <a name="release-resources-held-by-your-ring-buffer"></a><span data-ttu-id="a5cf5-140">링 버퍼에서 보유한 리소스 해제</span><span class="sxs-lookup"><span data-stu-id="a5cf5-140">Release resources held by your Ring Buffer</span></span>
+#### <a name="release-resources-held-by-your-ring-buffer"></a><span data-ttu-id="f4089-140">링 버퍼에서 보유한 리소스 해제</span><span class="sxs-lookup"><span data-stu-id="f4089-140">Release resources held by your Ring Buffer</span></span>
 
-<span data-ttu-id="a5cf5-141">링 버퍼 사용을 마쳤으면 링 버퍼를 제거하고 다음과 같은 **ALTER** 를 실행하여 링 버퍼의 리소스를 해제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-141">When you are done with your Ring Buffer, you can remove it and release its resources issuing an **ALTER** like the following:</span></span>
+<span data-ttu-id="f4089-141">링 버퍼를 완료 하는 경우 제거 하 고 실행 하는 해당 리소스를 해제 수는 **ALTER** hello 다음과 같은:</span><span class="sxs-lookup"><span data-stu-id="f4089-141">When you are done with your Ring Buffer, you can remove it and release its resources issuing an **ALTER** like hello following:</span></span>
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -330,7 +330,7 @@ GO
 ```
 
 
-<span data-ttu-id="a5cf5-142">이벤트 세션의 정의는 삭제되지 않고 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-142">The definition of your event session is updated, but not dropped.</span></span> <span data-ttu-id="a5cf5-143">나중에 이벤트 세션에 링 버퍼의 다른 인스턴스를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-143">Later you can add another instance of the Ring Buffer to your event session:</span></span>
+<span data-ttu-id="f4089-142">이벤트 세션의 hello 정의 업데이트는 되지만 삭제 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-142">hello definition of your event session is updated, but not dropped.</span></span> <span data-ttu-id="f4089-143">나중에 hello 링 버퍼 tooyour 이벤트 세션의 다른 인스턴스를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-143">Later you can add another instance of hello Ring Buffer tooyour event session:</span></span>
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -343,19 +343,19 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 ```
 
 
-## <a name="more-information"></a><span data-ttu-id="a5cf5-144">자세한 정보</span><span class="sxs-lookup"><span data-stu-id="a5cf5-144">More information</span></span>
+## <a name="more-information"></a><span data-ttu-id="f4089-144">자세한 정보</span><span class="sxs-lookup"><span data-stu-id="f4089-144">More information</span></span>
 
-<span data-ttu-id="a5cf5-145">Azure SQL Database의 확장 이벤트에 대한 기본 항목은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-145">The primary topic for extended events on Azure SQL Database is:</span></span>
+<span data-ttu-id="f4089-145">Azure SQL 데이터베이스에서 확장된 이벤트에 대 한 hello 기본 항목은입니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-145">hello primary topic for extended events on Azure SQL Database is:</span></span>
 
-* <span data-ttu-id="a5cf5-146">[SQL Database의 확장 이벤트 고려 사항](sql-database-xevent-db-diff-from-svr.md): Microsoft SQL Server와 Azure SQL Database 간에 다른 확장 이벤트의 일부 측면을 비교합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-146">[Extended event considerations in SQL Database](sql-database-xevent-db-diff-from-svr.md), which contrasts some aspects of extended events that differ between Azure SQL Database versus Microsoft SQL Server.</span></span>
+* <span data-ttu-id="f4089-146">[SQL Database의 확장 이벤트 고려 사항](sql-database-xevent-db-diff-from-svr.md): Microsoft SQL Server와 Azure SQL Database 간에 다른 확장 이벤트의 일부 측면을 비교합니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-146">[Extended event considerations in SQL Database](sql-database-xevent-db-diff-from-svr.md), which contrasts some aspects of extended events that differ between Azure SQL Database versus Microsoft SQL Server.</span></span>
 
-<span data-ttu-id="a5cf5-147">확장 이벤트에 대한 다른 코드 샘플 항목은 다음 링크에서 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-147">Other code sample topics for extended events are available at the following links.</span></span> <span data-ttu-id="a5cf5-148">하지만 어느 샘플이든 Azure SQL Database와 Microsoft SQL Server 중 무엇을 대상으로 하는지 늘 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-148">However, you must routinely check any sample to see whether the sample targets Microsoft SQL Server versus Azure SQL Database.</span></span> <span data-ttu-id="a5cf5-149">그런 다음 샘플을 실행하기 위해 약간의 변경이 필요한지 결정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a5cf5-149">Then you can decide whether minor changes are needed to run the sample.</span></span>
+<span data-ttu-id="f4089-147">확장된 이벤트에 대 한 다른 코드 샘플 항목에 링크를 따라 hello에서 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-147">Other code sample topics for extended events are available at hello following links.</span></span> <span data-ttu-id="f4089-148">그러나 모든 샘플 toosee 체크 정기적으로 hello 샘플 Microsoft SQL Server와 Azure SQL 데이터베이스를 대상으로 하는지 여부를.</span><span class="sxs-lookup"><span data-stu-id="f4089-148">However, you must routinely check any sample toosee whether hello sample targets Microsoft SQL Server versus Azure SQL Database.</span></span> <span data-ttu-id="f4089-149">그런 다음 약간의 변경이 필요한 toorun hello 샘플 지 여부를 결정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f4089-149">Then you can decide whether minor changes are needed toorun hello sample.</span></span>
 
-* <span data-ttu-id="a5cf5-150">Azure SQL Database에 대한 코드 샘플: [SQL Database의 확장 이벤트에 대한 이벤트 파일 대상 코드](sql-database-xevent-code-event-file.md)</span><span class="sxs-lookup"><span data-stu-id="a5cf5-150">Code sample for Azure SQL Database: [Event File target code for extended events in SQL Database](sql-database-xevent-code-event-file.md)</span></span>
+* <span data-ttu-id="f4089-150">Azure SQL Database에 대한 코드 샘플: [SQL Database의 확장 이벤트에 대한 이벤트 파일 대상 코드](sql-database-xevent-code-event-file.md)</span><span class="sxs-lookup"><span data-stu-id="f4089-150">Code sample for Azure SQL Database: [Event File target code for extended events in SQL Database](sql-database-xevent-code-event-file.md)</span></span>
 
 <!--
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

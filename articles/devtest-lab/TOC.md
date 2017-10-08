@@ -11,7 +11,7 @@
 ## [첫 번째 VM 만들기](devtest-lab-create-first-vm.md)
 ## [시작 정책 설정](devtest-lab-get-started-with-lab-policies.md)
 
-# 방법 가이드
+# Tooguides 방법
 ## 랩에서 VM 사용
 ### [VM 만들기](devtest-lab-add-vm.md)
 ### [클레임할 수 있는 VM 만들기](devtest-lab-add-claimable-vm.md)
@@ -20,7 +20,7 @@
 ## 랩에서 환경 사용
 ### [환경 만들기](devtest-lab-create-environment-from-arm.md)
 
-## 랩에 안전하게 액세스
+## 보안 액세스 tooLabs
 ### [랩 소유자 및 사용자 추가](devtest-lab-add-devtest-user.md)
 ### [사용자 지정 역할로 권한 사용자 지정](devtest-lab-grant-user-permissions-to-specific-lab-policies.md)
 
@@ -33,7 +33,7 @@
 
 ## 사용자 지정 이미지 관리
 ### [VM에서 사용자 지정 이미지 만들기](devtest-lab-create-custom-image-from-vm-using-portal.md)
-### [Azure Portal을 사용하여 VHD에서 사용자 지정 이미지 만들기](devtest-lab-create-template.md)
+### [Hello Azure 포털을 사용 하 여 VHD에서 사용자 지정 이미지 만들기](devtest-lab-create-template.md)
 ### [PowerShell을 사용하여 VHD에서 사용자 지정 이미지 만들기](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 ### [AzCopy를 사용하여 VHD 파일 업로드](devtest-lab-upload-vhd-using-azcopy.md)
 ### [PowerShell을 사용하여 VHD 업로드](devtest-lab-upload-vhd-using-powershell.md)

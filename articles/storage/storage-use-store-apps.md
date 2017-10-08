@@ -1,6 +1,6 @@
 ---
-title: "Windows 스토어 앱에서 Azure Storage 사용 | Microsoft Docs"
-description: "Azure Blob, 큐, 테이블 또는 파일 저장소를 사용하는 Windows 스토어 앱을 만드는 방법을 알아봅니다."
+title: "Windows 스토어 앱에서 Azure 저장소 aaaUse | Microsoft Docs"
+description: "Windows 저장 하는 toocreate 방법에 대해 알아봅니다 Azure Blob, 큐, 테이블 또는 파일 저장소를 사용 하는 응용 프로그램입니다."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,40 +14,40 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 43d38584270fbbbe6fa4e4ff8cef72ca44e14acc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ac21b0695c0d77c1d81c1b921718fb929945d45e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-storage-in-windows-store-apps"></a><span data-ttu-id="c0afa-103">Windows 스토어 앱에서 Azure 저장소를 사용하는 방법</span><span class="sxs-lookup"><span data-stu-id="c0afa-103">How to use Azure Storage in Windows Store apps</span></span>
-## <a name="overview"></a><span data-ttu-id="c0afa-104">개요</span><span class="sxs-lookup"><span data-stu-id="c0afa-104">Overview</span></span>
-<span data-ttu-id="c0afa-105">이 가이드에서는 Azure 저장소를 사용하는 Windows 스토어 앱 개발을 시작하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-105">This guide shows how to get started with developing a Windows Store app that makes use of Azure Storage.</span></span>
+# <a name="how-toouse-azure-storage-in-windows-store-apps"></a><span data-ttu-id="0a955-103">어떻게 Windows 스토어 앱에서 Azure 저장소 toouse</span><span class="sxs-lookup"><span data-stu-id="0a955-103">How toouse Azure Storage in Windows Store apps</span></span>
+## <a name="overview"></a><span data-ttu-id="0a955-104">개요</span><span class="sxs-lookup"><span data-stu-id="0a955-104">Overview</span></span>
+<span data-ttu-id="0a955-105">이 가이드에서 Azure 저장소를 활용 하는 Windows 스토어 앱 개발 tooget 시작 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-105">This guide shows how tooget started with developing a Windows Store app that makes use of Azure Storage.</span></span>
 
-## <a name="download-required-tools"></a><span data-ttu-id="c0afa-106">필요한 도구 다운로드</span><span class="sxs-lookup"><span data-stu-id="c0afa-106">Download required tools</span></span>
-* <span data-ttu-id="c0afa-107">[Visual Studio](https://www.visualstudio.com/downloads/)는 Windows 스토어 앱을 쉽게 빌드, 디버그, 지역화, 패키징 및 배포할 수 있게 해줍니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-107">[Visual Studio](https://www.visualstudio.com/downloads/) makes it easy to build, debug, localize, package, and deploy Windows Store apps.</span></span> <span data-ttu-id="c0afa-108">Visual Studio 2012 이상이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-108">Visual Studio 2012 or later is required.</span></span>
-* <span data-ttu-id="c0afa-109">[Azure 저장소 클라이언트 라이브러리](https://www.nuget.org/packages/WindowsAzure.Storage) 는 Azure 저장소 작업을 위한 Windows 런타임 클래스 라이브러리를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-109">The [Azure Storage Client Library](https://www.nuget.org/packages/WindowsAzure.Storage) provides a Windows Runtime class library for working with Azure Storage.</span></span>
-* <span data-ttu-id="c0afa-110">[Windows 스토어 앱을 위한 WCF 데이터 서비스 도구](http://www.microsoft.com/download/details.aspx?id=30714) 는 Visual Studio에서 Windows 스토어 앱 용 클라이언트쪽 OData 지원으로 서비스 참조 추가 환경을 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-110">[WCF Data Services Tools for Windows Store Apps](http://www.microsoft.com/download/details.aspx?id=30714) extends the Add Service Reference experience with client-side OData support for Windows Store apps in Visual Studio.</span></span>
+## <a name="download-required-tools"></a><span data-ttu-id="0a955-106">필요한 도구 다운로드</span><span class="sxs-lookup"><span data-stu-id="0a955-106">Download required tools</span></span>
+* <span data-ttu-id="0a955-107">[Visual Studio](https://www.visualstudio.com/downloads/) 쉽게 toobuild를 사용 하면 디버그, 지역화, 패키지 및 Windows 스토어 앱을 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-107">[Visual Studio](https://www.visualstudio.com/downloads/) makes it easy toobuild, debug, localize, package, and deploy Windows Store apps.</span></span> <span data-ttu-id="0a955-108">Visual Studio 2012 이상이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-108">Visual Studio 2012 or later is required.</span></span>
+* <span data-ttu-id="0a955-109">hello [Azure 저장소 클라이언트 라이브러리](https://www.nuget.org/packages/WindowsAzure.Storage) Azure 저장소를 사용 하기 위한 Windows 런타임 클래스 라이브러리를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-109">hello [Azure Storage Client Library](https://www.nuget.org/packages/WindowsAzure.Storage) provides a Windows Runtime class library for working with Azure Storage.</span></span>
+* <span data-ttu-id="0a955-110">[WCF 데이터 서비스 도구 Windows 스토어 앱 용](http://www.microsoft.com/download/details.aspx?id=30714) Visual Studio에서 Windows 스토어 앱에 대 한 클라이언트 쪽 OData 지 원하는 hello 서비스 참조 추가 경험을 확장 합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-110">[WCF Data Services Tools for Windows Store Apps](http://www.microsoft.com/download/details.aspx?id=30714) extends hello Add Service Reference experience with client-side OData support for Windows Store apps in Visual Studio.</span></span>
 
-## <a name="develop-apps"></a><span data-ttu-id="c0afa-111">앱 개발</span><span class="sxs-lookup"><span data-stu-id="c0afa-111">Develop apps</span></span>
-### <a name="getting-ready"></a><span data-ttu-id="c0afa-112">준비</span><span class="sxs-lookup"><span data-stu-id="c0afa-112">Getting ready</span></span>
-<span data-ttu-id="c0afa-113">Visual Studio 2012 이상에서 새 Windows 스토어 앱 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-113">Create a new Windows Store app project in Visual Studio 2012 or later:</span></span>
+## <a name="develop-apps"></a><span data-ttu-id="0a955-111">앱 개발</span><span class="sxs-lookup"><span data-stu-id="0a955-111">Develop apps</span></span>
+### <a name="getting-ready"></a><span data-ttu-id="0a955-112">준비</span><span class="sxs-lookup"><span data-stu-id="0a955-112">Getting ready</span></span>
+<span data-ttu-id="0a955-113">Visual Studio 2012 이상에서 새 Windows 스토어 앱 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-113">Create a new Windows Store app project in Visual Studio 2012 or later:</span></span>
 
 ![store-apps-storage-vs-project][store-apps-storage-vs-project]
 
-<span data-ttu-id="c0afa-115">다음으로 **참조**를 마우스 오른쪽 단추로 클릭하고 **참조 추가**를 클릭한 다음 다운로드한 Windows 런타임의 저장소 클라이언트 라이브러리로 이동하여 Azure Storage 클라이언트 라이브러리에 참조를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-115">Next, add a reference to the Azure Storage Client Library by right-clicking **References**, clicking **Add Reference**, and then browsing to the Storage Client Library for Windows Runtime that you downloaded:</span></span>
+<span data-ttu-id="0a955-115">다음으로, 마우스 오른쪽 단추로 클릭 하 여 참조 toohello Azure 저장소 클라이언트 라이브러리를 추가 **참조**, **참조 추가**, 다음 toohello Windows Runtime 용 저장소 클라이언트 라이브러리를 검색 하 고 있는 다운로드:</span><span class="sxs-lookup"><span data-stu-id="0a955-115">Next, add a reference toohello Azure Storage Client Library by right-clicking **References**, clicking **Add Reference**, and then browsing toohello Storage Client Library for Windows Runtime that you downloaded:</span></span>
 
 ![store-apps-storage-choose-library][store-apps-storage-choose-library]
 
-### <a name="using-the-library-with-the-blob-and-queue-services"></a><span data-ttu-id="c0afa-117">Blob 및 큐 서비스로 라이브러리 사용</span><span class="sxs-lookup"><span data-stu-id="c0afa-117">Using the library with the Blob and Queue services</span></span>
-<span data-ttu-id="c0afa-118">이제 앱에서 Azure Blob 및 큐 서비스를 호출할 준비가 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-118">At this point, your app is ready to call the Azure Blob and Queue services.</span></span> <span data-ttu-id="c0afa-119">Azure 저장소 형식을 직접 참조할 수 있도록 다음 **using** 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-119">Add the following **using** statements so that Azure Storage types can be referenced directly:</span></span>
+### <a name="using-hello-library-with-hello-blob-and-queue-services"></a><span data-ttu-id="0a955-117">Hello Blob로 hello 라이브러리 및 큐 서비스를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="0a955-117">Using hello library with hello Blob and Queue services</span></span>
+<span data-ttu-id="0a955-118">이 응용 프로그램 준비 toocall hello Azure Blob 및 큐 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-118">At this point, your app is ready toocall hello Azure Blob and Queue services.</span></span> <span data-ttu-id="0a955-119">Hello 다음 추가 **를 사용 하 여** 문의 하 여 Azure 저장소 형식을 직접 참조할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-119">Add hello following **using** statements so that Azure Storage types can be referenced directly:</span></span>
 
 ```csharp
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 ```
 
-<span data-ttu-id="c0afa-120">그런 다음, 페이지에 단추를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-120">Next, add a button to your page.</span></span> <span data-ttu-id="c0afa-121">다음 코드를 단추의 **Click** 이벤트에 추가하고 [async 키워드](http://msdn.microsoft.com/library/vstudio/hh156513.aspx)를 사용하여 이벤트 처리기 메서드를 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-121">Add the following code to its **Click** event and modify your event handler method by using the [async keyword](http://msdn.microsoft.com/library/vstudio/hh156513.aspx):</span></span>
+<span data-ttu-id="0a955-120">다음으로 단추 tooyour 페이지를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-120">Next, add a button tooyour page.</span></span> <span data-ttu-id="0a955-121">다음 코드 tooits hello 추가 **클릭** 이벤트 hello를 사용 하 여 이벤트 처리기 메서드를 수정 하 고 [async 키워드](http://msdn.microsoft.com/library/vstudio/hh156513.aspx):</span><span class="sxs-lookup"><span data-stu-id="0a955-121">Add hello following code tooits **Click** event and modify your event handler method by using hello [async keyword](http://msdn.microsoft.com/library/vstudio/hh156513.aspx):</span></span>
 
 ```csharp
 var credentials = new StorageCredentials(accountName, accountKey);
@@ -57,22 +57,22 @@ var container = blobClient.GetContainerReference("container1");
 await container.CreateIfNotExistsAsync();
 ```
 
-<span data-ttu-id="c0afa-122">이 코드에서는 두 개의 문자열 변수인 *accountName* 및 *accountKey*가 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-122">This code assumes that you have two string variables, *accountName* and *accountKey*.</span></span> <span data-ttu-id="c0afa-123">저장소 계정의 이름 및 해당 계정과 연결된 계정 키를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-123">They represent the name of your storage account and the account key that is associated with that account.</span></span>
+<span data-ttu-id="0a955-122">이 코드에서는 두 개의 문자열 변수인 *accountName* 및 *accountKey*가 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-122">This code assumes that you have two string variables, *accountName* and *accountKey*.</span></span> <span data-ttu-id="0a955-123">저장소 계정 및 hello 계정 키의 해당 계정에 연관 된 hello 이름을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-123">They represent hello name of your storage account and hello account key that is associated with that account.</span></span>
 
-<span data-ttu-id="c0afa-124">응용 프로그램을 빌드 및 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-124">Build and run the application.</span></span> <span data-ttu-id="c0afa-125">단추를 클릭하면 *container1* 이라는 컨테이너가 계정에 있는지 확인하고 없으면 새로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-125">Clicking the button will check whether a container named *container1* exists in your account and then create it if not.</span></span>
+<span data-ttu-id="0a955-124">빌드하고 hello 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-124">Build and run hello application.</span></span> <span data-ttu-id="0a955-125">Hello 단추를 클릭 하는 컨테이너 이름을 지정 여부를 확인 *container1* 계정에 있으며 다음 없으면 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-125">Clicking hello button will check whether a container named *container1* exists in your account and then create it if not.</span></span>
 
-### <a name="using-the-library-with-the-table-service"></a><span data-ttu-id="c0afa-126">테이블 서비스로 라이브러리 사용</span><span class="sxs-lookup"><span data-stu-id="c0afa-126">Using the library with the Table service</span></span>
-<span data-ttu-id="c0afa-127">Azure 테이블 서비스와 통신하는 데 사용되는 형식은 Windows 스토어 앱 라이브러리용 WCF 데이터 서비스에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-127">Types that are used to communicate with the Azure Table service depend on WCF Data Services for the Windows Store app library.</span></span> <span data-ttu-id="c0afa-128">다음으로 패키지 관리자 콘솔을 사용하여 필요한 WCF 라이브러리에 참조를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-128">Next, add a reference to the required WCF libraries by using the Package Manager Console:</span></span>
+### <a name="using-hello-library-with-hello-table-service"></a><span data-ttu-id="0a955-126">Hello 라이브러리를 사용 하 여 테이블 서비스 hello로</span><span class="sxs-lookup"><span data-stu-id="0a955-126">Using hello library with hello Table service</span></span>
+<span data-ttu-id="0a955-127">Windows 스토어 응용 프로그램 라이브러리 hello에 대 한 WCF Data Services에 hello Azure 테이블 서비스와 함께 사용 되는 toocommunicate 않은 형식에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-127">Types that are used toocommunicate with hello Azure Table service depend on WCF Data Services for hello Windows Store app library.</span></span> <span data-ttu-id="0a955-128">다음으로, 참조 toohello WCF 라이브러리를 사용 하 여 hello 패키지 관리자 콘솔이 필요한 추가:</span><span class="sxs-lookup"><span data-stu-id="0a955-128">Next, add a reference toohello required WCF libraries by using hello Package Manager Console:</span></span>
 
 ![store-apps-storage-package-manager][store-apps-storage-package-manager]
 
-<span data-ttu-id="c0afa-130">다음 명령을 사용하여 패키지 관리자가 컴퓨터의 위치를 가리키도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-130">Use the following command to point Package Manager to the location on your machine:</span></span>
+<span data-ttu-id="0a955-130">사용 하 여 hello 다음 명령은 toopoint 컴퓨터의 패키지 관리자 toohello 위치:</span><span class="sxs-lookup"><span data-stu-id="0a955-130">Use hello following command toopoint Package Manager toohello location on your machine:</span></span>
 
     Install-Package Microsoft.Data.OData.WindowsStore -Source "C:\Program Files (x86)\Microsoft WCF Data Services\5.0\bin\NuGet"
 
-<span data-ttu-id="c0afa-131">이 명령은 필요한 모든 참조를 프로젝트에 자동으로 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-131">This command will automatically add all required references to your project.</span></span> <span data-ttu-id="c0afa-132">패키지 관리자 콘솔을 사용하지 않으려는 경우 로컬 컴퓨터의 WCF 데이터 서비스 NuGet 폴더를 패키지 원본 목록에 추가한 다음 [대화 상자를 사용하여 NuGet 패키지 관리](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)(영문)에 설명된 대로 UI를 통해 참조를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-132">If you do not want to use the Package Manager Console, you can add the WCF Data Services NuGet folder on your local machine to the list of package sources and then add the reference through the UI, as described in [Managing NuGet Packages Using the Dialog](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog).</span></span>
+<span data-ttu-id="0a955-131">이 명령은 모든 필요한 참조 tooyour 프로젝트를 자동으로 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-131">This command will automatically add all required references tooyour project.</span></span> <span data-ttu-id="0a955-132">Toouse 하지 않을 경우 패키지 관리자 콘솔 hello, 로컬 컴퓨터 toohello 패키지 소스 목록에 hello WCF Data Services NuGet 폴더에 추가 하 고 다음에 설명 된 대로 hello UI 통해 hello 참조를 추가할 수 [관리 NuGet 패키지를 사용 하 여 hello 대화](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)합니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-132">If you do not want toouse hello Package Manager Console, you can add hello WCF Data Services NuGet folder on your local machine toohello list of package sources and then add hello reference through hello UI, as described in [Managing NuGet Packages Using hello Dialog](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog).</span></span>
 
-<span data-ttu-id="c0afa-133">WCF 데이터 서비스 NuGet 패키지를 참조한 경우 단추의 **Click** 이벤트에서 코드를 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-133">When you have referenced the WCF Data Services NuGet package, change the code in your button's **Click** event:</span></span>
+<span data-ttu-id="0a955-133">Hello WCF Data Services NuGet 패키지를 참조 하는 경우 프로그램 단추에 hello 코드 변경 **클릭** 이벤트:</span><span class="sxs-lookup"><span data-stu-id="0a955-133">When you have referenced hello WCF Data Services NuGet package, change hello code in your button's **Click** event:</span></span>
 
 ```csharp
 var credentials = new StorageCredentials(accountName, accountKey);
@@ -82,9 +82,9 @@ var table = tableClient.GetTableReference("table1");
 await table.CreateIfNotExistsAsync();
 ```
 
-<span data-ttu-id="c0afa-134">이 코드는 *table1* 이라는 테이블이 계정이 있는지 확인하고 없으면 새로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-134">This code checks whether a table named *table1* exists in your account, and then creates it if not.</span></span>
+<span data-ttu-id="0a955-134">이 코드는 *table1* 이라는 테이블이 계정이 있는지 확인하고 없으면 새로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-134">This code checks whether a table named *table1* exists in your account, and then creates it if not.</span></span>
 
-<span data-ttu-id="c0afa-135">다운로드한 동일한 패키지에 있는 Microsoft.WindowsAzure.Storage.Table.dll에 참조를 추가할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-135">You can also add a reference to Microsoft.WindowsAzure.Storage.Table.dll, which is available in the same package that you downloaded.</span></span> <span data-ttu-id="c0afa-136">이 라이브러리에는 리플렉션 기반 직렬화 및 일반 쿼리와 같은 추가 기능이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-136">This library contains additional functionality, such as reflection-based serialization and generic queries.</span></span> <span data-ttu-id="c0afa-137">이 라이브러리는 JavaScript를 지원하지는 않습니다.</span><span class="sxs-lookup"><span data-stu-id="c0afa-137">Note that this library does not support JavaScript.</span></span>
+<span data-ttu-id="0a955-135">또한 동일한 패키지를 다운로드 하는 hello에서 사용 하지 않는 참조 tooMicrosoft.WindowsAzure.Storage.Table.dll을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-135">You can also add a reference tooMicrosoft.WindowsAzure.Storage.Table.dll, which is available in hello same package that you downloaded.</span></span> <span data-ttu-id="0a955-136">이 라이브러리에는 리플렉션 기반 직렬화 및 일반 쿼리와 같은 추가 기능이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-136">This library contains additional functionality, such as reflection-based serialization and generic queries.</span></span> <span data-ttu-id="0a955-137">이 라이브러리는 JavaScript를 지원하지는 않습니다.</span><span class="sxs-lookup"><span data-stu-id="0a955-137">Note that this library does not support JavaScript.</span></span>
 
 [store-apps-storage-vs-project]: ./media/storage-use-store-apps/store-apps-storage-vs-project.png
 [store-apps-storage-choose-library]: ./media/storage-use-store-apps/store-apps-storage-choose-library.png

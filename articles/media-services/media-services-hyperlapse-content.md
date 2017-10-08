@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Hyperlapse에서의 Hyperlapse 미디어 파일 | Microsoft 문서"
-description: "Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만듭니다. 이 항목에서는 미디어 인덱서를 사용하는 방법을 보여 줍니다."
+title: "Azure Media Hyperlapse를 사용 하 여 미디어 파일 aaaHyperlapse | Microsoft Docs"
+description: "Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만듭니다. 이 항목에서는 방법을 toouse Media Indexer 합니다."
 services: media-services
 documentationcenter: 
 author: asolanki
@@ -14,39 +14,39 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: adsolank
-ms.openlocfilehash: 02f634c2af04b6b372642ab0e6a17a5d29f16450
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 85bb07206d0ca2f5b2fd0767e6ed4904195d3ab6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a><span data-ttu-id="c6a02-104">Hyperlapse 미디어 파일 및 Azure 미디어 Hyperlapse</span><span class="sxs-lookup"><span data-stu-id="c6a02-104">Hyperlapse Media Files with Azure Media Hyperlapse</span></span>
-<span data-ttu-id="c6a02-105">Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만드는 미디어 프로세서(MP)입니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-105">Azure Media Hyperlapse is a Media Processor (MP) that creates smooth time-lapsed videos from first-person or action-camera content.</span></span>  <span data-ttu-id="c6a02-106">[Microsoft Research의 데스크톱 Hyperlapse Pro 및 전화 기반 Hyperlapse 모바일](http://aka.ms/hyperlapse)에 대한 클라우드 기반 형제 제품인 Azure 미디어 서비스용 Microsoft Hyperlapse는 Azure 미디어 서비스 미디어 처리 플랫폼의 상당 부분을 활용하여 대량의 Hyperlapse 처리를 수평적으로 확장하고 병렬 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-106">The cloud-based sibling to [Microsoft Research's desktop Hyperlapse Pro and phone-based Hyperlapse Mobile](http://aka.ms/hyperlapse), Microsoft Hyperlapse for Azure Media Services utilizes the massive scale of the Azure Media Services Media Processing platform to horizontally scale and parallelize bulk Hyperlapse processing.</span></span>
+# <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a><span data-ttu-id="f6117-104">Hyperlapse 미디어 파일 및 Azure 미디어 Hyperlapse</span><span class="sxs-lookup"><span data-stu-id="f6117-104">Hyperlapse Media Files with Azure Media Hyperlapse</span></span>
+<span data-ttu-id="f6117-105">Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만드는 미디어 프로세서(MP)입니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-105">Azure Media Hyperlapse is a Media Processor (MP) that creates smooth time-lapsed videos from first-person or action-camera content.</span></span>  <span data-ttu-id="f6117-106">클라우드 기반 형제 너무 hello[Microsoft Research 데스크톱 Hyperlapse Pro 및 전화 기반 Hyperlapse Mobile](http://aka.ms/hyperlapse), Azure 미디어 서비스에 대 한 Microsoft Hyperlapse hello 대규모의 hello Azure 미디어 서비스 미디어를 활용 합니다. 확장 및 병렬화 대량 플랫폼 toohorizontally 처리 Hyperlapse 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-106">hello cloud-based sibling too[Microsoft Research's desktop Hyperlapse Pro and phone-based Hyperlapse Mobile](http://aka.ms/hyperlapse), Microsoft Hyperlapse for Azure Media Services utilizes hello massive scale of hello Azure Media Services Media Processing platform toohorizontally scale and parallelize bulk Hyperlapse processing.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="c6a02-107">Microsoft Hyperlapse는 이동 카메라를 사용한 1인칭 콘텐츠에 최적으로 작동하도록 설계되었습니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-107">Microsoft Hyperlapse is designed to work best on first-person content with a moving camera.</span></span>  <span data-ttu-id="c6a02-108">스틸 카메라 영상에도 작동할 수 있지만 다른 형식의 콘텐츠에서는 Azure 미디어 Hyperlapse 미디어 프로세서의 성능 및 품질을 보장할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-108">Although still-camera footage can still work, the performance and quality of the Azure Media Hyperlapse Media Processor cannot be guaranteed for other types of content.</span></span>  <span data-ttu-id="c6a02-109">Azure 미디어 서비스용 Microsoft Hyperlapse에 대해 자세히 알아보고 예제 비디오를 보려면 공개 미리 보기 상태인 [소개 블로그 게시물](http://aka.ms/azurehyperlapseblog) 을 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="c6a02-109">To learn more about Microsoft Hyperlapse for Azure Media Services and see some example videos, check out the [introductory blog post](http://aka.ms/azurehyperlapseblog) from the public preview.</span></span>
+> <span data-ttu-id="f6117-107">Microsoft Hyperlapse 이동 카메라와 함께 첫 번째 사람 내용에 가장 좋은 디자인 된 toowork입니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-107">Microsoft Hyperlapse is designed toowork best on first-person content with a moving camera.</span></span>  <span data-ttu-id="f6117-108">여전히 카메라 장면 작업 계속할 수 있지만 다른 콘텐츠 형식의 대 한 hello Azure Media Hyperlapse 미디어 프로세서의 hello 성능 및 품질을 보장할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-108">Although still-camera footage can still work, hello performance and quality of hello Azure Media Hyperlapse Media Processor cannot be guaranteed for other types of content.</span></span>  <span data-ttu-id="f6117-109">Azure 미디어 서비스에 대 한 Microsoft Hyperlapse에 대 한 자세한 toolearn 몇 가지 예제 비디오를 참조 하 고 hello를 확인 하십시오 [소개 블로그 게시물](http://aka.ms/azurehyperlapseblog) hello 공개 미리 보기에서.</span><span class="sxs-lookup"><span data-stu-id="f6117-109">toolearn more about Microsoft Hyperlapse for Azure Media Services and see some example videos, check out hello [introductory blog post](http://aka.ms/azurehyperlapseblog) from hello public preview.</span></span>
 > 
 > 
 
-<span data-ttu-id="c6a02-110">Azure 미디어 Hyperlapse 작업은 MP4, MOV 또는 WMV 자산 파일 및 어떤 비디오 프레임을 어떤 속도로 시간 경과시킬지 지정(예: 2배속으로 처음 10,000프레임)하는 구성 파일을 입력으로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-110">An Azure Media Hyperlapse job takes as input an MP4, MOV, or WMV asset file along with a configuration file that specifies which frames of video should be time-lapsed and to what speed (e.g. first 10,000 frames at 2x).</span></span>  <span data-ttu-id="c6a02-111">출력은 입력 비디오의 안정화되고 시간 경과된 표현입니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-111">The output is a stabilized and time-lapsed rendition of the input video.</span></span>
+<span data-ttu-id="f6117-110">작업으로 사용 하는 Azure Media Hyperlapse 입력 된 경과 된 시간 프레임의 비디오 되어야 지정 하는 구성 파일 및 toowhat 속도 함께 MP4, MOV, 또는 WMV 자산 파일 (예: 첫 번째 10000 2 x에서 프레임).</span><span class="sxs-lookup"><span data-stu-id="f6117-110">An Azure Media Hyperlapse job takes as input an MP4, MOV, or WMV asset file along with a configuration file that specifies which frames of video should be time-lapsed and toowhat speed (e.g. first 10,000 frames at 2x).</span></span>  <span data-ttu-id="f6117-111">hello 출력은 hello 입력된 비디오의 안정화 및 된 경과 된 시간 변환을입니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-111">hello output is a stabilized and time-lapsed rendition of hello input video.</span></span>
 
-<span data-ttu-id="c6a02-112">최신 Azure 미디어 Hyperlapse 업데이트는 [미디어 서비스 블로그](https://azure.microsoft.com/blog/topics/media-services/)(영문)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c6a02-112">For the latest Azure Media Hyperlapse updates, see [Media Services blogs](https://azure.microsoft.com/blog/topics/media-services/).</span></span>
+<span data-ttu-id="f6117-112">최신 Azure Media Hyperlapse 업데이트 hello에 대 한 참조 [미디어 서비스 블로그](https://azure.microsoft.com/blog/topics/media-services/)합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-112">For hello latest Azure Media Hyperlapse updates, see [Media Services blogs](https://azure.microsoft.com/blog/topics/media-services/).</span></span>
 
-## <a name="hyperlapse-an-asset"></a><span data-ttu-id="c6a02-113">자산 Hyperlapse</span><span class="sxs-lookup"><span data-stu-id="c6a02-113">Hyperlapse an asset</span></span>
-<span data-ttu-id="c6a02-114">먼저 원하는 입력 파일을 Azure 미디어 서비스로 업로드해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-114">First you will need to upload your desired input file to Azure Media Services.</span></span>  <span data-ttu-id="c6a02-115">콘텐츠 업로드 및 관리와 관련된 개념에 대해 자세히 알아보려면 [콘텐츠 관리 문서](media-services-portal-vod-get-started.md)를 읽어보세요.</span><span class="sxs-lookup"><span data-stu-id="c6a02-115">To learn more about the concepts involved with uploading and managing content, read the [content management article](media-services-portal-vod-get-started.md).</span></span>
+## <a name="hyperlapse-an-asset"></a><span data-ttu-id="f6117-113">자산 Hyperlapse</span><span class="sxs-lookup"><span data-stu-id="f6117-113">Hyperlapse an asset</span></span>
+<span data-ttu-id="f6117-114">먼저 해야 tooupload 프로그램 원하는 입력된 파일 tooAzure 미디어 서비스.</span><span class="sxs-lookup"><span data-stu-id="f6117-114">First you will need tooupload your desired input file tooAzure Media Services.</span></span>  <span data-ttu-id="f6117-115">hello 읽기에 대해 더 알아봅니다 toolearn hello 업로드, 콘텐츠 관리와 관련 된 개념 [콘텐츠 관리 문서](media-services-portal-vod-get-started.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-115">toolearn more about hello concepts involved with uploading and managing content, read hello [content management article](media-services-portal-vod-get-started.md).</span></span>
 
-### <span data-ttu-id="c6a02-116"><a id="configuration"></a>Hyperlapse에 대한 구성 사전 설정</span><span class="sxs-lookup"><span data-stu-id="c6a02-116"><a id="configuration"></a>Configuration Preset for Hyperlapse</span></span>
-<span data-ttu-id="c6a02-117">콘텐츠가 미디어 서비스 계정에 있는 경우 구성 사전 설정을 생성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-117">Once your content is in your Media Services account, you will need to construct your configuration preset.</span></span>  <span data-ttu-id="c6a02-118">다음 표에서는 사용자 지정 필드에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-118">The following table explains the user-specified fields:</span></span>
+### <span data-ttu-id="f6117-116"><a id="configuration"></a>Hyperlapse에 대한 구성 사전 설정</span><span class="sxs-lookup"><span data-stu-id="f6117-116"><a id="configuration"></a>Configuration Preset for Hyperlapse</span></span>
+<span data-ttu-id="f6117-117">미디어 서비스 계정에 콘텐츠를 tooconstruct 구성 사전 설정 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-117">Once your content is in your Media Services account, you will need tooconstruct your configuration preset.</span></span>  <span data-ttu-id="f6117-118">다음 표에서 hello hello 사용자 지정 필드를 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-118">hello following table explains hello user-specified fields:</span></span>
 
-| <span data-ttu-id="c6a02-119">필드</span><span class="sxs-lookup"><span data-stu-id="c6a02-119">Field</span></span> | <span data-ttu-id="c6a02-120">설명</span><span class="sxs-lookup"><span data-stu-id="c6a02-120">Description</span></span> |
+| <span data-ttu-id="f6117-119">필드</span><span class="sxs-lookup"><span data-stu-id="f6117-119">Field</span></span> | <span data-ttu-id="f6117-120">설명</span><span class="sxs-lookup"><span data-stu-id="f6117-120">Description</span></span> |
 | --- | --- |
-| <span data-ttu-id="c6a02-121">StartFrame</span><span class="sxs-lookup"><span data-stu-id="c6a02-121">StartFrame</span></span> |<span data-ttu-id="c6a02-122">Microsoft Hyperlapse 처리를 시작할 프레임입니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-122">The frame upon which the Microsoft Hyperlapse processing should begin.</span></span> |
-| <span data-ttu-id="c6a02-123">NumFrames</span><span class="sxs-lookup"><span data-stu-id="c6a02-123">NumFrames</span></span> |<span data-ttu-id="c6a02-124">처리할 프레임 수</span><span class="sxs-lookup"><span data-stu-id="c6a02-124">The number of frames to process</span></span> |
-| <span data-ttu-id="c6a02-125">속도</span><span class="sxs-lookup"><span data-stu-id="c6a02-125">Speed</span></span> |<span data-ttu-id="c6a02-126">입력 비디오를 가속화하는 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-126">The factor with which to speed up the input video.</span></span> |
+| <span data-ttu-id="f6117-121">StartFrame</span><span class="sxs-lookup"><span data-stu-id="f6117-121">StartFrame</span></span> |<span data-ttu-id="f6117-122">어떤 hello Microsoft Hyperlapse 처리를 시작 하는 hello 프레임입니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-122">hello frame upon which hello Microsoft Hyperlapse processing should begin.</span></span> |
+| <span data-ttu-id="f6117-123">NumFrames</span><span class="sxs-lookup"><span data-stu-id="f6117-123">NumFrames</span></span> |<span data-ttu-id="f6117-124">프레임 tooprocess hello 수</span><span class="sxs-lookup"><span data-stu-id="f6117-124">hello number of frames tooprocess</span></span> |
+| <span data-ttu-id="f6117-125">속도</span><span class="sxs-lookup"><span data-stu-id="f6117-125">Speed</span></span> |<span data-ttu-id="f6117-126">hello 비율 hello 입력된 비디오를 어떤 toospeed로 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-126">hello factor with which toospeed up hello input video.</span></span> |
 
-<span data-ttu-id="c6a02-127">다음은 XML 및 JSON에서 규칙을 따르는 구성 파일의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-127">The following is an example of a conformant configuration file in XML and JSON:</span></span>
+<span data-ttu-id="f6117-127">hello 다음은 XML과 JSON와 호환 되 구성 파일의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-127">hello following is an example of a conformant configuration file in XML and JSON:</span></span>
 
-<span data-ttu-id="c6a02-128">**XML 사전 설정:**</span><span class="sxs-lookup"><span data-stu-id="c6a02-128">**XML preset:**</span></span>
+<span data-ttu-id="f6117-128">**XML 사전 설정:**</span><span class="sxs-lookup"><span data-stu-id="f6117-128">**XML preset:**</span></span>
 
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -58,7 +58,7 @@ ms.lasthandoff: 07/11/2017
         </Options>
     </Preset>
 
-<span data-ttu-id="c6a02-129">**JSON 사전 설정:**</span><span class="sxs-lookup"><span data-stu-id="c6a02-129">**JSON preset:**</span></span>
+<span data-ttu-id="f6117-129">**JSON 사전 설정:**</span><span class="sxs-lookup"><span data-stu-id="f6117-129">**JSON preset:**</span></span>
 
     {
         "Version":1.0,
@@ -74,14 +74,14 @@ ms.lasthandoff: 07/11/2017
         }
     }
 
-### <span data-ttu-id="c6a02-130"><a id="sample_code"></a> Microsoft Hyperlapse 및 AMS .NET SDK</span><span class="sxs-lookup"><span data-stu-id="c6a02-130"><a id="sample_code"></a> Microsoft Hyperlapse with the AMS .NET SDK</span></span>
-<span data-ttu-id="c6a02-131">다음 메서드는 미디어 파일을 자산으로 업로드하고 Azure 미디어 Hyperlapse 미디어 프로세서로 작업을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-131">The following method uploads a media file as an asset and creates a job with the Azure Media Hyperlapse Media Processor.</span></span>
+### <span data-ttu-id="f6117-130"><a id="sample_code"></a>Hello AMS.NET SDK와 Microsoft Hyperlapse</span><span class="sxs-lookup"><span data-stu-id="f6117-130"><a id="sample_code"></a> Microsoft Hyperlapse with hello AMS .NET SDK</span></span>
+<span data-ttu-id="f6117-131">hello 다음 미디어 파일을 자산으로 업로드 메서드와 hello Azure Media Hyperlapse 미디어 프로세서를 사용 하 여 작업을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-131">hello following method uploads a media file as an asset and creates a job with hello Azure Media Hyperlapse Media Processor.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="c6a02-132">이 코드가 작동하도록 하려면 "context" 이름의 범위에 CloudMediaContext가 이미 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-132">You should already have a CloudMediaContext in scope with the name "context" for this code to work.</span></span>  <span data-ttu-id="c6a02-133">이에 대한 자세히 알아보려면 [콘텐츠 관리 문서](media-services-dotnet-get-started.md)를 읽어보세요.</span><span class="sxs-lookup"><span data-stu-id="c6a02-133">To learn more about this, read the [content management article](media-services-dotnet-get-started.md).</span></span>
+> <span data-ttu-id="f6117-132">이 코드 toowork에 대 한 컨텍스트"hello 이름"을 사용 하 여 범위에는 CloudMediaContext 이미 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-132">You should already have a CloudMediaContext in scope with hello name "context" for this code toowork.</span></span>  <span data-ttu-id="f6117-133">이 읽기 hello에 대 한 자세한 toolearn [콘텐츠 관리 문서](media-services-dotnet-get-started.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-133">toolearn more about this, read hello [content management article](media-services-dotnet-get-started.md).</span></span>
 > 
 > [!NOTE]
-> <span data-ttu-id="c6a02-134">문자열 인수 "hyperConfig"가 위에 설명된 대로 JSON 또는 XML에서 규칙을 따르는 구성 사전 설정이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c6a02-134">The string argument "hyperConfig" is expected to be a conformant configuration preset in either JSON or XML as described above.</span></span>
+> <span data-ttu-id="f6117-134">hello 문자열 인수 "hyperConfig" 예상된 toobe JSON 또는 위에 설명 된 대로 XML에 맞는 구성 사전 설정입니다.</span><span class="sxs-lookup"><span data-stu-id="f6117-134">hello string argument "hyperConfig" is expected toobe a conformant configuration preset in either JSON or XML as described above.</span></span>
 > 
 > 
 
@@ -148,7 +148,7 @@ ms.lasthandoff: 07/11/2017
                                                  CancellationToken.None);
             progressJobTask.Wait();
 
-            // If job state is Error, the event handling
+            // If job state is Error, hello event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)
@@ -198,19 +198,19 @@ ms.lasthandoff: 07/11/2017
         return processor;
     }
 
-### <span data-ttu-id="c6a02-135"><a id="file_types"></a>지원되는 파일 형식</span><span class="sxs-lookup"><span data-stu-id="c6a02-135"><a id="file_types"></a>Supported File types</span></span>
-* <span data-ttu-id="c6a02-136">MP4</span><span class="sxs-lookup"><span data-stu-id="c6a02-136">MP4</span></span>
-* <span data-ttu-id="c6a02-137">MOV</span><span class="sxs-lookup"><span data-stu-id="c6a02-137">MOV</span></span>
-* <span data-ttu-id="c6a02-138">WMV</span><span class="sxs-lookup"><span data-stu-id="c6a02-138">WMV</span></span>
+### <span data-ttu-id="f6117-135"><a id="file_types"></a>지원되는 파일 형식</span><span class="sxs-lookup"><span data-stu-id="f6117-135"><a id="file_types"></a>Supported File types</span></span>
+* <span data-ttu-id="f6117-136">MP4</span><span class="sxs-lookup"><span data-stu-id="f6117-136">MP4</span></span>
+* <span data-ttu-id="f6117-137">MOV</span><span class="sxs-lookup"><span data-stu-id="f6117-137">MOV</span></span>
+* <span data-ttu-id="f6117-138">WMV</span><span class="sxs-lookup"><span data-stu-id="f6117-138">WMV</span></span>
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="c6a02-139">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="c6a02-139">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="f6117-139">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="f6117-139">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="c6a02-140">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="c6a02-140">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="f6117-140">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="f6117-140">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="related-links"></a><span data-ttu-id="c6a02-141">관련 링크</span><span class="sxs-lookup"><span data-stu-id="c6a02-141">Related links</span></span>
-[<span data-ttu-id="c6a02-142">Azure Media Services 분석 개요</span><span class="sxs-lookup"><span data-stu-id="c6a02-142">Azure Media Services Analytics Overview</span></span>](media-services-analytics-overview.md)
+## <a name="related-links"></a><span data-ttu-id="f6117-141">관련 링크</span><span class="sxs-lookup"><span data-stu-id="f6117-141">Related links</span></span>
+[<span data-ttu-id="f6117-142">Azure Media Services 분석 개요</span><span class="sxs-lookup"><span data-stu-id="f6117-142">Azure Media Services Analytics Overview</span></span>](media-services-analytics-overview.md)
 
-[<span data-ttu-id="c6a02-143">Azure 미디어 분석 데모</span><span class="sxs-lookup"><span data-stu-id="c6a02-143">Azure Media Analytics demos</span></span>](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+[<span data-ttu-id="f6117-143">Azure 미디어 분석 데모</span><span class="sxs-lookup"><span data-stu-id="f6117-143">Azure Media Analytics demos</span></span>](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 

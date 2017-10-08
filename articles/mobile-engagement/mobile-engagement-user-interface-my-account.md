@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 사용자 인터페이스 - 내 계정"
-description: "Azure Mobile Engagement를 사용하여 계정 프로필 및 테스트 장치를 관리하는 방법을 알아봅니다"
+title: "aaaAzure Mobile Engagement 사용자 인터페이스-내 계정"
+description: "자세한 내용은 방법 toomanage Azure Mobile Engagement를 사용 하 여 사용자 계정 프로필과 테스트 장치"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 4e463e973dcfa1faa7b08e4738192161980b3aa2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d85f0e87c43605f59f6536ae42a7fb6a99ee36b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-your-account-profile-and-test-devices"></a><span data-ttu-id="ff8f6-103">계정 프로필 및 테스트 장치를 관리하는 방법</span><span class="sxs-lookup"><span data-stu-id="ff8f6-103">How to manage your account profile and test devices</span></span>
-<span data-ttu-id="ff8f6-104">이 문서에서는 **Mobile Engagement** 포털의 **홈** 페이지를 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-104">This article describes the **Home** page of the **Mobile Engagement** portal.</span></span> <span data-ttu-id="ff8f6-105">**Mobile Engagement** 포털을 사용하여 모바일 앱을 모니터링하고 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-105">You use the **Mobile Engagement** portal to monitor and manage your mobile apps.</span></span> 
+# <a name="how-toomanage-your-account-profile-and-test-devices"></a><span data-ttu-id="034ae-103">어떻게 toomanage 계정 프로필 및 테스트 장치</span><span class="sxs-lookup"><span data-stu-id="034ae-103">How toomanage your account profile and test devices</span></span>
+<span data-ttu-id="034ae-104">이 문서에서는 hello 설명 **홈** hello 페이지 **Mobile Engagement** 포털입니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-104">This article describes hello **Home** page of hello **Mobile Engagement** portal.</span></span> <span data-ttu-id="034ae-105">Hello를 사용 하 여 **Mobile Engagement** 포털 toomonitor 모바일 앱을 관리 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-105">You use hello **Mobile Engagement** portal toomonitor and manage your mobile apps.</span></span> 
 
-<span data-ttu-id="ff8f6-106">**내 계정** 페이지를 보려면 페이지 위쪽의 계정을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-106">To get to the **my account** page, click on your account on the top of the page.</span></span>
+<span data-ttu-id="034ae-106">tooget toohello **내 계정** 페이지 hello hello 페이지 위쪽에서 사용자의 계정을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-106">tooget toohello **my account** page, click on your account on hello top of hello page.</span></span>
 
-<span data-ttu-id="ff8f6-107">UI의 내 계정 섹션에서는 프로필 설정, 테스트 장치 ID 등 계정과 연결된 설정을 확인하고 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-107">The My Account section of the UI is where you can view and change the settings associated with your account, including your Profile settings and test Device IDs.</span></span> <span data-ttu-id="ff8f6-108">이러한 설정에는 장치 API를 통해서도 액세스할 수 있는 항목이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-108">These settings contain items that can also be accessed via the Device API.</span></span>
+<span data-ttu-id="034ae-107">UI가 보고 하 고 프로필 설정을 포함 하 여 사용자 계정과 연결 된 hello 설정을 변경 하 고 수 있는 장치 Id를 테스트 하는 hello 내 계정 섹션 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-107">hello My Account section of hello UI is where you can view and change hello settings associated with your account, including your Profile settings and test Device IDs.</span></span> <span data-ttu-id="034ae-108">이러한 설정은 hello Device API를 통해 액세스할 수 있는 항목을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-108">These settings contain items that can also be accessed via hello Device API.</span></span>
 
 ![MyAccount1][7]  
 
-## <a name="profile"></a><span data-ttu-id="ff8f6-110">프로필</span><span class="sxs-lookup"><span data-stu-id="ff8f6-110">Profile:</span></span>
-<span data-ttu-id="ff8f6-111">계정 설정을 확인하거나 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-111">You can view or change any of your account settings shown below.</span></span> <span data-ttu-id="ff8f6-112">[홈](mobile-engagement-user-interface-home.md)의 전자 메일 주소를 기준으로 다른 사용자에게 응용 프로그램 사용 권한을 부여할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-112">You can also give another user permission to use your application based on their e-mail address from the [Home](mobile-engagement-user-interface-home.md).</span></span>
+## <a name="profile"></a><span data-ttu-id="034ae-110">프로필</span><span class="sxs-lookup"><span data-stu-id="034ae-110">Profile:</span></span>
+<span data-ttu-id="034ae-111">계정 설정을 확인하거나 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-111">You can view or change any of your account settings shown below.</span></span> <span data-ttu-id="034ae-112">제공할 수도 다른 사용자 권한 toouse hello에서 전자 메일 주소에 따라 응용 프로그램 [홈](mobile-engagement-user-interface-home.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-112">You can also give another user permission toouse your application based on their e-mail address from hello [Home](mobile-engagement-user-interface-home.md).</span></span>
 
 ![MyAccount2][8]  
 
-## <a name="devices"></a><span data-ttu-id="ff8f6-114">장치</span><span class="sxs-lookup"><span data-stu-id="ff8f6-114">Devices:</span></span>
-<span data-ttu-id="ff8f6-115">**도달률** 또는 **푸시** 캠페인을 테스트하는 데 사용할 수 있는 테스트 장치의 ID를 확인, 추가 또는 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-115">You can view, add, or remove test Device ID's of the test devices that you can use to test your **reach** or **push** campaigns.</span></span> <span data-ttu-id="ff8f6-116">"새 장치"를 클릭하면 iOS, Android, Windows Phone 등의 각 플랫폼에 대해 장치의 ID를 찾는 방법에 대해 상황에 맞는 지침이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-116">Contextual instructions for how to find the Device ID of devices for each platform (iOS, Android, Windows Phone, etc.) are displayed when you click "New Device".</span></span> 
+## <a name="devices"></a><span data-ttu-id="034ae-114">장치</span><span class="sxs-lookup"><span data-stu-id="034ae-114">Devices:</span></span>
+<span data-ttu-id="034ae-115">보기, 추가 또는 제거 tootest를 사용할 수 있는 hello 테스트 장치의 장치 ID를 테스트 프로그램 **도달** 또는 **푸시** 캠페인입니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-115">You can view, add, or remove test Device ID's of hello test devices that you can use tootest your **reach** or **push** campaigns.</span></span> <span data-ttu-id="034ae-116">Toofind 각 플랫폼에 대 한 장치의 장치 ID를 hello 하는 방법에 대 한 상황에 맞는 지침 (iOS, Android, Windows Phone 등) "새 장치"를 클릭 하면 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-116">Contextual instructions for how toofind hello Device ID of devices for each platform (iOS, Android, Windows Phone, etc.) are displayed when you click "New Device".</span></span> 
 
 ![MyAccount3][9]  
 
-<span data-ttu-id="ff8f6-118">푸시 API 또는 장치 API를 사용하려면 사용자의 고유한 장치 식별자(deviceid 매개 변수)를 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-118">To use Push API or Device API you need to know your users' unique device identifier (the deviceid parameter).</span></span> <span data-ttu-id="ff8f6-119">이 식별자는 다음과 같은 여러 가지 방법으로 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-119">There are several ways to retrieve it:</span></span>
+<span data-ttu-id="034ae-118">toouse 푸시 API 또는 Device API tooknow 사용자의 고유한 장치 식별자 (deviceid 매개 변수 hello)를 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-118">toouse Push API or Device API you need tooknow your users' unique device identifier (hello deviceid parameter).</span></span> <span data-ttu-id="034ae-119">여러 가지 방법으로 tooretrieve 하기:</span><span class="sxs-lookup"><span data-stu-id="034ae-119">There are several ways tooretrieve it:</span></span>
 
-1. <span data-ttu-id="ff8f6-120">백 엔드에서 장치 API의 "Get" 기능을 사용하여 장치 식별자의 전체 목록을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-120">From your backend, you can use the "Get" feature of the Device API to get the full list of device identifiers.</span></span>
-2. <span data-ttu-id="ff8f6-121">앱에서 SDK를 사용하여 식별자를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-121">From your app, you can use the SDK to get it.</span></span> <span data-ttu-id="ff8f6-122">Android에서는 Agent 클래스의 getDeviceID() 함수를 호출하고 iOS에서는 Agent 클래스의 deviceid 속성을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-122">(On Android, call the getDeviceID() function of the Agent class, and on iOS, read the deviceid property of the Agent class.)</span></span>
-3. <span data-ttu-id="ff8f6-123">도달률 알림에서 알림과 연결된 작업 URL에 {deviceid} 패턴이 포함되어 있으면 작업을 트리거한 장치의 식별자로 자동 교체됩니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-123">From a Reach announcement, if the action URL associated with the announcement contains the {deviceid} pattern, it will be automatically replaced by the identifier of the device triggering the action.</span></span>
-   <span data-ttu-id="ff8f6-124">http://<example>.com/registeruser?deviceid={deviceid}&otherparam=myparamdata는 http://<example>.com/registeruser?deviceid=XXXXXXXXXXXXXXXX&otherparam=myparamdata로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-124">http://<example>.com/registeruser?deviceid={deviceid}&otherparam=myparamdata will be replaced by: http://<example>.com/registeruser?deviceid=XXXXXXXXXXXXXXXX&otherparam=myparamdata</span></span> 
-4. <span data-ttu-id="ff8f6-125">도달률 웹 알림에서 알림의 HTML 코드에 {deviceid} 패턴이 포함되어 있으면 웹 알림을 표시하는 장치의 식별자로 자동 교체됩니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-125">From a Reach web announcement, if the HTML code of the announcement contains the {deviceid} pattern, it will be automatically replaced by the identifier of the device displaying the web announcement.</span></span>
-   <span data-ttu-id="ff8f6-126">예를 들어 {deviceid} 장치 식별자는 다음과 같이 바뀝니다. XXXXXXXXXXXXXXXX</span><span class="sxs-lookup"><span data-stu-id="ff8f6-126">Here is my device identifier: {deviceid} will be replaced by: Here is my device identifier: XXXXXXXXXXXXXXXX</span></span>
-5. <span data-ttu-id="ff8f6-127">장치에서 응용 프로그램을 열고 태그가 지정된 앱에서 이벤트를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-127">Open your application on your device and perform an Event in your app which has been tagged.</span></span>
-   <span data-ttu-id="ff8f6-128">"UI - 앱 - 모니터 - 이벤트 - 세부 정보"의 목록에서 수행한 이벤트를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-128">From "UI - your app - Monitor - Events - Details", find the Event you performed in the list.</span></span>
-   <span data-ttu-id="ff8f6-129">모니터에서 이 이벤트를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-129">Click to this event in the Monitor.</span></span>
-   <span data-ttu-id="ff8f6-130">그러면 해당 이벤트를 수행한 장치 목록에서 장치 ID를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-130">You should find your Device ID in the list of the devices that have performed this event.</span></span>
-   <span data-ttu-id="ff8f6-131">이 장치 ID를 복사한 다음 "UI - 내 계정 - 장치 - 새 장치 - 장치 플랫폼 선택"에서 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-131">Then, you can copy this Device ID and register it in the "UI - My Account - Devices - New Device - Select your device platform".</span></span>
-   ><span data-ttu-id="ff8f6-132">iOS에 대해 IDFA를 사용하지 않도록 설정된 경우 앱을 제거했다가 다시 설치하면 시간이 지남에 따라 장치 ID가 변경될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ff8f6-132">(Be aware that when IDFA is disabled for iOS, the Device ID may change over the time if you uninstall and reinstall your app.)</span></span>
+1. <span data-ttu-id="034ae-120">프로그램 백 엔드에서 hello 장치 API tooget hello 식별자의 전체 목록 장치의 hello "Get" 기능을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-120">From your backend, you can use hello "Get" feature of hello Device API tooget hello full list of device identifiers.</span></span>
+2. <span data-ttu-id="034ae-121">응용 프로그램에서 SDK tooget hello를 사용할 수 있습니다 것입니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-121">From your app, you can use hello SDK tooget it.</span></span> <span data-ttu-id="034ae-122">(Android에서는 및의 에이전트 클래스 hello hello getDeviceID() 함수 호출 ios에서의 에이전트 클래스 hello hello deviceid 속성을 읽을.)</span><span class="sxs-lookup"><span data-stu-id="034ae-122">(On Android, call hello getDeviceID() function of hello Agent class, and on iOS, read hello deviceid property of hello Agent class.)</span></span>
+3. <span data-ttu-id="034ae-123">도달률 공지의에서 hello 알림이와 관련 된 hello 작업 URL hello {deviceid} 패턴을 포함 하는 경우 자동으로 바뀝니다 트리거 hello 동작 hello 장치의 hello 식별자로.</span><span class="sxs-lookup"><span data-stu-id="034ae-123">From a Reach announcement, if hello action URL associated with hello announcement contains hello {deviceid} pattern, it will be automatically replaced by hello identifier of hello device triggering hello action.</span></span>
+   <span data-ttu-id="034ae-124">http://<example>.com/registeruser?deviceid={deviceid}&otherparam=myparamdata는 http://<example>.com/registeruser?deviceid=XXXXXXXXXXXXXXXX&otherparam=myparamdata로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-124">http://<example>.com/registeruser?deviceid={deviceid}&otherparam=myparamdata will be replaced by: http://<example>.com/registeruser?deviceid=XXXXXXXXXXXXXXXX&otherparam=myparamdata</span></span> 
+4. <span data-ttu-id="034ae-125">Reach 웹 공지에서 hello hello 알림이의 HTML 코드 {deviceid} hello 패턴을 포함 하는 경우 자동으로 바뀝니다 hello 웹 공지를 표시 하는 hello 장치의 hello 식별자로.</span><span class="sxs-lookup"><span data-stu-id="034ae-125">From a Reach web announcement, if hello HTML code of hello announcement contains hello {deviceid} pattern, it will be automatically replaced by hello identifier of hello device displaying hello web announcement.</span></span>
+   <span data-ttu-id="034ae-126">예를 들어 {deviceid} 장치 식별자는 다음과 같이 바뀝니다. XXXXXXXXXXXXXXXX</span><span class="sxs-lookup"><span data-stu-id="034ae-126">Here is my device identifier: {deviceid} will be replaced by: Here is my device identifier: XXXXXXXXXXXXXXXX</span></span>
+5. <span data-ttu-id="034ae-127">장치에서 응용 프로그램을 열고 태그가 지정된 앱에서 이벤트를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-127">Open your application on your device and perform an Event in your app which has been tagged.</span></span>
+   <span data-ttu-id="034ae-128">"--모니터-응용 프로그램 이벤트-UI, 세부 정보에서" hello를 hello 목록에서 사용자가 수행 하는 이벤트를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-128">From "UI - your app - Monitor - Events - Details", find hello Event you performed in hello list.</span></span>
+   <span data-ttu-id="034ae-129">Hello 모니터에서에서 toothis 이벤트를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-129">Click toothis event in hello Monitor.</span></span>
+   <span data-ttu-id="034ae-130">이 이벤트를 수행 했는지 hello 장치 hello 목록에서 장치 ID를 찾아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-130">You should find your Device ID in hello list of hello devices that have performed this event.</span></span>
+   <span data-ttu-id="034ae-131">그런 다음이 장치 ID를 복사한 "새 장치--내 계정-UI 장치 장치 플랫폼을 선택 하는 데 사용"을 hello 등록 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="034ae-131">Then, you can copy this Device ID and register it in hello "UI - My Account - Devices - New Device - Select your device platform".</span></span>
+   ><span data-ttu-id="034ae-132">(를 변경할 수 IDFA iOS에 대 한 비활성화 되 면 hello 장치 ID 수 hello 시간에 따라 제거 하 고 응용 프로그램을 다시 설치 하는 경우.)</span><span class="sxs-lookup"><span data-stu-id="034ae-132">(Be aware that when IDFA is disabled for iOS, hello Device ID may change over hello time if you uninstall and reinstall your app.)</span></span>
 
-## <a name="troubleshooting-guide"></a><span data-ttu-id="ff8f6-133">문제 해결 가이드</span><span class="sxs-lookup"><span data-stu-id="ff8f6-133">Troubleshooting Guide</span></span>
-* <span data-ttu-id="ff8f6-134">[문제 해결 가이드 - 서비스][Link 24]</span><span class="sxs-lookup"><span data-stu-id="ff8f6-134">[Troubleshooting Guide - Service][Link 24]</span></span>
+## <a name="troubleshooting-guide"></a><span data-ttu-id="034ae-133">문제 해결 가이드</span><span class="sxs-lookup"><span data-stu-id="034ae-133">Troubleshooting Guide</span></span>
+* <span data-ttu-id="034ae-134">[문제 해결 가이드 - 서비스][Link 24]</span><span class="sxs-lookup"><span data-stu-id="034ae-134">[Troubleshooting Guide - Service][Link 24]</span></span>
 
-## <a name="see-also"></a><span data-ttu-id="ff8f6-135">참고 항목</span><span class="sxs-lookup"><span data-stu-id="ff8f6-135">See also</span></span>
-* <span data-ttu-id="ff8f6-136">[UI 설명서 - 홈][Link 13]</span><span class="sxs-lookup"><span data-stu-id="ff8f6-136">[UI Documentation - Home][Link 13]</span></span>
+## <a name="see-also"></a><span data-ttu-id="034ae-135">참고 항목</span><span class="sxs-lookup"><span data-stu-id="034ae-135">See also</span></span>
+* <span data-ttu-id="034ae-136">[UI 설명서 - 홈][Link 13]</span><span class="sxs-lookup"><span data-stu-id="034ae-136">[UI Documentation - Home][Link 13]</span></span>
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-user-interface-navigation/navigation1.png

@@ -1,6 +1,6 @@
 ---
-title: "행위자 기반 Azure 마이크로 서비스의 다시 표시 | Microsoft Docs"
-description: "서비스 패브릭 Reliable Actors의 다시 표시에 대해 소개합니다."
+title: "Azure microservices 행위자 기반에서 aaaReentrancy | Microsoft Docs"
+description: "서비스 패브릭 Reliable Actors에 대 한 소개 tooreentrancy"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 00fcccb379bf1ba3875fbaba57a05b00fa228622
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61c69bcf0f100e075d19ba155954c05789b71761
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="reliable-actors-reentrancy"></a><span data-ttu-id="bd7ac-103">Reliable Actors 다시 표시</span><span class="sxs-lookup"><span data-stu-id="bd7ac-103">Reliable Actors reentrancy</span></span>
-<span data-ttu-id="bd7ac-104">기본적으로 Reliable Actors 런타임을 사용하면 논리적 호출 컨텍스트를 기반으로 다시 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-104">The Reliable Actors runtime, by default, allows logical call context-based reentrancy.</span></span> <span data-ttu-id="bd7ac-105">따라서 동일한 호출 컨텍스트 체인에 있는 경우 행위자가 다시 표시되도록 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-105">This allows for actors to be reentrant if they are in the same call context chain.</span></span> <span data-ttu-id="bd7ac-106">예를 들어 행위자 A가 행위자 C에 메시지를 보내는 행위자 B에 메시지를 보내는 경우 메시지 처리 과정의 일부로 행위자 C가 행위자 A를 호출하면 해당 메시지가 다시 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-106">For example, Actor A sends a message to Actor B, who sends a message to Actor C. As part of the message processing, if Actor C calls Actor A, the message is reentrant, so it will be allowed.</span></span> <span data-ttu-id="bd7ac-107">다른 호출 컨텍스트의 일부인 다른 모든 메시지는 처리를 완료할 때까지 행위자 A에서 차단됩니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-107">Any other messages that are part of a different call context will be blocked on Actor A until it finishes processing.</span></span>
+# <a name="reliable-actors-reentrancy"></a><span data-ttu-id="3c14a-103">Reliable Actors 다시 표시</span><span class="sxs-lookup"><span data-stu-id="3c14a-103">Reliable Actors reentrancy</span></span>
+<span data-ttu-id="3c14a-104">기본적으로 hello Reliable Actors 런타임 논리 호출 컨텍스트에 기반 재진입을 허용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-104">hello Reliable Actors runtime, by default, allows logical call context-based reentrancy.</span></span> <span data-ttu-id="3c14a-105">이 통해 행위자 toobe reentrant hello에 있는 경우 동일한 상황에 맞는 체인을 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-105">This allows for actors toobe reentrant if they are in hello same call context chain.</span></span> <span data-ttu-id="3c14a-106">예를 들어 A 행위자가 보냅니다 메시지 tooActor 3. 보내는 메시지 tooActor B Hello 메시지 처리의 일부로 행위자 C는 A, 행위자를 호출 하는 경우 hello 메시지 이므로 재진입 허용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-106">For example, Actor A sends a message tooActor B, who sends a message tooActor C. As part of hello message processing, if Actor C calls Actor A, hello message is reentrant, so it will be allowed.</span></span> <span data-ttu-id="3c14a-107">다른 호출 컨텍스트의 일부인 다른 모든 메시지는 처리를 완료할 때까지 행위자 A에서 차단됩니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-107">Any other messages that are part of a different call context will be blocked on Actor A until it finishes processing.</span></span>
 
-<span data-ttu-id="bd7ac-108">`ActorReentrancyMode` 열거에 정의된 행위자 다시 표시에 두 개의 옵션을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-108">There are two options available for actor reentrancy defined in the `ActorReentrancyMode` enum:</span></span>
+<span data-ttu-id="3c14a-108">Hello에 정의 된 행위자 재입력에 사용할 수 있는 옵션 두 가지가 `ActorReentrancyMode` enum:</span><span class="sxs-lookup"><span data-stu-id="3c14a-108">There are two options available for actor reentrancy defined in hello `ActorReentrancyMode` enum:</span></span>
 
-* <span data-ttu-id="bd7ac-109">`LogicalCallContext` (기본 동작)</span><span class="sxs-lookup"><span data-stu-id="bd7ac-109">`LogicalCallContext` (default behavior)</span></span>
-* <span data-ttu-id="bd7ac-110">`Disallowed` - 다시 표시 비활성화</span><span class="sxs-lookup"><span data-stu-id="bd7ac-110">`Disallowed` - disables reentrancy</span></span>
+* <span data-ttu-id="3c14a-109">`LogicalCallContext` (기본 동작)</span><span class="sxs-lookup"><span data-stu-id="3c14a-109">`LogicalCallContext` (default behavior)</span></span>
+* <span data-ttu-id="3c14a-110">`Disallowed` - 다시 표시 비활성화</span><span class="sxs-lookup"><span data-stu-id="3c14a-110">`Disallowed` - disables reentrancy</span></span>
 
 ```csharp
 public enum ActorReentrancyMode
@@ -42,9 +42,9 @@ public enum ActorReentrancyMode
     Disallowed(2)
 }
 ```
-<span data-ttu-id="bd7ac-111">다시 표시는 등록하는 동안 `ActorService`의 설정에서 구성될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-111">Reentrancy can be configured in an `ActorService`'s settings during registration.</span></span> <span data-ttu-id="bd7ac-112">행위자 서비스에서 만든 모든 행위자 인스턴스에 설정이 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-112">The setting applies to all actor instances created in the actor service.</span></span>
+<span data-ttu-id="3c14a-111">다시 표시는 등록하는 동안 `ActorService`의 설정에서 구성될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-111">Reentrancy can be configured in an `ActorService`'s settings during registration.</span></span> <span data-ttu-id="3c14a-112">hello 설정은 hello 행위자 서비스에서 만든 tooall 행위자 인스턴스에 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-112">hello setting applies tooall actor instances created in hello actor service.</span></span>
 
-<span data-ttu-id="bd7ac-113">다음 예제에서는 다시 표시 모드를 `ActorReentrancyMode.Disallowed`로 설정하는 행위자 서비스를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-113">The following example shows an actor service that sets the reentrancy mode to `ActorReentrancyMode.Disallowed`.</span></span> <span data-ttu-id="bd7ac-114">이 경우, 행위자가 다시 표시 메시지를 다른 행위자에게 보내면 `FabricException` 형식의 예외가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-114">In this case, if an actor sends a reentrant message to another actor, an exception of type `FabricException` will be thrown.</span></span>
+<span data-ttu-id="3c14a-113">hello 다음 보여 주는 예제 너무 hello 재진입 모드를 설정 하는 행위자 서비스`ActorReentrancyMode.Disallowed`합니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-113">hello following example shows an actor service that sets hello reentrancy mode too`ActorReentrancyMode.Disallowed`.</span></span> <span data-ttu-id="3c14a-114">이 경우 행위자 재진입 메시지 tooanother 행위자 형식의 예외를 보내는 경우 `FabricException` throw 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3c14a-114">In this case, if an actor sends a reentrant message tooanother actor, an exception of type `FabricException` will be thrown.</span></span>
 
 ```csharp
 static class Program
@@ -109,5 +109,5 @@ static class Program
 ```
 
 
-## <a name="next-steps"></a><span data-ttu-id="bd7ac-115">다음 단계</span><span class="sxs-lookup"><span data-stu-id="bd7ac-115">Next steps</span></span>
-* <span data-ttu-id="bd7ac-116">[행위자 API 참조 설명서](https://msdn.microsoft.com/library/azure/dn971626.aspx)에서 재진입에 대해 자세히 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="bd7ac-116">Learn more about reentrancy in the [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3c14a-115">다음 단계</span><span class="sxs-lookup"><span data-stu-id="3c14a-115">Next steps</span></span>
+* <span data-ttu-id="3c14a-116">재진입 hello에 대 한 자세한 [행위자 API 참조 설명서](https://msdn.microsoft.com/library/azure/dn971626.aspx)</span><span class="sxs-lookup"><span data-stu-id="3c14a-116">Learn more about reentrancy in hello [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)</span></span>

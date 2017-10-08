@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric의 ReliableConcurrentQueue"
+title: "Azure 서비스 패브릭에서 aaaReliableConcurrentQueue"
 description: "ReliableConcurrentQueue는 병렬 큐에 추가하고 큐에서 제거할 수 있는 처리량이 높은 큐입니다."
 services: service-fabric
 documentationcenter: .net
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: sangarg
-ms.openlocfilehash: 122cb48149477f295a65b8ee623c647b6db10a86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78a9905996b9ab265c1288d2b49753638d7bc445
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-reliableconcurrentqueue-in-azure-service-fabric"></a><span data-ttu-id="865f5-103">Azure Service Fabric의 ReliableConcurrentQueue 소개</span><span class="sxs-lookup"><span data-stu-id="865f5-103">Introduction to ReliableConcurrentQueue in Azure Service Fabric</span></span>
-<span data-ttu-id="865f5-104">신뢰할 수 있는 동시 큐는 비동기, 트랜잭션 및 복제된 큐로서 큐에 넣기 및 큐에서 제거 작업에 대한 높은 동시성을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-104">Reliable Concurrent Queue is an asynchronous, transactional, and replicated queue which features high concurrency for enqueue and dequeue operations.</span></span> <span data-ttu-id="865f5-105">[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)에서 제공한 엄격한 FIFO 순서를 완화하여 처리량이 높고 대기 시간이 짧게 설계되었으며 대신 최상의 순서를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-105">It is designed to deliver high throughput and low latency by relaxing the strict FIFO ordering provided by [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx) and instead provides a best-effort ordering.</span></span>
+# <a name="introduction-tooreliableconcurrentqueue-in-azure-service-fabric"></a><span data-ttu-id="73ce4-103">Azure 서비스 패브릭에서 tooReliableConcurrentQueue 소개</span><span class="sxs-lookup"><span data-stu-id="73ce4-103">Introduction tooReliableConcurrentQueue in Azure Service Fabric</span></span>
+<span data-ttu-id="73ce4-104">신뢰할 수 있는 동시 큐는 비동기, 트랜잭션 및 복제된 큐로서 큐에 넣기 및 큐에서 제거 작업에 대한 높은 동시성을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-104">Reliable Concurrent Queue is an asynchronous, transactional, and replicated queue which features high concurrency for enqueue and dequeue operations.</span></span> <span data-ttu-id="73ce4-105">디자인 된 toodeliver 높은 처리량 및 짧은 대기 시간 완화 hello 엄격한 FIFO 순서에서 제공 하 여 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx) 대신 최상의 순서를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-105">It is designed toodeliver high throughput and low latency by relaxing hello strict FIFO ordering provided by [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx) and instead provides a best-effort ordering.</span></span>
 
-## <a name="apis"></a><span data-ttu-id="865f5-106">API</span><span class="sxs-lookup"><span data-stu-id="865f5-106">APIs</span></span>
+## <a name="apis"></a><span data-ttu-id="73ce4-106">API</span><span class="sxs-lookup"><span data-stu-id="73ce4-106">APIs</span></span>
 
-|<span data-ttu-id="865f5-107">동시 큐</span><span class="sxs-lookup"><span data-stu-id="865f5-107">Concurrent Queue</span></span>                |<span data-ttu-id="865f5-108">신뢰할 수 있는 동시 큐</span><span class="sxs-lookup"><span data-stu-id="865f5-108">Reliable Concurrent Queue</span></span>                                         |
+|<span data-ttu-id="73ce4-107">동시 큐</span><span class="sxs-lookup"><span data-stu-id="73ce4-107">Concurrent Queue</span></span>                |<span data-ttu-id="73ce4-108">신뢰할 수 있는 동시 큐</span><span class="sxs-lookup"><span data-stu-id="73ce4-108">Reliable Concurrent Queue</span></span>                                         |
 |--------------------------------|------------------------------------------------------------------|
-| <span data-ttu-id="865f5-109">void Enqueue(T item)</span><span class="sxs-lookup"><span data-stu-id="865f5-109">void Enqueue(T item)</span></span>           | <span data-ttu-id="865f5-110">Task EnqueueAsync(ITransaction tx, T item)</span><span class="sxs-lookup"><span data-stu-id="865f5-110">Task EnqueueAsync(ITransaction tx, T item)</span></span>                       |
-| <span data-ttu-id="865f5-111">bool TryDequeue(out T result)</span><span class="sxs-lookup"><span data-stu-id="865f5-111">bool TryDequeue(out T result)</span></span>  | <span data-ttu-id="865f5-112">Task< ConditionalValue < T > > TryDequeueAsync(ITransaction tx)</span><span class="sxs-lookup"><span data-stu-id="865f5-112">Task< ConditionalValue < T > > TryDequeueAsync(ITransaction tx)</span></span>  |
-| <span data-ttu-id="865f5-113">int Count()</span><span class="sxs-lookup"><span data-stu-id="865f5-113">int Count()</span></span>                    | <span data-ttu-id="865f5-114">long Count()</span><span class="sxs-lookup"><span data-stu-id="865f5-114">long Count()</span></span>                                                     |
+| <span data-ttu-id="73ce4-109">void Enqueue(T item)</span><span class="sxs-lookup"><span data-stu-id="73ce4-109">void Enqueue(T item)</span></span>           | <span data-ttu-id="73ce4-110">Task EnqueueAsync(ITransaction tx, T item)</span><span class="sxs-lookup"><span data-stu-id="73ce4-110">Task EnqueueAsync(ITransaction tx, T item)</span></span>                       |
+| <span data-ttu-id="73ce4-111">bool TryDequeue(out T result)</span><span class="sxs-lookup"><span data-stu-id="73ce4-111">bool TryDequeue(out T result)</span></span>  | <span data-ttu-id="73ce4-112">Task< ConditionalValue < T > > TryDequeueAsync(ITransaction tx)</span><span class="sxs-lookup"><span data-stu-id="73ce4-112">Task< ConditionalValue < T > > TryDequeueAsync(ITransaction tx)</span></span>  |
+| <span data-ttu-id="73ce4-113">int Count()</span><span class="sxs-lookup"><span data-stu-id="73ce4-113">int Count()</span></span>                    | <span data-ttu-id="73ce4-114">long Count()</span><span class="sxs-lookup"><span data-stu-id="73ce4-114">long Count()</span></span>                                                     |
 
-## <a name="comparison-with-reliable-queuehttpsmsdnmicrosoftcomlibraryazuredn971527aspx"></a><span data-ttu-id="865f5-115">[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)와 비교</span><span class="sxs-lookup"><span data-stu-id="865f5-115">Comparison with [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx)</span></span>
+## <a name="comparison-with-reliable-queuehttpsmsdnmicrosoftcomlibraryazuredn971527aspx"></a><span data-ttu-id="73ce4-115">[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)와 비교</span><span class="sxs-lookup"><span data-stu-id="73ce4-115">Comparison with [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx)</span></span>
 
-<span data-ttu-id="865f5-116">신뢰할 수 있는 동시 큐는 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)에 대한 대안을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-116">Reliable Concurrent Queue is offered as an alternative to [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx).</span></span> <span data-ttu-id="865f5-117">FIFO 보장은 동시성을 상쇄해야 하기 때문에 엄격한 FIFO 순서가 필요하지 않은 경우에 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-117">It should be used in cases where strict FIFO ordering is not required, as guaranteeing FIFO requires a tradeoff with concurrency.</span></span>  <span data-ttu-id="865f5-118">[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)는 잠금을 사용하여 큐에 넣을 수 있는 최대 트랜잭션 및 한 번에 큐에서 제거하도록 허용되는 최대 트랜잭션 순으로 FIFO 순서를 강제합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-118">[Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx) uses locks to enforce FIFO ordering, with at most one transaction allowed to enqueue and at most one transaction allowed to dequeue at a time.</span></span> <span data-ttu-id="865f5-119">비교에서 신뢰할 수 있는 동시 큐는 정렬 제약 조건을 완화하고 어떤 수의 동시 트랜잭션이 해당 큐에 넣기 및 큐에서 제거 작업을 인터리브하도록 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-119">In comparison, Reliable Concurrent Queue relaxes the ordering constraint and allows any number concurrent transactions to interleave their enqueue and dequeue operations.</span></span> <span data-ttu-id="865f5-120">가장 효율적인 순서를 제공하지만 신뢰할 수 있는 동시 큐에 있는 두 값의 상대적 순서를 보장할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-120">Best-effort ordering is provided, however the relative ordering of two values in a Reliable Concurrent Queue can never be guaranteed.</span></span>
+<span data-ttu-id="73ce4-116">신뢰할 수 있는 동시 큐 대신 너무 제공[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-116">Reliable Concurrent Queue is offered as an alternative too[Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx).</span></span> <span data-ttu-id="73ce4-117">FIFO 보장은 동시성을 상쇄해야 하기 때문에 엄격한 FIFO 순서가 필요하지 않은 경우에 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-117">It should be used in cases where strict FIFO ordering is not required, as guaranteeing FIFO requires a tradeoff with concurrency.</span></span>  <span data-ttu-id="73ce4-118">[신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx) 잠금을 tooenforce FIFO 순서 지정 tooenqueue 허용 되는 최대 하나의 트랜잭션 및 가장 많이 toodequeue 한 번에 허용 된 트랜잭션을 최대 하나만 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-118">[Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx) uses locks tooenforce FIFO ordering, with at most one transaction allowed tooenqueue and at most one transaction allowed toodequeue at a time.</span></span> <span data-ttu-id="73ce4-119">비교에서 신뢰할 수 있는 동시 큐 모든 숫자 동시 트랜잭션이 toointerleave 해당 큐에 넣을 수 있습니다 및 큐에서 제거 작업 hello 순서 제약 조건을 완화 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-119">In comparison, Reliable Concurrent Queue relaxes hello ordering constraint and allows any number concurrent transactions toointerleave their enqueue and dequeue operations.</span></span> <span data-ttu-id="73ce4-120">하지만 최상의 순서는 보장 신뢰할 수 있는 동시 큐에 있는 두 값의 상대적 순서 hello 수 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-120">Best-effort ordering is provided, however hello relative ordering of two values in a Reliable Concurrent Queue can never be guaranteed.</span></span>
 
-<span data-ttu-id="865f5-121">여러 동시 트랜잭션이 큐에 넣기 및/또는 큐에서 제거를 수행할 때 신뢰할 수 있는 동시 큐는 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)보다 처리량이 높고 대기 시간이 낮습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-121">Reliable Concurrent Queue provides higher throughput and lower latency than [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx) whenever there are multiple concurrent transactions performing enqueues and/or dequeues.</span></span>
+<span data-ttu-id="73ce4-121">여러 동시 트랜잭션이 큐에 넣기 및/또는 큐에서 제거를 수행할 때 신뢰할 수 있는 동시 큐는 [신뢰할 수 있는 큐](https://msdn.microsoft.com/library/azure/dn971527.aspx)보다 처리량이 높고 대기 시간이 낮습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-121">Reliable Concurrent Queue provides higher throughput and lower latency than [Reliable Queue](https://msdn.microsoft.com/library/azure/dn971527.aspx) whenever there are multiple concurrent transactions performing enqueues and/or dequeues.</span></span>
 
-<span data-ttu-id="865f5-122">ReliableConcurrentQueue의 샘플 사용 사례는 [메시지 큐](https://en.wikipedia.org/wiki/Message_queue) 시나리오입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-122">A sample use case for the ReliableConcurrentQueue is the [Message Queue](https://en.wikipedia.org/wiki/Message_queue) scenario.</span></span> <span data-ttu-id="865f5-123">이 시나리오에서 한 명 이상의 메시지 생산자는 항목을 만들고 큐에 추가하며 한 명 이상의 메시지 소비자는 큐에서 메시지를 끌어오고 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-123">In this scenario, one or more message producers create and add items to the queue, and one or more message consumers pull messages from the queue and process them.</span></span> <span data-ttu-id="865f5-124">여러 생산자 및 소비자는 큐를 처리하기 위해 동시 트랜잭션을 사용하여 독립적으로 작동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-124">Multiple producers and consumers can work independently, using concurrent transactions in order to process the queue.</span></span>
+<span data-ttu-id="73ce4-122">샘플 사용 사례는 hello hello ReliableConcurrentQueue [메시지 큐](https://en.wikipedia.org/wiki/Message_queue) 시나리오입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-122">A sample use case for hello ReliableConcurrentQueue is hello [Message Queue](https://en.wikipedia.org/wiki/Message_queue) scenario.</span></span> <span data-ttu-id="73ce4-123">이 시나리오에서는 하나 이상의 메시지 생산자를 만들고 항목 toohello 큐에 추가 하 고 hello 큐에서 메시지를 끌어올 하 고 처리 하는 메시지 소비자 하나 이상의 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-123">In this scenario, one or more message producers create and add items toohello queue, and one or more message consumers pull messages from hello queue and process them.</span></span> <span data-ttu-id="73ce4-124">여러 생산자와 소비자 수 독립적으로 작업 순서 tooprocess hello 큐에서 동시 트랜잭션을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-124">Multiple producers and consumers can work independently, using concurrent transactions in order tooprocess hello queue.</span></span>
 
-## <a name="usage-guidelines"></a><span data-ttu-id="865f5-125">사용 지침</span><span class="sxs-lookup"><span data-stu-id="865f5-125">Usage Guidelines</span></span>
-* <span data-ttu-id="865f5-126">큐에 있는 항목의 보존 기간이 짧습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-126">The queue expects that the items in the queue have a low retention period.</span></span> <span data-ttu-id="865f5-127">즉, 항목은 오랜 시간 동안 큐에 유지되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-127">That is, the items would not stay in the queue for a long time.</span></span>
-* <span data-ttu-id="865f5-128">큐는 엄격한 FIFO 순서를 보장하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-128">The queue does not guarantee strict FIFO ordering.</span></span>
-* <span data-ttu-id="865f5-129">큐는 고유한 쓰기를 읽을 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-129">The queue does not read its own writes.</span></span> <span data-ttu-id="865f5-130">항목이 트랜잭션 내에서 큐에 삽입된 경우 동일한 트랜잭션 내에서 큐에서 제거하는 사용자에게 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-130">If an item is enqueued within a transaction, it will not be visible to a dequeuer within the same transaction.</span></span>
-* <span data-ttu-id="865f5-131">큐에서 제거는 서로 분리되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-131">Dequeues are not isolated from each other.</span></span> <span data-ttu-id="865f5-132">항목 *A*가 트랜잭션 *txnA*라는 큐에서 제거된 경우 *txnA*가 커밋되지 않더라도 항목 *A*는 동시 트랜잭션 *txnB*에 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-132">If item *A* is dequeued in transaction *txnA*, even though *txnA* is not committed, item *A* would not be visible to a concurrent transaction *txnB*.</span></span>  <span data-ttu-id="865f5-133">*txnA*가 중단되면 *txnB*에서 즉시 *A*를 볼 수 있게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-133">If *txnA* aborts, *A* will become visible to *txnB* immediately.</span></span>
-* <span data-ttu-id="865f5-134">*TryPeekAsync* 동작은 *TryDequeueAsync*를 사용한 다음 트랜잭션을 중단하여 구현할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-134">*TryPeekAsync* behavior can be implemented by using a *TryDequeueAsync* and then aborting the transaction.</span></span> <span data-ttu-id="865f5-135">이러한 예는 프로그래밍 패턴 섹션에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-135">An example of this can be found in the Programming Patterns section.</span></span>
-* <span data-ttu-id="865f5-136">개수는 비트랜잭션입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-136">Count is non-transactional.</span></span> <span data-ttu-id="865f5-137">큐에서 요소의 수를 추측하는 데 사용할 수 있지만 특정 시점을 나타내며 의존할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-137">It can be used to get an idea of the number of elements in the queue, but represents a point-in-time and cannot be relied upon.</span></span>
-* <span data-ttu-id="865f5-138">큐에서 제거된 항목에서 비용이 많이 드는 처리는 시스템의 성능에 영향을 줄 수 있는 장기 실행 트랜잭션을 방지하기 위해 트랜잭션이 활성화된 동안 수행하면 안됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-138">Expensive processing on the dequeued items should not be performed while the transaction is active, to avoid long-running transactions which may have a performance impact on the system.</span></span>
+## <a name="usage-guidelines"></a><span data-ttu-id="73ce4-125">사용 지침</span><span class="sxs-lookup"><span data-stu-id="73ce4-125">Usage Guidelines</span></span>
+* <span data-ttu-id="73ce4-126">hello 큐는 hello 큐의 hello 항목 낮은 보존 기간이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-126">hello queue expects that hello items in hello queue have a low retention period.</span></span> <span data-ttu-id="73ce4-127">즉, hello 항목은 오랜 시간 동안 hello 큐에 남아 있지입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-127">That is, hello items would not stay in hello queue for a long time.</span></span>
+* <span data-ttu-id="73ce4-128">hello 큐는 엄격한 FIFO 순서를 보장 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-128">hello queue does not guarantee strict FIFO ordering.</span></span>
+* <span data-ttu-id="73ce4-129">hello 큐 자체 쓰기 읽을 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-129">hello queue does not read its own writes.</span></span> <span data-ttu-id="73ce4-130">Hello 내 표시 tooa dequeuer 않을 트랜잭션 내에서 큐에 대기 된 항목의 경우 동일한 트랜잭션.</span><span class="sxs-lookup"><span data-stu-id="73ce4-130">If an item is enqueued within a transaction, it will not be visible tooa dequeuer within hello same transaction.</span></span>
+* <span data-ttu-id="73ce4-131">큐에서 제거는 서로 분리되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-131">Dequeues are not isolated from each other.</span></span> <span data-ttu-id="73ce4-132">항목 *A* 트랜잭션으로 큐에서 제거 *txnA*경우라도, *txnA* 항목, 커밋되지 않은 *A* 됩니다 표시 tooa 동시 트랜잭션 *txnB*합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-132">If item *A* is dequeued in transaction *txnA*, even though *txnA* is not committed, item *A* would not be visible tooa concurrent transaction *txnB*.</span></span>  <span data-ttu-id="73ce4-133">경우 *txnA* 중단 되 면 *A* 너무 표시 될*txnB* 즉시 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-133">If *txnA* aborts, *A* will become visible too*txnB* immediately.</span></span>
+* <span data-ttu-id="73ce4-134">*TryPeekAsync* 동작을 사용 하 여 구현할 수 있습니다는 *TryDequeueAsync* 다음 hello 트랜잭션을 중단 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-134">*TryPeekAsync* behavior can be implemented by using a *TryDequeueAsync* and then aborting hello transaction.</span></span> <span data-ttu-id="73ce4-135">이러한 예는 hello 프로그래밍 패턴 섹션에서에서 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-135">An example of this can be found in hello Programming Patterns section.</span></span>
+* <span data-ttu-id="73ce4-136">개수는 비트랜잭션입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-136">Count is non-transactional.</span></span> <span data-ttu-id="73ce4-137">사용된 tooget hello hello 큐에 있는 요소 수에 대해 알 수 있지만 지정-에-시간 나타내며에 의존할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-137">It can be used tooget an idea of hello number of elements in hello queue, but represents a point-in-time and cannot be relied upon.</span></span>
+* <span data-ttu-id="73ce4-138">Hello에 대 한 처리 비용이 많이 드는 큐에서 제거 된 항목을 수행 하지 않도록 hello 트랜잭션이 활성 중일 tooavoid 장기 실행 트랜잭션을 hello 시스템에 성능에 주는 영향이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-138">Expensive processing on hello dequeued items should not be performed while hello transaction is active, tooavoid long-running transactions which may have a performance impact on hello system.</span></span>
 
-## <a name="code-snippets"></a><span data-ttu-id="865f5-139">코드 조각</span><span class="sxs-lookup"><span data-stu-id="865f5-139">Code Snippets</span></span>
-<span data-ttu-id="865f5-140">몇 가지 코드 조각 및 예상된 출력에 대해 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-140">Let us look at a few code snippets and their expected outputs.</span></span> <span data-ttu-id="865f5-141">이 섹션에서 예외 처리는 무시됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-141">Exception handling is ignored in this section.</span></span>
+## <a name="code-snippets"></a><span data-ttu-id="73ce4-139">코드 조각</span><span class="sxs-lookup"><span data-stu-id="73ce4-139">Code Snippets</span></span>
+<span data-ttu-id="73ce4-140">몇 가지 코드 조각 및 예상된 출력에 대해 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-140">Let us look at a few code snippets and their expected outputs.</span></span> <span data-ttu-id="73ce4-141">이 섹션에서 예외 처리는 무시됩니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-141">Exception handling is ignored in this section.</span></span>
 
-### <a name="enqueueasync"></a><span data-ttu-id="865f5-142">EnqueueAsync</span><span class="sxs-lookup"><span data-stu-id="865f5-142">EnqueueAsync</span></span>
-<span data-ttu-id="865f5-143">다음은 예상된 출력 뒤에 EnqueueAsync를 사용하기 위한 몇 가지 코드 조각입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-143">Here are a few code snippets for using EnqueueAsync followed by their expected outputs.</span></span>
+### <a name="enqueueasync"></a><span data-ttu-id="73ce4-142">EnqueueAsync</span><span class="sxs-lookup"><span data-stu-id="73ce4-142">EnqueueAsync</span></span>
+<span data-ttu-id="73ce4-143">다음은 예상된 출력 뒤에 EnqueueAsync를 사용하기 위한 몇 가지 코드 조각입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-143">Here are a few code snippets for using EnqueueAsync followed by their expected outputs.</span></span>
 
-- <span data-ttu-id="865f5-144">*사례 1: 단일 큐에 넣기 작업*</span><span class="sxs-lookup"><span data-stu-id="865f5-144">*Case 1: Single Enqueue Task*</span></span>
+- <span data-ttu-id="73ce4-144">*사례 1: 단일 큐에 넣기 작업*</span><span class="sxs-lookup"><span data-stu-id="73ce4-144">*Case 1: Single Enqueue Task*</span></span>
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -66,14 +66,14 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-<span data-ttu-id="865f5-145">작업이 성공적으로 완료되고 큐를 수정하는 동시 트랜잭션이 없다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-145">Assume that the task completed successfully, and that there were no concurrent transactions modifying the queue.</span></span> <span data-ttu-id="865f5-146">사용자는 다음 순서 중 하나로 항목을 포함하는 큐를 예상할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-146">The user can expect the queue to contain the items in any of the following orders:</span></span>
+<span data-ttu-id="73ce4-145">Hello 큐를 수정 하는 트랜잭션은 동시 트랜잭션이 없는 있었습니다 하 고 성공적으로 완료 하는 hello 작업을 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-145">Assume that hello task completed successfully, and that there were no concurrent transactions modifying hello queue.</span></span> <span data-ttu-id="73ce4-146">hello 사용자 hello 주문 다음 중 하나에 hello 큐 toocontain hello 항목 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-146">hello user can expect hello queue toocontain hello items in any of hello following orders:</span></span>
 
-> <span data-ttu-id="865f5-147">10, 20</span><span class="sxs-lookup"><span data-stu-id="865f5-147">10, 20</span></span>
+> <span data-ttu-id="73ce4-147">10, 20</span><span class="sxs-lookup"><span data-stu-id="73ce4-147">10, 20</span></span>
 
-> <span data-ttu-id="865f5-148">20, 10</span><span class="sxs-lookup"><span data-stu-id="865f5-148">20, 10</span></span>
+> <span data-ttu-id="73ce4-148">20, 10</span><span class="sxs-lookup"><span data-stu-id="73ce4-148">20, 10</span></span>
 
 
-- <span data-ttu-id="865f5-149">*사례 2: 병렬 큐에 넣기 작업*</span><span class="sxs-lookup"><span data-stu-id="865f5-149">*Case 2: Parallel Enqueue Task*</span></span>
+- <span data-ttu-id="73ce4-149">*사례 2: 병렬 큐에 넣기 작업*</span><span class="sxs-lookup"><span data-stu-id="73ce4-149">*Case 2: Parallel Enqueue Task*</span></span>
 
 ```
 // Parallel Task 1
@@ -95,14 +95,14 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-<span data-ttu-id="865f5-150">작업이 성공적으로 완료되고, 작업이 병렬로 실행되고, 큐를 수정하는 다른 동시 트랜잭션이 없다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-150">Assume that the tasks completed successfully, that the tasks ran in parallel, and that there were no other concurrent transactions modifying the queue.</span></span> <span data-ttu-id="865f5-151">큐에 있는 항목의 순서를 방해할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-151">No inference can be made about the order of items in the queue.</span></span> <span data-ttu-id="865f5-152">이 코드 조각에 대 한 항목은 4에 나타날 수 있습니다!</span><span class="sxs-lookup"><span data-stu-id="865f5-152">For this code snippet, the items may appear in any of the 4!</span></span> <span data-ttu-id="865f5-153">가능한 순서로 정렬 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-153">possible orderings.</span></span>  <span data-ttu-id="865f5-154">큐는 원래 (큐에 넣은) 순서로 항목을 유지하려고 하지만 오류 또는 동시 작업으로 인해 순서를 변경해야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-154">The queue will attempt to keep the items in the original (enqueued) order, but may be forced to reorder them due to concurrent operations or faults.</span></span>
+<span data-ttu-id="73ce4-150">hello 작업에서 병렬로 실행 하 고 다른 트랜잭션은 동시 트랜잭션이 없는 hello 큐 수정 했음을 hello 작업이 성공적으로 완료 하는 것으로 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-150">Assume that hello tasks completed successfully, that hello tasks ran in parallel, and that there were no other concurrent transactions modifying hello queue.</span></span> <span data-ttu-id="73ce4-151">Hello 순서 hello 큐의 항목에 대 한 없습니다 유추를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-151">No inference can be made about hello order of items in hello queue.</span></span> <span data-ttu-id="73ce4-152">이 코드 조각에 대 한 hello 항목 4 hello에 나타날 수 있습니다!</span><span class="sxs-lookup"><span data-stu-id="73ce4-152">For this code snippet, hello items may appear in any of hello 4!</span></span> <span data-ttu-id="73ce4-153">가능한 순서로 정렬 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-153">possible orderings.</span></span>  <span data-ttu-id="73ce4-154">hello 큐 tookeep hello 항목 순서로 hello 원래 (큐), 되지만 강제 tooreorder 않을 수 있습니다 기한 tooconcurrent 작업 또는 오류가 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-154">hello queue will attempt tookeep hello items in hello original (enqueued) order, but may be forced tooreorder them due tooconcurrent operations or faults.</span></span>
 
 
-### <a name="dequeueasync"></a><span data-ttu-id="865f5-155">DequeueAsync</span><span class="sxs-lookup"><span data-stu-id="865f5-155">DequeueAsync</span></span>
-<span data-ttu-id="865f5-156">다음은 예상된 출력 뒤에 TryDequeueAsync를 사용하기 위한 몇 가지 코드 조각입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-156">Here are a few code snippets for using TryDequeueAsync followed by the expected outputs.</span></span> <span data-ttu-id="865f5-157">큐가 이미 큐의 다음 항목으로 채워졌다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-157">Assume that the queue is already populated with the following items in the queue:</span></span>
-> <span data-ttu-id="865f5-158">10, 20, 30, 40, 50, 60</span><span class="sxs-lookup"><span data-stu-id="865f5-158">10, 20, 30, 40, 50, 60</span></span>
+### <a name="dequeueasync"></a><span data-ttu-id="73ce4-155">DequeueAsync</span><span class="sxs-lookup"><span data-stu-id="73ce4-155">DequeueAsync</span></span>
+<span data-ttu-id="73ce4-156">다음은 TryDequeueAsync hello 예상 출력 뒤에 사용 하기 위한 몇 가지 코드 조각입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-156">Here are a few code snippets for using TryDequeueAsync followed by hello expected outputs.</span></span> <span data-ttu-id="73ce4-157">해당 hello 큐 hello hello 큐에 있는 항목을 다음으로 이미 채워져 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-157">Assume that hello queue is already populated with hello following items in hello queue:</span></span>
+> <span data-ttu-id="73ce4-158">10, 20, 30, 40, 50, 60</span><span class="sxs-lookup"><span data-stu-id="73ce4-158">10, 20, 30, 40, 50, 60</span></span>
 
-- <span data-ttu-id="865f5-159">*사례 1: 단일 큐에서 제거 작업*</span><span class="sxs-lookup"><span data-stu-id="865f5-159">*Case 1: Single Dequeue Task*</span></span>
+- <span data-ttu-id="73ce4-159">*사례 1: 단일 큐에서 제거 작업*</span><span class="sxs-lookup"><span data-stu-id="73ce4-159">*Case 1: Single Dequeue Task*</span></span>
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -115,9 +115,9 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-<span data-ttu-id="865f5-160">작업이 성공적으로 완료되고 큐를 수정하는 동시 트랜잭션이 없다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-160">Assume that the task completed successfully, and that there were no concurrent transactions modifying the queue.</span></span> <span data-ttu-id="865f5-161">큐에 있는 항목의 순서를 방해할 수 없으므로 3개의 모든 항목은 순서에 관계없이 제거될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-161">Since no inference can be made about the order of the items in the queue, any three of the items may be dequeued, in any order.</span></span> <span data-ttu-id="865f5-162">큐는 원래 (큐에 넣은) 순서로 항목을 유지하려고 하지만 오류 또는 동시 작업으로 인해 순서를 변경해야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-162">The queue will attempt to keep the items in the original (enqueued) order, but may be forced to reorder them due to concurrent operations or faults.</span></span>  
+<span data-ttu-id="73ce4-160">Hello 큐를 수정 하는 트랜잭션은 동시 트랜잭션이 없는 있었습니다 하 고 성공적으로 완료 하는 hello 작업을 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-160">Assume that hello task completed successfully, and that there were no concurrent transactions modifying hello queue.</span></span> <span data-ttu-id="73ce4-161">없는 유추 hello 큐의 hello 항목 hello 순서에 대 한 만들어질 수 있으므로 모든 세 항목이 hello 수 있습니다 수 큐에서 제거를 순서에 관계 없이 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-161">Since no inference can be made about hello order of hello items in hello queue, any three of hello items may be dequeued, in any order.</span></span> <span data-ttu-id="73ce4-162">hello 큐 tookeep hello 항목 순서로 hello 원래 (큐), 되지만 강제 tooreorder 않을 수 있습니다 기한 tooconcurrent 작업 또는 오류가 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-162">hello queue will attempt tookeep hello items in hello original (enqueued) order, but may be forced tooreorder them due tooconcurrent operations or faults.</span></span>  
 
-- <span data-ttu-id="865f5-163">*사례 2: 병렬 큐에서 제거 작업*</span><span class="sxs-lookup"><span data-stu-id="865f5-163">*Case 2: Parallel Dequeue Task*</span></span>
+- <span data-ttu-id="73ce4-163">*사례 2: 병렬 큐에서 제거 작업*</span><span class="sxs-lookup"><span data-stu-id="73ce4-163">*Case 2: Parallel Dequeue Task*</span></span>
 
 ```
 // Parallel Task 1
@@ -141,13 +141,13 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-<span data-ttu-id="865f5-164">작업이 성공적으로 완료되고, 작업이 병렬로 실행되고, 큐를 수정하는 다른 동시 트랜잭션이 없다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-164">Assume that the tasks completed successfully, that the tasks ran in parallel, and that there were no other concurrent transactions modifying the queue.</span></span> <span data-ttu-id="865f5-165">큐에 있는 항목의 순서를 방해할 수 없으므로 *dequeue1* 및 *dequeue2* 목록은 순서에 관계없이 각각 두 개의 항목을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-165">Since no inference can be made about the order of the items in the queue, the lists *dequeue1* and *dequeue2* will each contain any two items, in any order.</span></span>
+<span data-ttu-id="73ce4-164">hello 작업에서 병렬로 실행 하 고 다른 트랜잭션은 동시 트랜잭션이 없는 hello 큐 수정 했음을 hello 작업이 성공적으로 완료 하는 것으로 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-164">Assume that hello tasks completed successfully, that hello tasks ran in parallel, and that there were no other concurrent transactions modifying hello queue.</span></span> <span data-ttu-id="73ce4-165">없는 유추 hello 큐의 hello 항목 hello 순서에 대 한 만들어질 수 있으므로 hello 목록 *dequeue1* 및 *dequeue2* 각각 순서에 관계 없이 두 개의 항목이 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-165">Since no inference can be made about hello order of hello items in hello queue, hello lists *dequeue1* and *dequeue2* will each contain any two items, in any order.</span></span>
 
-<span data-ttu-id="865f5-166">동일한 항목은 두 목록에 모두 표시되지 *않습니다*.</span><span class="sxs-lookup"><span data-stu-id="865f5-166">The same item will *not* appear in both lists.</span></span> <span data-ttu-id="865f5-167">따라서 dequeue1에 *10*, *30*이 있으면 dequeue2에는 *20*, *40*이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-167">Hence, if dequeue1 has *10*, *30*, then dequeue2 would have *20*, *40*.</span></span>
+<span data-ttu-id="73ce4-166">동일한 항목은 hello *하지* 두 목록에에서 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-166">hello same item will *not* appear in both lists.</span></span> <span data-ttu-id="73ce4-167">따라서 dequeue1에 *10*, *30*이 있으면 dequeue2에는 *20*, *40*이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-167">Hence, if dequeue1 has *10*, *30*, then dequeue2 would have *20*, *40*.</span></span>
 
-- <span data-ttu-id="865f5-168">*사례 3: 트랜잭션이 중단된 큐에서 제거 순서*</span><span class="sxs-lookup"><span data-stu-id="865f5-168">*Case 3: Dequeue Ordering With Transaction Abort*</span></span>
+- <span data-ttu-id="73ce4-168">*사례 3: 트랜잭션이 중단된 큐에서 제거 순서*</span><span class="sxs-lookup"><span data-stu-id="73ce4-168">*Case 3: Dequeue Ordering With Transaction Abort*</span></span>
 
-<span data-ttu-id="865f5-169">진행 중인 큐에서 제거를 포함한 트랜잭션을 중단하면 항목을 큐의 시작 부분에 다시 배치합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-169">Aborting a transaction with in-flight dequeues puts the items back on the head of the queue.</span></span> <span data-ttu-id="865f5-170">항목을 큐의 시작 부분에 다시 배치하는 순서는 보장되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-170">The order in which the items are put back on the head of the queue is not guaranteed.</span></span> <span data-ttu-id="865f5-171">다음 코드를 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-171">Let us look at the following code:</span></span>
+<span data-ttu-id="73ce4-169">진행 중인 인 트랜잭션을 중단 하 고 hello 항목 hello 큐의 hello 헤드에 대해 설정 큐에서 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-169">Aborting a transaction with in-flight dequeues puts hello items back on hello head of hello queue.</span></span> <span data-ttu-id="73ce4-170">hello 항목 hello 큐의 앞 부분 hello에 넣는 다시 hello 순서 보장 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-170">hello order in which hello items are put back on hello head of hello queue is not guaranteed.</span></span> <span data-ttu-id="73ce4-171">에 대해 알아보겠습니다 코드 다음 hello:</span><span class="sxs-lookup"><span data-stu-id="73ce4-171">Let us look at hello following code:</span></span>
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -155,25 +155,25 @@ using (var txn = this.StateManager.CreateTransaction())
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
 
-    // Abort the transaction
+    // Abort hello transaction
     await txn.AbortAsync();
 }
 ```
-<span data-ttu-id="865f5-172">다음과 같은 순서로 항목을 큐에서 제거한다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-172">Assume that the items were dequeued in the following order:</span></span>
-> <span data-ttu-id="865f5-173">10, 20</span><span class="sxs-lookup"><span data-stu-id="865f5-173">10, 20</span></span>
+<span data-ttu-id="73ce4-172">순서에 따라 hello에 hello 항목 된 큐에서 제거를 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-172">Assume that hello items were dequeued in hello following order:</span></span>
+> <span data-ttu-id="73ce4-173">10, 20</span><span class="sxs-lookup"><span data-stu-id="73ce4-173">10, 20</span></span>
 
-<span data-ttu-id="865f5-174">트랜잭션을 중단하는 경우 항목은 다음 순서로 큐의 시작 부분에 다시 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-174">When we abort the transaction, the items would be added back to the head of the queue in any of the following orders:</span></span>
-> <span data-ttu-id="865f5-175">10, 20</span><span class="sxs-lookup"><span data-stu-id="865f5-175">10, 20</span></span>
+<span data-ttu-id="73ce4-174">Hello 트랜잭션을 중단 하는 것 때 hello 항목 추가 되 hello 큐의 앞 부분 백 toohello hello 주문 다음 중 하나:</span><span class="sxs-lookup"><span data-stu-id="73ce4-174">When we abort hello transaction, hello items would be added back toohello head of hello queue in any of hello following orders:</span></span>
+> <span data-ttu-id="73ce4-175">10, 20</span><span class="sxs-lookup"><span data-stu-id="73ce4-175">10, 20</span></span>
 
-> <span data-ttu-id="865f5-176">20, 10</span><span class="sxs-lookup"><span data-stu-id="865f5-176">20, 10</span></span>
+> <span data-ttu-id="73ce4-176">20, 10</span><span class="sxs-lookup"><span data-stu-id="73ce4-176">20, 10</span></span>
 
-<span data-ttu-id="865f5-177">트랜잭션이 성공적으로 *커밋되지* 않은 경우에도 마찬가지입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-177">The same is true for all cases where the transaction was not successfully *Committed*.</span></span>
+<span data-ttu-id="73ce4-177">hello에 마찬가지입니다 hello 트랜잭션의 푼 성공적으로 모든 경우 *커밋됨*합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-177">hello same is true for all cases where hello transaction was not successfully *Committed*.</span></span>
 
-## <a name="programming-patterns"></a><span data-ttu-id="865f5-178">프로그래밍 패턴</span><span class="sxs-lookup"><span data-stu-id="865f5-178">Programming Patterns</span></span>
-<span data-ttu-id="865f5-179">이 섹션에서는 ReliableConcurrentQueue를 사용하는 데 도움이 될 수 있는 몇 가지 프로그래밍 패턴을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-179">In this section, let us look at a few programming patterns that might be helpful in using ReliableConcurrentQueue.</span></span>
+## <a name="programming-patterns"></a><span data-ttu-id="73ce4-178">프로그래밍 패턴</span><span class="sxs-lookup"><span data-stu-id="73ce4-178">Programming Patterns</span></span>
+<span data-ttu-id="73ce4-179">이 섹션에서는 ReliableConcurrentQueue를 사용하는 데 도움이 될 수 있는 몇 가지 프로그래밍 패턴을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-179">In this section, let us look at a few programming patterns that might be helpful in using ReliableConcurrentQueue.</span></span>
 
-### <a name="batch-dequeues"></a><span data-ttu-id="865f5-180">큐에서 제거 일괄 처리</span><span class="sxs-lookup"><span data-stu-id="865f5-180">Batch Dequeues</span></span>
-<span data-ttu-id="865f5-181">한 번에 큐에서 제거를 수행하는 대신 큐에서 제거를 일괄 처리하는 소비자 작업의 경우 프로그래밍 패턴을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-181">A recommended programming pattern is for the consumer task to batch its dequeues instead of performing one dequeue at a time.</span></span> <span data-ttu-id="865f5-182">사용자는 모든 일괄 처리 또는 일괄 처리 크기 간에 지연 시간을 제한하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-182">The user can choose to throttle delays between every batch or the batch size.</span></span> <span data-ttu-id="865f5-183">다음 코드 조각에서는 이 프로그래밍 모델을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-183">The following code snippet shows this programming model.</span></span>  <span data-ttu-id="865f5-184">이 예제에서 트랜잭션이 커밋된 후에 처리를 수행합니다. 따라서 처리하는 동안 오류가 발생하는 경우 처리되지 않은 항목은 처리되지 않고 손실됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-184">Note that in this example, the processing is done after the transaction is committed, so if a fault were to occur while processing, the unprocessed items will be lost without having been processed.</span></span>  <span data-ttu-id="865f5-185">또는 트랜잭션 범위 내에서 처리를 수행할 수 있지만 그러면 성능에 부정적인 영향을 주고 이미 처리된 항목을 처리해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-185">Alternatively, the processing can be done within the transaction's scope, however this may have a negative impact on performance and requires handling of the items already processed.</span></span>
+### <a name="batch-dequeues"></a><span data-ttu-id="73ce4-180">큐에서 제거 일괄 처리</span><span class="sxs-lookup"><span data-stu-id="73ce4-180">Batch Dequeues</span></span>
+<span data-ttu-id="73ce4-181">A 소비자 작업 toobatch hello에 대 한 프로그래밍 패턴은 권장의 하나를 수행 하는 대신 큐에서 한 번에 큐에서 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-181">A recommended programming pattern is for hello consumer task toobatch its dequeues instead of performing one dequeue at a time.</span></span> <span data-ttu-id="73ce4-182">hello 사용자는 모든 일괄 처리 또는 hello 일괄 처리 크기 간에 toothrottle 지연 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-182">hello user can choose toothrottle delays between every batch or hello batch size.</span></span> <span data-ttu-id="73ce4-183">hello 다음 코드 조각은이 프로그래밍 모델을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-183">hello following code snippet shows this programming model.</span></span>  <span data-ttu-id="73ce4-184">이 예제에서는 hello 처리 했는지 hello 트랜잭션이 커밋된 후 되도록 오류 처리 하는 동안 toooccur 인 경우 hello 처리 되지 않은 항목 손실 처리 된 필요 없이 note 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-184">Note that in this example, hello processing is done after hello transaction is committed, so if a fault were toooccur while processing, hello unprocessed items will be lost without having been processed.</span></span>  <span data-ttu-id="73ce4-185">하지만 Hello 처리를 수행할 수 있습니다 또는 hello 트랜잭션 범위 내에서이 성능에 부정적인 영향을 미칠 수 있습니다 및 이미 hello 항목 처리가 필요 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-185">Alternatively, hello processing can be done within hello transaction's scope, however this may have a negative impact on performance and requires handling of hello items already processed.</span></span>
 
 ```
 int batchSize = 5;
@@ -194,12 +194,12 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
             else
             {
-                // else break the for loop
+                // else break hello for loop
                 break;
             }
         }
@@ -207,7 +207,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -218,8 +218,8 @@ while(!cancellationToken.IsCancellationRequested)
 }
 ```
 
-### <a name="best-effort-notification-based-processing"></a><span data-ttu-id="865f5-186">최상의 알림 기반 처리</span><span class="sxs-lookup"><span data-stu-id="865f5-186">Best-Effort Notification-Based Processing</span></span>
-<span data-ttu-id="865f5-187">개수 API를 사용하는 또 다른 프로그래밍 패턴입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-187">Another interesting programming pattern uses the Count API.</span></span> <span data-ttu-id="865f5-188">여기서는 큐에 대해 최상의 알림 기반 처리를 구현할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-188">Here, we can implement best-effort notification-based processing for the queue.</span></span> <span data-ttu-id="865f5-189">큐 개수는 큐에 넣기 또는 큐에서 제거 작업을 제한하는 데 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-189">The queue Count can be used to throttle an enqueue or a dequeue task.</span></span>  <span data-ttu-id="865f5-190">이전 예제와 같이 처리가 트랜잭션 외부에서 발생하므로 처리하는 동안 오류가 발생하는 경우 처리되지 않은 항목은 손실될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-190">Note that as in the previous example, since the processing occurs outside the transaction, unprocessed items may be lost if a fault occurs during processing.</span></span>
+### <a name="best-effort-notification-based-processing"></a><span data-ttu-id="73ce4-186">최상의 알림 기반 처리</span><span class="sxs-lookup"><span data-stu-id="73ce4-186">Best-Effort Notification-Based Processing</span></span>
+<span data-ttu-id="73ce4-187">또 다른 흥미로운 프로그래밍 패턴 hello 개수 API를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-187">Another interesting programming pattern uses hello Count API.</span></span> <span data-ttu-id="73ce4-188">여기에서는 hello 큐에 대 한 최상의 알림 기반 처리를 구현할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-188">Here, we can implement best-effort notification-based processing for hello queue.</span></span> <span data-ttu-id="73ce4-189">hello 큐 개수 인 큐에서 사용 되는 toothrottle 또는 큐에서 제거 작업 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-189">hello queue Count can be used toothrottle an enqueue or a dequeue task.</span></span>  <span data-ttu-id="73ce4-190">참고 hello 이전 예제와 같이 hello 처리 hello 트랜잭션 밖에 서 발생 하므로 처리 되지 않은 항목이 손실 될 수 있다는 처리 하는 동안 오류가 발생 하는 경우.</span><span class="sxs-lookup"><span data-stu-id="73ce4-190">Note that as in hello previous example, since hello processing occurs outside hello transaction, unprocessed items may be lost if a fault occurs during processing.</span></span>
 
 ```
 int threshold = 5;
@@ -231,11 +231,11 @@ while(!cancellationToken.IsCancellationRequested)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        // If the queue does not have the threshold number of items, delay the task and check again
+        // If hello queue does not have hello threshold number of items, delay hello task and check again
         await Task.Delay(TimeSpan.FromMilliseconds(delayMs), cancellationToken);
     }
 
-    // If there are approximately threshold number of items, try and process the queue
+    // If there are approximately threshold number of items, try and process hello queue
 
     // Buffer for dequeued items
     List<int> processItems = new List<int>();
@@ -250,7 +250,7 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
         } while (processItems.Count < threshold && ret.HasValue);
@@ -258,7 +258,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -266,10 +266,10 @@ while(!cancellationToken.IsCancellationRequested)
 }
 ```
 
-### <a name="best-effort-drain"></a><span data-ttu-id="865f5-191">최상의 드레이닝</span><span class="sxs-lookup"><span data-stu-id="865f5-191">Best-Effort Drain</span></span>
-<span data-ttu-id="865f5-192">데이터 구조의 동시 특성으로 인해 큐의 드레이닝을 보장할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-192">A drain of the queue cannot be guaranteed due to the concurrent nature of the data structure.</span></span>  <span data-ttu-id="865f5-193">큐에서 사용자 작업이 진행되지 않는 경우더라도 TryDequeueAsync에 대한 특정 호출은 이전에 큐에 넣고 커밋된 항목을 반환하지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-193">It is possible that, even if no user operations on the queue are in-flight, a particular call to TryDequeueAsync may not return an item which was previously enqueued and committed.</span></span>  <span data-ttu-id="865f5-194">큐에 넣은 항목은 *결국* 큐에서 제거된다고 표시되지만 모든 생산자가 중지되고 새 큐에 넣기 작업이 허용되는 경우에도 독립 소비자는 대역외 통신 메커니즘 없이 큐가 안정적인 상태에 도달했음을 알 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-194">The enqueued item is guaranteed to *eventually* become visible to dequeue, however without an out-of-band communication mechanism, an independent consumer cannot know that the queue has reached a steady-state even if all producers have been stopped and no new enqueue operations are allowed.</span></span> <span data-ttu-id="865f5-195">따라서 드레이닝 작업은 아래와 같이 구현될 때 가장 효율적입니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-195">Thus, the drain operation is best-effort as implemented below.</span></span>
+### <a name="best-effort-drain"></a><span data-ttu-id="73ce4-191">최상의 드레이닝</span><span class="sxs-lookup"><span data-stu-id="73ce4-191">Best-Effort Drain</span></span>
+<span data-ttu-id="73ce4-192">Hello 데이터 구조의 toohello 동시 특성 인해 hello 큐의 드레이닝을 보장할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-192">A drain of hello queue cannot be guaranteed due toohello concurrent nature of hello data structure.</span></span>  <span data-ttu-id="73ce4-193">즉, hello 큐에 없는 사용자는 작업은 진행 중인, 경우에 특정 호출 tooTryDequeueAsync 반환할 수 없습니다. 큐에 대기 된 이전의 항목 수 및 커밋되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-193">It is possible that, even if no user operations on hello queue are in-flight, a particular call tooTryDequeueAsync may not return an item which was previously enqueued and committed.</span></span>  <span data-ttu-id="73ce4-194">하지만 hello 큐에 대기 된 항목은 너무 보장*결국* 는-대역외 통신 메커니즘 없이 독립 소비자를 알 수 없으므로 해당 hello 큐에 경우에도 안정 상태에 도달 했습니다 표시 toodequeue 될 모든 생산자를 중지 하 고 새 큐에 삽입 작업이 허용 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-194">hello enqueued item is guaranteed too*eventually* become visible toodequeue, however without an out-of-band communication mechanism, an independent consumer cannot know that hello queue has reached a steady-state even if all producers have been stopped and no new enqueue operations are allowed.</span></span> <span data-ttu-id="73ce4-195">따라서 hello 드레이닝 작업이 최상의 아래 구현입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-195">Thus, hello drain operation is best-effort as implemented below.</span></span>
 
-<span data-ttu-id="865f5-196">사용자는 큐를 비우기 전에 모든 추가 생산자와 소비자 작업을 중지하고 실행 중인 모든 트랜잭션을 커밋하거나 중단할 때까지 기다려야 합니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-196">The user should stop all further producer and consumer tasks, and wait for any in-flight transactions to commit or abort, before attempting to drain the queue.</span></span>  <span data-ttu-id="865f5-197">사용자가 예상된 큐의 항목 수를 아는 경우 모든 항목이 큐에서 제거되었음을 알리는 알림을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-197">If the user knows the expected number of items in the queue, they can set up a notification which signals that all items have been dequeued.</span></span>
+<span data-ttu-id="73ce4-196">hello 사용자는 모든 후속 생산자와 소비자 작업을 중지 하 고 모든 진행 중인 트랜잭션은 toocommit 또는 중단 toodrain hello 큐를 시도 하기 전에 대기 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-196">hello user should stop all further producer and consumer tasks, and wait for any in-flight transactions toocommit or abort, before attempting toodrain hello queue.</span></span>  <span data-ttu-id="73ce4-197">Hello 사용자가 예상 하는 hello hello 큐의 항목 수를 알고, 모든 항목이 있는 큐 제거 알리는 알림을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-197">If hello user knows hello expected number of items in hello queue, they can set up a notification which signals that all items have been dequeued.</span></span>
 
 ```
 int numItemsDequeued;
@@ -289,7 +289,7 @@ do
 
             if(ret.HasValue)
             {
-                // Buffer the dequeues
+                // Buffer hello dequeues
                 processItems.Add(ret.Value);
             }
         } while (ret.HasValue && processItems.Count < batchSize);
@@ -297,7 +297,7 @@ do
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -305,8 +305,8 @@ do
 } while (ret.HasValue);
 ```
 
-### <a name="peek"></a><span data-ttu-id="865f5-198">보기</span><span class="sxs-lookup"><span data-stu-id="865f5-198">Peek</span></span>
-<span data-ttu-id="865f5-199">ReliableConcurrentQueue는 *TryPeekAsync* API를 제공하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-199">ReliableConcurrentQueue does not provide the *TryPeekAsync* api.</span></span> <span data-ttu-id="865f5-200">사용자는 *TryDequeueAsync*를 사용한 다음 트랜잭션을 중단하여 보기 의미 체계를 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-200">Users can get the peek semantic by using a *TryDequeueAsync* and then aborting the transaction.</span></span> <span data-ttu-id="865f5-201">이 예제에서는 큐에서 제거는 항목의 값이 *10*보다 큰 경우에만 처리됩니다.</span><span class="sxs-lookup"><span data-stu-id="865f5-201">In this example, dequeues are processed only if the item's value is greater than *10*.</span></span>
+### <a name="peek"></a><span data-ttu-id="73ce4-198">보기</span><span class="sxs-lookup"><span data-stu-id="73ce4-198">Peek</span></span>
+<span data-ttu-id="73ce4-199">ReliableConcurrentQueue hello를 제공 하지 않습니다 *TryPeekAsync* api입니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-199">ReliableConcurrentQueue does not provide hello *TryPeekAsync* api.</span></span> <span data-ttu-id="73ce4-200">사용자가 액세스할 수 hello 피크 (peek) 의미 체계를 사용 하 여 한 *TryDequeueAsync* 다음 hello 트랜잭션을 중단 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-200">Users can get hello peek semantic by using a *TryDequeueAsync* and then aborting hello transaction.</span></span> <span data-ttu-id="73ce4-201">이 예제에서는 큐에서 hello 항목의 값 보다 큰 경우에 처리 *10*합니다.</span><span class="sxs-lookup"><span data-stu-id="73ce4-201">In this example, dequeues are processed only if hello item's value is greater than *10*.</span></span>
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -318,7 +318,7 @@ using (var txn = this.StateManager.CreateTransaction())
     {
         if (ret.Value > 10)
         {
-            // Process the item
+            // Process hello item
             Console.WriteLine("Value : " + ret.Value);
             valueProcessed = true;
         }
@@ -335,12 +335,12 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-## <a name="must-read"></a><span data-ttu-id="865f5-202">필수 참고 목록</span><span class="sxs-lookup"><span data-stu-id="865f5-202">Must Read</span></span>
-* [<span data-ttu-id="865f5-203">Reliable Services 빠른 시작</span><span class="sxs-lookup"><span data-stu-id="865f5-203">Reliable Services Quick Start</span></span>](service-fabric-reliable-services-quick-start.md)
-* [<span data-ttu-id="865f5-204">신뢰할 수 있는 컬렉션 작업</span><span class="sxs-lookup"><span data-stu-id="865f5-204">Working with Reliable Collections</span></span>](service-fabric-work-with-reliable-collections.md)
-* [<span data-ttu-id="865f5-205">Reliable Services 알림</span><span class="sxs-lookup"><span data-stu-id="865f5-205">Reliable Services notifications</span></span>](service-fabric-reliable-services-notifications.md)
-* [<span data-ttu-id="865f5-206">Reliable Services 백업 및 복원(재해 복구)</span><span class="sxs-lookup"><span data-stu-id="865f5-206">Reliable Services Backup and Restore (Disaster Recovery)</span></span>](service-fabric-reliable-services-backup-restore.md)
-* [<span data-ttu-id="865f5-207">신뢰할 수 있는 상태 관리자 구성</span><span class="sxs-lookup"><span data-stu-id="865f5-207">Reliable State Manager Configuration</span></span>](service-fabric-reliable-services-configuration.md)
-* [<span data-ttu-id="865f5-208">Service Fabric Web API 서비스 시작</span><span class="sxs-lookup"><span data-stu-id="865f5-208">Getting Started with Service Fabric Web API Services</span></span>](service-fabric-reliable-services-communication-webapi.md)
-* [<span data-ttu-id="865f5-209">Reliable Services 프로그래밍 모델 고급 사용법</span><span class="sxs-lookup"><span data-stu-id="865f5-209">Advanced Usage of the Reliable Services Programming Model</span></span>](service-fabric-reliable-services-advanced-usage.md)
-* [<span data-ttu-id="865f5-210">신뢰할 수 있는 컬렉션에 대한 개발자 참조</span><span class="sxs-lookup"><span data-stu-id="865f5-210">Developer Reference for Reliable Collections</span></span>](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
+## <a name="must-read"></a><span data-ttu-id="73ce4-202">필수 참고 목록</span><span class="sxs-lookup"><span data-stu-id="73ce4-202">Must Read</span></span>
+* [<span data-ttu-id="73ce4-203">Reliable Services 빠른 시작</span><span class="sxs-lookup"><span data-stu-id="73ce4-203">Reliable Services Quick Start</span></span>](service-fabric-reliable-services-quick-start.md)
+* [<span data-ttu-id="73ce4-204">신뢰할 수 있는 컬렉션 작업</span><span class="sxs-lookup"><span data-stu-id="73ce4-204">Working with Reliable Collections</span></span>](service-fabric-work-with-reliable-collections.md)
+* [<span data-ttu-id="73ce4-205">Reliable Services 알림</span><span class="sxs-lookup"><span data-stu-id="73ce4-205">Reliable Services notifications</span></span>](service-fabric-reliable-services-notifications.md)
+* [<span data-ttu-id="73ce4-206">Reliable Services 백업 및 복원(재해 복구)</span><span class="sxs-lookup"><span data-stu-id="73ce4-206">Reliable Services Backup and Restore (Disaster Recovery)</span></span>](service-fabric-reliable-services-backup-restore.md)
+* [<span data-ttu-id="73ce4-207">신뢰할 수 있는 상태 관리자 구성</span><span class="sxs-lookup"><span data-stu-id="73ce4-207">Reliable State Manager Configuration</span></span>](service-fabric-reliable-services-configuration.md)
+* [<span data-ttu-id="73ce4-208">Service Fabric Web API 서비스 시작</span><span class="sxs-lookup"><span data-stu-id="73ce4-208">Getting Started with Service Fabric Web API Services</span></span>](service-fabric-reliable-services-communication-webapi.md)
+* [<span data-ttu-id="73ce4-209">Hello 신뢰할 수 있는 서비스 프로그래밍 모델의 고급 사용</span><span class="sxs-lookup"><span data-stu-id="73ce4-209">Advanced Usage of hello Reliable Services Programming Model</span></span>](service-fabric-reliable-services-advanced-usage.md)
+* [<span data-ttu-id="73ce4-210">신뢰할 수 있는 컬렉션에 대한 개발자 참조</span><span class="sxs-lookup"><span data-stu-id="73ce4-210">Developer Reference for Reliable Collections</span></span>](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)

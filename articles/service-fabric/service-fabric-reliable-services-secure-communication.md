@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric에서 서비스에 대한 통신 보호 도움말 | Microsoft Docs"
-description: "Azure 서비스 패브릭 클러스터에서 실행되는 Reliable Services에 대한 통신을 보호하는 방법을 간략하게 설명합니다."
+title: "Azure 서비스 패브릭에서 서비스에 대 한 보안 통신 aaaHelp | Microsoft Docs"
+description: "어떻게 toohelp를 보호 하는 신뢰할 수 있는 서비스에 대 한 통신의 개요는 Azure 서비스 패브릭 클러스터에서 실행 됩니다."
 services: service-fabric
 documentationcenter: .net
 author: suchiagicha
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/20/2017
 ms.author: suchiagicha
-ms.openlocfilehash: 53119244f8f09c0c6c43f43761af1cc074f8d0af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15201eb503322b17db329b319f1f42860b0f0c6b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="help-secure-communication-for-services-in-azure-service-fabric"></a><span data-ttu-id="f042d-103">Azure 서비스 패브릭에서 서비스에 대한 통신 보호 도움말</span><span class="sxs-lookup"><span data-stu-id="f042d-103">Help secure communication for services in Azure Service Fabric</span></span>
+# <a name="help-secure-communication-for-services-in-azure-service-fabric"></a><span data-ttu-id="7176e-103">Azure 서비스 패브릭에서 서비스에 대한 통신 보호 도움말</span><span class="sxs-lookup"><span data-stu-id="7176e-103">Help secure communication for services in Azure Service Fabric</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="f042d-104">Windows에서 C#</span><span class="sxs-lookup"><span data-stu-id="f042d-104">C# on Windows</span></span>](service-fabric-reliable-services-secure-communication.md)
-> * [<span data-ttu-id="f042d-105">Linux에서 Java</span><span class="sxs-lookup"><span data-stu-id="f042d-105">Java on Linux</span></span>](service-fabric-reliable-services-secure-communication-java.md)
+> * [<span data-ttu-id="7176e-104">Windows에서 C#</span><span class="sxs-lookup"><span data-stu-id="7176e-104">C# on Windows</span></span>](service-fabric-reliable-services-secure-communication.md)
+> * [<span data-ttu-id="7176e-105">Linux에서 Java</span><span class="sxs-lookup"><span data-stu-id="7176e-105">Java on Linux</span></span>](service-fabric-reliable-services-secure-communication-java.md)
 >
 >
 
-<span data-ttu-id="f042d-106">통신의 가장 중요한 측면 중 하나는 보안입니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-106">Security is one of the most important aspects of communication.</span></span> <span data-ttu-id="f042d-107">Reliable Services 응용 프로그램 프레임워크는 보안을 향상시키는 데 사용할 수 있는 미리 빌드된 통신 스택 및 도구 몇 가지를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-107">The Reliable Services application framework provides a few prebuilt communication stacks and tools that you can use to improve security.</span></span> <span data-ttu-id="f042d-108">이 문서에서는 서비스 원격 기능 및 WCF(Windows Communication Foundation) 통신 스택을 사용하는 경우 보안을 개선하는 방법에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-108">This article talks about how to improve security when you're using service remoting and the Windows Communication Foundation (WCF) communication stack.</span></span>
+<span data-ttu-id="7176e-106">보안 통신의 hello 가장 중요 한 측면 중 하나입니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-106">Security is one of hello most important aspects of communication.</span></span> <span data-ttu-id="7176e-107">hello 신뢰할 수 있는 서비스 응용 프로그램 프레임 워크는 몇 가지 미리 작성 된 통신 스택과 tooimprove 보안을 사용할 수 있는 도구를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-107">hello Reliable Services application framework provides a few prebuilt communication stacks and tools that you can use tooimprove security.</span></span> <span data-ttu-id="7176e-108">이 문서 tooimprove 보안을 사용 하는 경우 원격 서비스와 Windows Communication Foundation (WCF) 통신 스택을 hello 방법에 대해 소개 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-108">This article talks about how tooimprove security when you're using service remoting and hello Windows Communication Foundation (WCF) communication stack.</span></span>
 
-## <a name="help-secure-a-service-when-youre-using-service-remoting"></a><span data-ttu-id="f042d-109">서비스 원격 기능을 사용하는 경우 서비스 보호 도움말</span><span class="sxs-lookup"><span data-stu-id="f042d-109">Help secure a service when you're using service remoting</span></span>
-<span data-ttu-id="f042d-110">Reliable Services에 대한 원격 기능을 설정하는 방법에 대해 설명하는 기존 [예제](service-fabric-reliable-services-communication-remoting.md)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-110">We are using an existing [example](service-fabric-reliable-services-communication-remoting.md) that explains how to set up remoting for reliable services.</span></span> <span data-ttu-id="f042d-111">서비스 원격 기능을 사용하는 경우 서비스를 보호하려면 다음 단계를 따르세요.</span><span class="sxs-lookup"><span data-stu-id="f042d-111">To help secure a service when you're using service remoting, follow these steps:</span></span>
+## <a name="help-secure-a-service-when-youre-using-service-remoting"></a><span data-ttu-id="7176e-109">서비스 원격 기능을 사용하는 경우 서비스 보호 도움말</span><span class="sxs-lookup"><span data-stu-id="7176e-109">Help secure a service when you're using service remoting</span></span>
+<span data-ttu-id="7176e-110">사용 하 여 기존 [예제](service-fabric-reliable-services-communication-remoting.md) 설명 하는 방법을 tooset 신뢰할 수 있는 서비스에 대 한 원격을 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-110">We are using an existing [example](service-fabric-reliable-services-communication-remoting.md) that explains how tooset up remoting for reliable services.</span></span> <span data-ttu-id="7176e-111">toohelp 원격 서비스를 사용 하는 경우 서비스에 보안 설정, 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-111">toohelp secure a service when you're using service remoting, follow these steps:</span></span>
 
-1. <span data-ttu-id="f042d-112">서비스의 원격 프로시저 호출에 사용할 수 있는 메서드를 정의하는 인터페이스 `IHelloWorldStateful`을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-112">Create an interface, `IHelloWorldStateful`, that defines the methods that will be available for a remote procedure call on your service.</span></span> <span data-ttu-id="f042d-113">서비스는 `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` 네임스페이스에 선언되는 `FabricTransportServiceRemotingListener`를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-113">Your service will use `FabricTransportServiceRemotingListener`, which is declared in the `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` namespace.</span></span> <span data-ttu-id="f042d-114">이것은 원격 호출 기능을 제공하는 `ICommunicationListener` 구현입니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-114">This is an `ICommunicationListener` implementation that provides remoting capabilities.</span></span>
+1. <span data-ttu-id="7176e-112">인터페이스를 만들 `IHelloWorldStateful`, 서비스에 대 한 원격 프로시저 호출에서 사용할 수 있는 hello 메서드를 정의 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-112">Create an interface, `IHelloWorldStateful`, that defines hello methods that will be available for a remote procedure call on your service.</span></span> <span data-ttu-id="7176e-113">서비스 ´ ֲ `FabricTransportServiceRemotingListener`, hello에는 선언 `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` 네임 스페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-113">Your service will use `FabricTransportServiceRemotingListener`, which is declared in hello `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` namespace.</span></span> <span data-ttu-id="7176e-114">이것은 원격 호출 기능을 제공하는 `ICommunicationListener` 구현입니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-114">This is an `ICommunicationListener` implementation that provides remoting capabilities.</span></span>
 
     ```csharp
     public interface IHelloWorldStateful : IService
@@ -55,11 +55,11 @@ ms.lasthandoff: 07/11/2017
         }
     }
     ```
-2. <span data-ttu-id="f042d-115">수신기 설정 및 보안 자격 증명을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-115">Add listener settings and security credentials.</span></span>
+2. <span data-ttu-id="7176e-115">수신기 설정 및 보안 자격 증명을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-115">Add listener settings and security credentials.</span></span>
 
-    <span data-ttu-id="f042d-116">서비스 통신을 보호하는 데 사용할 인증서는 클러스터의 모든 노드에 설치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-116">Make sure that the certificate that you want to use to help secure your service communication is installed on all the nodes in the cluster.</span></span> <span data-ttu-id="f042d-117">두 가지 방법으로 수신기 설정 및 보안 자격 증명을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-117">There are two ways that you can provide listener settings and security credentials:</span></span>
+    <span data-ttu-id="7176e-116">해당 hello 사용할 인증서를 toouse toohelp 보안 서비스 통신이 hello 클러스터의 모든 hello 노드에 설치 되어 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-116">Make sure that hello certificate that you want toouse toohelp secure your service communication is installed on all hello nodes in hello cluster.</span></span> <span data-ttu-id="7176e-117">두 가지 방법으로 수신기 설정 및 보안 자격 증명을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-117">There are two ways that you can provide listener settings and security credentials:</span></span>
 
-   1. <span data-ttu-id="f042d-118">서비스 코드에서 직접 제공:</span><span class="sxs-lookup"><span data-stu-id="f042d-118">Provide them directly in the service code:</span></span>
+   1. <span data-ttu-id="7176e-118">Hello 서비스 코드에서 직접 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-118">Provide them directly in hello service code:</span></span>
 
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -92,9 +92,9 @@ ms.lasthandoff: 07/11/2017
            return x509Credentials;
        }
        ```
-   2. <span data-ttu-id="f042d-119">[config 패키지](service-fabric-application-model.md)를 사용하여 제공:</span><span class="sxs-lookup"><span data-stu-id="f042d-119">Provide them by using a [config package](service-fabric-application-model.md):</span></span>
+   2. <span data-ttu-id="7176e-119">[config 패키지](service-fabric-application-model.md)를 사용하여 제공:</span><span class="sxs-lookup"><span data-stu-id="7176e-119">Provide them by using a [config package](service-fabric-application-model.md):</span></span>
 
-       <span data-ttu-id="f042d-120">settings.xml 파일에 `TransportSettings` 섹션을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-120">Add a `TransportSettings` section in the settings.xml file.</span></span>
+       <span data-ttu-id="7176e-120">추가 `TransportSettings` hello settings.xml 파일의 섹션입니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-120">Add a `TransportSettings` section in hello settings.xml file.</span></span>
 
        ```xml
        <Section Name="HelloWorldStatefulTransportSettings">
@@ -110,7 +110,7 @@ ms.lasthandoff: 07/11/2017
        </Section>
        ```
 
-       <span data-ttu-id="f042d-121">이 경우 `CreateServiceReplicaListeners` 메서드는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-121">In this case, the `CreateServiceReplicaListeners` method will look like this:</span></span>
+       <span data-ttu-id="7176e-121">이 경우 hello `CreateServiceReplicaListeners` 메서드는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-121">In this case, hello `CreateServiceReplicaListeners` method will look like this:</span></span>
 
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -124,7 +124,7 @@ ms.lasthandoff: 07/11/2017
        }
        ```
 
-        <span data-ttu-id="f042d-122">settings.xml 파일에 `TransportSettings` 섹션을 추가하면 `FabricTransportRemotingListenerSettings `는 기본적으로 이 섹션의 모든 설정을 로드합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-122">If you add a `TransportSettings` section in the settings.xml file , `FabricTransportRemotingListenerSettings ` will load all the settings from this section by default.</span></span>
+        <span data-ttu-id="7176e-122">추가 하는 경우는 `TransportSettings` hello settings.xml 파일의 섹션 `FabricTransportRemotingListenerSettings ` 기본적으로이 섹션에서 모든 hello 설정의 로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-122">If you add a `TransportSettings` section in hello settings.xml file , `FabricTransportRemotingListenerSettings ` will load all hello settings from this section by default.</span></span>
 
         ```xml
         <!--"TransportSettings" section .-->
@@ -132,7 +132,7 @@ ms.lasthandoff: 07/11/2017
             ...
         </Section>
         ```
-        <span data-ttu-id="f042d-123">이 경우 `CreateServiceReplicaListeners` 메서드는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-123">In this case, the `CreateServiceReplicaListeners` method will look like this:</span></span>
+        <span data-ttu-id="7176e-123">이 경우 hello `CreateServiceReplicaListeners` 메서드는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-123">In this case, hello `CreateServiceReplicaListeners` method will look like this:</span></span>
 
         ```csharp
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -145,7 +145,7 @@ ms.lasthandoff: 07/11/2017
             };
         }
         ```
-3. <span data-ttu-id="f042d-124">`Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 클래스를 사용하여 서비스 프록시를 만드는 대신 원격 스택을 사용하여 보안 서비스에서 메서드를 호출하는 경우 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-124">When you call methods on a secured service by using the remoting stack, instead of using the `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` class to create a service proxy, use `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`.</span></span> <span data-ttu-id="f042d-125">`SecurityCredentials`를 포함하는 `FabricTransportRemotingSettings`를 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-125">Pass in `FabricTransportRemotingSettings`, which contains `SecurityCredentials`.</span></span>
+3. <span data-ttu-id="7176e-124">Hello remoting 스택 hello를 사용 하는 대신 사용 하 여 보안된 서비스에 메서드를 호출 하는 경우 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 클래스 toocreate 서비스 프록시를 사용 하 여 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-124">When you call methods on a secured service by using hello remoting stack, instead of using hello `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` class toocreate a service proxy, use `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`.</span></span> <span data-ttu-id="7176e-125">`SecurityCredentials`를 포함하는 `FabricTransportRemotingSettings`를 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-125">Pass in `FabricTransportRemotingSettings`, which contains `SecurityCredentials`.</span></span>
 
     ```csharp
 
@@ -175,7 +175,7 @@ ms.lasthandoff: 07/11/2017
 
     ```
 
-    <span data-ttu-id="f042d-126">클라이언트 코드를 서비스의 일부로 실행하는 경우 settings.xml 파일에서 `FabricTransportRemotingSettings` 를 로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-126">If the client code is running as part of a service, you can load `FabricTransportRemotingSettings` from the settings.xml file.</span></span> <span data-ttu-id="f042d-127">위에 나와 있는 서비스 코드와 비슷한 HelloWorldClientTransportSettings 섹션을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-127">Create a HelloWorldClientTransportSettings section that is similar to the service code, as shown earlier.</span></span> <span data-ttu-id="f042d-128">클라이언트 코드를 다음과 같이 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-128">Make the following changes to the client code:</span></span>
+    <span data-ttu-id="7176e-126">서비스의 일부로 hello 클라이언트 코드를 실행 하는 경우 로드할 수 있습니다 `FabricTransportRemotingSettings` hello settings.xml 파일에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-126">If hello client code is running as part of a service, you can load `FabricTransportRemotingSettings` from hello settings.xml file.</span></span> <span data-ttu-id="7176e-127">앞에서 보았듯이 비슷한 toohello 서비스 코드를 있는 HelloWorldClientTransportSettings 섹션을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-127">Create a HelloWorldClientTransportSettings section that is similar toohello service code, as shown earlier.</span></span> <span data-ttu-id="7176e-128">Hello toohello 클라이언트 코드 변경 내용을 다음을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-128">Make hello following changes toohello client code:</span></span>
 
     ```csharp
     ServiceProxyFactory serviceProxyFactory = new ServiceProxyFactory(
@@ -188,11 +188,11 @@ ms.lasthandoff: 07/11/2017
 
     ```
 
-    <span data-ttu-id="f042d-129">클라이언트를 서비스의 일부로 실행하지 않는 경우에는 client_name.exe와 같은 위치에 client_name.settings.xml 파일을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-129">If the client is not running as part of a service, you can create a client_name.settings.xml file in the same location where the client_name.exe is.</span></span> <span data-ttu-id="f042d-130">그런 다음 해당 파일에서 TransportSettings 섹션을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-130">Then create a TransportSettings section in that file.</span></span>
+    <span data-ttu-id="7176e-129">Hello에 client_name.settings.xml 파일을 만들 수 hello 클라이언트는 서비스의 일부분으로를 실행 하지 않는 경우 hello client_name.exe가 동일한 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-129">If hello client is not running as part of a service, you can create a client_name.settings.xml file in hello same location where hello client_name.exe is.</span></span> <span data-ttu-id="7176e-130">그런 다음 해당 파일에서 TransportSettings 섹션을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-130">Then create a TransportSettings section in that file.</span></span>
 
-    <span data-ttu-id="f042d-131">서비스와 마찬가지로 클라이언트 settings.xml/client_name.settings.xml에 `TransportSettings` 섹션을 추가하면 `FabricTransportRemotingSettings`는 기본적으로 이 섹션의 모든 설정을 로드합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-131">Similar to the service, if you add a `TransportSettings` section in client settings.xml/client_name.settings.xml, `FabricTransportRemotingSettings` loads all the settings from this section by default.</span></span>
+    <span data-ttu-id="7176e-131">비슷한 toohello 서비스를 추가 하는 경우는 `TransportSettings` 클라이언트 settings.xml/client_name.settings.xml 섹션인 `FabricTransportRemotingSettings` 기본적으로이 섹션에서 모든 hello 설정을 로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-131">Similar toohello service, if you add a `TransportSettings` section in client settings.xml/client_name.settings.xml, `FabricTransportRemotingSettings` loads all hello settings from this section by default.</span></span>
 
-    <span data-ttu-id="f042d-132">그러면 앞의 코드를 더 간략하게 작성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-132">In that case, the earlier code is even further simplified:</span></span>  
+    <span data-ttu-id="7176e-132">이 경우 hello 이전 코드가 더욱 간소화:</span><span class="sxs-lookup"><span data-stu-id="7176e-132">In that case, hello earlier code is even further simplified:</span></span>  
 
     ```csharp
 
@@ -203,10 +203,10 @@ ms.lasthandoff: 07/11/2017
 
     ```
 
-## <a name="help-secure-a-service-when-youre-using-a-wcf-based-communication-stack"></a><span data-ttu-id="f042d-133">WCF 기반 통신 스택을 사용하는 경우 서비스 보호 방법</span><span class="sxs-lookup"><span data-stu-id="f042d-133">Help secure a service when you're using a WCF-based communication stack</span></span>
-<span data-ttu-id="f042d-134">Reliable Services에 대한 WCF 기반 통신 스택을 설정하는 방법을 설명하는 기존 [예제](service-fabric-reliable-services-communication-wcf.md)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-134">We are using an existing [example](service-fabric-reliable-services-communication-wcf.md) that explains how to set up a WCF-based communication stack for reliable services.</span></span> <span data-ttu-id="f042d-135">WCF 기반 통신 스택을 사용하는 경우 서비스를 보호하려면 다음 단계를 수행하세요.</span><span class="sxs-lookup"><span data-stu-id="f042d-135">To help secure a service when you're using a WCF-based communication stack, follow these steps:</span></span>
+## <a name="help-secure-a-service-when-youre-using-a-wcf-based-communication-stack"></a><span data-ttu-id="7176e-133">WCF 기반 통신 스택을 사용하는 경우 서비스 보호 방법</span><span class="sxs-lookup"><span data-stu-id="7176e-133">Help secure a service when you're using a WCF-based communication stack</span></span>
+<span data-ttu-id="7176e-134">사용 하 여 기존 [예제](service-fabric-reliable-services-communication-wcf.md) tooset WCF 기반 통신을 신뢰할 수 있는 서비스에 대 한 스택 하는 방법에 대해 설명 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-134">We are using an existing [example](service-fabric-reliable-services-communication-wcf.md) that explains how tooset up a WCF-based communication stack for reliable services.</span></span> <span data-ttu-id="7176e-135">toohelp은 WCF 기반 통신 스택을 사용 하는 경우 서비스에 보안 설정, 다음이 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-135">toohelp secure a service when you're using a WCF-based communication stack, follow these steps:</span></span>
 
-1. <span data-ttu-id="f042d-136">서비스의 경우 만든 WCF 통신 수신기(`WcfCommunicationListener`)를 보호해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-136">For the service, you need to help secure the WCF communication listener (`WcfCommunicationListener`) that you create.</span></span> <span data-ttu-id="f042d-137">이 작업을 수행하려면 `CreateServiceReplicaListeners` 메서드를 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-137">To do this, modify the `CreateServiceReplicaListeners` method.</span></span>
+1. <span data-ttu-id="7176e-136">Toohelp 보안 hello WCF 통신 수신기 hello 서비스에 대 한 필요한 (`WcfCommunicationListener`)를 만들면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-136">For hello service, you need toohelp secure hello WCF communication listener (`WcfCommunicationListener`) that you create.</span></span> <span data-ttu-id="7176e-137">toodo이 hello 수정 `CreateServiceReplicaListeners` 메서드.</span><span class="sxs-lookup"><span data-stu-id="7176e-137">toodo this, modify hello `CreateServiceReplicaListeners` method.</span></span>
 
     ```csharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -227,7 +227,7 @@ ms.lasthandoff: 07/11/2017
             listenerBinding: GetNetTcpBinding(),
             endpointResourceName:"WcfServiceEndpoint");
 
-        // Add certificate details in the ServiceHost credentials.
+        // Add certificate details in hello ServiceHost credentials.
         wcfCommunicationListener.ServiceHost.Credentials.ServiceCertificate.SetCertificate(
             StoreLocation.LocalMachine,
             StoreName.My,
@@ -243,7 +243,7 @@ ms.lasthandoff: 07/11/2017
         return b;
     }
     ```
-2. <span data-ttu-id="f042d-138">클라이언트에서는 이전 [예제](service-fabric-reliable-services-communication-wcf.md)에서 만든 `WcfCommunicationClient` 클래스가 변경되지 않고 그대로 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-138">In the client, the `WcfCommunicationClient` class that was created in the previous [example](service-fabric-reliable-services-communication-wcf.md) remains unchanged.</span></span> <span data-ttu-id="f042d-139">그러나 `WcfCommunicationClientFactory`의 `CreateClientAsync` 메서드를 재정의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-139">But you need to override the `CreateClientAsync` method of `WcfCommunicationClientFactory`:</span></span>
+2. <span data-ttu-id="7176e-138">Hello 클라이언트에서 hello `WcfCommunicationClient` 클래스에서에서 만든 hello 이전 [예제](service-fabric-reliable-services-communication-wcf.md) 그대로 유지 됩니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-138">In hello client, hello `WcfCommunicationClient` class that was created in hello previous [example](service-fabric-reliable-services-communication-wcf.md) remains unchanged.</span></span> <span data-ttu-id="7176e-139">하지만 toooverride hello 필요 `CreateClientAsync` 방식의 `WcfCommunicationClientFactory`:</span><span class="sxs-lookup"><span data-stu-id="7176e-139">But you need toooverride hello `CreateClientAsync` method of `WcfCommunicationClientFactory`:</span></span>
 
     ```csharp
     public class SecureWcfCommunicationClientFactory<TServiceContract> : WcfCommunicationClientFactory<TServiceContract> where TServiceContract : class
@@ -277,8 +277,8 @@ ms.lasthandoff: 07/11/2017
             {
                 channelFactory = new ChannelFactory<TServiceContract>(this.clientBinding, endpointAddress);
             }
-            // Add certificate details to the ChannelFactory credentials.
-            // These credentials will be used by the clients created by
+            // Add certificate details toohello ChannelFactory credentials.
+            // These credentials will be used by hello clients created by
             // SecureWcfCommunicationClientFactory.  
             channelFactory.Credentials.ClientCertificate.SetCertificate(
                 StoreLocation.LocalMachine,
@@ -293,7 +293,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    <span data-ttu-id="f042d-140">`SecureWcfCommunicationClientFactory`를 사용하여 WCF 통신 클라이언트(`WcfCommunicationClient`)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-140">Use `SecureWcfCommunicationClientFactory` to create a WCF communication client (`WcfCommunicationClient`).</span></span> <span data-ttu-id="f042d-141">클라이언트를 사용하여 서비스 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="f042d-141">Use the client to invoke service methods.</span></span>
+    <span data-ttu-id="7176e-140">사용 하 여 `SecureWcfCommunicationClientFactory` toocreate WCF 통신 클라이언트 (`WcfCommunicationClient`).</span><span class="sxs-lookup"><span data-stu-id="7176e-140">Use `SecureWcfCommunicationClientFactory` toocreate a WCF communication client (`WcfCommunicationClient`).</span></span> <span data-ttu-id="7176e-141">Hello 클라이언트 tooinvoke 서비스 메서드를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="7176e-141">Use hello client tooinvoke service methods.</span></span>
 
     ```csharp
     IServicePartitionResolver partitionResolver = ServicePartitionResolver.GetDefault();
@@ -309,5 +309,5 @@ ms.lasthandoff: 07/11/2017
         client => client.Channel.Add(2, 3)).Result;
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="f042d-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="f042d-142">Next steps</span></span>
-* [<span data-ttu-id="f042d-143">Reliable Services에서 OWIN을 사용하는 Web API</span><span class="sxs-lookup"><span data-stu-id="f042d-143">Web API with OWIN in Reliable Services</span></span>](service-fabric-reliable-services-communication-webapi.md)
+## <a name="next-steps"></a><span data-ttu-id="7176e-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7176e-142">Next steps</span></span>
+* [<span data-ttu-id="7176e-143">Reliable Services에서 OWIN을 사용하는 Web API</span><span class="sxs-lookup"><span data-stu-id="7176e-143">Web API with OWIN in Reliable Services</span></span>](service-fabric-reliable-services-communication-webapi.md)

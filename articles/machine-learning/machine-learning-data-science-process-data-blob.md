@@ -1,5 +1,5 @@
 ---
-title: "고급 분석을 사용하여 Azure Blob 데이터 처리 | Microsoft Docs"
+title: "Azure aaaProcess 고급 분석을 사용 하 여 데이터를 blob | Microsoft Docs"
 description: "Azure Blob 저장소에서 데이터 처리"
 services: machine-learning,storage
 documentationcenter: 
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: fashah;garye;bradsev
-ms.openlocfilehash: 36d950fd81029af82d9f2f652b2f01dba5fc8cc9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5911d4211c4135680555a8cdd99e745499a24215
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <span data-ttu-id="9c12c-103"><a name="heading"></a>고급 분석을 사용하여 Azure blob 데이터 처리</span><span class="sxs-lookup"><span data-stu-id="9c12c-103"><a name="heading"></a>Process Azure blob data with advanced analytics</span></span>
-<span data-ttu-id="9c12c-104">이 문서에서는 Azure Blob 저장소에 저장된 데이터를 탐색하고 기능을 생성하는 방법을 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-104">This document covers exploring data and generating features from data stored in Azure Blob storage.</span></span> 
+# <span data-ttu-id="eef4f-103"><a name="heading"></a>고급 분석을 사용하여 Azure blob 데이터 처리</span><span class="sxs-lookup"><span data-stu-id="eef4f-103"><a name="heading"></a>Process Azure blob data with advanced analytics</span></span>
+<span data-ttu-id="eef4f-104">이 문서에서는 Azure Blob 저장소에 저장된 데이터를 탐색하고 기능을 생성하는 방법을 다룹니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-104">This document covers exploring data and generating features from data stored in Azure Blob storage.</span></span> 
 
-## <a name="load-the-data-into-a-pandas-data-frame"></a><span data-ttu-id="9c12c-105">Pandas 데이터 프레임에 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="9c12c-105">Load the data into a Pandas data frame</span></span>
-<span data-ttu-id="9c12c-106">데이터 집합을 탐색 및 조작하려면 Blob 원본에서 로컬 파일로 다운로드한 다음 Pandas 데이터 프레임에 로드해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-106">In order to explore and manipulate a dataset, it must be downloaded from the blob source to a local file which can then be loaded in a Pandas data frame.</span></span> <span data-ttu-id="9c12c-107">이 절차를 수행하는 단계는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-107">Here are the steps to follow for this procedure:</span></span>
+## <a name="load-hello-data-into-a-pandas-data-frame"></a><span data-ttu-id="eef4f-105">팬더 데이터 프레임으로 hello 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="eef4f-105">Load hello data into a Pandas data frame</span></span>
+<span data-ttu-id="eef4f-106">순서 tooexplore에서 데이터 집합을 조작 하 고, hello blob 원본 tooa 로컬 파일에서 다음 팬더 데이터 프레임에서 로드할 수 있는 다운로드 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-106">In order tooexplore and manipulate a dataset, it must be downloaded from hello blob source tooa local file which can then be loaded in a Pandas data frame.</span></span> <span data-ttu-id="eef4f-107">이 절차에 대 한 hello 단계 toofollow 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-107">Here are hello steps toofollow for this procedure:</span></span>
 
-1. <span data-ttu-id="9c12c-108">blob 서비스를 사용하여 다음 샘플 Python 코드로 Azure blob에서 데이터를 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-108">Download the data from Azure blob with the following sample Python code using blob service.</span></span> <span data-ttu-id="9c12c-109">아래의 코드 변수를 사용자가 원하는 값으로 대체합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-109">Replace the variable in the code below with your specific values:</span></span> 
+1. <span data-ttu-id="eef4f-108">Azure의 hello 데이터 다운로드 샘플 Python 코드가 blob 서비스를 사용 하 여 다음 hello로 blob입니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-108">Download hello data from Azure blob with hello following sample Python code using blob service.</span></span> <span data-ttu-id="eef4f-109">아래 hello 코드의 hello 변수를 특정 값으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-109">Replace hello variable in hello code below with your specific values:</span></span> 
    
         from azure.storage.blob import BlobService
         import tables
@@ -42,52 +42,52 @@ ms.lasthandoff: 07/11/2017
         blob_service=BlobService(account_name=STORAGEACCOUNTNAME,account_key=STORAGEACCOUNTKEY)
         blob_service.get_blob_to_path(CONTAINERNAME,BLOBNAME,LOCALFILENAME)
         t2=time.time()
-        print(("It takes %s seconds to download "+blobname) % (t2 - t1))
-2. <span data-ttu-id="9c12c-110">다운로드한 파일에서 데이터를 Pandas 데이터 프레임으로 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-110">Read the data into a Pandas data-frame from the downloaded file.</span></span>
+        print(("It takes %s seconds toodownload "+blobname) % (t2 - t1))
+2. <span data-ttu-id="eef4f-110">Hello에서 팬더 데이터 프레임을으로 읽기 hello 데이터 파일을 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-110">Read hello data into a Pandas data-frame from hello downloaded file.</span></span>
    
-        #LOCALFILE is the file path    
+        #LOCALFILE is hello file path    
         dataframe_blobdata = pd.read_csv(LOCALFILE)
 
-<span data-ttu-id="9c12c-111">이제 데이터를 탐색하고 이 데이터 집합에 기능을 생성할 준비가 완료되었습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-111">Now you are ready to explore the data and generate features on this dataset.</span></span>
+<span data-ttu-id="eef4f-111">이제는 준비 tooexplore hello 데이터와이 데이터 집합에서 기능을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-111">Now you are ready tooexplore hello data and generate features on this dataset.</span></span>
 
-## <span data-ttu-id="9c12c-112"><a name="blob-dataexploration"></a>데이터 탐색</span><span class="sxs-lookup"><span data-stu-id="9c12c-112"><a name="blob-dataexploration"></a>Data Exploration</span></span>
-<span data-ttu-id="9c12c-113">다음은 Pandas를 사용하여 데이터를 탐색하는 방법의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-113">Here are a few examples of ways to explore data using Pandas:</span></span>
+## <span data-ttu-id="eef4f-112"><a name="blob-dataexploration"></a>데이터 탐색</span><span class="sxs-lookup"><span data-stu-id="eef4f-112"><a name="blob-dataexploration"></a>Data Exploration</span></span>
+<span data-ttu-id="eef4f-113">다음 방법 중 몇 가지 예를 팬더를 사용 하 여 tooexplore 데이터는:</span><span class="sxs-lookup"><span data-stu-id="eef4f-113">Here are a few examples of ways tooexplore data using Pandas:</span></span>
 
-1. <span data-ttu-id="9c12c-114">행 및 열 수를 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-114">Inspect the number of rows and columns</span></span> 
+1. <span data-ttu-id="eef4f-114">Hello 개수의 행과 열을 검사 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-114">Inspect hello number of rows and columns</span></span> 
    
-        print 'the size of the data is: %d rows and  %d columns' % dataframe_blobdata.shape
-2. <span data-ttu-id="9c12c-115">아래와 같이 데이터 집합의 처음 또는 마지막 몇 행을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-115">Inspect the first or last few rows in the dataset as below:</span></span>
+        print 'hello size of hello data is: %d rows and  %d columns' % dataframe_blobdata.shape
+2. <span data-ttu-id="eef4f-115">Hello를 먼저 검사 만들거나 아래와 같이 hello 데이터 집합의 행 몇 마지막:</span><span class="sxs-lookup"><span data-stu-id="eef4f-115">Inspect hello first or last few rows in hello dataset as below:</span></span>
    
         dataframe_blobdata.head(10)
    
         dataframe_blobdata.tail(10)
-3. <span data-ttu-id="9c12c-116">다음 샘플 코드를 사용하여 각 열을 가져온 데이터 유형을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-116">Check the data type each column was imported as using the following sample code</span></span>
+3. <span data-ttu-id="eef4f-116">각 열에서 가져온 다음 샘플 코드는 hello를 사용 하 여 hello 데이터 형식을 확인합니다</span><span class="sxs-lookup"><span data-stu-id="eef4f-116">Check hello data type each column was imported as using hello following sample code</span></span>
    
         for col in dataframe_blobdata.columns:
             print dataframe_blobdata[col].name, ':\t', dataframe_blobdata[col].dtype
-4. <span data-ttu-id="9c12c-117">다음과 같이 데이터 집합의 열에 대한 기본 통계를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-117">Check the basic stats for the columns in the data set as follows</span></span>
+4. <span data-ttu-id="eef4f-117">확인 hello hello 데이터 집합의 hello 열에 대 한 기본 통계 방법</span><span class="sxs-lookup"><span data-stu-id="eef4f-117">Check hello basic stats for hello columns in hello data set as follows</span></span>
    
         dataframe_blobdata.describe()
-5. <span data-ttu-id="9c12c-118">다음과 같이 각 열 값에 대한 항목 수를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-118">Look at the number of entries for each column value as follows</span></span>
+5. <span data-ttu-id="eef4f-118">다음과 같이 hello 각 열 값에 대 한 항목 수 확인</span><span class="sxs-lookup"><span data-stu-id="eef4f-118">Look at hello number of entries for each column value as follows</span></span>
    
         dataframe_blobdata['<column_name>'].value_counts()
-6. <span data-ttu-id="9c12c-119">다음 샘플 코드를 사용하여 각 열의 실제 항목 수와 누락된 값을 계산합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-119">Count missing values versus the actual number of entries in each column using the following sample code</span></span>
+6. <span data-ttu-id="eef4f-119">다음 샘플 코드는 hello를 사용 하 여 각 열에 있는 항목의 hello 실제 수와 누락 된 값 계산</span><span class="sxs-lookup"><span data-stu-id="eef4f-119">Count missing values versus hello actual number of entries in each column using hello following sample code</span></span>
    
         miss_num = dataframe_blobdata.shape[0] - dataframe_blobdata.count()
         print miss_num
-7. <span data-ttu-id="9c12c-120">데이터의 특정 열에 대한 값이 누락된 경우 다음과 같이 해당 데이터를 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-120">If you have missing values for a specific column in the data, you can drop them as follows:</span></span>
+7. <span data-ttu-id="eef4f-120">Hello 데이터를 특정 열에 대 한 누락 된 값이 있을 경우에 다음과 같이 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-120">If you have missing values for a specific column in hello data, you can drop them as follows:</span></span>
    
-     <span data-ttu-id="9c12c-121">dataframe_blobdata_noNA = dataframe_blobdata.dropna()   dataframe_blobdata_noNA.shape</span><span class="sxs-lookup"><span data-stu-id="9c12c-121">dataframe_blobdata_noNA = dataframe_blobdata.dropna()   dataframe_blobdata_noNA.shape</span></span>
+     <span data-ttu-id="eef4f-121">dataframe_blobdata_noNA = dataframe_blobdata.dropna()   dataframe_blobdata_noNA.shape</span><span class="sxs-lookup"><span data-stu-id="eef4f-121">dataframe_blobdata_noNA = dataframe_blobdata.dropna()   dataframe_blobdata_noNA.shape</span></span>
    
-   <span data-ttu-id="9c12c-122">누락된 값을 대체하는 또 다른 방법으로 mode 함수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-122">Another way to replace missing values is with the mode function:</span></span>
+   <span data-ttu-id="eef4f-122">또 다른 방법은 tooreplace 누락 된 값은 hello 모드 함수:</span><span class="sxs-lookup"><span data-stu-id="eef4f-122">Another way tooreplace missing values is with hello mode function:</span></span>
    
-     <span data-ttu-id="9c12c-123">dataframe_blobdata_mode = dataframe_blobdata.fillna({'<column_name>':dataframe_blobdata['<column_name>'].mode()[0]})</span><span class="sxs-lookup"><span data-stu-id="9c12c-123">dataframe_blobdata_mode = dataframe_blobdata.fillna({'<column_name>':dataframe_blobdata['<column_name>'].mode()[0]})</span></span>        
-8. <span data-ttu-id="9c12c-124">가변 bin을 사용하여 히스토그램 플롯을 만들고 변수 분포 그리기</span><span class="sxs-lookup"><span data-stu-id="9c12c-124">Create a histogram plot using variable number of bins to plot the distribution of a variable</span></span>    
+     <span data-ttu-id="eef4f-123">dataframe_blobdata_mode = dataframe_blobdata.fillna({'<column_name>':dataframe_blobdata['<column_name>'].mode()[0]})</span><span class="sxs-lookup"><span data-stu-id="eef4f-123">dataframe_blobdata_mode = dataframe_blobdata.fillna({'<column_name>':dataframe_blobdata['<column_name>'].mode()[0]})</span></span>        
+8. <span data-ttu-id="eef4f-124">다양 한 수의 bin tooplot hello 배포 변수를 사용 하 여 히스토그램 점도 만들기</span><span class="sxs-lookup"><span data-stu-id="eef4f-124">Create a histogram plot using variable number of bins tooplot hello distribution of a variable</span></span>    
    
         dataframe_blobdata['<column_name>'].value_counts().plot(kind='bar')
    
         np.log(dataframe_blobdata['<column_name>']+1).hist(bins=50)
-9. <span data-ttu-id="9c12c-125">산점도 또는 기본 제공 상관관계 함수를 사용하여 변수 간의 상관관계를 살펴봅니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-125">Look at correlations between variables using a scatterplot or using the built-in correlation function</span></span>
+9. <span data-ttu-id="eef4f-125">scatterplot 또는 hello 상관 관계 기본 제공 함수를 사용 하 여 변수 간의 상관 관계 확인</span><span class="sxs-lookup"><span data-stu-id="eef4f-125">Look at correlations between variables using a scatterplot or using hello built-in correlation function</span></span>
    
         #relationship between column_a and column_b using scatter plot
         plt.scatter(dataframe_blobdata['<column_a>'], dataframe_blobdata['<column_b>'])
@@ -95,49 +95,49 @@ ms.lasthandoff: 07/11/2017
         #correlation between column_a and column_b
         dataframe_blobdata[['<column_a>', '<column_b>']].corr()
 
-## <span data-ttu-id="9c12c-126"><a name="blob-featuregen"></a>기능 생성</span><span class="sxs-lookup"><span data-stu-id="9c12c-126"><a name="blob-featuregen"></a>Feature Generation</span></span>
-<span data-ttu-id="9c12c-127">다음과 같이 Python을 사용하여 기능을 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-127">We can generate features using Python as follows:</span></span>
+## <span data-ttu-id="eef4f-126"><a name="blob-featuregen"></a>기능 생성</span><span class="sxs-lookup"><span data-stu-id="eef4f-126"><a name="blob-featuregen"></a>Feature Generation</span></span>
+<span data-ttu-id="eef4f-127">다음과 같이 Python을 사용하여 기능을 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-127">We can generate features using Python as follows:</span></span>
 
-### <span data-ttu-id="9c12c-128"><a name="blob-countfeature"></a>표시기 값 기반 기능 생성</span><span class="sxs-lookup"><span data-stu-id="9c12c-128"><a name="blob-countfeature"></a>Indicator value based Feature Generation</span></span>
-<span data-ttu-id="9c12c-129">범주 기능은 다음과 같은 방법으로 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-129">Categorical features can be created as follows:</span></span>
+### <span data-ttu-id="eef4f-128"><a name="blob-countfeature"></a>표시기 값 기반 기능 생성</span><span class="sxs-lookup"><span data-stu-id="eef4f-128"><a name="blob-countfeature"></a>Indicator value based Feature Generation</span></span>
+<span data-ttu-id="eef4f-129">범주 기능은 다음과 같은 방법으로 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-129">Categorical features can be created as follows:</span></span>
 
-1. <span data-ttu-id="9c12c-130">범주 열의 분포를 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-130">Inspect the distribution of the categorical column:</span></span>
+1. <span data-ttu-id="eef4f-130">Hello 범주 열의 hello 분포를 검사 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-130">Inspect hello distribution of hello categorical column:</span></span>
    
         dataframe_blobdata['<categorical_column>'].value_counts()
-2. <span data-ttu-id="9c12c-131">각 열 값에 대한 표시기 값을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-131">Generate indicator values for each of the column values</span></span>
+2. <span data-ttu-id="eef4f-131">각 hello 열 값에 대 한 표시기 값을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-131">Generate indicator values for each of hello column values</span></span>
    
-        #generate the indicator column
+        #generate hello indicator column
         dataframe_blobdata_identity = pd.get_dummies(dataframe_blobdata['<categorical_column>'], prefix='<categorical_column>_identity')
-3. <span data-ttu-id="9c12c-132">표시기 열을 원래 데이터 프레임에 조인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-132">Join the indicator column with the original data frame</span></span> 
+3. <span data-ttu-id="eef4f-132">원래 데이터 프레임 hello hello 표시기 열 조인</span><span class="sxs-lookup"><span data-stu-id="eef4f-132">Join hello indicator column with hello original data frame</span></span> 
    
-            #Join the dummy variables back to the original data frame
+            #Join hello dummy variables back toohello original data frame
             dataframe_blobdata_with_identity = dataframe_blobdata.join(dataframe_blobdata_identity)
-4. <span data-ttu-id="9c12c-133">원래 변수 자체를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-133">Remove the original variable itself:</span></span>
+4. <span data-ttu-id="eef4f-133">Hello 원래 변수 자체를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-133">Remove hello original variable itself:</span></span>
    
-        #Remove the original column rate_code in df1_with_dummy
+        #Remove hello original column rate_code in df1_with_dummy
         dataframe_blobdata_with_identity.drop('<categorical_column>', axis=1, inplace=True)
 
-### <span data-ttu-id="9c12c-134"><a name="blob-binningfeature"></a>범주화 기능 생성</span><span class="sxs-lookup"><span data-stu-id="9c12c-134"><a name="blob-binningfeature"></a>Binning Feature Generation</span></span>
-<span data-ttu-id="9c12c-135">범주화된 기능을 생성하려면 다음 단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-135">For generating binned features, we proceed as follows:</span></span>
+### <span data-ttu-id="eef4f-134"><a name="blob-binningfeature"></a>범주화 기능 생성</span><span class="sxs-lookup"><span data-stu-id="eef4f-134"><a name="blob-binningfeature"></a>Binning Feature Generation</span></span>
+<span data-ttu-id="eef4f-135">범주화된 기능을 생성하려면 다음 단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-135">For generating binned features, we proceed as follows:</span></span>
 
-1. <span data-ttu-id="9c12c-136">열 시퀀스를 추가하여 숫자 열을 범주화합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-136">Add a sequence of columns to bin a numeric column</span></span>
+1. <span data-ttu-id="eef4f-136">숫자 열의 열 toobin의 시퀀스를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-136">Add a sequence of columns toobin a numeric column</span></span>
    
         bins = [0, 1, 2, 4, 10, 40]
         dataframe_blobdata_bin_id = pd.cut(dataframe_blobdata['<numeric_column>'], bins)
-2. <span data-ttu-id="9c12c-137">범주화를 부울 변수 시퀀스로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-137">Convert binning to a sequence of boolean variables</span></span>
+2. <span data-ttu-id="eef4f-137">범주화 tooa 시퀀스의 부울 변수 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-137">Convert binning tooa sequence of boolean variables</span></span>
    
         dataframe_blobdata_bin_bool = pd.get_dummies(dataframe_blobdata_bin_id, prefix='<numeric_column>')
-3. <span data-ttu-id="9c12c-138">마지막으로 더미 변수를 다시 원래 데이터 프레임에 조인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-138">Finally, Join the dummy variables back to the original data frame</span></span>
+3. <span data-ttu-id="eef4f-138">조인 hello 더미 변수 toohello 원래 데이터 프레임을 백업 하는 마지막으로,</span><span class="sxs-lookup"><span data-stu-id="eef4f-138">Finally, Join hello dummy variables back toohello original data frame</span></span>
    
         dataframe_blobdata_with_bin_bool = dataframe_blobdata.join(dataframe_blobdata_bin_bool)    
 
-## <span data-ttu-id="9c12c-139"><a name="sql-featuregen"></a>다시 Azure blob에 데이터를 쓰고 Azure 기계 학습에서 데이터 사용</span><span class="sxs-lookup"><span data-stu-id="9c12c-139"><a name="sql-featuregen"></a>Writing data back to Azure blob and consuming in Azure Machine Learning</span></span>
-<span data-ttu-id="9c12c-140">데이터를 탐색하고 필요한 기능을 만든 후에는 다음 단계에 따라 샘플링한 또는 기능화한 데이터를 Azure blob에 업로드하여 Azure 기계 학습에서 사용할 수 있습니다. Azure 기계 학습 스튜디오에서 추가 기능을 만들 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-140">After you have explored the data and created the necessary features, you can upload the data (sampled or featurized) to an Azure blob and consume it in Azure Machine Learning using the following steps: Note that additional features can be created in the Azure Machine Learning Studio as well.</span></span> 
+## <span data-ttu-id="eef4f-139"><a name="sql-featuregen"></a>쓰기 데이터 다시 tooAzure blob 및 Azure 기계 학습에서 사용</span><span class="sxs-lookup"><span data-stu-id="eef4f-139"><a name="sql-featuregen"></a>Writing data back tooAzure blob and consuming in Azure Machine Learning</span></span>
+<span data-ttu-id="eef4f-140">Hello 데이터를 탐색 하 고 필요한 기능 hello를 만든 후 hello 데이터를 업로드할 수 있습니다 (샘플링 또는 들어가지 않고 기능화) tooan Azure blob 및 단계를 수행 하는 hello를 사용 하 여 Azure 기계 학습에서 사용: hello에 추가 기능을 만들 수 있음을 확인 합니다. Azure 기계 학습 스튜디오도 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-140">After you have explored hello data and created hello necessary features, you can upload hello data (sampled or featurized) tooan Azure blob and consume it in Azure Machine Learning using hello following steps: Note that additional features can be created in hello Azure Machine Learning Studio as well.</span></span> 
 
-1. <span data-ttu-id="9c12c-141">로컬 파일에 데이터 프레임을 씁니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-141">Write the data frame to local file</span></span>
+1. <span data-ttu-id="eef4f-141">Hello 데이터 프레임 toolocal 파일 쓰기</span><span class="sxs-lookup"><span data-stu-id="eef4f-141">Write hello data frame toolocal file</span></span>
    
         dataframe.to_csv(os.path.join(os.getcwd(),LOCALFILENAME), sep='\t', encoding='utf-8', index=False)
-2. <span data-ttu-id="9c12c-142">다음과 같이 Azure blob에 데이터를 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-142">Upload the data to Azure blob as follows:</span></span>
+2. <span data-ttu-id="eef4f-142">다음과 같이 hello 데이터 tooAzure blob을 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="eef4f-142">Upload hello data tooAzure blob as follows:</span></span>
    
         from azure.storage.blob import BlobService
         import tables
@@ -158,7 +158,7 @@ ms.lasthandoff: 07/11/2017
    
         except:            
             print ("Something went wrong with uploading blob:"+BLOBNAME)
-3. <span data-ttu-id="9c12c-143">이제 아래 그림과 같이 Azure 기계 학습 [데이터 가져오기][import-data] 모듈을 사용하여 blob에서 데이터를 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c12c-143">Now the data can be read from the blob using the Azure Machine Learning [Import Data][import-data] module as shown in the screen below:</span></span>
+3. <span data-ttu-id="eef4f-143">Hello 데이터를 사용 하 여 hello blob에서 읽을 수 이제 hello Azure 기계 학습 [데이터 가져오기] [ import-data] hello 화면 아래에 나와 있는 것 처럼 모듈:</span><span class="sxs-lookup"><span data-stu-id="eef4f-143">Now hello data can be read from hello blob using hello Azure Machine Learning [Import Data][import-data] module as shown in hello screen below:</span></span>
 
 ![판독기 blob][1]
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT에 Raspberry Pi(노드) 연결 - 단원 4: 앱 수정 | Microsoft Docs"
-description: "LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정합니다."
+title: "연결 라스베리 Pi (노드) tooAzure IoT-4 단원: 응용 프로그램 수정 | Microsoft Docs"
+description: "Hello 메시지 toochange hello 켜고 동작 LED가 사용자 지정 합니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b2ae23ac9cc1723936c4b4e1900b95cdcde744df
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99b542fcb8639add0f5a0f7a49dd8abd0e224a51
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a><span data-ttu-id="f35a4-104">LED 켜기 및 끄기 동작 변경</span><span class="sxs-lookup"><span data-stu-id="f35a4-104">Change the on and off behavior of the LED</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="f35a4-105">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="f35a4-105">What you will do</span></span>
-<span data-ttu-id="f35a4-106">LED의 켜기 및 끄기 동작을 변경하도록 메시지를 사용자 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-106">Customize the messages to change the LED’s on and off behavior.</span></span> <span data-ttu-id="f35a4-107">문제가 있으면 [문제 해결 페이지](iot-hub-raspberry-pi-kit-node-troubleshooting.md)에서 솔루션을 검색하세요.</span><span class="sxs-lookup"><span data-stu-id="f35a4-107">If you have any problems, seek solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span></span>
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a><span data-ttu-id="62732-104">Hello 켜고 hello LED의 동작 변경</span><span class="sxs-lookup"><span data-stu-id="62732-104">Change hello on and off behavior of hello LED</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="62732-105">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="62732-105">What you will do</span></span>
+<span data-ttu-id="62732-106">Hello 메시지 toochange hello 켜고 동작 LED가 사용자 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-106">Customize hello messages toochange hello LED’s on and off behavior.</span></span> <span data-ttu-id="62732-107">문제가 있는 경우 솔루션 hello에 seek [문제 해결 페이지](iot-hub-raspberry-pi-kit-node-troubleshooting.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-107">If you have any problems, seek solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="f35a4-108">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="f35a4-108">What you will learn</span></span>
-<span data-ttu-id="f35a4-109">추가적인 Node.js 함수를 사용하여 LED 켜기 및 끄기 동작 변경.</span><span class="sxs-lookup"><span data-stu-id="f35a4-109">Use additional Node.js functions to change the LED’s on and off behavior.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="62732-108">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="62732-108">What you will learn</span></span>
+<span data-ttu-id="62732-109">켜고 동작 LED가 추가 Node.js 함수 toochange hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-109">Use additional Node.js functions toochange hello LED’s on and off behavior.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="f35a4-110">필요한 항목</span><span class="sxs-lookup"><span data-stu-id="f35a4-110">What you need</span></span>
-<span data-ttu-id="f35a4-111">[Raspberry Pi에서 샘플 응용 프로그램을 실행하여 클라우드-장치 메시지 받기](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md)를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-111">You must have successfully completed [Run a sample application on Raspberry Pi to receive cloud-to-device messages](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="62732-110">필요한 항목</span><span class="sxs-lookup"><span data-stu-id="62732-110">What you need</span></span>
+<span data-ttu-id="62732-111">성공적으로 완료 해야 [클라우드-장치 메시지 라스베리 Pi tooreceive에서 샘플 응용 프로그램을 실행](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-111">You must have successfully completed [Run a sample application on Raspberry Pi tooreceive cloud-to-device messages](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).</span></span>
 
-## <a name="add-nodejs-functions"></a><span data-ttu-id="f35a4-112">Node.js 함수 추가</span><span class="sxs-lookup"><span data-stu-id="f35a4-112">Add Node.js functions</span></span>
-1. <span data-ttu-id="f35a4-113">다음 명령을 실행하여 Visual Studio Code에서 샘플 응용 프로그램을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-113">Open the sample application in Visual Studio code by running the following commands:</span></span>
+## <a name="add-nodejs-functions"></a><span data-ttu-id="62732-112">Node.js 함수 추가</span><span class="sxs-lookup"><span data-stu-id="62732-112">Add Node.js functions</span></span>
+1. <span data-ttu-id="62732-113">Hello 다음 명령을 실행 하 여 Visual Studio code에서 hello 샘플 응용 프로그램을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="62732-113">Open hello sample application in Visual Studio code by running hello following commands:</span></span>
    
    ```bash
    cd Lesson4
    code .
    ```
-2. <span data-ttu-id="f35a4-114">`app.js` 파일을 연 후에 다음 함수를 끝에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-114">Open the `app.js` file, and then add the following functions at the end:</span></span>
+2. <span data-ttu-id="62732-114">열기 hello `app.js` 파일을 선택한 다음 hello 함수 hello 끝에 다음을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-114">Open hello `app.js` file, and then add hello following functions at hello end:</span></span>
    
    ```javascript
    function turnOnLED() {
@@ -53,7 +53,7 @@ ms.lasthandoff: 07/11/2017
    ```
    
    ![함수가 추가된 App.js 파일](media/iot-hub-raspberry-pi-lessons/lesson4/updated_app_js.png)
-3. <span data-ttu-id="f35a4-116">`receiveMessageCallback` 함수의 switch-case 블록에 있는 기본 조건 앞에 다음 조건을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-116">Add the following conditions before the default one in the switch-case block of the `receiveMessageCallback` function:</span></span>
+3. <span data-ttu-id="62732-116">Hello hello 기본 하기 전에 조건을 hello의 hello 스위치 경우 블록에 다음 추가 `receiveMessageCallback` 함수:</span><span class="sxs-lookup"><span data-stu-id="62732-116">Add hello following conditions before hello default one in hello switch-case block of hello `receiveMessageCallback` function:</span></span>
    
    ```javascript
    case 'on':
@@ -64,8 +64,8 @@ ms.lasthandoff: 07/11/2017
      break;
    ```
    
-   <span data-ttu-id="f35a4-117">이제 샘플 응용 프로그램이 메시지를 통해 더 많은 명령에 응답하도록 구성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-117">Now you’ve configured the sample application to respond to more instructions through messages.</span></span> <span data-ttu-id="f35a4-118">"on" 명령은 LED를 켜고 "off" 명령은 LED를 끕니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-118">The "on" instruction turns on the LED, and the "off" instruction turns off the LED.</span></span>
-4. <span data-ttu-id="f35a4-119">gulpfile.js file 파일을 연 다음 `sendMessage` 함수 앞에 새 함수를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-119">Open the gulpfile.js file, and then add a new function before the function `sendMessage`:</span></span>
+   <span data-ttu-id="62732-117">이제 메시지를 통해 hello 샘플 응용 프로그램 toorespond toomore 지침을 구성 했습니다.</span><span class="sxs-lookup"><span data-stu-id="62732-117">Now you’ve configured hello sample application toorespond toomore instructions through messages.</span></span> <span data-ttu-id="62732-118">"명령 에" hello hello LED 설정 하 고 "off" 명령은 hello hello LED 끕니다.</span><span class="sxs-lookup"><span data-stu-id="62732-118">hello "on" instruction turns on hello LED, and hello "off" instruction turns off hello LED.</span></span>
+4. <span data-ttu-id="62732-119">다음 hello 함수 앞에 새 함수를 추가 하 고 hello gulpfile.js 파일을 열고 `sendMessage`:</span><span class="sxs-lookup"><span data-stu-id="62732-119">Open hello gulpfile.js file, and then add a new function before hello function `sendMessage`:</span></span>
    
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -80,26 +80,26 @@ ms.lasthandoff: 07/11/2017
    ```
    
    ![함수가 추가된 Gulpfile.js 파일](media/iot-hub-raspberry-pi-lessons/lesson4/updated_gulpfile.png)
-5. <span data-ttu-id="f35a4-121">`sendMessage` 함수에서 `var message = buildMessage(sentMessageCount);`를 다음 코드 조각에 있는 새 줄로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-121">In the `sendMessage` function, replace the line `var message = buildMessage(sentMessageCount);` with the new line shown in the following snippet:</span></span>
+5. <span data-ttu-id="62732-121">Hello에 `sendMessage` 함수, hello 줄 `var message = buildMessage(sentMessageCount);` hello 다음 코드 조각에에서 표시 된 hello 새 줄으로:</span><span class="sxs-lookup"><span data-stu-id="62732-121">In hello `sendMessage` function, replace hello line `var message = buildMessage(sentMessageCount);` with hello new line shown in hello following snippet:</span></span>
    
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. <span data-ttu-id="f35a4-122">모든 변경 사항을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-122">Save all the changes.</span></span>
+6. <span data-ttu-id="62732-122">모든 hello 변경 내용을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-122">Save all hello changes.</span></span>
 
-### <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="f35a4-123">샘플 응용 프로그램 배포 및 실행</span><span class="sxs-lookup"><span data-stu-id="f35a4-123">Deploy and run the sample application</span></span>
-<span data-ttu-id="f35a4-124">다음 명령을 실행하여 Pi에 샘플 응용 프로그램을 배포하고 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-124">Deploy and run the sample application on Pi by running the following command:</span></span>
+### <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="62732-123">배포 하 고 hello 샘플 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="62732-123">Deploy and run hello sample application</span></span>
+<span data-ttu-id="62732-124">배포 하 고 hello 다음 명령을 실행 하 여 원주율 hello 샘플 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-124">Deploy and run hello sample application on Pi by running hello following command:</span></span>
 
 ```bash
 gulp deploy && gulp run
 ```
 
-<span data-ttu-id="f35a4-125">LED가 2초간 켜졌다가 다음 2초간 꺼지는 것을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-125">You should see the LED turn on for two seconds, and then turn off for another two seconds.</span></span> <span data-ttu-id="f35a4-126">마지막 "stop" 메시지는 샘플 응용 프로그램이 실행되는 것을 막습니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-126">The last "stop" message stops the sample application from running.</span></span>
+<span data-ttu-id="62732-125">2 초에 대 한 hello LED 설정 및 다른 2 초에 대 한 다음 선택을 취소 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="62732-125">You should see hello LED turn on for two seconds, and then turn off for another two seconds.</span></span> <span data-ttu-id="62732-126">hello 마지막 "중지" 메시지 hello 샘플 응용 프로그램의 실행을 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-126">hello last "stop" message stops hello sample application from running.</span></span>
 
 ![on 및 off 메시지가 있는 샘플 응용 프로그램](media/iot-hub-raspberry-pi-lessons/lesson4/gulp_on_and_off.png)
 
-<span data-ttu-id="f35a4-128">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-128">Congratulations!</span></span> <span data-ttu-id="f35a4-129">IoT Hub에서 Pi로 보내는 메시지에 대한 사용자 지정이 완료되었습니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-129">You’ve successfully customized the messages that are sent to Pi from your IoT hub.</span></span>
+<span data-ttu-id="62732-128">축하합니다.</span><span class="sxs-lookup"><span data-stu-id="62732-128">Congratulations!</span></span> <span data-ttu-id="62732-129">TooPi IoT 허브에서 보낸 hello 메시지를 사용자 지정한 했습니다.</span><span class="sxs-lookup"><span data-stu-id="62732-129">You’ve successfully customized hello messages that are sent tooPi from your IoT hub.</span></span>
 
-### <a name="summary"></a><span data-ttu-id="f35a4-130">요약</span><span class="sxs-lookup"><span data-stu-id="f35a4-130">Summary</span></span>
-<span data-ttu-id="f35a4-131">이 선택적인 섹션은 샘플 응용 프로그램이 다른 방식으로 LED를 켜고 끄는 동작을 제어할 수 있도록 메시지를 사용자 지정하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="f35a4-131">This optional section demonstrates how to customize messages so that the sample application can control the on and off behavior of the LED in a different way.</span></span>
+### <a name="summary"></a><span data-ttu-id="62732-130">요약</span><span class="sxs-lookup"><span data-stu-id="62732-130">Summary</span></span>
+<span data-ttu-id="62732-131">이 선택적 섹션이 toocustomize hello 샘플 응용 프로그램을 다른 방식으로 hello 켜고 hello LED의 동작을 제어할 수 있도록 메시지 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="62732-131">This optional section demonstrates how toocustomize messages so that hello sample application can control hello on and off behavior of hello LED in a different way.</span></span>
 

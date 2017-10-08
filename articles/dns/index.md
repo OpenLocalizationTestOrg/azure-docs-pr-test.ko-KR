@@ -1,6 +1,6 @@
 ---
-title: "Azure DNS 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "Azure Domain Name System을 사용하여 DNS 레코드를 관리하는 방법에 대해 알아봅니다. 설명서에서는 도메인 이름에 대한 DNS 영역 및 레코드를 설정하고 관리하는 방법을 보여 줍니다."
+title: "aaaAzure DNS 설명서-자습서, API 참조 | Microsoft Docs"
+description: "자세한 내용은 방법 toomanage Azure 도메인 이름 시스템을 사용 하 여 DNS 레코드입니다. 설명서 표시 방법을 tooset 및 DNS 영역 및 도메인 이름에 대 한 레코드를 관리 합니다."
 services: dns
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 659e0989e3a1f7114796c2211606e5d629cf68fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 64804b1d6cbfefdeab3f9a79bca26848e37e64f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dns-documentation"></a>DNS 설명서
 
-호스팅 서비스인 Azure Domain Name System을 사용하여 DNS 레코드를 관리하는 방법에 대해 알아봅니다. 자습서, API 참조 및 다른 설명서에서는 도메인 이름에 대한 DNS 영역 및 레코드를 설정하고 관리하는 방법을 보여 줍니다.
+어떻게 toomanage DNS 레코드를 호스트 하는 Azure 도메인 이름 시스템을 사용 하 여 서비스에 대해 알아봅니다. 자습서, API 참조, 및 기타 문서 방법을 보여 줍니다 tooset 및 DNS 영역 및 도메인 이름에 대 한 레코드를 관리 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -52,7 +52,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Portal을 사용하여 Azure DNS 시작</h3>
+                        <h3>Azure DNS hello Azure 포털을 사용 하 여 시작</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure CLI를 사용하여 Azure DNS 시작</h3>
+                        <h3>Azure DNS hello Azure CLI를 사용 하 여 시작</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 사용자 인터페이스 - 대시보드"
-description: "Azure Mobile Engagement를 사용하여 응용 프로그램에 대한 데이터의 차트를 보고 관리하는 방법 알아보기"
+title: "Mobile Engagement 사용자 인터페이스-aaaAzure 대시보드"
+description: "자세한 내용은 어떻게 tooview 및 Azure Mobile Engagement 응용 프로그램에 대 한 데이터에 대 한 차트를 관리 합니다."
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: eaf5a2f9fdfcec33e8b4e2ddf77505980cd37c5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d834c01cb748a962d50006398b75b381fa6d8cef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-and-manage-charts-of-data-about-your-application"></a><span data-ttu-id="ea3d1-103">응용 프로그램에 대한 데이터의 차트를 보고 관리하는 방법</span><span class="sxs-lookup"><span data-stu-id="ea3d1-103">How to view and manage charts of data about your application</span></span>
-<span data-ttu-id="ea3d1-104">분석 섹션에서 정보를 검색하는 대신 원하는 정확한 정보를 제공하는 방식으로 고객은 UI의 대시보드 섹션을 통해 사용자 지정된 차트를 만들어 작업 시간을 최대한 활용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-104">The Dashboard section of the UI allows customers to create customized charts to maximize their time by providing the exact information they want instead of searching for it in the analytics section.</span></span> <span data-ttu-id="ea3d1-105">대시보드에는 지정된 시간(시간/일/주/월/사용자 지정) 동안의 각 응용 프로그램 버전별 활성 사용자 수와 응용 프로그램의 추세가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-105">A dashboard shows the trends of your application and the Active User Counts for the different versions of your application during a given time (hour/day/week/month/customized).</span></span> <span data-ttu-id="ea3d1-106">지난 7일 동안의 추세가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-106">The trends shown are based on the last 7 days.</span></span>
+# <a name="how-tooview-and-manage-charts-of-data-about-your-application"></a><span data-ttu-id="f02ac-103">어떻게 tooview 및 응용 프로그램에 대 한 데이터에 대 한 차트를 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-103">How tooview and manage charts of data about your application</span></span>
+<span data-ttu-id="f02ac-104">대시보드 섹션의 UI 사용자 지정 된 고객 toocreate 허용 hello hello 차트 toomaximize hello 분석 섹션에서 검색 하는 대신 원하는 hello 정확한 정보를 제공 하 여 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-104">hello Dashboard section of hello UI allows customers toocreate customized charts toomaximize their time by providing hello exact information they want instead of searching for it in hello analytics section.</span></span> <span data-ttu-id="f02ac-105">대시보드는 지정된 된 시간 (시간/일/주/월/사용자 지정) 하는 동안 응용 프로그램의 서로 다른 버전 hello에 대 한 활성 사용자 수는 hello 및 응용 프로그램의 hello 추세를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-105">A dashboard shows hello trends of your application and hello Active User Counts for hello different versions of your application during a given time (hour/day/week/month/customized).</span></span> <span data-ttu-id="f02ac-106">표시 된 hello 추세 기반으로 hello 지난 7 일 합니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-106">hello trends shown are based on hello last 7 days.</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="ea3d1-107">참고 항목</span><span class="sxs-lookup"><span data-stu-id="ea3d1-107">See also</span></span>
-* <span data-ttu-id="ea3d1-108">[문제 해결 가이드 - 분석][Link 21]</span><span class="sxs-lookup"><span data-stu-id="ea3d1-108">[Troubleshooting Guide - Analytics][Link 21]</span></span>
+### <a name="see-also"></a><span data-ttu-id="f02ac-107">참고 항목</span><span class="sxs-lookup"><span data-stu-id="f02ac-107">See also</span></span>
+* <span data-ttu-id="f02ac-108">[문제 해결 가이드 - 분석][Link 21]</span><span class="sxs-lookup"><span data-stu-id="f02ac-108">[Troubleshooting Guide - Analytics][Link 21]</span></span>
 
-## <a name="dashboard"></a><span data-ttu-id="ea3d1-109">대시보드</span><span class="sxs-lookup"><span data-stu-id="ea3d1-109">Dashboard</span></span>
-* <span data-ttu-id="ea3d1-110">UI의 분석 섹션에서 대시보드에 표시하려는 차트의 기어 메뉴에 있는 "대시보드로 보내기" 작업을 선택하면 빈 대시보드에 차트를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-110">You can add charts to an empty dashboard by choosing the "Send to dashboard" action from the gear menu of any chart in the Analytics section of the UI that you'd like to see on a dashboard.</span></span>
+## <a name="dashboard"></a><span data-ttu-id="f02ac-109">대시보드</span><span class="sxs-lookup"><span data-stu-id="f02ac-109">Dashboard</span></span>
+* <span data-ttu-id="f02ac-110">Hello 싶다는 의사를 대시보드에서 toosee UI의 hello 분석 섹션에서 차트의 hello 기어 메뉴에서 "송신 toodashboard" hello 동작을 선택 하 여 차트 tooan 빈 대시보드를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-110">You can add charts tooan empty dashboard by choosing hello "Send toodashboard" action from hello gear menu of any chart in hello Analytics section of hello UI that you'd like toosee on a dashboard.</span></span>
 
-## <a name="-add-a-dashboard"></a><span data-ttu-id="ea3d1-111">+ (대시보드 추가)</span><span class="sxs-lookup"><span data-stu-id="ea3d1-111">+ (Add a Dashboard)</span></span>
-* <span data-ttu-id="ea3d1-112">"+" 리본 메뉴 항목을 사용하여 리본 메뉴에 표시할 새 대시보드를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-112">You can use the "+" ribbon menu item to create a new dashboard that will show on the ribbon menu.</span></span>
+## <a name="-add-a-dashboard"></a><span data-ttu-id="f02ac-111">+ (대시보드 추가)</span><span class="sxs-lookup"><span data-stu-id="f02ac-111">+ (Add a Dashboard)</span></span>
+* <span data-ttu-id="f02ac-112">있습니다 수 hello를 사용 하 여 "+" 메뉴 항목을 표시 하는 hello 리본 메뉴에 새 대시보드 toocreate 리본.</span><span class="sxs-lookup"><span data-stu-id="f02ac-112">You can use hello "+" ribbon menu item toocreate a new dashboard that will show on hello ribbon menu.</span></span>
 
-## <a name="gear-menu"></a><span data-ttu-id="ea3d1-113">기어 메뉴</span><span class="sxs-lookup"><span data-stu-id="ea3d1-113">Gear Menu</span></span>
-* <span data-ttu-id="ea3d1-114">대시보드의 기어 메뉴를 사용하면 대시보드를 삭제/공유하거나 이름을 바꾸거나 전자 메일 수신을 예약할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-114">You can use the gear menu of a dashboard to Delete, Rename, Share, or Schedule (E-mail Reception) of your dashboard.</span></span> <span data-ttu-id="ea3d1-115">예약 옵션을 사용하면 사용자 지정 대시보드를 전자 메일로 받을 일정을 정의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-115">You can use the Schedule option to define the schedule at which you would like to receive your custom dashboard by email.</span></span> <span data-ttu-id="ea3d1-116">매일/매주/매월 수신을 예약할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-116">You can schedule to receive it daily, weekly, or monthly.</span></span> <span data-ttu-id="ea3d1-117">전자 메일을 받을 시간, 요일, 날짜를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-117">You can choose the time of the day, and the day of the week, or day of the month when you would like to receive the e-mail.</span></span> <span data-ttu-id="ea3d1-118">전자 메일 주소와 표준 시간대는 UI의 내 계정 섹션에서 구성한 설정을 기준으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="ea3d1-118">Your e-mail address and time zone are based on the settings you have configured in the My Account section of the UI.</span></span>
+## <a name="gear-menu"></a><span data-ttu-id="f02ac-113">기어 메뉴</span><span class="sxs-lookup"><span data-stu-id="f02ac-113">Gear Menu</span></span>
+* <span data-ttu-id="f02ac-114">대시보드 tooDelete, 이름 바꾸기, 공유 또는 대시보드의 (전자 메일 수신) 일정의 hello 기어 메뉴를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-114">You can use hello gear menu of a dashboard tooDelete, Rename, Share, or Schedule (E-mail Reception) of your dashboard.</span></span> <span data-ttu-id="f02ac-115">전자 메일을 통해 hello 일정 옵션 toodefine hello 일정을 원하는 tooreceive 사용자 지정 대시보드를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-115">You can use hello Schedule option toodefine hello schedule at which you would like tooreceive your custom dashboard by email.</span></span> <span data-ttu-id="f02ac-116">매일, 매주 또는 매월 tooreceive를 예약할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-116">You can schedule tooreceive it daily, weekly, or monthly.</span></span> <span data-ttu-id="f02ac-117">Hello 및 hello의 hello 주, 날짜 또는 요일과 tooreceive hello 전자 메일을 하려는 경우 hello 달 hello 시간을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-117">You can choose hello time of hello day, and hello day of hello week, or day of hello month when you would like tooreceive hello e-mail.</span></span> <span data-ttu-id="f02ac-118">전자 메일 주소와 표준 시간대는 hello 내 계정 섹션의 hello UI에서에서 구성한 hello 설정에 따라 됩니다.</span><span class="sxs-lookup"><span data-stu-id="f02ac-118">Your e-mail address and time zone are based on hello settings you have configured in hello My Account section of hello UI.</span></span>
   
   ![dashboard1][34]
 

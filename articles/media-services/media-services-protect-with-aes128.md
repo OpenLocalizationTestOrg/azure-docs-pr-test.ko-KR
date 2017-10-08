@@ -1,6 +1,6 @@
 ---
-title: "AES-128 동적 암호화 및 키 전달 서비스 사용 | Microsoft 문서"
-description: "Microsoft Azure 미디어 서비스를 사용하면 AES 128비트 암호화 키로 암호화된 콘텐츠를 배달할 수 있습니다. 미디어 서비스는 권한 있는 사용자에게 암호화 키를 제공하는 키 배달 서비스도 제공합니다. 이 항목에서는 AES-128로 동적으로 암호화하는 방법과 키 배달 서비스를 사용하는 방법을 보여 줍니다."
+title: "aaaUsing aes-128 동적 암호화 및 키 배달 서비스 | Microsoft Docs"
+description: "Microsoft Azure 미디어 서비스 AES 128 비트 암호화 키로 암호화 된 콘텐츠를 toodeliver 수 있습니다. 또한 미디어 서비스 암호화 키 tooauthorized 사용자가 전달 하는 hello 키 배달 서비스를 제공 합니다. 이 항목에서는 toodynamically S-128로 암호화 하 고 hello 키 배달 서비스를 사용 하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,128 +14,128 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2017
 ms.author: juliako
-ms.openlocfilehash: ae1b36c26e688e74eb8fcc1a4cdbd3be0c014c08
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb1b413ec2ba79f7437464099cf72236ab93f312
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-aes-128-dynamic-encryption-and-key-delivery-service"></a><span data-ttu-id="2d7b5-105">AES-128 동적 암호화 및 키 전달 서비스 사용</span><span class="sxs-lookup"><span data-stu-id="2d7b5-105">Using AES-128 dynamic encryption and key delivery service</span></span>
+# <a name="using-aes-128-dynamic-encryption-and-key-delivery-service"></a><span data-ttu-id="4155c-105">AES-128 동적 암호화 및 키 전달 서비스 사용</span><span class="sxs-lookup"><span data-stu-id="4155c-105">Using AES-128 dynamic encryption and key delivery service</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="2d7b5-106">.NET</span><span class="sxs-lookup"><span data-stu-id="2d7b5-106">.NET</span></span>](media-services-protect-with-aes128.md)
-> * [<span data-ttu-id="2d7b5-107">Java</span><span class="sxs-lookup"><span data-stu-id="2d7b5-107">Java</span></span>](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
-> * [<span data-ttu-id="2d7b5-108">PHP</span><span class="sxs-lookup"><span data-stu-id="2d7b5-108">PHP</span></span>](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
+> * [<span data-ttu-id="4155c-106">.NET</span><span class="sxs-lookup"><span data-stu-id="4155c-106">.NET</span></span>](media-services-protect-with-aes128.md)
+> * [<span data-ttu-id="4155c-107">Java</span><span class="sxs-lookup"><span data-stu-id="4155c-107">Java</span></span>](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
+> * [<span data-ttu-id="4155c-108">PHP</span><span class="sxs-lookup"><span data-stu-id="4155c-108">PHP</span></span>](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
 > 
 > 
 
-## <a name="overview"></a><span data-ttu-id="2d7b5-109">개요</span><span class="sxs-lookup"><span data-stu-id="2d7b5-109">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="4155c-109">개요</span><span class="sxs-lookup"><span data-stu-id="4155c-109">Overview</span></span>
 > [!NOTE]
-> <span data-ttu-id="2d7b5-110">AES 암호화를 사용하여 미디어 콘텐츠를 보호하는 방법에 대한 개요는 [이 비디오](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Media-Services-Protecting-your-Media-Content-with-AES-Encryption)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-110">See [this](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Media-Services-Protecting-your-Media-Content-with-AES-Encryption) video for an overview of how to protect your Media Content with AES encryption.</span></span>
+> <span data-ttu-id="4155c-110">참조 [이](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Media-Services-Protecting-your-Media-Content-with-AES-Encryption) 어떻게 tooprotect 미디어는 AES 암호화를 사용한을 내용에 대 한 개요 비디오.</span><span class="sxs-lookup"><span data-stu-id="4155c-110">See [this](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Media-Services-Protecting-your-Media-Content-with-AES-Encryption) video for an overview of how tooprotect your Media Content with AES encryption.</span></span>
 > 
 > 
 
-<span data-ttu-id="2d7b5-111">Microsoft Azure 미디어 서비스를 사용하면 128 비트 암호화 키를 사용하는 AES(Advanced Encryption Standard)로 암호화된 Http-Live-Streaming(HLS) 및 부드러운 스트림을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-111">Microsoft Azure Media Services enables you to deliver Http-Live-Streaming (HLS) and Smooth Streams encrypted with Advanced Encryption Standard (AES) (using 128-bit encryption keys).</span></span> <span data-ttu-id="2d7b5-112">미디어 서비스는 권한 있는 사용자에게 암호화 키를 제공하는 키 배달 서비스도 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-112">Media Services also provides the Key Delivery service that delivers encryption keys to authorized users.</span></span> <span data-ttu-id="2d7b5-113">미디어 서비스에서 자산을 암호화하려는 경우 암호화 키를 자산에 연결하고 해당 키에 대해 권한 부여 정책도 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-113">If you want for Media Services to encrypt an asset, you need to associate an encryption key with the asset and also configure authorization policies for the key.</span></span> <span data-ttu-id="2d7b5-114">플레이어가 스트림을 요청하면 미디어 서비스는 지정된 키를 사용하고 AES 암호화를 사용하여 동적으로 사용자의 콘텐츠를 암호화합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-114">When a stream is requested by a player, Media Services uses the specified key to dynamically encrypt your content using AES encryption.</span></span> <span data-ttu-id="2d7b5-115">스트림을 해독하기 위해 플레이어는 키 배달 서비스에서 키를 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-115">To decrypt the stream, the player will request the key from the key delivery service.</span></span> <span data-ttu-id="2d7b5-116">사용자에게 키를 얻을 수 있는 권한이 있는지 여부를 결정하기 위해 서비스는 키에 지정된 권한 부여 정책을 평가합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-116">To decide whether or not the user is authorized to get the key, the service evaluates the authorization policies that you specified for the key.</span></span>
+<span data-ttu-id="4155c-111">Microsoft Azure 미디어 서비스에서는 toodeliver Http 라이브 스트리밍 (HLS) 및 부드러운 스트리밍을 AES로 암호화 된 고급 암호화 표준 () (128 비트 암호화 키를 사용 하 여) 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-111">Microsoft Azure Media Services enables you toodeliver Http-Live-Streaming (HLS) and Smooth Streams encrypted with Advanced Encryption Standard (AES) (using 128-bit encryption keys).</span></span> <span data-ttu-id="4155c-112">또한 미디어 서비스 암호화 키 tooauthorized 사용자가 전달 하는 hello 키 배달 서비스를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-112">Media Services also provides hello Key Delivery service that delivers encryption keys tooauthorized users.</span></span> <span data-ttu-id="4155c-113">원하는 tooencrypt 미디어 서비스에 대 한 자산 tooassociate hello 자산에는 암호화 키를 필요한 고 hello 키에 대 한 권한 부여 정책을 구성할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-113">If you want for Media Services tooencrypt an asset, you need tooassociate an encryption key with hello asset and also configure authorization policies for hello key.</span></span> <span data-ttu-id="4155c-114">미디어 서비스는 지정 된 hello 플레이어에서 스트림을 요청 되 면 키 toodynamically AES 암호화를 사용 하 여 콘텐츠를 암호화 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-114">When a stream is requested by a player, Media Services uses hello specified key toodynamically encrypt your content using AES encryption.</span></span> <span data-ttu-id="4155c-115">toodecrypt hello 스트림 hello 플레이어 hello 키 배달 서비스에서 hello 키를 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-115">toodecrypt hello stream, hello player will request hello key from hello key delivery service.</span></span> <span data-ttu-id="4155c-116">hello 사용자가 아닌지 toodecide 권한이 tooget hello 키, hello 서비스 hello 키에 대해 지정한 hello 권한 부여 정책을 평가 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-116">toodecide whether or not hello user is authorized tooget hello key, hello service evaluates hello authorization policies that you specified for hello key.</span></span>
 
-<span data-ttu-id="2d7b5-117">미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-117">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="2d7b5-118">콘텐츠 키 권한 부여 정책에는 열기 또는 토큰 제한과 같은 하나 이상의 권한 부여 제한이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-118">The content key authorization policy could have one or more authorization restrictions: open or token restriction.</span></span> <span data-ttu-id="2d7b5-119">토큰 제한 정책은 보안 토큰 서비스(STS)에 의해 발급된 토큰이 수반되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-119">The token restricted policy must be accompanied by a token issued by a Secure Token Service (STS).</span></span> <span data-ttu-id="2d7b5-120">Media Services 지원 토큰에는 [단순 웹 토큰](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)(SWT) 형식 및 [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)(JWT) 형식의 토큰을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-120">Media Services supports tokens in the [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) format and [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) format.</span></span> <span data-ttu-id="2d7b5-121">자세한 내용은 [콘텐츠 키의 권한 부여 정책 구성](media-services-protect-with-aes128.md#configure_key_auth_policy)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-121">For more information, see [Configure the content key’s authorization policy](media-services-protect-with-aes128.md#configure_key_auth_policy).</span></span>
+<span data-ttu-id="4155c-117">미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-117">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="4155c-118">hello 콘텐츠 키 인증 정책이 있을 수 하나 이상의 권한 부여 제한을: 열거나 토큰 제한 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-118">hello content key authorization policy could have one or more authorization restrictions: open or token restriction.</span></span> <span data-ttu-id="4155c-119">보안 토큰 서비스 (STS)에서 발급 한 토큰 hello 토큰 제한 정책은 함께 제공 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-119">hello token restricted policy must be accompanied by a token issued by a Secure Token Service (STS).</span></span> <span data-ttu-id="4155c-120">미디어 서비스는 hello에 토큰을 지원 [단순 웹 토큰](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) 형식 및 [JSON 웹 토큰](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-120">Media Services supports tokens in hello [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) format and [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) format.</span></span> <span data-ttu-id="4155c-121">자세한 내용은 참조 [hello 콘텐츠 키 권한 부여 정책 구성](media-services-protect-with-aes128.md#configure_key_auth_policy)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-121">For more information, see [Configure hello content key’s authorization policy](media-services-protect-with-aes128.md#configure_key_auth_policy).</span></span>
 
-<span data-ttu-id="2d7b5-122">동적 암호화를 이용하려면 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일의 집합이 포함된 자산을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-122">To take advantage of dynamic encryption, you need to have an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="2d7b5-123">또한 자산의 배달 정책을 구성해야 합니다(이 항목의 뒷부분에서 설명).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-123">You also need to configure the delivery policy for the asset (described later in this topic).</span></span> <span data-ttu-id="2d7b5-124">이렇게 하면 스트리밍 URL에 지정된 형식에 따라 주문형 스트리밍 서버는 사용자가 선택한 프로토콜로 스트림이 배달되도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-124">Then, based on the format specified in the streaming URL, the On-Demand Streaming server will ensure that the stream is delivered in the protocol you have chosen.</span></span> <span data-ttu-id="2d7b5-125">따라서 사용자는 단일 저장소 형식으로 파일을 저장하고 해당 파일에 대한 요금을 지불하기만 하면 되며, 미디어 서비스에서 클라이언트의 요청에 따라 적절한 응답을 작성하고 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-125">As a result, you only need to store and pay for the files in single storage format and Media Services service will build and serve the appropriate response based on requests from a client.</span></span>
+<span data-ttu-id="4155c-122">tootake 이점은 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일 집합이 포함 된 자산 toohave 동적 암호화 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-122">tootake advantage of dynamic encryption, you need toohave an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="4155c-123">또한 해야 tooconfigure hello 배달 정책 (이 항목의 뒷부분에 설명) hello 자산에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-123">You also need tooconfigure hello delivery policy for hello asset (described later in this topic).</span></span> <span data-ttu-id="4155c-124">그런 다음 형식에 따라 hello hello 스트리밍 URL에에서 지정 된, 주문형 스트리밍 서버 hello 됩니다 되도록 해당 hello 스트림의 선택한 hello 프로토콜에서 제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-124">Then, based on hello format specified in hello streaming URL, hello On-Demand Streaming server will ensure that hello stream is delivered in hello protocol you have chosen.</span></span> <span data-ttu-id="4155c-125">결과적으로, toostore 하기만 하면 및 단일 저장소 형식 및 미디어 서비스 서비스의 hello 파일에 대 한 급여 빌드하고 클라이언트에서에서 요청에 따라 hello 적절 한 응답을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-125">As a result, you only need toostore and pay for hello files in single storage format and Media Services service will build and serve hello appropriate response based on requests from a client.</span></span>
 
-<span data-ttu-id="2d7b5-126">이 항목은 보호된 미디어를 배달하는 응용 프로그램에 대한 작업을 수행하는 개발자에게 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-126">This topic would be useful to developers that work on applications that deliver protected media.</span></span> <span data-ttu-id="2d7b5-127">이 항목에서는 권한 부여 정책으로 키 배달 서비스를 구성하여 권한이 있는 클라이언트만 암호화 키를 받을 수 있도록 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-127">The topic shows you how to configure the key delivery service with authorization policies so that only authorized clients could receive the encryption keys.</span></span> <span data-ttu-id="2d7b5-128">또한 동적 암호화를 사용하는 방법도 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-128">It also shows how to use dynamic encryption.</span></span>
+<span data-ttu-id="4155c-126">이 항목에는 보호 된 미디어를 전달 하는 응용 프로그램에서 작동 하는 유용한 toodevelopers 것입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-126">This topic would be useful toodevelopers that work on applications that deliver protected media.</span></span> <span data-ttu-id="4155c-127">hello 항목에서는 권한 있는 클라이언트만 hello 암호화 키를 받을 수 있도록 권한 부여 정책 사용 하 여 키 배달 서비스 tooconfigure hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-127">hello topic shows you how tooconfigure hello key delivery service with authorization policies so that only authorized clients could receive hello encryption keys.</span></span> <span data-ttu-id="4155c-128">또한 표시 방법을 toouse 동적 암호화.</span><span class="sxs-lookup"><span data-stu-id="4155c-128">It also shows how toouse dynamic encryption.</span></span>
 
 
-## <a name="aes-128-dynamic-encryption-and-key-delivery-service-workflow"></a><span data-ttu-id="2d7b5-129">AES-128 동적 암호화 및 키 배달 서비스 워크플로</span><span class="sxs-lookup"><span data-stu-id="2d7b5-129">AES-128 Dynamic Encryption and Key Delivery Service Workflow</span></span>
+## <a name="aes-128-dynamic-encryption-and-key-delivery-service-workflow"></a><span data-ttu-id="4155c-129">AES-128 동적 암호화 및 키 배달 서비스 워크플로</span><span class="sxs-lookup"><span data-stu-id="4155c-129">AES-128 Dynamic Encryption and Key Delivery Service Workflow</span></span>
 
-<span data-ttu-id="2d7b5-130">다음은 AES로 자산을 암호화하고 미디어 서비스 키 배달 서비스를 사용하며 동적 암호화를 사용할 때 수행해야 하는 일반적인 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-130">The following are general steps that you would need to perform when encrypting your assets with AES, using the Media Services key delivery service, and also using dynamic encryption.</span></span>
+<span data-ttu-id="4155c-130">hello 다음은 AES, hello 미디어 서비스 키 배달 서비스를 사용 하 고 또한 동적 암호화를 사용 하 여로 자산을 암호화할 때 tooperform 해야 하는 일반적인 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-130">hello following are general steps that you would need tooperform when encrypting your assets with AES, using hello Media Services key delivery service, and also using dynamic encryption.</span></span>
 
-1. <span data-ttu-id="2d7b5-131">[자산을 만들고 파일을 자산에 업로드합니다](media-services-protect-with-aes128.md#create_asset).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-131">[Create an asset and upload files into the asset](media-services-protect-with-aes128.md#create_asset).</span></span>
-2. <span data-ttu-id="2d7b5-132">[파일이 들어 있는 자산을 적응 비트 전송률 MP4 집합으로 인코딩합니다](media-services-protect-with-aes128.md#encode_asset).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-132">[Encode the asset containing the file to the adaptive bitrate MP4 set](media-services-protect-with-aes128.md#encode_asset).</span></span>
-3. <span data-ttu-id="2d7b5-133">[콘텐츠 키를 만들어 인코딩된 자산에 연결합니다](media-services-protect-with-aes128.md#create_contentkey).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-133">[Create a content key and associate it with the encoded asset](media-services-protect-with-aes128.md#create_contentkey).</span></span> <span data-ttu-id="2d7b5-134">미디어 서비스에서 콘텐츠 키에는 자산의 암호화 키가 들어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-134">In Media Services, the content key contains the asset’s encryption key.</span></span>
-4. <span data-ttu-id="2d7b5-135">[콘텐츠 키의 권한 부여 정책을 구성합니다](media-services-protect-with-aes128.md#configure_key_auth_policy).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-135">[Configure the content key’s authorization policy](media-services-protect-with-aes128.md#configure_key_auth_policy).</span></span> <span data-ttu-id="2d7b5-136">콘텐츠 키 권한 부여 정책은 사용자가 구성해야 하며 콘텐츠 키를 클라이언트에 배달하기 위해서는 해당 클라이언트를 충족시켜야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-136">The content key authorization policy must be configured by you and met by the client in order for the content key to be delivered to the client.</span></span>
-5. <span data-ttu-id="2d7b5-137">[자산에 대한 배달 정책을 구성합니다](media-services-protect-with-aes128.md#configure_asset_delivery_policy).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-137">[Configure the delivery policy for an asset](media-services-protect-with-aes128.md#configure_asset_delivery_policy).</span></span> <span data-ttu-id="2d7b5-138">배달 정책 구성에는 키 획득 URL 및 IV(Initialization Vector)(AES 128에는 암호화 및 해독 시 동일한 IV를 제공해야 함), 배달 프로토콜(예: MPEG DASH, HLS, 부드러운 스트리밍 또는 모두), 동적 암호화 유형(예: 봉투(envelope) 또는 동적이지 않은 암호화)이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-138">The delivery policy configuration includes: key acquisition URL and Initialization Vector (IV) (AES 128 requires the same IV to be supplied when encrypting and decrypting), delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all), the type of dynamic encryption (for example, envelope or no dynamic encryption).</span></span>
+1. <span data-ttu-id="4155c-131">[자산을 만들고 파일 hello 자산으로 업로드](media-services-protect-with-aes128.md#create_asset)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-131">[Create an asset and upload files into hello asset](media-services-protect-with-aes128.md#create_asset).</span></span>
+2. <span data-ttu-id="4155c-132">[Hello 파일 toohello 적응 비트 전송률 MP4 세트를 포함 하는 hello 자산 인코딩](media-services-protect-with-aes128.md#encode_asset)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-132">[Encode hello asset containing hello file toohello adaptive bitrate MP4 set](media-services-protect-with-aes128.md#encode_asset).</span></span>
+3. <span data-ttu-id="4155c-133">[콘텐츠 키를 만들고 hello 인코딩된 자산에 연결할](media-services-protect-with-aes128.md#create_contentkey)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-133">[Create a content key and associate it with hello encoded asset](media-services-protect-with-aes128.md#create_contentkey).</span></span> <span data-ttu-id="4155c-134">미디어 서비스 콘텐츠 키 hello hello 자산의 암호화 키를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-134">In Media Services, hello content key contains hello asset’s encryption key.</span></span>
+4. <span data-ttu-id="4155c-135">[Hello 콘텐츠 키 권한 부여 정책 구성](media-services-protect-with-aes128.md#configure_key_auth_policy)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-135">[Configure hello content key’s authorization policy](media-services-protect-with-aes128.md#configure_key_auth_policy).</span></span> <span data-ttu-id="4155c-136">hello 콘텐츠 키 인증 정책은 구성 하 고 hello 클라이언트에서 콘텐츠 키 toobe 배달된 toohello 클라이언트 hello 하려면 충족 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-136">hello content key authorization policy must be configured by you and met by hello client in order for hello content key toobe delivered toohello client.</span></span>
+5. <span data-ttu-id="4155c-137">[자산의 배달 정책을 hello 구성](media-services-protect-with-aes128.md#configure_asset_delivery_policy)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-137">[Configure hello delivery policy for an asset](media-services-protect-with-aes128.md#configure_asset_delivery_policy).</span></span> <span data-ttu-id="4155c-138">hello 배달 정책 구성에: 키 취득 URL 및 IV (Initialization Vector) (AES 128을 암호화할 때 동일한 IV toobe 제공 하는 hello 및 암호 해독 필요), 배달 프로토콜 (예를 들어, MPEG DASH, HLS, 부드러운 스트리밍 또는 모두), hello 형식 동적 암호화 (예: 봉투 또는 동적 암호화 없음).</span><span class="sxs-lookup"><span data-stu-id="4155c-138">hello delivery policy configuration includes: key acquisition URL and Initialization Vector (IV) (AES 128 requires hello same IV toobe supplied when encrypting and decrypting), delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all), hello type of dynamic encryption (for example, envelope or no dynamic encryption).</span></span>
 
-    <span data-ttu-id="2d7b5-139">동일한 자산의 각 프로토콜에 다른 정책을 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-139">You could apply different policy to each protocol on the same asset.</span></span> <span data-ttu-id="2d7b5-140">예를 들어, Smooth/DASH에 PlayReady 암호화를, HLS에 AES 봉투(envelope)를 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-140">For example, you could apply PlayReady encryption to Smooth/DASH and AES Envelope to HLS.</span></span> <span data-ttu-id="2d7b5-141">배달 정책에 정의되지 않은 모든 프로토콜(예: HLS만 프로토콜로 지정하는 단일 정책)은 스트리밍에서 차단됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-141">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as the protocol) will be blocked from streaming.</span></span> <span data-ttu-id="2d7b5-142">정의한 자산 배달 정책이 없는 경우는 예외입니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-142">The exception to this is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="2d7b5-143">이렇게 하면 모든 프로토콜이 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-143">Then, all protocols will be allowed in the clear.</span></span>
+    <span data-ttu-id="4155c-139">Hello에 서로 다른 정책 tooeach 프로토콜을 적용할 수 동일한 자산입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-139">You could apply different policy tooeach protocol on hello same asset.</span></span> <span data-ttu-id="4155c-140">예를 들어 PlayReady 암호화 tooSmooth/DASH 및 AES 봉투 (envelope) tooHLS 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-140">For example, you could apply PlayReady encryption tooSmooth/DASH and AES Envelope tooHLS.</span></span> <span data-ttu-id="4155c-141">배달 정책에 정의 되어 있지 않은 모든 프로토콜 (예를 들어 추가한만 hello 프로토콜로 HLS를 지정 하는 단일 정책을) 스트리밍에서 차단 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-141">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as hello protocol) will be blocked from streaming.</span></span> <span data-ttu-id="4155c-142">hello 예외 toothis는 없는 자산 배달 정책을 정의 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-142">hello exception toothis is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="4155c-143">그런 다음 모든 프로토콜이 일반 hello에 허용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-143">Then, all protocols will be allowed in hello clear.</span></span>
 
-6. <span data-ttu-id="2d7b5-144">[주문형 로케이터를 만듭니다](media-services-protect-with-aes128.md#create_locator) .</span><span class="sxs-lookup"><span data-stu-id="2d7b5-144">[Create an OnDemand locator](media-services-protect-with-aes128.md#create_locator) in order to get a streaming URL.</span></span>
+6. <span data-ttu-id="4155c-144">[OnDemand 로케이터 만들기](media-services-protect-with-aes128.md#create_locator) 의 순서로 tooget 스트리밍 URL입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-144">[Create an OnDemand locator](media-services-protect-with-aes128.md#create_locator) in order tooget a streaming URL.</span></span>
 
-<span data-ttu-id="2d7b5-145">또한 이 항목에서는 [클라이언트 응용 프로그램이 키 배달 서비스로부터 키를 요청하는 방법](media-services-protect-with-aes128.md#client_request)도 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-145">The topic also shows [how a client application can request a key from the key delivery service](media-services-protect-with-aes128.md#client_request).</span></span>
+<span data-ttu-id="4155c-145">hello 항목 표시 [로 인해 클라이언트 응용 프로그램 hello 키 배달 서비스에서 키를 요청할 수는 어떻게](media-services-protect-with-aes128.md#client_request)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-145">hello topic also shows [how a client application can request a key from hello key delivery service](media-services-protect-with-aes128.md#client_request).</span></span>
 
-<span data-ttu-id="2d7b5-146">이 항목의 끝부분에서 전체 .NET [예제](media-services-protect-with-aes128.md#example) 가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-146">You will find a complete .NET [example](media-services-protect-with-aes128.md#example) at the end of the topic.</span></span>
+<span data-ttu-id="4155c-146">전체.NET 있습니다 [예제](media-services-protect-with-aes128.md#example) hello 항목의 hello 끝에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-146">You will find a complete .NET [example](media-services-protect-with-aes128.md#example) at hello end of hello topic.</span></span>
 
-<span data-ttu-id="2d7b5-147">다음 이미지는 위에서 설명한 워크플로를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-147">The following image demonstrates the workflow described above.</span></span> <span data-ttu-id="2d7b5-148">여기서는 인증에 토큰을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-148">Here the token is used for authentication.</span></span>
+<span data-ttu-id="4155c-147">다음 이미지는 hello 위에서 설명한 hello 워크플로를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-147">hello following image demonstrates hello workflow described above.</span></span> <span data-ttu-id="4155c-148">여기서 hello 토큰 인증을 위해 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-148">Here hello token is used for authentication.</span></span>
 
 ![AES-128로 보호](./media/media-services-content-protection-overview/media-services-content-protection-with-aes.png)
 
-<span data-ttu-id="2d7b5-150">이 항목의 나머지 부분에서는 자세한 설명, 코드 예제 및 위에서 설명한 작업을 수행하는 방법을 보여주는 항목에 대한 링크를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-150">The rest of this topic provides detailed explanations, code examples, and links to topics that show you how to achieve the tasks described above.</span></span>
+<span data-ttu-id="4155c-150">이 항목의 나머지 부분 hello에 대 한 세부 정보, 코드 예제 및 tooachieve 위에서 설명한 작업 hello 하는 방법을 보여 주는 링크 tootopics 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-150">hello rest of this topic provides detailed explanations, code examples, and links tootopics that show you how tooachieve hello tasks described above.</span></span>
 
-## <a name="current-limitations"></a><span data-ttu-id="2d7b5-151">현재 제한 사항</span><span class="sxs-lookup"><span data-stu-id="2d7b5-151">Current limitations</span></span>
-<span data-ttu-id="2d7b5-152">자산 배달 정책을 추가하거나 업데이트하는 경우 기존 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-152">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
+## <a name="current-limitations"></a><span data-ttu-id="4155c-151">현재 제한 사항</span><span class="sxs-lookup"><span data-stu-id="4155c-151">Current limitations</span></span>
+<span data-ttu-id="4155c-152">자산 배달 정책을 추가하거나 업데이트하는 경우 기존 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-152">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
 
-## <span data-ttu-id="2d7b5-153"><a id="create_asset"></a>자산 만들기 및 파일을 자산에 업로드</span><span class="sxs-lookup"><span data-stu-id="2d7b5-153"><a id="create_asset"></a>Create an asset and upload files into the asset</span></span>
-<span data-ttu-id="2d7b5-154">관리, 인코딩 및 비디오 스트림을 수행하려면 먼저 콘텐츠를 Microsoft Azure 미디어 서비스에 업로드해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-154">In order to manage, encode, and stream your videos, you must first upload your content into Microsoft Azure Media Services.</span></span> <span data-ttu-id="2d7b5-155">업로드되면 이후 처리 및 스트리밍을 위해 콘텐츠가 클라우드에 안전하게 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-155">Once uploaded, your content is stored securely in the cloud for further processing and streaming.</span></span> 
+## <span data-ttu-id="4155c-153"><a id="create_asset"></a>자산 만들기 및 hello 자산에 파일 업로드</span><span class="sxs-lookup"><span data-stu-id="4155c-153"><a id="create_asset"></a>Create an asset and upload files into hello asset</span></span>
+<span data-ttu-id="4155c-154">순서 toomanage 인코딩 및 스트리밍 비디오, Microsoft Azure 미디어 서비스에 콘텐츠를 먼저 업로드 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-154">In order toomanage, encode, and stream your videos, you must first upload your content into Microsoft Azure Media Services.</span></span> <span data-ttu-id="4155c-155">를 업로드 한 후 콘텐츠 추가 처리 및 스트리밍에 대 한 hello 클라우드에 안전 하 게 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-155">Once uploaded, your content is stored securely in hello cloud for further processing and streaming.</span></span> 
 
-<span data-ttu-id="2d7b5-156">자세한 내용은 [미디어 서비스 계정에 파일 업로드](media-services-dotnet-upload-files.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-156">For detailed information, see [Upload Files into a Media Services account](media-services-dotnet-upload-files.md).</span></span>
+<span data-ttu-id="4155c-156">자세한 내용은 [미디어 서비스 계정에 파일 업로드](media-services-dotnet-upload-files.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4155c-156">For detailed information, see [Upload Files into a Media Services account](media-services-dotnet-upload-files.md).</span></span>
 
-## <span data-ttu-id="2d7b5-157"><a id="encode_asset"></a>파일이 들어 있는 자산을 적응 비트 전송률 MP4 집합으로 인코딩</span><span class="sxs-lookup"><span data-stu-id="2d7b5-157"><a id="encode_asset"></a>Encode the asset containing the file to the adaptive bitrate MP4 set</span></span>
-<span data-ttu-id="2d7b5-158">동적 암호화를 사용하는 경우 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일의 집합이 포함된 자산을 만들기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-158">With dynamic encryption all you need is to create an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="2d7b5-159">이렇게 하면 매니페스트 또는 조각 요청의 지정된 형식에 따라 주문형 스트리밍 서버는 사용자가 선택한 프로토콜로 스트림을 받을 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-159">Then, based on the specified format in the manifest or fragment request, the On-Demand Streaming server will ensure that you receive the stream in the protocol you have chosen.</span></span> <span data-ttu-id="2d7b5-160">따라서 사용자는 단일 저장소 형식으로 파일을 저장하고 해당 파일에 대한 요금을 지불하기만 하면 되며, 미디어 서비스에서 클라이언트의 요청에 따라 적절한 응답을 작성하고 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-160">As a result, you only need to store and pay for the files in single storage format and Media Services service will build and serve the appropriate response based on requests from a client.</span></span> <span data-ttu-id="2d7b5-161">자세한 내용은 [동적 패키징 개요](media-services-dynamic-packaging-overview.md) 항목을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-161">For more information, see the [Dynamic Packaging Overview](media-services-dynamic-packaging-overview.md) topic.</span></span>
+## <span data-ttu-id="4155c-157"><a id="encode_asset"></a>Hello 자산 포함 hello 파일 toohello 적응 비트 전송률 MP4 세트로 인코딩</span><span class="sxs-lookup"><span data-stu-id="4155c-157"><a id="encode_asset"></a>Encode hello asset containing hello file toohello adaptive bitrate MP4 set</span></span>
+<span data-ttu-id="4155c-158">동적 암호화 toocreate 다중 비트 전송률 MP4 파일 또는 다중 비트 전송률 부드러운 스트리밍 원본 파일 집합이 포함 된 자산은 하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-158">With dynamic encryption all you need is toocreate an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="4155c-159">그런 다음 hello hello 매니페스트에 지정 된 형식에 따라 또는 요청 조각, 주문형 스트리밍 서버 hello 스트림이 선택한 hello 프로토콜에 수신 하는 방법을 사용 하면 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-159">Then, based on hello specified format in hello manifest or fragment request, hello On-Demand Streaming server will ensure that you receive hello stream in hello protocol you have chosen.</span></span> <span data-ttu-id="4155c-160">결과적으로, toostore 하기만 하면 및 단일 저장소 형식 및 미디어 서비스 서비스의 hello 파일에 대 한 급여 빌드하고 클라이언트에서에서 요청에 따라 hello 적절 한 응답을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-160">As a result, you only need toostore and pay for hello files in single storage format and Media Services service will build and serve hello appropriate response based on requests from a client.</span></span> <span data-ttu-id="4155c-161">자세한 내용은 참조 hello [동적 패키징 개요](media-services-dynamic-packaging-overview.md) 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-161">For more information, see hello [Dynamic Packaging Overview](media-services-dynamic-packaging-overview.md) topic.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="2d7b5-162">AMS 계정이 만들어질 때 **기본** 스트리밍 끝점은 **중지됨** 상태에서 계정에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-162">When your AMS account is created a **default** streaming endpoint is added to your account in the **Stopped** state.</span></span> <span data-ttu-id="2d7b5-163">콘텐츠 스트리밍을 시작하고 동적 패키징 및 동적 암호화를 활용하려면 콘텐츠를 스트리밍하려는 스트리밍 끝점은 **실행** 상태에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-163">To start streaming your content and take advantage of dynamic packaging and dynamic encryption, the streaming endpoint from which you want to stream content has to be in the **Running** state.</span></span> 
+><span data-ttu-id="4155c-162">AMS 계정이 만들어질 때 한 **기본** 스트리밍 끝점에 hello tooyour 계정 추가 됩니다 **Stopped** 상태입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-162">When your AMS account is created a **default** streaming endpoint is added tooyour account in hello **Stopped** state.</span></span> <span data-ttu-id="4155c-163">동적 패키징 및 동적 암호화 하면 콘텐츠 및 take 장점이 스트리밍 toostart hello toostream 콘텐츠 hello toobe에 들어 있는 스트리밍 끝점 **실행** 상태입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-163">toostart streaming your content and take advantage of dynamic packaging and dynamic encryption, hello streaming endpoint from which you want toostream content has toobe in hello **Running** state.</span></span> 
 >
-><span data-ttu-id="2d7b5-164">또한 동적 패키징 및 동적 암호화를 사용하려면 자산이 적응 비트 전송률 MP4 또는 적응 비트 전송률 부드러운 스트리밍 파일 집합을 포함해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-164">Also, to be able to use dynamic packaging and dynamic encryption your asset must contain a set of adaptive bitrate MP4s or adaptive bitrate Smooth Streaming files.</span></span>
+><span data-ttu-id="4155c-164">또한 toobe 수 toouse 동적 패키징 및 동적 암호화 자산인 있어야 적응 비트 전송률 mp4 또는 적응 비트 전송률 부드러운 스트리밍 파일 집합입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-164">Also, toobe able toouse dynamic packaging and dynamic encryption your asset must contain a set of adaptive bitrate MP4s or adaptive bitrate Smooth Streaming files.</span></span>
 
-<span data-ttu-id="2d7b5-165">인코딩하는 방법에 관한 지침은 [미디어 인코더 표준을 사용하여 자산을 인코딩하는 방법](media-services-dotnet-encode-with-media-encoder-standard.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-165">For instructions on how to encode, see [How to encode an asset using Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).</span></span>
+<span data-ttu-id="4155c-165">방법에 대 한 지침은 tooencode, 참조 [어떻게 tooencode 미디어 인코더 표준를 사용 하 여 자산](media-services-dotnet-encode-with-media-encoder-standard.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-165">For instructions on how tooencode, see [How tooencode an asset using Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).</span></span>
 
-## <span data-ttu-id="2d7b5-166"><a id="create_contentkey"></a>콘텐츠 키를 만들어 인코딩된 자산에 연결</span><span class="sxs-lookup"><span data-stu-id="2d7b5-166"><a id="create_contentkey"></a>Create a content key and associate it with the encoded asset</span></span>
-<span data-ttu-id="2d7b5-167">미디어 서비스에서 콘텐츠 키에는 자산을 암호화할 키가 들어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-167">In Media Services, the content key contains the key that you want to encrypt an asset with.</span></span>
+## <span data-ttu-id="4155c-166"><a id="create_contentkey"></a>콘텐츠 키를 만들고 hello 인코딩된 자산에 연결</span><span class="sxs-lookup"><span data-stu-id="4155c-166"><a id="create_contentkey"></a>Create a content key and associate it with hello encoded asset</span></span>
+<span data-ttu-id="4155c-167">Hello 콘텐츠 키 미디어 서비스 자산 tooencrypt hello 키에 포함 되어 있는 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-167">In Media Services, hello content key contains hello key that you want tooencrypt an asset with.</span></span>
 
-<span data-ttu-id="2d7b5-168">자세한 내용은 [콘텐츠 키 만들기](media-services-dotnet-create-contentkey.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-168">For detailed information, see [Create content key](media-services-dotnet-create-contentkey.md).</span></span>
+<span data-ttu-id="4155c-168">자세한 내용은 [콘텐츠 키 만들기](media-services-dotnet-create-contentkey.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4155c-168">For detailed information, see [Create content key](media-services-dotnet-create-contentkey.md).</span></span>
 
-## <span data-ttu-id="2d7b5-169"><a id="configure_key_auth_policy"></a>콘텐츠 키의 인증 정책을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-169"><a id="configure_key_auth_policy"></a>Configure the content key’s authorization policy</span></span>
-<span data-ttu-id="2d7b5-170">미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-170">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="2d7b5-171">콘텐츠 키 권한 부여 정책은 사용자가 구성해야 하며 이 키를 클라이언트에 배달하기 위해서는 해당 클라이언트(플레이어)를 충족시켜야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-171">The content key authorization policy must be configured by you and met by the client (player) in order for the key to be delivered to the client.</span></span> <span data-ttu-id="2d7b5-172">콘텐츠 키 권한 부여 정책에는 열기, 토큰 제한 또는 IP 제한과 같은 하나 이상의 권한 부여 제한이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-172">The content key authorization policy could have one or more authorization restrictions: open, token restriction, or IP restriction.</span></span>
+## <span data-ttu-id="4155c-169"><a id="configure_key_auth_policy"></a>Hello 콘텐츠 키 권한 부여 정책 구성</span><span class="sxs-lookup"><span data-stu-id="4155c-169"><a id="configure_key_auth_policy"></a>Configure hello content key’s authorization policy</span></span>
+<span data-ttu-id="4155c-170">미디어 서비스는 키를 요청 하는 사용자를 인증 하는 여러 방법을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-170">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="4155c-171">hello 콘텐츠 키 인증 정책은 구성 하 고 hello 키 toobe toohello 클라이언트에 배달 하려면에서 hello 클라이언트 (플레이어)에서 충족 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-171">hello content key authorization policy must be configured by you and met by hello client (player) in order for hello key toobe delivered toohello client.</span></span> <span data-ttu-id="4155c-172">hello 콘텐츠 키 인증 정책이 있을 수 하나 이상의 권한 부여 제한을: 열고, 제한, 또는 IP 제한이 토큰입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-172">hello content key authorization policy could have one or more authorization restrictions: open, token restriction, or IP restriction.</span></span>
 
-<span data-ttu-id="2d7b5-173">자세한 내용은 [콘텐츠 키 권한 부여 정책 구성](media-services-dotnet-configure-content-key-auth-policy.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-173">For detailed information, see [Configure Content Key Authorization Policy](media-services-dotnet-configure-content-key-auth-policy.md).</span></span>
+<span data-ttu-id="4155c-173">자세한 내용은 [콘텐츠 키 권한 부여 정책 구성](media-services-dotnet-configure-content-key-auth-policy.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4155c-173">For detailed information, see [Configure Content Key Authorization Policy](media-services-dotnet-configure-content-key-auth-policy.md).</span></span>
 
-## <span data-ttu-id="2d7b5-174"><a id="configure_asset_delivery_policy"></a>자산 배달 정책 구성</span><span class="sxs-lookup"><span data-stu-id="2d7b5-174"><a id="configure_asset_delivery_policy"></a>Configure asset delivery policy</span></span>
-<span data-ttu-id="2d7b5-175">자산에 대한 배달 정책을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-175">Configure the delivery policy for your asset.</span></span> <span data-ttu-id="2d7b5-176">자산 배달 정책 구성에는 다음이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-176">Some things that the asset delivery policy configuration includes:</span></span>
+## <span data-ttu-id="4155c-174"><a id="configure_asset_delivery_policy"></a>자산 배달 정책 구성</span><span class="sxs-lookup"><span data-stu-id="4155c-174"><a id="configure_asset_delivery_policy"></a>Configure asset delivery policy</span></span>
+<span data-ttu-id="4155c-175">자산에 대 한 hello 배달 정책을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-175">Configure hello delivery policy for your asset.</span></span> <span data-ttu-id="4155c-176">자산 배달 정책 구성 hello 있는 일부의 원인에는 다음이 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-176">Some things that hello asset delivery policy configuration includes:</span></span>
 
-* <span data-ttu-id="2d7b5-177">키 획득 URL.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-177">The Key acquisition URL.</span></span> 
-* <span data-ttu-id="2d7b5-178">봉투(envelope) 암호화에 사용할 IV(Initialization Vector).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-178">The Initialization Vector (IV) to use for the envelope encryption.</span></span> <span data-ttu-id="2d7b5-179">AES 128에는 암호화 및 해독 시 동일한 IV를 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-179">AES 128 requires the same IV to be supplied when encrypting and decrypting.</span></span> 
-* <span data-ttu-id="2d7b5-180">자산 배달 프로토콜(예: MPEG DASH, HLS, 부드러운 스트리밍 또는 모두).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-180">The asset delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all).</span></span>
-* <span data-ttu-id="2d7b5-181">동적 암호화 유형(예: AES 봉투) 또는 동적이지 않은 암호화.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-181">The type of dynamic encryption (for example, AES envelope) or no dynamic encryption.</span></span> 
+* <span data-ttu-id="4155c-177">hello 키 취득 URL</span><span class="sxs-lookup"><span data-stu-id="4155c-177">hello Key acquisition URL.</span></span> 
+* <span data-ttu-id="4155c-178">hello hello 봉투 암호화에 대 한 초기화 벡터 (IV) toouse 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-178">hello Initialization Vector (IV) toouse for hello envelope encryption.</span></span> <span data-ttu-id="4155c-179">AES 128 hello 암호화 및 암호 해독 하는 경우 동일한 IV toobe 제공 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-179">AES 128 requires hello same IV toobe supplied when encrypting and decrypting.</span></span> 
+* <span data-ttu-id="4155c-180">hello 자산 배달 프로토콜 (예를 들어, MPEG DASH, HLS, 부드러운 스트리밍 또는 모두)입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-180">hello asset delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all).</span></span>
+* <span data-ttu-id="4155c-181">hello 유형의 동적 암호화 (예: AES 봉투) 또는 동적 암호화 없음.</span><span class="sxs-lookup"><span data-stu-id="4155c-181">hello type of dynamic encryption (for example, AES envelope) or no dynamic encryption.</span></span> 
 
-<span data-ttu-id="2d7b5-182">자세한 내용은 [자산 배달 정책 구성 ](media-services-rest-configure-asset-delivery-policy.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-182">For detailed information, see [Configure asset delivery policy ](media-services-rest-configure-asset-delivery-policy.md).</span></span>
+<span data-ttu-id="4155c-182">자세한 내용은 [자산 배달 정책 구성 ](media-services-rest-configure-asset-delivery-policy.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4155c-182">For detailed information, see [Configure asset delivery policy ](media-services-rest-configure-asset-delivery-policy.md).</span></span>
 
-## <span data-ttu-id="2d7b5-183"><a id="create_locator"></a>스트리밍 URL을 얻기 위해 주문형 스트리밍 로케이터 만들기</span><span class="sxs-lookup"><span data-stu-id="2d7b5-183"><a id="create_locator"></a>Create an OnDemand streaming locator in order to get a streaming URL</span></span>
-<span data-ttu-id="2d7b5-184">사용자에게 Smooth, DASH 또는 HLS에 대한 스트리밍 URL을 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-184">You will need to provide your user with the streaming URL for Smooth, DASH or HLS.</span></span>
+## <span data-ttu-id="4155c-183"><a id="create_locator"></a>주문형 스트리밍 로케이터 순서 tooget 스트리밍 URL 만들기</span><span class="sxs-lookup"><span data-stu-id="4155c-183"><a id="create_locator"></a>Create an OnDemand streaming locator in order tooget a streaming URL</span></span>
+<span data-ttu-id="4155c-184">스트리밍 URL을 부드러운 스트리밍, DASH 또는 HLS hello로 사용자 tooprovide를 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-184">You will need tooprovide your user with hello streaming URL for Smooth, DASH or HLS.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="2d7b5-185">자산 배달 정책을 추가하거나 업데이트하는 경우 기존 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-185">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
+> <span data-ttu-id="4155c-185">자산 배달 정책을 추가하거나 업데이트하는 경우 기존 로케이터(있는 경우)를 삭제하고 새 로케이터를 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-185">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
 > 
 > 
 
-<span data-ttu-id="2d7b5-186">자산을 게시하고 스트리밍 URL을 작성하는 방법은 [스트리밍 URL 작성](media-services-deliver-streaming-content.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-186">For instructions on how to publish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
+<span data-ttu-id="4155c-186">Toopublish 자산 및 빌드 스트리밍 URL 참조 하는 방법에 대 한 지침은 [스트리밍 URL을 작성할](media-services-deliver-streaming-content.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-186">For instructions on how toopublish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
 
-## <a name="get-a-test-token"></a><span data-ttu-id="2d7b5-187">테스트 토큰 가져오기</span><span class="sxs-lookup"><span data-stu-id="2d7b5-187">Get a test token</span></span>
-<span data-ttu-id="2d7b5-188">키 권한 부여 정책에 사용된 토큰 제한에 따라 테스트 토큰을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-188">Get a test token based on the token restriction that was used for the key authorization policy.</span></span>
+## <a name="get-a-test-token"></a><span data-ttu-id="4155c-187">테스트 토큰 가져오기</span><span class="sxs-lookup"><span data-stu-id="4155c-187">Get a test token</span></span>
+<span data-ttu-id="4155c-188">테스트 토큰 가져오기 hello 키 권한 부여 정책에 사용 된 hello 토큰 제한을 기반 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-188">Get a test token based on hello token restriction that was used for hello key authorization policy.</span></span>
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate = 
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on the data in the given TokenRestrictionTemplate.
-    //The GenerateTestToken method returns the token without the word “Bearer” in front
-    //so you have to add it in front of the token string. 
+    // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+    //so you have tooadd it in front of hello token string. 
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate);
-    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
 
-<span data-ttu-id="2d7b5-189">[AMS 플레이어](http://amsplayer.azurewebsites.net/azuremediaplayer.html) 를 사용하여 스트림을 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-189">You can use the [AMS Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) to test your stream.</span></span>
+<span data-ttu-id="4155c-189">Hello를 사용할 수 있습니다 [AMS 플레이어](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest 스트림을 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-189">You can use hello [AMS Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest your stream.</span></span>
 
-## <span data-ttu-id="2d7b5-190"><a id="client_request"></a>클라이언트가 키 배달 서비스로부터 키를 요청하는 방법</span><span class="sxs-lookup"><span data-stu-id="2d7b5-190"><a id="client_request"></a>How can your client request a key from the key delivery service?</span></span>
-<span data-ttu-id="2d7b5-191">이전 단계에서는 매니페스트 파일을 가리키는 URL을 생성했습니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-191">In the previous step, you constructed the URL that points to a manifest file.</span></span> <span data-ttu-id="2d7b5-192">클라이언트는 키 배달 서비스에 요청을 수행하기 위해 스트리밍 매니페스트 파일에서 필요한 정보를 추출해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-192">Your client needs to extract the necessary information from the streaming manifest files in order to make a request to the key delivery service.</span></span>
+## <span data-ttu-id="4155c-190"><a id="client_request"></a>클라이언트 프로그램은 어떻게 hello 키 배달 서비스에서 키를 요청할 수 있습니까?</span><span class="sxs-lookup"><span data-stu-id="4155c-190"><a id="client_request"></a>How can your client request a key from hello key delivery service?</span></span>
+<span data-ttu-id="4155c-191">Hello 이전 단계에서 tooa 매니페스트 파일을 가리키는 hello URL을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-191">In hello previous step, you constructed hello URL that points tooa manifest file.</span></span> <span data-ttu-id="4155c-192">클라이언트는 hello tooextract hello 스트리밍 매니페스트 파일 순서 toomake 요청 toohello 키 배달 서비스에서에서 필요한 정보를 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-192">Your client needs tooextract hello necessary information from hello streaming manifest files in order toomake a request toohello key delivery service.</span></span>
 
-### <a name="manifest-files"></a><span data-ttu-id="2d7b5-193">매니페스트 파일</span><span class="sxs-lookup"><span data-stu-id="2d7b5-193">Manifest files</span></span>
-<span data-ttu-id="2d7b5-194">클라이언트는 매니페스트 파일에서 URL(콘텐츠 키 Id도 포함(kid)) 값을 추출해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-194">The client needs to extract the URL (that also contains content key Id (kid)) value from the manifest file.</span></span> <span data-ttu-id="2d7b5-195">그런 다음 키 배달 서비스로부터 암호화 키 가져오기를 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-195">The client will then try to get the encryption key from the key delivery service.</span></span> <span data-ttu-id="2d7b5-196">또한 IV 값을 추출하고 이 값을 사용하여 스트림을 해독합니다. 다음 코드 조각은 부드러운 스트리밍 매니페스트의 <Protection> 요소를 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-196">The client also needs to extract the IV value and use it do decrypt the stream.The following snippet shows the <Protection> element of the Smooth Streaming manifest.</span></span>
+### <a name="manifest-files"></a><span data-ttu-id="4155c-193">매니페스트 파일</span><span class="sxs-lookup"><span data-stu-id="4155c-193">Manifest files</span></span>
+<span data-ttu-id="4155c-194">hello 클라이언트 해야 (즉 콘텐츠 kid (키 Id)도 포함) tooextract hello URL hello 매니페스트 파일의 값입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-194">hello client needs tooextract hello URL (that also contains content key Id (kid)) value from hello manifest file.</span></span> <span data-ttu-id="4155c-195">클라이언트 hello은 tooget hello 암호화 키 hello 키 배달 서비스를 먼저 시도 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-195">hello client will then try tooget hello encryption key from hello key delivery service.</span></span> <span data-ttu-id="4155c-196">hello 클라이언트도 tooextract hello IV 값이 필요 하 고 다음 코드 조각 hello stream.hello 암호 해독을 사용 하 여 hello를 보여 줍니다. <Protection> hello 부드러운 스트리밍 매니페스트의 요소입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-196">hello client also needs tooextract hello IV value and use it do decrypt hello stream.hello following snippet shows hello <Protection> element of hello Smooth Streaming manifest.</span></span>
 
     <Protection>
       <ProtectionHeader SystemID="B47B251A-2409-4B42-958E-08DBAE7B4EE9">
@@ -149,9 +149,9 @@ ms.lasthandoff: 08/29/2017
       </ProtectionHeader>
     </Protection>
 
-<span data-ttu-id="2d7b5-197">HLS의 경우 루트 매니페스트는 세그먼트 파일로 나뉩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-197">In the case of HLS, the root manifest is broken into segment files.</span></span> 
+<span data-ttu-id="4155c-197">HLS의 경우 hello hello 루트 매니페스트 세그먼트 파일로 구분 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-197">In hello case of HLS, hello root manifest is broken into segment files.</span></span> 
 
-<span data-ttu-id="2d7b5-198">예를 들어 루트 매니페이스는 http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/manifest(format=m3u8-aapl)이고 세그먼트 파일 이름 목록을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-198">For example, the root manifest is: http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/manifest(format=m3u8-aapl) and it contains a list of segment file names.</span></span>
+<span data-ttu-id="4155c-198">예를 들어 hello 루트 매니페스트는: http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/manifest(format=m3u8-aapl) 이므로 세그먼트 파일 이름의 목록을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-198">For example, hello root manifest is: http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/manifest(format=m3u8-aapl) and it contains a list of segment file names.</span></span>
 
     . . . 
     #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=630133,RESOLUTION=424x240,CODECS="avc1.4d4015,mp4a.40.2",AUDIO="audio"
@@ -160,7 +160,7 @@ ms.lasthandoff: 08/29/2017
     QualityLevels(842459)/Manifest(video,format=m3u8-aapl)
     …
 
-<span data-ttu-id="2d7b5-199">세그먼트 파일 중 하나를 텍스트 편집기에서 열면(예: http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/QualityLevels(514369)/Manifest(video,format=m3u8-aapl)), #EXT-X-KEY가 포함되어 있어야 하며 이는 파일이 암호화되었음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-199">If you open one of the segment files in text editor (for example, http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/QualityLevels(514369)/Manifest(video,format=m3u8-aapl), it should contain #EXT-X-KEY which indicates that the file is encrypted.</span></span>
+<span data-ttu-id="4155c-199">텍스트 편집기 (예를 들어 http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/QualityLevels(514369)/Manifest(video,format=m3u8-aapl), it should에서에서 hello 세그먼트 파일 중 하나를 열면 #EXT-X 키를 나타내는 해당 hello 파일은 암호화를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-199">If you open one of hello segment files in text editor (for example, http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/QualityLevels(514369)/Manifest(video,format=m3u8-aapl), it should contain #EXT-X-KEY which indicates that hello file is encrypted.</span></span>
 
     #EXTM3U
     #EXT-X-VERSION:4
@@ -177,11 +177,11 @@ ms.lasthandoff: 08/29/2017
     #EXT-X-ENDLIST
 
 >[!NOTE] 
-><span data-ttu-id="2d7b5-200">Safari에서 AES 암호화 HLS를 재생하려는 경우 [이 블로그](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-200">If you are planning to play an AES encrypted HLS in Safari, see [this blog](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/).</span></span>
+><span data-ttu-id="4155c-200">AES 암호화 safari에서는 HLS tooplay 계획인 경우, 참조 [이 블로그](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-200">If you are planning tooplay an AES encrypted HLS in Safari, see [this blog](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/).</span></span>
 
-### <a name="request-the-key-from-the-key-delivery-service"></a><span data-ttu-id="2d7b5-201">키 배달 서비스로부터 키 요청</span><span class="sxs-lookup"><span data-stu-id="2d7b5-201">Request the key from the key delivery service</span></span>
+### <a name="request-hello-key-from-hello-key-delivery-service"></a><span data-ttu-id="4155c-201">Hello 키 배달 서비스에서 hello 키 요청</span><span class="sxs-lookup"><span data-stu-id="4155c-201">Request hello key from hello key delivery service</span></span>
 
-<span data-ttu-id="2d7b5-202">다음 코드에서는 키 배달 Uri(매니페스트에서 추출됨) 및 토큰을 사용하여 미디어 서비스 키 배달 서비스로 요청을 보내는 방법을 보여 줍니다(이 항목에서는 보안 토큰 서비스에서 간단한 웹 토큰을 가져오는 방법에 대해서는 다루지 않음).</span><span class="sxs-lookup"><span data-stu-id="2d7b5-202">The following code shows how to send a request to the Media Services key delivery service using a key delivery Uri (that was extracted from the manifest) and a token (this topic does not talk about how to get Simple Web Tokens from a Secure Token Service).</span></span>
+<span data-ttu-id="4155c-202">hello 다음 코드를 보여 줍니다 방법을 toosend 요청 toohello 미디어 서비스 키 배달 서비스는 키 배달 Uri (즉 hello 매니페스트에서 추출 된)를 사용 하 여 (이 항목 어떻게 tooget 단순 웹 토큰을 보안 토큰 서비스에서에 대 한와 통신 하지 않습니다) 토큰입니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-202">hello following code shows how toosend a request toohello Media Services key delivery service using a key delivery Uri (that was extracted from hello manifest) and a token (this topic does not talk about how tooget Simple Web Tokens from a Secure Token Service).</span></span>
 
     private byte[] GetDeliveryKey(Uri keyDeliveryUri, string token)
     {
@@ -223,24 +223,24 @@ ms.lasthandoff: 08/29/2017
         return key;
     }
 
-## <a name="protect-your-content-with-aes-128-using-net"></a><span data-ttu-id="2d7b5-203">.NET을 사용하여 AES-128로 콘텐츠 보호</span><span class="sxs-lookup"><span data-stu-id="2d7b5-203">Protect your content with AES-128 using .NET</span></span>
+## <a name="protect-your-content-with-aes-128-using-net"></a><span data-ttu-id="4155c-203">.NET을 사용하여 AES-128로 콘텐츠 보호</span><span class="sxs-lookup"><span data-stu-id="4155c-203">Protect your content with AES-128 using .NET</span></span>
 
-### <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="2d7b5-204">Visual Studio 프로젝트 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="2d7b5-204">Create and configure a Visual Studio project</span></span>
+### <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="4155c-204">Visual Studio 프로젝트 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="4155c-204">Create and configure a Visual Studio project</span></span>
 
-1. <span data-ttu-id="2d7b5-205">개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-205">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
-2. <span data-ttu-id="2d7b5-206">다음 요소를 app.config 파일에 정의된 **appSettings**에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-206">Add the following elements to **appSettings** defined in your app.config file:</span></span>
+1. <span data-ttu-id="4155c-205">개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-205">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+2. <span data-ttu-id="4155c-206">추가 요소를 너무 다음 hello**appSettings** app.config 파일에 정의 된:</span><span class="sxs-lookup"><span data-stu-id="4155c-206">Add hello following elements too**appSettings** defined in your app.config file:</span></span>
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
-### <span data-ttu-id="2d7b5-207"><a id="example"></a>예제</span><span class="sxs-lookup"><span data-stu-id="2d7b5-207"><a id="example"></a>Example</span></span>
+### <span data-ttu-id="4155c-207"><a id="example"></a>예제</span><span class="sxs-lookup"><span data-stu-id="4155c-207"><a id="example"></a>Example</span></span>
 
-<span data-ttu-id="2d7b5-208">Program.cs 파일에 있는 코드를 이 섹션에 나와 있는 코드로 덮어씁니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-208">Overwrite the code in your Program.cs file with the code shown in this section.</span></span>
+<span data-ttu-id="4155c-208">이 섹션에 표시 된 hello 코드도 Program.cs 파일의 hello 코드를 덮어씁니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-208">Overwrite hello code in your Program.cs file with hello code shown in this section.</span></span>
  
 >[!NOTE]
-><span data-ttu-id="2d7b5-209">다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-209">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="2d7b5-210">항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-210">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="2d7b5-211">자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-211">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+><span data-ttu-id="4155c-209">다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-209">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="4155c-210">Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한.</span><span class="sxs-lookup"><span data-stu-id="4155c-210">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="4155c-211">자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4155c-211">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
-<span data-ttu-id="2d7b5-212">입력 파일이 있는 폴더를 가리키도록 변수를 업데이트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2d7b5-212">Make sure to update variables to point to folders where your input files are located.</span></span>
+<span data-ttu-id="4155c-212">확인 되었는지 tooupdate 변수 toopoint toofolders 입력된 파일이 있는 위치 합니다.</span><span class="sxs-lookup"><span data-stu-id="4155c-212">Make sure tooupdate variables toopoint toofolders where your input files are located.</span></span>
 
     using System;
     using System.Collections.Generic;
@@ -257,18 +257,18 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
         ConfigurationManager.AppSettings["MediaServiceRESTAPIEndpoint"];
 
-        // A Uri describing the issuer of the token.  
-        // Must match the value in the token for the token to be considered valid.
+        // A Uri describing hello issuer of hello token.  
+        // Must match hello value in hello token for hello token toobe considered valid.
         private static readonly Uri _sampleIssuer =
             new Uri(ConfigurationManager.AppSettings["Issuer"]);
-        // The Audience or Scope of the token.  
-        // Must match the value in the token for the token to be considered valid.
+        // hello Audience or Scope of hello token.  
+        // Must match hello value in hello token for hello token toobe considered valid.
         private static readonly Uri _sampleAudience =
             new Uri(ConfigurationManager.AppSettings["Audience"]);
 
@@ -298,7 +298,7 @@ ms.lasthandoff: 08/29/2017
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateEnvelopeTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine();
 
             if (tokenRestriction)
@@ -320,21 +320,21 @@ ms.lasthandoff: 08/29/2017
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified 
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified 
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
 
-            //The GenerateTestToken method returns the token without the word “Bearer” in front
-            //so you have to add it in front of the token string. 
+            //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+            //so you have tooadd it in front of hello token string. 
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey);
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
-            // You can use the bit.ly/aesplayer Flash player to test the URL 
+            // You can use hello bit.ly/aesplayer Flash player tootest hello URL 
             // (with open authorization policy). 
-            // Paste the URL and click the Update button to play the video. 
+            // Paste hello URL and click hello Update button tooplay hello video. 
             //
             string URL = GetStreamingOriginLocator(encodedAsset);
             Console.WriteLine("Smooth Streaming Url: {0}/manifest", URL);
@@ -373,22 +373,22 @@ ms.lasthandoff: 08/29/2017
         {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Create a task with the encoding details, using a string preset.
+            // Create a task with hello encoding details, using a string preset.
             // In this case "Adaptive Streaming" preset is used.
             ITask task = job.Tasks.AddNew("My encoding task",
             processor,
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.StorageEncrypted);
 
@@ -422,7 +422,7 @@ ms.lasthandoff: 08/29/2017
                 "ContentKey",
                 ContentKeyType.EnvelopeEncryption);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -458,10 +458,10 @@ ms.lasthandoff: 08/29/2017
 
             policy.Options.Add(policyOption);
 
-            // Add ContentKeyAutorizationPolicy to ContentKey
+            // Add ContentKeyAutorizationPolicy tooContentKey
             contentKey.AuthorizationPolicyId = policy.Id;
             IContentKey updatedKey = contentKey.UpdateAsync().Result;
-            Console.WriteLine("Adding Key to Asset: Key ID is " + updatedKey.Id);
+            Console.WriteLine("Adding Key tooAsset: Key ID is " + updatedKey.Id);
         }
 
         public static string AddTokenRestrictedAuthorizationPolicy(IContentKey contentKey)
@@ -496,10 +496,10 @@ ms.lasthandoff: 08/29/2017
 
             policy.Options.Add(policyOption);
 
-            // Add ContentKeyAutorizationPolicy to ContentKey
+            // Add ContentKeyAutorizationPolicy tooContentKey
             contentKey.AuthorizationPolicyId = policy.Id;
             IContentKey updatedKey = contentKey.UpdateAsync().Result;
-            Console.WriteLine("Adding Key to Asset: Key ID is " + updatedKey.Id);
+            Console.WriteLine("Adding Key tooAsset: Key ID is " + updatedKey.Id);
 
             return tokenTemplateString;
         }
@@ -510,17 +510,17 @@ ms.lasthandoff: 08/29/2017
 
             string envelopeEncryptionIV = Convert.ToBase64String(GetRandomBuffer(16));
 
-            // When configuring delivery policy, you can choose to associate it
+            // When configuring delivery policy, you can choose tooassociate it
             // with a key acquisition URL that has a KID appended or
             // or a key acquisition URL that does not have a KID appended  
             // in which case a content key can be reused. 
 
-            // EnvelopeKeyAcquisitionUrl:  contains a key ID in the key URL.
-            // EnvelopeBaseKeyAcquisitionUrl:  the URL does not contains a key ID
+            // EnvelopeKeyAcquisitionUrl:  contains a key ID in hello key URL.
+            // EnvelopeBaseKeyAcquisitionUrl:  hello URL does not contains a key ID
 
-            // The following policy configuration specifies: 
-            // key url that will have KID=<Guid> appended to the envelope and
-            // the Initialization Vector (IV) to use for the envelope encryption.
+            // hello following policy configuration specifies: 
+            // key url that will have KID=<Guid> appended toohello envelope and
+            // hello Initialization Vector (IV) toouse for hello envelope encryption.
 
             Dictionary<AssetDeliveryPolicyConfigurationKey, string> assetDeliveryPolicyConfiguration =
             new Dictionary<AssetDeliveryPolicyConfigurationKey, string>
@@ -535,7 +535,7 @@ ms.lasthandoff: 08/29/2017
                 AssetDeliveryProtocol.SmoothStreaming | AssetDeliveryProtocol.HLS | AssetDeliveryProtocol.Dash,
                 assetDeliveryPolicyConfiguration);
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
             Console.WriteLine();
             Console.WriteLine("Adding Asset Delivery Policy: " +
@@ -545,8 +545,8 @@ ms.lasthandoff: 08/29/2017
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset. 
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset. 
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                 EndsWith(".ism")).
@@ -558,12 +558,12 @@ ms.lasthandoff: 08/29/2017
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin. 
+            // Create a locator toohello streaming content on an origin. 
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file. 
+            // Create a URL toohello manifest file. 
             return originLocator.Path + assetFile.Name;
         }
 
@@ -603,9 +603,9 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="2d7b5-213">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="2d7b5-213">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="4155c-213">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="4155c-213">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="2d7b5-214">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="2d7b5-214">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="4155c-214">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="4155c-214">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
